@@ -733,6 +733,81 @@ module TencentCloud
         end
       end
 
+      # CreateVideoEncodingPreset请求参数结构体
+      class CreateVideoEncodingPresetRequest < TencentCloud::Common::AbstractModel
+        # @param Platform: 平台名称，指定访问的平台。
+        # @type Platform: String
+        # @param Name: 配置名，可用来简单描述该配置的作用。
+        # @type Name: String
+        # @param Container: 封装格式，可选值：
+        # <li>mp4 ；</li>
+        # <li>mov 。</li>
+        # 默认值：mp4。
+        # @type Container: String
+        # @param RemoveVideo: 是否去除视频数据，可选值：
+        # <li>0：保留；</li>
+        # <li>1：去除。</li>
+        # 默认值：0。
+        # @type RemoveVideo: Integer
+        # @param RemoveAudio: 是否去除音频数据，可选值：
+        # <li>0：保留；</li>
+        # <li>1：去除。</li>
+        # 默认值：0。
+        # @type RemoveAudio: Integer
+        # @param VideoSetting: 编码配置的视频设置。默认值参考VideoEncodingPresetVideoSetting 定义。
+        # @type VideoSetting: :class:`Tencentcloud::Cme.v20191029.models.VideoEncodingPresetVideoSetting`
+        # @param AudioSetting: 编码配置的音频设置。默认值参考VideoEncodingPresetAudioSetting 定义。
+        # @type AudioSetting: :class:`Tencentcloud::Cme.v20191029.models.VideoEncodingPresetAudioSetting`
+
+        attr_accessor :Platform, :Name, :Container, :RemoveVideo, :RemoveAudio, :VideoSetting, :AudioSetting
+        
+        def initialize(platform=nil, name=nil, container=nil, removevideo=nil, removeaudio=nil, videosetting=nil, audiosetting=nil)
+          @Platform = platform
+          @Name = name
+          @Container = container
+          @RemoveVideo = removevideo
+          @RemoveAudio = removeaudio
+          @VideoSetting = videosetting
+          @AudioSetting = audiosetting
+        end
+
+        def deserialize(params)
+          @Platform = params['Platform']
+          @Name = params['Name']
+          @Container = params['Container']
+          @RemoveVideo = params['RemoveVideo']
+          @RemoveAudio = params['RemoveAudio']
+          unless params['VideoSetting'].nil?
+            @VideoSetting = VideoEncodingPresetVideoSetting.new
+            @VideoSetting.deserialize(params['VideoSetting'])
+          end
+          unless params['AudioSetting'].nil?
+            @AudioSetting = VideoEncodingPresetAudioSetting.new
+            @AudioSetting.deserialize(params['AudioSetting'])
+          end
+        end
+      end
+
+      # CreateVideoEncodingPreset返回参数结构体
+      class CreateVideoEncodingPresetResponse < TencentCloud::Common::AbstractModel
+        # @param Id: 模板 ID。
+        # @type Id: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Id, :RequestId
+        
+        def initialize(id=nil, requestid=nil)
+          @Id = id
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DeleteClass请求参数结构体
       class DeleteClassRequest < TencentCloud::Common::AbstractModel
         # @param Platform: 平台名称，指定访问的平台。
@@ -980,6 +1055,42 @@ module TencentCloud
         end
       end
 
+      # DeleteVideoEncodingPreset请求参数结构体
+      class DeleteVideoEncodingPresetRequest < TencentCloud::Common::AbstractModel
+        # @param Platform: 平台名称，指定访问的平台。
+        # @type Platform: String
+        # @param Id: 要删除的视频编码配置 ID。
+        # @type Id: Integer
+
+        attr_accessor :Platform, :Id
+        
+        def initialize(platform=nil, id=nil)
+          @Platform = platform
+          @Id = id
+        end
+
+        def deserialize(params)
+          @Platform = params['Platform']
+          @Id = params['Id']
+        end
+      end
+
+      # DeleteVideoEncodingPreset返回参数结构体
+      class DeleteVideoEncodingPresetResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeAccounts请求参数结构体
       class DescribeAccountsRequest < TencentCloud::Common::AbstractModel
         # @param Platform: 平台唯一标识。
@@ -1099,7 +1210,7 @@ module TencentCloud
         # @type Platform: String
         # @param MemberId: 团队成员　ID。
         # @type MemberId: String
-        # @param Offset: 分页偏移量，默认值：0
+        # @param Offset: 分页偏移量，默认值：0。
         # @type Offset: Integer
         # @param Limit: 返回记录条数，默认值：30，最大值：30。
         # @type Limit: Integer
@@ -1125,7 +1236,7 @@ module TencentCloud
       class DescribeJoinTeamsResponse < TencentCloud::Common::AbstractModel
         # @param TotalCount: 符合条件的记录总数。
         # @type TotalCount: Integer
-        # @param TeamSet: 团队列表
+        # @param TeamSet: 团队列表。
         # @type TeamSet: Array
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1821,6 +1932,65 @@ module TencentCloud
         end
       end
 
+      # DescribeVideoEncodingPresets请求参数结构体
+      class DescribeVideoEncodingPresetsRequest < TencentCloud::Common::AbstractModel
+        # @param Platform: 平台名称，指定访问的平台。
+        # @type Platform: String
+        # @param Ids: 要查询的配置 ID 列表。填写该参数则按照配置 ID 进行查询。
+        # @type Ids: Array
+        # @param Limit: 分页大小，默认20。最大值50。
+        # @type Limit: Integer
+        # @param Offset: 分页起始，默认0。
+        # @type Offset: Integer
+
+        attr_accessor :Platform, :Ids, :Limit, :Offset
+        
+        def initialize(platform=nil, ids=nil, limit=nil, offset=nil)
+          @Platform = platform
+          @Ids = ids
+          @Limit = limit
+          @Offset = offset
+        end
+
+        def deserialize(params)
+          @Platform = params['Platform']
+          @Ids = params['Ids']
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+        end
+      end
+
+      # DescribeVideoEncodingPresets返回参数结构体
+      class DescribeVideoEncodingPresetsResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 符合条件的编码配置总个数。
+        # @type TotalCount: Integer
+        # @param VideoEncodingPresetSet: 视频编码配置信息。
+        # @type VideoEncodingPresetSet: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :VideoEncodingPresetSet, :RequestId
+        
+        def initialize(totalcount=nil, videoencodingpresetset=nil, requestid=nil)
+          @TotalCount = totalcount
+          @VideoEncodingPresetSet = videoencodingpresetset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['VideoEncodingPresetSet'].nil?
+            @VideoEncodingPresetSet = []
+            params['VideoEncodingPresetSet'].each do |i|
+              videoencodingpreset_tmp = VideoEncodingPreset.new
+              videoencodingpreset_tmp.deserialize(i)
+              @VideoEncodingPresetSet << videoencodingpreset_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 空的轨道片段，用来进行时间轴的占位。如需要两个音频片段之间有一段时间的静音，可以用 EmptyTrackItem 来进行占位。
       class EmptyTrackItem < TencentCloud::Common::AbstractModel
         # @param Duration: 持续时间，单位为秒。
@@ -1895,7 +2065,7 @@ module TencentCloud
       class ExportVideoByEditorTrackDataRequest < TencentCloud::Common::AbstractModel
         # @param Platform: 平台名称，指定访问的平台。
         # @type Platform: String
-        # @param Definition: 导出模板 Id，目前不支持自定义创建，只支持下面的预置模板 Id。
+        # @param Definition: 导出视频编码配置 Id，推荐优先使用下面的预置模板 Id，有其他需求可通过接口定制视频编码配置。
         # <li>10：分辨率为 480P，输出视频格式为 MP4；</li>
         # <li>11：分辨率为 720P，输出视频格式为 MP4；</li>
         # <li>12：分辨率为 1080P，输出视频格式为 MP4。</li>
@@ -1906,7 +2076,9 @@ module TencentCloud
         # @type ExportDestination: String
         # @param TrackData: 在线编辑轨道数据。轨道数据相关介绍，请查看 [视频合成协议](https://cloud.tencent.com/document/product/1156/51225)。
         # @type TrackData: String
-        # @param AspectRatio: 轨道数据对应的画布宽高比。
+        # @param AspectRatio: 轨道数据对应的画布宽高比，配合视频编码配置中的视频短边尺寸，可决定导出画面的尺寸。例：
+        # <li>如果 AspectRatio 取值 16:9，视频编码配置选为12（短边1080），则导出尺寸为 1920 * 1080；</li>
+        # <li>如果 AspectRatio 取值 9:16，视频编码配置选为11（短边720），则导出尺寸为 720 *1280。</li>
         # @type AspectRatio: String
         # @param CoverData: 视频封面图片文件（如 jpeg, png 等）进行 Base64 编码后的字符串，仅支持 gif、jpeg、png 三种图片格式，原图片文件不能超过2 M大 小。
         # @type CoverData: String
@@ -2137,7 +2309,7 @@ module TencentCloud
         # @type Platform: String
         # @param ProjectId: 项目 Id。
         # @type ProjectId: String
-        # @param Definition: 导出模板 Id，目前不支持自定义创建，只支持下面的预置模板 Id。
+        # @param Definition: 视频编码配置 ID，支持自定义创建，推荐优先使用系统预置的导出配置。
         # <li>10：分辨率为 480P，输出视频格式为 MP4；</li>
         # <li>11：分辨率为 720P，输出视频格式为 MP4；</li>
         # <li>12：分辨率为 1080P，输出视频格式为 MP4。</li>
@@ -2152,12 +2324,14 @@ module TencentCloud
         # @type CMEExportInfo: :class:`Tencentcloud::Cme.v20191029.models.CMEExportInfo`
         # @param VODExportInfo: 导出的云点播媒资信息。当导出目标为 VOD 时必填。
         # @type VODExportInfo: :class:`Tencentcloud::Cme.v20191029.models.VODExportInfo`
+        # @param ExportExtensionArgs: 视频导出扩展参数。可以覆盖导出模板中的参数，灵活的指定导出规格及参数。
+        # @type ExportExtensionArgs: :class:`Tencentcloud::Cme.v20191029.models.VideoExportExtensionArgs`
         # @param Operator: 操作者。填写用户的 Id，用于标识调用者及校验项目导出权限。
         # @type Operator: String
 
-        attr_accessor :Platform, :ProjectId, :Definition, :ExportDestination, :CoverData, :CMEExportInfo, :VODExportInfo, :Operator
+        attr_accessor :Platform, :ProjectId, :Definition, :ExportDestination, :CoverData, :CMEExportInfo, :VODExportInfo, :ExportExtensionArgs, :Operator
         
-        def initialize(platform=nil, projectid=nil, definition=nil, exportdestination=nil, coverdata=nil, cmeexportinfo=nil, vodexportinfo=nil, operator=nil)
+        def initialize(platform=nil, projectid=nil, definition=nil, exportdestination=nil, coverdata=nil, cmeexportinfo=nil, vodexportinfo=nil, exportextensionargs=nil, operator=nil)
           @Platform = platform
           @ProjectId = projectid
           @Definition = definition
@@ -2165,6 +2339,7 @@ module TencentCloud
           @CoverData = coverdata
           @CMEExportInfo = cmeexportinfo
           @VODExportInfo = vodexportinfo
+          @ExportExtensionArgs = exportextensionargs
           @Operator = operator
         end
 
@@ -2181,6 +2356,10 @@ module TencentCloud
           unless params['VODExportInfo'].nil?
             @VODExportInfo = VODExportInfo.new
             @VODExportInfo.deserialize(params['VODExportInfo'])
+          end
+          unless params['ExportExtensionArgs'].nil?
+            @ExportExtensionArgs = VideoExportExtensionArgs.new
+            @ExportExtensionArgs.deserialize(params['ExportExtensionArgs'])
           end
           @Operator = params['Operator']
         end
@@ -3634,6 +3813,74 @@ module TencentCloud
         end
       end
 
+      # ModifyVideoEncodingPreset请求参数结构体
+      class ModifyVideoEncodingPresetRequest < TencentCloud::Common::AbstractModel
+        # @param Platform: 平台名称，指定访问的平台。
+        # @type Platform: String
+        # @param Id: 配置 ID。
+        # @type Id: Integer
+        # @param Name: 更改后的视频编码配置名，不填则不修改。
+        # @type Name: String
+        # @param RemoveVideo: 是否去除视频数据，可选值：
+        # <li>0：保留；</li>
+        # <li>1：去除。</li>
+        # 默认值：0。
+        # @type RemoveVideo: Integer
+        # @param RemoveAudio: 是否去除音频数据，可选值：
+        # <li>0：保留；</li>
+        # <li>1：去除。</li>
+        # 默认值：0。
+        # @type RemoveAudio: Integer
+        # @param VideoSetting: 更改后的编码配置的视频设置。
+        # @type VideoSetting: :class:`Tencentcloud::Cme.v20191029.models.VideoEncodingPresetVideoSettingForUpdate`
+        # @param AudioSetting: 更改后的编码配置的音频设置。
+        # @type AudioSetting: :class:`Tencentcloud::Cme.v20191029.models.VideoEncodingPresetAudioSettingForUpdate`
+
+        attr_accessor :Platform, :Id, :Name, :RemoveVideo, :RemoveAudio, :VideoSetting, :AudioSetting
+        
+        def initialize(platform=nil, id=nil, name=nil, removevideo=nil, removeaudio=nil, videosetting=nil, audiosetting=nil)
+          @Platform = platform
+          @Id = id
+          @Name = name
+          @RemoveVideo = removevideo
+          @RemoveAudio = removeaudio
+          @VideoSetting = videosetting
+          @AudioSetting = audiosetting
+        end
+
+        def deserialize(params)
+          @Platform = params['Platform']
+          @Id = params['Id']
+          @Name = params['Name']
+          @RemoveVideo = params['RemoveVideo']
+          @RemoveAudio = params['RemoveAudio']
+          unless params['VideoSetting'].nil?
+            @VideoSetting = VideoEncodingPresetVideoSettingForUpdate.new
+            @VideoSetting.deserialize(params['VideoSetting'])
+          end
+          unless params['AudioSetting'].nil?
+            @AudioSetting = VideoEncodingPresetAudioSettingForUpdate.new
+            @AudioSetting.deserialize(params['AudioSetting'])
+          end
+        end
+      end
+
+      # ModifyVideoEncodingPreset返回参数结构体
+      class ModifyVideoEncodingPresetResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # MoveClass请求参数结构体
       class MoveClassRequest < TencentCloud::Common::AbstractModel
         # @param Platform: 平台名称，指定访问的平台。
@@ -4982,6 +5229,248 @@ module TencentCloud
             end
           end
           @PreviewVideoUrl = params['PreviewVideoUrl']
+        end
+      end
+
+      # 视频编码配置
+      class VideoEncodingPreset < TencentCloud::Common::AbstractModel
+        # @param Id: 配置 ID。
+        # @type Id: Integer
+        # @param Name: 配置名。
+        # @type Name: String
+        # @param Container: 封装格式，可选值：
+        # <li>mp4 ；</li>
+        # <li>mov 。</li>
+        # @type Container: String
+        # @param RemoveVideo: 是否去除视频数据，可选值：
+        # <li>0：保留；</li>
+        # <li>1：去除。</li>
+        # 默认值：0。
+        # @type RemoveVideo: Integer
+        # @param RemoveAudio: 是否去除音频数据，可选值：
+        # <li>0：保留；</li>
+        # <li>1：去除。</li>
+        # 默认值：0。
+        # @type RemoveAudio: Integer
+        # @param VideoSetting: 视频编码配置中的视频设置。
+        # @type VideoSetting: :class:`Tencentcloud::Cme.v20191029.models.VideoEncodingPresetVideoSetting`
+        # @param AudioSetting: 视频编码配置中的音频设置。
+        # @type AudioSetting: :class:`Tencentcloud::Cme.v20191029.models.VideoEncodingPresetAudioSetting`
+
+        attr_accessor :Id, :Name, :Container, :RemoveVideo, :RemoveAudio, :VideoSetting, :AudioSetting
+        
+        def initialize(id=nil, name=nil, container=nil, removevideo=nil, removeaudio=nil, videosetting=nil, audiosetting=nil)
+          @Id = id
+          @Name = name
+          @Container = container
+          @RemoveVideo = removevideo
+          @RemoveAudio = removeaudio
+          @VideoSetting = videosetting
+          @AudioSetting = audiosetting
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @Name = params['Name']
+          @Container = params['Container']
+          @RemoveVideo = params['RemoveVideo']
+          @RemoveAudio = params['RemoveAudio']
+          unless params['VideoSetting'].nil?
+            @VideoSetting = VideoEncodingPresetVideoSetting.new
+            @VideoSetting.deserialize(params['VideoSetting'])
+          end
+          unless params['AudioSetting'].nil?
+            @AudioSetting = VideoEncodingPresetAudioSetting.new
+            @AudioSetting.deserialize(params['AudioSetting'])
+          end
+        end
+      end
+
+      # 视频编码配置中的音频设置
+      class VideoEncodingPresetAudioSetting < TencentCloud::Common::AbstractModel
+        # @param Codec: 音频流的编码格式，可选值：
+        # AAC：AAC 编码。
+
+        # 默认值：AAC。
+        # @type Codec: String
+        # @param Bitrate: 音频码率，单位：bps。
+        # 默认值：64K。
+        # @type Bitrate: Integer
+        # @param Channels: 音频声道数，可选值：
+        # <li>1：单声道；</li>
+        # <li>2：双声道。</li>
+        # 默认值：2。
+        # @type Channels: Integer
+        # @param SampleRate: 音频流的采样率，仅支持 16000； 32000； 44100； 48000。单位：Hz。
+        # 默认值：16000。
+        # @type SampleRate: Integer
+
+        attr_accessor :Codec, :Bitrate, :Channels, :SampleRate
+        
+        def initialize(codec=nil, bitrate=nil, channels=nil, samplerate=nil)
+          @Codec = codec
+          @Bitrate = bitrate
+          @Channels = channels
+          @SampleRate = samplerate
+        end
+
+        def deserialize(params)
+          @Codec = params['Codec']
+          @Bitrate = params['Bitrate']
+          @Channels = params['Channels']
+          @SampleRate = params['SampleRate']
+        end
+      end
+
+      # 视频编码配置中的音频设置更新信息
+      class VideoEncodingPresetAudioSettingForUpdate < TencentCloud::Common::AbstractModel
+        # @param Bitrate: 音频码率，单位：bps。
+        # 不填则不修改。
+        # @type Bitrate: String
+        # @param Channels: 音频声道数，可选值：
+        # <li>1：单声道；</li>
+        # <li>2：双声道。</li>
+        # 不填则不修改。
+        # @type Channels: Integer
+        # @param SampleRate: 音频流的采样率，目前仅支持： 16000； 32000； 44100； 48000。单位：Hz。
+        # 不填则不修改。
+        # @type SampleRate: Integer
+
+        attr_accessor :Bitrate, :Channels, :SampleRate
+        
+        def initialize(bitrate=nil, channels=nil, samplerate=nil)
+          @Bitrate = bitrate
+          @Channels = channels
+          @SampleRate = samplerate
+        end
+
+        def deserialize(params)
+          @Bitrate = params['Bitrate']
+          @Channels = params['Channels']
+          @SampleRate = params['SampleRate']
+        end
+      end
+
+      # 视频编码配置中的视频设置信息
+      class VideoEncodingPresetVideoSetting < TencentCloud::Common::AbstractModel
+        # @param Codec: 视频流的编码格式，可选值：
+        # <li>H264：H.264 编码。</li>
+        # @type Codec: String
+        # @param ShortEdge: 视频短边尺寸，取值范围： [128, 4096]，单位：px。
+        # 视频最后的分辨率，根据短边尺寸和宽高比进行计算。
+        # 例：如果项目的宽高比是 16：9 ：
+        # <li>短边尺寸为 1080，则导出视频的分辨率为 1920 * 1080。</li>
+        # <li>短边尺寸为 720，则导出视频的分辨率为 1280 * 720。</li>
+        # 如果项目的宽高比是 9：16 ：
+        # <li>短边尺寸为 1080，则导出视频的分辨率为 1080 * 1920。</li>
+        # <li>短边尺寸为 720，则导出视频的分辨率为 720 * 1280。</li>
+        # 默认值：1080。
+        # @type ShortEdge: Integer
+        # @param Bitrate: 指定码率，单位 bps。当该参数为'0'时则不强制限定码率。
+        # 默认值：0。
+        # @type Bitrate: Integer
+
+        attr_accessor :Codec, :ShortEdge, :Bitrate
+        
+        def initialize(codec=nil, shortedge=nil, bitrate=nil)
+          @Codec = codec
+          @ShortEdge = shortedge
+          @Bitrate = bitrate
+        end
+
+        def deserialize(params)
+          @Codec = params['Codec']
+          @ShortEdge = params['ShortEdge']
+          @Bitrate = params['Bitrate']
+        end
+      end
+
+      # 视频编码配置的视频设置更新信息
+      class VideoEncodingPresetVideoSettingForUpdate < TencentCloud::Common::AbstractModel
+        # @param ShortEdge: 视频短边尺寸，取值范围： [128, 4096]，单位：px。
+        # 视频最后的分辨率，根据短边尺寸和宽高比进行计算。
+        # 例：如果项目的宽高比是 16：9 ：
+        # <li>短边尺寸为 1080，则导出视频的分辨率为 1920 * 1080。</li>
+        # <li>短边尺寸为 720，则导出视频的分辨率为 1280 * 720。</li>
+        # 如果项目的宽高比是 9：16 ：
+        # <li>短边尺寸为 1080，则导出视频的分辨率为 1080 * 1920。</li>
+        # <li>短边尺寸为 720，则导出视频的分辨率为 720 * 1280。</li>
+        # 不填则不修改。
+        # @type ShortEdge: Integer
+        # @param Bitrate: 指定码率，单位 bps。当该参数为'0' 时则不强制限定码率。
+        # 不填则不修改。
+        # @type Bitrate: Integer
+        # @param FrameRate: 指定帧率。单位 Hz。
+        # 不填则不修改。
+        # @type FrameRate: Float
+
+        attr_accessor :ShortEdge, :Bitrate, :FrameRate
+        
+        def initialize(shortedge=nil, bitrate=nil, framerate=nil)
+          @ShortEdge = shortedge
+          @Bitrate = bitrate
+          @FrameRate = framerate
+        end
+
+        def deserialize(params)
+          @ShortEdge = params['ShortEdge']
+          @Bitrate = params['Bitrate']
+          @FrameRate = params['FrameRate']
+        end
+      end
+
+      # 视频导出扩展参数
+      class VideoExportExtensionArgs < TencentCloud::Common::AbstractModel
+        # @param Container: 封装格式，可选值：
+        # <li>mp4 </li>
+        # <li>mov </li>
+        # 不填则默认使用导出模板中的值。
+        # @type Container: String
+        # @param ShortEdge: 视频短边尺寸，取值范围： [128, 4096]，单位：px。
+        # 视频最后的分辨率，根据短边尺寸和宽高比进行计算。
+        # 例如：项目的宽高比是 16：9 ：
+        # <li>短边尺寸为 1080，则导出视频的分辨率为 1920 * 1080。</li>
+        # <li>短边尺寸为 720，则导出视频的分辨率为 1280 * 720</li>
+        # 不填则默认使用导出模板中对的值。
+        # @type ShortEdge: Integer
+        # @param VideoBitrate: 指定码率，单位 bps。当该参数为 0 时则不强制限定码率。
+        # 不填则默认使用导出模板中的值。
+        # @type VideoBitrate: Integer
+        # @param RemoveVideo: 是否去除视频数据，可选值：
+        # <li>0：保留；</li>
+        # <li>1：去除。</li>
+        # 不填则默认使用导出模板中对的值。
+        # @type RemoveVideo: Integer
+        # @param RemoveAudio: 是否去除音频数据，可选值：
+        # <li>0：保留；</li>
+        # <li>1：去除。</li>
+        # 不填则默认使用导出模板中对的值。
+        # @type RemoveAudio: Integer
+        # @param StartTime: 片段起始时间，单位：毫秒。
+        # @type StartTime: Integer
+        # @param EndTime: 片段结束时间，单位：毫秒。
+        # @type EndTime: Integer
+
+        attr_accessor :Container, :ShortEdge, :VideoBitrate, :RemoveVideo, :RemoveAudio, :StartTime, :EndTime
+        
+        def initialize(container=nil, shortedge=nil, videobitrate=nil, removevideo=nil, removeaudio=nil, starttime=nil, endtime=nil)
+          @Container = container
+          @ShortEdge = shortedge
+          @VideoBitrate = videobitrate
+          @RemoveVideo = removevideo
+          @RemoveAudio = removeaudio
+          @StartTime = starttime
+          @EndTime = endtime
+        end
+
+        def deserialize(params)
+          @Container = params['Container']
+          @ShortEdge = params['ShortEdge']
+          @VideoBitrate = params['VideoBitrate']
+          @RemoveVideo = params['RemoveVideo']
+          @RemoveAudio = params['RemoveAudio']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
         end
       end
 

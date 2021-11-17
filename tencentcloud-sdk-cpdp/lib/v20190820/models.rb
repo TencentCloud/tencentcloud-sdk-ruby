@@ -64,6 +64,632 @@ module TencentCloud
         end
       end
 
+      # AddContract请求参数结构体
+      class AddContractRequest < TencentCloud::Common::AbstractModel
+        # @param Fee: 签约扣率百分比（如：0.32）
+        # @type Fee: String
+        # @param OutContractId: 机构合同主键（系统有唯一性校验），建议使用合同表的主键ID，防止重复添加合同
+        # @type OutContractId: String
+        # @param PaymentClassificationLimit: 封顶值（分为单位，无封顶填0）
+        # @type PaymentClassificationLimit: String
+        # @param ContactTelephone: 联系人电话
+        # @type ContactTelephone: String
+        # @param PaymentId: 支付方式编号
+        # @type PaymentId: String
+        # @param OpenKey: 收单系统分配的密钥
+        # @type OpenKey: String
+        # @param StartDate: 合同生效日期（yyyy-mm-dd）
+        # @type StartDate: String
+        # @param EndDate: 合同过期日期（yyyy-mm-dd）
+        # @type EndDate: String
+        # @param SignMan: 合同签约人
+        # @type SignMan: String
+        # @param SignName: 签购单名称，建议使用商户招牌名称
+        # @type SignName: String
+        # @param OpenId: 收单系统分配的开放ID
+        # @type OpenId: String
+        # @param MerchantNo: 商户编号
+        # @type MerchantNo: String
+        # @param PictureOne: 合同照片【私密区】
+        # @type PictureOne: String
+        # @param Contact: 联系人
+        # @type Contact: String
+        # @param SignDate: 合同签署日期（yyyy-mm-dd）
+        # @type SignDate: String
+        # @param Code: 合同编号（系统有唯一性校验）
+        # @type Code: String
+        # @param AutoSign: 是否自动续签（1是，0否）
+        # @type AutoSign: String
+        # @param PaymentClassificationId: 支付方式行业分类编号
+        # @type PaymentClassificationId: String
+        # @param Profile: 沙箱环境填sandbox，正式环境不填
+        # @type Profile: String
+        # @param PictureTwo: 合同照片【私密区】
+        # @type PictureTwo: String
+        # @param PaymentOptionTen: 合同选项8
+        # @type PaymentOptionTen: String
+        # @param PaymentOptionNine: 合同选项7（不同支付方式规则不一样，请以支付方式规定的格式传值）
+        # @type PaymentOptionNine: String
+        # @param PaymentOptionOther: 合同选项6（不同支付方式规则不一样，请以支付方式规定的格式传值）
+        # @type PaymentOptionOther: String
+        # @param PaymentOptionFive: 合同证书选项1（不同支付方式规则不一样，请以支付方式规定的格式传值）
+        # @type PaymentOptionFive: String
+        # @param PaymentOptionFour: 合同选项4（不同支付方式规则不一样，请以支付方式规定的格式传值）
+        # @type PaymentOptionFour: String
+        # @param PaymentOptionSeven: 合同选项5（不同支付方式规则不一样，请以支付方式规定的格式传值）
+        # @type PaymentOptionSeven: String
+        # @param PaymentOptionSix: 合同证书选项2（不同支付方式规则不一样，请以支付方式规定的格式传值）
+        # @type PaymentOptionSix: String
+        # @param PaymentOptionOne: 合同选项1（不同支付方式规则不一样，请以支付方式规定的格式传值）
+        # @type PaymentOptionOne: String
+        # @param PaymentOptionThree: 合同选项3（不同支付方式规则不一样，请以支付方式规定的格式传值）
+        # @type PaymentOptionThree: String
+        # @param PaymentOptionTwo: 合同选项2（不同支付方式规则不一样，请以支付方式规定的格式传值）
+        # @type PaymentOptionTwo: String
+        # @param ChannelExtJson: 渠道扩展字段，json格式
+        # @type ChannelExtJson: String
+
+        attr_accessor :Fee, :OutContractId, :PaymentClassificationLimit, :ContactTelephone, :PaymentId, :OpenKey, :StartDate, :EndDate, :SignMan, :SignName, :OpenId, :MerchantNo, :PictureOne, :Contact, :SignDate, :Code, :AutoSign, :PaymentClassificationId, :Profile, :PictureTwo, :PaymentOptionTen, :PaymentOptionNine, :PaymentOptionOther, :PaymentOptionFive, :PaymentOptionFour, :PaymentOptionSeven, :PaymentOptionSix, :PaymentOptionOne, :PaymentOptionThree, :PaymentOptionTwo, :ChannelExtJson
+        
+        def initialize(fee=nil, outcontractid=nil, paymentclassificationlimit=nil, contacttelephone=nil, paymentid=nil, openkey=nil, startdate=nil, enddate=nil, signman=nil, signname=nil, openid=nil, merchantno=nil, pictureone=nil, contact=nil, signdate=nil, code=nil, autosign=nil, paymentclassificationid=nil, profile=nil, picturetwo=nil, paymentoptionten=nil, paymentoptionnine=nil, paymentoptionother=nil, paymentoptionfive=nil, paymentoptionfour=nil, paymentoptionseven=nil, paymentoptionsix=nil, paymentoptionone=nil, paymentoptionthree=nil, paymentoptiontwo=nil, channelextjson=nil)
+          @Fee = fee
+          @OutContractId = outcontractid
+          @PaymentClassificationLimit = paymentclassificationlimit
+          @ContactTelephone = contacttelephone
+          @PaymentId = paymentid
+          @OpenKey = openkey
+          @StartDate = startdate
+          @EndDate = enddate
+          @SignMan = signman
+          @SignName = signname
+          @OpenId = openid
+          @MerchantNo = merchantno
+          @PictureOne = pictureone
+          @Contact = contact
+          @SignDate = signdate
+          @Code = code
+          @AutoSign = autosign
+          @PaymentClassificationId = paymentclassificationid
+          @Profile = profile
+          @PictureTwo = picturetwo
+          @PaymentOptionTen = paymentoptionten
+          @PaymentOptionNine = paymentoptionnine
+          @PaymentOptionOther = paymentoptionother
+          @PaymentOptionFive = paymentoptionfive
+          @PaymentOptionFour = paymentoptionfour
+          @PaymentOptionSeven = paymentoptionseven
+          @PaymentOptionSix = paymentoptionsix
+          @PaymentOptionOne = paymentoptionone
+          @PaymentOptionThree = paymentoptionthree
+          @PaymentOptionTwo = paymentoptiontwo
+          @ChannelExtJson = channelextjson
+        end
+
+        def deserialize(params)
+          @Fee = params['Fee']
+          @OutContractId = params['OutContractId']
+          @PaymentClassificationLimit = params['PaymentClassificationLimit']
+          @ContactTelephone = params['ContactTelephone']
+          @PaymentId = params['PaymentId']
+          @OpenKey = params['OpenKey']
+          @StartDate = params['StartDate']
+          @EndDate = params['EndDate']
+          @SignMan = params['SignMan']
+          @SignName = params['SignName']
+          @OpenId = params['OpenId']
+          @MerchantNo = params['MerchantNo']
+          @PictureOne = params['PictureOne']
+          @Contact = params['Contact']
+          @SignDate = params['SignDate']
+          @Code = params['Code']
+          @AutoSign = params['AutoSign']
+          @PaymentClassificationId = params['PaymentClassificationId']
+          @Profile = params['Profile']
+          @PictureTwo = params['PictureTwo']
+          @PaymentOptionTen = params['PaymentOptionTen']
+          @PaymentOptionNine = params['PaymentOptionNine']
+          @PaymentOptionOther = params['PaymentOptionOther']
+          @PaymentOptionFive = params['PaymentOptionFive']
+          @PaymentOptionFour = params['PaymentOptionFour']
+          @PaymentOptionSeven = params['PaymentOptionSeven']
+          @PaymentOptionSix = params['PaymentOptionSix']
+          @PaymentOptionOne = params['PaymentOptionOne']
+          @PaymentOptionThree = params['PaymentOptionThree']
+          @PaymentOptionTwo = params['PaymentOptionTwo']
+          @ChannelExtJson = params['ChannelExtJson']
+        end
+      end
+
+      # AddContract返回参数结构体
+      class AddContractResponse < TencentCloud::Common::AbstractModel
+        # @param ErrMessage: 业务系统返回消息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ErrMessage: String
+        # @param ErrCode: 业务系统返回码
+        # @type ErrCode: String
+        # @param Result: 添加合同响应对象
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Result: :class:`Tencentcloud::Cpdp.v20190820.models.AddContractResult`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ErrMessage, :ErrCode, :Result, :RequestId
+        
+        def initialize(errmessage=nil, errcode=nil, result=nil, requestid=nil)
+          @ErrMessage = errmessage
+          @ErrCode = errcode
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ErrMessage = params['ErrMessage']
+          @ErrCode = params['ErrCode']
+          unless params['Result'].nil?
+            @Result = AddContractResult.new
+            @Result.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 添加合同响应对象
+      class AddContractResult < TencentCloud::Common::AbstractModel
+        # @param ContractId: 合同主键
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ContractId: String
+
+        attr_accessor :ContractId
+        
+        def initialize(contractid=nil)
+          @ContractId = contractid
+        end
+
+        def deserialize(params)
+          @ContractId = params['ContractId']
+        end
+      end
+
+      # AddMerchant请求参数结构体
+      class AddMerchantRequest < TencentCloud::Common::AbstractModel
+        # @param BossName: 法人姓名
+        # @type BossName: String
+        # @param BusinessLicensePicture: 营业执照图片【私密区】（系统返回的图片路径），（小微商户不效验，随意传要有值，公司/个体户必传）
+        # @type BusinessLicensePicture: String
+        # @param BrandName: 招牌名称
+        # @type BrandName: String
+        # @param OpenKey: 收单系统分配的密钥
+        # @type OpenKey: String
+        # @param BusinessLicenseEndDate: 营业执照过期时间（yyyy-mm-dd）
+        # @type BusinessLicenseEndDate: String
+        # @param BossStartDate: 法人证件生效时间（yyyy-mm-dd）
+        # @type BossStartDate: String
+        # @param BankNo: 清算联行号，开户行行号
+        # @type BankNo: String
+        # @param BankName: 开户行名称
+        # @type BankName: String
+        # @param BusinessLicenseType: 营业执照类型（1三证合一，2非三证合一）
+        # @type BusinessLicenseType: String
+        # @param BossEndDate: 法人证件过期时间（yyyy-mm-dd）
+        # @type BossEndDate: String
+        # @param BusinessLicenseNo: 营业执照编号（系统有唯一性校验），（小微商户不效验，随意传要有值，公司/个体户必传）
+        # @type BusinessLicenseNo: String
+        # @param BusinessLicenseStartDate: 营业执照生效时间（yyyy-mm-dd），（小微商户不效验，随意传要有值，公司/个体户必传）
+        # @type BusinessLicenseStartDate: String
+        # @param BossIdType: 法人证件类型（1居民身份证,2临时居民身份证,3居民户口簿,4护照,5港澳居民来往内地通行证,6回乡证,7军人证,8武警身份证,9其他法定文件）
+        # @type BossIdType: String
+        # @param Address: 详细地址，不含省市区县名称，长度需要大于5。
+        # @type Address: String
+        # @param BossIdCountry: 法人证件国别/地区（中国CHN，香港HKG，澳门MAC，台湾CTN）
+        # @type BossIdCountry: String
+        # @param OpenId: 收单系统分配的开放ID
+        # @type OpenId: String
+        # @param MerchantName: 商户名称，小微商户命名要符合“”商户_名字” （例如：商户_张三）
+        # @type MerchantName: String
+        # @param BossSex: 法人性别（1男，2女）
+        # @type BossSex: String
+        # @param ClassificationIds: 行业分类编号列表（第一个分类编号为主分类，后面的为二级分类）
+        # @type ClassificationIds: Array
+        # @param BossIdNo: 法人证件号码
+        # @type BossIdNo: String
+        # @param LicencePicture: 许可证图片【私密区】，（小微商户不效验，随意传要有值，公司/个体户必传）
+        # @type LicencePicture: String
+        # @param OpenHours: 营业时间，多个以小写逗号分开(9:00-12:00,13:00-18:00)
+        # @type OpenHours: String
+        # @param AccountName: 银行户名
+        # @type AccountName: String
+        # @param AccountNo: 银行账号
+        # @type AccountNo: String
+        # @param AccountType: 结算账户类型（2对私，1对公）
+        # @type AccountType: String
+        # @param Telephone: 联系电话
+        # @type Telephone: String
+        # @param BossPositive: 法人身份证正面【私密区】（系统返回的图片路径）
+        # @type BossPositive: String
+        # @param CityId: 城市编号
+        # @type CityId: String
+        # @param BossBack: 法人身份证背面【私密区】（系统返回的图片路径）
+        # @type BossBack: String
+        # @param OutMerchantId: 机构商户主键（系统有唯一性校验），建议使用商户表的主键ID，防止重复添加商户
+        # @type OutMerchantId: String
+        # @param OrganizationStartDate: 组织机构代码证生效时间（yyyy-mm-dd）
+        # @type OrganizationStartDate: String
+        # @param AccountIdNo: 法人亲属证件号码
+        # @type AccountIdNo: String
+        # @param FinancialContact: 财务联系人
+        # @type FinancialContact: String
+        # @param AccountIdType: 法人亲属证件类型（1居民身份证,2临时居民身份证,3居民户口簿,4护照,5港澳居民来往内地通行证,6回乡证,7军人证,8武警身份证,9其他法定文件）结算账户人身份为法人亲属时必填
+        # @type AccountIdType: String
+        # @param OrganizationNo: 组织机构代码证号
+        # @type OrganizationNo: String
+        # @param OtherPictureOne: 其他资料1
+        # @type OtherPictureOne: String
+        # @param FinancialTelephone: 财务联系人电话
+        # @type FinancialTelephone: String
+        # @param Profile: 沙箱环境填sandbox，正式环境不填
+        # @type Profile: String
+        # @param OrganizationPicture: 组织机构代码证图片【私密区】
+        # @type OrganizationPicture: String
+        # @param TaxRegistrationStartDate: 税务登记证生效时间（yyyy-mm-dd）
+        # @type TaxRegistrationStartDate: String
+        # @param Tag: 商户标记，自定义参数
+        # @type Tag: String
+        # @param AccountBoss: 结算账户人身份（1法人，2法人亲属），结算帐户为对私时必填
+        # @type AccountBoss: String
+        # @param BossTelephone: 法人电话
+        # @type BossTelephone: String
+        # @param TaxRegistrationPicture: 税务登记证图片【私密区】
+        # @type TaxRegistrationPicture: String
+        # @param OrganizationEndDate: 组织机构代码证过期时间（yyyy-mm-dd）
+        # @type OrganizationEndDate: String
+        # @param BossJob: 法人职业
+        # @type BossJob: String
+        # @param OtherPictureThree: 其他资料3
+        # @type OtherPictureThree: String
+        # @param LicencePictureTwo: 授权文件【私密区】
+        # @type LicencePictureTwo: String
+        # @param Logo: 商户logo【公共区】
+        # @type Logo: String
+        # @param BossAddress: 法人住址
+        # @type BossAddress: String
+        # @param BossEmail: 法人邮箱
+        # @type BossEmail: String
+        # @param OtherPictureTwo: 其他资料2
+        # @type OtherPictureTwo: String
+        # @param Intro: 商户简介
+        # @type Intro: String
+        # @param AccountManagerName: 客户经理姓名，必须为系统后台的管理员真实姓名
+        # @type AccountManagerName: String
+        # @param TaxRegistrationEndDate: 税务登记证过期时间（yyyy-mm-dd）
+        # @type TaxRegistrationEndDate: String
+        # @param OtherPictureFour: 其他资料4
+        # @type OtherPictureFour: String
+        # @param TaxRegistrationNo: 税务登记证号
+        # @type TaxRegistrationNo: String
+        # @param Type: 商户类型：1-个人，2-小微，3-企事业。不传默认为2-小微商户。
+        # @type Type: String
+
+        attr_accessor :BossName, :BusinessLicensePicture, :BrandName, :OpenKey, :BusinessLicenseEndDate, :BossStartDate, :BankNo, :BankName, :BusinessLicenseType, :BossEndDate, :BusinessLicenseNo, :BusinessLicenseStartDate, :BossIdType, :Address, :BossIdCountry, :OpenId, :MerchantName, :BossSex, :ClassificationIds, :BossIdNo, :LicencePicture, :OpenHours, :AccountName, :AccountNo, :AccountType, :Telephone, :BossPositive, :CityId, :BossBack, :OutMerchantId, :OrganizationStartDate, :AccountIdNo, :FinancialContact, :AccountIdType, :OrganizationNo, :OtherPictureOne, :FinancialTelephone, :Profile, :OrganizationPicture, :TaxRegistrationStartDate, :Tag, :AccountBoss, :BossTelephone, :TaxRegistrationPicture, :OrganizationEndDate, :BossJob, :OtherPictureThree, :LicencePictureTwo, :Logo, :BossAddress, :BossEmail, :OtherPictureTwo, :Intro, :AccountManagerName, :TaxRegistrationEndDate, :OtherPictureFour, :TaxRegistrationNo, :Type
+        
+        def initialize(bossname=nil, businesslicensepicture=nil, brandname=nil, openkey=nil, businesslicenseenddate=nil, bossstartdate=nil, bankno=nil, bankname=nil, businesslicensetype=nil, bossenddate=nil, businesslicenseno=nil, businesslicensestartdate=nil, bossidtype=nil, address=nil, bossidcountry=nil, openid=nil, merchantname=nil, bosssex=nil, classificationids=nil, bossidno=nil, licencepicture=nil, openhours=nil, accountname=nil, accountno=nil, accounttype=nil, telephone=nil, bosspositive=nil, cityid=nil, bossback=nil, outmerchantid=nil, organizationstartdate=nil, accountidno=nil, financialcontact=nil, accountidtype=nil, organizationno=nil, otherpictureone=nil, financialtelephone=nil, profile=nil, organizationpicture=nil, taxregistrationstartdate=nil, tag=nil, accountboss=nil, bosstelephone=nil, taxregistrationpicture=nil, organizationenddate=nil, bossjob=nil, otherpicturethree=nil, licencepicturetwo=nil, logo=nil, bossaddress=nil, bossemail=nil, otherpicturetwo=nil, intro=nil, accountmanagername=nil, taxregistrationenddate=nil, otherpicturefour=nil, taxregistrationno=nil, type=nil)
+          @BossName = bossname
+          @BusinessLicensePicture = businesslicensepicture
+          @BrandName = brandname
+          @OpenKey = openkey
+          @BusinessLicenseEndDate = businesslicenseenddate
+          @BossStartDate = bossstartdate
+          @BankNo = bankno
+          @BankName = bankname
+          @BusinessLicenseType = businesslicensetype
+          @BossEndDate = bossenddate
+          @BusinessLicenseNo = businesslicenseno
+          @BusinessLicenseStartDate = businesslicensestartdate
+          @BossIdType = bossidtype
+          @Address = address
+          @BossIdCountry = bossidcountry
+          @OpenId = openid
+          @MerchantName = merchantname
+          @BossSex = bosssex
+          @ClassificationIds = classificationids
+          @BossIdNo = bossidno
+          @LicencePicture = licencepicture
+          @OpenHours = openhours
+          @AccountName = accountname
+          @AccountNo = accountno
+          @AccountType = accounttype
+          @Telephone = telephone
+          @BossPositive = bosspositive
+          @CityId = cityid
+          @BossBack = bossback
+          @OutMerchantId = outmerchantid
+          @OrganizationStartDate = organizationstartdate
+          @AccountIdNo = accountidno
+          @FinancialContact = financialcontact
+          @AccountIdType = accountidtype
+          @OrganizationNo = organizationno
+          @OtherPictureOne = otherpictureone
+          @FinancialTelephone = financialtelephone
+          @Profile = profile
+          @OrganizationPicture = organizationpicture
+          @TaxRegistrationStartDate = taxregistrationstartdate
+          @Tag = tag
+          @AccountBoss = accountboss
+          @BossTelephone = bosstelephone
+          @TaxRegistrationPicture = taxregistrationpicture
+          @OrganizationEndDate = organizationenddate
+          @BossJob = bossjob
+          @OtherPictureThree = otherpicturethree
+          @LicencePictureTwo = licencepicturetwo
+          @Logo = logo
+          @BossAddress = bossaddress
+          @BossEmail = bossemail
+          @OtherPictureTwo = otherpicturetwo
+          @Intro = intro
+          @AccountManagerName = accountmanagername
+          @TaxRegistrationEndDate = taxregistrationenddate
+          @OtherPictureFour = otherpicturefour
+          @TaxRegistrationNo = taxregistrationno
+          @Type = type
+        end
+
+        def deserialize(params)
+          @BossName = params['BossName']
+          @BusinessLicensePicture = params['BusinessLicensePicture']
+          @BrandName = params['BrandName']
+          @OpenKey = params['OpenKey']
+          @BusinessLicenseEndDate = params['BusinessLicenseEndDate']
+          @BossStartDate = params['BossStartDate']
+          @BankNo = params['BankNo']
+          @BankName = params['BankName']
+          @BusinessLicenseType = params['BusinessLicenseType']
+          @BossEndDate = params['BossEndDate']
+          @BusinessLicenseNo = params['BusinessLicenseNo']
+          @BusinessLicenseStartDate = params['BusinessLicenseStartDate']
+          @BossIdType = params['BossIdType']
+          @Address = params['Address']
+          @BossIdCountry = params['BossIdCountry']
+          @OpenId = params['OpenId']
+          @MerchantName = params['MerchantName']
+          @BossSex = params['BossSex']
+          @ClassificationIds = params['ClassificationIds']
+          @BossIdNo = params['BossIdNo']
+          @LicencePicture = params['LicencePicture']
+          @OpenHours = params['OpenHours']
+          @AccountName = params['AccountName']
+          @AccountNo = params['AccountNo']
+          @AccountType = params['AccountType']
+          @Telephone = params['Telephone']
+          @BossPositive = params['BossPositive']
+          @CityId = params['CityId']
+          @BossBack = params['BossBack']
+          @OutMerchantId = params['OutMerchantId']
+          @OrganizationStartDate = params['OrganizationStartDate']
+          @AccountIdNo = params['AccountIdNo']
+          @FinancialContact = params['FinancialContact']
+          @AccountIdType = params['AccountIdType']
+          @OrganizationNo = params['OrganizationNo']
+          @OtherPictureOne = params['OtherPictureOne']
+          @FinancialTelephone = params['FinancialTelephone']
+          @Profile = params['Profile']
+          @OrganizationPicture = params['OrganizationPicture']
+          @TaxRegistrationStartDate = params['TaxRegistrationStartDate']
+          @Tag = params['Tag']
+          @AccountBoss = params['AccountBoss']
+          @BossTelephone = params['BossTelephone']
+          @TaxRegistrationPicture = params['TaxRegistrationPicture']
+          @OrganizationEndDate = params['OrganizationEndDate']
+          @BossJob = params['BossJob']
+          @OtherPictureThree = params['OtherPictureThree']
+          @LicencePictureTwo = params['LicencePictureTwo']
+          @Logo = params['Logo']
+          @BossAddress = params['BossAddress']
+          @BossEmail = params['BossEmail']
+          @OtherPictureTwo = params['OtherPictureTwo']
+          @Intro = params['Intro']
+          @AccountManagerName = params['AccountManagerName']
+          @TaxRegistrationEndDate = params['TaxRegistrationEndDate']
+          @OtherPictureFour = params['OtherPictureFour']
+          @TaxRegistrationNo = params['TaxRegistrationNo']
+          @Type = params['Type']
+        end
+      end
+
+      # AddMerchant返回参数结构体
+      class AddMerchantResponse < TencentCloud::Common::AbstractModel
+        # @param ErrMessage: 业务系统返回消息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ErrMessage: String
+        # @param ErrCode: 业务系统返回码
+        # @type ErrCode: String
+        # @param Result: 添加商户响应对象
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Result: :class:`Tencentcloud::Cpdp.v20190820.models.AddMerchantResult`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ErrMessage, :ErrCode, :Result, :RequestId
+        
+        def initialize(errmessage=nil, errcode=nil, result=nil, requestid=nil)
+          @ErrMessage = errmessage
+          @ErrCode = errcode
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ErrMessage = params['ErrMessage']
+          @ErrCode = params['ErrCode']
+          unless params['Result'].nil?
+            @Result = AddMerchantResult.new
+            @Result.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 添加商户响应对象
+      class AddMerchantResult < TencentCloud::Common::AbstractModel
+        # @param MerchantNo: 系统商户号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MerchantNo: String
+
+        attr_accessor :MerchantNo
+        
+        def initialize(merchantno=nil)
+          @MerchantNo = merchantno
+        end
+
+        def deserialize(params)
+          @MerchantNo = params['MerchantNo']
+        end
+      end
+
+      # AddShop请求参数结构体
+      class AddShopRequest < TencentCloud::Common::AbstractModel
+        # @param OpenId: 收单系统分配的开放ID
+        # @type OpenId: String
+        # @param ShopName: 门店简称（例如：南山店）
+        # @type ShopName: String
+        # @param MerchantNo: 商户编号
+        # @type MerchantNo: String
+        # @param PictureTwo: 整体门面（含招牌）图片【公共区】
+        # @type PictureTwo: String
+        # @param PictureThree: 店内环境图片【公共区】
+        # @type PictureThree: String
+        # @param PictureOne: 整体门面（含招牌）图片【公共区】
+        # @type PictureOne: String
+        # @param Telephone: 门店电话
+        # @type Telephone: String
+        # @param OutShopId: 机构门店主键（系统有唯一性校验），建议使用门店表的主键ID，防止重复添加门店
+        # @type OutShopId: String
+        # @param CityId: 门店所在的城市编码
+        # @type CityId: String
+        # @param ShopFullName: 门店全称（例如：江山小厨（南山店））
+        # @type ShopFullName: String
+        # @param OpenHours: 营业时间，多个以小写逗号分开(9:00-12:00,13:00-18:00)
+        # @type OpenHours: String
+        # @param Address: 门店详细地址，不含省市区县名称
+        # @type Address: String
+        # @param OpenKey: 收单系统分配的密钥
+        # @type OpenKey: String
+        # @param Profile: 沙箱环境填sandbox，正式环境不填
+        # @type Profile: String
+        # @param LatitudeTwo: 高德地图纬度
+        # @type LatitudeTwo: String
+        # @param OtherPicture: 其他照片【公共区】
+        # @type OtherPicture: String
+        # @param LongitudeTwo: 高德地图经度
+        # @type LongitudeTwo: String
+        # @param Contact: 门店负责人
+        # @type Contact: String
+        # @param Longitude: 百度地图经度
+        # @type Longitude: String
+        # @param Latitude: 百度地图纬度
+        # @type Latitude: String
+        # @param FinancialTelephone: 负责人手机号码
+        # @type FinancialTelephone: String
+
+        attr_accessor :OpenId, :ShopName, :MerchantNo, :PictureTwo, :PictureThree, :PictureOne, :Telephone, :OutShopId, :CityId, :ShopFullName, :OpenHours, :Address, :OpenKey, :Profile, :LatitudeTwo, :OtherPicture, :LongitudeTwo, :Contact, :Longitude, :Latitude, :FinancialTelephone
+        
+        def initialize(openid=nil, shopname=nil, merchantno=nil, picturetwo=nil, picturethree=nil, pictureone=nil, telephone=nil, outshopid=nil, cityid=nil, shopfullname=nil, openhours=nil, address=nil, openkey=nil, profile=nil, latitudetwo=nil, otherpicture=nil, longitudetwo=nil, contact=nil, longitude=nil, latitude=nil, financialtelephone=nil)
+          @OpenId = openid
+          @ShopName = shopname
+          @MerchantNo = merchantno
+          @PictureTwo = picturetwo
+          @PictureThree = picturethree
+          @PictureOne = pictureone
+          @Telephone = telephone
+          @OutShopId = outshopid
+          @CityId = cityid
+          @ShopFullName = shopfullname
+          @OpenHours = openhours
+          @Address = address
+          @OpenKey = openkey
+          @Profile = profile
+          @LatitudeTwo = latitudetwo
+          @OtherPicture = otherpicture
+          @LongitudeTwo = longitudetwo
+          @Contact = contact
+          @Longitude = longitude
+          @Latitude = latitude
+          @FinancialTelephone = financialtelephone
+        end
+
+        def deserialize(params)
+          @OpenId = params['OpenId']
+          @ShopName = params['ShopName']
+          @MerchantNo = params['MerchantNo']
+          @PictureTwo = params['PictureTwo']
+          @PictureThree = params['PictureThree']
+          @PictureOne = params['PictureOne']
+          @Telephone = params['Telephone']
+          @OutShopId = params['OutShopId']
+          @CityId = params['CityId']
+          @ShopFullName = params['ShopFullName']
+          @OpenHours = params['OpenHours']
+          @Address = params['Address']
+          @OpenKey = params['OpenKey']
+          @Profile = params['Profile']
+          @LatitudeTwo = params['LatitudeTwo']
+          @OtherPicture = params['OtherPicture']
+          @LongitudeTwo = params['LongitudeTwo']
+          @Contact = params['Contact']
+          @Longitude = params['Longitude']
+          @Latitude = params['Latitude']
+          @FinancialTelephone = params['FinancialTelephone']
+        end
+      end
+
+      # AddShop返回参数结构体
+      class AddShopResponse < TencentCloud::Common::AbstractModel
+        # @param ErrMessage: 业务系统返回消息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ErrMessage: String
+        # @param ErrCode: 业务系统返回码
+        # @type ErrCode: String
+        # @param Result: 添加申请响应对象
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Result: :class:`Tencentcloud::Cpdp.v20190820.models.AddShopResult`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ErrMessage, :ErrCode, :Result, :RequestId
+        
+        def initialize(errmessage=nil, errcode=nil, result=nil, requestid=nil)
+          @ErrMessage = errmessage
+          @ErrCode = errcode
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ErrMessage = params['ErrMessage']
+          @ErrCode = params['ErrCode']
+          unless params['Result'].nil?
+            @Result = AddShopResult.new
+            @Result.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 添加门店响应对象
+      class AddShopResult < TencentCloud::Common::AbstractModel
+        # @param ShopNo: 门店编号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ShopNo: String
+
+        attr_accessor :ShopNo
+        
+        def initialize(shopno=nil)
+          @ShopNo = shopno
+        end
+
+        def deserialize(params)
+          @ShopNo = params['ShopNo']
+        end
+      end
+
       # 经办人信息
       class AgencyClientInfo < TencentCloud::Common::AbstractModel
         # @param AgencyClientName: 经办人姓名，存在经办人必输
@@ -1716,6 +2342,38 @@ module TencentCloud
         end
       end
 
+      # 查询城市编码响应对象
+      class CityCodeResult < TencentCloud::Common::AbstractModel
+        # @param CityId: 城市编码cityid，数字与字母的结合
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CityId: String
+        # @param Province: 省份
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Province: String
+        # @param District: 县区
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type District: String
+        # @param City: 城市
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type City: String
+
+        attr_accessor :CityId, :Province, :District, :City
+        
+        def initialize(cityid=nil, province=nil, district=nil, city=nil)
+          @CityId = cityid
+          @Province = province
+          @District = district
+          @City = city
+        end
+
+        def deserialize(params)
+          @CityId = params['CityId']
+          @Province = params['Province']
+          @District = params['District']
+          @City = params['City']
+        end
+      end
+
       # 银行在途清算结果信息
       class ClearItem < TencentCloud::Common::AbstractModel
         # @param Date: STRING(8)，日期（格式: 20190101）
@@ -2179,6 +2837,98 @@ module TencentCloud
           @TransactionId = params['TransactionId']
           @OutContractCode = params['OutContractCode']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 合同-支付方式列表响应对象
+      class ContractPayListResult < TencentCloud::Common::AbstractModel
+        # @param PaymentTag: 支付标签
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PaymentTag: String
+        # @param PaymentIcon: 支付方式图片url路径
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PaymentIcon: String
+        # @param PaymentOptionSix: 支付方式
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PaymentOptionSix: String
+        # @param PaymentName: 付款方式名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PaymentName: String
+        # @param PaymentOptionSeven: 支付方式
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PaymentOptionSeven: String
+        # @param PaymentOptionTwo: 支付方式
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PaymentOptionTwo: String
+        # @param PaymentOptionOne: 支付方式
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PaymentOptionOne: String
+        # @param PaymentOptionOther: 支付方式
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PaymentOptionOther: String
+        # @param PaymentType: 支持的交易类型（多个以小写逗号分开，0现金，1刷卡，2主扫，3被扫，4JSPAY，5预授权）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PaymentType: String
+        # @param PaymentOptionFive: 支付方式
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PaymentOptionFive: String
+        # @param PaymentOptionNine: 支付方式
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PaymentOptionNine: String
+        # @param PaymentId: 支付方式编号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PaymentId: String
+        # @param PaymentOptionThree: 支付方式
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PaymentOptionThree: String
+        # @param PaymentInternalName: 付款方式名称（内部名称）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PaymentInternalName: String
+        # @param PaymentOptionFour: 支付方式
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PaymentOptionFour: String
+        # @param PaymentOptionTen: 支付方式
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PaymentOptionTen: String
+
+        attr_accessor :PaymentTag, :PaymentIcon, :PaymentOptionSix, :PaymentName, :PaymentOptionSeven, :PaymentOptionTwo, :PaymentOptionOne, :PaymentOptionOther, :PaymentType, :PaymentOptionFive, :PaymentOptionNine, :PaymentId, :PaymentOptionThree, :PaymentInternalName, :PaymentOptionFour, :PaymentOptionTen
+        
+        def initialize(paymenttag=nil, paymenticon=nil, paymentoptionsix=nil, paymentname=nil, paymentoptionseven=nil, paymentoptiontwo=nil, paymentoptionone=nil, paymentoptionother=nil, paymenttype=nil, paymentoptionfive=nil, paymentoptionnine=nil, paymentid=nil, paymentoptionthree=nil, paymentinternalname=nil, paymentoptionfour=nil, paymentoptionten=nil)
+          @PaymentTag = paymenttag
+          @PaymentIcon = paymenticon
+          @PaymentOptionSix = paymentoptionsix
+          @PaymentName = paymentname
+          @PaymentOptionSeven = paymentoptionseven
+          @PaymentOptionTwo = paymentoptiontwo
+          @PaymentOptionOne = paymentoptionone
+          @PaymentOptionOther = paymentoptionother
+          @PaymentType = paymenttype
+          @PaymentOptionFive = paymentoptionfive
+          @PaymentOptionNine = paymentoptionnine
+          @PaymentId = paymentid
+          @PaymentOptionThree = paymentoptionthree
+          @PaymentInternalName = paymentinternalname
+          @PaymentOptionFour = paymentoptionfour
+          @PaymentOptionTen = paymentoptionten
+        end
+
+        def deserialize(params)
+          @PaymentTag = params['PaymentTag']
+          @PaymentIcon = params['PaymentIcon']
+          @PaymentOptionSix = params['PaymentOptionSix']
+          @PaymentName = params['PaymentName']
+          @PaymentOptionSeven = params['PaymentOptionSeven']
+          @PaymentOptionTwo = params['PaymentOptionTwo']
+          @PaymentOptionOne = params['PaymentOptionOne']
+          @PaymentOptionOther = params['PaymentOptionOther']
+          @PaymentType = params['PaymentType']
+          @PaymentOptionFive = params['PaymentOptionFive']
+          @PaymentOptionNine = params['PaymentOptionNine']
+          @PaymentId = params['PaymentId']
+          @PaymentOptionThree = params['PaymentOptionThree']
+          @PaymentInternalName = params['PaymentInternalName']
+          @PaymentOptionFour = params['PaymentOptionFour']
+          @PaymentOptionTen = params['PaymentOptionTen']
         end
       end
 
@@ -4657,6 +5407,709 @@ module TencentCloud
         end
       end
 
+      # DistributeAccreditQuery请求参数结构体
+      class DistributeAccreditQueryRequest < TencentCloud::Common::AbstractModel
+        # @param OpenId: 收单系统分配的开放ID
+        # @type OpenId: String
+        # @param OpenKey: 收单系统分配的密钥
+        # @type OpenKey: String
+        # @param Profile: 沙箱环境填sandbox，正式环境不填
+        # @type Profile: String
+
+        attr_accessor :OpenId, :OpenKey, :Profile
+        
+        def initialize(openid=nil, openkey=nil, profile=nil)
+          @OpenId = openid
+          @OpenKey = openkey
+          @Profile = profile
+        end
+
+        def deserialize(params)
+          @OpenId = params['OpenId']
+          @OpenKey = params['OpenKey']
+          @Profile = params['Profile']
+        end
+      end
+
+      # DistributeAccreditQuery返回参数结构体
+      class DistributeAccreditQueryResponse < TencentCloud::Common::AbstractModel
+        # @param ErrMessage: 业务系统返回消息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ErrMessage: String
+        # @param ErrCode: 业务系统返回码
+        # @type ErrCode: String
+        # @param Result: 查询授权申请结果响应对象
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Result: :class:`Tencentcloud::Cpdp.v20190820.models.DistributeAccreditQueryResult`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ErrMessage, :ErrCode, :Result, :RequestId
+        
+        def initialize(errmessage=nil, errcode=nil, result=nil, requestid=nil)
+          @ErrMessage = errmessage
+          @ErrCode = errcode
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ErrMessage = params['ErrMessage']
+          @ErrCode = params['ErrCode']
+          unless params['Result'].nil?
+            @Result = DistributeAccreditQueryResult.new
+            @Result.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 分账授权申请查询响应对象
+      class DistributeAccreditQueryResult < TencentCloud::Common::AbstractModel
+        # @param Status: 状态（0-未开通，1-已开通，2-商户主动关闭，3-待审核，4-冻结，5-注销，6-待签合同）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: String
+        # @param ContractUrl: 合同h5地址
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ContractUrl: String
+        # @param Remark: 说明
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Remark: String
+
+        attr_accessor :Status, :ContractUrl, :Remark
+        
+        def initialize(status=nil, contracturl=nil, remark=nil)
+          @Status = status
+          @ContractUrl = contracturl
+          @Remark = remark
+        end
+
+        def deserialize(params)
+          @Status = params['Status']
+          @ContractUrl = params['ContractUrl']
+          @Remark = params['Remark']
+        end
+      end
+
+      # 授权申请响应对象
+      class DistributeAccreditResult < TencentCloud::Common::AbstractModel
+        # @param ContractUrl: 合同h5地址
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ContractUrl: String
+        # @param MerchantNo: 系统商户号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MerchantNo: String
+
+        attr_accessor :ContractUrl, :MerchantNo
+        
+        def initialize(contracturl=nil, merchantno=nil)
+          @ContractUrl = contracturl
+          @MerchantNo = merchantno
+        end
+
+        def deserialize(params)
+          @ContractUrl = params['ContractUrl']
+          @MerchantNo = params['MerchantNo']
+        end
+      end
+
+      # DistributeAccreditTlinx请求参数结构体
+      class DistributeAccreditTlinxRequest < TencentCloud::Common::AbstractModel
+        # @param OpenId: 收单系统分配的开放ID
+        # @type OpenId: String
+        # @param AuthType: 验证方式，传1手机验证(验证码时效60S)传2结算卡验证(时效6小时)，多种方式用逗号隔开
+        # @type AuthType: String
+        # @param OpenKey: 收单系统分配的密钥
+        # @type OpenKey: String
+        # @param Profile: 沙箱环境填sandbox，正式环境不填
+        # @type Profile: String
+        # @param Percent: 分账比例（500=5%）不传默认百分之10
+        # @type Percent: String
+        # @param FullName: 营业执照商户全称
+        # @type FullName: String
+
+        attr_accessor :OpenId, :AuthType, :OpenKey, :Profile, :Percent, :FullName
+        
+        def initialize(openid=nil, authtype=nil, openkey=nil, profile=nil, percent=nil, fullname=nil)
+          @OpenId = openid
+          @AuthType = authtype
+          @OpenKey = openkey
+          @Profile = profile
+          @Percent = percent
+          @FullName = fullname
+        end
+
+        def deserialize(params)
+          @OpenId = params['OpenId']
+          @AuthType = params['AuthType']
+          @OpenKey = params['OpenKey']
+          @Profile = params['Profile']
+          @Percent = params['Percent']
+          @FullName = params['FullName']
+        end
+      end
+
+      # DistributeAccreditTlinx返回参数结构体
+      class DistributeAccreditTlinxResponse < TencentCloud::Common::AbstractModel
+        # @param ErrMessage: 业务系统返回消息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ErrMessage: String
+        # @param ErrCode: 业务系统返回码
+        # @type ErrCode: String
+        # @param Result: 授权申请响应对象
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Result: :class:`Tencentcloud::Cpdp.v20190820.models.DistributeAccreditResult`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ErrMessage, :ErrCode, :Result, :RequestId
+        
+        def initialize(errmessage=nil, errcode=nil, result=nil, requestid=nil)
+          @ErrMessage = errmessage
+          @ErrCode = errcode
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ErrMessage = params['ErrMessage']
+          @ErrCode = params['ErrCode']
+          unless params['Result'].nil?
+            @Result = DistributeAccreditResult.new
+            @Result.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DistributeAddReceiver请求参数结构体
+      class DistributeAddReceiverRequest < TencentCloud::Common::AbstractModel
+        # @param OpenId: 收单系统分配的开放ID
+        # @type OpenId: String
+        # @param OpenKey: 收单系统分配的密钥
+        # @type OpenKey: String
+        # @param MerchantNo: 商户编号
+        # @type MerchantNo: String
+        # @param Profile: 沙箱环境填sandbox，正式环境不填
+        # @type Profile: String
+        # @param Remark: 备注
+        # @type Remark: String
+
+        attr_accessor :OpenId, :OpenKey, :MerchantNo, :Profile, :Remark
+        
+        def initialize(openid=nil, openkey=nil, merchantno=nil, profile=nil, remark=nil)
+          @OpenId = openid
+          @OpenKey = openkey
+          @MerchantNo = merchantno
+          @Profile = profile
+          @Remark = remark
+        end
+
+        def deserialize(params)
+          @OpenId = params['OpenId']
+          @OpenKey = params['OpenKey']
+          @MerchantNo = params['MerchantNo']
+          @Profile = params['Profile']
+          @Remark = params['Remark']
+        end
+      end
+
+      # DistributeAddReceiver返回参数结构体
+      class DistributeAddReceiverResponse < TencentCloud::Common::AbstractModel
+        # @param ErrMessage: 业务系统返回消息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ErrMessage: String
+        # @param ErrCode: 业务系统返回码
+        # @type ErrCode: String
+        # @param Result: 添加分账接收方响应对象
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Result: :class:`Tencentcloud::Cpdp.v20190820.models.DistributeReceiverResult`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ErrMessage, :ErrCode, :Result, :RequestId
+        
+        def initialize(errmessage=nil, errcode=nil, result=nil, requestid=nil)
+          @ErrMessage = errmessage
+          @ErrCode = errcode
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ErrMessage = params['ErrMessage']
+          @ErrCode = params['ErrCode']
+          unless params['Result'].nil?
+            @Result = DistributeReceiverResult.new
+            @Result.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DistributeApply请求参数结构体
+      class DistributeApplyRequest < TencentCloud::Common::AbstractModel
+        # @param OpenId: 收单系统分配的开放ID
+        # @type OpenId: String
+        # @param OutDistributeNo: 商户分账单号
+        # @type OutDistributeNo: String
+        # @param OpenKey: 收单系统分配的密钥
+        # @type OpenKey: String
+        # @param Details: 分账明细
+        # @type Details: Array
+        # @param Profile: 沙箱环境填sandbox，正式环境不填
+        # @type Profile: String
+        # @param Remark: 说明
+        # @type Remark: String
+        # @param DeveloperNo: 商户交易订单号，和OrderNo二者传其一
+        # @type DeveloperNo: String
+        # @param OrderNo: 平台交易订单号，和DeveloperNo二者传其一
+        # @type OrderNo: String
+
+        attr_accessor :OpenId, :OutDistributeNo, :OpenKey, :Details, :Profile, :Remark, :DeveloperNo, :OrderNo
+        
+        def initialize(openid=nil, outdistributeno=nil, openkey=nil, details=nil, profile=nil, remark=nil, developerno=nil, orderno=nil)
+          @OpenId = openid
+          @OutDistributeNo = outdistributeno
+          @OpenKey = openkey
+          @Details = details
+          @Profile = profile
+          @Remark = remark
+          @DeveloperNo = developerno
+          @OrderNo = orderno
+        end
+
+        def deserialize(params)
+          @OpenId = params['OpenId']
+          @OutDistributeNo = params['OutDistributeNo']
+          @OpenKey = params['OpenKey']
+          unless params['Details'].nil?
+            @Details = []
+            params['Details'].each do |i|
+              multiapplydetail_tmp = MultiApplyDetail.new
+              multiapplydetail_tmp.deserialize(i)
+              @Details << multiapplydetail_tmp
+            end
+          end
+          @Profile = params['Profile']
+          @Remark = params['Remark']
+          @DeveloperNo = params['DeveloperNo']
+          @OrderNo = params['OrderNo']
+        end
+      end
+
+      # DistributeApply返回参数结构体
+      class DistributeApplyResponse < TencentCloud::Common::AbstractModel
+        # @param ErrMessage: 业务系统返回消息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ErrMessage: String
+        # @param ErrCode: 业务系统返回码
+        # @type ErrCode: String
+        # @param Result: 分账申请响应对象
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Result: :class:`Tencentcloud::Cpdp.v20190820.models.DistributeMultiApplyResult`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ErrMessage, :ErrCode, :Result, :RequestId
+        
+        def initialize(errmessage=nil, errcode=nil, result=nil, requestid=nil)
+          @ErrMessage = errmessage
+          @ErrCode = errcode
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ErrMessage = params['ErrMessage']
+          @ErrCode = params['ErrCode']
+          unless params['Result'].nil?
+            @Result = DistributeMultiApplyResult.new
+            @Result.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DistributeCancel请求参数结构体
+      class DistributeCancelRequest < TencentCloud::Common::AbstractModel
+        # @param OpenId: 收单系统分配的开放ID
+        # @type OpenId: String
+        # @param OpenKey: 收单系统分配的密钥
+        # @type OpenKey: String
+        # @param OrderNo: 平台交易订单号
+        # @type OrderNo: String
+        # @param Profile: 沙箱环境填sandbox，正式环境不填
+        # @type Profile: String
+        # @param DistributeNo: 平台分账单号，type为2时，和OutDistributeNo二者传其一
+        # @type DistributeNo: String
+        # @param OutDistributeNo: 商户分账单号，type为2时，和DistributeNo二者传其一
+        # @type OutDistributeNo: String
+
+        attr_accessor :OpenId, :OpenKey, :OrderNo, :Profile, :DistributeNo, :OutDistributeNo
+        
+        def initialize(openid=nil, openkey=nil, orderno=nil, profile=nil, distributeno=nil, outdistributeno=nil)
+          @OpenId = openid
+          @OpenKey = openkey
+          @OrderNo = orderno
+          @Profile = profile
+          @DistributeNo = distributeno
+          @OutDistributeNo = outdistributeno
+        end
+
+        def deserialize(params)
+          @OpenId = params['OpenId']
+          @OpenKey = params['OpenKey']
+          @OrderNo = params['OrderNo']
+          @Profile = params['Profile']
+          @DistributeNo = params['DistributeNo']
+          @OutDistributeNo = params['OutDistributeNo']
+        end
+      end
+
+      # DistributeCancel返回参数结构体
+      class DistributeCancelResponse < TencentCloud::Common::AbstractModel
+        # @param ErrMessage: 业务系统返回消息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ErrMessage: String
+        # @param ErrCode: 业务系统返回码
+        # @type ErrCode: String
+        # @param Result: 分账撤销响应对象
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Result: :class:`Tencentcloud::Cpdp.v20190820.models.DistributeCancelResult`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ErrMessage, :ErrCode, :Result, :RequestId
+        
+        def initialize(errmessage=nil, errcode=nil, result=nil, requestid=nil)
+          @ErrMessage = errmessage
+          @ErrCode = errcode
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ErrMessage = params['ErrMessage']
+          @ErrCode = params['ErrCode']
+          unless params['Result'].nil?
+            @Result = DistributeCancelResult.new
+            @Result.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 分账撤销响应对象
+      class DistributeCancelResult < TencentCloud::Common::AbstractModel
+        # @param Status: 分账订单状态（0初始1成功2失败3撤销）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: String
+        # @param OrderNo: 平台交易订单号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OrderNo: String
+        # @param OutDistributeNo: 商户分账单号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OutDistributeNo: String
+        # @param DistributeNo: 平台分账单号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DistributeNo: String
+
+        attr_accessor :Status, :OrderNo, :OutDistributeNo, :DistributeNo
+        
+        def initialize(status=nil, orderno=nil, outdistributeno=nil, distributeno=nil)
+          @Status = status
+          @OrderNo = orderno
+          @OutDistributeNo = outdistributeno
+          @DistributeNo = distributeno
+        end
+
+        def deserialize(params)
+          @Status = params['Status']
+          @OrderNo = params['OrderNo']
+          @OutDistributeNo = params['OutDistributeNo']
+          @DistributeNo = params['DistributeNo']
+        end
+      end
+
+      # 分账申请响应对象
+      class DistributeMultiApplyResult < TencentCloud::Common::AbstractModel
+        # @param Status: 分账状态（0分账初始 1分账成功 2分账失败）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: String
+        # @param DistributeNo: 平台分账单号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DistributeNo: String
+        # @param InDate: 入账日期，yyyy-MM-dd格式
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InDate: String
+        # @param Amount: 分账金额
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Amount: String
+        # @param OutDistributeNo: 商户分账单号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OutDistributeNo: String
+        # @param OrderNo: 平台支付单号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OrderNo: String
+
+        attr_accessor :Status, :DistributeNo, :InDate, :Amount, :OutDistributeNo, :OrderNo
+        
+        def initialize(status=nil, distributeno=nil, indate=nil, amount=nil, outdistributeno=nil, orderno=nil)
+          @Status = status
+          @DistributeNo = distributeno
+          @InDate = indate
+          @Amount = amount
+          @OutDistributeNo = outdistributeno
+          @OrderNo = orderno
+        end
+
+        def deserialize(params)
+          @Status = params['Status']
+          @DistributeNo = params['DistributeNo']
+          @InDate = params['InDate']
+          @Amount = params['Amount']
+          @OutDistributeNo = params['OutDistributeNo']
+          @OrderNo = params['OrderNo']
+        end
+      end
+
+      # DistributeQueryReceiver请求参数结构体
+      class DistributeQueryReceiverRequest < TencentCloud::Common::AbstractModel
+        # @param OpenId: 收单系统分配的开放ID
+        # @type OpenId: String
+        # @param OpenKey: 收单系统分配的密钥
+        # @type OpenKey: String
+        # @param Profile: 沙箱环境填sandbox，正式环境不填
+        # @type Profile: String
+
+        attr_accessor :OpenId, :OpenKey, :Profile
+        
+        def initialize(openid=nil, openkey=nil, profile=nil)
+          @OpenId = openid
+          @OpenKey = openkey
+          @Profile = profile
+        end
+
+        def deserialize(params)
+          @OpenId = params['OpenId']
+          @OpenKey = params['OpenKey']
+          @Profile = params['Profile']
+        end
+      end
+
+      # DistributeQueryReceiver返回参数结构体
+      class DistributeQueryReceiverResponse < TencentCloud::Common::AbstractModel
+        # @param ErrMessage: 业务系统返回消息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ErrMessage: String
+        # @param ErrCode: 业务系统返回码
+        # @type ErrCode: String
+        # @param Result: 查询询已添加分账接收方响应对象
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Result: :class:`Tencentcloud::Cpdp.v20190820.models.DistributeReceiverResult`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ErrMessage, :ErrCode, :Result, :RequestId
+        
+        def initialize(errmessage=nil, errcode=nil, result=nil, requestid=nil)
+          @ErrMessage = errmessage
+          @ErrCode = errcode
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ErrMessage = params['ErrMessage']
+          @ErrCode = params['ErrCode']
+          unless params['Result'].nil?
+            @Result = DistributeReceiverResult.new
+            @Result.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DistributeQuery请求参数结构体
+      class DistributeQueryRequest < TencentCloud::Common::AbstractModel
+        # @param OpenId: 收单系统分配的开放ID
+        # @type OpenId: String
+        # @param OpenKey: 收单系统分配的密钥
+        # @type OpenKey: String
+        # @param Type: 查询类型（1-全部，2-单笔）
+        # @type Type: String
+        # @param Profile: 沙箱环境填sandbox，正式环境不填
+        # @type Profile: String
+        # @param DistributeNo: 平台分账单号，type为2时，和OutDistributeNo二者传其一
+        # @type DistributeNo: String
+        # @param OutDistributeNo: 商户分账单号，type为2时，和DistributeNo二者传其一
+        # @type OutDistributeNo: String
+        # @param OrderNo: 平台交易订单号
+        # @type OrderNo: String
+
+        attr_accessor :OpenId, :OpenKey, :Type, :Profile, :DistributeNo, :OutDistributeNo, :OrderNo
+        
+        def initialize(openid=nil, openkey=nil, type=nil, profile=nil, distributeno=nil, outdistributeno=nil, orderno=nil)
+          @OpenId = openid
+          @OpenKey = openkey
+          @Type = type
+          @Profile = profile
+          @DistributeNo = distributeno
+          @OutDistributeNo = outdistributeno
+          @OrderNo = orderno
+        end
+
+        def deserialize(params)
+          @OpenId = params['OpenId']
+          @OpenKey = params['OpenKey']
+          @Type = params['Type']
+          @Profile = params['Profile']
+          @DistributeNo = params['DistributeNo']
+          @OutDistributeNo = params['OutDistributeNo']
+          @OrderNo = params['OrderNo']
+        end
+      end
+
+      # DistributeQuery返回参数结构体
+      class DistributeQueryResponse < TencentCloud::Common::AbstractModel
+        # @param ErrMessage: 业务系统返回消息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ErrMessage: String
+        # @param ErrCode: 业务系统返回码
+        # @type ErrCode: String
+        # @param Result: 分账结果响应对象
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Result: :class:`Tencentcloud::Cpdp.v20190820.models.DistributeQueryResult`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ErrMessage, :ErrCode, :Result, :RequestId
+        
+        def initialize(errmessage=nil, errcode=nil, result=nil, requestid=nil)
+          @ErrMessage = errmessage
+          @ErrCode = errcode
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ErrMessage = params['ErrMessage']
+          @ErrCode = params['ErrCode']
+          unless params['Result'].nil?
+            @Result = DistributeQueryResult.new
+            @Result.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 分账结果响应对象
+      class DistributeQueryResult < TencentCloud::Common::AbstractModel
+        # @param Orders: 分账订单列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Orders: Array
+
+        attr_accessor :Orders
+        
+        def initialize(orders=nil)
+          @Orders = orders
+        end
+
+        def deserialize(params)
+          unless params['Orders'].nil?
+            @Orders = []
+            params['Orders'].each do |i|
+              multiapplyorder_tmp = MultiApplyOrder.new
+              multiapplyorder_tmp.deserialize(i)
+              @Orders << multiapplyorder_tmp
+            end
+          end
+        end
+      end
+
+      # 分账接收方响应对象
+      class DistributeReceiverResult < TencentCloud::Common::AbstractModel
+        # @param MerchantNo: 商户编号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MerchantNo: String
+
+        attr_accessor :MerchantNo
+        
+        def initialize(merchantno=nil)
+          @MerchantNo = merchantno
+        end
+
+        def deserialize(params)
+          @MerchantNo = params['MerchantNo']
+        end
+      end
+
+      # DistributeRemoveReceiver请求参数结构体
+      class DistributeRemoveReceiverRequest < TencentCloud::Common::AbstractModel
+        # @param OpenId: 收单系统分配的开放ID
+        # @type OpenId: String
+        # @param OpenKey: 收单系统分配的密钥
+        # @type OpenKey: String
+        # @param MerchantNo: 商户编号
+        # @type MerchantNo: String
+        # @param Profile: 沙箱环境填sandbox，正式环境不填
+        # @type Profile: String
+        # @param Remark: 备注
+        # @type Remark: String
+
+        attr_accessor :OpenId, :OpenKey, :MerchantNo, :Profile, :Remark
+        
+        def initialize(openid=nil, openkey=nil, merchantno=nil, profile=nil, remark=nil)
+          @OpenId = openid
+          @OpenKey = openkey
+          @MerchantNo = merchantno
+          @Profile = profile
+          @Remark = remark
+        end
+
+        def deserialize(params)
+          @OpenId = params['OpenId']
+          @OpenKey = params['OpenKey']
+          @MerchantNo = params['MerchantNo']
+          @Profile = params['Profile']
+          @Remark = params['Remark']
+        end
+      end
+
+      # DistributeRemoveReceiver返回参数结构体
+      class DistributeRemoveReceiverResponse < TencentCloud::Common::AbstractModel
+        # @param ErrMessage: 业务系统返回消息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ErrMessage: String
+        # @param ErrCode: 业务系统返回码
+        # @type ErrCode: String
+        # @param Result: 解除分账接收方响应对象
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Result: :class:`Tencentcloud::Cpdp.v20190820.models.DistributeReceiverResult`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ErrMessage, :ErrCode, :Result, :RequestId
+        
+        def initialize(errmessage=nil, errcode=nil, result=nil, requestid=nil)
+          @ErrMessage = errmessage
+          @ErrCode = errcode
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ErrMessage = params['ErrMessage']
+          @ErrCode = params['ErrCode']
+          unless params['Result'].nil?
+            @Result = DistributeReceiverResult.new
+            @Result.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DownloadBill请求参数结构体
       class DownloadBillRequest < TencentCloud::Common::AbstractModel
         # @param StateDate: 请求下载对账单日期
@@ -4717,6 +6170,93 @@ module TencentCloud
           @FileName = params['FileName']
           @FileMD5 = params['FileMD5']
           @DownloadUrl = params['DownloadUrl']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 上传下载响应对象
+      class DownloadFileResult < TencentCloud::Common::AbstractModel
+        # @param Content: 文件内容（base64加密的二进制内容）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Content: String
+        # @param Storage: 存储区域（0私密区，1公共区），请严格按文件要求，上传到不同的区域
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Storage: String
+
+        attr_accessor :Content, :Storage
+        
+        def initialize(content=nil, storage=nil)
+          @Content = content
+          @Storage = storage
+        end
+
+        def deserialize(params)
+          @Content = params['Content']
+          @Storage = params['Storage']
+        end
+      end
+
+      # DownloadOrgFile请求参数结构体
+      class DownloadOrgFileRequest < TencentCloud::Common::AbstractModel
+        # @param OpenId: 收单系统分配的开放ID
+        # @type OpenId: String
+        # @param OpenKey: 收单系统分配的密钥
+        # @type OpenKey: String
+        # @param Profile: 沙箱环境填sandbox，正式环境不填
+        # @type Profile: String
+        # @param Storage: 存储区域（0私密区，1公共区），请严格按文件要求，上传到不同的区域
+        # @type Storage: String
+        # @param FilePath: 文件路径
+        # @type FilePath: String
+
+        attr_accessor :OpenId, :OpenKey, :Profile, :Storage, :FilePath
+        
+        def initialize(openid=nil, openkey=nil, profile=nil, storage=nil, filepath=nil)
+          @OpenId = openid
+          @OpenKey = openkey
+          @Profile = profile
+          @Storage = storage
+          @FilePath = filepath
+        end
+
+        def deserialize(params)
+          @OpenId = params['OpenId']
+          @OpenKey = params['OpenKey']
+          @Profile = params['Profile']
+          @Storage = params['Storage']
+          @FilePath = params['FilePath']
+        end
+      end
+
+      # DownloadOrgFile返回参数结构体
+      class DownloadOrgFileResponse < TencentCloud::Common::AbstractModel
+        # @param ErrMessage: 业务系统返回消息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ErrMessage: String
+        # @param ErrCode: 业务系统返回码
+        # @type ErrCode: String
+        # @param Result: 下载机构文件响应对象
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Result: :class:`Tencentcloud::Cpdp.v20190820.models.DownloadFileResult`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ErrMessage, :ErrCode, :Result, :RequestId
+        
+        def initialize(errmessage=nil, errcode=nil, result=nil, requestid=nil)
+          @ErrMessage = errmessage
+          @ErrCode = errcode
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ErrMessage = params['ErrMessage']
+          @ErrCode = params['ErrCode']
+          unless params['Result'].nil?
+            @Result = DownloadFileResult.new
+            @Result.deserialize(params['Result'])
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -5037,6 +6577,30 @@ module TencentCloud
           @RandomPassword = params['RandomPassword']
           @FilePath = params['FilePath']
           @DrawCode = params['DrawCode']
+        end
+      end
+
+      # 商户分类
+      class MerchantClassificationId < TencentCloud::Common::AbstractModel
+        # @param Code: 分类编号
+        # @type Code: String
+        # @param Name: 分类名称
+        # @type Name: String
+        # @param Parent: 父级编号（0为一级编号，大于0为父级分类编号）
+        # @type Parent: String
+
+        attr_accessor :Code, :Name, :Parent
+        
+        def initialize(code=nil, name=nil, parent=nil)
+          @Code = code
+          @Name = name
+          @Parent = parent
+        end
+
+        def deserialize(params)
+          @Code = params['Code']
+          @Name = params['Name']
+          @Parent = params['Parent']
         end
       end
 
@@ -5549,6 +7113,84 @@ module TencentCloud
         end
       end
 
+      # 分账明细
+      class MultiApplyDetail < TencentCloud::Common::AbstractModel
+        # @param MerchantNo: 商户编号
+        # @type MerchantNo: String
+        # @param Amount: 分账金额
+        # @type Amount: String
+        # @param Remark: 备注
+        # @type Remark: String
+
+        attr_accessor :MerchantNo, :Amount, :Remark
+        
+        def initialize(merchantno=nil, amount=nil, remark=nil)
+          @MerchantNo = merchantno
+          @Amount = amount
+          @Remark = remark
+        end
+
+        def deserialize(params)
+          @MerchantNo = params['MerchantNo']
+          @Amount = params['Amount']
+          @Remark = params['Remark']
+        end
+      end
+
+      # 分账订单信息
+      class MultiApplyOrder < TencentCloud::Common::AbstractModel
+        # @param OutDistributeNo: 商户分账单号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OutDistributeNo: String
+        # @param DistributeNo: 平台分账单号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DistributeNo: String
+        # @param OrderNo: 平台交易订单号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OrderNo: String
+        # @param Status: 分账订单状态（0初始1成功2失败3撤销）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: String
+        # @param InDate: 入账日期，格式yyyy-MM-dd
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InDate: String
+        # @param Remark: 备注
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Remark: String
+        # @param Details: 分账明细
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Details: Array
+
+        attr_accessor :OutDistributeNo, :DistributeNo, :OrderNo, :Status, :InDate, :Remark, :Details
+        
+        def initialize(outdistributeno=nil, distributeno=nil, orderno=nil, status=nil, indate=nil, remark=nil, details=nil)
+          @OutDistributeNo = outdistributeno
+          @DistributeNo = distributeno
+          @OrderNo = orderno
+          @Status = status
+          @InDate = indate
+          @Remark = remark
+          @Details = details
+        end
+
+        def deserialize(params)
+          @OutDistributeNo = params['OutDistributeNo']
+          @DistributeNo = params['DistributeNo']
+          @OrderNo = params['OrderNo']
+          @Status = params['Status']
+          @InDate = params['InDate']
+          @Remark = params['Remark']
+          unless params['Details'].nil?
+            @Details = []
+            params['Details'].each do |i|
+              multiapplydetail_tmp = MultiApplyDetail.new
+              multiapplydetail_tmp.deserialize(i)
+              @Details << multiapplydetail_tmp
+            end
+          end
+        end
+      end
+
       # 线下查票-订单信息
       class Order < TencentCloud::Common::AbstractModel
         # @param AmountHasTax: 含税金额
@@ -5710,6 +7352,130 @@ module TencentCloud
           @LegalPersonName = params['LegalPersonName']
           @LegalPersonIdType = params['LegalPersonIdType']
           @LegalPersonIdCode = params['LegalPersonIdCode']
+        end
+      end
+
+      # pay支付方式json数据
+      class PayDataResult < TencentCloud::Common::AbstractModel
+        # @param PaymentTag: 支付标签（唯一性）
+        # @type PaymentTag: String
+        # @param PaymentOptionHide: 添加合同时需要隐藏的选项（多个以小写逗号分开）
+        # @type PaymentOptionHide: String
+        # @param PaymentIcon: 支付方式图片url路径
+        # @type PaymentIcon: String
+        # @param PaymentOptionSix: 合同选项名称6
+        # @type PaymentOptionSix: String
+        # @param PaymentName: 付款方式名称
+        # @type PaymentName: String
+        # @param PaymentOptionSeven: 合同选项名称7
+        # @type PaymentOptionSeven: String
+        # @param PaymentOptionOther: 合同选项名称8
+        # @type PaymentOptionOther: String
+        # @param PaymentOptionTwo: 合同选项名称2
+        # @type PaymentOptionTwo: String
+        # @param PaymentOptionOne: 合同选项名称1
+        # @type PaymentOptionOne: String
+        # @param PaymentDiscountFee: 是否开启智能扣率（1是，0否）
+        # @type PaymentDiscountFee: String
+        # @param PaymentType: 支持的交易类型（多个以小写逗号分开，0现金，1刷卡，2主扫，3被扫，4JSPAY，5预授权）
+        # @type PaymentType: String
+        # @param PaymentOptionFive: 合同选项名称5
+        # @type PaymentOptionFive: String
+        # @param PaymentOptionNine: 合同选项名称9
+        # @type PaymentOptionNine: String
+        # @param PaymentId: 支付方式编号
+        # @type PaymentId: String
+        # @param PaymentOptionThree: 合同选项名称3
+        # @type PaymentOptionThree: String
+        # @param PaymentInternalName: 付款方式名称（内部名称）
+        # @type PaymentInternalName: String
+        # @param PaymentOptionFour: 合同选项名称4
+        # @type PaymentOptionFour: String
+        # @param PaymentOptionTen: 合同选项名称10
+        # @type PaymentOptionTen: String
+
+        attr_accessor :PaymentTag, :PaymentOptionHide, :PaymentIcon, :PaymentOptionSix, :PaymentName, :PaymentOptionSeven, :PaymentOptionOther, :PaymentOptionTwo, :PaymentOptionOne, :PaymentDiscountFee, :PaymentType, :PaymentOptionFive, :PaymentOptionNine, :PaymentId, :PaymentOptionThree, :PaymentInternalName, :PaymentOptionFour, :PaymentOptionTen
+        
+        def initialize(paymenttag=nil, paymentoptionhide=nil, paymenticon=nil, paymentoptionsix=nil, paymentname=nil, paymentoptionseven=nil, paymentoptionother=nil, paymentoptiontwo=nil, paymentoptionone=nil, paymentdiscountfee=nil, paymenttype=nil, paymentoptionfive=nil, paymentoptionnine=nil, paymentid=nil, paymentoptionthree=nil, paymentinternalname=nil, paymentoptionfour=nil, paymentoptionten=nil)
+          @PaymentTag = paymenttag
+          @PaymentOptionHide = paymentoptionhide
+          @PaymentIcon = paymenticon
+          @PaymentOptionSix = paymentoptionsix
+          @PaymentName = paymentname
+          @PaymentOptionSeven = paymentoptionseven
+          @PaymentOptionOther = paymentoptionother
+          @PaymentOptionTwo = paymentoptiontwo
+          @PaymentOptionOne = paymentoptionone
+          @PaymentDiscountFee = paymentdiscountfee
+          @PaymentType = paymenttype
+          @PaymentOptionFive = paymentoptionfive
+          @PaymentOptionNine = paymentoptionnine
+          @PaymentId = paymentid
+          @PaymentOptionThree = paymentoptionthree
+          @PaymentInternalName = paymentinternalname
+          @PaymentOptionFour = paymentoptionfour
+          @PaymentOptionTen = paymentoptionten
+        end
+
+        def deserialize(params)
+          @PaymentTag = params['PaymentTag']
+          @PaymentOptionHide = params['PaymentOptionHide']
+          @PaymentIcon = params['PaymentIcon']
+          @PaymentOptionSix = params['PaymentOptionSix']
+          @PaymentName = params['PaymentName']
+          @PaymentOptionSeven = params['PaymentOptionSeven']
+          @PaymentOptionOther = params['PaymentOptionOther']
+          @PaymentOptionTwo = params['PaymentOptionTwo']
+          @PaymentOptionOne = params['PaymentOptionOne']
+          @PaymentDiscountFee = params['PaymentDiscountFee']
+          @PaymentType = params['PaymentType']
+          @PaymentOptionFive = params['PaymentOptionFive']
+          @PaymentOptionNine = params['PaymentOptionNine']
+          @PaymentId = params['PaymentId']
+          @PaymentOptionThree = params['PaymentOptionThree']
+          @PaymentInternalName = params['PaymentInternalName']
+          @PaymentOptionFour = params['PaymentOptionFour']
+          @PaymentOptionTen = params['PaymentOptionTen']
+        end
+      end
+
+      # pay_fee支付方式行业分类费率json数据
+      class PayFeeDataResult < TencentCloud::Common::AbstractModel
+        # @param OrganizationFee: 机构的分佣扣率扣率
+        # @type OrganizationFee: String
+        # @param PaymentClassificationLimit: 商户手续费封顶值，0为不限封顶
+        # @type PaymentClassificationLimit: String
+        # @param OrganizationFeeType: 机构的分佣扣率类型(1按签约扣率，2按收单收益)
+        # @type OrganizationFeeType: String
+        # @param PaymentClassificationMaxFee: 商户扣率最大值
+        # @type PaymentClassificationMaxFee: String
+        # @param PaymentClassificationMinFee: 商户扣率最小值
+        # @type PaymentClassificationMinFee: String
+        # @param PaymentClassificationId: 行业会类编号
+        # @type PaymentClassificationId: String
+        # @param PaymentClassificationName: 行业分类名称
+        # @type PaymentClassificationName: String
+
+        attr_accessor :OrganizationFee, :PaymentClassificationLimit, :OrganizationFeeType, :PaymentClassificationMaxFee, :PaymentClassificationMinFee, :PaymentClassificationId, :PaymentClassificationName
+        
+        def initialize(organizationfee=nil, paymentclassificationlimit=nil, organizationfeetype=nil, paymentclassificationmaxfee=nil, paymentclassificationminfee=nil, paymentclassificationid=nil, paymentclassificationname=nil)
+          @OrganizationFee = organizationfee
+          @PaymentClassificationLimit = paymentclassificationlimit
+          @OrganizationFeeType = organizationfeetype
+          @PaymentClassificationMaxFee = paymentclassificationmaxfee
+          @PaymentClassificationMinFee = paymentclassificationminfee
+          @PaymentClassificationId = paymentclassificationid
+          @PaymentClassificationName = paymentclassificationname
+        end
+
+        def deserialize(params)
+          @OrganizationFee = params['OrganizationFee']
+          @PaymentClassificationLimit = params['PaymentClassificationLimit']
+          @OrganizationFeeType = params['OrganizationFeeType']
+          @PaymentClassificationMaxFee = params['PaymentClassificationMaxFee']
+          @PaymentClassificationMinFee = params['PaymentClassificationMinFee']
+          @PaymentClassificationId = params['PaymentClassificationId']
+          @PaymentClassificationName = params['PaymentClassificationName']
         end
       end
 
@@ -6962,6 +8728,67 @@ module TencentCloud
         end
       end
 
+      # QueryCityCode请求参数结构体
+      class QueryCityCodeRequest < TencentCloud::Common::AbstractModel
+        # @param OpenId: 收单系统分配的开放ID
+        # @type OpenId: String
+        # @param OpenKey: 收单系统分配的密钥
+        # @type OpenKey: String
+        # @param Profile: 沙箱环境填sandbox，正式环境不填
+        # @type Profile: String
+
+        attr_accessor :OpenId, :OpenKey, :Profile
+        
+        def initialize(openid=nil, openkey=nil, profile=nil)
+          @OpenId = openid
+          @OpenKey = openkey
+          @Profile = profile
+        end
+
+        def deserialize(params)
+          @OpenId = params['OpenId']
+          @OpenKey = params['OpenKey']
+          @Profile = params['Profile']
+        end
+      end
+
+      # QueryCityCode返回参数结构体
+      class QueryCityCodeResponse < TencentCloud::Common::AbstractModel
+        # @param ErrMessage: 业务系统返回消息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ErrMessage: String
+        # @param ErrCode: 业务系统返回码
+        # @type ErrCode: String
+        # @param Result: 查询城市编码响应对象
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Result: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ErrMessage, :ErrCode, :Result, :RequestId
+        
+        def initialize(errmessage=nil, errcode=nil, result=nil, requestid=nil)
+          @ErrMessage = errmessage
+          @ErrCode = errcode
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ErrMessage = params['ErrMessage']
+          @ErrCode = params['ErrCode']
+          unless params['Result'].nil?
+            @Result = []
+            params['Result'].each do |i|
+              citycoderesult_tmp = CityCodeResult.new
+              citycoderesult_tmp.deserialize(i)
+              @Result << citycoderesult_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # QueryCommonTransferRecharge请求参数结构体
       class QueryCommonTransferRechargeRequest < TencentCloud::Common::AbstractModel
         # @param MrchCode: String(22)，商户号（签约客户号）
@@ -7064,6 +8891,306 @@ module TencentCloud
           end
           @ReservedMsg = params['ReservedMsg']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # QueryContractPayFee请求参数结构体
+      class QueryContractPayFeeRequest < TencentCloud::Common::AbstractModel
+        # @param OpenId: 收单系统分配的开放ID
+        # @type OpenId: String
+        # @param OpenKey: 收单系统分配的密钥
+        # @type OpenKey: String
+        # @param PaymentId: 支付方式编号
+        # @type PaymentId: String
+        # @param Profile: 沙箱环境填sandbox，正式环境不填
+        # @type Profile: String
+
+        attr_accessor :OpenId, :OpenKey, :PaymentId, :Profile
+        
+        def initialize(openid=nil, openkey=nil, paymentid=nil, profile=nil)
+          @OpenId = openid
+          @OpenKey = openkey
+          @PaymentId = paymentid
+          @Profile = profile
+        end
+
+        def deserialize(params)
+          @OpenId = params['OpenId']
+          @OpenKey = params['OpenKey']
+          @PaymentId = params['PaymentId']
+          @Profile = params['Profile']
+        end
+      end
+
+      # QueryContractPayFee返回参数结构体
+      class QueryContractPayFeeResponse < TencentCloud::Common::AbstractModel
+        # @param ErrMessage: 业务系统返回消息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ErrMessage: String
+        # @param ErrCode: 业务系统返回码
+        # @type ErrCode: String
+        # @param Result: 查询支付方式费率及自定义表单项响应对象
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Result: :class:`Tencentcloud::Cpdp.v20190820.models.QueryContractPayFeeResult`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ErrMessage, :ErrCode, :Result, :RequestId
+        
+        def initialize(errmessage=nil, errcode=nil, result=nil, requestid=nil)
+          @ErrMessage = errmessage
+          @ErrCode = errcode
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ErrMessage = params['ErrMessage']
+          @ErrCode = params['ErrCode']
+          unless params['Result'].nil?
+            @Result = QueryContractPayFeeResult.new
+            @Result.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 支付方式费率及自定义表单项
+      class QueryContractPayFeeResult < TencentCloud::Common::AbstractModel
+        # @param Pay: pay支付方式json数据
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Pay: :class:`Tencentcloud::Cpdp.v20190820.models.PayDataResult`
+        # @param ExtraInput: 合同扩展自定义字段
+        # @type ExtraInput: Array
+        # @param PayFee: pay_fee支付方式行业分类费率json数据
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PayFee: Array
+
+        attr_accessor :Pay, :ExtraInput, :PayFee
+        
+        def initialize(pay=nil, extrainput=nil, payfee=nil)
+          @Pay = pay
+          @ExtraInput = extrainput
+          @PayFee = payfee
+        end
+
+        def deserialize(params)
+          unless params['Pay'].nil?
+            @Pay = PayDataResult.new
+            @Pay.deserialize(params['Pay'])
+          end
+          @ExtraInput = params['ExtraInput']
+          unless params['PayFee'].nil?
+            @PayFee = []
+            params['PayFee'].each do |i|
+              payfeedataresult_tmp = PayFeeDataResult.new
+              payfeedataresult_tmp.deserialize(i)
+              @PayFee << payfeedataresult_tmp
+            end
+          end
+        end
+      end
+
+      # QueryContractPayWayList请求参数结构体
+      class QueryContractPayWayListRequest < TencentCloud::Common::AbstractModel
+        # @param OpenId: 收单系统分配的开放ID
+        # @type OpenId: String
+        # @param OpenKey: 收单系统分配的密钥
+        # @type OpenKey: String
+        # @param Profile: 沙箱环境填sandbox，正式环境不填
+        # @type Profile: String
+
+        attr_accessor :OpenId, :OpenKey, :Profile
+        
+        def initialize(openid=nil, openkey=nil, profile=nil)
+          @OpenId = openid
+          @OpenKey = openkey
+          @Profile = profile
+        end
+
+        def deserialize(params)
+          @OpenId = params['OpenId']
+          @OpenKey = params['OpenKey']
+          @Profile = params['Profile']
+        end
+      end
+
+      # QueryContractPayWayList返回参数结构体
+      class QueryContractPayWayListResponse < TencentCloud::Common::AbstractModel
+        # @param ErrMessage: 业务系统返回消息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ErrMessage: String
+        # @param ErrCode: 业务系统返回码
+        # @type ErrCode: String
+        # @param Result: 查询合同支付方式响应对象
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Result: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ErrMessage, :ErrCode, :Result, :RequestId
+        
+        def initialize(errmessage=nil, errcode=nil, result=nil, requestid=nil)
+          @ErrMessage = errmessage
+          @ErrCode = errcode
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ErrMessage = params['ErrMessage']
+          @ErrCode = params['ErrCode']
+          unless params['Result'].nil?
+            @Result = []
+            params['Result'].each do |i|
+              contractpaylistresult_tmp = ContractPayListResult.new
+              contractpaylistresult_tmp.deserialize(i)
+              @Result << contractpaylistresult_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # QueryContractRelateShop请求参数结构体
+      class QueryContractRelateShopRequest < TencentCloud::Common::AbstractModel
+        # @param OpenId: 收单系统分配的开放ID
+        # @type OpenId: String
+        # @param OpenKey: 收单系统分配的密钥
+        # @type OpenKey: String
+        # @param ContractId: 合同主键
+        # @type ContractId: String
+        # @param Profile: 沙箱环境填sandbox，正式环境不填
+        # @type Profile: String
+
+        attr_accessor :OpenId, :OpenKey, :ContractId, :Profile
+        
+        def initialize(openid=nil, openkey=nil, contractid=nil, profile=nil)
+          @OpenId = openid
+          @OpenKey = openkey
+          @ContractId = contractid
+          @Profile = profile
+        end
+
+        def deserialize(params)
+          @OpenId = params['OpenId']
+          @OpenKey = params['OpenKey']
+          @ContractId = params['ContractId']
+          @Profile = params['Profile']
+        end
+      end
+
+      # QueryContractRelateShop返回参数结构体
+      class QueryContractRelateShopResponse < TencentCloud::Common::AbstractModel
+        # @param ErrMessage: 业务系统返回消息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ErrMessage: String
+        # @param ErrCode: 业务系统返回码
+        # @type ErrCode: String
+        # @param Result: 查询合同可关联门店响应对象
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Result: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ErrMessage, :ErrCode, :Result, :RequestId
+        
+        def initialize(errmessage=nil, errcode=nil, result=nil, requestid=nil)
+          @ErrMessage = errmessage
+          @ErrCode = errcode
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ErrMessage = params['ErrMessage']
+          @ErrCode = params['ErrCode']
+          unless params['Result'].nil?
+            @Result = []
+            params['Result'].each do |i|
+              querycontractrelateshopresult_tmp = QueryContractRelateShopResult.new
+              querycontractrelateshopresult_tmp.deserialize(i)
+              @Result << querycontractrelateshopresult_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 合同可关联门店响应对象
+      class QueryContractRelateShopResult < TencentCloud::Common::AbstractModel
+        # @param Province: 省份
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Province: String
+        # @param CityId: 城市编码
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CityId: String
+        # @param ShopName: 门店简称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ShopName: String
+        # @param TerminalCount: 终端数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TerminalCount: String
+        # @param City: 城市
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type City: String
+        # @param ShopStatus: 门店状态（0未审核，1已审核，2审核未通过，3待审核，4已删除，5初审通过）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ShopStatus: String
+        # @param AliPayOnline: 若是支付宝合同，支付宝上线状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AliPayOnline: String
+        # @param ShopNo: 门店编号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ShopNo: String
+        # @param Country: 县/区
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Country: String
+        # @param AliPayStatus: 若是支付宝合同，支付宝审核状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AliPayStatus: String
+        # @param IsChecked: 为空或者0表示未关联，大于0表示已关联
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsChecked: String
+        # @param Address: 详细地址
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Address: String
+        # @param AliPayDesc: 若是支付宝合同，支付宝审核描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AliPayDesc: String
+
+        attr_accessor :Province, :CityId, :ShopName, :TerminalCount, :City, :ShopStatus, :AliPayOnline, :ShopNo, :Country, :AliPayStatus, :IsChecked, :Address, :AliPayDesc
+        
+        def initialize(province=nil, cityid=nil, shopname=nil, terminalcount=nil, city=nil, shopstatus=nil, alipayonline=nil, shopno=nil, country=nil, alipaystatus=nil, ischecked=nil, address=nil, alipaydesc=nil)
+          @Province = province
+          @CityId = cityid
+          @ShopName = shopname
+          @TerminalCount = terminalcount
+          @City = city
+          @ShopStatus = shopstatus
+          @AliPayOnline = alipayonline
+          @ShopNo = shopno
+          @Country = country
+          @AliPayStatus = alipaystatus
+          @IsChecked = ischecked
+          @Address = address
+          @AliPayDesc = alipaydesc
+        end
+
+        def deserialize(params)
+          @Province = params['Province']
+          @CityId = params['CityId']
+          @ShopName = params['ShopName']
+          @TerminalCount = params['TerminalCount']
+          @City = params['City']
+          @ShopStatus = params['ShopStatus']
+          @AliPayOnline = params['AliPayOnline']
+          @ShopNo = params['ShopNo']
+          @Country = params['Country']
+          @AliPayStatus = params['AliPayStatus']
+          @IsChecked = params['IsChecked']
+          @Address = params['Address']
+          @AliPayDesc = params['AliPayDesc']
         end
       end
 
@@ -8203,6 +10330,67 @@ module TencentCloud
         end
       end
 
+      # QueryMerchantClassification请求参数结构体
+      class QueryMerchantClassificationRequest < TencentCloud::Common::AbstractModel
+        # @param OpenId: 收单系统分配的开放ID
+        # @type OpenId: String
+        # @param OpenKey: 收单系统分配的密钥
+        # @type OpenKey: String
+        # @param Profile: 沙箱环境填sandbox，正式环境不填
+        # @type Profile: String
+
+        attr_accessor :OpenId, :OpenKey, :Profile
+        
+        def initialize(openid=nil, openkey=nil, profile=nil)
+          @OpenId = openid
+          @OpenKey = openkey
+          @Profile = profile
+        end
+
+        def deserialize(params)
+          @OpenId = params['OpenId']
+          @OpenKey = params['OpenKey']
+          @Profile = params['Profile']
+        end
+      end
+
+      # QueryMerchantClassification返回参数结构体
+      class QueryMerchantClassificationResponse < TencentCloud::Common::AbstractModel
+        # @param ErrMessage: 业务系统返回消息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ErrMessage: String
+        # @param ErrCode: 业务系统返回码
+        # @type ErrCode: String
+        # @param Result: 查询商户分类响应对象
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Result: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ErrMessage, :ErrCode, :Result, :RequestId
+        
+        def initialize(errmessage=nil, errcode=nil, result=nil, requestid=nil)
+          @ErrMessage = errmessage
+          @ErrCode = errcode
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ErrMessage = params['ErrMessage']
+          @ErrCode = params['ErrCode']
+          unless params['Result'].nil?
+            @Result = []
+            params['Result'].each do |i|
+              merchantclassificationid_tmp = MerchantClassificationId.new
+              merchantclassificationid_tmp.deserialize(i)
+              @Result << merchantclassificationid_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # QueryMerchantInfoForManagement请求参数结构体
       class QueryMerchantInfoForManagementRequest < TencentCloud::Common::AbstractModel
         # @param InvoicePlatformId: 开票平台ID
@@ -9322,6 +11510,149 @@ module TencentCloud
         def deserialize(params)
           @State = params['State']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # QueryShopOpenId请求参数结构体
+      class QueryShopOpenIdRequest < TencentCloud::Common::AbstractModel
+        # @param OpenId: 收单系统分配的开放ID
+        # @type OpenId: String
+        # @param OpenKey: 收单系统分配的密钥
+        # @type OpenKey: String
+        # @param ShopNo: 门店编号
+        # @type ShopNo: String
+        # @param Profile: 沙箱环境填sandbox，正式环境不填
+        # @type Profile: String
+
+        attr_accessor :OpenId, :OpenKey, :ShopNo, :Profile
+        
+        def initialize(openid=nil, openkey=nil, shopno=nil, profile=nil)
+          @OpenId = openid
+          @OpenKey = openkey
+          @ShopNo = shopno
+          @Profile = profile
+        end
+
+        def deserialize(params)
+          @OpenId = params['OpenId']
+          @OpenKey = params['OpenKey']
+          @ShopNo = params['ShopNo']
+          @Profile = params['Profile']
+        end
+      end
+
+      # QueryShopOpenId返回参数结构体
+      class QueryShopOpenIdResponse < TencentCloud::Common::AbstractModel
+        # @param ErrMessage: 业务系统返回消息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ErrMessage: String
+        # @param ErrCode: 业务系统返回码
+        # @type ErrCode: String
+        # @param Result: 获取门店OpenId响应对象
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Result: :class:`Tencentcloud::Cpdp.v20190820.models.QueryShopOpenIdResult`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ErrMessage, :ErrCode, :Result, :RequestId
+        
+        def initialize(errmessage=nil, errcode=nil, result=nil, requestid=nil)
+          @ErrMessage = errmessage
+          @ErrCode = errcode
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ErrMessage = params['ErrMessage']
+          @ErrCode = params['ErrCode']
+          unless params['Result'].nil?
+            @Result = QueryShopOpenIdResult.new
+            @Result.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 获取门店OpenId响应对象
+      class QueryShopOpenIdResult < TencentCloud::Common::AbstractModel
+        # @param Province: 省份
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Province: String
+        # @param City: 城市
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type City: String
+        # @param ShopName: 门店简称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ShopName: String
+        # @param MerchantNo: 商户编号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MerchantNo: String
+        # @param CityId: 城市编码
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CityId: String
+        # @param OpenId: open_id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OpenId: String
+        # @param Telephone: 门店电话
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Telephone: String
+        # @param ShopNo: 门店编号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ShopNo: String
+        # @param County: 县/区
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type County: String
+        # @param ShopFullName: 门店全称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ShopFullName: String
+        # @param BrandName: 品牌名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BrandName: String
+        # @param Address: 详细地址
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Address: String
+        # @param OpenKey: open_key
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OpenKey: String
+        # @param MerchantName: 商户名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MerchantName: String
+
+        attr_accessor :Province, :City, :ShopName, :MerchantNo, :CityId, :OpenId, :Telephone, :ShopNo, :County, :ShopFullName, :BrandName, :Address, :OpenKey, :MerchantName
+        
+        def initialize(province=nil, city=nil, shopname=nil, merchantno=nil, cityid=nil, openid=nil, telephone=nil, shopno=nil, county=nil, shopfullname=nil, brandname=nil, address=nil, openkey=nil, merchantname=nil)
+          @Province = province
+          @City = city
+          @ShopName = shopname
+          @MerchantNo = merchantno
+          @CityId = cityid
+          @OpenId = openid
+          @Telephone = telephone
+          @ShopNo = shopno
+          @County = county
+          @ShopFullName = shopfullname
+          @BrandName = brandname
+          @Address = address
+          @OpenKey = openkey
+          @MerchantName = merchantname
+        end
+
+        def deserialize(params)
+          @Province = params['Province']
+          @City = params['City']
+          @ShopName = params['ShopName']
+          @MerchantNo = params['MerchantNo']
+          @CityId = params['CityId']
+          @OpenId = params['OpenId']
+          @Telephone = params['Telephone']
+          @ShopNo = params['ShopNo']
+          @County = params['County']
+          @ShopFullName = params['ShopFullName']
+          @BrandName = params['BrandName']
+          @Address = params['Address']
+          @OpenKey = params['OpenKey']
+          @MerchantName = params['MerchantName']
         end
       end
 
@@ -13166,6 +15497,101 @@ module TencentCloud
         end
       end
 
+      # 上传文件响应对象
+      class UploadFileResult < TencentCloud::Common::AbstractModel
+        # @param Storage: 存储区域（0私密区，1公共区），请严格按文件要求，上传到不同的区域
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Storage: String
+        # @param FilePath: 文件路径
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FilePath: String
+
+        attr_accessor :Storage, :FilePath
+        
+        def initialize(storage=nil, filepath=nil)
+          @Storage = storage
+          @FilePath = filepath
+        end
+
+        def deserialize(params)
+          @Storage = params['Storage']
+          @FilePath = params['FilePath']
+        end
+      end
+
+      # UploadOrgFile请求参数结构体
+      class UploadOrgFileRequest < TencentCloud::Common::AbstractModel
+        # @param OpenId: 收单系统分配的开放ID
+        # @type OpenId: String
+        # @param Storage: 存储区域（0私密区，1公共区），请严格按文件要求，上传到不同的区域
+        # @type Storage: String
+        # @param FileMd5: 文件的md5值（为防止平台多次上传重复文件，文件名为文件md5,且不会覆盖，重复上传返回第一次上传成功的文件路径）
+        # @type FileMd5: String
+        # @param FileContent: 文件内容（先将图片转换成二进制，再进行base64加密）
+        # @type FileContent: String
+        # @param FileExtension: 文件扩展名（png,jpg,gif）
+        # @type FileExtension: String
+        # @param OpenKey: 收单系统分配的密钥
+        # @type OpenKey: String
+        # @param Profile: 沙箱环境填sandbox，正式环境不填
+        # @type Profile: String
+
+        attr_accessor :OpenId, :Storage, :FileMd5, :FileContent, :FileExtension, :OpenKey, :Profile
+        
+        def initialize(openid=nil, storage=nil, filemd5=nil, filecontent=nil, fileextension=nil, openkey=nil, profile=nil)
+          @OpenId = openid
+          @Storage = storage
+          @FileMd5 = filemd5
+          @FileContent = filecontent
+          @FileExtension = fileextension
+          @OpenKey = openkey
+          @Profile = profile
+        end
+
+        def deserialize(params)
+          @OpenId = params['OpenId']
+          @Storage = params['Storage']
+          @FileMd5 = params['FileMd5']
+          @FileContent = params['FileContent']
+          @FileExtension = params['FileExtension']
+          @OpenKey = params['OpenKey']
+          @Profile = params['Profile']
+        end
+      end
+
+      # UploadOrgFile返回参数结构体
+      class UploadOrgFileResponse < TencentCloud::Common::AbstractModel
+        # @param ErrMessage: 业务系统返回消息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ErrMessage: String
+        # @param ErrCode: 业务系统返回码
+        # @type ErrCode: String
+        # @param Result: 上传机构文件响应对象
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Result: :class:`Tencentcloud::Cpdp.v20190820.models.UploadFileResult`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ErrMessage, :ErrCode, :Result, :RequestId
+        
+        def initialize(errmessage=nil, errcode=nil, result=nil, requestid=nil)
+          @ErrMessage = errmessage
+          @ErrCode = errcode
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ErrMessage = params['ErrMessage']
+          @ErrCode = params['ErrCode']
+          unless params['Result'].nil?
+            @Result = UploadFileResult.new
+            @Result.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # UploadTaxList请求参数结构体
       class UploadTaxListRequest < TencentCloud::Common::AbstractModel
         # @param Channel: 平台渠道
@@ -13251,6 +15677,1032 @@ module TencentCloud
 
         def deserialize(params)
           @RequestId = params['RequestId']
+        end
+      end
+
+      # ViewContract请求参数结构体
+      class ViewContractRequest < TencentCloud::Common::AbstractModel
+        # @param OpenId: 收单系统分配的开放ID
+        # @type OpenId: String
+        # @param OpenKey: 收单系统分配的密钥
+        # @type OpenKey: String
+        # @param Profile: 沙箱环境填sandbox，正式环境不填
+        # @type Profile: String
+        # @param OutContractId: 外部合同主键编号（ContractId或OutContractId必须传一个）
+        # @type OutContractId: String
+        # @param ContractId: 合同主键（ContractId或OutContractId必须传一个）
+        # @type ContractId: String
+
+        attr_accessor :OpenId, :OpenKey, :Profile, :OutContractId, :ContractId
+        
+        def initialize(openid=nil, openkey=nil, profile=nil, outcontractid=nil, contractid=nil)
+          @OpenId = openid
+          @OpenKey = openkey
+          @Profile = profile
+          @OutContractId = outcontractid
+          @ContractId = contractid
+        end
+
+        def deserialize(params)
+          @OpenId = params['OpenId']
+          @OpenKey = params['OpenKey']
+          @Profile = params['Profile']
+          @OutContractId = params['OutContractId']
+          @ContractId = params['ContractId']
+        end
+      end
+
+      # ViewContract返回参数结构体
+      class ViewContractResponse < TencentCloud::Common::AbstractModel
+        # @param ErrMessage: 业务系统返回消息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ErrMessage: String
+        # @param ErrCode: 业务系统返回码
+        # @type ErrCode: String
+        # @param Result: 合同明细响应对象
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Result: :class:`Tencentcloud::Cpdp.v20190820.models.ViewContractResult`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ErrMessage, :ErrCode, :Result, :RequestId
+        
+        def initialize(errmessage=nil, errcode=nil, result=nil, requestid=nil)
+          @ErrMessage = errmessage
+          @ErrCode = errcode
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ErrMessage = params['ErrMessage']
+          @ErrCode = params['ErrCode']
+          unless params['Result'].nil?
+            @Result = ViewContractResult.new
+            @Result.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 合同明细响应对象
+      class ViewContractResult < TencentCloud::Common::AbstractModel
+        # @param PaymentTag: 支付标签（唯一性）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PaymentTag: String
+        # @param City: 城市
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type City: String
+        # @param AgentNo: 机构编号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AgentNo: String
+        # @param ContractOptionFour: 合同选项值4
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ContractOptionFour: String
+        # @param ContractOptionTwo: 合同选项值2
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ContractOptionTwo: String
+        # @param Status: 合同状态（0未审核，1已审核，2审核未通过，3待审核，4已删除，5初审通过）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: String
+        # @param PaymentId: 支付方式编号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PaymentId: String
+        # @param Fee: 商户签约扣率
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Fee: String
+        # @param PaymentOptionFive: 合同选项名称5
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PaymentOptionFive: String
+        # @param OutContractId: 机构合同主键
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OutContractId: String
+        # @param ChannelExtJson: 不同的支付方式对于进件有不同的个性化需求，支付方式字段都是以双下划写开头的字段名称，请以支付方式规定的格式传值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ChannelExtJson: String
+        # @param ContractOptionFive: 合同选项值5
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ContractOptionFive: String
+        # @param Province: 省份
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Province: String
+        # @param StartDate: 生效日期
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StartDate: String
+        # @param Address: 详细地址
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Address: String
+        # @param EndDate: 过期日期
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EndDate: String
+        # @param ContractOptionSix: 合同选项值6
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ContractOptionSix: String
+        # @param PaymentOptionSeven: 合同选项名称7
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PaymentOptionSeven: String
+        # @param PictureTwo: 合同照片补充【私密区】
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PictureTwo: String
+        # @param MerchantNo: 商户编号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MerchantNo: String
+        # @param AgentName: 机构名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AgentName: String
+        # @param ContractOptionOther: 合同选项值8
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ContractOptionOther: String
+        # @param ContractOptionThree: 合同选项值3
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ContractOptionThree: String
+        # @param Country: 县/区
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Country: String
+        # @param ShopCount: 合同关联的门店数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ShopCount: String
+        # @param PaymentOptionThree: 合同选项名称3
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PaymentOptionThree: String
+        # @param PaymentClassificationName: 支付方式行业名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PaymentClassificationName: String
+        # @param ContractOptionSeven: 合同选项值7
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ContractOptionSeven: String
+        # @param PaymentOptionFour: 合同选项名称4
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PaymentOptionFour: String
+        # @param PaymentClassificationLimit: 商户签约扣率封顶值（分为单位）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PaymentClassificationLimit: String
+        # @param Remark: 审核备注
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Remark: String
+        # @param PaymentOptionSix: 合同选项名称6
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PaymentOptionSix: String
+        # @param MerchantName: 品牌名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MerchantName: String
+        # @param ContractOptionOne: 合同选项值1
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ContractOptionOne: String
+        # @param PaymentOptionOther: 合同选项名称8
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PaymentOptionOther: String
+        # @param PaymentOptionTwo: 合同选项名称2
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PaymentOptionTwo: String
+        # @param PaymentOptionOne: 合同选项名称1
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PaymentOptionOne: String
+        # @param UpdateTime: 更新时间（yyyy-mm-dd hh:ii:ss）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UpdateTime: String
+        # @param ContactTelephone: 联系人电话
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ContactTelephone: String
+        # @param Contact: 联系人
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Contact: String
+        # @param SignDate: 签约日期
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SignDate: String
+        # @param PaymentOptionNine: 合同选项名称9
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PaymentOptionNine: String
+        # @param PaymentName: 付款方式名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PaymentName: String
+        # @param PaymentInternalName: 付款方式名称（内部名称）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PaymentInternalName: String
+        # @param ContractOptionTen: 合同选项值10
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ContractOptionTen: String
+        # @param Code: 合同编号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Code: String
+        # @param PictureOne: 合同照片【私密区】
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PictureOne: String
+        # @param SignMan: 签约人
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SignMan: String
+        # @param ChannelNo: 渠道号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ChannelNo: String
+        # @param AddTime: 添加时间（yyyy-mm-dd hh:ii:ss）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AddTime: String
+        # @param AutoSign: 是否自动续签（1是，0否）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AutoSign: String
+        # @param ContractOptionNine: 合同选项值9
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ContractOptionNine: String
+        # @param CityId: 城市编码
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CityId: String
+        # @param PaymentType: 交易类型（多个以小写逗号分开，0现金，1刷卡，2主扫，3被扫，4JSPAY，5预授权）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PaymentType: String
+        # @param PaymentClassificationId: 支付方式行业编号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PaymentClassificationId: String
+        # @param BrandName: 品牌名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BrandName: String
+        # @param PaymentOptionTen: 合同选项名称10
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PaymentOptionTen: String
+        # @param ContractId: 合同主键
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ContractId: String
+
+        attr_accessor :PaymentTag, :City, :AgentNo, :ContractOptionFour, :ContractOptionTwo, :Status, :PaymentId, :Fee, :PaymentOptionFive, :OutContractId, :ChannelExtJson, :ContractOptionFive, :Province, :StartDate, :Address, :EndDate, :ContractOptionSix, :PaymentOptionSeven, :PictureTwo, :MerchantNo, :AgentName, :ContractOptionOther, :ContractOptionThree, :Country, :ShopCount, :PaymentOptionThree, :PaymentClassificationName, :ContractOptionSeven, :PaymentOptionFour, :PaymentClassificationLimit, :Remark, :PaymentOptionSix, :MerchantName, :ContractOptionOne, :PaymentOptionOther, :PaymentOptionTwo, :PaymentOptionOne, :UpdateTime, :ContactTelephone, :Contact, :SignDate, :PaymentOptionNine, :PaymentName, :PaymentInternalName, :ContractOptionTen, :Code, :PictureOne, :SignMan, :ChannelNo, :AddTime, :AutoSign, :ContractOptionNine, :CityId, :PaymentType, :PaymentClassificationId, :BrandName, :PaymentOptionTen, :ContractId
+        
+        def initialize(paymenttag=nil, city=nil, agentno=nil, contractoptionfour=nil, contractoptiontwo=nil, status=nil, paymentid=nil, fee=nil, paymentoptionfive=nil, outcontractid=nil, channelextjson=nil, contractoptionfive=nil, province=nil, startdate=nil, address=nil, enddate=nil, contractoptionsix=nil, paymentoptionseven=nil, picturetwo=nil, merchantno=nil, agentname=nil, contractoptionother=nil, contractoptionthree=nil, country=nil, shopcount=nil, paymentoptionthree=nil, paymentclassificationname=nil, contractoptionseven=nil, paymentoptionfour=nil, paymentclassificationlimit=nil, remark=nil, paymentoptionsix=nil, merchantname=nil, contractoptionone=nil, paymentoptionother=nil, paymentoptiontwo=nil, paymentoptionone=nil, updatetime=nil, contacttelephone=nil, contact=nil, signdate=nil, paymentoptionnine=nil, paymentname=nil, paymentinternalname=nil, contractoptionten=nil, code=nil, pictureone=nil, signman=nil, channelno=nil, addtime=nil, autosign=nil, contractoptionnine=nil, cityid=nil, paymenttype=nil, paymentclassificationid=nil, brandname=nil, paymentoptionten=nil, contractid=nil)
+          @PaymentTag = paymenttag
+          @City = city
+          @AgentNo = agentno
+          @ContractOptionFour = contractoptionfour
+          @ContractOptionTwo = contractoptiontwo
+          @Status = status
+          @PaymentId = paymentid
+          @Fee = fee
+          @PaymentOptionFive = paymentoptionfive
+          @OutContractId = outcontractid
+          @ChannelExtJson = channelextjson
+          @ContractOptionFive = contractoptionfive
+          @Province = province
+          @StartDate = startdate
+          @Address = address
+          @EndDate = enddate
+          @ContractOptionSix = contractoptionsix
+          @PaymentOptionSeven = paymentoptionseven
+          @PictureTwo = picturetwo
+          @MerchantNo = merchantno
+          @AgentName = agentname
+          @ContractOptionOther = contractoptionother
+          @ContractOptionThree = contractoptionthree
+          @Country = country
+          @ShopCount = shopcount
+          @PaymentOptionThree = paymentoptionthree
+          @PaymentClassificationName = paymentclassificationname
+          @ContractOptionSeven = contractoptionseven
+          @PaymentOptionFour = paymentoptionfour
+          @PaymentClassificationLimit = paymentclassificationlimit
+          @Remark = remark
+          @PaymentOptionSix = paymentoptionsix
+          @MerchantName = merchantname
+          @ContractOptionOne = contractoptionone
+          @PaymentOptionOther = paymentoptionother
+          @PaymentOptionTwo = paymentoptiontwo
+          @PaymentOptionOne = paymentoptionone
+          @UpdateTime = updatetime
+          @ContactTelephone = contacttelephone
+          @Contact = contact
+          @SignDate = signdate
+          @PaymentOptionNine = paymentoptionnine
+          @PaymentName = paymentname
+          @PaymentInternalName = paymentinternalname
+          @ContractOptionTen = contractoptionten
+          @Code = code
+          @PictureOne = pictureone
+          @SignMan = signman
+          @ChannelNo = channelno
+          @AddTime = addtime
+          @AutoSign = autosign
+          @ContractOptionNine = contractoptionnine
+          @CityId = cityid
+          @PaymentType = paymenttype
+          @PaymentClassificationId = paymentclassificationid
+          @BrandName = brandname
+          @PaymentOptionTen = paymentoptionten
+          @ContractId = contractid
+        end
+
+        def deserialize(params)
+          @PaymentTag = params['PaymentTag']
+          @City = params['City']
+          @AgentNo = params['AgentNo']
+          @ContractOptionFour = params['ContractOptionFour']
+          @ContractOptionTwo = params['ContractOptionTwo']
+          @Status = params['Status']
+          @PaymentId = params['PaymentId']
+          @Fee = params['Fee']
+          @PaymentOptionFive = params['PaymentOptionFive']
+          @OutContractId = params['OutContractId']
+          @ChannelExtJson = params['ChannelExtJson']
+          @ContractOptionFive = params['ContractOptionFive']
+          @Province = params['Province']
+          @StartDate = params['StartDate']
+          @Address = params['Address']
+          @EndDate = params['EndDate']
+          @ContractOptionSix = params['ContractOptionSix']
+          @PaymentOptionSeven = params['PaymentOptionSeven']
+          @PictureTwo = params['PictureTwo']
+          @MerchantNo = params['MerchantNo']
+          @AgentName = params['AgentName']
+          @ContractOptionOther = params['ContractOptionOther']
+          @ContractOptionThree = params['ContractOptionThree']
+          @Country = params['Country']
+          @ShopCount = params['ShopCount']
+          @PaymentOptionThree = params['PaymentOptionThree']
+          @PaymentClassificationName = params['PaymentClassificationName']
+          @ContractOptionSeven = params['ContractOptionSeven']
+          @PaymentOptionFour = params['PaymentOptionFour']
+          @PaymentClassificationLimit = params['PaymentClassificationLimit']
+          @Remark = params['Remark']
+          @PaymentOptionSix = params['PaymentOptionSix']
+          @MerchantName = params['MerchantName']
+          @ContractOptionOne = params['ContractOptionOne']
+          @PaymentOptionOther = params['PaymentOptionOther']
+          @PaymentOptionTwo = params['PaymentOptionTwo']
+          @PaymentOptionOne = params['PaymentOptionOne']
+          @UpdateTime = params['UpdateTime']
+          @ContactTelephone = params['ContactTelephone']
+          @Contact = params['Contact']
+          @SignDate = params['SignDate']
+          @PaymentOptionNine = params['PaymentOptionNine']
+          @PaymentName = params['PaymentName']
+          @PaymentInternalName = params['PaymentInternalName']
+          @ContractOptionTen = params['ContractOptionTen']
+          @Code = params['Code']
+          @PictureOne = params['PictureOne']
+          @SignMan = params['SignMan']
+          @ChannelNo = params['ChannelNo']
+          @AddTime = params['AddTime']
+          @AutoSign = params['AutoSign']
+          @ContractOptionNine = params['ContractOptionNine']
+          @CityId = params['CityId']
+          @PaymentType = params['PaymentType']
+          @PaymentClassificationId = params['PaymentClassificationId']
+          @BrandName = params['BrandName']
+          @PaymentOptionTen = params['PaymentOptionTen']
+          @ContractId = params['ContractId']
+        end
+      end
+
+      # ViewMerchant请求参数结构体
+      class ViewMerchantRequest < TencentCloud::Common::AbstractModel
+        # @param OpenId: 收单系统分配的开放ID
+        # @type OpenId: String
+        # @param OpenKey: 收单系统分配的密钥
+        # @type OpenKey: String
+        # @param Profile: 沙箱环境填sandbox，正式环境不填
+        # @type Profile: String
+        # @param OutMerchantId: 外部商户主键编号（MerchantNo或OutMerchantId必须传一个）
+        # @type OutMerchantId: String
+        # @param MerchantNo: 商户编号（MerchantNo或OutMerchantId必须传一个）
+        # @type MerchantNo: String
+
+        attr_accessor :OpenId, :OpenKey, :Profile, :OutMerchantId, :MerchantNo
+        
+        def initialize(openid=nil, openkey=nil, profile=nil, outmerchantid=nil, merchantno=nil)
+          @OpenId = openid
+          @OpenKey = openkey
+          @Profile = profile
+          @OutMerchantId = outmerchantid
+          @MerchantNo = merchantno
+        end
+
+        def deserialize(params)
+          @OpenId = params['OpenId']
+          @OpenKey = params['OpenKey']
+          @Profile = params['Profile']
+          @OutMerchantId = params['OutMerchantId']
+          @MerchantNo = params['MerchantNo']
+        end
+      end
+
+      # ViewMerchant返回参数结构体
+      class ViewMerchantResponse < TencentCloud::Common::AbstractModel
+        # @param ErrMessage: 业务系统返回消息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ErrMessage: String
+        # @param ErrCode: 业务系统返回码
+        # @type ErrCode: String
+        # @param Result: 商户明细响应对象
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Result: :class:`Tencentcloud::Cpdp.v20190820.models.ViewMerchantResult`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ErrMessage, :ErrCode, :Result, :RequestId
+        
+        def initialize(errmessage=nil, errcode=nil, result=nil, requestid=nil)
+          @ErrMessage = errmessage
+          @ErrCode = errcode
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ErrMessage = params['ErrMessage']
+          @ErrCode = params['ErrCode']
+          unless params['Result'].nil?
+            @Result = ViewMerchantResult.new
+            @Result.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 商户明细响应对象
+      class ViewMerchantResult < TencentCloud::Common::AbstractModel
+        # @param City: 城市
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type City: String
+        # @param TaxCollectionPicture: 税务登记证图片【私密区】
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TaxCollectionPicture: String
+        # @param BossIdNo: 法人证件号码
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BossIdNo: String
+        # @param AccountIdNo: 法人亲属证件号码
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AccountIdNo: String
+        # @param OtherPictureThree: 其他资料3
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OtherPictureThree: String
+        # @param AccountIdType: 法人亲属证件类型（1居民身份证,2临时居民身份证,3居民户口簿,4护照,5港澳居民来往内地通行证,6回乡证,7军人证,8武警身份证,9其他法定文件）结算账户人身份为法人亲属时必填
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AccountIdType: String
+        # @param Status: 商户状态（0未审核，1已审核，2审核未通过，3待审核，4已删除，5初审通过）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: String
+        # @param BusinessLicensePicture: 营业执照图片【私密区】（系统返回的图片路径）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BusinessLicensePicture: String
+        # @param BrandName: 品牌名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BrandName: String
+        # @param BossPositive: 法人身份证正面【私密区】（系统返回的图片路径）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BossPositive: String
+        # @param AppCount: 开通应用数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AppCount: String
+        # @param BossBack: 法人身份证背面【私密区】（系统返回的图片路径）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BossBack: String
+        # @param OrganizationCodePicture: 组织机构代码证图片【私密区】
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OrganizationCodePicture: String
+        # @param BusinessLicenseEndDate: 营业执照过期时间（yyyy-mm-dd）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BusinessLicenseEndDate: String
+        # @param OrganizationCodeNo: 组织机构代码证号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OrganizationCodeNo: String
+        # @param AgentNo: 机构编号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AgentNo: String
+        # @param Province: 省份
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Province: String
+        # @param BossStartDate: 法人证件生效时间（yyyy-mm-dd）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BossStartDate: String
+        # @param UpdateTime: 更新时间（yyyy-mm-dd hh:ii:ss）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UpdateTime: String
+        # @param BankNo: 清算联行号，开户行行号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BankNo: String
+        # @param TaxCollectionStartDate: 税务登记证生效时间（yyyy-mm-dd）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TaxCollectionStartDate: String
+        # @param BusinessLicenseStartDate: 营业执照生效时间（yyyy-mm-dd）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BusinessLicenseStartDate: String
+        # @param AccountManagerId: 客户经理用户编号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AccountManagerId: String
+        # @param ClassificationIds: 分类编号(多个以小写逗号分开)
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClassificationIds: String
+        # @param BusinessLicenseType: 营业执照类型（1三证合一，2非三证合一）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BusinessLicenseType: String
+        # @param BossEndDate: 法人证件过期时间（yyyy-mm-dd）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BossEndDate: String
+        # @param BusinessLicenseNo: 营业执照编号（系统有唯一性校验）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BusinessLicenseNo: String
+        # @param AgentName: 机构名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AgentName: String
+        # @param Intro: 商户简介
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Intro: String
+        # @param BossIdType: 法人证件类型（1居民身份证,2临时居民身份证,3居民户口簿,4护照,5港澳居民来往内地通行证,6回乡证,7军人证,8武警身份证,9其他法定文件）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BossIdType: String
+        # @param AddTime: 添加时间（yyyy-mm-dd hh:ii:ss）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AddTime: String
+        # @param ShopCount: 门店数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ShopCount: String
+        # @param AccountBoss: 结算账户人身份（1法人，2法人亲属），结算帐户为对私时必填
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AccountBoss: String
+        # @param ClassificationNames: 分类名称(多个以小写逗号分开)
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClassificationNames: String
+        # @param BossTelephone: 法人电话
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BossTelephone: String
+        # @param AccountManagerName: 客户经理姓名，必须为系统后台的管理员真实姓名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AccountManagerName: String
+        # @param TerminalCount: 终端数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TerminalCount: String
+        # @param Remark: 审核备注
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Remark: String
+        # @param FinancialContact: 财务联系人
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FinancialContact: String
+        # @param MerchantName: 商户名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MerchantName: String
+        # @param BossSex: 法人性别（1男，2女）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BossSex: String
+        # @param MerchantNo: 商户编号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MerchantNo: String
+        # @param BossAddress: 法人住址
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BossAddress: String
+        # @param Country: 县/区
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Country: String
+        # @param Address: 详细地址
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Address: String
+        # @param BossJob: 法人职业
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BossJob: String
+        # @param LicencePicture: 许可证图片【私密区】
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LicencePicture: String
+        # @param OrganizationCodeEndDate: 组织机构代码证过期时间（yyyy-mm-dd）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OrganizationCodeEndDate: String
+        # @param OpenHours: 营业时间，多个以小写逗号分开(9:00-12:00,13:00-18:00)
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OpenHours: String
+        # @param OtherPictureTwo: 其他资料2
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OtherPictureTwo: String
+        # @param OtherPictureOne: 其他资料1
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OtherPictureOne: String
+        # @param AccountName: 银行户名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AccountName: String
+        # @param ContractCount: 合同数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ContractCount: String
+        # @param LicencePictureTwo: 授权文件【私密区】（当结算帐户身份为法人亲属时必传）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LicencePictureTwo: String
+        # @param AccountNo: 银行账号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AccountNo: String
+        # @param BossEmail: 法人邮箱
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BossEmail: String
+        # @param AccountType: 结算账户类型（2对私，1对公）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AccountType: String
+        # @param TaxCollectionEndDate: 税务登记证过期时间（yyyy-mm-dd）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TaxCollectionEndDate: String
+        # @param BankName: 开户行名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BankName: String
+        # @param Telephone: 联系电话
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Telephone: String
+        # @param OutMerchantId: 外部商户主键编号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OutMerchantId: String
+        # @param CityId: 城市编码
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CityId: String
+        # @param BossIdCount: 法人证件国别/地区（中国CHN，香港HKG，澳门MAC，台湾CTN）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BossIdCount: String
+        # @param Tag: 商户标记，自定义参数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Tag: String
+        # @param FinancialTelephone: 财务联系人电话
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FinancialTelephone: String
+        # @param BossName: 法人姓名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BossName: String
+        # @param OrganizationCodeStartDate: 组织机构代码证生效时间（yyyy-mm-dd）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OrganizationCodeStartDate: String
+        # @param Logo: 商户logo【公共区】
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Logo: String
+        # @param OtherPictureFour: 其他资料4
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OtherPictureFour: String
+        # @param TaxCollectionNo: 税务登记证号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TaxCollectionNo: String
+
+        attr_accessor :City, :TaxCollectionPicture, :BossIdNo, :AccountIdNo, :OtherPictureThree, :AccountIdType, :Status, :BusinessLicensePicture, :BrandName, :BossPositive, :AppCount, :BossBack, :OrganizationCodePicture, :BusinessLicenseEndDate, :OrganizationCodeNo, :AgentNo, :Province, :BossStartDate, :UpdateTime, :BankNo, :TaxCollectionStartDate, :BusinessLicenseStartDate, :AccountManagerId, :ClassificationIds, :BusinessLicenseType, :BossEndDate, :BusinessLicenseNo, :AgentName, :Intro, :BossIdType, :AddTime, :ShopCount, :AccountBoss, :ClassificationNames, :BossTelephone, :AccountManagerName, :TerminalCount, :Remark, :FinancialContact, :MerchantName, :BossSex, :MerchantNo, :BossAddress, :Country, :Address, :BossJob, :LicencePicture, :OrganizationCodeEndDate, :OpenHours, :OtherPictureTwo, :OtherPictureOne, :AccountName, :ContractCount, :LicencePictureTwo, :AccountNo, :BossEmail, :AccountType, :TaxCollectionEndDate, :BankName, :Telephone, :OutMerchantId, :CityId, :BossIdCount, :Tag, :FinancialTelephone, :BossName, :OrganizationCodeStartDate, :Logo, :OtherPictureFour, :TaxCollectionNo
+        
+        def initialize(city=nil, taxcollectionpicture=nil, bossidno=nil, accountidno=nil, otherpicturethree=nil, accountidtype=nil, status=nil, businesslicensepicture=nil, brandname=nil, bosspositive=nil, appcount=nil, bossback=nil, organizationcodepicture=nil, businesslicenseenddate=nil, organizationcodeno=nil, agentno=nil, province=nil, bossstartdate=nil, updatetime=nil, bankno=nil, taxcollectionstartdate=nil, businesslicensestartdate=nil, accountmanagerid=nil, classificationids=nil, businesslicensetype=nil, bossenddate=nil, businesslicenseno=nil, agentname=nil, intro=nil, bossidtype=nil, addtime=nil, shopcount=nil, accountboss=nil, classificationnames=nil, bosstelephone=nil, accountmanagername=nil, terminalcount=nil, remark=nil, financialcontact=nil, merchantname=nil, bosssex=nil, merchantno=nil, bossaddress=nil, country=nil, address=nil, bossjob=nil, licencepicture=nil, organizationcodeenddate=nil, openhours=nil, otherpicturetwo=nil, otherpictureone=nil, accountname=nil, contractcount=nil, licencepicturetwo=nil, accountno=nil, bossemail=nil, accounttype=nil, taxcollectionenddate=nil, bankname=nil, telephone=nil, outmerchantid=nil, cityid=nil, bossidcount=nil, tag=nil, financialtelephone=nil, bossname=nil, organizationcodestartdate=nil, logo=nil, otherpicturefour=nil, taxcollectionno=nil)
+          @City = city
+          @TaxCollectionPicture = taxcollectionpicture
+          @BossIdNo = bossidno
+          @AccountIdNo = accountidno
+          @OtherPictureThree = otherpicturethree
+          @AccountIdType = accountidtype
+          @Status = status
+          @BusinessLicensePicture = businesslicensepicture
+          @BrandName = brandname
+          @BossPositive = bosspositive
+          @AppCount = appcount
+          @BossBack = bossback
+          @OrganizationCodePicture = organizationcodepicture
+          @BusinessLicenseEndDate = businesslicenseenddate
+          @OrganizationCodeNo = organizationcodeno
+          @AgentNo = agentno
+          @Province = province
+          @BossStartDate = bossstartdate
+          @UpdateTime = updatetime
+          @BankNo = bankno
+          @TaxCollectionStartDate = taxcollectionstartdate
+          @BusinessLicenseStartDate = businesslicensestartdate
+          @AccountManagerId = accountmanagerid
+          @ClassificationIds = classificationids
+          @BusinessLicenseType = businesslicensetype
+          @BossEndDate = bossenddate
+          @BusinessLicenseNo = businesslicenseno
+          @AgentName = agentname
+          @Intro = intro
+          @BossIdType = bossidtype
+          @AddTime = addtime
+          @ShopCount = shopcount
+          @AccountBoss = accountboss
+          @ClassificationNames = classificationnames
+          @BossTelephone = bosstelephone
+          @AccountManagerName = accountmanagername
+          @TerminalCount = terminalcount
+          @Remark = remark
+          @FinancialContact = financialcontact
+          @MerchantName = merchantname
+          @BossSex = bosssex
+          @MerchantNo = merchantno
+          @BossAddress = bossaddress
+          @Country = country
+          @Address = address
+          @BossJob = bossjob
+          @LicencePicture = licencepicture
+          @OrganizationCodeEndDate = organizationcodeenddate
+          @OpenHours = openhours
+          @OtherPictureTwo = otherpicturetwo
+          @OtherPictureOne = otherpictureone
+          @AccountName = accountname
+          @ContractCount = contractcount
+          @LicencePictureTwo = licencepicturetwo
+          @AccountNo = accountno
+          @BossEmail = bossemail
+          @AccountType = accounttype
+          @TaxCollectionEndDate = taxcollectionenddate
+          @BankName = bankname
+          @Telephone = telephone
+          @OutMerchantId = outmerchantid
+          @CityId = cityid
+          @BossIdCount = bossidcount
+          @Tag = tag
+          @FinancialTelephone = financialtelephone
+          @BossName = bossname
+          @OrganizationCodeStartDate = organizationcodestartdate
+          @Logo = logo
+          @OtherPictureFour = otherpicturefour
+          @TaxCollectionNo = taxcollectionno
+        end
+
+        def deserialize(params)
+          @City = params['City']
+          @TaxCollectionPicture = params['TaxCollectionPicture']
+          @BossIdNo = params['BossIdNo']
+          @AccountIdNo = params['AccountIdNo']
+          @OtherPictureThree = params['OtherPictureThree']
+          @AccountIdType = params['AccountIdType']
+          @Status = params['Status']
+          @BusinessLicensePicture = params['BusinessLicensePicture']
+          @BrandName = params['BrandName']
+          @BossPositive = params['BossPositive']
+          @AppCount = params['AppCount']
+          @BossBack = params['BossBack']
+          @OrganizationCodePicture = params['OrganizationCodePicture']
+          @BusinessLicenseEndDate = params['BusinessLicenseEndDate']
+          @OrganizationCodeNo = params['OrganizationCodeNo']
+          @AgentNo = params['AgentNo']
+          @Province = params['Province']
+          @BossStartDate = params['BossStartDate']
+          @UpdateTime = params['UpdateTime']
+          @BankNo = params['BankNo']
+          @TaxCollectionStartDate = params['TaxCollectionStartDate']
+          @BusinessLicenseStartDate = params['BusinessLicenseStartDate']
+          @AccountManagerId = params['AccountManagerId']
+          @ClassificationIds = params['ClassificationIds']
+          @BusinessLicenseType = params['BusinessLicenseType']
+          @BossEndDate = params['BossEndDate']
+          @BusinessLicenseNo = params['BusinessLicenseNo']
+          @AgentName = params['AgentName']
+          @Intro = params['Intro']
+          @BossIdType = params['BossIdType']
+          @AddTime = params['AddTime']
+          @ShopCount = params['ShopCount']
+          @AccountBoss = params['AccountBoss']
+          @ClassificationNames = params['ClassificationNames']
+          @BossTelephone = params['BossTelephone']
+          @AccountManagerName = params['AccountManagerName']
+          @TerminalCount = params['TerminalCount']
+          @Remark = params['Remark']
+          @FinancialContact = params['FinancialContact']
+          @MerchantName = params['MerchantName']
+          @BossSex = params['BossSex']
+          @MerchantNo = params['MerchantNo']
+          @BossAddress = params['BossAddress']
+          @Country = params['Country']
+          @Address = params['Address']
+          @BossJob = params['BossJob']
+          @LicencePicture = params['LicencePicture']
+          @OrganizationCodeEndDate = params['OrganizationCodeEndDate']
+          @OpenHours = params['OpenHours']
+          @OtherPictureTwo = params['OtherPictureTwo']
+          @OtherPictureOne = params['OtherPictureOne']
+          @AccountName = params['AccountName']
+          @ContractCount = params['ContractCount']
+          @LicencePictureTwo = params['LicencePictureTwo']
+          @AccountNo = params['AccountNo']
+          @BossEmail = params['BossEmail']
+          @AccountType = params['AccountType']
+          @TaxCollectionEndDate = params['TaxCollectionEndDate']
+          @BankName = params['BankName']
+          @Telephone = params['Telephone']
+          @OutMerchantId = params['OutMerchantId']
+          @CityId = params['CityId']
+          @BossIdCount = params['BossIdCount']
+          @Tag = params['Tag']
+          @FinancialTelephone = params['FinancialTelephone']
+          @BossName = params['BossName']
+          @OrganizationCodeStartDate = params['OrganizationCodeStartDate']
+          @Logo = params['Logo']
+          @OtherPictureFour = params['OtherPictureFour']
+          @TaxCollectionNo = params['TaxCollectionNo']
+        end
+      end
+
+      # ViewShop请求参数结构体
+      class ViewShopRequest < TencentCloud::Common::AbstractModel
+        # @param OpenId: 收单系统分配的开放ID
+        # @type OpenId: String
+        # @param OpenKey: 收单系统分配的密钥
+        # @type OpenKey: String
+        # @param Profile: 沙箱环境填sandbox，正式环境不填
+        # @type Profile: String
+        # @param OutShopId: 外部商户主键编号（ShopNo或OutShopId必须传一个）
+        # @type OutShopId: String
+        # @param ShopNo: 门店编号（ShopNo或OutShopId必须传一个）
+        # @type ShopNo: String
+
+        attr_accessor :OpenId, :OpenKey, :Profile, :OutShopId, :ShopNo
+        
+        def initialize(openid=nil, openkey=nil, profile=nil, outshopid=nil, shopno=nil)
+          @OpenId = openid
+          @OpenKey = openkey
+          @Profile = profile
+          @OutShopId = outshopid
+          @ShopNo = shopno
+        end
+
+        def deserialize(params)
+          @OpenId = params['OpenId']
+          @OpenKey = params['OpenKey']
+          @Profile = params['Profile']
+          @OutShopId = params['OutShopId']
+          @ShopNo = params['ShopNo']
+        end
+      end
+
+      # ViewShop返回参数结构体
+      class ViewShopResponse < TencentCloud::Common::AbstractModel
+        # @param ErrMessage: 业务系统返回消息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ErrMessage: String
+        # @param ErrCode: 业务系统返回码
+        # @type ErrCode: String
+        # @param Result: 门店明细响应对象
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Result: :class:`Tencentcloud::Cpdp.v20190820.models.ViewShopResult`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ErrMessage, :ErrCode, :Result, :RequestId
+        
+        def initialize(errmessage=nil, errcode=nil, result=nil, requestid=nil)
+          @ErrMessage = errmessage
+          @ErrCode = errcode
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ErrMessage = params['ErrMessage']
+          @ErrCode = params['ErrCode']
+          unless params['Result'].nil?
+            @Result = ViewShopResult.new
+            @Result.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 门店明细响应对象
+      class ViewShopResult < TencentCloud::Common::AbstractModel
+        # @param City: 城市
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type City: String
+        # @param ShopName: 门店简称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ShopName: String
+        # @param Latitude: 百度地图纬度
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Latitude: String
+        # @param BrandName: 品牌名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BrandName: String
+        # @param AppCount: 开通应用数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AppCount: String
+        # @param ContactTelephone: 负责人手机号码
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ContactTelephone: String
+        # @param MerchantName: 商户名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MerchantName: String
+        # @param Province: 省份
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Province: String
+        # @param County: 县/区
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type County: String
+        # @param UpdateTime: 更新时间（yyyy-mm-dd hh:ii:ss）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UpdateTime: String
+        # @param TerminalCount: 终端数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TerminalCount: String
+        # @param PictureTwo: 收银台图片【公共区】
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PictureTwo: String
+        # @param LatitudeTwo: 高德地图纬度
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LatitudeTwo: String
+        # @param AgentName: 机构名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AgentName: String
+        # @param PictureFour: 其他照片【公共区】
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PictureFour: String
+        # @param LongitudeTwo: 高德地图经度
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LongitudeTwo: String
+        # @param Status: 门店状态（0未审核，1已审核，2审核未通过，3待审核，4已删除，5初审通过）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: String
+        # @param Remark: 审核备注
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Remark: String
+        # @param AgentNo: 机构编号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AgentNo: String
+        # @param MerchantNo: 商户编号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MerchantNo: String
+        # @param AddTime: 添加时间（yyyy-mm-dd hh:ii:ss）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AddTime: String
+        # @param Address: 详细地址
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Address: String
+        # @param Longitude: 百度地图经度
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Longitude: String
+        # @param ShopNo: 门店编号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ShopNo: String
+        # @param ShopFullName: 门店全称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ShopFullName: String
+        # @param Contact: 门店负责人
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Contact: String
+        # @param PictureThree: 店内环境图片【公共区】
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PictureThree: String
+        # @param PictureOne: 整体门面（含招牌）图片【公共区】
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PictureOne: String
+        # @param Telephone: 门店电话
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Telephone: String
+        # @param OutShopId: 机构门店主键
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OutShopId: String
+        # @param CityId: 城市编码
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CityId: String
+
+        attr_accessor :City, :ShopName, :Latitude, :BrandName, :AppCount, :ContactTelephone, :MerchantName, :Province, :County, :UpdateTime, :TerminalCount, :PictureTwo, :LatitudeTwo, :AgentName, :PictureFour, :LongitudeTwo, :Status, :Remark, :AgentNo, :MerchantNo, :AddTime, :Address, :Longitude, :ShopNo, :ShopFullName, :Contact, :PictureThree, :PictureOne, :Telephone, :OutShopId, :CityId
+        
+        def initialize(city=nil, shopname=nil, latitude=nil, brandname=nil, appcount=nil, contacttelephone=nil, merchantname=nil, province=nil, county=nil, updatetime=nil, terminalcount=nil, picturetwo=nil, latitudetwo=nil, agentname=nil, picturefour=nil, longitudetwo=nil, status=nil, remark=nil, agentno=nil, merchantno=nil, addtime=nil, address=nil, longitude=nil, shopno=nil, shopfullname=nil, contact=nil, picturethree=nil, pictureone=nil, telephone=nil, outshopid=nil, cityid=nil)
+          @City = city
+          @ShopName = shopname
+          @Latitude = latitude
+          @BrandName = brandname
+          @AppCount = appcount
+          @ContactTelephone = contacttelephone
+          @MerchantName = merchantname
+          @Province = province
+          @County = county
+          @UpdateTime = updatetime
+          @TerminalCount = terminalcount
+          @PictureTwo = picturetwo
+          @LatitudeTwo = latitudetwo
+          @AgentName = agentname
+          @PictureFour = picturefour
+          @LongitudeTwo = longitudetwo
+          @Status = status
+          @Remark = remark
+          @AgentNo = agentno
+          @MerchantNo = merchantno
+          @AddTime = addtime
+          @Address = address
+          @Longitude = longitude
+          @ShopNo = shopno
+          @ShopFullName = shopfullname
+          @Contact = contact
+          @PictureThree = picturethree
+          @PictureOne = pictureone
+          @Telephone = telephone
+          @OutShopId = outshopid
+          @CityId = cityid
+        end
+
+        def deserialize(params)
+          @City = params['City']
+          @ShopName = params['ShopName']
+          @Latitude = params['Latitude']
+          @BrandName = params['BrandName']
+          @AppCount = params['AppCount']
+          @ContactTelephone = params['ContactTelephone']
+          @MerchantName = params['MerchantName']
+          @Province = params['Province']
+          @County = params['County']
+          @UpdateTime = params['UpdateTime']
+          @TerminalCount = params['TerminalCount']
+          @PictureTwo = params['PictureTwo']
+          @LatitudeTwo = params['LatitudeTwo']
+          @AgentName = params['AgentName']
+          @PictureFour = params['PictureFour']
+          @LongitudeTwo = params['LongitudeTwo']
+          @Status = params['Status']
+          @Remark = params['Remark']
+          @AgentNo = params['AgentNo']
+          @MerchantNo = params['MerchantNo']
+          @AddTime = params['AddTime']
+          @Address = params['Address']
+          @Longitude = params['Longitude']
+          @ShopNo = params['ShopNo']
+          @ShopFullName = params['ShopFullName']
+          @Contact = params['Contact']
+          @PictureThree = params['PictureThree']
+          @PictureOne = params['PictureOne']
+          @Telephone = params['Telephone']
+          @OutShopId = params['OutShopId']
+          @CityId = params['CityId']
         end
       end
 

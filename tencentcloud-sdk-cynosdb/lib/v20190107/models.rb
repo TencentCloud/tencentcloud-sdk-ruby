@@ -298,11 +298,14 @@ module TencentCloud
         # @type DbVersion: String
         # @param ProjectId: 所属项目ID
         # @type ProjectId: Integer
-        # @param Cpu: 普通实例Cpu核数
+        # @param Cpu: 当DbMode为NORMAL或不填时必选
+        # 普通实例Cpu核数
         # @type Cpu: Integer
-        # @param Memory: 普通实例内存,单位G
+        # @param Memory: 当DbMode为NORMAL或不填时必选
+        # 普通实例内存,单位G
         # @type Memory: Integer
-        # @param Storage: 存储大小，单位G
+        # @param Storage: 该参数无实际意义，已废弃。
+        # 存储大小，单位G。
         # @type Storage: Integer
         # @param ClusterName: 集群名称
         # @type ClusterName: String
@@ -325,7 +328,8 @@ module TencentCloud
         # @type OriginalClusterId: String
         # @param ExpectTime: 时间点回档，指定时间；快照回档，快照时间
         # @type ExpectTime: String
-        # @param ExpectTimeThresh: 时间点回档，指定时间允许范围
+        # @param ExpectTimeThresh: 该参数无实际意义，已废弃。
+        # 时间点回档，指定时间允许范围
         # @type ExpectTimeThresh: Integer
         # @param StorageLimit: 普通实例存储上限，单位GB
         # 当DbType为MYSQL，且存储计费模式为预付费时，该参数需不大于cpu与memory对应存储规格上限
@@ -1712,7 +1716,14 @@ module TencentCloud
         # @type Filters: Array
         # @param DbType: 引擎类型：目前支持“MYSQL”， “POSTGRESQL”
         # @type DbType: String
-        # @param Status: 实例状态
+        # @param Status: 实例状态, 可选值:
+        # creating 创建中
+        # running 运行中
+        # isolating 隔离中
+        # isolated 已隔离
+        # activating 恢复中
+        # offlining 下线中
+        # offlined 已下线
         # @type Status: String
         # @param InstanceIds: 实例id列表
         # @type InstanceIds: Array
@@ -2137,7 +2148,7 @@ module TencentCloud
         # @type ClusterId: String
         # @param BackupTimeBeg: 表示全备开始时间，[0-24*3600]， 如0:00, 1:00, 2:00 分别为 0，3600， 7200
         # @type BackupTimeBeg: Integer
-        # @param BackupTimeEnd: 表示全备开始时间，[0-24*3600]， 如0:00, 1:00, 2:00 分别为 0，3600， 7200
+        # @param BackupTimeEnd: 表示全备结束时间，[0-24*3600]， 如0:00, 1:00, 2:00 分别为 0，3600， 7200
         # @type BackupTimeEnd: Integer
         # @param ReserveDuration: 表示保留备份时长, 单位秒，超过该时间将被清理, 七天表示为3600*24*7=604800
         # @type ReserveDuration: Integer

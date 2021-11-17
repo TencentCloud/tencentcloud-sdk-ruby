@@ -175,6 +175,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 指定导出的参数，创建一个视频编码配置
+
+        # @param request: Request instance for CreateVideoEncodingPreset.
+        # @type request: :class:`Tencentcloud::cme::V20191029::CreateVideoEncodingPresetRequest`
+        # @rtype: :class:`Tencentcloud::cme::V20191029::CreateVideoEncodingPresetResponse`
+        def CreateVideoEncodingPreset(request)
+          body = send_request('CreateVideoEncodingPreset', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateVideoEncodingPresetResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 删除分类信息，删除时检验下述限制：
         # <li>分类路径必须存在；</li>
         # <li>分类下没有绑定素材。</li>
@@ -309,6 +333,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteTeamMembersResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除指定 ID 的视频编码配置
+
+        # @param request: Request instance for DeleteVideoEncodingPreset.
+        # @type request: :class:`Tencentcloud::cme::V20191029::DeleteVideoEncodingPresetRequest`
+        # @rtype: :class:`Tencentcloud::cme::V20191029::DeleteVideoEncodingPresetResponse`
+        def DeleteVideoEncodingPreset(request)
+          body = send_request('DeleteVideoEncodingPreset', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteVideoEncodingPresetResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -625,6 +673,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeTeamsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询视频编码配置信息。
+
+        # @param request: Request instance for DescribeVideoEncodingPresets.
+        # @type request: :class:`Tencentcloud::cme::V20191029::DescribeVideoEncodingPresetsRequest`
+        # @rtype: :class:`Tencentcloud::cme::V20191029::DescribeVideoEncodingPresetsResponse`
+        def DescribeVideoEncodingPresets(request)
+          body = send_request('DescribeVideoEncodingPresets', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeVideoEncodingPresetsResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1002,6 +1074,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyTeamMemberResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改视频编码配置信息。
+
+        # @param request: Request instance for ModifyVideoEncodingPreset.
+        # @type request: :class:`Tencentcloud::cme::V20191029::ModifyVideoEncodingPresetRequest`
+        # @rtype: :class:`Tencentcloud::cme::V20191029::ModifyVideoEncodingPresetResponse`
+        def ModifyVideoEncodingPreset(request)
+          body = send_request('ModifyVideoEncodingPreset', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyVideoEncodingPresetResponse.new
             model.deserialize(response['Response'])
             model
           else

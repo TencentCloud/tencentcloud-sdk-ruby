@@ -4590,12 +4590,17 @@ module TencentCloud
 
       # StopSecurityGroupRuleDispatch请求参数结构体
       class StopSecurityGroupRuleDispatchRequest < TencentCloud::Common::AbstractModel
+        # @param StopType: 值为1，中止全部
+        # @type StopType: Integer
 
+        attr_accessor :StopType
         
-        def initialize()
+        def initialize(stoptype=nil)
+          @StopType = stoptype
         end
 
         def deserialize(params)
+          @StopType = params['StopType']
         end
       end
 

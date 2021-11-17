@@ -1191,6 +1191,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口（ModifyDBSyncMode）用于修改云数据库实例的同步模式。
+
+        # @param request: Request instance for ModifyDBSyncMode.
+        # @type request: :class:`Tencentcloud::mariadb::V20170312::ModifyDBSyncModeRequest`
+        # @rtype: :class:`Tencentcloud::mariadb::V20170312::ModifyDBSyncModeResponse`
+        def ModifyDBSyncMode(request)
+          body = send_request('ModifyDBSyncMode', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyDBSyncModeResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口(ModifyLogFileRetentionPeriod)用于修改数据库备份日志保存天数。
 
         # @param request: Request instance for ModifyLogFileRetentionPeriod.
@@ -1230,6 +1254,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyRealServerAccessStrategyResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口 (ModifySyncTaskAttribute) 用于修改同步任务的属性（目前只支持修改任务名称）
+
+        # @param request: Request instance for ModifySyncTaskAttribute.
+        # @type request: :class:`Tencentcloud::mariadb::V20170312::ModifySyncTaskAttributeRequest`
+        # @rtype: :class:`Tencentcloud::mariadb::V20170312::ModifySyncTaskAttributeResponse`
+        def ModifySyncTaskAttribute(request)
+          body = send_request('ModifySyncTaskAttribute', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifySyncTaskAttributeResponse.new
             model.deserialize(response['Response'])
             model
           else

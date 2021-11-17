@@ -439,6 +439,8 @@ module TencentCloud
         # @type Namespace: String
         # @param Role: 函数绑定的角色
         # @type Role: String
+        # @param InstallDependency: [在线依赖安装](https://cloud.tencent.com/document/product/583/37920)，TRUE 表示安装，默认值为 FALSE。仅支持 Node.js 函数。
+        # @type InstallDependency: String
         # @param ClsLogsetId: 函数日志投递到的CLS LogsetID
         # @type ClsLogsetId: String
         # @param ClsTopicId: 函数日志投递到的CLS TopicID
@@ -468,9 +470,9 @@ module TencentCloud
         # @param ProtocolParams: HTTP函数配置ProtocolType访问协议，当前协议可配置的参数
         # @type ProtocolParams: :class:`Tencentcloud::Scf.v20180416.models.ProtocolParams`
 
-        attr_accessor :FunctionName, :Code, :Handler, :Description, :MemorySize, :Timeout, :Environment, :Runtime, :VpcConfig, :Namespace, :Role, :ClsLogsetId, :ClsTopicId, :Type, :CodeSource, :Layers, :DeadLetterConfig, :PublicNetConfig, :CfsConfig, :InitTimeout, :Tags, :AsyncRunEnable, :TraceEnable, :ProtocolType, :ProtocolParams
+        attr_accessor :FunctionName, :Code, :Handler, :Description, :MemorySize, :Timeout, :Environment, :Runtime, :VpcConfig, :Namespace, :Role, :InstallDependency, :ClsLogsetId, :ClsTopicId, :Type, :CodeSource, :Layers, :DeadLetterConfig, :PublicNetConfig, :CfsConfig, :InitTimeout, :Tags, :AsyncRunEnable, :TraceEnable, :ProtocolType, :ProtocolParams
         
-        def initialize(functionname=nil, code=nil, handler=nil, description=nil, memorysize=nil, timeout=nil, environment=nil, runtime=nil, vpcconfig=nil, namespace=nil, role=nil, clslogsetid=nil, clstopicid=nil, type=nil, codesource=nil, layers=nil, deadletterconfig=nil, publicnetconfig=nil, cfsconfig=nil, inittimeout=nil, tags=nil, asyncrunenable=nil, traceenable=nil, protocoltype=nil, protocolparams=nil)
+        def initialize(functionname=nil, code=nil, handler=nil, description=nil, memorysize=nil, timeout=nil, environment=nil, runtime=nil, vpcconfig=nil, namespace=nil, role=nil, installdependency=nil, clslogsetid=nil, clstopicid=nil, type=nil, codesource=nil, layers=nil, deadletterconfig=nil, publicnetconfig=nil, cfsconfig=nil, inittimeout=nil, tags=nil, asyncrunenable=nil, traceenable=nil, protocoltype=nil, protocolparams=nil)
           @FunctionName = functionname
           @Code = code
           @Handler = handler
@@ -482,6 +484,7 @@ module TencentCloud
           @VpcConfig = vpcconfig
           @Namespace = namespace
           @Role = role
+          @InstallDependency = installdependency
           @ClsLogsetId = clslogsetid
           @ClsTopicId = clstopicid
           @Type = type
@@ -519,6 +522,7 @@ module TencentCloud
           end
           @Namespace = params['Namespace']
           @Role = params['Role']
+          @InstallDependency = params['InstallDependency']
           @ClsLogsetId = params['ClsLogsetId']
           @ClsTopicId = params['ClsTopicId']
           @Type = params['Type']
@@ -3920,6 +3924,8 @@ module TencentCloud
         # @type VpcConfig: :class:`Tencentcloud::Scf.v20180416.models.VpcConfig`
         # @param Role: 函数绑定的角色
         # @type Role: String
+        # @param InstallDependency: [在线依赖安装](https://cloud.tencent.com/document/product/583/37920)，TRUE 表示安装，默认值为 FALSE。仅支持 Node.js 函数。
+        # @type InstallDependency: String
         # @param ClsLogsetId: 日志投递到的cls日志集ID
         # @type ClsLogsetId: String
         # @param ClsTopicId: 日志投递到的cls Topic ID
@@ -3941,9 +3947,9 @@ module TencentCloud
         # @param ProtocolParams: HTTP函数配置ProtocolType访问协议，当前协议可配置的参数
         # @type ProtocolParams: :class:`Tencentcloud::Scf.v20180416.models.ProtocolParams`
 
-        attr_accessor :FunctionName, :Description, :MemorySize, :Timeout, :Runtime, :Environment, :Namespace, :VpcConfig, :Role, :ClsLogsetId, :ClsTopicId, :Publish, :L5Enable, :Layers, :DeadLetterConfig, :PublicNetConfig, :CfsConfig, :InitTimeout, :ProtocolParams
+        attr_accessor :FunctionName, :Description, :MemorySize, :Timeout, :Runtime, :Environment, :Namespace, :VpcConfig, :Role, :InstallDependency, :ClsLogsetId, :ClsTopicId, :Publish, :L5Enable, :Layers, :DeadLetterConfig, :PublicNetConfig, :CfsConfig, :InitTimeout, :ProtocolParams
         
-        def initialize(functionname=nil, description=nil, memorysize=nil, timeout=nil, runtime=nil, environment=nil, namespace=nil, vpcconfig=nil, role=nil, clslogsetid=nil, clstopicid=nil, publish=nil, l5enable=nil, layers=nil, deadletterconfig=nil, publicnetconfig=nil, cfsconfig=nil, inittimeout=nil, protocolparams=nil)
+        def initialize(functionname=nil, description=nil, memorysize=nil, timeout=nil, runtime=nil, environment=nil, namespace=nil, vpcconfig=nil, role=nil, installdependency=nil, clslogsetid=nil, clstopicid=nil, publish=nil, l5enable=nil, layers=nil, deadletterconfig=nil, publicnetconfig=nil, cfsconfig=nil, inittimeout=nil, protocolparams=nil)
           @FunctionName = functionname
           @Description = description
           @MemorySize = memorysize
@@ -3953,6 +3959,7 @@ module TencentCloud
           @Namespace = namespace
           @VpcConfig = vpcconfig
           @Role = role
+          @InstallDependency = installdependency
           @ClsLogsetId = clslogsetid
           @ClsTopicId = clstopicid
           @Publish = publish
@@ -3981,6 +3988,7 @@ module TencentCloud
             @VpcConfig.deserialize(params['VpcConfig'])
           end
           @Role = params['Role']
+          @InstallDependency = params['InstallDependency']
           @ClsLogsetId = params['ClsLogsetId']
           @ClsTopicId = params['ClsTopicId']
           @Publish = params['Publish']

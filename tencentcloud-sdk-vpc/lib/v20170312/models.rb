@@ -4130,14 +4130,18 @@ module TencentCloud
         # @type InstanceChargePrepaid: :class:`Tencentcloud::Vpc.v20170312.models.InstanceChargePrepaid`
         # @param Zone: 可用区，如：ap-guangzhou-2。
         # @type Zone: String
-        # @param Type: VPN网关类型。值“CCN”云联网类型VPN网关
+        # @param Type: VPN网关类型。值“CCN”云联网类型VPN网关，值SSL为SSL-VPN
         # @type Type: String
         # @param Tags: 指定绑定的标签列表，例如：[{"Key": "city", "Value": "shanghai"}]
         # @type Tags: Array
+        # @param CdcId: CDC实例ID
+        # @type CdcId: String
+        # @param MaxConnection: SSL-VPN 最大CLIENT 连接数。可选 [5, 10, 20, 50, 100]。仅SSL-VPN 需要选这个参数。
+        # @type MaxConnection: Integer
 
-        attr_accessor :VpcId, :VpnGatewayName, :InternetMaxBandwidthOut, :InstanceChargeType, :InstanceChargePrepaid, :Zone, :Type, :Tags
+        attr_accessor :VpcId, :VpnGatewayName, :InternetMaxBandwidthOut, :InstanceChargeType, :InstanceChargePrepaid, :Zone, :Type, :Tags, :CdcId, :MaxConnection
         
-        def initialize(vpcid=nil, vpngatewayname=nil, internetmaxbandwidthout=nil, instancechargetype=nil, instancechargeprepaid=nil, zone=nil, type=nil, tags=nil)
+        def initialize(vpcid=nil, vpngatewayname=nil, internetmaxbandwidthout=nil, instancechargetype=nil, instancechargeprepaid=nil, zone=nil, type=nil, tags=nil, cdcid=nil, maxconnection=nil)
           @VpcId = vpcid
           @VpnGatewayName = vpngatewayname
           @InternetMaxBandwidthOut = internetmaxbandwidthout
@@ -4146,6 +4150,8 @@ module TencentCloud
           @Zone = zone
           @Type = type
           @Tags = tags
+          @CdcId = cdcid
+          @MaxConnection = maxconnection
         end
 
         def deserialize(params)
@@ -4167,6 +4173,8 @@ module TencentCloud
               @Tags << tag_tmp
             end
           end
+          @CdcId = params['CdcId']
+          @MaxConnection = params['MaxConnection']
         end
       end
 
@@ -12701,16 +12709,20 @@ module TencentCloud
 
       # ModifyIp6AddressesBandwidth返回参数结构体
       class ModifyIp6AddressesBandwidthResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: 任务ID
+        # @type TaskId: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RequestId
+        attr_accessor :TaskId, :RequestId
         
-        def initialize(requestid=nil)
+        def initialize(taskid=nil, requestid=nil)
+          @TaskId = taskid
           @RequestId = requestid
         end
 
         def deserialize(params)
+          @TaskId = params['TaskId']
           @RequestId = params['RequestId']
         end
       end
@@ -17098,10 +17110,14 @@ module TencentCloud
         # @type Version: String
         # @param NetworkInstanceId: Type值为CCN时，该值表示云联网实例ID
         # @type NetworkInstanceId: String
+        # @param CdcId: CDC 实例ID
+        # @type CdcId: String
+        # @param MaxConnection: SSL-VPN 客户端连接数。
+        # @type MaxConnection: Integer
 
-        attr_accessor :VpnGatewayId, :VpcId, :VpnGatewayName, :Type, :State, :PublicIpAddress, :RenewFlag, :InstanceChargeType, :InternetMaxBandwidthOut, :CreatedTime, :ExpiredTime, :IsAddressBlocked, :NewPurchasePlan, :RestrictState, :Zone, :VpnGatewayQuotaSet, :Version, :NetworkInstanceId
+        attr_accessor :VpnGatewayId, :VpcId, :VpnGatewayName, :Type, :State, :PublicIpAddress, :RenewFlag, :InstanceChargeType, :InternetMaxBandwidthOut, :CreatedTime, :ExpiredTime, :IsAddressBlocked, :NewPurchasePlan, :RestrictState, :Zone, :VpnGatewayQuotaSet, :Version, :NetworkInstanceId, :CdcId, :MaxConnection
         
-        def initialize(vpngatewayid=nil, vpcid=nil, vpngatewayname=nil, type=nil, state=nil, publicipaddress=nil, renewflag=nil, instancechargetype=nil, internetmaxbandwidthout=nil, createdtime=nil, expiredtime=nil, isaddressblocked=nil, newpurchaseplan=nil, restrictstate=nil, zone=nil, vpngatewayquotaset=nil, version=nil, networkinstanceid=nil)
+        def initialize(vpngatewayid=nil, vpcid=nil, vpngatewayname=nil, type=nil, state=nil, publicipaddress=nil, renewflag=nil, instancechargetype=nil, internetmaxbandwidthout=nil, createdtime=nil, expiredtime=nil, isaddressblocked=nil, newpurchaseplan=nil, restrictstate=nil, zone=nil, vpngatewayquotaset=nil, version=nil, networkinstanceid=nil, cdcid=nil, maxconnection=nil)
           @VpnGatewayId = vpngatewayid
           @VpcId = vpcid
           @VpnGatewayName = vpngatewayname
@@ -17120,6 +17136,8 @@ module TencentCloud
           @VpnGatewayQuotaSet = vpngatewayquotaset
           @Version = version
           @NetworkInstanceId = networkinstanceid
+          @CdcId = cdcid
+          @MaxConnection = maxconnection
         end
 
         def deserialize(params)
@@ -17148,6 +17166,8 @@ module TencentCloud
           end
           @Version = params['Version']
           @NetworkInstanceId = params['NetworkInstanceId']
+          @CdcId = params['CdcId']
+          @MaxConnection = params['MaxConnection']
         end
       end
 

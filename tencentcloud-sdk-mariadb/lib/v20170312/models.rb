@@ -2851,7 +2851,7 @@ module TencentCloud
         # @type Host: String
         # @param DbName: 数据库名。如果为 \*，表示设置全局权限（即 \*.\*），此时忽略 Type 和 Object 参数。当DbName不为\*时，需要传入参 Type。
         # @type DbName: String
-        # @param Privileges: 全局权限： SELECT，INSERT，UPDATE，DELETE，CREATE，DROP，REFERENCES，INDEX，ALTER，CREATE TEMPORARY TABLES，LOCK TABLES，EXECUTE，CREATE VIEW，SHOW VIEW，CREATE ROUTINE，ALTER ROUTINE，EVENT，TRIGGER，SHOW DATABASES
+        # @param Privileges: 全局权限： SELECT，INSERT，UPDATE，DELETE，CREATE，DROP，REFERENCES，INDEX，ALTER，CREATE TEMPORARY TABLES，LOCK TABLES，EXECUTE，CREATE VIEW，SHOW VIEW，CREATE ROUTINE，ALTER ROUTINE，EVENT，TRIGGER，SHOW DATABASES，REPLICATION CLIENT，REPLICATION SLAVE
         # 库权限： SELECT，INSERT，UPDATE，DELETE，CREATE，DROP，REFERENCES，INDEX，ALTER，CREATE TEMPORARY TABLES，LOCK TABLES，EXECUTE，CREATE VIEW，SHOW VIEW，CREATE ROUTINE，ALTER ROUTINE，EVENT，TRIGGER
         # 表/视图权限： SELECT，INSERT，UPDATE，DELETE，CREATE，DROP，REFERENCES，INDEX，ALTER，CREATE VIEW，SHOW VIEW，TRIGGER
         # 存储过程/函数权限： ALTER ROUTINE，EXECUTE
@@ -3437,6 +3437,46 @@ module TencentCloud
         end
       end
 
+      # ModifyDBSyncMode请求参数结构体
+      class ModifyDBSyncModeRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 待修改同步模式的实例ID。形如：tdsql-ow728lmc。
+        # @type InstanceId: String
+        # @param SyncMode: 同步模式：0 异步，1 强同步， 2 强同步可退化
+        # @type SyncMode: Integer
+
+        attr_accessor :InstanceId, :SyncMode
+        
+        def initialize(instanceid=nil, syncmode=nil)
+          @InstanceId = instanceid
+          @SyncMode = syncmode
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @SyncMode = params['SyncMode']
+        end
+      end
+
+      # ModifyDBSyncMode返回参数结构体
+      class ModifyDBSyncModeResponse < TencentCloud::Common::AbstractModel
+        # @param FlowId: 异步任务Id，可通过 DescribeFlow 查询任务状态。
+        # @type FlowId: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :FlowId, :RequestId
+        
+        def initialize(flowid=nil, requestid=nil)
+          @FlowId = flowid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @FlowId = params['FlowId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyLogFileRetentionPeriod请求参数结构体
       class ModifyLogFileRetentionPeriodRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例 ID，形如：tdsql-ow728lmc。
@@ -3499,6 +3539,42 @@ module TencentCloud
 
       # ModifyRealServerAccessStrategy返回参数结构体
       class ModifyRealServerAccessStrategyResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifySyncTaskAttribute请求参数结构体
+      class ModifySyncTaskAttributeRequest < TencentCloud::Common::AbstractModel
+        # @param TaskIds: 一个或多个待操作的任务ID。可通过[DescribeSyncTasks](https://tcloud-dev.oa.com/document/product/237/32979?!preview&!document=1) API返回值中的TaskId获取。每次请求允许操作的实例数量上限是100。
+        # @type TaskIds: Array
+        # @param TaskName: 任务名称。可任意命名，但不得超过100个字符。
+        # @type TaskName: String
+
+        attr_accessor :TaskIds, :TaskName
+        
+        def initialize(taskids=nil, taskname=nil)
+          @TaskIds = taskids
+          @TaskName = taskname
+        end
+
+        def deserialize(params)
+          @TaskIds = params['TaskIds']
+          @TaskName = params['TaskName']
+        end
+      end
+
+      # ModifySyncTaskAttribute返回参数结构体
+      class ModifySyncTaskAttributeResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -4155,10 +4231,12 @@ module TencentCloud
         # @param ExampleSql: 样例Sql
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExampleSql: String
+        # @param Host: 账户的域名
+        # @type Host: String
 
-        attr_accessor :CheckSum, :Db, :FingerPrint, :LockTimeAvg, :LockTimeMax, :LockTimeMin, :LockTimeSum, :QueryCount, :QueryTimeAvg, :QueryTimeMax, :QueryTimeMin, :QueryTimeSum, :RowsExaminedSum, :RowsSentSum, :TsMax, :TsMin, :User, :ExampleSql
+        attr_accessor :CheckSum, :Db, :FingerPrint, :LockTimeAvg, :LockTimeMax, :LockTimeMin, :LockTimeSum, :QueryCount, :QueryTimeAvg, :QueryTimeMax, :QueryTimeMin, :QueryTimeSum, :RowsExaminedSum, :RowsSentSum, :TsMax, :TsMin, :User, :ExampleSql, :Host
         
-        def initialize(checksum=nil, db=nil, fingerprint=nil, locktimeavg=nil, locktimemax=nil, locktimemin=nil, locktimesum=nil, querycount=nil, querytimeavg=nil, querytimemax=nil, querytimemin=nil, querytimesum=nil, rowsexaminedsum=nil, rowssentsum=nil, tsmax=nil, tsmin=nil, user=nil, examplesql=nil)
+        def initialize(checksum=nil, db=nil, fingerprint=nil, locktimeavg=nil, locktimemax=nil, locktimemin=nil, locktimesum=nil, querycount=nil, querytimeavg=nil, querytimemax=nil, querytimemin=nil, querytimesum=nil, rowsexaminedsum=nil, rowssentsum=nil, tsmax=nil, tsmin=nil, user=nil, examplesql=nil, host=nil)
           @CheckSum = checksum
           @Db = db
           @FingerPrint = fingerprint
@@ -4177,6 +4255,7 @@ module TencentCloud
           @TsMin = tsmin
           @User = user
           @ExampleSql = examplesql
+          @Host = host
         end
 
         def deserialize(params)
@@ -4198,6 +4277,7 @@ module TencentCloud
           @TsMin = params['TsMin']
           @User = params['User']
           @ExampleSql = params['ExampleSql']
+          @Host = params['Host']
         end
       end
 
