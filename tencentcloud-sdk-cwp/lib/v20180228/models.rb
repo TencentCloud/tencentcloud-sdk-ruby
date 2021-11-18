@@ -10462,17 +10462,29 @@ module TencentCloud
         # @type VulId: Array
         # @param Type: 0一键检测 1定时检测
         # @type Type: Integer
+        # @param ScanBeginTime: 开始扫描时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ScanBeginTime: String
+        # @param RiskEventCount: 扫描漏洞数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RiskEventCount: Integer
+        # @param ScanEndTime: 扫描结束时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ScanEndTime: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :ScanState, :Schedule, :TaskId, :VulId, :Type, :RequestId
+        attr_accessor :ScanState, :Schedule, :TaskId, :VulId, :Type, :ScanBeginTime, :RiskEventCount, :ScanEndTime, :RequestId
         
-        def initialize(scanstate=nil, schedule=nil, taskid=nil, vulid=nil, type=nil, requestid=nil)
+        def initialize(scanstate=nil, schedule=nil, taskid=nil, vulid=nil, type=nil, scanbegintime=nil, riskeventcount=nil, scanendtime=nil, requestid=nil)
           @ScanState = scanstate
           @Schedule = schedule
           @TaskId = taskid
           @VulId = vulid
           @Type = type
+          @ScanBeginTime = scanbegintime
+          @RiskEventCount = riskeventcount
+          @ScanEndTime = scanendtime
           @RequestId = requestid
         end
 
@@ -10482,6 +10494,9 @@ module TencentCloud
           @TaskId = params['TaskId']
           @VulId = params['VulId']
           @Type = params['Type']
+          @ScanBeginTime = params['ScanBeginTime']
+          @RiskEventCount = params['RiskEventCount']
+          @ScanEndTime = params['ScanEndTime']
           @RequestId = params['RequestId']
         end
       end
@@ -10917,7 +10932,7 @@ module TencentCloud
         # @type PrivilegeRules: :class:`Tencentcloud::Cwp.v20180228.models.SecurityEventInfo`
         # @param ReverseShell: 反弹Shell相关风险事件
         # @type ReverseShell: :class:`Tencentcloud::Cwp.v20180228.models.SecurityEventInfo`
-        # @param SysVul: 系统组件相关风险事件
+        # @param SysVul: 应用漏洞风险事件
         # @type SysVul: :class:`Tencentcloud::Cwp.v20180228.models.SecurityEventInfo`
         # @param WebVul: Web应用漏洞相关风险事件
         # @type WebVul: :class:`Tencentcloud::Cwp.v20180228.models.SecurityEventInfo`
@@ -10931,12 +10946,18 @@ module TencentCloud
         # @type EffectMachineCount: Integer
         # @param EventsCount: 所有事件总数
         # @type EventsCount: Integer
+        # @param WindowVul: window 系统漏洞事件总数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type WindowVul: :class:`Tencentcloud::Cwp.v20180228.models.SecurityEventInfo`
+        # @param LinuxVul: linux系统漏洞事件总数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LinuxVul: :class:`Tencentcloud::Cwp.v20180228.models.SecurityEventInfo`
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Malware, :HostLogin, :BruteAttack, :RiskDns, :Bash, :PrivilegeRules, :ReverseShell, :SysVul, :WebVul, :EmergencyVul, :BaseLine, :AttackLogs, :EffectMachineCount, :EventsCount, :RequestId
+        attr_accessor :Malware, :HostLogin, :BruteAttack, :RiskDns, :Bash, :PrivilegeRules, :ReverseShell, :SysVul, :WebVul, :EmergencyVul, :BaseLine, :AttackLogs, :EffectMachineCount, :EventsCount, :WindowVul, :LinuxVul, :RequestId
         
-        def initialize(malware=nil, hostlogin=nil, bruteattack=nil, riskdns=nil, bash=nil, privilegerules=nil, reverseshell=nil, sysvul=nil, webvul=nil, emergencyvul=nil, baseline=nil, attacklogs=nil, effectmachinecount=nil, eventscount=nil, requestid=nil)
+        def initialize(malware=nil, hostlogin=nil, bruteattack=nil, riskdns=nil, bash=nil, privilegerules=nil, reverseshell=nil, sysvul=nil, webvul=nil, emergencyvul=nil, baseline=nil, attacklogs=nil, effectmachinecount=nil, eventscount=nil, windowvul=nil, linuxvul=nil, requestid=nil)
           @Malware = malware
           @HostLogin = hostlogin
           @BruteAttack = bruteattack
@@ -10951,6 +10972,8 @@ module TencentCloud
           @AttackLogs = attacklogs
           @EffectMachineCount = effectmachinecount
           @EventsCount = eventscount
+          @WindowVul = windowvul
+          @LinuxVul = linuxvul
           @RequestId = requestid
         end
 
@@ -11005,6 +11028,14 @@ module TencentCloud
           end
           @EffectMachineCount = params['EffectMachineCount']
           @EventsCount = params['EventsCount']
+          unless params['WindowVul'].nil?
+            @WindowVul = SecurityEventInfo.new
+            @WindowVul.deserialize(params['WindowVul'])
+          end
+          unless params['LinuxVul'].nil?
+            @LinuxVul = SecurityEventInfo.new
+            @LinuxVul.deserialize(params['LinuxVul'])
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -11600,7 +11631,7 @@ module TencentCloud
         # @param Filters: 过滤条件。
         # <li>AliasName - String - 主机名筛选</li>
         # <li>TagIds - String - 主机标签id串，多个用英文逗号分隔</li>
-        # <li>Status - String - 状态,0: 待处理 1:忽略  3:已修复  5:检测中  6:修复这中.</li>
+        # <li>Status - String - 状态,0: 待处理 1:忽略  3:已修复  5:检测中  6:修复中  8=:修复失败.</li>
         # <li>Uuid - String数组 - Uuid串数组</li>
         # @type Filters: Array
 
@@ -11782,7 +11813,7 @@ module TencentCloud
         # @param VulLevel: 危害等级：1-低危；2-中危；3-高危；4-严重
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VulLevel: Integer
-        # @param VulType: 漏洞分类 1: web应用漏洞 2:系统组件漏洞
+        # @param VulType: 漏洞分类 1: web应用漏洞 2:应用漏洞3:安全基线 4: Linux系统漏洞 5: Windows系统漏洞
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VulType: Integer
         # @param Description: 漏洞描述信息
@@ -11812,12 +11843,15 @@ module TencentCloud
         # @param CvssScoreFloat: cvss 分数 浮点型
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CvssScoreFloat: Float
+        # @param Labels: 漏洞标签 多个逗号分割
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Labels: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :VulId, :VulName, :VulLevel, :VulType, :Description, :RepairPlan, :CveId, :Reference, :CVSS, :PublicDate, :CvssScore, :CveInfo, :CvssScoreFloat, :RequestId
+        attr_accessor :VulId, :VulName, :VulLevel, :VulType, :Description, :RepairPlan, :CveId, :Reference, :CVSS, :PublicDate, :CvssScore, :CveInfo, :CvssScoreFloat, :Labels, :RequestId
         
-        def initialize(vulid=nil, vulname=nil, vullevel=nil, vultype=nil, description=nil, repairplan=nil, cveid=nil, reference=nil, cvss=nil, publicdate=nil, cvssscore=nil, cveinfo=nil, cvssscorefloat=nil, requestid=nil)
+        def initialize(vulid=nil, vulname=nil, vullevel=nil, vultype=nil, description=nil, repairplan=nil, cveid=nil, reference=nil, cvss=nil, publicdate=nil, cvssscore=nil, cveinfo=nil, cvssscorefloat=nil, labels=nil, requestid=nil)
           @VulId = vulid
           @VulName = vulname
           @VulLevel = vullevel
@@ -11831,6 +11865,7 @@ module TencentCloud
           @CvssScore = cvssscore
           @CveInfo = cveinfo
           @CvssScoreFloat = cvssscorefloat
+          @Labels = labels
           @RequestId = requestid
         end
 
@@ -11848,18 +11883,24 @@ module TencentCloud
           @CvssScore = params['CvssScore']
           @CveInfo = params['CveInfo']
           @CvssScoreFloat = params['CvssScoreFloat']
+          @Labels = params['Labels']
           @RequestId = params['RequestId']
         end
       end
 
       # DescribeVulLevelCount请求参数结构体
       class DescribeVulLevelCountRequest < TencentCloud::Common::AbstractModel
+        # @param VulCategory: 1: web应用漏洞 2=系统组件漏洞3:安全基线 4: Linux系统漏洞 5: windows补丁 6:应急漏洞
+        # @type VulCategory: Integer
 
+        attr_accessor :VulCategory
         
-        def initialize()
+        def initialize(vulcategory=nil)
+          @VulCategory = vulcategory
         end
 
         def deserialize(params)
+          @VulCategory = params['VulCategory']
         end
       end
 
@@ -11898,22 +11939,25 @@ module TencentCloud
         # @param Offset: 偏移量，默认为0。
         # @type Offset: Integer
         # @param Filters: 过滤条件。
-        # <li>IfEmergency - String - 是否必填：否 - 是否为应急漏洞，查询应急漏洞传:yes</li>
-        # <li>Status - String - 是否必填：是 - 漏洞状态筛选，0: 待处理 1:忽略  3:已修复  5:检测中，6：修复中 控制台仅处理0,1,3,5,6五种状态</li>
-        # <li>Level - String - 是否必填：否 - 漏洞等级筛选 1:低 2:中 3:高 4:提示</li>
-        # <li>VulName- String - 是否必填：否 - 漏洞名称搜索</li>
-        # <li>LastDay- int - 是否必填：否 - 查询近几日的数据，需要 -1 之后传入，例如近3日数据，传2</li>
-        # <li>OrderBy - String 是否必填：否 默认按照处理状态,威胁等级,检测时间排序 -排序字段，支持：level,lastTime的动态排序  hostCount 影响主机台数排序</li>
-        # <li>IsShowFollowVul -  String 是否必填：否   是否仅展示重点关注漏洞  0=展示全部 1=仅展示重点关注漏洞</li>
-        # <li>VulCategory-  String 是否必填：否   1: web应用漏洞 2:系统组件漏洞3:安全基线 4: Linux系统漏洞 5: windows补丁</li>
+        # <li>Status - String - 是否必填：否 - 处理状态  0 -- 待处理 1 -- 已加白 2 -- 已删除 3 - 已忽略</li>
+        # <li>ModifyTime - String - 是否必填：否 - 最近发生时间</li>
+        # <li>Uuid- String - 是否必填：否 - 主机uuid查询</li>
+        # <li>VulName- string -</li>
+        # <li>HostIp- string - 是否必填：否 - 主机ip</li>
         # @type Filters: Array
+        # @param By: 可选排序字段 Level，LastTime，HostCount
+        # @type By: String
+        # @param Order: 排序顺序：desc  默认asc
+        # @type Order: String
 
-        attr_accessor :Limit, :Offset, :Filters
+        attr_accessor :Limit, :Offset, :Filters, :By, :Order
         
-        def initialize(limit=nil, offset=nil, filters=nil)
+        def initialize(limit=nil, offset=nil, filters=nil, by=nil, order=nil)
           @Limit = limit
           @Offset = offset
           @Filters = filters
+          @By = by
+          @Order = order
         end
 
         def deserialize(params)
@@ -11927,6 +11971,8 @@ module TencentCloud
               @Filters << filters_tmp
             end
           end
+          @By = params['By']
+          @Order = params['Order']
         end
       end
 
@@ -11972,7 +12018,7 @@ module TencentCloud
       class DescribeVulTopRequest < TencentCloud::Common::AbstractModel
         # @param Top: 漏洞风险服务器top，1-100
         # @type Top: Integer
-        # @param VulCategory: 1: web应用漏洞 2=系统组件漏洞3:安全基线 4: Linux系统漏洞 5: windows补丁，传0的时候表示查应急漏洞
+        # @param VulCategory: 1: web应用漏洞 2=系统组件漏洞3:安全基线 4: Linux系统漏洞 5: windows补丁 6:应急漏洞
         # @type VulCategory: Integer
 
         attr_accessor :Top, :VulCategory
@@ -12529,10 +12575,22 @@ module TencentCloud
         # @type LastScanTime: String
         # @param Progress: 扫描进度
         # @type Progress: Integer
+        # @param CveId: cve编号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CveId: String
+        # @param CvssScore: CVSS评分
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CvssScore: Float
+        # @param Labels: 漏洞标签 多个逗号分割
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Labels: String
+        # @param HostCount: 影响机器数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HostCount: Integer
 
-        attr_accessor :VulId, :Level, :VulName, :PublishDate, :Category, :Status, :LastScanTime, :Progress
+        attr_accessor :VulId, :Level, :VulName, :PublishDate, :Category, :Status, :LastScanTime, :Progress, :CveId, :CvssScore, :Labels, :HostCount
         
-        def initialize(vulid=nil, level=nil, vulname=nil, publishdate=nil, category=nil, status=nil, lastscantime=nil, progress=nil)
+        def initialize(vulid=nil, level=nil, vulname=nil, publishdate=nil, category=nil, status=nil, lastscantime=nil, progress=nil, cveid=nil, cvssscore=nil, labels=nil, hostcount=nil)
           @VulId = vulid
           @Level = level
           @VulName = vulname
@@ -12541,6 +12599,10 @@ module TencentCloud
           @Status = status
           @LastScanTime = lastscantime
           @Progress = progress
+          @CveId = cveid
+          @CvssScore = cvssscore
+          @Labels = labels
+          @HostCount = hostcount
         end
 
         def deserialize(params)
@@ -12552,6 +12614,10 @@ module TencentCloud
           @Status = params['Status']
           @LastScanTime = params['LastScanTime']
           @Progress = params['Progress']
+          @CveId = params['CveId']
+          @CvssScore = params['CvssScore']
+          @Labels = params['Labels']
+          @HostCount = params['HostCount']
         end
       end
 
@@ -16313,12 +16379,12 @@ module TencentCloud
 
       # ScanVul请求参数结构体
       class ScanVulRequest < TencentCloud::Common::AbstractModel
-        # @param VulCategories: 漏洞类型：1: web应用漏洞 2:系统组件漏洞 (多选英文;分隔)
-        # @type VulCategories: String
         # @param VulLevels: 危害等级：1-低危；2-中危；3-高危；4-严重 (多选英文;分隔)
         # @type VulLevels: String
         # @param HostType: 服务器分类：1:专业版服务器；2:自选服务器
         # @type HostType: Integer
+        # @param VulCategories: 漏洞类型：1: web应用漏洞（webCMS） 2:系统组件（应用漏洞）漏洞  3:安全基线 4:Linux软件漏洞 5:Windows系统漏洞(多选英文;分隔)
+        # @type VulCategories: String
         # @param QuuidList: 自选服务器时生效，主机quuid的string数组
         # @type QuuidList: Array
         # @param VulEmergency: 是否是应急漏洞 0 否 1 是
@@ -16328,12 +16394,12 @@ module TencentCloud
         # @param VulIds: 需要扫描的漏洞id
         # @type VulIds: Array
 
-        attr_accessor :VulCategories, :VulLevels, :HostType, :QuuidList, :VulEmergency, :TimeoutPeriod, :VulIds
+        attr_accessor :VulLevels, :HostType, :VulCategories, :QuuidList, :VulEmergency, :TimeoutPeriod, :VulIds
         
-        def initialize(vulcategories=nil, vullevels=nil, hosttype=nil, quuidlist=nil, vulemergency=nil, timeoutperiod=nil, vulids=nil)
-          @VulCategories = vulcategories
+        def initialize(vullevels=nil, hosttype=nil, vulcategories=nil, quuidlist=nil, vulemergency=nil, timeoutperiod=nil, vulids=nil)
           @VulLevels = vullevels
           @HostType = hosttype
+          @VulCategories = vulcategories
           @QuuidList = quuidlist
           @VulEmergency = vulemergency
           @TimeoutPeriod = timeoutperiod
@@ -16341,9 +16407,9 @@ module TencentCloud
         end
 
         def deserialize(params)
-          @VulCategories = params['VulCategories']
           @VulLevels = params['VulLevels']
           @HostType = params['HostType']
+          @VulCategories = params['VulCategories']
           @QuuidList = params['QuuidList']
           @VulEmergency = params['VulEmergency']
           @TimeoutPeriod = params['TimeoutPeriod']
@@ -17242,7 +17308,7 @@ module TencentCloud
         # @param EventId: 事件id
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EventId: Integer
-        # @param Status: 状态：0: 待处理 1:忽略  3:已修复  5:检测中 6:修复中
+        # @param Status: 状态：0: 待处理 1:忽略  3:已修复  5:检测中 6:修复中 7: 回滚中 8:修复失败
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: Integer
         # @param LastTime: 最后检测时间
@@ -17269,10 +17335,19 @@ module TencentCloud
         # @param Description: 说明
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Description: String
+        # @param HostVersion: 版本信息 0=普通版本 1=专业版 2=旗舰版
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HostVersion: Integer
+        # @param IsSupportAutoFix: 是否能自动修复 0 :漏洞不可自动修复，  1：可自动修复， 2：客户端已离线， 3：主机不是旗舰版只能手动修复， 4：机型不允许 ，5：修复中 ，6：已修复， 7：检测中  9:修复失败，10:已忽略 11:漏洞只支持linux不支持Windows 12：漏洞只支持Windows不支持linux，13:修复失败但此时主机已离线，14:修复失败但此时主机不是旗舰版， 15:已手动修复
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsSupportAutoFix: Integer
+        # @param FixStatusMsg: 失败原因
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FixStatusMsg: String
 
-        attr_accessor :EventId, :Status, :LastTime, :Level, :Quuid, :Uuid, :HostIp, :AliasName, :Tags, :Description
+        attr_accessor :EventId, :Status, :LastTime, :Level, :Quuid, :Uuid, :HostIp, :AliasName, :Tags, :Description, :HostVersion, :IsSupportAutoFix, :FixStatusMsg
         
-        def initialize(eventid=nil, status=nil, lasttime=nil, level=nil, quuid=nil, uuid=nil, hostip=nil, aliasname=nil, tags=nil, description=nil)
+        def initialize(eventid=nil, status=nil, lasttime=nil, level=nil, quuid=nil, uuid=nil, hostip=nil, aliasname=nil, tags=nil, description=nil, hostversion=nil, issupportautofix=nil, fixstatusmsg=nil)
           @EventId = eventid
           @Status = status
           @LastTime = lasttime
@@ -17283,6 +17358,9 @@ module TencentCloud
           @AliasName = aliasname
           @Tags = tags
           @Description = description
+          @HostVersion = hostversion
+          @IsSupportAutoFix = issupportautofix
+          @FixStatusMsg = fixstatusmsg
         end
 
         def deserialize(params)
@@ -17296,6 +17374,9 @@ module TencentCloud
           @AliasName = params['AliasName']
           @Tags = params['Tags']
           @Description = params['Description']
+          @HostVersion = params['HostVersion']
+          @IsSupportAutoFix = params['IsSupportAutoFix']
+          @FixStatusMsg = params['FixStatusMsg']
         end
       end
 
@@ -17344,7 +17425,7 @@ module TencentCloud
         # @type Ids: String
         # @param Name: 漏洞名
         # @type Name: String
-        # @param Status: 0: 待处理 1:忽略  3:已修复  5:检测中 6:修复中 控制台仅处理0,1,3,5,6四种状态
+        # @param Status: 0: 待处理 1:忽略  3:已修复  5:检测中 6:修复中  8:修复失败
         # @type Status: Integer
         # @param VulId: 漏洞id
         # @type VulId: Integer
@@ -17374,10 +17455,25 @@ module TencentCloud
         # @param StatusStr: 聚合后事件状态串
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StatusStr: String
+        # @param CveId: cve编号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CveId: String
+        # @param CvssScore: CVSS评分
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CvssScore: Float
+        # @param Labels: 漏洞标签 多个逗号分割
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Labels: String
+        # @param FixSwitch: 是否能自动修复且包含能自动修复的主机， 0=否  1=是
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FixSwitch: Integer
+        # @param TaskId: 最后扫描任务的id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TaskId: Integer
 
-        attr_accessor :Ids, :Name, :Status, :VulId, :PublishTime, :LastTime, :HostCount, :Level, :From, :Descript, :PublishTimeWisteria, :NameWisteria, :DescriptWisteria, :StatusStr
+        attr_accessor :Ids, :Name, :Status, :VulId, :PublishTime, :LastTime, :HostCount, :Level, :From, :Descript, :PublishTimeWisteria, :NameWisteria, :DescriptWisteria, :StatusStr, :CveId, :CvssScore, :Labels, :FixSwitch, :TaskId
         
-        def initialize(ids=nil, name=nil, status=nil, vulid=nil, publishtime=nil, lasttime=nil, hostcount=nil, level=nil, from=nil, descript=nil, publishtimewisteria=nil, namewisteria=nil, descriptwisteria=nil, statusstr=nil)
+        def initialize(ids=nil, name=nil, status=nil, vulid=nil, publishtime=nil, lasttime=nil, hostcount=nil, level=nil, from=nil, descript=nil, publishtimewisteria=nil, namewisteria=nil, descriptwisteria=nil, statusstr=nil, cveid=nil, cvssscore=nil, labels=nil, fixswitch=nil, taskid=nil)
           @Ids = ids
           @Name = name
           @Status = status
@@ -17392,6 +17488,11 @@ module TencentCloud
           @NameWisteria = namewisteria
           @DescriptWisteria = descriptwisteria
           @StatusStr = statusstr
+          @CveId = cveid
+          @CvssScore = cvssscore
+          @Labels = labels
+          @FixSwitch = fixswitch
+          @TaskId = taskid
         end
 
         def deserialize(params)
@@ -17409,6 +17510,11 @@ module TencentCloud
           @NameWisteria = params['NameWisteria']
           @DescriptWisteria = params['DescriptWisteria']
           @StatusStr = params['StatusStr']
+          @CveId = params['CveId']
+          @CvssScore = params['CvssScore']
+          @Labels = params['Labels']
+          @FixSwitch = params['FixSwitch']
+          @TaskId = params['TaskId']
         end
       end
 
@@ -17486,7 +17592,7 @@ module TencentCloud
 
       # 告警设置列表
       class WarningInfoObj < TencentCloud::Common::AbstractModel
-        # @param Type: 事件告警类型；1：离线，2：木马，3：异常登录，4：爆破，5：漏洞（已拆分为9-12四种类型）6：高危命令，7：反弹sell，8：本地提权，9：系统组件漏洞，10：wen应用漏洞，11：应急漏洞，12：安全基线 ,13: 防篡改
+        # @param Type: 事件告警类型；1：离线，2：木马，3：异常登录，4：爆破，5：漏洞（已拆分为9-12四种类型）6：高危命令，7：反弹sell，8：本地提权，9：应用漏洞，10：web-cms漏洞，11：应急漏洞，12：安全基线 ,13: 防篡改，14：恶意请求，15: 网络攻击，16：Windows系统漏洞，17：Linux软件漏洞
         # @type Type: Integer
         # @param DisablePhoneWarning: 1: 关闭告警 0: 开启告警
         # @type DisablePhoneWarning: Integer

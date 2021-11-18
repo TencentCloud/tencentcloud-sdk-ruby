@@ -53,6 +53,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 创建新企业安全组规则
+
+        # @param request: Request instance for AddEnterpriseSecurityGroupRules.
+        # @type request: :class:`Tencentcloud::cfw::V20190904::AddEnterpriseSecurityGroupRulesRequest`
+        # @rtype: :class:`Tencentcloud::cfw::V20190904::AddEnterpriseSecurityGroupRulesResponse`
+        def AddEnterpriseSecurityGroupRules(request)
+          body = send_request('AddEnterpriseSecurityGroupRules', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = AddEnterpriseSecurityGroupRulesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 创建规则
 
         # @param request: Request instance for CreateAcRules.
@@ -495,6 +519,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeCfwEipsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询新企业安全组规则
+
+        # @param request: Request instance for DescribeEnterpriseSecurityGroupRule.
+        # @type request: :class:`Tencentcloud::cfw::V20190904::DescribeEnterpriseSecurityGroupRuleRequest`
+        # @rtype: :class:`Tencentcloud::cfw::V20190904::DescribeEnterpriseSecurityGroupRuleResponse`
+        def DescribeEnterpriseSecurityGroupRule(request)
+          body = send_request('DescribeEnterpriseSecurityGroupRule', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeEnterpriseSecurityGroupRuleResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1507,6 +1555,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = RemoveAcRuleResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除新企业安全组规则
+
+        # @param request: Request instance for RemoveEnterpriseSecurityGroupRule.
+        # @type request: :class:`Tencentcloud::cfw::V20190904::RemoveEnterpriseSecurityGroupRuleRequest`
+        # @rtype: :class:`Tencentcloud::cfw::V20190904::RemoveEnterpriseSecurityGroupRuleResponse`
+        def RemoveEnterpriseSecurityGroupRule(request)
+          body = send_request('RemoveEnterpriseSecurityGroupRule', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = RemoveEnterpriseSecurityGroupRuleResponse.new
             model.deserialize(response['Response'])
             model
           else

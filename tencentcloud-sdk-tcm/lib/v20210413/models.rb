@@ -589,18 +589,44 @@ module TencentCloud
         end
       end
 
+      # 自动注入配置
+      class InjectConfig < TencentCloud::Common::AbstractModel
+        # @param ExcludeIPRanges: 不需要进行代理的 ip 地址范围
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExcludeIPRanges: Array
+        # @param HoldApplicationUntilProxyStarts: 是否等待sidecar启动
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HoldApplicationUntilProxyStarts: Boolean
+
+        attr_accessor :ExcludeIPRanges, :HoldApplicationUntilProxyStarts
+        
+        def initialize(excludeipranges=nil, holdapplicationuntilproxystarts=nil)
+          @ExcludeIPRanges = excludeipranges
+          @HoldApplicationUntilProxyStarts = holdapplicationuntilproxystarts
+        end
+
+        def deserialize(params)
+          @ExcludeIPRanges = params['ExcludeIPRanges']
+          @HoldApplicationUntilProxyStarts = params['HoldApplicationUntilProxyStarts']
+        end
+      end
+
       # Istio配置
       class IstioConfig < TencentCloud::Common::AbstractModel
         # @param OutboundTrafficPolicy: 外部流量策略
         # @type OutboundTrafficPolicy: String
         # @param Tracing: 调用链配置
         # @type Tracing: :class:`Tencentcloud::Tcm.v20210413.models.TracingConfig`
+        # @param DisablePolicyChecks: 禁用策略检查功能
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DisablePolicyChecks: Boolean
 
-        attr_accessor :OutboundTrafficPolicy, :Tracing
+        attr_accessor :OutboundTrafficPolicy, :Tracing, :DisablePolicyChecks
         
-        def initialize(outboundtrafficpolicy=nil, tracing=nil)
+        def initialize(outboundtrafficpolicy=nil, tracing=nil, disablepolicychecks=nil)
           @OutboundTrafficPolicy = outboundtrafficpolicy
           @Tracing = tracing
+          @DisablePolicyChecks = disablepolicychecks
         end
 
         def deserialize(params)
@@ -609,6 +635,7 @@ module TencentCloud
             @Tracing = TracingConfig.new
             @Tracing.deserialize(params['Tracing'])
           end
+          @DisablePolicyChecks = params['DisablePolicyChecks']
         end
       end
 
@@ -777,13 +804,17 @@ module TencentCloud
         # @type AccessLog: :class:`Tencentcloud::Tcm.v20210413.models.AccessLogConfig`
         # @param Prometheus: Prometheus配置
         # @type Prometheus: :class:`Tencentcloud::Tcm.v20210413.models.PrometheusConfig`
+        # @param Inject: 自动注入配置
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Inject: :class:`Tencentcloud::Tcm.v20210413.models.InjectConfig`
 
-        attr_accessor :Istio, :AccessLog, :Prometheus
+        attr_accessor :Istio, :AccessLog, :Prometheus, :Inject
         
-        def initialize(istio=nil, accesslog=nil, prometheus=nil)
+        def initialize(istio=nil, accesslog=nil, prometheus=nil, inject=nil)
           @Istio = istio
           @AccessLog = accesslog
           @Prometheus = prometheus
+          @Inject = inject
         end
 
         def deserialize(params)
@@ -798,6 +829,10 @@ module TencentCloud
           unless params['Prometheus'].nil?
             @Prometheus = PrometheusConfig.new
             @Prometheus.deserialize(params['Prometheus'])
+          end
+          unless params['Inject'].nil?
+            @Inject = InjectConfig.new
+            @Inject.deserialize(params['Inject'])
           end
         end
       end

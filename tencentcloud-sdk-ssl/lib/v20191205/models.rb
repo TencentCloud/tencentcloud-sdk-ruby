@@ -742,7 +742,7 @@ module TencentCloud
         # @param StatusName: 状态描述。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StatusName: String
-        # @param SubjectAltName: 证书包含的多个域名（包含主域名）
+        # @param SubjectAltName: 证书包含的多个域名（不包含主域名，主域名使用Domain字段）
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SubjectAltName: Array
         # @param IsVip: 是否为 VIP 客户。

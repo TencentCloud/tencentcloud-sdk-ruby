@@ -214,6 +214,57 @@ module TencentCloud
         end
       end
 
+      # AddEnterpriseSecurityGroupRules请求参数结构体
+      class AddEnterpriseSecurityGroupRulesRequest < TencentCloud::Common::AbstractModel
+        # @param Data: 创建规则数据
+        # @type Data: Array
+        # @param Type: 添加类型，0：添加到最后，1：添加到最前；2：中间插入；默认0添加到最后
+        # @type Type: Integer
+        # @param ClientToken: 保证请求幂等性。从您的客户端生成一个参数值，确保不同请求间该参数值唯一。ClientToken只支持ASCII字符，且不能超过64个字符。
+        # @type ClientToken: String
+
+        attr_accessor :Data, :Type, :ClientToken
+        
+        def initialize(data=nil, type=nil, clienttoken=nil)
+          @Data = data
+          @Type = type
+          @ClientToken = clienttoken
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = []
+            params['Data'].each do |i|
+              securitygrouprule_tmp = SecurityGroupRule.new
+              securitygrouprule_tmp.deserialize(i)
+              @Data << securitygrouprule_tmp
+            end
+          end
+          @Type = params['Type']
+          @ClientToken = params['ClientToken']
+        end
+      end
+
+      # AddEnterpriseSecurityGroupRules返回参数结构体
+      class AddEnterpriseSecurityGroupRulesResponse < TencentCloud::Common::AbstractModel
+        # @param Status: 状态值，0：添加成功，非0：添加失败
+        # @type Status: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Status, :RequestId
+        
+        def initialize(status=nil, requestid=nil)
+          @Status = status
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Status = params['Status']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # AssetZone
       class AssetZone < TencentCloud::Common::AbstractModel
         # @param Zone: 地域
@@ -1421,6 +1472,120 @@ module TencentCloud
               @NatFwEipList << natfweipsinfo_tmp
             end
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeEnterpriseSecurityGroupRule请求参数结构体
+      class DescribeEnterpriseSecurityGroupRuleRequest < TencentCloud::Common::AbstractModel
+        # @param PageNo: 分页查询时，显示的当前页的页码。
+
+        # 默认值为1。
+        # @type PageNo: String
+        # @param PageSize: 分页查询时，显示的每页数据的最大条数。
+
+        # 可设置值最大为50。
+        # @type PageSize: String
+        # @param SourceContent: 访问源示例：
+        # net：IP/CIDR(192.168.0.2)
+        # template：参数模板(ipm-dyodhpby)
+        # instance：资产实例(ins-123456)
+        # resourcegroup：资产分组(/全部分组/分组1/子分组1)
+        # tag：资源标签({"Key":"标签key值","Value":"标签Value值"})
+        # region：地域(ap-gaungzhou)
+        # 支持通配
+        # @type SourceContent: String
+        # @param DestContent: 访问目的示例：
+        # net：IP/CIDR(192.168.0.2)
+        # template：参数模板(ipm-dyodhpby)
+        # instance：资产实例(ins-123456)
+        # resourcegroup：资产分组(/全部分组/分组1/子分组1)
+        # tag：资源标签({"Key":"标签key值","Value":"标签Value值"})
+        # region：地域(ap-gaungzhou)
+        # 支持通配
+        # @type DestContent: String
+        # @param Description: 规则描述，支持通配
+        # @type Description: String
+        # @param RuleAction: 访问控制策略中设置的流量通过云防火墙的方式。取值：
+        # accept：放行
+        # drop：拒绝
+        # @type RuleAction: String
+        # @param Enable: 是否启用规则，默认为启用，取值：
+        # true为启用，false为不启用
+        # @type Enable: String
+        # @param Port: 访问控制策略的端口。取值：
+        # -1/-1：全部端口
+        # 80：80端口
+        # @type Port: String
+        # @param Protocol: 协议；TCP/UDP/ICMP/ANY
+        # @type Protocol: String
+        # @param ServiceTemplateId: 端口协议类型参数模板id；协议端口模板id；与Protocol,Port互斥
+        # @type ServiceTemplateId: String
+
+        attr_accessor :PageNo, :PageSize, :SourceContent, :DestContent, :Description, :RuleAction, :Enable, :Port, :Protocol, :ServiceTemplateId
+        
+        def initialize(pageno=nil, pagesize=nil, sourcecontent=nil, destcontent=nil, description=nil, ruleaction=nil, enable=nil, port=nil, protocol=nil, servicetemplateid=nil)
+          @PageNo = pageno
+          @PageSize = pagesize
+          @SourceContent = sourcecontent
+          @DestContent = destcontent
+          @Description = description
+          @RuleAction = ruleaction
+          @Enable = enable
+          @Port = port
+          @Protocol = protocol
+          @ServiceTemplateId = servicetemplateid
+        end
+
+        def deserialize(params)
+          @PageNo = params['PageNo']
+          @PageSize = params['PageSize']
+          @SourceContent = params['SourceContent']
+          @DestContent = params['DestContent']
+          @Description = params['Description']
+          @RuleAction = params['RuleAction']
+          @Enable = params['Enable']
+          @Port = params['Port']
+          @Protocol = params['Protocol']
+          @ServiceTemplateId = params['ServiceTemplateId']
+        end
+      end
+
+      # DescribeEnterpriseSecurityGroupRule返回参数结构体
+      class DescribeEnterpriseSecurityGroupRuleResponse < TencentCloud::Common::AbstractModel
+        # @param PageNo: 分页查询时，显示的当前页的页码。
+        # @type PageNo: String
+        # @param PageSize: 分页查询时，显示的每页数据的最大条数。
+        # @type PageSize: String
+        # @param Rules: 访问控制策略列表
+        # @type Rules: Array
+        # @param TotalCount: 访问控制策略的总数量。
+        # @type TotalCount: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :PageNo, :PageSize, :Rules, :TotalCount, :RequestId
+        
+        def initialize(pageno=nil, pagesize=nil, rules=nil, totalcount=nil, requestid=nil)
+          @PageNo = pageno
+          @PageSize = pagesize
+          @Rules = rules
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @PageNo = params['PageNo']
+          @PageSize = params['PageSize']
+          unless params['Rules'].nil?
+            @Rules = []
+            params['Rules'].each do |i|
+              securitygrouprule_tmp = SecurityGroupRule.new
+              securitygrouprule_tmp.deserialize(i)
+              @Rules << securitygrouprule_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
           @RequestId = params['RequestId']
         end
       end
@@ -3923,6 +4088,51 @@ module TencentCloud
         end
       end
 
+      # RemoveEnterpriseSecurityGroupRule请求参数结构体
+      class RemoveEnterpriseSecurityGroupRuleRequest < TencentCloud::Common::AbstractModel
+        # @param RuleUuid: 规则的uuid，可通过查询规则列表获取
+        # @type RuleUuid: Integer
+        # @param RemoveType: 删除类型，0是单条删除，RuleUuid填写删除规则id，1为全部删除，RuleUuid填0即可
+        # @type RemoveType: Integer
+
+        attr_accessor :RuleUuid, :RemoveType
+        
+        def initialize(ruleuuid=nil, removetype=nil)
+          @RuleUuid = ruleuuid
+          @RemoveType = removetype
+        end
+
+        def deserialize(params)
+          @RuleUuid = params['RuleUuid']
+          @RemoveType = params['RemoveType']
+        end
+      end
+
+      # RemoveEnterpriseSecurityGroupRule返回参数结构体
+      class RemoveEnterpriseSecurityGroupRuleResponse < TencentCloud::Common::AbstractModel
+        # @param RuleUuid: 删除成功后返回被删除策略的uuid
+        # @type RuleUuid: Integer
+        # @param Status: 0代表成功，-1代表失败
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RuleUuid, :Status, :RequestId
+        
+        def initialize(ruleuuid=nil, status=nil, requestid=nil)
+          @RuleUuid = ruleuuid
+          @Status = status
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RuleUuid = params['RuleUuid']
+          @Status = params['Status']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 规则输入对象
       class RuleInfoData < TencentCloud::Common::AbstractModel
         # @param OrderIndex: 执行顺序
@@ -4419,6 +4629,77 @@ module TencentCloud
         def deserialize(params)
           @OrderIndex = params['OrderIndex']
           @NewOrderIndex = params['NewOrderIndex']
+        end
+      end
+
+      # 安全组规则
+      class SecurityGroupRule < TencentCloud::Common::AbstractModel
+        # @param SourceContent: 访问源示例：
+        # net：IP/CIDR(192.168.0.2)
+        # template：参数模板(ipm-dyodhpby)
+        # instance：资产实例(ins-123456)
+        # resourcegroup：资产分组(/全部分组/分组1/子分组1)
+        # tag：资源标签({"Key":"标签key值","Value":"标签Value值"})
+        # region：地域(ap-gaungzhou)
+        # @type SourceContent: String
+        # @param SourceType: 访问源类型，类型可以为以下6种：net|template|instance|resourcegroup|tag|region
+        # @type SourceType: String
+        # @param DestContent: 访问目的示例：
+        # net：IP/CIDR(192.168.0.2)
+        # template：参数模板(ipm-dyodhpby)
+        # instance：资产实例(ins-123456)
+        # resourcegroup：资产分组(/全部分组/分组1/子分组1)
+        # tag：资源标签({"Key":"标签key值","Value":"标签Value值"})
+        # region：地域(ap-gaungzhou)
+        # @type DestContent: String
+        # @param DestType: 访问目的类型，类型可以为以下6种：net|template|instance|resourcegroup|tag|region
+        # @type DestType: String
+        # @param RuleAction: 访问控制策略中设置的流量通过云防火墙的方式。取值：
+        # accept：放行
+        # drop：拒绝
+        # @type RuleAction: String
+        # @param Description: 描述
+        # @type Description: String
+        # @param OrderIndex: 规则顺序，-1表示最低，1表示最高
+        # @type OrderIndex: String
+        # @param Protocol: 协议；TCP/UDP/ICMP/ANY
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Protocol: String
+        # @param Port: 访问控制策略的端口。取值：
+        # -1/-1：全部端口
+        # 80：80端口
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Port: String
+        # @param ServiceTemplateId: 端口协议类型参数模板id；协议端口模板id；与Protocol,Port互斥
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ServiceTemplateId: String
+
+        attr_accessor :SourceContent, :SourceType, :DestContent, :DestType, :RuleAction, :Description, :OrderIndex, :Protocol, :Port, :ServiceTemplateId
+        
+        def initialize(sourcecontent=nil, sourcetype=nil, destcontent=nil, desttype=nil, ruleaction=nil, description=nil, orderindex=nil, protocol=nil, port=nil, servicetemplateid=nil)
+          @SourceContent = sourcecontent
+          @SourceType = sourcetype
+          @DestContent = destcontent
+          @DestType = desttype
+          @RuleAction = ruleaction
+          @Description = description
+          @OrderIndex = orderindex
+          @Protocol = protocol
+          @Port = port
+          @ServiceTemplateId = servicetemplateid
+        end
+
+        def deserialize(params)
+          @SourceContent = params['SourceContent']
+          @SourceType = params['SourceType']
+          @DestContent = params['DestContent']
+          @DestType = params['DestType']
+          @RuleAction = params['RuleAction']
+          @Description = params['Description']
+          @OrderIndex = params['OrderIndex']
+          @Protocol = params['Protocol']
+          @Port = params['Port']
+          @ServiceTemplateId = params['ServiceTemplateId']
         end
       end
 
