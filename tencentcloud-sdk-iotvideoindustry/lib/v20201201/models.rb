@@ -2167,10 +2167,19 @@ module TencentCloud
         # @param RecordStatus: 本录制片段当前的录制状态
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RecordStatus: Integer
+        # @param SceneId: 场景ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SceneId: Integer
+        # @param WarnId: 告警ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type WarnId: Integer
+        # @param RecordId: 录制id，NVR下属设备有效
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RecordId: String
 
-        attr_accessor :RecordTaskId, :RecordPlanId, :StartTime, :EndTime, :EventId, :VideoUrl, :RecordStatus
+        attr_accessor :RecordTaskId, :RecordPlanId, :StartTime, :EndTime, :EventId, :VideoUrl, :RecordStatus, :SceneId, :WarnId, :RecordId
         
-        def initialize(recordtaskid=nil, recordplanid=nil, starttime=nil, endtime=nil, eventid=nil, videourl=nil, recordstatus=nil)
+        def initialize(recordtaskid=nil, recordplanid=nil, starttime=nil, endtime=nil, eventid=nil, videourl=nil, recordstatus=nil, sceneid=nil, warnid=nil, recordid=nil)
           @RecordTaskId = recordtaskid
           @RecordPlanId = recordplanid
           @StartTime = starttime
@@ -2178,6 +2187,9 @@ module TencentCloud
           @EventId = eventid
           @VideoUrl = videourl
           @RecordStatus = recordstatus
+          @SceneId = sceneid
+          @WarnId = warnid
+          @RecordId = recordid
         end
 
         def deserialize(params)
@@ -2188,6 +2200,9 @@ module TencentCloud
           @EventId = params['EventId']
           @VideoUrl = params['VideoUrl']
           @RecordStatus = params['RecordStatus']
+          @SceneId = params['SceneId']
+          @WarnId = params['WarnId']
+          @RecordId = params['RecordId']
         end
       end
 

@@ -1217,15 +1217,20 @@ module TencentCloud
         # @param FilterType: whitelist：白名单，表示对除了 FileExtensions 列表之外的所有类型进行鉴权
         # blacklist：黑名单，表示仅对 FileExtensions 中的类型进行鉴权
         # @type FilterType: String
+        # @param BackupSecretKey: 计算签名的备用密钥
+        # 仅允许大小写字母与数字，长度 6~32 位
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BackupSecretKey: String
 
-        attr_accessor :SecretKey, :SignParam, :ExpireTime, :FileExtensions, :FilterType
+        attr_accessor :SecretKey, :SignParam, :ExpireTime, :FileExtensions, :FilterType, :BackupSecretKey
         
-        def initialize(secretkey=nil, signparam=nil, expiretime=nil, fileextensions=nil, filtertype=nil)
+        def initialize(secretkey=nil, signparam=nil, expiretime=nil, fileextensions=nil, filtertype=nil, backupsecretkey=nil)
           @SecretKey = secretkey
           @SignParam = signparam
           @ExpireTime = expiretime
           @FileExtensions = fileextensions
           @FilterType = filtertype
+          @BackupSecretKey = backupsecretkey
         end
 
         def deserialize(params)
@@ -1234,6 +1239,7 @@ module TencentCloud
           @ExpireTime = params['ExpireTime']
           @FileExtensions = params['FileExtensions']
           @FilterType = params['FilterType']
+          @BackupSecretKey = params['BackupSecretKey']
         end
       end
 
@@ -1252,14 +1258,19 @@ module TencentCloud
         # @param FilterType: whitelist：白名单，表示对除了 FileExtensions 列表之外的所有类型进行鉴权
         # blacklist：黑名单，表示仅对 FileExtensions 中的类型进行鉴权
         # @type FilterType: String
+        # @param BackupSecretKey: 计算签名的备用密钥
+        # 仅允许大小写字母与数字，长度 6~32 位
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BackupSecretKey: String
 
-        attr_accessor :SecretKey, :ExpireTime, :FileExtensions, :FilterType
+        attr_accessor :SecretKey, :ExpireTime, :FileExtensions, :FilterType, :BackupSecretKey
         
-        def initialize(secretkey=nil, expiretime=nil, fileextensions=nil, filtertype=nil)
+        def initialize(secretkey=nil, expiretime=nil, fileextensions=nil, filtertype=nil, backupsecretkey=nil)
           @SecretKey = secretkey
           @ExpireTime = expiretime
           @FileExtensions = fileextensions
           @FilterType = filtertype
+          @BackupSecretKey = backupsecretkey
         end
 
         def deserialize(params)
@@ -1267,6 +1278,7 @@ module TencentCloud
           @ExpireTime = params['ExpireTime']
           @FileExtensions = params['FileExtensions']
           @FilterType = params['FilterType']
+          @BackupSecretKey = params['BackupSecretKey']
         end
       end
 
@@ -1293,15 +1305,20 @@ module TencentCloud
         # hex：十六进制
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TimeFormat: String
+        # @param BackupSecretKey: 计算签名的备用密钥
+        # 仅允许大小写字母与数字，长度 6~32 位
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BackupSecretKey: String
 
-        attr_accessor :SecretKey, :ExpireTime, :FileExtensions, :FilterType, :TimeFormat
+        attr_accessor :SecretKey, :ExpireTime, :FileExtensions, :FilterType, :TimeFormat, :BackupSecretKey
         
-        def initialize(secretkey=nil, expiretime=nil, fileextensions=nil, filtertype=nil, timeformat=nil)
+        def initialize(secretkey=nil, expiretime=nil, fileextensions=nil, filtertype=nil, timeformat=nil, backupsecretkey=nil)
           @SecretKey = secretkey
           @ExpireTime = expiretime
           @FileExtensions = fileextensions
           @FilterType = filtertype
           @TimeFormat = timeformat
+          @BackupSecretKey = backupsecretkey
         end
 
         def deserialize(params)
@@ -1310,6 +1327,7 @@ module TencentCloud
           @FileExtensions = params['FileExtensions']
           @FilterType = params['FilterType']
           @TimeFormat = params['TimeFormat']
+          @BackupSecretKey = params['BackupSecretKey']
         end
       end
 
@@ -1341,10 +1359,14 @@ module TencentCloud
         # dec：十进制
         # hex：十六进制
         # @type TimeFormat: String
+        # @param BackupSecretKey: 计算签名的备用密钥
+        # 仅允许大小写字母与数字，长度 6~32 位
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BackupSecretKey: String
 
-        attr_accessor :SecretKey, :ExpireTime, :FileExtensions, :FilterType, :SignParam, :TimeParam, :TimeFormat
+        attr_accessor :SecretKey, :ExpireTime, :FileExtensions, :FilterType, :SignParam, :TimeParam, :TimeFormat, :BackupSecretKey
         
-        def initialize(secretkey=nil, expiretime=nil, fileextensions=nil, filtertype=nil, signparam=nil, timeparam=nil, timeformat=nil)
+        def initialize(secretkey=nil, expiretime=nil, fileextensions=nil, filtertype=nil, signparam=nil, timeparam=nil, timeformat=nil, backupsecretkey=nil)
           @SecretKey = secretkey
           @ExpireTime = expiretime
           @FileExtensions = fileextensions
@@ -1352,6 +1374,7 @@ module TencentCloud
           @SignParam = signparam
           @TimeParam = timeparam
           @TimeFormat = timeformat
+          @BackupSecretKey = backupsecretkey
         end
 
         def deserialize(params)
@@ -1362,6 +1385,7 @@ module TencentCloud
           @SignParam = params['SignParam']
           @TimeParam = params['TimeParam']
           @TimeFormat = params['TimeFormat']
+          @BackupSecretKey = params['BackupSecretKey']
         end
       end
 
@@ -5966,10 +5990,13 @@ module TencentCloud
         # @param RemoteAuthentication: 远程鉴权配置
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RemoteAuthentication: :class:`Tencentcloud::Cdn.v20180606.models.RemoteAuthentication`
+        # @param ShareCname: 共享CNAME配置（白名单功能）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ShareCname: :class:`Tencentcloud::Cdn.v20180606.models.ShareCname`
 
-        attr_accessor :ResourceId, :AppId, :Domain, :Cname, :Status, :ProjectId, :ServiceType, :CreateTime, :UpdateTime, :Origin, :IpFilter, :IpFreqLimit, :StatusCodeCache, :Compression, :BandwidthAlert, :RangeOriginPull, :FollowRedirect, :ErrorPage, :RequestHeader, :ResponseHeader, :DownstreamCapping, :CacheKey, :ResponseHeaderCache, :VideoSeek, :Cache, :OriginPullOptimization, :Https, :Authentication, :Seo, :Disable, :ForceRedirect, :Referer, :MaxAge, :Ipv6, :Compatibility, :SpecificConfig, :Area, :Readonly, :OriginPullTimeout, :AwsPrivateAccess, :SecurityConfig, :ImageOptimization, :UserAgentFilter, :AccessControl, :Advance, :UrlRedirect, :AccessPort, :Tag, :AdvancedAuthentication, :OriginAuthentication, :Ipv6Access, :AdvanceSet, :OfflineCache, :OriginCombine, :PostMaxSize, :Quic, :OssPrivateAccess, :WebSocket, :RemoteAuthentication
+        attr_accessor :ResourceId, :AppId, :Domain, :Cname, :Status, :ProjectId, :ServiceType, :CreateTime, :UpdateTime, :Origin, :IpFilter, :IpFreqLimit, :StatusCodeCache, :Compression, :BandwidthAlert, :RangeOriginPull, :FollowRedirect, :ErrorPage, :RequestHeader, :ResponseHeader, :DownstreamCapping, :CacheKey, :ResponseHeaderCache, :VideoSeek, :Cache, :OriginPullOptimization, :Https, :Authentication, :Seo, :Disable, :ForceRedirect, :Referer, :MaxAge, :Ipv6, :Compatibility, :SpecificConfig, :Area, :Readonly, :OriginPullTimeout, :AwsPrivateAccess, :SecurityConfig, :ImageOptimization, :UserAgentFilter, :AccessControl, :Advance, :UrlRedirect, :AccessPort, :Tag, :AdvancedAuthentication, :OriginAuthentication, :Ipv6Access, :AdvanceSet, :OfflineCache, :OriginCombine, :PostMaxSize, :Quic, :OssPrivateAccess, :WebSocket, :RemoteAuthentication, :ShareCname
         
-        def initialize(resourceid=nil, appid=nil, domain=nil, cname=nil, status=nil, projectid=nil, servicetype=nil, createtime=nil, updatetime=nil, origin=nil, ipfilter=nil, ipfreqlimit=nil, statuscodecache=nil, compression=nil, bandwidthalert=nil, rangeoriginpull=nil, followredirect=nil, errorpage=nil, requestheader=nil, responseheader=nil, downstreamcapping=nil, cachekey=nil, responseheadercache=nil, videoseek=nil, cache=nil, originpulloptimization=nil, https=nil, authentication=nil, seo=nil, disable=nil, forceredirect=nil, referer=nil, maxage=nil, ipv6=nil, compatibility=nil, specificconfig=nil, area=nil, readonly=nil, originpulltimeout=nil, awsprivateaccess=nil, securityconfig=nil, imageoptimization=nil, useragentfilter=nil, accesscontrol=nil, advance=nil, urlredirect=nil, accessport=nil, tag=nil, advancedauthentication=nil, originauthentication=nil, ipv6access=nil, advanceset=nil, offlinecache=nil, origincombine=nil, postmaxsize=nil, quic=nil, ossprivateaccess=nil, websocket=nil, remoteauthentication=nil)
+        def initialize(resourceid=nil, appid=nil, domain=nil, cname=nil, status=nil, projectid=nil, servicetype=nil, createtime=nil, updatetime=nil, origin=nil, ipfilter=nil, ipfreqlimit=nil, statuscodecache=nil, compression=nil, bandwidthalert=nil, rangeoriginpull=nil, followredirect=nil, errorpage=nil, requestheader=nil, responseheader=nil, downstreamcapping=nil, cachekey=nil, responseheadercache=nil, videoseek=nil, cache=nil, originpulloptimization=nil, https=nil, authentication=nil, seo=nil, disable=nil, forceredirect=nil, referer=nil, maxage=nil, ipv6=nil, compatibility=nil, specificconfig=nil, area=nil, readonly=nil, originpulltimeout=nil, awsprivateaccess=nil, securityconfig=nil, imageoptimization=nil, useragentfilter=nil, accesscontrol=nil, advance=nil, urlredirect=nil, accessport=nil, tag=nil, advancedauthentication=nil, originauthentication=nil, ipv6access=nil, advanceset=nil, offlinecache=nil, origincombine=nil, postmaxsize=nil, quic=nil, ossprivateaccess=nil, websocket=nil, remoteauthentication=nil, sharecname=nil)
           @ResourceId = resourceid
           @AppId = appid
           @Domain = domain
@@ -6029,6 +6056,7 @@ module TencentCloud
           @OssPrivateAccess = ossprivateaccess
           @WebSocket = websocket
           @RemoteAuthentication = remoteauthentication
+          @ShareCname = sharecname
         end
 
         def deserialize(params)
@@ -6233,6 +6261,10 @@ module TencentCloud
           unless params['RemoteAuthentication'].nil?
             @RemoteAuthentication = RemoteAuthentication.new
             @RemoteAuthentication.deserialize(params['RemoteAuthentication'])
+          end
+          unless params['ShareCname'].nil?
+            @ShareCname = ShareCname.new
+            @ShareCname.deserialize(params['ShareCname'])
           end
         end
       end
@@ -11360,6 +11392,29 @@ module TencentCloud
         end
       end
 
+      # ShareCname配置
+      class ShareCname < TencentCloud::Common::AbstractModel
+        # @param Switch: ShareCname 配置开关, 开关为off时，域名使用默认CNAME，若需要使用共享CNAME，将开关置为on.
+
+        # * ShareCname 为内测功能,如需使用,请联系腾讯云工程师开白.
+        # @type Switch: String
+        # @param Cname: 设置共享CNAME.
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Cname: String
+
+        attr_accessor :Switch, :Cname
+        
+        def initialize(switch=nil, cname=nil)
+          @Switch = switch
+          @Cname = cname
+        end
+
+        def deserialize(params)
+          @Switch = params['Switch']
+          @Cname = params['Cname']
+        end
+      end
+
       # 缓存配置基础版本
       # 默认情况下所有文件缓存过期时间为 30 天
       # 默认情况下静态加速类型的域名 .php;.jsp;.asp;.aspx 不缓存
@@ -12114,10 +12169,12 @@ module TencentCloud
         # @type WebSocket: :class:`Tencentcloud::Cdn.v20180606.models.WebSocket`
         # @param RemoteAuthentication: 远程鉴权配置
         # @type RemoteAuthentication: :class:`Tencentcloud::Cdn.v20180606.models.RemoteAuthentication`
+        # @param ShareCname: 共享CNAME配置，白名单功能
+        # @type ShareCname: :class:`Tencentcloud::Cdn.v20180606.models.ShareCname`
 
-        attr_accessor :Domain, :ProjectId, :Origin, :IpFilter, :IpFreqLimit, :StatusCodeCache, :Compression, :BandwidthAlert, :RangeOriginPull, :FollowRedirect, :ErrorPage, :RequestHeader, :ResponseHeader, :DownstreamCapping, :CacheKey, :ResponseHeaderCache, :VideoSeek, :Cache, :OriginPullOptimization, :Https, :Authentication, :Seo, :ForceRedirect, :Referer, :MaxAge, :ServiceType, :SpecificConfig, :Area, :OriginPullTimeout, :AwsPrivateAccess, :UserAgentFilter, :AccessControl, :UrlRedirect, :AccessPort, :AdvancedAuthentication, :OriginAuthentication, :Ipv6Access, :OfflineCache, :OriginCombine, :Quic, :OssPrivateAccess, :WebSocket, :RemoteAuthentication
+        attr_accessor :Domain, :ProjectId, :Origin, :IpFilter, :IpFreqLimit, :StatusCodeCache, :Compression, :BandwidthAlert, :RangeOriginPull, :FollowRedirect, :ErrorPage, :RequestHeader, :ResponseHeader, :DownstreamCapping, :CacheKey, :ResponseHeaderCache, :VideoSeek, :Cache, :OriginPullOptimization, :Https, :Authentication, :Seo, :ForceRedirect, :Referer, :MaxAge, :ServiceType, :SpecificConfig, :Area, :OriginPullTimeout, :AwsPrivateAccess, :UserAgentFilter, :AccessControl, :UrlRedirect, :AccessPort, :AdvancedAuthentication, :OriginAuthentication, :Ipv6Access, :OfflineCache, :OriginCombine, :Quic, :OssPrivateAccess, :WebSocket, :RemoteAuthentication, :ShareCname
         
-        def initialize(domain=nil, projectid=nil, origin=nil, ipfilter=nil, ipfreqlimit=nil, statuscodecache=nil, compression=nil, bandwidthalert=nil, rangeoriginpull=nil, followredirect=nil, errorpage=nil, requestheader=nil, responseheader=nil, downstreamcapping=nil, cachekey=nil, responseheadercache=nil, videoseek=nil, cache=nil, originpulloptimization=nil, https=nil, authentication=nil, seo=nil, forceredirect=nil, referer=nil, maxage=nil, servicetype=nil, specificconfig=nil, area=nil, originpulltimeout=nil, awsprivateaccess=nil, useragentfilter=nil, accesscontrol=nil, urlredirect=nil, accessport=nil, advancedauthentication=nil, originauthentication=nil, ipv6access=nil, offlinecache=nil, origincombine=nil, quic=nil, ossprivateaccess=nil, websocket=nil, remoteauthentication=nil)
+        def initialize(domain=nil, projectid=nil, origin=nil, ipfilter=nil, ipfreqlimit=nil, statuscodecache=nil, compression=nil, bandwidthalert=nil, rangeoriginpull=nil, followredirect=nil, errorpage=nil, requestheader=nil, responseheader=nil, downstreamcapping=nil, cachekey=nil, responseheadercache=nil, videoseek=nil, cache=nil, originpulloptimization=nil, https=nil, authentication=nil, seo=nil, forceredirect=nil, referer=nil, maxage=nil, servicetype=nil, specificconfig=nil, area=nil, originpulltimeout=nil, awsprivateaccess=nil, useragentfilter=nil, accesscontrol=nil, urlredirect=nil, accessport=nil, advancedauthentication=nil, originauthentication=nil, ipv6access=nil, offlinecache=nil, origincombine=nil, quic=nil, ossprivateaccess=nil, websocket=nil, remoteauthentication=nil, sharecname=nil)
           @Domain = domain
           @ProjectId = projectid
           @Origin = origin
@@ -12161,6 +12218,7 @@ module TencentCloud
           @OssPrivateAccess = ossprivateaccess
           @WebSocket = websocket
           @RemoteAuthentication = remoteauthentication
+          @ShareCname = sharecname
         end
 
         def deserialize(params)
@@ -12320,6 +12378,10 @@ module TencentCloud
           unless params['RemoteAuthentication'].nil?
             @RemoteAuthentication = RemoteAuthentication.new
             @RemoteAuthentication.deserialize(params['RemoteAuthentication'])
+          end
+          unless params['ShareCname'].nil?
+            @ShareCname = ShareCname.new
+            @ShareCname.deserialize(params['ShareCname'])
           end
         end
       end

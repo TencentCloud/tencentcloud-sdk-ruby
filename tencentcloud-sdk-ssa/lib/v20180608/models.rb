@@ -44,6 +44,179 @@ module TencentCloud
         end
       end
 
+      # 告警列表响应数据
+      class AlertListData < TencentCloud::Common::AbstractModel
+        # @param Total: 总数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Total: Integer
+        # @param AlertList: 返回列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AlertList: Array
+
+        attr_accessor :Total, :AlertList
+        
+        def initialize(total=nil, alertlist=nil)
+          @Total = total
+          @AlertList = alertlist
+        end
+
+        def deserialize(params)
+          @Total = params['Total']
+          unless params['AlertList'].nil?
+            @AlertList = []
+            params['AlertList'].each do |i|
+              alerttype_tmp = AlertType.new
+              alerttype_tmp.deserialize(i)
+              @AlertList << alerttype_tmp
+            end
+          end
+        end
+      end
+
+      # 告警字段
+      class AlertType < TencentCloud::Common::AbstractModel
+        # @param AlertTime: 时间戳
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AlertTime: String
+        # @param AlertId: 唯一id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AlertId: String
+        # @param AssetId: 资产id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AssetId: String
+        # @param AssetPrivateIp: 内网ip
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AssetPrivateIp: Array
+        # @param AlertName: 名字
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AlertName: String
+        # @param Level: 告警级别  0:未知 1:低危 2:中危 3:高危 4:严重
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Level: Integer
+        # @param Type: 类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Type: String
+        # @param Source: 来源
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Source: String
+        # @param AttackChain: 攻击字段1
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AttackChain: String
+        # @param AttackId: 攻击字段2
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AttackId: String
+        # @param Concerns: 关注点
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Concerns: Array
+        # @param Action: 1：已防御，0,2：仅检测(0:告警类 1:拦截类 2:放行类 )
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Action: Integer
+        # @param AttackResult: 0/空：未知，1：未成功，2：成功
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AttackResult: Integer
+        # @param EventStatus: //调查状态  0/空：未启用，1：调查中，2：完成调查
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EventStatus: Integer
+        # @param EventId: //关联事件ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EventId: String
+        # @param Status: //处置状态  0：未关闭，1：已关闭
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: Integer
+        # @param AssetName: 资产名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AssetName: String
+        # @param ConcernMaliciousCount: 恶意实体
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ConcernMaliciousCount: Integer
+        # @param ConcernVictimCount: 受害者实体
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ConcernVictimCount: Integer
+        # @param VictimAssetType: 资产类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VictimAssetType: String
+        # @param SubType: 告警子类
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SubType: String
+        # @param AttackName: 攻击技术名字
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AttackName: String
+        # @param AssetPublicIp: 外网ip
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AssetPublicIp: Array
+        # @param AttackTactic: 攻击战术名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AttackTactic: String
+        # @param VictimAssetSub: 资产子网
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VictimAssetSub: String
+
+        attr_accessor :AlertTime, :AlertId, :AssetId, :AssetPrivateIp, :AlertName, :Level, :Type, :Source, :AttackChain, :AttackId, :Concerns, :Action, :AttackResult, :EventStatus, :EventId, :Status, :AssetName, :ConcernMaliciousCount, :ConcernVictimCount, :VictimAssetType, :SubType, :AttackName, :AssetPublicIp, :AttackTactic, :VictimAssetSub
+        
+        def initialize(alerttime=nil, alertid=nil, assetid=nil, assetprivateip=nil, alertname=nil, level=nil, type=nil, source=nil, attackchain=nil, attackid=nil, concerns=nil, action=nil, attackresult=nil, eventstatus=nil, eventid=nil, status=nil, assetname=nil, concernmaliciouscount=nil, concernvictimcount=nil, victimassettype=nil, subtype=nil, attackname=nil, assetpublicip=nil, attacktactic=nil, victimassetsub=nil)
+          @AlertTime = alerttime
+          @AlertId = alertid
+          @AssetId = assetid
+          @AssetPrivateIp = assetprivateip
+          @AlertName = alertname
+          @Level = level
+          @Type = type
+          @Source = source
+          @AttackChain = attackchain
+          @AttackId = attackid
+          @Concerns = concerns
+          @Action = action
+          @AttackResult = attackresult
+          @EventStatus = eventstatus
+          @EventId = eventid
+          @Status = status
+          @AssetName = assetname
+          @ConcernMaliciousCount = concernmaliciouscount
+          @ConcernVictimCount = concernvictimcount
+          @VictimAssetType = victimassettype
+          @SubType = subtype
+          @AttackName = attackname
+          @AssetPublicIp = assetpublicip
+          @AttackTactic = attacktactic
+          @VictimAssetSub = victimassetsub
+        end
+
+        def deserialize(params)
+          @AlertTime = params['AlertTime']
+          @AlertId = params['AlertId']
+          @AssetId = params['AssetId']
+          @AssetPrivateIp = params['AssetPrivateIp']
+          @AlertName = params['AlertName']
+          @Level = params['Level']
+          @Type = params['Type']
+          @Source = params['Source']
+          @AttackChain = params['AttackChain']
+          @AttackId = params['AttackId']
+          unless params['Concerns'].nil?
+            @Concerns = []
+            params['Concerns'].each do |i|
+              concerninfo_tmp = ConcernInfo.new
+              concerninfo_tmp.deserialize(i)
+              @Concerns << concerninfo_tmp
+            end
+          end
+          @Action = params['Action']
+          @AttackResult = params['AttackResult']
+          @EventStatus = params['EventStatus']
+          @EventId = params['EventId']
+          @Status = params['Status']
+          @AssetName = params['AssetName']
+          @ConcernMaliciousCount = params['ConcernMaliciousCount']
+          @ConcernVictimCount = params['ConcernVictimCount']
+          @VictimAssetType = params['VictimAssetType']
+          @SubType = params['SubType']
+          @AttackName = params['AttackName']
+          @AssetPublicIp = params['AssetPublicIp']
+          @AttackTactic = params['AttackTactic']
+          @VictimAssetSub = params['VictimAssetSub']
+        end
+      end
+
       # 资产类型
       class Asset < TencentCloud::Common::AbstractModel
         # @param AssetType: 资产类型
@@ -721,6 +894,38 @@ module TencentCloud
           @IsIgnore = params['IsIgnore']
           @RiskItem = params['RiskItem']
           @Title = params['Title']
+        end
+      end
+
+      # 关注点类型
+      class ConcernInfo < TencentCloud::Common::AbstractModel
+        # @param ConcernType: 关注点类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ConcernType: Integer
+        # @param EntityType: 实体类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EntityType: Integer
+        # @param Concern: 关注点
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Concern: String
+        # @param StatisticsCount: 最近数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StatisticsCount: Integer
+
+        attr_accessor :ConcernType, :EntityType, :Concern, :StatisticsCount
+        
+        def initialize(concerntype=nil, entitytype=nil, concern=nil, statisticscount=nil)
+          @ConcernType = concerntype
+          @EntityType = entitytype
+          @Concern = concern
+          @StatisticsCount = statisticscount
+        end
+
+        def deserialize(params)
+          @ConcernType = params['ConcernType']
+          @EntityType = params['EntityType']
+          @Concern = params['Concern']
+          @StatisticsCount = params['StatisticsCount']
         end
       end
 
@@ -1831,6 +2036,75 @@ module TencentCloud
         end
       end
 
+      # DescribeSocAlertList请求参数结构体
+      class DescribeSocAlertListRequest < TencentCloud::Common::AbstractModel
+        # @param PageSize: 页大小
+        # @type PageSize: Integer
+        # @param PageIndex: 页码
+        # @type PageIndex: Integer
+        # @param Scenes: 业务场景 参考ScenesType
+        # @type Scenes: Integer
+        # @param Filter: 查询参数
+        # @type Filter: Array
+        # @param Sorter: 排序参数
+        # @type Sorter: Array
+
+        attr_accessor :PageSize, :PageIndex, :Scenes, :Filter, :Sorter
+        
+        def initialize(pagesize=nil, pageindex=nil, scenes=nil, filter=nil, sorter=nil)
+          @PageSize = pagesize
+          @PageIndex = pageindex
+          @Scenes = scenes
+          @Filter = filter
+          @Sorter = sorter
+        end
+
+        def deserialize(params)
+          @PageSize = params['PageSize']
+          @PageIndex = params['PageIndex']
+          @Scenes = params['Scenes']
+          unless params['Filter'].nil?
+            @Filter = []
+            params['Filter'].each do |i|
+              queryfilter_tmp = QueryFilter.new
+              queryfilter_tmp.deserialize(i)
+              @Filter << queryfilter_tmp
+            end
+          end
+          unless params['Sorter'].nil?
+            @Sorter = []
+            params['Sorter'].each do |i|
+              querysort_tmp = QuerySort.new
+              querysort_tmp.deserialize(i)
+              @Sorter << querysort_tmp
+            end
+          end
+        end
+      end
+
+      # DescribeSocAlertList返回参数结构体
+      class DescribeSocAlertListResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 业务数据
+        # @type Data: :class:`Tencentcloud::Ssa.v20180608.models.AlertListData`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+        
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = AlertListData.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeSocCspmCompliance请求参数结构体
       class DescribeSocCspmComplianceRequest < TencentCloud::Common::AbstractModel
 
@@ -2070,6 +2344,50 @@ module TencentCloud
           @Name = params['Name']
           @Values = params['Values']
           @ExactMatch = params['ExactMatch']
+        end
+      end
+
+      # 查询参数
+      class QueryFilter < TencentCloud::Common::AbstractModel
+        # @param FilterKey: 查询的字段
+        # @type FilterKey: String
+        # @param FilterValue: 查询的值
+        # @type FilterValue: String
+        # @param FilterOperatorType: 匹配类型，枚举见pb
+        # @type FilterOperatorType: Integer
+
+        attr_accessor :FilterKey, :FilterValue, :FilterOperatorType
+        
+        def initialize(filterkey=nil, filtervalue=nil, filteroperatortype=nil)
+          @FilterKey = filterkey
+          @FilterValue = filtervalue
+          @FilterOperatorType = filteroperatortype
+        end
+
+        def deserialize(params)
+          @FilterKey = params['FilterKey']
+          @FilterValue = params['FilterValue']
+          @FilterOperatorType = params['FilterOperatorType']
+        end
+      end
+
+      # 排序的字段
+      class QuerySort < TencentCloud::Common::AbstractModel
+        # @param SortKey: 排序字段
+        # @type SortKey: String
+        # @param SortType: 顺序，1升序2降序
+        # @type SortType: Integer
+
+        attr_accessor :SortKey, :SortType
+        
+        def initialize(sortkey=nil, sorttype=nil)
+          @SortKey = sortkey
+          @SortType = sorttype
+        end
+
+        def deserialize(params)
+          @SortKey = params['SortKey']
+          @SortType = params['SortType']
         end
       end
 

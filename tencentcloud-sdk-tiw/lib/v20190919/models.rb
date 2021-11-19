@@ -1792,7 +1792,9 @@ module TencentCloud
       class StartWhiteboardPushRequest < TencentCloud::Common::AbstractModel
         # @param SdkAppId: 客户的SdkAppId
         # @type SdkAppId: Integer
-        # @param RoomId: 需要推流白板的房间号，取值范围: (1, 4294967295)
+        # @param RoomId: 需要推流的白板房间号，取值范围: (1, 4294967295)。
+
+        # 在没有指定TRTCRoomId和TRTCRoomIdStr的情况下，默认会以RoomId作为白板流进行推流的TRTC房间号。
         # @type RoomId: Integer
         # @param PushUserId: 用于白板推流服务进房进行推流的用户ID，最大长度不能大于60个字节，该ID必须是一个单独的未在SDK中使用的ID，白板推流服务使用这个用户ID进入房间进行白板音视频推流，若该ID和SDK中使用的ID重复，会导致SDK和白板推流服务互踢，影响正常推流。
         # @type PushUserId: String
@@ -1858,10 +1860,24 @@ module TencentCloud
         # @type UserDefinedStreamId: String
         # @param ExtraData: 内部参数，不需要关注此参数
         # @type ExtraData: String
+        # @param TRTCRoomId: **内部体验字段，若需要体验可以提工单申请开通体验**
 
-        attr_accessor :SdkAppId, :RoomId, :PushUserId, :PushUserSig, :Whiteboard, :AutoStopTimeout, :AutoManageBackup, :Backup, :PrivateMapKey, :VideoFPS, :VideoBitrate, :AutoRecord, :UserDefinedRecordId, :AutoPublish, :UserDefinedStreamId, :ExtraData
+        # TRTC数字类型房间号，取值范围: (1, 4294967295)。
+
+        # 在同时指定了RoomId与TRTCRoomId的情况下，优先使用TRTCRoomId作为白板流进行推流的TRTC房间号。
+
+        # 当指定了TRTCRoomIdStr的情况下，此字段将被忽略。
+        # @type TRTCRoomId: Integer
+        # @param TRTCRoomIdStr: **内部体验字段，若需要体验可以提工单申请开通体验**
+
+        # TRTC字符串类型房间号。
+
+        # 在指定了TRTCRoomIdStr的情况下，会优先使用TRTCRoomIdStr作为白板流进行推流的TRTC房间号。
+        # @type TRTCRoomIdStr: String
+
+        attr_accessor :SdkAppId, :RoomId, :PushUserId, :PushUserSig, :Whiteboard, :AutoStopTimeout, :AutoManageBackup, :Backup, :PrivateMapKey, :VideoFPS, :VideoBitrate, :AutoRecord, :UserDefinedRecordId, :AutoPublish, :UserDefinedStreamId, :ExtraData, :TRTCRoomId, :TRTCRoomIdStr
         
-        def initialize(sdkappid=nil, roomid=nil, pushuserid=nil, pushusersig=nil, whiteboard=nil, autostoptimeout=nil, automanagebackup=nil, backup=nil, privatemapkey=nil, videofps=nil, videobitrate=nil, autorecord=nil, userdefinedrecordid=nil, autopublish=nil, userdefinedstreamid=nil, extradata=nil)
+        def initialize(sdkappid=nil, roomid=nil, pushuserid=nil, pushusersig=nil, whiteboard=nil, autostoptimeout=nil, automanagebackup=nil, backup=nil, privatemapkey=nil, videofps=nil, videobitrate=nil, autorecord=nil, userdefinedrecordid=nil, autopublish=nil, userdefinedstreamid=nil, extradata=nil, trtcroomid=nil, trtcroomidstr=nil)
           @SdkAppId = sdkappid
           @RoomId = roomid
           @PushUserId = pushuserid
@@ -1878,6 +1894,8 @@ module TencentCloud
           @AutoPublish = autopublish
           @UserDefinedStreamId = userdefinedstreamid
           @ExtraData = extradata
+          @TRTCRoomId = trtcroomid
+          @TRTCRoomIdStr = trtcroomidstr
         end
 
         def deserialize(params)
@@ -1903,6 +1921,8 @@ module TencentCloud
           @AutoPublish = params['AutoPublish']
           @UserDefinedStreamId = params['UserDefinedStreamId']
           @ExtraData = params['ExtraData']
+          @TRTCRoomId = params['TRTCRoomId']
+          @TRTCRoomIdStr = params['TRTCRoomIdStr']
         end
       end
 

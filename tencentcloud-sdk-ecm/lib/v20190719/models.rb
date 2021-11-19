@@ -3811,6 +3811,67 @@ module TencentCloud
         end
       end
 
+      # DescribePriceRunInstance请求参数结构体
+      class DescribePriceRunInstanceRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceType: 实例的机型信息
+        # @type InstanceType: String
+        # @param SystemDisk: 系统盘信息
+        # @type SystemDisk: :class:`Tencentcloud::Ecm.v20190719.models.SystemDisk`
+        # @param InstanceCount: 实例个数
+        # @type InstanceCount: Integer
+        # @param DataDisk: 数据盘信息
+        # @type DataDisk: Array
+
+        attr_accessor :InstanceType, :SystemDisk, :InstanceCount, :DataDisk
+        
+        def initialize(instancetype=nil, systemdisk=nil, instancecount=nil, datadisk=nil)
+          @InstanceType = instancetype
+          @SystemDisk = systemdisk
+          @InstanceCount = instancecount
+          @DataDisk = datadisk
+        end
+
+        def deserialize(params)
+          @InstanceType = params['InstanceType']
+          unless params['SystemDisk'].nil?
+            @SystemDisk = SystemDisk.new
+            @SystemDisk.deserialize(params['SystemDisk'])
+          end
+          @InstanceCount = params['InstanceCount']
+          unless params['DataDisk'].nil?
+            @DataDisk = []
+            params['DataDisk'].each do |i|
+              datadisk_tmp = DataDisk.new
+              datadisk_tmp.deserialize(i)
+              @DataDisk << datadisk_tmp
+            end
+          end
+        end
+      end
+
+      # DescribePriceRunInstance返回参数结构体
+      class DescribePriceRunInstanceResponse < TencentCloud::Common::AbstractModel
+        # @param InstancePrice: 实例价格信息
+        # @type InstancePrice: :class:`Tencentcloud::Ecm.v20190719.models.InstancesPrice`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :InstancePrice, :RequestId
+        
+        def initialize(instanceprice=nil, requestid=nil)
+          @InstancePrice = instanceprice
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['InstancePrice'].nil?
+            @InstancePrice = InstancesPrice.new
+            @InstancePrice.deserialize(params['InstancePrice'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeRouteConflicts请求参数结构体
       class DescribeRouteConflictsRequest < TencentCloud::Common::AbstractModel
         # @param RouteTableId: 路由表实例ID，例如：rtb-azd4dt1c。
@@ -5935,6 +5996,39 @@ module TencentCloud
         end
       end
 
+      # 描述实例的价格相关
+      class InstancePricesPartDetail < TencentCloud::Common::AbstractModel
+        # @param CpuPrice: cpu的价格信息
+        # @type CpuPrice: :class:`Tencentcloud::Ecm.v20190719.models.PriceDetail`
+        # @param MemPrice: 内存价格信息
+        # @type MemPrice: :class:`Tencentcloud::Ecm.v20190719.models.PriceDetail`
+        # @param DisksPrice: 磁盘价格信息
+        # @type DisksPrice: :class:`Tencentcloud::Ecm.v20190719.models.PriceDetail`
+
+        attr_accessor :CpuPrice, :MemPrice, :DisksPrice
+        
+        def initialize(cpuprice=nil, memprice=nil, disksprice=nil)
+          @CpuPrice = cpuprice
+          @MemPrice = memprice
+          @DisksPrice = disksprice
+        end
+
+        def deserialize(params)
+          unless params['CpuPrice'].nil?
+            @CpuPrice = PriceDetail.new
+            @CpuPrice.deserialize(params['CpuPrice'])
+          end
+          unless params['MemPrice'].nil?
+            @MemPrice = PriceDetail.new
+            @MemPrice.deserialize(params['MemPrice'])
+          end
+          unless params['DisksPrice'].nil?
+            @DisksPrice = PriceDetail.new
+            @DisksPrice.deserialize(params['DisksPrice'])
+          end
+        end
+      end
+
       # 用于描述实例的统计信息
       class InstanceStatistic < TencentCloud::Common::AbstractModel
         # @param InstanceType: 实例的类型
@@ -6013,6 +6107,37 @@ module TencentCloud
           @ExtInfo = params['ExtInfo']
           @Vgpu = params['Vgpu']
           @GpuModelName = params['GpuModelName']
+        end
+      end
+
+      # 实例价格信息
+      class InstancesPrice < TencentCloud::Common::AbstractModel
+        # @param InstancePricesPartDetail: 分部描述实例子维度的价格
+        # @type InstancePricesPartDetail: :class:`Tencentcloud::Ecm.v20190719.models.InstancePricesPartDetail`
+        # @param Discount: 实例总价折扣
+        # @type Discount: Integer
+        # @param DiscountPrice: 折扣后价格
+        # @type DiscountPrice: Integer
+        # @param OriginalPrice: 折扣前价格，原始总价
+        # @type OriginalPrice: Integer
+
+        attr_accessor :InstancePricesPartDetail, :Discount, :DiscountPrice, :OriginalPrice
+        
+        def initialize(instancepricespartdetail=nil, discount=nil, discountprice=nil, originalprice=nil)
+          @InstancePricesPartDetail = instancepricespartdetail
+          @Discount = discount
+          @DiscountPrice = discountprice
+          @OriginalPrice = originalprice
+        end
+
+        def deserialize(params)
+          unless params['InstancePricesPartDetail'].nil?
+            @InstancePricesPartDetail = InstancePricesPartDetail.new
+            @InstancePricesPartDetail.deserialize(params['InstancePricesPartDetail'])
+          end
+          @Discount = params['Discount']
+          @DiscountPrice = params['DiscountPrice']
+          @OriginalPrice = params['OriginalPrice']
         end
       end
 
@@ -8479,6 +8604,30 @@ module TencentCloud
             @RegionInfo = RegionInfo.new
             @RegionInfo.deserialize(params['RegionInfo'])
           end
+        end
+      end
+
+      # 描述cpu,内存等维度的价格
+      class PriceDetail < TencentCloud::Common::AbstractModel
+        # @param Discount: 表示折扣，20 表示20%，打2折
+        # @type Discount: Integer
+        # @param DiscountPrice: 打折后价格，单位分
+        # @type DiscountPrice: Integer
+        # @param OriginalPrice: 折扣前价格，单位分
+        # @type OriginalPrice: Integer
+
+        attr_accessor :Discount, :DiscountPrice, :OriginalPrice
+        
+        def initialize(discount=nil, discountprice=nil, originalprice=nil)
+          @Discount = discount
+          @DiscountPrice = discountprice
+          @OriginalPrice = originalprice
+        end
+
+        def deserialize(params)
+          @Discount = params['Discount']
+          @DiscountPrice = params['DiscountPrice']
+          @OriginalPrice = params['OriginalPrice']
         end
       end
 

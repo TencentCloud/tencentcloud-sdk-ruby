@@ -11742,7 +11742,7 @@ module TencentCloud
       class DescribeVulHostTopRequest < TencentCloud::Common::AbstractModel
         # @param Top: 获取top值，1-100
         # @type Top: Integer
-        # @param VulCategory: 1: web应用漏洞 2=系统组件漏洞3:安全基线 4: Linux系统漏洞 5: windows补丁 6:应急漏洞
+        # @param VulCategory: 1:web-cms 漏洞，2.应用漏洞 3:安全基线 4: Linux软件漏洞 5: windows系统漏洞 6:应急漏洞
         # @type VulCategory: Integer
 
         attr_accessor :Top, :VulCategory
@@ -11890,7 +11890,7 @@ module TencentCloud
 
       # DescribeVulLevelCount请求参数结构体
       class DescribeVulLevelCountRequest < TencentCloud::Common::AbstractModel
-        # @param VulCategory: 1: web应用漏洞 2=系统组件漏洞3:安全基线 4: Linux系统漏洞 5: windows补丁 6:应急漏洞
+        # @param VulCategory: 1:web-cms 漏洞，2.应用漏洞 3:安全基线 4: Linux软件漏洞 5: windows系统漏洞 6:应急漏洞
         # @type VulCategory: Integer
 
         attr_accessor :VulCategory
@@ -12018,7 +12018,7 @@ module TencentCloud
       class DescribeVulTopRequest < TencentCloud::Common::AbstractModel
         # @param Top: 漏洞风险服务器top，1-100
         # @type Top: Integer
-        # @param VulCategory: 1: web应用漏洞 2=系统组件漏洞3:安全基线 4: Linux系统漏洞 5: windows补丁 6:应急漏洞
+        # @param VulCategory: 1:web-cms 漏洞，2.应用漏洞 3:安全基线 4: Linux软件漏洞 5: windows系统漏洞 6:应急漏洞
         # @type VulCategory: Integer
 
         attr_accessor :Top, :VulCategory

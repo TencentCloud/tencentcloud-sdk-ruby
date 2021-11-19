@@ -317,6 +317,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 拉取告警列表
+
+        # @param request: Request instance for DescribeSocAlertList.
+        # @type request: :class:`Tencentcloud::ssa::V20180608::DescribeSocAlertListRequest`
+        # @rtype: :class:`Tencentcloud::ssa::V20180608::DescribeSocAlertListResponse`
+        def DescribeSocAlertList(request)
+          body = send_request('DescribeSocAlertList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeSocAlertListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 合规详情项
 
         # @param request: Request instance for DescribeSocCspmCompliance.

@@ -3272,6 +3272,50 @@ module TencentCloud
         end
       end
 
+      # DescribeProductDynamicRegister请求参数结构体
+      class DescribeProductDynamicRegisterRequest < TencentCloud::Common::AbstractModel
+        # @param ProductId: 产品ID
+        # @type ProductId: String
+
+        attr_accessor :ProductId
+        
+        def initialize(productid=nil)
+          @ProductId = productid
+        end
+
+        def deserialize(params)
+          @ProductId = params['ProductId']
+        end
+      end
+
+      # DescribeProductDynamicRegister返回参数结构体
+      class DescribeProductDynamicRegisterResponse < TencentCloud::Common::AbstractModel
+        # @param RegisterType: 动态注册类型，0-关闭 1-预创建设备 2-自动创建设备
+        # @type RegisterType: Integer
+        # @param ProductSecret: 动态注册产品密钥
+        # @type ProductSecret: String
+        # @param RegisterLimit: 动态注册设备上限
+        # @type RegisterLimit: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RegisterType, :ProductSecret, :RegisterLimit, :RequestId
+        
+        def initialize(registertype=nil, productsecret=nil, registerlimit=nil, requestid=nil)
+          @RegisterType = registertype
+          @ProductSecret = productsecret
+          @RegisterLimit = registerlimit
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RegisterType = params['RegisterType']
+          @ProductSecret = params['ProductSecret']
+          @RegisterLimit = params['RegisterLimit']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeProduct请求参数结构体
       class DescribeProductRequest < TencentCloud::Common::AbstractModel
         # @param ProductId: 产品id
@@ -4284,6 +4328,58 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyProductDynamicRegister请求参数结构体
+      class ModifyProductDynamicRegisterRequest < TencentCloud::Common::AbstractModel
+        # @param ProductId: 产品ID
+        # @type ProductId: String
+        # @param RegisterType: 动态注册类型，0-关闭 1-预创建设备 2-自动创建设备
+        # @type RegisterType: Integer
+        # @param RegisterLimit: 动态注册设备上限
+        # @type RegisterLimit: Integer
+
+        attr_accessor :ProductId, :RegisterType, :RegisterLimit
+        
+        def initialize(productid=nil, registertype=nil, registerlimit=nil)
+          @ProductId = productid
+          @RegisterType = registertype
+          @RegisterLimit = registerlimit
+        end
+
+        def deserialize(params)
+          @ProductId = params['ProductId']
+          @RegisterType = params['RegisterType']
+          @RegisterLimit = params['RegisterLimit']
+        end
+      end
+
+      # ModifyProductDynamicRegister返回参数结构体
+      class ModifyProductDynamicRegisterResponse < TencentCloud::Common::AbstractModel
+        # @param RegisterType: 动态注册类型，0-关闭 1-预创建设备 2-自动创建设备
+        # @type RegisterType: Integer
+        # @param ProductSecret: 动态注册产品密钥
+        # @type ProductSecret: String
+        # @param RegisterLimit: 动态注册设备上限
+        # @type RegisterLimit: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RegisterType, :ProductSecret, :RegisterLimit, :RequestId
+        
+        def initialize(registertype=nil, productsecret=nil, registerlimit=nil, requestid=nil)
+          @RegisterType = registertype
+          @ProductSecret = productsecret
+          @RegisterLimit = registerlimit
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RegisterType = params['RegisterType']
+          @ProductSecret = params['ProductSecret']
+          @RegisterLimit = params['RegisterLimit']
           @RequestId = params['RequestId']
         end
       end
