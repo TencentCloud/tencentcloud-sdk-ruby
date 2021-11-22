@@ -44,6 +44,31 @@ module TencentCloud
         end
       end
 
+      # 告警详情
+      class AlertDetail < TencentCloud::Common::AbstractModel
+        # @param BaseInfo: 告警基础信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BaseInfo: :class:`Tencentcloud::Ssa.v20180608.models.AlertType`
+        # @param Detail: 告警详情，json序列化
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Detail: String
+
+        attr_accessor :BaseInfo, :Detail
+        
+        def initialize(baseinfo=nil, detail=nil)
+          @BaseInfo = baseinfo
+          @Detail = detail
+        end
+
+        def deserialize(params)
+          unless params['BaseInfo'].nil?
+            @BaseInfo = AlertType.new
+            @BaseInfo.deserialize(params['BaseInfo'])
+          end
+          @Detail = params['Detail']
+        end
+      end
+
       # 告警列表响应数据
       class AlertListData < TencentCloud::Common::AbstractModel
         # @param Total: 总数
@@ -2032,6 +2057,50 @@ module TencentCloud
             end
           end
           @Total = params['Total']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeSocAlertDetails请求参数结构体
+      class DescribeSocAlertDetailsRequest < TencentCloud::Common::AbstractModel
+        # @param AlertId: 告警id
+        # @type AlertId: String
+        # @param AlertTimestamp: 告警时间，取Timestamp字段
+        # @type AlertTimestamp: String
+
+        attr_accessor :AlertId, :AlertTimestamp
+        
+        def initialize(alertid=nil, alerttimestamp=nil)
+          @AlertId = alertid
+          @AlertTimestamp = alerttimestamp
+        end
+
+        def deserialize(params)
+          @AlertId = params['AlertId']
+          @AlertTimestamp = params['AlertTimestamp']
+        end
+      end
+
+      # DescribeSocAlertDetails返回参数结构体
+      class DescribeSocAlertDetailsResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 返回详情数据
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Data: :class:`Tencentcloud::Ssa.v20180608.models.AlertDetail`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+        
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = AlertDetail.new
+            @Data.deserialize(params['Data'])
+          end
           @RequestId = params['RequestId']
         end
       end

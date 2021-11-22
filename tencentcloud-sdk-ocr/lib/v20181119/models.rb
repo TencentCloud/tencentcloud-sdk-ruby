@@ -7174,21 +7174,21 @@ module TencentCloud
         # @type CbuItem: String
         # @param ApprDate: 核准时间
         # @type ApprDate: String
-        # @param Province: 省
+        # @param Province: 省（返回空值）
         # @type Province: String
-        # @param City: 地级市
+        # @param City: 地级市（返回空值）
         # @type City: String
-        # @param County: 区\县
+        # @param County: 区\县（返回空值）
         # @type County: String
-        # @param AreaCode: 住所所在行政区划代码
+        # @param AreaCode: 住所所在行政区划代码（返回空值）
         # @type AreaCode: String
-        # @param IndustryPhyCode: 行业门类代码
+        # @param IndustryPhyCode: 行业门类代码（返回空值）
         # @type IndustryPhyCode: String
-        # @param IndustryPhyName: 行业门类名称
+        # @param IndustryPhyName: 行业门类名称（返回空值）
         # @type IndustryPhyName: String
-        # @param IndustryCode: 国民经济行业代码
+        # @param IndustryCode: 国民经济行业代码（返回空值）
         # @type IndustryCode: String
-        # @param IndustryName: 国民经济行业名称
+        # @param IndustryName: 国民经济行业名称（返回空值）
         # @type IndustryName: String
         # @param OperateScope: 经营（业务）范围
         # @type OperateScope: String

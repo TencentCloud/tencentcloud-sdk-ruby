@@ -160,10 +160,12 @@ module TencentCloud
         # @param Domain: 建议客户接入的域名，客户可使用域名接入。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Domain: String
+        # @param DamDDoSStatus: 是否开启安全加速，是为1，否为0。
+        # @type DamDDoSStatus: Integer
 
-        attr_accessor :InstanceDetail, :SpecificationLimit, :Usage, :Region, :Status, :ExpiredTime, :CreatedTime, :Name, :PackInfo, :StaticPackRelation, :ZoneId, :Tgw, :EipAddressStatus, :EipFlag, :EipAddressPackRelation, :EipAddressInfo, :Domain
+        attr_accessor :InstanceDetail, :SpecificationLimit, :Usage, :Region, :Status, :ExpiredTime, :CreatedTime, :Name, :PackInfo, :StaticPackRelation, :ZoneId, :Tgw, :EipAddressStatus, :EipFlag, :EipAddressPackRelation, :EipAddressInfo, :Domain, :DamDDoSStatus
         
-        def initialize(instancedetail=nil, specificationlimit=nil, usage=nil, region=nil, status=nil, expiredtime=nil, createdtime=nil, name=nil, packinfo=nil, staticpackrelation=nil, zoneid=nil, tgw=nil, eipaddressstatus=nil, eipflag=nil, eipaddresspackrelation=nil, eipaddressinfo=nil, domain=nil)
+        def initialize(instancedetail=nil, specificationlimit=nil, usage=nil, region=nil, status=nil, expiredtime=nil, createdtime=nil, name=nil, packinfo=nil, staticpackrelation=nil, zoneid=nil, tgw=nil, eipaddressstatus=nil, eipflag=nil, eipaddresspackrelation=nil, eipaddressinfo=nil, domain=nil, damddosstatus=nil)
           @InstanceDetail = instancedetail
           @SpecificationLimit = specificationlimit
           @Usage = usage
@@ -181,6 +183,7 @@ module TencentCloud
           @EipAddressPackRelation = eipaddresspackrelation
           @EipAddressInfo = eipaddressinfo
           @Domain = domain
+          @DamDDoSStatus = damddosstatus
         end
 
         def deserialize(params)
@@ -225,6 +228,7 @@ module TencentCloud
             @EipAddressInfo.deserialize(params['EipAddressInfo'])
           end
           @Domain = params['Domain']
+          @DamDDoSStatus = params['DamDDoSStatus']
         end
       end
 
@@ -1999,10 +2003,12 @@ module TencentCloud
         # @type FilterEipType: Integer
         # @param FilterEipEipAddressStatus: 高防弹性公网IP实例的绑定状态搜索条件，取值范围 [BINDING、 BIND、UNBINDING、UNBIND]。该搜索条件只在FilterEipType=1时才有效。
         # @type FilterEipEipAddressStatus: Array
+        # @param FilterDamDDoSStatus: 是否只获取安全加速实例。填写时，只能填写1或者0。当填写1时，表示返回安全加速实例。当填写0时，表示返回非安全加速实例。
+        # @type FilterDamDDoSStatus: Integer
 
-        attr_accessor :Offset, :Limit, :FilterIp, :FilterInstanceId, :FilterLine, :FilterRegion, :FilterName, :FilterEipType, :FilterEipEipAddressStatus
+        attr_accessor :Offset, :Limit, :FilterIp, :FilterInstanceId, :FilterLine, :FilterRegion, :FilterName, :FilterEipType, :FilterEipEipAddressStatus, :FilterDamDDoSStatus
         
-        def initialize(offset=nil, limit=nil, filterip=nil, filterinstanceid=nil, filterline=nil, filterregion=nil, filtername=nil, filtereiptype=nil, filtereipeipaddressstatus=nil)
+        def initialize(offset=nil, limit=nil, filterip=nil, filterinstanceid=nil, filterline=nil, filterregion=nil, filtername=nil, filtereiptype=nil, filtereipeipaddressstatus=nil, filterdamddosstatus=nil)
           @Offset = offset
           @Limit = limit
           @FilterIp = filterip
@@ -2012,6 +2018,7 @@ module TencentCloud
           @FilterName = filtername
           @FilterEipType = filtereiptype
           @FilterEipEipAddressStatus = filtereipeipaddressstatus
+          @FilterDamDDoSStatus = filterdamddosstatus
         end
 
         def deserialize(params)
@@ -2024,6 +2031,7 @@ module TencentCloud
           @FilterName = params['FilterName']
           @FilterEipType = params['FilterEipType']
           @FilterEipEipAddressStatus = params['FilterEipEipAddressStatus']
+          @FilterDamDDoSStatus = params['FilterDamDDoSStatus']
         end
       end
 

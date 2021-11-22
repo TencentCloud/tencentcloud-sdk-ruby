@@ -5449,7 +5449,7 @@ module TencentCloud
         # 3:java
         # 4:system</li>
         # @type Filters: Array
-        # @param Order: 排序方式，asc-升序 或 desc-降序
+        # @param Order: 排序方式，asc-升序 或 desc-降序。默认：desc-降序
         # @type Order: String
         # @param By: 排序方式可选：InstallTime 安装时间
         # @type By: String
