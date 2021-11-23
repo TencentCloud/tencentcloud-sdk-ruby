@@ -1990,17 +1990,21 @@ module TencentCloud
 
       # LivenessCompare请求参数结构体
       class LivenessCompareRequest < TencentCloud::Common::AbstractModel
-        # @param ImageBase64: 用于人脸比对的照片，图片的Base64值；
-        # Base64编码后的图片数据大小不超过3M，仅支持jpg、png格式。
-        # 请使用标准的Base64编码方式(带=补位)，编码规范参考RFC4648。
-        # @type ImageBase64: String
-        # @param VideoBase64: 用于活体检测的视频，视频的Base64值；
-        # Base64编码后的大小不超过8M，支持mp4、avi、flv格式。
-        # 请使用标准的Base64编码方式(带=补位)，编码规范参考RFC4648。
-        # @type VideoBase64: String
         # @param LivenessType: 活体检测类型，取值：LIP/ACTION/SILENT。
         # LIP为数字模式，ACTION为动作模式，SILENT为静默模式，三种模式选择一种传入。
         # @type LivenessType: String
+        # @param ImageBase64: 用于人脸比对的照片的Base64值；
+        # Base64编码后的图片数据大小不超过3M，仅支持jpg、png格式。
+        # 请使用标准的Base64编码方式(带=补位)，编码规范参考RFC4648。
+
+        # 图片的 ImageUrl、ImageBase64 必须提供一个，如果都提供，只使用 ImageBase64。
+        # @type ImageBase64: String
+        # @param ImageUrl: 用于人脸比对照片的URL地址；图片下载后经Base64编码后的数据大小不超过3M，仅支持jpg、png格式。
+
+        # 图片的 ImageUrl、ImageBase64 必须提供一个，如果都提供，只使用 ImageBase64。
+
+        # 图片存储于腾讯云的 Url 可保障更高的下载速度和稳定性，建议图片存储于腾讯云。非腾讯云存储的 Url 速度和稳定性可能受一定影响。
+        # @type ImageUrl: String
         # @param ValidateData: 数字模式传参：传数字验证码，验证码需先调用<a href="https://cloud.tencent.com/document/product/1007/31821">获取数字验证码接口</a>得到；
         # 动作模式传参：传动作顺序，动作顺序需先调用<a href="https://cloud.tencent.com/document/product/1007/31822">获取动作顺序接口</a>得到；
         # 静默模式传参：空。
@@ -2010,23 +2014,39 @@ module TencentCloud
         # "BestFrameNum": 2  //需要返回多张最佳截图，取值范围2-10
         # }
         # @type Optional: String
+        # @param VideoBase64: 用于活体检测的视频，视频的Base64值；
+        # Base64编码后的大小不超过8M，支持mp4、avi、flv格式。
+        # 请使用标准的Base64编码方式(带=补位)，编码规范参考RFC4648。
 
-        attr_accessor :ImageBase64, :VideoBase64, :LivenessType, :ValidateData, :Optional
+        # 视频的 VideoUrl、VideoBase64 必须提供一个，如果都提供，只使用 VideoBase64。
+        # @type VideoBase64: String
+        # @param VideoUrl: 用于活体检测的视频Url 地址。视频下载后经Base64编码后不超过 8M，视频下载耗时不超过4S，支持mp4、avi、flv格式。
+
+        # 视频的 VideoUrl、VideoBase64 必须提供一个，如果都提供，只使用 VideoBase64。
+
+        # 建议视频存储于腾讯云的 Url 可保障更高的下载速度和稳定性，建议视频存储于腾讯云。非腾讯云存储的 Url 速度和稳定性可能受一定影响。
+        # @type VideoUrl: String
+
+        attr_accessor :LivenessType, :ImageBase64, :ImageUrl, :ValidateData, :Optional, :VideoBase64, :VideoUrl
         
-        def initialize(imagebase64=nil, videobase64=nil, livenesstype=nil, validatedata=nil, optional=nil)
-          @ImageBase64 = imagebase64
-          @VideoBase64 = videobase64
+        def initialize(livenesstype=nil, imagebase64=nil, imageurl=nil, validatedata=nil, optional=nil, videobase64=nil, videourl=nil)
           @LivenessType = livenesstype
+          @ImageBase64 = imagebase64
+          @ImageUrl = imageurl
           @ValidateData = validatedata
           @Optional = optional
+          @VideoBase64 = videobase64
+          @VideoUrl = videourl
         end
 
         def deserialize(params)
-          @ImageBase64 = params['ImageBase64']
-          @VideoBase64 = params['VideoBase64']
           @LivenessType = params['LivenessType']
+          @ImageBase64 = params['ImageBase64']
+          @ImageUrl = params['ImageUrl']
           @ValidateData = params['ValidateData']
           @Optional = params['Optional']
+          @VideoBase64 = params['VideoBase64']
+          @VideoUrl = params['VideoUrl']
         end
       end
 
@@ -2074,12 +2094,18 @@ module TencentCloud
         # @type IdCard: String
         # @param Name: 姓名。中文请使用UTF-8编码。
         # @type Name: String
-        # @param VideoBase64: 用于活体检测的视频，视频的BASE64值；
-        # BASE64编码后的大小不超过8M，支持mp4、avi、flv格式。
-        # @type VideoBase64: String
         # @param LivenessType: 活体检测类型，取值：LIP/ACTION/SILENT。
         # LIP为数字模式，ACTION为动作模式，SILENT为静默模式，三种模式选择一种传入。
         # @type LivenessType: String
+        # @param VideoBase64: 用于活体检测的视频，视频的BASE64值；
+        # BASE64编码后的大小不超过8M，支持mp4、avi、flv格式。
+        # @type VideoBase64: String
+        # @param VideoUrl: 用于活体检测的视频Url 地址。视频下载后经Base64编码不超过 8M，视频下载耗时不超过4S，支持mp4、avi、flv格式。
+
+        # 视频的 VideoUrl、VideoBase64 必须提供一个，如果都提供，只使用 VideoBase64。
+
+        # 建议视频存储于腾讯云的 Url 可保障更高的下载速度和稳定性，建议视频存储于腾讯云。非腾讯云存储的 Url 速度和稳定性可能受一定影响。
+        # @type VideoUrl: String
         # @param ValidateData: 数字模式传参：传数字验证码，验证码需先调用<a href="https://cloud.tencent.com/document/product/1007/31821">获取数字验证码接口</a>得到；
         # 动作模式传参：传动作顺序，动作顺序需先调用<a href="https://cloud.tencent.com/document/product/1007/31822">获取动作顺序接口</a>得到；
         # 静默模式传参：空。
@@ -2092,13 +2118,14 @@ module TencentCloud
         # @param Encryption: 敏感数据加密信息。对传入信息（姓名、身份证号）有加密需求的用户可使用此参数，详情请点击左侧链接。
         # @type Encryption: :class:`Tencentcloud::Faceid.v20180301.models.Encryption`
 
-        attr_accessor :IdCard, :Name, :VideoBase64, :LivenessType, :ValidateData, :Optional, :Encryption
+        attr_accessor :IdCard, :Name, :LivenessType, :VideoBase64, :VideoUrl, :ValidateData, :Optional, :Encryption
         
-        def initialize(idcard=nil, name=nil, videobase64=nil, livenesstype=nil, validatedata=nil, optional=nil, encryption=nil)
+        def initialize(idcard=nil, name=nil, livenesstype=nil, videobase64=nil, videourl=nil, validatedata=nil, optional=nil, encryption=nil)
           @IdCard = idcard
           @Name = name
-          @VideoBase64 = videobase64
           @LivenessType = livenesstype
+          @VideoBase64 = videobase64
+          @VideoUrl = videourl
           @ValidateData = validatedata
           @Optional = optional
           @Encryption = encryption
@@ -2107,8 +2134,9 @@ module TencentCloud
         def deserialize(params)
           @IdCard = params['IdCard']
           @Name = params['Name']
-          @VideoBase64 = params['VideoBase64']
           @LivenessType = params['LivenessType']
+          @VideoBase64 = params['VideoBase64']
+          @VideoUrl = params['VideoUrl']
           @ValidateData = params['ValidateData']
           @Optional = params['Optional']
           unless params['Encryption'].nil?

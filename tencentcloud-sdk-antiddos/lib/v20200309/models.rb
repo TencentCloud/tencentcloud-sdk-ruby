@@ -3509,6 +3509,56 @@ module TencentCloud
         end
       end
 
+      # ModifyNewDomainRules请求参数结构体
+      class ModifyNewDomainRulesRequest < TencentCloud::Common::AbstractModel
+        # @param Business: 大禹子产品代号（bgpip表示高防IP）
+        # @type Business: String
+        # @param Id: 资源ID
+        # @type Id: String
+        # @param Rule: 域名转发规则
+        # @type Rule: :class:`Tencentcloud::Antiddos.v20200309.models.NewL7RuleEntry`
+
+        attr_accessor :Business, :Id, :Rule
+        
+        def initialize(business=nil, id=nil, rule=nil)
+          @Business = business
+          @Id = id
+          @Rule = rule
+        end
+
+        def deserialize(params)
+          @Business = params['Business']
+          @Id = params['Id']
+          unless params['Rule'].nil?
+            @Rule = NewL7RuleEntry.new
+            @Rule.deserialize(params['Rule'])
+          end
+        end
+      end
+
+      # ModifyNewDomainRules返回参数结构体
+      class ModifyNewDomainRulesResponse < TencentCloud::Common::AbstractModel
+        # @param Success: 成功码
+        # @type Success: :class:`Tencentcloud::Antiddos.v20200309.models.SuccessCode`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Success, :RequestId
+        
+        def initialize(success=nil, requestid=nil)
+          @Success = success
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Success'].nil?
+            @Success = SuccessCode.new
+            @Success.deserialize(params['Success'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyPacketFilterConfig请求参数结构体
       class ModifyPacketFilterConfigRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 资源实例ID
@@ -3545,6 +3595,122 @@ module TencentCloud
 
         def deserialize(params)
           @RequestId = params['RequestId']
+        end
+      end
+
+      # L7规则
+      class NewL7RuleEntry < TencentCloud::Common::AbstractModel
+        # @param KeepTime: 会话保持时间，单位秒
+        # @type KeepTime: Integer
+        # @param LbType: 负载均衡方式，取值[1(加权轮询)]
+        # @type LbType: Integer
+        # @param SourceList: 回源列表
+        # @type SourceList: Array
+        # @param KeepEnable: 会话保持开关，取值[0(会话保持关闭)，1(会话保持开启)]
+        # @type KeepEnable: Integer
+        # @param Domain: 转发域名
+        # @type Domain: String
+        # @param Protocol: 转发协议，取值[http, https]
+        # @type Protocol: String
+        # @param SourceType: 回源方式，取值[1(域名回源)，2(IP回源)]
+        # @type SourceType: Integer
+        # @param HttpsToHttpEnable: 是否开启Https协议使用Http回源，取值[0(关闭), 1(开启)]，不填写默认是关闭
+        # @type HttpsToHttpEnable: Integer
+        # @param Status: 规则状态，取值[0(规则配置成功)，1(规则配置生效中)，2(规则配置失败)，3(规则删除生效中)，5(规则删除失败)，6(规则等待配置)，7(规则等待删除)，8(规则待配置证书)]
+        # @type Status: Integer
+        # @param CCLevel: HTTPS协议的CC防护等级
+        # @type CCLevel: String
+        # @param CCEnable: HTTPS协议的CC防护状态，取值[0(关闭), 1(开启)]
+        # @type CCEnable: Integer
+        # @param CCThreshold: HTTPS协议的CC防护阈值
+        # @type CCThreshold: Integer
+        # @param Region: 区域码
+        # @type Region: Integer
+        # @param RuleName: 规则描述
+        # @type RuleName: String
+        # @param Cert: 当证书来源为自有证书时，此字段必须填写证书内容；(因已不再支持自有证书，此字段已弃用，请不用填写此字段)
+        # @type Cert: String
+        # @param ModifyTime: 修改时间
+        # @type ModifyTime: String
+        # @param RuleId: 规则ID，当添加新规则时可以不用填写此字段；当修改或者删除规则时需要填写此字段；
+        # @type RuleId: String
+        # @param Ip: 资源Ip
+        # @type Ip: String
+        # @param PrivateKey: 当证书来源为自有证书时，此字段必须填写证书密钥；(因已不再支持自有证书，此字段已弃用，请不用填写此字段)
+        # @type PrivateKey: String
+        # @param CertType: 证书来源，当转发协议为https时必须填，取值[2(腾讯云托管证书)]，当转发协议为http时也可以填0
+        # @type CertType: Integer
+        # @param VirtualPort: 接入端口值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VirtualPort: Integer
+        # @param CCStatus: cc防护状态，取值[0(关闭), 1(开启)]
+        # @type CCStatus: Integer
+        # @param SSLId: 当证书来源为腾讯云托管证书时，此字段必须填写托管证书ID
+        # @type SSLId: String
+        # @param Id: 资源Id
+        # @type Id: String
+
+        attr_accessor :KeepTime, :LbType, :SourceList, :KeepEnable, :Domain, :Protocol, :SourceType, :HttpsToHttpEnable, :Status, :CCLevel, :CCEnable, :CCThreshold, :Region, :RuleName, :Cert, :ModifyTime, :RuleId, :Ip, :PrivateKey, :CertType, :VirtualPort, :CCStatus, :SSLId, :Id
+        
+        def initialize(keeptime=nil, lbtype=nil, sourcelist=nil, keepenable=nil, domain=nil, protocol=nil, sourcetype=nil, httpstohttpenable=nil, status=nil, cclevel=nil, ccenable=nil, ccthreshold=nil, region=nil, rulename=nil, cert=nil, modifytime=nil, ruleid=nil, ip=nil, privatekey=nil, certtype=nil, virtualport=nil, ccstatus=nil, sslid=nil, id=nil)
+          @KeepTime = keeptime
+          @LbType = lbtype
+          @SourceList = sourcelist
+          @KeepEnable = keepenable
+          @Domain = domain
+          @Protocol = protocol
+          @SourceType = sourcetype
+          @HttpsToHttpEnable = httpstohttpenable
+          @Status = status
+          @CCLevel = cclevel
+          @CCEnable = ccenable
+          @CCThreshold = ccthreshold
+          @Region = region
+          @RuleName = rulename
+          @Cert = cert
+          @ModifyTime = modifytime
+          @RuleId = ruleid
+          @Ip = ip
+          @PrivateKey = privatekey
+          @CertType = certtype
+          @VirtualPort = virtualport
+          @CCStatus = ccstatus
+          @SSLId = sslid
+          @Id = id
+        end
+
+        def deserialize(params)
+          @KeepTime = params['KeepTime']
+          @LbType = params['LbType']
+          unless params['SourceList'].nil?
+            @SourceList = []
+            params['SourceList'].each do |i|
+              l4rulesource_tmp = L4RuleSource.new
+              l4rulesource_tmp.deserialize(i)
+              @SourceList << l4rulesource_tmp
+            end
+          end
+          @KeepEnable = params['KeepEnable']
+          @Domain = params['Domain']
+          @Protocol = params['Protocol']
+          @SourceType = params['SourceType']
+          @HttpsToHttpEnable = params['HttpsToHttpEnable']
+          @Status = params['Status']
+          @CCLevel = params['CCLevel']
+          @CCEnable = params['CCEnable']
+          @CCThreshold = params['CCThreshold']
+          @Region = params['Region']
+          @RuleName = params['RuleName']
+          @Cert = params['Cert']
+          @ModifyTime = params['ModifyTime']
+          @RuleId = params['RuleId']
+          @Ip = params['Ip']
+          @PrivateKey = params['PrivateKey']
+          @CertType = params['CertType']
+          @VirtualPort = params['VirtualPort']
+          @CCStatus = params['CCStatus']
+          @SSLId = params['SSLId']
+          @Id = params['Id']
         end
       end
 

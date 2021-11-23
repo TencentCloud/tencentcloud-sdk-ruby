@@ -1423,7 +1423,7 @@ module TencentCloud
         # @param NeedRecordNum: 是否需要访问列表的总记录数，用于前端分页
         # 1-表示需要， 0-表示不需要
         # @type NeedRecordNum: Integer
-        # @param ProductCode: 查询指定产品信息（暂时未开放获取）
+        # @param ProductCode: 已废弃参数，未开放
         # @type ProductCode: String
         # @param PayMode: 付费模式 prePay/postPay
         # @type PayMode: String
@@ -1433,10 +1433,13 @@ module TencentCloud
         # @type ActionType: String
         # @param ProjectId: 项目ID:资源所属项目ID
         # @type ProjectId: Integer
+        # @param BusinessCode: 商品名称代码
+        # 备注：如需获取当月使用过的BusinessCode，请调用API：<a href="https://cloud.tencent.com/document/product/555/35761">获取产品汇总费用分布</a>
+        # @type BusinessCode: String
 
-        attr_accessor :Offset, :Limit, :PeriodType, :Month, :BeginTime, :EndTime, :NeedRecordNum, :ProductCode, :PayMode, :ResourceId, :ActionType, :ProjectId
+        attr_accessor :Offset, :Limit, :PeriodType, :Month, :BeginTime, :EndTime, :NeedRecordNum, :ProductCode, :PayMode, :ResourceId, :ActionType, :ProjectId, :BusinessCode
         
-        def initialize(offset=nil, limit=nil, periodtype=nil, month=nil, begintime=nil, endtime=nil, needrecordnum=nil, productcode=nil, paymode=nil, resourceid=nil, actiontype=nil, projectid=nil)
+        def initialize(offset=nil, limit=nil, periodtype=nil, month=nil, begintime=nil, endtime=nil, needrecordnum=nil, productcode=nil, paymode=nil, resourceid=nil, actiontype=nil, projectid=nil, businesscode=nil)
           @Offset = offset
           @Limit = limit
           @PeriodType = periodtype
@@ -1449,6 +1452,7 @@ module TencentCloud
           @ResourceId = resourceid
           @ActionType = actiontype
           @ProjectId = projectid
+          @BusinessCode = businesscode
         end
 
         def deserialize(params)
@@ -1464,6 +1468,7 @@ module TencentCloud
           @ResourceId = params['ResourceId']
           @ActionType = params['ActionType']
           @ProjectId = params['ProjectId']
+          @BusinessCode = params['BusinessCode']
         end
       end
 
@@ -1681,10 +1686,13 @@ module TencentCloud
         # @type ResourceId: String
         # @param PayMode: 付费模式 prePay/postPay
         # @type PayMode: String
+        # @param BusinessCode: 商品名称代码
+        # 备注：如需获取当月使用过的BusinessCode，请调用API：<a href="https://cloud.tencent.com/document/product/555/35761">获取产品汇总费用分布</a>
+        # @type BusinessCode: String
 
-        attr_accessor :Offset, :Limit, :Month, :PeriodType, :NeedRecordNum, :ActionType, :ResourceId, :PayMode
+        attr_accessor :Offset, :Limit, :Month, :PeriodType, :NeedRecordNum, :ActionType, :ResourceId, :PayMode, :BusinessCode
         
-        def initialize(offset=nil, limit=nil, month=nil, periodtype=nil, needrecordnum=nil, actiontype=nil, resourceid=nil, paymode=nil)
+        def initialize(offset=nil, limit=nil, month=nil, periodtype=nil, needrecordnum=nil, actiontype=nil, resourceid=nil, paymode=nil, businesscode=nil)
           @Offset = offset
           @Limit = limit
           @Month = month
@@ -1693,6 +1701,7 @@ module TencentCloud
           @ActionType = actiontype
           @ResourceId = resourceid
           @PayMode = paymode
+          @BusinessCode = businesscode
         end
 
         def deserialize(params)
@@ -1704,6 +1713,7 @@ module TencentCloud
           @ActionType = params['ActionType']
           @ResourceId = params['ResourceId']
           @PayMode = params['PayMode']
+          @BusinessCode = params['BusinessCode']
         end
       end
 

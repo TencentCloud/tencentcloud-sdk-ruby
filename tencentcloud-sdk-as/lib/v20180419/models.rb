@@ -971,11 +971,18 @@ module TencentCloud
         # @type NotificationTypes: Array
         # @param NotificationUserGroupIds: 通知组ID，即为用户组ID集合，用户组ID可以通过[ListGroups](https://cloud.tencent.com/document/product/598/34589)查询。
         # @type NotificationUserGroupIds: Array
-        # @param TargetType: 通知接收端类型，取值：`USER_GROUP`，`CMQ_QUEUE`，`CMQ_TOPIC`。默认值为：`USER_GROUP`。
+        # @param TargetType: 通知接收端类型，取值如下
+        # <br><li>USER_GROUP：用户组
+        # <br><li>CMQ_QUEUE：CMQ 队列
+        # <br><li>CMQ_TOPIC：CMQ 主题
+        # <br><li>TDMQ_CMQ_TOPIC：TDMQ CMQ 主题
+        # <br><li>TDMQ_CMQ_QUEUE：TDMQ CMQ 队列
+
+        # 默认值为：`USER_GROUP`。
         # @type TargetType: String
-        # @param QueueName: CMQ 队列名称，如 TargetType 取值为 `CMQ_QUEUE`，该字段必填。
+        # @param QueueName: CMQ 队列名称，如 TargetType 取值为 `CMQ_QUEUE` 或 `TDMQ_CMQ_QUEUE` 时，该字段必填。
         # @type QueueName: String
-        # @param TopicName: CMQ 主题名称，如 TargetType 取值为 `CMQ_TOPIC`，该字段必填。
+        # @param TopicName: CMQ 主题名称，如 TargetType 取值为 `CMQ_TOPIC` 或 `TDMQ_CMQ_TOPIC` 时，该字段必填。
         # @type TopicName: String
 
         attr_accessor :AutoScalingGroupId, :NotificationTypes, :NotificationUserGroupIds, :TargetType, :QueueName, :TopicName
@@ -3335,9 +3342,9 @@ module TencentCloud
         # @type NotificationTypes: Array
         # @param NotificationUserGroupIds: 通知组ID，即为用户组ID集合，用户组ID可以通过[ListGroups](https://cloud.tencent.com/document/product/598/34589)查询。
         # @type NotificationUserGroupIds: Array
-        # @param QueueName: CMQ 队列名。
+        # @param QueueName: CMQ 队列或 TDMQ CMQ 队列名。
         # @type QueueName: String
-        # @param TopicName: CMQ 主题名。
+        # @param TopicName: CMQ 主题或 TDMQ CMQ 主题名。
         # @type TopicName: String
 
         attr_accessor :AutoScalingNotificationId, :NotificationTypes, :NotificationUserGroupIds, :QueueName, :TopicName
@@ -3497,13 +3504,15 @@ module TencentCloud
 
       # 通知目标
       class NotificationTarget < TencentCloud::Common::AbstractModel
-        # @param TargetType: 目标类型，取值范围包括`CMQ_QUEUE`、`CMQ_TOPIC`。
+        # @param TargetType: 目标类型，取值范围包括`CMQ_QUEUE`、`CMQ_TOPIC`、`TDMQ_CMQ_QUEUE`、`TDMQ_CMQ_TOPIC`。
         # <li> CMQ_QUEUE，指腾讯云消息队列-队列模型。</li>
         # <li> CMQ_TOPIC，指腾讯云消息队列-主题模型。</li>
+        # <li> TDMQ_CMQ_QUEUE，指腾讯云 TDMQ 消息队列-队列模型。</li>
+        # <li> TDMQ_CMQ_TOPIC，指腾讯云 TDMQ 消息队列-主题模型。</li>
         # @type TargetType: String
-        # @param QueueName: 队列名称，如果`TargetType`取值为`CMQ_QUEUE`，则本字段必填。
+        # @param QueueName: 队列名称，如果`TargetType`取值为`CMQ_QUEUE` 或 `TDMQ_CMQ_QUEUE`，则本字段必填。
         # @type QueueName: String
-        # @param TopicName: 主题名称，如果`TargetType`取值为`CMQ_TOPIC`，则本字段必填。
+        # @param TopicName: 主题名称，如果`TargetType`取值为`CMQ_TOPIC` 或 `TDMQ_CMQ_TOPIC`，则本字段必填。
         # @type TopicName: String
 
         attr_accessor :TargetType, :QueueName, :TopicName

@@ -4603,17 +4603,25 @@ module TencentCloud
         # @type ProductId: String
         # @param DeviceName: 设备名称
         # @type DeviceName: String
+        # @param ChannelId: 通道ID 非NVR设备则不填 NVR设备则必填 默认为无
+        # @type ChannelId: Integer
+        # @param UserId: 云存用户Id，为空则为默认云存空间。
+        # @type UserId: String
 
-        attr_accessor :ProductId, :DeviceName
+        attr_accessor :ProductId, :DeviceName, :ChannelId, :UserId
         
-        def initialize(productid=nil, devicename=nil)
+        def initialize(productid=nil, devicename=nil, channelid=nil, userid=nil)
           @ProductId = productid
           @DeviceName = devicename
+          @ChannelId = channelid
+          @UserId = userid
         end
 
         def deserialize(params)
           @ProductId = params['ProductId']
           @DeviceName = params['DeviceName']
+          @ChannelId = params['ChannelId']
+          @UserId = params['UserId']
         end
       end
 

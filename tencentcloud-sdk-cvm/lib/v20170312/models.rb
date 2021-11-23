@@ -5921,6 +5921,7 @@ module TencentCloud
         # <li> na-ashburn-2 </li>
         # <li> ap-nanjing-1 </li>
         # <li> ap-nanjing-2 </li>
+        # <li> sa-saopaulo-1</li>
         # @type Zone: String
         # @param ZoneName: 可用区描述，例如，广州三区
         # @type ZoneName: String

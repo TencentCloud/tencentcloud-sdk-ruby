@@ -897,6 +897,47 @@ module TencentCloud
         end
       end
 
+      # UploadMedicalFile请求参数结构体
+      class UploadMedicalFileRequest < TencentCloud::Common::AbstractModel
+        # @param File: 文件内容的base64的值。FileBase64与FileURL有一个不为空即可，若FileURL同时存在，那么取FileBase64。
+        # @type File: String
+        # @param FileURL: 文件的URL地址。FileBase64与FileURL有一个不为空即可，若FileBase64同时存在，那么取FileBase64。
+        # @type FileURL: String
+
+        attr_accessor :File, :FileURL
+        
+        def initialize(file=nil, fileurl=nil)
+          @File = file
+          @FileURL = fileurl
+        end
+
+        def deserialize(params)
+          @File = params['File']
+          @FileURL = params['FileURL']
+        end
+      end
+
+      # UploadMedicalFile返回参数结构体
+      class UploadMedicalFileResponse < TencentCloud::Common::AbstractModel
+        # @param FileKey: 文件存储的key，可以用来创建结构化任务。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FileKey: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :FileKey, :RequestId
+        
+        def initialize(filekey=nil, requestid=nil)
+          @FileKey = filekey
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @FileKey = params['FileKey']
+          @RequestId = params['RequestId']
+        end
+      end
+
     end
   end
 end

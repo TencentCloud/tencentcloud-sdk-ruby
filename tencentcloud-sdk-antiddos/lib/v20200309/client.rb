@@ -1133,6 +1133,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 修改7层转发规则
+
+        # @param request: Request instance for ModifyNewDomainRules.
+        # @type request: :class:`Tencentcloud::antiddos::V20200309::ModifyNewDomainRulesRequest`
+        # @rtype: :class:`Tencentcloud::antiddos::V20200309::ModifyNewDomainRulesResponse`
+        def ModifyNewDomainRules(request)
+          body = send_request('ModifyNewDomainRules', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyNewDomainRulesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 修改DDoS防护的特征过滤规则
 
         # @param request: Request instance for ModifyPacketFilterConfig.
