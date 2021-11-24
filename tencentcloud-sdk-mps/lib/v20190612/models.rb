@@ -8103,16 +8103,20 @@ module TencentCloud
         # @param Output: 转码任务的输出。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Output: :class:`Tencentcloud::Mps.v20190612.models.MediaTranscodeItem`
+        # @param Progress: 转码进度，取值范围 [0-100]
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Progress: Integer
 
-        attr_accessor :Status, :ErrCodeExt, :ErrCode, :Message, :Input, :Output
+        attr_accessor :Status, :ErrCodeExt, :ErrCode, :Message, :Input, :Output, :Progress
         
-        def initialize(status=nil, errcodeext=nil, errcode=nil, message=nil, input=nil, output=nil)
+        def initialize(status=nil, errcodeext=nil, errcode=nil, message=nil, input=nil, output=nil, progress=nil)
           @Status = status
           @ErrCodeExt = errcodeext
           @ErrCode = errcode
           @Message = message
           @Input = input
           @Output = output
+          @Progress = progress
         end
 
         def deserialize(params)
@@ -8128,6 +8132,7 @@ module TencentCloud
             @Output = MediaTranscodeItem.new
             @Output.deserialize(params['Output'])
           end
+          @Progress = params['Progress']
         end
       end
 

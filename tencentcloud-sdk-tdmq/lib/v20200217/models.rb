@@ -17,6 +17,364 @@
 module TencentCloud
   module Tdmq
     module V20200217
+      # AMQP集群配置
+      class AMQPClusterConfig < TencentCloud::Common::AbstractModel
+        # @param MaxTpsPerVHost: 单Vhost TPS上限
+        # @type MaxTpsPerVHost: Integer
+        # @param MaxConnNumPerVHost: 单Vhost客户端连接数上限
+        # @type MaxConnNumPerVHost: Integer
+        # @param MaxVHostNum: 最大Vhost数量
+        # @type MaxVHostNum: Integer
+        # @param MaxExchangeNum: 最大exchange数量
+        # @type MaxExchangeNum: Integer
+        # @param MaxQueueNum: 最大Queue数量
+        # @type MaxQueueNum: Integer
+        # @param MaxRetentionTime: 消息最大保留时间，以毫秒为单位
+        # @type MaxRetentionTime: Integer
+        # @param UsedVHostNum: 已使用Vhost数量
+        # @type UsedVHostNum: Integer
+        # @param UsedExchangeNum: 已使用exchange数量
+        # @type UsedExchangeNum: Integer
+        # @param UsedQueueNum: 已使用queue数量
+        # @type UsedQueueNum: Integer
+
+        attr_accessor :MaxTpsPerVHost, :MaxConnNumPerVHost, :MaxVHostNum, :MaxExchangeNum, :MaxQueueNum, :MaxRetentionTime, :UsedVHostNum, :UsedExchangeNum, :UsedQueueNum
+        
+        def initialize(maxtpspervhost=nil, maxconnnumpervhost=nil, maxvhostnum=nil, maxexchangenum=nil, maxqueuenum=nil, maxretentiontime=nil, usedvhostnum=nil, usedexchangenum=nil, usedqueuenum=nil)
+          @MaxTpsPerVHost = maxtpspervhost
+          @MaxConnNumPerVHost = maxconnnumpervhost
+          @MaxVHostNum = maxvhostnum
+          @MaxExchangeNum = maxexchangenum
+          @MaxQueueNum = maxqueuenum
+          @MaxRetentionTime = maxretentiontime
+          @UsedVHostNum = usedvhostnum
+          @UsedExchangeNum = usedexchangenum
+          @UsedQueueNum = usedqueuenum
+        end
+
+        def deserialize(params)
+          @MaxTpsPerVHost = params['MaxTpsPerVHost']
+          @MaxConnNumPerVHost = params['MaxConnNumPerVHost']
+          @MaxVHostNum = params['MaxVHostNum']
+          @MaxExchangeNum = params['MaxExchangeNum']
+          @MaxQueueNum = params['MaxQueueNum']
+          @MaxRetentionTime = params['MaxRetentionTime']
+          @UsedVHostNum = params['UsedVHostNum']
+          @UsedExchangeNum = params['UsedExchangeNum']
+          @UsedQueueNum = params['UsedQueueNum']
+        end
+      end
+
+      # 租户AMQP集群详细信息
+      class AMQPClusterDetail < TencentCloud::Common::AbstractModel
+        # @param Info: 集群基本信息
+        # @type Info: :class:`Tencentcloud::Tdmq.v20200217.models.AMQPClusterInfo`
+        # @param Config: 集群配置信息
+        # @type Config: :class:`Tencentcloud::Tdmq.v20200217.models.AMQPClusterConfig`
+        # @param Tags: 标签
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Tags: Array
+
+        attr_accessor :Info, :Config, :Tags
+        
+        def initialize(info=nil, config=nil, tags=nil)
+          @Info = info
+          @Config = config
+          @Tags = tags
+        end
+
+        def deserialize(params)
+          unless params['Info'].nil?
+            @Info = AMQPClusterInfo.new
+            @Info.deserialize(params['Info'])
+          end
+          unless params['Config'].nil?
+            @Config = AMQPClusterConfig.new
+            @Config.deserialize(params['Config'])
+          end
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
+            end
+          end
+        end
+      end
+
+      # AMQP集群基本信息
+      class AMQPClusterInfo < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群ID
+        # @type ClusterId: String
+        # @param ClusterName: 集群名称
+        # @type ClusterName: String
+        # @param Region: 地域信息
+        # @type Region: String
+        # @param CreateTime: 创建时间，毫秒为单位
+        # @type CreateTime: Integer
+        # @param Remark: 集群说明信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Remark: String
+        # @param PublicEndPoint: 公网接入地址
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PublicEndPoint: String
+        # @param VpcEndPoint: VPC接入地址
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VpcEndPoint: String
+
+        attr_accessor :ClusterId, :ClusterName, :Region, :CreateTime, :Remark, :PublicEndPoint, :VpcEndPoint
+        
+        def initialize(clusterid=nil, clustername=nil, region=nil, createtime=nil, remark=nil, publicendpoint=nil, vpcendpoint=nil)
+          @ClusterId = clusterid
+          @ClusterName = clustername
+          @Region = region
+          @CreateTime = createtime
+          @Remark = remark
+          @PublicEndPoint = publicendpoint
+          @VpcEndPoint = vpcendpoint
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @ClusterName = params['ClusterName']
+          @Region = params['Region']
+          @CreateTime = params['CreateTime']
+          @Remark = params['Remark']
+          @PublicEndPoint = params['PublicEndPoint']
+          @VpcEndPoint = params['VpcEndPoint']
+        end
+      end
+
+      # AMQP集群近期使用量
+      class AMQPClusterRecentStats < TencentCloud::Common::AbstractModel
+        # @param QueueNum: Queue数量
+        # @type QueueNum: Integer
+        # @param ProducedMsgNum: 消息生产数
+        # @type ProducedMsgNum: Integer
+        # @param AccumulativeMsgNum: 消息堆积数
+        # @type AccumulativeMsgNum: Integer
+        # @param ExchangeNum: Exchange数量
+        # @type ExchangeNum: Integer
+
+        attr_accessor :QueueNum, :ProducedMsgNum, :AccumulativeMsgNum, :ExchangeNum
+        
+        def initialize(queuenum=nil, producedmsgnum=nil, accumulativemsgnum=nil, exchangenum=nil)
+          @QueueNum = queuenum
+          @ProducedMsgNum = producedmsgnum
+          @AccumulativeMsgNum = accumulativemsgnum
+          @ExchangeNum = exchangenum
+        end
+
+        def deserialize(params)
+          @QueueNum = params['QueueNum']
+          @ProducedMsgNum = params['ProducedMsgNum']
+          @AccumulativeMsgNum = params['AccumulativeMsgNum']
+          @ExchangeNum = params['ExchangeNum']
+        end
+      end
+
+      # AMQP Exchange信息
+      class AMQPExchange < TencentCloud::Common::AbstractModel
+        # @param Name: Exchange名称
+        # @type Name: String
+        # @param Type: Exchange的类别，为枚举类型:Direct, Fanout, Topic
+        # @type Type: String
+        # @param SourceBindedNum: 主绑定数
+        # @type SourceBindedNum: Integer
+        # @param Remark: 说明
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Remark: String
+        # @param DestBindedNum: 被绑定数
+        # @type DestBindedNum: Integer
+        # @param CreateTime: 创建时间，以毫秒为单位
+        # @type CreateTime: Integer
+        # @param UpdateTime: 创建时间，以毫秒为单位
+        # @type UpdateTime: Integer
+        # @param Internal: 是否为内部Exchange(以amq.前缀开头的)
+        # @type Internal: Boolean
+
+        attr_accessor :Name, :Type, :SourceBindedNum, :Remark, :DestBindedNum, :CreateTime, :UpdateTime, :Internal
+        
+        def initialize(name=nil, type=nil, sourcebindednum=nil, remark=nil, destbindednum=nil, createtime=nil, updatetime=nil, internal=nil)
+          @Name = name
+          @Type = type
+          @SourceBindedNum = sourcebindednum
+          @Remark = remark
+          @DestBindedNum = destbindednum
+          @CreateTime = createtime
+          @UpdateTime = updatetime
+          @Internal = internal
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Type = params['Type']
+          @SourceBindedNum = params['SourceBindedNum']
+          @Remark = params['Remark']
+          @DestBindedNum = params['DestBindedNum']
+          @CreateTime = params['CreateTime']
+          @UpdateTime = params['UpdateTime']
+          @Internal = params['Internal']
+        end
+      end
+
+      # AMQP 队列信息
+      class AMQPQueueDetail < TencentCloud::Common::AbstractModel
+        # @param Name: Queue名称
+        # @type Name: String
+        # @param Remark: 说明
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Remark: String
+        # @param DestBindedNum: 被绑定数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DestBindedNum: Integer
+        # @param CreateTime: 创建时间，以毫秒为单位
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateTime: Integer
+        # @param UpdateTime: 创建时间，以毫秒为单位
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UpdateTime: Integer
+        # @param OnlineConsumerNum: 在线消费者数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OnlineConsumerNum: Integer
+        # @param Tps: 每秒钟的事务数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Tps: Integer
+        # @param AccumulativeMsgNum: 消息堆积数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AccumulativeMsgNum: Integer
+        # @param AutoDelete: 是否自动删除
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AutoDelete: Boolean
+        # @param DeadLetterExchange: 死信交换机
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DeadLetterExchange: String
+        # @param DeadLetterRoutingKey: 死信交换机路由键
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DeadLetterRoutingKey: String
+
+        attr_accessor :Name, :Remark, :DestBindedNum, :CreateTime, :UpdateTime, :OnlineConsumerNum, :Tps, :AccumulativeMsgNum, :AutoDelete, :DeadLetterExchange, :DeadLetterRoutingKey
+        
+        def initialize(name=nil, remark=nil, destbindednum=nil, createtime=nil, updatetime=nil, onlineconsumernum=nil, tps=nil, accumulativemsgnum=nil, autodelete=nil, deadletterexchange=nil, deadletterroutingkey=nil)
+          @Name = name
+          @Remark = remark
+          @DestBindedNum = destbindednum
+          @CreateTime = createtime
+          @UpdateTime = updatetime
+          @OnlineConsumerNum = onlineconsumernum
+          @Tps = tps
+          @AccumulativeMsgNum = accumulativemsgnum
+          @AutoDelete = autodelete
+          @DeadLetterExchange = deadletterexchange
+          @DeadLetterRoutingKey = deadletterroutingkey
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Remark = params['Remark']
+          @DestBindedNum = params['DestBindedNum']
+          @CreateTime = params['CreateTime']
+          @UpdateTime = params['UpdateTime']
+          @OnlineConsumerNum = params['OnlineConsumerNum']
+          @Tps = params['Tps']
+          @AccumulativeMsgNum = params['AccumulativeMsgNum']
+          @AutoDelete = params['AutoDelete']
+          @DeadLetterExchange = params['DeadLetterExchange']
+          @DeadLetterRoutingKey = params['DeadLetterRoutingKey']
+        end
+      end
+
+      # AMQP路由关系
+      class AMQPRouteRelation < TencentCloud::Common::AbstractModel
+        # @param RouteRelationId: 路由关系ID
+        # @type RouteRelationId: String
+        # @param SourceExchange: 源Exchange
+        # @type SourceExchange: String
+        # @param DestType: 目标类型:Queue|Exchange
+        # @type DestType: String
+        # @param DestValue: 目标值
+        # @type DestValue: String
+        # @param RoutingKey: 绑定key
+        # @type RoutingKey: String
+        # @param SourceExchangeType: 源路由类型:Direct|Topic|Fanout
+        # @type SourceExchangeType: String
+        # @param CreateTime: 创建时间，以毫秒为单位
+        # @type CreateTime: Integer
+        # @param UpdateTime: 修改时间，以毫秒为单位
+        # @type UpdateTime: Integer
+        # @param Remark: 说明信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Remark: String
+
+        attr_accessor :RouteRelationId, :SourceExchange, :DestType, :DestValue, :RoutingKey, :SourceExchangeType, :CreateTime, :UpdateTime, :Remark
+        
+        def initialize(routerelationid=nil, sourceexchange=nil, desttype=nil, destvalue=nil, routingkey=nil, sourceexchangetype=nil, createtime=nil, updatetime=nil, remark=nil)
+          @RouteRelationId = routerelationid
+          @SourceExchange = sourceexchange
+          @DestType = desttype
+          @DestValue = destvalue
+          @RoutingKey = routingkey
+          @SourceExchangeType = sourceexchangetype
+          @CreateTime = createtime
+          @UpdateTime = updatetime
+          @Remark = remark
+        end
+
+        def deserialize(params)
+          @RouteRelationId = params['RouteRelationId']
+          @SourceExchange = params['SourceExchange']
+          @DestType = params['DestType']
+          @DestValue = params['DestValue']
+          @RoutingKey = params['RoutingKey']
+          @SourceExchangeType = params['SourceExchangeType']
+          @CreateTime = params['CreateTime']
+          @UpdateTime = params['UpdateTime']
+          @Remark = params['Remark']
+        end
+      end
+
+      # vhostd信息
+      class AMQPVHost < TencentCloud::Common::AbstractModel
+        # @param VHostId: 命名空间名称，3-64个字符，只能包含字母、数字、“-”及“_”
+        # @type VHostId: String
+        # @param MsgTtl: 未消费消息的保留时间，以毫秒单位，范围60秒到15天
+        # @type MsgTtl: Integer
+        # @param Remark: 备注
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Remark: String
+        # @param CreateTime: 创建时间，以毫秒为单位
+        # @type CreateTime: Integer
+        # @param UpdateTime: 更新时间，以毫秒为单位
+        # @type UpdateTime: Integer
+        # @param Username: 用户名
+        # @type Username: String
+        # @param Password: 密码
+        # @type Password: String
+
+        attr_accessor :VHostId, :MsgTtl, :Remark, :CreateTime, :UpdateTime, :Username, :Password
+        
+        def initialize(vhostid=nil, msgttl=nil, remark=nil, createtime=nil, updatetime=nil, username=nil, password=nil)
+          @VHostId = vhostid
+          @MsgTtl = msgttl
+          @Remark = remark
+          @CreateTime = createtime
+          @UpdateTime = updatetime
+          @Username = username
+          @Password = password
+        end
+
+        def deserialize(params)
+          @VHostId = params['VHostId']
+          @MsgTtl = params['MsgTtl']
+          @Remark = params['Remark']
+          @CreateTime = params['CreateTime']
+          @UpdateTime = params['UpdateTime']
+          @Username = params['Username']
+          @Password = params['Password']
+        end
+      end
+
       # AcknowledgeMessage请求参数结构体
       class AcknowledgeMessageRequest < TencentCloud::Common::AbstractModel
         # @param MessageId: 用作标识消息的唯一的ID（可从 receiveMessage 的返回值中获得）
@@ -820,6 +1178,254 @@ module TencentCloud
         end
       end
 
+      # CreateAMQPCluster请求参数结构体
+      class CreateAMQPClusterRequest < TencentCloud::Common::AbstractModel
+        # @param Name: 3-64个字符，只能包含字母、数字、“-”及“_”
+        # @type Name: String
+        # @param Remark: 集群描述，128个字符以内
+        # @type Remark: String
+
+        attr_accessor :Name, :Remark
+        
+        def initialize(name=nil, remark=nil)
+          @Name = name
+          @Remark = remark
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Remark = params['Remark']
+        end
+      end
+
+      # CreateAMQPCluster返回参数结构体
+      class CreateAMQPClusterResponse < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群ID
+        # @type ClusterId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ClusterId, :RequestId
+        
+        def initialize(clusterid=nil, requestid=nil)
+          @ClusterId = clusterid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateAMQPExchange请求参数结构体
+      class CreateAMQPExchangeRequest < TencentCloud::Common::AbstractModel
+        # @param Exchange: 交换机名称，3-64个字符，只能包含字母、数字、“-”及“_”
+        # @type Exchange: String
+        # @param VHosts: 交换机所在的vhost，目前支持在单个vhost下创建主题
+        # @type VHosts: Array
+        # @param Type: 交换机类型，可选值为Direct, Fanout, Topic
+        # @type Type: String
+        # @param ClusterId: 集群ID
+        # @type ClusterId: String
+        # @param Remark: 交换机说明，最大128个字符
+        # @type Remark: String
+        # @param AlternateExchange: 备用交换机名称
+        # @type AlternateExchange: String
+
+        attr_accessor :Exchange, :VHosts, :Type, :ClusterId, :Remark, :AlternateExchange
+        
+        def initialize(exchange=nil, vhosts=nil, type=nil, clusterid=nil, remark=nil, alternateexchange=nil)
+          @Exchange = exchange
+          @VHosts = vhosts
+          @Type = type
+          @ClusterId = clusterid
+          @Remark = remark
+          @AlternateExchange = alternateexchange
+        end
+
+        def deserialize(params)
+          @Exchange = params['Exchange']
+          @VHosts = params['VHosts']
+          @Type = params['Type']
+          @ClusterId = params['ClusterId']
+          @Remark = params['Remark']
+          @AlternateExchange = params['AlternateExchange']
+        end
+      end
+
+      # CreateAMQPExchange返回参数结构体
+      class CreateAMQPExchangeResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateAMQPQueue请求参数结构体
+      class CreateAMQPQueueRequest < TencentCloud::Common::AbstractModel
+        # @param Queue: 队列名称，3-64个字符，只能包含字母、数字、“-”及“_”
+        # @type Queue: String
+        # @param VHostId: 队列所在的vhost名称
+        # @type VHostId: String
+        # @param AutoDelete: 是否自动清除
+        # @type AutoDelete: Boolean
+        # @param ClusterId: 集群ID
+        # @type ClusterId: String
+        # @param Remark: 队列说明，最大128个字符
+        # @type Remark: String
+        # @param DeadLetterExchange: 死信exchange
+        # @type DeadLetterExchange: String
+        # @param DeadLetterRoutingKey: 路由键
+        # @type DeadLetterRoutingKey: String
+
+        attr_accessor :Queue, :VHostId, :AutoDelete, :ClusterId, :Remark, :DeadLetterExchange, :DeadLetterRoutingKey
+        
+        def initialize(queue=nil, vhostid=nil, autodelete=nil, clusterid=nil, remark=nil, deadletterexchange=nil, deadletterroutingkey=nil)
+          @Queue = queue
+          @VHostId = vhostid
+          @AutoDelete = autodelete
+          @ClusterId = clusterid
+          @Remark = remark
+          @DeadLetterExchange = deadletterexchange
+          @DeadLetterRoutingKey = deadletterroutingkey
+        end
+
+        def deserialize(params)
+          @Queue = params['Queue']
+          @VHostId = params['VHostId']
+          @AutoDelete = params['AutoDelete']
+          @ClusterId = params['ClusterId']
+          @Remark = params['Remark']
+          @DeadLetterExchange = params['DeadLetterExchange']
+          @DeadLetterRoutingKey = params['DeadLetterRoutingKey']
+        end
+      end
+
+      # CreateAMQPQueue返回参数结构体
+      class CreateAMQPQueueResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateAMQPRouteRelation请求参数结构体
+      class CreateAMQPRouteRelationRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群ID
+        # @type ClusterId: String
+        # @param VHostId: 交换机所在的vhost
+        # @type VHostId: String
+        # @param SourceExchange: 源Exchange名称
+        # @type SourceExchange: String
+        # @param DestType: 目标类型:Queue|Exchange
+        # @type DestType: String
+        # @param DestValue: 目标值
+        # @type DestValue: String
+        # @param Remark: 交换机说明，最大128个字符
+        # @type Remark: String
+        # @param RoutingKey: 绑定key,缺省值为default
+        # @type RoutingKey: String
+
+        attr_accessor :ClusterId, :VHostId, :SourceExchange, :DestType, :DestValue, :Remark, :RoutingKey
+        
+        def initialize(clusterid=nil, vhostid=nil, sourceexchange=nil, desttype=nil, destvalue=nil, remark=nil, routingkey=nil)
+          @ClusterId = clusterid
+          @VHostId = vhostid
+          @SourceExchange = sourceexchange
+          @DestType = desttype
+          @DestValue = destvalue
+          @Remark = remark
+          @RoutingKey = routingkey
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @VHostId = params['VHostId']
+          @SourceExchange = params['SourceExchange']
+          @DestType = params['DestType']
+          @DestValue = params['DestValue']
+          @Remark = params['Remark']
+          @RoutingKey = params['RoutingKey']
+        end
+      end
+
+      # CreateAMQPRouteRelation返回参数结构体
+      class CreateAMQPRouteRelationResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateAMQPVHost请求参数结构体
+      class CreateAMQPVHostRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群ID
+        # @type ClusterId: String
+        # @param VHostId: vhost名称，3-64个字符，只能包含字母、数字、“-”及“_”
+        # @type VHostId: String
+        # @param MsgTtl: 未消费消息的保留时间，以毫秒为单位，60秒-15天
+        # @type MsgTtl: Integer
+        # @param Remark: 说明，最大128个字符
+        # @type Remark: String
+
+        attr_accessor :ClusterId, :VHostId, :MsgTtl, :Remark
+        
+        def initialize(clusterid=nil, vhostid=nil, msgttl=nil, remark=nil)
+          @ClusterId = clusterid
+          @VHostId = vhostid
+          @MsgTtl = msgttl
+          @Remark = remark
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @VHostId = params['VHostId']
+          @MsgTtl = params['MsgTtl']
+          @Remark = params['Remark']
+        end
+      end
+
+      # CreateAMQPVHost返回参数结构体
+      class CreateAMQPVHostResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateCluster请求参数结构体
       class CreateClusterRequest < TencentCloud::Common::AbstractModel
         # @param ClusterName: 集群名称，不支持中字以及除了短线和下划线外的特殊字符且不超过16个字符。
@@ -1587,6 +2193,194 @@ module TencentCloud
         end
       end
 
+      # DeleteAMQPCluster请求参数结构体
+      class DeleteAMQPClusterRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 待删除的集群Id。
+        # @type ClusterId: String
+
+        attr_accessor :ClusterId
+        
+        def initialize(clusterid=nil)
+          @ClusterId = clusterid
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+        end
+      end
+
+      # DeleteAMQPCluster返回参数结构体
+      class DeleteAMQPClusterResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteAMQPExchange请求参数结构体
+      class DeleteAMQPExchangeRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群ID
+        # @type ClusterId: String
+        # @param VHostId: Vhost名称
+        # @type VHostId: String
+        # @param Exchange: 交换机名称
+        # @type Exchange: String
+
+        attr_accessor :ClusterId, :VHostId, :Exchange
+        
+        def initialize(clusterid=nil, vhostid=nil, exchange=nil)
+          @ClusterId = clusterid
+          @VHostId = vhostid
+          @Exchange = exchange
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @VHostId = params['VHostId']
+          @Exchange = params['Exchange']
+        end
+      end
+
+      # DeleteAMQPExchange返回参数结构体
+      class DeleteAMQPExchangeResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteAMQPQueue请求参数结构体
+      class DeleteAMQPQueueRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群ID
+        # @type ClusterId: String
+        # @param VHostId: Vhost名称
+        # @type VHostId: String
+        # @param Queue: 队列名称
+        # @type Queue: String
+
+        attr_accessor :ClusterId, :VHostId, :Queue
+        
+        def initialize(clusterid=nil, vhostid=nil, queue=nil)
+          @ClusterId = clusterid
+          @VHostId = vhostid
+          @Queue = queue
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @VHostId = params['VHostId']
+          @Queue = params['Queue']
+        end
+      end
+
+      # DeleteAMQPQueue返回参数结构体
+      class DeleteAMQPQueueResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteAMQPRouteRelation请求参数结构体
+      class DeleteAMQPRouteRelationRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群ID
+        # @type ClusterId: String
+        # @param VHostId: Vhost名称
+        # @type VHostId: String
+        # @param RouteRelationId: 路由关系ID
+        # @type RouteRelationId: String
+
+        attr_accessor :ClusterId, :VHostId, :RouteRelationId
+        
+        def initialize(clusterid=nil, vhostid=nil, routerelationid=nil)
+          @ClusterId = clusterid
+          @VHostId = vhostid
+          @RouteRelationId = routerelationid
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @VHostId = params['VHostId']
+          @RouteRelationId = params['RouteRelationId']
+        end
+      end
+
+      # DeleteAMQPRouteRelation返回参数结构体
+      class DeleteAMQPRouteRelationResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteAMQPVHost请求参数结构体
+      class DeleteAMQPVHostRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群ID
+        # @type ClusterId: String
+        # @param VHostId: vhost名称
+        # @type VHostId: String
+
+        attr_accessor :ClusterId, :VHostId
+        
+        def initialize(clusterid=nil, vhostid=nil)
+          @ClusterId = clusterid
+          @VHostId = vhostid
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @VHostId = params['VHostId']
+        end
+      end
+
+      # DeleteAMQPVHost返回参数结构体
+      class DeleteAMQPVHostResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DeleteCluster请求参数结构体
       class DeleteClusterRequest < TencentCloud::Common::AbstractModel
         # @param ClusterId: 集群Id，传入需要删除的集群Id。
@@ -2111,6 +2905,462 @@ module TencentCloud
               @TopicSets << topicrecord_tmp
             end
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeAMQPCluster请求参数结构体
+      class DescribeAMQPClusterRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群ID
+        # @type ClusterId: String
+
+        attr_accessor :ClusterId
+        
+        def initialize(clusterid=nil)
+          @ClusterId = clusterid
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+        end
+      end
+
+      # DescribeAMQPCluster返回参数结构体
+      class DescribeAMQPClusterResponse < TencentCloud::Common::AbstractModel
+        # @param ClusterInfo: 集群信息
+        # @type ClusterInfo: :class:`Tencentcloud::Tdmq.v20200217.models.AMQPClusterInfo`
+        # @param ClusterConfig: 集群配置
+        # @type ClusterConfig: :class:`Tencentcloud::Tdmq.v20200217.models.AMQPClusterConfig`
+        # @param ClusterStats: 集群最近使用量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClusterStats: :class:`Tencentcloud::Tdmq.v20200217.models.AMQPClusterRecentStats`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ClusterInfo, :ClusterConfig, :ClusterStats, :RequestId
+        
+        def initialize(clusterinfo=nil, clusterconfig=nil, clusterstats=nil, requestid=nil)
+          @ClusterInfo = clusterinfo
+          @ClusterConfig = clusterconfig
+          @ClusterStats = clusterstats
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['ClusterInfo'].nil?
+            @ClusterInfo = AMQPClusterInfo.new
+            @ClusterInfo.deserialize(params['ClusterInfo'])
+          end
+          unless params['ClusterConfig'].nil?
+            @ClusterConfig = AMQPClusterConfig.new
+            @ClusterConfig.deserialize(params['ClusterConfig'])
+          end
+          unless params['ClusterStats'].nil?
+            @ClusterStats = AMQPClusterRecentStats.new
+            @ClusterStats.deserialize(params['ClusterStats'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeAMQPClusters请求参数结构体
+      class DescribeAMQPClustersRequest < TencentCloud::Common::AbstractModel
+        # @param Offset: 偏移量
+        # @type Offset: Integer
+        # @param Limit: 限制数目
+        # @type Limit: Integer
+        # @param IdKeyword: 按照集群ID关键字搜索
+        # @type IdKeyword: String
+        # @param NameKeyword: 按照集群名称关键字搜索
+        # @type NameKeyword: String
+        # @param ClusterIdList: 集群ID列表过滤
+        # @type ClusterIdList: Array
+        # @param IsTagFilter: 标签过滤查找时，需要设置为true
+        # @type IsTagFilter: Boolean
+        # @param Filters: 过滤器。目前支持按标签过滤。
+        # @type Filters: Array
+
+        attr_accessor :Offset, :Limit, :IdKeyword, :NameKeyword, :ClusterIdList, :IsTagFilter, :Filters
+        
+        def initialize(offset=nil, limit=nil, idkeyword=nil, namekeyword=nil, clusteridlist=nil, istagfilter=nil, filters=nil)
+          @Offset = offset
+          @Limit = limit
+          @IdKeyword = idkeyword
+          @NameKeyword = namekeyword
+          @ClusterIdList = clusteridlist
+          @IsTagFilter = istagfilter
+          @Filters = filters
+        end
+
+        def deserialize(params)
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @IdKeyword = params['IdKeyword']
+          @NameKeyword = params['NameKeyword']
+          @ClusterIdList = params['ClusterIdList']
+          @IsTagFilter = params['IsTagFilter']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+        end
+      end
+
+      # DescribeAMQPClusters返回参数结构体
+      class DescribeAMQPClustersResponse < TencentCloud::Common::AbstractModel
+        # @param ClusterList: 集群信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClusterList: Array
+        # @param TotalCount: 总条数
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ClusterList, :TotalCount, :RequestId
+        
+        def initialize(clusterlist=nil, totalcount=nil, requestid=nil)
+          @ClusterList = clusterlist
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['ClusterList'].nil?
+            @ClusterList = []
+            params['ClusterList'].each do |i|
+              amqpclusterdetail_tmp = AMQPClusterDetail.new
+              amqpclusterdetail_tmp.deserialize(i)
+              @ClusterList << amqpclusterdetail_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeAMQPCreateQuota请求参数结构体
+      class DescribeAMQPCreateQuotaRequest < TencentCloud::Common::AbstractModel
+
+        
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeAMQPCreateQuota返回参数结构体
+      class DescribeAMQPCreateQuotaResponse < TencentCloud::Common::AbstractModel
+        # @param MaxClusterNum: 租户总共可使用集群数量
+        # @type MaxClusterNum: Integer
+        # @param UsedClusterNum: 租户已创建集群数量
+        # @type UsedClusterNum: Integer
+        # @param ExchangeCapacity: Exchange容量
+        # @type ExchangeCapacity: Integer
+        # @param QueueCapacity: Queue容量
+        # @type QueueCapacity: Integer
+        # @param MaxTpsPerVHost: 单Vhost TPS
+        # @type MaxTpsPerVHost: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :MaxClusterNum, :UsedClusterNum, :ExchangeCapacity, :QueueCapacity, :MaxTpsPerVHost, :RequestId
+        
+        def initialize(maxclusternum=nil, usedclusternum=nil, exchangecapacity=nil, queuecapacity=nil, maxtpspervhost=nil, requestid=nil)
+          @MaxClusterNum = maxclusternum
+          @UsedClusterNum = usedclusternum
+          @ExchangeCapacity = exchangecapacity
+          @QueueCapacity = queuecapacity
+          @MaxTpsPerVHost = maxtpspervhost
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @MaxClusterNum = params['MaxClusterNum']
+          @UsedClusterNum = params['UsedClusterNum']
+          @ExchangeCapacity = params['ExchangeCapacity']
+          @QueueCapacity = params['QueueCapacity']
+          @MaxTpsPerVHost = params['MaxTpsPerVHost']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeAMQPExchanges请求参数结构体
+      class DescribeAMQPExchangesRequest < TencentCloud::Common::AbstractModel
+        # @param Offset: 查询偏移量
+        # @type Offset: Integer
+        # @param Limit: 查询限制数
+        # @type Limit: Integer
+        # @param ClusterId: 集群ID
+        # @type ClusterId: String
+        # @param VHostId: Vhost ID
+        # @type VHostId: String
+        # @param FilterType: 按路由类型过滤查询结果，可选择Direct, Fanout, Topic
+        # @type FilterType: Array
+        # @param FilterName: 按exchange名称搜索，支持模糊查询
+        # @type FilterName: String
+        # @param FilterInternal: 过滤查询内部或者外部exchange
+        # @type FilterInternal: Boolean
+
+        attr_accessor :Offset, :Limit, :ClusterId, :VHostId, :FilterType, :FilterName, :FilterInternal
+        
+        def initialize(offset=nil, limit=nil, clusterid=nil, vhostid=nil, filtertype=nil, filtername=nil, filterinternal=nil)
+          @Offset = offset
+          @Limit = limit
+          @ClusterId = clusterid
+          @VHostId = vhostid
+          @FilterType = filtertype
+          @FilterName = filtername
+          @FilterInternal = filterinternal
+        end
+
+        def deserialize(params)
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @ClusterId = params['ClusterId']
+          @VHostId = params['VHostId']
+          @FilterType = params['FilterType']
+          @FilterName = params['FilterName']
+          @FilterInternal = params['FilterInternal']
+        end
+      end
+
+      # DescribeAMQPExchanges返回参数结构体
+      class DescribeAMQPExchangesResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 总记录数
+        # @type TotalCount: Integer
+        # @param Exchanges: 主题信息列表
+        # @type Exchanges: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :Exchanges, :RequestId
+        
+        def initialize(totalcount=nil, exchanges=nil, requestid=nil)
+          @TotalCount = totalcount
+          @Exchanges = exchanges
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['Exchanges'].nil?
+            @Exchanges = []
+            params['Exchanges'].each do |i|
+              amqpexchange_tmp = AMQPExchange.new
+              amqpexchange_tmp.deserialize(i)
+              @Exchanges << amqpexchange_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeAMQPQueues请求参数结构体
+      class DescribeAMQPQueuesRequest < TencentCloud::Common::AbstractModel
+        # @param Offset: 查询偏移量
+        # @type Offset: Integer
+        # @param Limit: 查询限制数
+        # @type Limit: Integer
+        # @param ClusterId: 集群ID
+        # @type ClusterId: String
+        # @param VHostId: Vhost名称
+        # @type VHostId: String
+        # @param NameKeyword: 按队列名称搜索，支持模糊查询
+        # @type NameKeyword: String
+        # @param SortOrder: 查询结果排序规则，ASC为升序，DESC为降序
+        # @type SortOrder: String
+        # @param SortedBy: 对查询结果排序，此为排序字段，目前支持Accumulative（消息堆积量）、Tps
+        # @type SortedBy: String
+        # @param FilterOneQueue: 队列名称，指定此参数后将只返回该队列信息
+        # @type FilterOneQueue: String
+
+        attr_accessor :Offset, :Limit, :ClusterId, :VHostId, :NameKeyword, :SortOrder, :SortedBy, :FilterOneQueue
+        
+        def initialize(offset=nil, limit=nil, clusterid=nil, vhostid=nil, namekeyword=nil, sortorder=nil, sortedby=nil, filteronequeue=nil)
+          @Offset = offset
+          @Limit = limit
+          @ClusterId = clusterid
+          @VHostId = vhostid
+          @NameKeyword = namekeyword
+          @SortOrder = sortorder
+          @SortedBy = sortedby
+          @FilterOneQueue = filteronequeue
+        end
+
+        def deserialize(params)
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @ClusterId = params['ClusterId']
+          @VHostId = params['VHostId']
+          @NameKeyword = params['NameKeyword']
+          @SortOrder = params['SortOrder']
+          @SortedBy = params['SortedBy']
+          @FilterOneQueue = params['FilterOneQueue']
+        end
+      end
+
+      # DescribeAMQPQueues返回参数结构体
+      class DescribeAMQPQueuesResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 总记录数
+        # @type TotalCount: Integer
+        # @param Queues: 队列信息列表
+        # @type Queues: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :Queues, :RequestId
+        
+        def initialize(totalcount=nil, queues=nil, requestid=nil)
+          @TotalCount = totalcount
+          @Queues = queues
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['Queues'].nil?
+            @Queues = []
+            params['Queues'].each do |i|
+              amqpqueuedetail_tmp = AMQPQueueDetail.new
+              amqpqueuedetail_tmp.deserialize(i)
+              @Queues << amqpqueuedetail_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeAMQPRouteRelations请求参数结构体
+      class DescribeAMQPRouteRelationsRequest < TencentCloud::Common::AbstractModel
+        # @param Offset: 查询偏移量
+        # @type Offset: Integer
+        # @param Limit: 查询限制数
+        # @type Limit: Integer
+        # @param ClusterId: 集群ID
+        # @type ClusterId: String
+        # @param VHostId: Vhost名称
+        # @type VHostId: String
+        # @param FilterSourceExchange: 按源exchange名称过滤查询结果，支持模糊查询
+        # @type FilterSourceExchange: String
+        # @param FilterDestType: 按绑定的目标类型过滤查询结果，可选值:Exchange、Queue
+        # @type FilterDestType: String
+        # @param FilterDestValue: 按目标名称过滤查询结果，支持模糊查询
+        # @type FilterDestValue: String
+
+        attr_accessor :Offset, :Limit, :ClusterId, :VHostId, :FilterSourceExchange, :FilterDestType, :FilterDestValue
+        
+        def initialize(offset=nil, limit=nil, clusterid=nil, vhostid=nil, filtersourceexchange=nil, filterdesttype=nil, filterdestvalue=nil)
+          @Offset = offset
+          @Limit = limit
+          @ClusterId = clusterid
+          @VHostId = vhostid
+          @FilterSourceExchange = filtersourceexchange
+          @FilterDestType = filterdesttype
+          @FilterDestValue = filterdestvalue
+        end
+
+        def deserialize(params)
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @ClusterId = params['ClusterId']
+          @VHostId = params['VHostId']
+          @FilterSourceExchange = params['FilterSourceExchange']
+          @FilterDestType = params['FilterDestType']
+          @FilterDestValue = params['FilterDestValue']
+        end
+      end
+
+      # DescribeAMQPRouteRelations返回参数结构体
+      class DescribeAMQPRouteRelationsResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 总记录数
+        # @type TotalCount: Integer
+        # @param RouteRelations: 路由关系列表
+        # @type RouteRelations: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :RouteRelations, :RequestId
+        
+        def initialize(totalcount=nil, routerelations=nil, requestid=nil)
+          @TotalCount = totalcount
+          @RouteRelations = routerelations
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['RouteRelations'].nil?
+            @RouteRelations = []
+            params['RouteRelations'].each do |i|
+              amqprouterelation_tmp = AMQPRouteRelation.new
+              amqprouterelation_tmp.deserialize(i)
+              @RouteRelations << amqprouterelation_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeAMQPVHosts请求参数结构体
+      class DescribeAMQPVHostsRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群ID
+        # @type ClusterId: String
+        # @param Offset: 偏移量
+        # @type Offset: Integer
+        # @param Limit: 限制数目
+        # @type Limit: Integer
+        # @param NameKeyword: 按名称搜索
+        # @type NameKeyword: String
+
+        attr_accessor :ClusterId, :Offset, :Limit, :NameKeyword
+        
+        def initialize(clusterid=nil, offset=nil, limit=nil, namekeyword=nil)
+          @ClusterId = clusterid
+          @Offset = offset
+          @Limit = limit
+          @NameKeyword = namekeyword
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @NameKeyword = params['NameKeyword']
+        end
+      end
+
+      # DescribeAMQPVHosts返回参数结构体
+      class DescribeAMQPVHostsResponse < TencentCloud::Common::AbstractModel
+        # @param VHosts: Vhost 列表
+        # @type VHosts: Array
+        # @param TotalCount: 总条数
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :VHosts, :TotalCount, :RequestId
+        
+        def initialize(vhosts=nil, totalcount=nil, requestid=nil)
+          @VHosts = vhosts
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['VHosts'].nil?
+            @VHosts = []
+            params['VHosts'].each do |i|
+              amqpvhost_tmp = AMQPVHost.new
+              amqpvhost_tmp.deserialize(i)
+              @VHosts << amqpvhost_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
           @RequestId = params['RequestId']
         end
       end
@@ -3770,6 +5020,190 @@ module TencentCloud
           @ConsumerHasBacklog = params['ConsumerHasBacklog']
           @ConsumerHasExpired = params['ConsumerHasExpired']
           @SubscriptionNames = params['SubscriptionNames']
+        end
+      end
+
+      # ModifyAMQPCluster请求参数结构体
+      class ModifyAMQPClusterRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群ID
+        # @type ClusterId: String
+        # @param ClusterName: 3-64个字符，只能包含字母、数字、“-”及“_”
+        # @type ClusterName: String
+        # @param Remark: 说明信息，不超过128个字符
+        # @type Remark: String
+
+        attr_accessor :ClusterId, :ClusterName, :Remark
+        
+        def initialize(clusterid=nil, clustername=nil, remark=nil)
+          @ClusterId = clusterid
+          @ClusterName = clustername
+          @Remark = remark
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @ClusterName = params['ClusterName']
+          @Remark = params['Remark']
+        end
+      end
+
+      # ModifyAMQPCluster返回参数结构体
+      class ModifyAMQPClusterResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyAMQPExchange请求参数结构体
+      class ModifyAMQPExchangeRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群ID
+        # @type ClusterId: String
+        # @param VHostId: Vhost间名称
+        # @type VHostId: String
+        # @param Exchange: 交换机名称
+        # @type Exchange: String
+        # @param Remark: 说明信息，最大128个字符
+        # @type Remark: String
+
+        attr_accessor :ClusterId, :VHostId, :Exchange, :Remark
+        
+        def initialize(clusterid=nil, vhostid=nil, exchange=nil, remark=nil)
+          @ClusterId = clusterid
+          @VHostId = vhostid
+          @Exchange = exchange
+          @Remark = remark
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @VHostId = params['VHostId']
+          @Exchange = params['Exchange']
+          @Remark = params['Remark']
+        end
+      end
+
+      # ModifyAMQPExchange返回参数结构体
+      class ModifyAMQPExchangeResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyAMQPQueue请求参数结构体
+      class ModifyAMQPQueueRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群ID
+        # @type ClusterId: String
+        # @param VHostId: Vhost名称
+        # @type VHostId: String
+        # @param Queue: 队列名称
+        # @type Queue: String
+        # @param AutoDelete: 是否自动清除
+        # @type AutoDelete: Boolean
+        # @param Remark: 说明信息，最大128个字符
+        # @type Remark: String
+        # @param DeadLetterExchange: 死信exchange
+        # @type DeadLetterExchange: String
+        # @param DeadLetterRoutingKey: 路由键
+        # @type DeadLetterRoutingKey: String
+
+        attr_accessor :ClusterId, :VHostId, :Queue, :AutoDelete, :Remark, :DeadLetterExchange, :DeadLetterRoutingKey
+        
+        def initialize(clusterid=nil, vhostid=nil, queue=nil, autodelete=nil, remark=nil, deadletterexchange=nil, deadletterroutingkey=nil)
+          @ClusterId = clusterid
+          @VHostId = vhostid
+          @Queue = queue
+          @AutoDelete = autodelete
+          @Remark = remark
+          @DeadLetterExchange = deadletterexchange
+          @DeadLetterRoutingKey = deadletterroutingkey
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @VHostId = params['VHostId']
+          @Queue = params['Queue']
+          @AutoDelete = params['AutoDelete']
+          @Remark = params['Remark']
+          @DeadLetterExchange = params['DeadLetterExchange']
+          @DeadLetterRoutingKey = params['DeadLetterRoutingKey']
+        end
+      end
+
+      # ModifyAMQPQueue返回参数结构体
+      class ModifyAMQPQueueResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyAMQPVHost请求参数结构体
+      class ModifyAMQPVHostRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群ID
+        # @type ClusterId: String
+        # @param VHostId: vhost名称，3-64个字符，只能包含字母、数字、“-”及“_”
+        # @type VHostId: String
+        # @param MsgTtl: 未消费消息的保留时间，以毫秒为单位，60秒-15天
+        # @type MsgTtl: Integer
+        # @param Remark: 说明，最大128个字符
+        # @type Remark: String
+
+        attr_accessor :ClusterId, :VHostId, :MsgTtl, :Remark
+        
+        def initialize(clusterid=nil, vhostid=nil, msgttl=nil, remark=nil)
+          @ClusterId = clusterid
+          @VHostId = vhostid
+          @MsgTtl = msgttl
+          @Remark = remark
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @VHostId = params['VHostId']
+          @MsgTtl = params['MsgTtl']
+          @Remark = params['Remark']
+        end
+      end
+
+      # ModifyAMQPVHost返回参数结构体
+      class ModifyAMQPVHostResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
         end
       end
 

@@ -2086,7 +2086,7 @@ module TencentCloud
       class CreatePluginRequest < TencentCloud::Common::AbstractModel
         # @param PluginName: 用户自定义的插件名称。最长50个字符，最短2个字符，支持 a-z,A-Z,0-9,_, 必须字母开头，字母或者数字结尾。
         # @type PluginName: String
-        # @param PluginType: 插件类型。目前支持IPControl, TrafficControl, Cors, CustomReq, CustomAuth。
+        # @param PluginType: 插件类型。目前支持IPControl, TrafficControl, Cors, CustomReq, CustomAuth，Routing，TrafficControlByParameter。
         # @type PluginType: String
         # @param PluginData: 插件定义语句，支持json。
         # @type PluginData: String

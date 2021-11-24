@@ -846,7 +846,7 @@ module TencentCloud
         # @type DBInstanceVersion: String
         # @param DBCharset: 实例DB字符集
         # @type DBCharset: String
-        # @param DBVersion: PostgreSQL内核版本
+        # @param DBVersion: PostgreSQL主版本
         # @type DBVersion: String
         # @param CreateTime: 实例创建时间
         # @type CreateTime: String
@@ -885,10 +885,16 @@ module TencentCloud
         # @param OfflineTime: 下线时间
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OfflineTime: String
+        # @param DBKernelVersion: 数据库内核版本
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DBKernelVersion: String
+        # @param NetworkAccessList: 实例网络信息列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NetworkAccessList: Array
 
-        attr_accessor :Region, :Zone, :ProjectId, :VpcId, :SubnetId, :DBInstanceId, :DBInstanceName, :DBInstanceStatus, :DBInstanceMemory, :DBInstanceStorage, :DBInstanceCpu, :DBInstanceClass, :DBInstanceType, :DBInstanceVersion, :DBCharset, :DBVersion, :CreateTime, :UpdateTime, :ExpireTime, :IsolatedTime, :PayType, :AutoRenew, :DBInstanceNetInfo, :Type, :AppId, :Uid, :SupportIpv6, :TagList, :MasterDBInstanceId, :ReadOnlyInstanceNum, :StatusInReadonlyGroup, :OfflineTime
+        attr_accessor :Region, :Zone, :ProjectId, :VpcId, :SubnetId, :DBInstanceId, :DBInstanceName, :DBInstanceStatus, :DBInstanceMemory, :DBInstanceStorage, :DBInstanceCpu, :DBInstanceClass, :DBInstanceType, :DBInstanceVersion, :DBCharset, :DBVersion, :CreateTime, :UpdateTime, :ExpireTime, :IsolatedTime, :PayType, :AutoRenew, :DBInstanceNetInfo, :Type, :AppId, :Uid, :SupportIpv6, :TagList, :MasterDBInstanceId, :ReadOnlyInstanceNum, :StatusInReadonlyGroup, :OfflineTime, :DBKernelVersion, :NetworkAccessList
         
-        def initialize(region=nil, zone=nil, projectid=nil, vpcid=nil, subnetid=nil, dbinstanceid=nil, dbinstancename=nil, dbinstancestatus=nil, dbinstancememory=nil, dbinstancestorage=nil, dbinstancecpu=nil, dbinstanceclass=nil, dbinstancetype=nil, dbinstanceversion=nil, dbcharset=nil, dbversion=nil, createtime=nil, updatetime=nil, expiretime=nil, isolatedtime=nil, paytype=nil, autorenew=nil, dbinstancenetinfo=nil, type=nil, appid=nil, uid=nil, supportipv6=nil, taglist=nil, masterdbinstanceid=nil, readonlyinstancenum=nil, statusinreadonlygroup=nil, offlinetime=nil)
+        def initialize(region=nil, zone=nil, projectid=nil, vpcid=nil, subnetid=nil, dbinstanceid=nil, dbinstancename=nil, dbinstancestatus=nil, dbinstancememory=nil, dbinstancestorage=nil, dbinstancecpu=nil, dbinstanceclass=nil, dbinstancetype=nil, dbinstanceversion=nil, dbcharset=nil, dbversion=nil, createtime=nil, updatetime=nil, expiretime=nil, isolatedtime=nil, paytype=nil, autorenew=nil, dbinstancenetinfo=nil, type=nil, appid=nil, uid=nil, supportipv6=nil, taglist=nil, masterdbinstanceid=nil, readonlyinstancenum=nil, statusinreadonlygroup=nil, offlinetime=nil, dbkernelversion=nil, networkaccesslist=nil)
           @Region = region
           @Zone = zone
           @ProjectId = projectid
@@ -921,6 +927,8 @@ module TencentCloud
           @ReadOnlyInstanceNum = readonlyinstancenum
           @StatusInReadonlyGroup = statusinreadonlygroup
           @OfflineTime = offlinetime
+          @DBKernelVersion = dbkernelversion
+          @NetworkAccessList = networkaccesslist
         end
 
         def deserialize(params)
@@ -970,6 +978,15 @@ module TencentCloud
           @ReadOnlyInstanceNum = params['ReadOnlyInstanceNum']
           @StatusInReadonlyGroup = params['StatusInReadonlyGroup']
           @OfflineTime = params['OfflineTime']
+          @DBKernelVersion = params['DBKernelVersion']
+          unless params['NetworkAccessList'].nil?
+            @NetworkAccessList = []
+            params['NetworkAccessList'].each do |i|
+              networkaccess_tmp = NetworkAccess.new
+              networkaccess_tmp.deserialize(i)
+              @NetworkAccessList << networkaccess_tmp
+            end
+          end
         end
       end
 
@@ -3006,6 +3023,58 @@ module TencentCloud
         end
       end
 
+      # 网络类型信息，用于实例查询接口和RO组查询接口的返回。
+      class NetworkAccess < TencentCloud::Common::AbstractModel
+        # @param ResourceId: 网络资源id，实例id或RO组id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResourceId: String
+        # @param ResourceType: 资源类型，1-实例 2-RO组
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResourceType: Integer
+        # @param VpcId: 私有网络ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VpcId: String
+        # @param Vip: IP地址
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Vip: String
+        # @param Vip6: ipv6的IP地址
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Vip6: String
+        # @param Vport: 连接Port地址
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Vport: Integer
+        # @param SubnetId: 子网ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SubnetId: String
+        # @param VpcStatus: 网络状态，1-申请中，2-使用中，3-删除中，4-已删除
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VpcStatus: Integer
+
+        attr_accessor :ResourceId, :ResourceType, :VpcId, :Vip, :Vip6, :Vport, :SubnetId, :VpcStatus
+        
+        def initialize(resourceid=nil, resourcetype=nil, vpcid=nil, vip=nil, vip6=nil, vport=nil, subnetid=nil, vpcstatus=nil)
+          @ResourceId = resourceid
+          @ResourceType = resourcetype
+          @VpcId = vpcid
+          @Vip = vip
+          @Vip6 = vip6
+          @Vport = vport
+          @SubnetId = subnetid
+          @VpcStatus = vpcstatus
+        end
+
+        def deserialize(params)
+          @ResourceId = params['ResourceId']
+          @ResourceType = params['ResourceType']
+          @VpcId = params['VpcId']
+          @Vip = params['Vip']
+          @Vip6 = params['Vip6']
+          @Vport = params['Vport']
+          @SubnetId = params['SubnetId']
+          @VpcStatus = params['VpcStatus']
+        end
+      end
+
       # 单条SlowQuery信息
       class NormalQueryItem < TencentCloud::Common::AbstractModel
         # @param UserName: 用户名
@@ -3388,10 +3457,13 @@ module TencentCloud
         # @type Rebalance: Integer
         # @param DBInstanceNetInfo: 网络信息
         # @type DBInstanceNetInfo: Array
+        # @param NetworkAccessList: 只读组网络信息列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NetworkAccessList: Array
 
-        attr_accessor :ReadOnlyGroupId, :ReadOnlyGroupName, :ProjectId, :MasterDBInstanceId, :MinDelayEliminateReserve, :MaxReplayLatency, :ReplayLatencyEliminate, :MaxReplayLag, :ReplayLagEliminate, :VpcId, :SubnetId, :Region, :Zone, :Status, :ReadOnlyDBInstanceList, :Rebalance, :DBInstanceNetInfo
+        attr_accessor :ReadOnlyGroupId, :ReadOnlyGroupName, :ProjectId, :MasterDBInstanceId, :MinDelayEliminateReserve, :MaxReplayLatency, :ReplayLatencyEliminate, :MaxReplayLag, :ReplayLagEliminate, :VpcId, :SubnetId, :Region, :Zone, :Status, :ReadOnlyDBInstanceList, :Rebalance, :DBInstanceNetInfo, :NetworkAccessList
         
-        def initialize(readonlygroupid=nil, readonlygroupname=nil, projectid=nil, masterdbinstanceid=nil, mindelayeliminatereserve=nil, maxreplaylatency=nil, replaylatencyeliminate=nil, maxreplaylag=nil, replaylageliminate=nil, vpcid=nil, subnetid=nil, region=nil, zone=nil, status=nil, readonlydbinstancelist=nil, rebalance=nil, dbinstancenetinfo=nil)
+        def initialize(readonlygroupid=nil, readonlygroupname=nil, projectid=nil, masterdbinstanceid=nil, mindelayeliminatereserve=nil, maxreplaylatency=nil, replaylatencyeliminate=nil, maxreplaylag=nil, replaylageliminate=nil, vpcid=nil, subnetid=nil, region=nil, zone=nil, status=nil, readonlydbinstancelist=nil, rebalance=nil, dbinstancenetinfo=nil, networkaccesslist=nil)
           @ReadOnlyGroupId = readonlygroupid
           @ReadOnlyGroupName = readonlygroupname
           @ProjectId = projectid
@@ -3409,6 +3481,7 @@ module TencentCloud
           @ReadOnlyDBInstanceList = readonlydbinstancelist
           @Rebalance = rebalance
           @DBInstanceNetInfo = dbinstancenetinfo
+          @NetworkAccessList = networkaccesslist
         end
 
         def deserialize(params)
@@ -3441,6 +3514,14 @@ module TencentCloud
               dbinstancenetinfo_tmp = DBInstanceNetInfo.new
               dbinstancenetinfo_tmp.deserialize(i)
               @DBInstanceNetInfo << dbinstancenetinfo_tmp
+            end
+          end
+          unless params['NetworkAccessList'].nil?
+            @NetworkAccessList = []
+            params['NetworkAccessList'].each do |i|
+              networkaccess_tmp = NetworkAccess.new
+              networkaccess_tmp.deserialize(i)
+              @NetworkAccessList << networkaccess_tmp
             end
           end
         end
@@ -3749,10 +3830,13 @@ module TencentCloud
         # @param TagList: 实例绑定的标签数组
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TagList: Array
+        # @param DBKernelVersion: 数据库内核版本
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DBKernelVersion: String
 
-        attr_accessor :DBInstanceId, :DBInstanceName, :DBInstanceStatus, :Region, :Zone, :ProjectId, :VpcId, :SubnetId, :DBCharset, :DBVersion, :CreateTime, :DBInstanceNetInfo, :DBAccountSet, :DBDatabaseList, :TagList
+        attr_accessor :DBInstanceId, :DBInstanceName, :DBInstanceStatus, :Region, :Zone, :ProjectId, :VpcId, :SubnetId, :DBCharset, :DBVersion, :CreateTime, :DBInstanceNetInfo, :DBAccountSet, :DBDatabaseList, :TagList, :DBKernelVersion
         
-        def initialize(dbinstanceid=nil, dbinstancename=nil, dbinstancestatus=nil, region=nil, zone=nil, projectid=nil, vpcid=nil, subnetid=nil, dbcharset=nil, dbversion=nil, createtime=nil, dbinstancenetinfo=nil, dbaccountset=nil, dbdatabaselist=nil, taglist=nil)
+        def initialize(dbinstanceid=nil, dbinstancename=nil, dbinstancestatus=nil, region=nil, zone=nil, projectid=nil, vpcid=nil, subnetid=nil, dbcharset=nil, dbversion=nil, createtime=nil, dbinstancenetinfo=nil, dbaccountset=nil, dbdatabaselist=nil, taglist=nil, dbkernelversion=nil)
           @DBInstanceId = dbinstanceid
           @DBInstanceName = dbinstancename
           @DBInstanceStatus = dbinstancestatus
@@ -3768,6 +3852,7 @@ module TencentCloud
           @DBAccountSet = dbaccountset
           @DBDatabaseList = dbdatabaselist
           @TagList = taglist
+          @DBKernelVersion = dbkernelversion
         end
 
         def deserialize(params)
@@ -3807,6 +3892,7 @@ module TencentCloud
               @TagList << tag_tmp
             end
           end
+          @DBKernelVersion = params['DBKernelVersion']
         end
       end
 
