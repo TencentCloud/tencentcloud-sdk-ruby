@@ -8043,6 +8043,141 @@ module TencentCloud
         end
       end
 
+      # ScaleInClusterMaster请求参数结构体
+      class ScaleInClusterMasterRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群实例ID
+        # @type ClusterId: String
+        # @param ScaleInMasters: master缩容选项
+        # @type ScaleInMasters: Array
+
+        attr_accessor :ClusterId, :ScaleInMasters
+        
+        def initialize(clusterid=nil, scaleinmasters=nil)
+          @ClusterId = clusterid
+          @ScaleInMasters = scaleinmasters
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          unless params['ScaleInMasters'].nil?
+            @ScaleInMasters = []
+            params['ScaleInMasters'].each do |i|
+              scaleinmaster_tmp = ScaleInMaster.new
+              scaleinmaster_tmp.deserialize(i)
+              @ScaleInMasters << scaleinmaster_tmp
+            end
+          end
+        end
+      end
+
+      # ScaleInClusterMaster返回参数结构体
+      class ScaleInClusterMasterResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # master节点缩容参数
+      class ScaleInMaster < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+        # @param NodeRole: 缩容的实例角色：MASTER,ETCD,MASTER_ETCD
+        # @type NodeRole: String
+        # @param InstanceDeleteMode: 实例的保留模式
+        # @type InstanceDeleteMode: String
+
+        attr_accessor :InstanceId, :NodeRole, :InstanceDeleteMode
+        
+        def initialize(instanceid=nil, noderole=nil, instancedeletemode=nil)
+          @InstanceId = instanceid
+          @NodeRole = noderole
+          @InstanceDeleteMode = instancedeletemode
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @NodeRole = params['NodeRole']
+          @InstanceDeleteMode = params['InstanceDeleteMode']
+        end
+      end
+
+      # ScaleOutClusterMaster请求参数结构体
+      class ScaleOutClusterMasterRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群实例ID
+        # @type ClusterId: String
+        # @param RunInstancesForNode: 新建节点参数
+        # @type RunInstancesForNode: Array
+        # @param ExistedInstancesForNode: 添加已有节点相关参数
+        # @type ExistedInstancesForNode: Array
+        # @param InstanceAdvancedSettings: 实例高级设置
+        # @type InstanceAdvancedSettings: :class:`Tencentcloud::Tke.v20180525.models.InstanceAdvancedSettings`
+        # @param ExtraArgs: 集群master组件自定义参数
+        # @type ExtraArgs: :class:`Tencentcloud::Tke.v20180525.models.ClusterExtraArgs`
+
+        attr_accessor :ClusterId, :RunInstancesForNode, :ExistedInstancesForNode, :InstanceAdvancedSettings, :ExtraArgs
+        
+        def initialize(clusterid=nil, runinstancesfornode=nil, existedinstancesfornode=nil, instanceadvancedsettings=nil, extraargs=nil)
+          @ClusterId = clusterid
+          @RunInstancesForNode = runinstancesfornode
+          @ExistedInstancesForNode = existedinstancesfornode
+          @InstanceAdvancedSettings = instanceadvancedsettings
+          @ExtraArgs = extraargs
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          unless params['RunInstancesForNode'].nil?
+            @RunInstancesForNode = []
+            params['RunInstancesForNode'].each do |i|
+              runinstancesfornode_tmp = RunInstancesForNode.new
+              runinstancesfornode_tmp.deserialize(i)
+              @RunInstancesForNode << runinstancesfornode_tmp
+            end
+          end
+          unless params['ExistedInstancesForNode'].nil?
+            @ExistedInstancesForNode = []
+            params['ExistedInstancesForNode'].each do |i|
+              existedinstancesfornode_tmp = ExistedInstancesForNode.new
+              existedinstancesfornode_tmp.deserialize(i)
+              @ExistedInstancesForNode << existedinstancesfornode_tmp
+            end
+          end
+          unless params['InstanceAdvancedSettings'].nil?
+            @InstanceAdvancedSettings = InstanceAdvancedSettings.new
+            @InstanceAdvancedSettings.deserialize(params['InstanceAdvancedSettings'])
+          end
+          unless params['ExtraArgs'].nil?
+            @ExtraArgs = ClusterExtraArgs.new
+            @ExtraArgs.deserialize(params['ExtraArgs'])
+          end
+        end
+      end
+
+      # ScaleOutClusterMaster返回参数结构体
+      class ScaleOutClusterMasterResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # cloudrun安全特性
       class SecurityContext < TencentCloud::Common::AbstractModel
         # @param Capabilities: 安全能力清单

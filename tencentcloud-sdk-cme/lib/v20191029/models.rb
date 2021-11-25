@@ -562,6 +562,7 @@ module TencentCloud
         # @param Name: 项目名称，不可超过30个字符。
         # @type Name: String
         # @param Owner: 项目归属者。
+        # 注：云转推项目，仅支持个人归属。
         # @type Owner: :class:`Tencentcloud::Cme.v20191029.models.Entity`
         # @param Category: 项目类别，取值有：
         # <li>VIDEO_EDIT：视频编辑。</li>

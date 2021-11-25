@@ -2117,6 +2117,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 缩容独立集群master节点
+
+        # @param request: Request instance for ScaleInClusterMaster.
+        # @type request: :class:`Tencentcloud::tke::V20180525::ScaleInClusterMasterRequest`
+        # @rtype: :class:`Tencentcloud::tke::V20180525::ScaleInClusterMasterResponse`
+        def ScaleInClusterMaster(request)
+          body = send_request('ScaleInClusterMaster', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ScaleInClusterMasterResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 扩容独立集群master节点
+
+        # @param request: Request instance for ScaleOutClusterMaster.
+        # @type request: :class:`Tencentcloud::tke::V20180525::ScaleOutClusterMasterRequest`
+        # @rtype: :class:`Tencentcloud::tke::V20180525::ScaleOutClusterMasterResponse`
+        def ScaleOutClusterMaster(request)
+          body = send_request('ScaleOutClusterMaster', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ScaleOutClusterMasterResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 仅能设置节点池中处于伸缩组的节点
 
         # @param request: Request instance for SetNodePoolNodeProtection.
