@@ -437,6 +437,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 获取地址模版列表
+
+        # @param request: Request instance for DescribeAddrTemplateList.
+        # @type request: :class:`Tencentcloud::cfw::V20190904::DescribeAddrTemplateListRequest`
+        # @rtype: :class:`Tencentcloud::cfw::V20190904::DescribeAddrTemplateListResponse`
+        def DescribeAddrTemplateList(request)
+          body = send_request('DescribeAddrTemplateList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeAddrTemplateListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 获取安全组关联实例列表
 
         # @param request: Request instance for DescribeAssociatedInstanceList.

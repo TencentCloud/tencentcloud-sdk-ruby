@@ -1226,6 +1226,73 @@ module TencentCloud
         end
       end
 
+      # DescribeAddrTemplateList请求参数结构体
+      class DescribeAddrTemplateListRequest < TencentCloud::Common::AbstractModel
+        # @param Offset: 偏移量，分页用
+        # @type Offset: Integer
+        # @param Limit: 条数，分页用
+        # @type Limit: Integer
+        # @param By: 排序字段，取值 'UpdateTime' | 'RulesNum'
+        # @type By: String
+        # @param Order: 排序，取值 'asc'|'desc'
+        # @type Order: String
+        # @param SearchValue: 搜索值
+        # @type SearchValue: String
+
+        attr_accessor :Offset, :Limit, :By, :Order, :SearchValue
+        
+        def initialize(offset=nil, limit=nil, by=nil, order=nil, searchvalue=nil)
+          @Offset = offset
+          @Limit = limit
+          @By = by
+          @Order = order
+          @SearchValue = searchvalue
+        end
+
+        def deserialize(params)
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @By = params['By']
+          @Order = params['Order']
+          @SearchValue = params['SearchValue']
+        end
+      end
+
+      # DescribeAddrTemplateList返回参数结构体
+      class DescribeAddrTemplateListResponse < TencentCloud::Common::AbstractModel
+        # @param Total: 模版总数
+        # @type Total: Integer
+        # @param Data: 模版列表数据
+        # @type Data: Array
+        # @param NameList: 模版名称列表
+        # @type NameList: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Total, :Data, :NameList, :RequestId
+        
+        def initialize(total=nil, data=nil, namelist=nil, requestid=nil)
+          @Total = total
+          @Data = data
+          @NameList = namelist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Total = params['Total']
+          unless params['Data'].nil?
+            @Data = []
+            params['Data'].each do |i|
+              templatelistinfo_tmp = TemplateListInfo.new
+              templatelistinfo_tmp.deserialize(i)
+              @Data << templatelistinfo_tmp
+            end
+          end
+          @NameList = params['NameList']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeAssociatedInstanceList请求参数结构体
       class DescribeAssociatedInstanceListRequest < TencentCloud::Common::AbstractModel
         # @param Offset: 列表偏移量
@@ -4673,10 +4740,14 @@ module TencentCloud
         # @param ServiceTemplateId: 端口协议类型参数模板id；协议端口模板id；与Protocol,Port互斥
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ServiceTemplateId: String
+        # @param Id: 规则对应的唯一id
+        # @type Id: String
+        # @param Enable: 规则状态，true表示启用，false表示禁用
+        # @type Enable: String
 
-        attr_accessor :SourceContent, :SourceType, :DestContent, :DestType, :RuleAction, :Description, :OrderIndex, :Protocol, :Port, :ServiceTemplateId
+        attr_accessor :SourceContent, :SourceType, :DestContent, :DestType, :RuleAction, :Description, :OrderIndex, :Protocol, :Port, :ServiceTemplateId, :Id, :Enable
         
-        def initialize(sourcecontent=nil, sourcetype=nil, destcontent=nil, desttype=nil, ruleaction=nil, description=nil, orderindex=nil, protocol=nil, port=nil, servicetemplateid=nil)
+        def initialize(sourcecontent=nil, sourcetype=nil, destcontent=nil, desttype=nil, ruleaction=nil, description=nil, orderindex=nil, protocol=nil, port=nil, servicetemplateid=nil, id=nil, enable=nil)
           @SourceContent = sourcecontent
           @SourceType = sourcetype
           @DestContent = destcontent
@@ -4687,6 +4758,8 @@ module TencentCloud
           @Protocol = protocol
           @Port = port
           @ServiceTemplateId = servicetemplateid
+          @Id = id
+          @Enable = enable
         end
 
         def deserialize(params)
@@ -4700,6 +4773,8 @@ module TencentCloud
           @Protocol = params['Protocol']
           @Port = params['Port']
           @ServiceTemplateId = params['ServiceTemplateId']
+          @Id = params['Id']
+          @Enable = params['Enable']
         end
       end
 
@@ -5013,6 +5088,58 @@ module TencentCloud
           @NetworkNum = params['NetworkNum']
           @BanNum = params['BanNum']
           @BruteForceNum = params['BruteForceNum']
+        end
+      end
+
+      # 地址模版列表数据
+      class TemplateListInfo < TencentCloud::Common::AbstractModel
+        # @param Uuid: 模版ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Uuid: String
+        # @param Name: 模版名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
+        # @param Detail: 描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Detail: String
+        # @param IpString: IP模版
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IpString: String
+        # @param InsertTime: 插入时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InsertTime: String
+        # @param UpdateTime: 修改时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UpdateTime: String
+        # @param Type: 模版类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Type: Integer
+        # @param RulesNum: 关联规则条数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RulesNum: Integer
+
+        attr_accessor :Uuid, :Name, :Detail, :IpString, :InsertTime, :UpdateTime, :Type, :RulesNum
+        
+        def initialize(uuid=nil, name=nil, detail=nil, ipstring=nil, inserttime=nil, updatetime=nil, type=nil, rulesnum=nil)
+          @Uuid = uuid
+          @Name = name
+          @Detail = detail
+          @IpString = ipstring
+          @InsertTime = inserttime
+          @UpdateTime = updatetime
+          @Type = type
+          @RulesNum = rulesnum
+        end
+
+        def deserialize(params)
+          @Uuid = params['Uuid']
+          @Name = params['Name']
+          @Detail = params['Detail']
+          @IpString = params['IpString']
+          @InsertTime = params['InsertTime']
+          @UpdateTime = params['UpdateTime']
+          @Type = params['Type']
+          @RulesNum = params['RulesNum']
         end
       end
 

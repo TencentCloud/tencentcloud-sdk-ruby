@@ -2661,19 +2661,23 @@ module TencentCloud
         # @param Storage: 存储空间大小，单位：GB，可以通过 DescribeDBInstanceSpecs
         #  查询实例规格获得不同内存大小对应的磁盘规格下限和上限。
         # @type Storage: Integer
+        # @param NodeCount: 新节点数，传0表示节点数不变
+        # @type NodeCount: Integer
 
-        attr_accessor :InstanceId, :Memory, :Storage
+        attr_accessor :InstanceId, :Memory, :Storage, :NodeCount
         
-        def initialize(instanceid=nil, memory=nil, storage=nil)
+        def initialize(instanceid=nil, memory=nil, storage=nil, nodecount=nil)
           @InstanceId = instanceid
           @Memory = memory
           @Storage = storage
+          @NodeCount = nodecount
         end
 
         def deserialize(params)
           @InstanceId = params['InstanceId']
           @Memory = params['Memory']
           @Storage = params['Storage']
+          @NodeCount = params['NodeCount']
         end
       end
 
@@ -4419,15 +4423,18 @@ module TencentCloud
         # @type AutoVoucher: Boolean
         # @param VoucherIds: 代金券ID列表，目前仅支持指定一张代金券。
         # @type VoucherIds: Array
+        # @param Zones: 变更部署时指定的新可用区列表，第1个为主可用区，其余为从可用区
+        # @type Zones: Array
 
-        attr_accessor :InstanceId, :Memory, :Storage, :AutoVoucher, :VoucherIds
+        attr_accessor :InstanceId, :Memory, :Storage, :AutoVoucher, :VoucherIds, :Zones
         
-        def initialize(instanceid=nil, memory=nil, storage=nil, autovoucher=nil, voucherids=nil)
+        def initialize(instanceid=nil, memory=nil, storage=nil, autovoucher=nil, voucherids=nil, zones=nil)
           @InstanceId = instanceid
           @Memory = memory
           @Storage = storage
           @AutoVoucher = autovoucher
           @VoucherIds = voucherids
+          @Zones = zones
         end
 
         def deserialize(params)
@@ -4436,6 +4443,7 @@ module TencentCloud
           @Storage = params['Storage']
           @AutoVoucher = params['AutoVoucher']
           @VoucherIds = params['VoucherIds']
+          @Zones = params['Zones']
         end
       end
 

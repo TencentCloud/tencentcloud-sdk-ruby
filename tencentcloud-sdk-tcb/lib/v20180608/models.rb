@@ -2880,12 +2880,16 @@ module TencentCloud
         # @type FailReason: String
         # @param UserEnvId: 用户envId
         # @type UserEnvId: String
+        # @param StartTime: 创建时间
+        # @type StartTime: String
+        # @param Steps: 步骤信息
+        # @type Steps: Array
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :ExternalId, :EnvId, :UserUin, :ServerName, :VersionName, :CreateTime, :Stage, :Status, :FailReason, :UserEnvId, :RequestId
+        attr_accessor :ExternalId, :EnvId, :UserUin, :ServerName, :VersionName, :CreateTime, :Stage, :Status, :FailReason, :UserEnvId, :StartTime, :Steps, :RequestId
         
-        def initialize(externalid=nil, envid=nil, useruin=nil, servername=nil, versionname=nil, createtime=nil, stage=nil, status=nil, failreason=nil, userenvid=nil, requestid=nil)
+        def initialize(externalid=nil, envid=nil, useruin=nil, servername=nil, versionname=nil, createtime=nil, stage=nil, status=nil, failreason=nil, userenvid=nil, starttime=nil, steps=nil, requestid=nil)
           @ExternalId = externalid
           @EnvId = envid
           @UserUin = useruin
@@ -2896,6 +2900,8 @@ module TencentCloud
           @Status = status
           @FailReason = failreason
           @UserEnvId = userenvid
+          @StartTime = starttime
+          @Steps = steps
           @RequestId = requestid
         end
 
@@ -2910,6 +2916,15 @@ module TencentCloud
           @Status = params['Status']
           @FailReason = params['FailReason']
           @UserEnvId = params['UserEnvId']
+          @StartTime = params['StartTime']
+          unless params['Steps'].nil?
+            @Steps = []
+            params['Steps'].each do |i|
+              oneclicktaskstepinfo_tmp = OneClickTaskStepInfo.new
+              oneclicktaskstepinfo_tmp.deserialize(i)
+              @Steps << oneclicktaskstepinfo_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -6162,6 +6177,45 @@ module TencentCloud
         def deserialize(params)
           @Key = params['Key']
           @Value = params['Value']
+        end
+      end
+
+      # 一键部署步骤信息
+      class OneClickTaskStepInfo < TencentCloud::Common::AbstractModel
+        # @param Status: 未启动："todo"
+        # 运行中："running"
+        # 失败："failed"
+        # 成功结束："finished"
+        # @type Status: String
+        # @param StartTime: 开始时间
+        # @type StartTime: String
+        # @param EndTime: 结束时间
+        # @type EndTime: String
+        # @param CostTime: 耗时：秒
+        # @type CostTime: Integer
+        # @param FailReason: 失败原因
+        # @type FailReason: String
+        # @param Name: 步骤名
+        # @type Name: String
+
+        attr_accessor :Status, :StartTime, :EndTime, :CostTime, :FailReason, :Name
+        
+        def initialize(status=nil, starttime=nil, endtime=nil, costtime=nil, failreason=nil, name=nil)
+          @Status = status
+          @StartTime = starttime
+          @EndTime = endtime
+          @CostTime = costtime
+          @FailReason = failreason
+          @Name = name
+        end
+
+        def deserialize(params)
+          @Status = params['Status']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @CostTime = params['CostTime']
+          @FailReason = params['FailReason']
+          @Name = params['Name']
         end
       end
 

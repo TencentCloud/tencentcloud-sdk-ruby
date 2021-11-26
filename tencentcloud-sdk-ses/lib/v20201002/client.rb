@@ -270,7 +270,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 获取邮件发送状态。仅支持查询90天之内的数据
+        # 获取邮件发送状态。仅支持查询180天之内的数据
 
         # @param request: Request instance for GetSendEmailStatus.
         # @type request: :class:`Tencentcloud::ses::V20201002::GetSendEmailStatusRequest`

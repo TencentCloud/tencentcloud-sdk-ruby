@@ -4034,10 +4034,12 @@ module TencentCloud
         # @type AutoVoucher: Boolean
         # @param VoucherIds: 代金券ID列表，目前仅支持指定一张代金券。
         # @type VoucherIds: Array
+        # @param Zones: 变更部署时指定的新可用区列表，第1个为主可用区，其余为从可用区
+        # @type Zones: Array
 
-        attr_accessor :InstanceId, :UpgradeType, :AddShardConfig, :ExpandShardConfig, :SplitShardConfig, :AutoVoucher, :VoucherIds
+        attr_accessor :InstanceId, :UpgradeType, :AddShardConfig, :ExpandShardConfig, :SplitShardConfig, :AutoVoucher, :VoucherIds, :Zones
         
-        def initialize(instanceid=nil, upgradetype=nil, addshardconfig=nil, expandshardconfig=nil, splitshardconfig=nil, autovoucher=nil, voucherids=nil)
+        def initialize(instanceid=nil, upgradetype=nil, addshardconfig=nil, expandshardconfig=nil, splitshardconfig=nil, autovoucher=nil, voucherids=nil, zones=nil)
           @InstanceId = instanceid
           @UpgradeType = upgradetype
           @AddShardConfig = addshardconfig
@@ -4045,6 +4047,7 @@ module TencentCloud
           @SplitShardConfig = splitshardconfig
           @AutoVoucher = autovoucher
           @VoucherIds = voucherids
+          @Zones = zones
         end
 
         def deserialize(params)
@@ -4064,6 +4067,7 @@ module TencentCloud
           end
           @AutoVoucher = params['AutoVoucher']
           @VoucherIds = params['VoucherIds']
+          @Zones = params['Zones']
         end
       end
 
