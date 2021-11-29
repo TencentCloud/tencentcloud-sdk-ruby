@@ -151,6 +151,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 克隆负载均衡实例，根据指定的负载均衡实例，复制出相同规则和绑定关系的负载均衡实例。
+
+        # @param request: Request instance for CloneLoadBalancer.
+        # @type request: :class:`Tencentcloud::clb::V20180317::CloneLoadBalancerRequest`
+        # @rtype: :class:`Tencentcloud::clb::V20180317::CloneLoadBalancerResponse`
+        def CloneLoadBalancer(request)
+          body = send_request('CloneLoadBalancer', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CloneLoadBalancerResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 创建CLB专有日志集，此日志集用于存储CLB的日志。
 
         # @param request: Request instance for CreateClsLogSet.

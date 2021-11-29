@@ -8330,7 +8330,7 @@ module TencentCloud
         # @param Timestamp: Sql的执行时间。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Timestamp: Integer
-        # @param QueryTime: Sql的执行时长。
+        # @param QueryTime: Sql的执行时长（秒）。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type QueryTime: Float
         # @param SqlText: Sql语句。
@@ -8345,7 +8345,7 @@ module TencentCloud
         # @param Database: 数据库名。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Database: String
-        # @param LockTime: 锁时长。
+        # @param LockTime: 锁时长（秒）。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LockTime: Float
         # @param RowsExamined: 扫描行数。

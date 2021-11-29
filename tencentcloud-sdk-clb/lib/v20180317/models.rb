@@ -782,6 +782,129 @@ module TencentCloud
         end
       end
 
+      # CloneLoadBalancer请求参数结构体
+      class CloneLoadBalancerRequest < TencentCloud::Common::AbstractModel
+        # @param LoadBalancerId: 负载均衡ID。
+        # @type LoadBalancerId: String
+        # @param LoadBalancerName: 克隆出负载均衡实例的名称，规则：1-60 个英文、汉字、数字、连接线“-”或下划线“_”。
+        # 注意：如果名称与系统中已有负载均衡实例的名称相同，则系统将会自动生成此次创建的负载均衡实例的名称。
+        # @type LoadBalancerName: String
+        # @param ProjectId: 负载均衡实例所属的项目 ID，可以通过 DescribeProject 接口获取。不传此参数则视为默认项目。
+        # @type ProjectId: Integer
+        # @param MasterZoneId: 仅适用于公网负载均衡。设置跨可用区容灾时的主可用区ID，例如 100001 或 ap-guangzhou-1
+        # 注：主可用区是需要承载流量的可用区，备可用区默认不承载流量，主可用区不可用时才使用备可用区，平台将为您自动选择最佳备可用区。可通过 DescribeMasterZones 接口查询一个地域的主可用区的列表。
+        # @type MasterZoneId: String
+        # @param SlaveZoneId: 仅适用于公网负载均衡。设置跨可用区容灾时的备可用区ID，例如 100001 或 ap-guangzhou-1
+        # 注：备可用区是主可用区故障后，需要承载流量的可用区。可通过 DescribeMasterZones 接口查询一个地域的主/备可用区的列表。
+        # @type SlaveZoneId: String
+        # @param ZoneId: 仅适用于公网负载均衡。可用区ID，指定可用区以创建负载均衡实例。如：ap-guangzhou-1。
+        # @type ZoneId: String
+        # @param InternetAccessible: 仅适用于公网负载均衡。负载均衡的网络计费模式。
+        # @type InternetAccessible: :class:`Tencentcloud::Clb.v20180317.models.InternetAccessible`
+        # @param VipIsp: 仅适用于公网负载均衡。CMCC | CTCC | CUCC，分别对应 移动 | 电信 | 联通，如果不指定本参数，则默认使用BGP。可通过 DescribeSingleIsp 接口查询一个地域所支持的Isp。如果指定运营商，则网络计费式只能使用按带宽包计费(BANDWIDTH_PACKAGE)。
+        # @type VipIsp: String
+        # @param Vip: 指定Vip申请负载均衡。
+        # @type Vip: String
+        # @param Tags: 购买负载均衡同时，给负载均衡打上标签。
+        # @type Tags: Array
+        # @param ExclusiveCluster: 独占集群信息。
+        # @type ExclusiveCluster: :class:`Tencentcloud::Clb.v20180317.models.ExclusiveCluster`
+        # @param BandwidthPackageId: 带宽包ID，指定此参数时，网络计费方式（InternetAccessible.InternetChargeType）只支持按带宽包计费（BANDWIDTH_PACKAGE）。
+        # @type BandwidthPackageId: String
+        # @param SnatPro: 是否支持绑定跨地域/跨Vpc绑定IP的功能。
+        # @type SnatPro: Boolean
+        # @param SnatIps: 开启绑定跨地域/跨Vpc绑定IP的功能后，创建SnatIp。
+        # @type SnatIps: Array
+        # @param ClusterIds: 公网独占集群ID或者CDCId。
+        # @type ClusterIds: Array
+        # @param ClusterTag: Stgw独占集群的标签。
+        # @type ClusterTag: String
+        # @param Zones: 仅适用于私有网络内网负载均衡。内网就近接入时，选择可用区下发。
+        # @type Zones: Array
+        # @param EipAddressId: EIP 的唯一 ID，形如：eip-11112222，仅适用于内网负载均衡绑定EIP。
+        # @type EipAddressId: String
+
+        attr_accessor :LoadBalancerId, :LoadBalancerName, :ProjectId, :MasterZoneId, :SlaveZoneId, :ZoneId, :InternetAccessible, :VipIsp, :Vip, :Tags, :ExclusiveCluster, :BandwidthPackageId, :SnatPro, :SnatIps, :ClusterIds, :ClusterTag, :Zones, :EipAddressId
+        
+        def initialize(loadbalancerid=nil, loadbalancername=nil, projectid=nil, masterzoneid=nil, slavezoneid=nil, zoneid=nil, internetaccessible=nil, vipisp=nil, vip=nil, tags=nil, exclusivecluster=nil, bandwidthpackageid=nil, snatpro=nil, snatips=nil, clusterids=nil, clustertag=nil, zones=nil, eipaddressid=nil)
+          @LoadBalancerId = loadbalancerid
+          @LoadBalancerName = loadbalancername
+          @ProjectId = projectid
+          @MasterZoneId = masterzoneid
+          @SlaveZoneId = slavezoneid
+          @ZoneId = zoneid
+          @InternetAccessible = internetaccessible
+          @VipIsp = vipisp
+          @Vip = vip
+          @Tags = tags
+          @ExclusiveCluster = exclusivecluster
+          @BandwidthPackageId = bandwidthpackageid
+          @SnatPro = snatpro
+          @SnatIps = snatips
+          @ClusterIds = clusterids
+          @ClusterTag = clustertag
+          @Zones = zones
+          @EipAddressId = eipaddressid
+        end
+
+        def deserialize(params)
+          @LoadBalancerId = params['LoadBalancerId']
+          @LoadBalancerName = params['LoadBalancerName']
+          @ProjectId = params['ProjectId']
+          @MasterZoneId = params['MasterZoneId']
+          @SlaveZoneId = params['SlaveZoneId']
+          @ZoneId = params['ZoneId']
+          unless params['InternetAccessible'].nil?
+            @InternetAccessible = InternetAccessible.new
+            @InternetAccessible.deserialize(params['InternetAccessible'])
+          end
+          @VipIsp = params['VipIsp']
+          @Vip = params['Vip']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              taginfo_tmp = TagInfo.new
+              taginfo_tmp.deserialize(i)
+              @Tags << taginfo_tmp
+            end
+          end
+          unless params['ExclusiveCluster'].nil?
+            @ExclusiveCluster = ExclusiveCluster.new
+            @ExclusiveCluster.deserialize(params['ExclusiveCluster'])
+          end
+          @BandwidthPackageId = params['BandwidthPackageId']
+          @SnatPro = params['SnatPro']
+          unless params['SnatIps'].nil?
+            @SnatIps = []
+            params['SnatIps'].each do |i|
+              snatip_tmp = SnatIp.new
+              snatip_tmp.deserialize(i)
+              @SnatIps << snatip_tmp
+            end
+          end
+          @ClusterIds = params['ClusterIds']
+          @ClusterTag = params['ClusterTag']
+          @Zones = params['Zones']
+          @EipAddressId = params['EipAddressId']
+        end
+      end
+
+      # CloneLoadBalancer返回参数结构体
+      class CloneLoadBalancerResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 集群的详细信息，如集群ID，名称，类型，可用区，标签等
       class Cluster < TencentCloud::Common::AbstractModel
         # @param ClusterId: 集群唯一ID

@@ -4908,6 +4908,38 @@ module TencentCloud
         end
       end
 
+      # DisableClusterDeletionProtection请求参数结构体
+      class DisableClusterDeletionProtectionRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群ID
+        # @type ClusterId: String
+
+        attr_accessor :ClusterId
+        
+        def initialize(clusterid=nil)
+          @ClusterId = clusterid
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+        end
+      end
+
+      # DisableClusterDeletionProtection返回参数结构体
+      class DisableClusterDeletionProtectionResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DisableVpcCniNetworkType请求参数结构体
       class DisableVpcCniNetworkTypeRequest < TencentCloud::Common::AbstractModel
         # @param ClusterId: 集群ID
@@ -5269,6 +5301,38 @@ module TencentCloud
               @TagSpecification << tagspecification_tmp
             end
           end
+        end
+      end
+
+      # EnableClusterDeletionProtection请求参数结构体
+      class EnableClusterDeletionProtectionRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群ID
+        # @type ClusterId: String
+
+        attr_accessor :ClusterId
+        
+        def initialize(clusterid=nil)
+          @ClusterId = clusterid
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+        end
+      end
+
+      # EnableClusterDeletionProtection返回参数结构体
+      class EnableClusterDeletionProtectionResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
         end
       end
 
