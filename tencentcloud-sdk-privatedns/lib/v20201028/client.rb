@@ -29,6 +29,30 @@ module TencentCloud
         end
 
 
+        # 创建私有域解析账号
+
+        # @param request: Request instance for CreatePrivateDNSAccount.
+        # @type request: :class:`Tencentcloud::privatedns::V20201028::CreatePrivateDNSAccountRequest`
+        # @rtype: :class:`Tencentcloud::privatedns::V20201028::CreatePrivateDNSAccountResponse`
+        def CreatePrivateDNSAccount(request)
+          body = send_request('CreatePrivateDNSAccount', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreatePrivateDNSAccountResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 创建私有域
 
         # @param request: Request instance for CreatePrivateZone.
@@ -77,6 +101,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 删除私有域解析账号
+
+        # @param request: Request instance for DeletePrivateDNSAccount.
+        # @type request: :class:`Tencentcloud::privatedns::V20201028::DeletePrivateDNSAccountRequest`
+        # @rtype: :class:`Tencentcloud::privatedns::V20201028::DeletePrivateDNSAccountResponse`
+        def DeletePrivateDNSAccount(request)
+          body = send_request('DeletePrivateDNSAccount', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeletePrivateDNSAccountResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 删除私有域并停止解析
 
         # @param request: Request instance for DeletePrivateZone.
@@ -111,6 +159,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeletePrivateZoneRecordResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取私有域解析账号的VPC列表
+
+        # @param request: Request instance for DescribeAccountVpcList.
+        # @type request: :class:`Tencentcloud::privatedns::V20201028::DescribeAccountVpcListRequest`
+        # @rtype: :class:`Tencentcloud::privatedns::V20201028::DescribeAccountVpcListResponse`
+        def DescribeAccountVpcList(request)
+          body = send_request('DescribeAccountVpcList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeAccountVpcListResponse.new
             model.deserialize(response['Response'])
             model
           else

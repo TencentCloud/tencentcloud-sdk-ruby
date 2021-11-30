@@ -2804,6 +2804,49 @@ module TencentCloud
         end
       end
 
+      # DescribeLoadBalancerOverview请求参数结构体
+      class DescribeLoadBalancerOverviewRequest < TencentCloud::Common::AbstractModel
+
+        
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeLoadBalancerOverview返回参数结构体
+      class DescribeLoadBalancerOverviewResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 负载均衡总数
+        # @type TotalCount: Integer
+        # @param RunningCount: 运行中的负载均衡数目
+        # @type RunningCount: Integer
+        # @param IsolationCount: 隔离中的负载均衡数目
+        # @type IsolationCount: Integer
+        # @param WillExpireCount: 即将到期的负载均衡数目
+        # @type WillExpireCount: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :RunningCount, :IsolationCount, :WillExpireCount, :RequestId
+        
+        def initialize(totalcount=nil, runningcount=nil, isolationcount=nil, willexpirecount=nil, requestid=nil)
+          @TotalCount = totalcount
+          @RunningCount = runningcount
+          @IsolationCount = isolationcount
+          @WillExpireCount = willexpirecount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          @RunningCount = params['RunningCount']
+          @IsolationCount = params['IsolationCount']
+          @WillExpireCount = params['WillExpireCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeLoadBalancerTraffic请求参数结构体
       class DescribeLoadBalancerTrafficRequest < TencentCloud::Common::AbstractModel
         # @param LoadBalancerRegion: 负载均衡所在地域，不传默认返回所有地域负载均衡。
@@ -2854,7 +2897,7 @@ module TencentCloud
         # @type Limit: Integer
         # @param Offset: 返回负载均衡列表起始偏移量，默认0。
         # @type Offset: Integer
-        # @param Fields: 选择返回的Fields列表，默认添加LoadBalancerId和LoadBalancerName。
+        # @param Fields: 选择返回的Fields列表，系统仅会返回Fileds中填写的字段，可填写的字段详情请参见<a href="https://cloud.tencent.com/document/api/214/30694#LoadBalancerDetail">LoadBalancerDetail</a>。若未在Fileds填写相关字段，则此字段返回null。Fileds中默认添加LoadBalancerId和LoadBalancerName字段。
         # @type Fields: Array
         # @param TargetType: 当Fields包含TargetId、TargetAddress、TargetPort、TargetWeight等Fields时，必选选择导出目标组的Target或者非目标组Target，值范围NODE、GROUP。
         # @type TargetType: String
@@ -2969,7 +3012,8 @@ module TencentCloud
         # @type SecurityGroup: String
         # @param MasterZone: 主可用区ID，如 ："100001" （对应的是广州一区）。
         # @type MasterZone: String
-        # @param Filters: 每次请求的`Filters`的上限为10，`Filter.Values`的上限为100。详细的过滤条件如下：
+        # @param Filters: 每次请求的`Filters`的上限为10，`Filter.Values`的上限为100。<br/>`Filter.Name`和`Filter.Values`皆为必填项。详细的过滤条件如下：
+        # <li> charge-type - String - 是否必填：否 - （过滤条件）按照 CLB 的实例计费模式过滤，包括"PREPAID","POSTPAID_BY_HOUR"。</li>
         # <li> internet-charge-type - String - 是否必填：否 - （过滤条件）按照 CLB 的网络计费模式过滤，包括"BANDWIDTH_PREPAID","TRAFFIC_POSTPAID_BY_HOUR","BANDWIDTH_POSTPAID_BY_HOUR","BANDWIDTH_PACKAGE"。</li>
         # <li> master-zone-id - String - 是否必填：否 - （过滤条件）按照 CLB 的主可用区ID过滤，如 ："100001" （对应的是广州一区）。</li>
         # <li> tag-key - String - 是否必填：否 - （过滤条件）按照 CLB 标签的键过滤。</li>
@@ -2977,6 +3021,7 @@ module TencentCloud
         # <li> function-name - String - 是否必填：否 - （过滤条件）按照 CLB 后端绑定的SCF云函数的函数名称过滤。</li>
         # <li> function-name - String - 是否必填：否 - （过滤条件）按照 CLB 后端绑定的SCF云函数的函数名称过滤。</li>
         # <li> vip-isp - String - 是否必填：否 - （过滤条件）按照 CLB VIP的运营商类型过滤，如："BGP","INTERNAL","CMCC","CTCC","CUCC"等。</li>
+        # <li> sla-type - String - 是否必填：否 - （过滤条件）按照 CLB 的性能容量型规格过滤，包括"clb.c2.medium","clb.c3.small","clb.c3.medium","clb.c4.small","clb.c4.medium","clb.c4.large","clb.c4.xlarge"。</li>
         # @type Filters: Array
 
         attr_accessor :LoadBalancerIds, :LoadBalancerType, :Forward, :LoadBalancerName, :Domain, :LoadBalancerVips, :BackendPublicIps, :BackendPrivateIps, :Offset, :Limit, :OrderBy, :OrderType, :SearchKey, :ProjectId, :WithRs, :VpcId, :SecurityGroup, :MasterZone, :Filters
@@ -4258,10 +4303,16 @@ module TencentCloud
         # @param HealthLogTopicId: 负载均衡日志服务(CLS)的健康检查日志主题ID
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HealthLogTopicId: String
+        # @param ClusterIds: 集群ID.
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClusterIds: Array
+        # @param AttributeFlags: 负载均衡的属性
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AttributeFlags: Array
 
-        attr_accessor :LoadBalancerId, :LoadBalancerName, :LoadBalancerType, :Forward, :Domain, :LoadBalancerVips, :Status, :CreateTime, :StatusTime, :ProjectId, :VpcId, :OpenBgp, :Snat, :Isolation, :Log, :SubnetId, :Tags, :SecureGroups, :TargetRegionInfo, :AnycastZone, :AddressIPVersion, :NumericalVpcId, :VipIsp, :MasterZone, :BackupZoneSet, :IsolatedTime, :ExpireTime, :ChargeType, :NetworkAttributes, :PrepaidAttributes, :LogSetId, :LogTopicId, :AddressIPv6, :ExtraInfo, :IsDDos, :ConfigId, :LoadBalancerPassToTarget, :ExclusiveCluster, :IPv6Mode, :SnatPro, :SnatIps, :SlaType, :IsBlock, :IsBlockTime, :LocalBgp, :ClusterTag, :MixIpTarget, :Zones, :NfvInfo, :HealthLogSetId, :HealthLogTopicId
+        attr_accessor :LoadBalancerId, :LoadBalancerName, :LoadBalancerType, :Forward, :Domain, :LoadBalancerVips, :Status, :CreateTime, :StatusTime, :ProjectId, :VpcId, :OpenBgp, :Snat, :Isolation, :Log, :SubnetId, :Tags, :SecureGroups, :TargetRegionInfo, :AnycastZone, :AddressIPVersion, :NumericalVpcId, :VipIsp, :MasterZone, :BackupZoneSet, :IsolatedTime, :ExpireTime, :ChargeType, :NetworkAttributes, :PrepaidAttributes, :LogSetId, :LogTopicId, :AddressIPv6, :ExtraInfo, :IsDDos, :ConfigId, :LoadBalancerPassToTarget, :ExclusiveCluster, :IPv6Mode, :SnatPro, :SnatIps, :SlaType, :IsBlock, :IsBlockTime, :LocalBgp, :ClusterTag, :MixIpTarget, :Zones, :NfvInfo, :HealthLogSetId, :HealthLogTopicId, :ClusterIds, :AttributeFlags
         
-        def initialize(loadbalancerid=nil, loadbalancername=nil, loadbalancertype=nil, forward=nil, domain=nil, loadbalancervips=nil, status=nil, createtime=nil, statustime=nil, projectid=nil, vpcid=nil, openbgp=nil, snat=nil, isolation=nil, log=nil, subnetid=nil, tags=nil, securegroups=nil, targetregioninfo=nil, anycastzone=nil, addressipversion=nil, numericalvpcid=nil, vipisp=nil, masterzone=nil, backupzoneset=nil, isolatedtime=nil, expiretime=nil, chargetype=nil, networkattributes=nil, prepaidattributes=nil, logsetid=nil, logtopicid=nil, addressipv6=nil, extrainfo=nil, isddos=nil, configid=nil, loadbalancerpasstotarget=nil, exclusivecluster=nil, ipv6mode=nil, snatpro=nil, snatips=nil, slatype=nil, isblock=nil, isblocktime=nil, localbgp=nil, clustertag=nil, mixiptarget=nil, zones=nil, nfvinfo=nil, healthlogsetid=nil, healthlogtopicid=nil)
+        def initialize(loadbalancerid=nil, loadbalancername=nil, loadbalancertype=nil, forward=nil, domain=nil, loadbalancervips=nil, status=nil, createtime=nil, statustime=nil, projectid=nil, vpcid=nil, openbgp=nil, snat=nil, isolation=nil, log=nil, subnetid=nil, tags=nil, securegroups=nil, targetregioninfo=nil, anycastzone=nil, addressipversion=nil, numericalvpcid=nil, vipisp=nil, masterzone=nil, backupzoneset=nil, isolatedtime=nil, expiretime=nil, chargetype=nil, networkattributes=nil, prepaidattributes=nil, logsetid=nil, logtopicid=nil, addressipv6=nil, extrainfo=nil, isddos=nil, configid=nil, loadbalancerpasstotarget=nil, exclusivecluster=nil, ipv6mode=nil, snatpro=nil, snatips=nil, slatype=nil, isblock=nil, isblocktime=nil, localbgp=nil, clustertag=nil, mixiptarget=nil, zones=nil, nfvinfo=nil, healthlogsetid=nil, healthlogtopicid=nil, clusterids=nil, attributeflags=nil)
           @LoadBalancerId = loadbalancerid
           @LoadBalancerName = loadbalancername
           @LoadBalancerType = loadbalancertype
@@ -4313,6 +4364,8 @@ module TencentCloud
           @NfvInfo = nfvinfo
           @HealthLogSetId = healthlogsetid
           @HealthLogTopicId = healthlogtopicid
+          @ClusterIds = clusterids
+          @AttributeFlags = attributeflags
         end
 
         def deserialize(params)
@@ -4406,6 +4459,8 @@ module TencentCloud
           @NfvInfo = params['NfvInfo']
           @HealthLogSetId = params['HealthLogSetId']
           @HealthLogTopicId = params['HealthLogTopicId']
+          @ClusterIds = params['ClusterIds']
+          @AttributeFlags = params['AttributeFlags']
         end
       end
 

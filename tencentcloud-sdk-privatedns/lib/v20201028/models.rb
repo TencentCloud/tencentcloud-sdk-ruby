@@ -48,6 +48,34 @@ module TencentCloud
         end
       end
 
+      # 查询关联账号VPC列表出参
+      class AccountVpcInfoOut < TencentCloud::Common::AbstractModel
+        # @param VpcId: VpcId： vpc-xadsafsdasd
+        # @type VpcId: String
+        # @param Region: Vpc所属地区: ap-guangzhou, ap-shanghai
+        # @type Region: String
+        # @param Uin: Vpc所属账号: 123456789
+        # @type Uin: String
+        # @param VpcName: vpc资源名称：testname
+        # @type VpcName: String
+
+        attr_accessor :VpcId, :Region, :Uin, :VpcName
+        
+        def initialize(vpcid=nil, region=nil, uin=nil, vpcname=nil)
+          @VpcId = vpcid
+          @Region = region
+          @Uin = uin
+          @VpcName = vpcname
+        end
+
+        def deserialize(params)
+          @VpcId = params['VpcId']
+          @Region = params['Region']
+          @Uin = params['Uin']
+          @VpcName = params['VpcName']
+        end
+      end
+
       # 关联的VPC出参
       class AccountVpcInfoOutput < TencentCloud::Common::AbstractModel
         # @param Uin: 关联账户的uin
@@ -128,6 +156,41 @@ module TencentCloud
           @Date = params['Date']
           @OperatorUin = params['OperatorUin']
           @Content = params['Content']
+        end
+      end
+
+      # CreatePrivateDNSAccount请求参数结构体
+      class CreatePrivateDNSAccountRequest < TencentCloud::Common::AbstractModel
+        # @param Account: 私有域解析账号
+        # @type Account: :class:`Tencentcloud::Privatedns.v20201028.models.PrivateDNSAccount`
+
+        attr_accessor :Account
+        
+        def initialize(account=nil)
+          @Account = account
+        end
+
+        def deserialize(params)
+          unless params['Account'].nil?
+            @Account = PrivateDNSAccount.new
+            @Account.deserialize(params['Account'])
+          end
+        end
+      end
+
+      # CreatePrivateDNSAccount返回参数结构体
+      class CreatePrivateDNSAccountResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
         end
       end
 
@@ -303,6 +366,41 @@ module TencentCloud
         end
       end
 
+      # DeletePrivateDNSAccount请求参数结构体
+      class DeletePrivateDNSAccountRequest < TencentCloud::Common::AbstractModel
+        # @param Account: 私有域解析账号
+        # @type Account: :class:`Tencentcloud::Privatedns.v20201028.models.PrivateDNSAccount`
+
+        attr_accessor :Account
+        
+        def initialize(account=nil)
+          @Account = account
+        end
+
+        def deserialize(params)
+          unless params['Account'].nil?
+            @Account = PrivateDNSAccount.new
+            @Account.deserialize(params['Account'])
+          end
+        end
+      end
+
+      # DeletePrivateDNSAccount返回参数结构体
+      class DeletePrivateDNSAccountResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DeletePrivateZoneRecord请求参数结构体
       class DeletePrivateZoneRecordRequest < TencentCloud::Common::AbstractModel
         # @param ZoneId: 私有域ID
@@ -375,6 +473,72 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeAccountVpcList请求参数结构体
+      class DescribeAccountVpcListRequest < TencentCloud::Common::AbstractModel
+        # @param AccountUin: 关联账号的uin
+        # @type AccountUin: String
+        # @param Offset: 分页偏移量，从0开始
+        # @type Offset: Integer
+        # @param Limit: 分页限制数目， 最大100，默认20
+        # @type Limit: Integer
+        # @param Filters: 过滤参数
+        # @type Filters: Array
+
+        attr_accessor :AccountUin, :Offset, :Limit, :Filters
+        
+        def initialize(accountuin=nil, offset=nil, limit=nil, filters=nil)
+          @AccountUin = accountuin
+          @Offset = offset
+          @Limit = limit
+          @Filters = filters
+        end
+
+        def deserialize(params)
+          @AccountUin = params['AccountUin']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+        end
+      end
+
+      # DescribeAccountVpcList返回参数结构体
+      class DescribeAccountVpcListResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: VPC数量
+        # @type TotalCount: Integer
+        # @param VpcSet: VPC 列表
+        # @type VpcSet: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :VpcSet, :RequestId
+        
+        def initialize(totalcount=nil, vpcset=nil, requestid=nil)
+          @TotalCount = totalcount
+          @VpcSet = vpcset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['VpcSet'].nil?
+            @VpcSet = []
+            params['VpcSet'].each do |i|
+              accountvpcinfoout_tmp = AccountVpcInfoOut.new
+              accountvpcinfoout_tmp.deserialize(i)
+              @VpcSet << accountvpcinfoout_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end

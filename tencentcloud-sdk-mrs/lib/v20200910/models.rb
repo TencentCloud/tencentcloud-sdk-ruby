@@ -1034,11 +1034,11 @@ module TencentCloud
 
       # ImageToClass请求参数结构体
       class ImageToClassRequest < TencentCloud::Common::AbstractModel
-        # @param ImageInfoList: 图片列表，允许传入多张图片，支持传入图片的url或base64编码
+        # @param ImageInfoList: 图片列表，允许传入多张图片，支持传入图片的base64编码，暂不支持图片url
         # @type ImageInfoList: Array
         # @param HandleParam: 图片处理参数
         # @type HandleParam: :class:`Tencentcloud::Mrs.v20200910.models.HandleParam`
-        # @param Type: 图片类型，目前支持11（检验报告），12（检查报告），15（病理报告），218（诊断证明）。
+        # @param Type: 不填，默认为0
         # @type Type: Integer
 
         attr_accessor :ImageInfoList, :HandleParam, :Type
@@ -1096,11 +1096,11 @@ module TencentCloud
 
       # ImageToObject请求参数结构体
       class ImageToObjectRequest < TencentCloud::Common::AbstractModel
-        # @param ImageInfoList: 图片列表，允许传入多张图片，支持传入图片的url或base64编码
+        # @param ImageInfoList: 图片列表，允许传入多张图片，目前只支持传入图片base64编码，图片url暂不支持
         # @type ImageInfoList: Array
         # @param HandleParam: 图片处理参数
         # @type HandleParam: :class:`Tencentcloud::Mrs.v20200910.models.HandleParam`
-        # @param Type: 报告类型，目前支持11（检验报告），12（检查报告），15（病理报告），28（出院报告），29（入院报告），210（门诊病历），212（手术记录），218（诊断证明），363（心电图），27（内窥镜检查），215（处方单）。如果不清楚报告类型，可以使用分类引擎，该字段传0（同时IsUsedClassify字段必须为True，否则无法输出结果）
+        # @param Type: 报告类型，目前支持11（检验报告），12（检查报告），15（病理报告），28（出院报告），29（入院报告），210（门诊病历），212（手术记录），218（诊断证明），363（心电图），27（内窥镜检查），215（处方单），219（免疫接种证明），301（C14呼气试验）。如果不清楚报告类型，可以使用分类引擎，该字段传0（同时IsUsedClassify字段必须为True，否则无法输出结果）
         # @type Type: Integer
         # @param IsUsedClassify: 是否使用分类引擎，当不确定报告类型时，可以使用收费的报告分类引擎服务。若该字段为 False，则 Type 字段不能为 0，否则无法输出结果。
         # 注意：当 IsUsedClassify 为True 时，表示使用收费的报告分类服务，将会产生额外的费用，具体收费标准参见 [购买指南的产品价格](https://cloud.tencent.com/document/product/1314/54264)。
@@ -2570,10 +2570,13 @@ module TencentCloud
         # @param Prescription: 处方单
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Prescription: :class:`Tencentcloud::Mrs.v20200910.models.Prescription`
+        # @param VaccineCertificate: 免疫接种证明
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VaccineCertificate: :class:`Tencentcloud::Mrs.v20200910.models.VaccineCertificate`
 
-        attr_accessor :PatientInfo, :ReportInfo, :Check, :Pathology, :MedDoc, :DiagCert, :FirstPage, :Indicator, :ReportType, :MedicalRecordInfo, :Hospitalization, :Surgery, :Electrocardiogram, :Endoscopy, :Prescription
+        attr_accessor :PatientInfo, :ReportInfo, :Check, :Pathology, :MedDoc, :DiagCert, :FirstPage, :Indicator, :ReportType, :MedicalRecordInfo, :Hospitalization, :Surgery, :Electrocardiogram, :Endoscopy, :Prescription, :VaccineCertificate
         
-        def initialize(patientinfo=nil, reportinfo=nil, check=nil, pathology=nil, meddoc=nil, diagcert=nil, firstpage=nil, indicator=nil, reporttype=nil, medicalrecordinfo=nil, hospitalization=nil, surgery=nil, electrocardiogram=nil, endoscopy=nil, prescription=nil)
+        def initialize(patientinfo=nil, reportinfo=nil, check=nil, pathology=nil, meddoc=nil, diagcert=nil, firstpage=nil, indicator=nil, reporttype=nil, medicalrecordinfo=nil, hospitalization=nil, surgery=nil, electrocardiogram=nil, endoscopy=nil, prescription=nil, vaccinecertificate=nil)
           @PatientInfo = patientinfo
           @ReportInfo = reportinfo
           @Check = check
@@ -2589,6 +2592,7 @@ module TencentCloud
           @Electrocardiogram = electrocardiogram
           @Endoscopy = endoscopy
           @Prescription = prescription
+          @VaccineCertificate = vaccinecertificate
         end
 
         def deserialize(params)
@@ -2649,6 +2653,10 @@ module TencentCloud
             @Prescription = Prescription.new
             @Prescription.deserialize(params['Prescription'])
           end
+          unless params['VaccineCertificate'].nil?
+            @VaccineCertificate = VaccineCertificate.new
+            @VaccineCertificate.deserialize(params['VaccineCertificate'])
+          end
         end
       end
 
@@ -2699,7 +2707,7 @@ module TencentCloud
       class TextToObjectRequest < TencentCloud::Common::AbstractModel
         # @param Text: 报告文本
         # @type Text: String
-        # @param Type: 报告类型，目前支持12（检查报告），15（病理报告），28（出院报告），29（入院报告），210（门诊病历），212（手术记录），218（诊断证明），363（心电图），27（内窥镜检查），215（处方单）。如果不清楚报告类型，可以使用分类引擎，该字段传0（同时IsUsedClassify字段必须为True，否则无法输出结果）
+        # @param Type: 报告类型，目前支持12（检查报告），15（病理报告），28（出院报告），29（入院报告），210（门诊病历），212（手术记录），218（诊断证明），363（心电图），27（内窥镜检查），215（处方单），219（免疫接种证明），301（C14呼气试验）。如果不清楚报告类型，可以使用分类引擎，该字段传0（同时IsUsedClassify字段必须为True，否则无法输出结果）
         # @type Type: Integer
         # @param IsUsedClassify: 是否使用分类引擎，当不确定报告类型时，可以使用收费的报告分类引擎服务。若该字段为False，则Type字段不能为0，否则无法输出结果。
         # 注意：当 IsUsedClassify 为True 时，表示使用收费的报告分类服务，将会产生额外的费用，具体收费标准参见 [购买指南的产品价格](https://cloud.tencent.com/document/product/1314/54264)。
@@ -3192,6 +3200,87 @@ module TencentCloud
             @IsthmusThicknese.deserialize(params['IsthmusThicknese'])
           end
           @Src = params['Src']
+        end
+      end
+
+      # 免疫接种记录
+      class Vaccination < TencentCloud::Common::AbstractModel
+        # @param Id: 序号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Id: String
+        # @param Vaccine: 疫苗名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Vaccine: String
+        # @param Dose: 剂次
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Dose: String
+        # @param Date: 接种日期
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Date: String
+        # @param LotNumber: 疫苗批号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LotNumber: String
+        # @param Manufacturer: 生产企业
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Manufacturer: String
+        # @param Clinic: 接种单位
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Clinic: String
+        # @param Site: 接种部位
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Site: String
+        # @param Provider: 接种者
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Provider: String
+
+        attr_accessor :Id, :Vaccine, :Dose, :Date, :LotNumber, :Manufacturer, :Clinic, :Site, :Provider
+        
+        def initialize(id=nil, vaccine=nil, dose=nil, date=nil, lotnumber=nil, manufacturer=nil, clinic=nil, site=nil, provider=nil)
+          @Id = id
+          @Vaccine = vaccine
+          @Dose = dose
+          @Date = date
+          @LotNumber = lotnumber
+          @Manufacturer = manufacturer
+          @Clinic = clinic
+          @Site = site
+          @Provider = provider
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @Vaccine = params['Vaccine']
+          @Dose = params['Dose']
+          @Date = params['Date']
+          @LotNumber = params['LotNumber']
+          @Manufacturer = params['Manufacturer']
+          @Clinic = params['Clinic']
+          @Site = params['Site']
+          @Provider = params['Provider']
+        end
+      end
+
+      # 免疫接种证明
+      class VaccineCertificate < TencentCloud::Common::AbstractModel
+        # @param VaccineList: 免疫接种列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VaccineList: Array
+
+        attr_accessor :VaccineList
+        
+        def initialize(vaccinelist=nil)
+          @VaccineList = vaccinelist
+        end
+
+        def deserialize(params)
+          unless params['VaccineList'].nil?
+            @VaccineList = []
+            params['VaccineList'].each do |i|
+              vaccination_tmp = Vaccination.new
+              vaccination_tmp.deserialize(i)
+              @VaccineList << vaccination_tmp
+            end
+          end
         end
       end
 

@@ -5755,6 +5755,46 @@ module TencentCloud
         end
       end
 
+      # DescribeGroupAttribute请求参数结构体
+      class DescribeGroupAttributeRequest < TencentCloud::Common::AbstractModel
+        # @param GroupId: 部署组ID字段
+        # @type GroupId: String
+
+        attr_accessor :GroupId
+        
+        def initialize(groupid=nil)
+          @GroupId = groupid
+        end
+
+        def deserialize(params)
+          @GroupId = params['GroupId']
+        end
+      end
+
+      # DescribeGroupAttribute返回参数结构体
+      class DescribeGroupAttributeResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 虚拟机部署组信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Result: :class:`Tencentcloud::Tsf.v20180326.models.VmGroupOther`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+        
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Result'].nil?
+            @Result = VmGroupOther.new
+            @Result.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeGroupBindedGateways请求参数结构体
       class DescribeGroupBindedGatewaysRequest < TencentCloud::Common::AbstractModel
         # @param GroupId: API 分组ID
@@ -15145,6 +15185,63 @@ module TencentCloud
           @StartScript = params['StartScript']
           @StopScript = params['StopScript']
           @Alias = params['Alias']
+        end
+      end
+
+      # 虚拟机部署组其他字段
+      class VmGroupOther < TencentCloud::Common::AbstractModel
+        # @param GroupId: 部署组ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GroupId: String
+        # @param PackageId: 程序包ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PackageId: String
+        # @param PackageName: 程序包名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PackageName: String
+        # @param PackageVersion: 程序包版本
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PackageVersion: String
+        # @param InstanceCount: 部署组实例数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceCount: Integer
+        # @param RunInstanceCount: 部署组运行中实例数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RunInstanceCount: Integer
+        # @param OffInstanceCount: 部署组中停止实例数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OffInstanceCount: Integer
+        # @param GroupStatus: 部署组状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GroupStatus: String
+        # @param IsNotEqualServiceConfig: 服务配置信息是否匹配
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsNotEqualServiceConfig: Boolean
+
+        attr_accessor :GroupId, :PackageId, :PackageName, :PackageVersion, :InstanceCount, :RunInstanceCount, :OffInstanceCount, :GroupStatus, :IsNotEqualServiceConfig
+        
+        def initialize(groupid=nil, packageid=nil, packagename=nil, packageversion=nil, instancecount=nil, runinstancecount=nil, offinstancecount=nil, groupstatus=nil, isnotequalserviceconfig=nil)
+          @GroupId = groupid
+          @PackageId = packageid
+          @PackageName = packagename
+          @PackageVersion = packageversion
+          @InstanceCount = instancecount
+          @RunInstanceCount = runinstancecount
+          @OffInstanceCount = offinstancecount
+          @GroupStatus = groupstatus
+          @IsNotEqualServiceConfig = isnotequalserviceconfig
+        end
+
+        def deserialize(params)
+          @GroupId = params['GroupId']
+          @PackageId = params['PackageId']
+          @PackageName = params['PackageName']
+          @PackageVersion = params['PackageVersion']
+          @InstanceCount = params['InstanceCount']
+          @RunInstanceCount = params['RunInstanceCount']
+          @OffInstanceCount = params['OffInstanceCount']
+          @GroupStatus = params['GroupStatus']
+          @IsNotEqualServiceConfig = params['IsNotEqualServiceConfig']
         end
       end
 

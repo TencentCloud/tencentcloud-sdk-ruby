@@ -753,13 +753,17 @@ module TencentCloud
         # @param Data: 操作型返回的Data数据
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Data: :class:`Tencentcloud::Ckafka.v20190819.models.CreateInstancePreData`
+        # @param DeleteRouteTimestamp: 删除是时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DeleteRouteTimestamp: String
 
-        attr_accessor :ReturnCode, :ReturnMessage, :Data
+        attr_accessor :ReturnCode, :ReturnMessage, :Data, :DeleteRouteTimestamp
         
-        def initialize(returncode=nil, returnmessage=nil, data=nil)
+        def initialize(returncode=nil, returnmessage=nil, data=nil, deleteroutetimestamp=nil)
           @ReturnCode = returncode
           @ReturnMessage = returnmessage
           @Data = data
+          @DeleteRouteTimestamp = deleteroutetimestamp
         end
 
         def deserialize(params)
@@ -769,6 +773,7 @@ module TencentCloud
             @Data = CreateInstancePreData.new
             @Data.deserialize(params['Data'])
           end
+          @DeleteRouteTimestamp = params['DeleteRouteTimestamp']
         end
       end
 

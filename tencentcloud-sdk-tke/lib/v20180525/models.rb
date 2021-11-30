@@ -278,6 +278,31 @@ module TencentCloud
         end
       end
 
+      # app所支持的chart
+      class AppChart < TencentCloud::Common::AbstractModel
+        # @param Name: chart名称
+        # @type Name: String
+        # @param Label: chart的标签
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Label: String
+        # @param LatestVersion: chart的版本
+        # @type LatestVersion: String
+
+        attr_accessor :Name, :Label, :LatestVersion
+        
+        def initialize(name=nil, label=nil, latestversion=nil)
+          @Name = name
+          @Label = label
+          @LatestVersion = latestversion
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Label = params['Label']
+          @LatestVersion = params['LatestVersion']
+        end
+      end
+
       # 集群关联的伸缩组最大实例数最小值实例数
       class AutoScalingGroupRange < TencentCloud::Common::AbstractModel
         # @param MinSize: 伸缩组最小实例数
@@ -5703,6 +5728,118 @@ module TencentCloud
         def deserialize(params)
           @Name = params['Name']
           @Values = params['Values']
+        end
+      end
+
+      # ForwardApplicationRequestV3请求参数结构体
+      class ForwardApplicationRequestV3Request < TencentCloud::Common::AbstractModel
+        # @param Method: 请求集群addon的访问
+        # @type Method: String
+        # @param Path: 请求集群addon的路径
+        # @type Path: String
+        # @param Accept: 请求集群addon后允许接收的数据格式
+        # @type Accept: String
+        # @param ContentType: 请求集群addon的数据格式
+        # @type ContentType: String
+        # @param RequestBody: 请求集群addon的数据
+        # @type RequestBody: String
+        # @param ClusterName: 集群名称
+        # @type ClusterName: String
+        # @param EncodedBody: 是否编码请求内容
+        # @type EncodedBody: String
+
+        attr_accessor :Method, :Path, :Accept, :ContentType, :RequestBody, :ClusterName, :EncodedBody
+        
+        def initialize(method=nil, path=nil, accept=nil, contenttype=nil, requestbody=nil, clustername=nil, encodedbody=nil)
+          @Method = method
+          @Path = path
+          @Accept = accept
+          @ContentType = contenttype
+          @RequestBody = requestbody
+          @ClusterName = clustername
+          @EncodedBody = encodedbody
+        end
+
+        def deserialize(params)
+          @Method = params['Method']
+          @Path = params['Path']
+          @Accept = params['Accept']
+          @ContentType = params['ContentType']
+          @RequestBody = params['RequestBody']
+          @ClusterName = params['ClusterName']
+          @EncodedBody = params['EncodedBody']
+        end
+      end
+
+      # ForwardApplicationRequestV3返回参数结构体
+      class ForwardApplicationRequestV3Response < TencentCloud::Common::AbstractModel
+        # @param ResponseBody: 请求集群addon后返回的数据
+        # @type ResponseBody: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ResponseBody, :RequestId
+        
+        def initialize(responsebody=nil, requestid=nil)
+          @ResponseBody = responsebody
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ResponseBody = params['ResponseBody']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # GetTkeAppChartList请求参数结构体
+      class GetTkeAppChartListRequest < TencentCloud::Common::AbstractModel
+        # @param Kind: app类型，取值log,scheduler,network,storage,monitor,dns,image,other,invisible
+        # @type Kind: String
+        # @param Arch: app支持的操作系统，取值arm32、arm64、amd64
+        # @type Arch: String
+        # @param ClusterType: 集群类型，取值tke、eks
+        # @type ClusterType: String
+
+        attr_accessor :Kind, :Arch, :ClusterType
+        
+        def initialize(kind=nil, arch=nil, clustertype=nil)
+          @Kind = kind
+          @Arch = arch
+          @ClusterType = clustertype
+        end
+
+        def deserialize(params)
+          @Kind = params['Kind']
+          @Arch = params['Arch']
+          @ClusterType = params['ClusterType']
+        end
+      end
+
+      # GetTkeAppChartList返回参数结构体
+      class GetTkeAppChartListResponse < TencentCloud::Common::AbstractModel
+        # @param AppCharts: 所支持的chart列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AppCharts: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :AppCharts, :RequestId
+        
+        def initialize(appcharts=nil, requestid=nil)
+          @AppCharts = appcharts
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['AppCharts'].nil?
+            @AppCharts = []
+            params['AppCharts'].each do |i|
+              appchart_tmp = AppChart.new
+              appchart_tmp.deserialize(i)
+              @AppCharts << appchart_tmp
+            end
+          end
+          @RequestId = params['RequestId']
         end
       end
 

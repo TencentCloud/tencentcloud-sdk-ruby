@@ -1853,6 +1853,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 操作TKE集群的addon
+
+        # @param request: Request instance for ForwardApplicationRequestV3.
+        # @type request: :class:`Tencentcloud::tke::V20180525::ForwardApplicationRequestV3Request`
+        # @rtype: :class:`Tencentcloud::tke::V20180525::ForwardApplicationRequestV3Response`
+        def ForwardApplicationRequestV3(request)
+          body = send_request('ForwardApplicationRequestV3', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ForwardApplicationRequestV3Response.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取TKE支持的App列表
+
+        # @param request: Request instance for GetTkeAppChartList.
+        # @type request: :class:`Tencentcloud::tke::V20180525::GetTkeAppChartListRequest`
+        # @rtype: :class:`Tencentcloud::tke::V20180525::GetTkeAppChartListResponse`
+        def GetTkeAppChartList(request)
+          body = send_request('GetTkeAppChartList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = GetTkeAppChartListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 获得节点升级当前的进度
 
         # @param request: Request instance for GetUpgradeInstanceProgress.

@@ -3023,24 +3023,24 @@ module TencentCloud
         end
       end
 
-      # 网络类型信息，用于实例查询接口和RO组查询接口的返回。
+      # 网络相关信息。
       class NetworkAccess < TencentCloud::Common::AbstractModel
-        # @param ResourceId: 网络资源id，实例id或RO组id
+        # @param ResourceId: 网络资源id，实例id或RO组id(此字段已废弃)
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResourceId: String
-        # @param ResourceType: 资源类型，1-实例 2-RO组
+        # @param ResourceType: 资源类型，1-实例 2-RO组(此字段已废弃)
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResourceType: Integer
         # @param VpcId: 私有网络ID
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VpcId: String
-        # @param Vip: IP地址
+        # @param Vip: IPV4地址
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Vip: String
-        # @param Vip6: ipv6的IP地址
+        # @param Vip6: IPV6地址
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Vip6: String
-        # @param Vport: 连接Port地址
+        # @param Vport: 访问端口
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Vport: Integer
         # @param SubnetId: 子网ID
