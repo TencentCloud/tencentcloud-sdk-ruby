@@ -554,38 +554,6 @@ module TencentCloud
         end
       end
 
-      # 数据盘价格
-      class DataDiskPrice < TencentCloud::Common::AbstractModel
-        # @param DiskId: 磁盘ID
-        # @type DiskId: String
-        # @param OriginalDiskPrice: 磁盘单价
-        # @type OriginalDiskPrice: Float
-        # @param OriginalPrice: 磁盘总价
-        # @type OriginalPrice: Float
-        # @param Discount: 折扣
-        # @type Discount: Float
-        # @param DiscountPrice: 折后总价
-        # @type DiscountPrice: Float
-
-        attr_accessor :DiskId, :OriginalDiskPrice, :OriginalPrice, :Discount, :DiscountPrice
-        
-        def initialize(diskid=nil, originaldiskprice=nil, originalprice=nil, discount=nil, discountprice=nil)
-          @DiskId = diskid
-          @OriginalDiskPrice = originaldiskprice
-          @OriginalPrice = originalprice
-          @Discount = discount
-          @DiscountPrice = discountprice
-        end
-
-        def deserialize(params)
-          @DiskId = params['DiskId']
-          @OriginalDiskPrice = params['OriginalDiskPrice']
-          @OriginalPrice = params['OriginalPrice']
-          @Discount = params['Discount']
-          @DiscountPrice = params['DiscountPrice']
-        end
-      end
-
       # DeleteBlueprints请求参数结构体
       class DeleteBlueprintsRequest < TencentCloud::Common::AbstractModel
         # @param BlueprintIds: 镜像ID列表。镜像ID，可通过[DescribeBlueprints](https://cloud.tencent.com/document/product/1207/47689)接口返回值中的BlueprintId获取。
@@ -1320,6 +1288,12 @@ module TencentCloud
         # 类型：String
         # 必选：否
         # <li>public-ip-address</li>按照【实例主网卡的公网 IP】进行过滤。
+        # 类型：String
+        # 必选：否
+        # <li>zone</li>按照【可用区】进行过滤。
+        # 类型：String
+        # 必选：否
+        # <li>instance-state</li>按照【实例状态】进行过滤。
         # 类型：String
         # 必选：否
         # 每次请求的 Filters 的上限为 10，Filter.Values 的上限为 5。参数不支持同时指定 InstanceIds 和 Filters。
@@ -3027,28 +3001,17 @@ module TencentCloud
       class Price < TencentCloud::Common::AbstractModel
         # @param InstancePrice: 实例价格。
         # @type InstancePrice: :class:`Tencentcloud::Lighthouse.v20200324.models.InstancePrice`
-        # @param DataDiskPrices: 数据盘价格。
-        # @type DataDiskPrices: Array
 
-        attr_accessor :InstancePrice, :DataDiskPrices
+        attr_accessor :InstancePrice
         
-        def initialize(instanceprice=nil, datadiskprices=nil)
+        def initialize(instanceprice=nil)
           @InstancePrice = instanceprice
-          @DataDiskPrices = datadiskprices
         end
 
         def deserialize(params)
           unless params['InstancePrice'].nil?
             @InstancePrice = InstancePrice.new
             @InstancePrice.deserialize(params['InstancePrice'])
-          end
-          unless params['DataDiskPrices'].nil?
-            @DataDiskPrices = []
-            params['DataDiskPrices'].each do |i|
-              datadiskprice_tmp = DataDiskPrice.new
-              datadiskprice_tmp.deserialize(i)
-              @DataDiskPrices << datadiskprice_tmp
-            end
           end
         end
       end

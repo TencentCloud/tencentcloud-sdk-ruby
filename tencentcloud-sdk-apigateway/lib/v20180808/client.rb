@@ -2115,7 +2115,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口（UpdateApiAppKey）用于更新应用秘钥。
+        # 本接口（UpdateApiAppKey）用于更新应用密钥。
 
         # @param request: Request instance for UpdateApiAppKey.
         # @type request: :class:`Tencentcloud::apigateway::V20180808::UpdateApiAppKeyRequest`

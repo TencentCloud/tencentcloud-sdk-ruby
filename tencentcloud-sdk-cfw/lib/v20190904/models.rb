@@ -4324,7 +4324,7 @@ module TencentCloud
       class ScanInfo < TencentCloud::Common::AbstractModel
         # @param ScanResultInfo: 扫描结果信息
         # @type ScanResultInfo: :class:`Tencentcloud::Cfw.v20190904.models.ScanResultInfo`
-        # @param ScanStatus: 扫描状态 0扫描中 1完成   2没赠送过扫描显示开启界面
+        # @param ScanStatus: 扫描状态 0扫描中 1完成  2未勾选自动扫描
         # @type ScanStatus: Integer
         # @param ScanPercent: 进度
         # @type ScanPercent: Float
