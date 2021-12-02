@@ -186,6 +186,66 @@ module TencentCloud
         end
       end
 
+      # CreateApmInstance请求参数结构体
+      class CreateApmInstanceRequest < TencentCloud::Common::AbstractModel
+        # @param Name: 实例名
+        # @type Name: String
+        # @param Description: 实例描述信息
+        # @type Description: String
+        # @param TraceDuration: Trace数据保存时长
+        # @type TraceDuration: Integer
+        # @param Tags: 标签列表
+        # @type Tags: Array
+        # @param SpanDailyCounters: 实例上报额度值
+        # @type SpanDailyCounters: Integer
+
+        attr_accessor :Name, :Description, :TraceDuration, :Tags, :SpanDailyCounters
+        
+        def initialize(name=nil, description=nil, traceduration=nil, tags=nil, spandailycounters=nil)
+          @Name = name
+          @Description = description
+          @TraceDuration = traceduration
+          @Tags = tags
+          @SpanDailyCounters = spandailycounters
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Description = params['Description']
+          @TraceDuration = params['TraceDuration']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              apmtag_tmp = ApmTag.new
+              apmtag_tmp.deserialize(i)
+              @Tags << apmtag_tmp
+            end
+          end
+          @SpanDailyCounters = params['SpanDailyCounters']
+        end
+      end
+
+      # CreateApmInstance返回参数结构体
+      class CreateApmInstanceResponse < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :InstanceId, :RequestId
+        
+        def initialize(instanceid=nil, requestid=nil)
+          @InstanceId = instanceid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeApmAgent请求参数结构体
       class DescribeApmAgentRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例ID

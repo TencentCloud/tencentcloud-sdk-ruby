@@ -1160,16 +1160,25 @@ module TencentCloud
         # @type WorkingDirectory: String
         # @param Timeout: 命令超时时间，取值范围[1, 86400]。默认以Command配置的Timeout执行。
         # @type Timeout: Integer
+        # @param OutputCOSBucketUrl: 指定日志上传的cos bucket 地址，必须以https开头，如 https://BucketName-123454321.cos.ap-beijing.myqcloud.com。
+        # @type OutputCOSBucketUrl: String
+        # @param OutputCOSKeyPrefix: 指定日志在cos bucket中的目录，目录命名有如下规则：
+        # 1. 可用数字、中英文和可见字符的组合，长度最多为60。
+        # 2. 用 / 分割路径，可快速创建子目录。
+        # 3. 不允许连续 / ；不允许以 / 开头；不允许以..作为文件夹名称。
+        # @type OutputCOSKeyPrefix: String
 
-        attr_accessor :CommandId, :InstanceIds, :Parameters, :Username, :WorkingDirectory, :Timeout
+        attr_accessor :CommandId, :InstanceIds, :Parameters, :Username, :WorkingDirectory, :Timeout, :OutputCOSBucketUrl, :OutputCOSKeyPrefix
         
-        def initialize(commandid=nil, instanceids=nil, parameters=nil, username=nil, workingdirectory=nil, timeout=nil)
+        def initialize(commandid=nil, instanceids=nil, parameters=nil, username=nil, workingdirectory=nil, timeout=nil, outputcosbucketurl=nil, outputcoskeyprefix=nil)
           @CommandId = commandid
           @InstanceIds = instanceids
           @Parameters = parameters
           @Username = username
           @WorkingDirectory = workingdirectory
           @Timeout = timeout
+          @OutputCOSBucketUrl = outputcosbucketurl
+          @OutputCOSKeyPrefix = outputcoskeyprefix
         end
 
         def deserialize(params)
@@ -1179,6 +1188,8 @@ module TencentCloud
           @Username = params['Username']
           @WorkingDirectory = params['WorkingDirectory']
           @Timeout = params['Timeout']
+          @OutputCOSBucketUrl = params['OutputCOSBucketUrl']
+          @OutputCOSKeyPrefix = params['OutputCOSKeyPrefix']
         end
       end
 
@@ -1320,10 +1331,17 @@ module TencentCloud
         # @param Username: 在 CVM 或 Lighthouse 实例中执行命令的用户名称。
         # 使用最小权限执行命令是权限管理的最佳实践，建议您以普通用户身份执行云助手命令。默认情况下，在Linux实例中以root用户执行命令。
         # @type Username: String
+        # @param OutputCOSBucketUrl: 指定日志上传的cos bucket 地址，必须以https开头，如 https://BucketName-123454321.cos.ap-beijing.myqcloud.com。
+        # @type OutputCOSBucketUrl: String
+        # @param OutputCOSKeyPrefix: 指定日志在cos bucket中的目录，目录命名有如下规则：
+        # 1. 可用数字、中英文和可见字符的组合，长度最多为60。
+        # 2. 用 / 分割路径，可快速创建子目录。
+        # 3. 不允许连续 / ；不允许以 / 开头；不允许以..作为文件夹名称。
+        # @type OutputCOSKeyPrefix: String
 
-        attr_accessor :CommandId, :CommandName, :Description, :Content, :CommandType, :WorkingDirectory, :Timeout, :DefaultParameters, :Username
+        attr_accessor :CommandId, :CommandName, :Description, :Content, :CommandType, :WorkingDirectory, :Timeout, :DefaultParameters, :Username, :OutputCOSBucketUrl, :OutputCOSKeyPrefix
         
-        def initialize(commandid=nil, commandname=nil, description=nil, content=nil, commandtype=nil, workingdirectory=nil, timeout=nil, defaultparameters=nil, username=nil)
+        def initialize(commandid=nil, commandname=nil, description=nil, content=nil, commandtype=nil, workingdirectory=nil, timeout=nil, defaultparameters=nil, username=nil, outputcosbucketurl=nil, outputcoskeyprefix=nil)
           @CommandId = commandid
           @CommandName = commandname
           @Description = description
@@ -1333,6 +1351,8 @@ module TencentCloud
           @Timeout = timeout
           @DefaultParameters = defaultparameters
           @Username = username
+          @OutputCOSBucketUrl = outputcosbucketurl
+          @OutputCOSKeyPrefix = outputcoskeyprefix
         end
 
         def deserialize(params)
@@ -1345,6 +1365,8 @@ module TencentCloud
           @Timeout = params['Timeout']
           @DefaultParameters = params['DefaultParameters']
           @Username = params['Username']
+          @OutputCOSBucketUrl = params['OutputCOSBucketUrl']
+          @OutputCOSKeyPrefix = params['OutputCOSKeyPrefix']
         end
       end
 
@@ -1545,10 +1567,17 @@ module TencentCloud
         # @param Username: 在 CVM 或 Lighthouse 实例中执行命令的用户名称。
         # 使用最小权限执行命令是权限管理的最佳实践，建议您以普通用户身份执行云助手命令。默认情况下，在Linux实例中以root用户执行命令。
         # @type Username: String
+        # @param OutputCOSBucketUrl: 指定日志上传的cos bucket 地址，必须以https开头，如 https://BucketName-123454321.cos.ap-beijing.myqcloud.com。
+        # @type OutputCOSBucketUrl: String
+        # @param OutputCOSKeyPrefix: 指定日志在cos bucket中的目录，目录命名有如下规则：
+        # 1. 可用数字、中英文和可见字符的组合，长度最多为60。
+        # 2. 用 / 分割路径，可快速创建子目录。
+        # 3. 不允许连续 / ；不允许以 / 开头；不允许以..作为文件夹名称。
+        # @type OutputCOSKeyPrefix: String
 
-        attr_accessor :Content, :InstanceIds, :CommandName, :Description, :CommandType, :WorkingDirectory, :Timeout, :SaveCommand, :EnableParameter, :DefaultParameters, :Parameters, :Tags, :Username
+        attr_accessor :Content, :InstanceIds, :CommandName, :Description, :CommandType, :WorkingDirectory, :Timeout, :SaveCommand, :EnableParameter, :DefaultParameters, :Parameters, :Tags, :Username, :OutputCOSBucketUrl, :OutputCOSKeyPrefix
         
-        def initialize(content=nil, instanceids=nil, commandname=nil, description=nil, commandtype=nil, workingdirectory=nil, timeout=nil, savecommand=nil, enableparameter=nil, defaultparameters=nil, parameters=nil, tags=nil, username=nil)
+        def initialize(content=nil, instanceids=nil, commandname=nil, description=nil, commandtype=nil, workingdirectory=nil, timeout=nil, savecommand=nil, enableparameter=nil, defaultparameters=nil, parameters=nil, tags=nil, username=nil, outputcosbucketurl=nil, outputcoskeyprefix=nil)
           @Content = content
           @InstanceIds = instanceids
           @CommandName = commandname
@@ -1562,6 +1591,8 @@ module TencentCloud
           @Parameters = parameters
           @Tags = tags
           @Username = username
+          @OutputCOSBucketUrl = outputcosbucketurl
+          @OutputCOSKeyPrefix = outputcoskeyprefix
         end
 
         def deserialize(params)
@@ -1585,6 +1616,8 @@ module TencentCloud
             end
           end
           @Username = params['Username']
+          @OutputCOSBucketUrl = params['OutputCOSBucketUrl']
+          @OutputCOSKeyPrefix = params['OutputCOSKeyPrefix']
         end
       end
 

@@ -888,7 +888,7 @@ module TencentCloud
         # @param DBKernelVersion: 数据库内核版本
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DBKernelVersion: String
-        # @param NetworkAccessList: 实例网络信息列表
+        # @param NetworkAccessList: 实例网络信息列表（此字段已废弃）
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NetworkAccessList: Array
 
@@ -1000,17 +1000,25 @@ module TencentCloud
         # @type Port: Integer
         # @param NetType: 网络类型，1、inner（基础网络内网地址）；2、private（私有网络内网地址）；3、public（基础网络或私有网络的外网地址）；
         # @type NetType: String
-        # @param Status: 网络连接状态
+        # @param Status: 网络连接状态，1、initing（未开通）；2、opened（已开通）；3、closed（已关闭）；4、opening（开通中）；5、closing（关闭中）；
         # @type Status: String
+        # @param VpcId: 私有网络ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VpcId: String
+        # @param SubnetId: 子网ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SubnetId: String
 
-        attr_accessor :Address, :Ip, :Port, :NetType, :Status
+        attr_accessor :Address, :Ip, :Port, :NetType, :Status, :VpcId, :SubnetId
         
-        def initialize(address=nil, ip=nil, port=nil, nettype=nil, status=nil)
+        def initialize(address=nil, ip=nil, port=nil, nettype=nil, status=nil, vpcid=nil, subnetid=nil)
           @Address = address
           @Ip = ip
           @Port = port
           @NetType = nettype
           @Status = status
+          @VpcId = vpcid
+          @SubnetId = subnetid
         end
 
         def deserialize(params)
@@ -1019,6 +1027,8 @@ module TencentCloud
           @Port = params['Port']
           @NetType = params['NetType']
           @Status = params['Status']
+          @VpcId = params['VpcId']
+          @SubnetId = params['SubnetId']
         end
       end
 
@@ -3023,12 +3033,12 @@ module TencentCloud
         end
       end
 
-      # 网络相关信息。
+      # 网络相关信息。（该数据结构已废弃，网络相关信息使用DBInstanceNetInfo）
       class NetworkAccess < TencentCloud::Common::AbstractModel
-        # @param ResourceId: 网络资源id，实例id或RO组id(此字段已废弃)
+        # @param ResourceId: 网络资源id，实例id或RO组id
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResourceId: String
-        # @param ResourceType: 资源类型，1-实例 2-RO组(此字段已废弃)
+        # @param ResourceType: 资源类型，1-实例 2-RO组
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResourceType: Integer
         # @param VpcId: 私有网络ID
@@ -3457,7 +3467,7 @@ module TencentCloud
         # @type Rebalance: Integer
         # @param DBInstanceNetInfo: 网络信息
         # @type DBInstanceNetInfo: Array
-        # @param NetworkAccessList: 只读组网络信息列表
+        # @param NetworkAccessList: 只读组网络信息列表（此字段已废弃）
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NetworkAccessList: Array
 

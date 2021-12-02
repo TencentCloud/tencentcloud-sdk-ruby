@@ -1999,6 +1999,71 @@ module TencentCloud
         end
       end
 
+      # GetRequestStatus请求参数结构体
+      class GetRequestStatusRequest < TencentCloud::Common::AbstractModel
+        # @param FunctionName: 函数名称
+        # @type FunctionName: String
+        # @param FunctionRequestId: 需要查询状态的请求 id
+        # @type FunctionRequestId: String
+        # @param Namespace: 函数的所在的命名空间
+        # @type Namespace: String
+        # @param StartTime: 查询的开始时间，例如：2017-05-16 20:00:00，不填默认为当前时间 - 24小时
+        # @type StartTime: String
+        # @param EndTime: 查询的结束时间，例如：2017-05-16 20:59:59，不填默认为当前时间。EndTime 需要晚于 StartTime。
+        # @type EndTime: String
+
+        attr_accessor :FunctionName, :FunctionRequestId, :Namespace, :StartTime, :EndTime
+        
+        def initialize(functionname=nil, functionrequestid=nil, namespace=nil, starttime=nil, endtime=nil)
+          @FunctionName = functionname
+          @FunctionRequestId = functionrequestid
+          @Namespace = namespace
+          @StartTime = starttime
+          @EndTime = endtime
+        end
+
+        def deserialize(params)
+          @FunctionName = params['FunctionName']
+          @FunctionRequestId = params['FunctionRequestId']
+          @Namespace = params['Namespace']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+        end
+      end
+
+      # GetRequestStatus返回参数结构体
+      class GetRequestStatusResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 函数运行状态的总数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalCount: Integer
+        # @param Data: 函数运行状态数组
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Data: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :Data, :RequestId
+        
+        def initialize(totalcount=nil, data=nil, requestid=nil)
+          @TotalCount = totalcount
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['Data'].nil?
+            @Data = []
+            params['Data'].each do |i|
+              requeststatus_tmp = RequestStatus.new
+              requeststatus_tmp.deserialize(i)
+              @Data << requeststatus_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # GetReservedConcurrencyConfig请求参数结构体
       class GetReservedConcurrencyConfigRequest < TencentCloud::Common::AbstractModel
         # @param FunctionName: 需要获取最大独占配额详情的函数名称。
@@ -2145,7 +2210,7 @@ module TencentCloud
         # @type FunctionName: String
         # @param InvocationType: 同步调用请使用[同步 Invoke 调用接口](https://cloud.tencent.com/document/product/583/58400) 或填写同步调用参数 RequestResponse ，建议使用同步调用接口以获取最佳性能；异步调用填写 Event；默认为同步。接口超时时间为 300s，更长超时时间请使用异步调用。
         # @type InvocationType: String
-        # @param Qualifier: 触发函数的版本号或别名
+        # @param Qualifier: 触发函数的版本号或别名，默认值为 $LATEST
         # @type Qualifier: String
         # @param ClientContext: 运行函数时的参数，以json格式传入，同步调用最大支持 6MB，异步调用最大支持 128 KB。该字段信息对应函数 [event 入参](https://cloud.tencent.com/document/product/583/9210#.E5.87.BD.E6.95.B0.E5.85.A5.E5.8F.82.3Ca-id.3D.22input.22.3E.3C.2Fa.3E)。
         # @type ClientContext: String
@@ -3349,6 +3414,50 @@ module TencentCloud
 
         def deserialize(params)
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 函数运行状态
+      class RequestStatus < TencentCloud::Common::AbstractModel
+        # @param FunctionName: 函数的名称
+        # @type FunctionName: String
+        # @param RetMsg: 函数执行完成后的返回值
+        # @type RetMsg: String
+        # @param RequestId: 查询的请求 id
+        # @type RequestId: String
+        # @param StartTime: 请求开始时间
+        # @type StartTime: String
+        # @param RetCode: 请求执行结果， 0 表示执行成功，1表示运行中，-1 表示执行异常。
+        # @type RetCode: Integer
+        # @param Duration: 请求运行耗时，单位：ms
+        # @type Duration: Float
+        # @param MemUsage: 请求消耗内存，单位为 MB
+        # @type MemUsage: Float
+        # @param RetryNum: 重试次数
+        # @type RetryNum: Integer
+
+        attr_accessor :FunctionName, :RetMsg, :RequestId, :StartTime, :RetCode, :Duration, :MemUsage, :RetryNum
+        
+        def initialize(functionname=nil, retmsg=nil, requestid=nil, starttime=nil, retcode=nil, duration=nil, memusage=nil, retrynum=nil)
+          @FunctionName = functionname
+          @RetMsg = retmsg
+          @RequestId = requestid
+          @StartTime = starttime
+          @RetCode = retcode
+          @Duration = duration
+          @MemUsage = memusage
+          @RetryNum = retrynum
+        end
+
+        def deserialize(params)
+          @FunctionName = params['FunctionName']
+          @RetMsg = params['RetMsg']
+          @RequestId = params['RequestId']
+          @StartTime = params['StartTime']
+          @RetCode = params['RetCode']
+          @Duration = params['Duration']
+          @MemUsage = params['MemUsage']
+          @RetryNum = params['RetryNum']
         end
       end
 

@@ -162,10 +162,13 @@ module TencentCloud
         # @type Domain: String
         # @param DamDDoSStatus: 是否开启安全加速，是为1，否为0。
         # @type DamDDoSStatus: Integer
+        # @param V6Flag: 是否Ipv6版本的IP, 是为1，否为0
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type V6Flag: Integer
 
-        attr_accessor :InstanceDetail, :SpecificationLimit, :Usage, :Region, :Status, :ExpiredTime, :CreatedTime, :Name, :PackInfo, :StaticPackRelation, :ZoneId, :Tgw, :EipAddressStatus, :EipFlag, :EipAddressPackRelation, :EipAddressInfo, :Domain, :DamDDoSStatus
+        attr_accessor :InstanceDetail, :SpecificationLimit, :Usage, :Region, :Status, :ExpiredTime, :CreatedTime, :Name, :PackInfo, :StaticPackRelation, :ZoneId, :Tgw, :EipAddressStatus, :EipFlag, :EipAddressPackRelation, :EipAddressInfo, :Domain, :DamDDoSStatus, :V6Flag
         
-        def initialize(instancedetail=nil, specificationlimit=nil, usage=nil, region=nil, status=nil, expiredtime=nil, createdtime=nil, name=nil, packinfo=nil, staticpackrelation=nil, zoneid=nil, tgw=nil, eipaddressstatus=nil, eipflag=nil, eipaddresspackrelation=nil, eipaddressinfo=nil, domain=nil, damddosstatus=nil)
+        def initialize(instancedetail=nil, specificationlimit=nil, usage=nil, region=nil, status=nil, expiredtime=nil, createdtime=nil, name=nil, packinfo=nil, staticpackrelation=nil, zoneid=nil, tgw=nil, eipaddressstatus=nil, eipflag=nil, eipaddresspackrelation=nil, eipaddressinfo=nil, domain=nil, damddosstatus=nil, v6flag=nil)
           @InstanceDetail = instancedetail
           @SpecificationLimit = specificationlimit
           @Usage = usage
@@ -184,6 +187,7 @@ module TencentCloud
           @EipAddressInfo = eipaddressinfo
           @Domain = domain
           @DamDDoSStatus = damddosstatus
+          @V6Flag = v6flag
         end
 
         def deserialize(params)
@@ -229,6 +233,7 @@ module TencentCloud
           end
           @Domain = params['Domain']
           @DamDDoSStatus = params['DamDDoSStatus']
+          @V6Flag = params['V6Flag']
         end
       end
 

@@ -516,6 +516,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 该接口根据指定的查询条件返回函数单个请求运行状态。
+
+        # @param request: Request instance for GetRequestStatus.
+        # @type request: :class:`Tencentcloud::scf::V20180416::GetRequestStatusRequest`
+        # @rtype: :class:`Tencentcloud::scf::V20180416::GetRequestStatusResponse`
+        def GetRequestStatus(request)
+          body = send_request('GetRequestStatus', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = GetRequestStatusResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 获取函数的最大独占配额详情。
 
         # @param request: Request instance for GetReservedConcurrencyConfig.

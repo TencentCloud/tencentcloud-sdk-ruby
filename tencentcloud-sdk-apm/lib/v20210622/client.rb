@@ -29,6 +29,30 @@ module TencentCloud
         end
 
 
+        # 业务购买APM实例，调用该接口创建
+
+        # @param request: Request instance for CreateApmInstance.
+        # @type request: :class:`Tencentcloud::apm::V20210622::CreateApmInstanceRequest`
+        # @rtype: :class:`Tencentcloud::apm::V20210622::CreateApmInstanceResponse`
+        def CreateApmInstance(request)
+          body = send_request('CreateApmInstance', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateApmInstanceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 获取Apm Agent信息
 
         # @param request: Request instance for DescribeApmAgent.

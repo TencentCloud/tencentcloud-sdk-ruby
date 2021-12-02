@@ -8952,14 +8952,17 @@ module TencentCloud
         # @type WaitSwitch: Integer
         # @param UpgradeSubversion: 是否是内核子版本升级，支持的值：1 - 升级内核子版本；0 - 升级数据库引擎版本。
         # @type UpgradeSubversion: Integer
+        # @param MaxDelayTime: 延迟阈值。取值范围1~10
+        # @type MaxDelayTime: Integer
 
-        attr_accessor :InstanceId, :EngineVersion, :WaitSwitch, :UpgradeSubversion
+        attr_accessor :InstanceId, :EngineVersion, :WaitSwitch, :UpgradeSubversion, :MaxDelayTime
         
-        def initialize(instanceid=nil, engineversion=nil, waitswitch=nil, upgradesubversion=nil)
+        def initialize(instanceid=nil, engineversion=nil, waitswitch=nil, upgradesubversion=nil, maxdelaytime=nil)
           @InstanceId = instanceid
           @EngineVersion = engineversion
           @WaitSwitch = waitswitch
           @UpgradeSubversion = upgradesubversion
+          @MaxDelayTime = maxdelaytime
         end
 
         def deserialize(params)
@@ -8967,6 +8970,7 @@ module TencentCloud
           @EngineVersion = params['EngineVersion']
           @WaitSwitch = params['WaitSwitch']
           @UpgradeSubversion = params['UpgradeSubversion']
+          @MaxDelayTime = params['MaxDelayTime']
         end
       end
 
@@ -9018,10 +9022,12 @@ module TencentCloud
         # @type Cpu: Integer
         # @param FastUpgrade: 是否极速变配。0-普通升级，1-极速变配。选择极速变配会根据资源状况校验是否可以进行极速变配，满足条件则进行极速变配，不满足条件会返回报错信息。
         # @type FastUpgrade: Integer
+        # @param MaxDelayTime: 延迟阈值。取值范围1~10，默认值为10。
+        # @type MaxDelayTime: Integer
 
-        attr_accessor :InstanceId, :Memory, :Volume, :ProtectMode, :DeployMode, :SlaveZone, :EngineVersion, :WaitSwitch, :BackupZone, :InstanceRole, :DeviceType, :Cpu, :FastUpgrade
+        attr_accessor :InstanceId, :Memory, :Volume, :ProtectMode, :DeployMode, :SlaveZone, :EngineVersion, :WaitSwitch, :BackupZone, :InstanceRole, :DeviceType, :Cpu, :FastUpgrade, :MaxDelayTime
         
-        def initialize(instanceid=nil, memory=nil, volume=nil, protectmode=nil, deploymode=nil, slavezone=nil, engineversion=nil, waitswitch=nil, backupzone=nil, instancerole=nil, devicetype=nil, cpu=nil, fastupgrade=nil)
+        def initialize(instanceid=nil, memory=nil, volume=nil, protectmode=nil, deploymode=nil, slavezone=nil, engineversion=nil, waitswitch=nil, backupzone=nil, instancerole=nil, devicetype=nil, cpu=nil, fastupgrade=nil, maxdelaytime=nil)
           @InstanceId = instanceid
           @Memory = memory
           @Volume = volume
@@ -9035,6 +9041,7 @@ module TencentCloud
           @DeviceType = devicetype
           @Cpu = cpu
           @FastUpgrade = fastupgrade
+          @MaxDelayTime = maxdelaytime
         end
 
         def deserialize(params)
@@ -9051,6 +9058,7 @@ module TencentCloud
           @DeviceType = params['DeviceType']
           @Cpu = params['Cpu']
           @FastUpgrade = params['FastUpgrade']
+          @MaxDelayTime = params['MaxDelayTime']
         end
       end
 

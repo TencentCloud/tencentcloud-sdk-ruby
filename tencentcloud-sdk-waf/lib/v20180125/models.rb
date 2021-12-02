@@ -737,12 +737,33 @@ module TencentCloud
 
       # DescribeAccessFastAnalysis请求参数结构体
       class DescribeAccessFastAnalysisRequest < TencentCloud::Common::AbstractModel
+        # @param TopicId: 客户要查询的日志主题ID，每个客户都有对应的一个主题
+        # @type TopicId: String
+        # @param From: 要查询的日志的起始时间，Unix时间戳，单位ms
+        # @type From: Integer
+        # @param To: 要查询的日志的结束时间，Unix时间戳，单位ms
+        # @type To: Integer
+        # @param Query: 查询语句，语句长度最大为4096，由于本接口是分析接口，如果无过滤条件，必须传 * 表示匹配所有，参考CLS的分析统计语句的文档
+        # @type Query: String
+        # @param FieldName: 需要分析统计的字段名
+        # @type FieldName: String
 
+        attr_accessor :TopicId, :From, :To, :Query, :FieldName
         
-        def initialize()
+        def initialize(topicid=nil, from=nil, to=nil, query=nil, fieldname=nil)
+          @TopicId = topicid
+          @From = from
+          @To = to
+          @Query = query
+          @FieldName = fieldname
         end
 
         def deserialize(params)
+          @TopicId = params['TopicId']
+          @From = params['From']
+          @To = params['To']
+          @Query = params['Query']
+          @FieldName = params['FieldName']
         end
       end
 
