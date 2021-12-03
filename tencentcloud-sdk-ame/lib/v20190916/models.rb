@@ -1476,10 +1476,12 @@ module TencentCloud
         # @type Duration: String
         # @param AuthorizedArea: 授权区域，global: 全球 CN: 中国
         # @type AuthorizedArea: String
+        # @param Tags: 标签数组
+        # @type Tags: Array
 
-        attr_accessor :OrderId, :TrackName, :ItemID, :Img, :ArtistName, :Duration, :AuthorizedArea
+        attr_accessor :OrderId, :TrackName, :ItemID, :Img, :ArtistName, :Duration, :AuthorizedArea, :Tags
         
-        def initialize(orderid=nil, trackname=nil, itemid=nil, img=nil, artistname=nil, duration=nil, authorizedarea=nil)
+        def initialize(orderid=nil, trackname=nil, itemid=nil, img=nil, artistname=nil, duration=nil, authorizedarea=nil, tags=nil)
           @OrderId = orderid
           @TrackName = trackname
           @ItemID = itemid
@@ -1487,6 +1489,7 @@ module TencentCloud
           @ArtistName = artistname
           @Duration = duration
           @AuthorizedArea = authorizedarea
+          @Tags = tags
         end
 
         def deserialize(params)
@@ -1497,6 +1500,7 @@ module TencentCloud
           @ArtistName = params['ArtistName']
           @Duration = params['Duration']
           @AuthorizedArea = params['AuthorizedArea']
+          @Tags = params['Tags']
         end
       end
 

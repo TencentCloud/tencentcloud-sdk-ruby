@@ -2229,9 +2229,9 @@ module TencentCloud
 
       # 实时录制白板参数，例如白板宽高等
       class Whiteboard < TencentCloud::Common::AbstractModel
-        # @param Width: 实时录制结果里白板视频宽，默认为1280
+        # @param Width: 实时录制结果里白板视频宽，取值必须大于等于2，默认为1280
         # @type Width: Integer
-        # @param Height: 实时录制结果里白板视频高，默认为960
+        # @param Height: 实时录制结果里白板视频高，取值必须大于等于2，默认为960
         # @type Height: Integer
         # @param InitParam: 白板初始化参数，透传到白板 SDK
         # @type InitParam: String

@@ -1010,10 +1010,12 @@ module TencentCloud
         # @type ProductDescription: String
         # @param EncryptionType: 认证方式 只支持取值为2 psk认证
         # @type EncryptionType: Integer
+        # @param NetType: 连接类型，wifi表示WIFI连接，cellular表示4G连接
+        # @type NetType: String
 
-        attr_accessor :ProductName, :DeviceType, :ProductVaildYears, :Features, :ChipOs, :ChipManufactureId, :ChipId, :ProductDescription, :EncryptionType
+        attr_accessor :ProductName, :DeviceType, :ProductVaildYears, :Features, :ChipOs, :ChipManufactureId, :ChipId, :ProductDescription, :EncryptionType, :NetType
         
-        def initialize(productname=nil, devicetype=nil, productvaildyears=nil, features=nil, chipos=nil, chipmanufactureid=nil, chipid=nil, productdescription=nil, encryptiontype=nil)
+        def initialize(productname=nil, devicetype=nil, productvaildyears=nil, features=nil, chipos=nil, chipmanufactureid=nil, chipid=nil, productdescription=nil, encryptiontype=nil, nettype=nil)
           @ProductName = productname
           @DeviceType = devicetype
           @ProductVaildYears = productvaildyears
@@ -1023,6 +1025,7 @@ module TencentCloud
           @ChipId = chipid
           @ProductDescription = productdescription
           @EncryptionType = encryptiontype
+          @NetType = nettype
         end
 
         def deserialize(params)
@@ -1035,6 +1038,7 @@ module TencentCloud
           @ChipId = params['ChipId']
           @ProductDescription = params['ProductDescription']
           @EncryptionType = params['EncryptionType']
+          @NetType = params['NetType']
         end
       end
 
@@ -5052,10 +5056,13 @@ module TencentCloud
         # @type CreateTime: Integer
         # @param UpdateTime: 修改时间unix时间戳
         # @type UpdateTime: Integer
+        # @param NetType: 连接类型，wifi表示WIFI连接，cellular表示4G连接
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NetType: String
 
-        attr_accessor :ProductId, :ProductName, :DeviceType, :EncryptionType, :Features, :ChipOs, :ChipManufactureId, :ChipId, :ProductDescription, :CreateTime, :UpdateTime
+        attr_accessor :ProductId, :ProductName, :DeviceType, :EncryptionType, :Features, :ChipOs, :ChipManufactureId, :ChipId, :ProductDescription, :CreateTime, :UpdateTime, :NetType
         
-        def initialize(productid=nil, productname=nil, devicetype=nil, encryptiontype=nil, features=nil, chipos=nil, chipmanufactureid=nil, chipid=nil, productdescription=nil, createtime=nil, updatetime=nil)
+        def initialize(productid=nil, productname=nil, devicetype=nil, encryptiontype=nil, features=nil, chipos=nil, chipmanufactureid=nil, chipid=nil, productdescription=nil, createtime=nil, updatetime=nil, nettype=nil)
           @ProductId = productid
           @ProductName = productname
           @DeviceType = devicetype
@@ -5067,6 +5074,7 @@ module TencentCloud
           @ProductDescription = productdescription
           @CreateTime = createtime
           @UpdateTime = updatetime
+          @NetType = nettype
         end
 
         def deserialize(params)
@@ -5081,6 +5089,7 @@ module TencentCloud
           @ProductDescription = params['ProductDescription']
           @CreateTime = params['CreateTime']
           @UpdateTime = params['UpdateTime']
+          @NetType = params['NetType']
         end
       end
 

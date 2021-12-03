@@ -3365,6 +3365,81 @@ module TencentCloud
         end
       end
 
+      # DescribeAllTenants请求参数结构体
+      class DescribeAllTenantsRequest < TencentCloud::Common::AbstractModel
+        # @param Offset: 查询偏移量
+        # @type Offset: Integer
+        # @param Limit: 查询限制条数
+        # @type Limit: Integer
+        # @param ClusterName: 物理集群名称
+        # @type ClusterName: String
+        # @param TenantId: 虚拟集群ID
+        # @type TenantId: String
+        # @param TenantName: 虚拟集群名称
+        # @type TenantName: String
+        # @param Types: 协议类型数组
+        # @type Types: Array
+        # @param SortBy: 排序字段名，支持createTime，updateTime
+        # @type SortBy: String
+        # @param SortOrder: 升序排列ASC，降序排列DESC
+        # @type SortOrder: String
+
+        attr_accessor :Offset, :Limit, :ClusterName, :TenantId, :TenantName, :Types, :SortBy, :SortOrder
+        
+        def initialize(offset=nil, limit=nil, clustername=nil, tenantid=nil, tenantname=nil, types=nil, sortby=nil, sortorder=nil)
+          @Offset = offset
+          @Limit = limit
+          @ClusterName = clustername
+          @TenantId = tenantid
+          @TenantName = tenantname
+          @Types = types
+          @SortBy = sortby
+          @SortOrder = sortorder
+        end
+
+        def deserialize(params)
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @ClusterName = params['ClusterName']
+          @TenantId = params['TenantId']
+          @TenantName = params['TenantName']
+          @Types = params['Types']
+          @SortBy = params['SortBy']
+          @SortOrder = params['SortOrder']
+        end
+      end
+
+      # DescribeAllTenants返回参数结构体
+      class DescribeAllTenantsResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 总条数
+        # @type TotalCount: Integer
+        # @param Tenants: 虚拟集群列表
+        # @type Tenants: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :Tenants, :RequestId
+        
+        def initialize(totalcount=nil, tenants=nil, requestid=nil)
+          @TotalCount = totalcount
+          @Tenants = tenants
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['Tenants'].nil?
+            @Tenants = []
+            params['Tenants'].each do |i|
+              internaltenant_tmp = InternalTenant.new
+              internaltenant_tmp.deserialize(i)
+              @Tenants << internaltenant_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeBindClusters请求参数结构体
       class DescribeBindClustersRequest < TencentCloud::Common::AbstractModel
 
@@ -5023,6 +5098,105 @@ module TencentCloud
         end
       end
 
+      # 面向运营端的虚拟集群信息
+      class InternalTenant < TencentCloud::Common::AbstractModel
+        # @param TenantId: 虚拟集群ID
+        # @type TenantId: String
+        # @param TenantName: 虚拟集群名称
+        # @type TenantName: String
+        # @param CustomerUin: 客户UIN
+        # @type CustomerUin: String
+        # @param CustomerAppId: 客户的APPID
+        # @type CustomerAppId: String
+        # @param ClusterName: 物理集群名称
+        # @type ClusterName: String
+        # @param Type: 集群协议类型，支持的值为TDMQ，ROCKETMQ，AMQP，CMQ
+        # @type Type: String
+        # @param MaxNamespaces: 命名空间配额
+        # @type MaxNamespaces: Integer
+        # @param UsedNamespaces: 已使用命名空间配额
+        # @type UsedNamespaces: Integer
+        # @param MaxTopics: Topic配额
+        # @type MaxTopics: Integer
+        # @param UsedTopics: 已使用Topic配额
+        # @type UsedTopics: Integer
+        # @param MaxPartitions: Topic分区数配额
+        # @type MaxPartitions: Integer
+        # @param UsedPartitions: 已使用Topic分区数配额
+        # @type UsedPartitions: Integer
+        # @param MaxMsgBacklogSize: 存储配额, byte为单位
+        # @type MaxMsgBacklogSize: Integer
+        # @param MaxPublishTps: 命名空间最大生产TPS
+        # @type MaxPublishTps: Integer
+        # @param MaxRetention: 消息最大保留时间，秒为单位
+        # @type MaxRetention: Integer
+        # @param CreateTime: 创建时间，毫秒为单位
+        # @type CreateTime: Integer
+        # @param UpdateTime: 修改时间，毫秒为单位
+        # @type UpdateTime: Integer
+        # @param MaxDispatchTps: 命名空间最大消费TPS
+        # @type MaxDispatchTps: Integer
+        # @param MaxDispatchRateInBytes: 命名空间最大消费带宽，byte为单位
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MaxDispatchRateInBytes: Integer
+        # @param MaxPublishRateInBytes: 命名空间最大生产带宽，byte为单位
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MaxPublishRateInBytes: Integer
+        # @param MaxRetentionSizeInMB: 消息最大保留空间，MB为单位
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MaxRetentionSizeInMB: Integer
+
+        attr_accessor :TenantId, :TenantName, :CustomerUin, :CustomerAppId, :ClusterName, :Type, :MaxNamespaces, :UsedNamespaces, :MaxTopics, :UsedTopics, :MaxPartitions, :UsedPartitions, :MaxMsgBacklogSize, :MaxPublishTps, :MaxRetention, :CreateTime, :UpdateTime, :MaxDispatchTps, :MaxDispatchRateInBytes, :MaxPublishRateInBytes, :MaxRetentionSizeInMB
+        
+        def initialize(tenantid=nil, tenantname=nil, customeruin=nil, customerappid=nil, clustername=nil, type=nil, maxnamespaces=nil, usednamespaces=nil, maxtopics=nil, usedtopics=nil, maxpartitions=nil, usedpartitions=nil, maxmsgbacklogsize=nil, maxpublishtps=nil, maxretention=nil, createtime=nil, updatetime=nil, maxdispatchtps=nil, maxdispatchrateinbytes=nil, maxpublishrateinbytes=nil, maxretentionsizeinmb=nil)
+          @TenantId = tenantid
+          @TenantName = tenantname
+          @CustomerUin = customeruin
+          @CustomerAppId = customerappid
+          @ClusterName = clustername
+          @Type = type
+          @MaxNamespaces = maxnamespaces
+          @UsedNamespaces = usednamespaces
+          @MaxTopics = maxtopics
+          @UsedTopics = usedtopics
+          @MaxPartitions = maxpartitions
+          @UsedPartitions = usedpartitions
+          @MaxMsgBacklogSize = maxmsgbacklogsize
+          @MaxPublishTps = maxpublishtps
+          @MaxRetention = maxretention
+          @CreateTime = createtime
+          @UpdateTime = updatetime
+          @MaxDispatchTps = maxdispatchtps
+          @MaxDispatchRateInBytes = maxdispatchrateinbytes
+          @MaxPublishRateInBytes = maxpublishrateinbytes
+          @MaxRetentionSizeInMB = maxretentionsizeinmb
+        end
+
+        def deserialize(params)
+          @TenantId = params['TenantId']
+          @TenantName = params['TenantName']
+          @CustomerUin = params['CustomerUin']
+          @CustomerAppId = params['CustomerAppId']
+          @ClusterName = params['ClusterName']
+          @Type = params['Type']
+          @MaxNamespaces = params['MaxNamespaces']
+          @UsedNamespaces = params['UsedNamespaces']
+          @MaxTopics = params['MaxTopics']
+          @UsedTopics = params['UsedTopics']
+          @MaxPartitions = params['MaxPartitions']
+          @UsedPartitions = params['UsedPartitions']
+          @MaxMsgBacklogSize = params['MaxMsgBacklogSize']
+          @MaxPublishTps = params['MaxPublishTps']
+          @MaxRetention = params['MaxRetention']
+          @CreateTime = params['CreateTime']
+          @UpdateTime = params['UpdateTime']
+          @MaxDispatchTps = params['MaxDispatchTps']
+          @MaxDispatchRateInBytes = params['MaxDispatchRateInBytes']
+          @MaxPublishRateInBytes = params['MaxPublishRateInBytes']
+          @MaxRetentionSizeInMB = params['MaxRetentionSizeInMB']
+        end
+      end
+
       # ModifyAMQPCluster请求参数结构体
       class ModifyAMQPClusterRequest < TencentCloud::Common::AbstractModel
         # @param ClusterId: 集群ID
@@ -6181,78 +6355,278 @@ module TencentCloud
 
       # RocketMQ集群配置
       class RocketMQClusterConfig < TencentCloud::Common::AbstractModel
+        # @param MaxTpsPerNamespace: 单命名空间TPS上线
+        # @type MaxTpsPerNamespace: Integer
+        # @param MaxNamespaceNum: 最大命名空间数量
+        # @type MaxNamespaceNum: Integer
+        # @param UsedNamespaceNum: 已使用命名空间数量
+        # @type UsedNamespaceNum: Integer
+        # @param MaxTopicNum: 最大Topic数量
+        # @type MaxTopicNum: Integer
+        # @param UsedTopicNum: 已使用Topic数量
+        # @type UsedTopicNum: Integer
+        # @param MaxGroupNum: 最大Group数量
+        # @type MaxGroupNum: Integer
+        # @param UsedGroupNum: 已使用Group数量
+        # @type UsedGroupNum: Integer
+        # @param MaxRetentionTime: 消息最大保留时间，以毫秒为单位
+        # @type MaxRetentionTime: Integer
+        # @param MaxLatencyTime: 消息最长延时，以毫秒为单位
+        # @type MaxLatencyTime: Integer
 
+        attr_accessor :MaxTpsPerNamespace, :MaxNamespaceNum, :UsedNamespaceNum, :MaxTopicNum, :UsedTopicNum, :MaxGroupNum, :UsedGroupNum, :MaxRetentionTime, :MaxLatencyTime
         
-        def initialize()
+        def initialize(maxtpspernamespace=nil, maxnamespacenum=nil, usednamespacenum=nil, maxtopicnum=nil, usedtopicnum=nil, maxgroupnum=nil, usedgroupnum=nil, maxretentiontime=nil, maxlatencytime=nil)
+          @MaxTpsPerNamespace = maxtpspernamespace
+          @MaxNamespaceNum = maxnamespacenum
+          @UsedNamespaceNum = usednamespacenum
+          @MaxTopicNum = maxtopicnum
+          @UsedTopicNum = usedtopicnum
+          @MaxGroupNum = maxgroupnum
+          @UsedGroupNum = usedgroupnum
+          @MaxRetentionTime = maxretentiontime
+          @MaxLatencyTime = maxlatencytime
         end
 
         def deserialize(params)
+          @MaxTpsPerNamespace = params['MaxTpsPerNamespace']
+          @MaxNamespaceNum = params['MaxNamespaceNum']
+          @UsedNamespaceNum = params['UsedNamespaceNum']
+          @MaxTopicNum = params['MaxTopicNum']
+          @UsedTopicNum = params['UsedTopicNum']
+          @MaxGroupNum = params['MaxGroupNum']
+          @UsedGroupNum = params['UsedGroupNum']
+          @MaxRetentionTime = params['MaxRetentionTime']
+          @MaxLatencyTime = params['MaxLatencyTime']
         end
       end
 
       # 租户RocketMQ集群详细信息
       class RocketMQClusterDetail < TencentCloud::Common::AbstractModel
+        # @param Info: 集群基本信息
+        # @type Info: :class:`Tencentcloud::Tdmq.v20200217.models.RocketMQClusterInfo`
+        # @param Config: 集群配置信息
+        # @type Config: :class:`Tencentcloud::Tdmq.v20200217.models.RocketMQClusterConfig`
+        # @param Status: 集群状态，0:创建中，1:正常，2:销毁中，3:已删除，4: 隔离中，5:创建失败，6: 删除失败
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: Integer
 
+        attr_accessor :Info, :Config, :Status
         
-        def initialize()
+        def initialize(info=nil, config=nil, status=nil)
+          @Info = info
+          @Config = config
+          @Status = status
         end
 
         def deserialize(params)
+          unless params['Info'].nil?
+            @Info = RocketMQClusterInfo.new
+            @Info.deserialize(params['Info'])
+          end
+          unless params['Config'].nil?
+            @Config = RocketMQClusterConfig.new
+            @Config.deserialize(params['Config'])
+          end
+          @Status = params['Status']
         end
       end
 
       # RocketMQ集群基本信息
       class RocketMQClusterInfo < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群ID
+        # @type ClusterId: String
+        # @param ClusterName: 集群名称
+        # @type ClusterName: String
+        # @param Region: 地域信息
+        # @type Region: String
+        # @param CreateTime: 创建时间，毫秒为单位
+        # @type CreateTime: Integer
+        # @param Remark: 集群说明信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Remark: String
+        # @param PublicEndPoint: 公网接入地址
+        # @type PublicEndPoint: String
+        # @param VpcEndPoint: VPC接入地址
+        # @type VpcEndPoint: String
 
+        attr_accessor :ClusterId, :ClusterName, :Region, :CreateTime, :Remark, :PublicEndPoint, :VpcEndPoint
         
-        def initialize()
+        def initialize(clusterid=nil, clustername=nil, region=nil, createtime=nil, remark=nil, publicendpoint=nil, vpcendpoint=nil)
+          @ClusterId = clusterid
+          @ClusterName = clustername
+          @Region = region
+          @CreateTime = createtime
+          @Remark = remark
+          @PublicEndPoint = publicendpoint
+          @VpcEndPoint = vpcendpoint
         end
 
         def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @ClusterName = params['ClusterName']
+          @Region = params['Region']
+          @CreateTime = params['CreateTime']
+          @Remark = params['Remark']
+          @PublicEndPoint = params['PublicEndPoint']
+          @VpcEndPoint = params['VpcEndPoint']
         end
       end
 
       # RocketMQ近期使用量
       class RocketMQClusterRecentStats < TencentCloud::Common::AbstractModel
+        # @param TopicNum: Topic数量
+        # @type TopicNum: Integer
+        # @param ProducedMsgNum: 消息生产数
+        # @type ProducedMsgNum: Integer
+        # @param ConsumedMsgNum: 消息消费数
+        # @type ConsumedMsgNum: Integer
+        # @param AccumulativeMsgNum: 消息堆积数
+        # @type AccumulativeMsgNum: Integer
 
+        attr_accessor :TopicNum, :ProducedMsgNum, :ConsumedMsgNum, :AccumulativeMsgNum
         
-        def initialize()
+        def initialize(topicnum=nil, producedmsgnum=nil, consumedmsgnum=nil, accumulativemsgnum=nil)
+          @TopicNum = topicnum
+          @ProducedMsgNum = producedmsgnum
+          @ConsumedMsgNum = consumedmsgnum
+          @AccumulativeMsgNum = accumulativemsgnum
         end
 
         def deserialize(params)
+          @TopicNum = params['TopicNum']
+          @ProducedMsgNum = params['ProducedMsgNum']
+          @ConsumedMsgNum = params['ConsumedMsgNum']
+          @AccumulativeMsgNum = params['AccumulativeMsgNum']
         end
       end
 
       # RocketMQ消费组信息
       class RocketMQGroup < TencentCloud::Common::AbstractModel
+        # @param Name: 消费组名称
+        # @type Name: String
+        # @param ConsumerNum: 在线消费者数量
+        # @type ConsumerNum: Integer
+        # @param TPS: 消费TPS
+        # @type TPS: Integer
+        # @param TotalAccumulative: 总堆积数量
+        # @type TotalAccumulative: Integer
+        # @param ConsumptionMode: 0表示集群消费模式，1表示广播消费模式，-1表示未知
+        # @type ConsumptionMode: Integer
+        # @param ReadEnabled: 是否允许消费
+        # @type ReadEnabled: Boolean
+        # @param RetryPartitionNum: 重试队列分区数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RetryPartitionNum: Integer
+        # @param CreateTime: 创建时间，以毫秒为单位
+        # @type CreateTime: Integer
+        # @param UpdateTime: 修改时间，以毫秒为单位
+        # @type UpdateTime: Integer
+        # @param ClientProtocol: 客户端协议
+        # @type ClientProtocol: String
+        # @param Remark: 说明信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Remark: String
+        # @param ConsumerType: 消费者类型，枚举值ACTIVELY, PASSIVELY
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ConsumerType: String
+        # @param BroadcastEnabled: 是否开启广播消费
+        # @type BroadcastEnabled: Boolean
 
+        attr_accessor :Name, :ConsumerNum, :TPS, :TotalAccumulative, :ConsumptionMode, :ReadEnabled, :RetryPartitionNum, :CreateTime, :UpdateTime, :ClientProtocol, :Remark, :ConsumerType, :BroadcastEnabled
         
-        def initialize()
+        def initialize(name=nil, consumernum=nil, tps=nil, totalaccumulative=nil, consumptionmode=nil, readenabled=nil, retrypartitionnum=nil, createtime=nil, updatetime=nil, clientprotocol=nil, remark=nil, consumertype=nil, broadcastenabled=nil)
+          @Name = name
+          @ConsumerNum = consumernum
+          @TPS = tps
+          @TotalAccumulative = totalaccumulative
+          @ConsumptionMode = consumptionmode
+          @ReadEnabled = readenabled
+          @RetryPartitionNum = retrypartitionnum
+          @CreateTime = createtime
+          @UpdateTime = updatetime
+          @ClientProtocol = clientprotocol
+          @Remark = remark
+          @ConsumerType = consumertype
+          @BroadcastEnabled = broadcastenabled
         end
 
         def deserialize(params)
+          @Name = params['Name']
+          @ConsumerNum = params['ConsumerNum']
+          @TPS = params['TPS']
+          @TotalAccumulative = params['TotalAccumulative']
+          @ConsumptionMode = params['ConsumptionMode']
+          @ReadEnabled = params['ReadEnabled']
+          @RetryPartitionNum = params['RetryPartitionNum']
+          @CreateTime = params['CreateTime']
+          @UpdateTime = params['UpdateTime']
+          @ClientProtocol = params['ClientProtocol']
+          @Remark = params['Remark']
+          @ConsumerType = params['ConsumerType']
+          @BroadcastEnabled = params['BroadcastEnabled']
         end
       end
 
       # RocketMQ命名空间信息
       class RocketMQNamespace < TencentCloud::Common::AbstractModel
+        # @param NamespaceId: 命名空间名称，3-64个字符，只能包含字母、数字、“-”及“_”
+        # @type NamespaceId: String
+        # @param Ttl: 未消费消息的保留时间，以毫秒单位，范围60秒到15天
+        # @type Ttl: Integer
+        # @param RetentionTime: 消息持久化后保留的时间，以毫秒单位
+        # @type RetentionTime: Integer
+        # @param Remark: 说明
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Remark: String
 
+        attr_accessor :NamespaceId, :Ttl, :RetentionTime, :Remark
         
-        def initialize()
+        def initialize(namespaceid=nil, ttl=nil, retentiontime=nil, remark=nil)
+          @NamespaceId = namespaceid
+          @Ttl = ttl
+          @RetentionTime = retentiontime
+          @Remark = remark
         end
 
         def deserialize(params)
+          @NamespaceId = params['NamespaceId']
+          @Ttl = params['Ttl']
+          @RetentionTime = params['RetentionTime']
+          @Remark = params['Remark']
         end
       end
 
       # RocketMQ主题信息
       class RocketMQTopic < TencentCloud::Common::AbstractModel
+        # @param Name: 主题名称
+        # @type Name: String
+        # @param Remark: 说明
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Remark: String
+        # @param PartitionNum: 读写分区数
+        # @type PartitionNum: Integer
+        # @param CreateTime: 创建时间，以毫秒为单位
+        # @type CreateTime: Integer
+        # @param UpdateTime: 创建时间，以毫秒为单位
+        # @type UpdateTime: Integer
 
+        attr_accessor :Name, :Remark, :PartitionNum, :CreateTime, :UpdateTime
         
-        def initialize()
+        def initialize(name=nil, remark=nil, partitionnum=nil, createtime=nil, updatetime=nil)
+          @Name = name
+          @Remark = remark
+          @PartitionNum = partitionnum
+          @CreateTime = createtime
+          @UpdateTime = updatetime
         end
 
         def deserialize(params)
+          @Name = params['Name']
+          @Remark = params['Remark']
+          @PartitionNum = params['PartitionNum']
+          @CreateTime = params['CreateTime']
+          @UpdateTime = params['UpdateTime']
         end
       end
 

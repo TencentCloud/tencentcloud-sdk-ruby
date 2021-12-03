@@ -1318,19 +1318,23 @@ module TencentCloud
         # @type Type: Integer
         # @param CreatedOn: 创建时间
         # @type CreatedOn: String
+        # @param CheckStatus: 1=控制台校验，2=第三方校验
+        # @type CheckStatus: Integer
 
-        attr_accessor :Code, :Type, :CreatedOn
+        attr_accessor :Code, :Type, :CreatedOn, :CheckStatus
         
-        def initialize(code=nil, type=nil, createdon=nil)
+        def initialize(code=nil, type=nil, createdon=nil, checkstatus=nil)
           @Code = code
           @Type = type
           @CreatedOn = createdon
+          @CheckStatus = checkstatus
         end
 
         def deserialize(params)
           @Code = params['Code']
           @Type = params['Type']
           @CreatedOn = params['CreatedOn']
+          @CheckStatus = params['CheckStatus']
         end
       end
 

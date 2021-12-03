@@ -3155,15 +3155,18 @@ module TencentCloud
         # 当时间范围不超过7天，支持最小粒度300秒；
         # 当时间范围不超过30天，支持最小粒度3600秒。
         # @type Granularity: Integer
+        # @param Isp: 运营商（通道为三网通道时有效），支持CMCC，CUCC，CTCC，传空值或不传则合并三个运营商数据
+        # @type Isp: String
 
-        attr_accessor :ProxyId, :StartTime, :EndTime, :MetricNames, :Granularity
+        attr_accessor :ProxyId, :StartTime, :EndTime, :MetricNames, :Granularity, :Isp
         
-        def initialize(proxyid=nil, starttime=nil, endtime=nil, metricnames=nil, granularity=nil)
+        def initialize(proxyid=nil, starttime=nil, endtime=nil, metricnames=nil, granularity=nil, isp=nil)
           @ProxyId = proxyid
           @StartTime = starttime
           @EndTime = endtime
           @MetricNames = metricnames
           @Granularity = granularity
+          @Isp = isp
         end
 
         def deserialize(params)
@@ -3172,6 +3175,7 @@ module TencentCloud
           @EndTime = params['EndTime']
           @MetricNames = params['MetricNames']
           @Granularity = params['Granularity']
+          @Isp = params['Isp']
         end
       end
 

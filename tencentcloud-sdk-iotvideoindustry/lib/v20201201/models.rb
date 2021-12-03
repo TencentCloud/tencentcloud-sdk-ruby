@@ -193,6 +193,10 @@ module TencentCloud
         # @type StreamId: String
         # @param Command: |控制参数，CmdJson结构转义的json字符串。| Action  | string  |是|控制动作，play(用于暂停后恢复播放)、pause（暂停）、teardown(停止)、jump(拖动播放)
         # | Offset  | uint  |否|拖动播放时的时间偏移量（相对于起始时间）,单位：秒
+        # 目前支持的command：
+        # "Command": "{"Action":"PAUSE"}" 暂停
+        # "Command": "{"Action":"PLAY"}" 暂停恢复
+        # "Command": "{"Action":"PLAY","Offset":"15"}" 位置偏移，可以替代jump操作
         # @type Command: String
         # @param ChannelId: 通道唯一标识
         # @type ChannelId: String
@@ -1209,6 +1213,7 @@ module TencentCloud
         # 4.已用存储容量总数：StorageUsage
         # 5. X-P2P分享流量: P2PFluxTotal
         # 6. X-P2P峰值带宽: P2PPeakValue
+        # 7. RTMP推流路数(直播推流): LivePushTotal
         # @type StatisticField: String
 
         attr_accessor :StartDate, :EndDate, :StatisticField
@@ -1290,18 +1295,22 @@ module TencentCloud
         # @param P2PPeakValue: X-P2P峰值带宽。 单位bps
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type P2PPeakValue: Float
+        # @param LivePushTotal: RTMP推流路数 ( 直播推流)
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LivePushTotal: Integer
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RecordingDevice, :NonRecordingDevice, :WatchFlux, :StorageUsage, :P2PFluxTotal, :P2PPeakValue, :RequestId
+        attr_accessor :RecordingDevice, :NonRecordingDevice, :WatchFlux, :StorageUsage, :P2PFluxTotal, :P2PPeakValue, :LivePushTotal, :RequestId
         
-        def initialize(recordingdevice=nil, nonrecordingdevice=nil, watchflux=nil, storageusage=nil, p2pfluxtotal=nil, p2ppeakvalue=nil, requestid=nil)
+        def initialize(recordingdevice=nil, nonrecordingdevice=nil, watchflux=nil, storageusage=nil, p2pfluxtotal=nil, p2ppeakvalue=nil, livepushtotal=nil, requestid=nil)
           @RecordingDevice = recordingdevice
           @NonRecordingDevice = nonrecordingdevice
           @WatchFlux = watchflux
           @StorageUsage = storageusage
           @P2PFluxTotal = p2pfluxtotal
           @P2PPeakValue = p2ppeakvalue
+          @LivePushTotal = livepushtotal
           @RequestId = requestid
         end
 
@@ -1312,6 +1321,7 @@ module TencentCloud
           @StorageUsage = params['StorageUsage']
           @P2PFluxTotal = params['P2PFluxTotal']
           @P2PPeakValue = params['P2PPeakValue']
+          @LivePushTotal = params['LivePushTotal']
           @RequestId = params['RequestId']
         end
       end
@@ -1409,10 +1419,18 @@ module TencentCloud
         # @type IsRecording: Integer
         # @param ChannelId: 通道ID默认必传
         # @type ChannelId: String
+        # @param PlanId: 录制计划ID
+        # @type PlanId: String
+        # @param SceneId: 场景ID
+        # @type SceneId: Integer
+        # @param WarnId: 告警ID
+        # @type WarnId: Integer
+        # @param RecordType: 录制类型 1: 联动计划录制 2: 告警录制
+        # @type RecordType: Array
 
-        attr_accessor :Offset, :Limit, :StartTime, :EndTime, :DeviceId, :StartRecordTime, :EndRecordTime, :StartExpireTime, :EndExpireTime, :StartFileSize, :EndFileSize, :IsRecording, :ChannelId
+        attr_accessor :Offset, :Limit, :StartTime, :EndTime, :DeviceId, :StartRecordTime, :EndRecordTime, :StartExpireTime, :EndExpireTime, :StartFileSize, :EndFileSize, :IsRecording, :ChannelId, :PlanId, :SceneId, :WarnId, :RecordType
         
-        def initialize(offset=nil, limit=nil, starttime=nil, endtime=nil, deviceid=nil, startrecordtime=nil, endrecordtime=nil, startexpiretime=nil, endexpiretime=nil, startfilesize=nil, endfilesize=nil, isrecording=nil, channelid=nil)
+        def initialize(offset=nil, limit=nil, starttime=nil, endtime=nil, deviceid=nil, startrecordtime=nil, endrecordtime=nil, startexpiretime=nil, endexpiretime=nil, startfilesize=nil, endfilesize=nil, isrecording=nil, channelid=nil, planid=nil, sceneid=nil, warnid=nil, recordtype=nil)
           @Offset = offset
           @Limit = limit
           @StartTime = starttime
@@ -1426,6 +1444,10 @@ module TencentCloud
           @EndFileSize = endfilesize
           @IsRecording = isrecording
           @ChannelId = channelid
+          @PlanId = planid
+          @SceneId = sceneid
+          @WarnId = warnid
+          @RecordType = recordtype
         end
 
         def deserialize(params)
@@ -1442,6 +1464,10 @@ module TencentCloud
           @EndFileSize = params['EndFileSize']
           @IsRecording = params['IsRecording']
           @ChannelId = params['ChannelId']
+          @PlanId = params['PlanId']
+          @SceneId = params['SceneId']
+          @WarnId = params['WarnId']
+          @RecordType = params['RecordType']
         end
       end
 

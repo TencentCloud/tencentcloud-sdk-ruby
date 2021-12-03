@@ -3954,6 +3954,8 @@ module TencentCloud
         # @type Namespace: String
         # @param CosBucketRegion: 对象存储的地域，注：北京分为ap-beijing和ap-beijing-1
         # @type CosBucketRegion: String
+        # @param InstallDependency: 是否自动安装依赖
+        # @type InstallDependency: String
         # @param EnvId: 函数所属环境
         # @type EnvId: String
         # @param Publish: 在更新时是否同步发布新版本，默认为：FALSE，不发布
@@ -3963,9 +3965,9 @@ module TencentCloud
         # @param CodeSource: 代码来源方式，支持 ZipFile, Cos, Inline 之一
         # @type CodeSource: String
 
-        attr_accessor :FunctionName, :Handler, :CosBucketName, :CosObjectName, :ZipFile, :Namespace, :CosBucketRegion, :EnvId, :Publish, :Code, :CodeSource
+        attr_accessor :FunctionName, :Handler, :CosBucketName, :CosObjectName, :ZipFile, :Namespace, :CosBucketRegion, :InstallDependency, :EnvId, :Publish, :Code, :CodeSource
         
-        def initialize(functionname=nil, handler=nil, cosbucketname=nil, cosobjectname=nil, zipfile=nil, namespace=nil, cosbucketregion=nil, envid=nil, publish=nil, code=nil, codesource=nil)
+        def initialize(functionname=nil, handler=nil, cosbucketname=nil, cosobjectname=nil, zipfile=nil, namespace=nil, cosbucketregion=nil, installdependency=nil, envid=nil, publish=nil, code=nil, codesource=nil)
           @FunctionName = functionname
           @Handler = handler
           @CosBucketName = cosbucketname
@@ -3973,6 +3975,7 @@ module TencentCloud
           @ZipFile = zipfile
           @Namespace = namespace
           @CosBucketRegion = cosbucketregion
+          @InstallDependency = installdependency
           @EnvId = envid
           @Publish = publish
           @Code = code
@@ -3987,6 +3990,7 @@ module TencentCloud
           @ZipFile = params['ZipFile']
           @Namespace = params['Namespace']
           @CosBucketRegion = params['CosBucketRegion']
+          @InstallDependency = params['InstallDependency']
           @EnvId = params['EnvId']
           @Publish = params['Publish']
           unless params['Code'].nil?

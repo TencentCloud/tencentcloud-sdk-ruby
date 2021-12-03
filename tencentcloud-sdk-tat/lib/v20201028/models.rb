@@ -85,10 +85,14 @@ module TencentCloud
         # @type Tags: Array
         # @param Username: 在实例上执行命令的用户名。
         # @type Username: String
+        # @param OutputCOSBucketUrl: 日志上传的cos bucket 地址。
+        # @type OutputCOSBucketUrl: String
+        # @param OutputCOSKeyPrefix: 日志在cos bucket中的目录。
+        # @type OutputCOSKeyPrefix: String
 
-        attr_accessor :CommandId, :CommandName, :Description, :Content, :CommandType, :WorkingDirectory, :Timeout, :CreatedTime, :UpdatedTime, :EnableParameter, :DefaultParameters, :FormattedDescription, :CreatedBy, :Tags, :Username
+        attr_accessor :CommandId, :CommandName, :Description, :Content, :CommandType, :WorkingDirectory, :Timeout, :CreatedTime, :UpdatedTime, :EnableParameter, :DefaultParameters, :FormattedDescription, :CreatedBy, :Tags, :Username, :OutputCOSBucketUrl, :OutputCOSKeyPrefix
         
-        def initialize(commandid=nil, commandname=nil, description=nil, content=nil, commandtype=nil, workingdirectory=nil, timeout=nil, createdtime=nil, updatedtime=nil, enableparameter=nil, defaultparameters=nil, formatteddescription=nil, createdby=nil, tags=nil, username=nil)
+        def initialize(commandid=nil, commandname=nil, description=nil, content=nil, commandtype=nil, workingdirectory=nil, timeout=nil, createdtime=nil, updatedtime=nil, enableparameter=nil, defaultparameters=nil, formatteddescription=nil, createdby=nil, tags=nil, username=nil, outputcosbucketurl=nil, outputcoskeyprefix=nil)
           @CommandId = commandid
           @CommandName = commandname
           @Description = description
@@ -104,6 +108,8 @@ module TencentCloud
           @CreatedBy = createdby
           @Tags = tags
           @Username = username
+          @OutputCOSBucketUrl = outputcosbucketurl
+          @OutputCOSKeyPrefix = outputcoskeyprefix
         end
 
         def deserialize(params)
@@ -129,6 +135,8 @@ module TencentCloud
             end
           end
           @Username = params['Username']
+          @OutputCOSBucketUrl = params['OutputCOSBucketUrl']
+          @OutputCOSKeyPrefix = params['OutputCOSKeyPrefix']
         end
       end
 
@@ -172,9 +180,9 @@ module TencentCloud
         # @type Content: String
         # @param Description: 命令描述。不超过120字符。
         # @type Description: String
-        # @param CommandType: 命令类型，目前仅支持取值：SHELL。默认：SHELL。
+        # @param CommandType: 命令类型，目前支持取值：SHELL、POWERSHELL。默认：SHELL。
         # @type CommandType: String
-        # @param WorkingDirectory: 命令执行路径，默认：/root。
+        # @param WorkingDirectory: 命令执行路径，对于 SHELL 命令默认为 /root，对于 POWERSHELL 命令默认为 C:\Program Files\qcloud\tat_agent\workdir。
         # @type WorkingDirectory: String
         # @param Timeout: 命令超时时间，默认60秒。取值范围[1, 86400]。
         # @type Timeout: Integer
@@ -191,7 +199,7 @@ module TencentCloud
         # @param Tags: 为命令关联的标签，列表长度不超过10。
         # @type Tags: Array
         # @param Username: 在 CVM 或 Lighthouse 实例中执行命令的用户名称。
-        # 使用最小权限执行命令是权限管理的最佳实践，建议您以普通用户身份执行云助手命令。默认情况下，在Linux实例中以root用户执行命令。
+        # 使用最小权限执行命令是权限管理的最佳实践，建议您以普通用户身份执行云助手命令。默认情况下，在 Linux 实例中以 root 用户执行命令；Windows 实例当前仅支持以 System 用户执行命令。
         # @type Username: String
         # @param OutputCOSBucketUrl: 指定日志上传的cos bucket 地址，必须以https开头，如 https://BucketName-123454321.cos.ap-beijing.myqcloud.com。
         # @type OutputCOSBucketUrl: String
@@ -975,10 +983,14 @@ module TencentCloud
         # @type Timeout: Integer
         # @param WorkingDirectory: 执行命令的工作路径
         # @type WorkingDirectory: String
+        # @param OutputCOSBucketUrl: 日志上传的cos bucket 地址。
+        # @type OutputCOSBucketUrl: String
+        # @param OutputCOSKeyPrefix: 日志在cos bucket中的目录。
+        # @type OutputCOSKeyPrefix: String
 
-        attr_accessor :InvocationId, :CommandId, :InvocationStatus, :InvocationTaskBasicInfoSet, :Description, :StartTime, :EndTime, :CreatedTime, :UpdatedTime, :Parameters, :DefaultParameters, :InstanceKind, :Username, :InvocationSource, :CommandContent, :CommandType, :Timeout, :WorkingDirectory
+        attr_accessor :InvocationId, :CommandId, :InvocationStatus, :InvocationTaskBasicInfoSet, :Description, :StartTime, :EndTime, :CreatedTime, :UpdatedTime, :Parameters, :DefaultParameters, :InstanceKind, :Username, :InvocationSource, :CommandContent, :CommandType, :Timeout, :WorkingDirectory, :OutputCOSBucketUrl, :OutputCOSKeyPrefix
         
-        def initialize(invocationid=nil, commandid=nil, invocationstatus=nil, invocationtaskbasicinfoset=nil, description=nil, starttime=nil, endtime=nil, createdtime=nil, updatedtime=nil, parameters=nil, defaultparameters=nil, instancekind=nil, username=nil, invocationsource=nil, commandcontent=nil, commandtype=nil, timeout=nil, workingdirectory=nil)
+        def initialize(invocationid=nil, commandid=nil, invocationstatus=nil, invocationtaskbasicinfoset=nil, description=nil, starttime=nil, endtime=nil, createdtime=nil, updatedtime=nil, parameters=nil, defaultparameters=nil, instancekind=nil, username=nil, invocationsource=nil, commandcontent=nil, commandtype=nil, timeout=nil, workingdirectory=nil, outputcosbucketurl=nil, outputcoskeyprefix=nil)
           @InvocationId = invocationid
           @CommandId = commandid
           @InvocationStatus = invocationstatus
@@ -997,6 +1009,8 @@ module TencentCloud
           @CommandType = commandtype
           @Timeout = timeout
           @WorkingDirectory = workingdirectory
+          @OutputCOSBucketUrl = outputcosbucketurl
+          @OutputCOSKeyPrefix = outputcoskeyprefix
         end
 
         def deserialize(params)
@@ -1025,6 +1039,8 @@ module TencentCloud
           @CommandType = params['CommandType']
           @Timeout = params['Timeout']
           @WorkingDirectory = params['WorkingDirectory']
+          @OutputCOSBucketUrl = params['OutputCOSBucketUrl']
+          @OutputCOSKeyPrefix = params['OutputCOSKeyPrefix']
         end
       end
 
@@ -1047,6 +1063,9 @@ module TencentCloud
         # <li> FAILED：命令执行失败，执行完退出码不为 0
         # <li> TIMEOUT：命令超时
         # <li> TASK_TIMEOUT：执行任务超时
+        # <li> CANCELLING：取消中
+        # <li> CANCELLED：已取消（命令启动前就被取消）
+        # <li> TERMINATED：已中止（命令执行期间被取消）
         # @type TaskStatus: String
         # @param InstanceId: 实例ID。
         # @type InstanceId: String
@@ -1117,11 +1136,15 @@ module TencentCloud
         # <li> DELIVERING：下发中
         # <li> DELIVER_DELAYED：延时下发
         # <li> DELIVER_FAILED：下发失败
+        # <li> START_FAILED：命令启动失败
         # <li> RUNNING：命令运行中
         # <li> SUCCESS：命令成功
-        # <li> FAILED：命令失败
+        # <li> FAILED：命令执行失败，执行完退出码不为 0
         # <li> TIMEOUT：命令超时
         # <li> TASK_TIMEOUT：执行任务超时
+        # <li> CANCELLING：取消中
+        # <li> CANCELLED：已取消（命令启动前就被取消）
+        # <li> TERMINATED：已中止（命令执行期间被取消）
         # @type TaskStatus: String
         # @param InstanceId: 实例ID。
         # @type InstanceId: String
@@ -1315,11 +1338,11 @@ module TencentCloud
         # @type Description: String
         # @param Content: Base64编码后的命令内容，长度不可超过64KB。
         # @type Content: String
-        # @param CommandType: 命令类型，目前仅支持取值：SHELL。
+        # @param CommandType: 命令类型，目前支持取值：SHELL、POWERSHELL。
         # @type CommandType: String
-        # @param WorkingDirectory: 命令执行路径，默认：`/root`。
+        # @param WorkingDirectory: 命令执行路径。
         # @type WorkingDirectory: String
-        # @param Timeout: 命令超时时间，默认60秒。取值范围[1, 86400]。
+        # @param Timeout: 命令超时时间。取值范围[1, 86400]。
         # @type Timeout: Integer
         # @param DefaultParameters: 启用自定义参数功能时，自定义参数的默认取值。字段类型为json encoded string。如：{\"varA\": \"222\"}。
         # 采取整体全覆盖式修改，即修改时必须提供所有新默认值。
@@ -1329,7 +1352,7 @@ module TencentCloud
         # 自定义参数名称需符合以下规范：字符数目上限64，可选范围【a-zA-Z0-9-_】。
         # @type DefaultParameters: String
         # @param Username: 在 CVM 或 Lighthouse 实例中执行命令的用户名称。
-        # 使用最小权限执行命令是权限管理的最佳实践，建议您以普通用户身份执行云助手命令。默认情况下，在Linux实例中以root用户执行命令。
+        # 使用最小权限执行命令是权限管理的最佳实践，建议您以普通用户身份执行云助手命令。Windows 实例当前仅支持以 System 用户执行命令。
         # @type Username: String
         # @param OutputCOSBucketUrl: 指定日志上传的cos bucket 地址，必须以https开头，如 https://BucketName-123454321.cos.ap-beijing.myqcloud.com。
         # @type OutputCOSBucketUrl: String
@@ -1535,9 +1558,9 @@ module TencentCloud
         # @type CommandName: String
         # @param Description: 命令描述。不超过120字符。
         # @type Description: String
-        # @param CommandType: 命令类型，目前仅支持取值：SHELL。默认：SHELL。
+        # @param CommandType: 命令类型，目前支持取值：SHELL、POWERSHELL。默认：SHELL。
         # @type CommandType: String
-        # @param WorkingDirectory: 命令执行路径，默认：/root。
+        # @param WorkingDirectory: 命令执行路径，对于 SHELL 命令默认为 /root，对于 POWERSHELL 命令默认为 C:\Program Files\qcloud\tat_agent\workdir。
         # @type WorkingDirectory: String
         # @param Timeout: 命令超时时间，默认60秒。取值范围[1, 86400]。
         # @type Timeout: Integer
@@ -1565,7 +1588,7 @@ module TencentCloud
         # @param Tags: 如果保存命令，可为命令设置标签。列表长度不超过10。
         # @type Tags: Array
         # @param Username: 在 CVM 或 Lighthouse 实例中执行命令的用户名称。
-        # 使用最小权限执行命令是权限管理的最佳实践，建议您以普通用户身份执行云助手命令。默认情况下，在Linux实例中以root用户执行命令。
+        # 使用最小权限执行命令是权限管理的最佳实践，建议您以普通用户身份执行云助手命令。默认情况下，在 Linux 实例中以 root 用户执行命令；Windows 实例当前仅支持以 System 用户执行命令。
         # @type Username: String
         # @param OutputCOSBucketUrl: 指定日志上传的cos bucket 地址，必须以https开头，如 https://BucketName-123454321.cos.ap-beijing.myqcloud.com。
         # @type OutputCOSBucketUrl: String
@@ -1703,15 +1726,21 @@ module TencentCloud
         # @type ExecEndTime: String
         # @param Dropped: 命令最终输出被截断的字节数。
         # @type Dropped: Integer
+        # @param OutputUrl: 日志在cos中的地址
+        # @type OutputUrl: String
+        # @param OutputUploadCOSErrorInfo: 日志上传cos的错误信息。
+        # @type OutputUploadCOSErrorInfo: String
 
-        attr_accessor :ExitCode, :Output, :ExecStartTime, :ExecEndTime, :Dropped
+        attr_accessor :ExitCode, :Output, :ExecStartTime, :ExecEndTime, :Dropped, :OutputUrl, :OutputUploadCOSErrorInfo
         
-        def initialize(exitcode=nil, output=nil, execstarttime=nil, execendtime=nil, dropped=nil)
+        def initialize(exitcode=nil, output=nil, execstarttime=nil, execendtime=nil, dropped=nil, outputurl=nil, outputuploadcoserrorinfo=nil)
           @ExitCode = exitcode
           @Output = output
           @ExecStartTime = execstarttime
           @ExecEndTime = execendtime
           @Dropped = dropped
+          @OutputUrl = outputurl
+          @OutputUploadCOSErrorInfo = outputuploadcoserrorinfo
         end
 
         def deserialize(params)
@@ -1720,6 +1749,8 @@ module TencentCloud
           @ExecStartTime = params['ExecStartTime']
           @ExecEndTime = params['ExecEndTime']
           @Dropped = params['Dropped']
+          @OutputUrl = params['OutputUrl']
+          @OutputUploadCOSErrorInfo = params['OutputUploadCOSErrorInfo']
         end
       end
 
