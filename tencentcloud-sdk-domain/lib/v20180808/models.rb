@@ -366,16 +366,22 @@ module TencentCloud
         # @type AutoRenewFlag: Integer
         # @param PackageResourceId: 使用的特惠包ID，PayMode为2时必填
         # @type PackageResourceId: String
+        # @param UpdateProhibition: 是否开启更新锁：0=默认不开启，1=开启
+        # @type UpdateProhibition: Integer
+        # @param TransferProhibition: 是否开启转移锁：0=默认不开启，1=开启
+        # @type TransferProhibition: Integer
 
-        attr_accessor :TemplateId, :Period, :Domains, :PayMode, :AutoRenewFlag, :PackageResourceId
+        attr_accessor :TemplateId, :Period, :Domains, :PayMode, :AutoRenewFlag, :PackageResourceId, :UpdateProhibition, :TransferProhibition
         
-        def initialize(templateid=nil, period=nil, domains=nil, paymode=nil, autorenewflag=nil, packageresourceid=nil)
+        def initialize(templateid=nil, period=nil, domains=nil, paymode=nil, autorenewflag=nil, packageresourceid=nil, updateprohibition=nil, transferprohibition=nil)
           @TemplateId = templateid
           @Period = period
           @Domains = domains
           @PayMode = paymode
           @AutoRenewFlag = autorenewflag
           @PackageResourceId = packageresourceid
+          @UpdateProhibition = updateprohibition
+          @TransferProhibition = transferprohibition
         end
 
         def deserialize(params)
@@ -385,6 +391,8 @@ module TencentCloud
           @PayMode = params['PayMode']
           @AutoRenewFlag = params['AutoRenewFlag']
           @PackageResourceId = params['PackageResourceId']
+          @UpdateProhibition = params['UpdateProhibition']
+          @TransferProhibition = params['TransferProhibition']
         end
       end
 
@@ -1576,16 +1584,22 @@ module TencentCloud
         # false：关闭60天内禁止转移注册商锁定
         # 默认 true
         # @type LockTransfer: Boolean
+        # @param UpdateProhibition: 是否开启更新锁：0=默认不开启，1=开启
+        # @type UpdateProhibition: Integer
+        # @param TransferProhibition: 是否开启转移锁：0=默认不开启，1=开启
+        # @type TransferProhibition: Integer
 
-        attr_accessor :Domains, :PassWords, :TemplateId, :PayMode, :AutoRenewFlag, :LockTransfer
+        attr_accessor :Domains, :PassWords, :TemplateId, :PayMode, :AutoRenewFlag, :LockTransfer, :UpdateProhibition, :TransferProhibition
         
-        def initialize(domains=nil, passwords=nil, templateid=nil, paymode=nil, autorenewflag=nil, locktransfer=nil)
+        def initialize(domains=nil, passwords=nil, templateid=nil, paymode=nil, autorenewflag=nil, locktransfer=nil, updateprohibition=nil, transferprohibition=nil)
           @Domains = domains
           @PassWords = passwords
           @TemplateId = templateid
           @PayMode = paymode
           @AutoRenewFlag = autorenewflag
           @LockTransfer = locktransfer
+          @UpdateProhibition = updateprohibition
+          @TransferProhibition = transferprohibition
         end
 
         def deserialize(params)
@@ -1595,6 +1609,8 @@ module TencentCloud
           @PayMode = params['PayMode']
           @AutoRenewFlag = params['AutoRenewFlag']
           @LockTransfer = params['LockTransfer']
+          @UpdateProhibition = params['UpdateProhibition']
+          @TransferProhibition = params['TransferProhibition']
         end
       end
 

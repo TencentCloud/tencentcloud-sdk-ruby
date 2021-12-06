@@ -366,6 +366,64 @@ module TencentCloud
         end
       end
 
+      # DescribeCCCBuyInfoList请求参数结构体
+      class DescribeCCCBuyInfoListRequest < TencentCloud::Common::AbstractModel
+        # @param SdkAppIds: 应用ID列表，不传时查询所有应用
+        # @type SdkAppIds: Array
+
+        attr_accessor :SdkAppIds
+        
+        def initialize(sdkappids=nil)
+          @SdkAppIds = sdkappids
+        end
+
+        def deserialize(params)
+          @SdkAppIds = params['SdkAppIds']
+        end
+      end
+
+      # DescribeCCCBuyInfoList返回参数结构体
+      class DescribeCCCBuyInfoListResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 应用总数
+        # @type TotalCount: Integer
+        # @param SdkAppIdBuyList: 应用购买信息列表
+        # @type SdkAppIdBuyList: Array
+        # @param PackageBuyList: 套餐包购买信息列表
+        # @type PackageBuyList: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :SdkAppIdBuyList, :PackageBuyList, :RequestId
+        
+        def initialize(totalcount=nil, sdkappidbuylist=nil, packagebuylist=nil, requestid=nil)
+          @TotalCount = totalcount
+          @SdkAppIdBuyList = sdkappidbuylist
+          @PackageBuyList = packagebuylist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['SdkAppIdBuyList'].nil?
+            @SdkAppIdBuyList = []
+            params['SdkAppIdBuyList'].each do |i|
+              sdkappidbuyinfo_tmp = SdkAppIdBuyInfo.new
+              sdkappidbuyinfo_tmp.deserialize(i)
+              @SdkAppIdBuyList << sdkappidbuyinfo_tmp
+            end
+          end
+          unless params['PackageBuyList'].nil?
+            @PackageBuyList = []
+            params['PackageBuyList'].each do |i|
+              packagebuyinfo_tmp = PackageBuyInfo.new
+              packagebuyinfo_tmp.deserialize(i)
+              @PackageBuyList << packagebuyinfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeCallInMetrics请求参数结构体
       class DescribeCallInMetricsRequest < TencentCloud::Common::AbstractModel
         # @param SdkAppId: 实例ID
@@ -1321,6 +1379,124 @@ module TencentCloud
         end
       end
 
+      # 套餐包购买信息
+      class PackageBuyInfo < TencentCloud::Common::AbstractModel
+        # @param PackageId: 套餐包Id
+        # @type PackageId: String
+        # @param Type: 套餐包类型，0-外呼套餐包|1-400呼入套餐包
+        # @type Type: Integer
+        # @param CapacitySize: 套餐包总量
+        # @type CapacitySize: Integer
+        # @param CapacityRemain: 套餐包剩余量
+        # @type CapacityRemain: Integer
+        # @param BuyTime: 购买时间戳
+        # @type BuyTime: Integer
+        # @param EndTime: 截至时间戳
+        # @type EndTime: Integer
+
+        attr_accessor :PackageId, :Type, :CapacitySize, :CapacityRemain, :BuyTime, :EndTime
+        
+        def initialize(packageid=nil, type=nil, capacitysize=nil, capacityremain=nil, buytime=nil, endtime=nil)
+          @PackageId = packageid
+          @Type = type
+          @CapacitySize = capacitysize
+          @CapacityRemain = capacityremain
+          @BuyTime = buytime
+          @EndTime = endtime
+        end
+
+        def deserialize(params)
+          @PackageId = params['PackageId']
+          @Type = params['Type']
+          @CapacitySize = params['CapacitySize']
+          @CapacityRemain = params['CapacityRemain']
+          @BuyTime = params['BuyTime']
+          @EndTime = params['EndTime']
+        end
+      end
+
+      # 号码购买信息
+      class PhoneNumBuyInfo < TencentCloud::Common::AbstractModel
+        # @param PhoneNum: 电话号码
+        # @type PhoneNum: String
+        # @param Type: 号码类型，0-固话|1-虚商号码|2-运营商号码|3-400号码
+        # @type Type: Integer
+        # @param CallType: 号码呼叫类型，1-呼入|2-呼出|3-呼入呼出
+        # @type CallType: Integer
+        # @param BuyTime: 购买时间戳
+        # @type BuyTime: Integer
+        # @param EndTime: 截至时间戳
+        # @type EndTime: Integer
+        # @param State: 号码状态，1正常|2停用
+        # @type State: Integer
+
+        attr_accessor :PhoneNum, :Type, :CallType, :BuyTime, :EndTime, :State
+        
+        def initialize(phonenum=nil, type=nil, calltype=nil, buytime=nil, endtime=nil, state=nil)
+          @PhoneNum = phonenum
+          @Type = type
+          @CallType = calltype
+          @BuyTime = buytime
+          @EndTime = endtime
+          @State = state
+        end
+
+        def deserialize(params)
+          @PhoneNum = params['PhoneNum']
+          @Type = params['Type']
+          @CallType = params['CallType']
+          @BuyTime = params['BuyTime']
+          @EndTime = params['EndTime']
+          @State = params['State']
+        end
+      end
+
+      # 应用购买信息
+      class SdkAppIdBuyInfo < TencentCloud::Common::AbstractModel
+        # @param SdkAppId: 应用ID
+        # @type SdkAppId: Integer
+        # @param Name: 应用名称
+        # @type Name: String
+        # @param StaffBuyNum: 坐席购买数（还在有效期内）
+        # @type StaffBuyNum: Integer
+        # @param StaffBuyList: 坐席购买列表 （还在有效期内）
+        # @type StaffBuyList: Array
+        # @param PhoneNumBuyList: 号码购买列表
+        # @type PhoneNumBuyList: Array
+
+        attr_accessor :SdkAppId, :Name, :StaffBuyNum, :StaffBuyList, :PhoneNumBuyList
+        
+        def initialize(sdkappid=nil, name=nil, staffbuynum=nil, staffbuylist=nil, phonenumbuylist=nil)
+          @SdkAppId = sdkappid
+          @Name = name
+          @StaffBuyNum = staffbuynum
+          @StaffBuyList = staffbuylist
+          @PhoneNumBuyList = phonenumbuylist
+        end
+
+        def deserialize(params)
+          @SdkAppId = params['SdkAppId']
+          @Name = params['Name']
+          @StaffBuyNum = params['StaffBuyNum']
+          unless params['StaffBuyList'].nil?
+            @StaffBuyList = []
+            params['StaffBuyList'].each do |i|
+              staffbuyinfo_tmp = StaffBuyInfo.new
+              staffbuyinfo_tmp.deserialize(i)
+              @StaffBuyList << staffbuyinfo_tmp
+            end
+          end
+          unless params['PhoneNumBuyList'].nil?
+            @PhoneNumBuyList = []
+            params['PhoneNumBuyList'].each do |i|
+              phonenumbuyinfo_tmp = PhoneNumBuyInfo.new
+              phonenumbuyinfo_tmp.deserialize(i)
+              @PhoneNumBuyList << phonenumbuyinfo_tmp
+            end
+          end
+        end
+      end
+
       # 坐席用户信息
       class SeatUserInfo < TencentCloud::Common::AbstractModel
         # @param Name: 坐席名称
@@ -1524,6 +1700,30 @@ module TencentCloud
           @SkillGroupName = params['SkillGroupName']
           @Priority = params['Priority']
           @Type = params['Type']
+        end
+      end
+
+      # 坐席购买信息
+      class StaffBuyInfo < TencentCloud::Common::AbstractModel
+        # @param Num: 购买坐席数量
+        # @type Num: Integer
+        # @param BuyTime: 购买时间戳
+        # @type BuyTime: Integer
+        # @param EndTime: 截至时间戳
+        # @type EndTime: Integer
+
+        attr_accessor :Num, :BuyTime, :EndTime
+        
+        def initialize(num=nil, buytime=nil, endtime=nil)
+          @Num = num
+          @BuyTime = buytime
+          @EndTime = endtime
+        end
+
+        def deserialize(params)
+          @Num = params['Num']
+          @BuyTime = params['BuyTime']
+          @EndTime = params['EndTime']
         end
       end
 

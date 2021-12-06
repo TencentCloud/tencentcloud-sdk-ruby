@@ -2342,6 +2342,26 @@ module TencentCloud
         end
       end
 
+      # 设备签名
+      class DeviceSignatureInfo < TencentCloud::Common::AbstractModel
+        # @param DeviceName: 设备名
+        # @type DeviceName: String
+        # @param DeviceSignature: 设备签名
+        # @type DeviceSignature: String
+
+        attr_accessor :DeviceName, :DeviceSignature
+        
+        def initialize(devicename=nil, devicesignature=nil)
+          @DeviceName = devicename
+          @DeviceSignature = devicesignature
+        end
+
+        def deserialize(params)
+          @DeviceName = params['DeviceName']
+          @DeviceSignature = params['DeviceSignature']
+        end
+      end
+
       # ProductId -> DeviceName
       class DevicesItem < TencentCloud::Common::AbstractModel
         # @param ProductId: 产品id
@@ -2697,6 +2717,53 @@ module TencentCloud
           @FwType = params['FwType']
           @CreateUserId = params['CreateUserId']
           @CreatorNickName = params['CreatorNickName']
+        end
+      end
+
+      # GenSingleDeviceSignatureOfPublic请求参数结构体
+      class GenSingleDeviceSignatureOfPublicRequest < TencentCloud::Common::AbstractModel
+        # @param ProductId: 设备所属的产品ID
+        # @type ProductId: String
+        # @param DeviceName: 需要绑定的设备
+        # @type DeviceName: String
+        # @param Expire: 设备绑定签名的有效时间,以秒为单位。取值范围：0 < Expire <= 86400，Expire == -1（十年）
+        # @type Expire: Integer
+
+        attr_accessor :ProductId, :DeviceName, :Expire
+        
+        def initialize(productid=nil, devicename=nil, expire=nil)
+          @ProductId = productid
+          @DeviceName = devicename
+          @Expire = expire
+        end
+
+        def deserialize(params)
+          @ProductId = params['ProductId']
+          @DeviceName = params['DeviceName']
+          @Expire = params['Expire']
+        end
+      end
+
+      # GenSingleDeviceSignatureOfPublic返回参数结构体
+      class GenSingleDeviceSignatureOfPublicResponse < TencentCloud::Common::AbstractModel
+        # @param DeviceSignature: 设备签名
+        # @type DeviceSignature: :class:`Tencentcloud::Iotexplorer.v20190423.models.DeviceSignatureInfo`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :DeviceSignature, :RequestId
+        
+        def initialize(devicesignature=nil, requestid=nil)
+          @DeviceSignature = devicesignature
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['DeviceSignature'].nil?
+            @DeviceSignature = DeviceSignatureInfo.new
+            @DeviceSignature.deserialize(params['DeviceSignature'])
+          end
+          @RequestId = params['RequestId']
         end
       end
 

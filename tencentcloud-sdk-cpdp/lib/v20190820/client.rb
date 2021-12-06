@@ -877,6 +877,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 直播平台-扣减额度
+
+        # @param request: Request instance for DeduceQuota.
+        # @type request: :class:`Tencentcloud::cpdp::V20190820::DeduceQuotaRequest`
+        # @rtype: :class:`Tencentcloud::cpdp::V20190820::DeduceQuotaResponse`
+        def DeduceQuota(request)
+          body = send_request('DeduceQuota', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeduceQuotaResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 直播平台-删除代理商完税信息
 
         # @param request: Request instance for DeleteAgentTaxPaymentInfo.
@@ -1559,6 +1583,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = QueryApplicationMaterialResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 直播平台-查询分配关系
+
+        # @param request: Request instance for QueryAssignment.
+        # @type request: :class:`Tencentcloud::cpdp::V20190820::QueryAssignmentRequest`
+        # @rtype: :class:`Tencentcloud::cpdp::V20190820::QueryAssignmentResponse`
+        def QueryAssignment(request)
+          body = send_request('QueryAssignment', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = QueryAssignmentResponse.new
             model.deserialize(response['Response'])
             model
           else

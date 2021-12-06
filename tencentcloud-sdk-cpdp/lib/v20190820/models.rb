@@ -1611,6 +1611,34 @@ module TencentCloud
         end
       end
 
+      # 分配关系
+      class AssignmentData < TencentCloud::Common::AbstractModel
+        # @param AnchorId: 主播ID
+        # @type AnchorId: String
+        # @param AnchorName: 主播名称
+        # @type AnchorName: String
+        # @param AgentId: 代理商ID
+        # @type AgentId: String
+        # @param AgentName: 代理商名称
+        # @type AgentName: String
+
+        attr_accessor :AnchorId, :AnchorName, :AgentId, :AgentName
+        
+        def initialize(anchorid=nil, anchorname=nil, agentid=nil, agentname=nil)
+          @AnchorId = anchorid
+          @AnchorName = anchorname
+          @AgentId = agentid
+          @AgentName = agentname
+        end
+
+        def deserialize(params)
+          @AnchorId = params['AnchorId']
+          @AnchorName = params['AnchorName']
+          @AgentId = params['AgentId']
+          @AgentName = params['AgentName']
+        end
+      end
+
       # 绑卡列表
       class BankCardItem < TencentCloud::Common::AbstractModel
         # @param EiconBankBranchId: 超级网银行号
@@ -5075,6 +5103,62 @@ module TencentCloud
         end
       end
 
+      # DeduceQuota请求参数结构体
+      class DeduceQuotaRequest < TencentCloud::Common::AbstractModel
+        # @param AnchorId: 主播ID
+        # @type AnchorId: String
+        # @param Amount: 提现金额，单位为"分"
+        # @type Amount: Integer
+        # @param OrderId: 外部业务订单号
+        # @type OrderId: String
+
+        attr_accessor :AnchorId, :Amount, :OrderId
+        
+        def initialize(anchorid=nil, amount=nil, orderid=nil)
+          @AnchorId = anchorid
+          @Amount = amount
+          @OrderId = orderid
+        end
+
+        def deserialize(params)
+          @AnchorId = params['AnchorId']
+          @Amount = params['Amount']
+          @OrderId = params['OrderId']
+        end
+      end
+
+      # DeduceQuota返回参数结构体
+      class DeduceQuotaResponse < TencentCloud::Common::AbstractModel
+        # @param ErrCode: 错误码。响应成功："SUCCESS"，其他为不成功。
+        # @type ErrCode: String
+        # @param ErrMsg: 响应消息
+        # @type ErrMsg: String
+        # @param Result: 返回响应
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Result: :class:`Tencentcloud::Cpdp.v20190820.models.AssignmentData`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ErrCode, :ErrMsg, :Result, :RequestId
+        
+        def initialize(errcode=nil, errmsg=nil, result=nil, requestid=nil)
+          @ErrCode = errcode
+          @ErrMsg = errmsg
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ErrCode = params['ErrCode']
+          @ErrMsg = params['ErrMsg']
+          unless params['Result'].nil?
+            @Result = AssignmentData.new
+            @Result.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DeleteAgentTaxPaymentInfo请求参数结构体
       class DeleteAgentTaxPaymentInfoRequest < TencentCloud::Common::AbstractModel
         # @param BatchNum: 批次号
@@ -8069,6 +8153,54 @@ module TencentCloud
         def deserialize(params)
           unless params['Result'].nil?
             @Result = QueryDeclareResult.new
+            @Result.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # QueryAssignment请求参数结构体
+      class QueryAssignmentRequest < TencentCloud::Common::AbstractModel
+        # @param AnchorId: 主播ID
+        # @type AnchorId: String
+
+        attr_accessor :AnchorId
+        
+        def initialize(anchorid=nil)
+          @AnchorId = anchorid
+        end
+
+        def deserialize(params)
+          @AnchorId = params['AnchorId']
+        end
+      end
+
+      # QueryAssignment返回参数结构体
+      class QueryAssignmentResponse < TencentCloud::Common::AbstractModel
+        # @param ErrCode: 错误码。响应成功："SUCCESS"，其他为不成功。
+        # @type ErrCode: String
+        # @param ErrMsg: 响应消息
+        # @type ErrMsg: String
+        # @param Result: 返回响应
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Result: :class:`Tencentcloud::Cpdp.v20190820.models.AssignmentData`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ErrCode, :ErrMsg, :Result, :RequestId
+        
+        def initialize(errcode=nil, errmsg=nil, result=nil, requestid=nil)
+          @ErrCode = errcode
+          @ErrMsg = errmsg
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ErrCode = params['ErrCode']
+          @ErrMsg = params['ErrMsg']
+          unless params['Result'].nil?
+            @Result = AssignmentData.new
             @Result.deserialize(params['Result'])
           end
           @RequestId = params['RequestId']

@@ -1810,10 +1810,18 @@ module TencentCloud
         # @type IsBase64Encoded: Boolean
         # @param ServiceScfFunctionType: scf函数类型。当后端类型是SCF时生效。支持事件触发(EVENT)，http直通云函数(HTTP)。
         # @type ServiceScfFunctionType: String
+        # @param EIAMAppType: EIAM应用类型。
+        # @type EIAMAppType: String
+        # @param EIAMAuthType: EIAM应用认证类型，支持仅认证（AuthenticationOnly）、认证和鉴权（Authorization）。
+        # @type EIAMAuthType: String
+        # @param TokenTimeout: EIAM应用Token 有效时间，单位为秒，默认为7200秒。
+        # @type TokenTimeout: Integer
+        # @param EIAMAppId: EIAM应用ID。
+        # @type EIAMAppId: String
 
-        attr_accessor :ServiceId, :ServiceType, :ServiceTimeout, :Protocol, :RequestConfig, :ApiName, :ApiDesc, :ApiType, :AuthType, :EnableCORS, :ConstantParameters, :RequestParameters, :ApiBusinessType, :ServiceMockReturnMessage, :MicroServices, :ServiceTsfLoadBalanceConf, :ServiceTsfHealthCheckConf, :TargetServices, :TargetServicesLoadBalanceConf, :TargetServicesHealthCheckConf, :ServiceScfFunctionName, :ServiceWebsocketRegisterFunctionName, :ServiceWebsocketCleanupFunctionName, :ServiceWebsocketTransportFunctionName, :ServiceScfFunctionNamespace, :ServiceScfFunctionQualifier, :ServiceWebsocketRegisterFunctionNamespace, :ServiceWebsocketRegisterFunctionQualifier, :ServiceWebsocketTransportFunctionNamespace, :ServiceWebsocketTransportFunctionQualifier, :ServiceWebsocketCleanupFunctionNamespace, :ServiceWebsocketCleanupFunctionQualifier, :ServiceScfIsIntegratedResponse, :IsDebugAfterCharge, :IsDeleteResponseErrorCodes, :ResponseType, :ResponseSuccessExample, :ResponseFailExample, :ServiceConfig, :AuthRelationApiId, :ServiceParameters, :OauthConfig, :ResponseErrorCodes, :TargetNamespaceId, :UserType, :IsBase64Encoded, :ServiceScfFunctionType
+        attr_accessor :ServiceId, :ServiceType, :ServiceTimeout, :Protocol, :RequestConfig, :ApiName, :ApiDesc, :ApiType, :AuthType, :EnableCORS, :ConstantParameters, :RequestParameters, :ApiBusinessType, :ServiceMockReturnMessage, :MicroServices, :ServiceTsfLoadBalanceConf, :ServiceTsfHealthCheckConf, :TargetServices, :TargetServicesLoadBalanceConf, :TargetServicesHealthCheckConf, :ServiceScfFunctionName, :ServiceWebsocketRegisterFunctionName, :ServiceWebsocketCleanupFunctionName, :ServiceWebsocketTransportFunctionName, :ServiceScfFunctionNamespace, :ServiceScfFunctionQualifier, :ServiceWebsocketRegisterFunctionNamespace, :ServiceWebsocketRegisterFunctionQualifier, :ServiceWebsocketTransportFunctionNamespace, :ServiceWebsocketTransportFunctionQualifier, :ServiceWebsocketCleanupFunctionNamespace, :ServiceWebsocketCleanupFunctionQualifier, :ServiceScfIsIntegratedResponse, :IsDebugAfterCharge, :IsDeleteResponseErrorCodes, :ResponseType, :ResponseSuccessExample, :ResponseFailExample, :ServiceConfig, :AuthRelationApiId, :ServiceParameters, :OauthConfig, :ResponseErrorCodes, :TargetNamespaceId, :UserType, :IsBase64Encoded, :ServiceScfFunctionType, :EIAMAppType, :EIAMAuthType, :TokenTimeout, :EIAMAppId
         
-        def initialize(serviceid=nil, servicetype=nil, servicetimeout=nil, protocol=nil, requestconfig=nil, apiname=nil, apidesc=nil, apitype=nil, authtype=nil, enablecors=nil, constantparameters=nil, requestparameters=nil, apibusinesstype=nil, servicemockreturnmessage=nil, microservices=nil, servicetsfloadbalanceconf=nil, servicetsfhealthcheckconf=nil, targetservices=nil, targetservicesloadbalanceconf=nil, targetserviceshealthcheckconf=nil, servicescffunctionname=nil, servicewebsocketregisterfunctionname=nil, servicewebsocketcleanupfunctionname=nil, servicewebsockettransportfunctionname=nil, servicescffunctionnamespace=nil, servicescffunctionqualifier=nil, servicewebsocketregisterfunctionnamespace=nil, servicewebsocketregisterfunctionqualifier=nil, servicewebsockettransportfunctionnamespace=nil, servicewebsockettransportfunctionqualifier=nil, servicewebsocketcleanupfunctionnamespace=nil, servicewebsocketcleanupfunctionqualifier=nil, servicescfisintegratedresponse=nil, isdebugaftercharge=nil, isdeleteresponseerrorcodes=nil, responsetype=nil, responsesuccessexample=nil, responsefailexample=nil, serviceconfig=nil, authrelationapiid=nil, serviceparameters=nil, oauthconfig=nil, responseerrorcodes=nil, targetnamespaceid=nil, usertype=nil, isbase64encoded=nil, servicescffunctiontype=nil)
+        def initialize(serviceid=nil, servicetype=nil, servicetimeout=nil, protocol=nil, requestconfig=nil, apiname=nil, apidesc=nil, apitype=nil, authtype=nil, enablecors=nil, constantparameters=nil, requestparameters=nil, apibusinesstype=nil, servicemockreturnmessage=nil, microservices=nil, servicetsfloadbalanceconf=nil, servicetsfhealthcheckconf=nil, targetservices=nil, targetservicesloadbalanceconf=nil, targetserviceshealthcheckconf=nil, servicescffunctionname=nil, servicewebsocketregisterfunctionname=nil, servicewebsocketcleanupfunctionname=nil, servicewebsockettransportfunctionname=nil, servicescffunctionnamespace=nil, servicescffunctionqualifier=nil, servicewebsocketregisterfunctionnamespace=nil, servicewebsocketregisterfunctionqualifier=nil, servicewebsockettransportfunctionnamespace=nil, servicewebsockettransportfunctionqualifier=nil, servicewebsocketcleanupfunctionnamespace=nil, servicewebsocketcleanupfunctionqualifier=nil, servicescfisintegratedresponse=nil, isdebugaftercharge=nil, isdeleteresponseerrorcodes=nil, responsetype=nil, responsesuccessexample=nil, responsefailexample=nil, serviceconfig=nil, authrelationapiid=nil, serviceparameters=nil, oauthconfig=nil, responseerrorcodes=nil, targetnamespaceid=nil, usertype=nil, isbase64encoded=nil, servicescffunctiontype=nil, eiamapptype=nil, eiamauthtype=nil, tokentimeout=nil, eiamappid=nil)
           @ServiceId = serviceid
           @ServiceType = servicetype
           @ServiceTimeout = servicetimeout
@@ -1861,6 +1869,10 @@ module TencentCloud
           @UserType = usertype
           @IsBase64Encoded = isbase64encoded
           @ServiceScfFunctionType = servicescffunctiontype
+          @EIAMAppType = eiamapptype
+          @EIAMAuthType = eiamauthtype
+          @TokenTimeout = tokentimeout
+          @EIAMAppId = eiamappid
         end
 
         def deserialize(params)
@@ -1971,6 +1983,10 @@ module TencentCloud
           @UserType = params['UserType']
           @IsBase64Encoded = params['IsBase64Encoded']
           @ServiceScfFunctionType = params['ServiceScfFunctionType']
+          @EIAMAppType = params['EIAMAppType']
+          @EIAMAuthType = params['EIAMAuthType']
+          @TokenTimeout = params['TokenTimeout']
+          @EIAMAppId = params['EIAMAppId']
         end
       end
 

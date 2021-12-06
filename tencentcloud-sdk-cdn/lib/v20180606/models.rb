@@ -6945,6 +6945,38 @@ module TencentCloud
         end
       end
 
+      # 除上海外其他区域日志集和日志主题信息
+      class ExtraLogset < TencentCloud::Common::AbstractModel
+        # @param Logset: 日志集信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Logset: :class:`Tencentcloud::Cdn.v20180606.models.LogSetInfo`
+        # @param Topics: 日志主题信息列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Topics: Array
+
+        attr_accessor :Logset, :Topics
+        
+        def initialize(logset=nil, topics=nil)
+          @Logset = logset
+          @Topics = topics
+        end
+
+        def deserialize(params)
+          unless params['Logset'].nil?
+            @Logset = LogSetInfo.new
+            @Logset.deserialize(params['Logset'])
+          end
+          unless params['Topics'].nil?
+            @Topics = []
+            params['Topics'].each do |i|
+              topicinfo_tmp = TopicInfo.new
+              topicinfo_tmp.deserialize(i)
+              @Topics << topicinfo_tmp
+            end
+          end
+        end
+      end
+
       # 回源 301/302 状态码自动跟随配置，默认为关闭状态
       class FollowRedirect < TencentCloud::Common::AbstractModel
         # @param Switch: 回源跟随开关
@@ -7598,19 +7630,23 @@ module TencentCloud
 
       # ListClsLogTopics返回参数结构体
       class ListClsLogTopicsResponse < TencentCloud::Common::AbstractModel
-        # @param Logset: 日志集信息
+        # @param Logset: 上海区域日志集信息
         # @type Logset: :class:`Tencentcloud::Cdn.v20180606.models.LogSetInfo`
-        # @param Topics: 日志主题信息列表
+        # @param Topics: 上海区域日志主题信息列表
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Topics: Array
+        # @param ExtraLogset: 其他区域日志集信息列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExtraLogset: Array
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Logset, :Topics, :RequestId
+        attr_accessor :Logset, :Topics, :ExtraLogset, :RequestId
         
-        def initialize(logset=nil, topics=nil, requestid=nil)
+        def initialize(logset=nil, topics=nil, extralogset=nil, requestid=nil)
           @Logset = logset
           @Topics = topics
+          @ExtraLogset = extralogset
           @RequestId = requestid
         end
 
@@ -7625,6 +7661,14 @@ module TencentCloud
               topicinfo_tmp = TopicInfo.new
               topicinfo_tmp.deserialize(i)
               @Topics << topicinfo_tmp
+            end
+          end
+          unless params['ExtraLogset'].nil?
+            @ExtraLogset = []
+            params['ExtraLogset'].each do |i|
+              extralogset_tmp = ExtraLogset.new
+              extralogset_tmp.deserialize(i)
+              @ExtraLogset << extralogset_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -8498,10 +8542,16 @@ module TencentCloud
         # @type CreateTime: String
         # @param Region: 区域
         # @type Region: String
+        # @param Deleted: cls侧是否已经被删除
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Deleted: String
+        # @param RegionEn: 英文区域
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RegionEn: String
 
-        attr_accessor :AppId, :Channel, :LogsetId, :LogsetName, :IsDefault, :LogsetSavePeriod, :CreateTime, :Region
+        attr_accessor :AppId, :Channel, :LogsetId, :LogsetName, :IsDefault, :LogsetSavePeriod, :CreateTime, :Region, :Deleted, :RegionEn
         
-        def initialize(appid=nil, channel=nil, logsetid=nil, logsetname=nil, isdefault=nil, logsetsaveperiod=nil, createtime=nil, region=nil)
+        def initialize(appid=nil, channel=nil, logsetid=nil, logsetname=nil, isdefault=nil, logsetsaveperiod=nil, createtime=nil, region=nil, deleted=nil, regionen=nil)
           @AppId = appid
           @Channel = channel
           @LogsetId = logsetid
@@ -8510,6 +8560,8 @@ module TencentCloud
           @LogsetSavePeriod = logsetsaveperiod
           @CreateTime = createtime
           @Region = region
+          @Deleted = deleted
+          @RegionEn = regionen
         end
 
         def deserialize(params)
@@ -8521,6 +8573,8 @@ module TencentCloud
           @LogsetSavePeriod = params['LogsetSavePeriod']
           @CreateTime = params['CreateTime']
           @Region = params['Region']
+          @Deleted = params['Deleted']
+          @RegionEn = params['RegionEn']
         end
       end
 
@@ -11942,15 +11996,19 @@ module TencentCloud
         # @param Channel: 归属于cdn或ecdn
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Channel: String
+        # @param Deleted: cls侧是否已经被删除
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Deleted: String
 
-        attr_accessor :TopicId, :TopicName, :Enabled, :CreateTime, :Channel
+        attr_accessor :TopicId, :TopicName, :Enabled, :CreateTime, :Channel, :Deleted
         
-        def initialize(topicid=nil, topicname=nil, enabled=nil, createtime=nil, channel=nil)
+        def initialize(topicid=nil, topicname=nil, enabled=nil, createtime=nil, channel=nil, deleted=nil)
           @TopicId = topicid
           @TopicName = topicname
           @Enabled = enabled
           @CreateTime = createtime
           @Channel = channel
+          @Deleted = deleted
         end
 
         def deserialize(params)
@@ -11959,6 +12017,7 @@ module TencentCloud
           @Enabled = params['Enabled']
           @CreateTime = params['CreateTime']
           @Channel = params['Channel']
+          @Deleted = params['Deleted']
         end
       end
 
