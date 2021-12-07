@@ -1362,17 +1362,21 @@ module TencentCloud
         # @type Service: String
         # @param JSONData: 需要转发的云API参数，要转成JSON格式
         # @type JSONData: String
+        # @param ApiRole: 指定角色
+        # @type ApiRole: String
 
-        attr_accessor :Service, :JSONData
+        attr_accessor :Service, :JSONData, :ApiRole
         
-        def initialize(service=nil, jsondata=nil)
+        def initialize(service=nil, jsondata=nil, apirole=nil)
           @Service = service
           @JSONData = jsondata
+          @ApiRole = apirole
         end
 
         def deserialize(params)
           @Service = params['Service']
           @JSONData = params['JSONData']
+          @ApiRole = params['ApiRole']
         end
       end
 

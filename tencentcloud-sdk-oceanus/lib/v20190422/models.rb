@@ -43,10 +43,14 @@ module TencentCloud
         # @type JobManagerSpec: Float
         # @param TaskManagerSpec: TaskManager规格
         # @type TaskManagerSpec: Float
+        # @param ClsLogsetId: CLS日志集ID
+        # @type ClsLogsetId: String
+        # @param ClsTopicId: CLS日志主题ID
+        # @type ClsTopicId: String
 
-        attr_accessor :JobId, :EntrypointClass, :ProgramArgs, :Remark, :ResourceRefs, :DefaultParallelism, :Properties, :AutoDelete, :COSBucket, :LogCollect, :JobManagerSpec, :TaskManagerSpec
+        attr_accessor :JobId, :EntrypointClass, :ProgramArgs, :Remark, :ResourceRefs, :DefaultParallelism, :Properties, :AutoDelete, :COSBucket, :LogCollect, :JobManagerSpec, :TaskManagerSpec, :ClsLogsetId, :ClsTopicId
         
-        def initialize(jobid=nil, entrypointclass=nil, programargs=nil, remark=nil, resourcerefs=nil, defaultparallelism=nil, properties=nil, autodelete=nil, cosbucket=nil, logcollect=nil, jobmanagerspec=nil, taskmanagerspec=nil)
+        def initialize(jobid=nil, entrypointclass=nil, programargs=nil, remark=nil, resourcerefs=nil, defaultparallelism=nil, properties=nil, autodelete=nil, cosbucket=nil, logcollect=nil, jobmanagerspec=nil, taskmanagerspec=nil, clslogsetid=nil, clstopicid=nil)
           @JobId = jobid
           @EntrypointClass = entrypointclass
           @ProgramArgs = programargs
@@ -59,6 +63,8 @@ module TencentCloud
           @LogCollect = logcollect
           @JobManagerSpec = jobmanagerspec
           @TaskManagerSpec = taskmanagerspec
+          @ClsLogsetId = clslogsetid
+          @ClsTopicId = clstopicid
         end
 
         def deserialize(params)
@@ -88,6 +94,8 @@ module TencentCloud
           @LogCollect = params['LogCollect']
           @JobManagerSpec = params['JobManagerSpec']
           @TaskManagerSpec = params['TaskManagerSpec']
+          @ClsLogsetId = params['ClsLogsetId']
+          @ClsTopicId = params['ClsTopicId']
         end
       end
 
@@ -875,10 +883,16 @@ module TencentCloud
         # @param TaskManagerSpec: TaskManager规格
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskManagerSpec: Float
+        # @param ClsLogsetId: CLS日志集ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClsLogsetId: String
+        # @param ClsTopicId: CLS日志主题ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClsTopicId: String
 
-        attr_accessor :JobId, :EntrypointClass, :ProgramArgs, :Remark, :CreateTime, :Version, :DefaultParallelism, :Properties, :ResourceRefDetails, :CreatorUin, :UpdateTime, :COSBucket, :LogCollect, :MaxParallelism, :JobManagerSpec, :TaskManagerSpec
+        attr_accessor :JobId, :EntrypointClass, :ProgramArgs, :Remark, :CreateTime, :Version, :DefaultParallelism, :Properties, :ResourceRefDetails, :CreatorUin, :UpdateTime, :COSBucket, :LogCollect, :MaxParallelism, :JobManagerSpec, :TaskManagerSpec, :ClsLogsetId, :ClsTopicId
         
-        def initialize(jobid=nil, entrypointclass=nil, programargs=nil, remark=nil, createtime=nil, version=nil, defaultparallelism=nil, properties=nil, resourcerefdetails=nil, creatoruin=nil, updatetime=nil, cosbucket=nil, logcollect=nil, maxparallelism=nil, jobmanagerspec=nil, taskmanagerspec=nil)
+        def initialize(jobid=nil, entrypointclass=nil, programargs=nil, remark=nil, createtime=nil, version=nil, defaultparallelism=nil, properties=nil, resourcerefdetails=nil, creatoruin=nil, updatetime=nil, cosbucket=nil, logcollect=nil, maxparallelism=nil, jobmanagerspec=nil, taskmanagerspec=nil, clslogsetid=nil, clstopicid=nil)
           @JobId = jobid
           @EntrypointClass = entrypointclass
           @ProgramArgs = programargs
@@ -895,6 +909,8 @@ module TencentCloud
           @MaxParallelism = maxparallelism
           @JobManagerSpec = jobmanagerspec
           @TaskManagerSpec = taskmanagerspec
+          @ClsLogsetId = clslogsetid
+          @ClsTopicId = clstopicid
         end
 
         def deserialize(params)
@@ -928,6 +944,8 @@ module TencentCloud
           @MaxParallelism = params['MaxParallelism']
           @JobManagerSpec = params['JobManagerSpec']
           @TaskManagerSpec = params['TaskManagerSpec']
+          @ClsLogsetId = params['ClsLogsetId']
+          @ClsTopicId = params['ClsTopicId']
         end
       end
 
