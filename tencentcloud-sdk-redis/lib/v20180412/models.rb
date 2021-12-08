@@ -2874,20 +2874,21 @@ module TencentCloud
 
       # DisableReplicaReadonly返回参数结构体
       class DisableReplicaReadonlyResponse < TencentCloud::Common::AbstractModel
-        # @param Status: 失败:ERROR，成功:OK
-        # @type Status: String
+        # @param TaskId: 任务ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TaskId: Integer
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Status, :RequestId
+        attr_accessor :TaskId, :RequestId
         
-        def initialize(status=nil, requestid=nil)
-          @Status = status
+        def initialize(taskid=nil, requestid=nil)
+          @TaskId = taskid
           @RequestId = requestid
         end
 
         def deserialize(params)
-          @Status = params['Status']
+          @TaskId = params['TaskId']
           @RequestId = params['RequestId']
         end
       end

@@ -2158,10 +2158,12 @@ module TencentCloud
         # @type UpdateTime: String
         # @param HostName: 主机名称
         # @type HostName: String
+        # @param PublicIp: 外网ip
+        # @type PublicIp: String
 
-        attr_accessor :ContainerID, :ContainerName, :Status, :CreateTime, :RunAs, :Cmd, :CPUUsage, :RamUsage, :ImageName, :ImageID, :POD, :HostID, :HostIP, :UpdateTime, :HostName
+        attr_accessor :ContainerID, :ContainerName, :Status, :CreateTime, :RunAs, :Cmd, :CPUUsage, :RamUsage, :ImageName, :ImageID, :POD, :HostID, :HostIP, :UpdateTime, :HostName, :PublicIp
         
-        def initialize(containerid=nil, containername=nil, status=nil, createtime=nil, runas=nil, cmd=nil, cpuusage=nil, ramusage=nil, imagename=nil, imageid=nil, pod=nil, hostid=nil, hostip=nil, updatetime=nil, hostname=nil)
+        def initialize(containerid=nil, containername=nil, status=nil, createtime=nil, runas=nil, cmd=nil, cpuusage=nil, ramusage=nil, imagename=nil, imageid=nil, pod=nil, hostid=nil, hostip=nil, updatetime=nil, hostname=nil, publicip=nil)
           @ContainerID = containerid
           @ContainerName = containername
           @Status = status
@@ -2177,6 +2179,7 @@ module TencentCloud
           @HostIP = hostip
           @UpdateTime = updatetime
           @HostName = hostname
+          @PublicIp = publicip
         end
 
         def deserialize(params)
@@ -2195,6 +2198,7 @@ module TencentCloud
           @HostIP = params['HostIP']
           @UpdateTime = params['UpdateTime']
           @HostName = params['HostName']
+          @PublicIp = params['PublicIp']
         end
       end
 
@@ -2525,7 +2529,7 @@ module TencentCloud
 
       # CreateCheckComponent返回参数结构体
       class CreateCheckComponentResponse < TencentCloud::Common::AbstractModel
-        # @param InstallResult: “InstallSucc"表示安装成功，"InstallFailed"表示安装失败
+        # @param InstallResult: "InstallSucc"表示安装成功，"InstallFailed"表示安装失败
         # @type InstallResult: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -4403,20 +4407,26 @@ module TencentCloud
         # @type ImageCnt: Integer
         # @param ContainerCnt: 容器数
         # @type ContainerCnt: Integer
-        # @param K8sMasterIP: k8s ip
+        # @param K8sMasterIP: k8s IP
         # @type K8sMasterIP: String
         # @param K8sVersion: k8s version
         # @type K8sVersion: String
         # @param KubeProxyVersion: kube proxy
         # @type KubeProxyVersion: String
-        # @param Status: 主机运行状态 offline,online,pause
+        # @param Status: "UNINSTALL"："未安装","OFFLINE"："离线", "ONLINE"："防护中
         # @type Status: String
+        # @param IsContainerd: 是否Containerd
+        # @type IsContainerd: Boolean
+        # @param MachineType: 主机来源;"TENCENTCLOUD":"腾讯云服务器","OTHERCLOUD":"非腾讯云服务器"
+        # @type MachineType: String
+        # @param PublicIp: 外网ip
+        # @type PublicIp: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :UUID, :UpdateTime, :HostName, :Group, :HostIP, :OsName, :AgentVersion, :KernelVersion, :DockerVersion, :DockerAPIVersion, :DockerGoVersion, :DockerFileSystemDriver, :DockerRootDir, :ImageCnt, :ContainerCnt, :K8sMasterIP, :K8sVersion, :KubeProxyVersion, :Status, :RequestId
+        attr_accessor :UUID, :UpdateTime, :HostName, :Group, :HostIP, :OsName, :AgentVersion, :KernelVersion, :DockerVersion, :DockerAPIVersion, :DockerGoVersion, :DockerFileSystemDriver, :DockerRootDir, :ImageCnt, :ContainerCnt, :K8sMasterIP, :K8sVersion, :KubeProxyVersion, :Status, :IsContainerd, :MachineType, :PublicIp, :RequestId
         
-        def initialize(uuid=nil, updatetime=nil, hostname=nil, group=nil, hostip=nil, osname=nil, agentversion=nil, kernelversion=nil, dockerversion=nil, dockerapiversion=nil, dockergoversion=nil, dockerfilesystemdriver=nil, dockerrootdir=nil, imagecnt=nil, containercnt=nil, k8smasterip=nil, k8sversion=nil, kubeproxyversion=nil, status=nil, requestid=nil)
+        def initialize(uuid=nil, updatetime=nil, hostname=nil, group=nil, hostip=nil, osname=nil, agentversion=nil, kernelversion=nil, dockerversion=nil, dockerapiversion=nil, dockergoversion=nil, dockerfilesystemdriver=nil, dockerrootdir=nil, imagecnt=nil, containercnt=nil, k8smasterip=nil, k8sversion=nil, kubeproxyversion=nil, status=nil, iscontainerd=nil, machinetype=nil, publicip=nil, requestid=nil)
           @UUID = uuid
           @UpdateTime = updatetime
           @HostName = hostname
@@ -4436,6 +4446,9 @@ module TencentCloud
           @K8sVersion = k8sversion
           @KubeProxyVersion = kubeproxyversion
           @Status = status
+          @IsContainerd = iscontainerd
+          @MachineType = machinetype
+          @PublicIp = publicip
           @RequestId = requestid
         end
 
@@ -4459,6 +4472,9 @@ module TencentCloud
           @K8sVersion = params['K8sVersion']
           @KubeProxyVersion = params['KubeProxyVersion']
           @Status = params['Status']
+          @IsContainerd = params['IsContainerd']
+          @MachineType = params['MachineType']
+          @PublicIp = params['PublicIp']
           @RequestId = params['RequestId']
         end
       end
@@ -4470,12 +4486,13 @@ module TencentCloud
         # @param Offset: 偏移量，默认为0。
         # @type Offset: Integer
         # @param Filters: 过滤条件。
-        # <li>Status - String - 是否必填：否 - 主机运行状态筛选，0："offline",1："online", 2："paused"</li>
+        # <li>Status - String - 是否必填：否 - agent状态筛选，"ALL":"全部"(或不传该字段),"UNINSTALL"："未安装","OFFLINE"："离线", "ONLINE"："防护中"</li>
         # <li>HostName - String - 是否必填：否 - 主机名筛选</li>
         # <li>Group- String - 是否必填：否 - 主机群组搜索</li>
         # <li>HostIP- string - 是否必填：否 - 主机ip搜索</li>
         # <li>HostID- string - 是否必填：否 - 主机id搜索</li>
         # <li>DockerVersion- string - 是否必填：否 - docker版本搜索</li>
+        # <li>MachineType- string - 是否必填：否 - 主机来源MachineType搜索，"ALL":"全部"(或不传该字段),"TENCENTCLOUD":"腾讯云服务器","OTHERCLOUD":"非腾讯云服务器"</li>
         # @type Filters: Array
         # @param By: 排序字段
         # @type By: String
@@ -8351,7 +8368,7 @@ module TencentCloud
         # @param EndTime: 专业版结束时间，补充购买时才不为空
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EndTime: String
-        # @param CoresCnt: 需购买的虚拟机核数
+        # @param CoresCnt: 需购买的机器核数
         # @type CoresCnt: Integer
         # @param MaxPostPayCoresCnt: 弹性计费上限
         # @type MaxPostPayCoresCnt: Integer
@@ -10404,7 +10421,7 @@ module TencentCloud
       class HostInfo < TencentCloud::Common::AbstractModel
         # @param HostID: 主机id
         # @type HostID: String
-        # @param HostIP: 主机ip
+        # @param HostIP: 主机ip即内网ip
         # @type HostIP: String
         # @param HostName: 主机名称
         # @type HostName: String
@@ -10418,12 +10435,20 @@ module TencentCloud
         # @type ImageCnt: Integer
         # @param ContainerCnt: 容器个数
         # @type ContainerCnt: Integer
-        # @param Status: 主机运行状态
+        # @param Status: agent运行状态
         # @type Status: String
+        # @param IsContainerd: 是否是Containerd
+        # @type IsContainerd: Boolean
+        # @param MachineType: 主机来源
+        # @type MachineType: String
+        # @param PublicIp: 外网ip
+        # @type PublicIp: String
+        # @param Uuid: 主机uuid
+        # @type Uuid: String
 
-        attr_accessor :HostID, :HostIP, :HostName, :Group, :DockerVersion, :DockerFileSystemDriver, :ImageCnt, :ContainerCnt, :Status
+        attr_accessor :HostID, :HostIP, :HostName, :Group, :DockerVersion, :DockerFileSystemDriver, :ImageCnt, :ContainerCnt, :Status, :IsContainerd, :MachineType, :PublicIp, :Uuid
         
-        def initialize(hostid=nil, hostip=nil, hostname=nil, group=nil, dockerversion=nil, dockerfilesystemdriver=nil, imagecnt=nil, containercnt=nil, status=nil)
+        def initialize(hostid=nil, hostip=nil, hostname=nil, group=nil, dockerversion=nil, dockerfilesystemdriver=nil, imagecnt=nil, containercnt=nil, status=nil, iscontainerd=nil, machinetype=nil, publicip=nil, uuid=nil)
           @HostID = hostid
           @HostIP = hostip
           @HostName = hostname
@@ -10433,6 +10458,10 @@ module TencentCloud
           @ImageCnt = imagecnt
           @ContainerCnt = containercnt
           @Status = status
+          @IsContainerd = iscontainerd
+          @MachineType = machinetype
+          @PublicIp = publicip
+          @Uuid = uuid
         end
 
         def deserialize(params)
@@ -10445,6 +10474,10 @@ module TencentCloud
           @ImageCnt = params['ImageCnt']
           @ContainerCnt = params['ContainerCnt']
           @Status = params['Status']
+          @IsContainerd = params['IsContainerd']
+          @MachineType = params['MachineType']
+          @PublicIp = params['PublicIp']
+          @Uuid = params['Uuid']
         end
       end
 
@@ -11995,10 +12028,14 @@ module TencentCloud
         # @type ListenHost: String
         # @param RunAs: 运行账号
         # @type RunAs: String
+        # @param HostName: 主机名称
+        # @type HostName: String
+        # @param PublicIp: 外网ip
+        # @type PublicIp: String
 
-        attr_accessor :Type, :PublicIP, :PublicPort, :ContainerPort, :ContainerPID, :ContainerName, :HostID, :HostIP, :ProcessName, :ListenContainer, :ListenHost, :RunAs
+        attr_accessor :Type, :PublicIP, :PublicPort, :ContainerPort, :ContainerPID, :ContainerName, :HostID, :HostIP, :ProcessName, :ListenContainer, :ListenHost, :RunAs, :HostName, :PublicIp
         
-        def initialize(type=nil, publicip=nil, publicport=nil, containerport=nil, containerpid=nil, containername=nil, hostid=nil, hostip=nil, processname=nil, listencontainer=nil, listenhost=nil, runas=nil)
+        def initialize(type=nil, publicip=nil, publicport=nil, containerport=nil, containerpid=nil, containername=nil, hostid=nil, hostip=nil, processname=nil, listencontainer=nil, listenhost=nil, runas=nil, hostname=nil, publicip=nil)
           @Type = type
           @PublicIP = publicip
           @PublicPort = publicport
@@ -12011,6 +12048,8 @@ module TencentCloud
           @ListenContainer = listencontainer
           @ListenHost = listenhost
           @RunAs = runas
+          @HostName = hostname
+          @PublicIp = publicip
         end
 
         def deserialize(params)
@@ -12026,6 +12065,8 @@ module TencentCloud
           @ListenContainer = params['ListenContainer']
           @ListenHost = params['ListenHost']
           @RunAs = params['RunAs']
+          @HostName = params['HostName']
+          @PublicIp = params['PublicIp']
         end
       end
 
@@ -12135,10 +12176,14 @@ module TencentCloud
         # @type HostIP: String
         # @param ProcessName: 进程名称
         # @type ProcessName: String
+        # @param HostName: 主机名称
+        # @type HostName: String
+        # @param PublicIp: 外网ip
+        # @type PublicIp: String
 
-        attr_accessor :StartTime, :RunAs, :CmdLine, :Exe, :PID, :ContainerPID, :ContainerName, :HostID, :HostIP, :ProcessName
+        attr_accessor :StartTime, :RunAs, :CmdLine, :Exe, :PID, :ContainerPID, :ContainerName, :HostID, :HostIP, :ProcessName, :HostName, :PublicIp
         
-        def initialize(starttime=nil, runas=nil, cmdline=nil, exe=nil, pid=nil, containerpid=nil, containername=nil, hostid=nil, hostip=nil, processname=nil)
+        def initialize(starttime=nil, runas=nil, cmdline=nil, exe=nil, pid=nil, containerpid=nil, containername=nil, hostid=nil, hostip=nil, processname=nil, hostname=nil, publicip=nil)
           @StartTime = starttime
           @RunAs = runas
           @CmdLine = cmdline
@@ -12149,6 +12194,8 @@ module TencentCloud
           @HostID = hostid
           @HostIP = hostip
           @ProcessName = processname
+          @HostName = hostname
+          @PublicIp = publicip
         end
 
         def deserialize(params)
@@ -12162,6 +12209,8 @@ module TencentCloud
           @HostID = params['HostID']
           @HostIP = params['HostIP']
           @ProcessName = params['ProcessName']
+          @HostName = params['HostName']
+          @PublicIp = params['PublicIp']
         end
       end
 
@@ -13021,10 +13070,14 @@ module TencentCloud
         # @type Parameter: String
         # @param ContainerId: 容器id
         # @type ContainerId: String
+        # @param HostName: 主机名称
+        # @type HostName: String
+        # @param PublicIp: 外网ip
+        # @type PublicIp: String
 
-        attr_accessor :ServiceID, :HostID, :HostIP, :ContainerName, :Type, :Version, :RunAs, :Listen, :Config, :ProcessCnt, :AccessLog, :ErrorLog, :DataPath, :WebRoot, :Pids, :MainType, :Exe, :Parameter, :ContainerId
+        attr_accessor :ServiceID, :HostID, :HostIP, :ContainerName, :Type, :Version, :RunAs, :Listen, :Config, :ProcessCnt, :AccessLog, :ErrorLog, :DataPath, :WebRoot, :Pids, :MainType, :Exe, :Parameter, :ContainerId, :HostName, :PublicIp
         
-        def initialize(serviceid=nil, hostid=nil, hostip=nil, containername=nil, type=nil, version=nil, runas=nil, listen=nil, config=nil, processcnt=nil, accesslog=nil, errorlog=nil, datapath=nil, webroot=nil, pids=nil, maintype=nil, exe=nil, parameter=nil, containerid=nil)
+        def initialize(serviceid=nil, hostid=nil, hostip=nil, containername=nil, type=nil, version=nil, runas=nil, listen=nil, config=nil, processcnt=nil, accesslog=nil, errorlog=nil, datapath=nil, webroot=nil, pids=nil, maintype=nil, exe=nil, parameter=nil, containerid=nil, hostname=nil, publicip=nil)
           @ServiceID = serviceid
           @HostID = hostid
           @HostIP = hostip
@@ -13044,6 +13097,8 @@ module TencentCloud
           @Exe = exe
           @Parameter = parameter
           @ContainerId = containerid
+          @HostName = hostname
+          @PublicIp = publicip
         end
 
         def deserialize(params)
@@ -13066,6 +13121,8 @@ module TencentCloud
           @Exe = params['Exe']
           @Parameter = params['Parameter']
           @ContainerId = params['ContainerId']
+          @HostName = params['HostName']
+          @PublicIp = params['PublicIp']
         end
       end
 
@@ -13095,7 +13152,7 @@ module TencentCloud
 
       # SetCheckMode返回参数结构体
       class SetCheckModeResponse < TencentCloud::Common::AbstractModel
-        # @param SetCheckResult: “Succ"表示设置成功，"Failed"表示设置失败
+        # @param SetCheckResult: "Succ"表示设置成功，"Failed"表示设置失败
         # @type SetCheckResult: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

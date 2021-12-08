@@ -745,7 +745,7 @@ module TencentCloud
       end
 
       # 创建预付费实例返回结构
-      class CreateInstancePreResponse < TencentCloud::Common::AbstractModel
+      class CreateInstancePreResp < TencentCloud::Common::AbstractModel
         # @param ReturnCode: 返回的code，0为正常，非0为错误
         # @type ReturnCode: String
         # @param ReturnMessage: 成功消息
@@ -774,6 +774,29 @@ module TencentCloud
             @Data.deserialize(params['Data'])
           end
           @DeleteRouteTimestamp = params['DeleteRouteTimestamp']
+        end
+      end
+
+      # CreateInstancePre返回参数结构体
+      class CreateInstancePreResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 返回结果
+        # @type Result: :class:`Tencentcloud::Ckafka.v20190819.models.CreateInstancePreResp`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+        
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Result'].nil?
+            @Result = CreateInstancePreResp.new
+            @Result.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
         end
       end
 

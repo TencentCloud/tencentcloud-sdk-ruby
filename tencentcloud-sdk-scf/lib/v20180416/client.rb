@@ -372,6 +372,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 获取函数异步执行事件状态，事件状态保留 3 * 24 小时（从事件完成开始计时）。
+
+        # @param request: Request instance for GetAsyncEventStatus.
+        # @type request: :class:`Tencentcloud::scf::V20180416::GetAsyncEventStatusRequest`
+        # @rtype: :class:`Tencentcloud::scf::V20180416::GetAsyncEventStatusResponse`
+        def GetAsyncEventStatus(request)
+          body = send_request('GetAsyncEventStatus', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = GetAsyncEventStatusResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 该接口获取某个函数的详细信息，包括名称、代码、处理方法、关联触发器和超时时间等字段。
 
         # @param request: Request instance for GetFunction.

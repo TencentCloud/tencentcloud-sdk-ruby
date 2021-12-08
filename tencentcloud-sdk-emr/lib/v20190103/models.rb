@@ -274,10 +274,28 @@ module TencentCloud
         # @param Zone: 地区ID
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Zone: String
+        # @param SceneName: 场景名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SceneName: String
+        # @param SceneServiceClass: 场景化集群类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SceneServiceClass: String
+        # @param SceneEmrVersion: 场景化EMR版本
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SceneEmrVersion: String
+        # @param DisplayName: 场景化集群类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DisplayName: String
+        # @param VpcName: vpc name
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VpcName: String
+        # @param SubnetName: subnet name
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SubnetName: String
 
-        attr_accessor :Id, :ClusterId, :Ftitle, :ClusterName, :RegionId, :ZoneId, :AppId, :Uin, :ProjectId, :VpcId, :SubnetId, :Status, :AddTime, :RunTime, :Config, :MasterIp, :EmrVersion, :ChargeType, :TradeVersion, :ResourceOrderId, :IsTradeCluster, :AlarmInfo, :IsWoodpeckerCluster, :MetaDb, :Tags, :HiveMetaDb, :ServiceClass, :AliasInfo, :ProductId, :Zone
+        attr_accessor :Id, :ClusterId, :Ftitle, :ClusterName, :RegionId, :ZoneId, :AppId, :Uin, :ProjectId, :VpcId, :SubnetId, :Status, :AddTime, :RunTime, :Config, :MasterIp, :EmrVersion, :ChargeType, :TradeVersion, :ResourceOrderId, :IsTradeCluster, :AlarmInfo, :IsWoodpeckerCluster, :MetaDb, :Tags, :HiveMetaDb, :ServiceClass, :AliasInfo, :ProductId, :Zone, :SceneName, :SceneServiceClass, :SceneEmrVersion, :DisplayName, :VpcName, :SubnetName
         
-        def initialize(id=nil, clusterid=nil, ftitle=nil, clustername=nil, regionid=nil, zoneid=nil, appid=nil, uin=nil, projectid=nil, vpcid=nil, subnetid=nil, status=nil, addtime=nil, runtime=nil, config=nil, masterip=nil, emrversion=nil, chargetype=nil, tradeversion=nil, resourceorderid=nil, istradecluster=nil, alarminfo=nil, iswoodpeckercluster=nil, metadb=nil, tags=nil, hivemetadb=nil, serviceclass=nil, aliasinfo=nil, productid=nil, zone=nil)
+        def initialize(id=nil, clusterid=nil, ftitle=nil, clustername=nil, regionid=nil, zoneid=nil, appid=nil, uin=nil, projectid=nil, vpcid=nil, subnetid=nil, status=nil, addtime=nil, runtime=nil, config=nil, masterip=nil, emrversion=nil, chargetype=nil, tradeversion=nil, resourceorderid=nil, istradecluster=nil, alarminfo=nil, iswoodpeckercluster=nil, metadb=nil, tags=nil, hivemetadb=nil, serviceclass=nil, aliasinfo=nil, productid=nil, zone=nil, scenename=nil, sceneserviceclass=nil, sceneemrversion=nil, displayname=nil, vpcname=nil, subnetname=nil)
           @Id = id
           @ClusterId = clusterid
           @Ftitle = ftitle
@@ -308,6 +326,12 @@ module TencentCloud
           @AliasInfo = aliasinfo
           @ProductId = productid
           @Zone = zone
+          @SceneName = scenename
+          @SceneServiceClass = sceneserviceclass
+          @SceneEmrVersion = sceneemrversion
+          @DisplayName = displayname
+          @VpcName = vpcname
+          @SubnetName = subnetname
         end
 
         def deserialize(params)
@@ -351,6 +375,12 @@ module TencentCloud
           @AliasInfo = params['AliasInfo']
           @ProductId = params['ProductId']
           @Zone = params['Zone']
+          @SceneName = params['SceneName']
+          @SceneServiceClass = params['SceneServiceClass']
+          @SceneEmrVersion = params['SceneEmrVersion']
+          @DisplayName = params['DisplayName']
+          @VpcName = params['VpcName']
+          @SubnetName = params['SubnetName']
         end
       end
 

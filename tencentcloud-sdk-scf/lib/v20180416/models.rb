@@ -116,6 +116,30 @@ module TencentCloud
         end
       end
 
+      # 异步事件状态
+      class AsyncEventStatus < TencentCloud::Common::AbstractModel
+        # @param Status: 异步事件状态，RUNNING 表示运行中, FINISHED 表示调用成功, ABORTED 表示调用终止, FAILED 表示调用失败。
+        # @type Status: String
+        # @param StatusCode: 请求状态码
+        # @type StatusCode: Integer
+        # @param InvokeRequestId: 异步执行请求 Id
+        # @type InvokeRequestId: String
+
+        attr_accessor :Status, :StatusCode, :InvokeRequestId
+        
+        def initialize(status=nil, statuscode=nil, invokerequestid=nil)
+          @Status = status
+          @StatusCode = statuscode
+          @InvokeRequestId = invokerequestid
+        end
+
+        def deserialize(params)
+          @Status = params['Status']
+          @StatusCode = params['StatusCode']
+          @InvokeRequestId = params['InvokeRequestId']
+        end
+      end
+
       # 函数的异步重试配置详情
       class AsyncTriggerConfig < TencentCloud::Common::AbstractModel
         # @param RetryConfig: 用户错误的异步重试重试配置
@@ -1069,7 +1093,10 @@ module TencentCloud
       # 若存在多个Filter时，Filter间的关系为逻辑与（AND）关系。
       # 若同一个Filter存在多个Values，同一Filter下Values间的关系为逻辑或（OR）关系。
       class Filter < TencentCloud::Common::AbstractModel
-        # @param Name: 需要过滤的字段。
+        # @param Name: 需要过滤的字段。过滤条件数量限制为10。
+        # Name可选值：VpcId, SubnetId, ClsTopicId, ClsLogsetId, Role, CfsId, CfsMountInsId, Eip；Values 长度限制为1。
+        # Name可选值：Status, Runtime, FunctionType, PublicNetStatus, AsyncRunEnable, TraceEnable；Values 长度限制为20。
+        # 当 Name = Runtime 时，CustomImage 表示过滤镜像类型函数。
         # @type Name: String
         # @param Values: 字段的过滤值。
         # @type Values: Array
@@ -1381,6 +1408,45 @@ module TencentCloud
           @Description = params['Description']
           @AddTime = params['AddTime']
           @ModTime = params['ModTime']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # GetAsyncEventStatus请求参数结构体
+      class GetAsyncEventStatusRequest < TencentCloud::Common::AbstractModel
+        # @param InvokeRequestId: 异步执行请求 id
+        # @type InvokeRequestId: String
+
+        attr_accessor :InvokeRequestId
+        
+        def initialize(invokerequestid=nil)
+          @InvokeRequestId = invokerequestid
+        end
+
+        def deserialize(params)
+          @InvokeRequestId = params['InvokeRequestId']
+        end
+      end
+
+      # GetAsyncEventStatus返回参数结构体
+      class GetAsyncEventStatusResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 异步事件状态
+        # @type Result: :class:`Tencentcloud::Scf.v20180416.models.AsyncEventStatus`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+        
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Result'].nil?
+            @Result = AsyncEventStatus.new
+            @Result.deserialize(params['Result'])
+          end
           @RequestId = params['RequestId']
         end
       end
