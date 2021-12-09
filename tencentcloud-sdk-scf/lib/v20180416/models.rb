@@ -779,7 +779,7 @@ module TencentCloud
         # @type FunctionName: String
         # @param Namespace: 函数所属命名空间
         # @type Namespace: String
-        # @param Qualifier: 函数版本
+        # @param Qualifier: 函数版本，如果删除版本的话传入版本号，不传入改字段删除函数下的所有版本
         # @type Qualifier: String
 
         attr_accessor :FunctionName, :Namespace, :Qualifier
@@ -1283,14 +1283,18 @@ module TencentCloud
         # @param ModTime: 更新时间
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ModTime: String
+        # @param Status: 版本状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: String
 
-        attr_accessor :Version, :Description, :AddTime, :ModTime
+        attr_accessor :Version, :Description, :AddTime, :ModTime, :Status
         
-        def initialize(version=nil, description=nil, addtime=nil, modtime=nil)
+        def initialize(version=nil, description=nil, addtime=nil, modtime=nil, status=nil)
           @Version = version
           @Description = description
           @AddTime = addtime
           @ModTime = modtime
+          @Status = status
         end
 
         def deserialize(params)
@@ -1298,6 +1302,7 @@ module TencentCloud
           @Description = params['Description']
           @AddTime = params['AddTime']
           @ModTime = params['ModTime']
+          @Status = params['Status']
         end
       end
 
@@ -3689,7 +3694,7 @@ module TencentCloud
         # @type InvokeRequestId: String
         # @param Namespace: 命名空间
         # @type Namespace: String
-        # @param GraceShutdown: 优雅关停
+        # @param GraceShutdown: 该参数已下线
         # @type GraceShutdown: Boolean
 
         attr_accessor :FunctionName, :InvokeRequestId, :Namespace, :GraceShutdown

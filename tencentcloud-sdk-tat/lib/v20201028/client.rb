@@ -29,6 +29,33 @@ module TencentCloud
         end
 
 
+        # 取消一台或多台CVM实例执行的命令
+
+        # * 如果命令还未下发到agent，任务状态处于处于PENDING、DELIVERING、DELIVER_DELAYED，取消后任务状态是CANCELLED
+        # * 如果命令已下发到agent，任务状态处于RUNNING， 取消后任务状态是TERMINATED
+
+        # @param request: Request instance for CancelInvocation.
+        # @type request: :class:`Tencentcloud::tat::V20201028::CancelInvocationRequest`
+        # @rtype: :class:`Tencentcloud::tat::V20201028::CancelInvocationResponse`
+        def CancelInvocation(request)
+          body = send_request('CancelInvocation', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CancelInvocationResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 此接口用于创建命令。
 
         # @param request: Request instance for CreateCommand.

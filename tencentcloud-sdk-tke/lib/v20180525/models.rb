@@ -5116,10 +5116,13 @@ module TencentCloud
         # @param AutoCreatedEipId: 自动为用户创建的EipId
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AutoCreatedEipId: String
+        # @param PersistStatus: 容器状态是否持久化
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PersistStatus: Boolean
 
-        attr_accessor :EksCiId, :EksCiName, :Memory, :Cpu, :SecurityGroupIds, :RestartPolicy, :Status, :CreationTime, :SucceededTime, :Containers, :EksCiVolume, :SecurityContext, :PrivateIp, :EipAddress, :GpuType, :CpuType, :GpuCount, :VpcId, :SubnetId, :InitContainers, :CamRoleName, :AutoCreatedEipId
+        attr_accessor :EksCiId, :EksCiName, :Memory, :Cpu, :SecurityGroupIds, :RestartPolicy, :Status, :CreationTime, :SucceededTime, :Containers, :EksCiVolume, :SecurityContext, :PrivateIp, :EipAddress, :GpuType, :CpuType, :GpuCount, :VpcId, :SubnetId, :InitContainers, :CamRoleName, :AutoCreatedEipId, :PersistStatus
         
-        def initialize(eksciid=nil, eksciname=nil, memory=nil, cpu=nil, securitygroupids=nil, restartpolicy=nil, status=nil, creationtime=nil, succeededtime=nil, containers=nil, ekscivolume=nil, securitycontext=nil, privateip=nil, eipaddress=nil, gputype=nil, cputype=nil, gpucount=nil, vpcid=nil, subnetid=nil, initcontainers=nil, camrolename=nil, autocreatedeipid=nil)
+        def initialize(eksciid=nil, eksciname=nil, memory=nil, cpu=nil, securitygroupids=nil, restartpolicy=nil, status=nil, creationtime=nil, succeededtime=nil, containers=nil, ekscivolume=nil, securitycontext=nil, privateip=nil, eipaddress=nil, gputype=nil, cputype=nil, gpucount=nil, vpcid=nil, subnetid=nil, initcontainers=nil, camrolename=nil, autocreatedeipid=nil, persiststatus=nil)
           @EksCiId = eksciid
           @EksCiName = eksciname
           @Memory = memory
@@ -5142,6 +5145,7 @@ module TencentCloud
           @InitContainers = initcontainers
           @CamRoleName = camrolename
           @AutoCreatedEipId = autocreatedeipid
+          @PersistStatus = persiststatus
         end
 
         def deserialize(params)
@@ -5187,6 +5191,7 @@ module TencentCloud
           end
           @CamRoleName = params['CamRoleName']
           @AutoCreatedEipId = params['AutoCreatedEipId']
+          @PersistStatus = params['PersistStatus']
         end
       end
 

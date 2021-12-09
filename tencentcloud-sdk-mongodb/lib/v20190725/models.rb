@@ -199,17 +199,21 @@ module TencentCloud
         # @type IP: String
         # @param Count: 对应客户端IP的连接数
         # @type Count: Integer
+        # @param InternalService: 是否为内部ip
+        # @type InternalService: Boolean
 
-        attr_accessor :IP, :Count
+        attr_accessor :IP, :Count, :InternalService
         
-        def initialize(ip=nil, count=nil)
+        def initialize(ip=nil, count=nil, internalservice=nil)
           @IP = ip
           @Count = count
+          @InternalService = internalservice
         end
 
         def deserialize(params)
           @IP = params['IP']
           @Count = params['Count']
+          @InternalService = params['InternalService']
         end
       end
 

@@ -1675,6 +1675,50 @@ module TencentCloud
         end
       end
 
+      # ModifyApplicationReplicas请求参数结构体
+      class ModifyApplicationReplicasRequest < TencentCloud::Common::AbstractModel
+        # @param ApplicationId: 服务id
+        # @type ApplicationId: String
+        # @param EnvironmentId: 环境ID
+        # @type EnvironmentId: String
+        # @param Replicas: 实例数量
+        # @type Replicas: Integer
+        # @param SourceChannel: 来源渠道
+        # @type SourceChannel: Integer
+
+        attr_accessor :ApplicationId, :EnvironmentId, :Replicas, :SourceChannel
+        
+        def initialize(applicationid=nil, environmentid=nil, replicas=nil, sourcechannel=nil)
+          @ApplicationId = applicationid
+          @EnvironmentId = environmentid
+          @Replicas = replicas
+          @SourceChannel = sourcechannel
+        end
+
+        def deserialize(params)
+          @ApplicationId = params['ApplicationId']
+          @EnvironmentId = params['EnvironmentId']
+          @Replicas = params['Replicas']
+          @SourceChannel = params['SourceChannel']
+        end
+      end
+
+      # ModifyApplicationReplicas返回参数结构体
+      class ModifyApplicationReplicasResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyEnvironment请求参数结构体
       class ModifyEnvironmentRequest < TencentCloud::Common::AbstractModel
         # @param EnvironmentId: 环境id

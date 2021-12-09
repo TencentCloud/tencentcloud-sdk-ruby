@@ -1685,6 +1685,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 下发RRPC消息
+
+        # @param request: Request instance for PublishRRPCMessage.
+        # @type request: :class:`Tencentcloud::iotexplorer::V20190423::PublishRRPCMessageRequest`
+        # @rtype: :class:`Tencentcloud::iotexplorer::V20190423::PublishRRPCMessageResponse`
+        def PublishRRPCMessage(request)
+          body = send_request('PublishRRPCMessage', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = PublishRRPCMessageResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 产品开发完成并测试通过后，通过发布产品将产品设置为发布状态
 
         # @param request: Request instance for ReleaseStudioProduct.

@@ -958,6 +958,53 @@ module TencentCloud
         end
       end
 
+      # DescribeDomainAliasList请求参数结构体
+      class DescribeDomainAliasListRequest < TencentCloud::Common::AbstractModel
+        # @param Domain: 域名
+        # @type Domain: String
+        # @param DomainId: 域名ID,域名ID，参数 DomainId 优先级比参数 Domain 高，如果传递参数 DomainId 将忽略参数 Domain
+        # @type DomainId: Integer
+
+        attr_accessor :Domain, :DomainId
+        
+        def initialize(domain=nil, domainid=nil)
+          @Domain = domain
+          @DomainId = domainid
+        end
+
+        def deserialize(params)
+          @Domain = params['Domain']
+          @DomainId = params['DomainId']
+        end
+      end
+
+      # DescribeDomainAliasList返回参数结构体
+      class DescribeDomainAliasListResponse < TencentCloud::Common::AbstractModel
+        # @param DomainAliasList: 域名别名列表
+        # @type DomainAliasList: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :DomainAliasList, :RequestId
+        
+        def initialize(domainaliaslist=nil, requestid=nil)
+          @DomainAliasList = domainaliaslist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['DomainAliasList'].nil?
+            @DomainAliasList = []
+            params['DomainAliasList'].each do |i|
+              domainaliasinfo_tmp = DomainAliasInfo.new
+              domainaliasinfo_tmp.deserialize(i)
+              @DomainAliasList << domainaliasinfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeDomainList请求参数结构体
       class DescribeDomainListRequest < TencentCloud::Common::AbstractModel
         # @param Type: 域名分组类型，默认为ALL。可取值为ALL，MINE，SHARE，ISMARK，PAUSE，VIP，RECENT，SHARE_OUT。
@@ -1496,6 +1543,26 @@ module TencentCloud
             @UserInfo.deserialize(params['UserInfo'])
           end
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 域名别名信息
+      class DomainAliasInfo < TencentCloud::Common::AbstractModel
+        # @param Id: 域名别名ID
+        # @type Id: Integer
+        # @param DomainAlias: 域名别名
+        # @type DomainAlias: String
+
+        attr_accessor :Id, :DomainAlias
+        
+        def initialize(id=nil, domainalias=nil)
+          @Id = id
+          @DomainAlias = domainalias
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @DomainAlias = params['DomainAlias']
         end
       end
 

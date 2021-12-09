@@ -53,6 +53,44 @@ module TencentCloud
         end
       end
 
+      # CancelInvocation请求参数结构体
+      class CancelInvocationRequest < TencentCloud::Common::AbstractModel
+        # @param InvocationId: 执行活动ID
+        # @type InvocationId: String
+        # @param InstanceIds: 实例ID列表，上限100。支持实例类型：
+        # <li> CVM
+        # <li> LIGHTHOUSE
+        # @type InstanceIds: Array
+
+        attr_accessor :InvocationId, :InstanceIds
+        
+        def initialize(invocationid=nil, instanceids=nil)
+          @InvocationId = invocationid
+          @InstanceIds = instanceids
+        end
+
+        def deserialize(params)
+          @InvocationId = params['InvocationId']
+          @InstanceIds = params['InstanceIds']
+        end
+      end
+
+      # CancelInvocation返回参数结构体
+      class CancelInvocationResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 命令详情。
       class Command < TencentCloud::Common::AbstractModel
         # @param CommandId: 命令ID。

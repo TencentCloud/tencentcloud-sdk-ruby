@@ -1233,16 +1233,20 @@ module TencentCloud
         # @param ResultDetail: 识别结果详情，包含每个句子中的词时间偏移，一般用于生成字幕的场景。(录音识别请求中ResTextFormat=1时该字段不为空)
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResultDetail: Array
+        # @param AudioDuration: 音频时长(秒)。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AudioDuration: Float
 
-        attr_accessor :TaskId, :Status, :StatusStr, :Result, :ErrorMsg, :ResultDetail
+        attr_accessor :TaskId, :Status, :StatusStr, :Result, :ErrorMsg, :ResultDetail, :AudioDuration
         
-        def initialize(taskid=nil, status=nil, statusstr=nil, result=nil, errormsg=nil, resultdetail=nil)
+        def initialize(taskid=nil, status=nil, statusstr=nil, result=nil, errormsg=nil, resultdetail=nil, audioduration=nil)
           @TaskId = taskid
           @Status = status
           @StatusStr = statusstr
           @Result = result
           @ErrorMsg = errormsg
           @ResultDetail = resultdetail
+          @AudioDuration = audioduration
         end
 
         def deserialize(params)
@@ -1259,6 +1263,7 @@ module TencentCloud
               @ResultDetail << sentencedetail_tmp
             end
           end
+          @AudioDuration = params['AudioDuration']
         end
       end
 

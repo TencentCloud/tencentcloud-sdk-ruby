@@ -4581,6 +4581,56 @@ module TencentCloud
         end
       end
 
+      # PublishRRPCMessage请求参数结构体
+      class PublishRRPCMessageRequest < TencentCloud::Common::AbstractModel
+        # @param ProductId: 产品ID
+        # @type ProductId: String
+        # @param DeviceName: 设备名称
+        # @type DeviceName: String
+        # @param Payload: 消息内容，utf8编码
+        # @type Payload: String
+
+        attr_accessor :ProductId, :DeviceName, :Payload
+        
+        def initialize(productid=nil, devicename=nil, payload=nil)
+          @ProductId = productid
+          @DeviceName = devicename
+          @Payload = payload
+        end
+
+        def deserialize(params)
+          @ProductId = params['ProductId']
+          @DeviceName = params['DeviceName']
+          @Payload = params['Payload']
+        end
+      end
+
+      # PublishRRPCMessage返回参数结构体
+      class PublishRRPCMessageResponse < TencentCloud::Common::AbstractModel
+        # @param MessageId: RRPC消息ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MessageId: Integer
+        # @param PayloadBase64: 设备回复的消息内容，采用base64编码
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PayloadBase64: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :MessageId, :PayloadBase64, :RequestId
+        
+        def initialize(messageid=nil, payloadbase64=nil, requestid=nil)
+          @MessageId = messageid
+          @PayloadBase64 = payloadbase64
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @MessageId = params['MessageId']
+          @PayloadBase64 = params['PayloadBase64']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ReleaseStudioProduct请求参数结构体
       class ReleaseStudioProductRequest < TencentCloud::Common::AbstractModel
         # @param ProductId: 产品ID

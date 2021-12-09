@@ -7607,10 +7607,28 @@ module TencentCloud
         # @param TradeQrcode: 二维码字符串
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TradeQrcode: String
+        # @param WechatAppId: 微信返回调起小程序/原生JS支付的appid参数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type WechatAppId: String
+        # @param WechatTimeStamp: 微信返回调起小程序/原生JS支付的timeStamp参数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type WechatTimeStamp: String
+        # @param WechatNonceStr: 微信返回调起小程序/原生JS支付的nonceStr参数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type WechatNonceStr: String
+        # @param WechatSignType: 微信返回调起小程序/原生JS支付的signType参数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type WechatSignType: String
+        # @param WechatPackage: 微信返回调起小程序/原生JS支付的package参数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type WechatPackage: String
+        # @param WechatPaySign: 微信返回调起小程序/原生JS支付的paySign参数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type WechatPaySign: String
 
-        attr_accessor :OrderNo, :DeveloperNo, :TradeDiscountAmount, :PayName, :OrderMerchantId, :TradeAccount, :TradeAmount, :CurrencySign, :TradePayTime, :ShopOrderId, :PayTag, :Status, :OrderCurrency, :TradeQrcode
+        attr_accessor :OrderNo, :DeveloperNo, :TradeDiscountAmount, :PayName, :OrderMerchantId, :TradeAccount, :TradeAmount, :CurrencySign, :TradePayTime, :ShopOrderId, :PayTag, :Status, :OrderCurrency, :TradeQrcode, :WechatAppId, :WechatTimeStamp, :WechatNonceStr, :WechatSignType, :WechatPackage, :WechatPaySign
         
-        def initialize(orderno=nil, developerno=nil, tradediscountamount=nil, payname=nil, ordermerchantid=nil, tradeaccount=nil, tradeamount=nil, currencysign=nil, tradepaytime=nil, shoporderid=nil, paytag=nil, status=nil, ordercurrency=nil, tradeqrcode=nil)
+        def initialize(orderno=nil, developerno=nil, tradediscountamount=nil, payname=nil, ordermerchantid=nil, tradeaccount=nil, tradeamount=nil, currencysign=nil, tradepaytime=nil, shoporderid=nil, paytag=nil, status=nil, ordercurrency=nil, tradeqrcode=nil, wechatappid=nil, wechattimestamp=nil, wechatnoncestr=nil, wechatsigntype=nil, wechatpackage=nil, wechatpaysign=nil)
           @OrderNo = orderno
           @DeveloperNo = developerno
           @TradeDiscountAmount = tradediscountamount
@@ -7625,6 +7643,12 @@ module TencentCloud
           @Status = status
           @OrderCurrency = ordercurrency
           @TradeQrcode = tradeqrcode
+          @WechatAppId = wechatappid
+          @WechatTimeStamp = wechattimestamp
+          @WechatNonceStr = wechatnoncestr
+          @WechatSignType = wechatsigntype
+          @WechatPackage = wechatpackage
+          @WechatPaySign = wechatpaysign
         end
 
         def deserialize(params)
@@ -7642,6 +7666,12 @@ module TencentCloud
           @Status = params['Status']
           @OrderCurrency = params['OrderCurrency']
           @TradeQrcode = params['TradeQrcode']
+          @WechatAppId = params['WechatAppId']
+          @WechatTimeStamp = params['WechatTimeStamp']
+          @WechatNonceStr = params['WechatNonceStr']
+          @WechatSignType = params['WechatSignType']
+          @WechatPackage = params['WechatPackage']
+          @WechatPaySign = params['WechatPaySign']
         end
       end
 
@@ -15430,10 +15460,18 @@ module TencentCloud
         # @type PayName: String
         # @param Royalty: 0-不分账，1-需分账。为1时标记为待分账订单，待分账订单不会进行清算。不传默认为不分账。
         # @type Royalty: String
+        # @param Jsapi: 小程序支付参数：填默认值 1
+        # @type Jsapi: String
+        # @param SubAppId: 小程序支付参数：
+        # 当前调起支付的小程序APPID
+        # @type SubAppId: String
+        # @param SubOpenId: 小程序支付参数:
+        # 用户在子商户appid下的唯一标识。
+        # @type SubOpenId: String
 
-        attr_accessor :DeveloperNo, :OpenId, :NotifyUrl, :OpenKey, :PayTag, :TradeAmount, :Remark, :Tag, :IgnoreAmount, :AuthCode, :OriginalAmount, :OrderName, :JumpUrl, :Profile, :TradeResult, :TradeAccount, :TradeNo, :DiscountAmount, :PayName, :Royalty
+        attr_accessor :DeveloperNo, :OpenId, :NotifyUrl, :OpenKey, :PayTag, :TradeAmount, :Remark, :Tag, :IgnoreAmount, :AuthCode, :OriginalAmount, :OrderName, :JumpUrl, :Profile, :TradeResult, :TradeAccount, :TradeNo, :DiscountAmount, :PayName, :Royalty, :Jsapi, :SubAppId, :SubOpenId
         
-        def initialize(developerno=nil, openid=nil, notifyurl=nil, openkey=nil, paytag=nil, tradeamount=nil, remark=nil, tag=nil, ignoreamount=nil, authcode=nil, originalamount=nil, ordername=nil, jumpurl=nil, profile=nil, traderesult=nil, tradeaccount=nil, tradeno=nil, discountamount=nil, payname=nil, royalty=nil)
+        def initialize(developerno=nil, openid=nil, notifyurl=nil, openkey=nil, paytag=nil, tradeamount=nil, remark=nil, tag=nil, ignoreamount=nil, authcode=nil, originalamount=nil, ordername=nil, jumpurl=nil, profile=nil, traderesult=nil, tradeaccount=nil, tradeno=nil, discountamount=nil, payname=nil, royalty=nil, jsapi=nil, subappid=nil, subopenid=nil)
           @DeveloperNo = developerno
           @OpenId = openid
           @NotifyUrl = notifyurl
@@ -15454,6 +15492,9 @@ module TencentCloud
           @DiscountAmount = discountamount
           @PayName = payname
           @Royalty = royalty
+          @Jsapi = jsapi
+          @SubAppId = subappid
+          @SubOpenId = subopenid
         end
 
         def deserialize(params)
@@ -15477,6 +15518,9 @@ module TencentCloud
           @DiscountAmount = params['DiscountAmount']
           @PayName = params['PayName']
           @Royalty = params['Royalty']
+          @Jsapi = params['Jsapi']
+          @SubAppId = params['SubAppId']
+          @SubOpenId = params['SubOpenId']
         end
       end
 

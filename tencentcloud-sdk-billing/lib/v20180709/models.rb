@@ -106,13 +106,13 @@ module TencentCloud
         # @param Tags: Tag 信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Tags: Array
-        # @param BusinessCode: 商品名称代码
+        # @param BusinessCode: 产品名称代码
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BusinessCode: String
-        # @param ProductCode: 子商品名称代码
+        # @param ProductCode: 子产品名称代码
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProductCode: String
-        # @param ActionType: 交易类型代码（未开放的字段）
+        # @param ActionType: 交易类型代码
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ActionType: String
         # @param RegionId: 区域ID
@@ -287,7 +287,7 @@ module TencentCloud
       class BillResourceSummary < TencentCloud::Common::AbstractModel
         # @param BusinessCodeName: 产品名称：云产品大类，如云服务器CVM、云数据库MySQL
         # @type BusinessCodeName: String
-        # @param ProductCodeName: 子产品：云产品子类，如云服务器CVM-标准型S1， 当没有获取到子产品名称时，返回"-"
+        # @param ProductCodeName: 子产品名称：云产品子类，如云服务器CVM-标准型S1， 当没有获取到子产品名称时，返回"-"
         # @type ProductCodeName: String
         # @param PayModeName: 计费模式：包年包月和按量计费
         # @type PayModeName: String
@@ -347,9 +347,9 @@ module TencentCloud
         # @type OwnerUin: String
         # @param OperateUin: 操作者uin,无值则返回"-"
         # @type OperateUin: String
-        # @param BusinessCode: 商品名称代码
+        # @param BusinessCode: 产品名称代码
         # @type BusinessCode: String
-        # @param ProductCode: 子商品名称代码
+        # @param ProductCode: 子产品名称代码
         # @type ProductCode: String
         # @param RegionId: 区域ID
         # @type RegionId: Integer
@@ -514,7 +514,7 @@ module TencentCloud
 
       # 按产品汇总产品详情
       class BusinessSummaryOverviewItem < TencentCloud::Common::AbstractModel
-        # @param BusinessCode: 产品码
+        # @param BusinessCode: 产品名称代码
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BusinessCode: String
         # @param BusinessCodeName: 产品名称：云产品大类，如云服务器CVM、云数据库MySQL
@@ -595,7 +595,7 @@ module TencentCloud
 
       # 产品过滤条件
       class ConditionBusiness < TencentCloud::Common::AbstractModel
-        # @param BusinessCode: 产品码
+        # @param BusinessCode: 产品名称代码
         # @type BusinessCode: String
         # @param BusinessCodeName: 产品名称
         # @type BusinessCodeName: String
@@ -677,7 +677,7 @@ module TencentCloud
       class Conditions < TencentCloud::Common::AbstractModel
         # @param TimeRange: 只支持6和12两个值
         # @type TimeRange: Integer
-        # @param BusinessCode: 产品编码
+        # @param BusinessCode: 产品名称代码
         # @type BusinessCode: String
         # @param ProjectId: 项目ID
         # @type ProjectId: Integer
@@ -687,9 +687,9 @@ module TencentCloud
         # @type PayMode: String
         # @param ResourceKeyword: 资源关键字
         # @type ResourceKeyword: String
-        # @param BusinessCodes: 产品编码
+        # @param BusinessCodes: 产品名称代码
         # @type BusinessCodes: Array
-        # @param ProductCodes: 子产品编码
+        # @param ProductCodes: 子产品名称代码
         # @type ProductCodes: Array
         # @param RegionIds: 地域ID
         # @type RegionIds: Array
@@ -763,7 +763,7 @@ module TencentCloud
 
       # 消耗按产品汇总详情
       class ConsumptionBusinessSummaryDataItem < TencentCloud::Common::AbstractModel
-        # @param BusinessCode: 产品码
+        # @param BusinessCode: 产品名称代码
         # @type BusinessCode: String
         # @param BusinessCodeName: 产品名称
         # @type BusinessCodeName: String
@@ -954,7 +954,7 @@ module TencentCloud
         # @type PayMode: String
         # @param PayModeName: 付费模式名称
         # @type PayModeName: String
-        # @param BusinessCode: 产品码
+        # @param BusinessCode: 产品名称代码
         # @type BusinessCode: String
         # @param BusinessCodeName: 产品名称
         # @type BusinessCodeName: String
@@ -1137,9 +1137,9 @@ module TencentCloud
       class CostDetail < TencentCloud::Common::AbstractModel
         # @param PayerUin: 支付者uin
         # @type PayerUin: String
-        # @param BusinessCodeName: 业务名称
+        # @param BusinessCodeName: 产品名称
         # @type BusinessCodeName: String
-        # @param ProductCodeName: 产品名称
+        # @param ProductCodeName: 子产品名称
         # @type ProductCodeName: String
         # @param PayModeName: 计费模式名称
         # @type PayModeName: String
@@ -1166,7 +1166,7 @@ module TencentCloud
         # @type FeeEndTime: String
         # @param ComponentSet: 组件明细
         # @type ComponentSet: Array
-        # @param ProductCode: 产品代码
+        # @param ProductCode: 子产品名称代码
         # @type ProductCode: String
 
         attr_accessor :PayerUin, :BusinessCodeName, :ProductCodeName, :PayModeName, :ProjectName, :RegionName, :ZoneName, :ResourceId, :ResourceName, :ActionTypeName, :OrderId, :BillId, :FeeBeginTime, :FeeEndTime, :ComponentSet, :ProductCode
@@ -1429,11 +1429,41 @@ module TencentCloud
         # @type PayMode: String
         # @param ResourceId: 查询指定资源信息
         # @type ResourceId: String
-        # @param ActionType: 查询交易类型。如 按量计费日结，按量计费小时结 等
+        # @param ActionType: 查询交易类型，如下：
+        # 包年包月新购
+        # 包年包月续费
+        # 包年包月配置变更
+        # 包年包月退款
+        # 按量计费扣费
+        # 按量计费小时结
+        # 按量计费日结
+        # 按量计费月结
+        # 线下项目扣费
+        # 线下产品扣费
+        # 调账扣费
+        # 调账补偿
+        # 竞价实例小时结
+        # 线下项目调账补偿
+        # 线下产品调账补偿
+        # 优惠扣费
+        # 优惠补偿
+        # 按量计费迁入资源
+        # 按量计费迁出资源
+        # 包年包月迁入资源
+        # 包年包月迁出资源
+        # 预付费用
+        # 小时费用
+        # 预留实例退款
+        # 按量计费冲正
+        # 按量计费冲正
+        # 按量计费冲正
+        # 按量计费冲正
+        # 按量计费冲正
+        # 包年包月转按量
         # @type ActionType: String
         # @param ProjectId: 项目ID:资源所属项目ID
         # @type ProjectId: Integer
-        # @param BusinessCode: 商品名称代码
+        # @param BusinessCode: 产品名称代码
         # 备注：如需获取当月使用过的BusinessCode，请调用API：<a href="https://cloud.tencent.com/document/product/555/35761">获取产品汇总费用分布</a>
         # @type BusinessCode: String
 
@@ -1681,12 +1711,13 @@ module TencentCloud
         # 按量计费冲正
         # 按量计费冲正
         # 按量计费冲正
+        # 包年包月转按量
         # @type ActionType: String
         # @param ResourceId: 查询指定资源信息
         # @type ResourceId: String
         # @param PayMode: 付费模式 prePay/postPay
         # @type PayMode: String
-        # @param BusinessCode: 商品名称代码
+        # @param BusinessCode: 产品名称代码
         # 备注：如需获取当月使用过的BusinessCode，请调用API：<a href="https://cloud.tencent.com/document/product/555/35761">获取产品汇总费用分布</a>
         # @type BusinessCode: String
 

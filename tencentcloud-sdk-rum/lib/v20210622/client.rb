@@ -53,6 +53,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 获取DescribeDataEventUrl信息
+
+        # @param request: Request instance for DescribeDataEventUrl.
+        # @type request: :class:`Tencentcloud::rum::V20210622::DescribeDataEventUrlRequest`
+        # @rtype: :class:`Tencentcloud::rum::V20210622::DescribeDataEventUrlResponse`
+        def DescribeDataEventUrl(request)
+          body = send_request('DescribeDataEventUrl', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeDataEventUrlResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 获取LogUrlStatistics信息
 
         # @param request: Request instance for DescribeDataLogUrlStatistics.
@@ -87,6 +111,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeDataPerformancePageResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取DescribeDataPvUrlStatistics信息
+
+        # @param request: Request instance for DescribeDataPvUrlStatistics.
+        # @type request: :class:`Tencentcloud::rum::V20210622::DescribeDataPvUrlStatisticsRequest`
+        # @rtype: :class:`Tencentcloud::rum::V20210622::DescribeDataPvUrlStatisticsResponse`
+        def DescribeDataPvUrlStatistics(request)
+          body = send_request('DescribeDataPvUrlStatistics', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeDataPvUrlStatisticsResponse.new
             model.deserialize(response['Response'])
             model
           else

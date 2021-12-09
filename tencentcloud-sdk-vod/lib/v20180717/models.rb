@@ -467,12 +467,19 @@ module TencentCloud
       # 智能分类结果信息
       class AiAnalysisTaskClassificationOutput < TencentCloud::Common::AbstractModel
         # @param ClassificationSet: 视频智能分类列表。
+        # <font color=red>注意</font> ：该列表最多仅展示前 100 个元素。如希望获得完整结果，请从 ClassificationSetFileUrl 对应的文件中获取。
         # @type ClassificationSet: Array
+        # @param ClassificationSetFileUrl: 视频智能分类列表文件 URL。文件的内容为 JSON，数据结构与 ClassificationSet 字段一致。 （文件不会永久存储，到达 ClassificationSetFileUrlExpireTime 时间点后文件将被删除）。
+        # @type ClassificationSetFileUrl: String
+        # @param ClassificationSetFileUrlExpireTime: 视频智能分类列表文件 URL 失效时间，使用  [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#I)。
+        # @type ClassificationSetFileUrlExpireTime: String
 
-        attr_accessor :ClassificationSet
+        attr_accessor :ClassificationSet, :ClassificationSetFileUrl, :ClassificationSetFileUrlExpireTime
         
-        def initialize(classificationset=nil)
+        def initialize(classificationset=nil, classificationsetfileurl=nil, classificationsetfileurlexpiretime=nil)
           @ClassificationSet = classificationset
+          @ClassificationSetFileUrl = classificationsetfileurl
+          @ClassificationSetFileUrlExpireTime = classificationsetfileurlexpiretime
         end
 
         def deserialize(params)
@@ -484,6 +491,8 @@ module TencentCloud
               @ClassificationSet << mediaaianalysisclassificationitem_tmp
             end
           end
+          @ClassificationSetFileUrl = params['ClassificationSetFileUrl']
+          @ClassificationSetFileUrlExpireTime = params['ClassificationSetFileUrlExpireTime']
         end
       end
 
@@ -549,12 +558,19 @@ module TencentCloud
       # 智能封面结果信息
       class AiAnalysisTaskCoverOutput < TencentCloud::Common::AbstractModel
         # @param CoverSet: 智能封面列表。
+        # <font color=red>注意</font> ：该列表最多仅展示前 100 个元素。如希望获得完整结果，请从 CoverSetFileUrl 对应的文件中获取。
         # @type CoverSet: Array
+        # @param CoverSetFileUrl: 智能封面列表文件 URL。文件的内容为 JSON，数据结构与 CoverSet 字段一致。 （文件不会永久存储，到达 CoverSetFileUrlExpireTime 时间点后文件将被删除）。
+        # @type CoverSetFileUrl: String
+        # @param CoverSetFileUrlExpireTime: 智能封面列表文件 URL 失效时间，使用  [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#I)。
+        # @type CoverSetFileUrlExpireTime: String
 
-        attr_accessor :CoverSet
+        attr_accessor :CoverSet, :CoverSetFileUrl, :CoverSetFileUrlExpireTime
         
-        def initialize(coverset=nil)
+        def initialize(coverset=nil, coversetfileurl=nil, coversetfileurlexpiretime=nil)
           @CoverSet = coverset
+          @CoverSetFileUrl = coversetfileurl
+          @CoverSetFileUrlExpireTime = coversetfileurlexpiretime
         end
 
         def deserialize(params)
@@ -566,6 +582,8 @@ module TencentCloud
               @CoverSet << mediaaianalysiscoveritem_tmp
             end
           end
+          @CoverSetFileUrl = params['CoverSetFileUrl']
+          @CoverSetFileUrlExpireTime = params['CoverSetFileUrlExpireTime']
         end
       end
 
@@ -631,12 +649,19 @@ module TencentCloud
       # 智能按帧标签结果信息
       class AiAnalysisTaskFrameTagOutput < TencentCloud::Common::AbstractModel
         # @param SegmentSet: 视频按帧标签列表。
+        # <font color=red>注意</font> ：该列表最多仅展示前 100 个元素。如希望获得完整结果，请从 SegmentSetFileUrl 对应的文件中获取。
         # @type SegmentSet: Array
+        # @param SegmentSetFileUrl: 视频按帧标签列表文件 URL。文件的内容为 JSON，数据结构与 SegmentSet 字段一致。 （文件不会永久存储，到达SegmentSetFileUrlExpireTime 时间点后文件将被删除）。
+        # @type SegmentSetFileUrl: String
+        # @param SegmentSetFileUrlExpireTime: 视频按帧标签列表文件 URL 失效时间，使用  [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#I)。
+        # @type SegmentSetFileUrlExpireTime: String
 
-        attr_accessor :SegmentSet
+        attr_accessor :SegmentSet, :SegmentSetFileUrl, :SegmentSetFileUrlExpireTime
         
-        def initialize(segmentset=nil)
+        def initialize(segmentset=nil, segmentsetfileurl=nil, segmentsetfileurlexpiretime=nil)
           @SegmentSet = segmentset
+          @SegmentSetFileUrl = segmentsetfileurl
+          @SegmentSetFileUrlExpireTime = segmentsetfileurlexpiretime
         end
 
         def deserialize(params)
@@ -648,6 +673,8 @@ module TencentCloud
               @SegmentSet << mediaaianalysisframetagsegmentitem_tmp
             end
           end
+          @SegmentSetFileUrl = params['SegmentSetFileUrl']
+          @SegmentSetFileUrlExpireTime = params['SegmentSetFileUrlExpireTime']
         end
       end
 
@@ -713,12 +740,19 @@ module TencentCloud
       # 智能精彩片段结果信息
       class AiAnalysisTaskHighlightOutput < TencentCloud::Common::AbstractModel
         # @param HighlightSet: 视频智能精彩片段列表。
+        # <font color=red>注意</font> ：该列表最多仅展示前 100 个元素。如希望获得完整结果，请从 HighlightSetFileUrl 对应的文件中获取。
         # @type HighlightSet: Array
+        # @param HighlightSetFileUrl: 视频智能精彩片段列表文件 URL。文件的内容为 JSON，数据结构与 HighlightSet 字段一致。 （文件不会永久存储，到达 HighlightSetFileUrlExpireTime 时间点后文件将被删除）。
+        # @type HighlightSetFileUrl: String
+        # @param HighlightSetFileUrlExpireTime: 视频智能精彩片段列表文件 URL 失效时间，使用  [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#I)。
+        # @type HighlightSetFileUrlExpireTime: String
 
-        attr_accessor :HighlightSet
+        attr_accessor :HighlightSet, :HighlightSetFileUrl, :HighlightSetFileUrlExpireTime
         
-        def initialize(highlightset=nil)
+        def initialize(highlightset=nil, highlightsetfileurl=nil, highlightsetfileurlexpiretime=nil)
           @HighlightSet = highlightset
+          @HighlightSetFileUrl = highlightsetfileurl
+          @HighlightSetFileUrlExpireTime = highlightsetfileurlexpiretime
         end
 
         def deserialize(params)
@@ -730,6 +764,8 @@ module TencentCloud
               @HighlightSet << mediaaianalysishighlightitem_tmp
             end
           end
+          @HighlightSetFileUrl = params['HighlightSetFileUrl']
+          @HighlightSetFileUrlExpireTime = params['HighlightSetFileUrlExpireTime']
         end
       end
 
@@ -811,12 +847,19 @@ module TencentCloud
       # 智能标签结果信息
       class AiAnalysisTaskTagOutput < TencentCloud::Common::AbstractModel
         # @param TagSet: 视频智能标签列表。
+        # <font color=red>注意</font> ：该列表最多仅展示前 100 个元素。如希望获得完整结果，请从 TagSetFileUrl 对应的文件中获取。
         # @type TagSet: Array
+        # @param TagSetFileUrl: 视频智能标签列表文件 URL。文件的内容为 JSON，数据结构与 TagSet 字段一致。 （文件不会永久存储，到达 TagSetFileUrlExpireTime 时间点后文件将被删除）。
+        # @type TagSetFileUrl: String
+        # @param TagSetFileUrlExpireTime: 视频智能标签列表文件 URL 失效时间，使用  [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#I)。
+        # @type TagSetFileUrlExpireTime: String
 
-        attr_accessor :TagSet
+        attr_accessor :TagSet, :TagSetFileUrl, :TagSetFileUrlExpireTime
         
-        def initialize(tagset=nil)
+        def initialize(tagset=nil, tagsetfileurl=nil, tagsetfileurlexpiretime=nil)
           @TagSet = tagset
+          @TagSetFileUrl = tagsetfileurl
+          @TagSetFileUrlExpireTime = tagsetfileurlexpiretime
         end
 
         def deserialize(params)
@@ -828,6 +871,8 @@ module TencentCloud
               @TagSet << mediaaianalysistagitem_tmp
             end
           end
+          @TagSetFileUrl = params['TagSetFileUrl']
+          @TagSetFileUrlExpireTime = params['TagSetFileUrlExpireTime']
         end
       end
 
@@ -2211,14 +2256,21 @@ module TencentCloud
         # <li>block。</li>
         # @type Suggestion: String
         # @param SegmentSet: Asr 文字有涉政、敏感嫌疑的视频片段列表。
+        # <font color=red>注意</font> ：该列表最多仅展示前 100 个元素。如希望获得完整结果，请从 SegmentSetFileUrl 对应的文件中获取。
         # @type SegmentSet: Array
+        # @param SegmentSetFileUrl: Asr 文字有涉政、敏感嫌疑的视频片段列表文件 URL。文件的内容为 JSON，数据结构与 SegmentSet 字段一致。 （文件不会永久存储，到达 SegmentSetFileUrlExpireTime 时间点后文件将被删除）。
+        # @type SegmentSetFileUrl: String
+        # @param SegmentSetFileUrlExpireTime: Asr 文字有涉政、敏感嫌疑的视频片段列表文件 URL 失效时间，使用  [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#I)。
+        # @type SegmentSetFileUrlExpireTime: String
 
-        attr_accessor :Confidence, :Suggestion, :SegmentSet
+        attr_accessor :Confidence, :Suggestion, :SegmentSet, :SegmentSetFileUrl, :SegmentSetFileUrlExpireTime
         
-        def initialize(confidence=nil, suggestion=nil, segmentset=nil)
+        def initialize(confidence=nil, suggestion=nil, segmentset=nil, segmentsetfileurl=nil, segmentsetfileurlexpiretime=nil)
           @Confidence = confidence
           @Suggestion = suggestion
           @SegmentSet = segmentset
+          @SegmentSetFileUrl = segmentsetfileurl
+          @SegmentSetFileUrlExpireTime = segmentsetfileurlexpiretime
         end
 
         def deserialize(params)
@@ -2232,6 +2284,8 @@ module TencentCloud
               @SegmentSet << mediacontentreviewasrtextsegmentitem_tmp
             end
           end
+          @SegmentSetFileUrl = params['SegmentSetFileUrl']
+          @SegmentSetFileUrlExpireTime = params['SegmentSetFileUrlExpireTime']
         end
       end
 
@@ -2261,14 +2315,21 @@ module TencentCloud
         # <li>block。</li>
         # @type Suggestion: String
         # @param SegmentSet: Ocr 文字有涉政、敏感嫌疑的视频片段列表。
+        # <font color=red>注意</font> ：该列表最多仅展示前 100 个元素。如希望获得完整结果，请从 SegmentSetFileUrl 对应的文件中获取。
         # @type SegmentSet: Array
+        # @param SegmentSetFileUrl: Ocr 文字有涉政、敏感嫌疑的视频片段列表文件 URL。文件的内容为 JSON，数据结构与 SegmentSet 字段一致。 （文件不会永久存储，到达 SegmentSetFileUrlExpireTime 时间点后文件将被删除）。
+        # @type SegmentSetFileUrl: String
+        # @param SegmentSetFileUrlExpireTime: Ocr 文字有涉政、敏感嫌疑的视频片段列表文件 URL 失效时间，使用  [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#I)。
+        # @type SegmentSetFileUrlExpireTime: String
 
-        attr_accessor :Confidence, :Suggestion, :SegmentSet
+        attr_accessor :Confidence, :Suggestion, :SegmentSet, :SegmentSetFileUrl, :SegmentSetFileUrlExpireTime
         
-        def initialize(confidence=nil, suggestion=nil, segmentset=nil)
+        def initialize(confidence=nil, suggestion=nil, segmentset=nil, segmentsetfileurl=nil, segmentsetfileurlexpiretime=nil)
           @Confidence = confidence
           @Suggestion = suggestion
           @SegmentSet = segmentset
+          @SegmentSetFileUrl = segmentsetfileurl
+          @SegmentSetFileUrlExpireTime = segmentsetfileurlexpiretime
         end
 
         def deserialize(params)
@@ -2282,6 +2343,8 @@ module TencentCloud
               @SegmentSet << mediacontentreviewocrtextsegmentitem_tmp
             end
           end
+          @SegmentSetFileUrl = params['SegmentSetFileUrl']
+          @SegmentSetFileUrlExpireTime = params['SegmentSetFileUrlExpireTime']
         end
       end
 
@@ -2317,15 +2380,22 @@ module TencentCloud
         # <li>politician：政治人物。</li>
         # @type Label: String
         # @param SegmentSet: 有涉政嫌疑的视频片段列表。
+        # <font color=red>注意</font> ：该列表最多仅展示前 100 个元素。如希望获得完整结果，请从 SegmentSetFileUrl 对应的文件中获取。
         # @type SegmentSet: Array
+        # @param SegmentSetFileUrl: 涉政嫌疑的视频片段列表文件 URL。文件的内容为 JSON，数据结构与 SegmentSet 字段一致。 （文件不会永久存储，到达 SegmentSetFileUrlExpireTime 时间点后文件将被删除）。
+        # @type SegmentSetFileUrl: String
+        # @param SegmentSetFileUrlExpireTime: 涉政嫌疑的视频片段列表文件 URL 失效时间，使用  [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#I)。
+        # @type SegmentSetFileUrlExpireTime: String
 
-        attr_accessor :Confidence, :Suggestion, :Label, :SegmentSet
+        attr_accessor :Confidence, :Suggestion, :Label, :SegmentSet, :SegmentSetFileUrl, :SegmentSetFileUrlExpireTime
         
-        def initialize(confidence=nil, suggestion=nil, label=nil, segmentset=nil)
+        def initialize(confidence=nil, suggestion=nil, label=nil, segmentset=nil, segmentsetfileurl=nil, segmentsetfileurlexpiretime=nil)
           @Confidence = confidence
           @Suggestion = suggestion
           @Label = label
           @SegmentSet = segmentset
+          @SegmentSetFileUrl = segmentsetfileurl
+          @SegmentSetFileUrlExpireTime = segmentsetfileurlexpiretime
         end
 
         def deserialize(params)
@@ -2340,6 +2410,8 @@ module TencentCloud
               @SegmentSet << mediacontentreviewpoliticalsegmentitem_tmp
             end
           end
+          @SegmentSetFileUrl = params['SegmentSetFileUrl']
+          @SegmentSetFileUrlExpireTime = params['SegmentSetFileUrlExpireTime']
         end
       end
 
@@ -2369,14 +2441,21 @@ module TencentCloud
         # <li>block。</li>
         # @type Suggestion: String
         # @param SegmentSet: Asr 文字有涉黄嫌疑的视频片段列表。
+        # <font color=red>注意</font> ：该列表最多仅展示前 100 个元素。如希望获得完整结果，请从 SegmentSetFileUrl 对应的文件中获取。
         # @type SegmentSet: Array
+        # @param SegmentSetFileUrl: Asr 文字有涉黄嫌疑的视频片段列表文件 URL。文件的内容为 JSON，数据结构与 SegmentSet 字段一致。 （文件不会永久存储，到达 SegmentSetFileUrlExpireTime 时间点后文件将被删除）。
+        # @type SegmentSetFileUrl: String
+        # @param SegmentSetFileUrlExpireTime: Asr 文字有涉黄嫌疑的视频片段列表文件 URL 失效时间，使用  [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#I)。
+        # @type SegmentSetFileUrlExpireTime: String
 
-        attr_accessor :Confidence, :Suggestion, :SegmentSet
+        attr_accessor :Confidence, :Suggestion, :SegmentSet, :SegmentSetFileUrl, :SegmentSetFileUrlExpireTime
         
-        def initialize(confidence=nil, suggestion=nil, segmentset=nil)
+        def initialize(confidence=nil, suggestion=nil, segmentset=nil, segmentsetfileurl=nil, segmentsetfileurlexpiretime=nil)
           @Confidence = confidence
           @Suggestion = suggestion
           @SegmentSet = segmentset
+          @SegmentSetFileUrl = segmentsetfileurl
+          @SegmentSetFileUrlExpireTime = segmentsetfileurlexpiretime
         end
 
         def deserialize(params)
@@ -2390,6 +2469,8 @@ module TencentCloud
               @SegmentSet << mediacontentreviewasrtextsegmentitem_tmp
             end
           end
+          @SegmentSetFileUrl = params['SegmentSetFileUrl']
+          @SegmentSetFileUrlExpireTime = params['SegmentSetFileUrlExpireTime']
         end
       end
 
@@ -2419,14 +2500,21 @@ module TencentCloud
         # <li>block。</li>
         # @type Suggestion: String
         # @param SegmentSet: Ocr 文字有涉黄嫌疑的视频片段列表。
+        # <font color=red>注意</font> ：该列表最多仅展示前 100 个元素。如希望获得完整结果，请从 SegmentSetFileUrl 对应的文件中获取。
         # @type SegmentSet: Array
+        # @param SegmentSetFileUrl: Ocr 文字有涉黄嫌疑的视频片段列表文件 URL。文件的内容为 JSON，数据结构与 SegmentSet 字段一致。 （文件不会永久存储，到达 SegmentSetFileUrlExpireTime 时间点后文件将被删除）。
+        # @type SegmentSetFileUrl: String
+        # @param SegmentSetFileUrlExpireTime: Ocr 文字有涉黄嫌疑的视频片段列表文件 URL 失效时间，使用  [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#I)。
+        # @type SegmentSetFileUrlExpireTime: String
 
-        attr_accessor :Confidence, :Suggestion, :SegmentSet
+        attr_accessor :Confidence, :Suggestion, :SegmentSet, :SegmentSetFileUrl, :SegmentSetFileUrlExpireTime
         
-        def initialize(confidence=nil, suggestion=nil, segmentset=nil)
+        def initialize(confidence=nil, suggestion=nil, segmentset=nil, segmentsetfileurl=nil, segmentsetfileurlexpiretime=nil)
           @Confidence = confidence
           @Suggestion = suggestion
           @SegmentSet = segmentset
+          @SegmentSetFileUrl = segmentsetfileurl
+          @SegmentSetFileUrlExpireTime = segmentsetfileurlexpiretime
         end
 
         def deserialize(params)
@@ -2440,6 +2528,8 @@ module TencentCloud
               @SegmentSet << mediacontentreviewocrtextsegmentitem_tmp
             end
           end
+          @SegmentSetFileUrl = params['SegmentSetFileUrl']
+          @SegmentSetFileUrlExpireTime = params['SegmentSetFileUrlExpireTime']
         end
       end
 
@@ -2475,15 +2565,22 @@ module TencentCloud
         # <li>intimacy：亲密行为。</li>
         # @type Label: String
         # @param SegmentSet: 有涉黄嫌疑的视频片段列表。
+        # <font color=red>注意</font> ：该列表最多仅展示前 100 个元素。如希望获得完整结果，请从 SegmentSetFileUrl 对应的文件中获取。
         # @type SegmentSet: Array
+        # @param SegmentSetFileUrl: 涉黄嫌疑的视频片段列表文件 URL。文件的内容为 JSON，数据结构与 SegmentSet 字段一致。 （文件不会永久存储，到达SegmentSetFileUrlExpireTime 时间点后文件将被删除）。
+        # @type SegmentSetFileUrl: String
+        # @param SegmentSetFileUrlExpireTime: 涉黄嫌疑的视频片段列表文件 URL 失效时间，使用  [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#I)。
+        # @type SegmentSetFileUrlExpireTime: String
 
-        attr_accessor :Confidence, :Suggestion, :Label, :SegmentSet
+        attr_accessor :Confidence, :Suggestion, :Label, :SegmentSet, :SegmentSetFileUrl, :SegmentSetFileUrlExpireTime
         
-        def initialize(confidence=nil, suggestion=nil, label=nil, segmentset=nil)
+        def initialize(confidence=nil, suggestion=nil, label=nil, segmentset=nil, segmentsetfileurl=nil, segmentsetfileurlexpiretime=nil)
           @Confidence = confidence
           @Suggestion = suggestion
           @Label = label
           @SegmentSet = segmentset
+          @SegmentSetFileUrl = segmentsetfileurl
+          @SegmentSetFileUrlExpireTime = segmentsetfileurlexpiretime
         end
 
         def deserialize(params)
@@ -2498,6 +2595,8 @@ module TencentCloud
               @SegmentSet << mediacontentreviewsegmentitem_tmp
             end
           end
+          @SegmentSetFileUrl = params['SegmentSetFileUrl']
+          @SegmentSetFileUrlExpireTime = params['SegmentSetFileUrlExpireTime']
         end
       end
 
@@ -2527,14 +2626,21 @@ module TencentCloud
         # <li>block。</li>
         # @type Suggestion: String
         # @param SegmentSet: Asr 文字有涉违禁嫌疑的视频片段列表。
+        # <font color=red>注意</font> ：该列表最多仅展示前 100 个元素。如希望获得完整结果，请从 SegmentSetFileUrl 对应的文件中获取。
         # @type SegmentSet: Array
+        # @param SegmentSetFileUrl: Asr 文字有涉违禁嫌疑的视频片段列表文件 URL。文件的内容为 JSON，数据结构与 SegmentSet 字段一致。 （文件不会永久存储，到达 SegmentSetFileUrlExpireTime 时间点后文件将被删除）。
+        # @type SegmentSetFileUrl: String
+        # @param SegmentSetFileUrlExpireTime: Asr 文字有涉违禁嫌疑的视频片段列表文件 URL 失效时间，使用  [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#I)。
+        # @type SegmentSetFileUrlExpireTime: String
 
-        attr_accessor :Confidence, :Suggestion, :SegmentSet
+        attr_accessor :Confidence, :Suggestion, :SegmentSet, :SegmentSetFileUrl, :SegmentSetFileUrlExpireTime
         
-        def initialize(confidence=nil, suggestion=nil, segmentset=nil)
+        def initialize(confidence=nil, suggestion=nil, segmentset=nil, segmentsetfileurl=nil, segmentsetfileurlexpiretime=nil)
           @Confidence = confidence
           @Suggestion = suggestion
           @SegmentSet = segmentset
+          @SegmentSetFileUrl = segmentsetfileurl
+          @SegmentSetFileUrlExpireTime = segmentsetfileurlexpiretime
         end
 
         def deserialize(params)
@@ -2548,6 +2654,8 @@ module TencentCloud
               @SegmentSet << mediacontentreviewasrtextsegmentitem_tmp
             end
           end
+          @SegmentSetFileUrl = params['SegmentSetFileUrl']
+          @SegmentSetFileUrlExpireTime = params['SegmentSetFileUrlExpireTime']
         end
       end
 
@@ -2577,14 +2685,21 @@ module TencentCloud
         # <li>block。</li>
         # @type Suggestion: String
         # @param SegmentSet: Ocr 文字有涉违禁嫌疑的视频片段列表。
+        # <font color=red>注意</font> ：该列表最多仅展示前 100 个元素。如希望获得完整结果，请从 SegmentSetFileUrl 对应的文件中获取。
         # @type SegmentSet: Array
+        # @param SegmentSetFileUrl: Ocr 文字有涉违禁嫌疑的视频片段列表文件 URL。文件的内容为 JSON，数据结构与 SegmentSet 字段一致。 （文件不会永久存储，到达 SegmentSetFileUrlExpireTime 时间点后文件将被删除）。
+        # @type SegmentSetFileUrl: String
+        # @param SegmentSetFileUrlExpireTime: Ocr 文字有涉违禁嫌疑的视频片段列表文件 URL 失效时间，使用  [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#I)。
+        # @type SegmentSetFileUrlExpireTime: String
 
-        attr_accessor :Confidence, :Suggestion, :SegmentSet
+        attr_accessor :Confidence, :Suggestion, :SegmentSet, :SegmentSetFileUrl, :SegmentSetFileUrlExpireTime
         
-        def initialize(confidence=nil, suggestion=nil, segmentset=nil)
+        def initialize(confidence=nil, suggestion=nil, segmentset=nil, segmentsetfileurl=nil, segmentsetfileurlexpiretime=nil)
           @Confidence = confidence
           @Suggestion = suggestion
           @SegmentSet = segmentset
+          @SegmentSetFileUrl = segmentsetfileurl
+          @SegmentSetFileUrlExpireTime = segmentsetfileurlexpiretime
         end
 
         def deserialize(params)
@@ -2598,6 +2713,8 @@ module TencentCloud
               @SegmentSet << mediacontentreviewocrtextsegmentitem_tmp
             end
           end
+          @SegmentSetFileUrl = params['SegmentSetFileUrl']
+          @SegmentSetFileUrlExpireTime = params['SegmentSetFileUrlExpireTime']
         end
       end
 
@@ -3056,14 +3173,21 @@ module TencentCloud
         # <li>block。</li>
         # @type Suggestion: String
         # @param SegmentSet: Ocr 文字有涉恐嫌疑的视频片段列表。
+        # <font color=red>注意</font> ：该列表最多仅展示前 100 个元素。如希望获得完整结果，请从 SegmentSetFileUrl 对应的文件中获取。
         # @type SegmentSet: Array
+        # @param SegmentSetFileUrl: Ocr 文字有涉恐嫌疑的视频片段列表文件 URL。文件的内容为 JSON，数据结构与 SegmentSet 字段一致。 （文件不会永久存储，到达 SegmentSetFileUrlExpireTime 时间点后文件将被删除）。
+        # @type SegmentSetFileUrl: String
+        # @param SegmentSetFileUrlExpireTime: Ocr 文字有涉恐嫌疑的视频片段列表文件 URL 失效时间，使用  [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#I)。
+        # @type SegmentSetFileUrlExpireTime: String
 
-        attr_accessor :Confidence, :Suggestion, :SegmentSet
+        attr_accessor :Confidence, :Suggestion, :SegmentSet, :SegmentSetFileUrl, :SegmentSetFileUrlExpireTime
         
-        def initialize(confidence=nil, suggestion=nil, segmentset=nil)
+        def initialize(confidence=nil, suggestion=nil, segmentset=nil, segmentsetfileurl=nil, segmentsetfileurlexpiretime=nil)
           @Confidence = confidence
           @Suggestion = suggestion
           @SegmentSet = segmentset
+          @SegmentSetFileUrl = segmentsetfileurl
+          @SegmentSetFileUrlExpireTime = segmentsetfileurlexpiretime
         end
 
         def deserialize(params)
@@ -3077,6 +3201,8 @@ module TencentCloud
               @SegmentSet << mediacontentreviewocrtextsegmentitem_tmp
             end
           end
+          @SegmentSetFileUrl = params['SegmentSetFileUrl']
+          @SegmentSetFileUrlExpireTime = params['SegmentSetFileUrlExpireTime']
         end
       end
 
@@ -3117,15 +3243,22 @@ module TencentCloud
         # <li>scenario：暴恐画面。</li>
         # @type Label: String
         # @param SegmentSet: 有暴恐嫌疑的视频片段列表。
+        # <font color=red>注意</font> ：该列表最多仅展示前 100 个元素。如希望获得完整结果，请从 SegmentSetFileUrl 对应的文件中获取。
         # @type SegmentSet: Array
+        # @param SegmentSetFileUrl: 暴恐嫌疑的视频片段列表文件 URL。文件的内容为 JSON，数据结构与 SegmentSet 字段一致。 （文件不会永久存储，到达SegmentSetFileUrlExpireTime 时间点后文件将被删除）。
+        # @type SegmentSetFileUrl: String
+        # @param SegmentSetFileUrlExpireTime: 暴恐嫌疑的视频片段列表文件 URL 失效时间，使用  [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#I)。
+        # @type SegmentSetFileUrlExpireTime: String
 
-        attr_accessor :Confidence, :Suggestion, :Label, :SegmentSet
+        attr_accessor :Confidence, :Suggestion, :Label, :SegmentSet, :SegmentSetFileUrl, :SegmentSetFileUrlExpireTime
         
-        def initialize(confidence=nil, suggestion=nil, label=nil, segmentset=nil)
+        def initialize(confidence=nil, suggestion=nil, label=nil, segmentset=nil, segmentsetfileurl=nil, segmentsetfileurlexpiretime=nil)
           @Confidence = confidence
           @Suggestion = suggestion
           @Label = label
           @SegmentSet = segmentset
+          @SegmentSetFileUrl = segmentsetfileurl
+          @SegmentSetFileUrlExpireTime = segmentsetfileurlexpiretime
         end
 
         def deserialize(params)
@@ -3140,6 +3273,8 @@ module TencentCloud
               @SegmentSet << mediacontentreviewsegmentitem_tmp
             end
           end
+          @SegmentSetFileUrl = params['SegmentSetFileUrl']
+          @SegmentSetFileUrlExpireTime = params['SegmentSetFileUrlExpireTime']
         end
       end
 
@@ -9778,10 +9913,13 @@ module TencentCloud
         # @param WechatMiniProgramPublishCompleteEvent: 微信小程序发布任务完成事件，当事件类型为 WechatMiniProgramPublishComplete 时有效。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type WechatMiniProgramPublishCompleteEvent: :class:`Tencentcloud::Vod.v20180717.models.WechatMiniProgramPublishTask`
+        # @param RestoreMediaCompleteEvent: 视频取回完成事件，当事件类型为RestoreMediaComplete 时有效。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RestoreMediaCompleteEvent: :class:`Tencentcloud::Vod.v20180717.models.RestoreMediaTask`
 
-        attr_accessor :EventHandle, :EventType, :FileUploadEvent, :ProcedureStateChangeEvent, :FileDeleteEvent, :PullCompleteEvent, :EditMediaCompleteEvent, :SplitMediaCompleteEvent, :ComposeMediaCompleteEvent, :ClipCompleteEvent, :TranscodeCompleteEvent, :CreateImageSpriteCompleteEvent, :ConcatCompleteEvent, :SnapshotByTimeOffsetCompleteEvent, :WechatPublishCompleteEvent, :WechatMiniProgramPublishCompleteEvent
+        attr_accessor :EventHandle, :EventType, :FileUploadEvent, :ProcedureStateChangeEvent, :FileDeleteEvent, :PullCompleteEvent, :EditMediaCompleteEvent, :SplitMediaCompleteEvent, :ComposeMediaCompleteEvent, :ClipCompleteEvent, :TranscodeCompleteEvent, :CreateImageSpriteCompleteEvent, :ConcatCompleteEvent, :SnapshotByTimeOffsetCompleteEvent, :WechatPublishCompleteEvent, :WechatMiniProgramPublishCompleteEvent, :RestoreMediaCompleteEvent
         
-        def initialize(eventhandle=nil, eventtype=nil, fileuploadevent=nil, procedurestatechangeevent=nil, filedeleteevent=nil, pullcompleteevent=nil, editmediacompleteevent=nil, splitmediacompleteevent=nil, composemediacompleteevent=nil, clipcompleteevent=nil, transcodecompleteevent=nil, createimagespritecompleteevent=nil, concatcompleteevent=nil, snapshotbytimeoffsetcompleteevent=nil, wechatpublishcompleteevent=nil, wechatminiprogrampublishcompleteevent=nil)
+        def initialize(eventhandle=nil, eventtype=nil, fileuploadevent=nil, procedurestatechangeevent=nil, filedeleteevent=nil, pullcompleteevent=nil, editmediacompleteevent=nil, splitmediacompleteevent=nil, composemediacompleteevent=nil, clipcompleteevent=nil, transcodecompleteevent=nil, createimagespritecompleteevent=nil, concatcompleteevent=nil, snapshotbytimeoffsetcompleteevent=nil, wechatpublishcompleteevent=nil, wechatminiprogrampublishcompleteevent=nil, restoremediacompleteevent=nil)
           @EventHandle = eventhandle
           @EventType = eventtype
           @FileUploadEvent = fileuploadevent
@@ -9798,6 +9936,7 @@ module TencentCloud
           @SnapshotByTimeOffsetCompleteEvent = snapshotbytimeoffsetcompleteevent
           @WechatPublishCompleteEvent = wechatpublishcompleteevent
           @WechatMiniProgramPublishCompleteEvent = wechatminiprogrampublishcompleteevent
+          @RestoreMediaCompleteEvent = restoremediacompleteevent
         end
 
         def deserialize(params)
@@ -9858,6 +9997,10 @@ module TencentCloud
           unless params['WechatMiniProgramPublishCompleteEvent'].nil?
             @WechatMiniProgramPublishCompleteEvent = WechatMiniProgramPublishTask.new
             @WechatMiniProgramPublishCompleteEvent.deserialize(params['WechatMiniProgramPublishCompleteEvent'])
+          end
+          unless params['RestoreMediaCompleteEvent'].nil?
+            @RestoreMediaCompleteEvent = RestoreMediaTask.new
+            @RestoreMediaCompleteEvent.deserialize(params['RestoreMediaCompleteEvent'])
           end
         end
       end
@@ -16381,6 +16524,50 @@ module TencentCloud
         def deserialize(params)
           @TagKey = params['TagKey']
           @TagValue = params['TagValue']
+        end
+      end
+
+      # 取回视频任务信息
+      class RestoreMediaTask < TencentCloud::Common::AbstractModel
+        # @param Status: 取回任务状态，0表示取回完成，其他值表示取回还未完成。
+        # @type Status: Integer
+        # @param Message: 提示信息。
+        # @type Message: String
+        # @param FileId: 文件ID。
+        # @type FileId: String
+        # @param OriginalStorageClass: 文件原始存储类型。
+        # @type OriginalStorageClass: String
+        # @param TargetStorageClass: 文件目标存储类型。对于临时取回，目标存储类型与原始存储类型相同。
+        # @type TargetStorageClass: String
+        # @param RestoreTier: 取回模式，取值：
+        # <li>Expedited：极速模式</li>
+        # <li>Standard：标准模式</li>
+        # <li>Bulk：批量模式</li>
+        # @type RestoreTier: String
+        # @param RestoreDay: 临时取回副本有效期，单位：天。对于永久取回，取值为0。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RestoreDay: Integer
+
+        attr_accessor :Status, :Message, :FileId, :OriginalStorageClass, :TargetStorageClass, :RestoreTier, :RestoreDay
+        
+        def initialize(status=nil, message=nil, fileid=nil, originalstorageclass=nil, targetstorageclass=nil, restoretier=nil, restoreday=nil)
+          @Status = status
+          @Message = message
+          @FileId = fileid
+          @OriginalStorageClass = originalstorageclass
+          @TargetStorageClass = targetstorageclass
+          @RestoreTier = restoretier
+          @RestoreDay = restoreday
+        end
+
+        def deserialize(params)
+          @Status = params['Status']
+          @Message = params['Message']
+          @FileId = params['FileId']
+          @OriginalStorageClass = params['OriginalStorageClass']
+          @TargetStorageClass = params['TargetStorageClass']
+          @RestoreTier = params['RestoreTier']
+          @RestoreDay = params['RestoreDay']
         end
       end
 

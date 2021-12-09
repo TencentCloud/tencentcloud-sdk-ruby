@@ -426,6 +426,57 @@ module TencentCloud
         end
       end
 
+      # 回源的自定义Https配置
+      class AdvanceHttps < TencentCloud::Common::AbstractModel
+        # @param CustomTlsStatus: 自定义Tls数据开关
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CustomTlsStatus: String
+        # @param TlsVersion: Tls版本列表，支持设置 TLSv1, TLSV1.1, TLSV1.2, TLSv1.3，修改时必须开启连续的版本
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TlsVersion: Array
+        # @param Cipher: 自定义加密套件
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Cipher: String
+        # @param VerifyOriginType: 回源双向校验开启状态
+        # off - 关闭校验
+        # oneWay - 校验源站
+        # twoWay - 双向校验
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VerifyOriginType: String
+        # @param CertInfo: 回源层证书配置信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CertInfo: :class:`Tencentcloud::Cdn.v20180606.models.ServerCert`
+        # @param OriginCertInfo: 源站证书配置信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OriginCertInfo: :class:`Tencentcloud::Cdn.v20180606.models.ClientCert`
+
+        attr_accessor :CustomTlsStatus, :TlsVersion, :Cipher, :VerifyOriginType, :CertInfo, :OriginCertInfo
+        
+        def initialize(customtlsstatus=nil, tlsversion=nil, cipher=nil, verifyorigintype=nil, certinfo=nil, origincertinfo=nil)
+          @CustomTlsStatus = customtlsstatus
+          @TlsVersion = tlsversion
+          @Cipher = cipher
+          @VerifyOriginType = verifyorigintype
+          @CertInfo = certinfo
+          @OriginCertInfo = origincertinfo
+        end
+
+        def deserialize(params)
+          @CustomTlsStatus = params['CustomTlsStatus']
+          @TlsVersion = params['TlsVersion']
+          @Cipher = params['Cipher']
+          @VerifyOriginType = params['VerifyOriginType']
+          unless params['CertInfo'].nil?
+            @CertInfo = ServerCert.new
+            @CertInfo.deserialize(params['CertInfo'])
+          end
+          unless params['OriginCertInfo'].nil?
+            @OriginCertInfo = ClientCert.new
+            @OriginCertInfo.deserialize(params['OriginCertInfo'])
+          end
+        end
+      end
+
       # 时间戳防盗链高级版配置，白名单功能
       class AdvancedAuthentication < TencentCloud::Common::AbstractModel
         # @param Switch: 防盗链配置开关，on或off，开启时必须且只能配置一种模式，其余模式为null。
@@ -9061,10 +9112,13 @@ module TencentCloud
         # @param PathBasedOrigin: 分路径回源配置
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PathBasedOrigin: Array
+        # @param AdvanceHttps: HTTPS回源高级配置
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AdvanceHttps: :class:`Tencentcloud::Cdn.v20180606.models.AdvanceHttps`
 
-        attr_accessor :Origins, :OriginType, :ServerName, :CosPrivateAccess, :OriginPullProtocol, :BackupOrigins, :BackupOriginType, :BackupServerName, :BasePath, :PathRules, :PathBasedOrigin
+        attr_accessor :Origins, :OriginType, :ServerName, :CosPrivateAccess, :OriginPullProtocol, :BackupOrigins, :BackupOriginType, :BackupServerName, :BasePath, :PathRules, :PathBasedOrigin, :AdvanceHttps
         
-        def initialize(origins=nil, origintype=nil, servername=nil, cosprivateaccess=nil, originpullprotocol=nil, backuporigins=nil, backuporigintype=nil, backupservername=nil, basepath=nil, pathrules=nil, pathbasedorigin=nil)
+        def initialize(origins=nil, origintype=nil, servername=nil, cosprivateaccess=nil, originpullprotocol=nil, backuporigins=nil, backuporigintype=nil, backupservername=nil, basepath=nil, pathrules=nil, pathbasedorigin=nil, advancehttps=nil)
           @Origins = origins
           @OriginType = origintype
           @ServerName = servername
@@ -9076,6 +9130,7 @@ module TencentCloud
           @BasePath = basepath
           @PathRules = pathrules
           @PathBasedOrigin = pathbasedorigin
+          @AdvanceHttps = advancehttps
         end
 
         def deserialize(params)
@@ -9103,6 +9158,10 @@ module TencentCloud
               pathbasedoriginrule_tmp.deserialize(i)
               @PathBasedOrigin << pathbasedoriginrule_tmp
             end
+          end
+          unless params['AdvanceHttps'].nil?
+            @AdvanceHttps = AdvanceHttps.new
+            @AdvanceHttps.deserialize(params['AdvanceHttps'])
           end
         end
       end
