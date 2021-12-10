@@ -2140,7 +2140,7 @@ module TencentCloud
         # @type RunAs: String
         # @param Cmd: 命令行
         # @type Cmd: String
-        # @param CPUUsage: cpu 使用率 *1000
+        # @param CPUUsage: CPU使用率 *1000
         # @type CPUUsage: Integer
         # @param RamUsage: 内存使用 kb
         # @type RamUsage: Integer

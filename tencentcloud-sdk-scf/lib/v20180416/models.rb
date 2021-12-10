@@ -2185,7 +2185,7 @@ module TencentCloud
         # @param RegistryId: 用于企业版TCR获取镜像拉取临时凭证，ImageType为"enterprise"时必填
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RegistryId: String
-        # @param EntryPoint: 应用的ENTRYPOINT
+        # @param EntryPoint: 参数已废弃
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EntryPoint: String
         # @param Command: entrypoint执行命令

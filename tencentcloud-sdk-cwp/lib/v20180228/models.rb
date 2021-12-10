@@ -3300,14 +3300,17 @@ module TencentCloud
         # @type QuuidList: Array
         # @param TimeoutPeriod: 超时时间单位 秒 默认3600 秒
         # @type TimeoutPeriod: Integer
+        # @param EngineType: 1标准模式（只报严重、高危）、2增强模式（报严重、高危、中危）、3严格模式（报严重、高、中、低、提示）
+        # @type EngineType: Integer
 
-        attr_accessor :ScanPattern, :HostType, :QuuidList, :TimeoutPeriod
+        attr_accessor :ScanPattern, :HostType, :QuuidList, :TimeoutPeriod, :EngineType
         
-        def initialize(scanpattern=nil, hosttype=nil, quuidlist=nil, timeoutperiod=nil)
+        def initialize(scanpattern=nil, hosttype=nil, quuidlist=nil, timeoutperiod=nil, enginetype=nil)
           @ScanPattern = scanpattern
           @HostType = hosttype
           @QuuidList = quuidlist
           @TimeoutPeriod = timeoutperiod
+          @EngineType = enginetype
         end
 
         def deserialize(params)
@@ -3315,6 +3318,7 @@ module TencentCloud
           @HostType = params['HostType']
           @QuuidList = params['QuuidList']
           @TimeoutPeriod = params['TimeoutPeriod']
+          @EngineType = params['EngineType']
         end
       end
 
@@ -9411,12 +9415,14 @@ module TencentCloud
         # @type ClickTimeout: Integer
         # @param KillProcess: 是否杀掉进程 1杀掉 0不杀掉 只有开启自动隔离才生效
         # @type KillProcess: Integer
+        # @param EngineType: 1标准模式（只报严重、高危）、2增强模式（报严重、高危、中危）、3严格模式（报严重、高、中、低、提示）
+        # @type EngineType: Integer
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :CheckPattern, :StartTime, :EndTime, :IsGlobal, :QuuidList, :MonitoringPattern, :Cycle, :EnableScan, :Id, :RealTimeMonitoring, :AutoIsolation, :ClickTimeout, :KillProcess, :RequestId
+        attr_accessor :CheckPattern, :StartTime, :EndTime, :IsGlobal, :QuuidList, :MonitoringPattern, :Cycle, :EnableScan, :Id, :RealTimeMonitoring, :AutoIsolation, :ClickTimeout, :KillProcess, :EngineType, :RequestId
         
-        def initialize(checkpattern=nil, starttime=nil, endtime=nil, isglobal=nil, quuidlist=nil, monitoringpattern=nil, cycle=nil, enablescan=nil, id=nil, realtimemonitoring=nil, autoisolation=nil, clicktimeout=nil, killprocess=nil, requestid=nil)
+        def initialize(checkpattern=nil, starttime=nil, endtime=nil, isglobal=nil, quuidlist=nil, monitoringpattern=nil, cycle=nil, enablescan=nil, id=nil, realtimemonitoring=nil, autoisolation=nil, clicktimeout=nil, killprocess=nil, enginetype=nil, requestid=nil)
           @CheckPattern = checkpattern
           @StartTime = starttime
           @EndTime = endtime
@@ -9430,6 +9436,7 @@ module TencentCloud
           @AutoIsolation = autoisolation
           @ClickTimeout = clicktimeout
           @KillProcess = killprocess
+          @EngineType = enginetype
           @RequestId = requestid
         end
 
@@ -9447,6 +9454,7 @@ module TencentCloud
           @AutoIsolation = params['AutoIsolation']
           @ClickTimeout = params['ClickTimeout']
           @KillProcess = params['KillProcess']
+          @EngineType = params['EngineType']
           @RequestId = params['RequestId']
         end
       end
@@ -14537,7 +14545,7 @@ module TencentCloud
         # @type FilePath: String
         # @param VirusName: 描述
         # @type VirusName: String
-        # @param Status: 状态；4-:待处理，5-已信任，6-已隔离
+        # @param Status: 状态；4-:待处理，5-已信任，6-已隔离，8-文件已删除
         # @type Status: Integer
         # @param Id: 唯一ID
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -14557,10 +14565,12 @@ module TencentCloud
         # @type CreateTime: String
         # @param LatestScanTime: 最近扫描时间
         # @type LatestScanTime: String
+        # @param Level: 风险等级 0未知、1低、2中、3高、4严重
+        # @type Level: Integer
 
-        attr_accessor :HostIp, :Uuid, :FilePath, :VirusName, :Status, :Id, :Alias, :Tags, :FileCreateTime, :FileModifierTime, :CreateTime, :LatestScanTime
+        attr_accessor :HostIp, :Uuid, :FilePath, :VirusName, :Status, :Id, :Alias, :Tags, :FileCreateTime, :FileModifierTime, :CreateTime, :LatestScanTime, :Level
         
-        def initialize(hostip=nil, uuid=nil, filepath=nil, virusname=nil, status=nil, id=nil, _alias=nil, tags=nil, filecreatetime=nil, filemodifiertime=nil, createtime=nil, latestscantime=nil)
+        def initialize(hostip=nil, uuid=nil, filepath=nil, virusname=nil, status=nil, id=nil, _alias=nil, tags=nil, filecreatetime=nil, filemodifiertime=nil, createtime=nil, latestscantime=nil, level=nil)
           @HostIp = hostip
           @Uuid = uuid
           @FilePath = filepath
@@ -14573,6 +14583,7 @@ module TencentCloud
           @FileModifierTime = filemodifiertime
           @CreateTime = createtime
           @LatestScanTime = latestscantime
+          @Level = level
         end
 
         def deserialize(params)
@@ -14588,6 +14599,7 @@ module TencentCloud
           @FileModifierTime = params['FileModifierTime']
           @CreateTime = params['CreateTime']
           @LatestScanTime = params['LatestScanTime']
+          @Level = params['Level']
         end
       end
 
@@ -14679,10 +14691,13 @@ module TencentCloud
         # @param Status: 状态；4-:待处理，5-已信任，6-已隔离
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: Integer
+        # @param Level: 风险等级 0提示、1低、2中、3高、4严重
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Level: Integer
 
-        attr_accessor :VirusName, :FileSize, :MD5, :FilePath, :FileCreateTime, :FileModifierTime, :HarmDescribe, :SuggestScheme, :ServersName, :HostIp, :ProcessName, :ProcessID, :Tags, :Breadth, :Heat, :Id, :FileName, :CreateTime, :LatestScanTime, :Reference, :MachineWanIp, :PsTree, :MachineStatus, :Status
+        attr_accessor :VirusName, :FileSize, :MD5, :FilePath, :FileCreateTime, :FileModifierTime, :HarmDescribe, :SuggestScheme, :ServersName, :HostIp, :ProcessName, :ProcessID, :Tags, :Breadth, :Heat, :Id, :FileName, :CreateTime, :LatestScanTime, :Reference, :MachineWanIp, :PsTree, :MachineStatus, :Status, :Level
         
-        def initialize(virusname=nil, filesize=nil, md5=nil, filepath=nil, filecreatetime=nil, filemodifiertime=nil, harmdescribe=nil, suggestscheme=nil, serversname=nil, hostip=nil, processname=nil, processid=nil, tags=nil, breadth=nil, heat=nil, id=nil, filename=nil, createtime=nil, latestscantime=nil, reference=nil, machinewanip=nil, pstree=nil, machinestatus=nil, status=nil)
+        def initialize(virusname=nil, filesize=nil, md5=nil, filepath=nil, filecreatetime=nil, filemodifiertime=nil, harmdescribe=nil, suggestscheme=nil, serversname=nil, hostip=nil, processname=nil, processid=nil, tags=nil, breadth=nil, heat=nil, id=nil, filename=nil, createtime=nil, latestscantime=nil, reference=nil, machinewanip=nil, pstree=nil, machinestatus=nil, status=nil, level=nil)
           @VirusName = virusname
           @FileSize = filesize
           @MD5 = md5
@@ -14707,6 +14722,7 @@ module TencentCloud
           @PsTree = pstree
           @MachineStatus = machinestatus
           @Status = status
+          @Level = level
         end
 
         def deserialize(params)
@@ -14734,6 +14750,7 @@ module TencentCloud
           @PsTree = params['PsTree']
           @MachineStatus = params['MachineStatus']
           @Status = params['Status']
+          @Level = params['Level']
         end
       end
 
@@ -14930,10 +14947,12 @@ module TencentCloud
         # @type AutoIsolation: Integer
         # @param KillProcess: 是否杀掉进程 1杀掉 0不杀掉
         # @type KillProcess: Integer
+        # @param EngineType: 1标准模式（只报严重、高危）、2增强模式（报严重、高危、中危）、3严格模式（报严重、高、中、低、提示）
+        # @type EngineType: Integer
 
-        attr_accessor :CheckPattern, :StartTime, :EndTime, :IsGlobal, :EnableScan, :MonitoringPattern, :Cycle, :RealTimeMonitoring, :QuuidList, :AutoIsolation, :KillProcess
+        attr_accessor :CheckPattern, :StartTime, :EndTime, :IsGlobal, :EnableScan, :MonitoringPattern, :Cycle, :RealTimeMonitoring, :QuuidList, :AutoIsolation, :KillProcess, :EngineType
         
-        def initialize(checkpattern=nil, starttime=nil, endtime=nil, isglobal=nil, enablescan=nil, monitoringpattern=nil, cycle=nil, realtimemonitoring=nil, quuidlist=nil, autoisolation=nil, killprocess=nil)
+        def initialize(checkpattern=nil, starttime=nil, endtime=nil, isglobal=nil, enablescan=nil, monitoringpattern=nil, cycle=nil, realtimemonitoring=nil, quuidlist=nil, autoisolation=nil, killprocess=nil, enginetype=nil)
           @CheckPattern = checkpattern
           @StartTime = starttime
           @EndTime = endtime
@@ -14945,6 +14964,7 @@ module TencentCloud
           @QuuidList = quuidlist
           @AutoIsolation = autoisolation
           @KillProcess = killprocess
+          @EngineType = enginetype
         end
 
         def deserialize(params)
@@ -14959,6 +14979,7 @@ module TencentCloud
           @QuuidList = params['QuuidList']
           @AutoIsolation = params['AutoIsolation']
           @KillProcess = params['KillProcess']
+          @EngineType = params['EngineType']
         end
       end
 

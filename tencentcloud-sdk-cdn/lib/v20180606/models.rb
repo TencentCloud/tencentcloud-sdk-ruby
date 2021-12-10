@@ -12147,10 +12147,13 @@ module TencentCloud
         # @param ConfigId: 流量包类型id
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ConfigId: Integer
+        # @param ExtensionMode: 流量包当前续订模式，0 未续订、1到期续订、2用完续订、3到期或用完续订
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExtensionMode: Integer
 
-        attr_accessor :Id, :Type, :Bytes, :BytesUsed, :Status, :CreateTime, :EnableTime, :ExpireTime, :ContractExtension, :AutoExtension, :Channel, :Area, :LifeTimeMonth, :ExtensionAvailable, :RefundAvailable, :Region, :ConfigId
+        attr_accessor :Id, :Type, :Bytes, :BytesUsed, :Status, :CreateTime, :EnableTime, :ExpireTime, :ContractExtension, :AutoExtension, :Channel, :Area, :LifeTimeMonth, :ExtensionAvailable, :RefundAvailable, :Region, :ConfigId, :ExtensionMode
         
-        def initialize(id=nil, type=nil, bytes=nil, bytesused=nil, status=nil, createtime=nil, enabletime=nil, expiretime=nil, contractextension=nil, autoextension=nil, channel=nil, area=nil, lifetimemonth=nil, extensionavailable=nil, refundavailable=nil, region=nil, configid=nil)
+        def initialize(id=nil, type=nil, bytes=nil, bytesused=nil, status=nil, createtime=nil, enabletime=nil, expiretime=nil, contractextension=nil, autoextension=nil, channel=nil, area=nil, lifetimemonth=nil, extensionavailable=nil, refundavailable=nil, region=nil, configid=nil, extensionmode=nil)
           @Id = id
           @Type = type
           @Bytes = bytes
@@ -12168,6 +12171,7 @@ module TencentCloud
           @RefundAvailable = refundavailable
           @Region = region
           @ConfigId = configid
+          @ExtensionMode = extensionmode
         end
 
         def deserialize(params)
@@ -12188,6 +12192,7 @@ module TencentCloud
           @RefundAvailable = params['RefundAvailable']
           @Region = params['Region']
           @ConfigId = params['ConfigId']
+          @ExtensionMode = params['ExtensionMode']
         end
       end
 

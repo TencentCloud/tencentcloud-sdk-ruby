@@ -629,10 +629,12 @@ module TencentCloud
         # @type ImageBase64: String
         # @param Encryption: 敏感数据加密信息。对传入信息（姓名、身份证号）有加密需求的用户可使用此参数，详情请点击左侧链接。
         # @type Encryption: :class:`Tencentcloud::Faceid.v20180301.models.Encryption`
+        # @param IntentionVerifyText: 意愿核身使用的文案，若未使用意愿核身功能，该字段无需传入。默认为空，最长可接受100的字符串长度。
+        # @type IntentionVerifyText: String
 
-        attr_accessor :RuleId, :TerminalType, :IdCard, :Name, :RedirectUrl, :Extra, :ImageBase64, :Encryption
+        attr_accessor :RuleId, :TerminalType, :IdCard, :Name, :RedirectUrl, :Extra, :ImageBase64, :Encryption, :IntentionVerifyText
         
-        def initialize(ruleid=nil, terminaltype=nil, idcard=nil, name=nil, redirecturl=nil, extra=nil, imagebase64=nil, encryption=nil)
+        def initialize(ruleid=nil, terminaltype=nil, idcard=nil, name=nil, redirecturl=nil, extra=nil, imagebase64=nil, encryption=nil, intentionverifytext=nil)
           @RuleId = ruleid
           @TerminalType = terminaltype
           @IdCard = idcard
@@ -641,6 +643,7 @@ module TencentCloud
           @Extra = extra
           @ImageBase64 = imagebase64
           @Encryption = encryption
+          @IntentionVerifyText = intentionverifytext
         end
 
         def deserialize(params)
@@ -655,6 +658,7 @@ module TencentCloud
             @Encryption = Encryption.new
             @Encryption.deserialize(params['Encryption'])
           end
+          @IntentionVerifyText = params['IntentionVerifyText']
         end
       end
 
@@ -1184,17 +1188,21 @@ module TencentCloud
         # @param Encryption: 敏感数据加密信息。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Encryption: :class:`Tencentcloud::Faceid.v20180301.models.Encryption`
+        # @param IntentionVerifyData: 意愿核身相关信息。若未使用意愿核身功能，该字段返回值可以不处理。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IntentionVerifyData: :class:`Tencentcloud::Faceid.v20180301.models.IntentionVerifyData`
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Text, :IdCardData, :BestFrame, :VideoData, :Encryption, :RequestId
+        attr_accessor :Text, :IdCardData, :BestFrame, :VideoData, :Encryption, :IntentionVerifyData, :RequestId
         
-        def initialize(text=nil, idcarddata=nil, bestframe=nil, videodata=nil, encryption=nil, requestid=nil)
+        def initialize(text=nil, idcarddata=nil, bestframe=nil, videodata=nil, encryption=nil, intentionverifydata=nil, requestid=nil)
           @Text = text
           @IdCardData = idcarddata
           @BestFrame = bestframe
           @VideoData = videodata
           @Encryption = encryption
+          @IntentionVerifyData = intentionverifydata
           @RequestId = requestid
         end
 
@@ -1218,6 +1226,10 @@ module TencentCloud
           unless params['Encryption'].nil?
             @Encryption = Encryption.new
             @Encryption.deserialize(params['Encryption'])
+          end
+          unless params['IntentionVerifyData'].nil?
+            @IntentionVerifyData = IntentionVerifyData.new
+            @IntentionVerifyData.deserialize(params['IntentionVerifyData'])
           end
           @RequestId = params['RequestId']
         end
@@ -1985,6 +1997,43 @@ module TencentCloud
           @Result = params['Result']
           @Description = params['Description']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 意愿核身相关结果
+      class IntentionVerifyData < TencentCloud::Common::AbstractModel
+        # @param IntentionVerifyVideo: 意愿确认环节中录制的视频（base64）。若不存在则为空字符串。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IntentionVerifyVideo: String
+        # @param AsrResult: 意愿确认环节中用户语音转文字的识别结果。若不存在则为空字符串。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AsrResult: String
+        # @param ErrorCode: 意愿确认环节的结果码。当该结果码为0时，语音朗读的视频与语音识别结果才会返回。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ErrorCode: Integer
+        # @param ErrorMessage: 意愿确认环节的结果信息。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ErrorMessage: String
+        # @param IntentionVerifyBestFrame: 意愿确认环节中录制视频的最佳帧（base64）。若不存在则为空字符串。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IntentionVerifyBestFrame: String
+
+        attr_accessor :IntentionVerifyVideo, :AsrResult, :ErrorCode, :ErrorMessage, :IntentionVerifyBestFrame
+        
+        def initialize(intentionverifyvideo=nil, asrresult=nil, errorcode=nil, errormessage=nil, intentionverifybestframe=nil)
+          @IntentionVerifyVideo = intentionverifyvideo
+          @AsrResult = asrresult
+          @ErrorCode = errorcode
+          @ErrorMessage = errormessage
+          @IntentionVerifyBestFrame = intentionverifybestframe
+        end
+
+        def deserialize(params)
+          @IntentionVerifyVideo = params['IntentionVerifyVideo']
+          @AsrResult = params['AsrResult']
+          @ErrorCode = params['ErrorCode']
+          @ErrorMessage = params['ErrorMessage']
+          @IntentionVerifyBestFrame = params['IntentionVerifyBestFrame']
         end
       end
 

@@ -1979,10 +1979,13 @@ module TencentCloud
         # @param Uui: 客户自定义数据（User-to-User Interface）
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Uui: String
+        # @param IVRKeyPressedEx: IVR按键信息（e.g. [{"Key":"1","Label":"非常满意"}]）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IVRKeyPressedEx: Array
 
-        attr_accessor :Caller, :Callee, :Time, :Direction, :Duration, :RecordURL, :SeatUser, :EndStatus, :SkillGroup, :CallerLocation, :IVRDuration, :RingTimestamp, :AcceptTimestamp, :EndedTimestamp, :IVRKeyPressed, :HungUpSide, :ServeParticipants, :SkillGroupId, :EndStatusString, :StartTimestamp, :QueuedTimestamp, :PostIVRKeyPressed, :QueuedSkillGroupId, :SessionId, :ProtectedCaller, :ProtectedCallee, :Uui
+        attr_accessor :Caller, :Callee, :Time, :Direction, :Duration, :RecordURL, :SeatUser, :EndStatus, :SkillGroup, :CallerLocation, :IVRDuration, :RingTimestamp, :AcceptTimestamp, :EndedTimestamp, :IVRKeyPressed, :HungUpSide, :ServeParticipants, :SkillGroupId, :EndStatusString, :StartTimestamp, :QueuedTimestamp, :PostIVRKeyPressed, :QueuedSkillGroupId, :SessionId, :ProtectedCaller, :ProtectedCallee, :Uui, :IVRKeyPressedEx
         
-        def initialize(caller=nil, callee=nil, time=nil, direction=nil, duration=nil, recordurl=nil, seatuser=nil, endstatus=nil, skillgroup=nil, callerlocation=nil, ivrduration=nil, ringtimestamp=nil, accepttimestamp=nil, endedtimestamp=nil, ivrkeypressed=nil, hungupside=nil, serveparticipants=nil, skillgroupid=nil, endstatusstring=nil, starttimestamp=nil, queuedtimestamp=nil, postivrkeypressed=nil, queuedskillgroupid=nil, sessionid=nil, protectedcaller=nil, protectedcallee=nil, uui=nil)
+        def initialize(caller=nil, callee=nil, time=nil, direction=nil, duration=nil, recordurl=nil, seatuser=nil, endstatus=nil, skillgroup=nil, callerlocation=nil, ivrduration=nil, ringtimestamp=nil, accepttimestamp=nil, endedtimestamp=nil, ivrkeypressed=nil, hungupside=nil, serveparticipants=nil, skillgroupid=nil, endstatusstring=nil, starttimestamp=nil, queuedtimestamp=nil, postivrkeypressed=nil, queuedskillgroupid=nil, sessionid=nil, protectedcaller=nil, protectedcallee=nil, uui=nil, ivrkeypressedex=nil)
           @Caller = caller
           @Callee = callee
           @Time = time
@@ -2010,6 +2013,7 @@ module TencentCloud
           @ProtectedCaller = protectedcaller
           @ProtectedCallee = protectedcallee
           @Uui = uui
+          @IVRKeyPressedEx = ivrkeypressedex
         end
 
         def deserialize(params)
@@ -2057,6 +2061,14 @@ module TencentCloud
           @ProtectedCaller = params['ProtectedCaller']
           @ProtectedCallee = params['ProtectedCallee']
           @Uui = params['Uui']
+          unless params['IVRKeyPressedEx'].nil?
+            @IVRKeyPressedEx = []
+            params['IVRKeyPressedEx'].each do |i|
+              ivrkeypressedelement_tmp = IVRKeyPressedElement.new
+              ivrkeypressedelement_tmp.deserialize(i)
+              @IVRKeyPressedEx << ivrkeypressedelement_tmp
+            end
+          end
         end
       end
 

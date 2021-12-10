@@ -1205,6 +1205,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 用于获取设备绑定的用户列表
+
+        # @param request: Request instance for GetFamilyDeviceUserList.
+        # @type request: :class:`Tencentcloud::iotexplorer::V20190423::GetFamilyDeviceUserListRequest`
+        # @rtype: :class:`Tencentcloud::iotexplorer::V20190423::GetFamilyDeviceUserListResponse`
+        def GetFamilyDeviceUserList(request)
+          body = send_request('GetFamilyDeviceUserList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = GetFamilyDeviceUserListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 获取 LoRa 网关列表接口
 
         # @param request: Request instance for GetLoRaGatewayList.

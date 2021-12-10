@@ -2362,6 +2362,26 @@ module TencentCloud
         end
       end
 
+      # 设备的用户
+      class DeviceUser < TencentCloud::Common::AbstractModel
+        # @param UserId: 用户ID
+        # @type UserId: String
+        # @param Role: 用户角色 1所有者，0：其他分享者
+        # @type Role: Integer
+
+        attr_accessor :UserId, :Role
+        
+        def initialize(userid=nil, role=nil)
+          @UserId = userid
+          @Role = role
+        end
+
+        def deserialize(params)
+          @UserId = params['UserId']
+          @Role = params['Role']
+        end
+      end
+
       # ProductId -> DeviceName
       class DevicesItem < TencentCloud::Common::AbstractModel
         # @param ProductId: 产品id
@@ -2989,6 +3009,54 @@ module TencentCloud
               positionitem_tmp = PositionItem.new
               positionitem_tmp.deserialize(i)
               @Positions << positionitem_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # GetFamilyDeviceUserList请求参数结构体
+      class GetFamilyDeviceUserListRequest < TencentCloud::Common::AbstractModel
+        # @param ProductId: 产品ID
+        # @type ProductId: String
+        # @param DeviceName: 设备名称
+        # @type DeviceName: String
+
+        attr_accessor :ProductId, :DeviceName
+        
+        def initialize(productid=nil, devicename=nil)
+          @ProductId = productid
+          @DeviceName = devicename
+        end
+
+        def deserialize(params)
+          @ProductId = params['ProductId']
+          @DeviceName = params['DeviceName']
+        end
+      end
+
+      # GetFamilyDeviceUserList返回参数结构体
+      class GetFamilyDeviceUserListResponse < TencentCloud::Common::AbstractModel
+        # @param UserList: 设备的用户列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UserList: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :UserList, :RequestId
+        
+        def initialize(userlist=nil, requestid=nil)
+          @UserList = userlist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['UserList'].nil?
+            @UserList = []
+            params['UserList'].each do |i|
+              deviceuser_tmp = DeviceUser.new
+              deviceuser_tmp.deserialize(i)
+              @UserList << deviceuser_tmp
             end
           end
           @RequestId = params['RequestId']

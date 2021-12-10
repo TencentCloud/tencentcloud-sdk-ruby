@@ -589,10 +589,16 @@ module TencentCloud
         # @type MetaDBInfo: :class:`Tencentcloud::Emr.v20190103.models.CustomMetaInfo`
         # @param ApplicationRole: 自定义应用角色。
         # @type ApplicationRole: String
+        # @param SceneName: 场景化取值：
+        # Hadoop-Kudu
+        # Hadoop-Zookeeper
+        # Hadoop-Presto
+        # Hadoop-Hbase
+        # @type SceneName: String
 
-        attr_accessor :ProductId, :VPCSettings, :Software, :ResourceSpec, :SupportHA, :InstanceName, :PayMode, :Placement, :TimeSpan, :TimeUnit, :LoginSettings, :COSSettings, :SgId, :PreExecutedFileSettings, :AutoRenew, :ClientToken, :NeedMasterWan, :RemoteLoginAtCreate, :CheckSecurity, :ExtendFsField, :Tags, :DisasterRecoverGroupIds, :CbsEncrypt, :MetaType, :UnifyMetaInstanceId, :MetaDBInfo, :ApplicationRole
+        attr_accessor :ProductId, :VPCSettings, :Software, :ResourceSpec, :SupportHA, :InstanceName, :PayMode, :Placement, :TimeSpan, :TimeUnit, :LoginSettings, :COSSettings, :SgId, :PreExecutedFileSettings, :AutoRenew, :ClientToken, :NeedMasterWan, :RemoteLoginAtCreate, :CheckSecurity, :ExtendFsField, :Tags, :DisasterRecoverGroupIds, :CbsEncrypt, :MetaType, :UnifyMetaInstanceId, :MetaDBInfo, :ApplicationRole, :SceneName
         
-        def initialize(productid=nil, vpcsettings=nil, software=nil, resourcespec=nil, supportha=nil, instancename=nil, paymode=nil, placement=nil, timespan=nil, timeunit=nil, loginsettings=nil, cossettings=nil, sgid=nil, preexecutedfilesettings=nil, autorenew=nil, clienttoken=nil, needmasterwan=nil, remoteloginatcreate=nil, checksecurity=nil, extendfsfield=nil, tags=nil, disasterrecovergroupids=nil, cbsencrypt=nil, metatype=nil, unifymetainstanceid=nil, metadbinfo=nil, applicationrole=nil)
+        def initialize(productid=nil, vpcsettings=nil, software=nil, resourcespec=nil, supportha=nil, instancename=nil, paymode=nil, placement=nil, timespan=nil, timeunit=nil, loginsettings=nil, cossettings=nil, sgid=nil, preexecutedfilesettings=nil, autorenew=nil, clienttoken=nil, needmasterwan=nil, remoteloginatcreate=nil, checksecurity=nil, extendfsfield=nil, tags=nil, disasterrecovergroupids=nil, cbsencrypt=nil, metatype=nil, unifymetainstanceid=nil, metadbinfo=nil, applicationrole=nil, scenename=nil)
           @ProductId = productid
           @VPCSettings = vpcsettings
           @Software = software
@@ -620,6 +626,7 @@ module TencentCloud
           @UnifyMetaInstanceId = unifymetainstanceid
           @MetaDBInfo = metadbinfo
           @ApplicationRole = applicationrole
+          @SceneName = scenename
         end
 
         def deserialize(params)
@@ -682,6 +689,7 @@ module TencentCloud
             @MetaDBInfo.deserialize(params['MetaDBInfo'])
           end
           @ApplicationRole = params['ApplicationRole']
+          @SceneName = params['SceneName']
         end
       end
 
@@ -1448,10 +1456,16 @@ module TencentCloud
         # <li>4：表示EMR-V2.1.0。</li>
         # <li>7：表示EMR-V3.0.0。</li>
         # @type ProductId: Integer
+        # @param SceneName: 场景化取值：
+        # Hadoop-Kudu
+        # Hadoop-Zookeeper
+        # Hadoop-Presto
+        # Hadoop-Hbase
+        # @type SceneName: String
 
-        attr_accessor :TimeUnit, :TimeSpan, :ResourceSpec, :Currency, :PayMode, :SupportHA, :Software, :Placement, :VPCSettings, :MetaType, :UnifyMetaInstanceId, :MetaDBInfo, :ProductId
+        attr_accessor :TimeUnit, :TimeSpan, :ResourceSpec, :Currency, :PayMode, :SupportHA, :Software, :Placement, :VPCSettings, :MetaType, :UnifyMetaInstanceId, :MetaDBInfo, :ProductId, :SceneName
         
-        def initialize(timeunit=nil, timespan=nil, resourcespec=nil, currency=nil, paymode=nil, supportha=nil, software=nil, placement=nil, vpcsettings=nil, metatype=nil, unifymetainstanceid=nil, metadbinfo=nil, productid=nil)
+        def initialize(timeunit=nil, timespan=nil, resourcespec=nil, currency=nil, paymode=nil, supportha=nil, software=nil, placement=nil, vpcsettings=nil, metatype=nil, unifymetainstanceid=nil, metadbinfo=nil, productid=nil, scenename=nil)
           @TimeUnit = timeunit
           @TimeSpan = timespan
           @ResourceSpec = resourcespec
@@ -1465,6 +1479,7 @@ module TencentCloud
           @UnifyMetaInstanceId = unifymetainstanceid
           @MetaDBInfo = metadbinfo
           @ProductId = productid
+          @SceneName = scenename
         end
 
         def deserialize(params)
@@ -1493,6 +1508,7 @@ module TencentCloud
             @MetaDBInfo.deserialize(params['MetaDBInfo'])
           end
           @ProductId = params['ProductId']
+          @SceneName = params['SceneName']
         end
       end
 
