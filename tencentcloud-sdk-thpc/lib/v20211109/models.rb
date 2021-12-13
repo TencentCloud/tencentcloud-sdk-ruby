@@ -17,6 +17,34 @@
 module TencentCloud
   module Thpc
     module V20211109
+      # 描述CFS文件系统版本和挂载信息
+      class CFSOption < TencentCloud::Common::AbstractModel
+        # @param LocalPath: 文件系统本地挂载路径
+        # @type LocalPath: String
+        # @param RemotePath: 文件系统远程挂载ip及路径
+        # @type RemotePath: String
+        # @param Protocol: 文件系统协议类型，默认值NFS 3.0
+        # @type Protocol: String
+        # @param StorageType: 文件系统存储类型，默认值SD
+        # @type StorageType: String
+
+        attr_accessor :LocalPath, :RemotePath, :Protocol, :StorageType
+        
+        def initialize(localpath=nil, remotepath=nil, protocol=nil, storagetype=nil)
+          @LocalPath = localpath
+          @RemotePath = remotepath
+          @Protocol = protocol
+          @StorageType = storagetype
+        end
+
+        def deserialize(params)
+          @LocalPath = params['LocalPath']
+          @RemotePath = params['RemotePath']
+          @Protocol = params['Protocol']
+          @StorageType = params['StorageType']
+        end
+      end
+
       # 计算节点信息。
       class ComputeNode < TencentCloud::Common::AbstractModel
         # @param InstanceChargeType: 节点[计费类型](https://cloud.tencent.com/document/product/213/2180)。<br><li>PREPAID：预付费，即包年包月<br><li>POSTPAID_BY_HOUR：按小时后付费<br><li>SPOTPAID：竞价付费<br>默认值：POSTPAID_BY_HOUR。
@@ -112,10 +140,12 @@ module TencentCloud
         # @type AccountType: String
         # @param ClusterName: 集群显示名称。
         # @type ClusterName: String
+        # @param StorageOption: 集群存储选项
+        # @type StorageOption: :class:`Tencentcloud::Thpc.v20211109.models.StorageOption`
 
-        attr_accessor :Placement, :ManagerNode, :ManagerNodeCount, :ComputeNode, :ComputeNodeCount, :SchedulerType, :ImageId, :VirtualPrivateCloud, :LoginSettings, :SecurityGroupIds, :ClientToken, :DryRun, :AccountType, :ClusterName
+        attr_accessor :Placement, :ManagerNode, :ManagerNodeCount, :ComputeNode, :ComputeNodeCount, :SchedulerType, :ImageId, :VirtualPrivateCloud, :LoginSettings, :SecurityGroupIds, :ClientToken, :DryRun, :AccountType, :ClusterName, :StorageOption
         
-        def initialize(placement=nil, managernode=nil, managernodecount=nil, computenode=nil, computenodecount=nil, schedulertype=nil, imageid=nil, virtualprivatecloud=nil, loginsettings=nil, securitygroupids=nil, clienttoken=nil, dryrun=nil, accounttype=nil, clustername=nil)
+        def initialize(placement=nil, managernode=nil, managernodecount=nil, computenode=nil, computenodecount=nil, schedulertype=nil, imageid=nil, virtualprivatecloud=nil, loginsettings=nil, securitygroupids=nil, clienttoken=nil, dryrun=nil, accounttype=nil, clustername=nil, storageoption=nil)
           @Placement = placement
           @ManagerNode = managernode
           @ManagerNodeCount = managernodecount
@@ -130,6 +160,7 @@ module TencentCloud
           @DryRun = dryrun
           @AccountType = accounttype
           @ClusterName = clustername
+          @StorageOption = storageoption
         end
 
         def deserialize(params)
@@ -162,6 +193,10 @@ module TencentCloud
           @DryRun = params['DryRun']
           @AccountType = params['AccountType']
           @ClusterName = params['ClusterName']
+          unless params['StorageOption'].nil?
+            @StorageOption = StorageOption.new
+            @StorageOption.deserialize(params['StorageOption'])
+          end
         end
       end
 
@@ -377,6 +412,29 @@ module TencentCloud
 
         def deserialize(params)
           @Zone = params['Zone']
+        end
+      end
+
+      # 描述集群文件系统选项
+      class StorageOption < TencentCloud::Common::AbstractModel
+        # @param CFSOptions: 集群挂载CFS文件系统选项
+        # @type CFSOptions: Array
+
+        attr_accessor :CFSOptions
+        
+        def initialize(cfsoptions=nil)
+          @CFSOptions = cfsoptions
+        end
+
+        def deserialize(params)
+          unless params['CFSOptions'].nil?
+            @CFSOptions = []
+            params['CFSOptions'].each do |i|
+              cfsoption_tmp = CFSOption.new
+              cfsoption_tmp.deserialize(i)
+              @CFSOptions << cfsoption_tmp
+            end
+          end
         end
       end
 

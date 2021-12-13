@@ -95,6 +95,104 @@ module TencentCloud
         end
       end
 
+      # 创建自动分类的结构化任务子任务信息
+      class CreateAutoClassifyStructureTaskInfo < TencentCloud::Common::AbstractModel
+        # @param FileList: 报告文件上传的地址列表，需按顺序排列。如果使用ImageList参数，置为空数组即可
+        # @type FileList: Array
+        # @param CustomerId: 客户号
+        # @type CustomerId: String
+        # @param CustomerName: 客户姓名
+        # @type CustomerName: String
+        # @param ImageList: 报告上传的图片内容数组，图片内容采用base64编码，需按顺序排列
+        # @type ImageList: Array
+
+        attr_accessor :FileList, :CustomerId, :CustomerName, :ImageList
+        
+        def initialize(filelist=nil, customerid=nil, customername=nil, imagelist=nil)
+          @FileList = filelist
+          @CustomerId = customerid
+          @CustomerName = customername
+          @ImageList = imagelist
+        end
+
+        def deserialize(params)
+          @FileList = params['FileList']
+          @CustomerId = params['CustomerId']
+          @CustomerName = params['CustomerName']
+          @ImageList = params['ImageList']
+        end
+      end
+
+      # CreateAutoClassifyStructureTask请求参数结构体
+      class CreateAutoClassifyStructureTaskRequest < TencentCloud::Common::AbstractModel
+        # @param ServiceType: 服务类型
+        # Structured 仅结构化
+        # Underwrite 结构化+核保
+        # @type ServiceType: String
+        # @param TaskInfos: 创建任务时可以上传多个报告，后台生成多个识别子任务，子任务的详细信息
+        # @type TaskInfos: Array
+        # @param PolicyId: 保单号
+        # @type PolicyId: String
+        # @param TriggerType: 核保触发方式
+        # Auto 自动
+        # Manual 手动
+        # @type TriggerType: String
+        # @param InsuranceTypes: 险种，如果是体检报告类型，此参数是必填，类型说明如下：
+        # CriticalDiseaseInsurance:重疾险
+        # LifeInsurance：寿险
+        # AccidentInsurance：意外险
+        # @type InsuranceTypes: Array
+        # @param CallbackUrl: 回调地址，接收Post请求传送结果
+        # @type CallbackUrl: String
+
+        attr_accessor :ServiceType, :TaskInfos, :PolicyId, :TriggerType, :InsuranceTypes, :CallbackUrl
+        
+        def initialize(servicetype=nil, taskinfos=nil, policyid=nil, triggertype=nil, insurancetypes=nil, callbackurl=nil)
+          @ServiceType = servicetype
+          @TaskInfos = taskinfos
+          @PolicyId = policyid
+          @TriggerType = triggertype
+          @InsuranceTypes = insurancetypes
+          @CallbackUrl = callbackurl
+        end
+
+        def deserialize(params)
+          @ServiceType = params['ServiceType']
+          unless params['TaskInfos'].nil?
+            @TaskInfos = []
+            params['TaskInfos'].each do |i|
+              createautoclassifystructuretaskinfo_tmp = CreateAutoClassifyStructureTaskInfo.new
+              createautoclassifystructuretaskinfo_tmp.deserialize(i)
+              @TaskInfos << createautoclassifystructuretaskinfo_tmp
+            end
+          end
+          @PolicyId = params['PolicyId']
+          @TriggerType = params['TriggerType']
+          @InsuranceTypes = params['InsuranceTypes']
+          @CallbackUrl = params['CallbackUrl']
+        end
+      end
+
+      # CreateAutoClassifyStructureTask返回参数结构体
+      class CreateAutoClassifyStructureTaskResponse < TencentCloud::Common::AbstractModel
+        # @param MainTaskId: 创建的主任务号，用于查询结果
+        # @type MainTaskId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :MainTaskId, :RequestId
+        
+        def initialize(maintaskid=nil, requestid=nil)
+          @MainTaskId = maintaskid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @MainTaskId = params['MainTaskId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 创建结构化任务子任务信息
       class CreateStructureTaskInfo < TencentCloud::Common::AbstractModel
         # @param TaskType: 任务类型

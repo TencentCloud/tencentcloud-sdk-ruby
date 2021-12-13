@@ -4773,6 +4773,45 @@ module TencentCloud
         end
       end
 
+      # MigrateClassicalLoadBalancers请求参数结构体
+      class MigrateClassicalLoadBalancersRequest < TencentCloud::Common::AbstractModel
+        # @param LoadBalancerIds: 传统型负载均衡ID数组
+        # @type LoadBalancerIds: Array
+        # @param ExclusiveCluster: 独占集群信息
+        # @type ExclusiveCluster: :class:`Tencentcloud::Clb.v20180317.models.ExclusiveCluster`
+
+        attr_accessor :LoadBalancerIds, :ExclusiveCluster
+        
+        def initialize(loadbalancerids=nil, exclusivecluster=nil)
+          @LoadBalancerIds = loadbalancerids
+          @ExclusiveCluster = exclusivecluster
+        end
+
+        def deserialize(params)
+          @LoadBalancerIds = params['LoadBalancerIds']
+          unless params['ExclusiveCluster'].nil?
+            @ExclusiveCluster = ExclusiveCluster.new
+            @ExclusiveCluster.deserialize(params['ExclusiveCluster'])
+          end
+        end
+      end
+
+      # MigrateClassicalLoadBalancers返回参数结构体
+      class MigrateClassicalLoadBalancersResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyBlockIPList请求参数结构体
       class ModifyBlockIPListRequest < TencentCloud::Common::AbstractModel
         # @param LoadBalancerIds: 负载均衡实例ID

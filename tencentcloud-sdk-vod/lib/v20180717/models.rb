@@ -16529,10 +16529,6 @@ module TencentCloud
 
       # 取回视频任务信息
       class RestoreMediaTask < TencentCloud::Common::AbstractModel
-        # @param Status: 取回任务状态，0表示取回完成，其他值表示取回还未完成。
-        # @type Status: Integer
-        # @param Message: 提示信息。
-        # @type Message: String
         # @param FileId: 文件ID。
         # @type FileId: String
         # @param OriginalStorageClass: 文件原始存储类型。
@@ -16545,29 +16541,32 @@ module TencentCloud
         # <li>Bulk：批量模式</li>
         # @type RestoreTier: String
         # @param RestoreDay: 临时取回副本有效期，单位：天。对于永久取回，取值为0。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RestoreDay: Integer
+        # @param Status: 该字段已废弃。
+        # @type Status: Integer
+        # @param Message: 该字段已废弃。
+        # @type Message: String
 
-        attr_accessor :Status, :Message, :FileId, :OriginalStorageClass, :TargetStorageClass, :RestoreTier, :RestoreDay
+        attr_accessor :FileId, :OriginalStorageClass, :TargetStorageClass, :RestoreTier, :RestoreDay, :Status, :Message
         
-        def initialize(status=nil, message=nil, fileid=nil, originalstorageclass=nil, targetstorageclass=nil, restoretier=nil, restoreday=nil)
-          @Status = status
-          @Message = message
+        def initialize(fileid=nil, originalstorageclass=nil, targetstorageclass=nil, restoretier=nil, restoreday=nil, status=nil, message=nil)
           @FileId = fileid
           @OriginalStorageClass = originalstorageclass
           @TargetStorageClass = targetstorageclass
           @RestoreTier = restoretier
           @RestoreDay = restoreday
+          @Status = status
+          @Message = message
         end
 
         def deserialize(params)
-          @Status = params['Status']
-          @Message = params['Message']
           @FileId = params['FileId']
           @OriginalStorageClass = params['OriginalStorageClass']
           @TargetStorageClass = params['TargetStorageClass']
           @RestoreTier = params['RestoreTier']
           @RestoreDay = params['RestoreDay']
+          @Status = params['Status']
+          @Message = params['Message']
         end
       end
 
