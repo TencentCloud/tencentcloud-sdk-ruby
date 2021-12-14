@@ -786,6 +786,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询跨域2.0版本云联网后端子机和网卡信息。
+
+        # @param request: Request instance for DescribeCrossTargets.
+        # @type request: :class:`Tencentcloud::clb::V20180317::DescribeCrossTargetsRequest`
+        # @rtype: :class:`Tencentcloud::clb::V20180317::DescribeCrossTargetsResponse`
+        def DescribeCrossTargets(request)
+          body = send_request('DescribeCrossTargets', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeCrossTargetsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 拉取配置绑定的 server 或 location，如果 domain 存在，结果将根据 domain 过滤。或拉取配置绑定的 loadbalancer。
 
         # @param request: Request instance for DescribeCustomizedConfigAssociateList.
@@ -1417,7 +1441,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 升、降配接口。支持共享型clb升级到性能保障型clb。支持性能保障型提升等级。支持性能保障降低规格。（不支持性能保障降级到共享型）。
+        # 支持共享型clb升级到性能容量型clb（不支持性能保障降级到共享型）。
 
         # @param request: Request instance for ModifyLoadBalancerSla.
         # @type request: :class:`Tencentcloud::clb::V20180317::ModifyLoadBalancerSlaRequest`

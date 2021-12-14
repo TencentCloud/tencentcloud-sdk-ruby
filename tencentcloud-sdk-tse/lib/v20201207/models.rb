@@ -117,14 +117,17 @@ module TencentCloud
         # @type Offset: Integer
         # @param QueryType: 查询类型
         # @type QueryType: String
+        # @param QuerySource: 调用方来源
+        # @type QuerySource: String
 
-        attr_accessor :Filters, :Limit, :Offset, :QueryType
+        attr_accessor :Filters, :Limit, :Offset, :QueryType, :QuerySource
         
-        def initialize(filters=nil, limit=nil, offset=nil, querytype=nil)
+        def initialize(filters=nil, limit=nil, offset=nil, querytype=nil, querysource=nil)
           @Filters = filters
           @Limit = limit
           @Offset = offset
           @QueryType = querytype
+          @QuerySource = querysource
         end
 
         def deserialize(params)
@@ -139,6 +142,7 @@ module TencentCloud
           @Limit = params['Limit']
           @Offset = params['Offset']
           @QueryType = params['QueryType']
+          @QuerySource = params['QuerySource']
         end
       end
 

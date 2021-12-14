@@ -1849,7 +1849,7 @@ module TencentCloud
         # @type Offset: Integer
         # @param Limit: 返回数量，不填则默认10，最大值100
         # @type Limit: Integer
-        # @param TagKey: 匹配标签key值。
+        # @param TagKey: 已废弃。匹配标签key值。
         # @type TagKey: String
 
         attr_accessor :InstanceId, :SearchWord, :Status, :Offset, :Limit, :TagKey
@@ -2750,10 +2750,16 @@ module TencentCloud
         # @param DeleteRouteTimestamp: 时间
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DeleteRouteTimestamp: String
+        # @param RemainingPartitions: 剩余创建分区数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RemainingPartitions: Integer
+        # @param RemainingTopics: 剩余创建主题数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RemainingTopics: Integer
 
-        attr_accessor :InstanceId, :InstanceName, :VipList, :Vip, :Vport, :Status, :Bandwidth, :DiskSize, :ZoneId, :VpcId, :SubnetId, :Healthy, :HealthyMessage, :CreateTime, :MsgRetentionTime, :Config, :RemainderPartitions, :RemainderTopics, :CreatedPartitions, :CreatedTopics, :Tags, :ExpireTime, :ZoneIds, :Version, :MaxGroupNum, :Cvm, :InstanceType, :Features, :RetentionTimeConfig, :MaxConnection, :PublicNetwork, :DeleteRouteTimestamp
+        attr_accessor :InstanceId, :InstanceName, :VipList, :Vip, :Vport, :Status, :Bandwidth, :DiskSize, :ZoneId, :VpcId, :SubnetId, :Healthy, :HealthyMessage, :CreateTime, :MsgRetentionTime, :Config, :RemainderPartitions, :RemainderTopics, :CreatedPartitions, :CreatedTopics, :Tags, :ExpireTime, :ZoneIds, :Version, :MaxGroupNum, :Cvm, :InstanceType, :Features, :RetentionTimeConfig, :MaxConnection, :PublicNetwork, :DeleteRouteTimestamp, :RemainingPartitions, :RemainingTopics
         
-        def initialize(instanceid=nil, instancename=nil, viplist=nil, vip=nil, vport=nil, status=nil, bandwidth=nil, disksize=nil, zoneid=nil, vpcid=nil, subnetid=nil, healthy=nil, healthymessage=nil, createtime=nil, msgretentiontime=nil, config=nil, remainderpartitions=nil, remaindertopics=nil, createdpartitions=nil, createdtopics=nil, tags=nil, expiretime=nil, zoneids=nil, version=nil, maxgroupnum=nil, cvm=nil, instancetype=nil, features=nil, retentiontimeconfig=nil, maxconnection=nil, publicnetwork=nil, deleteroutetimestamp=nil)
+        def initialize(instanceid=nil, instancename=nil, viplist=nil, vip=nil, vport=nil, status=nil, bandwidth=nil, disksize=nil, zoneid=nil, vpcid=nil, subnetid=nil, healthy=nil, healthymessage=nil, createtime=nil, msgretentiontime=nil, config=nil, remainderpartitions=nil, remaindertopics=nil, createdpartitions=nil, createdtopics=nil, tags=nil, expiretime=nil, zoneids=nil, version=nil, maxgroupnum=nil, cvm=nil, instancetype=nil, features=nil, retentiontimeconfig=nil, maxconnection=nil, publicnetwork=nil, deleteroutetimestamp=nil, remainingpartitions=nil, remainingtopics=nil)
           @InstanceId = instanceid
           @InstanceName = instancename
           @VipList = viplist
@@ -2786,6 +2792,8 @@ module TencentCloud
           @MaxConnection = maxconnection
           @PublicNetwork = publicnetwork
           @DeleteRouteTimestamp = deleteroutetimestamp
+          @RemainingPartitions = remainingpartitions
+          @RemainingTopics = remainingtopics
         end
 
         def deserialize(params)
@@ -2841,6 +2849,8 @@ module TencentCloud
           @MaxConnection = params['MaxConnection']
           @PublicNetwork = params['PublicNetwork']
           @DeleteRouteTimestamp = params['DeleteRouteTimestamp']
+          @RemainingPartitions = params['RemainingPartitions']
+          @RemainingTopics = params['RemainingTopics']
         end
       end
 

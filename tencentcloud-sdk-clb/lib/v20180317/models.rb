@@ -1641,6 +1641,52 @@ module TencentCloud
         end
       end
 
+      # 跨域2.0云联网下子机和网卡信息
+      class CrossTargets < TencentCloud::Common::AbstractModel
+        # @param LocalVpcId: 本地私有网络ID，即负载均衡的VpcId。
+        # @type LocalVpcId: String
+        # @param VpcId: 子机或网卡所属的私有网络ID。
+        # @type VpcId: String
+        # @param IP: 子机或网卡的IP地址
+        # @type IP: String
+        # @param VpcName: 子机或网卡所属的私有网络名称。
+        # @type VpcName: String
+        # @param EniId: 子机的网卡ID。
+        # @type EniId: String
+        # @param InstanceId: 子机实例ID。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceId: String
+        # @param InstanceName: 子机实例名称。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceName: String
+        # @param Region: 子机或者网卡所属的地域。
+        # @type Region: String
+
+        attr_accessor :LocalVpcId, :VpcId, :IP, :VpcName, :EniId, :InstanceId, :InstanceName, :Region
+        
+        def initialize(localvpcid=nil, vpcid=nil, ip=nil, vpcname=nil, eniid=nil, instanceid=nil, instancename=nil, region=nil)
+          @LocalVpcId = localvpcid
+          @VpcId = vpcid
+          @IP = ip
+          @VpcName = vpcname
+          @EniId = eniid
+          @InstanceId = instanceid
+          @InstanceName = instancename
+          @Region = region
+        end
+
+        def deserialize(params)
+          @LocalVpcId = params['LocalVpcId']
+          @VpcId = params['VpcId']
+          @IP = params['IP']
+          @VpcName = params['VpcName']
+          @EniId = params['EniId']
+          @InstanceId = params['InstanceId']
+          @InstanceName = params['InstanceName']
+          @Region = params['Region']
+        end
+      end
+
       # DeleteListener请求参数结构体
       class DeleteListenerRequest < TencentCloud::Common::AbstractModel
         # @param LoadBalancerId: 负载均衡实例ID。
@@ -2441,6 +2487,72 @@ module TencentCloud
             end
           end
           @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeCrossTargets请求参数结构体
+      class DescribeCrossTargetsRequest < TencentCloud::Common::AbstractModel
+        # @param Limit: 返回后端服务列表数目，默认20，最大值100。
+        # @type Limit: Integer
+        # @param Offset: 返回后端服务列表起始偏移量，默认0。
+        # @type Offset: Integer
+        # @param Filters: 查询跨域2.0版本云联网后端子机和网卡服务列表条件，详细的过滤条件如下：
+        # <li> vpc-id - String - 是否必填：否 - （过滤条件）按照 本地私有网络ID，即负载均衡的VpcId 过滤，如："vpc-12345678"。</li>
+        # <li> ip - String - 是否必填：否 - （过滤条件）按照 后端服务ip 过滤，如："192.168.0.1"。</li>
+        # <li> listener-id - String - 是否必填：否 - （过滤条件）按照 监听器ID 过滤，如："lbl-12345678"。</li>
+        # <li> location-id - String - 是否必填：否 - （过滤条件）按照 七层监听器规则ID 过滤，如："loc-12345678"。</li>
+        # @type Filters: Array
+
+        attr_accessor :Limit, :Offset, :Filters
+        
+        def initialize(limit=nil, offset=nil, filters=nil)
+          @Limit = limit
+          @Offset = offset
+          @Filters = filters
+        end
+
+        def deserialize(params)
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+        end
+      end
+
+      # DescribeCrossTargets返回参数结构体
+      class DescribeCrossTargetsResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 后端服务列表总数。
+        # @type TotalCount: Integer
+        # @param CrossTargetSet: 后端服务列表。
+        # @type CrossTargetSet: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :CrossTargetSet, :RequestId
+        
+        def initialize(totalcount=nil, crosstargetset=nil, requestid=nil)
+          @TotalCount = totalcount
+          @CrossTargetSet = crosstargetset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['CrossTargetSet'].nil?
+            @CrossTargetSet = []
+            params['CrossTargetSet'].each do |i|
+              crosstargets_tmp = CrossTargets.new
+              crosstargets_tmp.deserialize(i)
+              @CrossTargetSet << crosstargets_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -5129,7 +5241,7 @@ module TencentCloud
 
       # ModifyLoadBalancerSla请求参数结构体
       class ModifyLoadBalancerSlaRequest < TencentCloud::Common::AbstractModel
-        # @param LoadBalancerSla: 负载均衡性能保障实例ID和变配的目标规格
+        # @param LoadBalancerSla: 负载均衡实例信息
         # @type LoadBalancerSla: Array
 
         attr_accessor :LoadBalancerSla
@@ -6296,11 +6408,11 @@ module TencentCloud
         end
       end
 
-      # 性能保障变配参数
+      # 性能容量型变配参数
       class SlaUpdateParam < TencentCloud::Common::AbstractModel
         # @param LoadBalancerId: lb的字符串ID
         # @type LoadBalancerId: String
-        # @param SlaType: 需要变更的性能保障级别
+        # @param SlaType: 变更为性能容量型，固定为SLA
         # @type SlaType: String
 
         attr_accessor :LoadBalancerId, :SlaType

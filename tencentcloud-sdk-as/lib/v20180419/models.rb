@@ -139,6 +139,30 @@ module TencentCloud
         end
       end
 
+      # 伸缩配置建议。
+      class Advice < TencentCloud::Common::AbstractModel
+        # @param Problem: 问题描述。
+        # @type Problem: String
+        # @param Detail: 问题详情。
+        # @type Detail: String
+        # @param Solution: 建议解决方案。
+        # @type Solution: String
+
+        attr_accessor :Problem, :Detail, :Solution
+        
+        def initialize(problem=nil, detail=nil, solution=nil)
+          @Problem = problem
+          @Detail = detail
+          @Solution = solution
+        end
+
+        def deserialize(params)
+          @Problem = params['Problem']
+          @Detail = params['Detail']
+          @Solution = params['Solution']
+        end
+      end
+
       # AttachInstances请求参数结构体
       class AttachInstancesRequest < TencentCloud::Common::AbstractModel
         # @param AutoScalingGroupId: 伸缩组ID
@@ -176,6 +200,33 @@ module TencentCloud
         def deserialize(params)
           @ActivityId = params['ActivityId']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 伸缩组配置建议。
+      class AutoScalingAdvice < TencentCloud::Common::AbstractModel
+        # @param AutoScalingGroupId: 伸缩组ID。
+        # @type AutoScalingGroupId: String
+        # @param Advices: 伸缩组配置建议集合。
+        # @type Advices: Array
+
+        attr_accessor :AutoScalingGroupId, :Advices
+        
+        def initialize(autoscalinggroupid=nil, advices=nil)
+          @AutoScalingGroupId = autoscalinggroupid
+          @Advices = advices
+        end
+
+        def deserialize(params)
+          @AutoScalingGroupId = params['AutoScalingGroupId']
+          unless params['Advices'].nil?
+            @Advices = []
+            params['Advices'].each do |i|
+              advice_tmp = Advice.new
+              advice_tmp.deserialize(i)
+              @Advices << advice_tmp
+            end
+          end
         end
       end
 
@@ -1488,6 +1539,49 @@ module TencentCloud
               activity_tmp = Activity.new
               activity_tmp.deserialize(i)
               @ActivitySet << activity_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeAutoScalingAdvices请求参数结构体
+      class DescribeAutoScalingAdvicesRequest < TencentCloud::Common::AbstractModel
+        # @param AutoScalingGroupIds: 待查询的伸缩组列表，上限100。
+        # @type AutoScalingGroupIds: Array
+
+        attr_accessor :AutoScalingGroupIds
+        
+        def initialize(autoscalinggroupids=nil)
+          @AutoScalingGroupIds = autoscalinggroupids
+        end
+
+        def deserialize(params)
+          @AutoScalingGroupIds = params['AutoScalingGroupIds']
+        end
+      end
+
+      # DescribeAutoScalingAdvices返回参数结构体
+      class DescribeAutoScalingAdvicesResponse < TencentCloud::Common::AbstractModel
+        # @param AutoScalingAdviceSet: 伸缩组配置建议集合。
+        # @type AutoScalingAdviceSet: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :AutoScalingAdviceSet, :RequestId
+        
+        def initialize(autoscalingadviceset=nil, requestid=nil)
+          @AutoScalingAdviceSet = autoscalingadviceset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['AutoScalingAdviceSet'].nil?
+            @AutoScalingAdviceSet = []
+            params['AutoScalingAdviceSet'].each do |i|
+              autoscalingadvice_tmp = AutoScalingAdvice.new
+              autoscalingadvice_tmp.deserialize(i)
+              @AutoScalingAdviceSet << autoscalingadvice_tmp
             end
           end
           @RequestId = params['RequestId']

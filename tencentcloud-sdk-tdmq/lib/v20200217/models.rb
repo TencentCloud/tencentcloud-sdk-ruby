@@ -1951,21 +1951,24 @@ module TencentCloud
         # @type Topic: String
         # @param Namespaces: 主题所在的命名空间，目前支持在单个命名空间下创建主题
         # @type Namespaces: Array
-        # @param Type: 主题类型，可选值为Normal, GlobalOrder, PartitionedOrder, Transaction
+        # @param Type: 主题类型，可选值为Normal, GlobalOrder, PartitionedOrder
         # @type Type: String
         # @param ClusterId: 集群ID
         # @type ClusterId: String
         # @param Remark: 主题说明，最大128个字符
         # @type Remark: String
+        # @param PartitionNum: 分区数，全局顺序无效
+        # @type PartitionNum: Integer
 
-        attr_accessor :Topic, :Namespaces, :Type, :ClusterId, :Remark
+        attr_accessor :Topic, :Namespaces, :Type, :ClusterId, :Remark, :PartitionNum
         
-        def initialize(topic=nil, namespaces=nil, type=nil, clusterid=nil, remark=nil)
+        def initialize(topic=nil, namespaces=nil, type=nil, clusterid=nil, remark=nil, partitionnum=nil)
           @Topic = topic
           @Namespaces = namespaces
           @Type = type
           @ClusterId = clusterid
           @Remark = remark
+          @PartitionNum = partitionnum
         end
 
         def deserialize(params)
@@ -1974,6 +1977,7 @@ module TencentCloud
           @Type = params['Type']
           @ClusterId = params['ClusterId']
           @Remark = params['Remark']
+          @PartitionNum = params['PartitionNum']
         end
       end
 
@@ -5878,14 +5882,17 @@ module TencentCloud
         # @type Topic: String
         # @param Remark: 说明信息，最大128个字符
         # @type Remark: String
+        # @param PartitionNum: 分区数，全局类型无效，不可小于当前分区数
+        # @type PartitionNum: Integer
 
-        attr_accessor :ClusterId, :NamespaceId, :Topic, :Remark
+        attr_accessor :ClusterId, :NamespaceId, :Topic, :Remark, :PartitionNum
         
-        def initialize(clusterid=nil, namespaceid=nil, topic=nil, remark=nil)
+        def initialize(clusterid=nil, namespaceid=nil, topic=nil, remark=nil, partitionnum=nil)
           @ClusterId = clusterid
           @NamespaceId = namespaceid
           @Topic = topic
           @Remark = remark
+          @PartitionNum = partitionnum
         end
 
         def deserialize(params)
@@ -5893,6 +5900,7 @@ module TencentCloud
           @NamespaceId = params['NamespaceId']
           @Topic = params['Topic']
           @Remark = params['Remark']
+          @PartitionNum = params['PartitionNum']
         end
       end
 

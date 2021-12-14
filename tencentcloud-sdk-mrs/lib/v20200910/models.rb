@@ -2576,10 +2576,13 @@ module TencentCloud
         # @param OcrText: OCR文本
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OcrText: String
+        # @param OcrResult: OCR拼接后文本
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OcrResult: String
 
-        attr_accessor :PatientInfo, :ReportInfo, :Check, :Pathology, :MedDoc, :DiagCert, :FirstPage, :Indicator, :ReportType, :MedicalRecordInfo, :Hospitalization, :Surgery, :Electrocardiogram, :Endoscopy, :Prescription, :VaccineCertificate, :OcrText
+        attr_accessor :PatientInfo, :ReportInfo, :Check, :Pathology, :MedDoc, :DiagCert, :FirstPage, :Indicator, :ReportType, :MedicalRecordInfo, :Hospitalization, :Surgery, :Electrocardiogram, :Endoscopy, :Prescription, :VaccineCertificate, :OcrText, :OcrResult
         
-        def initialize(patientinfo=nil, reportinfo=nil, check=nil, pathology=nil, meddoc=nil, diagcert=nil, firstpage=nil, indicator=nil, reporttype=nil, medicalrecordinfo=nil, hospitalization=nil, surgery=nil, electrocardiogram=nil, endoscopy=nil, prescription=nil, vaccinecertificate=nil, ocrtext=nil)
+        def initialize(patientinfo=nil, reportinfo=nil, check=nil, pathology=nil, meddoc=nil, diagcert=nil, firstpage=nil, indicator=nil, reporttype=nil, medicalrecordinfo=nil, hospitalization=nil, surgery=nil, electrocardiogram=nil, endoscopy=nil, prescription=nil, vaccinecertificate=nil, ocrtext=nil, ocrresult=nil)
           @PatientInfo = patientinfo
           @ReportInfo = reportinfo
           @Check = check
@@ -2597,6 +2600,7 @@ module TencentCloud
           @Prescription = prescription
           @VaccineCertificate = vaccinecertificate
           @OcrText = ocrtext
+          @OcrResult = ocrresult
         end
 
         def deserialize(params)
@@ -2662,6 +2666,7 @@ module TencentCloud
             @VaccineCertificate.deserialize(params['VaccineCertificate'])
           end
           @OcrText = params['OcrText']
+          @OcrResult = params['OcrResult']
         end
       end
 

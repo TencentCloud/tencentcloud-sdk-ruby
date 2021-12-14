@@ -1219,6 +1219,86 @@ module TencentCloud
         end
       end
 
+      # DescribeInstanceParams请求参数结构体
+      class DescribeInstanceParamsRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+
+        attr_accessor :InstanceId
+        
+        def initialize(instanceid=nil)
+          @InstanceId = instanceid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+        end
+      end
+
+      # DescribeInstanceParams返回参数结构体
+      class DescribeInstanceParamsResponse < TencentCloud::Common::AbstractModel
+        # @param InstanceEnumParam: 值为枚举类型参数集合
+        # @type InstanceEnumParam: Array
+        # @param InstanceIntegerParam: 值为integer类型参数集合
+        # @type InstanceIntegerParam: Array
+        # @param InstanceTextParam: 值为text类型的参数集合
+        # @type InstanceTextParam: Array
+        # @param InstanceMultiParam: 值为混合类型的参数集合
+        # @type InstanceMultiParam: Array
+        # @param TotalCount: 当前实例支持修改的参数个数统计 如0
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :InstanceEnumParam, :InstanceIntegerParam, :InstanceTextParam, :InstanceMultiParam, :TotalCount, :RequestId
+        
+        def initialize(instanceenumparam=nil, instanceintegerparam=nil, instancetextparam=nil, instancemultiparam=nil, totalcount=nil, requestid=nil)
+          @InstanceEnumParam = instanceenumparam
+          @InstanceIntegerParam = instanceintegerparam
+          @InstanceTextParam = instancetextparam
+          @InstanceMultiParam = instancemultiparam
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['InstanceEnumParam'].nil?
+            @InstanceEnumParam = []
+            params['InstanceEnumParam'].each do |i|
+              instanceenumparam_tmp = InstanceEnumParam.new
+              instanceenumparam_tmp.deserialize(i)
+              @InstanceEnumParam << instanceenumparam_tmp
+            end
+          end
+          unless params['InstanceIntegerParam'].nil?
+            @InstanceIntegerParam = []
+            params['InstanceIntegerParam'].each do |i|
+              instanceintegerparam_tmp = InstanceIntegerParam.new
+              instanceintegerparam_tmp.deserialize(i)
+              @InstanceIntegerParam << instanceintegerparam_tmp
+            end
+          end
+          unless params['InstanceTextParam'].nil?
+            @InstanceTextParam = []
+            params['InstanceTextParam'].each do |i|
+              instancetextparam_tmp = InstanceTextParam.new
+              instancetextparam_tmp.deserialize(i)
+              @InstanceTextParam << instancetextparam_tmp
+            end
+          end
+          unless params['InstanceMultiParam'].nil?
+            @InstanceMultiParam = []
+            params['InstanceMultiParam'].each do |i|
+              instancemultiparam_tmp = InstanceMultiParam.new
+              instancemultiparam_tmp.deserialize(i)
+              @InstanceMultiParam << instancemultiparam_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeSecurityGroup请求参数结构体
       class DescribeSecurityGroupRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例ID，格式如：cmgo-p8vnipr5。
@@ -1867,6 +1947,190 @@ module TencentCloud
           @InstanceType = params['InstanceType']
           @InstanceStatusDesc = params['InstanceStatusDesc']
           @RealInstanceId = params['RealInstanceId']
+        end
+      end
+
+      # 实例可修改参数枚举类型集合。
+      class InstanceEnumParam < TencentCloud::Common::AbstractModel
+        # @param CurrentValue: 参数当前值
+        # @type CurrentValue: String
+        # @param DefaultValue: 默认值
+        # @type DefaultValue: String
+        # @param EnumValue: 枚举值，所有支持的值
+        # @type EnumValue: Array
+        # @param NeedRestart: 是否需要重启后生效，"1"需要，"0"无需重启
+        # @type NeedRestart: String
+        # @param ParamName: 参数名称
+        # @type ParamName: String
+        # @param Tips: 中英文说明
+        # @type Tips: Array
+        # @param ValueType: 参数值类型说明
+        # @type ValueType: String
+        # @param Status: 是否获取到参数，1为获取，前端正常显示，0:前段显示loading
+        # @type Status: Integer
+
+        attr_accessor :CurrentValue, :DefaultValue, :EnumValue, :NeedRestart, :ParamName, :Tips, :ValueType, :Status
+        
+        def initialize(currentvalue=nil, defaultvalue=nil, enumvalue=nil, needrestart=nil, paramname=nil, tips=nil, valuetype=nil, status=nil)
+          @CurrentValue = currentvalue
+          @DefaultValue = defaultvalue
+          @EnumValue = enumvalue
+          @NeedRestart = needrestart
+          @ParamName = paramname
+          @Tips = tips
+          @ValueType = valuetype
+          @Status = status
+        end
+
+        def deserialize(params)
+          @CurrentValue = params['CurrentValue']
+          @DefaultValue = params['DefaultValue']
+          @EnumValue = params['EnumValue']
+          @NeedRestart = params['NeedRestart']
+          @ParamName = params['ParamName']
+          @Tips = params['Tips']
+          @ValueType = params['ValueType']
+          @Status = params['Status']
+        end
+      end
+
+      # 实例可修改参数integer类型集合。
+      class InstanceIntegerParam < TencentCloud::Common::AbstractModel
+        # @param CurrentValue: 当前值
+        # @type CurrentValue: String
+        # @param DefaultValue: 默认值
+        # @type DefaultValue: String
+        # @param Max: 最大值
+        # @type Max: String
+        # @param Min: 最小值
+        # @type Min: String
+        # @param NeedRestart: 是否徐亚哦重启后生效 1:需要重启；0:无需重启
+        # @type NeedRestart: String
+        # @param ParamName: 参数名称
+        # @type ParamName: String
+        # @param Tips: 参数说明
+        # @type Tips: Array
+        # @param ValueType: 参数类型
+        # @type ValueType: String
+        # @param Status: 是否正常获取到，1：未正常获取；0：正常获取，仅对前端有实际意义；
+        # @type Status: Integer
+        # @param Unit: 暂时未用到，前端使用redis侧代码，为了兼容，保留该参数
+        # @type Unit: String
+
+        attr_accessor :CurrentValue, :DefaultValue, :Max, :Min, :NeedRestart, :ParamName, :Tips, :ValueType, :Status, :Unit
+        
+        def initialize(currentvalue=nil, defaultvalue=nil, max=nil, min=nil, needrestart=nil, paramname=nil, tips=nil, valuetype=nil, status=nil, unit=nil)
+          @CurrentValue = currentvalue
+          @DefaultValue = defaultvalue
+          @Max = max
+          @Min = min
+          @NeedRestart = needrestart
+          @ParamName = paramname
+          @Tips = tips
+          @ValueType = valuetype
+          @Status = status
+          @Unit = unit
+        end
+
+        def deserialize(params)
+          @CurrentValue = params['CurrentValue']
+          @DefaultValue = params['DefaultValue']
+          @Max = params['Max']
+          @Min = params['Min']
+          @NeedRestart = params['NeedRestart']
+          @ParamName = params['ParamName']
+          @Tips = params['Tips']
+          @ValueType = params['ValueType']
+          @Status = params['Status']
+          @Unit = params['Unit']
+        end
+      end
+
+      # 实例可修改参数Multi类型集合。
+      class InstanceMultiParam < TencentCloud::Common::AbstractModel
+        # @param CurrentValue: 当前值
+        # @type CurrentValue: String
+        # @param DefaultValue: 默认值
+        # @type DefaultValue: String
+        # @param EnumValue: 指导值范围
+        # @type EnumValue: Array
+        # @param NeedRestart: 是否需要重启
+        # @type NeedRestart: String
+        # @param ParamName: 参数名称
+        # @type ParamName: String
+        # @param Status: 状态值
+        # @type Status: Integer
+        # @param Tips: 参数说明
+        # @type Tips: Array
+        # @param ValueType: 值类型，multi混合类型
+        # @type ValueType: String
+
+        attr_accessor :CurrentValue, :DefaultValue, :EnumValue, :NeedRestart, :ParamName, :Status, :Tips, :ValueType
+        
+        def initialize(currentvalue=nil, defaultvalue=nil, enumvalue=nil, needrestart=nil, paramname=nil, status=nil, tips=nil, valuetype=nil)
+          @CurrentValue = currentvalue
+          @DefaultValue = defaultvalue
+          @EnumValue = enumvalue
+          @NeedRestart = needrestart
+          @ParamName = paramname
+          @Status = status
+          @Tips = tips
+          @ValueType = valuetype
+        end
+
+        def deserialize(params)
+          @CurrentValue = params['CurrentValue']
+          @DefaultValue = params['DefaultValue']
+          @EnumValue = params['EnumValue']
+          @NeedRestart = params['NeedRestart']
+          @ParamName = params['ParamName']
+          @Status = params['Status']
+          @Tips = params['Tips']
+          @ValueType = params['ValueType']
+        end
+      end
+
+      # 实例可修改参数text类型集合。
+      class InstanceTextParam < TencentCloud::Common::AbstractModel
+        # @param CurrentValue: 当前值(暂未使用)
+        # @type CurrentValue: String
+        # @param DefaultValue: 默认值(暂未使用)
+        # @type DefaultValue: String
+        # @param NeedRestart: 是否需要重启(暂未使用)
+        # @type NeedRestart: String
+        # @param ParamName: 参数名称(暂未使用)
+        # @type ParamName: String
+        # @param TextValue: text类型值(暂未使用)
+        # @type TextValue: String
+        # @param Tips: 说明(暂未使用)
+        # @type Tips: Array
+        # @param ValueType: 值类型(暂未使用)
+        # @type ValueType: String
+        # @param Status: 值获取状态(暂未使用)
+        # @type Status: String
+
+        attr_accessor :CurrentValue, :DefaultValue, :NeedRestart, :ParamName, :TextValue, :Tips, :ValueType, :Status
+        
+        def initialize(currentvalue=nil, defaultvalue=nil, needrestart=nil, paramname=nil, textvalue=nil, tips=nil, valuetype=nil, status=nil)
+          @CurrentValue = currentvalue
+          @DefaultValue = defaultvalue
+          @NeedRestart = needrestart
+          @ParamName = paramname
+          @TextValue = textvalue
+          @Tips = tips
+          @ValueType = valuetype
+          @Status = status
+        end
+
+        def deserialize(params)
+          @CurrentValue = params['CurrentValue']
+          @DefaultValue = params['DefaultValue']
+          @NeedRestart = params['NeedRestart']
+          @ParamName = params['ParamName']
+          @TextValue = params['TextValue']
+          @Tips = params['Tips']
+          @ValueType = params['ValueType']
+          @Status = params['Status']
         end
       end
 

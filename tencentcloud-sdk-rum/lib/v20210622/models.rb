@@ -129,10 +129,12 @@ module TencentCloud
         # @type Browser: String
         # @param Name: 筛选条件
         # @type Name: String
+        # @param Env: 环境
+        # @type Env: String
 
-        attr_accessor :StartTime, :Type, :EndTime, :ID, :ExtSecond, :Engine, :Isp, :From, :Level, :Brand, :Area, :VersionNum, :Platform, :ExtThird, :ExtFirst, :NetType, :Device, :IsAbroad, :Os, :Browser, :Name
+        attr_accessor :StartTime, :Type, :EndTime, :ID, :ExtSecond, :Engine, :Isp, :From, :Level, :Brand, :Area, :VersionNum, :Platform, :ExtThird, :ExtFirst, :NetType, :Device, :IsAbroad, :Os, :Browser, :Name, :Env
         
-        def initialize(starttime=nil, type=nil, endtime=nil, id=nil, extsecond=nil, engine=nil, isp=nil, from=nil, level=nil, brand=nil, area=nil, versionnum=nil, platform=nil, extthird=nil, extfirst=nil, nettype=nil, device=nil, isabroad=nil, os=nil, browser=nil, name=nil)
+        def initialize(starttime=nil, type=nil, endtime=nil, id=nil, extsecond=nil, engine=nil, isp=nil, from=nil, level=nil, brand=nil, area=nil, versionnum=nil, platform=nil, extthird=nil, extfirst=nil, nettype=nil, device=nil, isabroad=nil, os=nil, browser=nil, name=nil, env=nil)
           @StartTime = starttime
           @Type = type
           @EndTime = endtime
@@ -154,6 +156,7 @@ module TencentCloud
           @Os = os
           @Browser = browser
           @Name = name
+          @Env = env
         end
 
         def deserialize(params)
@@ -178,6 +181,7 @@ module TencentCloud
           @Os = params['Os']
           @Browser = params['Browser']
           @Name = params['Name']
+          @Env = params['Env']
         end
       end
 
@@ -243,10 +247,12 @@ module TencentCloud
         # @type Os: String
         # @param Browser: 浏览器
         # @type Browser: String
+        # @param Env: 环境区分
+        # @type Env: String
 
-        attr_accessor :StartTime, :Type, :EndTime, :ID, :ExtSecond, :Engine, :Isp, :From, :Level, :Brand, :Area, :VersionNum, :Platform, :ExtThird, :ExtFirst, :NetType, :Device, :IsAbroad, :Os, :Browser
+        attr_accessor :StartTime, :Type, :EndTime, :ID, :ExtSecond, :Engine, :Isp, :From, :Level, :Brand, :Area, :VersionNum, :Platform, :ExtThird, :ExtFirst, :NetType, :Device, :IsAbroad, :Os, :Browser, :Env
         
-        def initialize(starttime=nil, type=nil, endtime=nil, id=nil, extsecond=nil, engine=nil, isp=nil, from=nil, level=nil, brand=nil, area=nil, versionnum=nil, platform=nil, extthird=nil, extfirst=nil, nettype=nil, device=nil, isabroad=nil, os=nil, browser=nil)
+        def initialize(starttime=nil, type=nil, endtime=nil, id=nil, extsecond=nil, engine=nil, isp=nil, from=nil, level=nil, brand=nil, area=nil, versionnum=nil, platform=nil, extthird=nil, extfirst=nil, nettype=nil, device=nil, isabroad=nil, os=nil, browser=nil, env=nil)
           @StartTime = starttime
           @Type = type
           @EndTime = endtime
@@ -267,6 +273,7 @@ module TencentCloud
           @IsAbroad = isabroad
           @Os = os
           @Browser = browser
+          @Env = env
         end
 
         def deserialize(params)
@@ -290,6 +297,7 @@ module TencentCloud
           @IsAbroad = params['IsAbroad']
           @Os = params['Os']
           @Browser = params['Browser']
+          @Env = params['Env']
         end
       end
 
@@ -357,10 +365,12 @@ module TencentCloud
         # @type From: String
         # @param CostType: 耗时计算方式
         # @type CostType: String
+        # @param Env: 环境变量
+        # @type Env: String
 
-        attr_accessor :ID, :StartTime, :EndTime, :Type, :Level, :Isp, :Area, :NetType, :Platform, :Device, :VersionNum, :ExtFirst, :ExtSecond, :ExtThird, :IsAbroad, :Browser, :Os, :Engine, :Brand, :From, :CostType
+        attr_accessor :ID, :StartTime, :EndTime, :Type, :Level, :Isp, :Area, :NetType, :Platform, :Device, :VersionNum, :ExtFirst, :ExtSecond, :ExtThird, :IsAbroad, :Browser, :Os, :Engine, :Brand, :From, :CostType, :Env
         
-        def initialize(id=nil, starttime=nil, endtime=nil, type=nil, level=nil, isp=nil, area=nil, nettype=nil, platform=nil, device=nil, versionnum=nil, extfirst=nil, extsecond=nil, extthird=nil, isabroad=nil, browser=nil, os=nil, engine=nil, brand=nil, from=nil, costtype=nil)
+        def initialize(id=nil, starttime=nil, endtime=nil, type=nil, level=nil, isp=nil, area=nil, nettype=nil, platform=nil, device=nil, versionnum=nil, extfirst=nil, extsecond=nil, extthird=nil, isabroad=nil, browser=nil, os=nil, engine=nil, brand=nil, from=nil, costtype=nil, env=nil)
           @ID = id
           @StartTime = starttime
           @EndTime = endtime
@@ -382,6 +392,7 @@ module TencentCloud
           @Brand = brand
           @From = from
           @CostType = costtype
+          @Env = env
         end
 
         def deserialize(params)
@@ -406,6 +417,7 @@ module TencentCloud
           @Brand = params['Brand']
           @From = params['From']
           @CostType = params['CostType']
+          @Env = params['Env']
         end
       end
 
@@ -471,10 +483,12 @@ module TencentCloud
         # @type Os: String
         # @param Browser: 浏览器
         # @type Browser: String
+        # @param Env: 环境
+        # @type Env: String
 
-        attr_accessor :StartTime, :Type, :EndTime, :ID, :ExtSecond, :Engine, :Isp, :From, :Level, :Brand, :Area, :VersionNum, :Platform, :ExtThird, :ExtFirst, :NetType, :Device, :IsAbroad, :Os, :Browser
+        attr_accessor :StartTime, :Type, :EndTime, :ID, :ExtSecond, :Engine, :Isp, :From, :Level, :Brand, :Area, :VersionNum, :Platform, :ExtThird, :ExtFirst, :NetType, :Device, :IsAbroad, :Os, :Browser, :Env
         
-        def initialize(starttime=nil, type=nil, endtime=nil, id=nil, extsecond=nil, engine=nil, isp=nil, from=nil, level=nil, brand=nil, area=nil, versionnum=nil, platform=nil, extthird=nil, extfirst=nil, nettype=nil, device=nil, isabroad=nil, os=nil, browser=nil)
+        def initialize(starttime=nil, type=nil, endtime=nil, id=nil, extsecond=nil, engine=nil, isp=nil, from=nil, level=nil, brand=nil, area=nil, versionnum=nil, platform=nil, extthird=nil, extfirst=nil, nettype=nil, device=nil, isabroad=nil, os=nil, browser=nil, env=nil)
           @StartTime = starttime
           @Type = type
           @EndTime = endtime
@@ -495,6 +509,7 @@ module TencentCloud
           @IsAbroad = isabroad
           @Os = os
           @Browser = browser
+          @Env = env
         end
 
         def deserialize(params)
@@ -518,6 +533,7 @@ module TencentCloud
           @IsAbroad = params['IsAbroad']
           @Os = params['Os']
           @Browser = params['Browser']
+          @Env = params['Env']
         end
       end
 

@@ -2080,17 +2080,42 @@ module TencentCloud
         # @param DisplayName: 昵称，长度限制：64个字符。 默认与用户名相同。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DisplayName: String
+        # @param UserName: 用户名称。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UserName: String
+        # @param Phone: 用户手机号。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Phone: String
+        # @param Email: 邮箱地址。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Email: String
+        # @param Status: 用户状态。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: String
+        # @param DataSource: 数据来源。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DataSource: String
 
-        attr_accessor :UserId, :DisplayName
+        attr_accessor :UserId, :DisplayName, :UserName, :Phone, :Email, :Status, :DataSource
         
-        def initialize(userid=nil, displayname=nil)
+        def initialize(userid=nil, displayname=nil, username=nil, phone=nil, email=nil, status=nil, datasource=nil)
           @UserId = userid
           @DisplayName = displayname
+          @UserName = username
+          @Phone = phone
+          @Email = email
+          @Status = status
+          @DataSource = datasource
         end
 
         def deserialize(params)
           @UserId = params['UserId']
           @DisplayName = params['DisplayName']
+          @UserName = params['UserName']
+          @Phone = params['Phone']
+          @Email = params['Email']
+          @Status = params['Status']
+          @DataSource = params['DataSource']
         end
       end
 
