@@ -195,7 +195,7 @@ module TencentCloud
 
       # 创建结构化任务子任务信息
       class CreateStructureTaskInfo < TencentCloud::Common::AbstractModel
-        # @param TaskType: 任务类型
+        # @param TaskType: 任务类型:HealthReport(体检报告); BUltraReport(B超报告);MedCheckReport(检查报告);LaboratoryReport(检验报告); PathologyReport(病理报告);AdmissionReport(入院记录);DischargeReport(出院记录); DischargeSummary(出院小结);DiagnosisReport(诊断证明); MedicalRecordFront(病案首页);OperationReport(手术记录);OutpatientMedicalRecord(门诊病历)
         # @type TaskType: String
         # @param FileList: 报告文件上传的地址列表，需按顺序排列。如果使用ImageList参数，置为空数组即可
         # @type FileList: Array
@@ -672,7 +672,7 @@ module TencentCloud
 
       # 包含险种的各个核保结论
       class InsuranceResult < TencentCloud::Common::AbstractModel
-        # @param InsuranceType: 险种
+        # @param InsuranceType: 险种:CriticalDiseaseInsurance(重疾险);LifeInsurance(寿险);AccidentInsurance(意外险);MedicalInsurance(医疗险)
         # @type InsuranceType: String
         # @param Result: 对应险种的机器核保结果
         # @type Result: Array
@@ -785,7 +785,7 @@ module TencentCloud
       class PerStructDifference < TencentCloud::Common::AbstractModel
         # @param SubTaskId: 子任务ID
         # @type SubTaskId: String
-        # @param TaskType: 任务类型
+        # @param TaskType: 任务类型:HealthReport(体检报告); BUltraReport(B超报告);MedCheckReport(检查报告);LaboratoryReport(检验报告); PathologyReport(病理报告);AdmissionReport(入院记录);DischargeReport(出院记录); DischargeSummary(出院小结);DiagnosisReport(诊断证明); MedicalRecordFront(病案首页);OperationReport(手术记录);OutpatientMedicalRecord(门诊病历)
         # @type TaskType: String
         # @param ModifyItems: 修改的项
         # @type ModifyItems: Array
@@ -874,7 +874,7 @@ module TencentCloud
         # @type SubTaskId: String
         # @param TaskName: 任务名
         # @type TaskName: String
-        # @param TaskType: 任务类型
+        # @param TaskType: 任务类型:HealthReport(体检报告); BUltraReport(B超报告);MedCheckReport(检查报告);LaboratoryReport(检验报告); PathologyReport(病理报告);AdmissionReport(入院记录);DischargeReport(出院记录); DischargeSummary(出院小结);DiagnosisReport(诊断证明); MedicalRecordFront(病案首页);OperationReport(手术记录);OutpatientMedicalRecord(门诊病历)
         # @type TaskType: String
 
         attr_accessor :MainTaskId, :SubTaskId, :TaskName, :TaskType
@@ -945,9 +945,9 @@ module TencentCloud
 
       # 结构化结果
       class StructureResultObject < TencentCloud::Common::AbstractModel
-        # @param Code: 0表示正常返回
+        # @param Code: 0表示正常返回；1代表结果未生成；2代表任务执行失败
         # @type Code: Integer
-        # @param TaskType: 报告类型
+        # @param TaskType: 报告类型:HealthReport(体检报告); BUltraReport(B超报告);MedCheckReport(检查报告);LaboratoryReport(检验报告); PathologyReport(病理报告);AdmissionReport(入院记录);DischargeReport(出院记录); DischargeSummary(出院小结);DiagnosisReport(诊断证明); MedicalRecordFront(病案首页);OperationReport(手术记录);OutpatientMedicalRecord(门诊病历)
         # @type TaskType: String
         # @param StructureResult: 结构化结果
         # @type StructureResult: String

@@ -343,6 +343,105 @@ module TencentCloud
         end
       end
 
+      # CreateLiveChannel请求参数结构体
+      class CreateLiveChannelRequest < TencentCloud::Common::AbstractModel
+        # @param LiveChannelName: 直播频道名称
+        # @type LiveChannelName: String
+        # @param LiveChannelType: 直播频道类型 1：固定直播；2：移动直播
+        # @type LiveChannelType: Integer
+
+        attr_accessor :LiveChannelName, :LiveChannelType
+        
+        def initialize(livechannelname=nil, livechanneltype=nil)
+          @LiveChannelName = livechannelname
+          @LiveChannelType = livechanneltype
+        end
+
+        def deserialize(params)
+          @LiveChannelName = params['LiveChannelName']
+          @LiveChannelType = params['LiveChannelType']
+        end
+      end
+
+      # CreateLiveChannel返回参数结构体
+      class CreateLiveChannelResponse < TencentCloud::Common::AbstractModel
+        # @param LiveChannelId: 直播频道ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LiveChannelId: String
+        # @param PushStreamAddress: 直播频道推流地址
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PushStreamAddress: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :LiveChannelId, :PushStreamAddress, :RequestId
+        
+        def initialize(livechannelid=nil, pushstreamaddress=nil, requestid=nil)
+          @LiveChannelId = livechannelid
+          @PushStreamAddress = pushstreamaddress
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @LiveChannelId = params['LiveChannelId']
+          @PushStreamAddress = params['PushStreamAddress']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateLiveRecordPlan请求参数结构体
+      class CreateLiveRecordPlanRequest < TencentCloud::Common::AbstractModel
+        # @param PlanName: 录制计划名
+        # @type PlanName: String
+        # @param PlanType: 计划类型 1：固定直播 2：移动直播
+        # @type PlanType: Integer
+        # @param TemplateId: 时间模板ID,固定直播时为必填
+        # @type TemplateId: String
+        # @param RecordStorageTime: 录制文件存储时长，单位天，默认30天
+        # @type RecordStorageTime: Integer
+        # @param LiveChannelIds: 绑定的直播频道ID列表
+        # @type LiveChannelIds: Array
+
+        attr_accessor :PlanName, :PlanType, :TemplateId, :RecordStorageTime, :LiveChannelIds
+        
+        def initialize(planname=nil, plantype=nil, templateid=nil, recordstoragetime=nil, livechannelids=nil)
+          @PlanName = planname
+          @PlanType = plantype
+          @TemplateId = templateid
+          @RecordStorageTime = recordstoragetime
+          @LiveChannelIds = livechannelids
+        end
+
+        def deserialize(params)
+          @PlanName = params['PlanName']
+          @PlanType = params['PlanType']
+          @TemplateId = params['TemplateId']
+          @RecordStorageTime = params['RecordStorageTime']
+          @LiveChannelIds = params['LiveChannelIds']
+        end
+      end
+
+      # CreateLiveRecordPlan返回参数结构体
+      class CreateLiveRecordPlanResponse < TencentCloud::Common::AbstractModel
+        # @param PlanId: 录制计划名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PlanId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :PlanId, :RequestId
+        
+        def initialize(planid=nil, requestid=nil)
+          @PlanId = planid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @PlanId = params['PlanId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateRecordPlan请求参数结构体
       class CreateRecordPlanRequest < TencentCloud::Common::AbstractModel
         # @param Name: 计划名称
@@ -402,6 +501,66 @@ module TencentCloud
         end
       end
 
+      # CreateScene请求参数结构体
+      class CreateSceneRequest < TencentCloud::Common::AbstractModel
+        # @param SceneName: 场景名称
+        # @type SceneName: String
+        # @param SceneTrigger: 场景触发规则
+        # @type SceneTrigger: String
+        # @param RecordDuration: 录制时长 (秒)
+        # @type RecordDuration: Integer
+        # @param StoreDuration: 录像存储时长(天)
+        # @type StoreDuration: Integer
+        # @param Devices: 设备列表
+        # @type Devices: Array
+
+        attr_accessor :SceneName, :SceneTrigger, :RecordDuration, :StoreDuration, :Devices
+        
+        def initialize(scenename=nil, scenetrigger=nil, recordduration=nil, storeduration=nil, devices=nil)
+          @SceneName = scenename
+          @SceneTrigger = scenetrigger
+          @RecordDuration = recordduration
+          @StoreDuration = storeduration
+          @Devices = devices
+        end
+
+        def deserialize(params)
+          @SceneName = params['SceneName']
+          @SceneTrigger = params['SceneTrigger']
+          @RecordDuration = params['RecordDuration']
+          @StoreDuration = params['StoreDuration']
+          unless params['Devices'].nil?
+            @Devices = []
+            params['Devices'].each do |i|
+              deviceitem_tmp = DeviceItem.new
+              deviceitem_tmp.deserialize(i)
+              @Devices << deviceitem_tmp
+            end
+          end
+        end
+      end
+
+      # CreateScene返回参数结构体
+      class CreateSceneResponse < TencentCloud::Common::AbstractModel
+        # @param IntId: 场景ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IntId: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :IntId, :RequestId
+        
+        def initialize(intid=nil, requestid=nil)
+          @IntId = intid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @IntId = params['IntId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateTimeTemplate请求参数结构体
       class CreateTimeTemplateRequest < TencentCloud::Common::AbstractModel
         # @param Name: 时间模板名称
@@ -449,6 +608,42 @@ module TencentCloud
 
         def deserialize(params)
           @TemplateId = params['TemplateId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteChannel请求参数结构体
+      class DeleteChannelRequest < TencentCloud::Common::AbstractModel
+        # @param DeviceId: 设备ID
+        # @type DeviceId: String
+        # @param ChannelId: 通道ID
+        # @type ChannelId: String
+
+        attr_accessor :DeviceId, :ChannelId
+        
+        def initialize(deviceid=nil, channelid=nil)
+          @DeviceId = deviceid
+          @ChannelId = channelid
+        end
+
+        def deserialize(params)
+          @DeviceId = params['DeviceId']
+          @ChannelId = params['ChannelId']
+        end
+      end
+
+      # DeleteChannel返回参数结构体
+      class DeleteChannelResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
           @RequestId = params['RequestId']
         end
       end
@@ -527,6 +722,106 @@ module TencentCloud
         end
       end
 
+      # DeleteLiveChannel请求参数结构体
+      class DeleteLiveChannelRequest < TencentCloud::Common::AbstractModel
+        # @param LiveChannelId: 直播频道ID
+        # @type LiveChannelId: String
+
+        attr_accessor :LiveChannelId
+        
+        def initialize(livechannelid=nil)
+          @LiveChannelId = livechannelid
+        end
+
+        def deserialize(params)
+          @LiveChannelId = params['LiveChannelId']
+        end
+      end
+
+      # DeleteLiveChannel返回参数结构体
+      class DeleteLiveChannelResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteLiveRecordPlan请求参数结构体
+      class DeleteLiveRecordPlanRequest < TencentCloud::Common::AbstractModel
+        # @param PlanId: 录制计划ID
+        # @type PlanId: String
+
+        attr_accessor :PlanId
+        
+        def initialize(planid=nil)
+          @PlanId = planid
+        end
+
+        def deserialize(params)
+          @PlanId = params['PlanId']
+        end
+      end
+
+      # DeleteLiveRecordPlan返回参数结构体
+      class DeleteLiveRecordPlanResponse < TencentCloud::Common::AbstractModel
+        # @param Status: 删除状态描述
+        # @type Status: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Status, :RequestId
+        
+        def initialize(status=nil, requestid=nil)
+          @Status = status
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Status = params['Status']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteLiveVideoList请求参数结构体
+      class DeleteLiveVideoListRequest < TencentCloud::Common::AbstractModel
+        # @param IntIDs: 视频ID 列表, 大小限制(100)
+        # @type IntIDs: Array
+
+        attr_accessor :IntIDs
+        
+        def initialize(intids=nil)
+          @IntIDs = intids
+        end
+
+        def deserialize(params)
+          @IntIDs = params['IntIDs']
+        end
+      end
+
+      # DeleteLiveVideoList返回参数结构体
+      class DeleteLiveVideoListResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DeleteRecordPlan请求参数结构体
       class DeleteRecordPlanRequest < TencentCloud::Common::AbstractModel
         # @param PlanId: 录制计划ID
@@ -559,6 +854,38 @@ module TencentCloud
 
         def deserialize(params)
           @Status = params['Status']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteScene请求参数结构体
+      class DeleteSceneRequest < TencentCloud::Common::AbstractModel
+        # @param IntId: 场景ID
+        # @type IntId: Integer
+
+        attr_accessor :IntId
+        
+        def initialize(intid=nil)
+          @IntId = intid
+        end
+
+        def deserialize(params)
+          @IntId = params['IntId']
+        end
+      end
+
+      # DeleteScene返回参数结构体
+      class DeleteSceneResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
           @RequestId = params['RequestId']
         end
       end
@@ -596,6 +923,38 @@ module TencentCloud
 
         def deserialize(params)
           @Status = params['Status']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteVideoList请求参数结构体
+      class DeleteVideoListRequest < TencentCloud::Common::AbstractModel
+        # @param InitIDs: 视频ID列表长度限制100内
+        # @type InitIDs: Array
+
+        attr_accessor :InitIDs
+        
+        def initialize(initids=nil)
+          @InitIDs = initids
+        end
+
+        def deserialize(params)
+          @InitIDs = params['InitIDs']
+        end
+      end
+
+      # DeleteVideoList返回参数结构体
+      class DeleteVideoListResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
           @RequestId = params['RequestId']
         end
       end
@@ -659,6 +1018,120 @@ module TencentCloud
               alldeviceinfo_tmp = AllDeviceInfo.new
               alldeviceinfo_tmp.deserialize(i)
               @Devices << alldeviceinfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeBindSceneDevices请求参数结构体
+      class DescribeBindSceneDevicesRequest < TencentCloud::Common::AbstractModel
+        # @param SceneId: 场景ID
+        # @type SceneId: Integer
+        # @param Offset: 偏移值
+        # @type Offset: Integer
+        # @param Limit: 条数限制最大不能超过1000
+        # @type Limit: Integer
+
+        attr_accessor :SceneId, :Offset, :Limit
+        
+        def initialize(sceneid=nil, offset=nil, limit=nil)
+          @SceneId = sceneid
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @SceneId = params['SceneId']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeBindSceneDevices返回参数结构体
+      class DescribeBindSceneDevicesResponse < TencentCloud::Common::AbstractModel
+        # @param Total: 总数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Total: Integer
+        # @param List: 设备列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type List: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Total, :List, :RequestId
+        
+        def initialize(total=nil, list=nil, requestid=nil)
+          @Total = total
+          @List = list
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Total = params['Total']
+          unless params['List'].nil?
+            @List = []
+            params['List'].each do |i|
+              deviceitem_tmp = DeviceItem.new
+              deviceitem_tmp.deserialize(i)
+              @List << deviceitem_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeChannelsByLiveRecordPlan请求参数结构体
+      class DescribeChannelsByLiveRecordPlanRequest < TencentCloud::Common::AbstractModel
+        # @param PlanId: 录制计划ID
+        # @type PlanId: String
+        # @param Offset: 分页偏移量
+        # @type Offset: Integer
+        # @param Limit: 分页大小
+        # @type Limit: Integer
+
+        attr_accessor :PlanId, :Offset, :Limit
+        
+        def initialize(planid=nil, offset=nil, limit=nil)
+          @PlanId = planid
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @PlanId = params['PlanId']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeChannelsByLiveRecordPlan返回参数结构体
+      class DescribeChannelsByLiveRecordPlanResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 总个数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalCount: Integer
+        # @param LiveChannels: 通道详情数组
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LiveChannels: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :LiveChannels, :RequestId
+        
+        def initialize(totalcount=nil, livechannels=nil, requestid=nil)
+          @TotalCount = totalcount
+          @LiveChannels = livechannels
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['LiveChannels'].nil?
+            @LiveChannels = []
+            params['LiveChannels'].each do |i|
+              livechannelitem_tmp = LiveChannelItem.new
+              livechannelitem_tmp.deserialize(i)
+              @LiveChannels << livechannelitem_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -1075,6 +1548,419 @@ module TencentCloud
         end
       end
 
+      # DescribeLiveChannelList请求参数结构体
+      class DescribeLiveChannelListRequest < TencentCloud::Common::AbstractModel
+        # @param Offset: 偏移量
+        # @type Offset: Integer
+        # @param Limit: 最大数
+        # @type Limit: Integer
+        # @param LiveChannelType: 直播频道类型，1：固定直播；2：移动直播
+        # @type LiveChannelType: Integer
+        # @param RecordPlanId: 直播录制计划ID, null: 直播录制计划为空
+        # @type RecordPlanId: String
+        # @param LiveChannelName: 频道名称 (支持模糊搜索)
+        # @type LiveChannelName: String
+
+        attr_accessor :Offset, :Limit, :LiveChannelType, :RecordPlanId, :LiveChannelName
+        
+        def initialize(offset=nil, limit=nil, livechanneltype=nil, recordplanid=nil, livechannelname=nil)
+          @Offset = offset
+          @Limit = limit
+          @LiveChannelType = livechanneltype
+          @RecordPlanId = recordplanid
+          @LiveChannelName = livechannelname
+        end
+
+        def deserialize(params)
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @LiveChannelType = params['LiveChannelType']
+          @RecordPlanId = params['RecordPlanId']
+          @LiveChannelName = params['LiveChannelName']
+        end
+      end
+
+      # DescribeLiveChannelList返回参数结构体
+      class DescribeLiveChannelListResponse < TencentCloud::Common::AbstractModel
+        # @param Total: 频道总数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Total: Integer
+        # @param LiveChannels: 频道信息数组
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LiveChannels: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Total, :LiveChannels, :RequestId
+        
+        def initialize(total=nil, livechannels=nil, requestid=nil)
+          @Total = total
+          @LiveChannels = livechannels
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Total = params['Total']
+          unless params['LiveChannels'].nil?
+            @LiveChannels = []
+            params['LiveChannels'].each do |i|
+              livechannelinfo_tmp = LiveChannelInfo.new
+              livechannelinfo_tmp.deserialize(i)
+              @LiveChannels << livechannelinfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeLiveChannel请求参数结构体
+      class DescribeLiveChannelRequest < TencentCloud::Common::AbstractModel
+        # @param LiveChannelId: 频道ID
+        # @type LiveChannelId: String
+
+        attr_accessor :LiveChannelId
+        
+        def initialize(livechannelid=nil)
+          @LiveChannelId = livechannelid
+        end
+
+        def deserialize(params)
+          @LiveChannelId = params['LiveChannelId']
+        end
+      end
+
+      # DescribeLiveChannel返回参数结构体
+      class DescribeLiveChannelResponse < TencentCloud::Common::AbstractModel
+        # @param LiveChannelId: 频道ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LiveChannelId: String
+        # @param LiveChannelName: 频道名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LiveChannelName: String
+        # @param LiveChannelType: 直播频道类型 1：固定直播；2：移动直播
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LiveChannelType: Integer
+        # @param LiveStatus: 通道直播状态：1: 未推流，2: 推流中
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LiveStatus: Integer
+        # @param PushStreamAddress: 推流地址
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PushStreamAddress: String
+        # @param CreateTime: 创建时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateTime: Array
+        # @param UpdateTime: 修改时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UpdateTime: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :LiveChannelId, :LiveChannelName, :LiveChannelType, :LiveStatus, :PushStreamAddress, :CreateTime, :UpdateTime, :RequestId
+        
+        def initialize(livechannelid=nil, livechannelname=nil, livechanneltype=nil, livestatus=nil, pushstreamaddress=nil, createtime=nil, updatetime=nil, requestid=nil)
+          @LiveChannelId = livechannelid
+          @LiveChannelName = livechannelname
+          @LiveChannelType = livechanneltype
+          @LiveStatus = livestatus
+          @PushStreamAddress = pushstreamaddress
+          @CreateTime = createtime
+          @UpdateTime = updatetime
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @LiveChannelId = params['LiveChannelId']
+          @LiveChannelName = params['LiveChannelName']
+          @LiveChannelType = params['LiveChannelType']
+          @LiveStatus = params['LiveStatus']
+          @PushStreamAddress = params['PushStreamAddress']
+          @CreateTime = params['CreateTime']
+          @UpdateTime = params['UpdateTime']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeLiveRecordPlanById请求参数结构体
+      class DescribeLiveRecordPlanByIdRequest < TencentCloud::Common::AbstractModel
+        # @param PlanId: 录制计划ID
+        # @type PlanId: String
+
+        attr_accessor :PlanId
+        
+        def initialize(planid=nil)
+          @PlanId = planid
+        end
+
+        def deserialize(params)
+          @PlanId = params['PlanId']
+        end
+      end
+
+      # DescribeLiveRecordPlanById返回参数结构体
+      class DescribeLiveRecordPlanByIdResponse < TencentCloud::Common::AbstractModel
+        # @param PlanName: 计划名称
+        # @type PlanName: String
+        # @param TemplateId: 模板ID
+        # @type TemplateId: String
+        # @param TemplateName: 模板名称
+        # @type TemplateName: String
+        # @param RecordStorageTime: 存储时间
+        # @type RecordStorageTime: Integer
+        # @param PlanType: 计划类型
+        # @type PlanType: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :PlanName, :TemplateId, :TemplateName, :RecordStorageTime, :PlanType, :RequestId
+        
+        def initialize(planname=nil, templateid=nil, templatename=nil, recordstoragetime=nil, plantype=nil, requestid=nil)
+          @PlanName = planname
+          @TemplateId = templateid
+          @TemplateName = templatename
+          @RecordStorageTime = recordstoragetime
+          @PlanType = plantype
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @PlanName = params['PlanName']
+          @TemplateId = params['TemplateId']
+          @TemplateName = params['TemplateName']
+          @RecordStorageTime = params['RecordStorageTime']
+          @PlanType = params['PlanType']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeLiveRecordPlanIds请求参数结构体
+      class DescribeLiveRecordPlanIdsRequest < TencentCloud::Common::AbstractModel
+        # @param TemplateId: 时间模板ID
+        # @type TemplateId: String
+        # @param Offset: 分页偏移量
+        # @type Offset: Integer
+        # @param Limit: 分页大小
+        # @type Limit: Integer
+
+        attr_accessor :TemplateId, :Offset, :Limit
+        
+        def initialize(templateid=nil, offset=nil, limit=nil)
+          @TemplateId = templateid
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @TemplateId = params['TemplateId']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeLiveRecordPlanIds返回参数结构体
+      class DescribeLiveRecordPlanIdsResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 总个数
+        # @type TotalCount: Integer
+        # @param Plans: 计划数组
+        # @type Plans: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :Plans, :RequestId
+        
+        def initialize(totalcount=nil, plans=nil, requestid=nil)
+          @TotalCount = totalcount
+          @Plans = plans
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['Plans'].nil?
+            @Plans = []
+            params['Plans'].each do |i|
+              liverecordplanitem_tmp = LiveRecordPlanItem.new
+              liverecordplanitem_tmp.deserialize(i)
+              @Plans << liverecordplanitem_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeLiveStream请求参数结构体
+      class DescribeLiveStreamRequest < TencentCloud::Common::AbstractModel
+        # @param LiveChannelId: 频道ID
+        # @type LiveChannelId: String
+        # @param ExpireTime: 过期时间
+        # @type ExpireTime: Integer
+
+        attr_accessor :LiveChannelId, :ExpireTime
+        
+        def initialize(livechannelid=nil, expiretime=nil)
+          @LiveChannelId = livechannelid
+          @ExpireTime = expiretime
+        end
+
+        def deserialize(params)
+          @LiveChannelId = params['LiveChannelId']
+          @ExpireTime = params['ExpireTime']
+        end
+      end
+
+      # DescribeLiveStream返回参数结构体
+      class DescribeLiveStreamResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 拉流地址，只有在推流情况下才有
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Data: :class:`Tencentcloud::Iotvideoindustry.v20201201.models.StreamAddress`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+        
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = StreamAddress.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeLiveVideoList请求参数结构体
+      class DescribeLiveVideoListRequest < TencentCloud::Common::AbstractModel
+        # @param Offset: 偏移量
+        # @type Offset: Integer
+        # @param Limit: 分页的每页数量
+        # @type Limit: Integer
+        # @param LiveChannelId: 直播ID
+        # @type LiveChannelId: String
+        # @param StartRecordTime: 开始录制开始时间
+        # @type StartRecordTime: Integer
+        # @param EndRecordTime: 开始录制结束时间
+        # @type EndRecordTime: Integer
+        # @param StartExpireTime: 过期开始时间
+        # @type StartExpireTime: Integer
+        # @param EndExpireTime: 过期结束时间
+        # @type EndExpireTime: Integer
+        # @param StartFileSize: 文件大小范围 Byte
+        # @type StartFileSize: Integer
+        # @param EndFileSize: 文件大小范围 Byte
+        # @type EndFileSize: Integer
+        # @param IsRecording: 录制状态，5: 录制回写完
+        # @type IsRecording: Integer
+
+        attr_accessor :Offset, :Limit, :LiveChannelId, :StartRecordTime, :EndRecordTime, :StartExpireTime, :EndExpireTime, :StartFileSize, :EndFileSize, :IsRecording
+        
+        def initialize(offset=nil, limit=nil, livechannelid=nil, startrecordtime=nil, endrecordtime=nil, startexpiretime=nil, endexpiretime=nil, startfilesize=nil, endfilesize=nil, isrecording=nil)
+          @Offset = offset
+          @Limit = limit
+          @LiveChannelId = livechannelid
+          @StartRecordTime = startrecordtime
+          @EndRecordTime = endrecordtime
+          @StartExpireTime = startexpiretime
+          @EndExpireTime = endexpiretime
+          @StartFileSize = startfilesize
+          @EndFileSize = endfilesize
+          @IsRecording = isrecording
+        end
+
+        def deserialize(params)
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @LiveChannelId = params['LiveChannelId']
+          @StartRecordTime = params['StartRecordTime']
+          @EndRecordTime = params['EndRecordTime']
+          @StartExpireTime = params['StartExpireTime']
+          @EndExpireTime = params['EndExpireTime']
+          @StartFileSize = params['StartFileSize']
+          @EndFileSize = params['EndFileSize']
+          @IsRecording = params['IsRecording']
+        end
+      end
+
+      # DescribeLiveVideoList返回参数结构体
+      class DescribeLiveVideoListResponse < TencentCloud::Common::AbstractModel
+        # @param Total: 总的条数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Total: Integer
+        # @param RecordList: 录制任务详情数组
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RecordList: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Total, :RecordList, :RequestId
+        
+        def initialize(total=nil, recordlist=nil, requestid=nil)
+          @Total = total
+          @RecordList = recordlist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Total = params['Total']
+          unless params['RecordList'].nil?
+            @RecordList = []
+            params['RecordList'].each do |i|
+              liverecorditem_tmp = LiveRecordItem.new
+              liverecorditem_tmp.deserialize(i)
+              @RecordList << liverecorditem_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeRecordDatesByLive请求参数结构体
+      class DescribeRecordDatesByLiveRequest < TencentCloud::Common::AbstractModel
+        # @param LiveChannelId: 直播频道ID
+        # @type LiveChannelId: String
+        # @param Offset: 分页值，本地录制时参数无效
+        # @type Offset: Integer
+        # @param Limit: 限制值，本地录制时参数无效
+        # @type Limit: Integer
+
+        attr_accessor :LiveChannelId, :Offset, :Limit
+        
+        def initialize(livechannelid=nil, offset=nil, limit=nil)
+          @LiveChannelId = livechannelid
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @LiveChannelId = params['LiveChannelId']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeRecordDatesByLive返回参数结构体
+      class DescribeRecordDatesByLiveResponse < TencentCloud::Common::AbstractModel
+        # @param Dates: 录制日期数组
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Dates: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Dates, :RequestId
+        
+        def initialize(dates=nil, requestid=nil)
+          @Dates = dates
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Dates = params['Dates']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeRecordStreamData 复杂类型
       class DescribeRecordStreamData < TencentCloud::Common::AbstractModel
         # @param RtspAddr: Rtsp地址
@@ -1195,6 +2081,59 @@ module TencentCloud
           unless params['Data'].nil?
             @Data = ServerConfiguration.new
             @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeScenes请求参数结构体
+      class DescribeScenesRequest < TencentCloud::Common::AbstractModel
+        # @param Limit: 条数限制
+        # @type Limit: Integer
+        # @param Offset: 偏移
+        # @type Offset: Integer
+
+        attr_accessor :Limit, :Offset
+        
+        def initialize(limit=nil, offset=nil)
+          @Limit = limit
+          @Offset = offset
+        end
+
+        def deserialize(params)
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+        end
+      end
+
+      # DescribeScenes返回参数结构体
+      class DescribeScenesResponse < TencentCloud::Common::AbstractModel
+        # @param Total: 场景总数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Total: Integer
+        # @param List: 场景列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type List: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Total, :List, :RequestId
+        
+        def initialize(total=nil, list=nil, requestid=nil)
+          @Total = total
+          @List = list
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Total = params['Total']
+          unless params['List'].nil?
+            @List = []
+            params['List'].each do |i|
+              sceneitem_tmp = SceneItem.new
+              sceneitem_tmp.deserialize(i)
+              @List << sceneitem_tmp
+            end
           end
           @RequestId = params['RequestId']
         end
@@ -1387,6 +2326,42 @@ module TencentCloud
             end
           end
           @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeSubscriptionStatus请求参数结构体
+      class DescribeSubscriptionStatusRequest < TencentCloud::Common::AbstractModel
+        # @param DeviceId: 设备ID
+        # @type DeviceId: String
+
+        attr_accessor :DeviceId
+        
+        def initialize(deviceid=nil)
+          @DeviceId = deviceid
+        end
+
+        def deserialize(params)
+          @DeviceId = params['DeviceId']
+        end
+      end
+
+      # DescribeSubscriptionStatus返回参数结构体
+      class DescribeSubscriptionStatusResponse < TencentCloud::Common::AbstractModel
+        # @param AlarmStatus: 设备GB28181报警订阅状态 1：未开启订阅；2：已开启订阅
+        # @type AlarmStatus: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :AlarmStatus, :RequestId
+        
+        def initialize(alarmstatus=nil, requestid=nil)
+          @AlarmStatus = alarmstatus
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @AlarmStatus = params['AlarmStatus']
           @RequestId = params['RequestId']
         end
       end
@@ -2080,6 +3055,183 @@ module TencentCloud
         end
       end
 
+      # 频道信息
+      class LiveChannelInfo < TencentCloud::Common::AbstractModel
+        # @param LiveChannelId: 频道ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LiveChannelId: String
+        # @param LiveChannelName: 频道名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LiveChannelName: String
+        # @param LiveChannelType: 频道类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LiveChannelType: Integer
+        # @param LiveStatus: 通道直播状态：1: 未推流，2: 推流中
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LiveStatus: Integer
+        # @param PushStreamAddress: 推流地址
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PushStreamAddress: String
+        # @param CreateTime: 创建时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateTime: String
+        # @param UpdateTime: 修改时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UpdateTime: String
+
+        attr_accessor :LiveChannelId, :LiveChannelName, :LiveChannelType, :LiveStatus, :PushStreamAddress, :CreateTime, :UpdateTime
+        
+        def initialize(livechannelid=nil, livechannelname=nil, livechanneltype=nil, livestatus=nil, pushstreamaddress=nil, createtime=nil, updatetime=nil)
+          @LiveChannelId = livechannelid
+          @LiveChannelName = livechannelname
+          @LiveChannelType = livechanneltype
+          @LiveStatus = livestatus
+          @PushStreamAddress = pushstreamaddress
+          @CreateTime = createtime
+          @UpdateTime = updatetime
+        end
+
+        def deserialize(params)
+          @LiveChannelId = params['LiveChannelId']
+          @LiveChannelName = params['LiveChannelName']
+          @LiveChannelType = params['LiveChannelType']
+          @LiveStatus = params['LiveStatus']
+          @PushStreamAddress = params['PushStreamAddress']
+          @CreateTime = params['CreateTime']
+          @UpdateTime = params['UpdateTime']
+        end
+      end
+
+      # 直播频道详情
+      class LiveChannelItem < TencentCloud::Common::AbstractModel
+        # @param ChannelId: 频道ID
+        # @type ChannelId: String
+        # @param ChannelName: 频道名称
+        # @type ChannelName: String
+
+        attr_accessor :ChannelId, :ChannelName
+        
+        def initialize(channelid=nil, channelname=nil)
+          @ChannelId = channelid
+          @ChannelName = channelname
+        end
+
+        def deserialize(params)
+          @ChannelId = params['ChannelId']
+          @ChannelName = params['ChannelName']
+        end
+      end
+
+      # 直播录制详情item
+      class LiveRecordItem < TencentCloud::Common::AbstractModel
+        # @param IntID: 录制文件自增ID
+        # @type IntID: Integer
+        # @param LiveChannelId: 直播频道ID
+        # @type LiveChannelId: String
+        # @param ExpectDeleteTime: 过期时间
+        # @type ExpectDeleteTime: Integer
+        # @param RecordTimeLen: 录制时长
+        # @type RecordTimeLen: Integer
+        # @param FileSize: 文件大小
+        # @type FileSize: Integer
+        # @param VideoUrl: 录制文件url
+        # @type VideoUrl: String
+        # @param RecordPlanId: 录制计划ID
+        # @type RecordPlanId: String
+        # @param StartTime: 录制开始时间
+        # @type StartTime: Integer
+        # @param EndTime: 录制结束时间
+        # @type EndTime: Integer
+
+        attr_accessor :IntID, :LiveChannelId, :ExpectDeleteTime, :RecordTimeLen, :FileSize, :VideoUrl, :RecordPlanId, :StartTime, :EndTime
+        
+        def initialize(intid=nil, livechannelid=nil, expectdeletetime=nil, recordtimelen=nil, filesize=nil, videourl=nil, recordplanid=nil, starttime=nil, endtime=nil)
+          @IntID = intid
+          @LiveChannelId = livechannelid
+          @ExpectDeleteTime = expectdeletetime
+          @RecordTimeLen = recordtimelen
+          @FileSize = filesize
+          @VideoUrl = videourl
+          @RecordPlanId = recordplanid
+          @StartTime = starttime
+          @EndTime = endtime
+        end
+
+        def deserialize(params)
+          @IntID = params['IntID']
+          @LiveChannelId = params['LiveChannelId']
+          @ExpectDeleteTime = params['ExpectDeleteTime']
+          @RecordTimeLen = params['RecordTimeLen']
+          @FileSize = params['FileSize']
+          @VideoUrl = params['VideoUrl']
+          @RecordPlanId = params['RecordPlanId']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+        end
+      end
+
+      # 直播录制计划详情
+      class LiveRecordPlanItem < TencentCloud::Common::AbstractModel
+        # @param PlanId: 计划ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PlanId: String
+        # @param PlanName: 计划名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PlanName: String
+
+        attr_accessor :PlanId, :PlanName
+        
+        def initialize(planid=nil, planname=nil)
+          @PlanId = planid
+          @PlanName = planname
+        end
+
+        def deserialize(params)
+          @PlanId = params['PlanId']
+          @PlanName = params['PlanName']
+        end
+      end
+
+      # ModifyBindPlanLiveChannel请求参数结构体
+      class ModifyBindPlanLiveChannelRequest < TencentCloud::Common::AbstractModel
+        # @param PlanId: 直播录制计划ID
+        # @type PlanId: String
+        # @param Type: 1: 绑定 2: 解绑
+        # @type Type: Integer
+        # @param LiveChannelIds: 直播频道ID列表
+        # @type LiveChannelIds: Array
+
+        attr_accessor :PlanId, :Type, :LiveChannelIds
+        
+        def initialize(planid=nil, type=nil, livechannelids=nil)
+          @PlanId = planid
+          @Type = type
+          @LiveChannelIds = livechannelids
+        end
+
+        def deserialize(params)
+          @PlanId = params['PlanId']
+          @Type = params['Type']
+          @LiveChannelIds = params['LiveChannelIds']
+        end
+      end
+
+      # ModifyBindPlanLiveChannel返回参数结构体
+      class ModifyBindPlanLiveChannelResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyDeviceData请求参数结构体
       class ModifyDeviceDataRequest < TencentCloud::Common::AbstractModel
         # @param DeviceId: 设备唯一标识
@@ -2117,6 +3269,194 @@ module TencentCloud
 
         def deserialize(params)
           @Status = params['Status']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyLiveChannel请求参数结构体
+      class ModifyLiveChannelRequest < TencentCloud::Common::AbstractModel
+        # @param LiveChannelId: 直播频道ID
+        # @type LiveChannelId: String
+        # @param LiveChannelName: 直播频道名
+        # @type LiveChannelName: String
+
+        attr_accessor :LiveChannelId, :LiveChannelName
+        
+        def initialize(livechannelid=nil, livechannelname=nil)
+          @LiveChannelId = livechannelid
+          @LiveChannelName = livechannelname
+        end
+
+        def deserialize(params)
+          @LiveChannelId = params['LiveChannelId']
+          @LiveChannelName = params['LiveChannelName']
+        end
+      end
+
+      # ModifyLiveChannel返回参数结构体
+      class ModifyLiveChannelResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyLiveRecordPlan请求参数结构体
+      class ModifyLiveRecordPlanRequest < TencentCloud::Common::AbstractModel
+        # @param PlanId: 录制计划ID
+        # @type PlanId: String
+        # @param PlanName: 录制计划名
+        # @type PlanName: String
+        # @param TemplateId: 时间模板ID，固定直播时为必填
+        # @type TemplateId: String
+
+        attr_accessor :PlanId, :PlanName, :TemplateId
+        
+        def initialize(planid=nil, planname=nil, templateid=nil)
+          @PlanId = planid
+          @PlanName = planname
+          @TemplateId = templateid
+        end
+
+        def deserialize(params)
+          @PlanId = params['PlanId']
+          @PlanName = params['PlanName']
+          @TemplateId = params['TemplateId']
+        end
+      end
+
+      # ModifyLiveRecordPlan返回参数结构体
+      class ModifyLiveRecordPlanResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyLiveVideo请求参数结构体
+      class ModifyLiveVideoRequest < TencentCloud::Common::AbstractModel
+        # @param IntIDs: 视频ID 列表, 大小限制(100)
+        # @type IntIDs: Array
+        # @param ExpireTime: 过期时间 秒 (-1: 为永不过期)
+        # @type ExpireTime: Integer
+
+        attr_accessor :IntIDs, :ExpireTime
+        
+        def initialize(intids=nil, expiretime=nil)
+          @IntIDs = intids
+          @ExpireTime = expiretime
+        end
+
+        def deserialize(params)
+          @IntIDs = params['IntIDs']
+          @ExpireTime = params['ExpireTime']
+        end
+      end
+
+      # ModifyLiveVideo返回参数结构体
+      class ModifyLiveVideoResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifySubscriptionStatus请求参数结构体
+      class ModifySubscriptionStatusRequest < TencentCloud::Common::AbstractModel
+        # @param DeviceId: 设备ID
+        # @type DeviceId: String
+        # @param Status: 订阅状态 1：关闭订阅 2：开启订阅
+        # @type Status: Integer
+        # @param SubscriptionItem: 订阅类型 Alarm:告警订阅 Catalog:目录订阅 MobilePosition:移动位置订阅
+        # @type SubscriptionItem: String
+
+        attr_accessor :DeviceId, :Status, :SubscriptionItem
+        
+        def initialize(deviceid=nil, status=nil, subscriptionitem=nil)
+          @DeviceId = deviceid
+          @Status = status
+          @SubscriptionItem = subscriptionitem
+        end
+
+        def deserialize(params)
+          @DeviceId = params['DeviceId']
+          @Status = params['Status']
+          @SubscriptionItem = params['SubscriptionItem']
+        end
+      end
+
+      # ModifySubscriptionStatus返回参数结构体
+      class ModifySubscriptionStatusResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyVideoInfo请求参数结构体
+      class ModifyVideoInfoRequest < TencentCloud::Common::AbstractModel
+        # @param InitIDs: 视频ID列表长度限制100内
+        # @type InitIDs: Array
+        # @param ExpireTime: 过期时间 时间戳 -1: 永不过期 0: 无效值
+        # @type ExpireTime: Integer
+
+        attr_accessor :InitIDs, :ExpireTime
+        
+        def initialize(initids=nil, expiretime=nil)
+          @InitIDs = initids
+          @ExpireTime = expiretime
+        end
+
+        def deserialize(params)
+          @InitIDs = params['InitIDs']
+          @ExpireTime = params['ExpireTime']
+        end
+      end
+
+      # ModifyVideoInfo返回参数结构体
+      class ModifyVideoInfoResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
           @RequestId = params['RequestId']
         end
       end
@@ -2232,6 +3572,56 @@ module TencentCloud
         end
       end
 
+      # 场景列表元素
+      class SceneItem < TencentCloud::Common::AbstractModel
+        # @param IntId: 场景ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IntId: Integer
+        # @param Uin: 用户UIN
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Uin: String
+        # @param SceneName: 场景名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SceneName: String
+        # @param SceneTrigger: 触发规则
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SceneTrigger: String
+        # @param RecordDuration: 录制时长 秒
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RecordDuration: Integer
+        # @param StoreDuration: 存储时长 天
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StoreDuration: Integer
+        # @param CreateTime: 创建时间
+        # @type CreateTime: String
+        # @param UpdateTime: 修改时间
+        # @type UpdateTime: String
+
+        attr_accessor :IntId, :Uin, :SceneName, :SceneTrigger, :RecordDuration, :StoreDuration, :CreateTime, :UpdateTime
+        
+        def initialize(intid=nil, uin=nil, scenename=nil, scenetrigger=nil, recordduration=nil, storeduration=nil, createtime=nil, updatetime=nil)
+          @IntId = intid
+          @Uin = uin
+          @SceneName = scenename
+          @SceneTrigger = scenetrigger
+          @RecordDuration = recordduration
+          @StoreDuration = storeduration
+          @CreateTime = createtime
+          @UpdateTime = updatetime
+        end
+
+        def deserialize(params)
+          @IntId = params['IntId']
+          @Uin = params['Uin']
+          @SceneName = params['SceneName']
+          @SceneTrigger = params['SceneTrigger']
+          @RecordDuration = params['RecordDuration']
+          @StoreDuration = params['StoreDuration']
+          @CreateTime = params['CreateTime']
+          @UpdateTime = params['UpdateTime']
+        end
+      end
+
       # SIIP服务器相关配置项
       class ServerConfiguration < TencentCloud::Common::AbstractModel
         # @param Host: SIP服务器地址
@@ -2279,6 +3669,43 @@ module TencentCloud
         def deserialize(params)
           @Date = params['Date']
           @Sum = params['Sum']
+        end
+      end
+
+      # 拉流地址，只有在推流情况下才有
+      class StreamAddress < TencentCloud::Common::AbstractModel
+        # @param StreamId: 流ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StreamId: String
+        # @param RtspAddr: rtsp流地址
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RtspAddr: String
+        # @param RtmpAddr: rtmp流地址
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RtmpAddr: String
+        # @param HlsAddr: hls流地址
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HlsAddr: String
+        # @param FlvAddr: flv流地址
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FlvAddr: String
+
+        attr_accessor :StreamId, :RtspAddr, :RtmpAddr, :HlsAddr, :FlvAddr
+        
+        def initialize(streamid=nil, rtspaddr=nil, rtmpaddr=nil, hlsaddr=nil, flvaddr=nil)
+          @StreamId = streamid
+          @RtspAddr = rtspaddr
+          @RtmpAddr = rtmpaddr
+          @HlsAddr = hlsaddr
+          @FlvAddr = flvaddr
+        end
+
+        def deserialize(params)
+          @StreamId = params['StreamId']
+          @RtspAddr = params['RtspAddr']
+          @RtmpAddr = params['RtmpAddr']
+          @HlsAddr = params['HlsAddr']
+          @FlvAddr = params['FlvAddr']
         end
       end
 

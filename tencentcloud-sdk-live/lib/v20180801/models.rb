@@ -2825,7 +2825,8 @@ module TencentCloud
         # @param EventType: 事件类型。
         # 0: "断流",
         # 1: "推流",
-        # 100: "录制"。
+        # 100: "录制"
+        # 200: "截图回调"。
         # @type EventType: Integer
         # @param ResultCode: 回调结果。
         # 0为成功，其他为失败。
@@ -3753,18 +3754,26 @@ module TencentCloud
         # @param PageSize: 当前每页数量。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PageSize: Integer
+        # @param FluxPackageBillMode: 当请求参数 PackageType = 0 时生效，逗号分隔，从第一个到最后一个分别表示：
+        # 标准直播，中国大陆（境内全地区）计费方式。
+        # 标准直播，国际/港澳台（境外多地区）计费方式。
+        # 快直播，中国大陆（境内全地区）计费方式。
+        # 快直播，国际/港澳台（境外多地区）计费方式。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FluxPackageBillMode: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :LivePackageInfoList, :PackageBillMode, :TotalPage, :TotalNum, :PageNum, :PageSize, :RequestId
+        attr_accessor :LivePackageInfoList, :PackageBillMode, :TotalPage, :TotalNum, :PageNum, :PageSize, :FluxPackageBillMode, :RequestId
         
-        def initialize(livepackageinfolist=nil, packagebillmode=nil, totalpage=nil, totalnum=nil, pagenum=nil, pagesize=nil, requestid=nil)
+        def initialize(livepackageinfolist=nil, packagebillmode=nil, totalpage=nil, totalnum=nil, pagenum=nil, pagesize=nil, fluxpackagebillmode=nil, requestid=nil)
           @LivePackageInfoList = livepackageinfolist
           @PackageBillMode = packagebillmode
           @TotalPage = totalpage
           @TotalNum = totalnum
           @PageNum = pagenum
           @PageSize = pagesize
+          @FluxPackageBillMode = fluxpackagebillmode
           @RequestId = requestid
         end
 
@@ -3782,6 +3791,7 @@ module TencentCloud
           @TotalNum = params['TotalNum']
           @PageNum = params['PageNum']
           @PageSize = params['PageSize']
+          @FluxPackageBillMode = params['FluxPackageBillMode']
           @RequestId = params['RequestId']
         end
       end

@@ -269,6 +269,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 获取指定时间段内的诊断事件列表，支持依据风险等级、实例ID等条件过滤。
+
+        # @param request: Request instance for DescribeDBDiagEvents.
+        # @type request: :class:`Tencentcloud::dbbrain::V20210527::DescribeDBDiagEventsRequest`
+        # @rtype: :class:`Tencentcloud::dbbrain::V20210527::DescribeDBDiagEventsResponse`
+        def DescribeDBDiagEvents(request)
+          body = send_request('DescribeDBDiagEvents', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeDBDiagEventsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 获取实例诊断事件的列表。
 
         # @param request: Request instance for DescribeDBDiagHistory.

@@ -29,6 +29,30 @@ module TencentCloud
         end
 
 
+        # 账号组添加账号
+
+        # @param request: Request instance for AddAccountToAccountGroup.
+        # @type request: :class:`Tencentcloud::eiam::V20210420::AddAccountToAccountGroupRequest`
+        # @rtype: :class:`Tencentcloud::eiam::V20210420::AddAccountToAccountGroupResponse`
+        def AddAccountToAccountGroup(request)
+          body = send_request('AddAccountToAccountGroup', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = AddAccountToAccountGroupResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 加入用户到用户组
 
         # @param request: Request instance for AddUserToUserGroup.
@@ -39,6 +63,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = AddUserToUserGroupResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 创建账号组
+
+        # @param request: Request instance for CreateAccountGroup.
+        # @type request: :class:`Tencentcloud::eiam::V20210420::CreateAccountGroupRequest`
+        # @rtype: :class:`Tencentcloud::eiam::V20210420::CreateAccountGroupResponse`
+        def CreateAccountGroup(request)
+          body = send_request('CreateAccountGroup', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateAccountGroupResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 创建应用账号
+
+        # @param request: Request instance for CreateAppAccount.
+        # @type request: :class:`Tencentcloud::eiam::V20210420::CreateAppAccountRequest`
+        # @rtype: :class:`Tencentcloud::eiam::V20210420::CreateAppAccountResponse`
+        def CreateAppAccount(request)
+          body = send_request('CreateAppAccount', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateAppAccountResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -125,6 +197,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 删除账号组
+
+        # @param request: Request instance for DeleteAccountGroup.
+        # @type request: :class:`Tencentcloud::eiam::V20210420::DeleteAccountGroupRequest`
+        # @rtype: :class:`Tencentcloud::eiam::V20210420::DeleteAccountGroupResponse`
+        def DeleteAccountGroup(request)
+          body = send_request('DeleteAccountGroup', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteAccountGroupResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除应用账号
+
+        # @param request: Request instance for DeleteAppAccount.
+        # @type request: :class:`Tencentcloud::eiam::V20210420::DeleteAppAccountRequest`
+        # @rtype: :class:`Tencentcloud::eiam::V20210420::DeleteAppAccountResponse`
+        def DeleteAppAccount(request)
+          body = send_request('DeleteAppAccount', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteAppAccountResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 删除一个机构节点
 
         # @param request: Request instance for DeleteOrgNode.
@@ -183,6 +303,78 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteUserGroupResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 批量删除当前节点下的用户。如果出现个别用户删除错误，将不影响其余被勾选用户被删除的操作，同时提示未被删除的用户名称/用户ID。
+
+        # @param request: Request instance for DeleteUsers.
+        # @type request: :class:`Tencentcloud::eiam::V20210420::DeleteUsersRequest`
+        # @rtype: :class:`Tencentcloud::eiam::V20210420::DeleteUsersResponse`
+        def DeleteUsers(request)
+          body = send_request('DeleteUsers', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteUsersResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询账号组列表
+
+        # @param request: Request instance for DescribeAccountGroup.
+        # @type request: :class:`Tencentcloud::eiam::V20210420::DescribeAccountGroupRequest`
+        # @rtype: :class:`Tencentcloud::eiam::V20210420::DescribeAccountGroupResponse`
+        def DescribeAccountGroup(request)
+          body = send_request('DescribeAccountGroup', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeAccountGroupResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询应用账号列表
+
+        # @param request: Request instance for DescribeAppAccount.
+        # @type request: :class:`Tencentcloud::eiam::V20210420::DescribeAppAccountRequest`
+        # @rtype: :class:`Tencentcloud::eiam::V20210420::DescribeAppAccountResponse`
+        def DescribeAppAccount(request)
+          body = send_request('DescribeAppAccount', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeAppAccountResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -375,6 +567,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeUserResourcesAuthorizationResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 通过用户名或用户 id 获取用户的第三方账号绑定信息。
+
+        # @param request: Request instance for DescribeUserThirdPartyAccountInfo.
+        # @type request: :class:`Tencentcloud::eiam::V20210420::DescribeUserThirdPartyAccountInfoRequest`
+        # @rtype: :class:`Tencentcloud::eiam::V20210420::DescribeUserThirdPartyAccountInfoResponse`
+        def DescribeUserThirdPartyAccountInfo(request)
+          body = send_request('DescribeUserThirdPartyAccountInfo', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeUserThirdPartyAccountInfoResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        #  获取账号组中的账号列表
+
+        # @param request: Request instance for ListAccountInAccountGroup.
+        # @type request: :class:`Tencentcloud::eiam::V20210420::ListAccountInAccountGroupRequest`
+        # @rtype: :class:`Tencentcloud::eiam::V20210420::ListAccountInAccountGroupResponse`
+        def ListAccountInAccountGroup(request)
+          body = send_request('ListAccountInAccountGroup', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ListAccountInAccountGroupResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -629,6 +869,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 修改账号组
+
+        # @param request: Request instance for ModifyAccountGroup.
+        # @type request: :class:`Tencentcloud::eiam::V20210420::ModifyAccountGroupRequest`
+        # @rtype: :class:`Tencentcloud::eiam::V20210420::ModifyAccountGroupResponse`
+        def ModifyAccountGroup(request)
+          body = send_request('ModifyAccountGroup', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyAccountGroupResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改应用账号
+
+        # @param request: Request instance for ModifyAppAccount.
+        # @type request: :class:`Tencentcloud::eiam::V20210420::ModifyAppAccountRequest`
+        # @rtype: :class:`Tencentcloud::eiam::V20210420::ModifyAppAccountResponse`
+        def ModifyAppAccount(request)
+          body = send_request('ModifyAppAccount', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyAppAccountResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 更新一个应用的信息
 
         # @param request: Request instance for ModifyApplication.
@@ -663,6 +951,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyUserInfoResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 从账号组中移除账号
+
+        # @param request: Request instance for RemoveAccountFromAccountGroup.
+        # @type request: :class:`Tencentcloud::eiam::V20210420::RemoveAccountFromAccountGroupRequest`
+        # @rtype: :class:`Tencentcloud::eiam::V20210420::RemoveAccountFromAccountGroupResponse`
+        def RemoveAccountFromAccountGroup(request)
+          body = send_request('RemoveAccountFromAccountGroup', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = RemoveAccountFromAccountGroupResponse.new
             model.deserialize(response['Response'])
             model
           else

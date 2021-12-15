@@ -2010,10 +2010,12 @@ module TencentCloud
         # @type FilterEipEipAddressStatus: Array
         # @param FilterDamDDoSStatus: 是否只获取安全加速实例。填写时，只能填写1或者0。当填写1时，表示返回安全加速实例。当填写0时，表示返回非安全加速实例。
         # @type FilterDamDDoSStatus: Integer
+        # @param FilterStatus: 获取特定状态的资源，运行中填idle，攻击中填attacking，封堵中填blocking
+        # @type FilterStatus: String
 
-        attr_accessor :Offset, :Limit, :FilterIp, :FilterInstanceId, :FilterLine, :FilterRegion, :FilterName, :FilterEipType, :FilterEipEipAddressStatus, :FilterDamDDoSStatus
+        attr_accessor :Offset, :Limit, :FilterIp, :FilterInstanceId, :FilterLine, :FilterRegion, :FilterName, :FilterEipType, :FilterEipEipAddressStatus, :FilterDamDDoSStatus, :FilterStatus
         
-        def initialize(offset=nil, limit=nil, filterip=nil, filterinstanceid=nil, filterline=nil, filterregion=nil, filtername=nil, filtereiptype=nil, filtereipeipaddressstatus=nil, filterdamddosstatus=nil)
+        def initialize(offset=nil, limit=nil, filterip=nil, filterinstanceid=nil, filterline=nil, filterregion=nil, filtername=nil, filtereiptype=nil, filtereipeipaddressstatus=nil, filterdamddosstatus=nil, filterstatus=nil)
           @Offset = offset
           @Limit = limit
           @FilterIp = filterip
@@ -2024,6 +2026,7 @@ module TencentCloud
           @FilterEipType = filtereiptype
           @FilterEipEipAddressStatus = filtereipeipaddressstatus
           @FilterDamDDoSStatus = filterdamddosstatus
+          @FilterStatus = filterstatus
         end
 
         def deserialize(params)
@@ -2037,6 +2040,7 @@ module TencentCloud
           @FilterEipType = params['FilterEipType']
           @FilterEipEipAddressStatus = params['FilterEipEipAddressStatus']
           @FilterDamDDoSStatus = params['FilterDamDDoSStatus']
+          @FilterStatus = params['FilterStatus']
         end
       end
 
@@ -2087,10 +2091,14 @@ module TencentCloud
         # @type FilterName: String
         # @param FilterLine: 按照线路搜索, 1: BGP; 2: 三网
         # @type FilterLine: Integer
+        # @param FilterStatus: 状态搜索，idle：允许中；attacking：攻击中；blocking：封堵中
+        # @type FilterStatus: String
+        # @param FilterBoundStatus: 高防包绑定状态搜索，bounding：绑定中； failed：绑定失败
+        # @type FilterBoundStatus: String
 
-        attr_accessor :Offset, :Limit, :FilterIp, :FilterInstanceId, :FilterRegion, :FilterName, :FilterLine
+        attr_accessor :Offset, :Limit, :FilterIp, :FilterInstanceId, :FilterRegion, :FilterName, :FilterLine, :FilterStatus, :FilterBoundStatus
         
-        def initialize(offset=nil, limit=nil, filterip=nil, filterinstanceid=nil, filterregion=nil, filtername=nil, filterline=nil)
+        def initialize(offset=nil, limit=nil, filterip=nil, filterinstanceid=nil, filterregion=nil, filtername=nil, filterline=nil, filterstatus=nil, filterboundstatus=nil)
           @Offset = offset
           @Limit = limit
           @FilterIp = filterip
@@ -2098,6 +2106,8 @@ module TencentCloud
           @FilterRegion = filterregion
           @FilterName = filtername
           @FilterLine = filterline
+          @FilterStatus = filterstatus
+          @FilterBoundStatus = filterboundstatus
         end
 
         def deserialize(params)
@@ -2108,6 +2118,8 @@ module TencentCloud
           @FilterRegion = params['FilterRegion']
           @FilterName = params['FilterName']
           @FilterLine = params['FilterLine']
+          @FilterStatus = params['FilterStatus']
+          @FilterBoundStatus = params['FilterBoundStatus']
         end
       end
 

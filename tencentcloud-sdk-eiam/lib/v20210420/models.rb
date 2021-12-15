@@ -17,6 +17,86 @@
 module TencentCloud
   module Eiam
     module V20210420
+      # 查询账号组信息列表。
+      class AccountGroupInfo < TencentCloud::Common::AbstractModel
+        # @param AccountGroupId: 账号组ID。
+        # @type AccountGroupId: String
+        # @param GroupName: 账号组名。
+        # @type GroupName: String
+        # @param Description: 备注。
+        # @type Description: String
+        # @param CreatedDate: 创建时间。
+        # @type CreatedDate: String
+
+        attr_accessor :AccountGroupId, :GroupName, :Description, :CreatedDate
+        
+        def initialize(accountgroupid=nil, groupname=nil, description=nil, createddate=nil)
+          @AccountGroupId = accountgroupid
+          @GroupName = groupname
+          @Description = description
+          @CreatedDate = createddate
+        end
+
+        def deserialize(params)
+          @AccountGroupId = params['AccountGroupId']
+          @GroupName = params['GroupName']
+          @Description = params['Description']
+          @CreatedDate = params['CreatedDate']
+        end
+      end
+
+      # 账号组查询参数
+      class AccountGroupSearchCriteria < TencentCloud::Common::AbstractModel
+        # @param Keyword: 关键字
+        # @type Keyword: String
+
+        attr_accessor :Keyword
+        
+        def initialize(keyword=nil)
+          @Keyword = keyword
+        end
+
+        def deserialize(params)
+          @Keyword = params['Keyword']
+        end
+      end
+
+      # AddAccountToAccountGroup请求参数结构体
+      class AddAccountToAccountGroupRequest < TencentCloud::Common::AbstractModel
+        # @param AccountGroupId: 账号组ID
+        # @type AccountGroupId: String
+        # @param AccountIds: 加入账号组的账号ID列表。
+        # @type AccountIds: Array
+
+        attr_accessor :AccountGroupId, :AccountIds
+        
+        def initialize(accountgroupid=nil, accountids=nil)
+          @AccountGroupId = accountgroupid
+          @AccountIds = accountids
+        end
+
+        def deserialize(params)
+          @AccountGroupId = params['AccountGroupId']
+          @AccountIds = params['AccountIds']
+        end
+      end
+
+      # AddAccountToAccountGroup返回参数结构体
+      class AddAccountToAccountGroupResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # AddUserToUserGroup请求参数结构体
       class AddUserToUserGroupRequest < TencentCloud::Common::AbstractModel
         # @param UserIds: 加入用户组的用户ID列表。
@@ -53,6 +133,65 @@ module TencentCloud
         end
       end
 
+      # 查询账号信息列表。
+      class AppAccountInfo < TencentCloud::Common::AbstractModel
+        # @param AccountId: 账号ID。
+        # @type AccountId: String
+        # @param AccountName: 账号名。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AccountName: String
+        # @param UserList: 用户信息列表。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UserList: Array
+        # @param Description: 描述。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Description: String
+        # @param CreatedDate: 创建时间。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreatedDate: String
+
+        attr_accessor :AccountId, :AccountName, :UserList, :Description, :CreatedDate
+        
+        def initialize(accountid=nil, accountname=nil, userlist=nil, description=nil, createddate=nil)
+          @AccountId = accountid
+          @AccountName = accountname
+          @UserList = userlist
+          @Description = description
+          @CreatedDate = createddate
+        end
+
+        def deserialize(params)
+          @AccountId = params['AccountId']
+          @AccountName = params['AccountName']
+          unless params['UserList'].nil?
+            @UserList = []
+            params['UserList'].each do |i|
+              linkuserinfo_tmp = LinkUserInfo.new
+              linkuserinfo_tmp.deserialize(i)
+              @UserList << linkuserinfo_tmp
+            end
+          end
+          @Description = params['Description']
+          @CreatedDate = params['CreatedDate']
+        end
+      end
+
+      # 账号查询参数
+      class AppAccountSearchCriteria < TencentCloud::Common::AbstractModel
+        # @param Keyword: 关键字
+        # @type Keyword: String
+
+        attr_accessor :Keyword
+        
+        def initialize(keyword=nil)
+          @Keyword = keyword
+        end
+
+        def deserialize(params)
+          @Keyword = params['Keyword']
+        end
+      end
+
       # 应用信息列表。
       class ApplicationAuthorizationInfo < TencentCloud::Common::AbstractModel
         # @param ApplicationAccounts: 用户在被授权应用下对应的账号列表
@@ -64,13 +203,21 @@ module TencentCloud
         # @param InheritedForm: 展示用户所在的用户组、机构节点拥有该应用的访问权限的ID信息列表。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InheritedForm: :class:`Tencentcloud::Eiam.v20210420.models.InheritedForm`
+        # @param ApplicationName: 应用名称。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ApplicationName: String
+        # @param CreatedDate: 应用创建时间。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreatedDate: String
 
-        attr_accessor :ApplicationAccounts, :ApplicationId, :InheritedForm
+        attr_accessor :ApplicationAccounts, :ApplicationId, :InheritedForm, :ApplicationName, :CreatedDate
         
-        def initialize(applicationaccounts=nil, applicationid=nil, inheritedform=nil)
+        def initialize(applicationaccounts=nil, applicationid=nil, inheritedform=nil, applicationname=nil, createddate=nil)
           @ApplicationAccounts = applicationaccounts
           @ApplicationId = applicationid
           @InheritedForm = inheritedform
+          @ApplicationName = applicationname
+          @CreatedDate = createddate
         end
 
         def deserialize(params)
@@ -80,6 +227,8 @@ module TencentCloud
             @InheritedForm = InheritedForm.new
             @InheritedForm.deserialize(params['InheritedForm'])
           end
+          @ApplicationName = params['ApplicationName']
+          @CreatedDate = params['CreatedDate']
         end
       end
 
@@ -283,6 +432,100 @@ module TencentCloud
         end
       end
 
+      # CreateAccountGroup请求参数结构体
+      class CreateAccountGroupRequest < TencentCloud::Common::AbstractModel
+        # @param ApplicationId: 应用ID。
+        # @type ApplicationId: String
+        # @param GroupName: 账号组名。
+        # @type GroupName: String
+        # @param Description: 描述。
+        # @type Description: String
+
+        attr_accessor :ApplicationId, :GroupName, :Description
+        
+        def initialize(applicationid=nil, groupname=nil, description=nil)
+          @ApplicationId = applicationid
+          @GroupName = groupname
+          @Description = description
+        end
+
+        def deserialize(params)
+          @ApplicationId = params['ApplicationId']
+          @GroupName = params['GroupName']
+          @Description = params['Description']
+        end
+      end
+
+      # CreateAccountGroup返回参数结构体
+      class CreateAccountGroupResponse < TencentCloud::Common::AbstractModel
+        # @param AccountGroupId: 账号组ID。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AccountGroupId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :AccountGroupId, :RequestId
+        
+        def initialize(accountgroupid=nil, requestid=nil)
+          @AccountGroupId = accountgroupid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @AccountGroupId = params['AccountGroupId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateAppAccount请求参数结构体
+      class CreateAppAccountRequest < TencentCloud::Common::AbstractModel
+        # @param ApplicationId: 应用ID
+        # @type ApplicationId: String
+        # @param AccountName: 账号名称
+        # @type AccountName: String
+        # @param Password: 账号密码
+        # @type Password: String
+        # @param Description: 描述
+        # @type Description: String
+
+        attr_accessor :ApplicationId, :AccountName, :Password, :Description
+        
+        def initialize(applicationid=nil, accountname=nil, password=nil, description=nil)
+          @ApplicationId = applicationid
+          @AccountName = accountname
+          @Password = password
+          @Description = description
+        end
+
+        def deserialize(params)
+          @ApplicationId = params['ApplicationId']
+          @AccountName = params['AccountName']
+          @Password = params['Password']
+          @Description = params['Description']
+        end
+      end
+
+      # CreateAppAccount返回参数结构体
+      class CreateAppAccountResponse < TencentCloud::Common::AbstractModel
+        # @param AccountId: 账号ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AccountId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :AccountId, :RequestId
+        
+        def initialize(accountid=nil, requestid=nil)
+          @AccountId = accountid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @AccountId = params['AccountId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateOrgNode请求参数结构体
       class CreateOrgNodeRequest < TencentCloud::Common::AbstractModel
         # @param DisplayName: 机构节点名称，长度限制：64个字符。
@@ -446,6 +689,70 @@ module TencentCloud
         end
       end
 
+      # DeleteAccountGroup请求参数结构体
+      class DeleteAccountGroupRequest < TencentCloud::Common::AbstractModel
+        # @param AccountGroupIdList: 账号组ID数组。
+        # @type AccountGroupIdList: Array
+
+        attr_accessor :AccountGroupIdList
+        
+        def initialize(accountgroupidlist=nil)
+          @AccountGroupIdList = accountgroupidlist
+        end
+
+        def deserialize(params)
+          @AccountGroupIdList = params['AccountGroupIdList']
+        end
+      end
+
+      # DeleteAccountGroup返回参数结构体
+      class DeleteAccountGroupResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteAppAccount请求参数结构体
+      class DeleteAppAccountRequest < TencentCloud::Common::AbstractModel
+        # @param AccountIdList: 账号ID数组。
+        # @type AccountIdList: Array
+
+        attr_accessor :AccountIdList
+        
+        def initialize(accountidlist=nil)
+          @AccountIdList = accountidlist
+        end
+
+        def deserialize(params)
+          @AccountIdList = params['AccountIdList']
+        end
+      end
+
+      # DeleteAppAccount返回参数结构体
+      class DeleteAppAccountResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DeleteOrgNode请求参数结构体
       class DeleteOrgNodeRequest < TencentCloud::Common::AbstractModel
         # @param OrgNodeId: 机构节点ID，是机构节点的全局唯一标识。
@@ -542,6 +849,185 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteUsers请求参数结构体
+      class DeleteUsersRequest < TencentCloud::Common::AbstractModel
+        # @param DeleteIdList: 被删除用户的ID列表。DeleteIdList 和 DeleteNameList 需至少一个不为空；都不为空时优先使用 DeleteNameList。
+        # @type DeleteIdList: Array
+        # @param DeleteNameList: 被删除用户的名称列表。DeleteIdList 和 DeleteNameList 需至少一个不为空；都不为空时优先使用 DeleteNameList。
+        # @type DeleteNameList: Array
+
+        attr_accessor :DeleteIdList, :DeleteNameList
+        
+        def initialize(deleteidlist=nil, deletenamelist=nil)
+          @DeleteIdList = deleteidlist
+          @DeleteNameList = deletenamelist
+        end
+
+        def deserialize(params)
+          @DeleteIdList = params['DeleteIdList']
+          @DeleteNameList = params['DeleteNameList']
+        end
+      end
+
+      # DeleteUsers返回参数结构体
+      class DeleteUsersResponse < TencentCloud::Common::AbstractModel
+        # @param FailedItems: 未被成功删除的用户信息。当业务参数为DeleteIdList时，本字段将返回未成功删除的用户ID列表。当业务参数为DeleteNameList时，本字段将返回未成功删除的用户名称列表。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FailedItems: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :FailedItems, :RequestId
+        
+        def initialize(faileditems=nil, requestid=nil)
+          @FailedItems = faileditems
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @FailedItems = params['FailedItems']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeAccountGroup请求参数结构体
+      class DescribeAccountGroupRequest < TencentCloud::Common::AbstractModel
+        # @param ApplicationId: 应用ID。
+        # @type ApplicationId: String
+        # @param SearchCondition: 查询条件，支持多搜索条件组合、多数据范围匹配的搜索。同时支持查询信息内容全匹配、部分匹配、范围匹配等多种查询方式，具体查询方式为：双引号（“”）表示全匹配、以星号（*）结尾表示字段部分匹配。如果该字段为空，则默认查全量表。
+        # @type SearchCondition: :class:`Tencentcloud::Eiam.v20210420.models.AccountGroupSearchCriteria`
+        # @param Offset: 偏移量，默认为 0。
+        # @type Offset: Integer
+        # @param Limit: 返回数量，默认为 20，最大值为 100。
+        # @type Limit: Integer
+
+        attr_accessor :ApplicationId, :SearchCondition, :Offset, :Limit
+        
+        def initialize(applicationid=nil, searchcondition=nil, offset=nil, limit=nil)
+          @ApplicationId = applicationid
+          @SearchCondition = searchcondition
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @ApplicationId = params['ApplicationId']
+          unless params['SearchCondition'].nil?
+            @SearchCondition = AccountGroupSearchCriteria.new
+            @SearchCondition.deserialize(params['SearchCondition'])
+          end
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeAccountGroup返回参数结构体
+      class DescribeAccountGroupResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 返回查询的总记录数。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalCount: Integer
+        # @param ApplicationId: 应用ID。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ApplicationId: String
+        # @param AccountGroupList: 返回符合条件的数据列表。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AccountGroupList: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :ApplicationId, :AccountGroupList, :RequestId
+        
+        def initialize(totalcount=nil, applicationid=nil, accountgrouplist=nil, requestid=nil)
+          @TotalCount = totalcount
+          @ApplicationId = applicationid
+          @AccountGroupList = accountgrouplist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          @ApplicationId = params['ApplicationId']
+          unless params['AccountGroupList'].nil?
+            @AccountGroupList = []
+            params['AccountGroupList'].each do |i|
+              accountgroupinfo_tmp = AccountGroupInfo.new
+              accountgroupinfo_tmp.deserialize(i)
+              @AccountGroupList << accountgroupinfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeAppAccount请求参数结构体
+      class DescribeAppAccountRequest < TencentCloud::Common::AbstractModel
+        # @param ApplicationId: 应用ID。
+        # @type ApplicationId: String
+        # @param SearchCondition: 查询条件，支持多搜索条件组合、多数据范围匹配的搜索。同时支持查询信息内容全匹配、部分匹配、范围匹配等多种查询方式，具体查询方式为：双引号（“”）表示全匹配、以星号（*）结尾表示字段部分匹配。如果该字段为空，则默认查全量表。
+        # @type SearchCondition: :class:`Tencentcloud::Eiam.v20210420.models.AppAccountSearchCriteria`
+        # @param Offset: 偏移量，默认为 0。
+        # @type Offset: Integer
+        # @param Limit: 返回数量，默认为 20，最大值为 100。
+        # @type Limit: Integer
+
+        attr_accessor :ApplicationId, :SearchCondition, :Offset, :Limit
+        
+        def initialize(applicationid=nil, searchcondition=nil, offset=nil, limit=nil)
+          @ApplicationId = applicationid
+          @SearchCondition = searchcondition
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @ApplicationId = params['ApplicationId']
+          unless params['SearchCondition'].nil?
+            @SearchCondition = AppAccountSearchCriteria.new
+            @SearchCondition.deserialize(params['SearchCondition'])
+          end
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeAppAccount返回参数结构体
+      class DescribeAppAccountResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 返回查询的总记录数。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalCount: Integer
+        # @param ApplicationId: 应用ID。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ApplicationId: String
+        # @param AppAccountList: 返回符合条件的数据列表。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AppAccountList: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :ApplicationId, :AppAccountList, :RequestId
+        
+        def initialize(totalcount=nil, applicationid=nil, appaccountlist=nil, requestid=nil)
+          @TotalCount = totalcount
+          @ApplicationId = applicationid
+          @AppAccountList = appaccountlist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          @ApplicationId = params['ApplicationId']
+          unless params['AppAccountList'].nil?
+            @AppAccountList = []
+            params['AppAccountList'].each do |i|
+              appaccountinfo_tmp = AppAccountInfo.new
+              appaccountinfo_tmp.deserialize(i)
+              @AppAccountList << appaccountinfo_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -703,12 +1189,15 @@ module TencentCloud
         # @param OrgNodeChildInfo: 当前机构节点下的子节点列表。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OrgNodeChildInfo: Array
+        # @param Description: 机构节点描述。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Description: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :DisplayName, :LastModifiedDate, :CustomizedOrgNodeId, :ParentOrgNodeId, :OrgNodeId, :DataSource, :CreatedDate, :OrgNodeChildInfo, :RequestId
+        attr_accessor :DisplayName, :LastModifiedDate, :CustomizedOrgNodeId, :ParentOrgNodeId, :OrgNodeId, :DataSource, :CreatedDate, :OrgNodeChildInfo, :Description, :RequestId
         
-        def initialize(displayname=nil, lastmodifieddate=nil, customizedorgnodeid=nil, parentorgnodeid=nil, orgnodeid=nil, datasource=nil, createddate=nil, orgnodechildinfo=nil, requestid=nil)
+        def initialize(displayname=nil, lastmodifieddate=nil, customizedorgnodeid=nil, parentorgnodeid=nil, orgnodeid=nil, datasource=nil, createddate=nil, orgnodechildinfo=nil, description=nil, requestid=nil)
           @DisplayName = displayname
           @LastModifiedDate = lastmodifieddate
           @CustomizedOrgNodeId = customizedorgnodeid
@@ -717,6 +1206,7 @@ module TencentCloud
           @DataSource = datasource
           @CreatedDate = createddate
           @OrgNodeChildInfo = orgnodechildinfo
+          @Description = description
           @RequestId = requestid
         end
 
@@ -736,6 +1226,7 @@ module TencentCloud
               @OrgNodeChildInfo << orgnodechildinfo_tmp
             end
           end
+          @Description = params['Description']
           @RequestId = params['RequestId']
         end
       end
@@ -1027,12 +1518,15 @@ module TencentCloud
         # @param ActivationTime: 用户激活时间，遵循 ISO 8601 标准。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ActivationTime: String
+        # @param PwdNeedReset: 当前用户的密码是否需要重置，该字段为false表示不需要重置密码。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PwdNeedReset: Boolean
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :UserName, :Status, :DisplayName, :Description, :UserGroupIds, :UserId, :Email, :Phone, :OrgNodeId, :DataSource, :ExpirationTime, :ActivationTime, :RequestId
+        attr_accessor :UserName, :Status, :DisplayName, :Description, :UserGroupIds, :UserId, :Email, :Phone, :OrgNodeId, :DataSource, :ExpirationTime, :ActivationTime, :PwdNeedReset, :RequestId
         
-        def initialize(username=nil, status=nil, displayname=nil, description=nil, usergroupids=nil, userid=nil, email=nil, phone=nil, orgnodeid=nil, datasource=nil, expirationtime=nil, activationtime=nil, requestid=nil)
+        def initialize(username=nil, status=nil, displayname=nil, description=nil, usergroupids=nil, userid=nil, email=nil, phone=nil, orgnodeid=nil, datasource=nil, expirationtime=nil, activationtime=nil, pwdneedreset=nil, requestid=nil)
           @UserName = username
           @Status = status
           @DisplayName = displayname
@@ -1045,6 +1539,7 @@ module TencentCloud
           @DataSource = datasource
           @ExpirationTime = expirationtime
           @ActivationTime = activationtime
+          @PwdNeedReset = pwdneedreset
           @RequestId = requestid
         end
 
@@ -1061,6 +1556,7 @@ module TencentCloud
           @DataSource = params['DataSource']
           @ExpirationTime = params['ExpirationTime']
           @ActivationTime = params['ActivationTime']
+          @PwdNeedReset = params['PwdNeedReset']
           @RequestId = params['RequestId']
         end
       end
@@ -1140,6 +1636,62 @@ module TencentCloud
         end
       end
 
+      # DescribeUserThirdPartyAccountInfo请求参数结构体
+      class DescribeUserThirdPartyAccountInfoRequest < TencentCloud::Common::AbstractModel
+        # @param UserName: 用户名。 Username 和 UserId 需至少一个不为空；都不为空时优先使用 Username。
+        # @type UserName: String
+        # @param UserId: 用户 ID。 Username 和 UserId 需至少一个不为空；都不为空时优先使用 Username。
+        # @type UserId: String
+
+        attr_accessor :UserName, :UserId
+        
+        def initialize(username=nil, userid=nil)
+          @UserName = username
+          @UserId = userid
+        end
+
+        def deserialize(params)
+          @UserName = params['UserName']
+          @UserId = params['UserId']
+        end
+      end
+
+      # DescribeUserThirdPartyAccountInfo返回参数结构体
+      class DescribeUserThirdPartyAccountInfoResponse < TencentCloud::Common::AbstractModel
+        # @param UserId: 用户 id。
+        # @type UserId: String
+        # @param UserName: 用户名。
+        # @type UserName: String
+        # @param ThirdPartyAccounts: 三方账号的绑定情况。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ThirdPartyAccounts: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :UserId, :UserName, :ThirdPartyAccounts, :RequestId
+        
+        def initialize(userid=nil, username=nil, thirdpartyaccounts=nil, requestid=nil)
+          @UserId = userid
+          @UserName = username
+          @ThirdPartyAccounts = thirdpartyaccounts
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @UserId = params['UserId']
+          @UserName = params['UserName']
+          unless params['ThirdPartyAccounts'].nil?
+            @ThirdPartyAccounts = []
+            params['ThirdPartyAccounts'].each do |i|
+              thirdpartyaccountinfo_tmp = ThirdPartyAccountInfo.new
+              thirdpartyaccountinfo_tmp.deserialize(i)
+              @ThirdPartyAccounts << thirdpartyaccountinfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 应用信息列表。
       class InheritedForm < TencentCloud::Common::AbstractModel
         # @param UserGroupIds: 用户所在的用户组ID列表。
@@ -1159,6 +1711,97 @@ module TencentCloud
         def deserialize(params)
           @UserGroupIds = params['UserGroupIds']
           @OrgNodeIds = params['OrgNodeIds']
+        end
+      end
+
+      # 账号关联的用户信息
+      class LinkUserInfo < TencentCloud::Common::AbstractModel
+        # @param UserId: 用户ID，是用户全局唯一标识，长度限制：64个字符。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UserId: String
+        # @param UserName: 用户名称。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UserName: String
+
+        attr_accessor :UserId, :UserName
+        
+        def initialize(userid=nil, username=nil)
+          @UserId = userid
+          @UserName = username
+        end
+
+        def deserialize(params)
+          @UserId = params['UserId']
+          @UserName = params['UserName']
+        end
+      end
+
+      # ListAccountInAccountGroup请求参数结构体
+      class ListAccountInAccountGroupRequest < TencentCloud::Common::AbstractModel
+        # @param AccountGroupId: 账号组ID。
+        # @type AccountGroupId: String
+        # @param SearchCondition: 查询条件，支持多搜索条件组合、多数据范围匹配的搜索。
+        # @type SearchCondition: :class:`Tencentcloud::Eiam.v20210420.models.AccountGroupSearchCriteria`
+        # @param Offset: 偏移量，默认为 0。
+        # @type Offset: Integer
+        # @param Limit: 返回数量，默认为 20，最大值为 100。
+        # @type Limit: Integer
+
+        attr_accessor :AccountGroupId, :SearchCondition, :Offset, :Limit
+        
+        def initialize(accountgroupid=nil, searchcondition=nil, offset=nil, limit=nil)
+          @AccountGroupId = accountgroupid
+          @SearchCondition = searchcondition
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @AccountGroupId = params['AccountGroupId']
+          unless params['SearchCondition'].nil?
+            @SearchCondition = AccountGroupSearchCriteria.new
+            @SearchCondition.deserialize(params['SearchCondition'])
+          end
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # ListAccountInAccountGroup返回参数结构体
+      class ListAccountInAccountGroupResponse < TencentCloud::Common::AbstractModel
+        # @param AccountList: 查询返回的相关账号列表。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AccountList: Array
+        # @param TotalCount: 返回查询账号的总数量。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalCount: Integer
+        # @param AccountGroupId: 账号组ID。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AccountGroupId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :AccountList, :TotalCount, :AccountGroupId, :RequestId
+        
+        def initialize(accountlist=nil, totalcount=nil, accountgroupid=nil, requestid=nil)
+          @AccountList = accountlist
+          @TotalCount = totalcount
+          @AccountGroupId = accountgroupid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['AccountList'].nil?
+            @AccountList = []
+            params['AccountList'].each do |i|
+              appaccountinfo_tmp = AppAccountInfo.new
+              appaccountinfo_tmp.deserialize(i)
+              @AccountList << appaccountinfo_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+          @AccountGroupId = params['AccountGroupId']
+          @RequestId = params['RequestId']
         end
       end
 
@@ -1426,15 +2069,37 @@ module TencentCloud
       class ListUserGroupsOfUserRequest < TencentCloud::Common::AbstractModel
         # @param UserId: 用户ID，是用户的全局唯一标识。
         # @type UserId: String
+        # @param SearchCondition: 模糊查询条件，支持匹配用户组名称（DisplayName）。如果该字段为空，则默认展示该用户所有的用户组。
+        # @type SearchCondition: :class:`Tencentcloud::Eiam.v20210420.models.UserGroupInformationSearchCriteria`
+        # @param Sort: 排序条件集合。可排序的属性支持：用户组名称（DisplayName）、用户组ID（UserGroupId）、创建时间（CreatedDate）。如果该字段为空，则默认按照用户组名称正向排序。
+        # @type Sort: :class:`Tencentcloud::Eiam.v20210420.models.SortCondition`
+        # @param Offset: 分页偏移量，默认为0。Offset 和 Limit 两个字段需配合使用，即其中一个指定了，另一个必须指定。 如果不指定以上参数，则表示不进行分页查询，即只返回最多50个用户组。
+        # @type Offset: Integer
+        # @param Limit: 分页读取数量，默认为50，最大值为100。 Offset 和 Limit 两个字段需配合使用，即其中一个指定了，另一个必须指定。 如果不指定以上参数，则表示不进行分页查询，即只返回最多50个用户组。
+        # @type Limit: Integer
 
-        attr_accessor :UserId
+        attr_accessor :UserId, :SearchCondition, :Sort, :Offset, :Limit
         
-        def initialize(userid=nil)
+        def initialize(userid=nil, searchcondition=nil, sort=nil, offset=nil, limit=nil)
           @UserId = userid
+          @SearchCondition = searchcondition
+          @Sort = sort
+          @Offset = offset
+          @Limit = limit
         end
 
         def deserialize(params)
           @UserId = params['UserId']
+          unless params['SearchCondition'].nil?
+            @SearchCondition = UserGroupInformationSearchCriteria.new
+            @SearchCondition.deserialize(params['SearchCondition'])
+          end
+          unless params['Sort'].nil?
+            @Sort = SortCondition.new
+            @Sort.deserialize(params['Sort'])
+          end
+          @Offset = params['Offset']
+          @Limit = params['Limit']
         end
       end
 
@@ -1446,20 +2111,37 @@ module TencentCloud
         # @param UserId: 用户ID，是用户的全局唯一标识。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UserId: String
+        # @param UserGroupInfoList: 用户所属的用户组信息列表。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UserGroupInfoList: Array
+        # @param TotalCount: 返回的用户组信息总数。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalCount: Integer
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :UserGroupIds, :UserId, :RequestId
+        attr_accessor :UserGroupIds, :UserId, :UserGroupInfoList, :TotalCount, :RequestId
         
-        def initialize(usergroupids=nil, userid=nil, requestid=nil)
+        def initialize(usergroupids=nil, userid=nil, usergroupinfolist=nil, totalcount=nil, requestid=nil)
           @UserGroupIds = usergroupids
           @UserId = userid
+          @UserGroupInfoList = usergroupinfolist
+          @TotalCount = totalcount
           @RequestId = requestid
         end
 
         def deserialize(params)
           @UserGroupIds = params['UserGroupIds']
           @UserId = params['UserId']
+          unless params['UserGroupInfoList'].nil?
+            @UserGroupInfoList = []
+            params['UserGroupInfoList'].each do |i|
+              usergroupinfo_tmp = UserGroupInfo.new
+              usergroupinfo_tmp.deserialize(i)
+              @UserGroupInfoList << usergroupinfo_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
           @RequestId = params['RequestId']
         end
       end
@@ -1537,17 +2219,39 @@ module TencentCloud
         # @type OrgNodeId: String
         # @param IncludeOrgNodeChildInfo: 是否读取其子节点信息。当其为空或false时，默认仅读取当前机构节点信息。当其为true时，读取本机构节点以及其第一层子节点信息。
         # @type IncludeOrgNodeChildInfo: Boolean
+        # @param SearchCondition: 用户属性搜索条件，可查询条件包括：用户名、手机号码，邮箱、用户锁定状态、用户冻结状态、创建时间、上次修改时间，支持多种属性组合作为查询条件。同时支持查询信息内容全匹配、部分匹配、范围匹配等多种查询方式，具体查询方式为：双引号（“”）表示全匹配、以星号（*）结尾表示字段部分匹配、中括号以逗号分隔（[Min，Max]）表示闭区间查询、大括号以逗号分隔（{Min，Max}）表示开区间查询，中括号与大括号可以配合使用（例如：{Min，Max]表示最小值开区间，最大值闭区间查询）。范围匹配支持使用星号（例如{20,*]表示查询范围为大于20的所有数据）。范围查询同时支持时间段查询，支持的属性包括创建时间 （CreationTime）、上次修改时间（LastUpdateTime），查询的时间格式遵循 ISO 8601 标准，例如：2021-01-13T09:44:07.182+0000。
+        # @type SearchCondition: :class:`Tencentcloud::Eiam.v20210420.models.ListUsersInOrgNodeSearchCriteria`
+        # @param Sort: 排序条件集合。可排序的属性支持：用户名字（UserName）、手机号（Phone）、邮箱（Email）、用户状态（Status）、创建时间 （CreatedDate）、上次更新时间（LastModifiedDate）。如果不指定，则默认按照用户昵称（DisplayName）正向排序。
+        # @type Sort: :class:`Tencentcloud::Eiam.v20210420.models.SortCondition`
+        # @param Offset: 分页偏移量，默认为0。Offset 和 Limit 两个字段需配合使用，即其中一个指定了，另一个必须指定。 如果不指定以上参数，则表示不进行分页查询，即只返回最多50个用户。
+        # @type Offset: Integer
+        # @param Limit: 分页读取数量，默认为50，最大值为100。 Offset 和 Limit 两个字段需配合使用，即其中一个指定了，另一个必须指定。 如果不指定以上参数，则表示不进行分页查询，即只返回最多50个用户。
+        # @type Limit: Integer
 
-        attr_accessor :OrgNodeId, :IncludeOrgNodeChildInfo
+        attr_accessor :OrgNodeId, :IncludeOrgNodeChildInfo, :SearchCondition, :Sort, :Offset, :Limit
         
-        def initialize(orgnodeid=nil, includeorgnodechildinfo=nil)
+        def initialize(orgnodeid=nil, includeorgnodechildinfo=nil, searchcondition=nil, sort=nil, offset=nil, limit=nil)
           @OrgNodeId = orgnodeid
           @IncludeOrgNodeChildInfo = includeorgnodechildinfo
+          @SearchCondition = searchcondition
+          @Sort = sort
+          @Offset = offset
+          @Limit = limit
         end
 
         def deserialize(params)
           @OrgNodeId = params['OrgNodeId']
           @IncludeOrgNodeChildInfo = params['IncludeOrgNodeChildInfo']
+          unless params['SearchCondition'].nil?
+            @SearchCondition = ListUsersInOrgNodeSearchCriteria.new
+            @SearchCondition.deserialize(params['SearchCondition'])
+          end
+          unless params['Sort'].nil?
+            @Sort = SortCondition.new
+            @Sort.deserialize(params['Sort'])
+          end
+          @Offset = params['Offset']
+          @Limit = params['Limit']
         end
       end
 
@@ -1565,16 +2269,24 @@ module TencentCloud
         # @param TotalUserNum: 当前机构节点下的用户总数。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TotalUserNum: Integer
+        # @param OrgNodeIdPath: 组织机构ID路径。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OrgNodeIdPath: String
+        # @param OrgNodeNamePath: 组织机构名称路径。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OrgNodeNamePath: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :OrgNodeChildUserInfo, :OrgNodeId, :UserInfo, :TotalUserNum, :RequestId
+        attr_accessor :OrgNodeChildUserInfo, :OrgNodeId, :UserInfo, :TotalUserNum, :OrgNodeIdPath, :OrgNodeNamePath, :RequestId
         
-        def initialize(orgnodechilduserinfo=nil, orgnodeid=nil, userinfo=nil, totalusernum=nil, requestid=nil)
+        def initialize(orgnodechilduserinfo=nil, orgnodeid=nil, userinfo=nil, totalusernum=nil, orgnodeidpath=nil, orgnodenamepath=nil, requestid=nil)
           @OrgNodeChildUserInfo = orgnodechilduserinfo
           @OrgNodeId = orgnodeid
           @UserInfo = userinfo
           @TotalUserNum = totalusernum
+          @OrgNodeIdPath = orgnodeidpath
+          @OrgNodeNamePath = orgnodenamepath
           @RequestId = requestid
         end
 
@@ -1597,7 +2309,49 @@ module TencentCloud
             end
           end
           @TotalUserNum = params['TotalUserNum']
+          @OrgNodeIdPath = params['OrgNodeIdPath']
+          @OrgNodeNamePath = params['OrgNodeNamePath']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 展示机构下用户的属性搜索条件。
+      class ListUsersInOrgNodeSearchCriteria < TencentCloud::Common::AbstractModel
+        # @param UserName: 用户名，长度限制：64个字符。
+        # @type UserName: String
+        # @param Phone: 用户手机号。
+        # @type Phone: String
+        # @param Email: 用户邮箱。
+        # @type Email: String
+        # @param Status: 用户状态，取值 NORMAL （正常）、FREEZE （已冻结）、LOCKED （已锁定）或 NOT_ENABLED （未启用）。
+        # @type Status: String
+        # @param CreationTime: 用户创建时间，遵循 ISO 8601 标准。
+        # @type CreationTime: String
+        # @param LastUpdateTime: 用户上次更新时间。
+        # @type LastUpdateTime: String
+        # @param Keyword: 名称匹配搜索，匹配范围包括：用户名称、用户手机号。
+        # @type Keyword: String
+
+        attr_accessor :UserName, :Phone, :Email, :Status, :CreationTime, :LastUpdateTime, :Keyword
+        
+        def initialize(username=nil, phone=nil, email=nil, status=nil, creationtime=nil, lastupdatetime=nil, keyword=nil)
+          @UserName = username
+          @Phone = phone
+          @Email = email
+          @Status = status
+          @CreationTime = creationtime
+          @LastUpdateTime = lastupdatetime
+          @Keyword = keyword
+        end
+
+        def deserialize(params)
+          @UserName = params['UserName']
+          @Phone = params['Phone']
+          @Email = params['Email']
+          @Status = params['Status']
+          @CreationTime = params['CreationTime']
+          @LastUpdateTime = params['LastUpdateTime']
+          @Keyword = params['Keyword']
         end
       end
 
@@ -1730,6 +2484,90 @@ module TencentCloud
         end
       end
 
+      # ModifyAccountGroup请求参数结构体
+      class ModifyAccountGroupRequest < TencentCloud::Common::AbstractModel
+        # @param AccountGroupId: 账号组ID。
+        # @type AccountGroupId: String
+        # @param GroupName: 账号组名。未传入该参数时，表示不进行修改。
+        # @type GroupName: String
+        # @param Description: 描述，未传入该参数时，表示不进行修改。
+        # @type Description: String
+
+        attr_accessor :AccountGroupId, :GroupName, :Description
+        
+        def initialize(accountgroupid=nil, groupname=nil, description=nil)
+          @AccountGroupId = accountgroupid
+          @GroupName = groupname
+          @Description = description
+        end
+
+        def deserialize(params)
+          @AccountGroupId = params['AccountGroupId']
+          @GroupName = params['GroupName']
+          @Description = params['Description']
+        end
+      end
+
+      # ModifyAccountGroup返回参数结构体
+      class ModifyAccountGroupResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyAppAccount请求参数结构体
+      class ModifyAppAccountRequest < TencentCloud::Common::AbstractModel
+        # @param AccountId: 账号ID。
+        # @type AccountId: String
+        # @param AccountName: 账号名称。未传入该参数时，表示不进行修改。
+        # @type AccountName: String
+        # @param Password: 账号密码。未传入该参数时，表示不进行修改。
+        # @type Password: String
+        # @param Description: 描述，未传入该参数时，表示不进行修改。
+        # @type Description: String
+
+        attr_accessor :AccountId, :AccountName, :Password, :Description
+        
+        def initialize(accountid=nil, accountname=nil, password=nil, description=nil)
+          @AccountId = accountid
+          @AccountName = accountname
+          @Password = password
+          @Description = description
+        end
+
+        def deserialize(params)
+          @AccountId = params['AccountId']
+          @AccountName = params['AccountName']
+          @Password = params['Password']
+          @Description = params['Description']
+        end
+      end
+
+      # ModifyAppAccount返回参数结构体
+      class ModifyAppAccountResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyApplication请求参数结构体
       class ModifyApplicationRequest < TencentCloud::Common::AbstractModel
         # @param ApplicationId: 应用ID，是应用的全局唯一标识。
@@ -1804,10 +2642,12 @@ module TencentCloud
         # @type Email: String
         # @param PwdNeedReset: 密码是否需要重置，为空默认为false不需要重置密码。
         # @type PwdNeedReset: Boolean
+        # @param OrgNodeId: 用户所属的主组织机构唯一ID。如果为空，默认为在根节点下创建用户。
+        # @type OrgNodeId: String
 
-        attr_accessor :UserName, :DisplayName, :Description, :UserGroupIds, :UserId, :Phone, :ExpirationTime, :Password, :Email, :PwdNeedReset
+        attr_accessor :UserName, :DisplayName, :Description, :UserGroupIds, :UserId, :Phone, :ExpirationTime, :Password, :Email, :PwdNeedReset, :OrgNodeId
         
-        def initialize(username=nil, displayname=nil, description=nil, usergroupids=nil, userid=nil, phone=nil, expirationtime=nil, password=nil, email=nil, pwdneedreset=nil)
+        def initialize(username=nil, displayname=nil, description=nil, usergroupids=nil, userid=nil, phone=nil, expirationtime=nil, password=nil, email=nil, pwdneedreset=nil, orgnodeid=nil)
           @UserName = username
           @DisplayName = displayname
           @Description = description
@@ -1818,6 +2658,7 @@ module TencentCloud
           @Password = password
           @Email = email
           @PwdNeedReset = pwdneedreset
+          @OrgNodeId = orgnodeid
         end
 
         def deserialize(params)
@@ -1831,6 +2672,7 @@ module TencentCloud
           @Password = params['Password']
           @Email = params['Email']
           @PwdNeedReset = params['PwdNeedReset']
+          @OrgNodeId = params['OrgNodeId']
         end
       end
 
@@ -1873,10 +2715,13 @@ module TencentCloud
         # @param CreatedDate: 机构节点创建时间，符合 ISO8601 标准。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreatedDate: String
+        # @param Description: 机构节点描述。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Description: String
 
-        attr_accessor :DisplayName, :LastModifiedDate, :CustomizedOrgNodeId, :ParentOrgNodeId, :OrgNodeId, :DataSource, :CreatedDate
+        attr_accessor :DisplayName, :LastModifiedDate, :CustomizedOrgNodeId, :ParentOrgNodeId, :OrgNodeId, :DataSource, :CreatedDate, :Description
         
-        def initialize(displayname=nil, lastmodifieddate=nil, customizedorgnodeid=nil, parentorgnodeid=nil, orgnodeid=nil, datasource=nil, createddate=nil)
+        def initialize(displayname=nil, lastmodifieddate=nil, customizedorgnodeid=nil, parentorgnodeid=nil, orgnodeid=nil, datasource=nil, createddate=nil, description=nil)
           @DisplayName = displayname
           @LastModifiedDate = lastmodifieddate
           @CustomizedOrgNodeId = customizedorgnodeid
@@ -1884,6 +2729,7 @@ module TencentCloud
           @OrgNodeId = orgnodeid
           @DataSource = datasource
           @CreatedDate = createddate
+          @Description = description
         end
 
         def deserialize(params)
@@ -1894,6 +2740,7 @@ module TencentCloud
           @OrgNodeId = params['OrgNodeId']
           @DataSource = params['DataSource']
           @CreatedDate = params['CreatedDate']
+          @Description = params['Description']
         end
       end
 
@@ -1908,13 +2755,21 @@ module TencentCloud
         # @param TotalUserNum: 当前机构节点下的用户总数。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TotalUserNum: Integer
+        # @param OrgNodeIdPath: 组织机构ID路径。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OrgNodeIdPath: String
+        # @param OrgNodeNamePath: 组织机构名称路径。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OrgNodeNamePath: String
 
-        attr_accessor :OrgNodeId, :UserInfo, :TotalUserNum
+        attr_accessor :OrgNodeId, :UserInfo, :TotalUserNum, :OrgNodeIdPath, :OrgNodeNamePath
         
-        def initialize(orgnodeid=nil, userinfo=nil, totalusernum=nil)
+        def initialize(orgnodeid=nil, userinfo=nil, totalusernum=nil, orgnodeidpath=nil, orgnodenamepath=nil)
           @OrgNodeId = orgnodeid
           @UserInfo = userinfo
           @TotalUserNum = totalusernum
+          @OrgNodeIdPath = orgnodeidpath
+          @OrgNodeNamePath = orgnodenamepath
         end
 
         def deserialize(params)
@@ -1928,6 +2783,44 @@ module TencentCloud
             end
           end
           @TotalUserNum = params['TotalUserNum']
+          @OrgNodeIdPath = params['OrgNodeIdPath']
+          @OrgNodeNamePath = params['OrgNodeNamePath']
+        end
+      end
+
+      # RemoveAccountFromAccountGroup请求参数结构体
+      class RemoveAccountFromAccountGroupRequest < TencentCloud::Common::AbstractModel
+        # @param AccountGroupId: 账号组ID
+        # @type AccountGroupId: String
+        # @param AccountIds: 需要移除账号ID列表。
+        # @type AccountIds: Array
+
+        attr_accessor :AccountGroupId, :AccountIds
+        
+        def initialize(accountgroupid=nil, accountids=nil)
+          @AccountGroupId = accountgroupid
+          @AccountIds = accountids
+        end
+
+        def deserialize(params)
+          @AccountGroupId = params['AccountGroupId']
+          @AccountIds = params['AccountIds']
+        end
+      end
+
+      # RemoveAccountFromAccountGroup返回参数结构体
+      class RemoveAccountFromAccountGroupResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
         end
       end
 
@@ -1987,6 +2880,28 @@ module TencentCloud
         end
       end
 
+      # 三方账号信息。
+      class ThirdPartyAccountInfo < TencentCloud::Common::AbstractModel
+        # @param AccountCode: 第三方账号代码。"2"代表企业微信。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AccountCode: String
+        # @param AccountName: 账号对应的用户名。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AccountName: String
+
+        attr_accessor :AccountCode, :AccountName
+        
+        def initialize(accountcode=nil, accountname=nil)
+          @AccountCode = accountcode
+          @AccountName = accountname
+        end
+
+        def deserialize(params)
+          @AccountCode = params['AccountCode']
+          @AccountName = params['AccountName']
+        end
+      end
+
       # UpdateOrgNode请求参数结构体
       class UpdateOrgNodeRequest < TencentCloud::Common::AbstractModel
         # @param OrgNodeId: 机构节点ID，是机构节点的全局唯一标识。
@@ -2031,6 +2946,38 @@ module TencentCloud
         end
       end
 
+      # 返回的用户组列表。
+      class UserGroupInfo < TencentCloud::Common::AbstractModel
+        # @param DisplayName: 昵称，长度限制：64个字符。 默认与用户名相同。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DisplayName: String
+        # @param UserGroupId: 用户组ID，是用户组全局唯一标识，长度限制：64个字符。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UserGroupId: String
+        # @param Description: 用户组备注。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Description: String
+        # @param CreatedDate: 创建时间。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreatedDate: String
+
+        attr_accessor :DisplayName, :UserGroupId, :Description, :CreatedDate
+        
+        def initialize(displayname=nil, usergroupid=nil, description=nil, createddate=nil)
+          @DisplayName = displayname
+          @UserGroupId = usergroupid
+          @Description = description
+          @CreatedDate = createddate
+        end
+
+        def deserialize(params)
+          @DisplayName = params['DisplayName']
+          @UserGroupId = params['UserGroupId']
+          @Description = params['Description']
+          @CreatedDate = params['CreatedDate']
+        end
+      end
+
       # 用户组属性搜索条件。
       class UserGroupInfoSearchCriteria < TencentCloud::Common::AbstractModel
         # @param Keyword: 名称匹配搜索，匹配范围包括：用户组名称、用户组ID。
@@ -2069,6 +3016,22 @@ module TencentCloud
           @UserGroupId = params['UserGroupId']
           @UserGroupName = params['UserGroupName']
           @LastModifiedDate = params['LastModifiedDate']
+        end
+      end
+
+      # 获取用户所在的用户组列表功能中用户组属性搜索条件。
+      class UserGroupInformationSearchCriteria < TencentCloud::Common::AbstractModel
+        # @param Keyword: 名称匹配搜索，匹配范围包括：用户组名称。
+        # @type Keyword: String
+
+        attr_accessor :Keyword
+        
+        def initialize(keyword=nil)
+          @Keyword = keyword
+        end
+
+        def deserialize(params)
+          @Keyword = params['Keyword']
         end
       end
 

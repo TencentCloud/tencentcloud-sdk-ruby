@@ -581,6 +581,73 @@ module TencentCloud
         end
       end
 
+      # DescribeDBDiagEvents请求参数结构体
+      class DescribeDBDiagEventsRequest < TencentCloud::Common::AbstractModel
+        # @param StartTime: 开始时间，如“2021-05-27 00:00:00”，支持的最早查询时间为当前时间的前30天。
+        # @type StartTime: String
+        # @param EndTime: 结束时间，如“2021-05-27 01:00:00”，结束时间与开始时间的间隔最大可为7天。
+        # @type EndTime: String
+        # @param Severities: 风险等级列表，取值按影响程度从高至低分别为：1 - 致命、2 -严重、3 - 告警、4 - 提示、5 -健康。
+        # @type Severities: Array
+        # @param InstanceIds: 实例ID列表。
+        # @type InstanceIds: Array
+        # @param Offset: 偏移量，默认0。
+        # @type Offset: Integer
+        # @param Limit: 返回数量，默认20，最大值为50。
+        # @type Limit: Integer
+
+        attr_accessor :StartTime, :EndTime, :Severities, :InstanceIds, :Offset, :Limit
+        
+        def initialize(starttime=nil, endtime=nil, severities=nil, instanceids=nil, offset=nil, limit=nil)
+          @StartTime = starttime
+          @EndTime = endtime
+          @Severities = severities
+          @InstanceIds = instanceids
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @Severities = params['Severities']
+          @InstanceIds = params['InstanceIds']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeDBDiagEvents返回参数结构体
+      class DescribeDBDiagEventsResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 诊断事件的总数目。
+        # @type TotalCount: Integer
+        # @param Items: 诊断事件的列表。
+        # @type Items: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :Items, :RequestId
+        
+        def initialize(totalcount=nil, items=nil, requestid=nil)
+          @TotalCount = totalcount
+          @Items = items
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['Items'].nil?
+            @Items = []
+            params['Items'].each do |i|
+              diaghistoryeventitem_tmp = DiagHistoryEventItem.new
+              diaghistoryeventitem_tmp.deserialize(i)
+              @Items << diaghistoryeventitem_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeDBDiagHistory请求参数结构体
       class DescribeDBDiagHistoryRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例 ID 。

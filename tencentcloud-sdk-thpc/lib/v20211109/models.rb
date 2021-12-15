@@ -272,6 +272,30 @@ module TencentCloud
         end
       end
 
+      # 描述GooseFS挂载信息
+      class GooseFSOption < TencentCloud::Common::AbstractModel
+        # @param LocalPath: 文件系统本地挂载路径
+        # @type LocalPath: String
+        # @param RemotePath: 文件系统远程挂载路径
+        # @type RemotePath: String
+        # @param Masters: 文件系统master的ip和端口
+        # @type Masters: Array
+
+        attr_accessor :LocalPath, :RemotePath, :Masters
+        
+        def initialize(localpath=nil, remotepath=nil, masters=nil)
+          @LocalPath = localpath
+          @RemotePath = remotepath
+          @Masters = masters
+        end
+
+        def deserialize(params)
+          @LocalPath = params['LocalPath']
+          @RemotePath = params['RemotePath']
+          @Masters = params['Masters']
+        end
+      end
+
       # 描述了实例的计费模式
       class InstanceChargePrepaid < TencentCloud::Common::AbstractModel
         # @param Period: 购买实例的时长，单位：月。取值范围：1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 24, 36, 48, 60。
@@ -419,11 +443,14 @@ module TencentCloud
       class StorageOption < TencentCloud::Common::AbstractModel
         # @param CFSOptions: 集群挂载CFS文件系统选项
         # @type CFSOptions: Array
+        # @param GooseFSOptions: 集群挂在GooseFS文件系统选项
+        # @type GooseFSOptions: Array
 
-        attr_accessor :CFSOptions
+        attr_accessor :CFSOptions, :GooseFSOptions
         
-        def initialize(cfsoptions=nil)
+        def initialize(cfsoptions=nil, goosefsoptions=nil)
           @CFSOptions = cfsoptions
+          @GooseFSOptions = goosefsoptions
         end
 
         def deserialize(params)
@@ -433,6 +460,14 @@ module TencentCloud
               cfsoption_tmp = CFSOption.new
               cfsoption_tmp.deserialize(i)
               @CFSOptions << cfsoption_tmp
+            end
+          end
+          unless params['GooseFSOptions'].nil?
+            @GooseFSOptions = []
+            params['GooseFSOptions'].each do |i|
+              goosefsoption_tmp = GooseFSOption.new
+              goosefsoption_tmp.deserialize(i)
+              @GooseFSOptions << goosefsoption_tmp
             end
           end
         end

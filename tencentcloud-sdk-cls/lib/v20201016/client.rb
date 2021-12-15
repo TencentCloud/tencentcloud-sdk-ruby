@@ -77,7 +77,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 该接口用户创建告警通知模板。
+        # 该接口用户创建通知渠道组。
 
         # @param request: Request instance for CreateAlarmNotice.
         # @type request: :class:`Tencentcloud::cls::V20201016::CreateAlarmNoticeRequest`
@@ -341,7 +341,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 该接口用于删除告警通知模板
+        # 该接口用于删除通知渠道组
 
         # @param request: Request instance for DeleteAlarmNotice.
         # @type request: :class:`Tencentcloud::cls::V20201016::DeleteAlarmNoticeRequest`
@@ -605,7 +605,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 该接口用于获取告警通知模板列表
+        # 该接口用于获取通知渠道组列表
 
         # @param request: Request instance for DescribeAlarmNotices.
         # @type request: :class:`Tencentcloud::cls::V20201016::DescribeAlarmNoticesRequest`
@@ -629,7 +629,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口用于获取告警策略。
+        # 本接口用于获取告警策略列表。
 
         # @param request: Request instance for DescribeAlarms.
         # @type request: :class:`Tencentcloud::cls::V20201016::DescribeAlarmsRequest`
@@ -1133,7 +1133,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 该接口用于修改告警通知模板。
+        # 该接口用于修改通知渠道组
 
         # @param request: Request instance for ModifyAlarmNotice.
         # @type request: :class:`Tencentcloud::cls::V20201016::ModifyAlarmNoticeRequest`
@@ -1325,7 +1325,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口用于搜索日志
+        # 本接口用于搜索日志, 该接口除受默认接口请求频率限制外，针对单个日志主题，并发数不能超过15
 
         # @param request: Request instance for SearchLog.
         # @type request: :class:`Tencentcloud::cls::V20201016::SearchLogRequest`
