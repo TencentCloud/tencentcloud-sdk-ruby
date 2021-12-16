@@ -29,6 +29,30 @@ module TencentCloud
         end
 
 
+        # 本接口(BindAutoScalingGroup)用于为集群队列绑定弹性伸缩组
+
+        # @param request: Request instance for BindAutoScalingGroup.
+        # @type request: :class:`Tencentcloud::thpc::V20211109::BindAutoScalingGroupRequest`
+        # @rtype: :class:`Tencentcloud::thpc::V20211109::BindAutoScalingGroupResponse`
+        def BindAutoScalingGroup(request)
+          body = send_request('BindAutoScalingGroup', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = BindAutoScalingGroupResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口 (CreateCluster) 用于创建并启动集群。
 
         # @param request: Request instance for CreateCluster.

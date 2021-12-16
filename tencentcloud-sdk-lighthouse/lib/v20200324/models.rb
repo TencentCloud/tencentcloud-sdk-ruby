@@ -121,6 +121,70 @@ module TencentCloud
         end
       end
 
+      # 挂载信息
+      class AttachDetail < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+        # @param AttachedDiskCount: 实例已挂载弹性云盘数量
+        # @type AttachedDiskCount: Integer
+        # @param MaxAttachCount: 可挂载弹性云盘数量
+        # @type MaxAttachCount: Integer
+
+        attr_accessor :InstanceId, :AttachedDiskCount, :MaxAttachCount
+        
+        def initialize(instanceid=nil, attacheddiskcount=nil, maxattachcount=nil)
+          @InstanceId = instanceid
+          @AttachedDiskCount = attacheddiskcount
+          @MaxAttachCount = maxattachcount
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @AttachedDiskCount = params['AttachedDiskCount']
+          @MaxAttachCount = params['MaxAttachCount']
+        end
+      end
+
+      # AttachDisks请求参数结构体
+      class AttachDisksRequest < TencentCloud::Common::AbstractModel
+        # @param DiskIds: 磁盘ID列表
+        # @type DiskIds: Array
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+        # @param RenewFlag: 续费标识
+        # @type RenewFlag: String
+
+        attr_accessor :DiskIds, :InstanceId, :RenewFlag
+        
+        def initialize(diskids=nil, instanceid=nil, renewflag=nil)
+          @DiskIds = diskids
+          @InstanceId = instanceid
+          @RenewFlag = renewflag
+        end
+
+        def deserialize(params)
+          @DiskIds = params['DiskIds']
+          @InstanceId = params['InstanceId']
+          @RenewFlag = params['RenewFlag']
+        end
+      end
+
+      # AttachDisks返回参数结构体
+      class AttachDisksResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 描述了镜像信息。
       class Blueprint < TencentCloud::Common::AbstractModel
         # @param BlueprintId: 镜像 ID  ，是 Blueprint 的唯一标识。
@@ -1017,6 +1081,305 @@ module TencentCloud
         end
       end
 
+      # DescribeDiskConfigs请求参数结构体
+      class DescribeDiskConfigsRequest < TencentCloud::Common::AbstractModel
+        # @param Filters: - zone:
+        # 可用区
+        # @type Filters: Array
+
+        attr_accessor :Filters
+        
+        def initialize(filters=nil)
+          @Filters = filters
+        end
+
+        def deserialize(params)
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+        end
+      end
+
+      # DescribeDiskConfigs返回参数结构体
+      class DescribeDiskConfigsResponse < TencentCloud::Common::AbstractModel
+        # @param DiskConfigSet: 磁盘配置列表
+        # @type DiskConfigSet: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :DiskConfigSet, :RequestId
+        
+        def initialize(diskconfigset=nil, requestid=nil)
+          @DiskConfigSet = diskconfigset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['DiskConfigSet'].nil?
+            @DiskConfigSet = []
+            params['DiskConfigSet'].each do |i|
+              diskconfig_tmp = DiskConfig.new
+              diskconfig_tmp.deserialize(i)
+              @DiskConfigSet << diskconfig_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeDiskDiscount请求参数结构体
+      class DescribeDiskDiscountRequest < TencentCloud::Common::AbstractModel
+        # @param DiskType: 磁盘类型, 取值: "CLOUD_PREMIUM"
+        # @type DiskType: String
+        # @param DiskSize: 磁盘大小
+        # @type DiskSize: Integer
+
+        attr_accessor :DiskType, :DiskSize
+        
+        def initialize(disktype=nil, disksize=nil)
+          @DiskType = disktype
+          @DiskSize = disksize
+        end
+
+        def deserialize(params)
+          @DiskType = params['DiskType']
+          @DiskSize = params['DiskSize']
+        end
+      end
+
+      # DescribeDiskDiscount返回参数结构体
+      class DescribeDiskDiscountResponse < TencentCloud::Common::AbstractModel
+        # @param Currency: 币种：CNY人民币，USD 美元。
+        # @type Currency: String
+        # @param DiscountDetail: 折扣梯度详情，每个梯度包含的信息有：时长，折扣数，总价，折扣价，折扣详情（用户折扣、官网折扣、最终折扣）。
+        # @type DiscountDetail: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Currency, :DiscountDetail, :RequestId
+        
+        def initialize(currency=nil, discountdetail=nil, requestid=nil)
+          @Currency = currency
+          @DiscountDetail = discountdetail
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Currency = params['Currency']
+          unless params['DiscountDetail'].nil?
+            @DiscountDetail = []
+            params['DiscountDetail'].each do |i|
+              discountdetail_tmp = DiscountDetail.new
+              discountdetail_tmp.deserialize(i)
+              @DiscountDetail << discountdetail_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeDisksDeniedActions请求参数结构体
+      class DescribeDisksDeniedActionsRequest < TencentCloud::Common::AbstractModel
+        # @param DiskIds: 磁盘ID列表
+        # @type DiskIds: Array
+
+        attr_accessor :DiskIds
+        
+        def initialize(diskids=nil)
+          @DiskIds = diskids
+        end
+
+        def deserialize(params)
+          @DiskIds = params['DiskIds']
+        end
+      end
+
+      # DescribeDisksDeniedActions返回参数结构体
+      class DescribeDisksDeniedActionsResponse < TencentCloud::Common::AbstractModel
+        # @param DiskDeniedActionSet: 磁盘操作限制列表详细信息。
+        # @type DiskDeniedActionSet: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :DiskDeniedActionSet, :RequestId
+        
+        def initialize(diskdeniedactionset=nil, requestid=nil)
+          @DiskDeniedActionSet = diskdeniedactionset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['DiskDeniedActionSet'].nil?
+            @DiskDeniedActionSet = []
+            params['DiskDeniedActionSet'].each do |i|
+              diskdeniedactions_tmp = DiskDeniedActions.new
+              diskdeniedactions_tmp.deserialize(i)
+              @DiskDeniedActionSet << diskdeniedactions_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeDisks请求参数结构体
+      class DescribeDisksRequest < TencentCloud::Common::AbstractModel
+        # @param DiskIds: 磁盘ID列表
+        # @type DiskIds: Array
+        # @param Filters: 过滤器列表。
+        # disk-id
+        # 按照【磁盘 ID】进行过滤。
+        # 类型：String
+        # 必选：否
+        # instance-id
+        # 按照【实例ID】进行过滤。
+        # 类型：String
+        # 必选：否
+        # disk-name
+        # 按照【磁盘名称】进行过滤。
+        # 类型：String
+        # 必选：否
+        # zone
+        # 按照【可用区】进行过滤。
+        # 类型：String
+        # 必选：否
+        # disk-usage
+        # 按照【磁盘类型】进行过滤。
+        # 类型：String
+        # 必选：否
+        # disk-state
+        # 按照【磁盘状态】进行过滤。
+        # 类型：String
+        # 必选：否
+        # 每次请求的 Filters 的上限为 10，Filter.Values 的上限为 5。参数不支持同时指定 DiskIds 和 Filters。
+        # @type Filters: Array
+        # @param Limit: 返回数量，默认为20，最大值为100。
+        # @type Limit: Integer
+        # @param Offset: 偏移量，默认为0
+        # @type Offset: Integer
+        # @param OrderField: 云盘列表排序的依据字段。取值范围："CREATED_TIME"：依据云盘的创建时间排序。 "EXPIRED_TIME"：依据云盘的到期时间排序。"DISK_SIZE"：依据云盘的大小排序。默认按云盘创建时间排序。
+        # @type OrderField: String
+        # @param Order: 输出云盘列表的排列顺序。取值范围："ASC"：升序排列。 "DESC"：降序排列。默认按降序排列
+        # @type Order: String
+
+        attr_accessor :DiskIds, :Filters, :Limit, :Offset, :OrderField, :Order
+        
+        def initialize(diskids=nil, filters=nil, limit=nil, offset=nil, orderfield=nil, order=nil)
+          @DiskIds = diskids
+          @Filters = filters
+          @Limit = limit
+          @Offset = offset
+          @OrderField = orderfield
+          @Order = order
+        end
+
+        def deserialize(params)
+          @DiskIds = params['DiskIds']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          @OrderField = params['OrderField']
+          @Order = params['Order']
+        end
+      end
+
+      # DescribeDisks返回参数结构体
+      class DescribeDisksResponse < TencentCloud::Common::AbstractModel
+        # @param DiskSet: 磁盘信息列表
+        # @type DiskSet: Array
+        # @param TotalCount: 符合条件的磁盘信息数量
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :DiskSet, :TotalCount, :RequestId
+        
+        def initialize(diskset=nil, totalcount=nil, requestid=nil)
+          @DiskSet = diskset
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['DiskSet'].nil?
+            @DiskSet = []
+            params['DiskSet'].each do |i|
+              disk_tmp = Disk.new
+              disk_tmp.deserialize(i)
+              @DiskSet << disk_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeDisksReturnable请求参数结构体
+      class DescribeDisksReturnableRequest < TencentCloud::Common::AbstractModel
+        # @param DiskIds: 磁盘ID列表
+        # @type DiskIds: Array
+        # @param Limit: 返回数量，默认为20，最大值为100。
+        # @type Limit: Integer
+        # @param Offset: 偏移量，默认为0。
+        # @type Offset: Integer
+
+        attr_accessor :DiskIds, :Limit, :Offset
+        
+        def initialize(diskids=nil, limit=nil, offset=nil)
+          @DiskIds = diskids
+          @Limit = limit
+          @Offset = offset
+        end
+
+        def deserialize(params)
+          @DiskIds = params['DiskIds']
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+        end
+      end
+
+      # DescribeDisksReturnable返回参数结构体
+      class DescribeDisksReturnableResponse < TencentCloud::Common::AbstractModel
+        # @param DiskReturnableSet: 可退还磁盘详细信息列表。
+        # @type DiskReturnableSet: Array
+        # @param TotalCount: 符合条件的磁盘数量。
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :DiskReturnableSet, :TotalCount, :RequestId
+        
+        def initialize(diskreturnableset=nil, totalcount=nil, requestid=nil)
+          @DiskReturnableSet = diskreturnableset
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['DiskReturnableSet'].nil?
+            @DiskReturnableSet = []
+            params['DiskReturnableSet'].each do |i|
+              diskreturnable_tmp = DiskReturnable.new
+              diskreturnable_tmp.deserialize(i)
+              @DiskReturnableSet << diskreturnable_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeFirewallRules请求参数结构体
       class DescribeFirewallRulesRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例 ID。
@@ -1272,6 +1635,53 @@ module TencentCloud
               @InstanceDeniedActionSet << instancedeniedactions_tmp
             end
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeInstancesDiskNum请求参数结构体
+      class DescribeInstancesDiskNumRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceIds: 实例ID列表
+        # @type InstanceIds: Array
+
+        attr_accessor :InstanceIds
+        
+        def initialize(instanceids=nil)
+          @InstanceIds = instanceids
+        end
+
+        def deserialize(params)
+          @InstanceIds = params['InstanceIds']
+        end
+      end
+
+      # DescribeInstancesDiskNum返回参数结构体
+      class DescribeInstancesDiskNumResponse < TencentCloud::Common::AbstractModel
+        # @param AttachDetailSet: 挂载信息列表
+        # @type AttachDetailSet: Array
+        # @param TotalCount: 挂载信息数量
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :AttachDetailSet, :TotalCount, :RequestId
+        
+        def initialize(attachdetailset=nil, totalcount=nil, requestid=nil)
+          @AttachDetailSet = attachdetailset
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['AttachDetailSet'].nil?
+            @AttachDetailSet = []
+            params['AttachDetailSet'].each do |i|
+              attachdetail_tmp = AttachDetail.new
+              attachdetail_tmp.deserialize(i)
+              @AttachDetailSet << attachdetail_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
           @RequestId = params['RequestId']
         end
       end
@@ -1939,6 +2349,38 @@ module TencentCloud
         end
       end
 
+      # DetachDisks请求参数结构体
+      class DetachDisksRequest < TencentCloud::Common::AbstractModel
+        # @param DiskIds: 磁盘ID列表
+        # @type DiskIds: Array
+
+        attr_accessor :DiskIds
+        
+        def initialize(diskids=nil)
+          @DiskIds = diskids
+        end
+
+        def deserialize(params)
+          @DiskIds = params['DiskIds']
+        end
+      end
+
+      # DetachDisks返回参数结构体
+      class DetachDisksResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DisassociateInstancesKeyPairs请求参数结构体
       class DisassociateInstancesKeyPairsRequest < TencentCloud::Common::AbstractModel
         # @param KeyIds: 密钥对 ID 列表。每次请求批量密钥对的上限为 100。
@@ -2011,6 +2453,235 @@ module TencentCloud
             @PolicyDetail = PolicyDetail.new
             @PolicyDetail.deserialize(params['PolicyDetail'])
           end
+        end
+      end
+
+      # 磁盘信息
+      class Disk < TencentCloud::Common::AbstractModel
+        # @param DiskId: 磁盘ID
+        # @type DiskId: String
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+        # @param Zone: 可用区
+        # @type Zone: String
+        # @param DiskName: 磁盘名称
+        # @type DiskName: String
+        # @param DiskUsage: 磁盘类型
+        # @type DiskUsage: String
+        # @param DiskType: 磁盘介质类型
+        # @type DiskType: String
+        # @param DiskChargeType: 磁盘付费类型
+        # @type DiskChargeType: String
+        # @param DiskSize: 磁盘大小
+        # @type DiskSize: Integer
+        # @param RenewFlag: 续费标识
+        # @type RenewFlag: String
+        # @param DiskState: 磁盘状态
+        # @type DiskState: String
+        # @param Attached: 磁盘挂载状态
+        # @type Attached: Boolean
+        # @param DeleteWithInstance: 是否随实例释放
+        # @type DeleteWithInstance: Boolean
+        # @param LatestOperation: 上一次操作
+        # @type LatestOperation: String
+        # @param LatestOperationState: 上一次操作状态
+        # @type LatestOperationState: String
+        # @param LatestOperationRequestId: 上一次请求ID
+        # @type LatestOperationRequestId: String
+        # @param CreatedTime: 创建时间
+        # @type CreatedTime: String
+        # @param ExpiredTime: 到期时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExpiredTime: String
+        # @param IsolatedTime: 隔离时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsolatedTime: String
+
+        attr_accessor :DiskId, :InstanceId, :Zone, :DiskName, :DiskUsage, :DiskType, :DiskChargeType, :DiskSize, :RenewFlag, :DiskState, :Attached, :DeleteWithInstance, :LatestOperation, :LatestOperationState, :LatestOperationRequestId, :CreatedTime, :ExpiredTime, :IsolatedTime
+        
+        def initialize(diskid=nil, instanceid=nil, zone=nil, diskname=nil, diskusage=nil, disktype=nil, diskchargetype=nil, disksize=nil, renewflag=nil, diskstate=nil, attached=nil, deletewithinstance=nil, latestoperation=nil, latestoperationstate=nil, latestoperationrequestid=nil, createdtime=nil, expiredtime=nil, isolatedtime=nil)
+          @DiskId = diskid
+          @InstanceId = instanceid
+          @Zone = zone
+          @DiskName = diskname
+          @DiskUsage = diskusage
+          @DiskType = disktype
+          @DiskChargeType = diskchargetype
+          @DiskSize = disksize
+          @RenewFlag = renewflag
+          @DiskState = diskstate
+          @Attached = attached
+          @DeleteWithInstance = deletewithinstance
+          @LatestOperation = latestoperation
+          @LatestOperationState = latestoperationstate
+          @LatestOperationRequestId = latestoperationrequestid
+          @CreatedTime = createdtime
+          @ExpiredTime = expiredtime
+          @IsolatedTime = isolatedtime
+        end
+
+        def deserialize(params)
+          @DiskId = params['DiskId']
+          @InstanceId = params['InstanceId']
+          @Zone = params['Zone']
+          @DiskName = params['DiskName']
+          @DiskUsage = params['DiskUsage']
+          @DiskType = params['DiskType']
+          @DiskChargeType = params['DiskChargeType']
+          @DiskSize = params['DiskSize']
+          @RenewFlag = params['RenewFlag']
+          @DiskState = params['DiskState']
+          @Attached = params['Attached']
+          @DeleteWithInstance = params['DeleteWithInstance']
+          @LatestOperation = params['LatestOperation']
+          @LatestOperationState = params['LatestOperationState']
+          @LatestOperationRequestId = params['LatestOperationRequestId']
+          @CreatedTime = params['CreatedTime']
+          @ExpiredTime = params['ExpiredTime']
+          @IsolatedTime = params['IsolatedTime']
+        end
+      end
+
+      # 磁盘包年包月相关参数设置
+      class DiskChargePrepaid < TencentCloud::Common::AbstractModel
+        # @param Period: 新购周期
+        # @type Period: Integer
+        # @param RenewFlag: 续费标识
+        # @type RenewFlag: String
+        # @param TimeUnit: 新购单位. 默认值: "m"
+        # @type TimeUnit: String
+
+        attr_accessor :Period, :RenewFlag, :TimeUnit
+        
+        def initialize(period=nil, renewflag=nil, timeunit=nil)
+          @Period = period
+          @RenewFlag = renewflag
+          @TimeUnit = timeunit
+        end
+
+        def deserialize(params)
+          @Period = params['Period']
+          @RenewFlag = params['RenewFlag']
+          @TimeUnit = params['TimeUnit']
+        end
+      end
+
+      # 磁盘配置
+      class DiskConfig < TencentCloud::Common::AbstractModel
+        # @param Zone: 可用区
+        # @type Zone: String
+        # @param DiskType: 磁盘类型
+        # @type DiskType: String
+        # @param DiskSalesState: 磁盘可售卖状态
+        # @type DiskSalesState: String
+        # @param MaxDiskSize: 最大磁盘大小
+        # @type MaxDiskSize: Integer
+        # @param MinDiskSize: 最小磁盘大小
+        # @type MinDiskSize: Integer
+        # @param DiskStepSize: 磁盘步长
+        # @type DiskStepSize: Integer
+
+        attr_accessor :Zone, :DiskType, :DiskSalesState, :MaxDiskSize, :MinDiskSize, :DiskStepSize
+        
+        def initialize(zone=nil, disktype=nil, disksalesstate=nil, maxdisksize=nil, mindisksize=nil, diskstepsize=nil)
+          @Zone = zone
+          @DiskType = disktype
+          @DiskSalesState = disksalesstate
+          @MaxDiskSize = maxdisksize
+          @MinDiskSize = mindisksize
+          @DiskStepSize = diskstepsize
+        end
+
+        def deserialize(params)
+          @Zone = params['Zone']
+          @DiskType = params['DiskType']
+          @DiskSalesState = params['DiskSalesState']
+          @MaxDiskSize = params['MaxDiskSize']
+          @MinDiskSize = params['MinDiskSize']
+          @DiskStepSize = params['DiskStepSize']
+        end
+      end
+
+      # 磁盘操作限制列表详细信息
+      class DiskDeniedActions < TencentCloud::Common::AbstractModel
+        # @param DiskId: 磁盘ID
+        # @type DiskId: String
+        # @param DeniedActions: 操作限制列表
+        # @type DeniedActions: Array
+
+        attr_accessor :DiskId, :DeniedActions
+        
+        def initialize(diskid=nil, deniedactions=nil)
+          @DiskId = diskid
+          @DeniedActions = deniedactions
+        end
+
+        def deserialize(params)
+          @DiskId = params['DiskId']
+          unless params['DeniedActions'].nil?
+            @DeniedActions = []
+            params['DeniedActions'].each do |i|
+              deniedaction_tmp = DeniedAction.new
+              deniedaction_tmp.deserialize(i)
+              @DeniedActions << deniedaction_tmp
+            end
+          end
+        end
+      end
+
+      # 磁盘价格
+      class DiskPrice < TencentCloud::Common::AbstractModel
+        # @param OriginalDiskPrice: 磁盘单价
+        # @type OriginalDiskPrice: Float
+        # @param OriginalPrice: 磁盘总价
+        # @type OriginalPrice: Float
+        # @param Discount: 折扣
+        # @type Discount: Float
+        # @param DiscountPrice: 折后总价
+        # @type DiscountPrice: Float
+
+        attr_accessor :OriginalDiskPrice, :OriginalPrice, :Discount, :DiscountPrice
+        
+        def initialize(originaldiskprice=nil, originalprice=nil, discount=nil, discountprice=nil)
+          @OriginalDiskPrice = originaldiskprice
+          @OriginalPrice = originalprice
+          @Discount = discount
+          @DiscountPrice = discountprice
+        end
+
+        def deserialize(params)
+          @OriginalDiskPrice = params['OriginalDiskPrice']
+          @OriginalPrice = params['OriginalPrice']
+          @Discount = params['Discount']
+          @DiscountPrice = params['DiscountPrice']
+        end
+      end
+
+      # 可退还磁盘详细信息
+      class DiskReturnable < TencentCloud::Common::AbstractModel
+        # @param DiskId: 磁盘ID
+        # @type DiskId: String
+        # @param IsReturnable: 磁盘是否可退还。
+        # @type IsReturnable: Boolean
+        # @param ReturnFailCode: 实例退还失败错误码。
+        # @type ReturnFailCode: Integer
+        # @param ReturnFailMessage: 实例退还失败错误信息。
+        # @type ReturnFailMessage: String
+
+        attr_accessor :DiskId, :IsReturnable, :ReturnFailCode, :ReturnFailMessage
+        
+        def initialize(diskid=nil, isreturnable=nil, returnfailcode=nil, returnfailmessage=nil)
+          @DiskId = diskid
+          @IsReturnable = isreturnable
+          @ReturnFailCode = returnfailcode
+          @ReturnFailMessage = returnfailmessage
+        end
+
+        def deserialize(params)
+          @DiskId = params['DiskId']
+          @IsReturnable = params['IsReturnable']
+          @ReturnFailCode = params['ReturnFailCode']
+          @ReturnFailMessage = params['ReturnFailMessage']
         end
       end
 
@@ -2216,6 +2887,60 @@ module TencentCloud
         end
       end
 
+      # InquirePriceCreateDisks请求参数结构体
+      class InquirePriceCreateDisksRequest < TencentCloud::Common::AbstractModel
+        # @param DiskSize: 磁盘大小
+        # @type DiskSize: Integer
+        # @param DiskType: 硬盘介质类型
+        # @type DiskType: String
+        # @param DiskChargePrepaid: 新购磁盘包年包月相关参数设置
+        # @type DiskChargePrepaid: :class:`Tencentcloud::Lighthouse.v20200324.models.DiskChargePrepaid`
+        # @param DiskCount: 磁盘个数, 默认值: 1
+        # @type DiskCount: Integer
+
+        attr_accessor :DiskSize, :DiskType, :DiskChargePrepaid, :DiskCount
+        
+        def initialize(disksize=nil, disktype=nil, diskchargeprepaid=nil, diskcount=nil)
+          @DiskSize = disksize
+          @DiskType = disktype
+          @DiskChargePrepaid = diskchargeprepaid
+          @DiskCount = diskcount
+        end
+
+        def deserialize(params)
+          @DiskSize = params['DiskSize']
+          @DiskType = params['DiskType']
+          unless params['DiskChargePrepaid'].nil?
+            @DiskChargePrepaid = DiskChargePrepaid.new
+            @DiskChargePrepaid.deserialize(params['DiskChargePrepaid'])
+          end
+          @DiskCount = params['DiskCount']
+        end
+      end
+
+      # InquirePriceCreateDisks返回参数结构体
+      class InquirePriceCreateDisksResponse < TencentCloud::Common::AbstractModel
+        # @param DiskPrice: 磁盘价格
+        # @type DiskPrice: :class:`Tencentcloud::Lighthouse.v20200324.models.DiskPrice`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :DiskPrice, :RequestId
+        
+        def initialize(diskprice=nil, requestid=nil)
+          @DiskPrice = diskprice
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['DiskPrice'].nil?
+            @DiskPrice = DiskPrice.new
+            @DiskPrice.deserialize(params['DiskPrice'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # InquirePriceCreateInstances请求参数结构体
       class InquirePriceCreateInstancesRequest < TencentCloud::Common::AbstractModel
         # @param BundleId: 实例的套餐 ID。
@@ -2265,6 +2990,52 @@ module TencentCloud
           unless params['Price'].nil?
             @Price = Price.new
             @Price.deserialize(params['Price'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # InquirePriceRenewDisks请求参数结构体
+      class InquirePriceRenewDisksRequest < TencentCloud::Common::AbstractModel
+        # @param DiskIds: 磁盘ID列表
+        # @type DiskIds: Array
+        # @param RenewDiskChargePrepaid: 续费磁盘包年包月相关参数设置
+        # @type RenewDiskChargePrepaid: :class:`Tencentcloud::Lighthouse.v20200324.models.RenewDiskChargePrepaid`
+
+        attr_accessor :DiskIds, :RenewDiskChargePrepaid
+        
+        def initialize(diskids=nil, renewdiskchargeprepaid=nil)
+          @DiskIds = diskids
+          @RenewDiskChargePrepaid = renewdiskchargeprepaid
+        end
+
+        def deserialize(params)
+          @DiskIds = params['DiskIds']
+          unless params['RenewDiskChargePrepaid'].nil?
+            @RenewDiskChargePrepaid = RenewDiskChargePrepaid.new
+            @RenewDiskChargePrepaid.deserialize(params['RenewDiskChargePrepaid'])
+          end
+        end
+      end
+
+      # InquirePriceRenewDisks返回参数结构体
+      class InquirePriceRenewDisksResponse < TencentCloud::Common::AbstractModel
+        # @param DiskPrice: 磁盘价格
+        # @type DiskPrice: :class:`Tencentcloud::Lighthouse.v20200324.models.DiskPrice`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :DiskPrice, :RequestId
+        
+        def initialize(diskprice=nil, requestid=nil)
+          @DiskPrice = diskprice
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['DiskPrice'].nil?
+            @DiskPrice = DiskPrice.new
+            @DiskPrice.deserialize(params['DiskPrice'])
           end
           @RequestId = params['RequestId']
         end
@@ -2739,6 +3510,78 @@ module TencentCloud
         end
       end
 
+      # ModifyDisksAttribute请求参数结构体
+      class ModifyDisksAttributeRequest < TencentCloud::Common::AbstractModel
+        # @param DiskIds: 磁盘ID列表
+        # @type DiskIds: Array
+        # @param DiskName: 磁盘名称
+        # @type DiskName: String
+
+        attr_accessor :DiskIds, :DiskName
+        
+        def initialize(diskids=nil, diskname=nil)
+          @DiskIds = diskids
+          @DiskName = diskname
+        end
+
+        def deserialize(params)
+          @DiskIds = params['DiskIds']
+          @DiskName = params['DiskName']
+        end
+      end
+
+      # ModifyDisksAttribute返回参数结构体
+      class ModifyDisksAttributeResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyDisksRenewFlag请求参数结构体
+      class ModifyDisksRenewFlagRequest < TencentCloud::Common::AbstractModel
+        # @param DiskIds: 磁盘ID列表
+        # @type DiskIds: Array
+        # @param RenewFlag: 续费标识
+        # @type RenewFlag: String
+
+        attr_accessor :DiskIds, :RenewFlag
+        
+        def initialize(diskids=nil, renewflag=nil)
+          @DiskIds = diskids
+          @RenewFlag = renewflag
+        end
+
+        def deserialize(params)
+          @DiskIds = params['DiskIds']
+          @RenewFlag = params['RenewFlag']
+        end
+      end
+
+      # ModifyDisksRenewFlag返回参数结构体
+      class ModifyDisksRenewFlagResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyFirewallRuleDescription请求参数结构体
       class ModifyFirewallRuleDescriptionRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例 ID。
@@ -3073,6 +3916,34 @@ module TencentCloud
           @RegionName = params['RegionName']
           @RegionState = params['RegionState']
           @IsChinaMainland = params['IsChinaMainland']
+        end
+      end
+
+      # 续费磁盘包年包月相关参数设置
+      class RenewDiskChargePrepaid < TencentCloud::Common::AbstractModel
+        # @param Period: 新购周期
+        # @type Period: Integer
+        # @param RenewFlag: 续费标识
+        # @type RenewFlag: String
+        # @param TimeUnit: 周期单位. 默认值: "m"
+        # @type TimeUnit: String
+        # @param CurInstanceDeadline: 当前实例到期时间
+        # @type CurInstanceDeadline: String
+
+        attr_accessor :Period, :RenewFlag, :TimeUnit, :CurInstanceDeadline
+        
+        def initialize(period=nil, renewflag=nil, timeunit=nil, curinstancedeadline=nil)
+          @Period = period
+          @RenewFlag = renewflag
+          @TimeUnit = timeunit
+          @CurInstanceDeadline = curinstancedeadline
+        end
+
+        def deserialize(params)
+          @Period = params['Period']
+          @RenewFlag = params['RenewFlag']
+          @TimeUnit = params['TimeUnit']
+          @CurInstanceDeadline = params['CurInstanceDeadline']
         end
       end
 
@@ -3458,6 +4329,38 @@ module TencentCloud
           @DiskType = params['DiskType']
           @DiskSize = params['DiskSize']
           @DiskId = params['DiskId']
+        end
+      end
+
+      # TerminateDisks请求参数结构体
+      class TerminateDisksRequest < TencentCloud::Common::AbstractModel
+        # @param DiskIds: 磁盘ID列表
+        # @type DiskIds: Array
+
+        attr_accessor :DiskIds
+        
+        def initialize(diskids=nil)
+          @DiskIds = diskids
+        end
+
+        def deserialize(params)
+          @DiskIds = params['DiskIds']
+        end
+      end
+
+      # TerminateDisks返回参数结构体
+      class TerminateDisksResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
         end
       end
 

@@ -781,6 +781,34 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口 (DescribePrometheusInstances) 用于查询一个或多个实例的详细信息。
+        # <ul>
+        # <li>可以根据实例ID、实例名称或者实例状态等信息来查询实例的详细信息</li>
+        # <li>如果参数为空，返回当前用户一定数量（Limit所指定的数量，默认为20）的实例。</li>
+        # </ul>
+
+        # @param request: Request instance for DescribePrometheusInstances.
+        # @type request: :class:`Tencentcloud::monitor::V20180724::DescribePrometheusInstancesRequest`
+        # @rtype: :class:`Tencentcloud::monitor::V20180724::DescribePrometheusInstancesResponse`
+        def DescribePrometheusInstances(request)
+          body = send_request('DescribePrometheusInstances', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribePrometheusInstancesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 列出在腾讯云容器服务下创建的 Prometheus 服务发现。
         # <p>注意：前提条件，已经通过 Prometheus 控制台集成了对应的腾讯云容器服务，具体请参考
         # <a href="https://cloud.tencent.com/document/product/248/48859" target="_blank">Agent 安装</a>。</p>

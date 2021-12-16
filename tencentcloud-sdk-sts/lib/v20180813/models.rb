@@ -201,6 +201,58 @@ module TencentCloud
         end
       end
 
+      # GetCallerIdentity请求参数结构体
+      class GetCallerIdentityRequest < TencentCloud::Common::AbstractModel
+
+        
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # GetCallerIdentity返回参数结构体
+      class GetCallerIdentityResponse < TencentCloud::Common::AbstractModel
+        # @param Arn: 当前调用者ARN。
+        # @type Arn: String
+        # @param AccountId: 当前调用者所属主账号Uin。
+        # @type AccountId: String
+        # @param UserId: 身份标识。
+        # 1. 调用者是云账号时，返回的是当前账号Uin
+        # 2. 调用者是角色时，返回的是roleId:roleSessionName
+        # 3. 调用者是联合身份时，返回的是uin:federatedUserName
+        # @type UserId: String
+        # @param PrincipalId: 密钥所属账号Uin。
+        # 1. 调用者是云账号，返回的当前账号Uin
+        # 2, 调用者是角色，返回的申请角色密钥的账号Uin
+        # @type PrincipalId: String
+        # @param Type: 身份类型。
+        # @type Type: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Arn, :AccountId, :UserId, :PrincipalId, :Type, :RequestId
+        
+        def initialize(arn=nil, accountid=nil, userid=nil, principalid=nil, type=nil, requestid=nil)
+          @Arn = arn
+          @AccountId = accountid
+          @UserId = userid
+          @PrincipalId = principalid
+          @Type = type
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Arn = params['Arn']
+          @AccountId = params['AccountId']
+          @UserId = params['UserId']
+          @PrincipalId = params['PrincipalId']
+          @Type = params['Type']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # GetFederationToken请求参数结构体
       class GetFederationTokenRequest < TencentCloud::Common::AbstractModel
         # @param Name: 您可以自定义调用方英文名称，由字母组成。

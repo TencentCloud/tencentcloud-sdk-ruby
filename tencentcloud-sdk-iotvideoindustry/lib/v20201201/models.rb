@@ -442,6 +442,67 @@ module TencentCloud
         end
       end
 
+      # CreateMessageForward请求参数结构体
+      class CreateMessageForwardRequest < TencentCloud::Common::AbstractModel
+        # @param RegionId: 区域ID
+        # @type RegionId: String
+        # @param RegionName: 区域名称
+        # @type RegionName: String
+        # @param Instance: 实例ID
+        # @type Instance: String
+        # @param InstanceName: 实例名称
+        # @type InstanceName: String
+        # @param MessageType: json数组， 转发类型 1: 告警 2:GPS
+        # @type MessageType: String
+        # @param TopicId: kafka topic id
+        # @type TopicId: String
+        # @param TopicName: kafka topic 名称
+        # @type TopicName: String
+
+        attr_accessor :RegionId, :RegionName, :Instance, :InstanceName, :MessageType, :TopicId, :TopicName
+        
+        def initialize(regionid=nil, regionname=nil, instance=nil, instancename=nil, messagetype=nil, topicid=nil, topicname=nil)
+          @RegionId = regionid
+          @RegionName = regionname
+          @Instance = instance
+          @InstanceName = instancename
+          @MessageType = messagetype
+          @TopicId = topicid
+          @TopicName = topicname
+        end
+
+        def deserialize(params)
+          @RegionId = params['RegionId']
+          @RegionName = params['RegionName']
+          @Instance = params['Instance']
+          @InstanceName = params['InstanceName']
+          @MessageType = params['MessageType']
+          @TopicId = params['TopicId']
+          @TopicName = params['TopicName']
+        end
+      end
+
+      # CreateMessageForward返回参数结构体
+      class CreateMessageForwardResponse < TencentCloud::Common::AbstractModel
+        # @param IntId: 配置ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IntId: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :IntId, :RequestId
+        
+        def initialize(intid=nil, requestid=nil)
+          @IntId = intid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @IntId = params['IntId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateRecordPlan请求参数结构体
       class CreateRecordPlanRequest < TencentCloud::Common::AbstractModel
         # @param Name: 计划名称
@@ -808,6 +869,38 @@ module TencentCloud
 
       # DeleteLiveVideoList返回参数结构体
       class DeleteLiveVideoListResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteMessageForward请求参数结构体
+      class DeleteMessageForwardRequest < TencentCloud::Common::AbstractModel
+        # @param IntId: 配置ID
+        # @type IntId: Integer
+
+        attr_accessor :IntId
+        
+        def initialize(intid=nil)
+          @IntId = intid
+        end
+
+        def deserialize(params)
+          @IntId = params['IntId']
+        end
+      end
+
+      # DeleteMessageForward返回参数结构体
+      class DeleteMessageForwardResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -1910,6 +2003,141 @@ module TencentCloud
               liverecorditem_tmp = LiveRecordItem.new
               liverecorditem_tmp.deserialize(i)
               @RecordList << liverecorditem_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeMessageForward请求参数结构体
+      class DescribeMessageForwardRequest < TencentCloud::Common::AbstractModel
+        # @param IntId: 配置ID
+        # @type IntId: Integer
+
+        attr_accessor :IntId
+        
+        def initialize(intid=nil)
+          @IntId = intid
+        end
+
+        def deserialize(params)
+          @IntId = params['IntId']
+        end
+      end
+
+      # DescribeMessageForward返回参数结构体
+      class DescribeMessageForwardResponse < TencentCloud::Common::AbstractModel
+        # @param RegionId: 区域ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RegionId: String
+        # @param RegionName: 区域名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RegionName: String
+        # @param Instance: 实例ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Instance: String
+        # @param InstanceName: 实例名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceName: String
+        # @param IntId: 配置ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IntId: Integer
+        # @param MessageType: json数组， 转发类型 1: 告警 2:GPS
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MessageType: String
+        # @param TopicId: kafka topic id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TopicId: String
+        # @param CreateTime: 配置创建时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateTime: String
+        # @param Uin: 用户Uin信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Uin: String
+        # @param TopicName: kafka topic 名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TopicName: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RegionId, :RegionName, :Instance, :InstanceName, :IntId, :MessageType, :TopicId, :CreateTime, :Uin, :TopicName, :RequestId
+        
+        def initialize(regionid=nil, regionname=nil, instance=nil, instancename=nil, intid=nil, messagetype=nil, topicid=nil, createtime=nil, uin=nil, topicname=nil, requestid=nil)
+          @RegionId = regionid
+          @RegionName = regionname
+          @Instance = instance
+          @InstanceName = instancename
+          @IntId = intid
+          @MessageType = messagetype
+          @TopicId = topicid
+          @CreateTime = createtime
+          @Uin = uin
+          @TopicName = topicname
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RegionId = params['RegionId']
+          @RegionName = params['RegionName']
+          @Instance = params['Instance']
+          @InstanceName = params['InstanceName']
+          @IntId = params['IntId']
+          @MessageType = params['MessageType']
+          @TopicId = params['TopicId']
+          @CreateTime = params['CreateTime']
+          @Uin = params['Uin']
+          @TopicName = params['TopicName']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeMessageForwards请求参数结构体
+      class DescribeMessageForwardsRequest < TencentCloud::Common::AbstractModel
+        # @param Limit: 数量限制
+        # @type Limit: Integer
+        # @param Offset: 偏移
+        # @type Offset: Integer
+
+        attr_accessor :Limit, :Offset
+        
+        def initialize(limit=nil, offset=nil)
+          @Limit = limit
+          @Offset = offset
+        end
+
+        def deserialize(params)
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+        end
+      end
+
+      # DescribeMessageForwards返回参数结构体
+      class DescribeMessageForwardsResponse < TencentCloud::Common::AbstractModel
+        # @param Total: 配置总数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Total: Integer
+        # @param List: 配置列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type List: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Total, :List, :RequestId
+        
+        def initialize(total=nil, list=nil, requestid=nil)
+          @Total = total
+          @List = list
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Total = params['Total']
+          unless params['List'].nil?
+            @List = []
+            params['List'].each do |i|
+              messageforward_tmp = MessageForward.new
+              messageforward_tmp.deserialize(i)
+              @List << messageforward_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -3192,6 +3420,73 @@ module TencentCloud
         end
       end
 
+      # 消息转发配置信息
+      class MessageForward < TencentCloud::Common::AbstractModel
+        # @param IntId: 配置ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IntId: Integer
+        # @param Uin: 用户Uin
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Uin: String
+        # @param MessageType: json数组， 转发类型 1: 告警 2:GPS
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MessageType: String
+        # @param RegionId: 区域ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RegionId: String
+        # @param RegionName: 区域名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RegionName: String
+        # @param Instance: 实例ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Instance: String
+        # @param InstanceName: 实例名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceName: String
+        # @param TopicId: kafka topic id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TopicId: String
+        # @param CreateTime: 创建时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateTime: String
+        # @param UpdateTime: 更新时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UpdateTime: String
+        # @param TopicName: topic 名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TopicName: String
+
+        attr_accessor :IntId, :Uin, :MessageType, :RegionId, :RegionName, :Instance, :InstanceName, :TopicId, :CreateTime, :UpdateTime, :TopicName
+        
+        def initialize(intid=nil, uin=nil, messagetype=nil, regionid=nil, regionname=nil, instance=nil, instancename=nil, topicid=nil, createtime=nil, updatetime=nil, topicname=nil)
+          @IntId = intid
+          @Uin = uin
+          @MessageType = messagetype
+          @RegionId = regionid
+          @RegionName = regionname
+          @Instance = instance
+          @InstanceName = instancename
+          @TopicId = topicid
+          @CreateTime = createtime
+          @UpdateTime = updatetime
+          @TopicName = topicname
+        end
+
+        def deserialize(params)
+          @IntId = params['IntId']
+          @Uin = params['Uin']
+          @MessageType = params['MessageType']
+          @RegionId = params['RegionId']
+          @RegionName = params['RegionName']
+          @Instance = params['Instance']
+          @InstanceName = params['InstanceName']
+          @TopicId = params['TopicId']
+          @CreateTime = params['CreateTime']
+          @UpdateTime = params['UpdateTime']
+          @TopicName = params['TopicName']
+        end
+      end
+
       # ModifyBindPlanLiveChannel请求参数结构体
       class ModifyBindPlanLiveChannelRequest < TencentCloud::Common::AbstractModel
         # @param PlanId: 直播录制计划ID
@@ -3371,6 +3666,42 @@ module TencentCloud
 
       # ModifyLiveVideo返回参数结构体
       class ModifyLiveVideoResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyMessageForward请求参数结构体
+      class ModifyMessageForwardRequest < TencentCloud::Common::AbstractModel
+        # @param IntId: 配置ID
+        # @type IntId: Integer
+        # @param MessageType: json数组， 转发类型 1: 告警 2:GPS
+        # @type MessageType: String
+
+        attr_accessor :IntId, :MessageType
+        
+        def initialize(intid=nil, messagetype=nil)
+          @IntId = intid
+          @MessageType = messagetype
+        end
+
+        def deserialize(params)
+          @IntId = params['IntId']
+          @MessageType = params['MessageType']
+        end
+      end
+
+      # ModifyMessageForward返回参数结构体
+      class ModifyMessageForwardResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 

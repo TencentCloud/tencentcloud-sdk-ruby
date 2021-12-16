@@ -110,6 +110,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口（AttachDisks）用于挂载一个或多个弹性云盘。
+
+        # @param request: Request instance for AttachDisks.
+        # @type request: :class:`Tencentcloud::lighthouse::V20200324::AttachDisksRequest`
+        # @rtype: :class:`Tencentcloud::lighthouse::V20200324::AttachDisksResponse`
+        def AttachDisks(request)
+          body = send_request('AttachDisks', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = AttachDisksResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口 (CreateBlueprint) 用于创建镜像。
 
         # @param request: Request instance for CreateBlueprint.
@@ -442,6 +466,126 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口（DescribeDiskConfigs）用于查询磁盘配置。
+
+        # @param request: Request instance for DescribeDiskConfigs.
+        # @type request: :class:`Tencentcloud::lighthouse::V20200324::DescribeDiskConfigsRequest`
+        # @rtype: :class:`Tencentcloud::lighthouse::V20200324::DescribeDiskConfigsResponse`
+        def DescribeDiskConfigs(request)
+          body = send_request('DescribeDiskConfigs', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeDiskConfigsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口(DescribeDiskDiscount)用于查询云硬盘折扣信息
+
+        # @param request: Request instance for DescribeDiskDiscount.
+        # @type request: :class:`Tencentcloud::lighthouse::V20200324::DescribeDiskDiscountRequest`
+        # @rtype: :class:`Tencentcloud::lighthouse::V20200324::DescribeDiskDiscountResponse`
+        def DescribeDiskDiscount(request)
+          body = send_request('DescribeDiskDiscount', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeDiskDiscountResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口（DescribeDisks）用于查询磁盘信息。
+
+        # @param request: Request instance for DescribeDisks.
+        # @type request: :class:`Tencentcloud::lighthouse::V20200324::DescribeDisksRequest`
+        # @rtype: :class:`Tencentcloud::lighthouse::V20200324::DescribeDisksResponse`
+        def DescribeDisks(request)
+          body = send_request('DescribeDisks', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeDisksResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口（DescribeDisksDeniedActions）用于查询一个或多个磁盘的操作限制列表信息
+
+        # @param request: Request instance for DescribeDisksDeniedActions.
+        # @type request: :class:`Tencentcloud::lighthouse::V20200324::DescribeDisksDeniedActionsRequest`
+        # @rtype: :class:`Tencentcloud::lighthouse::V20200324::DescribeDisksDeniedActionsResponse`
+        def DescribeDisksDeniedActions(request)
+          body = send_request('DescribeDisksDeniedActions', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeDisksDeniedActionsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口（DescribeDisksReturnable）用于查询磁盘是否可退还。
+
+        # @param request: Request instance for DescribeDisksReturnable.
+        # @type request: :class:`Tencentcloud::lighthouse::V20200324::DescribeDisksReturnableRequest`
+        # @rtype: :class:`Tencentcloud::lighthouse::V20200324::DescribeDisksReturnableResponse`
+        def DescribeDisksReturnable(request)
+          body = send_request('DescribeDisksReturnable', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeDisksReturnableResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（DescribeFirewallRules）用于查询实例的防火墙规则。
 
         # @param request: Request instance for DescribeFirewallRules.
@@ -606,6 +750,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeInstancesDeniedActionsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口(DescribeInstancesDiskNum)用于查询实例挂载云盘数量。
+
+        # @param request: Request instance for DescribeInstancesDiskNum.
+        # @type request: :class:`Tencentcloud::lighthouse::V20200324::DescribeInstancesDiskNumRequest`
+        # @rtype: :class:`Tencentcloud::lighthouse::V20200324::DescribeInstancesDiskNumResponse`
+        def DescribeInstancesDiskNum(request)
+          body = send_request('DescribeInstancesDiskNum', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeInstancesDiskNumResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -860,6 +1028,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口（DetachDisks）用于卸载一个或多个弹性云盘。
+
+        # @param request: Request instance for DetachDisks.
+        # @type request: :class:`Tencentcloud::lighthouse::V20200324::DetachDisksRequest`
+        # @rtype: :class:`Tencentcloud::lighthouse::V20200324::DetachDisksResponse`
+        def DetachDisks(request)
+          body = send_request('DetachDisks', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DetachDisksResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（DisassociateInstancesKeyPairs）用于解除实例与指定密钥对的绑定关系。
 
         # * 只支持 [RUNNING, STOPPED] 状态的 LINUX_UNIX 操作系统的实例。处于 RUNNING 状态的实例会强制关机，然后解绑。
@@ -938,6 +1130,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口（InquirePriceCreateDisks）用于新购磁盘询价。
+
+        # @param request: Request instance for InquirePriceCreateDisks.
+        # @type request: :class:`Tencentcloud::lighthouse::V20200324::InquirePriceCreateDisksRequest`
+        # @rtype: :class:`Tencentcloud::lighthouse::V20200324::InquirePriceCreateDisksResponse`
+        def InquirePriceCreateDisks(request)
+          body = send_request('InquirePriceCreateDisks', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = InquirePriceCreateDisksResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（InquiryPriceCreateInstances）用于创建实例询价。
 
         # @param request: Request instance for InquirePriceCreateInstances.
@@ -948,6 +1164,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = InquirePriceCreateInstancesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口（InquirePriceRenewDisks）用于续费磁盘询价。
+
+        # @param request: Request instance for InquirePriceRenewDisks.
+        # @type request: :class:`Tencentcloud::lighthouse::V20200324::InquirePriceRenewDisksRequest`
+        # @rtype: :class:`Tencentcloud::lighthouse::V20200324::InquirePriceRenewDisksResponse`
+        def InquirePriceRenewDisks(request)
+          body = send_request('InquirePriceRenewDisks', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = InquirePriceRenewDisksResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -996,6 +1236,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyBlueprintAttributeResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口(ModifyDisksAttribute)用于修改磁盘属性
+
+        # @param request: Request instance for ModifyDisksAttribute.
+        # @type request: :class:`Tencentcloud::lighthouse::V20200324::ModifyDisksAttributeRequest`
+        # @rtype: :class:`Tencentcloud::lighthouse::V20200324::ModifyDisksAttributeResponse`
+        def ModifyDisksAttribute(request)
+          body = send_request('ModifyDisksAttribute', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyDisksAttributeResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口（ModifyDisksRenewFlag）用于修改磁盘续费标识。
+
+        # @param request: Request instance for ModifyDisksRenewFlag.
+        # @type request: :class:`Tencentcloud::lighthouse::V20200324::ModifyDisksRenewFlagRequest`
+        # @rtype: :class:`Tencentcloud::lighthouse::V20200324::ModifyDisksRenewFlagResponse`
+        def ModifyDisksRenewFlag(request)
+          body = send_request('ModifyDisksRenewFlag', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyDisksRenewFlagResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1337,6 +1625,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = StopInstancesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口（TerminateDisks）用于销毁一个或多个磁盘。
+
+        # @param request: Request instance for TerminateDisks.
+        # @type request: :class:`Tencentcloud::lighthouse::V20200324::TerminateDisksRequest`
+        # @rtype: :class:`Tencentcloud::lighthouse::V20200324::TerminateDisksResponse`
+        def TerminateDisks(request)
+          body = send_request('TerminateDisks', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = TerminateDisksResponse.new
             model.deserialize(response['Response'])
             model
           else

@@ -17,6 +17,70 @@
 module TencentCloud
   module Thpc
     module V20211109
+      # BindAutoScalingGroup请求参数结构体
+      class BindAutoScalingGroupRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群ID。
+        # @type ClusterId: String
+        # @param LaunchConfigurationId: 弹性伸缩启动配置ID。
+        # @type LaunchConfigurationId: String
+        # @param AutoScalingGroupId: 弹性伸缩组ID。
+        # @type AutoScalingGroupId: String
+        # @param ExpansionBusyTime: 任务连续等待时间，队列的任务处于连续等待的时间。单位秒。默认值120。
+        # @type ExpansionBusyTime: Integer
+        # @param ShrinkIdleTime: 节点连续空闲（未运行作业）时间，一个节点连续处于空闲状态时间。单位秒。默认值300。
+        # @type ShrinkIdleTime: Integer
+        # @param EnableAutoExpansion: 是否开启自动扩容，默认值true。
+        # @type EnableAutoExpansion: Boolean
+        # @param EnableAutoShrink: 是否开启自动缩容，默认值true。
+        # @type EnableAutoShrink: Boolean
+        # @param DryRun: 是否只预检此次请求。
+        # true：发送检查请求，不会绑定弹性伸缩组。检查项包括是否填写了必需参数，请求格式，业务限制。
+        # 如果检查不通过，则返回对应错误码；
+        # 如果检查通过，则返回RequestId。
+        # false（默认）：发送正常请求，通过检查后直接绑定弹性伸缩组。
+        # @type DryRun: Boolean
+
+        attr_accessor :ClusterId, :LaunchConfigurationId, :AutoScalingGroupId, :ExpansionBusyTime, :ShrinkIdleTime, :EnableAutoExpansion, :EnableAutoShrink, :DryRun
+        
+        def initialize(clusterid=nil, launchconfigurationid=nil, autoscalinggroupid=nil, expansionbusytime=nil, shrinkidletime=nil, enableautoexpansion=nil, enableautoshrink=nil, dryrun=nil)
+          @ClusterId = clusterid
+          @LaunchConfigurationId = launchconfigurationid
+          @AutoScalingGroupId = autoscalinggroupid
+          @ExpansionBusyTime = expansionbusytime
+          @ShrinkIdleTime = shrinkidletime
+          @EnableAutoExpansion = enableautoexpansion
+          @EnableAutoShrink = enableautoshrink
+          @DryRun = dryrun
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @LaunchConfigurationId = params['LaunchConfigurationId']
+          @AutoScalingGroupId = params['AutoScalingGroupId']
+          @ExpansionBusyTime = params['ExpansionBusyTime']
+          @ShrinkIdleTime = params['ShrinkIdleTime']
+          @EnableAutoExpansion = params['EnableAutoExpansion']
+          @EnableAutoShrink = params['EnableAutoShrink']
+          @DryRun = params['DryRun']
+        end
+      end
+
+      # BindAutoScalingGroup返回参数结构体
+      class BindAutoScalingGroupResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 描述CFS文件系统版本和挂载信息
       class CFSOption < TencentCloud::Common::AbstractModel
         # @param LocalPath: 文件系统本地挂载路径

@@ -197,6 +197,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 创建消息转发配置
+
+        # @param request: Request instance for CreateMessageForward.
+        # @type request: :class:`Tencentcloud::iotvideoindustry::V20201201::CreateMessageForwardRequest`
+        # @rtype: :class:`Tencentcloud::iotvideoindustry::V20201201::CreateMessageForwardResponse`
+        def CreateMessageForward(request)
+          body = send_request('CreateMessageForward', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateMessageForwardResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口(CreateRecordPlan) 用于创建录制计划，使设备与时间模板绑定，以便及时启动录制
 
         # @param request: Request instance for CreateRecordPlan.
@@ -399,6 +423,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteLiveVideoListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除消息转发配置
+
+        # @param request: Request instance for DeleteMessageForward.
+        # @type request: :class:`Tencentcloud::iotvideoindustry::V20201201::DeleteMessageForwardRequest`
+        # @rtype: :class:`Tencentcloud::iotvideoindustry::V20201201::DeleteMessageForwardResponse`
+        def DeleteMessageForward(request)
+          body = send_request('DeleteMessageForward', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteMessageForwardResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -918,6 +966,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查看消息转发配置详情
+
+        # @param request: Request instance for DescribeMessageForward.
+        # @type request: :class:`Tencentcloud::iotvideoindustry::V20201201::DescribeMessageForwardRequest`
+        # @rtype: :class:`Tencentcloud::iotvideoindustry::V20201201::DescribeMessageForwardResponse`
+        def DescribeMessageForward(request)
+          body = send_request('DescribeMessageForward', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeMessageForwardResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查看消息转发配置列表
+
+        # @param request: Request instance for DescribeMessageForwards.
+        # @type request: :class:`Tencentcloud::iotvideoindustry::V20201201::DescribeMessageForwardsRequest`
+        # @rtype: :class:`Tencentcloud::iotvideoindustry::V20201201::DescribeMessageForwardsResponse`
+        def DescribeMessageForwards(request)
+          body = send_request('DescribeMessageForwards', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeMessageForwardsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 直播录像存储日期列表
 
         # @param request: Request instance for DescribeRecordDatesByLive.
@@ -1411,6 +1507,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyLiveVideoResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改消息转发配置
+
+        # @param request: Request instance for ModifyMessageForward.
+        # @type request: :class:`Tencentcloud::iotvideoindustry::V20201201::ModifyMessageForwardRequest`
+        # @rtype: :class:`Tencentcloud::iotvideoindustry::V20201201::ModifyMessageForwardResponse`
+        def ModifyMessageForward(request)
+          body = send_request('ModifyMessageForward', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyMessageForwardResponse.new
             model.deserialize(response['Response'])
             model
           else

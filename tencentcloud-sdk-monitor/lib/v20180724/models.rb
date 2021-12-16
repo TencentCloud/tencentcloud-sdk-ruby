@@ -4348,6 +4348,99 @@ module TencentCloud
         end
       end
 
+      # DescribePrometheusInstances请求参数结构体
+      class DescribePrometheusInstancesRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceIds: 按照一个或者多个实例ID查询。实例ID形如：prom-xxxxxxxx。请求的实例的上限为100。
+        # @type InstanceIds: Array
+        # @param InstanceStatus: 按照【实例状态】进行过滤。
+        # <ul>
+        # <li>1：正在创建</li>
+        # <li>2：运行中</li>
+        # <li>3：异常</li>
+        # <li>4：重建中</li>
+        # <li>5：销毁中</li>
+        # <li>6：已停服</li>
+        # <li>8：欠费停服中</li>
+        # <li>9：欠费已停服</li>
+        # </ul>
+        # @type InstanceStatus: Array
+        # @param InstanceName: 按照【实例名称】进行过滤。
+        # @type InstanceName: String
+        # @param Zones: 按照【可用区】进行过滤。可用区形如：ap-guangzhou-1。
+        # @type Zones: Array
+        # @param TagFilters: 按照【标签键值对】进行过滤。tag-key使用具体的标签键进行替换。
+        # @type TagFilters: Array
+        # @param IPv4Address: 按照【实例的IPv4地址】进行过滤。
+        # @type IPv4Address: Array
+        # @param Limit: 返回数量，默认为20，最大值为100。
+        # @type Limit: Integer
+        # @param Offset: 偏移量，默认为0。
+        # @type Offset: Integer
+
+        attr_accessor :InstanceIds, :InstanceStatus, :InstanceName, :Zones, :TagFilters, :IPv4Address, :Limit, :Offset
+        
+        def initialize(instanceids=nil, instancestatus=nil, instancename=nil, zones=nil, tagfilters=nil, ipv4address=nil, limit=nil, offset=nil)
+          @InstanceIds = instanceids
+          @InstanceStatus = instancestatus
+          @InstanceName = instancename
+          @Zones = zones
+          @TagFilters = tagfilters
+          @IPv4Address = ipv4address
+          @Limit = limit
+          @Offset = offset
+        end
+
+        def deserialize(params)
+          @InstanceIds = params['InstanceIds']
+          @InstanceStatus = params['InstanceStatus']
+          @InstanceName = params['InstanceName']
+          @Zones = params['Zones']
+          unless params['TagFilters'].nil?
+            @TagFilters = []
+            params['TagFilters'].each do |i|
+              prometheustag_tmp = PrometheusTag.new
+              prometheustag_tmp.deserialize(i)
+              @TagFilters << prometheustag_tmp
+            end
+          end
+          @IPv4Address = params['IPv4Address']
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+        end
+      end
+
+      # DescribePrometheusInstances返回参数结构体
+      class DescribePrometheusInstancesResponse < TencentCloud::Common::AbstractModel
+        # @param InstanceSet: 实例详细信息列表。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceSet: Array
+        # @param TotalCount: 符合条件的实例数量。
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :InstanceSet, :TotalCount, :RequestId
+        
+        def initialize(instanceset=nil, totalcount=nil, requestid=nil)
+          @InstanceSet = instanceset
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['InstanceSet'].nil?
+            @InstanceSet = []
+            params['InstanceSet'].each do |i|
+              prometheusinstancesitem_tmp = PrometheusInstancesItem.new
+              prometheusinstancesitem_tmp.deserialize(i)
+              @InstanceSet << prometheusinstancesitem_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeServiceDiscovery请求参数结构体
       class DescribeServiceDiscoveryRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: Prometheus 实例 ID
@@ -5535,6 +5628,226 @@ module TencentCloud
         end
       end
 
+      # 实例的授权信息
+      class PrometheusInstanceGrantInfo < TencentCloud::Common::AbstractModel
+        # @param HasChargeOperation: 是否有计费操作权限(1=有，2=无)
+        # @type HasChargeOperation: Integer
+        # @param HasVpcDisplay: 是否显示VPC信息的权限(1=有，2=无)
+        # @type HasVpcDisplay: Integer
+        # @param HasGrafanaStatusChange: 是否可修改Grafana的状态(1=有，2=无)
+        # @type HasGrafanaStatusChange: Integer
+        # @param HasAgentManage: 是否有管理agent的权限(1=有，2=无)
+        # @type HasAgentManage: Integer
+        # @param HasTkeManage: 是否有管理TKE集成的权限(1=有，2=无)
+        # @type HasTkeManage: Integer
+        # @param HasApiOperation: 是否显示API等信息(1=有, 2=无)
+        # @type HasApiOperation: Integer
+
+        attr_accessor :HasChargeOperation, :HasVpcDisplay, :HasGrafanaStatusChange, :HasAgentManage, :HasTkeManage, :HasApiOperation
+        
+        def initialize(haschargeoperation=nil, hasvpcdisplay=nil, hasgrafanastatuschange=nil, hasagentmanage=nil, hastkemanage=nil, hasapioperation=nil)
+          @HasChargeOperation = haschargeoperation
+          @HasVpcDisplay = hasvpcdisplay
+          @HasGrafanaStatusChange = hasgrafanastatuschange
+          @HasAgentManage = hasagentmanage
+          @HasTkeManage = hastkemanage
+          @HasApiOperation = hasapioperation
+        end
+
+        def deserialize(params)
+          @HasChargeOperation = params['HasChargeOperation']
+          @HasVpcDisplay = params['HasVpcDisplay']
+          @HasGrafanaStatusChange = params['HasGrafanaStatusChange']
+          @HasAgentManage = params['HasAgentManage']
+          @HasTkeManage = params['HasTkeManage']
+          @HasApiOperation = params['HasApiOperation']
+        end
+      end
+
+      # Prometheus 服务响应体
+      class PrometheusInstancesItem < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID。
+        # @type InstanceId: String
+        # @param InstanceName: 实例名称。
+        # @type InstanceName: String
+        # @param InstanceChargeType: 实例计费模式。取值范围：
+        # <ul>
+        # <li>2：包年包月</li>
+        # <li>3：按量</li>
+        # </ul>
+        # @type InstanceChargeType: Integer
+        # @param RegionId: 地域 ID
+        # @type RegionId: Integer
+        # @param Zone: 可用区
+        # @type Zone: String
+        # @param VpcId: VPC ID
+        # @type VpcId: String
+        # @param SubnetId: 子网 ID
+        # @type SubnetId: String
+        # @param DataRetentionTime: 存储周期
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DataRetentionTime: Integer
+        # @param InstanceStatus: 实例业务状态。取值范围：
+        # <ul>
+        # <li>1：正在创建</li>
+        # <li>2：运行中</li>
+        # <li>3：异常</li>
+        # <li>4：重建中</li>
+        # <li>5：销毁中</li>
+        # <li>6：已停服</li>
+        # <li>8：欠费停服中</li>
+        # <li>9：欠费已停服</li>
+        # </ul>
+        # @type InstanceStatus: Integer
+        # @param GrafanaURL: Grafana 面板 URL
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GrafanaURL: String
+        # @param CreatedAt: 创建时间
+        # @type CreatedAt: String
+        # @param EnableGrafana: 是否开启 Grafana
+        # <li>0：不开启</li>
+        # <li>1：开启</li>
+        # @type EnableGrafana: Integer
+        # @param IPv4Address: 实例IPV4地址
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IPv4Address: String
+        # @param TagSpecification: 实例关联的标签列表。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TagSpecification: Array
+        # @param ExpireTime: 购买的实例过期时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExpireTime: String
+        # @param ChargeStatus: 计费状态
+        # <ul>
+        # <li>1：正常</li>
+        # <li>2：过期</li>
+        # <li>3：销毁</li>
+        # <li>4：分配中</li>
+        # <li>5：分配失败</li>
+        # </ul>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ChargeStatus: Integer
+        # @param SpecName: 规格名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SpecName: String
+        # @param AutoRenewFlag: 自动续费标记
+        # <ul>
+        # <li>0：不自动续费</li>
+        # <li>1：开启自动续费</li>
+        # <li>2：禁止自动续费</li>
+        # <li>-1：无效</ii>
+        # </ul>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AutoRenewFlag: Integer
+        # @param IsNearExpire: 是否快过期
+        # <ul>
+        # <li>0：否</li>
+        # <li>1：快过期</li>
+        # </ul>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsNearExpire: Integer
+        # @param AuthToken: 数据写入需要的 Token
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AuthToken: String
+        # @param RemoteWrite: Prometheus Remote Write 的地址
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RemoteWrite: String
+        # @param ApiRootPath: Prometheus HTTP Api 根地址
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ApiRootPath: String
+        # @param ProxyAddress: Proxy 的地址
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProxyAddress: String
+        # @param GrafanaStatus: Grafana 运行状态
+        # <ul>
+        # <li>1：正在创建</li>
+        # <li>2：运行中</li>
+        # <li>3：异常</li>
+        # <li>4：重启中</li>
+        # <li>5：销毁中</li>
+        # <li>6：已停机</li>
+        # <li>7：已删除</li>
+        # </ul>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GrafanaStatus: Integer
+        # @param GrafanaIpWhiteList: Grafana IP 白名单列表，使用英文分号分隔
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GrafanaIpWhiteList: String
+        # @param Grant: 实例的授权信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Grant: :class:`Tencentcloud::Monitor.v20180724.models.PrometheusInstanceGrantInfo`
+
+        attr_accessor :InstanceId, :InstanceName, :InstanceChargeType, :RegionId, :Zone, :VpcId, :SubnetId, :DataRetentionTime, :InstanceStatus, :GrafanaURL, :CreatedAt, :EnableGrafana, :IPv4Address, :TagSpecification, :ExpireTime, :ChargeStatus, :SpecName, :AutoRenewFlag, :IsNearExpire, :AuthToken, :RemoteWrite, :ApiRootPath, :ProxyAddress, :GrafanaStatus, :GrafanaIpWhiteList, :Grant
+        
+        def initialize(instanceid=nil, instancename=nil, instancechargetype=nil, regionid=nil, zone=nil, vpcid=nil, subnetid=nil, dataretentiontime=nil, instancestatus=nil, grafanaurl=nil, createdat=nil, enablegrafana=nil, ipv4address=nil, tagspecification=nil, expiretime=nil, chargestatus=nil, specname=nil, autorenewflag=nil, isnearexpire=nil, authtoken=nil, remotewrite=nil, apirootpath=nil, proxyaddress=nil, grafanastatus=nil, grafanaipwhitelist=nil, grant=nil)
+          @InstanceId = instanceid
+          @InstanceName = instancename
+          @InstanceChargeType = instancechargetype
+          @RegionId = regionid
+          @Zone = zone
+          @VpcId = vpcid
+          @SubnetId = subnetid
+          @DataRetentionTime = dataretentiontime
+          @InstanceStatus = instancestatus
+          @GrafanaURL = grafanaurl
+          @CreatedAt = createdat
+          @EnableGrafana = enablegrafana
+          @IPv4Address = ipv4address
+          @TagSpecification = tagspecification
+          @ExpireTime = expiretime
+          @ChargeStatus = chargestatus
+          @SpecName = specname
+          @AutoRenewFlag = autorenewflag
+          @IsNearExpire = isnearexpire
+          @AuthToken = authtoken
+          @RemoteWrite = remotewrite
+          @ApiRootPath = apirootpath
+          @ProxyAddress = proxyaddress
+          @GrafanaStatus = grafanastatus
+          @GrafanaIpWhiteList = grafanaipwhitelist
+          @Grant = grant
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @InstanceName = params['InstanceName']
+          @InstanceChargeType = params['InstanceChargeType']
+          @RegionId = params['RegionId']
+          @Zone = params['Zone']
+          @VpcId = params['VpcId']
+          @SubnetId = params['SubnetId']
+          @DataRetentionTime = params['DataRetentionTime']
+          @InstanceStatus = params['InstanceStatus']
+          @GrafanaURL = params['GrafanaURL']
+          @CreatedAt = params['CreatedAt']
+          @EnableGrafana = params['EnableGrafana']
+          @IPv4Address = params['IPv4Address']
+          unless params['TagSpecification'].nil?
+            @TagSpecification = []
+            params['TagSpecification'].each do |i|
+              prometheustag_tmp = PrometheusTag.new
+              prometheustag_tmp.deserialize(i)
+              @TagSpecification << prometheustag_tmp
+            end
+          end
+          @ExpireTime = params['ExpireTime']
+          @ChargeStatus = params['ChargeStatus']
+          @SpecName = params['SpecName']
+          @AutoRenewFlag = params['AutoRenewFlag']
+          @IsNearExpire = params['IsNearExpire']
+          @AuthToken = params['AuthToken']
+          @RemoteWrite = params['RemoteWrite']
+          @ApiRootPath = params['ApiRootPath']
+          @ProxyAddress = params['ProxyAddress']
+          @GrafanaStatus = params['GrafanaStatus']
+          @GrafanaIpWhiteList = params['GrafanaIpWhiteList']
+          unless params['Grant'].nil?
+            @Grant = PrometheusInstanceGrantInfo.new
+            @Grant.deserialize(params['Grant'])
+          end
+        end
+      end
+
       # prometheus 报警规则 KV 参数
       class PrometheusRuleKV < TencentCloud::Common::AbstractModel
         # @param Key: 键
@@ -5638,6 +5951,27 @@ module TencentCloud
           @Health = params['Health']
           @CreatedAt = params['CreatedAt']
           @UpdatedAt = params['UpdatedAt']
+        end
+      end
+
+      # Prometheus 托管服务标签
+      class PrometheusTag < TencentCloud::Common::AbstractModel
+        # @param Key: 标签的健值
+        # @type Key: String
+        # @param Value: 标签对应的值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Value: String
+
+        attr_accessor :Key, :Value
+        
+        def initialize(key=nil, value=nil)
+          @Key = key
+          @Value = value
+        end
+
+        def deserialize(params)
+          @Key = params['Key']
+          @Value = params['Value']
         end
       end
 

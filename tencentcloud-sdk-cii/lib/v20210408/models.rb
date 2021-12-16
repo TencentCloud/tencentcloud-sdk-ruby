@@ -701,7 +701,7 @@ module TencentCloud
       class MachinePredict < TencentCloud::Common::AbstractModel
         # @param Title: 核保引擎名称
         # @type Title: String
-        # @param Conclusion: 核保结论
+        # @param Conclusion: 核保结论：加费、承保、拒保、延期、除外、加费+除外
         # @type Conclusion: String
         # @param Explanation: AI决策树解释
         # @type Explanation: Array

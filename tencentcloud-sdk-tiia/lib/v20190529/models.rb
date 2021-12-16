@@ -219,6 +219,7 @@ module TencentCloud
         # 类型：
         # 1: 通用图库，以用户输入图提取特征。
         # 2: 灰度图库，输入图和搜索图均转为灰度图提取特征。
+        # 3: 针对电商（通用品类）和logo优化。
         # @type GroupType: Integer
 
         attr_accessor :GroupId, :GroupName, :MaxCapacity, :Brief, :MaxQps, :GroupType
@@ -1314,6 +1315,34 @@ module TencentCloud
         end
       end
 
+      # 图像主体区域坐标
+      class ImageRect < TencentCloud::Common::AbstractModel
+        # @param X: 左上角横坐标。
+        # @type X: Integer
+        # @param Y: 左上角纵坐标。
+        # @type Y: Integer
+        # @param Width: 宽度。
+        # @type Width: Integer
+        # @param Height: 高度。
+        # @type Height: Integer
+
+        attr_accessor :X, :Y, :Width, :Height
+        
+        def initialize(x=nil, y=nil, width=nil, height=nil)
+          @X = x
+          @Y = y
+          @Width = width
+          @Height = height
+        end
+
+        def deserialize(params)
+          @X = params['X']
+          @Y = params['Y']
+          @Width = params['Width']
+          @Height = params['Height']
+        end
+      end
+
       # 名人识别的标签
       class Labels < TencentCloud::Common::AbstractModel
         # @param FirstLabel: 公众人物身份标签的一级分类，例如体育明星、娱乐明星、政治人物等；
@@ -1615,10 +1644,12 @@ module TencentCloud
         # @type Limit: Integer
         # @param Filter: 针对入库时提交的Tags信息进行条件过滤。支持>、>=、 <、 <=、=，!=，多个条件之间支持AND和OR进行连接。
         # @type Filter: String
+        # @param ImageRect: 图像主体区域。
+        # @type ImageRect: :class:`Tencentcloud::Tiia.v20190529.models.ImageRect`
 
-        attr_accessor :GroupId, :ImageUrl, :ImageBase64, :MatchThreshold, :Offset, :Limit, :Filter
+        attr_accessor :GroupId, :ImageUrl, :ImageBase64, :MatchThreshold, :Offset, :Limit, :Filter, :ImageRect
         
-        def initialize(groupid=nil, imageurl=nil, imagebase64=nil, matchthreshold=nil, offset=nil, limit=nil, filter=nil)
+        def initialize(groupid=nil, imageurl=nil, imagebase64=nil, matchthreshold=nil, offset=nil, limit=nil, filter=nil, imagerect=nil)
           @GroupId = groupid
           @ImageUrl = imageurl
           @ImageBase64 = imagebase64
@@ -1626,6 +1657,7 @@ module TencentCloud
           @Offset = offset
           @Limit = limit
           @Filter = filter
+          @ImageRect = imagerect
         end
 
         def deserialize(params)
@@ -1636,6 +1668,10 @@ module TencentCloud
           @Offset = params['Offset']
           @Limit = params['Limit']
           @Filter = params['Filter']
+          unless params['ImageRect'].nil?
+            @ImageRect = ImageRect.new
+            @ImageRect.deserialize(params['ImageRect'])
+          end
         end
       end
 

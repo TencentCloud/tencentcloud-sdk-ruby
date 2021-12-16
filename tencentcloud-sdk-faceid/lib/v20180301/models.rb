@@ -977,6 +977,70 @@ module TencentCloud
         end
       end
 
+      # DetectReflectLivenessAndCompare请求参数结构体
+      class DetectReflectLivenessAndCompareRequest < TencentCloud::Common::AbstractModel
+        # @param LiveDataUrl: SDK生成的数据包活体数据包的资源地址。
+        # @type LiveDataUrl: String
+        # @param LiveDataMd5: SDK生成的数据包活体数据包的资源Md5。
+        # @type LiveDataMd5: String
+        # @param ImageUrl: 用于比对的目标图片的资源地址。
+        # @type ImageUrl: String
+        # @param ImageMd5: 用于比对的目标图片的资源Md5。
+        # @type ImageMd5: String
+
+        attr_accessor :LiveDataUrl, :LiveDataMd5, :ImageUrl, :ImageMd5
+        
+        def initialize(livedataurl=nil, livedatamd5=nil, imageurl=nil, imagemd5=nil)
+          @LiveDataUrl = livedataurl
+          @LiveDataMd5 = livedatamd5
+          @ImageUrl = imageurl
+          @ImageMd5 = imagemd5
+        end
+
+        def deserialize(params)
+          @LiveDataUrl = params['LiveDataUrl']
+          @LiveDataMd5 = params['LiveDataMd5']
+          @ImageUrl = params['ImageUrl']
+          @ImageMd5 = params['ImageMd5']
+        end
+      end
+
+      # DetectReflectLivenessAndCompare返回参数结构体
+      class DetectReflectLivenessAndCompareResponse < TencentCloud::Common::AbstractModel
+        # @param BestFrameUrl: 验证通过后的视频最佳截图照片资源地址，jpg格式。
+        # @type BestFrameUrl: String
+        # @param BestFrameMd5: 验证通过后的视频最佳截图照片资源Md5。
+        # @type BestFrameMd5: String
+        # @param Result: 业务错误码，成功情况返回Success, 错误情况请参考下方错误码 列表中FailedOperation部分
+        # @type Result: String
+        # @param Description: 业务结果描述。
+        # @type Description: String
+        # @param Sim: 相似度，取值范围 [0.00, 100.00]。推荐相似度大于等于70时可判断为同一人，可根据具体场景自行调整阈值（阈值70的误通过率为千分之一，阈值80的误通过率是万分之一）。
+        # @type Sim: Float
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :BestFrameUrl, :BestFrameMd5, :Result, :Description, :Sim, :RequestId
+        
+        def initialize(bestframeurl=nil, bestframemd5=nil, result=nil, description=nil, sim=nil, requestid=nil)
+          @BestFrameUrl = bestframeurl
+          @BestFrameMd5 = bestframemd5
+          @Result = result
+          @Description = description
+          @Sim = sim
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @BestFrameUrl = params['BestFrameUrl']
+          @BestFrameMd5 = params['BestFrameMd5']
+          @Result = params['Result']
+          @Description = params['Description']
+          @Sim = params['Sim']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # Eid出参，包括商户方用户的标识和加密的用户姓名身份证信息。
       class EidInfo < TencentCloud::Common::AbstractModel
         # @param EidCode: 商户方 appeIDcode 的数字证书
