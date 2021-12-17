@@ -281,16 +281,28 @@ module TencentCloud
         # @param Nullable: 是否为null
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Nullable: String
+        # @param Position: 字段位置
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Position: Integer
+        # @param CreateTime: 字段创建时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateTime: String
+        # @param ModifiedTime: 字段修改时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ModifiedTime: String
 
-        attr_accessor :Name, :Type, :Comment, :Precision, :Scale, :Nullable
+        attr_accessor :Name, :Type, :Comment, :Precision, :Scale, :Nullable, :Position, :CreateTime, :ModifiedTime
         
-        def initialize(name=nil, type=nil, comment=nil, precision=nil, scale=nil, nullable=nil)
+        def initialize(name=nil, type=nil, comment=nil, precision=nil, scale=nil, nullable=nil, position=nil, createtime=nil, modifiedtime=nil)
           @Name = name
           @Type = type
           @Comment = comment
           @Precision = precision
           @Scale = scale
           @Nullable = nullable
+          @Position = position
+          @CreateTime = createtime
+          @ModifiedTime = modifiedtime
         end
 
         def deserialize(params)
@@ -300,6 +312,9 @@ module TencentCloud
           @Precision = params['Precision']
           @Scale = params['Scale']
           @Nullable = params['Nullable']
+          @Position = params['Position']
+          @CreateTime = params['CreateTime']
+          @ModifiedTime = params['ModifiedTime']
         end
       end
 
@@ -307,7 +322,7 @@ module TencentCloud
       class CreateDatabaseRequest < TencentCloud::Common::AbstractModel
         # @param DatabaseInfo: 数据库基础信息
         # @type DatabaseInfo: :class:`Tencentcloud::Dlc.v20210125.models.DatabaseInfo`
-        # @param DatasourceConnectionName: 数据源名称，默认为CosDataCatalog
+        # @param DatasourceConnectionName: 数据源名称，默认为DataLakeCatalog
         # @type DatasourceConnectionName: String
 
         attr_accessor :DatabaseInfo, :DatasourceConnectionName
@@ -475,13 +490,16 @@ module TencentCloud
         # @type DatabaseName: String
         # @param DatasourceConnectionName: 默认数据源名称。
         # @type DatasourceConnectionName: String
+        # @param DataEngineName: 数据引擎名称，不填提交到默认集群
+        # @type DataEngineName: String
 
-        attr_accessor :Task, :DatabaseName, :DatasourceConnectionName
+        attr_accessor :Task, :DatabaseName, :DatasourceConnectionName, :DataEngineName
         
-        def initialize(task=nil, databasename=nil, datasourceconnectionname=nil)
+        def initialize(task=nil, databasename=nil, datasourceconnectionname=nil, dataenginename=nil)
           @Task = task
           @DatabaseName = databasename
           @DatasourceConnectionName = datasourceconnectionname
+          @DataEngineName = dataenginename
         end
 
         def deserialize(params)
@@ -491,6 +509,7 @@ module TencentCloud
           end
           @DatabaseName = params['DatabaseName']
           @DatasourceConnectionName = params['DatasourceConnectionName']
+          @DataEngineName = params['DataEngineName']
         end
       end
 
@@ -572,15 +591,18 @@ module TencentCloud
         # @type DatabaseName: String
         # @param Tasks: SQL任务信息
         # @type Tasks: :class:`Tencentcloud::Dlc.v20210125.models.TasksInfo`
-        # @param DatasourceConnectionName: 数据源名称，默认为COSDataCatalog
+        # @param DatasourceConnectionName: 数据源名称，默认为DataLakeCatalog
         # @type DatasourceConnectionName: String
+        # @param DataEngineName: 计算引擎名称，不填任务提交到默认集群
+        # @type DataEngineName: String
 
-        attr_accessor :DatabaseName, :Tasks, :DatasourceConnectionName
+        attr_accessor :DatabaseName, :Tasks, :DatasourceConnectionName, :DataEngineName
         
-        def initialize(databasename=nil, tasks=nil, datasourceconnectionname=nil)
+        def initialize(databasename=nil, tasks=nil, datasourceconnectionname=nil, dataenginename=nil)
           @DatabaseName = databasename
           @Tasks = tasks
           @DatasourceConnectionName = datasourceconnectionname
+          @DataEngineName = dataenginename
         end
 
         def deserialize(params)
@@ -590,6 +612,7 @@ module TencentCloud
             @Tasks.deserialize(params['Tasks'])
           end
           @DatasourceConnectionName = params['DatasourceConnectionName']
+          @DataEngineName = params['DataEngineName']
         end
       end
 
@@ -777,21 +800,25 @@ module TencentCloud
 
       # 数据库对象
       class DatabaseInfo < TencentCloud::Common::AbstractModel
-        # @param DatabaseName: 数据库名称。
+        # @param DatabaseName: 数据库名称，长度0~128，支持数字、字母下划线，不允许数字大头，统一转换为小写。
         # @type DatabaseName: String
-        # @param Comment: 数据库描述信息，长度 0~256。
+        # @param Comment: 数据库描述信息，长度 0~500。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Comment: String
         # @param Properties: 数据库属性列表。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Properties: Array
+        # @param Location: 数据库cos路径
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Location: String
 
-        attr_accessor :DatabaseName, :Comment, :Properties
+        attr_accessor :DatabaseName, :Comment, :Properties, :Location
         
-        def initialize(databasename=nil, comment=nil, properties=nil)
+        def initialize(databasename=nil, comment=nil, properties=nil, location=nil)
           @DatabaseName = databasename
           @Comment = comment
           @Properties = properties
+          @Location = location
         end
 
         def deserialize(params)
@@ -805,6 +832,7 @@ module TencentCloud
               @Properties << property_tmp
             end
           end
+          @Location = params['Location']
         end
       end
 
@@ -815,7 +843,7 @@ module TencentCloud
         # @param Comment: 数据库描述信息，长度 0~256。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Comment: String
-        # @param Properties: 数据库属性列表。
+        # @param Properties: 允许针对数据库的属性元数据信息进行指定。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Properties: Array
         # @param CreateTime: 数据库创建时间戳，单位：s。
@@ -994,16 +1022,22 @@ module TencentCloud
         # @type Offset: Integer
         # @param KeyWord: 模糊匹配，库名关键字。
         # @type KeyWord: String
-        # @param DatasourceConnectionName: 数据源唯名称，该名称可以通过DescribeDatasourceConnection接口查询到。默认为CosDataCatalog
+        # @param DatasourceConnectionName: 数据源唯名称，该名称可以通过DescribeDatasourceConnection接口查询到。默认为DataLakeCatalog
         # @type DatasourceConnectionName: String
+        # @param Sort: 排序字段，当前版本仅支持按库名排序
+        # @type Sort: String
+        # @param Asc: 排序类型：false：降序（默认）、true：升序
+        # @type Asc: Boolean
 
-        attr_accessor :Limit, :Offset, :KeyWord, :DatasourceConnectionName
+        attr_accessor :Limit, :Offset, :KeyWord, :DatasourceConnectionName, :Sort, :Asc
         
-        def initialize(limit=nil, offset=nil, keyword=nil, datasourceconnectionname=nil)
+        def initialize(limit=nil, offset=nil, keyword=nil, datasourceconnectionname=nil, sort=nil, asc=nil)
           @Limit = limit
           @Offset = offset
           @KeyWord = keyword
           @DatasourceConnectionName = datasourceconnectionname
+          @Sort = sort
+          @Asc = asc
         end
 
         def deserialize(params)
@@ -1011,6 +1045,8 @@ module TencentCloud
           @Offset = params['Offset']
           @KeyWord = params['KeyWord']
           @DatasourceConnectionName = params['DatasourceConnectionName']
+          @Sort = params['Sort']
+          @Asc = params['Asc']
         end
       end
 
@@ -1209,17 +1245,32 @@ module TencentCloud
         # table-name - String - （过滤条件）数据表名称,形如：table-001。
         # table-id - String - （过滤条件）table id形如：12342。
         # @type Filters: Array
-        # @param DatasourceConnectionName: 指定查询的数据源名称，默认为CosDataCatalog
+        # @param DatasourceConnectionName: 指定查询的数据源名称，默认为DataLakeCatalog
         # @type DatasourceConnectionName: String
+        # @param StartTime: 起始时间：用于对更新时间的筛选
+        # @type StartTime: String
+        # @param EndTime: 终止时间：用于对更新时间的筛选
+        # @type EndTime: String
+        # @param Sort: 排序字段，支持：ModifiedTime（默认）；CreateTime
+        # @type Sort: String
+        # @param Asc: 排序字段，false：降序（默认）；true
+        # @type Asc: Boolean
+        # @param TableType: table type，表类型查询,可用值:EXTERNAL_TABLE,INDEX_TABLE,MANAGED_TABLE,MATERIALIZED_VIEW,TABLE,VIEW,VIRTUAL_VIEW
+        # @type TableType: String
 
-        attr_accessor :DatabaseName, :Limit, :Offset, :Filters, :DatasourceConnectionName
+        attr_accessor :DatabaseName, :Limit, :Offset, :Filters, :DatasourceConnectionName, :StartTime, :EndTime, :Sort, :Asc, :TableType
         
-        def initialize(databasename=nil, limit=nil, offset=nil, filters=nil, datasourceconnectionname=nil)
+        def initialize(databasename=nil, limit=nil, offset=nil, filters=nil, datasourceconnectionname=nil, starttime=nil, endtime=nil, sort=nil, asc=nil, tabletype=nil)
           @DatabaseName = databasename
           @Limit = limit
           @Offset = offset
           @Filters = filters
           @DatasourceConnectionName = datasourceconnectionname
+          @StartTime = starttime
+          @EndTime = endtime
+          @Sort = sort
+          @Asc = asc
+          @TableType = tabletype
         end
 
         def deserialize(params)
@@ -1235,6 +1286,11 @@ module TencentCloud
             end
           end
           @DatasourceConnectionName = params['DatasourceConnectionName']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @Sort = params['Sort']
+          @Asc = params['Asc']
+          @TableType = params['TableType']
         end
       end
 
@@ -1279,8 +1335,10 @@ module TencentCloud
         # task-id - String - （任务ID准确过滤）task-id取值形如：e386471f-139a-4e59-877f-50ece8135b99。
         # task-state - String - （任务状态过滤）取值范围 0(初始化)， 1(运行中)， 2(成功)， -1(失败)。
         # task-sql-keyword - String - （SQL语句关键字模糊过滤）取值形如：DROP TABLE。
+        # task-operator- string （子uin过滤）
+        # task-type -string （任务类型过滤）分导入任务和sql任务
         # @type Filters: Array
-        # @param SortBy: 排序字段，支持如下字段类型，create-time
+        # @param SortBy: 排序字段，支持如下字段类型，create-time（创建时间，默认）、update-time（更新时间）
         # @type SortBy: String
         # @param Sorting: 排序方式，desc表示正序，asc表示反序， 默认为asc。
         # @type Sorting: String
@@ -1288,10 +1346,12 @@ module TencentCloud
         # @type StartTime: String
         # @param EndTime: 结束时间点，格式为yyyy-mm-dd HH:MM:SS时间跨度在(0,30天]，支持最近45天数据查询。默认为当前时刻
         # @type EndTime: String
+        # @param DataEngineName: 支持计算资源名字筛选
+        # @type DataEngineName: String
 
-        attr_accessor :Limit, :Offset, :Filters, :SortBy, :Sorting, :StartTime, :EndTime
+        attr_accessor :Limit, :Offset, :Filters, :SortBy, :Sorting, :StartTime, :EndTime, :DataEngineName
         
-        def initialize(limit=nil, offset=nil, filters=nil, sortby=nil, sorting=nil, starttime=nil, endtime=nil)
+        def initialize(limit=nil, offset=nil, filters=nil, sortby=nil, sorting=nil, starttime=nil, endtime=nil, dataenginename=nil)
           @Limit = limit
           @Offset = offset
           @Filters = filters
@@ -1299,6 +1359,7 @@ module TencentCloud
           @Sorting = sorting
           @StartTime = starttime
           @EndTime = endtime
+          @DataEngineName = dataenginename
         end
 
         def deserialize(params)
@@ -1316,6 +1377,7 @@ module TencentCloud
           @Sorting = params['Sorting']
           @StartTime = params['StartTime']
           @EndTime = params['EndTime']
+          @DataEngineName = params['DataEngineName']
         end
       end
 
@@ -1427,15 +1489,27 @@ module TencentCloud
         # @type Filters: Array
         # @param DatasourceConnectionName: 数据库所属的数据源名称
         # @type DatasourceConnectionName: String
+        # @param Sort: 排序字段
+        # @type Sort: String
+        # @param Asc: 排序规则
+        # @type Asc: Boolean
+        # @param StartTime: 开始时间
+        # @type StartTime: String
+        # @param EndTime: 结束时间
+        # @type EndTime: String
 
-        attr_accessor :DatabaseName, :Limit, :Offset, :Filters, :DatasourceConnectionName
+        attr_accessor :DatabaseName, :Limit, :Offset, :Filters, :DatasourceConnectionName, :Sort, :Asc, :StartTime, :EndTime
         
-        def initialize(databasename=nil, limit=nil, offset=nil, filters=nil, datasourceconnectionname=nil)
+        def initialize(databasename=nil, limit=nil, offset=nil, filters=nil, datasourceconnectionname=nil, sort=nil, asc=nil, starttime=nil, endtime=nil)
           @DatabaseName = databasename
           @Limit = limit
           @Offset = offset
           @Filters = filters
           @DatasourceConnectionName = datasourceconnectionname
+          @Sort = sort
+          @Asc = asc
+          @StartTime = starttime
+          @EndTime = endtime
         end
 
         def deserialize(params)
@@ -1451,6 +1525,10 @@ module TencentCloud
             end
           end
           @DatasourceConnectionName = params['DatasourceConnectionName']
+          @Sort = params['Sort']
+          @Asc = params['Asc']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
         end
       end
 
@@ -1945,19 +2023,34 @@ module TencentCloud
         # @param DatasourceConnectionName: 该数据表所属数据源名字
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DatasourceConnectionName: String
+        # @param TableComment: 该数据表备注
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TableComment: String
+        # @param Type: 具体类型，表or视图
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Type: String
+        # @param TableFormat: 数据格式类型，hive，iceberg等
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TableFormat: String
 
-        attr_accessor :DatabaseName, :TableName, :DatasourceConnectionName
+        attr_accessor :DatabaseName, :TableName, :DatasourceConnectionName, :TableComment, :Type, :TableFormat
         
-        def initialize(databasename=nil, tablename=nil, datasourceconnectionname=nil)
+        def initialize(databasename=nil, tablename=nil, datasourceconnectionname=nil, tablecomment=nil, type=nil, tableformat=nil)
           @DatabaseName = databasename
           @TableName = tablename
           @DatasourceConnectionName = datasourceconnectionname
+          @TableComment = tablecomment
+          @Type = type
+          @TableFormat = tableformat
         end
 
         def deserialize(params)
           @DatabaseName = params['DatabaseName']
           @TableName = params['TableName']
           @DatasourceConnectionName = params['DatasourceConnectionName']
+          @TableComment = params['TableComment']
+          @Type = params['Type']
+          @TableFormat = params['TableFormat']
         end
       end
 
@@ -2152,10 +2245,34 @@ module TencentCloud
         # @param ProgressDetail: 任务进度明细
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProgressDetail: String
+        # @param UpdateTime: 任务结束时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UpdateTime: String
+        # @param DataEngineId: 计算资源id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DataEngineId: String
+        # @param OperateUin: 执行sql的子uin
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OperateUin: String
+        # @param DataEngineName: 计算资源名字
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DataEngineName: String
+        # @param InputType: 导入类型是本地导入还是cos
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InputType: String
+        # @param InputConf: 导入配置
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InputConf: String
+        # @param DataNumber: 数据条数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DataNumber: Integer
+        # @param CanDownload: 查询数据能不能下载
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CanDownload: Boolean
 
-        attr_accessor :DatabaseName, :DataAmount, :Id, :UsedTime, :OutputPath, :CreateTime, :State, :SQLType, :SQL, :ResultExpired, :RowAffectInfo, :DataSet, :Error, :Percentage, :OutputMessage, :TaskType, :ProgressDetail
+        attr_accessor :DatabaseName, :DataAmount, :Id, :UsedTime, :OutputPath, :CreateTime, :State, :SQLType, :SQL, :ResultExpired, :RowAffectInfo, :DataSet, :Error, :Percentage, :OutputMessage, :TaskType, :ProgressDetail, :UpdateTime, :DataEngineId, :OperateUin, :DataEngineName, :InputType, :InputConf, :DataNumber, :CanDownload
         
-        def initialize(databasename=nil, dataamount=nil, id=nil, usedtime=nil, outputpath=nil, createtime=nil, state=nil, sqltype=nil, sql=nil, resultexpired=nil, rowaffectinfo=nil, dataset=nil, error=nil, percentage=nil, outputmessage=nil, tasktype=nil, progressdetail=nil)
+        def initialize(databasename=nil, dataamount=nil, id=nil, usedtime=nil, outputpath=nil, createtime=nil, state=nil, sqltype=nil, sql=nil, resultexpired=nil, rowaffectinfo=nil, dataset=nil, error=nil, percentage=nil, outputmessage=nil, tasktype=nil, progressdetail=nil, updatetime=nil, dataengineid=nil, operateuin=nil, dataenginename=nil, inputtype=nil, inputconf=nil, datanumber=nil, candownload=nil)
           @DatabaseName = databasename
           @DataAmount = dataamount
           @Id = id
@@ -2173,6 +2290,14 @@ module TencentCloud
           @OutputMessage = outputmessage
           @TaskType = tasktype
           @ProgressDetail = progressdetail
+          @UpdateTime = updatetime
+          @DataEngineId = dataengineid
+          @OperateUin = operateuin
+          @DataEngineName = dataenginename
+          @InputType = inputtype
+          @InputConf = inputconf
+          @DataNumber = datanumber
+          @CanDownload = candownload
         end
 
         def deserialize(params)
@@ -2193,6 +2318,14 @@ module TencentCloud
           @OutputMessage = params['OutputMessage']
           @TaskType = params['TaskType']
           @ProgressDetail = params['ProgressDetail']
+          @UpdateTime = params['UpdateTime']
+          @DataEngineId = params['DataEngineId']
+          @OperateUin = params['OperateUin']
+          @DataEngineName = params['DataEngineName']
+          @InputType = params['InputType']
+          @InputConf = params['InputConf']
+          @DataNumber = params['DataNumber']
+          @CanDownload = params['CanDownload']
         end
       end
 

@@ -632,6 +632,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口(DescribeFileDownloadUrl)用于获取数据库指定备份或日志文件的下载连接。
+
+        # @param request: Request instance for DescribeFileDownloadUrl.
+        # @type request: :class:`Tencentcloud::mariadb::V20170312::DescribeFileDownloadUrlRequest`
+        # @rtype: :class:`Tencentcloud::mariadb::V20170312::DescribeFileDownloadUrlResponse`
+        def DescribeFileDownloadUrl(request)
+          body = send_request('DescribeFileDownloadUrl', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeFileDownloadUrlResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（DescribeFlow）用于查询流程状态。
 
         # @param request: Request instance for DescribeFlow.

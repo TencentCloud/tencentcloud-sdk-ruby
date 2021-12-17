@@ -2206,6 +2206,46 @@ module TencentCloud
         end
       end
 
+      # DescribeFileDownloadUrl请求参数结构体
+      class DescribeFileDownloadUrlRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+        # @param FilePath: 不带签名的文件路径
+        # @type FilePath: String
+
+        attr_accessor :InstanceId, :FilePath
+        
+        def initialize(instanceid=nil, filepath=nil)
+          @InstanceId = instanceid
+          @FilePath = filepath
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @FilePath = params['FilePath']
+        end
+      end
+
+      # DescribeFileDownloadUrl返回参数结构体
+      class DescribeFileDownloadUrlResponse < TencentCloud::Common::AbstractModel
+        # @param PreSignedUrl: 带签名的下载连接
+        # @type PreSignedUrl: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :PreSignedUrl, :RequestId
+        
+        def initialize(presignedurl=nil, requestid=nil)
+          @PreSignedUrl = presignedurl
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @PreSignedUrl = params['PreSignedUrl']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeFlow请求参数结构体
       class DescribeFlowRequest < TencentCloud::Common::AbstractModel
         # @param FlowId: 异步请求接口返回的任务流程号。

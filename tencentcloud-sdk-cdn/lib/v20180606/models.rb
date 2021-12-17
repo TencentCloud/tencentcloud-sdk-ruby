@@ -1652,10 +1652,13 @@ module TencentCloud
         # @type TcbDetail: String
         # @param Id: BOT记录唯一ID，用于查询访问详情
         # @type Id: String
+        # @param Domain: 域名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Domain: String
 
-        attr_accessor :Action, :Nums, :RuleName, :SessionDuration, :SrcIp, :BotFeature, :Time, :Score, :AvgSpeed, :TcbDetail, :Id
+        attr_accessor :Action, :Nums, :RuleName, :SessionDuration, :SrcIp, :BotFeature, :Time, :Score, :AvgSpeed, :TcbDetail, :Id, :Domain
         
-        def initialize(action=nil, nums=nil, rulename=nil, sessionduration=nil, srcip=nil, botfeature=nil, time=nil, score=nil, avgspeed=nil, tcbdetail=nil, id=nil)
+        def initialize(action=nil, nums=nil, rulename=nil, sessionduration=nil, srcip=nil, botfeature=nil, time=nil, score=nil, avgspeed=nil, tcbdetail=nil, id=nil, domain=nil)
           @Action = action
           @Nums = nums
           @RuleName = rulename
@@ -1667,6 +1670,7 @@ module TencentCloud
           @AvgSpeed = avgspeed
           @TcbDetail = tcbdetail
           @Id = id
+          @Domain = domain
         end
 
         def deserialize(params)
@@ -1681,6 +1685,7 @@ module TencentCloud
           @AvgSpeed = params['AvgSpeed']
           @TcbDetail = params['TcbDetail']
           @Id = params['Id']
+          @Domain = params['Domain']
         end
       end
 
@@ -5208,10 +5213,12 @@ module TencentCloud
         # @type FilterAction: String
         # @param FilterIp: 过滤的IP
         # @type FilterIp: String
+        # @param Domains: 域名列表，为空表示查询AppID维度数据
+        # @type Domains: Array
 
-        attr_accessor :BotType, :Domain, :StartTime, :EndTime, :Offset, :Limit, :Area, :SortBy, :FilterName, :FilterAction, :FilterIp
+        attr_accessor :BotType, :Domain, :StartTime, :EndTime, :Offset, :Limit, :Area, :SortBy, :FilterName, :FilterAction, :FilterIp, :Domains
         
-        def initialize(bottype=nil, domain=nil, starttime=nil, endtime=nil, offset=nil, limit=nil, area=nil, sortby=nil, filtername=nil, filteraction=nil, filterip=nil)
+        def initialize(bottype=nil, domain=nil, starttime=nil, endtime=nil, offset=nil, limit=nil, area=nil, sortby=nil, filtername=nil, filteraction=nil, filterip=nil, domains=nil)
           @BotType = bottype
           @Domain = domain
           @StartTime = starttime
@@ -5223,6 +5230,7 @@ module TencentCloud
           @FilterName = filtername
           @FilterAction = filteraction
           @FilterIp = filterip
+          @Domains = domains
         end
 
         def deserialize(params)
@@ -5244,6 +5252,7 @@ module TencentCloud
           @FilterName = params['FilterName']
           @FilterAction = params['FilterAction']
           @FilterIp = params['FilterIp']
+          @Domains = params['Domains']
         end
       end
 

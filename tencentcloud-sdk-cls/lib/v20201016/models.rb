@@ -456,6 +456,42 @@ module TencentCloud
         end
       end
 
+      # CKafka的描述-需要投递到的kafka信息
+      class Ckafka < TencentCloud::Common::AbstractModel
+        # @param Vip: Ckafka 的 Vip
+        # @type Vip: String
+        # @param Vport: Ckafka 的 Vport
+        # @type Vport: String
+        # @param InstanceId: Ckafka 的 InstanceId
+        # @type InstanceId: String
+        # @param InstanceName: Ckafka 的 InstanceName
+        # @type InstanceName: String
+        # @param TopicId: Ckafka 的 TopicId
+        # @type TopicId: String
+        # @param TopicName: Ckafka 的 TopicName
+        # @type TopicName: String
+
+        attr_accessor :Vip, :Vport, :InstanceId, :InstanceName, :TopicId, :TopicName
+        
+        def initialize(vip=nil, vport=nil, instanceid=nil, instancename=nil, topicid=nil, topicname=nil)
+          @Vip = vip
+          @Vport = vport
+          @InstanceId = instanceid
+          @InstanceName = instancename
+          @TopicId = topicid
+          @TopicName = topicname
+        end
+
+        def deserialize(params)
+          @Vip = params['Vip']
+          @Vport = params['Vport']
+          @InstanceId = params['InstanceId']
+          @InstanceName = params['InstanceName']
+          @TopicId = params['TopicId']
+          @TopicName = params['TopicName']
+        end
+      end
+
       # 日志分析的列属性
       class Column < TencentCloud::Common::AbstractModel
         # @param Name: 列的名字
@@ -558,6 +594,28 @@ module TencentCloud
           @UpdateTime = params['UpdateTime']
           @CreateTime = params['CreateTime']
           @UserDefineRule = params['UserDefineRule']
+        end
+      end
+
+      # 投递任务出入参 Content
+      class ConsumerContent < TencentCloud::Common::AbstractModel
+        # @param EnableTag: 是否投递 TAG 信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EnableTag: Boolean
+        # @param MetaFields: 需要投递的元数据列表，目前仅支持：__SOURCE__，__FILENAME__和__TIMESTAMP__
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MetaFields: Array
+
+        attr_accessor :EnableTag, :MetaFields
+        
+        def initialize(enabletag=nil, metafields=nil)
+          @EnableTag = enabletag
+          @MetaFields = metafields
+        end
+
+        def deserialize(params)
+          @EnableTag = params['EnableTag']
+          @MetaFields = params['MetaFields']
         end
       end
 
@@ -928,6 +986,56 @@ module TencentCloud
 
         def deserialize(params)
           @ConfigId = params['ConfigId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateConsumer请求参数结构体
+      class CreateConsumerRequest < TencentCloud::Common::AbstractModel
+        # @param TopicId: 投递任务绑定的日志主题 ID
+        # @type TopicId: String
+        # @param NeedContent: 是否投递日志的元数据信息，默认为 true
+        # @type NeedContent: Boolean
+        # @param Content: 如果需要投递元数据信息，元数据信息的描述
+        # @type Content: :class:`Tencentcloud::Cls.v20201016.models.ConsumerContent`
+        # @param Ckafka: CKafka的描述
+        # @type Ckafka: :class:`Tencentcloud::Cls.v20201016.models.Ckafka`
+
+        attr_accessor :TopicId, :NeedContent, :Content, :Ckafka
+        
+        def initialize(topicid=nil, needcontent=nil, content=nil, ckafka=nil)
+          @TopicId = topicid
+          @NeedContent = needcontent
+          @Content = content
+          @Ckafka = ckafka
+        end
+
+        def deserialize(params)
+          @TopicId = params['TopicId']
+          @NeedContent = params['NeedContent']
+          unless params['Content'].nil?
+            @Content = ConsumerContent.new
+            @Content.deserialize(params['Content'])
+          end
+          unless params['Ckafka'].nil?
+            @Ckafka = Ckafka.new
+            @Ckafka.deserialize(params['Ckafka'])
+          end
+        end
+      end
+
+      # CreateConsumer返回参数结构体
+      class CreateConsumerResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
           @RequestId = params['RequestId']
         end
       end
@@ -1531,6 +1639,38 @@ module TencentCloud
 
       # DeleteConfig返回参数结构体
       class DeleteConfigResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteConsumer请求参数结构体
+      class DeleteConsumerRequest < TencentCloud::Common::AbstractModel
+        # @param TopicId: 投递任务绑定的日志主题 ID
+        # @type TopicId: String
+
+        attr_accessor :TopicId
+        
+        def initialize(topicid=nil)
+          @TopicId = topicid
+        end
+
+        def deserialize(params)
+          @TopicId = params['TopicId']
+        end
+      end
+
+      # DeleteConsumer返回参数结构体
+      class DeleteConsumerResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -2341,6 +2481,61 @@ module TencentCloud
             end
           end
           @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeConsumer请求参数结构体
+      class DescribeConsumerRequest < TencentCloud::Common::AbstractModel
+        # @param TopicId: 投递任务绑定的日志主题 ID
+        # @type TopicId: String
+
+        attr_accessor :TopicId
+        
+        def initialize(topicid=nil)
+          @TopicId = topicid
+        end
+
+        def deserialize(params)
+          @TopicId = params['TopicId']
+        end
+      end
+
+      # DescribeConsumer返回参数结构体
+      class DescribeConsumerResponse < TencentCloud::Common::AbstractModel
+        # @param Effective: 投递任务是否生效
+        # @type Effective: Boolean
+        # @param NeedContent: 是否投递日志的元数据信息
+        # @type NeedContent: Boolean
+        # @param Content: 如果需要投递元数据信息，元数据信息的描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Content: :class:`Tencentcloud::Cls.v20201016.models.ConsumerContent`
+        # @param Ckafka: CKafka的描述
+        # @type Ckafka: :class:`Tencentcloud::Cls.v20201016.models.Ckafka`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Effective, :NeedContent, :Content, :Ckafka, :RequestId
+        
+        def initialize(effective=nil, needcontent=nil, content=nil, ckafka=nil, requestid=nil)
+          @Effective = effective
+          @NeedContent = needcontent
+          @Content = content
+          @Ckafka = ckafka
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Effective = params['Effective']
+          @NeedContent = params['NeedContent']
+          unless params['Content'].nil?
+            @Content = ConsumerContent.new
+            @Content.deserialize(params['Content'])
+          end
+          unless params['Ckafka'].nil?
+            @Ckafka = Ckafka.new
+            @Ckafka.deserialize(params['Ckafka'])
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -4062,6 +4257,60 @@ module TencentCloud
 
       # ModifyConfig返回参数结构体
       class ModifyConfigResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyConsumer请求参数结构体
+      class ModifyConsumerRequest < TencentCloud::Common::AbstractModel
+        # @param TopicId: 投递任务绑定的日志主题 ID
+        # @type TopicId: String
+        # @param Effective: 投递任务是否生效
+        # @type Effective: Boolean
+        # @param NeedContent: 是否投递日志的元数据信息，默认为 false
+        # @type NeedContent: Boolean
+        # @param Content: 如果需要投递元数据信息，元数据信息的描述
+        # @type Content: :class:`Tencentcloud::Cls.v20201016.models.ConsumerContent`
+        # @param Ckafka: CKafka的描述
+        # @type Ckafka: :class:`Tencentcloud::Cls.v20201016.models.Ckafka`
+
+        attr_accessor :TopicId, :Effective, :NeedContent, :Content, :Ckafka
+        
+        def initialize(topicid=nil, effective=nil, needcontent=nil, content=nil, ckafka=nil)
+          @TopicId = topicid
+          @Effective = effective
+          @NeedContent = needcontent
+          @Content = content
+          @Ckafka = ckafka
+        end
+
+        def deserialize(params)
+          @TopicId = params['TopicId']
+          @Effective = params['Effective']
+          @NeedContent = params['NeedContent']
+          unless params['Content'].nil?
+            @Content = ConsumerContent.new
+            @Content.deserialize(params['Content'])
+          end
+          unless params['Ckafka'].nil?
+            @Ckafka = Ckafka.new
+            @Ckafka.deserialize(params['Ckafka'])
+          end
+        end
+      end
+
+      # ModifyConsumer返回参数结构体
+      class ModifyConsumerResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 

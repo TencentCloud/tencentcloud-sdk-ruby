@@ -121,6 +121,30 @@ module TencentCloud
         end
       end
 
+      # 自动初始化、挂载云盘时指定配置。
+      class AutoMountConfiguration < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 要挂载到的实例ID。
+        # @type InstanceId: Array
+        # @param MountPoint: 子机内的挂载点。
+        # @type MountPoint: Array
+        # @param FileSystemType: 文件系统类型，支持的有 ext4、xfs。
+        # @type FileSystemType: String
+
+        attr_accessor :InstanceId, :MountPoint, :FileSystemType
+        
+        def initialize(instanceid=nil, mountpoint=nil, filesystemtype=nil)
+          @InstanceId = instanceid
+          @MountPoint = mountpoint
+          @FileSystemType = filesystemtype
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @MountPoint = params['MountPoint']
+          @FileSystemType = params['FileSystemType']
+        end
+      end
+
       # 描述了定期快照策略的详细信息
       class AutoSnapshotPolicy < TencentCloud::Common::AbstractModel
         # @param AutoSnapshotPolicyId: 定期快照策略ID。
@@ -383,10 +407,12 @@ module TencentCloud
         # @type DiskChargePrepaid: :class:`Tencentcloud::Cbs.v20170312.models.DiskChargePrepaid`
         # @param DeleteSnapshot: 销毁云盘时删除关联的非永久保留快照。0 表示非永久快照不随云盘销毁而销毁，1表示非永久快照随云盘销毁而销毁，默认取0。快照是否永久保留可以通过DescribeSnapshots接口返回的快照详情的IsPermanent字段来判断，true表示永久快照，false表示非永久快照。
         # @type DeleteSnapshot: Integer
+        # @param AutoMountConfiguration: 创建云盘时指定自动挂载并初始化该数据盘。
+        # @type AutoMountConfiguration: :class:`Tencentcloud::Cbs.v20170312.models.AutoMountConfiguration`
 
-        attr_accessor :Placement, :DiskChargeType, :DiskType, :DiskName, :Tags, :SnapshotId, :DiskCount, :ThroughputPerformance, :DiskSize, :Shareable, :ClientToken, :Encrypt, :DiskChargePrepaid, :DeleteSnapshot
+        attr_accessor :Placement, :DiskChargeType, :DiskType, :DiskName, :Tags, :SnapshotId, :DiskCount, :ThroughputPerformance, :DiskSize, :Shareable, :ClientToken, :Encrypt, :DiskChargePrepaid, :DeleteSnapshot, :AutoMountConfiguration
         
-        def initialize(placement=nil, diskchargetype=nil, disktype=nil, diskname=nil, tags=nil, snapshotid=nil, diskcount=nil, throughputperformance=nil, disksize=nil, shareable=nil, clienttoken=nil, encrypt=nil, diskchargeprepaid=nil, deletesnapshot=nil)
+        def initialize(placement=nil, diskchargetype=nil, disktype=nil, diskname=nil, tags=nil, snapshotid=nil, diskcount=nil, throughputperformance=nil, disksize=nil, shareable=nil, clienttoken=nil, encrypt=nil, diskchargeprepaid=nil, deletesnapshot=nil, automountconfiguration=nil)
           @Placement = placement
           @DiskChargeType = diskchargetype
           @DiskType = disktype
@@ -401,6 +427,7 @@ module TencentCloud
           @Encrypt = encrypt
           @DiskChargePrepaid = diskchargeprepaid
           @DeleteSnapshot = deletesnapshot
+          @AutoMountConfiguration = automountconfiguration
         end
 
         def deserialize(params)
@@ -431,6 +458,10 @@ module TencentCloud
             @DiskChargePrepaid.deserialize(params['DiskChargePrepaid'])
           end
           @DeleteSnapshot = params['DeleteSnapshot']
+          unless params['AutoMountConfiguration'].nil?
+            @AutoMountConfiguration = AutoMountConfiguration.new
+            @AutoMountConfiguration.deserialize(params['AutoMountConfiguration'])
+          end
         end
       end
 

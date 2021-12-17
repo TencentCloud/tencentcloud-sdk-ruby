@@ -2078,7 +2078,7 @@ module TencentCloud
         # @type FunctionRequestId: String
         # @param Namespace: 函数的所在的命名空间
         # @type Namespace: String
-        # @param StartTime: 查询的开始时间，例如：2017-05-16 20:00:00，不填默认为当前时间 - 24小时
+        # @param StartTime: 查询的开始时间，例如：2017-05-16 20:00:00，不填默认为当前时间 - 15min
         # @type StartTime: String
         # @param EndTime: 查询的结束时间，例如：2017-05-16 20:59:59，不填默认为当前时间。EndTime 需要晚于 StartTime。
         # @type EndTime: String

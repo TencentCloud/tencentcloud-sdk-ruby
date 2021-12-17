@@ -2657,16 +2657,19 @@ module TencentCloud
         # @type ModeType: String
         # @param Zone: 专线网关可用区
         # @type Zone: String
+        # @param HaZoneGroupId: 专线网关高可用区容灾组ID
+        # @type HaZoneGroupId: String
 
-        attr_accessor :DirectConnectGatewayName, :NetworkType, :NetworkInstanceId, :GatewayType, :ModeType, :Zone
+        attr_accessor :DirectConnectGatewayName, :NetworkType, :NetworkInstanceId, :GatewayType, :ModeType, :Zone, :HaZoneGroupId
         
-        def initialize(directconnectgatewayname=nil, networktype=nil, networkinstanceid=nil, gatewaytype=nil, modetype=nil, zone=nil)
+        def initialize(directconnectgatewayname=nil, networktype=nil, networkinstanceid=nil, gatewaytype=nil, modetype=nil, zone=nil, hazonegroupid=nil)
           @DirectConnectGatewayName = directconnectgatewayname
           @NetworkType = networktype
           @NetworkInstanceId = networkinstanceid
           @GatewayType = gatewaytype
           @ModeType = modetype
           @Zone = zone
+          @HaZoneGroupId = hazonegroupid
         end
 
         def deserialize(params)
@@ -2676,6 +2679,7 @@ module TencentCloud
           @GatewayType = params['GatewayType']
           @ModeType = params['ModeType']
           @Zone = params['Zone']
+          @HaZoneGroupId = params['HaZoneGroupId']
         end
       end
 
@@ -10109,10 +10113,32 @@ module TencentCloud
         # @param Zone: 专线网关所在可用区
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Zone: String
+        # @param EnableFlowDetails: 网关流控明细启用状态：
+        # 0：关闭
+        # 1：开启
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EnableFlowDetails: Integer
+        # @param FlowDetailsUpdateTime: 开启、关闭网关流控明细时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FlowDetailsUpdateTime: String
+        # @param NewAfc: 是否支持开启网关流控明细
+        # 0：不支持
+        # 1：支持
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NewAfc: Integer
+        # @param AccessNetworkType: 专线网关接入网络类型：
+        # <li>`VXLAN` - VXLAN类型。</li>
+        # <li>`MPLS` - MPLS类型。</li>
+        # <li>`Hybrid` - Hybrid类型。</li>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AccessNetworkType: String
+        # @param HaZoneList: 跨可用区容灾专线网关的可用区列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HaZoneList: Array
 
-        attr_accessor :DirectConnectGatewayId, :DirectConnectGatewayName, :VpcId, :NetworkType, :NetworkInstanceId, :GatewayType, :CreateTime, :DirectConnectGatewayIp, :CcnId, :CcnRouteType, :EnableBGP, :EnableBGPCommunity, :NatGatewayId, :VXLANSupport, :ModeType, :LocalZone, :Zone
+        attr_accessor :DirectConnectGatewayId, :DirectConnectGatewayName, :VpcId, :NetworkType, :NetworkInstanceId, :GatewayType, :CreateTime, :DirectConnectGatewayIp, :CcnId, :CcnRouteType, :EnableBGP, :EnableBGPCommunity, :NatGatewayId, :VXLANSupport, :ModeType, :LocalZone, :Zone, :EnableFlowDetails, :FlowDetailsUpdateTime, :NewAfc, :AccessNetworkType, :HaZoneList
         
-        def initialize(directconnectgatewayid=nil, directconnectgatewayname=nil, vpcid=nil, networktype=nil, networkinstanceid=nil, gatewaytype=nil, createtime=nil, directconnectgatewayip=nil, ccnid=nil, ccnroutetype=nil, enablebgp=nil, enablebgpcommunity=nil, natgatewayid=nil, vxlansupport=nil, modetype=nil, localzone=nil, zone=nil)
+        def initialize(directconnectgatewayid=nil, directconnectgatewayname=nil, vpcid=nil, networktype=nil, networkinstanceid=nil, gatewaytype=nil, createtime=nil, directconnectgatewayip=nil, ccnid=nil, ccnroutetype=nil, enablebgp=nil, enablebgpcommunity=nil, natgatewayid=nil, vxlansupport=nil, modetype=nil, localzone=nil, zone=nil, enableflowdetails=nil, flowdetailsupdatetime=nil, newafc=nil, accessnetworktype=nil, hazonelist=nil)
           @DirectConnectGatewayId = directconnectgatewayid
           @DirectConnectGatewayName = directconnectgatewayname
           @VpcId = vpcid
@@ -10130,6 +10156,11 @@ module TencentCloud
           @ModeType = modetype
           @LocalZone = localzone
           @Zone = zone
+          @EnableFlowDetails = enableflowdetails
+          @FlowDetailsUpdateTime = flowdetailsupdatetime
+          @NewAfc = newafc
+          @AccessNetworkType = accessnetworktype
+          @HaZoneList = hazonelist
         end
 
         def deserialize(params)
@@ -10150,6 +10181,11 @@ module TencentCloud
           @ModeType = params['ModeType']
           @LocalZone = params['LocalZone']
           @Zone = params['Zone']
+          @EnableFlowDetails = params['EnableFlowDetails']
+          @FlowDetailsUpdateTime = params['FlowDetailsUpdateTime']
+          @NewAfc = params['NewAfc']
+          @AccessNetworkType = params['AccessNetworkType']
+          @HaZoneList = params['HaZoneList']
         end
       end
 
@@ -10161,19 +10197,27 @@ module TencentCloud
         # @type DestinationCidrBlock: String
         # @param ASPath: `BGP`的`AS-Path`属性。
         # @type ASPath: Array
+        # @param Description: 备注
+        # @type Description: String
+        # @param UpdateTime: 最后更新时间
+        # @type UpdateTime: String
 
-        attr_accessor :RouteId, :DestinationCidrBlock, :ASPath
+        attr_accessor :RouteId, :DestinationCidrBlock, :ASPath, :Description, :UpdateTime
         
-        def initialize(routeid=nil, destinationcidrblock=nil, aspath=nil)
+        def initialize(routeid=nil, destinationcidrblock=nil, aspath=nil, description=nil, updatetime=nil)
           @RouteId = routeid
           @DestinationCidrBlock = destinationcidrblock
           @ASPath = aspath
+          @Description = description
+          @UpdateTime = updatetime
         end
 
         def deserialize(params)
           @RouteId = params['RouteId']
           @DestinationCidrBlock = params['DestinationCidrBlock']
           @ASPath = params['ASPath']
+          @Description = params['Description']
+          @UpdateTime = params['UpdateTime']
         end
       end
 

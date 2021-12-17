@@ -125,7 +125,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 取消任务执行
+        # 本接口（CancelTask），用于取消任务执行
 
         # @param request: Request instance for CancelTask.
         # @type request: :class:`Tencentcloud::dlc::V20210125::CancelTaskRequest`
@@ -269,7 +269,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 批量创建任务
+        # 本接口（CreateTasks），用于批量创建任务
 
         # @param request: Request instance for CreateTasks.
         # @type request: :class:`Tencentcloud::dlc::V20210125::CreateTasksRequest`
@@ -533,7 +533,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 查询单个表的详细信息。
+        # 本接口（DescribeTable），用于查询单个表的详细信息。
 
         # @param request: Request instance for DescribeTable.
         # @type request: :class:`Tencentcloud::dlc::V20210125::DescribeTableRequest`
@@ -557,7 +557,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口（DescribleTables）用于查询数据表列表。
+        # 本接口（DescribeTables）用于查询数据表列表。
 
         # @param request: Request instance for DescribeTables.
         # @type request: :class:`Tencentcloud::dlc::V20210125::DescribeTablesRequest`

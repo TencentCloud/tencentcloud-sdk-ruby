@@ -565,6 +565,71 @@ module TencentCloud
         end
       end
 
+      # CreateProbeTasks请求参数结构体
+      class CreateProbeTasksRequest < TencentCloud::Common::AbstractModel
+        # @param BatchTasks: 批量任务名-地址
+        # @type BatchTasks: Array
+        # @param TaskType: 任务类型
+        # @type TaskType: Integer
+        # @param Nodes: 探测节点
+        # @type Nodes: Array
+        # @param Interval: 探测间隔
+        # @type Interval: Integer
+        # @param Parameters: 探测参数
+        # @type Parameters: String
+        # @param TaskCategory: 任务分类
+        # <li>1 = PC</li>
+        # <li> 2 = Mobile </li>
+        # @type TaskCategory: Integer
+        # @param Cron: 定时任务cron表达式
+        # @type Cron: String
+
+        attr_accessor :BatchTasks, :TaskType, :Nodes, :Interval, :Parameters, :TaskCategory, :Cron
+        
+        def initialize(batchtasks=nil, tasktype=nil, nodes=nil, interval=nil, parameters=nil, taskcategory=nil, cron=nil)
+          @BatchTasks = batchtasks
+          @TaskType = tasktype
+          @Nodes = nodes
+          @Interval = interval
+          @Parameters = parameters
+          @TaskCategory = taskcategory
+          @Cron = cron
+        end
+
+        def deserialize(params)
+          unless params['BatchTasks'].nil?
+            @BatchTasks = []
+            params['BatchTasks'].each do |i|
+              probetaskbasicconfiguration_tmp = ProbeTaskBasicConfiguration.new
+              probetaskbasicconfiguration_tmp.deserialize(i)
+              @BatchTasks << probetaskbasicconfiguration_tmp
+            end
+          end
+          @TaskType = params['TaskType']
+          @Nodes = params['Nodes']
+          @Interval = params['Interval']
+          @Parameters = params['Parameters']
+          @TaskCategory = params['TaskCategory']
+          @Cron = params['Cron']
+        end
+      end
+
+      # CreateProbeTasks返回参数结构体
+      class CreateProbeTasksResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateTaskEx请求参数结构体
       class CreateTaskExRequest < TencentCloud::Common::AbstractModel
         # @param CatTypeName: http, https, ping, tcp, ftp, smtp, udp, dns 之一
@@ -792,6 +857,59 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteProbeTask请求参数结构体
+      class DeleteProbeTaskRequest < TencentCloud::Common::AbstractModel
+        # @param TaskIds: 任务 ID
+        # @type TaskIds: Array
+
+        attr_accessor :TaskIds
+        
+        def initialize(taskids=nil)
+          @TaskIds = taskids
+        end
+
+        def deserialize(params)
+          @TaskIds = params['TaskIds']
+        end
+      end
+
+      # DeleteProbeTask返回参数结构体
+      class DeleteProbeTaskResponse < TencentCloud::Common::AbstractModel
+        # @param Total: 任务总量
+        # @type Total: Integer
+        # @param SuccessCount: 任务成功量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SuccessCount: Integer
+        # @param Results: 任务执行结果
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Results: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Total, :SuccessCount, :Results, :RequestId
+        
+        def initialize(total=nil, successcount=nil, results=nil, requestid=nil)
+          @Total = total
+          @SuccessCount = successcount
+          @Results = results
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Total = params['Total']
+          @SuccessCount = params['SuccessCount']
+          unless params['Results'].nil?
+            @Results = []
+            params['Results'].each do |i|
+              taskresult_tmp = TaskResult.new
+              taskresult_tmp.deserialize(i)
+              @Results << taskresult_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -1183,6 +1301,261 @@ module TencentCloud
         end
       end
 
+      # DescribeDetailedSingleProbeData请求参数结构体
+      class DescribeDetailedSingleProbeDataRequest < TencentCloud::Common::AbstractModel
+        # @param BeginTime: 开始时间戳（毫秒级）
+        # @type BeginTime: Integer
+        # @param EndTime: 结束时间戳（毫秒级）
+        # @type EndTime: Integer
+        # @param TaskType: 任务类型
+        # @type TaskType: String
+        # @param SortField: 待排序字段
+        # @type SortField: String
+        # @param Ascending: true表示升序
+        # @type Ascending: Boolean
+        # @param SelectedFields: 选中字段
+        # @type SelectedFields: Array
+        # @param Offset: 起始取数位置
+        # @type Offset: Integer
+        # @param Limit: 取数数量
+        # @type Limit: Integer
+        # @param TaskID: 任务ID
+        # @type TaskID: Array
+        # @param Operators: 拨测点运营商
+        # @type Operators: Array
+        # @param Districts: 拨测点地区
+        # @type Districts: Array
+        # @param ErrorTypes: 错误类型
+        # @type ErrorTypes: Array
+
+        attr_accessor :BeginTime, :EndTime, :TaskType, :SortField, :Ascending, :SelectedFields, :Offset, :Limit, :TaskID, :Operators, :Districts, :ErrorTypes
+        
+        def initialize(begintime=nil, endtime=nil, tasktype=nil, sortfield=nil, ascending=nil, selectedfields=nil, offset=nil, limit=nil, taskid=nil, operators=nil, districts=nil, errortypes=nil)
+          @BeginTime = begintime
+          @EndTime = endtime
+          @TaskType = tasktype
+          @SortField = sortfield
+          @Ascending = ascending
+          @SelectedFields = selectedfields
+          @Offset = offset
+          @Limit = limit
+          @TaskID = taskid
+          @Operators = operators
+          @Districts = districts
+          @ErrorTypes = errortypes
+        end
+
+        def deserialize(params)
+          @BeginTime = params['BeginTime']
+          @EndTime = params['EndTime']
+          @TaskType = params['TaskType']
+          @SortField = params['SortField']
+          @Ascending = params['Ascending']
+          @SelectedFields = params['SelectedFields']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @TaskID = params['TaskID']
+          @Operators = params['Operators']
+          @Districts = params['Districts']
+          @ErrorTypes = params['ErrorTypes']
+        end
+      end
+
+      # DescribeDetailedSingleProbeData返回参数结构体
+      class DescribeDetailedSingleProbeDataResponse < TencentCloud::Common::AbstractModel
+        # @param DataSet: 单次详情数据
+        # @type DataSet: Array
+        # @param TotalNumber: 符合条件的数据总数
+        # @type TotalNumber: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :DataSet, :TotalNumber, :RequestId
+        
+        def initialize(dataset=nil, totalnumber=nil, requestid=nil)
+          @DataSet = dataset
+          @TotalNumber = totalnumber
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['DataSet'].nil?
+            @DataSet = []
+            params['DataSet'].each do |i|
+              detailedsingledatadefine_tmp = DetailedSingleDataDefine.new
+              detailedsingledatadefine_tmp.deserialize(i)
+              @DataSet << detailedsingledatadefine_tmp
+            end
+          end
+          @TotalNumber = params['TotalNumber']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeProbeNodes请求参数结构体
+      class DescribeProbeNodesRequest < TencentCloud::Common::AbstractModel
+        # @param NodeType: 节点类型
+        # <li> 1 = IDC </li>
+        # <li> 2 = LastMile </li>
+        # <li> 3 = Mobile </li>
+        # @type NodeType: Integer
+        # @param Location: 节点区域
+        # <li> 1 = 中国大陆 </li>
+        # <li> 2 = 港澳台 </li>
+        # <li> 3 = 海外 </li>
+        # @type Location: Integer
+        # @param IsIPv6: 是否IPv6
+        # @type IsIPv6: Boolean
+        # @param NodeName: 名字模糊搜索
+        # @type NodeName: String
+        # @param PayMode: 付费模式
+        # <li>1 = 试用版本</li>
+        # <li> 2 = 付费版本 </li>
+        # @type PayMode: Integer
+
+        attr_accessor :NodeType, :Location, :IsIPv6, :NodeName, :PayMode
+        
+        def initialize(nodetype=nil, location=nil, isipv6=nil, nodename=nil, paymode=nil)
+          @NodeType = nodetype
+          @Location = location
+          @IsIPv6 = isipv6
+          @NodeName = nodename
+          @PayMode = paymode
+        end
+
+        def deserialize(params)
+          @NodeType = params['NodeType']
+          @Location = params['Location']
+          @IsIPv6 = params['IsIPv6']
+          @NodeName = params['NodeName']
+          @PayMode = params['PayMode']
+        end
+      end
+
+      # DescribeProbeNodes返回参数结构体
+      class DescribeProbeNodesResponse < TencentCloud::Common::AbstractModel
+        # @param NodeSet: 节点列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NodeSet: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :NodeSet, :RequestId
+        
+        def initialize(nodeset=nil, requestid=nil)
+          @NodeSet = nodeset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['NodeSet'].nil?
+            @NodeSet = []
+            params['NodeSet'].each do |i|
+              nodedefine_tmp = NodeDefine.new
+              nodedefine_tmp.deserialize(i)
+              @NodeSet << nodedefine_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeProbeTasks请求参数结构体
+      class DescribeProbeTasksRequest < TencentCloud::Common::AbstractModel
+        # @param TaskIDs: 任务 ID  列表
+        # @type TaskIDs: Array
+        # @param TaskName: 任务名
+        # @type TaskName: String
+        # @param TargetAddress: 探测目标
+        # @type TargetAddress: String
+        # @param TaskStatus: 任务状态列表
+        # @type TaskStatus: Array
+        # @param Offset: 偏移量，默认为0
+        # @type Offset: Integer
+        # @param Limit: 返回数量，默认为20，最大值为100
+        # @type Limit: Integer
+        # @param PayMode: 付费模式
+        # <li>1 = 试用版本</li>
+        # <li> 2 = 付费版本 </li>
+        # @type PayMode: Integer
+        # @param OrderState: 订单状态
+        # <li>1 = 正常</li>
+        # <li> 2 = 欠费 </li>
+        # @type OrderState: Integer
+        # @param TaskType: 拨测类型
+        # @type TaskType: Array
+        # @param TaskCategory: 节点类型
+        # @type TaskCategory: Array
+        # @param OrderBy: 排序的列
+        # @type OrderBy: String
+        # @param Ascend: 是否正序
+        # @type Ascend: Boolean
+
+        attr_accessor :TaskIDs, :TaskName, :TargetAddress, :TaskStatus, :Offset, :Limit, :PayMode, :OrderState, :TaskType, :TaskCategory, :OrderBy, :Ascend
+        
+        def initialize(taskids=nil, taskname=nil, targetaddress=nil, taskstatus=nil, offset=nil, limit=nil, paymode=nil, orderstate=nil, tasktype=nil, taskcategory=nil, orderby=nil, ascend=nil)
+          @TaskIDs = taskids
+          @TaskName = taskname
+          @TargetAddress = targetaddress
+          @TaskStatus = taskstatus
+          @Offset = offset
+          @Limit = limit
+          @PayMode = paymode
+          @OrderState = orderstate
+          @TaskType = tasktype
+          @TaskCategory = taskcategory
+          @OrderBy = orderby
+          @Ascend = ascend
+        end
+
+        def deserialize(params)
+          @TaskIDs = params['TaskIDs']
+          @TaskName = params['TaskName']
+          @TargetAddress = params['TargetAddress']
+          @TaskStatus = params['TaskStatus']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @PayMode = params['PayMode']
+          @OrderState = params['OrderState']
+          @TaskType = params['TaskType']
+          @TaskCategory = params['TaskCategory']
+          @OrderBy = params['OrderBy']
+          @Ascend = params['Ascend']
+        end
+      end
+
+      # DescribeProbeTasks返回参数结构体
+      class DescribeProbeTasksResponse < TencentCloud::Common::AbstractModel
+        # @param TaskSet: 任务列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TaskSet: Array
+        # @param Total: 任务总数
+        # @type Total: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskSet, :Total, :RequestId
+        
+        def initialize(taskset=nil, total=nil, requestid=nil)
+          @TaskSet = taskset
+          @Total = total
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['TaskSet'].nil?
+            @TaskSet = []
+            params['TaskSet'].each do |i|
+              probetask_tmp = ProbeTask.new
+              probetask_tmp.deserialize(i)
+              @TaskSet << probetask_tmp
+            end
+          end
+          @Total = params['Total']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeTaskDetail请求参数结构体
       class DescribeTaskDetailRequest < TencentCloud::Common::AbstractModel
         # @param TaskIds: 拨测任务id 数组
@@ -1324,6 +1697,44 @@ module TencentCloud
         end
       end
 
+      # 单条详细拨测数据
+      class DetailedSingleDataDefine < TencentCloud::Common::AbstractModel
+        # @param ProbeTime: 拨测时间戳
+        # @type ProbeTime: Integer
+        # @param Labels: 储存所有string类型字段
+        # @type Labels: Array
+        # @param Fields: 储存所有float类型字段
+        # @type Fields: Array
+
+        attr_accessor :ProbeTime, :Labels, :Fields
+        
+        def initialize(probetime=nil, labels=nil, fields=nil)
+          @ProbeTime = probetime
+          @Labels = labels
+          @Fields = fields
+        end
+
+        def deserialize(params)
+          @ProbeTime = params['ProbeTime']
+          unless params['Labels'].nil?
+            @Labels = []
+            params['Labels'].each do |i|
+              label_tmp = Label.new
+              label_tmp.deserialize(i)
+              @Labels << label_tmp
+            end
+          end
+          unless params['Fields'].nil?
+            @Fields = []
+            params['Fields'].each do |i|
+              field_tmp = Field.new
+              field_tmp.deserialize(i)
+              @Fields << field_tmp
+            end
+          end
+        end
+      end
+
       # 拨测点维度信息
       class DimensionsDetail < TencentCloud::Common::AbstractModel
         # @param Isp: 运营商列表
@@ -1341,6 +1752,30 @@ module TencentCloud
         def deserialize(params)
           @Isp = params['Isp']
           @Province = params['Province']
+        end
+      end
+
+      # 储存float类型字段
+      class Field < TencentCloud::Common::AbstractModel
+        # @param ID: 自定义字段编号
+        # @type ID: Integer
+        # @param Name: 自定义字段名称/说明
+        # @type Name: String
+        # @param Value: 字段值
+        # @type Value: Float
+
+        attr_accessor :ID, :Name, :Value
+        
+        def initialize(id=nil, name=nil, value=nil)
+          @ID = id
+          @Name = name
+          @Value = value
+        end
+
+        def deserialize(params)
+          @ID = params['ID']
+          @Name = params['Name']
+          @Value = params['Value']
         end
       end
 
@@ -1942,6 +2377,30 @@ module TencentCloud
         end
       end
 
+      # 保存string类型字段
+      class Label < TencentCloud::Common::AbstractModel
+        # @param ID: 自定义字段编号
+        # @type ID: Integer
+        # @param Name: 自定义字段名称/说明
+        # @type Name: String
+        # @param Value: 字段值
+        # @type Value: String
+
+        attr_accessor :ID, :Name, :Value
+        
+        def initialize(id=nil, name=nil, value=nil)
+          @ID = id
+          @Name = name
+          @Value = value
+        end
+
+        def deserialize(params)
+          @ID = params['ID']
+          @Name = params['Name']
+          @Value = params['Value']
+        end
+      end
+
       # ModifyAgentGroup请求参数结构体
       class ModifyAgentGroupRequest < TencentCloud::Common::AbstractModel
         # @param GroupId: 拨测分组ID
@@ -2137,6 +2596,60 @@ module TencentCloud
         end
       end
 
+      # 探测节点
+      class NodeDefine < TencentCloud::Common::AbstractModel
+        # @param Name: 节点名称
+        # @type Name: String
+        # @param Code: 节点代码
+        # @type Code: String
+        # @param Type: 节点类型
+        # <li> 1 = IDC </li>
+        # <li> 2 = LastMile </li>
+        # <li> 3 = Mobile </li>
+        # @type Type: Integer
+        # @param NetService: 网络服务商
+        # @type NetService: String
+        # @param District: 区域
+        # @type District: String
+        # @param City: 城市
+        # @type City: String
+        # @param IPType: IP 类型
+        # <li> 1 = IPv4 </li>
+        # <li> 2 = IPv6 </li>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IPType: Integer
+        # @param Location: 区域
+        # <li> 1 = 中国大陆 </li>
+        # <li> 2 = 港澳台 </li>
+        # <li> 3 = 国外 </li>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Location: Integer
+
+        attr_accessor :Name, :Code, :Type, :NetService, :District, :City, :IPType, :Location
+        
+        def initialize(name=nil, code=nil, type=nil, netservice=nil, district=nil, city=nil, iptype=nil, location=nil)
+          @Name = name
+          @Code = code
+          @Type = type
+          @NetService = netservice
+          @District = district
+          @City = city
+          @IPType = iptype
+          @Location = location
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Code = params['Code']
+          @Type = params['Type']
+          @NetService = params['NetService']
+          @District = params['District']
+          @City = params['City']
+          @IPType = params['IPType']
+          @Location = params['Location']
+        end
+      end
+
       # PauseTask请求参数结构体
       class PauseTaskRequest < TencentCloud::Common::AbstractModel
         # @param TaskId: 拨测任务id
@@ -2166,6 +2679,107 @@ module TencentCloud
 
         def deserialize(params)
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 探测任务
+      class ProbeTask < TencentCloud::Common::AbstractModel
+        # @param Name: 任务名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
+        # @param TaskId: 任务 ID
+        # @type TaskId: String
+        # @param TaskType: 任务类型
+        # @type TaskType: Integer
+        # @param Nodes: 探测节点列表
+        # @type Nodes: Array
+        # @param Interval: 探测间隔
+        # @type Interval: Integer
+        # @param Parameters: 探测参数
+        # @type Parameters: String
+        # @param Status: 任务状态
+        # @type Status: Integer
+        # @param TargetAddress: 目标地址
+        # @type TargetAddress: String
+        # @param PayMode: 付费模式
+        # <li>1 = 试用版本</li>
+        # <li> 2 = 付费版本 </li>
+        # @type PayMode: Integer
+        # @param OrderState: 订单状态
+        # <li>1 = 正常</li>
+        # <li> 2 = 欠费 </li>
+        # @type OrderState: Integer
+        # @param TaskCategory: 任务分类
+        # <li>1 = PC</li>
+        # <li> 2 = Mobile </li>
+        # @type TaskCategory: Integer
+        # @param CreatedAt: 创建时间
+        # @type CreatedAt: String
+        # @param Cron: 定时任务cron表达式
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Cron: String
+        # @param CronState: 定时任务启动状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CronState: Integer
+
+        attr_accessor :Name, :TaskId, :TaskType, :Nodes, :Interval, :Parameters, :Status, :TargetAddress, :PayMode, :OrderState, :TaskCategory, :CreatedAt, :Cron, :CronState
+        
+        def initialize(name=nil, taskid=nil, tasktype=nil, nodes=nil, interval=nil, parameters=nil, status=nil, targetaddress=nil, paymode=nil, orderstate=nil, taskcategory=nil, createdat=nil, cron=nil, cronstate=nil)
+          @Name = name
+          @TaskId = taskid
+          @TaskType = tasktype
+          @Nodes = nodes
+          @Interval = interval
+          @Parameters = parameters
+          @Status = status
+          @TargetAddress = targetaddress
+          @PayMode = paymode
+          @OrderState = orderstate
+          @TaskCategory = taskcategory
+          @CreatedAt = createdat
+          @Cron = cron
+          @CronState = cronstate
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @TaskId = params['TaskId']
+          @TaskType = params['TaskType']
+          @Nodes = params['Nodes']
+          @Interval = params['Interval']
+          @Parameters = params['Parameters']
+          @Status = params['Status']
+          @TargetAddress = params['TargetAddress']
+          @PayMode = params['PayMode']
+          @OrderState = params['OrderState']
+          @TaskCategory = params['TaskCategory']
+          @CreatedAt = params['CreatedAt']
+          @Cron = params['Cron']
+          @CronState = params['CronState']
+        end
+      end
+
+      # type ProbeTaskBasicConfiguration struct {
+      # 	TaskID        TaskID `json:"TaskId" gorm:"column:task_id"`
+      # 	Name          string `json:"Name" binding:"required" gorm:"column:name"`
+      # 	TargetAddress string `json:"TargetAddress" binding:"required" gorm:"column:target_address"`
+      # }
+      class ProbeTaskBasicConfiguration < TencentCloud::Common::AbstractModel
+        # @param Name: 拨测任务名称
+        # @type Name: String
+        # @param TargetAddress: 拨测目标地址
+        # @type TargetAddress: String
+
+        attr_accessor :Name, :TargetAddress
+        
+        def initialize(name=nil, targetaddress=nil)
+          @Name = name
+          @TargetAddress = targetaddress
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @TargetAddress = params['TargetAddress']
         end
       end
 
@@ -2244,6 +2858,59 @@ module TencentCloud
         end
       end
 
+      # ResumeProbeTask请求参数结构体
+      class ResumeProbeTaskRequest < TencentCloud::Common::AbstractModel
+        # @param TaskIds: 任务 ID
+        # @type TaskIds: Array
+
+        attr_accessor :TaskIds
+        
+        def initialize(taskids=nil)
+          @TaskIds = taskids
+        end
+
+        def deserialize(params)
+          @TaskIds = params['TaskIds']
+        end
+      end
+
+      # ResumeProbeTask返回参数结构体
+      class ResumeProbeTaskResponse < TencentCloud::Common::AbstractModel
+        # @param Total: 任务总量
+        # @type Total: Integer
+        # @param SuccessCount: 任务成功量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SuccessCount: Integer
+        # @param Results: 任务执行详情
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Results: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Total, :SuccessCount, :Results, :RequestId
+        
+        def initialize(total=nil, successcount=nil, results=nil, requestid=nil)
+          @Total = total
+          @SuccessCount = successcount
+          @Results = results
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Total = params['Total']
+          @SuccessCount = params['SuccessCount']
+          unless params['Results'].nil?
+            @Results = []
+            params['Results'].each do |i|
+              taskresult_tmp = TaskResult.new
+              taskresult_tmp.deserialize(i)
+              @Results << taskresult_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # RunTask请求参数结构体
       class RunTaskRequest < TencentCloud::Common::AbstractModel
         # @param TaskId: 任务Id
@@ -2272,6 +2939,59 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # SuspendProbeTask请求参数结构体
+      class SuspendProbeTaskRequest < TencentCloud::Common::AbstractModel
+        # @param TaskIds: 任务 ID
+        # @type TaskIds: Array
+
+        attr_accessor :TaskIds
+        
+        def initialize(taskids=nil)
+          @TaskIds = taskids
+        end
+
+        def deserialize(params)
+          @TaskIds = params['TaskIds']
+        end
+      end
+
+      # SuspendProbeTask返回参数结构体
+      class SuspendProbeTaskResponse < TencentCloud::Common::AbstractModel
+        # @param Total: 任务总量
+        # @type Total: Integer
+        # @param SuccessCount: 任务成功量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SuccessCount: Integer
+        # @param Results: 任务执行结果
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Results: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Total, :SuccessCount, :Results, :RequestId
+        
+        def initialize(total=nil, successcount=nil, results=nil, requestid=nil)
+          @Total = total
+          @SuccessCount = successcount
+          @Results = results
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Total = params['Total']
+          @SuccessCount = params['SuccessCount']
+          unless params['Results'].nil?
+            @Results = []
+            params['Results'].each do |i|
+              taskresult_tmp = TaskResult.new
+              taskresult_tmp.deserialize(i)
+              @Results << taskresult_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -2325,6 +3045,80 @@ module TencentCloud
           @AlarmStatus = params['AlarmStatus']
           @StatusInfo = params['StatusInfo']
           @UpdateTime = params['UpdateTime']
+        end
+      end
+
+      # 任务执行结果
+      class TaskResult < TencentCloud::Common::AbstractModel
+        # @param TaskId: 任务 ID
+        # @type TaskId: String
+        # @param Success: 是否成功
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Success: Boolean
+        # @param ErrorMessage: 错误信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ErrorMessage: String
+
+        attr_accessor :TaskId, :Success, :ErrorMessage
+        
+        def initialize(taskid=nil, success=nil, errormessage=nil)
+          @TaskId = taskid
+          @Success = success
+          @ErrorMessage = errormessage
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @Success = params['Success']
+          @ErrorMessage = params['ErrorMessage']
+        end
+      end
+
+      # UpdateProbeTaskConfigurationList请求参数结构体
+      class UpdateProbeTaskConfigurationListRequest < TencentCloud::Common::AbstractModel
+        # @param TaskIds: 任务 ID
+        # @type TaskIds: Array
+        # @param Nodes: 拨测节点
+        # @type Nodes: Array
+        # @param Interval: 拨测间隔
+        # @type Interval: Integer
+        # @param Parameters: 拨测参数
+        # @type Parameters: String
+        # @param Cron: 定时任务cron表达式
+        # @type Cron: String
+
+        attr_accessor :TaskIds, :Nodes, :Interval, :Parameters, :Cron
+        
+        def initialize(taskids=nil, nodes=nil, interval=nil, parameters=nil, cron=nil)
+          @TaskIds = taskids
+          @Nodes = nodes
+          @Interval = interval
+          @Parameters = parameters
+          @Cron = cron
+        end
+
+        def deserialize(params)
+          @TaskIds = params['TaskIds']
+          @Nodes = params['Nodes']
+          @Interval = params['Interval']
+          @Parameters = params['Parameters']
+          @Cron = params['Cron']
+        end
+      end
+
+      # UpdateProbeTaskConfigurationList返回参数结构体
+      class UpdateProbeTaskConfigurationListResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
         end
       end
 

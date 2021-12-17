@@ -147,11 +147,11 @@ module TencentCloud
 
       # AttachDisks请求参数结构体
       class AttachDisksRequest < TencentCloud::Common::AbstractModel
-        # @param DiskIds: 磁盘ID列表
+        # @param DiskIds: 云硬盘ID列表。
         # @type DiskIds: Array
-        # @param InstanceId: 实例ID
+        # @param InstanceId: 实例ID。
         # @type InstanceId: String
-        # @param RenewFlag: 续费标识
+        # @param RenewFlag: 续费标识。
         # @type RenewFlag: String
 
         attr_accessor :DiskIds, :InstanceId, :RenewFlag
@@ -1134,9 +1134,9 @@ module TencentCloud
 
       # DescribeDiskDiscount请求参数结构体
       class DescribeDiskDiscountRequest < TencentCloud::Common::AbstractModel
-        # @param DiskType: 磁盘类型, 取值: "CLOUD_PREMIUM"
+        # @param DiskType: 云硬盘类型, 取值: "CLOUD_PREMIUM"。
         # @type DiskType: String
-        # @param DiskSize: 磁盘大小
+        # @param DiskSize: 云硬盘大小。
         # @type DiskSize: Integer
 
         attr_accessor :DiskType, :DiskSize
@@ -1185,7 +1185,7 @@ module TencentCloud
 
       # DescribeDisksDeniedActions请求参数结构体
       class DescribeDisksDeniedActionsRequest < TencentCloud::Common::AbstractModel
-        # @param DiskIds: 磁盘ID列表
+        # @param DiskIds: 云硬盘ID列表。
         # @type DiskIds: Array
 
         attr_accessor :DiskIds
@@ -1201,7 +1201,7 @@ module TencentCloud
 
       # DescribeDisksDeniedActions返回参数结构体
       class DescribeDisksDeniedActionsResponse < TencentCloud::Common::AbstractModel
-        # @param DiskDeniedActionSet: 磁盘操作限制列表详细信息。
+        # @param DiskDeniedActionSet: 云硬盘操作限制列表详细信息。
         # @type DiskDeniedActionSet: Array
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1228,11 +1228,11 @@ module TencentCloud
 
       # DescribeDisks请求参数结构体
       class DescribeDisksRequest < TencentCloud::Common::AbstractModel
-        # @param DiskIds: 磁盘ID列表
+        # @param DiskIds: 云硬盘ID列表。
         # @type DiskIds: Array
         # @param Filters: 过滤器列表。
         # disk-id
-        # 按照【磁盘 ID】进行过滤。
+        # 按照【云硬盘 ID】进行过滤。
         # 类型：String
         # 必选：否
         # instance-id
@@ -1240,7 +1240,7 @@ module TencentCloud
         # 类型：String
         # 必选：否
         # disk-name
-        # 按照【磁盘名称】进行过滤。
+        # 按照【云硬盘名称】进行过滤。
         # 类型：String
         # 必选：否
         # zone
@@ -1248,22 +1248,22 @@ module TencentCloud
         # 类型：String
         # 必选：否
         # disk-usage
-        # 按照【磁盘类型】进行过滤。
+        # 按照【云硬盘类型】进行过滤。
         # 类型：String
         # 必选：否
         # disk-state
-        # 按照【磁盘状态】进行过滤。
+        # 按照【云硬盘状态】进行过滤。
         # 类型：String
         # 必选：否
         # 每次请求的 Filters 的上限为 10，Filter.Values 的上限为 5。参数不支持同时指定 DiskIds 和 Filters。
         # @type Filters: Array
         # @param Limit: 返回数量，默认为20，最大值为100。
         # @type Limit: Integer
-        # @param Offset: 偏移量，默认为0
+        # @param Offset: 偏移量，默认为0。
         # @type Offset: Integer
-        # @param OrderField: 云盘列表排序的依据字段。取值范围："CREATED_TIME"：依据云盘的创建时间排序。 "EXPIRED_TIME"：依据云盘的到期时间排序。"DISK_SIZE"：依据云盘的大小排序。默认按云盘创建时间排序。
+        # @param OrderField: 云硬盘列表排序的依据字段。取值范围："CREATED_TIME"：依据云硬盘的创建时间排序。 "EXPIRED_TIME"：依据云硬盘的到期时间排序。"DISK_SIZE"：依据云硬盘的大小排序。默认按云硬盘创建时间排序。
         # @type OrderField: String
-        # @param Order: 输出云盘列表的排列顺序。取值范围："ASC"：升序排列。 "DESC"：降序排列。默认按降序排列
+        # @param Order: 输出云硬盘列表的排列顺序。取值范围："ASC"：升序排列。 "DESC"：降序排列。默认按降序排列。
         # @type Order: String
 
         attr_accessor :DiskIds, :Filters, :Limit, :Offset, :OrderField, :Order
@@ -1296,9 +1296,9 @@ module TencentCloud
 
       # DescribeDisks返回参数结构体
       class DescribeDisksResponse < TencentCloud::Common::AbstractModel
-        # @param DiskSet: 磁盘信息列表
+        # @param DiskSet: 云硬盘信息列表。
         # @type DiskSet: Array
-        # @param TotalCount: 符合条件的磁盘信息数量
+        # @param TotalCount: 符合条件的云硬盘信息数量。
         # @type TotalCount: Integer
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1327,7 +1327,7 @@ module TencentCloud
 
       # DescribeDisksReturnable请求参数结构体
       class DescribeDisksReturnableRequest < TencentCloud::Common::AbstractModel
-        # @param DiskIds: 磁盘ID列表
+        # @param DiskIds: 云硬盘ID列表。
         # @type DiskIds: Array
         # @param Limit: 返回数量，默认为20，最大值为100。
         # @type Limit: Integer
@@ -1351,9 +1351,9 @@ module TencentCloud
 
       # DescribeDisksReturnable返回参数结构体
       class DescribeDisksReturnableResponse < TencentCloud::Common::AbstractModel
-        # @param DiskReturnableSet: 可退还磁盘详细信息列表。
+        # @param DiskReturnableSet: 可退还云硬盘详细信息列表。
         # @type DiskReturnableSet: Array
-        # @param TotalCount: 符合条件的磁盘数量。
+        # @param TotalCount: 符合条件的云硬盘数量。
         # @type TotalCount: Integer
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1641,7 +1641,7 @@ module TencentCloud
 
       # DescribeInstancesDiskNum请求参数结构体
       class DescribeInstancesDiskNumRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceIds: 实例ID列表
+        # @param InstanceIds: 实例ID列表。
         # @type InstanceIds: Array
 
         attr_accessor :InstanceIds
@@ -2351,7 +2351,7 @@ module TencentCloud
 
       # DetachDisks请求参数结构体
       class DetachDisksRequest < TencentCloud::Common::AbstractModel
-        # @param DiskIds: 磁盘ID列表
+        # @param DiskIds: 云硬盘ID列表。
         # @type DiskIds: Array
 
         attr_accessor :DiskIds
@@ -2542,13 +2542,13 @@ module TencentCloud
         end
       end
 
-      # 磁盘包年包月相关参数设置
+      # 云硬盘包年包月相关参数设置
       class DiskChargePrepaid < TencentCloud::Common::AbstractModel
-        # @param Period: 新购周期
+        # @param Period: 新购周期。
         # @type Period: Integer
-        # @param RenewFlag: 续费标识
+        # @param RenewFlag: 续费标识。
         # @type RenewFlag: String
-        # @param TimeUnit: 新购单位. 默认值: "m"
+        # @param TimeUnit: 新购单位. 默认值: "m"。
         # @type TimeUnit: String
 
         attr_accessor :Period, :RenewFlag, :TimeUnit
@@ -2566,19 +2566,19 @@ module TencentCloud
         end
       end
 
-      # 磁盘配置
+      # 云硬盘配置
       class DiskConfig < TencentCloud::Common::AbstractModel
-        # @param Zone: 可用区
+        # @param Zone: 可用区。
         # @type Zone: String
-        # @param DiskType: 磁盘类型
+        # @param DiskType: 云硬盘类型。
         # @type DiskType: String
-        # @param DiskSalesState: 磁盘可售卖状态
+        # @param DiskSalesState: 云硬盘可售卖状态。
         # @type DiskSalesState: String
-        # @param MaxDiskSize: 最大磁盘大小
+        # @param MaxDiskSize: 最大云硬盘大小。
         # @type MaxDiskSize: Integer
-        # @param MinDiskSize: 最小磁盘大小
+        # @param MinDiskSize: 最小云硬盘大小。
         # @type MinDiskSize: Integer
-        # @param DiskStepSize: 磁盘步长
+        # @param DiskStepSize: 云硬盘步长。
         # @type DiskStepSize: Integer
 
         attr_accessor :Zone, :DiskType, :DiskSalesState, :MaxDiskSize, :MinDiskSize, :DiskStepSize
@@ -2604,9 +2604,9 @@ module TencentCloud
 
       # 磁盘操作限制列表详细信息
       class DiskDeniedActions < TencentCloud::Common::AbstractModel
-        # @param DiskId: 磁盘ID
+        # @param DiskId: 云硬盘ID。
         # @type DiskId: String
-        # @param DeniedActions: 操作限制列表
+        # @param DeniedActions: 操作限制列表。
         # @type DeniedActions: Array
 
         attr_accessor :DiskId, :DeniedActions
@@ -2629,15 +2629,15 @@ module TencentCloud
         end
       end
 
-      # 磁盘价格
+      # 云硬盘价格
       class DiskPrice < TencentCloud::Common::AbstractModel
-        # @param OriginalDiskPrice: 磁盘单价
+        # @param OriginalDiskPrice: 云硬盘单价。
         # @type OriginalDiskPrice: Float
-        # @param OriginalPrice: 磁盘总价
+        # @param OriginalPrice: 云硬盘总价。
         # @type OriginalPrice: Float
-        # @param Discount: 折扣
+        # @param Discount: 折扣。
         # @type Discount: Float
-        # @param DiscountPrice: 折后总价
+        # @param DiscountPrice: 折后总价。
         # @type DiscountPrice: Float
 
         attr_accessor :OriginalDiskPrice, :OriginalPrice, :Discount, :DiscountPrice
@@ -2657,15 +2657,15 @@ module TencentCloud
         end
       end
 
-      # 可退还磁盘详细信息
+      # 可退还云硬盘详细信息
       class DiskReturnable < TencentCloud::Common::AbstractModel
-        # @param DiskId: 磁盘ID
+        # @param DiskId: 云硬盘ID。
         # @type DiskId: String
-        # @param IsReturnable: 磁盘是否可退还。
+        # @param IsReturnable: 云硬盘是否可退还。
         # @type IsReturnable: Boolean
-        # @param ReturnFailCode: 实例退还失败错误码。
+        # @param ReturnFailCode: 云硬盘退还失败错误码。
         # @type ReturnFailCode: Integer
-        # @param ReturnFailMessage: 实例退还失败错误信息。
+        # @param ReturnFailMessage: 云硬盘退还失败错误信息。
         # @type ReturnFailMessage: String
 
         attr_accessor :DiskId, :IsReturnable, :ReturnFailCode, :ReturnFailMessage
@@ -2997,9 +2997,9 @@ module TencentCloud
 
       # InquirePriceRenewDisks请求参数结构体
       class InquirePriceRenewDisksRequest < TencentCloud::Common::AbstractModel
-        # @param DiskIds: 磁盘ID列表
+        # @param DiskIds: 云硬盘ID列表。
         # @type DiskIds: Array
-        # @param RenewDiskChargePrepaid: 续费磁盘包年包月相关参数设置
+        # @param RenewDiskChargePrepaid: 续费云硬盘包年包月相关参数设置。
         # @type RenewDiskChargePrepaid: :class:`Tencentcloud::Lighthouse.v20200324.models.RenewDiskChargePrepaid`
 
         attr_accessor :DiskIds, :RenewDiskChargePrepaid
@@ -3020,7 +3020,7 @@ module TencentCloud
 
       # InquirePriceRenewDisks返回参数结构体
       class InquirePriceRenewDisksResponse < TencentCloud::Common::AbstractModel
-        # @param DiskPrice: 磁盘价格
+        # @param DiskPrice: 云硬盘价格。
         # @type DiskPrice: :class:`Tencentcloud::Lighthouse.v20200324.models.DiskPrice`
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -3512,9 +3512,9 @@ module TencentCloud
 
       # ModifyDisksAttribute请求参数结构体
       class ModifyDisksAttributeRequest < TencentCloud::Common::AbstractModel
-        # @param DiskIds: 磁盘ID列表
+        # @param DiskIds: 云硬盘ID列表。
         # @type DiskIds: Array
-        # @param DiskName: 磁盘名称
+        # @param DiskName: 云硬盘名称。
         # @type DiskName: String
 
         attr_accessor :DiskIds, :DiskName
@@ -3548,9 +3548,9 @@ module TencentCloud
 
       # ModifyDisksRenewFlag请求参数结构体
       class ModifyDisksRenewFlagRequest < TencentCloud::Common::AbstractModel
-        # @param DiskIds: 磁盘ID列表
+        # @param DiskIds: 云硬盘ID列表。
         # @type DiskIds: Array
-        # @param RenewFlag: 续费标识
+        # @param RenewFlag: 续费标识。
         # @type RenewFlag: String
 
         attr_accessor :DiskIds, :RenewFlag
@@ -3919,15 +3919,15 @@ module TencentCloud
         end
       end
 
-      # 续费磁盘包年包月相关参数设置
+      # 续费云硬盘包年包月相关参数设置
       class RenewDiskChargePrepaid < TencentCloud::Common::AbstractModel
-        # @param Period: 新购周期
+        # @param Period: 新购周期。
         # @type Period: Integer
-        # @param RenewFlag: 续费标识
+        # @param RenewFlag: 续费标识。
         # @type RenewFlag: String
-        # @param TimeUnit: 周期单位. 默认值: "m"
+        # @param TimeUnit: 周期单位. 默认值: "m"。
         # @type TimeUnit: String
-        # @param CurInstanceDeadline: 当前实例到期时间
+        # @param CurInstanceDeadline: 当前实例到期时间。
         # @type CurInstanceDeadline: String
 
         attr_accessor :Period, :RenewFlag, :TimeUnit, :CurInstanceDeadline
@@ -4334,7 +4334,7 @@ module TencentCloud
 
       # TerminateDisks请求参数结构体
       class TerminateDisksRequest < TencentCloud::Common::AbstractModel
-        # @param DiskIds: 磁盘ID列表
+        # @param DiskIds: 云硬盘ID列表。
         # @type DiskIds: Array
 
         attr_accessor :DiskIds

@@ -23,22 +23,22 @@ module TencentCloud
         # @type RecordType: String
         # @param Value: 记录值。
         # @type Value: String
-        # @param SubDomain: 子域名(主机记录)。
+        # @param SubDomain: 子域名(主机记录)，默认为@。
         # @type SubDomain: String
-        # @param RecordLine: 解析记录的线路，详见 DescribeRecordLineList 接口。
+        # @param RecordLine: 解析记录的线路，详见 DescribeRecordLineList 接口，RecordLine和RecordLineId都未填时，默认为「默认」线路。
         # @type RecordLine: String
-        # @param RecordLineId: 解析记录的线路 ID，RecordLine和RecordLineId都有时，系统优先取 RecordLineId
+        # @param RecordLineId: 解析记录的线路 ID，RecordLine和RecordLineId都有时，系统优先取 RecordLineId。
         # @type RecordLineId: String
-        # @param Weight: 记录权重值。
+        # @param Weight: 记录权重值(暂未支持)。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Weight: Integer
-        # @param MX: 记录的 MX 记录值，非 MX 记录类型，默认为 0，MX记录则必选
+        # @param MX: 记录的 MX 记录值，非 MX 记录类型，默认为 0，MX记录则必选。
         # @type MX: Integer
-        # @param TTL: 记录的 TTL 值，默认600
+        # @param TTL: 记录的 TTL 值，默认600。
         # @type TTL: Integer
-        # @param Enabled: 记录状态。0表示禁用，1表示启用，默认启用
+        # @param Enabled: 记录状态(暂未支持)。0表示禁用，1表示启用。默认启用。
         # @type Enabled: Integer
-        # @param Remark: 记录别名
+        # @param Remark: 记录备注(暂未支持)。
         # @type Remark: String
 
         attr_accessor :RecordType, :Value, :SubDomain, :RecordLine, :RecordLineId, :Weight, :MX, :TTL, :Enabled, :Remark

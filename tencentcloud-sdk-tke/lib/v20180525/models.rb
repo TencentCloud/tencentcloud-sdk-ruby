@@ -837,10 +837,12 @@ module TencentCloud
         # @type OsCustomizeType: String
         # @param NeedWorkSecurityGroup: 是否开启节点的默认安全组(默认: 否，Aphla特性)
         # @type NeedWorkSecurityGroup: Boolean
+        # @param SubnetId: 当选择Cilium Overlay网络插件时，TKE会从该子网获取2个IP用来创建内网负载均衡
+        # @type SubnetId: String
 
-        attr_accessor :ClusterOs, :ClusterVersion, :ClusterName, :ClusterDescription, :VpcId, :ProjectId, :TagSpecification, :OsCustomizeType, :NeedWorkSecurityGroup
+        attr_accessor :ClusterOs, :ClusterVersion, :ClusterName, :ClusterDescription, :VpcId, :ProjectId, :TagSpecification, :OsCustomizeType, :NeedWorkSecurityGroup, :SubnetId
         
-        def initialize(clusteros=nil, clusterversion=nil, clustername=nil, clusterdescription=nil, vpcid=nil, projectid=nil, tagspecification=nil, oscustomizetype=nil, needworksecuritygroup=nil)
+        def initialize(clusteros=nil, clusterversion=nil, clustername=nil, clusterdescription=nil, vpcid=nil, projectid=nil, tagspecification=nil, oscustomizetype=nil, needworksecuritygroup=nil, subnetid=nil)
           @ClusterOs = clusteros
           @ClusterVersion = clusterversion
           @ClusterName = clustername
@@ -850,6 +852,7 @@ module TencentCloud
           @TagSpecification = tagspecification
           @OsCustomizeType = oscustomizetype
           @NeedWorkSecurityGroup = needworksecuritygroup
+          @SubnetId = subnetid
         end
 
         def deserialize(params)
@@ -869,6 +872,7 @@ module TencentCloud
           end
           @OsCustomizeType = params['OsCustomizeType']
           @NeedWorkSecurityGroup = params['NeedWorkSecurityGroup']
+          @SubnetId = params['SubnetId']
         end
       end
 
@@ -1611,7 +1615,7 @@ module TencentCloud
         # @type ClusterAdvancedSettings: :class:`Tencentcloud::Tke.v20180525.models.ClusterAdvancedSettings`
         # @param InstanceAdvancedSettings: 节点高级配置信息
         # @type InstanceAdvancedSettings: :class:`Tencentcloud::Tke.v20180525.models.InstanceAdvancedSettings`
-        # @param ExistedInstancesForNode: 已存在实例的配置信息。所有实例必须在同一个VPC中，最大数量不超过100。
+        # @param ExistedInstancesForNode: 已存在实例的配置信息。所有实例必须在同一个VPC中，最大数量不超过100，不支持添加竞价实例。
         # @type ExistedInstancesForNode: Array
         # @param InstanceDataDiskMountSettings: CVM类型和其对应的数据盘挂载配置信息
         # @type InstanceDataDiskMountSettings: Array
