@@ -39,10 +39,13 @@ module TencentCloud
         # @param LibName: 该字段**仅当Label为Custom：自定义关键词时该参数有效**,用于返回自定义库的名称,以方便自定义库管理和配置。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LibName: String
+        # @param SubLabel: 该字段用于返回当前标签（Label）下的二级标签。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SubLabel: String
 
-        attr_accessor :Label, :Suggestion, :Keywords, :Score, :LibType, :LibId, :LibName
+        attr_accessor :Label, :Suggestion, :Keywords, :Score, :LibType, :LibId, :LibName, :SubLabel
         
-        def initialize(label=nil, suggestion=nil, keywords=nil, score=nil, libtype=nil, libid=nil, libname=nil)
+        def initialize(label=nil, suggestion=nil, keywords=nil, score=nil, libtype=nil, libid=nil, libname=nil, sublabel=nil)
           @Label = label
           @Suggestion = suggestion
           @Keywords = keywords
@@ -50,6 +53,7 @@ module TencentCloud
           @LibType = libtype
           @LibId = libid
           @LibName = libname
+          @SubLabel = sublabel
         end
 
         def deserialize(params)
@@ -60,6 +64,7 @@ module TencentCloud
           @LibType = params['LibType']
           @LibId = params['LibId']
           @LibName = params['LibName']
+          @SubLabel = params['SubLabel']
         end
       end
 
@@ -127,7 +132,7 @@ module TencentCloud
 
       # TextModeration请求参数结构体
       class TextModerationRequest < TencentCloud::Common::AbstractModel
-        # @param Content: 文本内容Base64编码，限制原文长度不能超过10000个unicode字符
+        # @param Content: 该字段表示待检测对象的文本内容，长度不能超过10000（按unicode编码计算）
         # @type Content: String
         # @param BizType: 该字段表示策略的具体编号，用于接口调度，在内容安全控制台中可配置。若不传入Biztype参数（留空），则代表采用默认的识别策略；传入则会在审核时根据业务场景采取不同的审核策略。<br>备注：Biztype仅为数字、字母与下划线的组合，长度为3-32个字符；不同Biztype关联不同的业务场景与识别能力策略，调用前请确认正确的Biztype
         # @type BizType: String
@@ -188,12 +193,15 @@ module TencentCloud
         # @param DataId: 该字段用于返回检测对象对应请求参数中的DataId，与输入的DataId字段中的内容对应
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DataId: String
+        # @param SubLabel: 该字段用于返回当前标签（Label）下的二级标签。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SubLabel: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :BizType, :Label, :Suggestion, :Keywords, :Score, :DetailResults, :RiskDetails, :Extra, :DataId, :RequestId
+        attr_accessor :BizType, :Label, :Suggestion, :Keywords, :Score, :DetailResults, :RiskDetails, :Extra, :DataId, :SubLabel, :RequestId
         
-        def initialize(biztype=nil, label=nil, suggestion=nil, keywords=nil, score=nil, detailresults=nil, riskdetails=nil, extra=nil, dataid=nil, requestid=nil)
+        def initialize(biztype=nil, label=nil, suggestion=nil, keywords=nil, score=nil, detailresults=nil, riskdetails=nil, extra=nil, dataid=nil, sublabel=nil, requestid=nil)
           @BizType = biztype
           @Label = label
           @Suggestion = suggestion
@@ -203,6 +211,7 @@ module TencentCloud
           @RiskDetails = riskdetails
           @Extra = extra
           @DataId = dataid
+          @SubLabel = sublabel
           @RequestId = requestid
         end
 
@@ -230,6 +239,7 @@ module TencentCloud
           end
           @Extra = params['Extra']
           @DataId = params['DataId']
+          @SubLabel = params['SubLabel']
           @RequestId = params['RequestId']
         end
       end

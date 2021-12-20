@@ -2596,7 +2596,7 @@ module TencentCloud
 
       # CreateComplianceTask请求参数结构体
       class CreateComplianceTaskRequest < TencentCloud::Common::AbstractModel
-        # @param AssetTypeSet: 指定要扫描的资产类型列表。若不填，对所有资产触发扫描。
+        # @param AssetTypeSet: 指定要扫描的资产类型列表。
         # ASSET_CONTAINER, 容器
         # ASSET_IMAGE, 镜像
         # ASSET_HOST, 主机
@@ -7095,7 +7095,7 @@ module TencentCloud
 
       # DescribeComplianceAssetPolicyItemList请求参数结构体
       class DescribeComplianceAssetPolicyItemListRequest < TencentCloud::Common::AbstractModel
-        # @param CustomerAssetId: 资产的ID。
+        # @param CustomerAssetId: 客户资产的ID。
         # @type CustomerAssetId: Integer
         # @param Offset: 起始偏移量，默认为0。
         # @type Offset: Integer
@@ -7162,9 +7162,7 @@ module TencentCloud
 
       # DescribeCompliancePeriodTaskList请求参数结构体
       class DescribeCompliancePeriodTaskListRequest < TencentCloud::Common::AbstractModel
-        # @param AssetType: 资产的类型，传入时，只查询此类型资产的定时任务；不传，则返回所有定时任务。
-
-        # 取值为：
+        # @param AssetType: 资产的类型，取值为：
         # ASSET_CONTAINER, 容器
         # ASSET_IMAGE, 镜像
         # ASSET_HOST, 主机
@@ -7331,6 +7329,10 @@ module TencentCloud
       # DescribeComplianceScanFailedAssetList请求参数结构体
       class DescribeComplianceScanFailedAssetListRequest < TencentCloud::Common::AbstractModel
         # @param AssetTypeSet: 资产类型列表。
+        # ASSET_CONTAINER, 容器
+        # ASSET_IMAGE, 镜像
+        # ASSET_HOST, 主机
+        # ASSET_K8S, K8S资产
         # @type AssetTypeSet: Array
         # @param Offset: 起始偏移量，默认为0。
         # @type Offset: Integer

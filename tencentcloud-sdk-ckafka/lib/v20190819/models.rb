@@ -292,6 +292,205 @@ module TencentCloud
         end
       end
 
+      # BatchModifyGroupOffsets请求参数结构体
+      class BatchModifyGroupOffsetsRequest < TencentCloud::Common::AbstractModel
+        # @param GroupName: 消费分组名称
+        # @type GroupName: String
+        # @param InstanceId: 实例名称
+        # @type InstanceId: String
+        # @param Partitions: partition信息
+        # @type Partitions: Array
+        # @param TopicName: 指定topic，默认所有topic
+        # @type TopicName: Array
+
+        attr_accessor :GroupName, :InstanceId, :Partitions, :TopicName
+        
+        def initialize(groupname=nil, instanceid=nil, partitions=nil, topicname=nil)
+          @GroupName = groupname
+          @InstanceId = instanceid
+          @Partitions = partitions
+          @TopicName = topicname
+        end
+
+        def deserialize(params)
+          @GroupName = params['GroupName']
+          @InstanceId = params['InstanceId']
+          unless params['Partitions'].nil?
+            @Partitions = []
+            params['Partitions'].each do |i|
+              partitions_tmp = Partitions.new
+              partitions_tmp.deserialize(i)
+              @Partitions << partitions_tmp
+            end
+          end
+          @TopicName = params['TopicName']
+        end
+      end
+
+      # BatchModifyGroupOffsets返回参数结构体
+      class BatchModifyGroupOffsetsResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 返回结果
+        # @type Result: :class:`Tencentcloud::Ckafka.v20190819.models.JgwOperateResponse`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+        
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Result'].nil?
+            @Result = JgwOperateResponse.new
+            @Result.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # BatchModifyTopicAttributes请求参数结构体
+      class BatchModifyTopicAttributesRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例id
+        # @type InstanceId: String
+        # @param Topic: 主题属性列表
+        # @type Topic: Array
+
+        attr_accessor :InstanceId, :Topic
+        
+        def initialize(instanceid=nil, topic=nil)
+          @InstanceId = instanceid
+          @Topic = topic
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          unless params['Topic'].nil?
+            @Topic = []
+            params['Topic'].each do |i|
+              batchmodifytopicinfo_tmp = BatchModifyTopicInfo.new
+              batchmodifytopicinfo_tmp.deserialize(i)
+              @Topic << batchmodifytopicinfo_tmp
+            end
+          end
+        end
+      end
+
+      # BatchModifyTopicAttributes返回参数结构体
+      class BatchModifyTopicAttributesResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 返回结果
+        # @type Result: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+        
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Result'].nil?
+            @Result = []
+            params['Result'].each do |i|
+              batchmodifytopicresultdto_tmp = BatchModifyTopicResultDTO.new
+              batchmodifytopicresultdto_tmp.deserialize(i)
+              @Result << batchmodifytopicresultdto_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 批量修改topic参数
+      class BatchModifyTopicInfo < TencentCloud::Common::AbstractModel
+        # @param TopicName: topic名称
+        # @type TopicName: String
+        # @param PartitionNum: 分区数
+        # @type PartitionNum: Integer
+        # @param Note: 备注
+        # @type Note: String
+        # @param ReplicaNum: 副本数
+        # @type ReplicaNum: Integer
+        # @param CleanUpPolicy: 消息删除策略，可以选择delete 或者compact
+        # @type CleanUpPolicy: String
+        # @param MinInsyncReplicas: 当producer设置request.required.acks为-1时，min.insync.replicas指定replicas的最小数目
+        # @type MinInsyncReplicas: Integer
+        # @param UncleanLeaderElectionEnable: 是否允许非ISR的副本成为Leader
+        # @type UncleanLeaderElectionEnable: Boolean
+        # @param RetentionMs: topic维度的消息保留时间（毫秒）范围1 分钟到90 天
+        # @type RetentionMs: Integer
+        # @param RetentionBytes: topic维度的消息保留大小，范围1 MB到1024 GB
+        # @type RetentionBytes: Integer
+        # @param SegmentMs: Segment分片滚动的时长（毫秒），范围1 到90 天
+        # @type SegmentMs: Integer
+        # @param MaxMessageBytes: 批次的消息大小，范围1 KB到12 MB
+        # @type MaxMessageBytes: Integer
+
+        attr_accessor :TopicName, :PartitionNum, :Note, :ReplicaNum, :CleanUpPolicy, :MinInsyncReplicas, :UncleanLeaderElectionEnable, :RetentionMs, :RetentionBytes, :SegmentMs, :MaxMessageBytes
+        
+        def initialize(topicname=nil, partitionnum=nil, note=nil, replicanum=nil, cleanuppolicy=nil, mininsyncreplicas=nil, uncleanleaderelectionenable=nil, retentionms=nil, retentionbytes=nil, segmentms=nil, maxmessagebytes=nil)
+          @TopicName = topicname
+          @PartitionNum = partitionnum
+          @Note = note
+          @ReplicaNum = replicanum
+          @CleanUpPolicy = cleanuppolicy
+          @MinInsyncReplicas = mininsyncreplicas
+          @UncleanLeaderElectionEnable = uncleanleaderelectionenable
+          @RetentionMs = retentionms
+          @RetentionBytes = retentionbytes
+          @SegmentMs = segmentms
+          @MaxMessageBytes = maxmessagebytes
+        end
+
+        def deserialize(params)
+          @TopicName = params['TopicName']
+          @PartitionNum = params['PartitionNum']
+          @Note = params['Note']
+          @ReplicaNum = params['ReplicaNum']
+          @CleanUpPolicy = params['CleanUpPolicy']
+          @MinInsyncReplicas = params['MinInsyncReplicas']
+          @UncleanLeaderElectionEnable = params['UncleanLeaderElectionEnable']
+          @RetentionMs = params['RetentionMs']
+          @RetentionBytes = params['RetentionBytes']
+          @SegmentMs = params['SegmentMs']
+          @MaxMessageBytes = params['MaxMessageBytes']
+        end
+      end
+
+      # 批量修改topic属性结果
+      class BatchModifyTopicResultDTO < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceId: String
+        # @param TopicName: topic名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TopicName: String
+        # @param ReturnCode: 状态码
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ReturnCode: String
+        # @param Message: 状态消息
+        # @type Message: String
+
+        attr_accessor :InstanceId, :TopicName, :ReturnCode, :Message
+        
+        def initialize(instanceid=nil, topicname=nil, returncode=nil, message=nil)
+          @InstanceId = instanceid
+          @TopicName = topicname
+          @ReturnCode = returncode
+          @Message = message
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @TopicName = params['TopicName']
+          @ReturnCode = params['ReturnCode']
+          @Message = params['Message']
+        end
+      end
+
       # 集群信息实体
       class ClusterInfo < TencentCloud::Common::AbstractModel
         # @param ClusterId: 集群Id
@@ -3461,6 +3660,26 @@ module TencentCloud
         end
       end
 
+      # partition信息
+      class Partitions < TencentCloud::Common::AbstractModel
+        # @param Partition: 分区
+        # @type Partition: Integer
+        # @param Offset: partition 消费位移
+        # @type Offset: Integer
+
+        attr_accessor :Partition, :Offset
+        
+        def initialize(partition=nil, offset=nil)
+          @Partition = partition
+          @Offset = offset
+        end
+
+        def deserialize(params)
+          @Partition = params['Partition']
+          @Offset = params['Offset']
+        end
+      end
+
       # 消息价格实体
       class Price < TencentCloud::Common::AbstractModel
         # @param RealTotalCost: 折扣价
@@ -4257,10 +4476,16 @@ module TencentCloud
         # @param Physical: 购买物理独占版配置
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Physical: String
+        # @param PublicNetwork: 公网带宽
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PublicNetwork: String
+        # @param PublicNetworkLimit: 公网带宽配置
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PublicNetworkLimit: String
 
-        attr_accessor :ZoneList, :MaxBuyInstanceNum, :MaxBandwidth, :UnitPrice, :MessagePrice, :ClusterInfo, :Standard, :StandardS2, :Profession, :Physical
+        attr_accessor :ZoneList, :MaxBuyInstanceNum, :MaxBandwidth, :UnitPrice, :MessagePrice, :ClusterInfo, :Standard, :StandardS2, :Profession, :Physical, :PublicNetwork, :PublicNetworkLimit
         
-        def initialize(zonelist=nil, maxbuyinstancenum=nil, maxbandwidth=nil, unitprice=nil, messageprice=nil, clusterinfo=nil, standard=nil, standards2=nil, profession=nil, physical=nil)
+        def initialize(zonelist=nil, maxbuyinstancenum=nil, maxbandwidth=nil, unitprice=nil, messageprice=nil, clusterinfo=nil, standard=nil, standards2=nil, profession=nil, physical=nil, publicnetwork=nil, publicnetworklimit=nil)
           @ZoneList = zonelist
           @MaxBuyInstanceNum = maxbuyinstancenum
           @MaxBandwidth = maxbandwidth
@@ -4271,6 +4496,8 @@ module TencentCloud
           @StandardS2 = standards2
           @Profession = profession
           @Physical = physical
+          @PublicNetwork = publicnetwork
+          @PublicNetworkLimit = publicnetworklimit
         end
 
         def deserialize(params)
@@ -4304,6 +4531,8 @@ module TencentCloud
           @StandardS2 = params['StandardS2']
           @Profession = params['Profession']
           @Physical = params['Physical']
+          @PublicNetwork = params['PublicNetwork']
+          @PublicNetworkLimit = params['PublicNetworkLimit']
         end
       end
 

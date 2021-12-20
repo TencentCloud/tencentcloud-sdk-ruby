@@ -185,6 +185,58 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口（CreateLaunchTemplate）用于创建实例启动模板。
+
+        # 实例启动模板是一种配置数据并可用于创建实例，其内容包含创建实例所需的配置，比如实例类型，数据盘和系统盘的类型和大小，以及安全组等信息。
+
+        # 初次创建实例模板后，其模板版本为默认版本1，新版本的创建可使用CreateLaunchTemplateVersion创建，版本号递增。默认情况下，在RunInstances中指定实例启动模板，若不指定模板版本号，则使用默认版本。
+
+        # @param request: Request instance for CreateLaunchTemplate.
+        # @type request: :class:`Tencentcloud::cvm::V20170312::CreateLaunchTemplateRequest`
+        # @rtype: :class:`Tencentcloud::cvm::V20170312::CreateLaunchTemplateResponse`
+        def CreateLaunchTemplate(request)
+          body = send_request('CreateLaunchTemplate', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateLaunchTemplateResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口（CreateLaunchTemplateVersion）根据指定的实例模板ID以及对应的模板版本号创建新的实例启动模板，若未指定模板版本号则使用默认版本号。每个实例启动模板最多创建30个版本。
+
+        # @param request: Request instance for CreateLaunchTemplateVersion.
+        # @type request: :class:`Tencentcloud::cvm::V20170312::CreateLaunchTemplateVersionRequest`
+        # @rtype: :class:`Tencentcloud::cvm::V20170312::CreateLaunchTemplateVersionResponse`
+        def CreateLaunchTemplateVersion(request)
+          body = send_request('CreateLaunchTemplateVersion', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateLaunchTemplateVersionResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口 (DeleteDisasterRecoverGroups)用于删除[分散置放群组](https://cloud.tencent.com/document/product/213/15486)。只有空的置放群组才能被删除，非空的群组需要先销毁组内所有云服务器，才能执行删除操作，不然会产生删除置放群组失败的错误。
 
         # @param request: Request instance for DeleteDisasterRecoverGroups.
@@ -250,6 +302,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteKeyPairsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口（DeleteLaunchTemplate）用于删除一个实例启动模板。
+
+        # @param request: Request instance for DeleteLaunchTemplate.
+        # @type request: :class:`Tencentcloud::cvm::V20170312::DeleteLaunchTemplateRequest`
+        # @rtype: :class:`Tencentcloud::cvm::V20170312::DeleteLaunchTemplateResponse`
+        def DeleteLaunchTemplate(request)
+          body = send_request('DeleteLaunchTemplate', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteLaunchTemplateResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口（DeleteLaunchTemplateVersions）用于删除一个或者多个实例启动模板版本。
+
+        # @param request: Request instance for DeleteLaunchTemplateVersions.
+        # @type request: :class:`Tencentcloud::cvm::V20170312::DeleteLaunchTemplateVersionsRequest`
+        # @rtype: :class:`Tencentcloud::cvm::V20170312::DeleteLaunchTemplateVersionsResponse`
+        def DeleteLaunchTemplateVersions(request)
+          body = send_request('DeleteLaunchTemplateVersions', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteLaunchTemplateVersionsResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -716,6 +816,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeKeyPairsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口（DescribeLaunchTemplateVersions）用于查询实例模板版本信息。
+
+        # @param request: Request instance for DescribeLaunchTemplateVersions.
+        # @type request: :class:`Tencentcloud::cvm::V20170312::DescribeLaunchTemplateVersionsRequest`
+        # @rtype: :class:`Tencentcloud::cvm::V20170312::DescribeLaunchTemplateVersionsResponse`
+        def DescribeLaunchTemplateVersions(request)
+          body = send_request('DescribeLaunchTemplateVersions', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeLaunchTemplateVersionsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口（DescribeLaunchTemplates）用于查询一个或者多个实例启动模板。
+
+        # @param request: Request instance for DescribeLaunchTemplates.
+        # @type request: :class:`Tencentcloud::cvm::V20170312::DescribeLaunchTemplatesRequest`
+        # @rtype: :class:`Tencentcloud::cvm::V20170312::DescribeLaunchTemplatesResponse`
+        def DescribeLaunchTemplates(request)
+          body = send_request('DescribeLaunchTemplates', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeLaunchTemplatesResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1511,6 +1659,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyKeyPairAttributeResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口（ModifyLaunchTemplateDefaultVersion）用于修改实例启动模板默认版本。
+
+        # @param request: Request instance for ModifyLaunchTemplateDefaultVersion.
+        # @type request: :class:`Tencentcloud::cvm::V20170312::ModifyLaunchTemplateDefaultVersionRequest`
+        # @rtype: :class:`Tencentcloud::cvm::V20170312::ModifyLaunchTemplateDefaultVersionResponse`
+        def ModifyLaunchTemplateDefaultVersion(request)
+          body = send_request('ModifyLaunchTemplateDefaultVersion', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyLaunchTemplateDefaultVersionResponse.new
             model.deserialize(response['Response'])
             model
           else

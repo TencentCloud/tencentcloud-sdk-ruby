@@ -618,6 +618,38 @@ module TencentCloud
         end
       end
 
+      # 数据盘价格
+      class DataDiskPrice < TencentCloud::Common::AbstractModel
+        # @param DiskId: 云硬盘ID。
+        # @type DiskId: String
+        # @param OriginalDiskPrice: 云硬盘单价。
+        # @type OriginalDiskPrice: Float
+        # @param OriginalPrice: 云硬盘总价。
+        # @type OriginalPrice: Float
+        # @param Discount: 折扣。
+        # @type Discount: Float
+        # @param DiscountPrice: 折后总价。
+        # @type DiscountPrice: Float
+
+        attr_accessor :DiskId, :OriginalDiskPrice, :OriginalPrice, :Discount, :DiscountPrice
+        
+        def initialize(diskid=nil, originaldiskprice=nil, originalprice=nil, discount=nil, discountprice=nil)
+          @DiskId = diskid
+          @OriginalDiskPrice = originaldiskprice
+          @OriginalPrice = originalprice
+          @Discount = discount
+          @DiscountPrice = discountprice
+        end
+
+        def deserialize(params)
+          @DiskId = params['DiskId']
+          @OriginalDiskPrice = params['OriginalDiskPrice']
+          @OriginalPrice = params['OriginalPrice']
+          @Discount = params['Discount']
+          @DiscountPrice = params['DiscountPrice']
+        end
+      end
+
       # DeleteBlueprints请求参数结构体
       class DeleteBlueprintsRequest < TencentCloud::Common::AbstractModel
         # @param BlueprintIds: 镜像ID列表。镜像ID，可通过[DescribeBlueprints](https://cloud.tencent.com/document/product/1207/47689)接口返回值中的BlueprintId获取。
@@ -1083,8 +1115,10 @@ module TencentCloud
 
       # DescribeDiskConfigs请求参数结构体
       class DescribeDiskConfigsRequest < TencentCloud::Common::AbstractModel
-        # @param Filters: - zone:
-        # 可用区
+        # @param Filters: 过滤器列表。
+        # <li>zone</li>按照【可用区】进行过滤。
+        # 类型：String
+        # 必选：否
         # @type Filters: Array
 
         attr_accessor :Filters
@@ -1107,7 +1141,7 @@ module TencentCloud
 
       # DescribeDiskConfigs返回参数结构体
       class DescribeDiskConfigsResponse < TencentCloud::Common::AbstractModel
-        # @param DiskConfigSet: 磁盘配置列表
+        # @param DiskConfigSet: 云硬盘配置列表。
         # @type DiskConfigSet: Array
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -2889,13 +2923,13 @@ module TencentCloud
 
       # InquirePriceCreateDisks请求参数结构体
       class InquirePriceCreateDisksRequest < TencentCloud::Common::AbstractModel
-        # @param DiskSize: 磁盘大小
+        # @param DiskSize: 云硬盘大小, 单位: GB。
         # @type DiskSize: Integer
-        # @param DiskType: 硬盘介质类型
+        # @param DiskType: 云硬盘介质类型。取值: "CLOUD_PREMIUM"(高性能云盘), "CLOUD_SSD"(SSD云硬盘)。
         # @type DiskType: String
-        # @param DiskChargePrepaid: 新购磁盘包年包月相关参数设置
+        # @param DiskChargePrepaid: 新购云硬盘包年包月相关参数设置。
         # @type DiskChargePrepaid: :class:`Tencentcloud::Lighthouse.v20200324.models.DiskChargePrepaid`
-        # @param DiskCount: 磁盘个数, 默认值: 1
+        # @param DiskCount: 云硬盘个数, 默认值: 1。
         # @type DiskCount: Integer
 
         attr_accessor :DiskSize, :DiskType, :DiskChargePrepaid, :DiskCount
@@ -2920,7 +2954,7 @@ module TencentCloud
 
       # InquirePriceCreateDisks返回参数结构体
       class InquirePriceCreateDisksResponse < TencentCloud::Common::AbstractModel
-        # @param DiskPrice: 磁盘价格
+        # @param DiskPrice: 云硬盘价格。
         # @type DiskPrice: :class:`Tencentcloud::Lighthouse.v20200324.models.DiskPrice`
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -3047,12 +3081,18 @@ module TencentCloud
         # @type InstanceIds: Array
         # @param InstanceChargePrepaid: 预付费模式，即包年包月相关参数设置。通过该参数可以指定包年包月实例的购买时长、是否设置自动续费等属性。若指定实例的付费模式为预付费则该参数必传。
         # @type InstanceChargePrepaid: :class:`Tencentcloud::Lighthouse.v20200324.models.InstanceChargePrepaid`
+        # @param RenewDataDisk: 是否续费数据盘
+        # @type RenewDataDisk: Boolean
+        # @param AlignInstanceExpiredTime: 数据盘是否对齐实例到期时间
+        # @type AlignInstanceExpiredTime: Boolean
 
-        attr_accessor :InstanceIds, :InstanceChargePrepaid
+        attr_accessor :InstanceIds, :InstanceChargePrepaid, :RenewDataDisk, :AlignInstanceExpiredTime
         
-        def initialize(instanceids=nil, instancechargeprepaid=nil)
+        def initialize(instanceids=nil, instancechargeprepaid=nil, renewdatadisk=nil, aligninstanceexpiredtime=nil)
           @InstanceIds = instanceids
           @InstanceChargePrepaid = instancechargeprepaid
+          @RenewDataDisk = renewdatadisk
+          @AlignInstanceExpiredTime = aligninstanceexpiredtime
         end
 
         def deserialize(params)
@@ -3061,6 +3101,8 @@ module TencentCloud
             @InstanceChargePrepaid = InstanceChargePrepaid.new
             @InstanceChargePrepaid.deserialize(params['InstanceChargePrepaid'])
           end
+          @RenewDataDisk = params['RenewDataDisk']
+          @AlignInstanceExpiredTime = params['AlignInstanceExpiredTime']
         end
       end
 
@@ -3068,13 +3110,17 @@ module TencentCloud
       class InquirePriceRenewInstancesResponse < TencentCloud::Common::AbstractModel
         # @param Price: 询价信息。
         # @type Price: :class:`Tencentcloud::Lighthouse.v20200324.models.Price`
+        # @param DataDiskPriceSet: 数据盘价格信息列表。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DataDiskPriceSet: Array
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Price, :RequestId
+        attr_accessor :Price, :DataDiskPriceSet, :RequestId
         
-        def initialize(price=nil, requestid=nil)
+        def initialize(price=nil, datadiskpriceset=nil, requestid=nil)
           @Price = price
+          @DataDiskPriceSet = datadiskpriceset
           @RequestId = requestid
         end
 
@@ -3082,6 +3128,14 @@ module TencentCloud
           unless params['Price'].nil?
             @Price = Price.new
             @Price.deserialize(params['Price'])
+          end
+          unless params['DataDiskPriceSet'].nil?
+            @DataDiskPriceSet = []
+            params['DataDiskPriceSet'].each do |i|
+              datadiskprice_tmp = DataDiskPrice.new
+              datadiskprice_tmp.deserialize(i)
+              @DataDiskPriceSet << datadiskprice_tmp
+            end
           end
           @RequestId = params['RequestId']
         end

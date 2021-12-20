@@ -466,7 +466,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口（DescribeDiskConfigs）用于查询磁盘配置。
+        # 本接口（DescribeDiskConfigs）用于查询云硬盘配置。
 
         # @param request: Request instance for DescribeDiskConfigs.
         # @type request: :class:`Tencentcloud::lighthouse::V20200324::DescribeDiskConfigsRequest`
@@ -1130,7 +1130,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口（InquirePriceCreateDisks）用于新购磁盘询价。
+        # 本接口（InquirePriceCreateDisks）用于新购云硬盘询价。
 
         # @param request: Request instance for InquirePriceCreateDisks.
         # @type request: :class:`Tencentcloud::lighthouse::V20200324::InquirePriceCreateDisksRequest`

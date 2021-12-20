@@ -5051,9 +5051,9 @@ module TencentCloud
 
       # ModifyDomain请求参数结构体
       class ModifyDomainRequest < TencentCloud::Common::AbstractModel
-        # @param LoadBalancerId: 负载均衡实例 ID
+        # @param LoadBalancerId: 负载均衡实例 ID。
         # @type LoadBalancerId: String
-        # @param ListenerId: 负载均衡监听器 ID
+        # @param ListenerId: 负载均衡监听器 ID。
         # @type ListenerId: String
         # @param Domain: 监听器下的某个旧域名。
         # @type Domain: String

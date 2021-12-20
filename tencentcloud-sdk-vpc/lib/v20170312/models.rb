@@ -4041,10 +4041,18 @@ module TencentCloud
         # @type HealthCheckRemoteIp: String
         # @param RouteType: 通道类型, 例如:["STATIC", "StaticRoute", "Policy"]
         # @type RouteType: String
+        # @param NegotiationType: 协商类型，默认为active（主动协商）。可选值：active（主动协商），passive（被动协商），flowTrigger（流量协商）
+        # @type NegotiationType: String
+        # @param DpdEnable: DPD探测开关。默认为0，表示关闭DPD探测。可选值：0（关闭），1（开启）
+        # @type DpdEnable: Integer
+        # @param DpdTimeout: DPD超时时间。即探测确认对端不存在需要的时间。dpdEnable为1（开启）时有效。默认30，单位为秒
+        # @type DpdTimeout: String
+        # @param DpdAction: DPD超时后的动作。默认为clear。dpdEnable为1（开启）时有效。可取值为clear（断开）和restart（重试）
+        # @type DpdAction: String
 
-        attr_accessor :VpnGatewayId, :CustomerGatewayId, :VpnConnectionName, :PreShareKey, :VpcId, :SecurityPolicyDatabases, :IKEOptionsSpecification, :IPSECOptionsSpecification, :Tags, :EnableHealthCheck, :HealthCheckLocalIp, :HealthCheckRemoteIp, :RouteType
+        attr_accessor :VpnGatewayId, :CustomerGatewayId, :VpnConnectionName, :PreShareKey, :VpcId, :SecurityPolicyDatabases, :IKEOptionsSpecification, :IPSECOptionsSpecification, :Tags, :EnableHealthCheck, :HealthCheckLocalIp, :HealthCheckRemoteIp, :RouteType, :NegotiationType, :DpdEnable, :DpdTimeout, :DpdAction
         
-        def initialize(vpngatewayid=nil, customergatewayid=nil, vpnconnectionname=nil, presharekey=nil, vpcid=nil, securitypolicydatabases=nil, ikeoptionsspecification=nil, ipsecoptionsspecification=nil, tags=nil, enablehealthcheck=nil, healthchecklocalip=nil, healthcheckremoteip=nil, routetype=nil)
+        def initialize(vpngatewayid=nil, customergatewayid=nil, vpnconnectionname=nil, presharekey=nil, vpcid=nil, securitypolicydatabases=nil, ikeoptionsspecification=nil, ipsecoptionsspecification=nil, tags=nil, enablehealthcheck=nil, healthchecklocalip=nil, healthcheckremoteip=nil, routetype=nil, negotiationtype=nil, dpdenable=nil, dpdtimeout=nil, dpdaction=nil)
           @VpnGatewayId = vpngatewayid
           @CustomerGatewayId = customergatewayid
           @VpnConnectionName = vpnconnectionname
@@ -4058,6 +4066,10 @@ module TencentCloud
           @HealthCheckLocalIp = healthchecklocalip
           @HealthCheckRemoteIp = healthcheckremoteip
           @RouteType = routetype
+          @NegotiationType = negotiationtype
+          @DpdEnable = dpdenable
+          @DpdTimeout = dpdtimeout
+          @DpdAction = dpdaction
         end
 
         def deserialize(params)
@@ -4094,6 +4106,10 @@ module TencentCloud
           @HealthCheckLocalIp = params['HealthCheckLocalIp']
           @HealthCheckRemoteIp = params['HealthCheckRemoteIp']
           @RouteType = params['RouteType']
+          @NegotiationType = params['NegotiationType']
+          @DpdEnable = params['DpdEnable']
+          @DpdTimeout = params['DpdTimeout']
+          @DpdAction = params['DpdAction']
         end
       end
 
@@ -13855,10 +13871,18 @@ module TencentCloud
         # @type HealthCheckLocalIp: String
         # @param HealthCheckRemoteIp: 对端通道探测ip
         # @type HealthCheckRemoteIp: String
+        # @param NegotiationType: 协商类型，默认为active（主动协商）。可选值：active（主动协商），passive（被动协商），flowTrigger（流量协商）
+        # @type NegotiationType: String
+        # @param DpdEnable: DPD探测开关。默认为0，表示关闭DPD探测。可选值：0（关闭），1（开启）
+        # @type DpdEnable: Integer
+        # @param DpdTimeout: DPD超时时间。即探测确认对端不存在需要的时间。dpdEnable为1（开启）时有效。默认30，单位为秒
+        # @type DpdTimeout: String
+        # @param DpdAction: DPD超时后的动作。默认为clear。dpdEnable为1（开启）时有效。可取值为clear（断开）和restart（重试）
+        # @type DpdAction: String
 
-        attr_accessor :VpnConnectionId, :VpnConnectionName, :PreShareKey, :SecurityPolicyDatabases, :IKEOptionsSpecification, :IPSECOptionsSpecification, :EnableHealthCheck, :HealthCheckLocalIp, :HealthCheckRemoteIp
+        attr_accessor :VpnConnectionId, :VpnConnectionName, :PreShareKey, :SecurityPolicyDatabases, :IKEOptionsSpecification, :IPSECOptionsSpecification, :EnableHealthCheck, :HealthCheckLocalIp, :HealthCheckRemoteIp, :NegotiationType, :DpdEnable, :DpdTimeout, :DpdAction
         
-        def initialize(vpnconnectionid=nil, vpnconnectionname=nil, presharekey=nil, securitypolicydatabases=nil, ikeoptionsspecification=nil, ipsecoptionsspecification=nil, enablehealthcheck=nil, healthchecklocalip=nil, healthcheckremoteip=nil)
+        def initialize(vpnconnectionid=nil, vpnconnectionname=nil, presharekey=nil, securitypolicydatabases=nil, ikeoptionsspecification=nil, ipsecoptionsspecification=nil, enablehealthcheck=nil, healthchecklocalip=nil, healthcheckremoteip=nil, negotiationtype=nil, dpdenable=nil, dpdtimeout=nil, dpdaction=nil)
           @VpnConnectionId = vpnconnectionid
           @VpnConnectionName = vpnconnectionname
           @PreShareKey = presharekey
@@ -13868,6 +13892,10 @@ module TencentCloud
           @EnableHealthCheck = enablehealthcheck
           @HealthCheckLocalIp = healthchecklocalip
           @HealthCheckRemoteIp = healthcheckremoteip
+          @NegotiationType = negotiationtype
+          @DpdEnable = dpdenable
+          @DpdTimeout = dpdtimeout
+          @DpdAction = dpdaction
         end
 
         def deserialize(params)
@@ -13893,6 +13921,10 @@ module TencentCloud
           @EnableHealthCheck = params['EnableHealthCheck']
           @HealthCheckLocalIp = params['HealthCheckLocalIp']
           @HealthCheckRemoteIp = params['HealthCheckRemoteIp']
+          @NegotiationType = params['NegotiationType']
+          @DpdEnable = params['DpdEnable']
+          @DpdTimeout = params['DpdTimeout']
+          @DpdAction = params['DpdAction']
         end
       end
 

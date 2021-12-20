@@ -53,10 +53,14 @@ module TencentCloud
         # @param LanguageResults: 该字段用于返回音频小语种检测的详细审核结果。具体结果内容请参见AudioResultDetailLanguageResult数据结构的细节描述。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LanguageResults: Array
+        # @param SubLabel: 该字段用于返回当前标签（Lable）下的二级标签。
+        # 注意：此字段可能返回null，表示取不到有效值。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SubLabel: String
 
-        attr_accessor :HitFlag, :Label, :Suggestion, :Score, :Text, :Url, :Duration, :Extra, :TextResults, :MoanResults, :LanguageResults
+        attr_accessor :HitFlag, :Label, :Suggestion, :Score, :Text, :Url, :Duration, :Extra, :TextResults, :MoanResults, :LanguageResults, :SubLabel
         
-        def initialize(hitflag=nil, label=nil, suggestion=nil, score=nil, text=nil, url=nil, duration=nil, extra=nil, textresults=nil, moanresults=nil, languageresults=nil)
+        def initialize(hitflag=nil, label=nil, suggestion=nil, score=nil, text=nil, url=nil, duration=nil, extra=nil, textresults=nil, moanresults=nil, languageresults=nil, sublabel=nil)
           @HitFlag = hitflag
           @Label = label
           @Suggestion = suggestion
@@ -68,6 +72,7 @@ module TencentCloud
           @TextResults = textresults
           @MoanResults = moanresults
           @LanguageResults = languageresults
+          @SubLabel = sublabel
         end
 
         def deserialize(params)
@@ -103,6 +108,7 @@ module TencentCloud
               @LanguageResults << audioresultdetaillanguageresult_tmp
             end
           end
+          @SubLabel = params['SubLabel']
         end
       end
 
@@ -156,15 +162,20 @@ module TencentCloud
         # @type EndTime: Float
         # @param SubLabelCode: *内测中，敬请期待*
         # @type SubLabelCode: String
+        # @param SubLabel: 该字段用于返回当前标签（Lable）下的二级标签。
+        # 注意：此字段可能返回null，表示取不到有效值。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SubLabel: String
 
-        attr_accessor :Label, :Score, :StartTime, :EndTime, :SubLabelCode
+        attr_accessor :Label, :Score, :StartTime, :EndTime, :SubLabelCode, :SubLabel
         
-        def initialize(label=nil, score=nil, starttime=nil, endtime=nil, sublabelcode=nil)
+        def initialize(label=nil, score=nil, starttime=nil, endtime=nil, sublabelcode=nil, sublabel=nil)
           @Label = label
           @Score = score
           @StartTime = starttime
           @EndTime = endtime
           @SubLabelCode = sublabelcode
+          @SubLabel = sublabel
         end
 
         def deserialize(params)
@@ -173,6 +184,7 @@ module TencentCloud
           @StartTime = params['StartTime']
           @EndTime = params['EndTime']
           @SubLabelCode = params['SubLabelCode']
+          @SubLabel = params['SubLabel']
         end
       end
 
@@ -200,10 +212,14 @@ module TencentCloud
         # @param LibType: 该字段用于返回自定义关键词对应的词库类型，取值为**1**（黑白库）和**2**（自定义关键词库），若未配置自定义关键词库,则默认值为1（黑白库匹配）。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LibType: Integer
+        # @param SubLabel: 该字段用于返回当前标签（Lable）下的二级标签。
+        # 注意：此字段可能返回null，表示取不到有效值。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SubLabel: String
 
-        attr_accessor :Label, :Keywords, :LibId, :LibName, :Score, :Suggestion, :LibType
+        attr_accessor :Label, :Keywords, :LibId, :LibName, :Score, :Suggestion, :LibType, :SubLabel
         
-        def initialize(label=nil, keywords=nil, libid=nil, libname=nil, score=nil, suggestion=nil, libtype=nil)
+        def initialize(label=nil, keywords=nil, libid=nil, libname=nil, score=nil, suggestion=nil, libtype=nil, sublabel=nil)
           @Label = label
           @Keywords = keywords
           @LibId = libid
@@ -211,6 +227,7 @@ module TencentCloud
           @Score = score
           @Suggestion = suggestion
           @LibType = libtype
+          @SubLabel = sublabel
         end
 
         def deserialize(params)
@@ -221,6 +238,7 @@ module TencentCloud
           @Score = params['Score']
           @Suggestion = params['Suggestion']
           @LibType = params['LibType']
+          @SubLabel = params['SubLabel']
         end
       end
 
@@ -621,10 +639,14 @@ module TencentCloud
         # @param Extra: 该字段用于返回输入参数中的额外附加信息（Extra），如未配置则默认返回值为空。<br>备注：不同客户或Biztype下返回信息不同，如需配置该字段请提交工单咨询或联系售后专员处理。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Extra: String
+        # @param SubLabel: 该字段用于返回当前标签（Lable）下的二级标签。
+        # 注意：此字段可能返回null，表示取不到有效值。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SubLabel: String
 
-        attr_accessor :HitFlag, :Label, :Suggestion, :Score, :Results, :Url, :Extra
+        attr_accessor :HitFlag, :Label, :Suggestion, :Score, :Results, :Url, :Extra, :SubLabel
         
-        def initialize(hitflag=nil, label=nil, suggestion=nil, score=nil, results=nil, url=nil, extra=nil)
+        def initialize(hitflag=nil, label=nil, suggestion=nil, score=nil, results=nil, url=nil, extra=nil, sublabel=nil)
           @HitFlag = hitflag
           @Label = label
           @Suggestion = suggestion
@@ -632,6 +654,7 @@ module TencentCloud
           @Results = results
           @Url = url
           @Extra = extra
+          @SubLabel = sublabel
         end
 
         def deserialize(params)
@@ -649,6 +672,7 @@ module TencentCloud
           end
           @Url = params['Url']
           @Extra = params['Extra']
+          @SubLabel = params['SubLabel']
         end
       end
 
@@ -1055,19 +1079,25 @@ module TencentCloud
         # @param Score: 该字段用于返回当前标签（Label）下的置信度，取值范围：0（**置信度最低**）-100（**置信度最高** ），越高代表文本越有可能属于当前返回的标签；如：*色情 99*，则表明该文本非常有可能属于色情内容；*色情 0*，则表明该文本不属于色情内容。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Score: Integer
+        # @param SubLabel: 该字段用于返回当前标签（Lable）下的二级标签。
+        # 注意：此字段可能返回null，表示取不到有效值。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SubLabel: String
 
-        attr_accessor :Label, :Suggestion, :Score
+        attr_accessor :Label, :Suggestion, :Score, :SubLabel
         
-        def initialize(label=nil, suggestion=nil, score=nil)
+        def initialize(label=nil, suggestion=nil, score=nil, sublabel=nil)
           @Label = label
           @Suggestion = suggestion
           @Score = score
+          @SubLabel = sublabel
         end
 
         def deserialize(params)
           @Label = params['Label']
           @Suggestion = params['Suggestion']
           @Score = params['Score']
+          @SubLabel = params['SubLabel']
         end
       end
 
