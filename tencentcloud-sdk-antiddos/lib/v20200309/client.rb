@@ -149,6 +149,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 添加DDoS防护的IP网段黑白名单
+
+        # @param request: Request instance for CreateDDoSBlackWhiteIpList.
+        # @type request: :class:`Tencentcloud::antiddos::V20200309::CreateDDoSBlackWhiteIpListRequest`
+        # @rtype: :class:`Tencentcloud::antiddos::V20200309::CreateDDoSBlackWhiteIpListResponse`
+        def CreateDDoSBlackWhiteIpList(request)
+          body = send_request('CreateDDoSBlackWhiteIpList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateDDoSBlackWhiteIpListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 添加DDoS防护的区域封禁配置
 
         # @param request: Request instance for CreateDDoSGeoIPBlockConfig.
@@ -413,6 +437,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 删除DDoS防护的IP网段黑白名单
+
+        # @param request: Request instance for DeleteDDoSBlackWhiteIpList.
+        # @type request: :class:`Tencentcloud::antiddos::V20200309::DeleteDDoSBlackWhiteIpListRequest`
+        # @rtype: :class:`Tencentcloud::antiddos::V20200309::DeleteDDoSBlackWhiteIpListResponse`
+        def DeleteDDoSBlackWhiteIpList(request)
+          body = send_request('DeleteDDoSBlackWhiteIpList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteDDoSBlackWhiteIpListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 删除DDoS防护的区域封禁配置
 
         # @param request: Request instance for DeleteDDoSGeoIPBlockConfig.
@@ -615,6 +663,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeCCTrendResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取DDoS防护的IP网段黑白名单
+
+        # @param request: Request instance for DescribeDDoSBlackWhiteIpList.
+        # @type request: :class:`Tencentcloud::antiddos::V20200309::DescribeDDoSBlackWhiteIpListRequest`
+        # @rtype: :class:`Tencentcloud::antiddos::V20200309::DescribeDDoSBlackWhiteIpListResponse`
+        def DescribeDDoSBlackWhiteIpList(request)
+          body = send_request('DescribeDDoSBlackWhiteIpList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeDDoSBlackWhiteIpListResponse.new
             model.deserialize(response['Response'])
             model
           else

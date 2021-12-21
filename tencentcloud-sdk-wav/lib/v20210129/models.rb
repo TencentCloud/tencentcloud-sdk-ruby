@@ -544,6 +544,122 @@ module TencentCloud
         end
       end
 
+      # CreateLead请求参数结构体
+      class CreateLeadRequest < TencentCloud::Common::AbstractModel
+        # @param ChannelId: 来源ID
+        # @type ChannelId: Integer
+        # @param ChannelName: 来源名称
+        # @type ChannelName: String
+        # @param CreateTime: 创建时间， 单位毫秒
+        # @type CreateTime: Integer
+        # @param SourceType: 线索类型：1-400呼入，2-常规留资
+        # @type SourceType: Integer
+        # @param DealerId: 经销商id
+        # @type DealerId: Integer
+        # @param BrandId: 品牌id
+        # @type BrandId: Integer
+        # @param SeriesId: 车系id
+        # @type SeriesId: Integer
+        # @param CustomerName: 客户姓名
+        # @type CustomerName: String
+        # @param CustomerPhone: 客户手机号
+        # @type CustomerPhone: String
+        # @param ModelId: 车型id
+        # @type ModelId: Integer
+        # @param CustomerSex: 客户性别: 0-未知, 1-男, 2-女
+        # @type CustomerSex: Integer
+        # @param SalesName: 销售姓名
+        # @type SalesName: String
+        # @param SalesPhone: 销售手机号
+        # @type SalesPhone: String
+        # @param CcName: Cc坐席姓名
+        # @type CcName: String
+        # @param Remark: 备注
+        # @type Remark: String
+
+        attr_accessor :ChannelId, :ChannelName, :CreateTime, :SourceType, :DealerId, :BrandId, :SeriesId, :CustomerName, :CustomerPhone, :ModelId, :CustomerSex, :SalesName, :SalesPhone, :CcName, :Remark
+        
+        def initialize(channelid=nil, channelname=nil, createtime=nil, sourcetype=nil, dealerid=nil, brandid=nil, seriesid=nil, customername=nil, customerphone=nil, modelid=nil, customersex=nil, salesname=nil, salesphone=nil, ccname=nil, remark=nil)
+          @ChannelId = channelid
+          @ChannelName = channelname
+          @CreateTime = createtime
+          @SourceType = sourcetype
+          @DealerId = dealerid
+          @BrandId = brandid
+          @SeriesId = seriesid
+          @CustomerName = customername
+          @CustomerPhone = customerphone
+          @ModelId = modelid
+          @CustomerSex = customersex
+          @SalesName = salesname
+          @SalesPhone = salesphone
+          @CcName = ccname
+          @Remark = remark
+        end
+
+        def deserialize(params)
+          @ChannelId = params['ChannelId']
+          @ChannelName = params['ChannelName']
+          @CreateTime = params['CreateTime']
+          @SourceType = params['SourceType']
+          @DealerId = params['DealerId']
+          @BrandId = params['BrandId']
+          @SeriesId = params['SeriesId']
+          @CustomerName = params['CustomerName']
+          @CustomerPhone = params['CustomerPhone']
+          @ModelId = params['ModelId']
+          @CustomerSex = params['CustomerSex']
+          @SalesName = params['SalesName']
+          @SalesPhone = params['SalesPhone']
+          @CcName = params['CcName']
+          @Remark = params['Remark']
+        end
+      end
+
+      # CreateLead返回参数结构体
+      class CreateLeadResponse < TencentCloud::Common::AbstractModel
+        # @param BusinessCode: 线索处理状态码： 0-表示创建成功， 1-表示线索合并，2-表示线索重复
+        # @type BusinessCode: Integer
+        # @param BusinessMsg: 线索处理结果描述
+        # @type BusinessMsg: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :BusinessCode, :BusinessMsg, :RequestId
+        
+        def initialize(businesscode=nil, businessmsg=nil, requestid=nil)
+          @BusinessCode = businesscode
+          @BusinessMsg = businessmsg
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @BusinessCode = params['BusinessCode']
+          @BusinessMsg = params['BusinessMsg']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 经销商信息
+      class DealerInfo < TencentCloud::Common::AbstractModel
+        # @param DealerId: 企微SaaS平台经销商id
+        # @type DealerId: Integer
+        # @param DealerName: 经销商名称
+        # @type DealerName: String
+
+        attr_accessor :DealerId, :DealerName
+        
+        def initialize(dealerid=nil, dealername=nil)
+          @DealerId = dealerid
+          @DealerName = dealername
+        end
+
+        def deserialize(params)
+          @DealerId = params['DealerId']
+          @DealerName = params['DealerName']
+        end
+      end
+
       # 客户信息
       class ExternalContact < TencentCloud::Common::AbstractModel
         # @param ExternalUserId: 外部联系人的userId
@@ -1183,6 +1299,64 @@ module TencentCloud
         end
       end
 
+      # QueryDealerInfoList请求参数结构体
+      class QueryDealerInfoListRequest < TencentCloud::Common::AbstractModel
+        # @param Cursor: 用于分页查询的游标，字符串类型，由上一次调用返回，首次调用可不填
+        # @type Cursor: String
+        # @param Limit: 返回的最大记录数，整型，最大值100，默认值50，超过最大值时取最大值
+        # @type Limit: Integer
+
+        attr_accessor :Cursor, :Limit
+        
+        def initialize(cursor=nil, limit=nil)
+          @Cursor = cursor
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @Cursor = params['Cursor']
+          @Limit = params['Limit']
+        end
+      end
+
+      # QueryDealerInfoList返回参数结构体
+      class QueryDealerInfoListResponse < TencentCloud::Common::AbstractModel
+        # @param PageData: 经销商信息列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PageData: Array
+        # @param NextCursor: 分页游标，下次调用带上该值，则从当前的位置继续往后拉取新增的数据，以实现增量拉取。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NextCursor: String
+        # @param HasMore: 是否还有更多数据。0-否；1-是。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HasMore: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :PageData, :NextCursor, :HasMore, :RequestId
+        
+        def initialize(pagedata=nil, nextcursor=nil, hasmore=nil, requestid=nil)
+          @PageData = pagedata
+          @NextCursor = nextcursor
+          @HasMore = hasmore
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['PageData'].nil?
+            @PageData = []
+            params['PageData'].each do |i|
+              dealerinfo_tmp = DealerInfo.new
+              dealerinfo_tmp.deserialize(i)
+              @PageData << dealerinfo_tmp
+            end
+          end
+          @NextCursor = params['NextCursor']
+          @HasMore = params['HasMore']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # QueryExternalContactDetail请求参数结构体
       class QueryExternalContactDetailRequest < TencentCloud::Common::AbstractModel
         # @param ExternalUserId: 外部联系人的userid，注意不是企业成员的帐号
@@ -1438,6 +1612,64 @@ module TencentCloud
         end
       end
 
+      # QueryVehicleInfoList请求参数结构体
+      class QueryVehicleInfoListRequest < TencentCloud::Common::AbstractModel
+        # @param Cursor: 用于分页查询的游标，字符串类型，由上一次调用返回，首次调用可不填
+        # @type Cursor: String
+        # @param Limit: 返回的最大记录数，整型，最大值100，默认值50，超过最大值时取最大值
+        # @type Limit: Integer
+
+        attr_accessor :Cursor, :Limit
+        
+        def initialize(cursor=nil, limit=nil)
+          @Cursor = cursor
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @Cursor = params['Cursor']
+          @Limit = params['Limit']
+        end
+      end
+
+      # QueryVehicleInfoList返回参数结构体
+      class QueryVehicleInfoListResponse < TencentCloud::Common::AbstractModel
+        # @param PageData: 车系车型信息列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PageData: Array
+        # @param NextCursor: 分页游标，下次调用带上该值，则从当前的位置继续往后拉取新增的数据，以实现增量拉取。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NextCursor: String
+        # @param HasMore: 是否还有更多数据。0-否；1-是。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HasMore: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :PageData, :NextCursor, :HasMore, :RequestId
+        
+        def initialize(pagedata=nil, nextcursor=nil, hasmore=nil, requestid=nil)
+          @PageData = pagedata
+          @NextCursor = nextcursor
+          @HasMore = hasmore
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['PageData'].nil?
+            @PageData = []
+            params['PageData'].each do |i|
+              vehicleinfo_tmp = VehicleInfo.new
+              vehicleinfo_tmp.deserialize(i)
+              @PageData << vehicleinfo_tmp
+            end
+          end
+          @NextCursor = params['NextCursor']
+          @HasMore = params['HasMore']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 标签详细信息
       class TagDetailInfo < TencentCloud::Common::AbstractModel
         # @param TagName: 标签名称
@@ -1530,6 +1762,42 @@ module TencentCloud
         def deserialize(params)
           @TagName = params['TagName']
           @Sort = params['Sort']
+        end
+      end
+
+      # 车型车系信息
+      class VehicleInfo < TencentCloud::Common::AbstractModel
+        # @param BrandId: 品牌id
+        # @type BrandId: Integer
+        # @param BrandName: 品牌名称
+        # @type BrandName: String
+        # @param SeriesId: 车系id
+        # @type SeriesId: Integer
+        # @param SeriesName: 车系名称
+        # @type SeriesName: String
+        # @param ModelId: 车型id
+        # @type ModelId: Integer
+        # @param ModelName: 车型名称
+        # @type ModelName: String
+
+        attr_accessor :BrandId, :BrandName, :SeriesId, :SeriesName, :ModelId, :ModelName
+        
+        def initialize(brandid=nil, brandname=nil, seriesid=nil, seriesname=nil, modelid=nil, modelname=nil)
+          @BrandId = brandid
+          @BrandName = brandname
+          @SeriesId = seriesid
+          @SeriesName = seriesname
+          @ModelId = modelid
+          @ModelName = modelname
+        end
+
+        def deserialize(params)
+          @BrandId = params['BrandId']
+          @BrandName = params['BrandName']
+          @SeriesId = params['SeriesId']
+          @SeriesName = params['SeriesName']
+          @ModelId = params['ModelId']
+          @ModelName = params['ModelName']
         end
       end
 

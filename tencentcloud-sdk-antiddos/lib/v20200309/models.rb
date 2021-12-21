@@ -705,6 +705,53 @@ module TencentCloud
         end
       end
 
+      # CreateDDoSBlackWhiteIpList请求参数结构体
+      class CreateDDoSBlackWhiteIpListRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 资源实例ID
+        # @type InstanceId: String
+        # @param IpList: IP列表
+        # @type IpList: Array
+        # @param Type: IP类型，取值[black(黑名单IP), white(白名单IP)]
+        # @type Type: String
+
+        attr_accessor :InstanceId, :IpList, :Type
+        
+        def initialize(instanceid=nil, iplist=nil, type=nil)
+          @InstanceId = instanceid
+          @IpList = iplist
+          @Type = type
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          unless params['IpList'].nil?
+            @IpList = []
+            params['IpList'].each do |i|
+              ipsegment_tmp = IpSegment.new
+              ipsegment_tmp.deserialize(i)
+              @IpList << ipsegment_tmp
+            end
+          end
+          @Type = params['Type']
+        end
+      end
+
+      # CreateDDoSBlackWhiteIpList返回参数结构体
+      class CreateDDoSBlackWhiteIpListResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateDDoSGeoIPBlockConfig请求参数结构体
       class CreateDDoSGeoIPBlockConfigRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 资源实例ID
@@ -1342,6 +1389,53 @@ module TencentCloud
         end
       end
 
+      # DeleteDDoSBlackWhiteIpList请求参数结构体
+      class DeleteDDoSBlackWhiteIpListRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 资源实例ID
+        # @type InstanceId: String
+        # @param IpList: IP列表
+        # @type IpList: Array
+        # @param Type: IP类型，取值[black(黑名单IP), white(白名单IP)]
+        # @type Type: String
+
+        attr_accessor :InstanceId, :IpList, :Type
+        
+        def initialize(instanceid=nil, iplist=nil, type=nil)
+          @InstanceId = instanceid
+          @IpList = iplist
+          @Type = type
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          unless params['IpList'].nil?
+            @IpList = []
+            params['IpList'].each do |i|
+              ipsegment_tmp = IpSegment.new
+              ipsegment_tmp.deserialize(i)
+              @IpList << ipsegment_tmp
+            end
+          end
+          @Type = params['Type']
+        end
+      end
+
+      # DeleteDDoSBlackWhiteIpList返回参数结构体
+      class DeleteDDoSBlackWhiteIpListResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DeleteDDoSGeoIPBlockConfig请求参数结构体
       class DeleteDDoSGeoIPBlockConfigRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 资源实例ID
@@ -1785,6 +1879,60 @@ module TencentCloud
           @Data = params['Data']
           @Id = params['Id']
           @MetricName = params['MetricName']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeDDoSBlackWhiteIpList请求参数结构体
+      class DescribeDDoSBlackWhiteIpListRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 资源实例ID
+        # @type InstanceId: String
+
+        attr_accessor :InstanceId
+        
+        def initialize(instanceid=nil)
+          @InstanceId = instanceid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+        end
+      end
+
+      # DescribeDDoSBlackWhiteIpList返回参数结构体
+      class DescribeDDoSBlackWhiteIpListResponse < TencentCloud::Common::AbstractModel
+        # @param BlackIpList: 黑名单IP列表
+        # @type BlackIpList: Array
+        # @param WhiteIpList: 白名单IP列表
+        # @type WhiteIpList: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :BlackIpList, :WhiteIpList, :RequestId
+        
+        def initialize(blackiplist=nil, whiteiplist=nil, requestid=nil)
+          @BlackIpList = blackiplist
+          @WhiteIpList = whiteiplist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['BlackIpList'].nil?
+            @BlackIpList = []
+            params['BlackIpList'].each do |i|
+              ipsegment_tmp = IpSegment.new
+              ipsegment_tmp.deserialize(i)
+              @BlackIpList << ipsegment_tmp
+            end
+          end
+          unless params['WhiteIpList'].nil?
+            @WhiteIpList = []
+            params['WhiteIpList'].each do |i|
+              ipsegment_tmp = IpSegment.new
+              ipsegment_tmp.deserialize(i)
+              @WhiteIpList << ipsegment_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -3083,6 +3231,26 @@ module TencentCloud
         def deserialize(params)
           @EipList = params['EipList']
           @InstanceId = params['InstanceId']
+        end
+      end
+
+      # ip段数据结构
+      class IpSegment < TencentCloud::Common::AbstractModel
+        # @param Ip: ip地址
+        # @type Ip: String
+        # @param Mask: ip掩码，如果为32位ip，填0
+        # @type Mask: Integer
+
+        attr_accessor :Ip, :Mask
+        
+        def initialize(ip=nil, mask=nil)
+          @Ip = ip
+          @Mask = mask
+        end
+
+        def deserialize(params)
+          @Ip = params['Ip']
+          @Mask = params['Mask']
         end
       end
 

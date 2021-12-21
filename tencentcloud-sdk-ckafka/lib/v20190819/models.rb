@@ -1125,10 +1125,12 @@ module TencentCloud
         # @type AclRuleName: String
         # @param RetentionBytes: 可选, 保留文件大小. 默认为-1,单位bytes, 当前最小值为1048576B
         # @type RetentionBytes: Integer
+        # @param Tags: 标签列表
+        # @type Tags: Array
 
-        attr_accessor :InstanceId, :TopicName, :PartitionNum, :ReplicaNum, :EnableWhiteList, :IpWhiteList, :CleanUpPolicy, :Note, :MinInsyncReplicas, :UncleanLeaderElectionEnable, :RetentionMs, :SegmentMs, :EnableAclRule, :AclRuleName, :RetentionBytes
+        attr_accessor :InstanceId, :TopicName, :PartitionNum, :ReplicaNum, :EnableWhiteList, :IpWhiteList, :CleanUpPolicy, :Note, :MinInsyncReplicas, :UncleanLeaderElectionEnable, :RetentionMs, :SegmentMs, :EnableAclRule, :AclRuleName, :RetentionBytes, :Tags
         
-        def initialize(instanceid=nil, topicname=nil, partitionnum=nil, replicanum=nil, enablewhitelist=nil, ipwhitelist=nil, cleanuppolicy=nil, note=nil, mininsyncreplicas=nil, uncleanleaderelectionenable=nil, retentionms=nil, segmentms=nil, enableaclrule=nil, aclrulename=nil, retentionbytes=nil)
+        def initialize(instanceid=nil, topicname=nil, partitionnum=nil, replicanum=nil, enablewhitelist=nil, ipwhitelist=nil, cleanuppolicy=nil, note=nil, mininsyncreplicas=nil, uncleanleaderelectionenable=nil, retentionms=nil, segmentms=nil, enableaclrule=nil, aclrulename=nil, retentionbytes=nil, tags=nil)
           @InstanceId = instanceid
           @TopicName = topicname
           @PartitionNum = partitionnum
@@ -1144,6 +1146,7 @@ module TencentCloud
           @EnableAclRule = enableaclrule
           @AclRuleName = aclrulename
           @RetentionBytes = retentionbytes
+          @Tags = tags
         end
 
         def deserialize(params)
@@ -1162,6 +1165,14 @@ module TencentCloud
           @EnableAclRule = params['EnableAclRule']
           @AclRuleName = params['AclRuleName']
           @RetentionBytes = params['RetentionBytes']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
+            end
+          end
         end
       end
 

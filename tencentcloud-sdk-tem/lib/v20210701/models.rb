@@ -2071,6 +2071,58 @@ module TencentCloud
         end
       end
 
+      # RollingUpdateApplicationByVersion请求参数结构体
+      class RollingUpdateApplicationByVersionRequest < TencentCloud::Common::AbstractModel
+        # @param ApplicationId: 应用ID
+        # @type ApplicationId: String
+        # @param EnvironmentId: 环境ID
+        # @type EnvironmentId: String
+        # @param DeployVersion: 更新版本，IMAGE 部署为 tag 值；JAR/WAR 部署 为 Version
+        # @type DeployVersion: String
+        # @param PackageName: JAR/WAR 包名，仅 JAR/WAR 部署时必填
+        # @type PackageName: String
+        # @param From: 请求来源平台，含 IntelliJ，Coding
+        # @type From: String
+
+        attr_accessor :ApplicationId, :EnvironmentId, :DeployVersion, :PackageName, :From
+        
+        def initialize(applicationid=nil, environmentid=nil, deployversion=nil, packagename=nil, from=nil)
+          @ApplicationId = applicationid
+          @EnvironmentId = environmentid
+          @DeployVersion = deployversion
+          @PackageName = packagename
+          @From = from
+        end
+
+        def deserialize(params)
+          @ApplicationId = params['ApplicationId']
+          @EnvironmentId = params['EnvironmentId']
+          @DeployVersion = params['DeployVersion']
+          @PackageName = params['PackageName']
+          @From = params['From']
+        end
+      end
+
+      # RollingUpdateApplicationByVersion返回参数结构体
+      class RollingUpdateApplicationByVersionResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 版本ID
+        # @type Result: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+        
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Result = params['Result']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 应用实例
       class RunVersionPod < TencentCloud::Common::AbstractModel
         # @param Webshell: shell地址

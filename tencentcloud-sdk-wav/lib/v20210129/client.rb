@@ -77,6 +77,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 线索回收接口
+
+        # @param request: Request instance for CreateLead.
+        # @type request: :class:`Tencentcloud::wav::V20210129::CreateLeadRequest`
+        # @rtype: :class:`Tencentcloud::wav::V20210129::CreateLeadResponse`
+        def CreateLead(request)
+          body = send_request('CreateLead', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateLeadResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 根据游标拉取活动参与列表信息
 
         # @param request: Request instance for QueryActivityJoinList.
@@ -221,6 +245,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 企业可通过此接口获取录入在企微SaaS平台上的经销商信息。
+
+        # @param request: Request instance for QueryDealerInfoList.
+        # @type request: :class:`Tencentcloud::wav::V20210129::QueryDealerInfoListRequest`
+        # @rtype: :class:`Tencentcloud::wav::V20210129::QueryDealerInfoListResponse`
+        def QueryDealerInfoList(request)
+          body = send_request('QueryDealerInfoList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = QueryDealerInfoListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 企业可通过此接口，根据外部联系人的userid，拉取客户详情
 
         # @param request: Request instance for QueryExternalContactDetail.
@@ -327,6 +375,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = QueryMiniAppCodeListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 企业可通过此接口获取企微SaaS平台上的车系车型信息。
+
+        # @param request: Request instance for QueryVehicleInfoList.
+        # @type request: :class:`Tencentcloud::wav::V20210129::QueryVehicleInfoListRequest`
+        # @rtype: :class:`Tencentcloud::wav::V20210129::QueryVehicleInfoListResponse`
+        def QueryVehicleInfoList(request)
+          body = send_request('QueryVehicleInfoList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = QueryVehicleInfoListResponse.new
             model.deserialize(response['Response'])
             model
           else

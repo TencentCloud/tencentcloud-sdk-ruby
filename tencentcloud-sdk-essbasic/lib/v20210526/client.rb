@@ -174,6 +174,67 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 此接口（GetDownloadFlowUrl）用于创建电子签批量下载确认页面链接，支持客户合同（流程）归类打包下载。
+
+        # @param request: Request instance for GetDownloadFlowUrl.
+        # @type request: :class:`Tencentcloud::essbasic::V20210526::GetDownloadFlowUrlRequest`
+        # @rtype: :class:`Tencentcloud::essbasic::V20210526::GetDownloadFlowUrlResponse`
+        def GetDownloadFlowUrl(request)
+          body = send_request('GetDownloadFlowUrl', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = GetDownloadFlowUrlResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 此接口（OperateChannelTemplate）用于渠道侧将模板库中的模板对合作企业进行查询和设置, 其中包括可见性的修改以及对合作企业的指定.
+        # 1、同步标识=select时：
+        # 输入规则：“可见标识”、“指定合作企业列表”为空。
+        # 处理规则：返回指定模版的可见标识、指定合作企业列表。
+        # 2、同步标识=update时：
+        # 输入规则：“可见标识”、“指定合作企业列表”非必填输入。
+        # 处理规则：
+        # 若“可见标识”=空，不做处理，返回当前的可见标识。
+        # 若“可见标识”=所有合作企业，不取“指定合作企业列表”的值处理。
+        # 若“可见标识”=指定合作企业，取“指定合作企业列表”的值进行更新/插入。
+        # 3、同步标识=delete时：
+        # 输入规则：“可见标识”、“指定合作企业列表”非必填输入。
+        # 处理规则：
+        # 仅取“指定合作企业列表”的值进行删除处理，为空时不做处。
+
+        # @param request: Request instance for OperateChannelTemplate.
+        # @type request: :class:`Tencentcloud::essbasic::V20210526::OperateChannelTemplateRequest`
+        # @rtype: :class:`Tencentcloud::essbasic::V20210526::OperateChannelTemplateResponse`
+        def OperateChannelTemplate(request)
+          body = send_request('OperateChannelTemplate', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = OperateChannelTemplateResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 该接口 (PrepareFlows) 用于创建待发起文件
 
         # @param request: Request instance for PrepareFlows.

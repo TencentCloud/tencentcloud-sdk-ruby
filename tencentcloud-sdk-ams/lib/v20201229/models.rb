@@ -49,7 +49,6 @@ module TencentCloud
         # @param LanguageResults: 该字段用于返回音频小语种检测的详细审核结果。具体结果内容请参见AudioResultDetailLanguageResult数据结构的细节描述。
         # @type LanguageResults: Array
         # @param SubLabel: 该字段用于返回当前标签（Lable）下的二级标签。
-        # 注意：此字段可能返回null，表示取不到有效值。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SubLabel: String
 
@@ -158,7 +157,6 @@ module TencentCloud
         # @param SubLabelCode: *内测中，敬请期待*
         # @type SubLabelCode: String
         # @param SubLabel: 该字段用于返回当前标签（Lable）下的二级标签。
-        # 注意：此字段可能返回null，表示取不到有效值。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SubLabel: String
 
@@ -207,7 +205,6 @@ module TencentCloud
         # @param LibType: 该字段用于返回自定义关键词对应的词库类型，取值为**1**（黑白库）和**2**（自定义关键词库），若未配置自定义关键词库,则默认值为1（黑白库匹配）。
         # @type LibType: Integer
         # @param SubLabel: 该字段用于返回当前标签（Lable）下的二级标签。
-        # 注意：此字段可能返回null，表示取不到有效值。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SubLabel: String
 
@@ -965,7 +962,6 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Score: Integer
         # @param SubLabel: 该字段用于返回当前标签（Lable）下的二级标签。
-        # 注意：此字段可能返回null，表示取不到有效值。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SubLabel: String
 

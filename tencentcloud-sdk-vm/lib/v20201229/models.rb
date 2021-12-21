@@ -54,7 +54,6 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LanguageResults: Array
         # @param SubLabel: 该字段用于返回当前标签（Lable）下的二级标签。
-        # 注意：此字段可能返回null，表示取不到有效值。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SubLabel: String
 
@@ -163,7 +162,6 @@ module TencentCloud
         # @param SubLabelCode: *内测中，敬请期待*
         # @type SubLabelCode: String
         # @param SubLabel: 该字段用于返回当前标签（Lable）下的二级标签。
-        # 注意：此字段可能返回null，表示取不到有效值。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SubLabel: String
 
@@ -213,7 +211,6 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LibType: Integer
         # @param SubLabel: 该字段用于返回当前标签（Lable）下的二级标签。
-        # 注意：此字段可能返回null，表示取不到有效值。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SubLabel: String
 
@@ -640,7 +637,6 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Extra: String
         # @param SubLabel: 该字段用于返回当前标签（Lable）下的二级标签。
-        # 注意：此字段可能返回null，表示取不到有效值。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SubLabel: String
 
@@ -1080,7 +1076,6 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Score: Integer
         # @param SubLabel: 该字段用于返回当前标签（Lable）下的二级标签。
-        # 注意：此字段可能返回null，表示取不到有效值。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SubLabel: String
 

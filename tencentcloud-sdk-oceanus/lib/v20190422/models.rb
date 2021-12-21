@@ -1403,14 +1403,20 @@ module TencentCloud
         # @type StartMode: String
         # @param JobConfigVersion: 当前作业的某个版本
         # @type JobConfigVersion: Integer
+        # @param SavepointPath: Savepoint路径
+        # @type SavepointPath: String
+        # @param SavepointId: Savepoint的Id
+        # @type SavepointId: String
 
-        attr_accessor :JobId, :RunType, :StartMode, :JobConfigVersion
+        attr_accessor :JobId, :RunType, :StartMode, :JobConfigVersion, :SavepointPath, :SavepointId
         
-        def initialize(jobid=nil, runtype=nil, startmode=nil, jobconfigversion=nil)
+        def initialize(jobid=nil, runtype=nil, startmode=nil, jobconfigversion=nil, savepointpath=nil, savepointid=nil)
           @JobId = jobid
           @RunType = runtype
           @StartMode = startmode
           @JobConfigVersion = jobconfigversion
+          @SavepointPath = savepointpath
+          @SavepointId = savepointid
         end
 
         def deserialize(params)
@@ -1418,6 +1424,8 @@ module TencentCloud
           @RunType = params['RunType']
           @StartMode = params['StartMode']
           @JobConfigVersion = params['JobConfigVersion']
+          @SavepointPath = params['SavepointPath']
+          @SavepointId = params['SavepointId']
         end
       end
 

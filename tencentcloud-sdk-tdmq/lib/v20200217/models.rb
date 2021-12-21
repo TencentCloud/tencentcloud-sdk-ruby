@@ -4389,6 +4389,148 @@ module TencentCloud
         end
       end
 
+      # DescribePublisherSummary请求参数结构体
+      class DescribePublisherSummaryRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群ID
+        # @type ClusterId: String
+        # @param Namespace: 命名空间名称
+        # @type Namespace: String
+        # @param Topic: 主题名称
+        # @type Topic: String
+
+        attr_accessor :ClusterId, :Namespace, :Topic
+        
+        def initialize(clusterid=nil, namespace=nil, topic=nil)
+          @ClusterId = clusterid
+          @Namespace = namespace
+          @Topic = topic
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @Namespace = params['Namespace']
+          @Topic = params['Topic']
+        end
+      end
+
+      # DescribePublisherSummary返回参数结构体
+      class DescribePublisherSummaryResponse < TencentCloud::Common::AbstractModel
+        # @param MsgRateIn: 生产速率（条/秒）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MsgRateIn: Float
+        # @param MsgThroughputIn: 生产速率（字节/秒）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MsgThroughputIn: Float
+        # @param PublisherCount: 生产者数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PublisherCount: Integer
+        # @param StorageSize: 消息存储大小，以字节为单位
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StorageSize: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :MsgRateIn, :MsgThroughputIn, :PublisherCount, :StorageSize, :RequestId
+        
+        def initialize(msgratein=nil, msgthroughputin=nil, publishercount=nil, storagesize=nil, requestid=nil)
+          @MsgRateIn = msgratein
+          @MsgThroughputIn = msgthroughputin
+          @PublisherCount = publishercount
+          @StorageSize = storagesize
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @MsgRateIn = params['MsgRateIn']
+          @MsgThroughputIn = params['MsgThroughputIn']
+          @PublisherCount = params['PublisherCount']
+          @StorageSize = params['StorageSize']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribePublishers请求参数结构体
+      class DescribePublishersRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群ID
+        # @type ClusterId: String
+        # @param Namespace: 命名空间名称
+        # @type Namespace: String
+        # @param Topic: 主题名称
+        # @type Topic: String
+        # @param Filters: 参数过滤器，支持ProducerName，Address字段
+        # @type Filters: Array
+        # @param Offset: 查询偏移量，默认为0
+        # @type Offset: Integer
+        # @param Limit: 查询条数，默认为20
+        # @type Limit: Integer
+        # @param Sort: 排序器
+        # @type Sort: :class:`Tencentcloud::Tdmq.v20200217.models.Sort`
+
+        attr_accessor :ClusterId, :Namespace, :Topic, :Filters, :Offset, :Limit, :Sort
+        
+        def initialize(clusterid=nil, namespace=nil, topic=nil, filters=nil, offset=nil, limit=nil, sort=nil)
+          @ClusterId = clusterid
+          @Namespace = namespace
+          @Topic = topic
+          @Filters = filters
+          @Offset = offset
+          @Limit = limit
+          @Sort = sort
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @Namespace = params['Namespace']
+          @Topic = params['Topic']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          unless params['Sort'].nil?
+            @Sort = Sort.new
+            @Sort.deserialize(params['Sort'])
+          end
+        end
+      end
+
+      # DescribePublishers返回参数结构体
+      class DescribePublishersResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 总条数
+        # @type TotalCount: Integer
+        # @param Publishers: 生产者信息列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Publishers: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :Publishers, :RequestId
+        
+        def initialize(totalcount=nil, publishers=nil, requestid=nil)
+          @TotalCount = totalcount
+          @Publishers = publishers
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['Publishers'].nil?
+            @Publishers = []
+            params['Publishers'].each do |i|
+              publisher_tmp = Publisher.new
+              publisher_tmp.deserialize(i)
+              @Publishers << publisher_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeRocketMQCluster请求参数结构体
       class DescribeRocketMQClusterRequest < TencentCloud::Common::AbstractModel
         # @param ClusterId: 集群ID
@@ -6186,6 +6328,63 @@ module TencentCloud
         end
       end
 
+      # 生产者信息
+      class Publisher < TencentCloud::Common::AbstractModel
+        # @param ProducerId: 生产者id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProducerId: Integer
+        # @param ProducerName: 生产者名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProducerName: String
+        # @param Address: 生产者地址
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Address: String
+        # @param ClientVersion: 客户端版本
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClientVersion: String
+        # @param MsgRateIn: 消息生产速率（条/秒）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MsgRateIn: Float
+        # @param MsgThroughputIn: 消息生产吞吐速率（字节/秒）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MsgThroughputIn: Float
+        # @param AverageMsgSize: 平均消息大小（字节）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AverageMsgSize: Float
+        # @param ConnectedSince: 连接时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ConnectedSince: String
+        # @param Partition: 生产者连接的主题分区号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Partition: Integer
+
+        attr_accessor :ProducerId, :ProducerName, :Address, :ClientVersion, :MsgRateIn, :MsgThroughputIn, :AverageMsgSize, :ConnectedSince, :Partition
+        
+        def initialize(producerid=nil, producername=nil, address=nil, clientversion=nil, msgratein=nil, msgthroughputin=nil, averagemsgsize=nil, connectedsince=nil, partition=nil)
+          @ProducerId = producerid
+          @ProducerName = producername
+          @Address = address
+          @ClientVersion = clientversion
+          @MsgRateIn = msgratein
+          @MsgThroughputIn = msgthroughputin
+          @AverageMsgSize = averagemsgsize
+          @ConnectedSince = connectedsince
+          @Partition = partition
+        end
+
+        def deserialize(params)
+          @ProducerId = params['ProducerId']
+          @ProducerName = params['ProducerName']
+          @Address = params['Address']
+          @ClientVersion = params['ClientVersion']
+          @MsgRateIn = params['MsgRateIn']
+          @MsgThroughputIn = params['MsgThroughputIn']
+          @AverageMsgSize = params['AverageMsgSize']
+          @ConnectedSince = params['ConnectedSince']
+          @Partition = params['Partition']
+        end
+      end
+
       # ReceiveMessage请求参数结构体
       class ReceiveMessageRequest < TencentCloud::Common::AbstractModel
         # @param Topic: 接收消息的topic的名字, 这里尽量需要使用topic的全路径，如果不指定，即：tenant/namespace/topic。默认使用的是：public/default
@@ -6895,6 +7094,26 @@ module TencentCloud
 
         def deserialize(params)
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 排序器
+      class Sort < TencentCloud::Common::AbstractModel
+        # @param Name: 排序字段
+        # @type Name: String
+        # @param Order: 升序ASC，降序DESC
+        # @type Order: String
+
+        attr_accessor :Name, :Order
+        
+        def initialize(name=nil, order=nil)
+          @Name = name
+          @Order = order
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Order = params['Order']
         end
       end
 

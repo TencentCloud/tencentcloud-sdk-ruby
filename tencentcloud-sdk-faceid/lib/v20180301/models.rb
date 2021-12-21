@@ -979,13 +979,13 @@ module TencentCloud
 
       # DetectReflectLivenessAndCompare请求参数结构体
       class DetectReflectLivenessAndCompareRequest < TencentCloud::Common::AbstractModel
-        # @param LiveDataUrl: SDK生成的数据包活体数据包的资源地址。
+        # @param LiveDataUrl: SDK生成的活体检测数据包的资源地址。
         # @type LiveDataUrl: String
-        # @param LiveDataMd5: SDK生成的数据包活体数据包的资源Md5。
+        # @param LiveDataMd5: SDK生成的活体检测数据包的资源内容MD5（32位，用于校验LiveData的一致性）。
         # @type LiveDataMd5: String
         # @param ImageUrl: 用于比对的目标图片的资源地址。
         # @type ImageUrl: String
-        # @param ImageMd5: 用于比对的目标图片的资源Md5。
+        # @param ImageMd5: 用于比对的目标图片的资源MD5（32位，用于校验Image的一致性）。
         # @type ImageMd5: String
 
         attr_accessor :LiveDataUrl, :LiveDataMd5, :ImageUrl, :ImageMd5
@@ -1007,11 +1007,11 @@ module TencentCloud
 
       # DetectReflectLivenessAndCompare返回参数结构体
       class DetectReflectLivenessAndCompareResponse < TencentCloud::Common::AbstractModel
-        # @param BestFrameUrl: 验证通过后的视频最佳截图照片资源地址，jpg格式。
+        # @param BestFrameUrl: 验证通过后的视频最佳截图资源临时地址，jpg格式，资源和链接有效期2小时，务必在有效期内下载。
         # @type BestFrameUrl: String
-        # @param BestFrameMd5: 验证通过后的视频最佳截图照片资源Md5。
+        # @param BestFrameMd5: 验证通过后的视频最佳截图资源MD5（32位，用于校验BestFrame的一致性）。
         # @type BestFrameMd5: String
-        # @param Result: 业务错误码，成功情况返回Success, 错误情况请参考下方错误码 列表中FailedOperation部分
+        # @param Result: 业务错误码，成功情况返回Success，错误情况请参考下方错误码 列表中FailedOperation部分。
         # @type Result: String
         # @param Description: 业务结果描述。
         # @type Description: String

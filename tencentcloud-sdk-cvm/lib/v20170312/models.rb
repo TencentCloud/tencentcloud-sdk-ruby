@@ -4437,17 +4437,73 @@ module TencentCloud
 
       # 实例启动模板，通过该参数可使用实例模板中的预设参数创建实例。
       class LaunchTemplate < TencentCloud::Common::AbstractModel
+        # @param LaunchTemplateId: 实例启动模板ID，通过该参数可使用实例模板中的预设参数创建实例。
+        # @type LaunchTemplateId: String
+        # @param LaunchTemplateVersion: 实例启动模板版本号，若给定，新实例启动模板将基于给定的版本号创建
+        # @type LaunchTemplateVersion: Integer
 
+        attr_accessor :LaunchTemplateId, :LaunchTemplateVersion
         
-        def initialize()
+        def initialize(launchtemplateid=nil, launchtemplateversion=nil)
+          @LaunchTemplateId = launchtemplateid
+          @LaunchTemplateVersion = launchtemplateversion
         end
 
         def deserialize(params)
+          @LaunchTemplateId = params['LaunchTemplateId']
+          @LaunchTemplateVersion = params['LaunchTemplateVersion']
         end
       end
 
       # 实例启动模板简要信息。
       class LaunchTemplateInfo < TencentCloud::Common::AbstractModel
+        # @param LatestVersionNumber: 实例启动模版本号。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LatestVersionNumber: Integer
+        # @param LaunchTemplateId: 实例启动模板ID。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LaunchTemplateId: String
+        # @param LaunchTemplateName: 实例启动模板名。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LaunchTemplateName: String
+        # @param DefaultVersionNumber: 实例启动模板默认版本号。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DefaultVersionNumber: Integer
+        # @param LaunchTemplateVersionCount: 实例启动模板包含的版本总数量。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LaunchTemplateVersionCount: Integer
+        # @param CreatedBy: 创建该模板的用户UIN。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreatedBy: String
+        # @param CreationTime: 创建该模板的时间。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreationTime: String
+
+        attr_accessor :LatestVersionNumber, :LaunchTemplateId, :LaunchTemplateName, :DefaultVersionNumber, :LaunchTemplateVersionCount, :CreatedBy, :CreationTime
+        
+        def initialize(latestversionnumber=nil, launchtemplateid=nil, launchtemplatename=nil, defaultversionnumber=nil, launchtemplateversioncount=nil, createdby=nil, creationtime=nil)
+          @LatestVersionNumber = latestversionnumber
+          @LaunchTemplateId = launchtemplateid
+          @LaunchTemplateName = launchtemplatename
+          @DefaultVersionNumber = defaultversionnumber
+          @LaunchTemplateVersionCount = launchtemplateversioncount
+          @CreatedBy = createdby
+          @CreationTime = creationtime
+        end
+
+        def deserialize(params)
+          @LatestVersionNumber = params['LatestVersionNumber']
+          @LaunchTemplateId = params['LaunchTemplateId']
+          @LaunchTemplateName = params['LaunchTemplateName']
+          @DefaultVersionNumber = params['DefaultVersionNumber']
+          @LaunchTemplateVersionCount = params['LaunchTemplateVersionCount']
+          @CreatedBy = params['CreatedBy']
+          @CreationTime = params['CreationTime']
+        end
+      end
+
+      # 实例启动模板版本信息
+      class LaunchTemplateVersionData < TencentCloud::Common::AbstractModel
 
         
         def initialize()
@@ -4459,12 +4515,46 @@ module TencentCloud
 
       # 实例启动模板版本集合
       class LaunchTemplateVersionInfo < TencentCloud::Common::AbstractModel
+        # @param LaunchTemplateVersion: 实例启动模板版本号。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LaunchTemplateVersion: Integer
+        # @param LaunchTemplateVersionData: 实例启动模板版本数据详情。
+        # @type LaunchTemplateVersionData: :class:`Tencentcloud::Cvm.v20170312.models.LaunchTemplateVersionData`
+        # @param CreationTime: 实例启动模板版本创建时间。
+        # @type CreationTime: String
+        # @param LaunchTemplateId: 实例启动模板ID。
+        # @type LaunchTemplateId: String
+        # @param IsDefaultVersion: 是否为默认启动模板版本。
+        # @type IsDefaultVersion: Boolean
+        # @param LaunchTemplateVersionDescription: 实例启动模板版本描述信息。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LaunchTemplateVersionDescription: String
+        # @param CreatedBy: 创建者。
+        # @type CreatedBy: String
 
+        attr_accessor :LaunchTemplateVersion, :LaunchTemplateVersionData, :CreationTime, :LaunchTemplateId, :IsDefaultVersion, :LaunchTemplateVersionDescription, :CreatedBy
         
-        def initialize()
+        def initialize(launchtemplateversion=nil, launchtemplateversiondata=nil, creationtime=nil, launchtemplateid=nil, isdefaultversion=nil, launchtemplateversiondescription=nil, createdby=nil)
+          @LaunchTemplateVersion = launchtemplateversion
+          @LaunchTemplateVersionData = launchtemplateversiondata
+          @CreationTime = creationtime
+          @LaunchTemplateId = launchtemplateid
+          @IsDefaultVersion = isdefaultversion
+          @LaunchTemplateVersionDescription = launchtemplateversiondescription
+          @CreatedBy = createdby
         end
 
         def deserialize(params)
+          @LaunchTemplateVersion = params['LaunchTemplateVersion']
+          unless params['LaunchTemplateVersionData'].nil?
+            @LaunchTemplateVersionData = LaunchTemplateVersionData.new
+            @LaunchTemplateVersionData.deserialize(params['LaunchTemplateVersionData'])
+          end
+          @CreationTime = params['CreationTime']
+          @LaunchTemplateId = params['LaunchTemplateId']
+          @IsDefaultVersion = params['IsDefaultVersion']
+          @LaunchTemplateVersionDescription = params['LaunchTemplateVersionDescription']
+          @CreatedBy = params['CreatedBy']
         end
       end
 

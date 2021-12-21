@@ -219,7 +219,7 @@ module TencentCloud
       class CreateFileSystemRequest < TencentCloud::Common::AbstractModel
         # @param FileSystemName: 文件系统名称
         # @type FileSystemName: String
-        # @param CapacityQuota: 文件系统容量（byte），下限为1G，上限为1P，且必须是1G的整数倍
+        # @param CapacityQuota: 文件系统容量（byte），下限为1GB，上限为1PB，且必须是1GB的整数倍
         # @type CapacityQuota: Integer
         # @param PosixAcl: 是否校验POSIX ACL
         # @type PosixAcl: Boolean
@@ -231,10 +231,14 @@ module TencentCloud
         # @type RootInodeUser: String
         # @param RootInodeGroup: 根目录Inode组名，默认为supergroup
         # @type RootInodeGroup: String
+        # @param EnableRanger: 是否打开Ranger地址校验
+        # @type EnableRanger: Boolean
+        # @param RangerServiceAddresses: Ranger地址列表，默认为空数组
+        # @type RangerServiceAddresses: Array
 
-        attr_accessor :FileSystemName, :CapacityQuota, :PosixAcl, :Description, :SuperUsers, :RootInodeUser, :RootInodeGroup
+        attr_accessor :FileSystemName, :CapacityQuota, :PosixAcl, :Description, :SuperUsers, :RootInodeUser, :RootInodeGroup, :EnableRanger, :RangerServiceAddresses
         
-        def initialize(filesystemname=nil, capacityquota=nil, posixacl=nil, description=nil, superusers=nil, rootinodeuser=nil, rootinodegroup=nil)
+        def initialize(filesystemname=nil, capacityquota=nil, posixacl=nil, description=nil, superusers=nil, rootinodeuser=nil, rootinodegroup=nil, enableranger=nil, rangerserviceaddresses=nil)
           @FileSystemName = filesystemname
           @CapacityQuota = capacityquota
           @PosixAcl = posixacl
@@ -242,6 +246,8 @@ module TencentCloud
           @SuperUsers = superusers
           @RootInodeUser = rootinodeuser
           @RootInodeGroup = rootinodegroup
+          @EnableRanger = enableranger
+          @RangerServiceAddresses = rangerserviceaddresses
         end
 
         def deserialize(params)
@@ -252,6 +258,8 @@ module TencentCloud
           @SuperUsers = params['SuperUsers']
           @RootInodeUser = params['RootInodeUser']
           @RootInodeGroup = params['RootInodeGroup']
+          @EnableRanger = params['EnableRanger']
+          @RangerServiceAddresses = params['RangerServiceAddresses']
         end
       end
 
@@ -721,21 +729,29 @@ module TencentCloud
       class DescribeFileSystemResponse < TencentCloud::Common::AbstractModel
         # @param FileSystem: 文件系统
         # @type FileSystem: :class:`Tencentcloud::Chdfs.v20201112.models.FileSystem`
-        # @param CapacityUsed: 已使用容量（byte），包括标准和归档存储
+        # @param CapacityUsed: 文件系统已使用容量（byte）
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CapacityUsed: Integer
-        # @param ArchiveCapacityUsed: 已使用归档存储容量（byte）
+        # @param ArchiveCapacityUsed: 已使用COS归档存储容量（byte）
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ArchiveCapacityUsed: Integer
+        # @param StandardCapacityUsed: 已使用COS标准存储容量（byte）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StandardCapacityUsed: Integer
+        # @param DegradeCapacityUsed: 已使用COS低频存储容量（byte）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DegradeCapacityUsed: Integer
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :FileSystem, :CapacityUsed, :ArchiveCapacityUsed, :RequestId
+        attr_accessor :FileSystem, :CapacityUsed, :ArchiveCapacityUsed, :StandardCapacityUsed, :DegradeCapacityUsed, :RequestId
         
-        def initialize(filesystem=nil, capacityused=nil, archivecapacityused=nil, requestid=nil)
+        def initialize(filesystem=nil, capacityused=nil, archivecapacityused=nil, standardcapacityused=nil, degradecapacityused=nil, requestid=nil)
           @FileSystem = filesystem
           @CapacityUsed = capacityused
           @ArchiveCapacityUsed = archivecapacityused
+          @StandardCapacityUsed = standardcapacityused
+          @DegradeCapacityUsed = degradecapacityused
           @RequestId = requestid
         end
 
@@ -746,6 +762,8 @@ module TencentCloud
           end
           @CapacityUsed = params['CapacityUsed']
           @ArchiveCapacityUsed = params['ArchiveCapacityUsed']
+          @StandardCapacityUsed = params['StandardCapacityUsed']
+          @DegradeCapacityUsed = params['DegradeCapacityUsed']
           @RequestId = params['RequestId']
         end
       end
@@ -1068,10 +1086,16 @@ module TencentCloud
         # @type SuperUsers: Array
         # @param PosixAcl: POSIX权限控制
         # @type PosixAcl: Boolean
+        # @param EnableRanger: 是否打开Ranger地址校验
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EnableRanger: Boolean
+        # @param RangerServiceAddresses: Ranger地址列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RangerServiceAddresses: Array
 
-        attr_accessor :AppId, :FileSystemName, :Description, :Region, :FileSystemId, :CreateTime, :BlockSize, :CapacityQuota, :Status, :SuperUsers, :PosixAcl
+        attr_accessor :AppId, :FileSystemName, :Description, :Region, :FileSystemId, :CreateTime, :BlockSize, :CapacityQuota, :Status, :SuperUsers, :PosixAcl, :EnableRanger, :RangerServiceAddresses
         
-        def initialize(appid=nil, filesystemname=nil, description=nil, region=nil, filesystemid=nil, createtime=nil, blocksize=nil, capacityquota=nil, status=nil, superusers=nil, posixacl=nil)
+        def initialize(appid=nil, filesystemname=nil, description=nil, region=nil, filesystemid=nil, createtime=nil, blocksize=nil, capacityquota=nil, status=nil, superusers=nil, posixacl=nil, enableranger=nil, rangerserviceaddresses=nil)
           @AppId = appid
           @FileSystemName = filesystemname
           @Description = description
@@ -1083,6 +1107,8 @@ module TencentCloud
           @Status = status
           @SuperUsers = superusers
           @PosixAcl = posixacl
+          @EnableRanger = enableranger
+          @RangerServiceAddresses = rangerserviceaddresses
         end
 
         def deserialize(params)
@@ -1097,6 +1123,8 @@ module TencentCloud
           @Status = params['Status']
           @SuperUsers = params['SuperUsers']
           @PosixAcl = params['PosixAcl']
+          @EnableRanger = params['EnableRanger']
+          @RangerServiceAddresses = params['RangerServiceAddresses']
         end
       end
 
@@ -1230,23 +1258,29 @@ module TencentCloud
         # @type FileSystemName: String
         # @param Description: 文件系统描述
         # @type Description: String
-        # @param CapacityQuota: 文件系统容量（byte），下限为1G，上限为1P，且必须是1G的整数倍
+        # @param CapacityQuota: 文件系统容量（byte），下限为1GB，上限为1PB，且必须是1GB的整数倍
         # 注意：修改的文件系统容量不能小于当前使用量
         # @type CapacityQuota: Integer
         # @param SuperUsers: 超级用户名列表，可以为空数组
         # @type SuperUsers: Array
         # @param PosixAcl: 是否校验POSIX ACL
         # @type PosixAcl: Boolean
+        # @param EnableRanger: 是否打开Ranger地址校验
+        # @type EnableRanger: Boolean
+        # @param RangerServiceAddresses: Ranger地址列表，可以为空数组
+        # @type RangerServiceAddresses: Array
 
-        attr_accessor :FileSystemId, :FileSystemName, :Description, :CapacityQuota, :SuperUsers, :PosixAcl
+        attr_accessor :FileSystemId, :FileSystemName, :Description, :CapacityQuota, :SuperUsers, :PosixAcl, :EnableRanger, :RangerServiceAddresses
         
-        def initialize(filesystemid=nil, filesystemname=nil, description=nil, capacityquota=nil, superusers=nil, posixacl=nil)
+        def initialize(filesystemid=nil, filesystemname=nil, description=nil, capacityquota=nil, superusers=nil, posixacl=nil, enableranger=nil, rangerserviceaddresses=nil)
           @FileSystemId = filesystemid
           @FileSystemName = filesystemname
           @Description = description
           @CapacityQuota = capacityquota
           @SuperUsers = superusers
           @PosixAcl = posixacl
+          @EnableRanger = enableranger
+          @RangerServiceAddresses = rangerserviceaddresses
         end
 
         def deserialize(params)
@@ -1256,6 +1290,8 @@ module TencentCloud
           @CapacityQuota = params['CapacityQuota']
           @SuperUsers = params['SuperUsers']
           @PosixAcl = params['PosixAcl']
+          @EnableRanger = params['EnableRanger']
+          @RangerServiceAddresses = params['RangerServiceAddresses']
         end
       end
 
@@ -1439,7 +1475,7 @@ module TencentCloud
         # @type RestoreTaskId: Integer
         # @param FilePath: 回热任务文件路径
         # @type FilePath: String
-        # @param Type: 回热任务类型（1：标准；2：极速；3：批量）
+        # @param Type: 回热任务类型（1：标准；2：极速；3：批量，暂时仅支持极速）
         # @type Type: Integer
         # @param Days: 指定恢复出的临时副本的有效时长（单位天）
         # @type Days: Integer
@@ -1493,7 +1529,7 @@ module TencentCloud
       class Transition < TencentCloud::Common::AbstractModel
         # @param Days: 触发时间（单位天）
         # @type Days: Integer
-        # @param Type: 转换类型（1：归档；2：删除）
+        # @param Type: 转换类型（1：归档；2：删除；3：低频）
         # @type Type: Integer
 
         attr_accessor :Days, :Type

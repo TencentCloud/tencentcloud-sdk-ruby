@@ -52,6 +52,26 @@ module TencentCloud
         end
       end
 
+      # 授权出错信息
+      class AuthFailMessage < TencentCloud::Common::AbstractModel
+        # @param ProxyOrganizationOpenId: 合作企业Id
+        # @type ProxyOrganizationOpenId: String
+        # @param Message: 出错信息
+        # @type Message: String
+
+        attr_accessor :ProxyOrganizationOpenId, :Message
+        
+        def initialize(proxyorganizationopenid=nil, message=nil)
+          @ProxyOrganizationOpenId = proxyorganizationopenid
+          @Message = message
+        end
+
+        def deserialize(params)
+          @ProxyOrganizationOpenId = params['ProxyOrganizationOpenId']
+          @Message = params['Message']
+        end
+      end
+
       # 此结构体 (Component) 用于描述控件属性。
       class Component < TencentCloud::Common::AbstractModel
         # @param ComponentId: 控件编号
@@ -564,6 +584,26 @@ module TencentCloud
         end
       end
 
+      # 合同（流程）下载信息
+      class DownloadFlowInfo < TencentCloud::Common::AbstractModel
+        # @param FileName: 文件夹名称
+        # @type FileName: String
+        # @param FlowIdList: 合同（流程）的标识数组
+        # @type FlowIdList: Array
+
+        attr_accessor :FileName, :FlowIdList
+        
+        def initialize(filename=nil, flowidlist=nil)
+          @FileName = filename
+          @FlowIdList = flowidlist
+        end
+
+        def deserialize(params)
+          @FileName = params['FileName']
+          @FlowIdList = params['FlowIdList']
+        end
+      end
+
       # 创建流程签署人入参
       class FlowApproverInfo < TencentCloud::Common::AbstractModel
         # @param Name: 签署人姓名
@@ -582,10 +622,12 @@ module TencentCloud
         # @type ApproverType: String
         # @param OpenId: 用户侧第三方id
         # @type OpenId: String
+        # @param PreReadTime: 合同的强制预览时间：3~300s，未指定则按合同页数计算
+        # @type PreReadTime: Integer
 
-        attr_accessor :Name, :Mobile, :IdCardNumber, :JumpUrl, :Deadline, :CallbackUrl, :ApproverType, :OpenId
+        attr_accessor :Name, :Mobile, :IdCardNumber, :JumpUrl, :Deadline, :CallbackUrl, :ApproverType, :OpenId, :PreReadTime
         
-        def initialize(name=nil, mobile=nil, idcardnumber=nil, jumpurl=nil, deadline=nil, callbackurl=nil, approvertype=nil, openid=nil)
+        def initialize(name=nil, mobile=nil, idcardnumber=nil, jumpurl=nil, deadline=nil, callbackurl=nil, approvertype=nil, openid=nil, prereadtime=nil)
           @Name = name
           @Mobile = mobile
           @IdCardNumber = idcardnumber
@@ -594,6 +636,7 @@ module TencentCloud
           @CallbackUrl = callbackurl
           @ApproverType = approvertype
           @OpenId = openid
+          @PreReadTime = prereadtime
         end
 
         def deserialize(params)
@@ -605,6 +648,7 @@ module TencentCloud
           @CallbackUrl = params['CallbackUrl']
           @ApproverType = params['ApproverType']
           @OpenId = params['OpenId']
+          @PreReadTime = params['PreReadTime']
         end
       end
 
@@ -726,6 +770,159 @@ module TencentCloud
           @ComponentValue = params['ComponentValue']
           @ComponentId = params['ComponentId']
           @ComponentName = params['ComponentName']
+        end
+      end
+
+      # GetDownloadFlowUrl请求参数结构体
+      class GetDownloadFlowUrlRequest < TencentCloud::Common::AbstractModel
+        # @param Agent: 应用信息
+        # 此接口Agent.ProxyOrganizationOpenId 和 Agent. ProxyOperator.OpenId 必填
+        # @type Agent: :class:`Tencentcloud::Essbasic.v20210526.models.Agent`
+        # @param Operator: 操作者的信息
+        # @type Operator: :class:`Tencentcloud::Essbasic.v20210526.models.UserInfo`
+        # @param DownLoadFlows: 文件夹数组，合同（流程）总数不能超过50个，一个文件夹下，不能超过20个合同（流程），
+        # @type DownLoadFlows: Array
+
+        attr_accessor :Agent, :Operator, :DownLoadFlows
+        
+        def initialize(agent=nil, operator=nil, downloadflows=nil)
+          @Agent = agent
+          @Operator = operator
+          @DownLoadFlows = downloadflows
+        end
+
+        def deserialize(params)
+          unless params['Agent'].nil?
+            @Agent = Agent.new
+            @Agent.deserialize(params['Agent'])
+          end
+          unless params['Operator'].nil?
+            @Operator = UserInfo.new
+            @Operator.deserialize(params['Operator'])
+          end
+          unless params['DownLoadFlows'].nil?
+            @DownLoadFlows = []
+            params['DownLoadFlows'].each do |i|
+              downloadflowinfo_tmp = DownloadFlowInfo.new
+              downloadflowinfo_tmp.deserialize(i)
+              @DownLoadFlows << downloadflowinfo_tmp
+            end
+          end
+        end
+      end
+
+      # GetDownloadFlowUrl返回参数结构体
+      class GetDownloadFlowUrlResponse < TencentCloud::Common::AbstractModel
+        # @param DownLoadUrl: 进入合同（流程）下载确认页面链接
+        # @type DownLoadUrl: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :DownLoadUrl, :RequestId
+        
+        def initialize(downloadurl=nil, requestid=nil)
+          @DownLoadUrl = downloadurl
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @DownLoadUrl = params['DownLoadUrl']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # OperateChannelTemplate请求参数结构体
+      class OperateChannelTemplateRequest < TencentCloud::Common::AbstractModel
+        # @param Agent: 应用信息
+        # @type Agent: :class:`Tencentcloud::Essbasic.v20210526.models.Agent`
+        # @param TemplateId: 渠道方模板库模板唯一标识
+        # @type TemplateId: String
+        # @param OperateType: 操作类型，查询:"SELECT"，删除:"DELETE"，更新:"UPDATE"
+        # @type OperateType: String
+        # @param Operator: 操作者的信息
+        # @type Operator: :class:`Tencentcloud::Essbasic.v20210526.models.UserInfo`
+        # @param AuthTag: 模板可见性, 全部可见-"all", 部分可见-"part"
+        # @type AuthTag: String
+        # @param ProxyOrganizationOpenIds: 合作企业方第三方机构唯一标识数据
+        # @type ProxyOrganizationOpenIds: String
+
+        attr_accessor :Agent, :TemplateId, :OperateType, :Operator, :AuthTag, :ProxyOrganizationOpenIds
+        
+        def initialize(agent=nil, templateid=nil, operatetype=nil, operator=nil, authtag=nil, proxyorganizationopenids=nil)
+          @Agent = agent
+          @TemplateId = templateid
+          @OperateType = operatetype
+          @Operator = operator
+          @AuthTag = authtag
+          @ProxyOrganizationOpenIds = proxyorganizationopenids
+        end
+
+        def deserialize(params)
+          unless params['Agent'].nil?
+            @Agent = Agent.new
+            @Agent.deserialize(params['Agent'])
+          end
+          @TemplateId = params['TemplateId']
+          @OperateType = params['OperateType']
+          unless params['Operator'].nil?
+            @Operator = UserInfo.new
+            @Operator.deserialize(params['Operator'])
+          end
+          @AuthTag = params['AuthTag']
+          @ProxyOrganizationOpenIds = params['ProxyOrganizationOpenIds']
+        end
+      end
+
+      # OperateChannelTemplate返回参数结构体
+      class OperateChannelTemplateResponse < TencentCloud::Common::AbstractModel
+        # @param AppId: 腾讯电子签颁发给渠道的应用ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AppId: String
+        # @param TemplateId: 渠道方模板库模板唯一标识
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TemplateId: String
+        # @param OperateResult: 全部成功-"all-success",部分成功-"part-success", 全部失败-"fail"失败的会在FailMessageList中展示
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OperateResult: String
+        # @param AuthTag: 模板可见性, 全部可见-"all", 部分可见-"part"
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AuthTag: String
+        # @param ProxyOrganizationOpenIds: 合作企业方第三方机构唯一标识数据
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProxyOrganizationOpenIds: Array
+        # @param FailMessageList: 操作失败信息数组
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FailMessageList: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :AppId, :TemplateId, :OperateResult, :AuthTag, :ProxyOrganizationOpenIds, :FailMessageList, :RequestId
+        
+        def initialize(appid=nil, templateid=nil, operateresult=nil, authtag=nil, proxyorganizationopenids=nil, failmessagelist=nil, requestid=nil)
+          @AppId = appid
+          @TemplateId = templateid
+          @OperateResult = operateresult
+          @AuthTag = authtag
+          @ProxyOrganizationOpenIds = proxyorganizationopenids
+          @FailMessageList = failmessagelist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @AppId = params['AppId']
+          @TemplateId = params['TemplateId']
+          @OperateResult = params['OperateResult']
+          @AuthTag = params['AuthTag']
+          @ProxyOrganizationOpenIds = params['ProxyOrganizationOpenIds']
+          unless params['FailMessageList'].nil?
+            @FailMessageList = []
+            params['FailMessageList'].each do |i|
+              authfailmessage_tmp = AuthFailMessage.new
+              authfailmessage_tmp.deserialize(i)
+              @FailMessageList << authfailmessage_tmp
+            end
+          end
+          @RequestId = params['RequestId']
         end
       end
 

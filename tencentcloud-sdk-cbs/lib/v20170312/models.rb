@@ -23,17 +23,25 @@ module TencentCloud
         # @type SnapshotId: String
         # @param DiskId: 快照原云硬盘ID，可通过[DescribeDisks](/document/product/362/16315)接口查询。
         # @type DiskId: String
+        # @param AutoStopInstance: 回滚前是否执行自动关机
+        # @type AutoStopInstance: Boolean
+        # @param AutoStartInstance: 回滚完成后是否自动开机
+        # @type AutoStartInstance: Boolean
 
-        attr_accessor :SnapshotId, :DiskId
+        attr_accessor :SnapshotId, :DiskId, :AutoStopInstance, :AutoStartInstance
         
-        def initialize(snapshotid=nil, diskid=nil)
+        def initialize(snapshotid=nil, diskid=nil, autostopinstance=nil, autostartinstance=nil)
           @SnapshotId = snapshotid
           @DiskId = diskid
+          @AutoStopInstance = autostopinstance
+          @AutoStartInstance = autostartinstance
         end
 
         def deserialize(params)
           @SnapshotId = params['SnapshotId']
           @DiskId = params['DiskId']
+          @AutoStopInstance = params['AutoStopInstance']
+          @AutoStartInstance = params['AutoStartInstance']
         end
       end
 

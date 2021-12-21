@@ -1541,6 +1541,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 获取消息生产概览信息
+
+        # @param request: Request instance for DescribePublisherSummary.
+        # @type request: :class:`Tencentcloud::tdmq::V20200217::DescribePublisherSummaryRequest`
+        # @rtype: :class:`Tencentcloud::tdmq::V20200217::DescribePublisherSummaryResponse`
+        def DescribePublisherSummary(request)
+          body = send_request('DescribePublisherSummary', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribePublisherSummaryResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取生产者信息列表
+
+        # @param request: Request instance for DescribePublishers.
+        # @type request: :class:`Tencentcloud::tdmq::V20200217::DescribePublishersRequest`
+        # @rtype: :class:`Tencentcloud::tdmq::V20200217::DescribePublishersResponse`
+        def DescribePublishers(request)
+          body = send_request('DescribePublishers', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribePublishersResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 获取单个RocketMQ集群信息
 
         # @param request: Request instance for DescribeRocketMQCluster.
