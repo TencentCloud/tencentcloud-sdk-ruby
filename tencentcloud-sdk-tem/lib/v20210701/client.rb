@@ -125,6 +125,33 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 服务删除
+        #   - 停止当前运行服务
+        #   - 删除服务相关资源
+        #   - 删除服务
+
+        # @param request: Request instance for DeleteApplication.
+        # @type request: :class:`Tencentcloud::tem::V20210701::DeleteApplicationRequest`
+        # @rtype: :class:`Tencentcloud::tem::V20210701::DeleteApplicationResponse`
+        def DeleteApplication(request)
+          body = send_request('DeleteApplication', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteApplicationResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 删除 Ingress 规则
 
         # @param request: Request instance for DeleteIngress.

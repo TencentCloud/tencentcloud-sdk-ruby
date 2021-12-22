@@ -175,10 +175,12 @@ module TencentCloud
         # @type WordInfo: Integer
         # @param HotwordId: 热词id。用于调用对应的热词表，如果在调用语音识别服务时，不进行单独的热词id设置，自动生效默认热词；如果进行了单独的热词id设置，那么将生效单独设置的热词id。
         # @type HotwordId: String
+        # @param AudioData: 回调数据中，是否需要对应音频数据。
+        # @type AudioData: Boolean
 
-        attr_accessor :EngineType, :Url, :CallbackUrl, :SignToken, :FilterDirty, :FilterModal, :FilterPunc, :ConvertNumMode, :WordInfo, :HotwordId
+        attr_accessor :EngineType, :Url, :CallbackUrl, :SignToken, :FilterDirty, :FilterModal, :FilterPunc, :ConvertNumMode, :WordInfo, :HotwordId, :AudioData
         
-        def initialize(enginetype=nil, url=nil, callbackurl=nil, signtoken=nil, filterdirty=nil, filtermodal=nil, filterpunc=nil, convertnummode=nil, wordinfo=nil, hotwordid=nil)
+        def initialize(enginetype=nil, url=nil, callbackurl=nil, signtoken=nil, filterdirty=nil, filtermodal=nil, filterpunc=nil, convertnummode=nil, wordinfo=nil, hotwordid=nil, audiodata=nil)
           @EngineType = enginetype
           @Url = url
           @CallbackUrl = callbackurl
@@ -189,6 +191,7 @@ module TencentCloud
           @ConvertNumMode = convertnummode
           @WordInfo = wordinfo
           @HotwordId = hotwordid
+          @AudioData = audiodata
         end
 
         def deserialize(params)
@@ -202,6 +205,7 @@ module TencentCloud
           @ConvertNumMode = params['ConvertNumMode']
           @WordInfo = params['WordInfo']
           @HotwordId = params['HotwordId']
+          @AudioData = params['AudioData']
         end
       end
 

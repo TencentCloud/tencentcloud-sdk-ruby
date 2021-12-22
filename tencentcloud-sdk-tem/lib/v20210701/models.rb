@@ -383,6 +383,54 @@ module TencentCloud
         end
       end
 
+      # DeleteApplication请求参数结构体
+      class DeleteApplicationRequest < TencentCloud::Common::AbstractModel
+        # @param ApplicationId: 服务Id
+        # @type ApplicationId: String
+        # @param EnvironmentId: 环境ID
+        # @type EnvironmentId: String
+        # @param SourceChannel: 来源渠道
+        # @type SourceChannel: Integer
+        # @param DeleteApplicationIfNoRunningVersion: 当服务没有任何运行版本时，是否删除此服务
+        # @type DeleteApplicationIfNoRunningVersion: Boolean
+
+        attr_accessor :ApplicationId, :EnvironmentId, :SourceChannel, :DeleteApplicationIfNoRunningVersion
+        
+        def initialize(applicationid=nil, environmentid=nil, sourcechannel=nil, deleteapplicationifnorunningversion=nil)
+          @ApplicationId = applicationid
+          @EnvironmentId = environmentid
+          @SourceChannel = sourcechannel
+          @DeleteApplicationIfNoRunningVersion = deleteapplicationifnorunningversion
+        end
+
+        def deserialize(params)
+          @ApplicationId = params['ApplicationId']
+          @EnvironmentId = params['EnvironmentId']
+          @SourceChannel = params['SourceChannel']
+          @DeleteApplicationIfNoRunningVersion = params['DeleteApplicationIfNoRunningVersion']
+        end
+      end
+
+      # DeleteApplication返回参数结构体
+      class DeleteApplicationResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 返回结果
+        # @type Result: Boolean
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+        
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Result = params['Result']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DeleteIngress请求参数结构体
       class DeleteIngressRequest < TencentCloud::Common::AbstractModel
         # @param EnvironmentId: 环境ID

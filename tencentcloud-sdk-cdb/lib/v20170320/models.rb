@@ -6996,14 +6996,17 @@ module TencentCloud
         # @type RoWeightValues: Array
         # @param IsBalanceRoLoad: 是否重新均衡 RO 组内的 RO 实例的负载。支持值包括：1 - 重新均衡负载；0 - 不重新均衡负载。默认值为 0。注意，设置为重新均衡负载时，RO 组内 RO 实例会有一次数据库连接瞬断，请确保应用程序能重连数据库。
         # @type IsBalanceRoLoad: Integer
+        # @param ReplicationDelayTime: 废弃参数，无意义。
+        # @type ReplicationDelayTime: Integer
 
-        attr_accessor :RoGroupId, :RoGroupInfo, :RoWeightValues, :IsBalanceRoLoad
+        attr_accessor :RoGroupId, :RoGroupInfo, :RoWeightValues, :IsBalanceRoLoad, :ReplicationDelayTime
         
-        def initialize(rogroupid=nil, rogroupinfo=nil, roweightvalues=nil, isbalanceroload=nil)
+        def initialize(rogroupid=nil, rogroupinfo=nil, roweightvalues=nil, isbalanceroload=nil, replicationdelaytime=nil)
           @RoGroupId = rogroupid
           @RoGroupInfo = rogroupinfo
           @RoWeightValues = roweightvalues
           @IsBalanceRoLoad = isbalanceroload
+          @ReplicationDelayTime = replicationdelaytime
         end
 
         def deserialize(params)
@@ -7021,57 +7024,27 @@ module TencentCloud
             end
           end
           @IsBalanceRoLoad = params['IsBalanceRoLoad']
+          @ReplicationDelayTime = params['ReplicationDelayTime']
         end
       end
 
       # ModifyRoGroupInfo返回参数结构体
       class ModifyRoGroupInfoResponse < TencentCloud::Common::AbstractModel
+        # @param AsyncRequestId: 异步任务 ID。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AsyncRequestId: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RequestId
+        attr_accessor :AsyncRequestId, :RequestId
         
-        def initialize(requestid=nil)
+        def initialize(asyncrequestid=nil, requestid=nil)
+          @AsyncRequestId = asyncrequestid
           @RequestId = requestid
         end
 
         def deserialize(params)
-          @RequestId = params['RequestId']
-        end
-      end
-
-      # ModifyRoReplicationDelay请求参数结构体
-      class ModifyRoReplicationDelayRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例 ID。
-        # @type InstanceId: String
-        # @param ReplicationDelay: 延迟时间（s）。最小值1，最大值259200。
-        # @type ReplicationDelay: Integer
-
-        attr_accessor :InstanceId, :ReplicationDelay
-        
-        def initialize(instanceid=nil, replicationdelay=nil)
-          @InstanceId = instanceid
-          @ReplicationDelay = replicationdelay
-        end
-
-        def deserialize(params)
-          @InstanceId = params['InstanceId']
-          @ReplicationDelay = params['ReplicationDelay']
-        end
-      end
-
-      # ModifyRoReplicationDelay返回参数结构体
-      class ModifyRoReplicationDelayResponse < TencentCloud::Common::AbstractModel
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :RequestId
-        
-        def initialize(requestid=nil)
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
+          @AsyncRequestId = params['AsyncRequestId']
           @RequestId = params['RequestId']
         end
       end
@@ -7630,10 +7603,13 @@ module TencentCloud
         # @param RoGroupZone: 只读组所在的可用区。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RoGroupZone: String
+        # @param DelayReplicationTime: 延迟复制时间。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DelayReplicationTime: Integer
 
-        attr_accessor :RoGroupMode, :RoGroupId, :RoGroupName, :RoOfflineDelay, :RoMaxDelayTime, :MinRoInGroup, :WeightMode, :Weight, :RoInstances, :Vip, :Vport, :UniqVpcId, :UniqSubnetId, :RoGroupRegion, :RoGroupZone
+        attr_accessor :RoGroupMode, :RoGroupId, :RoGroupName, :RoOfflineDelay, :RoMaxDelayTime, :MinRoInGroup, :WeightMode, :Weight, :RoInstances, :Vip, :Vport, :UniqVpcId, :UniqSubnetId, :RoGroupRegion, :RoGroupZone, :DelayReplicationTime
         
-        def initialize(rogroupmode=nil, rogroupid=nil, rogroupname=nil, roofflinedelay=nil, romaxdelaytime=nil, minroingroup=nil, weightmode=nil, weight=nil, roinstances=nil, vip=nil, vport=nil, uniqvpcid=nil, uniqsubnetid=nil, rogroupregion=nil, rogroupzone=nil)
+        def initialize(rogroupmode=nil, rogroupid=nil, rogroupname=nil, roofflinedelay=nil, romaxdelaytime=nil, minroingroup=nil, weightmode=nil, weight=nil, roinstances=nil, vip=nil, vport=nil, uniqvpcid=nil, uniqsubnetid=nil, rogroupregion=nil, rogroupzone=nil, delayreplicationtime=nil)
           @RoGroupMode = rogroupmode
           @RoGroupId = rogroupid
           @RoGroupName = rogroupname
@@ -7649,6 +7625,7 @@ module TencentCloud
           @UniqSubnetId = uniqsubnetid
           @RoGroupRegion = rogroupregion
           @RoGroupZone = rogroupzone
+          @DelayReplicationTime = delayreplicationtime
         end
 
         def deserialize(params)
@@ -7674,6 +7651,7 @@ module TencentCloud
           @UniqSubnetId = params['UniqSubnetId']
           @RoGroupRegion = params['RoGroupRegion']
           @RoGroupZone = params['RoGroupZone']
+          @DelayReplicationTime = params['DelayReplicationTime']
         end
       end
 
@@ -7689,15 +7667,18 @@ module TencentCloud
         # @type MinRoInGroup: Integer
         # @param WeightMode: 权重模式。支持值包括："system" - 系统自动分配； "custom" - 用户自定义设置。注意，若设置 "custom" 模式，则必须设置 RO 实例权重配置（RoWeightValues）参数。
         # @type WeightMode: String
+        # @param ReplicationDelayTime: 延迟复制时间。
+        # @type ReplicationDelayTime: Integer
 
-        attr_accessor :RoGroupName, :RoMaxDelayTime, :RoOfflineDelay, :MinRoInGroup, :WeightMode
+        attr_accessor :RoGroupName, :RoMaxDelayTime, :RoOfflineDelay, :MinRoInGroup, :WeightMode, :ReplicationDelayTime
         
-        def initialize(rogroupname=nil, romaxdelaytime=nil, roofflinedelay=nil, minroingroup=nil, weightmode=nil)
+        def initialize(rogroupname=nil, romaxdelaytime=nil, roofflinedelay=nil, minroingroup=nil, weightmode=nil, replicationdelaytime=nil)
           @RoGroupName = rogroupname
           @RoMaxDelayTime = romaxdelaytime
           @RoOfflineDelay = roofflinedelay
           @MinRoInGroup = minroingroup
           @WeightMode = weightmode
+          @ReplicationDelayTime = replicationdelaytime
         end
 
         def deserialize(params)
@@ -7706,6 +7687,7 @@ module TencentCloud
           @RoOfflineDelay = params['RoOfflineDelay']
           @MinRoInGroup = params['MinRoInGroup']
           @WeightMode = params['WeightMode']
+          @ReplicationDelayTime = params['ReplicationDelayTime']
         end
       end
 
@@ -8474,55 +8456,6 @@ module TencentCloud
         end
       end
 
-      # StartDelayReplication请求参数结构体
-      class StartDelayReplicationRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例 ID。
-        # @type InstanceId: String
-        # @param DelayReplicationType: 延迟复制类型。可选值 DEFAULT（按照延迟复制时间进行复制）、GTID（回放到指定GTID）、DUE_TIME（回放到指定时间点）。
-        # @type DelayReplicationType: String
-        # @param DueTime: 指定时间点，默认为0，最大值不能超过当前时间。
-        # @type DueTime: Integer
-        # @param Gtid: 指定GITD。回放到指定GTID时必传。
-        # @type Gtid: String
-
-        attr_accessor :InstanceId, :DelayReplicationType, :DueTime, :Gtid
-        
-        def initialize(instanceid=nil, delayreplicationtype=nil, duetime=nil, gtid=nil)
-          @InstanceId = instanceid
-          @DelayReplicationType = delayreplicationtype
-          @DueTime = duetime
-          @Gtid = gtid
-        end
-
-        def deserialize(params)
-          @InstanceId = params['InstanceId']
-          @DelayReplicationType = params['DelayReplicationType']
-          @DueTime = params['DueTime']
-          @Gtid = params['Gtid']
-        end
-      end
-
-      # StartDelayReplication返回参数结构体
-      class StartDelayReplicationResponse < TencentCloud::Common::AbstractModel
-        # @param AsyncRequestId: 延迟复制任务 ID。DelayReplicationType不为DEFAULT时返回，可用来查询回放任务状态。
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type AsyncRequestId: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :AsyncRequestId, :RequestId
-        
-        def initialize(asyncrequestid=nil, requestid=nil)
-          @AsyncRequestId = asyncrequestid
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          @AsyncRequestId = params['AsyncRequestId']
-          @RequestId = params['RequestId']
-        end
-      end
-
       # StopDBImportJob请求参数结构体
       class StopDBImportJobRequest < TencentCloud::Common::AbstractModel
         # @param AsyncRequestId: 异步任务的请求 ID。
@@ -8541,38 +8474,6 @@ module TencentCloud
 
       # StopDBImportJob返回参数结构体
       class StopDBImportJobResponse < TencentCloud::Common::AbstractModel
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :RequestId
-        
-        def initialize(requestid=nil)
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          @RequestId = params['RequestId']
-        end
-      end
-
-      # StopDelayReplication请求参数结构体
-      class StopDelayReplicationRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例 ID。
-        # @type InstanceId: String
-
-        attr_accessor :InstanceId
-        
-        def initialize(instanceid=nil)
-          @InstanceId = instanceid
-        end
-
-        def deserialize(params)
-          @InstanceId = params['InstanceId']
-        end
-      end
-
-      # StopDelayReplication返回参数结构体
-      class StopDelayReplicationResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -9024,10 +8925,14 @@ module TencentCloud
         # @type FastUpgrade: Integer
         # @param MaxDelayTime: 延迟阈值。取值范围1~10，默认值为10。
         # @type MaxDelayTime: Integer
+        # @param CrossCluster: 是否跨区迁移。0-普通迁移，1-跨区迁移，默认值为0。该值为1时支持变更实例主节点可用区。
+        # @type CrossCluster: Integer
+        # @param ZoneId: 主节点可用区，该值仅在跨区迁移时生效。仅支持同地域下的可用区进行迁移。
+        # @type ZoneId: String
 
-        attr_accessor :InstanceId, :Memory, :Volume, :ProtectMode, :DeployMode, :SlaveZone, :EngineVersion, :WaitSwitch, :BackupZone, :InstanceRole, :DeviceType, :Cpu, :FastUpgrade, :MaxDelayTime
+        attr_accessor :InstanceId, :Memory, :Volume, :ProtectMode, :DeployMode, :SlaveZone, :EngineVersion, :WaitSwitch, :BackupZone, :InstanceRole, :DeviceType, :Cpu, :FastUpgrade, :MaxDelayTime, :CrossCluster, :ZoneId
         
-        def initialize(instanceid=nil, memory=nil, volume=nil, protectmode=nil, deploymode=nil, slavezone=nil, engineversion=nil, waitswitch=nil, backupzone=nil, instancerole=nil, devicetype=nil, cpu=nil, fastupgrade=nil, maxdelaytime=nil)
+        def initialize(instanceid=nil, memory=nil, volume=nil, protectmode=nil, deploymode=nil, slavezone=nil, engineversion=nil, waitswitch=nil, backupzone=nil, instancerole=nil, devicetype=nil, cpu=nil, fastupgrade=nil, maxdelaytime=nil, crosscluster=nil, zoneid=nil)
           @InstanceId = instanceid
           @Memory = memory
           @Volume = volume
@@ -9042,6 +8947,8 @@ module TencentCloud
           @Cpu = cpu
           @FastUpgrade = fastupgrade
           @MaxDelayTime = maxdelaytime
+          @CrossCluster = crosscluster
+          @ZoneId = zoneid
         end
 
         def deserialize(params)
@@ -9059,6 +8966,8 @@ module TencentCloud
           @Cpu = params['Cpu']
           @FastUpgrade = params['FastUpgrade']
           @MaxDelayTime = params['MaxDelayTime']
+          @CrossCluster = params['CrossCluster']
+          @ZoneId = params['ZoneId']
         end
       end
 

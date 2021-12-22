@@ -1345,7 +1345,7 @@ module TencentCloud
 
       # 名人识别的标签
       class Labels < TencentCloud::Common::AbstractModel
-        # @param FirstLabel: 公众人物身份标签的一级分类，例如体育明星、娱乐明星、政治人物等；
+        # @param FirstLabel: 公众人物身份标签的一级分类，例如体育明星、娱乐明星等；
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FirstLabel: String
         # @param SecondLabel: 公众人物身份标签的二级分类，例如歌手（对应一级标签为“娱乐明星”）；

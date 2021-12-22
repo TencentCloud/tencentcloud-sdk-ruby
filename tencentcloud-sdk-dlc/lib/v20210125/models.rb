@@ -1325,6 +1325,54 @@ module TencentCloud
         end
       end
 
+      # DescribeTaskResult请求参数结构体
+      class DescribeTaskResultRequest < TencentCloud::Common::AbstractModel
+        # @param TaskId: 任务唯一ID
+        # @type TaskId: String
+        # @param NextToken: 上一次请求响应返回的分页信息。第一次可以不带，从头开始返回数据，每次返回1000行数据。
+        # @type NextToken: String
+        # @param MaxResults: 返回结果的最大行数，范围0~1000，默认为1000.
+        # @type MaxResults: Integer
+
+        attr_accessor :TaskId, :NextToken, :MaxResults
+        
+        def initialize(taskid=nil, nexttoken=nil, maxresults=nil)
+          @TaskId = taskid
+          @NextToken = nexttoken
+          @MaxResults = maxresults
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @NextToken = params['NextToken']
+          @MaxResults = params['MaxResults']
+        end
+      end
+
+      # DescribeTaskResult返回参数结构体
+      class DescribeTaskResultResponse < TencentCloud::Common::AbstractModel
+        # @param TaskInfo: 查询的任务信息，返回为空表示输入任务ID对应的任务不存在。只有当任务状态为成功（2）的时候，才会返回任务的结果。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TaskInfo: :class:`Tencentcloud::Dlc.v20210125.models.TaskResultInfo`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskInfo, :RequestId
+        
+        def initialize(taskinfo=nil, requestid=nil)
+          @TaskInfo = taskinfo
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['TaskInfo'].nil?
+            @TaskInfo = TaskResultInfo.new
+            @TaskInfo.deserialize(params['TaskInfo'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeTasks请求参数结构体
       class DescribeTasksRequest < TencentCloud::Common::AbstractModel
         # @param Limit: 返回数量，默认为10，最大值为100。
@@ -2326,6 +2374,101 @@ module TencentCloud
           @InputConf = params['InputConf']
           @DataNumber = params['DataNumber']
           @CanDownload = params['CanDownload']
+        end
+      end
+
+      # 任务结果信息
+      class TaskResultInfo < TencentCloud::Common::AbstractModel
+        # @param TaskId: 任务唯一ID
+        # @type TaskId: String
+        # @param DatasourceConnectionName: 数据源名称，当前任务执行时候选中的默认数据源
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DatasourceConnectionName: String
+        # @param DatabaseName: 数据库名称，当前任务执行时候选中的默认数据库
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DatabaseName: String
+        # @param SQL: 当前执行的SQL，一个任务包含一个SQL
+        # @type SQL: String
+        # @param SQLType: 执行任务的类型，现在分为DDL、DML、DQL
+        # @type SQLType: String
+        # @param State: 任务当前的状态，0：初始化 1：任务运行中 2：任务执行成功 -1：任务执行失败 -3：用户手动终止。只有任务执行成功的情况下，才会返回任务执行的结果
+        # @type State: Integer
+        # @param DataAmount: 扫描的数据量，单位byte
+        # @type DataAmount: Integer
+        # @param UsedTime: 任务执行耗时，单位秒
+        # @type UsedTime: Integer
+        # @param OutputPath: 任务结果输出的COS桶地址
+        # @type OutputPath: String
+        # @param CreateTime: 任务创建时间，时间戳
+        # @type CreateTime: String
+        # @param OutputMessage: 任务执行信息，成功时返回success，失败时返回失败原因
+        # @type OutputMessage: String
+        # @param RowAffectInfo: 被影响的行数
+        # @type RowAffectInfo: String
+        # @param ResultSchema: 结果的schema信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResultSchema: Array
+        # @param ResultSet: 结果信息，反转义后，外层数组的每个元素为一行数据
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResultSet: String
+        # @param NextToken: 分页信息，如果没有更多结果数据，nextToken为空
+        # @type NextToken: String
+        # @param Percentage: 任务执行进度num/100(%)
+        # @type Percentage: Integer
+        # @param ProgressDetail: 任务进度明细
+        # @type ProgressDetail: String
+        # @param DisplayFormat: 控制台展示格式。table：表格展示 text：文本展示
+        # @type DisplayFormat: String
+
+        attr_accessor :TaskId, :DatasourceConnectionName, :DatabaseName, :SQL, :SQLType, :State, :DataAmount, :UsedTime, :OutputPath, :CreateTime, :OutputMessage, :RowAffectInfo, :ResultSchema, :ResultSet, :NextToken, :Percentage, :ProgressDetail, :DisplayFormat
+        
+        def initialize(taskid=nil, datasourceconnectionname=nil, databasename=nil, sql=nil, sqltype=nil, state=nil, dataamount=nil, usedtime=nil, outputpath=nil, createtime=nil, outputmessage=nil, rowaffectinfo=nil, resultschema=nil, resultset=nil, nexttoken=nil, percentage=nil, progressdetail=nil, displayformat=nil)
+          @TaskId = taskid
+          @DatasourceConnectionName = datasourceconnectionname
+          @DatabaseName = databasename
+          @SQL = sql
+          @SQLType = sqltype
+          @State = state
+          @DataAmount = dataamount
+          @UsedTime = usedtime
+          @OutputPath = outputpath
+          @CreateTime = createtime
+          @OutputMessage = outputmessage
+          @RowAffectInfo = rowaffectinfo
+          @ResultSchema = resultschema
+          @ResultSet = resultset
+          @NextToken = nexttoken
+          @Percentage = percentage
+          @ProgressDetail = progressdetail
+          @DisplayFormat = displayformat
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @DatasourceConnectionName = params['DatasourceConnectionName']
+          @DatabaseName = params['DatabaseName']
+          @SQL = params['SQL']
+          @SQLType = params['SQLType']
+          @State = params['State']
+          @DataAmount = params['DataAmount']
+          @UsedTime = params['UsedTime']
+          @OutputPath = params['OutputPath']
+          @CreateTime = params['CreateTime']
+          @OutputMessage = params['OutputMessage']
+          @RowAffectInfo = params['RowAffectInfo']
+          unless params['ResultSchema'].nil?
+            @ResultSchema = []
+            params['ResultSchema'].each do |i|
+              column_tmp = Column.new
+              column_tmp.deserialize(i)
+              @ResultSchema << column_tmp
+            end
+          end
+          @ResultSet = params['ResultSet']
+          @NextToken = params['NextToken']
+          @Percentage = params['Percentage']
+          @ProgressDetail = params['ProgressDetail']
+          @DisplayFormat = params['DisplayFormat']
         end
       end
 

@@ -72,6 +72,22 @@ module TencentCloud
         end
       end
 
+      # 抄送信息
+      class CcInfo < TencentCloud::Common::AbstractModel
+        # @param Mobile: 被抄送人手机号
+        # @type Mobile: String
+
+        attr_accessor :Mobile
+        
+        def initialize(mobile=nil)
+          @Mobile = mobile
+        end
+
+        def deserialize(params)
+          @Mobile = params['Mobile']
+        end
+      end
+
       # 此结构体 (Component) 用于描述控件属性。
       class Component < TencentCloud::Common::AbstractModel
         # @param ComponentId: 控件编号
@@ -676,10 +692,12 @@ module TencentCloud
         # @type FlowDescription: String
         # @param CustomerData: 渠道的业务信息，限制1024字符
         # @type CustomerData: String
+        # @param CcInfos: 被抄送人的信息列表
+        # @type CcInfos: Array
 
-        attr_accessor :FlowName, :Deadline, :TemplateId, :FlowType, :CallbackUrl, :FlowApprovers, :FormFields, :FlowDescription, :CustomerData
+        attr_accessor :FlowName, :Deadline, :TemplateId, :FlowType, :CallbackUrl, :FlowApprovers, :FormFields, :FlowDescription, :CustomerData, :CcInfos
         
-        def initialize(flowname=nil, deadline=nil, templateid=nil, flowtype=nil, callbackurl=nil, flowapprovers=nil, formfields=nil, flowdescription=nil, customerdata=nil)
+        def initialize(flowname=nil, deadline=nil, templateid=nil, flowtype=nil, callbackurl=nil, flowapprovers=nil, formfields=nil, flowdescription=nil, customerdata=nil, ccinfos=nil)
           @FlowName = flowname
           @Deadline = deadline
           @TemplateId = templateid
@@ -689,6 +707,7 @@ module TencentCloud
           @FormFields = formfields
           @FlowDescription = flowdescription
           @CustomerData = customerdata
+          @CcInfos = ccinfos
         end
 
         def deserialize(params)
@@ -715,6 +734,14 @@ module TencentCloud
           end
           @FlowDescription = params['FlowDescription']
           @CustomerData = params['CustomerData']
+          unless params['CcInfos'].nil?
+            @CcInfos = []
+            params['CcInfos'].each do |i|
+              ccinfo_tmp = CcInfo.new
+              ccinfo_tmp.deserialize(i)
+              @CcInfos << ccinfo_tmp
+            end
+          end
         end
       end
 
@@ -1341,10 +1368,12 @@ module TencentCloud
         # @type TemplateType: Integer
         # @param Recipients: 模板中的流程参与人信息
         # @type Recipients: Array
+        # @param IsPromoter: 是否是发起人
+        # @type IsPromoter: Boolean
 
-        attr_accessor :TemplateId, :TemplateName, :Description, :Components, :SignComponents, :Creator, :CreatedOn, :TemplateType, :Recipients
+        attr_accessor :TemplateId, :TemplateName, :Description, :Components, :SignComponents, :Creator, :CreatedOn, :TemplateType, :Recipients, :IsPromoter
         
-        def initialize(templateid=nil, templatename=nil, description=nil, components=nil, signcomponents=nil, creator=nil, createdon=nil, templatetype=nil, recipients=nil)
+        def initialize(templateid=nil, templatename=nil, description=nil, components=nil, signcomponents=nil, creator=nil, createdon=nil, templatetype=nil, recipients=nil, ispromoter=nil)
           @TemplateId = templateid
           @TemplateName = templatename
           @Description = description
@@ -1354,6 +1383,7 @@ module TencentCloud
           @CreatedOn = createdon
           @TemplateType = templatetype
           @Recipients = recipients
+          @IsPromoter = ispromoter
         end
 
         def deserialize(params)
@@ -1387,6 +1417,7 @@ module TencentCloud
               @Recipients << recipient_tmp
             end
           end
+          @IsPromoter = params['IsPromoter']
         end
       end
 

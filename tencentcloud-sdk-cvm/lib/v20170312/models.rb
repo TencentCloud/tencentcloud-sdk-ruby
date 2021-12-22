@@ -4504,12 +4504,169 @@ module TencentCloud
 
       # 实例启动模板版本信息
       class LaunchTemplateVersionData < TencentCloud::Common::AbstractModel
+        # @param Placement: 实例所在的位置。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Placement: :class:`Tencentcloud::Cvm.v20170312.models.Placement`
+        # @param InstanceType: 实例机型。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceType: String
+        # @param InstanceName: 实例名称。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceName: String
+        # @param InstanceChargeType: 实例计费模式。取值范围：<br><li>`PREPAID`：表示预付费，即包年包月<br><li>`POSTPAID_BY_HOUR`：表示后付费，即按量计费<br><li>`CDHPAID`：`CDH`付费，即只对`CDH`计费，不对`CDH`上的实例计费。<br><li>`SPOTPAID`：表示竞价实例付费。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceChargeType: String
+        # @param SystemDisk: 实例系统盘信息。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SystemDisk: :class:`Tencentcloud::Cvm.v20170312.models.SystemDisk`
+        # @param DataDisks: 实例数据盘信息。只包含随实例购买的数据盘。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DataDisks: Array
+        # @param InternetAccessible: 实例带宽信息。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InternetAccessible: :class:`Tencentcloud::Cvm.v20170312.models.InternetAccessible`
+        # @param VirtualPrivateCloud: 实例所属虚拟私有网络信息。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VirtualPrivateCloud: :class:`Tencentcloud::Cvm.v20170312.models.VirtualPrivateCloud`
+        # @param ImageId: 生产实例所使用的镜像`ID`。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ImageId: String
+        # @param SecurityGroupIds: 实例所属安全组。该参数可以通过调用 [DescribeSecurityGroups](https://cloud.tencent.com/document/api/215/15808) 的返回值中的sgId字段来获取。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SecurityGroupIds: Array
+        # @param LoginSettings: 实例登录设置。目前只返回实例所关联的密钥。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LoginSettings: :class:`Tencentcloud::Cvm.v20170312.models.LoginSettings`
+        # @param CamRoleName: CAM角色名。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CamRoleName: String
+        # @param HpcClusterId: 高性能计算集群`ID`。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HpcClusterId: String
+        # @param InstanceCount: 购买实例数量。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceCount: Integer
+        # @param EnhancedService: 增强服务。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EnhancedService: :class:`Tencentcloud::Cvm.v20170312.models.EnhancedService`
+        # @param UserData: 提供给实例使用的用户数据，需要以 base64 方式编码，支持的最大数据大小为 16KB。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UserData: String
+        # @param DisasterRecoverGroupIds: 置放群组id，仅支持指定一个。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DisasterRecoverGroupIds: Array
+        # @param ActionTimer: 定时任务。通过该参数可以为实例指定定时任务，目前仅支持定时销毁。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ActionTimer: :class:`Tencentcloud::Cvm.v20170312.models.ActionTimer`
+        # @param InstanceMarketOptions: 实例的市场相关选项，如竞价实例相关参数，若指定实例的付费模式为竞价付费则该参数必传。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceMarketOptions: :class:`Tencentcloud::Cvm.v20170312.models.InstanceMarketOptionsRequest`
+        # @param HostName: 云服务器的主机名。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HostName: String
+        # @param ClientToken: 用于保证请求幂等性的字符串。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClientToken: String
+        # @param InstanceChargePrepaid: 预付费模式，即包年包月相关参数设置。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceChargePrepaid: :class:`Tencentcloud::Cvm.v20170312.models.InstanceChargePrepaid`
+        # @param TagSpecification: 标签描述列表。通过指定该参数可以同时绑定标签到相应的云服务器、云硬盘实例。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TagSpecification: Array
 
+        attr_accessor :Placement, :InstanceType, :InstanceName, :InstanceChargeType, :SystemDisk, :DataDisks, :InternetAccessible, :VirtualPrivateCloud, :ImageId, :SecurityGroupIds, :LoginSettings, :CamRoleName, :HpcClusterId, :InstanceCount, :EnhancedService, :UserData, :DisasterRecoverGroupIds, :ActionTimer, :InstanceMarketOptions, :HostName, :ClientToken, :InstanceChargePrepaid, :TagSpecification
         
-        def initialize()
+        def initialize(placement=nil, instancetype=nil, instancename=nil, instancechargetype=nil, systemdisk=nil, datadisks=nil, internetaccessible=nil, virtualprivatecloud=nil, imageid=nil, securitygroupids=nil, loginsettings=nil, camrolename=nil, hpcclusterid=nil, instancecount=nil, enhancedservice=nil, userdata=nil, disasterrecovergroupids=nil, actiontimer=nil, instancemarketoptions=nil, hostname=nil, clienttoken=nil, instancechargeprepaid=nil, tagspecification=nil)
+          @Placement = placement
+          @InstanceType = instancetype
+          @InstanceName = instancename
+          @InstanceChargeType = instancechargetype
+          @SystemDisk = systemdisk
+          @DataDisks = datadisks
+          @InternetAccessible = internetaccessible
+          @VirtualPrivateCloud = virtualprivatecloud
+          @ImageId = imageid
+          @SecurityGroupIds = securitygroupids
+          @LoginSettings = loginsettings
+          @CamRoleName = camrolename
+          @HpcClusterId = hpcclusterid
+          @InstanceCount = instancecount
+          @EnhancedService = enhancedservice
+          @UserData = userdata
+          @DisasterRecoverGroupIds = disasterrecovergroupids
+          @ActionTimer = actiontimer
+          @InstanceMarketOptions = instancemarketoptions
+          @HostName = hostname
+          @ClientToken = clienttoken
+          @InstanceChargePrepaid = instancechargeprepaid
+          @TagSpecification = tagspecification
         end
 
         def deserialize(params)
+          unless params['Placement'].nil?
+            @Placement = Placement.new
+            @Placement.deserialize(params['Placement'])
+          end
+          @InstanceType = params['InstanceType']
+          @InstanceName = params['InstanceName']
+          @InstanceChargeType = params['InstanceChargeType']
+          unless params['SystemDisk'].nil?
+            @SystemDisk = SystemDisk.new
+            @SystemDisk.deserialize(params['SystemDisk'])
+          end
+          unless params['DataDisks'].nil?
+            @DataDisks = []
+            params['DataDisks'].each do |i|
+              datadisk_tmp = DataDisk.new
+              datadisk_tmp.deserialize(i)
+              @DataDisks << datadisk_tmp
+            end
+          end
+          unless params['InternetAccessible'].nil?
+            @InternetAccessible = InternetAccessible.new
+            @InternetAccessible.deserialize(params['InternetAccessible'])
+          end
+          unless params['VirtualPrivateCloud'].nil?
+            @VirtualPrivateCloud = VirtualPrivateCloud.new
+            @VirtualPrivateCloud.deserialize(params['VirtualPrivateCloud'])
+          end
+          @ImageId = params['ImageId']
+          @SecurityGroupIds = params['SecurityGroupIds']
+          unless params['LoginSettings'].nil?
+            @LoginSettings = LoginSettings.new
+            @LoginSettings.deserialize(params['LoginSettings'])
+          end
+          @CamRoleName = params['CamRoleName']
+          @HpcClusterId = params['HpcClusterId']
+          @InstanceCount = params['InstanceCount']
+          unless params['EnhancedService'].nil?
+            @EnhancedService = EnhancedService.new
+            @EnhancedService.deserialize(params['EnhancedService'])
+          end
+          @UserData = params['UserData']
+          @DisasterRecoverGroupIds = params['DisasterRecoverGroupIds']
+          unless params['ActionTimer'].nil?
+            @ActionTimer = ActionTimer.new
+            @ActionTimer.deserialize(params['ActionTimer'])
+          end
+          unless params['InstanceMarketOptions'].nil?
+            @InstanceMarketOptions = InstanceMarketOptionsRequest.new
+            @InstanceMarketOptions.deserialize(params['InstanceMarketOptions'])
+          end
+          @HostName = params['HostName']
+          @ClientToken = params['ClientToken']
+          unless params['InstanceChargePrepaid'].nil?
+            @InstanceChargePrepaid = InstanceChargePrepaid.new
+            @InstanceChargePrepaid.deserialize(params['InstanceChargePrepaid'])
+          end
+          unless params['TagSpecification'].nil?
+            @TagSpecification = []
+            params['TagSpecification'].each do |i|
+              tagspecification_tmp = TagSpecification.new
+              tagspecification_tmp.deserialize(i)
+              @TagSpecification << tagspecification_tmp
+            end
+          end
         end
       end
 

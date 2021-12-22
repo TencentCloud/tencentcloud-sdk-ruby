@@ -131,6 +131,57 @@ module TencentCloud
         end
       end
 
+      # 回源的自定义Https配置
+      class AdvanceHttps < TencentCloud::Common::AbstractModel
+        # @param CustomTlsStatus: 自定义Tls数据开关
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CustomTlsStatus: String
+        # @param TlsVersion: Tls版本列表，支持设置 TLSv1, TLSV1.1, TLSV1.2, TLSv1.3，修改时必须开启连续的版本
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TlsVersion: Array
+        # @param Cipher: 自定义加密套件
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Cipher: String
+        # @param VerifyOriginType: 回源双向校验开启状态
+        # off - 关闭校验
+        # oneWay - 校验源站
+        # twoWay - 双向校验
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VerifyOriginType: String
+        # @param CertInfo: 回源层证书配置信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CertInfo: :class:`Tencentcloud::Ecdn.v20191012.models.ServerCert`
+        # @param OriginCertInfo: 源站证书配置信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OriginCertInfo: :class:`Tencentcloud::Ecdn.v20191012.models.ClientCert`
+
+        attr_accessor :CustomTlsStatus, :TlsVersion, :Cipher, :VerifyOriginType, :CertInfo, :OriginCertInfo
+        
+        def initialize(customtlsstatus=nil, tlsversion=nil, cipher=nil, verifyorigintype=nil, certinfo=nil, origincertinfo=nil)
+          @CustomTlsStatus = customtlsstatus
+          @TlsVersion = tlsversion
+          @Cipher = cipher
+          @VerifyOriginType = verifyorigintype
+          @CertInfo = certinfo
+          @OriginCertInfo = origincertinfo
+        end
+
+        def deserialize(params)
+          @CustomTlsStatus = params['CustomTlsStatus']
+          @TlsVersion = params['TlsVersion']
+          @Cipher = params['Cipher']
+          @VerifyOriginType = params['VerifyOriginType']
+          unless params['CertInfo'].nil?
+            @CertInfo = ServerCert.new
+            @CertInfo.deserialize(params['CertInfo'])
+          end
+          unless params['OriginCertInfo'].nil?
+            @OriginCertInfo = ClientCert.new
+            @OriginCertInfo.deserialize(params['OriginCertInfo'])
+          end
+        end
+      end
+
       # 缓存配置简单版本，该版本不支持设置源站未返回max-age情况下的缓存规则。
       class Cache < TencentCloud::Common::AbstractModel
         # @param CacheRules: 缓存配置规则数组。
@@ -1447,16 +1498,20 @@ module TencentCloud
         # 设置BackupOrigins时必须填写。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BackupOriginType: String
+        # @param AdvanceHttps: HTTPS回源高级配置
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AdvanceHttps: :class:`Tencentcloud::Ecdn.v20191012.models.AdvanceHttps`
 
-        attr_accessor :Origins, :OriginType, :ServerName, :OriginPullProtocol, :BackupOrigins, :BackupOriginType
+        attr_accessor :Origins, :OriginType, :ServerName, :OriginPullProtocol, :BackupOrigins, :BackupOriginType, :AdvanceHttps
         
-        def initialize(origins=nil, origintype=nil, servername=nil, originpullprotocol=nil, backuporigins=nil, backuporigintype=nil)
+        def initialize(origins=nil, origintype=nil, servername=nil, originpullprotocol=nil, backuporigins=nil, backuporigintype=nil, advancehttps=nil)
           @Origins = origins
           @OriginType = origintype
           @ServerName = servername
           @OriginPullProtocol = originpullprotocol
           @BackupOrigins = backuporigins
           @BackupOriginType = backuporigintype
+          @AdvanceHttps = advancehttps
         end
 
         def deserialize(params)
@@ -1466,6 +1521,10 @@ module TencentCloud
           @OriginPullProtocol = params['OriginPullProtocol']
           @BackupOrigins = params['BackupOrigins']
           @BackupOriginType = params['BackupOriginType']
+          unless params['AdvanceHttps'].nil?
+            @AdvanceHttps = AdvanceHttps.new
+            @AdvanceHttps.deserialize(params['AdvanceHttps'])
+          end
         end
       end
 

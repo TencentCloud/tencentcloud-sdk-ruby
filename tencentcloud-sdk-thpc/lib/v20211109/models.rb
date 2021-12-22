@@ -109,6 +109,75 @@ module TencentCloud
         end
       end
 
+      # 集群概览信息。
+      class ClusterOverview < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群ID。
+        # @type ClusterId: String
+        # @param ClusterStatus: 集群状态。取值范围：<br><li>PENDING：创建中<br><li>INITING：初始化中<br><li>INIT_FAILED：初始化失败<br><li>RUNNING：运行中<br><li>TERMINATING：销毁中
+        # @type ClusterStatus: String
+        # @param ClusterName: 集群名称。
+        # @type ClusterName: String
+        # @param Placement: 集群位置信息。
+        # @type Placement: :class:`Tencentcloud::Thpc.v20211109.models.Placement`
+        # @param CreateTime: 集群创建时间。
+        # @type CreateTime: String
+        # @param SchedulerType: 集群调度器。
+        # @type SchedulerType: String
+        # @param ComputeNodeCount: 计算节点数量。
+        # @type ComputeNodeCount: Integer
+        # @param ComputeNodeSet: 计算节点概览。
+        # @type ComputeNodeSet: Array
+        # @param ManagerNodeCount: 管控节点数量。
+        # @type ManagerNodeCount: Integer
+        # @param ManagerNodeSet: 管控节点概览。
+        # @type ManagerNodeSet: Array
+
+        attr_accessor :ClusterId, :ClusterStatus, :ClusterName, :Placement, :CreateTime, :SchedulerType, :ComputeNodeCount, :ComputeNodeSet, :ManagerNodeCount, :ManagerNodeSet
+        
+        def initialize(clusterid=nil, clusterstatus=nil, clustername=nil, placement=nil, createtime=nil, schedulertype=nil, computenodecount=nil, computenodeset=nil, managernodecount=nil, managernodeset=nil)
+          @ClusterId = clusterid
+          @ClusterStatus = clusterstatus
+          @ClusterName = clustername
+          @Placement = placement
+          @CreateTime = createtime
+          @SchedulerType = schedulertype
+          @ComputeNodeCount = computenodecount
+          @ComputeNodeSet = computenodeset
+          @ManagerNodeCount = managernodecount
+          @ManagerNodeSet = managernodeset
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @ClusterStatus = params['ClusterStatus']
+          @ClusterName = params['ClusterName']
+          unless params['Placement'].nil?
+            @Placement = Placement.new
+            @Placement.deserialize(params['Placement'])
+          end
+          @CreateTime = params['CreateTime']
+          @SchedulerType = params['SchedulerType']
+          @ComputeNodeCount = params['ComputeNodeCount']
+          unless params['ComputeNodeSet'].nil?
+            @ComputeNodeSet = []
+            params['ComputeNodeSet'].each do |i|
+              computenodeoverview_tmp = ComputeNodeOverview.new
+              computenodeoverview_tmp.deserialize(i)
+              @ComputeNodeSet << computenodeoverview_tmp
+            end
+          end
+          @ManagerNodeCount = params['ManagerNodeCount']
+          unless params['ManagerNodeSet'].nil?
+            @ManagerNodeSet = []
+            params['ManagerNodeSet'].each do |i|
+              managernodeoverview_tmp = ManagerNodeOverview.new
+              managernodeoverview_tmp.deserialize(i)
+              @ManagerNodeSet << managernodeoverview_tmp
+            end
+          end
+        end
+      end
+
       # 计算节点信息。
       class ComputeNode < TencentCloud::Common::AbstractModel
         # @param InstanceChargeType: 节点[计费类型](https://cloud.tencent.com/document/product/213/2180)。<br><li>PREPAID：预付费，即包年包月<br><li>POSTPAID_BY_HOUR：按小时后付费<br><li>SPOTPAID：竞价付费<br>默认值：POSTPAID_BY_HOUR。
@@ -167,6 +236,23 @@ module TencentCloud
             @InternetAccessible.deserialize(params['InternetAccessible'])
           end
           @InstanceName = params['InstanceName']
+        end
+      end
+
+      # 计算节点概览。
+      class ComputeNodeOverview < TencentCloud::Common::AbstractModel
+        # @param NodeId: 计算节点ID。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NodeId: String
+
+        attr_accessor :NodeId
+        
+        def initialize(nodeid=nil)
+          @NodeId = nodeid
+        end
+
+        def deserialize(params)
+          @NodeId = params['NodeId']
         end
       end
 
@@ -337,6 +423,61 @@ module TencentCloud
         end
       end
 
+      # DescribeClusters请求参数结构体
+      class DescribeClustersRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterIds: 集群ID列表。通过该参数可以指定需要查询信息的集群列表。<br>如果您不指定该参数，则返回Limit数量以内的集群信息。
+        # @type ClusterIds: Array
+        # @param Offset: 偏移量，默认为0。关于`Offset`的更进一步介绍请参考 API [简介](https://cloud.tencent.com/document/api/213/15688)中的相关小节。
+        # @type Offset: Integer
+        # @param Limit: 返回数量，默认为20，最大值为100。关于`Limit`的更进一步介绍请参考 API [简介](https://cloud.tencent.com/document/api/213/15688)中的相关小节。
+        # @type Limit: Integer
+
+        attr_accessor :ClusterIds, :Offset, :Limit
+        
+        def initialize(clusterids=nil, offset=nil, limit=nil)
+          @ClusterIds = clusterids
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @ClusterIds = params['ClusterIds']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeClusters返回参数结构体
+      class DescribeClustersResponse < TencentCloud::Common::AbstractModel
+        # @param ClusterSet: 集群概览信息列表。
+        # @type ClusterSet: Array
+        # @param TotalCount: 集群数量。
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ClusterSet, :TotalCount, :RequestId
+        
+        def initialize(clusterset=nil, totalcount=nil, requestid=nil)
+          @ClusterSet = clusterset
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['ClusterSet'].nil?
+            @ClusterSet = []
+            params['ClusterSet'].each do |i|
+              clusteroverview_tmp = ClusterOverview.new
+              clusteroverview_tmp.deserialize(i)
+              @ClusterSet << clusteroverview_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 描述GooseFS挂载信息
       class GooseFSOption < TencentCloud::Common::AbstractModel
         # @param LocalPath: 文件系统本地挂载路径
@@ -485,6 +626,23 @@ module TencentCloud
             @InternetAccessible.deserialize(params['InternetAccessible'])
           end
           @InstanceName = params['InstanceName']
+        end
+      end
+
+      # 管控节点概览。
+      class ManagerNodeOverview < TencentCloud::Common::AbstractModel
+        # @param NodeId: 管控节点ID。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NodeId: String
+
+        attr_accessor :NodeId
+        
+        def initialize(nodeid=nil)
+          @NodeId = nodeid
+        end
+
+        def deserialize(params)
+          @NodeId = params['NodeId']
         end
       end
 

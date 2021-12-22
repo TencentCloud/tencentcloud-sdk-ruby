@@ -9587,12 +9587,18 @@ module TencentCloud
         # CONTAINER_NOT_FOUND_DEAL_RECOVER:恢复时，容器不存在
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SubStatus: String
+        # @param HostIP: 内网ip
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HostIP: String
+        # @param ClientIP: 外网ip
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClientIP: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :ImageId, :ImageName, :CreateTime, :Size, :FilePath, :ModifyTime, :VirusName, :RiskLevel, :ContainerName, :ContainerId, :HostName, :HostId, :ProcessName, :ProcessPath, :ProcessMd5, :ProcessId, :ProcessArgv, :ProcessChan, :ProcessAccountGroup, :ProcessStartAccount, :ProcessFileAuthority, :SourceType, :PodName, :Tags, :HarmDescribe, :SuggestScheme, :Mark, :FileName, :FileMd5, :EventType, :Status, :SubStatus, :RequestId
+        attr_accessor :ImageId, :ImageName, :CreateTime, :Size, :FilePath, :ModifyTime, :VirusName, :RiskLevel, :ContainerName, :ContainerId, :HostName, :HostId, :ProcessName, :ProcessPath, :ProcessMd5, :ProcessId, :ProcessArgv, :ProcessChan, :ProcessAccountGroup, :ProcessStartAccount, :ProcessFileAuthority, :SourceType, :PodName, :Tags, :HarmDescribe, :SuggestScheme, :Mark, :FileName, :FileMd5, :EventType, :Status, :SubStatus, :HostIP, :ClientIP, :RequestId
         
-        def initialize(imageid=nil, imagename=nil, createtime=nil, size=nil, filepath=nil, modifytime=nil, virusname=nil, risklevel=nil, containername=nil, containerid=nil, hostname=nil, hostid=nil, processname=nil, processpath=nil, processmd5=nil, processid=nil, processargv=nil, processchan=nil, processaccountgroup=nil, processstartaccount=nil, processfileauthority=nil, sourcetype=nil, podname=nil, tags=nil, harmdescribe=nil, suggestscheme=nil, mark=nil, filename=nil, filemd5=nil, eventtype=nil, status=nil, substatus=nil, requestid=nil)
+        def initialize(imageid=nil, imagename=nil, createtime=nil, size=nil, filepath=nil, modifytime=nil, virusname=nil, risklevel=nil, containername=nil, containerid=nil, hostname=nil, hostid=nil, processname=nil, processpath=nil, processmd5=nil, processid=nil, processargv=nil, processchan=nil, processaccountgroup=nil, processstartaccount=nil, processfileauthority=nil, sourcetype=nil, podname=nil, tags=nil, harmdescribe=nil, suggestscheme=nil, mark=nil, filename=nil, filemd5=nil, eventtype=nil, status=nil, substatus=nil, hostip=nil, clientip=nil, requestid=nil)
           @ImageId = imageid
           @ImageName = imagename
           @CreateTime = createtime
@@ -9625,6 +9631,8 @@ module TencentCloud
           @EventType = eventtype
           @Status = status
           @SubStatus = substatus
+          @HostIP = hostip
+          @ClientIP = clientip
           @RequestId = requestid
         end
 
@@ -9661,6 +9669,8 @@ module TencentCloud
           @EventType = params['EventType']
           @Status = params['Status']
           @SubStatus = params['SubStatus']
+          @HostIP = params['HostIP']
+          @ClientIP = params['ClientIP']
           @RequestId = params['RequestId']
         end
       end
@@ -12745,10 +12755,16 @@ module TencentCloud
         # @type EventCount: Integer
         # @param LatestFoundTime: 最近生成时间
         # @type LatestFoundTime: String
+        # @param HostIP: 内网ip
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HostIP: String
+        # @param ClientIP: 外网ip
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClientIP: String
 
-        attr_accessor :EventId, :FoundTime, :ContainerId, :ContainerName, :ImageId, :ImageName, :NodeName, :PodName, :Status, :EventName, :EventType, :EventCount, :LatestFoundTime
+        attr_accessor :EventId, :FoundTime, :ContainerId, :ContainerName, :ImageId, :ImageName, :NodeName, :PodName, :Status, :EventName, :EventType, :EventCount, :LatestFoundTime, :HostIP, :ClientIP
         
-        def initialize(eventid=nil, foundtime=nil, containerid=nil, containername=nil, imageid=nil, imagename=nil, nodename=nil, podname=nil, status=nil, eventname=nil, eventtype=nil, eventcount=nil, latestfoundtime=nil)
+        def initialize(eventid=nil, foundtime=nil, containerid=nil, containername=nil, imageid=nil, imagename=nil, nodename=nil, podname=nil, status=nil, eventname=nil, eventtype=nil, eventcount=nil, latestfoundtime=nil, hostip=nil, clientip=nil)
           @EventId = eventid
           @FoundTime = foundtime
           @ContainerId = containerid
@@ -12762,6 +12778,8 @@ module TencentCloud
           @EventType = eventtype
           @EventCount = eventcount
           @LatestFoundTime = latestfoundtime
+          @HostIP = hostip
+          @ClientIP = clientip
         end
 
         def deserialize(params)
@@ -12778,6 +12796,8 @@ module TencentCloud
           @EventType = params['EventType']
           @EventCount = params['EventCount']
           @LatestFoundTime = params['LatestFoundTime']
+          @HostIP = params['HostIP']
+          @ClientIP = params['ClientIP']
         end
       end
 

@@ -571,11 +571,11 @@ module TencentCloud
         # @type BatchTasks: Array
         # @param TaskType: 任务类型
         # @type TaskType: Integer
-        # @param Nodes: 探测节点
+        # @param Nodes: 拨测节点
         # @type Nodes: Array
-        # @param Interval: 探测间隔
+        # @param Interval: 拨测间隔
         # @type Interval: Integer
-        # @param Parameters: 探测参数
+        # @param Parameters: 拨测参数
         # @type Parameters: String
         # @param TaskCategory: 任务分类
         # <li>1 = PC</li>
@@ -583,10 +583,12 @@ module TencentCloud
         # @type TaskCategory: Integer
         # @param Cron: 定时任务cron表达式
         # @type Cron: String
+        # @param Tag: 资源标签值
+        # @type Tag: Array
 
-        attr_accessor :BatchTasks, :TaskType, :Nodes, :Interval, :Parameters, :TaskCategory, :Cron
+        attr_accessor :BatchTasks, :TaskType, :Nodes, :Interval, :Parameters, :TaskCategory, :Cron, :Tag
         
-        def initialize(batchtasks=nil, tasktype=nil, nodes=nil, interval=nil, parameters=nil, taskcategory=nil, cron=nil)
+        def initialize(batchtasks=nil, tasktype=nil, nodes=nil, interval=nil, parameters=nil, taskcategory=nil, cron=nil, tag=nil)
           @BatchTasks = batchtasks
           @TaskType = tasktype
           @Nodes = nodes
@@ -594,6 +596,7 @@ module TencentCloud
           @Parameters = parameters
           @TaskCategory = taskcategory
           @Cron = cron
+          @Tag = tag
         end
 
         def deserialize(params)
@@ -611,6 +614,14 @@ module TencentCloud
           @Parameters = params['Parameters']
           @TaskCategory = params['TaskCategory']
           @Cron = params['Cron']
+          unless params['Tag'].nil?
+            @Tag = []
+            params['Tag'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tag << tag_tmp
+            end
+          end
         end
       end
 
@@ -1466,7 +1477,7 @@ module TencentCloud
         # @type TaskIDs: Array
         # @param TaskName: 任务名
         # @type TaskName: String
-        # @param TargetAddress: 探测目标
+        # @param TargetAddress: 拨测目标
         # @type TargetAddress: String
         # @param TaskStatus: 任务状态列表
         # @type TaskStatus: Array
@@ -1490,10 +1501,12 @@ module TencentCloud
         # @type OrderBy: String
         # @param Ascend: 是否正序
         # @type Ascend: Boolean
+        # @param TagFilters: 资源标签值
+        # @type TagFilters: Array
 
-        attr_accessor :TaskIDs, :TaskName, :TargetAddress, :TaskStatus, :Offset, :Limit, :PayMode, :OrderState, :TaskType, :TaskCategory, :OrderBy, :Ascend
+        attr_accessor :TaskIDs, :TaskName, :TargetAddress, :TaskStatus, :Offset, :Limit, :PayMode, :OrderState, :TaskType, :TaskCategory, :OrderBy, :Ascend, :TagFilters
         
-        def initialize(taskids=nil, taskname=nil, targetaddress=nil, taskstatus=nil, offset=nil, limit=nil, paymode=nil, orderstate=nil, tasktype=nil, taskcategory=nil, orderby=nil, ascend=nil)
+        def initialize(taskids=nil, taskname=nil, targetaddress=nil, taskstatus=nil, offset=nil, limit=nil, paymode=nil, orderstate=nil, tasktype=nil, taskcategory=nil, orderby=nil, ascend=nil, tagfilters=nil)
           @TaskIDs = taskids
           @TaskName = taskname
           @TargetAddress = targetaddress
@@ -1506,6 +1519,7 @@ module TencentCloud
           @TaskCategory = taskcategory
           @OrderBy = orderby
           @Ascend = ascend
+          @TagFilters = tagfilters
         end
 
         def deserialize(params)
@@ -1521,6 +1535,14 @@ module TencentCloud
           @TaskCategory = params['TaskCategory']
           @OrderBy = params['OrderBy']
           @Ascend = params['Ascend']
+          unless params['TagFilters'].nil?
+            @TagFilters = []
+            params['TagFilters'].each do |i|
+              keyvaluepair_tmp = KeyValuePair.new
+              keyvaluepair_tmp.deserialize(i)
+              @TagFilters << keyvaluepair_tmp
+            end
+          end
         end
       end
 
@@ -2377,6 +2399,26 @@ module TencentCloud
         end
       end
 
+      # 健值对
+      class KeyValuePair < TencentCloud::Common::AbstractModel
+        # @param Key: 健
+        # @type Key: String
+        # @param Value: 值
+        # @type Value: String
+
+        attr_accessor :Key, :Value
+        
+        def initialize(key=nil, value=nil)
+          @Key = key
+          @Value = value
+        end
+
+        def deserialize(params)
+          @Key = params['Key']
+          @Value = params['Value']
+        end
+      end
+
       # 保存string类型字段
       class Label < TencentCloud::Common::AbstractModel
         # @param ID: 自定义字段编号
@@ -2682,7 +2724,7 @@ module TencentCloud
         end
       end
 
-      # 探测任务
+      # 拨测任务
       class ProbeTask < TencentCloud::Common::AbstractModel
         # @param Name: 任务名
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -2691,11 +2733,11 @@ module TencentCloud
         # @type TaskId: String
         # @param TaskType: 任务类型
         # @type TaskType: Integer
-        # @param Nodes: 探测节点列表
+        # @param Nodes: 拨测节点列表
         # @type Nodes: Array
-        # @param Interval: 探测间隔
+        # @param Interval: 拨测间隔
         # @type Interval: Integer
-        # @param Parameters: 探测参数
+        # @param Parameters: 拨测参数
         # @type Parameters: String
         # @param Status: 任务状态
         # @type Status: Integer
@@ -2721,10 +2763,13 @@ module TencentCloud
         # @param CronState: 定时任务启动状态
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CronState: Integer
+        # @param TagInfoList: 任务当前绑定的标签
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TagInfoList: Array
 
-        attr_accessor :Name, :TaskId, :TaskType, :Nodes, :Interval, :Parameters, :Status, :TargetAddress, :PayMode, :OrderState, :TaskCategory, :CreatedAt, :Cron, :CronState
+        attr_accessor :Name, :TaskId, :TaskType, :Nodes, :Interval, :Parameters, :Status, :TargetAddress, :PayMode, :OrderState, :TaskCategory, :CreatedAt, :Cron, :CronState, :TagInfoList
         
-        def initialize(name=nil, taskid=nil, tasktype=nil, nodes=nil, interval=nil, parameters=nil, status=nil, targetaddress=nil, paymode=nil, orderstate=nil, taskcategory=nil, createdat=nil, cron=nil, cronstate=nil)
+        def initialize(name=nil, taskid=nil, tasktype=nil, nodes=nil, interval=nil, parameters=nil, status=nil, targetaddress=nil, paymode=nil, orderstate=nil, taskcategory=nil, createdat=nil, cron=nil, cronstate=nil, taginfolist=nil)
           @Name = name
           @TaskId = taskid
           @TaskType = tasktype
@@ -2739,6 +2784,7 @@ module TencentCloud
           @CreatedAt = createdat
           @Cron = cron
           @CronState = cronstate
+          @TagInfoList = taginfolist
         end
 
         def deserialize(params)
@@ -2756,6 +2802,14 @@ module TencentCloud
           @CreatedAt = params['CreatedAt']
           @Cron = params['Cron']
           @CronState = params['CronState']
+          unless params['TagInfoList'].nil?
+            @TagInfoList = []
+            params['TagInfoList'].each do |i|
+              keyvaluepair_tmp = KeyValuePair.new
+              keyvaluepair_tmp.deserialize(i)
+              @TagInfoList << keyvaluepair_tmp
+            end
+          end
         end
       end
 
@@ -2993,6 +3047,26 @@ module TencentCloud
             end
           end
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 资源的标签，通过标签对资源进行划分用于支持细粒度的鉴权、分账等场景
+      class Tag < TencentCloud::Common::AbstractModel
+        # @param TagKey: key
+        # @type TagKey: String
+        # @param TagValue: value
+        # @type TagValue: String
+
+        attr_accessor :TagKey, :TagValue
+        
+        def initialize(tagkey=nil, tagvalue=nil)
+          @TagKey = tagkey
+          @TagValue = tagvalue
+        end
+
+        def deserialize(params)
+          @TagKey = params['TagKey']
+          @TagValue = params['TagValue']
         end
       end
 

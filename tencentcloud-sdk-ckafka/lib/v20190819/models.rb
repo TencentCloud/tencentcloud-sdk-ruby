@@ -2508,6 +2508,38 @@ module TencentCloud
         end
       end
 
+      # 动态硬盘扩容配置
+      class DynamicDiskConfig < TencentCloud::Common::AbstractModel
+        # @param Enable: 动态硬盘扩容配置开关（0: 关闭，1: 开启）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Enable: Integer
+        # @param StepForwardPercentage: 每次磁盘动态扩容大小百分比
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StepForwardPercentage: Integer
+        # @param DiskQuotaPercentage: 磁盘配额百分比触发条件，即消息达到此值触发硬盘自动扩容事件
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DiskQuotaPercentage: Integer
+        # @param MaxDiskSpace: 最大扩容硬盘大小，以 GB 为单位
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MaxDiskSpace: Integer
+
+        attr_accessor :Enable, :StepForwardPercentage, :DiskQuotaPercentage, :MaxDiskSpace
+        
+        def initialize(enable=nil, stepforwardpercentage=nil, diskquotapercentage=nil, maxdiskspace=nil)
+          @Enable = enable
+          @StepForwardPercentage = stepforwardpercentage
+          @DiskQuotaPercentage = diskquotapercentage
+          @MaxDiskSpace = maxdiskspace
+        end
+
+        def deserialize(params)
+          @Enable = params['Enable']
+          @StepForwardPercentage = params['StepForwardPercentage']
+          @DiskQuotaPercentage = params['DiskQuotaPercentage']
+          @MaxDiskSpace = params['MaxDiskSpace']
+        end
+      end
+
       # 动态消息保留时间配置
       class DynamicRetentionTime < TencentCloud::Common::AbstractModel
         # @param Enable: 动态消息保留时间配置开关（0: 关闭，1: 开启）
@@ -2966,10 +2998,13 @@ module TencentCloud
         # @param RemainingTopics: 剩余创建主题数
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RemainingTopics: Integer
+        # @param DynamicDiskConfig: 动态硬盘扩容策略
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DynamicDiskConfig: :class:`Tencentcloud::Ckafka.v20190819.models.DynamicDiskConfig`
 
-        attr_accessor :InstanceId, :InstanceName, :VipList, :Vip, :Vport, :Status, :Bandwidth, :DiskSize, :ZoneId, :VpcId, :SubnetId, :Healthy, :HealthyMessage, :CreateTime, :MsgRetentionTime, :Config, :RemainderPartitions, :RemainderTopics, :CreatedPartitions, :CreatedTopics, :Tags, :ExpireTime, :ZoneIds, :Version, :MaxGroupNum, :Cvm, :InstanceType, :Features, :RetentionTimeConfig, :MaxConnection, :PublicNetwork, :DeleteRouteTimestamp, :RemainingPartitions, :RemainingTopics
+        attr_accessor :InstanceId, :InstanceName, :VipList, :Vip, :Vport, :Status, :Bandwidth, :DiskSize, :ZoneId, :VpcId, :SubnetId, :Healthy, :HealthyMessage, :CreateTime, :MsgRetentionTime, :Config, :RemainderPartitions, :RemainderTopics, :CreatedPartitions, :CreatedTopics, :Tags, :ExpireTime, :ZoneIds, :Version, :MaxGroupNum, :Cvm, :InstanceType, :Features, :RetentionTimeConfig, :MaxConnection, :PublicNetwork, :DeleteRouteTimestamp, :RemainingPartitions, :RemainingTopics, :DynamicDiskConfig
         
-        def initialize(instanceid=nil, instancename=nil, viplist=nil, vip=nil, vport=nil, status=nil, bandwidth=nil, disksize=nil, zoneid=nil, vpcid=nil, subnetid=nil, healthy=nil, healthymessage=nil, createtime=nil, msgretentiontime=nil, config=nil, remainderpartitions=nil, remaindertopics=nil, createdpartitions=nil, createdtopics=nil, tags=nil, expiretime=nil, zoneids=nil, version=nil, maxgroupnum=nil, cvm=nil, instancetype=nil, features=nil, retentiontimeconfig=nil, maxconnection=nil, publicnetwork=nil, deleteroutetimestamp=nil, remainingpartitions=nil, remainingtopics=nil)
+        def initialize(instanceid=nil, instancename=nil, viplist=nil, vip=nil, vport=nil, status=nil, bandwidth=nil, disksize=nil, zoneid=nil, vpcid=nil, subnetid=nil, healthy=nil, healthymessage=nil, createtime=nil, msgretentiontime=nil, config=nil, remainderpartitions=nil, remaindertopics=nil, createdpartitions=nil, createdtopics=nil, tags=nil, expiretime=nil, zoneids=nil, version=nil, maxgroupnum=nil, cvm=nil, instancetype=nil, features=nil, retentiontimeconfig=nil, maxconnection=nil, publicnetwork=nil, deleteroutetimestamp=nil, remainingpartitions=nil, remainingtopics=nil, dynamicdiskconfig=nil)
           @InstanceId = instanceid
           @InstanceName = instancename
           @VipList = viplist
@@ -3004,6 +3039,7 @@ module TencentCloud
           @DeleteRouteTimestamp = deleteroutetimestamp
           @RemainingPartitions = remainingpartitions
           @RemainingTopics = remainingtopics
+          @DynamicDiskConfig = dynamicdiskconfig
         end
 
         def deserialize(params)
@@ -3061,6 +3097,10 @@ module TencentCloud
           @DeleteRouteTimestamp = params['DeleteRouteTimestamp']
           @RemainingPartitions = params['RemainingPartitions']
           @RemainingTopics = params['RemainingTopics']
+          unless params['DynamicDiskConfig'].nil?
+            @DynamicDiskConfig = DynamicDiskConfig.new
+            @DynamicDiskConfig.deserialize(params['DynamicDiskConfig'])
+          end
         end
       end
 
@@ -3421,10 +3461,12 @@ module TencentCloud
         # @type RebalanceTime: Integer
         # @param PublicNetwork: 时间戳
         # @type PublicNetwork: Integer
+        # @param DynamicDiskConfig: 动态硬盘扩容策略配置
+        # @type DynamicDiskConfig: :class:`Tencentcloud::Ckafka.v20190819.models.DynamicDiskConfig`
 
-        attr_accessor :InstanceId, :MsgRetentionTime, :InstanceName, :Config, :DynamicRetentionConfig, :RebalanceTime, :PublicNetwork
+        attr_accessor :InstanceId, :MsgRetentionTime, :InstanceName, :Config, :DynamicRetentionConfig, :RebalanceTime, :PublicNetwork, :DynamicDiskConfig
         
-        def initialize(instanceid=nil, msgretentiontime=nil, instancename=nil, config=nil, dynamicretentionconfig=nil, rebalancetime=nil, publicnetwork=nil)
+        def initialize(instanceid=nil, msgretentiontime=nil, instancename=nil, config=nil, dynamicretentionconfig=nil, rebalancetime=nil, publicnetwork=nil, dynamicdiskconfig=nil)
           @InstanceId = instanceid
           @MsgRetentionTime = msgretentiontime
           @InstanceName = instancename
@@ -3432,6 +3474,7 @@ module TencentCloud
           @DynamicRetentionConfig = dynamicretentionconfig
           @RebalanceTime = rebalancetime
           @PublicNetwork = publicnetwork
+          @DynamicDiskConfig = dynamicdiskconfig
         end
 
         def deserialize(params)
@@ -3448,6 +3491,10 @@ module TencentCloud
           end
           @RebalanceTime = params['RebalanceTime']
           @PublicNetwork = params['PublicNetwork']
+          unless params['DynamicDiskConfig'].nil?
+            @DynamicDiskConfig = DynamicDiskConfig.new
+            @DynamicDiskConfig.deserialize(params['DynamicDiskConfig'])
+          end
         end
       end
 
@@ -3555,10 +3602,12 @@ module TencentCloud
         # @type AclRuleName: String
         # @param RetentionBytes: 可选, 保留文件大小. 默认为-1,单位bytes, 当前最小值为1048576B
         # @type RetentionBytes: Integer
+        # @param Tags: 标签列表
+        # @type Tags: Array
 
-        attr_accessor :InstanceId, :TopicName, :Note, :EnableWhiteList, :MinInsyncReplicas, :UncleanLeaderElectionEnable, :RetentionMs, :SegmentMs, :MaxMessageBytes, :CleanUpPolicy, :IpWhiteList, :EnableAclRule, :AclRuleName, :RetentionBytes
+        attr_accessor :InstanceId, :TopicName, :Note, :EnableWhiteList, :MinInsyncReplicas, :UncleanLeaderElectionEnable, :RetentionMs, :SegmentMs, :MaxMessageBytes, :CleanUpPolicy, :IpWhiteList, :EnableAclRule, :AclRuleName, :RetentionBytes, :Tags
         
-        def initialize(instanceid=nil, topicname=nil, note=nil, enablewhitelist=nil, mininsyncreplicas=nil, uncleanleaderelectionenable=nil, retentionms=nil, segmentms=nil, maxmessagebytes=nil, cleanuppolicy=nil, ipwhitelist=nil, enableaclrule=nil, aclrulename=nil, retentionbytes=nil)
+        def initialize(instanceid=nil, topicname=nil, note=nil, enablewhitelist=nil, mininsyncreplicas=nil, uncleanleaderelectionenable=nil, retentionms=nil, segmentms=nil, maxmessagebytes=nil, cleanuppolicy=nil, ipwhitelist=nil, enableaclrule=nil, aclrulename=nil, retentionbytes=nil, tags=nil)
           @InstanceId = instanceid
           @TopicName = topicname
           @Note = note
@@ -3573,6 +3622,7 @@ module TencentCloud
           @EnableAclRule = enableaclrule
           @AclRuleName = aclrulename
           @RetentionBytes = retentionbytes
+          @Tags = tags
         end
 
         def deserialize(params)
@@ -3590,6 +3640,14 @@ module TencentCloud
           @EnableAclRule = params['EnableAclRule']
           @AclRuleName = params['AclRuleName']
           @RetentionBytes = params['RetentionBytes']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
+            end
+          end
         end
       end
 

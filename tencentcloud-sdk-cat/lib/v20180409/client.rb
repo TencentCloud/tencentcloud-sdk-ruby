@@ -77,7 +77,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 批量创建探测任务
+        # 批量创建拨测任务
 
         # @param request: Request instance for CreateProbeTasks.
         # @type request: :class:`Tencentcloud::cat::V20180409::CreateProbeTasksRequest`
@@ -389,7 +389,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 查询探测任务列表
+        # 查询拨测任务列表
 
         # @param request: Request instance for DescribeProbeTasks.
         # @type request: :class:`Tencentcloud::cat::V20180409::DescribeProbeTasksRequest`
