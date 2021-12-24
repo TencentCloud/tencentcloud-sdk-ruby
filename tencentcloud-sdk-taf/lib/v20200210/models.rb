@@ -67,6 +67,26 @@ module TencentCloud
         end
       end
 
+      # 业务入参
+      class Device < TencentCloud::Common::AbstractModel
+        # @param DeviceId: 业务入参id
+        # @type DeviceId: String
+        # @param DeviceType: 业务入参类型
+        # @type DeviceType: Integer
+
+        attr_accessor :DeviceId, :DeviceType
+        
+        def initialize(deviceid=nil, devicetype=nil)
+          @DeviceId = deviceid
+          @DeviceType = devicetype
+        end
+
+        def deserialize(params)
+          @DeviceId = params['DeviceId']
+          @DeviceType = params['DeviceType']
+        end
+      end
+
       # EnhanceTaDegree请求参数结构体
       class EnhanceTaDegreeRequest < TencentCloud::Common::AbstractModel
         # @param BspData: 业务数据
@@ -278,10 +298,12 @@ module TencentCloud
         # @type ReqType: Integer
         # @param IsAuthorized: 用户是否授权,1为授权，0为未授权
         # @type IsAuthorized: Integer
+        # @param DeviceList: 设备信息
+        # @type DeviceList: Array
 
-        attr_accessor :Uid, :AccountType, :ModelIdList, :Ip, :Os, :Osv, :Lat, :Lon, :DeviceModel, :BidFloor, :Age, :Gender, :Location, :DeliveryMode, :AdvertisingType, :Mac, :Phone, :Ua, :App, :Package, :Maker, :DeviceType, :AccessMode, :Sp, :DeviceW, :DeviceH, :FullScreen, :ImpBannerW, :ImpBannerH, :Url, :Context, :Channel, :ReqId, :ReqMd5, :AdType, :AppName, :AppVer, :ReqType, :IsAuthorized
+        attr_accessor :Uid, :AccountType, :ModelIdList, :Ip, :Os, :Osv, :Lat, :Lon, :DeviceModel, :BidFloor, :Age, :Gender, :Location, :DeliveryMode, :AdvertisingType, :Mac, :Phone, :Ua, :App, :Package, :Maker, :DeviceType, :AccessMode, :Sp, :DeviceW, :DeviceH, :FullScreen, :ImpBannerW, :ImpBannerH, :Url, :Context, :Channel, :ReqId, :ReqMd5, :AdType, :AppName, :AppVer, :ReqType, :IsAuthorized, :DeviceList
         
-        def initialize(uid=nil, accounttype=nil, modelidlist=nil, ip=nil, os=nil, osv=nil, lat=nil, lon=nil, devicemodel=nil, bidfloor=nil, age=nil, gender=nil, location=nil, deliverymode=nil, advertisingtype=nil, mac=nil, phone=nil, ua=nil, app=nil, package=nil, maker=nil, devicetype=nil, accessmode=nil, sp=nil, devicew=nil, deviceh=nil, fullscreen=nil, impbannerw=nil, impbannerh=nil, url=nil, context=nil, channel=nil, reqid=nil, reqmd5=nil, adtype=nil, appname=nil, appver=nil, reqtype=nil, isauthorized=nil)
+        def initialize(uid=nil, accounttype=nil, modelidlist=nil, ip=nil, os=nil, osv=nil, lat=nil, lon=nil, devicemodel=nil, bidfloor=nil, age=nil, gender=nil, location=nil, deliverymode=nil, advertisingtype=nil, mac=nil, phone=nil, ua=nil, app=nil, package=nil, maker=nil, devicetype=nil, accessmode=nil, sp=nil, devicew=nil, deviceh=nil, fullscreen=nil, impbannerw=nil, impbannerh=nil, url=nil, context=nil, channel=nil, reqid=nil, reqmd5=nil, adtype=nil, appname=nil, appver=nil, reqtype=nil, isauthorized=nil, devicelist=nil)
           @Uid = uid
           @AccountType = accounttype
           @ModelIdList = modelidlist
@@ -321,6 +343,7 @@ module TencentCloud
           @AppVer = appver
           @ReqType = reqtype
           @IsAuthorized = isauthorized
+          @DeviceList = devicelist
         end
 
         def deserialize(params)
@@ -363,6 +386,14 @@ module TencentCloud
           @AppVer = params['AppVer']
           @ReqType = params['ReqType']
           @IsAuthorized = params['IsAuthorized']
+          unless params['DeviceList'].nil?
+            @DeviceList = []
+            params['DeviceList'].each do |i|
+              device_tmp = Device.new
+              device_tmp.deserialize(i)
+              @DeviceList << device_tmp
+            end
+          end
         end
       end
 

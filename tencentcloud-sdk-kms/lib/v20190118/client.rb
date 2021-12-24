@@ -869,7 +869,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 获取支持的地域列表
+        # 获取可以提供KMS服务的地域列表
 
         # @param request: Request instance for GetRegions.
         # @type request: :class:`Tencentcloud::kms::V20190118::GetRegionsRequest`

@@ -1736,6 +1736,63 @@ module TencentCloud
         end
       end
 
+      # GetRolePermissionBoundary请求参数结构体
+      class GetRolePermissionBoundaryRequest < TencentCloud::Common::AbstractModel
+        # @param RoleId: 角色ID
+        # @type RoleId: String
+
+        attr_accessor :RoleId
+        
+        def initialize(roleid=nil)
+          @RoleId = roleid
+        end
+
+        def deserialize(params)
+          @RoleId = params['RoleId']
+        end
+      end
+
+      # GetRolePermissionBoundary返回参数结构体
+      class GetRolePermissionBoundaryResponse < TencentCloud::Common::AbstractModel
+        # @param PolicyId: 策略ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PolicyId: Integer
+        # @param PolicyName: 策略名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PolicyName: String
+        # @param PolicyDocument: 策略语法
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PolicyDocument: String
+        # @param PolicyType: 策略类型：1.自定义策略，2.预设策略
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PolicyType: Integer
+        # @param CreateMode: 创建方式：1.按产品功能或项目权限创建，2.按策略语法创建，3.按策略生成器创建，4.按标签授权创建，5.按权限边界规则创建
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateMode: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :PolicyId, :PolicyName, :PolicyDocument, :PolicyType, :CreateMode, :RequestId
+        
+        def initialize(policyid=nil, policyname=nil, policydocument=nil, policytype=nil, createmode=nil, requestid=nil)
+          @PolicyId = policyid
+          @PolicyName = policyname
+          @PolicyDocument = policydocument
+          @PolicyType = policytype
+          @CreateMode = createmode
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @PolicyId = params['PolicyId']
+          @PolicyName = params['PolicyName']
+          @PolicyDocument = params['PolicyDocument']
+          @PolicyType = params['PolicyType']
+          @CreateMode = params['CreateMode']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # GetRole请求参数结构体
       class GetRoleRequest < TencentCloud::Common::AbstractModel
         # @param RoleId: 角色 ID，用于指定角色，入参 RoleId 与 RoleName 二选一
@@ -1920,6 +1977,63 @@ module TencentCloud
           @Reason = params['Reason']
           @ServiceType = params['ServiceType']
           @ServiceName = params['ServiceName']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # GetUserPermissionBoundary请求参数结构体
+      class GetUserPermissionBoundaryRequest < TencentCloud::Common::AbstractModel
+        # @param TargetUin: 子账号Uin
+        # @type TargetUin: Integer
+
+        attr_accessor :TargetUin
+        
+        def initialize(targetuin=nil)
+          @TargetUin = targetuin
+        end
+
+        def deserialize(params)
+          @TargetUin = params['TargetUin']
+        end
+      end
+
+      # GetUserPermissionBoundary返回参数结构体
+      class GetUserPermissionBoundaryResponse < TencentCloud::Common::AbstractModel
+        # @param PolicyId: 策略ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PolicyId: Integer
+        # @param PolicyName: 策略名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PolicyName: String
+        # @param PolicyDocument: 策略语法
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PolicyDocument: String
+        # @param PolicyType: 策略类型：1.自定义策略，2.预设策略
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PolicyType: Integer
+        # @param CreateMode: 创建方式：1.按产品功能或项目权限创建，2.按策略语法创建，3.按策略生成器创建，4.按标签授权创建，5.按权限边界规则创建
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateMode: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :PolicyId, :PolicyName, :PolicyDocument, :PolicyType, :CreateMode, :RequestId
+        
+        def initialize(policyid=nil, policyname=nil, policydocument=nil, policytype=nil, createmode=nil, requestid=nil)
+          @PolicyId = policyid
+          @PolicyName = policyname
+          @PolicyDocument = policydocument
+          @PolicyType = policytype
+          @CreateMode = createmode
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @PolicyId = params['PolicyId']
+          @PolicyName = params['PolicyName']
+          @PolicyDocument = params['PolicyDocument']
+          @PolicyType = params['PolicyType']
+          @CreateMode = params['CreateMode']
           @RequestId = params['RequestId']
         end
       end

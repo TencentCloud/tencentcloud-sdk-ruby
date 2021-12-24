@@ -237,8 +237,6 @@ module TencentCloud
       class CreateDBInstancesRequest < TencentCloud::Common::AbstractModel
         # @param SpecCode: 售卖规格ID。该参数可以通过调用DescribeProductConfig的返回值中的SpecCode字段来获取。
         # @type SpecCode: String
-        # @param DBVersion: PostgreSQL内核版本，目前支持以下版本：9.3.5、9.5.4、10.4、11.8、12.4 。
-        # @type DBVersion: String
         # @param Storage: 实例容量大小，单位：GB。
         # @type Storage: Integer
         # @param InstanceCount: 一次性购买的实例数量。取值1-100
@@ -249,6 +247,8 @@ module TencentCloud
         # @type Zone: String
         # @param ProjectId: 项目ID。
         # @type ProjectId: Integer
+        # @param DBVersion: PostgreSQL版本。当输入该参数时，会基于此版本创建对应的最新内核版本号实例。
+        # @type DBVersion: String
         # @param InstanceChargeType: 实例计费类型。目前支持：PREPAID（预付费，即包年包月），POSTPAID_BY_HOUR（后付费，即按量计费）。
         # @type InstanceChargeType: String
         # @param AutoVoucher: 是否自动使用代金券。1（是），0（否），默认不使用。
@@ -271,17 +271,21 @@ module TencentCloud
         # @type TagList: Array
         # @param SecurityGroupIds: 安全组id
         # @type SecurityGroupIds: Array
+        # @param DBMajorVersion: PostgreSQL主要版本。目前支持10，11，12，13这几个版本。当输入该参数时，会基于此版本创建对应的最新内核版本号实例。
+        # @type DBMajorVersion: String
+        # @param DBKernelVersion: PostgreSQL内核版本。当输入该参数时，会创建该内核版本号实例。
+        # @type DBKernelVersion: String
 
-        attr_accessor :SpecCode, :DBVersion, :Storage, :InstanceCount, :Period, :Zone, :ProjectId, :InstanceChargeType, :AutoVoucher, :VoucherIds, :VpcId, :SubnetId, :AutoRenewFlag, :ActivityId, :Name, :NeedSupportIpv6, :TagList, :SecurityGroupIds
+        attr_accessor :SpecCode, :Storage, :InstanceCount, :Period, :Zone, :ProjectId, :DBVersion, :InstanceChargeType, :AutoVoucher, :VoucherIds, :VpcId, :SubnetId, :AutoRenewFlag, :ActivityId, :Name, :NeedSupportIpv6, :TagList, :SecurityGroupIds, :DBMajorVersion, :DBKernelVersion
         
-        def initialize(speccode=nil, dbversion=nil, storage=nil, instancecount=nil, period=nil, zone=nil, projectid=nil, instancechargetype=nil, autovoucher=nil, voucherids=nil, vpcid=nil, subnetid=nil, autorenewflag=nil, activityid=nil, name=nil, needsupportipv6=nil, taglist=nil, securitygroupids=nil)
+        def initialize(speccode=nil, storage=nil, instancecount=nil, period=nil, zone=nil, projectid=nil, dbversion=nil, instancechargetype=nil, autovoucher=nil, voucherids=nil, vpcid=nil, subnetid=nil, autorenewflag=nil, activityid=nil, name=nil, needsupportipv6=nil, taglist=nil, securitygroupids=nil, dbmajorversion=nil, dbkernelversion=nil)
           @SpecCode = speccode
-          @DBVersion = dbversion
           @Storage = storage
           @InstanceCount = instancecount
           @Period = period
           @Zone = zone
           @ProjectId = projectid
+          @DBVersion = dbversion
           @InstanceChargeType = instancechargetype
           @AutoVoucher = autovoucher
           @VoucherIds = voucherids
@@ -293,16 +297,18 @@ module TencentCloud
           @NeedSupportIpv6 = needsupportipv6
           @TagList = taglist
           @SecurityGroupIds = securitygroupids
+          @DBMajorVersion = dbmajorversion
+          @DBKernelVersion = dbkernelversion
         end
 
         def deserialize(params)
           @SpecCode = params['SpecCode']
-          @DBVersion = params['DBVersion']
           @Storage = params['Storage']
           @InstanceCount = params['InstanceCount']
           @Period = params['Period']
           @Zone = params['Zone']
           @ProjectId = params['ProjectId']
+          @DBVersion = params['DBVersion']
           @InstanceChargeType = params['InstanceChargeType']
           @AutoVoucher = params['AutoVoucher']
           @VoucherIds = params['VoucherIds']
@@ -321,6 +327,8 @@ module TencentCloud
             end
           end
           @SecurityGroupIds = params['SecurityGroupIds']
+          @DBMajorVersion = params['DBMajorVersion']
+          @DBKernelVersion = params['DBKernelVersion']
         end
       end
 
@@ -356,8 +364,6 @@ module TencentCloud
       class CreateInstancesRequest < TencentCloud::Common::AbstractModel
         # @param SpecCode: 售卖规格ID。该参数可以通过调用DescribeProductConfig的返回值中的SpecCode字段来获取。
         # @type SpecCode: String
-        # @param DBVersion: PostgreSQL主版本，目前支持：9.3、9.5、10、11、12、13以及9.3.5、9.5.4、10.4、11.8、12.4版本。
-        # @type DBVersion: String
         # @param Storage: 实例容量大小，单位：GB。
         # @type Storage: Integer
         # @param InstanceCount: 一次性购买的实例数量。取值1-10。
@@ -374,6 +380,8 @@ module TencentCloud
         # @type AdminPassword: String
         # @param ProjectId: 项目ID。
         # @type ProjectId: Integer
+        # @param DBVersion: PostgreSQL版本。当输入该参数时，会基于此版本创建对应的最新内核版本号实例
+        # @type DBVersion: String
         # @param InstanceChargeType: 实例计费类型。目前支持：PREPAID（预付费，即包年包月），POSTPAID_BY_HOUR（后付费，即按量计费）。
         # @type InstanceChargeType: String
         # @param AutoVoucher: 是否自动使用代金券。1（是），0（否），默认不使用。
@@ -396,12 +404,15 @@ module TencentCloud
         # @type TagList: Array
         # @param SecurityGroupIds: 安全组ID。
         # @type SecurityGroupIds: Array
+        # @param DBMajorVersion: PostgreSQL主要版本。目前支持10，11，12，13这几个版本。当输入该参数时，会基于此版本创建对应的最新内核版本号实例
+        # @type DBMajorVersion: String
+        # @param DBKernelVersion: PostgreSQL内核版本。当输入该参数时，会创建该内核版本号实例
+        # @type DBKernelVersion: String
 
-        attr_accessor :SpecCode, :DBVersion, :Storage, :InstanceCount, :Period, :Zone, :Charset, :AdminName, :AdminPassword, :ProjectId, :InstanceChargeType, :AutoVoucher, :VoucherIds, :VpcId, :SubnetId, :AutoRenewFlag, :ActivityId, :Name, :NeedSupportIpv6, :TagList, :SecurityGroupIds
+        attr_accessor :SpecCode, :Storage, :InstanceCount, :Period, :Zone, :Charset, :AdminName, :AdminPassword, :ProjectId, :DBVersion, :InstanceChargeType, :AutoVoucher, :VoucherIds, :VpcId, :SubnetId, :AutoRenewFlag, :ActivityId, :Name, :NeedSupportIpv6, :TagList, :SecurityGroupIds, :DBMajorVersion, :DBKernelVersion
         
-        def initialize(speccode=nil, dbversion=nil, storage=nil, instancecount=nil, period=nil, zone=nil, charset=nil, adminname=nil, adminpassword=nil, projectid=nil, instancechargetype=nil, autovoucher=nil, voucherids=nil, vpcid=nil, subnetid=nil, autorenewflag=nil, activityid=nil, name=nil, needsupportipv6=nil, taglist=nil, securitygroupids=nil)
+        def initialize(speccode=nil, storage=nil, instancecount=nil, period=nil, zone=nil, charset=nil, adminname=nil, adminpassword=nil, projectid=nil, dbversion=nil, instancechargetype=nil, autovoucher=nil, voucherids=nil, vpcid=nil, subnetid=nil, autorenewflag=nil, activityid=nil, name=nil, needsupportipv6=nil, taglist=nil, securitygroupids=nil, dbmajorversion=nil, dbkernelversion=nil)
           @SpecCode = speccode
-          @DBVersion = dbversion
           @Storage = storage
           @InstanceCount = instancecount
           @Period = period
@@ -410,6 +421,7 @@ module TencentCloud
           @AdminName = adminname
           @AdminPassword = adminpassword
           @ProjectId = projectid
+          @DBVersion = dbversion
           @InstanceChargeType = instancechargetype
           @AutoVoucher = autovoucher
           @VoucherIds = voucherids
@@ -421,11 +433,12 @@ module TencentCloud
           @NeedSupportIpv6 = needsupportipv6
           @TagList = taglist
           @SecurityGroupIds = securitygroupids
+          @DBMajorVersion = dbmajorversion
+          @DBKernelVersion = dbkernelversion
         end
 
         def deserialize(params)
           @SpecCode = params['SpecCode']
-          @DBVersion = params['DBVersion']
           @Storage = params['Storage']
           @InstanceCount = params['InstanceCount']
           @Period = params['Period']
@@ -434,6 +447,7 @@ module TencentCloud
           @AdminName = params['AdminName']
           @AdminPassword = params['AdminPassword']
           @ProjectId = params['ProjectId']
+          @DBVersion = params['DBVersion']
           @InstanceChargeType = params['InstanceChargeType']
           @AutoVoucher = params['AutoVoucher']
           @VoucherIds = params['VoucherIds']
@@ -452,6 +466,8 @@ module TencentCloud
             end
           end
           @SecurityGroupIds = params['SecurityGroupIds']
+          @DBMajorVersion = params['DBMajorVersion']
+          @DBKernelVersion = params['DBKernelVersion']
         end
       end
 
@@ -846,7 +862,7 @@ module TencentCloud
         # @type DBInstanceVersion: String
         # @param DBCharset: 实例DB字符集
         # @type DBCharset: String
-        # @param DBVersion: PostgreSQL主版本
+        # @param DBVersion: PostgreSQL版本
         # @type DBVersion: String
         # @param CreateTime: 实例创建时间
         # @type CreateTime: String
@@ -891,10 +907,13 @@ module TencentCloud
         # @param NetworkAccessList: 实例网络信息列表（此字段已废弃）
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NetworkAccessList: Array
+        # @param DBMajorVersion: PostgreSQL主要版本
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DBMajorVersion: String
 
-        attr_accessor :Region, :Zone, :ProjectId, :VpcId, :SubnetId, :DBInstanceId, :DBInstanceName, :DBInstanceStatus, :DBInstanceMemory, :DBInstanceStorage, :DBInstanceCpu, :DBInstanceClass, :DBInstanceType, :DBInstanceVersion, :DBCharset, :DBVersion, :CreateTime, :UpdateTime, :ExpireTime, :IsolatedTime, :PayType, :AutoRenew, :DBInstanceNetInfo, :Type, :AppId, :Uid, :SupportIpv6, :TagList, :MasterDBInstanceId, :ReadOnlyInstanceNum, :StatusInReadonlyGroup, :OfflineTime, :DBKernelVersion, :NetworkAccessList
+        attr_accessor :Region, :Zone, :ProjectId, :VpcId, :SubnetId, :DBInstanceId, :DBInstanceName, :DBInstanceStatus, :DBInstanceMemory, :DBInstanceStorage, :DBInstanceCpu, :DBInstanceClass, :DBInstanceType, :DBInstanceVersion, :DBCharset, :DBVersion, :CreateTime, :UpdateTime, :ExpireTime, :IsolatedTime, :PayType, :AutoRenew, :DBInstanceNetInfo, :Type, :AppId, :Uid, :SupportIpv6, :TagList, :MasterDBInstanceId, :ReadOnlyInstanceNum, :StatusInReadonlyGroup, :OfflineTime, :DBKernelVersion, :NetworkAccessList, :DBMajorVersion
         
-        def initialize(region=nil, zone=nil, projectid=nil, vpcid=nil, subnetid=nil, dbinstanceid=nil, dbinstancename=nil, dbinstancestatus=nil, dbinstancememory=nil, dbinstancestorage=nil, dbinstancecpu=nil, dbinstanceclass=nil, dbinstancetype=nil, dbinstanceversion=nil, dbcharset=nil, dbversion=nil, createtime=nil, updatetime=nil, expiretime=nil, isolatedtime=nil, paytype=nil, autorenew=nil, dbinstancenetinfo=nil, type=nil, appid=nil, uid=nil, supportipv6=nil, taglist=nil, masterdbinstanceid=nil, readonlyinstancenum=nil, statusinreadonlygroup=nil, offlinetime=nil, dbkernelversion=nil, networkaccesslist=nil)
+        def initialize(region=nil, zone=nil, projectid=nil, vpcid=nil, subnetid=nil, dbinstanceid=nil, dbinstancename=nil, dbinstancestatus=nil, dbinstancememory=nil, dbinstancestorage=nil, dbinstancecpu=nil, dbinstanceclass=nil, dbinstancetype=nil, dbinstanceversion=nil, dbcharset=nil, dbversion=nil, createtime=nil, updatetime=nil, expiretime=nil, isolatedtime=nil, paytype=nil, autorenew=nil, dbinstancenetinfo=nil, type=nil, appid=nil, uid=nil, supportipv6=nil, taglist=nil, masterdbinstanceid=nil, readonlyinstancenum=nil, statusinreadonlygroup=nil, offlinetime=nil, dbkernelversion=nil, networkaccesslist=nil, dbmajorversion=nil)
           @Region = region
           @Zone = zone
           @ProjectId = projectid
@@ -929,6 +948,7 @@ module TencentCloud
           @OfflineTime = offlinetime
           @DBKernelVersion = dbkernelversion
           @NetworkAccessList = networkaccesslist
+          @DBMajorVersion = dbmajorversion
         end
 
         def deserialize(params)
@@ -987,6 +1007,7 @@ module TencentCloud
               @NetworkAccessList << networkaccess_tmp
             end
           end
+          @DBMajorVersion = params['DBMajorVersion']
         end
       end
 
@@ -3843,10 +3864,13 @@ module TencentCloud
         # @param DBKernelVersion: 数据库内核版本
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DBKernelVersion: String
+        # @param DBMajorVersion: 数据库主要版本
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DBMajorVersion: String
 
-        attr_accessor :DBInstanceId, :DBInstanceName, :DBInstanceStatus, :Region, :Zone, :ProjectId, :VpcId, :SubnetId, :DBCharset, :DBVersion, :CreateTime, :DBInstanceNetInfo, :DBAccountSet, :DBDatabaseList, :TagList, :DBKernelVersion
+        attr_accessor :DBInstanceId, :DBInstanceName, :DBInstanceStatus, :Region, :Zone, :ProjectId, :VpcId, :SubnetId, :DBCharset, :DBVersion, :CreateTime, :DBInstanceNetInfo, :DBAccountSet, :DBDatabaseList, :TagList, :DBKernelVersion, :DBMajorVersion
         
-        def initialize(dbinstanceid=nil, dbinstancename=nil, dbinstancestatus=nil, region=nil, zone=nil, projectid=nil, vpcid=nil, subnetid=nil, dbcharset=nil, dbversion=nil, createtime=nil, dbinstancenetinfo=nil, dbaccountset=nil, dbdatabaselist=nil, taglist=nil, dbkernelversion=nil)
+        def initialize(dbinstanceid=nil, dbinstancename=nil, dbinstancestatus=nil, region=nil, zone=nil, projectid=nil, vpcid=nil, subnetid=nil, dbcharset=nil, dbversion=nil, createtime=nil, dbinstancenetinfo=nil, dbaccountset=nil, dbdatabaselist=nil, taglist=nil, dbkernelversion=nil, dbmajorversion=nil)
           @DBInstanceId = dbinstanceid
           @DBInstanceName = dbinstancename
           @DBInstanceStatus = dbinstancestatus
@@ -3863,6 +3887,7 @@ module TencentCloud
           @DBDatabaseList = dbdatabaselist
           @TagList = taglist
           @DBKernelVersion = dbkernelversion
+          @DBMajorVersion = dbmajorversion
         end
 
         def deserialize(params)
@@ -3903,6 +3928,7 @@ module TencentCloud
             end
           end
           @DBKernelVersion = params['DBKernelVersion']
+          @DBMajorVersion = params['DBMajorVersion']
         end
       end
 
@@ -4049,7 +4075,7 @@ module TencentCloud
       class SpecItemInfo < TencentCloud::Common::AbstractModel
         # @param SpecCode: 规格ID
         # @type SpecCode: String
-        # @param Version: PostgreSQL的内核版本编号
+        # @param Version: PostgreSQL的版本编号
         # @type Version: String
         # @param VersionName: 内核编号对应的完整版本名称
         # @type VersionName: String
@@ -4067,10 +4093,16 @@ module TencentCloud
         # @type Pid: Integer
         # @param Type: 机器类型
         # @type Type: String
+        # @param MajorVersion: PostgreSQL的主要版本编号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MajorVersion: String
+        # @param KernelVersion: PostgreSQL的内核版本编号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type KernelVersion: String
 
-        attr_accessor :SpecCode, :Version, :VersionName, :Cpu, :Memory, :MaxStorage, :MinStorage, :Qps, :Pid, :Type
+        attr_accessor :SpecCode, :Version, :VersionName, :Cpu, :Memory, :MaxStorage, :MinStorage, :Qps, :Pid, :Type, :MajorVersion, :KernelVersion
         
-        def initialize(speccode=nil, version=nil, versionname=nil, cpu=nil, memory=nil, maxstorage=nil, minstorage=nil, qps=nil, pid=nil, type=nil)
+        def initialize(speccode=nil, version=nil, versionname=nil, cpu=nil, memory=nil, maxstorage=nil, minstorage=nil, qps=nil, pid=nil, type=nil, majorversion=nil, kernelversion=nil)
           @SpecCode = speccode
           @Version = version
           @VersionName = versionname
@@ -4081,6 +4113,8 @@ module TencentCloud
           @Qps = qps
           @Pid = pid
           @Type = type
+          @MajorVersion = majorversion
+          @KernelVersion = kernelversion
         end
 
         def deserialize(params)
@@ -4094,6 +4128,8 @@ module TencentCloud
           @Qps = params['Qps']
           @Pid = params['Pid']
           @Type = params['Type']
+          @MajorVersion = params['MajorVersion']
+          @KernelVersion = params['KernelVersion']
         end
       end
 

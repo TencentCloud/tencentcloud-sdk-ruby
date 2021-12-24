@@ -1053,14 +1053,17 @@ module TencentCloud
         # @type SecurityPolicies: Array
         # @param ExtraParam: 外网访问相关的扩展参数，格式为json
         # @type ExtraParam: String
+        # @param SecurityGroup: 新内外网功能，需要传递安全组
+        # @type SecurityGroup: String
 
-        attr_accessor :Enabled, :AllowFromCidrs, :SecurityPolicies, :ExtraParam
+        attr_accessor :Enabled, :AllowFromCidrs, :SecurityPolicies, :ExtraParam, :SecurityGroup
         
-        def initialize(enabled=nil, allowfromcidrs=nil, securitypolicies=nil, extraparam=nil)
+        def initialize(enabled=nil, allowfromcidrs=nil, securitypolicies=nil, extraparam=nil, securitygroup=nil)
           @Enabled = enabled
           @AllowFromCidrs = allowfromcidrs
           @SecurityPolicies = securitypolicies
           @ExtraParam = extraparam
+          @SecurityGroup = securitygroup
         end
 
         def deserialize(params)
@@ -1068,6 +1071,7 @@ module TencentCloud
           @AllowFromCidrs = params['AllowFromCidrs']
           @SecurityPolicies = params['SecurityPolicies']
           @ExtraParam = params['ExtraParam']
+          @SecurityGroup = params['SecurityGroup']
         end
       end
 
@@ -3637,16 +3641,19 @@ module TencentCloud
         # @type PublicLB: :class:`Tencentcloud::Tke.v20180525.models.ClusterPublicLB`
         # @param InternalLB: 集群的内网访问信息
         # @type InternalLB: :class:`Tencentcloud::Tke.v20180525.models.ClusterInternalLB`
+        # @param ProxyLB: 标记是否新的内外网功能
+        # @type ProxyLB: Boolean
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Addresses, :Credential, :PublicLB, :InternalLB, :RequestId
+        attr_accessor :Addresses, :Credential, :PublicLB, :InternalLB, :ProxyLB, :RequestId
         
-        def initialize(addresses=nil, credential=nil, publiclb=nil, internallb=nil, requestid=nil)
+        def initialize(addresses=nil, credential=nil, publiclb=nil, internallb=nil, proxylb=nil, requestid=nil)
           @Addresses = addresses
           @Credential = credential
           @PublicLB = publiclb
           @InternalLB = internallb
+          @ProxyLB = proxylb
           @RequestId = requestid
         end
 
@@ -3671,6 +3678,7 @@ module TencentCloud
             @InternalLB = ClusterInternalLB.new
             @InternalLB.deserialize(params['InternalLB'])
           end
+          @ProxyLB = params['ProxyLB']
           @RequestId = params['RequestId']
         end
       end
@@ -8734,10 +8742,12 @@ module TencentCloud
         # @type ClearDnsServer: String
         # @param NeedDeleteCbs: 将来删除集群时是否要删除cbs。默认为 FALSE
         # @type NeedDeleteCbs: Boolean
+        # @param ProxyLB: 标记是否是新的内外网。默认为false
+        # @type ProxyLB: Boolean
 
-        attr_accessor :ClusterId, :ClusterName, :ClusterDesc, :SubnetIds, :PublicLB, :InternalLB, :ServiceSubnetId, :DnsServers, :ClearDnsServer, :NeedDeleteCbs
+        attr_accessor :ClusterId, :ClusterName, :ClusterDesc, :SubnetIds, :PublicLB, :InternalLB, :ServiceSubnetId, :DnsServers, :ClearDnsServer, :NeedDeleteCbs, :ProxyLB
         
-        def initialize(clusterid=nil, clustername=nil, clusterdesc=nil, subnetids=nil, publiclb=nil, internallb=nil, servicesubnetid=nil, dnsservers=nil, cleardnsserver=nil, needdeletecbs=nil)
+        def initialize(clusterid=nil, clustername=nil, clusterdesc=nil, subnetids=nil, publiclb=nil, internallb=nil, servicesubnetid=nil, dnsservers=nil, cleardnsserver=nil, needdeletecbs=nil, proxylb=nil)
           @ClusterId = clusterid
           @ClusterName = clustername
           @ClusterDesc = clusterdesc
@@ -8748,6 +8758,7 @@ module TencentCloud
           @DnsServers = dnsservers
           @ClearDnsServer = cleardnsserver
           @NeedDeleteCbs = needdeletecbs
+          @ProxyLB = proxylb
         end
 
         def deserialize(params)
@@ -8774,6 +8785,7 @@ module TencentCloud
           end
           @ClearDnsServer = params['ClearDnsServer']
           @NeedDeleteCbs = params['NeedDeleteCbs']
+          @ProxyLB = params['ProxyLB']
         end
       end
 

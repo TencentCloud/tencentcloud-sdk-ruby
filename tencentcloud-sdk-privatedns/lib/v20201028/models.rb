@@ -787,7 +787,7 @@ module TencentCloud
       class DescribePrivateZoneRecordListRequest < TencentCloud::Common::AbstractModel
         # @param ZoneId: 私有域ID: zone-xxxxxx
         # @type ZoneId: String
-        # @param Filters: 过滤参数
+        # @param Filters: 过滤参数（支持使用Value、RecordType过滤）
         # @type Filters: Array
         # @param Offset: 分页偏移量，从0开始
         # @type Offset: Integer

@@ -4547,22 +4547,27 @@ module TencentCloud
       class SlotInfo < TencentCloud::Common::AbstractModel
         # @param Id: 卡槽 Id。
         # @type Id: Integer
-        # @param Type: 素材类型，同素材素材，可取值有：
-        # <li> AUDIO :音频;</li>
-        # <li> VIDEO :视频;</li>
-        # <li> IMAGE :图片。</li>
+        # @param Type: 卡槽类型，可取值有：
+        # <li> AUDIO：音频卡槽，可替换素材类型为 AUDIO 的音频素材;</li>
+        # <li> VIDEO：视频卡槽，可替换素材类型为 VIDEO 的视频素材;</li>
+        # <li> IMAGE：图片卡槽，可替换素材类型为 IMAGE 的图片素材;</li>
+        # <li> TEXT：文本卡槽，可替换文本内容。</li>
         # @type Type: String
-        # @param DefaultMaterialId: 默认素材 Id。
+        # @param DefaultMaterialId: 默认素材ID。当卡槽类型为 AUDIO，VIDEO，或 IMAGE 中的一种时有效。
         # @type DefaultMaterialId: String
+        # @param DefaultTextSlotInfo: 默认文本卡槽信息。当卡槽类型为 TEXT 时有效。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DefaultTextSlotInfo: :class:`Tencentcloud::Cme.v20191029.models.TextSlotInfo`
         # @param Duration: 素材时长，单位秒。
         # @type Duration: Float
 
-        attr_accessor :Id, :Type, :DefaultMaterialId, :Duration
+        attr_accessor :Id, :Type, :DefaultMaterialId, :DefaultTextSlotInfo, :Duration
         
-        def initialize(id=nil, type=nil, defaultmaterialid=nil, duration=nil)
+        def initialize(id=nil, type=nil, defaultmaterialid=nil, defaulttextslotinfo=nil, duration=nil)
           @Id = id
           @Type = type
           @DefaultMaterialId = defaultmaterialid
+          @DefaultTextSlotInfo = defaulttextslotinfo
           @Duration = duration
         end
 
@@ -4570,6 +4575,10 @@ module TencentCloud
           @Id = params['Id']
           @Type = params['Type']
           @DefaultMaterialId = params['DefaultMaterialId']
+          unless params['DefaultTextSlotInfo'].nil?
+            @DefaultTextSlotInfo = TextSlotInfo.new
+            @DefaultTextSlotInfo.deserialize(params['DefaultTextSlotInfo'])
+          end
           @Duration = params['Duration']
         end
       end
@@ -5040,6 +5049,22 @@ module TencentCloud
       # 模板插槽文本替换信息。
       class TextReplacementInfo < TencentCloud::Common::AbstractModel
         # @param Text: 替换的文本信息。
+        # @type Text: String
+
+        attr_accessor :Text
+        
+        def initialize(text=nil)
+          @Text = text
+        end
+
+        def deserialize(params)
+          @Text = params['Text']
+        end
+      end
+
+      # 文本类型卡槽信息。
+      class TextSlotInfo < TencentCloud::Common::AbstractModel
+        # @param Text: 文本内容。
         # @type Text: String
 
         attr_accessor :Text

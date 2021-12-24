@@ -464,6 +464,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 服务重启
+
+        # @param request: Request instance for RestartApplication.
+        # @type request: :class:`Tencentcloud::tem::V20210701::RestartApplicationRequest`
+        # @rtype: :class:`Tencentcloud::tem::V20210701::RestartApplicationResponse`
+        def RestartApplication(request)
+          body = send_request('RestartApplication', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = RestartApplicationResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 重启应用实例
 
         # @param request: Request instance for RestartApplicationPod.
@@ -546,6 +570,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = RollingUpdateApplicationByVersionResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 服务停止
+
+        # @param request: Request instance for StopApplication.
+        # @type request: :class:`Tencentcloud::tem::V20210701::StopApplicationRequest`
+        # @rtype: :class:`Tencentcloud::tem::V20210701::StopApplicationResponse`
+        def StopApplication(request)
+          body = send_request('StopApplication', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = StopApplicationResponse.new
             model.deserialize(response['Response'])
             model
           else

@@ -3312,11 +3312,11 @@ module TencentCloud
 
       # DescribeTargetGroupInstances请求参数结构体
       class DescribeTargetGroupInstancesRequest < TencentCloud::Common::AbstractModel
-        # @param Filters: 过滤条件，当前仅支持TargetGroupId，BindIP，InstanceId过滤
+        # @param Filters: 过滤条件，当前仅支持TargetGroupId，BindIP，InstanceId过滤。
         # @type Filters: Array
-        # @param Limit: 显示数量限制，默认20
+        # @param Limit: 显示数量限制，默认20。
         # @type Limit: Integer
-        # @param Offset: 显示的偏移量，默认为0
+        # @param Offset: 显示的偏移量，默认为0。
         # @type Offset: Integer
 
         attr_accessor :Filters, :Limit, :Offset
@@ -3343,11 +3343,11 @@ module TencentCloud
 
       # DescribeTargetGroupInstances返回参数结构体
       class DescribeTargetGroupInstancesResponse < TencentCloud::Common::AbstractModel
-        # @param TotalCount: 本次查询的结果数量
+        # @param TotalCount: 本次查询的结果数量。
         # @type TotalCount: Integer
-        # @param TargetGroupInstanceSet: 绑定的服务器信息
+        # @param TargetGroupInstanceSet: 绑定的服务器信息。
         # @type TargetGroupInstanceSet: Array
-        # @param RealCount: 实际统计数量，不受Limit，Offset，CAM的影响
+        # @param RealCount: 实际统计数量，不受Limit、Offset、CAM的影响。
         # @type RealCount: Integer
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

@@ -8456,6 +8456,43 @@ module TencentCloud
         end
       end
 
+      # StartReplication请求参数结构体
+      class StartReplicationRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例 ID。仅支持只读实例。
+        # @type InstanceId: String
+
+        attr_accessor :InstanceId
+        
+        def initialize(instanceid=nil)
+          @InstanceId = instanceid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+        end
+      end
+
+      # StartReplication返回参数结构体
+      class StartReplicationResponse < TencentCloud::Common::AbstractModel
+        # @param AsyncRequestId: 异步任务 ID。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AsyncRequestId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :AsyncRequestId, :RequestId
+        
+        def initialize(asyncrequestid=nil, requestid=nil)
+          @AsyncRequestId = asyncrequestid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @AsyncRequestId = params['AsyncRequestId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # StopDBImportJob请求参数结构体
       class StopDBImportJobRequest < TencentCloud::Common::AbstractModel
         # @param AsyncRequestId: 异步任务的请求 ID。
@@ -8484,6 +8521,43 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # StopReplication请求参数结构体
+      class StopReplicationRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例 ID。仅支持只读实例。
+        # @type InstanceId: String
+
+        attr_accessor :InstanceId
+        
+        def initialize(instanceid=nil)
+          @InstanceId = instanceid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+        end
+      end
+
+      # StopReplication返回参数结构体
+      class StopReplicationResponse < TencentCloud::Common::AbstractModel
+        # @param AsyncRequestId: 异步任务 ID。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AsyncRequestId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :AsyncRequestId, :RequestId
+        
+        def initialize(asyncrequestid=nil, requestid=nil)
+          @AsyncRequestId = asyncrequestid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @AsyncRequestId = params['AsyncRequestId']
           @RequestId = params['RequestId']
         end
       end

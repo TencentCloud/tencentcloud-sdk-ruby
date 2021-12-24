@@ -400,6 +400,72 @@ module TencentCloud
         end
       end
 
+      # DescribeFlowDetailInfo请求参数结构体
+      class DescribeFlowDetailInfoRequest < TencentCloud::Common::AbstractModel
+        # @param Agent: 应用信息
+        # @type Agent: :class:`Tencentcloud::Essbasic.v20210526.models.Agent`
+        # @param FlowIds: 合同(流程)编号数组
+        # @type FlowIds: Array
+        # @param Operator: 操作者的信息
+        # @type Operator: :class:`Tencentcloud::Essbasic.v20210526.models.UserInfo`
+
+        attr_accessor :Agent, :FlowIds, :Operator
+        
+        def initialize(agent=nil, flowids=nil, operator=nil)
+          @Agent = agent
+          @FlowIds = flowids
+          @Operator = operator
+        end
+
+        def deserialize(params)
+          unless params['Agent'].nil?
+            @Agent = Agent.new
+            @Agent.deserialize(params['Agent'])
+          end
+          @FlowIds = params['FlowIds']
+          unless params['Operator'].nil?
+            @Operator = UserInfo.new
+            @Operator.deserialize(params['Operator'])
+          end
+        end
+      end
+
+      # DescribeFlowDetailInfo返回参数结构体
+      class DescribeFlowDetailInfoResponse < TencentCloud::Common::AbstractModel
+        # @param ApplicationId: 渠道侧应用号Id
+        # @type ApplicationId: String
+        # @param ProxyOrganizationOpenId: 渠道侧企业第三方Id
+        # @type ProxyOrganizationOpenId: String
+        # @param FlowInfo: 合同(流程)的具体详细描述信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FlowInfo: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ApplicationId, :ProxyOrganizationOpenId, :FlowInfo, :RequestId
+        
+        def initialize(applicationid=nil, proxyorganizationopenid=nil, flowinfo=nil, requestid=nil)
+          @ApplicationId = applicationid
+          @ProxyOrganizationOpenId = proxyorganizationopenid
+          @FlowInfo = flowinfo
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ApplicationId = params['ApplicationId']
+          @ProxyOrganizationOpenId = params['ProxyOrganizationOpenId']
+          unless params['FlowInfo'].nil?
+            @FlowInfo = []
+            params['FlowInfo'].each do |i|
+              flowdetailinfo_tmp = FlowDetailInfo.new
+              flowdetailinfo_tmp.deserialize(i)
+              @FlowInfo << flowdetailinfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeResourceUrlsByFlows请求参数结构体
       class DescribeResourceUrlsByFlowsRequest < TencentCloud::Common::AbstractModel
         # @param Agent: 渠道应用相关信息
@@ -620,6 +686,67 @@ module TencentCloud
         end
       end
 
+      # 签署人的流程信息明细
+      class FlowApproverDetail < TencentCloud::Common::AbstractModel
+        # @param ReceiptId: 模板配置时候的签署人id,与控件绑定
+        # @type ReceiptId: String
+        # @param ProxyOrganizationOpenId: 渠道侧企业的第三方id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProxyOrganizationOpenId: String
+        # @param ProxyOperatorOpenId: 渠道侧企业操作人的第三方id
+        # @type ProxyOperatorOpenId: String
+        # @param ProxyOrganizationName: 渠道侧企业名称
+        # @type ProxyOrganizationName: String
+        # @param Mobile: 签署人手机号
+        # @type Mobile: String
+        # @param SignOrder: 签署人签署顺序
+        # @type SignOrder: Integer
+        # @param ApproveName: 签署人姓名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ApproveName: String
+        # @param ApproveStatus: 当前签署人的状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ApproveStatus: String
+        # @param ApproveMessage: 签署人信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ApproveMessage: String
+        # @param ApproveTime: 签署人签署时间
+        # @type ApproveTime: Integer
+        # @param ApproveType: 参与者类型 (ORGANIZATION企业/PERSON个人)
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ApproveType: String
+
+        attr_accessor :ReceiptId, :ProxyOrganizationOpenId, :ProxyOperatorOpenId, :ProxyOrganizationName, :Mobile, :SignOrder, :ApproveName, :ApproveStatus, :ApproveMessage, :ApproveTime, :ApproveType
+        
+        def initialize(receiptid=nil, proxyorganizationopenid=nil, proxyoperatoropenid=nil, proxyorganizationname=nil, mobile=nil, signorder=nil, approvename=nil, approvestatus=nil, approvemessage=nil, approvetime=nil, approvetype=nil)
+          @ReceiptId = receiptid
+          @ProxyOrganizationOpenId = proxyorganizationopenid
+          @ProxyOperatorOpenId = proxyoperatoropenid
+          @ProxyOrganizationName = proxyorganizationname
+          @Mobile = mobile
+          @SignOrder = signorder
+          @ApproveName = approvename
+          @ApproveStatus = approvestatus
+          @ApproveMessage = approvemessage
+          @ApproveTime = approvetime
+          @ApproveType = approvetype
+        end
+
+        def deserialize(params)
+          @ReceiptId = params['ReceiptId']
+          @ProxyOrganizationOpenId = params['ProxyOrganizationOpenId']
+          @ProxyOperatorOpenId = params['ProxyOperatorOpenId']
+          @ProxyOrganizationName = params['ProxyOrganizationName']
+          @Mobile = params['Mobile']
+          @SignOrder = params['SignOrder']
+          @ApproveName = params['ApproveName']
+          @ApproveStatus = params['ApproveStatus']
+          @ApproveMessage = params['ApproveMessage']
+          @ApproveTime = params['ApproveTime']
+          @ApproveType = params['ApproveType']
+        end
+      end
+
       # 创建流程签署人入参
       class FlowApproverInfo < TencentCloud::Common::AbstractModel
         # @param Name: 签署人姓名
@@ -665,6 +792,61 @@ module TencentCloud
           @ApproverType = params['ApproverType']
           @OpenId = params['OpenId']
           @PreReadTime = params['PreReadTime']
+        end
+      end
+
+      # 此结构体(FlowDetailInfo)描述的是合同(流程)的详细信息
+      class FlowDetailInfo < TencentCloud::Common::AbstractModel
+        # @param FlowId: 合同(流程)的Id
+        # @type FlowId: String
+        # @param FlowName: 合同(流程)的名字
+        # @type FlowName: String
+        # @param FlowType: 合同(流程)的类型
+        # @type FlowType: String
+        # @param FlowStatus: 合同(流程)的状态
+        # @type FlowStatus: String
+        # @param FlowMessage: 合同(流程)的信息
+        # @type FlowMessage: String
+        # @param CreateOn: 合同(流程)的创建时间戳
+        # @type CreateOn: Integer
+        # @param DeadLine: 合同(流程)的签署截止时间戳
+        # @type DeadLine: Integer
+        # @param CustomData: 用户自定义数据
+        # @type CustomData: String
+        # @param FlowApproverInfos: 合同(流程)的签署人数组
+        # @type FlowApproverInfos: Array
+
+        attr_accessor :FlowId, :FlowName, :FlowType, :FlowStatus, :FlowMessage, :CreateOn, :DeadLine, :CustomData, :FlowApproverInfos
+        
+        def initialize(flowid=nil, flowname=nil, flowtype=nil, flowstatus=nil, flowmessage=nil, createon=nil, deadline=nil, customdata=nil, flowapproverinfos=nil)
+          @FlowId = flowid
+          @FlowName = flowname
+          @FlowType = flowtype
+          @FlowStatus = flowstatus
+          @FlowMessage = flowmessage
+          @CreateOn = createon
+          @DeadLine = deadline
+          @CustomData = customdata
+          @FlowApproverInfos = flowapproverinfos
+        end
+
+        def deserialize(params)
+          @FlowId = params['FlowId']
+          @FlowName = params['FlowName']
+          @FlowType = params['FlowType']
+          @FlowStatus = params['FlowStatus']
+          @FlowMessage = params['FlowMessage']
+          @CreateOn = params['CreateOn']
+          @DeadLine = params['DeadLine']
+          @CustomData = params['CustomData']
+          unless params['FlowApproverInfos'].nil?
+            @FlowApproverInfos = []
+            params['FlowApproverInfos'].each do |i|
+              flowapproverdetail_tmp = FlowApproverDetail.new
+              flowapproverdetail_tmp.deserialize(i)
+              @FlowApproverInfos << flowapproverdetail_tmp
+            end
+          end
         end
       end
 

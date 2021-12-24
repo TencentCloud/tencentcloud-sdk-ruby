@@ -2613,6 +2613,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 开启 RO 复制，从主实例同步数据。
+
+        # @param request: Request instance for StartReplication.
+        # @type request: :class:`Tencentcloud::cdb::V20170320::StartReplicationRequest`
+        # @rtype: :class:`Tencentcloud::cdb::V20170320::StartReplicationResponse`
+        def StartReplication(request)
+          body = send_request('StartReplication', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = StartReplicationResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口(StopDBImportJob)用于终止数据导入任务。
 
         # @param request: Request instance for StopDBImportJob.
@@ -2623,6 +2647,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = StopDBImportJobResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 停止 RO 复制，中断从主实例同步数据。
+
+        # @param request: Request instance for StopReplication.
+        # @type request: :class:`Tencentcloud::cdb::V20170320::StopReplicationRequest`
+        # @rtype: :class:`Tencentcloud::cdb::V20170320::StopReplicationResponse`
+        def StopReplication(request)
+          body = send_request('StopReplication', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = StopReplicationResponse.new
             model.deserialize(response['Response'])
             model
           else

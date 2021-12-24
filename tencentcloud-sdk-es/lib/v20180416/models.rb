@@ -17,6 +17,94 @@
 module TencentCloud
   module Es
     module V20180416
+      # 集群维度视图数据
+      class ClusterView < TencentCloud::Common::AbstractModel
+        # @param Health: 集群健康状态
+        # @type Health: Float
+        # @param Visible: 集群是否可见
+        # @type Visible: Float
+        # @param Break: 集群是否熔断
+        # @type Break: Float
+        # @param AvgDiskUsage: 平均磁盘使用率
+        # @type AvgDiskUsage: Float
+        # @param AvgMemUsage: 平均内存使用率
+        # @type AvgMemUsage: Float
+        # @param AvgCpuUsage: 平均cpu使用率
+        # @type AvgCpuUsage: Float
+        # @param TotalDiskSize: 集群总存储大小
+        # @type TotalDiskSize: Integer
+        # @param TargetNodeTypes: 客户端请求节点
+        # @type TargetNodeTypes: Array
+        # @param NodeNum: 在线节点数
+        # @type NodeNum: Integer
+        # @param TotalNodeNum: 总节点数
+        # @type TotalNodeNum: Integer
+        # @param DataNodeNum: 数据节点数
+        # @type DataNodeNum: Integer
+        # @param IndexNum: 索引数
+        # @type IndexNum: Integer
+        # @param DocNum: 文档数
+        # @type DocNum: Integer
+        # @param DiskUsedInBytes: 磁盘已使用字节数
+        # @type DiskUsedInBytes: Integer
+        # @param ShardNum: 分片个数
+        # @type ShardNum: Integer
+        # @param PrimaryShardNum: 主分片个数
+        # @type PrimaryShardNum: Integer
+        # @param RelocatingShardNum: 迁移中的分片个数
+        # @type RelocatingShardNum: Integer
+        # @param InitializingShardNum: 初始化中的分片个数
+        # @type InitializingShardNum: Integer
+        # @param UnassignedShardNum: 未分配的分片个数
+        # @type UnassignedShardNum: Integer
+
+        attr_accessor :Health, :Visible, :Break, :AvgDiskUsage, :AvgMemUsage, :AvgCpuUsage, :TotalDiskSize, :TargetNodeTypes, :NodeNum, :TotalNodeNum, :DataNodeNum, :IndexNum, :DocNum, :DiskUsedInBytes, :ShardNum, :PrimaryShardNum, :RelocatingShardNum, :InitializingShardNum, :UnassignedShardNum
+        
+        def initialize(health=nil, visible=nil, _break=nil, avgdiskusage=nil, avgmemusage=nil, avgcpuusage=nil, totaldisksize=nil, targetnodetypes=nil, nodenum=nil, totalnodenum=nil, datanodenum=nil, indexnum=nil, docnum=nil, diskusedinbytes=nil, shardnum=nil, primaryshardnum=nil, relocatingshardnum=nil, initializingshardnum=nil, unassignedshardnum=nil)
+          @Health = health
+          @Visible = visible
+          @Break = _break
+          @AvgDiskUsage = avgdiskusage
+          @AvgMemUsage = avgmemusage
+          @AvgCpuUsage = avgcpuusage
+          @TotalDiskSize = totaldisksize
+          @TargetNodeTypes = targetnodetypes
+          @NodeNum = nodenum
+          @TotalNodeNum = totalnodenum
+          @DataNodeNum = datanodenum
+          @IndexNum = indexnum
+          @DocNum = docnum
+          @DiskUsedInBytes = diskusedinbytes
+          @ShardNum = shardnum
+          @PrimaryShardNum = primaryshardnum
+          @RelocatingShardNum = relocatingshardnum
+          @InitializingShardNum = initializingshardnum
+          @UnassignedShardNum = unassignedshardnum
+        end
+
+        def deserialize(params)
+          @Health = params['Health']
+          @Visible = params['Visible']
+          @Break = params['Break']
+          @AvgDiskUsage = params['AvgDiskUsage']
+          @AvgMemUsage = params['AvgMemUsage']
+          @AvgCpuUsage = params['AvgCpuUsage']
+          @TotalDiskSize = params['TotalDiskSize']
+          @TargetNodeTypes = params['TargetNodeTypes']
+          @NodeNum = params['NodeNum']
+          @TotalNodeNum = params['TotalNodeNum']
+          @DataNodeNum = params['DataNodeNum']
+          @IndexNum = params['IndexNum']
+          @DocNum = params['DocNum']
+          @DiskUsedInBytes = params['DiskUsedInBytes']
+          @ShardNum = params['ShardNum']
+          @PrimaryShardNum = params['PrimaryShardNum']
+          @RelocatingShardNum = params['RelocatingShardNum']
+          @InitializingShardNum = params['InitializingShardNum']
+          @UnassignedShardNum = params['UnassignedShardNum']
+        end
+      end
+
       # ES cos自动备份信息
       class CosBackup < TencentCloud::Common::AbstractModel
         # @param IsAutoBackup: 是否开启cos自动备份
@@ -477,6 +565,70 @@ module TencentCloud
               instanceinfo_tmp = InstanceInfo.new
               instanceinfo_tmp.deserialize(i)
               @InstanceList << instanceinfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeViews请求参数结构体
+      class DescribeViewsRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 集群实例ID
+        # @type InstanceId: String
+
+        attr_accessor :InstanceId
+        
+        def initialize(instanceid=nil)
+          @InstanceId = instanceid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+        end
+      end
+
+      # DescribeViews返回参数结构体
+      class DescribeViewsResponse < TencentCloud::Common::AbstractModel
+        # @param ClusterView: 集群维度视图
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClusterView: :class:`Tencentcloud::Es.v20180416.models.ClusterView`
+        # @param NodesView: 节点维度视图
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NodesView: Array
+        # @param KibanasView: Kibana维度视图
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type KibanasView: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ClusterView, :NodesView, :KibanasView, :RequestId
+        
+        def initialize(clusterview=nil, nodesview=nil, kibanasview=nil, requestid=nil)
+          @ClusterView = clusterview
+          @NodesView = nodesview
+          @KibanasView = kibanasview
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['ClusterView'].nil?
+            @ClusterView = ClusterView.new
+            @ClusterView.deserialize(params['ClusterView'])
+          end
+          unless params['NodesView'].nil?
+            @NodesView = []
+            params['NodesView'].each do |i|
+              nodeview_tmp = NodeView.new
+              nodeview_tmp.deserialize(i)
+              @NodesView << nodeview_tmp
+            end
+          end
+          unless params['KibanasView'].nil?
+            @KibanasView = []
+            params['KibanasView'].each do |i|
+              kibanaview_tmp = KibanaView.new
+              kibanaview_tmp.deserialize(i)
+              @KibanasView << kibanaview_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -1080,6 +1232,50 @@ module TencentCloud
         end
       end
 
+      # Kibana视图数据
+      class KibanaView < TencentCloud::Common::AbstractModel
+        # @param Ip: Kibana节点IP
+        # @type Ip: String
+        # @param DiskSize: 节点总磁盘大小
+        # @type DiskSize: Integer
+        # @param DiskUsage: 磁盘使用率
+        # @type DiskUsage: Float
+        # @param MemSize: 节点内存大小
+        # @type MemSize: Integer
+        # @param MemUsage: 内存使用率
+        # @type MemUsage: Float
+        # @param CpuNum: 节点cpu个数
+        # @type CpuNum: Integer
+        # @param CpuUsage: cpu使用率
+        # @type CpuUsage: Float
+        # @param Zone: 可用区
+        # @type Zone: String
+
+        attr_accessor :Ip, :DiskSize, :DiskUsage, :MemSize, :MemUsage, :CpuNum, :CpuUsage, :Zone
+        
+        def initialize(ip=nil, disksize=nil, diskusage=nil, memsize=nil, memusage=nil, cpunum=nil, cpuusage=nil, zone=nil)
+          @Ip = ip
+          @DiskSize = disksize
+          @DiskUsage = diskusage
+          @MemSize = memsize
+          @MemUsage = memusage
+          @CpuNum = cpunum
+          @CpuUsage = cpuusage
+          @Zone = zone
+        end
+
+        def deserialize(params)
+          @Ip = params['Ip']
+          @DiskSize = params['DiskSize']
+          @DiskUsage = params['DiskUsage']
+          @MemSize = params['MemSize']
+          @MemUsage = params['MemUsage']
+          @CpuNum = params['CpuNum']
+          @CpuUsage = params['CpuUsage']
+          @Zone = params['Zone']
+        end
+      end
+
       # 节点本地盘信息
       class LocalDiskInfo < TencentCloud::Common::AbstractModel
         # @param LocalDiskType: 本地盘类型<li>LOCAL_SATA：大数据型</li><li>NVME_SSD：高IO型</li>
@@ -1192,6 +1388,86 @@ module TencentCloud
           end
           @DiskCount = params['DiskCount']
           @DiskEncrypt = params['DiskEncrypt']
+        end
+      end
+
+      # 节点维度视图数据
+      class NodeView < TencentCloud::Common::AbstractModel
+        # @param NodeId: 节点ID
+        # @type NodeId: String
+        # @param NodeIp: 节点IP
+        # @type NodeIp: String
+        # @param Visible: 节点是否可见
+        # @type Visible: Float
+        # @param Break: 是否熔断
+        # @type Break: Float
+        # @param DiskSize: 节点总磁盘大小
+        # @type DiskSize: Integer
+        # @param DiskUsage: 磁盘使用率
+        # @type DiskUsage: Float
+        # @param MemSize: 节点内存大小，单位GB
+        # @type MemSize: Integer
+        # @param MemUsage: 内存使用率
+        # @type MemUsage: Float
+        # @param CpuNum: 节点cpu个数
+        # @type CpuNum: Integer
+        # @param CpuUsage: cpu使用率
+        # @type CpuUsage: Float
+        # @param Zone: 可用区
+        # @type Zone: String
+        # @param NodeRole: 节点角色
+        # @type NodeRole: String
+        # @param NodeHttpIp: 节点HTTP IP
+        # @type NodeHttpIp: String
+        # @param JvmMemUsage: JVM内存使用率
+        # @type JvmMemUsage: Float
+        # @param ShardNum: 节点分片数
+        # @type ShardNum: Integer
+        # @param DiskIds: 节点上磁盘ID列表
+        # @type DiskIds: Array
+        # @param Hidden: 是否为隐藏可用区
+        # @type Hidden: Boolean
+
+        attr_accessor :NodeId, :NodeIp, :Visible, :Break, :DiskSize, :DiskUsage, :MemSize, :MemUsage, :CpuNum, :CpuUsage, :Zone, :NodeRole, :NodeHttpIp, :JvmMemUsage, :ShardNum, :DiskIds, :Hidden
+        
+        def initialize(nodeid=nil, nodeip=nil, visible=nil, _break=nil, disksize=nil, diskusage=nil, memsize=nil, memusage=nil, cpunum=nil, cpuusage=nil, zone=nil, noderole=nil, nodehttpip=nil, jvmmemusage=nil, shardnum=nil, diskids=nil, hidden=nil)
+          @NodeId = nodeid
+          @NodeIp = nodeip
+          @Visible = visible
+          @Break = _break
+          @DiskSize = disksize
+          @DiskUsage = diskusage
+          @MemSize = memsize
+          @MemUsage = memusage
+          @CpuNum = cpunum
+          @CpuUsage = cpuusage
+          @Zone = zone
+          @NodeRole = noderole
+          @NodeHttpIp = nodehttpip
+          @JvmMemUsage = jvmmemusage
+          @ShardNum = shardnum
+          @DiskIds = diskids
+          @Hidden = hidden
+        end
+
+        def deserialize(params)
+          @NodeId = params['NodeId']
+          @NodeIp = params['NodeIp']
+          @Visible = params['Visible']
+          @Break = params['Break']
+          @DiskSize = params['DiskSize']
+          @DiskUsage = params['DiskUsage']
+          @MemSize = params['MemSize']
+          @MemUsage = params['MemUsage']
+          @CpuNum = params['CpuNum']
+          @CpuUsage = params['CpuUsage']
+          @Zone = params['Zone']
+          @NodeRole = params['NodeRole']
+          @NodeHttpIp = params['NodeHttpIp']
+          @JvmMemUsage = params['JvmMemUsage']
+          @ShardNum = params['ShardNum']
+          @DiskIds = params['DiskIds']
+          @Hidden = params['Hidden']
         end
       end
 

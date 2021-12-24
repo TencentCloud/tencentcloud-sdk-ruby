@@ -2039,6 +2039,50 @@ module TencentCloud
         end
       end
 
+      # RestartApplication请求参数结构体
+      class RestartApplicationRequest < TencentCloud::Common::AbstractModel
+        # @param ApplicationId: 服务id
+        # @type ApplicationId: String
+        # @param SourceChannel: 来源渠道
+        # @type SourceChannel: Integer
+        # @param EnvironmentId: 环境ID
+        # @type EnvironmentId: String
+
+        attr_accessor :ApplicationId, :SourceChannel, :EnvironmentId
+        
+        def initialize(applicationid=nil, sourcechannel=nil, environmentid=nil)
+          @ApplicationId = applicationid
+          @SourceChannel = sourcechannel
+          @EnvironmentId = environmentid
+        end
+
+        def deserialize(params)
+          @ApplicationId = params['ApplicationId']
+          @SourceChannel = params['SourceChannel']
+          @EnvironmentId = params['EnvironmentId']
+        end
+      end
+
+      # RestartApplication返回参数结构体
+      class RestartApplicationResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 返回结果
+        # @type Result: Boolean
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+        
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Result = params['Result']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ResumeDeployApplication请求参数结构体
       class ResumeDeployApplicationRequest < TencentCloud::Common::AbstractModel
         # @param ApplicationId: 需要开始下一批次的服务id
@@ -2225,6 +2269,50 @@ module TencentCloud
           @RestartCount = params['RestartCount']
           @Ready = params['Ready']
           @ContainerState = params['ContainerState']
+        end
+      end
+
+      # StopApplication请求参数结构体
+      class StopApplicationRequest < TencentCloud::Common::AbstractModel
+        # @param ApplicationId: 服务id
+        # @type ApplicationId: String
+        # @param SourceChannel: 来源渠道
+        # @type SourceChannel: Integer
+        # @param EnvironmentId: 环境ID
+        # @type EnvironmentId: String
+
+        attr_accessor :ApplicationId, :SourceChannel, :EnvironmentId
+        
+        def initialize(applicationid=nil, sourcechannel=nil, environmentid=nil)
+          @ApplicationId = applicationid
+          @SourceChannel = sourcechannel
+          @EnvironmentId = environmentid
+        end
+
+        def deserialize(params)
+          @ApplicationId = params['ApplicationId']
+          @SourceChannel = params['SourceChannel']
+          @EnvironmentId = params['EnvironmentId']
+        end
+      end
+
+      # StopApplication返回参数结构体
+      class StopApplicationResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 返回结果
+        # @type Result: Boolean
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+        
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Result = params['Result']
+          @RequestId = params['RequestId']
         end
       end
 

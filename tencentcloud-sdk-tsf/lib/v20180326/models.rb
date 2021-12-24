@@ -4094,10 +4094,14 @@ module TencentCloud
         # @type IncrementalDeployment: Boolean
         # @param RepoType: tcr或者不填
         # @type RepoType: String
+        # @param VolumeInfos: 数据卷信息
+        # @type VolumeInfos: :class:`Tencentcloud::Tsf.v20180326.models.VolumeInfo`
+        # @param VolumeMountInfos: 数据卷挂载点信息
+        # @type VolumeMountInfos: :class:`Tencentcloud::Tsf.v20180326.models.VolumeMountInfo`
 
-        attr_accessor :GroupId, :TagName, :InstanceNum, :Server, :Reponame, :CpuLimit, :MemLimit, :JvmOpts, :CpuRequest, :MemRequest, :DoNotStart, :RepoName, :UpdateType, :UpdateIvl, :AgentCpuRequest, :AgentCpuLimit, :AgentMemRequest, :AgentMemLimit, :IstioCpuRequest, :IstioCpuLimit, :IstioMemRequest, :IstioMemLimit, :MaxSurge, :MaxUnavailable, :HealthCheckSettings, :Envs, :ServiceSetting, :DeployAgent, :SchedulingStrategy, :IncrementalDeployment, :RepoType
+        attr_accessor :GroupId, :TagName, :InstanceNum, :Server, :Reponame, :CpuLimit, :MemLimit, :JvmOpts, :CpuRequest, :MemRequest, :DoNotStart, :RepoName, :UpdateType, :UpdateIvl, :AgentCpuRequest, :AgentCpuLimit, :AgentMemRequest, :AgentMemLimit, :IstioCpuRequest, :IstioCpuLimit, :IstioMemRequest, :IstioMemLimit, :MaxSurge, :MaxUnavailable, :HealthCheckSettings, :Envs, :ServiceSetting, :DeployAgent, :SchedulingStrategy, :IncrementalDeployment, :RepoType, :VolumeInfos, :VolumeMountInfos
         
-        def initialize(groupid=nil, tagname=nil, instancenum=nil, server=nil, reponame=nil, cpulimit=nil, memlimit=nil, jvmopts=nil, cpurequest=nil, memrequest=nil, donotstart=nil, reponame=nil, updatetype=nil, updateivl=nil, agentcpurequest=nil, agentcpulimit=nil, agentmemrequest=nil, agentmemlimit=nil, istiocpurequest=nil, istiocpulimit=nil, istiomemrequest=nil, istiomemlimit=nil, maxsurge=nil, maxunavailable=nil, healthchecksettings=nil, envs=nil, servicesetting=nil, deployagent=nil, schedulingstrategy=nil, incrementaldeployment=nil, repotype=nil)
+        def initialize(groupid=nil, tagname=nil, instancenum=nil, server=nil, reponame=nil, cpulimit=nil, memlimit=nil, jvmopts=nil, cpurequest=nil, memrequest=nil, donotstart=nil, reponame=nil, updatetype=nil, updateivl=nil, agentcpurequest=nil, agentcpulimit=nil, agentmemrequest=nil, agentmemlimit=nil, istiocpurequest=nil, istiocpulimit=nil, istiomemrequest=nil, istiomemlimit=nil, maxsurge=nil, maxunavailable=nil, healthchecksettings=nil, envs=nil, servicesetting=nil, deployagent=nil, schedulingstrategy=nil, incrementaldeployment=nil, repotype=nil, volumeinfos=nil, volumemountinfos=nil)
           @GroupId = groupid
           @TagName = tagname
           @InstanceNum = instancenum
@@ -4129,6 +4133,8 @@ module TencentCloud
           @SchedulingStrategy = schedulingstrategy
           @IncrementalDeployment = incrementaldeployment
           @RepoType = repotype
+          @VolumeInfos = volumeinfos
+          @VolumeMountInfos = volumemountinfos
         end
 
         def deserialize(params)
@@ -4179,6 +4185,14 @@ module TencentCloud
           end
           @IncrementalDeployment = params['IncrementalDeployment']
           @RepoType = params['RepoType']
+          unless params['VolumeInfos'].nil?
+            @VolumeInfos = VolumeInfo.new
+            @VolumeInfos.deserialize(params['VolumeInfos'])
+          end
+          unless params['VolumeMountInfos'].nil?
+            @VolumeMountInfos = VolumeMountInfo.new
+            @VolumeMountInfos.deserialize(params['VolumeMountInfos'])
+          end
         end
       end
 
@@ -6541,10 +6555,12 @@ module TencentCloud
         # @type Status: Array
         # @param MicroserviceIdList: IdList
         # @type MicroserviceIdList: Array
+        # @param MicroserviceNameList: 搜索的服务名列表
+        # @type MicroserviceNameList: Array
 
-        attr_accessor :NamespaceId, :SearchWord, :OrderBy, :OrderType, :Offset, :Limit, :Status, :MicroserviceIdList
+        attr_accessor :NamespaceId, :SearchWord, :OrderBy, :OrderType, :Offset, :Limit, :Status, :MicroserviceIdList, :MicroserviceNameList
         
-        def initialize(namespaceid=nil, searchword=nil, orderby=nil, ordertype=nil, offset=nil, limit=nil, status=nil, microserviceidlist=nil)
+        def initialize(namespaceid=nil, searchword=nil, orderby=nil, ordertype=nil, offset=nil, limit=nil, status=nil, microserviceidlist=nil, microservicenamelist=nil)
           @NamespaceId = namespaceid
           @SearchWord = searchword
           @OrderBy = orderby
@@ -6553,6 +6569,7 @@ module TencentCloud
           @Limit = limit
           @Status = status
           @MicroserviceIdList = microserviceidlist
+          @MicroserviceNameList = microservicenamelist
         end
 
         def deserialize(params)
@@ -6564,6 +6581,7 @@ module TencentCloud
           @Limit = params['Limit']
           @Status = params['Status']
           @MicroserviceIdList = params['MicroserviceIdList']
+          @MicroserviceNameList = params['MicroserviceNameList']
         end
       end
 
@@ -15344,6 +15362,58 @@ module TencentCloud
           @UpdatedTime = params['UpdatedTime']
           @DeployDesc = params['DeployDesc']
           @Alias = params['Alias']
+        end
+      end
+
+      # 容器卷挂载信息
+      class VolumeInfo < TencentCloud::Common::AbstractModel
+        # @param VolumeType: 数据卷类型
+        # @type VolumeType: String
+        # @param VolumeName: 数据卷名称
+        # @type VolumeName: String
+        # @param VolumeConfig: 数据卷配置
+        # @type VolumeConfig: String
+
+        attr_accessor :VolumeType, :VolumeName, :VolumeConfig
+        
+        def initialize(volumetype=nil, volumename=nil, volumeconfig=nil)
+          @VolumeType = volumetype
+          @VolumeName = volumename
+          @VolumeConfig = volumeconfig
+        end
+
+        def deserialize(params)
+          @VolumeType = params['VolumeType']
+          @VolumeName = params['VolumeName']
+          @VolumeConfig = params['VolumeConfig']
+        end
+      end
+
+      # 容器卷挂载点信息
+      class VolumeMountInfo < TencentCloud::Common::AbstractModel
+        # @param VolumeMountName: 挂载数据卷名称
+        # @type VolumeMountName: String
+        # @param VolumeMountPath: 挂载路径
+        # @type VolumeMountPath: String
+        # @param VolumeMountSubPath: 挂载子路径
+        # @type VolumeMountSubPath: String
+        # @param ReadOrWrite: 读写，1：读 2：读写
+        # @type ReadOrWrite: String
+
+        attr_accessor :VolumeMountName, :VolumeMountPath, :VolumeMountSubPath, :ReadOrWrite
+        
+        def initialize(volumemountname=nil, volumemountpath=nil, volumemountsubpath=nil, readorwrite=nil)
+          @VolumeMountName = volumemountname
+          @VolumeMountPath = volumemountpath
+          @VolumeMountSubPath = volumemountsubpath
+          @ReadOrWrite = readorwrite
+        end
+
+        def deserialize(params)
+          @VolumeMountName = params['VolumeMountName']
+          @VolumeMountPath = params['VolumeMountPath']
+          @VolumeMountSubPath = params['VolumeMountSubPath']
+          @ReadOrWrite = params['ReadOrWrite']
         end
       end
 

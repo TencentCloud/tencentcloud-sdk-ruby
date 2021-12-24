@@ -1257,7 +1257,7 @@ module TencentCloud
       class ScanVoiceRequest < TencentCloud::Common::AbstractModel
         # @param BizId: 应用ID，登录[控制台 - 服务管理](https://console.cloud.tencent.com/gamegme)创建应用得到的AppID
         # @type BizId: Integer
-        # @param Scenes: 语音检测场景，参数值目前要求为 default。 预留场景设置： 谩骂、色情、涉政、广告、暴恐、违禁等场景，<a href="#Label_Value">具体取值见上述 Label 说明。</a>
+        # @param Scenes: 语音检测场景，参数值目前要求为 default。 预留场景设置： 谩骂、色情、广告、违禁等场景，<a href="#Label_Value">具体取值见上述 Label 说明。</a>
         # @type Scenes: Array
         # @param Live: 是否为直播流。值为 false 时表示普通语音文件检测；为 true 时表示语音流检测。
         # @type Live: Boolean
@@ -1267,15 +1267,18 @@ module TencentCloud
         # @type Tasks: Array
         # @param Callback: 异步检测结果回调地址，具体见上述<a href="#Callback_Declare">回调相关说明</a>。（说明：该字段为空时，必须通过接口(查询语音检测结果)获取检测结果）。
         # @type Callback: String
+        # @param Lang: 语言，目前jp代表日语
+        # @type Lang: String
 
-        attr_accessor :BizId, :Scenes, :Live, :Tasks, :Callback
+        attr_accessor :BizId, :Scenes, :Live, :Tasks, :Callback, :Lang
         
-        def initialize(bizid=nil, scenes=nil, live=nil, tasks=nil, callback=nil)
+        def initialize(bizid=nil, scenes=nil, live=nil, tasks=nil, callback=nil, lang=nil)
           @BizId = bizid
           @Scenes = scenes
           @Live = live
           @Tasks = tasks
           @Callback = callback
+          @Lang = lang
         end
 
         def deserialize(params)
@@ -1291,6 +1294,7 @@ module TencentCloud
             end
           end
           @Callback = params['Callback']
+          @Lang = params['Lang']
         end
       end
 
@@ -1414,7 +1418,7 @@ module TencentCloud
 
       # 过滤结果
       class VoiceFilter < TencentCloud::Common::AbstractModel
-        # @param Type: 过滤类型，1：政治，2：色情，3：涉毒，4：谩骂
+        # @param Type: 过滤类型，1：色情，2：涉毒，3：谩骂
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Type: Integer
         # @param Word: 过滤命中关键词

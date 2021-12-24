@@ -149,6 +149,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询集群各视图数据，包括集群维度、节点维度、Kibana维度
+
+        # @param request: Request instance for DescribeViews.
+        # @type request: :class:`Tencentcloud::es::V20180416::DescribeViewsRequest`
+        # @rtype: :class:`Tencentcloud::es::V20180416::DescribeViewsResponse`
+        def DescribeViews(request)
+          body = send_request('DescribeViews', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeViewsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 智能运维诊断集群
 
         # @param request: Request instance for DiagnoseInstance.
