@@ -2148,14 +2148,18 @@ module TencentCloud
         # @type Scene: String
         # @param EnableWordPolygon: 是否开启单字的四点定位坐标输出，默认值为false。
         # @type EnableWordPolygon: Boolean
+        # @param EnableDetectText: 文本检测开关，默认值为true。
+        # 设置为false表示直接进行单行识别，可适用于识别单行手写体签名场景。
+        # @type EnableDetectText: Boolean
 
-        attr_accessor :ImageBase64, :ImageUrl, :Scene, :EnableWordPolygon
+        attr_accessor :ImageBase64, :ImageUrl, :Scene, :EnableWordPolygon, :EnableDetectText
         
-        def initialize(imagebase64=nil, imageurl=nil, scene=nil, enablewordpolygon=nil)
+        def initialize(imagebase64=nil, imageurl=nil, scene=nil, enablewordpolygon=nil, enabledetecttext=nil)
           @ImageBase64 = imagebase64
           @ImageUrl = imageurl
           @Scene = scene
           @EnableWordPolygon = enablewordpolygon
+          @EnableDetectText = enabledetecttext
         end
 
         def deserialize(params)
@@ -2163,6 +2167,7 @@ module TencentCloud
           @ImageUrl = params['ImageUrl']
           @Scene = params['Scene']
           @EnableWordPolygon = params['EnableWordPolygon']
+          @EnableDetectText = params['EnableDetectText']
         end
       end
 
