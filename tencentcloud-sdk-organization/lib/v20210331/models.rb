@@ -113,6 +113,125 @@ module TencentCloud
         end
       end
 
+      # DescribeOrganization请求参数结构体
+      class DescribeOrganizationRequest < TencentCloud::Common::AbstractModel
+        # @param Lang: 国际站：en，国内站：zh
+        # @type Lang: String
+
+        attr_accessor :Lang
+        
+        def initialize(lang=nil)
+          @Lang = lang
+        end
+
+        def deserialize(params)
+          @Lang = params['Lang']
+        end
+      end
+
+      # DescribeOrganization返回参数结构体
+      class DescribeOrganizationResponse < TencentCloud::Common::AbstractModel
+        # @param OrgId: 企业组织ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OrgId: Integer
+        # @param HostUin: 创建者UIN
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HostUin: Integer
+        # @param NickName: 创建者昵称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NickName: String
+        # @param OrgType: 企业组织类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OrgType: Integer
+        # @param IsManager: 组织管理员：true，组织成员：false
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsManager: Boolean
+        # @param OrgPolicyType: 策略类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OrgPolicyType: String
+        # @param OrgPolicyName: 策略名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OrgPolicyName: String
+        # @param OrgPermission: 策略权限
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OrgPermission: Array
+        # @param RootNodeId: 根节点ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RootNodeId: Integer
+        # @param CreateTime: 创建时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateTime: String
+        # @param JoinTime: 成员加入时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type JoinTime: String
+        # @param IsAllowQuit: 是否允许退出。允许：Allow，不允许：Denied。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsAllowQuit: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :OrgId, :HostUin, :NickName, :OrgType, :IsManager, :OrgPolicyType, :OrgPolicyName, :OrgPermission, :RootNodeId, :CreateTime, :JoinTime, :IsAllowQuit, :RequestId
+        
+        def initialize(orgid=nil, hostuin=nil, nickname=nil, orgtype=nil, ismanager=nil, orgpolicytype=nil, orgpolicyname=nil, orgpermission=nil, rootnodeid=nil, createtime=nil, jointime=nil, isallowquit=nil, requestid=nil)
+          @OrgId = orgid
+          @HostUin = hostuin
+          @NickName = nickname
+          @OrgType = orgtype
+          @IsManager = ismanager
+          @OrgPolicyType = orgpolicytype
+          @OrgPolicyName = orgpolicyname
+          @OrgPermission = orgpermission
+          @RootNodeId = rootnodeid
+          @CreateTime = createtime
+          @JoinTime = jointime
+          @IsAllowQuit = isallowquit
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @OrgId = params['OrgId']
+          @HostUin = params['HostUin']
+          @NickName = params['NickName']
+          @OrgType = params['OrgType']
+          @IsManager = params['IsManager']
+          @OrgPolicyType = params['OrgPolicyType']
+          @OrgPolicyName = params['OrgPolicyName']
+          unless params['OrgPermission'].nil?
+            @OrgPermission = []
+            params['OrgPermission'].each do |i|
+              orgpermission_tmp = OrgPermission.new
+              orgpermission_tmp.deserialize(i)
+              @OrgPermission << orgpermission_tmp
+            end
+          end
+          @RootNodeId = params['RootNodeId']
+          @CreateTime = params['CreateTime']
+          @JoinTime = params['JoinTime']
+          @IsAllowQuit = params['IsAllowQuit']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 关系策略权限
+      class OrgPermission < TencentCloud::Common::AbstractModel
+        # @param Id: 权限Id
+        # @type Id: Integer
+        # @param Name: 权限名
+        # @type Name: String
+
+        attr_accessor :Id, :Name
+        
+        def initialize(id=nil, name=nil)
+          @Id = id
+          @Name = name
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @Name = params['Name']
+        end
+      end
+
     end
   end
 end
