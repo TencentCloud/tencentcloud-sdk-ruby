@@ -54,6 +54,33 @@ module TencentCloud
         end
       end
 
+      # DescribeRiskAssessment请求参数结构体
+      class DescribeRiskAssessmentRequest < TencentCloud::Common::AbstractModel
+
+        
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeRiskAssessment返回参数结构体
+      class DescribeRiskAssessmentResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeRiskModel请求参数结构体
       class DescribeRiskModelRequest < TencentCloud::Common::AbstractModel
         # @param BusinessSecurityData: 业务入参
@@ -90,6 +117,48 @@ module TencentCloud
         def deserialize(params)
           unless params['Data'].nil?
             @Data = OutputDescribeRiskModel.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeRiskTrends请求参数结构体
+      class DescribeRiskTrendsRequest < TencentCloud::Common::AbstractModel
+        # @param BusinessSecurityData: 业务入参
+        # @type BusinessSecurityData: :class:`Tencentcloud::Rce.v20201103.models.InputFrontRisk`
+
+        attr_accessor :BusinessSecurityData
+        
+        def initialize(businesssecuritydata=nil)
+          @BusinessSecurityData = businesssecuritydata
+        end
+
+        def deserialize(params)
+          unless params['BusinessSecurityData'].nil?
+            @BusinessSecurityData = InputFrontRisk.new
+            @BusinessSecurityData.deserialize(params['BusinessSecurityData'])
+          end
+        end
+      end
+
+      # DescribeRiskTrends返回参数结构体
+      class DescribeRiskTrendsResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 业务出参
+        # @type Data: :class:`Tencentcloud::Rce.v20201103.models.OutputFrontRiskData`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+        
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = OutputFrontRiskData.new
             @Data.deserialize(params['Data'])
           end
           @RequestId = params['RequestId']
@@ -161,6 +230,42 @@ module TencentCloud
         def deserialize(params)
           @FieldName = params['FieldName']
           @FieldValue = params['FieldValue']
+        end
+      end
+
+      # 风险趋势统计--入参
+      class InputFrontRisk < TencentCloud::Common::AbstractModel
+        # @param EventId: 事件ID
+        # @type EventId: Integer
+        # @param StartTime: 开始时间
+        # @type StartTime: String
+        # @param EndTime: 结束时间
+        # @type EndTime: String
+        # @param Type: 趋势类型
+        # @type Type: Integer
+        # @param CurrentStartTime: 当前开始时间
+        # @type CurrentStartTime: String
+        # @param CurrentEndTime: 当前结束时间
+        # @type CurrentEndTime: String
+
+        attr_accessor :EventId, :StartTime, :EndTime, :Type, :CurrentStartTime, :CurrentEndTime
+        
+        def initialize(eventid=nil, starttime=nil, endtime=nil, type=nil, currentstarttime=nil, currentendtime=nil)
+          @EventId = eventid
+          @StartTime = starttime
+          @EndTime = endtime
+          @Type = type
+          @CurrentStartTime = currentstarttime
+          @CurrentEndTime = currentendtime
+        end
+
+        def deserialize(params)
+          @EventId = params['EventId']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @Type = params['Type']
+          @CurrentStartTime = params['CurrentStartTime']
+          @CurrentEndTime = params['CurrentEndTime']
         end
       end
 
@@ -432,6 +537,91 @@ module TencentCloud
 
         def deserialize(params)
           @ApplyScore = params['ApplyScore']
+        end
+      end
+
+      # 风险趋势统计出参，需要为数组
+      class OutputFrontRisk < TencentCloud::Common::AbstractModel
+        # @param Name: 名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
+        # @param Value: 参数值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Value: Array
+
+        attr_accessor :Name, :Value
+        
+        def initialize(name=nil, value=nil)
+          @Name = name
+          @Value = value
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          unless params['Value'].nil?
+            @Value = []
+            params['Value'].each do |i|
+              outputfrontriskvalue_tmp = OutputFrontRiskValue.new
+              outputfrontriskvalue_tmp.deserialize(i)
+              @Value << outputfrontriskvalue_tmp
+            end
+          end
+        end
+      end
+
+      # 风险趋势统计--出参
+      class OutputFrontRiskData < TencentCloud::Common::AbstractModel
+        # @param Code: 返回码[0：成功；非0：标识失败错误码]。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Code: Integer
+        # @param Message: 出错消息[UTF-8编码]。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Message: String
+        # @param Value: 返回结果。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Value: Array
+
+        attr_accessor :Code, :Message, :Value
+        
+        def initialize(code=nil, message=nil, value=nil)
+          @Code = code
+          @Message = message
+          @Value = value
+        end
+
+        def deserialize(params)
+          @Code = params['Code']
+          @Message = params['Message']
+          unless params['Value'].nil?
+            @Value = []
+            params['Value'].each do |i|
+              outputfrontrisk_tmp = OutputFrontRisk.new
+              outputfrontrisk_tmp.deserialize(i)
+              @Value << outputfrontrisk_tmp
+            end
+          end
+        end
+      end
+
+      # 风险趋势统计--值
+      class OutputFrontRiskValue < TencentCloud::Common::AbstractModel
+        # @param Requests: 请求次数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Requests: Integer
+        # @param Index: 日期标签
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Index: String
+
+        attr_accessor :Requests, :Index
+        
+        def initialize(requests=nil, index=nil)
+          @Requests = requests
+          @Index = index
+        end
+
+        def deserialize(params)
+          @Requests = params['Requests']
+          @Index = params['Index']
         end
       end
 

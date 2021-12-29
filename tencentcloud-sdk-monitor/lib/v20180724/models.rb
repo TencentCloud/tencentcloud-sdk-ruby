@@ -5776,10 +5776,13 @@ module TencentCloud
         # @param Grant: 实例的授权信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Grant: :class:`Tencentcloud::Monitor.v20180724.models.PrometheusInstanceGrantInfo`
+        # @param GrafanaInstanceId: 绑定的 Grafana 实例 ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GrafanaInstanceId: String
 
-        attr_accessor :InstanceId, :InstanceName, :InstanceChargeType, :RegionId, :Zone, :VpcId, :SubnetId, :DataRetentionTime, :InstanceStatus, :GrafanaURL, :CreatedAt, :EnableGrafana, :IPv4Address, :TagSpecification, :ExpireTime, :ChargeStatus, :SpecName, :AutoRenewFlag, :IsNearExpire, :AuthToken, :RemoteWrite, :ApiRootPath, :ProxyAddress, :GrafanaStatus, :GrafanaIpWhiteList, :Grant
+        attr_accessor :InstanceId, :InstanceName, :InstanceChargeType, :RegionId, :Zone, :VpcId, :SubnetId, :DataRetentionTime, :InstanceStatus, :GrafanaURL, :CreatedAt, :EnableGrafana, :IPv4Address, :TagSpecification, :ExpireTime, :ChargeStatus, :SpecName, :AutoRenewFlag, :IsNearExpire, :AuthToken, :RemoteWrite, :ApiRootPath, :ProxyAddress, :GrafanaStatus, :GrafanaIpWhiteList, :Grant, :GrafanaInstanceId
         
-        def initialize(instanceid=nil, instancename=nil, instancechargetype=nil, regionid=nil, zone=nil, vpcid=nil, subnetid=nil, dataretentiontime=nil, instancestatus=nil, grafanaurl=nil, createdat=nil, enablegrafana=nil, ipv4address=nil, tagspecification=nil, expiretime=nil, chargestatus=nil, specname=nil, autorenewflag=nil, isnearexpire=nil, authtoken=nil, remotewrite=nil, apirootpath=nil, proxyaddress=nil, grafanastatus=nil, grafanaipwhitelist=nil, grant=nil)
+        def initialize(instanceid=nil, instancename=nil, instancechargetype=nil, regionid=nil, zone=nil, vpcid=nil, subnetid=nil, dataretentiontime=nil, instancestatus=nil, grafanaurl=nil, createdat=nil, enablegrafana=nil, ipv4address=nil, tagspecification=nil, expiretime=nil, chargestatus=nil, specname=nil, autorenewflag=nil, isnearexpire=nil, authtoken=nil, remotewrite=nil, apirootpath=nil, proxyaddress=nil, grafanastatus=nil, grafanaipwhitelist=nil, grant=nil, grafanainstanceid=nil)
           @InstanceId = instanceid
           @InstanceName = instancename
           @InstanceChargeType = instancechargetype
@@ -5806,6 +5809,7 @@ module TencentCloud
           @GrafanaStatus = grafanastatus
           @GrafanaIpWhiteList = grafanaipwhitelist
           @Grant = grant
+          @GrafanaInstanceId = grafanainstanceid
         end
 
         def deserialize(params)
@@ -5845,6 +5849,7 @@ module TencentCloud
             @Grant = PrometheusInstanceGrantInfo.new
             @Grant.deserialize(params['Grant'])
           end
+          @GrafanaInstanceId = params['GrafanaInstanceId']
         end
       end
 

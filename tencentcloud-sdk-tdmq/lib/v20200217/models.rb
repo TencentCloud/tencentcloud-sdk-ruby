@@ -1059,53 +1059,6 @@ module TencentCloud
         end
       end
 
-      # 生产者连接实例
-      class Connection < TencentCloud::Common::AbstractModel
-        # @param Address: 生产者地址。
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Address: String
-        # @param Partitions: 主题分区。
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Partitions: Integer
-        # @param ClientVersion: 生产者版本。
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type ClientVersion: String
-        # @param ProducerName: 生产者名称。
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type ProducerName: String
-        # @param ProducerId: 生产者ID。
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type ProducerId: String
-        # @param AverageMsgSize: 消息平均大小(byte)。
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type AverageMsgSize: String
-        # @param MsgThroughputIn: 生成速率(byte/秒)。
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type MsgThroughputIn: String
-
-        attr_accessor :Address, :Partitions, :ClientVersion, :ProducerName, :ProducerId, :AverageMsgSize, :MsgThroughputIn
-        
-        def initialize(address=nil, partitions=nil, clientversion=nil, producername=nil, producerid=nil, averagemsgsize=nil, msgthroughputin=nil)
-          @Address = address
-          @Partitions = partitions
-          @ClientVersion = clientversion
-          @ProducerName = producername
-          @ProducerId = producerid
-          @AverageMsgSize = averagemsgsize
-          @MsgThroughputIn = msgthroughputin
-        end
-
-        def deserialize(params)
-          @Address = params['Address']
-          @Partitions = params['Partitions']
-          @ClientVersion = params['ClientVersion']
-          @ProducerName = params['ProducerName']
-          @ProducerId = params['ProducerId']
-          @AverageMsgSize = params['AverageMsgSize']
-          @MsgThroughputIn = params['MsgThroughputIn']
-        end
-      end
-
       #  消费者
       class Consumer < TencentCloud::Common::AbstractModel
         # @param ConnectedSince: 消费者开始连接的时间。
@@ -4322,73 +4275,6 @@ module TencentCloud
         end
       end
 
-      # DescribeProducers请求参数结构体
-      class DescribeProducersRequest < TencentCloud::Common::AbstractModel
-        # @param EnvironmentId: 环境（命名空间）名称。
-        # @type EnvironmentId: String
-        # @param TopicName: 主题名。
-        # @type TopicName: String
-        # @param Offset: 起始下标，不填默认为0。
-        # @type Offset: Integer
-        # @param Limit: 返回数量，不填则默认为10，最大值为20。
-        # @type Limit: Integer
-        # @param ProducerName: 生产者名称，模糊匹配。
-        # @type ProducerName: String
-        # @param ClusterId: Pulsar 集群的ID
-        # @type ClusterId: String
-
-        attr_accessor :EnvironmentId, :TopicName, :Offset, :Limit, :ProducerName, :ClusterId
-        
-        def initialize(environmentid=nil, topicname=nil, offset=nil, limit=nil, producername=nil, clusterid=nil)
-          @EnvironmentId = environmentid
-          @TopicName = topicname
-          @Offset = offset
-          @Limit = limit
-          @ProducerName = producername
-          @ClusterId = clusterid
-        end
-
-        def deserialize(params)
-          @EnvironmentId = params['EnvironmentId']
-          @TopicName = params['TopicName']
-          @Offset = params['Offset']
-          @Limit = params['Limit']
-          @ProducerName = params['ProducerName']
-          @ClusterId = params['ClusterId']
-        end
-      end
-
-      # DescribeProducers返回参数结构体
-      class DescribeProducersResponse < TencentCloud::Common::AbstractModel
-        # @param ProducerSets: 生产者集合数组。
-        # @type ProducerSets: Array
-        # @param TotalCount: 记录总数。
-        # @type TotalCount: Integer
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :ProducerSets, :TotalCount, :RequestId
-        
-        def initialize(producersets=nil, totalcount=nil, requestid=nil)
-          @ProducerSets = producersets
-          @TotalCount = totalcount
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          unless params['ProducerSets'].nil?
-            @ProducerSets = []
-            params['ProducerSets'].each do |i|
-              producer_tmp = Producer.new
-              producer_tmp.deserialize(i)
-              @ProducerSets << producer_tmp
-            end
-          end
-          @TotalCount = params['TotalCount']
-          @RequestId = params['RequestId']
-        end
-      end
-
       # DescribePublisherSummary请求参数结构体
       class DescribePublisherSummaryRequest < TencentCloud::Common::AbstractModel
         # @param ClusterId: 集群ID
@@ -6240,43 +6126,6 @@ module TencentCloud
           @ProducerCount = params['ProducerCount']
           @TotalSize = params['TotalSize']
           @TopicType = params['TopicType']
-        end
-      end
-
-      # 生产者
-      class Producer < TencentCloud::Common::AbstractModel
-        # @param EnvironmentId: 环境（命名空间）名称。
-        # @type EnvironmentId: String
-        # @param TopicName: 主题名称。
-        # @type TopicName: String
-        # @param CountConnect: 连接数。
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type CountConnect: Integer
-        # @param ConnectionSets: 连接集合。
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type ConnectionSets: Array
-
-        attr_accessor :EnvironmentId, :TopicName, :CountConnect, :ConnectionSets
-        
-        def initialize(environmentid=nil, topicname=nil, countconnect=nil, connectionsets=nil)
-          @EnvironmentId = environmentid
-          @TopicName = topicname
-          @CountConnect = countconnect
-          @ConnectionSets = connectionsets
-        end
-
-        def deserialize(params)
-          @EnvironmentId = params['EnvironmentId']
-          @TopicName = params['TopicName']
-          @CountConnect = params['CountConnect']
-          unless params['ConnectionSets'].nil?
-            @ConnectionSets = []
-            params['ConnectionSets'].each do |i|
-              connection_tmp = Connection.new
-              connection_tmp.deserialize(i)
-              @ConnectionSets << connection_tmp
-            end
-          end
         end
       end
 
