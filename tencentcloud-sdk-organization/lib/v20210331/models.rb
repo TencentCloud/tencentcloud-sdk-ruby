@@ -113,6 +113,65 @@ module TencentCloud
         end
       end
 
+      # DescribeOrganizationMembers请求参数结构体
+      class DescribeOrganizationMembersRequest < TencentCloud::Common::AbstractModel
+        # @param Offset: 偏移量
+        # @type Offset: Integer
+        # @param Limit: 限制数目
+        # @type Limit: Integer
+        # @param Lang: 国际站：en，国内站：zh
+        # @type Lang: String
+        # @param SearchKey: 成员名或者成员ID搜索
+        # @type SearchKey: String
+
+        attr_accessor :Offset, :Limit, :Lang, :SearchKey
+        
+        def initialize(offset=nil, limit=nil, lang=nil, searchkey=nil)
+          @Offset = offset
+          @Limit = limit
+          @Lang = lang
+          @SearchKey = searchkey
+        end
+
+        def deserialize(params)
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @Lang = params['Lang']
+          @SearchKey = params['SearchKey']
+        end
+      end
+
+      # DescribeOrganizationMembers返回参数结构体
+      class DescribeOrganizationMembersResponse < TencentCloud::Common::AbstractModel
+        # @param Items: 成员列表
+        # @type Items: Array
+        # @param Total: 总数目
+        # @type Total: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Items, :Total, :RequestId
+        
+        def initialize(items=nil, total=nil, requestid=nil)
+          @Items = items
+          @Total = total
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Items'].nil?
+            @Items = []
+            params['Items'].each do |i|
+              orgmember_tmp = OrgMember.new
+              orgmember_tmp.deserialize(i)
+              @Items << orgmember_tmp
+            end
+          end
+          @Total = params['Total']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeOrganization请求参数结构体
       class DescribeOrganizationRequest < TencentCloud::Common::AbstractModel
         # @param Lang: 国际站：en，国内站：zh
@@ -209,6 +268,85 @@ module TencentCloud
           @JoinTime = params['JoinTime']
           @IsAllowQuit = params['IsAllowQuit']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 企业组织成员
+      class OrgMember < TencentCloud::Common::AbstractModel
+        # @param MemberUin: 成员Uin
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MemberUin: Integer
+        # @param Name: 成员名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
+        # @param MemberType: 成员类型，邀请：Invite， 创建：Create
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MemberType: String
+        # @param OrgPolicyType: 关系策略类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OrgPolicyType: String
+        # @param OrgPolicyName: 关系策略名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OrgPolicyName: String
+        # @param OrgPermission: 关系策略权限
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OrgPermission: Array
+        # @param NodeId: 所属节点ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NodeId: Integer
+        # @param NodeName: 所属节点名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NodeName: String
+        # @param Remark: 备注
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Remark: String
+        # @param CreateTime: 创建时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateTime: String
+        # @param UpdateTime: 更新时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UpdateTime: String
+        # @param IsAllowQuit: 是否允许成员退出。允许：Allow，不允许：Denied。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsAllowQuit: String
+
+        attr_accessor :MemberUin, :Name, :MemberType, :OrgPolicyType, :OrgPolicyName, :OrgPermission, :NodeId, :NodeName, :Remark, :CreateTime, :UpdateTime, :IsAllowQuit
+        
+        def initialize(memberuin=nil, name=nil, membertype=nil, orgpolicytype=nil, orgpolicyname=nil, orgpermission=nil, nodeid=nil, nodename=nil, remark=nil, createtime=nil, updatetime=nil, isallowquit=nil)
+          @MemberUin = memberuin
+          @Name = name
+          @MemberType = membertype
+          @OrgPolicyType = orgpolicytype
+          @OrgPolicyName = orgpolicyname
+          @OrgPermission = orgpermission
+          @NodeId = nodeid
+          @NodeName = nodename
+          @Remark = remark
+          @CreateTime = createtime
+          @UpdateTime = updatetime
+          @IsAllowQuit = isallowquit
+        end
+
+        def deserialize(params)
+          @MemberUin = params['MemberUin']
+          @Name = params['Name']
+          @MemberType = params['MemberType']
+          @OrgPolicyType = params['OrgPolicyType']
+          @OrgPolicyName = params['OrgPolicyName']
+          unless params['OrgPermission'].nil?
+            @OrgPermission = []
+            params['OrgPermission'].each do |i|
+              orgpermission_tmp = OrgPermission.new
+              orgpermission_tmp.deserialize(i)
+              @OrgPermission << orgpermission_tmp
+            end
+          end
+          @NodeId = params['NodeId']
+          @NodeName = params['NodeName']
+          @Remark = params['Remark']
+          @CreateTime = params['CreateTime']
+          @UpdateTime = params['UpdateTime']
+          @IsAllowQuit = params['IsAllowQuit']
         end
       end
 

@@ -1580,6 +1580,198 @@ module TencentCloud
         end
       end
 
+      #  获取部署组
+      class ContainerGroupDeploy < TencentCloud::Common::AbstractModel
+        # @param GroupId: 部署组id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GroupId: String
+        # @param GroupName: 分组名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GroupName: String
+        # @param InstanceNum: 实例总数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceNum: Integer
+        # @param CurrentNum: 已启动实例总数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CurrentNum: Integer
+        # @param Server: 镜像server
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Server: String
+        # @param Reponame: 镜像名，如/tsf/nginx
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Reponame: String
+        # @param TagName: 镜像版本名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TagName: String
+        # @param CpuRequest: 业务容器初始分配的 CPU 核数，对应 K8S request
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CpuRequest: String
+        # @param CpuLimit: 业务容器最大分配的 CPU 核数，对应 K8S limit
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CpuLimit: String
+        # @param MemRequest: 业务容器初始分配的内存 MiB 数，对应 K8S request
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MemRequest: String
+        # @param MemLimit: 业务容器最大分配的内存 MiB 数，对应 K8S limit
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MemLimit: String
+        # @param AccessType: 0:公网 1:集群内访问 2：NodePort
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AccessType: Integer
+        # @param ProtocolPorts: 端口映射
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProtocolPorts: Array
+        # @param UpdateType: 更新方式：0:快速更新 1:滚动更新
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UpdateType: Integer
+        # @param UpdateIvl: 更新间隔,单位秒
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UpdateIvl: Integer
+        # @param JvmOpts: jvm参数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type JvmOpts: String
+        # @param SubnetId: 子网id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SubnetId: String
+        # @param AgentCpuRequest: agent容器初始分配的 CPU 核数，对应 K8S request
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AgentCpuRequest: String
+        # @param AgentCpuLimit: agent容器最大分配的 CPU 核数，对应 K8S limit
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AgentCpuLimit: String
+        # @param AgentMemRequest: agent容器初始分配的内存 MiB 数，对应 K8S request
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AgentMemRequest: String
+        # @param AgentMemLimit: agent容器最大分配的内存 MiB 数，对应 K8S limit
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AgentMemLimit: String
+        # @param IstioCpuRequest: istioproxy容器初始分配的 CPU 核数，对应 K8S request
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IstioCpuRequest: String
+        # @param IstioCpuLimit: istioproxy容器最大分配的 CPU 核数，对应 K8S limit
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IstioCpuLimit: String
+        # @param IstioMemRequest: istioproxy容器初始分配的内存 MiB 数，对应 K8S request
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IstioMemRequest: String
+        # @param IstioMemLimit: istioproxy容器最大分配的内存 MiB 数，对应 K8S limit
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IstioMemLimit: String
+        # @param Envs: 部署组的环境变量数组，这里没有展示 tsf 使用的环境变量，只展示了用户设置的环境变量。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Envs: Array
+        # @param HealthCheckSettings: 健康检查配置信息，若不指定该参数，则默认不设置健康检查。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HealthCheckSettings: :class:`Tencentcloud::Tsf.v20180326.models.HealthCheckSettings`
+        # @param DeployAgent: 是否部署Agent容器
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DeployAgent: Boolean
+        # @param Alias: 部署组备注
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Alias: String
+        # @param DisableService: 是否创建 k8s service
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DisableService: Boolean
+        # @param HeadlessService: service 是否为 headless 类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HeadlessService: Boolean
+        # @param TcrRepoInfo: TcrRepoInfo值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TcrRepoInfo: :class:`Tencentcloud::Tsf.v20180326.models.TcrRepoInfo`
+
+        attr_accessor :GroupId, :GroupName, :InstanceNum, :CurrentNum, :Server, :Reponame, :TagName, :CpuRequest, :CpuLimit, :MemRequest, :MemLimit, :AccessType, :ProtocolPorts, :UpdateType, :UpdateIvl, :JvmOpts, :SubnetId, :AgentCpuRequest, :AgentCpuLimit, :AgentMemRequest, :AgentMemLimit, :IstioCpuRequest, :IstioCpuLimit, :IstioMemRequest, :IstioMemLimit, :Envs, :HealthCheckSettings, :DeployAgent, :Alias, :DisableService, :HeadlessService, :TcrRepoInfo
+        
+        def initialize(groupid=nil, groupname=nil, instancenum=nil, currentnum=nil, server=nil, reponame=nil, tagname=nil, cpurequest=nil, cpulimit=nil, memrequest=nil, memlimit=nil, accesstype=nil, protocolports=nil, updatetype=nil, updateivl=nil, jvmopts=nil, subnetid=nil, agentcpurequest=nil, agentcpulimit=nil, agentmemrequest=nil, agentmemlimit=nil, istiocpurequest=nil, istiocpulimit=nil, istiomemrequest=nil, istiomemlimit=nil, envs=nil, healthchecksettings=nil, deployagent=nil, _alias=nil, disableservice=nil, headlessservice=nil, tcrrepoinfo=nil)
+          @GroupId = groupid
+          @GroupName = groupname
+          @InstanceNum = instancenum
+          @CurrentNum = currentnum
+          @Server = server
+          @Reponame = reponame
+          @TagName = tagname
+          @CpuRequest = cpurequest
+          @CpuLimit = cpulimit
+          @MemRequest = memrequest
+          @MemLimit = memlimit
+          @AccessType = accesstype
+          @ProtocolPorts = protocolports
+          @UpdateType = updatetype
+          @UpdateIvl = updateivl
+          @JvmOpts = jvmopts
+          @SubnetId = subnetid
+          @AgentCpuRequest = agentcpurequest
+          @AgentCpuLimit = agentcpulimit
+          @AgentMemRequest = agentmemrequest
+          @AgentMemLimit = agentmemlimit
+          @IstioCpuRequest = istiocpurequest
+          @IstioCpuLimit = istiocpulimit
+          @IstioMemRequest = istiomemrequest
+          @IstioMemLimit = istiomemlimit
+          @Envs = envs
+          @HealthCheckSettings = healthchecksettings
+          @DeployAgent = deployagent
+          @Alias = _alias
+          @DisableService = disableservice
+          @HeadlessService = headlessservice
+          @TcrRepoInfo = tcrrepoinfo
+        end
+
+        def deserialize(params)
+          @GroupId = params['GroupId']
+          @GroupName = params['GroupName']
+          @InstanceNum = params['InstanceNum']
+          @CurrentNum = params['CurrentNum']
+          @Server = params['Server']
+          @Reponame = params['Reponame']
+          @TagName = params['TagName']
+          @CpuRequest = params['CpuRequest']
+          @CpuLimit = params['CpuLimit']
+          @MemRequest = params['MemRequest']
+          @MemLimit = params['MemLimit']
+          @AccessType = params['AccessType']
+          unless params['ProtocolPorts'].nil?
+            @ProtocolPorts = []
+            params['ProtocolPorts'].each do |i|
+              protocolport_tmp = ProtocolPort.new
+              protocolport_tmp.deserialize(i)
+              @ProtocolPorts << protocolport_tmp
+            end
+          end
+          @UpdateType = params['UpdateType']
+          @UpdateIvl = params['UpdateIvl']
+          @JvmOpts = params['JvmOpts']
+          @SubnetId = params['SubnetId']
+          @AgentCpuRequest = params['AgentCpuRequest']
+          @AgentCpuLimit = params['AgentCpuLimit']
+          @AgentMemRequest = params['AgentMemRequest']
+          @AgentMemLimit = params['AgentMemLimit']
+          @IstioCpuRequest = params['IstioCpuRequest']
+          @IstioCpuLimit = params['IstioCpuLimit']
+          @IstioMemRequest = params['IstioMemRequest']
+          @IstioMemLimit = params['IstioMemLimit']
+          unless params['Envs'].nil?
+            @Envs = []
+            params['Envs'].each do |i|
+              env_tmp = Env.new
+              env_tmp.deserialize(i)
+              @Envs << env_tmp
+            end
+          end
+          unless params['HealthCheckSettings'].nil?
+            @HealthCheckSettings = HealthCheckSettings.new
+            @HealthCheckSettings.deserialize(params['HealthCheckSettings'])
+          end
+          @DeployAgent = params['DeployAgent']
+          @Alias = params['Alias']
+          @DisableService = params['DisableService']
+          @HeadlessService = params['HeadlessService']
+          unless params['TcrRepoInfo'].nil?
+            @TcrRepoInfo = TcrRepoInfo.new
+            @TcrRepoInfo.deserialize(params['TcrRepoInfo'])
+          end
+        end
+      end
+
       #  容器部署组详情
       class ContainerGroupDetail < TencentCloud::Common::AbstractModel
         # @param GroupId: 部署组ID
@@ -5286,6 +5478,45 @@ module TencentCloud
         def deserialize(params)
           unless params['Result'].nil?
             @Result = TsfPageContainerEvent.new
+            @Result.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeContainerGroupDeployInfo请求参数结构体
+      class DescribeContainerGroupDeployInfoRequest < TencentCloud::Common::AbstractModel
+        # @param GroupId: 实例所属 groupId
+        # @type GroupId: String
+
+        attr_accessor :GroupId
+        
+        def initialize(groupid=nil)
+          @GroupId = groupid
+        end
+
+        def deserialize(params)
+          @GroupId = params['GroupId']
+        end
+      end
+
+      # DescribeContainerGroupDeployInfo返回参数结构体
+      class DescribeContainerGroupDeployInfoResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 获取部署组
+        # @type Result: :class:`Tencentcloud::Tsf.v20180326.models.ContainerGroupDeploy`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+        
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Result'].nil?
+            @Result = ContainerGroupDeploy.new
             @Result.deserialize(params['Result'])
           end
           @RequestId = params['RequestId']

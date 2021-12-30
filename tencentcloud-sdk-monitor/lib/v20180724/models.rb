@@ -733,6 +733,61 @@ module TencentCloud
         end
       end
 
+      # BindingPolicyTag请求参数结构体
+      class BindingPolicyTagRequest < TencentCloud::Common::AbstractModel
+        # @param Module: 固定取值 monitor
+        # @type Module: String
+        # @param PolicyId: 策略ID
+        # @type PolicyId: String
+        # @param GroupId: 用于实例、实例组绑定和解绑接口（BindingPolicyObject、UnBindingAllPolicyObject、UnBindingPolicyObject）的策略 ID
+        # @type GroupId: String
+        # @param Tag: 策略标签
+        # @type Tag: :class:`Tencentcloud::Monitor.v20180724.models.PolicyTag`
+        # @param ServiceType: 产品类型
+        # @type ServiceType: String
+        # @param InstanceGroupId: 实例分组ID
+        # @type InstanceGroupId: Integer
+
+        attr_accessor :Module, :PolicyId, :GroupId, :Tag, :ServiceType, :InstanceGroupId
+        
+        def initialize(_module=nil, policyid=nil, groupid=nil, tag=nil, servicetype=nil, instancegroupid=nil)
+          @Module = _module
+          @PolicyId = policyid
+          @GroupId = groupid
+          @Tag = tag
+          @ServiceType = servicetype
+          @InstanceGroupId = instancegroupid
+        end
+
+        def deserialize(params)
+          @Module = params['Module']
+          @PolicyId = params['PolicyId']
+          @GroupId = params['GroupId']
+          unless params['Tag'].nil?
+            @Tag = PolicyTag.new
+            @Tag.deserialize(params['Tag'])
+          end
+          @ServiceType = params['ServiceType']
+          @InstanceGroupId = params['InstanceGroupId']
+        end
+      end
+
+      # BindingPolicyTag返回参数结构体
+      class BindingPolicyTagResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 统一的命名空间信息
       class CommonNamespace < TencentCloud::Common::AbstractModel
         # @param Id: 命名空间标示
@@ -5599,6 +5654,26 @@ module TencentCloud
 
         def deserialize(params)
           @Timestamp = params['Timestamp']
+          @Value = params['Value']
+        end
+      end
+
+      # 策略标签
+      class PolicyTag < TencentCloud::Common::AbstractModel
+        # @param Key: 标签Key
+        # @type Key: String
+        # @param Value: 标签Value
+        # @type Value: String
+
+        attr_accessor :Key, :Value
+        
+        def initialize(key=nil, value=nil)
+          @Key = key
+          @Value = value
+        end
+
+        def deserialize(params)
+          @Key = params['Key']
           @Value = params['Value']
         end
       end

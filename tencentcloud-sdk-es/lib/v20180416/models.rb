@@ -57,10 +57,18 @@ module TencentCloud
         # @type InitializingShardNum: Integer
         # @param UnassignedShardNum: 未分配的分片个数
         # @type UnassignedShardNum: Integer
+        # @param TotalCosStorage: 企业版COS存储容量大小，单位GB
+        # @type TotalCosStorage: Integer
+        # @param SearchableSnapshotCosBucket: 企业版集群可搜索快照cos存放的bucket名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SearchableSnapshotCosBucket: String
+        # @param SearchableSnapshotCosAppId: 企业版集群可搜索快照cos所属appid
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SearchableSnapshotCosAppId: String
 
-        attr_accessor :Health, :Visible, :Break, :AvgDiskUsage, :AvgMemUsage, :AvgCpuUsage, :TotalDiskSize, :TargetNodeTypes, :NodeNum, :TotalNodeNum, :DataNodeNum, :IndexNum, :DocNum, :DiskUsedInBytes, :ShardNum, :PrimaryShardNum, :RelocatingShardNum, :InitializingShardNum, :UnassignedShardNum
+        attr_accessor :Health, :Visible, :Break, :AvgDiskUsage, :AvgMemUsage, :AvgCpuUsage, :TotalDiskSize, :TargetNodeTypes, :NodeNum, :TotalNodeNum, :DataNodeNum, :IndexNum, :DocNum, :DiskUsedInBytes, :ShardNum, :PrimaryShardNum, :RelocatingShardNum, :InitializingShardNum, :UnassignedShardNum, :TotalCosStorage, :SearchableSnapshotCosBucket, :SearchableSnapshotCosAppId
         
-        def initialize(health=nil, visible=nil, _break=nil, avgdiskusage=nil, avgmemusage=nil, avgcpuusage=nil, totaldisksize=nil, targetnodetypes=nil, nodenum=nil, totalnodenum=nil, datanodenum=nil, indexnum=nil, docnum=nil, diskusedinbytes=nil, shardnum=nil, primaryshardnum=nil, relocatingshardnum=nil, initializingshardnum=nil, unassignedshardnum=nil)
+        def initialize(health=nil, visible=nil, _break=nil, avgdiskusage=nil, avgmemusage=nil, avgcpuusage=nil, totaldisksize=nil, targetnodetypes=nil, nodenum=nil, totalnodenum=nil, datanodenum=nil, indexnum=nil, docnum=nil, diskusedinbytes=nil, shardnum=nil, primaryshardnum=nil, relocatingshardnum=nil, initializingshardnum=nil, unassignedshardnum=nil, totalcosstorage=nil, searchablesnapshotcosbucket=nil, searchablesnapshotcosappid=nil)
           @Health = health
           @Visible = visible
           @Break = _break
@@ -80,6 +88,9 @@ module TencentCloud
           @RelocatingShardNum = relocatingshardnum
           @InitializingShardNum = initializingshardnum
           @UnassignedShardNum = unassignedshardnum
+          @TotalCosStorage = totalcosstorage
+          @SearchableSnapshotCosBucket = searchablesnapshotcosbucket
+          @SearchableSnapshotCosAppId = searchablesnapshotcosappid
         end
 
         def deserialize(params)
@@ -102,6 +113,9 @@ module TencentCloud
           @RelocatingShardNum = params['RelocatingShardNum']
           @InitializingShardNum = params['InitializingShardNum']
           @UnassignedShardNum = params['UnassignedShardNum']
+          @TotalCosStorage = params['TotalCosStorage']
+          @SearchableSnapshotCosBucket = params['SearchableSnapshotCosBucket']
+          @SearchableSnapshotCosAppId = params['SearchableSnapshotCosAppId']
         end
       end
 
@@ -293,18 +307,23 @@ module TencentCloud
       class CreateInstanceResponse < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例ID
         # @type InstanceId: String
+        # @param DealName: 订单号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DealName: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :InstanceId, :RequestId
+        attr_accessor :InstanceId, :DealName, :RequestId
         
-        def initialize(instanceid=nil, requestid=nil)
+        def initialize(instanceid=nil, dealname=nil, requestid=nil)
           @InstanceId = instanceid
+          @DealName = dealname
           @RequestId = requestid
         end
 
         def deserialize(params)
           @InstanceId = params['InstanceId']
+          @DealName = params['DealName']
           @RequestId = params['RequestId']
         end
       end
@@ -505,10 +524,12 @@ module TencentCloud
         # @type TagList: Array
         # @param IpList: 私有网络vip列表
         # @type IpList: Array
+        # @param ZoneList: 可用区列表
+        # @type ZoneList: Array
 
-        attr_accessor :Zone, :InstanceIds, :InstanceNames, :Offset, :Limit, :OrderByKey, :OrderByType, :TagList, :IpList
+        attr_accessor :Zone, :InstanceIds, :InstanceNames, :Offset, :Limit, :OrderByKey, :OrderByType, :TagList, :IpList, :ZoneList
         
-        def initialize(zone=nil, instanceids=nil, instancenames=nil, offset=nil, limit=nil, orderbykey=nil, orderbytype=nil, taglist=nil, iplist=nil)
+        def initialize(zone=nil, instanceids=nil, instancenames=nil, offset=nil, limit=nil, orderbykey=nil, orderbytype=nil, taglist=nil, iplist=nil, zonelist=nil)
           @Zone = zone
           @InstanceIds = instanceids
           @InstanceNames = instancenames
@@ -518,6 +539,7 @@ module TencentCloud
           @OrderByType = orderbytype
           @TagList = taglist
           @IpList = iplist
+          @ZoneList = zonelist
         end
 
         def deserialize(params)
@@ -537,6 +559,7 @@ module TencentCloud
             end
           end
           @IpList = params['IpList']
+          @ZoneList = params['ZoneList']
         end
       end
 
@@ -910,22 +933,22 @@ module TencentCloud
         # @param EnableHotWarmMode: 是否为冷热集群<li>true: 冷热集群</li><li>false: 非冷热集群</li>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EnableHotWarmMode: Boolean
-        # @param WarmNodeType: 冷节点规格<li>ES.S1.SMALL2：1核2G</li><li>ES.S1.MEDIUM4：2核4G</li><li>ES.S1.MEDIUM8：2核8G</li><li>ES.S1.LARGE16：4核16G</li><li>ES.S1.2XLARGE32：8核32G</li><li>ES.S1.4XLARGE32：16核32G</li><li>ES.S1.4XLARGE64：16核64G</li>
+        # @param WarmNodeType: 温节点规格<li>ES.S1.SMALL2：1核2G</li><li>ES.S1.MEDIUM4：2核4G</li><li>ES.S1.MEDIUM8：2核8G</li><li>ES.S1.LARGE16：4核16G</li><li>ES.S1.2XLARGE32：8核32G</li><li>ES.S1.4XLARGE32：16核32G</li><li>ES.S1.4XLARGE64：16核64G</li>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type WarmNodeType: String
-        # @param WarmNodeNum: 冷节点个数
+        # @param WarmNodeNum: 温节点个数
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type WarmNodeNum: Integer
-        # @param WarmCpuNum: 冷节点CPU核数
+        # @param WarmCpuNum: 温节点CPU核数
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type WarmCpuNum: Integer
-        # @param WarmMemSize: 冷节点内存内存大小，单位GB
+        # @param WarmMemSize: 温节点内存内存大小，单位GB
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type WarmMemSize: Integer
-        # @param WarmDiskType: 冷节点磁盘类型
+        # @param WarmDiskType: 温节点磁盘类型
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type WarmDiskType: String
-        # @param WarmDiskSize: 冷节点磁盘大小，单位GB
+        # @param WarmDiskSize: 温节点磁盘大小，单位GB
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type WarmDiskSize: Integer
         # @param NodeInfoList: 集群节点信息列表
@@ -978,10 +1001,46 @@ module TencentCloud
         # @param SecurityGroups: 安全组id
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SecurityGroups: Array
+        # @param ColdNodeType: 冷节点规格<li>ES.S1.SMALL2：1核2G</li><li>ES.S1.MEDIUM4：2核4G</li><li>ES.S1.MEDIUM8：2核8G</li><li>ES.S1.LARGE16：4核16G</li><li>ES.S1.2XLARGE32：8核32G</li><li>ES.S1.4XLARGE32：16核32G</li><li>ES.S1.4XLARGE64：16核64G</li>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ColdNodeType: String
+        # @param ColdNodeNum: 冷节点个数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ColdNodeNum: Integer
+        # @param ColdCpuNum: 冷节点CPU核数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ColdCpuNum: Integer
+        # @param ColdMemSize: 冷节点内存大小，单位GB
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ColdMemSize: Integer
+        # @param ColdDiskType: 冷节点磁盘类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ColdDiskType: String
+        # @param ColdDiskSize: 冷节点磁盘大小，单位GB
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ColdDiskSize: Integer
+        # @param FrozenNodeType: 冻节点规格<li>ES.S1.SMALL2：1核2G</li><li>ES.S1.MEDIUM4：2核4G</li><li>ES.S1.MEDIUM8：2核8G</li><li>ES.S1.LARGE16：4核16G</li><li>ES.S1.2XLARGE32：8核32G</li><li>ES.S1.4XLARGE32：16核32G</li><li>ES.S1.4XLARGE64：16核64G</li>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FrozenNodeType: String
+        # @param FrozenNodeNum: 冻节点个数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FrozenNodeNum: Integer
+        # @param FrozenCpuNum: 冻节点CPU核数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FrozenCpuNum: Integer
+        # @param FrozenMemSize: 冻节点内存大小，单位GB
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FrozenMemSize: Integer
+        # @param FrozenDiskType: 冻节点磁盘类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FrozenDiskType: String
+        # @param FrozenDiskSize: 冻节点磁盘大小，单位GB
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FrozenDiskSize: Integer
 
-        attr_accessor :InstanceId, :InstanceName, :Region, :Zone, :AppId, :Uin, :VpcUid, :SubnetUid, :Status, :ChargeType, :ChargePeriod, :RenewFlag, :NodeType, :NodeNum, :CpuNum, :MemSize, :DiskType, :DiskSize, :EsDomain, :EsVip, :EsPort, :KibanaUrl, :EsVersion, :EsConfig, :EsAcl, :CreateTime, :UpdateTime, :Deadline, :InstanceType, :IkConfig, :MasterNodeInfo, :CosBackup, :AllowCosBackup, :TagList, :LicenseType, :EnableHotWarmMode, :WarmNodeType, :WarmNodeNum, :WarmCpuNum, :WarmMemSize, :WarmDiskType, :WarmDiskSize, :NodeInfoList, :EsPublicUrl, :MultiZoneInfo, :DeployMode, :PublicAccess, :EsPublicAcl, :KibanaPrivateUrl, :KibanaPublicAccess, :KibanaPrivateAccess, :SecurityType, :SceneType, :KibanaConfig, :KibanaNodeInfo, :WebNodeTypeInfo, :Jdk, :Protocol, :SecurityGroups
+        attr_accessor :InstanceId, :InstanceName, :Region, :Zone, :AppId, :Uin, :VpcUid, :SubnetUid, :Status, :ChargeType, :ChargePeriod, :RenewFlag, :NodeType, :NodeNum, :CpuNum, :MemSize, :DiskType, :DiskSize, :EsDomain, :EsVip, :EsPort, :KibanaUrl, :EsVersion, :EsConfig, :EsAcl, :CreateTime, :UpdateTime, :Deadline, :InstanceType, :IkConfig, :MasterNodeInfo, :CosBackup, :AllowCosBackup, :TagList, :LicenseType, :EnableHotWarmMode, :WarmNodeType, :WarmNodeNum, :WarmCpuNum, :WarmMemSize, :WarmDiskType, :WarmDiskSize, :NodeInfoList, :EsPublicUrl, :MultiZoneInfo, :DeployMode, :PublicAccess, :EsPublicAcl, :KibanaPrivateUrl, :KibanaPublicAccess, :KibanaPrivateAccess, :SecurityType, :SceneType, :KibanaConfig, :KibanaNodeInfo, :WebNodeTypeInfo, :Jdk, :Protocol, :SecurityGroups, :ColdNodeType, :ColdNodeNum, :ColdCpuNum, :ColdMemSize, :ColdDiskType, :ColdDiskSize, :FrozenNodeType, :FrozenNodeNum, :FrozenCpuNum, :FrozenMemSize, :FrozenDiskType, :FrozenDiskSize
         
-        def initialize(instanceid=nil, instancename=nil, region=nil, zone=nil, appid=nil, uin=nil, vpcuid=nil, subnetuid=nil, status=nil, chargetype=nil, chargeperiod=nil, renewflag=nil, nodetype=nil, nodenum=nil, cpunum=nil, memsize=nil, disktype=nil, disksize=nil, esdomain=nil, esvip=nil, esport=nil, kibanaurl=nil, esversion=nil, esconfig=nil, esacl=nil, createtime=nil, updatetime=nil, deadline=nil, instancetype=nil, ikconfig=nil, masternodeinfo=nil, cosbackup=nil, allowcosbackup=nil, taglist=nil, licensetype=nil, enablehotwarmmode=nil, warmnodetype=nil, warmnodenum=nil, warmcpunum=nil, warmmemsize=nil, warmdisktype=nil, warmdisksize=nil, nodeinfolist=nil, espublicurl=nil, multizoneinfo=nil, deploymode=nil, publicaccess=nil, espublicacl=nil, kibanaprivateurl=nil, kibanapublicaccess=nil, kibanaprivateaccess=nil, securitytype=nil, scenetype=nil, kibanaconfig=nil, kibananodeinfo=nil, webnodetypeinfo=nil, jdk=nil, protocol=nil, securitygroups=nil)
+        def initialize(instanceid=nil, instancename=nil, region=nil, zone=nil, appid=nil, uin=nil, vpcuid=nil, subnetuid=nil, status=nil, chargetype=nil, chargeperiod=nil, renewflag=nil, nodetype=nil, nodenum=nil, cpunum=nil, memsize=nil, disktype=nil, disksize=nil, esdomain=nil, esvip=nil, esport=nil, kibanaurl=nil, esversion=nil, esconfig=nil, esacl=nil, createtime=nil, updatetime=nil, deadline=nil, instancetype=nil, ikconfig=nil, masternodeinfo=nil, cosbackup=nil, allowcosbackup=nil, taglist=nil, licensetype=nil, enablehotwarmmode=nil, warmnodetype=nil, warmnodenum=nil, warmcpunum=nil, warmmemsize=nil, warmdisktype=nil, warmdisksize=nil, nodeinfolist=nil, espublicurl=nil, multizoneinfo=nil, deploymode=nil, publicaccess=nil, espublicacl=nil, kibanaprivateurl=nil, kibanapublicaccess=nil, kibanaprivateaccess=nil, securitytype=nil, scenetype=nil, kibanaconfig=nil, kibananodeinfo=nil, webnodetypeinfo=nil, jdk=nil, protocol=nil, securitygroups=nil, coldnodetype=nil, coldnodenum=nil, coldcpunum=nil, coldmemsize=nil, colddisktype=nil, colddisksize=nil, frozennodetype=nil, frozennodenum=nil, frozencpunum=nil, frozenmemsize=nil, frozendisktype=nil, frozendisksize=nil)
           @InstanceId = instanceid
           @InstanceName = instancename
           @Region = region
@@ -1041,6 +1100,18 @@ module TencentCloud
           @Jdk = jdk
           @Protocol = protocol
           @SecurityGroups = securitygroups
+          @ColdNodeType = coldnodetype
+          @ColdNodeNum = coldnodenum
+          @ColdCpuNum = coldcpunum
+          @ColdMemSize = coldmemsize
+          @ColdDiskType = colddisktype
+          @ColdDiskSize = colddisksize
+          @FrozenNodeType = frozennodetype
+          @FrozenNodeNum = frozennodenum
+          @FrozenCpuNum = frozencpunum
+          @FrozenMemSize = frozenmemsize
+          @FrozenDiskType = frozendisktype
+          @FrozenDiskSize = frozendisksize
         end
 
         def deserialize(params)
@@ -1145,6 +1216,18 @@ module TencentCloud
           @Jdk = params['Jdk']
           @Protocol = params['Protocol']
           @SecurityGroups = params['SecurityGroups']
+          @ColdNodeType = params['ColdNodeType']
+          @ColdNodeNum = params['ColdNodeNum']
+          @ColdCpuNum = params['ColdCpuNum']
+          @ColdMemSize = params['ColdMemSize']
+          @ColdDiskType = params['ColdDiskType']
+          @ColdDiskSize = params['ColdDiskSize']
+          @FrozenNodeType = params['FrozenNodeType']
+          @FrozenNodeNum = params['FrozenNodeNum']
+          @FrozenCpuNum = params['FrozenCpuNum']
+          @FrozenMemSize = params['FrozenMemSize']
+          @FrozenDiskType = params['FrozenDiskType']
+          @FrozenDiskSize = params['FrozenDiskSize']
         end
       end
 
@@ -1968,16 +2051,21 @@ module TencentCloud
 
       # UpdateInstance返回参数结构体
       class UpdateInstanceResponse < TencentCloud::Common::AbstractModel
+        # @param DealName: 订单号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DealName: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RequestId
+        attr_accessor :DealName, :RequestId
         
-        def initialize(requestid=nil)
+        def initialize(dealname=nil, requestid=nil)
+          @DealName = dealname
           @RequestId = requestid
         end
 
         def deserialize(params)
+          @DealName = params['DealName']
           @RequestId = params['RequestId']
         end
       end
@@ -2038,15 +2126,18 @@ module TencentCloud
         # @type ForceRestart: Boolean
         # @param ForceUpdate: 是否重新安装
         # @type ForceUpdate: Boolean
+        # @param PluginType: 0：系统插件
+        # @type PluginType: Integer
 
-        attr_accessor :InstanceId, :InstallPluginList, :RemovePluginList, :ForceRestart, :ForceUpdate
+        attr_accessor :InstanceId, :InstallPluginList, :RemovePluginList, :ForceRestart, :ForceUpdate, :PluginType
         
-        def initialize(instanceid=nil, installpluginlist=nil, removepluginlist=nil, forcerestart=nil, forceupdate=nil)
+        def initialize(instanceid=nil, installpluginlist=nil, removepluginlist=nil, forcerestart=nil, forceupdate=nil, plugintype=nil)
           @InstanceId = instanceid
           @InstallPluginList = installpluginlist
           @RemovePluginList = removepluginlist
           @ForceRestart = forcerestart
           @ForceUpdate = forceupdate
+          @PluginType = plugintype
         end
 
         def deserialize(params)
@@ -2055,6 +2146,7 @@ module TencentCloud
           @RemovePluginList = params['RemovePluginList']
           @ForceRestart = params['ForceRestart']
           @ForceUpdate = params['ForceUpdate']
+          @PluginType = params['PluginType']
         end
       end
 
@@ -2200,16 +2292,21 @@ module TencentCloud
 
       # UpgradeLicense返回参数结构体
       class UpgradeLicenseResponse < TencentCloud::Common::AbstractModel
+        # @param DealName: 订单号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DealName: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RequestId
+        attr_accessor :DealName, :RequestId
         
-        def initialize(requestid=nil)
+        def initialize(dealname=nil, requestid=nil)
+          @DealName = dealname
           @RequestId = requestid
         end
 
         def deserialize(params)
+          @DealName = params['DealName']
           @RequestId = params['RequestId']
         end
       end

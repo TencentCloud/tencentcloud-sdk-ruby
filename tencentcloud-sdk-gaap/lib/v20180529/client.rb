@@ -751,7 +751,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口（DescribeAccessRegionsByDestRegion）根据源站区域查询可用的加速区域列表
+        # 本接口（DescribeAccessRegionsByDestRegion）根据源站区域查询可用的加速区域列表。
 
         # @param request: Request instance for DescribeAccessRegionsByDestRegion.
         # @type request: :class:`Tencentcloud::gaap::V20180529::DescribeAccessRegionsByDestRegionRequest`

@@ -1590,6 +1590,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        #  获取部署组详情
+
+        # @param request: Request instance for DescribeContainerGroupDeployInfo.
+        # @type request: :class:`Tencentcloud::tsf::V20180326::DescribeContainerGroupDeployInfoRequest`
+        # @rtype: :class:`Tencentcloud::tsf::V20180326::DescribeContainerGroupDeployInfoResponse`
+        def DescribeContainerGroupDeployInfo(request)
+          body = send_request('DescribeContainerGroupDeployInfo', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeContainerGroupDeployInfoResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         #  容器部署组详情（已废弃，请使用  DescribeContainerGroupDeployInfo）
 
         # @param request: Request instance for DescribeContainerGroupDetail.

@@ -45,7 +45,7 @@ module TencentCloud
         end
       end
 
-      # 根据源站查询的可用加速区域信息及对应的可选带宽和并发量
+      # 根据源站查询的可用加速区域信息及对应的可选带宽和并发量。
       class AccessRegionDetial < TencentCloud::Common::AbstractModel
         # @param RegionId: 区域ID
         # @type RegionId: String
@@ -509,7 +509,7 @@ module TencentCloud
         # @type IPAddressVersion: String
         # @param NetworkType: 网络类型，可取值：normal、cn2，默认值normal
         # @type NetworkType: String
-        # @param PackageType: 通道组类型。Thunder表示标准通道组，Accelerator表示游戏加速器通道。
+        # @param PackageType: 通道套餐类型。Thunder表示标准通道组，Accelerator表示游戏加速器通道，CrossBorder表示跨境通道。
         # @type PackageType: String
 
         attr_accessor :AccessRegion, :RealServerRegion, :Bandwidth, :Concurrent, :GroupId, :IPAddressVersion, :NetworkType, :PackageType
@@ -1194,12 +1194,14 @@ module TencentCloud
         # @type BillingType: Integer
         # @param IPAddressVersion: IP版本，可取值：IPv4、IPv6，默认值IPv4
         # @type IPAddressVersion: String
-        # @param NetworkType: 网络类型，可取值：normal、cn2，默认值normal
+        # @param NetworkType: 网络类型，normal表示常规BGP，cn2表示精品BGP，triple表示三网
         # @type NetworkType: String
+        # @param PackageType: 通道套餐类型，Thunder表示标准通道组，Accelerator表示游戏加速器通道，CrossBorder表示跨境通道。
+        # @type PackageType: String
 
-        attr_accessor :ProjectId, :ProxyName, :AccessRegion, :Bandwidth, :Concurrent, :RealServerRegion, :ClientToken, :GroupId, :TagSet, :ClonedProxyId, :BillingType, :IPAddressVersion, :NetworkType
+        attr_accessor :ProjectId, :ProxyName, :AccessRegion, :Bandwidth, :Concurrent, :RealServerRegion, :ClientToken, :GroupId, :TagSet, :ClonedProxyId, :BillingType, :IPAddressVersion, :NetworkType, :PackageType
         
-        def initialize(projectid=nil, proxyname=nil, accessregion=nil, bandwidth=nil, concurrent=nil, realserverregion=nil, clienttoken=nil, groupid=nil, tagset=nil, clonedproxyid=nil, billingtype=nil, ipaddressversion=nil, networktype=nil)
+        def initialize(projectid=nil, proxyname=nil, accessregion=nil, bandwidth=nil, concurrent=nil, realserverregion=nil, clienttoken=nil, groupid=nil, tagset=nil, clonedproxyid=nil, billingtype=nil, ipaddressversion=nil, networktype=nil, packagetype=nil)
           @ProjectId = projectid
           @ProxyName = proxyname
           @AccessRegion = accessregion
@@ -1213,6 +1215,7 @@ module TencentCloud
           @BillingType = billingtype
           @IPAddressVersion = ipaddressversion
           @NetworkType = networktype
+          @PackageType = packagetype
         end
 
         def deserialize(params)
@@ -1236,6 +1239,7 @@ module TencentCloud
           @BillingType = params['BillingType']
           @IPAddressVersion = params['IPAddressVersion']
           @NetworkType = params['NetworkType']
+          @PackageType = params['PackageType']
         end
       end
 
@@ -1884,7 +1888,7 @@ module TencentCloud
         # @type DestRegion: String
         # @param IPAddressVersion: IP版本，可取值：IPv4、IPv6，默认值IPv4
         # @type IPAddressVersion: String
-        # @param PackageType: 通道组类型，Thunder表示标准通道组，Accelerator表示游戏加速器通道。
+        # @param PackageType: 通道套餐类型，Thunder表示标准通道组，Accelerator表示游戏加速器通道，CrossBorder表示跨境通道。
         # @type PackageType: String
 
         attr_accessor :DestRegion, :IPAddressVersion, :PackageType
@@ -2715,6 +2719,7 @@ module TencentCloud
         # RealServerRegion - String - 是否必填：否 - （过滤条件）按照源站地域过滤。
         # GroupId - String - 是否必填：否 - （过滤条件）按照通道组ID过滤。
         # IPAddressVersion - String - 是否必填：否 - （过滤条件）按照IP版本过滤。
+        # PackageType - String - 是否必填：否 - （过滤条件）按照通道套餐类型过滤。
         # @type Filters: Array
         # @param ProxyIds: （新参数，替代InstanceIds）按照一个或者多个实例ID查询。每次请求的实例的上限为100。参数不支持同时指定InstanceIds和Filters。
         # @type ProxyIds: Array
@@ -3417,7 +3422,7 @@ module TencentCloud
       class DescribeRegionAndPriceRequest < TencentCloud::Common::AbstractModel
         # @param IPAddressVersion: IP版本，可取值：IPv4、IPv6，默认值IPv4
         # @type IPAddressVersion: String
-        # @param PackageType: 通道组类型，Thunder表示标准通道组，Accelerator表示游戏加速器通道。
+        # @param PackageType: 通道套餐类型，Thunder表示标准通道组，Accelerator表示游戏加速器通道，CrossBorder表示跨境通道。
         # @type PackageType: String
 
         attr_accessor :IPAddressVersion, :PackageType
@@ -4514,7 +4519,7 @@ module TencentCloud
         # @type IPAddressVersion: String
         # @param NetworkType: 网络类型，可取值：normal、cn2，默认值normal
         # @type NetworkType: String
-        # @param PackageType: 通道组类型。Thunder表示标准通道组，Accelerator表示游戏加速器通道。
+        # @param PackageType: 通道套餐类型，Thunder表示标准通道组，Accelerator表示游戏加速器通道，CrossBorder表示跨境通道。
         # @type PackageType: String
 
         attr_accessor :AccessRegion, :Bandwidth, :DestRegion, :Concurrency, :RealServerRegion, :Concurrent, :BillingType, :IPAddressVersion, :NetworkType, :PackageType
@@ -5871,7 +5876,8 @@ module TencentCloud
         # @param NetworkType: 网络类型：normal表示常规BGP，cn2表示精品BGP，triple表示三网
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NetworkType: String
-        # @param PackageType: 通道套餐类型：Thunder表示标准通道，Accelerator表示游戏加速器通道。
+        # @param PackageType: 通道套餐类型：Thunder表示标准通道，Accelerator表示游戏加速器通道，
+        # CrossBorder表示跨境通道。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PackageType: String
         # @param BanStatus: 封禁解封状态：BANNED表示已封禁，RECOVER表示已解封或未封禁，BANNING表示封禁中，RECOVERING表示解封中，BAN_FAILED表示封禁失败，RECOVER_FAILED表示解封失败。
