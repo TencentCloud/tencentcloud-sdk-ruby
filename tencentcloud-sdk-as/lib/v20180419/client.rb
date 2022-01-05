@@ -53,6 +53,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 此接口（AttachLoadBalancers）用于将负载均衡器添加到伸缩组。
+
+        # @param request: Request instance for AttachLoadBalancers.
+        # @type request: :class:`Tencentcloud::as::V20180419::AttachLoadBalancersRequest`
+        # @rtype: :class:`Tencentcloud::as::V20180419::AttachLoadBalancersResponse`
+        def AttachLoadBalancers(request)
+          body = send_request('AttachLoadBalancers', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = AttachLoadBalancersResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（ClearLaunchConfigurationAttributes）用于将启动配置内的特定属性完全清空。
 
         # @param request: Request instance for ClearLaunchConfigurationAttributes.
@@ -804,6 +828,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口（DetachLoadBalancers）用于从伸缩组移出负载均衡器，本接口不会销毁负载均衡器。
+
+        # @param request: Request instance for DetachLoadBalancers.
+        # @type request: :class:`Tencentcloud::as::V20180419::DetachLoadBalancersRequest`
+        # @rtype: :class:`Tencentcloud::as::V20180419::DetachLoadBalancersResponse`
+        def DetachLoadBalancers(request)
+          body = send_request('DetachLoadBalancers', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DetachLoadBalancersResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（DisableAutoScalingGroup）用于停用指定伸缩组。
 
         # @param request: Request instance for DisableAutoScalingGroup.
@@ -940,6 +988,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyLaunchConfigurationAttributesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口（ModifyLoadBalancerTargetAttributes）用于修改伸缩组内负载均衡器的目标规则属性。
+
+        # @param request: Request instance for ModifyLoadBalancerTargetAttributes.
+        # @type request: :class:`Tencentcloud::as::V20180419::ModifyLoadBalancerTargetAttributesRequest`
+        # @rtype: :class:`Tencentcloud::as::V20180419::ModifyLoadBalancerTargetAttributesResponse`
+        def ModifyLoadBalancerTargetAttributes(request)
+          body = send_request('ModifyLoadBalancerTargetAttributes', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyLoadBalancerTargetAttributesResponse.new
             model.deserialize(response['Response'])
             model
           else

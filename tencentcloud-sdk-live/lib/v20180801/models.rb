@@ -2741,16 +2741,28 @@ module TencentCloud
         # @type Granularity: Integer
         # @param ServiceName: 服务名称，可选值包括LVB(标准直播)，LEB(快直播)，不填则查LVB+LEB总值。
         # @type ServiceName: String
+        # @param RegionNames: 大区，映射表如下：
+        # China Mainland 中国大陆
+        # Asia Pacific I 亚太一区
+        # Asia Pacific II 亚太二区
+        # Asia Pacific III 亚太三区
+        # Europe 欧洲
+        # North America 北美
+        # South America 南美
+        # Middle East 中东
+        # Africa 非洲。
+        # @type RegionNames: Array
 
-        attr_accessor :StartTime, :EndTime, :PlayDomains, :MainlandOrOversea, :Granularity, :ServiceName
+        attr_accessor :StartTime, :EndTime, :PlayDomains, :MainlandOrOversea, :Granularity, :ServiceName, :RegionNames
         
-        def initialize(starttime=nil, endtime=nil, playdomains=nil, mainlandoroversea=nil, granularity=nil, servicename=nil)
+        def initialize(starttime=nil, endtime=nil, playdomains=nil, mainlandoroversea=nil, granularity=nil, servicename=nil, regionnames=nil)
           @StartTime = starttime
           @EndTime = endtime
           @PlayDomains = playdomains
           @MainlandOrOversea = mainlandoroversea
           @Granularity = granularity
           @ServiceName = servicename
+          @RegionNames = regionnames
         end
 
         def deserialize(params)
@@ -2760,6 +2772,7 @@ module TencentCloud
           @MainlandOrOversea = params['MainlandOrOversea']
           @Granularity = params['Granularity']
           @ServiceName = params['ServiceName']
+          @RegionNames = params['RegionNames']
         end
       end
 
@@ -5496,15 +5509,27 @@ module TencentCloud
         # 1440：天粒度（跨度不支持超过一个月）。
         # 默认值：5。
         # @type Granularity: Integer
+        # @param RegionNames: 大区，映射表如下：
+        # China Mainland 中国大陆
+        # Asia Pacific I 亚太一区
+        # Asia Pacific II 亚太二区
+        # Asia Pacific III 亚太三区
+        # Europe 欧洲
+        # North America 北美
+        # South America 南美
+        # Middle East 中东
+        # Africa 非洲。
+        # @type RegionNames: Array
 
-        attr_accessor :StartTime, :EndTime, :PushDomains, :MainlandOrOversea, :Granularity
+        attr_accessor :StartTime, :EndTime, :PushDomains, :MainlandOrOversea, :Granularity, :RegionNames
         
-        def initialize(starttime=nil, endtime=nil, pushdomains=nil, mainlandoroversea=nil, granularity=nil)
+        def initialize(starttime=nil, endtime=nil, pushdomains=nil, mainlandoroversea=nil, granularity=nil, regionnames=nil)
           @StartTime = starttime
           @EndTime = endtime
           @PushDomains = pushdomains
           @MainlandOrOversea = mainlandoroversea
           @Granularity = granularity
+          @RegionNames = regionnames
         end
 
         def deserialize(params)
@@ -5513,6 +5538,7 @@ module TencentCloud
           @PushDomains = params['PushDomains']
           @MainlandOrOversea = params['MainlandOrOversea']
           @Granularity = params['Granularity']
+          @RegionNames = params['RegionNames']
         end
       end
 

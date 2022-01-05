@@ -1538,10 +1538,12 @@ module TencentCloud
         # @type NodePoolOs: String
         # @param OsCustomizeType: 容器的镜像版本，"DOCKER_CUSTOMIZE"(容器定制版),"GENERAL"(普通版本，默认值)
         # @type OsCustomizeType: String
+        # @param Tags: 资源标签
+        # @type Tags: Array
 
-        attr_accessor :ClusterId, :AutoScalingGroupPara, :LaunchConfigurePara, :InstanceAdvancedSettings, :EnableAutoscale, :Name, :Labels, :Taints, :NodePoolOs, :OsCustomizeType
+        attr_accessor :ClusterId, :AutoScalingGroupPara, :LaunchConfigurePara, :InstanceAdvancedSettings, :EnableAutoscale, :Name, :Labels, :Taints, :NodePoolOs, :OsCustomizeType, :Tags
         
-        def initialize(clusterid=nil, autoscalinggrouppara=nil, launchconfigurepara=nil, instanceadvancedsettings=nil, enableautoscale=nil, name=nil, labels=nil, taints=nil, nodepoolos=nil, oscustomizetype=nil)
+        def initialize(clusterid=nil, autoscalinggrouppara=nil, launchconfigurepara=nil, instanceadvancedsettings=nil, enableautoscale=nil, name=nil, labels=nil, taints=nil, nodepoolos=nil, oscustomizetype=nil, tags=nil)
           @ClusterId = clusterid
           @AutoScalingGroupPara = autoscalinggrouppara
           @LaunchConfigurePara = launchconfigurepara
@@ -1552,6 +1554,7 @@ module TencentCloud
           @Taints = taints
           @NodePoolOs = nodepoolos
           @OsCustomizeType = oscustomizetype
+          @Tags = tags
         end
 
         def deserialize(params)
@@ -1582,6 +1585,14 @@ module TencentCloud
           end
           @NodePoolOs = params['NodePoolOs']
           @OsCustomizeType = params['OsCustomizeType']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
+            end
+          end
         end
       end
 
@@ -6726,10 +6737,12 @@ module TencentCloud
         # @type OsCustomizeType: String
         # @param ExtraArgs: 节点自定义参数
         # @type ExtraArgs: :class:`Tencentcloud::Tke.v20180525.models.InstanceExtraArgs`
+        # @param Tags: 资源标签
+        # @type Tags: Array
 
-        attr_accessor :ClusterId, :NodePoolId, :Name, :MaxNodesNum, :MinNodesNum, :Labels, :Taints, :EnableAutoscale, :OsName, :OsCustomizeType, :ExtraArgs
+        attr_accessor :ClusterId, :NodePoolId, :Name, :MaxNodesNum, :MinNodesNum, :Labels, :Taints, :EnableAutoscale, :OsName, :OsCustomizeType, :ExtraArgs, :Tags
         
-        def initialize(clusterid=nil, nodepoolid=nil, name=nil, maxnodesnum=nil, minnodesnum=nil, labels=nil, taints=nil, enableautoscale=nil, osname=nil, oscustomizetype=nil, extraargs=nil)
+        def initialize(clusterid=nil, nodepoolid=nil, name=nil, maxnodesnum=nil, minnodesnum=nil, labels=nil, taints=nil, enableautoscale=nil, osname=nil, oscustomizetype=nil, extraargs=nil, tags=nil)
           @ClusterId = clusterid
           @NodePoolId = nodepoolid
           @Name = name
@@ -6741,6 +6754,7 @@ module TencentCloud
           @OsName = osname
           @OsCustomizeType = oscustomizetype
           @ExtraArgs = extraargs
+          @Tags = tags
         end
 
         def deserialize(params)
@@ -6771,6 +6785,14 @@ module TencentCloud
           unless params['ExtraArgs'].nil?
             @ExtraArgs = InstanceExtraArgs.new
             @ExtraArgs.deserialize(params['ExtraArgs'])
+          end
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
+            end
           end
         end
       end
@@ -7052,10 +7074,13 @@ module TencentCloud
         # @param UserScript: 用户自定义脚本
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UserScript: String
+        # @param Tags: 资源标签
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Tags: Array
 
-        attr_accessor :NodePoolId, :Name, :ClusterInstanceId, :LifeState, :LaunchConfigurationId, :AutoscalingGroupId, :Labels, :Taints, :NodeCountSummary, :AutoscalingGroupStatus, :MaxNodesNum, :MinNodesNum, :DesiredNodesNum, :NodePoolOs, :OsCustomizeType, :ImageId, :DesiredPodNum, :UserScript
+        attr_accessor :NodePoolId, :Name, :ClusterInstanceId, :LifeState, :LaunchConfigurationId, :AutoscalingGroupId, :Labels, :Taints, :NodeCountSummary, :AutoscalingGroupStatus, :MaxNodesNum, :MinNodesNum, :DesiredNodesNum, :NodePoolOs, :OsCustomizeType, :ImageId, :DesiredPodNum, :UserScript, :Tags
         
-        def initialize(nodepoolid=nil, name=nil, clusterinstanceid=nil, lifestate=nil, launchconfigurationid=nil, autoscalinggroupid=nil, labels=nil, taints=nil, nodecountsummary=nil, autoscalinggroupstatus=nil, maxnodesnum=nil, minnodesnum=nil, desirednodesnum=nil, nodepoolos=nil, oscustomizetype=nil, imageid=nil, desiredpodnum=nil, userscript=nil)
+        def initialize(nodepoolid=nil, name=nil, clusterinstanceid=nil, lifestate=nil, launchconfigurationid=nil, autoscalinggroupid=nil, labels=nil, taints=nil, nodecountsummary=nil, autoscalinggroupstatus=nil, maxnodesnum=nil, minnodesnum=nil, desirednodesnum=nil, nodepoolos=nil, oscustomizetype=nil, imageid=nil, desiredpodnum=nil, userscript=nil, tags=nil)
           @NodePoolId = nodepoolid
           @Name = name
           @ClusterInstanceId = clusterinstanceid
@@ -7074,6 +7099,7 @@ module TencentCloud
           @ImageId = imageid
           @DesiredPodNum = desiredpodnum
           @UserScript = userscript
+          @Tags = tags
         end
 
         def deserialize(params)
@@ -7112,6 +7138,14 @@ module TencentCloud
           @ImageId = params['ImageId']
           @DesiredPodNum = params['DesiredPodNum']
           @UserScript = params['UserScript']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
+            end
+          end
         end
       end
 

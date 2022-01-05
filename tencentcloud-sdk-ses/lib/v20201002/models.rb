@@ -426,7 +426,7 @@ module TencentCloud
 
       # DeleteEmailTemplate请求参数结构体
       class DeleteEmailTemplateRequest < TencentCloud::Common::AbstractModel
-        # @param TemplateID: 模版ID
+        # @param TemplateID: 模板ID
         # @type TemplateID: Integer
 
         attr_accessor :TemplateID

@@ -57,6 +57,26 @@ module TencentCloud
         end
       end
 
+      # 用户权限
+      class Auth < TencentCloud::Common::AbstractModel
+        # @param NameSpace: *表示所有数据库,db.name表示特定的name数据库。
+        # @type NameSpace: String
+        # @param Mask: 用于控制权限,0无权限，1只读，2只写，3读写。
+        # @type Mask: Integer
+
+        attr_accessor :NameSpace, :Mask
+        
+        def initialize(namespace=nil, mask=nil)
+          @NameSpace = namespace
+          @Mask = mask
+        end
+
+        def deserialize(params)
+          @NameSpace = params['NameSpace']
+          @Mask = params['Mask']
+        end
+      end
+
       # 备份下载任务
       class BackupDownloadTask < TencentCloud::Common::AbstractModel
         # @param CreateTime: 任务创建时间
@@ -2563,6 +2583,57 @@ module TencentCloud
           @AddressModule = params['AddressModule']
           @ServiceModule = params['ServiceModule']
           @Desc = params['Desc']
+        end
+      end
+
+      # SetAccountUserPrivilege请求参数结构体
+      class SetAccountUserPrivilegeRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+        # @param UserName: 账号名称
+        # @type UserName: String
+        # @param AuthRole: 权限信息
+        # @type AuthRole: Array
+
+        attr_accessor :InstanceId, :UserName, :AuthRole
+        
+        def initialize(instanceid=nil, username=nil, authrole=nil)
+          @InstanceId = instanceid
+          @UserName = username
+          @AuthRole = authrole
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @UserName = params['UserName']
+          unless params['AuthRole'].nil?
+            @AuthRole = []
+            params['AuthRole'].each do |i|
+              auth_tmp = Auth.new
+              auth_tmp.deserialize(i)
+              @AuthRole << auth_tmp
+            end
+          end
+        end
+      end
+
+      # SetAccountUserPrivilege返回参数结构体
+      class SetAccountUserPrivilegeResponse < TencentCloud::Common::AbstractModel
+        # @param FlowId: 设置任务ID,用于查询是否设置完成
+        # @type FlowId: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :FlowId, :RequestId
+        
+        def initialize(flowid=nil, requestid=nil)
+          @FlowId = flowid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @FlowId = params['FlowId']
+          @RequestId = params['RequestId']
         end
       end
 

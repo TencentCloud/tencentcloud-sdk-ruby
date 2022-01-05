@@ -113,10 +113,22 @@ module TencentCloud
         # @param SlowRequestSavedThreshold: 慢调用保存阈值
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SlowRequestSavedThreshold: Integer
+        # @param LogRegion: cls日志所在地域
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LogRegion: String
+        # @param LogSource: 日志来源
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LogSource: String
+        # @param IsRelatedLog: 日志功能开关 0 关 | 1 开
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsRelatedLog: Integer
+        # @param LogTopicID: 日志主题ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LogTopicID: String
 
-        attr_accessor :AmountOfUsedStorage, :Name, :Tags, :InstanceId, :CreateUin, :ServiceCount, :CountOfReportSpanPerDay, :AppId, :TraceDuration, :Description, :Status, :Region, :SpanDailyCounters, :BillingInstance, :ErrRateThreshold, :SampleRate, :ErrorSample, :SlowRequestSavedThreshold
+        attr_accessor :AmountOfUsedStorage, :Name, :Tags, :InstanceId, :CreateUin, :ServiceCount, :CountOfReportSpanPerDay, :AppId, :TraceDuration, :Description, :Status, :Region, :SpanDailyCounters, :BillingInstance, :ErrRateThreshold, :SampleRate, :ErrorSample, :SlowRequestSavedThreshold, :LogRegion, :LogSource, :IsRelatedLog, :LogTopicID
         
-        def initialize(amountofusedstorage=nil, name=nil, tags=nil, instanceid=nil, createuin=nil, servicecount=nil, countofreportspanperday=nil, appid=nil, traceduration=nil, description=nil, status=nil, region=nil, spandailycounters=nil, billinginstance=nil, errratethreshold=nil, samplerate=nil, errorsample=nil, slowrequestsavedthreshold=nil)
+        def initialize(amountofusedstorage=nil, name=nil, tags=nil, instanceid=nil, createuin=nil, servicecount=nil, countofreportspanperday=nil, appid=nil, traceduration=nil, description=nil, status=nil, region=nil, spandailycounters=nil, billinginstance=nil, errratethreshold=nil, samplerate=nil, errorsample=nil, slowrequestsavedthreshold=nil, logregion=nil, logsource=nil, isrelatedlog=nil, logtopicid=nil)
           @AmountOfUsedStorage = amountofusedstorage
           @Name = name
           @Tags = tags
@@ -135,6 +147,10 @@ module TencentCloud
           @SampleRate = samplerate
           @ErrorSample = errorsample
           @SlowRequestSavedThreshold = slowrequestsavedthreshold
+          @LogRegion = logregion
+          @LogSource = logsource
+          @IsRelatedLog = isrelatedlog
+          @LogTopicID = logtopicid
         end
 
         def deserialize(params)
@@ -163,6 +179,10 @@ module TencentCloud
           @SampleRate = params['SampleRate']
           @ErrorSample = params['ErrorSample']
           @SlowRequestSavedThreshold = params['SlowRequestSavedThreshold']
+          @LogRegion = params['LogRegion']
+          @LogSource = params['LogSource']
+          @IsRelatedLog = params['IsRelatedLog']
+          @LogTopicID = params['LogTopicID']
         end
       end
 

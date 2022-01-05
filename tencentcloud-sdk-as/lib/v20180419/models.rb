@@ -203,6 +203,57 @@ module TencentCloud
         end
       end
 
+      # AttachLoadBalancers请求参数结构体
+      class AttachLoadBalancersRequest < TencentCloud::Common::AbstractModel
+        # @param AutoScalingGroupId: 伸缩组ID
+        # @type AutoScalingGroupId: String
+        # @param LoadBalancerIds: 传统负载均衡器ID列表，伸缩组绑定数量上限为20，LoadBalancerIds 和 ForwardLoadBalancers 二者同时最多只能指定一个
+        # @type LoadBalancerIds: Array
+        # @param ForwardLoadBalancers: 应用型负载均衡器列表，伸缩组绑定数量上限为50，LoadBalancerIds 和 ForwardLoadBalancers 二者同时最多只能指定一个
+        # @type ForwardLoadBalancers: Array
+
+        attr_accessor :AutoScalingGroupId, :LoadBalancerIds, :ForwardLoadBalancers
+        
+        def initialize(autoscalinggroupid=nil, loadbalancerids=nil, forwardloadbalancers=nil)
+          @AutoScalingGroupId = autoscalinggroupid
+          @LoadBalancerIds = loadbalancerids
+          @ForwardLoadBalancers = forwardloadbalancers
+        end
+
+        def deserialize(params)
+          @AutoScalingGroupId = params['AutoScalingGroupId']
+          @LoadBalancerIds = params['LoadBalancerIds']
+          unless params['ForwardLoadBalancers'].nil?
+            @ForwardLoadBalancers = []
+            params['ForwardLoadBalancers'].each do |i|
+              forwardloadbalancer_tmp = ForwardLoadBalancer.new
+              forwardloadbalancer_tmp.deserialize(i)
+              @ForwardLoadBalancers << forwardloadbalancer_tmp
+            end
+          end
+        end
+      end
+
+      # AttachLoadBalancers返回参数结构体
+      class AttachLoadBalancersResponse < TencentCloud::Common::AbstractModel
+        # @param ActivityId: 伸缩活动ID
+        # @type ActivityId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ActivityId, :RequestId
+        
+        def initialize(activityid=nil, requestid=nil)
+          @ActivityId = activityid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ActivityId = params['ActivityId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 伸缩组配置建议。
       class AutoScalingAdvice < TencentCloud::Common::AbstractModel
         # @param AutoScalingGroupId: 伸缩组ID。
@@ -2228,6 +2279,57 @@ module TencentCloud
         end
       end
 
+      # DetachLoadBalancers请求参数结构体
+      class DetachLoadBalancersRequest < TencentCloud::Common::AbstractModel
+        # @param AutoScalingGroupId: 伸缩组ID
+        # @type AutoScalingGroupId: String
+        # @param LoadBalancerIds: 传统负载均衡器ID列表，目前长度上限为20，LoadBalancerIds 和 ForwardLoadBalancerIdentifications 二者同时最多只能指定一个
+        # @type LoadBalancerIds: Array
+        # @param ForwardLoadBalancerIdentifications: 应用型负载均衡器标识信息列表，目前长度上限为50，LoadBalancerIds 和 ForwardLoadBalancerIdentifications二者同时最多只能指定一个
+        # @type ForwardLoadBalancerIdentifications: Array
+
+        attr_accessor :AutoScalingGroupId, :LoadBalancerIds, :ForwardLoadBalancerIdentifications
+        
+        def initialize(autoscalinggroupid=nil, loadbalancerids=nil, forwardloadbalanceridentifications=nil)
+          @AutoScalingGroupId = autoscalinggroupid
+          @LoadBalancerIds = loadbalancerids
+          @ForwardLoadBalancerIdentifications = forwardloadbalanceridentifications
+        end
+
+        def deserialize(params)
+          @AutoScalingGroupId = params['AutoScalingGroupId']
+          @LoadBalancerIds = params['LoadBalancerIds']
+          unless params['ForwardLoadBalancerIdentifications'].nil?
+            @ForwardLoadBalancerIdentifications = []
+            params['ForwardLoadBalancerIdentifications'].each do |i|
+              forwardloadbalanceridentification_tmp = ForwardLoadBalancerIdentification.new
+              forwardloadbalanceridentification_tmp.deserialize(i)
+              @ForwardLoadBalancerIdentifications << forwardloadbalanceridentification_tmp
+            end
+          end
+        end
+      end
+
+      # DetachLoadBalancers返回参数结构体
+      class DetachLoadBalancersResponse < TencentCloud::Common::AbstractModel
+        # @param ActivityId: 伸缩活动ID
+        # @type ActivityId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ActivityId, :RequestId
+        
+        def initialize(activityid=nil, requestid=nil)
+          @ActivityId = activityid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ActivityId = params['ActivityId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 伸缩活动状态详细描述。
       class DetailedStatusMessage < TencentCloud::Common::AbstractModel
         # @param Code: 错误类型。
@@ -2469,6 +2571,30 @@ module TencentCloud
           end
           @LocationId = params['LocationId']
           @Region = params['Region']
+        end
+      end
+
+      # 应用型负载均衡器标识信息
+      class ForwardLoadBalancerIdentification < TencentCloud::Common::AbstractModel
+        # @param LoadBalancerId: 负载均衡器ID
+        # @type LoadBalancerId: String
+        # @param ListenerId: 应用型负载均衡监听器 ID
+        # @type ListenerId: String
+        # @param LocationId: 转发规则ID，注意：针对七层监听器此参数必填
+        # @type LocationId: String
+
+        attr_accessor :LoadBalancerId, :ListenerId, :LocationId
+        
+        def initialize(loadbalancerid=nil, listenerid=nil, locationid=nil)
+          @LoadBalancerId = loadbalancerid
+          @ListenerId = listenerid
+          @LocationId = locationid
+        end
+
+        def deserialize(params)
+          @LoadBalancerId = params['LoadBalancerId']
+          @ListenerId = params['ListenerId']
+          @LocationId = params['LocationId']
         end
       end
 
@@ -3361,6 +3487,53 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyLoadBalancerTargetAttributes请求参数结构体
+      class ModifyLoadBalancerTargetAttributesRequest < TencentCloud::Common::AbstractModel
+        # @param AutoScalingGroupId: 伸缩组ID
+        # @type AutoScalingGroupId: String
+        # @param ForwardLoadBalancers: 需修改目标规则属性的应用型负载均衡器列表，长度上限为50
+        # @type ForwardLoadBalancers: Array
+
+        attr_accessor :AutoScalingGroupId, :ForwardLoadBalancers
+        
+        def initialize(autoscalinggroupid=nil, forwardloadbalancers=nil)
+          @AutoScalingGroupId = autoscalinggroupid
+          @ForwardLoadBalancers = forwardloadbalancers
+        end
+
+        def deserialize(params)
+          @AutoScalingGroupId = params['AutoScalingGroupId']
+          unless params['ForwardLoadBalancers'].nil?
+            @ForwardLoadBalancers = []
+            params['ForwardLoadBalancers'].each do |i|
+              forwardloadbalancer_tmp = ForwardLoadBalancer.new
+              forwardloadbalancer_tmp.deserialize(i)
+              @ForwardLoadBalancers << forwardloadbalancer_tmp
+            end
+          end
+        end
+      end
+
+      # ModifyLoadBalancerTargetAttributes返回参数结构体
+      class ModifyLoadBalancerTargetAttributesResponse < TencentCloud::Common::AbstractModel
+        # @param ActivityId: 伸缩活动ID
+        # @type ActivityId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ActivityId, :RequestId
+        
+        def initialize(activityid=nil, requestid=nil)
+          @ActivityId = activityid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ActivityId = params['ActivityId']
           @RequestId = params['RequestId']
         end
       end

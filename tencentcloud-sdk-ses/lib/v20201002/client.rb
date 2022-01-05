@@ -198,7 +198,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 删除发信模版
+        # 删除发信模板
 
         # @param request: Request instance for DeleteEmailTemplate.
         # @type request: :class:`Tencentcloud::ses::V20201002::DeleteEmailTemplateRequest`

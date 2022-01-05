@@ -8718,10 +8718,16 @@ module TencentCloud
         # @param VideoSeek: 视频拖拽配置。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VideoSeek: :class:`Tencentcloud::Cdn.v20180606.models.VideoSeek`
+        # @param AwsPrivateAccess: 回源S3私有鉴权。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AwsPrivateAccess: :class:`Tencentcloud::Cdn.v20180606.models.AwsPrivateAccess`
+        # @param OssPrivateAccess: 回源OSS私有鉴权。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OssPrivateAccess: :class:`Tencentcloud::Cdn.v20180606.models.OssPrivateAccess`
 
-        attr_accessor :Authentication, :BandwidthAlert, :Cache, :CacheKey, :Compression, :DownstreamCapping, :ErrorPage, :FollowRedirect, :ForceRedirect, :Https, :IpFilter, :IpFreqLimit, :MaxAge, :Origin, :OriginPullOptimization, :RangeOriginPull, :Referer, :RequestHeader, :ResponseHeader, :ResponseHeaderCache, :Seo, :ServiceType, :StatusCodeCache, :VideoSeek
+        attr_accessor :Authentication, :BandwidthAlert, :Cache, :CacheKey, :Compression, :DownstreamCapping, :ErrorPage, :FollowRedirect, :ForceRedirect, :Https, :IpFilter, :IpFreqLimit, :MaxAge, :Origin, :OriginPullOptimization, :RangeOriginPull, :Referer, :RequestHeader, :ResponseHeader, :ResponseHeaderCache, :Seo, :ServiceType, :StatusCodeCache, :VideoSeek, :AwsPrivateAccess, :OssPrivateAccess
         
-        def initialize(authentication=nil, bandwidthalert=nil, cache=nil, cachekey=nil, compression=nil, downstreamcapping=nil, errorpage=nil, followredirect=nil, forceredirect=nil, https=nil, ipfilter=nil, ipfreqlimit=nil, maxage=nil, origin=nil, originpulloptimization=nil, rangeoriginpull=nil, referer=nil, requestheader=nil, responseheader=nil, responseheadercache=nil, seo=nil, servicetype=nil, statuscodecache=nil, videoseek=nil)
+        def initialize(authentication=nil, bandwidthalert=nil, cache=nil, cachekey=nil, compression=nil, downstreamcapping=nil, errorpage=nil, followredirect=nil, forceredirect=nil, https=nil, ipfilter=nil, ipfreqlimit=nil, maxage=nil, origin=nil, originpulloptimization=nil, rangeoriginpull=nil, referer=nil, requestheader=nil, responseheader=nil, responseheadercache=nil, seo=nil, servicetype=nil, statuscodecache=nil, videoseek=nil, awsprivateaccess=nil, ossprivateaccess=nil)
           @Authentication = authentication
           @BandwidthAlert = bandwidthalert
           @Cache = cache
@@ -8746,6 +8752,8 @@ module TencentCloud
           @ServiceType = servicetype
           @StatusCodeCache = statuscodecache
           @VideoSeek = videoseek
+          @AwsPrivateAccess = awsprivateaccess
+          @OssPrivateAccess = ossprivateaccess
         end
 
         def deserialize(params)
@@ -8841,6 +8849,14 @@ module TencentCloud
           unless params['VideoSeek'].nil?
             @VideoSeek = VideoSeek.new
             @VideoSeek.deserialize(params['VideoSeek'])
+          end
+          unless params['AwsPrivateAccess'].nil?
+            @AwsPrivateAccess = AwsPrivateAccess.new
+            @AwsPrivateAccess.deserialize(params['AwsPrivateAccess'])
+          end
+          unless params['OssPrivateAccess'].nil?
+            @OssPrivateAccess = OssPrivateAccess.new
+            @OssPrivateAccess.deserialize(params['OssPrivateAccess'])
           end
         end
       end
@@ -9402,10 +9418,16 @@ module TencentCloud
         # @param VideoSeek: 视频拖拽配置。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VideoSeek: :class:`Tencentcloud::Cdn.v20180606.models.VideoSeek`
+        # @param AwsPrivateAccess: 回源S3私有鉴权。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AwsPrivateAccess: :class:`Tencentcloud::Cdn.v20180606.models.AwsPrivateAccess`
+        # @param OssPrivateAccess: 回源OSS私有鉴权。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OssPrivateAccess: :class:`Tencentcloud::Cdn.v20180606.models.OssPrivateAccess`
 
-        attr_accessor :Authentication, :BandwidthAlert, :Cache, :CacheKey, :Compression, :DownstreamCapping, :ErrorPage, :FollowRedirect, :ForceRedirect, :Https, :IpFilter, :IpFreqLimit, :MaxAge, :Origin, :OriginPullOptimization, :RangeOriginPull, :Referer, :RequestHeader, :ResponseHeader, :ResponseHeaderCache, :Seo, :ServiceType, :StatusCodeCache, :VideoSeek
+        attr_accessor :Authentication, :BandwidthAlert, :Cache, :CacheKey, :Compression, :DownstreamCapping, :ErrorPage, :FollowRedirect, :ForceRedirect, :Https, :IpFilter, :IpFreqLimit, :MaxAge, :Origin, :OriginPullOptimization, :RangeOriginPull, :Referer, :RequestHeader, :ResponseHeader, :ResponseHeaderCache, :Seo, :ServiceType, :StatusCodeCache, :VideoSeek, :AwsPrivateAccess, :OssPrivateAccess
         
-        def initialize(authentication=nil, bandwidthalert=nil, cache=nil, cachekey=nil, compression=nil, downstreamcapping=nil, errorpage=nil, followredirect=nil, forceredirect=nil, https=nil, ipfilter=nil, ipfreqlimit=nil, maxage=nil, origin=nil, originpulloptimization=nil, rangeoriginpull=nil, referer=nil, requestheader=nil, responseheader=nil, responseheadercache=nil, seo=nil, servicetype=nil, statuscodecache=nil, videoseek=nil)
+        def initialize(authentication=nil, bandwidthalert=nil, cache=nil, cachekey=nil, compression=nil, downstreamcapping=nil, errorpage=nil, followredirect=nil, forceredirect=nil, https=nil, ipfilter=nil, ipfreqlimit=nil, maxage=nil, origin=nil, originpulloptimization=nil, rangeoriginpull=nil, referer=nil, requestheader=nil, responseheader=nil, responseheadercache=nil, seo=nil, servicetype=nil, statuscodecache=nil, videoseek=nil, awsprivateaccess=nil, ossprivateaccess=nil)
           @Authentication = authentication
           @BandwidthAlert = bandwidthalert
           @Cache = cache
@@ -9430,6 +9452,8 @@ module TencentCloud
           @ServiceType = servicetype
           @StatusCodeCache = statuscodecache
           @VideoSeek = videoseek
+          @AwsPrivateAccess = awsprivateaccess
+          @OssPrivateAccess = ossprivateaccess
         end
 
         def deserialize(params)
@@ -9525,6 +9549,14 @@ module TencentCloud
           unless params['VideoSeek'].nil?
             @VideoSeek = VideoSeek.new
             @VideoSeek.deserialize(params['VideoSeek'])
+          end
+          unless params['AwsPrivateAccess'].nil?
+            @AwsPrivateAccess = AwsPrivateAccess.new
+            @AwsPrivateAccess.deserialize(params['AwsPrivateAccess'])
+          end
+          unless params['OssPrivateAccess'].nil?
+            @OssPrivateAccess = OssPrivateAccess.new
+            @OssPrivateAccess.deserialize(params['OssPrivateAccess'])
           end
         end
       end
@@ -11463,8 +11495,7 @@ module TencentCloud
       # + 支持上传 PEM 格式的证书进行部署
       # 注意：上传 PEM 证书时，需要进行 Base 64 编码
       class ServerCert < TencentCloud::Common::AbstractModel
-        # @param CertId: 服务器证书 ID
-        # 在 SSL 证书管理进行证书托管时自动生成
+        # @param CertId: 服务器证书 ID 在 SSL 证书管理进行证书托管时自动生成
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CertId: String
         # @param CertName: 服务器证书名称

@@ -4286,14 +4286,18 @@ module TencentCloud
         # @type IncrementalDeployment: Boolean
         # @param RepoType: tcr或者不填
         # @type RepoType: String
-        # @param VolumeInfos: 数据卷信息
+        # @param VolumeInfos: 数据卷信息-废弃，请用VolumeInfoList参数
         # @type VolumeInfos: :class:`Tencentcloud::Tsf.v20180326.models.VolumeInfo`
-        # @param VolumeMountInfos: 数据卷挂载点信息
+        # @param VolumeMountInfos: 数据卷挂载点信息-废弃，请用VolumeMountInfoList参数
         # @type VolumeMountInfos: :class:`Tencentcloud::Tsf.v20180326.models.VolumeMountInfo`
+        # @param VolumeInfoList: 数据卷信息，list
+        # @type VolumeInfoList: Array
+        # @param VolumeMountInfoList: 数据卷挂载点信息，list
+        # @type VolumeMountInfoList: Array
 
-        attr_accessor :GroupId, :TagName, :InstanceNum, :Server, :Reponame, :CpuLimit, :MemLimit, :JvmOpts, :CpuRequest, :MemRequest, :DoNotStart, :RepoName, :UpdateType, :UpdateIvl, :AgentCpuRequest, :AgentCpuLimit, :AgentMemRequest, :AgentMemLimit, :IstioCpuRequest, :IstioCpuLimit, :IstioMemRequest, :IstioMemLimit, :MaxSurge, :MaxUnavailable, :HealthCheckSettings, :Envs, :ServiceSetting, :DeployAgent, :SchedulingStrategy, :IncrementalDeployment, :RepoType, :VolumeInfos, :VolumeMountInfos
+        attr_accessor :GroupId, :TagName, :InstanceNum, :Server, :Reponame, :CpuLimit, :MemLimit, :JvmOpts, :CpuRequest, :MemRequest, :DoNotStart, :RepoName, :UpdateType, :UpdateIvl, :AgentCpuRequest, :AgentCpuLimit, :AgentMemRequest, :AgentMemLimit, :IstioCpuRequest, :IstioCpuLimit, :IstioMemRequest, :IstioMemLimit, :MaxSurge, :MaxUnavailable, :HealthCheckSettings, :Envs, :ServiceSetting, :DeployAgent, :SchedulingStrategy, :IncrementalDeployment, :RepoType, :VolumeInfos, :VolumeMountInfos, :VolumeInfoList, :VolumeMountInfoList
         
-        def initialize(groupid=nil, tagname=nil, instancenum=nil, server=nil, reponame=nil, cpulimit=nil, memlimit=nil, jvmopts=nil, cpurequest=nil, memrequest=nil, donotstart=nil, reponame=nil, updatetype=nil, updateivl=nil, agentcpurequest=nil, agentcpulimit=nil, agentmemrequest=nil, agentmemlimit=nil, istiocpurequest=nil, istiocpulimit=nil, istiomemrequest=nil, istiomemlimit=nil, maxsurge=nil, maxunavailable=nil, healthchecksettings=nil, envs=nil, servicesetting=nil, deployagent=nil, schedulingstrategy=nil, incrementaldeployment=nil, repotype=nil, volumeinfos=nil, volumemountinfos=nil)
+        def initialize(groupid=nil, tagname=nil, instancenum=nil, server=nil, reponame=nil, cpulimit=nil, memlimit=nil, jvmopts=nil, cpurequest=nil, memrequest=nil, donotstart=nil, reponame=nil, updatetype=nil, updateivl=nil, agentcpurequest=nil, agentcpulimit=nil, agentmemrequest=nil, agentmemlimit=nil, istiocpurequest=nil, istiocpulimit=nil, istiomemrequest=nil, istiomemlimit=nil, maxsurge=nil, maxunavailable=nil, healthchecksettings=nil, envs=nil, servicesetting=nil, deployagent=nil, schedulingstrategy=nil, incrementaldeployment=nil, repotype=nil, volumeinfos=nil, volumemountinfos=nil, volumeinfolist=nil, volumemountinfolist=nil)
           @GroupId = groupid
           @TagName = tagname
           @InstanceNum = instancenum
@@ -4327,6 +4331,8 @@ module TencentCloud
           @RepoType = repotype
           @VolumeInfos = volumeinfos
           @VolumeMountInfos = volumemountinfos
+          @VolumeInfoList = volumeinfolist
+          @VolumeMountInfoList = volumemountinfolist
         end
 
         def deserialize(params)
@@ -4384,6 +4390,22 @@ module TencentCloud
           unless params['VolumeMountInfos'].nil?
             @VolumeMountInfos = VolumeMountInfo.new
             @VolumeMountInfos.deserialize(params['VolumeMountInfos'])
+          end
+          unless params['VolumeInfoList'].nil?
+            @VolumeInfoList = []
+            params['VolumeInfoList'].each do |i|
+              volumeinfo_tmp = VolumeInfo.new
+              volumeinfo_tmp.deserialize(i)
+              @VolumeInfoList << volumeinfo_tmp
+            end
+          end
+          unless params['VolumeMountInfoList'].nil?
+            @VolumeMountInfoList = []
+            params['VolumeMountInfoList'].each do |i|
+              volumemountinfo_tmp = VolumeMountInfo.new
+              volumemountinfo_tmp.deserialize(i)
+              @VolumeMountInfoList << volumemountinfo_tmp
+            end
           end
         end
       end
