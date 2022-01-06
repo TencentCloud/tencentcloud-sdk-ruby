@@ -698,7 +698,7 @@ module TencentCloud
         end
       end
 
-      # 列部联系人简短信息
+      # 外部联系人简短信息
       class ExternalContactSimpleInfo < TencentCloud::Common::AbstractModel
         # @param ExternalUserId: 外部联系人的userId
         # @type ExternalUserId: String

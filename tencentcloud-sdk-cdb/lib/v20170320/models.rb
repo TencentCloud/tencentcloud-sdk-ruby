@@ -1144,10 +1144,12 @@ module TencentCloud
         # @type DeployGroupId: String
         # @param DryRun: 是否只预检此次请求。true：发送检查请求，不会创建实例。检查项包括是否填写了必需参数，请求格式，业务限制等。如果检查不通过，则返回对应错误码；如果检查通过，则返回RequestId.默认为false：发送正常请求，通过检查后直接创建实例。
         # @type DryRun: Boolean
+        # @param CageId: 金融围拢 ID 。
+        # @type CageId: String
 
-        attr_accessor :InstanceId, :SpecifiedRollbackTime, :SpecifiedBackupId, :UniqVpcId, :UniqSubnetId, :Memory, :Volume, :InstanceName, :SecurityGroup, :ResourceTags, :Cpu, :ProtectMode, :DeployMode, :SlaveZone, :BackupZone, :DeviceType, :InstanceNodes, :DeployGroupId, :DryRun
+        attr_accessor :InstanceId, :SpecifiedRollbackTime, :SpecifiedBackupId, :UniqVpcId, :UniqSubnetId, :Memory, :Volume, :InstanceName, :SecurityGroup, :ResourceTags, :Cpu, :ProtectMode, :DeployMode, :SlaveZone, :BackupZone, :DeviceType, :InstanceNodes, :DeployGroupId, :DryRun, :CageId
         
-        def initialize(instanceid=nil, specifiedrollbacktime=nil, specifiedbackupid=nil, uniqvpcid=nil, uniqsubnetid=nil, memory=nil, volume=nil, instancename=nil, securitygroup=nil, resourcetags=nil, cpu=nil, protectmode=nil, deploymode=nil, slavezone=nil, backupzone=nil, devicetype=nil, instancenodes=nil, deploygroupid=nil, dryrun=nil)
+        def initialize(instanceid=nil, specifiedrollbacktime=nil, specifiedbackupid=nil, uniqvpcid=nil, uniqsubnetid=nil, memory=nil, volume=nil, instancename=nil, securitygroup=nil, resourcetags=nil, cpu=nil, protectmode=nil, deploymode=nil, slavezone=nil, backupzone=nil, devicetype=nil, instancenodes=nil, deploygroupid=nil, dryrun=nil, cageid=nil)
           @InstanceId = instanceid
           @SpecifiedRollbackTime = specifiedrollbacktime
           @SpecifiedBackupId = specifiedbackupid
@@ -1167,6 +1169,7 @@ module TencentCloud
           @InstanceNodes = instancenodes
           @DeployGroupId = deploygroupid
           @DryRun = dryrun
+          @CageId = cageid
         end
 
         def deserialize(params)
@@ -1196,6 +1199,7 @@ module TencentCloud
           @InstanceNodes = params['InstanceNodes']
           @DeployGroupId = params['DeployGroupId']
           @DryRun = params['DryRun']
+          @CageId = params['CageId']
         end
       end
 

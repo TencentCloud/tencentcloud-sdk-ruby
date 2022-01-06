@@ -473,7 +473,7 @@ module TencentCloud
       # 验真接口
       class BizLicenseVerifyResult < TencentCloud::Common::AbstractModel
         # @param RegNum: “0“：一致
-        # “-1”：此号未查询到结果
+        # “-1”：不一致
         # @type RegNum: String
         # @param Name: “0“：一致
         # “-1”：不一致

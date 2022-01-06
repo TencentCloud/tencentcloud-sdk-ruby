@@ -807,15 +807,22 @@ module TencentCloud
         # @param Avatar: 身份证正面人像图base64编码。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Avatar: String
+        # @param WarnInfos: 开启身份证防翻拍告警功能后才会返回，返回数组中可能出现的告警码如下：
+        # -9102 身份证复印件告警。
+        # -9103 身份证翻拍告警。
+        # -9106 身份证 PS 告警。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type WarnInfos: Array
 
-        attr_accessor :OcrFront, :OcrBack, :ProcessedFrontImage, :ProcessedBackImage, :Avatar
+        attr_accessor :OcrFront, :OcrBack, :ProcessedFrontImage, :ProcessedBackImage, :Avatar, :WarnInfos
         
-        def initialize(ocrfront=nil, ocrback=nil, processedfrontimage=nil, processedbackimage=nil, avatar=nil)
+        def initialize(ocrfront=nil, ocrback=nil, processedfrontimage=nil, processedbackimage=nil, avatar=nil, warninfos=nil)
           @OcrFront = ocrfront
           @OcrBack = ocrback
           @ProcessedFrontImage = processedfrontimage
           @ProcessedBackImage = processedbackimage
           @Avatar = avatar
+          @WarnInfos = warninfos
         end
 
         def deserialize(params)
@@ -824,6 +831,7 @@ module TencentCloud
           @ProcessedFrontImage = params['ProcessedFrontImage']
           @ProcessedBackImage = params['ProcessedBackImage']
           @Avatar = params['Avatar']
+          @WarnInfos = params['WarnInfos']
         end
       end
 
@@ -2624,20 +2632,25 @@ module TencentCloud
         # @type Result: String
         # @param Description: 业务结果描述。
         # @type Description: String
+        # @param Isp: 运营商名称。
+        # 取值范围为["","移动","电信","联通"]
+        # @type Isp: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Result, :Description, :RequestId
+        attr_accessor :Result, :Description, :Isp, :RequestId
         
-        def initialize(result=nil, description=nil, requestid=nil)
+        def initialize(result=nil, description=nil, isp=nil, requestid=nil)
           @Result = result
           @Description = description
+          @Isp = isp
           @RequestId = requestid
         end
 
         def deserialize(params)
           @Result = params['Result']
           @Description = params['Description']
+          @Isp = params['Isp']
           @RequestId = params['RequestId']
         end
       end

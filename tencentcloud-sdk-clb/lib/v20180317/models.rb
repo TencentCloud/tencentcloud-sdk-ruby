@@ -1428,18 +1428,23 @@ module TencentCloud
       class CreateLoadBalancerResponse < TencentCloud::Common::AbstractModel
         # @param LoadBalancerIds: 由负载均衡实例唯一 ID 组成的数组。
         # @type LoadBalancerIds: Array
+        # @param DealName: 订单号。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DealName: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :LoadBalancerIds, :RequestId
+        attr_accessor :LoadBalancerIds, :DealName, :RequestId
         
-        def initialize(loadbalancerids=nil, requestid=nil)
+        def initialize(loadbalancerids=nil, dealname=nil, requestid=nil)
           @LoadBalancerIds = loadbalancerids
+          @DealName = dealname
           @RequestId = requestid
         end
 
         def deserialize(params)
           @LoadBalancerIds = params['LoadBalancerIds']
+          @DealName = params['DealName']
           @RequestId = params['RequestId']
         end
       end
@@ -3612,15 +3617,19 @@ module TencentCloud
       class DescribeTaskStatusRequest < TencentCloud::Common::AbstractModel
         # @param TaskId: 请求ID，即接口返回的 RequestId 参数。
         # @type TaskId: String
+        # @param DealName: 订单ID。
+        # @type DealName: String
 
-        attr_accessor :TaskId
+        attr_accessor :TaskId, :DealName
         
-        def initialize(taskid=nil)
+        def initialize(taskid=nil, dealname=nil)
           @TaskId = taskid
+          @DealName = dealname
         end
 
         def deserialize(params)
           @TaskId = params['TaskId']
+          @DealName = params['DealName']
         end
       end
 
@@ -3628,18 +3637,23 @@ module TencentCloud
       class DescribeTaskStatusResponse < TencentCloud::Common::AbstractModel
         # @param Status: 任务的当前状态。 0：成功，1：失败，2：进行中。
         # @type Status: Integer
+        # @param LoadBalancerIds: 由负载均衡实例唯一 ID 组成的数组。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LoadBalancerIds: Array
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Status, :RequestId
+        attr_accessor :Status, :LoadBalancerIds, :RequestId
         
-        def initialize(status=nil, requestid=nil)
+        def initialize(status=nil, loadbalancerids=nil, requestid=nil)
           @Status = status
+          @LoadBalancerIds = loadbalancerids
           @RequestId = requestid
         end
 
         def deserialize(params)
           @Status = params['Status']
+          @LoadBalancerIds = params['LoadBalancerIds']
           @RequestId = params['RequestId']
         end
       end
