@@ -252,6 +252,54 @@ module TencentCloud
         end
       end
 
+      # 计费详情
+      class ChargeDetail < TencentCloud::Common::AbstractModel
+        # @param ReqTime: 一比一时间时间戳，13位。
+        # @type ReqTime: String
+        # @param Seq: 一比一请求的唯一标记。
+        # @type Seq: String
+        # @param Idcard: 一比一时使用的、脱敏后的身份证号。
+        # @type Idcard: String
+        # @param Name: 一比一时使用的、脱敏后的姓名。
+        # @type Name: String
+        # @param Sim: 一比一的相似度。0-100，保留2位小数。
+        # @type Sim: String
+        # @param IsNeedCharge: 本次详情是否收费。
+        # @type IsNeedCharge: Boolean
+        # @param ChargeType: 收费类型，比对、核身、混合部署。
+        # @type ChargeType: String
+        # @param ErrorCode: 本次活体一比一最终结果。
+        # @type ErrorCode: String
+        # @param ErrorMessage: 本次活体一比一最终结果描述。
+        # @type ErrorMessage: String
+
+        attr_accessor :ReqTime, :Seq, :Idcard, :Name, :Sim, :IsNeedCharge, :ChargeType, :ErrorCode, :ErrorMessage
+        
+        def initialize(reqtime=nil, seq=nil, idcard=nil, name=nil, sim=nil, isneedcharge=nil, chargetype=nil, errorcode=nil, errormessage=nil)
+          @ReqTime = reqtime
+          @Seq = seq
+          @Idcard = idcard
+          @Name = name
+          @Sim = sim
+          @IsNeedCharge = isneedcharge
+          @ChargeType = chargetype
+          @ErrorCode = errorcode
+          @ErrorMessage = errormessage
+        end
+
+        def deserialize(params)
+          @ReqTime = params['ReqTime']
+          @Seq = params['Seq']
+          @Idcard = params['Idcard']
+          @Name = params['Name']
+          @Sim = params['Sim']
+          @IsNeedCharge = params['IsNeedCharge']
+          @ChargeType = params['ChargeType']
+          @ErrorCode = params['ErrorCode']
+          @ErrorMessage = params['ErrorMessage']
+        end
+      end
+
       # CheckBankCardInformation请求参数结构体
       class CheckBankCardInformationRequest < TencentCloud::Common::AbstractModel
         # @param BankCard: 银行卡号。
@@ -1846,6 +1894,65 @@ module TencentCloud
         end
       end
 
+      # GetWeChatBillDetails请求参数结构体
+      class GetWeChatBillDetailsRequest < TencentCloud::Common::AbstractModel
+        # @param Date: 拉取的日期（YYYY-MM-DD）。最大可追溯到365天前。当天6点后才能拉取前一天的数据。
+        # @type Date: String
+        # @param Cursor: 游标。用于分页，取第一页时传0，取后续页面时，传入本接口响应中返回的NextCursor字段的值。
+        # @type Cursor: Integer
+        # @param RuleId: 需要拉取账单详情业务对应的RuleId。不传会返回所有RuleId数据。默认为空字符串。
+        # @type RuleId: String
+
+        attr_accessor :Date, :Cursor, :RuleId
+        
+        def initialize(date=nil, cursor=nil, ruleid=nil)
+          @Date = date
+          @Cursor = cursor
+          @RuleId = ruleid
+        end
+
+        def deserialize(params)
+          @Date = params['Date']
+          @Cursor = params['Cursor']
+          @RuleId = params['RuleId']
+        end
+      end
+
+      # GetWeChatBillDetails返回参数结构体
+      class GetWeChatBillDetailsResponse < TencentCloud::Common::AbstractModel
+        # @param HasNextPage: 是否还有下一页。该字段为true时，需要将NextCursor的值作为入参Cursor继续调用本接口。
+        # @type HasNextPage: Boolean
+        # @param NextCursor: 下一页的游标。用于分页。
+        # @type NextCursor: Integer
+        # @param WeChatBillDetails: 数据
+        # @type WeChatBillDetails: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :HasNextPage, :NextCursor, :WeChatBillDetails, :RequestId
+        
+        def initialize(hasnextpage=nil, nextcursor=nil, wechatbilldetails=nil, requestid=nil)
+          @HasNextPage = hasnextpage
+          @NextCursor = nextcursor
+          @WeChatBillDetails = wechatbilldetails
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @HasNextPage = params['HasNextPage']
+          @NextCursor = params['NextCursor']
+          unless params['WeChatBillDetails'].nil?
+            @WeChatBillDetails = []
+            params['WeChatBillDetails'].each do |i|
+              wechatbilldetail_tmp = WeChatBillDetail.new
+              wechatbilldetail_tmp.deserialize(i)
+              @WeChatBillDetails << wechatbilldetail_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # IdCardOCRVerification请求参数结构体
       class IdCardOCRVerificationRequest < TencentCloud::Common::AbstractModel
         # @param IdCard: 身份证号
@@ -2652,6 +2759,41 @@ module TencentCloud
           @Description = params['Description']
           @Isp = params['Isp']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 账单详情
+      class WeChatBillDetail < TencentCloud::Common::AbstractModel
+        # @param BizToken: token
+        # @type BizToken: String
+        # @param ChargeCount: 本token收费次数
+        # @type ChargeCount: Integer
+        # @param ChargeDetails: 本token计费详情
+        # @type ChargeDetails: Array
+        # @param RuleId: 业务RuleId
+        # @type RuleId: String
+
+        attr_accessor :BizToken, :ChargeCount, :ChargeDetails, :RuleId
+        
+        def initialize(biztoken=nil, chargecount=nil, chargedetails=nil, ruleid=nil)
+          @BizToken = biztoken
+          @ChargeCount = chargecount
+          @ChargeDetails = chargedetails
+          @RuleId = ruleid
+        end
+
+        def deserialize(params)
+          @BizToken = params['BizToken']
+          @ChargeCount = params['ChargeCount']
+          unless params['ChargeDetails'].nil?
+            @ChargeDetails = []
+            params['ChargeDetails'].each do |i|
+              chargedetail_tmp = ChargeDetail.new
+              chargedetail_tmp.deserialize(i)
+              @ChargeDetails << chargedetail_tmp
+            end
+          end
+          @RuleId = params['RuleId']
         end
       end
 

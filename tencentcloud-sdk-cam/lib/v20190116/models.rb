@@ -433,6 +433,84 @@ module TencentCloud
         end
       end
 
+      # 用户关联的策略详情
+      class AttachedUserPolicy < TencentCloud::Common::AbstractModel
+        # @param PolicyId: 策略ID
+        # @type PolicyId: String
+        # @param PolicyName: 策略名
+        # @type PolicyName: String
+        # @param Description: 策略描述
+        # @type Description: String
+        # @param AddTime: 创建时间
+        # @type AddTime: String
+        # @param StrategyType: 策略类型(1表示自定义策略，2表示预设策略)
+        # @type StrategyType: String
+        # @param CreateMode: 创建模式(1表示按产品或项目权限创建的策略，其他表示策略语法创建的策略)
+        # @type CreateMode: String
+        # @param Groups: 随组关联信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Groups: Array
+        # @param Deactived: 是否已下线(0:否 1:是)
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Deactived: Integer
+        # @param DeactivedDetail: 已下线的产品列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DeactivedDetail: Array
+
+        attr_accessor :PolicyId, :PolicyName, :Description, :AddTime, :StrategyType, :CreateMode, :Groups, :Deactived, :DeactivedDetail
+        
+        def initialize(policyid=nil, policyname=nil, description=nil, addtime=nil, strategytype=nil, createmode=nil, groups=nil, deactived=nil, deactiveddetail=nil)
+          @PolicyId = policyid
+          @PolicyName = policyname
+          @Description = description
+          @AddTime = addtime
+          @StrategyType = strategytype
+          @CreateMode = createmode
+          @Groups = groups
+          @Deactived = deactived
+          @DeactivedDetail = deactiveddetail
+        end
+
+        def deserialize(params)
+          @PolicyId = params['PolicyId']
+          @PolicyName = params['PolicyName']
+          @Description = params['Description']
+          @AddTime = params['AddTime']
+          @StrategyType = params['StrategyType']
+          @CreateMode = params['CreateMode']
+          unless params['Groups'].nil?
+            @Groups = []
+            params['Groups'].each do |i|
+              attacheduserpolicygroupinfo_tmp = AttachedUserPolicyGroupInfo.new
+              attacheduserpolicygroupinfo_tmp.deserialize(i)
+              @Groups << attacheduserpolicygroupinfo_tmp
+            end
+          end
+          @Deactived = params['Deactived']
+          @DeactivedDetail = params['DeactivedDetail']
+        end
+      end
+
+      # 用户关联策略(随组管理)信息
+      class AttachedUserPolicyGroupInfo < TencentCloud::Common::AbstractModel
+        # @param GroupId: 分组ID
+        # @type GroupId: Integer
+        # @param GroupName: 分组名称
+        # @type GroupName: String
+
+        attr_accessor :GroupId, :GroupName
+        
+        def initialize(groupid=nil, groupname=nil)
+          @GroupId = groupid
+          @GroupName = groupname
+        end
+
+        def deserialize(params)
+          @GroupId = params['GroupId']
+          @GroupName = params['GroupName']
+        end
+      end
+
       # ConsumeCustomMFAToken请求参数结构体
       class ConsumeCustomMFATokenRequest < TencentCloud::Common::AbstractModel
         # @param MFAToken: 自定义多因子验证Token
@@ -2373,6 +2451,73 @@ module TencentCloud
               attachedpolicyofrole_tmp = AttachedPolicyOfRole.new
               attachedpolicyofrole_tmp.deserialize(i)
               @List << attachedpolicyofrole_tmp
+            end
+          end
+          @TotalNum = params['TotalNum']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ListAttachedUserAllPolicies请求参数结构体
+      class ListAttachedUserAllPoliciesRequest < TencentCloud::Common::AbstractModel
+        # @param TargetUin: 目标用户ID
+        # @type TargetUin: Integer
+        # @param Rp: 每页数量，必须大于 0 且小于或等于 200
+        # @type Rp: Integer
+        # @param Page: 页码，从 1开始，不能大于 200
+        # @type Page: Integer
+        # @param AttachType: 0:返回直接关联和随组关联策略，1:只返回直接关联策略，2:只返回随组关联策略
+        # @type AttachType: Integer
+        # @param StrategyType: 策略类型
+        # @type StrategyType: Integer
+        # @param Keyword: 搜索关键字
+        # @type Keyword: String
+
+        attr_accessor :TargetUin, :Rp, :Page, :AttachType, :StrategyType, :Keyword
+        
+        def initialize(targetuin=nil, rp=nil, page=nil, attachtype=nil, strategytype=nil, keyword=nil)
+          @TargetUin = targetuin
+          @Rp = rp
+          @Page = page
+          @AttachType = attachtype
+          @StrategyType = strategytype
+          @Keyword = keyword
+        end
+
+        def deserialize(params)
+          @TargetUin = params['TargetUin']
+          @Rp = params['Rp']
+          @Page = params['Page']
+          @AttachType = params['AttachType']
+          @StrategyType = params['StrategyType']
+          @Keyword = params['Keyword']
+        end
+      end
+
+      # ListAttachedUserAllPolicies返回参数结构体
+      class ListAttachedUserAllPoliciesResponse < TencentCloud::Common::AbstractModel
+        # @param PolicyList: 策略列表数据
+        # @type PolicyList: Array
+        # @param TotalNum: 策略总数
+        # @type TotalNum: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :PolicyList, :TotalNum, :RequestId
+        
+        def initialize(policylist=nil, totalnum=nil, requestid=nil)
+          @PolicyList = policylist
+          @TotalNum = totalnum
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['PolicyList'].nil?
+            @PolicyList = []
+            params['PolicyList'].each do |i|
+              attacheduserpolicy_tmp = AttachedUserPolicy.new
+              attacheduserpolicy_tmp.deserialize(i)
+              @PolicyList << attacheduserpolicy_tmp
             end
           end
           @TotalNum = params['TotalNum']

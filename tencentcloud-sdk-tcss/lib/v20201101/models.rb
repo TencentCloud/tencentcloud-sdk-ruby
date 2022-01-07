@@ -4421,12 +4421,16 @@ module TencentCloud
         # @type MachineType: String
         # @param PublicIp: 外网ip
         # @type PublicIp: String
+        # @param InstanceID: 主机实例ID
+        # @type InstanceID: String
+        # @param RegionID: 地域ID
+        # @type RegionID: Integer
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :UUID, :UpdateTime, :HostName, :Group, :HostIP, :OsName, :AgentVersion, :KernelVersion, :DockerVersion, :DockerAPIVersion, :DockerGoVersion, :DockerFileSystemDriver, :DockerRootDir, :ImageCnt, :ContainerCnt, :K8sMasterIP, :K8sVersion, :KubeProxyVersion, :Status, :IsContainerd, :MachineType, :PublicIp, :RequestId
+        attr_accessor :UUID, :UpdateTime, :HostName, :Group, :HostIP, :OsName, :AgentVersion, :KernelVersion, :DockerVersion, :DockerAPIVersion, :DockerGoVersion, :DockerFileSystemDriver, :DockerRootDir, :ImageCnt, :ContainerCnt, :K8sMasterIP, :K8sVersion, :KubeProxyVersion, :Status, :IsContainerd, :MachineType, :PublicIp, :InstanceID, :RegionID, :RequestId
         
-        def initialize(uuid=nil, updatetime=nil, hostname=nil, group=nil, hostip=nil, osname=nil, agentversion=nil, kernelversion=nil, dockerversion=nil, dockerapiversion=nil, dockergoversion=nil, dockerfilesystemdriver=nil, dockerrootdir=nil, imagecnt=nil, containercnt=nil, k8smasterip=nil, k8sversion=nil, kubeproxyversion=nil, status=nil, iscontainerd=nil, machinetype=nil, publicip=nil, requestid=nil)
+        def initialize(uuid=nil, updatetime=nil, hostname=nil, group=nil, hostip=nil, osname=nil, agentversion=nil, kernelversion=nil, dockerversion=nil, dockerapiversion=nil, dockergoversion=nil, dockerfilesystemdriver=nil, dockerrootdir=nil, imagecnt=nil, containercnt=nil, k8smasterip=nil, k8sversion=nil, kubeproxyversion=nil, status=nil, iscontainerd=nil, machinetype=nil, publicip=nil, instanceid=nil, regionid=nil, requestid=nil)
           @UUID = uuid
           @UpdateTime = updatetime
           @HostName = hostname
@@ -4449,6 +4453,8 @@ module TencentCloud
           @IsContainerd = iscontainerd
           @MachineType = machinetype
           @PublicIp = publicip
+          @InstanceID = instanceid
+          @RegionID = regionid
           @RequestId = requestid
         end
 
@@ -4475,6 +4481,8 @@ module TencentCloud
           @IsContainerd = params['IsContainerd']
           @MachineType = params['MachineType']
           @PublicIp = params['PublicIp']
+          @InstanceID = params['InstanceID']
+          @RegionID = params['RegionID']
           @RequestId = params['RequestId']
         end
       end
@@ -4493,6 +4501,7 @@ module TencentCloud
         # <li>HostID- string - 是否必填：否 - 主机id搜索</li>
         # <li>DockerVersion- string - 是否必填：否 - docker版本搜索</li>
         # <li>MachineType- string - 是否必填：否 - 主机来源MachineType搜索，"ALL":"全部"(或不传该字段),"TENCENTCLOUD":"腾讯云服务器","OTHERCLOUD":"非腾讯云服务器"</li>
+        # <li>DockerStatus- string - 是否必填：否 - docker安装状态，"ALL":"全部"(或不传该字段),"INSTALL":"已安装","UNINSTALL":"未安装"</li>
         # @type Filters: Array
         # @param By: 排序字段
         # @type By: String
@@ -10451,16 +10460,20 @@ module TencentCloud
         # @type Status: String
         # @param IsContainerd: 是否是Containerd
         # @type IsContainerd: Boolean
-        # @param MachineType: 主机来源
+        # @param MachineType: 主机来源：["CVM", "ECM", "LH", "BM"]  中的之一为腾讯云服务器；["Other"]之一非腾讯云服务器；
         # @type MachineType: String
         # @param PublicIp: 外网ip
         # @type PublicIp: String
         # @param Uuid: 主机uuid
         # @type Uuid: String
+        # @param InstanceID: 主机实例ID
+        # @type InstanceID: String
+        # @param RegionID: 地域ID
+        # @type RegionID: Integer
 
-        attr_accessor :HostID, :HostIP, :HostName, :Group, :DockerVersion, :DockerFileSystemDriver, :ImageCnt, :ContainerCnt, :Status, :IsContainerd, :MachineType, :PublicIp, :Uuid
+        attr_accessor :HostID, :HostIP, :HostName, :Group, :DockerVersion, :DockerFileSystemDriver, :ImageCnt, :ContainerCnt, :Status, :IsContainerd, :MachineType, :PublicIp, :Uuid, :InstanceID, :RegionID
         
-        def initialize(hostid=nil, hostip=nil, hostname=nil, group=nil, dockerversion=nil, dockerfilesystemdriver=nil, imagecnt=nil, containercnt=nil, status=nil, iscontainerd=nil, machinetype=nil, publicip=nil, uuid=nil)
+        def initialize(hostid=nil, hostip=nil, hostname=nil, group=nil, dockerversion=nil, dockerfilesystemdriver=nil, imagecnt=nil, containercnt=nil, status=nil, iscontainerd=nil, machinetype=nil, publicip=nil, uuid=nil, instanceid=nil, regionid=nil)
           @HostID = hostid
           @HostIP = hostip
           @HostName = hostname
@@ -10474,6 +10487,8 @@ module TencentCloud
           @MachineType = machinetype
           @PublicIp = publicip
           @Uuid = uuid
+          @InstanceID = instanceid
+          @RegionID = regionid
         end
 
         def deserialize(params)
@@ -10490,6 +10505,8 @@ module TencentCloud
           @MachineType = params['MachineType']
           @PublicIp = params['PublicIp']
           @Uuid = params['Uuid']
+          @InstanceID = params['InstanceID']
+          @RegionID = params['RegionID']
         end
       end
 

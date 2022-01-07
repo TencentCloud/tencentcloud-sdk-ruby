@@ -3403,10 +3403,12 @@ module TencentCloud
         # @type InstanceNameSettings: :class:`Tencentcloud::As.v20180419.models.InstanceNameSettings`
         # @param EnhancedService: 增强服务。通过该参数可以指定是否开启云安全、云监控等服务。
         # @type EnhancedService: :class:`Tencentcloud::As.v20180419.models.EnhancedService`
+        # @param CamRoleName: CAM角色名称。可通过DescribeRoleList接口返回值中的roleName获取。
+        # @type CamRoleName: String
 
-        attr_accessor :LaunchConfigurationId, :ImageId, :InstanceTypes, :InstanceTypesCheckPolicy, :LaunchConfigurationName, :UserData, :SecurityGroupIds, :InternetAccessible, :InstanceChargeType, :InstanceChargePrepaid, :InstanceMarketOptions, :DiskTypePolicy, :SystemDisk, :DataDisks, :HostNameSettings, :InstanceNameSettings, :EnhancedService
+        attr_accessor :LaunchConfigurationId, :ImageId, :InstanceTypes, :InstanceTypesCheckPolicy, :LaunchConfigurationName, :UserData, :SecurityGroupIds, :InternetAccessible, :InstanceChargeType, :InstanceChargePrepaid, :InstanceMarketOptions, :DiskTypePolicy, :SystemDisk, :DataDisks, :HostNameSettings, :InstanceNameSettings, :EnhancedService, :CamRoleName
         
-        def initialize(launchconfigurationid=nil, imageid=nil, instancetypes=nil, instancetypescheckpolicy=nil, launchconfigurationname=nil, userdata=nil, securitygroupids=nil, internetaccessible=nil, instancechargetype=nil, instancechargeprepaid=nil, instancemarketoptions=nil, disktypepolicy=nil, systemdisk=nil, datadisks=nil, hostnamesettings=nil, instancenamesettings=nil, enhancedservice=nil)
+        def initialize(launchconfigurationid=nil, imageid=nil, instancetypes=nil, instancetypescheckpolicy=nil, launchconfigurationname=nil, userdata=nil, securitygroupids=nil, internetaccessible=nil, instancechargetype=nil, instancechargeprepaid=nil, instancemarketoptions=nil, disktypepolicy=nil, systemdisk=nil, datadisks=nil, hostnamesettings=nil, instancenamesettings=nil, enhancedservice=nil, camrolename=nil)
           @LaunchConfigurationId = launchconfigurationid
           @ImageId = imageid
           @InstanceTypes = instancetypes
@@ -3424,6 +3426,7 @@ module TencentCloud
           @HostNameSettings = hostnamesettings
           @InstanceNameSettings = instancenamesettings
           @EnhancedService = enhancedservice
+          @CamRoleName = camrolename
         end
 
         def deserialize(params)
@@ -3472,6 +3475,7 @@ module TencentCloud
             @EnhancedService = EnhancedService.new
             @EnhancedService.deserialize(params['EnhancedService'])
           end
+          @CamRoleName = params['CamRoleName']
         end
       end
 

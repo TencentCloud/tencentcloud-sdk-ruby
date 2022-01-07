@@ -1678,10 +1678,16 @@ module TencentCloud
         # @param TcrRepoInfo: TcrRepoInfo值
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TcrRepoInfo: :class:`Tencentcloud::Tsf.v20180326.models.TcrRepoInfo`
+        # @param VolumeInfos: 数据卷信息，list
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VolumeInfos: Array
+        # @param VolumeMountInfos: 数据卷挂载信息，list
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VolumeMountInfos: Array
 
-        attr_accessor :GroupId, :GroupName, :InstanceNum, :CurrentNum, :Server, :Reponame, :TagName, :CpuRequest, :CpuLimit, :MemRequest, :MemLimit, :AccessType, :ProtocolPorts, :UpdateType, :UpdateIvl, :JvmOpts, :SubnetId, :AgentCpuRequest, :AgentCpuLimit, :AgentMemRequest, :AgentMemLimit, :IstioCpuRequest, :IstioCpuLimit, :IstioMemRequest, :IstioMemLimit, :Envs, :HealthCheckSettings, :DeployAgent, :Alias, :DisableService, :HeadlessService, :TcrRepoInfo
+        attr_accessor :GroupId, :GroupName, :InstanceNum, :CurrentNum, :Server, :Reponame, :TagName, :CpuRequest, :CpuLimit, :MemRequest, :MemLimit, :AccessType, :ProtocolPorts, :UpdateType, :UpdateIvl, :JvmOpts, :SubnetId, :AgentCpuRequest, :AgentCpuLimit, :AgentMemRequest, :AgentMemLimit, :IstioCpuRequest, :IstioCpuLimit, :IstioMemRequest, :IstioMemLimit, :Envs, :HealthCheckSettings, :DeployAgent, :Alias, :DisableService, :HeadlessService, :TcrRepoInfo, :VolumeInfos, :VolumeMountInfos
         
-        def initialize(groupid=nil, groupname=nil, instancenum=nil, currentnum=nil, server=nil, reponame=nil, tagname=nil, cpurequest=nil, cpulimit=nil, memrequest=nil, memlimit=nil, accesstype=nil, protocolports=nil, updatetype=nil, updateivl=nil, jvmopts=nil, subnetid=nil, agentcpurequest=nil, agentcpulimit=nil, agentmemrequest=nil, agentmemlimit=nil, istiocpurequest=nil, istiocpulimit=nil, istiomemrequest=nil, istiomemlimit=nil, envs=nil, healthchecksettings=nil, deployagent=nil, _alias=nil, disableservice=nil, headlessservice=nil, tcrrepoinfo=nil)
+        def initialize(groupid=nil, groupname=nil, instancenum=nil, currentnum=nil, server=nil, reponame=nil, tagname=nil, cpurequest=nil, cpulimit=nil, memrequest=nil, memlimit=nil, accesstype=nil, protocolports=nil, updatetype=nil, updateivl=nil, jvmopts=nil, subnetid=nil, agentcpurequest=nil, agentcpulimit=nil, agentmemrequest=nil, agentmemlimit=nil, istiocpurequest=nil, istiocpulimit=nil, istiomemrequest=nil, istiomemlimit=nil, envs=nil, healthchecksettings=nil, deployagent=nil, _alias=nil, disableservice=nil, headlessservice=nil, tcrrepoinfo=nil, volumeinfos=nil, volumemountinfos=nil)
           @GroupId = groupid
           @GroupName = groupname
           @InstanceNum = instancenum
@@ -1714,6 +1720,8 @@ module TencentCloud
           @DisableService = disableservice
           @HeadlessService = headlessservice
           @TcrRepoInfo = tcrrepoinfo
+          @VolumeInfos = volumeinfos
+          @VolumeMountInfos = volumemountinfos
         end
 
         def deserialize(params)
@@ -1768,6 +1776,22 @@ module TencentCloud
           unless params['TcrRepoInfo'].nil?
             @TcrRepoInfo = TcrRepoInfo.new
             @TcrRepoInfo.deserialize(params['TcrRepoInfo'])
+          end
+          unless params['VolumeInfos'].nil?
+            @VolumeInfos = []
+            params['VolumeInfos'].each do |i|
+              volumeinfo_tmp = VolumeInfo.new
+              volumeinfo_tmp.deserialize(i)
+              @VolumeInfos << volumeinfo_tmp
+            end
+          end
+          unless params['VolumeMountInfos'].nil?
+            @VolumeMountInfos = []
+            params['VolumeMountInfos'].each do |i|
+              volumemountinfo_tmp = VolumeMountInfo.new
+              volumemountinfo_tmp.deserialize(i)
+              @VolumeMountInfos << volumemountinfo_tmp
+            end
           end
         end
       end

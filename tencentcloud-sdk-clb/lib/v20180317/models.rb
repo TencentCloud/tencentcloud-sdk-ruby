@@ -817,6 +817,8 @@ module TencentCloud
         # @type SnatIps: Array
         # @param ClusterIds: 公网独占集群ID或者CDCId。
         # @type ClusterIds: Array
+        # @param SlaType: 性能保障规格。
+        # @type SlaType: String
         # @param ClusterTag: Stgw独占集群的标签。
         # @type ClusterTag: String
         # @param Zones: 仅适用于私有网络内网负载均衡。内网就近接入时，选择可用区下发。
@@ -824,9 +826,9 @@ module TencentCloud
         # @param EipAddressId: EIP 的唯一 ID，形如：eip-11112222，仅适用于内网负载均衡绑定EIP。
         # @type EipAddressId: String
 
-        attr_accessor :LoadBalancerId, :LoadBalancerName, :ProjectId, :MasterZoneId, :SlaveZoneId, :ZoneId, :InternetAccessible, :VipIsp, :Vip, :Tags, :ExclusiveCluster, :BandwidthPackageId, :SnatPro, :SnatIps, :ClusterIds, :ClusterTag, :Zones, :EipAddressId
+        attr_accessor :LoadBalancerId, :LoadBalancerName, :ProjectId, :MasterZoneId, :SlaveZoneId, :ZoneId, :InternetAccessible, :VipIsp, :Vip, :Tags, :ExclusiveCluster, :BandwidthPackageId, :SnatPro, :SnatIps, :ClusterIds, :SlaType, :ClusterTag, :Zones, :EipAddressId
         
-        def initialize(loadbalancerid=nil, loadbalancername=nil, projectid=nil, masterzoneid=nil, slavezoneid=nil, zoneid=nil, internetaccessible=nil, vipisp=nil, vip=nil, tags=nil, exclusivecluster=nil, bandwidthpackageid=nil, snatpro=nil, snatips=nil, clusterids=nil, clustertag=nil, zones=nil, eipaddressid=nil)
+        def initialize(loadbalancerid=nil, loadbalancername=nil, projectid=nil, masterzoneid=nil, slavezoneid=nil, zoneid=nil, internetaccessible=nil, vipisp=nil, vip=nil, tags=nil, exclusivecluster=nil, bandwidthpackageid=nil, snatpro=nil, snatips=nil, clusterids=nil, slatype=nil, clustertag=nil, zones=nil, eipaddressid=nil)
           @LoadBalancerId = loadbalancerid
           @LoadBalancerName = loadbalancername
           @ProjectId = projectid
@@ -842,6 +844,7 @@ module TencentCloud
           @SnatPro = snatpro
           @SnatIps = snatips
           @ClusterIds = clusterids
+          @SlaType = slatype
           @ClusterTag = clustertag
           @Zones = zones
           @EipAddressId = eipaddressid
@@ -883,6 +886,7 @@ module TencentCloud
             end
           end
           @ClusterIds = params['ClusterIds']
+          @SlaType = params['SlaType']
           @ClusterTag = params['ClusterTag']
           @Zones = params['Zones']
           @EipAddressId = params['EipAddressId']

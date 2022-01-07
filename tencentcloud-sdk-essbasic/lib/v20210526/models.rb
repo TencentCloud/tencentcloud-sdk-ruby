@@ -751,10 +751,10 @@ module TencentCloud
       class FlowApproverInfo < TencentCloud::Common::AbstractModel
         # @param Name: 签署人姓名
         # @type Name: String
-        # @param Mobile: 签署人手机号，脱敏显示
-        # @type Mobile: String
         # @param IdCardNumber: 经办人身份证号
         # @type IdCardNumber: String
+        # @param Mobile: 签署人手机号，脱敏显示
+        # @type Mobile: String
         # @param JumpUrl: 签署完前端跳转的url，暂未使用
         # @type JumpUrl: String
         # @param Deadline: 签署截止时间
@@ -767,31 +767,47 @@ module TencentCloud
         # @type OpenId: String
         # @param PreReadTime: 合同的强制预览时间：3~300s，未指定则按合同页数计算
         # @type PreReadTime: Integer
+        # @param ComponentLimitType: 个人签署方指定签署控件类型，目前仅支持：OCR_ESIGN
+        # @type ComponentLimitType: Array
+        # @param RecipientId: 流程签署人在模板中对应的签署人Id；在非单方签署、以及非B2C签署的场景下必传，用于指定当前签署方在流程中的位置；
+        # @type RecipientId: String
+        # @param OrganizationOpenId: 同一渠道下其他合作企业OpenId，签署人为非发起方企业员工场景下必传；
+        # @type OrganizationOpenId: String
+        # @param OrganizationName: 同一渠道下其他合作企业OpenId，B2B场景下必传；
+        # @type OrganizationName: String
 
-        attr_accessor :Name, :Mobile, :IdCardNumber, :JumpUrl, :Deadline, :CallbackUrl, :ApproverType, :OpenId, :PreReadTime
+        attr_accessor :Name, :IdCardNumber, :Mobile, :JumpUrl, :Deadline, :CallbackUrl, :ApproverType, :OpenId, :PreReadTime, :ComponentLimitType, :RecipientId, :OrganizationOpenId, :OrganizationName
         
-        def initialize(name=nil, mobile=nil, idcardnumber=nil, jumpurl=nil, deadline=nil, callbackurl=nil, approvertype=nil, openid=nil, prereadtime=nil)
+        def initialize(name=nil, idcardnumber=nil, mobile=nil, jumpurl=nil, deadline=nil, callbackurl=nil, approvertype=nil, openid=nil, prereadtime=nil, componentlimittype=nil, recipientid=nil, organizationopenid=nil, organizationname=nil)
           @Name = name
-          @Mobile = mobile
           @IdCardNumber = idcardnumber
+          @Mobile = mobile
           @JumpUrl = jumpurl
           @Deadline = deadline
           @CallbackUrl = callbackurl
           @ApproverType = approvertype
           @OpenId = openid
           @PreReadTime = prereadtime
+          @ComponentLimitType = componentlimittype
+          @RecipientId = recipientid
+          @OrganizationOpenId = organizationopenid
+          @OrganizationName = organizationname
         end
 
         def deserialize(params)
           @Name = params['Name']
-          @Mobile = params['Mobile']
           @IdCardNumber = params['IdCardNumber']
+          @Mobile = params['Mobile']
           @JumpUrl = params['JumpUrl']
           @Deadline = params['Deadline']
           @CallbackUrl = params['CallbackUrl']
           @ApproverType = params['ApproverType']
           @OpenId = params['OpenId']
           @PreReadTime = params['PreReadTime']
+          @ComponentLimitType = params['ComponentLimitType']
+          @RecipientId = params['RecipientId']
+          @OrganizationOpenId = params['OrganizationOpenId']
+          @OrganizationName = params['OrganizationName']
         end
       end
 
@@ -874,7 +890,7 @@ module TencentCloud
         # @type FlowDescription: String
         # @param CustomerData: 渠道的业务信息，限制1024字符
         # @type CustomerData: String
-        # @param CcInfos: 被抄送人的信息列表
+        # @param CcInfos: 被抄送人的信息列表，抄送功能暂不开放
         # @type CcInfos: Array
 
         attr_accessor :FlowName, :Deadline, :TemplateId, :FlowType, :CallbackUrl, :FlowApprovers, :FormFields, :FlowDescription, :CustomerData, :CcInfos

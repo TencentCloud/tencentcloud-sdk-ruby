@@ -7285,14 +7285,19 @@ module TencentCloud
         # @type Status: String
         # @param ClusterName: 集群名称
         # @type ClusterName: String
+        # @param ExternalLabels: 额外labels
+        # 本集群的所有指标都会带上这几个label
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExternalLabels: Array
 
-        attr_accessor :ClusterType, :ClusterId, :Status, :ClusterName
+        attr_accessor :ClusterType, :ClusterId, :Status, :ClusterName, :ExternalLabels
         
-        def initialize(clustertype=nil, clusterid=nil, status=nil, clustername=nil)
+        def initialize(clustertype=nil, clusterid=nil, status=nil, clustername=nil, externallabels=nil)
           @ClusterType = clustertype
           @ClusterId = clusterid
           @Status = status
           @ClusterName = clustername
+          @ExternalLabels = externallabels
         end
 
         def deserialize(params)
@@ -7300,6 +7305,14 @@ module TencentCloud
           @ClusterId = params['ClusterId']
           @Status = params['Status']
           @ClusterName = params['ClusterName']
+          unless params['ExternalLabels'].nil?
+            @ExternalLabels = []
+            params['ExternalLabels'].each do |i|
+              label_tmp = Label.new
+              label_tmp.deserialize(i)
+              @ExternalLabels << label_tmp
+            end
+          end
         end
       end
 
@@ -7365,10 +7378,13 @@ module TencentCloud
         # @param Annotations: 参考prometheus rule中的annotations
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Annotations: Array
+        # @param RuleState: 告警规则状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RuleState: Integer
 
-        attr_accessor :Name, :Rule, :Labels, :Template, :For, :Describe, :Annotations
+        attr_accessor :Name, :Rule, :Labels, :Template, :For, :Describe, :Annotations, :RuleState
         
-        def initialize(name=nil, rule=nil, labels=nil, template=nil, _for=nil, describe=nil, annotations=nil)
+        def initialize(name=nil, rule=nil, labels=nil, template=nil, _for=nil, describe=nil, annotations=nil, rulestate=nil)
           @Name = name
           @Rule = rule
           @Labels = labels
@@ -7376,6 +7392,7 @@ module TencentCloud
           @For = _for
           @Describe = describe
           @Annotations = annotations
+          @RuleState = rulestate
         end
 
         def deserialize(params)
@@ -7400,6 +7417,7 @@ module TencentCloud
               @Annotations << label_tmp
             end
           end
+          @RuleState = params['RuleState']
         end
       end
 

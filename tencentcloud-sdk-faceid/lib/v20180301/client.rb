@@ -534,6 +534,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询微信渠道服务（微信小程序、微信原生H5、微信普通H5）的账单明细及计费状态。
+
+        # @param request: Request instance for GetWeChatBillDetails.
+        # @type request: :class:`Tencentcloud::faceid::V20180301::GetWeChatBillDetailsRequest`
+        # @rtype: :class:`Tencentcloud::faceid::V20180301::GetWeChatBillDetailsResponse`
+        def GetWeChatBillDetails(request)
+          body = send_request('GetWeChatBillDetails', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = GetWeChatBillDetailsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口用于校验姓名和身份证号的真实性和一致性，您可以通过输入姓名和身份证号或传入身份证人像面照片提供所需验证信息。
 
         # @param request: Request instance for IdCardOCRVerification.

@@ -1801,20 +1801,24 @@ module TencentCloud
 
       # DescribeChannelStreamURL请求参数结构体
       class DescribeChannelStreamURLRequest < TencentCloud::Common::AbstractModel
-        # @param DeviceId: 设备唯一标识
+        # @param DeviceId: 设备唯一标识，必填参数
         # @type DeviceId: String
-        # @param ChannelId: 通道唯一标识（接口升级字段为必填）
+        # @param ExpireTime: 流地址失效时间，固定值填写0，其他参数无效，必填参数
+        # @type ExpireTime: Integer
+        # @param ChannelId: 通道唯一标识（接口升级字段为必填），必填参数
         # @type ChannelId: String
 
-        attr_accessor :DeviceId, :ChannelId
+        attr_accessor :DeviceId, :ExpireTime, :ChannelId
         
-        def initialize(deviceid=nil, channelid=nil)
+        def initialize(deviceid=nil, expiretime=nil, channelid=nil)
           @DeviceId = deviceid
+          @ExpireTime = expiretime
           @ChannelId = channelid
         end
 
         def deserialize(params)
           @DeviceId = params['DeviceId']
+          @ExpireTime = params['ExpireTime']
           @ChannelId = params['ChannelId']
         end
       end
