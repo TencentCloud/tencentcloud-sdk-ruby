@@ -2930,6 +2930,7 @@ module TencentCloud
         # -9103	证照翻拍告警
         # -9102	证照复印件告警
         # -9106       证件遮挡告警
+        # -9107       模糊图片告警
         # @type Warn: Array
         # @param Image: 证件图片
         # @type Image: String

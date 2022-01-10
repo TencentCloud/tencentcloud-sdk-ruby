@@ -101,6 +101,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 创建中断会话的任务。
+
+        # @param request: Request instance for CreateKillTask.
+        # @type request: :class:`Tencentcloud::dbbrain::V20210527::CreateKillTaskRequest`
+        # @rtype: :class:`Tencentcloud::dbbrain::V20210527::CreateKillTaskResponse`
+        def CreateKillTask(request)
+          body = send_request('CreateKillTask', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateKillTaskResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 创建邮件配置。其中入参ProfileType表示所创建配置的类型，ProfileType 取值包括：dbScan_mail_configuration（数据库巡检邮件配置）、scheduler_mail_configuration（定期生成健康报告的邮件发送配置）。Region统一选择广州，和实例所属地域无关。
 
         # @param request: Request instance for CreateMailProfile.
@@ -111,6 +135,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = CreateMailProfileResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 创建中止所有代理节点连接会话的异步任务。当前仅支持 Redis。得到的返回值为异步任务 id，可以作为参数传入接口 DescribeProxySessionKillTasks 查询kill会话任务执行状态。
+
+        # @param request: Request instance for CreateProxySessionKillTask.
+        # @type request: :class:`Tencentcloud::dbbrain::V20210527::CreateProxySessionKillTaskRequest`
+        # @rtype: :class:`Tencentcloud::dbbrain::V20210527::CreateProxySessionKillTaskResponse`
+        def CreateProxySessionKillTask(request)
+          body = send_request('CreateProxySessionKillTask', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateProxySessionKillTaskResponse.new
             model.deserialize(response['Response'])
             model
           else

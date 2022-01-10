@@ -1567,6 +1567,38 @@ module TencentCloud
         end
       end
 
+      # cos类型的api配置
+      class CosConfig < TencentCloud::Common::AbstractModel
+        # @param Action: API调用后端COS的方式，前端请求方法与Action的可选值为：
+        # GET：GetObject
+        # PUT：PutObject
+        # POST：PostObject、AppendObject
+        # HEAD： HeadObject
+        # DELETE： DeleteObject。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Action: String
+        # @param BucketName: API后端COS的存储桶名。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BucketName: String
+        # @param Authorization: API调用后端COS的签名开关，默认为false。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Authorization: Boolean
+
+        attr_accessor :Action, :BucketName, :Authorization
+        
+        def initialize(action=nil, bucketname=nil, authorization=nil)
+          @Action = action
+          @BucketName = bucketname
+          @Authorization = authorization
+        end
+
+        def deserialize(params)
+          @Action = params['Action']
+          @BucketName = params['BucketName']
+          @Authorization = params['Authorization']
+        end
+      end
+
       # CreateAPIDoc请求参数结构体
       class CreateAPIDocRequest < TencentCloud::Common::AbstractModel
         # @param ApiDocName: API文档名称
@@ -7216,15 +7248,19 @@ module TencentCloud
         # @type Path: String
         # @param Method: API的后端服务请求方法，如 GET。如果 ServiceType 是 HTTP，则此参数必传。前后端方法可不同。
         # @type Method: String
+        # @param CosConfig: API后端COS配置。如果 ServiceType 是 COS，则此参数必传。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CosConfig: :class:`Tencentcloud::Apigateway.v20180808.models.CosConfig`
 
-        attr_accessor :Product, :UniqVpcId, :Url, :Path, :Method
+        attr_accessor :Product, :UniqVpcId, :Url, :Path, :Method, :CosConfig
         
-        def initialize(product=nil, uniqvpcid=nil, url=nil, path=nil, method=nil)
+        def initialize(product=nil, uniqvpcid=nil, url=nil, path=nil, method=nil, cosconfig=nil)
           @Product = product
           @UniqVpcId = uniqvpcid
           @Url = url
           @Path = path
           @Method = method
+          @CosConfig = cosconfig
         end
 
         def deserialize(params)
@@ -7233,6 +7269,10 @@ module TencentCloud
           @Url = params['Url']
           @Path = params['Path']
           @Method = params['Method']
+          unless params['CosConfig'].nil?
+            @CosConfig = CosConfig.new
+            @CosConfig.deserialize(params['CosConfig'])
+          end
         end
       end
 

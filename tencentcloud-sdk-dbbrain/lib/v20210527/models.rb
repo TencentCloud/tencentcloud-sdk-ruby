@@ -194,6 +194,74 @@ module TencentCloud
         end
       end
 
+      # CreateKillTask请求参数结构体
+      class CreateKillTaskRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: kill会话任务的关联实例ID。
+        # @type InstanceId: String
+        # @param Duration: 任务持续时间时间，单位秒，手动关闭任务传-1。
+        # @type Duration: Integer
+        # @param Host: 任务过滤条件，客户端IP。
+        # @type Host: String
+        # @param DB: 任务过滤条件，数据库库名,多个","隔开。
+        # @type DB: String
+        # @param Command: 任务过滤条件，相关命令，多个","隔开。
+        # @type Command: String
+        # @param Info: 任务过滤条件，支持单条件前缀匹配。
+        # @type Info: String
+        # @param User: 任务过滤条件，用户类型。
+        # @type User: String
+        # @param Time: 任务过滤条件，会话持续时长，单位秒。
+        # @type Time: Integer
+        # @param Product: 服务产品类型，支持值包括： "mysql" - 云数据库 MySQL， "cynosdb" - 云数据库 CynosDB  for MySQL，默认为"mysql"。
+        # @type Product: String
+
+        attr_accessor :InstanceId, :Duration, :Host, :DB, :Command, :Info, :User, :Time, :Product
+        
+        def initialize(instanceid=nil, duration=nil, host=nil, db=nil, command=nil, info=nil, user=nil, time=nil, product=nil)
+          @InstanceId = instanceid
+          @Duration = duration
+          @Host = host
+          @DB = db
+          @Command = command
+          @Info = info
+          @User = user
+          @Time = time
+          @Product = product
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @Duration = params['Duration']
+          @Host = params['Host']
+          @DB = params['DB']
+          @Command = params['Command']
+          @Info = params['Info']
+          @User = params['User']
+          @Time = params['Time']
+          @Product = params['Product']
+        end
+      end
+
+      # CreateKillTask返回参数结构体
+      class CreateKillTaskResponse < TencentCloud::Common::AbstractModel
+        # @param Status: kill会话任务创建成功返回1
+        # @type Status: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Status, :RequestId
+        
+        def initialize(status=nil, requestid=nil)
+          @Status = status
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Status = params['Status']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateMailProfile请求参数结构体
       class CreateMailProfileRequest < TencentCloud::Common::AbstractModel
         # @param ProfileInfo: 邮件配置内容。
@@ -245,6 +313,46 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateProxySessionKillTask请求参数结构体
+      class CreateProxySessionKillTaskRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例 ID。
+        # @type InstanceId: String
+        # @param Product: 服务产品类型，支持值包括： "redis" - 云数据库 Redis。
+        # @type Product: String
+
+        attr_accessor :InstanceId, :Product
+        
+        def initialize(instanceid=nil, product=nil)
+          @InstanceId = instanceid
+          @Product = product
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @Product = params['Product']
+        end
+      end
+
+      # CreateProxySessionKillTask返回参数结构体
+      class CreateProxySessionKillTaskResponse < TencentCloud::Common::AbstractModel
+        # @param AsyncRequestId: 创建 kill 会话任务返回的异步任务 id
+        # @type AsyncRequestId: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :AsyncRequestId, :RequestId
+        
+        def initialize(asyncrequestid=nil, requestid=nil)
+          @AsyncRequestId = asyncrequestid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @AsyncRequestId = params['AsyncRequestId']
           @RequestId = params['RequestId']
         end
       end

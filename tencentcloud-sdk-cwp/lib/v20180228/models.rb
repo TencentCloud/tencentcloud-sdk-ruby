@@ -8082,12 +8082,18 @@ module TencentCloud
         # @type Shutdown: Integer
         # @param Offline: 已离线总数
         # @type Offline: Integer
+        # @param FlagshipMachineCnt: 旗舰版主机数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FlagshipMachineCnt: Integer
+        # @param ProtectDays: 保护天数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProtectDays: Integer
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :MachinesAll, :MachinesUninstalled, :AgentsAll, :AgentsOnline, :AgentsOffline, :AgentsPro, :AgentsBasic, :AgentsProExpireWithInSevenDays, :RiskMachine, :Shutdown, :Offline, :RequestId
+        attr_accessor :MachinesAll, :MachinesUninstalled, :AgentsAll, :AgentsOnline, :AgentsOffline, :AgentsPro, :AgentsBasic, :AgentsProExpireWithInSevenDays, :RiskMachine, :Shutdown, :Offline, :FlagshipMachineCnt, :ProtectDays, :RequestId
         
-        def initialize(machinesall=nil, machinesuninstalled=nil, agentsall=nil, agentsonline=nil, agentsoffline=nil, agentspro=nil, agentsbasic=nil, agentsproexpirewithinsevendays=nil, riskmachine=nil, shutdown=nil, offline=nil, requestid=nil)
+        def initialize(machinesall=nil, machinesuninstalled=nil, agentsall=nil, agentsonline=nil, agentsoffline=nil, agentspro=nil, agentsbasic=nil, agentsproexpirewithinsevendays=nil, riskmachine=nil, shutdown=nil, offline=nil, flagshipmachinecnt=nil, protectdays=nil, requestid=nil)
           @MachinesAll = machinesall
           @MachinesUninstalled = machinesuninstalled
           @AgentsAll = agentsall
@@ -8099,6 +8105,8 @@ module TencentCloud
           @RiskMachine = riskmachine
           @Shutdown = shutdown
           @Offline = offline
+          @FlagshipMachineCnt = flagshipmachinecnt
+          @ProtectDays = protectdays
           @RequestId = requestid
         end
 
@@ -8114,6 +8122,8 @@ module TencentCloud
           @RiskMachine = params['RiskMachine']
           @Shutdown = params['Shutdown']
           @Offline = params['Offline']
+          @FlagshipMachineCnt = params['FlagshipMachineCnt']
+          @ProtectDays = params['ProtectDays']
           @RequestId = params['RequestId']
         end
       end
@@ -8442,21 +8452,33 @@ module TencentCloud
         # @type MachineList: Array
         # @param ImportType: 批量导入的数据类型：Ip、Name、Id 三选一
         # @type ImportType: String
-        # @param IsQueryProMachine: 是否仅支持专业版机器的查询（true：仅专业版   false：专业版+基础版）
+        # @param IsQueryProMachine: 该参数已作废.
         # @type IsQueryProMachine: Boolean
+        # @param Filters: 过滤条件。
+        # <li>Version - String  是否必填：否 - 当前防护版本（ PRO_VERSION：专业版 | BASIC_VERSION：基础版 | Flagship : 旗舰版 | ProtectedMachines: 专业版+旗舰版）</li>
+        # @type Filters: Array
 
-        attr_accessor :MachineList, :ImportType, :IsQueryProMachine
+        attr_accessor :MachineList, :ImportType, :IsQueryProMachine, :Filters
         
-        def initialize(machinelist=nil, importtype=nil, isquerypromachine=nil)
+        def initialize(machinelist=nil, importtype=nil, isquerypromachine=nil, filters=nil)
           @MachineList = machinelist
           @ImportType = importtype
           @IsQueryProMachine = isquerypromachine
+          @Filters = filters
         end
 
         def deserialize(params)
           @MachineList = params['MachineList']
           @ImportType = params['ImportType']
           @IsQueryProMachine = params['IsQueryProMachine']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filters_tmp = Filters.new
+              filters_tmp.deserialize(i)
+              @Filters << filters_tmp
+            end
+          end
         end
       end
 
@@ -8763,12 +8785,14 @@ module TencentCloud
         # @type ProVersionDeadline: String
         # @param HasAssetScan: 是否有资产扫描记录，0无，1有
         # @type HasAssetScan: Integer
+        # @param ProtectType: 防护版本 BASIC_VERSION 基础版, PRO_VERSION 专业版 Flagship 旗舰版.
+        # @type ProtectType: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :MachineIp, :ProtectDays, :MachineOs, :MachineName, :MachineStatus, :InstanceId, :MachineWanIp, :Quuid, :Uuid, :IsProVersion, :ProVersionOpenDate, :MachineType, :MachineRegion, :PayMode, :FreeMalwaresLeft, :FreeVulsLeft, :AgentVersion, :ProVersionDeadline, :HasAssetScan, :RequestId
+        attr_accessor :MachineIp, :ProtectDays, :MachineOs, :MachineName, :MachineStatus, :InstanceId, :MachineWanIp, :Quuid, :Uuid, :IsProVersion, :ProVersionOpenDate, :MachineType, :MachineRegion, :PayMode, :FreeMalwaresLeft, :FreeVulsLeft, :AgentVersion, :ProVersionDeadline, :HasAssetScan, :ProtectType, :RequestId
         
-        def initialize(machineip=nil, protectdays=nil, machineos=nil, machinename=nil, machinestatus=nil, instanceid=nil, machinewanip=nil, quuid=nil, uuid=nil, isproversion=nil, proversionopendate=nil, machinetype=nil, machineregion=nil, paymode=nil, freemalwaresleft=nil, freevulsleft=nil, agentversion=nil, proversiondeadline=nil, hasassetscan=nil, requestid=nil)
+        def initialize(machineip=nil, protectdays=nil, machineos=nil, machinename=nil, machinestatus=nil, instanceid=nil, machinewanip=nil, quuid=nil, uuid=nil, isproversion=nil, proversionopendate=nil, machinetype=nil, machineregion=nil, paymode=nil, freemalwaresleft=nil, freevulsleft=nil, agentversion=nil, proversiondeadline=nil, hasassetscan=nil, protecttype=nil, requestid=nil)
           @MachineIp = machineip
           @ProtectDays = protectdays
           @MachineOs = machineos
@@ -8788,6 +8812,7 @@ module TencentCloud
           @AgentVersion = agentversion
           @ProVersionDeadline = proversiondeadline
           @HasAssetScan = hasassetscan
+          @ProtectType = protecttype
           @RequestId = requestid
         end
 
@@ -8811,6 +8836,7 @@ module TencentCloud
           @AgentVersion = params['AgentVersion']
           @ProVersionDeadline = params['ProVersionDeadline']
           @HasAssetScan = params['HasAssetScan']
+          @ProtectType = params['ProtectType']
           @RequestId = params['RequestId']
         end
       end
@@ -9043,10 +9069,11 @@ module TencentCloud
         # @param Filters: 过滤条件。
         # <li>Keywords - String - 是否必填：否 - 查询关键字 </li>
         # <li>Status - String - 是否必填：否 - 客户端在线状态（OFFLINE: 离线/关机 | ONLINE: 在线 | UNINSTALLED：未安装 | AGENT_OFFLINE 离线| AGENT_SHUTDOWN 已关机）</li>
-        # <li>Version - String  是否必填：否 - 当前防护版本（ PRO_VERSION：专业版 | BASIC_VERSION：基础版）</li>
+        # <li>Version - String  是否必填：否 - 当前防护版本（ PRO_VERSION：专业版 | BASIC_VERSION：基础版 | Flagship : 旗舰版 | ProtectedMachines: 专业版+旗舰版）</li>
         # <li>Risk - String 是否必填: 否 - 风险主机( yes ) </li>
         # <li>Os -String 是否必填: 否 - 操作系统( DescribeMachineOsList 接口 值 )
         # 每个过滤条件只支持一个值，暂不支持多个值“或”关系查询
+        # <li>Quuid - String - 是否必填: 否 - 云服务器uuid  最大100条.</li>
         # @type Filters: Array
         # @param ProjectIds: 机器所属业务ID列表
         # @type ProjectIds: Array
@@ -14397,6 +14424,7 @@ module TencentCloud
         # <li>OFFLINE: 离线  </li>
         # <li>ONLINE: 在线</li>
         # <li>SHUTDOWN: 已关机</li>
+        # <li>UNINSTALLED: 未防护</li>
         # @type MachineStatus: String
         # @param Uuid: 云镜客户端唯一Uuid，若客户端长时间不在线将返回空字符。
         # @type Uuid: String
@@ -14445,10 +14473,12 @@ module TencentCloud
         # @type MachineType: String
         # @param KernelVersion: 内核版本
         # @type KernelVersion: String
+        # @param ProtectType: 防护版本 BASIC_VERSION 基础版, PRO_VERSION 专业版 Flagship 旗舰版.
+        # @type ProtectType: String
 
-        attr_accessor :MachineName, :MachineOs, :MachineStatus, :Uuid, :Quuid, :VulNum, :MachineIp, :IsProVersion, :MachineWanIp, :PayMode, :MalwareNum, :Tag, :BaselineNum, :CyberAttackNum, :SecurityStatus, :InvasionNum, :RegionInfo, :InstanceState, :LicenseStatus, :ProjectId, :HasAssetScan, :MachineType, :KernelVersion
+        attr_accessor :MachineName, :MachineOs, :MachineStatus, :Uuid, :Quuid, :VulNum, :MachineIp, :IsProVersion, :MachineWanIp, :PayMode, :MalwareNum, :Tag, :BaselineNum, :CyberAttackNum, :SecurityStatus, :InvasionNum, :RegionInfo, :InstanceState, :LicenseStatus, :ProjectId, :HasAssetScan, :MachineType, :KernelVersion, :ProtectType
         
-        def initialize(machinename=nil, machineos=nil, machinestatus=nil, uuid=nil, quuid=nil, vulnum=nil, machineip=nil, isproversion=nil, machinewanip=nil, paymode=nil, malwarenum=nil, tag=nil, baselinenum=nil, cyberattacknum=nil, securitystatus=nil, invasionnum=nil, regioninfo=nil, instancestate=nil, licensestatus=nil, projectid=nil, hasassetscan=nil, machinetype=nil, kernelversion=nil)
+        def initialize(machinename=nil, machineos=nil, machinestatus=nil, uuid=nil, quuid=nil, vulnum=nil, machineip=nil, isproversion=nil, machinewanip=nil, paymode=nil, malwarenum=nil, tag=nil, baselinenum=nil, cyberattacknum=nil, securitystatus=nil, invasionnum=nil, regioninfo=nil, instancestate=nil, licensestatus=nil, projectid=nil, hasassetscan=nil, machinetype=nil, kernelversion=nil, protecttype=nil)
           @MachineName = machinename
           @MachineOs = machineos
           @MachineStatus = machinestatus
@@ -14472,6 +14502,7 @@ module TencentCloud
           @HasAssetScan = hasassetscan
           @MachineType = machinetype
           @KernelVersion = kernelversion
+          @ProtectType = protecttype
         end
 
         def deserialize(params)
@@ -14508,6 +14539,7 @@ module TencentCloud
           @HasAssetScan = params['HasAssetScan']
           @MachineType = params['MachineType']
           @KernelVersion = params['KernelVersion']
+          @ProtectType = params['ProtectType']
         end
       end
 
@@ -14694,10 +14726,16 @@ module TencentCloud
         # @param Level: 风险等级 0提示、1低、2中、3高、4严重
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Level: Integer
+        # @param CheckPlatform: 木马检测平台用,分割 1云查杀引擎、2TAV、3binaryAi、4异常行为、5威胁情报
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CheckPlatform: String
+        # @param Uuid: 主机uuid
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Uuid: String
 
-        attr_accessor :VirusName, :FileSize, :MD5, :FilePath, :FileCreateTime, :FileModifierTime, :HarmDescribe, :SuggestScheme, :ServersName, :HostIp, :ProcessName, :ProcessID, :Tags, :Breadth, :Heat, :Id, :FileName, :CreateTime, :LatestScanTime, :Reference, :MachineWanIp, :PsTree, :MachineStatus, :Status, :Level
+        attr_accessor :VirusName, :FileSize, :MD5, :FilePath, :FileCreateTime, :FileModifierTime, :HarmDescribe, :SuggestScheme, :ServersName, :HostIp, :ProcessName, :ProcessID, :Tags, :Breadth, :Heat, :Id, :FileName, :CreateTime, :LatestScanTime, :Reference, :MachineWanIp, :PsTree, :MachineStatus, :Status, :Level, :CheckPlatform, :Uuid
         
-        def initialize(virusname=nil, filesize=nil, md5=nil, filepath=nil, filecreatetime=nil, filemodifiertime=nil, harmdescribe=nil, suggestscheme=nil, serversname=nil, hostip=nil, processname=nil, processid=nil, tags=nil, breadth=nil, heat=nil, id=nil, filename=nil, createtime=nil, latestscantime=nil, reference=nil, machinewanip=nil, pstree=nil, machinestatus=nil, status=nil, level=nil)
+        def initialize(virusname=nil, filesize=nil, md5=nil, filepath=nil, filecreatetime=nil, filemodifiertime=nil, harmdescribe=nil, suggestscheme=nil, serversname=nil, hostip=nil, processname=nil, processid=nil, tags=nil, breadth=nil, heat=nil, id=nil, filename=nil, createtime=nil, latestscantime=nil, reference=nil, machinewanip=nil, pstree=nil, machinestatus=nil, status=nil, level=nil, checkplatform=nil, uuid=nil)
           @VirusName = virusname
           @FileSize = filesize
           @MD5 = md5
@@ -14723,6 +14761,8 @@ module TencentCloud
           @MachineStatus = machinestatus
           @Status = status
           @Level = level
+          @CheckPlatform = checkplatform
+          @Uuid = uuid
         end
 
         def deserialize(params)
@@ -14751,6 +14791,8 @@ module TencentCloud
           @MachineStatus = params['MachineStatus']
           @Status = params['Status']
           @Level = params['Level']
+          @CheckPlatform = params['CheckPlatform']
+          @Uuid = params['Uuid']
         end
       end
 

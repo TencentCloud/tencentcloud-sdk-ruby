@@ -4952,14 +4952,17 @@ module TencentCloud
         # @type NewSubnetId: String
         # @param OldIpRetainTime: 原vip保留时长，单位小时，默认为0，代表立即回收，最大为168小时
         # @type OldIpRetainTime: Integer
+        # @param Vip: 指定VIP地址
+        # @type Vip: String
 
-        attr_accessor :InstanceId, :NewVpcId, :NewSubnetId, :OldIpRetainTime
+        attr_accessor :InstanceId, :NewVpcId, :NewSubnetId, :OldIpRetainTime, :Vip
         
-        def initialize(instanceid=nil, newvpcid=nil, newsubnetid=nil, oldipretaintime=nil)
+        def initialize(instanceid=nil, newvpcid=nil, newsubnetid=nil, oldipretaintime=nil, vip=nil)
           @InstanceId = instanceid
           @NewVpcId = newvpcid
           @NewSubnetId = newsubnetid
           @OldIpRetainTime = oldipretaintime
+          @Vip = vip
         end
 
         def deserialize(params)
@@ -4967,6 +4970,7 @@ module TencentCloud
           @NewVpcId = params['NewVpcId']
           @NewSubnetId = params['NewSubnetId']
           @OldIpRetainTime = params['OldIpRetainTime']
+          @Vip = params['Vip']
         end
       end
 

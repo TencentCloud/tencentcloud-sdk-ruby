@@ -197,19 +197,23 @@ module TencentCloud
         # @type ApplyDate: Integer
         # @param UserId: 客户业务侧标识用户的唯一ID
         # @type UserId: String
+        # @param IsTest: 是否为测试流量
+        # @type IsTest: Integer
 
-        attr_accessor :UserData, :ApplyDate, :UserId
+        attr_accessor :UserData, :ApplyDate, :UserId, :IsTest
         
-        def initialize(userdata=nil, applydate=nil, userid=nil)
+        def initialize(userdata=nil, applydate=nil, userid=nil, istest=nil)
           @UserData = userdata
           @ApplyDate = applydate
           @UserId = userid
+          @IsTest = istest
         end
 
         def deserialize(params)
           @UserData = params['UserData']
           @ApplyDate = params['ApplyDate']
           @UserId = params['UserId']
+          @IsTest = params['IsTest']
         end
       end
 

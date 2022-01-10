@@ -408,10 +408,12 @@ module TencentCloud
         # @type DBMajorVersion: String
         # @param DBKernelVersion: PostgreSQL内核版本。当输入该参数时，会创建该内核版本号实例
         # @type DBKernelVersion: String
+        # @param DBNodeSet: 实例节点信息，购买跨可用区实例时填写。
+        # @type DBNodeSet: Array
 
-        attr_accessor :SpecCode, :Storage, :InstanceCount, :Period, :Zone, :Charset, :AdminName, :AdminPassword, :ProjectId, :DBVersion, :InstanceChargeType, :AutoVoucher, :VoucherIds, :VpcId, :SubnetId, :AutoRenewFlag, :ActivityId, :Name, :NeedSupportIpv6, :TagList, :SecurityGroupIds, :DBMajorVersion, :DBKernelVersion
+        attr_accessor :SpecCode, :Storage, :InstanceCount, :Period, :Zone, :Charset, :AdminName, :AdminPassword, :ProjectId, :DBVersion, :InstanceChargeType, :AutoVoucher, :VoucherIds, :VpcId, :SubnetId, :AutoRenewFlag, :ActivityId, :Name, :NeedSupportIpv6, :TagList, :SecurityGroupIds, :DBMajorVersion, :DBKernelVersion, :DBNodeSet
         
-        def initialize(speccode=nil, storage=nil, instancecount=nil, period=nil, zone=nil, charset=nil, adminname=nil, adminpassword=nil, projectid=nil, dbversion=nil, instancechargetype=nil, autovoucher=nil, voucherids=nil, vpcid=nil, subnetid=nil, autorenewflag=nil, activityid=nil, name=nil, needsupportipv6=nil, taglist=nil, securitygroupids=nil, dbmajorversion=nil, dbkernelversion=nil)
+        def initialize(speccode=nil, storage=nil, instancecount=nil, period=nil, zone=nil, charset=nil, adminname=nil, adminpassword=nil, projectid=nil, dbversion=nil, instancechargetype=nil, autovoucher=nil, voucherids=nil, vpcid=nil, subnetid=nil, autorenewflag=nil, activityid=nil, name=nil, needsupportipv6=nil, taglist=nil, securitygroupids=nil, dbmajorversion=nil, dbkernelversion=nil, dbnodeset=nil)
           @SpecCode = speccode
           @Storage = storage
           @InstanceCount = instancecount
@@ -435,6 +437,7 @@ module TencentCloud
           @SecurityGroupIds = securitygroupids
           @DBMajorVersion = dbmajorversion
           @DBKernelVersion = dbkernelversion
+          @DBNodeSet = dbnodeset
         end
 
         def deserialize(params)
@@ -468,6 +471,14 @@ module TencentCloud
           @SecurityGroupIds = params['SecurityGroupIds']
           @DBMajorVersion = params['DBMajorVersion']
           @DBKernelVersion = params['DBKernelVersion']
+          unless params['DBNodeSet'].nil?
+            @DBNodeSet = []
+            params['DBNodeSet'].each do |i|
+              dbnode_tmp = DBNode.new
+              dbnode_tmp.deserialize(i)
+              @DBNodeSet << dbnode_tmp
+            end
+          end
         end
       end
 
@@ -798,10 +809,13 @@ module TencentCloud
         # @type InternalAddr: String
         # @param ExternalAddr: 外网下载地址
         # @type ExternalAddr: String
+        # @param SetId: 备份集ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SetId: String
 
-        attr_accessor :Id, :StartTime, :EndTime, :Size, :Strategy, :Way, :Type, :Status, :DbList, :InternalAddr, :ExternalAddr
+        attr_accessor :Id, :StartTime, :EndTime, :Size, :Strategy, :Way, :Type, :Status, :DbList, :InternalAddr, :ExternalAddr, :SetId
         
-        def initialize(id=nil, starttime=nil, endtime=nil, size=nil, strategy=nil, way=nil, type=nil, status=nil, dblist=nil, internaladdr=nil, externaladdr=nil)
+        def initialize(id=nil, starttime=nil, endtime=nil, size=nil, strategy=nil, way=nil, type=nil, status=nil, dblist=nil, internaladdr=nil, externaladdr=nil, setid=nil)
           @Id = id
           @StartTime = starttime
           @EndTime = endtime
@@ -813,6 +827,7 @@ module TencentCloud
           @DbList = dblist
           @InternalAddr = internaladdr
           @ExternalAddr = externaladdr
+          @SetId = setid
         end
 
         def deserialize(params)
@@ -827,6 +842,7 @@ module TencentCloud
           @DbList = params['DbList']
           @InternalAddr = params['InternalAddr']
           @ExternalAddr = params['ExternalAddr']
+          @SetId = params['SetId']
         end
       end
 
@@ -910,10 +926,13 @@ module TencentCloud
         # @param DBMajorVersion: PostgreSQL主要版本
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DBMajorVersion: String
+        # @param DBNodeSet: 实例的节点信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DBNodeSet: Array
 
-        attr_accessor :Region, :Zone, :ProjectId, :VpcId, :SubnetId, :DBInstanceId, :DBInstanceName, :DBInstanceStatus, :DBInstanceMemory, :DBInstanceStorage, :DBInstanceCpu, :DBInstanceClass, :DBInstanceType, :DBInstanceVersion, :DBCharset, :DBVersion, :CreateTime, :UpdateTime, :ExpireTime, :IsolatedTime, :PayType, :AutoRenew, :DBInstanceNetInfo, :Type, :AppId, :Uid, :SupportIpv6, :TagList, :MasterDBInstanceId, :ReadOnlyInstanceNum, :StatusInReadonlyGroup, :OfflineTime, :DBKernelVersion, :NetworkAccessList, :DBMajorVersion
+        attr_accessor :Region, :Zone, :ProjectId, :VpcId, :SubnetId, :DBInstanceId, :DBInstanceName, :DBInstanceStatus, :DBInstanceMemory, :DBInstanceStorage, :DBInstanceCpu, :DBInstanceClass, :DBInstanceType, :DBInstanceVersion, :DBCharset, :DBVersion, :CreateTime, :UpdateTime, :ExpireTime, :IsolatedTime, :PayType, :AutoRenew, :DBInstanceNetInfo, :Type, :AppId, :Uid, :SupportIpv6, :TagList, :MasterDBInstanceId, :ReadOnlyInstanceNum, :StatusInReadonlyGroup, :OfflineTime, :DBKernelVersion, :NetworkAccessList, :DBMajorVersion, :DBNodeSet
         
-        def initialize(region=nil, zone=nil, projectid=nil, vpcid=nil, subnetid=nil, dbinstanceid=nil, dbinstancename=nil, dbinstancestatus=nil, dbinstancememory=nil, dbinstancestorage=nil, dbinstancecpu=nil, dbinstanceclass=nil, dbinstancetype=nil, dbinstanceversion=nil, dbcharset=nil, dbversion=nil, createtime=nil, updatetime=nil, expiretime=nil, isolatedtime=nil, paytype=nil, autorenew=nil, dbinstancenetinfo=nil, type=nil, appid=nil, uid=nil, supportipv6=nil, taglist=nil, masterdbinstanceid=nil, readonlyinstancenum=nil, statusinreadonlygroup=nil, offlinetime=nil, dbkernelversion=nil, networkaccesslist=nil, dbmajorversion=nil)
+        def initialize(region=nil, zone=nil, projectid=nil, vpcid=nil, subnetid=nil, dbinstanceid=nil, dbinstancename=nil, dbinstancestatus=nil, dbinstancememory=nil, dbinstancestorage=nil, dbinstancecpu=nil, dbinstanceclass=nil, dbinstancetype=nil, dbinstanceversion=nil, dbcharset=nil, dbversion=nil, createtime=nil, updatetime=nil, expiretime=nil, isolatedtime=nil, paytype=nil, autorenew=nil, dbinstancenetinfo=nil, type=nil, appid=nil, uid=nil, supportipv6=nil, taglist=nil, masterdbinstanceid=nil, readonlyinstancenum=nil, statusinreadonlygroup=nil, offlinetime=nil, dbkernelversion=nil, networkaccesslist=nil, dbmajorversion=nil, dbnodeset=nil)
           @Region = region
           @Zone = zone
           @ProjectId = projectid
@@ -949,6 +968,7 @@ module TencentCloud
           @DBKernelVersion = dbkernelversion
           @NetworkAccessList = networkaccesslist
           @DBMajorVersion = dbmajorversion
+          @DBNodeSet = dbnodeset
         end
 
         def deserialize(params)
@@ -1008,6 +1028,14 @@ module TencentCloud
             end
           end
           @DBMajorVersion = params['DBMajorVersion']
+          unless params['DBNodeSet'].nil?
+            @DBNodeSet = []
+            params['DBNodeSet'].each do |i|
+              dbnode_tmp = DBNode.new
+              dbnode_tmp.deserialize(i)
+              @DBNodeSet << dbnode_tmp
+            end
+          end
         end
       end
 
@@ -1050,6 +1078,28 @@ module TencentCloud
           @Status = params['Status']
           @VpcId = params['VpcId']
           @SubnetId = params['SubnetId']
+        end
+      end
+
+      # 描述实例节点信息，包括节点类型、节点所在可用区。
+      class DBNode < TencentCloud::Common::AbstractModel
+        # @param Role: 节点类型，值可以为：
+        # Primary，代表主节点；
+        # Standby，代表备节点。
+        # @type Role: String
+        # @param Zone: 节点所在可用区，例如 ap-guangzhou-1。
+        # @type Zone: String
+
+        attr_accessor :Role, :Zone
+        
+        def initialize(role=nil, zone=nil)
+          @Role = role
+          @Zone = zone
+        end
+
+        def deserialize(params)
+          @Role = params['Role']
+          @Zone = params['Zone']
         end
       end
 
@@ -4269,19 +4319,23 @@ module TencentCloud
         # @type ZoneName: String
         # @param ZoneId: 该可用区对应的数字编号
         # @type ZoneId: Integer
-        # @param ZoneState: 可用状态，UNAVAILABLE表示不可用，AVAILABLE表示可用
+        # @param ZoneState: 可用状态，UNAVAILABLE表示不可用，AVAILABLE表示可用，SELLOUT表示售罄
         # @type ZoneState: String
         # @param ZoneSupportIpv6: 该可用区是否支持Ipv6
         # @type ZoneSupportIpv6: Integer
+        # @param StandbyZoneSet: 该可用区对应的备可用区集合
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StandbyZoneSet: Array
 
-        attr_accessor :Zone, :ZoneName, :ZoneId, :ZoneState, :ZoneSupportIpv6
+        attr_accessor :Zone, :ZoneName, :ZoneId, :ZoneState, :ZoneSupportIpv6, :StandbyZoneSet
         
-        def initialize(zone=nil, zonename=nil, zoneid=nil, zonestate=nil, zonesupportipv6=nil)
+        def initialize(zone=nil, zonename=nil, zoneid=nil, zonestate=nil, zonesupportipv6=nil, standbyzoneset=nil)
           @Zone = zone
           @ZoneName = zonename
           @ZoneId = zoneid
           @ZoneState = zonestate
           @ZoneSupportIpv6 = zonesupportipv6
+          @StandbyZoneSet = standbyzoneset
         end
 
         def deserialize(params)
@@ -4290,6 +4344,7 @@ module TencentCloud
           @ZoneId = params['ZoneId']
           @ZoneState = params['ZoneState']
           @ZoneSupportIpv6 = params['ZoneSupportIpv6']
+          @StandbyZoneSet = params['StandbyZoneSet']
         end
       end
 
