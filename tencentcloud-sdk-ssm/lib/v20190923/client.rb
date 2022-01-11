@@ -514,7 +514,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 轮转云产品凭据。该接口仅适用于处于Enabled状态的云产品凭据，对于其他状态的云产品凭据或用户自定义凭据不适用。
+        # 轮转云产品凭据或云API密钥对凭据。
+        # 该接口仅适用于处于Enabled状态的云产品凭据或处于Enable状态的云API密钥对凭据，对于其他状态的云产品凭据或云API密钥对凭据或用户自定义凭据不适用。
 
         # @param request: Request instance for RotateProductSecret.
         # @type request: :class:`Tencentcloud::ssm::V20190923::RotateProductSecretRequest`

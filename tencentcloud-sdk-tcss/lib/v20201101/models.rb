@@ -732,9 +732,9 @@ module TencentCloud
 
       # AddEditReverseShellWhiteList请求参数结构体
       class AddEditReverseShellWhiteListRequest < TencentCloud::Common::AbstractModel
-        # @param WhiteListInfo: 增加白名单信息，白名单id为空，编辑白名单id不能为空
+        # @param WhiteListInfo: 增加或编辑白名单信息。新增白名单时WhiteListInfo.id为空，编辑白名单WhiteListInfo.id不能为空。
         # @type WhiteListInfo: :class:`Tencentcloud::Tcss.v20201101.models.ReverseShellWhiteListInfo`
-        # @param EventId: 仅在添加白名单时候使用
+        # @param EventId: 仅在添加事件白名单时候使用
         # @type EventId: String
 
         attr_accessor :WhiteListInfo, :EventId
@@ -2601,6 +2601,7 @@ module TencentCloud
         # ASSET_IMAGE, 镜像
         # ASSET_HOST, 主机
         # ASSET_K8S, K8S资产
+        # AssetTypeSet, PolicySetId, PeriodTaskId三个参数，必须要给其中一个参数填写有效的值。
         # @type AssetTypeSet: Array
         # @param PolicySetId: 按照策略集ID指定的策略执行合规检查。
         # @type PolicySetId: Integer
@@ -7409,6 +7410,10 @@ module TencentCloud
       # DescribeComplianceTaskAssetSummary请求参数结构体
       class DescribeComplianceTaskAssetSummaryRequest < TencentCloud::Common::AbstractModel
         # @param AssetTypeSet: 资产类型列表。
+        # ASSET_CONTAINER, 容器
+        # ASSET_IMAGE, 镜像
+        # ASSET_HOST, 主机
+        # ASSET_K8S, K8S资产
         # @type AssetTypeSet: Array
 
         attr_accessor :AssetTypeSet

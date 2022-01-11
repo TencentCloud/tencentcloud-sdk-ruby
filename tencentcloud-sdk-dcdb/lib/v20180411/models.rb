@@ -438,10 +438,12 @@ module TencentCloud
         # @type DcnInstanceId: String
         # @param AutoRenewFlag: 自动续费标记，0表示默认状态(用户未设置，即初始状态即手动续费，用户开通了预付费不停服特权也会进行自动续费)， 1表示自动续费，2表示明确不自动续费(用户设置)，若业务无续费概念或无需自动续费，需要设置为0
         # @type AutoRenewFlag: Integer
+        # @param SecurityGroupIds: 安全组ids，安全组可以传数组形式，兼容之前SecurityGroupId参数
+        # @type SecurityGroupIds: Array
 
-        attr_accessor :Zones, :Period, :ShardMemory, :ShardStorage, :ShardNodeCount, :ShardCount, :Count, :ProjectId, :VpcId, :SubnetId, :DbVersionId, :AutoVoucher, :VoucherIds, :SecurityGroupId, :InstanceName, :Ipv6Flag, :ResourceTags, :InitParams, :DcnRegion, :DcnInstanceId, :AutoRenewFlag
+        attr_accessor :Zones, :Period, :ShardMemory, :ShardStorage, :ShardNodeCount, :ShardCount, :Count, :ProjectId, :VpcId, :SubnetId, :DbVersionId, :AutoVoucher, :VoucherIds, :SecurityGroupId, :InstanceName, :Ipv6Flag, :ResourceTags, :InitParams, :DcnRegion, :DcnInstanceId, :AutoRenewFlag, :SecurityGroupIds
         
-        def initialize(zones=nil, period=nil, shardmemory=nil, shardstorage=nil, shardnodecount=nil, shardcount=nil, count=nil, projectid=nil, vpcid=nil, subnetid=nil, dbversionid=nil, autovoucher=nil, voucherids=nil, securitygroupid=nil, instancename=nil, ipv6flag=nil, resourcetags=nil, initparams=nil, dcnregion=nil, dcninstanceid=nil, autorenewflag=nil)
+        def initialize(zones=nil, period=nil, shardmemory=nil, shardstorage=nil, shardnodecount=nil, shardcount=nil, count=nil, projectid=nil, vpcid=nil, subnetid=nil, dbversionid=nil, autovoucher=nil, voucherids=nil, securitygroupid=nil, instancename=nil, ipv6flag=nil, resourcetags=nil, initparams=nil, dcnregion=nil, dcninstanceid=nil, autorenewflag=nil, securitygroupids=nil)
           @Zones = zones
           @Period = period
           @ShardMemory = shardmemory
@@ -463,6 +465,7 @@ module TencentCloud
           @DcnRegion = dcnregion
           @DcnInstanceId = dcninstanceid
           @AutoRenewFlag = autorenewflag
+          @SecurityGroupIds = securitygroupids
         end
 
         def deserialize(params)
@@ -501,6 +504,7 @@ module TencentCloud
           @DcnRegion = params['DcnRegion']
           @DcnInstanceId = params['DcnInstanceId']
           @AutoRenewFlag = params['AutoRenewFlag']
+          @SecurityGroupIds = params['SecurityGroupIds']
         end
       end
 
@@ -841,10 +845,13 @@ module TencentCloud
         # @param InstanceType: 1： 主实例（独享型）, 2: 主实例, 3： 灾备实例, 4： 灾备实例（独享型）
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceType: Integer
+        # @param ResourceTags: 实例标签信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResourceTags: Array
 
-        attr_accessor :InstanceId, :InstanceName, :AppId, :ProjectId, :Region, :Zone, :VpcId, :SubnetId, :StatusDesc, :Status, :Vip, :Vport, :CreateTime, :AutoRenewFlag, :Memory, :Storage, :ShardCount, :PeriodEndTime, :IsolatedTimestamp, :Uin, :ShardDetail, :NodeCount, :IsTmp, :ExclusterId, :UniqueVpcId, :UniqueSubnetId, :Id, :WanDomain, :WanVip, :WanPort, :Pid, :UpdateTime, :DbEngine, :DbVersion, :Paymode, :Locker, :WanStatus, :IsAuditSupported, :Cpu, :Ipv6Flag, :Vipv6, :WanVipv6, :WanPortIpv6, :WanStatusIpv6, :DcnFlag, :DcnStatus, :DcnDstNum, :InstanceType
+        attr_accessor :InstanceId, :InstanceName, :AppId, :ProjectId, :Region, :Zone, :VpcId, :SubnetId, :StatusDesc, :Status, :Vip, :Vport, :CreateTime, :AutoRenewFlag, :Memory, :Storage, :ShardCount, :PeriodEndTime, :IsolatedTimestamp, :Uin, :ShardDetail, :NodeCount, :IsTmp, :ExclusterId, :UniqueVpcId, :UniqueSubnetId, :Id, :WanDomain, :WanVip, :WanPort, :Pid, :UpdateTime, :DbEngine, :DbVersion, :Paymode, :Locker, :WanStatus, :IsAuditSupported, :Cpu, :Ipv6Flag, :Vipv6, :WanVipv6, :WanPortIpv6, :WanStatusIpv6, :DcnFlag, :DcnStatus, :DcnDstNum, :InstanceType, :ResourceTags
         
-        def initialize(instanceid=nil, instancename=nil, appid=nil, projectid=nil, region=nil, zone=nil, vpcid=nil, subnetid=nil, statusdesc=nil, status=nil, vip=nil, vport=nil, createtime=nil, autorenewflag=nil, memory=nil, storage=nil, shardcount=nil, periodendtime=nil, isolatedtimestamp=nil, uin=nil, sharddetail=nil, nodecount=nil, istmp=nil, exclusterid=nil, uniquevpcid=nil, uniquesubnetid=nil, id=nil, wandomain=nil, wanvip=nil, wanport=nil, pid=nil, updatetime=nil, dbengine=nil, dbversion=nil, paymode=nil, locker=nil, wanstatus=nil, isauditsupported=nil, cpu=nil, ipv6flag=nil, vipv6=nil, wanvipv6=nil, wanportipv6=nil, wanstatusipv6=nil, dcnflag=nil, dcnstatus=nil, dcndstnum=nil, instancetype=nil)
+        def initialize(instanceid=nil, instancename=nil, appid=nil, projectid=nil, region=nil, zone=nil, vpcid=nil, subnetid=nil, statusdesc=nil, status=nil, vip=nil, vport=nil, createtime=nil, autorenewflag=nil, memory=nil, storage=nil, shardcount=nil, periodendtime=nil, isolatedtimestamp=nil, uin=nil, sharddetail=nil, nodecount=nil, istmp=nil, exclusterid=nil, uniquevpcid=nil, uniquesubnetid=nil, id=nil, wandomain=nil, wanvip=nil, wanport=nil, pid=nil, updatetime=nil, dbengine=nil, dbversion=nil, paymode=nil, locker=nil, wanstatus=nil, isauditsupported=nil, cpu=nil, ipv6flag=nil, vipv6=nil, wanvipv6=nil, wanportipv6=nil, wanstatusipv6=nil, dcnflag=nil, dcnstatus=nil, dcndstnum=nil, instancetype=nil, resourcetags=nil)
           @InstanceId = instanceid
           @InstanceName = instancename
           @AppId = appid
@@ -893,6 +900,7 @@ module TencentCloud
           @DcnStatus = dcnstatus
           @DcnDstNum = dcndstnum
           @InstanceType = instancetype
+          @ResourceTags = resourcetags
         end
 
         def deserialize(params)
@@ -951,6 +959,14 @@ module TencentCloud
           @DcnStatus = params['DcnStatus']
           @DcnDstNum = params['DcnDstNum']
           @InstanceType = params['InstanceType']
+          unless params['ResourceTags'].nil?
+            @ResourceTags = []
+            params['ResourceTags'].each do |i|
+              resourcetag_tmp = ResourceTag.new
+              resourcetag_tmp.deserialize(i)
+              @ResourceTags << resourcetag_tmp
+            end
+          end
         end
       end
 
@@ -2512,13 +2528,16 @@ module TencentCloud
       class DescribeProjectSecurityGroupsResponse < TencentCloud::Common::AbstractModel
         # @param Groups: 安全组详情。
         # @type Groups: Array
+        # @param Total: 安全组个数。
+        # @type Total: Integer
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Groups, :RequestId
+        attr_accessor :Groups, :Total, :RequestId
         
-        def initialize(groups=nil, requestid=nil)
+        def initialize(groups=nil, total=nil, requestid=nil)
           @Groups = groups
+          @Total = total
           @RequestId = requestid
         end
 
@@ -2531,6 +2550,7 @@ module TencentCloud
               @Groups << securitygroup_tmp
             end
           end
+          @Total = params['Total']
           @RequestId = params['RequestId']
         end
       end
@@ -3780,27 +3800,27 @@ module TencentCloud
 
       # 安全出入口规则
       class SecurityGroupBound < TencentCloud::Common::AbstractModel
-        # @param Action: 策略，ACCEPT 或者 DROP
-        # @type Action: String
         # @param CidrIp: 来源 IP 或 IP 段，例如192.168.0.0/16
         # @type CidrIp: String
+        # @param Action: 策略，ACCEPT 或者 DROP
+        # @type Action: String
         # @param PortRange: 端口
         # @type PortRange: String
         # @param IpProtocol: 网络协议，支持 UDP、TCP 等
         # @type IpProtocol: String
 
-        attr_accessor :Action, :CidrIp, :PortRange, :IpProtocol
+        attr_accessor :CidrIp, :Action, :PortRange, :IpProtocol
         
-        def initialize(action=nil, cidrip=nil, portrange=nil, ipprotocol=nil)
-          @Action = action
+        def initialize(cidrip=nil, action=nil, portrange=nil, ipprotocol=nil)
           @CidrIp = cidrip
+          @Action = action
           @PortRange = portrange
           @IpProtocol = ipprotocol
         end
 
         def deserialize(params)
-          @Action = params['Action']
           @CidrIp = params['CidrIp']
+          @Action = params['Action']
           @PortRange = params['PortRange']
           @IpProtocol = params['IpProtocol']
         end

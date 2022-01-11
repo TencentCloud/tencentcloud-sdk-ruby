@@ -767,18 +767,18 @@ module TencentCloud
         # @type OpenId: String
         # @param PreReadTime: 合同的强制预览时间：3~300s，未指定则按合同页数计算
         # @type PreReadTime: Integer
-        # @param ComponentLimitType: 个人签署方指定签署控件类型，目前仅支持：OCR_ESIGN
+        # @param ComponentLimitType: 个人签署方指定签署控件类型，目前仅支持：OCR_ESIGN(AI智慧手写签名)
         # @type ComponentLimitType: Array
         # @param RecipientId: 流程签署人在模板中对应的签署人Id；在非单方签署、以及非B2C签署的场景下必传，用于指定当前签署方在流程中的位置；
         # @type RecipientId: String
+        # @param OrganizationName: 同一渠道下其他合作企业OpenId，签署人为非发起方企业员工场景下必传；
+        # @type OrganizationName: String
         # @param OrganizationOpenId: 同一渠道下其他合作企业OpenId，签署人为非发起方企业员工场景下必传；
         # @type OrganizationOpenId: String
-        # @param OrganizationName: 同一渠道下其他合作企业OpenId，B2B场景下必传；
-        # @type OrganizationName: String
 
-        attr_accessor :Name, :IdCardNumber, :Mobile, :JumpUrl, :Deadline, :CallbackUrl, :ApproverType, :OpenId, :PreReadTime, :ComponentLimitType, :RecipientId, :OrganizationOpenId, :OrganizationName
+        attr_accessor :Name, :IdCardNumber, :Mobile, :JumpUrl, :Deadline, :CallbackUrl, :ApproverType, :OpenId, :PreReadTime, :ComponentLimitType, :RecipientId, :OrganizationName, :OrganizationOpenId
         
-        def initialize(name=nil, idcardnumber=nil, mobile=nil, jumpurl=nil, deadline=nil, callbackurl=nil, approvertype=nil, openid=nil, prereadtime=nil, componentlimittype=nil, recipientid=nil, organizationopenid=nil, organizationname=nil)
+        def initialize(name=nil, idcardnumber=nil, mobile=nil, jumpurl=nil, deadline=nil, callbackurl=nil, approvertype=nil, openid=nil, prereadtime=nil, componentlimittype=nil, recipientid=nil, organizationname=nil, organizationopenid=nil)
           @Name = name
           @IdCardNumber = idcardnumber
           @Mobile = mobile
@@ -790,8 +790,8 @@ module TencentCloud
           @PreReadTime = prereadtime
           @ComponentLimitType = componentlimittype
           @RecipientId = recipientid
-          @OrganizationOpenId = organizationopenid
           @OrganizationName = organizationname
+          @OrganizationOpenId = organizationopenid
         end
 
         def deserialize(params)
@@ -806,8 +806,8 @@ module TencentCloud
           @PreReadTime = params['PreReadTime']
           @ComponentLimitType = params['ComponentLimitType']
           @RecipientId = params['RecipientId']
-          @OrganizationOpenId = params['OrganizationOpenId']
           @OrganizationName = params['OrganizationName']
+          @OrganizationOpenId = params['OrganizationOpenId']
         end
       end
 
@@ -1068,7 +1068,7 @@ module TencentCloud
         # @type Operator: :class:`Tencentcloud::Essbasic.v20210526.models.UserInfo`
         # @param AuthTag: 模板可见性, 全部可见-"all", 部分可见-"part"
         # @type AuthTag: String
-        # @param ProxyOrganizationOpenIds: 合作企业方第三方机构唯一标识数据
+        # @param ProxyOrganizationOpenIds: 合作企业方第三方机构唯一标识数据，支持多个， 用","进行分隔
         # @type ProxyOrganizationOpenIds: String
 
         attr_accessor :Agent, :TemplateId, :OperateType, :Operator, :AuthTag, :ProxyOrganizationOpenIds
@@ -1266,10 +1266,12 @@ module TencentCloud
         # @type SignType: Integer
         # @param RoutingOrder: 签署顺序：数字越小优先级越高
         # @type RoutingOrder: Integer
+        # @param IsPromoter: 是否是发起方
+        # @type IsPromoter: Boolean
 
-        attr_accessor :RecipientId, :RecipientType, :Description, :RoleName, :RequireValidation, :RequireSign, :SignType, :RoutingOrder
+        attr_accessor :RecipientId, :RecipientType, :Description, :RoleName, :RequireValidation, :RequireSign, :SignType, :RoutingOrder, :IsPromoter
         
-        def initialize(recipientid=nil, recipienttype=nil, description=nil, rolename=nil, requirevalidation=nil, requiresign=nil, signtype=nil, routingorder=nil)
+        def initialize(recipientid=nil, recipienttype=nil, description=nil, rolename=nil, requirevalidation=nil, requiresign=nil, signtype=nil, routingorder=nil, ispromoter=nil)
           @RecipientId = recipientid
           @RecipientType = recipienttype
           @Description = description
@@ -1278,6 +1280,7 @@ module TencentCloud
           @RequireSign = requiresign
           @SignType = signtype
           @RoutingOrder = routingorder
+          @IsPromoter = ispromoter
         end
 
         def deserialize(params)
@@ -1289,6 +1292,7 @@ module TencentCloud
           @RequireSign = params['RequireSign']
           @SignType = params['SignType']
           @RoutingOrder = params['RoutingOrder']
+          @IsPromoter = params['IsPromoter']
         end
       end
 

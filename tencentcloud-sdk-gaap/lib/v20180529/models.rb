@@ -61,10 +61,23 @@ module TencentCloud
         # @type RegionAreaName: String
         # @param IDCType: 机房类型, dc表示DataCenter数据中心, ec表示EdgeComputing边缘节点
         # @type IDCType: String
+        # @param FeatureBitmap: 特性位图，每个bit位代表一种特性，其中：
+        # 0，表示不支持该特性；
+        # 1，表示支持该特性。
+        # 特性位图含义如下（从右往左）：
+        # 第1个bit，支持4层加速；
+        # 第2个bit，支持7层加速；
+        # 第3个bit，支持Http3接入；
+        # 第4个bit，支持IPv6；
+        # 第5个bit，支持精品BGP接入；
+        # 第6个bit，支持三网接入；
+        # 第7个bit，支持接入段Qos加速。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FeatureBitmap: Integer
 
-        attr_accessor :RegionId, :RegionName, :ConcurrentList, :BandwidthList, :RegionArea, :RegionAreaName, :IDCType
+        attr_accessor :RegionId, :RegionName, :ConcurrentList, :BandwidthList, :RegionArea, :RegionAreaName, :IDCType, :FeatureBitmap
         
-        def initialize(regionid=nil, regionname=nil, concurrentlist=nil, bandwidthlist=nil, regionarea=nil, regionareaname=nil, idctype=nil)
+        def initialize(regionid=nil, regionname=nil, concurrentlist=nil, bandwidthlist=nil, regionarea=nil, regionareaname=nil, idctype=nil, featurebitmap=nil)
           @RegionId = regionid
           @RegionName = regionname
           @ConcurrentList = concurrentlist
@@ -72,6 +85,7 @@ module TencentCloud
           @RegionArea = regionarea
           @RegionAreaName = regionareaname
           @IDCType = idctype
+          @FeatureBitmap = featurebitmap
         end
 
         def deserialize(params)
@@ -82,6 +96,7 @@ module TencentCloud
           @RegionArea = params['RegionArea']
           @RegionAreaName = params['RegionAreaName']
           @IDCType = params['IDCType']
+          @FeatureBitmap = params['FeatureBitmap']
         end
       end
 
@@ -511,10 +526,12 @@ module TencentCloud
         # @type NetworkType: String
         # @param PackageType: 通道套餐类型。Thunder表示标准通道组，Accelerator表示游戏加速器通道，CrossBorder表示跨境通道。
         # @type PackageType: String
+        # @param Http3Supported: 支持Http3的开关，其中：0，表示不需要支持Http3接入；1，表示需要支持Http3接入。注意：如果开启了Http3的功能，那么该通道就不再支持TCP/UDP接入的功能。该功能的启停无法在通道创建完毕后再修改。
+        # @type Http3Supported: Integer
 
-        attr_accessor :AccessRegion, :RealServerRegion, :Bandwidth, :Concurrent, :GroupId, :IPAddressVersion, :NetworkType, :PackageType
+        attr_accessor :AccessRegion, :RealServerRegion, :Bandwidth, :Concurrent, :GroupId, :IPAddressVersion, :NetworkType, :PackageType, :Http3Supported
         
-        def initialize(accessregion=nil, realserverregion=nil, bandwidth=nil, concurrent=nil, groupid=nil, ipaddressversion=nil, networktype=nil, packagetype=nil)
+        def initialize(accessregion=nil, realserverregion=nil, bandwidth=nil, concurrent=nil, groupid=nil, ipaddressversion=nil, networktype=nil, packagetype=nil, http3supported=nil)
           @AccessRegion = accessregion
           @RealServerRegion = realserverregion
           @Bandwidth = bandwidth
@@ -523,6 +540,7 @@ module TencentCloud
           @IPAddressVersion = ipaddressversion
           @NetworkType = networktype
           @PackageType = packagetype
+          @Http3Supported = http3supported
         end
 
         def deserialize(params)
@@ -534,6 +552,7 @@ module TencentCloud
           @IPAddressVersion = params['IPAddressVersion']
           @NetworkType = params['NetworkType']
           @PackageType = params['PackageType']
+          @Http3Supported = params['Http3Supported']
         end
       end
 
@@ -901,15 +920,21 @@ module TencentCloud
         # @param PolyClientCertificateIds: 客户端CA证书，用于客户端与GAAP的HTTPS的交互。
         # 仅当采用双向认证的方式时，需要设置该字段或ClientCertificateId字段。
         # @type PolyClientCertificateIds: Array
+        # @param Http3Supported: 是否开启Http3特性的标识，其中：
+        # 0，表示不开启Http3；
+        # 1，表示开启Http3。
+        # 默认不开启Http3。可以通过SetDomainHttp3开启。
+        # @type Http3Supported: Integer
 
-        attr_accessor :ListenerId, :Domain, :CertificateId, :ClientCertificateId, :PolyClientCertificateIds
+        attr_accessor :ListenerId, :Domain, :CertificateId, :ClientCertificateId, :PolyClientCertificateIds, :Http3Supported
         
-        def initialize(listenerid=nil, domain=nil, certificateid=nil, clientcertificateid=nil, polyclientcertificateids=nil)
+        def initialize(listenerid=nil, domain=nil, certificateid=nil, clientcertificateid=nil, polyclientcertificateids=nil, http3supported=nil)
           @ListenerId = listenerid
           @Domain = domain
           @CertificateId = certificateid
           @ClientCertificateId = clientcertificateid
           @PolyClientCertificateIds = polyclientcertificateids
+          @Http3Supported = http3supported
         end
 
         def deserialize(params)
@@ -918,6 +943,7 @@ module TencentCloud
           @CertificateId = params['CertificateId']
           @ClientCertificateId = params['ClientCertificateId']
           @PolyClientCertificateIds = params['PolyClientCertificateIds']
+          @Http3Supported = params['Http3Supported']
         end
       end
 
@@ -1008,10 +1034,16 @@ module TencentCloud
         # @type PolyClientCertificateIds: Array
         # @param GroupId: 通道组ID，与ProxyId之间只能设置一个。表示创建通道组的监听器。
         # @type GroupId: String
+        # @param Http3Supported: 支持Http3的开关，其中：
+        # 0，表示不需要支持Http3接入；
+        # 1，表示需要支持Http3接入。
+        # 注意：如果支持了Http3的功能，那么该监听器会占用对应的UDP接入端口，不可再创建相同端口的UDP监听器。
+        # 该功能的启停无法在监听器创建完毕后再修改。
+        # @type Http3Supported: Integer
 
-        attr_accessor :ListenerName, :Port, :CertificateId, :ForwardProtocol, :ProxyId, :AuthType, :ClientCertificateId, :PolyClientCertificateIds, :GroupId
+        attr_accessor :ListenerName, :Port, :CertificateId, :ForwardProtocol, :ProxyId, :AuthType, :ClientCertificateId, :PolyClientCertificateIds, :GroupId, :Http3Supported
         
-        def initialize(listenername=nil, port=nil, certificateid=nil, forwardprotocol=nil, proxyid=nil, authtype=nil, clientcertificateid=nil, polyclientcertificateids=nil, groupid=nil)
+        def initialize(listenername=nil, port=nil, certificateid=nil, forwardprotocol=nil, proxyid=nil, authtype=nil, clientcertificateid=nil, polyclientcertificateids=nil, groupid=nil, http3supported=nil)
           @ListenerName = listenername
           @Port = port
           @CertificateId = certificateid
@@ -1021,6 +1053,7 @@ module TencentCloud
           @ClientCertificateId = clientcertificateid
           @PolyClientCertificateIds = polyclientcertificateids
           @GroupId = groupid
+          @Http3Supported = http3supported
         end
 
         def deserialize(params)
@@ -1033,6 +1066,7 @@ module TencentCloud
           @ClientCertificateId = params['ClientCertificateId']
           @PolyClientCertificateIds = params['PolyClientCertificateIds']
           @GroupId = params['GroupId']
+          @Http3Supported = params['Http3Supported']
         end
       end
 
@@ -1108,10 +1142,16 @@ module TencentCloud
         # @type IPAddressVersion: String
         # @param PackageType: 通道组套餐类型，可取值：Thunder、Accelerator，默认值Thunder
         # @type PackageType: String
+        # @param Http3Supported: 支持Http3的开关，其中：
+        # 0，表示不需要支持Http3接入；
+        # 1，表示需要支持Http3接入。
+        # 注意：如果开启了Http3的功能，那么该通道组就不再支持TCP/UDP接入的功能。
+        # 该功能的启停无法在通道组创建完毕后再修改。
+        # @type Http3Supported: Integer
 
-        attr_accessor :ProjectId, :GroupName, :RealServerRegion, :TagSet, :AccessRegionSet, :IPAddressVersion, :PackageType
+        attr_accessor :ProjectId, :GroupName, :RealServerRegion, :TagSet, :AccessRegionSet, :IPAddressVersion, :PackageType, :Http3Supported
         
-        def initialize(projectid=nil, groupname=nil, realserverregion=nil, tagset=nil, accessregionset=nil, ipaddressversion=nil, packagetype=nil)
+        def initialize(projectid=nil, groupname=nil, realserverregion=nil, tagset=nil, accessregionset=nil, ipaddressversion=nil, packagetype=nil, http3supported=nil)
           @ProjectId = projectid
           @GroupName = groupname
           @RealServerRegion = realserverregion
@@ -1119,6 +1159,7 @@ module TencentCloud
           @AccessRegionSet = accessregionset
           @IPAddressVersion = ipaddressversion
           @PackageType = packagetype
+          @Http3Supported = http3supported
         end
 
         def deserialize(params)
@@ -1143,6 +1184,7 @@ module TencentCloud
           end
           @IPAddressVersion = params['IPAddressVersion']
           @PackageType = params['PackageType']
+          @Http3Supported = params['Http3Supported']
         end
       end
 
@@ -1198,10 +1240,12 @@ module TencentCloud
         # @type NetworkType: String
         # @param PackageType: 通道套餐类型，Thunder表示标准通道组，Accelerator表示游戏加速器通道，CrossBorder表示跨境通道。
         # @type PackageType: String
+        # @param Http3Supported: 支持Http3的开关，其中：0，表示不需要支持Http3接入；1，表示需要支持Http3接入。注意：如果开启了Http3的功能，那么该通道就不再支持TCP/UDP接入的功能。该功能的启停无法在通道创建完毕后再修改。
+        # @type Http3Supported: Integer
 
-        attr_accessor :ProjectId, :ProxyName, :AccessRegion, :Bandwidth, :Concurrent, :RealServerRegion, :ClientToken, :GroupId, :TagSet, :ClonedProxyId, :BillingType, :IPAddressVersion, :NetworkType, :PackageType
+        attr_accessor :ProjectId, :ProxyName, :AccessRegion, :Bandwidth, :Concurrent, :RealServerRegion, :ClientToken, :GroupId, :TagSet, :ClonedProxyId, :BillingType, :IPAddressVersion, :NetworkType, :PackageType, :Http3Supported
         
-        def initialize(projectid=nil, proxyname=nil, accessregion=nil, bandwidth=nil, concurrent=nil, realserverregion=nil, clienttoken=nil, groupid=nil, tagset=nil, clonedproxyid=nil, billingtype=nil, ipaddressversion=nil, networktype=nil, packagetype=nil)
+        def initialize(projectid=nil, proxyname=nil, accessregion=nil, bandwidth=nil, concurrent=nil, realserverregion=nil, clienttoken=nil, groupid=nil, tagset=nil, clonedproxyid=nil, billingtype=nil, ipaddressversion=nil, networktype=nil, packagetype=nil, http3supported=nil)
           @ProjectId = projectid
           @ProxyName = proxyname
           @AccessRegion = accessregion
@@ -1216,6 +1260,7 @@ module TencentCloud
           @IPAddressVersion = ipaddressversion
           @NetworkType = networktype
           @PackageType = packagetype
+          @Http3Supported = http3supported
         end
 
         def deserialize(params)
@@ -1240,6 +1285,7 @@ module TencentCloud
           @IPAddressVersion = params['IPAddressVersion']
           @NetworkType = params['NetworkType']
           @PackageType = params['PackageType']
+          @Http3Supported = params['Http3Supported']
         end
       end
 
@@ -2523,10 +2569,16 @@ module TencentCloud
         # @type SearchValue: String
         # @param GroupId: 过滤条件，通道组ID
         # @type GroupId: String
+        # @param Http3Supported: 支持Http3的开关，其中：
+        # 0，表示不需要支持Http3接入；
+        # 1，表示需要支持Http3接入。
+        # 注意：如果支持了Http3的功能，那么该监听器会占用对应的UDP接入端口，不可再创建相同端口的UDP监听器。
+        # 该功能的启停无法在监听器创建完毕后再修改。
+        # @type Http3Supported: Integer
 
-        attr_accessor :ProxyId, :ListenerId, :ListenerName, :Port, :Offset, :Limit, :SearchValue, :GroupId
+        attr_accessor :ProxyId, :ListenerId, :ListenerName, :Port, :Offset, :Limit, :SearchValue, :GroupId, :Http3Supported
         
-        def initialize(proxyid=nil, listenerid=nil, listenername=nil, port=nil, offset=nil, limit=nil, searchvalue=nil, groupid=nil)
+        def initialize(proxyid=nil, listenerid=nil, listenername=nil, port=nil, offset=nil, limit=nil, searchvalue=nil, groupid=nil, http3supported=nil)
           @ProxyId = proxyid
           @ListenerId = listenerid
           @ListenerName = listenername
@@ -2535,6 +2587,7 @@ module TencentCloud
           @Limit = limit
           @SearchValue = searchvalue
           @GroupId = groupid
+          @Http3Supported = http3supported
         end
 
         def deserialize(params)
@@ -2546,6 +2599,7 @@ module TencentCloud
           @Limit = params['Limit']
           @SearchValue = params['SearchValue']
           @GroupId = params['GroupId']
+          @Http3Supported = params['Http3Supported']
         end
       end
 
@@ -4209,10 +4263,15 @@ module TencentCloud
         # @param BanStatus: 封禁解封状态：BANNED表示已封禁，RECOVER表示已解封或未封禁，BANNING表示封禁中，RECOVERING表示解封中，BAN_FAILED表示封禁失败，RECOVER_FAILED表示解封失败。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BanStatus: String
+        # @param Http3Supported: Http3特性标识，其中：
+        # 0表示关闭；
+        # 1表示启用。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Http3Supported: Integer
 
-        attr_accessor :Domain, :RuleSet, :CertificateId, :CertificateAlias, :ClientCertificateId, :ClientCertificateAlias, :BasicAuthConfId, :BasicAuth, :BasicAuthConfAlias, :RealServerCertificateId, :RealServerAuth, :RealServerCertificateAlias, :GaapCertificateId, :GaapAuth, :GaapCertificateAlias, :RealServerCertificateDomain, :PolyClientCertificateAliasInfo, :PolyRealServerCertificateAliasInfo, :DomainStatus, :BanStatus
+        attr_accessor :Domain, :RuleSet, :CertificateId, :CertificateAlias, :ClientCertificateId, :ClientCertificateAlias, :BasicAuthConfId, :BasicAuth, :BasicAuthConfAlias, :RealServerCertificateId, :RealServerAuth, :RealServerCertificateAlias, :GaapCertificateId, :GaapAuth, :GaapCertificateAlias, :RealServerCertificateDomain, :PolyClientCertificateAliasInfo, :PolyRealServerCertificateAliasInfo, :DomainStatus, :BanStatus, :Http3Supported
         
-        def initialize(domain=nil, ruleset=nil, certificateid=nil, certificatealias=nil, clientcertificateid=nil, clientcertificatealias=nil, basicauthconfid=nil, basicauth=nil, basicauthconfalias=nil, realservercertificateid=nil, realserverauth=nil, realservercertificatealias=nil, gaapcertificateid=nil, gaapauth=nil, gaapcertificatealias=nil, realservercertificatedomain=nil, polyclientcertificatealiasinfo=nil, polyrealservercertificatealiasinfo=nil, domainstatus=nil, banstatus=nil)
+        def initialize(domain=nil, ruleset=nil, certificateid=nil, certificatealias=nil, clientcertificateid=nil, clientcertificatealias=nil, basicauthconfid=nil, basicauth=nil, basicauthconfalias=nil, realservercertificateid=nil, realserverauth=nil, realservercertificatealias=nil, gaapcertificateid=nil, gaapauth=nil, gaapcertificatealias=nil, realservercertificatedomain=nil, polyclientcertificatealiasinfo=nil, polyrealservercertificatealiasinfo=nil, domainstatus=nil, banstatus=nil, http3supported=nil)
           @Domain = domain
           @RuleSet = ruleset
           @CertificateId = certificateid
@@ -4233,6 +4292,7 @@ module TencentCloud
           @PolyRealServerCertificateAliasInfo = polyrealservercertificatealiasinfo
           @DomainStatus = domainstatus
           @BanStatus = banstatus
+          @Http3Supported = http3supported
         end
 
         def deserialize(params)
@@ -4277,6 +4337,7 @@ module TencentCloud
           end
           @DomainStatus = params['DomainStatus']
           @BanStatus = params['BanStatus']
+          @Http3Supported = params['Http3Supported']
         end
       end
 
@@ -4521,10 +4582,12 @@ module TencentCloud
         # @type NetworkType: String
         # @param PackageType: 通道套餐类型，Thunder表示标准通道组，Accelerator表示游戏加速器通道，CrossBorder表示跨境通道。
         # @type PackageType: String
+        # @param Http3Supported: 支持Http3的开关，其中：0，表示不需要支持Http3接入；1，表示需要支持Http3接入。注意：如果开启了Http3的功能，那么该通道就不再支持TCP/UDP接入的功能。该功能的启停无法在通道创建完毕后再修改。
+        # @type Http3Supported: Integer
 
-        attr_accessor :AccessRegion, :Bandwidth, :DestRegion, :Concurrency, :RealServerRegion, :Concurrent, :BillingType, :IPAddressVersion, :NetworkType, :PackageType
+        attr_accessor :AccessRegion, :Bandwidth, :DestRegion, :Concurrency, :RealServerRegion, :Concurrent, :BillingType, :IPAddressVersion, :NetworkType, :PackageType, :Http3Supported
         
-        def initialize(accessregion=nil, bandwidth=nil, destregion=nil, concurrency=nil, realserverregion=nil, concurrent=nil, billingtype=nil, ipaddressversion=nil, networktype=nil, packagetype=nil)
+        def initialize(accessregion=nil, bandwidth=nil, destregion=nil, concurrency=nil, realserverregion=nil, concurrent=nil, billingtype=nil, ipaddressversion=nil, networktype=nil, packagetype=nil, http3supported=nil)
           @AccessRegion = accessregion
           @Bandwidth = bandwidth
           @DestRegion = destregion
@@ -4535,6 +4598,7 @@ module TencentCloud
           @IPAddressVersion = ipaddressversion
           @NetworkType = networktype
           @PackageType = packagetype
+          @Http3Supported = http3supported
         end
 
         def deserialize(params)
@@ -4548,6 +4612,7 @@ module TencentCloud
           @IPAddressVersion = params['IPAddressVersion']
           @NetworkType = params['NetworkType']
           @PackageType = params['PackageType']
+          @Http3Supported = params['Http3Supported']
         end
       end
 
@@ -5644,13 +5709,18 @@ module TencentCloud
         # @param IPAddressVersion: IP版本，可取值：IPv4、IPv6，默认值IPv4
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IPAddressVersion: String
-        # @param PackageType: 通道组套餐类型：Thunder表示标准通道组，Accelerator表示游戏加速器通道组。
+        # @param PackageType: 通道组套餐类型：Thunder表示标准通道组，Accelerator表示游戏加速器通道组，CrossBorder表示跨境通道组。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PackageType: String
+        # @param Http3Supported: 支持Http3特性的标识，其中：
+        # 0表示关闭；
+        # 1表示启用。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Http3Supported: Integer
 
-        attr_accessor :CreateTime, :ProjectId, :ProxyNum, :Status, :OwnerUin, :CreateUin, :GroupName, :DnsDefaultIp, :Domain, :RealServerRegionInfo, :IsOldGroup, :GroupId, :TagSet, :PolicyId, :Version, :ClientIPMethod, :IPAddressVersion, :PackageType
+        attr_accessor :CreateTime, :ProjectId, :ProxyNum, :Status, :OwnerUin, :CreateUin, :GroupName, :DnsDefaultIp, :Domain, :RealServerRegionInfo, :IsOldGroup, :GroupId, :TagSet, :PolicyId, :Version, :ClientIPMethod, :IPAddressVersion, :PackageType, :Http3Supported
         
-        def initialize(createtime=nil, projectid=nil, proxynum=nil, status=nil, owneruin=nil, createuin=nil, groupname=nil, dnsdefaultip=nil, domain=nil, realserverregioninfo=nil, isoldgroup=nil, groupid=nil, tagset=nil, policyid=nil, version=nil, clientipmethod=nil, ipaddressversion=nil, packagetype=nil)
+        def initialize(createtime=nil, projectid=nil, proxynum=nil, status=nil, owneruin=nil, createuin=nil, groupname=nil, dnsdefaultip=nil, domain=nil, realserverregioninfo=nil, isoldgroup=nil, groupid=nil, tagset=nil, policyid=nil, version=nil, clientipmethod=nil, ipaddressversion=nil, packagetype=nil, http3supported=nil)
           @CreateTime = createtime
           @ProjectId = projectid
           @ProxyNum = proxynum
@@ -5669,6 +5739,7 @@ module TencentCloud
           @ClientIPMethod = clientipmethod
           @IPAddressVersion = ipaddressversion
           @PackageType = packagetype
+          @Http3Supported = http3supported
         end
 
         def deserialize(params)
@@ -5700,6 +5771,7 @@ module TencentCloud
           @ClientIPMethod = params['ClientIPMethod']
           @IPAddressVersion = params['IPAddressVersion']
           @PackageType = params['PackageType']
+          @Http3Supported = params['Http3Supported']
         end
       end
 
@@ -5735,10 +5807,15 @@ module TencentCloud
         # @param ProxyType: 通道组是否包含微软通道
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProxyType: Integer
+        # @param Http3Supported: 支持Http3特性的标识，其中：
+        # 0，表示不支持Http3；
+        # 1，表示支持Http3。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Http3Supported: Integer
 
-        attr_accessor :GroupId, :Domain, :GroupName, :ProjectId, :RealServerRegionInfo, :Status, :TagSet, :Version, :CreateTime, :ProxyType
+        attr_accessor :GroupId, :Domain, :GroupName, :ProjectId, :RealServerRegionInfo, :Status, :TagSet, :Version, :CreateTime, :ProxyType, :Http3Supported
         
-        def initialize(groupid=nil, domain=nil, groupname=nil, projectid=nil, realserverregioninfo=nil, status=nil, tagset=nil, version=nil, createtime=nil, proxytype=nil)
+        def initialize(groupid=nil, domain=nil, groupname=nil, projectid=nil, realserverregioninfo=nil, status=nil, tagset=nil, version=nil, createtime=nil, proxytype=nil, http3supported=nil)
           @GroupId = groupid
           @Domain = domain
           @GroupName = groupname
@@ -5749,6 +5826,7 @@ module TencentCloud
           @Version = version
           @CreateTime = createtime
           @ProxyType = proxytype
+          @Http3Supported = http3supported
         end
 
         def deserialize(params)
@@ -5772,6 +5850,7 @@ module TencentCloud
           @Version = params['Version']
           @CreateTime = params['CreateTime']
           @ProxyType = params['ProxyType']
+          @Http3Supported = params['Http3Supported']
         end
       end
 
@@ -5886,10 +5965,15 @@ module TencentCloud
         # @param IPList: IP列表
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IPList: Array
+        # @param Http3Supported: 支持Http3协议的标识，其中：
+        # 0表示关闭；
+        # 1表示启用。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Http3Supported: Integer
 
-        attr_accessor :InstanceId, :CreateTime, :ProjectId, :ProxyName, :AccessRegion, :RealServerRegion, :Bandwidth, :Concurrent, :Status, :Domain, :IP, :Version, :ProxyId, :Scalarable, :SupportProtocols, :GroupId, :PolicyId, :AccessRegionInfo, :RealServerRegionInfo, :ForwardIP, :TagSet, :SupportSecurity, :BillingType, :RelatedGlobalDomains, :ModifyConfigTime, :ProxyType, :ClientIPMethod, :IPAddressVersion, :NetworkType, :PackageType, :BanStatus, :IPList
+        attr_accessor :InstanceId, :CreateTime, :ProjectId, :ProxyName, :AccessRegion, :RealServerRegion, :Bandwidth, :Concurrent, :Status, :Domain, :IP, :Version, :ProxyId, :Scalarable, :SupportProtocols, :GroupId, :PolicyId, :AccessRegionInfo, :RealServerRegionInfo, :ForwardIP, :TagSet, :SupportSecurity, :BillingType, :RelatedGlobalDomains, :ModifyConfigTime, :ProxyType, :ClientIPMethod, :IPAddressVersion, :NetworkType, :PackageType, :BanStatus, :IPList, :Http3Supported
         
-        def initialize(instanceid=nil, createtime=nil, projectid=nil, proxyname=nil, accessregion=nil, realserverregion=nil, bandwidth=nil, concurrent=nil, status=nil, domain=nil, ip=nil, version=nil, proxyid=nil, scalarable=nil, supportprotocols=nil, groupid=nil, policyid=nil, accessregioninfo=nil, realserverregioninfo=nil, forwardip=nil, tagset=nil, supportsecurity=nil, billingtype=nil, relatedglobaldomains=nil, modifyconfigtime=nil, proxytype=nil, clientipmethod=nil, ipaddressversion=nil, networktype=nil, packagetype=nil, banstatus=nil, iplist=nil)
+        def initialize(instanceid=nil, createtime=nil, projectid=nil, proxyname=nil, accessregion=nil, realserverregion=nil, bandwidth=nil, concurrent=nil, status=nil, domain=nil, ip=nil, version=nil, proxyid=nil, scalarable=nil, supportprotocols=nil, groupid=nil, policyid=nil, accessregioninfo=nil, realserverregioninfo=nil, forwardip=nil, tagset=nil, supportsecurity=nil, billingtype=nil, relatedglobaldomains=nil, modifyconfigtime=nil, proxytype=nil, clientipmethod=nil, ipaddressversion=nil, networktype=nil, packagetype=nil, banstatus=nil, iplist=nil, http3supported=nil)
           @InstanceId = instanceid
           @CreateTime = createtime
           @ProjectId = projectid
@@ -5922,6 +6006,7 @@ module TencentCloud
           @PackageType = packagetype
           @BanStatus = banstatus
           @IPList = iplist
+          @Http3Supported = http3supported
         end
 
         def deserialize(params)
@@ -5977,6 +6062,7 @@ module TencentCloud
               @IPList << ipdetail_tmp
             end
           end
+          @Http3Supported = params['Http3Supported']
         end
       end
 
@@ -6142,15 +6228,29 @@ module TencentCloud
         # @type RegionAreaName: String
         # @param IDCType: 机房类型, dc表示DataCenter数据中心, ec表示EdgeComputing边缘节点
         # @type IDCType: String
+        # @param FeatureBitmap: 特性位图，每个bit位代表一种特性，其中：
+        # 0，表示不支持该特性；
+        # 1，表示支持该特性。
+        # 特性位图含义如下（从右往左）：
+        # 第1个bit，支持4层加速；
+        # 第2个bit，支持7层加速；
+        # 第3个bit，支持Http3接入；
+        # 第4个bit，支持IPv6；
+        # 第5个bit，支持精品BGP接入；
+        # 第6个bit，支持三网接入；
+        # 第7个bit，支持接入段Qos加速。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FeatureBitmap: Integer
 
-        attr_accessor :RegionId, :RegionName, :RegionArea, :RegionAreaName, :IDCType
+        attr_accessor :RegionId, :RegionName, :RegionArea, :RegionAreaName, :IDCType, :FeatureBitmap
         
-        def initialize(regionid=nil, regionname=nil, regionarea=nil, regionareaname=nil, idctype=nil)
+        def initialize(regionid=nil, regionname=nil, regionarea=nil, regionareaname=nil, idctype=nil, featurebitmap=nil)
           @RegionId = regionid
           @RegionName = regionname
           @RegionArea = regionarea
           @RegionAreaName = regionareaname
           @IDCType = idctype
+          @FeatureBitmap = featurebitmap
         end
 
         def deserialize(params)
@@ -6159,6 +6259,7 @@ module TencentCloud
           @RegionArea = params['RegionArea']
           @RegionAreaName = params['RegionAreaName']
           @IDCType = params['IDCType']
+          @FeatureBitmap = params['FeatureBitmap']
         end
       end
 

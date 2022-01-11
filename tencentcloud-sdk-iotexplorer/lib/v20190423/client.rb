@@ -29,6 +29,54 @@ module TencentCloud
         end
 
 
+        # 批量绑定子设备
+
+        # @param request: Request instance for BindDevices.
+        # @type request: :class:`Tencentcloud::iotexplorer::V20190423::BindDevicesRequest`
+        # @rtype: :class:`Tencentcloud::iotexplorer::V20190423::BindDevicesResponse`
+        def BindDevices(request)
+          body = send_request('BindDevices', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = BindDevicesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 批量绑定子产品
+
+        # @param request: Request instance for BindProducts.
+        # @type request: :class:`Tencentcloud::iotexplorer::V20190423::BindProductsRequest`
+        # @rtype: :class:`Tencentcloud::iotexplorer::V20190423::BindProductsResponse`
+        def BindProducts(request)
+          body = send_request('BindProducts', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = BindProductsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 提供给用户异步调用设备行为的能力
 
         # @param request: Request instance for CallDeviceActionAsync.
@@ -653,6 +701,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 获取网关产品已经绑定的子产品
+
+        # @param request: Request instance for DescribeBindedProducts.
+        # @type request: :class:`Tencentcloud::iotexplorer::V20190423::DescribeBindedProductsRequest`
+        # @rtype: :class:`Tencentcloud::iotexplorer::V20190423::DescribeBindedProductsResponse`
+        def DescribeBindedProducts(request)
+          body = send_request('DescribeBindedProducts', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeBindedProductsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 用于查看某个设备的详细信息
 
         # @param request: Request instance for DescribeDevice.
@@ -663,6 +735,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeDeviceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询设备绑定的网关设备
+
+        # @param request: Request instance for DescribeDeviceBindGateway.
+        # @type request: :class:`Tencentcloud::iotexplorer::V20190423::DescribeDeviceBindGatewayRequest`
+        # @rtype: :class:`Tencentcloud::iotexplorer::V20190423::DescribeDeviceBindGatewayResponse`
+        def DescribeDeviceBindGateway(request)
+          body = send_request('DescribeDeviceBindGateway', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeDeviceBindGatewayResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -807,6 +903,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeFirmwareTaskResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取网关绑定的子设备列表
+
+        # @param request: Request instance for DescribeGatewayBindDevices.
+        # @type request: :class:`Tencentcloud::iotexplorer::V20190423::DescribeGatewayBindDevicesRequest`
+        # @rtype: :class:`Tencentcloud::iotexplorer::V20190423::DescribeGatewayBindDevicesResponse`
+        def DescribeGatewayBindDevices(request)
+          body = send_request('DescribeGatewayBindDevices', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeGatewayBindDevicesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 用于获取网关可绑定或解绑的子产品
+
+        # @param request: Request instance for DescribeGatewaySubProducts.
+        # @type request: :class:`Tencentcloud::iotexplorer::V20190423::DescribeGatewaySubProductsRequest`
+        # @rtype: :class:`Tencentcloud::iotexplorer::V20190423::DescribeGatewaySubProductsResponse`
+        def DescribeGatewaySubProducts(request)
+          body = send_request('DescribeGatewaySubProducts', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeGatewaySubProductsResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1215,6 +1359,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = GetFamilyDeviceUserListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取指定网关设备的子设备列表
+
+        # @param request: Request instance for GetGatewaySubDeviceList.
+        # @type request: :class:`Tencentcloud::iotexplorer::V20190423::GetGatewaySubDeviceListRequest`
+        # @rtype: :class:`Tencentcloud::iotexplorer::V20190423::GetGatewaySubDeviceListResponse`
+        def GetGatewaySubDeviceList(request)
+          body = send_request('GetGatewaySubDeviceList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = GetGatewaySubDeviceListResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1815,6 +1983,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = SearchTopicRuleResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 批量解绑子设备
+
+        # @param request: Request instance for UnbindDevices.
+        # @type request: :class:`Tencentcloud::iotexplorer::V20190423::UnbindDevicesRequest`
+        # @rtype: :class:`Tencentcloud::iotexplorer::V20190423::UnbindDevicesResponse`
+        def UnbindDevices(request)
+          body = send_request('UnbindDevices', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = UnbindDevicesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 批量解绑子产品
+
+        # @param request: Request instance for UnbindProducts.
+        # @type request: :class:`Tencentcloud::iotexplorer::V20190423::UnbindProductsRequest`
+        # @rtype: :class:`Tencentcloud::iotexplorer::V20190423::UnbindProductsResponse`
+        def UnbindProducts(request)
+          body = send_request('UnbindProducts', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = UnbindProductsResponse.new
             model.deserialize(response['Response'])
             model
           else

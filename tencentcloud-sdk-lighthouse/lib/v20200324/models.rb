@@ -3210,10 +3210,12 @@ module TencentCloud
         # @type OsName: String
         # @param Zone: 可用区。
         # @type Zone: String
+        # @param Tags: 实例绑定的标签列表。
+        # @type Tags: Array
 
-        attr_accessor :InstanceId, :BundleId, :BlueprintId, :CPU, :Memory, :InstanceName, :InstanceChargeType, :SystemDisk, :PrivateAddresses, :PublicAddresses, :InternetAccessible, :RenewFlag, :LoginSettings, :InstanceState, :Uuid, :LatestOperation, :LatestOperationState, :LatestOperationRequestId, :IsolatedTime, :CreatedTime, :ExpiredTime, :PlatformType, :Platform, :OsName, :Zone
+        attr_accessor :InstanceId, :BundleId, :BlueprintId, :CPU, :Memory, :InstanceName, :InstanceChargeType, :SystemDisk, :PrivateAddresses, :PublicAddresses, :InternetAccessible, :RenewFlag, :LoginSettings, :InstanceState, :Uuid, :LatestOperation, :LatestOperationState, :LatestOperationRequestId, :IsolatedTime, :CreatedTime, :ExpiredTime, :PlatformType, :Platform, :OsName, :Zone, :Tags
         
-        def initialize(instanceid=nil, bundleid=nil, blueprintid=nil, cpu=nil, memory=nil, instancename=nil, instancechargetype=nil, systemdisk=nil, privateaddresses=nil, publicaddresses=nil, internetaccessible=nil, renewflag=nil, loginsettings=nil, instancestate=nil, uuid=nil, latestoperation=nil, latestoperationstate=nil, latestoperationrequestid=nil, isolatedtime=nil, createdtime=nil, expiredtime=nil, platformtype=nil, platform=nil, osname=nil, zone=nil)
+        def initialize(instanceid=nil, bundleid=nil, blueprintid=nil, cpu=nil, memory=nil, instancename=nil, instancechargetype=nil, systemdisk=nil, privateaddresses=nil, publicaddresses=nil, internetaccessible=nil, renewflag=nil, loginsettings=nil, instancestate=nil, uuid=nil, latestoperation=nil, latestoperationstate=nil, latestoperationrequestid=nil, isolatedtime=nil, createdtime=nil, expiredtime=nil, platformtype=nil, platform=nil, osname=nil, zone=nil, tags=nil)
           @InstanceId = instanceid
           @BundleId = bundleid
           @BlueprintId = blueprintid
@@ -3239,6 +3241,7 @@ module TencentCloud
           @Platform = platform
           @OsName = osname
           @Zone = zone
+          @Tags = tags
         end
 
         def deserialize(params)
@@ -3276,6 +3279,14 @@ module TencentCloud
           @Platform = params['Platform']
           @OsName = params['OsName']
           @Zone = params['Zone']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
+            end
+          end
         end
       end
 
@@ -4383,6 +4394,26 @@ module TencentCloud
           @DiskType = params['DiskType']
           @DiskSize = params['DiskSize']
           @DiskId = params['DiskId']
+        end
+      end
+
+      # 标签
+      class Tag < TencentCloud::Common::AbstractModel
+        # @param Key: 标签键
+        # @type Key: String
+        # @param Value: 标签值
+        # @type Value: String
+
+        attr_accessor :Key, :Value
+        
+        def initialize(key=nil, value=nil)
+          @Key = key
+          @Value = value
+        end
+
+        def deserialize(params)
+          @Key = params['Key']
+          @Value = params['Value']
         end
       end
 

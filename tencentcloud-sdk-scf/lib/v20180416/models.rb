@@ -2080,7 +2080,7 @@ module TencentCloud
         # @type Namespace: String
         # @param StartTime: 查询的开始时间，例如：2017-05-16 20:00:00，不填默认为当前时间 - 15min
         # @type StartTime: String
-        # @param EndTime: 查询的结束时间，例如：2017-05-16 20:59:59，不填默认为当前时间。EndTime 需要晚于 StartTime。
+        # @param EndTime: 查询的结束时间，例如：2017-05-16 20:59:59。StartTime 为空时，EndTime 默认为当前时间；StartTime 有值时，需要同时传 EndTime。EndTime 需要晚于 StartTime。
         # @type EndTime: String
 
         attr_accessor :FunctionName, :FunctionRequestId, :Namespace, :StartTime, :EndTime
@@ -2383,9 +2383,9 @@ module TencentCloud
 
       # 指定某个Layer版本
       class LayerVersionSimple < TencentCloud::Common::AbstractModel
-        # @param LayerName: layer名称
+        # @param LayerName: 绑定的层名称。解绑层需传递空字符串。
         # @type LayerName: String
-        # @param LayerVersion: 版本号
+        # @param LayerVersion: 绑定或解绑层的版本号。解绑函数版本关联的最后一个层版本时，LayerVersion 填 0。
         # @type LayerVersion: Integer
 
         attr_accessor :LayerName, :LayerVersion

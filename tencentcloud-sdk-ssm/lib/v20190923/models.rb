@@ -565,7 +565,7 @@ module TencentCloud
         # @param ResourceID: 云产品实例ID。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResourceID: String
-        # @param RotationStatus: 是否开启轮转：True -- 开启轮转；False -- 禁止轮转。
+        # @param RotationStatus: 是否开启轮转：True -- 开启轮转；False -- 关闭轮转。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RotationStatus: Boolean
         # @param RotationFrequency: 轮转周期，默认以天为单位。
@@ -580,12 +580,15 @@ module TencentCloud
         # @param AssociatedInstanceIDs: 当凭据类型为SSH密钥对凭据时，此字段有效，用于表示SSH密钥对所关联的CVM实例ID。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AssociatedInstanceIDs: Array
+        # @param TargetUin: 当凭据类型为云API密钥对凭据时，此字段有效，用于表示此云API密钥对所属的用户UIN。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TargetUin: Integer
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :SecretName, :Description, :KmsKeyId, :CreateUin, :Status, :DeleteTime, :CreateTime, :SecretType, :ProductName, :ResourceID, :RotationStatus, :RotationFrequency, :ResourceName, :ProjectID, :AssociatedInstanceIDs, :RequestId
+        attr_accessor :SecretName, :Description, :KmsKeyId, :CreateUin, :Status, :DeleteTime, :CreateTime, :SecretType, :ProductName, :ResourceID, :RotationStatus, :RotationFrequency, :ResourceName, :ProjectID, :AssociatedInstanceIDs, :TargetUin, :RequestId
         
-        def initialize(secretname=nil, description=nil, kmskeyid=nil, createuin=nil, status=nil, deletetime=nil, createtime=nil, secrettype=nil, productname=nil, resourceid=nil, rotationstatus=nil, rotationfrequency=nil, resourcename=nil, projectid=nil, associatedinstanceids=nil, requestid=nil)
+        def initialize(secretname=nil, description=nil, kmskeyid=nil, createuin=nil, status=nil, deletetime=nil, createtime=nil, secrettype=nil, productname=nil, resourceid=nil, rotationstatus=nil, rotationfrequency=nil, resourcename=nil, projectid=nil, associatedinstanceids=nil, targetuin=nil, requestid=nil)
           @SecretName = secretname
           @Description = description
           @KmsKeyId = kmskeyid
@@ -601,6 +604,7 @@ module TencentCloud
           @ResourceName = resourcename
           @ProjectID = projectid
           @AssociatedInstanceIDs = associatedinstanceids
+          @TargetUin = targetuin
           @RequestId = requestid
         end
 
@@ -620,6 +624,7 @@ module TencentCloud
           @ResourceName = params['ResourceName']
           @ProjectID = params['ProjectID']
           @AssociatedInstanceIDs = params['AssociatedInstanceIDs']
+          @TargetUin = params['TargetUin']
           @RequestId = params['RequestId']
         end
       end
@@ -896,20 +901,25 @@ module TencentCloud
         # @type ServiceEnabled: Boolean
         # @param InvalidType: 服务不可用类型： 0-未购买，1-正常， 2-欠费停服， 3-资源释放。
         # @type InvalidType: Integer
+        # @param AccessKeyEscrowEnabled: true表示用户已经可以使用云API密钥安全托管功能，
+        # false表示用户暂时不能使用云API密钥安全托管功能。
+        # @type AccessKeyEscrowEnabled: Boolean
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :ServiceEnabled, :InvalidType, :RequestId
+        attr_accessor :ServiceEnabled, :InvalidType, :AccessKeyEscrowEnabled, :RequestId
         
-        def initialize(serviceenabled=nil, invalidtype=nil, requestid=nil)
+        def initialize(serviceenabled=nil, invalidtype=nil, accesskeyescrowenabled=nil, requestid=nil)
           @ServiceEnabled = serviceenabled
           @InvalidType = invalidtype
+          @AccessKeyEscrowEnabled = accesskeyescrowenabled
           @RequestId = requestid
         end
 
         def deserialize(params)
           @ServiceEnabled = params['ServiceEnabled']
           @InvalidType = params['InvalidType']
+          @AccessKeyEscrowEnabled = params['AccessKeyEscrowEnabled']
           @RequestId = params['RequestId']
         end
       end
@@ -986,6 +996,7 @@ module TencentCloud
         # @param SecretType: 0  -- 表示用户自定义凭据，默认为0。
         # 1  -- 表示用户云产品凭据。
         # 2 -- 表示SSH密钥对凭据。
+        # 3 -- 表示云API密钥对凭据。
         # @type SecretType: Integer
         # @param ProductName: 此参数仅在SecretType参数值为1时生效，
         # 当SecretType值为1时：
@@ -1221,7 +1232,7 @@ module TencentCloud
 
       # RotateProductSecret返回参数结构体
       class RotateProductSecretResponse < TencentCloud::Common::AbstractModel
-        # @param FlowID: 轮转异步任务ID号。
+        # @param FlowID: 当凭据类型为云产品凭据时（即SecretType为1，如Mysq、Tdsql等托管凭据）此字段有效，返回轮转异步任务ID号。
         # @type FlowID: Integer
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1263,7 +1274,10 @@ module TencentCloud
         # @param NextRotationTime: 下一次轮转开始时间，uinx 时间戳
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NextRotationTime: Integer
-        # @param SecretType: 0 -- 用户自定义凭据；1 -- 云产品凭据
+        # @param SecretType: 0 -- 用户自定义凭据；
+        # 1 -- 云产品凭据；
+        # 2 -- SSH密钥对凭据；
+        # 3 -- 云API密钥对凭据；
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SecretType: Integer
         # @param ProductName: 云产品名称，仅在SecretType为1，即凭据类型为云产品凭据时生效
@@ -1278,10 +1292,13 @@ module TencentCloud
         # @param AssociatedInstanceIDs: 当凭据类型为SSH密钥对凭据时，此字段有效，用于表示SSH密钥对所关联的CVM实例ID。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AssociatedInstanceIDs: Array
+        # @param TargetUin: 当凭据类型为云API密钥对凭据时，此字段有效，用于表示云API密钥对所属的用户UIN。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TargetUin: Integer
 
-        attr_accessor :SecretName, :Description, :KmsKeyId, :CreateUin, :Status, :DeleteTime, :CreateTime, :KmsKeyType, :RotationStatus, :NextRotationTime, :SecretType, :ProductName, :ResourceName, :ProjectID, :AssociatedInstanceIDs
+        attr_accessor :SecretName, :Description, :KmsKeyId, :CreateUin, :Status, :DeleteTime, :CreateTime, :KmsKeyType, :RotationStatus, :NextRotationTime, :SecretType, :ProductName, :ResourceName, :ProjectID, :AssociatedInstanceIDs, :TargetUin
         
-        def initialize(secretname=nil, description=nil, kmskeyid=nil, createuin=nil, status=nil, deletetime=nil, createtime=nil, kmskeytype=nil, rotationstatus=nil, nextrotationtime=nil, secrettype=nil, productname=nil, resourcename=nil, projectid=nil, associatedinstanceids=nil)
+        def initialize(secretname=nil, description=nil, kmskeyid=nil, createuin=nil, status=nil, deletetime=nil, createtime=nil, kmskeytype=nil, rotationstatus=nil, nextrotationtime=nil, secrettype=nil, productname=nil, resourcename=nil, projectid=nil, associatedinstanceids=nil, targetuin=nil)
           @SecretName = secretname
           @Description = description
           @KmsKeyId = kmskeyid
@@ -1297,6 +1314,7 @@ module TencentCloud
           @ResourceName = resourcename
           @ProjectID = projectid
           @AssociatedInstanceIDs = associatedinstanceids
+          @TargetUin = targetuin
         end
 
         def deserialize(params)
@@ -1315,6 +1333,7 @@ module TencentCloud
           @ResourceName = params['ResourceName']
           @ProjectID = params['ProjectID']
           @AssociatedInstanceIDs = params['AssociatedInstanceIDs']
+          @TargetUin = params['TargetUin']
         end
       end
 

@@ -1266,10 +1266,25 @@ module TencentCloud
         # @type RefReturnDeals: String
         # @param PayMode: 付费模式：prePay 预付费 postPay后付费 riPay预留实例
         # @type PayMode: String
+        # @param Action: 交易类型
+        # modifyNetworkMode 调整带宽模式
+        # modifyNetworkSize 调整带宽大小
+        # refund 退款
+        # downgrade 降配
+        # upgrade 升配
+        # renew 续费
+        # purchase 购买
+        # preMoveOut 包年包月迁出资源
+        # preMoveIn 包年包月迁入资源
+        # preToPost 预付费转后付费
+        # postMoveOut 按量计费迁出资源
+        # postMoveIn 按量计费迁入资源
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Action: String
 
-        attr_accessor :OrderId, :Status, :Payer, :CreateTime, :Creator, :RealTotalCost, :VoucherDecline, :ProjectId, :GoodsCategoryId, :ProductInfo, :TimeSpan, :TimeUnit, :Currency, :Policy, :Price, :TotalCost, :ProductCode, :SubProductCode, :BigDealId, :Formula, :RefReturnDeals, :PayMode
+        attr_accessor :OrderId, :Status, :Payer, :CreateTime, :Creator, :RealTotalCost, :VoucherDecline, :ProjectId, :GoodsCategoryId, :ProductInfo, :TimeSpan, :TimeUnit, :Currency, :Policy, :Price, :TotalCost, :ProductCode, :SubProductCode, :BigDealId, :Formula, :RefReturnDeals, :PayMode, :Action
         
-        def initialize(orderid=nil, status=nil, payer=nil, createtime=nil, creator=nil, realtotalcost=nil, voucherdecline=nil, projectid=nil, goodscategoryid=nil, productinfo=nil, timespan=nil, timeunit=nil, currency=nil, policy=nil, price=nil, totalcost=nil, productcode=nil, subproductcode=nil, bigdealid=nil, formula=nil, refreturndeals=nil, paymode=nil)
+        def initialize(orderid=nil, status=nil, payer=nil, createtime=nil, creator=nil, realtotalcost=nil, voucherdecline=nil, projectid=nil, goodscategoryid=nil, productinfo=nil, timespan=nil, timeunit=nil, currency=nil, policy=nil, price=nil, totalcost=nil, productcode=nil, subproductcode=nil, bigdealid=nil, formula=nil, refreturndeals=nil, paymode=nil, action=nil)
           @OrderId = orderid
           @Status = status
           @Payer = payer
@@ -1292,6 +1307,7 @@ module TencentCloud
           @Formula = formula
           @RefReturnDeals = refreturndeals
           @PayMode = paymode
+          @Action = action
         end
 
         def deserialize(params)
@@ -1324,6 +1340,7 @@ module TencentCloud
           @Formula = params['Formula']
           @RefReturnDeals = params['RefReturnDeals']
           @PayMode = params['PayMode']
+          @Action = params['Action']
         end
       end
 

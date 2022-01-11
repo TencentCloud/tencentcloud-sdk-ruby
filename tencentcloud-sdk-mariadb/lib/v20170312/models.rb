@@ -662,6 +662,134 @@ module TencentCloud
         end
       end
 
+      # CreateHourDBInstance请求参数结构体
+      class CreateHourDBInstanceRequest < TencentCloud::Common::AbstractModel
+        # @param Zones: 节点可用区分布，最多可填两个可用区。当分片规格为一主两从时，其中两个节点在第一个可用区。
+        # @type Zones: Array
+        # @param NodeCount: 节点个数
+        # @type NodeCount: Integer
+        # @param Memory: 内存大小，单位：GB
+        # @type Memory: Integer
+        # @param Storage: 储存大小，单位：GB
+        # @type Storage: Integer
+        # @param Count: 购买实例数量
+        # @type Count: Integer
+        # @param ProjectId: 项目ID，不传表示默认项目
+        # @type ProjectId: Integer
+        # @param VpcId: 统一网络ID，不传表示基础网络
+        # @type VpcId: String
+        # @param SubnetId: 统一子网ID，VpcId有值时需填写
+        # @type SubnetId: String
+        # @param DbVersionId: 数据库引擎版本，当前可选：10.0.10，10.1.9，5.7.17。
+        # 10.0.10 - Mariadb 10.0.10；
+        # 10.1.9 - Mariadb 10.1.9；
+        # 5.7.17 - Percona 5.7.17。
+        # 如果不填的话，默认为10.1.9，表示Mariadb 10.1.9。
+        # @type DbVersionId: String
+        # @param InstanceName: 自定义实例名称
+        # @type InstanceName: String
+        # @param SecurityGroupIds: 安全组ID，不传表示不绑定安全组
+        # @type SecurityGroupIds: Array
+        # @param Ipv6Flag: 是否支持IPv6
+        # @type Ipv6Flag: Integer
+        # @param ResourceTags: 标签键值对数组
+        # @type ResourceTags: Array
+        # @param DcnRegion: DCN源地域
+        # @type DcnRegion: String
+        # @param DcnInstanceId: DCN源实例ID
+        # @type DcnInstanceId: String
+        # @param InitParams: 参数列表。本接口的可选值为：character_set_server（字符集，必传），lower_case_table_names（表名大小写敏感，必传，0 - 敏感；1-不敏感），innodb_page_size（innodb数据页，默认16K），sync_mode（同步模式：0 - 异步； 1 - 强同步；2 - 强同步可退化。默认为强同步可退化）。
+        # @type InitParams: Array
+        # @param RollbackInstanceId: 回档源实例ID
+        # @type RollbackInstanceId: String
+        # @param RollbackTime: 回档时间
+        # @type RollbackTime: String
+
+        attr_accessor :Zones, :NodeCount, :Memory, :Storage, :Count, :ProjectId, :VpcId, :SubnetId, :DbVersionId, :InstanceName, :SecurityGroupIds, :Ipv6Flag, :ResourceTags, :DcnRegion, :DcnInstanceId, :InitParams, :RollbackInstanceId, :RollbackTime
+        
+        def initialize(zones=nil, nodecount=nil, memory=nil, storage=nil, count=nil, projectid=nil, vpcid=nil, subnetid=nil, dbversionid=nil, instancename=nil, securitygroupids=nil, ipv6flag=nil, resourcetags=nil, dcnregion=nil, dcninstanceid=nil, initparams=nil, rollbackinstanceid=nil, rollbacktime=nil)
+          @Zones = zones
+          @NodeCount = nodecount
+          @Memory = memory
+          @Storage = storage
+          @Count = count
+          @ProjectId = projectid
+          @VpcId = vpcid
+          @SubnetId = subnetid
+          @DbVersionId = dbversionid
+          @InstanceName = instancename
+          @SecurityGroupIds = securitygroupids
+          @Ipv6Flag = ipv6flag
+          @ResourceTags = resourcetags
+          @DcnRegion = dcnregion
+          @DcnInstanceId = dcninstanceid
+          @InitParams = initparams
+          @RollbackInstanceId = rollbackinstanceid
+          @RollbackTime = rollbacktime
+        end
+
+        def deserialize(params)
+          @Zones = params['Zones']
+          @NodeCount = params['NodeCount']
+          @Memory = params['Memory']
+          @Storage = params['Storage']
+          @Count = params['Count']
+          @ProjectId = params['ProjectId']
+          @VpcId = params['VpcId']
+          @SubnetId = params['SubnetId']
+          @DbVersionId = params['DbVersionId']
+          @InstanceName = params['InstanceName']
+          @SecurityGroupIds = params['SecurityGroupIds']
+          @Ipv6Flag = params['Ipv6Flag']
+          unless params['ResourceTags'].nil?
+            @ResourceTags = []
+            params['ResourceTags'].each do |i|
+              resourcetag_tmp = ResourceTag.new
+              resourcetag_tmp.deserialize(i)
+              @ResourceTags << resourcetag_tmp
+            end
+          end
+          @DcnRegion = params['DcnRegion']
+          @DcnInstanceId = params['DcnInstanceId']
+          unless params['InitParams'].nil?
+            @InitParams = []
+            params['InitParams'].each do |i|
+              dbparamvalue_tmp = DBParamValue.new
+              dbparamvalue_tmp.deserialize(i)
+              @InitParams << dbparamvalue_tmp
+            end
+          end
+          @RollbackInstanceId = params['RollbackInstanceId']
+          @RollbackTime = params['RollbackTime']
+        end
+      end
+
+      # CreateHourDBInstance返回参数结构体
+      class CreateHourDBInstanceResponse < TencentCloud::Common::AbstractModel
+        # @param DealName: 长订单号。可以据此调用 DescribeOrders
+        #  查询订单详细信息，或在支付失败时调用用户账号相关接口进行支付。
+        # @type DealName: String
+        # @param InstanceIds: 订单对应的实例 ID 列表，如果此处没有返回实例 ID，可以通过订单查询接口获取。还可通过实例查询接口查询实例是否创建完成。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceIds: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :DealName, :InstanceIds, :RequestId
+        
+        def initialize(dealname=nil, instanceids=nil, requestid=nil)
+          @DealName = dealname
+          @InstanceIds = instanceids
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @DealName = params['DealName']
+          @InstanceIds = params['InstanceIds']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateTmpInstances请求参数结构体
       class CreateTmpInstancesRequest < TencentCloud::Common::AbstractModel
         # @param InstanceIds: 回档实例的ID列表，形如：tdsql-ow728lmc。
@@ -883,10 +1011,13 @@ module TencentCloud
         # @param InstanceType: 1： 主实例（独享型）, 2: 主实例, 3： 灾备实例, 4： 灾备实例（独享型）
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceType: Integer
+        # @param ResourceTags: 实例标签信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResourceTags: Array
 
-        attr_accessor :InstanceId, :InstanceName, :AppId, :ProjectId, :Region, :Zone, :VpcId, :SubnetId, :Status, :Vip, :Vport, :WanDomain, :WanVip, :WanPort, :CreateTime, :UpdateTime, :AutoRenewFlag, :PeriodEndTime, :Uin, :TdsqlVersion, :Memory, :Storage, :UniqueVpcId, :UniqueSubnetId, :OriginSerialId, :NodeCount, :IsTmp, :ExclusterId, :Id, :Pid, :Qps, :Paymode, :Locker, :StatusDesc, :WanStatus, :IsAuditSupported, :Machine, :IsEncryptSupported, :Cpu, :Ipv6Flag, :Vipv6, :WanVipv6, :WanPortIpv6, :WanStatusIpv6, :DbEngine, :DbVersion, :DcnFlag, :DcnStatus, :DcnDstNum, :InstanceType
+        attr_accessor :InstanceId, :InstanceName, :AppId, :ProjectId, :Region, :Zone, :VpcId, :SubnetId, :Status, :Vip, :Vport, :WanDomain, :WanVip, :WanPort, :CreateTime, :UpdateTime, :AutoRenewFlag, :PeriodEndTime, :Uin, :TdsqlVersion, :Memory, :Storage, :UniqueVpcId, :UniqueSubnetId, :OriginSerialId, :NodeCount, :IsTmp, :ExclusterId, :Id, :Pid, :Qps, :Paymode, :Locker, :StatusDesc, :WanStatus, :IsAuditSupported, :Machine, :IsEncryptSupported, :Cpu, :Ipv6Flag, :Vipv6, :WanVipv6, :WanPortIpv6, :WanStatusIpv6, :DbEngine, :DbVersion, :DcnFlag, :DcnStatus, :DcnDstNum, :InstanceType, :ResourceTags
         
-        def initialize(instanceid=nil, instancename=nil, appid=nil, projectid=nil, region=nil, zone=nil, vpcid=nil, subnetid=nil, status=nil, vip=nil, vport=nil, wandomain=nil, wanvip=nil, wanport=nil, createtime=nil, updatetime=nil, autorenewflag=nil, periodendtime=nil, uin=nil, tdsqlversion=nil, memory=nil, storage=nil, uniquevpcid=nil, uniquesubnetid=nil, originserialid=nil, nodecount=nil, istmp=nil, exclusterid=nil, id=nil, pid=nil, qps=nil, paymode=nil, locker=nil, statusdesc=nil, wanstatus=nil, isauditsupported=nil, machine=nil, isencryptsupported=nil, cpu=nil, ipv6flag=nil, vipv6=nil, wanvipv6=nil, wanportipv6=nil, wanstatusipv6=nil, dbengine=nil, dbversion=nil, dcnflag=nil, dcnstatus=nil, dcndstnum=nil, instancetype=nil)
+        def initialize(instanceid=nil, instancename=nil, appid=nil, projectid=nil, region=nil, zone=nil, vpcid=nil, subnetid=nil, status=nil, vip=nil, vport=nil, wandomain=nil, wanvip=nil, wanport=nil, createtime=nil, updatetime=nil, autorenewflag=nil, periodendtime=nil, uin=nil, tdsqlversion=nil, memory=nil, storage=nil, uniquevpcid=nil, uniquesubnetid=nil, originserialid=nil, nodecount=nil, istmp=nil, exclusterid=nil, id=nil, pid=nil, qps=nil, paymode=nil, locker=nil, statusdesc=nil, wanstatus=nil, isauditsupported=nil, machine=nil, isencryptsupported=nil, cpu=nil, ipv6flag=nil, vipv6=nil, wanvipv6=nil, wanportipv6=nil, wanstatusipv6=nil, dbengine=nil, dbversion=nil, dcnflag=nil, dcnstatus=nil, dcndstnum=nil, instancetype=nil, resourcetags=nil)
           @InstanceId = instanceid
           @InstanceName = instancename
           @AppId = appid
@@ -937,6 +1068,7 @@ module TencentCloud
           @DcnStatus = dcnstatus
           @DcnDstNum = dcndstnum
           @InstanceType = instancetype
+          @ResourceTags = resourcetags
         end
 
         def deserialize(params)
@@ -990,6 +1122,14 @@ module TencentCloud
           @DcnStatus = params['DcnStatus']
           @DcnDstNum = params['DcnDstNum']
           @InstanceType = params['InstanceType']
+          unless params['ResourceTags'].nil?
+            @ResourceTags = []
+            params['ResourceTags'].each do |i|
+              resourcetag_tmp = ResourceTag.new
+              resourcetag_tmp.deserialize(i)
+              @ResourceTags << resourcetag_tmp
+            end
+          end
         end
       end
 
@@ -2515,13 +2655,16 @@ module TencentCloud
       class DescribeProjectSecurityGroupsResponse < TencentCloud::Common::AbstractModel
         # @param Groups: 安全组详情。
         # @type Groups: Array
+        # @param Total: 安全组总数。
+        # @type Total: Integer
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Groups, :RequestId
+        attr_accessor :Groups, :Total, :RequestId
         
-        def initialize(groups=nil, requestid=nil)
+        def initialize(groups=nil, total=nil, requestid=nil)
           @Groups = groups
+          @Total = total
           @RequestId = requestid
         end
 
@@ -2534,6 +2677,7 @@ module TencentCloud
               @Groups << securitygroup_tmp
             end
           end
+          @Total = params['Total']
           @RequestId = params['RequestId']
         end
       end
@@ -3599,7 +3743,7 @@ module TencentCloud
 
       # ModifySyncTaskAttribute请求参数结构体
       class ModifySyncTaskAttributeRequest < TencentCloud::Common::AbstractModel
-        # @param TaskIds: 一个或多个待操作的任务ID。可通过DescribeSyncTasks API返回值中的TaskId获取。每次请求允许操作的实例数量上限是100。
+        # @param TaskIds: 一个或多个待操作的任务ID。可通过DescribeSyncTasks API返回值中的TaskId获取。每次请求允许操作的任务数量上限是100。
         # @type TaskIds: Array
         # @param TaskName: 任务名称。可任意命名，但不得超过100个字符。
         # @type TaskName: String
