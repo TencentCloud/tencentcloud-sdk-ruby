@@ -486,7 +486,7 @@ module TencentCloud
       class CreateTaskRequest < TencentCloud::Common::AbstractModel
         # @param Task: 计算任务，该参数中包含任务类型及其相关配置信息
         # @type Task: :class:`Tencentcloud::Dlc.v20210125.models.Task`
-        # @param DatabaseName: 数据库名称。任务在执行前均会USE该数据库， 除了首次建库时，其他情况建议均添加上。
+        # @param DatabaseName: 数据库名称。如果SQL语句中有数据库名称，优先使用SQL语句中的数据库，否则使用该参数指定的数据库（注：当提交建库sql时，该字段传空字符串）。
         # @type DatabaseName: String
         # @param DatasourceConnectionName: 默认数据源名称。
         # @type DatasourceConnectionName: String
@@ -587,7 +587,7 @@ module TencentCloud
 
       # CreateTasks请求参数结构体
       class CreateTasksRequest < TencentCloud::Common::AbstractModel
-        # @param DatabaseName: 数据库名称。如果SQL语句中有数据库名称，优先使用SQL语句中的数据库，否则使用该参数指定的数据库。
+        # @param DatabaseName: 数据库名称。如果SQL语句中有数据库名称，优先使用SQL语句中的数据库，否则使用该参数指定的数据库（注：当提交建库sql时，该字段传空字符串）。
         # @type DatabaseName: String
         # @param Tasks: SQL任务信息
         # @type Tasks: :class:`Tencentcloud::Dlc.v20210125.models.TasksInfo`

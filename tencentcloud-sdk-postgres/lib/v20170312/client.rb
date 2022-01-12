@@ -53,6 +53,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 用于克隆实例，支持指定备份集、指定时间点进行克隆。
+
+        # @param request: Request instance for CloneDBInstance.
+        # @type request: :class:`Tencentcloud::postgres::V20170312::CloneDBInstanceRequest`
+        # @rtype: :class:`Tencentcloud::postgres::V20170312::CloneDBInstanceResponse`
+        def CloneDBInstance(request)
+          body = send_request('CloneDBInstance', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CloneDBInstanceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（CloseDBExtranetAccess）用于关闭实例外网链接。
 
         # @param request: Request instance for CloseDBExtranetAccess.
@@ -279,6 +303,78 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeAccountsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口（DescribeAvailableRecoveryTime）用于查询实例可恢复的时间范围。
+
+        # @param request: Request instance for DescribeAvailableRecoveryTime.
+        # @type request: :class:`Tencentcloud::postgres::V20170312::DescribeAvailableRecoveryTimeRequest`
+        # @rtype: :class:`Tencentcloud::postgres::V20170312::DescribeAvailableRecoveryTimeResponse`
+        def DescribeAvailableRecoveryTime(request)
+          body = send_request('DescribeAvailableRecoveryTime', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeAvailableRecoveryTimeResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口 (DescribeBackupPlans) 用于实例所有的备份计划查询
+
+        # @param request: Request instance for DescribeBackupPlans.
+        # @type request: :class:`Tencentcloud::postgres::V20170312::DescribeBackupPlansRequest`
+        # @rtype: :class:`Tencentcloud::postgres::V20170312::DescribeBackupPlansResponse`
+        def DescribeBackupPlans(request)
+          body = send_request('DescribeBackupPlans', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeBackupPlansResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口（DescribeCloneDBInstanceSpec）用于查询克隆实例可选择的最小规格，包括SpecCode和磁盘。
+
+        # @param request: Request instance for DescribeCloneDBInstanceSpec.
+        # @type request: :class:`Tencentcloud::postgres::V20170312::DescribeCloneDBInstanceSpecRequest`
+        # @rtype: :class:`Tencentcloud::postgres::V20170312::DescribeCloneDBInstanceSpecResponse`
+        def DescribeCloneDBInstanceSpec(request)
+          body = send_request('DescribeCloneDBInstanceSpec', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeCloneDBInstanceSpecResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -879,6 +975,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyAccountRemarkResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口 (ModifyBackupPlan) 用于实例备份计划的修改，默认是在每天的凌晨开始全量备份，备份保留时长是7天。可以根据此接口指定时间进行实例的备份。
+
+        # @param request: Request instance for ModifyBackupPlan.
+        # @type request: :class:`Tencentcloud::postgres::V20170312::ModifyBackupPlanRequest`
+        # @rtype: :class:`Tencentcloud::postgres::V20170312::ModifyBackupPlanResponse`
+        def ModifyBackupPlan(request)
+          body = send_request('ModifyBackupPlan', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyBackupPlanResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口（ModifyDBInstanceDeployment）用于修改节点可用区部署方式，仅支持主实例。
+
+        # @param request: Request instance for ModifyDBInstanceDeployment.
+        # @type request: :class:`Tencentcloud::postgres::V20170312::ModifyDBInstanceDeploymentRequest`
+        # @rtype: :class:`Tencentcloud::postgres::V20170312::ModifyDBInstanceDeploymentResponse`
+        def ModifyDBInstanceDeployment(request)
+          body = send_request('ModifyDBInstanceDeployment', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyDBInstanceDeploymentResponse.new
             model.deserialize(response['Response'])
             model
           else

@@ -157,6 +157,158 @@ module TencentCloud
         end
       end
 
+      # 备份计划
+      class BackupPlan < TencentCloud::Common::AbstractModel
+        # @param BackupPeriod: 备份周期
+        # @type BackupPeriod: String
+        # @param BaseBackupRetentionPeriod: 基础备份保留时长
+        # @type BaseBackupRetentionPeriod: Integer
+        # @param MinBackupStartTime: 开始备份的最早时间
+        # @type MinBackupStartTime: String
+        # @param MaxBackupStartTime: 开始备份的最晚时间
+        # @type MaxBackupStartTime: String
+
+        attr_accessor :BackupPeriod, :BaseBackupRetentionPeriod, :MinBackupStartTime, :MaxBackupStartTime
+        
+        def initialize(backupperiod=nil, basebackupretentionperiod=nil, minbackupstarttime=nil, maxbackupstarttime=nil)
+          @BackupPeriod = backupperiod
+          @BaseBackupRetentionPeriod = basebackupretentionperiod
+          @MinBackupStartTime = minbackupstarttime
+          @MaxBackupStartTime = maxbackupstarttime
+        end
+
+        def deserialize(params)
+          @BackupPeriod = params['BackupPeriod']
+          @BaseBackupRetentionPeriod = params['BaseBackupRetentionPeriod']
+          @MinBackupStartTime = params['MinBackupStartTime']
+          @MaxBackupStartTime = params['MaxBackupStartTime']
+        end
+      end
+
+      # CloneDBInstance请求参数结构体
+      class CloneDBInstanceRequest < TencentCloud::Common::AbstractModel
+        # @param DBInstanceId: 克隆的源实例ID。
+        # @type DBInstanceId: String
+        # @param SpecCode: 售卖规格ID。该参数可以通过调用DescribeProductConfig的返回值中的SpecCode字段来获取。
+        # @type SpecCode: String
+        # @param Storage: 实例容量大小，单位：GB。
+        # @type Storage: Integer
+        # @param Period: 购买时长，单位：月。目前只支持1,2,3,4,5,6,7,8,9,10,11,12,24,36这些值，按量计费模式下该参数传1。
+        # @type Period: Integer
+        # @param AutoRenewFlag: 续费标记：0-正常续费（默认）；1-自动续费。
+        # @type AutoRenewFlag: Integer
+        # @param VpcId: 私有网络ID。
+        # @type VpcId: String
+        # @param SubnetId: 已配置的私有网络中的子网ID。
+        # @type SubnetId: String
+        # @param Name: 新购实例的实例名称。
+        # @type Name: String
+        # @param InstanceChargeType: 实例计费类型。目前支持：PREPAID（预付费，即包年包月），POSTPAID_BY_HOUR（后付费，即按量计费）。
+        # @type InstanceChargeType: String
+        # @param SecurityGroupIds: 安全组ID。
+        # @type SecurityGroupIds: Array
+        # @param ProjectId: 项目ID。
+        # @type ProjectId: Integer
+        # @param TagList: 实例需要绑定的Tag信息，默认为空。
+        # @type TagList: Array
+        # @param DBNodeSet: 购买多可用区实例时填写。
+        # @type DBNodeSet: Array
+        # @param AutoVoucher: 是否自动使用代金券。1（是），0（否），默认不使用。
+        # @type AutoVoucher: Integer
+        # @param VoucherIds: 代金券ID列表。
+        # @type VoucherIds: String
+        # @param ActivityId: 活动ID。
+        # @type ActivityId: Integer
+        # @param BackupSetId: 基础备份集ID。
+        # @type BackupSetId: String
+        # @param RecoveryTargetTime: 恢复时间点。
+        # @type RecoveryTargetTime: String
+
+        attr_accessor :DBInstanceId, :SpecCode, :Storage, :Period, :AutoRenewFlag, :VpcId, :SubnetId, :Name, :InstanceChargeType, :SecurityGroupIds, :ProjectId, :TagList, :DBNodeSet, :AutoVoucher, :VoucherIds, :ActivityId, :BackupSetId, :RecoveryTargetTime
+        
+        def initialize(dbinstanceid=nil, speccode=nil, storage=nil, period=nil, autorenewflag=nil, vpcid=nil, subnetid=nil, name=nil, instancechargetype=nil, securitygroupids=nil, projectid=nil, taglist=nil, dbnodeset=nil, autovoucher=nil, voucherids=nil, activityid=nil, backupsetid=nil, recoverytargettime=nil)
+          @DBInstanceId = dbinstanceid
+          @SpecCode = speccode
+          @Storage = storage
+          @Period = period
+          @AutoRenewFlag = autorenewflag
+          @VpcId = vpcid
+          @SubnetId = subnetid
+          @Name = name
+          @InstanceChargeType = instancechargetype
+          @SecurityGroupIds = securitygroupids
+          @ProjectId = projectid
+          @TagList = taglist
+          @DBNodeSet = dbnodeset
+          @AutoVoucher = autovoucher
+          @VoucherIds = voucherids
+          @ActivityId = activityid
+          @BackupSetId = backupsetid
+          @RecoveryTargetTime = recoverytargettime
+        end
+
+        def deserialize(params)
+          @DBInstanceId = params['DBInstanceId']
+          @SpecCode = params['SpecCode']
+          @Storage = params['Storage']
+          @Period = params['Period']
+          @AutoRenewFlag = params['AutoRenewFlag']
+          @VpcId = params['VpcId']
+          @SubnetId = params['SubnetId']
+          @Name = params['Name']
+          @InstanceChargeType = params['InstanceChargeType']
+          @SecurityGroupIds = params['SecurityGroupIds']
+          @ProjectId = params['ProjectId']
+          unless params['TagList'].nil?
+            @TagList = []
+            params['TagList'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @TagList << tag_tmp
+            end
+          end
+          unless params['DBNodeSet'].nil?
+            @DBNodeSet = []
+            params['DBNodeSet'].each do |i|
+              dbnode_tmp = DBNode.new
+              dbnode_tmp.deserialize(i)
+              @DBNodeSet << dbnode_tmp
+            end
+          end
+          @AutoVoucher = params['AutoVoucher']
+          @VoucherIds = params['VoucherIds']
+          @ActivityId = params['ActivityId']
+          @BackupSetId = params['BackupSetId']
+          @RecoveryTargetTime = params['RecoveryTargetTime']
+        end
+      end
+
+      # CloneDBInstance返回参数结构体
+      class CloneDBInstanceResponse < TencentCloud::Common::AbstractModel
+        # @param DealName: 订单号。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DealName: String
+        # @param BillId: 订单流水号。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BillId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :DealName, :BillId, :RequestId
+        
+        def initialize(dealname=nil, billid=nil, requestid=nil)
+          @DealName = dealname
+          @BillId = billid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @DealName = params['DealName']
+          @BillId = params['BillId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CloseDBExtranetAccess请求参数结构体
       class CloseDBExtranetAccessRequest < TencentCloud::Common::AbstractModel
         # @param DBInstanceId: 实例ID，形如postgres-6r233v55
@@ -1235,6 +1387,137 @@ module TencentCloud
               @Details << accountinfo_tmp
             end
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeAvailableRecoveryTime请求参数结构体
+      class DescribeAvailableRecoveryTimeRequest < TencentCloud::Common::AbstractModel
+        # @param DBInstanceId: 实例ID
+        # @type DBInstanceId: String
+
+        attr_accessor :DBInstanceId
+        
+        def initialize(dbinstanceid=nil)
+          @DBInstanceId = dbinstanceid
+        end
+
+        def deserialize(params)
+          @DBInstanceId = params['DBInstanceId']
+        end
+      end
+
+      # DescribeAvailableRecoveryTime返回参数结构体
+      class DescribeAvailableRecoveryTimeResponse < TencentCloud::Common::AbstractModel
+        # @param RecoveryBeginTime: 可恢复的最早时间，时区为东八区（UTC+8）。
+        # @type RecoveryBeginTime: String
+        # @param RecoveryEndTime: 可恢复的最晚时间，时区为东八区（UTC+8）。
+        # @type RecoveryEndTime: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RecoveryBeginTime, :RecoveryEndTime, :RequestId
+        
+        def initialize(recoverybegintime=nil, recoveryendtime=nil, requestid=nil)
+          @RecoveryBeginTime = recoverybegintime
+          @RecoveryEndTime = recoveryendtime
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RecoveryBeginTime = params['RecoveryBeginTime']
+          @RecoveryEndTime = params['RecoveryEndTime']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeBackupPlans请求参数结构体
+      class DescribeBackupPlansRequest < TencentCloud::Common::AbstractModel
+        # @param DBInstanceId: 实例ID
+        # @type DBInstanceId: String
+
+        attr_accessor :DBInstanceId
+        
+        def initialize(dbinstanceid=nil)
+          @DBInstanceId = dbinstanceid
+        end
+
+        def deserialize(params)
+          @DBInstanceId = params['DBInstanceId']
+        end
+      end
+
+      # DescribeBackupPlans返回参数结构体
+      class DescribeBackupPlansResponse < TencentCloud::Common::AbstractModel
+        # @param Plans: 实例的备份计划集
+        # @type Plans: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Plans, :RequestId
+        
+        def initialize(plans=nil, requestid=nil)
+          @Plans = plans
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Plans'].nil?
+            @Plans = []
+            params['Plans'].each do |i|
+              backupplan_tmp = BackupPlan.new
+              backupplan_tmp.deserialize(i)
+              @Plans << backupplan_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeCloneDBInstanceSpec请求参数结构体
+      class DescribeCloneDBInstanceSpecRequest < TencentCloud::Common::AbstractModel
+        # @param DBInstanceId: 实例ID。
+        # @type DBInstanceId: String
+        # @param BackupSetId: 基础备份集ID，此入参和RecoveryTargetTime必须选择一个传入。如与RecoveryTargetTime参数同时设置，则以此参数为准。
+        # @type BackupSetId: String
+        # @param RecoveryTargetTime: 恢复目标时间，此入参和BackupSetId必须选择一个传入。时区以东八区（UTC+8）为准。
+        # @type RecoveryTargetTime: String
+
+        attr_accessor :DBInstanceId, :BackupSetId, :RecoveryTargetTime
+        
+        def initialize(dbinstanceid=nil, backupsetid=nil, recoverytargettime=nil)
+          @DBInstanceId = dbinstanceid
+          @BackupSetId = backupsetid
+          @RecoveryTargetTime = recoverytargettime
+        end
+
+        def deserialize(params)
+          @DBInstanceId = params['DBInstanceId']
+          @BackupSetId = params['BackupSetId']
+          @RecoveryTargetTime = params['RecoveryTargetTime']
+        end
+      end
+
+      # DescribeCloneDBInstanceSpec返回参数结构体
+      class DescribeCloneDBInstanceSpecResponse < TencentCloud::Common::AbstractModel
+        # @param MinSpecCode: 可购买的最小规格码。
+        # @type MinSpecCode: String
+        # @param MinStorage: 可购买的最小磁盘容量，单位GB。
+        # @type MinStorage: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :MinSpecCode, :MinStorage, :RequestId
+        
+        def initialize(minspeccode=nil, minstorage=nil, requestid=nil)
+          @MinSpecCode = minspeccode
+          @MinStorage = minstorage
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @MinSpecCode = params['MinSpecCode']
+          @MinStorage = params['MinStorage']
           @RequestId = params['RequestId']
         end
       end
@@ -2759,6 +3042,109 @@ module TencentCloud
 
       # ModifyAccountRemark返回参数结构体
       class ModifyAccountRemarkResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyBackupPlan请求参数结构体
+      class ModifyBackupPlanRequest < TencentCloud::Common::AbstractModel
+        # @param DBInstanceId: 实例ID
+        # @type DBInstanceId: String
+        # @param MinBackupStartTime: 实例最早开始备份时间
+        # @type MinBackupStartTime: String
+        # @param MaxBackupStartTime: 实例最晚开始备份时间
+        # @type MaxBackupStartTime: String
+        # @param BaseBackupRetentionPeriod: 实例备份保留时长，取值范围为3-7，单位是天
+        # @type BaseBackupRetentionPeriod: Integer
+        # @param BackupPeriod: 实例备份周期，按照星期维度，格式为小写星期英文单词
+        # @type BackupPeriod: Array
+
+        attr_accessor :DBInstanceId, :MinBackupStartTime, :MaxBackupStartTime, :BaseBackupRetentionPeriod, :BackupPeriod
+        
+        def initialize(dbinstanceid=nil, minbackupstarttime=nil, maxbackupstarttime=nil, basebackupretentionperiod=nil, backupperiod=nil)
+          @DBInstanceId = dbinstanceid
+          @MinBackupStartTime = minbackupstarttime
+          @MaxBackupStartTime = maxbackupstarttime
+          @BaseBackupRetentionPeriod = basebackupretentionperiod
+          @BackupPeriod = backupperiod
+        end
+
+        def deserialize(params)
+          @DBInstanceId = params['DBInstanceId']
+          @MinBackupStartTime = params['MinBackupStartTime']
+          @MaxBackupStartTime = params['MaxBackupStartTime']
+          @BaseBackupRetentionPeriod = params['BaseBackupRetentionPeriod']
+          @BackupPeriod = params['BackupPeriod']
+        end
+      end
+
+      # ModifyBackupPlan返回参数结构体
+      class ModifyBackupPlanResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyDBInstanceDeployment请求参数结构体
+      class ModifyDBInstanceDeploymentRequest < TencentCloud::Common::AbstractModel
+        # @param DBInstanceId: 实例ID。
+        # @type DBInstanceId: String
+        # @param DBNodeSet: 实例节点信息。
+        # @type DBNodeSet: Array
+        # @param SwitchTag: 切换时间，默认为 立即切换，入参为 0 ：立即切换 。1：指定时间切换。
+        # @type SwitchTag: Integer
+        # @param SwitchStartTime: 切换开始时间，时间格式：HH:MM:SS，例如：01:00:00。
+        # @type SwitchStartTime: String
+        # @param SwitchEndTime: 切换截止时间，时间格式：HH:MM:SS，例如：01:30:00。
+        # @type SwitchEndTime: String
+
+        attr_accessor :DBInstanceId, :DBNodeSet, :SwitchTag, :SwitchStartTime, :SwitchEndTime
+        
+        def initialize(dbinstanceid=nil, dbnodeset=nil, switchtag=nil, switchstarttime=nil, switchendtime=nil)
+          @DBInstanceId = dbinstanceid
+          @DBNodeSet = dbnodeset
+          @SwitchTag = switchtag
+          @SwitchStartTime = switchstarttime
+          @SwitchEndTime = switchendtime
+        end
+
+        def deserialize(params)
+          @DBInstanceId = params['DBInstanceId']
+          unless params['DBNodeSet'].nil?
+            @DBNodeSet = []
+            params['DBNodeSet'].each do |i|
+              dbnode_tmp = DBNode.new
+              dbnode_tmp.deserialize(i)
+              @DBNodeSet << dbnode_tmp
+            end
+          end
+          @SwitchTag = params['SwitchTag']
+          @SwitchStartTime = params['SwitchStartTime']
+          @SwitchEndTime = params['SwitchEndTime']
+        end
+      end
+
+      # ModifyDBInstanceDeployment返回参数结构体
+      class ModifyDBInstanceDeploymentResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 

@@ -6355,19 +6355,29 @@ module TencentCloud
         # @param ValidationCode: 验证码
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ValidationCode: String
+        # @param StartTime: 通知开始时间 一天开始的秒数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StartTime: Integer
+        # @param EndTime: 通知结束时间 一天开始的秒数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EndTime: Integer
 
-        attr_accessor :URL, :IsValid, :ValidationCode
+        attr_accessor :URL, :IsValid, :ValidationCode, :StartTime, :EndTime
         
-        def initialize(url=nil, isvalid=nil, validationcode=nil)
+        def initialize(url=nil, isvalid=nil, validationcode=nil, starttime=nil, endtime=nil)
           @URL = url
           @IsValid = isvalid
           @ValidationCode = validationcode
+          @StartTime = starttime
+          @EndTime = endtime
         end
 
         def deserialize(params)
           @URL = params['URL']
           @IsValid = params['IsValid']
           @ValidationCode = params['ValidationCode']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
         end
       end
 

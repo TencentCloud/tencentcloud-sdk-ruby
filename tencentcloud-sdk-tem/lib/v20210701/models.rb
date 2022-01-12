@@ -518,8 +518,10 @@ module TencentCloud
         # @param PkgName: 包名。使用 JAR 包或者 WAR 包部署的时候必填。
         # @type PkgName: String
         # @param JdkVersion: JDK 版本。
-        # - KONA：使用 kona jdk。
-        # - OPEN：使用 open jdk。
+        # - KONA:8：使用 kona jdk 8。
+        # - OPEN:8：使用 open jdk 8。
+        # - KONA:11：使用 kona jdk 11。
+        # - OPEN:11：使用 open jdk 11。
         # @type JdkVersion: String
         # @param SecurityGroupIds: 安全组ID s
         # @type SecurityGroupIds: Array
@@ -557,10 +559,16 @@ module TencentCloud
         # @type CronHorizontalAutoscaler: Array
         # @param LogEnable: 是否启用log，1为启用，0为不启用
         # @type LogEnable: Integer
+        # @param ConfEdited: （除开镜像配置）配置是否修改
+        # @type ConfEdited: Boolean
+        # @param SpeedUp: 是否开启应用加速
+        # @type SpeedUp: Boolean
+        # @param StartupProbe: 启动探针配置
+        # @type StartupProbe: :class:`Tencentcloud::Tem.v20210701.models.HealthCheckConfig`
 
-        attr_accessor :ApplicationId, :InitPodNum, :CpuSpec, :MemorySpec, :EnvironmentId, :ImgRepo, :VersionDesc, :JvmOpts, :EsInfo, :EnvConf, :LogConfs, :StorageConfs, :StorageMountConfs, :DeployMode, :DeployVersion, :PkgName, :JdkVersion, :SecurityGroupIds, :LogOutputConf, :SourceChannel, :Description, :ImageCommand, :ImageArgs, :UseRegistryDefaultConfig, :SettingConfs, :Service, :VersionId, :PostStart, :PreStop, :Liveness, :Readiness, :DeployStrategyConf, :HorizontalAutoscaler, :CronHorizontalAutoscaler, :LogEnable
+        attr_accessor :ApplicationId, :InitPodNum, :CpuSpec, :MemorySpec, :EnvironmentId, :ImgRepo, :VersionDesc, :JvmOpts, :EsInfo, :EnvConf, :LogConfs, :StorageConfs, :StorageMountConfs, :DeployMode, :DeployVersion, :PkgName, :JdkVersion, :SecurityGroupIds, :LogOutputConf, :SourceChannel, :Description, :ImageCommand, :ImageArgs, :UseRegistryDefaultConfig, :SettingConfs, :Service, :VersionId, :PostStart, :PreStop, :Liveness, :Readiness, :DeployStrategyConf, :HorizontalAutoscaler, :CronHorizontalAutoscaler, :LogEnable, :ConfEdited, :SpeedUp, :StartupProbe
         
-        def initialize(applicationid=nil, initpodnum=nil, cpuspec=nil, memoryspec=nil, environmentid=nil, imgrepo=nil, versiondesc=nil, jvmopts=nil, esinfo=nil, envconf=nil, logconfs=nil, storageconfs=nil, storagemountconfs=nil, deploymode=nil, deployversion=nil, pkgname=nil, jdkversion=nil, securitygroupids=nil, logoutputconf=nil, sourcechannel=nil, description=nil, imagecommand=nil, imageargs=nil, useregistrydefaultconfig=nil, settingconfs=nil, service=nil, versionid=nil, poststart=nil, prestop=nil, liveness=nil, readiness=nil, deploystrategyconf=nil, horizontalautoscaler=nil, cronhorizontalautoscaler=nil, logenable=nil)
+        def initialize(applicationid=nil, initpodnum=nil, cpuspec=nil, memoryspec=nil, environmentid=nil, imgrepo=nil, versiondesc=nil, jvmopts=nil, esinfo=nil, envconf=nil, logconfs=nil, storageconfs=nil, storagemountconfs=nil, deploymode=nil, deployversion=nil, pkgname=nil, jdkversion=nil, securitygroupids=nil, logoutputconf=nil, sourcechannel=nil, description=nil, imagecommand=nil, imageargs=nil, useregistrydefaultconfig=nil, settingconfs=nil, service=nil, versionid=nil, poststart=nil, prestop=nil, liveness=nil, readiness=nil, deploystrategyconf=nil, horizontalautoscaler=nil, cronhorizontalautoscaler=nil, logenable=nil, confedited=nil, speedup=nil, startupprobe=nil)
           @ApplicationId = applicationid
           @InitPodNum = initpodnum
           @CpuSpec = cpuspec
@@ -596,6 +604,9 @@ module TencentCloud
           @HorizontalAutoscaler = horizontalautoscaler
           @CronHorizontalAutoscaler = cronhorizontalautoscaler
           @LogEnable = logenable
+          @ConfEdited = confedited
+          @SpeedUp = speedup
+          @StartupProbe = startupprobe
         end
 
         def deserialize(params)
@@ -694,6 +705,12 @@ module TencentCloud
             end
           end
           @LogEnable = params['LogEnable']
+          @ConfEdited = params['ConfEdited']
+          @SpeedUp = params['SpeedUp']
+          unless params['StartupProbe'].nil?
+            @StartupProbe = HealthCheckConfig.new
+            @StartupProbe.deserialize(params['StartupProbe'])
+          end
         end
       end
 
@@ -841,14 +858,17 @@ module TencentCloud
         # @type DeployStrategyType: Integer
         # @param BatchInterval: 每批暂停间隔
         # @type BatchInterval: Integer
+        # @param MinAvailable: 最小可用实例数
+        # @type MinAvailable: Integer
 
-        attr_accessor :TotalBatchCount, :BetaBatchNum, :DeployStrategyType, :BatchInterval
+        attr_accessor :TotalBatchCount, :BetaBatchNum, :DeployStrategyType, :BatchInterval, :MinAvailable
         
-        def initialize(totalbatchcount=nil, betabatchnum=nil, deploystrategytype=nil, batchinterval=nil)
+        def initialize(totalbatchcount=nil, betabatchnum=nil, deploystrategytype=nil, batchinterval=nil, minavailable=nil)
           @TotalBatchCount = totalbatchcount
           @BetaBatchNum = betabatchnum
           @DeployStrategyType = deploystrategytype
           @BatchInterval = batchinterval
+          @MinAvailable = minavailable
         end
 
         def deserialize(params)
@@ -856,6 +876,7 @@ module TencentCloud
           @BetaBatchNum = params['BetaBatchNum']
           @DeployStrategyType = params['DeployStrategyType']
           @BatchInterval = params['BatchInterval']
+          @MinAvailable = params['MinAvailable']
         end
       end
 
@@ -1936,21 +1957,31 @@ module TencentCloud
 
       # 键值对
       class Pair < TencentCloud::Common::AbstractModel
-        # @param Key: 建
+        # @param Key: 键
         # @type Key: String
         # @param Value: 值
         # @type Value: String
+        # @param Type: 类型，default 为自定义，reserved 为系统变量，referenced 为引用配置项
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Type: String
+        # @param Config: 配置名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Config: String
 
-        attr_accessor :Key, :Value
+        attr_accessor :Key, :Value, :Type, :Config
         
-        def initialize(key=nil, value=nil)
+        def initialize(key=nil, value=nil, type=nil, config=nil)
           @Key = key
           @Value = value
+          @Type = type
+          @Config = config
         end
 
         def deserialize(params)
           @Key = params['Key']
           @Value = params['Value']
+          @Type = params['Type']
+          @Config = params['Config']
         end
       end
 
