@@ -361,7 +361,7 @@ module TencentCloud
       end
 
       # 授权资源详情
-      class AuthorizationResouceEntityInfo < TencentCloud::Common::AbstractModel
+      class AuthorizationResourceEntityInfo < TencentCloud::Common::AbstractModel
         # @param ResourceId: 授权关系的唯一ID
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResourceId: String
@@ -1302,9 +1302,9 @@ module TencentCloud
           unless params['AuthorizationOrgResourceList'].nil?
             @AuthorizationOrgResourceList = []
             params['AuthorizationOrgResourceList'].each do |i|
-              authorizationresouceentityinfo_tmp = AuthorizationResouceEntityInfo.new
-              authorizationresouceentityinfo_tmp.deserialize(i)
-              @AuthorizationOrgResourceList << authorizationresouceentityinfo_tmp
+              authorizationresourceentityinfo_tmp = AuthorizationResourceEntityInfo.new
+              authorizationresourceentityinfo_tmp.deserialize(i)
+              @AuthorizationOrgResourceList << authorizationresourceentityinfo_tmp
             end
           end
           @TotalCount = params['TotalCount']
@@ -1429,9 +1429,9 @@ module TencentCloud
           unless params['AuthorizationUserGroupResourceList'].nil?
             @AuthorizationUserGroupResourceList = []
             params['AuthorizationUserGroupResourceList'].each do |i|
-              authorizationresouceentityinfo_tmp = AuthorizationResouceEntityInfo.new
-              authorizationresouceentityinfo_tmp.deserialize(i)
-              @AuthorizationUserGroupResourceList << authorizationresouceentityinfo_tmp
+              authorizationresourceentityinfo_tmp = AuthorizationResourceEntityInfo.new
+              authorizationresourceentityinfo_tmp.deserialize(i)
+              @AuthorizationUserGroupResourceList << authorizationresourceentityinfo_tmp
             end
           end
           @RequestId = params['RequestId']

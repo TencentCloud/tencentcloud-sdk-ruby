@@ -1729,15 +1729,18 @@ module TencentCloud
         # @type TemplateId: Integer
         # @param ParamList: 参数列表。
         # @type ParamList: Array
+        # @param TemplateType: 默认参数模板类型。支持值包括："HIGH_STABILITY" - 高稳定模版，"HIGH_PERFORMANCE" - 高性能模版。
+        # @type TemplateType: String
 
-        attr_accessor :Name, :Description, :EngineVersion, :TemplateId, :ParamList
+        attr_accessor :Name, :Description, :EngineVersion, :TemplateId, :ParamList, :TemplateType
         
-        def initialize(name=nil, description=nil, engineversion=nil, templateid=nil, paramlist=nil)
+        def initialize(name=nil, description=nil, engineversion=nil, templateid=nil, paramlist=nil, templatetype=nil)
           @Name = name
           @Description = description
           @EngineVersion = engineversion
           @TemplateId = templateid
           @ParamList = paramlist
+          @TemplateType = templatetype
         end
 
         def deserialize(params)
@@ -1753,6 +1756,7 @@ module TencentCloud
               @ParamList << parameter_tmp
             end
           end
+          @TemplateType = params['TemplateType']
         end
       end
 
@@ -4399,18 +4403,21 @@ module TencentCloud
         # @type Items: Array
         # @param Description: 参数模板描述
         # @type Description: String
+        # @param TemplateType: 参数模板类型。支持值包括："HIGH_STABILITY" - 高稳定模版，"HIGH_PERFORMANCE" - 高性能模版。
+        # @type TemplateType: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :TemplateId, :Name, :EngineVersion, :TotalCount, :Items, :Description, :RequestId
+        attr_accessor :TemplateId, :Name, :EngineVersion, :TotalCount, :Items, :Description, :TemplateType, :RequestId
         
-        def initialize(templateid=nil, name=nil, engineversion=nil, totalcount=nil, items=nil, description=nil, requestid=nil)
+        def initialize(templateid=nil, name=nil, engineversion=nil, totalcount=nil, items=nil, description=nil, templatetype=nil, requestid=nil)
           @TemplateId = templateid
           @Name = name
           @EngineVersion = engineversion
           @TotalCount = totalcount
           @Items = items
           @Description = description
+          @TemplateType = templatetype
           @RequestId = requestid
         end
 
@@ -4428,18 +4435,24 @@ module TencentCloud
             end
           end
           @Description = params['Description']
+          @TemplateType = params['TemplateType']
           @RequestId = params['RequestId']
         end
       end
 
       # DescribeParamTemplates请求参数结构体
       class DescribeParamTemplatesRequest < TencentCloud::Common::AbstractModel
+        # @param EngineVersions: 引擎版本，缺省则查询所有
+        # @type EngineVersions: Array
 
+        attr_accessor :EngineVersions
         
-        def initialize()
+        def initialize(engineversions=nil)
+          @EngineVersions = engineversions
         end
 
         def deserialize(params)
+          @EngineVersions = params['EngineVersions']
         end
       end
 
@@ -7307,14 +7320,17 @@ module TencentCloud
         # @type Description: String
         # @param EngineVersion: 实例引擎版本
         # @type EngineVersion: String
+        # @param TemplateType: 参数模板类型
+        # @type TemplateType: String
 
-        attr_accessor :TemplateId, :Name, :Description, :EngineVersion
+        attr_accessor :TemplateId, :Name, :Description, :EngineVersion, :TemplateType
         
-        def initialize(templateid=nil, name=nil, description=nil, engineversion=nil)
+        def initialize(templateid=nil, name=nil, description=nil, engineversion=nil, templatetype=nil)
           @TemplateId = templateid
           @Name = name
           @Description = description
           @EngineVersion = engineversion
+          @TemplateType = templatetype
         end
 
         def deserialize(params)
@@ -7322,6 +7338,7 @@ module TencentCloud
           @Name = params['Name']
           @Description = params['Description']
           @EngineVersion = params['EngineVersion']
+          @TemplateType = params['TemplateType']
         end
       end
 
@@ -7349,7 +7366,7 @@ module TencentCloud
       class ParameterDetail < TencentCloud::Common::AbstractModel
         # @param Name: 参数名称
         # @type Name: String
-        # @param ParamType: 参数类型
+        # @param ParamType: 参数类型：integer，enum，float，string，func
         # @type ParamType: String
         # @param Default: 参数默认值
         # @type Default: String
@@ -7365,10 +7382,14 @@ module TencentCloud
         # @type Min: Integer
         # @param EnumValue: 参数的可选枚举值。如果为非枚举参数，则为空
         # @type EnumValue: Array
+        # @param MaxFunc: 参数是公式类型时，该字段有效，表示公式类型最大值
+        # @type MaxFunc: String
+        # @param MinFunc: 参数是公式类型时，该字段有效，表示公式类型最小值
+        # @type MinFunc: String
 
-        attr_accessor :Name, :ParamType, :Default, :Description, :CurrentValue, :NeedReboot, :Max, :Min, :EnumValue
+        attr_accessor :Name, :ParamType, :Default, :Description, :CurrentValue, :NeedReboot, :Max, :Min, :EnumValue, :MaxFunc, :MinFunc
         
-        def initialize(name=nil, paramtype=nil, default=nil, description=nil, currentvalue=nil, needreboot=nil, max=nil, min=nil, enumvalue=nil)
+        def initialize(name=nil, paramtype=nil, default=nil, description=nil, currentvalue=nil, needreboot=nil, max=nil, min=nil, enumvalue=nil, maxfunc=nil, minfunc=nil)
           @Name = name
           @ParamType = paramtype
           @Default = default
@@ -7378,6 +7399,8 @@ module TencentCloud
           @Max = max
           @Min = min
           @EnumValue = enumvalue
+          @MaxFunc = maxfunc
+          @MinFunc = minfunc
         end
 
         def deserialize(params)
@@ -7390,6 +7413,8 @@ module TencentCloud
           @Max = params['Max']
           @Min = params['Min']
           @EnumValue = params['EnumValue']
+          @MaxFunc = params['MaxFunc']
+          @MinFunc = params['MinFunc']
         end
       end
 

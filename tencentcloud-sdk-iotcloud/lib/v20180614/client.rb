@@ -1157,6 +1157,78 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口（ListLog）用于查看日志信息
+
+        # @param request: Request instance for ListLog.
+        # @type request: :class:`Tencentcloud::iotcloud::V20180614::ListLogRequest`
+        # @rtype: :class:`Tencentcloud::iotcloud::V20180614::ListLogResponse`
+        def ListLog(request)
+          body = send_request('ListLog', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ListLogResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取日志内容列表
+
+        # @param request: Request instance for ListLogPayload.
+        # @type request: :class:`Tencentcloud::iotcloud::V20180614::ListLogPayloadRequest`
+        # @rtype: :class:`Tencentcloud::iotcloud::V20180614::ListLogPayloadResponse`
+        def ListLogPayload(request)
+          body = send_request('ListLogPayload', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ListLogPayloadResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取设备上报的日志
+
+        # @param request: Request instance for ListSDKLog.
+        # @type request: :class:`Tencentcloud::iotcloud::V20180614::ListSDKLogRequest`
+        # @rtype: :class:`Tencentcloud::iotcloud::V20180614::ListSDKLogResponse`
+        def ListSDKLog(request)
+          body = send_request('ListSDKLog', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ListSDKLogResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 模拟lora类型的设备端向服务器端发送消息
 
         # @param request: Request instance for PublishAsDevice.

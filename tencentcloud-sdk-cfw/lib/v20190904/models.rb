@@ -584,16 +584,20 @@ module TencentCloud
 
       # CreateNatFwInstance返回参数结构体
       class CreateNatFwInstanceResponse < TencentCloud::Common::AbstractModel
+        # @param CfwInsId: 防火墙实例id
+        # @type CfwInsId: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RequestId
+        attr_accessor :CfwInsId, :RequestId
         
-        def initialize(requestid=nil)
+        def initialize(cfwinsid=nil, requestid=nil)
+          @CfwInsId = cfwinsid
           @RequestId = requestid
         end
 
         def deserialize(params)
+          @CfwInsId = params['CfwInsId']
           @RequestId = params['RequestId']
         end
       end
@@ -655,16 +659,21 @@ module TencentCloud
 
       # CreateNatFwInstanceWithDomain返回参数结构体
       class CreateNatFwInstanceWithDomainResponse < TencentCloud::Common::AbstractModel
+        # @param CfwInsId: nat实例信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CfwInsId: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RequestId
+        attr_accessor :CfwInsId, :RequestId
         
-        def initialize(requestid=nil)
+        def initialize(cfwinsid=nil, requestid=nil)
+          @CfwInsId = cfwinsid
           @RequestId = requestid
         end
 
         def deserialize(params)
+          @CfwInsId = params['CfwInsId']
           @RequestId = params['RequestId']
         end
       end
@@ -2703,20 +2712,25 @@ module TencentCloud
         # @param StartRuleNum: 启用规则数量
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StartRuleNum: Integer
+        # @param Total: 规则总量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Total: Integer
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :StrategyNum, :StartRuleNum, :RequestId
+        attr_accessor :StrategyNum, :StartRuleNum, :Total, :RequestId
         
-        def initialize(strategynum=nil, startrulenum=nil, requestid=nil)
+        def initialize(strategynum=nil, startrulenum=nil, total=nil, requestid=nil)
           @StrategyNum = strategynum
           @StartRuleNum = startrulenum
+          @Total = total
           @RequestId = requestid
         end
 
         def deserialize(params)
           @StrategyNum = params['StrategyNum']
           @StartRuleNum = params['StartRuleNum']
+          @Total = params['Total']
           @RequestId = params['RequestId']
         end
       end

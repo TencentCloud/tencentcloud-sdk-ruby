@@ -1784,6 +1784,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 搜索CLS日志，TCB角色秘钥访问
+
+        # @param request: Request instance for SearchClsLog.
+        # @type request: :class:`Tencentcloud::tcb::V20180608::SearchClsLogRequest`
+        # @rtype: :class:`Tencentcloud::tcb::V20180608::SearchClsLogResponse`
+        def SearchClsLog(request)
+          body = send_request('SearchClsLog', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = SearchClsLogResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（TurnOffStandaloneGateway）用于关闭小租户网关。
 
         # @param request: Request instance for TurnOffStandaloneGateway.

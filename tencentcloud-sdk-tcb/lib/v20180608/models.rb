@@ -5837,6 +5837,73 @@ module TencentCloud
         end
       end
 
+      # CLS日志单条信息
+      class LogObject < TencentCloud::Common::AbstractModel
+        # @param TopicId: 日志属于的 topic ID
+        # @type TopicId: String
+        # @param TopicName: 日志主题的名字
+        # @type TopicName: String
+        # @param Timestamp: 日志时间
+        # @type Timestamp: String
+        # @param Content: 日志内容
+        # @type Content: String
+        # @param FileName: 采集路径
+        # @type FileName: String
+        # @param Source: 日志来源设备
+        # @type Source: String
+
+        attr_accessor :TopicId, :TopicName, :Timestamp, :Content, :FileName, :Source
+        
+        def initialize(topicid=nil, topicname=nil, timestamp=nil, content=nil, filename=nil, source=nil)
+          @TopicId = topicid
+          @TopicName = topicname
+          @Timestamp = timestamp
+          @Content = content
+          @FileName = filename
+          @Source = source
+        end
+
+        def deserialize(params)
+          @TopicId = params['TopicId']
+          @TopicName = params['TopicName']
+          @Timestamp = params['Timestamp']
+          @Content = params['Content']
+          @FileName = params['FileName']
+          @Source = params['Source']
+        end
+      end
+
+      # CLS日志结果
+      class LogResObject < TencentCloud::Common::AbstractModel
+        # @param Context: 获取更多检索结果的游标
+        # @type Context: String
+        # @param ListOver: 搜索结果是否已经全部返回
+        # @type ListOver: Boolean
+        # @param Results: 日志内容信息
+        # @type Results: Array
+
+        attr_accessor :Context, :ListOver, :Results
+        
+        def initialize(context=nil, listover=nil, results=nil)
+          @Context = context
+          @ListOver = listover
+          @Results = results
+        end
+
+        def deserialize(params)
+          @Context = params['Context']
+          @ListOver = params['ListOver']
+          unless params['Results'].nil?
+            @Results = []
+            params['Results'].each do |i|
+              logobject_tmp = LogObject.new
+              logobject_tmp.deserialize(i)
+              @Results << logobject_tmp
+            end
+          end
+        end
+      end
+
       # 云日志服务相关信息
       class LogServiceInfo < TencentCloud::Common::AbstractModel
         # @param LogsetName: log名
@@ -6724,6 +6791,73 @@ module TencentCloud
           @Result = params['Result']
           @VersionName = params['VersionName']
           @RunId = params['RunId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # SearchClsLog请求参数结构体
+      class SearchClsLogRequest < TencentCloud::Common::AbstractModel
+        # @param EnvId: 环境唯一ID
+        # @type EnvId: String
+        # @param StartTime: 查询起始时间条件
+        # @type StartTime: String
+        # @param EndTime: 查询结束时间条件
+        # @type EndTime: String
+        # @param QueryString: 查询语句，详情参考 https://cloud.tencent.com/document/product/614/47044
+        # @type QueryString: String
+        # @param Limit: 单次要返回的日志条数，单次返回的最大条数为100
+        # @type Limit: Integer
+        # @param Context: 加载更多使用，透传上次返回的 context 值，获取后续的日志内容，通过游标最多可获取10000条，请尽可能缩小时间范围
+        # @type Context: String
+        # @param Sort: 按时间排序 asc（升序）或者 desc（降序），默认为 desc
+        # @type Sort: String
+        # @param UseLucene: 是否使用Lucene语法，默认为false
+        # @type UseLucene: Boolean
+
+        attr_accessor :EnvId, :StartTime, :EndTime, :QueryString, :Limit, :Context, :Sort, :UseLucene
+        
+        def initialize(envid=nil, starttime=nil, endtime=nil, querystring=nil, limit=nil, context=nil, sort=nil, uselucene=nil)
+          @EnvId = envid
+          @StartTime = starttime
+          @EndTime = endtime
+          @QueryString = querystring
+          @Limit = limit
+          @Context = context
+          @Sort = sort
+          @UseLucene = uselucene
+        end
+
+        def deserialize(params)
+          @EnvId = params['EnvId']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @QueryString = params['QueryString']
+          @Limit = params['Limit']
+          @Context = params['Context']
+          @Sort = params['Sort']
+          @UseLucene = params['UseLucene']
+        end
+      end
+
+      # SearchClsLog返回参数结构体
+      class SearchClsLogResponse < TencentCloud::Common::AbstractModel
+        # @param LogResults: 日志内容结果
+        # @type LogResults: :class:`Tencentcloud::Tcb.v20180608.models.LogResObject`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :LogResults, :RequestId
+        
+        def initialize(logresults=nil, requestid=nil)
+          @LogResults = logresults
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['LogResults'].nil?
+            @LogResults = LogResObject.new
+            @LogResults.deserialize(params['LogResults'])
+          end
           @RequestId = params['RequestId']
         end
       end

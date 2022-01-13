@@ -212,6 +212,50 @@ module TencentCloud
         end
       end
 
+      # CLS日志
+      class CLSLogItem < TencentCloud::Common::AbstractModel
+        # @param Content: 日志内容
+        # @type Content: String
+        # @param Devicename: 设备名称
+        # @type Devicename: String
+        # @param Productid: 产品ID
+        # @type Productid: String
+        # @param Requestid: 请求ID
+        # @type Requestid: String
+        # @param Result: 结果
+        # @type Result: String
+        # @param Scene: 模块
+        # @type Scene: String
+        # @param Time: 日志时间
+        # @type Time: String
+        # @param Userid: 腾讯云账号
+        # @type Userid: String
+
+        attr_accessor :Content, :Devicename, :Productid, :Requestid, :Result, :Scene, :Time, :Userid
+        
+        def initialize(content=nil, devicename=nil, productid=nil, requestid=nil, result=nil, scene=nil, time=nil, userid=nil)
+          @Content = content
+          @Devicename = devicename
+          @Productid = productid
+          @Requestid = requestid
+          @Result = result
+          @Scene = scene
+          @Time = time
+          @Userid = userid
+        end
+
+        def deserialize(params)
+          @Content = params['Content']
+          @Devicename = params['Devicename']
+          @Productid = params['Productid']
+          @Requestid = params['Requestid']
+          @Result = params['Result']
+          @Scene = params['Scene']
+          @Time = params['Time']
+          @Userid = params['Userid']
+        end
+      end
+
       # CancelDeviceFirmwareTask请求参数结构体
       class CancelDeviceFirmwareTaskRequest < TencentCloud::Common::AbstractModel
         # @param ProductID: 产品ID
@@ -3019,6 +3063,217 @@ module TencentCloud
         end
       end
 
+      # ListLogPayload请求参数结构体
+      class ListLogPayloadRequest < TencentCloud::Common::AbstractModel
+        # @param MinTime: 日志开始时间
+        # @type MinTime: Integer
+        # @param MaxTime: 日志结束时间
+        # @type MaxTime: Integer
+        # @param Keywords: 查询关键字，可以同时支持键值查询和文本查询，例如，查询某key的值为value，并且包含某word的日志，该参数为：key:value word。键值或文本可以包含多个，以空格隔开。其中可以索引的key比如：RequestID、ProductID、DeviceName等。
+        # 一个典型的查询示例：ProductID:ABCDE12345 DeviceName:test publish
+        # @type Keywords: String
+        # @param Context: 日志检索上下文
+        # @type Context: String
+        # @param MaxNum: 日志最大条数
+        # @type MaxNum: Integer
+
+        attr_accessor :MinTime, :MaxTime, :Keywords, :Context, :MaxNum
+        
+        def initialize(mintime=nil, maxtime=nil, keywords=nil, context=nil, maxnum=nil)
+          @MinTime = mintime
+          @MaxTime = maxtime
+          @Keywords = keywords
+          @Context = context
+          @MaxNum = maxnum
+        end
+
+        def deserialize(params)
+          @MinTime = params['MinTime']
+          @MaxTime = params['MaxTime']
+          @Keywords = params['Keywords']
+          @Context = params['Context']
+          @MaxNum = params['MaxNum']
+        end
+      end
+
+      # ListLogPayload返回参数结构体
+      class ListLogPayloadResponse < TencentCloud::Common::AbstractModel
+        # @param Context: 日志上下文
+        # @type Context: String
+        # @param Listover: 是否还有日志，如有仍有日志，下次查询的请求带上当前请求返回的Context
+        # @type Listover: Boolean
+        # @param Results: 日志列表
+        # @type Results: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Context, :Listover, :Results, :RequestId
+        
+        def initialize(context=nil, listover=nil, results=nil, requestid=nil)
+          @Context = context
+          @Listover = listover
+          @Results = results
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Context = params['Context']
+          @Listover = params['Listover']
+          unless params['Results'].nil?
+            @Results = []
+            params['Results'].each do |i|
+              payloadlogitem_tmp = PayloadLogItem.new
+              payloadlogitem_tmp.deserialize(i)
+              @Results << payloadlogitem_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ListLog请求参数结构体
+      class ListLogRequest < TencentCloud::Common::AbstractModel
+        # @param MinTime: 日志开始时间
+        # @type MinTime: Integer
+        # @param MaxTime: 日志结束时间
+        # @type MaxTime: Integer
+        # @param Keywords: 查询关键字，可以同时支持键值查询和文本查询，例如，查询某key的值为value，并且包含某word的日志，该参数为：key:value word。键值或文本可以包含多个，以空格隔开。其中可以索引的key包括：requestid、productid、devicename、scene、content。
+        # 一个典型的查询示例：productid:ABCDE12345 devicename:test scene:SHADOW content:Device%20connect publish
+        # @type Keywords: String
+        # @param Context: 日志检索上下文
+        # @type Context: String
+        # @param MaxNum: 查询条数
+        # @type MaxNum: Integer
+
+        attr_accessor :MinTime, :MaxTime, :Keywords, :Context, :MaxNum
+        
+        def initialize(mintime=nil, maxtime=nil, keywords=nil, context=nil, maxnum=nil)
+          @MinTime = mintime
+          @MaxTime = maxtime
+          @Keywords = keywords
+          @Context = context
+          @MaxNum = maxnum
+        end
+
+        def deserialize(params)
+          @MinTime = params['MinTime']
+          @MaxTime = params['MaxTime']
+          @Keywords = params['Keywords']
+          @Context = params['Context']
+          @MaxNum = params['MaxNum']
+        end
+      end
+
+      # ListLog返回参数结构体
+      class ListLogResponse < TencentCloud::Common::AbstractModel
+        # @param Context: 日志上下文
+        # @type Context: String
+        # @param Listover: 是否还有日志，如有仍有日志，下次查询的请求带上当前请求返回的Context
+        # @type Listover: Boolean
+        # @param Results: 日志列表
+        # @type Results: Array
+        # @param TotalCount: 日志总条数
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Context, :Listover, :Results, :TotalCount, :RequestId
+        
+        def initialize(context=nil, listover=nil, results=nil, totalcount=nil, requestid=nil)
+          @Context = context
+          @Listover = listover
+          @Results = results
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Context = params['Context']
+          @Listover = params['Listover']
+          unless params['Results'].nil?
+            @Results = []
+            params['Results'].each do |i|
+              clslogitem_tmp = CLSLogItem.new
+              clslogitem_tmp.deserialize(i)
+              @Results << clslogitem_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ListSDKLog请求参数结构体
+      class ListSDKLogRequest < TencentCloud::Common::AbstractModel
+        # @param MinTime: 日志开始时间
+        # @type MinTime: Integer
+        # @param MaxTime: 日志结束时间
+        # @type MaxTime: Integer
+        # @param Keywords: 查询关键字，可以同时支持键值查询和文本查询，
+        # 例如，查询某key的值为value，并且包含某word的日志，该参数为：key:value word。
+        # 键值或文本可以包含多个，以空格隔开。
+        # 其中可以索引的key包括：productid、devicename、loglevel
+        # 一个典型的查询示例：productid:7JK1G72JNE devicename:name publish loglevel:WARN一个典型的查询示例：productid:ABCDE12345 devicename:test scene:SHADOW publish
+        # @type Keywords: String
+        # @param Context: 日志检索上下文
+        # @type Context: String
+        # @param MaxNum: 查询条数
+        # @type MaxNum: Integer
+
+        attr_accessor :MinTime, :MaxTime, :Keywords, :Context, :MaxNum
+        
+        def initialize(mintime=nil, maxtime=nil, keywords=nil, context=nil, maxnum=nil)
+          @MinTime = mintime
+          @MaxTime = maxtime
+          @Keywords = keywords
+          @Context = context
+          @MaxNum = maxnum
+        end
+
+        def deserialize(params)
+          @MinTime = params['MinTime']
+          @MaxTime = params['MaxTime']
+          @Keywords = params['Keywords']
+          @Context = params['Context']
+          @MaxNum = params['MaxNum']
+        end
+      end
+
+      # ListSDKLog返回参数结构体
+      class ListSDKLogResponse < TencentCloud::Common::AbstractModel
+        # @param Context: 日志检索上下文
+        # @type Context: String
+        # @param Listover: 是否还有日志，如有仍有日志，下次查询的请求带上当前请求返回的Context
+        # @type Listover: Boolean
+        # @param Results: 日志列表
+        # @type Results: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Context, :Listover, :Results, :RequestId
+        
+        def initialize(context=nil, listover=nil, results=nil, requestid=nil)
+          @Context = context
+          @Listover = listover
+          @Results = results
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Context = params['Context']
+          @Listover = params['Listover']
+          unless params['Results'].nil?
+            @Results = []
+            params['Results'].each do |i|
+              sdklogitem_tmp = SDKLogItem.new
+              sdklogitem_tmp.deserialize(i)
+              @Results << sdklogitem_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 创建设备时返回的设备信息
       class MultiDevicesInfo < TencentCloud::Common::AbstractModel
         # @param DeviceName: 设备名
@@ -3052,6 +3307,58 @@ module TencentCloud
           @DevicePrivateKey = params['DevicePrivateKey']
           @Result = params['Result']
           @ErrMsg = params['ErrMsg']
+        end
+      end
+
+      # 内容日志项
+      class PayloadLogItem < TencentCloud::Common::AbstractModel
+        # @param Uin: 账号id
+        # @type Uin: String
+        # @param ProductID: 产品id
+        # @type ProductID: String
+        # @param DeviceName: 设备名称
+        # @type DeviceName: String
+        # @param SrcType: 来源类型
+        # @type SrcType: String
+        # @param SrcName: 来源名称
+        # @type SrcName: String
+        # @param Topic: 消息topic
+        # @type Topic: String
+        # @param PayloadFmtType: 内容格式类型
+        # @type PayloadFmtType: String
+        # @param Payload: 内容信息
+        # @type Payload: String
+        # @param RequestID: 请求ID
+        # @type RequestID: String
+        # @param DateTime: 日期时间
+        # @type DateTime: String
+
+        attr_accessor :Uin, :ProductID, :DeviceName, :SrcType, :SrcName, :Topic, :PayloadFmtType, :Payload, :RequestID, :DateTime
+        
+        def initialize(uin=nil, productid=nil, devicename=nil, srctype=nil, srcname=nil, topic=nil, payloadfmttype=nil, payload=nil, requestid=nil, datetime=nil)
+          @Uin = uin
+          @ProductID = productid
+          @DeviceName = devicename
+          @SrcType = srctype
+          @SrcName = srcname
+          @Topic = topic
+          @PayloadFmtType = payloadfmttype
+          @Payload = payload
+          @RequestID = requestid
+          @DateTime = datetime
+        end
+
+        def deserialize(params)
+          @Uin = params['Uin']
+          @ProductID = params['ProductID']
+          @DeviceName = params['DeviceName']
+          @SrcType = params['SrcType']
+          @SrcName = params['SrcName']
+          @Topic = params['Topic']
+          @PayloadFmtType = params['PayloadFmtType']
+          @Payload = params['Payload']
+          @RequestID = params['RequestID']
+          @DateTime = params['DateTime']
         end
       end
 
@@ -3676,6 +3983,38 @@ module TencentCloud
 
         def deserialize(params)
           @RequestId = params['RequestId']
+        end
+      end
+
+      # SDK日志项
+      class SDKLogItem < TencentCloud::Common::AbstractModel
+        # @param ProductID: 产品ID
+        # @type ProductID: String
+        # @param DeviceName: 设备名称
+        # @type DeviceName: String
+        # @param Level: 日志等级
+        # @type Level: String
+        # @param DateTime: 日志时间
+        # @type DateTime: String
+        # @param Content: 日志内容
+        # @type Content: String
+
+        attr_accessor :ProductID, :DeviceName, :Level, :DateTime, :Content
+        
+        def initialize(productid=nil, devicename=nil, level=nil, datetime=nil, content=nil)
+          @ProductID = productid
+          @DeviceName = devicename
+          @Level = level
+          @DateTime = datetime
+          @Content = content
+        end
+
+        def deserialize(params)
+          @ProductID = params['ProductID']
+          @DeviceName = params['DeviceName']
+          @Level = params['Level']
+          @DateTime = params['DateTime']
+          @Content = params['Content']
         end
       end
 

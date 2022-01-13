@@ -4059,6 +4059,46 @@ module TencentCloud
         end
       end
 
+      # SwitchDBInstanceHA请求参数结构体
+      class SwitchDBInstanceHARequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例Id，形如 tdsql-ow728lmc。
+        # @type InstanceId: String
+        # @param Zone: 切换的目标区域，会自动选择该可用区中延迟最低的节点。
+        # @type Zone: String
+
+        attr_accessor :InstanceId, :Zone
+        
+        def initialize(instanceid=nil, zone=nil)
+          @InstanceId = instanceid
+          @Zone = zone
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @Zone = params['Zone']
+        end
+      end
+
+      # SwitchDBInstanceHA返回参数结构体
+      class SwitchDBInstanceHAResponse < TencentCloud::Common::AbstractModel
+        # @param FlowId: 异步流程Id
+        # @type FlowId: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :FlowId, :RequestId
+        
+        def initialize(flowid=nil, requestid=nil)
+          @FlowId = flowid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @FlowId = params['FlowId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 数据库列信息
       class TableColumn < TencentCloud::Common::AbstractModel
         # @param Col: 列名称

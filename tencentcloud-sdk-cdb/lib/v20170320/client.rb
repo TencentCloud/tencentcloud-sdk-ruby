@@ -1519,7 +1519,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 该接口（DescribeParamTemplates）查询参数模板列表。
+        # 该接口（DescribeParamTemplates）查询参数模板列表，全地域公共参数Region均为ap-guangzhou。
 
         # @param request: Request instance for DescribeParamTemplates.
         # @type request: :class:`Tencentcloud::cdb::V20170320::DescribeParamTemplatesRequest`

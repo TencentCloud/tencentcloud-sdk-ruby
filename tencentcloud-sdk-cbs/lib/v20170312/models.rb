@@ -1641,6 +1641,38 @@ module TencentCloud
         end
       end
 
+      # InitializeDisks请求参数结构体
+      class InitializeDisksRequest < TencentCloud::Common::AbstractModel
+        # @param DiskIds: 待重新初始化的云硬盘ID列表， 单次初始化限制20块以内
+        # @type DiskIds: Array
+
+        attr_accessor :DiskIds
+        
+        def initialize(diskids=nil)
+          @DiskIds = diskids
+        end
+
+        def deserialize(params)
+          @DiskIds = params['DiskIds']
+        end
+      end
+
+      # InitializeDisks返回参数结构体
+      class InitializeDisksResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # InquirePriceModifyDiskExtraPerformance请求参数结构体
       class InquirePriceModifyDiskExtraPerformanceRequest < TencentCloud::Common::AbstractModel
         # @param DiskId: 云硬盘ID， 通过[DescribeDisks](/document/product/362/16315)接口查询。

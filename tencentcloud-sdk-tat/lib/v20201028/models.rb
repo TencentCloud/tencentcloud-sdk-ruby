@@ -237,7 +237,7 @@ module TencentCloud
         # @param Tags: 为命令关联的标签，列表长度不超过10。
         # @type Tags: Array
         # @param Username: 在 CVM 或 Lighthouse 实例中执行命令的用户名称。
-        # 使用最小权限执行命令是权限管理的最佳实践，建议您以普通用户身份执行云助手命令。默认情况下，在 Linux 实例中以 root 用户执行命令；Windows 实例当前仅支持以 System 用户执行命令。
+        # 使用最小权限执行命令是权限管理的最佳实践，建议您以普通用户身份执行云助手命令。默认情况下，在 Linux 实例中以 root 用户执行命令；在Windows 实例中以 System 用户执行命令。
         # @type Username: String
         # @param OutputCOSBucketUrl: 指定日志上传的cos bucket 地址，必须以https开头，如 https://BucketName-123454321.cos.ap-beijing.myqcloud.com。
         # @type OutputCOSBucketUrl: String
@@ -1390,7 +1390,7 @@ module TencentCloud
         # 自定义参数名称需符合以下规范：字符数目上限64，可选范围【a-zA-Z0-9-_】。
         # @type DefaultParameters: String
         # @param Username: 在 CVM 或 Lighthouse 实例中执行命令的用户名称。
-        # 使用最小权限执行命令是权限管理的最佳实践，建议您以普通用户身份执行云助手命令。Windows 实例当前仅支持以 System 用户执行命令。
+        # 使用最小权限执行命令是权限管理的最佳实践，建议您以普通用户身份执行云助手命令。
         # @type Username: String
         # @param OutputCOSBucketUrl: 指定日志上传的cos bucket 地址，必须以https开头，如 https://BucketName-123454321.cos.ap-beijing.myqcloud.com。
         # @type OutputCOSBucketUrl: String
@@ -1626,7 +1626,7 @@ module TencentCloud
         # @param Tags: 如果保存命令，可为命令设置标签。列表长度不超过10。
         # @type Tags: Array
         # @param Username: 在 CVM 或 Lighthouse 实例中执行命令的用户名称。
-        # 使用最小权限执行命令是权限管理的最佳实践，建议您以普通用户身份执行云助手命令。默认情况下，在 Linux 实例中以 root 用户执行命令；Windows 实例当前仅支持以 System 用户执行命令。
+        # 使用最小权限执行命令是权限管理的最佳实践，建议您以普通用户身份执行云助手命令。默认情况下，在 Linux 实例中以 root 用户执行命令；在Windows 实例中以 System 用户执行命令。
         # @type Username: String
         # @param OutputCOSBucketUrl: 指定日志上传的cos bucket 地址，必须以https开头，如 https://BucketName-123454321.cos.ap-beijing.myqcloud.com。
         # @type OutputCOSBucketUrl: String

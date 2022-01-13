@@ -914,9 +914,9 @@ module TencentCloud
 
       # SendEmail请求参数结构体
       class SendEmailRequest < TencentCloud::Common::AbstractModel
-        # @param FromEmailAddress: 发信邮件地址。请填写发件人邮箱地址，例如：noreply@mail.qcloud.com。如需填写发件人说明，请按照
-        # 发信人 <邮件地址> 的方式填写，例如：
-        # 腾讯云团队 <noreply@mail.qcloud.com>
+        # @param FromEmailAddress: 发信邮件地址。请填写发件人邮箱地址，例如：noreply@mail.qcloud.com
+        # 如需填写发件人说明，请按照如下方式：
+        # 别名 <邮箱地址>
         # @type FromEmailAddress: String
         # @param Destination: 收信人邮箱地址，最多支持群发50人。注意：邮件内容会显示所有收件人地址，非群发邮件请多次调用API发送。
         # @type Destination: Array
@@ -930,10 +930,12 @@ module TencentCloud
         # @type Simple: :class:`Tencentcloud::Ses.v20201002.models.Simple`
         # @param Attachments: 需要发送附件时，填写附件相关参数。
         # @type Attachments: Array
+        # @param Unsubscribe: 是否加入退订链接
+        # @type Unsubscribe: String
 
-        attr_accessor :FromEmailAddress, :Destination, :Subject, :ReplyToAddresses, :Template, :Simple, :Attachments
+        attr_accessor :FromEmailAddress, :Destination, :Subject, :ReplyToAddresses, :Template, :Simple, :Attachments, :Unsubscribe
         
-        def initialize(fromemailaddress=nil, destination=nil, subject=nil, replytoaddresses=nil, template=nil, simple=nil, attachments=nil)
+        def initialize(fromemailaddress=nil, destination=nil, subject=nil, replytoaddresses=nil, template=nil, simple=nil, attachments=nil, unsubscribe=nil)
           @FromEmailAddress = fromemailaddress
           @Destination = destination
           @Subject = subject
@@ -941,6 +943,7 @@ module TencentCloud
           @Template = template
           @Simple = simple
           @Attachments = attachments
+          @Unsubscribe = unsubscribe
         end
 
         def deserialize(params)
@@ -964,6 +967,7 @@ module TencentCloud
               @Attachments << attachment_tmp
             end
           end
+          @Unsubscribe = params['Unsubscribe']
         end
       end
 
