@@ -8796,10 +8796,12 @@ module TencentCloud
         # @type NeedDeleteCbs: Boolean
         # @param ProxyLB: 标记是否是新的内外网。默认为false
         # @type ProxyLB: Boolean
+        # @param ExtraParam: 扩展参数。须是map[string]string 的json 格式。
+        # @type ExtraParam: String
 
-        attr_accessor :ClusterId, :ClusterName, :ClusterDesc, :SubnetIds, :PublicLB, :InternalLB, :ServiceSubnetId, :DnsServers, :ClearDnsServer, :NeedDeleteCbs, :ProxyLB
+        attr_accessor :ClusterId, :ClusterName, :ClusterDesc, :SubnetIds, :PublicLB, :InternalLB, :ServiceSubnetId, :DnsServers, :ClearDnsServer, :NeedDeleteCbs, :ProxyLB, :ExtraParam
         
-        def initialize(clusterid=nil, clustername=nil, clusterdesc=nil, subnetids=nil, publiclb=nil, internallb=nil, servicesubnetid=nil, dnsservers=nil, cleardnsserver=nil, needdeletecbs=nil, proxylb=nil)
+        def initialize(clusterid=nil, clustername=nil, clusterdesc=nil, subnetids=nil, publiclb=nil, internallb=nil, servicesubnetid=nil, dnsservers=nil, cleardnsserver=nil, needdeletecbs=nil, proxylb=nil, extraparam=nil)
           @ClusterId = clusterid
           @ClusterName = clustername
           @ClusterDesc = clusterdesc
@@ -8811,6 +8813,7 @@ module TencentCloud
           @ClearDnsServer = cleardnsserver
           @NeedDeleteCbs = needdeletecbs
           @ProxyLB = proxylb
+          @ExtraParam = extraparam
         end
 
         def deserialize(params)
@@ -8838,6 +8841,7 @@ module TencentCloud
           @ClearDnsServer = params['ClearDnsServer']
           @NeedDeleteCbs = params['NeedDeleteCbs']
           @ProxyLB = params['ProxyLB']
+          @ExtraParam = params['ExtraParam']
         end
       end
 

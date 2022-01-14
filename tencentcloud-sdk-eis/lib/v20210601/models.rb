@@ -350,10 +350,12 @@ module TencentCloud
         # @type CreatedAt: Integer
         # @param UpdatedAt: 应用实例部署更新时间
         # @type UpdatedAt: Integer
+        # @param ProjectType: 应用类型：0:NormalApp普通应用 1:TemplateApp模版应用 2:LightApp轻应用 3:MicroConnTemplate微连接模板 4:MicroConnApp微连接应用
+        # @type ProjectType: Integer
 
-        attr_accessor :GroupId, :GroupName, :ProjectId, :ProjectName, :InstanceId, :InstanceVersion, :InstanceCreatedAt, :Status, :CreatedAt, :UpdatedAt
+        attr_accessor :GroupId, :GroupName, :ProjectId, :ProjectName, :InstanceId, :InstanceVersion, :InstanceCreatedAt, :Status, :CreatedAt, :UpdatedAt, :ProjectType
         
-        def initialize(groupid=nil, groupname=nil, projectid=nil, projectname=nil, instanceid=nil, instanceversion=nil, instancecreatedat=nil, status=nil, createdat=nil, updatedat=nil)
+        def initialize(groupid=nil, groupname=nil, projectid=nil, projectname=nil, instanceid=nil, instanceversion=nil, instancecreatedat=nil, status=nil, createdat=nil, updatedat=nil, projecttype=nil)
           @GroupId = groupid
           @GroupName = groupname
           @ProjectId = projectid
@@ -364,6 +366,7 @@ module TencentCloud
           @Status = status
           @CreatedAt = createdat
           @UpdatedAt = updatedat
+          @ProjectType = projecttype
         end
 
         def deserialize(params)
@@ -377,6 +380,7 @@ module TencentCloud
           @Status = params['Status']
           @CreatedAt = params['CreatedAt']
           @UpdatedAt = params['UpdatedAt']
+          @ProjectType = params['ProjectType']
         end
       end
 
@@ -404,10 +408,18 @@ module TencentCloud
         # @type WorkerReplica: Integer
         # @param RunningInstanceCount: 正在运行的应用实例数量
         # @type RunningInstanceCount: Integer
+        # @param CpuUsed: 已使用cpu核数
+        # @type CpuUsed: Float
+        # @param CpuLimit: cpu核数上限
+        # @type CpuLimit: Float
+        # @param MemoryUsed: 已使用内存 MB
+        # @type MemoryUsed: Float
+        # @param MemoryLimit: 内存上限 MB
+        # @type MemoryLimit: Float
 
-        attr_accessor :RuntimeId, :Uin, :DisplayName, :Zone, :Type, :Status, :CreatedAt, :UpdatedAt, :WorkerSize, :WorkerReplica, :RunningInstanceCount
+        attr_accessor :RuntimeId, :Uin, :DisplayName, :Zone, :Type, :Status, :CreatedAt, :UpdatedAt, :WorkerSize, :WorkerReplica, :RunningInstanceCount, :CpuUsed, :CpuLimit, :MemoryUsed, :MemoryLimit
         
-        def initialize(runtimeid=nil, uin=nil, displayname=nil, zone=nil, type=nil, status=nil, createdat=nil, updatedat=nil, workersize=nil, workerreplica=nil, runninginstancecount=nil)
+        def initialize(runtimeid=nil, uin=nil, displayname=nil, zone=nil, type=nil, status=nil, createdat=nil, updatedat=nil, workersize=nil, workerreplica=nil, runninginstancecount=nil, cpuused=nil, cpulimit=nil, memoryused=nil, memorylimit=nil)
           @RuntimeId = runtimeid
           @Uin = uin
           @DisplayName = displayname
@@ -419,6 +431,10 @@ module TencentCloud
           @WorkerSize = workersize
           @WorkerReplica = workerreplica
           @RunningInstanceCount = runninginstancecount
+          @CpuUsed = cpuused
+          @CpuLimit = cpulimit
+          @MemoryUsed = memoryused
+          @MemoryLimit = memorylimit
         end
 
         def deserialize(params)
@@ -433,6 +449,10 @@ module TencentCloud
           @WorkerSize = params['WorkerSize']
           @WorkerReplica = params['WorkerReplica']
           @RunningInstanceCount = params['RunningInstanceCount']
+          @CpuUsed = params['CpuUsed']
+          @CpuLimit = params['CpuLimit']
+          @MemoryUsed = params['MemoryUsed']
+          @MemoryLimit = params['MemoryLimit']
         end
       end
 

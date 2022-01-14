@@ -7700,17 +7700,20 @@ module TencentCloud
         # @type UnhandledAbnormalProcessCnt: Integer
         # @param UnhandledFileCnt: 未处理文件篡改
         # @type UnhandledFileCnt: Integer
+        # @param UnhandledVirusEventCnt: 未处理木马事件
+        # @type UnhandledVirusEventCnt: Integer
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :UnhandledEscapeCnt, :UnhandledReverseShellCnt, :UnhandledRiskSyscallCnt, :UnhandledAbnormalProcessCnt, :UnhandledFileCnt, :RequestId
+        attr_accessor :UnhandledEscapeCnt, :UnhandledReverseShellCnt, :UnhandledRiskSyscallCnt, :UnhandledAbnormalProcessCnt, :UnhandledFileCnt, :UnhandledVirusEventCnt, :RequestId
         
-        def initialize(unhandledescapecnt=nil, unhandledreverseshellcnt=nil, unhandledrisksyscallcnt=nil, unhandledabnormalprocesscnt=nil, unhandledfilecnt=nil, requestid=nil)
+        def initialize(unhandledescapecnt=nil, unhandledreverseshellcnt=nil, unhandledrisksyscallcnt=nil, unhandledabnormalprocesscnt=nil, unhandledfilecnt=nil, unhandledviruseventcnt=nil, requestid=nil)
           @UnhandledEscapeCnt = unhandledescapecnt
           @UnhandledReverseShellCnt = unhandledreverseshellcnt
           @UnhandledRiskSyscallCnt = unhandledrisksyscallcnt
           @UnhandledAbnormalProcessCnt = unhandledabnormalprocesscnt
           @UnhandledFileCnt = unhandledfilecnt
+          @UnhandledVirusEventCnt = unhandledviruseventcnt
           @RequestId = requestid
         end
 
@@ -7720,6 +7723,7 @@ module TencentCloud
           @UnhandledRiskSyscallCnt = params['UnhandledRiskSyscallCnt']
           @UnhandledAbnormalProcessCnt = params['UnhandledAbnormalProcessCnt']
           @UnhandledFileCnt = params['UnhandledFileCnt']
+          @UnhandledVirusEventCnt = params['UnhandledVirusEventCnt']
           @RequestId = params['RequestId']
         end
       end
@@ -9848,6 +9852,7 @@ module TencentCloud
         # @param ScanPath: 自选排除或扫描的地址
         # @type ScanPath: Array
         # @param ClickTimeout: 一键检测的超时设置
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ClickTimeout: Integer
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -9913,6 +9918,7 @@ module TencentCloud
         # SCAN_FINISH：扫描完成，
         # SCAN_TIMEOUT：扫描超时
         # SCAN_CANCELING: 取消中
+        # SCAN_CANCELED:已取消
         # @type Status: String
         # @param Schedule: 扫描进度 I
         # @type Schedule: Integer
@@ -11936,15 +11942,15 @@ module TencentCloud
       class ModifyVirusScanSettingRequest < TencentCloud::Common::AbstractModel
         # @param EnableScan: 是否开启定期扫描
         # @type EnableScan: Boolean
-        # @param Cycle: 检测周期每隔多少天
+        # @param Cycle: 检测周期每隔多少天(1|3|7)
         # @type Cycle: Integer
         # @param BeginScanAt: 扫描开始时间
         # @type BeginScanAt: String
-        # @param ScanPathAll: 扫描全部路径
+        # @param ScanPathAll: 扫描全部路径(true:全选,false:自选)
         # @type ScanPathAll: Boolean
         # @param ScanPathType: 当ScanPathAll为true 生效 0扫描以下路径 1、扫描除以下路径
         # @type ScanPathType: Integer
-        # @param Timeout: 超时时长
+        # @param Timeout: 超时时长(5~24h)
         # @type Timeout: Integer
         # @param ScanRangeType: 扫描范围0容器1主机节点
         # @type ScanRangeType: Integer
@@ -12002,7 +12008,7 @@ module TencentCloud
 
       # ModifyVirusScanTimeoutSetting请求参数结构体
       class ModifyVirusScanTimeoutSettingRequest < TencentCloud::Common::AbstractModel
-        # @param Timeout: 超时时长单位小时
+        # @param Timeout: 超时时长单位小时(5~24h)
         # @type Timeout: Integer
         # @param ScanType: 设置类型0一键检测，1定时检测
         # @type ScanType: Integer
@@ -13485,6 +13491,9 @@ module TencentCloud
         # BACKUP_FILE_NOT_FOUND:备份文件不存在
         # CONTAINER_NOT_FOUND_DEAL_ISOLATE:隔离时，容器不存在
         # CONTAINER_NOT_FOUND_DEAL_RECOVER:恢复时，容器不存在
+        # TIMEOUT: 超时
+        # TOO_MANY: 任务过多
+        # OFFLINE: 离线
         # @type SubStatus: String
 
         attr_accessor :FileName, :FilePath, :VirusName, :CreateTime, :ModifyTime, :ContainerName, :ContainerId, :ContainerStatus, :ImageName, :ImageId, :Status, :Id, :HarmDescribe, :SuggestScheme, :SubStatus

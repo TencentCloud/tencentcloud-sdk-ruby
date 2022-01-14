@@ -2135,19 +2135,23 @@ module TencentCloud
         # @type EnvId: String
         # @param WxAppId: 微信appid
         # @type WxAppId: String
+        # @param DbVersion: mysql内核版本，支持5.7,8.0
+        # @type DbVersion: String
 
-        attr_accessor :AccountPassword, :EnvId, :WxAppId
+        attr_accessor :AccountPassword, :EnvId, :WxAppId, :DbVersion
         
-        def initialize(accountpassword=nil, envid=nil, wxappid=nil)
+        def initialize(accountpassword=nil, envid=nil, wxappid=nil, dbversion=nil)
           @AccountPassword = accountpassword
           @EnvId = envid
           @WxAppId = wxappid
+          @DbVersion = dbversion
         end
 
         def deserialize(params)
           @AccountPassword = params['AccountPassword']
           @EnvId = params['EnvId']
           @WxAppId = params['WxAppId']
+          @DbVersion = params['DbVersion']
         end
       end
 
