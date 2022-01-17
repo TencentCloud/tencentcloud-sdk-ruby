@@ -710,19 +710,23 @@ module TencentCloud
       class DescribeRoomInfoRequest < TencentCloud::Common::AbstractModel
         # @param SdkAppId: 应用ID，登录[控制台 - 服务管理](https://console.cloud.tencent.com/gamegme)创建应用得到的AppID
         # @type SdkAppId: Integer
-        # @param RoomIds: 房间号列表，最大不能超过10个
+        # @param RoomIds: 房间号列表，最大不能超过10个（RoomIds、StrRoomIds必须填一个）
         # @type RoomIds: Array
+        # @param StrRoomIds: 字符串类型房间号列表，最大不能超过10个（RoomIds、StrRoomIds必须填一个）
+        # @type StrRoomIds: Array
 
-        attr_accessor :SdkAppId, :RoomIds
+        attr_accessor :SdkAppId, :RoomIds, :StrRoomIds
         
-        def initialize(sdkappid=nil, roomids=nil)
+        def initialize(sdkappid=nil, roomids=nil, strroomids=nil)
           @SdkAppId = sdkappid
           @RoomIds = roomids
+          @StrRoomIds = strroomids
         end
 
         def deserialize(params)
           @SdkAppId = params['SdkAppId']
           @RoomIds = params['RoomIds']
+          @StrRoomIds = params['StrRoomIds']
         end
       end
 
@@ -1140,17 +1144,22 @@ module TencentCloud
         # @param Uins: 房间里用户uin列表
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Uins: Array
+        # @param StrRoomId: 字符串房间id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StrRoomId: String
 
-        attr_accessor :RoomId, :Uins
+        attr_accessor :RoomId, :Uins, :StrRoomId
         
-        def initialize(roomid=nil, uins=nil)
+        def initialize(roomid=nil, uins=nil, strroomid=nil)
           @RoomId = roomid
           @Uins = uins
+          @StrRoomId = strroomid
         end
 
         def deserialize(params)
           @RoomId = params['RoomId']
           @Uins = params['Uins']
+          @StrRoomId = params['StrRoomId']
         end
       end
 

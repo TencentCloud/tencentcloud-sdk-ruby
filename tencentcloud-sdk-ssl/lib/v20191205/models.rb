@@ -1161,10 +1161,12 @@ module TencentCloud
         # @type Upload: Integer
         # @param Renew: 是否筛选可续期证书 1筛选 0不筛选
         # @type Renew: Integer
+        # @param FilterSource: 筛选来源， upload：上传证书， buy：腾讯云证书， 不传默认全部
+        # @type FilterSource: String
 
-        attr_accessor :Offset, :Limit, :SearchKey, :CertificateType, :ProjectId, :ExpirationSort, :CertificateStatus, :Deployable, :Upload, :Renew
+        attr_accessor :Offset, :Limit, :SearchKey, :CertificateType, :ProjectId, :ExpirationSort, :CertificateStatus, :Deployable, :Upload, :Renew, :FilterSource
         
-        def initialize(offset=nil, limit=nil, searchkey=nil, certificatetype=nil, projectid=nil, expirationsort=nil, certificatestatus=nil, deployable=nil, upload=nil, renew=nil)
+        def initialize(offset=nil, limit=nil, searchkey=nil, certificatetype=nil, projectid=nil, expirationsort=nil, certificatestatus=nil, deployable=nil, upload=nil, renew=nil, filtersource=nil)
           @Offset = offset
           @Limit = limit
           @SearchKey = searchkey
@@ -1175,6 +1177,7 @@ module TencentCloud
           @Deployable = deployable
           @Upload = upload
           @Renew = renew
+          @FilterSource = filtersource
         end
 
         def deserialize(params)
@@ -1188,6 +1191,7 @@ module TencentCloud
           @Deployable = params['Deployable']
           @Upload = params['Upload']
           @Renew = params['Renew']
+          @FilterSource = params['FilterSource']
         end
       end
 

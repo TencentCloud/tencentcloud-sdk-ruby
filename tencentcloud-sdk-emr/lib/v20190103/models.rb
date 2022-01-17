@@ -738,6 +738,26 @@ module TencentCloud
         end
       end
 
+      # 共用自建组件参数
+      class CustomServiceDefine < TencentCloud::Common::AbstractModel
+        # @param Name: 自定义参数key
+        # @type Name: String
+        # @param Value: 自定义参数value
+        # @type Value: String
+
+        attr_accessor :Name, :Value
+        
+        def initialize(name=nil, value=nil)
+          @Name = name
+          @Value = value
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Value = params['Value']
+        end
+      end
+
       # DescribeClusterNodes请求参数结构体
       class DescribeClusterNodesRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 集群实例ID,实例ID形如: emr-xxxxxxxx
@@ -1313,6 +1333,41 @@ module TencentCloud
         end
       end
 
+      # 共用组件信息
+      class ExternalService < TencentCloud::Common::AbstractModel
+        # @param ShareType: 共用组件类型，EMR/CUSTOM
+        # @type ShareType: String
+        # @param CustomServiceDefineList: 自定义参数集合
+        # @type CustomServiceDefineList: Array
+        # @param Service: 共用组件名
+        # @type Service: String
+        # @param InstanceId: 共用组件集群
+        # @type InstanceId: String
+
+        attr_accessor :ShareType, :CustomServiceDefineList, :Service, :InstanceId
+        
+        def initialize(sharetype=nil, customservicedefinelist=nil, service=nil, instanceid=nil)
+          @ShareType = sharetype
+          @CustomServiceDefineList = customservicedefinelist
+          @Service = service
+          @InstanceId = instanceid
+        end
+
+        def deserialize(params)
+          @ShareType = params['ShareType']
+          unless params['CustomServiceDefineList'].nil?
+            @CustomServiceDefineList = []
+            params['CustomServiceDefineList'].each do |i|
+              customservicedefine_tmp = CustomServiceDefine.new
+              customservicedefine_tmp.deserialize(i)
+              @CustomServiceDefineList << customservicedefine_tmp
+            end
+          end
+          @Service = params['Service']
+          @InstanceId = params['InstanceId']
+        end
+      end
+
       # Pod HostPath挂载方式描述
       class HostVolumeContext < TencentCloud::Common::AbstractModel
         # @param VolumePath: Pod挂载宿主机的目录。资源对宿主机的挂载点，指定的挂载点对应了宿主机的路径，该挂载点在Pod中作为数据存储目录使用
@@ -1462,10 +1517,12 @@ module TencentCloud
         # Hadoop-Presto
         # Hadoop-Hbase
         # @type SceneName: String
+        # @param ExternalService: 共用组件信息
+        # @type ExternalService: Array
 
-        attr_accessor :TimeUnit, :TimeSpan, :ResourceSpec, :Currency, :PayMode, :SupportHA, :Software, :Placement, :VPCSettings, :MetaType, :UnifyMetaInstanceId, :MetaDBInfo, :ProductId, :SceneName
+        attr_accessor :TimeUnit, :TimeSpan, :ResourceSpec, :Currency, :PayMode, :SupportHA, :Software, :Placement, :VPCSettings, :MetaType, :UnifyMetaInstanceId, :MetaDBInfo, :ProductId, :SceneName, :ExternalService
         
-        def initialize(timeunit=nil, timespan=nil, resourcespec=nil, currency=nil, paymode=nil, supportha=nil, software=nil, placement=nil, vpcsettings=nil, metatype=nil, unifymetainstanceid=nil, metadbinfo=nil, productid=nil, scenename=nil)
+        def initialize(timeunit=nil, timespan=nil, resourcespec=nil, currency=nil, paymode=nil, supportha=nil, software=nil, placement=nil, vpcsettings=nil, metatype=nil, unifymetainstanceid=nil, metadbinfo=nil, productid=nil, scenename=nil, externalservice=nil)
           @TimeUnit = timeunit
           @TimeSpan = timespan
           @ResourceSpec = resourcespec
@@ -1480,6 +1537,7 @@ module TencentCloud
           @MetaDBInfo = metadbinfo
           @ProductId = productid
           @SceneName = scenename
+          @ExternalService = externalservice
         end
 
         def deserialize(params)
@@ -1509,6 +1567,14 @@ module TencentCloud
           end
           @ProductId = params['ProductId']
           @SceneName = params['SceneName']
+          unless params['ExternalService'].nil?
+            @ExternalService = []
+            params['ExternalService'].each do |i|
+              externalservice_tmp = ExternalService.new
+              externalservice_tmp.deserialize(i)
+              @ExternalService << externalservice_tmp
+            end
+          end
         end
       end
 

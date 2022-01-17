@@ -437,7 +437,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 获取地址模版列表
+        # 获取地址模板列表
 
         # @param request: Request instance for DescribeAddrTemplateList.
         # @type request: :class:`Tencentcloud::cfw::V20190904::DescribeAddrTemplateListRequest`
@@ -1387,6 +1387,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyResourceGroupResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 同步资产-互联网&VPC（新）
+
+        # @param request: Request instance for ModifyRunSyncAsset.
+        # @type request: :class:`Tencentcloud::cfw::V20190904::ModifyRunSyncAssetRequest`
+        # @rtype: :class:`Tencentcloud::cfw::V20190904::ModifyRunSyncAssetResponse`
+        def ModifyRunSyncAsset(request)
+          body = send_request('ModifyRunSyncAsset', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyRunSyncAssetResponse.new
             model.deserialize(response['Response'])
             model
           else

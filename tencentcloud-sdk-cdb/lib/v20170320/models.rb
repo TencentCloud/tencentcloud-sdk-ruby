@@ -3461,17 +3461,25 @@ module TencentCloud
         # @param ConnectionPoolInfo: 连接池信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ConnectionPoolInfo: :class:`Tencentcloud::Cdb.v20170320.models.ConnectionPoolInfo`
+        # @param Count: 代理数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Count: Integer
+        # @param ProxyGroup: 代理信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProxyGroup: Array
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :BaseGroup, :Address, :ProxyNode, :RWInstInfo, :ConnectionPoolInfo, :RequestId
+        attr_accessor :BaseGroup, :Address, :ProxyNode, :RWInstInfo, :ConnectionPoolInfo, :Count, :ProxyGroup, :RequestId
         
-        def initialize(basegroup=nil, address=nil, proxynode=nil, rwinstinfo=nil, connectionpoolinfo=nil, requestid=nil)
+        def initialize(basegroup=nil, address=nil, proxynode=nil, rwinstinfo=nil, connectionpoolinfo=nil, count=nil, proxygroup=nil, requestid=nil)
           @BaseGroup = basegroup
           @Address = address
           @ProxyNode = proxynode
           @RWInstInfo = rwinstinfo
           @ConnectionPoolInfo = connectionpoolinfo
+          @Count = count
+          @ProxyGroup = proxygroup
           @RequestId = requestid
         end
 
@@ -3495,6 +3503,15 @@ module TencentCloud
           unless params['ConnectionPoolInfo'].nil?
             @ConnectionPoolInfo = ConnectionPoolInfo.new
             @ConnectionPoolInfo.deserialize(params['ConnectionPoolInfo'])
+          end
+          @Count = params['Count']
+          unless params['ProxyGroup'].nil?
+            @ProxyGroup = []
+            params['ProxyGroup'].each do |i|
+              proxygroup_tmp = ProxyGroup.new
+              proxygroup_tmp.deserialize(i)
+              @ProxyGroup << proxygroup_tmp
+            end
           end
           @RequestId = params['RequestId']
         end
@@ -8222,6 +8239,66 @@ module TencentCloud
           @ConnectionPoolType = params['ConnectionPoolType']
           @MaxPoolConnectionTimeOut = params['MaxPoolConnectionTimeOut']
           @MinPoolConnectionTimeOut = params['MinPoolConnectionTimeOut']
+        end
+      end
+
+      # 数据代理组信息
+      class ProxyGroup < TencentCloud::Common::AbstractModel
+        # @param BaseGroup: 代理基本信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BaseGroup: :class:`Tencentcloud::Cdb.v20170320.models.BaseGroupInfo`
+        # @param Address: 代理地址信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Address: Array
+        # @param ConnectionPoolInfo: 代理连接池信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ConnectionPoolInfo: :class:`Tencentcloud::Cdb.v20170320.models.ConnectionPoolInfo`
+        # @param ProxyNode: 代理节点信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProxyNode: Array
+        # @param RWInstInfo: 代理路由信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RWInstInfo: :class:`Tencentcloud::Cdb.v20170320.models.RWInfo`
+
+        attr_accessor :BaseGroup, :Address, :ConnectionPoolInfo, :ProxyNode, :RWInstInfo
+        
+        def initialize(basegroup=nil, address=nil, connectionpoolinfo=nil, proxynode=nil, rwinstinfo=nil)
+          @BaseGroup = basegroup
+          @Address = address
+          @ConnectionPoolInfo = connectionpoolinfo
+          @ProxyNode = proxynode
+          @RWInstInfo = rwinstinfo
+        end
+
+        def deserialize(params)
+          unless params['BaseGroup'].nil?
+            @BaseGroup = BaseGroupInfo.new
+            @BaseGroup.deserialize(params['BaseGroup'])
+          end
+          unless params['Address'].nil?
+            @Address = []
+            params['Address'].each do |i|
+              address_tmp = Address.new
+              address_tmp.deserialize(i)
+              @Address << address_tmp
+            end
+          end
+          unless params['ConnectionPoolInfo'].nil?
+            @ConnectionPoolInfo = ConnectionPoolInfo.new
+            @ConnectionPoolInfo.deserialize(params['ConnectionPoolInfo'])
+          end
+          unless params['ProxyNode'].nil?
+            @ProxyNode = []
+            params['ProxyNode'].each do |i|
+              proxynodeinfo_tmp = ProxyNodeInfo.new
+              proxynodeinfo_tmp.deserialize(i)
+              @ProxyNode << proxynodeinfo_tmp
+            end
+          end
+          unless params['RWInstInfo'].nil?
+            @RWInstInfo = RWInfo.new
+            @RWInstInfo.deserialize(params['RWInstInfo'])
+          end
         end
       end
 

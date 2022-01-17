@@ -17,6 +17,28 @@
 module TencentCloud
   module Apm
     module V20210622
+      # Apm通用KV结构
+      class APMKVItem < TencentCloud::Common::AbstractModel
+        # @param Key: Key值定义
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Key: String
+        # @param Value: Value值定义
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Value: String
+
+        attr_accessor :Key, :Value
+        
+        def initialize(key=nil, value=nil)
+          @Key = key
+          @Value = value
+        end
+
+        def deserialize(params)
+          @Key = params['Key']
+          @Value = params['Value']
+        end
+      end
+
       # apm Agent信息
       class ApmAgentInfo < TencentCloud::Common::AbstractModel
         # @param AgentDownloadURL: Agent下载地址
@@ -56,6 +78,49 @@ module TencentCloud
           @PublicCollectorURL = params['PublicCollectorURL']
           @InnerCollectorURL = params['InnerCollectorURL']
           @PrivateLinkCollectorURL = params['PrivateLinkCollectorURL']
+        end
+      end
+
+      # 指标维度信息
+      class ApmField < TencentCloud::Common::AbstractModel
+        # @param CompareVal: 昨日同比指标值，已弃用，不建议使用
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CompareVal: String
+        # @param CompareVals: Compare值结果数组，推荐使用
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CompareVals: Array
+        # @param Value: 指标值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Value: Float
+        # @param Unit: 指标所对应的单位
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Unit: String
+        # @param Key: 请求数
+        # @type Key: String
+
+        attr_accessor :CompareVal, :CompareVals, :Value, :Unit, :Key
+        
+        def initialize(compareval=nil, comparevals=nil, value=nil, unit=nil, key=nil)
+          @CompareVal = compareval
+          @CompareVals = comparevals
+          @Value = value
+          @Unit = unit
+          @Key = key
+        end
+
+        def deserialize(params)
+          @CompareVal = params['CompareVal']
+          unless params['CompareVals'].nil?
+            @CompareVals = []
+            params['CompareVals'].each do |i|
+              apmkvitem_tmp = APMKVItem.new
+              apmkvitem_tmp.deserialize(i)
+              @CompareVals << apmkvitem_tmp
+            end
+          end
+          @Value = params['Value']
+          @Unit = params['Unit']
+          @Key = params['Key']
         end
       end
 
@@ -183,6 +248,40 @@ module TencentCloud
           @LogSource = params['LogSource']
           @IsRelatedLog = params['IsRelatedLog']
           @LogTopicID = params['LogTopicID']
+        end
+      end
+
+      # 指标列表单元
+      class ApmMetricRecord < TencentCloud::Common::AbstractModel
+        # @param Fields: field数组
+        # @type Fields: Array
+        # @param Tags: tag数组
+        # @type Tags: Array
+
+        attr_accessor :Fields, :Tags
+        
+        def initialize(fields=nil, tags=nil)
+          @Fields = fields
+          @Tags = tags
+        end
+
+        def deserialize(params)
+          unless params['Fields'].nil?
+            @Fields = []
+            params['Fields'].each do |i|
+              apmfield_tmp = ApmField.new
+              apmfield_tmp.deserialize(i)
+              @Fields << apmfield_tmp
+            end
+          end
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              apmtag_tmp = ApmTag.new
+              apmtag_tmp.deserialize(i)
+              @Tags << apmtag_tmp
+            end
+          end
         end
       end
 
@@ -374,6 +473,167 @@ module TencentCloud
             end
           end
           @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeMetricRecords请求参数结构体
+      class DescribeMetricRecordsRequest < TencentCloud::Common::AbstractModel
+        # @param Filters: 过滤条件
+        # @type Filters: Array
+        # @param Metrics: 指标列表
+        # @type Metrics: Array
+        # @param GroupBy: 聚合维度
+        # @type GroupBy: Array
+        # @param OrderBy: 排序
+        # @type OrderBy: :class:`Tencentcloud::Apm.v20210622.models.OrderBy`
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+        # @param Limit: 每页大小
+        # @type Limit: Integer
+        # @param StartTime: 开始时间
+        # @type StartTime: Integer
+        # @param Offset: 分页起始点
+        # @type Offset: Integer
+        # @param EndTime: 结束时间
+        # @type EndTime: Integer
+
+        attr_accessor :Filters, :Metrics, :GroupBy, :OrderBy, :InstanceId, :Limit, :StartTime, :Offset, :EndTime
+        
+        def initialize(filters=nil, metrics=nil, groupby=nil, orderby=nil, instanceid=nil, limit=nil, starttime=nil, offset=nil, endtime=nil)
+          @Filters = filters
+          @Metrics = metrics
+          @GroupBy = groupby
+          @OrderBy = orderby
+          @InstanceId = instanceid
+          @Limit = limit
+          @StartTime = starttime
+          @Offset = offset
+          @EndTime = endtime
+        end
+
+        def deserialize(params)
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+          unless params['Metrics'].nil?
+            @Metrics = []
+            params['Metrics'].each do |i|
+              querymetricitem_tmp = QueryMetricItem.new
+              querymetricitem_tmp.deserialize(i)
+              @Metrics << querymetricitem_tmp
+            end
+          end
+          @GroupBy = params['GroupBy']
+          unless params['OrderBy'].nil?
+            @OrderBy = OrderBy.new
+            @OrderBy.deserialize(params['OrderBy'])
+          end
+          @InstanceId = params['InstanceId']
+          @Limit = params['Limit']
+          @StartTime = params['StartTime']
+          @Offset = params['Offset']
+          @EndTime = params['EndTime']
+        end
+      end
+
+      # DescribeMetricRecords返回参数结构体
+      class DescribeMetricRecordsResponse < TencentCloud::Common::AbstractModel
+        # @param Records: 指标结果集
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Records: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Records, :RequestId
+        
+        def initialize(records=nil, requestid=nil)
+          @Records = records
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Records'].nil?
+            @Records = []
+            params['Records'].each do |i|
+              apmmetricrecord_tmp = ApmMetricRecord.new
+              apmmetricrecord_tmp.deserialize(i)
+              @Records << apmmetricrecord_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 查询过滤参数
+      class Filter < TencentCloud::Common::AbstractModel
+        # @param Type: 过滤方式（=, !=, in）
+        # @type Type: String
+        # @param Key: 过滤维度名
+        # @type Key: String
+        # @param Value: 过滤值，in过滤方式用逗号分割多个值
+        # @type Value: String
+
+        attr_accessor :Type, :Key, :Value
+        
+        def initialize(type=nil, key=nil, value=nil)
+          @Type = type
+          @Key = key
+          @Value = value
+        end
+
+        def deserialize(params)
+          @Type = params['Type']
+          @Key = params['Key']
+          @Value = params['Value']
+        end
+      end
+
+      # sql排序字段
+      class OrderBy < TencentCloud::Common::AbstractModel
+        # @param Key: 需要排序的字段
+        # @type Key: String
+        # @param Value: 顺序排序/倒序排序
+        # @type Value: String
+
+        attr_accessor :Key, :Value
+        
+        def initialize(key=nil, value=nil)
+          @Key = key
+          @Value = value
+        end
+
+        def deserialize(params)
+          @Key = params['Key']
+          @Value = params['Value']
+        end
+      end
+
+      # 查询
+      class QueryMetricItem < TencentCloud::Common::AbstractModel
+        # @param MetricName: 指标名
+        # @type MetricName: String
+        # @param Compare: 同比，已弃用，不建议使用
+        # @type Compare: String
+        # @param Compares: 同比，支持多种同比方式
+        # @type Compares: Array
+
+        attr_accessor :MetricName, :Compare, :Compares
+        
+        def initialize(metricname=nil, compare=nil, compares=nil)
+          @MetricName = metricname
+          @Compare = compare
+          @Compares = compares
+        end
+
+        def deserialize(params)
+          @MetricName = params['MetricName']
+          @Compare = params['Compare']
+          @Compares = params['Compares']
         end
       end
 

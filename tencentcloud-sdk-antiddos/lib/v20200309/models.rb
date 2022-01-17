@@ -17,6 +17,47 @@
 module TencentCloud
   module Antiddos
     module V20200309
+      # 基于端口的acl策略
+      class AclConfig < TencentCloud::Common::AbstractModel
+        # @param ForwardProtocol: 协议类型, 可取值tcp, udp, all
+        # @type ForwardProtocol: String
+        # @param DPortStart: 目的端口起始，可取值范围0~65535
+        # @type DPortStart: Integer
+        # @param DPortEnd: 目的端口结束，可取值范围0~65535
+        # @type DPortEnd: Integer
+        # @param SPortStart: 来源端口起始，可取值范围0~65535
+        # @type SPortStart: Integer
+        # @param SPortEnd: 来源端口结束，可取值范围0~65535
+        # @type SPortEnd: Integer
+        # @param Action: 动作，可取值：drop， transmit， forward
+        # @type Action: String
+        # @param Priority: 策略优先级，数字越小，级别越高，该规则越靠前匹配，取值1-1000
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Priority: Integer
+
+        attr_accessor :ForwardProtocol, :DPortStart, :DPortEnd, :SPortStart, :SPortEnd, :Action, :Priority
+        
+        def initialize(forwardprotocol=nil, dportstart=nil, dportend=nil, sportstart=nil, sportend=nil, action=nil, priority=nil)
+          @ForwardProtocol = forwardprotocol
+          @DPortStart = dportstart
+          @DPortEnd = dportend
+          @SPortStart = sportstart
+          @SPortEnd = sportend
+          @Action = action
+          @Priority = priority
+        end
+
+        def deserialize(params)
+          @ForwardProtocol = params['ForwardProtocol']
+          @DPortStart = params['DPortStart']
+          @DPortEnd = params['DPortEnd']
+          @SPortStart = params['SPortStart']
+          @SPortEnd = params['SPortEnd']
+          @Action = params['Action']
+          @Priority = params['Priority']
+        end
+      end
+
       # AssociateDDoSEipAddress请求参数结构体
       class AssociateDDoSEipAddressRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 资源实例ID，实例ID形如：bgpip-0000011x。只能填写高防IP实例。
@@ -986,6 +1027,84 @@ module TencentCloud
 
       # CreatePacketFilterConfig返回参数结构体
       class CreatePacketFilterConfigResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreatePortAclConfigList请求参数结构体
+      class CreatePortAclConfigListRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceIdList: 资源实例ID列表
+        # @type InstanceIdList: Array
+        # @param AclConfig: 端口acl策略
+        # @type AclConfig: :class:`Tencentcloud::Antiddos.v20200309.models.AclConfig`
+
+        attr_accessor :InstanceIdList, :AclConfig
+        
+        def initialize(instanceidlist=nil, aclconfig=nil)
+          @InstanceIdList = instanceidlist
+          @AclConfig = aclconfig
+        end
+
+        def deserialize(params)
+          @InstanceIdList = params['InstanceIdList']
+          unless params['AclConfig'].nil?
+            @AclConfig = AclConfig.new
+            @AclConfig.deserialize(params['AclConfig'])
+          end
+        end
+      end
+
+      # CreatePortAclConfigList返回参数结构体
+      class CreatePortAclConfigListResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreatePortAclConfig请求参数结构体
+      class CreatePortAclConfigRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 资源实例ID
+        # @type InstanceId: String
+        # @param AclConfig: 端口acl策略
+        # @type AclConfig: :class:`Tencentcloud::Antiddos.v20200309.models.AclConfig`
+
+        attr_accessor :InstanceId, :AclConfig
+        
+        def initialize(instanceid=nil, aclconfig=nil)
+          @InstanceId = instanceid
+          @AclConfig = aclconfig
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          unless params['AclConfig'].nil?
+            @AclConfig = AclConfig.new
+            @AclConfig.deserialize(params['AclConfig'])
+          end
+        end
+      end
+
+      # CreatePortAclConfig返回参数结构体
+      class CreatePortAclConfigResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 

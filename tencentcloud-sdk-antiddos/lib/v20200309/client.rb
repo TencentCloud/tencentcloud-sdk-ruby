@@ -317,6 +317,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 添加DDoS防护的端口acl策略
+
+        # @param request: Request instance for CreatePortAclConfig.
+        # @type request: :class:`Tencentcloud::antiddos::V20200309::CreatePortAclConfigRequest`
+        # @rtype: :class:`Tencentcloud::antiddos::V20200309::CreatePortAclConfigResponse`
+        def CreatePortAclConfig(request)
+          body = send_request('CreatePortAclConfig', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreatePortAclConfigResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 批量添加DDoS防护的端口acl策略
+
+        # @param request: Request instance for CreatePortAclConfigList.
+        # @type request: :class:`Tencentcloud::antiddos::V20200309::CreatePortAclConfigListRequest`
+        # @rtype: :class:`Tencentcloud::antiddos::V20200309::CreatePortAclConfigListResponse`
+        def CreatePortAclConfigList(request)
+          body = send_request('CreatePortAclConfigList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreatePortAclConfigListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 设置DDoS防护的协议封禁配置
 
         # @param request: Request instance for CreateProtocolBlockConfig.

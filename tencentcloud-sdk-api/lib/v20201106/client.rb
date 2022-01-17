@@ -29,7 +29,7 @@ module TencentCloud
         end
 
 
-        # 本接口(DescribeRegions)用于查询各个产品支持地域信息，当前只支持cvm。
+        # 本接口(DescribeRegions)用于查询各个产品支持地域信息。
 
         # @param request: Request instance for DescribeRegions.
         # @type request: :class:`Tencentcloud::api::V20201106::DescribeRegionsRequest`
@@ -53,7 +53,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口(DescribeZones)用于查询产品可用区信息，当前只支持cvm。
+        # 本接口(DescribeZones)用于查询产品可用区信息。
 
         # @param request: Request instance for DescribeZones.
         # @type request: :class:`Tencentcloud::api::V20201106::DescribeZonesRequest`

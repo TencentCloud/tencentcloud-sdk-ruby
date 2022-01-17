@@ -872,7 +872,7 @@ module TencentCloud
         # @type FlowName: String
         # @param Deadline: 签署截止时间戳，超过有效签署时间则该签署流程失败
         # @type Deadline: Integer
-        # @param TemplateId: 模版ID
+        # @param TemplateId: 模板ID
         # @type TemplateId: String
         # @param FlowType: 合同类型：
         # 1. “劳务”
@@ -1038,7 +1038,7 @@ module TencentCloud
 
       # GetDownloadFlowUrl返回参数结构体
       class GetDownloadFlowUrlResponse < TencentCloud::Common::AbstractModel
-        # @param DownLoadUrl: 进入合同（流程）下载确认页面链接
+        # @param DownLoadUrl: 合同（流程）下载地址
         # @type DownLoadUrl: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

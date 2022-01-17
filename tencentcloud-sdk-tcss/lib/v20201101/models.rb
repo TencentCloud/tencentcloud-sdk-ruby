@@ -13494,6 +13494,8 @@ module TencentCloud
         # TIMEOUT: 超时
         # TOO_MANY: 任务过多
         # OFFLINE: 离线
+        # INTERNAL: 服务内部错误
+        # VALIDATION: 参数非法
         # @type SubStatus: String
 
         attr_accessor :FileName, :FilePath, :VirusName, :CreateTime, :ModifyTime, :ContainerName, :ContainerId, :ContainerStatus, :ImageName, :ImageId, :Status, :Id, :HarmDescribe, :SuggestScheme, :SubStatus

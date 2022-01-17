@@ -3034,7 +3034,7 @@ module TencentCloud
 
       # 键值或者元字段索引的字段信息
       class KeyValueInfo < TencentCloud::Common::AbstractModel
-        # @param Key: 需要配置键值或者元字段索引的字段
+        # @param Key: 需要配置键值或者元字段索引的字段，元字段Key无需额外添加`__TAG__.`前缀，与上传日志时对应的字段Key一致即可，腾讯云控制台展示时将自动添加`__TAG__.`前缀
         # @type Key: String
         # @param Value: 字段的索引描述信息
         # @type Value: :class:`Tencentcloud::Cls.v20201016.models.ValueInfo`
@@ -3688,7 +3688,7 @@ module TencentCloud
         # @type TopicId: String
         # @param Status: 默认不生效
         # @type Status: Boolean
-        # @param Rule: 索引规则，Rule和Effective两个必须有一个参数存在
+        # @param Rule: 索引规则
         # @type Rule: :class:`Tencentcloud::Cls.v20201016.models.RuleInfo`
 
         attr_accessor :TopicId, :Status, :Rule
@@ -4191,11 +4191,11 @@ module TencentCloud
         end
       end
 
-      # 标签索引配置信息
+      # 元字段索引配置
       class RuleTagInfo < TencentCloud::Common::AbstractModel
         # @param CaseSensitive: 是否大小写敏感
         # @type CaseSensitive: Boolean
-        # @param KeyValues: 标签索引配置中的字段信息
+        # @param KeyValues: 元字段索引配置中的字段信息
         # @type KeyValues: Array
 
         attr_accessor :CaseSensitive, :KeyValues

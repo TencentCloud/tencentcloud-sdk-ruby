@@ -3600,6 +3600,42 @@ module TencentCloud
         end
       end
 
+      # ModifyRunSyncAsset请求参数结构体
+      class ModifyRunSyncAssetRequest < TencentCloud::Common::AbstractModel
+        # @param Type: 0: 互联网防火墙开关，1：vpc 防火墙开关
+        # @type Type: Integer
+
+        attr_accessor :Type
+        
+        def initialize(type=nil)
+          @Type = type
+        end
+
+        def deserialize(params)
+          @Type = params['Type']
+        end
+      end
+
+      # ModifyRunSyncAsset返回参数结构体
+      class ModifyRunSyncAssetResponse < TencentCloud::Common::AbstractModel
+        # @param Status: 0：同步成功，1：资产更新中，2：后台同步调用失败
+        # @type Status: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Status, :RequestId
+        
+        def initialize(status=nil, requestid=nil)
+          @Status = status
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Status = params['Status']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifySecurityGroupAllRuleStatus请求参数结构体
       class ModifySecurityGroupAllRuleStatusRequest < TencentCloud::Common::AbstractModel
         # @param Status: 列表规则状态，0：全部停用，1：全部启用

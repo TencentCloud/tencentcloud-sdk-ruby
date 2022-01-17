@@ -2997,7 +2997,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 昨晚数据库代理配置变更或则升级版本后手动发起立即切换
+        # 数据库代理配置变更或则升级版本后手动发起立即切换
 
         # @param request: Request instance for SwitchCDBProxy.
         # @type request: :class:`Tencentcloud::cdb::V20170320::SwitchCDBProxyRequest`

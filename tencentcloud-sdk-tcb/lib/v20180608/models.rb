@@ -5444,10 +5444,13 @@ module TencentCloud
         # @param CustomLogServices: 自定义日志服务
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CustomLogServices: Array
+        # @param EnvType: 环境类型：baas, run, hoting, weda
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EnvType: String
 
-        attr_accessor :EnvId, :Source, :Alias, :CreateTime, :UpdateTime, :Status, :Databases, :Storages, :Functions, :PackageId, :PackageName, :LogServices, :StaticStorages, :IsAutoDegrade, :EnvChannel, :PayMode, :IsDefault, :Region, :Tags, :CustomLogServices
+        attr_accessor :EnvId, :Source, :Alias, :CreateTime, :UpdateTime, :Status, :Databases, :Storages, :Functions, :PackageId, :PackageName, :LogServices, :StaticStorages, :IsAutoDegrade, :EnvChannel, :PayMode, :IsDefault, :Region, :Tags, :CustomLogServices, :EnvType
         
-        def initialize(envid=nil, source=nil, _alias=nil, createtime=nil, updatetime=nil, status=nil, databases=nil, storages=nil, functions=nil, packageid=nil, packagename=nil, logservices=nil, staticstorages=nil, isautodegrade=nil, envchannel=nil, paymode=nil, isdefault=nil, region=nil, tags=nil, customlogservices=nil)
+        def initialize(envid=nil, source=nil, _alias=nil, createtime=nil, updatetime=nil, status=nil, databases=nil, storages=nil, functions=nil, packageid=nil, packagename=nil, logservices=nil, staticstorages=nil, isautodegrade=nil, envchannel=nil, paymode=nil, isdefault=nil, region=nil, tags=nil, customlogservices=nil, envtype=nil)
           @EnvId = envid
           @Source = source
           @Alias = _alias
@@ -5468,6 +5471,7 @@ module TencentCloud
           @Region = region
           @Tags = tags
           @CustomLogServices = customlogservices
+          @EnvType = envtype
         end
 
         def deserialize(params)
@@ -5540,6 +5544,7 @@ module TencentCloud
               @CustomLogServices << clsinfo_tmp
             end
           end
+          @EnvType = params['EnvType']
         end
       end
 
