@@ -61,7 +61,7 @@ module TencentCloud
       class CreateOrganizationMemberRequest < TencentCloud::Common::AbstractModel
         # @param Name: 名称
         # @type Name: String
-        # @param PolicyType: 关系策略
+        # @param PolicyType: 关系策略  取值：Financial
         # @type PolicyType: String
         # @param PermissionIds: 关系权限
         # @type PermissionIds: Array
@@ -73,10 +73,14 @@ module TencentCloud
         # @type Remark: String
         # @param RecordId: 重试创建传记录ID
         # @type RecordId: Integer
+        # @param PayUin: 代付者Uin
+        # @type PayUin: String
+        # @param IdentityRoleID: 管理身份
+        # @type IdentityRoleID: Array
 
-        attr_accessor :Name, :PolicyType, :PermissionIds, :NodeId, :AccountName, :Remark, :RecordId
+        attr_accessor :Name, :PolicyType, :PermissionIds, :NodeId, :AccountName, :Remark, :RecordId, :PayUin, :IdentityRoleID
         
-        def initialize(name=nil, policytype=nil, permissionids=nil, nodeid=nil, accountname=nil, remark=nil, recordid=nil)
+        def initialize(name=nil, policytype=nil, permissionids=nil, nodeid=nil, accountname=nil, remark=nil, recordid=nil, payuin=nil, identityroleid=nil)
           @Name = name
           @PolicyType = policytype
           @PermissionIds = permissionids
@@ -84,6 +88,8 @@ module TencentCloud
           @AccountName = accountname
           @Remark = remark
           @RecordId = recordid
+          @PayUin = payuin
+          @IdentityRoleID = identityroleid
         end
 
         def deserialize(params)
@@ -94,21 +100,28 @@ module TencentCloud
           @AccountName = params['AccountName']
           @Remark = params['Remark']
           @RecordId = params['RecordId']
+          @PayUin = params['PayUin']
+          @IdentityRoleID = params['IdentityRoleID']
         end
       end
 
       # CreateOrganizationMember返回参数结构体
       class CreateOrganizationMemberResponse < TencentCloud::Common::AbstractModel
+        # @param Uin: 成员Uin
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Uin: Integer
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RequestId
+        attr_accessor :Uin, :RequestId
         
-        def initialize(requestid=nil)
+        def initialize(uin=nil, requestid=nil)
+          @Uin = uin
           @RequestId = requestid
         end
 
         def deserialize(params)
+          @Uin = params['Uin']
           @RequestId = params['RequestId']
         end
       end
@@ -271,6 +284,28 @@ module TencentCloud
         end
       end
 
+      # 成员管理身份
+      class MemberIdentity < TencentCloud::Common::AbstractModel
+        # @param IdentityId: 身份ID。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IdentityId: Integer
+        # @param IdentityAliasName: 身份名称。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IdentityAliasName: String
+
+        attr_accessor :IdentityId, :IdentityAliasName
+        
+        def initialize(identityid=nil, identityaliasname=nil)
+          @IdentityId = identityid
+          @IdentityAliasName = identityaliasname
+        end
+
+        def deserialize(params)
+          @IdentityId = params['IdentityId']
+          @IdentityAliasName = params['IdentityAliasName']
+        end
+      end
+
       # 企业组织成员
       class OrgMember < TencentCloud::Common::AbstractModel
         # @param MemberUin: 成员Uin
@@ -309,10 +344,19 @@ module TencentCloud
         # @param IsAllowQuit: 是否允许成员退出。允许：Allow，不允许：Denied。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsAllowQuit: String
+        # @param PayUin: 代付者Uin
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PayUin: String
+        # @param PayName: 代付者名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PayName: String
+        # @param OrgIdentity: 管理身份
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OrgIdentity: Array
 
-        attr_accessor :MemberUin, :Name, :MemberType, :OrgPolicyType, :OrgPolicyName, :OrgPermission, :NodeId, :NodeName, :Remark, :CreateTime, :UpdateTime, :IsAllowQuit
+        attr_accessor :MemberUin, :Name, :MemberType, :OrgPolicyType, :OrgPolicyName, :OrgPermission, :NodeId, :NodeName, :Remark, :CreateTime, :UpdateTime, :IsAllowQuit, :PayUin, :PayName, :OrgIdentity
         
-        def initialize(memberuin=nil, name=nil, membertype=nil, orgpolicytype=nil, orgpolicyname=nil, orgpermission=nil, nodeid=nil, nodename=nil, remark=nil, createtime=nil, updatetime=nil, isallowquit=nil)
+        def initialize(memberuin=nil, name=nil, membertype=nil, orgpolicytype=nil, orgpolicyname=nil, orgpermission=nil, nodeid=nil, nodename=nil, remark=nil, createtime=nil, updatetime=nil, isallowquit=nil, payuin=nil, payname=nil, orgidentity=nil)
           @MemberUin = memberuin
           @Name = name
           @MemberType = membertype
@@ -325,6 +369,9 @@ module TencentCloud
           @CreateTime = createtime
           @UpdateTime = updatetime
           @IsAllowQuit = isallowquit
+          @PayUin = payuin
+          @PayName = payname
+          @OrgIdentity = orgidentity
         end
 
         def deserialize(params)
@@ -347,6 +394,16 @@ module TencentCloud
           @CreateTime = params['CreateTime']
           @UpdateTime = params['UpdateTime']
           @IsAllowQuit = params['IsAllowQuit']
+          @PayUin = params['PayUin']
+          @PayName = params['PayName']
+          unless params['OrgIdentity'].nil?
+            @OrgIdentity = []
+            params['OrgIdentity'].each do |i|
+              memberidentity_tmp = MemberIdentity.new
+              memberidentity_tmp.deserialize(i)
+              @OrgIdentity << memberidentity_tmp
+            end
+          end
         end
       end
 

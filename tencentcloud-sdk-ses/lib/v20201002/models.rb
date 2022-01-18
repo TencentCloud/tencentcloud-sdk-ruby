@@ -61,10 +61,12 @@ module TencentCloud
         # @type CycleParam: :class:`Tencentcloud::Ses.v20201002.models.CycleEmailParam`
         # @param TimedParam: 定时发送任务的必要参数
         # @type TimedParam: :class:`Tencentcloud::Ses.v20201002.models.TimedEmailParam`
+        # @param Unsubscribe: 退订选项 1: 加入退订链接 0: 不加入退订链接
+        # @type Unsubscribe: String
 
-        attr_accessor :FromEmailAddress, :ReceiverId, :Subject, :TaskType, :ReplyToAddresses, :Template, :Simple, :Attachments, :CycleParam, :TimedParam
+        attr_accessor :FromEmailAddress, :ReceiverId, :Subject, :TaskType, :ReplyToAddresses, :Template, :Simple, :Attachments, :CycleParam, :TimedParam, :Unsubscribe
         
-        def initialize(fromemailaddress=nil, receiverid=nil, subject=nil, tasktype=nil, replytoaddresses=nil, template=nil, simple=nil, attachments=nil, cycleparam=nil, timedparam=nil)
+        def initialize(fromemailaddress=nil, receiverid=nil, subject=nil, tasktype=nil, replytoaddresses=nil, template=nil, simple=nil, attachments=nil, cycleparam=nil, timedparam=nil, unsubscribe=nil)
           @FromEmailAddress = fromemailaddress
           @ReceiverId = receiverid
           @Subject = subject
@@ -75,6 +77,7 @@ module TencentCloud
           @Attachments = attachments
           @CycleParam = cycleparam
           @TimedParam = timedparam
+          @Unsubscribe = unsubscribe
         end
 
         def deserialize(params)
@@ -107,6 +110,7 @@ module TencentCloud
             @TimedParam = TimedEmailParam.new
             @TimedParam.deserialize(params['TimedParam'])
           end
+          @Unsubscribe = params['Unsubscribe']
         end
       end
 
@@ -272,6 +276,82 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateReceiverDetail请求参数结构体
+      class CreateReceiverDetailRequest < TencentCloud::Common::AbstractModel
+        # @param ReceiverId: 收件人列表ID
+        # @type ReceiverId: Integer
+        # @param Emails: 邮箱
+        # @type Emails: Array
+
+        attr_accessor :ReceiverId, :Emails
+        
+        def initialize(receiverid=nil, emails=nil)
+          @ReceiverId = receiverid
+          @Emails = emails
+        end
+
+        def deserialize(params)
+          @ReceiverId = params['ReceiverId']
+          @Emails = params['Emails']
+        end
+      end
+
+      # CreateReceiverDetail返回参数结构体
+      class CreateReceiverDetailResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateReceiver请求参数结构体
+      class CreateReceiverRequest < TencentCloud::Common::AbstractModel
+        # @param ReceiversName: 收件人列表名称
+        # @type ReceiversName: String
+        # @param Desc: 收件人列表描述
+        # @type Desc: String
+
+        attr_accessor :ReceiversName, :Desc
+        
+        def initialize(receiversname=nil, desc=nil)
+          @ReceiversName = receiversname
+          @Desc = desc
+        end
+
+        def deserialize(params)
+          @ReceiversName = params['ReceiversName']
+          @Desc = params['Desc']
+        end
+      end
+
+      # CreateReceiver返回参数结构体
+      class CreateReceiverResponse < TencentCloud::Common::AbstractModel
+        # @param ReceiverId: 收件人列表id，后续根据收件人列表id上传收件人地址
+        # @type ReceiverId: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ReceiverId, :RequestId
+        
+        def initialize(receiverid=nil, requestid=nil)
+          @ReceiverId = receiverid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ReceiverId = params['ReceiverId']
           @RequestId = params['RequestId']
         end
       end
@@ -912,6 +992,166 @@ module TencentCloud
         end
       end
 
+      # ListReceivers请求参数结构体
+      class ListReceiversRequest < TencentCloud::Common::AbstractModel
+        # @param Offset: 偏移量，整型，从0开始
+        # @type Offset: Integer
+        # @param Limit: 限制数目，整型，不超过100
+        # @type Limit: Integer
+        # @param Status: 列表状态(1 待上传 2 上传中  3传完成)，若查询所有就不传这个字段
+        # @type Status: Integer
+        # @param KeyWord: 列表名称的关键字，模糊查询
+        # @type KeyWord: String
+
+        attr_accessor :Offset, :Limit, :Status, :KeyWord
+        
+        def initialize(offset=nil, limit=nil, status=nil, keyword=nil)
+          @Offset = offset
+          @Limit = limit
+          @Status = status
+          @KeyWord = keyword
+        end
+
+        def deserialize(params)
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @Status = params['Status']
+          @KeyWord = params['KeyWord']
+        end
+      end
+
+      # ListReceivers返回参数结构体
+      class ListReceiversResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 总数
+        # @type TotalCount: Integer
+        # @param Data: 数据记录
+        # @type Data: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :Data, :RequestId
+        
+        def initialize(totalcount=nil, data=nil, requestid=nil)
+          @TotalCount = totalcount
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['Data'].nil?
+            @Data = []
+            params['Data'].each do |i|
+              receiverdata_tmp = ReceiverData.new
+              receiverdata_tmp.deserialize(i)
+              @Data << receiverdata_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ListSendTasks请求参数结构体
+      class ListSendTasksRequest < TencentCloud::Common::AbstractModel
+        # @param Offset: 偏移量，整型，从0开始，0代表跳过0行
+        # @type Offset: Integer
+        # @param Limit: 限制数目，整型,不超过100
+        # @type Limit: Integer
+        # @param Status: 任务状态 1 待开始 5 发送中 6 今日暂停发送  7 发信异常 10 发送完成。查询所有状态，则不传这个字段
+        # @type Status: Integer
+        # @param ReceiverId: 收件人列表ID
+        # @type ReceiverId: Integer
+        # @param TaskType: 任务类型 1即时 2定时 3周期，查询所有类型则不传这个字段
+        # @type TaskType: Integer
+
+        attr_accessor :Offset, :Limit, :Status, :ReceiverId, :TaskType
+        
+        def initialize(offset=nil, limit=nil, status=nil, receiverid=nil, tasktype=nil)
+          @Offset = offset
+          @Limit = limit
+          @Status = status
+          @ReceiverId = receiverid
+          @TaskType = tasktype
+        end
+
+        def deserialize(params)
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @Status = params['Status']
+          @ReceiverId = params['ReceiverId']
+          @TaskType = params['TaskType']
+        end
+      end
+
+      # ListSendTasks返回参数结构体
+      class ListSendTasksResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 总数
+        # @type TotalCount: Integer
+        # @param Data: 数据记录
+        # @type Data: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :Data, :RequestId
+        
+        def initialize(totalcount=nil, data=nil, requestid=nil)
+          @TotalCount = totalcount
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['Data'].nil?
+            @Data = []
+            params['Data'].each do |i|
+              sendtaskdata_tmp = SendTaskData.new
+              sendtaskdata_tmp.deserialize(i)
+              @Data << sendtaskdata_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 收件人列表数据类型
+      class ReceiverData < TencentCloud::Common::AbstractModel
+        # @param ReceiverId: 收件人列表ID
+        # @type ReceiverId: Integer
+        # @param ReceiversName: 收件人列表名称
+        # @type ReceiversName: String
+        # @param Count: 收件人地址总数
+        # @type Count: Integer
+        # @param Desc: 收件人列表描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Desc: String
+        # @param ReceiversStatus: 列表状态(1 待上传 2 上传中 3 上传完成)
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ReceiversStatus: Integer
+        # @param CreateTime: 创建时间,如:2021-09-28 16:40:35
+        # @type CreateTime: String
+
+        attr_accessor :ReceiverId, :ReceiversName, :Count, :Desc, :ReceiversStatus, :CreateTime
+        
+        def initialize(receiverid=nil, receiversname=nil, count=nil, desc=nil, receiversstatus=nil, createtime=nil)
+          @ReceiverId = receiverid
+          @ReceiversName = receiversname
+          @Count = count
+          @Desc = desc
+          @ReceiversStatus = receiversstatus
+          @CreateTime = createtime
+        end
+
+        def deserialize(params)
+          @ReceiverId = params['ReceiverId']
+          @ReceiversName = params['ReceiversName']
+          @Count = params['Count']
+          @Desc = params['Desc']
+          @ReceiversStatus = params['ReceiversStatus']
+          @CreateTime = params['CreateTime']
+        end
+      end
+
       # SendEmail请求参数结构体
       class SendEmailRequest < TencentCloud::Common::AbstractModel
         # @param FromEmailAddress: 发信邮件地址。请填写发件人邮箱地址，例如：noreply@mail.qcloud.com
@@ -930,7 +1170,7 @@ module TencentCloud
         # @type Simple: :class:`Tencentcloud::Ses.v20201002.models.Simple`
         # @param Attachments: 需要发送附件时，填写附件相关参数。
         # @type Attachments: Array
-        # @param Unsubscribe: 是否加入退订链接
+        # @param Unsubscribe: 退订选项 1: 加入退订链接 0: 不加入退订链接
         # @type Unsubscribe: String
 
         attr_accessor :FromEmailAddress, :Destination, :Subject, :ReplyToAddresses, :Template, :Simple, :Attachments, :Unsubscribe
@@ -1075,6 +1315,95 @@ module TencentCloud
           @UserClicked = params['UserClicked']
           @UserUnsubscribed = params['UserUnsubscribed']
           @UserComplainted = params['UserComplainted']
+        end
+      end
+
+      # 发送任务数据
+      class SendTaskData < TencentCloud::Common::AbstractModel
+        # @param TaskId: 任务id
+        # @type TaskId: Integer
+        # @param FromEmailAddress: 发信地址
+        # @type FromEmailAddress: String
+        # @param ReceiverId: 收件人列表Id
+        # @type ReceiverId: Integer
+        # @param TaskStatus: 任务状态 1 待开始 5 发送中 6 今日暂停发送  7 发信异常 10 发送完成
+        # @type TaskStatus: Integer
+        # @param TaskType: 任务类型 1 即时 2 定时 3 周期
+        # @type TaskType: Integer
+        # @param RequestCount: 任务请求发信数量
+        # @type RequestCount: Integer
+        # @param SendCount: 已经发送数量
+        # @type SendCount: Integer
+        # @param CacheCount: 缓存数量
+        # @type CacheCount: Integer
+        # @param CreateTime: 任务创建时间
+        # @type CreateTime: String
+        # @param UpdateTime: 任务更新时间
+        # @type UpdateTime: String
+        # @param Subject: 邮件主题
+        # @type Subject: String
+        # @param Template: 模板和模板数据
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Template: :class:`Tencentcloud::Ses.v20201002.models.Template`
+        # @param CycleParam: 周期任务参数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CycleParam: :class:`Tencentcloud::Ses.v20201002.models.CycleEmailParam`
+        # @param TimedParam: 定时任务参数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TimedParam: :class:`Tencentcloud::Ses.v20201002.models.TimedEmailParam`
+        # @param ErrMsg: 任务异常信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ErrMsg: String
+        # @param ReceiversName: 收件人列表名称
+        # @type ReceiversName: String
+
+        attr_accessor :TaskId, :FromEmailAddress, :ReceiverId, :TaskStatus, :TaskType, :RequestCount, :SendCount, :CacheCount, :CreateTime, :UpdateTime, :Subject, :Template, :CycleParam, :TimedParam, :ErrMsg, :ReceiversName
+        
+        def initialize(taskid=nil, fromemailaddress=nil, receiverid=nil, taskstatus=nil, tasktype=nil, requestcount=nil, sendcount=nil, cachecount=nil, createtime=nil, updatetime=nil, subject=nil, template=nil, cycleparam=nil, timedparam=nil, errmsg=nil, receiversname=nil)
+          @TaskId = taskid
+          @FromEmailAddress = fromemailaddress
+          @ReceiverId = receiverid
+          @TaskStatus = taskstatus
+          @TaskType = tasktype
+          @RequestCount = requestcount
+          @SendCount = sendcount
+          @CacheCount = cachecount
+          @CreateTime = createtime
+          @UpdateTime = updatetime
+          @Subject = subject
+          @Template = template
+          @CycleParam = cycleparam
+          @TimedParam = timedparam
+          @ErrMsg = errmsg
+          @ReceiversName = receiversname
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @FromEmailAddress = params['FromEmailAddress']
+          @ReceiverId = params['ReceiverId']
+          @TaskStatus = params['TaskStatus']
+          @TaskType = params['TaskType']
+          @RequestCount = params['RequestCount']
+          @SendCount = params['SendCount']
+          @CacheCount = params['CacheCount']
+          @CreateTime = params['CreateTime']
+          @UpdateTime = params['UpdateTime']
+          @Subject = params['Subject']
+          unless params['Template'].nil?
+            @Template = Template.new
+            @Template.deserialize(params['Template'])
+          end
+          unless params['CycleParam'].nil?
+            @CycleParam = CycleEmailParam.new
+            @CycleParam.deserialize(params['CycleParam'])
+          end
+          unless params['TimedParam'].nil?
+            @TimedParam = TimedEmailParam.new
+            @TimedParam.deserialize(params['TimedParam'])
+          end
+          @ErrMsg = params['ErrMsg']
+          @ReceiversName = params['ReceiversName']
         end
       end
 

@@ -1338,10 +1338,12 @@ module TencentCloud
         # @type Districts: Array
         # @param ErrorTypes: 错误类型
         # @type ErrorTypes: Array
+        # @param City: 城市
+        # @type City: Array
 
-        attr_accessor :BeginTime, :EndTime, :TaskType, :SortField, :Ascending, :SelectedFields, :Offset, :Limit, :TaskID, :Operators, :Districts, :ErrorTypes
+        attr_accessor :BeginTime, :EndTime, :TaskType, :SortField, :Ascending, :SelectedFields, :Offset, :Limit, :TaskID, :Operators, :Districts, :ErrorTypes, :City
         
-        def initialize(begintime=nil, endtime=nil, tasktype=nil, sortfield=nil, ascending=nil, selectedfields=nil, offset=nil, limit=nil, taskid=nil, operators=nil, districts=nil, errortypes=nil)
+        def initialize(begintime=nil, endtime=nil, tasktype=nil, sortfield=nil, ascending=nil, selectedfields=nil, offset=nil, limit=nil, taskid=nil, operators=nil, districts=nil, errortypes=nil, city=nil)
           @BeginTime = begintime
           @EndTime = endtime
           @TaskType = tasktype
@@ -1354,6 +1356,7 @@ module TencentCloud
           @Operators = operators
           @Districts = districts
           @ErrorTypes = errortypes
+          @City = city
         end
 
         def deserialize(params)
@@ -1369,6 +1372,7 @@ module TencentCloud
           @Operators = params['Operators']
           @Districts = params['Districts']
           @ErrorTypes = params['ErrorTypes']
+          @City = params['City']
         end
       end
 

@@ -6739,10 +6739,12 @@ module TencentCloud
         # @type ExtraArgs: :class:`Tencentcloud::Tke.v20180525.models.InstanceExtraArgs`
         # @param Tags: 资源标签
         # @type Tags: Array
+        # @param Unschedulable: 设置加入的节点是否参与调度，默认值为0，表示参与调度；非0表示不参与调度, 待节点初始化完成之后, 可执行kubectl uncordon nodename使node加入调度.
+        # @type Unschedulable: Integer
 
-        attr_accessor :ClusterId, :NodePoolId, :Name, :MaxNodesNum, :MinNodesNum, :Labels, :Taints, :EnableAutoscale, :OsName, :OsCustomizeType, :ExtraArgs, :Tags
+        attr_accessor :ClusterId, :NodePoolId, :Name, :MaxNodesNum, :MinNodesNum, :Labels, :Taints, :EnableAutoscale, :OsName, :OsCustomizeType, :ExtraArgs, :Tags, :Unschedulable
         
-        def initialize(clusterid=nil, nodepoolid=nil, name=nil, maxnodesnum=nil, minnodesnum=nil, labels=nil, taints=nil, enableautoscale=nil, osname=nil, oscustomizetype=nil, extraargs=nil, tags=nil)
+        def initialize(clusterid=nil, nodepoolid=nil, name=nil, maxnodesnum=nil, minnodesnum=nil, labels=nil, taints=nil, enableautoscale=nil, osname=nil, oscustomizetype=nil, extraargs=nil, tags=nil, unschedulable=nil)
           @ClusterId = clusterid
           @NodePoolId = nodepoolid
           @Name = name
@@ -6755,6 +6757,7 @@ module TencentCloud
           @OsCustomizeType = oscustomizetype
           @ExtraArgs = extraargs
           @Tags = tags
+          @Unschedulable = unschedulable
         end
 
         def deserialize(params)
@@ -6794,6 +6797,7 @@ module TencentCloud
               @Tags << tag_tmp
             end
           end
+          @Unschedulable = params['Unschedulable']
         end
       end
 

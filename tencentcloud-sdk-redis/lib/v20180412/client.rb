@@ -77,7 +77,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 该接口仅支持多AZ实例副本组提主
+        # 该接口仅支持多AZ实例副本组提主和单AZ副本提主
 
         # @param request: Request instance for ChangeReplicaToMaster.
         # @type request: :class:`Tencentcloud::redis::V20180412::ChangeReplicaToMasterRequest`

@@ -107,6 +107,50 @@ module TencentCloud
         end
       end
 
+      # CreateKTVRobot请求参数结构体
+      class CreateKTVRobotRequest < TencentCloud::Common::AbstractModel
+        # @param RTCSystem: RTC厂商类型，取值有：
+        # <li>TRTC</li>
+        # @type RTCSystem: String
+        # @param JoinRoomInput: 进房参数。
+        # @type JoinRoomInput: :class:`Tencentcloud::Ame.v20190916.models.JoinRoomInput`
+
+        attr_accessor :RTCSystem, :JoinRoomInput
+        
+        def initialize(rtcsystem=nil, joinroominput=nil)
+          @RTCSystem = rtcsystem
+          @JoinRoomInput = joinroominput
+        end
+
+        def deserialize(params)
+          @RTCSystem = params['RTCSystem']
+          unless params['JoinRoomInput'].nil?
+            @JoinRoomInput = JoinRoomInput.new
+            @JoinRoomInput.deserialize(params['JoinRoomInput'])
+          end
+        end
+      end
+
+      # CreateKTVRobot返回参数结构体
+      class CreateKTVRobotResponse < TencentCloud::Common::AbstractModel
+        # @param RobotId: 机器人Id。
+        # @type RobotId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RobotId, :RequestId
+        
+        def initialize(robotid=nil, requestid=nil)
+          @RobotId = robotid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RobotId = params['RobotId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 数据信息
       class DataInfo < TencentCloud::Common::AbstractModel
         # @param Name: Song Name
@@ -593,6 +637,68 @@ module TencentCloud
         end
       end
 
+      # DescribeKTVRobots请求参数结构体
+      class DescribeKTVRobotsRequest < TencentCloud::Common::AbstractModel
+        # @param RobotIds: 机器人Id列表。
+        # @type RobotIds: Array
+        # @param Statuses: 机器人状态，取值有：
+        # <li>Play：播放</li>
+        # <li>Pause：暂停</li>
+        # <li>Destroy：销毁</li>
+        # @type Statuses: Array
+        # @param Offset: 分页返回的起始偏移量，默认值：0。将返回第 Offset 到第 Offset+Limit-1 条。
+        # @type Offset: Integer
+        # @param Limit: 分页返回的起始偏移量，默认值：10。
+        # @type Limit: Integer
+
+        attr_accessor :RobotIds, :Statuses, :Offset, :Limit
+        
+        def initialize(robotids=nil, statuses=nil, offset=nil, limit=nil)
+          @RobotIds = robotids
+          @Statuses = statuses
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @RobotIds = params['RobotIds']
+          @Statuses = params['Statuses']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeKTVRobots返回参数结构体
+      class DescribeKTVRobotsResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 机器人总数。
+        # @type TotalCount: Integer
+        # @param KTVRobotInfoSet: 机器人信息集合。
+        # @type KTVRobotInfoSet: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :KTVRobotInfoSet, :RequestId
+        
+        def initialize(totalcount=nil, ktvrobotinfoset=nil, requestid=nil)
+          @TotalCount = totalcount
+          @KTVRobotInfoSet = ktvrobotinfoset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['KTVRobotInfoSet'].nil?
+            @KTVRobotInfoSet = []
+            params['KTVRobotInfoSet'].each do |i|
+              ktvrobotinfo_tmp = KTVRobotInfo.new
+              ktvrobotinfo_tmp.deserialize(i)
+              @KTVRobotInfoSet << ktvrobotinfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeLyric请求参数结构体
       class DescribeLyricRequest < TencentCloud::Common::AbstractModel
         # @param ItemId: 歌曲ID
@@ -959,6 +1065,38 @@ module TencentCloud
         end
       end
 
+      # DestroyKTVRobot请求参数结构体
+      class DestroyKTVRobotRequest < TencentCloud::Common::AbstractModel
+        # @param RobotId: 机器人Id。
+        # @type RobotId: String
+
+        attr_accessor :RobotId
+        
+        def initialize(robotid=nil)
+          @RobotId = robotid
+        end
+
+        def deserialize(params)
+          @RobotId = params['RobotId']
+        end
+      end
+
+      # DestroyKTVRobot返回参数结构体
+      class DestroyKTVRobotResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 图片路径
       class ImagePath < TencentCloud::Common::AbstractModel
         # @param Key: station图片大小及类别
@@ -1027,6 +1165,25 @@ module TencentCloud
             end
           end
           @Status = params['Status']
+        end
+      end
+
+      # 直播进房输入参数
+      class JoinRoomInput < TencentCloud::Common::AbstractModel
+        # @param TRTCJoinRoomInput: TRTC进房参数
+        # @type TRTCJoinRoomInput: :class:`Tencentcloud::Ame.v20190916.models.TRTCJoinRoomInput`
+
+        attr_accessor :TRTCJoinRoomInput
+        
+        def initialize(trtcjoinroominput=nil)
+          @TRTCJoinRoomInput = trtcjoinroominput
+        end
+
+        def deserialize(params)
+          unless params['TRTCJoinRoomInput'].nil?
+            @TRTCJoinRoomInput = TRTCJoinRoomInput.new
+            @TRTCJoinRoomInput.deserialize(params['TRTCJoinRoomInput'])
+          end
         end
       end
 
@@ -1122,6 +1279,60 @@ module TencentCloud
           @Title = params['Title']
           @Description = params['Description']
           @MusicNum = params['MusicNum']
+        end
+      end
+
+      # 机器人信息
+      class KTVRobotInfo < TencentCloud::Common::AbstractModel
+        # @param RobotId: 机器人Id。
+        # @type RobotId: String
+        # @param Status: 状态，取值有：
+        # <li>Play：播放</li>
+        # <li>Pause：暂停</li>
+        # <li>Destroy：销毁</li>
+        # @type Status: String
+        # @param Playlists: 播放列表。
+        # @type Playlists: Array
+        # @param CurIndex: 当前歌单索引位置。
+        # @type CurIndex: Integer
+        # @param Position: 播放进度，单位：毫秒。
+        # @type Position: Integer
+        # @param SetAudioParamInput: 音频参数
+        # @type SetAudioParamInput: :class:`Tencentcloud::Ame.v20190916.models.SetAudioParamCommandInput`
+        # @param JoinRoomInput: 进房信息
+        # @type JoinRoomInput: :class:`Tencentcloud::Ame.v20190916.models.JoinRoomInput`
+        # @param RTCSystem: RTC厂商类型，取值有：
+        # <li>TRTC</li>
+        # @type RTCSystem: String
+
+        attr_accessor :RobotId, :Status, :Playlists, :CurIndex, :Position, :SetAudioParamInput, :JoinRoomInput, :RTCSystem
+        
+        def initialize(robotid=nil, status=nil, playlists=nil, curindex=nil, position=nil, setaudioparaminput=nil, joinroominput=nil, rtcsystem=nil)
+          @RobotId = robotid
+          @Status = status
+          @Playlists = playlists
+          @CurIndex = curindex
+          @Position = position
+          @SetAudioParamInput = setaudioparaminput
+          @JoinRoomInput = joinroominput
+          @RTCSystem = rtcsystem
+        end
+
+        def deserialize(params)
+          @RobotId = params['RobotId']
+          @Status = params['Status']
+          @Playlists = params['Playlists']
+          @CurIndex = params['CurIndex']
+          @Position = params['Position']
+          unless params['SetAudioParamInput'].nil?
+            @SetAudioParamInput = SetAudioParamCommandInput.new
+            @SetAudioParamInput.deserialize(params['SetAudioParamInput'])
+          end
+          unless params['JoinRoomInput'].nil?
+            @JoinRoomInput = JoinRoomInput.new
+            @JoinRoomInput.deserialize(params['JoinRoomInput'])
+          end
+          @RTCSystem = params['RTCSystem']
         end
       end
 
@@ -1504,6 +1715,22 @@ module TencentCloud
         end
       end
 
+      # 播放指令输入参数
+      class PlayCommandInput < TencentCloud::Common::AbstractModel
+        # @param Index: 歌曲位置索引。
+        # @type Index: Integer
+
+        attr_accessor :Index
+        
+        def initialize(index=nil)
+          @Index = index
+        end
+
+        def deserialize(params)
+          @Index = params['Index']
+        end
+      end
+
       # PutMusicOnTheShelves请求参数结构体
       class PutMusicOnTheShelvesRequest < TencentCloud::Common::AbstractModel
         # @param MusicIds: 资源方歌曲Id
@@ -1650,6 +1877,95 @@ module TencentCloud
         end
       end
 
+      # 调整播放进度指令参数
+      class SeekCommandInput < TencentCloud::Common::AbstractModel
+        # @param Position: 播放位置，单位：毫秒。
+        # @type Position: Integer
+
+        attr_accessor :Position
+        
+        def initialize(position=nil)
+          @Position = position
+        end
+
+        def deserialize(params)
+          @Position = params['Position']
+        end
+      end
+
+      # 发送自定义信息指令参数
+      class SendMessageCommandInput < TencentCloud::Common::AbstractModel
+        # @param Message: 自定义消息，json格式字符串。
+        # @type Message: String
+        # @param Repeat: 消息重复次数，默认为 1。
+        # @type Repeat: Integer
+
+        attr_accessor :Message, :Repeat
+        
+        def initialize(message=nil, repeat=nil)
+          @Message = message
+          @Repeat = repeat
+        end
+
+        def deserialize(params)
+          @Message = params['Message']
+          @Repeat = params['Repeat']
+        end
+      end
+
+      # 音频参数信息
+      class SetAudioParamCommandInput < TencentCloud::Common::AbstractModel
+        # @param Definition: 规格，取值有：
+        # <li>audio/mi：低规格</li>
+        # <li>audio/lo：中规格</li>
+        # <li>audio/hi：高规格</li>
+        # @type Definition: String
+        # @param Type: 音频类型，取值有：
+        # <li>Original：原唱</li>
+        # <li>Accompaniment：伴奏</li>
+        # @type Type: String
+
+        attr_accessor :Definition, :Type
+        
+        def initialize(definition=nil, type=nil)
+          @Definition = definition
+          @Type = type
+        end
+
+        def deserialize(params)
+          @Definition = params['Definition']
+          @Type = params['Type']
+        end
+      end
+
+      # 设置播放列表指令参数
+      class SetPlaylistCommandInput < TencentCloud::Common::AbstractModel
+        # @param Type: 变更类型，取值有：
+        # <li>Add：添加</li>
+        # <li>Delete：删除</li>
+        # @type Type: String
+        # @param Index: 歌单索引位置，
+        # 当 Type 取 Add 时，-1表示添加在列表最后位置，大于-1表示要添加的位置；
+        # 当 Type 取 Delete 时，表示要删除的位置。
+        # @type Index: Integer
+        # @param MusicIds: 歌曲 ID 列表，当 Type 取 Add 时，必填。
+        # @type MusicIds: Array
+
+        attr_accessor :Type, :Index, :MusicIds
+        
+        def initialize(type=nil, index=nil, musicids=nil)
+          @Type = type
+          @Index = index
+          @MusicIds = musicids
+        end
+
+        def deserialize(params)
+          @Type = params['Type']
+          @Index = params['Index']
+          @MusicIds = params['MusicIds']
+        end
+      end
+
       # 分类内容
       class Station < TencentCloud::Common::AbstractModel
         # @param CategoryID: StationID
@@ -1690,6 +2006,113 @@ module TencentCloud
               @ImagePathMap << imagepath_tmp
             end
           end
+        end
+      end
+
+      # SyncKTVRobotCommand请求参数结构体
+      class SyncKTVRobotCommandRequest < TencentCloud::Common::AbstractModel
+        # @param RobotId: 机器人Id。
+        # @type RobotId: String
+        # @param Command: 指令，取值有：
+        # <li>Play：播放</li>
+        # <li>Pause：暂停</li>
+        # <li>SwitchPrevious：上一首</li>
+        # <li>SwitchNext：下一首</li>
+        # <li>Seek：调整播放进度</li>
+        # <li>SetPlaylist：歌单变更</li>
+        # <li>SetAudioParam：音频参数变更</li>
+        # <li>SendMessage：发送自定义消息</li>
+        # @type Command: String
+        # @param PlayCommandInput: 播放参数。
+        # @type PlayCommandInput: :class:`Tencentcloud::Ame.v20190916.models.PlayCommandInput`
+        # @param SetPlaylistCommandInput: 播放列表变更信息，当Command取SetPlaylist时，必填。
+        # @type SetPlaylistCommandInput: :class:`Tencentcloud::Ame.v20190916.models.SetPlaylistCommandInput`
+        # @param SeekCommandInput: 播放进度，当Command取Seek时，必填。
+        # @type SeekCommandInput: :class:`Tencentcloud::Ame.v20190916.models.SeekCommandInput`
+        # @param SetAudioParamCommandInput: 音频参数，当Command取SetAudioParam时，必填。
+        # @type SetAudioParamCommandInput: :class:`Tencentcloud::Ame.v20190916.models.SetAudioParamCommandInput`
+        # @param SendMessageCommandInput: 自定义消息，当Command取SendMessage时，必填。
+        # @type SendMessageCommandInput: :class:`Tencentcloud::Ame.v20190916.models.SendMessageCommandInput`
+
+        attr_accessor :RobotId, :Command, :PlayCommandInput, :SetPlaylistCommandInput, :SeekCommandInput, :SetAudioParamCommandInput, :SendMessageCommandInput
+        
+        def initialize(robotid=nil, command=nil, playcommandinput=nil, setplaylistcommandinput=nil, seekcommandinput=nil, setaudioparamcommandinput=nil, sendmessagecommandinput=nil)
+          @RobotId = robotid
+          @Command = command
+          @PlayCommandInput = playcommandinput
+          @SetPlaylistCommandInput = setplaylistcommandinput
+          @SeekCommandInput = seekcommandinput
+          @SetAudioParamCommandInput = setaudioparamcommandinput
+          @SendMessageCommandInput = sendmessagecommandinput
+        end
+
+        def deserialize(params)
+          @RobotId = params['RobotId']
+          @Command = params['Command']
+          unless params['PlayCommandInput'].nil?
+            @PlayCommandInput = PlayCommandInput.new
+            @PlayCommandInput.deserialize(params['PlayCommandInput'])
+          end
+          unless params['SetPlaylistCommandInput'].nil?
+            @SetPlaylistCommandInput = SetPlaylistCommandInput.new
+            @SetPlaylistCommandInput.deserialize(params['SetPlaylistCommandInput'])
+          end
+          unless params['SeekCommandInput'].nil?
+            @SeekCommandInput = SeekCommandInput.new
+            @SeekCommandInput.deserialize(params['SeekCommandInput'])
+          end
+          unless params['SetAudioParamCommandInput'].nil?
+            @SetAudioParamCommandInput = SetAudioParamCommandInput.new
+            @SetAudioParamCommandInput.deserialize(params['SetAudioParamCommandInput'])
+          end
+          unless params['SendMessageCommandInput'].nil?
+            @SendMessageCommandInput = SendMessageCommandInput.new
+            @SendMessageCommandInput.deserialize(params['SendMessageCommandInput'])
+          end
+        end
+      end
+
+      # SyncKTVRobotCommand返回参数结构体
+      class SyncKTVRobotCommandResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # TRTC推流进房信息
+      class TRTCJoinRoomInput < TencentCloud::Common::AbstractModel
+        # @param Sign: 签名。
+        # @type Sign: String
+        # @param RoomId: 房间号。
+        # @type RoomId: String
+        # @param SdkAppId: 推流应用ID。
+        # @type SdkAppId: String
+        # @param UserId: 用户唯一标识。
+        # @type UserId: String
+
+        attr_accessor :Sign, :RoomId, :SdkAppId, :UserId
+        
+        def initialize(sign=nil, roomid=nil, sdkappid=nil, userid=nil)
+          @Sign = sign
+          @RoomId = roomid
+          @SdkAppId = sdkappid
+          @UserId = userid
+        end
+
+        def deserialize(params)
+          @Sign = params['Sign']
+          @RoomId = params['RoomId']
+          @SdkAppId = params['SdkAppId']
+          @UserId = params['UserId']
         end
       end
 

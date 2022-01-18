@@ -1697,6 +1697,32 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口(ProgramFpgaImage)用于在线烧录由客户提供的FPGA镜像文件到指定实例的指定FPGA卡上。
+        # * 只支持对单个实例发起在线烧录FPGA镜像的操作。
+        # * 支持对单个实例的多块FPGA卡同时烧录FPGA镜像，DBDFs参数为空时，默认对指定实例的所有FPGA卡进行烧录。
+
+        # @param request: Request instance for ProgramFpgaImage.
+        # @type request: :class:`Tencentcloud::cvm::V20170312::ProgramFpgaImageRequest`
+        # @rtype: :class:`Tencentcloud::cvm::V20170312::ProgramFpgaImageResponse`
+        def ProgramFpgaImage(request)
+          body = send_request('ProgramFpgaImage', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ProgramFpgaImageResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口(PurchaseReservedInstancesOffering)用于用户购买一个或者多个指定配置的预留实例
 
         # @param request: Request instance for PurchaseReservedInstancesOffering.

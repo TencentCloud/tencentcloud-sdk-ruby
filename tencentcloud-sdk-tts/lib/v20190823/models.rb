@@ -24,7 +24,6 @@ module TencentCloud
         # @param ModelType: 模型类型，1-默认模型。
         # @type ModelType: Integer
         # @param Volume: 音量大小，范围：[0，10]，分别对应11个等级的音量，默认为0，代表正常音量。没有静音选项。
-        # 输入除以上整数之外的其他参数不生效，按默认值处理。
         # @type Volume: Float
         # @param Speed: 语速，范围：[-2，2]，分别对应不同语速：<li>-2代表0.6倍</li><li>-1代表0.8倍</li><li>0代表1.0倍（默认）</li><li>1代表1.2倍</li><li>2代表1.5倍</li>如果需要更细化的语速，可以保留小数点后一位，例如0.5 1.1 1.8等。<br>
         # @type Speed: Float
@@ -191,15 +190,14 @@ module TencentCloud
         # @type Text: String
         # @param SessionId: 一次请求对应一个SessionId，会原样返回，建议传入类似于uuid的字符串防止重复。
         # @type SessionId: String
-        # @param ModelType: 模型类型，1-默认模型。
-        # @type ModelType: Integer
         # @param Volume: 音量大小，范围：[0，10]，分别对应11个等级的音量，默认为0，代表正常音量。没有静音选项。
-        # 输入除以上整数之外的其他参数不生效，按默认值处理。
         # @type Volume: Float
         # @param Speed: 语速，范围：[-2，2]，分别对应不同语速：<li>-2代表0.6倍</li><li>-1代表0.8倍</li><li>0代表1.0倍（默认）</li><li>1代表1.2倍</li><li>2代表1.5倍</li>如果需要更细化的语速，可以保留小数点后一位，例如0.5 1.1 1.8等。<br>
         # @type Speed: Float
         # @param ProjectId: 项目id，用户自定义，默认为0。
         # @type ProjectId: Integer
+        # @param ModelType: 模型类型，1-默认模型。
+        # @type ModelType: Integer
         # @param VoiceType: 标准音色<li>10510000-智逍遥，阅读男声</li><li>1001-智瑜，情感女声</li><li>1002-智聆，通用女声</li><li>1003-智美，客服女声</li><li>1004-智云，通用男声</li><li>1005-智莉，通用女声</li><li>1007-智娜，客服女声</li><li>1008-智琪，客服女声</li><li>1009-智芸，知性女声</li><li>1010-智华，通用男声</li><li>1017-智蓉，情感女声</li><li>1018-智靖，情感男声</li><li>1050-WeJack，英文男声</li><li>1051-WeRose，英文女声</li>精品音色<br>精品音色拟真度更高，价格不同于标准音色，查看[购买指南](https://cloud.tencent.com/product/tts/pricing)<br><li>100510000-智逍遥，阅读男声</li><li>101001-智瑜，情感女声</li><li>101002-智聆，通用女声</li><li>101003-智美，客服女声</li><li>101004-智云，通用男声</li><li>101005-智莉，通用女声</li><li>101006-智言，助手女声</li><li>101007-智娜，客服女声</li><li>101008-智琪，客服女声</li><li>101009-智芸，知性女声</li><li>101010-智华，通用男声</li><li>101011-智燕，新闻女声</li><li>101012-智丹，新闻女声</li><li>101013-智辉，新闻男声</li><li>101014-智宁，新闻男声</li><li>101015-智萌，男童声</li><li>101016-智甜，女童声</li><li>101017-智蓉，情感女声</li><li>101018-智靖，情感男声</li><li>101019-智彤，粤语女声</li><li>101019-智彤，粤语女声</li><li>101019-智彤，粤语女声</li><li>101020-智刚，新闻男声</li><li>101021-智瑞，新闻男声</li><li>101022-智虹，新闻女声</li><li>101023-智萱，聊天女声</li><li>101024-智皓，聊天男声</li><li>101025-智薇，聊天女声</li><li>101026-智希，通用女声</li><li>101027-智梅，通用女声</li><li>101028-智洁，通用女声</li><li>101029-智凯，通用男声</li><li>101030-智柯，通用男声</li><li>101031-智奎，通用男声</li><li>101032-智芳，通用女声</li><li>101033-智蓓，客服女声</li><li>101034-智莲，通用女声</li><li>101035-智依，通用女声</li><li>101040-智川，四川女声</li><li>101050-WeJack，英文男声</li><li>101051-WeRose，英文女声</li>
         # @type VoiceType: Integer
         # @param PrimaryLanguage: 主语言类型：<li>1-中文（默认）</li><li>2-英文</li>
@@ -209,15 +207,15 @@ module TencentCloud
         # @param Codec: 返回音频格式，可取值：wav（默认），mp3，pcm
         # @type Codec: String
 
-        attr_accessor :Text, :SessionId, :ModelType, :Volume, :Speed, :ProjectId, :VoiceType, :PrimaryLanguage, :SampleRate, :Codec
+        attr_accessor :Text, :SessionId, :Volume, :Speed, :ProjectId, :ModelType, :VoiceType, :PrimaryLanguage, :SampleRate, :Codec
         
-        def initialize(text=nil, sessionid=nil, modeltype=nil, volume=nil, speed=nil, projectid=nil, voicetype=nil, primarylanguage=nil, samplerate=nil, codec=nil)
+        def initialize(text=nil, sessionid=nil, volume=nil, speed=nil, projectid=nil, modeltype=nil, voicetype=nil, primarylanguage=nil, samplerate=nil, codec=nil)
           @Text = text
           @SessionId = sessionid
-          @ModelType = modeltype
           @Volume = volume
           @Speed = speed
           @ProjectId = projectid
+          @ModelType = modeltype
           @VoiceType = voicetype
           @PrimaryLanguage = primarylanguage
           @SampleRate = samplerate
@@ -227,10 +225,10 @@ module TencentCloud
         def deserialize(params)
           @Text = params['Text']
           @SessionId = params['SessionId']
-          @ModelType = params['ModelType']
           @Volume = params['Volume']
           @Speed = params['Speed']
           @ProjectId = params['ProjectId']
+          @ModelType = params['ModelType']
           @VoiceType = params['VoiceType']
           @PrimaryLanguage = params['PrimaryLanguage']
           @SampleRate = params['SampleRate']

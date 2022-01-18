@@ -942,10 +942,13 @@ module TencentCloud
         # @type Area: String
         # @param Readonly: 域名锁定状态，normal、global，分别表示未被锁定、全球锁定。
         # @type Readonly: String
+        # @param Tag: 域名标签。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Tag: Array
 
-        attr_accessor :ResourceId, :AppId, :Domain, :Cname, :Status, :ProjectId, :CreateTime, :UpdateTime, :Origin, :Disable, :Area, :Readonly
+        attr_accessor :ResourceId, :AppId, :Domain, :Cname, :Status, :ProjectId, :CreateTime, :UpdateTime, :Origin, :Disable, :Area, :Readonly, :Tag
         
-        def initialize(resourceid=nil, appid=nil, domain=nil, cname=nil, status=nil, projectid=nil, createtime=nil, updatetime=nil, origin=nil, disable=nil, area=nil, readonly=nil)
+        def initialize(resourceid=nil, appid=nil, domain=nil, cname=nil, status=nil, projectid=nil, createtime=nil, updatetime=nil, origin=nil, disable=nil, area=nil, readonly=nil, tag=nil)
           @ResourceId = resourceid
           @AppId = appid
           @Domain = domain
@@ -958,6 +961,7 @@ module TencentCloud
           @Disable = disable
           @Area = area
           @Readonly = readonly
+          @Tag = tag
         end
 
         def deserialize(params)
@@ -976,6 +980,14 @@ module TencentCloud
           @Disable = params['Disable']
           @Area = params['Area']
           @Readonly = params['Readonly']
+          unless params['Tag'].nil?
+            @Tag = []
+            params['Tag'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tag << tag_tmp
+            end
+          end
         end
       end
 
@@ -1550,7 +1562,7 @@ module TencentCloud
 
       # PurgePathCache返回参数结构体
       class PurgePathCacheResponse < TencentCloud::Common::AbstractModel
-        # @param TaskId: 刷新任务Id，前十位为提交任务时的UTC时间。
+        # @param TaskId: 刷新任务Id。
         # @type TaskId: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1622,7 +1634,7 @@ module TencentCloud
 
       # PurgeUrlsCache返回参数结构体
       class PurgeUrlsCacheResponse < TencentCloud::Common::AbstractModel
-        # @param TaskId: 刷新任务Id，前十位为提交任务时的UTC时间。
+        # @param TaskId: 刷新任务Id。
         # @type TaskId: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

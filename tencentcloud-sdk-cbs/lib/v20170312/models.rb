@@ -253,21 +253,21 @@ module TencentCloud
         # @param CageId: 独享集群围笼ID。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CageId: String
-        # @param CdcState: 独享集群状态。取值范围：<br><li>NORMAL:正常<br><li>CLOSED：关闭售卖<br><li>FAULT：状态异常<br><li>ISOLATED：已隔离。
+        # @param CdcState: 独享集群状态。取值范围：<br><li>NORMAL：正常；<br><li>CLOSED：关闭，此时将不可使用该独享集群创建新的云硬盘；<br><li>FAULT：独享集群状态异常，此时独享集群将不可操作，腾讯云运维团队将会及时修复该集群；<br><li>ISOLATED：因未及时续费导致独享集群被隔离，此时将不可使用该独享集群创建新的云硬盘，对应的云硬盘也将不可操作。
         # @type CdcState: String
-        # @param Zone: 独享集群所属的[可用区](/document/api/213/9452#zone)ID。
+        # @param Zone: 独享集群所属的[可用区](/document/product/213/15753#ZoneInfo)ID。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Zone: String
         # @param CdcName: 独享集群实例名称。
         # @type CdcName: String
-        # @param CdcResource: 独享集群的资源大小。
+        # @param CdcResource: 独享集群的资源容量大小。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CdcResource: :class:`Tencentcloud::Cbs.v20170312.models.CdcSize`
         # @param CdcId: 独享集群实例id。
         # @type CdcId: String
         # @param DiskType: 独享集群类型。取值范围：<br><li>CLOUD_BASIC：表示普通云硬盘集群<br><li>CLOUD_PREMIUM：表示高性能云硬盘集群<br><li>CLOUD_SSD：SSD表示SSD云硬盘集群。
         # @type DiskType: String
-        # @param ExpiredTime: 独享集群过期时间。
+        # @param ExpiredTime: 独享集群到期时间。
         # @type ExpiredTime: String
 
         attr_accessor :CageId, :CdcState, :Zone, :CdcName, :CdcResource, :CdcId, :DiskType, :ExpiredTime
@@ -862,7 +862,7 @@ module TencentCloud
         # @type Limit: Integer
         # @param CdcIds: 指定需要查询的独享集群ID列表，该入参不能与Filters一起使用。
         # @type CdcIds: Array
-        # @param Filters: 过滤条件。参数不支持同时指定`CdcIds`和`Filters`。<br><li>cdc-id - Array of String - 是否必填：否 -（过滤条件）按独享集群ID过滤。<br><li>zone - Array of String - 是否必填：否 -（过滤条件）按独享集群所在[可用区](/document/api/213/9452#zone)过滤。<br><li>cage-id - Array of String - 是否必填：否 -（过滤条件）按独享集群所在围笼的ID过滤。<br><li>disk-type - Array of String - 是否必填：否 -（过滤条件）按照云盘介质类型过滤。(CLOUD_BASIC：表示普通云硬盘 | CLOUD_PREMIUM：表示高性能云硬盘。| CLOUD_SSD：SSD表示SSD云硬盘。)
+        # @param Filters: 过滤条件。参数不支持同时指定`CdcIds`和`Filters`。<br><li>cdc-id - Array of String - 是否必填：否 -（过滤条件）按独享集群ID过滤。<br><li>zone - Array of String - 是否必填：否 -（过滤条件）按独享集群所在[可用区](/document/product/213/15753#ZoneInfo)过滤。<br><li>cage-id - Array of String - 是否必填：否 -（过滤条件）按独享集群所在围笼的ID过滤。<br><li>disk-type - Array of String - 是否必填：否 -（过滤条件）按照云盘介质类型过滤。(CLOUD_BASIC：表示普通云硬盘 | CLOUD_PREMIUM：表示高性能云硬盘。| CLOUD_SSD：SSD表示SSD云硬盘。)
         # @type Filters: Array
         # @param Offset: 偏移量，默认为0。关于`Offset`的更进一步介绍请参考API[简介](/document/product/362/15633)中的相关小节。
         # @type Offset: Integer

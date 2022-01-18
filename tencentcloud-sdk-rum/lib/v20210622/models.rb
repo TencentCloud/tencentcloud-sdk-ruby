@@ -205,6 +205,254 @@ module TencentCloud
         end
       end
 
+      # DescribeDataFetchUrlInfo请求参数结构体
+      class DescribeDataFetchUrlInfoRequest < TencentCloud::Common::AbstractModel
+        # @param StartTime: 开始时间
+        # @type StartTime: Integer
+        # @param Type: 类型
+        # @type Type: String
+        # @param EndTime: 结束时间
+        # @type EndTime: Integer
+        # @param ID: 项目ID
+        # @type ID: Integer
+        # @param ExtSecond: 自定义2
+        # @type ExtSecond: String
+        # @param Engine: 浏览器引擎
+        # @type Engine: String
+        # @param Isp: 运营商
+        # @type Isp: String
+        # @param From: 来源页面
+        # @type From: String
+        # @param Level: 日志等级
+        # @type Level: String
+        # @param Brand: 品牌
+        # @type Brand: String
+        # @param Area: 地区
+        # @type Area: String
+        # @param VersionNum: 版本
+        # @type VersionNum: String
+        # @param Platform: 平台
+        # @type Platform: String
+        # @param ExtThird: 自定义3
+        # @type ExtThird: String
+        # @param ExtFirst: 自定义1
+        # @type ExtFirst: String
+        # @param NetType: 网络类型
+        # @type NetType: String
+        # @param Device: 机型
+        # @type Device: String
+        # @param IsAbroad: 是否海外
+        # @type IsAbroad: String
+        # @param Os: 操作系统
+        # @type Os: String
+        # @param Browser: 浏览器
+        # @type Browser: String
+        # @param CostType: 耗时计算方式
+        # @type CostType: String
+        # @param Url: 来源
+        # @type Url: String
+        # @param Env: 环境
+        # @type Env: String
+
+        attr_accessor :StartTime, :Type, :EndTime, :ID, :ExtSecond, :Engine, :Isp, :From, :Level, :Brand, :Area, :VersionNum, :Platform, :ExtThird, :ExtFirst, :NetType, :Device, :IsAbroad, :Os, :Browser, :CostType, :Url, :Env
+        
+        def initialize(starttime=nil, type=nil, endtime=nil, id=nil, extsecond=nil, engine=nil, isp=nil, from=nil, level=nil, brand=nil, area=nil, versionnum=nil, platform=nil, extthird=nil, extfirst=nil, nettype=nil, device=nil, isabroad=nil, os=nil, browser=nil, costtype=nil, url=nil, env=nil)
+          @StartTime = starttime
+          @Type = type
+          @EndTime = endtime
+          @ID = id
+          @ExtSecond = extsecond
+          @Engine = engine
+          @Isp = isp
+          @From = from
+          @Level = level
+          @Brand = brand
+          @Area = area
+          @VersionNum = versionnum
+          @Platform = platform
+          @ExtThird = extthird
+          @ExtFirst = extfirst
+          @NetType = nettype
+          @Device = device
+          @IsAbroad = isabroad
+          @Os = os
+          @Browser = browser
+          @CostType = costtype
+          @Url = url
+          @Env = env
+        end
+
+        def deserialize(params)
+          @StartTime = params['StartTime']
+          @Type = params['Type']
+          @EndTime = params['EndTime']
+          @ID = params['ID']
+          @ExtSecond = params['ExtSecond']
+          @Engine = params['Engine']
+          @Isp = params['Isp']
+          @From = params['From']
+          @Level = params['Level']
+          @Brand = params['Brand']
+          @Area = params['Area']
+          @VersionNum = params['VersionNum']
+          @Platform = params['Platform']
+          @ExtThird = params['ExtThird']
+          @ExtFirst = params['ExtFirst']
+          @NetType = params['NetType']
+          @Device = params['Device']
+          @IsAbroad = params['IsAbroad']
+          @Os = params['Os']
+          @Browser = params['Browser']
+          @CostType = params['CostType']
+          @Url = params['Url']
+          @Env = params['Env']
+        end
+      end
+
+      # DescribeDataFetchUrlInfo返回参数结构体
+      class DescribeDataFetchUrlInfoResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 返回值
+        # @type Result: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+        
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Result = params['Result']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeDataFetchUrl请求参数结构体
+      class DescribeDataFetchUrlRequest < TencentCloud::Common::AbstractModel
+        # @param StartTime: 开始时间
+        # @type StartTime: Integer
+        # @param Type: 类型
+        # @type Type: String
+        # @param EndTime: 结束时间
+        # @type EndTime: Integer
+        # @param ID: 项目ID
+        # @type ID: Integer
+        # @param ExtSecond: 自定义2
+        # @type ExtSecond: String
+        # @param Engine: 浏览器引擎
+        # @type Engine: String
+        # @param Isp: 运营商
+        # @type Isp: String
+        # @param From: 来源页面
+        # @type From: String
+        # @param Level: 日志等级
+        # @type Level: String
+        # @param Brand: 品牌
+        # @type Brand: String
+        # @param Area: 地区
+        # @type Area: String
+        # @param VersionNum: 版本
+        # @type VersionNum: String
+        # @param Platform: 平台
+        # @type Platform: String
+        # @param ExtThird: 自定义3
+        # @type ExtThird: String
+        # @param ExtFirst: 自定义1
+        # @type ExtFirst: String
+        # @param NetType: 网络类型
+        # @type NetType: String
+        # @param Device: 机型
+        # @type Device: String
+        # @param IsAbroad: 是否海外
+        # @type IsAbroad: String
+        # @param Os: 操作系统
+        # @type Os: String
+        # @param Browser: 浏览器
+        # @type Browser: String
+        # @param CostType: 耗时计算方式
+        # @type CostType: String
+        # @param Url: 来源
+        # @type Url: String
+        # @param Env: 环境
+        # @type Env: String
+
+        attr_accessor :StartTime, :Type, :EndTime, :ID, :ExtSecond, :Engine, :Isp, :From, :Level, :Brand, :Area, :VersionNum, :Platform, :ExtThird, :ExtFirst, :NetType, :Device, :IsAbroad, :Os, :Browser, :CostType, :Url, :Env
+        
+        def initialize(starttime=nil, type=nil, endtime=nil, id=nil, extsecond=nil, engine=nil, isp=nil, from=nil, level=nil, brand=nil, area=nil, versionnum=nil, platform=nil, extthird=nil, extfirst=nil, nettype=nil, device=nil, isabroad=nil, os=nil, browser=nil, costtype=nil, url=nil, env=nil)
+          @StartTime = starttime
+          @Type = type
+          @EndTime = endtime
+          @ID = id
+          @ExtSecond = extsecond
+          @Engine = engine
+          @Isp = isp
+          @From = from
+          @Level = level
+          @Brand = brand
+          @Area = area
+          @VersionNum = versionnum
+          @Platform = platform
+          @ExtThird = extthird
+          @ExtFirst = extfirst
+          @NetType = nettype
+          @Device = device
+          @IsAbroad = isabroad
+          @Os = os
+          @Browser = browser
+          @CostType = costtype
+          @Url = url
+          @Env = env
+        end
+
+        def deserialize(params)
+          @StartTime = params['StartTime']
+          @Type = params['Type']
+          @EndTime = params['EndTime']
+          @ID = params['ID']
+          @ExtSecond = params['ExtSecond']
+          @Engine = params['Engine']
+          @Isp = params['Isp']
+          @From = params['From']
+          @Level = params['Level']
+          @Brand = params['Brand']
+          @Area = params['Area']
+          @VersionNum = params['VersionNum']
+          @Platform = params['Platform']
+          @ExtThird = params['ExtThird']
+          @ExtFirst = params['ExtFirst']
+          @NetType = params['NetType']
+          @Device = params['Device']
+          @IsAbroad = params['IsAbroad']
+          @Os = params['Os']
+          @Browser = params['Browser']
+          @CostType = params['CostType']
+          @Url = params['Url']
+          @Env = params['Env']
+        end
+      end
+
+      # DescribeDataFetchUrl返回参数结构体
+      class DescribeDataFetchUrlResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 返回值
+        # @type Result: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+        
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Result = params['Result']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeDataLogUrlStatistics请求参数结构体
       class DescribeDataLogUrlStatisticsRequest < TencentCloud::Common::AbstractModel
         # @param StartTime: 开始时间

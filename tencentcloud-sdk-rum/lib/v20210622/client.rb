@@ -77,6 +77,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 获取DescribeDataFetchUrl信息
+
+        # @param request: Request instance for DescribeDataFetchUrl.
+        # @type request: :class:`Tencentcloud::rum::V20210622::DescribeDataFetchUrlRequest`
+        # @rtype: :class:`Tencentcloud::rum::V20210622::DescribeDataFetchUrlResponse`
+        def DescribeDataFetchUrl(request)
+          body = send_request('DescribeDataFetchUrl', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeDataFetchUrlResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取DescribeDataFetchUrlInfo信息
+
+        # @param request: Request instance for DescribeDataFetchUrlInfo.
+        # @type request: :class:`Tencentcloud::rum::V20210622::DescribeDataFetchUrlInfoRequest`
+        # @rtype: :class:`Tencentcloud::rum::V20210622::DescribeDataFetchUrlInfoResponse`
+        def DescribeDataFetchUrlInfo(request)
+          body = send_request('DescribeDataFetchUrlInfo', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeDataFetchUrlInfoResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 获取LogUrlStatistics信息
 
         # @param request: Request instance for DescribeDataLogUrlStatistics.

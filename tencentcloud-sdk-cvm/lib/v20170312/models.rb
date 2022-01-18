@@ -5433,6 +5433,50 @@ module TencentCloud
         end
       end
 
+      # ProgramFpgaImage请求参数结构体
+      class ProgramFpgaImageRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例的ID信息。
+        # @type InstanceId: String
+        # @param FPGAUrl: FPGA镜像文件的COS URL地址。
+        # @type FPGAUrl: String
+        # @param DBDFs: 实例上FPGA卡的DBDF号，不填默认烧录FPGA镜像到实例所拥有的所有FPGA卡。
+        # @type DBDFs: Array
+        # @param DryRun: 试运行，不会执行实际的烧录动作，默认为False。
+        # @type DryRun: Boolean
+
+        attr_accessor :InstanceId, :FPGAUrl, :DBDFs, :DryRun
+        
+        def initialize(instanceid=nil, fpgaurl=nil, dbdfs=nil, dryrun=nil)
+          @InstanceId = instanceid
+          @FPGAUrl = fpgaurl
+          @DBDFs = dbdfs
+          @DryRun = dryrun
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @FPGAUrl = params['FPGAUrl']
+          @DBDFs = params['DBDFs']
+          @DryRun = params['DryRun']
+        end
+      end
+
+      # ProgramFpgaImage返回参数结构体
+      class ProgramFpgaImageResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # PurchaseReservedInstancesOffering请求参数结构体
       class PurchaseReservedInstancesOfferingRequest < TencentCloud::Common::AbstractModel
         # @param InstanceCount: 购买预留实例计费数量

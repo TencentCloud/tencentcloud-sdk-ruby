@@ -1533,12 +1533,15 @@ module TencentCloud
         # @param SecondaryOrgNodeIdList: 用户所属的次要组织机构ID列表。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SecondaryOrgNodeIdList: Array
+        # @param AdminFlag: 是否管理员标志，0为否、1为是。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AdminFlag: Integer
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :UserName, :Status, :DisplayName, :Description, :UserGroupIds, :UserId, :Email, :Phone, :OrgNodeId, :DataSource, :ExpirationTime, :ActivationTime, :PwdNeedReset, :SecondaryOrgNodeIdList, :RequestId
+        attr_accessor :UserName, :Status, :DisplayName, :Description, :UserGroupIds, :UserId, :Email, :Phone, :OrgNodeId, :DataSource, :ExpirationTime, :ActivationTime, :PwdNeedReset, :SecondaryOrgNodeIdList, :AdminFlag, :RequestId
         
-        def initialize(username=nil, status=nil, displayname=nil, description=nil, usergroupids=nil, userid=nil, email=nil, phone=nil, orgnodeid=nil, datasource=nil, expirationtime=nil, activationtime=nil, pwdneedreset=nil, secondaryorgnodeidlist=nil, requestid=nil)
+        def initialize(username=nil, status=nil, displayname=nil, description=nil, usergroupids=nil, userid=nil, email=nil, phone=nil, orgnodeid=nil, datasource=nil, expirationtime=nil, activationtime=nil, pwdneedreset=nil, secondaryorgnodeidlist=nil, adminflag=nil, requestid=nil)
           @UserName = username
           @Status = status
           @DisplayName = displayname
@@ -1553,6 +1556,7 @@ module TencentCloud
           @ActivationTime = activationtime
           @PwdNeedReset = pwdneedreset
           @SecondaryOrgNodeIdList = secondaryorgnodeidlist
+          @AdminFlag = adminflag
           @RequestId = requestid
         end
 
@@ -1571,6 +1575,7 @@ module TencentCloud
           @ActivationTime = params['ActivationTime']
           @PwdNeedReset = params['PwdNeedReset']
           @SecondaryOrgNodeIdList = params['SecondaryOrgNodeIdList']
+          @AdminFlag = params['AdminFlag']
           @RequestId = params['RequestId']
         end
       end

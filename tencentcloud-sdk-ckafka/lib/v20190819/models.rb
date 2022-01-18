@@ -2005,18 +2005,20 @@ module TencentCloud
         # @type SearchWord: String
         # @param Status: （过滤条件）实例的状态。0：创建中，1：运行中，2：删除中，不填默认返回全部
         # @type Status: Array
-        # @param Offset: 偏移量，不填默认为0
+        # @param Offset: 偏移量，不填默认为0。
         # @type Offset: Integer
-        # @param Limit: 返回数量，不填则默认10，最大值20
+        # @param Limit: 返回数量，不填则默认10，最大值20。
         # @type Limit: Integer
         # @param TagKey: 匹配标签key值。
         # @type TagKey: String
-        # @param Filters: 过滤器
+        # @param Filters: 过滤器。
         # @type Filters: Array
+        # @param InstanceIds: 按照实例ID过滤
+        # @type InstanceIds: String
 
-        attr_accessor :InstanceId, :SearchWord, :Status, :Offset, :Limit, :TagKey, :Filters
+        attr_accessor :InstanceId, :SearchWord, :Status, :Offset, :Limit, :TagKey, :Filters, :InstanceIds
         
-        def initialize(instanceid=nil, searchword=nil, status=nil, offset=nil, limit=nil, tagkey=nil, filters=nil)
+        def initialize(instanceid=nil, searchword=nil, status=nil, offset=nil, limit=nil, tagkey=nil, filters=nil, instanceids=nil)
           @InstanceId = instanceid
           @SearchWord = searchword
           @Status = status
@@ -2024,6 +2026,7 @@ module TencentCloud
           @Limit = limit
           @TagKey = tagkey
           @Filters = filters
+          @InstanceIds = instanceids
         end
 
         def deserialize(params)
@@ -2041,6 +2044,7 @@ module TencentCloud
               @Filters << filter_tmp
             end
           end
+          @InstanceIds = params['InstanceIds']
         end
       end
 
@@ -2081,16 +2085,19 @@ module TencentCloud
         # @type Limit: Integer
         # @param TagKey: 已废弃。匹配标签key值。
         # @type TagKey: String
+        # @param VpcId: 私有网络Id
+        # @type VpcId: String
 
-        attr_accessor :InstanceId, :SearchWord, :Status, :Offset, :Limit, :TagKey
+        attr_accessor :InstanceId, :SearchWord, :Status, :Offset, :Limit, :TagKey, :VpcId
         
-        def initialize(instanceid=nil, searchword=nil, status=nil, offset=nil, limit=nil, tagkey=nil)
+        def initialize(instanceid=nil, searchword=nil, status=nil, offset=nil, limit=nil, tagkey=nil, vpcid=nil)
           @InstanceId = instanceid
           @SearchWord = searchword
           @Status = status
           @Offset = offset
           @Limit = limit
           @TagKey = tagkey
+          @VpcId = vpcid
         end
 
         def deserialize(params)
@@ -2100,6 +2107,7 @@ module TencentCloud
           @Offset = params['Offset']
           @Limit = params['Limit']
           @TagKey = params['TagKey']
+          @VpcId = params['VpcId']
         end
       end
 
@@ -3212,10 +3220,19 @@ module TencentCloud
         # @param RebalanceTime: 计划升级配置时间
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RebalanceTime: String
+        # @param PartitionNumber: 实例当前partition数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PartitionNumber: Integer
+        # @param PublicNetworkChargeType: 公网带宽类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PublicNetworkChargeType: String
+        # @param PublicNetwork: 公网带宽值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PublicNetwork: Integer
 
-        attr_accessor :InstanceId, :InstanceName, :Vip, :Vport, :VipList, :Status, :Bandwidth, :DiskSize, :ZoneId, :VpcId, :SubnetId, :RenewFlag, :Healthy, :HealthyMessage, :CreateTime, :ExpireTime, :IsInternal, :TopicNum, :Tags, :Version, :ZoneIds, :Cvm, :InstanceType, :DiskType, :MaxTopicNumber, :MaxPartitionNumber, :RebalanceTime
+        attr_accessor :InstanceId, :InstanceName, :Vip, :Vport, :VipList, :Status, :Bandwidth, :DiskSize, :ZoneId, :VpcId, :SubnetId, :RenewFlag, :Healthy, :HealthyMessage, :CreateTime, :ExpireTime, :IsInternal, :TopicNum, :Tags, :Version, :ZoneIds, :Cvm, :InstanceType, :DiskType, :MaxTopicNumber, :MaxPartitionNumber, :RebalanceTime, :PartitionNumber, :PublicNetworkChargeType, :PublicNetwork
         
-        def initialize(instanceid=nil, instancename=nil, vip=nil, vport=nil, viplist=nil, status=nil, bandwidth=nil, disksize=nil, zoneid=nil, vpcid=nil, subnetid=nil, renewflag=nil, healthy=nil, healthymessage=nil, createtime=nil, expiretime=nil, isinternal=nil, topicnum=nil, tags=nil, version=nil, zoneids=nil, cvm=nil, instancetype=nil, disktype=nil, maxtopicnumber=nil, maxpartitionnumber=nil, rebalancetime=nil)
+        def initialize(instanceid=nil, instancename=nil, vip=nil, vport=nil, viplist=nil, status=nil, bandwidth=nil, disksize=nil, zoneid=nil, vpcid=nil, subnetid=nil, renewflag=nil, healthy=nil, healthymessage=nil, createtime=nil, expiretime=nil, isinternal=nil, topicnum=nil, tags=nil, version=nil, zoneids=nil, cvm=nil, instancetype=nil, disktype=nil, maxtopicnumber=nil, maxpartitionnumber=nil, rebalancetime=nil, partitionnumber=nil, publicnetworkchargetype=nil, publicnetwork=nil)
           @InstanceId = instanceid
           @InstanceName = instancename
           @Vip = vip
@@ -3243,6 +3260,9 @@ module TencentCloud
           @MaxTopicNumber = maxtopicnumber
           @MaxPartitionNumber = maxpartitionnumber
           @RebalanceTime = rebalancetime
+          @PartitionNumber = partitionnumber
+          @PublicNetworkChargeType = publicnetworkchargetype
+          @PublicNetwork = publicnetwork
         end
 
         def deserialize(params)
@@ -3287,6 +3307,9 @@ module TencentCloud
           @MaxTopicNumber = params['MaxTopicNumber']
           @MaxPartitionNumber = params['MaxPartitionNumber']
           @RebalanceTime = params['RebalanceTime']
+          @PartitionNumber = params['PartitionNumber']
+          @PublicNetworkChargeType = params['PublicNetworkChargeType']
+          @PublicNetwork = params['PublicNetwork']
         end
       end
 

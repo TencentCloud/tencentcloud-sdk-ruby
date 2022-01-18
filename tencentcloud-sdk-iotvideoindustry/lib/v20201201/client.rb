@@ -829,6 +829,31 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口(DescribeChannelLiveStreamURL)用于获取设备指定通道实时流地址，地址是动态生成，如重新播放需要调用此接口重新获取最新播放地址。
+        # 正常推流，如未设置对应录制计划，且180s无人观看此流，将会被自动掐断。
+
+        # @param request: Request instance for DescribeChannelLiveStreamURL.
+        # @type request: :class:`Tencentcloud::iotvideoindustry::V20201201::DescribeChannelLiveStreamURLRequest`
+        # @rtype: :class:`Tencentcloud::iotvideoindustry::V20201201::DescribeChannelLiveStreamURLResponse`
+        def DescribeChannelLiveStreamURL(request)
+          body = send_request('DescribeChannelLiveStreamURL', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeChannelLiveStreamURLResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（DescribeChannelLocalRecordURL）用于将NVR等设备对应通道本地回放文件，通过GB28181信令推送至云端，并生成对应的实时视频流URL，流地址URL是动态生成，如需重新播放请重新调用此接口获取最新地址。
         # 正常推流，如未设置对应录制计划，且180s无人观看此流，将会被自动掐断。
 

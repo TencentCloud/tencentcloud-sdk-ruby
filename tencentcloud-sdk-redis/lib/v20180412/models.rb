@@ -3959,17 +3959,21 @@ module TencentCloud
         #     c.数字0-9
         #     d.()`~!@#$%^&*-+=_|{}[]:;<>,.?/
         # @type Password: String
+        # @param ShardIds: 单AZ实例节点信息
+        # @type ShardIds: Array
 
-        attr_accessor :InstanceId, :Password
+        attr_accessor :InstanceId, :Password, :ShardIds
         
-        def initialize(instanceid=nil, password=nil)
+        def initialize(instanceid=nil, password=nil, shardids=nil)
           @InstanceId = instanceid
           @Password = password
+          @ShardIds = shardids
         end
 
         def deserialize(params)
           @InstanceId = params['InstanceId']
           @Password = params['Password']
+          @ShardIds = params['ShardIds']
         end
       end
 

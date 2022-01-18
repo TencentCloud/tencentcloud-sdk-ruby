@@ -1744,6 +1744,49 @@ module TencentCloud
         end
       end
 
+      # DescribeChannelLiveStreamURL请求参数结构体
+      class DescribeChannelLiveStreamURLRequest < TencentCloud::Common::AbstractModel
+        # @param DeviceId: 设备唯一标识，必填参数
+        # @type DeviceId: String
+        # @param ChannelId: 通道唯一标识（接口升级字段为必填），必填参数
+        # @type ChannelId: String
+
+        attr_accessor :DeviceId, :ChannelId
+        
+        def initialize(deviceid=nil, channelid=nil)
+          @DeviceId = deviceid
+          @ChannelId = channelid
+        end
+
+        def deserialize(params)
+          @DeviceId = params['DeviceId']
+          @ChannelId = params['ChannelId']
+        end
+      end
+
+      # DescribeChannelLiveStreamURL返回参数结构体
+      class DescribeChannelLiveStreamURLResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 设备实时流地址列表
+        # @type Data: :class:`Tencentcloud::Iotvideoindustry.v20201201.models.DescribeDeviceStreamsData`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+        
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = DescribeDeviceStreamsData.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeChannelLocalRecordURL请求参数结构体
       class DescribeChannelLocalRecordURLRequest < TencentCloud::Common::AbstractModel
         # @param DeviceId: 设备唯一标识
@@ -1752,17 +1795,20 @@ module TencentCloud
         # @type ChannelId: String
         # @param RecordId: 录像文件Id，通过获取本地录像返回
         # @type RecordId: String
+        # @param ExpireTime: UNIX 时间戳，30天内，URL失效时间，如180s无人观看此流则URL提前失效
+        # @type ExpireTime: Integer
         # @param StartTime: 录像文件推送的开始时间，需要在RecordId参数起始时间内，可以通过此参数控制回放流起始点
         # @type StartTime: Integer
         # @param EndTime: 录像文件推送的结束时间，需要在RecordId参数起始时间内，可以通过此参数控制回放流起始点
         # @type EndTime: Integer
 
-        attr_accessor :DeviceId, :ChannelId, :RecordId, :StartTime, :EndTime
+        attr_accessor :DeviceId, :ChannelId, :RecordId, :ExpireTime, :StartTime, :EndTime
         
-        def initialize(deviceid=nil, channelid=nil, recordid=nil, starttime=nil, endtime=nil)
+        def initialize(deviceid=nil, channelid=nil, recordid=nil, expiretime=nil, starttime=nil, endtime=nil)
           @DeviceId = deviceid
           @ChannelId = channelid
           @RecordId = recordid
+          @ExpireTime = expiretime
           @StartTime = starttime
           @EndTime = endtime
         end
@@ -1771,6 +1817,7 @@ module TencentCloud
           @DeviceId = params['DeviceId']
           @ChannelId = params['ChannelId']
           @RecordId = params['RecordId']
+          @ExpireTime = params['ExpireTime']
           @StartTime = params['StartTime']
           @EndTime = params['EndTime']
         end

@@ -598,6 +598,54 @@ module TencentCloud
         end
       end
 
+      # 连接抑制相关配置
+      class ConnectLimitConfig < TencentCloud::Common::AbstractModel
+        # @param SdNewLimit: 基于源IP+目的IP的每秒新建数限制
+        # @type SdNewLimit: Integer
+        # @param DstNewLimit: 基于目的IP的每秒新建数限制
+        # @type DstNewLimit: Integer
+        # @param SdConnLimit: 基于源IP+目的IP的并发连接控制
+        # @type SdConnLimit: Integer
+        # @param DstConnLimit: 基于目的IP+目的端口的并发连接控制
+        # @type DstConnLimit: Integer
+        # @param BadConnThreshold: 基于连接抑制触发阈值，取值范围[0,4294967295]
+        # @type BadConnThreshold: Integer
+        # @param NullConnEnable: 异常连接检测条件，空连接防护开关，，取值范围[0,1]
+        # @type NullConnEnable: Integer
+        # @param ConnTimeout: 异常连接检测条件，连接超时，，取值范围[0,65535]
+        # @type ConnTimeout: Integer
+        # @param SynRate: 异常连接检测条件，syn占比ack百分比，，取值范围[0,100]
+        # @type SynRate: Integer
+        # @param SynLimit: 异常连接检测条件，syn阈值，取值范围[0,100]
+        # @type SynLimit: Integer
+
+        attr_accessor :SdNewLimit, :DstNewLimit, :SdConnLimit, :DstConnLimit, :BadConnThreshold, :NullConnEnable, :ConnTimeout, :SynRate, :SynLimit
+        
+        def initialize(sdnewlimit=nil, dstnewlimit=nil, sdconnlimit=nil, dstconnlimit=nil, badconnthreshold=nil, nullconnenable=nil, conntimeout=nil, synrate=nil, synlimit=nil)
+          @SdNewLimit = sdnewlimit
+          @DstNewLimit = dstnewlimit
+          @SdConnLimit = sdconnlimit
+          @DstConnLimit = dstconnlimit
+          @BadConnThreshold = badconnthreshold
+          @NullConnEnable = nullconnenable
+          @ConnTimeout = conntimeout
+          @SynRate = synrate
+          @SynLimit = synlimit
+        end
+
+        def deserialize(params)
+          @SdNewLimit = params['SdNewLimit']
+          @DstNewLimit = params['DstNewLimit']
+          @SdConnLimit = params['SdConnLimit']
+          @DstConnLimit = params['DstConnLimit']
+          @BadConnThreshold = params['BadConnThreshold']
+          @NullConnEnable = params['NullConnEnable']
+          @ConnTimeout = params['ConnTimeout']
+          @SynRate = params['SynRate']
+          @SynLimit = params['SynLimit']
+        end
+      end
+
       # CreateBlackWhiteIpList请求参数结构体
       class CreateBlackWhiteIpListRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 资源实例ID
@@ -779,6 +827,45 @@ module TencentCloud
 
       # CreateDDoSBlackWhiteIpList返回参数结构体
       class CreateDDoSBlackWhiteIpListResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateDDoSConnectLimit请求参数结构体
+      class CreateDDoSConnectLimitRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 资源实例Id
+        # @type InstanceId: String
+        # @param ConnectLimitConfig: 连接抑制配置
+        # @type ConnectLimitConfig: :class:`Tencentcloud::Antiddos.v20200309.models.ConnectLimitConfig`
+
+        attr_accessor :InstanceId, :ConnectLimitConfig
+        
+        def initialize(instanceid=nil, connectlimitconfig=nil)
+          @InstanceId = instanceid
+          @ConnectLimitConfig = connectlimitconfig
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          unless params['ConnectLimitConfig'].nil?
+            @ConnectLimitConfig = ConnectLimitConfig.new
+            @ConnectLimitConfig.deserialize(params['ConnectLimitConfig'])
+          end
+        end
+      end
+
+      # CreateDDoSConnectLimit返回参数结构体
+      class CreateDDoSConnectLimitResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
