@@ -58,6 +58,36 @@ module TencentCloud
         end
       end
 
+      # 端口acl策略配置与高防资源关联
+      class AclConfigRelation < TencentCloud::Common::AbstractModel
+        # @param AclConfig: acl策略
+        # @type AclConfig: :class:`Tencentcloud::Antiddos.v20200309.models.AclConfig`
+        # @param InstanceDetailList: 实例列表
+        # @type InstanceDetailList: Array
+
+        attr_accessor :AclConfig, :InstanceDetailList
+        
+        def initialize(aclconfig=nil, instancedetaillist=nil)
+          @AclConfig = aclconfig
+          @InstanceDetailList = instancedetaillist
+        end
+
+        def deserialize(params)
+          unless params['AclConfig'].nil?
+            @AclConfig = AclConfig.new
+            @AclConfig.deserialize(params['AclConfig'])
+          end
+          unless params['InstanceDetailList'].nil?
+            @InstanceDetailList = []
+            params['InstanceDetailList'].each do |i|
+              instancerelation_tmp = InstanceRelation.new
+              instancerelation_tmp.deserialize(i)
+              @InstanceDetailList << instancerelation_tmp
+            end
+          end
+        end
+      end
+
       # AssociateDDoSEipAddress请求参数结构体
       class AssociateDDoSEipAddressRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 资源实例ID，实例ID形如：bgpip-0000011x。只能填写高防IP实例。
@@ -643,6 +673,36 @@ module TencentCloud
           @ConnTimeout = params['ConnTimeout']
           @SynRate = params['SynRate']
           @SynLimit = params['SynLimit']
+        end
+      end
+
+      # 连接抑制列表
+      class ConnectLimitRelation < TencentCloud::Common::AbstractModel
+        # @param ConnectLimitConfig: 连接抑制配置
+        # @type ConnectLimitConfig: :class:`Tencentcloud::Antiddos.v20200309.models.ConnectLimitConfig`
+        # @param InstanceDetailList: 连接抑制关联的实例信息
+        # @type InstanceDetailList: Array
+
+        attr_accessor :ConnectLimitConfig, :InstanceDetailList
+        
+        def initialize(connectlimitconfig=nil, instancedetaillist=nil)
+          @ConnectLimitConfig = connectlimitconfig
+          @InstanceDetailList = instancedetaillist
+        end
+
+        def deserialize(params)
+          unless params['ConnectLimitConfig'].nil?
+            @ConnectLimitConfig = ConnectLimitConfig.new
+            @ConnectLimitConfig.deserialize(params['ConnectLimitConfig'])
+          end
+          unless params['InstanceDetailList'].nil?
+            @InstanceDetailList = []
+            params['InstanceDetailList'].each do |i|
+              instancerelation_tmp = InstanceRelation.new
+              instancerelation_tmp.deserialize(i)
+              @InstanceDetailList << instancerelation_tmp
+            end
+          end
         end
       end
 
@@ -2143,6 +2203,65 @@ module TencentCloud
         end
       end
 
+      # DescribeDDoSConnectLimitList请求参数结构体
+      class DescribeDDoSConnectLimitListRequest < TencentCloud::Common::AbstractModel
+        # @param Offset: 页起始偏移，取值为(页码-1)*一页条数
+        # @type Offset: Integer
+        # @param Limit: 一页条数
+        # @type Limit: Integer
+        # @param FilterIp: 可选参数，按照IP进行过滤
+        # @type FilterIp: String
+        # @param FilterInstanceId: 可选参数，按照实例id进行过滤
+        # @type FilterInstanceId: String
+
+        attr_accessor :Offset, :Limit, :FilterIp, :FilterInstanceId
+        
+        def initialize(offset=nil, limit=nil, filterip=nil, filterinstanceid=nil)
+          @Offset = offset
+          @Limit = limit
+          @FilterIp = filterip
+          @FilterInstanceId = filterinstanceid
+        end
+
+        def deserialize(params)
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @FilterIp = params['FilterIp']
+          @FilterInstanceId = params['FilterInstanceId']
+        end
+      end
+
+      # DescribeDDoSConnectLimitList返回参数结构体
+      class DescribeDDoSConnectLimitListResponse < TencentCloud::Common::AbstractModel
+        # @param Total: 连接抑制配置总数
+        # @type Total: Integer
+        # @param ConfigList: 连接抑制配置详情信息
+        # @type ConfigList: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Total, :ConfigList, :RequestId
+        
+        def initialize(total=nil, configlist=nil, requestid=nil)
+          @Total = total
+          @ConfigList = configlist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Total = params['Total']
+          unless params['ConfigList'].nil?
+            @ConfigList = []
+            params['ConfigList'].each do |i|
+              connectlimitrelation_tmp = ConnectLimitRelation.new
+              connectlimitrelation_tmp.deserialize(i)
+              @ConfigList << connectlimitrelation_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeDDoSTrend请求参数结构体
       class DescribeDDoSTrendRequest < TencentCloud::Common::AbstractModel
         # @param Business: 大禹子产品代号（bgpip表示高防IP；bgp表示独享包；bgp-multip表示共享包；net表示高防IP专业版；basic表示DDoS基础防护）
@@ -2912,6 +3031,65 @@ module TencentCloud
               packetfilterrelation_tmp = PacketFilterRelation.new
               packetfilterrelation_tmp.deserialize(i)
               @ConfigList << packetfilterrelation_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeListPortAclList请求参数结构体
+      class DescribeListPortAclListRequest < TencentCloud::Common::AbstractModel
+        # @param Offset: 页起始偏移，取值为(页码-1)*一页条数
+        # @type Offset: Integer
+        # @param Limit: 一页条数，当Limit=0时，默认一页条数为100;最大取值为100
+        # @type Limit: Integer
+        # @param FilterInstanceId: 资源实例ID搜索, 支持资源实例前缀通配搜索，例如bgp-*表示获取高防包类型的资源实例
+        # @type FilterInstanceId: String
+        # @param FilterIp: ip搜索
+        # @type FilterIp: String
+
+        attr_accessor :Offset, :Limit, :FilterInstanceId, :FilterIp
+        
+        def initialize(offset=nil, limit=nil, filterinstanceid=nil, filterip=nil)
+          @Offset = offset
+          @Limit = limit
+          @FilterInstanceId = filterinstanceid
+          @FilterIp = filterip
+        end
+
+        def deserialize(params)
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @FilterInstanceId = params['FilterInstanceId']
+          @FilterIp = params['FilterIp']
+        end
+      end
+
+      # DescribeListPortAclList返回参数结构体
+      class DescribeListPortAclListResponse < TencentCloud::Common::AbstractModel
+        # @param Total: 总数
+        # @type Total: Integer
+        # @param AclList: 端口acl策略
+        # @type AclList: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Total, :AclList, :RequestId
+        
+        def initialize(total=nil, acllist=nil, requestid=nil)
+          @Total = total
+          @AclList = acllist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Total = params['Total']
+          unless params['AclList'].nil?
+            @AclList = []
+            params['AclList'].each do |i|
+              aclconfigrelation_tmp = AclConfigRelation.new
+              aclconfigrelation_tmp.deserialize(i)
+              @AclList << aclconfigrelation_tmp
             end
           end
           @RequestId = params['RequestId']

@@ -29,6 +29,30 @@ module TencentCloud
         end
 
 
+        # 添加复制组成员
+
+        # @param request: Request instance for AddReplicationInstance.
+        # @type request: :class:`Tencentcloud::redis::V20180412::AddReplicationInstanceRequest`
+        # @rtype: :class:`Tencentcloud::redis::V20180412::AddReplicationInstanceResponse`
+        def AddReplicationInstance(request)
+          body = send_request('AddReplicationInstance', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = AddReplicationInstanceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 应用参数模板到实例
 
         # @param request: Request instance for ApplyParamsTemplate.
@@ -221,6 +245,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 创建复制组
+
+        # @param request: Request instance for CreateReplicationGroup.
+        # @type request: :class:`Tencentcloud::redis::V20180412::CreateReplicationGroupRequest`
+        # @rtype: :class:`Tencentcloud::redis::V20180412::CreateReplicationGroupResponse`
+        def CreateReplicationGroup(request)
+          body = send_request('CreateReplicationGroup', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateReplicationGroupResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 删除实例子账号
 
         # @param request: Request instance for DeleteInstanceAccount.
@@ -255,6 +303,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteParamTemplateResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 移除复制组成员
+
+        # @param request: Request instance for DeleteReplicationInstance.
+        # @type request: :class:`Tencentcloud::redis::V20180412::DeleteReplicationInstanceRequest`
+        # @rtype: :class:`Tencentcloud::redis::V20180412::DeleteReplicationInstanceResponse`
+        def DeleteReplicationInstance(request)
+          body = send_request('DeleteReplicationInstance', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteReplicationInstanceResponse.new
             model.deserialize(response['Response'])
             model
           else

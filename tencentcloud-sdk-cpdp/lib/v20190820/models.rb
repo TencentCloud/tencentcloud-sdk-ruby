@@ -260,7 +260,7 @@ module TencentCloud
         # @type BrandName: String
         # @param OpenKey: 收单系统分配的密钥
         # @type OpenKey: String
-        # @param BusinessLicenseEndDate: 营业执照过期时间（yyyy-mm-dd）
+        # @param BusinessLicenseEndDate: 营业执照过期时间（yyyy-mm-dd），（小微商户不效验，随意传要有值，公司/个体户必传）
         # @type BusinessLicenseEndDate: String
         # @param BossStartDate: 法人证件生效时间（yyyy-mm-dd）
         # @type BossStartDate: String
@@ -366,7 +366,7 @@ module TencentCloud
         # @type OtherPictureFour: String
         # @param TaxRegistrationNo: 税务登记证号
         # @type TaxRegistrationNo: String
-        # @param Type: 商户类型：1-个人，2-小微，3-企事业。不传默认为2-小微商户。
+        # @param Type: 商户类型：1-个体，2-小微，3-企业。不传默认为2-小微商户。
         # @type Type: String
 
         attr_accessor :BossName, :BusinessLicensePicture, :BrandName, :OpenKey, :BusinessLicenseEndDate, :BossStartDate, :BankNo, :BankName, :BusinessLicenseType, :BossEndDate, :BusinessLicenseNo, :BusinessLicenseStartDate, :BossIdType, :Address, :BossIdCountry, :OpenId, :MerchantName, :BossSex, :ClassificationIds, :BossIdNo, :LicencePicture, :OpenHours, :AccountName, :AccountNo, :AccountType, :Telephone, :BossPositive, :CityId, :BossBack, :OutMerchantId, :OrganizationStartDate, :AccountIdNo, :FinancialContact, :AccountIdType, :OrganizationNo, :OtherPictureOne, :FinancialTelephone, :Profile, :OrganizationPicture, :TaxRegistrationStartDate, :Tag, :AccountBoss, :BossTelephone, :TaxRegistrationPicture, :OrganizationEndDate, :BossJob, :OtherPictureThree, :LicencePictureTwo, :Logo, :BossAddress, :BossEmail, :OtherPictureTwo, :Intro, :AccountManagerName, :TaxRegistrationEndDate, :OtherPictureFour, :TaxRegistrationNo, :Type
@@ -499,7 +499,7 @@ module TencentCloud
         # @param ErrMessage: 业务系统返回消息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ErrMessage: String
-        # @param ErrCode: 业务系统返回码
+        # @param ErrCode: 业务系统返回码，0表示成功，其他表示失败。
         # @type ErrCode: String
         # @param Result: 添加商户响应对象
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -9089,7 +9089,7 @@ module TencentCloud
         # @param ErrMessage: 业务系统返回消息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ErrMessage: String
-        # @param ErrCode: 业务系统返回码
+        # @param ErrCode: 业务系统返回码，0表示成功，其他表示失败。
         # @type ErrCode: String
         # @param Result: 查询支付方式费率及自定义表单项响应对象
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -10683,7 +10683,7 @@ module TencentCloud
 
       # QueryMerchantPayWayList返回参数结构体
       class QueryMerchantPayWayListResponse < TencentCloud::Common::AbstractModel
-        # @param ErrCode: 业务系统返回码
+        # @param ErrCode: 业务系统返回码，0表示成功，其他表示失败。
         # @type ErrCode: String
         # @param ErrMessage: 业务系统返回消息
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -11060,7 +11060,7 @@ module TencentCloud
 
       # QueryOrderStatus返回参数结构体
       class QueryOrderStatusResponse < TencentCloud::Common::AbstractModel
-        # @param ErrCode: 业务系统返回码
+        # @param ErrCode: 业务系统返回码，0表示成功，其他表示失败。
         # @type ErrCode: String
         # @param ErrMessage: 业务系统返回消息
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -13523,7 +13523,7 @@ module TencentCloud
         # @type RefundOrderName: String
         # @param RefundAmount: 退款金额（以分为单位，没有小数点）
         # @type RefundAmount: String
-        # @param ShopPassword: 主管密码，对密码进行sha1加密，默认为123456
+        # @param ShopPassword: 主管密码，对密码进行SHA-1加密，默认为123456
         # @type ShopPassword: String
         # @param Remark: 退款备注
         # @type Remark: String
@@ -13559,7 +13559,7 @@ module TencentCloud
 
       # RefundTlinxOrder返回参数结构体
       class RefundTlinxOrderResponse < TencentCloud::Common::AbstractModel
-        # @param ErrCode: 业务系统返回码
+        # @param ErrCode: 业务系统返回码，0表示成功，其他表示失败。
         # @type ErrCode: String
         # @param ErrMessage: 业务系统返回消息
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -15529,7 +15529,7 @@ module TencentCloud
         # @param ErrMessage: 业务系统返回消息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ErrMessage: String
-        # @param ErrCode: 业务系统返回码
+        # @param ErrCode: 业务系统返回码，0表示成功，其他表示失败。
         # @type ErrCode: String
         # @param Result: 统一下单响应对象
         # 注意：此字段可能返回 null，表示取不到有效值。

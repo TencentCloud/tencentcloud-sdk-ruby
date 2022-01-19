@@ -773,6 +773,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 获取DDoS连接抑制配置列表
+
+        # @param request: Request instance for DescribeDDoSConnectLimitList.
+        # @type request: :class:`Tencentcloud::antiddos::V20200309::DescribeDDoSConnectLimitListRequest`
+        # @rtype: :class:`Tencentcloud::antiddos::V20200309::DescribeDDoSConnectLimitListResponse`
+        def DescribeDDoSConnectLimitList(request)
+          body = send_request('DescribeDDoSConnectLimitList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeDDoSConnectLimitListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 获取DDoS攻击流量带宽和攻击包速率数据
 
         # @param request: Request instance for DescribeDDoSTrend.
@@ -1047,6 +1071,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeListPacketFilterConfigResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取DDoS防护的端口acl策略列表
+
+        # @param request: Request instance for DescribeListPortAclList.
+        # @type request: :class:`Tencentcloud::antiddos::V20200309::DescribeListPortAclListRequest`
+        # @rtype: :class:`Tencentcloud::antiddos::V20200309::DescribeListPortAclListResponse`
+        def DescribeListPortAclList(request)
+          body = send_request('DescribeListPortAclList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeListPortAclListResponse.new
             model.deserialize(response['Response'])
             model
           else

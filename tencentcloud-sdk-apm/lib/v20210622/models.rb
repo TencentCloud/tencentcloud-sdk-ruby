@@ -496,10 +496,12 @@ module TencentCloud
         # @type Offset: Integer
         # @param EndTime: 结束时间
         # @type EndTime: Integer
+        # @param BusinessName: 业务名称（默认值：taw）
+        # @type BusinessName: String
 
-        attr_accessor :Filters, :Metrics, :GroupBy, :OrderBy, :InstanceId, :Limit, :StartTime, :Offset, :EndTime
+        attr_accessor :Filters, :Metrics, :GroupBy, :OrderBy, :InstanceId, :Limit, :StartTime, :Offset, :EndTime, :BusinessName
         
-        def initialize(filters=nil, metrics=nil, groupby=nil, orderby=nil, instanceid=nil, limit=nil, starttime=nil, offset=nil, endtime=nil)
+        def initialize(filters=nil, metrics=nil, groupby=nil, orderby=nil, instanceid=nil, limit=nil, starttime=nil, offset=nil, endtime=nil, businessname=nil)
           @Filters = filters
           @Metrics = metrics
           @GroupBy = groupby
@@ -509,6 +511,7 @@ module TencentCloud
           @StartTime = starttime
           @Offset = offset
           @EndTime = endtime
+          @BusinessName = businessname
         end
 
         def deserialize(params)
@@ -538,6 +541,7 @@ module TencentCloud
           @StartTime = params['StartTime']
           @Offset = params['Offset']
           @EndTime = params['EndTime']
+          @BusinessName = params['BusinessName']
         end
       end
 

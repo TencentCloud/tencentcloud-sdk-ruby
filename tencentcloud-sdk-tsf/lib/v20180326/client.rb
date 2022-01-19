@@ -1110,7 +1110,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 部署容器应用
+        # 部署容器应用-更新
 
         # @param request: Request instance for DeployContainerGroup.
         # @type request: :class:`Tencentcloud::tsf::V20180326::DeployContainerGroupRequest`

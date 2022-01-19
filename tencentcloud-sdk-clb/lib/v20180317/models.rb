@@ -5988,10 +5988,10 @@ module TencentCloud
 
       # HTTP/HTTPS转发规则（输入）
       class RuleInput < TencentCloud::Common::AbstractModel
-        # @param Domain: 转发规则的域名。长度限制为：1~80。
-        # @type Domain: String
         # @param Url: 转发规则的路径。长度限制为：1~200。
         # @type Url: String
+        # @param Domain: 转发规则的域名。长度限制为：1~80。Domain和Domains只需要传一个，单域名规则传Domain，多域名规则传Domains。
+        # @type Domain: String
         # @param SessionExpireTime: 会话保持时间。设置为0表示关闭会话保持，开启会话保持可取值30~3600，单位：秒。
         # @type SessionExpireTime: Integer
         # @param HealthCheck: 健康检查信息。详情请参见：[健康检查](https://cloud.tencent.com/document/product/214/6097)
@@ -6015,12 +6015,14 @@ module TencentCloud
         # @type TrpcFunc: String
         # @param Quic: 是否开启QUIC，注意，只有HTTPS域名才能开启QUIC
         # @type Quic: Boolean
+        # @param Domains: 转发规则的域名列表。每个域名的长度限制为：1~80。Domain和Domains只需要传一个，单域名规则传Domain，多域名规则传Domains。
+        # @type Domains: Array
 
-        attr_accessor :Domain, :Url, :SessionExpireTime, :HealthCheck, :Certificate, :Scheduler, :ForwardType, :DefaultServer, :Http2, :TargetType, :TrpcCallee, :TrpcFunc, :Quic
+        attr_accessor :Url, :Domain, :SessionExpireTime, :HealthCheck, :Certificate, :Scheduler, :ForwardType, :DefaultServer, :Http2, :TargetType, :TrpcCallee, :TrpcFunc, :Quic, :Domains
         
-        def initialize(domain=nil, url=nil, sessionexpiretime=nil, healthcheck=nil, certificate=nil, scheduler=nil, forwardtype=nil, defaultserver=nil, http2=nil, targettype=nil, trpccallee=nil, trpcfunc=nil, quic=nil)
-          @Domain = domain
+        def initialize(url=nil, domain=nil, sessionexpiretime=nil, healthcheck=nil, certificate=nil, scheduler=nil, forwardtype=nil, defaultserver=nil, http2=nil, targettype=nil, trpccallee=nil, trpcfunc=nil, quic=nil, domains=nil)
           @Url = url
+          @Domain = domain
           @SessionExpireTime = sessionexpiretime
           @HealthCheck = healthcheck
           @Certificate = certificate
@@ -6032,11 +6034,12 @@ module TencentCloud
           @TrpcCallee = trpccallee
           @TrpcFunc = trpcfunc
           @Quic = quic
+          @Domains = domains
         end
 
         def deserialize(params)
-          @Domain = params['Domain']
           @Url = params['Url']
+          @Domain = params['Domain']
           @SessionExpireTime = params['SessionExpireTime']
           unless params['HealthCheck'].nil?
             @HealthCheck = HealthCheck.new
@@ -6054,6 +6057,7 @@ module TencentCloud
           @TrpcCallee = params['TrpcCallee']
           @TrpcFunc = params['TrpcFunc']
           @Quic = params['Quic']
+          @Domains = params['Domains']
         end
       end
 

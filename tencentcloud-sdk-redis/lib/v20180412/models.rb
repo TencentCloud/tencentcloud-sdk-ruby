@@ -59,6 +59,50 @@ module TencentCloud
         end
       end
 
+      # AddReplicationInstance请求参数结构体
+      class AddReplicationInstanceRequest < TencentCloud::Common::AbstractModel
+        # @param GroupId: 复制组ID
+        # @type GroupId: String
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+        # @param InstanceRole: 实例角色，rw可读写，r只读
+        # @type InstanceRole: String
+
+        attr_accessor :GroupId, :InstanceId, :InstanceRole
+        
+        def initialize(groupid=nil, instanceid=nil, instancerole=nil)
+          @GroupId = groupid
+          @InstanceId = instanceid
+          @InstanceRole = instancerole
+        end
+
+        def deserialize(params)
+          @GroupId = params['GroupId']
+          @InstanceId = params['InstanceId']
+          @InstanceRole = params['InstanceRole']
+        end
+      end
+
+      # AddReplicationInstance返回参数结构体
+      class AddReplicationInstanceResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: 异步流程ID
+        # @type TaskId: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :RequestId
+        
+        def initialize(taskid=nil, requestid=nil)
+          @TaskId = taskid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ApplyParamsTemplate请求参数结构体
       class ApplyParamsTemplateRequest < TencentCloud::Common::AbstractModel
         # @param InstanceIds: 实例ID列表
@@ -625,6 +669,50 @@ module TencentCloud
         end
       end
 
+      # CreateReplicationGroup请求参数结构体
+      class CreateReplicationGroupRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+        # @param GroupName: 复制组名称
+        # @type GroupName: String
+        # @param Remark: 备注信息
+        # @type Remark: String
+
+        attr_accessor :InstanceId, :GroupName, :Remark
+        
+        def initialize(instanceid=nil, groupname=nil, remark=nil)
+          @InstanceId = instanceid
+          @GroupName = groupname
+          @Remark = remark
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @GroupName = params['GroupName']
+          @Remark = params['Remark']
+        end
+      end
+
+      # CreateReplicationGroup返回参数结构体
+      class CreateReplicationGroupResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: 异步流程ID
+        # @type TaskId: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :RequestId
+        
+        def initialize(taskid=nil, requestid=nil)
+          @TaskId = taskid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 延时分布详情
       class DelayDistribution < TencentCloud::Common::AbstractModel
         # @param Ladder: 分布阶梯，延时和Ladder值的对应关系：
@@ -723,6 +811,50 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteReplicationInstance请求参数结构体
+      class DeleteReplicationInstanceRequest < TencentCloud::Common::AbstractModel
+        # @param GroupId: 复制组ID
+        # @type GroupId: String
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+        # @param SyncType: 数据同步类型，true:需要数据强同步,false:不需要强同步，仅限删除主实例
+        # @type SyncType: Boolean
+
+        attr_accessor :GroupId, :InstanceId, :SyncType
+        
+        def initialize(groupid=nil, instanceid=nil, synctype=nil)
+          @GroupId = groupid
+          @InstanceId = instanceid
+          @SyncType = synctype
+        end
+
+        def deserialize(params)
+          @GroupId = params['GroupId']
+          @InstanceId = params['InstanceId']
+          @SyncType = params['SyncType']
+        end
+      end
+
+      # DeleteReplicationInstance返回参数结构体
+      class DeleteReplicationInstanceResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: 异步任务ID
+        # @type TaskId: Float
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :RequestId
+        
+        def initialize(taskid=nil, requestid=nil)
+          @TaskId = taskid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
           @RequestId = params['RequestId']
         end
       end
