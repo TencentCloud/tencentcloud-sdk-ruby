@@ -8302,6 +8302,66 @@ module TencentCloud
         end
       end
 
+      # 数据代理组信息
+      class ProxyGroups < TencentCloud::Common::AbstractModel
+        # @param BaseGroup: 代理基本信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BaseGroup: :class:`Tencentcloud::Cdb.v20170320.models.BaseGroupInfo`
+        # @param Address: 代理地址信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Address: Array
+        # @param ConnectionPoolInfo: 代理连接池信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ConnectionPoolInfo: :class:`Tencentcloud::Cdb.v20170320.models.ConnectionPoolInfo`
+        # @param ProxyNode: 代理节点信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProxyNode: Array
+        # @param RWInstInfo: 代理路由信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RWInstInfo: :class:`Tencentcloud::Cdb.v20170320.models.RWInfos`
+
+        attr_accessor :BaseGroup, :Address, :ConnectionPoolInfo, :ProxyNode, :RWInstInfo
+        
+        def initialize(basegroup=nil, address=nil, connectionpoolinfo=nil, proxynode=nil, rwinstinfo=nil)
+          @BaseGroup = basegroup
+          @Address = address
+          @ConnectionPoolInfo = connectionpoolinfo
+          @ProxyNode = proxynode
+          @RWInstInfo = rwinstinfo
+        end
+
+        def deserialize(params)
+          unless params['BaseGroup'].nil?
+            @BaseGroup = BaseGroupInfo.new
+            @BaseGroup.deserialize(params['BaseGroup'])
+          end
+          unless params['Address'].nil?
+            @Address = []
+            params['Address'].each do |i|
+              address_tmp = Address.new
+              address_tmp.deserialize(i)
+              @Address << address_tmp
+            end
+          end
+          unless params['ConnectionPoolInfo'].nil?
+            @ConnectionPoolInfo = ConnectionPoolInfo.new
+            @ConnectionPoolInfo.deserialize(params['ConnectionPoolInfo'])
+          end
+          unless params['ProxyNode'].nil?
+            @ProxyNode = []
+            params['ProxyNode'].each do |i|
+              proxynodeinfo_tmp = ProxyNodeInfo.new
+              proxynodeinfo_tmp.deserialize(i)
+              @ProxyNode << proxynodeinfo_tmp
+            end
+          end
+          unless params['RWInstInfo'].nil?
+            @RWInstInfo = RWInfos.new
+            @RWInstInfo.deserialize(params['RWInstInfo'])
+          end
+        end
+      end
+
       # 代理节点信息
       class ProxyNodeInfo < TencentCloud::Common::AbstractModel
         # @param ProxyNodeId: 代理节点ID
@@ -8342,6 +8402,59 @@ module TencentCloud
           @ProxyNodeCpu = params['ProxyNodeCpu']
           @ProxyNodeMem = params['ProxyNodeMem']
           @ProxyStatus = params['ProxyStatus']
+        end
+      end
+
+      # QueryCDBProxy请求参数结构体
+      class QueryCDBProxyRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+        # @param ProxyGroupId: 代理ID
+        # @type ProxyGroupId: String
+
+        attr_accessor :InstanceId, :ProxyGroupId
+        
+        def initialize(instanceid=nil, proxygroupid=nil)
+          @InstanceId = instanceid
+          @ProxyGroupId = proxygroupid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @ProxyGroupId = params['ProxyGroupId']
+        end
+      end
+
+      # QueryCDBProxy返回参数结构体
+      class QueryCDBProxyResponse < TencentCloud::Common::AbstractModel
+        # @param Count: 代理数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Count: Integer
+        # @param ProxyGroup: 代理信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProxyGroup: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Count, :ProxyGroup, :RequestId
+        
+        def initialize(count=nil, proxygroup=nil, requestid=nil)
+          @Count = count
+          @ProxyGroup = proxygroup
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Count = params['Count']
+          unless params['ProxyGroup'].nil?
+            @ProxyGroup = []
+            params['ProxyGroup'].each do |i|
+              proxygroups_tmp = ProxyGroups.new
+              proxygroups_tmp.deserialize(i)
+              @ProxyGroup << proxygroups_tmp
+            end
+          end
+          @RequestId = params['RequestId']
         end
       end
 
@@ -8397,6 +8510,66 @@ module TencentCloud
           unless params['RWInstInfo'].nil?
             @RWInstInfo = RWInstanceInfo.new
             @RWInstInfo.deserialize(params['RWInstInfo'])
+          end
+        end
+      end
+
+      # proxy读写分离信息
+      class RWInfos < TencentCloud::Common::AbstractModel
+        # @param InstCount: 代理实例数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstCount: Integer
+        # @param WeightMode: 权重分配模式；
+        # 系统自动分配："system"， 自定义："custom"
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type WeightMode: String
+        # @param IsKickOut: 是否开启延迟剔除
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsKickOut: Boolean
+        # @param MinCount: 最小保留数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MinCount: Integer
+        # @param MaxDelay: 延迟剔除阈值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MaxDelay: Integer
+        # @param FailOver: 是否开启故障转移
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FailOver: Boolean
+        # @param AutoAddRo: 是否自动添加RO
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AutoAddRo: Boolean
+        # @param RWInstInfo: 代理实例信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RWInstInfo: Array
+
+        attr_accessor :InstCount, :WeightMode, :IsKickOut, :MinCount, :MaxDelay, :FailOver, :AutoAddRo, :RWInstInfo
+        
+        def initialize(instcount=nil, weightmode=nil, iskickout=nil, mincount=nil, maxdelay=nil, failover=nil, autoaddro=nil, rwinstinfo=nil)
+          @InstCount = instcount
+          @WeightMode = weightmode
+          @IsKickOut = iskickout
+          @MinCount = mincount
+          @MaxDelay = maxdelay
+          @FailOver = failover
+          @AutoAddRo = autoaddro
+          @RWInstInfo = rwinstinfo
+        end
+
+        def deserialize(params)
+          @InstCount = params['InstCount']
+          @WeightMode = params['WeightMode']
+          @IsKickOut = params['IsKickOut']
+          @MinCount = params['MinCount']
+          @MaxDelay = params['MaxDelay']
+          @FailOver = params['FailOver']
+          @AutoAddRo = params['AutoAddRo']
+          unless params['RWInstInfo'].nil?
+            @RWInstInfo = []
+            params['RWInstInfo'].each do |i|
+              rwinstanceinfo_tmp = RWInstanceInfo.new
+              rwinstanceinfo_tmp.deserialize(i)
+              @RWInstInfo << rwinstanceinfo_tmp
+            end
           end
         end
       end

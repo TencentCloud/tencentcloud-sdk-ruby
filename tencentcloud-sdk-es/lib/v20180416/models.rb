@@ -526,10 +526,12 @@ module TencentCloud
         # @type IpList: Array
         # @param ZoneList: 可用区列表
         # @type ZoneList: Array
+        # @param HealthStatus: 健康状态筛列表
+        # @type HealthStatus: Array
 
-        attr_accessor :Zone, :InstanceIds, :InstanceNames, :Offset, :Limit, :OrderByKey, :OrderByType, :TagList, :IpList, :ZoneList
+        attr_accessor :Zone, :InstanceIds, :InstanceNames, :Offset, :Limit, :OrderByKey, :OrderByType, :TagList, :IpList, :ZoneList, :HealthStatus
         
-        def initialize(zone=nil, instanceids=nil, instancenames=nil, offset=nil, limit=nil, orderbykey=nil, orderbytype=nil, taglist=nil, iplist=nil, zonelist=nil)
+        def initialize(zone=nil, instanceids=nil, instancenames=nil, offset=nil, limit=nil, orderbykey=nil, orderbytype=nil, taglist=nil, iplist=nil, zonelist=nil, healthstatus=nil)
           @Zone = zone
           @InstanceIds = instanceids
           @InstanceNames = instancenames
@@ -540,6 +542,7 @@ module TencentCloud
           @TagList = taglist
           @IpList = iplist
           @ZoneList = zonelist
+          @HealthStatus = healthstatus
         end
 
         def deserialize(params)
@@ -560,6 +563,7 @@ module TencentCloud
           end
           @IpList = params['IpList']
           @ZoneList = params['ZoneList']
+          @HealthStatus = params['HealthStatus']
         end
       end
 
@@ -1037,10 +1041,13 @@ module TencentCloud
         # @param FrozenDiskSize: 冻节点磁盘大小，单位GB
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FrozenDiskSize: Integer
+        # @param HealthStatus: 集群健康状态 -1 未知；0 Green; 1 Yellow; 2 Red
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HealthStatus: Integer
 
-        attr_accessor :InstanceId, :InstanceName, :Region, :Zone, :AppId, :Uin, :VpcUid, :SubnetUid, :Status, :ChargeType, :ChargePeriod, :RenewFlag, :NodeType, :NodeNum, :CpuNum, :MemSize, :DiskType, :DiskSize, :EsDomain, :EsVip, :EsPort, :KibanaUrl, :EsVersion, :EsConfig, :EsAcl, :CreateTime, :UpdateTime, :Deadline, :InstanceType, :IkConfig, :MasterNodeInfo, :CosBackup, :AllowCosBackup, :TagList, :LicenseType, :EnableHotWarmMode, :WarmNodeType, :WarmNodeNum, :WarmCpuNum, :WarmMemSize, :WarmDiskType, :WarmDiskSize, :NodeInfoList, :EsPublicUrl, :MultiZoneInfo, :DeployMode, :PublicAccess, :EsPublicAcl, :KibanaPrivateUrl, :KibanaPublicAccess, :KibanaPrivateAccess, :SecurityType, :SceneType, :KibanaConfig, :KibanaNodeInfo, :WebNodeTypeInfo, :Jdk, :Protocol, :SecurityGroups, :ColdNodeType, :ColdNodeNum, :ColdCpuNum, :ColdMemSize, :ColdDiskType, :ColdDiskSize, :FrozenNodeType, :FrozenNodeNum, :FrozenCpuNum, :FrozenMemSize, :FrozenDiskType, :FrozenDiskSize
+        attr_accessor :InstanceId, :InstanceName, :Region, :Zone, :AppId, :Uin, :VpcUid, :SubnetUid, :Status, :ChargeType, :ChargePeriod, :RenewFlag, :NodeType, :NodeNum, :CpuNum, :MemSize, :DiskType, :DiskSize, :EsDomain, :EsVip, :EsPort, :KibanaUrl, :EsVersion, :EsConfig, :EsAcl, :CreateTime, :UpdateTime, :Deadline, :InstanceType, :IkConfig, :MasterNodeInfo, :CosBackup, :AllowCosBackup, :TagList, :LicenseType, :EnableHotWarmMode, :WarmNodeType, :WarmNodeNum, :WarmCpuNum, :WarmMemSize, :WarmDiskType, :WarmDiskSize, :NodeInfoList, :EsPublicUrl, :MultiZoneInfo, :DeployMode, :PublicAccess, :EsPublicAcl, :KibanaPrivateUrl, :KibanaPublicAccess, :KibanaPrivateAccess, :SecurityType, :SceneType, :KibanaConfig, :KibanaNodeInfo, :WebNodeTypeInfo, :Jdk, :Protocol, :SecurityGroups, :ColdNodeType, :ColdNodeNum, :ColdCpuNum, :ColdMemSize, :ColdDiskType, :ColdDiskSize, :FrozenNodeType, :FrozenNodeNum, :FrozenCpuNum, :FrozenMemSize, :FrozenDiskType, :FrozenDiskSize, :HealthStatus
         
-        def initialize(instanceid=nil, instancename=nil, region=nil, zone=nil, appid=nil, uin=nil, vpcuid=nil, subnetuid=nil, status=nil, chargetype=nil, chargeperiod=nil, renewflag=nil, nodetype=nil, nodenum=nil, cpunum=nil, memsize=nil, disktype=nil, disksize=nil, esdomain=nil, esvip=nil, esport=nil, kibanaurl=nil, esversion=nil, esconfig=nil, esacl=nil, createtime=nil, updatetime=nil, deadline=nil, instancetype=nil, ikconfig=nil, masternodeinfo=nil, cosbackup=nil, allowcosbackup=nil, taglist=nil, licensetype=nil, enablehotwarmmode=nil, warmnodetype=nil, warmnodenum=nil, warmcpunum=nil, warmmemsize=nil, warmdisktype=nil, warmdisksize=nil, nodeinfolist=nil, espublicurl=nil, multizoneinfo=nil, deploymode=nil, publicaccess=nil, espublicacl=nil, kibanaprivateurl=nil, kibanapublicaccess=nil, kibanaprivateaccess=nil, securitytype=nil, scenetype=nil, kibanaconfig=nil, kibananodeinfo=nil, webnodetypeinfo=nil, jdk=nil, protocol=nil, securitygroups=nil, coldnodetype=nil, coldnodenum=nil, coldcpunum=nil, coldmemsize=nil, colddisktype=nil, colddisksize=nil, frozennodetype=nil, frozennodenum=nil, frozencpunum=nil, frozenmemsize=nil, frozendisktype=nil, frozendisksize=nil)
+        def initialize(instanceid=nil, instancename=nil, region=nil, zone=nil, appid=nil, uin=nil, vpcuid=nil, subnetuid=nil, status=nil, chargetype=nil, chargeperiod=nil, renewflag=nil, nodetype=nil, nodenum=nil, cpunum=nil, memsize=nil, disktype=nil, disksize=nil, esdomain=nil, esvip=nil, esport=nil, kibanaurl=nil, esversion=nil, esconfig=nil, esacl=nil, createtime=nil, updatetime=nil, deadline=nil, instancetype=nil, ikconfig=nil, masternodeinfo=nil, cosbackup=nil, allowcosbackup=nil, taglist=nil, licensetype=nil, enablehotwarmmode=nil, warmnodetype=nil, warmnodenum=nil, warmcpunum=nil, warmmemsize=nil, warmdisktype=nil, warmdisksize=nil, nodeinfolist=nil, espublicurl=nil, multizoneinfo=nil, deploymode=nil, publicaccess=nil, espublicacl=nil, kibanaprivateurl=nil, kibanapublicaccess=nil, kibanaprivateaccess=nil, securitytype=nil, scenetype=nil, kibanaconfig=nil, kibananodeinfo=nil, webnodetypeinfo=nil, jdk=nil, protocol=nil, securitygroups=nil, coldnodetype=nil, coldnodenum=nil, coldcpunum=nil, coldmemsize=nil, colddisktype=nil, colddisksize=nil, frozennodetype=nil, frozennodenum=nil, frozencpunum=nil, frozenmemsize=nil, frozendisktype=nil, frozendisksize=nil, healthstatus=nil)
           @InstanceId = instanceid
           @InstanceName = instancename
           @Region = region
@@ -1112,6 +1119,7 @@ module TencentCloud
           @FrozenMemSize = frozenmemsize
           @FrozenDiskType = frozendisktype
           @FrozenDiskSize = frozendisksize
+          @HealthStatus = healthstatus
         end
 
         def deserialize(params)
@@ -1228,6 +1236,7 @@ module TencentCloud
           @FrozenMemSize = params['FrozenMemSize']
           @FrozenDiskType = params['FrozenDiskType']
           @FrozenDiskSize = params['FrozenDiskSize']
+          @HealthStatus = params['HealthStatus']
         end
       end
 

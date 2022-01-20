@@ -1369,6 +1369,49 @@ module TencentCloud
         end
       end
 
+      # PutEvents请求参数结构体
+      class PutEventsRequest < TencentCloud::Common::AbstractModel
+        # @param EventList: 事件列表
+        # @type EventList: Array
+        # @param EventBusId: 事件集ID
+        # @type EventBusId: String
+
+        attr_accessor :EventList, :EventBusId
+        
+        def initialize(eventlist=nil, eventbusid=nil)
+          @EventList = eventlist
+          @EventBusId = eventbusid
+        end
+
+        def deserialize(params)
+          unless params['EventList'].nil?
+            @EventList = []
+            params['EventList'].each do |i|
+              event_tmp = Event.new
+              event_tmp.deserialize(i)
+              @EventList << event_tmp
+            end
+          end
+          @EventBusId = params['EventBusId']
+        end
+      end
+
+      # PutEvents返回参数结构体
+      class PutEventsResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 用来描述一个ckafka投递目标的重试策略
       class RetryPolicy < TencentCloud::Common::AbstractModel
         # @param RetryInterval: 重试间隔 单位:秒

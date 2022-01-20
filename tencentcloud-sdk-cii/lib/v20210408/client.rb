@@ -29,6 +29,30 @@ module TencentCloud
         end
 
 
+        # 中银三星需求，基于主任务批量添加结构化子任务
+
+        # @param request: Request instance for AddSubStructureTasks.
+        # @type request: :class:`Tencentcloud::cii::V20210408::AddSubStructureTasksRequest`
+        # @rtype: :class:`Tencentcloud::cii::V20210408::AddSubStructureTasksResponse`
+        def AddSubStructureTasks(request)
+          body = send_request('AddSubStructureTasks', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = AddSubStructureTasksResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口(CreateAutoClassifyStructureTask)基于提供的客户及保单信息，创建并启动结构化识别任务。
 
         # @param request: Request instance for CreateAutoClassifyStructureTask.
@@ -125,6 +149,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # saas页面集成了自动分类功能，该接口提供自动分类结果
+
+        # @param request: Request instance for DescribeReportClassify.
+        # @type request: :class:`Tencentcloud::cii::V20210408::DescribeReportClassifyRequest`
+        # @rtype: :class:`Tencentcloud::cii::V20210408::DescribeReportClassifyResponse`
+        def DescribeReportClassify(request)
+          body = send_request('DescribeReportClassify', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeReportClassifyResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 结构化对比查询接口，对比结构化复核前后数据差异，查询识别正确率，召回率。
 
         # @param request: Request instance for DescribeStructCompareData.
@@ -207,6 +255,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeStructureTaskResultResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口(DescribeUnderwriteTask)用于查询核保任务结果
+
+        # @param request: Request instance for DescribeUnderwriteTask.
+        # @type request: :class:`Tencentcloud::cii::V20210408::DescribeUnderwriteTaskRequest`
+        # @rtype: :class:`Tencentcloud::cii::V20210408::DescribeUnderwriteTaskResponse`
+        def DescribeUnderwriteTask(request)
+          body = send_request('DescribeUnderwriteTask', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeUnderwriteTaskResponse.new
             model.deserialize(response['Response'])
             model
           else

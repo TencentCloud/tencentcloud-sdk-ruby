@@ -2013,7 +2013,7 @@ module TencentCloud
         # @type TagKey: String
         # @param Filters: 过滤器。
         # @type Filters: Array
-        # @param InstanceIds: 按照实例ID过滤
+        # @param InstanceIds: 已经废弃， 使用InstanceIdList
         # @type InstanceIds: String
 
         attr_accessor :InstanceId, :SearchWord, :Status, :Offset, :Limit, :TagKey, :Filters, :InstanceIds

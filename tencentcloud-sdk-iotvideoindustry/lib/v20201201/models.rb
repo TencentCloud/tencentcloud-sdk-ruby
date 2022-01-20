@@ -3441,7 +3441,7 @@ module TencentCloud
         # @type StartTime: Integer
         # @param EndTime: 录像流结束时间，当录像文件iD为空时有效，UNIX时间戳
         # @type EndTime: Integer
-        # @param ChannelId: 通道唯一标识
+        # @param ChannelId: 通道唯一标识（此接口升级为必填字段）
         # @type ChannelId: String
 
         attr_accessor :DeviceId, :ExpireTime, :RecordId, :StartTime, :EndTime, :ChannelId
@@ -4441,7 +4441,7 @@ module TencentCloud
         # @type Limit: Integer
         # @param Offset: 偏移量，默认0
         # @type Offset: Integer
-        # @param ChannelId: 通道唯一标识
+        # @param ChannelId: 通道唯一标识，对于NVR设备，多通道IPC设备，设备编码与通道编码不一致的IPC设备，此字段为必填
         # @type ChannelId: String
         # @param Type: 1: 云端录制 2: 本地录制
         # @type Type: Integer
@@ -4701,7 +4701,7 @@ module TencentCloud
         # @type Offset: Integer
         # @param Limit: 限制量，默认200
         # @type Limit: Integer
-        # @param ChannelId: 通道唯一标识
+        # @param ChannelId: 通道唯一标识，对于NVR设备，多通道IPC设备，设备编码与通道编码不一致的IPC设备，此字段为必填
         # @type ChannelId: String
         # @param LatestDay: 0：查询指定日期的录像；1：查询最近一天的录像；默认0
         # @type LatestDay: Integer

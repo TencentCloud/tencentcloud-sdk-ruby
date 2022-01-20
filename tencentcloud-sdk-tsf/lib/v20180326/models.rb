@@ -3323,14 +3323,17 @@ module TencentCloud
         # @type FlowEdges: Array
         # @param TimeOut: 工作流执行超时时间
         # @type TimeOut: Integer
+        # @param ProgramIdList: 无
+        # @type ProgramIdList: Array
 
-        attr_accessor :FlowName, :TriggerRule, :FlowEdges, :TimeOut
+        attr_accessor :FlowName, :TriggerRule, :FlowEdges, :TimeOut, :ProgramIdList
         
-        def initialize(flowname=nil, triggerrule=nil, flowedges=nil, timeout=nil)
+        def initialize(flowname=nil, triggerrule=nil, flowedges=nil, timeout=nil, programidlist=nil)
           @FlowName = flowname
           @TriggerRule = triggerrule
           @FlowEdges = flowedges
           @TimeOut = timeout
+          @ProgramIdList = programidlist
         end
 
         def deserialize(params)
@@ -3348,12 +3351,14 @@ module TencentCloud
             end
           end
           @TimeOut = params['TimeOut']
+          @ProgramIdList = params['ProgramIdList']
         end
       end
 
       # CreateTaskFlow返回参数结构体
       class CreateTaskFlowResponse < TencentCloud::Common::AbstractModel
         # @param Result: 工作流 ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Result: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -3403,10 +3408,12 @@ module TencentCloud
         # @type AdvanceSettings: :class:`Tencentcloud::Tsf.v20180326.models.AdvanceSettings`
         # @param TaskArgument: 任务参数，长度限制10000个字符
         # @type TaskArgument: String
+        # @param ProgramIdList: 无
+        # @type ProgramIdList: Array
 
-        attr_accessor :TaskName, :TaskContent, :ExecuteType, :TaskType, :TimeOut, :GroupId, :TaskRule, :RetryCount, :RetryInterval, :ShardCount, :ShardArguments, :SuccessOperator, :SuccessRatio, :AdvanceSettings, :TaskArgument
+        attr_accessor :TaskName, :TaskContent, :ExecuteType, :TaskType, :TimeOut, :GroupId, :TaskRule, :RetryCount, :RetryInterval, :ShardCount, :ShardArguments, :SuccessOperator, :SuccessRatio, :AdvanceSettings, :TaskArgument, :ProgramIdList
         
-        def initialize(taskname=nil, taskcontent=nil, executetype=nil, tasktype=nil, timeout=nil, groupid=nil, taskrule=nil, retrycount=nil, retryinterval=nil, shardcount=nil, shardarguments=nil, successoperator=nil, successratio=nil, advancesettings=nil, taskargument=nil)
+        def initialize(taskname=nil, taskcontent=nil, executetype=nil, tasktype=nil, timeout=nil, groupid=nil, taskrule=nil, retrycount=nil, retryinterval=nil, shardcount=nil, shardarguments=nil, successoperator=nil, successratio=nil, advancesettings=nil, taskargument=nil, programidlist=nil)
           @TaskName = taskname
           @TaskContent = taskcontent
           @ExecuteType = executetype
@@ -3422,6 +3429,7 @@ module TencentCloud
           @SuccessRatio = successratio
           @AdvanceSettings = advancesettings
           @TaskArgument = taskargument
+          @ProgramIdList = programidlist
         end
 
         def deserialize(params)
@@ -3453,12 +3461,14 @@ module TencentCloud
             @AdvanceSettings.deserialize(params['AdvanceSettings'])
           end
           @TaskArgument = params['TaskArgument']
+          @ProgramIdList = params['ProgramIdList']
         end
       end
 
       # CreateTask返回参数结构体
       class CreateTaskResponse < TencentCloud::Common::AbstractModel
         # @param Result: 任务ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Result: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -8102,10 +8112,12 @@ module TencentCloud
         # @type TaskType: String
         # @param ExecuteType: 任务触发类型，UNICAST、BROADCAST。
         # @type ExecuteType: String
+        # @param Ids: 无
+        # @type Ids: Array
 
-        attr_accessor :Offset, :Limit, :SearchWord, :TaskState, :GroupId, :TaskType, :ExecuteType
+        attr_accessor :Offset, :Limit, :SearchWord, :TaskState, :GroupId, :TaskType, :ExecuteType, :Ids
         
-        def initialize(offset=nil, limit=nil, searchword=nil, taskstate=nil, groupid=nil, tasktype=nil, executetype=nil)
+        def initialize(offset=nil, limit=nil, searchword=nil, taskstate=nil, groupid=nil, tasktype=nil, executetype=nil, ids=nil)
           @Offset = offset
           @Limit = limit
           @SearchWord = searchword
@@ -8113,6 +8125,7 @@ module TencentCloud
           @GroupId = groupid
           @TaskType = tasktype
           @ExecuteType = executetype
+          @Ids = ids
         end
 
         def deserialize(params)
@@ -8123,12 +8136,14 @@ module TencentCloud
           @GroupId = params['GroupId']
           @TaskType = params['TaskType']
           @ExecuteType = params['ExecuteType']
+          @Ids = params['Ids']
         end
       end
 
       # DescribeTaskRecords返回参数结构体
       class DescribeTaskRecordsResponse < TencentCloud::Common::AbstractModel
         # @param Result: 任务记录列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Result: :class:`Tencentcloud::Tsf.v20180326.models.TaskRecordPage`
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -11145,10 +11160,12 @@ module TencentCloud
         # @type RetryInterval: Integer
         # @param TaskArgument: 任务参数，长度限制10000个字符
         # @type TaskArgument: String
+        # @param ProgramIdList: 无
+        # @type ProgramIdList: Array
 
-        attr_accessor :TaskId, :TaskName, :TaskType, :TaskContent, :ExecuteType, :TaskRule, :TimeOut, :GroupId, :ShardCount, :ShardArguments, :AdvanceSettings, :SuccessOperator, :SuccessRatio, :RetryCount, :RetryInterval, :TaskArgument
+        attr_accessor :TaskId, :TaskName, :TaskType, :TaskContent, :ExecuteType, :TaskRule, :TimeOut, :GroupId, :ShardCount, :ShardArguments, :AdvanceSettings, :SuccessOperator, :SuccessRatio, :RetryCount, :RetryInterval, :TaskArgument, :ProgramIdList
         
-        def initialize(taskid=nil, taskname=nil, tasktype=nil, taskcontent=nil, executetype=nil, taskrule=nil, timeout=nil, groupid=nil, shardcount=nil, shardarguments=nil, advancesettings=nil, successoperator=nil, successratio=nil, retrycount=nil, retryinterval=nil, taskargument=nil)
+        def initialize(taskid=nil, taskname=nil, tasktype=nil, taskcontent=nil, executetype=nil, taskrule=nil, timeout=nil, groupid=nil, shardcount=nil, shardarguments=nil, advancesettings=nil, successoperator=nil, successratio=nil, retrycount=nil, retryinterval=nil, taskargument=nil, programidlist=nil)
           @TaskId = taskid
           @TaskName = taskname
           @TaskType = tasktype
@@ -11165,6 +11182,7 @@ module TencentCloud
           @RetryCount = retrycount
           @RetryInterval = retryinterval
           @TaskArgument = taskargument
+          @ProgramIdList = programidlist
         end
 
         def deserialize(params)
@@ -11197,12 +11215,14 @@ module TencentCloud
           @RetryCount = params['RetryCount']
           @RetryInterval = params['RetryInterval']
           @TaskArgument = params['TaskArgument']
+          @ProgramIdList = params['ProgramIdList']
         end
       end
 
       # ModifyTask返回参数结构体
       class ModifyTaskResponse < TencentCloud::Common::AbstractModel
         # @param Result: 更新是否成功
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Result: Boolean
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

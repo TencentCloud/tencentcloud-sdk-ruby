@@ -4558,6 +4558,8 @@ module TencentCloud
       # CreateRedInvoice请求参数结构体
       class CreateRedInvoiceRequest < TencentCloud::Common::AbstractModel
         # @param InvoicePlatformId: 开票平台ID
+        # 0 : 高灯
+        # 1 : 票易通
         # @type InvoicePlatformId: Integer
         # @param Invoices: 红冲明细
         # @type Invoices: Array
@@ -4692,6 +4694,8 @@ module TencentCloud
       # CreateRedInvoiceV2请求参数结构体
       class CreateRedInvoiceV2Request < TencentCloud::Common::AbstractModel
         # @param InvoicePlatformId: 开票平台ID
+        # 0 : 高灯
+        # 1 : 票易通
         # @type InvoicePlatformId: Integer
         # @param OrderId: 订单号
         # @type OrderId: String
@@ -9805,6 +9809,8 @@ module TencentCloud
       # QueryInvoice请求参数结构体
       class QueryInvoiceRequest < TencentCloud::Common::AbstractModel
         # @param InvoicePlatformId: 开票平台ID
+        # 0 : 高灯
+        # 1 : 票易通
         # @type InvoicePlatformId: Integer
         # @param OrderId: 订单号
         # @type OrderId: String
@@ -9975,6 +9981,8 @@ module TencentCloud
       # QueryInvoiceV2请求参数结构体
       class QueryInvoiceV2Request < TencentCloud::Common::AbstractModel
         # @param InvoicePlatformId: 开票平台ID
+        # 0 : 高灯
+        # 1 : 票易通
         # @type InvoicePlatformId: Integer
         # @param OrderId: 订单号
         # @type OrderId: String

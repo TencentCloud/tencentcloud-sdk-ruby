@@ -17,6 +17,73 @@
 module TencentCloud
   module Cii
     module V20210408
+      # AddSubStructureTasks请求参数结构体
+      class AddSubStructureTasksRequest < TencentCloud::Common::AbstractModel
+        # @param MainTaskId: 主任务id
+        # @type MainTaskId: String
+        # @param TaskInfos: 子任务信息数组
+        # @type TaskInfos: Array
+
+        attr_accessor :MainTaskId, :TaskInfos
+        
+        def initialize(maintaskid=nil, taskinfos=nil)
+          @MainTaskId = maintaskid
+          @TaskInfos = taskinfos
+        end
+
+        def deserialize(params)
+          @MainTaskId = params['MainTaskId']
+          unless params['TaskInfos'].nil?
+            @TaskInfos = []
+            params['TaskInfos'].each do |i|
+              createstructuretaskinfo_tmp = CreateStructureTaskInfo.new
+              createstructuretaskinfo_tmp.deserialize(i)
+              @TaskInfos << createstructuretaskinfo_tmp
+            end
+          end
+        end
+      end
+
+      # AddSubStructureTasks返回参数结构体
+      class AddSubStructureTasksResponse < TencentCloud::Common::AbstractModel
+        # @param SubTaskIds: 增量子任务id数组
+        # @type SubTaskIds: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :SubTaskIds, :RequestId
+        
+        def initialize(subtaskids=nil, requestid=nil)
+          @SubTaskIds = subtaskids
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @SubTaskIds = params['SubTaskIds']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 报告分类结果
+      class ClassifiedReports < TencentCloud::Common::AbstractModel
+        # @param ReportType: 报告类型
+        # @type ReportType: String
+        # @param FileList: 文件列表
+        # @type FileList: Array
+
+        attr_accessor :ReportType, :FileList
+        
+        def initialize(reporttype=nil, filelist=nil)
+          @ReportType = reporttype
+          @FileList = filelist
+        end
+
+        def deserialize(params)
+          @ReportType = params['ReportType']
+          @FileList = params['FileList']
+        end
+      end
+
       # 报告分类信息
       class ClassifyInfo < TencentCloud::Common::AbstractModel
         # @param FirstClass: 一级分类
@@ -406,6 +473,53 @@ module TencentCloud
         end
       end
 
+      # DescribeReportClassify请求参数结构体
+      class DescribeReportClassifyRequest < TencentCloud::Common::AbstractModel
+        # @param ServiceType: 服务类型（Structured/Underwrite）
+        # @type ServiceType: String
+        # @param FileList: 文件地址数组
+        # @type FileList: Array
+
+        attr_accessor :ServiceType, :FileList
+        
+        def initialize(servicetype=nil, filelist=nil)
+          @ServiceType = servicetype
+          @FileList = filelist
+        end
+
+        def deserialize(params)
+          @ServiceType = params['ServiceType']
+          @FileList = params['FileList']
+        end
+      end
+
+      # DescribeReportClassify返回参数结构体
+      class DescribeReportClassifyResponse < TencentCloud::Common::AbstractModel
+        # @param Reports: 报告分类结果
+        # @type Reports: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Reports, :RequestId
+        
+        def initialize(reports=nil, requestid=nil)
+          @Reports = reports
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Reports'].nil?
+            @Reports = []
+            params['Reports'].each do |i|
+              classifiedreports_tmp = ClassifiedReports.new
+              classifiedreports_tmp.deserialize(i)
+              @Reports << classifiedreports_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeStructCompareData请求参数结构体
       class DescribeStructCompareDataRequest < TencentCloud::Common::AbstractModel
         # @param MainTaskId: 主任务号
@@ -664,6 +778,73 @@ module TencentCloud
               resultobject_tmp = ResultObject.new
               resultobject_tmp.deserialize(i)
               @Results << resultobject_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeUnderwriteTask请求参数结构体
+      class DescribeUnderwriteTaskRequest < TencentCloud::Common::AbstractModel
+        # @param UnderwriteTaskId: 任务ID
+        # @type UnderwriteTaskId: String
+
+        attr_accessor :UnderwriteTaskId
+        
+        def initialize(underwritetaskid=nil)
+          @UnderwriteTaskId = underwritetaskid
+        end
+
+        def deserialize(params)
+          @UnderwriteTaskId = params['UnderwriteTaskId']
+        end
+      end
+
+      # DescribeUnderwriteTask返回参数结构体
+      class DescribeUnderwriteTaskResponse < TencentCloud::Common::AbstractModel
+        # @param Uin: 腾讯云主账号ID
+        # @type Uin: String
+        # @param SubAccountUin: 操作人子账户ID
+        # @type SubAccountUin: String
+        # @param PolicyId: 保单ID
+        # @type PolicyId: String
+        # @param MainTaskId: 主任务ID
+        # @type MainTaskId: String
+        # @param UnderwriteTaskId: 核保任务ID
+        # @type UnderwriteTaskId: String
+        # @param Status: 状态码
+        # @type Status: Integer
+        # @param UnderwriteResults: 核保结果
+        # @type UnderwriteResults: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Uin, :SubAccountUin, :PolicyId, :MainTaskId, :UnderwriteTaskId, :Status, :UnderwriteResults, :RequestId
+        
+        def initialize(uin=nil, subaccountuin=nil, policyid=nil, maintaskid=nil, underwritetaskid=nil, status=nil, underwriteresults=nil, requestid=nil)
+          @Uin = uin
+          @SubAccountUin = subaccountuin
+          @PolicyId = policyid
+          @MainTaskId = maintaskid
+          @UnderwriteTaskId = underwritetaskid
+          @Status = status
+          @UnderwriteResults = underwriteresults
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Uin = params['Uin']
+          @SubAccountUin = params['SubAccountUin']
+          @PolicyId = params['PolicyId']
+          @MainTaskId = params['MainTaskId']
+          @UnderwriteTaskId = params['UnderwriteTaskId']
+          @Status = params['Status']
+          unless params['UnderwriteResults'].nil?
+            @UnderwriteResults = []
+            params['UnderwriteResults'].each do |i|
+              underwriteoutput_tmp = UnderwriteOutput.new
+              underwriteoutput_tmp.deserialize(i)
+              @UnderwriteResults << underwriteoutput_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -971,6 +1152,30 @@ module TencentCloud
         end
       end
 
+      # 核保结论 机器结论和人工结论统一数据结构
+      class UnderwriteConclusion < TencentCloud::Common::AbstractModel
+        # @param Type: 类型
+        # @type Type: String
+        # @param Conclusion: 结论
+        # @type Conclusion: String
+        # @param Explanation: 解释
+        # @type Explanation: String
+
+        attr_accessor :Type, :Conclusion, :Explanation
+        
+        def initialize(type=nil, conclusion=nil, explanation=nil)
+          @Type = type
+          @Conclusion = conclusion
+          @Explanation = explanation
+        end
+
+        def deserialize(params)
+          @Type = params['Type']
+          @Conclusion = params['Conclusion']
+          @Explanation = params['Explanation']
+        end
+      end
+
       # 机器核保结论子项
       class UnderwriteItem < TencentCloud::Common::AbstractModel
         # @param Name: 字段名
@@ -992,6 +1197,52 @@ module TencentCloud
           @Name = params['Name']
           @Result = params['Result']
           @Value = params['Value']
+        end
+      end
+
+      # 核保结果输出
+      class UnderwriteOutput < TencentCloud::Common::AbstractModel
+        # @param CustomerId: 客户ID
+        # @type CustomerId: String
+        # @param CustomerName: 客户姓名
+        # @type CustomerName: String
+        # @param Results: 结果
+        # @type Results: Array
+        # @param ReviewTime: 复核时间
+        # @type ReviewTime: String
+        # @param ManualDetail: 人工复核结果
+        # @type ManualDetail: Array
+
+        attr_accessor :CustomerId, :CustomerName, :Results, :ReviewTime, :ManualDetail
+        
+        def initialize(customerid=nil, customername=nil, results=nil, reviewtime=nil, manualdetail=nil)
+          @CustomerId = customerid
+          @CustomerName = customername
+          @Results = results
+          @ReviewTime = reviewtime
+          @ManualDetail = manualdetail
+        end
+
+        def deserialize(params)
+          @CustomerId = params['CustomerId']
+          @CustomerName = params['CustomerName']
+          unless params['Results'].nil?
+            @Results = []
+            params['Results'].each do |i|
+              insuranceresult_tmp = InsuranceResult.new
+              insuranceresult_tmp.deserialize(i)
+              @Results << insuranceresult_tmp
+            end
+          end
+          @ReviewTime = params['ReviewTime']
+          unless params['ManualDetail'].nil?
+            @ManualDetail = []
+            params['ManualDetail'].each do |i|
+              underwriteconclusion_tmp = UnderwriteConclusion.new
+              underwriteconclusion_tmp.deserialize(i)
+              @ManualDetail << underwriteconclusion_tmp
+            end
+          end
         end
       end
 

@@ -491,7 +491,7 @@ module TencentCloud
         end
       end
 
-      # 用户关联策略(随组管理)信息
+      # 用户关联策略(随组关联)信息
       class AttachedUserPolicyGroupInfo < TencentCloud::Common::AbstractModel
         # @param GroupId: 分组ID
         # @type GroupId: Integer
@@ -1412,7 +1412,7 @@ module TencentCloud
       class DescribeUserSAMLConfigResponse < TencentCloud::Common::AbstractModel
         # @param SAMLMetadata: SAML元数据文档
         # @type SAMLMetadata: String
-        # @param Status: 状态：0:未设置，11:已开启，2:已禁用
+        # @param Status: 状态：0:未设置，1:已开启，2:已禁用
         # @type Status: Integer
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1774,7 +1774,7 @@ module TencentCloud
       class GetPolicyVersionRequest < TencentCloud::Common::AbstractModel
         # @param PolicyId: 策略ID
         # @type PolicyId: Integer
-        # @param VersionId: 策略版本号
+        # @param VersionId: 策略版本号，可由ListPolicyVersions获取
         # @type VersionId: Integer
 
         attr_accessor :PolicyId, :VersionId
@@ -2141,8 +2141,9 @@ module TencentCloud
         # @param Uid: 子用户 UID
         # @type Uid: Integer
         # @param Remark: 子用户备注
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Remark: String
-        # @param ConsoleLogin: 子用户能否登录控制台
+        # @param ConsoleLogin: 子用户能否登录控制台 0-无法登录控制台，1-可以登录控制台
         # @type ConsoleLogin: Integer
         # @param PhoneNum: 手机号
         # @type PhoneNum: String
@@ -2244,17 +2245,17 @@ module TencentCloud
         # @type PhoneNum: String
         # @param CountryCode: 手机区域代码。
         # @type CountryCode: String
-        # @param PhoneFlag: 是否已验证手机。
+        # @param PhoneFlag: 是否已验证手机。0-未验证  1-验证
         # @type PhoneFlag: Integer
         # @param Email: 邮箱地址。
         # @type Email: String
-        # @param EmailFlag: 是否已验证邮箱。
+        # @param EmailFlag: 是否已验证邮箱。0-未验证  1-验证
         # @type EmailFlag: Integer
-        # @param UserType: 用户类型。
+        # @param UserType: 用户类型。1-全局协作者 2-项目协作者 3-消息接收者
         # @type UserType: Integer
         # @param CreateTime: 创建时间。
         # @type CreateTime: String
-        # @param IsReceiverOwner: 是否为主消息接收人。
+        # @param IsReceiverOwner: 是否为主消息接收人。0-否 1-是
         # @type IsReceiverOwner: Integer
 
         attr_accessor :Uid, :Uin, :Name, :PhoneNum, :CountryCode, :PhoneFlag, :Email, :EmailFlag, :UserType, :CreateTime, :IsReceiverOwner
@@ -3679,7 +3680,7 @@ module TencentCloud
       class SetDefaultPolicyVersionRequest < TencentCloud::Common::AbstractModel
         # @param PolicyId: 策略ID
         # @type PolicyId: Integer
-        # @param VersionId: 策略版本号
+        # @param VersionId: 策略版本号，可由ListPolicyVersions获取
         # @type VersionId: Integer
 
         attr_accessor :PolicyId, :VersionId
@@ -4071,9 +4072,9 @@ module TencentCloud
       class UpdateRoleConsoleLoginRequest < TencentCloud::Common::AbstractModel
         # @param ConsoleLogin: 是否可登录，可登录：1，不可登录：0
         # @type ConsoleLogin: Integer
-        # @param RoleId: 角色ID
+        # @param RoleId: 角色ID，入参 RoleId 与 RoleName 二选一
         # @type RoleId: Integer
-        # @param RoleName: 角色名
+        # @param RoleName: 角色名，入参 RoleId 与 RoleName 二选一
         # @type RoleName: String
 
         attr_accessor :ConsoleLogin, :RoleId, :RoleName

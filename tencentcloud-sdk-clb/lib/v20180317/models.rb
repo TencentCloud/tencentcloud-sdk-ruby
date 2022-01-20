@@ -1154,24 +1154,24 @@ module TencentCloud
 
       # CreateClsLogSet请求参数结构体
       class CreateClsLogSetRequest < TencentCloud::Common::AbstractModel
-        # @param Period: 日志集的保存周期，单位：天，最大 90。
-        # @type Period: Integer
         # @param LogsetName: 日志集的名字，不能和cls其他日志集重名。不填默认为clb_logset。
         # @type LogsetName: String
+        # @param Period: 日志集的保存周期，单位：天。
+        # @type Period: Integer
         # @param LogsetType: 日志集类型，ACCESS：访问日志，HEALTH：健康检查日志，默认ACCESS。
         # @type LogsetType: String
 
-        attr_accessor :Period, :LogsetName, :LogsetType
+        attr_accessor :LogsetName, :Period, :LogsetType
         
-        def initialize(period=nil, logsetname=nil, logsettype=nil)
-          @Period = period
+        def initialize(logsetname=nil, period=nil, logsettype=nil)
           @LogsetName = logsetname
+          @Period = period
           @LogsetType = logsettype
         end
 
         def deserialize(params)
-          @Period = params['Period']
           @LogsetName = params['LogsetName']
+          @Period = params['Period']
           @LogsetType = params['LogsetType']
         end
       end
@@ -1614,19 +1614,23 @@ module TencentCloud
         # @type PartitionCount: Integer
         # @param TopicType: 日志类型，ACCESS：访问日志，HEALTH：健康检查日志，默认ACCESS。
         # @type TopicType: String
+        # @param Period: 日志集的保存周期，单位：天，默认30天。
+        # @type Period: Integer
 
-        attr_accessor :TopicName, :PartitionCount, :TopicType
+        attr_accessor :TopicName, :PartitionCount, :TopicType, :Period
         
-        def initialize(topicname=nil, partitioncount=nil, topictype=nil)
+        def initialize(topicname=nil, partitioncount=nil, topictype=nil, period=nil)
           @TopicName = topicname
           @PartitionCount = partitioncount
           @TopicType = topictype
+          @Period = period
         end
 
         def deserialize(params)
           @TopicName = params['TopicName']
           @PartitionCount = params['PartitionCount']
           @TopicType = params['TopicType']
+          @Period = params['Period']
         end
       end
 
@@ -1895,11 +1899,11 @@ module TencentCloud
         # @type ListenerId: String
         # @param LocationIds: 要删除的转发规则的ID组成的数组。
         # @type LocationIds: Array
-        # @param Domain: 要删除的转发规则的域名，已提供LocationIds参数时本参数不生效。
+        # @param Domain: 要删除的转发规则的域名，如果是多域名，可以指定多域名列表中的任意一个。已提供LocationIds参数时本参数不生效。
         # @type Domain: String
         # @param Url: 要删除的转发规则的转发路径，已提供LocationIds参数时本参数不生效。
         # @type Url: String
-        # @param NewDefaultServerDomain: 监听器下必须配置一个默认域名，当需要删除默认域名时，可以指定另一个域名作为新的默认域名。
+        # @param NewDefaultServerDomain: 监听器下必须配置一个默认域名，当需要删除默认域名时，可以指定另一个域名作为新的默认域名，如果新的默认域名是多域名，可以指定多域名列表中的任意一个。
         # @type NewDefaultServerDomain: String
 
         attr_accessor :LoadBalancerId, :ListenerId, :LocationIds, :Domain, :Url, :NewDefaultServerDomain
@@ -4695,10 +4699,13 @@ module TencentCloud
         # @param TargetHealth: 后端目标健康状态。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TargetHealth: String
+        # @param Domains: 转发规则的域名列表。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Domains: String
 
-        attr_accessor :LoadBalancerId, :LoadBalancerName, :LoadBalancerType, :Status, :Address, :AddressIPv6, :AddressIPVersion, :IPv6Mode, :Zone, :AddressIsp, :VpcId, :ProjectId, :CreateTime, :ChargeType, :NetworkAttributes, :PrepaidAttributes, :ExtraInfo, :ConfigId, :Tags, :ListenerId, :Protocol, :Port, :LocationId, :Domain, :Url, :TargetId, :TargetAddress, :TargetPort, :TargetWeight, :Isolation, :SecurityGroup, :LoadBalancerPassToTarget, :TargetHealth
+        attr_accessor :LoadBalancerId, :LoadBalancerName, :LoadBalancerType, :Status, :Address, :AddressIPv6, :AddressIPVersion, :IPv6Mode, :Zone, :AddressIsp, :VpcId, :ProjectId, :CreateTime, :ChargeType, :NetworkAttributes, :PrepaidAttributes, :ExtraInfo, :ConfigId, :Tags, :ListenerId, :Protocol, :Port, :LocationId, :Domain, :Url, :TargetId, :TargetAddress, :TargetPort, :TargetWeight, :Isolation, :SecurityGroup, :LoadBalancerPassToTarget, :TargetHealth, :Domains
         
-        def initialize(loadbalancerid=nil, loadbalancername=nil, loadbalancertype=nil, status=nil, address=nil, addressipv6=nil, addressipversion=nil, ipv6mode=nil, zone=nil, addressisp=nil, vpcid=nil, projectid=nil, createtime=nil, chargetype=nil, networkattributes=nil, prepaidattributes=nil, extrainfo=nil, configid=nil, tags=nil, listenerid=nil, protocol=nil, port=nil, locationid=nil, domain=nil, url=nil, targetid=nil, targetaddress=nil, targetport=nil, targetweight=nil, isolation=nil, securitygroup=nil, loadbalancerpasstotarget=nil, targethealth=nil)
+        def initialize(loadbalancerid=nil, loadbalancername=nil, loadbalancertype=nil, status=nil, address=nil, addressipv6=nil, addressipversion=nil, ipv6mode=nil, zone=nil, addressisp=nil, vpcid=nil, projectid=nil, createtime=nil, chargetype=nil, networkattributes=nil, prepaidattributes=nil, extrainfo=nil, configid=nil, tags=nil, listenerid=nil, protocol=nil, port=nil, locationid=nil, domain=nil, url=nil, targetid=nil, targetaddress=nil, targetport=nil, targetweight=nil, isolation=nil, securitygroup=nil, loadbalancerpasstotarget=nil, targethealth=nil, domains=nil)
           @LoadBalancerId = loadbalancerid
           @LoadBalancerName = loadbalancername
           @LoadBalancerType = loadbalancertype
@@ -4732,6 +4739,7 @@ module TencentCloud
           @SecurityGroup = securitygroup
           @LoadBalancerPassToTarget = loadbalancerpasstotarget
           @TargetHealth = targethealth
+          @Domains = domains
         end
 
         def deserialize(params)
@@ -4784,6 +4792,7 @@ module TencentCloud
           @SecurityGroup = params['SecurityGroup']
           @LoadBalancerPassToTarget = params['LoadBalancerPassToTarget']
           @TargetHealth = params['TargetHealth']
+          @Domains = params['Domains']
         end
       end
 
@@ -5010,9 +5019,9 @@ module TencentCloud
         # @type LoadBalancerId: String
         # @param ListenerId: 负载均衡监听器ID。
         # @type ListenerId: String
-        # @param Domain: 域名（必须是已经创建的转发规则下的域名）。
+        # @param Domain: 域名（必须是已经创建的转发规则下的域名），如果是多域名，可以指定多域名列表中的任意一个。
         # @type Domain: String
-        # @param NewDomain: 要修改的新域名。
+        # @param NewDomain: 要修改的新域名。NewDomain和NewDomains只能传一个。
         # @type NewDomain: String
         # @param Certificate: 域名相关的证书信息，注意，仅对启用SNI的监听器适用。
         # @type Certificate: :class:`Tencentcloud::Clb.v20180317.models.CertificateInput`
@@ -5020,12 +5029,14 @@ module TencentCloud
         # @type Http2: Boolean
         # @param DefaultServer: 是否设为默认域名，注意，一个监听器下只能设置一个默认域名。
         # @type DefaultServer: Boolean
-        # @param NewDefaultServerDomain: 监听器下必须配置一个默认域名，若要关闭原默认域名，必须同时指定另一个域名作为新的默认域名。
+        # @param NewDefaultServerDomain: 监听器下必须配置一个默认域名，若要关闭原默认域名，必须同时指定另一个域名作为新的默认域名，如果新的默认域名是多域名，可以指定多域名列表中的任意一个。
         # @type NewDefaultServerDomain: String
+        # @param NewDomains: 要修改的新域名列表。NewDomain和NewDomains只能传一个。
+        # @type NewDomains: Array
 
-        attr_accessor :LoadBalancerId, :ListenerId, :Domain, :NewDomain, :Certificate, :Http2, :DefaultServer, :NewDefaultServerDomain
+        attr_accessor :LoadBalancerId, :ListenerId, :Domain, :NewDomain, :Certificate, :Http2, :DefaultServer, :NewDefaultServerDomain, :NewDomains
         
-        def initialize(loadbalancerid=nil, listenerid=nil, domain=nil, newdomain=nil, certificate=nil, http2=nil, defaultserver=nil, newdefaultserverdomain=nil)
+        def initialize(loadbalancerid=nil, listenerid=nil, domain=nil, newdomain=nil, certificate=nil, http2=nil, defaultserver=nil, newdefaultserverdomain=nil, newdomains=nil)
           @LoadBalancerId = loadbalancerid
           @ListenerId = listenerid
           @Domain = domain
@@ -5034,6 +5045,7 @@ module TencentCloud
           @Http2 = http2
           @DefaultServer = defaultserver
           @NewDefaultServerDomain = newdefaultserverdomain
+          @NewDomains = newdomains
         end
 
         def deserialize(params)
@@ -5048,6 +5060,7 @@ module TencentCloud
           @Http2 = params['Http2']
           @DefaultServer = params['DefaultServer']
           @NewDefaultServerDomain = params['NewDefaultServerDomain']
+          @NewDomains = params['NewDomains']
         end
       end
 
@@ -6115,10 +6128,13 @@ module TencentCloud
         # @param QuicStatus: QUIC状态
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type QuicStatus: String
+        # @param Domains: 转发规则的域名列表。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Domains: Array
 
-        attr_accessor :LocationId, :Domain, :Url, :SessionExpireTime, :HealthCheck, :Certificate, :Scheduler, :ListenerId, :RewriteTarget, :HttpGzip, :BeAutoCreated, :DefaultServer, :Http2, :ForwardType, :CreateTime, :TargetType, :TargetGroup, :WafDomainId, :TrpcCallee, :TrpcFunc, :QuicStatus
+        attr_accessor :LocationId, :Domain, :Url, :SessionExpireTime, :HealthCheck, :Certificate, :Scheduler, :ListenerId, :RewriteTarget, :HttpGzip, :BeAutoCreated, :DefaultServer, :Http2, :ForwardType, :CreateTime, :TargetType, :TargetGroup, :WafDomainId, :TrpcCallee, :TrpcFunc, :QuicStatus, :Domains
         
-        def initialize(locationid=nil, domain=nil, url=nil, sessionexpiretime=nil, healthcheck=nil, certificate=nil, scheduler=nil, listenerid=nil, rewritetarget=nil, httpgzip=nil, beautocreated=nil, defaultserver=nil, http2=nil, forwardtype=nil, createtime=nil, targettype=nil, targetgroup=nil, wafdomainid=nil, trpccallee=nil, trpcfunc=nil, quicstatus=nil)
+        def initialize(locationid=nil, domain=nil, url=nil, sessionexpiretime=nil, healthcheck=nil, certificate=nil, scheduler=nil, listenerid=nil, rewritetarget=nil, httpgzip=nil, beautocreated=nil, defaultserver=nil, http2=nil, forwardtype=nil, createtime=nil, targettype=nil, targetgroup=nil, wafdomainid=nil, trpccallee=nil, trpcfunc=nil, quicstatus=nil, domains=nil)
           @LocationId = locationid
           @Domain = domain
           @Url = url
@@ -6140,6 +6156,7 @@ module TencentCloud
           @TrpcCallee = trpccallee
           @TrpcFunc = trpcfunc
           @QuicStatus = quicstatus
+          @Domains = domains
         end
 
         def deserialize(params)
@@ -6176,6 +6193,7 @@ module TencentCloud
           @TrpcCallee = params['TrpcCallee']
           @TrpcFunc = params['TrpcFunc']
           @QuicStatus = params['QuicStatus']
+          @Domains = params['Domains']
         end
       end
 
