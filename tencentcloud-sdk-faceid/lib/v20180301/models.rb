@@ -2686,6 +2686,216 @@ module TencentCloud
         end
       end
 
+      # PhoneVerificationCMCC请求参数结构体
+      class PhoneVerificationCMCCRequest < TencentCloud::Common::AbstractModel
+        # @param IdCard: 身份证号
+        # @type IdCard: String
+        # @param Name: 姓名
+        # @type Name: String
+        # @param Phone: 手机号
+        # @type Phone: String
+        # @param Encryption: 敏感数据加密信息。对传入信息（姓名、身份证号、手机号）有加密需求的用户可使用此参数，详情请点击左侧链接。
+        # @type Encryption: :class:`Tencentcloud::Faceid.v20180301.models.Encryption`
+
+        attr_accessor :IdCard, :Name, :Phone, :Encryption
+        
+        def initialize(idcard=nil, name=nil, phone=nil, encryption=nil)
+          @IdCard = idcard
+          @Name = name
+          @Phone = phone
+          @Encryption = encryption
+        end
+
+        def deserialize(params)
+          @IdCard = params['IdCard']
+          @Name = params['Name']
+          @Phone = params['Phone']
+          unless params['Encryption'].nil?
+            @Encryption = Encryption.new
+            @Encryption.deserialize(params['Encryption'])
+          end
+        end
+      end
+
+      # PhoneVerificationCMCC返回参数结构体
+      class PhoneVerificationCMCCResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 认证结果码，收费情况如下。
+        # 收费结果码：
+        # 0: 认证通过
+        # -4: 信息不一致（手机号已实名，但姓名和身份证号与实名信息不一致）
+        # 不收费结果码：
+        # -6: 手机号码不合法
+        # -7: 身份证号码有误
+        # -8: 姓名校验不通过
+        # -9: 没有记录
+        # -10: 认证未通过
+        # -11: 验证中心服务繁忙
+        # @type Result: String
+        # @param Isp: 运营商名称。
+        # 取值范围为["移动","联通","电信",""]
+        # @type Isp: String
+        # @param Description: 业务结果描述。
+        # @type Description: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :Isp, :Description, :RequestId
+        
+        def initialize(result=nil, isp=nil, description=nil, requestid=nil)
+          @Result = result
+          @Isp = isp
+          @Description = description
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Result = params['Result']
+          @Isp = params['Isp']
+          @Description = params['Description']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # PhoneVerificationCTCC请求参数结构体
+      class PhoneVerificationCTCCRequest < TencentCloud::Common::AbstractModel
+        # @param IdCard: 身份证号
+        # @type IdCard: String
+        # @param Name: 姓名
+        # @type Name: String
+        # @param Phone: 手机号
+        # @type Phone: String
+        # @param Encryption: 敏感数据加密信息。对传入信息（姓名、身份证号、手机号）有加密需求的用户可使用此参数，详情请点击左侧链接。
+        # @type Encryption: :class:`Tencentcloud::Faceid.v20180301.models.Encryption`
+
+        attr_accessor :IdCard, :Name, :Phone, :Encryption
+        
+        def initialize(idcard=nil, name=nil, phone=nil, encryption=nil)
+          @IdCard = idcard
+          @Name = name
+          @Phone = phone
+          @Encryption = encryption
+        end
+
+        def deserialize(params)
+          @IdCard = params['IdCard']
+          @Name = params['Name']
+          @Phone = params['Phone']
+          unless params['Encryption'].nil?
+            @Encryption = Encryption.new
+            @Encryption.deserialize(params['Encryption'])
+          end
+        end
+      end
+
+      # PhoneVerificationCTCC返回参数结构体
+      class PhoneVerificationCTCCResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 认证结果码，收费情况如下。
+        # 收费结果码：
+        # 0: 认证通过
+        # -4: 信息不一致（手机号已实名，但姓名和身份证号与实名信息不一致）
+        # 不收费结果码：
+        # -6: 手机号码不合法
+        # -7: 身份证号码有误
+        # -8: 姓名校验不通过
+        # -9: 没有记录
+        # -10: 认证未通过
+        # -11: 验证中心服务繁忙
+        # @type Result: String
+        # @param Isp: 运营商名称。
+        # 取值范围为["移动","联通","电信",""]
+        # @type Isp: String
+        # @param Description: 业务结果描述。
+        # @type Description: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :Isp, :Description, :RequestId
+        
+        def initialize(result=nil, isp=nil, description=nil, requestid=nil)
+          @Result = result
+          @Isp = isp
+          @Description = description
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Result = params['Result']
+          @Isp = params['Isp']
+          @Description = params['Description']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # PhoneVerificationCUCC请求参数结构体
+      class PhoneVerificationCUCCRequest < TencentCloud::Common::AbstractModel
+        # @param IdCard: 身份证号
+        # @type IdCard: String
+        # @param Name: 姓名
+        # @type Name: String
+        # @param Phone: 手机号
+        # @type Phone: String
+        # @param Encryption: 敏感数据加密信息。对传入信息（姓名、身份证号、手机号）有加密需求的用户可使用此参数，详情请点击左侧链接。
+        # @type Encryption: :class:`Tencentcloud::Faceid.v20180301.models.Encryption`
+
+        attr_accessor :IdCard, :Name, :Phone, :Encryption
+        
+        def initialize(idcard=nil, name=nil, phone=nil, encryption=nil)
+          @IdCard = idcard
+          @Name = name
+          @Phone = phone
+          @Encryption = encryption
+        end
+
+        def deserialize(params)
+          @IdCard = params['IdCard']
+          @Name = params['Name']
+          @Phone = params['Phone']
+          unless params['Encryption'].nil?
+            @Encryption = Encryption.new
+            @Encryption.deserialize(params['Encryption'])
+          end
+        end
+      end
+
+      # PhoneVerificationCUCC返回参数结构体
+      class PhoneVerificationCUCCResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 认证结果码，收费情况如下。
+        # 收费结果码：
+        # 0: 认证通过
+        # -4: 信息不一致（手机号已实名，但姓名和身份证号与实名信息不一致）
+        # 不收费结果码：
+        # -6: 手机号码不合法
+        # -7: 身份证号码有误
+        # -8: 姓名校验不通过
+        # -9: 没有记录
+        # -10: 认证未通过
+        # -11: 验证中心服务繁忙
+        # @type Result: String
+        # @param Isp: 运营商名称。
+        # 取值范围为["移动","联通","电信",""]
+        # @type Isp: String
+        # @param Description: 业务结果描述。
+        # @type Description: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :Isp, :Description, :RequestId
+        
+        def initialize(result=nil, isp=nil, description=nil, requestid=nil)
+          @Result = result
+          @Isp = isp
+          @Description = description
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Result = params['Result']
+          @Isp = params['Isp']
+          @Description = params['Description']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # PhoneVerification请求参数结构体
       class PhoneVerificationRequest < TencentCloud::Common::AbstractModel
         # @param IdCard: 身份证号

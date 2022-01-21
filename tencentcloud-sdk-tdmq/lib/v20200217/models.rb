@@ -786,10 +786,19 @@ module TencentCloud
         # @param NamespaceName: 命名空间名称
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NamespaceName: String
+        # @param Status: 集群状态，0:创建中，1:正常，2:销毁中，3:已删除，4: 隔离中，5:创建失败，6: 删除失败
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: Integer
+        # @param MaxUnackedMsgNum: 最大未确认消息数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MaxUnackedMsgNum: Integer
+        # @param MaxMsgBacklogSize: 最大消息堆积大小（字节）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MaxMsgBacklogSize: Integer
 
-        attr_accessor :QueueId, :QueueName, :Qps, :Bps, :MaxDelaySeconds, :MaxMsgHeapNum, :PollingWaitSeconds, :MsgRetentionSeconds, :VisibilityTimeout, :MaxMsgSize, :RewindSeconds, :CreateTime, :LastModifyTime, :ActiveMsgNum, :InactiveMsgNum, :DelayMsgNum, :RewindMsgNum, :MinMsgTime, :Transaction, :DeadLetterSource, :DeadLetterPolicy, :TransactionPolicy, :CreateUin, :Tags, :Trace, :TenantId, :NamespaceName
+        attr_accessor :QueueId, :QueueName, :Qps, :Bps, :MaxDelaySeconds, :MaxMsgHeapNum, :PollingWaitSeconds, :MsgRetentionSeconds, :VisibilityTimeout, :MaxMsgSize, :RewindSeconds, :CreateTime, :LastModifyTime, :ActiveMsgNum, :InactiveMsgNum, :DelayMsgNum, :RewindMsgNum, :MinMsgTime, :Transaction, :DeadLetterSource, :DeadLetterPolicy, :TransactionPolicy, :CreateUin, :Tags, :Trace, :TenantId, :NamespaceName, :Status, :MaxUnackedMsgNum, :MaxMsgBacklogSize
         
-        def initialize(queueid=nil, queuename=nil, qps=nil, bps=nil, maxdelayseconds=nil, maxmsgheapnum=nil, pollingwaitseconds=nil, msgretentionseconds=nil, visibilitytimeout=nil, maxmsgsize=nil, rewindseconds=nil, createtime=nil, lastmodifytime=nil, activemsgnum=nil, inactivemsgnum=nil, delaymsgnum=nil, rewindmsgnum=nil, minmsgtime=nil, transaction=nil, deadlettersource=nil, deadletterpolicy=nil, transactionpolicy=nil, createuin=nil, tags=nil, trace=nil, tenantid=nil, namespacename=nil)
+        def initialize(queueid=nil, queuename=nil, qps=nil, bps=nil, maxdelayseconds=nil, maxmsgheapnum=nil, pollingwaitseconds=nil, msgretentionseconds=nil, visibilitytimeout=nil, maxmsgsize=nil, rewindseconds=nil, createtime=nil, lastmodifytime=nil, activemsgnum=nil, inactivemsgnum=nil, delaymsgnum=nil, rewindmsgnum=nil, minmsgtime=nil, transaction=nil, deadlettersource=nil, deadletterpolicy=nil, transactionpolicy=nil, createuin=nil, tags=nil, trace=nil, tenantid=nil, namespacename=nil, status=nil, maxunackedmsgnum=nil, maxmsgbacklogsize=nil)
           @QueueId = queueid
           @QueueName = queuename
           @Qps = qps
@@ -817,6 +826,9 @@ module TencentCloud
           @Trace = trace
           @TenantId = tenantid
           @NamespaceName = namespacename
+          @Status = status
+          @MaxUnackedMsgNum = maxunackedmsgnum
+          @MaxMsgBacklogSize = maxmsgbacklogsize
         end
 
         def deserialize(params)
@@ -867,6 +879,9 @@ module TencentCloud
           @Trace = params['Trace']
           @TenantId = params['TenantId']
           @NamespaceName = params['NamespaceName']
+          @Status = params['Status']
+          @MaxUnackedMsgNum = params['MaxUnackedMsgNum']
+          @MaxMsgBacklogSize = params['MaxMsgBacklogSize']
         end
       end
 

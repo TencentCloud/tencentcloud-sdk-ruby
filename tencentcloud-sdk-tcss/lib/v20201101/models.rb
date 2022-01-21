@@ -2349,16 +2349,25 @@ module TencentCloud
         # @type Images: Array
         # @param ScanType: 扫描类型数组
         # @type ScanType: Array
-        # @param Id: 扫描的镜像列表Id
+        # @param Id: 扫描的镜像列表
         # @type Id: Array
+        # @param Filters: 过滤条件
+        # @type Filters: Array
+        # @param ExcludeImageList: 不需要扫描的镜像列表, 与Filters配合使用
+        # @type ExcludeImageList: Array
+        # @param OnlyScanLatest: 是否仅扫描各repository最新版的镜像, 与Filters配合使用
+        # @type OnlyScanLatest: Boolean
 
-        attr_accessor :All, :Images, :ScanType, :Id
+        attr_accessor :All, :Images, :ScanType, :Id, :Filters, :ExcludeImageList, :OnlyScanLatest
         
-        def initialize(all=nil, images=nil, scantype=nil, id=nil)
+        def initialize(all=nil, images=nil, scantype=nil, id=nil, filters=nil, excludeimagelist=nil, onlyscanlatest=nil)
           @All = all
           @Images = images
           @ScanType = scantype
           @Id = id
+          @Filters = filters
+          @ExcludeImageList = excludeimagelist
+          @OnlyScanLatest = onlyscanlatest
         end
 
         def deserialize(params)
@@ -2373,6 +2382,16 @@ module TencentCloud
           end
           @ScanType = params['ScanType']
           @Id = params['Id']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              assetfilters_tmp = AssetFilters.new
+              assetfilters_tmp.deserialize(i)
+              @Filters << assetfilters_tmp
+            end
+          end
+          @ExcludeImageList = params['ExcludeImageList']
+          @OnlyScanLatest = params['OnlyScanLatest']
         end
       end
 
@@ -5037,12 +5056,17 @@ module TencentCloud
 
       # DescribeAssetImageRegistryDetail请求参数结构体
       class DescribeAssetImageRegistryDetailRequest < TencentCloud::Common::AbstractModel
+        # @param Id: 仓库列表id
+        # @type Id: Integer
 
+        attr_accessor :Id
         
-        def initialize()
+        def initialize(id=nil)
+          @Id = id
         end
 
         def deserialize(params)
+          @Id = params['Id']
         end
       end
 
@@ -5054,20 +5078,170 @@ module TencentCloud
         # @param ImageRepoAddress: 镜像地址
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ImageRepoAddress: String
+        # @param RegistryType: 镜像类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RegistryType: String
+        # @param ImageName: 仓库名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ImageName: String
+        # @param ImageTag: 镜像版本
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ImageTag: String
+        # @param ScanTime: 扫描时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ScanTime: String
+        # @param ScanStatus: 扫描状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ScanStatus: String
+        # @param VulCnt: 安全漏洞数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VulCnt: Integer
+        # @param VirusCnt: 木马病毒数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VirusCnt: Integer
+        # @param RiskCnt: 风险行为数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RiskCnt: Integer
+        # @param SentiveInfoCnt: 敏感信息数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SentiveInfoCnt: Integer
+        # @param OsName: 镜像系统
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OsName: String
+        # @param ScanVirusError: 木马扫描错误
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ScanVirusError: String
+        # @param ScanVulError: 漏洞扫描错误
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ScanVulError: String
+        # @param LayerInfo: 层文件信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LayerInfo: String
+        # @param InstanceId: 实例id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceId: String
+        # @param InstanceName: 实例名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceName: String
+        # @param Namespace: 命名空间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Namespace: String
+        # @param ScanRiskError: 高危扫描错误
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ScanRiskError: String
+        # @param ScanVirusProgress: 木马信息扫描进度
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ScanVirusProgress: Integer
+        # @param ScanVulProgress: 漏洞扫描进度
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ScanVulProgress: Integer
+        # @param ScanRiskProgress: 敏感扫描进度
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ScanRiskProgress: Integer
+        # @param ScanRemainTime: 剩余扫描时间秒
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ScanRemainTime: Integer
+        # @param CveStatus: cve扫描状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CveStatus: String
+        # @param RiskStatus: 高危扫描状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RiskStatus: String
+        # @param VirusStatus: 木马扫描状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VirusStatus: String
+        # @param Progress: 总进度
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Progress: Integer
+        # @param IsAuthorized: 授权状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsAuthorized: Integer
+        # @param ImageSize: 镜像大小
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ImageSize: Integer
+        # @param ImageId: 镜像Id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ImageId: String
+        # @param RegistryRegion: 镜像区域
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RegistryRegion: String
+        # @param ImageCreateTime: 镜像创建的时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ImageCreateTime: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :ImageDigest, :ImageRepoAddress, :RequestId
+        attr_accessor :ImageDigest, :ImageRepoAddress, :RegistryType, :ImageName, :ImageTag, :ScanTime, :ScanStatus, :VulCnt, :VirusCnt, :RiskCnt, :SentiveInfoCnt, :OsName, :ScanVirusError, :ScanVulError, :LayerInfo, :InstanceId, :InstanceName, :Namespace, :ScanRiskError, :ScanVirusProgress, :ScanVulProgress, :ScanRiskProgress, :ScanRemainTime, :CveStatus, :RiskStatus, :VirusStatus, :Progress, :IsAuthorized, :ImageSize, :ImageId, :RegistryRegion, :ImageCreateTime, :RequestId
         
-        def initialize(imagedigest=nil, imagerepoaddress=nil, requestid=nil)
+        def initialize(imagedigest=nil, imagerepoaddress=nil, registrytype=nil, imagename=nil, imagetag=nil, scantime=nil, scanstatus=nil, vulcnt=nil, viruscnt=nil, riskcnt=nil, sentiveinfocnt=nil, osname=nil, scanviruserror=nil, scanvulerror=nil, layerinfo=nil, instanceid=nil, instancename=nil, namespace=nil, scanriskerror=nil, scanvirusprogress=nil, scanvulprogress=nil, scanriskprogress=nil, scanremaintime=nil, cvestatus=nil, riskstatus=nil, virusstatus=nil, progress=nil, isauthorized=nil, imagesize=nil, imageid=nil, registryregion=nil, imagecreatetime=nil, requestid=nil)
           @ImageDigest = imagedigest
           @ImageRepoAddress = imagerepoaddress
+          @RegistryType = registrytype
+          @ImageName = imagename
+          @ImageTag = imagetag
+          @ScanTime = scantime
+          @ScanStatus = scanstatus
+          @VulCnt = vulcnt
+          @VirusCnt = viruscnt
+          @RiskCnt = riskcnt
+          @SentiveInfoCnt = sentiveinfocnt
+          @OsName = osname
+          @ScanVirusError = scanviruserror
+          @ScanVulError = scanvulerror
+          @LayerInfo = layerinfo
+          @InstanceId = instanceid
+          @InstanceName = instancename
+          @Namespace = namespace
+          @ScanRiskError = scanriskerror
+          @ScanVirusProgress = scanvirusprogress
+          @ScanVulProgress = scanvulprogress
+          @ScanRiskProgress = scanriskprogress
+          @ScanRemainTime = scanremaintime
+          @CveStatus = cvestatus
+          @RiskStatus = riskstatus
+          @VirusStatus = virusstatus
+          @Progress = progress
+          @IsAuthorized = isauthorized
+          @ImageSize = imagesize
+          @ImageId = imageid
+          @RegistryRegion = registryregion
+          @ImageCreateTime = imagecreatetime
           @RequestId = requestid
         end
 
         def deserialize(params)
           @ImageDigest = params['ImageDigest']
           @ImageRepoAddress = params['ImageRepoAddress']
+          @RegistryType = params['RegistryType']
+          @ImageName = params['ImageName']
+          @ImageTag = params['ImageTag']
+          @ScanTime = params['ScanTime']
+          @ScanStatus = params['ScanStatus']
+          @VulCnt = params['VulCnt']
+          @VirusCnt = params['VirusCnt']
+          @RiskCnt = params['RiskCnt']
+          @SentiveInfoCnt = params['SentiveInfoCnt']
+          @OsName = params['OsName']
+          @ScanVirusError = params['ScanVirusError']
+          @ScanVulError = params['ScanVulError']
+          @LayerInfo = params['LayerInfo']
+          @InstanceId = params['InstanceId']
+          @InstanceName = params['InstanceName']
+          @Namespace = params['Namespace']
+          @ScanRiskError = params['ScanRiskError']
+          @ScanVirusProgress = params['ScanVirusProgress']
+          @ScanVulProgress = params['ScanVulProgress']
+          @ScanRiskProgress = params['ScanRiskProgress']
+          @ScanRemainTime = params['ScanRemainTime']
+          @CveStatus = params['CveStatus']
+          @RiskStatus = params['RiskStatus']
+          @VirusStatus = params['VirusStatus']
+          @Progress = params['Progress']
+          @IsAuthorized = params['IsAuthorized']
+          @ImageSize = params['ImageSize']
+          @ImageId = params['ImageId']
+          @RegistryRegion = params['RegistryRegion']
+          @ImageCreateTime = params['ImageCreateTime']
           @RequestId = params['RequestId']
         end
       end
@@ -5086,16 +5260,19 @@ module TencentCloud
         # @type By: String
         # @param Order: 排序方式，asc，desc
         # @type Order: String
+        # @param OnlyShowLatest: 是否仅展示repository版本最新的镜像，默认为false
+        # @type OnlyShowLatest: Boolean
 
-        attr_accessor :ExportField, :Limit, :Offset, :Filters, :By, :Order
+        attr_accessor :ExportField, :Limit, :Offset, :Filters, :By, :Order, :OnlyShowLatest
         
-        def initialize(exportfield=nil, limit=nil, offset=nil, filters=nil, by=nil, order=nil)
+        def initialize(exportfield=nil, limit=nil, offset=nil, filters=nil, by=nil, order=nil, onlyshowlatest=nil)
           @ExportField = exportfield
           @Limit = limit
           @Offset = offset
           @Filters = filters
           @By = by
           @Order = order
+          @OnlyShowLatest = onlyshowlatest
         end
 
         def deserialize(params)
@@ -5112,6 +5289,7 @@ module TencentCloud
           end
           @By = params['By']
           @Order = params['Order']
+          @OnlyShowLatest = params['OnlyShowLatest']
         end
       end
 
@@ -5138,27 +5316,77 @@ module TencentCloud
 
       # DescribeAssetImageRegistryList请求参数结构体
       class DescribeAssetImageRegistryListRequest < TencentCloud::Common::AbstractModel
+        # @param Limit: 需要返回的数量，默认为10，最大值为100
+        # @type Limit: Integer
+        # @param Offset: 偏移量，默认为0
+        # @type Offset: Integer
+        # @param Filters: 过滤字段
+        # IsAuthorized是否授权，取值全部all，未授权0，已授权1
+        # @type Filters: Array
+        # @param By: 排序字段
+        # @type By: String
+        # @param Order: 排序方式，asc，desc
+        # @type Order: String
+        # @param OnlyShowLatest: 是否仅展示各repository最新的镜像, 默认为false
+        # @type OnlyShowLatest: Boolean
 
+        attr_accessor :Limit, :Offset, :Filters, :By, :Order, :OnlyShowLatest
         
-        def initialize()
+        def initialize(limit=nil, offset=nil, filters=nil, by=nil, order=nil, onlyshowlatest=nil)
+          @Limit = limit
+          @Offset = offset
+          @Filters = filters
+          @By = by
+          @Order = order
+          @OnlyShowLatest = onlyshowlatest
         end
 
         def deserialize(params)
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              assetfilters_tmp = AssetFilters.new
+              assetfilters_tmp.deserialize(i)
+              @Filters << assetfilters_tmp
+            end
+          end
+          @By = params['By']
+          @Order = params['Order']
+          @OnlyShowLatest = params['OnlyShowLatest']
         end
       end
 
       # DescribeAssetImageRegistryList返回参数结构体
       class DescribeAssetImageRegistryListResponse < TencentCloud::Common::AbstractModel
+        # @param List: 镜像仓库列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type List: Array
+        # @param TotalCount: 总数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalCount: Integer
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RequestId
+        attr_accessor :List, :TotalCount, :RequestId
         
-        def initialize(requestid=nil)
+        def initialize(list=nil, totalcount=nil, requestid=nil)
+          @List = list
+          @TotalCount = totalcount
           @RequestId = requestid
         end
 
         def deserialize(params)
+          unless params['List'].nil?
+            @List = []
+            params['List'].each do |i|
+              imagerepoinfo_tmp = ImageRepoInfo.new
+              imagerepoinfo_tmp.deserialize(i)
+              @List << imagerepoinfo_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
           @RequestId = params['RequestId']
         end
       end
@@ -10661,6 +10889,168 @@ module TencentCloud
         end
       end
 
+      # 容器安全镜像仓库列表
+      class ImageRepoInfo < TencentCloud::Common::AbstractModel
+        # @param ImageDigest: 镜像Digest
+        # @type ImageDigest: String
+        # @param ImageRepoAddress: 镜像仓库地址
+        # @type ImageRepoAddress: String
+        # @param RegistryType: 仓库类型
+        # @type RegistryType: String
+        # @param ImageName: 镜像名称
+        # @type ImageName: String
+        # @param ImageTag: 镜像版本
+        # @type ImageTag: String
+        # @param ImageSize: 镜像大小
+        # @type ImageSize: Integer
+        # @param ScanTime: 最近扫描时间
+        # @type ScanTime: String
+        # @param ScanStatus: 扫描状态
+        # @type ScanStatus: String
+        # @param VulCnt: 安全漏洞数
+        # @type VulCnt: Integer
+        # @param VirusCnt: 木马病毒数
+        # @type VirusCnt: Integer
+        # @param RiskCnt: 风险行为数
+        # @type RiskCnt: Integer
+        # @param SentiveInfoCnt: 敏感信息数
+        # @type SentiveInfoCnt: Integer
+        # @param IsTrustImage: 是否可信镜像
+        # @type IsTrustImage: Boolean
+        # @param OsName: 镜像系统
+        # @type OsName: String
+        # @param ScanVirusError: 木马扫描错误
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ScanVirusError: String
+        # @param ScanVulError: 漏洞扫描错误
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ScanVulError: String
+        # @param InstanceId: 实例id
+        # @type InstanceId: String
+        # @param InstanceName: 实例名称
+        # @type InstanceName: String
+        # @param Namespace: 命名空间
+        # @type Namespace: String
+        # @param ScanRiskError: 高危扫描错误
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ScanRiskError: String
+        # @param ScanVirusProgress: 敏感信息扫描进度
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ScanVirusProgress: Integer
+        # @param ScanVulProgress: 木马扫描进度
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ScanVulProgress: Integer
+        # @param ScanRiskProgress: 漏洞扫描进度
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ScanRiskProgress: Integer
+        # @param ScanRemainTime: 剩余扫描时间秒
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ScanRemainTime: Integer
+        # @param CveStatus: cve扫描状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CveStatus: String
+        # @param RiskStatus: 高危扫描状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RiskStatus: String
+        # @param VirusStatus: 木马扫描状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VirusStatus: String
+        # @param Progress: 总进度
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Progress: Integer
+        # @param IsAuthorized: 授权状态
+        # @type IsAuthorized: Integer
+        # @param RegistryRegion: 仓库区域
+        # @type RegistryRegion: String
+        # @param Id: 列表id
+        # @type Id: Integer
+        # @param ImageId: 镜像Id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ImageId: String
+        # @param ImageCreateTime: 镜像创建的时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ImageCreateTime: String
+        # @param IsLatestImage: 是否为镜像的最新版本
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsLatestImage: Boolean
+
+        attr_accessor :ImageDigest, :ImageRepoAddress, :RegistryType, :ImageName, :ImageTag, :ImageSize, :ScanTime, :ScanStatus, :VulCnt, :VirusCnt, :RiskCnt, :SentiveInfoCnt, :IsTrustImage, :OsName, :ScanVirusError, :ScanVulError, :InstanceId, :InstanceName, :Namespace, :ScanRiskError, :ScanVirusProgress, :ScanVulProgress, :ScanRiskProgress, :ScanRemainTime, :CveStatus, :RiskStatus, :VirusStatus, :Progress, :IsAuthorized, :RegistryRegion, :Id, :ImageId, :ImageCreateTime, :IsLatestImage
+        
+        def initialize(imagedigest=nil, imagerepoaddress=nil, registrytype=nil, imagename=nil, imagetag=nil, imagesize=nil, scantime=nil, scanstatus=nil, vulcnt=nil, viruscnt=nil, riskcnt=nil, sentiveinfocnt=nil, istrustimage=nil, osname=nil, scanviruserror=nil, scanvulerror=nil, instanceid=nil, instancename=nil, namespace=nil, scanriskerror=nil, scanvirusprogress=nil, scanvulprogress=nil, scanriskprogress=nil, scanremaintime=nil, cvestatus=nil, riskstatus=nil, virusstatus=nil, progress=nil, isauthorized=nil, registryregion=nil, id=nil, imageid=nil, imagecreatetime=nil, islatestimage=nil)
+          @ImageDigest = imagedigest
+          @ImageRepoAddress = imagerepoaddress
+          @RegistryType = registrytype
+          @ImageName = imagename
+          @ImageTag = imagetag
+          @ImageSize = imagesize
+          @ScanTime = scantime
+          @ScanStatus = scanstatus
+          @VulCnt = vulcnt
+          @VirusCnt = viruscnt
+          @RiskCnt = riskcnt
+          @SentiveInfoCnt = sentiveinfocnt
+          @IsTrustImage = istrustimage
+          @OsName = osname
+          @ScanVirusError = scanviruserror
+          @ScanVulError = scanvulerror
+          @InstanceId = instanceid
+          @InstanceName = instancename
+          @Namespace = namespace
+          @ScanRiskError = scanriskerror
+          @ScanVirusProgress = scanvirusprogress
+          @ScanVulProgress = scanvulprogress
+          @ScanRiskProgress = scanriskprogress
+          @ScanRemainTime = scanremaintime
+          @CveStatus = cvestatus
+          @RiskStatus = riskstatus
+          @VirusStatus = virusstatus
+          @Progress = progress
+          @IsAuthorized = isauthorized
+          @RegistryRegion = registryregion
+          @Id = id
+          @ImageId = imageid
+          @ImageCreateTime = imagecreatetime
+          @IsLatestImage = islatestimage
+        end
+
+        def deserialize(params)
+          @ImageDigest = params['ImageDigest']
+          @ImageRepoAddress = params['ImageRepoAddress']
+          @RegistryType = params['RegistryType']
+          @ImageName = params['ImageName']
+          @ImageTag = params['ImageTag']
+          @ImageSize = params['ImageSize']
+          @ScanTime = params['ScanTime']
+          @ScanStatus = params['ScanStatus']
+          @VulCnt = params['VulCnt']
+          @VirusCnt = params['VirusCnt']
+          @RiskCnt = params['RiskCnt']
+          @SentiveInfoCnt = params['SentiveInfoCnt']
+          @IsTrustImage = params['IsTrustImage']
+          @OsName = params['OsName']
+          @ScanVirusError = params['ScanVirusError']
+          @ScanVulError = params['ScanVulError']
+          @InstanceId = params['InstanceId']
+          @InstanceName = params['InstanceName']
+          @Namespace = params['Namespace']
+          @ScanRiskError = params['ScanRiskError']
+          @ScanVirusProgress = params['ScanVirusProgress']
+          @ScanVulProgress = params['ScanVulProgress']
+          @ScanRiskProgress = params['ScanRiskProgress']
+          @ScanRemainTime = params['ScanRemainTime']
+          @CveStatus = params['CveStatus']
+          @RiskStatus = params['RiskStatus']
+          @VirusStatus = params['VirusStatus']
+          @Progress = params['Progress']
+          @IsAuthorized = params['IsAuthorized']
+          @RegistryRegion = params['RegistryRegion']
+          @Id = params['Id']
+          @ImageId = params['ImageId']
+          @ImageCreateTime = params['ImageCreateTime']
+          @IsLatestImage = params['IsLatestImage']
+        end
+      end
+
       # 容器安全镜像高危行为信息
       class ImageRisk < TencentCloud::Common::AbstractModel
         # @param Behavior: 高危行为
@@ -11508,15 +11898,24 @@ module TencentCloud
         # @type All: Boolean
         # @param Images: 扫描的镜像列表
         # @type Images: Array
-        # @param Id: 扫描的镜像列表Id
+        # @param Id: 扫描的镜像列表
         # @type Id: Array
+        # @param Filters: 过滤条件
+        # @type Filters: Array
+        # @param ExcludeImageList: 不要扫描的镜像列表，与Filters配合使用
+        # @type ExcludeImageList: Array
+        # @param OnlyScanLatest: 是否仅扫描各repository最新版本的镜像
+        # @type OnlyScanLatest: Boolean
 
-        attr_accessor :All, :Images, :Id
+        attr_accessor :All, :Images, :Id, :Filters, :ExcludeImageList, :OnlyScanLatest
         
-        def initialize(all=nil, images=nil, id=nil)
+        def initialize(all=nil, images=nil, id=nil, filters=nil, excludeimagelist=nil, onlyscanlatest=nil)
           @All = all
           @Images = images
           @Id = id
+          @Filters = filters
+          @ExcludeImageList = excludeimagelist
+          @OnlyScanLatest = onlyscanlatest
         end
 
         def deserialize(params)
@@ -11530,6 +11929,16 @@ module TencentCloud
             end
           end
           @Id = params['Id']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              assetfilters_tmp = AssetFilters.new
+              assetfilters_tmp.deserialize(i)
+              @Filters << assetfilters_tmp
+            end
+          end
+          @ExcludeImageList = params['ExcludeImageList']
+          @OnlyScanLatest = params['OnlyScanLatest']
         end
       end
 

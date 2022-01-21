@@ -798,6 +798,78 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口用于校验中国移动手机号、姓名和身份证号的真实性和一致性。中国移动支持的手机号段详情请查阅<a href="https://cloud.tencent.com/document/product/1007/46063">运营商类</a>文档。
+
+        # @param request: Request instance for PhoneVerificationCMCC.
+        # @type request: :class:`Tencentcloud::faceid::V20180301::PhoneVerificationCMCCRequest`
+        # @rtype: :class:`Tencentcloud::faceid::V20180301::PhoneVerificationCMCCResponse`
+        def PhoneVerificationCMCC(request)
+          body = send_request('PhoneVerificationCMCC', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = PhoneVerificationCMCCResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口用于校验中国电信手机号、姓名和身份证号的真实性和一致性。中国电信支持的手机号段详情请查阅<a href="https://cloud.tencent.com/document/product/1007/46063">运营商类</a>文档。
+
+        # @param request: Request instance for PhoneVerificationCTCC.
+        # @type request: :class:`Tencentcloud::faceid::V20180301::PhoneVerificationCTCCRequest`
+        # @rtype: :class:`Tencentcloud::faceid::V20180301::PhoneVerificationCTCCResponse`
+        def PhoneVerificationCTCC(request)
+          body = send_request('PhoneVerificationCTCC', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = PhoneVerificationCTCCResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口用于校验中国联通手机号、姓名和身份证号的真实性和一致性。中国联通支持的手机号段详情请查阅<a href="https://cloud.tencent.com/document/product/1007/46063">运营商类</a>文档。
+
+        # @param request: Request instance for PhoneVerificationCUCC.
+        # @type request: :class:`Tencentcloud::faceid::V20180301::PhoneVerificationCUCCRequest`
+        # @rtype: :class:`Tencentcloud::faceid::V20180301::PhoneVerificationCUCCResponse`
+        def PhoneVerificationCUCC(request)
+          body = send_request('PhoneVerificationCUCC', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = PhoneVerificationCUCCResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
 
       end
     end

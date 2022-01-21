@@ -2206,15 +2206,30 @@ module TencentCloud
         # @type PackageName: String
         # @param From: 请求来源平台，含 IntelliJ，Coding
         # @type From: String
+        # @param DeployStrategyType: 部署策略，AUTO 为全自动；BETA 为小批量验证后自动；MANUAL 为全手动；
+        # @type DeployStrategyType: String
+        # @param TotalBatchCount: 发布批次数
+        # @type TotalBatchCount: Integer
+        # @param BatchInterval: 批次间隔时间
+        # @type BatchInterval: Integer
+        # @param BetaBatchNum: 小批量验证批次的实例数
+        # @type BetaBatchNum: Integer
+        # @param MinAvailable: 发布过程中保障的最小可用实例数
+        # @type MinAvailable: Integer
 
-        attr_accessor :ApplicationId, :EnvironmentId, :DeployVersion, :PackageName, :From
+        attr_accessor :ApplicationId, :EnvironmentId, :DeployVersion, :PackageName, :From, :DeployStrategyType, :TotalBatchCount, :BatchInterval, :BetaBatchNum, :MinAvailable
         
-        def initialize(applicationid=nil, environmentid=nil, deployversion=nil, packagename=nil, from=nil)
+        def initialize(applicationid=nil, environmentid=nil, deployversion=nil, packagename=nil, from=nil, deploystrategytype=nil, totalbatchcount=nil, batchinterval=nil, betabatchnum=nil, minavailable=nil)
           @ApplicationId = applicationid
           @EnvironmentId = environmentid
           @DeployVersion = deployversion
           @PackageName = packagename
           @From = from
+          @DeployStrategyType = deploystrategytype
+          @TotalBatchCount = totalbatchcount
+          @BatchInterval = batchinterval
+          @BetaBatchNum = betabatchnum
+          @MinAvailable = minavailable
         end
 
         def deserialize(params)
@@ -2223,6 +2238,11 @@ module TencentCloud
           @DeployVersion = params['DeployVersion']
           @PackageName = params['PackageName']
           @From = params['From']
+          @DeployStrategyType = params['DeployStrategyType']
+          @TotalBatchCount = params['TotalBatchCount']
+          @BatchInterval = params['BatchInterval']
+          @BetaBatchNum = params['BetaBatchNum']
+          @MinAvailable = params['MinAvailable']
         end
       end
 
@@ -2525,10 +2545,12 @@ module TencentCloud
         # @type ClusterStatus: String
         # @param EnableTswTraceService: 是否开启tsw
         # @type EnableTswTraceService: Boolean
+        # @param Locked: 环境锁，1为上锁，0则为上锁
+        # @type Locked: Integer
 
-        attr_accessor :EnvironmentId, :Channel, :EnvironmentName, :Region, :Description, :Status, :Vpc, :CreateDate, :ModifyDate, :Modifier, :Creator, :ApplicationNum, :RunInstancesNum, :SubnetId, :ClusterStatus, :EnableTswTraceService
+        attr_accessor :EnvironmentId, :Channel, :EnvironmentName, :Region, :Description, :Status, :Vpc, :CreateDate, :ModifyDate, :Modifier, :Creator, :ApplicationNum, :RunInstancesNum, :SubnetId, :ClusterStatus, :EnableTswTraceService, :Locked
         
-        def initialize(environmentid=nil, channel=nil, environmentname=nil, region=nil, description=nil, status=nil, vpc=nil, createdate=nil, modifydate=nil, modifier=nil, creator=nil, applicationnum=nil, runinstancesnum=nil, subnetid=nil, clusterstatus=nil, enabletswtraceservice=nil)
+        def initialize(environmentid=nil, channel=nil, environmentname=nil, region=nil, description=nil, status=nil, vpc=nil, createdate=nil, modifydate=nil, modifier=nil, creator=nil, applicationnum=nil, runinstancesnum=nil, subnetid=nil, clusterstatus=nil, enabletswtraceservice=nil, locked=nil)
           @EnvironmentId = environmentid
           @Channel = channel
           @EnvironmentName = environmentname
@@ -2545,6 +2567,7 @@ module TencentCloud
           @SubnetId = subnetid
           @ClusterStatus = clusterstatus
           @EnableTswTraceService = enabletswtraceservice
+          @Locked = locked
         end
 
         def deserialize(params)
@@ -2564,6 +2587,7 @@ module TencentCloud
           @SubnetId = params['SubnetId']
           @ClusterStatus = params['ClusterStatus']
           @EnableTswTraceService = params['EnableTswTraceService']
+          @Locked = params['Locked']
         end
       end
 

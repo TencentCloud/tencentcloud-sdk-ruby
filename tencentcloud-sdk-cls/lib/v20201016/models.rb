@@ -2054,7 +2054,7 @@ module TencentCloud
       class DescribeLogContextRequest < TencentCloud::Common::AbstractModel
         # @param TopicId: 要查询的日志主题ID
         # @type TopicId: String
-        # @param BTime: 日志时间,  格式: YYYY-mm-dd HH:MM:SS
+        # @param BTime: 日志时间,  格式: YYYY-mm-dd HH:MM:SS.FFF
         # @type BTime: String
         # @param PkgId: 日志包序号
         # @type PkgId: String
