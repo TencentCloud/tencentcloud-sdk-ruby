@@ -1075,6 +1075,66 @@ module TencentCloud
         end
       end
 
+      # 集群状态信息
+      class ClusterStatus < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群Id
+        # @type ClusterId: String
+        # @param ClusterState: 集群状态
+        # @type ClusterState: String
+        # @param ClusterInstanceState: 集群下机器实例的状态
+        # @type ClusterInstanceState: String
+        # @param ClusterBMonitor: 集群是否开启监控
+        # @type ClusterBMonitor: Boolean
+        # @param ClusterInitNodeNum: 集群创建中的节点数，-1表示获取节点状态超时，-2表示获取节点状态失败
+        # @type ClusterInitNodeNum: Integer
+        # @param ClusterRunningNodeNum: 集群运行中的节点数，-1表示获取节点状态超时，-2表示获取节点状态失败
+        # @type ClusterRunningNodeNum: Integer
+        # @param ClusterFailedNodeNum: 集群异常的节点数，-1表示获取节点状态超时，-2表示获取节点状态失败
+        # @type ClusterFailedNodeNum: Integer
+        # @param ClusterClosedNodeNum: 集群已关机的节点数，-1表示获取节点状态超时，-2表示获取节点状态失败
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClusterClosedNodeNum: Integer
+        # @param ClusterClosingNodeNum: 集群关机中的节点数，-1表示获取节点状态超时，-2表示获取节点状态失败
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClusterClosingNodeNum: Integer
+        # @param ClusterDeletionProtection: 集群是否开启删除保护
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClusterDeletionProtection: Boolean
+        # @param ClusterAuditEnabled: 集群是否可审计
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClusterAuditEnabled: Boolean
+
+        attr_accessor :ClusterId, :ClusterState, :ClusterInstanceState, :ClusterBMonitor, :ClusterInitNodeNum, :ClusterRunningNodeNum, :ClusterFailedNodeNum, :ClusterClosedNodeNum, :ClusterClosingNodeNum, :ClusterDeletionProtection, :ClusterAuditEnabled
+        
+        def initialize(clusterid=nil, clusterstate=nil, clusterinstancestate=nil, clusterbmonitor=nil, clusterinitnodenum=nil, clusterrunningnodenum=nil, clusterfailednodenum=nil, clusterclosednodenum=nil, clusterclosingnodenum=nil, clusterdeletionprotection=nil, clusterauditenabled=nil)
+          @ClusterId = clusterid
+          @ClusterState = clusterstate
+          @ClusterInstanceState = clusterinstancestate
+          @ClusterBMonitor = clusterbmonitor
+          @ClusterInitNodeNum = clusterinitnodenum
+          @ClusterRunningNodeNum = clusterrunningnodenum
+          @ClusterFailedNodeNum = clusterfailednodenum
+          @ClusterClosedNodeNum = clusterclosednodenum
+          @ClusterClosingNodeNum = clusterclosingnodenum
+          @ClusterDeletionProtection = clusterdeletionprotection
+          @ClusterAuditEnabled = clusterauditenabled
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @ClusterState = params['ClusterState']
+          @ClusterInstanceState = params['ClusterInstanceState']
+          @ClusterBMonitor = params['ClusterBMonitor']
+          @ClusterInitNodeNum = params['ClusterInitNodeNum']
+          @ClusterRunningNodeNum = params['ClusterRunningNodeNum']
+          @ClusterFailedNodeNum = params['ClusterFailedNodeNum']
+          @ClusterClosedNodeNum = params['ClusterClosedNodeNum']
+          @ClusterClosingNodeNum = params['ClusterClosingNodeNum']
+          @ClusterDeletionProtection = params['ClusterDeletionProtection']
+          @ClusterAuditEnabled = params['ClusterAuditEnabled']
+        end
+      end
+
       # 集群版本信息
       class ClusterVersion < TencentCloud::Common::AbstractModel
         # @param ClusterId: 集群ID
@@ -3523,6 +3583,53 @@ module TencentCloud
           @SecurityPolicy = params['SecurityPolicy']
           @Kubeconfig = params['Kubeconfig']
           @JnsGwEndpoint = params['JnsGwEndpoint']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeClusterStatus请求参数结构体
+      class DescribeClusterStatusRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterIds: 集群ID列表，不传默认拉取所有集群
+        # @type ClusterIds: Array
+
+        attr_accessor :ClusterIds
+        
+        def initialize(clusterids=nil)
+          @ClusterIds = clusterids
+        end
+
+        def deserialize(params)
+          @ClusterIds = params['ClusterIds']
+        end
+      end
+
+      # DescribeClusterStatus返回参数结构体
+      class DescribeClusterStatusResponse < TencentCloud::Common::AbstractModel
+        # @param ClusterStatusSet: 集群状态列表
+        # @type ClusterStatusSet: Array
+        # @param TotalCount: 集群个数
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ClusterStatusSet, :TotalCount, :RequestId
+        
+        def initialize(clusterstatusset=nil, totalcount=nil, requestid=nil)
+          @ClusterStatusSet = clusterstatusset
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['ClusterStatusSet'].nil?
+            @ClusterStatusSet = []
+            params['ClusterStatusSet'].each do |i|
+              clusterstatus_tmp = ClusterStatus.new
+              clusterstatus_tmp.deserialize(i)
+              @ClusterStatusSet << clusterstatus_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
           @RequestId = params['RequestId']
         end
       end

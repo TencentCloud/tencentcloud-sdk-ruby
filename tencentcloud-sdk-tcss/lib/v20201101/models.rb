@@ -2473,25 +2473,31 @@ module TencentCloud
 
       # CreateAssetImageScanTask请求参数结构体
       class CreateAssetImageScanTaskRequest < TencentCloud::Common::AbstractModel
-        # @param All: 是否扫描全部镜像
+        # @param All: 是否扫描全部镜像；全部镜像，镜像列表和根据过滤条件筛选三选一。
         # @type All: Boolean
-        # @param Images: 需要扫描的镜像列表
+        # @param Images: 需要扫描的镜像列表；全部镜像，镜像列表和根据过滤条件筛选三选一。
         # @type Images: Array
-        # @param ScanVul: 扫描漏洞
+        # @param ScanVul: 扫描漏洞；漏洞，木马和风险需选其一
         # @type ScanVul: Boolean
-        # @param ScanVirus: 扫描木马
+        # @param ScanVirus: 扫描木马；漏洞，木马和风险需选其一
         # @type ScanVirus: Boolean
-        # @param ScanRisk: 扫描风险
+        # @param ScanRisk: 扫描风险；漏洞，木马和风险需选其一
         # @type ScanRisk: Boolean
+        # @param Filters: 根据过滤条件筛选出镜像；全部镜像，镜像列表和根据过滤条件筛选三选一。
+        # @type Filters: Array
+        # @param ExcludeImageIds: 根据过滤条件筛选出镜像，再排除个别镜像
+        # @type ExcludeImageIds: Array
 
-        attr_accessor :All, :Images, :ScanVul, :ScanVirus, :ScanRisk
+        attr_accessor :All, :Images, :ScanVul, :ScanVirus, :ScanRisk, :Filters, :ExcludeImageIds
         
-        def initialize(all=nil, images=nil, scanvul=nil, scanvirus=nil, scanrisk=nil)
+        def initialize(all=nil, images=nil, scanvul=nil, scanvirus=nil, scanrisk=nil, filters=nil, excludeimageids=nil)
           @All = all
           @Images = images
           @ScanVul = scanvul
           @ScanVirus = scanvirus
           @ScanRisk = scanrisk
+          @Filters = filters
+          @ExcludeImageIds = excludeimageids
         end
 
         def deserialize(params)
@@ -2500,6 +2506,15 @@ module TencentCloud
           @ScanVul = params['ScanVul']
           @ScanVirus = params['ScanVirus']
           @ScanRisk = params['ScanRisk']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              assetfilters_tmp = AssetFilters.new
+              assetfilters_tmp.deserialize(i)
+              @Filters << assetfilters_tmp
+            end
+          end
+          @ExcludeImageIds = params['ExcludeImageIds']
         end
       end
 
@@ -8284,16 +8299,19 @@ module TencentCloud
         # @type ScannedImageCnt: Integer
         # @param NotScannedImageCnt: 未开启扫描镜像数
         # @type NotScannedImageCnt: Integer
+        # @param NotScannedLocalImageCnt: 本地未开启扫描镜像数
+        # @type NotScannedLocalImageCnt: Integer
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :TotalAuthorizedCnt, :UsedAuthorizedCnt, :ScannedImageCnt, :NotScannedImageCnt, :RequestId
+        attr_accessor :TotalAuthorizedCnt, :UsedAuthorizedCnt, :ScannedImageCnt, :NotScannedImageCnt, :NotScannedLocalImageCnt, :RequestId
         
-        def initialize(totalauthorizedcnt=nil, usedauthorizedcnt=nil, scannedimagecnt=nil, notscannedimagecnt=nil, requestid=nil)
+        def initialize(totalauthorizedcnt=nil, usedauthorizedcnt=nil, scannedimagecnt=nil, notscannedimagecnt=nil, notscannedlocalimagecnt=nil, requestid=nil)
           @TotalAuthorizedCnt = totalauthorizedcnt
           @UsedAuthorizedCnt = usedauthorizedcnt
           @ScannedImageCnt = scannedimagecnt
           @NotScannedImageCnt = notscannedimagecnt
+          @NotScannedLocalImageCnt = notscannedlocalimagecnt
           @RequestId = requestid
         end
 
@@ -8302,6 +8320,7 @@ module TencentCloud
           @UsedAuthorizedCnt = params['UsedAuthorizedCnt']
           @ScannedImageCnt = params['ScannedImageCnt']
           @NotScannedImageCnt = params['NotScannedImageCnt']
+          @NotScannedLocalImageCnt = params['NotScannedLocalImageCnt']
           @RequestId = params['RequestId']
         end
       end
@@ -11960,21 +11979,36 @@ module TencentCloud
 
       # ModifyAssetImageScanStop请求参数结构体
       class ModifyAssetImageScanStopRequest < TencentCloud::Common::AbstractModel
-        # @param TaskID: 任务id
+        # @param TaskID: 任务id；任务id，镜像id和根据过滤条件筛选三选一。
         # @type TaskID: String
-        # @param Images: 镜像id
+        # @param Images: 镜像id；任务id，镜像id和根据过滤条件筛选三选一。
         # @type Images: Array
+        # @param Filters: 根据过滤条件筛选出镜像；任务id，镜像id和根据过滤条件筛选三选一。
+        # @type Filters: Array
+        # @param ExcludeImageIds: 根据过滤条件筛选出镜像，再排除个别镜像
+        # @type ExcludeImageIds: String
 
-        attr_accessor :TaskID, :Images
+        attr_accessor :TaskID, :Images, :Filters, :ExcludeImageIds
         
-        def initialize(taskid=nil, images=nil)
+        def initialize(taskid=nil, images=nil, filters=nil, excludeimageids=nil)
           @TaskID = taskid
           @Images = images
+          @Filters = filters
+          @ExcludeImageIds = excludeimageids
         end
 
         def deserialize(params)
           @TaskID = params['TaskID']
           @Images = params['Images']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              assetfilters_tmp = AssetFilters.new
+              assetfilters_tmp.deserialize(i)
+              @Filters << assetfilters_tmp
+            end
+          end
+          @ExcludeImageIds = params['ExcludeImageIds']
         end
       end
 

@@ -6775,7 +6775,7 @@ module TencentCloud
         # @type Default: Integer
         # @param Unit: 单位
         # @type Unit: String
-        # @param Type: 类型
+        # @param Type: 类型, integer|string
         # @type Type: String
         # @param Minimum: 最小
         # @type Minimum: Integer
@@ -6783,10 +6783,19 @@ module TencentCloud
         # @type Maximum: Integer
         # @param ModifedTime: 修改时间
         # @type ModifedTime: String
+        # @param ValueString: 字符类型的值，当Type为string时才有意义
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ValueString: String
+        # @param DefaultValueString: 字符类型的默认值，当Type为string时才有意义
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DefaultValueString: String
+        # @param Range: 可调整范围
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Range: String
 
-        attr_accessor :Name, :Value, :Default, :Unit, :Type, :Minimum, :Maximum, :ModifedTime
+        attr_accessor :Name, :Value, :Default, :Unit, :Type, :Minimum, :Maximum, :ModifedTime, :ValueString, :DefaultValueString, :Range
         
-        def initialize(name=nil, value=nil, default=nil, unit=nil, type=nil, minimum=nil, maximum=nil, modifedtime=nil)
+        def initialize(name=nil, value=nil, default=nil, unit=nil, type=nil, minimum=nil, maximum=nil, modifedtime=nil, valuestring=nil, defaultvaluestring=nil, range=nil)
           @Name = name
           @Value = value
           @Default = default
@@ -6795,6 +6804,9 @@ module TencentCloud
           @Minimum = minimum
           @Maximum = maximum
           @ModifedTime = modifedtime
+          @ValueString = valuestring
+          @DefaultValueString = defaultvaluestring
+          @Range = range
         end
 
         def deserialize(params)
@@ -6806,6 +6818,9 @@ module TencentCloud
           @Minimum = params['Minimum']
           @Maximum = params['Maximum']
           @ModifedTime = params['ModifedTime']
+          @ValueString = params['ValueString']
+          @DefaultValueString = params['DefaultValueString']
+          @Range = params['Range']
         end
       end
 

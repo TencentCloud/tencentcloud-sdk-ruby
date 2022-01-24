@@ -486,9 +486,9 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口用于识别涉黄、涉政等违规音频，成功会回调配置在应用的回调地址。回调示例如下：
+        # 本接口用于识别涉黄等违规音频，成功会回调配置在应用的回调地址。回调示例如下：
         # {"BizId":0,"FileId":"test_file_id","FileName":"test_file_name","FileUrl":"test_file_url","OpenId":"test_open_id","TimeStamp":"0000-00-00 00:00:00","Data":[{"Type":1,"Word":"xx"}]}
-        # Type表示过滤类型，1：政治，2：色情，3：谩骂
+        # Type表示过滤类型，1：色情，2：谩骂
 
         # @param request: Request instance for VoiceFilter.
         # @type request: :class:`Tencentcloud::gme::V20180711::VoiceFilterRequest`

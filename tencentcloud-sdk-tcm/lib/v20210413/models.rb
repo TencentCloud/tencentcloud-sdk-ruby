@@ -844,7 +844,7 @@ module TencentCloud
         # @param CanaryVersion: 灰度升级的版本
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CanaryVersion: String
-        # @param Prometheus: Prometheus状态
+        # @param Prometheus: 已废弃
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Prometheus: Array
         # @param StateMessage: 状态附带信息
@@ -853,15 +853,19 @@ module TencentCloud
         # @param ActiveOperationList: 正在执行的异步操作
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ActiveOperationList: Array
+        # @param TPS: 获取TPS信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TPS: :class:`Tencentcloud::Tcm.v20210413.models.PrometheusStatus`
 
-        attr_accessor :ServiceCount, :CanaryVersion, :Prometheus, :StateMessage, :ActiveOperationList
+        attr_accessor :ServiceCount, :CanaryVersion, :Prometheus, :StateMessage, :ActiveOperationList, :TPS
         
-        def initialize(servicecount=nil, canaryversion=nil, prometheus=nil, statemessage=nil, activeoperationlist=nil)
+        def initialize(servicecount=nil, canaryversion=nil, prometheus=nil, statemessage=nil, activeoperationlist=nil, tps=nil)
           @ServiceCount = servicecount
           @CanaryVersion = canaryversion
           @Prometheus = prometheus
           @StateMessage = statemessage
           @ActiveOperationList = activeoperationlist
+          @TPS = tps
         end
 
         def deserialize(params)
@@ -883,6 +887,10 @@ module TencentCloud
               activeoperation_tmp.deserialize(i)
               @ActiveOperationList << activeoperation_tmp
             end
+          end
+          unless params['TPS'].nil?
+            @TPS = PrometheusStatus.new
+            @TPS.deserialize(params['TPS'])
           end
         end
       end

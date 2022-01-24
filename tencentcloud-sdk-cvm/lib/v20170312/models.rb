@@ -2828,6 +2828,33 @@ module TencentCloud
         end
       end
 
+      # 实例GPU信息
+      class GPUInfo < TencentCloud::Common::AbstractModel
+        # @param GPUCount: 实例GPU个数。值小于1代表VGPU类型，大于1代表GPU直通类型。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GPUCount: Float
+        # @param GPUId: 实例GPU地址。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GPUId: Array
+        # @param GPUType: 实例GPU类型。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GPUType: String
+
+        attr_accessor :GPUCount, :GPUId, :GPUType
+        
+        def initialize(gpucount=nil, gpuid=nil, gputype=nil)
+          @GPUCount = gpucount
+          @GPUId = gpuid
+          @GPUType = gputype
+        end
+
+        def deserialize(params)
+          @GPUCount = params['GPUCount']
+          @GPUId = params['GPUId']
+          @GPUType = params['GPUType']
+        end
+      end
+
       # cdh实例详细信息
       class HostItem < TencentCloud::Common::AbstractModel
         # @param Placement: cdh实例所在的位置。通过该参数可以指定实例所属可用区，所属项目等属性。
@@ -3835,10 +3862,13 @@ module TencentCloud
         # @param IsolatedSource: 实例隔离类型。取值范围：<br><li>ARREAR：表示欠费隔离<br></li><li>EXPIRE：表示到期隔离<br></li><li>MANMADE：表示主动退还隔离<br></li><li>NOTISOLATED：表示未隔离<br></li>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsolatedSource: String
+        # @param GPUInfo: GPU信息。如果是gpu类型子机，该值会返回GPU信息，如果是其他类型子机则不返回。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GPUInfo: :class:`Tencentcloud::Cvm.v20170312.models.GPUInfo`
 
-        attr_accessor :Placement, :InstanceId, :InstanceType, :CPU, :Memory, :RestrictState, :InstanceName, :InstanceChargeType, :SystemDisk, :DataDisks, :PrivateIpAddresses, :PublicIpAddresses, :InternetAccessible, :VirtualPrivateCloud, :ImageId, :RenewFlag, :CreatedTime, :ExpiredTime, :OsName, :SecurityGroupIds, :LoginSettings, :InstanceState, :Tags, :StopChargingMode, :Uuid, :LatestOperation, :LatestOperationState, :LatestOperationRequestId, :DisasterRecoverGroupId, :IPv6Addresses, :CamRoleName, :HpcClusterId, :RdmaIpAddresses, :IsolatedSource
+        attr_accessor :Placement, :InstanceId, :InstanceType, :CPU, :Memory, :RestrictState, :InstanceName, :InstanceChargeType, :SystemDisk, :DataDisks, :PrivateIpAddresses, :PublicIpAddresses, :InternetAccessible, :VirtualPrivateCloud, :ImageId, :RenewFlag, :CreatedTime, :ExpiredTime, :OsName, :SecurityGroupIds, :LoginSettings, :InstanceState, :Tags, :StopChargingMode, :Uuid, :LatestOperation, :LatestOperationState, :LatestOperationRequestId, :DisasterRecoverGroupId, :IPv6Addresses, :CamRoleName, :HpcClusterId, :RdmaIpAddresses, :IsolatedSource, :GPUInfo
         
-        def initialize(placement=nil, instanceid=nil, instancetype=nil, cpu=nil, memory=nil, restrictstate=nil, instancename=nil, instancechargetype=nil, systemdisk=nil, datadisks=nil, privateipaddresses=nil, publicipaddresses=nil, internetaccessible=nil, virtualprivatecloud=nil, imageid=nil, renewflag=nil, createdtime=nil, expiredtime=nil, osname=nil, securitygroupids=nil, loginsettings=nil, instancestate=nil, tags=nil, stopchargingmode=nil, uuid=nil, latestoperation=nil, latestoperationstate=nil, latestoperationrequestid=nil, disasterrecovergroupid=nil, ipv6addresses=nil, camrolename=nil, hpcclusterid=nil, rdmaipaddresses=nil, isolatedsource=nil)
+        def initialize(placement=nil, instanceid=nil, instancetype=nil, cpu=nil, memory=nil, restrictstate=nil, instancename=nil, instancechargetype=nil, systemdisk=nil, datadisks=nil, privateipaddresses=nil, publicipaddresses=nil, internetaccessible=nil, virtualprivatecloud=nil, imageid=nil, renewflag=nil, createdtime=nil, expiredtime=nil, osname=nil, securitygroupids=nil, loginsettings=nil, instancestate=nil, tags=nil, stopchargingmode=nil, uuid=nil, latestoperation=nil, latestoperationstate=nil, latestoperationrequestid=nil, disasterrecovergroupid=nil, ipv6addresses=nil, camrolename=nil, hpcclusterid=nil, rdmaipaddresses=nil, isolatedsource=nil, gpuinfo=nil)
           @Placement = placement
           @InstanceId = instanceid
           @InstanceType = instancetype
@@ -3873,6 +3903,7 @@ module TencentCloud
           @HpcClusterId = hpcclusterid
           @RdmaIpAddresses = rdmaipaddresses
           @IsolatedSource = isolatedsource
+          @GPUInfo = gpuinfo
         end
 
         def deserialize(params)
@@ -3939,6 +3970,10 @@ module TencentCloud
           @HpcClusterId = params['HpcClusterId']
           @RdmaIpAddresses = params['RdmaIpAddresses']
           @IsolatedSource = params['IsolatedSource']
+          unless params['GPUInfo'].nil?
+            @GPUInfo = GPUInfo.new
+            @GPUInfo.deserialize(params['GPUInfo'])
+          end
         end
       end
 

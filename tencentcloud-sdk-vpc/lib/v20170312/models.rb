@@ -2726,26 +2726,32 @@ module TencentCloud
         # @type ResourceId: String
         # @param TrafficType: 流日志采集类型，ACCEPT|REJECT|ALL
         # @type TrafficType: String
-        # @param CloudLogId: 流日志存储ID
-        # @type CloudLogId: String
         # @param VpcId: 私用网络ID或者统一ID，建议使用统一ID，当ResourceType为CCN时不填，其他类型必填。
         # @type VpcId: String
         # @param FlowLogDescription: 流日志实例描述
         # @type FlowLogDescription: String
+        # @param CloudLogId: 流日志存储ID
+        # @type CloudLogId: String
         # @param Tags: 指定绑定的标签列表，例如：[{"Key": "city", "Value": "shanghai"}]
         # @type Tags: Array
+        # @param StorageType: 消费端类型：cls、ckafka
+        # @type StorageType: String
+        # @param FlowLogStorage: 流日志消费端信息，当消费端类型为ckafka时，必填。
+        # @type FlowLogStorage: :class:`Tencentcloud::Vpc.v20170312.models.FlowLogStorage`
 
-        attr_accessor :FlowLogName, :ResourceType, :ResourceId, :TrafficType, :CloudLogId, :VpcId, :FlowLogDescription, :Tags
+        attr_accessor :FlowLogName, :ResourceType, :ResourceId, :TrafficType, :VpcId, :FlowLogDescription, :CloudLogId, :Tags, :StorageType, :FlowLogStorage
         
-        def initialize(flowlogname=nil, resourcetype=nil, resourceid=nil, traffictype=nil, cloudlogid=nil, vpcid=nil, flowlogdescription=nil, tags=nil)
+        def initialize(flowlogname=nil, resourcetype=nil, resourceid=nil, traffictype=nil, vpcid=nil, flowlogdescription=nil, cloudlogid=nil, tags=nil, storagetype=nil, flowlogstorage=nil)
           @FlowLogName = flowlogname
           @ResourceType = resourcetype
           @ResourceId = resourceid
           @TrafficType = traffictype
-          @CloudLogId = cloudlogid
           @VpcId = vpcid
           @FlowLogDescription = flowlogdescription
+          @CloudLogId = cloudlogid
           @Tags = tags
+          @StorageType = storagetype
+          @FlowLogStorage = flowlogstorage
         end
 
         def deserialize(params)
@@ -2753,9 +2759,9 @@ module TencentCloud
           @ResourceType = params['ResourceType']
           @ResourceId = params['ResourceId']
           @TrafficType = params['TrafficType']
-          @CloudLogId = params['CloudLogId']
           @VpcId = params['VpcId']
           @FlowLogDescription = params['FlowLogDescription']
+          @CloudLogId = params['CloudLogId']
           unless params['Tags'].nil?
             @Tags = []
             params['Tags'].each do |i|
@@ -2763,6 +2769,11 @@ module TencentCloud
               tag_tmp.deserialize(i)
               @Tags << tag_tmp
             end
+          end
+          @StorageType = params['StorageType']
+          unless params['FlowLogStorage'].nil?
+            @FlowLogStorage = FlowLogStorage.new
+            @FlowLogStorage.deserialize(params['FlowLogStorage'])
           end
         end
       end
@@ -11004,32 +11015,40 @@ module TencentCloud
 
       # 流日志
       class FlowLog < TencentCloud::Common::AbstractModel
-        # @param VpcId: 私用网络ID或者统一ID，建议使用统一ID
+        # @param VpcId: 私用网络ID或者统一ID，建议使用统一ID。
         # @type VpcId: String
-        # @param FlowLogId: 流日志唯一ID
+        # @param FlowLogId: 流日志唯一ID。
         # @type FlowLogId: String
-        # @param FlowLogName: 流日志实例名字
+        # @param FlowLogName: 流日志实例名字。
         # @type FlowLogName: String
-        # @param ResourceType: 流日志所属资源类型，VPC|SUBNET|NETWORKINTERFACE|CCN
+        # @param ResourceType: 流日志所属资源类型，VPC|SUBNET|NETWORKINTERFACE|CCN。
         # @type ResourceType: String
-        # @param ResourceId: 资源唯一ID
+        # @param ResourceId: 资源唯一ID。
         # @type ResourceId: String
-        # @param TrafficType: 流日志采集类型，ACCEPT|REJECT|ALL
+        # @param TrafficType: 流日志采集类型，ACCEPT|REJECT|ALL。
         # @type TrafficType: String
-        # @param CloudLogId: 流日志存储ID
+        # @param CloudLogId: 流日志存储ID。
         # @type CloudLogId: String
-        # @param CloudLogState: 流日志存储ID状态
+        # @param CloudLogState: 流日志存储ID状态。
         # @type CloudLogState: String
-        # @param FlowLogDescription: 流日志描述信息
+        # @param FlowLogDescription: 流日志描述信息。
         # @type FlowLogDescription: String
-        # @param CreatedTime: 流日志创建时间
+        # @param CreatedTime: 流日志创建时间。
         # @type CreatedTime: String
-        # @param TagSet: 标签列表，例如：[{"Key": "city", "Value": "shanghai"}]
+        # @param TagSet: 标签列表，例如：[{"Key": "city", "Value": "shanghai"}]。
         # @type TagSet: Array
+        # @param Enable: 是否启用，true-启用，false-停用。
+        # @type Enable: Boolean
+        # @param StorageType: 消费端类型：cls、ckafka。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StorageType: String
+        # @param FlowLogStorage: 消费端信息，当消费端类型为ckafka时返回
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FlowLogStorage: :class:`Tencentcloud::Vpc.v20170312.models.FlowLogStorage`
 
-        attr_accessor :VpcId, :FlowLogId, :FlowLogName, :ResourceType, :ResourceId, :TrafficType, :CloudLogId, :CloudLogState, :FlowLogDescription, :CreatedTime, :TagSet
+        attr_accessor :VpcId, :FlowLogId, :FlowLogName, :ResourceType, :ResourceId, :TrafficType, :CloudLogId, :CloudLogState, :FlowLogDescription, :CreatedTime, :TagSet, :Enable, :StorageType, :FlowLogStorage
         
-        def initialize(vpcid=nil, flowlogid=nil, flowlogname=nil, resourcetype=nil, resourceid=nil, traffictype=nil, cloudlogid=nil, cloudlogstate=nil, flowlogdescription=nil, createdtime=nil, tagset=nil)
+        def initialize(vpcid=nil, flowlogid=nil, flowlogname=nil, resourcetype=nil, resourceid=nil, traffictype=nil, cloudlogid=nil, cloudlogstate=nil, flowlogdescription=nil, createdtime=nil, tagset=nil, enable=nil, storagetype=nil, flowlogstorage=nil)
           @VpcId = vpcid
           @FlowLogId = flowlogid
           @FlowLogName = flowlogname
@@ -11041,6 +11060,9 @@ module TencentCloud
           @FlowLogDescription = flowlogdescription
           @CreatedTime = createdtime
           @TagSet = tagset
+          @Enable = enable
+          @StorageType = storagetype
+          @FlowLogStorage = flowlogstorage
         end
 
         def deserialize(params)
@@ -11062,6 +11084,33 @@ module TencentCloud
               @TagSet << tag_tmp
             end
           end
+          @Enable = params['Enable']
+          @StorageType = params['StorageType']
+          unless params['FlowLogStorage'].nil?
+            @FlowLogStorage = FlowLogStorage.new
+            @FlowLogStorage.deserialize(params['FlowLogStorage'])
+          end
+        end
+      end
+
+      # 流日志存储信息
+      class FlowLogStorage < TencentCloud::Common::AbstractModel
+        # @param StorageId: 存储实例Id，当流日志存储类型为ckafka时，必填。
+        # @type StorageId: String
+        # @param StorageTopic: 主题Id，当流日志存储类型为ckafka时，必填。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StorageTopic: String
+
+        attr_accessor :StorageId, :StorageTopic
+        
+        def initialize(storageid=nil, storagetopic=nil)
+          @StorageId = storageid
+          @StorageTopic = storagetopic
+        end
+
+        def deserialize(params)
+          @StorageId = params['StorageId']
+          @StorageTopic = params['StorageTopic']
         end
       end
 

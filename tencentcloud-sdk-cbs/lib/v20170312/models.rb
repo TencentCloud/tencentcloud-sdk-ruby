@@ -129,7 +129,7 @@ module TencentCloud
         end
       end
 
-      # 自动初始化、挂载云盘时指定配置。
+      # 描述了新购云硬盘时自动将云硬盘初始化并挂载至云服务器内部的配置。
       class AutoMountConfiguration < TencentCloud::Common::AbstractModel
         # @param InstanceId: 要挂载到的实例ID。
         # @type InstanceId: Array

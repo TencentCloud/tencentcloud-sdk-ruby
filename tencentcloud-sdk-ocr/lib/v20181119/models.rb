@@ -4251,6 +4251,61 @@ module TencentCloud
         end
       end
 
+      # RecognizeHealthCodeOCR请求参数结构体
+      class RecognizeHealthCodeOCRRequest < TencentCloud::Common::AbstractModel
+        # @param ImageBase64: 图片的 Base64 值。
+        # 支持的图片格式：PNG、JPG、JPEG，暂不支持 GIF 格式。
+        # 支持的图片大小：所下载图片经Base64编码后不超过 7M。图片下载时间不超过 3 秒。
+        # 图片的 ImageUrl、ImageBase64 必须提供一个，如果都提供，只使用 ImageUrl。
+        # @type ImageBase64: String
+        # @param ImageUrl: 图片的 Url 地址。
+        # 支持的图片格式：PNG、JPG、JPEG，暂不支持 GIF 格式。
+        # 支持的图片大小：所下载图片经 Base64 编码后不超过 7M。图片下载时间不超过 3 秒。
+        # 图片存储于腾讯云的 Url 可保障更高的下载速度和稳定性，建议图片存储于腾讯云。
+        # 非腾讯云存储的 Url 速度和稳定性可能受一定影响。
+        # @type ImageUrl: String
+
+        attr_accessor :ImageBase64, :ImageUrl
+        
+        def initialize(imagebase64=nil, imageurl=nil)
+          @ImageBase64 = imagebase64
+          @ImageUrl = imageurl
+        end
+
+        def deserialize(params)
+          @ImageBase64 = params['ImageBase64']
+          @ImageUrl = params['ImageUrl']
+        end
+      end
+
+      # RecognizeHealthCodeOCR返回参数结构体
+      class RecognizeHealthCodeOCRResponse < TencentCloud::Common::AbstractModel
+        # @param Name: 持码人姓名
+        # @type Name: String
+        # @param Time: 健康码更新时间，格式为：XXXX-XX-XX XX:XX:XX
+        # @type Time: String
+        # @param Color: 健康码颜色：绿色、黄色、红色
+        # @type Color: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Name, :Time, :Color, :RequestId
+        
+        def initialize(name=nil, time=nil, color=nil, requestid=nil)
+          @Name = name
+          @Time = time
+          @Color = color
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Time = params['Time']
+          @Color = params['Color']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # RecognizeOnlineTaxiItineraryOCR请求参数结构体
       class RecognizeOnlineTaxiItineraryOCRRequest < TencentCloud::Common::AbstractModel
         # @param ImageBase64: 图片的 Base64 值。

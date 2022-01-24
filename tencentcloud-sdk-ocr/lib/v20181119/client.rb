@@ -1342,6 +1342,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口支持粤康码识别，包括姓名、更新时间、健康码颜色，三个字段的识别结果输出。
+
+        # @param request: Request instance for RecognizeHealthCodeOCR.
+        # @type request: :class:`Tencentcloud::ocr::V20181119::RecognizeHealthCodeOCRRequest`
+        # @rtype: :class:`Tencentcloud::ocr::V20181119::RecognizeHealthCodeOCRResponse`
+        def RecognizeHealthCodeOCR(request)
+          body = send_request('RecognizeHealthCodeOCR', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = RecognizeHealthCodeOCRResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口支持网约车行程单关键字段的识别，包括行程起止日期、上车时间、起点、终点、里程、金额等字段。
 
         # @param request: Request instance for RecognizeOnlineTaxiItineraryOCR.

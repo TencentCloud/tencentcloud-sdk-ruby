@@ -53,6 +53,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 创建外呼会话
+
+        # @param request: Request instance for CreateCallOutSession.
+        # @type request: :class:`Tencentcloud::ccc::V20200210::CreateCallOutSessionRequest`
+        # @rtype: :class:`Tencentcloud::ccc::V20200210::CreateCallOutSessionResponse`
+        def CreateCallOutSession(request)
+          body = send_request('CreateCallOutSession', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateCallOutSessionResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 创建 SDK 登录 Token。
 
         # @param request: Request instance for CreateSDKLoginToken.
@@ -135,6 +159,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteStaffResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 批量查询自动任务外呼
+
+        # @param request: Request instance for DescribeAutoCalloutTasks.
+        # @type request: :class:`Tencentcloud::ccc::V20200210::DescribeAutoCalloutTasksRequest`
+        # @rtype: :class:`Tencentcloud::ccc::V20200210::DescribeAutoCalloutTasksResponse`
+        def DescribeAutoCalloutTasks(request)
+          body = send_request('DescribeAutoCalloutTasks', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeAutoCalloutTasksResponse.new
             model.deserialize(response['Response'])
             model
           else
