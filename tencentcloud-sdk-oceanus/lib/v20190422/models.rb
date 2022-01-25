@@ -47,10 +47,12 @@ module TencentCloud
         # @type ClsLogsetId: String
         # @param ClsTopicId: CLS日志主题ID
         # @type ClsTopicId: String
+        # @param LogCollectType: 日志采集类型 2：CLS；3：COS
+        # @type LogCollectType: Integer
 
-        attr_accessor :JobId, :EntrypointClass, :ProgramArgs, :Remark, :ResourceRefs, :DefaultParallelism, :Properties, :AutoDelete, :COSBucket, :LogCollect, :JobManagerSpec, :TaskManagerSpec, :ClsLogsetId, :ClsTopicId
+        attr_accessor :JobId, :EntrypointClass, :ProgramArgs, :Remark, :ResourceRefs, :DefaultParallelism, :Properties, :AutoDelete, :COSBucket, :LogCollect, :JobManagerSpec, :TaskManagerSpec, :ClsLogsetId, :ClsTopicId, :LogCollectType
         
-        def initialize(jobid=nil, entrypointclass=nil, programargs=nil, remark=nil, resourcerefs=nil, defaultparallelism=nil, properties=nil, autodelete=nil, cosbucket=nil, logcollect=nil, jobmanagerspec=nil, taskmanagerspec=nil, clslogsetid=nil, clstopicid=nil)
+        def initialize(jobid=nil, entrypointclass=nil, programargs=nil, remark=nil, resourcerefs=nil, defaultparallelism=nil, properties=nil, autodelete=nil, cosbucket=nil, logcollect=nil, jobmanagerspec=nil, taskmanagerspec=nil, clslogsetid=nil, clstopicid=nil, logcollecttype=nil)
           @JobId = jobid
           @EntrypointClass = entrypointclass
           @ProgramArgs = programargs
@@ -65,6 +67,7 @@ module TencentCloud
           @TaskManagerSpec = taskmanagerspec
           @ClsLogsetId = clslogsetid
           @ClsTopicId = clstopicid
+          @LogCollectType = logcollecttype
         end
 
         def deserialize(params)
@@ -96,6 +99,7 @@ module TencentCloud
           @TaskManagerSpec = params['TaskManagerSpec']
           @ClsLogsetId = params['ClsLogsetId']
           @ClsTopicId = params['ClsTopicId']
+          @LogCollectType = params['LogCollectType']
         end
       end
 

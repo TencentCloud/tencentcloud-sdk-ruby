@@ -8154,11 +8154,11 @@ module TencentCloud
         # @type ServerIp: String
         # @param VideoFps: 推流视频帧率，单位: Hz。
         # @type VideoFps: Integer
-        # @param VideoSpeed: 推流视频码率，单位: Kbps。
+        # @param VideoSpeed: 推流视频码率，单位: bps。
         # @type VideoSpeed: Integer
         # @param AudioFps: 推流音频帧率，单位: Hz。
         # @type AudioFps: Integer
-        # @param AudioSpeed: 推流音频码率，单位: Kbps。
+        # @param AudioSpeed: 推流音频码率，单位: bps。
         # @type AudioSpeed: Integer
         # @param PushDomain: 推流域名。
         # @type PushDomain: String
@@ -8174,9 +8174,9 @@ module TencentCloud
         # @type Resolution: String
         # @param AsampleRate: 采样率。
         # @type AsampleRate: Integer
-        # @param MetaAudioSpeed: metadata 中的音频码率，单位: Kbps。
+        # @param MetaAudioSpeed: metadata 中的音频码率，单位: bps。
         # @type MetaAudioSpeed: Integer
-        # @param MetaVideoSpeed: metadata 中的视频码率，单位: Kbps。
+        # @param MetaVideoSpeed: metadata 中的视频码率，单位: bps。
         # @type MetaVideoSpeed: Integer
         # @param MetaFps: metadata 中的帧率。
         # @type MetaFps: Integer
