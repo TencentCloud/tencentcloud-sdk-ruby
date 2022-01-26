@@ -5888,15 +5888,30 @@ module TencentCloud
       class CreateSuperPlayerConfigRequest < TencentCloud::Common::AbstractModel
         # @param Name: 播放器配置名称，长度限制：64 个字符。只允许出现 [0-9a-zA-Z] 及 _- 字符（如 test_ABC-123），同一个用户该名称唯一。
         # @type Name: String
+        # @param AudioVideoType: 播放的音视频类型，可选值：
+        # <li>AdaptiveDynamicStream：自适应码流输出；</li>
+        # <li>Transcode：转码输出；</li>
+        # <li>Original：原始音视频。</li>
+        # 默认为 AdaptiveDynamicStream。
+        # @type AudioVideoType: String
         # @param DrmSwitch: 播放 DRM 保护的自适应码流开关：
         # <li>ON：开启，表示仅播放 DRM  保护的自适应码流输出；</li>
         # <li>OFF：关闭，表示播放未加密的自适应码流输出。</li>
         # 默认为 OFF。
+        # 当 AudioVideoType 为 AdaptiveDynamicStream 时，此参数有效。
         # @type DrmSwitch: String
-        # @param AdaptiveDynamicStreamingDefinition: 允许输出的未加密的自适应码流模板 ID，当 DrmSwitch 为 OFF 时必填。
+        # @param AdaptiveDynamicStreamingDefinition: 允许输出的未加密的自适应码流模板 ID。
+
+        # 当 AudioVideoType 为 AdaptiveDynamicStream 并且 DrmSwitch 为 OFF 时，此参数为必填。
         # @type AdaptiveDynamicStreamingDefinition: Integer
-        # @param DrmStreamingsInfo: 允许输出的 DRM 自适应码流模板内容，当 DrmSwitch 为 ON 时必填。
+        # @param DrmStreamingsInfo: 允许输出的 DRM 自适应码流模板内容。
+
+        # 当 AudioVideoType 为 AdaptiveDynamicStream 并且 DrmSwitch 为 ON 时，此参数为必填。
         # @type DrmStreamingsInfo: :class:`Tencentcloud::Vod.v20180717.models.DrmStreamingsInfo`
+        # @param TranscodeDefinition: 允许输出的转码模板 ID。
+
+        # 当 AudioVideoType 为 Transcode 时必填。
+        # @type TranscodeDefinition: Integer
         # @param ImageSpriteDefinition: 允许输出的雪碧图模板 ID。
         # @type ImageSpriteDefinition: Integer
         # @param ResolutionNames: 播放器对不于不同分辨率的子流展示名字，不填或者填空数组则使用默认配置：
@@ -5919,13 +5934,15 @@ module TencentCloud
         # @param SubAppId: 点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。
         # @type SubAppId: Integer
 
-        attr_accessor :Name, :DrmSwitch, :AdaptiveDynamicStreamingDefinition, :DrmStreamingsInfo, :ImageSpriteDefinition, :ResolutionNames, :Domain, :Scheme, :Comment, :SubAppId
+        attr_accessor :Name, :AudioVideoType, :DrmSwitch, :AdaptiveDynamicStreamingDefinition, :DrmStreamingsInfo, :TranscodeDefinition, :ImageSpriteDefinition, :ResolutionNames, :Domain, :Scheme, :Comment, :SubAppId
         
-        def initialize(name=nil, drmswitch=nil, adaptivedynamicstreamingdefinition=nil, drmstreamingsinfo=nil, imagespritedefinition=nil, resolutionnames=nil, domain=nil, scheme=nil, comment=nil, subappid=nil)
+        def initialize(name=nil, audiovideotype=nil, drmswitch=nil, adaptivedynamicstreamingdefinition=nil, drmstreamingsinfo=nil, transcodedefinition=nil, imagespritedefinition=nil, resolutionnames=nil, domain=nil, scheme=nil, comment=nil, subappid=nil)
           @Name = name
+          @AudioVideoType = audiovideotype
           @DrmSwitch = drmswitch
           @AdaptiveDynamicStreamingDefinition = adaptivedynamicstreamingdefinition
           @DrmStreamingsInfo = drmstreamingsinfo
+          @TranscodeDefinition = transcodedefinition
           @ImageSpriteDefinition = imagespritedefinition
           @ResolutionNames = resolutionnames
           @Domain = domain
@@ -5936,12 +5953,14 @@ module TencentCloud
 
         def deserialize(params)
           @Name = params['Name']
+          @AudioVideoType = params['AudioVideoType']
           @DrmSwitch = params['DrmSwitch']
           @AdaptiveDynamicStreamingDefinition = params['AdaptiveDynamicStreamingDefinition']
           unless params['DrmStreamingsInfo'].nil?
             @DrmStreamingsInfo = DrmStreamingsInfo.new
             @DrmStreamingsInfo.deserialize(params['DrmStreamingsInfo'])
           end
+          @TranscodeDefinition = params['TranscodeDefinition']
           @ImageSpriteDefinition = params['ImageSpriteDefinition']
           unless params['ResolutionNames'].nil?
             @ResolutionNames = []
@@ -14168,6 +14187,11 @@ module TencentCloud
       class ModifySuperPlayerConfigRequest < TencentCloud::Common::AbstractModel
         # @param Name: 播放器配置名称。
         # @type Name: String
+        # @param AudioVideoType: 播放的音视频类型，可选值：
+        # <li>AdaptiveDynamicStream：自适应码流输出；</li>
+        # <li>Transcode：转码输出；</li>
+        # <li>Original：原始音视频。</li>
+        # @type AudioVideoType: String
         # @param DrmSwitch: 播放 DRM 保护的自适应码流开关：
         # <li>ON：开启，表示仅播放 DRM  保护的自适应码流输出；</li>
         # <li>OFF：关闭，表示播放未加密的自适应码流输出。</li>
@@ -14176,6 +14200,8 @@ module TencentCloud
         # @type AdaptiveDynamicStreamingDefinition: Integer
         # @param DrmStreamingsInfo: 允许输出的 DRM 自适应码流模板内容。
         # @type DrmStreamingsInfo: :class:`Tencentcloud::Vod.v20180717.models.DrmStreamingsInfoForUpdate`
+        # @param TranscodeDefinition: 允许输出的转码模板 ID。
+        # @type TranscodeDefinition: Integer
         # @param ImageSpriteDefinition: 允许输出的雪碧图模板 ID。
         # @type ImageSpriteDefinition: Integer
         # @param ResolutionNames: 播放器对不于不同分辨率的子流展示名字。
@@ -14192,13 +14218,15 @@ module TencentCloud
         # @param SubAppId: 点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。
         # @type SubAppId: Integer
 
-        attr_accessor :Name, :DrmSwitch, :AdaptiveDynamicStreamingDefinition, :DrmStreamingsInfo, :ImageSpriteDefinition, :ResolutionNames, :Domain, :Scheme, :Comment, :SubAppId
+        attr_accessor :Name, :AudioVideoType, :DrmSwitch, :AdaptiveDynamicStreamingDefinition, :DrmStreamingsInfo, :TranscodeDefinition, :ImageSpriteDefinition, :ResolutionNames, :Domain, :Scheme, :Comment, :SubAppId
         
-        def initialize(name=nil, drmswitch=nil, adaptivedynamicstreamingdefinition=nil, drmstreamingsinfo=nil, imagespritedefinition=nil, resolutionnames=nil, domain=nil, scheme=nil, comment=nil, subappid=nil)
+        def initialize(name=nil, audiovideotype=nil, drmswitch=nil, adaptivedynamicstreamingdefinition=nil, drmstreamingsinfo=nil, transcodedefinition=nil, imagespritedefinition=nil, resolutionnames=nil, domain=nil, scheme=nil, comment=nil, subappid=nil)
           @Name = name
+          @AudioVideoType = audiovideotype
           @DrmSwitch = drmswitch
           @AdaptiveDynamicStreamingDefinition = adaptivedynamicstreamingdefinition
           @DrmStreamingsInfo = drmstreamingsinfo
+          @TranscodeDefinition = transcodedefinition
           @ImageSpriteDefinition = imagespritedefinition
           @ResolutionNames = resolutionnames
           @Domain = domain
@@ -14209,12 +14237,14 @@ module TencentCloud
 
         def deserialize(params)
           @Name = params['Name']
+          @AudioVideoType = params['AudioVideoType']
           @DrmSwitch = params['DrmSwitch']
           @AdaptiveDynamicStreamingDefinition = params['AdaptiveDynamicStreamingDefinition']
           unless params['DrmStreamingsInfo'].nil?
             @DrmStreamingsInfo = DrmStreamingsInfoForUpdate.new
             @DrmStreamingsInfo.deserialize(params['DrmStreamingsInfo'])
           end
+          @TranscodeDefinition = params['TranscodeDefinition']
           @ImageSpriteDefinition = params['ImageSpriteDefinition']
           unless params['ResolutionNames'].nil?
             @ResolutionNames = []

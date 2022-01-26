@@ -17,6 +17,57 @@
 module TencentCloud
   module Ivld
     module V20210903
+      # AddCustomPersonImage请求参数结构体
+      class AddCustomPersonImageRequest < TencentCloud::Common::AbstractModel
+        # @param PersonId: 自定义人物Id
+        # @type PersonId: String
+        # @param ImageURL: 自定义人物图片地址
+        # @type ImageURL: String
+        # @param Image: 图片数据base64之后的结果
+        # @type Image: String
+
+        attr_accessor :PersonId, :ImageURL, :Image
+        
+        def initialize(personid=nil, imageurl=nil, image=nil)
+          @PersonId = personid
+          @ImageURL = imageurl
+          @Image = image
+        end
+
+        def deserialize(params)
+          @PersonId = params['PersonId']
+          @ImageURL = params['ImageURL']
+          @Image = params['Image']
+        end
+      end
+
+      # AddCustomPersonImage返回参数结构体
+      class AddCustomPersonImageResponse < TencentCloud::Common::AbstractModel
+        # @param PersonId: 自定义人物Id
+        # @type PersonId: String
+        # @param ImageInfo: 自定义人脸图片信息
+        # @type ImageInfo: :class:`Tencentcloud::Ivld.v20210903.models.PersonImageInfo`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :PersonId, :ImageInfo, :RequestId
+        
+        def initialize(personid=nil, imageinfo=nil, requestid=nil)
+          @PersonId = personid
+          @ImageInfo = imageinfo
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @PersonId = params['PersonId']
+          unless params['ImageInfo'].nil?
+            @ImageInfo = PersonImageInfo.new
+            @ImageInfo.deserialize(params['ImageInfo'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 出现信息索引对
 
       # AppearIndex可选值定义如下：
@@ -126,6 +177,164 @@ module TencentCloud
         end
       end
 
+      # CreateCustomCategory请求参数结构体
+      class CreateCustomCategoryRequest < TencentCloud::Common::AbstractModel
+        # @param L1Category: 自定义一级类型
+        # @type L1Category: String
+        # @param L2Category: 自定义二级类型
+        # @type L2Category: String
+
+        attr_accessor :L1Category, :L2Category
+        
+        def initialize(l1category=nil, l2category=nil)
+          @L1Category = l1category
+          @L2Category = l2category
+        end
+
+        def deserialize(params)
+          @L1Category = params['L1Category']
+          @L2Category = params['L2Category']
+        end
+      end
+
+      # CreateCustomCategory返回参数结构体
+      class CreateCustomCategoryResponse < TencentCloud::Common::AbstractModel
+        # @param CategoryId: 自定义分类信息ID
+        # @type CategoryId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :CategoryId, :RequestId
+        
+        def initialize(categoryid=nil, requestid=nil)
+          @CategoryId = categoryid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @CategoryId = params['CategoryId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateCustomGroup请求参数结构体
+      class CreateCustomGroupRequest < TencentCloud::Common::AbstractModel
+        # @param Bucket: 人脸图片COS存储桶Host地址
+        # @type Bucket: String
+
+        attr_accessor :Bucket
+        
+        def initialize(bucket=nil)
+          @Bucket = bucket
+        end
+
+        def deserialize(params)
+          @Bucket = params['Bucket']
+        end
+      end
+
+      # CreateCustomGroup返回参数结构体
+      class CreateCustomGroupResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateCustomPerson请求参数结构体
+      class CreateCustomPersonRequest < TencentCloud::Common::AbstractModel
+        # @param Name: 自定义人物姓名
+        # @type Name: String
+        # @param BasicInfo: 自定义人物简要信息(仅用于标记，不支持检索)
+        # @type BasicInfo: String
+        # @param CategoryId: 自定义分类ID，如不存在接口会报错
+        # @type CategoryId: String
+        # @param ImageURL: 自定义人物图片URL，可支持任意地址，推荐使用COS
+        # @type ImageURL: String
+        # @param Image: 原始图片base64编码后的数据
+        # @type Image: String
+
+        attr_accessor :Name, :BasicInfo, :CategoryId, :ImageURL, :Image
+        
+        def initialize(name=nil, basicinfo=nil, categoryid=nil, imageurl=nil, image=nil)
+          @Name = name
+          @BasicInfo = basicinfo
+          @CategoryId = categoryid
+          @ImageURL = imageurl
+          @Image = image
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @BasicInfo = params['BasicInfo']
+          @CategoryId = params['CategoryId']
+          @ImageURL = params['ImageURL']
+          @Image = params['Image']
+        end
+      end
+
+      # CreateCustomPerson返回参数结构体
+      class CreateCustomPersonResponse < TencentCloud::Common::AbstractModel
+        # @param PersonId: 自定义人物Id
+        # @type PersonId: String
+        # @param ImageInfo: 自定义人脸信息
+        # @type ImageInfo: :class:`Tencentcloud::Ivld.v20210903.models.PersonImageInfo`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :PersonId, :ImageInfo, :RequestId
+        
+        def initialize(personid=nil, imageinfo=nil, requestid=nil)
+          @PersonId = personid
+          @ImageInfo = imageinfo
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @PersonId = params['PersonId']
+          unless params['ImageInfo'].nil?
+            @ImageInfo = PersonImageInfo.new
+            @ImageInfo.deserialize(params['ImageInfo'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateDefaultCategories请求参数结构体
+      class CreateDefaultCategoriesRequest < TencentCloud::Common::AbstractModel
+
+        
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # CreateDefaultCategories返回参数结构体
+      class CreateDefaultCategoriesResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateTask请求参数结构体
       class CreateTaskRequest < TencentCloud::Common::AbstractModel
         # @param MediaId: 媒资文件ID，最长32B
@@ -177,6 +386,90 @@ module TencentCloud
         end
       end
 
+      # 自定义分类信息
+      class CustomCategory < TencentCloud::Common::AbstractModel
+        # @param CategoryId: 自定义分类ID
+        # @type CategoryId: String
+        # @param L1Category: 一级自定义类型
+        # @type L1Category: String
+        # @param L2Category: 二级自定义类型
+        # @type L2Category: String
+
+        attr_accessor :CategoryId, :L1Category, :L2Category
+        
+        def initialize(categoryid=nil, l1category=nil, l2category=nil)
+          @CategoryId = categoryid
+          @L1Category = l1category
+          @L2Category = l2category
+        end
+
+        def deserialize(params)
+          @CategoryId = params['CategoryId']
+          @L1Category = params['L1Category']
+          @L2Category = params['L2Category']
+        end
+      end
+
+      # 自定义人物批量查询过滤条件
+      class CustomPersonFilter < TencentCloud::Common::AbstractModel
+        # @param Name: 待查询的人物姓名
+        # @type Name: String
+        # @param CategoryIdSet: 待过滤的自定义类型Id数组
+        # @type CategoryIdSet: Array
+        # @param PersonIdSet: 待过滤的自定义人物Id数组
+        # @type PersonIdSet: Array
+        # @param L1CategorySet: 一级自定义人物类型数组
+        # @type L1CategorySet: Array
+
+        attr_accessor :Name, :CategoryIdSet, :PersonIdSet, :L1CategorySet
+        
+        def initialize(name=nil, categoryidset=nil, personidset=nil, l1categoryset=nil)
+          @Name = name
+          @CategoryIdSet = categoryidset
+          @PersonIdSet = personidset
+          @L1CategorySet = l1categoryset
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @CategoryIdSet = params['CategoryIdSet']
+          @PersonIdSet = params['PersonIdSet']
+          @L1CategorySet = params['L1CategorySet']
+        end
+      end
+
+      # 自定义人物信息
+      class CustomPersonInfo < TencentCloud::Common::AbstractModel
+        # @param PersonId: 自定义人物Id
+        # @type PersonId: String
+        # @param Name: 自定义人物姓名
+        # @type Name: String
+        # @param BasicInfo: 自定义人物简介信息
+        # @type BasicInfo: String
+        # @param L1Category: 一级自定义人物类型
+        # @type L1Category: String
+        # @param L2Category: 二级自定义人物类型
+        # @type L2Category: String
+
+        attr_accessor :PersonId, :Name, :BasicInfo, :L1Category, :L2Category
+        
+        def initialize(personid=nil, name=nil, basicinfo=nil, l1category=nil, l2category=nil)
+          @PersonId = personid
+          @Name = name
+          @BasicInfo = basicinfo
+          @L1Category = l1category
+          @L2Category = l2category
+        end
+
+        def deserialize(params)
+          @PersonId = params['PersonId']
+          @Name = params['Name']
+          @BasicInfo = params['BasicInfo']
+          @L1Category = params['L1Category']
+          @L2Category = params['L2Category']
+        end
+      end
+
       # 任务结果数据
       class Data < TencentCloud::Common::AbstractModel
         # @param ShowInfo: 节目粒度结构化结果
@@ -194,6 +487,122 @@ module TencentCloud
             @ShowInfo = ShowInfo.new
             @ShowInfo.deserialize(params['ShowInfo'])
           end
+        end
+      end
+
+      # DeleteCustomCategory请求参数结构体
+      class DeleteCustomCategoryRequest < TencentCloud::Common::AbstractModel
+        # @param CategoryId: 自定义分类ID
+        # @type CategoryId: String
+
+        attr_accessor :CategoryId
+        
+        def initialize(categoryid=nil)
+          @CategoryId = categoryid
+        end
+
+        def deserialize(params)
+          @CategoryId = params['CategoryId']
+        end
+      end
+
+      # DeleteCustomCategory返回参数结构体
+      class DeleteCustomCategoryResponse < TencentCloud::Common::AbstractModel
+        # @param CategoryId: 123
+        # @type CategoryId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :CategoryId, :RequestId
+        
+        def initialize(categoryid=nil, requestid=nil)
+          @CategoryId = categoryid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @CategoryId = params['CategoryId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteCustomPersonImage请求参数结构体
+      class DeleteCustomPersonImageRequest < TencentCloud::Common::AbstractModel
+        # @param PersonId: 自定义人物Id
+        # @type PersonId: String
+        # @param ImageId: 自定义人脸图片Id
+        # @type ImageId: String
+
+        attr_accessor :PersonId, :ImageId
+        
+        def initialize(personid=nil, imageid=nil)
+          @PersonId = personid
+          @ImageId = imageid
+        end
+
+        def deserialize(params)
+          @PersonId = params['PersonId']
+          @ImageId = params['ImageId']
+        end
+      end
+
+      # DeleteCustomPersonImage返回参数结构体
+      class DeleteCustomPersonImageResponse < TencentCloud::Common::AbstractModel
+        # @param PersonId: 自定义人物Id
+        # @type PersonId: String
+        # @param ImageId: 已删除的人物图片Id
+        # @type ImageId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :PersonId, :ImageId, :RequestId
+        
+        def initialize(personid=nil, imageid=nil, requestid=nil)
+          @PersonId = personid
+          @ImageId = imageid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @PersonId = params['PersonId']
+          @ImageId = params['ImageId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteCustomPerson请求参数结构体
+      class DeleteCustomPersonRequest < TencentCloud::Common::AbstractModel
+        # @param PersonId: 待删除的自定义人物ID
+        # @type PersonId: String
+
+        attr_accessor :PersonId
+        
+        def initialize(personid=nil)
+          @PersonId = personid
+        end
+
+        def deserialize(params)
+          @PersonId = params['PersonId']
+        end
+      end
+
+      # DeleteCustomPerson返回参数结构体
+      class DeleteCustomPersonResponse < TencentCloud::Common::AbstractModel
+        # @param PersonId: 已删除的自定义人物Id
+        # @type PersonId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :PersonId, :RequestId
+        
+        def initialize(personid=nil, requestid=nil)
+          @PersonId = personid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @PersonId = params['PersonId']
+          @RequestId = params['RequestId']
         end
       end
 
@@ -225,6 +634,188 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeCustomCategories请求参数结构体
+      class DescribeCustomCategoriesRequest < TencentCloud::Common::AbstractModel
+
+        
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeCustomCategories返回参数结构体
+      class DescribeCustomCategoriesResponse < TencentCloud::Common::AbstractModel
+        # @param CategorySet: 自定义人物类型数组
+        # @type CategorySet: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :CategorySet, :RequestId
+        
+        def initialize(categoryset=nil, requestid=nil)
+          @CategorySet = categoryset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['CategorySet'].nil?
+            @CategorySet = []
+            params['CategorySet'].each do |i|
+              customcategory_tmp = CustomCategory.new
+              customcategory_tmp.deserialize(i)
+              @CategorySet << customcategory_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeCustomGroup请求参数结构体
+      class DescribeCustomGroupRequest < TencentCloud::Common::AbstractModel
+
+        
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeCustomGroup返回参数结构体
+      class DescribeCustomGroupResponse < TencentCloud::Common::AbstractModel
+        # @param GroupSize: 自定义人物库所包含的人物个数
+        # @type GroupSize: Integer
+        # @param Bucket: 自定义人物库图片后续所在的存储桶
+        # @type Bucket: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :GroupSize, :Bucket, :RequestId
+        
+        def initialize(groupsize=nil, bucket=nil, requestid=nil)
+          @GroupSize = groupsize
+          @Bucket = bucket
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @GroupSize = params['GroupSize']
+          @Bucket = params['Bucket']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeCustomPersonDetail请求参数结构体
+      class DescribeCustomPersonDetailRequest < TencentCloud::Common::AbstractModel
+        # @param PersonId: 自定义人物Id
+        # @type PersonId: String
+
+        attr_accessor :PersonId
+        
+        def initialize(personid=nil)
+          @PersonId = personid
+        end
+
+        def deserialize(params)
+          @PersonId = params['PersonId']
+        end
+      end
+
+      # DescribeCustomPersonDetail返回参数结构体
+      class DescribeCustomPersonDetailResponse < TencentCloud::Common::AbstractModel
+        # @param PersonInfo: 自定义人物信息
+        # @type PersonInfo: :class:`Tencentcloud::Ivld.v20210903.models.CustomPersonInfo`
+        # @param TaskIdSet: 出现该自定义人物的所有分析人物Id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TaskIdSet: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :PersonInfo, :TaskIdSet, :RequestId
+        
+        def initialize(personinfo=nil, taskidset=nil, requestid=nil)
+          @PersonInfo = personinfo
+          @TaskIdSet = taskidset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['PersonInfo'].nil?
+            @PersonInfo = CustomPersonInfo.new
+            @PersonInfo.deserialize(params['PersonInfo'])
+          end
+          @TaskIdSet = params['TaskIdSet']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeCustomPersons请求参数结构体
+      class DescribeCustomPersonsRequest < TencentCloud::Common::AbstractModel
+        # @param PageNumber: 分页序号，从1开始
+        # @type PageNumber: Integer
+        # @param PageSize: 分页数据行数，最多50
+        # @type PageSize: Integer
+        # @param SortBy: 排序信息，默认倒序
+        # @type SortBy: :class:`Tencentcloud::Ivld.v20210903.models.SortBy`
+        # @param Filter: 自定义人物过滤条件
+        # @type Filter: :class:`Tencentcloud::Ivld.v20210903.models.CustomPersonFilter`
+
+        attr_accessor :PageNumber, :PageSize, :SortBy, :Filter
+        
+        def initialize(pagenumber=nil, pagesize=nil, sortby=nil, filter=nil)
+          @PageNumber = pagenumber
+          @PageSize = pagesize
+          @SortBy = sortby
+          @Filter = filter
+        end
+
+        def deserialize(params)
+          @PageNumber = params['PageNumber']
+          @PageSize = params['PageSize']
+          unless params['SortBy'].nil?
+            @SortBy = SortBy.new
+            @SortBy.deserialize(params['SortBy'])
+          end
+          unless params['Filter'].nil?
+            @Filter = CustomPersonFilter.new
+            @Filter.deserialize(params['Filter'])
+          end
+        end
+      end
+
+      # DescribeCustomPersons返回参数结构体
+      class DescribeCustomPersonsResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 满足过滤条件的自定义人物数量
+        # @type TotalCount: Integer
+        # @param PersonInfoSet: 自定义人物信息
+        # @type PersonInfoSet: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :PersonInfoSet, :RequestId
+        
+        def initialize(totalcount=nil, personinfoset=nil, requestid=nil)
+          @TotalCount = totalcount
+          @PersonInfoSet = personinfoset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['PersonInfoSet'].nil?
+            @PersonInfoSet = []
+            params['PersonInfoSet'].each do |i|
+              custompersoninfo_tmp = CustomPersonInfo.new
+              custompersoninfo_tmp.deserialize(i)
+              @PersonInfoSet << custompersoninfo_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -904,6 +1495,34 @@ module TencentCloud
         end
       end
 
+      # 自定义人物人脸图片信息
+      class PersonImageInfo < TencentCloud::Common::AbstractModel
+        # @param ImageId: 人脸图片ID
+        # @type ImageId: String
+        # @param ImageURL: 自定义人脸图片的URL，存储在IVLDCustomPreson存储桶内
+        # @type ImageURL: String
+        # @param ErrorCode: 自定义人脸图片处理错误码
+        # @type ErrorCode: String
+        # @param ErrorMsg: 自定义人脸图片处理错误信息
+        # @type ErrorMsg: String
+
+        attr_accessor :ImageId, :ImageURL, :ErrorCode, :ErrorMsg
+        
+        def initialize(imageid=nil, imageurl=nil, errorcode=nil, errormsg=nil)
+          @ImageId = imageid
+          @ImageURL = imageurl
+          @ErrorCode = errorcode
+          @ErrorMsg = errormsg
+        end
+
+        def deserialize(params)
+          @ImageId = params['ImageId']
+          @ImageURL = params['ImageURL']
+          @ErrorCode = params['ErrorCode']
+          @ErrorMsg = params['ErrorMsg']
+        end
+      end
+
       # 视频结构化结果
       class ShowInfo < TencentCloud::Common::AbstractModel
         # @param Date: 节目日期(只在新闻有效)
@@ -1197,6 +1816,98 @@ module TencentCloud
           @StartTimeStamp = params['StartTimeStamp']
           @EndTimeStamp = params['EndTimeStamp']
           @Tag = params['Tag']
+        end
+      end
+
+      # UpdateCustomCategory请求参数结构体
+      class UpdateCustomCategoryRequest < TencentCloud::Common::AbstractModel
+        # @param CategoryId: 自定义人物类型Id
+        # @type CategoryId: String
+        # @param L1Category: 一级自定义人物类型
+        # @type L1Category: String
+        # @param L2Category: 二级自定义人物类型
+        # @type L2Category: String
+
+        attr_accessor :CategoryId, :L1Category, :L2Category
+        
+        def initialize(categoryid=nil, l1category=nil, l2category=nil)
+          @CategoryId = categoryid
+          @L1Category = l1category
+          @L2Category = l2category
+        end
+
+        def deserialize(params)
+          @CategoryId = params['CategoryId']
+          @L1Category = params['L1Category']
+          @L2Category = params['L2Category']
+        end
+      end
+
+      # UpdateCustomCategory返回参数结构体
+      class UpdateCustomCategoryResponse < TencentCloud::Common::AbstractModel
+        # @param CategoryId: 成功更新的自定义人物类型Id
+        # @type CategoryId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :CategoryId, :RequestId
+        
+        def initialize(categoryid=nil, requestid=nil)
+          @CategoryId = categoryid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @CategoryId = params['CategoryId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # UpdateCustomPerson请求参数结构体
+      class UpdateCustomPersonRequest < TencentCloud::Common::AbstractModel
+        # @param PersonId: 待更新的自定义人物Id
+        # @type PersonId: String
+        # @param Name: 更新后的自定义人物名称，如为空则不更新
+        # @type Name: String
+        # @param BasicInfo: 更新后的自定义人物简介，如为空则不更新
+        # @type BasicInfo: String
+        # @param CategoryId: 更新后的分类信息，如为空则不更新
+        # @type CategoryId: String
+
+        attr_accessor :PersonId, :Name, :BasicInfo, :CategoryId
+        
+        def initialize(personid=nil, name=nil, basicinfo=nil, categoryid=nil)
+          @PersonId = personid
+          @Name = name
+          @BasicInfo = basicinfo
+          @CategoryId = categoryid
+        end
+
+        def deserialize(params)
+          @PersonId = params['PersonId']
+          @Name = params['Name']
+          @BasicInfo = params['BasicInfo']
+          @CategoryId = params['CategoryId']
+        end
+      end
+
+      # UpdateCustomPerson返回参数结构体
+      class UpdateCustomPersonResponse < TencentCloud::Common::AbstractModel
+        # @param PersonId: 成功更新的自定义人物Id
+        # @type PersonId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :PersonId, :RequestId
+        
+        def initialize(personid=nil, requestid=nil)
+          @PersonId = personid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @PersonId = params['PersonId']
+          @RequestId = params['RequestId']
         end
       end
 

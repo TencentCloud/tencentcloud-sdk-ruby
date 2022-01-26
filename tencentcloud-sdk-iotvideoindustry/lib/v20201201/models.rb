@@ -2074,7 +2074,7 @@ module TencentCloud
         # @type EndTime: Integer
         # @param DeviceId: 设备Id
         # @type DeviceId: String
-        # @param EventTypes: 事件类型 1:注册 2:心跳 4:录制异常 5:播放异常 6:流中断
+        # @param EventTypes: 默认为全部 事件类型 1:注册 2:心跳 4:录制异常 5:播放异常 6:流中断
         # @type EventTypes: Array
         # @param Offset: 偏移值
         # @type Offset: Integer
@@ -4258,9 +4258,9 @@ module TencentCloud
       class DescribeXP2PDataRequest < TencentCloud::Common::AbstractModel
         # @param P2PAppId: P2P应用ID
         # @type P2PAppId: String
-        # @param From: 查询开始时间
+        # @param From: 查询开始时间，时间戳秒
         # @type From: Integer
-        # @param To: 查询结束时间
+        # @param To: 查询结束时间，时间戳秒
         # @type To: Integer
         # @param P2PChannelId: P2P通路ID
         # @type P2PChannelId: String
@@ -4697,9 +4697,9 @@ module TencentCloud
       class GetVideoListByConRequest < TencentCloud::Common::AbstractModel
         # @param DeviceId: 设备唯一标识
         # @type DeviceId: String
-        # @param Offset: 偏移量，默认0
+        # @param Offset: 偏移量
         # @type Offset: Integer
-        # @param Limit: 限制量，默认200
+        # @param Limit: 限制量
         # @type Limit: Integer
         # @param ChannelId: 通道唯一标识，对于NVR设备，多通道IPC设备，设备编码与通道编码不一致的IPC设备，此字段为必填
         # @type ChannelId: String

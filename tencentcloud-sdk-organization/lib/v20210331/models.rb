@@ -239,12 +239,18 @@ module TencentCloud
         # @param IsAllowQuit: 是否允许退出。允许：Allow，不允许：Denied。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsAllowQuit: String
+        # @param PayUin: 代付者Uin
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PayUin: String
+        # @param PayName: 代付者名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PayName: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :OrgId, :HostUin, :NickName, :OrgType, :IsManager, :OrgPolicyType, :OrgPolicyName, :OrgPermission, :RootNodeId, :CreateTime, :JoinTime, :IsAllowQuit, :RequestId
+        attr_accessor :OrgId, :HostUin, :NickName, :OrgType, :IsManager, :OrgPolicyType, :OrgPolicyName, :OrgPermission, :RootNodeId, :CreateTime, :JoinTime, :IsAllowQuit, :PayUin, :PayName, :RequestId
         
-        def initialize(orgid=nil, hostuin=nil, nickname=nil, orgtype=nil, ismanager=nil, orgpolicytype=nil, orgpolicyname=nil, orgpermission=nil, rootnodeid=nil, createtime=nil, jointime=nil, isallowquit=nil, requestid=nil)
+        def initialize(orgid=nil, hostuin=nil, nickname=nil, orgtype=nil, ismanager=nil, orgpolicytype=nil, orgpolicyname=nil, orgpermission=nil, rootnodeid=nil, createtime=nil, jointime=nil, isallowquit=nil, payuin=nil, payname=nil, requestid=nil)
           @OrgId = orgid
           @HostUin = hostuin
           @NickName = nickname
@@ -257,6 +263,8 @@ module TencentCloud
           @CreateTime = createtime
           @JoinTime = jointime
           @IsAllowQuit = isallowquit
+          @PayUin = payuin
+          @PayName = payname
           @RequestId = requestid
         end
 
@@ -280,6 +288,8 @@ module TencentCloud
           @CreateTime = params['CreateTime']
           @JoinTime = params['JoinTime']
           @IsAllowQuit = params['IsAllowQuit']
+          @PayUin = params['PayUin']
+          @PayName = params['PayName']
           @RequestId = params['RequestId']
         end
       end

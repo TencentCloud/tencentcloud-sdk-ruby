@@ -646,16 +646,20 @@ module TencentCloud
         # <li>Pause：暂停</li>
         # <li>Destroy：销毁</li>
         # @type Statuses: Array
+        # @param CreateTime: 匹配创建时间在此时间段内的机器人。
+        # <li>包含所指定的头尾时间点。</li>
+        # @type CreateTime: :class:`Tencentcloud::Ame.v20190916.models.TimeRange`
         # @param Offset: 分页返回的起始偏移量，默认值：0。将返回第 Offset 到第 Offset+Limit-1 条。
         # @type Offset: Integer
         # @param Limit: 分页返回的起始偏移量，默认值：10。
         # @type Limit: Integer
 
-        attr_accessor :RobotIds, :Statuses, :Offset, :Limit
+        attr_accessor :RobotIds, :Statuses, :CreateTime, :Offset, :Limit
         
-        def initialize(robotids=nil, statuses=nil, offset=nil, limit=nil)
+        def initialize(robotids=nil, statuses=nil, createtime=nil, offset=nil, limit=nil)
           @RobotIds = robotids
           @Statuses = statuses
+          @CreateTime = createtime
           @Offset = offset
           @Limit = limit
         end
@@ -663,6 +667,10 @@ module TencentCloud
         def deserialize(params)
           @RobotIds = params['RobotIds']
           @Statuses = params['Statuses']
+          unless params['CreateTime'].nil?
+            @CreateTime = TimeRange.new
+            @CreateTime.deserialize(params['CreateTime'])
+          end
           @Offset = params['Offset']
           @Limit = params['Limit']
         end
@@ -2225,6 +2233,28 @@ module TencentCloud
           @FailedNum = params['FailedNum']
           @FailedMusicIds = params['FailedMusicIds']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 时间范围
+      class TimeRange < TencentCloud::Common::AbstractModel
+        # @param Before: <li>大于等于此时间（起始时间）。</li>
+        # <li>格式按照 ISO 8601标准表示，详见 <a href="https://cloud.tencent.com/document/product/266/11732#I" target="_blank">ISO 日期格式说明</a>。</li>
+        # @type Before: String
+        # @param After: <li>小于此时间（结束时间）。</li>
+        # <li>格式按照 ISO 8601标准表示，详见 <a href="https://cloud.tencent.com/document/product/266/11732#I" target="_blank">ISO 日期格式说明</a>。</li>
+        # @type After: String
+
+        attr_accessor :Before, :After
+        
+        def initialize(before=nil, after=nil)
+          @Before = before
+          @After = after
+        end
+
+        def deserialize(params)
+          @Before = params['Before']
+          @After = params['After']
         end
       end
 

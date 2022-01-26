@@ -318,6 +318,57 @@ module TencentCloud
         end
       end
 
+      # CopySnapshotCrossRegions请求参数结构体
+      class CopySnapshotCrossRegionsRequest < TencentCloud::Common::AbstractModel
+        # @param DestinationRegions: 快照需要复制到的目标地域，各地域的标准取值可通过接口[DescribeRegions](https://cloud.tencent.com/document/product/213/9456)查询，且只能传入支持快照的地域。
+        # @type DestinationRegions: Array
+        # @param SnapshotId: 需要跨地域复制的源快照ID，可通过[DescribeSnapshots](/document/product/362/15647)查询。
+        # @type SnapshotId: String
+        # @param SnapshotName: 新复制快照的名称，如果不传，则默认取值为“Copied 源快照ID from 地域名”。
+        # @type SnapshotName: String
+
+        attr_accessor :DestinationRegions, :SnapshotId, :SnapshotName
+        
+        def initialize(destinationregions=nil, snapshotid=nil, snapshotname=nil)
+          @DestinationRegions = destinationregions
+          @SnapshotId = snapshotid
+          @SnapshotName = snapshotname
+        end
+
+        def deserialize(params)
+          @DestinationRegions = params['DestinationRegions']
+          @SnapshotId = params['SnapshotId']
+          @SnapshotName = params['SnapshotName']
+        end
+      end
+
+      # CopySnapshotCrossRegions返回参数结构体
+      class CopySnapshotCrossRegionsResponse < TencentCloud::Common::AbstractModel
+        # @param SnapshotCopyResultSet: 快照跨地域复制的结果，如果请求下发成功，则返回相应地地域的新快照ID，否则返回Error。
+        # @type SnapshotCopyResultSet: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :SnapshotCopyResultSet, :RequestId
+        
+        def initialize(snapshotcopyresultset=nil, requestid=nil)
+          @SnapshotCopyResultSet = snapshotcopyresultset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['SnapshotCopyResultSet'].nil?
+            @SnapshotCopyResultSet = []
+            params['SnapshotCopyResultSet'].each do |i|
+              snapshotcopyresult_tmp = SnapshotCopyResult.new
+              snapshotcopyresult_tmp.deserialize(i)
+              @SnapshotCopyResultSet << snapshotcopyresult_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateAutoSnapshotPolicy请求参数结构体
       class CreateAutoSnapshotPolicyRequest < TencentCloud::Common::AbstractModel
         # @param Policy: 定期快照的执行策略。
@@ -2560,6 +2611,34 @@ module TencentCloud
           @DiskUsage = params['DiskUsage']
           @SnapshotId = params['SnapshotId']
           @TimeStartShare = params['TimeStartShare']
+        end
+      end
+
+      # 描述快照跨地域复制的结果。
+      class SnapshotCopyResult < TencentCloud::Common::AbstractModel
+        # @param SnapshotId: 复制到目标地域的新快照ID。
+        # @type SnapshotId: String
+        # @param Message: 指示具体错误信息，成功时为空字符串。
+        # @type Message: String
+        # @param Code: 错误码，成功时取值为“Success”。
+        # @type Code: String
+        # @param DestinationRegion: 跨地复制的目标地域。
+        # @type DestinationRegion: String
+
+        attr_accessor :SnapshotId, :Message, :Code, :DestinationRegion
+        
+        def initialize(snapshotid=nil, message=nil, code=nil, destinationregion=nil)
+          @SnapshotId = snapshotid
+          @Message = message
+          @Code = code
+          @DestinationRegion = destinationregion
+        end
+
+        def deserialize(params)
+          @SnapshotId = params['SnapshotId']
+          @Message = params['Message']
+          @Code = params['Code']
+          @DestinationRegion = params['DestinationRegion']
         end
       end
 
