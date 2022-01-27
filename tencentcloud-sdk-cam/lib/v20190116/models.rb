@@ -3861,10 +3861,13 @@ module TencentCloud
         # @param CreateTime: 创建时间
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreateTime: String
+        # @param NickName: 昵称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NickName: String
 
-        attr_accessor :Uin, :Name, :Uid, :Remark, :ConsoleLogin, :PhoneNum, :CountryCode, :Email, :CreateTime
+        attr_accessor :Uin, :Name, :Uid, :Remark, :ConsoleLogin, :PhoneNum, :CountryCode, :Email, :CreateTime, :NickName
         
-        def initialize(uin=nil, name=nil, uid=nil, remark=nil, consolelogin=nil, phonenum=nil, countrycode=nil, email=nil, createtime=nil)
+        def initialize(uin=nil, name=nil, uid=nil, remark=nil, consolelogin=nil, phonenum=nil, countrycode=nil, email=nil, createtime=nil, nickname=nil)
           @Uin = uin
           @Name = name
           @Uid = uid
@@ -3874,6 +3877,7 @@ module TencentCloud
           @CountryCode = countrycode
           @Email = email
           @CreateTime = createtime
+          @NickName = nickname
         end
 
         def deserialize(params)
@@ -3886,6 +3890,7 @@ module TencentCloud
           @CountryCode = params['CountryCode']
           @Email = params['Email']
           @CreateTime = params['CreateTime']
+          @NickName = params['NickName']
         end
       end
 

@@ -224,9 +224,9 @@ module TencentCloud
 
       # 描述代理商代付的订单信息
       class AgentDealElem < TencentCloud::Common::AbstractModel
-        # @param DealId: 订单自增 ID
+        # @param DealId: 订单自增 ID【请勿依赖该字段作为唯一标识】
         # @type DealId: String
-        # @param DealName: 订单号
+        # @param DealName: 订单号【订单唯一键】
         # @type DealName: String
         # @param GoodsCategoryId: 商品类型 ID
         # @type GoodsCategoryId: String
@@ -382,9 +382,9 @@ module TencentCloud
 
       # 描述代理商代付的订单信息
       class AgentDealNewElem < TencentCloud::Common::AbstractModel
-        # @param DealId: 订单自增 ID
+        # @param DealId: 订单自增 ID【请勿依赖该字段作为唯一标识】
         # @type DealId: String
-        # @param DealName: 订单号
+        # @param DealName: 订单号【订单唯一键】
         # @type DealName: String
         # @param GoodsCategoryId: 商品类型 ID
         # @type GoodsCategoryId: String

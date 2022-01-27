@@ -328,6 +328,52 @@ module TencentCloud
         end
       end
 
+      # 分类创建事件。
+      class ClassCreatedEvent < TencentCloud::Common::AbstractModel
+        # @param Owner: 分类归属。
+        # @type Owner: :class:`Tencentcloud::Cme.v20191029.models.Entity`
+        # @param ClassPath: 分类路径。
+        # @type ClassPath: String
+
+        attr_accessor :Owner, :ClassPath
+        
+        def initialize(owner=nil, classpath=nil)
+          @Owner = owner
+          @ClassPath = classpath
+        end
+
+        def deserialize(params)
+          unless params['Owner'].nil?
+            @Owner = Entity.new
+            @Owner.deserialize(params['Owner'])
+          end
+          @ClassPath = params['ClassPath']
+        end
+      end
+
+      # 分类删除事件。
+      class ClassDeletedEvent < TencentCloud::Common::AbstractModel
+        # @param Owner: 删除的分类归属。
+        # @type Owner: :class:`Tencentcloud::Cme.v20191029.models.Entity`
+        # @param ClassPathSet: 删除的分类路径列表。
+        # @type ClassPathSet: Array
+
+        attr_accessor :Owner, :ClassPathSet
+        
+        def initialize(owner=nil, classpathset=nil)
+          @Owner = owner
+          @ClassPathSet = classpathset
+        end
+
+        def deserialize(params)
+          unless params['Owner'].nil?
+            @Owner = Entity.new
+            @Owner.deserialize(params['Owner'])
+          end
+          @ClassPathSet = params['ClassPathSet']
+        end
+      end
+
       # 分类信息
       class ClassInfo < TencentCloud::Common::AbstractModel
         # @param Owner: 归属者。
@@ -348,6 +394,40 @@ module TencentCloud
             @Owner.deserialize(params['Owner'])
           end
           @ClassPath = params['ClassPath']
+        end
+      end
+
+      # 分类移动事件。
+      class ClassMovedEvent < TencentCloud::Common::AbstractModel
+        # @param SourceOwner: 源分类归属。
+        # @type SourceOwner: :class:`Tencentcloud::Cme.v20191029.models.Entity`
+        # @param SourceClassPathSet: 源分类路径列表。
+        # @type SourceClassPathSet: Array
+        # @param DestinationOwner: 目标分类归属。
+        # @type DestinationOwner: :class:`Tencentcloud::Cme.v20191029.models.Entity`
+        # @param DestinationClassPath: 目标分类归属。
+        # @type DestinationClassPath: String
+
+        attr_accessor :SourceOwner, :SourceClassPathSet, :DestinationOwner, :DestinationClassPath
+        
+        def initialize(sourceowner=nil, sourceclasspathset=nil, destinationowner=nil, destinationclasspath=nil)
+          @SourceOwner = sourceowner
+          @SourceClassPathSet = sourceclasspathset
+          @DestinationOwner = destinationowner
+          @DestinationClassPath = destinationclasspath
+        end
+
+        def deserialize(params)
+          unless params['SourceOwner'].nil?
+            @SourceOwner = Entity.new
+            @SourceOwner.deserialize(params['SourceOwner'])
+          end
+          @SourceClassPathSet = params['SourceClassPathSet']
+          unless params['DestinationOwner'].nil?
+            @DestinationOwner = Entity.new
+            @DestinationOwner.deserialize(params['DestinationOwner'])
+          end
+          @DestinationClassPath = params['DestinationClassPath']
         end
       end
 
@@ -2043,25 +2123,74 @@ module TencentCloud
 
       # 回调事件内容。
       class EventContent < TencentCloud::Common::AbstractModel
-        # @param EventType: 事件类型，可取值为：
-        # <li>Storage.NewFileCreated：新文件产生；</li>
-        # <li>Project.StreamConnect.StatusChanged：云转推项目状态变更。</li>
+        # @param EventType: 事件类型，可取值有：
+        # <li>Storage.NewFileCreated：新文件产生事件；</li>
+        # <li>Project.StreamConnect.StatusChanged：云转推项目状态变更事件；</li>
+        # <li>Project.Switcher.StatusChanged：导播台项目状态变更事件；</li>
+        # <li>Material.Imported：媒体导入事件；</li>
+        # <li>Material.Added：媒体添加事件；</li>
+        # <li>Material.Moved：媒体移动事件；</li>
+        # <li>Material.Modified：媒体变更事件；</li>
+        # <li>Material.Deleted：媒体删除事件；</li>
+        # <li>Class.Created：分类新增事件；</li>
+        # <li>Class.Moved：分类移动事件；</li>
+        # <li>Class.Deleted：分类删除事件。</li>
         # @type EventType: String
-        # @param StorageNewFileCreatedEvent: 新文件产生事件信息。仅当 EventType 为 Storage.NewFileCreated 时有效。
+        # @param Operator: 操作者，表示触发事件的操作者。如果是 `cmeid_system` 表示平台管理员操作。
+        # @type Operator: String
+        # @param StorageNewFileCreatedEvent: 新文件产生事件。仅当 EventType 为 Storage.NewFileCreated 时有效。
         # @type StorageNewFileCreatedEvent: :class:`Tencentcloud::Cme.v20191029.models.StorageNewFileCreatedEvent`
-        # @param ProjectStreamConnectStatusChangedEvent: 云转推项目状态变更事件信息。仅当 EventType 为 Project.StreamConnect.StatusChanged 时有效。
+        # @param ProjectStreamConnectStatusChangedEvent: 云转推项目状态变更事件。仅当 EventType 为 Project.StreamConnect.StatusChanged 时有效。
         # @type ProjectStreamConnectStatusChangedEvent: :class:`Tencentcloud::Cme.v20191029.models.ProjectStreamConnectStatusChangedEvent`
+        # @param ProjectSwitcherStatusChangedEvent: 导播台项目状态变更事件。仅当 EventType 为 Project.Switcher.StatusChanged 时有效。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProjectSwitcherStatusChangedEvent: :class:`Tencentcloud::Cme.v20191029.models.ProjectSwitcherStatusChangedEvent`
+        # @param MaterialImportedEvent: 媒体导入事件。仅当 EventType 为 Material.Imported 时有效。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MaterialImportedEvent: :class:`Tencentcloud::Cme.v20191029.models.MaterialImportedEvent`
+        # @param MaterialAddedEvent: 媒体添加事件。仅当 EventType 为 Material.Added 时有效。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MaterialAddedEvent: :class:`Tencentcloud::Cme.v20191029.models.MaterialAddedEvent`
+        # @param MaterialMovedEvent: 媒体移动事件。仅当 EventType 为 Material.Moved 时有效。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MaterialMovedEvent: :class:`Tencentcloud::Cme.v20191029.models.MaterialMovedEvent`
+        # @param MaterialModifiedEvent: 媒体更新事件。仅当 EventType 为 Material.Modified 时有效。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MaterialModifiedEvent: :class:`Tencentcloud::Cme.v20191029.models.MaterialModifiedEvent`
+        # @param MaterialDeletedEvent: 媒体删除事件。仅当 EventType 为 Material.Deleted 时有效。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MaterialDeletedEvent: :class:`Tencentcloud::Cme.v20191029.models.MaterialDeletedEvent`
+        # @param ClassCreatedEvent: 分类创建事件。仅当 EventType 为 Class.Created 时有效。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClassCreatedEvent: :class:`Tencentcloud::Cme.v20191029.models.ClassCreatedEvent`
+        # @param ClassMovedEvent: 分类移动事件。仅当 EventType 为 Class.Moved 时有效。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClassMovedEvent: :class:`Tencentcloud::Cme.v20191029.models.ClassMovedEvent`
+        # @param ClassDeletedEvent: 分类删除事件。仅当 EventType 为 Class.Deleted 时有效。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClassDeletedEvent: :class:`Tencentcloud::Cme.v20191029.models.ClassDeletedEvent`
 
-        attr_accessor :EventType, :StorageNewFileCreatedEvent, :ProjectStreamConnectStatusChangedEvent
+        attr_accessor :EventType, :Operator, :StorageNewFileCreatedEvent, :ProjectStreamConnectStatusChangedEvent, :ProjectSwitcherStatusChangedEvent, :MaterialImportedEvent, :MaterialAddedEvent, :MaterialMovedEvent, :MaterialModifiedEvent, :MaterialDeletedEvent, :ClassCreatedEvent, :ClassMovedEvent, :ClassDeletedEvent
         
-        def initialize(eventtype=nil, storagenewfilecreatedevent=nil, projectstreamconnectstatuschangedevent=nil)
+        def initialize(eventtype=nil, operator=nil, storagenewfilecreatedevent=nil, projectstreamconnectstatuschangedevent=nil, projectswitcherstatuschangedevent=nil, materialimportedevent=nil, materialaddedevent=nil, materialmovedevent=nil, materialmodifiedevent=nil, materialdeletedevent=nil, classcreatedevent=nil, classmovedevent=nil, classdeletedevent=nil)
           @EventType = eventtype
+          @Operator = operator
           @StorageNewFileCreatedEvent = storagenewfilecreatedevent
           @ProjectStreamConnectStatusChangedEvent = projectstreamconnectstatuschangedevent
+          @ProjectSwitcherStatusChangedEvent = projectswitcherstatuschangedevent
+          @MaterialImportedEvent = materialimportedevent
+          @MaterialAddedEvent = materialaddedevent
+          @MaterialMovedEvent = materialmovedevent
+          @MaterialModifiedEvent = materialmodifiedevent
+          @MaterialDeletedEvent = materialdeletedevent
+          @ClassCreatedEvent = classcreatedevent
+          @ClassMovedEvent = classmovedevent
+          @ClassDeletedEvent = classdeletedevent
         end
 
         def deserialize(params)
           @EventType = params['EventType']
+          @Operator = params['Operator']
           unless params['StorageNewFileCreatedEvent'].nil?
             @StorageNewFileCreatedEvent = StorageNewFileCreatedEvent.new
             @StorageNewFileCreatedEvent.deserialize(params['StorageNewFileCreatedEvent'])
@@ -2069,6 +2198,42 @@ module TencentCloud
           unless params['ProjectStreamConnectStatusChangedEvent'].nil?
             @ProjectStreamConnectStatusChangedEvent = ProjectStreamConnectStatusChangedEvent.new
             @ProjectStreamConnectStatusChangedEvent.deserialize(params['ProjectStreamConnectStatusChangedEvent'])
+          end
+          unless params['ProjectSwitcherStatusChangedEvent'].nil?
+            @ProjectSwitcherStatusChangedEvent = ProjectSwitcherStatusChangedEvent.new
+            @ProjectSwitcherStatusChangedEvent.deserialize(params['ProjectSwitcherStatusChangedEvent'])
+          end
+          unless params['MaterialImportedEvent'].nil?
+            @MaterialImportedEvent = MaterialImportedEvent.new
+            @MaterialImportedEvent.deserialize(params['MaterialImportedEvent'])
+          end
+          unless params['MaterialAddedEvent'].nil?
+            @MaterialAddedEvent = MaterialAddedEvent.new
+            @MaterialAddedEvent.deserialize(params['MaterialAddedEvent'])
+          end
+          unless params['MaterialMovedEvent'].nil?
+            @MaterialMovedEvent = MaterialMovedEvent.new
+            @MaterialMovedEvent.deserialize(params['MaterialMovedEvent'])
+          end
+          unless params['MaterialModifiedEvent'].nil?
+            @MaterialModifiedEvent = MaterialModifiedEvent.new
+            @MaterialModifiedEvent.deserialize(params['MaterialModifiedEvent'])
+          end
+          unless params['MaterialDeletedEvent'].nil?
+            @MaterialDeletedEvent = MaterialDeletedEvent.new
+            @MaterialDeletedEvent.deserialize(params['MaterialDeletedEvent'])
+          end
+          unless params['ClassCreatedEvent'].nil?
+            @ClassCreatedEvent = ClassCreatedEvent.new
+            @ClassCreatedEvent.deserialize(params['ClassCreatedEvent'])
+          end
+          unless params['ClassMovedEvent'].nil?
+            @ClassMovedEvent = ClassMovedEvent.new
+            @ClassMovedEvent.deserialize(params['ClassMovedEvent'])
+          end
+          unless params['ClassDeletedEvent'].nil?
+            @ClassDeletedEvent = ClassDeletedEvent.new
+            @ClassDeletedEvent.deserialize(params['ClassDeletedEvent'])
           end
         end
       end
@@ -2799,6 +2964,26 @@ module TencentCloud
         end
       end
 
+      # 导入媒资信息
+      class ImportMediaInfo < TencentCloud::Common::AbstractModel
+        # @param FileId: 云点播文件 FileId。
+        # @type FileId: String
+        # @param MaterialId: 媒体 Id。
+        # @type MaterialId: String
+
+        attr_accessor :FileId, :MaterialId
+        
+        def initialize(fileid=nil, materialid=nil)
+          @FileId = fileid
+          @MaterialId = materialid
+        end
+
+        def deserialize(params)
+          @FileId = params['FileId']
+          @MaterialId = params['MaterialId']
+        end
+      end
+
       # ImportMediaToProject请求参数结构体
       class ImportMediaToProjectRequest < TencentCloud::Common::AbstractModel
         # @param Platform: 平台 Id，指定访问的平台。关于平台概念，请参见文档 [平台](https://cloud.tencent.com/document/product/1156/43767)。
@@ -3166,6 +3351,33 @@ module TencentCloud
         end
       end
 
+      # 媒体添加事件。
+      class MaterialAddedEvent < TencentCloud::Common::AbstractModel
+        # @param MaterialIdSet: 添加的媒体 Id 列表。
+        # @type MaterialIdSet: Array
+        # @param Owner: 添加的媒体归属。
+        # @type Owner: :class:`Tencentcloud::Cme.v20191029.models.Entity`
+        # @param ClassPath: 添加的媒体分类路径。
+        # @type ClassPath: String
+
+        attr_accessor :MaterialIdSet, :Owner, :ClassPath
+        
+        def initialize(materialidset=nil, owner=nil, classpath=nil)
+          @MaterialIdSet = materialidset
+          @Owner = owner
+          @ClassPath = classpath
+        end
+
+        def deserialize(params)
+          @MaterialIdSet = params['MaterialIdSet']
+          unless params['Owner'].nil?
+            @Owner = Entity.new
+            @Owner.deserialize(params['Owner'])
+          end
+          @ClassPath = params['ClassPath']
+        end
+      end
+
       # 媒体基本信息。
       class MaterialBasicInfo < TencentCloud::Common::AbstractModel
         # @param MaterialId: 媒体 Id。
@@ -3246,6 +3458,56 @@ module TencentCloud
         end
       end
 
+      # 媒体删除事件。
+      class MaterialDeletedEvent < TencentCloud::Common::AbstractModel
+        # @param MaterialIdSet: 删除的媒体 Id 列表。
+        # @type MaterialIdSet: Array
+
+        attr_accessor :MaterialIdSet
+        
+        def initialize(materialidset=nil)
+          @MaterialIdSet = materialidset
+        end
+
+        def deserialize(params)
+          @MaterialIdSet = params['MaterialIdSet']
+        end
+      end
+
+      # 媒体导入事件
+      class MaterialImportedEvent < TencentCloud::Common::AbstractModel
+        # @param MediaInfoSet: 导入的媒体信息列表。
+        # @type MediaInfoSet: Array
+        # @param Owner: 媒体归属。
+        # @type Owner: :class:`Tencentcloud::Cme.v20191029.models.Entity`
+        # @param ClassPath: 媒体分类路径。
+        # @type ClassPath: String
+
+        attr_accessor :MediaInfoSet, :Owner, :ClassPath
+        
+        def initialize(mediainfoset=nil, owner=nil, classpath=nil)
+          @MediaInfoSet = mediainfoset
+          @Owner = owner
+          @ClassPath = classpath
+        end
+
+        def deserialize(params)
+          unless params['MediaInfoSet'].nil?
+            @MediaInfoSet = []
+            params['MediaInfoSet'].each do |i|
+              importmediainfo_tmp = ImportMediaInfo.new
+              importmediainfo_tmp.deserialize(i)
+              @MediaInfoSet << importmediainfo_tmp
+            end
+          end
+          unless params['Owner'].nil?
+            @Owner = Entity.new
+            @Owner.deserialize(params['Owner'])
+          end
+          @ClassPath = params['ClassPath']
+        end
+      end
+
       # 媒体详情信息
       class MaterialInfo < TencentCloud::Common::AbstractModel
         # @param BasicInfo: 媒体基本信息。
@@ -3310,6 +3572,72 @@ module TencentCloud
             @OtherMaterial = OtherMaterial.new
             @OtherMaterial.deserialize(params['OtherMaterial'])
           end
+        end
+      end
+
+      # 媒体更新事件。
+      class MaterialModifiedEvent < TencentCloud::Common::AbstractModel
+        # @param MaterialId: 媒体 Id。
+        # @type MaterialId: String
+        # @param Name: 更新后的媒体名称。如未更新则为空。
+        # @type Name: String
+        # @param PresetTagIdSet: 更新后的媒体预置标签列表。如未更新媒体预置标签，则该字段为空数组。
+        # @type PresetTagIdSet: Array
+        # @param TagSet: 更新后的媒体自定义标签列表。如未更新媒体自定义标签，则该字段为空数组。
+        # @type TagSet: Array
+
+        attr_accessor :MaterialId, :Name, :PresetTagIdSet, :TagSet
+        
+        def initialize(materialid=nil, name=nil, presettagidset=nil, tagset=nil)
+          @MaterialId = materialid
+          @Name = name
+          @PresetTagIdSet = presettagidset
+          @TagSet = tagset
+        end
+
+        def deserialize(params)
+          @MaterialId = params['MaterialId']
+          @Name = params['Name']
+          @PresetTagIdSet = params['PresetTagIdSet']
+          @TagSet = params['TagSet']
+        end
+      end
+
+      # 媒体移动事件
+      class MaterialMovedEvent < TencentCloud::Common::AbstractModel
+        # @param MaterialIdSet: 要移动的媒体 Id 列表。
+        # @type MaterialIdSet: Array
+        # @param SourceOwner: 源媒体归属。
+        # @type SourceOwner: :class:`Tencentcloud::Cme.v20191029.models.Entity`
+        # @param SourceClassPath: 源媒体分类路径。
+        # @type SourceClassPath: String
+        # @param DestinationOwner: 目标媒体分类归属。
+        # @type DestinationOwner: :class:`Tencentcloud::Cme.v20191029.models.Entity`
+        # @param DestinationClassPath: 目标媒体分类路径。
+        # @type DestinationClassPath: String
+
+        attr_accessor :MaterialIdSet, :SourceOwner, :SourceClassPath, :DestinationOwner, :DestinationClassPath
+        
+        def initialize(materialidset=nil, sourceowner=nil, sourceclasspath=nil, destinationowner=nil, destinationclasspath=nil)
+          @MaterialIdSet = materialidset
+          @SourceOwner = sourceowner
+          @SourceClassPath = sourceclasspath
+          @DestinationOwner = destinationowner
+          @DestinationClassPath = destinationclasspath
+        end
+
+        def deserialize(params)
+          @MaterialIdSet = params['MaterialIdSet']
+          unless params['SourceOwner'].nil?
+            @SourceOwner = Entity.new
+            @SourceOwner.deserialize(params['SourceOwner'])
+          end
+          @SourceClassPath = params['SourceClassPath']
+          unless params['DestinationOwner'].nil?
+            @DestinationOwner = Entity.new
+            @DestinationOwner.deserialize(params['DestinationOwner'])
+          end
+          @DestinationClassPath = params['DestinationClassPath']
         end
       end
 
@@ -4236,6 +4564,32 @@ module TencentCloud
         end
       end
 
+      # 导播台项目状态变更事件
+      class ProjectSwitcherStatusChangedEvent < TencentCloud::Common::AbstractModel
+        # @param ProjectId: 导播台项目 Id。
+        # @type ProjectId: String
+        # @param Status: 导播台项目状态，可取值有：
+        # <li>Started：导播台启动；</li>
+        # <li>Stopped：导播台停止；</li>
+        # <li>PvwStarted：导播台 PVW 开启；</li>
+        # <li>PgmStarted：导播台 PGM 开启，输出推流开始；</li>
+        # <li>PvwStopped：导播台 PVW 停止；</li>
+        # <li>PgmStopped：导播台 PGM 停止，输出推流结束。</li>
+        # @type Status: String
+
+        attr_accessor :ProjectId, :Status
+        
+        def initialize(projectid=nil, status=nil)
+          @ProjectId = projectid
+          @Status = status
+        end
+
+        def deserialize(params)
+          @ProjectId = params['ProjectId']
+          @Status = params['Status']
+        end
+      end
+
       # 录制回放项目输入信息。
       class RecordReplayProjectInput < TencentCloud::Common::AbstractModel
         # @param PullStreamUrl: 录制拉流地址。
@@ -4648,27 +5002,35 @@ module TencentCloud
         # @type FileId: String
         # @param MaterialId: 媒体 Id。
         # @type MaterialId: String
-        # @param Operator: 操作者 Id。
+        # @param Operator: 操作者 Id。（废弃，请勿使用）
         # @type Operator: String
-        # @param OperationType: 操作类型，可取值为：
-        # <li>Upload：上传；</li>
+        # @param OperationType: 操作类型，可取值有：
+        # <li>Upload：本地上传；</li>
         # <li>PullUpload：拉取上传；</li>
-        # <li>Record：直播录制。</li>
+        # <li>VideoEdit：视频剪辑；</li>
+        # <li>LiveStreamClip：直播流剪辑；</li>
+        # <li>LiveStreamRecord：直播流录制。</li>
         # @type OperationType: String
         # @param Owner: 媒体归属。
         # @type Owner: :class:`Tencentcloud::Cme.v20191029.models.Entity`
         # @param ClassPath: 媒体分类路径。
         # @type ClassPath: String
+        # @param TaskId: 生成文件的任务 Id。当生成新文件是拉取上传、视频剪辑、直播流剪辑时为任务 Id。
+        # @type TaskId: String
+        # @param SourceContext: 来源上下文信息。视频剪辑生成新文件时此字段为项目 Id；直播流剪辑或者直播流录制生成新文件则为原始流地址。
+        # @type SourceContext: String
 
-        attr_accessor :FileId, :MaterialId, :Operator, :OperationType, :Owner, :ClassPath
+        attr_accessor :FileId, :MaterialId, :Operator, :OperationType, :Owner, :ClassPath, :TaskId, :SourceContext
         
-        def initialize(fileid=nil, materialid=nil, operator=nil, operationtype=nil, owner=nil, classpath=nil)
+        def initialize(fileid=nil, materialid=nil, operator=nil, operationtype=nil, owner=nil, classpath=nil, taskid=nil, sourcecontext=nil)
           @FileId = fileid
           @MaterialId = materialid
           @Operator = operator
           @OperationType = operationtype
           @Owner = owner
           @ClassPath = classpath
+          @TaskId = taskid
+          @SourceContext = sourcecontext
         end
 
         def deserialize(params)
@@ -4681,6 +5043,8 @@ module TencentCloud
             @Owner.deserialize(params['Owner'])
           end
           @ClassPath = params['ClassPath']
+          @TaskId = params['TaskId']
+          @SourceContext = params['SourceContext']
         end
       end
 

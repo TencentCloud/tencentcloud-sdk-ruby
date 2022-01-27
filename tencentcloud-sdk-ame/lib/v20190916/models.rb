@@ -107,6 +107,26 @@ module TencentCloud
         end
       end
 
+      # 副歌片段信息
+      class ChorusClip < TencentCloud::Common::AbstractModel
+        # @param StartTime: 副歌时间，单位：毫秒
+        # @type StartTime: Integer
+        # @param EndTime: 副歌结束时间，单位：毫秒
+        # @type EndTime: Integer
+
+        attr_accessor :StartTime, :EndTime
+        
+        def initialize(starttime=nil, endtime=nil)
+          @StartTime = starttime
+          @EndTime = endtime
+        end
+
+        def deserialize(params)
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+        end
+      end
+
       # CreateKTVRobot请求参数结构体
       class CreateKTVRobotRequest < TencentCloud::Common::AbstractModel
         # @param RTCSystem: RTC厂商类型，取值有：
@@ -496,16 +516,22 @@ module TencentCloud
         # @type LyricsUrl: String
         # @param DefinitionInfoSet: 歌曲规格信息列表
         # @type DefinitionInfoSet: Array
+        # @param MidiJsonUrl: 音高数据文件下载地址
+        # @type MidiJsonUrl: String
+        # @param ChorusClipSet: 副歌片段数据列表
+        # @type ChorusClipSet: Array
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :KTVMusicBaseInfo, :PlayToken, :LyricsUrl, :DefinitionInfoSet, :RequestId
+        attr_accessor :KTVMusicBaseInfo, :PlayToken, :LyricsUrl, :DefinitionInfoSet, :MidiJsonUrl, :ChorusClipSet, :RequestId
         
-        def initialize(ktvmusicbaseinfo=nil, playtoken=nil, lyricsurl=nil, definitioninfoset=nil, requestid=nil)
+        def initialize(ktvmusicbaseinfo=nil, playtoken=nil, lyricsurl=nil, definitioninfoset=nil, midijsonurl=nil, chorusclipset=nil, requestid=nil)
           @KTVMusicBaseInfo = ktvmusicbaseinfo
           @PlayToken = playtoken
           @LyricsUrl = lyricsurl
           @DefinitionInfoSet = definitioninfoset
+          @MidiJsonUrl = midijsonurl
+          @ChorusClipSet = chorusclipset
           @RequestId = requestid
         end
 
@@ -522,6 +548,15 @@ module TencentCloud
               ktvmusicdefinitioninfo_tmp = KTVMusicDefinitionInfo.new
               ktvmusicdefinitioninfo_tmp.deserialize(i)
               @DefinitionInfoSet << ktvmusicdefinitioninfo_tmp
+            end
+          end
+          @MidiJsonUrl = params['MidiJsonUrl']
+          unless params['ChorusClipSet'].nil?
+            @ChorusClipSet = []
+            params['ChorusClipSet'].each do |i|
+              chorusclip_tmp = ChorusClip.new
+              chorusclip_tmp.deserialize(i)
+              @ChorusClipSet << chorusclip_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -701,6 +736,186 @@ module TencentCloud
               ktvrobotinfo_tmp = KTVRobotInfo.new
               ktvrobotinfo_tmp.deserialize(i)
               @KTVRobotInfoSet << ktvrobotinfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeKTVSingerCategories请求参数结构体
+      class DescribeKTVSingerCategoriesRequest < TencentCloud::Common::AbstractModel
+
+        
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeKTVSingerCategories返回参数结构体
+      class DescribeKTVSingerCategoriesResponse < TencentCloud::Common::AbstractModel
+        # @param GenderSet: 歌手性别分类列表
+        # @type GenderSet: Array
+        # @param AreaSet: 歌手区域分类列表
+        # @type AreaSet: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :GenderSet, :AreaSet, :RequestId
+        
+        def initialize(genderset=nil, areaset=nil, requestid=nil)
+          @GenderSet = genderset
+          @AreaSet = areaset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['GenderSet'].nil?
+            @GenderSet = []
+            params['GenderSet'].each do |i|
+              ktvsingercategoryinfo_tmp = KTVSingerCategoryInfo.new
+              ktvsingercategoryinfo_tmp.deserialize(i)
+              @GenderSet << ktvsingercategoryinfo_tmp
+            end
+          end
+          unless params['AreaSet'].nil?
+            @AreaSet = []
+            params['AreaSet'].each do |i|
+              ktvsingercategoryinfo_tmp = KTVSingerCategoryInfo.new
+              ktvsingercategoryinfo_tmp.deserialize(i)
+              @AreaSet << ktvsingercategoryinfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeKTVSingerMusics请求参数结构体
+      class DescribeKTVSingerMusicsRequest < TencentCloud::Common::AbstractModel
+        # @param SingerId: 歌手id
+        # @type SingerId: String
+        # @param Offset: 分页偏移量，默认值：0。
+        # @type Offset: Integer
+        # @param Limit: 分页返回的记录条数，默认值：50。将返回第 Offset 到第 Offset+Limit-1 条。
+        # @type Limit: Integer
+
+        attr_accessor :SingerId, :Offset, :Limit
+        
+        def initialize(singerid=nil, offset=nil, limit=nil)
+          @SingerId = singerid
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @SingerId = params['SingerId']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeKTVSingerMusics返回参数结构体
+      class DescribeKTVSingerMusicsResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 总曲目数
+        # @type TotalCount: Integer
+        # @param KTVMusicInfoSet: KTV 曲目列表
+        # @type KTVMusicInfoSet: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :KTVMusicInfoSet, :RequestId
+        
+        def initialize(totalcount=nil, ktvmusicinfoset=nil, requestid=nil)
+          @TotalCount = totalcount
+          @KTVMusicInfoSet = ktvmusicinfoset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['KTVMusicInfoSet'].nil?
+            @KTVMusicInfoSet = []
+            params['KTVMusicInfoSet'].each do |i|
+              ktvmusicbaseinfo_tmp = KTVMusicBaseInfo.new
+              ktvmusicbaseinfo_tmp.deserialize(i)
+              @KTVMusicInfoSet << ktvmusicbaseinfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeKTVSingers请求参数结构体
+      class DescribeKTVSingersRequest < TencentCloud::Common::AbstractModel
+        # @param SingerIds: 歌手id集合，精确匹配歌手id
+        # <li> 数组长度限制10</li>
+        # @type SingerIds: Array
+        # @param Genders: 歌手性别集合，不传为全部，精确匹配歌手性别类型，
+        # <li>数组长度限制1</li>
+        # <li>取值范围：直播互动曲库歌手分类信息接口，返回性别分类信息列表中，分类英文名</li>
+        # @type Genders: Array
+        # @param Areas: 歌手区域集合，不传为全部，精确匹配歌手区域
+        # <li>数组长度限制10</li>
+        # <li>取值范围：直播互动曲库歌手分类信息接口，返回的区域分类信息列表中，分类英文名</li>
+        # @type Areas: Array
+        # @param Sort: 排序方式。默认按照播放数倒序
+        # <li> Sort.Field 可选 PlayCount。</li>
+        # @type Sort: :class:`Tencentcloud::Ame.v20190916.models.SortBy`
+        # @param Offset: 分页偏移量，默认值：0。
+        # @type Offset: Integer
+        # @param Limit: 分页返回的记录条数，默认值：50。将返回第 Offset 到第 Offset+Limit-1 条。
+        # @type Limit: Integer
+
+        attr_accessor :SingerIds, :Genders, :Areas, :Sort, :Offset, :Limit
+        
+        def initialize(singerids=nil, genders=nil, areas=nil, sort=nil, offset=nil, limit=nil)
+          @SingerIds = singerids
+          @Genders = genders
+          @Areas = areas
+          @Sort = sort
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @SingerIds = params['SingerIds']
+          @Genders = params['Genders']
+          @Areas = params['Areas']
+          unless params['Sort'].nil?
+            @Sort = SortBy.new
+            @Sort.deserialize(params['Sort'])
+          end
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeKTVSingers返回参数结构体
+      class DescribeKTVSingersResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 总歌手数
+        # @type TotalCount: Integer
+        # @param KTVSingerInfoSet: KTV歌手列表
+        # @type KTVSingerInfoSet: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :KTVSingerInfoSet, :RequestId
+        
+        def initialize(totalcount=nil, ktvsingerinfoset=nil, requestid=nil)
+          @TotalCount = totalcount
+          @KTVSingerInfoSet = ktvsingerinfoset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['KTVSingerInfoSet'].nil?
+            @KTVSingerInfoSet = []
+            params['KTVSingerInfoSet'].each do |i|
+              ktvsingerinfo_tmp = KTVSingerInfo.new
+              ktvsingerinfo_tmp.deserialize(i)
+              @KTVSingerInfoSet << ktvsingerinfo_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -1201,7 +1416,9 @@ module TencentCloud
         # @type MusicId: String
         # @param Name: 歌曲名称
         # @type Name: String
-        # @param SingerSet: 演唱者列表
+        # @param SingerInfoSet: 演唱者基础信息列表
+        # @type SingerInfoSet: Array
+        # @param SingerSet: 已弃用，请使用SingerInfoSet
         # @type SingerSet: Array
         # @param LyricistSet: 作词者列表
         # @type LyricistSet: Array
@@ -1212,11 +1429,12 @@ module TencentCloud
         # @param Duration: 歌曲时长
         # @type Duration: Integer
 
-        attr_accessor :MusicId, :Name, :SingerSet, :LyricistSet, :ComposerSet, :TagSet, :Duration
+        attr_accessor :MusicId, :Name, :SingerInfoSet, :SingerSet, :LyricistSet, :ComposerSet, :TagSet, :Duration
         
-        def initialize(musicid=nil, name=nil, singerset=nil, lyricistset=nil, composerset=nil, tagset=nil, duration=nil)
+        def initialize(musicid=nil, name=nil, singerinfoset=nil, singerset=nil, lyricistset=nil, composerset=nil, tagset=nil, duration=nil)
           @MusicId = musicid
           @Name = name
+          @SingerInfoSet = singerinfoset
           @SingerSet = singerset
           @LyricistSet = lyricistset
           @ComposerSet = composerset
@@ -1227,6 +1445,14 @@ module TencentCloud
         def deserialize(params)
           @MusicId = params['MusicId']
           @Name = params['Name']
+          unless params['SingerInfoSet'].nil?
+            @SingerInfoSet = []
+            params['SingerInfoSet'].each do |i|
+              ktvsingerbaseinfo_tmp = KTVSingerBaseInfo.new
+              ktvsingerbaseinfo_tmp.deserialize(i)
+              @SingerInfoSet << ktvsingerbaseinfo_tmp
+            end
+          end
           @SingerSet = params['SingerSet']
           @LyricistSet = params['LyricistSet']
           @ComposerSet = params['ComposerSet']
@@ -1352,6 +1578,82 @@ module TencentCloud
             @SetPlayModeInput = SetPlayModeCommandInput.new
             @SetPlayModeInput.deserialize(params['SetPlayModeInput'])
           end
+        end
+      end
+
+      # KTV 歌手基础信息
+      class KTVSingerBaseInfo < TencentCloud::Common::AbstractModel
+        # @param SingerId: 歌手id
+        # @type SingerId: String
+        # @param Name: 歌手名
+        # @type Name: String
+
+        attr_accessor :SingerId, :Name
+        
+        def initialize(singerid=nil, name=nil)
+          @SingerId = singerid
+          @Name = name
+        end
+
+        def deserialize(params)
+          @SingerId = params['SingerId']
+          @Name = params['Name']
+        end
+      end
+
+      # KTV歌手分类信息
+      class KTVSingerCategoryInfo < TencentCloud::Common::AbstractModel
+        # @param ChineseName: 分类中文名
+        # @type ChineseName: String
+        # @param EnglishName: 分类英文名
+        # @type EnglishName: String
+
+        attr_accessor :ChineseName, :EnglishName
+        
+        def initialize(chinesename=nil, englishname=nil)
+          @ChineseName = chinesename
+          @EnglishName = englishname
+        end
+
+        def deserialize(params)
+          @ChineseName = params['ChineseName']
+          @EnglishName = params['EnglishName']
+        end
+      end
+
+      # 直播互动歌曲的歌手信息。
+      class KTVSingerInfo < TencentCloud::Common::AbstractModel
+        # @param SingerId: 歌手id
+        # @type SingerId: String
+        # @param Name: 歌手名
+        # @type Name: String
+        # @param Gender: 歌手性别: 男，女，组合
+        # @type Gender: String
+        # @param Area: 地区: 大陆，港台，欧美，日本
+        # @type Area: String
+        # @param MusicCount: 歌曲数
+        # @type MusicCount: Integer
+        # @param PlayCount: 歌曲总播放次数
+        # @type PlayCount: Integer
+
+        attr_accessor :SingerId, :Name, :Gender, :Area, :MusicCount, :PlayCount
+        
+        def initialize(singerid=nil, name=nil, gender=nil, area=nil, musiccount=nil, playcount=nil)
+          @SingerId = singerid
+          @Name = name
+          @Gender = gender
+          @Area = area
+          @MusicCount = musiccount
+          @PlayCount = playcount
+        end
+
+        def deserialize(params)
+          @SingerId = params['SingerId']
+          @Name = params['Name']
+          @Gender = params['Gender']
+          @Area = params['Area']
+          @MusicCount = params['MusicCount']
+          @PlayCount = params['PlayCount']
         end
       end
 
@@ -2002,6 +2304,26 @@ module TencentCloud
           @Type = params['Type']
           @Index = params['Index']
           @MusicIds = params['MusicIds']
+        end
+      end
+
+      # 排序依据
+      class SortBy < TencentCloud::Common::AbstractModel
+        # @param Field: 排序字段
+        # @type Field: String
+        # @param Order: 排序方式，可选值：Asc（升序）、Desc（降序）
+        # @type Order: String
+
+        attr_accessor :Field, :Order
+        
+        def initialize(field=nil, order=nil)
+          @Field = field
+          @Order = order
+        end
+
+        def deserialize(params)
+          @Field = params['Field']
+          @Order = params['Order']
         end
       end
 

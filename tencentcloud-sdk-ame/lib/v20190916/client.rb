@@ -269,6 +269,80 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 获取直播互动曲库歌手分类信息
+
+        # @param request: Request instance for DescribeKTVSingerCategories.
+        # @type request: :class:`Tencentcloud::ame::V20190916::DescribeKTVSingerCategoriesRequest`
+        # @rtype: :class:`Tencentcloud::ame::V20190916::DescribeKTVSingerCategoriesResponse`
+        def DescribeKTVSingerCategories(request)
+          body = send_request('DescribeKTVSingerCategories', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeKTVSingerCategoriesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 根据歌手id，返回该歌手下歌曲列表。
+
+
+
+        # @param request: Request instance for DescribeKTVSingerMusics.
+        # @type request: :class:`Tencentcloud::ame::V20190916::DescribeKTVSingerMusicsRequest`
+        # @rtype: :class:`Tencentcloud::ame::V20190916::DescribeKTVSingerMusicsResponse`
+        def DescribeKTVSingerMusics(request)
+          body = send_request('DescribeKTVSingerMusics', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeKTVSingerMusicsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 根据过滤条件，返回匹配的歌手列表。
+
+        # @param request: Request instance for DescribeKTVSingers.
+        # @type request: :class:`Tencentcloud::ame::V20190916::DescribeKTVSingersRequest`
+        # @rtype: :class:`Tencentcloud::ame::V20190916::DescribeKTVSingersResponse`
+        def DescribeKTVSingers(request)
+          body = send_request('DescribeKTVSingers', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeKTVSingersResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 根据接口的模式及歌曲ID来取得歌词信息或者波形图信息。
 
         # @param request: Request instance for DescribeLyric.
