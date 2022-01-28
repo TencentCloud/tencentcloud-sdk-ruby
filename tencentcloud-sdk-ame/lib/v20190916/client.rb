@@ -343,6 +343,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 获取直播互动曲库歌曲的周榜和月榜
+
+        # @param request: Request instance for DescribeKTVTopList.
+        # @type request: :class:`Tencentcloud::ame::V20190916::DescribeKTVTopListRequest`
+        # @rtype: :class:`Tencentcloud::ame::V20190916::DescribeKTVTopListResponse`
+        def DescribeKTVTopList(request)
+          body = send_request('DescribeKTVTopList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeKTVTopListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 根据接口的模式及歌曲ID来取得歌词信息或者波形图信息。
 
         # @param request: Request instance for DescribeLyric.

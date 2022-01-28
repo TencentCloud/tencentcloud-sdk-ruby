@@ -922,6 +922,60 @@ module TencentCloud
         end
       end
 
+      # DescribeKTVTopList请求参数结构体
+      class DescribeKTVTopListRequest < TencentCloud::Common::AbstractModel
+        # @param Type: 榜单类型。默认Hot
+        # <li> Hot, 热歌榜。</li>
+        # @type Type: String
+        # @param Period: 榜单周期 默认为Week
+        # <li> Week, 周榜。</li>
+        # <li> Month, 月榜。</li>
+        # @type Period: String
+
+        attr_accessor :Type, :Period
+        
+        def initialize(type=nil, period=nil)
+          @Type = type
+          @Period = period
+        end
+
+        def deserialize(params)
+          @Type = params['Type']
+          @Period = params['Period']
+        end
+      end
+
+      # DescribeKTVTopList返回参数结构体
+      class DescribeKTVTopListResponse < TencentCloud::Common::AbstractModel
+        # @param KTVMusicTopInfoSet: 歌曲基础信息列表
+        # @type KTVMusicTopInfoSet: Array
+        # @param TotalCount: 返回总条数
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :KTVMusicTopInfoSet, :TotalCount, :RequestId
+        
+        def initialize(ktvmusictopinfoset=nil, totalcount=nil, requestid=nil)
+          @KTVMusicTopInfoSet = ktvmusictopinfoset
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['KTVMusicTopInfoSet'].nil?
+            @KTVMusicTopInfoSet = []
+            params['KTVMusicTopInfoSet'].each do |i|
+              ktvmusictopinfo_tmp = KTVMusicTopInfo.new
+              ktvmusictopinfo_tmp.deserialize(i)
+              @KTVMusicTopInfoSet << ktvmusictopinfo_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeLyric请求参数结构体
       class DescribeLyricRequest < TencentCloud::Common::AbstractModel
         # @param ItemId: 歌曲ID
@@ -1485,6 +1539,53 @@ module TencentCloud
           @Definition = params['Definition']
           @Bitrate = params['Bitrate']
           @Size = params['Size']
+        end
+      end
+
+      # 排行榜结构
+      class KTVMusicTopInfo < TencentCloud::Common::AbstractModel
+        # @param MusicId: 歌曲Id
+        # @type MusicId: String
+        # @param Name: 歌曲名称
+        # @type Name: String
+        # @param SingerInfoSet: 歌手名称列表
+        # @type SingerInfoSet: Array
+        # @param LyricistSet: 歌词名称列表
+        # @type LyricistSet: Array
+        # @param ComposerSet: 作曲列表
+        # @type ComposerSet: Array
+        # @param TagSet: 标签列表
+        # @type TagSet: Array
+        # @param Duration: 播放时长
+        # @type Duration: Integer
+
+        attr_accessor :MusicId, :Name, :SingerInfoSet, :LyricistSet, :ComposerSet, :TagSet, :Duration
+        
+        def initialize(musicid=nil, name=nil, singerinfoset=nil, lyricistset=nil, composerset=nil, tagset=nil, duration=nil)
+          @MusicId = musicid
+          @Name = name
+          @SingerInfoSet = singerinfoset
+          @LyricistSet = lyricistset
+          @ComposerSet = composerset
+          @TagSet = tagset
+          @Duration = duration
+        end
+
+        def deserialize(params)
+          @MusicId = params['MusicId']
+          @Name = params['Name']
+          unless params['SingerInfoSet'].nil?
+            @SingerInfoSet = []
+            params['SingerInfoSet'].each do |i|
+              ktvsingerbaseinfo_tmp = KTVSingerBaseInfo.new
+              ktvsingerbaseinfo_tmp.deserialize(i)
+              @SingerInfoSet << ktvsingerbaseinfo_tmp
+            end
+          end
+          @LyricistSet = params['LyricistSet']
+          @ComposerSet = params['ComposerSet']
+          @TagSet = params['TagSet']
+          @Duration = params['Duration']
         end
       end
 
