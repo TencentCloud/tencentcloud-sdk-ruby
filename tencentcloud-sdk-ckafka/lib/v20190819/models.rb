@@ -1385,6 +1385,49 @@ module TencentCloud
         end
       end
 
+      # DeleteGroup请求参数结构体
+      class DeleteGroupRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例Id
+        # @type InstanceId: String
+        # @param Group: 消费分组
+        # @type Group: String
+
+        attr_accessor :InstanceId, :Group
+        
+        def initialize(instanceid=nil, group=nil)
+          @InstanceId = instanceid
+          @Group = group
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @Group = params['Group']
+        end
+      end
+
+      # DeleteGroup返回参数结构体
+      class DeleteGroupResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 返回结果
+        # @type Result: :class:`Tencentcloud::Ckafka.v20190819.models.JgwOperateResponse`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+        
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Result'].nil?
+            @Result = JgwOperateResponse.new
+            @Result.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DeleteInstancePre请求参数结构体
       class DeleteInstancePreRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例id
