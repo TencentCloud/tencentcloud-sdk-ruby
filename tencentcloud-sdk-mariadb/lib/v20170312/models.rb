@@ -2256,6 +2256,69 @@ module TencentCloud
         end
       end
 
+      # DescribeDatabaseTable请求参数结构体
+      class DescribeDatabaseTableRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例 ID，形如：dcdbt-ow7t8lmc。
+        # @type InstanceId: String
+        # @param DbName: 数据库名称，通过 DescribeDatabases 接口获取。
+        # @type DbName: String
+        # @param Table: 表名称，通过 DescribeDatabaseObjects 接口获取。
+        # @type Table: String
+
+        attr_accessor :InstanceId, :DbName, :Table
+        
+        def initialize(instanceid=nil, dbname=nil, table=nil)
+          @InstanceId = instanceid
+          @DbName = dbname
+          @Table = table
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @DbName = params['DbName']
+          @Table = params['Table']
+        end
+      end
+
+      # DescribeDatabaseTable返回参数结构体
+      class DescribeDatabaseTableResponse < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例名称。
+        # @type InstanceId: String
+        # @param DbName: 数据库名称。
+        # @type DbName: String
+        # @param Table: 表名称。
+        # @type Table: String
+        # @param Cols: 列信息。
+        # @type Cols: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :InstanceId, :DbName, :Table, :Cols, :RequestId
+        
+        def initialize(instanceid=nil, dbname=nil, table=nil, cols=nil, requestid=nil)
+          @InstanceId = instanceid
+          @DbName = dbname
+          @Table = table
+          @Cols = cols
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @DbName = params['DbName']
+          @Table = params['Table']
+          unless params['Cols'].nil?
+            @Cols = []
+            params['Cols'].each do |i|
+              tablecolumn_tmp = TableColumn.new
+              tablecolumn_tmp.deserialize(i)
+              @Cols << tablecolumn_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeDatabases请求参数结构体
       class DescribeDatabasesRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例 ID，形如：dcdbt-ow7t8lmc。
@@ -4606,6 +4669,26 @@ module TencentCloud
         def deserialize(params)
           @FlowId = params['FlowId']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 数据库列信息
+      class TableColumn < TencentCloud::Common::AbstractModel
+        # @param Col: 列名称
+        # @type Col: String
+        # @param Type: 列类型
+        # @type Type: String
+
+        attr_accessor :Col, :Type
+        
+        def initialize(col=nil, type=nil)
+          @Col = col
+          @Type = type
+        end
+
+        def deserialize(params)
+          @Col = params['Col']
+          @Type = params['Type']
         end
       end
 

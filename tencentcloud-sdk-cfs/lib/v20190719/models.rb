@@ -920,10 +920,12 @@ module TencentCloud
         # @type BandwidthLimit: Float
         # @param Capacity: 文件系统总容量
         # @type Capacity: Integer
+        # @param Tags: 文件系统标签列表
+        # @type Tags: Array
 
-        attr_accessor :CreationTime, :CreationToken, :FileSystemId, :LifeCycleState, :SizeByte, :SizeLimit, :ZoneId, :Zone, :Protocol, :StorageType, :StorageResourcePkg, :BandwidthResourcePkg, :PGroup, :FsName, :Encrypted, :KmsKeyId, :AppId, :BandwidthLimit, :Capacity
+        attr_accessor :CreationTime, :CreationToken, :FileSystemId, :LifeCycleState, :SizeByte, :SizeLimit, :ZoneId, :Zone, :Protocol, :StorageType, :StorageResourcePkg, :BandwidthResourcePkg, :PGroup, :FsName, :Encrypted, :KmsKeyId, :AppId, :BandwidthLimit, :Capacity, :Tags
         
-        def initialize(creationtime=nil, creationtoken=nil, filesystemid=nil, lifecyclestate=nil, sizebyte=nil, sizelimit=nil, zoneid=nil, zone=nil, protocol=nil, storagetype=nil, storageresourcepkg=nil, bandwidthresourcepkg=nil, pgroup=nil, fsname=nil, encrypted=nil, kmskeyid=nil, appid=nil, bandwidthlimit=nil, capacity=nil)
+        def initialize(creationtime=nil, creationtoken=nil, filesystemid=nil, lifecyclestate=nil, sizebyte=nil, sizelimit=nil, zoneid=nil, zone=nil, protocol=nil, storagetype=nil, storageresourcepkg=nil, bandwidthresourcepkg=nil, pgroup=nil, fsname=nil, encrypted=nil, kmskeyid=nil, appid=nil, bandwidthlimit=nil, capacity=nil, tags=nil)
           @CreationTime = creationtime
           @CreationToken = creationtoken
           @FileSystemId = filesystemid
@@ -943,6 +945,7 @@ module TencentCloud
           @AppId = appid
           @BandwidthLimit = bandwidthlimit
           @Capacity = capacity
+          @Tags = tags
         end
 
         def deserialize(params)
@@ -968,6 +971,14 @@ module TencentCloud
           @AppId = params['AppId']
           @BandwidthLimit = params['BandwidthLimit']
           @Capacity = params['Capacity']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              taginfo_tmp = TagInfo.new
+              taginfo_tmp.deserialize(i)
+              @Tags << taginfo_tmp
+            end
+          end
         end
       end
 

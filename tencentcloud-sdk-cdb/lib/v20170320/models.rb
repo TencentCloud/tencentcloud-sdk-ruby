@@ -1448,31 +1448,35 @@ module TencentCloud
       class CreateDBImportJobRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例的 ID，格式如：cdb-c1nl9rpv，与云数据库控制台页面中显示的实例 ID 相同。
         # @type InstanceId: String
-        # @param FileName: 文件名称。该文件是指用户已上传到腾讯云的文件，仅支持.sql文件。
-        # @type FileName: String
         # @param User: 云数据库的用户名。
         # @type User: String
+        # @param FileName: 文件名称。该文件是指用户已上传到腾讯云的文件，仅支持.sql文件。
+        # @type FileName: String
         # @param Password: 云数据库实例 User 账号的密码。
         # @type Password: String
         # @param DbName: 导入的目标数据库名，不传表示不指定数据库。
         # @type DbName: String
+        # @param CosUrl: 腾讯云COS文件链接。 用户需要指定 FileName 或者 CosUrl 其中一个。 COS文件需要是 .sql 文件。
+        # @type CosUrl: String
 
-        attr_accessor :InstanceId, :FileName, :User, :Password, :DbName
+        attr_accessor :InstanceId, :User, :FileName, :Password, :DbName, :CosUrl
         
-        def initialize(instanceid=nil, filename=nil, user=nil, password=nil, dbname=nil)
+        def initialize(instanceid=nil, user=nil, filename=nil, password=nil, dbname=nil, cosurl=nil)
           @InstanceId = instanceid
-          @FileName = filename
           @User = user
+          @FileName = filename
           @Password = password
           @DbName = dbname
+          @CosUrl = cosurl
         end
 
         def deserialize(params)
           @InstanceId = params['InstanceId']
-          @FileName = params['FileName']
           @User = params['User']
+          @FileName = params['FileName']
           @Password = params['Password']
           @DbName = params['DbName']
+          @CosUrl = params['CosUrl']
         end
       end
 

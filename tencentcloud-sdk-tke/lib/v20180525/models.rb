@@ -3372,15 +3372,44 @@ module TencentCloud
       class DescribeClusterNodePoolsRequest < TencentCloud::Common::AbstractModel
         # @param ClusterId: ClusterId（集群id）
         # @type ClusterId: String
+        # @param Filters: ·  NodePoolsName
+        #     按照【节点池名】进行过滤。
+        #     类型：String
+        #     必选：否
 
-        attr_accessor :ClusterId
+        # ·  NodePoolsId
+        #     按照【节点池id】进行过滤。
+        #     类型：String
+        #     必选：否
+
+        # ·  tags
+        #     按照【标签键值对】进行过滤。
+        #     类型：String
+        #     必选：否
+
+        # ·  tag:tag-key
+        #     按照【标签键值对】进行过滤。
+        #     类型：String
+        #     必选：否
+        # @type Filters: Array
+
+        attr_accessor :ClusterId, :Filters
         
-        def initialize(clusterid=nil)
+        def initialize(clusterid=nil, filters=nil)
           @ClusterId = clusterid
+          @Filters = filters
         end
 
         def deserialize(params)
           @ClusterId = params['ClusterId']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
         end
       end
 
@@ -3645,6 +3674,16 @@ module TencentCloud
         # @type Limit: Integer
         # @param Filters: ·  ClusterName
         #     按照【集群名】进行过滤。
+        #     类型：String
+        #     必选：否
+
+        # ·  ClusterType
+        #     按照【集群类型】进行过滤。
+        #     类型：String
+        #     必选：否
+
+        # ·  ClusterStatus
+        #     按照【集群状态】进行过滤。
         #     类型：String
         #     必选：否
 

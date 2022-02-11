@@ -608,6 +608,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口（DescribeDatabaseTable）用于查询云数据库实例的表信息。
+
+        # @param request: Request instance for DescribeDatabaseTable.
+        # @type request: :class:`Tencentcloud::mariadb::V20170312::DescribeDatabaseTableRequest`
+        # @rtype: :class:`Tencentcloud::mariadb::V20170312::DescribeDatabaseTableResponse`
+        def DescribeDatabaseTable(request)
+          body = send_request('DescribeDatabaseTable', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeDatabaseTableResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（DescribeDatabases）用于查询云数据库实例的数据库列表。
 
         # @param request: Request instance for DescribeDatabases.

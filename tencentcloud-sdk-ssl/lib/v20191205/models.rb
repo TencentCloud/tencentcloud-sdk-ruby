@@ -633,19 +633,24 @@ module TencentCloud
         # @type Count: Integer
         # @param Type: 资源标识:clb,cdn,live,waf,antiddos
         # @type Type: String
+        # @param ResourceIds: 关联资源ID或关联域名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResourceIds: Array
 
-        attr_accessor :CertificateId, :Count, :Type
+        attr_accessor :CertificateId, :Count, :Type, :ResourceIds
         
-        def initialize(certificateid=nil, count=nil, type=nil)
+        def initialize(certificateid=nil, count=nil, type=nil, resourceids=nil)
           @CertificateId = certificateid
           @Count = count
           @Type = type
+          @ResourceIds = resourceids
         end
 
         def deserialize(params)
           @CertificateId = params['CertificateId']
           @Count = params['Count']
           @Type = params['Type']
+          @ResourceIds = params['ResourceIds']
         end
       end
 
