@@ -53,6 +53,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 创建自动外呼任务
+
+        # @param request: Request instance for CreateAutoCalloutTask.
+        # @type request: :class:`Tencentcloud::ccc::V20200210::CreateAutoCalloutTaskRequest`
+        # @rtype: :class:`Tencentcloud::ccc::V20200210::CreateAutoCalloutTaskResponse`
+        def CreateAutoCalloutTask(request)
+          body = send_request('CreateAutoCalloutTask', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateAutoCalloutTaskResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 创建外呼会话
 
         # @param request: Request instance for CreateCallOutSession.
@@ -159,6 +183,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteStaffResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询自动外呼任务详情
+
+        # @param request: Request instance for DescribeAutoCalloutTask.
+        # @type request: :class:`Tencentcloud::ccc::V20200210::DescribeAutoCalloutTaskRequest`
+        # @rtype: :class:`Tencentcloud::ccc::V20200210::DescribeAutoCalloutTaskResponse`
+        def DescribeAutoCalloutTask(request)
+          body = send_request('DescribeAutoCalloutTask', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeAutoCalloutTaskResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -473,6 +521,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeTelSessionResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 停止自动外呼任务
+
+        # @param request: Request instance for StopAutoCalloutTask.
+        # @type request: :class:`Tencentcloud::ccc::V20200210::StopAutoCalloutTaskRequest`
+        # @rtype: :class:`Tencentcloud::ccc::V20200210::StopAutoCalloutTaskResponse`
+        def StopAutoCalloutTask(request)
+          body = send_request('StopAutoCalloutTask', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = StopAutoCalloutTaskResponse.new
             model.deserialize(response['Response'])
             model
           else

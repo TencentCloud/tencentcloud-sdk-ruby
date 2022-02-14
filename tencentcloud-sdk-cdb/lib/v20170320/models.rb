@@ -4387,15 +4387,19 @@ module TencentCloud
       class DescribeDefaultParamsRequest < TencentCloud::Common::AbstractModel
         # @param EngineVersion: mysql版本，目前支持 ["5.1", "5.5", "5.6", "5.7"]。
         # @type EngineVersion: String
+        # @param TemplateType: 默认参数模板类型。支持值包括："HIGH_STABILITY" - 高稳定模版，"HIGH_PERFORMANCE" - 高性能模版。
+        # @type TemplateType: String
 
-        attr_accessor :EngineVersion
+        attr_accessor :EngineVersion, :TemplateType
         
-        def initialize(engineversion=nil)
+        def initialize(engineversion=nil, templatetype=nil)
           @EngineVersion = engineversion
+          @TemplateType = templatetype
         end
 
         def deserialize(params)
           @EngineVersion = params['EngineVersion']
+          @TemplateType = params['TemplateType']
         end
       end
 

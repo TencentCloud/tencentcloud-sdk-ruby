@@ -601,6 +601,319 @@ module TencentCloud
         end
       end
 
+      # CC精准防护配置项
+      class CCPrecisionPlyRecord < TencentCloud::Common::AbstractModel
+        # @param FieldType: 配置项类型，当前仅支持value
+        # @type FieldType: String
+        # @param FieldName: 配置字段，可取值cgi， ua， cookie， referer， accept,  srcip
+        # @type FieldName: String
+        # @param Value: 配置取值
+        # @type Value: String
+        # @param ValueOperator: 配置项值比对方式，可取值equal ，not_equal， include
+        # @type ValueOperator: String
+
+        attr_accessor :FieldType, :FieldName, :Value, :ValueOperator
+        
+        def initialize(fieldtype=nil, fieldname=nil, value=nil, valueoperator=nil)
+          @FieldType = fieldtype
+          @FieldName = fieldname
+          @Value = value
+          @ValueOperator = valueoperator
+        end
+
+        def deserialize(params)
+          @FieldType = params['FieldType']
+          @FieldName = params['FieldName']
+          @Value = params['Value']
+          @ValueOperator = params['ValueOperator']
+        end
+      end
+
+      # CC精准防护策略信息
+      class CCPrecisionPolicy < TencentCloud::Common::AbstractModel
+        # @param PolicyId: 策略Id
+        # @type PolicyId: String
+        # @param InstanceId: 实例Id
+        # @type InstanceId: String
+        # @param Ip: Ip地址
+        # @type Ip: String
+        # @param Protocol: 协议
+        # @type Protocol: String
+        # @param Domain: 域名
+        # @type Domain: String
+        # @param PolicyAction: 策略方式（丢弃或验证码）
+        # @type PolicyAction: String
+        # @param PolicyList: 策略列表
+        # @type PolicyList: Array
+        # @param CreateTime: 创建时间
+        # @type CreateTime: String
+        # @param ModifyTime: 修改时间
+        # @type ModifyTime: String
+
+        attr_accessor :PolicyId, :InstanceId, :Ip, :Protocol, :Domain, :PolicyAction, :PolicyList, :CreateTime, :ModifyTime
+        
+        def initialize(policyid=nil, instanceid=nil, ip=nil, protocol=nil, domain=nil, policyaction=nil, policylist=nil, createtime=nil, modifytime=nil)
+          @PolicyId = policyid
+          @InstanceId = instanceid
+          @Ip = ip
+          @Protocol = protocol
+          @Domain = domain
+          @PolicyAction = policyaction
+          @PolicyList = policylist
+          @CreateTime = createtime
+          @ModifyTime = modifytime
+        end
+
+        def deserialize(params)
+          @PolicyId = params['PolicyId']
+          @InstanceId = params['InstanceId']
+          @Ip = params['Ip']
+          @Protocol = params['Protocol']
+          @Domain = params['Domain']
+          @PolicyAction = params['PolicyAction']
+          unless params['PolicyList'].nil?
+            @PolicyList = []
+            params['PolicyList'].each do |i|
+              ccprecisionplyrecord_tmp = CCPrecisionPlyRecord.new
+              ccprecisionplyrecord_tmp.deserialize(i)
+              @PolicyList << ccprecisionplyrecord_tmp
+            end
+          end
+          @CreateTime = params['CreateTime']
+          @ModifyTime = params['ModifyTime']
+        end
+      end
+
+      # CC频率限制策略
+      class CCReqLimitPolicy < TencentCloud::Common::AbstractModel
+        # @param PolicyId: 策略Id
+        # @type PolicyId: String
+        # @param InstanceId: 实例Id
+        # @type InstanceId: String
+        # @param Ip: Ip地址
+        # @type Ip: String
+        # @param Protocol: 协议，可取值HTTP，HTTPS
+        # @type Protocol: String
+        # @param Domain: 域名
+        # @type Domain: String
+        # @param PolicyRecord: 策略项
+        # @type PolicyRecord: :class:`Tencentcloud::Antiddos.v20200309.models.CCReqLimitPolicyRecord`
+        # @param CreateTime: 创建时间
+        # @type CreateTime: String
+        # @param ModifyTime: 修改时间
+        # @type ModifyTime: String
+
+        attr_accessor :PolicyId, :InstanceId, :Ip, :Protocol, :Domain, :PolicyRecord, :CreateTime, :ModifyTime
+        
+        def initialize(policyid=nil, instanceid=nil, ip=nil, protocol=nil, domain=nil, policyrecord=nil, createtime=nil, modifytime=nil)
+          @PolicyId = policyid
+          @InstanceId = instanceid
+          @Ip = ip
+          @Protocol = protocol
+          @Domain = domain
+          @PolicyRecord = policyrecord
+          @CreateTime = createtime
+          @ModifyTime = modifytime
+        end
+
+        def deserialize(params)
+          @PolicyId = params['PolicyId']
+          @InstanceId = params['InstanceId']
+          @Ip = params['Ip']
+          @Protocol = params['Protocol']
+          @Domain = params['Domain']
+          unless params['PolicyRecord'].nil?
+            @PolicyRecord = CCReqLimitPolicyRecord.new
+            @PolicyRecord.deserialize(params['PolicyRecord'])
+          end
+          @CreateTime = params['CreateTime']
+          @ModifyTime = params['ModifyTime']
+        end
+      end
+
+      # CC频率限制策略项字段
+      class CCReqLimitPolicyRecord < TencentCloud::Common::AbstractModel
+        # @param Period: 统计周期，可取值1，10，30，60，单位秒
+        # @type Period: Integer
+        # @param RequestNum: 请求数，取值1~20000
+        # @type RequestNum: Integer
+        # @param Action: 频率限制策略方式，可取值alg表示验证码，drop表示丢弃
+        # @type Action: String
+        # @param ExecuteDuration: 频率限制策略时长，可取值1~86400，单位秒
+        # @type ExecuteDuration: Integer
+        # @param Mode: 策略项比对方式，可取值include表示包含，equal表示等于
+        # @type Mode: String
+        # @param Uri: Uri，三个策略项仅可填其中之一
+        # @type Uri: String
+        # @param UserAgent: User-Agent，三个策略项仅可填其中之一
+        # @type UserAgent: String
+        # @param Cookie: Cookie，三个策略项仅可填其中之一
+        # @type Cookie: String
+
+        attr_accessor :Period, :RequestNum, :Action, :ExecuteDuration, :Mode, :Uri, :UserAgent, :Cookie
+        
+        def initialize(period=nil, requestnum=nil, action=nil, executeduration=nil, mode=nil, uri=nil, useragent=nil, cookie=nil)
+          @Period = period
+          @RequestNum = requestnum
+          @Action = action
+          @ExecuteDuration = executeduration
+          @Mode = mode
+          @Uri = uri
+          @UserAgent = useragent
+          @Cookie = cookie
+        end
+
+        def deserialize(params)
+          @Period = params['Period']
+          @RequestNum = params['RequestNum']
+          @Action = params['Action']
+          @ExecuteDuration = params['ExecuteDuration']
+          @Mode = params['Mode']
+          @Uri = params['Uri']
+          @UserAgent = params['UserAgent']
+          @Cookie = params['Cookie']
+        end
+      end
+
+      # CC四层黑白名单列表
+      class CcBlackWhiteIpPolicy < TencentCloud::Common::AbstractModel
+        # @param PolicyId: 策略Id
+        # @type PolicyId: String
+        # @param InstanceId: 实例Id
+        # @type InstanceId: String
+        # @param Ip: IP地址
+        # @type Ip: String
+        # @param Domain: 域名
+        # @type Domain: String
+        # @param Protocol: 协议
+        # @type Protocol: String
+        # @param Type: IP类型，取值[black(黑名单IP), white(白名单IP)]
+        # @type Type: String
+        # @param BlackWhiteIp: 黑白名单IP地址
+        # @type BlackWhiteIp: String
+        # @param Mask: 掩码
+        # @type Mask: Integer
+        # @param CreateTime: 创建时间
+        # @type CreateTime: String
+        # @param ModifyTime: 修改时间
+        # @type ModifyTime: String
+
+        attr_accessor :PolicyId, :InstanceId, :Ip, :Domain, :Protocol, :Type, :BlackWhiteIp, :Mask, :CreateTime, :ModifyTime
+        
+        def initialize(policyid=nil, instanceid=nil, ip=nil, domain=nil, protocol=nil, type=nil, blackwhiteip=nil, mask=nil, createtime=nil, modifytime=nil)
+          @PolicyId = policyid
+          @InstanceId = instanceid
+          @Ip = ip
+          @Domain = domain
+          @Protocol = protocol
+          @Type = type
+          @BlackWhiteIp = blackwhiteip
+          @Mask = mask
+          @CreateTime = createtime
+          @ModifyTime = modifytime
+        end
+
+        def deserialize(params)
+          @PolicyId = params['PolicyId']
+          @InstanceId = params['InstanceId']
+          @Ip = params['Ip']
+          @Domain = params['Domain']
+          @Protocol = params['Protocol']
+          @Type = params['Type']
+          @BlackWhiteIp = params['BlackWhiteIp']
+          @Mask = params['Mask']
+          @CreateTime = params['CreateTime']
+          @ModifyTime = params['ModifyTime']
+        end
+      end
+
+      # DDoS防护的区域封禁配置
+      class CcGeoIPBlockConfig < TencentCloud::Common::AbstractModel
+        # @param RegionType: 区域类型，取值[
+        # oversea(海外)
+        # china(国内)
+        # customized(自定义地区)
+        # ]
+        # @type RegionType: String
+        # @param Action: 封禁动作，取值[
+        # drop(拦截)
+        # alg(人机校验)
+        # ]
+        # @type Action: String
+        # @param Id: 配置ID，配置添加成功后生成；添加新配置时不用填写此字段，修改或删除配置时需要填写配置ID
+        # @type Id: String
+        # @param AreaList: 当RegionType为customized时，必须填写AreaList；当RegionType为china或oversea时，AreaList为空
+        # @type AreaList: Array
+
+        attr_accessor :RegionType, :Action, :Id, :AreaList
+        
+        def initialize(regiontype=nil, action=nil, id=nil, arealist=nil)
+          @RegionType = regiontype
+          @Action = action
+          @Id = id
+          @AreaList = arealist
+        end
+
+        def deserialize(params)
+          @RegionType = params['RegionType']
+          @Action = params['Action']
+          @Id = params['Id']
+          @AreaList = params['AreaList']
+        end
+      end
+
+      # CC地域封禁列表详情
+      class CcGeoIpPolicyNew < TencentCloud::Common::AbstractModel
+        # @param PolicyId: 策略Id
+        # @type PolicyId: String
+        # @param InstanceId: 实例Id
+        # @type InstanceId: String
+        # @param Ip: IP地址
+        # @type Ip: String
+        # @param Domain: 域名
+        # @type Domain: String
+        # @param Protocol: 协议，可取值HTTP，HTTPS
+        # @type Protocol: String
+        # @param Action: 用户动作，drop或alg
+        # @type Action: String
+        # @param RegionType: 地域类型，分为china, oversea与customized
+        # @type RegionType: String
+        # @param AreaList: 用户选择封禁的地域ID列表
+        # @type AreaList: Array
+        # @param CreateTime: 创建时间
+        # @type CreateTime: String
+        # @param ModifyTime: 修改时间
+        # @type ModifyTime: String
+
+        attr_accessor :PolicyId, :InstanceId, :Ip, :Domain, :Protocol, :Action, :RegionType, :AreaList, :CreateTime, :ModifyTime
+        
+        def initialize(policyid=nil, instanceid=nil, ip=nil, domain=nil, protocol=nil, action=nil, regiontype=nil, arealist=nil, createtime=nil, modifytime=nil)
+          @PolicyId = policyid
+          @InstanceId = instanceid
+          @Ip = ip
+          @Domain = domain
+          @Protocol = protocol
+          @Action = action
+          @RegionType = regiontype
+          @AreaList = arealist
+          @CreateTime = createtime
+          @ModifyTime = modifytime
+        end
+
+        def deserialize(params)
+          @PolicyId = params['PolicyId']
+          @InstanceId = params['InstanceId']
+          @Ip = params['Ip']
+          @Domain = params['Domain']
+          @Protocol = params['Protocol']
+          @Action = params['Action']
+          @RegionType = params['RegionType']
+          @AreaList = params['AreaList']
+          @CreateTime = params['CreateTime']
+          @ModifyTime = params['ModifyTime']
+        end
+      end
+
       # 使用证书的规则集合
       class CertIdInsL7Rules < TencentCloud::Common::AbstractModel
         # @param L7Rules: 使用证书的规则列表
@@ -811,6 +1124,167 @@ module TencentCloud
             @Success = SuccessCode.new
             @Success.deserialize(params['Success'])
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateCCPrecisionPolicy请求参数结构体
+      class CreateCCPrecisionPolicyRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例Id
+        # @type InstanceId: String
+        # @param Ip: IP值
+        # @type Ip: String
+        # @param Protocol: 协议， 可取值HTTP，HTTPS
+        # @type Protocol: String
+        # @param Domain: 域名
+        # @type Domain: String
+        # @param PolicyAction: 策略方式，可取值alg表示验证码，drop表示丢弃
+        # @type PolicyAction: String
+        # @param PolicyList: 策略记录
+        # @type PolicyList: Array
+
+        attr_accessor :InstanceId, :Ip, :Protocol, :Domain, :PolicyAction, :PolicyList
+        
+        def initialize(instanceid=nil, ip=nil, protocol=nil, domain=nil, policyaction=nil, policylist=nil)
+          @InstanceId = instanceid
+          @Ip = ip
+          @Protocol = protocol
+          @Domain = domain
+          @PolicyAction = policyaction
+          @PolicyList = policylist
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @Ip = params['Ip']
+          @Protocol = params['Protocol']
+          @Domain = params['Domain']
+          @PolicyAction = params['PolicyAction']
+          unless params['PolicyList'].nil?
+            @PolicyList = []
+            params['PolicyList'].each do |i|
+              ccprecisionplyrecord_tmp = CCPrecisionPlyRecord.new
+              ccprecisionplyrecord_tmp.deserialize(i)
+              @PolicyList << ccprecisionplyrecord_tmp
+            end
+          end
+        end
+      end
+
+      # CreateCCPrecisionPolicy返回参数结构体
+      class CreateCCPrecisionPolicyResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateCCReqLimitPolicy请求参数结构体
+      class CreateCCReqLimitPolicyRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例Id
+        # @type InstanceId: String
+        # @param Ip: IP值
+        # @type Ip: String
+        # @param Protocol: 协议，可取值HTTP，HTTPS
+        # @type Protocol: String
+        # @param Domain: 域名
+        # @type Domain: String
+        # @param Policy: 策略项
+        # @type Policy: :class:`Tencentcloud::Antiddos.v20200309.models.CCReqLimitPolicyRecord`
+
+        attr_accessor :InstanceId, :Ip, :Protocol, :Domain, :Policy
+        
+        def initialize(instanceid=nil, ip=nil, protocol=nil, domain=nil, policy=nil)
+          @InstanceId = instanceid
+          @Ip = ip
+          @Protocol = protocol
+          @Domain = domain
+          @Policy = policy
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @Ip = params['Ip']
+          @Protocol = params['Protocol']
+          @Domain = params['Domain']
+          unless params['Policy'].nil?
+            @Policy = CCReqLimitPolicyRecord.new
+            @Policy.deserialize(params['Policy'])
+          end
+        end
+      end
+
+      # CreateCCReqLimitPolicy返回参数结构体
+      class CreateCCReqLimitPolicyResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateCcGeoIPBlockConfig请求参数结构体
+      class CreateCcGeoIPBlockConfigRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例id
+        # @type InstanceId: String
+        # @param IP: ip地址
+        # @type IP: String
+        # @param Domain: 域名
+        # @type Domain: String
+        # @param Protocol: 协议类型
+        # @type Protocol: String
+        # @param CcGeoIPBlockConfig: CC区域封禁配置，填写参数时配置ID请为空
+        # @type CcGeoIPBlockConfig: :class:`Tencentcloud::Antiddos.v20200309.models.CcGeoIPBlockConfig`
+
+        attr_accessor :InstanceId, :IP, :Domain, :Protocol, :CcGeoIPBlockConfig
+        
+        def initialize(instanceid=nil, ip=nil, domain=nil, protocol=nil, ccgeoipblockconfig=nil)
+          @InstanceId = instanceid
+          @IP = ip
+          @Domain = domain
+          @Protocol = protocol
+          @CcGeoIPBlockConfig = ccgeoipblockconfig
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @IP = params['IP']
+          @Domain = params['Domain']
+          @Protocol = params['Protocol']
+          unless params['CcGeoIPBlockConfig'].nil?
+            @CcGeoIPBlockConfig = CcGeoIPBlockConfig.new
+            @CcGeoIPBlockConfig.deserialize(params['CcGeoIPBlockConfig'])
+          end
+        end
+      end
+
+      # CreateCcGeoIPBlockConfig返回参数结构体
+      class CreateCcGeoIPBlockConfigResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
           @RequestId = params['RequestId']
         end
       end
@@ -1655,6 +2129,153 @@ module TencentCloud
         end
       end
 
+      # DeleteCCPrecisionPolicy请求参数结构体
+      class DeleteCCPrecisionPolicyRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例Id
+        # @type InstanceId: String
+        # @param PolicyId: 策略Id
+        # @type PolicyId: String
+
+        attr_accessor :InstanceId, :PolicyId
+        
+        def initialize(instanceid=nil, policyid=nil)
+          @InstanceId = instanceid
+          @PolicyId = policyid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @PolicyId = params['PolicyId']
+        end
+      end
+
+      # DeleteCCPrecisionPolicy返回参数结构体
+      class DeleteCCPrecisionPolicyResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteCCRequestLimitPolicy请求参数结构体
+      class DeleteCCRequestLimitPolicyRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例Id
+        # @type InstanceId: String
+        # @param PolicyId: 策略Id
+        # @type PolicyId: String
+
+        attr_accessor :InstanceId, :PolicyId
+        
+        def initialize(instanceid=nil, policyid=nil)
+          @InstanceId = instanceid
+          @PolicyId = policyid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @PolicyId = params['PolicyId']
+        end
+      end
+
+      # DeleteCCRequestLimitPolicy返回参数结构体
+      class DeleteCCRequestLimitPolicyResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteCcBlackWhiteIpList请求参数结构体
+      class DeleteCcBlackWhiteIpListRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 资源实例ID
+        # @type InstanceId: String
+        # @param PolicyId: 策略Id
+        # @type PolicyId: String
+
+        attr_accessor :InstanceId, :PolicyId
+        
+        def initialize(instanceid=nil, policyid=nil)
+          @InstanceId = instanceid
+          @PolicyId = policyid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @PolicyId = params['PolicyId']
+        end
+      end
+
+      # DeleteCcBlackWhiteIpList返回参数结构体
+      class DeleteCcBlackWhiteIpListResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteCcGeoIPBlockConfig请求参数结构体
+      class DeleteCcGeoIPBlockConfigRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 资源实例ID
+        # @type InstanceId: String
+        # @param CcGeoIPBlockConfig: CC区域封禁配置，填写参数时配置ID不能为空
+        # @type CcGeoIPBlockConfig: :class:`Tencentcloud::Antiddos.v20200309.models.CcGeoIPBlockConfig`
+
+        attr_accessor :InstanceId, :CcGeoIPBlockConfig
+        
+        def initialize(instanceid=nil, ccgeoipblockconfig=nil)
+          @InstanceId = instanceid
+          @CcGeoIPBlockConfig = ccgeoipblockconfig
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          unless params['CcGeoIPBlockConfig'].nil?
+            @CcGeoIPBlockConfig = CcGeoIPBlockConfig.new
+            @CcGeoIPBlockConfig.deserialize(params['CcGeoIPBlockConfig'])
+          end
+        end
+      end
+
+      # DeleteCcGeoIPBlockConfig返回参数结构体
+      class DeleteCcGeoIPBlockConfigResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DeleteDDoSBlackWhiteIpList请求参数结构体
       class DeleteDDoSBlackWhiteIpListRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 资源实例ID
@@ -1805,6 +2426,45 @@ module TencentCloud
 
       # DeletePacketFilterConfig返回参数结构体
       class DeletePacketFilterConfigResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeletePortAclConfig请求参数结构体
+      class DeletePortAclConfigRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 资源实例ID
+        # @type InstanceId: String
+        # @param AclConfig: 端口acl策略
+        # @type AclConfig: :class:`Tencentcloud::Antiddos.v20200309.models.AclConfig`
+
+        attr_accessor :InstanceId, :AclConfig
+        
+        def initialize(instanceid=nil, aclconfig=nil)
+          @InstanceId = instanceid
+          @AclConfig = aclconfig
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          unless params['AclConfig'].nil?
+            @AclConfig = AclConfig.new
+            @AclConfig.deserialize(params['AclConfig'])
+          end
+        end
+      end
+
+      # DeletePortAclConfig返回参数结构体
+      class DeletePortAclConfigResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -2052,6 +2712,148 @@ module TencentCloud
         end
       end
 
+      # DescribeCCPrecisionPlyList请求参数结构体
+      class DescribeCCPrecisionPlyListRequest < TencentCloud::Common::AbstractModel
+        # @param Business: 大禹子产品代号（bgpip-multip：表示高防包；bgpip：表示高防ip）
+        # @type Business: String
+        # @param Offset: 页起始偏移，取值为(页码-1)*一页条数
+        # @type Offset: Integer
+        # @param Limit: 一页条数
+        # @type Limit: Integer
+        # @param InstanceId: 指定特定实例Id
+        # @type InstanceId: String
+        # @param Ip: ip地址，普通高防ip要传该字段
+        # @type Ip: String
+        # @param Domain: 域名，普通高防ip要传该字段
+        # @type Domain: String
+        # @param Protocol: 协议，普通高防ip要传该字段
+        # @type Protocol: String
+
+        attr_accessor :Business, :Offset, :Limit, :InstanceId, :Ip, :Domain, :Protocol
+        
+        def initialize(business=nil, offset=nil, limit=nil, instanceid=nil, ip=nil, domain=nil, protocol=nil)
+          @Business = business
+          @Offset = offset
+          @Limit = limit
+          @InstanceId = instanceid
+          @Ip = ip
+          @Domain = domain
+          @Protocol = protocol
+        end
+
+        def deserialize(params)
+          @Business = params['Business']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @InstanceId = params['InstanceId']
+          @Ip = params['Ip']
+          @Domain = params['Domain']
+          @Protocol = params['Protocol']
+        end
+      end
+
+      # DescribeCCPrecisionPlyList返回参数结构体
+      class DescribeCCPrecisionPlyListResponse < TencentCloud::Common::AbstractModel
+        # @param Total: 策略列表总数
+        # @type Total: Integer
+        # @param PrecisionPolicyList: 策略列表详情
+        # @type PrecisionPolicyList: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Total, :PrecisionPolicyList, :RequestId
+        
+        def initialize(total=nil, precisionpolicylist=nil, requestid=nil)
+          @Total = total
+          @PrecisionPolicyList = precisionpolicylist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Total = params['Total']
+          unless params['PrecisionPolicyList'].nil?
+            @PrecisionPolicyList = []
+            params['PrecisionPolicyList'].each do |i|
+              ccprecisionpolicy_tmp = CCPrecisionPolicy.new
+              ccprecisionpolicy_tmp.deserialize(i)
+              @PrecisionPolicyList << ccprecisionpolicy_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeCCReqLimitPolicyList请求参数结构体
+      class DescribeCCReqLimitPolicyListRequest < TencentCloud::Common::AbstractModel
+        # @param Business: 大禹子产品代号（bgp-multip表示高防包，bgpip表示高防ip）
+        # @type Business: String
+        # @param Offset: 页起始偏移，取值为(页码-1)*一页条数
+        # @type Offset: Integer
+        # @param Limit: 一页条数
+        # @type Limit: Integer
+        # @param InstanceId: 指定实例Id
+        # @type InstanceId: String
+        # @param Ip: Ip地址，普通高防ip要传该字段
+        # @type Ip: String
+        # @param Domain: 域名，普通高防ip要传该字段
+        # @type Domain: String
+        # @param Protocol: 协议，普通高防ip要传该字段
+        # @type Protocol: String
+
+        attr_accessor :Business, :Offset, :Limit, :InstanceId, :Ip, :Domain, :Protocol
+        
+        def initialize(business=nil, offset=nil, limit=nil, instanceid=nil, ip=nil, domain=nil, protocol=nil)
+          @Business = business
+          @Offset = offset
+          @Limit = limit
+          @InstanceId = instanceid
+          @Ip = ip
+          @Domain = domain
+          @Protocol = protocol
+        end
+
+        def deserialize(params)
+          @Business = params['Business']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @InstanceId = params['InstanceId']
+          @Ip = params['Ip']
+          @Domain = params['Domain']
+          @Protocol = params['Protocol']
+        end
+      end
+
+      # DescribeCCReqLimitPolicyList返回参数结构体
+      class DescribeCCReqLimitPolicyListResponse < TencentCloud::Common::AbstractModel
+        # @param Total: 频率限制列表总数
+        # @type Total: Integer
+        # @param RequestLimitPolicyList: 频率限制列表详情
+        # @type RequestLimitPolicyList: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Total, :RequestLimitPolicyList, :RequestId
+        
+        def initialize(total=nil, requestlimitpolicylist=nil, requestid=nil)
+          @Total = total
+          @RequestLimitPolicyList = requestlimitpolicylist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Total = params['Total']
+          unless params['RequestLimitPolicyList'].nil?
+            @RequestLimitPolicyList = []
+            params['RequestLimitPolicyList'].each do |i|
+              ccreqlimitpolicy_tmp = CCReqLimitPolicy.new
+              ccreqlimitpolicy_tmp.deserialize(i)
+              @RequestLimitPolicyList << ccreqlimitpolicy_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeCCTrend请求参数结构体
       class DescribeCCTrendRequest < TencentCloud::Common::AbstractModel
         # @param Business: 大禹子产品代号（bgpip表示高防IP；bgp表示独享包；bgp-multip表示共享包；net表示高防IP专业版；basic表示DDoS基础防护）
@@ -2145,6 +2947,156 @@ module TencentCloud
           @Data = params['Data']
           @Id = params['Id']
           @MetricName = params['MetricName']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeCcBlackWhiteIpList请求参数结构体
+      class DescribeCcBlackWhiteIpListRequest < TencentCloud::Common::AbstractModel
+        # @param Business: 大禹子产品代号（bgp-multip：表示高防包；bgpip：表示高防ip）
+        # @type Business: String
+        # @param InstanceId: 指定特定实例Id
+        # @type InstanceId: String
+        # @param Offset: 页起始偏移，取值为(页码-1)*一页条数
+        # @type Offset: Integer
+        # @param Limit: 一页条数
+        # @type Limit: Integer
+        # @param Ip: Ip地址，普通高防ip要传该字段
+        # @type Ip: String
+        # @param Domain: 域名，普通高防ip要传该字段
+        # @type Domain: String
+        # @param Protocol: 协议，普通高防ip要传该字段
+        # @type Protocol: String
+        # @param FilterIp: 筛选ip，需要筛选黑白名单ip时传该字段
+        # @type FilterIp: String
+        # @param FilterType: 黑白名单筛选字段，需要筛选黑白名单列表时传该字段
+        # @type FilterType: String
+
+        attr_accessor :Business, :InstanceId, :Offset, :Limit, :Ip, :Domain, :Protocol, :FilterIp, :FilterType
+        
+        def initialize(business=nil, instanceid=nil, offset=nil, limit=nil, ip=nil, domain=nil, protocol=nil, filterip=nil, filtertype=nil)
+          @Business = business
+          @InstanceId = instanceid
+          @Offset = offset
+          @Limit = limit
+          @Ip = ip
+          @Domain = domain
+          @Protocol = protocol
+          @FilterIp = filterip
+          @FilterType = filtertype
+        end
+
+        def deserialize(params)
+          @Business = params['Business']
+          @InstanceId = params['InstanceId']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @Ip = params['Ip']
+          @Domain = params['Domain']
+          @Protocol = params['Protocol']
+          @FilterIp = params['FilterIp']
+          @FilterType = params['FilterType']
+        end
+      end
+
+      # DescribeCcBlackWhiteIpList返回参数结构体
+      class DescribeCcBlackWhiteIpListResponse < TencentCloud::Common::AbstractModel
+        # @param Total: CC四层黑白名单策略列表总数
+        # @type Total: Integer
+        # @param CcBlackWhiteIpList: CC四层黑白名单策略列表详情
+        # @type CcBlackWhiteIpList: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Total, :CcBlackWhiteIpList, :RequestId
+        
+        def initialize(total=nil, ccblackwhiteiplist=nil, requestid=nil)
+          @Total = total
+          @CcBlackWhiteIpList = ccblackwhiteiplist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Total = params['Total']
+          unless params['CcBlackWhiteIpList'].nil?
+            @CcBlackWhiteIpList = []
+            params['CcBlackWhiteIpList'].each do |i|
+              ccblackwhiteippolicy_tmp = CcBlackWhiteIpPolicy.new
+              ccblackwhiteippolicy_tmp.deserialize(i)
+              @CcBlackWhiteIpList << ccblackwhiteippolicy_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeCcGeoIPBlockConfigList请求参数结构体
+      class DescribeCcGeoIPBlockConfigListRequest < TencentCloud::Common::AbstractModel
+        # @param Business: 大禹子产品代号（bgpip-multip：表示高防包；bgpip：表示高防ip）
+        # @type Business: String
+        # @param Offset: 页起始偏移，取值为(页码-1)*一页条数
+        # @type Offset: Integer
+        # @param Limit: 一页条数
+        # @type Limit: Integer
+        # @param InstanceId: 指定特定实例Id
+        # @type InstanceId: String
+        # @param Ip: Ip地址，普通高防ip要传该字段
+        # @type Ip: String
+        # @param Domain: 域名，普通高防ip要传该字段
+        # @type Domain: String
+        # @param Protocol: 协议，普通高防ip要传该字段
+        # @type Protocol: String
+
+        attr_accessor :Business, :Offset, :Limit, :InstanceId, :Ip, :Domain, :Protocol
+        
+        def initialize(business=nil, offset=nil, limit=nil, instanceid=nil, ip=nil, domain=nil, protocol=nil)
+          @Business = business
+          @Offset = offset
+          @Limit = limit
+          @InstanceId = instanceid
+          @Ip = ip
+          @Domain = domain
+          @Protocol = protocol
+        end
+
+        def deserialize(params)
+          @Business = params['Business']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @InstanceId = params['InstanceId']
+          @Ip = params['Ip']
+          @Domain = params['Domain']
+          @Protocol = params['Protocol']
+        end
+      end
+
+      # DescribeCcGeoIPBlockConfigList返回参数结构体
+      class DescribeCcGeoIPBlockConfigListResponse < TencentCloud::Common::AbstractModel
+        # @param Total: CC地域封禁策略列表总数
+        # @type Total: Integer
+        # @param CcGeoIpPolicyList: CC地域封禁策略列表详情
+        # @type CcGeoIpPolicyList: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Total, :CcGeoIpPolicyList, :RequestId
+        
+        def initialize(total=nil, ccgeoippolicylist=nil, requestid=nil)
+          @Total = total
+          @CcGeoIpPolicyList = ccgeoippolicylist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Total = params['Total']
+          unless params['CcGeoIpPolicyList'].nil?
+            @CcGeoIpPolicyList = []
+            params['CcGeoIpPolicyList'].each do |i|
+              ccgeoippolicynew_tmp = CcGeoIpPolicyNew.new
+              ccgeoippolicynew_tmp.deserialize(i)
+              @CcGeoIpPolicyList << ccgeoippolicynew_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -2564,7 +3516,7 @@ module TencentCloud
         # @type FilterName: String
         # @param FilterLine: 按照线路搜索, 1: BGP; 2: 三网
         # @type FilterLine: Integer
-        # @param FilterStatus: 状态搜索，idle：允许中；attacking：攻击中；blocking：封堵中
+        # @param FilterStatus: 状态搜索，idle：运行中；attacking：攻击中；blocking：封堵中
         # @type FilterStatus: String
         # @param FilterBoundStatus: 高防包绑定状态搜索，bounding：绑定中； failed：绑定失败
         # @type FilterBoundStatus: String
@@ -3914,6 +4866,301 @@ module TencentCloud
         end
       end
 
+      # ModifyCCLevelPolicy请求参数结构体
+      class ModifyCCLevelPolicyRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例Id
+        # @type InstanceId: String
+        # @param Ip: Ip地址
+        # @type Ip: String
+        # @param Domain: 域名
+        # @type Domain: String
+        # @param Protocol: 协议，可取值HTTP，HTTPS
+        # @type Protocol: String
+        # @param Level: CC防护等级，可取值loose表示宽松，strict表示严格，normal表示适中， emergency表示攻击紧急， sup_loose表示超级宽松，default表示默认策略（无频控配置下发），customized表示自定义策略
+        # @type Level: String
+
+        attr_accessor :InstanceId, :Ip, :Domain, :Protocol, :Level
+        
+        def initialize(instanceid=nil, ip=nil, domain=nil, protocol=nil, level=nil)
+          @InstanceId = instanceid
+          @Ip = ip
+          @Domain = domain
+          @Protocol = protocol
+          @Level = level
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @Ip = params['Ip']
+          @Domain = params['Domain']
+          @Protocol = params['Protocol']
+          @Level = params['Level']
+        end
+      end
+
+      # ModifyCCLevelPolicy返回参数结构体
+      class ModifyCCLevelPolicyResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyCCPrecisionPolicy请求参数结构体
+      class ModifyCCPrecisionPolicyRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例Id
+        # @type InstanceId: String
+        # @param PolicyId: 策略Id
+        # @type PolicyId: String
+        # @param PolicyAction: 策略方式，可取值alg表示验证码，drop表示丢弃
+        # @type PolicyAction: String
+        # @param PolicyList: 策略记录
+        # @type PolicyList: Array
+
+        attr_accessor :InstanceId, :PolicyId, :PolicyAction, :PolicyList
+        
+        def initialize(instanceid=nil, policyid=nil, policyaction=nil, policylist=nil)
+          @InstanceId = instanceid
+          @PolicyId = policyid
+          @PolicyAction = policyaction
+          @PolicyList = policylist
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @PolicyId = params['PolicyId']
+          @PolicyAction = params['PolicyAction']
+          unless params['PolicyList'].nil?
+            @PolicyList = []
+            params['PolicyList'].each do |i|
+              ccprecisionplyrecord_tmp = CCPrecisionPlyRecord.new
+              ccprecisionplyrecord_tmp.deserialize(i)
+              @PolicyList << ccprecisionplyrecord_tmp
+            end
+          end
+        end
+      end
+
+      # ModifyCCPrecisionPolicy返回参数结构体
+      class ModifyCCPrecisionPolicyResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyCCReqLimitPolicy请求参数结构体
+      class ModifyCCReqLimitPolicyRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例Id
+        # @type InstanceId: String
+        # @param PolicyId: 策略Id
+        # @type PolicyId: String
+        # @param Policy: 策略项
+        # @type Policy: :class:`Tencentcloud::Antiddos.v20200309.models.CCReqLimitPolicyRecord`
+
+        attr_accessor :InstanceId, :PolicyId, :Policy
+        
+        def initialize(instanceid=nil, policyid=nil, policy=nil)
+          @InstanceId = instanceid
+          @PolicyId = policyid
+          @Policy = policy
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @PolicyId = params['PolicyId']
+          unless params['Policy'].nil?
+            @Policy = CCReqLimitPolicyRecord.new
+            @Policy.deserialize(params['Policy'])
+          end
+        end
+      end
+
+      # ModifyCCReqLimitPolicy返回参数结构体
+      class ModifyCCReqLimitPolicyResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyCCThresholdPolicy请求参数结构体
+      class ModifyCCThresholdPolicyRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例Id
+        # @type InstanceId: String
+        # @param Ip: Ip地址
+        # @type Ip: String
+        # @param Domain: 域名
+        # @type Domain: String
+        # @param Protocol: 协议，可取值HTTP，HTTPS
+        # @type Protocol: String
+        # @param Threshold: 清洗阈值，-1表示开启“默认”模式
+        # @type Threshold: Integer
+
+        attr_accessor :InstanceId, :Ip, :Domain, :Protocol, :Threshold
+        
+        def initialize(instanceid=nil, ip=nil, domain=nil, protocol=nil, threshold=nil)
+          @InstanceId = instanceid
+          @Ip = ip
+          @Domain = domain
+          @Protocol = protocol
+          @Threshold = threshold
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @Ip = params['Ip']
+          @Domain = params['Domain']
+          @Protocol = params['Protocol']
+          @Threshold = params['Threshold']
+        end
+      end
+
+      # ModifyCCThresholdPolicy返回参数结构体
+      class ModifyCCThresholdPolicyResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyCcBlackWhiteIpList请求参数结构体
+      class ModifyCcBlackWhiteIpListRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 资源实例ID
+        # @type InstanceId: String
+        # @param IpList: IP列表
+        # @type IpList: Array
+        # @param Type: IP类型，取值[black(黑名单IP), white(白名单IP)]
+        # @type Type: String
+        # @param PolicyId: 策略Id
+        # @type PolicyId: String
+
+        attr_accessor :InstanceId, :IpList, :Type, :PolicyId
+        
+        def initialize(instanceid=nil, iplist=nil, type=nil, policyid=nil)
+          @InstanceId = instanceid
+          @IpList = iplist
+          @Type = type
+          @PolicyId = policyid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          unless params['IpList'].nil?
+            @IpList = []
+            params['IpList'].each do |i|
+              ipsegment_tmp = IpSegment.new
+              ipsegment_tmp.deserialize(i)
+              @IpList << ipsegment_tmp
+            end
+          end
+          @Type = params['Type']
+          @PolicyId = params['PolicyId']
+        end
+      end
+
+      # ModifyCcBlackWhiteIpList返回参数结构体
+      class ModifyCcBlackWhiteIpListResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyDDoSBlackWhiteIpList请求参数结构体
+      class ModifyDDoSBlackWhiteIpListRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 资源Id
+        # @type InstanceId: String
+        # @param OldIpType: 当前黑名单类型，取值black时黑名单；取值white时白名单
+        # @type OldIpType: String
+        # @param OldIp: 当前配置的Ip段，包含ip与掩码
+        # @type OldIp: :class:`Tencentcloud::Antiddos.v20200309.models.IpSegment`
+        # @param NewIpType: 修改后黑白名单类型，取值black时黑名单，取值white时白名单
+        # @type NewIpType: String
+        # @param NewIp: 当前配置的Ip段，包含ip与掩码
+        # @type NewIp: :class:`Tencentcloud::Antiddos.v20200309.models.IpSegment`
+
+        attr_accessor :InstanceId, :OldIpType, :OldIp, :NewIpType, :NewIp
+        
+        def initialize(instanceid=nil, oldiptype=nil, oldip=nil, newiptype=nil, newip=nil)
+          @InstanceId = instanceid
+          @OldIpType = oldiptype
+          @OldIp = oldip
+          @NewIpType = newiptype
+          @NewIp = newip
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @OldIpType = params['OldIpType']
+          unless params['OldIp'].nil?
+            @OldIp = IpSegment.new
+            @OldIp.deserialize(params['OldIp'])
+          end
+          @NewIpType = params['NewIpType']
+          unless params['NewIp'].nil?
+            @NewIp = IpSegment.new
+            @NewIp.deserialize(params['NewIp'])
+          end
+        end
+      end
+
+      # ModifyDDoSBlackWhiteIpList返回参数结构体
+      class ModifyDDoSBlackWhiteIpListResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyDDoSGeoIPBlockConfig请求参数结构体
       class ModifyDDoSGeoIPBlockConfigRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 资源实例ID
@@ -3953,6 +5200,58 @@ module TencentCloud
         end
       end
 
+      # ModifyDDoSLevel请求参数结构体
+      class ModifyDDoSLevelRequest < TencentCloud::Common::AbstractModel
+        # @param Id: 资源ID
+        # @type Id: String
+        # @param Business: 大禹子产品代号（bgpip表示高防IP；bgp表示独享包；bgp-multip表示共享包；net表示高防IP专业版）
+        # @type Business: String
+        # @param Method: =get表示读取防护等级；=set表示修改防护等级
+        # @type Method: String
+        # @param DDoSLevel: 防护等级，取值[low,middle,high]；当Method=set时必填
+        # @type DDoSLevel: String
+
+        attr_accessor :Id, :Business, :Method, :DDoSLevel
+        
+        def initialize(id=nil, business=nil, method=nil, ddoslevel=nil)
+          @Id = id
+          @Business = business
+          @Method = method
+          @DDoSLevel = ddoslevel
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @Business = params['Business']
+          @Method = params['Method']
+          @DDoSLevel = params['DDoSLevel']
+        end
+      end
+
+      # ModifyDDoSLevel返回参数结构体
+      class ModifyDDoSLevelResponse < TencentCloud::Common::AbstractModel
+        # @param DDoSLevel: 防护等级，取值[low,middle,high]
+        # @type DDoSLevel: String
+        # @param Id: 资源ID
+        # @type Id: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :DDoSLevel, :Id, :RequestId
+        
+        def initialize(ddoslevel=nil, id=nil, requestid=nil)
+          @DDoSLevel = ddoslevel
+          @Id = id
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @DDoSLevel = params['DDoSLevel']
+          @Id = params['Id']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyDDoSSpeedLimitConfig请求参数结构体
       class ModifyDDoSSpeedLimitConfigRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 资源实例ID
@@ -3988,6 +5287,54 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyDDoSThreshold请求参数结构体
+      class ModifyDDoSThresholdRequest < TencentCloud::Common::AbstractModel
+        # @param Threshold: DDoS清洗阈值，取值[0, 60, 80, 100, 150, 200, 250, 300, 400, 500, 700, 1000];
+        # 当设置值为0时，表示采用默认值；
+        # @type Threshold: Integer
+        # @param Id: 资源ID
+        # @type Id: String
+        # @param Business: 大禹子产品代号（bgpip表示高防IP；bgp表示独享包；bgp-multip表示共享包；net表示高防IP专业版）
+        # @type Business: String
+
+        attr_accessor :Threshold, :Id, :Business
+        
+        def initialize(threshold=nil, id=nil, business=nil)
+          @Threshold = threshold
+          @Id = id
+          @Business = business
+        end
+
+        def deserialize(params)
+          @Threshold = params['Threshold']
+          @Id = params['Id']
+          @Business = params['Business']
+        end
+      end
+
+      # ModifyDDoSThreshold返回参数结构体
+      class ModifyDDoSThresholdResponse < TencentCloud::Common::AbstractModel
+        # @param Success: 成功码
+        # @type Success: :class:`Tencentcloud::Antiddos.v20200309.models.SuccessCode`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Success, :RequestId
+        
+        def initialize(success=nil, requestid=nil)
+          @Success = success
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Success'].nil?
+            @Success = SuccessCode.new
+            @Success.deserialize(params['Success'])
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -4153,6 +5500,52 @@ module TencentCloud
 
       # ModifyPacketFilterConfig返回参数结构体
       class ModifyPacketFilterConfigResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyPortAclConfig请求参数结构体
+      class ModifyPortAclConfigRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 资源实例ID
+        # @type InstanceId: String
+        # @param OldAclConfig: 旧端口acl策略
+        # @type OldAclConfig: :class:`Tencentcloud::Antiddos.v20200309.models.AclConfig`
+        # @param NewAclConfig: 新端口acl策略
+        # @type NewAclConfig: :class:`Tencentcloud::Antiddos.v20200309.models.AclConfig`
+
+        attr_accessor :InstanceId, :OldAclConfig, :NewAclConfig
+        
+        def initialize(instanceid=nil, oldaclconfig=nil, newaclconfig=nil)
+          @InstanceId = instanceid
+          @OldAclConfig = oldaclconfig
+          @NewAclConfig = newaclconfig
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          unless params['OldAclConfig'].nil?
+            @OldAclConfig = AclConfig.new
+            @OldAclConfig.deserialize(params['OldAclConfig'])
+          end
+          unless params['NewAclConfig'].nil?
+            @NewAclConfig = AclConfig.new
+            @NewAclConfig.deserialize(params['NewAclConfig'])
+          end
+        end
+      end
+
+      # ModifyPortAclConfig返回参数结构体
+      class ModifyPortAclConfigResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 

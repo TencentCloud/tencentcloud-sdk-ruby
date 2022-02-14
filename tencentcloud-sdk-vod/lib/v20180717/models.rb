@@ -2540,7 +2540,7 @@ module TencentCloud
         end
       end
 
-      # 只能识别涉及令人反感的信息的任务输入参数类型
+      # 智能识别涉及令人反感的信息的任务输入参数类型
       class AiReviewPornTaskInput < TencentCloud::Common::AbstractModel
         # @param Definition: 鉴别涉及令人反感的信息的模板 ID。
         # @type Definition: Integer
@@ -2982,7 +2982,7 @@ module TencentCloud
         end
       end
 
-      # 智能识别 Asr 文字鉴任违禁务结果类型
+      # 智能识别 Asr 文字鉴违禁任务结果类型
       class AiReviewTaskProhibitedAsrResult < TencentCloud::Common::AbstractModel
         # @param Status: 任务状态，有 PROCESSING，SUCCESS 和 FAIL 三种。
         # @type Status: String
@@ -3025,7 +3025,7 @@ module TencentCloud
         end
       end
 
-      # 智能识别 Ocr 文字鉴任违禁务结果类型
+      # 智能识别 Ocr 文字鉴违禁任务结果类型
       class AiReviewTaskProhibitedOcrResult < TencentCloud::Common::AbstractModel
         # @param Status: 任务状态，有 PROCESSING，SUCCESS 和 FAIL 三种。
         # @type Status: String

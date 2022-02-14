@@ -321,6 +321,33 @@ module TencentCloud
         end
       end
 
+      # DescribeAuditTracks请求参数结构体
+      class DescribeAuditTracksRequest < TencentCloud::Common::AbstractModel
+
+        
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeAuditTracks返回参数结构体
+      class DescribeAuditTracksResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeEvents请求参数结构体
       class DescribeEventsRequest < TencentCloud::Common::AbstractModel
         # @param StartTime: 起始时间戳（单位秒，不超过当前时间 90 天）

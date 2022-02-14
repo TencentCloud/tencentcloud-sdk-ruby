@@ -17,6 +17,26 @@
 module TencentCloud
   module Ccc
     module V20200210
+      # 外呼任务被叫信息
+      class AutoCalloutTaskCalleeInfo < TencentCloud::Common::AbstractModel
+        # @param Callee: 被叫号码
+        # @type Callee: String
+        # @param State: 呼叫状态 0初始 1已接听 2未接听 3呼叫中 4待重试
+        # @type State: Integer
+
+        attr_accessor :Callee, :State
+        
+        def initialize(callee=nil, state=nil)
+          @Callee = callee
+          @State = state
+        end
+
+        def deserialize(params)
+          @Callee = params['Callee']
+          @State = params['State']
+        end
+      end
+
       # 自动外呼任务列表项
       class AutoCalloutTaskInfo < TencentCloud::Common::AbstractModel
         # @param Name: 任务名
@@ -212,6 +232,74 @@ module TencentCloud
             @Metrics.deserialize(params['Metrics'])
           end
           @Name = params['Name']
+        end
+      end
+
+      # CreateAutoCalloutTask请求参数结构体
+      class CreateAutoCalloutTaskRequest < TencentCloud::Common::AbstractModel
+        # @param SdkAppId: 呼叫中心实例Id
+        # @type SdkAppId: Integer
+        # @param NotBefore: 任务起始时间戳，Unix 秒级时间戳
+        # @type NotBefore: Integer
+        # @param Callees: 被叫号码列表
+        # @type Callees: Array
+        # @param Callers: 主叫号码列表
+        # @type Callers: Array
+        # @param IvrId: 呼叫使用的Ivr
+        # @type IvrId: Integer
+        # @param Name: 任务名
+        # @type Name: String
+        # @param Description: 任务描述
+        # @type Description: String
+        # @param NotAfter: 任务停止时间戳，Unix 秒级时间戳
+        # @type NotAfter: Integer
+        # @param Tries: 最大尝试次数
+        # @type Tries: Integer
+
+        attr_accessor :SdkAppId, :NotBefore, :Callees, :Callers, :IvrId, :Name, :Description, :NotAfter, :Tries
+        
+        def initialize(sdkappid=nil, notbefore=nil, callees=nil, callers=nil, ivrid=nil, name=nil, description=nil, notafter=nil, tries=nil)
+          @SdkAppId = sdkappid
+          @NotBefore = notbefore
+          @Callees = callees
+          @Callers = callers
+          @IvrId = ivrid
+          @Name = name
+          @Description = description
+          @NotAfter = notafter
+          @Tries = tries
+        end
+
+        def deserialize(params)
+          @SdkAppId = params['SdkAppId']
+          @NotBefore = params['NotBefore']
+          @Callees = params['Callees']
+          @Callers = params['Callers']
+          @IvrId = params['IvrId']
+          @Name = params['Name']
+          @Description = params['Description']
+          @NotAfter = params['NotAfter']
+          @Tries = params['Tries']
+        end
+      end
+
+      # CreateAutoCalloutTask返回参数结构体
+      class CreateAutoCalloutTaskResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: 任务Id
+        # @type TaskId: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :RequestId
+        
+        def initialize(taskid=nil, requestid=nil)
+          @TaskId = taskid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @RequestId = params['RequestId']
         end
       end
 
@@ -459,6 +547,82 @@ module TencentCloud
 
         def deserialize(params)
           @OnlineStaffList = params['OnlineStaffList']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeAutoCalloutTask请求参数结构体
+      class DescribeAutoCalloutTaskRequest < TencentCloud::Common::AbstractModel
+        # @param SdkAppId: 呼叫中心实例Id
+        # @type SdkAppId: Integer
+        # @param TaskId: 任务Id
+        # @type TaskId: Integer
+
+        attr_accessor :SdkAppId, :TaskId
+        
+        def initialize(sdkappid=nil, taskid=nil)
+          @SdkAppId = sdkappid
+          @TaskId = taskid
+        end
+
+        def deserialize(params)
+          @SdkAppId = params['SdkAppId']
+          @TaskId = params['TaskId']
+        end
+      end
+
+      # DescribeAutoCalloutTask返回参数结构体
+      class DescribeAutoCalloutTaskResponse < TencentCloud::Common::AbstractModel
+        # @param Name: 任务名
+        # @type Name: String
+        # @param Description: 任务描述
+        # @type Description: String
+        # @param NotBefore: 任务起始时间戳
+        # @type NotBefore: Integer
+        # @param NotAfter: 任务结束时间戳
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NotAfter: Integer
+        # @param Callers: 主叫列表
+        # @type Callers: Array
+        # @param Callees: 被叫信息列表
+        # @type Callees: Array
+        # @param IvrId: 任务使用的IvrId
+        # @type IvrId: Integer
+        # @param State: 任务状态 0初始 1运行中 2已完成 3结束中 4已终止
+        # @type State: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Name, :Description, :NotBefore, :NotAfter, :Callers, :Callees, :IvrId, :State, :RequestId
+        
+        def initialize(name=nil, description=nil, notbefore=nil, notafter=nil, callers=nil, callees=nil, ivrid=nil, state=nil, requestid=nil)
+          @Name = name
+          @Description = description
+          @NotBefore = notbefore
+          @NotAfter = notafter
+          @Callers = callers
+          @Callees = callees
+          @IvrId = ivrid
+          @State = state
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Description = params['Description']
+          @NotBefore = params['NotBefore']
+          @NotAfter = params['NotAfter']
+          @Callers = params['Callers']
+          unless params['Callees'].nil?
+            @Callees = []
+            params['Callees'].each do |i|
+              autocallouttaskcalleeinfo_tmp = AutoCalloutTaskCalleeInfo.new
+              autocallouttaskcalleeinfo_tmp.deserialize(i)
+              @Callees << autocallouttaskcalleeinfo_tmp
+            end
+          end
+          @IvrId = params['IvrId']
+          @State = params['State']
           @RequestId = params['RequestId']
         end
       end
@@ -2038,6 +2202,42 @@ module TencentCloud
         end
       end
 
+      # StopAutoCalloutTask请求参数结构体
+      class StopAutoCalloutTaskRequest < TencentCloud::Common::AbstractModel
+        # @param SdkAppId: 呼叫中心实例Id
+        # @type SdkAppId: Integer
+        # @param TaskId: 任务Id
+        # @type TaskId: Integer
+
+        attr_accessor :SdkAppId, :TaskId
+        
+        def initialize(sdkappid=nil, taskid=nil)
+          @SdkAppId = sdkappid
+          @TaskId = taskid
+        end
+
+        def deserialize(params)
+          @SdkAppId = params['SdkAppId']
+          @TaskId = params['TaskId']
+        end
+      end
+
+      # StopAutoCalloutTask返回参数结构体
+      class StopAutoCalloutTaskResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 电话话单信息
       class TelCdrInfo < TencentCloud::Common::AbstractModel
         # @param Caller: 主叫号码
@@ -2157,10 +2357,13 @@ module TencentCloud
         # @param IVRKeyPressedEx: IVR按键信息（e.g. [{"Key":"1","Label":"非常满意"}]）
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IVRKeyPressedEx: Array
+        # @param AsrUrl: 获取录音ASR文本信息地址
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AsrUrl: String
 
-        attr_accessor :Caller, :Callee, :Time, :Direction, :Duration, :RecordURL, :SeatUser, :EndStatus, :SkillGroup, :CallerLocation, :IVRDuration, :RingTimestamp, :AcceptTimestamp, :EndedTimestamp, :IVRKeyPressed, :HungUpSide, :ServeParticipants, :SkillGroupId, :EndStatusString, :StartTimestamp, :QueuedTimestamp, :PostIVRKeyPressed, :QueuedSkillGroupId, :SessionId, :ProtectedCaller, :ProtectedCallee, :Uui, :IVRKeyPressedEx
+        attr_accessor :Caller, :Callee, :Time, :Direction, :Duration, :RecordURL, :SeatUser, :EndStatus, :SkillGroup, :CallerLocation, :IVRDuration, :RingTimestamp, :AcceptTimestamp, :EndedTimestamp, :IVRKeyPressed, :HungUpSide, :ServeParticipants, :SkillGroupId, :EndStatusString, :StartTimestamp, :QueuedTimestamp, :PostIVRKeyPressed, :QueuedSkillGroupId, :SessionId, :ProtectedCaller, :ProtectedCallee, :Uui, :IVRKeyPressedEx, :AsrUrl
         
-        def initialize(caller=nil, callee=nil, time=nil, direction=nil, duration=nil, recordurl=nil, seatuser=nil, endstatus=nil, skillgroup=nil, callerlocation=nil, ivrduration=nil, ringtimestamp=nil, accepttimestamp=nil, endedtimestamp=nil, ivrkeypressed=nil, hungupside=nil, serveparticipants=nil, skillgroupid=nil, endstatusstring=nil, starttimestamp=nil, queuedtimestamp=nil, postivrkeypressed=nil, queuedskillgroupid=nil, sessionid=nil, protectedcaller=nil, protectedcallee=nil, uui=nil, ivrkeypressedex=nil)
+        def initialize(caller=nil, callee=nil, time=nil, direction=nil, duration=nil, recordurl=nil, seatuser=nil, endstatus=nil, skillgroup=nil, callerlocation=nil, ivrduration=nil, ringtimestamp=nil, accepttimestamp=nil, endedtimestamp=nil, ivrkeypressed=nil, hungupside=nil, serveparticipants=nil, skillgroupid=nil, endstatusstring=nil, starttimestamp=nil, queuedtimestamp=nil, postivrkeypressed=nil, queuedskillgroupid=nil, sessionid=nil, protectedcaller=nil, protectedcallee=nil, uui=nil, ivrkeypressedex=nil, asrurl=nil)
           @Caller = caller
           @Callee = callee
           @Time = time
@@ -2189,6 +2392,7 @@ module TencentCloud
           @ProtectedCallee = protectedcallee
           @Uui = uui
           @IVRKeyPressedEx = ivrkeypressedex
+          @AsrUrl = asrurl
         end
 
         def deserialize(params)
@@ -2244,6 +2448,7 @@ module TencentCloud
               @IVRKeyPressedEx << ivrkeypressedelement_tmp
             end
           end
+          @AsrUrl = params['AsrUrl']
         end
       end
 

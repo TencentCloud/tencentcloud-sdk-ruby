@@ -2247,24 +2247,33 @@ module TencentCloud
         # @param KeyWord: 搜索关键词
         # @type KeyWord: String
         # @param Offset: 分页返回的起始偏移量，默认值：0。将返回第 Offset 到第 Offset+Limit-1 条。
-        # 取值范围：Offset + Limit 不超过5000。取值范围：小于5000
+        # 取值范围：Offset + Limit 不超过5000。
         # @type Offset: Integer
         # @param Limit: 分页返回的起始偏移量，默认值：50。将返回第 Offset 到第 Offset+Limit-1 条。
-        # 取值范围：Offset + Limit 不超过5000。
         # @type Limit: Integer
+        # @param Sort: 排序方式。默认按照匹配度排序
+        # <li> Sort.Field 可选 CreateTime</li>
+        # <li> Sort.Order 可选 Desc </li>
+        # <li> 当 KeyWord 不为空时，Sort.Field 字段无效， 搜索结果将以匹配度排序。</li>
+        # @type Sort: :class:`Tencentcloud::Ame.v20190916.models.SortBy`
 
-        attr_accessor :KeyWord, :Offset, :Limit
+        attr_accessor :KeyWord, :Offset, :Limit, :Sort
         
-        def initialize(keyword=nil, offset=nil, limit=nil)
+        def initialize(keyword=nil, offset=nil, limit=nil, sort=nil)
           @KeyWord = keyword
           @Offset = offset
           @Limit = limit
+          @Sort = sort
         end
 
         def deserialize(params)
           @KeyWord = params['KeyWord']
           @Offset = params['Offset']
           @Limit = params['Limit']
+          unless params['Sort'].nil?
+            @Sort = SortBy.new
+            @Sort.deserialize(params['Sort'])
+          end
         end
       end
 

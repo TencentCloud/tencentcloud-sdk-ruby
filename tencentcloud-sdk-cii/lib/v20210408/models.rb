@@ -434,7 +434,10 @@ module TencentCloud
         # @type MainTaskId: String
         # @param UnderwriteTaskId: 核保任务ID
         # @type UnderwriteTaskId: String
-        # @param Status: 状态码
+        # @param Status: 结果状态：
+        # 0：返回成功
+        # 1：结果未生成
+        # 2：结果生成失败
         # @type Status: Integer
         # @param UnderwriteResults: 机器核保结果
         # @type UnderwriteResults: Array
@@ -475,7 +478,9 @@ module TencentCloud
 
       # DescribeReportClassify请求参数结构体
       class DescribeReportClassifyRequest < TencentCloud::Common::AbstractModel
-        # @param ServiceType: 服务类型（Structured/Underwrite）
+        # @param ServiceType: 服务类型
+        # Structured 仅结构化
+        # Underwrite 结构化+核保
         # @type ServiceType: String
         # @param FileList: 文件地址数组
         # @type FileList: Array
@@ -812,7 +817,10 @@ module TencentCloud
         # @type MainTaskId: String
         # @param UnderwriteTaskId: 核保任务ID
         # @type UnderwriteTaskId: String
-        # @param Status: 状态码
+        # @param Status: 结果状态：
+        # 0：返回成功
+        # 1：结果未生成
+        # 2：结果生成失败
         # @type Status: Integer
         # @param UnderwriteResults: 核保结果
         # @type UnderwriteResults: Array

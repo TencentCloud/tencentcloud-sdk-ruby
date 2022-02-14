@@ -1216,6 +1216,61 @@ module TencentCloud
         end
       end
 
+      # DescribeProxySessionKillTasks请求参数结构体
+      class DescribeProxySessionKillTasksRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID。
+        # @type InstanceId: String
+        # @param AsyncRequestIds: kill 会话异步任务 ID,  接口 CreateProxySessionKillTask 调用成功后获取。
+        # @type AsyncRequestIds: Array
+        # @param Product: 服务产品类型，支持值包括： "redis" - 云数据库 Redis。
+        # @type Product: String
+
+        attr_accessor :InstanceId, :AsyncRequestIds, :Product
+        
+        def initialize(instanceid=nil, asyncrequestids=nil, product=nil)
+          @InstanceId = instanceid
+          @AsyncRequestIds = asyncrequestids
+          @Product = product
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @AsyncRequestIds = params['AsyncRequestIds']
+          @Product = params['Product']
+        end
+      end
+
+      # DescribeProxySessionKillTasks返回参数结构体
+      class DescribeProxySessionKillTasksResponse < TencentCloud::Common::AbstractModel
+        # @param Tasks: kill 任务的详情。
+        # @type Tasks: Array
+        # @param TotalCount: 任务总数。
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Tasks, :TotalCount, :RequestId
+        
+        def initialize(tasks=nil, totalcount=nil, requestid=nil)
+          @Tasks = tasks
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Tasks'].nil?
+            @Tasks = []
+            params['Tasks'].each do |i|
+              taskinfo_tmp = TaskInfo.new
+              taskinfo_tmp.deserialize(i)
+              @Tasks << taskinfo_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeSecurityAuditLogDownloadUrls请求参数结构体
       class DescribeSecurityAuditLogDownloadUrlsRequest < TencentCloud::Common::AbstractModel
         # @param SecAuditGroupId: 安全审计组Id。
@@ -3043,6 +3098,62 @@ module TencentCloud
             @SeriesData = MonitorFloatMetricSeriesData.new
             @SeriesData.deserialize(params['SeriesData'])
           end
+        end
+      end
+
+      # 展示 redis kill 会话任务状态。
+      class TaskInfo < TencentCloud::Common::AbstractModel
+        # @param AsyncRequestId: 异步任务 ID。
+        # @type AsyncRequestId: Integer
+        # @param InstProxyList: 当前实例所有 proxy 列表。
+        # @type InstProxyList: Array
+        # @param InstProxyCount: 当前实例所有 proxy 数量。
+        # @type InstProxyCount: Integer
+        # @param CreateTime: 任务创建时间。
+        # @type CreateTime: String
+        # @param StartTime: 任务启动时间。
+        # @type StartTime: String
+        # @param TaskStatus: 任务的状态，支持的取值包括："created" - 新建；"chosen" - 待执行； "running" - 执行中；"failed" - 失败；"finished" - 已完成。
+        # @type TaskStatus: String
+        # @param FinishedProxyList: 完成 kill 任务的 proxyId。
+        # @type FinishedProxyList: Array
+        # @param FailedProxyList: kill 任务实行失败的 proxyId。
+        # @type FailedProxyList: Array
+        # @param EndTime: 任务结束时间。
+        # @type EndTime: String
+        # @param Progress: 任务执行进度。
+        # @type Progress: Integer
+        # @param InstanceId: 实例 ID。
+        # @type InstanceId: String
+
+        attr_accessor :AsyncRequestId, :InstProxyList, :InstProxyCount, :CreateTime, :StartTime, :TaskStatus, :FinishedProxyList, :FailedProxyList, :EndTime, :Progress, :InstanceId
+        
+        def initialize(asyncrequestid=nil, instproxylist=nil, instproxycount=nil, createtime=nil, starttime=nil, taskstatus=nil, finishedproxylist=nil, failedproxylist=nil, endtime=nil, progress=nil, instanceid=nil)
+          @AsyncRequestId = asyncrequestid
+          @InstProxyList = instproxylist
+          @InstProxyCount = instproxycount
+          @CreateTime = createtime
+          @StartTime = starttime
+          @TaskStatus = taskstatus
+          @FinishedProxyList = finishedproxylist
+          @FailedProxyList = failedproxylist
+          @EndTime = endtime
+          @Progress = progress
+          @InstanceId = instanceid
+        end
+
+        def deserialize(params)
+          @AsyncRequestId = params['AsyncRequestId']
+          @InstProxyList = params['InstProxyList']
+          @InstProxyCount = params['InstProxyCount']
+          @CreateTime = params['CreateTime']
+          @StartTime = params['StartTime']
+          @TaskStatus = params['TaskStatus']
+          @FinishedProxyList = params['FinishedProxyList']
+          @FailedProxyList = params['FailedProxyList']
+          @EndTime = params['EndTime']
+          @Progress = params['Progress']
+          @InstanceId = params['InstanceId']
         end
       end
 

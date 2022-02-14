@@ -63,9 +63,9 @@ module TencentCloud
         # @type Name: String
         # @param PolicyType: 关系策略  取值：Financial
         # @type PolicyType: String
-        # @param PermissionIds: 关系权限
+        # @param PermissionIds: 关系权限 取值：1-查看账单、2-查看余额、3-资金划拨、4-合并出账、5-开票 ，1、2 默认必须
         # @type PermissionIds: Array
-        # @param NodeId: 需要调节的节点
+        # @param NodeId: 成员所属部门的节点ID
         # @type NodeId: Integer
         # @param AccountName: 账号名
         # @type AccountName: String
