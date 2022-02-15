@@ -2369,6 +2369,29 @@ module TencentCloud
         end
       end
 
+      # 设置销毁模式
+      class SetDestroyModeCommandInput < TencentCloud::Common::AbstractModel
+        # @param DestroyMode: 销毁模式，取值有：
+        # <li>Auto：房间没人时自动销毁</li>
+        # <li>Expire：房间没人时过期自动销毁</li>
+        # <li>Never：不自动销毁，需手动销毁</li>默认为：Auto。
+        # @type DestroyMode: String
+        # @param DestroyExpireTime: 过期销毁时间，单位：秒，当DestroyMode取Expire时必填。
+        # @type DestroyExpireTime: Integer
+
+        attr_accessor :DestroyMode, :DestroyExpireTime
+        
+        def initialize(destroymode=nil, destroyexpiretime=nil)
+          @DestroyMode = destroymode
+          @DestroyExpireTime = destroyexpiretime
+        end
+
+        def deserialize(params)
+          @DestroyMode = params['DestroyMode']
+          @DestroyExpireTime = params['DestroyExpireTime']
+        end
+      end
+
       # 设置播放模式
       class SetPlayModeCommandInput < TencentCloud::Common::AbstractModel
         # @param PlayMode: 播放模式，取值有：
@@ -2494,6 +2517,7 @@ module TencentCloud
         # <li>SetPlaylist：歌单变更</li>
         # <li>SetAudioParam：音频参数变更</li>
         # <li>SendMessage：发送自定义消息</li>
+        # <li>SetDestroyMode：设置销毁模式</li>
         # @type Command: String
         # @param PlayCommandInput: 播放参数。
         # @type PlayCommandInput: :class:`Tencentcloud::Ame.v20190916.models.PlayCommandInput`
@@ -2507,10 +2531,12 @@ module TencentCloud
         # @type SendMessageCommandInput: :class:`Tencentcloud::Ame.v20190916.models.SendMessageCommandInput`
         # @param SetPlayModeCommandInput: 播放模式，当Command取SetPlayMode时，必填。
         # @type SetPlayModeCommandInput: :class:`Tencentcloud::Ame.v20190916.models.SetPlayModeCommandInput`
+        # @param SetDestroyModeCommandInput: 销毁模式，当Command取SetDestroyMode时，必填。
+        # @type SetDestroyModeCommandInput: :class:`Tencentcloud::Ame.v20190916.models.SetDestroyModeCommandInput`
 
-        attr_accessor :RobotId, :Command, :PlayCommandInput, :SetPlaylistCommandInput, :SeekCommandInput, :SetAudioParamCommandInput, :SendMessageCommandInput, :SetPlayModeCommandInput
+        attr_accessor :RobotId, :Command, :PlayCommandInput, :SetPlaylistCommandInput, :SeekCommandInput, :SetAudioParamCommandInput, :SendMessageCommandInput, :SetPlayModeCommandInput, :SetDestroyModeCommandInput
         
-        def initialize(robotid=nil, command=nil, playcommandinput=nil, setplaylistcommandinput=nil, seekcommandinput=nil, setaudioparamcommandinput=nil, sendmessagecommandinput=nil, setplaymodecommandinput=nil)
+        def initialize(robotid=nil, command=nil, playcommandinput=nil, setplaylistcommandinput=nil, seekcommandinput=nil, setaudioparamcommandinput=nil, sendmessagecommandinput=nil, setplaymodecommandinput=nil, setdestroymodecommandinput=nil)
           @RobotId = robotid
           @Command = command
           @PlayCommandInput = playcommandinput
@@ -2519,6 +2545,7 @@ module TencentCloud
           @SetAudioParamCommandInput = setaudioparamcommandinput
           @SendMessageCommandInput = sendmessagecommandinput
           @SetPlayModeCommandInput = setplaymodecommandinput
+          @SetDestroyModeCommandInput = setdestroymodecommandinput
         end
 
         def deserialize(params)
@@ -2547,6 +2574,10 @@ module TencentCloud
           unless params['SetPlayModeCommandInput'].nil?
             @SetPlayModeCommandInput = SetPlayModeCommandInput.new
             @SetPlayModeCommandInput.deserialize(params['SetPlayModeCommandInput'])
+          end
+          unless params['SetDestroyModeCommandInput'].nil?
+            @SetDestroyModeCommandInput = SetDestroyModeCommandInput.new
+            @SetDestroyModeCommandInput.deserialize(params['SetDestroyModeCommandInput'])
           end
         end
       end

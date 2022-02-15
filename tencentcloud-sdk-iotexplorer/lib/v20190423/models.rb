@@ -2104,6 +2104,67 @@ module TencentCloud
         end
       end
 
+      # DescribeGatewaySubDeviceList请求参数结构体
+      class DescribeGatewaySubDeviceListRequest < TencentCloud::Common::AbstractModel
+        # @param GatewayProductId: 网关产品ID
+        # @type GatewayProductId: String
+        # @param GatewayDeviceName: 网关设备名称
+        # @type GatewayDeviceName: String
+        # @param Offset: 分页偏移
+        # @type Offset: Integer
+        # @param Limit: 分页的大小
+        # @type Limit: Integer
+
+        attr_accessor :GatewayProductId, :GatewayDeviceName, :Offset, :Limit
+        
+        def initialize(gatewayproductid=nil, gatewaydevicename=nil, offset=nil, limit=nil)
+          @GatewayProductId = gatewayproductid
+          @GatewayDeviceName = gatewaydevicename
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @GatewayProductId = params['GatewayProductId']
+          @GatewayDeviceName = params['GatewayDeviceName']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeGatewaySubDeviceList返回参数结构体
+      class DescribeGatewaySubDeviceListResponse < TencentCloud::Common::AbstractModel
+        # @param Total: 设备的总数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Total: Integer
+        # @param DeviceList: 设备列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DeviceList: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Total, :DeviceList, :RequestId
+        
+        def initialize(total=nil, devicelist=nil, requestid=nil)
+          @Total = total
+          @DeviceList = devicelist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Total = params['Total']
+          unless params['DeviceList'].nil?
+            @DeviceList = []
+            params['DeviceList'].each do |i|
+              familysubdevice_tmp = FamilySubDevice.new
+              familysubdevice_tmp.deserialize(i)
+              @DeviceList << familysubdevice_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeGatewaySubProducts请求参数结构体
       class DescribeGatewaySubProductsRequest < TencentCloud::Common::AbstractModel
         # @param GatewayProductId: 网关产品ID

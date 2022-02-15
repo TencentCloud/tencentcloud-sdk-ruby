@@ -90,14 +90,18 @@ module TencentCloud
         # @type Description: String
         # @param CreateTime: 创建时间
         # @type CreateTime: String
+        # @param AllowVisualModify: 是否允许可视化修改
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AllowVisualModify: Boolean
 
-        attr_accessor :Name, :ManageUrl, :Description, :CreateTime
+        attr_accessor :Name, :ManageUrl, :Description, :CreateTime, :AllowVisualModify
         
-        def initialize(name=nil, manageurl=nil, description=nil, createtime=nil)
+        def initialize(name=nil, manageurl=nil, description=nil, createtime=nil, allowvisualmodify=nil)
           @Name = name
           @ManageUrl = manageurl
           @Description = description
           @CreateTime = createtime
+          @AllowVisualModify = allowvisualmodify
         end
 
         def deserialize(params)
@@ -105,6 +109,7 @@ module TencentCloud
           @ManageUrl = params['ManageUrl']
           @Description = params['Description']
           @CreateTime = params['CreateTime']
+          @AllowVisualModify = params['AllowVisualModify']
         end
       end
 

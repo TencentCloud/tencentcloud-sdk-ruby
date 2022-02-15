@@ -1826,15 +1826,20 @@ module TencentCloud
         # @param ClusterName: K8S集群的名称。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ClusterName: String
+        # @param ClusterVersion: K8S集群的版本。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClusterVersion: String
 
-        attr_accessor :ClusterName
+        attr_accessor :ClusterName, :ClusterVersion
         
-        def initialize(clustername=nil)
+        def initialize(clustername=nil, clusterversion=nil)
           @ClusterName = clustername
+          @ClusterVersion = clusterversion
         end
 
         def deserialize(params)
           @ClusterName = params['ClusterName']
+          @ClusterVersion = params['ClusterVersion']
         end
       end
 
@@ -5073,15 +5078,19 @@ module TencentCloud
       class DescribeAssetImageRegistryDetailRequest < TencentCloud::Common::AbstractModel
         # @param Id: 仓库列表id
         # @type Id: Integer
+        # @param ImageId: 镜像ID
+        # @type ImageId: String
 
-        attr_accessor :Id
+        attr_accessor :Id, :ImageId
         
-        def initialize(id=nil)
+        def initialize(id=nil, imageid=nil)
           @Id = id
+          @ImageId = imageid
         end
 
         def deserialize(params)
           @Id = params['Id']
+          @ImageId = params['ImageId']
         end
       end
 
@@ -10359,7 +10368,7 @@ module TencentCloud
       class DescribeVirusTaskListResponse < TencentCloud::Common::AbstractModel
         # @param List: 文件查杀列表
         # @type List: Array
-        # @param TotalCount: 总数量
+        # @param TotalCount: 总数量(容器任务数量)
         # @type TotalCount: Integer
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -12343,7 +12352,7 @@ module TencentCloud
         # @type EnableScan: Boolean
         # @param ScanPathAll: 扫描全部路径
         # @type ScanPathAll: Boolean
-        # @param ScanPathType: 当ScanPathAll为true 生效 0扫描以下路径 1、扫描除以下路径
+        # @param ScanPathType: 当ScanPathAll为true 生效 0扫描以下路径 1、扫描除以下路径(扫描范围只能小于等于1)
         # @type ScanPathType: Integer
         # @param ScanPath: 自选排除或扫描的地址
         # @type ScanPath: Array

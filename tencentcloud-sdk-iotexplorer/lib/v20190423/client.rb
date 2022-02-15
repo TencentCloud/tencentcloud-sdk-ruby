@@ -941,6 +941,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询绑定到家庭的网关设备的子设备列表
+
+        # @param request: Request instance for DescribeGatewaySubDeviceList.
+        # @type request: :class:`Tencentcloud::iotexplorer::V20190423::DescribeGatewaySubDeviceListRequest`
+        # @rtype: :class:`Tencentcloud::iotexplorer::V20190423::DescribeGatewaySubDeviceListResponse`
+        def DescribeGatewaySubDeviceList(request)
+          body = send_request('DescribeGatewaySubDeviceList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeGatewaySubDeviceListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 用于获取网关可绑定或解绑的子产品
 
         # @param request: Request instance for DescribeGatewaySubProducts.
