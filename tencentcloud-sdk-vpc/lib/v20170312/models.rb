@@ -2083,7 +2083,7 @@ module TencentCloud
 
       # CreateAddressTemplate请求参数结构体
       class CreateAddressTemplateRequest < TencentCloud::Common::AbstractModel
-        # @param AddressTemplateName: IP地址模版名称
+        # @param AddressTemplateName: IP地址模板名称。
         # @type AddressTemplateName: String
         # @param Addresses: 地址信息，支持 IP、CIDR、IP 范围。Addresses与AddressesExtra必填其一。
         # @type Addresses: Array

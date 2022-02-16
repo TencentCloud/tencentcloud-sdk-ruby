@@ -450,15 +450,21 @@ module TencentCloud
         # @type L1Category: String
         # @param L2Category: 二级自定义人物类型
         # @type L2Category: String
+        # @param ImageInfoSet: 自定义人物图片信息
+        # @type ImageInfoSet: Array
+        # @param CreateTime: 自定义人物创建时间
+        # @type CreateTime: String
 
-        attr_accessor :PersonId, :Name, :BasicInfo, :L1Category, :L2Category
+        attr_accessor :PersonId, :Name, :BasicInfo, :L1Category, :L2Category, :ImageInfoSet, :CreateTime
         
-        def initialize(personid=nil, name=nil, basicinfo=nil, l1category=nil, l2category=nil)
+        def initialize(personid=nil, name=nil, basicinfo=nil, l1category=nil, l2category=nil, imageinfoset=nil, createtime=nil)
           @PersonId = personid
           @Name = name
           @BasicInfo = basicinfo
           @L1Category = l1category
           @L2Category = l2category
+          @ImageInfoSet = imageinfoset
+          @CreateTime = createtime
         end
 
         def deserialize(params)
@@ -467,6 +473,15 @@ module TencentCloud
           @BasicInfo = params['BasicInfo']
           @L1Category = params['L1Category']
           @L2Category = params['L2Category']
+          unless params['ImageInfoSet'].nil?
+            @ImageInfoSet = []
+            params['ImageInfoSet'].each do |i|
+              personimageinfo_tmp = PersonImageInfo.new
+              personimageinfo_tmp.deserialize(i)
+              @ImageInfoSet << personimageinfo_tmp
+            end
+          end
+          @CreateTime = params['CreateTime']
         end
       end
 

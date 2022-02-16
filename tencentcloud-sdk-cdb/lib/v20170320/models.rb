@@ -10586,7 +10586,7 @@ module TencentCloud
 
       # 可用区售卖配置
       class ZoneSellConf < TencentCloud::Common::AbstractModel
-        # @param Status: 可用区状态。可能的返回值为：0-未上线；1-上线；2-开放；3-停售；4-不展示
+        # @param Status: 可用区状态。可能的返回值为：1-上线；3-停售；4-不展示
         # @type Status: Integer
         # @param ZoneName: 可用区中文名称
         # @type ZoneName: String
@@ -10619,10 +10619,18 @@ module TencentCloud
         # @param RemoteRoZone: 可支持的跨可用区只读区信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RemoteRoZone: Array
+        # @param ExClusterStatus: 独享型可用区状态。可能的返回值为：1-上线；3-停售；4-不展示
+        # @type ExClusterStatus: Integer
+        # @param ExClusterRemoteRoZone: 独享型可支持的跨可用区只读区信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExClusterRemoteRoZone: Array
+        # @param ExClusterZoneConf: 独享型多可用区信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExClusterZoneConf: :class:`Tencentcloud::Cdb.v20170320.models.ZoneConf`
 
-        attr_accessor :Status, :ZoneName, :IsCustom, :IsSupportDr, :IsSupportVpc, :HourInstanceSaleMaxNum, :IsDefaultZone, :IsBm, :PayType, :ProtectMode, :Zone, :SellType, :ZoneConf, :DrZone, :IsSupportRemoteRo, :RemoteRoZone
+        attr_accessor :Status, :ZoneName, :IsCustom, :IsSupportDr, :IsSupportVpc, :HourInstanceSaleMaxNum, :IsDefaultZone, :IsBm, :PayType, :ProtectMode, :Zone, :SellType, :ZoneConf, :DrZone, :IsSupportRemoteRo, :RemoteRoZone, :ExClusterStatus, :ExClusterRemoteRoZone, :ExClusterZoneConf
         
-        def initialize(status=nil, zonename=nil, iscustom=nil, issupportdr=nil, issupportvpc=nil, hourinstancesalemaxnum=nil, isdefaultzone=nil, isbm=nil, paytype=nil, protectmode=nil, zone=nil, selltype=nil, zoneconf=nil, drzone=nil, issupportremotero=nil, remoterozone=nil)
+        def initialize(status=nil, zonename=nil, iscustom=nil, issupportdr=nil, issupportvpc=nil, hourinstancesalemaxnum=nil, isdefaultzone=nil, isbm=nil, paytype=nil, protectmode=nil, zone=nil, selltype=nil, zoneconf=nil, drzone=nil, issupportremotero=nil, remoterozone=nil, exclusterstatus=nil, exclusterremoterozone=nil, exclusterzoneconf=nil)
           @Status = status
           @ZoneName = zonename
           @IsCustom = iscustom
@@ -10639,6 +10647,9 @@ module TencentCloud
           @DrZone = drzone
           @IsSupportRemoteRo = issupportremotero
           @RemoteRoZone = remoterozone
+          @ExClusterStatus = exclusterstatus
+          @ExClusterRemoteRoZone = exclusterremoterozone
+          @ExClusterZoneConf = exclusterzoneconf
         end
 
         def deserialize(params)
@@ -10668,6 +10679,12 @@ module TencentCloud
           @DrZone = params['DrZone']
           @IsSupportRemoteRo = params['IsSupportRemoteRo']
           @RemoteRoZone = params['RemoteRoZone']
+          @ExClusterStatus = params['ExClusterStatus']
+          @ExClusterRemoteRoZone = params['ExClusterRemoteRoZone']
+          unless params['ExClusterZoneConf'].nil?
+            @ExClusterZoneConf = ZoneConf.new
+            @ExClusterZoneConf.deserialize(params['ExClusterZoneConf'])
+          end
         end
       end
 

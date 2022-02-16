@@ -27,14 +27,20 @@ module TencentCloud
         # @type SelectedRange: :class:`Tencentcloud::Tcm.v20210413.models.SelectedRange`
         # @param CLS: 腾讯云日志服务相关参数
         # @type CLS: :class:`Tencentcloud::Tcm.v20210413.models.CLS`
+        # @param Encoding: 编码格式，可选值：TEXT、JSON
+        # @type Encoding: String
+        # @param Format: 日志格式
+        # @type Format: String
 
-        attr_accessor :Enable, :Template, :SelectedRange, :CLS
+        attr_accessor :Enable, :Template, :SelectedRange, :CLS, :Encoding, :Format
         
-        def initialize(enable=nil, template=nil, selectedrange=nil, cls=nil)
+        def initialize(enable=nil, template=nil, selectedrange=nil, cls=nil, encoding=nil, format=nil)
           @Enable = enable
           @Template = template
           @SelectedRange = selectedrange
           @CLS = cls
+          @Encoding = encoding
+          @Format = format
         end
 
         def deserialize(params)
@@ -48,6 +54,8 @@ module TencentCloud
             @CLS = CLS.new
             @CLS.deserialize(params['CLS'])
           end
+          @Encoding = params['Encoding']
+          @Format = params['Format']
         end
       end
 

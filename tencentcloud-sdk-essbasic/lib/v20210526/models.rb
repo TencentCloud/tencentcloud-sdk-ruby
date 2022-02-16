@@ -771,9 +771,9 @@ module TencentCloud
         # @type ComponentLimitType: Array
         # @param RecipientId: 流程签署人在模板中对应的签署人Id；在非单方签署、以及非B2C签署的场景下必传，用于指定当前签署方在流程中的位置；
         # @type RecipientId: String
-        # @param OrganizationName: 同一渠道下其他合作企业OpenId，签署人为非发起方企业员工场景下必传；
+        # @param OrganizationName: 企业签署方工商营业执照上的企业名称，签署方为非发起方企业场景下必传；
         # @type OrganizationName: String
-        # @param OrganizationOpenId: 同一渠道下其他合作企业OpenId，签署人为非发起方企业员工场景下必传；
+        # @param OrganizationOpenId: 企业签署方在同一渠道下的其他合作企业OpenId，签署方为非发起方企业场景下必传；
         # @type OrganizationOpenId: String
 
         attr_accessor :Name, :IdCardNumber, :Mobile, :JumpUrl, :Deadline, :CallbackUrl, :ApproverType, :OpenId, :PreReadTime, :ComponentLimitType, :RecipientId, :OrganizationName, :OrganizationOpenId

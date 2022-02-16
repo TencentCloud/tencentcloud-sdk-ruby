@@ -216,6 +216,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口(CreateInstances)用于创建一个或多个指定套餐的轻量应用服务器实例。
+
+        # @param request: Request instance for CreateInstances.
+        # @type request: :class:`Tencentcloud::lighthouse::V20200324::CreateInstancesRequest`
+        # @rtype: :class:`Tencentcloud::lighthouse::V20200324::CreateInstancesResponse`
+        def CreateInstances(request)
+          body = send_request('CreateInstances', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateInstancesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（CreateKeyPair）用于创建一个密钥对。
 
         # @param request: Request instance for CreateKeyPair.

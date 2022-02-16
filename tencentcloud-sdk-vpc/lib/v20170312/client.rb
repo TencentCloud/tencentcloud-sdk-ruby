@@ -103,7 +103,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 增加模版对象中的IP地址、协议端口、IP地址组、协议端口组。当前仅支持北京、泰国、北美地域请求。
+        # 增加模板对象中的IP地址、协议端口、IP地址组、协议端口组。当前仅支持北京、泰国、北美地域请求。
 
         # @param request: Request instance for AddTemplateMember.
         # @type request: :class:`Tencentcloud::vpc::V20170312::AddTemplateMemberRequest`
@@ -648,7 +648,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口（CreateAddressTemplate）用于创建IP地址模版
+        # 本接口（CreateAddressTemplate）用于创建IP地址模板。
 
         # @param request: Request instance for CreateAddressTemplate.
         # @type request: :class:`Tencentcloud::vpc::V20170312::CreateAddressTemplateRequest`
@@ -2283,7 +2283,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 删除模版对象中的IP地址、协议端口、IP地址组、协议端口组。当前仅支持北京、泰国、北美地域请求。
+        # 删除模板对象中的IP地址、协议端口、IP地址组、协议端口组。当前仅支持北京、泰国、北美地域请求。
 
         # @param request: Request instance for DeleteTemplateMember.
         # @type request: :class:`Tencentcloud::vpc::V20170312::DeleteTemplateMemberRequest`
@@ -5697,7 +5697,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 修改模版对象中的IP地址、协议端口、IP地址组、协议端口组。当前仅支持北京、泰国、北美地域请求。
+        # 修改模板对象中的IP地址、协议端口、IP地址组、协议端口组。当前仅支持北京、泰国、北美地域请求。
 
         # @param request: Request instance for ModifyTemplateMember.
         # @type request: :class:`Tencentcloud::vpc::V20170312::ModifyTemplateMemberRequest`

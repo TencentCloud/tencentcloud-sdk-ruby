@@ -448,6 +448,26 @@ module TencentCloud
         end
       end
 
+      # 容器环境变量
+      class ContainerEnv < TencentCloud::Common::AbstractModel
+        # @param Key: 环境变量Key
+        # @type Key: String
+        # @param Value: 环境变量值
+        # @type Value: String
+
+        attr_accessor :Key, :Value
+        
+        def initialize(key=nil, value=nil)
+          @Key = key
+          @Value = value
+        end
+
+        def deserialize(params)
+          @Key = params['Key']
+          @Value = params['Value']
+        end
+      end
+
       # CreateBlueprint请求参数结构体
       class CreateBlueprintRequest < TencentCloud::Common::AbstractModel
         # @param BlueprintName: 镜像名称。最大长度60。
@@ -575,6 +595,97 @@ module TencentCloud
 
         def deserialize(params)
           @SnapshotId = params['SnapshotId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateInstances请求参数结构体
+      class CreateInstancesRequest < TencentCloud::Common::AbstractModel
+        # @param BundleId: Lighthouse套餐ID。
+        # @type BundleId: String
+        # @param BlueprintId: Lighthouse镜像ID。
+        # @type BlueprintId: String
+        # @param InstanceChargePrepaid: 当前Lighthouse实例仅支持预付费模式，即包年包月相关参数设置，单位（月）。通过该参数可以指定包年包月实例的购买时长、是否设置自动续费等属性。该参数必传。
+        # @type InstanceChargePrepaid: :class:`Tencentcloud::Lighthouse.v20200324.models.InstanceChargePrepaid`
+        # @param InstanceName: Lighthouse实例显示名称。
+        # @type InstanceName: String
+        # @param InstanceCount: 购买Lighthouse实例数量。包年包月实例取值范围：[1，30]。默认取值：1。指定购买实例的数量不能超过用户所能购买的剩余配额数量
+        # @type InstanceCount: Integer
+        # @param Zones: 可用区列表。默认为随机可用区
+        # @type Zones: Array
+        # @param DryRun: 是否只预检此次请求。
+        # true：发送检查请求，不会创建实例。检查项包括是否填写了必需参数，请求格式，业务限制和库存。
+        # 如果检查不通过，则返回对应错误码；
+        # 如果检查通过，则返回RequestId.
+        # false（默认）：发送正常请求，通过检查后直接创建实例
+        # @type DryRun: Boolean
+        # @param ClientToken: 用于保证请求幂等性的字符串。该字符串由客户生成，需保证不同请求之间唯一，最大值不超过64个ASCII字符。若不指定该参数，则无法保证请求的幂等性。
+        # @type ClientToken: String
+        # @param LoginConfiguration: 实例登录密码信息配置。本字段目前仅支持WINDOWS实例进行密码设置。默认缺失情况下代表用户选择实例创建后设置登录密码。
+        # @type LoginConfiguration: :class:`Tencentcloud::Lighthouse.v20200324.models.LoginConfiguration`
+        # @param Containers: 要创建的容器配置列表。
+        # @type Containers: Array
+
+        attr_accessor :BundleId, :BlueprintId, :InstanceChargePrepaid, :InstanceName, :InstanceCount, :Zones, :DryRun, :ClientToken, :LoginConfiguration, :Containers
+        
+        def initialize(bundleid=nil, blueprintid=nil, instancechargeprepaid=nil, instancename=nil, instancecount=nil, zones=nil, dryrun=nil, clienttoken=nil, loginconfiguration=nil, containers=nil)
+          @BundleId = bundleid
+          @BlueprintId = blueprintid
+          @InstanceChargePrepaid = instancechargeprepaid
+          @InstanceName = instancename
+          @InstanceCount = instancecount
+          @Zones = zones
+          @DryRun = dryrun
+          @ClientToken = clienttoken
+          @LoginConfiguration = loginconfiguration
+          @Containers = containers
+        end
+
+        def deserialize(params)
+          @BundleId = params['BundleId']
+          @BlueprintId = params['BlueprintId']
+          unless params['InstanceChargePrepaid'].nil?
+            @InstanceChargePrepaid = InstanceChargePrepaid.new
+            @InstanceChargePrepaid.deserialize(params['InstanceChargePrepaid'])
+          end
+          @InstanceName = params['InstanceName']
+          @InstanceCount = params['InstanceCount']
+          @Zones = params['Zones']
+          @DryRun = params['DryRun']
+          @ClientToken = params['ClientToken']
+          unless params['LoginConfiguration'].nil?
+            @LoginConfiguration = LoginConfiguration.new
+            @LoginConfiguration.deserialize(params['LoginConfiguration'])
+          end
+          unless params['Containers'].nil?
+            @Containers = []
+            params['Containers'].each do |i|
+              dockercontainerconfiguration_tmp = DockerContainerConfiguration.new
+              dockercontainerconfiguration_tmp.deserialize(i)
+              @Containers << dockercontainerconfiguration_tmp
+            end
+          end
+        end
+      end
+
+      # CreateInstances返回参数结构体
+      class CreateInstancesResponse < TencentCloud::Common::AbstractModel
+        # @param InstanceIdSet: 当通过本接口来创建实例时会返回该参数，表示一个或多个实例ID。返回实例ID列表并不代表实例创建成功。
+
+        # 可根据 DescribeInstances 接口查询返回的InstancesSet中对应实例的ID的状态来判断创建是否完成；如果实例状态由“启动中”变为“运行中”，则为创建成功。
+        # @type InstanceIdSet: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :InstanceIdSet, :RequestId
+        
+        def initialize(instanceidset=nil, requestid=nil)
+          @InstanceIdSet = instanceidset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @InstanceIdSet = params['InstanceIdSet']
           @RequestId = params['RequestId']
         end
       end
@@ -2719,6 +2830,113 @@ module TencentCloud
         end
       end
 
+      # Docker容器创建时的配置
+      class DockerContainerConfiguration < TencentCloud::Common::AbstractModel
+        # @param ContainerImage: 容器镜像地址
+        # @type ContainerImage: String
+        # @param ContainerName: 容器名称
+        # @type ContainerName: String
+        # @param Envs: 环境变量列表
+        # @type Envs: Array
+        # @param PublishPorts: 容器端口主机端口映射列表
+        # @type PublishPorts: Array
+        # @param Volumes: 容器加载本地卷列表
+        # @type Volumes: Array
+        # @param Command: 运行的命令
+        # @type Command: String
+
+        attr_accessor :ContainerImage, :ContainerName, :Envs, :PublishPorts, :Volumes, :Command
+        
+        def initialize(containerimage=nil, containername=nil, envs=nil, publishports=nil, volumes=nil, command=nil)
+          @ContainerImage = containerimage
+          @ContainerName = containername
+          @Envs = envs
+          @PublishPorts = publishports
+          @Volumes = volumes
+          @Command = command
+        end
+
+        def deserialize(params)
+          @ContainerImage = params['ContainerImage']
+          @ContainerName = params['ContainerName']
+          unless params['Envs'].nil?
+            @Envs = []
+            params['Envs'].each do |i|
+              containerenv_tmp = ContainerEnv.new
+              containerenv_tmp.deserialize(i)
+              @Envs << containerenv_tmp
+            end
+          end
+          unless params['PublishPorts'].nil?
+            @PublishPorts = []
+            params['PublishPorts'].each do |i|
+              dockercontainerpublishport_tmp = DockerContainerPublishPort.new
+              dockercontainerpublishport_tmp.deserialize(i)
+              @PublishPorts << dockercontainerpublishport_tmp
+            end
+          end
+          unless params['Volumes'].nil?
+            @Volumes = []
+            params['Volumes'].each do |i|
+              dockercontainervolume_tmp = DockerContainerVolume.new
+              dockercontainervolume_tmp.deserialize(i)
+              @Volumes << dockercontainervolume_tmp
+            end
+          end
+          @Command = params['Command']
+        end
+      end
+
+      # Docker容器映射的端口
+      class DockerContainerPublishPort < TencentCloud::Common::AbstractModel
+        # @param HostPort: 主机端口
+        # @type HostPort: Integer
+        # @param ContainerPort: 容器端口
+        # @type ContainerPort: Integer
+        # @param Ip: 对外绑定IP，默认0.0.0.0
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Ip: String
+        # @param Protocol: 协议，默认tcp，支持tcp/udp/sctp
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Protocol: String
+
+        attr_accessor :HostPort, :ContainerPort, :Ip, :Protocol
+        
+        def initialize(hostport=nil, containerport=nil, ip=nil, protocol=nil)
+          @HostPort = hostport
+          @ContainerPort = containerport
+          @Ip = ip
+          @Protocol = protocol
+        end
+
+        def deserialize(params)
+          @HostPort = params['HostPort']
+          @ContainerPort = params['ContainerPort']
+          @Ip = params['Ip']
+          @Protocol = params['Protocol']
+        end
+      end
+
+      # Docker容器挂载卷
+      class DockerContainerVolume < TencentCloud::Common::AbstractModel
+        # @param ContainerPath: 容器路径
+        # @type ContainerPath: String
+        # @param HostPath: 主机路径
+        # @type HostPath: String
+
+        attr_accessor :ContainerPath, :HostPath
+        
+        def initialize(containerpath=nil, hostpath=nil)
+          @ContainerPath = containerpath
+          @HostPath = hostpath
+        end
+
+        def deserialize(params)
+          @ContainerPath = params['ContainerPath']
+          @HostPath = params['HostPath']
+        end
+      end
+
       # >描述键值对过滤器，用于条件过滤查询。例如过滤名称等
       # > * 若存在多个`Filter`时，`Filter`间的关系为逻辑与（`AND`）关系。
       # > * 若同一个`Filter`存在多个`Values`，同一`Filter`下`Values`间的关系为逻辑或（`OR`）关系。
@@ -3483,6 +3701,17 @@ module TencentCloud
           @AssociatedInstanceIds = params['AssociatedInstanceIds']
           @CreatedTime = params['CreatedTime']
           @PrivateKey = params['PrivateKey']
+        end
+      end
+
+      # 实例密码登录配置信息。
+      class LoginConfiguration < TencentCloud::Common::AbstractModel
+
+        
+        def initialize()
+        end
+
+        def deserialize(params)
         end
       end
 
