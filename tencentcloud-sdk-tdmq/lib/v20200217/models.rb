@@ -583,10 +583,15 @@ module TencentCloud
         # @param Tags: 标签
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Tags: Array
+        # @param PayMode: 计费模式：
+        # 0: 按量计费
+        # 1: 包年包月
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PayMode: Integer
 
-        attr_accessor :ClusterId, :ClusterName, :Remark, :EndPointNum, :CreateTime, :Healthy, :HealthyInfo, :Status, :MaxNamespaceNum, :MaxTopicNum, :MaxQps, :MessageRetentionTime, :MaxStorageCapacity, :Version, :PublicEndPoint, :VpcEndPoint, :NamespaceNum, :UsedStorageBudget, :MaxPublishRateInMessages, :MaxDispatchRateInMessages, :MaxPublishRateInBytes, :MaxDispatchRateInBytes, :TopicNum, :MaxMessageDelayInSeconds, :PublicAccessEnabled, :Tags
+        attr_accessor :ClusterId, :ClusterName, :Remark, :EndPointNum, :CreateTime, :Healthy, :HealthyInfo, :Status, :MaxNamespaceNum, :MaxTopicNum, :MaxQps, :MessageRetentionTime, :MaxStorageCapacity, :Version, :PublicEndPoint, :VpcEndPoint, :NamespaceNum, :UsedStorageBudget, :MaxPublishRateInMessages, :MaxDispatchRateInMessages, :MaxPublishRateInBytes, :MaxDispatchRateInBytes, :TopicNum, :MaxMessageDelayInSeconds, :PublicAccessEnabled, :Tags, :PayMode
         
-        def initialize(clusterid=nil, clustername=nil, remark=nil, endpointnum=nil, createtime=nil, healthy=nil, healthyinfo=nil, status=nil, maxnamespacenum=nil, maxtopicnum=nil, maxqps=nil, messageretentiontime=nil, maxstoragecapacity=nil, version=nil, publicendpoint=nil, vpcendpoint=nil, namespacenum=nil, usedstoragebudget=nil, maxpublishrateinmessages=nil, maxdispatchrateinmessages=nil, maxpublishrateinbytes=nil, maxdispatchrateinbytes=nil, topicnum=nil, maxmessagedelayinseconds=nil, publicaccessenabled=nil, tags=nil)
+        def initialize(clusterid=nil, clustername=nil, remark=nil, endpointnum=nil, createtime=nil, healthy=nil, healthyinfo=nil, status=nil, maxnamespacenum=nil, maxtopicnum=nil, maxqps=nil, messageretentiontime=nil, maxstoragecapacity=nil, version=nil, publicendpoint=nil, vpcendpoint=nil, namespacenum=nil, usedstoragebudget=nil, maxpublishrateinmessages=nil, maxdispatchrateinmessages=nil, maxpublishrateinbytes=nil, maxdispatchrateinbytes=nil, topicnum=nil, maxmessagedelayinseconds=nil, publicaccessenabled=nil, tags=nil, paymode=nil)
           @ClusterId = clusterid
           @ClusterName = clustername
           @Remark = remark
@@ -613,6 +618,7 @@ module TencentCloud
           @MaxMessageDelayInSeconds = maxmessagedelayinseconds
           @PublicAccessEnabled = publicaccessenabled
           @Tags = tags
+          @PayMode = paymode
         end
 
         def deserialize(params)
@@ -649,6 +655,7 @@ module TencentCloud
               @Tags << tag_tmp
             end
           end
+          @PayMode = params['PayMode']
         end
       end
 
@@ -1088,14 +1095,18 @@ module TencentCloud
         # @param ClientVersion: 消费者版本。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ClientVersion: String
+        # @param Partition: 消费者连接的主题分区号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Partition: Integer
 
-        attr_accessor :ConnectedSince, :ConsumerAddr, :ConsumerName, :ClientVersion
+        attr_accessor :ConnectedSince, :ConsumerAddr, :ConsumerName, :ClientVersion, :Partition
         
-        def initialize(connectedsince=nil, consumeraddr=nil, consumername=nil, clientversion=nil)
+        def initialize(connectedsince=nil, consumeraddr=nil, consumername=nil, clientversion=nil, partition=nil)
           @ConnectedSince = connectedsince
           @ConsumerAddr = consumeraddr
           @ConsumerName = consumername
           @ClientVersion = clientversion
+          @Partition = partition
         end
 
         def deserialize(params)
@@ -1103,6 +1114,7 @@ module TencentCloud
           @ConsumerAddr = params['ConsumerAddr']
           @ConsumerName = params['ConsumerName']
           @ClientVersion = params['ClientVersion']
+          @Partition = params['Partition']
         end
       end
 
@@ -1485,10 +1497,12 @@ module TencentCloud
         # @type MaxTimeToLive: Integer
         # @param Trace: 是否开启消息轨迹追踪，当不设置字段时，默认为不开启，该字段为true表示开启，为false表示不开启
         # @type Trace: Boolean
+        # @param Tags: 标签数组
+        # @type Tags: Array
 
-        attr_accessor :QueueName, :MaxMsgHeapNum, :PollingWaitSeconds, :VisibilityTimeout, :MaxMsgSize, :MsgRetentionSeconds, :RewindSeconds, :Transaction, :FirstQueryInterval, :MaxQueryCount, :DeadLetterQueueName, :Policy, :MaxReceiveCount, :MaxTimeToLive, :Trace
+        attr_accessor :QueueName, :MaxMsgHeapNum, :PollingWaitSeconds, :VisibilityTimeout, :MaxMsgSize, :MsgRetentionSeconds, :RewindSeconds, :Transaction, :FirstQueryInterval, :MaxQueryCount, :DeadLetterQueueName, :Policy, :MaxReceiveCount, :MaxTimeToLive, :Trace, :Tags
         
-        def initialize(queuename=nil, maxmsgheapnum=nil, pollingwaitseconds=nil, visibilitytimeout=nil, maxmsgsize=nil, msgretentionseconds=nil, rewindseconds=nil, transaction=nil, firstqueryinterval=nil, maxquerycount=nil, deadletterqueuename=nil, policy=nil, maxreceivecount=nil, maxtimetolive=nil, trace=nil)
+        def initialize(queuename=nil, maxmsgheapnum=nil, pollingwaitseconds=nil, visibilitytimeout=nil, maxmsgsize=nil, msgretentionseconds=nil, rewindseconds=nil, transaction=nil, firstqueryinterval=nil, maxquerycount=nil, deadletterqueuename=nil, policy=nil, maxreceivecount=nil, maxtimetolive=nil, trace=nil, tags=nil)
           @QueueName = queuename
           @MaxMsgHeapNum = maxmsgheapnum
           @PollingWaitSeconds = pollingwaitseconds
@@ -1504,6 +1518,7 @@ module TencentCloud
           @MaxReceiveCount = maxreceivecount
           @MaxTimeToLive = maxtimetolive
           @Trace = trace
+          @Tags = tags
         end
 
         def deserialize(params)
@@ -1522,6 +1537,14 @@ module TencentCloud
           @MaxReceiveCount = params['MaxReceiveCount']
           @MaxTimeToLive = params['MaxTimeToLive']
           @Trace = params['Trace']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
+            end
+          end
         end
       end
 
@@ -1621,15 +1644,18 @@ module TencentCloud
         # @type MsgRetentionSeconds: Integer
         # @param Trace: 是否开启消息轨迹标识，true表示开启，false表示不开启，不填表示不开启。
         # @type Trace: Boolean
+        # @param Tags: 标签数组
+        # @type Tags: Array
 
-        attr_accessor :TopicName, :MaxMsgSize, :FilterType, :MsgRetentionSeconds, :Trace
+        attr_accessor :TopicName, :MaxMsgSize, :FilterType, :MsgRetentionSeconds, :Trace, :Tags
         
-        def initialize(topicname=nil, maxmsgsize=nil, filtertype=nil, msgretentionseconds=nil, trace=nil)
+        def initialize(topicname=nil, maxmsgsize=nil, filtertype=nil, msgretentionseconds=nil, trace=nil, tags=nil)
           @TopicName = topicname
           @MaxMsgSize = maxmsgsize
           @FilterType = filtertype
           @MsgRetentionSeconds = msgretentionseconds
           @Trace = trace
+          @Tags = tags
         end
 
         def deserialize(params)
@@ -1638,6 +1664,14 @@ module TencentCloud
           @FilterType = params['FilterType']
           @MsgRetentionSeconds = params['MsgRetentionSeconds']
           @Trace = params['Trace']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
+            end
+          end
         end
       end
 
@@ -2090,35 +2124,43 @@ module TencentCloud
         # @type TopicName: String
         # @param Partitions: 0：非分区topic，无分区；非0：具体分区topic的分区数，最大不允许超过128。
         # @type Partitions: Integer
+        # @param Remark: 备注，128字符以内。
+        # @type Remark: String
         # @param TopicType: 0： 普通消息；
         # 1 ：全局顺序消息；
         # 2 ：局部顺序消息；
         # 3 ：重试队列；
         # 4 ：死信队列。
         # @type TopicType: Integer
-        # @param Remark: 备注，128字符以内。
-        # @type Remark: String
         # @param ClusterId: Pulsar 集群的ID
         # @type ClusterId: String
+        # @param PulsarTopicType: Pulsar 主题类型
+        # 0: 非持久非分区
+        # 1: 非持久分区
+        # 2: 持久非分区
+        # 3: 持久分区
+        # @type PulsarTopicType: Integer
 
-        attr_accessor :EnvironmentId, :TopicName, :Partitions, :TopicType, :Remark, :ClusterId
+        attr_accessor :EnvironmentId, :TopicName, :Partitions, :Remark, :TopicType, :ClusterId, :PulsarTopicType
         
-        def initialize(environmentid=nil, topicname=nil, partitions=nil, topictype=nil, remark=nil, clusterid=nil)
+        def initialize(environmentid=nil, topicname=nil, partitions=nil, remark=nil, topictype=nil, clusterid=nil, pulsartopictype=nil)
           @EnvironmentId = environmentid
           @TopicName = topicname
           @Partitions = partitions
-          @TopicType = topictype
           @Remark = remark
+          @TopicType = topictype
           @ClusterId = clusterid
+          @PulsarTopicType = pulsartopictype
         end
 
         def deserialize(params)
           @EnvironmentId = params['EnvironmentId']
           @TopicName = params['TopicName']
           @Partitions = params['Partitions']
-          @TopicType = params['TopicType']
           @Remark = params['Remark']
+          @TopicType = params['TopicType']
           @ClusterId = params['ClusterId']
+          @PulsarTopicType = params['PulsarTopicType']
         end
       end
 
@@ -7032,10 +7074,19 @@ module TencentCloud
         # @param UpdateTime: 最近修改时间。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UpdateTime: String
+        # @param SubType: 订阅类型，Exclusive，Shared，Failover， Key_Shared，空或NULL表示未知，
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SubType: String
+        # @param BlockedSubscriptionOnUnackedMsgs: 是否由于未 ack 数到达上限而被 block
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BlockedSubscriptionOnUnackedMsgs: Boolean
+        # @param MaxUnackedMsgNum: 未 ack 消息数上限
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MaxUnackedMsgNum: Integer
 
-        attr_accessor :TopicName, :EnvironmentId, :ConnectedSince, :ConsumerAddr, :ConsumerCount, :ConsumerName, :MsgBacklog, :MsgRateExpired, :MsgRateOut, :MsgThroughputOut, :SubscriptionName, :ConsumerSets, :IsOnline, :ConsumersScheduleSets, :Remark, :CreateTime, :UpdateTime
+        attr_accessor :TopicName, :EnvironmentId, :ConnectedSince, :ConsumerAddr, :ConsumerCount, :ConsumerName, :MsgBacklog, :MsgRateExpired, :MsgRateOut, :MsgThroughputOut, :SubscriptionName, :ConsumerSets, :IsOnline, :ConsumersScheduleSets, :Remark, :CreateTime, :UpdateTime, :SubType, :BlockedSubscriptionOnUnackedMsgs, :MaxUnackedMsgNum
         
-        def initialize(topicname=nil, environmentid=nil, connectedsince=nil, consumeraddr=nil, consumercount=nil, consumername=nil, msgbacklog=nil, msgrateexpired=nil, msgrateout=nil, msgthroughputout=nil, subscriptionname=nil, consumersets=nil, isonline=nil, consumersschedulesets=nil, remark=nil, createtime=nil, updatetime=nil)
+        def initialize(topicname=nil, environmentid=nil, connectedsince=nil, consumeraddr=nil, consumercount=nil, consumername=nil, msgbacklog=nil, msgrateexpired=nil, msgrateout=nil, msgthroughputout=nil, subscriptionname=nil, consumersets=nil, isonline=nil, consumersschedulesets=nil, remark=nil, createtime=nil, updatetime=nil, subtype=nil, blockedsubscriptiononunackedmsgs=nil, maxunackedmsgnum=nil)
           @TopicName = topicname
           @EnvironmentId = environmentid
           @ConnectedSince = connectedsince
@@ -7053,6 +7104,9 @@ module TencentCloud
           @Remark = remark
           @CreateTime = createtime
           @UpdateTime = updatetime
+          @SubType = subtype
+          @BlockedSubscriptionOnUnackedMsgs = blockedsubscriptiononunackedmsgs
+          @MaxUnackedMsgNum = maxunackedmsgnum
         end
 
         def deserialize(params)
@@ -7087,6 +7141,9 @@ module TencentCloud
           @Remark = params['Remark']
           @CreateTime = params['CreateTime']
           @UpdateTime = params['UpdateTime']
+          @SubType = params['SubType']
+          @BlockedSubscriptionOnUnackedMsgs = params['BlockedSubscriptionOnUnackedMsgs']
+          @MaxUnackedMsgNum = params['MaxUnackedMsgNum']
         end
       end
 
@@ -7205,10 +7262,16 @@ module TencentCloud
         # @param ConsumerLimit: 消费者上限。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ConsumerLimit: String
+        # @param PulsarTopicType: 0: 非持久非分区
+        # 1: 非持久分区
+        # 2: 持久非分区
+        # 3: 持久分区
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PulsarTopicType: Integer
 
-        attr_accessor :AverageMsgSize, :ConsumerCount, :LastConfirmedEntry, :LastLedgerCreatedTimestamp, :MsgRateIn, :MsgRateOut, :MsgThroughputIn, :MsgThroughputOut, :NumberOfEntries, :Partitions, :ProducerCount, :TotalSize, :SubTopicSets, :TopicType, :EnvironmentId, :TopicName, :Remark, :CreateTime, :UpdateTime, :ProducerLimit, :ConsumerLimit
+        attr_accessor :AverageMsgSize, :ConsumerCount, :LastConfirmedEntry, :LastLedgerCreatedTimestamp, :MsgRateIn, :MsgRateOut, :MsgThroughputIn, :MsgThroughputOut, :NumberOfEntries, :Partitions, :ProducerCount, :TotalSize, :SubTopicSets, :TopicType, :EnvironmentId, :TopicName, :Remark, :CreateTime, :UpdateTime, :ProducerLimit, :ConsumerLimit, :PulsarTopicType
         
-        def initialize(averagemsgsize=nil, consumercount=nil, lastconfirmedentry=nil, lastledgercreatedtimestamp=nil, msgratein=nil, msgrateout=nil, msgthroughputin=nil, msgthroughputout=nil, numberofentries=nil, partitions=nil, producercount=nil, totalsize=nil, subtopicsets=nil, topictype=nil, environmentid=nil, topicname=nil, remark=nil, createtime=nil, updatetime=nil, producerlimit=nil, consumerlimit=nil)
+        def initialize(averagemsgsize=nil, consumercount=nil, lastconfirmedentry=nil, lastledgercreatedtimestamp=nil, msgratein=nil, msgrateout=nil, msgthroughputin=nil, msgthroughputout=nil, numberofentries=nil, partitions=nil, producercount=nil, totalsize=nil, subtopicsets=nil, topictype=nil, environmentid=nil, topicname=nil, remark=nil, createtime=nil, updatetime=nil, producerlimit=nil, consumerlimit=nil, pulsartopictype=nil)
           @AverageMsgSize = averagemsgsize
           @ConsumerCount = consumercount
           @LastConfirmedEntry = lastconfirmedentry
@@ -7230,6 +7293,7 @@ module TencentCloud
           @UpdateTime = updatetime
           @ProducerLimit = producerlimit
           @ConsumerLimit = consumerlimit
+          @PulsarTopicType = pulsartopictype
         end
 
         def deserialize(params)
@@ -7261,6 +7325,7 @@ module TencentCloud
           @UpdateTime = params['UpdateTime']
           @ProducerLimit = params['ProducerLimit']
           @ConsumerLimit = params['ConsumerLimit']
+          @PulsarTopicType = params['PulsarTopicType']
         end
       end
 

@@ -5877,10 +5877,12 @@ module TencentCloud
         # @type Status: String
         # @param ProjectId: 项目 ID，可前往腾讯云项目管理页面查看
         # @type ProjectId: Integer
-        # @param ServiceType: 域名业务类型
-        # web：静态加速
-        # download：下载加速
-        # media：流媒体点播加速
+        # @param ServiceType: 加速域名业务类型
+        # web：网页小文件
+        # download：下载大文件
+        # media：音视频点播
+        # hybrid:  动静加速
+        # dynamic:  动态加速
         # @type ServiceType: String
         # @param CreateTime: 域名创建时间
         # @type CreateTime: String
@@ -6055,10 +6057,13 @@ module TencentCloud
         # @param ShareCname: 共享CNAME配置（白名单功能）
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ShareCname: :class:`Tencentcloud::Cdn.v20180606.models.ShareCname`
+        # @param RuleEngine: 规则引擎
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RuleEngine: :class:`Tencentcloud::Cdn.v20180606.models.RuleEngine`
 
-        attr_accessor :ResourceId, :AppId, :Domain, :Cname, :Status, :ProjectId, :ServiceType, :CreateTime, :UpdateTime, :Origin, :IpFilter, :IpFreqLimit, :StatusCodeCache, :Compression, :BandwidthAlert, :RangeOriginPull, :FollowRedirect, :ErrorPage, :RequestHeader, :ResponseHeader, :DownstreamCapping, :CacheKey, :ResponseHeaderCache, :VideoSeek, :Cache, :OriginPullOptimization, :Https, :Authentication, :Seo, :Disable, :ForceRedirect, :Referer, :MaxAge, :Ipv6, :Compatibility, :SpecificConfig, :Area, :Readonly, :OriginPullTimeout, :AwsPrivateAccess, :SecurityConfig, :ImageOptimization, :UserAgentFilter, :AccessControl, :Advance, :UrlRedirect, :AccessPort, :Tag, :AdvancedAuthentication, :OriginAuthentication, :Ipv6Access, :AdvanceSet, :OfflineCache, :OriginCombine, :PostMaxSize, :Quic, :OssPrivateAccess, :WebSocket, :RemoteAuthentication, :ShareCname
+        attr_accessor :ResourceId, :AppId, :Domain, :Cname, :Status, :ProjectId, :ServiceType, :CreateTime, :UpdateTime, :Origin, :IpFilter, :IpFreqLimit, :StatusCodeCache, :Compression, :BandwidthAlert, :RangeOriginPull, :FollowRedirect, :ErrorPage, :RequestHeader, :ResponseHeader, :DownstreamCapping, :CacheKey, :ResponseHeaderCache, :VideoSeek, :Cache, :OriginPullOptimization, :Https, :Authentication, :Seo, :Disable, :ForceRedirect, :Referer, :MaxAge, :Ipv6, :Compatibility, :SpecificConfig, :Area, :Readonly, :OriginPullTimeout, :AwsPrivateAccess, :SecurityConfig, :ImageOptimization, :UserAgentFilter, :AccessControl, :Advance, :UrlRedirect, :AccessPort, :Tag, :AdvancedAuthentication, :OriginAuthentication, :Ipv6Access, :AdvanceSet, :OfflineCache, :OriginCombine, :PostMaxSize, :Quic, :OssPrivateAccess, :WebSocket, :RemoteAuthentication, :ShareCname, :RuleEngine
         
-        def initialize(resourceid=nil, appid=nil, domain=nil, cname=nil, status=nil, projectid=nil, servicetype=nil, createtime=nil, updatetime=nil, origin=nil, ipfilter=nil, ipfreqlimit=nil, statuscodecache=nil, compression=nil, bandwidthalert=nil, rangeoriginpull=nil, followredirect=nil, errorpage=nil, requestheader=nil, responseheader=nil, downstreamcapping=nil, cachekey=nil, responseheadercache=nil, videoseek=nil, cache=nil, originpulloptimization=nil, https=nil, authentication=nil, seo=nil, disable=nil, forceredirect=nil, referer=nil, maxage=nil, ipv6=nil, compatibility=nil, specificconfig=nil, area=nil, readonly=nil, originpulltimeout=nil, awsprivateaccess=nil, securityconfig=nil, imageoptimization=nil, useragentfilter=nil, accesscontrol=nil, advance=nil, urlredirect=nil, accessport=nil, tag=nil, advancedauthentication=nil, originauthentication=nil, ipv6access=nil, advanceset=nil, offlinecache=nil, origincombine=nil, postmaxsize=nil, quic=nil, ossprivateaccess=nil, websocket=nil, remoteauthentication=nil, sharecname=nil)
+        def initialize(resourceid=nil, appid=nil, domain=nil, cname=nil, status=nil, projectid=nil, servicetype=nil, createtime=nil, updatetime=nil, origin=nil, ipfilter=nil, ipfreqlimit=nil, statuscodecache=nil, compression=nil, bandwidthalert=nil, rangeoriginpull=nil, followredirect=nil, errorpage=nil, requestheader=nil, responseheader=nil, downstreamcapping=nil, cachekey=nil, responseheadercache=nil, videoseek=nil, cache=nil, originpulloptimization=nil, https=nil, authentication=nil, seo=nil, disable=nil, forceredirect=nil, referer=nil, maxage=nil, ipv6=nil, compatibility=nil, specificconfig=nil, area=nil, readonly=nil, originpulltimeout=nil, awsprivateaccess=nil, securityconfig=nil, imageoptimization=nil, useragentfilter=nil, accesscontrol=nil, advance=nil, urlredirect=nil, accessport=nil, tag=nil, advancedauthentication=nil, originauthentication=nil, ipv6access=nil, advanceset=nil, offlinecache=nil, origincombine=nil, postmaxsize=nil, quic=nil, ossprivateaccess=nil, websocket=nil, remoteauthentication=nil, sharecname=nil, ruleengine=nil)
           @ResourceId = resourceid
           @AppId = appid
           @Domain = domain
@@ -6119,6 +6124,7 @@ module TencentCloud
           @WebSocket = websocket
           @RemoteAuthentication = remoteauthentication
           @ShareCname = sharecname
+          @RuleEngine = ruleengine
         end
 
         def deserialize(params)
@@ -6327,6 +6333,10 @@ module TencentCloud
           unless params['ShareCname'].nil?
             @ShareCname = ShareCname.new
             @ShareCname.deserialize(params['ShareCname'])
+          end
+          unless params['RuleEngine'].nil?
+            @RuleEngine = RuleEngine.new
+            @RuleEngine.deserialize(params['RuleEngine'])
           end
         end
       end
@@ -10562,6 +10572,29 @@ module TencentCloud
         end
       end
 
+      # 规则引擎配置
+      class RuleEngine < TencentCloud::Common::AbstractModel
+        # @param Switch: 规则引擎配置开关
+        # on：开启
+        # off：关闭
+        # @type Switch: String
+        # @param Content: 规则
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Content: String
+
+        attr_accessor :Switch, :Content
+        
+        def initialize(switch=nil, content=nil)
+          @Switch = switch
+          @Content = content
+        end
+
+        def deserialize(params)
+          @Switch = params['Switch']
+          @Content = params['Content']
+        end
+      end
+
       # 路径保留参数配置
       class RuleQueryString < TencentCloud::Common::AbstractModel
         # @param Switch: on | off CacheKey是否由QueryString组成
@@ -11523,10 +11556,13 @@ module TencentCloud
         # @param Message: 证书备注信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Message: String
+        # @param From: 证书来源
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type From: String
 
-        attr_accessor :CertId, :CertName, :Certificate, :PrivateKey, :ExpireTime, :DeployTime, :Message
+        attr_accessor :CertId, :CertName, :Certificate, :PrivateKey, :ExpireTime, :DeployTime, :Message, :From
         
-        def initialize(certid=nil, certname=nil, certificate=nil, privatekey=nil, expiretime=nil, deploytime=nil, message=nil)
+        def initialize(certid=nil, certname=nil, certificate=nil, privatekey=nil, expiretime=nil, deploytime=nil, message=nil, from=nil)
           @CertId = certid
           @CertName = certname
           @Certificate = certificate
@@ -11534,6 +11570,7 @@ module TencentCloud
           @ExpireTime = expiretime
           @DeployTime = deploytime
           @Message = message
+          @From = from
         end
 
         def deserialize(params)
@@ -11544,6 +11581,7 @@ module TencentCloud
           @ExpireTime = params['ExpireTime']
           @DeployTime = params['DeployTime']
           @Message = params['Message']
+          @From = params['From']
         end
       end
 

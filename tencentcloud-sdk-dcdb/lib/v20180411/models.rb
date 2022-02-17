@@ -1625,6 +1625,101 @@ module TencentCloud
         end
       end
 
+      # DescribeDBSlowLogs请求参数结构体
+      class DescribeDBSlowLogsRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例 ID，形如：dcdbt-hw0qj6m1
+        # @type InstanceId: String
+        # @param Offset: 从结果的第几条数据开始返回
+        # @type Offset: Integer
+        # @param Limit: 返回的结果条数
+        # @type Limit: Integer
+        # @param StartTime: 查询的起始时间，形如2016-07-23 14:55:20
+        # @type StartTime: String
+        # @param ShardId: 实例的分片ID，形如shard-53ima8ln
+        # @type ShardId: String
+        # @param EndTime: 查询的结束时间，形如2016-08-22 14:55:20。如果不填，那么查询结束时间就是当前时间
+        # @type EndTime: String
+        # @param Db: 要查询的具体数据库名称
+        # @type Db: String
+        # @param OrderBy: 排序指标，取值为query_time_sum或者query_count。不填默认按照query_time_sum排序
+        # @type OrderBy: String
+        # @param OrderByType: 排序类型，desc（降序）或者asc（升序）。不填默认desc排序
+        # @type OrderByType: String
+        # @param Slave: 是否查询从机的慢查询，0-主机; 1-从机。不填默认查询主机慢查询
+        # @type Slave: Integer
+
+        attr_accessor :InstanceId, :Offset, :Limit, :StartTime, :ShardId, :EndTime, :Db, :OrderBy, :OrderByType, :Slave
+        
+        def initialize(instanceid=nil, offset=nil, limit=nil, starttime=nil, shardid=nil, endtime=nil, db=nil, orderby=nil, orderbytype=nil, slave=nil)
+          @InstanceId = instanceid
+          @Offset = offset
+          @Limit = limit
+          @StartTime = starttime
+          @ShardId = shardid
+          @EndTime = endtime
+          @Db = db
+          @OrderBy = orderby
+          @OrderByType = orderbytype
+          @Slave = slave
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @StartTime = params['StartTime']
+          @ShardId = params['ShardId']
+          @EndTime = params['EndTime']
+          @Db = params['Db']
+          @OrderBy = params['OrderBy']
+          @OrderByType = params['OrderByType']
+          @Slave = params['Slave']
+        end
+      end
+
+      # DescribeDBSlowLogs返回参数结构体
+      class DescribeDBSlowLogsResponse < TencentCloud::Common::AbstractModel
+        # @param LockTimeSum: 所有语句锁时间总和
+        # @type LockTimeSum: Float
+        # @param QueryCount: 所有语句查询总次数
+        # @type QueryCount: Integer
+        # @param Total: 总记录数
+        # @type Total: Integer
+        # @param QueryTimeSum: 所有语句查询时间总和
+        # @type QueryTimeSum: Float
+        # @param Data: 慢查询日志数据
+        # @type Data: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :LockTimeSum, :QueryCount, :Total, :QueryTimeSum, :Data, :RequestId
+        
+        def initialize(locktimesum=nil, querycount=nil, total=nil, querytimesum=nil, data=nil, requestid=nil)
+          @LockTimeSum = locktimesum
+          @QueryCount = querycount
+          @Total = total
+          @QueryTimeSum = querytimesum
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @LockTimeSum = params['LockTimeSum']
+          @QueryCount = params['QueryCount']
+          @Total = params['Total']
+          @QueryTimeSum = params['QueryTimeSum']
+          unless params['Data'].nil?
+            @Data = []
+            params['Data'].each do |i|
+              slowlogdata_tmp = SlowLogData.new
+              slowlogdata_tmp.deserialize(i)
+              @Data << slowlogdata_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeDBSyncMode请求参数结构体
       class DescribeDBSyncModeRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 待修改同步模式的实例ID。形如：dcdbt-ow728lmc。
@@ -3905,6 +4000,96 @@ module TencentCloud
               @SlaveZones << zonesinfo_tmp
             end
           end
+        end
+      end
+
+      # 慢查询条目信息
+      class SlowLogData < TencentCloud::Common::AbstractModel
+        # @param CheckSum: 语句校验和，用于查询详情
+        # @type CheckSum: String
+        # @param Db: 数据库名称
+        # @type Db: String
+        # @param FingerPrint: 抽象的SQL语句
+        # @type FingerPrint: String
+        # @param LockTimeAvg: 平均的锁时间
+        # @type LockTimeAvg: String
+        # @param LockTimeMax: 最大锁时间
+        # @type LockTimeMax: String
+        # @param LockTimeMin: 最小锁时间
+        # @type LockTimeMin: String
+        # @param LockTimeSum: 锁时间总和
+        # @type LockTimeSum: String
+        # @param QueryCount: 查询次数
+        # @type QueryCount: String
+        # @param QueryTimeAvg: 平均查询时间
+        # @type QueryTimeAvg: String
+        # @param QueryTimeMax: 最大查询时间
+        # @type QueryTimeMax: String
+        # @param QueryTimeMin: 最小查询时间
+        # @type QueryTimeMin: String
+        # @param QueryTimeSum: 查询时间总和
+        # @type QueryTimeSum: String
+        # @param RowsExaminedSum: 扫描行数
+        # @type RowsExaminedSum: String
+        # @param RowsSentSum: 发送行数
+        # @type RowsSentSum: String
+        # @param TsMax: 最后执行时间
+        # @type TsMax: String
+        # @param TsMin: 首次执行时间
+        # @type TsMin: String
+        # @param User: 帐号
+        # @type User: String
+        # @param ExampleSql: 样例Sql
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExampleSql: String
+        # @param Host: 账户的域名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Host: String
+
+        attr_accessor :CheckSum, :Db, :FingerPrint, :LockTimeAvg, :LockTimeMax, :LockTimeMin, :LockTimeSum, :QueryCount, :QueryTimeAvg, :QueryTimeMax, :QueryTimeMin, :QueryTimeSum, :RowsExaminedSum, :RowsSentSum, :TsMax, :TsMin, :User, :ExampleSql, :Host
+        
+        def initialize(checksum=nil, db=nil, fingerprint=nil, locktimeavg=nil, locktimemax=nil, locktimemin=nil, locktimesum=nil, querycount=nil, querytimeavg=nil, querytimemax=nil, querytimemin=nil, querytimesum=nil, rowsexaminedsum=nil, rowssentsum=nil, tsmax=nil, tsmin=nil, user=nil, examplesql=nil, host=nil)
+          @CheckSum = checksum
+          @Db = db
+          @FingerPrint = fingerprint
+          @LockTimeAvg = locktimeavg
+          @LockTimeMax = locktimemax
+          @LockTimeMin = locktimemin
+          @LockTimeSum = locktimesum
+          @QueryCount = querycount
+          @QueryTimeAvg = querytimeavg
+          @QueryTimeMax = querytimemax
+          @QueryTimeMin = querytimemin
+          @QueryTimeSum = querytimesum
+          @RowsExaminedSum = rowsexaminedsum
+          @RowsSentSum = rowssentsum
+          @TsMax = tsmax
+          @TsMin = tsmin
+          @User = user
+          @ExampleSql = examplesql
+          @Host = host
+        end
+
+        def deserialize(params)
+          @CheckSum = params['CheckSum']
+          @Db = params['Db']
+          @FingerPrint = params['FingerPrint']
+          @LockTimeAvg = params['LockTimeAvg']
+          @LockTimeMax = params['LockTimeMax']
+          @LockTimeMin = params['LockTimeMin']
+          @LockTimeSum = params['LockTimeSum']
+          @QueryCount = params['QueryCount']
+          @QueryTimeAvg = params['QueryTimeAvg']
+          @QueryTimeMax = params['QueryTimeMax']
+          @QueryTimeMin = params['QueryTimeMin']
+          @QueryTimeSum = params['QueryTimeSum']
+          @RowsExaminedSum = params['RowsExaminedSum']
+          @RowsSentSum = params['RowsSentSum']
+          @TsMax = params['TsMax']
+          @TsMin = params['TsMin']
+          @User = params['User']
+          @ExampleSql = params['ExampleSql']
+          @Host = params['Host']
         end
       end
 

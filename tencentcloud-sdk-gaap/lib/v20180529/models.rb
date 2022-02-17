@@ -1328,12 +1328,16 @@ module TencentCloud
         # @param ForwardProtocol: 加速通道转发到源站的协议类型：支持HTTP或HTTPS。
         # 不传递该字段时表示使用对应监听器的ForwardProtocol。
         # @type ForwardProtocol: String
-        # @param ForwardHost: 加速通道转发到远照的host，不设置该参数时，使用默认的host设置，即客户端发起的http请求的host。
+        # @param ForwardHost: 回源Host。加速通道转发到远照的host，不设置该参数时，使用默认的host设置，即客户端发起的http请求的host。
         # @type ForwardHost: String
+        # @param ServerNameIndicationSwitch: 服务器名称指示（ServerNameIndication，简称SNI）开关。ON表示开启，OFF表示关闭。
+        # @type ServerNameIndicationSwitch: String
+        # @param ServerNameIndication: 服务器名称指示（ServerNameIndication，简称SNI），当SNI开关打开时，该字段必填。
+        # @type ServerNameIndication: String
 
-        attr_accessor :ListenerId, :Domain, :Path, :RealServerType, :Scheduler, :HealthCheck, :CheckParams, :ForwardProtocol, :ForwardHost
+        attr_accessor :ListenerId, :Domain, :Path, :RealServerType, :Scheduler, :HealthCheck, :CheckParams, :ForwardProtocol, :ForwardHost, :ServerNameIndicationSwitch, :ServerNameIndication
         
-        def initialize(listenerid=nil, domain=nil, path=nil, realservertype=nil, scheduler=nil, healthcheck=nil, checkparams=nil, forwardprotocol=nil, forwardhost=nil)
+        def initialize(listenerid=nil, domain=nil, path=nil, realservertype=nil, scheduler=nil, healthcheck=nil, checkparams=nil, forwardprotocol=nil, forwardhost=nil, servernameindicationswitch=nil, servernameindication=nil)
           @ListenerId = listenerid
           @Domain = domain
           @Path = path
@@ -1343,6 +1347,8 @@ module TencentCloud
           @CheckParams = checkparams
           @ForwardProtocol = forwardprotocol
           @ForwardHost = forwardhost
+          @ServerNameIndicationSwitch = servernameindicationswitch
+          @ServerNameIndication = servernameindication
         end
 
         def deserialize(params)
@@ -1358,6 +1364,8 @@ module TencentCloud
           end
           @ForwardProtocol = params['ForwardProtocol']
           @ForwardHost = params['ForwardHost']
+          @ServerNameIndicationSwitch = params['ServerNameIndicationSwitch']
+          @ServerNameIndication = params['ServerNameIndication']
         end
       end
 
@@ -3066,7 +3074,7 @@ module TencentCloud
         # @param Filters: 过滤条件。
         # 每次请求的Filter.Values的上限为5。
         # RealServerRegion - String - 是否必填：否 -（过滤条件）按照源站地域过滤，可参考DescribeDestRegions接口返回结果中的RegionId。
-        # PackageType - String - 是否必填：否 - （过滤条件）通道组类型，Thunder表示标准通道组，Accelerator表示游戏加速器通道。
+        # PackageType - String - 是否必填：否 - （过滤条件）通道组类型，Thunder表示标准通道组，Accelerator表示银牌加速通道组。
         # @type Filters: Array
         # @param TagSet: 标签列表，当存在该字段时，拉取对应标签下的资源列表。
         # 最多支持5个标签，当存在两个或两个以上的标签时，满足其中任意一个标签时，该通道组会被拉取出来。
@@ -5266,13 +5274,17 @@ module TencentCloud
         # @param ForwardProtocol: 加速通道转发到源站的协议类型，支持：default, HTTP和HTTPS。
         # 当ForwardProtocol=default时，表示使用对应监听器的ForwardProtocol。
         # @type ForwardProtocol: String
-        # @param ForwardHost: 加速通道转发到源站的请求中携带的host。
+        # @param ForwardHost: 回源Host。加速通道转发到源站的请求中携带的host。
         # 当ForwardHost=default时，使用规则的域名，其他情况为该字段所设置的值。
         # @type ForwardHost: String
+        # @param ServerNameIndicationSwitch: 服务器名称指示（ServerNameIndication，简称SNI）开关。ON表示开启，OFF表示关闭。
+        # @type ServerNameIndicationSwitch: String
+        # @param ServerNameIndication: 服务器名称指示（ServerNameIndication，简称SNI），当SNI开关打开时，该字段必填。
+        # @type ServerNameIndication: String
 
-        attr_accessor :ListenerId, :RuleId, :Scheduler, :HealthCheck, :CheckParams, :Path, :ForwardProtocol, :ForwardHost
+        attr_accessor :ListenerId, :RuleId, :Scheduler, :HealthCheck, :CheckParams, :Path, :ForwardProtocol, :ForwardHost, :ServerNameIndicationSwitch, :ServerNameIndication
         
-        def initialize(listenerid=nil, ruleid=nil, scheduler=nil, healthcheck=nil, checkparams=nil, path=nil, forwardprotocol=nil, forwardhost=nil)
+        def initialize(listenerid=nil, ruleid=nil, scheduler=nil, healthcheck=nil, checkparams=nil, path=nil, forwardprotocol=nil, forwardhost=nil, servernameindicationswitch=nil, servernameindication=nil)
           @ListenerId = listenerid
           @RuleId = ruleid
           @Scheduler = scheduler
@@ -5281,6 +5293,8 @@ module TencentCloud
           @Path = path
           @ForwardProtocol = forwardprotocol
           @ForwardHost = forwardhost
+          @ServerNameIndicationSwitch = servernameindicationswitch
+          @ServerNameIndication = servernameindication
         end
 
         def deserialize(params)
@@ -5295,6 +5309,8 @@ module TencentCloud
           @Path = params['Path']
           @ForwardProtocol = params['ForwardProtocol']
           @ForwardHost = params['ForwardHost']
+          @ServerNameIndicationSwitch = params['ServerNameIndicationSwitch']
+          @ServerNameIndication = params['ServerNameIndication']
         end
       end
 
@@ -5709,7 +5725,7 @@ module TencentCloud
         # @param IPAddressVersion: IP版本，可取值：IPv4、IPv6，默认值IPv4
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IPAddressVersion: String
-        # @param PackageType: 通道组套餐类型：Thunder表示标准通道组，Accelerator表示游戏加速器通道组，CrossBorder表示跨境通道组。
+        # @param PackageType: 通道组套餐类型：Thunder表示标准通道组，Accelerator表示银牌加速通道组，CrossBorder表示跨境通道组。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PackageType: String
         # @param Http3Supported: 支持Http3特性的标识，其中：
@@ -5955,7 +5971,7 @@ module TencentCloud
         # @param NetworkType: 网络类型：normal表示常规BGP，cn2表示精品BGP，triple表示三网
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NetworkType: String
-        # @param PackageType: 通道套餐类型：Thunder表示标准通道，Accelerator表示游戏加速器通道，
+        # @param PackageType: 通道套餐类型：Thunder表示标准通道，Accelerator表示银牌加速通道，
         # CrossBorder表示跨境通道。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PackageType: String
@@ -5970,10 +5986,13 @@ module TencentCloud
         # 1表示启用。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Http3Supported: Integer
+        # @param InBanBlacklist: 是否在封禁黑名单中，其中：0表示不在黑名单中，1表示在黑名单中。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InBanBlacklist: Integer
 
-        attr_accessor :InstanceId, :CreateTime, :ProjectId, :ProxyName, :AccessRegion, :RealServerRegion, :Bandwidth, :Concurrent, :Status, :Domain, :IP, :Version, :ProxyId, :Scalarable, :SupportProtocols, :GroupId, :PolicyId, :AccessRegionInfo, :RealServerRegionInfo, :ForwardIP, :TagSet, :SupportSecurity, :BillingType, :RelatedGlobalDomains, :ModifyConfigTime, :ProxyType, :ClientIPMethod, :IPAddressVersion, :NetworkType, :PackageType, :BanStatus, :IPList, :Http3Supported
+        attr_accessor :InstanceId, :CreateTime, :ProjectId, :ProxyName, :AccessRegion, :RealServerRegion, :Bandwidth, :Concurrent, :Status, :Domain, :IP, :Version, :ProxyId, :Scalarable, :SupportProtocols, :GroupId, :PolicyId, :AccessRegionInfo, :RealServerRegionInfo, :ForwardIP, :TagSet, :SupportSecurity, :BillingType, :RelatedGlobalDomains, :ModifyConfigTime, :ProxyType, :ClientIPMethod, :IPAddressVersion, :NetworkType, :PackageType, :BanStatus, :IPList, :Http3Supported, :InBanBlacklist
         
-        def initialize(instanceid=nil, createtime=nil, projectid=nil, proxyname=nil, accessregion=nil, realserverregion=nil, bandwidth=nil, concurrent=nil, status=nil, domain=nil, ip=nil, version=nil, proxyid=nil, scalarable=nil, supportprotocols=nil, groupid=nil, policyid=nil, accessregioninfo=nil, realserverregioninfo=nil, forwardip=nil, tagset=nil, supportsecurity=nil, billingtype=nil, relatedglobaldomains=nil, modifyconfigtime=nil, proxytype=nil, clientipmethod=nil, ipaddressversion=nil, networktype=nil, packagetype=nil, banstatus=nil, iplist=nil, http3supported=nil)
+        def initialize(instanceid=nil, createtime=nil, projectid=nil, proxyname=nil, accessregion=nil, realserverregion=nil, bandwidth=nil, concurrent=nil, status=nil, domain=nil, ip=nil, version=nil, proxyid=nil, scalarable=nil, supportprotocols=nil, groupid=nil, policyid=nil, accessregioninfo=nil, realserverregioninfo=nil, forwardip=nil, tagset=nil, supportsecurity=nil, billingtype=nil, relatedglobaldomains=nil, modifyconfigtime=nil, proxytype=nil, clientipmethod=nil, ipaddressversion=nil, networktype=nil, packagetype=nil, banstatus=nil, iplist=nil, http3supported=nil, inbanblacklist=nil)
           @InstanceId = instanceid
           @CreateTime = createtime
           @ProjectId = projectid
@@ -6007,6 +6026,7 @@ module TencentCloud
           @BanStatus = banstatus
           @IPList = iplist
           @Http3Supported = http3supported
+          @InBanBlacklist = inbanblacklist
         end
 
         def deserialize(params)
@@ -6063,6 +6083,7 @@ module TencentCloud
             end
           end
           @Http3Supported = params['Http3Supported']
+          @InBanBlacklist = params['InBanBlacklist']
         end
       end
 
@@ -6137,14 +6158,17 @@ module TencentCloud
         # @type RealServerName: String
         # @param ProjectId: 项目ID
         # @type ProjectId: Integer
+        # @param InBanBlacklist: 是否在封禁黑名单中，其中：0表示不在黑名单中，1表示在黑名单中。
+        # @type InBanBlacklist: Integer
 
-        attr_accessor :RealServerIP, :RealServerId, :RealServerName, :ProjectId
+        attr_accessor :RealServerIP, :RealServerId, :RealServerName, :ProjectId, :InBanBlacklist
         
-        def initialize(realserverip=nil, realserverid=nil, realservername=nil, projectid=nil)
+        def initialize(realserverip=nil, realserverid=nil, realservername=nil, projectid=nil, inbanblacklist=nil)
           @RealServerIP = realserverip
           @RealServerId = realserverid
           @RealServerName = realservername
           @ProjectId = projectid
+          @InBanBlacklist = inbanblacklist
         end
 
         def deserialize(params)
@@ -6152,6 +6176,7 @@ module TencentCloud
           @RealServerId = params['RealServerId']
           @RealServerName = params['RealServerName']
           @ProjectId = params['ProjectId']
+          @InBanBlacklist = params['InBanBlacklist']
         end
       end
 
@@ -6376,10 +6401,18 @@ module TencentCloud
         # @param ForwardHost: 通道转发到源站的请求所携带的host，其中default表示直接转发接收到的host。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ForwardHost: String
+        # @param ServerNameIndicationSwitch: 服务器名称指示（ServerNameIndication，简称SNI）开关。ON表示开启，OFF表示关闭。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ServerNameIndicationSwitch: String
+        # @param ServerNameIndication: 服务器名称指示（ServerNameIndication，简称SNI），当SNI开关打开时，该字段必填。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ServerNameIndication: String
 
-        attr_accessor :RuleId, :ListenerId, :Domain, :Path, :RealServerType, :Scheduler, :HealthCheck, :RuleStatus, :CheckParams, :RealServerSet, :BindStatus, :ForwardHost
+        attr_accessor :RuleId, :ListenerId, :Domain, :Path, :RealServerType, :Scheduler, :HealthCheck, :RuleStatus, :CheckParams, :RealServerSet, :BindStatus, :ForwardHost, :ServerNameIndicationSwitch, :ServerNameIndication
         
-        def initialize(ruleid=nil, listenerid=nil, domain=nil, path=nil, realservertype=nil, scheduler=nil, healthcheck=nil, rulestatus=nil, checkparams=nil, realserverset=nil, bindstatus=nil, forwardhost=nil)
+        def initialize(ruleid=nil, listenerid=nil, domain=nil, path=nil, realservertype=nil, scheduler=nil, healthcheck=nil, rulestatus=nil, checkparams=nil, realserverset=nil, bindstatus=nil, forwardhost=nil, servernameindicationswitch=nil, servernameindication=nil)
           @RuleId = ruleid
           @ListenerId = listenerid
           @Domain = domain
@@ -6392,6 +6425,8 @@ module TencentCloud
           @RealServerSet = realserverset
           @BindStatus = bindstatus
           @ForwardHost = forwardhost
+          @ServerNameIndicationSwitch = servernameindicationswitch
+          @ServerNameIndication = servernameindication
         end
 
         def deserialize(params)
@@ -6417,6 +6452,8 @@ module TencentCloud
           end
           @BindStatus = params['BindStatus']
           @ForwardHost = params['ForwardHost']
+          @ServerNameIndicationSwitch = params['ServerNameIndicationSwitch']
+          @ServerNameIndication = params['ServerNameIndication']
         end
       end
 
@@ -6526,7 +6563,7 @@ module TencentCloud
         # @type GaapCertificateId: String
         # @param RealServerCertificateId: 源站CA证书ID，从证书管理页获取。源站认证时，填写该参数或RealServerCertificateId参数
         # @type RealServerCertificateId: String
-        # @param RealServerCertificateDomain: 源站证书域名。
+        # @param RealServerCertificateDomain: 该字段已废弃，请使用创建规则和修改规则中的SNI功能。
         # @type RealServerCertificateDomain: String
         # @param PolyRealServerCertificateIds: 多源站CA证书ID，从证书管理页获取。源站认证时，填写该参数或RealServerCertificateId参数
         # @type PolyRealServerCertificateIds: Array

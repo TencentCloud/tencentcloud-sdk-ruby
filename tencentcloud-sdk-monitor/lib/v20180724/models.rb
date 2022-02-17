@@ -365,10 +365,13 @@ module TencentCloud
         # @param TagInstances: 标签
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TagInstances: Array
+        # @param FilterDimensionsParam: 策略关联的过滤维度信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FilterDimensionsParam: String
 
-        attr_accessor :PolicyId, :PolicyName, :Remark, :MonitorType, :Enable, :UseSum, :ProjectId, :ProjectName, :Namespace, :ConditionTemplateId, :Condition, :EventCondition, :NoticeIds, :Notices, :TriggerTasks, :ConditionsTemp, :LastEditUin, :UpdateTime, :InsertTime, :Region, :NamespaceShowName, :IsDefault, :CanSetDefault, :InstanceGroupId, :InstanceSum, :InstanceGroupName, :RuleType, :OriginId, :TagInstances
+        attr_accessor :PolicyId, :PolicyName, :Remark, :MonitorType, :Enable, :UseSum, :ProjectId, :ProjectName, :Namespace, :ConditionTemplateId, :Condition, :EventCondition, :NoticeIds, :Notices, :TriggerTasks, :ConditionsTemp, :LastEditUin, :UpdateTime, :InsertTime, :Region, :NamespaceShowName, :IsDefault, :CanSetDefault, :InstanceGroupId, :InstanceSum, :InstanceGroupName, :RuleType, :OriginId, :TagInstances, :FilterDimensionsParam
         
-        def initialize(policyid=nil, policyname=nil, remark=nil, monitortype=nil, enable=nil, usesum=nil, projectid=nil, projectname=nil, namespace=nil, conditiontemplateid=nil, condition=nil, eventcondition=nil, noticeids=nil, notices=nil, triggertasks=nil, conditionstemp=nil, lastedituin=nil, updatetime=nil, inserttime=nil, region=nil, namespaceshowname=nil, isdefault=nil, cansetdefault=nil, instancegroupid=nil, instancesum=nil, instancegroupname=nil, ruletype=nil, originid=nil, taginstances=nil)
+        def initialize(policyid=nil, policyname=nil, remark=nil, monitortype=nil, enable=nil, usesum=nil, projectid=nil, projectname=nil, namespace=nil, conditiontemplateid=nil, condition=nil, eventcondition=nil, noticeids=nil, notices=nil, triggertasks=nil, conditionstemp=nil, lastedituin=nil, updatetime=nil, inserttime=nil, region=nil, namespaceshowname=nil, isdefault=nil, cansetdefault=nil, instancegroupid=nil, instancesum=nil, instancegroupname=nil, ruletype=nil, originid=nil, taginstances=nil, filterdimensionsparam=nil)
           @PolicyId = policyid
           @PolicyName = policyname
           @Remark = remark
@@ -398,6 +401,7 @@ module TencentCloud
           @RuleType = ruletype
           @OriginId = originid
           @TagInstances = taginstances
+          @FilterDimensionsParam = filterdimensionsparam
         end
 
         def deserialize(params)
@@ -460,6 +464,7 @@ module TencentCloud
               @TagInstances << taginstance_tmp
             end
           end
+          @FilterDimensionsParam = params['FilterDimensionsParam']
         end
       end
 
@@ -2168,10 +2173,12 @@ module TencentCloud
         # @type NotBindingNoticeRule: Integer
         # @param InstanceGroupId: 实例分组id
         # @type InstanceGroupId: Integer
+        # @param NeedCorrespondence: 是否需要策略与入参过滤维度参数的对应关系，1：是  0：否，默认为0
+        # @type NeedCorrespondence: Integer
 
-        attr_accessor :Module, :PageNumber, :PageSize, :PolicyName, :MonitorTypes, :Namespaces, :Dimensions, :ReceiverUids, :ReceiverGroups, :PolicyType, :Field, :Order, :ProjectIds, :NoticeIds, :RuleTypes, :Enable, :NotBindingNoticeRule, :InstanceGroupId
+        attr_accessor :Module, :PageNumber, :PageSize, :PolicyName, :MonitorTypes, :Namespaces, :Dimensions, :ReceiverUids, :ReceiverGroups, :PolicyType, :Field, :Order, :ProjectIds, :NoticeIds, :RuleTypes, :Enable, :NotBindingNoticeRule, :InstanceGroupId, :NeedCorrespondence
         
-        def initialize(_module=nil, pagenumber=nil, pagesize=nil, policyname=nil, monitortypes=nil, namespaces=nil, dimensions=nil, receiveruids=nil, receivergroups=nil, policytype=nil, field=nil, order=nil, projectids=nil, noticeids=nil, ruletypes=nil, enable=nil, notbindingnoticerule=nil, instancegroupid=nil)
+        def initialize(_module=nil, pagenumber=nil, pagesize=nil, policyname=nil, monitortypes=nil, namespaces=nil, dimensions=nil, receiveruids=nil, receivergroups=nil, policytype=nil, field=nil, order=nil, projectids=nil, noticeids=nil, ruletypes=nil, enable=nil, notbindingnoticerule=nil, instancegroupid=nil, needcorrespondence=nil)
           @Module = _module
           @PageNumber = pagenumber
           @PageSize = pagesize
@@ -2190,6 +2197,7 @@ module TencentCloud
           @Enable = enable
           @NotBindingNoticeRule = notbindingnoticerule
           @InstanceGroupId = instancegroupid
+          @NeedCorrespondence = needcorrespondence
         end
 
         def deserialize(params)
@@ -2211,6 +2219,7 @@ module TencentCloud
           @Enable = params['Enable']
           @NotBindingNoticeRule = params['NotBindingNoticeRule']
           @InstanceGroupId = params['InstanceGroupId']
+          @NeedCorrespondence = params['NeedCorrespondence']
         end
       end
 
@@ -6678,7 +6687,7 @@ module TencentCloud
         # @param EndTime: 通知结束时间 00:00:00 开始的秒数（取值范围0-86399）
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EndTime: Integer
-        # @param NoticeWay: 通知渠道列表 EMAIL=邮件 SMS=短信 CALL=电话 WECHAT=微信
+        # @param NoticeWay: 通知渠道列表 EMAIL=邮件 SMS=短信 CALL=电话 WECHAT=微信 RTX=企业微信
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NoticeWay: Array
         # @param UserIds: 用户 uid 列表
@@ -6702,10 +6711,13 @@ module TencentCloud
         # @param NeedPhoneArriveNotice: 是否需要触达通知 0=否 1=是
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NeedPhoneArriveNotice: Integer
+        # @param PhoneCallType: 电话拨打类型 SYNC=同时拨打 CIRCLE=轮询拨打 不指定时默认是轮询
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PhoneCallType: String
 
-        attr_accessor :ReceiverType, :StartTime, :EndTime, :NoticeWay, :UserIds, :GroupIds, :PhoneOrder, :PhoneCircleTimes, :PhoneInnerInterval, :PhoneCircleInterval, :NeedPhoneArriveNotice
+        attr_accessor :ReceiverType, :StartTime, :EndTime, :NoticeWay, :UserIds, :GroupIds, :PhoneOrder, :PhoneCircleTimes, :PhoneInnerInterval, :PhoneCircleInterval, :NeedPhoneArriveNotice, :PhoneCallType
         
-        def initialize(receivertype=nil, starttime=nil, endtime=nil, noticeway=nil, userids=nil, groupids=nil, phoneorder=nil, phonecircletimes=nil, phoneinnerinterval=nil, phonecircleinterval=nil, needphonearrivenotice=nil)
+        def initialize(receivertype=nil, starttime=nil, endtime=nil, noticeway=nil, userids=nil, groupids=nil, phoneorder=nil, phonecircletimes=nil, phoneinnerinterval=nil, phonecircleinterval=nil, needphonearrivenotice=nil, phonecalltype=nil)
           @ReceiverType = receivertype
           @StartTime = starttime
           @EndTime = endtime
@@ -6717,6 +6729,7 @@ module TencentCloud
           @PhoneInnerInterval = phoneinnerinterval
           @PhoneCircleInterval = phonecircleinterval
           @NeedPhoneArriveNotice = needphonearrivenotice
+          @PhoneCallType = phonecalltype
         end
 
         def deserialize(params)
@@ -6731,6 +6744,7 @@ module TencentCloud
           @PhoneInnerInterval = params['PhoneInnerInterval']
           @PhoneCircleInterval = params['PhoneCircleInterval']
           @NeedPhoneArriveNotice = params['NeedPhoneArriveNotice']
+          @PhoneCallType = params['PhoneCallType']
         end
       end
 

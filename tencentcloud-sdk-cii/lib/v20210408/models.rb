@@ -1142,14 +1142,17 @@ module TencentCloud
         # @type StructureResult: String
         # @param SubTaskId: 子任务ID
         # @type SubTaskId: String
+        # @param TaskFiles: 任务文件列表
+        # @type TaskFiles: Array
 
-        attr_accessor :Code, :TaskType, :StructureResult, :SubTaskId
+        attr_accessor :Code, :TaskType, :StructureResult, :SubTaskId, :TaskFiles
         
-        def initialize(code=nil, tasktype=nil, structureresult=nil, subtaskid=nil)
+        def initialize(code=nil, tasktype=nil, structureresult=nil, subtaskid=nil, taskfiles=nil)
           @Code = code
           @TaskType = tasktype
           @StructureResult = structureresult
           @SubTaskId = subtaskid
+          @TaskFiles = taskfiles
         end
 
         def deserialize(params)
@@ -1157,6 +1160,7 @@ module TencentCloud
           @TaskType = params['TaskType']
           @StructureResult = params['StructureResult']
           @SubTaskId = params['SubTaskId']
+          @TaskFiles = params['TaskFiles']
         end
       end
 
