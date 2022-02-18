@@ -49,6 +49,66 @@ module TencentCloud
         end
       end
 
+      # 账号参数
+      class AccountParam < TencentCloud::Common::AbstractModel
+        # @param ParamName: 参数名称，当前仅支持参数：max_user_connections
+        # @type ParamName: String
+        # @param ParamValue: 参数值
+        # @type ParamValue: String
+
+        attr_accessor :ParamName, :ParamValue
+        
+        def initialize(paramname=nil, paramvalue=nil)
+          @ParamName = paramname
+          @ParamValue = paramvalue
+        end
+
+        def deserialize(params)
+          @ParamName = params['ParamName']
+          @ParamValue = params['ParamValue']
+        end
+      end
+
+      # ActivateInstance请求参数结构体
+      class ActivateInstanceRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群ID
+        # @type ClusterId: String
+        # @param InstanceIdList: 实例ID数组
+        # @type InstanceIdList: Array
+
+        attr_accessor :ClusterId, :InstanceIdList
+        
+        def initialize(clusterid=nil, instanceidlist=nil)
+          @ClusterId = clusterid
+          @InstanceIdList = instanceidlist
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @InstanceIdList = params['InstanceIdList']
+        end
+      end
+
+      # ActivateInstance返回参数结构体
+      class ActivateInstanceResponse < TencentCloud::Common::AbstractModel
+        # @param FlowId: 任务流id
+        # @type FlowId: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :FlowId, :RequestId
+        
+        def initialize(flowid=nil, requestid=nil)
+          @FlowId = flowid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @FlowId = params['FlowId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # AddInstances请求参数结构体
       class AddInstancesRequest < TencentCloud::Common::AbstractModel
         # @param ClusterId: 集群ID
@@ -170,6 +230,46 @@ module TencentCloud
         end
       end
 
+      # AssociateSecurityGroups请求参数结构体
+      class AssociateSecurityGroupsRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceIds: 实例组ID数组
+        # @type InstanceIds: Array
+        # @param SecurityGroupIds: 要修改的安全组ID列表，一个或者多个安全组Id组成的数组。
+        # @type SecurityGroupIds: Array
+        # @param Zone: 可用区
+        # @type Zone: String
+
+        attr_accessor :InstanceIds, :SecurityGroupIds, :Zone
+        
+        def initialize(instanceids=nil, securitygroupids=nil, zone=nil)
+          @InstanceIds = instanceids
+          @SecurityGroupIds = securitygroupids
+          @Zone = zone
+        end
+
+        def deserialize(params)
+          @InstanceIds = params['InstanceIds']
+          @SecurityGroupIds = params['SecurityGroupIds']
+          @Zone = params['Zone']
+        end
+      end
+
+      # AssociateSecurityGroups返回参数结构体
+      class AssociateSecurityGroupsResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 备份文件信息
       class BackupFileInfo < TencentCloud::Common::AbstractModel
         # @param SnapshotId: 快照文件ID，用于回滚
@@ -279,6 +379,42 @@ module TencentCloud
           @InstanceCpu = params['InstanceCpu']
           @InstanceMemory = params['InstanceMemory']
           @InstanceStorage = params['InstanceStorage']
+        end
+      end
+
+      # 参数修改记录
+      class ClusterParamModifyLog < TencentCloud::Common::AbstractModel
+        # @param ParamName: 参数名称
+        # @type ParamName: String
+        # @param CurrentValue: 当前值
+        # @type CurrentValue: String
+        # @param UpdateValue: 修改后的值
+        # @type UpdateValue: String
+        # @param Status: 修改状态
+        # @type Status: String
+        # @param CreateTime: 创建时间
+        # @type CreateTime: String
+        # @param UpdateTime: 更新时间
+        # @type UpdateTime: String
+
+        attr_accessor :ParamName, :CurrentValue, :UpdateValue, :Status, :CreateTime, :UpdateTime
+        
+        def initialize(paramname=nil, currentvalue=nil, updatevalue=nil, status=nil, createtime=nil, updatetime=nil)
+          @ParamName = paramname
+          @CurrentValue = currentvalue
+          @UpdateValue = updatevalue
+          @Status = status
+          @CreateTime = createtime
+          @UpdateTime = updatetime
+        end
+
+        def deserialize(params)
+          @ParamName = params['ParamName']
+          @CurrentValue = params['CurrentValue']
+          @UpdateValue = params['UpdateValue']
+          @Status = params['Status']
+          @CreateTime = params['CreateTime']
+          @UpdateTime = params['UpdateTime']
         end
       end
 
@@ -1242,6 +1378,119 @@ module TencentCloud
         end
       end
 
+      # 数据库权限列表
+      class DatabasePrivileges < TencentCloud::Common::AbstractModel
+        # @param Db: 数据库
+        # @type Db: String
+        # @param Privileges: 权限列表
+        # @type Privileges: Array
+
+        attr_accessor :Db, :Privileges
+        
+        def initialize(db=nil, privileges=nil)
+          @Db = db
+          @Privileges = privileges
+        end
+
+        def deserialize(params)
+          @Db = params['Db']
+          @Privileges = params['Privileges']
+        end
+      end
+
+      # 数据库表
+      class DbTable < TencentCloud::Common::AbstractModel
+        # @param Db: 数据库名称
+        # @type Db: String
+        # @param TableName: 数据库表名称
+        # @type TableName: String
+
+        attr_accessor :Db, :TableName
+        
+        def initialize(db=nil, tablename=nil)
+          @Db = db
+          @TableName = tablename
+        end
+
+        def deserialize(params)
+          @Db = params['Db']
+          @TableName = params['TableName']
+        end
+      end
+
+      # DescribeAccountAllGrantPrivileges请求参数结构体
+      class DescribeAccountAllGrantPrivilegesRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群id
+        # @type ClusterId: String
+        # @param Account: 账号信息
+        # @type Account: :class:`Tencentcloud::Cynosdb.v20190107.models.InputAccount`
+
+        attr_accessor :ClusterId, :Account
+        
+        def initialize(clusterid=nil, account=nil)
+          @ClusterId = clusterid
+          @Account = account
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          unless params['Account'].nil?
+            @Account = InputAccount.new
+            @Account.deserialize(params['Account'])
+          end
+        end
+      end
+
+      # DescribeAccountAllGrantPrivileges返回参数结构体
+      class DescribeAccountAllGrantPrivilegesResponse < TencentCloud::Common::AbstractModel
+        # @param PrivilegeStatements: 权限语句
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PrivilegeStatements: Array
+        # @param GlobalPrivileges: 全局权限
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GlobalPrivileges: Array
+        # @param DatabasePrivileges: 数据库权限
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DatabasePrivileges: Array
+        # @param TablePrivileges: 数据库表权限
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TablePrivileges: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :PrivilegeStatements, :GlobalPrivileges, :DatabasePrivileges, :TablePrivileges, :RequestId
+        
+        def initialize(privilegestatements=nil, globalprivileges=nil, databaseprivileges=nil, tableprivileges=nil, requestid=nil)
+          @PrivilegeStatements = privilegestatements
+          @GlobalPrivileges = globalprivileges
+          @DatabasePrivileges = databaseprivileges
+          @TablePrivileges = tableprivileges
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @PrivilegeStatements = params['PrivilegeStatements']
+          @GlobalPrivileges = params['GlobalPrivileges']
+          unless params['DatabasePrivileges'].nil?
+            @DatabasePrivileges = []
+            params['DatabasePrivileges'].each do |i|
+              databaseprivileges_tmp = DatabasePrivileges.new
+              databaseprivileges_tmp.deserialize(i)
+              @DatabasePrivileges << databaseprivileges_tmp
+            end
+          end
+          unless params['TablePrivileges'].nil?
+            @TablePrivileges = []
+            params['TablePrivileges'].each do |i|
+              tableprivileges_tmp = TablePrivileges.new
+              tableprivileges_tmp.deserialize(i)
+              @TablePrivileges << tableprivileges_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeAccounts请求参数结构体
       class DescribeAccountsRequest < TencentCloud::Common::AbstractModel
         # @param ClusterId: 集群ID
@@ -1488,6 +1737,62 @@ module TencentCloud
               cynosdbinstancegrp_tmp = CynosdbInstanceGrp.new
               cynosdbinstancegrp_tmp.deserialize(i)
               @InstanceGrpInfoList << cynosdbinstancegrp_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeClusterParamLogs请求参数结构体
+      class DescribeClusterParamLogsRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群ID
+        # @type ClusterId: String
+        # @param Limit: 返回数量，默认为 20，最大值为 100
+        # @type Limit: Integer
+        # @param Offset: 记录偏移量，默认值为0
+        # @type Offset: Integer
+
+        attr_accessor :ClusterId, :Limit, :Offset
+        
+        def initialize(clusterid=nil, limit=nil, offset=nil)
+          @ClusterId = clusterid
+          @Limit = limit
+          @Offset = offset
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+        end
+      end
+
+      # DescribeClusterParamLogs返回参数结构体
+      class DescribeClusterParamLogsResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 记录总数
+        # @type TotalCount: Integer
+        # @param ClusterParamLogs: 参数修改记录
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClusterParamLogs: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :ClusterParamLogs, :RequestId
+        
+        def initialize(totalcount=nil, clusterparamlogs=nil, requestid=nil)
+          @TotalCount = totalcount
+          @ClusterParamLogs = clusterparamlogs
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['ClusterParamLogs'].nil?
+            @ClusterParamLogs = []
+            params['ClusterParamLogs'].each do |i|
+              clusterparammodifylog_tmp = ClusterParamModifyLog.new
+              clusterparammodifylog_tmp.deserialize(i)
+              @ClusterParamLogs << clusterparammodifylog_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -2017,6 +2322,120 @@ module TencentCloud
         end
       end
 
+      # DisassociateSecurityGroups请求参数结构体
+      class DisassociateSecurityGroupsRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceIds: 实例组ID数组
+        # @type InstanceIds: Array
+        # @param SecurityGroupIds: 要修改的安全组ID列表，一个或者多个安全组Id组成的数组。
+        # @type SecurityGroupIds: Array
+        # @param Zone: 可用区
+        # @type Zone: String
+
+        attr_accessor :InstanceIds, :SecurityGroupIds, :Zone
+        
+        def initialize(instanceids=nil, securitygroupids=nil, zone=nil)
+          @InstanceIds = instanceids
+          @SecurityGroupIds = securitygroupids
+          @Zone = zone
+        end
+
+        def deserialize(params)
+          @InstanceIds = params['InstanceIds']
+          @SecurityGroupIds = params['SecurityGroupIds']
+          @Zone = params['Zone']
+        end
+      end
+
+      # DisassociateSecurityGroups返回参数结构体
+      class DisassociateSecurityGroupsResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # GrantAccountPrivileges请求参数结构体
+      class GrantAccountPrivilegesRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群id
+        # @type ClusterId: String
+        # @param Account: 账号信息
+        # @type Account: :class:`Tencentcloud::Cynosdb.v20190107.models.InputAccount`
+        # @param DbTablePrivileges: 数据库表权限码数组
+        # @type DbTablePrivileges: Array
+        # @param DbTables: 数据库表信息
+        # @type DbTables: Array
+
+        attr_accessor :ClusterId, :Account, :DbTablePrivileges, :DbTables
+        
+        def initialize(clusterid=nil, account=nil, dbtableprivileges=nil, dbtables=nil)
+          @ClusterId = clusterid
+          @Account = account
+          @DbTablePrivileges = dbtableprivileges
+          @DbTables = dbtables
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          unless params['Account'].nil?
+            @Account = InputAccount.new
+            @Account.deserialize(params['Account'])
+          end
+          @DbTablePrivileges = params['DbTablePrivileges']
+          unless params['DbTables'].nil?
+            @DbTables = []
+            params['DbTables'].each do |i|
+              dbtable_tmp = DbTable.new
+              dbtable_tmp.deserialize(i)
+              @DbTables << dbtable_tmp
+            end
+          end
+        end
+      end
+
+      # GrantAccountPrivileges返回参数结构体
+      class GrantAccountPrivilegesResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 账号，包含accountName和host
+      class InputAccount < TencentCloud::Common::AbstractModel
+        # @param AccountName: 账号
+        # @type AccountName: String
+        # @param Host: 主机，默认‘%’
+        # @type Host: String
+
+        attr_accessor :AccountName, :Host
+        
+        def initialize(accountname=nil, host=nil)
+          @AccountName = accountname
+          @Host = host
+        end
+
+        def deserialize(params)
+          @AccountName = params['AccountName']
+          @Host = params['Host']
+        end
+      end
+
       # 实例可售卖规格详细信息，创建实例时Cpu/Memory确定实例规格，存储可选大小为[MinStorageSize,MaxStorageSize]
       class InstanceSpec < TencentCloud::Common::AbstractModel
         # @param Cpu: 实例CPU，单位：核
@@ -2142,6 +2561,56 @@ module TencentCloud
         end
       end
 
+      # ModifyAccountParams请求参数结构体
+      class ModifyAccountParamsRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群id
+        # @type ClusterId: String
+        # @param Account: 账号信息
+        # @type Account: :class:`Tencentcloud::Cynosdb.v20190107.models.InputAccount`
+        # @param AccountParams: 数据库表权限数组,当前仅支持参数：max_user_connections
+        # @type AccountParams: Array
+
+        attr_accessor :ClusterId, :Account, :AccountParams
+        
+        def initialize(clusterid=nil, account=nil, accountparams=nil)
+          @ClusterId = clusterid
+          @Account = account
+          @AccountParams = accountparams
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          unless params['Account'].nil?
+            @Account = InputAccount.new
+            @Account.deserialize(params['Account'])
+          end
+          unless params['AccountParams'].nil?
+            @AccountParams = []
+            params['AccountParams'].each do |i|
+              accountparam_tmp = AccountParam.new
+              accountparam_tmp.deserialize(i)
+              @AccountParams << accountparam_tmp
+            end
+          end
+        end
+      end
+
+      # ModifyAccountParams返回参数结构体
+      class ModifyAccountParamsResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyBackupConfig请求参数结构体
       class ModifyBackupConfigRequest < TencentCloud::Common::AbstractModel
         # @param ClusterId: 集群ID
@@ -2200,12 +2669,15 @@ module TencentCloud
         # @type ClusterId: String
         # @param ParamList: 修改参数列表
         # @type ParamList: Array
+        # @param IsInMaintainPeriod: 维护期间执行-yes,立即执行-no
+        # @type IsInMaintainPeriod: String
 
-        attr_accessor :ClusterId, :ParamList
+        attr_accessor :ClusterId, :ParamList, :IsInMaintainPeriod
         
-        def initialize(clusterid=nil, paramlist=nil)
+        def initialize(clusterid=nil, paramlist=nil, isinmaintainperiod=nil)
           @ClusterId = clusterid
           @ParamList = paramlist
+          @IsInMaintainPeriod = isinmaintainperiod
         end
 
         def deserialize(params)
@@ -2218,6 +2690,7 @@ module TencentCloud
               @ParamList << paramitem_tmp
             end
           end
+          @IsInMaintainPeriod = params['IsInMaintainPeriod']
         end
       end
 
@@ -2499,6 +2972,46 @@ module TencentCloud
         end
       end
 
+      # PauseServerless请求参数结构体
+      class PauseServerlessRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群id
+        # @type ClusterId: String
+        # @param ForcePause: 是否强制暂停，忽略当前的用户链接  0:不强制  1:强制， 默认为1
+        # @type ForcePause: Integer
+
+        attr_accessor :ClusterId, :ForcePause
+        
+        def initialize(clusterid=nil, forcepause=nil)
+          @ClusterId = clusterid
+          @ForcePause = forcepause
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @ForcePause = params['ForcePause']
+        end
+      end
+
+      # PauseServerless返回参数结构体
+      class PauseServerlessResponse < TencentCloud::Common::AbstractModel
+        # @param FlowId: 异步流程Id
+        # @type FlowId: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :FlowId, :RequestId
+        
+        def initialize(flowid=nil, requestid=nil)
+          @FlowId = flowid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @FlowId = params['FlowId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 安全组规则
       class PolicyRule < TencentCloud::Common::AbstractModel
         # @param Action: 策略，ACCEPT或者DROP
@@ -2568,6 +3081,237 @@ module TencentCloud
           @Values = params['Values']
           @ExactMatch = params['ExactMatch']
           @Name = params['Name']
+        end
+      end
+
+      # ResumeServerless请求参数结构体
+      class ResumeServerlessRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群id
+        # @type ClusterId: String
+
+        attr_accessor :ClusterId
+        
+        def initialize(clusterid=nil)
+          @ClusterId = clusterid
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+        end
+      end
+
+      # ResumeServerless返回参数结构体
+      class ResumeServerlessResponse < TencentCloud::Common::AbstractModel
+        # @param FlowId: 异步流程Id
+        # @type FlowId: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :FlowId, :RequestId
+        
+        def initialize(flowid=nil, requestid=nil)
+          @FlowId = flowid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @FlowId = params['FlowId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # RevokeAccountPrivileges请求参数结构体
+      class RevokeAccountPrivilegesRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群id
+        # @type ClusterId: String
+        # @param Account: 账号信息
+        # @type Account: :class:`Tencentcloud::Cynosdb.v20190107.models.InputAccount`
+        # @param DbTablePrivileges: 数据库表权限数组
+        # @type DbTablePrivileges: Array
+        # @param DbTables: 数据库表信息
+        # @type DbTables: Array
+
+        attr_accessor :ClusterId, :Account, :DbTablePrivileges, :DbTables
+        
+        def initialize(clusterid=nil, account=nil, dbtableprivileges=nil, dbtables=nil)
+          @ClusterId = clusterid
+          @Account = account
+          @DbTablePrivileges = dbtableprivileges
+          @DbTables = dbtables
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          unless params['Account'].nil?
+            @Account = InputAccount.new
+            @Account.deserialize(params['Account'])
+          end
+          @DbTablePrivileges = params['DbTablePrivileges']
+          unless params['DbTables'].nil?
+            @DbTables = []
+            params['DbTables'].each do |i|
+              dbtable_tmp = DbTable.new
+              dbtable_tmp.deserialize(i)
+              @DbTables << dbtable_tmp
+            end
+          end
+        end
+      end
+
+      # RevokeAccountPrivileges返回参数结构体
+      class RevokeAccountPrivilegesResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # RollBackCluster请求参数结构体
+      class RollBackClusterRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群ID
+        # @type ClusterId: String
+        # @param RollbackStrategy: 回档策略 timeRollback-按时间点回档 snapRollback-按备份文件回档
+        # @type RollbackStrategy: String
+        # @param RollbackId: 回档ID
+        # @type RollbackId: Integer
+        # @param ExpectTime: 期望回档时间
+        # @type ExpectTime: String
+        # @param ExpectTimeThresh: 期望阈值
+        # @type ExpectTimeThresh: Integer
+        # @param RollbackDatabases: 回档数据库列表
+        # @type RollbackDatabases: Array
+        # @param RollbackTables: 回档数据库表
+        # @type RollbackTables: Array
+
+        attr_accessor :ClusterId, :RollbackStrategy, :RollbackId, :ExpectTime, :ExpectTimeThresh, :RollbackDatabases, :RollbackTables
+        
+        def initialize(clusterid=nil, rollbackstrategy=nil, rollbackid=nil, expecttime=nil, expecttimethresh=nil, rollbackdatabases=nil, rollbacktables=nil)
+          @ClusterId = clusterid
+          @RollbackStrategy = rollbackstrategy
+          @RollbackId = rollbackid
+          @ExpectTime = expecttime
+          @ExpectTimeThresh = expecttimethresh
+          @RollbackDatabases = rollbackdatabases
+          @RollbackTables = rollbacktables
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @RollbackStrategy = params['RollbackStrategy']
+          @RollbackId = params['RollbackId']
+          @ExpectTime = params['ExpectTime']
+          @ExpectTimeThresh = params['ExpectTimeThresh']
+          unless params['RollbackDatabases'].nil?
+            @RollbackDatabases = []
+            params['RollbackDatabases'].each do |i|
+              rollbackdatabase_tmp = RollbackDatabase.new
+              rollbackdatabase_tmp.deserialize(i)
+              @RollbackDatabases << rollbackdatabase_tmp
+            end
+          end
+          unless params['RollbackTables'].nil?
+            @RollbackTables = []
+            params['RollbackTables'].each do |i|
+              rollbacktable_tmp = RollbackTable.new
+              rollbacktable_tmp.deserialize(i)
+              @RollbackTables << rollbacktable_tmp
+            end
+          end
+        end
+      end
+
+      # RollBackCluster返回参数结构体
+      class RollBackClusterResponse < TencentCloud::Common::AbstractModel
+        # @param FlowId: 任务流ID
+        # @type FlowId: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :FlowId, :RequestId
+        
+        def initialize(flowid=nil, requestid=nil)
+          @FlowId = flowid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @FlowId = params['FlowId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 回滚数据库信息
+      class RollbackDatabase < TencentCloud::Common::AbstractModel
+        # @param OldDatabase: 旧数据库
+        # @type OldDatabase: String
+        # @param NewDatabase: 新数据库
+        # @type NewDatabase: String
+
+        attr_accessor :OldDatabase, :NewDatabase
+        
+        def initialize(olddatabase=nil, newdatabase=nil)
+          @OldDatabase = olddatabase
+          @NewDatabase = newdatabase
+        end
+
+        def deserialize(params)
+          @OldDatabase = params['OldDatabase']
+          @NewDatabase = params['NewDatabase']
+        end
+      end
+
+      # 回档数据库及表
+      class RollbackTable < TencentCloud::Common::AbstractModel
+        # @param Database: 数据库名称
+        # @type Database: String
+        # @param Tables: 数据库表
+        # @type Tables: Array
+
+        attr_accessor :Database, :Tables
+        
+        def initialize(database=nil, tables=nil)
+          @Database = database
+          @Tables = tables
+        end
+
+        def deserialize(params)
+          @Database = params['Database']
+          unless params['Tables'].nil?
+            @Tables = []
+            params['Tables'].each do |i|
+              rollbacktableinfo_tmp = RollbackTableInfo.new
+              rollbacktableinfo_tmp.deserialize(i)
+              @Tables << rollbacktableinfo_tmp
+            end
+          end
+        end
+      end
+
+      # 回档表信息
+      class RollbackTableInfo < TencentCloud::Common::AbstractModel
+        # @param OldTable: 旧表名称
+        # @type OldTable: String
+        # @param NewTable: 新表名称
+        # @type NewTable: String
+
+        attr_accessor :OldTable, :NewTable
+        
+        def initialize(oldtable=nil, newtable=nil)
+          @OldTable = oldtable
+          @NewTable = newtable
+        end
+
+        def deserialize(params)
+          @OldTable = params['OldTable']
+          @NewTable = params['NewTable']
         end
       end
 
@@ -2662,6 +3406,30 @@ module TencentCloud
         def deserialize(params)
           @Count = params['Count']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # mysql表权限
+      class TablePrivileges < TencentCloud::Common::AbstractModel
+        # @param Db: 数据库名
+        # @type Db: String
+        # @param TableName: 表名
+        # @type TableName: String
+        # @param Privileges: 权限列表
+        # @type Privileges: Array
+
+        attr_accessor :Db, :TableName, :Privileges
+        
+        def initialize(db=nil, tablename=nil, privileges=nil)
+          @Db = db
+          @TableName = tablename
+          @Privileges = privileges
+        end
+
+        def deserialize(params)
+          @Db = params['Db']
+          @TableName = params['TableName']
+          @Privileges = params['Privileges']
         end
       end
 

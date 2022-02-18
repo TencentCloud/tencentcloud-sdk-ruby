@@ -437,7 +437,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口用于日志主题的索引配置
+        # 本接口用于删除日志主题的索引配置，删除索引配置后将无法检索和查询采集到的日志。
 
         # @param request: Request instance for DeleteIndex.
         # @type request: :class:`Tencentcloud::cls::V20201016::DeleteIndexRequest`

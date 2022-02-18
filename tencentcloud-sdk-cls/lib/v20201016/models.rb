@@ -206,7 +206,7 @@ module TencentCloud
         end
       end
 
-      # 日志告警监控对线
+      # 告警对象
       class AlarmTargetInfo < TencentCloud::Common::AbstractModel
         # @param LogsetId: 日志集ID。
         # @type LogsetId: String

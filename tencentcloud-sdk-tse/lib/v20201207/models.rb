@@ -447,13 +447,19 @@ module TencentCloud
         # @type BoundK8SInfos: Array
         # @param VpcInfos: 服务治理引擎绑定的网络信息
         # @type VpcInfos: Array
+        # @param AuthOpen: 当前实例鉴权是否开启
+        # @type AuthOpen: Boolean
+        # @param Features: 该实例支持的功能，鉴权就是 Auth
+        # @type Features: Array
 
-        attr_accessor :EngineRegion, :BoundK8SInfos, :VpcInfos
+        attr_accessor :EngineRegion, :BoundK8SInfos, :VpcInfos, :AuthOpen, :Features
         
-        def initialize(engineregion=nil, boundk8sinfos=nil, vpcinfos=nil)
+        def initialize(engineregion=nil, boundk8sinfos=nil, vpcinfos=nil, authopen=nil, features=nil)
           @EngineRegion = engineregion
           @BoundK8SInfos = boundk8sinfos
           @VpcInfos = vpcinfos
+          @AuthOpen = authopen
+          @Features = features
         end
 
         def deserialize(params)
@@ -474,6 +480,8 @@ module TencentCloud
               @VpcInfos << vpcinfo_tmp
             end
           end
+          @AuthOpen = params['AuthOpen']
+          @Features = params['Features']
         end
       end
 
