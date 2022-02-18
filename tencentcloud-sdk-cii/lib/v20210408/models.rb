@@ -476,6 +476,42 @@ module TencentCloud
         end
       end
 
+      # DescribeQualityScore请求参数结构体
+      class DescribeQualityScoreRequest < TencentCloud::Common::AbstractModel
+        # @param File: 文件二进制数据
+        # @type File: String
+
+        attr_accessor :File
+        
+        def initialize(file=nil)
+          @File = file
+        end
+
+        def deserialize(params)
+          @File = params['File']
+        end
+      end
+
+      # DescribeQualityScore返回参数结构体
+      class DescribeQualityScoreResponse < TencentCloud::Common::AbstractModel
+        # @param QualityScore: 质量分
+        # @type QualityScore: Float
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :QualityScore, :RequestId
+        
+        def initialize(qualityscore=nil, requestid=nil)
+          @QualityScore = qualityscore
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @QualityScore = params['QualityScore']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeReportClassify请求参数结构体
       class DescribeReportClassifyRequest < TencentCloud::Common::AbstractModel
         # @param ServiceType: 服务类型
@@ -1196,19 +1232,54 @@ module TencentCloud
         # @type Result: String
         # @param Value: 风险值或者说明
         # @type Value: String
+        # @param Range: 参考范围
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Range: String
+        # @param ReportDate: 报告时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ReportDate: Array
+        # @param FileType: 文件类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FileType: String
+        # @param InspectProject: 检查项目
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InspectProject: String
+        # @param Unit: 单位
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Unit: String
+        # @param OriginName: 原名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OriginName: String
+        # @param YinYang: 阴阳性
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type YinYang: String
 
-        attr_accessor :Name, :Result, :Value
+        attr_accessor :Name, :Result, :Value, :Range, :ReportDate, :FileType, :InspectProject, :Unit, :OriginName, :YinYang
         
-        def initialize(name=nil, result=nil, value=nil)
+        def initialize(name=nil, result=nil, value=nil, range=nil, reportdate=nil, filetype=nil, inspectproject=nil, unit=nil, originname=nil, yinyang=nil)
           @Name = name
           @Result = result
           @Value = value
+          @Range = range
+          @ReportDate = reportdate
+          @FileType = filetype
+          @InspectProject = inspectproject
+          @Unit = unit
+          @OriginName = originname
+          @YinYang = yinyang
         end
 
         def deserialize(params)
           @Name = params['Name']
           @Result = params['Result']
           @Value = params['Value']
+          @Range = params['Range']
+          @ReportDate = params['ReportDate']
+          @FileType = params['FileType']
+          @InspectProject = params['InspectProject']
+          @Unit = params['Unit']
+          @OriginName = params['OriginName']
+          @YinYang = params['YinYang']
         end
       end
 
