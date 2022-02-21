@@ -37,6 +37,39 @@ module TencentCloud
         end
       end
 
+      # 加速策略关键数据
+      class Context < TencentCloud::Common::AbstractModel
+        # @param NetworkData: 测速数据
+        # @type NetworkData: :class:`Tencentcloud::Mna.v20210119.models.NetworkData`
+        # @param ExpectedLowThreshold: 用户期望最低门限
+        # @type ExpectedLowThreshold: :class:`Tencentcloud::Mna.v20210119.models.ExpectedThreshold`
+        # @param ExpectedHighThreshold: 用户期望最高门限
+        # @type ExpectedHighThreshold: :class:`Tencentcloud::Mna.v20210119.models.ExpectedThreshold`
+
+        attr_accessor :NetworkData, :ExpectedLowThreshold, :ExpectedHighThreshold
+        
+        def initialize(networkdata=nil, expectedlowthreshold=nil, expectedhighthreshold=nil)
+          @NetworkData = networkdata
+          @ExpectedLowThreshold = expectedlowthreshold
+          @ExpectedHighThreshold = expectedhighthreshold
+        end
+
+        def deserialize(params)
+          unless params['NetworkData'].nil?
+            @NetworkData = NetworkData.new
+            @NetworkData.deserialize(params['NetworkData'])
+          end
+          unless params['ExpectedLowThreshold'].nil?
+            @ExpectedLowThreshold = ExpectedThreshold.new
+            @ExpectedLowThreshold.deserialize(params['ExpectedLowThreshold'])
+          end
+          unless params['ExpectedHighThreshold'].nil?
+            @ExpectedHighThreshold = ExpectedThreshold.new
+            @ExpectedHighThreshold.deserialize(params['ExpectedHighThreshold'])
+          end
+        end
+      end
+
       # CreateQos请求参数结构体
       class CreateQosRequest < TencentCloud::Common::AbstractModel
         # @param SrcAddressInfo: 加速业务源地址信息，SrcIpv6和（SrcIpv4+SrcPublicIpv4）二选一，目前Ipv6不可用，全部填写以Ipv4参数为准。
@@ -67,10 +100,14 @@ module TencentCloud
         # 2. UDP
         # 3. TCP
         # @type Protocol: Integer
+        # @param Context: 加速策略关键数据
+        # @type Context: :class:`Tencentcloud::Mna.v20210119.models.Context`
+        # @param Extern: 签名
+        # @type Extern: String
 
-        attr_accessor :SrcAddressInfo, :DestAddressInfo, :QosMenu, :DeviceInfo, :Duration, :Capacity, :TemplateId, :Protocol
+        attr_accessor :SrcAddressInfo, :DestAddressInfo, :QosMenu, :DeviceInfo, :Duration, :Capacity, :TemplateId, :Protocol, :Context, :Extern
         
-        def initialize(srcaddressinfo=nil, destaddressinfo=nil, qosmenu=nil, deviceinfo=nil, duration=nil, capacity=nil, templateid=nil, protocol=nil)
+        def initialize(srcaddressinfo=nil, destaddressinfo=nil, qosmenu=nil, deviceinfo=nil, duration=nil, capacity=nil, templateid=nil, protocol=nil, context=nil, extern=nil)
           @SrcAddressInfo = srcaddressinfo
           @DestAddressInfo = destaddressinfo
           @QosMenu = qosmenu
@@ -79,6 +116,8 @@ module TencentCloud
           @Capacity = capacity
           @TemplateId = templateid
           @Protocol = protocol
+          @Context = context
+          @Extern = extern
         end
 
         def deserialize(params)
@@ -102,6 +141,11 @@ module TencentCloud
           end
           @TemplateId = params['TemplateId']
           @Protocol = params['Protocol']
+          unless params['Context'].nil?
+            @Context = Context.new
+            @Context.deserialize(params['Context'])
+          end
+          @Extern = params['Extern']
         end
       end
 
@@ -285,6 +329,58 @@ module TencentCloud
           @DeviceId = params['DeviceId']
           @PhoneNum = params['PhoneNum']
           @Wireless = params['Wireless']
+        end
+      end
+
+      # 用户期望门限
+      class ExpectedThreshold < TencentCloud::Common::AbstractModel
+        # @param RTT: 期望发起加速的时延阈值
+        # @type RTT: Float
+        # @param Loss: 期望发起加速的丢包率阈值
+        # @type Loss: Float
+        # @param Jitter: 期望发起加速的抖动阈值
+        # @type Jitter: Float
+
+        attr_accessor :RTT, :Loss, :Jitter
+        
+        def initialize(rtt=nil, loss=nil, jitter=nil)
+          @RTT = rtt
+          @Loss = loss
+          @Jitter = jitter
+        end
+
+        def deserialize(params)
+          @RTT = params['RTT']
+          @Loss = params['Loss']
+          @Jitter = params['Jitter']
+        end
+      end
+
+      # 测速数据
+      class NetworkData < TencentCloud::Common::AbstractModel
+        # @param RTT: 时延数组，最大长度30
+        # @type RTT: Array
+        # @param Loss: 丢包率
+        # @type Loss: Float
+        # @param Jitter: 抖动
+        # @type Jitter: Float
+        # @param Timestamp: 10位秒级时间戳
+        # @type Timestamp: Integer
+
+        attr_accessor :RTT, :Loss, :Jitter, :Timestamp
+        
+        def initialize(rtt=nil, loss=nil, jitter=nil, timestamp=nil)
+          @RTT = rtt
+          @Loss = loss
+          @Jitter = jitter
+          @Timestamp = timestamp
+        end
+
+        def deserialize(params)
+          @RTT = params['RTT']
+          @Loss = params['Loss']
+          @Jitter = params['Jitter']
+          @Timestamp = params['Timestamp']
         end
       end
 

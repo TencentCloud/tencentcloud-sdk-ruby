@@ -29,7 +29,7 @@ module TencentCloud
         end
 
 
-        # 规则检验
+        # 检验规则
 
         # @param request: Request instance for CheckRule.
         # @type request: :class:`Tencentcloud::eb::V20210416::CheckRuleRequest`

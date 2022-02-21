@@ -853,6 +853,57 @@ module TencentCloud
         end
       end
 
+      # CreateConsumer请求参数结构体
+      class CreateConsumerRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例id
+        # @type InstanceId: String
+        # @param GroupName: group名称
+        # @type GroupName: String
+        # @param TopicName: topic名称
+        # @type TopicName: String
+        # @param TopicNameList: topic名称数组
+        # @type TopicNameList: Array
+
+        attr_accessor :InstanceId, :GroupName, :TopicName, :TopicNameList
+        
+        def initialize(instanceid=nil, groupname=nil, topicname=nil, topicnamelist=nil)
+          @InstanceId = instanceid
+          @GroupName = groupname
+          @TopicName = topicname
+          @TopicNameList = topicnamelist
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @GroupName = params['GroupName']
+          @TopicName = params['TopicName']
+          @TopicNameList = params['TopicNameList']
+        end
+      end
+
+      # CreateConsumer返回参数结构体
+      class CreateConsumerResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 创建group描述
+        # @type Result: :class:`Tencentcloud::Ckafka.v20190819.models.JgwOperateResponse`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+        
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Result'].nil?
+            @Result = JgwOperateResponse.new
+            @Result.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 创建预付费接口返回的Data
       class CreateInstancePreData < TencentCloud::Common::AbstractModel
         # @param FlowId: CreateInstancePre返回固定为0，不能作为CheckTaskStatus的查询条件。只是为了保证和后台数据结构对齐。
@@ -1046,6 +1097,77 @@ module TencentCloud
       # CreatePartition返回参数结构体
       class CreatePartitionResponse < TencentCloud::Common::AbstractModel
         # @param Result: 返回的结果集
+        # @type Result: :class:`Tencentcloud::Ckafka.v20190819.models.JgwOperateResponse`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+        
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Result'].nil?
+            @Result = JgwOperateResponse.new
+            @Result.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateRoute请求参数结构体
+      class CreateRouteRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例唯一id
+        # @type InstanceId: String
+        # @param VipType: 路由网络类型(3:vpc路由;4:标准版支撑路由;7:专业版支撑路由)
+        # @type VipType: Integer
+        # @param VpcId: vpc网络Id
+        # @type VpcId: String
+        # @param SubnetId: vpc子网id
+        # @type SubnetId: String
+        # @param AccessType: 访问类型
+        # @type AccessType: Integer
+        # @param AuthFlag: 是否需要权限管理
+        # @type AuthFlag: Integer
+        # @param CallerAppid: 调用方appId
+        # @type CallerAppid: Integer
+        # @param PublicNetwork: 公网带宽
+        # @type PublicNetwork: Integer
+        # @param Ip: vip地址
+        # @type Ip: String
+
+        attr_accessor :InstanceId, :VipType, :VpcId, :SubnetId, :AccessType, :AuthFlag, :CallerAppid, :PublicNetwork, :Ip
+        
+        def initialize(instanceid=nil, viptype=nil, vpcid=nil, subnetid=nil, accesstype=nil, authflag=nil, callerappid=nil, publicnetwork=nil, ip=nil)
+          @InstanceId = instanceid
+          @VipType = viptype
+          @VpcId = vpcid
+          @SubnetId = subnetid
+          @AccessType = accesstype
+          @AuthFlag = authflag
+          @CallerAppid = callerappid
+          @PublicNetwork = publicnetwork
+          @Ip = ip
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @VipType = params['VipType']
+          @VpcId = params['VpcId']
+          @SubnetId = params['SubnetId']
+          @AccessType = params['AccessType']
+          @AuthFlag = params['AuthFlag']
+          @CallerAppid = params['CallerAppid']
+          @PublicNetwork = params['PublicNetwork']
+          @Ip = params['Ip']
+        end
+      end
+
+      # CreateRoute返回参数结构体
+      class CreateRouteResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 返回结果
         # @type Result: :class:`Tencentcloud::Ckafka.v20190819.models.JgwOperateResponse`
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
