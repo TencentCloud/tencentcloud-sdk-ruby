@@ -1169,6 +1169,22 @@ module TencentCloud
         end
       end
 
+      # 数据库函数信息
+      class DatabaseFunction < TencentCloud::Common::AbstractModel
+        # @param Func: 函数名称
+        # @type Func: String
+
+        attr_accessor :Func
+        
+        def initialize(func=nil)
+          @Func = func
+        end
+
+        def deserialize(params)
+          @Func = params['Func']
+        end
+      end
+
       # 数据库权限
       class DatabasePrivilege < TencentCloud::Common::AbstractModel
         # @param Privileges: 权限信息
@@ -1186,6 +1202,54 @@ module TencentCloud
         def deserialize(params)
           @Privileges = params['Privileges']
           @Database = params['Database']
+        end
+      end
+
+      # 数据库存储过程信息
+      class DatabaseProcedure < TencentCloud::Common::AbstractModel
+        # @param Proc: 存储过程名称
+        # @type Proc: String
+
+        attr_accessor :Proc
+        
+        def initialize(proc=nil)
+          @Proc = proc
+        end
+
+        def deserialize(params)
+          @Proc = params['Proc']
+        end
+      end
+
+      # 数据库表信息
+      class DatabaseTable < TencentCloud::Common::AbstractModel
+        # @param Table: 表名
+        # @type Table: String
+
+        attr_accessor :Table
+        
+        def initialize(table=nil)
+          @Table = table
+        end
+
+        def deserialize(params)
+          @Table = params['Table']
+        end
+      end
+
+      # 数据库视图信息
+      class DatabaseView < TencentCloud::Common::AbstractModel
+        # @param View: 视图名称
+        # @type View: String
+
+        attr_accessor :View
+        
+        def initialize(view=nil)
+          @View = view
+        end
+
+        def deserialize(params)
+          @View = params['View']
         end
       end
 
@@ -2252,6 +2316,94 @@ module TencentCloud
           @QueryCount = params['QueryCount']
           @Total = params['Total']
           @QueryTimeSum = params['QueryTimeSum']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeDatabaseObjects请求参数结构体
+      class DescribeDatabaseObjectsRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例 ID，形如：dcdbt-ow7t8lmc。
+        # @type InstanceId: String
+        # @param DbName: 数据库名称，通过 DescribeDatabases 接口获取。
+        # @type DbName: String
+
+        attr_accessor :InstanceId, :DbName
+        
+        def initialize(instanceid=nil, dbname=nil)
+          @InstanceId = instanceid
+          @DbName = dbname
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @DbName = params['DbName']
+        end
+      end
+
+      # DescribeDatabaseObjects返回参数结构体
+      class DescribeDatabaseObjectsResponse < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 透传入参。
+        # @type InstanceId: String
+        # @param DbName: 数据库名称。
+        # @type DbName: String
+        # @param Tables: 表列表。
+        # @type Tables: Array
+        # @param Views: 视图列表。
+        # @type Views: Array
+        # @param Procs: 存储过程列表。
+        # @type Procs: Array
+        # @param Funcs: 函数列表。
+        # @type Funcs: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :InstanceId, :DbName, :Tables, :Views, :Procs, :Funcs, :RequestId
+        
+        def initialize(instanceid=nil, dbname=nil, tables=nil, views=nil, procs=nil, funcs=nil, requestid=nil)
+          @InstanceId = instanceid
+          @DbName = dbname
+          @Tables = tables
+          @Views = views
+          @Procs = procs
+          @Funcs = funcs
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @DbName = params['DbName']
+          unless params['Tables'].nil?
+            @Tables = []
+            params['Tables'].each do |i|
+              databasetable_tmp = DatabaseTable.new
+              databasetable_tmp.deserialize(i)
+              @Tables << databasetable_tmp
+            end
+          end
+          unless params['Views'].nil?
+            @Views = []
+            params['Views'].each do |i|
+              databaseview_tmp = DatabaseView.new
+              databaseview_tmp.deserialize(i)
+              @Views << databaseview_tmp
+            end
+          end
+          unless params['Procs'].nil?
+            @Procs = []
+            params['Procs'].each do |i|
+              databaseprocedure_tmp = DatabaseProcedure.new
+              databaseprocedure_tmp.deserialize(i)
+              @Procs << databaseprocedure_tmp
+            end
+          end
+          unless params['Funcs'].nil?
+            @Funcs = []
+            params['Funcs'].each do |i|
+              databasefunction_tmp = DatabaseFunction.new
+              databasefunction_tmp.deserialize(i)
+              @Funcs << databasefunction_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end

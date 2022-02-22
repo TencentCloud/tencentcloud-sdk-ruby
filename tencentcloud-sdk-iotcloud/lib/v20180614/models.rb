@@ -874,6 +874,46 @@ module TencentCloud
         end
       end
 
+      # DeleteDeviceResource请求参数结构体
+      class DeleteDeviceResourceRequest < TencentCloud::Common::AbstractModel
+        # @param ProductID: 产品ID
+        # @type ProductID: String
+        # @param Name: 资源名称
+        # @type Name: String
+        # @param DeviceName: 设备名称
+        # @type DeviceName: String
+
+        attr_accessor :ProductID, :Name, :DeviceName
+        
+        def initialize(productid=nil, name=nil, devicename=nil)
+          @ProductID = productid
+          @Name = name
+          @DeviceName = devicename
+        end
+
+        def deserialize(params)
+          @ProductID = params['ProductID']
+          @Name = params['Name']
+          @DeviceName = params['DeviceName']
+        end
+      end
+
+      # DeleteDeviceResource返回参数结构体
+      class DeleteDeviceResourceResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DeleteDevice返回参数结构体
       class DeleteDeviceResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
@@ -2872,6 +2912,50 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DownloadDeviceResource请求参数结构体
+      class DownloadDeviceResourceRequest < TencentCloud::Common::AbstractModel
+        # @param ProductID: 产品ID
+        # @type ProductID: String
+        # @param Name: 资源名称
+        # @type Name: String
+        # @param DeviceName: 设备名称
+        # @type DeviceName: String
+
+        attr_accessor :ProductID, :Name, :DeviceName
+        
+        def initialize(productid=nil, name=nil, devicename=nil)
+          @ProductID = productid
+          @Name = name
+          @DeviceName = devicename
+        end
+
+        def deserialize(params)
+          @ProductID = params['ProductID']
+          @Name = params['Name']
+          @DeviceName = params['DeviceName']
+        end
+      end
+
+      # DownloadDeviceResource返回参数结构体
+      class DownloadDeviceResourceResponse < TencentCloud::Common::AbstractModel
+        # @param Url: 设备资源的cos链接
+        # @type Url: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Url, :RequestId
+        
+        def initialize(url=nil, requestid=nil)
+          @Url = url
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Url = params['Url']
           @RequestId = params['RequestId']
         end
       end

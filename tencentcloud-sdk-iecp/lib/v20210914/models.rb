@@ -707,7 +707,7 @@ module TencentCloud
       class CreateEdgeNodeUnitTemplateRequest < TencentCloud::Common::AbstractModel
         # @param EdgeUnitId: IECP边缘单元ID
         # @type EdgeUnitId: Integer
-        # @param Name: NodeUnit模版名称
+        # @param Name: NodeUnit模板名称
         # @type Name: String
         # @param Namespace: 命名空间，默认default
         # @type Namespace: String
@@ -1290,7 +1290,7 @@ module TencentCloud
       class DeleteEdgeNodeUnitTemplatesRequest < TencentCloud::Common::AbstractModel
         # @param EdgeUnitId: IECP边缘单元ID
         # @type EdgeUnitId: Integer
-        # @param NodeUnitTemplateIDs: 删除的NodeUnit模版ID列表
+        # @param NodeUnitTemplateIDs: 删除的NodeUnit模板ID列表
         # @type NodeUnitTemplateIDs: Array
 
         attr_accessor :EdgeUnitId, :NodeUnitTemplateIDs
@@ -3743,7 +3743,7 @@ module TencentCloud
       class DescribeEdgeUnitNodeUnitTemplatesResponse < TencentCloud::Common::AbstractModel
         # @param Total: 符合查询条件的记录总数
         # @type Total: Integer
-        # @param NodeUnitTemplates: NodeUnit模版列表
+        # @param NodeUnitTemplates: NodeUnit模板列表
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NodeUnitTemplates: Array
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
@@ -4181,7 +4181,7 @@ module TencentCloud
       class DescribeNodeUnitTemplateOnNodeGroupResponse < TencentCloud::Common::AbstractModel
         # @param Total: 记录总数
         # @type Total: Integer
-        # @param NodeUnitTemplates: NodeUnit模版
+        # @param NodeUnitTemplates: NodeUnit模板
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NodeUnitTemplates: Array
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
@@ -6046,7 +6046,7 @@ module TencentCloud
       class ModifyNodeUnitTemplateRequest < TencentCloud::Common::AbstractModel
         # @param EdgeUnitId: IECP边缘单元ID
         # @type EdgeUnitId: Integer
-        # @param NodeUnitTemplateID: NodeUnit模版ID
+        # @param NodeUnitTemplateID: NodeUnit模板ID
         # @type NodeUnitTemplateID: Integer
         # @param Nodes: 包含的节点列表
         # @type Nodes: Array

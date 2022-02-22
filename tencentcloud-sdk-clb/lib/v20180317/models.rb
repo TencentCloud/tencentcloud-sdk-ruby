@@ -3273,6 +3273,70 @@ module TencentCloud
         end
       end
 
+      # DescribeResources请求参数结构体
+      class DescribeResourcesRequest < TencentCloud::Common::AbstractModel
+        # @param Limit: 返回可用区资源列表数目，默认20，最大值100。
+        # @type Limit: Integer
+        # @param Offset: 返回可用区资源列表起始偏移量，默认0。
+        # @type Offset: Integer
+        # @param Filters: 查询可用区资源列表条件，详细的过滤条件如下：
+        # <li> zone - String - 是否必填：否 - （过滤条件）按照 可用区 过滤，如："ap-guangzhou-1"（广州一区）。</li>
+        # <li> isp -- String - 是否必填：否 - （过滤条件）按照 Isp 类型过滤，如："BGP","CMCC","CUCC","CTCC"。</li>
+        # @type Filters: Array
+
+        attr_accessor :Limit, :Offset, :Filters
+        
+        def initialize(limit=nil, offset=nil, filters=nil)
+          @Limit = limit
+          @Offset = offset
+          @Filters = filters
+        end
+
+        def deserialize(params)
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+        end
+      end
+
+      # DescribeResources返回参数结构体
+      class DescribeResourcesResponse < TencentCloud::Common::AbstractModel
+        # @param ZoneResourceSet: 可用区支持的资源列表。
+        # @type ZoneResourceSet: Array
+        # @param TotalCount: 可用区资源列表数目。
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ZoneResourceSet, :TotalCount, :RequestId
+        
+        def initialize(zoneresourceset=nil, totalcount=nil, requestid=nil)
+          @ZoneResourceSet = zoneresourceset
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['ZoneResourceSet'].nil?
+            @ZoneResourceSet = []
+            params['ZoneResourceSet'].each do |i|
+              zoneresource_tmp = ZoneResource.new
+              zoneresource_tmp.deserialize(i)
+              @ZoneResourceSet << zoneresource_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeRewrite请求参数结构体
       class DescribeRewriteRequest < TencentCloud::Common::AbstractModel
         # @param LoadBalancerId: 负载均衡实例ID。
@@ -5848,6 +5912,26 @@ module TencentCloud
         end
       end
 
+      # 资源详细信息
+      class Resource < TencentCloud::Common::AbstractModel
+        # @param Type: 运营商内具体资源信息，如"CMCC", "CUCC", "CTCC", "BGP", "INTERNAL"。
+        # @type Type: Array
+        # @param Isp: 运营商信息，如"CMCC", "CUCC", "CTCC", "BGP", "INTERNAL"。
+        # @type Isp: String
+
+        attr_accessor :Type, :Isp
+        
+        def initialize(type=nil, isp=nil)
+          @Type = type
+          @Isp = isp
+        end
+
+        def deserialize(params)
+          @Type = params['Type']
+          @Isp = params['Isp']
+        end
+      end
+
       # 转发规则之间的重定向关系
       class RewriteLocationMap < TencentCloud::Common::AbstractModel
         # @param SourceLocationId: 源转发规则ID
@@ -6799,6 +6883,51 @@ module TencentCloud
           @ZoneId = params['ZoneId']
           @Zone = params['Zone']
           @ZoneName = params['ZoneName']
+          @ZoneRegion = params['ZoneRegion']
+          @LocalZone = params['LocalZone']
+        end
+      end
+
+      # 可用区资源列表
+      class ZoneResource < TencentCloud::Common::AbstractModel
+        # @param MasterZone: 主可用区，如"ap-guangzhou-1"。
+        # @type MasterZone: String
+        # @param ResourceSet: 资源列表。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResourceSet: Array
+        # @param SlaveZone: 备可用区，如"ap-guangzhou-2"，单可用区时，备可用区为null。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SlaveZone: String
+        # @param IPVersion: IP版本，如IPv4，IPv6，IPv6_Nat。
+        # @type IPVersion: String
+        # @param ZoneRegion: 可用区所属地域，如：ap-guangzhou
+        # @type ZoneRegion: String
+        # @param LocalZone: 可用区是否是LocalZone可用区，如：false
+        # @type LocalZone: Boolean
+
+        attr_accessor :MasterZone, :ResourceSet, :SlaveZone, :IPVersion, :ZoneRegion, :LocalZone
+        
+        def initialize(masterzone=nil, resourceset=nil, slavezone=nil, ipversion=nil, zoneregion=nil, localzone=nil)
+          @MasterZone = masterzone
+          @ResourceSet = resourceset
+          @SlaveZone = slavezone
+          @IPVersion = ipversion
+          @ZoneRegion = zoneregion
+          @LocalZone = localzone
+        end
+
+        def deserialize(params)
+          @MasterZone = params['MasterZone']
+          unless params['ResourceSet'].nil?
+            @ResourceSet = []
+            params['ResourceSet'].each do |i|
+              resource_tmp = Resource.new
+              resource_tmp.deserialize(i)
+              @ResourceSet << resource_tmp
+            end
+          end
+          @SlaveZone = params['SlaveZone']
+          @IPVersion = params['IPVersion']
           @ZoneRegion = params['ZoneRegion']
           @LocalZone = params['LocalZone']
         end

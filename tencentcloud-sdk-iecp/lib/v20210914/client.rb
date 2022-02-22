@@ -149,7 +149,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 创建边缘单元NodeUnit模版
+        # 创建边缘单元NodeUnit模板
 
         # @param request: Request instance for CreateEdgeNodeUnitTemplate.
         # @type request: :class:`Tencentcloud::iecp::V20210914::CreateEdgeNodeUnitTemplateRequest`
@@ -389,7 +389,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 删除边缘单元NodeUnit模版
+        # 删除边缘单元NodeUnit模板
 
         # @param request: Request instance for DeleteEdgeNodeUnitTemplates.
         # @type request: :class:`Tencentcloud::iecp::V20210914::DeleteEdgeNodeUnitTemplatesRequest`
@@ -1373,7 +1373,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 查询边缘单元EdgeUnit模版列表
+        # 查询边缘单元EdgeUnit模板列表
 
         # @param request: Request instance for DescribeEdgeUnitNodeUnitTemplates.
         # @type request: :class:`Tencentcloud::iecp::V20210914::DescribeEdgeUnitNodeUnitTemplatesRequest`
@@ -1541,7 +1541,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 查询指定NodeGroup下NodeUnit模版列表
+        # 查询指定NodeGroup下NodeUnit模板列表
 
         # @param request: Request instance for DescribeNodeUnitTemplateOnNodeGroup.
         # @type request: :class:`Tencentcloud::iecp::V20210914::DescribeNodeUnitTemplateOnNodeGroupRequest`
@@ -1901,7 +1901,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 修改边缘单元NodeUnit模版
+        # 修改边缘单元NodeUnit模板
 
         # @param request: Request instance for ModifyNodeUnitTemplate.
         # @type request: :class:`Tencentcloud::iecp::V20210914::ModifyNodeUnitTemplateRequest`

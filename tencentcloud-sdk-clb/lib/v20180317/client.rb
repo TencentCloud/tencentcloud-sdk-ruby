@@ -1091,6 +1091,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询用户在当前地域支持可用区列表和资源列表。
+
+        # @param request: Request instance for DescribeResources.
+        # @type request: :class:`Tencentcloud::clb::V20180317::DescribeResourcesRequest`
+        # @rtype: :class:`Tencentcloud::clb::V20180317::DescribeResourcesResponse`
+        def DescribeResources(request)
+          body = send_request('DescribeResources', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeResourcesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # DescribeRewrite 接口可根据负载均衡实例ID，查询一个负载均衡实例下转发规则的重定向关系。如果不指定监听器ID或转发规则ID，则返回该负载均衡实例下的所有重定向关系。
 
         # @param request: Request instance for DescribeRewrite.
