@@ -2040,9 +2040,9 @@ module TencentCloud
 
       # CreateAddressTemplateGroup请求参数结构体
       class CreateAddressTemplateGroupRequest < TencentCloud::Common::AbstractModel
-        # @param AddressTemplateGroupName: IP地址模版集合名称。
+        # @param AddressTemplateGroupName: IP地址模板集合名称。
         # @type AddressTemplateGroupName: String
-        # @param AddressTemplateIds: IP地址模版实例ID，例如：ipm-mdunqeb6。
+        # @param AddressTemplateIds: IP地址模板实例ID，例如：ipm-mdunqeb6。
         # @type AddressTemplateIds: Array
 
         attr_accessor :AddressTemplateGroupName, :AddressTemplateIds
@@ -5881,7 +5881,7 @@ module TencentCloud
       class DescribeAddressTemplatesResponse < TencentCloud::Common::AbstractModel
         # @param TotalCount: 符合条件的实例数量。
         # @type TotalCount: Integer
-        # @param AddressTemplateSet: IP地址模版。
+        # @param AddressTemplateSet: IP地址模板。
         # @type AddressTemplateSet: Array
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

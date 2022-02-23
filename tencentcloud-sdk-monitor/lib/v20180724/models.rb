@@ -837,6 +837,61 @@ module TencentCloud
         end
       end
 
+      # 告警条件
+      class Condition < TencentCloud::Common::AbstractModel
+        # @param AlarmNotifyPeriod: 告警通知频率
+        # @type AlarmNotifyPeriod: Integer
+        # @param AlarmNotifyType: 重复通知策略预定义（0 - 只告警一次， 1 - 指数告警，2 - 连接告警）
+        # @type AlarmNotifyType: Integer
+        # @param CalcType: 检测方式
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CalcType: String
+        # @param CalcValue: 检测值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CalcValue: String
+        # @param ContinueTime: 持续时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ContinueTime: String
+        # @param MetricID: 指标ID
+        # @type MetricID: Integer
+        # @param MetricDisplayName: 指标展示名称（对外）
+        # @type MetricDisplayName: String
+        # @param Period: 周期
+        # @type Period: Integer
+        # @param RuleID: 规则ID
+        # @type RuleID: Integer
+        # @param Unit: 指标单位
+        # @type Unit: String
+
+        attr_accessor :AlarmNotifyPeriod, :AlarmNotifyType, :CalcType, :CalcValue, :ContinueTime, :MetricID, :MetricDisplayName, :Period, :RuleID, :Unit
+        
+        def initialize(alarmnotifyperiod=nil, alarmnotifytype=nil, calctype=nil, calcvalue=nil, continuetime=nil, metricid=nil, metricdisplayname=nil, period=nil, ruleid=nil, unit=nil)
+          @AlarmNotifyPeriod = alarmnotifyperiod
+          @AlarmNotifyType = alarmnotifytype
+          @CalcType = calctype
+          @CalcValue = calcvalue
+          @ContinueTime = continuetime
+          @MetricID = metricid
+          @MetricDisplayName = metricdisplayname
+          @Period = period
+          @RuleID = ruleid
+          @Unit = unit
+        end
+
+        def deserialize(params)
+          @AlarmNotifyPeriod = params['AlarmNotifyPeriod']
+          @AlarmNotifyType = params['AlarmNotifyType']
+          @CalcType = params['CalcType']
+          @CalcValue = params['CalcValue']
+          @ContinueTime = params['ContinueTime']
+          @MetricID = params['MetricID']
+          @MetricDisplayName = params['MetricDisplayName']
+          @Period = params['Period']
+          @RuleID = params['RuleID']
+          @Unit = params['Unit']
+        end
+      end
+
       # 告警条件模版
       class ConditionsTemp < TencentCloud::Common::AbstractModel
         # @param TemplateName: 模版名称
@@ -2913,6 +2968,78 @@ module TencentCloud
         end
       end
 
+      # DescribeConditionsTemplateList请求参数结构体
+      class DescribeConditionsTemplateListRequest < TencentCloud::Common::AbstractModel
+        # @param Module: 固定值，为"monitor"
+        # @type Module: String
+        # @param ViewName: 视图名，由 [DescribeAllNamespaces](https://cloud.tencent.com/document/product/248/48683) 获得。对于云产品监控，取接口出参的 QceNamespacesNew.N.Id，例如 cvm_device
+        # @type ViewName: String
+        # @param GroupName: 根据触发条件模板名称过滤查询
+        # @type GroupName: String
+        # @param GroupID: 根据触发条件模板ID过滤查询
+        # @type GroupID: String
+        # @param Limit: 分页参数，每页返回的数量，取值1~100，默认20
+        # @type Limit: Integer
+        # @param Offset: 分页参数，页偏移量，从0开始计数，默认0
+        # @type Offset: Integer
+        # @param UpdateTimeOrder: 指定按更新时间的排序方式，asc=升序, desc=降序
+        # @type UpdateTimeOrder: String
+
+        attr_accessor :Module, :ViewName, :GroupName, :GroupID, :Limit, :Offset, :UpdateTimeOrder
+        
+        def initialize(_module=nil, viewname=nil, groupname=nil, groupid=nil, limit=nil, offset=nil, updatetimeorder=nil)
+          @Module = _module
+          @ViewName = viewname
+          @GroupName = groupname
+          @GroupID = groupid
+          @Limit = limit
+          @Offset = offset
+          @UpdateTimeOrder = updatetimeorder
+        end
+
+        def deserialize(params)
+          @Module = params['Module']
+          @ViewName = params['ViewName']
+          @GroupName = params['GroupName']
+          @GroupID = params['GroupID']
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          @UpdateTimeOrder = params['UpdateTimeOrder']
+        end
+      end
+
+      # DescribeConditionsTemplateList返回参数结构体
+      class DescribeConditionsTemplateListResponse < TencentCloud::Common::AbstractModel
+        # @param Total: 模板总数
+        # @type Total: Integer
+        # @param TemplateGroupList: 模板列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TemplateGroupList: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Total, :TemplateGroupList, :RequestId
+        
+        def initialize(total=nil, templategrouplist=nil, requestid=nil)
+          @Total = total
+          @TemplateGroupList = templategrouplist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Total = params['Total']
+          unless params['TemplateGroupList'].nil?
+            @TemplateGroupList = []
+            params['TemplateGroupList'].each do |i|
+              templategroup_tmp = TemplateGroup.new
+              templategroup_tmp.deserialize(i)
+              @TemplateGroupList << templategroup_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeMonitorTypes请求参数结构体
       class DescribeMonitorTypesRequest < TencentCloud::Common::AbstractModel
         # @param Module: 模块名，固定值 monitor
@@ -4690,6 +4817,40 @@ module TencentCloud
         end
       end
 
+      # 事件告警条件
+      class EventCondition < TencentCloud::Common::AbstractModel
+        # @param AlarmNotifyPeriod: 告警通知频率
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AlarmNotifyPeriod: String
+        # @param AlarmNotifyType: 重复通知策略预定义（0 - 只告警一次， 1 - 指数告警，2 - 连接告警）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AlarmNotifyType: String
+        # @param EventID: 事件ID
+        # @type EventID: String
+        # @param EventDisplayName: 事件展示名称（对外）
+        # @type EventDisplayName: String
+        # @param RuleID: 规则ID
+        # @type RuleID: String
+
+        attr_accessor :AlarmNotifyPeriod, :AlarmNotifyType, :EventID, :EventDisplayName, :RuleID
+        
+        def initialize(alarmnotifyperiod=nil, alarmnotifytype=nil, eventid=nil, eventdisplayname=nil, ruleid=nil)
+          @AlarmNotifyPeriod = alarmnotifyperiod
+          @AlarmNotifyType = alarmnotifytype
+          @EventID = eventid
+          @EventDisplayName = eventdisplayname
+          @RuleID = ruleid
+        end
+
+        def deserialize(params)
+          @AlarmNotifyPeriod = params['AlarmNotifyPeriod']
+          @AlarmNotifyType = params['AlarmNotifyType']
+          @EventID = params['EventID']
+          @EventDisplayName = params['EventDisplayName']
+          @RuleID = params['RuleID']
+        end
+      end
+
       # GetMonitorData请求参数结构体
       class GetMonitorDataRequest < TencentCloud::Common::AbstractModel
         # @param Namespace: 命名空间，如QCE/CVM。各个云产品的详细命名空间说明请参阅各个产品[监控指标](https://cloud.tencent.com/document/product/248/6140)文档
@@ -5673,6 +5834,160 @@ module TencentCloud
         end
       end
 
+      # 策略组信息
+      class PolicyGroup < TencentCloud::Common::AbstractModel
+        # @param CanSetDefault: 是否可设为默认告警策略
+        # @type CanSetDefault: Boolean
+        # @param GroupID: 告警策略组ID
+        # @type GroupID: Integer
+        # @param GroupName: 告警策略组名称
+        # @type GroupName: String
+        # @param InsertTime: 创建时间
+        # @type InsertTime: Integer
+        # @param IsDefault: 是否为默认告警策略
+        # @type IsDefault: Integer
+        # @param Enable: 告警策略启用状态
+        # @type Enable: Boolean
+        # @param LastEditUin: 最后修改人UIN
+        # @type LastEditUin: Integer
+        # @param NoShieldedInstanceCount: 未屏蔽的实例数
+        # @type NoShieldedInstanceCount: Integer
+        # @param ParentGroupID: 父策略组ID
+        # @type ParentGroupID: Integer
+        # @param ProjectID: 所属项目ID
+        # @type ProjectID: Integer
+        # @param ReceiverInfos: 告警接收对象信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ReceiverInfos: Array
+        # @param Remark: 备注信息
+        # @type Remark: String
+        # @param UpdateTime: 修改时间
+        # @type UpdateTime: Integer
+        # @param TotalInstanceCount: 总绑定实例数
+        # @type TotalInstanceCount: Integer
+        # @param ViewName: 视图
+        # @type ViewName: String
+        # @param IsUnionRule: 是否为与关系规则
+        # @type IsUnionRule: Integer
+
+        attr_accessor :CanSetDefault, :GroupID, :GroupName, :InsertTime, :IsDefault, :Enable, :LastEditUin, :NoShieldedInstanceCount, :ParentGroupID, :ProjectID, :ReceiverInfos, :Remark, :UpdateTime, :TotalInstanceCount, :ViewName, :IsUnionRule
+        
+        def initialize(cansetdefault=nil, groupid=nil, groupname=nil, inserttime=nil, isdefault=nil, enable=nil, lastedituin=nil, noshieldedinstancecount=nil, parentgroupid=nil, projectid=nil, receiverinfos=nil, remark=nil, updatetime=nil, totalinstancecount=nil, viewname=nil, isunionrule=nil)
+          @CanSetDefault = cansetdefault
+          @GroupID = groupid
+          @GroupName = groupname
+          @InsertTime = inserttime
+          @IsDefault = isdefault
+          @Enable = enable
+          @LastEditUin = lastedituin
+          @NoShieldedInstanceCount = noshieldedinstancecount
+          @ParentGroupID = parentgroupid
+          @ProjectID = projectid
+          @ReceiverInfos = receiverinfos
+          @Remark = remark
+          @UpdateTime = updatetime
+          @TotalInstanceCount = totalinstancecount
+          @ViewName = viewname
+          @IsUnionRule = isunionrule
+        end
+
+        def deserialize(params)
+          @CanSetDefault = params['CanSetDefault']
+          @GroupID = params['GroupID']
+          @GroupName = params['GroupName']
+          @InsertTime = params['InsertTime']
+          @IsDefault = params['IsDefault']
+          @Enable = params['Enable']
+          @LastEditUin = params['LastEditUin']
+          @NoShieldedInstanceCount = params['NoShieldedInstanceCount']
+          @ParentGroupID = params['ParentGroupID']
+          @ProjectID = params['ProjectID']
+          unless params['ReceiverInfos'].nil?
+            @ReceiverInfos = []
+            params['ReceiverInfos'].each do |i|
+              policygroupreceiverinfo_tmp = PolicyGroupReceiverInfo.new
+              policygroupreceiverinfo_tmp.deserialize(i)
+              @ReceiverInfos << policygroupreceiverinfo_tmp
+            end
+          end
+          @Remark = params['Remark']
+          @UpdateTime = params['UpdateTime']
+          @TotalInstanceCount = params['TotalInstanceCount']
+          @ViewName = params['ViewName']
+          @IsUnionRule = params['IsUnionRule']
+        end
+      end
+
+      # 2018版策略模板列表接收人信息
+      class PolicyGroupReceiverInfo < TencentCloud::Common::AbstractModel
+        # @param EndTime: 有效时段结束时间
+        # @type EndTime: Integer
+        # @param NeedSendNotice: 是否需要发送通知
+        # @type NeedSendNotice: Integer
+        # @param NotifyWay: 告警接收渠道
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NotifyWay: Array
+        # @param PersonInterval: 电话告警对个人间隔（秒）
+        # @type PersonInterval: Integer
+        # @param ReceiverGroupList: 消息接收组列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ReceiverGroupList: Array
+        # @param ReceiverType: 接受者类型
+        # @type ReceiverType: String
+        # @param ReceiverUserList: 接收人列表。通过平台接口查询到的接收人id列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ReceiverUserList: Array
+        # @param RecoverNotify: 告警恢复通知方式
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RecoverNotify: Array
+        # @param RoundInterval: 电话告警每轮间隔（秒）
+        # @type RoundInterval: Integer
+        # @param RoundNumber: 电话告警轮数
+        # @type RoundNumber: Integer
+        # @param SendFor: 电话告警通知时机。可选"OCCUR"(告警时通知),"RECOVER"(恢复时通知)
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SendFor: Array
+        # @param StartTime: 有效时段开始时间
+        # @type StartTime: Integer
+        # @param UIDList: 电话告警接收者uid
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UIDList: Array
+
+        attr_accessor :EndTime, :NeedSendNotice, :NotifyWay, :PersonInterval, :ReceiverGroupList, :ReceiverType, :ReceiverUserList, :RecoverNotify, :RoundInterval, :RoundNumber, :SendFor, :StartTime, :UIDList
+        
+        def initialize(endtime=nil, needsendnotice=nil, notifyway=nil, personinterval=nil, receivergrouplist=nil, receivertype=nil, receiveruserlist=nil, recovernotify=nil, roundinterval=nil, roundnumber=nil, sendfor=nil, starttime=nil, uidlist=nil)
+          @EndTime = endtime
+          @NeedSendNotice = needsendnotice
+          @NotifyWay = notifyway
+          @PersonInterval = personinterval
+          @ReceiverGroupList = receivergrouplist
+          @ReceiverType = receivertype
+          @ReceiverUserList = receiveruserlist
+          @RecoverNotify = recovernotify
+          @RoundInterval = roundinterval
+          @RoundNumber = roundnumber
+          @SendFor = sendfor
+          @StartTime = starttime
+          @UIDList = uidlist
+        end
+
+        def deserialize(params)
+          @EndTime = params['EndTime']
+          @NeedSendNotice = params['NeedSendNotice']
+          @NotifyWay = params['NotifyWay']
+          @PersonInterval = params['PersonInterval']
+          @ReceiverGroupList = params['ReceiverGroupList']
+          @ReceiverType = params['ReceiverType']
+          @ReceiverUserList = params['ReceiverUserList']
+          @RecoverNotify = params['RecoverNotify']
+          @RoundInterval = params['RoundInterval']
+          @RoundNumber = params['RoundNumber']
+          @SendFor = params['SendFor']
+          @StartTime = params['StartTime']
+          @UIDList = params['UIDList']
+        end
+      end
+
       # 策略标签
       class PolicyTag < TencentCloud::Common::AbstractModel
         # @param Key: 标签Key
@@ -6356,6 +6671,86 @@ module TencentCloud
           @RegionId = params['RegionId']
           @BindingStatus = params['BindingStatus']
           @TagStatus = params['TagStatus']
+        end
+      end
+
+      # 模板列表
+      class TemplateGroup < TencentCloud::Common::AbstractModel
+        # @param Conditions: 指标告警规则
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Conditions: Array
+        # @param EventConditions: 事件告警规则
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EventConditions: Array
+        # @param PolicyGroups: 关联告警策略组
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PolicyGroups: Array
+        # @param GroupID: 模板策略组ID
+        # @type GroupID: Integer
+        # @param GroupName: 模板策略组名称
+        # @type GroupName: String
+        # @param InsertTime: 创建时间
+        # @type InsertTime: Integer
+        # @param LastEditUin: 最后修改人UIN
+        # @type LastEditUin: Integer
+        # @param Remark: 备注
+        # @type Remark: String
+        # @param UpdateTime: 更新时间
+        # @type UpdateTime: Integer
+        # @param ViewName: 视图
+        # @type ViewName: String
+        # @param IsUnionRule: 是否为与关系
+        # @type IsUnionRule: Integer
+
+        attr_accessor :Conditions, :EventConditions, :PolicyGroups, :GroupID, :GroupName, :InsertTime, :LastEditUin, :Remark, :UpdateTime, :ViewName, :IsUnionRule
+        
+        def initialize(conditions=nil, eventconditions=nil, policygroups=nil, groupid=nil, groupname=nil, inserttime=nil, lastedituin=nil, remark=nil, updatetime=nil, viewname=nil, isunionrule=nil)
+          @Conditions = conditions
+          @EventConditions = eventconditions
+          @PolicyGroups = policygroups
+          @GroupID = groupid
+          @GroupName = groupname
+          @InsertTime = inserttime
+          @LastEditUin = lastedituin
+          @Remark = remark
+          @UpdateTime = updatetime
+          @ViewName = viewname
+          @IsUnionRule = isunionrule
+        end
+
+        def deserialize(params)
+          unless params['Conditions'].nil?
+            @Conditions = []
+            params['Conditions'].each do |i|
+              condition_tmp = Condition.new
+              condition_tmp.deserialize(i)
+              @Conditions << condition_tmp
+            end
+          end
+          unless params['EventConditions'].nil?
+            @EventConditions = []
+            params['EventConditions'].each do |i|
+              eventcondition_tmp = EventCondition.new
+              eventcondition_tmp.deserialize(i)
+              @EventConditions << eventcondition_tmp
+            end
+          end
+          unless params['PolicyGroups'].nil?
+            @PolicyGroups = []
+            params['PolicyGroups'].each do |i|
+              policygroup_tmp = PolicyGroup.new
+              policygroup_tmp.deserialize(i)
+              @PolicyGroups << policygroup_tmp
+            end
+          end
+          @GroupID = params['GroupID']
+          @GroupName = params['GroupName']
+          @InsertTime = params['InsertTime']
+          @LastEditUin = params['LastEditUin']
+          @Remark = params['Remark']
+          @UpdateTime = params['UpdateTime']
+          @ViewName = params['ViewName']
+          @IsUnionRule = params['IsUnionRule']
         end
       end
 

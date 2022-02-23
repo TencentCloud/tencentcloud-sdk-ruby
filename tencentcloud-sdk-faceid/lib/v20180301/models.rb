@@ -337,7 +337,7 @@ module TencentCloud
         # @type Description: String
         # @param AccountBank: 开户行
         # @type AccountBank: String
-        # @param AccountType: 卡性质：1. 借记卡；2. 贷记卡
+        # @param AccountType: 卡性质：1. 借记卡；2. 贷记卡；3. 预付费卡；4. 准贷记卡
         # @type AccountType: Integer
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

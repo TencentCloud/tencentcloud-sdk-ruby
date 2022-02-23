@@ -634,7 +634,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口（DescribeFirewallRulesTemplate）用于查询防火墙规则模版。
+        # 本接口（DescribeFirewallRulesTemplate）用于查询防火墙规则模板。
 
         # @param request: Request instance for DescribeFirewallRulesTemplate.
         # @type request: :class:`Tencentcloud::lighthouse::V20200324::DescribeFirewallRulesTemplateRequest`

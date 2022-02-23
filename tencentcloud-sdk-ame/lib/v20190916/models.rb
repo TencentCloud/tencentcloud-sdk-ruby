@@ -107,6 +107,53 @@ module TencentCloud
         end
       end
 
+      # BatchDescribeKTVMusicDetails请求参数结构体
+      class BatchDescribeKTVMusicDetailsRequest < TencentCloud::Common::AbstractModel
+        # @param MusicIds: 歌曲Id列表，注：列表最大长度为50
+        # @type MusicIds: Array
+
+        attr_accessor :MusicIds
+        
+        def initialize(musicids=nil)
+          @MusicIds = musicids
+        end
+
+        def deserialize(params)
+          @MusicIds = params['MusicIds']
+        end
+      end
+
+      # BatchDescribeKTVMusicDetails返回参数结构体
+      class BatchDescribeKTVMusicDetailsResponse < TencentCloud::Common::AbstractModel
+        # @param KTVMusicDetailInfoSet: 歌曲详情列表信息
+        # @type KTVMusicDetailInfoSet: Array
+        # @param NotExistMusicIdSet: 不存在的歌曲 ID 列表。
+        # @type NotExistMusicIdSet: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :KTVMusicDetailInfoSet, :NotExistMusicIdSet, :RequestId
+        
+        def initialize(ktvmusicdetailinfoset=nil, notexistmusicidset=nil, requestid=nil)
+          @KTVMusicDetailInfoSet = ktvmusicdetailinfoset
+          @NotExistMusicIdSet = notexistmusicidset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['KTVMusicDetailInfoSet'].nil?
+            @KTVMusicDetailInfoSet = []
+            params['KTVMusicDetailInfoSet'].each do |i|
+              ktvmusicdetailinfo_tmp = KTVMusicDetailInfo.new
+              ktvmusicdetailinfo_tmp.deserialize(i)
+              @KTVMusicDetailInfoSet << ktvmusicdetailinfo_tmp
+            end
+          end
+          @NotExistMusicIdSet = params['NotExistMusicIdSet']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 副歌片段信息
       class ChorusClip < TencentCloud::Common::AbstractModel
         # @param StartTime: 副歌时间，单位：毫秒
@@ -1539,6 +1586,59 @@ module TencentCloud
           @Definition = params['Definition']
           @Bitrate = params['Bitrate']
           @Size = params['Size']
+        end
+      end
+
+      # 即使广播曲库歌曲信息详情列表
+      class KTVMusicDetailInfo < TencentCloud::Common::AbstractModel
+        # @param KTVMusicBaseInfo: 即使广播曲库歌曲基础信息
+        # @type KTVMusicBaseInfo: :class:`Tencentcloud::Ame.v20190916.models.KTVMusicBaseInfo`
+        # @param PlayToken: 播放凭证
+        # @type PlayToken: String
+        # @param LyricsUrl: 歌词下载地址
+        # @type LyricsUrl: String
+        # @param DefinitionInfoSet: 歌曲规格信息列表
+        # @type DefinitionInfoSet: Array
+        # @param MidiJsonUrl: 音高数据文件下载地址
+        # @type MidiJsonUrl: String
+        # @param ChorusClipSet: 副歌片段数据列表
+        # @type ChorusClipSet: Array
+
+        attr_accessor :KTVMusicBaseInfo, :PlayToken, :LyricsUrl, :DefinitionInfoSet, :MidiJsonUrl, :ChorusClipSet
+        
+        def initialize(ktvmusicbaseinfo=nil, playtoken=nil, lyricsurl=nil, definitioninfoset=nil, midijsonurl=nil, chorusclipset=nil)
+          @KTVMusicBaseInfo = ktvmusicbaseinfo
+          @PlayToken = playtoken
+          @LyricsUrl = lyricsurl
+          @DefinitionInfoSet = definitioninfoset
+          @MidiJsonUrl = midijsonurl
+          @ChorusClipSet = chorusclipset
+        end
+
+        def deserialize(params)
+          unless params['KTVMusicBaseInfo'].nil?
+            @KTVMusicBaseInfo = KTVMusicBaseInfo.new
+            @KTVMusicBaseInfo.deserialize(params['KTVMusicBaseInfo'])
+          end
+          @PlayToken = params['PlayToken']
+          @LyricsUrl = params['LyricsUrl']
+          unless params['DefinitionInfoSet'].nil?
+            @DefinitionInfoSet = []
+            params['DefinitionInfoSet'].each do |i|
+              ktvmusicdefinitioninfo_tmp = KTVMusicDefinitionInfo.new
+              ktvmusicdefinitioninfo_tmp.deserialize(i)
+              @DefinitionInfoSet << ktvmusicdefinitioninfo_tmp
+            end
+          end
+          @MidiJsonUrl = params['MidiJsonUrl']
+          unless params['ChorusClipSet'].nil?
+            @ChorusClipSet = []
+            params['ChorusClipSet'].each do |i|
+              chorusclip_tmp = ChorusClip.new
+              chorusclip_tmp.deserialize(i)
+              @ChorusClipSet << chorusclip_tmp
+            end
+          end
         end
       end
 

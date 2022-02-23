@@ -1048,10 +1048,13 @@ module TencentCloud
         # @type ReportStatus: String
         # @param Description: 用户接收短信状态描述。
         # @type Description: String
+        # @param SessionContext: 用户的 session 内容。与请求中的 SessionContext 一致，默认为空，如需开通请联系 [腾讯云短信小助手](https://cloud.tencent.com/document/product/382/3773#.E6.8A.80.E6.9C.AF.E4.BA.A4.E6.B5.81)。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SessionContext: String
 
-        attr_accessor :UserReceiveTime, :CountryCode, :SubscriberNumber, :PhoneNumber, :SerialNo, :ReportStatus, :Description
+        attr_accessor :UserReceiveTime, :CountryCode, :SubscriberNumber, :PhoneNumber, :SerialNo, :ReportStatus, :Description, :SessionContext
         
-        def initialize(userreceivetime=nil, countrycode=nil, subscribernumber=nil, phonenumber=nil, serialno=nil, reportstatus=nil, description=nil)
+        def initialize(userreceivetime=nil, countrycode=nil, subscribernumber=nil, phonenumber=nil, serialno=nil, reportstatus=nil, description=nil, sessioncontext=nil)
           @UserReceiveTime = userreceivetime
           @CountryCode = countrycode
           @SubscriberNumber = subscribernumber
@@ -1059,6 +1062,7 @@ module TencentCloud
           @SerialNo = serialno
           @ReportStatus = reportstatus
           @Description = description
+          @SessionContext = sessioncontext
         end
 
         def deserialize(params)
@@ -1069,6 +1073,7 @@ module TencentCloud
           @SerialNo = params['SerialNo']
           @ReportStatus = params['ReportStatus']
           @Description = params['Description']
+          @SessionContext = params['SessionContext']
         end
       end
 

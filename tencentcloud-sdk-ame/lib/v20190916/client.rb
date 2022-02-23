@@ -29,6 +29,30 @@ module TencentCloud
         end
 
 
+        # 根据 Id 列表查询歌曲的详细信息，包含基础信息及播放信息。
+
+        # @param request: Request instance for BatchDescribeKTVMusicDetails.
+        # @type request: :class:`Tencentcloud::ame::V20190916::BatchDescribeKTVMusicDetailsRequest`
+        # @rtype: :class:`Tencentcloud::ame::V20190916::BatchDescribeKTVMusicDetailsResponse`
+        def BatchDescribeKTVMusicDetails(request)
+          body = send_request('BatchDescribeKTVMusicDetails', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = BatchDescribeKTVMusicDetailsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 创建机器人，支持进入 RTC 房间，播放直播互动曲库歌曲。
 
         # @param request: Request instance for CreateKTVRobot.

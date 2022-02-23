@@ -676,6 +676,148 @@ module TencentCloud
         end
       end
 
+      # CreateHourDCDBInstance请求参数结构体
+      class CreateHourDCDBInstanceRequest < TencentCloud::Common::AbstractModel
+        # @param ShardMemory: 分片内存大小，单位：GB，可以通过 DescribeShardSpec
+        #  查询实例规格获得。
+        # @type ShardMemory: Integer
+        # @param ShardStorage: 分片存储空间大小，单位：GB，可以通过 DescribeShardSpec
+        #  查询实例规格获得。
+        # @type ShardStorage: Integer
+        # @param ShardNodeCount: 单个分片节点个数，可以通过 DescribeShardSpec
+        #  查询实例规格获得。
+        # @type ShardNodeCount: Integer
+        # @param ShardCount: 实例分片个数，可选范围2-8，可以通过升级实例进行新增分片到最多64个分片。
+        # @type ShardCount: Integer
+        # @param Count: 欲购买实例的数量
+        # @type Count: Integer
+        # @param ProjectId: 项目 ID，可以通过查看项目列表获取，不传则关联到默认项目
+        # @type ProjectId: Integer
+        # @param VpcId: 虚拟私有网络 ID，不传或传空表示创建为基础网络
+        # @type VpcId: String
+        # @param SubnetId: 虚拟私有网络子网 ID，VpcId不为空时必填
+        # @type SubnetId: String
+        # @param ShardCpu: 分片cpu大小，单位：核，可以通过 DescribeShardSpec
+        #  查询实例规格获得。
+        # @type ShardCpu: Integer
+        # @param DbVersionId: 数据库引擎版本，当前可选：10.0.10，10.1.9，5.7.17。
+        # 10.0.10 - Mariadb 10.0.10；
+        # 10.1.9 - Mariadb 10.1.9；
+        # 5.7.17 - Percona 5.7.17。
+        # 如果不填的话，默认为10.1.9，表示Mariadb 10.1.9。
+        # @type DbVersionId: String
+        # @param Zones: 分片节点可用区分布，最多可填两个可用区。当分片规格为一主两从时，其中两个节点在第一个可用区。
+        # @type Zones: Array
+        # @param SecurityGroupId: 安全组id
+        # @type SecurityGroupId: String
+        # @param InstanceName: 实例名称， 可以通过该字段自主的设置实例的名字
+        # @type InstanceName: String
+        # @param Ipv6Flag: 是否支持IPv6
+        # @type Ipv6Flag: Integer
+        # @param ResourceTags: 标签键值对数组
+        # @type ResourceTags: Array
+        # @param DcnRegion: DCN源地域
+        # @type DcnRegion: String
+        # @param DcnInstanceId: DCN源实例ID
+        # @type DcnInstanceId: String
+        # @param InitParams: 参数列表。本接口的可选值为：character_set_server（字符集，必传），lower_case_table_names（表名大小写敏感，必传，0 - 敏感；1-不敏感），innodb_page_size（innodb数据页，默认16K），sync_mode（同步模式：0 - 异步； 1 - 强同步；2 - 强同步可退化。默认为强同步可退化）。
+        # @type InitParams: Array
+        # @param RollbackInstanceId: 需要回档的源实例ID
+        # @type RollbackInstanceId: String
+        # @param RollbackTime: 回档时间
+        # @type RollbackTime: String
+        # @param SecurityGroupIds: 安全组ids，安全组可以传数组形式，兼容之前SecurityGroupId参数
+        # @type SecurityGroupIds: Array
+
+        attr_accessor :ShardMemory, :ShardStorage, :ShardNodeCount, :ShardCount, :Count, :ProjectId, :VpcId, :SubnetId, :ShardCpu, :DbVersionId, :Zones, :SecurityGroupId, :InstanceName, :Ipv6Flag, :ResourceTags, :DcnRegion, :DcnInstanceId, :InitParams, :RollbackInstanceId, :RollbackTime, :SecurityGroupIds
+        
+        def initialize(shardmemory=nil, shardstorage=nil, shardnodecount=nil, shardcount=nil, count=nil, projectid=nil, vpcid=nil, subnetid=nil, shardcpu=nil, dbversionid=nil, zones=nil, securitygroupid=nil, instancename=nil, ipv6flag=nil, resourcetags=nil, dcnregion=nil, dcninstanceid=nil, initparams=nil, rollbackinstanceid=nil, rollbacktime=nil, securitygroupids=nil)
+          @ShardMemory = shardmemory
+          @ShardStorage = shardstorage
+          @ShardNodeCount = shardnodecount
+          @ShardCount = shardcount
+          @Count = count
+          @ProjectId = projectid
+          @VpcId = vpcid
+          @SubnetId = subnetid
+          @ShardCpu = shardcpu
+          @DbVersionId = dbversionid
+          @Zones = zones
+          @SecurityGroupId = securitygroupid
+          @InstanceName = instancename
+          @Ipv6Flag = ipv6flag
+          @ResourceTags = resourcetags
+          @DcnRegion = dcnregion
+          @DcnInstanceId = dcninstanceid
+          @InitParams = initparams
+          @RollbackInstanceId = rollbackinstanceid
+          @RollbackTime = rollbacktime
+          @SecurityGroupIds = securitygroupids
+        end
+
+        def deserialize(params)
+          @ShardMemory = params['ShardMemory']
+          @ShardStorage = params['ShardStorage']
+          @ShardNodeCount = params['ShardNodeCount']
+          @ShardCount = params['ShardCount']
+          @Count = params['Count']
+          @ProjectId = params['ProjectId']
+          @VpcId = params['VpcId']
+          @SubnetId = params['SubnetId']
+          @ShardCpu = params['ShardCpu']
+          @DbVersionId = params['DbVersionId']
+          @Zones = params['Zones']
+          @SecurityGroupId = params['SecurityGroupId']
+          @InstanceName = params['InstanceName']
+          @Ipv6Flag = params['Ipv6Flag']
+          unless params['ResourceTags'].nil?
+            @ResourceTags = []
+            params['ResourceTags'].each do |i|
+              resourcetag_tmp = ResourceTag.new
+              resourcetag_tmp.deserialize(i)
+              @ResourceTags << resourcetag_tmp
+            end
+          end
+          @DcnRegion = params['DcnRegion']
+          @DcnInstanceId = params['DcnInstanceId']
+          unless params['InitParams'].nil?
+            @InitParams = []
+            params['InitParams'].each do |i|
+              dbparamvalue_tmp = DBParamValue.new
+              dbparamvalue_tmp.deserialize(i)
+              @InitParams << dbparamvalue_tmp
+            end
+          end
+          @RollbackInstanceId = params['RollbackInstanceId']
+          @RollbackTime = params['RollbackTime']
+          @SecurityGroupIds = params['SecurityGroupIds']
+        end
+      end
+
+      # CreateHourDCDBInstance返回参数结构体
+      class CreateHourDCDBInstanceResponse < TencentCloud::Common::AbstractModel
+        # @param InstanceIds: 订单对应的实例 ID 列表，如果此处没有返回实例 ID，可以通过订单查询接口获取。还可通过实例查询接口查询实例是否创建完成。
+        # @type InstanceIds: Array
+        # @param FlowId: 流程id，可以根据流程id查询创建进度
+        # @type FlowId: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :InstanceIds, :FlowId, :RequestId
+        
+        def initialize(instanceids=nil, flowid=nil, requestid=nil)
+          @InstanceIds = instanceids
+          @FlowId = flowid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @InstanceIds = params['InstanceIds']
+          @FlowId = params['FlowId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 云数据库账号信息
       class DBAccount < TencentCloud::Common::AbstractModel
         # @param UserName: 用户名

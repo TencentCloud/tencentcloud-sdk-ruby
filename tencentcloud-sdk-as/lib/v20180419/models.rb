@@ -3310,17 +3310,25 @@ module TencentCloud
         # @type AutoScalingGroupId: String
         # @param DesiredCapacity: 期望实例数
         # @type DesiredCapacity: Integer
+        # @param MinSize: 最小实例数，取值范围为0-2000。
+        # @type MinSize: Integer
+        # @param MaxSize: 最大实例数，取值范围为0-2000。
+        # @type MaxSize: Integer
 
-        attr_accessor :AutoScalingGroupId, :DesiredCapacity
+        attr_accessor :AutoScalingGroupId, :DesiredCapacity, :MinSize, :MaxSize
         
-        def initialize(autoscalinggroupid=nil, desiredcapacity=nil)
+        def initialize(autoscalinggroupid=nil, desiredcapacity=nil, minsize=nil, maxsize=nil)
           @AutoScalingGroupId = autoscalinggroupid
           @DesiredCapacity = desiredcapacity
+          @MinSize = minsize
+          @MaxSize = maxsize
         end
 
         def deserialize(params)
           @AutoScalingGroupId = params['AutoScalingGroupId']
           @DesiredCapacity = params['DesiredCapacity']
+          @MinSize = params['MinSize']
+          @MaxSize = params['MaxSize']
         end
       end
 

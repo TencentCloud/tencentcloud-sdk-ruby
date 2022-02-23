@@ -879,26 +879,26 @@ module TencentCloud
       class CreateEdgeUnitApplicationYamlRequest < TencentCloud::Common::AbstractModel
         # @param EdgeUnitId: 单元ID
         # @type EdgeUnitId: Integer
+        # @param Yaml: base64后的Yaml配置
+        # @type Yaml: String
         # @param BasicInfo: 基本信息
         # @type BasicInfo: :class:`Tencentcloud::Iecp.v20210914.models.ApplicationBasicInfo`
-        # @param Yaml: Yaml配置
-        # @type Yaml: String
 
-        attr_accessor :EdgeUnitId, :BasicInfo, :Yaml
+        attr_accessor :EdgeUnitId, :Yaml, :BasicInfo
         
-        def initialize(edgeunitid=nil, basicinfo=nil, yaml=nil)
+        def initialize(edgeunitid=nil, yaml=nil, basicinfo=nil)
           @EdgeUnitId = edgeunitid
-          @BasicInfo = basicinfo
           @Yaml = yaml
+          @BasicInfo = basicinfo
         end
 
         def deserialize(params)
           @EdgeUnitId = params['EdgeUnitId']
+          @Yaml = params['Yaml']
           unless params['BasicInfo'].nil?
             @BasicInfo = ApplicationBasicInfo.new
             @BasicInfo.deserialize(params['BasicInfo'])
           end
-          @Yaml = params['Yaml']
         end
       end
 
@@ -5486,10 +5486,14 @@ module TencentCloud
         # @type Version: String
         # @param WorkloadVisualConfig: 组件可视化信息
         # @type WorkloadVisualConfig: String
+        # @param DetailUrl: 无
+        # @type DetailUrl: String
+        # @param Installed: 无
+        # @type Installed: Boolean
 
-        attr_accessor :ID, :AppName, :Author, :ReleaseTime, :Outline, :Detail, :Icon, :Version, :WorkloadVisualConfig
+        attr_accessor :ID, :AppName, :Author, :ReleaseTime, :Outline, :Detail, :Icon, :Version, :WorkloadVisualConfig, :DetailUrl, :Installed
         
-        def initialize(id=nil, appname=nil, author=nil, releasetime=nil, outline=nil, detail=nil, icon=nil, version=nil, workloadvisualconfig=nil)
+        def initialize(id=nil, appname=nil, author=nil, releasetime=nil, outline=nil, detail=nil, icon=nil, version=nil, workloadvisualconfig=nil, detailurl=nil, installed=nil)
           @ID = id
           @AppName = appname
           @Author = author
@@ -5499,6 +5503,8 @@ module TencentCloud
           @Icon = icon
           @Version = version
           @WorkloadVisualConfig = workloadvisualconfig
+          @DetailUrl = detailurl
+          @Installed = installed
         end
 
         def deserialize(params)
@@ -5511,6 +5517,8 @@ module TencentCloud
           @Icon = params['Icon']
           @Version = params['Version']
           @WorkloadVisualConfig = params['WorkloadVisualConfig']
+          @DetailUrl = params['DetailUrl']
+          @Installed = params['Installed']
         end
       end
 
