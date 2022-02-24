@@ -4296,6 +4296,114 @@ module TencentCloud
         end
       end
 
+      # CreateVpnGatewaySslClient请求参数结构体
+      class CreateVpnGatewaySslClientRequest < TencentCloud::Common::AbstractModel
+        # @param SslVpnServerId: SSL-VPN-SERVER 实例ID。
+        # @type SslVpnServerId: String
+        # @param SslVpnClientName: name
+        # @type SslVpnClientName: String
+
+        attr_accessor :SslVpnServerId, :SslVpnClientName
+        
+        def initialize(sslvpnserverid=nil, sslvpnclientname=nil)
+          @SslVpnServerId = sslvpnserverid
+          @SslVpnClientName = sslvpnclientname
+        end
+
+        def deserialize(params)
+          @SslVpnServerId = params['SslVpnServerId']
+          @SslVpnClientName = params['SslVpnClientName']
+        end
+      end
+
+      # CreateVpnGatewaySslClient返回参数结构体
+      class CreateVpnGatewaySslClientResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: 异步任务ID。
+        # @type TaskId: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :RequestId
+        
+        def initialize(taskid=nil, requestid=nil)
+          @TaskId = taskid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateVpnGatewaySslServer请求参数结构体
+      class CreateVpnGatewaySslServerRequest < TencentCloud::Common::AbstractModel
+        # @param VpnGatewayId: VPN实例ID
+        # @type VpnGatewayId: String
+        # @param SslVpnServerName: SSL_VPN_SERVER 实例名
+        # @type SslVpnServerName: String
+        # @param LocalAddress: 本端地址网段
+        # @type LocalAddress: Array
+        # @param RemoteAddress: 客户端地址网段
+        # @type RemoteAddress: String
+        # @param SslVpnProtocol: SSL VPN服务端监听协议。当前仅支持 UDP。默认UDP
+        # @type SslVpnProtocol: String
+        # @param SslVpnPort: SSL VPN服务端监听协议端口。默认1194。
+        # @type SslVpnPort: Integer
+        # @param IntegrityAlgorithm: 认证算法。可选 'SHA1', 'MD5', 'NONE'。默认NONE
+        # @type IntegrityAlgorithm: String
+        # @param EncryptAlgorithm: 加密算法。可选 'AES-128-CBC', 'AES-192-CBC', 'AES-256-CBC', 'NONE'。默认NONE
+        # @type EncryptAlgorithm: String
+        # @param Compress: 是否支持压缩。当前仅支持不支持压缩。默认False
+        # @type Compress: Boolean
+
+        attr_accessor :VpnGatewayId, :SslVpnServerName, :LocalAddress, :RemoteAddress, :SslVpnProtocol, :SslVpnPort, :IntegrityAlgorithm, :EncryptAlgorithm, :Compress
+        
+        def initialize(vpngatewayid=nil, sslvpnservername=nil, localaddress=nil, remoteaddress=nil, sslvpnprotocol=nil, sslvpnport=nil, integrityalgorithm=nil, encryptalgorithm=nil, compress=nil)
+          @VpnGatewayId = vpngatewayid
+          @SslVpnServerName = sslvpnservername
+          @LocalAddress = localaddress
+          @RemoteAddress = remoteaddress
+          @SslVpnProtocol = sslvpnprotocol
+          @SslVpnPort = sslvpnport
+          @IntegrityAlgorithm = integrityalgorithm
+          @EncryptAlgorithm = encryptalgorithm
+          @Compress = compress
+        end
+
+        def deserialize(params)
+          @VpnGatewayId = params['VpnGatewayId']
+          @SslVpnServerName = params['SslVpnServerName']
+          @LocalAddress = params['LocalAddress']
+          @RemoteAddress = params['RemoteAddress']
+          @SslVpnProtocol = params['SslVpnProtocol']
+          @SslVpnPort = params['SslVpnPort']
+          @IntegrityAlgorithm = params['IntegrityAlgorithm']
+          @EncryptAlgorithm = params['EncryptAlgorithm']
+          @Compress = params['Compress']
+        end
+      end
+
+      # CreateVpnGatewaySslServer返回参数结构体
+      class CreateVpnGatewaySslServerResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: 创建SSL-VPN server 异步任务ID
+        # @type TaskId: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :RequestId
+        
+        def initialize(taskid=nil, requestid=nil)
+          @TaskId = taskid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 合规化审批单
       class CrossBorderCompliance < TencentCloud::Common::AbstractModel
         # @param ServiceProvider: 服务商，可选值：`UNICOM`。
@@ -5699,6 +5807,78 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteVpnGatewaySslClient请求参数结构体
+      class DeleteVpnGatewaySslClientRequest < TencentCloud::Common::AbstractModel
+        # @param SslVpnClientId: SSL-VPN-CLIENT 实例ID。
+        # @type SslVpnClientId: String
+
+        attr_accessor :SslVpnClientId
+        
+        def initialize(sslvpnclientid=nil)
+          @SslVpnClientId = sslvpnclientid
+        end
+
+        def deserialize(params)
+          @SslVpnClientId = params['SslVpnClientId']
+        end
+      end
+
+      # DeleteVpnGatewaySslClient返回参数结构体
+      class DeleteVpnGatewaySslClientResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: 异步任务ID。
+        # @type TaskId: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :RequestId
+        
+        def initialize(taskid=nil, requestid=nil)
+          @TaskId = taskid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteVpnGatewaySslServer请求参数结构体
+      class DeleteVpnGatewaySslServerRequest < TencentCloud::Common::AbstractModel
+        # @param SslVpnServerId: SSL-VPN-SERVER 实例ID。
+        # @type SslVpnServerId: String
+
+        attr_accessor :SslVpnServerId
+        
+        def initialize(sslvpnserverid=nil)
+          @SslVpnServerId = sslvpnserverid
+        end
+
+        def deserialize(params)
+          @SslVpnServerId = params['SslVpnServerId']
+        end
+      end
+
+      # DeleteVpnGatewaySslServer返回参数结构体
+      class DeleteVpnGatewaySslServerResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: 异步任务ID。
+        # @type TaskId: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :RequestId
+        
+        def initialize(taskid=nil, requestid=nil)
+          @TaskId = taskid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
           @RequestId = params['RequestId']
         end
       end
@@ -9822,6 +10002,148 @@ module TencentCloud
         end
       end
 
+      # DescribeVpnGatewaySslClients请求参数结构体
+      class DescribeVpnGatewaySslClientsRequest < TencentCloud::Common::AbstractModel
+        # @param Filters: 过滤条件，参数不支持同时指定SslVpnClientIds和Filters。
+        # <li>vpc-id - String - （过滤条件）VPC实例ID形如：vpc-f49l6u0z。</li>
+        # <li>vpn-gateway-id - String - （过滤条件）VPN实例ID形如：vpngw-5aluhh9t。</li>
+        # <li>ssl-vpn-server-id - String - （过滤条件）SSL-VPN-SERVER实例ID形如：vpngwSslServer-123456。</li>
+        # <li>ssl-vpn-client-id - String - （过滤条件）SSL-VPN-CLIENT实例ID形如：vpngwSslClient-123456。</li>
+        # <li>ssl-vpn-client-name - String - （过滤条件）SSL-VPN-CLIENT实例名称。</li>
+        # @type Filters: Array
+        # @param Offset: 偏移量
+        # @type Offset: Integer
+        # @param Limit: 请求对象个数
+        # @type Limit: Integer
+        # @param SslVpnClientIds: SSL-VPN-CLIENT实例ID。形如：vpngwSslClient-f49l6u0z。每次请求的实例的上限为100。参数不支持同时指定SslVpnClientIds和Filters。
+        # @type SslVpnClientIds: Array
+
+        attr_accessor :Filters, :Offset, :Limit, :SslVpnClientIds
+        
+        def initialize(filters=nil, offset=nil, limit=nil, sslvpnclientids=nil)
+          @Filters = filters
+          @Offset = offset
+          @Limit = limit
+          @SslVpnClientIds = sslvpnclientids
+        end
+
+        def deserialize(params)
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @SslVpnClientIds = params['SslVpnClientIds']
+        end
+      end
+
+      # DescribeVpnGatewaySslClients返回参数结构体
+      class DescribeVpnGatewaySslClientsResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 符合条件的实例数量。
+        # @type TotalCount: Integer
+        # @param SslVpnClientSet: 符合条件的实例个数。
+        # @type SslVpnClientSet: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :SslVpnClientSet, :RequestId
+        
+        def initialize(totalcount=nil, sslvpnclientset=nil, requestid=nil)
+          @TotalCount = totalcount
+          @SslVpnClientSet = sslvpnclientset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['SslVpnClientSet'].nil?
+            @SslVpnClientSet = []
+            params['SslVpnClientSet'].each do |i|
+              sslvpnclient_tmp = SslVpnClient.new
+              sslvpnclient_tmp.deserialize(i)
+              @SslVpnClientSet << sslvpnclient_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeVpnGatewaySslServers请求参数结构体
+      class DescribeVpnGatewaySslServersRequest < TencentCloud::Common::AbstractModel
+        # @param Offset: 偏移量
+        # @type Offset: Integer
+        # @param Limit: 请求对象个数
+        # @type Limit: Integer
+        # @param SslVpnServerIds: SSL-VPN-SERVER实例ID。形如：vpngwSslServer-12345678。每次请求的实例的上限为100。参数不支持同时指定SslVpnServerIds和Filters。
+        # @type SslVpnServerIds: Array
+        # @param Filters: 过滤条件，参数不支持同时指定SslVpnServerIds和Filters。
+        # <li>vpc-id - String - （过滤条件）VPC实例ID形如：vpc-f49l6u0z。</li>
+        # <li>vpn-gateway-id - String - （过滤条件）VPN实例ID形如：vpngw-5aluhh9t。</li>
+        # <li>vpn-gateway-name - String - （过滤条件）VPN实例名称。</li>
+        # <li>ssl-vpn-server-name - String - （过滤条件）SSL-VPN-SERVER实例名称。</li>
+        # <li>ssl-vpn-server-id - String - （过滤条件）SSL-VPN-SERVER实例ID形如：vpngwSslServer-123456。</li>
+        # @type Filters: Array
+
+        attr_accessor :Offset, :Limit, :SslVpnServerIds, :Filters
+        
+        def initialize(offset=nil, limit=nil, sslvpnserverids=nil, filters=nil)
+          @Offset = offset
+          @Limit = limit
+          @SslVpnServerIds = sslvpnserverids
+          @Filters = filters
+        end
+
+        def deserialize(params)
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @SslVpnServerIds = params['SslVpnServerIds']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filterobject_tmp = FilterObject.new
+              filterobject_tmp.deserialize(i)
+              @Filters << filterobject_tmp
+            end
+          end
+        end
+      end
+
+      # DescribeVpnGatewaySslServers返回参数结构体
+      class DescribeVpnGatewaySslServersResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 符合条件的实例数量。
+        # @type TotalCount: Integer
+        # @param SslVpnSeverSet: SSL-VPN-SERVER 实例详细信息列表。
+        # @type SslVpnSeverSet: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :SslVpnSeverSet, :RequestId
+        
+        def initialize(totalcount=nil, sslvpnseverset=nil, requestid=nil)
+          @TotalCount = totalcount
+          @SslVpnSeverSet = sslvpnseverset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['SslVpnSeverSet'].nil?
+            @SslVpnSeverSet = []
+            params['SslVpnSeverSet'].each do |i|
+              sslvpnsever_tmp = SslVpnSever.new
+              sslvpnsever_tmp.deserialize(i)
+              @SslVpnSeverSet << sslvpnsever_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeVpnGateways请求参数结构体
       class DescribeVpnGatewaysRequest < TencentCloud::Common::AbstractModel
         # @param VpnGatewayIds: VPN网关实例ID。形如：vpngw-f49l6u0z。每次请求的实例的上限为100。参数不支持同时指定VpnGatewayIds和Filters。
@@ -10389,6 +10711,42 @@ module TencentCloud
         end
       end
 
+      # DisableVpnGatewaySslClientCert请求参数结构体
+      class DisableVpnGatewaySslClientCertRequest < TencentCloud::Common::AbstractModel
+        # @param SslVpnClientId: SSL-VPN-CLIENT 实例ID。
+        # @type SslVpnClientId: String
+
+        attr_accessor :SslVpnClientId
+        
+        def initialize(sslvpnclientid=nil)
+          @SslVpnClientId = sslvpnclientid
+        end
+
+        def deserialize(params)
+          @SslVpnClientId = params['SslVpnClientId']
+        end
+      end
+
+      # DisableVpnGatewaySslClientCert返回参数结构体
+      class DisableVpnGatewaySslClientCertResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: 异步任务实例ID。
+        # @type TaskId: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :RequestId
+        
+        def initialize(taskid=nil, requestid=nil)
+          @TaskId = taskid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DisassociateAddress请求参数结构体
       class DisassociateAddressRequest < TencentCloud::Common::AbstractModel
         # @param AddressId: 标识 EIP 的唯一 ID。EIP 唯一 ID 形如：`eip-11112222`。
@@ -10696,6 +11054,42 @@ module TencentCloud
         end
       end
 
+      # DownloadVpnGatewaySslClientCert请求参数结构体
+      class DownloadVpnGatewaySslClientCertRequest < TencentCloud::Common::AbstractModel
+        # @param SslVpnClientId: SSL-VPN-CLIENT 实例ID。
+        # @type SslVpnClientId: String
+
+        attr_accessor :SslVpnClientId
+        
+        def initialize(sslvpnclientid=nil)
+          @SslVpnClientId = sslvpnclientid
+        end
+
+        def deserialize(params)
+          @SslVpnClientId = params['SslVpnClientId']
+        end
+      end
+
+      # DownloadVpnGatewaySslClientCert返回参数结构体
+      class DownloadVpnGatewaySslClientCertResponse < TencentCloud::Common::AbstractModel
+        # @param SslClientConfigsSet: SSL-VPN-CLIENT 证书配置
+        # @type SslClientConfigsSet: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :SslClientConfigsSet, :RequestId
+        
+        def initialize(sslclientconfigsset=nil, requestid=nil)
+          @SslClientConfigsSet = sslclientconfigsset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @SslClientConfigsSet = params['SslClientConfigsSet']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # EnableCcnRoutes请求参数结构体
       class EnableCcnRoutesRequest < TencentCloud::Common::AbstractModel
         # @param CcnId: CCN实例ID。形如：ccn-f49l6u0z。
@@ -10843,6 +11237,42 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # EnableVpnGatewaySslClientCert请求参数结构体
+      class EnableVpnGatewaySslClientCertRequest < TencentCloud::Common::AbstractModel
+        # @param SslVpnClientId: SSL-VPN-CLIENT 实例ID。
+        # @type SslVpnClientId: String
+
+        attr_accessor :SslVpnClientId
+        
+        def initialize(sslvpnclientid=nil)
+          @SslVpnClientId = sslvpnclientid
+        end
+
+        def deserialize(params)
+          @SslVpnClientId = params['SslVpnClientId']
+        end
+      end
+
+      # EnableVpnGatewaySslClientCert返回参数结构体
+      class EnableVpnGatewaySslClientCertResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: 异步任务实例ID。
+        # @type TaskId: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :RequestId
+        
+        def initialize(taskid=nil, requestid=nil)
+          @TaskId = taskid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
           @RequestId = params['RequestId']
         end
       end
@@ -16570,6 +17000,144 @@ module TencentCloud
           @NatGatewayId = params['NatGatewayId']
           @VpcId = params['VpcId']
           @CreatedTime = params['CreatedTime']
+        end
+      end
+
+      # SSL-VPN-CLIENT 出参
+      class SslVpnClient < TencentCloud::Common::AbstractModel
+        # @param VpcId: VPC实例ID
+        # @type VpcId: String
+        # @param SslVpnServerId: SSL-VPN-SERVER 实例ID
+        # @type SslVpnServerId: String
+        # @param CertStatus: 证书状态.
+        # 0:创建中
+        # 1:正常
+        # 2:已停用
+        # 3.已过期
+        # 4.创建出错
+        # @type CertStatus: Integer
+        # @param SslVpnClientId: SSL-VPN-CLIENT 实例ID
+        # @type SslVpnClientId: String
+        # @param CertBeginTime: 证书开始时间
+        # @type CertBeginTime: String
+        # @param CertEndTime: 证书到期时间
+        # @type CertEndTime: String
+        # @param Name: CLIENT NAME
+        # @type Name: String
+        # @param State: 创建CLIENT 状态。
+        # 0 创建中
+        # 1 创建出错
+        # 2 更新中
+        # 3 更新出错
+        # 4 销毁中
+        # 5 销毁出粗
+        # 6 已连通
+        # 7 未知
+        # @type State: String
+
+        attr_accessor :VpcId, :SslVpnServerId, :CertStatus, :SslVpnClientId, :CertBeginTime, :CertEndTime, :Name, :State
+        
+        def initialize(vpcid=nil, sslvpnserverid=nil, certstatus=nil, sslvpnclientid=nil, certbegintime=nil, certendtime=nil, name=nil, state=nil)
+          @VpcId = vpcid
+          @SslVpnServerId = sslvpnserverid
+          @CertStatus = certstatus
+          @SslVpnClientId = sslvpnclientid
+          @CertBeginTime = certbegintime
+          @CertEndTime = certendtime
+          @Name = name
+          @State = state
+        end
+
+        def deserialize(params)
+          @VpcId = params['VpcId']
+          @SslVpnServerId = params['SslVpnServerId']
+          @CertStatus = params['CertStatus']
+          @SslVpnClientId = params['SslVpnClientId']
+          @CertBeginTime = params['CertBeginTime']
+          @CertEndTime = params['CertEndTime']
+          @Name = params['Name']
+          @State = params['State']
+        end
+      end
+
+      # SSL-VPN-SERVER 信息 SET
+      class SslVpnSever < TencentCloud::Common::AbstractModel
+        # @param VpcId: VPC实例ID.
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VpcId: String
+        # @param SslVpnServerId: SSL-VPN-SERVER 实例ID。
+        # @type SslVpnServerId: String
+        # @param VpnGatewayId: VPN 实例ID。
+        # @type VpnGatewayId: String
+        # @param SslVpnServerName: SSL-VPN-SERVER name。
+        # @type SslVpnServerName: String
+        # @param LocalAddress: 本端地址段。
+        # @type LocalAddress: Array
+        # @param RemoteAddress: 客户端地址段。
+        # @type RemoteAddress: String
+        # @param MaxConnection: 客户端最大连接数。
+        # @type MaxConnection: Integer
+        # @param WanIp: SSL-VPN 网关公网IP。
+        # @type WanIp: String
+        # @param SslVpnProtocol: SSL VPN服务端监听协议
+        # @type SslVpnProtocol: String
+        # @param SslVpnPort: SSL VPN服务端监听协议端口
+        # @type SslVpnPort: Integer
+        # @param EncryptAlgorithm: 加密算法。
+        # @type EncryptAlgorithm: String
+        # @param IntegrityAlgorithm: 认证算法。
+        # @type IntegrityAlgorithm: String
+        # @param Compress: 是否支持压缩。
+        # @type Compress: Integer
+        # @param CreateTime: 创建时间。
+        # @type CreateTime: String
+        # @param State: SSL-VPN-SERVER 创建状态。
+        # 0 创建中
+        # 1 创建出错
+        # 2 更新中
+        # 3 更新出错
+        # 4 销毁中
+        # 5 销毁出粗
+        # 6 已连通
+        # 7 未知
+        # @type State: Integer
+
+        attr_accessor :VpcId, :SslVpnServerId, :VpnGatewayId, :SslVpnServerName, :LocalAddress, :RemoteAddress, :MaxConnection, :WanIp, :SslVpnProtocol, :SslVpnPort, :EncryptAlgorithm, :IntegrityAlgorithm, :Compress, :CreateTime, :State
+        
+        def initialize(vpcid=nil, sslvpnserverid=nil, vpngatewayid=nil, sslvpnservername=nil, localaddress=nil, remoteaddress=nil, maxconnection=nil, wanip=nil, sslvpnprotocol=nil, sslvpnport=nil, encryptalgorithm=nil, integrityalgorithm=nil, compress=nil, createtime=nil, state=nil)
+          @VpcId = vpcid
+          @SslVpnServerId = sslvpnserverid
+          @VpnGatewayId = vpngatewayid
+          @SslVpnServerName = sslvpnservername
+          @LocalAddress = localaddress
+          @RemoteAddress = remoteaddress
+          @MaxConnection = maxconnection
+          @WanIp = wanip
+          @SslVpnProtocol = sslvpnprotocol
+          @SslVpnPort = sslvpnport
+          @EncryptAlgorithm = encryptalgorithm
+          @IntegrityAlgorithm = integrityalgorithm
+          @Compress = compress
+          @CreateTime = createtime
+          @State = state
+        end
+
+        def deserialize(params)
+          @VpcId = params['VpcId']
+          @SslVpnServerId = params['SslVpnServerId']
+          @VpnGatewayId = params['VpnGatewayId']
+          @SslVpnServerName = params['SslVpnServerName']
+          @LocalAddress = params['LocalAddress']
+          @RemoteAddress = params['RemoteAddress']
+          @MaxConnection = params['MaxConnection']
+          @WanIp = params['WanIp']
+          @SslVpnProtocol = params['SslVpnProtocol']
+          @SslVpnPort = params['SslVpnPort']
+          @EncryptAlgorithm = params['EncryptAlgorithm']
+          @IntegrityAlgorithm = params['IntegrityAlgorithm']
+          @Compress = params['Compress']
+          @CreateTime = params['CreateTime']
+          @State = params['State']
         end
       end
 

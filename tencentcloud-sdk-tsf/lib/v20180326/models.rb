@@ -13083,16 +13083,24 @@ module TencentCloud
         # @param AllowDeleteService: 当为 true 且 DisableService 也为 true 时，会删除之前创建的 service，请小心使用
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AllowDeleteService: Boolean
+        # @param OpenSessionAffinity: 开启SessionAffinity，true为开启，false为不开启，默认为false
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OpenSessionAffinity: Boolean
+        # @param SessionAffinityTimeoutSeconds: SessionAffinity会话时间，默认10800
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SessionAffinityTimeoutSeconds: Integer
 
-        attr_accessor :AccessType, :ProtocolPorts, :SubnetId, :DisableService, :HeadlessService, :AllowDeleteService
+        attr_accessor :AccessType, :ProtocolPorts, :SubnetId, :DisableService, :HeadlessService, :AllowDeleteService, :OpenSessionAffinity, :SessionAffinityTimeoutSeconds
         
-        def initialize(accesstype=nil, protocolports=nil, subnetid=nil, disableservice=nil, headlessservice=nil, allowdeleteservice=nil)
+        def initialize(accesstype=nil, protocolports=nil, subnetid=nil, disableservice=nil, headlessservice=nil, allowdeleteservice=nil, opensessionaffinity=nil, sessionaffinitytimeoutseconds=nil)
           @AccessType = accesstype
           @ProtocolPorts = protocolports
           @SubnetId = subnetid
           @DisableService = disableservice
           @HeadlessService = headlessservice
           @AllowDeleteService = allowdeleteservice
+          @OpenSessionAffinity = opensessionaffinity
+          @SessionAffinityTimeoutSeconds = sessionaffinitytimeoutseconds
         end
 
         def deserialize(params)
@@ -13109,6 +13117,8 @@ module TencentCloud
           @DisableService = params['DisableService']
           @HeadlessService = params['HeadlessService']
           @AllowDeleteService = params['AllowDeleteService']
+          @OpenSessionAffinity = params['OpenSessionAffinity']
+          @SessionAffinityTimeoutSeconds = params['SessionAffinityTimeoutSeconds']
         end
       end
 

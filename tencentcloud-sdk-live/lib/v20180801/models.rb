@@ -1962,6 +1962,72 @@ module TencentCloud
         end
       end
 
+      # CreateScreenshotTask请求参数结构体
+      class CreateScreenshotTaskRequest < TencentCloud::Common::AbstractModel
+        # @param StreamName: 流名称。
+        # @type StreamName: String
+        # @param DomainName: 推流域名。
+        # @type DomainName: String
+        # @param AppName: 推流路径。
+        # @type AppName: String
+        # @param EndTime: 截图任务结束时间，Unix时间戳。设置时间必须大于StartTime及当前时间，且EndTime - StartTime不能超过24小时。
+        # @type EndTime: Integer
+        # @param TemplateId: 截图模板ID，CreateLiveSnapshotTemplate 返回值。如果传入错误ID，则不拉起截图。
+        # @type TemplateId: Integer
+        # @param StartTime: 截图任务开始时间，Unix时间戳。如果不填表示立即启动截图。StartTime不能超过当前时间+6天。
+        # @type StartTime: Integer
+        # @param StreamType: 推流类型，默认0。取值：
+        # 0-直播推流。
+        # 1-合成流，即 A+B=C 类型混流。
+        # @type StreamType: Integer
+        # @param Extension: 扩展字段，暂无定义。默认为空。
+        # @type Extension: String
+
+        attr_accessor :StreamName, :DomainName, :AppName, :EndTime, :TemplateId, :StartTime, :StreamType, :Extension
+        
+        def initialize(streamname=nil, domainname=nil, appname=nil, endtime=nil, templateid=nil, starttime=nil, streamtype=nil, extension=nil)
+          @StreamName = streamname
+          @DomainName = domainname
+          @AppName = appname
+          @EndTime = endtime
+          @TemplateId = templateid
+          @StartTime = starttime
+          @StreamType = streamtype
+          @Extension = extension
+        end
+
+        def deserialize(params)
+          @StreamName = params['StreamName']
+          @DomainName = params['DomainName']
+          @AppName = params['AppName']
+          @EndTime = params['EndTime']
+          @TemplateId = params['TemplateId']
+          @StartTime = params['StartTime']
+          @StreamType = params['StreamType']
+          @Extension = params['Extension']
+        end
+      end
+
+      # CreateScreenshotTask返回参数结构体
+      class CreateScreenshotTaskResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: 任务ID，全局唯一标识截图任务。返回TaskId字段说明截图任务创建成功。
+        # @type TaskId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :RequestId
+        
+        def initialize(taskid=nil, requestid=nil)
+          @TaskId = taskid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 流播放信息
       class DayStreamPlayInfo < TencentCloud::Common::AbstractModel
         # @param Time: 数据时间点，格式：yyyy-mm-dd HH:MM:SS。
@@ -2604,6 +2670,38 @@ module TencentCloud
 
       # DeleteRecordTask返回参数结构体
       class DeleteRecordTaskResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteScreenshotTask请求参数结构体
+      class DeleteScreenshotTaskRequest < TencentCloud::Common::AbstractModel
+        # @param TaskId: 任务ID，CreateScreenshotTask返回。删除TaskId指定的截图任务。
+        # @type TaskId: String
+
+        attr_accessor :TaskId
+        
+        def initialize(taskid=nil)
+          @TaskId = taskid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+        end
+      end
+
+      # DeleteScreenshotTask返回参数结构体
+      class DeleteScreenshotTaskResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -5716,6 +5814,73 @@ module TencentCloud
         end
       end
 
+      # DescribeScreenshotTask请求参数结构体
+      class DescribeScreenshotTaskRequest < TencentCloud::Common::AbstractModel
+        # @param StartTime: 查询任务开始时间，Unix 时间戳。设置时间不早于当前时间之前90天的时间，且查询时间跨度不超过一周。
+        # @type StartTime: Integer
+        # @param EndTime: 查询任务结束时间，Unix 时间戳。EndTime 必须大于 StartTime，设置时间不早于当前时间之前90天的时间，且查询时间跨度不超过一周。（注意：任务开始结束时间必须在查询时间范围内）。
+        # @type EndTime: Integer
+        # @param StreamName: 流名称。
+        # @type StreamName: String
+        # @param DomainName: 推流域名。
+        # @type DomainName: String
+        # @param AppName: 推流路径。
+        # @type AppName: String
+        # @param ScrollToken: 翻页标识，分批拉取时使用：当单次请求无法拉取所有数据，接口将会返回 ScrollToken，下一次请求携带该 Token，将会从下一条记录开始获取。
+        # @type ScrollToken: String
+
+        attr_accessor :StartTime, :EndTime, :StreamName, :DomainName, :AppName, :ScrollToken
+        
+        def initialize(starttime=nil, endtime=nil, streamname=nil, domainname=nil, appname=nil, scrolltoken=nil)
+          @StartTime = starttime
+          @EndTime = endtime
+          @StreamName = streamname
+          @DomainName = domainname
+          @AppName = appname
+          @ScrollToken = scrolltoken
+        end
+
+        def deserialize(params)
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @StreamName = params['StreamName']
+          @DomainName = params['DomainName']
+          @AppName = params['AppName']
+          @ScrollToken = params['ScrollToken']
+        end
+      end
+
+      # DescribeScreenshotTask返回参数结构体
+      class DescribeScreenshotTaskResponse < TencentCloud::Common::AbstractModel
+        # @param ScrollToken: 翻页标识，当请求未返回所有数据，该字段表示下一条记录的 Token。当该字段为空，说明已无更多数据。
+        # @type ScrollToken: String
+        # @param TaskList: 截图任务列表。当该字段为空，说明已返回所有数据。
+        # @type TaskList: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ScrollToken, :TaskList, :RequestId
+        
+        def initialize(scrolltoken=nil, tasklist=nil, requestid=nil)
+          @ScrollToken = scrolltoken
+          @TaskList = tasklist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ScrollToken = params['ScrollToken']
+          unless params['TaskList'].nil?
+            @TaskList = []
+            params['TaskList'].each do |i|
+              screenshottask_tmp = ScreenshotTask.new
+              screenshottask_tmp.deserialize(i)
+              @TaskList << screenshottask_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeStreamDayPlayInfoList请求参数结构体
       class DescribeStreamDayPlayInfoListRequest < TencentCloud::Common::AbstractModel
         # @param DayTime: 日期，格式：YYYY-mm-dd。
@@ -8681,6 +8846,50 @@ module TencentCloud
         end
       end
 
+      # 截图任务
+      class ScreenshotTask < TencentCloud::Common::AbstractModel
+        # @param TaskId: 截图任务ID。
+        # @type TaskId: String
+        # @param DomainName: 推流域名。
+        # @type DomainName: String
+        # @param AppName: 推流路径。
+        # @type AppName: String
+        # @param StreamName: 流名称。
+        # @type StreamName: String
+        # @param StartTime: 任务开始时间，Unix时间戳。
+        # @type StartTime: Integer
+        # @param EndTime: 任务结束时间，Unix时间戳。
+        # @type EndTime: Integer
+        # @param TemplateId: 截图模板ID。
+        # @type TemplateId: Integer
+        # @param Stopped: 调用 StopScreenshotTask 停止任务时间，Unix时间戳。值为0表示未曾调用接口停止任务。
+        # @type Stopped: Integer
+
+        attr_accessor :TaskId, :DomainName, :AppName, :StreamName, :StartTime, :EndTime, :TemplateId, :Stopped
+        
+        def initialize(taskid=nil, domainname=nil, appname=nil, streamname=nil, starttime=nil, endtime=nil, templateid=nil, stopped=nil)
+          @TaskId = taskid
+          @DomainName = domainname
+          @AppName = appname
+          @StreamName = streamname
+          @StartTime = starttime
+          @EndTime = endtime
+          @TemplateId = templateid
+          @Stopped = stopped
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @DomainName = params['DomainName']
+          @AppName = params['AppName']
+          @StreamName = params['StreamName']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @TemplateId = params['TemplateId']
+          @Stopped = params['Stopped']
+        end
+      end
+
       # 截图模板信息。
       class SnapshotTemplateInfo < TencentCloud::Common::AbstractModel
         # @param TemplateId: 模板 ID。
@@ -8799,6 +9008,38 @@ module TencentCloud
 
       # StopRecordTask返回参数结构体
       class StopRecordTaskResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # StopScreenshotTask请求参数结构体
+      class StopScreenshotTaskRequest < TencentCloud::Common::AbstractModel
+        # @param TaskId: 截图任务ID。
+        # @type TaskId: String
+
+        attr_accessor :TaskId
+        
+        def initialize(taskid=nil)
+          @TaskId = taskid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+        end
+      end
+
+      # StopScreenshotTask返回参数结构体
+      class StopScreenshotTaskResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 

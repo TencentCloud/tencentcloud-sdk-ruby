@@ -539,7 +539,7 @@ module TencentCloud
         # @type ParentOrgNodeId: String
         # @param Description: 机构节点描述。
         # @type Description: String
-        # @param CustomizedOrgNodeId: 用户自定义可选填的机构节点对外ID，如果非空则校验此ID的唯一性。
+        # @param CustomizedOrgNodeId: 机构代码。如果为空，则默认生成机构代码。如果为非空，则校验机构代码的唯一性。
         # @type CustomizedOrgNodeId: String
 
         attr_accessor :DisplayName, :ParentOrgNodeId, :Description, :CustomizedOrgNodeId
@@ -1497,7 +1497,7 @@ module TencentCloud
         # @param Status: 用户状态，取值 NORMAL （正常）、FREEZE （已冻结）、LOCKED （已锁定）或 NOT_ENABLED （未启用）。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: String
-        # @param DisplayName: 昵称
+        # @param DisplayName: 昵称。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DisplayName: String
         # @param Description: 用户备注。
@@ -1518,7 +1518,7 @@ module TencentCloud
         # @param OrgNodeId: 用户所属的主组织机构唯一ID。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OrgNodeId: String
-        # @param DataSource: 数据来源
+        # @param DataSource: 数据来源。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DataSource: String
         # @param ExpirationTime: 用户过期时间，遵循 ISO 8601 标准。
@@ -2959,7 +2959,7 @@ module TencentCloud
         # @type DisplayName: String
         # @param Description: 机构节点描述。
         # @type Description: String
-        # @param CustomizedOrgNodeId: 用户自定义可选填的机构节点对外ID，如果非空则校验此ID的唯一性。
+        # @param CustomizedOrgNodeId: 机构代码。如果非空则校验此ID的唯一性。
         # @type CustomizedOrgNodeId: String
 
         attr_accessor :OrgNodeId, :DisplayName, :Description, :CustomizedOrgNodeId

@@ -49,10 +49,12 @@ module TencentCloud
         # @type ClsTopicId: String
         # @param LogCollectType: 日志采集类型 2：CLS；3：COS
         # @type LogCollectType: Integer
+        # @param PythonVersion: pyflink作业运行时使用的python版本
+        # @type PythonVersion: String
 
-        attr_accessor :JobId, :EntrypointClass, :ProgramArgs, :Remark, :ResourceRefs, :DefaultParallelism, :Properties, :AutoDelete, :COSBucket, :LogCollect, :JobManagerSpec, :TaskManagerSpec, :ClsLogsetId, :ClsTopicId, :LogCollectType
+        attr_accessor :JobId, :EntrypointClass, :ProgramArgs, :Remark, :ResourceRefs, :DefaultParallelism, :Properties, :AutoDelete, :COSBucket, :LogCollect, :JobManagerSpec, :TaskManagerSpec, :ClsLogsetId, :ClsTopicId, :LogCollectType, :PythonVersion
         
-        def initialize(jobid=nil, entrypointclass=nil, programargs=nil, remark=nil, resourcerefs=nil, defaultparallelism=nil, properties=nil, autodelete=nil, cosbucket=nil, logcollect=nil, jobmanagerspec=nil, taskmanagerspec=nil, clslogsetid=nil, clstopicid=nil, logcollecttype=nil)
+        def initialize(jobid=nil, entrypointclass=nil, programargs=nil, remark=nil, resourcerefs=nil, defaultparallelism=nil, properties=nil, autodelete=nil, cosbucket=nil, logcollect=nil, jobmanagerspec=nil, taskmanagerspec=nil, clslogsetid=nil, clstopicid=nil, logcollecttype=nil, pythonversion=nil)
           @JobId = jobid
           @EntrypointClass = entrypointclass
           @ProgramArgs = programargs
@@ -68,6 +70,7 @@ module TencentCloud
           @ClsLogsetId = clslogsetid
           @ClsTopicId = clstopicid
           @LogCollectType = logcollecttype
+          @PythonVersion = pythonversion
         end
 
         def deserialize(params)
@@ -100,6 +103,7 @@ module TencentCloud
           @ClsLogsetId = params['ClsLogsetId']
           @ClsTopicId = params['ClsTopicId']
           @LogCollectType = params['LogCollectType']
+          @PythonVersion = params['PythonVersion']
         end
       end
 
@@ -893,10 +897,13 @@ module TencentCloud
         # @param ClsTopicId: CLS日志主题ID
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ClsTopicId: String
+        # @param PythonVersion: pyflink作业运行的python版本
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PythonVersion: String
 
-        attr_accessor :JobId, :EntrypointClass, :ProgramArgs, :Remark, :CreateTime, :Version, :DefaultParallelism, :Properties, :ResourceRefDetails, :CreatorUin, :UpdateTime, :COSBucket, :LogCollect, :MaxParallelism, :JobManagerSpec, :TaskManagerSpec, :ClsLogsetId, :ClsTopicId
+        attr_accessor :JobId, :EntrypointClass, :ProgramArgs, :Remark, :CreateTime, :Version, :DefaultParallelism, :Properties, :ResourceRefDetails, :CreatorUin, :UpdateTime, :COSBucket, :LogCollect, :MaxParallelism, :JobManagerSpec, :TaskManagerSpec, :ClsLogsetId, :ClsTopicId, :PythonVersion
         
-        def initialize(jobid=nil, entrypointclass=nil, programargs=nil, remark=nil, createtime=nil, version=nil, defaultparallelism=nil, properties=nil, resourcerefdetails=nil, creatoruin=nil, updatetime=nil, cosbucket=nil, logcollect=nil, maxparallelism=nil, jobmanagerspec=nil, taskmanagerspec=nil, clslogsetid=nil, clstopicid=nil)
+        def initialize(jobid=nil, entrypointclass=nil, programargs=nil, remark=nil, createtime=nil, version=nil, defaultparallelism=nil, properties=nil, resourcerefdetails=nil, creatoruin=nil, updatetime=nil, cosbucket=nil, logcollect=nil, maxparallelism=nil, jobmanagerspec=nil, taskmanagerspec=nil, clslogsetid=nil, clstopicid=nil, pythonversion=nil)
           @JobId = jobid
           @EntrypointClass = entrypointclass
           @ProgramArgs = programargs
@@ -915,6 +922,7 @@ module TencentCloud
           @TaskManagerSpec = taskmanagerspec
           @ClsLogsetId = clslogsetid
           @ClsTopicId = clstopicid
+          @PythonVersion = pythonversion
         end
 
         def deserialize(params)
@@ -950,6 +958,7 @@ module TencentCloud
           @TaskManagerSpec = params['TaskManagerSpec']
           @ClsLogsetId = params['ClsLogsetId']
           @ClsTopicId = params['ClsTopicId']
+          @PythonVersion = params['PythonVersion']
         end
       end
 
