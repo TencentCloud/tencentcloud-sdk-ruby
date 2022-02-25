@@ -2885,7 +2885,7 @@ module TencentCloud
         # @type To: Integer
         # @param Query: 查询语句，语句长度最大为1024
         # @type Query: String
-        # @param Limit: 单次查询返回的日志条数，最大值为100
+        # @param Limit: 单次查询返回的日志条数，最大值为1000
         # @type Limit: Integer
         # @param Context: 加载更多日志时使用，透传上次返回的Context值，获取后续的日志内容
         # @type Context: String
@@ -4226,15 +4226,21 @@ module TencentCloud
         # @type From: Integer
         # @param To: 要查询的日志的结束时间，Unix时间戳，单位ms
         # @type To: Integer
-        # @param Query: 查询语句，语句长度最大为4096
+        # @param Query: 查询语句，语句长度最大为12KB
         # @type Query: String
-        # @param Limit: 单次查询返回的原始日志条数，最大值为100。查询语句(Query)包含SQL时，针对SQL的结果条数需在Query中指定，参考https://cloud.tencent.com/document/product/614/58977
+        # @param Limit: 仅当查询语句(Query)不包含SQL时有效
+        # 表示单次查询返回的原始日志条数，最大值为1000，获取下一页日志需使用Context参数
+        # SQL结果条数指定方式参考<a href="https://cloud.tencent.com/document/product/614/58977" target="_blank">SQL LIMIT语法</a>
         # @type Limit: Integer
-        # @param Context: 加载更多日志时使用，透传上次返回的Context值，获取后续的日志内容，总计最多可获取1万条原始日志。过期时间1小时
+        # @param Context: 仅当查询语句(Query)不包含SQL时有效
+        # 透传上次接口返回的Context值，可获取下一页日志，总计最多可获取1万条原始日志。过期时间1小时
+        # SQL结果翻页方式参考<a href="https://cloud.tencent.com/document/product/614/58977" target="_blank">SQL LIMIT语法</a>
         # @type Context: String
-        # @param Sort: 日志接口是否按时间排序返回；可选值：asc(升序)、desc(降序)，默认为 desc
+        # @param Sort: 仅当查询语句(Query)不包含SQL时有效。
+        # 原始日志是否按时间排序返回；可选值：asc(升序)、desc(降序)，默认为 desc
+        # SQL结果排序方式参考<a href="https://cloud.tencent.com/document/product/614/58978" target="_blank">SQL ORDER BY 语法</a>
         # @type Sort: String
-        # @param UseNewAnalysis: 为true代表使用新检索,响应参数AnalysisRecords和Columns有效， 为false时代表使用老检索方式, AnalysisResults和ColNames有效
+        # @param UseNewAnalysis: 为true代表使用新的检索结果返回方式，响应参数AnalysisRecords和Columns有效；为false时代表使用老检索结果返回方式, AnalysisResults和ColNames有效
         # @type UseNewAnalysis: Boolean
 
         attr_accessor :TopicId, :From, :To, :Query, :Limit, :Context, :Sort, :UseNewAnalysis

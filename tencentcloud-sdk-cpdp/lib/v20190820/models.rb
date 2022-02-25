@@ -8256,6 +8256,26 @@ module TencentCloud
         end
       end
 
+      # 分页参数
+      class Paging < TencentCloud::Common::AbstractModel
+        # @param Index: 页码
+        # @type Index: Integer
+        # @param Count: 页长
+        # @type Count: Integer
+
+        attr_accessor :Index, :Count
+        
+        def initialize(index=nil, count=nil)
+          @Index = index
+          @Count = count
+        end
+
+        def deserialize(params)
+          @Index = params['Index']
+          @Count = params['Count']
+        end
+      end
+
       # pay支付方式json数据
       class PayDataResult < TencentCloud::Common::AbstractModel
         # @param PaymentTag: 支付标签（唯一性）
@@ -10510,6 +10530,132 @@ module TencentCloud
           @MerchantAppId = params['MerchantAppId']
           @DownloadUrl = params['DownloadUrl']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 超额信息数据
+      class QueryExceedingInfoData < TencentCloud::Common::AbstractModel
+        # @param AgentId: 代理商ID。
+        # @type AgentId: String
+        # @param AgentName: 代理商名称。
+        # @type AgentName: String
+        # @param AnchorId: 主播ID。当入参Dimension为ANCHOR或ORDER时，该字段才会有值。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AnchorId: String
+        # @param AnchorName: 主播名称。当入参Dimension为ANCHOR或ORDER时，该字段才会有值。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AnchorName: String
+        # @param OrderId: 订单号。当入参Dimension为ORDER时，该字段才会有值。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OrderId: String
+        # @param ExceedingType: 超额类型。目前支持 AGENT_EXCEED_100 和 ANCHOR_EXCEED_100_12 两种类型。
+        # @type ExceedingType: String
+
+        attr_accessor :AgentId, :AgentName, :AnchorId, :AnchorName, :OrderId, :ExceedingType
+        
+        def initialize(agentid=nil, agentname=nil, anchorid=nil, anchorname=nil, orderid=nil, exceedingtype=nil)
+          @AgentId = agentid
+          @AgentName = agentname
+          @AnchorId = anchorid
+          @AnchorName = anchorname
+          @OrderId = orderid
+          @ExceedingType = exceedingtype
+        end
+
+        def deserialize(params)
+          @AgentId = params['AgentId']
+          @AgentName = params['AgentName']
+          @AnchorId = params['AnchorId']
+          @AnchorName = params['AnchorName']
+          @OrderId = params['OrderId']
+          @ExceedingType = params['ExceedingType']
+        end
+      end
+
+      # QueryExceedingInfo请求参数结构体
+      class QueryExceedingInfoRequest < TencentCloud::Common::AbstractModel
+        # @param TimeStr: 超额日期。格式为yyyy-MM-dd。
+        # @type TimeStr: String
+        # @param Dimension: 维度。目前支持三个维度: AGENT, ANCHOR, ORDER。不填默认使用AGENT维度。
+        # @type Dimension: String
+        # @param PageNumber: 分页信息。不填默认Index为1，Count为100。
+        # @type PageNumber: :class:`Tencentcloud::Cpdp.v20190820.models.Paging`
+
+        attr_accessor :TimeStr, :Dimension, :PageNumber
+        
+        def initialize(timestr=nil, dimension=nil, pagenumber=nil)
+          @TimeStr = timestr
+          @Dimension = dimension
+          @PageNumber = pagenumber
+        end
+
+        def deserialize(params)
+          @TimeStr = params['TimeStr']
+          @Dimension = params['Dimension']
+          unless params['PageNumber'].nil?
+            @PageNumber = Paging.new
+            @PageNumber.deserialize(params['PageNumber'])
+          end
+        end
+      end
+
+      # QueryExceedingInfo返回参数结构体
+      class QueryExceedingInfoResponse < TencentCloud::Common::AbstractModel
+        # @param ErrCode: 错误码。
+        # @type ErrCode: String
+        # @param ErrMessage: 错误消息。
+        # @type ErrMessage: String
+        # @param Result: 超额信息结果。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Result: :class:`Tencentcloud::Cpdp.v20190820.models.QueryExceedingInfoResult`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ErrCode, :ErrMessage, :Result, :RequestId
+        
+        def initialize(errcode=nil, errmessage=nil, result=nil, requestid=nil)
+          @ErrCode = errcode
+          @ErrMessage = errmessage
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ErrCode = params['ErrCode']
+          @ErrMessage = params['ErrMessage']
+          unless params['Result'].nil?
+            @Result = QueryExceedingInfoResult.new
+            @Result.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 超额信息结果
+      class QueryExceedingInfoResult < TencentCloud::Common::AbstractModel
+        # @param Count: 记录总数。
+        # @type Count: Integer
+        # @param Data: 超额信息数据。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Data: Array
+
+        attr_accessor :Count, :Data
+        
+        def initialize(count=nil, data=nil)
+          @Count = count
+          @Data = data
+        end
+
+        def deserialize(params)
+          @Count = params['Count']
+          unless params['Data'].nil?
+            @Data = []
+            params['Data'].each do |i|
+              queryexceedinginfodata_tmp = QueryExceedingInfoData.new
+              queryexceedinginfodata_tmp.deserialize(i)
+              @Data << queryexceedinginfodata_tmp
+            end
+          end
         end
       end
 

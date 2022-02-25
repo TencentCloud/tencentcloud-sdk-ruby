@@ -17,6 +17,32 @@
 module TencentCloud
   module Tcm
     module V20210413
+      # 腾讯云应用性能管理服务参数
+      class APM < TencentCloud::Common::AbstractModel
+        # @param Enable: 是否启用
+        # @type Enable: Boolean
+        # @param Region: 地域
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Region: String
+        # @param InstanceId: APM 实例，如果创建时传入的参数为空，则表示自动创建 APM 实例。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceId: String
+
+        attr_accessor :Enable, :Region, :InstanceId
+        
+        def initialize(enable=nil, region=nil, instanceid=nil)
+          @Enable = enable
+          @Region = region
+          @InstanceId = instanceid
+        end
+
+        def deserialize(params)
+          @Enable = params['Enable']
+          @Region = params['Region']
+          @InstanceId = params['InstanceId']
+        end
+      end
+
       # AccessLog 配置
       class AccessLogConfig < TencentCloud::Common::AbstractModel
         # @param Enable: 是否启用
@@ -623,7 +649,7 @@ module TencentCloud
       class IstioConfig < TencentCloud::Common::AbstractModel
         # @param OutboundTrafficPolicy: 外部流量策略
         # @type OutboundTrafficPolicy: String
-        # @param Tracing: 调用链配置
+        # @param Tracing: 调用链配置（Deprecated，请使用 MeshConfig.Tracing 进行配置）
         # @type Tracing: :class:`Tencentcloud::Tcm.v20210413.models.TracingConfig`
         # @param DisablePolicyChecks: 禁用策略检查功能
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -1186,15 +1212,26 @@ module TencentCloud
       class TracingConfig < TencentCloud::Common::AbstractModel
         # @param Sampling: 调用链采样率，百分比
         # @type Sampling: Float
+        # @param Enable: 是否启用调用跟踪
+        # @type Enable: Boolean
+        # @param APM: 腾讯云 APM 服务相关参数
+        # @type APM: :class:`Tencentcloud::Tcm.v20210413.models.APM`
 
-        attr_accessor :Sampling
+        attr_accessor :Sampling, :Enable, :APM
         
-        def initialize(sampling=nil)
+        def initialize(sampling=nil, enable=nil, apm=nil)
           @Sampling = sampling
+          @Enable = enable
+          @APM = apm
         end
 
         def deserialize(params)
           @Sampling = params['Sampling']
+          @Enable = params['Enable']
+          unless params['APM'].nil?
+            @APM = APM.new
+            @APM.deserialize(params['APM'])
+          end
         end
       end
 

@@ -567,18 +567,21 @@ module TencentCloud
         # @type MidiJsonUrl: String
         # @param ChorusClipSet: 副歌片段数据列表
         # @type ChorusClipSet: Array
+        # @param PreludeInterval: 前奏间隔，单位：毫秒；注：若参数返回为0则无人声部分
+        # @type PreludeInterval: Integer
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :KTVMusicBaseInfo, :PlayToken, :LyricsUrl, :DefinitionInfoSet, :MidiJsonUrl, :ChorusClipSet, :RequestId
+        attr_accessor :KTVMusicBaseInfo, :PlayToken, :LyricsUrl, :DefinitionInfoSet, :MidiJsonUrl, :ChorusClipSet, :PreludeInterval, :RequestId
         
-        def initialize(ktvmusicbaseinfo=nil, playtoken=nil, lyricsurl=nil, definitioninfoset=nil, midijsonurl=nil, chorusclipset=nil, requestid=nil)
+        def initialize(ktvmusicbaseinfo=nil, playtoken=nil, lyricsurl=nil, definitioninfoset=nil, midijsonurl=nil, chorusclipset=nil, preludeinterval=nil, requestid=nil)
           @KTVMusicBaseInfo = ktvmusicbaseinfo
           @PlayToken = playtoken
           @LyricsUrl = lyricsurl
           @DefinitionInfoSet = definitioninfoset
           @MidiJsonUrl = midijsonurl
           @ChorusClipSet = chorusclipset
+          @PreludeInterval = preludeinterval
           @RequestId = requestid
         end
 
@@ -606,6 +609,7 @@ module TencentCloud
               @ChorusClipSet << chorusclip_tmp
             end
           end
+          @PreludeInterval = params['PreludeInterval']
           @RequestId = params['RequestId']
         end
       end
@@ -1603,16 +1607,19 @@ module TencentCloud
         # @type MidiJsonUrl: String
         # @param ChorusClipSet: 副歌片段数据列表
         # @type ChorusClipSet: Array
+        # @param PreludeInterval: 前奏间隔，单位：毫秒；注：若参数返回为0则无人声部分
+        # @type PreludeInterval: Integer
 
-        attr_accessor :KTVMusicBaseInfo, :PlayToken, :LyricsUrl, :DefinitionInfoSet, :MidiJsonUrl, :ChorusClipSet
+        attr_accessor :KTVMusicBaseInfo, :PlayToken, :LyricsUrl, :DefinitionInfoSet, :MidiJsonUrl, :ChorusClipSet, :PreludeInterval
         
-        def initialize(ktvmusicbaseinfo=nil, playtoken=nil, lyricsurl=nil, definitioninfoset=nil, midijsonurl=nil, chorusclipset=nil)
+        def initialize(ktvmusicbaseinfo=nil, playtoken=nil, lyricsurl=nil, definitioninfoset=nil, midijsonurl=nil, chorusclipset=nil, preludeinterval=nil)
           @KTVMusicBaseInfo = ktvmusicbaseinfo
           @PlayToken = playtoken
           @LyricsUrl = lyricsurl
           @DefinitionInfoSet = definitioninfoset
           @MidiJsonUrl = midijsonurl
           @ChorusClipSet = chorusclipset
+          @PreludeInterval = preludeinterval
         end
 
         def deserialize(params)
@@ -1639,6 +1646,7 @@ module TencentCloud
               @ChorusClipSet << chorusclip_tmp
             end
           end
+          @PreludeInterval = params['PreludeInterval']
         end
       end
 

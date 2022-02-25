@@ -1968,7 +1968,7 @@ module TencentCloud
 
       # GetSecurityLastUsed请求参数结构体
       class GetSecurityLastUsedRequest < TencentCloud::Common::AbstractModel
-        # @param SecretIdList: 查询密钥ID列表
+        # @param SecretIdList: 查询密钥ID列表。最多支持10个。
         # @type SecretIdList: Array
 
         attr_accessor :SecretIdList

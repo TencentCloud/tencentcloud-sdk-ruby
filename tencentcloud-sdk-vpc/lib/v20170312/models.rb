@@ -472,7 +472,7 @@ module TencentCloud
         end
       end
 
-      # IP地址模版
+      # IP地址模板
       class AddressTemplateSpecification < TencentCloud::Common::AbstractModel
         # @param AddressId: IP地址ID，例如：ipm-2uw6ujo6。
         # @type AddressId: String
@@ -16863,7 +16863,7 @@ module TencentCloud
         end
       end
 
-      # 协议端口模版
+      # 协议端口模板
       class ServiceTemplateSpecification < TencentCloud::Common::AbstractModel
         # @param ServiceId: 协议端口ID，例如：ppm-f5n1f8da。
         # @type ServiceId: String

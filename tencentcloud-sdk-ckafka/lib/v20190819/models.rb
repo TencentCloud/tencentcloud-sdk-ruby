@@ -859,7 +859,7 @@ module TencentCloud
         # @type InstanceId: String
         # @param GroupName: group名称
         # @type GroupName: String
-        # @param TopicName: topic名称
+        # @param TopicName: topic名称，TopicName、TopicNameList 需要显示指定一个存在的topic名称
         # @type TopicName: String
         # @param TopicNameList: topic名称数组
         # @type TopicNameList: Array
@@ -3347,7 +3347,7 @@ module TencentCloud
         # @type SubnetId: String
         # @param RenewFlag: 实例是否续费，int  枚举值：1表示自动续费，2表示明确不自动续费
         # @type RenewFlag: Integer
-        # @param Healthy: 实例状态 int：0表示健康，1表示告警，2 表示实例状态异常
+        # @param Healthy: 实例状态 int：1表示健康，2表示告警，3 表示实例状态异常
         # @type Healthy: Integer
         # @param HealthyMessage: 实例状态信息
         # @type HealthyMessage: String

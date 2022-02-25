@@ -2077,6 +2077,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 灵云-查询超额信息
+
+        # @param request: Request instance for QueryExceedingInfo.
+        # @type request: :class:`Tencentcloud::cpdp::V20190820::QueryExceedingInfoRequest`
+        # @rtype: :class:`Tencentcloud::cpdp::V20190820::QueryExceedingInfoResponse`
+        def QueryExceedingInfo(request)
+          body = send_request('QueryExceedingInfo', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = QueryExceedingInfoResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 跨境-查询汇率
 
         # @param request: Request instance for QueryExchangeRate.

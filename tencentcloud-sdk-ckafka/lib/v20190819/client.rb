@@ -125,7 +125,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 创建消费者
+        # 创建消费者组
 
         # @param request: Request instance for CreateConsumer.
         # @type request: :class:`Tencentcloud::ckafka::V20190819::CreateConsumerRequest`

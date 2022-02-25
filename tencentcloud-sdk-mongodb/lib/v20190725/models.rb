@@ -21,7 +21,7 @@ module TencentCloud
       class AssignProjectRequest < TencentCloud::Common::AbstractModel
         # @param InstanceIds: 实例ID列表，格式如：cmgo-p8vnipr5。与云数据库控制台页面中显示的实例ID相同
         # @type InstanceIds: Array
-        # @param ProjectId: 项目ID
+        # @param ProjectId: 项目ID，用户已创建项目的唯一ID,非自定义
         # @type ProjectId: Integer
 
         attr_accessor :InstanceIds, :ProjectId
@@ -95,10 +95,15 @@ module TencentCloud
         # @type TimeSpend: Integer
         # @param Url: 备份数据下载链接
         # @type Url: String
+        # @param BackupMethod: 备份文件备份类型，0-逻辑备份，1-物理备份
+        # @type BackupMethod: Integer
+        # @param BackupDesc: 发起备份时指定的备注信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BackupDesc: String
 
-        attr_accessor :CreateTime, :BackupName, :ReplicaSetId, :BackupSize, :Status, :Percent, :TimeSpend, :Url
+        attr_accessor :CreateTime, :BackupName, :ReplicaSetId, :BackupSize, :Status, :Percent, :TimeSpend, :Url, :BackupMethod, :BackupDesc
         
-        def initialize(createtime=nil, backupname=nil, replicasetid=nil, backupsize=nil, status=nil, percent=nil, timespend=nil, url=nil)
+        def initialize(createtime=nil, backupname=nil, replicasetid=nil, backupsize=nil, status=nil, percent=nil, timespend=nil, url=nil, backupmethod=nil, backupdesc=nil)
           @CreateTime = createtime
           @BackupName = backupname
           @ReplicaSetId = replicasetid
@@ -107,6 +112,8 @@ module TencentCloud
           @Percent = percent
           @TimeSpend = timespend
           @Url = url
+          @BackupMethod = backupmethod
+          @BackupDesc = backupdesc
         end
 
         def deserialize(params)
@@ -118,6 +125,8 @@ module TencentCloud
           @Percent = params['Percent']
           @TimeSpend = params['TimeSpend']
           @Url = params['Url']
+          @BackupMethod = params['BackupMethod']
+          @BackupDesc = params['BackupDesc']
         end
       end
 
@@ -818,9 +827,9 @@ module TencentCloud
         # @type InstanceId: String
         # @param BackupName: 备份文件名，用来过滤指定文件的下载任务
         # @type BackupName: String
-        # @param StartTime: 指定要查询任务的时间范围，StartTime指定开始时间，不填默认不限制开始时间
+        # @param StartTime: 指定查询时间范围内的任务，StartTime指定开始时间，不填默认不限制开始时间
         # @type StartTime: String
-        # @param EndTime: 指定要查询任务的时间范围，EndTime指定结束时间，不填默认不限制结束时间
+        # @param EndTime: 指定查询时间范围内的任务，EndTime指定截止时间，不填默认不限制截止时间
         # @type EndTime: String
         # @param Limit: 此次查询返回的条数，取值范围为1-100，默认为20
         # @type Limit: Integer
@@ -895,7 +904,7 @@ module TencentCloud
       class DescribeClientConnectionsRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例ID，格式如：cmgo-p8vnipr5。与云数据库控制台页面中显示的实例ID相同
         # @type InstanceId: String
-        # @param Limit: 查询返回记录条数，默认为10000。
+        # @param Limit: 单次请求返回的数量，最小值为1，最大值为1000，默认值为1000。
         # @type Limit: Integer
         # @param Offset: 偏移量，默认值为0。
         # @type Offset: Integer
@@ -1577,7 +1586,7 @@ module TencentCloud
       class InquirePriceCreateDBInstancesRequest < TencentCloud::Common::AbstractModel
         # @param Zone: 实例所属区域名称，格式如：ap-guangzhou-2
         # @type Zone: String
-        # @param NodeNum: 每个副本集内节点个数，当前副本集节点数固定为3，分片从节点数可选，具体参照查询云数据库的售卖规格返回参数
+        # @param NodeNum: 每个副本集内节点个数，具体参照查询云数据库的售卖规格返回参数
         # @type NodeNum: Integer
         # @param Memory: 实例内存大小，单位：GB
         # @type Memory: Integer
@@ -1585,7 +1594,7 @@ module TencentCloud
         # @type Volume: Integer
         # @param MongoVersion: 版本号，具体支持的售卖版本请参照查询云数据库的售卖规格（DescribeSpecInfo）返回结果。参数与版本对应关系是MONGO_3_WT：MongoDB 3.2 WiredTiger存储引擎版本，MONGO_3_ROCKS：MongoDB 3.2 RocksDB存储引擎版本，MONGO_36_WT：MongoDB 3.6 WiredTiger存储引擎版本，MONGO_40_WT：MongoDB 4.0 WiredTiger存储引擎版本
         # @type MongoVersion: String
-        # @param MachineCode: 机器类型，HIO：高IO型；HIO10G：高IO万兆型；STDS5：标准型
+        # @param MachineCode: 机器类型，HIO：高IO型；HIO10G：高IO万兆型；
         # @type MachineCode: String
         # @param GoodsNum: 实例数量, 最小值1，最大值为10
         # @type GoodsNum: Integer
@@ -1656,19 +1665,27 @@ module TencentCloud
         # @type Memory: Integer
         # @param Volume: 变更配置后实例磁盘大小，单位：GB。
         # @type Volume: Integer
+        # @param NodeNum: 实例变更后的节点数，取值范围具体参照查询云数据库的售卖规格返回参数。默认为不变更节点数
+        # @type NodeNum: Integer
+        # @param ReplicateSetNum: 实例变更后的分片数，取值范围具体参照查询云数据库的售卖规格返回参数。只能增加不能减少，默认为不变更分片数
+        # @type ReplicateSetNum: Integer
 
-        attr_accessor :InstanceId, :Memory, :Volume
+        attr_accessor :InstanceId, :Memory, :Volume, :NodeNum, :ReplicateSetNum
         
-        def initialize(instanceid=nil, memory=nil, volume=nil)
+        def initialize(instanceid=nil, memory=nil, volume=nil, nodenum=nil, replicatesetnum=nil)
           @InstanceId = instanceid
           @Memory = memory
           @Volume = volume
+          @NodeNum = nodenum
+          @ReplicateSetNum = replicatesetnum
         end
 
         def deserialize(params)
           @InstanceId = params['InstanceId']
           @Memory = params['Memory']
           @Volume = params['Volume']
+          @NodeNum = params['NodeNum']
+          @ReplicateSetNum = params['ReplicateSetNum']
         end
       end
 
@@ -1978,7 +1995,7 @@ module TencentCloud
         # @type DefaultValue: String
         # @param EnumValue: 枚举值，所有支持的值
         # @type EnumValue: Array
-        # @param NeedRestart: 是否需要重启后生效，"1"需要，"0"无需重启
+        # @param NeedRestart: 是否需要重启生效 1:需要重启后生效；0：无需重启，设置成功即可生效；
         # @type NeedRestart: String
         # @param ParamName: 参数名称
         # @type ParamName: String
@@ -1986,7 +2003,7 @@ module TencentCloud
         # @type Tips: Array
         # @param ValueType: 参数值类型说明
         # @type ValueType: String
-        # @param Status: 是否获取到参数，1为获取，前端正常显示，0:前段显示loading
+        # @param Status: 是否为运行中参数值 1:运行中参数值；0：非运行中参数值；
         # @type Status: Integer
 
         attr_accessor :CurrentValue, :DefaultValue, :EnumValue, :NeedRestart, :ParamName, :Tips, :ValueType, :Status
@@ -2024,7 +2041,7 @@ module TencentCloud
         # @type Max: String
         # @param Min: 最小值
         # @type Min: String
-        # @param NeedRestart: 是否徐亚哦重启后生效 1:需要重启；0:无需重启
+        # @param NeedRestart: 是否需要重启生效 1:需要重启后生效；0：无需重启，设置成功即可生效；
         # @type NeedRestart: String
         # @param ParamName: 参数名称
         # @type ParamName: String
@@ -2032,9 +2049,9 @@ module TencentCloud
         # @type Tips: Array
         # @param ValueType: 参数类型
         # @type ValueType: String
-        # @param Status: 是否正常获取到，1：未正常获取；0：正常获取，仅对前端有实际意义；
+        # @param Status: 是否为运行中参数值 1:运行中参数值；0：非运行中参数值；
         # @type Status: Integer
-        # @param Unit: 暂时未用到，前端使用redis侧代码，为了兼容，保留该参数
+        # @param Unit: 冗余字段，可忽略
         # @type Unit: String
 
         attr_accessor :CurrentValue, :DefaultValue, :Max, :Min, :NeedRestart, :ParamName, :Tips, :ValueType, :Status, :Unit
@@ -2074,15 +2091,15 @@ module TencentCloud
         # @type DefaultValue: String
         # @param EnumValue: 指导值范围
         # @type EnumValue: Array
-        # @param NeedRestart: 是否需要重启
+        # @param NeedRestart: 是否需要重启生效 1:需要重启后生效；0：无需重启，设置成功即可生效；
         # @type NeedRestart: String
         # @param ParamName: 参数名称
         # @type ParamName: String
-        # @param Status: 状态值
+        # @param Status: 是否为运行中参数值 1:运行中参数值；0：非运行中参数值；
         # @type Status: Integer
         # @param Tips: 参数说明
         # @type Tips: Array
-        # @param ValueType: 值类型，multi混合类型
+        # @param ValueType: 当前值的类型描述，默认为multi
         # @type ValueType: String
 
         attr_accessor :CurrentValue, :DefaultValue, :EnumValue, :NeedRestart, :ParamName, :Status, :Tips, :ValueType
@@ -2112,21 +2129,21 @@ module TencentCloud
 
       # 实例可修改参数text类型集合。
       class InstanceTextParam < TencentCloud::Common::AbstractModel
-        # @param CurrentValue: 当前值(暂未使用)
+        # @param CurrentValue: 当前值
         # @type CurrentValue: String
-        # @param DefaultValue: 默认值(暂未使用)
+        # @param DefaultValue: 默认值
         # @type DefaultValue: String
-        # @param NeedRestart: 是否需要重启(暂未使用)
+        # @param NeedRestart: 是否需要重启
         # @type NeedRestart: String
-        # @param ParamName: 参数名称(暂未使用)
+        # @param ParamName: 参数名称
         # @type ParamName: String
-        # @param TextValue: text类型值(暂未使用)
+        # @param TextValue: text类型值
         # @type TextValue: String
-        # @param Tips: 说明(暂未使用)
+        # @param Tips: 参数说明
         # @type Tips: Array
-        # @param ValueType: 值类型(暂未使用)
+        # @param ValueType: 值类型说明
         # @type ValueType: String
-        # @param Status: 值获取状态(暂未使用)
+        # @param Status: 是否为运行中参数值 1:运行中参数值；0：非运行中参数值；
         # @type Status: String
 
         attr_accessor :CurrentValue, :DefaultValue, :NeedRestart, :ParamName, :TextValue, :Tips, :ValueType, :Status
@@ -2357,7 +2374,7 @@ module TencentCloud
       class RenameInstanceRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例ID，格式如：cmgo-p8vnipr5。与云数据库控制台页面中显示的实例ID相同
         # @type InstanceId: String
-        # @param NewName: 实例名称
+        # @param NewName: 自定义实例名称，名称只支持长度为60个字符的中文、英文、数字、下划线_、分隔符 -
         # @type NewName: String
 
         attr_accessor :InstanceId, :NewName
@@ -2450,7 +2467,7 @@ module TencentCloud
         # @type InstanceId: String
         # @param UserName: 实例账号名
         # @type UserName: String
-        # @param Password: 新密码
+        # @param Password: 新密码，新密码长度不能少于8位
         # @type Password: String
 
         attr_accessor :InstanceId, :UserName, :Password
