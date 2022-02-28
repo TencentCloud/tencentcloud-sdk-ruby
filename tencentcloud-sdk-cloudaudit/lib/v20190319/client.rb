@@ -57,6 +57,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 创建跟踪集
+
+        # @param request: Request instance for CreateAuditTrack.
+        # @type request: :class:`Tencentcloud::cloudaudit::V20190319::CreateAuditTrackRequest`
+        # @rtype: :class:`Tencentcloud::cloudaudit::V20190319::CreateAuditTrackResponse`
+        def CreateAuditTrack(request)
+          body = send_request('CreateAuditTrack', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateAuditTrackResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 删除跟踪集
 
         # @param request: Request instance for DeleteAudit.
@@ -67,6 +91,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteAuditResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除云审计跟踪集
+
+        # @param request: Request instance for DeleteAuditTrack.
+        # @type request: :class:`Tencentcloud::cloudaudit::V20190319::DeleteAuditTrackRequest`
+        # @rtype: :class:`Tencentcloud::cloudaudit::V20190319::DeleteAuditTrackResponse`
+        def DeleteAuditTrack(request)
+          body = send_request('DeleteAuditTrack', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteAuditTrackResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -307,6 +355,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = LookUpEventsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改云审计跟踪
+
+        # @param request: Request instance for ModifyAuditTrack.
+        # @type request: :class:`Tencentcloud::cloudaudit::V20190319::ModifyAuditTrackRequest`
+        # @rtype: :class:`Tencentcloud::cloudaudit::V20190319::ModifyAuditTrackResponse`
+        def ModifyAuditTrack(request)
+          body = send_request('ModifyAuditTrack', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyAuditTrackResponse.new
             model.deserialize(response['Response'])
             model
           else

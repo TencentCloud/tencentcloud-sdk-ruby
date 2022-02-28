@@ -140,16 +140,19 @@ module TencentCloud
         # @type Eip: String
         # @param LoadBalancerID: 要绑定的负载均衡ID。负载均衡 ID 形如：lb-0000002i。可通过登录控制台查询，也可通过 DescribeLoadBalancers 接口返回值中的LoadBalancerId获取。
         # @type LoadBalancerID: String
-        # @param LoadBalancerRegion: Clb所在地域，例如：ap-hongkong。
+        # @param LoadBalancerRegion: CLB所在地域，例如：ap-hongkong。
         # @type LoadBalancerRegion: String
+        # @param Vip: CLB内网IP
+        # @type Vip: String
 
-        attr_accessor :InstanceId, :Eip, :LoadBalancerID, :LoadBalancerRegion
+        attr_accessor :InstanceId, :Eip, :LoadBalancerID, :LoadBalancerRegion, :Vip
         
-        def initialize(instanceid=nil, eip=nil, loadbalancerid=nil, loadbalancerregion=nil)
+        def initialize(instanceid=nil, eip=nil, loadbalancerid=nil, loadbalancerregion=nil, vip=nil)
           @InstanceId = instanceid
           @Eip = eip
           @LoadBalancerID = loadbalancerid
           @LoadBalancerRegion = loadbalancerregion
+          @Vip = vip
         end
 
         def deserialize(params)
@@ -157,6 +160,7 @@ module TencentCloud
           @Eip = params['Eip']
           @LoadBalancerID = params['LoadBalancerID']
           @LoadBalancerRegion = params['LoadBalancerRegion']
+          @Vip = params['Vip']
         end
       end
 
