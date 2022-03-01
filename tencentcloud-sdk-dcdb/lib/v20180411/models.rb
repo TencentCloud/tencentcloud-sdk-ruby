@@ -17,6 +17,46 @@
 module TencentCloud
   module Dcdb
     module V20180411
+      # ActiveHourDCDBInstance请求参数结构体
+      class ActiveHourDCDBInstanceRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceIds: 待升级的实例ID列表。形如：["dcdbt-ow728lmc"]，可以通过 DescribeDCDBInstances 查询实例详情获得。
+        # @type InstanceIds: Array
+
+        attr_accessor :InstanceIds
+        
+        def initialize(instanceids=nil)
+          @InstanceIds = instanceids
+        end
+
+        def deserialize(params)
+          @InstanceIds = params['InstanceIds']
+        end
+      end
+
+      # ActiveHourDCDBInstance返回参数结构体
+      class ActiveHourDCDBInstanceResponse < TencentCloud::Common::AbstractModel
+        # @param SuccessInstanceIds: 解隔离成功的实例id列表
+        # @type SuccessInstanceIds: Array
+        # @param FailedInstanceIds: 解隔离失败的实例id列表
+        # @type FailedInstanceIds: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :SuccessInstanceIds, :FailedInstanceIds, :RequestId
+        
+        def initialize(successinstanceids=nil, failedinstanceids=nil, requestid=nil)
+          @SuccessInstanceIds = successinstanceids
+          @FailedInstanceIds = failedinstanceids
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @SuccessInstanceIds = params['SuccessInstanceIds']
+          @FailedInstanceIds = params['FailedInstanceIds']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 升级实例 -- 新增分片类型
       class AddShardConfig < TencentCloud::Common::AbstractModel
         # @param ShardCount: 新增分片的数量
@@ -3300,6 +3340,46 @@ module TencentCloud
         def deserialize(params)
           @FlowIds = params['FlowIds']
           @InstanceIds = params['InstanceIds']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # IsolateHourDCDBInstance请求参数结构体
+      class IsolateHourDCDBInstanceRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceIds: 实例uuid列表
+        # @type InstanceIds: Array
+
+        attr_accessor :InstanceIds
+        
+        def initialize(instanceids=nil)
+          @InstanceIds = instanceids
+        end
+
+        def deserialize(params)
+          @InstanceIds = params['InstanceIds']
+        end
+      end
+
+      # IsolateHourDCDBInstance返回参数结构体
+      class IsolateHourDCDBInstanceResponse < TencentCloud::Common::AbstractModel
+        # @param SuccessInstanceIds: 隔离成功的实例id列表
+        # @type SuccessInstanceIds: Array
+        # @param FailedInstanceIds: 隔离失败的实例id列表
+        # @type FailedInstanceIds: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :SuccessInstanceIds, :FailedInstanceIds, :RequestId
+        
+        def initialize(successinstanceids=nil, failedinstanceids=nil, requestid=nil)
+          @SuccessInstanceIds = successinstanceids
+          @FailedInstanceIds = failedinstanceids
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @SuccessInstanceIds = params['SuccessInstanceIds']
+          @FailedInstanceIds = params['FailedInstanceIds']
           @RequestId = params['RequestId']
         end
       end

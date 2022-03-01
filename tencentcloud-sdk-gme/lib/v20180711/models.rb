@@ -706,6 +706,66 @@ module TencentCloud
         end
       end
 
+      # DescribeRealtimeScanConfig请求参数结构体
+      class DescribeRealtimeScanConfigRequest < TencentCloud::Common::AbstractModel
+        # @param BizId: 应用ID
+        # @type BizId: Integer
+
+        attr_accessor :BizId
+        
+        def initialize(bizid=nil)
+          @BizId = bizid
+        end
+
+        def deserialize(params)
+          @BizId = params['BizId']
+        end
+      end
+
+      # DescribeRealtimeScanConfig返回参数结构体
+      class DescribeRealtimeScanConfigResponse < TencentCloud::Common::AbstractModel
+        # @param ErrorCode: 返回结果码
+        # @type ErrorCode: Integer
+        # @param BizId: 应用ID
+        # @type BizId: Integer
+        # @param AuditType: 送检类型
+        # @type AuditType: Integer
+        # @param UserIdRegex: 用户号正则
+        # @type UserIdRegex: Array
+        # @param RoomIdRegex: 房间号正则
+        # @type RoomIdRegex: Array
+        # @param UserIdString: 用户号字符串，逗号分隔
+        # @type UserIdString: String
+        # @param RoomIdString: 房间号字符串，逗号分隔
+        # @type RoomIdString: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ErrorCode, :BizId, :AuditType, :UserIdRegex, :RoomIdRegex, :UserIdString, :RoomIdString, :RequestId
+        
+        def initialize(errorcode=nil, bizid=nil, audittype=nil, useridregex=nil, roomidregex=nil, useridstring=nil, roomidstring=nil, requestid=nil)
+          @ErrorCode = errorcode
+          @BizId = bizid
+          @AuditType = audittype
+          @UserIdRegex = useridregex
+          @RoomIdRegex = roomidregex
+          @UserIdString = useridstring
+          @RoomIdString = roomidstring
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ErrorCode = params['ErrorCode']
+          @BizId = params['BizId']
+          @AuditType = params['AuditType']
+          @UserIdRegex = params['UserIdRegex']
+          @RoomIdRegex = params['RoomIdRegex']
+          @UserIdString = params['UserIdString']
+          @RoomIdString = params['RoomIdString']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeRoomInfo请求参数结构体
       class DescribeRoomInfoRequest < TencentCloud::Common::AbstractModel
         # @param SdkAppId: 应用ID，登录[控制台 - 服务管理](https://console.cloud.tencent.com/gamegme)创建应用得到的AppID
@@ -1422,6 +1482,95 @@ module TencentCloud
           @Url = params['Url']
           @RoomId = params['RoomId']
           @OpenId = params['OpenId']
+        end
+      end
+
+      # UpdateScanRooms请求参数结构体
+      class UpdateScanRoomsRequest < TencentCloud::Common::AbstractModel
+        # @param BizId: 应用ID
+        # @type BizId: Integer
+        # @param RoomIdString: 字符串房间号，逗号分隔
+        # @type RoomIdString: String
+        # @param RoomIdRegex: 正则表达式房间号，["^6.*"]6开头的房间号
+        # @type RoomIdRegex: Array
+
+        attr_accessor :BizId, :RoomIdString, :RoomIdRegex
+        
+        def initialize(bizid=nil, roomidstring=nil, roomidregex=nil)
+          @BizId = bizid
+          @RoomIdString = roomidstring
+          @RoomIdRegex = roomidregex
+        end
+
+        def deserialize(params)
+          @BizId = params['BizId']
+          @RoomIdString = params['RoomIdString']
+          @RoomIdRegex = params['RoomIdRegex']
+        end
+      end
+
+      # UpdateScanRooms返回参数结构体
+      class UpdateScanRoomsResponse < TencentCloud::Common::AbstractModel
+        # @param ErrorCode: 返回结果码
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ErrorCode: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ErrorCode, :RequestId
+        
+        def initialize(errorcode=nil, requestid=nil)
+          @ErrorCode = errorcode
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ErrorCode = params['ErrorCode']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # UpdateScanUsers请求参数结构体
+      class UpdateScanUsersRequest < TencentCloud::Common::AbstractModel
+        # @param BizId: 应用ID
+        # @type BizId: Integer
+        # @param UserIdString: 字符串用户号，逗号分隔
+        # @type UserIdString: String
+        # @param UserIdRegex: 正则表达式用户号，["^6.*"]6开头的用户号
+        # @type UserIdRegex: Array
+
+        attr_accessor :BizId, :UserIdString, :UserIdRegex
+        
+        def initialize(bizid=nil, useridstring=nil, useridregex=nil)
+          @BizId = bizid
+          @UserIdString = useridstring
+          @UserIdRegex = useridregex
+        end
+
+        def deserialize(params)
+          @BizId = params['BizId']
+          @UserIdString = params['UserIdString']
+          @UserIdRegex = params['UserIdRegex']
+        end
+      end
+
+      # UpdateScanUsers返回参数结构体
+      class UpdateScanUsersResponse < TencentCloud::Common::AbstractModel
+        # @param ErrorCode: 返回结果码
+        # @type ErrorCode: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ErrorCode, :RequestId
+        
+        def initialize(errorcode=nil, requestid=nil)
+          @ErrorCode = errorcode
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ErrorCode = params['ErrorCode']
+          @RequestId = params['RequestId']
         end
       end
 

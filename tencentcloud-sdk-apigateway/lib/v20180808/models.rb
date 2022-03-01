@@ -1284,6 +1284,40 @@ module TencentCloud
         end
       end
 
+      # vpc通道绑定的api信息
+      class BindApiInfo < TencentCloud::Common::AbstractModel
+        # @param ApiId: api唯一id
+        # @type ApiId: String
+        # @param ServiceId: Service唯一id
+        # @type ServiceId: String
+        # @param ApiName: api名字
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ApiName: String
+        # @param ServiceName: 服务名字
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ServiceName: String
+        # @param BindTime: 绑定时间
+        # @type BindTime: String
+
+        attr_accessor :ApiId, :ServiceId, :ApiName, :ServiceName, :BindTime
+        
+        def initialize(apiid=nil, serviceid=nil, apiname=nil, servicename=nil, bindtime=nil)
+          @ApiId = apiid
+          @ServiceId = serviceid
+          @ApiName = apiname
+          @ServiceName = servicename
+          @BindTime = bindtime
+        end
+
+        def deserialize(params)
+          @ApiId = params['ApiId']
+          @ServiceId = params['ServiceId']
+          @ApiName = params['ApiName']
+          @ServiceName = params['ServiceName']
+          @BindTime = params['BindTime']
+        end
+      end
+
       # BindEnvironment请求参数结构体
       class BindEnvironmentRequest < TencentCloud::Common::AbstractModel
         # @param UsagePlanIds: 待绑定的使用计划唯一 ID 列表。
@@ -2293,6 +2327,89 @@ module TencentCloud
         end
       end
 
+      # CreateUpstream请求参数结构体
+      class CreateUpstreamRequest < TencentCloud::Common::AbstractModel
+        # @param Scheme: 后端协议，HTTP, HTTPS其中之一
+        # @type Scheme: String
+        # @param Algorithm: 负载均衡算法目前支持ROUND_ROBIN
+        # @type Algorithm: String
+        # @param UniqVpcId: VPC唯一ID
+        # @type UniqVpcId: String
+        # @param UpstreamName: VPC通道名字
+        # @type UpstreamName: String
+        # @param UpstreamDescription: VPC通道描述
+        # @type UpstreamDescription: String
+        # @param Retries: 请求重试次数，默认3次
+        # @type Retries: Integer
+        # @param UpstreamHost: 请求到后端的，host头
+        # @type UpstreamHost: String
+        # @param Nodes: 后端节点
+        # @type Nodes: Array
+        # @param K8sService: k8s服务的配置
+        # @type K8sService: Array
+
+        attr_accessor :Scheme, :Algorithm, :UniqVpcId, :UpstreamName, :UpstreamDescription, :Retries, :UpstreamHost, :Nodes, :K8sService
+        
+        def initialize(scheme=nil, algorithm=nil, uniqvpcid=nil, upstreamname=nil, upstreamdescription=nil, retries=nil, upstreamhost=nil, nodes=nil, k8sservice=nil)
+          @Scheme = scheme
+          @Algorithm = algorithm
+          @UniqVpcId = uniqvpcid
+          @UpstreamName = upstreamname
+          @UpstreamDescription = upstreamdescription
+          @Retries = retries
+          @UpstreamHost = upstreamhost
+          @Nodes = nodes
+          @K8sService = k8sservice
+        end
+
+        def deserialize(params)
+          @Scheme = params['Scheme']
+          @Algorithm = params['Algorithm']
+          @UniqVpcId = params['UniqVpcId']
+          @UpstreamName = params['UpstreamName']
+          @UpstreamDescription = params['UpstreamDescription']
+          @Retries = params['Retries']
+          @UpstreamHost = params['UpstreamHost']
+          unless params['Nodes'].nil?
+            @Nodes = []
+            params['Nodes'].each do |i|
+              upstreamnode_tmp = UpstreamNode.new
+              upstreamnode_tmp.deserialize(i)
+              @Nodes << upstreamnode_tmp
+            end
+          end
+          unless params['K8sService'].nil?
+            @K8sService = []
+            params['K8sService'].each do |i|
+              k8sservice_tmp = K8sService.new
+              k8sservice_tmp.deserialize(i)
+              @K8sService << k8sservice_tmp
+            end
+          end
+        end
+      end
+
+      # CreateUpstream返回参数结构体
+      class CreateUpstreamResponse < TencentCloud::Common::AbstractModel
+        # @param UpstreamId: 创建返回的唯一id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UpstreamId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :UpstreamId, :RequestId
+        
+        def initialize(upstreamid=nil, requestid=nil)
+          @UpstreamId = upstreamid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @UpstreamId = params['UpstreamId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateUsagePlan请求参数结构体
       class CreateUsagePlanRequest < TencentCloud::Common::AbstractModel
         # @param UsagePlanName: 用户自定义的使用计划名称。
@@ -2654,6 +2771,43 @@ module TencentCloud
 
         def deserialize(params)
           @Result = params['Result']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteUpstream请求参数结构体
+      class DeleteUpstreamRequest < TencentCloud::Common::AbstractModel
+        # @param UpstreamId: 待删除的VPC通道唯一ID
+        # @type UpstreamId: String
+
+        attr_accessor :UpstreamId
+        
+        def initialize(upstreamid=nil)
+          @UpstreamId = upstreamid
+        end
+
+        def deserialize(params)
+          @UpstreamId = params['UpstreamId']
+        end
+      end
+
+      # DeleteUpstream返回参数结构体
+      class DeleteUpstreamResponse < TencentCloud::Common::AbstractModel
+        # @param UpstreamId: 成功删除的vpc通道id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UpstreamId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :UpstreamId, :RequestId
+        
+        def initialize(upstreamid=nil, requestid=nil)
+          @UpstreamId = upstreamid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @UpstreamId = params['UpstreamId']
           @RequestId = params['RequestId']
         end
       end
@@ -4827,6 +4981,172 @@ module TencentCloud
         end
       end
 
+      # 查询vpc通道绑定api列表
+      class DescribeUpstreamBindApis < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 总数
+        # @type TotalCount: Integer
+        # @param BindApiSet: 绑定的api信息
+        # @type BindApiSet: Array
+
+        attr_accessor :TotalCount, :BindApiSet
+        
+        def initialize(totalcount=nil, bindapiset=nil)
+          @TotalCount = totalcount
+          @BindApiSet = bindapiset
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['BindApiSet'].nil?
+            @BindApiSet = []
+            params['BindApiSet'].each do |i|
+              bindapiinfo_tmp = BindApiInfo.new
+              bindapiinfo_tmp.deserialize(i)
+              @BindApiSet << bindapiinfo_tmp
+            end
+          end
+        end
+      end
+
+      # DescribeUpstreamBindApis请求参数结构体
+      class DescribeUpstreamBindApisRequest < TencentCloud::Common::AbstractModel
+        # @param Limit: 分页
+        # @type Limit: Integer
+        # @param Offset: 分页
+        # @type Offset: Integer
+        # @param UpstreamId: vpc通道Id
+        # @type UpstreamId: String
+        # @param Filters: ServiceId和ApiId过滤查询
+        # @type Filters: Array
+
+        attr_accessor :Limit, :Offset, :UpstreamId, :Filters
+        
+        def initialize(limit=nil, offset=nil, upstreamid=nil, filters=nil)
+          @Limit = limit
+          @Offset = offset
+          @UpstreamId = upstreamid
+          @Filters = filters
+        end
+
+        def deserialize(params)
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          @UpstreamId = params['UpstreamId']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+        end
+      end
+
+      # DescribeUpstreamBindApis返回参数结构体
+      class DescribeUpstreamBindApisResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 查询结果
+        # @type Result: :class:`Tencentcloud::Apigateway.v20180808.models.DescribeUpstreamBindApis`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+        
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Result'].nil?
+            @Result = DescribeUpstreamBindApis.new
+            @Result.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 查询vpc通道返回信息
+      class DescribeUpstreamInfo < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 查询总数
+        # @type TotalCount: Integer
+        # @param UpstreamSet: 查询列表
+        # @type UpstreamSet: Array
+
+        attr_accessor :TotalCount, :UpstreamSet
+        
+        def initialize(totalcount=nil, upstreamset=nil)
+          @TotalCount = totalcount
+          @UpstreamSet = upstreamset
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['UpstreamSet'].nil?
+            @UpstreamSet = []
+            params['UpstreamSet'].each do |i|
+              upstreaminfo_tmp = UpstreamInfo.new
+              upstreaminfo_tmp.deserialize(i)
+              @UpstreamSet << upstreaminfo_tmp
+            end
+          end
+        end
+      end
+
+      # DescribeUpstreams请求参数结构体
+      class DescribeUpstreamsRequest < TencentCloud::Common::AbstractModel
+        # @param Limit: 分页
+        # @type Limit: Integer
+        # @param Offset: 分页
+        # @type Offset: Integer
+        # @param Filters: 过滤条件
+        # @type Filters: Array
+
+        attr_accessor :Limit, :Offset, :Filters
+        
+        def initialize(limit=nil, offset=nil, filters=nil)
+          @Limit = limit
+          @Offset = offset
+          @Filters = filters
+        end
+
+        def deserialize(params)
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+        end
+      end
+
+      # DescribeUpstreams返回参数结构体
+      class DescribeUpstreamsResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 查询结果
+        # @type Result: :class:`Tencentcloud::Apigateway.v20180808.models.DescribeUpstreamInfo`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+        
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Result'].nil?
+            @Result = DescribeUpstreamInfo.new
+            @Result.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeUsagePlanEnvironments请求参数结构体
       class DescribeUsagePlanEnvironmentsRequest < TencentCloud::Common::AbstractModel
         # @param UsagePlanId: 待查询的使用计划唯一 ID。
@@ -5762,6 +6082,73 @@ module TencentCloud
         end
       end
 
+      # k8s Label
+      class K8sLabel < TencentCloud::Common::AbstractModel
+        # @param Key: Label的Key
+        # @type Key: String
+        # @param Value: Label的Value
+        # @type Value: String
+
+        attr_accessor :Key, :Value
+        
+        def initialize(key=nil, value=nil)
+          @Key = key
+          @Value = value
+        end
+
+        def deserialize(params)
+          @Key = params['Key']
+          @Value = params['Value']
+        end
+      end
+
+      # k8s 服务的配置
+      class K8sService < TencentCloud::Common::AbstractModel
+        # @param Weight: 权重
+        # @type Weight: Integer
+        # @param ClusterId: k8s集群ID
+        # @type ClusterId: String
+        # @param Namespace: 容器命名空间
+        # @type Namespace: String
+        # @param ServiceName: 容器服务的名字
+        # @type ServiceName: String
+        # @param Port: 服务的端口
+        # @type Port: Integer
+        # @param ExtraLabels: 额外选择的Pod的Label
+        # @type ExtraLabels: Array
+        # @param Name: 自定义的服务名字，可选
+        # @type Name: String
+
+        attr_accessor :Weight, :ClusterId, :Namespace, :ServiceName, :Port, :ExtraLabels, :Name
+        
+        def initialize(weight=nil, clusterid=nil, namespace=nil, servicename=nil, port=nil, extralabels=nil, name=nil)
+          @Weight = weight
+          @ClusterId = clusterid
+          @Namespace = namespace
+          @ServiceName = servicename
+          @Port = port
+          @ExtraLabels = extralabels
+          @Name = name
+        end
+
+        def deserialize(params)
+          @Weight = params['Weight']
+          @ClusterId = params['ClusterId']
+          @Namespace = params['Namespace']
+          @ServiceName = params['ServiceName']
+          @Port = params['Port']
+          unless params['ExtraLabels'].nil?
+            @ExtraLabels = []
+            params['ExtraLabels'].each do |i|
+              k8slabel_tmp = K8sLabel.new
+              k8slabel_tmp.deserialize(i)
+              @ExtraLabels << k8slabel_tmp
+            end
+          end
+          @Name = params['Name']
+        end
+      end
+
       # 检索条件入参
       class LogQuery < TencentCloud::Common::AbstractModel
         # @param Name: 检索字段
@@ -6649,6 +7036,96 @@ module TencentCloud
 
         def deserialize(params)
           @Result = params['Result']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyUpstream请求参数结构体
+      class ModifyUpstreamRequest < TencentCloud::Common::AbstractModel
+        # @param UpstreamId: VPC通道唯一ID
+        # @type UpstreamId: String
+        # @param UpstreamName: VPC通道名字
+        # @type UpstreamName: String
+        # @param UpstreamDescription: VPC通道描述
+        # @type UpstreamDescription: String
+        # @param Scheme: 后端协议，HTTP, HTTPS其中之一
+        # @type Scheme: String
+        # @param Algorithm: 负载均衡算法目前支持ROUND_ROBIN
+        # @type Algorithm: String
+        # @param UniqVpcId: VPC唯一ID
+        # @type UniqVpcId: String
+        # @param Retries: 请求重试次数，默认3次
+        # @type Retries: Integer
+        # @param UpstreamHost: 请求到后端的，host头
+        # @type UpstreamHost: String
+        # @param Nodes: 后端节点列表
+        # @type Nodes: Array
+        # @param K8sService: k8s服务配置
+        # @type K8sService: Array
+
+        attr_accessor :UpstreamId, :UpstreamName, :UpstreamDescription, :Scheme, :Algorithm, :UniqVpcId, :Retries, :UpstreamHost, :Nodes, :K8sService
+        
+        def initialize(upstreamid=nil, upstreamname=nil, upstreamdescription=nil, scheme=nil, algorithm=nil, uniqvpcid=nil, retries=nil, upstreamhost=nil, nodes=nil, k8sservice=nil)
+          @UpstreamId = upstreamid
+          @UpstreamName = upstreamname
+          @UpstreamDescription = upstreamdescription
+          @Scheme = scheme
+          @Algorithm = algorithm
+          @UniqVpcId = uniqvpcid
+          @Retries = retries
+          @UpstreamHost = upstreamhost
+          @Nodes = nodes
+          @K8sService = k8sservice
+        end
+
+        def deserialize(params)
+          @UpstreamId = params['UpstreamId']
+          @UpstreamName = params['UpstreamName']
+          @UpstreamDescription = params['UpstreamDescription']
+          @Scheme = params['Scheme']
+          @Algorithm = params['Algorithm']
+          @UniqVpcId = params['UniqVpcId']
+          @Retries = params['Retries']
+          @UpstreamHost = params['UpstreamHost']
+          unless params['Nodes'].nil?
+            @Nodes = []
+            params['Nodes'].each do |i|
+              upstreamnode_tmp = UpstreamNode.new
+              upstreamnode_tmp.deserialize(i)
+              @Nodes << upstreamnode_tmp
+            end
+          end
+          unless params['K8sService'].nil?
+            @K8sService = []
+            params['K8sService'].each do |i|
+              k8sservice_tmp = K8sService.new
+              k8sservice_tmp.deserialize(i)
+              @K8sService << k8sservice_tmp
+            end
+          end
+        end
+      end
+
+      # ModifyUpstream返回参数结构体
+      class ModifyUpstreamResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 返回修改后的vpc通道信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Result: :class:`Tencentcloud::Apigateway.v20180808.models.UpstreamInfo`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+        
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Result'].nil?
+            @Result = UpstreamInfo.new
+            @Result.deserialize(params['Result'])
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -8128,6 +8605,244 @@ module TencentCloud
         def deserialize(params)
           @Result = params['Result']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # VPC通道健康检查参数配置
+      class UpstreamHealthChecker < TencentCloud::Common::AbstractModel
+        # @param EnableActiveCheck: 标识是否开启主动健康检查。
+        # @type EnableActiveCheck: Boolean
+        # @param EnablePassiveCheck: 标识是否开启被动健康检查。
+        # @type EnablePassiveCheck: Boolean
+        # @param HealthyHttpStatus: 健康检查时，判断为成功请求的 HTTP 状态码。
+        # @type HealthyHttpStatus: String
+        # @param UnhealthyHttpStatus: 健康检查时，判断为失败请求的 HTTP 状态码。
+        # @type UnhealthyHttpStatus: String
+        # @param TcpFailureThreshold: TCP连续错误阈值。0 表示禁用 TCP 检查。取值范围：[0, 254]。
+        # @type TcpFailureThreshold: Integer
+        # @param TimeoutThreshold: 连续超时阈值。0 表示禁用超时检查。取值范围：[0, 254]。
+        # @type TimeoutThreshold: Integer
+        # @param HttpFailureThreshold: HTTP连续错误阈值。0 表示禁用HTTP检查。取值范围：[0, 254]。
+        # @type HttpFailureThreshold: Integer
+        # @param ActiveCheckHttpPath: 主动健康检查时探测请求的路径。默认为"/"。
+        # @type ActiveCheckHttpPath: String
+        # @param ActiveCheckTimeout: 主动健康检查的探测请求超时，单位秒。默认为5秒。
+        # @type ActiveCheckTimeout: Integer
+        # @param ActiveCheckInterval: 主动健康检查的时间间隔，默认5秒。
+        # @type ActiveCheckInterval: Integer
+        # @param ActiveRequestHeader: 主动健康检查时探测请求的的请求头。
+        # @type ActiveRequestHeader: Array
+        # @param UnhealthyTimeout: 异常节点的状态自动恢复时间，单位秒。当只开启被动检查的话，必须设置为 > 0 的值，否则被动异常节点将无法恢复。默认30秒。
+        # @type UnhealthyTimeout: Integer
+
+        attr_accessor :EnableActiveCheck, :EnablePassiveCheck, :HealthyHttpStatus, :UnhealthyHttpStatus, :TcpFailureThreshold, :TimeoutThreshold, :HttpFailureThreshold, :ActiveCheckHttpPath, :ActiveCheckTimeout, :ActiveCheckInterval, :ActiveRequestHeader, :UnhealthyTimeout
+        
+        def initialize(enableactivecheck=nil, enablepassivecheck=nil, healthyhttpstatus=nil, unhealthyhttpstatus=nil, tcpfailurethreshold=nil, timeoutthreshold=nil, httpfailurethreshold=nil, activecheckhttppath=nil, activechecktimeout=nil, activecheckinterval=nil, activerequestheader=nil, unhealthytimeout=nil)
+          @EnableActiveCheck = enableactivecheck
+          @EnablePassiveCheck = enablepassivecheck
+          @HealthyHttpStatus = healthyhttpstatus
+          @UnhealthyHttpStatus = unhealthyhttpstatus
+          @TcpFailureThreshold = tcpfailurethreshold
+          @TimeoutThreshold = timeoutthreshold
+          @HttpFailureThreshold = httpfailurethreshold
+          @ActiveCheckHttpPath = activecheckhttppath
+          @ActiveCheckTimeout = activechecktimeout
+          @ActiveCheckInterval = activecheckinterval
+          @ActiveRequestHeader = activerequestheader
+          @UnhealthyTimeout = unhealthytimeout
+        end
+
+        def deserialize(params)
+          @EnableActiveCheck = params['EnableActiveCheck']
+          @EnablePassiveCheck = params['EnablePassiveCheck']
+          @HealthyHttpStatus = params['HealthyHttpStatus']
+          @UnhealthyHttpStatus = params['UnhealthyHttpStatus']
+          @TcpFailureThreshold = params['TcpFailureThreshold']
+          @TimeoutThreshold = params['TimeoutThreshold']
+          @HttpFailureThreshold = params['HttpFailureThreshold']
+          @ActiveCheckHttpPath = params['ActiveCheckHttpPath']
+          @ActiveCheckTimeout = params['ActiveCheckTimeout']
+          @ActiveCheckInterval = params['ActiveCheckInterval']
+          unless params['ActiveRequestHeader'].nil?
+            @ActiveRequestHeader = []
+            params['ActiveRequestHeader'].each do |i|
+              upstreamhealthcheckerreqheaders_tmp = UpstreamHealthCheckerReqHeaders.new
+              upstreamhealthcheckerreqheaders_tmp.deserialize(i)
+              @ActiveRequestHeader << upstreamhealthcheckerreqheaders_tmp
+            end
+          end
+          @UnhealthyTimeout = params['UnhealthyTimeout']
+        end
+      end
+
+      # VPC通道主动健康检查的请求头配置
+      class UpstreamHealthCheckerReqHeaders < TencentCloud::Common::AbstractModel
+
+        
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # VPC通道信息集合
+      class UpstreamInfo < TencentCloud::Common::AbstractModel
+        # @param UpstreamId: VPC通道唯一ID
+        # @type UpstreamId: String
+        # @param UpstreamName: VPC通道名字
+        # @type UpstreamName: String
+        # @param UpstreamDescription: VPC通道描述
+        # @type UpstreamDescription: String
+        # @param Scheme: 写意
+        # @type Scheme: String
+        # @param Algorithm: 负载均衡算法
+        # @type Algorithm: String
+        # @param UniqVpcId: vpc唯一ID
+        # @type UniqVpcId: String
+        # @param Retries: 请求重拾次数
+        # @type Retries: Integer
+        # @param Nodes: 后端节点
+        # @type Nodes: Array
+        # @param CreatedTime: 创建时间
+        # @type CreatedTime: String
+        # @param Tags: 标签
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Tags: Array
+        # @param HealthChecker: 健康检查配置
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HealthChecker: :class:`Tencentcloud::Apigateway.v20180808.models.UpstreamHealthChecker`
+        # @param UpstreamType: Upstream的类型
+        # @type UpstreamType: String
+        # @param K8sServices: k8s服务配置
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type K8sServices: Array
+        # @param UpstreamHost: vpc通道的Host
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UpstreamHost: String
+
+        attr_accessor :UpstreamId, :UpstreamName, :UpstreamDescription, :Scheme, :Algorithm, :UniqVpcId, :Retries, :Nodes, :CreatedTime, :Tags, :HealthChecker, :UpstreamType, :K8sServices, :UpstreamHost
+        
+        def initialize(upstreamid=nil, upstreamname=nil, upstreamdescription=nil, scheme=nil, algorithm=nil, uniqvpcid=nil, retries=nil, nodes=nil, createdtime=nil, tags=nil, healthchecker=nil, upstreamtype=nil, k8sservices=nil, upstreamhost=nil)
+          @UpstreamId = upstreamid
+          @UpstreamName = upstreamname
+          @UpstreamDescription = upstreamdescription
+          @Scheme = scheme
+          @Algorithm = algorithm
+          @UniqVpcId = uniqvpcid
+          @Retries = retries
+          @Nodes = nodes
+          @CreatedTime = createdtime
+          @Tags = tags
+          @HealthChecker = healthchecker
+          @UpstreamType = upstreamtype
+          @K8sServices = k8sservices
+          @UpstreamHost = upstreamhost
+        end
+
+        def deserialize(params)
+          @UpstreamId = params['UpstreamId']
+          @UpstreamName = params['UpstreamName']
+          @UpstreamDescription = params['UpstreamDescription']
+          @Scheme = params['Scheme']
+          @Algorithm = params['Algorithm']
+          @UniqVpcId = params['UniqVpcId']
+          @Retries = params['Retries']
+          unless params['Nodes'].nil?
+            @Nodes = []
+            params['Nodes'].each do |i|
+              upstreamnode_tmp = UpstreamNode.new
+              upstreamnode_tmp.deserialize(i)
+              @Nodes << upstreamnode_tmp
+            end
+          end
+          @CreatedTime = params['CreatedTime']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
+            end
+          end
+          unless params['HealthChecker'].nil?
+            @HealthChecker = UpstreamHealthChecker.new
+            @HealthChecker.deserialize(params['HealthChecker'])
+          end
+          @UpstreamType = params['UpstreamType']
+          unless params['K8sServices'].nil?
+            @K8sServices = []
+            params['K8sServices'].each do |i|
+              k8sservice_tmp = K8sService.new
+              k8sservice_tmp.deserialize(i)
+              @K8sServices << k8sservice_tmp
+            end
+          end
+          @UpstreamHost = params['UpstreamHost']
+        end
+      end
+
+      # VPC通道后端节点元数据
+      class UpstreamNode < TencentCloud::Common::AbstractModel
+        # @param Host: IP（domain）
+        # @type Host: String
+        # @param Port: 端口[0, 65535]
+        # @type Port: Integer
+        # @param Weight: 权重[0, 100], 0为禁用
+        # @type Weight: Integer
+        # @param VmInstanceId: vm实例id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VmInstanceId: String
+        # @param Tags: 染色标签
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Tags: Array
+        # @param Healthy: 节点健康状态，创建、编辑时不需要传该参数。OFF：关闭，HEALTHY：健康，UNHEALTHY：异常，NO_DATA：数据未上报
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Healthy: String
+        # @param ServiceName: k8s服务名字
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ServiceName: String
+        # @param NameSpace: k8s命名空间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NameSpace: String
+        # @param ClusterId: TKE集群的ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClusterId: String
+        # @param Source: Node的来源
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Source: String
+        # @param UniqueServiceName: API网关内部记录唯一的服务名字
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UniqueServiceName: String
+
+        attr_accessor :Host, :Port, :Weight, :VmInstanceId, :Tags, :Healthy, :ServiceName, :NameSpace, :ClusterId, :Source, :UniqueServiceName
+        
+        def initialize(host=nil, port=nil, weight=nil, vminstanceid=nil, tags=nil, healthy=nil, servicename=nil, namespace=nil, clusterid=nil, source=nil, uniqueservicename=nil)
+          @Host = host
+          @Port = port
+          @Weight = weight
+          @VmInstanceId = vminstanceid
+          @Tags = tags
+          @Healthy = healthy
+          @ServiceName = servicename
+          @NameSpace = namespace
+          @ClusterId = clusterid
+          @Source = source
+          @UniqueServiceName = uniqueservicename
+        end
+
+        def deserialize(params)
+          @Host = params['Host']
+          @Port = params['Port']
+          @Weight = params['Weight']
+          @VmInstanceId = params['VmInstanceId']
+          @Tags = params['Tags']
+          @Healthy = params['Healthy']
+          @ServiceName = params['ServiceName']
+          @NameSpace = params['NameSpace']
+          @ClusterId = params['ClusterId']
+          @Source = params['Source']
+          @UniqueServiceName = params['UniqueServiceName']
         end
       end
 

@@ -1037,6 +1037,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 获取用户AppId
+
+        # @param request: Request instance for GetUserAppId.
+        # @type request: :class:`Tencentcloud::cam::V20190116::GetUserAppIdRequest`
+        # @rtype: :class:`Tencentcloud::cam::V20190116::GetUserAppIdResponse`
+        def GetUserAppId(request)
+          body = send_request('GetUserAppId', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = GetUserAppIdResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 获取用户权限边界
 
         # @param request: Request instance for GetUserPermissionBoundary.

@@ -29,6 +29,30 @@ module TencentCloud
         end
 
 
+        # 解隔离DCDB后付费实例
+
+        # @param request: Request instance for ActiveHourDCDBInstance.
+        # @type request: :class:`Tencentcloud::dcdb::V20180411::ActiveHourDCDBInstanceRequest`
+        # @rtype: :class:`Tencentcloud::dcdb::V20180411::ActiveHourDCDBInstanceResponse`
+        def ActiveHourDCDBInstance(request)
+          body = send_request('ActiveHourDCDBInstance', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ActiveHourDCDBInstanceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口 (AssociateSecurityGroups) 用于安全组批量绑定云资源。
 
         # @param request: Request instance for AssociateSecurityGroups.
@@ -1027,6 +1051,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = InitDCDBInstancesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 隔离DCDB后付费实例
+
+        # @param request: Request instance for IsolateHourDCDBInstance.
+        # @type request: :class:`Tencentcloud::dcdb::V20180411::IsolateHourDCDBInstanceRequest`
+        # @rtype: :class:`Tencentcloud::dcdb::V20180411::IsolateHourDCDBInstanceResponse`
+        def IsolateHourDCDBInstance(request)
+          body = send_request('IsolateHourDCDBInstance', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = IsolateHourDCDBInstanceResponse.new
             model.deserialize(response['Response'])
             model
           else

@@ -2119,6 +2119,150 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询调用监控指标
+
+        # @param request: Request instance for DescribeInovcationIndicators.
+        # @type request: :class:`Tencentcloud::tsf::V20180326::DescribeInovcationIndicatorsRequest`
+        # @rtype: :class:`Tencentcloud::tsf::V20180326::DescribeInovcationIndicatorsResponse`
+        def DescribeInovcationIndicators(request)
+          body = send_request('DescribeInovcationIndicators', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeInovcationIndicatorsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询调用指标数据变化曲线
+
+        # @param request: Request instance for DescribeInvocationMetricDataCurve.
+        # @type request: :class:`Tencentcloud::tsf::V20180326::DescribeInvocationMetricDataCurveRequest`
+        # @rtype: :class:`Tencentcloud::tsf::V20180326::DescribeInvocationMetricDataCurveResponse`
+        def DescribeInvocationMetricDataCurve(request)
+          body = send_request('DescribeInvocationMetricDataCurve', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeInvocationMetricDataCurveResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询维度
+
+        # @param request: Request instance for DescribeInvocationMetricDataDimension.
+        # @type request: :class:`Tencentcloud::tsf::V20180326::DescribeInvocationMetricDataDimensionRequest`
+        # @rtype: :class:`Tencentcloud::tsf::V20180326::DescribeInvocationMetricDataDimensionResponse`
+        def DescribeInvocationMetricDataDimension(request)
+          body = send_request('DescribeInvocationMetricDataDimension', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeInvocationMetricDataDimensionResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询单值指标维度
+
+        # @param request: Request instance for DescribeInvocationMetricDataPoint.
+        # @type request: :class:`Tencentcloud::tsf::V20180326::DescribeInvocationMetricDataPointRequest`
+        # @rtype: :class:`Tencentcloud::tsf::V20180326::DescribeInvocationMetricDataPointResponse`
+        def DescribeInvocationMetricDataPoint(request)
+          body = send_request('DescribeInvocationMetricDataPoint', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeInvocationMetricDataPointResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询调用指标数据散点图
+
+        # @param request: Request instance for DescribeInvocationMetricScatterPlot.
+        # @type request: :class:`Tencentcloud::tsf::V20180326::DescribeInvocationMetricScatterPlotRequest`
+        # @rtype: :class:`Tencentcloud::tsf::V20180326::DescribeInvocationMetricScatterPlotResponse`
+        def DescribeInvocationMetricScatterPlot(request)
+          body = send_request('DescribeInvocationMetricScatterPlot', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeInvocationMetricScatterPlotResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询java实例jvm监控数据,返回数据可选
+
+        # @param request: Request instance for DescribeJvmMonitor.
+        # @type request: :class:`Tencentcloud::tsf::V20180326::DescribeJvmMonitorRequest`
+        # @rtype: :class:`Tencentcloud::tsf::V20180326::DescribeJvmMonitorResponse`
+        def DescribeJvmMonitor(request)
+          body = send_request('DescribeJvmMonitor', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeJvmMonitorResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询泳道规则列表
 
         # @param request: Request instance for DescribeLaneRules.
@@ -2225,6 +2369,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeMsApiListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 服务调用监控统计概览
+
+        # @param request: Request instance for DescribeOverviewInvocation.
+        # @type request: :class:`Tencentcloud::tsf::V20180326::DescribeOverviewInvocationRequest`
+        # @rtype: :class:`Tencentcloud::tsf::V20180326::DescribeOverviewInvocationResponse`
+        def DescribeOverviewInvocation(request)
+          body = send_request('DescribeOverviewInvocation', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeOverviewInvocationResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -2681,6 +2849,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeSimpleNamespacesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 服务统计页面：接口和服务维度
+
+        # @param request: Request instance for DescribeStatistics.
+        # @type request: :class:`Tencentcloud::tsf::V20180326::DescribeStatisticsRequest`
+        # @rtype: :class:`Tencentcloud::tsf::V20180326::DescribeStatisticsResponse`
+        def DescribeStatistics(request)
+          body = send_request('DescribeStatistics', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeStatisticsResponse.new
             model.deserialize(response['Response'])
             model
           else

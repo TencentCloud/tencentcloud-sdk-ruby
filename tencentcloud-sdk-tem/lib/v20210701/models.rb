@@ -860,15 +860,18 @@ module TencentCloud
         # @type BatchInterval: Integer
         # @param MinAvailable: 最小可用实例数
         # @type MinAvailable: Integer
+        # @param Force: 是否强制发布
+        # @type Force: Boolean
 
-        attr_accessor :TotalBatchCount, :BetaBatchNum, :DeployStrategyType, :BatchInterval, :MinAvailable
+        attr_accessor :TotalBatchCount, :BetaBatchNum, :DeployStrategyType, :BatchInterval, :MinAvailable, :Force
         
-        def initialize(totalbatchcount=nil, betabatchnum=nil, deploystrategytype=nil, batchinterval=nil, minavailable=nil)
+        def initialize(totalbatchcount=nil, betabatchnum=nil, deploystrategytype=nil, batchinterval=nil, minavailable=nil, force=nil)
           @TotalBatchCount = totalbatchcount
           @BetaBatchNum = betabatchnum
           @DeployStrategyType = deploystrategytype
           @BatchInterval = batchinterval
           @MinAvailable = minavailable
+          @Force = force
         end
 
         def deserialize(params)
@@ -877,6 +880,7 @@ module TencentCloud
           @DeployStrategyType = params['DeployStrategyType']
           @BatchInterval = params['BatchInterval']
           @MinAvailable = params['MinAvailable']
+          @Force = params['Force']
         end
       end
 

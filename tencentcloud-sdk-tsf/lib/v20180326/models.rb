@@ -3542,6 +3542,30 @@ module TencentCloud
         end
       end
 
+      # 构成监控数据图的曲线坐标点
+      class CurvePoint < TencentCloud::Common::AbstractModel
+        # @param Label: 当前坐标 X轴的值 当前是日期格式:"yyyy-MM-dd HH:mm:ss"
+        # @type Label: String
+        # @param Value: 当前坐标 Y轴的值
+        # @type Value: String
+        # @param Timestamp: 该坐标点时间戳
+        # @type Timestamp: String
+
+        attr_accessor :Label, :Value, :Timestamp
+        
+        def initialize(label=nil, value=nil, timestamp=nil)
+          @Label = label
+          @Value = value
+          @Timestamp = timestamp
+        end
+
+        def deserialize(params)
+          @Label = params['Label']
+          @Value = params['Value']
+          @Timestamp = params['Timestamp']
+        end
+      end
+
       # DeleteApiGroup请求参数结构体
       class DeleteApiGroupRequest < TencentCloud::Common::AbstractModel
         # @param GroupId: API 分组ID
@@ -6664,6 +6688,454 @@ module TencentCloud
         end
       end
 
+      # DescribeInovcationIndicators请求参数结构体
+      class DescribeInovcationIndicatorsRequest < TencentCloud::Common::AbstractModel
+        # @param Dimension: 维度
+        # @type Dimension: String
+        # @param StartTime: 开始时间
+        # @type StartTime: String
+        # @param EndTime: 结束时间
+        # @type EndTime: String
+        # @param NamespaceId: 命名空间ID
+        # @type NamespaceId: String
+        # @param ServiceId: 微服务ID
+        # @type ServiceId: String
+        # @param CallerServiceName: 调用方服务名
+        # @type CallerServiceName: String
+        # @param CalleeServiceName: 被调方服务名
+        # @type CalleeServiceName: String
+        # @param CallerInterfaceName: 调用方接口名
+        # @type CallerInterfaceName: String
+        # @param CalleeInterfaceName: 被调方接口名
+        # @type CalleeInterfaceName: String
+        # @param ApplicationId: 应用ID
+        # @type ApplicationId: String
+        # @param GroupId: 部署组ID
+        # @type GroupId: String
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+
+        attr_accessor :Dimension, :StartTime, :EndTime, :NamespaceId, :ServiceId, :CallerServiceName, :CalleeServiceName, :CallerInterfaceName, :CalleeInterfaceName, :ApplicationId, :GroupId, :InstanceId
+        
+        def initialize(dimension=nil, starttime=nil, endtime=nil, namespaceid=nil, serviceid=nil, callerservicename=nil, calleeservicename=nil, callerinterfacename=nil, calleeinterfacename=nil, applicationid=nil, groupid=nil, instanceid=nil)
+          @Dimension = dimension
+          @StartTime = starttime
+          @EndTime = endtime
+          @NamespaceId = namespaceid
+          @ServiceId = serviceid
+          @CallerServiceName = callerservicename
+          @CalleeServiceName = calleeservicename
+          @CallerInterfaceName = callerinterfacename
+          @CalleeInterfaceName = calleeinterfacename
+          @ApplicationId = applicationid
+          @GroupId = groupid
+          @InstanceId = instanceid
+        end
+
+        def deserialize(params)
+          @Dimension = params['Dimension']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @NamespaceId = params['NamespaceId']
+          @ServiceId = params['ServiceId']
+          @CallerServiceName = params['CallerServiceName']
+          @CalleeServiceName = params['CalleeServiceName']
+          @CallerInterfaceName = params['CallerInterfaceName']
+          @CalleeInterfaceName = params['CalleeInterfaceName']
+          @ApplicationId = params['ApplicationId']
+          @GroupId = params['GroupId']
+          @InstanceId = params['InstanceId']
+        end
+      end
+
+      # DescribeInovcationIndicators返回参数结构体
+      class DescribeInovcationIndicatorsResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 服务调用监控指标
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Result: :class:`Tencentcloud::Tsf.v20180326.models.InvocationIndicator`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+        
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Result'].nil?
+            @Result = InvocationIndicator.new
+            @Result.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeInvocationMetricDataCurve请求参数结构体
+      class DescribeInvocationMetricDataCurveRequest < TencentCloud::Common::AbstractModel
+        # @param StartTime: 查询开始时间
+        # @type StartTime: String
+        # @param EndTime: 查询结束时间
+        # @type EndTime: String
+        # @param Period: 查询时间粒度，单位秒可选值：60、3600、86400
+        # @type Period: Integer
+        # @param MetricDimensions: 查询指标维度
+        # @type MetricDimensions: Array
+        # @param Metrics: 查询指标名
+        # @type Metrics: Array
+        # @param Kind: 视图视角。可选值：SERVER, CLIENT。默认为SERVER
+        # @type Kind: String
+        # @param Type: 类型。组件监控使用，可选值：SQL 或者 NoSQL
+        # @type Type: String
+
+        attr_accessor :StartTime, :EndTime, :Period, :MetricDimensions, :Metrics, :Kind, :Type
+        
+        def initialize(starttime=nil, endtime=nil, period=nil, metricdimensions=nil, metrics=nil, kind=nil, type=nil)
+          @StartTime = starttime
+          @EndTime = endtime
+          @Period = period
+          @MetricDimensions = metricdimensions
+          @Metrics = metrics
+          @Kind = kind
+          @Type = type
+        end
+
+        def deserialize(params)
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @Period = params['Period']
+          unless params['MetricDimensions'].nil?
+            @MetricDimensions = []
+            params['MetricDimensions'].each do |i|
+              metricdimension_tmp = MetricDimension.new
+              metricdimension_tmp.deserialize(i)
+              @MetricDimensions << metricdimension_tmp
+            end
+          end
+          unless params['Metrics'].nil?
+            @Metrics = []
+            params['Metrics'].each do |i|
+              metric_tmp = Metric.new
+              metric_tmp.deserialize(i)
+              @Metrics << metric_tmp
+            end
+          end
+          @Kind = params['Kind']
+          @Type = params['Type']
+        end
+      end
+
+      # DescribeInvocationMetricDataCurve返回参数结构体
+      class DescribeInvocationMetricDataCurveResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 指标监控数据曲线集合
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Result: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+        
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Result'].nil?
+            @Result = []
+            params['Result'].each do |i|
+              metricdatacurve_tmp = MetricDataCurve.new
+              metricdatacurve_tmp.deserialize(i)
+              @Result << metricdatacurve_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeInvocationMetricDataDimension请求参数结构体
+      class DescribeInvocationMetricDataDimensionRequest < TencentCloud::Common::AbstractModel
+        # @param StartTime: 开始时间
+        # @type StartTime: String
+        # @param EndTime: 结束时间
+        # @type EndTime: String
+        # @param Offset: 开始index
+        # @type Offset: Integer
+        # @param Limit: 分页大小
+        # @type Limit: Integer
+        # @param DimensionName: 聚合维度
+        # @type DimensionName: String
+        # @param SearchWord: 搜索关键字
+        # @type SearchWord: String
+        # @param MetricDimensionValues: 维度
+        # @type MetricDimensionValues: Array
+
+        attr_accessor :StartTime, :EndTime, :Offset, :Limit, :DimensionName, :SearchWord, :MetricDimensionValues
+        
+        def initialize(starttime=nil, endtime=nil, offset=nil, limit=nil, dimensionname=nil, searchword=nil, metricdimensionvalues=nil)
+          @StartTime = starttime
+          @EndTime = endtime
+          @Offset = offset
+          @Limit = limit
+          @DimensionName = dimensionname
+          @SearchWord = searchword
+          @MetricDimensionValues = metricdimensionvalues
+        end
+
+        def deserialize(params)
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @DimensionName = params['DimensionName']
+          @SearchWord = params['SearchWord']
+          unless params['MetricDimensionValues'].nil?
+            @MetricDimensionValues = []
+            params['MetricDimensionValues'].each do |i|
+              metricdimensionvalue_tmp = MetricDimensionValue.new
+              metricdimensionvalue_tmp.deserialize(i)
+              @MetricDimensionValues << metricdimensionvalue_tmp
+            end
+          end
+        end
+      end
+
+      # DescribeInvocationMetricDataDimension返回参数结构体
+      class DescribeInvocationMetricDataDimensionResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 维度
+        # @type Result: :class:`Tencentcloud::Tsf.v20180326.models.TsfPageDimension`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+        
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Result'].nil?
+            @Result = TsfPageDimension.new
+            @Result.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeInvocationMetricDataPoint请求参数结构体
+      class DescribeInvocationMetricDataPointRequest < TencentCloud::Common::AbstractModel
+        # @param StartTime: 开始时间
+        # @type StartTime: String
+        # @param EndTime: 结束时间
+        # @type EndTime: String
+        # @param MetricDimensionValues: 维度
+        # @type MetricDimensionValues: Array
+        # @param Metrics: 指标
+        # @type Metrics: Array
+        # @param Kind: 调用视角。可选值：SERVER, CLIENT。默认为SERVER
+        # @type Kind: String
+
+        attr_accessor :StartTime, :EndTime, :MetricDimensionValues, :Metrics, :Kind
+        
+        def initialize(starttime=nil, endtime=nil, metricdimensionvalues=nil, metrics=nil, kind=nil)
+          @StartTime = starttime
+          @EndTime = endtime
+          @MetricDimensionValues = metricdimensionvalues
+          @Metrics = metrics
+          @Kind = kind
+        end
+
+        def deserialize(params)
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          unless params['MetricDimensionValues'].nil?
+            @MetricDimensionValues = []
+            params['MetricDimensionValues'].each do |i|
+              metricdimensionvalue_tmp = MetricDimensionValue.new
+              metricdimensionvalue_tmp.deserialize(i)
+              @MetricDimensionValues << metricdimensionvalue_tmp
+            end
+          end
+          unless params['Metrics'].nil?
+            @Metrics = []
+            params['Metrics'].each do |i|
+              metric_tmp = Metric.new
+              metric_tmp.deserialize(i)
+              @Metrics << metric_tmp
+            end
+          end
+          @Kind = params['Kind']
+        end
+      end
+
+      # DescribeInvocationMetricDataPoint返回参数结构体
+      class DescribeInvocationMetricDataPointResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 单值指标列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Result: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+        
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Result'].nil?
+            @Result = []
+            params['Result'].each do |i|
+              metricdatasinglevalue_tmp = MetricDataSingleValue.new
+              metricdatasinglevalue_tmp.deserialize(i)
+              @Result << metricdatasinglevalue_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeInvocationMetricScatterPlot请求参数结构体
+      class DescribeInvocationMetricScatterPlotRequest < TencentCloud::Common::AbstractModel
+        # @param StartTime: 查询开始时间
+        # @type StartTime: String
+        # @param EndTime: 查询结束时间
+        # @type EndTime: String
+        # @param Period: 查询时间粒度，单位秒。可选值：60、3600、86400。
+        # @type Period: Integer
+        # @param MetricDimensions: 查询指标维度
+        # @type MetricDimensions: Array
+        # @param Metrics: 查询指标名
+        # @type Metrics: Array
+        # @param Kind: 视图视角。可选值：SERVER, CLIENT。默认为SERVER
+        # @type Kind: String
+
+        attr_accessor :StartTime, :EndTime, :Period, :MetricDimensions, :Metrics, :Kind
+        
+        def initialize(starttime=nil, endtime=nil, period=nil, metricdimensions=nil, metrics=nil, kind=nil)
+          @StartTime = starttime
+          @EndTime = endtime
+          @Period = period
+          @MetricDimensions = metricdimensions
+          @Metrics = metrics
+          @Kind = kind
+        end
+
+        def deserialize(params)
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @Period = params['Period']
+          unless params['MetricDimensions'].nil?
+            @MetricDimensions = []
+            params['MetricDimensions'].each do |i|
+              metricdimension_tmp = MetricDimension.new
+              metricdimension_tmp.deserialize(i)
+              @MetricDimensions << metricdimension_tmp
+            end
+          end
+          unless params['Metrics'].nil?
+            @Metrics = []
+            params['Metrics'].each do |i|
+              metric_tmp = Metric.new
+              metric_tmp.deserialize(i)
+              @Metrics << metric_tmp
+            end
+          end
+          @Kind = params['Kind']
+        end
+      end
+
+      # DescribeInvocationMetricScatterPlot返回参数结构体
+      class DescribeInvocationMetricScatterPlotResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 多值时间抽统计指标
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Result: :class:`Tencentcloud::Tsf.v20180326.models.InvocationMetricScatterPlot`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+        
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Result'].nil?
+            @Result = InvocationMetricScatterPlot.new
+            @Result.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeJvmMonitor请求参数结构体
+      class DescribeJvmMonitorRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 查询的实例Id
+        # @type InstanceId: String
+        # @param ApplicationId: 实例所属应用Id
+        # @type ApplicationId: String
+        # @param TimeGranularity: 时间粒度,单位:秒
+        # @type TimeGranularity: Integer
+        # @param From: 查询数据起始时间格式(yyyy-MM-dd HH:mm:ss)
+        # @type From: String
+        # @param To: 查询数据结束时间格式(yyyy-MM-dd HH:mm:ss)
+        # @type To: String
+        # @param RequiredPictures: 查询的监控图列表,以返回值属性名作为入参
+        # @type RequiredPictures: Array
+        # @param Tag: 扩展字段
+        # @type Tag: String
+
+        attr_accessor :InstanceId, :ApplicationId, :TimeGranularity, :From, :To, :RequiredPictures, :Tag
+        
+        def initialize(instanceid=nil, applicationid=nil, timegranularity=nil, from=nil, to=nil, requiredpictures=nil, tag=nil)
+          @InstanceId = instanceid
+          @ApplicationId = applicationid
+          @TimeGranularity = timegranularity
+          @From = from
+          @To = to
+          @RequiredPictures = requiredpictures
+          @Tag = tag
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @ApplicationId = params['ApplicationId']
+          @TimeGranularity = params['TimeGranularity']
+          @From = params['From']
+          @To = params['To']
+          @RequiredPictures = params['RequiredPictures']
+          @Tag = params['Tag']
+        end
+      end
+
+      # DescribeJvmMonitor返回参数结构体
+      class DescribeJvmMonitorResponse < TencentCloud::Common::AbstractModel
+        # @param Result: Java实例jvm监控数据
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Result: :class:`Tencentcloud::Tsf.v20180326.models.JvmMonitorData`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+        
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Result'].nil?
+            @Result = JvmMonitorData.new
+            @Result.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeLaneRules请求参数结构体
       class DescribeLaneRulesRequest < TencentCloud::Common::AbstractModel
         # @param Limit: 每页展示的条数
@@ -6946,6 +7418,66 @@ module TencentCloud
           unless params['Result'].nil?
             @Result = TsfApiListResponse.new
             @Result.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeOverviewInvocation请求参数结构体
+      class DescribeOverviewInvocationRequest < TencentCloud::Common::AbstractModel
+        # @param NamespaceId: 命名空间ID
+        # @type NamespaceId: String
+        # @param Type: 监控统计类型，可选值：SumReqAmount、AvgFailureRate、AvgTimeCost，分别对应请求量、请求错误率、平均响应耗时
+        # @type Type: String
+        # @param Period: 监控统计数据粒度，可选值：60、3600、86400，分别对应1分钟、1小时、1天
+        # @type Period: Integer
+        # @param StartTime: 查询开始时间，默认为当天的 00:00:00
+        # @type StartTime: String
+        # @param EndTime: 查询结束时间，默认为当前时间
+        # @type EndTime: String
+
+        attr_accessor :NamespaceId, :Type, :Period, :StartTime, :EndTime
+        
+        def initialize(namespaceid=nil, type=nil, period=nil, starttime=nil, endtime=nil)
+          @NamespaceId = namespaceid
+          @Type = type
+          @Period = period
+          @StartTime = starttime
+          @EndTime = endtime
+        end
+
+        def deserialize(params)
+          @NamespaceId = params['NamespaceId']
+          @Type = params['Type']
+          @Period = params['Period']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+        end
+      end
+
+      # DescribeOverviewInvocation返回参数结构体
+      class DescribeOverviewInvocationResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 监控统计数据列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Result: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+        
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Result'].nil?
+            @Result = []
+            params['Result'].each do |i|
+              metricdatapoint_tmp = MetricDataPoint.new
+              metricdatapoint_tmp.deserialize(i)
+              @Result << metricdatapoint_tmp
+            end
           end
           @RequestId = params['RequestId']
         end
@@ -8008,6 +8540,105 @@ module TencentCloud
         def deserialize(params)
           unless params['Result'].nil?
             @Result = TsfPageNamespace.new
+            @Result.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeStatistics请求参数结构体
+      class DescribeStatisticsRequest < TencentCloud::Common::AbstractModel
+        # @param Type: 类型：Interface、Service、Group、Instance、SQL、NoSQL
+        # @type Type: String
+        # @param TimeStep: 步长，单位s：60、3600、86400
+        # @type TimeStep: Integer
+        # @param Offset: 偏移量，取值范围大于等于0，默认值为0
+        # @type Offset: Integer
+        # @param Limit: 单页请求配置数量，取值范围[1, 50]，默认值为10
+        # @type Limit: Integer
+        # @param NamespaceId: 命名空间Id
+        # @type NamespaceId: String
+        # @param OrderBy: 排序字段:AvgTimeConsuming[默认]、RequestCount、ErrorRate。实例监控还支持 CpuPercent
+        # @type OrderBy: String
+        # @param OrderType: 排序方式：ASC:0、DESC:1
+        # @type OrderType: Integer
+        # @param EndTime: 开始时间：年月日 时分秒2020-05-12 14:43:12
+        # @type EndTime: String
+        # @param StartTime: 开始时间：年月日 时分秒2020-05-12 14:43:12
+        # @type StartTime: String
+        # @param ServiceName: 服务名称
+        # @type ServiceName: String
+        # @param SearchWord: 搜索关键词
+        # @type SearchWord: String
+        # @param MetricDimensionValues: 维度
+        # @type MetricDimensionValues: Array
+        # @param BucketKey: 聚合关键词
+        # @type BucketKey: String
+        # @param DbName: 数据库
+        # @type DbName: String
+
+        attr_accessor :Type, :TimeStep, :Offset, :Limit, :NamespaceId, :OrderBy, :OrderType, :EndTime, :StartTime, :ServiceName, :SearchWord, :MetricDimensionValues, :BucketKey, :DbName
+        
+        def initialize(type=nil, timestep=nil, offset=nil, limit=nil, namespaceid=nil, orderby=nil, ordertype=nil, endtime=nil, starttime=nil, servicename=nil, searchword=nil, metricdimensionvalues=nil, bucketkey=nil, dbname=nil)
+          @Type = type
+          @TimeStep = timestep
+          @Offset = offset
+          @Limit = limit
+          @NamespaceId = namespaceid
+          @OrderBy = orderby
+          @OrderType = ordertype
+          @EndTime = endtime
+          @StartTime = starttime
+          @ServiceName = servicename
+          @SearchWord = searchword
+          @MetricDimensionValues = metricdimensionvalues
+          @BucketKey = bucketkey
+          @DbName = dbname
+        end
+
+        def deserialize(params)
+          @Type = params['Type']
+          @TimeStep = params['TimeStep']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @NamespaceId = params['NamespaceId']
+          @OrderBy = params['OrderBy']
+          @OrderType = params['OrderType']
+          @EndTime = params['EndTime']
+          @StartTime = params['StartTime']
+          @ServiceName = params['ServiceName']
+          @SearchWord = params['SearchWord']
+          unless params['MetricDimensionValues'].nil?
+            @MetricDimensionValues = []
+            params['MetricDimensionValues'].each do |i|
+              metricdimensionvalue_tmp = MetricDimensionValue.new
+              metricdimensionvalue_tmp.deserialize(i)
+              @MetricDimensionValues << metricdimensionvalue_tmp
+            end
+          end
+          @BucketKey = params['BucketKey']
+          @DbName = params['DbName']
+        end
+      end
+
+      # DescribeStatistics返回参数结构体
+      class DescribeStatisticsResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 查询服务统计结果
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Result: :class:`Tencentcloud::Tsf.v20180326.models.ServiceStatisticsResults`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+        
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Result'].nil?
+            @Result = ServiceStatisticsResults.new
             @Result.deserialize(params['Result'])
           end
           @RequestId = params['RequestId']
@@ -10158,6 +10789,33 @@ module TencentCloud
         end
       end
 
+      # 监控指标坐标
+      class IndicatorCoord < TencentCloud::Common::AbstractModel
+        # @param CoordX: 指标横坐标值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CoordX: String
+        # @param CoordY: 指标纵坐标值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CoordY: String
+        # @param CoordTag: 指标标签，用于标识附加信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CoordTag: String
+
+        attr_accessor :CoordX, :CoordY, :CoordTag
+        
+        def initialize(coordx=nil, coordy=nil, coordtag=nil)
+          @CoordX = coordx
+          @CoordY = coordy
+          @CoordTag = coordtag
+        end
+
+        def deserialize(params)
+          @CoordX = params['CoordX']
+          @CoordY = params['CoordY']
+          @CoordTag = params['CoordTag']
+        end
+      end
+
       # 机器实例
       class Instance < TencentCloud::Common::AbstractModel
         # @param InstanceId: 机器实例ID
@@ -10380,6 +11038,245 @@ module TencentCloud
         def deserialize(params)
           @MountTarget = params['MountTarget']
           @DockerGraphPath = params['DockerGraphPath']
+        end
+      end
+
+      # 服务调用监控指标
+      class InvocationIndicator < TencentCloud::Common::AbstractModel
+        # @param InvocationQuantity: 总请求数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InvocationQuantity: Integer
+        # @param InvocationSuccessRate: 请求成功率，百分比
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InvocationSuccessRate: Float
+        # @param InvocationAvgDuration: 请求平均耗时，单位毫秒
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InvocationAvgDuration: Float
+        # @param InvocationSuccessDistribution: 成功请求数时间分布
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InvocationSuccessDistribution: Array
+        # @param InvocationFailedDistribution: 失败请求数时间分布
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InvocationFailedDistribution: Array
+        # @param InvocationStatusDistribution: 状态码分布
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InvocationStatusDistribution: Array
+        # @param InvocationDurationDistribution: 时延分布
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InvocationDurationDistribution: Array
+        # @param InvocationQuantityDistribution: 并发请求次数时间分布
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InvocationQuantityDistribution: Array
+
+        attr_accessor :InvocationQuantity, :InvocationSuccessRate, :InvocationAvgDuration, :InvocationSuccessDistribution, :InvocationFailedDistribution, :InvocationStatusDistribution, :InvocationDurationDistribution, :InvocationQuantityDistribution
+        
+        def initialize(invocationquantity=nil, invocationsuccessrate=nil, invocationavgduration=nil, invocationsuccessdistribution=nil, invocationfaileddistribution=nil, invocationstatusdistribution=nil, invocationdurationdistribution=nil, invocationquantitydistribution=nil)
+          @InvocationQuantity = invocationquantity
+          @InvocationSuccessRate = invocationsuccessrate
+          @InvocationAvgDuration = invocationavgduration
+          @InvocationSuccessDistribution = invocationsuccessdistribution
+          @InvocationFailedDistribution = invocationfaileddistribution
+          @InvocationStatusDistribution = invocationstatusdistribution
+          @InvocationDurationDistribution = invocationdurationdistribution
+          @InvocationQuantityDistribution = invocationquantitydistribution
+        end
+
+        def deserialize(params)
+          @InvocationQuantity = params['InvocationQuantity']
+          @InvocationSuccessRate = params['InvocationSuccessRate']
+          @InvocationAvgDuration = params['InvocationAvgDuration']
+          unless params['InvocationSuccessDistribution'].nil?
+            @InvocationSuccessDistribution = []
+            params['InvocationSuccessDistribution'].each do |i|
+              indicatorcoord_tmp = IndicatorCoord.new
+              indicatorcoord_tmp.deserialize(i)
+              @InvocationSuccessDistribution << indicatorcoord_tmp
+            end
+          end
+          unless params['InvocationFailedDistribution'].nil?
+            @InvocationFailedDistribution = []
+            params['InvocationFailedDistribution'].each do |i|
+              indicatorcoord_tmp = IndicatorCoord.new
+              indicatorcoord_tmp.deserialize(i)
+              @InvocationFailedDistribution << indicatorcoord_tmp
+            end
+          end
+          unless params['InvocationStatusDistribution'].nil?
+            @InvocationStatusDistribution = []
+            params['InvocationStatusDistribution'].each do |i|
+              indicatorcoord_tmp = IndicatorCoord.new
+              indicatorcoord_tmp.deserialize(i)
+              @InvocationStatusDistribution << indicatorcoord_tmp
+            end
+          end
+          unless params['InvocationDurationDistribution'].nil?
+            @InvocationDurationDistribution = []
+            params['InvocationDurationDistribution'].each do |i|
+              indicatorcoord_tmp = IndicatorCoord.new
+              indicatorcoord_tmp.deserialize(i)
+              @InvocationDurationDistribution << indicatorcoord_tmp
+            end
+          end
+          unless params['InvocationQuantityDistribution'].nil?
+            @InvocationQuantityDistribution = []
+            params['InvocationQuantityDistribution'].each do |i|
+              indicatorcoord_tmp = IndicatorCoord.new
+              indicatorcoord_tmp.deserialize(i)
+              @InvocationQuantityDistribution << indicatorcoord_tmp
+            end
+          end
+        end
+      end
+
+      # 监控数据散点图
+      class InvocationMetricScatterPlot < TencentCloud::Common::AbstractModel
+        # @param EndTime: 时间轴截止时间，GMT，精确到毫秒
+        # @type EndTime: Integer
+        # @param StartTime: 时间粒度
+        # @type StartTime: Integer
+        # @param Period: 时间轴开始时间，GMT，精确到毫秒
+        # @type Period: Integer
+        # @param DataPoints: 多值数据点集合
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DataPoints: Array
+
+        attr_accessor :EndTime, :StartTime, :Period, :DataPoints
+        
+        def initialize(endtime=nil, starttime=nil, period=nil, datapoints=nil)
+          @EndTime = endtime
+          @StartTime = starttime
+          @Period = period
+          @DataPoints = datapoints
+        end
+
+        def deserialize(params)
+          @EndTime = params['EndTime']
+          @StartTime = params['StartTime']
+          @Period = params['Period']
+          unless params['DataPoints'].nil?
+            @DataPoints = []
+            params['DataPoints'].each do |i|
+              multivaluedatapoints_tmp = MultiValueDataPoints.new
+              multivaluedatapoints_tmp.deserialize(i)
+              @DataPoints << multivaluedatapoints_tmp
+            end
+          end
+        end
+      end
+
+      # DescribeJvmMonitor查询jvm监控数据接口返回数据封装
+      class JvmMonitorData < TencentCloud::Common::AbstractModel
+        # @param HeapMemory: 堆内存监控图,三条线
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HeapMemory: :class:`Tencentcloud::Tsf.v20180326.models.MemoryPicture`
+        # @param NonHeapMemory: 非堆内存监控图,三条线
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NonHeapMemory: :class:`Tencentcloud::Tsf.v20180326.models.MemoryPicture`
+        # @param EdenSpace: 伊甸园区监控图,三条线
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EdenSpace: :class:`Tencentcloud::Tsf.v20180326.models.MemoryPicture`
+        # @param SurvivorSpace: 幸存者区监控图,三条线
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SurvivorSpace: :class:`Tencentcloud::Tsf.v20180326.models.MemoryPicture`
+        # @param OldSpace: 老年代监控图,三条线
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OldSpace: :class:`Tencentcloud::Tsf.v20180326.models.MemoryPicture`
+        # @param MetaSpace: 元空间监控图,三条线
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MetaSpace: :class:`Tencentcloud::Tsf.v20180326.models.MemoryPicture`
+        # @param ThreadPicture: 线程监控图,三条线
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ThreadPicture: :class:`Tencentcloud::Tsf.v20180326.models.ThreadPicture`
+        # @param YoungGC: youngGC增量监控图,一条线
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type YoungGC: Array
+        # @param FullGC: fullGC增量监控图,一条线
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FullGC: Array
+        # @param CpuUsage: cpu使用率,一条线
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CpuUsage: Array
+        # @param ClassCount: 加载类数,一条线
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClassCount: Array
+
+        attr_accessor :HeapMemory, :NonHeapMemory, :EdenSpace, :SurvivorSpace, :OldSpace, :MetaSpace, :ThreadPicture, :YoungGC, :FullGC, :CpuUsage, :ClassCount
+        
+        def initialize(heapmemory=nil, nonheapmemory=nil, edenspace=nil, survivorspace=nil, oldspace=nil, metaspace=nil, threadpicture=nil, younggc=nil, fullgc=nil, cpuusage=nil, classcount=nil)
+          @HeapMemory = heapmemory
+          @NonHeapMemory = nonheapmemory
+          @EdenSpace = edenspace
+          @SurvivorSpace = survivorspace
+          @OldSpace = oldspace
+          @MetaSpace = metaspace
+          @ThreadPicture = threadpicture
+          @YoungGC = younggc
+          @FullGC = fullgc
+          @CpuUsage = cpuusage
+          @ClassCount = classcount
+        end
+
+        def deserialize(params)
+          unless params['HeapMemory'].nil?
+            @HeapMemory = MemoryPicture.new
+            @HeapMemory.deserialize(params['HeapMemory'])
+          end
+          unless params['NonHeapMemory'].nil?
+            @NonHeapMemory = MemoryPicture.new
+            @NonHeapMemory.deserialize(params['NonHeapMemory'])
+          end
+          unless params['EdenSpace'].nil?
+            @EdenSpace = MemoryPicture.new
+            @EdenSpace.deserialize(params['EdenSpace'])
+          end
+          unless params['SurvivorSpace'].nil?
+            @SurvivorSpace = MemoryPicture.new
+            @SurvivorSpace.deserialize(params['SurvivorSpace'])
+          end
+          unless params['OldSpace'].nil?
+            @OldSpace = MemoryPicture.new
+            @OldSpace.deserialize(params['OldSpace'])
+          end
+          unless params['MetaSpace'].nil?
+            @MetaSpace = MemoryPicture.new
+            @MetaSpace.deserialize(params['MetaSpace'])
+          end
+          unless params['ThreadPicture'].nil?
+            @ThreadPicture = ThreadPicture.new
+            @ThreadPicture.deserialize(params['ThreadPicture'])
+          end
+          unless params['YoungGC'].nil?
+            @YoungGC = []
+            params['YoungGC'].each do |i|
+              curvepoint_tmp = CurvePoint.new
+              curvepoint_tmp.deserialize(i)
+              @YoungGC << curvepoint_tmp
+            end
+          end
+          unless params['FullGC'].nil?
+            @FullGC = []
+            params['FullGC'].each do |i|
+              curvepoint_tmp = CurvePoint.new
+              curvepoint_tmp.deserialize(i)
+              @FullGC << curvepoint_tmp
+            end
+          end
+          unless params['CpuUsage'].nil?
+            @CpuUsage = []
+            params['CpuUsage'].each do |i|
+              curvepoint_tmp = CurvePoint.new
+              curvepoint_tmp.deserialize(i)
+              @CpuUsage << curvepoint_tmp
+            end
+          end
+          unless params['ClassCount'].nil?
+            @ClassCount = []
+            params['ClassCount'].each do |i|
+              curvepoint_tmp = CurvePoint.new
+              curvepoint_tmp.deserialize(i)
+              @ClassCount << curvepoint_tmp
+            end
+          end
         end
       end
 
@@ -10686,6 +11583,107 @@ module TencentCloud
         end
       end
 
+      # Jvm监控内存数据封装
+      class MemoryPicture < TencentCloud::Common::AbstractModel
+        # @param Max: 内存最大值
+        # @type Max: Array
+        # @param Used: 已用内存大小
+        # @type Used: Array
+        # @param Committed: 系统分配内存大小
+        # @type Committed: Array
+
+        attr_accessor :Max, :Used, :Committed
+        
+        def initialize(max=nil, used=nil, committed=nil)
+          @Max = max
+          @Used = used
+          @Committed = committed
+        end
+
+        def deserialize(params)
+          unless params['Max'].nil?
+            @Max = []
+            params['Max'].each do |i|
+              curvepoint_tmp = CurvePoint.new
+              curvepoint_tmp.deserialize(i)
+              @Max << curvepoint_tmp
+            end
+          end
+          unless params['Used'].nil?
+            @Used = []
+            params['Used'].each do |i|
+              curvepoint_tmp = CurvePoint.new
+              curvepoint_tmp.deserialize(i)
+              @Used << curvepoint_tmp
+            end
+          end
+          unless params['Committed'].nil?
+            @Committed = []
+            params['Committed'].each do |i|
+              curvepoint_tmp = CurvePoint.new
+              curvepoint_tmp.deserialize(i)
+              @Committed << curvepoint_tmp
+            end
+          end
+        end
+      end
+
+      # 指标
+      class Metric < TencentCloud::Common::AbstractModel
+        # @param Name: 指标名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
+        # @param Function: 指标计算方式
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Function: String
+
+        attr_accessor :Name, :Function
+        
+        def initialize(name=nil, function=nil)
+          @Name = name
+          @Function = function
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Function = params['Function']
+        end
+      end
+
+      # 指标监控数据曲线
+      class MetricDataCurve < TencentCloud::Common::AbstractModel
+        # @param MetricName: 指标名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MetricName: String
+        # @param MetricFunction: 指标计算方式
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MetricFunction: String
+        # @param MetricDataPoints: 指标数据点集合
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MetricDataPoints: Array
+
+        attr_accessor :MetricName, :MetricFunction, :MetricDataPoints
+        
+        def initialize(metricname=nil, metricfunction=nil, metricdatapoints=nil)
+          @MetricName = metricname
+          @MetricFunction = metricfunction
+          @MetricDataPoints = metricdatapoints
+        end
+
+        def deserialize(params)
+          @MetricName = params['MetricName']
+          @MetricFunction = params['MetricFunction']
+          unless params['MetricDataPoints'].nil?
+            @MetricDataPoints = []
+            params['MetricDataPoints'].each do |i|
+              metricdatapoint_tmp = MetricDataPoint.new
+              metricdatapoint_tmp.deserialize(i)
+              @MetricDataPoints << metricdatapoint_tmp
+            end
+          end
+        end
+      end
+
       # 监控统计数据点
       class MetricDataPoint < TencentCloud::Common::AbstractModel
         # @param Key: 数据点键
@@ -10755,6 +11753,75 @@ module TencentCloud
               @AvgTimeCost << metricdatapoint_tmp
             end
           end
+        end
+      end
+
+      # 单值指标
+      class MetricDataSingleValue < TencentCloud::Common::AbstractModel
+        # @param MetricName: 指标
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MetricName: String
+        # @param MetricFunction: 统计方式
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MetricFunction: String
+        # @param MetricDataValue: 指标值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MetricDataValue: String
+
+        attr_accessor :MetricName, :MetricFunction, :MetricDataValue
+        
+        def initialize(metricname=nil, metricfunction=nil, metricdatavalue=nil)
+          @MetricName = metricname
+          @MetricFunction = metricfunction
+          @MetricDataValue = metricdatavalue
+        end
+
+        def deserialize(params)
+          @MetricName = params['MetricName']
+          @MetricFunction = params['MetricFunction']
+          @MetricDataValue = params['MetricDataValue']
+        end
+      end
+
+      # 指标维度
+      class MetricDimension < TencentCloud::Common::AbstractModel
+        # @param Name: 指标维度名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
+        # @param Value: 指标维度取值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Value: String
+
+        attr_accessor :Name, :Value
+        
+        def initialize(name=nil, value=nil)
+          @Name = name
+          @Value = value
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Value = params['Value']
+        end
+      end
+
+      # 指标维度多值匹配
+      class MetricDimensionValue < TencentCloud::Common::AbstractModel
+        # @param Name: 维度名
+        # @type Name: String
+        # @param Value: 维度值
+        # @type Value: Array
+
+        attr_accessor :Name, :Value
+        
+        def initialize(name=nil, value=nil)
+          @Name = name
+          @Value = value
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Value = params['Value']
         end
       end
 
@@ -11502,6 +12569,54 @@ module TencentCloud
           @LastHeartbeatTime = params['LastHeartbeatTime']
           @RegistrationId = params['RegistrationId']
           @HiddenStatus = params['HiddenStatus']
+        end
+      end
+
+      # 多值数据
+      class MultiValue < TencentCloud::Common::AbstractModel
+        # @param Values: 数据点
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Values: Array
+
+        attr_accessor :Values
+        
+        def initialize(values=nil)
+          @Values = values
+        end
+
+        def deserialize(params)
+          @Values = params['Values']
+        end
+      end
+
+      # 多值数据点集合
+      class MultiValueDataPoints < TencentCloud::Common::AbstractModel
+        # @param Points: 多值数据点
+        # @type Points: Array
+        # @param MetricName: 指标名称
+        # @type MetricName: String
+        # @param PointKeys: 多值数据点key列表，每个值表示当前数据点所在区域的下限
+        # @type PointKeys: Array
+
+        attr_accessor :Points, :MetricName, :PointKeys
+        
+        def initialize(points=nil, metricname=nil, pointkeys=nil)
+          @Points = points
+          @MetricName = metricname
+          @PointKeys = pointkeys
+        end
+
+        def deserialize(params)
+          unless params['Points'].nil?
+            @Points = []
+            params['Points'].each do |i|
+              multivalue_tmp = MultiValue.new
+              multivalue_tmp.deserialize(i)
+              @Points << multivalue_tmp
+            end
+          end
+          @MetricName = params['MetricName']
+          @PointKeys = params['PointKeys']
         end
       end
 
@@ -13122,6 +14237,158 @@ module TencentCloud
         end
       end
 
+      # 服务统计结果
+      class ServiceStatisticsResult < TencentCloud::Common::AbstractModel
+        # @param Path: 请求模版路径:type为接口时返回，服务时不返回
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Path: String
+        # @param Method: 请求方法:type为接口时返回，服务时不返回
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Method: String
+        # @param MicroserviceId: 微服务Id
+        # @type MicroserviceId: String
+        # @param MicroserviceName: 微服务名称
+        # @type MicroserviceName: String
+        # @param RequestCount: 请求数
+        # @type RequestCount: Integer
+        # @param ErrorRate: 请求错误率，不带百分号
+        # @type ErrorRate: Float
+        # @param AvgTimeConsuming: 平均响应耗时ms
+        # @type AvgTimeConsuming: Float
+        # @param MetricDataCurves: 响应耗时曲线
+        # @type MetricDataCurves: Array
+        # @param InstanceId: 实例id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceId: String
+        # @param InstanceName: 实例name
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceName: String
+        # @param GroupId: 部署组id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GroupId: String
+        # @param GroupName: 部署组name
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GroupName: String
+        # @param ClusterType: 部署组类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClusterType: String
+        # @param GroupExist: 部署组是否存在
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GroupExist: Integer
+        # @param InstanceExist: 实例是否存在，仅限cvm
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceExist: Integer
+        # @param ApplicationId: 应用id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ApplicationId: String
+        # @param MicroserviceType: 微服务类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MicroserviceType: String
+        # @param CpuPercent: cpu使用率
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CpuPercent: Integer
+        # @param HeapUsed: 已用堆大小,单位KB
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HeapUsed: Integer
+        # @param DbName: 数据库
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DbName: String
+        # @param Script: Script值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Script: String
+        # @param DbType: 数据库类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DbType: String
+
+        attr_accessor :Path, :Method, :MicroserviceId, :MicroserviceName, :RequestCount, :ErrorRate, :AvgTimeConsuming, :MetricDataCurves, :InstanceId, :InstanceName, :GroupId, :GroupName, :ClusterType, :GroupExist, :InstanceExist, :ApplicationId, :MicroserviceType, :CpuPercent, :HeapUsed, :DbName, :Script, :DbType
+        
+        def initialize(path=nil, method=nil, microserviceid=nil, microservicename=nil, requestcount=nil, errorrate=nil, avgtimeconsuming=nil, metricdatacurves=nil, instanceid=nil, instancename=nil, groupid=nil, groupname=nil, clustertype=nil, groupexist=nil, instanceexist=nil, applicationid=nil, microservicetype=nil, cpupercent=nil, heapused=nil, dbname=nil, script=nil, dbtype=nil)
+          @Path = path
+          @Method = method
+          @MicroserviceId = microserviceid
+          @MicroserviceName = microservicename
+          @RequestCount = requestcount
+          @ErrorRate = errorrate
+          @AvgTimeConsuming = avgtimeconsuming
+          @MetricDataCurves = metricdatacurves
+          @InstanceId = instanceid
+          @InstanceName = instancename
+          @GroupId = groupid
+          @GroupName = groupname
+          @ClusterType = clustertype
+          @GroupExist = groupexist
+          @InstanceExist = instanceexist
+          @ApplicationId = applicationid
+          @MicroserviceType = microservicetype
+          @CpuPercent = cpupercent
+          @HeapUsed = heapused
+          @DbName = dbname
+          @Script = script
+          @DbType = dbtype
+        end
+
+        def deserialize(params)
+          @Path = params['Path']
+          @Method = params['Method']
+          @MicroserviceId = params['MicroserviceId']
+          @MicroserviceName = params['MicroserviceName']
+          @RequestCount = params['RequestCount']
+          @ErrorRate = params['ErrorRate']
+          @AvgTimeConsuming = params['AvgTimeConsuming']
+          unless params['MetricDataCurves'].nil?
+            @MetricDataCurves = []
+            params['MetricDataCurves'].each do |i|
+              metricdatacurve_tmp = MetricDataCurve.new
+              metricdatacurve_tmp.deserialize(i)
+              @MetricDataCurves << metricdatacurve_tmp
+            end
+          end
+          @InstanceId = params['InstanceId']
+          @InstanceName = params['InstanceName']
+          @GroupId = params['GroupId']
+          @GroupName = params['GroupName']
+          @ClusterType = params['ClusterType']
+          @GroupExist = params['GroupExist']
+          @InstanceExist = params['InstanceExist']
+          @ApplicationId = params['ApplicationId']
+          @MicroserviceType = params['MicroserviceType']
+          @CpuPercent = params['CpuPercent']
+          @HeapUsed = params['HeapUsed']
+          @DbName = params['DbName']
+          @Script = params['Script']
+          @DbType = params['DbType']
+        end
+      end
+
+      # 服务统计结果集
+      class ServiceStatisticsResults < TencentCloud::Common::AbstractModel
+        # @param Content: 返回结果
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Content: Array
+        # @param TotalCount: 条数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalCount: Integer
+
+        attr_accessor :Content, :TotalCount
+        
+        def initialize(content=nil, totalcount=nil)
+          @Content = content
+          @TotalCount = totalcount
+        end
+
+        def deserialize(params)
+          unless params['Content'].nil?
+            @Content = []
+            params['Content'].each do |i|
+              servicestatisticsresult_tmp = ServiceStatisticsResult.new
+              servicestatisticsresult_tmp.deserialize(i)
+              @Content << servicestatisticsresult_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+        end
+      end
+
       # 分片参数
       class ShardArgument < TencentCloud::Common::AbstractModel
         # @param ShardKey: 分片参数 KEY，整形, 范围 [1,1000]
@@ -14025,6 +15292,51 @@ module TencentCloud
         end
       end
 
+      # jvm监控数据线程数据封装
+      class ThreadPicture < TencentCloud::Common::AbstractModel
+        # @param ThreadCount: 总线程数
+        # @type ThreadCount: Array
+        # @param ThreadActive: 活跃线程数
+        # @type ThreadActive: Array
+        # @param DeamonThreadCount: 守护线程数
+        # @type DeamonThreadCount: Array
+
+        attr_accessor :ThreadCount, :ThreadActive, :DeamonThreadCount
+        
+        def initialize(threadcount=nil, threadactive=nil, deamonthreadcount=nil)
+          @ThreadCount = threadcount
+          @ThreadActive = threadactive
+          @DeamonThreadCount = deamonthreadcount
+        end
+
+        def deserialize(params)
+          unless params['ThreadCount'].nil?
+            @ThreadCount = []
+            params['ThreadCount'].each do |i|
+              curvepoint_tmp = CurvePoint.new
+              curvepoint_tmp.deserialize(i)
+              @ThreadCount << curvepoint_tmp
+            end
+          end
+          unless params['ThreadActive'].nil?
+            @ThreadActive = []
+            params['ThreadActive'].each do |i|
+              curvepoint_tmp = CurvePoint.new
+              curvepoint_tmp.deserialize(i)
+              @ThreadActive << curvepoint_tmp
+            end
+          end
+          unless params['DeamonThreadCount'].nil?
+            @DeamonThreadCount = []
+            params['DeamonThreadCount'].each do |i|
+              curvepoint_tmp = CurvePoint.new
+              curvepoint_tmp.deserialize(i)
+              @DeamonThreadCount << curvepoint_tmp
+            end
+          end
+        end
+      end
+
       # TsfApiListResponse
       class TsfApiListResponse < TencentCloud::Common::AbstractModel
         # @param TotalCount: 数量
@@ -14314,6 +15626,26 @@ module TencentCloud
               @Content << containerevent_tmp
             end
           end
+        end
+      end
+
+      # 维度分页
+      class TsfPageDimension < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 总数
+        # @type TotalCount: Integer
+        # @param Content: 维度
+        # @type Content: Array
+
+        attr_accessor :TotalCount, :Content
+        
+        def initialize(totalcount=nil, content=nil)
+          @TotalCount = totalcount
+          @Content = content
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          @Content = params['Content']
         end
       end
 

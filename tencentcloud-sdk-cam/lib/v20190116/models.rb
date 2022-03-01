@@ -2059,6 +2059,45 @@ module TencentCloud
         end
       end
 
+      # GetUserAppId请求参数结构体
+      class GetUserAppIdRequest < TencentCloud::Common::AbstractModel
+
+        
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # GetUserAppId返回参数结构体
+      class GetUserAppIdResponse < TencentCloud::Common::AbstractModel
+        # @param Uin: 当前账号Uin
+        # @type Uin: String
+        # @param OwnerUin: 当前账号OwnerUin
+        # @type OwnerUin: String
+        # @param AppId: 当前账号AppId
+        # @type AppId: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Uin, :OwnerUin, :AppId, :RequestId
+        
+        def initialize(uin=nil, owneruin=nil, appid=nil, requestid=nil)
+          @Uin = uin
+          @OwnerUin = owneruin
+          @AppId = appid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Uin = params['Uin']
+          @OwnerUin = params['OwnerUin']
+          @AppId = params['AppId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # GetUserPermissionBoundary请求参数结构体
       class GetUserPermissionBoundaryRequest < TencentCloud::Common::AbstractModel
         # @param TargetUin: 子账号Uin

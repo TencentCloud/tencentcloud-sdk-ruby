@@ -37,6 +37,46 @@ module TencentCloud
         end
       end
 
+      # ActivateHourDBInstance请求参数结构体
+      class ActivateHourDBInstanceRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceIds: 实例ID列表
+        # @type InstanceIds: Array
+
+        attr_accessor :InstanceIds
+        
+        def initialize(instanceids=nil)
+          @InstanceIds = instanceids
+        end
+
+        def deserialize(params)
+          @InstanceIds = params['InstanceIds']
+        end
+      end
+
+      # ActivateHourDBInstance返回参数结构体
+      class ActivateHourDBInstanceResponse < TencentCloud::Common::AbstractModel
+        # @param SuccessInstanceIds: 隔离成功的实例id列表
+        # @type SuccessInstanceIds: Array
+        # @param FailedInstanceIds: 隔离失败的实例id列表
+        # @type FailedInstanceIds: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :SuccessInstanceIds, :FailedInstanceIds, :RequestId
+        
+        def initialize(successinstanceids=nil, failedinstanceids=nil, requestid=nil)
+          @SuccessInstanceIds = successinstanceids
+          @FailedInstanceIds = failedinstanceids
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @SuccessInstanceIds = params['SuccessInstanceIds']
+          @FailedInstanceIds = params['FailedInstanceIds']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # AssociateSecurityGroups请求参数结构体
       class AssociateSecurityGroupsRequest < TencentCloud::Common::AbstractModel
         # @param Product: 数据库引擎名称，本接口取值：mariadb。
@@ -3383,6 +3423,46 @@ module TencentCloud
               @SpecInfos << specconfiginfo_tmp
             end
           end
+        end
+      end
+
+      # IsolateHourDBInstance请求参数结构体
+      class IsolateHourDBInstanceRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceIds: 实例ID列表
+        # @type InstanceIds: Array
+
+        attr_accessor :InstanceIds
+        
+        def initialize(instanceids=nil)
+          @InstanceIds = instanceids
+        end
+
+        def deserialize(params)
+          @InstanceIds = params['InstanceIds']
+        end
+      end
+
+      # IsolateHourDBInstance返回参数结构体
+      class IsolateHourDBInstanceResponse < TencentCloud::Common::AbstractModel
+        # @param SuccessInstanceIds: 解隔离成功的实例id列表
+        # @type SuccessInstanceIds: Array
+        # @param FailedInstanceIds: 解隔离失败的实例id列表
+        # @type FailedInstanceIds: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :SuccessInstanceIds, :FailedInstanceIds, :RequestId
+        
+        def initialize(successinstanceids=nil, failedinstanceids=nil, requestid=nil)
+          @SuccessInstanceIds = successinstanceids
+          @FailedInstanceIds = failedinstanceids
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @SuccessInstanceIds = params['SuccessInstanceIds']
+          @FailedInstanceIds = params['FailedInstanceIds']
+          @RequestId = params['RequestId']
         end
       end
 

@@ -207,6 +207,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 获取用户自定义送检信息
+
+        # @param request: Request instance for DescribeRealtimeScanConfig.
+        # @type request: :class:`Tencentcloud::gme::V20180711::DescribeRealtimeScanConfigRequest`
+        # @rtype: :class:`Tencentcloud::gme::V20180711::DescribeRealtimeScanConfigResponse`
+        def DescribeRealtimeScanConfig(request)
+          body = send_request('DescribeRealtimeScanConfig', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeRealtimeScanConfigResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 获取房间内用户信息
 
         # @param request: Request instance for DescribeRoomInfo.
@@ -472,6 +496,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ScanVoiceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 更新自定义送检房间号
+
+        # @param request: Request instance for UpdateScanRooms.
+        # @type request: :class:`Tencentcloud::gme::V20180711::UpdateScanRoomsRequest`
+        # @rtype: :class:`Tencentcloud::gme::V20180711::UpdateScanRoomsResponse`
+        def UpdateScanRooms(request)
+          body = send_request('UpdateScanRooms', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = UpdateScanRoomsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 更新自定义送检用户号
+
+        # @param request: Request instance for UpdateScanUsers.
+        # @type request: :class:`Tencentcloud::gme::V20180711::UpdateScanUsersRequest`
+        # @rtype: :class:`Tencentcloud::gme::V20180711::UpdateScanUsersResponse`
+        def UpdateScanUsers(request)
+          body = send_request('UpdateScanUsers', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = UpdateScanUsersResponse.new
             model.deserialize(response['Response'])
             model
           else
