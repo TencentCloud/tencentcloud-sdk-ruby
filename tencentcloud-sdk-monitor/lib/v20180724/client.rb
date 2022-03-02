@@ -101,7 +101,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 创建告警策略
+        # 创建云监控告警策略
 
         # @param request: Request instance for CreateAlarmPolicy.
         # @type request: :class:`Tencentcloud::monitor::V20180724::CreateAlarmPolicyRequest`

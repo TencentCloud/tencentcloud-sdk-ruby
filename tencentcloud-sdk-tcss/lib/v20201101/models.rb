@@ -561,10 +561,12 @@ module TencentCloud
         # @type RegistryRegion: String
         # @param SpeedLimit: 限速
         # @type SpeedLimit: Integer
+        # @param Insecure: 安全模式（证书校验）：0（默认） 非安全模式（跳过证书校验）：1
+        # @type Insecure: Integer
 
-        attr_accessor :Name, :Username, :Password, :Url, :RegistryType, :NetType, :RegistryVersion, :RegistryRegion, :SpeedLimit
+        attr_accessor :Name, :Username, :Password, :Url, :RegistryType, :NetType, :RegistryVersion, :RegistryRegion, :SpeedLimit, :Insecure
         
-        def initialize(name=nil, username=nil, password=nil, url=nil, registrytype=nil, nettype=nil, registryversion=nil, registryregion=nil, speedlimit=nil)
+        def initialize(name=nil, username=nil, password=nil, url=nil, registrytype=nil, nettype=nil, registryversion=nil, registryregion=nil, speedlimit=nil, insecure=nil)
           @Name = name
           @Username = username
           @Password = password
@@ -574,6 +576,7 @@ module TencentCloud
           @RegistryVersion = registryversion
           @RegistryRegion = registryregion
           @SpeedLimit = speedlimit
+          @Insecure = insecure
         end
 
         def deserialize(params)
@@ -586,6 +589,7 @@ module TencentCloud
           @RegistryVersion = params['RegistryVersion']
           @RegistryRegion = params['RegistryRegion']
           @SpeedLimit = params['SpeedLimit']
+          @Insecure = params['Insecure']
         end
       end
 
@@ -5454,12 +5458,15 @@ module TencentCloud
         # @param SpeedLimit: 限速
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SpeedLimit: Integer
+        # @param Insecure: 安全模式（证书校验）：0（默认） 非安全模式（跳过证书校验）：1
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Insecure: Integer
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Name, :Username, :Password, :Url, :RegistryType, :RegistryVersion, :NetType, :RegistryRegion, :SpeedLimit, :RequestId
+        attr_accessor :Name, :Username, :Password, :Url, :RegistryType, :RegistryVersion, :NetType, :RegistryRegion, :SpeedLimit, :Insecure, :RequestId
         
-        def initialize(name=nil, username=nil, password=nil, url=nil, registrytype=nil, registryversion=nil, nettype=nil, registryregion=nil, speedlimit=nil, requestid=nil)
+        def initialize(name=nil, username=nil, password=nil, url=nil, registrytype=nil, registryversion=nil, nettype=nil, registryregion=nil, speedlimit=nil, insecure=nil, requestid=nil)
           @Name = name
           @Username = username
           @Password = password
@@ -5469,6 +5476,7 @@ module TencentCloud
           @NetType = nettype
           @RegistryRegion = registryregion
           @SpeedLimit = speedlimit
+          @Insecure = insecure
           @RequestId = requestid
         end
 
@@ -5482,6 +5490,7 @@ module TencentCloud
           @NetType = params['NetType']
           @RegistryRegion = params['RegistryRegion']
           @SpeedLimit = params['SpeedLimit']
+          @Insecure = params['Insecure']
           @RequestId = params['RequestId']
         end
       end
@@ -7806,14 +7815,20 @@ module TencentCloud
         # @type AssetTypeSet: Array
         # @param Filters: 查询过滤器
         # @type Filters: Array
+        # @param By: 排序字段
+        # @type By: String
+        # @param Order: 排序方式 desc asc
+        # @type Order: String
 
-        attr_accessor :Offset, :Limit, :AssetTypeSet, :Filters
+        attr_accessor :Offset, :Limit, :AssetTypeSet, :Filters, :By, :Order
         
-        def initialize(offset=nil, limit=nil, assettypeset=nil, filters=nil)
+        def initialize(offset=nil, limit=nil, assettypeset=nil, filters=nil, by=nil, order=nil)
           @Offset = offset
           @Limit = limit
           @AssetTypeSet = assettypeset
           @Filters = filters
+          @By = by
+          @Order = order
         end
 
         def deserialize(params)
@@ -7828,6 +7843,8 @@ module TencentCloud
               @Filters << compliancefilters_tmp
             end
           end
+          @By = params['By']
+          @Order = params['Order']
         end
       end
 
@@ -13775,10 +13792,12 @@ module TencentCloud
         # @type RegistryRegion: String
         # @param SpeedLimit: 限速
         # @type SpeedLimit: Integer
+        # @param Insecure: 安全模式（证书校验）：0（默认） 非安全模式（跳过证书校验）：1
+        # @type Insecure: Integer
 
-        attr_accessor :Name, :Username, :Password, :Url, :RegistryType, :NetType, :RegistryVersion, :RegistryRegion, :SpeedLimit
+        attr_accessor :Name, :Username, :Password, :Url, :RegistryType, :NetType, :RegistryVersion, :RegistryRegion, :SpeedLimit, :Insecure
         
-        def initialize(name=nil, username=nil, password=nil, url=nil, registrytype=nil, nettype=nil, registryversion=nil, registryregion=nil, speedlimit=nil)
+        def initialize(name=nil, username=nil, password=nil, url=nil, registrytype=nil, nettype=nil, registryversion=nil, registryregion=nil, speedlimit=nil, insecure=nil)
           @Name = name
           @Username = username
           @Password = password
@@ -13788,6 +13807,7 @@ module TencentCloud
           @RegistryVersion = registryversion
           @RegistryRegion = registryregion
           @SpeedLimit = speedlimit
+          @Insecure = insecure
         end
 
         def deserialize(params)
@@ -13800,6 +13820,7 @@ module TencentCloud
           @RegistryVersion = params['RegistryVersion']
           @RegistryRegion = params['RegistryRegion']
           @SpeedLimit = params['SpeedLimit']
+          @Insecure = params['Insecure']
         end
       end
 

@@ -1281,10 +1281,16 @@ module TencentCloud
         # postMoveIn 按量计费迁入资源
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Action: String
+        # @param ProductName: 产品编码中文名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProductName: String
+        # @param SubProductName: 子产品编码中文名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SubProductName: String
 
-        attr_accessor :OrderId, :Status, :Payer, :CreateTime, :Creator, :RealTotalCost, :VoucherDecline, :ProjectId, :GoodsCategoryId, :ProductInfo, :TimeSpan, :TimeUnit, :Currency, :Policy, :Price, :TotalCost, :ProductCode, :SubProductCode, :BigDealId, :Formula, :RefReturnDeals, :PayMode, :Action
+        attr_accessor :OrderId, :Status, :Payer, :CreateTime, :Creator, :RealTotalCost, :VoucherDecline, :ProjectId, :GoodsCategoryId, :ProductInfo, :TimeSpan, :TimeUnit, :Currency, :Policy, :Price, :TotalCost, :ProductCode, :SubProductCode, :BigDealId, :Formula, :RefReturnDeals, :PayMode, :Action, :ProductName, :SubProductName
         
-        def initialize(orderid=nil, status=nil, payer=nil, createtime=nil, creator=nil, realtotalcost=nil, voucherdecline=nil, projectid=nil, goodscategoryid=nil, productinfo=nil, timespan=nil, timeunit=nil, currency=nil, policy=nil, price=nil, totalcost=nil, productcode=nil, subproductcode=nil, bigdealid=nil, formula=nil, refreturndeals=nil, paymode=nil, action=nil)
+        def initialize(orderid=nil, status=nil, payer=nil, createtime=nil, creator=nil, realtotalcost=nil, voucherdecline=nil, projectid=nil, goodscategoryid=nil, productinfo=nil, timespan=nil, timeunit=nil, currency=nil, policy=nil, price=nil, totalcost=nil, productcode=nil, subproductcode=nil, bigdealid=nil, formula=nil, refreturndeals=nil, paymode=nil, action=nil, productname=nil, subproductname=nil)
           @OrderId = orderid
           @Status = status
           @Payer = payer
@@ -1308,6 +1314,8 @@ module TencentCloud
           @RefReturnDeals = refreturndeals
           @PayMode = paymode
           @Action = action
+          @ProductName = productname
+          @SubProductName = subproductname
         end
 
         def deserialize(params)
@@ -1341,6 +1349,8 @@ module TencentCloud
           @RefReturnDeals = params['RefReturnDeals']
           @PayMode = params['PayMode']
           @Action = params['Action']
+          @ProductName = params['ProductName']
+          @SubProductName = params['SubProductName']
         end
       end
 

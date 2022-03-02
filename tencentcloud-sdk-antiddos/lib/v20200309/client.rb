@@ -173,6 +173,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 新建CC四层黑白名单
+
+        # @param request: Request instance for CreateCcBlackWhiteIpList.
+        # @type request: :class:`Tencentcloud::antiddos::V20200309::CreateCcBlackWhiteIpListRequest`
+        # @rtype: :class:`Tencentcloud::antiddos::V20200309::CreateCcBlackWhiteIpListResponse`
+        def CreateCcBlackWhiteIpList(request)
+          body = send_request('CreateCcBlackWhiteIpList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateCcBlackWhiteIpListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 新建cc防护的地域封禁配置
 
         # @param request: Request instance for CreateCcGeoIPBlockConfig.
@@ -581,6 +605,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 删除CC分级策略
+
+        # @param request: Request instance for DeleteCCLevelPolicy.
+        # @type request: :class:`Tencentcloud::antiddos::V20200309::DeleteCCLevelPolicyRequest`
+        # @rtype: :class:`Tencentcloud::antiddos::V20200309::DeleteCCLevelPolicyResponse`
+        def DeleteCCLevelPolicy(request)
+          body = send_request('DeleteCCLevelPolicy', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteCCLevelPolicyResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 删除CC精准防护策略
 
         # @param request: Request instance for DeleteCCPrecisionPolicy.
@@ -615,6 +663,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteCCRequestLimitPolicyResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除CC清洗阈值策略
+
+        # @param request: Request instance for DeleteCCThresholdPolicy.
+        # @type request: :class:`Tencentcloud::antiddos::V20200309::DeleteCCThresholdPolicyRequest`
+        # @rtype: :class:`Tencentcloud::antiddos::V20200309::DeleteCCThresholdPolicyResponse`
+        def DeleteCCThresholdPolicy(request)
+          body = send_request('DeleteCCThresholdPolicy', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteCCThresholdPolicyResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -917,6 +989,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 获取CC防护等级列表
+
+        # @param request: Request instance for DescribeCCLevelList.
+        # @type request: :class:`Tencentcloud::antiddos::V20200309::DescribeCCLevelListRequest`
+        # @rtype: :class:`Tencentcloud::antiddos::V20200309::DescribeCCLevelListResponse`
+        def DescribeCCLevelList(request)
+          body = send_request('DescribeCCLevelList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeCCLevelListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取CC分级策略
+
+        # @param request: Request instance for DescribeCCLevelPolicy.
+        # @type request: :class:`Tencentcloud::antiddos::V20200309::DescribeCCLevelPolicyRequest`
+        # @rtype: :class:`Tencentcloud::antiddos::V20200309::DescribeCCLevelPolicyResponse`
+        def DescribeCCLevelPolicy(request)
+          body = send_request('DescribeCCLevelPolicy', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeCCLevelPolicyResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 获取CC精准防护列表
 
         # @param request: Request instance for DescribeCCPrecisionPlyList.
@@ -951,6 +1071,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeCCReqLimitPolicyListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取CC清洗阈值列表
+
+        # @param request: Request instance for DescribeCCThresholdList.
+        # @type request: :class:`Tencentcloud::antiddos::V20200309::DescribeCCThresholdListRequest`
+        # @rtype: :class:`Tencentcloud::antiddos::V20200309::DescribeCCThresholdListResponse`
+        def DescribeCCThresholdList(request)
+          body = send_request('DescribeCCThresholdList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeCCThresholdListResponse.new
             model.deserialize(response['Response'])
             model
           else
