@@ -3782,13 +3782,17 @@ module TencentCloud
         # @type ModifyBundleState: String
         # @param Bundle: 套餐信息。
         # @type Bundle: :class:`Tencentcloud::Lighthouse.v20200324.models.Bundle`
+        # @param NotSupportModifyMessage: 不支持套餐变更原因信息。变更套餐状态为"AVAILABLE"时, 该信息为空
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NotSupportModifyMessage: String
 
-        attr_accessor :ModifyPrice, :ModifyBundleState, :Bundle
+        attr_accessor :ModifyPrice, :ModifyBundleState, :Bundle, :NotSupportModifyMessage
         
-        def initialize(modifyprice=nil, modifybundlestate=nil, bundle=nil)
+        def initialize(modifyprice=nil, modifybundlestate=nil, bundle=nil, notsupportmodifymessage=nil)
           @ModifyPrice = modifyprice
           @ModifyBundleState = modifybundlestate
           @Bundle = bundle
+          @NotSupportModifyMessage = notsupportmodifymessage
         end
 
         def deserialize(params)
@@ -3801,6 +3805,7 @@ module TencentCloud
             @Bundle = Bundle.new
             @Bundle.deserialize(params['Bundle'])
           end
+          @NotSupportModifyMessage = params['NotSupportModifyMessage']
         end
       end
 

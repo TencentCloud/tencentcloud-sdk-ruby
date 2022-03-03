@@ -74,13 +74,17 @@ module TencentCloud
         # @param Tags: 标签
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Tags: Array
+        # @param Status: 集群状态，0:创建中，1:正常，2:销毁中，3:已删除，4: 隔离中，5:创建失败，6: 删除失败
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: Integer
 
-        attr_accessor :Info, :Config, :Tags
+        attr_accessor :Info, :Config, :Tags, :Status
         
-        def initialize(info=nil, config=nil, tags=nil)
+        def initialize(info=nil, config=nil, tags=nil, status=nil)
           @Info = info
           @Config = config
           @Tags = tags
+          @Status = status
         end
 
         def deserialize(params)
@@ -100,6 +104,7 @@ module TencentCloud
               @Tags << tag_tmp
             end
           end
+          @Status = params['Status']
         end
       end
 
@@ -193,10 +198,19 @@ module TencentCloud
         # @type UpdateTime: Integer
         # @param Internal: 是否为内部Exchange(以amq.前缀开头的)
         # @type Internal: Boolean
+        # @param AlternateExchange: 备用Exchange名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AlternateExchange: String
+        # @param AlternateExchangeDeleteMark: 备用Exchange是否删除标识: true(已删除)
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AlternateExchangeDeleteMark: Boolean
+        # @param DelayType: 延迟Exchange的类别，为枚举类型:Direct, Fanout, Topic
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DelayType: String
 
-        attr_accessor :Name, :Type, :SourceBindedNum, :Remark, :DestBindedNum, :CreateTime, :UpdateTime, :Internal
+        attr_accessor :Name, :Type, :SourceBindedNum, :Remark, :DestBindedNum, :CreateTime, :UpdateTime, :Internal, :AlternateExchange, :AlternateExchangeDeleteMark, :DelayType
         
-        def initialize(name=nil, type=nil, sourcebindednum=nil, remark=nil, destbindednum=nil, createtime=nil, updatetime=nil, internal=nil)
+        def initialize(name=nil, type=nil, sourcebindednum=nil, remark=nil, destbindednum=nil, createtime=nil, updatetime=nil, internal=nil, alternateexchange=nil, alternateexchangedeletemark=nil, delaytype=nil)
           @Name = name
           @Type = type
           @SourceBindedNum = sourcebindednum
@@ -205,6 +219,9 @@ module TencentCloud
           @CreateTime = createtime
           @UpdateTime = updatetime
           @Internal = internal
+          @AlternateExchange = alternateexchange
+          @AlternateExchangeDeleteMark = alternateexchangedeletemark
+          @DelayType = delaytype
         end
 
         def deserialize(params)
@@ -216,6 +233,9 @@ module TencentCloud
           @CreateTime = params['CreateTime']
           @UpdateTime = params['UpdateTime']
           @Internal = params['Internal']
+          @AlternateExchange = params['AlternateExchange']
+          @AlternateExchangeDeleteMark = params['AlternateExchangeDeleteMark']
+          @DelayType = params['DelayType']
         end
       end
 
@@ -351,10 +371,13 @@ module TencentCloud
         # @type Username: String
         # @param Password: 密码
         # @type Password: String
+        # @param Status: 集群状态，0:创建中，1:正常，2:销毁中，3:已删除，4: 隔离中，5:创建失败，6: 删除失败
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: Integer
 
-        attr_accessor :VHostId, :MsgTtl, :Remark, :CreateTime, :UpdateTime, :Username, :Password
+        attr_accessor :VHostId, :MsgTtl, :Remark, :CreateTime, :UpdateTime, :Username, :Password, :Status
         
-        def initialize(vhostid=nil, msgttl=nil, remark=nil, createtime=nil, updatetime=nil, username=nil, password=nil)
+        def initialize(vhostid=nil, msgttl=nil, remark=nil, createtime=nil, updatetime=nil, username=nil, password=nil, status=nil)
           @VHostId = vhostid
           @MsgTtl = msgttl
           @Remark = remark
@@ -362,6 +385,7 @@ module TencentCloud
           @UpdateTime = updatetime
           @Username = username
           @Password = password
+          @Status = status
         end
 
         def deserialize(params)
@@ -372,6 +396,7 @@ module TencentCloud
           @UpdateTime = params['UpdateTime']
           @Username = params['Username']
           @Password = params['Password']
+          @Status = params['Status']
         end
       end
 
@@ -1204,7 +1229,7 @@ module TencentCloud
         # @type Exchange: String
         # @param VHosts: 交换机所在的vhost，目前支持在单个vhost下创建主题
         # @type VHosts: Array
-        # @param Type: 交换机类型，可选值为Direct, Fanout, Topic
+        # @param Type: 交换机类型，可选值为Direct, Fanout, Topic, x-delayed-message
         # @type Type: String
         # @param ClusterId: 集群ID
         # @type ClusterId: String
@@ -1212,16 +1237,19 @@ module TencentCloud
         # @type Remark: String
         # @param AlternateExchange: 备用交换机名称
         # @type AlternateExchange: String
+        # @param DelayedType: 延迟交换机类型，可选值为Direct, Fanout, Topic, 不允许为x-delayed-message
+        # @type DelayedType: String
 
-        attr_accessor :Exchange, :VHosts, :Type, :ClusterId, :Remark, :AlternateExchange
+        attr_accessor :Exchange, :VHosts, :Type, :ClusterId, :Remark, :AlternateExchange, :DelayedType
         
-        def initialize(exchange=nil, vhosts=nil, type=nil, clusterid=nil, remark=nil, alternateexchange=nil)
+        def initialize(exchange=nil, vhosts=nil, type=nil, clusterid=nil, remark=nil, alternateexchange=nil, delayedtype=nil)
           @Exchange = exchange
           @VHosts = vhosts
           @Type = type
           @ClusterId = clusterid
           @Remark = remark
           @AlternateExchange = alternateexchange
+          @DelayedType = delayedtype
         end
 
         def deserialize(params)
@@ -1231,6 +1259,7 @@ module TencentCloud
           @ClusterId = params['ClusterId']
           @Remark = params['Remark']
           @AlternateExchange = params['AlternateExchange']
+          @DelayedType = params['DelayedType']
         end
       end
 
@@ -3330,14 +3359,17 @@ module TencentCloud
         # @type Limit: Integer
         # @param NameKeyword: 按名称搜索
         # @type NameKeyword: String
+        # @param VHostIdList: VHostId 列表过滤
+        # @type VHostIdList: Array
 
-        attr_accessor :ClusterId, :Offset, :Limit, :NameKeyword
+        attr_accessor :ClusterId, :Offset, :Limit, :NameKeyword, :VHostIdList
         
-        def initialize(clusterid=nil, offset=nil, limit=nil, namekeyword=nil)
+        def initialize(clusterid=nil, offset=nil, limit=nil, namekeyword=nil, vhostidlist=nil)
           @ClusterId = clusterid
           @Offset = offset
           @Limit = limit
           @NameKeyword = namekeyword
+          @VHostIdList = vhostidlist
         end
 
         def deserialize(params)
@@ -3345,6 +3377,7 @@ module TencentCloud
           @Offset = params['Offset']
           @Limit = params['Limit']
           @NameKeyword = params['NameKeyword']
+          @VHostIdList = params['VHostIdList']
         end
       end
 

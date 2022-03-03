@@ -5335,6 +5335,42 @@ module TencentCloud
         end
       end
 
+      # ModifyLoadBalancerMixIpTarget请求参数结构体
+      class ModifyLoadBalancerMixIpTargetRequest < TencentCloud::Common::AbstractModel
+        # @param LoadBalancerIds: 负载均衡实例ID数组。
+        # @type LoadBalancerIds: Array
+        # @param MixIpTarget: 开启/关闭IPv6FullChain负载均衡7层监听器支持混绑IPv4/IPv6目标特性。
+        # @type MixIpTarget: Boolean
+
+        attr_accessor :LoadBalancerIds, :MixIpTarget
+        
+        def initialize(loadbalancerids=nil, mixiptarget=nil)
+          @LoadBalancerIds = loadbalancerids
+          @MixIpTarget = mixiptarget
+        end
+
+        def deserialize(params)
+          @LoadBalancerIds = params['LoadBalancerIds']
+          @MixIpTarget = params['MixIpTarget']
+        end
+      end
+
+      # ModifyLoadBalancerMixIpTarget返回参数结构体
+      class ModifyLoadBalancerMixIpTargetResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyLoadBalancerSla请求参数结构体
       class ModifyLoadBalancerSlaRequest < TencentCloud::Common::AbstractModel
         # @param LoadBalancerSla: 负载均衡实例信息

@@ -17,6 +17,57 @@
 module TencentCloud
   module Api
     module V20201106
+      # DescribeProducts请求参数结构体
+      class DescribeProductsRequest < TencentCloud::Common::AbstractModel
+        # @param Limit: 返回数量，默认为 20，最大值为 100。
+        # @type Limit: Integer
+        # @param Offset: 偏移量，默认为 0。
+        # @type Offset: Integer
+
+        attr_accessor :Limit, :Offset
+        
+        def initialize(limit=nil, offset=nil)
+          @Limit = limit
+          @Offset = offset
+        end
+
+        def deserialize(params)
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+        end
+      end
+
+      # DescribeProducts返回参数结构体
+      class DescribeProductsResponse < TencentCloud::Common::AbstractModel
+        # @param Products: 产品详细信息列表。
+        # @type Products: Array
+        # @param TotalCount: 产品总数量。
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Products, :TotalCount, :RequestId
+        
+        def initialize(products=nil, totalcount=nil, requestid=nil)
+          @Products = products
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Products'].nil?
+            @Products = []
+            params['Products'].each do |i|
+              regionproduct_tmp = RegionProduct.new
+              regionproduct_tmp.deserialize(i)
+              @Products << regionproduct_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeRegions请求参数结构体
       class DescribeRegionsRequest < TencentCloud::Common::AbstractModel
         # @param Product: 待查询产品的名称，例如cvm
@@ -132,6 +183,22 @@ module TencentCloud
           @Region = params['Region']
           @RegionName = params['RegionName']
           @RegionState = params['RegionState']
+        end
+      end
+
+      # 地域管理系统支持的产品信息
+      class RegionProduct < TencentCloud::Common::AbstractModel
+        # @param Name: 产品名称，如cvm
+        # @type Name: String
+
+        attr_accessor :Name
+        
+        def initialize(name=nil)
+          @Name = name
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
         end
       end
 

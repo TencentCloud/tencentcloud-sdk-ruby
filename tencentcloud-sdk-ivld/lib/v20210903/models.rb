@@ -345,14 +345,20 @@ module TencentCloud
         # @type TaskName: String
         # @param UploadVideo: 是否上传转码后的视频，仅设置true时上传，默认为false
         # @type UploadVideo: Boolean
+        # @param Label: 自定义标签，可用于查询
+        # @type Label: String
+        # @param CallbackURL: 任务分析完成的回调地址，该设置优先级高于控制台全局的设置；
+        # @type CallbackURL: String
 
-        attr_accessor :MediaId, :MediaPreknownInfo, :TaskName, :UploadVideo
+        attr_accessor :MediaId, :MediaPreknownInfo, :TaskName, :UploadVideo, :Label, :CallbackURL
         
-        def initialize(mediaid=nil, mediapreknowninfo=nil, taskname=nil, uploadvideo=nil)
+        def initialize(mediaid=nil, mediapreknowninfo=nil, taskname=nil, uploadvideo=nil, label=nil, callbackurl=nil)
           @MediaId = mediaid
           @MediaPreknownInfo = mediapreknowninfo
           @TaskName = taskname
           @UploadVideo = uploadvideo
+          @Label = label
+          @CallbackURL = callbackurl
         end
 
         def deserialize(params)
@@ -363,6 +369,8 @@ module TencentCloud
           end
           @TaskName = params['TaskName']
           @UploadVideo = params['UploadVideo']
+          @Label = params['Label']
+          @CallbackURL = params['CallbackURL']
         end
       end
 
@@ -639,6 +647,38 @@ module TencentCloud
 
       # DeleteMedia返回参数结构体
       class DeleteMediaResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteTask请求参数结构体
+      class DeleteTaskRequest < TencentCloud::Common::AbstractModel
+        # @param TaskId: 任务Id
+        # @type TaskId: String
+
+        attr_accessor :TaskId
+        
+        def initialize(taskid=nil)
+          @TaskId = taskid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+        end
+      end
+
+      # DeleteTask返回参数结构体
+      class DeleteTaskResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -1101,19 +1141,31 @@ module TencentCloud
         # @type MD5: String
         # @param Name: 待分析视频的名称，指定后可支持筛选，最多100个中文字符
         # @type Name: String
+        # @param WriteBackCosPath: 当非本人外部视频地址导入时，该字段为转存的cos桶地址且不可为空; 示例：https://${Bucket}-${AppId}.cos.${Region}.myqcloud.com/${PathPrefix}/  (注意，cos路径需要以/分隔符结尾)
+        # @type WriteBackCosPath: String
+        # @param Label: 自定义标签，可用于查询
+        # @type Label: String
+        # @param CallbackURL: 媒资导入完成的回调地址，该设置优先级高于控制台全局的设置；
+        # @type CallbackURL: String
 
-        attr_accessor :URL, :MD5, :Name
+        attr_accessor :URL, :MD5, :Name, :WriteBackCosPath, :Label, :CallbackURL
         
-        def initialize(url=nil, md5=nil, name=nil)
+        def initialize(url=nil, md5=nil, name=nil, writebackcospath=nil, label=nil, callbackurl=nil)
           @URL = url
           @MD5 = md5
           @Name = name
+          @WriteBackCosPath = writebackcospath
+          @Label = label
+          @CallbackURL = callbackurl
         end
 
         def deserialize(params)
           @URL = params['URL']
           @MD5 = params['MD5']
           @Name = params['Name']
+          @WriteBackCosPath = params['WriteBackCosPath']
+          @Label = params['Label']
+          @CallbackURL = params['CallbackURL']
         end
       end
 
@@ -1278,19 +1330,24 @@ module TencentCloud
         # @param MediaIdSet: 媒资ID数组
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MediaIdSet: Array
+        # @param LabelSet: 媒资自定义标签数组
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LabelSet: Array
 
-        attr_accessor :MediaNameSet, :StatusSet, :MediaIdSet
+        attr_accessor :MediaNameSet, :StatusSet, :MediaIdSet, :LabelSet
         
-        def initialize(medianameset=nil, statusset=nil, mediaidset=nil)
+        def initialize(medianameset=nil, statusset=nil, mediaidset=nil, labelset=nil)
           @MediaNameSet = medianameset
           @StatusSet = statusset
           @MediaIdSet = mediaidset
+          @LabelSet = labelset
         end
 
         def deserialize(params)
           @MediaNameSet = params['MediaNameSet']
           @StatusSet = params['StatusSet']
           @MediaIdSet = params['MediaIdSet']
+          @LabelSet = params['LabelSet']
         end
       end
 
@@ -1331,10 +1388,13 @@ module TencentCloud
         # @param Progress: 导入视频进度，取值范围为[0,100]
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Progress: Float
+        # @param Label: 媒资自定义标签
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Label: String
 
-        attr_accessor :MediaId, :Name, :DownLoadURL, :Status, :FailedReason, :Metadata, :Progress
+        attr_accessor :MediaId, :Name, :DownLoadURL, :Status, :FailedReason, :Metadata, :Progress, :Label
         
-        def initialize(mediaid=nil, name=nil, downloadurl=nil, status=nil, failedreason=nil, metadata=nil, progress=nil)
+        def initialize(mediaid=nil, name=nil, downloadurl=nil, status=nil, failedreason=nil, metadata=nil, progress=nil, label=nil)
           @MediaId = mediaid
           @Name = name
           @DownLoadURL = downloadurl
@@ -1342,6 +1402,7 @@ module TencentCloud
           @FailedReason = failedreason
           @Metadata = metadata
           @Progress = progress
+          @Label = label
         end
 
         def deserialize(params)
@@ -1355,6 +1416,7 @@ module TencentCloud
             @Metadata.deserialize(params['Metadata'])
           end
           @Progress = params['Progress']
+          @Label = params['Label']
         end
       end
 
@@ -1476,6 +1538,42 @@ module TencentCloud
         end
       end
 
+      # ModifyCallback请求参数结构体
+      class ModifyCallbackRequest < TencentCloud::Common::AbstractModel
+        # @param TaskFinishNotifyURL: 任务分析完成后回调地址
+        # @type TaskFinishNotifyURL: String
+        # @param MediaFinishNotifyURL: 媒体导入完成后回调地址
+        # @type MediaFinishNotifyURL: String
+
+        attr_accessor :TaskFinishNotifyURL, :MediaFinishNotifyURL
+        
+        def initialize(taskfinishnotifyurl=nil, mediafinishnotifyurl=nil)
+          @TaskFinishNotifyURL = taskfinishnotifyurl
+          @MediaFinishNotifyURL = mediafinishnotifyurl
+        end
+
+        def deserialize(params)
+          @TaskFinishNotifyURL = params['TaskFinishNotifyURL']
+          @MediaFinishNotifyURL = params['MediaFinishNotifyURL']
+        end
+      end
+
+      # ModifyCallback返回参数结构体
+      class ModifyCallbackResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 标签信息结构体
 
       # 包含多级(最多三级)标签结果，以及这些标签在识别结果中的出现位置
@@ -1535,6 +1633,41 @@ module TencentCloud
           @ImageURL = params['ImageURL']
           @ErrorCode = params['ErrorCode']
           @ErrorMsg = params['ErrorMsg']
+        end
+      end
+
+      # QueryCallback请求参数结构体
+      class QueryCallbackRequest < TencentCloud::Common::AbstractModel
+
+        
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # QueryCallback返回参数结构体
+      class QueryCallbackResponse < TencentCloud::Common::AbstractModel
+        # @param TaskFinishNotifyURL: 任务分析完成后回调地址
+        # @type TaskFinishNotifyURL: String
+        # @param MediaFinishNotifyURL: 媒体导入完成后回调地址
+        # @type MediaFinishNotifyURL: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskFinishNotifyURL, :MediaFinishNotifyURL, :RequestId
+        
+        def initialize(taskfinishnotifyurl=nil, mediafinishnotifyurl=nil, requestid=nil)
+          @TaskFinishNotifyURL = taskfinishnotifyurl
+          @MediaFinishNotifyURL = mediafinishnotifyurl
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskFinishNotifyURL = params['TaskFinishNotifyURL']
+          @MediaFinishNotifyURL = params['MediaFinishNotifyURL']
+          @RequestId = params['RequestId']
         end
       end
 
@@ -1676,10 +1809,12 @@ module TencentCloud
         # @type MediaLangSet: Array
         # @param MediaLabelSet: 媒资素材一级类型
         # @type MediaLabelSet: Array
+        # @param LabelSet: 媒资自定义标签数组
+        # @type LabelSet: Array
 
-        attr_accessor :MediaTypeSet, :TaskStatusSet, :TaskNameSet, :TaskIdSet, :MediaNameSet, :MediaLangSet, :MediaLabelSet
+        attr_accessor :MediaTypeSet, :TaskStatusSet, :TaskNameSet, :TaskIdSet, :MediaNameSet, :MediaLangSet, :MediaLabelSet, :LabelSet
         
-        def initialize(mediatypeset=nil, taskstatusset=nil, tasknameset=nil, taskidset=nil, medianameset=nil, medialangset=nil, medialabelset=nil)
+        def initialize(mediatypeset=nil, taskstatusset=nil, tasknameset=nil, taskidset=nil, medianameset=nil, medialangset=nil, medialabelset=nil, labelset=nil)
           @MediaTypeSet = mediatypeset
           @TaskStatusSet = taskstatusset
           @TaskNameSet = tasknameset
@@ -1687,6 +1822,7 @@ module TencentCloud
           @MediaNameSet = medianameset
           @MediaLangSet = medialangset
           @MediaLabelSet = medialabelset
+          @LabelSet = labelset
         end
 
         def deserialize(params)
@@ -1697,6 +1833,7 @@ module TencentCloud
           @MediaNameSet = params['MediaNameSet']
           @MediaLangSet = params['MediaLangSet']
           @MediaLabelSet = params['MediaLabelSet']
+          @LabelSet = params['LabelSet']
         end
       end
 
@@ -1745,10 +1882,13 @@ module TencentCloud
         # @param MediaName: 媒资文件名称
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MediaName: String
+        # @param Label: 媒资自定义标签
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Label: String
 
-        attr_accessor :TaskId, :TaskName, :MediaId, :TaskStatus, :TaskProgress, :TaskTimeCost, :TaskCreateTime, :TaskStartTime, :FailedReason, :MediaPreknownInfo, :MediaName
+        attr_accessor :TaskId, :TaskName, :MediaId, :TaskStatus, :TaskProgress, :TaskTimeCost, :TaskCreateTime, :TaskStartTime, :FailedReason, :MediaPreknownInfo, :MediaName, :Label
         
-        def initialize(taskid=nil, taskname=nil, mediaid=nil, taskstatus=nil, taskprogress=nil, tasktimecost=nil, taskcreatetime=nil, taskstarttime=nil, failedreason=nil, mediapreknowninfo=nil, medianame=nil)
+        def initialize(taskid=nil, taskname=nil, mediaid=nil, taskstatus=nil, taskprogress=nil, tasktimecost=nil, taskcreatetime=nil, taskstarttime=nil, failedreason=nil, mediapreknowninfo=nil, medianame=nil, label=nil)
           @TaskId = taskid
           @TaskName = taskname
           @MediaId = mediaid
@@ -1760,6 +1900,7 @@ module TencentCloud
           @FailedReason = failedreason
           @MediaPreknownInfo = mediapreknowninfo
           @MediaName = medianame
+          @Label = label
         end
 
         def deserialize(params)
@@ -1777,6 +1918,7 @@ module TencentCloud
             @MediaPreknownInfo.deserialize(params['MediaPreknownInfo'])
           end
           @MediaName = params['MediaName']
+          @Label = params['Label']
         end
       end
 

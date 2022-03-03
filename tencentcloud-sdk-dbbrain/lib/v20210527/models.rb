@@ -1845,19 +1845,23 @@ module TencentCloud
         # @type SqlText: String
         # @param Schema: 库名。
         # @type Schema: String
+        # @param Product: 服务产品类型，支持值："mysql" - 云数据库 MySQL；"cynosdb" - 云数据库 TDSQL-C for MySQL；"dbbrain-mysql" - 自建 MySQL，默认为"mysql"。
+        # @type Product: String
 
-        attr_accessor :InstanceId, :SqlText, :Schema
+        attr_accessor :InstanceId, :SqlText, :Schema, :Product
         
-        def initialize(instanceid=nil, sqltext=nil, schema=nil)
+        def initialize(instanceid=nil, sqltext=nil, schema=nil, product=nil)
           @InstanceId = instanceid
           @SqlText = sqltext
           @Schema = schema
+          @Product = product
         end
 
         def deserialize(params)
           @InstanceId = params['InstanceId']
           @SqlText = params['SqlText']
           @Schema = params['Schema']
+          @Product = params['Product']
         end
       end
 

@@ -51,10 +51,12 @@ module TencentCloud
         # @type LogCollectType: Integer
         # @param PythonVersion: pyflink作业运行时使用的python版本
         # @type PythonVersion: String
+        # @param WorkSpaceId: 工作空间 SerialId
+        # @type WorkSpaceId: String
 
-        attr_accessor :JobId, :EntrypointClass, :ProgramArgs, :Remark, :ResourceRefs, :DefaultParallelism, :Properties, :AutoDelete, :COSBucket, :LogCollect, :JobManagerSpec, :TaskManagerSpec, :ClsLogsetId, :ClsTopicId, :LogCollectType, :PythonVersion
+        attr_accessor :JobId, :EntrypointClass, :ProgramArgs, :Remark, :ResourceRefs, :DefaultParallelism, :Properties, :AutoDelete, :COSBucket, :LogCollect, :JobManagerSpec, :TaskManagerSpec, :ClsLogsetId, :ClsTopicId, :LogCollectType, :PythonVersion, :WorkSpaceId
         
-        def initialize(jobid=nil, entrypointclass=nil, programargs=nil, remark=nil, resourcerefs=nil, defaultparallelism=nil, properties=nil, autodelete=nil, cosbucket=nil, logcollect=nil, jobmanagerspec=nil, taskmanagerspec=nil, clslogsetid=nil, clstopicid=nil, logcollecttype=nil, pythonversion=nil)
+        def initialize(jobid=nil, entrypointclass=nil, programargs=nil, remark=nil, resourcerefs=nil, defaultparallelism=nil, properties=nil, autodelete=nil, cosbucket=nil, logcollect=nil, jobmanagerspec=nil, taskmanagerspec=nil, clslogsetid=nil, clstopicid=nil, logcollecttype=nil, pythonversion=nil, workspaceid=nil)
           @JobId = jobid
           @EntrypointClass = entrypointclass
           @ProgramArgs = programargs
@@ -71,6 +73,7 @@ module TencentCloud
           @ClsTopicId = clstopicid
           @LogCollectType = logcollecttype
           @PythonVersion = pythonversion
+          @WorkSpaceId = workspaceid
         end
 
         def deserialize(params)
@@ -104,6 +107,7 @@ module TencentCloud
           @ClsTopicId = params['ClsTopicId']
           @LogCollectType = params['LogCollectType']
           @PythonVersion = params['PythonVersion']
+          @WorkSpaceId = params['WorkSpaceId']
         end
       end
 
@@ -145,10 +149,12 @@ module TencentCloud
         # @type FolderId: String
         # @param FlinkVersion: 作业运行的Flink版本
         # @type FlinkVersion: String
+        # @param WorkSpaceId: 工作空间 SerialId
+        # @type WorkSpaceId: String
 
-        attr_accessor :Name, :JobType, :ClusterType, :ClusterId, :CuMem, :Remark, :FolderId, :FlinkVersion
+        attr_accessor :Name, :JobType, :ClusterType, :ClusterId, :CuMem, :Remark, :FolderId, :FlinkVersion, :WorkSpaceId
         
-        def initialize(name=nil, jobtype=nil, clustertype=nil, clusterid=nil, cumem=nil, remark=nil, folderid=nil, flinkversion=nil)
+        def initialize(name=nil, jobtype=nil, clustertype=nil, clusterid=nil, cumem=nil, remark=nil, folderid=nil, flinkversion=nil, workspaceid=nil)
           @Name = name
           @JobType = jobtype
           @ClusterType = clustertype
@@ -157,6 +163,7 @@ module TencentCloud
           @Remark = remark
           @FolderId = folderid
           @FlinkVersion = flinkversion
+          @WorkSpaceId = workspaceid
         end
 
         def deserialize(params)
@@ -168,6 +175,7 @@ module TencentCloud
           @Remark = params['Remark']
           @FolderId = params['FolderId']
           @FlinkVersion = params['FlinkVersion']
+          @WorkSpaceId = params['WorkSpaceId']
         end
       end
 
@@ -201,14 +209,17 @@ module TencentCloud
         # @type Remark: String
         # @param AutoDelete: 1： 资源版本达到上限，自动删除最早可删除的版本
         # @type AutoDelete: Integer
+        # @param WorkSpaceId: 工作空间 SerialId
+        # @type WorkSpaceId: String
 
-        attr_accessor :ResourceId, :ResourceLoc, :Remark, :AutoDelete
+        attr_accessor :ResourceId, :ResourceLoc, :Remark, :AutoDelete, :WorkSpaceId
         
-        def initialize(resourceid=nil, resourceloc=nil, remark=nil, autodelete=nil)
+        def initialize(resourceid=nil, resourceloc=nil, remark=nil, autodelete=nil, workspaceid=nil)
           @ResourceId = resourceid
           @ResourceLoc = resourceloc
           @Remark = remark
           @AutoDelete = autodelete
+          @WorkSpaceId = workspaceid
         end
 
         def deserialize(params)
@@ -219,6 +230,7 @@ module TencentCloud
           end
           @Remark = params['Remark']
           @AutoDelete = params['AutoDelete']
+          @WorkSpaceId = params['WorkSpaceId']
         end
       end
 
@@ -256,16 +268,19 @@ module TencentCloud
         # @type ResourceConfigRemark: String
         # @param FolderId: 目录ID
         # @type FolderId: String
+        # @param WorkSpaceId: 工作空间 SerialId
+        # @type WorkSpaceId: String
 
-        attr_accessor :ResourceLoc, :ResourceType, :Remark, :Name, :ResourceConfigRemark, :FolderId
+        attr_accessor :ResourceLoc, :ResourceType, :Remark, :Name, :ResourceConfigRemark, :FolderId, :WorkSpaceId
         
-        def initialize(resourceloc=nil, resourcetype=nil, remark=nil, name=nil, resourceconfigremark=nil, folderid=nil)
+        def initialize(resourceloc=nil, resourcetype=nil, remark=nil, name=nil, resourceconfigremark=nil, folderid=nil, workspaceid=nil)
           @ResourceLoc = resourceloc
           @ResourceType = resourcetype
           @Remark = remark
           @Name = name
           @ResourceConfigRemark = resourceconfigremark
           @FolderId = folderid
+          @WorkSpaceId = workspaceid
         end
 
         def deserialize(params)
@@ -278,6 +293,7 @@ module TencentCloud
           @Name = params['Name']
           @ResourceConfigRemark = params['ResourceConfigRemark']
           @FolderId = params['FolderId']
+          @WorkSpaceId = params['WorkSpaceId']
         end
       end
 
@@ -311,17 +327,21 @@ module TencentCloud
         # @type ResourceId: String
         # @param ResourceConfigVersions: 资源版本数组
         # @type ResourceConfigVersions: Array
+        # @param WorkSpaceId: 工作空间 SerialId
+        # @type WorkSpaceId: String
 
-        attr_accessor :ResourceId, :ResourceConfigVersions
+        attr_accessor :ResourceId, :ResourceConfigVersions, :WorkSpaceId
         
-        def initialize(resourceid=nil, resourceconfigversions=nil)
+        def initialize(resourceid=nil, resourceconfigversions=nil, workspaceid=nil)
           @ResourceId = resourceid
           @ResourceConfigVersions = resourceconfigversions
+          @WorkSpaceId = workspaceid
         end
 
         def deserialize(params)
           @ResourceId = params['ResourceId']
           @ResourceConfigVersions = params['ResourceConfigVersions']
+          @WorkSpaceId = params['WorkSpaceId']
         end
       end
 
@@ -345,15 +365,19 @@ module TencentCloud
       class DeleteResourcesRequest < TencentCloud::Common::AbstractModel
         # @param ResourceIds: 待删除资源ID列表
         # @type ResourceIds: Array
+        # @param WorkSpaceId: 工作空间 SerialId
+        # @type WorkSpaceId: String
 
-        attr_accessor :ResourceIds
+        attr_accessor :ResourceIds, :WorkSpaceId
         
-        def initialize(resourceids=nil)
+        def initialize(resourceids=nil, workspaceid=nil)
           @ResourceIds = resourceids
+          @WorkSpaceId = workspaceid
         end
 
         def deserialize(params)
           @ResourceIds = params['ResourceIds']
+          @WorkSpaceId = params['WorkSpaceId']
         end
       end
 
@@ -381,19 +405,23 @@ module TencentCloud
         # @type DebugId: Integer
         # @param TableName: 表名
         # @type TableName: String
+        # @param WorkSpaceId: 工作空间 SerialId
+        # @type WorkSpaceId: String
 
-        attr_accessor :JobId, :DebugId, :TableName
+        attr_accessor :JobId, :DebugId, :TableName, :WorkSpaceId
         
-        def initialize(jobid=nil, debugid=nil, tablename=nil)
+        def initialize(jobid=nil, debugid=nil, tablename=nil, workspaceid=nil)
           @JobId = jobid
           @DebugId = debugid
           @TableName = tablename
+          @WorkSpaceId = workspaceid
         end
 
         def deserialize(params)
           @JobId = params['JobId']
           @DebugId = params['DebugId']
           @TableName = params['TableName']
+          @WorkSpaceId = params['WorkSpaceId']
         end
       end
 
@@ -427,16 +455,19 @@ module TencentCloud
         # @type Filters: Array
         # @param OnlyDraft: true 表示只展示草稿
         # @type OnlyDraft: Boolean
+        # @param WorkSpaceId: 工作空间 SerialId
+        # @type WorkSpaceId: String
 
-        attr_accessor :JobId, :JobConfigVersions, :Offset, :Limit, :Filters, :OnlyDraft
+        attr_accessor :JobId, :JobConfigVersions, :Offset, :Limit, :Filters, :OnlyDraft, :WorkSpaceId
         
-        def initialize(jobid=nil, jobconfigversions=nil, offset=nil, limit=nil, filters=nil, onlydraft=nil)
+        def initialize(jobid=nil, jobconfigversions=nil, offset=nil, limit=nil, filters=nil, onlydraft=nil, workspaceid=nil)
           @JobId = jobid
           @JobConfigVersions = jobconfigversions
           @Offset = offset
           @Limit = limit
           @Filters = filters
           @OnlyDraft = onlydraft
+          @WorkSpaceId = workspaceid
         end
 
         def deserialize(params)
@@ -453,6 +484,7 @@ module TencentCloud
             end
           end
           @OnlyDraft = params['OnlyDraft']
+          @WorkSpaceId = params['WorkSpaceId']
         end
       end
 
@@ -491,20 +523,23 @@ module TencentCloud
       class DescribeJobsRequest < TencentCloud::Common::AbstractModel
         # @param JobIds: 按照一个或者多个作业ID查询。作业ID形如：cql-11112222，每次请求的作业上限为100。参数不支持同时指定JobIds和Filters。
         # @type JobIds: Array
-        # @param Filters: 过滤条件，支持的 Filter.Name 为：作业名 Name、作业状态 Status、所属集群 ClusterId。每次请求的 Filters 个数的上限为 3，Filter.Values 的个数上限为 5。参数不支持同时指定 JobIds 和 Filters。
+        # @param Filters: 过滤条件，支持的 Filter.Name 为：作业名 Name、作业状态 Status、所属集群 ClusterId、作业id JobId、集群名称 ClusterName。 每次请求的 Filters 个数的上限为 5，Filter.Values 的个数上限为 5。参数不支持同时指定 JobIds 和 Filters。
         # @type Filters: Array
         # @param Offset: 偏移量，默认为0
         # @type Offset: Integer
         # @param Limit: 分页大小，默认为20，最大值为100
         # @type Limit: Integer
+        # @param WorkSpaceId: 工作空间 SerialId
+        # @type WorkSpaceId: String
 
-        attr_accessor :JobIds, :Filters, :Offset, :Limit
+        attr_accessor :JobIds, :Filters, :Offset, :Limit, :WorkSpaceId
         
-        def initialize(jobids=nil, filters=nil, offset=nil, limit=nil)
+        def initialize(jobids=nil, filters=nil, offset=nil, limit=nil, workspaceid=nil)
           @JobIds = jobids
           @Filters = filters
           @Offset = offset
           @Limit = limit
+          @WorkSpaceId = workspaceid
         end
 
         def deserialize(params)
@@ -519,6 +554,7 @@ module TencentCloud
           end
           @Offset = params['Offset']
           @Limit = params['Limit']
+          @WorkSpaceId = params['WorkSpaceId']
         end
       end
 
@@ -567,16 +603,19 @@ module TencentCloud
         # @type JobConfigVersion: Integer
         # @param JobId: 作业ID
         # @type JobId: String
+        # @param WorkSpaceId: 工作空间 SerialId
+        # @type WorkSpaceId: String
 
-        attr_accessor :ResourceId, :Offset, :Limit, :ResourceConfigVersions, :JobConfigVersion, :JobId
+        attr_accessor :ResourceId, :Offset, :Limit, :ResourceConfigVersions, :JobConfigVersion, :JobId, :WorkSpaceId
         
-        def initialize(resourceid=nil, offset=nil, limit=nil, resourceconfigversions=nil, jobconfigversion=nil, jobid=nil)
+        def initialize(resourceid=nil, offset=nil, limit=nil, resourceconfigversions=nil, jobconfigversion=nil, jobid=nil, workspaceid=nil)
           @ResourceId = resourceid
           @Offset = offset
           @Limit = limit
           @ResourceConfigVersions = resourceconfigversions
           @JobConfigVersion = jobconfigversion
           @JobId = jobid
+          @WorkSpaceId = workspaceid
         end
 
         def deserialize(params)
@@ -586,6 +625,7 @@ module TencentCloud
           @ResourceConfigVersions = params['ResourceConfigVersions']
           @JobConfigVersion = params['JobConfigVersion']
           @JobId = params['JobId']
+          @WorkSpaceId = params['WorkSpaceId']
         end
       end
 
@@ -632,15 +672,18 @@ module TencentCloud
         # @type Limit: Integer
         # @param ResourceConfigVersion: 资源版本号
         # @type ResourceConfigVersion: Integer
+        # @param WorkSpaceId: 工作空间 SerialId
+        # @type WorkSpaceId: String
 
-        attr_accessor :ResourceId, :DESCByJobConfigCreateTime, :Offset, :Limit, :ResourceConfigVersion
+        attr_accessor :ResourceId, :DESCByJobConfigCreateTime, :Offset, :Limit, :ResourceConfigVersion, :WorkSpaceId
         
-        def initialize(resourceid=nil, descbyjobconfigcreatetime=nil, offset=nil, limit=nil, resourceconfigversion=nil)
+        def initialize(resourceid=nil, descbyjobconfigcreatetime=nil, offset=nil, limit=nil, resourceconfigversion=nil, workspaceid=nil)
           @ResourceId = resourceid
           @DESCByJobConfigCreateTime = descbyjobconfigcreatetime
           @Offset = offset
           @Limit = limit
           @ResourceConfigVersion = resourceconfigversion
+          @WorkSpaceId = workspaceid
         end
 
         def deserialize(params)
@@ -649,6 +692,7 @@ module TencentCloud
           @Offset = params['Offset']
           @Limit = params['Limit']
           @ResourceConfigVersion = params['ResourceConfigVersion']
+          @WorkSpaceId = params['WorkSpaceId']
         end
       end
 
@@ -694,14 +738,17 @@ module TencentCloud
         # @param Filters: <li><strong>ResourceName</strong></li>
         # <p style="padding-left: 30px;">按照资源名字过滤，支持模糊过滤。传入的过滤名字不超过5个</p><p style="padding-left: 30px;">类型: String</p><p style="padding-left: 30px;">必选: 否</p>
         # @type Filters: Array
+        # @param WorkSpaceId: 工作空间 SerialId
+        # @type WorkSpaceId: String
 
-        attr_accessor :ResourceIds, :Offset, :Limit, :Filters
+        attr_accessor :ResourceIds, :Offset, :Limit, :Filters, :WorkSpaceId
         
-        def initialize(resourceids=nil, offset=nil, limit=nil, filters=nil)
+        def initialize(resourceids=nil, offset=nil, limit=nil, filters=nil, workspaceid=nil)
           @ResourceIds = resourceids
           @Offset = offset
           @Limit = limit
           @Filters = filters
+          @WorkSpaceId = workspaceid
         end
 
         def deserialize(params)
@@ -716,6 +763,7 @@ module TencentCloud
               @Filters << filter_tmp
             end
           end
+          @WorkSpaceId = params['WorkSpaceId']
         end
       end
 
@@ -1051,10 +1099,16 @@ module TencentCloud
         # @param FlinkVersion: 作业运行的 Flink 版本
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FlinkVersion: String
+        # @param WorkSpaceId: 工作空间 SerialId
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type WorkSpaceId: String
+        # @param WorkSpaceName: 工作空间名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type WorkSpaceName: String
 
-        attr_accessor :JobId, :Region, :Zone, :AppId, :OwnerUin, :CreatorUin, :Name, :JobType, :Status, :CreateTime, :StartTime, :StopTime, :UpdateTime, :TotalRunMillis, :Remark, :LastOpResult, :ClusterName, :LatestJobConfigVersion, :PublishedJobConfigVersion, :RunningCuNum, :CuMem, :StatusDesc, :CurrentRunMillis, :ClusterId, :WebUIUrl, :SchedulerType, :ClusterStatus, :RunningCu, :FlinkVersion
+        attr_accessor :JobId, :Region, :Zone, :AppId, :OwnerUin, :CreatorUin, :Name, :JobType, :Status, :CreateTime, :StartTime, :StopTime, :UpdateTime, :TotalRunMillis, :Remark, :LastOpResult, :ClusterName, :LatestJobConfigVersion, :PublishedJobConfigVersion, :RunningCuNum, :CuMem, :StatusDesc, :CurrentRunMillis, :ClusterId, :WebUIUrl, :SchedulerType, :ClusterStatus, :RunningCu, :FlinkVersion, :WorkSpaceId, :WorkSpaceName
         
-        def initialize(jobid=nil, region=nil, zone=nil, appid=nil, owneruin=nil, creatoruin=nil, name=nil, jobtype=nil, status=nil, createtime=nil, starttime=nil, stoptime=nil, updatetime=nil, totalrunmillis=nil, remark=nil, lastopresult=nil, clustername=nil, latestjobconfigversion=nil, publishedjobconfigversion=nil, runningcunum=nil, cumem=nil, statusdesc=nil, currentrunmillis=nil, clusterid=nil, webuiurl=nil, schedulertype=nil, clusterstatus=nil, runningcu=nil, flinkversion=nil)
+        def initialize(jobid=nil, region=nil, zone=nil, appid=nil, owneruin=nil, creatoruin=nil, name=nil, jobtype=nil, status=nil, createtime=nil, starttime=nil, stoptime=nil, updatetime=nil, totalrunmillis=nil, remark=nil, lastopresult=nil, clustername=nil, latestjobconfigversion=nil, publishedjobconfigversion=nil, runningcunum=nil, cumem=nil, statusdesc=nil, currentrunmillis=nil, clusterid=nil, webuiurl=nil, schedulertype=nil, clusterstatus=nil, runningcu=nil, flinkversion=nil, workspaceid=nil, workspacename=nil)
           @JobId = jobid
           @Region = region
           @Zone = zone
@@ -1084,6 +1138,8 @@ module TencentCloud
           @ClusterStatus = clusterstatus
           @RunningCu = runningcu
           @FlinkVersion = flinkversion
+          @WorkSpaceId = workspaceid
+          @WorkSpaceName = workspacename
         end
 
         def deserialize(params)
@@ -1116,6 +1172,8 @@ module TencentCloud
           @ClusterStatus = params['ClusterStatus']
           @RunningCu = params['RunningCu']
           @FlinkVersion = params['FlinkVersion']
+          @WorkSpaceId = params['WorkSpaceId']
+          @WorkSpaceName = params['WorkSpaceName']
         end
       end
 
@@ -1446,11 +1504,14 @@ module TencentCloud
       class RunJobsRequest < TencentCloud::Common::AbstractModel
         # @param RunJobDescriptions: 批量启动作业的描述信息
         # @type RunJobDescriptions: Array
+        # @param WorkSpaceId: 工作空间 SerialId
+        # @type WorkSpaceId: String
 
-        attr_accessor :RunJobDescriptions
+        attr_accessor :RunJobDescriptions, :WorkSpaceId
         
-        def initialize(runjobdescriptions=nil)
+        def initialize(runjobdescriptions=nil, workspaceid=nil)
           @RunJobDescriptions = runjobdescriptions
+          @WorkSpaceId = workspaceid
         end
 
         def deserialize(params)
@@ -1462,6 +1523,7 @@ module TencentCloud
               @RunJobDescriptions << runjobdescription_tmp
             end
           end
+          @WorkSpaceId = params['WorkSpaceId']
         end
       end
 
@@ -1505,11 +1567,14 @@ module TencentCloud
       class StopJobsRequest < TencentCloud::Common::AbstractModel
         # @param StopJobDescriptions: 批量停止作业的描述信息
         # @type StopJobDescriptions: Array
+        # @param WorkSpaceId: 工作空间 SerialId
+        # @type WorkSpaceId: String
 
-        attr_accessor :StopJobDescriptions
+        attr_accessor :StopJobDescriptions, :WorkSpaceId
         
-        def initialize(stopjobdescriptions=nil)
+        def initialize(stopjobdescriptions=nil, workspaceid=nil)
           @StopJobDescriptions = stopjobdescriptions
+          @WorkSpaceId = workspaceid
         end
 
         def deserialize(params)
@@ -1521,6 +1586,7 @@ module TencentCloud
               @StopJobDescriptions << stopjobdescription_tmp
             end
           end
+          @WorkSpaceId = params['WorkSpaceId']
         end
       end
 

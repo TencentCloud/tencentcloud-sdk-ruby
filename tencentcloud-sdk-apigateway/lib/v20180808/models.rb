@@ -2241,10 +2241,12 @@ module TencentCloud
         # @type Tags: Array
         # @param InstanceId: 独享实例id
         # @type InstanceId: String
+        # @param UniqVpcId: vpc属性
+        # @type UniqVpcId: String
 
-        attr_accessor :ServiceName, :Protocol, :ServiceDesc, :ExclusiveSetName, :NetTypes, :IpVersion, :SetServerName, :AppIdType, :Tags, :InstanceId
+        attr_accessor :ServiceName, :Protocol, :ServiceDesc, :ExclusiveSetName, :NetTypes, :IpVersion, :SetServerName, :AppIdType, :Tags, :InstanceId, :UniqVpcId
         
-        def initialize(servicename=nil, protocol=nil, servicedesc=nil, exclusivesetname=nil, nettypes=nil, ipversion=nil, setservername=nil, appidtype=nil, tags=nil, instanceid=nil)
+        def initialize(servicename=nil, protocol=nil, servicedesc=nil, exclusivesetname=nil, nettypes=nil, ipversion=nil, setservername=nil, appidtype=nil, tags=nil, instanceid=nil, uniqvpcid=nil)
           @ServiceName = servicename
           @Protocol = protocol
           @ServiceDesc = servicedesc
@@ -2255,6 +2257,7 @@ module TencentCloud
           @AppIdType = appidtype
           @Tags = tags
           @InstanceId = instanceid
+          @UniqVpcId = uniqvpcid
         end
 
         def deserialize(params)
@@ -2275,6 +2278,7 @@ module TencentCloud
             end
           end
           @InstanceId = params['InstanceId']
+          @UniqVpcId = params['UniqVpcId']
         end
       end
 

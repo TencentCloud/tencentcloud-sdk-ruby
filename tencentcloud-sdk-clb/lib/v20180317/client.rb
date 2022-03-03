@@ -1480,6 +1480,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 修改IPv6FullChain负载均衡7层监听器支持混绑IPv4/IPv6目标特性。
+
+        # @param request: Request instance for ModifyLoadBalancerMixIpTarget.
+        # @type request: :class:`Tencentcloud::clb::V20180317::ModifyLoadBalancerMixIpTargetRequest`
+        # @rtype: :class:`Tencentcloud::clb::V20180317::ModifyLoadBalancerMixIpTargetResponse`
+        def ModifyLoadBalancerMixIpTarget(request)
+          body = send_request('ModifyLoadBalancerMixIpTarget', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyLoadBalancerMixIpTargetResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 支持共享型clb升级到性能容量型clb（不支持性能保障降级到共享型）。
 
         # @param request: Request instance for ModifyLoadBalancerSla.

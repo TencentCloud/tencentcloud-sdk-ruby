@@ -431,10 +431,13 @@ module TencentCloud
         # @param RuleName: 审计规则名称。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RuleName: String
+        # @param InstanceName: 数据库实例名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceName: String
 
-        attr_accessor :PolicyId, :Status, :InstanceId, :CreateTime, :ModifyTime, :PolicyName, :RuleId, :RuleName
+        attr_accessor :PolicyId, :Status, :InstanceId, :CreateTime, :ModifyTime, :PolicyName, :RuleId, :RuleName, :InstanceName
         
-        def initialize(policyid=nil, status=nil, instanceid=nil, createtime=nil, modifytime=nil, policyname=nil, ruleid=nil, rulename=nil)
+        def initialize(policyid=nil, status=nil, instanceid=nil, createtime=nil, modifytime=nil, policyname=nil, ruleid=nil, rulename=nil, instancename=nil)
           @PolicyId = policyid
           @Status = status
           @InstanceId = instanceid
@@ -443,6 +446,7 @@ module TencentCloud
           @PolicyName = policyname
           @RuleId = ruleid
           @RuleName = rulename
+          @InstanceName = instancename
         end
 
         def deserialize(params)
@@ -454,6 +458,7 @@ module TencentCloud
           @PolicyName = params['PolicyName']
           @RuleId = params['RuleId']
           @RuleName = params['RuleName']
+          @InstanceName = params['InstanceName']
         end
       end
 

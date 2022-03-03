@@ -4573,10 +4573,14 @@ module TencentCloud
         # @type Limit: Integer
         # @param Offset: 偏移量，默认为0。
         # @type Offset: Integer
+        # @param InstanceChargeType: 按照【计费类型】进行过滤。
+        # <li>2：包年包月</li>
+        # <li>3：按量</li>
+        # @type InstanceChargeType: Integer
 
-        attr_accessor :InstanceIds, :InstanceStatus, :InstanceName, :Zones, :TagFilters, :IPv4Address, :Limit, :Offset
+        attr_accessor :InstanceIds, :InstanceStatus, :InstanceName, :Zones, :TagFilters, :IPv4Address, :Limit, :Offset, :InstanceChargeType
         
-        def initialize(instanceids=nil, instancestatus=nil, instancename=nil, zones=nil, tagfilters=nil, ipv4address=nil, limit=nil, offset=nil)
+        def initialize(instanceids=nil, instancestatus=nil, instancename=nil, zones=nil, tagfilters=nil, ipv4address=nil, limit=nil, offset=nil, instancechargetype=nil)
           @InstanceIds = instanceids
           @InstanceStatus = instancestatus
           @InstanceName = instancename
@@ -4585,6 +4589,7 @@ module TencentCloud
           @IPv4Address = ipv4address
           @Limit = limit
           @Offset = offset
+          @InstanceChargeType = instancechargetype
         end
 
         def deserialize(params)
@@ -4603,6 +4608,7 @@ module TencentCloud
           @IPv4Address = params['IPv4Address']
           @Limit = params['Limit']
           @Offset = params['Offset']
+          @InstanceChargeType = params['InstanceChargeType']
         end
       end
 

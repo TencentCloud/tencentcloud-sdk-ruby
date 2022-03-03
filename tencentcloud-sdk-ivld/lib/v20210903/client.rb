@@ -29,7 +29,7 @@ module TencentCloud
         end
 
 
-        # 增加自定义人脸图片，每个自定义人物最多可包含5张人脸图片
+        # 增加自定义人脸图片，每个自定义人物最多可包含10张人脸图片
 
         # 请注意，与创建自定义人物一样，图片数据优先级优于图片URL优先级
 
@@ -292,6 +292,34 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 删除任务信息
+
+        # 请注意，本接口**不会**删除媒资文件
+
+        # 只有已完成(成功或者失败)的任务可以删除，**正在执行中的任务不支持删除**
+
+        # @param request: Request instance for DeleteTask.
+        # @type request: :class:`Tencentcloud::ivld::V20210903::DeleteTaskRequest`
+        # @rtype: :class:`Tencentcloud::ivld::V20210903::DeleteTaskResponse`
+        def DeleteTask(request)
+          body = send_request('DeleteTask', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteTaskResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 批量描述自定义人物分类信息
 
         # @param request: Request instance for DescribeCustomCategories.
@@ -536,6 +564,88 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ImportMediaResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 用户设置对应事件的回调地址
+
+        # ### 回调事件消息通知协议
+
+        # #### 网络协议
+        # - 回调接口协议目前仅支持http/https协议；
+        # - 请求：HTTP POST 请求，包体内容为 JSON，每一种消息的具体包体内容参见后文。
+        # - 应答：HTTP STATUS CODE = 200，服务端忽略应答包具体内容，为了协议友好，建议客户应答内容携带 JSON： `{"code":0}`
+
+        # #### 通知可靠性
+
+        # 事件通知服务具备重试能力，事件通知失败后会总计重试3次；
+        # 为了避免重试对您的服务器以及网络带宽造成冲击，请保持正常回包。触发重试条件如下：
+        # - 长时间（20 秒）未回包应答。
+        # - 应答 HTTP STATUS 不为200。
+
+
+        # #### 回调接口协议
+
+        # ##### 分析任务完成消息回调
+        # | 参数名称 | 必选 | 类型 | 描述 |
+        # |---------|---------|---------|---------|
+        # | EventType | 是 | int | 回调时间类型，1-任务分析完成，2-媒资导入完成 |
+        # | TaskId | 是 | String | 任务ID |
+        # | TaskStatus | 是 | [TaskStatus](/document/product/1611/63373?!preview&preview_docmenu=1&lang=cn&!document=1#TaskStatus) | 任务执行状态 |
+        # | FailedReason | 是 | String | 若任务失败，该字段为失败原因 |
+
+
+        # ##### 导入媒资完成消息回调
+        # | 参数名称 | 必选 | 类型 | 描述 |
+        # |---------|---------|---------|---------|
+        # | EventType | 是 | int | 回调时间类型，1-任务分析完成，2-媒资导入完成 |
+        # | MediaId | 是 | String | 媒资ID |
+        # | MediaStatus | 是 | [MediaStatus](/document/product/1611/63373?!preview&preview_docmenu=1&lang=cn&!document=1#MediaStatus) | 媒资导入状态|
+        # | FailedReason | 是 | String | 若任务失败，该字段为失败原因 |
+
+        # @param request: Request instance for ModifyCallback.
+        # @type request: :class:`Tencentcloud::ivld::V20210903::ModifyCallbackRequest`
+        # @rtype: :class:`Tencentcloud::ivld::V20210903::ModifyCallbackResponse`
+        def ModifyCallback(request)
+          body = send_request('ModifyCallback', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyCallbackResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询用户回调设置
+
+        # @param request: Request instance for QueryCallback.
+        # @type request: :class:`Tencentcloud::ivld::V20210903::QueryCallbackRequest`
+        # @rtype: :class:`Tencentcloud::ivld::V20210903::QueryCallbackResponse`
+        def QueryCallback(request)
+          body = send_request('QueryCallback', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = QueryCallbackResponse.new
             model.deserialize(response['Response'])
             model
           else

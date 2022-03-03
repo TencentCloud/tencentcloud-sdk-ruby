@@ -125,6 +125,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 可对实例进行网络的添加操作。
+
+        # @param request: Request instance for CreateDBInstanceNetworkAccess.
+        # @type request: :class:`Tencentcloud::postgres::V20170312::CreateDBInstanceNetworkAccessRequest`
+        # @rtype: :class:`Tencentcloud::postgres::V20170312::CreateDBInstanceNetworkAccessResponse`
+        def CreateDBInstanceNetworkAccess(request)
+          body = send_request('CreateDBInstanceNetworkAccess', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateDBInstanceNetworkAccessResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口 (CreateDBInstances) 用于创建一个或者多个PostgreSQL实例,仅发货实例不会进行初始化。
 
         # @param request: Request instance for CreateDBInstances.
@@ -221,6 +245,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 可对RO组进行网络的添加操作。
+
+        # @param request: Request instance for CreateReadOnlyGroupNetworkAccess.
+        # @type request: :class:`Tencentcloud::postgres::V20170312::CreateReadOnlyGroupNetworkAccessRequest`
+        # @rtype: :class:`Tencentcloud::postgres::V20170312::CreateReadOnlyGroupNetworkAccessResponse`
+        def CreateReadOnlyGroupNetworkAccess(request)
+          body = send_request('CreateReadOnlyGroupNetworkAccess', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateReadOnlyGroupNetworkAccessResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口 (CreateServerlessDBInstance) 用于创建一个ServerlessDB实例，创建成功返回实例ID。
 
         # @param request: Request instance for CreateServerlessDBInstance.
@@ -245,6 +293,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 可对实例进行网络的删除操作。
+
+        # @param request: Request instance for DeleteDBInstanceNetworkAccess.
+        # @type request: :class:`Tencentcloud::postgres::V20170312::DeleteDBInstanceNetworkAccessRequest`
+        # @rtype: :class:`Tencentcloud::postgres::V20170312::DeleteDBInstanceNetworkAccessResponse`
+        def DeleteDBInstanceNetworkAccess(request)
+          body = send_request('DeleteDBInstanceNetworkAccess', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteDBInstanceNetworkAccessResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口(DeleteReadOnlyGroup)用于删除指定的只读组
 
         # @param request: Request instance for DeleteReadOnlyGroup.
@@ -255,6 +327,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteReadOnlyGroupResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 可对RO组进行网络的删除操作。
+
+        # @param request: Request instance for DeleteReadOnlyGroupNetworkAccess.
+        # @type request: :class:`Tencentcloud::postgres::V20170312::DeleteReadOnlyGroupNetworkAccessRequest`
+        # @rtype: :class:`Tencentcloud::postgres::V20170312::DeleteReadOnlyGroupNetworkAccessResponse`
+        def DeleteReadOnlyGroupNetworkAccess(request)
+          body = send_request('DeleteReadOnlyGroupNetworkAccess', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteReadOnlyGroupNetworkAccessResponse.new
             model.deserialize(response['Response'])
             model
           else

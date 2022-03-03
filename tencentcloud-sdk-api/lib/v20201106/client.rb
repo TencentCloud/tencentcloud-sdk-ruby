@@ -29,6 +29,30 @@ module TencentCloud
         end
 
 
+        # 本接口(DescribeProducts)用于查询各个支持地域列表查询的产品信息。
+
+        # @param request: Request instance for DescribeProducts.
+        # @type request: :class:`Tencentcloud::api::V20201106::DescribeProductsRequest`
+        # @rtype: :class:`Tencentcloud::api::V20201106::DescribeProductsResponse`
+        def DescribeProducts(request)
+          body = send_request('DescribeProducts', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeProductsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口(DescribeRegions)用于查询各个产品支持地域信息。
 
         # @param request: Request instance for DescribeRegions.

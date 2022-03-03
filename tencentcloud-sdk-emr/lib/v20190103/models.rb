@@ -155,6 +155,38 @@ module TencentCloud
         end
       end
 
+      # 当前集群共用组件与集群对应关系
+      class ClusterExternalServiceInfo < TencentCloud::Common::AbstractModel
+        # @param DependType: 依赖关系，0:被其他集群依赖，1:依赖其他集群
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DependType: Integer
+        # @param Service: 共用组件
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Service: String
+        # @param ClusterId: 共用集群
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClusterId: String
+        # @param ClusterStatus: 共用集群状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClusterStatus: Integer
+
+        attr_accessor :DependType, :Service, :ClusterId, :ClusterStatus
+        
+        def initialize(dependtype=nil, service=nil, clusterid=nil, clusterstatus=nil)
+          @DependType = dependtype
+          @Service = service
+          @ClusterId = clusterid
+          @ClusterStatus = clusterstatus
+        end
+
+        def deserialize(params)
+          @DependType = params['DependType']
+          @Service = params['Service']
+          @ClusterId = params['ClusterId']
+          @ClusterStatus = params['ClusterStatus']
+        end
+      end
+
       # 集群实例信息
       class ClusterInstancesInfo < TencentCloud::Common::AbstractModel
         # @param Id: ID号
@@ -292,10 +324,13 @@ module TencentCloud
         # @param SubnetName: subnet name
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SubnetName: String
+        # @param ClusterExternalServiceInfo: 集群依赖关系
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClusterExternalServiceInfo: Array
 
-        attr_accessor :Id, :ClusterId, :Ftitle, :ClusterName, :RegionId, :ZoneId, :AppId, :Uin, :ProjectId, :VpcId, :SubnetId, :Status, :AddTime, :RunTime, :Config, :MasterIp, :EmrVersion, :ChargeType, :TradeVersion, :ResourceOrderId, :IsTradeCluster, :AlarmInfo, :IsWoodpeckerCluster, :MetaDb, :Tags, :HiveMetaDb, :ServiceClass, :AliasInfo, :ProductId, :Zone, :SceneName, :SceneServiceClass, :SceneEmrVersion, :DisplayName, :VpcName, :SubnetName
+        attr_accessor :Id, :ClusterId, :Ftitle, :ClusterName, :RegionId, :ZoneId, :AppId, :Uin, :ProjectId, :VpcId, :SubnetId, :Status, :AddTime, :RunTime, :Config, :MasterIp, :EmrVersion, :ChargeType, :TradeVersion, :ResourceOrderId, :IsTradeCluster, :AlarmInfo, :IsWoodpeckerCluster, :MetaDb, :Tags, :HiveMetaDb, :ServiceClass, :AliasInfo, :ProductId, :Zone, :SceneName, :SceneServiceClass, :SceneEmrVersion, :DisplayName, :VpcName, :SubnetName, :ClusterExternalServiceInfo
         
-        def initialize(id=nil, clusterid=nil, ftitle=nil, clustername=nil, regionid=nil, zoneid=nil, appid=nil, uin=nil, projectid=nil, vpcid=nil, subnetid=nil, status=nil, addtime=nil, runtime=nil, config=nil, masterip=nil, emrversion=nil, chargetype=nil, tradeversion=nil, resourceorderid=nil, istradecluster=nil, alarminfo=nil, iswoodpeckercluster=nil, metadb=nil, tags=nil, hivemetadb=nil, serviceclass=nil, aliasinfo=nil, productid=nil, zone=nil, scenename=nil, sceneserviceclass=nil, sceneemrversion=nil, displayname=nil, vpcname=nil, subnetname=nil)
+        def initialize(id=nil, clusterid=nil, ftitle=nil, clustername=nil, regionid=nil, zoneid=nil, appid=nil, uin=nil, projectid=nil, vpcid=nil, subnetid=nil, status=nil, addtime=nil, runtime=nil, config=nil, masterip=nil, emrversion=nil, chargetype=nil, tradeversion=nil, resourceorderid=nil, istradecluster=nil, alarminfo=nil, iswoodpeckercluster=nil, metadb=nil, tags=nil, hivemetadb=nil, serviceclass=nil, aliasinfo=nil, productid=nil, zone=nil, scenename=nil, sceneserviceclass=nil, sceneemrversion=nil, displayname=nil, vpcname=nil, subnetname=nil, clusterexternalserviceinfo=nil)
           @Id = id
           @ClusterId = clusterid
           @Ftitle = ftitle
@@ -332,6 +367,7 @@ module TencentCloud
           @DisplayName = displayname
           @VpcName = vpcname
           @SubnetName = subnetname
+          @ClusterExternalServiceInfo = clusterexternalserviceinfo
         end
 
         def deserialize(params)
@@ -381,6 +417,14 @@ module TencentCloud
           @DisplayName = params['DisplayName']
           @VpcName = params['VpcName']
           @SubnetName = params['SubnetName']
+          unless params['ClusterExternalServiceInfo'].nil?
+            @ClusterExternalServiceInfo = []
+            params['ClusterExternalServiceInfo'].each do |i|
+              clusterexternalserviceinfo_tmp = ClusterExternalServiceInfo.new
+              clusterexternalserviceinfo_tmp.deserialize(i)
+              @ClusterExternalServiceInfo << clusterexternalserviceinfo_tmp
+            end
+          end
         end
       end
 
@@ -595,10 +639,12 @@ module TencentCloud
         # Hadoop-Presto
         # Hadoop-Hbase
         # @type SceneName: String
+        # @param ExternalService: 共享组件信息
+        # @type ExternalService: Array
 
-        attr_accessor :ProductId, :VPCSettings, :Software, :ResourceSpec, :SupportHA, :InstanceName, :PayMode, :Placement, :TimeSpan, :TimeUnit, :LoginSettings, :COSSettings, :SgId, :PreExecutedFileSettings, :AutoRenew, :ClientToken, :NeedMasterWan, :RemoteLoginAtCreate, :CheckSecurity, :ExtendFsField, :Tags, :DisasterRecoverGroupIds, :CbsEncrypt, :MetaType, :UnifyMetaInstanceId, :MetaDBInfo, :ApplicationRole, :SceneName
+        attr_accessor :ProductId, :VPCSettings, :Software, :ResourceSpec, :SupportHA, :InstanceName, :PayMode, :Placement, :TimeSpan, :TimeUnit, :LoginSettings, :COSSettings, :SgId, :PreExecutedFileSettings, :AutoRenew, :ClientToken, :NeedMasterWan, :RemoteLoginAtCreate, :CheckSecurity, :ExtendFsField, :Tags, :DisasterRecoverGroupIds, :CbsEncrypt, :MetaType, :UnifyMetaInstanceId, :MetaDBInfo, :ApplicationRole, :SceneName, :ExternalService
         
-        def initialize(productid=nil, vpcsettings=nil, software=nil, resourcespec=nil, supportha=nil, instancename=nil, paymode=nil, placement=nil, timespan=nil, timeunit=nil, loginsettings=nil, cossettings=nil, sgid=nil, preexecutedfilesettings=nil, autorenew=nil, clienttoken=nil, needmasterwan=nil, remoteloginatcreate=nil, checksecurity=nil, extendfsfield=nil, tags=nil, disasterrecovergroupids=nil, cbsencrypt=nil, metatype=nil, unifymetainstanceid=nil, metadbinfo=nil, applicationrole=nil, scenename=nil)
+        def initialize(productid=nil, vpcsettings=nil, software=nil, resourcespec=nil, supportha=nil, instancename=nil, paymode=nil, placement=nil, timespan=nil, timeunit=nil, loginsettings=nil, cossettings=nil, sgid=nil, preexecutedfilesettings=nil, autorenew=nil, clienttoken=nil, needmasterwan=nil, remoteloginatcreate=nil, checksecurity=nil, extendfsfield=nil, tags=nil, disasterrecovergroupids=nil, cbsencrypt=nil, metatype=nil, unifymetainstanceid=nil, metadbinfo=nil, applicationrole=nil, scenename=nil, externalservice=nil)
           @ProductId = productid
           @VPCSettings = vpcsettings
           @Software = software
@@ -627,6 +673,7 @@ module TencentCloud
           @MetaDBInfo = metadbinfo
           @ApplicationRole = applicationrole
           @SceneName = scenename
+          @ExternalService = externalservice
         end
 
         def deserialize(params)
@@ -690,6 +737,14 @@ module TencentCloud
           end
           @ApplicationRole = params['ApplicationRole']
           @SceneName = params['SceneName']
+          unless params['ExternalService'].nil?
+            @ExternalService = []
+            params['ExternalService'].each do |i|
+              externalservice_tmp = ExternalService.new
+              externalservice_tmp.deserialize(i)
+              @ExternalService << externalservice_tmp
+            end
+          end
         end
       end
 
@@ -1252,10 +1307,13 @@ module TencentCloud
         # @param SecurityGroups: 安全组
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SecurityGroups: Array
+        # @param PublicKeyId: SSH密钥Id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PublicKeyId: String
 
-        attr_accessor :SoftInfo, :MasterNodeSize, :CoreNodeSize, :TaskNodeSize, :ComNodeSize, :MasterResource, :CoreResource, :TaskResource, :ComResource, :OnCos, :ChargeType, :RouterNodeSize, :SupportHA, :SecurityOn, :SecurityGroup, :CbsEncrypt, :ApplicationRole, :SecurityGroups
+        attr_accessor :SoftInfo, :MasterNodeSize, :CoreNodeSize, :TaskNodeSize, :ComNodeSize, :MasterResource, :CoreResource, :TaskResource, :ComResource, :OnCos, :ChargeType, :RouterNodeSize, :SupportHA, :SecurityOn, :SecurityGroup, :CbsEncrypt, :ApplicationRole, :SecurityGroups, :PublicKeyId
         
-        def initialize(softinfo=nil, masternodesize=nil, corenodesize=nil, tasknodesize=nil, comnodesize=nil, masterresource=nil, coreresource=nil, taskresource=nil, comresource=nil, oncos=nil, chargetype=nil, routernodesize=nil, supportha=nil, securityon=nil, securitygroup=nil, cbsencrypt=nil, applicationrole=nil, securitygroups=nil)
+        def initialize(softinfo=nil, masternodesize=nil, corenodesize=nil, tasknodesize=nil, comnodesize=nil, masterresource=nil, coreresource=nil, taskresource=nil, comresource=nil, oncos=nil, chargetype=nil, routernodesize=nil, supportha=nil, securityon=nil, securitygroup=nil, cbsencrypt=nil, applicationrole=nil, securitygroups=nil, publickeyid=nil)
           @SoftInfo = softinfo
           @MasterNodeSize = masternodesize
           @CoreNodeSize = corenodesize
@@ -1274,6 +1332,7 @@ module TencentCloud
           @CbsEncrypt = cbsencrypt
           @ApplicationRole = applicationrole
           @SecurityGroups = securitygroups
+          @PublicKeyId = publickeyid
         end
 
         def deserialize(params)
@@ -1307,6 +1366,7 @@ module TencentCloud
           @CbsEncrypt = params['CbsEncrypt']
           @ApplicationRole = params['ApplicationRole']
           @SecurityGroups = params['SecurityGroups']
+          @PublicKeyId = params['PublicKeyId']
         end
       end
 

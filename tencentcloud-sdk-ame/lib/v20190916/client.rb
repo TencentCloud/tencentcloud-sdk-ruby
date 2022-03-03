@@ -269,7 +269,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 查询机器人列表，支持 Id、状态等过滤条件。
+        # 获取机器人列表，支持 Id、状态等过滤条件。
 
         # @param request: Request instance for DescribeKTVRobots.
         # @type request: :class:`Tencentcloud::ame::V20190916::DescribeKTVRobotsRequest`

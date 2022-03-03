@@ -607,6 +607,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 修改实例绑定的安全组
+
+        # @param request: Request instance for ModifyDBInstanceSecurityGroup.
+        # @type request: :class:`Tencentcloud::mongodb::V20190725::ModifyDBInstanceSecurityGroupRequest`
+        # @rtype: :class:`Tencentcloud::mongodb::V20190725::ModifyDBInstanceSecurityGroupResponse`
+        def ModifyDBInstanceSecurityGroup(request)
+          body = send_request('ModifyDBInstanceSecurityGroup', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyDBInstanceSecurityGroupResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口(ModifyDBInstanceSpec)用于调整MongoDB云数据库实例配置。接口支持的售卖规格，可从查询云数据库的售卖规格（DescribeSpecInfo）获取。
 
         # @param request: Request instance for ModifyDBInstanceSpec.

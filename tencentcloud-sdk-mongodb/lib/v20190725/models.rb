@@ -2250,6 +2250,42 @@ module TencentCloud
         end
       end
 
+      # ModifyDBInstanceSecurityGroup请求参数结构体
+      class ModifyDBInstanceSecurityGroupRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+        # @param SecurityGroupIds: 目标安全组id
+        # @type SecurityGroupIds: Array
+
+        attr_accessor :InstanceId, :SecurityGroupIds
+        
+        def initialize(instanceid=nil, securitygroupids=nil)
+          @InstanceId = instanceid
+          @SecurityGroupIds = securitygroupids
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @SecurityGroupIds = params['SecurityGroupIds']
+        end
+      end
+
+      # ModifyDBInstanceSecurityGroup返回参数结构体
+      class ModifyDBInstanceSecurityGroupResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyDBInstanceSpec请求参数结构体
       class ModifyDBInstanceSpecRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例ID，格式如：cmgo-p8vnipr5。与云数据库控制台页面中显示的实例ID相同

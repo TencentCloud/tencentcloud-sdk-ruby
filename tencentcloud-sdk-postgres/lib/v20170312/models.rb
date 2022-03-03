@@ -385,6 +385,59 @@ module TencentCloud
         end
       end
 
+      # CreateDBInstanceNetworkAccess请求参数结构体
+      class CreateDBInstanceNetworkAccessRequest < TencentCloud::Common::AbstractModel
+        # @param DBInstanceId: 实例ID，形如：postgres-6bwgamo3。
+        # @type DBInstanceId: String
+        # @param VpcId: 私有网络统一 ID。
+        # @type VpcId: String
+        # @param SubnetId: 子网ID。
+        # @type SubnetId: String
+        # @param IsAssignVip: 是否指定分配vip true-指定分配  false-自动分配。
+        # @type IsAssignVip: Boolean
+        # @param Vip: 目标VIP地址。
+        # @type Vip: String
+
+        attr_accessor :DBInstanceId, :VpcId, :SubnetId, :IsAssignVip, :Vip
+        
+        def initialize(dbinstanceid=nil, vpcid=nil, subnetid=nil, isassignvip=nil, vip=nil)
+          @DBInstanceId = dbinstanceid
+          @VpcId = vpcid
+          @SubnetId = subnetid
+          @IsAssignVip = isassignvip
+          @Vip = vip
+        end
+
+        def deserialize(params)
+          @DBInstanceId = params['DBInstanceId']
+          @VpcId = params['VpcId']
+          @SubnetId = params['SubnetId']
+          @IsAssignVip = params['IsAssignVip']
+          @Vip = params['Vip']
+        end
+      end
+
+      # CreateDBInstanceNetworkAccess返回参数结构体
+      class CreateDBInstanceNetworkAccessResponse < TencentCloud::Common::AbstractModel
+        # @param FlowId: 流程ID。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FlowId: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :FlowId, :RequestId
+        
+        def initialize(flowid=nil, requestid=nil)
+          @FlowId = flowid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @FlowId = params['FlowId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateDBInstances请求参数结构体
       class CreateDBInstancesRequest < TencentCloud::Common::AbstractModel
         # @param SpecCode: 售卖规格ID。该参数可以通过调用DescribeProductConfig的返回值中的SpecCode字段来获取。
@@ -781,6 +834,59 @@ module TencentCloud
           @DealNames = params['DealNames']
           @BillId = params['BillId']
           @DBInstanceIdSet = params['DBInstanceIdSet']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateReadOnlyGroupNetworkAccess请求参数结构体
+      class CreateReadOnlyGroupNetworkAccessRequest < TencentCloud::Common::AbstractModel
+        # @param ReadOnlyGroupId: RO组ID，形如：pgro-4t9c6g7k。
+        # @type ReadOnlyGroupId: String
+        # @param VpcId: 私有网络统一 ID。
+        # @type VpcId: String
+        # @param SubnetId: 子网ID。
+        # @type SubnetId: String
+        # @param IsAssignVip: 是否指定分配vip true-指定分配  false-自动分配。
+        # @type IsAssignVip: Boolean
+        # @param Vip: 目标VIP地址。
+        # @type Vip: String
+
+        attr_accessor :ReadOnlyGroupId, :VpcId, :SubnetId, :IsAssignVip, :Vip
+        
+        def initialize(readonlygroupid=nil, vpcid=nil, subnetid=nil, isassignvip=nil, vip=nil)
+          @ReadOnlyGroupId = readonlygroupid
+          @VpcId = vpcid
+          @SubnetId = subnetid
+          @IsAssignVip = isassignvip
+          @Vip = vip
+        end
+
+        def deserialize(params)
+          @ReadOnlyGroupId = params['ReadOnlyGroupId']
+          @VpcId = params['VpcId']
+          @SubnetId = params['SubnetId']
+          @IsAssignVip = params['IsAssignVip']
+          @Vip = params['Vip']
+        end
+      end
+
+      # CreateReadOnlyGroupNetworkAccess返回参数结构体
+      class CreateReadOnlyGroupNetworkAccessResponse < TencentCloud::Common::AbstractModel
+        # @param FlowId: 流程ID。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FlowId: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :FlowId, :RequestId
+        
+        def initialize(flowid=nil, requestid=nil)
+          @FlowId = flowid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @FlowId = params['FlowId']
           @RequestId = params['RequestId']
         end
       end
@@ -1252,6 +1358,104 @@ module TencentCloud
         def deserialize(params)
           @Role = params['Role']
           @Zone = params['Zone']
+        end
+      end
+
+      # DeleteDBInstanceNetworkAccess请求参数结构体
+      class DeleteDBInstanceNetworkAccessRequest < TencentCloud::Common::AbstractModel
+        # @param DBInstanceId: 实例ID，形如：postgres-6bwgamo3。
+        # @type DBInstanceId: String
+        # @param VpcId: 私有网络统一 ID，若是基础网络则传"0"。
+        # @type VpcId: String
+        # @param SubnetId: 子网ID，若是基础网络则传"0"。
+        # @type SubnetId: String
+        # @param Vip: 目标VIP地址。
+        # @type Vip: String
+
+        attr_accessor :DBInstanceId, :VpcId, :SubnetId, :Vip
+        
+        def initialize(dbinstanceid=nil, vpcid=nil, subnetid=nil, vip=nil)
+          @DBInstanceId = dbinstanceid
+          @VpcId = vpcid
+          @SubnetId = subnetid
+          @Vip = vip
+        end
+
+        def deserialize(params)
+          @DBInstanceId = params['DBInstanceId']
+          @VpcId = params['VpcId']
+          @SubnetId = params['SubnetId']
+          @Vip = params['Vip']
+        end
+      end
+
+      # DeleteDBInstanceNetworkAccess返回参数结构体
+      class DeleteDBInstanceNetworkAccessResponse < TencentCloud::Common::AbstractModel
+        # @param FlowId: 流程ID。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FlowId: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :FlowId, :RequestId
+        
+        def initialize(flowid=nil, requestid=nil)
+          @FlowId = flowid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @FlowId = params['FlowId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteReadOnlyGroupNetworkAccess请求参数结构体
+      class DeleteReadOnlyGroupNetworkAccessRequest < TencentCloud::Common::AbstractModel
+        # @param ReadOnlyGroupId: RO组ID，形如：pgro-4t9c6g7k。
+        # @type ReadOnlyGroupId: String
+        # @param VpcId: 私有网络统一 ID，若是基础网络则传"0"。
+        # @type VpcId: String
+        # @param SubnetId: 子网ID，若是基础网络则传"0"。
+        # @type SubnetId: String
+        # @param Vip: 目标VIP地址。
+        # @type Vip: String
+
+        attr_accessor :ReadOnlyGroupId, :VpcId, :SubnetId, :Vip
+        
+        def initialize(readonlygroupid=nil, vpcid=nil, subnetid=nil, vip=nil)
+          @ReadOnlyGroupId = readonlygroupid
+          @VpcId = vpcid
+          @SubnetId = subnetid
+          @Vip = vip
+        end
+
+        def deserialize(params)
+          @ReadOnlyGroupId = params['ReadOnlyGroupId']
+          @VpcId = params['VpcId']
+          @SubnetId = params['SubnetId']
+          @Vip = params['Vip']
+        end
+      end
+
+      # DeleteReadOnlyGroupNetworkAccess返回参数结构体
+      class DeleteReadOnlyGroupNetworkAccessResponse < TencentCloud::Common::AbstractModel
+        # @param FlowId: 流程ID。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FlowId: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :FlowId, :RequestId
+        
+        def initialize(flowid=nil, requestid=nil)
+          @FlowId = flowid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @FlowId = params['FlowId']
+          @RequestId = params['RequestId']
         end
       end
 

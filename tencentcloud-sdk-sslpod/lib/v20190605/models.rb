@@ -442,13 +442,14 @@ module TencentCloud
         # @type Offset: Integer
         # @param Limit: 获取数量
         # @type Limit: Integer
-        # @param SearchType: 搜索的类型有：none，tags，grade，brand，code，hash，limit。
+        # @param SearchType: 搜索的类型有：none，tags，grade，brand，code，hash，limit，domain。
         # 选tags，入参请填Tag，
         # 选grade，入参请填Grade，
         # 选brand，入参请填Brand，
         # 选code，入参请填Code，
         # 选hash，入参请填Hash
         # 选limit，标识只返回数量信息
+        # 选domain，入参请填Domain
         # @type SearchType: String
         # @param Tag: 标签，多个标签用逗号分隔
         # @type Tag: String
@@ -464,10 +465,12 @@ module TencentCloud
         # @type Item: String
         # @param Status: 搜索图标值
         # @type Status: String
+        # @param Domain: 搜索域名
+        # @type Domain: String
 
-        attr_accessor :Offset, :Limit, :SearchType, :Tag, :Grade, :Brand, :Code, :Hash, :Item, :Status
+        attr_accessor :Offset, :Limit, :SearchType, :Tag, :Grade, :Brand, :Code, :Hash, :Item, :Status, :Domain
         
-        def initialize(offset=nil, limit=nil, searchtype=nil, tag=nil, grade=nil, brand=nil, code=nil, hash=nil, item=nil, status=nil)
+        def initialize(offset=nil, limit=nil, searchtype=nil, tag=nil, grade=nil, brand=nil, code=nil, hash=nil, item=nil, status=nil, domain=nil)
           @Offset = offset
           @Limit = limit
           @SearchType = searchtype
@@ -478,6 +481,7 @@ module TencentCloud
           @Hash = hash
           @Item = item
           @Status = status
+          @Domain = domain
         end
 
         def deserialize(params)
@@ -491,6 +495,7 @@ module TencentCloud
           @Hash = params['Hash']
           @Item = params['Item']
           @Status = params['Status']
+          @Domain = params['Domain']
         end
       end
 
