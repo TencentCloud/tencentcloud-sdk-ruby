@@ -149,7 +149,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口用于创建日志下载任务
+        # 本接口用于创建日志下载任务，导出原始日志
 
         # @param request: Request instance for CreateExport.
         # @type request: :class:`Tencentcloud::cls::V20201016::CreateExportRequest`

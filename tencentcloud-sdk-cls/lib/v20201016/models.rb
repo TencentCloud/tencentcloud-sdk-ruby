@@ -809,12 +809,12 @@ module TencentCloud
 
       # CreateExport请求参数结构体
       class CreateExportRequest < TencentCloud::Common::AbstractModel
-        # @param TopicId: 日志主题
+        # @param TopicId: 日志主题ID
         # @type TopicId: String
-        # @param Query: 日志导出检索语句
-        # @type Query: String
-        # @param Count: 日志导出数量,  最大值1000万
+        # @param Count: 日志导出数量,  最大值5000万
         # @type Count: Integer
+        # @param Query: 日志导出检索语句，不支持<a href="https://cloud.tencent.com/document/product/614/44061" target="_blank">[SQL语句]</a>
+        # @type Query: String
         # @param From: 日志导出起始时间，毫秒时间戳
         # @type From: Integer
         # @param To: 日志导出结束时间，毫秒时间戳
@@ -824,12 +824,12 @@ module TencentCloud
         # @param Format: 日志导出数据格式。json，csv，默认为json
         # @type Format: String
 
-        attr_accessor :TopicId, :Query, :Count, :From, :To, :Order, :Format
+        attr_accessor :TopicId, :Count, :Query, :From, :To, :Order, :Format
         
-        def initialize(topicid=nil, query=nil, count=nil, from=nil, to=nil, order=nil, format=nil)
+        def initialize(topicid=nil, count=nil, query=nil, from=nil, to=nil, order=nil, format=nil)
           @TopicId = topicid
-          @Query = query
           @Count = count
+          @Query = query
           @From = from
           @To = to
           @Order = order
@@ -838,8 +838,8 @@ module TencentCloud
 
         def deserialize(params)
           @TopicId = params['TopicId']
-          @Query = params['Query']
           @Count = params['Count']
+          @Query = params['Query']
           @From = params['From']
           @To = params['To']
           @Order = params['Order']

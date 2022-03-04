@@ -237,6 +237,51 @@ module TencentCloud
         end
       end
 
+      # AuthorizeToken请求参数结构体
+      class AuthorizeTokenRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+        # @param User: 用户
+        # @type User: String
+        # @param Tokens: token串
+        # @type Tokens: String
+
+        attr_accessor :InstanceId, :User, :Tokens
+        
+        def initialize(instanceid=nil, user=nil, tokens=nil)
+          @InstanceId = instanceid
+          @User = user
+          @Tokens = tokens
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @User = params['User']
+          @Tokens = params['Tokens']
+        end
+      end
+
+      # AuthorizeToken返回参数结构体
+      class AuthorizeTokenResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 0 成功
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Result: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+        
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Result = params['Result']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 批量发送消息内容
       class BatchContent < TencentCloud::Common::AbstractModel
         # @param Body: 发送的消息体
@@ -508,6 +553,51 @@ module TencentCloud
           @TopicName = params['TopicName']
           @ReturnCode = params['ReturnCode']
           @Message = params['Message']
+        end
+      end
+
+      # CancelAuthorizationToken请求参数结构体
+      class CancelAuthorizationTokenRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+        # @param User: 用户
+        # @type User: String
+        # @param Tokens: token串
+        # @type Tokens: String
+
+        attr_accessor :InstanceId, :User, :Tokens
+        
+        def initialize(instanceid=nil, user=nil, tokens=nil)
+          @InstanceId = instanceid
+          @User = user
+          @Tokens = tokens
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @User = params['User']
+          @Tokens = params['Tokens']
+        end
+      end
+
+      # CancelAuthorizationToken返回参数结构体
+      class CancelAuthorizationTokenResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 0 成功
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Result: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+        
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Result = params['Result']
+          @RequestId = params['RequestId']
         end
       end
 
@@ -1184,6 +1274,47 @@ module TencentCloud
             @Result = JgwOperateResponse.new
             @Result.deserialize(params['Result'])
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateToken请求参数结构体
+      class CreateTokenRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+        # @param User: 用户名
+        # @type User: String
+
+        attr_accessor :InstanceId, :User
+        
+        def initialize(instanceid=nil, user=nil)
+          @InstanceId = instanceid
+          @User = user
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @User = params['User']
+        end
+      end
+
+      # CreateToken返回参数结构体
+      class CreateTokenResponse < TencentCloud::Common::AbstractModel
+        # @param Result: token串
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Result: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+        
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Result = params['Result']
           @RequestId = params['RequestId']
         end
       end

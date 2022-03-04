@@ -29,6 +29,30 @@ module TencentCloud
         end
 
 
+        # 给实例授权token
+
+        # @param request: Request instance for AuthorizeToken.
+        # @type request: :class:`Tencentcloud::ckafka::V20190819::AuthorizeTokenRequest`
+        # @rtype: :class:`Tencentcloud::ckafka::V20190819::AuthorizeTokenResponse`
+        def AuthorizeToken(request)
+          body = send_request('AuthorizeToken', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = AuthorizeTokenResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 批量添加ACL策略
 
         # @param request: Request instance for BatchCreateAcl.
@@ -87,6 +111,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = BatchModifyTopicAttributesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 取消授权token
+
+        # @param request: Request instance for CancelAuthorizationToken.
+        # @type request: :class:`Tencentcloud::ckafka::V20190819::CancelAuthorizationTokenRequest`
+        # @rtype: :class:`Tencentcloud::ckafka::V20190819::CancelAuthorizationTokenResponse`
+        def CancelAuthorizationToken(request)
+          body = send_request('CancelAuthorizationToken', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CancelAuthorizationTokenResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -207,6 +255,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = CreateRouteResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 创建最高权限的token
+
+        # @param request: Request instance for CreateToken.
+        # @type request: :class:`Tencentcloud::ckafka::V20190819::CreateTokenRequest`
+        # @rtype: :class:`Tencentcloud::ckafka::V20190819::CreateTokenResponse`
+        def CreateToken(request)
+          body = send_request('CreateToken', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateTokenResponse.new
             model.deserialize(response['Response'])
             model
           else

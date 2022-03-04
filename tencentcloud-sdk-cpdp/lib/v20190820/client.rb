@@ -197,6 +197,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 聚鑫-申请对账文件
+
+        # @param request: Request instance for ApplyReconciliationFile.
+        # @type request: :class:`Tencentcloud::cpdp::V20190820::ApplyReconciliationFileRequest`
+        # @rtype: :class:`Tencentcloud::cpdp::V20190820::ApplyReconciliationFileResponse`
+        def ApplyReconciliationFile(request)
+          body = send_request('ApplyReconciliationFile', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ApplyReconciliationFileResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 跨境-提交贸易材料。通过提交贸易材料接口可为对接方累计贸易额度，在额度范围内可发起汇兑汇出交易。
 
         # @param request: Request instance for ApplyTrade.
@@ -1261,7 +1285,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 云支付-T查询已添加分账接收方接口
+        # 云支付-查询已添加分账接收方接口
 
         # @param request: Request instance for DistributeQueryReceiver.
         # @type request: :class:`Tencentcloud::cpdp::V20190820::DistributeQueryReceiverRequest`
@@ -2125,6 +2149,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 聚鑫-查询会员资金交易信息列表
+
+        # @param request: Request instance for QueryFundsTransactionDetails.
+        # @type request: :class:`Tencentcloud::cpdp::V20190820::QueryFundsTransactionDetailsRequest`
+        # @rtype: :class:`Tencentcloud::cpdp::V20190820::QueryFundsTransactionDetailsResponse`
+        def QueryFundsTransactionDetails(request)
+          body = send_request('QueryFundsTransactionDetails', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = QueryFundsTransactionDetailsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 智慧零售-发票查询
 
         # @param request: Request instance for QueryInvoice.
@@ -2232,6 +2280,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = QueryMemberTransactionResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 聚鑫-查询会员间交易信息列表
+
+        # @param request: Request instance for QueryMemberTransactionDetails.
+        # @type request: :class:`Tencentcloud::cpdp::V20190820::QueryMemberTransactionDetailsRequest`
+        # @rtype: :class:`Tencentcloud::cpdp::V20190820::QueryMemberTransactionDetailsResponse`
+        def QueryMemberTransactionDetails(request)
+          body = send_request('QueryMemberTransactionDetails', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = QueryMemberTransactionDetailsResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -2640,6 +2712,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = QueryReconciliationDocumentResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 聚鑫-查询对账文件申请结果
+
+        # @param request: Request instance for QueryReconciliationFileApplyInfo.
+        # @type request: :class:`Tencentcloud::cpdp::V20190820::QueryReconciliationFileApplyInfoRequest`
+        # @rtype: :class:`Tencentcloud::cpdp::V20190820::QueryReconciliationFileApplyInfoResponse`
+        def QueryReconciliationFileApplyInfo(request)
+          body = send_request('QueryReconciliationFileApplyInfo', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = QueryReconciliationFileApplyInfoResponse.new
             model.deserialize(response['Response'])
             model
           else
