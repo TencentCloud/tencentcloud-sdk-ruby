@@ -5001,6 +5001,50 @@ module TencentCloud
         end
       end
 
+      # DescribeTKEEdgeScript请求参数结构体
+      class DescribeTKEEdgeScriptRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群id
+        # @type ClusterId: String
+        # @param Interface: 网卡名
+        # @type Interface: String
+        # @param NodeName: 节点名字
+        # @type NodeName: String
+        # @param Config: json格式的节点配置
+        # @type Config: String
+
+        attr_accessor :ClusterId, :Interface, :NodeName, :Config
+        
+        def initialize(clusterid=nil, interface=nil, nodename=nil, config=nil)
+          @ClusterId = clusterid
+          @Interface = interface
+          @NodeName = nodename
+          @Config = config
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @Interface = params['Interface']
+          @NodeName = params['NodeName']
+          @Config = params['Config']
+        end
+      end
+
+      # DescribeTKEEdgeScript返回参数结构体
+      class DescribeTKEEdgeScriptResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeVersions请求参数结构体
       class DescribeVersionsRequest < TencentCloud::Common::AbstractModel
 

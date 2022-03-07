@@ -1738,6 +1738,34 @@ module TencentCloud
         end
       end
 
+      # 支行信息
+      class BankBranchInfo < TencentCloud::Common::AbstractModel
+        # @param BankName: 银行名称。
+        # @type BankName: String
+        # @param BankAbbreviation: 银行简称。
+        # @type BankAbbreviation: String
+        # @param BankBranchName: 支行名。
+        # @type BankBranchName: String
+        # @param BankBranchId: 联行号。
+        # @type BankBranchId: String
+
+        attr_accessor :BankName, :BankAbbreviation, :BankBranchName, :BankBranchId
+        
+        def initialize(bankname=nil, bankabbreviation=nil, bankbranchname=nil, bankbranchid=nil)
+          @BankName = bankname
+          @BankAbbreviation = bankabbreviation
+          @BankBranchName = bankbranchname
+          @BankBranchId = bankbranchid
+        end
+
+        def deserialize(params)
+          @BankName = params['BankName']
+          @BankAbbreviation = params['BankAbbreviation']
+          @BankBranchName = params['BankBranchName']
+          @BankBranchId = params['BankBranchId']
+        end
+      end
+
       # 绑卡列表
       class BankCardItem < TencentCloud::Common::AbstractModel
         # @param EiconBankBranchId: 超级网银行号
@@ -8205,15 +8233,19 @@ module TencentCloud
         # @type BankBranchName: String
         # @param BankBranchId: 联行号。渠道为TENPAY，付款方式为OPENBANK_PAYMENT时必选
         # @type BankBranchId: String
+        # @param BindSerialNo: 收款方绑卡序列号。
+        # 当渠道为TENPAY，付款方式为EBANK_PAYMENT时，上送收款方入驻云企付平台时，下发的绑卡序列号。
+        # @type BindSerialNo: String
 
-        attr_accessor :PayeeId, :PayeeName, :BankAccountNumber, :BankBranchName, :BankBranchId
+        attr_accessor :PayeeId, :PayeeName, :BankAccountNumber, :BankBranchName, :BankBranchId, :BindSerialNo
         
-        def initialize(payeeid=nil, payeename=nil, bankaccountnumber=nil, bankbranchname=nil, bankbranchid=nil)
+        def initialize(payeeid=nil, payeename=nil, bankaccountnumber=nil, bankbranchname=nil, bankbranchid=nil, bindserialno=nil)
           @PayeeId = payeeid
           @PayeeName = payeename
           @BankAccountNumber = bankaccountnumber
           @BankBranchName = bankbranchname
           @BankBranchId = bankbranchid
+          @BindSerialNo = bindserialno
         end
 
         def deserialize(params)
@@ -8222,6 +8254,7 @@ module TencentCloud
           @BankAccountNumber = params['BankAccountNumber']
           @BankBranchName = params['BankBranchName']
           @BankBranchId = params['BankBranchId']
+          @BindSerialNo = params['BindSerialNo']
         end
       end
 
@@ -12237,6 +12270,119 @@ module TencentCloud
         end
       end
 
+      # QueryOpenBankBankBranchList请求参数结构体
+      class QueryOpenBankBankBranchListRequest < TencentCloud::Common::AbstractModel
+        # @param ChannelMerchantId: 渠道商户ID。
+        # @type ChannelMerchantId: String
+        # @param ChannelName: 渠道名称。
+        # __TENPAY__: 商企付
+        # __WECHAT__: 微信支付
+        # __ALIPAY__: 支付宝
+        # @type ChannelName: String
+        # @param PaymentMethod: 支付方式。
+        # __EBANK_PAYMENT__:ebank付款
+        # __OPENBANK_PAYMENT__: openbank付款
+        # @type PaymentMethod: String
+        # @param BankBranchName: 支行名称。
+        # @type BankBranchName: String
+        # @param BankAbbreviation: 银行简称。
+        # @type BankAbbreviation: String
+        # @param PageNumber: 页码。Index和Count必须大于等于1。
+        # @type PageNumber: :class:`Tencentcloud::Cpdp.v20190820.models.Paging`
+        # @param Environment: 环境类型。
+        # __release__:生产环境
+        # __sandbox__:沙箱环境
+        # _不填默认为生产环境_
+        # @type Environment: String
+
+        attr_accessor :ChannelMerchantId, :ChannelName, :PaymentMethod, :BankBranchName, :BankAbbreviation, :PageNumber, :Environment
+        
+        def initialize(channelmerchantid=nil, channelname=nil, paymentmethod=nil, bankbranchname=nil, bankabbreviation=nil, pagenumber=nil, environment=nil)
+          @ChannelMerchantId = channelmerchantid
+          @ChannelName = channelname
+          @PaymentMethod = paymentmethod
+          @BankBranchName = bankbranchname
+          @BankAbbreviation = bankabbreviation
+          @PageNumber = pagenumber
+          @Environment = environment
+        end
+
+        def deserialize(params)
+          @ChannelMerchantId = params['ChannelMerchantId']
+          @ChannelName = params['ChannelName']
+          @PaymentMethod = params['PaymentMethod']
+          @BankBranchName = params['BankBranchName']
+          @BankAbbreviation = params['BankAbbreviation']
+          unless params['PageNumber'].nil?
+            @PageNumber = Paging.new
+            @PageNumber.deserialize(params['PageNumber'])
+          end
+          @Environment = params['Environment']
+        end
+      end
+
+      # QueryOpenBankBankBranchList返回参数结构体
+      class QueryOpenBankBankBranchListResponse < TencentCloud::Common::AbstractModel
+        # @param ErrCode: 错误码。
+        # __SUCCESS__: 成功
+        # __其他__: 见附录-错误码表
+        # @type ErrCode: String
+        # @param ErrMessage: 错误消息。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ErrMessage: String
+        # @param Result: 返回结果。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Result: :class:`Tencentcloud::Cpdp.v20190820.models.QueryOpenBankBankBranchListResult`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ErrCode, :ErrMessage, :Result, :RequestId
+        
+        def initialize(errcode=nil, errmessage=nil, result=nil, requestid=nil)
+          @ErrCode = errcode
+          @ErrMessage = errmessage
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ErrCode = params['ErrCode']
+          @ErrMessage = params['ErrMessage']
+          unless params['Result'].nil?
+            @Result = QueryOpenBankBankBranchListResult.new
+            @Result.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 查询联行号返回结果
+      class QueryOpenBankBankBranchListResult < TencentCloud::Common::AbstractModel
+        # @param BankBranchList: 支行列表。
+        # @type BankBranchList: Array
+        # @param Count: 列表总数。
+        # @type Count: Integer
+
+        attr_accessor :BankBranchList, :Count
+        
+        def initialize(bankbranchlist=nil, count=nil)
+          @BankBranchList = bankbranchlist
+          @Count = count
+        end
+
+        def deserialize(params)
+          unless params['BankBranchList'].nil?
+            @BankBranchList = []
+            params['BankBranchList'].each do |i|
+              bankbranchinfo_tmp = BankBranchInfo.new
+              bankbranchinfo_tmp.deserialize(i)
+              @BankBranchList << bankbranchinfo_tmp
+            end
+          end
+          @Count = params['Count']
+        end
+      end
+
       # QueryOpenBankBindExternalSubMerchantBankAccount请求参数结构体
       class QueryOpenBankBindExternalSubMerchantBankAccountRequest < TencentCloud::Common::AbstractModel
         # @param ChannelSubMerchantId: 渠道子商户ID。
@@ -12830,6 +12976,100 @@ module TencentCloud
             @RedirectInfo.deserialize(params['RedirectInfo'])
           end
           @ExternalReturnData = params['ExternalReturnData']
+        end
+      end
+
+      # QueryOpenBankSupportBankList请求参数结构体
+      class QueryOpenBankSupportBankListRequest < TencentCloud::Common::AbstractModel
+        # @param ChannelMerchantId: 渠道商户ID。
+        # @type ChannelMerchantId: String
+        # @param ChannelName: 渠道名称。
+        # __TENPAY__: 商企付
+        # __WECHAT__: 微信支付
+        # __ALIPAY__: 支付宝
+        # @type ChannelName: String
+        # @param PaymentMethod: 支付方式。
+        # __EBANK_PAYMENT__:ebank付款
+        # __OPENBANK_PAYMENT__: openbank付款
+        # @type PaymentMethod: String
+        # @param Environment: 环境类型。
+        # __release__:生产环境
+        # __sandbox__:沙箱环境
+        # _不填默认为生产环境_
+        # @type Environment: String
+
+        attr_accessor :ChannelMerchantId, :ChannelName, :PaymentMethod, :Environment
+        
+        def initialize(channelmerchantid=nil, channelname=nil, paymentmethod=nil, environment=nil)
+          @ChannelMerchantId = channelmerchantid
+          @ChannelName = channelname
+          @PaymentMethod = paymentmethod
+          @Environment = environment
+        end
+
+        def deserialize(params)
+          @ChannelMerchantId = params['ChannelMerchantId']
+          @ChannelName = params['ChannelName']
+          @PaymentMethod = params['PaymentMethod']
+          @Environment = params['Environment']
+        end
+      end
+
+      # QueryOpenBankSupportBankList返回参数结构体
+      class QueryOpenBankSupportBankListResponse < TencentCloud::Common::AbstractModel
+        # @param ErrCode: 错误码。
+        # __SUCCESS__: 成功
+        # __其他__: 见附录-错误码表
+        # @type ErrCode: String
+        # @param ErrMessage: 错误消息。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ErrMessage: String
+        # @param Result: 返回结果。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Result: :class:`Tencentcloud::Cpdp.v20190820.models.QueryOpenBankSupportBankListResult`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ErrCode, :ErrMessage, :Result, :RequestId
+        
+        def initialize(errcode=nil, errmessage=nil, result=nil, requestid=nil)
+          @ErrCode = errcode
+          @ErrMessage = errmessage
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ErrCode = params['ErrCode']
+          @ErrMessage = params['ErrMessage']
+          unless params['Result'].nil?
+            @Result = QueryOpenBankSupportBankListResult.new
+            @Result.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 查询支持的银行列表返回结果
+      class QueryOpenBankSupportBankListResult < TencentCloud::Common::AbstractModel
+        # @param SupportBankList: 支持的银行列表
+        # @type SupportBankList: Array
+
+        attr_accessor :SupportBankList
+        
+        def initialize(supportbanklist=nil)
+          @SupportBankList = supportbanklist
+        end
+
+        def deserialize(params)
+          unless params['SupportBankList'].nil?
+            @SupportBankList = []
+            params['SupportBankList'].each do |i|
+              supportbankinfo_tmp = SupportBankInfo.new
+              supportbankinfo_tmp.deserialize(i)
+              @SupportBankList << supportbankinfo_tmp
+            end
+          end
         end
       end
 
@@ -16726,6 +16966,38 @@ module TencentCloud
           @LocaleCode = params['LocaleCode']
           @RegionCode = params['RegionCode']
           @UserClientIp = params['UserClientIp']
+        end
+      end
+
+      # 支持的银行信息
+      class SupportBankInfo < TencentCloud::Common::AbstractModel
+        # @param BankCode: 银行简称。
+        # @type BankCode: String
+        # @param BankName: 银行名称。
+        # @type BankName: String
+        # @param MaintainStatus: 状态。
+        # __MAINTAINING__: 维护中
+        # __WORKING__: 正常工作
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MaintainStatus: String
+        # @param BankNotice: 银行渠道维护公告。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BankNotice: String
+
+        attr_accessor :BankCode, :BankName, :MaintainStatus, :BankNotice
+        
+        def initialize(bankcode=nil, bankname=nil, maintainstatus=nil, banknotice=nil)
+          @BankCode = bankcode
+          @BankName = bankname
+          @MaintainStatus = maintainstatus
+          @BankNotice = banknotice
+        end
+
+        def deserialize(params)
+          @BankCode = params['BankCode']
+          @BankName = params['BankName']
+          @MaintainStatus = params['MaintainStatus']
+          @BankNotice = params['BankNotice']
         end
       end
 

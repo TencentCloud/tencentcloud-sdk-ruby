@@ -177,6 +177,35 @@ module TencentCloud
         end
       end
 
+      # 已分类的人物信息
+      class ClassifiedPersonInfo < TencentCloud::Common::AbstractModel
+        # @param ClassifyName: 人物分类名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClassifyName: String
+        # @param PersonInfoSet: 符合特定分类的人物信息数组
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PersonInfoSet: Array
+
+        attr_accessor :ClassifyName, :PersonInfoSet
+        
+        def initialize(classifyname=nil, personinfoset=nil)
+          @ClassifyName = classifyname
+          @PersonInfoSet = personinfoset
+        end
+
+        def deserialize(params)
+          @ClassifyName = params['ClassifyName']
+          unless params['PersonInfoSet'].nil?
+            @PersonInfoSet = []
+            params['PersonInfoSet'].each do |i|
+              personinfo_tmp = PersonInfo.new
+              personinfo_tmp.deserialize(i)
+              @PersonInfoSet << personinfo_tmp
+            end
+          end
+        end
+      end
+
       # CreateCustomCategory请求参数结构体
       class CreateCustomCategoryRequest < TencentCloud::Common::AbstractModel
         # @param L1Category: 自定义一级类型
@@ -1636,6 +1665,37 @@ module TencentCloud
         end
       end
 
+      # 人物信息
+      class PersonInfo < TencentCloud::Common::AbstractModel
+        # @param Name: 公众人物姓名
+        # @type Name: String
+        # @param Job: 公众人物职务
+        # @type Job: String
+        # @param FirstAppear: 首次出现模态，可选值为[1,3]，详细参见AppearIndex定义
+        # @type FirstAppear: Integer
+        # @param AppearInfo: 人物出现信息
+        # @type AppearInfo: :class:`Tencentcloud::Ivld.v20210903.models.AppearInfo`
+
+        attr_accessor :Name, :Job, :FirstAppear, :AppearInfo
+        
+        def initialize(name=nil, job=nil, firstappear=nil, appearinfo=nil)
+          @Name = name
+          @Job = job
+          @FirstAppear = firstappear
+          @AppearInfo = appearinfo
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Job = params['Job']
+          @FirstAppear = params['FirstAppear']
+          unless params['AppearInfo'].nil?
+            @AppearInfo = AppearInfo.new
+            @AppearInfo.deserialize(params['AppearInfo'])
+          end
+        end
+      end
+
       # QueryCallback请求参数结构体
       class QueryCallbackRequest < TencentCloud::Common::AbstractModel
 
@@ -1700,6 +1760,9 @@ module TencentCloud
         # @param TextInfoSet: 可视文字识别结果列表
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TextInfoSet: Array
+        # @param ClassifiedPersonInfoSet: 已分类人物信息列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClassifiedPersonInfoSet: Array
         # @param TextTagSet: 文本标签列表，包含标签内容和出现信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TextTagSet: :class:`Tencentcloud::Ivld.v20210903.models.MultiLevelTag`
@@ -1716,9 +1779,9 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SummaryTagSet: Array
 
-        attr_accessor :Date, :Logo, :Column, :Source, :CoverImageURL, :SummarySet, :TitleSet, :AudioInfoSet, :TextInfoSet, :TextTagSet, :FrameTagSet, :WebMediaURL, :MediaClassifierSet, :SummaryTagSet
+        attr_accessor :Date, :Logo, :Column, :Source, :CoverImageURL, :SummarySet, :TitleSet, :AudioInfoSet, :TextInfoSet, :ClassifiedPersonInfoSet, :TextTagSet, :FrameTagSet, :WebMediaURL, :MediaClassifierSet, :SummaryTagSet
         
-        def initialize(date=nil, logo=nil, column=nil, source=nil, coverimageurl=nil, summaryset=nil, titleset=nil, audioinfoset=nil, textinfoset=nil, texttagset=nil, frametagset=nil, webmediaurl=nil, mediaclassifierset=nil, summarytagset=nil)
+        def initialize(date=nil, logo=nil, column=nil, source=nil, coverimageurl=nil, summaryset=nil, titleset=nil, audioinfoset=nil, textinfoset=nil, classifiedpersoninfoset=nil, texttagset=nil, frametagset=nil, webmediaurl=nil, mediaclassifierset=nil, summarytagset=nil)
           @Date = date
           @Logo = logo
           @Column = column
@@ -1728,6 +1791,7 @@ module TencentCloud
           @TitleSet = titleset
           @AudioInfoSet = audioinfoset
           @TextInfoSet = textinfoset
+          @ClassifiedPersonInfoSet = classifiedpersoninfoset
           @TextTagSet = texttagset
           @FrameTagSet = frametagset
           @WebMediaURL = webmediaurl
@@ -1757,6 +1821,14 @@ module TencentCloud
               textinfo_tmp = TextInfo.new
               textinfo_tmp.deserialize(i)
               @TextInfoSet << textinfo_tmp
+            end
+          end
+          unless params['ClassifiedPersonInfoSet'].nil?
+            @ClassifiedPersonInfoSet = []
+            params['ClassifiedPersonInfoSet'].each do |i|
+              classifiedpersoninfo_tmp = ClassifiedPersonInfo.new
+              classifiedpersoninfo_tmp.deserialize(i)
+              @ClassifiedPersonInfoSet << classifiedpersoninfo_tmp
             end
           end
           unless params['TextTagSet'].nil?
