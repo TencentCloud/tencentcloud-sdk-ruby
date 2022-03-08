@@ -11571,10 +11571,12 @@ module TencentCloud
         # @type IsSuggest: Integer
         # @param IsAuthorized: 是否授权，1是0否
         # @type IsAuthorized: Integer
+        # @param ComponentCnt: 组件个数
+        # @type ComponentCnt: Integer
 
-        attr_accessor :ImageID, :ImageName, :CreateTime, :Size, :HostCnt, :ContainerCnt, :ScanTime, :VulCnt, :VirusCnt, :RiskCnt, :IsTrustImage, :OsName, :AgentError, :ScanError, :ScanStatus, :ScanVirusError, :ScanVulError, :ScanRiskError, :IsSuggest, :IsAuthorized
+        attr_accessor :ImageID, :ImageName, :CreateTime, :Size, :HostCnt, :ContainerCnt, :ScanTime, :VulCnt, :VirusCnt, :RiskCnt, :IsTrustImage, :OsName, :AgentError, :ScanError, :ScanStatus, :ScanVirusError, :ScanVulError, :ScanRiskError, :IsSuggest, :IsAuthorized, :ComponentCnt
         
-        def initialize(imageid=nil, imagename=nil, createtime=nil, size=nil, hostcnt=nil, containercnt=nil, scantime=nil, vulcnt=nil, viruscnt=nil, riskcnt=nil, istrustimage=nil, osname=nil, agenterror=nil, scanerror=nil, scanstatus=nil, scanviruserror=nil, scanvulerror=nil, scanriskerror=nil, issuggest=nil, isauthorized=nil)
+        def initialize(imageid=nil, imagename=nil, createtime=nil, size=nil, hostcnt=nil, containercnt=nil, scantime=nil, vulcnt=nil, viruscnt=nil, riskcnt=nil, istrustimage=nil, osname=nil, agenterror=nil, scanerror=nil, scanstatus=nil, scanviruserror=nil, scanvulerror=nil, scanriskerror=nil, issuggest=nil, isauthorized=nil, componentcnt=nil)
           @ImageID = imageid
           @ImageName = imagename
           @CreateTime = createtime
@@ -11595,6 +11597,7 @@ module TencentCloud
           @ScanRiskError = scanriskerror
           @IsSuggest = issuggest
           @IsAuthorized = isauthorized
+          @ComponentCnt = componentcnt
         end
 
         def deserialize(params)
@@ -11618,6 +11621,7 @@ module TencentCloud
           @ScanRiskError = params['ScanRiskError']
           @IsSuggest = params['IsSuggest']
           @IsAuthorized = params['IsAuthorized']
+          @ComponentCnt = params['ComponentCnt']
         end
       end
 

@@ -2624,7 +2624,7 @@ module TencentCloud
         # @type TopicName: String
         # @param LogsetId: 日志集ID
         # @type LogsetId: String
-        # @param Channel: 接入渠道，默认值为cdn
+        # @param Channel: 接入渠道，cdn或者ecdn，默认值为cdn
         # @type Channel: String
         # @param DomainAreaConfigs: 域名区域信息
         # @type DomainAreaConfigs: Array
@@ -3164,7 +3164,7 @@ module TencentCloud
         # @type TopicId: String
         # @param LogsetId: 日志集ID
         # @type LogsetId: String
-        # @param Channel: 接入渠道，默认值为cdn
+        # @param Channel: 接入渠道，cdn或者ecdn，默认值为cdn
         # @type Channel: String
 
         attr_accessor :TopicId, :LogsetId, :Channel
@@ -6565,7 +6565,7 @@ module TencentCloud
         # @type LogsetId: String
         # @param TopicId: 日志主题ID
         # @type TopicId: String
-        # @param Channel: 接入渠道，默认值为cdn
+        # @param Channel: 接入渠道，cdn或者ecdn，默认值为cdn
         # @type Channel: String
 
         attr_accessor :LogsetId, :TopicId, :Channel
@@ -6726,7 +6726,7 @@ module TencentCloud
         # - domain：域名。
         # - resourceId：域名id。
         # - status：域名状态，online，offline或processing。
-        # - serviceType：业务类型，web，download或media。
+        # - serviceType：业务类型，web，download，media，hybrid或dynamic。
         # - projectId：项目ID。
         # - domainType：主源站类型，cname表示自有源，cos表示cos接入，third_party表示第三方对象存储。
         # - fullUrlCache：全路径缓存，on或off。
@@ -6910,7 +6910,7 @@ module TencentCloud
         # @type LogsetId: String
         # @param TopicId: 日志主题ID
         # @type TopicId: String
-        # @param Channel: 接入渠道，默认值为cdn
+        # @param Channel: 接入渠道，cdn或者ecdn，默认值为cdn
         # @type Channel: String
 
         attr_accessor :LogsetId, :TopicId, :Channel
@@ -7691,7 +7691,7 @@ module TencentCloud
 
       # ListClsLogTopics请求参数结构体
       class ListClsLogTopicsRequest < TencentCloud::Common::AbstractModel
-        # @param Channel: 接入渠道，默认值为cdn
+        # @param Channel: 接入渠道，cdn或者ecdn，默认值为cdn
         # @type Channel: String
 
         attr_accessor :Channel
@@ -7758,7 +7758,7 @@ module TencentCloud
         # @type LogsetId: String
         # @param TopicId: 日志主题ID
         # @type TopicId: String
-        # @param Channel: 接入渠道，默认值为cdn
+        # @param Channel: 接入渠道，cdn或者ecdn，默认值为cdn
         # @type Channel: String
 
         attr_accessor :LogsetId, :TopicId, :Channel
@@ -8215,7 +8215,7 @@ module TencentCloud
         # /files/* 表示所有以/files/开头的请求
         # *.jpg 表示所有以.jpg结尾的请求
         # @type Url: String
-        # @param Channel: 接入渠道，默认值为cdn
+        # @param Channel: 接入渠道，cdn或者ecdn，默认值为cdn
         # @type Channel: String
         # @param Limit: 要查询的Top条数，最大值为100，默认为10
         # @type Limit: Integer
@@ -8884,7 +8884,7 @@ module TencentCloud
         # @type LogsetId: String
         # @param TopicId: 日志主题ID
         # @type TopicId: String
-        # @param Channel: 接入渠道，默认值为cdn
+        # @param Channel: 接入渠道，cdn或者ecdn，默认值为cdn
         # @type Channel: String
         # @param DomainAreaConfigs: 域名区域配置，注意：如果此字段为空，则表示解绑对应主题下的所有域名
         # @type DomainAreaConfigs: Array
@@ -11436,7 +11436,7 @@ module TencentCloud
         # @type EndTime: String
         # @param Limit: 单次要返回的日志条数，单次返回的最大条数为100
         # @type Limit: Integer
-        # @param Channel: 接入渠道，默认值为cdn
+        # @param Channel: 接入渠道，cdn或者ecdn，默认值为cdn
         # @type Channel: String
         # @param Query: 需要查询的内容，详情请参考https://cloud.tencent.com/document/product/614/16982
         # @type Query: String

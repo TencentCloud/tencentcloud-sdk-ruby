@@ -1518,7 +1518,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 创建终端节点服务。
+        # 本接口(CreateVpcEndPointService)用于创建终端节点服务。
 
         # @param request: Request instance for CreateVpcEndPointService.
         # @type request: :class:`Tencentcloud::vpc::V20170312::CreateVpcEndPointServiceRequest`

@@ -316,6 +316,49 @@ module TencentCloud
         end
       end
 
+      # CreateReceiverDetailWithData请求参数结构体
+      class CreateReceiverDetailWithDataRequest < TencentCloud::Common::AbstractModel
+        # @param ReceiverId: 收件人列表ID
+        # @type ReceiverId: Integer
+        # @param Datas: 收信人邮箱以及模板参数，数组形式
+        # @type Datas: Array
+
+        attr_accessor :ReceiverId, :Datas
+        
+        def initialize(receiverid=nil, datas=nil)
+          @ReceiverId = receiverid
+          @Datas = datas
+        end
+
+        def deserialize(params)
+          @ReceiverId = params['ReceiverId']
+          unless params['Datas'].nil?
+            @Datas = []
+            params['Datas'].each do |i|
+              receiverinputdata_tmp = ReceiverInputData.new
+              receiverinputdata_tmp.deserialize(i)
+              @Datas << receiverinputdata_tmp
+            end
+          end
+        end
+      end
+
+      # CreateReceiverDetailWithData返回参数结构体
+      class CreateReceiverDetailWithDataResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateReceiver请求参数结构体
       class CreateReceiverRequest < TencentCloud::Common::AbstractModel
         # @param ReceiversName: 收件人列表名称
@@ -1149,6 +1192,27 @@ module TencentCloud
           @Desc = params['Desc']
           @ReceiversStatus = params['ReceiversStatus']
           @CreateTime = params['CreateTime']
+        end
+      end
+
+      # 收件人明细输入参数，包含收件人邮箱，以及模板参数
+      class ReceiverInputData < TencentCloud::Common::AbstractModel
+        # @param Email: 收件人邮箱
+        # @type Email: String
+        # @param TemplateData: 模板中的变量参数，请使用json.dump将json对象格式化为string类型。该对象是一组键值对，每个Key代表模板中的一个变量，模板中的变量使用{{键}}表示，相应的值在发送时会被替换为{{值}}。
+        # 注意：参数值不能是html等复杂类型的数据。
+        # @type TemplateData: String
+
+        attr_accessor :Email, :TemplateData
+        
+        def initialize(email=nil, templatedata=nil)
+          @Email = email
+          @TemplateData = templatedata
+        end
+
+        def deserialize(params)
+          @Email = params['Email']
+          @TemplateData = params['TemplateData']
         end
       end
 

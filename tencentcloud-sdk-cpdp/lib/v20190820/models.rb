@@ -12270,6 +12270,103 @@ module TencentCloud
         end
       end
 
+      # QueryOpenBankBankAccountBalance请求参数结构体
+      class QueryOpenBankBankAccountBalanceRequest < TencentCloud::Common::AbstractModel
+        # @param ChannelMerchantId: 云企付渠道商户号。外部接入平台入驻云企付平台后下发。
+        # @type ChannelMerchantId: String
+        # @param ChannelSubMerchantId: 云企付渠道子商户号。入驻在渠道商户下的子商户ID，如付款方的商户ID，对应创建支付订单中接口参数中的PayerInfo中的payerId。
+        # @type ChannelSubMerchantId: String
+        # @param ChannelName: 渠道名称。
+        # __TENPAY__: 商企付
+        # __WECHAT__: 微信支付
+        # __ALIPAY__: 支付宝
+        # @type ChannelName: String
+        # @param PaymentMethod: 支付方式，如
+        # __EBANK_PAYMENT__:ebank付款
+        # __OPENBANK_PAYMENT__: openbank付款
+        # @type PaymentMethod: String
+        # @param BindSerialNo: 绑卡序列号，银行账户唯一ID，区分多卡或多账户的场景
+        # @type BindSerialNo: String
+        # @param Environment: 环境类型
+        # release:生产环境
+        # sandbox:沙箱环境
+        # 缺省默认为生产环境
+        # @type Environment: String
+
+        attr_accessor :ChannelMerchantId, :ChannelSubMerchantId, :ChannelName, :PaymentMethod, :BindSerialNo, :Environment
+        
+        def initialize(channelmerchantid=nil, channelsubmerchantid=nil, channelname=nil, paymentmethod=nil, bindserialno=nil, environment=nil)
+          @ChannelMerchantId = channelmerchantid
+          @ChannelSubMerchantId = channelsubmerchantid
+          @ChannelName = channelname
+          @PaymentMethod = paymentmethod
+          @BindSerialNo = bindserialno
+          @Environment = environment
+        end
+
+        def deserialize(params)
+          @ChannelMerchantId = params['ChannelMerchantId']
+          @ChannelSubMerchantId = params['ChannelSubMerchantId']
+          @ChannelName = params['ChannelName']
+          @PaymentMethod = params['PaymentMethod']
+          @BindSerialNo = params['BindSerialNo']
+          @Environment = params['Environment']
+        end
+      end
+
+      # QueryOpenBankBankAccountBalance返回参数结构体
+      class QueryOpenBankBankAccountBalanceResponse < TencentCloud::Common::AbstractModel
+        # @param ErrCode: 业务系统返回码，SUCCESS表示成功，其他表示失败。
+        # @type ErrCode: String
+        # @param ErrMessage: 业务系统返回消息。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ErrMessage: String
+        # @param Result: 账户余额查询响应对象。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Result: :class:`Tencentcloud::Cpdp.v20190820.models.QueryOpenBankBankAccountBalanceResult`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ErrCode, :ErrMessage, :Result, :RequestId
+        
+        def initialize(errcode=nil, errmessage=nil, result=nil, requestid=nil)
+          @ErrCode = errcode
+          @ErrMessage = errmessage
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ErrCode = params['ErrCode']
+          @ErrMessage = params['ErrMessage']
+          unless params['Result'].nil?
+            @Result = QueryOpenBankBankAccountBalanceResult.new
+            @Result.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 云企付-查询账户余额
+      class QueryOpenBankBankAccountBalanceResult < TencentCloud::Common::AbstractModel
+        # @param TotalBalance: 总余额，单位分
+        # @type TotalBalance: String
+        # @param YesterdayBalance: 昨日余额，单位分
+        # @type YesterdayBalance: String
+
+        attr_accessor :TotalBalance, :YesterdayBalance
+        
+        def initialize(totalbalance=nil, yesterdaybalance=nil)
+          @TotalBalance = totalbalance
+          @YesterdayBalance = yesterdaybalance
+        end
+
+        def deserialize(params)
+          @TotalBalance = params['TotalBalance']
+          @YesterdayBalance = params['YesterdayBalance']
+        end
+      end
+
       # QueryOpenBankBankBranchList请求参数结构体
       class QueryOpenBankBankBranchListRequest < TencentCloud::Common::AbstractModel
         # @param ChannelMerchantId: 渠道商户ID。
@@ -12487,6 +12584,113 @@ module TencentCloud
           @BindStatus = params['BindStatus']
           @BindMessage = params['BindMessage']
           @BindSerialNo = params['BindSerialNo']
+        end
+      end
+
+      # QueryOpenBankDailyReceiptDownloadUrl请求参数结构体
+      class QueryOpenBankDailyReceiptDownloadUrlRequest < TencentCloud::Common::AbstractModel
+        # @param ChannelMerchantId: 云企付渠道商户号。外部接入平台入驻云企付平台后下发。
+        # @type ChannelMerchantId: String
+        # @param ChannelSubMerchantId: 云企付渠道子商户号。入驻在渠道商户下的子商户ID，如付款方的商户ID，对应创建支付订单中接口参数中的PayerInfo中的payerId。
+        # @type ChannelSubMerchantId: String
+        # @param ChannelName: 渠道名称。
+        # __TENPAY__: 商企付
+        # __WECHAT__: 微信支付
+        # __ALIPAY__: 支付宝
+        # @type ChannelName: String
+        # @param PaymentMethod: 付款方式。如
+        # __EBANK_PAYMENT__:ebank付款
+        # __OPENBANK_PAYMENT__: openbank付款
+        # @type PaymentMethod: String
+        # @param BindSerialNo: 绑卡序列号，银行卡唯一标记，资金账户ID，用于区分商户绑定多卡或多账户场景
+        # @type BindSerialNo: String
+        # @param QueryDate: 查询日期，D日查询D-1日的回单文件
+        # @type QueryDate: String
+        # @param Environment: 环境类型
+        # release:生产环境
+        # sandbox:沙箱环境
+        # 缺省默认为生产环境
+        # @type Environment: String
+
+        attr_accessor :ChannelMerchantId, :ChannelSubMerchantId, :ChannelName, :PaymentMethod, :BindSerialNo, :QueryDate, :Environment
+        
+        def initialize(channelmerchantid=nil, channelsubmerchantid=nil, channelname=nil, paymentmethod=nil, bindserialno=nil, querydate=nil, environment=nil)
+          @ChannelMerchantId = channelmerchantid
+          @ChannelSubMerchantId = channelsubmerchantid
+          @ChannelName = channelname
+          @PaymentMethod = paymentmethod
+          @BindSerialNo = bindserialno
+          @QueryDate = querydate
+          @Environment = environment
+        end
+
+        def deserialize(params)
+          @ChannelMerchantId = params['ChannelMerchantId']
+          @ChannelSubMerchantId = params['ChannelSubMerchantId']
+          @ChannelName = params['ChannelName']
+          @PaymentMethod = params['PaymentMethod']
+          @BindSerialNo = params['BindSerialNo']
+          @QueryDate = params['QueryDate']
+          @Environment = params['Environment']
+        end
+      end
+
+      # QueryOpenBankDailyReceiptDownloadUrl返回参数结构体
+      class QueryOpenBankDailyReceiptDownloadUrlResponse < TencentCloud::Common::AbstractModel
+        # @param ErrCode: 业务系统返回码，SUCCESS表示成功，其他表示失败。
+        # @type ErrCode: String
+        # @param ErrMessage: 业务系统返回消息。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ErrMessage: String
+        # @param Result: 按日期查询回单下载地址响应对象。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Result: :class:`Tencentcloud::Cpdp.v20190820.models.QueryOpenBankDailyReceiptDownloadUrlResult`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ErrCode, :ErrMessage, :Result, :RequestId
+        
+        def initialize(errcode=nil, errmessage=nil, result=nil, requestid=nil)
+          @ErrCode = errcode
+          @ErrMessage = errmessage
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ErrCode = params['ErrCode']
+          @ErrMessage = params['ErrMessage']
+          unless params['Result'].nil?
+            @Result = QueryOpenBankDailyReceiptDownloadUrlResult.new
+            @Result.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 云企付-按日期查询回单下载地址
+      class QueryOpenBankDailyReceiptDownloadUrlResult < TencentCloud::Common::AbstractModel
+        # @param DownloadUrl: 回单文件下载链接
+        # @type DownloadUrl: String
+        # @param ExpireTime: 过期时间
+        # @type ExpireTime: String
+        # @param ReceiptStatus: 回单状态
+        # PENDING: 处理中
+        # READY: 可以下载
+        # @type ReceiptStatus: String
+
+        attr_accessor :DownloadUrl, :ExpireTime, :ReceiptStatus
+        
+        def initialize(downloadurl=nil, expiretime=nil, receiptstatus=nil)
+          @DownloadUrl = downloadurl
+          @ExpireTime = expiretime
+          @ReceiptStatus = receiptstatus
+        end
+
+        def deserialize(params)
+          @DownloadUrl = params['DownloadUrl']
+          @ExpireTime = params['ExpireTime']
+          @ReceiptStatus = params['ReceiptStatus']
         end
       end
 

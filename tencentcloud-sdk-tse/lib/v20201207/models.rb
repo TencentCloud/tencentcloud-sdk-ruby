@@ -219,10 +219,16 @@ module TencentCloud
         # @type EnableConfigInternet: Boolean
         # @param ConfigInternetServiceIp: config-server公网访问地址
         # @type ConfigInternetServiceIp: String
+        # @param SpecId: 规格ID
+        # @type SpecId: String
+        # @param EnvReplica: 环境的节点数
+        # @type EnvReplica: Integer
+        # @param RunningCount: 环境运行的节点数
+        # @type RunningCount: Integer
 
-        attr_accessor :EnvName, :VpcInfos, :StorageCapacity, :Status, :AdminServiceIp, :ConfigServiceIp, :EnableConfigInternet, :ConfigInternetServiceIp
+        attr_accessor :EnvName, :VpcInfos, :StorageCapacity, :Status, :AdminServiceIp, :ConfigServiceIp, :EnableConfigInternet, :ConfigInternetServiceIp, :SpecId, :EnvReplica, :RunningCount
         
-        def initialize(envname=nil, vpcinfos=nil, storagecapacity=nil, status=nil, adminserviceip=nil, configserviceip=nil, enableconfiginternet=nil, configinternetserviceip=nil)
+        def initialize(envname=nil, vpcinfos=nil, storagecapacity=nil, status=nil, adminserviceip=nil, configserviceip=nil, enableconfiginternet=nil, configinternetserviceip=nil, specid=nil, envreplica=nil, runningcount=nil)
           @EnvName = envname
           @VpcInfos = vpcinfos
           @StorageCapacity = storagecapacity
@@ -231,6 +237,9 @@ module TencentCloud
           @ConfigServiceIp = configserviceip
           @EnableConfigInternet = enableconfiginternet
           @ConfigInternetServiceIp = configinternetserviceip
+          @SpecId = specid
+          @EnvReplica = envreplica
+          @RunningCount = runningcount
         end
 
         def deserialize(params)
@@ -249,6 +258,9 @@ module TencentCloud
           @ConfigServiceIp = params['ConfigServiceIp']
           @EnableConfigInternet = params['EnableConfigInternet']
           @ConfigInternetServiceIp = params['ConfigInternetServiceIp']
+          @SpecId = params['SpecId']
+          @EnvReplica = params['EnvReplica']
+          @RunningCount = params['RunningCount']
         end
       end
 

@@ -77,7 +77,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 该接口用户创建通知渠道组。
+        # 该接口用于创建通知渠道组。
 
         # @param request: Request instance for CreateAlarmNotice.
         # @type request: :class:`Tencentcloud::cls::V20201016::CreateAlarmNoticeRequest`
