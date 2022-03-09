@@ -65,6 +65,26 @@ module TencentCloud
         end
       end
 
+      # 适用商品信息
+      class ApplicableProducts < TencentCloud::Common::AbstractModel
+        # @param GoodsName: 适用商品名称，值为“全产品通用”或商品名称组成的string，以","分割。
+        # @type GoodsName: String
+        # @param PayMode: postPay后付费/prePay预付费/riPay预留实例/空字符串或者"*"表示全部模式。如GoodsName为多个商品名以","分割组成的string，而PayMode为"*"，表示每一件商品的模式都为"*"。
+        # @type PayMode: String
+
+        attr_accessor :GoodsName, :PayMode
+        
+        def initialize(goodsname=nil, paymode=nil)
+          @GoodsName = goodsname
+          @PayMode = paymode
+        end
+
+        def deserialize(params)
+          @GoodsName = params['GoodsName']
+          @PayMode = params['PayMode']
+        end
+      end
+
       # 账单明细数据对象
       class BillDetail < TencentCloud::Common::AbstractModel
         # @param BusinessCodeName: 产品名称：云产品大类，如云服务器CVM、云数据库MySQL
@@ -2769,6 +2789,178 @@ module TencentCloud
         end
       end
 
+      # DescribeVoucherInfo请求参数结构体
+      class DescribeVoucherInfoRequest < TencentCloud::Common::AbstractModel
+        # @param Limit: 一页多少条数据，默认是20条，最大不超过1000
+        # @type Limit: Integer
+        # @param Offset: 第多少页，默认是1
+        # @type Offset: Integer
+        # @param Status: 券状态：待使用：unUsed，已使用： used，已发货：delivered，已作废： cancel，已过期：overdue
+        # @type Status: String
+        # @param VoucherId: 代金券id
+        # @type VoucherId: String
+        # @param CodeId: 代金券订单id
+        # @type CodeId: String
+        # @param ProductCode: 商品码
+        # @type ProductCode: String
+        # @param ActivityId: 活动id
+        # @type ActivityId: String
+        # @param VoucherName: 代金券名称
+        # @type VoucherName: String
+        # @param TimeFrom: 发放开始时间
+        # @type TimeFrom: String
+        # @param TimeTo: 发放结束时间
+        # @type TimeTo: String
+        # @param SortField: 指定排序字段：BeginTime开始时间、EndTime到期时间、CreateTime创建时间
+        # @type SortField: String
+        # @param SortOrder: 指定升序降序：desc、asc
+        # @type SortOrder: String
+        # @param PayMode: 付费模式，postPay后付费/prePay预付费/riPay预留实例/""或者"*"表示全部模式，如果payMode为""或"*"，那么productCode与subProductCode必须传空
+        # @type PayMode: String
+        # @param PayScene: 付费场景PayMode=postPay时：spotpay-竞价实例,"settle account"-普通后付费PayMode=prePay时：purchase-包年包月新购，renew-包年包月续费（自动续费），modify-包年包月配置变更(变配）PayMode=riPay时：oneOffFee-预留实例预付，hourlyFee-预留实例每小时扣费，*-支持全部付费场景
+        # @type PayScene: String
+        # @param Operator: 操作人，默认就是用户uin
+        # @type Operator: String
+
+        attr_accessor :Limit, :Offset, :Status, :VoucherId, :CodeId, :ProductCode, :ActivityId, :VoucherName, :TimeFrom, :TimeTo, :SortField, :SortOrder, :PayMode, :PayScene, :Operator
+        
+        def initialize(limit=nil, offset=nil, status=nil, voucherid=nil, codeid=nil, productcode=nil, activityid=nil, vouchername=nil, timefrom=nil, timeto=nil, sortfield=nil, sortorder=nil, paymode=nil, payscene=nil, operator=nil)
+          @Limit = limit
+          @Offset = offset
+          @Status = status
+          @VoucherId = voucherid
+          @CodeId = codeid
+          @ProductCode = productcode
+          @ActivityId = activityid
+          @VoucherName = vouchername
+          @TimeFrom = timefrom
+          @TimeTo = timeto
+          @SortField = sortfield
+          @SortOrder = sortorder
+          @PayMode = paymode
+          @PayScene = payscene
+          @Operator = operator
+        end
+
+        def deserialize(params)
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          @Status = params['Status']
+          @VoucherId = params['VoucherId']
+          @CodeId = params['CodeId']
+          @ProductCode = params['ProductCode']
+          @ActivityId = params['ActivityId']
+          @VoucherName = params['VoucherName']
+          @TimeFrom = params['TimeFrom']
+          @TimeTo = params['TimeTo']
+          @SortField = params['SortField']
+          @SortOrder = params['SortOrder']
+          @PayMode = params['PayMode']
+          @PayScene = params['PayScene']
+          @Operator = params['Operator']
+        end
+      end
+
+      # DescribeVoucherInfo返回参数结构体
+      class DescribeVoucherInfoResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 券总数
+        # @type TotalCount: Integer
+        # @param TotalBalance: 总余额（微分）
+        # @type TotalBalance: Integer
+        # @param VoucherInfos: 代金券相关信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VoucherInfos: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :TotalBalance, :VoucherInfos, :RequestId
+        
+        def initialize(totalcount=nil, totalbalance=nil, voucherinfos=nil, requestid=nil)
+          @TotalCount = totalcount
+          @TotalBalance = totalbalance
+          @VoucherInfos = voucherinfos
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          @TotalBalance = params['TotalBalance']
+          unless params['VoucherInfos'].nil?
+            @VoucherInfos = []
+            params['VoucherInfos'].each do |i|
+              voucherinfos_tmp = VoucherInfos.new
+              voucherinfos_tmp.deserialize(i)
+              @VoucherInfos << voucherinfos_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeVoucherUsageDetails请求参数结构体
+      class DescribeVoucherUsageDetailsRequest < TencentCloud::Common::AbstractModel
+        # @param Limit: 一页多少条数据，默认是20条，最大不超过1000
+        # @type Limit: Integer
+        # @param Offset: 第多少页，默认是1
+        # @type Offset: Integer
+        # @param VoucherId: 代金券id
+        # @type VoucherId: String
+        # @param Operator: 操作人，默认就是用户uin
+        # @type Operator: String
+
+        attr_accessor :Limit, :Offset, :VoucherId, :Operator
+        
+        def initialize(limit=nil, offset=nil, voucherid=nil, operator=nil)
+          @Limit = limit
+          @Offset = offset
+          @VoucherId = voucherid
+          @Operator = operator
+        end
+
+        def deserialize(params)
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          @VoucherId = params['VoucherId']
+          @Operator = params['Operator']
+        end
+      end
+
+      # DescribeVoucherUsageDetails返回参数结构体
+      class DescribeVoucherUsageDetailsResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 券总数
+        # @type TotalCount: Integer
+        # @param TotalUsedAmount: 总已用金额（微分）
+        # @type TotalUsedAmount: Integer
+        # @param UsageRecords: 代金券使用记录细节
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UsageRecords: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :TotalUsedAmount, :UsageRecords, :RequestId
+        
+        def initialize(totalcount=nil, totalusedamount=nil, usagerecords=nil, requestid=nil)
+          @TotalCount = totalcount
+          @TotalUsedAmount = totalusedamount
+          @UsageRecords = usagerecords
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          @TotalUsedAmount = params['TotalUsedAmount']
+          unless params['UsageRecords'].nil?
+            @UsageRecords = []
+            params['UsageRecords'].each do |i|
+              usagerecords_tmp = UsageRecords.new
+              usagerecords_tmp.deserialize(i)
+              @UsageRecords << usagerecords_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 由时间和值组成的数据结构
       class DetailPoint < TencentCloud::Common::AbstractModel
         # @param Time: 时间
@@ -2818,6 +3010,26 @@ module TencentCloud
             end
           end
           @InstanceID = params['InstanceID']
+        end
+      end
+
+      # 不适用商品信息
+      class ExcludedProducts < TencentCloud::Common::AbstractModel
+        # @param GoodsName: 不适用商品名称
+        # @type GoodsName: String
+        # @param PayMode: postPay后付费/prePay预付费/riPay预留实例/空字符串或者"*"表示全部模式。
+        # @type PayMode: String
+
+        attr_accessor :GoodsName, :PayMode
+        
+        def initialize(goodsname=nil, paymode=nil)
+          @GoodsName = goodsname
+          @PayMode = paymode
+        end
+
+        def deserialize(params)
+          @GoodsName = params['GoodsName']
+          @PayMode = params['PayMode']
         end
       end
 
@@ -3100,6 +3312,128 @@ module TencentCloud
           @RealTotalCost = params['RealTotalCost']
           @RealTotalCostRatio = params['RealTotalCostRatio']
           @TotalCost = params['TotalCost']
+        end
+      end
+
+      # 购买商品信息
+      class UsageDetails < TencentCloud::Common::AbstractModel
+        # @param ProductName: 商品名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProductName: String
+        # @param SubProductName: 商品细节
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SubProductName: String
+
+        attr_accessor :ProductName, :SubProductName
+        
+        def initialize(productname=nil, subproductname=nil)
+          @ProductName = productname
+          @SubProductName = subproductname
+        end
+
+        def deserialize(params)
+          @ProductName = params['ProductName']
+          @SubProductName = params['SubProductName']
+        end
+      end
+
+      # 使用记录
+      class UsageRecords < TencentCloud::Common::AbstractModel
+        # @param UsedAmount: 使用金额（微分）
+        # @type UsedAmount: Integer
+        # @param UsedTime: 使用时间
+        # @type UsedTime: String
+        # @param UsageDetails: 使用记录细节
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UsageDetails: Array
+
+        attr_accessor :UsedAmount, :UsedTime, :UsageDetails
+        
+        def initialize(usedamount=nil, usedtime=nil, usagedetails=nil)
+          @UsedAmount = usedamount
+          @UsedTime = usedtime
+          @UsageDetails = usagedetails
+        end
+
+        def deserialize(params)
+          @UsedAmount = params['UsedAmount']
+          @UsedTime = params['UsedTime']
+          unless params['UsageDetails'].nil?
+            @UsageDetails = []
+            params['UsageDetails'].each do |i|
+              usagedetails_tmp = UsageDetails.new
+              usagedetails_tmp.deserialize(i)
+              @UsageDetails << usagedetails_tmp
+            end
+          end
+        end
+      end
+
+      # 代金券相关信息
+      class VoucherInfos < TencentCloud::Common::AbstractModel
+        # @param OwnerUin: 代金券拥有者
+        # @type OwnerUin: String
+        # @param Status: 券状态：待使用：unUsed，已使用： used，已发货：delivered，已作废： cancel，已过期：overdue
+        # @type Status: String
+        # @param NominalValue: 代金券面额（微分）
+        # @type NominalValue: Integer
+        # @param Balance: 剩余金额（微分）
+        # @type Balance: Integer
+        # @param VoucherId: 代金券id
+        # @type VoucherId: String
+        # @param PayMode: postPay后付费/prePay预付费/riPay预留实例/空字符串或者'*'表示全部模式
+        # @type PayMode: String
+        # @param PayScene: 付费场景PayMode=postPay时：spotpay-竞价实例,"settle account"-普通后付费PayMode=prePay时：purchase-包年包月新购，renew-包年包月续费（自动续费），modify-包年包月配置变更(变配）PayMode=riPay时：oneOffFee-预留实例预付，hourlyFee-预留实例每小时扣费，*-支持全部付费场景
+        # @type PayScene: String
+        # @param BeginTime: 有效期生效时间
+        # @type BeginTime: String
+        # @param EndTime: 有效期截止时间
+        # @type EndTime: String
+        # @param ApplicableProducts: 适用商品信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ApplicableProducts: :class:`Tencentcloud::Billing.v20180709.models.ApplicableProducts`
+        # @param ExcludedProducts: 不适用商品信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExcludedProducts: Array
+
+        attr_accessor :OwnerUin, :Status, :NominalValue, :Balance, :VoucherId, :PayMode, :PayScene, :BeginTime, :EndTime, :ApplicableProducts, :ExcludedProducts
+        
+        def initialize(owneruin=nil, status=nil, nominalvalue=nil, balance=nil, voucherid=nil, paymode=nil, payscene=nil, begintime=nil, endtime=nil, applicableproducts=nil, excludedproducts=nil)
+          @OwnerUin = owneruin
+          @Status = status
+          @NominalValue = nominalvalue
+          @Balance = balance
+          @VoucherId = voucherid
+          @PayMode = paymode
+          @PayScene = payscene
+          @BeginTime = begintime
+          @EndTime = endtime
+          @ApplicableProducts = applicableproducts
+          @ExcludedProducts = excludedproducts
+        end
+
+        def deserialize(params)
+          @OwnerUin = params['OwnerUin']
+          @Status = params['Status']
+          @NominalValue = params['NominalValue']
+          @Balance = params['Balance']
+          @VoucherId = params['VoucherId']
+          @PayMode = params['PayMode']
+          @PayScene = params['PayScene']
+          @BeginTime = params['BeginTime']
+          @EndTime = params['EndTime']
+          unless params['ApplicableProducts'].nil?
+            @ApplicableProducts = ApplicableProducts.new
+            @ApplicableProducts.deserialize(params['ApplicableProducts'])
+          end
+          unless params['ExcludedProducts'].nil?
+            @ExcludedProducts = []
+            params['ExcludedProducts'].each do |i|
+              excludedproducts_tmp = ExcludedProducts.new
+              excludedproducts_tmp.deserialize(i)
+              @ExcludedProducts << excludedproducts_tmp
+            end
+          end
         end
       end
 

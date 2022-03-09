@@ -292,11 +292,13 @@ module TencentCloud
 
       # CreateBackupDownloadTask请求参数结构体
       class CreateBackupDownloadTaskRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例ID，格式如：cmgo-p8vnipr5。与云数据库控制台页面中显示的实例ID相同
+        # @param InstanceId: 实例ID，格式如：cmgo-p8vnipr5。与云数据库控制台页面中显示的实例ID相同。
         # @type InstanceId: String
-        # @param BackupName: 要下载的备份文件名，可通过DescribeDBBackups接口获取
+        # @param BackupName: 要下载的备份文件名，可通过DescribeDBBackups接口获取。
         # @type BackupName: String
-        # @param BackupSets: 下载备份的分片列表
+        # @param BackupSets: 指定要下载的副本集的节点名称 或 分片集群的分片名称列表。
+        # 如副本集cmgo-p8vnipr5，示例(固定取值)：BackupSets.0=cmgo-p8vnipr5_0，可下载全量数据。
+        # 如分片集群cmgo-p8vnipr5，示例：BackupSets.0=cmgo-p8vnipr5_0&BackupSets.1=cmgo-p8vnipr5_1，即下载分片0和分片1的数据，分片集群如需全量下载，请按示例方式传入全部分片名称。
         # @type BackupSets: Array
 
         attr_accessor :InstanceId, :BackupName, :BackupSets
@@ -2483,7 +2485,7 @@ module TencentCloud
 
       # 分片信息
       class ReplicaSetInfo < TencentCloud::Common::AbstractModel
-        # @param ReplicaSetId: 分片名称
+        # @param ReplicaSetId: 副本集ID
         # @type ReplicaSetId: String
 
         attr_accessor :ReplicaSetId

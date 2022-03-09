@@ -16959,7 +16959,7 @@ module TencentCloud
         end
       end
 
-      # 简单加密加解密秘钥对。
+      # 简单加密加解密密钥对。
       class SimpleAesEdkPair < TencentCloud::Common::AbstractModel
         # @param Edk: 加密后的数据密钥。
         # @type Edk: String

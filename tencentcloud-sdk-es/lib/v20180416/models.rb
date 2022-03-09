@@ -2235,16 +2235,19 @@ module TencentCloud
         # @type BasicSecurityType: Integer
         # @param UpgradeMode: 升级方式：<li>scale 蓝绿变更</li><li>restart 滚动重启</li>默认值为scale
         # @type UpgradeMode: String
+        # @param CosBackup: 升级版本前是否对集群进行备份，默认不备份
+        # @type CosBackup: Boolean
 
-        attr_accessor :InstanceId, :EsVersion, :CheckOnly, :LicenseType, :BasicSecurityType, :UpgradeMode
+        attr_accessor :InstanceId, :EsVersion, :CheckOnly, :LicenseType, :BasicSecurityType, :UpgradeMode, :CosBackup
         
-        def initialize(instanceid=nil, esversion=nil, checkonly=nil, licensetype=nil, basicsecuritytype=nil, upgrademode=nil)
+        def initialize(instanceid=nil, esversion=nil, checkonly=nil, licensetype=nil, basicsecuritytype=nil, upgrademode=nil, cosbackup=nil)
           @InstanceId = instanceid
           @EsVersion = esversion
           @CheckOnly = checkonly
           @LicenseType = licensetype
           @BasicSecurityType = basicsecuritytype
           @UpgradeMode = upgrademode
+          @CosBackup = cosbackup
         end
 
         def deserialize(params)
@@ -2254,6 +2257,7 @@ module TencentCloud
           @LicenseType = params['LicenseType']
           @BasicSecurityType = params['BasicSecurityType']
           @UpgradeMode = params['UpgradeMode']
+          @CosBackup = params['CosBackup']
         end
       end
 

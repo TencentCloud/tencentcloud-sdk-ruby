@@ -5457,25 +5457,29 @@ module TencentCloud
 
       # ModifyAlarmPolicyNotice请求参数结构体
       class ModifyAlarmPolicyNoticeRequest < TencentCloud::Common::AbstractModel
-        # @param Module: 模块名，这里填“monitor”
+        # @param Module: 模块名，这里填“monitor”。
         # @type Module: String
-        # @param PolicyId: 告警策略 ID
+        # @param PolicyId: 告警策略 ID，如果该参数与PolicyIds参数同时存在，则以PolicyIds为准。
         # @type PolicyId: String
-        # @param NoticeIds: 告警通知模板 ID 列表
+        # @param NoticeIds: 告警通知模板 ID 列表。
         # @type NoticeIds: Array
+        # @param PolicyIds: 告警策略ID数组，支持给多个告警策略批量绑定通知模板。最多30个。
+        # @type PolicyIds: Array
 
-        attr_accessor :Module, :PolicyId, :NoticeIds
+        attr_accessor :Module, :PolicyId, :NoticeIds, :PolicyIds
         
-        def initialize(_module=nil, policyid=nil, noticeids=nil)
+        def initialize(_module=nil, policyid=nil, noticeids=nil, policyids=nil)
           @Module = _module
           @PolicyId = policyid
           @NoticeIds = noticeids
+          @PolicyIds = policyids
         end
 
         def deserialize(params)
           @Module = params['Module']
           @PolicyId = params['PolicyId']
           @NoticeIds = params['NoticeIds']
+          @PolicyIds = params['PolicyIds']
         end
       end
 

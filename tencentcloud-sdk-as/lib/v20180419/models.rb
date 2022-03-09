@@ -1265,19 +1265,24 @@ module TencentCloud
         # @param SnapshotId: 数据盘快照 ID，类似 `snap-l8psqwnt`。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SnapshotId: String
+        # @param DeleteWithInstance: 数据盘是否随子机销毁。取值范围：<br><li>TRUE：子机销毁时，销毁数据盘，只支持按小时后付费云盘<br><li>FALSE：子机销毁时，保留数据盘
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DeleteWithInstance: Boolean
 
-        attr_accessor :DiskType, :DiskSize, :SnapshotId
+        attr_accessor :DiskType, :DiskSize, :SnapshotId, :DeleteWithInstance
         
-        def initialize(disktype=nil, disksize=nil, snapshotid=nil)
+        def initialize(disktype=nil, disksize=nil, snapshotid=nil, deletewithinstance=nil)
           @DiskType = disktype
           @DiskSize = disksize
           @SnapshotId = snapshotid
+          @DeleteWithInstance = deletewithinstance
         end
 
         def deserialize(params)
           @DiskType = params['DiskType']
           @DiskSize = params['DiskSize']
           @SnapshotId = params['SnapshotId']
+          @DeleteWithInstance = params['DeleteWithInstance']
         end
       end
 
@@ -1757,7 +1762,7 @@ module TencentCloud
 
       # DescribeAutoScalingInstances请求参数结构体
       class DescribeAutoScalingInstancesRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceIds: 待查询云服务器（CVM）的实例ID。参数不支持同时指定InstanceIds和Filters。
+        # @param InstanceIds: 待查询云服务器（CVM）的实例ID。每次请求的上限为100。参数不支持同时指定InstanceIds和Filters。
         # @type InstanceIds: Array
         # @param Filters: 过滤条件。
         # <li> instance-id - String - 是否必填：否 -（过滤条件）按照实例ID过滤。</li>
@@ -1766,7 +1771,7 @@ module TencentCloud
         # @type Filters: Array
         # @param Offset: 偏移量，默认为0。关于`Offset`的更进一步介绍请参考 API [简介](https://cloud.tencent.com/document/api/213/15688)中的相关小节。
         # @type Offset: Integer
-        # @param Limit: 返回数量，默认为20，最大值为2000。关于`Limit`的更进一步介绍请参考 API [简介](https://cloud.tencent.com/document/api/213/15688)中的相关小节。
+        # @param Limit: 返回数量，默认为20，最大值为100。关于`Limit`的更进一步介绍请参考 API [简介](https://cloud.tencent.com/document/api/213/15688)中的相关小节。
         # @type Limit: Integer
 
         attr_accessor :InstanceIds, :Filters, :Offset, :Limit
@@ -4090,10 +4095,12 @@ module TencentCloud
         # @type MinSize: Integer
         # @param CreatedTime: 定时任务的创建时间。取值为`UTC`时间，按照`ISO8601`标准，格式：`YYYY-MM-DDThh:mm:ssZ`。
         # @type CreatedTime: String
+        # @param ScheduledType: 定时任务的执行类型。取值范围：<br><li>CRONTAB：代表定时任务为重复执行。<br><li>ONCE：代表定时任务为单次执行。
+        # @type ScheduledType: String
 
-        attr_accessor :ScheduledActionId, :ScheduledActionName, :AutoScalingGroupId, :StartTime, :Recurrence, :EndTime, :MaxSize, :DesiredCapacity, :MinSize, :CreatedTime
+        attr_accessor :ScheduledActionId, :ScheduledActionName, :AutoScalingGroupId, :StartTime, :Recurrence, :EndTime, :MaxSize, :DesiredCapacity, :MinSize, :CreatedTime, :ScheduledType
         
-        def initialize(scheduledactionid=nil, scheduledactionname=nil, autoscalinggroupid=nil, starttime=nil, recurrence=nil, endtime=nil, maxsize=nil, desiredcapacity=nil, minsize=nil, createdtime=nil)
+        def initialize(scheduledactionid=nil, scheduledactionname=nil, autoscalinggroupid=nil, starttime=nil, recurrence=nil, endtime=nil, maxsize=nil, desiredcapacity=nil, minsize=nil, createdtime=nil, scheduledtype=nil)
           @ScheduledActionId = scheduledactionid
           @ScheduledActionName = scheduledactionname
           @AutoScalingGroupId = autoscalinggroupid
@@ -4104,6 +4111,7 @@ module TencentCloud
           @DesiredCapacity = desiredcapacity
           @MinSize = minsize
           @CreatedTime = createdtime
+          @ScheduledType = scheduledtype
         end
 
         def deserialize(params)
@@ -4117,6 +4125,7 @@ module TencentCloud
           @DesiredCapacity = params['DesiredCapacity']
           @MinSize = params['MinSize']
           @CreatedTime = params['CreatedTime']
+          @ScheduledType = params['ScheduledType']
         end
       end
 
