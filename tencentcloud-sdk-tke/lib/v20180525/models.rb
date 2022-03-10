@@ -2107,6 +2107,93 @@ module TencentCloud
         end
       end
 
+      # CreateImageCache请求参数结构体
+      class CreateImageCacheRequest < TencentCloud::Common::AbstractModel
+        # @param Images: 用于制作镜像缓存的容器镜像列表
+        # @type Images: Array
+        # @param SubnetId: 实例所属子网Id
+        # @type SubnetId: String
+        # @param VpcId: 实例所属VPC Id
+        # @type VpcId: String
+        # @param ImageCacheName: 镜像缓存名称
+        # @type ImageCacheName: String
+        # @param SecurityGroupIds: 安全组Id
+        # @type SecurityGroupIds: Array
+        # @param ImageRegistryCredentials: 镜像仓库凭证数组
+        # @type ImageRegistryCredentials: Array
+        # @param ExistedEipId: 用来绑定容器实例的已有EIP
+        # @type ExistedEipId: String
+        # @param AutoCreateEip: 是否为容器实例自动创建EIP，默认为false。若传true，则此参数和ExistedEipIds互斥
+        # @type AutoCreateEip: Boolean
+        # @param AutoCreateEipAttribute: 自动创建EIP的可选参数。若传此参数，则会自动创建EIP。
+        # 另外此参数和ExistedEipIds互斥
+        # @type AutoCreateEipAttribute: :class:`Tencentcloud::Tke.v20180525.models.EipAttribute`
+        # @param ImageCacheSize: 镜像缓存的大小。默认为20 GiB。取值范围参考[云硬盘类型](https://cloud.tencent.com/document/product/362/2353)中的高性能云盘类型的大小限制。
+        # @type ImageCacheSize: Integer
+        # @param RetentionDays: 镜像缓存保留时间天数，过期将会自动清理，默认为0，永不过期。
+        # @type RetentionDays: Integer
+
+        attr_accessor :Images, :SubnetId, :VpcId, :ImageCacheName, :SecurityGroupIds, :ImageRegistryCredentials, :ExistedEipId, :AutoCreateEip, :AutoCreateEipAttribute, :ImageCacheSize, :RetentionDays
+        
+        def initialize(images=nil, subnetid=nil, vpcid=nil, imagecachename=nil, securitygroupids=nil, imageregistrycredentials=nil, existedeipid=nil, autocreateeip=nil, autocreateeipattribute=nil, imagecachesize=nil, retentiondays=nil)
+          @Images = images
+          @SubnetId = subnetid
+          @VpcId = vpcid
+          @ImageCacheName = imagecachename
+          @SecurityGroupIds = securitygroupids
+          @ImageRegistryCredentials = imageregistrycredentials
+          @ExistedEipId = existedeipid
+          @AutoCreateEip = autocreateeip
+          @AutoCreateEipAttribute = autocreateeipattribute
+          @ImageCacheSize = imagecachesize
+          @RetentionDays = retentiondays
+        end
+
+        def deserialize(params)
+          @Images = params['Images']
+          @SubnetId = params['SubnetId']
+          @VpcId = params['VpcId']
+          @ImageCacheName = params['ImageCacheName']
+          @SecurityGroupIds = params['SecurityGroupIds']
+          unless params['ImageRegistryCredentials'].nil?
+            @ImageRegistryCredentials = []
+            params['ImageRegistryCredentials'].each do |i|
+              imageregistrycredential_tmp = ImageRegistryCredential.new
+              imageregistrycredential_tmp.deserialize(i)
+              @ImageRegistryCredentials << imageregistrycredential_tmp
+            end
+          end
+          @ExistedEipId = params['ExistedEipId']
+          @AutoCreateEip = params['AutoCreateEip']
+          unless params['AutoCreateEipAttribute'].nil?
+            @AutoCreateEipAttribute = EipAttribute.new
+            @AutoCreateEipAttribute.deserialize(params['AutoCreateEipAttribute'])
+          end
+          @ImageCacheSize = params['ImageCacheSize']
+          @RetentionDays = params['RetentionDays']
+        end
+      end
+
+      # CreateImageCache返回参数结构体
+      class CreateImageCacheResponse < TencentCloud::Common::AbstractModel
+        # @param ImageCacheId: 镜像缓存Id
+        # @type ImageCacheId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ImageCacheId, :RequestId
+        
+        def initialize(imagecacheid=nil, requestid=nil)
+          @ImageCacheId = imagecacheid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ImageCacheId = params['ImageCacheId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreatePrometheusAlertRule请求参数结构体
       class CreatePrometheusAlertRuleRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例id
@@ -2708,6 +2795,38 @@ module TencentCloud
 
       # DeleteEKSContainerInstances返回参数结构体
       class DeleteEKSContainerInstancesResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteImageCaches请求参数结构体
+      class DeleteImageCachesRequest < TencentCloud::Common::AbstractModel
+        # @param ImageCacheIds: 镜像缓存Id数组
+        # @type ImageCacheIds: Array
+
+        attr_accessor :ImageCacheIds
+        
+        def initialize(imagecacheids=nil)
+          @ImageCacheIds = imagecacheids
+        end
+
+        def deserialize(params)
+          @ImageCacheIds = params['ImageCacheIds']
+        end
+      end
+
+      # DeleteImageCaches返回参数结构体
+      class DeleteImageCachesResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -4319,6 +4438,79 @@ module TencentCloud
         def deserialize(params)
           @Spec = params['Spec']
           @Expiration = params['Expiration']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeImageCaches请求参数结构体
+      class DescribeImageCachesRequest < TencentCloud::Common::AbstractModel
+        # @param ImageCacheIds: 镜像缓存Id数组
+        # @type ImageCacheIds: Array
+        # @param ImageCacheNames: 镜像缓存名称数组
+        # @type ImageCacheNames: Array
+        # @param Limit: 限定此次返回资源的数量。如果不设定，默认返回20，最大不能超过50
+        # @type Limit: Integer
+        # @param Offset: 偏移量,默认0
+        # @type Offset: Integer
+        # @param Filters: 过滤条件，可选条件：
+        # (1)实例名称
+        # KeyName: image-cache-name
+        # 类型：String
+        # @type Filters: Array
+
+        attr_accessor :ImageCacheIds, :ImageCacheNames, :Limit, :Offset, :Filters
+        
+        def initialize(imagecacheids=nil, imagecachenames=nil, limit=nil, offset=nil, filters=nil)
+          @ImageCacheIds = imagecacheids
+          @ImageCacheNames = imagecachenames
+          @Limit = limit
+          @Offset = offset
+          @Filters = filters
+        end
+
+        def deserialize(params)
+          @ImageCacheIds = params['ImageCacheIds']
+          @ImageCacheNames = params['ImageCacheNames']
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+        end
+      end
+
+      # DescribeImageCaches返回参数结构体
+      class DescribeImageCachesResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 镜像缓存总数
+        # @type TotalCount: Integer
+        # @param ImageCaches: 镜像缓存信息列表
+        # @type ImageCaches: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :ImageCaches, :RequestId
+        
+        def initialize(totalcount=nil, imagecaches=nil, requestid=nil)
+          @TotalCount = totalcount
+          @ImageCaches = imagecaches
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['ImageCaches'].nil?
+            @ImageCaches = []
+            params['ImageCaches'].each do |i|
+              imagecache_tmp = ImageCache.new
+              imagecache_tmp.deserialize(i)
+              @ImageCaches << imagecache_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -6009,6 +6201,50 @@ module TencentCloud
         end
       end
 
+      # GetMostSuitableImageCache请求参数结构体
+      class GetMostSuitableImageCacheRequest < TencentCloud::Common::AbstractModel
+        # @param Images: 容器镜像列表
+        # @type Images: Array
+
+        attr_accessor :Images
+        
+        def initialize(images=nil)
+          @Images = images
+        end
+
+        def deserialize(params)
+          @Images = params['Images']
+        end
+      end
+
+      # GetMostSuitableImageCache返回参数结构体
+      class GetMostSuitableImageCacheResponse < TencentCloud::Common::AbstractModel
+        # @param Found: 是否有匹配的镜像缓存
+        # @type Found: Boolean
+        # @param ImageCache: 匹配的镜像缓存
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ImageCache: :class:`Tencentcloud::Tke.v20180525.models.ImageCache`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Found, :ImageCache, :RequestId
+        
+        def initialize(found=nil, imagecache=nil, requestid=nil)
+          @Found = found
+          @ImageCache = imagecache
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Found = params['Found']
+          unless params['ImageCache'].nil?
+            @ImageCache = ImageCache.new
+            @ImageCache.deserialize(params['ImageCache'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # GetTkeAppChartList请求参数结构体
       class GetTkeAppChartListRequest < TencentCloud::Common::AbstractModel
         # @param Kind: app类型，取值log,scheduler,network,storage,monitor,dns,image,other,invisible
@@ -6185,6 +6421,107 @@ module TencentCloud
           @Type = params['Type']
           @Ip = params['Ip']
           @Port = params['Port']
+        end
+      end
+
+      # 镜像缓存的信息
+      class ImageCache < TencentCloud::Common::AbstractModel
+        # @param ImageCacheId: 镜像缓存Id
+        # @type ImageCacheId: String
+        # @param ImageCacheName: 镜像缓存名称
+        # @type ImageCacheName: String
+        # @param ImageCacheSize: 镜像缓存大小。单位：GiB
+        # @type ImageCacheSize: Integer
+        # @param Images: 镜像缓存包含的镜像列表
+        # @type Images: Array
+        # @param CreationTime: 创建时间
+        # @type CreationTime: String
+        # @param ExpireDateTime: 到期时间
+        # @type ExpireDateTime: String
+        # @param Events: 镜像缓存事件信息
+        # @type Events: Array
+        # @param LastMatchedTime: 最新一次匹配到镜像缓存的时间
+        # @type LastMatchedTime: String
+        # @param SnapshotId: 镜像缓存对应的快照Id
+        # @type SnapshotId: String
+        # @param Status: 镜像缓存状态，可能取值：
+        # Pending：创建中
+        # Ready：创建完成
+        # Failed：创建失败
+        # Updating：更新中
+        # UpdateFailed：更新失败
+        # 只有状态为Ready时，才能正常使用镜像缓存
+        # @type Status: String
+
+        attr_accessor :ImageCacheId, :ImageCacheName, :ImageCacheSize, :Images, :CreationTime, :ExpireDateTime, :Events, :LastMatchedTime, :SnapshotId, :Status
+        
+        def initialize(imagecacheid=nil, imagecachename=nil, imagecachesize=nil, images=nil, creationtime=nil, expiredatetime=nil, events=nil, lastmatchedtime=nil, snapshotid=nil, status=nil)
+          @ImageCacheId = imagecacheid
+          @ImageCacheName = imagecachename
+          @ImageCacheSize = imagecachesize
+          @Images = images
+          @CreationTime = creationtime
+          @ExpireDateTime = expiredatetime
+          @Events = events
+          @LastMatchedTime = lastmatchedtime
+          @SnapshotId = snapshotid
+          @Status = status
+        end
+
+        def deserialize(params)
+          @ImageCacheId = params['ImageCacheId']
+          @ImageCacheName = params['ImageCacheName']
+          @ImageCacheSize = params['ImageCacheSize']
+          @Images = params['Images']
+          @CreationTime = params['CreationTime']
+          @ExpireDateTime = params['ExpireDateTime']
+          unless params['Events'].nil?
+            @Events = []
+            params['Events'].each do |i|
+              imagecacheevent_tmp = ImageCacheEvent.new
+              imagecacheevent_tmp.deserialize(i)
+              @Events << imagecacheevent_tmp
+            end
+          end
+          @LastMatchedTime = params['LastMatchedTime']
+          @SnapshotId = params['SnapshotId']
+          @Status = params['Status']
+        end
+      end
+
+      # 镜像缓存的事件
+      class ImageCacheEvent < TencentCloud::Common::AbstractModel
+        # @param ImageCacheId: 镜像缓存Id
+        # @type ImageCacheId: String
+        # @param Type: 事件类型, Normal或者Warning
+        # @type Type: String
+        # @param Reason: 事件原因简述
+        # @type Reason: String
+        # @param Message: 事件原因详述
+        # @type Message: String
+        # @param FirstTimestamp: 事件第一次出现时间
+        # @type FirstTimestamp: String
+        # @param LastTimestamp: 事件最后一次出现时间
+        # @type LastTimestamp: String
+
+        attr_accessor :ImageCacheId, :Type, :Reason, :Message, :FirstTimestamp, :LastTimestamp
+        
+        def initialize(imagecacheid=nil, type=nil, reason=nil, message=nil, firsttimestamp=nil, lasttimestamp=nil)
+          @ImageCacheId = imagecacheid
+          @Type = type
+          @Reason = reason
+          @Message = message
+          @FirstTimestamp = firsttimestamp
+          @LastTimestamp = lasttimestamp
+        end
+
+        def deserialize(params)
+          @ImageCacheId = params['ImageCacheId']
+          @Type = params['Type']
+          @Reason = params['Reason']
+          @Message = params['Message']
+          @FirstTimestamp = params['FirstTimestamp']
+          @LastTimestamp = params['LastTimestamp']
         end
       end
 
@@ -9136,6 +9473,42 @@ module TencentCloud
 
         def deserialize(params)
           @EksCiId = params['EksCiId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # UpdateImageCache请求参数结构体
+      class UpdateImageCacheRequest < TencentCloud::Common::AbstractModel
+        # @param ImageCacheId: 镜像缓存Id
+        # @type ImageCacheId: String
+        # @param ImageCacheName: 镜像缓存名称
+        # @type ImageCacheName: String
+
+        attr_accessor :ImageCacheId, :ImageCacheName
+        
+        def initialize(imagecacheid=nil, imagecachename=nil)
+          @ImageCacheId = imagecacheid
+          @ImageCacheName = imagecachename
+        end
+
+        def deserialize(params)
+          @ImageCacheId = params['ImageCacheId']
+          @ImageCacheName = params['ImageCacheName']
+        end
+      end
+
+      # UpdateImageCache返回参数结构体
+      class UpdateImageCacheResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
           @RequestId = params['RequestId']
         end
       end

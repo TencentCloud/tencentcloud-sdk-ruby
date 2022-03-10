@@ -370,14 +370,18 @@ module TencentCloud
         # <li>0：否，</li>
         # <li>1：是。</li>
         # @type RemoveVideo: Integer
+        # @param TEHDConfig: 极速高清转码参数。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TEHDConfig: :class:`Tencentcloud::Vod.v20180717.models.TEHDConfig`
 
-        attr_accessor :Video, :Audio, :RemoveAudio, :RemoveVideo
+        attr_accessor :Video, :Audio, :RemoveAudio, :RemoveVideo, :TEHDConfig
         
-        def initialize(video=nil, audio=nil, removeaudio=nil, removevideo=nil)
+        def initialize(video=nil, audio=nil, removeaudio=nil, removevideo=nil, tehdconfig=nil)
           @Video = video
           @Audio = audio
           @RemoveAudio = removeaudio
           @RemoveVideo = removevideo
+          @TEHDConfig = tehdconfig
         end
 
         def deserialize(params)
@@ -391,6 +395,10 @@ module TencentCloud
           end
           @RemoveAudio = params['RemoveAudio']
           @RemoveVideo = params['RemoveVideo']
+          unless params['TEHDConfig'].nil?
+            @TEHDConfig = TEHDConfig.new
+            @TEHDConfig.deserialize(params['TEHDConfig'])
+          end
         end
       end
 
@@ -13843,6 +13851,61 @@ module TencentCloud
         end
       end
 
+      # ModifyMediaStorageClass请求参数结构体
+      class ModifyMediaStorageClassRequest < TencentCloud::Common::AbstractModel
+        # @param FileIds: 媒体文件唯一标识列表。
+        # @type FileIds: Array
+        # @param StorageClass: 目标存储类型。可选值有：
+        # <li> STANDARD：标准存储。</li>
+        # <li> STANDARD_IA：低频存储。</li>
+        # <li> ARCHIVE：归档存储。</li>
+        # <li> DEEP_ARCHIVE：深度归档存储。</li>
+        # @type StorageClass: String
+        # @param SubAppId: 点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。
+        # @type SubAppId: Integer
+        # @param RestoreTier: 取回模式。当文件的存储类型从归档或深度归档转换为标准存储时，需要指定取回（也称为解冻）操作的模式，具体说明请参考[数据取回及取回模式](https://cloud.tencent.com/document/product/266/56196#retake)。
+        # 当媒体文件目前的存储类型为归档存储时，有以下取值：
+        # <li>Expedited：极速模式。</li>
+        # <li>Standard：标准模式。</li>
+        # <li>Bulk：批量模式。</li>
+        # 当媒体文件目前的存储类型为深度归档存储时，有以下取值：
+        # <li>Standard：标准模式。</li>
+        # <li>Bulk：批量模式。</li>
+        # @type RestoreTier: String
+
+        attr_accessor :FileIds, :StorageClass, :SubAppId, :RestoreTier
+        
+        def initialize(fileids=nil, storageclass=nil, subappid=nil, restoretier=nil)
+          @FileIds = fileids
+          @StorageClass = storageclass
+          @SubAppId = subappid
+          @RestoreTier = restoretier
+        end
+
+        def deserialize(params)
+          @FileIds = params['FileIds']
+          @StorageClass = params['StorageClass']
+          @SubAppId = params['SubAppId']
+          @RestoreTier = params['RestoreTier']
+        end
+      end
+
+      # ModifyMediaStorageClass返回参数结构体
+      class ModifyMediaStorageClassResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyPersonSample请求参数结构体
       class ModifyPersonSampleRequest < TencentCloud::Common::AbstractModel
         # @param PersonId: 素材 ID。
@@ -17778,9 +17841,7 @@ module TencentCloud
 
       # 极速高清参数配置。
       class TEHDConfig < TencentCloud::Common::AbstractModel
-        # @param Type: 极速高清类型，可选值：
-        # <li>TEHD-100：极速高清-100。</li>
-        # 不填代表不启用极速高清。
+        # @param Type: 极速高清类型，可选值：<li>TEHD-100 表示极速高清-100;</li> <li>OFF 表示关闭极速高清。</li>不填表示 OFF。
         # @type Type: String
         # @param MaxVideoBitrate: 视频码率上限，当 Type 指定了极速高清类型时有效。
         # 不填或填0表示不设视频码率上限。
@@ -17801,9 +17862,7 @@ module TencentCloud
 
       # 极速高清参数配置。
       class TEHDConfigForUpdate < TencentCloud::Common::AbstractModel
-        # @param Type: 极速高清类型，可选值：
-        # <li>TEHD-100：极速高清-100。</li>
-        # 不填代表不修改。
+        # @param Type: 极速高清类型，可选值：<li>TEHD-100 表示极速高清-100;</li> <li>OFF 表示关闭极速高清。</li>不填表示不修改。
         # @type Type: String
         # @param MaxVideoBitrate: 视频码率上限，不填代表不修改。
         # @type MaxVideoBitrate: Integer

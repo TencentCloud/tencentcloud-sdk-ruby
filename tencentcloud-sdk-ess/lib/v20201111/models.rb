@@ -46,7 +46,10 @@ module TencentCloud
         # @type OrganizationName: String
         # @param ApproverIdCardNumber: 身份证号
         # @type ApproverIdCardNumber: String
-        # @param ApproverIdCardType: 证件类型 ID_CARD 身份证
+        # @param ApproverIdCardType: 证件类型
+        # ID_CARD 身份证
+        # HONGKONG_AND_MACAO 港澳居民来往内地通行证
+        # HONGKONG_MACAO_AND_TAIWAN 港澳台居民居住证(格式同居民身份证)
         # @type ApproverIdCardType: String
         # @param NotifyType: sms--短信，none--不通知
         # @type NotifyType: String
@@ -859,10 +862,12 @@ module TencentCloud
         # @type ApproverName: String
         # @param ApproverMobile: 签署方经办人手机号码
         # @type ApproverMobile: String
-        # @param ApproverIdCardType: 签署方经办人证件类型，ID_CARD表示身份证
-        # @type ApproverIdCardType: String
         # @param ApproverIdCardNumber: 签署方经办人证件号码
         # @type ApproverIdCardNumber: String
+        # @param ApproverIdCardType: 签署方经办人证件类型ID_CARD 身份证
+        # HONGKONG_AND_MACAO 港澳居民来往内地通行证
+        # HONGKONG_MACAO_AND_TAIWAN 港澳台居民居住证(格式同居民身份证)
+        # @type ApproverIdCardType: String
         # @param RecipientId: 签署方经办人在模板中的角色ID
         # @type RecipientId: String
         # @param UserId: 签署方经办人的用户ID,和签署方经办人姓名+手机号+证件必须有一个
@@ -874,16 +879,16 @@ module TencentCloud
         # @param NotifyType: 是否发送短信，sms--短信通知，none--不通知，默认为sms
         # @type NotifyType: String
 
-        attr_accessor :ApproverType, :OrganizationName, :Required, :ApproverName, :ApproverMobile, :ApproverIdCardType, :ApproverIdCardNumber, :RecipientId, :UserId, :IsFullText, :PreReadTime, :NotifyType
+        attr_accessor :ApproverType, :OrganizationName, :Required, :ApproverName, :ApproverMobile, :ApproverIdCardNumber, :ApproverIdCardType, :RecipientId, :UserId, :IsFullText, :PreReadTime, :NotifyType
         
-        def initialize(approvertype=nil, organizationname=nil, required=nil, approvername=nil, approvermobile=nil, approveridcardtype=nil, approveridcardnumber=nil, recipientid=nil, userid=nil, isfulltext=nil, prereadtime=nil, notifytype=nil)
+        def initialize(approvertype=nil, organizationname=nil, required=nil, approvername=nil, approvermobile=nil, approveridcardnumber=nil, approveridcardtype=nil, recipientid=nil, userid=nil, isfulltext=nil, prereadtime=nil, notifytype=nil)
           @ApproverType = approvertype
           @OrganizationName = organizationname
           @Required = required
           @ApproverName = approvername
           @ApproverMobile = approvermobile
-          @ApproverIdCardType = approveridcardtype
           @ApproverIdCardNumber = approveridcardnumber
+          @ApproverIdCardType = approveridcardtype
           @RecipientId = recipientid
           @UserId = userid
           @IsFullText = isfulltext
@@ -897,8 +902,8 @@ module TencentCloud
           @Required = params['Required']
           @ApproverName = params['ApproverName']
           @ApproverMobile = params['ApproverMobile']
-          @ApproverIdCardType = params['ApproverIdCardType']
           @ApproverIdCardNumber = params['ApproverIdCardNumber']
+          @ApproverIdCardType = params['ApproverIdCardType']
           @RecipientId = params['RecipientId']
           @UserId = params['UserId']
           @IsFullText = params['IsFullText']

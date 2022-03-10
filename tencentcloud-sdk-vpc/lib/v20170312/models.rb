@@ -1566,16 +1566,20 @@ module TencentCloud
         # @param CcnRegionBandwidthLimit: 描述带宽的地域和限速上限信息。在地域间限速的情况下才会返回参数，出口限速模式不返回。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CcnRegionBandwidthLimit: :class:`Tencentcloud::Vpc.v20170312.models.CcnRegionBandwidthLimit`
+        # @param MarketId: 云市场实例ID。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MarketId: String
 
-        attr_accessor :CcnId, :CreatedTime, :ExpiredTime, :RegionFlowControlId, :RenewFlag, :CcnRegionBandwidthLimit
+        attr_accessor :CcnId, :CreatedTime, :ExpiredTime, :RegionFlowControlId, :RenewFlag, :CcnRegionBandwidthLimit, :MarketId
         
-        def initialize(ccnid=nil, createdtime=nil, expiredtime=nil, regionflowcontrolid=nil, renewflag=nil, ccnregionbandwidthlimit=nil)
+        def initialize(ccnid=nil, createdtime=nil, expiredtime=nil, regionflowcontrolid=nil, renewflag=nil, ccnregionbandwidthlimit=nil, marketid=nil)
           @CcnId = ccnid
           @CreatedTime = createdtime
           @ExpiredTime = expiredtime
           @RegionFlowControlId = regionflowcontrolid
           @RenewFlag = renewflag
           @CcnRegionBandwidthLimit = ccnregionbandwidthlimit
+          @MarketId = marketid
         end
 
         def deserialize(params)
@@ -1588,6 +1592,7 @@ module TencentCloud
             @CcnRegionBandwidthLimit = CcnRegionBandwidthLimit.new
             @CcnRegionBandwidthLimit.deserialize(params['CcnRegionBandwidthLimit'])
           end
+          @MarketId = params['MarketId']
         end
       end
 

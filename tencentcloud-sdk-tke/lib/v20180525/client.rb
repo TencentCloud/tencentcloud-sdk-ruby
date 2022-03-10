@@ -437,6 +437,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 创建镜像缓存的接口。创建过程中，请勿删除EKSCI实例和云盘，否则镜像缓存将创建失败。
+
+        # @param request: Request instance for CreateImageCache.
+        # @type request: :class:`Tencentcloud::tke::V20180525::CreateImageCacheRequest`
+        # @rtype: :class:`Tencentcloud::tke::V20180525::CreateImageCacheResponse`
+        def CreateImageCache(request)
+          body = send_request('CreateImageCache', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateImageCacheResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 创建告警规则
 
         # @param request: Request instance for CreatePrometheusAlertRule.
@@ -735,6 +759,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteEKSContainerInstancesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 批量删除镜像缓存
+
+        # @param request: Request instance for DeleteImageCaches.
+        # @type request: :class:`Tencentcloud::tke::V20180525::DeleteImageCachesRequest`
+        # @rtype: :class:`Tencentcloud::tke::V20180525::DeleteImageCachesResponse`
+        def DeleteImageCaches(request)
+          body = send_request('DeleteImageCaches', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteImageCachesResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1445,6 +1493,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询镜像缓存信息接口
+
+        # @param request: Request instance for DescribeImageCaches.
+        # @type request: :class:`Tencentcloud::tke::V20180525::DescribeImageCachesRequest`
+        # @rtype: :class:`Tencentcloud::tke::V20180525::DescribeImageCachesResponse`
+        def DescribeImageCaches(request)
+          body = send_request('DescribeImageCaches', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeImageCachesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 获取镜像信息
 
         # @param request: Request instance for DescribeImages.
@@ -1911,6 +1983,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ForwardApplicationRequestV3Response.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 根据镜像列表，查询匹配的镜像缓存
+
+        # @param request: Request instance for GetMostSuitableImageCache.
+        # @type request: :class:`Tencentcloud::tke::V20180525::GetMostSuitableImageCacheRequest`
+        # @rtype: :class:`Tencentcloud::tke::V20180525::GetMostSuitableImageCacheResponse`
+        def GetMostSuitableImageCache(request)
+          body = send_request('GetMostSuitableImageCache', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = GetMostSuitableImageCacheResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -2415,6 +2511,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = UpdateEKSContainerInstanceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 更新镜像缓存接口
+
+        # @param request: Request instance for UpdateImageCache.
+        # @type request: :class:`Tencentcloud::tke::V20180525::UpdateImageCacheRequest`
+        # @rtype: :class:`Tencentcloud::tke::V20180525::UpdateImageCacheResponse`
+        def UpdateImageCache(request)
+          body = send_request('UpdateImageCache', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = UpdateImageCacheResponse.new
             model.deserialize(response['Response'])
             model
           else

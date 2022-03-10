@@ -45,6 +45,34 @@ module TencentCloud
         end
       end
 
+      # 用户license基础信息
+      class ApplicationLicenseInput < TencentCloud::Common::AbstractModel
+        # @param AppName: 应用名称，注：后面三个字段AndroidPackageName、IOSBundleId、PcIdentifier，三者选填一个
+        # @type AppName: String
+        # @param AndroidPackageName: app的安卓包名
+        # @type AndroidPackageName: String
+        # @param IOSBundleId: app的IOS的BundleId名
+        # @type IOSBundleId: String
+        # @param PcIdentifier: PC标识名
+        # @type PcIdentifier: String
+
+        attr_accessor :AppName, :AndroidPackageName, :IOSBundleId, :PcIdentifier
+        
+        def initialize(appname=nil, androidpackagename=nil, iosbundleid=nil, pcidentifier=nil)
+          @AppName = appname
+          @AndroidPackageName = androidpackagename
+          @IOSBundleId = iosbundleid
+          @PcIdentifier = pcidentifier
+        end
+
+        def deserialize(params)
+          @AppName = params['AppName']
+          @AndroidPackageName = params['AndroidPackageName']
+          @IOSBundleId = params['IOSBundleId']
+          @PcIdentifier = params['PcIdentifier']
+        end
+      end
+
       # Artist
       class Artist < TencentCloud::Common::AbstractModel
         # @param ArtistName: 歌手名
@@ -181,12 +209,15 @@ module TencentCloud
         # @type RTCSystem: String
         # @param JoinRoomInput: 进房参数。
         # @type JoinRoomInput: :class:`Tencentcloud::Ame.v20190916.models.JoinRoomInput`
+        # @param ApplicationLicenseInput: license基础信息
+        # @type ApplicationLicenseInput: :class:`Tencentcloud::Ame.v20190916.models.ApplicationLicenseInput`
 
-        attr_accessor :RTCSystem, :JoinRoomInput
+        attr_accessor :RTCSystem, :JoinRoomInput, :ApplicationLicenseInput
         
-        def initialize(rtcsystem=nil, joinroominput=nil)
+        def initialize(rtcsystem=nil, joinroominput=nil, applicationlicenseinput=nil)
           @RTCSystem = rtcsystem
           @JoinRoomInput = joinroominput
+          @ApplicationLicenseInput = applicationlicenseinput
         end
 
         def deserialize(params)
@@ -194,6 +225,10 @@ module TencentCloud
           unless params['JoinRoomInput'].nil?
             @JoinRoomInput = JoinRoomInput.new
             @JoinRoomInput.deserialize(params['JoinRoomInput'])
+          end
+          unless params['ApplicationLicenseInput'].nil?
+            @ApplicationLicenseInput = ApplicationLicenseInput.new
+            @ApplicationLicenseInput.deserialize(params['ApplicationLicenseInput'])
           end
         end
       end
@@ -614,6 +649,44 @@ module TencentCloud
         end
       end
 
+      # DescribeKTVMusicTags请求参数结构体
+      class DescribeKTVMusicTagsRequest < TencentCloud::Common::AbstractModel
+
+        
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeKTVMusicTags返回参数结构体
+      class DescribeKTVMusicTagsResponse < TencentCloud::Common::AbstractModel
+        # @param TagGroupSet: 标签分组列表
+        # @type TagGroupSet: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TagGroupSet, :RequestId
+        
+        def initialize(taggroupset=nil, requestid=nil)
+          @TagGroupSet = taggroupset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['TagGroupSet'].nil?
+            @TagGroupSet = []
+            params['TagGroupSet'].each do |i|
+              ktvmusictaggroup_tmp = KTVMusicTagGroup.new
+              ktvmusictaggroup_tmp.deserialize(i)
+              @TagGroupSet << ktvmusictaggroup_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeKTVPlaylistDetail请求参数结构体
       class DescribeKTVPlaylistDetailRequest < TencentCloud::Common::AbstractModel
         # @param PlaylistId: 歌单Id
@@ -967,6 +1040,49 @@ module TencentCloud
               ktvsingerinfo_tmp = KTVSingerInfo.new
               ktvsingerinfo_tmp.deserialize(i)
               @KTVSingerInfoSet << ktvsingerinfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeKTVSuggestions请求参数结构体
+      class DescribeKTVSuggestionsRequest < TencentCloud::Common::AbstractModel
+        # @param KeyWord: 联想关键词
+        # @type KeyWord: String
+
+        attr_accessor :KeyWord
+        
+        def initialize(keyword=nil)
+          @KeyWord = keyword
+        end
+
+        def deserialize(params)
+          @KeyWord = params['KeyWord']
+        end
+      end
+
+      # DescribeKTVSuggestions返回参数结构体
+      class DescribeKTVSuggestionsResponse < TencentCloud::Common::AbstractModel
+        # @param KTVSuggestionInfoSet: 联想词信息列表。返回总数最大为10。
+        # @type KTVSuggestionInfoSet: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :KTVSuggestionInfoSet, :RequestId
+        
+        def initialize(ktvsuggestioninfoset=nil, requestid=nil)
+          @KTVSuggestionInfoSet = ktvsuggestioninfoset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['KTVSuggestionInfoSet'].nil?
+            @KTVSuggestionInfoSet = []
+            params['KTVSuggestionInfoSet'].each do |i|
+              ktvsuggestioninfo_tmp = KTVSuggestionInfo.new
+              ktvsuggestioninfo_tmp.deserialize(i)
+              @KTVSuggestionInfoSet << ktvsuggestioninfo_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -1650,6 +1766,57 @@ module TencentCloud
         end
       end
 
+      # 即使广播曲库歌曲标签分组信息
+      class KTVMusicTagGroup < TencentCloud::Common::AbstractModel
+        # @param EnglishGroupName: 标签分组英文名
+        # @type EnglishGroupName: String
+        # @param ChineseGroupName: 标签分组中文名
+        # @type ChineseGroupName: String
+        # @param TagSet: 标签分类下标签列表
+        # @type TagSet: Array
+
+        attr_accessor :EnglishGroupName, :ChineseGroupName, :TagSet
+        
+        def initialize(englishgroupname=nil, chinesegroupname=nil, tagset=nil)
+          @EnglishGroupName = englishgroupname
+          @ChineseGroupName = chinesegroupname
+          @TagSet = tagset
+        end
+
+        def deserialize(params)
+          @EnglishGroupName = params['EnglishGroupName']
+          @ChineseGroupName = params['ChineseGroupName']
+          unless params['TagSet'].nil?
+            @TagSet = []
+            params['TagSet'].each do |i|
+              ktvmusictaginfo_tmp = KTVMusicTagInfo.new
+              ktvmusictaginfo_tmp.deserialize(i)
+              @TagSet << ktvmusictaginfo_tmp
+            end
+          end
+        end
+      end
+
+      # 即使广播曲库歌曲标签信息
+      class KTVMusicTagInfo < TencentCloud::Common::AbstractModel
+        # @param TagId: 标签Id
+        # @type TagId: String
+        # @param TagName: 标签
+        # @type TagName: String
+
+        attr_accessor :TagId, :TagName
+        
+        def initialize(tagid=nil, tagname=nil)
+          @TagId = tagid
+          @TagName = tagname
+        end
+
+        def deserialize(params)
+          @TagId = params['TagId']
+          @TagName = params['TagName']
+        end
+      end
+
       # 排行榜结构
       class KTVMusicTopInfo < TencentCloud::Common::AbstractModel
         # @param MusicId: 歌曲Id
@@ -1863,6 +2030,22 @@ module TencentCloud
           @Area = params['Area']
           @MusicCount = params['MusicCount']
           @PlayCount = params['PlayCount']
+        end
+      end
+
+      # 即使广播曲库联想词信息
+      class KTVSuggestionInfo < TencentCloud::Common::AbstractModel
+        # @param Suggestion: 联想词
+        # @type Suggestion: String
+
+        attr_accessor :Suggestion
+        
+        def initialize(suggestion=nil)
+          @Suggestion = suggestion
+        end
+
+        def deserialize(params)
+          @Suggestion = params['Suggestion']
         end
       end
 
@@ -2364,14 +2547,18 @@ module TencentCloud
         # <li> Sort.Order 可选 Desc </li>
         # <li> 当 KeyWord 不为空时，Sort.Field 字段无效， 搜索结果将以匹配度排序。</li>
         # @type Sort: :class:`Tencentcloud::Ame.v20190916.models.SortBy`
+        # @param TagIds: 标签 ID 集合，匹配集合指定所有 ID 。
+        # <li>数组长度限制：10。</li>
+        # @type TagIds: Array
 
-        attr_accessor :KeyWord, :Offset, :Limit, :Sort
+        attr_accessor :KeyWord, :Offset, :Limit, :Sort, :TagIds
         
-        def initialize(keyword=nil, offset=nil, limit=nil, sort=nil)
+        def initialize(keyword=nil, offset=nil, limit=nil, sort=nil, tagids=nil)
           @KeyWord = keyword
           @Offset = offset
           @Limit = limit
           @Sort = sort
+          @TagIds = tagids
         end
 
         def deserialize(params)
@@ -2382,6 +2569,7 @@ module TencentCloud
             @Sort = SortBy.new
             @Sort.deserialize(params['Sort'])
           end
+          @TagIds = params['TagIds']
         end
       end
 

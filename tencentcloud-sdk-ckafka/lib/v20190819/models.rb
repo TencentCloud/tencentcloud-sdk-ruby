@@ -3636,6 +3636,28 @@ module TencentCloud
         end
       end
 
+      # 实例 / topic 维度限流策略
+      class InstanceQuotaConfigResp < TencentCloud::Common::AbstractModel
+        # @param QuotaProducerByteRate: 生产限流大小，单位 MB/s
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type QuotaProducerByteRate: Integer
+        # @param QuotaConsumerByteRate: 消费限流大小，单位 MB/s
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type QuotaConsumerByteRate: Integer
+
+        attr_accessor :QuotaProducerByteRate, :QuotaConsumerByteRate
+        
+        def initialize(quotaproducerbyterate=nil, quotaconsumerbyterate=nil)
+          @QuotaProducerByteRate = quotaproducerbyterate
+          @QuotaConsumerByteRate = quotaconsumerbyterate
+        end
+
+        def deserialize(params)
+          @QuotaProducerByteRate = params['QuotaProducerByteRate']
+          @QuotaConsumerByteRate = params['QuotaConsumerByteRate']
+        end
+      end
+
       # 聚合的实例状态返回结果
       class InstanceResponse < TencentCloud::Common::AbstractModel
         # @param InstanceList: 符合条件的实例列表
@@ -3943,10 +3965,14 @@ module TencentCloud
         # @type RetentionBytes: Integer
         # @param Tags: 标签列表
         # @type Tags: Array
+        # @param QuotaProducerByteRate: 生产限流，单位 MB/s
+        # @type QuotaProducerByteRate: Integer
+        # @param QuotaConsumerByteRate: 消费限流，单位 MB/s
+        # @type QuotaConsumerByteRate: Integer
 
-        attr_accessor :InstanceId, :TopicName, :Note, :EnableWhiteList, :MinInsyncReplicas, :UncleanLeaderElectionEnable, :RetentionMs, :SegmentMs, :MaxMessageBytes, :CleanUpPolicy, :IpWhiteList, :EnableAclRule, :AclRuleName, :RetentionBytes, :Tags
+        attr_accessor :InstanceId, :TopicName, :Note, :EnableWhiteList, :MinInsyncReplicas, :UncleanLeaderElectionEnable, :RetentionMs, :SegmentMs, :MaxMessageBytes, :CleanUpPolicy, :IpWhiteList, :EnableAclRule, :AclRuleName, :RetentionBytes, :Tags, :QuotaProducerByteRate, :QuotaConsumerByteRate
         
-        def initialize(instanceid=nil, topicname=nil, note=nil, enablewhitelist=nil, mininsyncreplicas=nil, uncleanleaderelectionenable=nil, retentionms=nil, segmentms=nil, maxmessagebytes=nil, cleanuppolicy=nil, ipwhitelist=nil, enableaclrule=nil, aclrulename=nil, retentionbytes=nil, tags=nil)
+        def initialize(instanceid=nil, topicname=nil, note=nil, enablewhitelist=nil, mininsyncreplicas=nil, uncleanleaderelectionenable=nil, retentionms=nil, segmentms=nil, maxmessagebytes=nil, cleanuppolicy=nil, ipwhitelist=nil, enableaclrule=nil, aclrulename=nil, retentionbytes=nil, tags=nil, quotaproducerbyterate=nil, quotaconsumerbyterate=nil)
           @InstanceId = instanceid
           @TopicName = topicname
           @Note = note
@@ -3962,6 +3988,8 @@ module TencentCloud
           @AclRuleName = aclrulename
           @RetentionBytes = retentionbytes
           @Tags = tags
+          @QuotaProducerByteRate = quotaproducerbyterate
+          @QuotaConsumerByteRate = quotaconsumerbyterate
         end
 
         def deserialize(params)
@@ -3987,6 +4015,8 @@ module TencentCloud
               @Tags << tag_tmp
             end
           end
+          @QuotaProducerByteRate = params['QuotaProducerByteRate']
+          @QuotaConsumerByteRate = params['QuotaConsumerByteRate']
         end
       end
 
@@ -4422,10 +4452,13 @@ module TencentCloud
         # @param AclRuleList: 预设策略列表
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AclRuleList: Array
+        # @param QuotaConfig: topic 限流策略
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type QuotaConfig: :class:`Tencentcloud::Ckafka.v20190819.models.InstanceQuotaConfigResp`
 
-        attr_accessor :TopicId, :CreateTime, :Note, :PartitionNum, :EnableWhiteList, :IpWhiteList, :Config, :Partitions, :EnableAclRule, :AclRuleList
+        attr_accessor :TopicId, :CreateTime, :Note, :PartitionNum, :EnableWhiteList, :IpWhiteList, :Config, :Partitions, :EnableAclRule, :AclRuleList, :QuotaConfig
         
-        def initialize(topicid=nil, createtime=nil, note=nil, partitionnum=nil, enablewhitelist=nil, ipwhitelist=nil, config=nil, partitions=nil, enableaclrule=nil, aclrulelist=nil)
+        def initialize(topicid=nil, createtime=nil, note=nil, partitionnum=nil, enablewhitelist=nil, ipwhitelist=nil, config=nil, partitions=nil, enableaclrule=nil, aclrulelist=nil, quotaconfig=nil)
           @TopicId = topicid
           @CreateTime = createtime
           @Note = note
@@ -4436,6 +4469,7 @@ module TencentCloud
           @Partitions = partitions
           @EnableAclRule = enableaclrule
           @AclRuleList = aclrulelist
+          @QuotaConfig = quotaconfig
         end
 
         def deserialize(params)
@@ -4465,6 +4499,10 @@ module TencentCloud
               aclrule_tmp.deserialize(i)
               @AclRuleList << aclrule_tmp
             end
+          end
+          unless params['QuotaConfig'].nil?
+            @QuotaConfig = InstanceQuotaConfigResp.new
+            @QuotaConfig.deserialize(params['QuotaConfig'])
           end
         end
       end
