@@ -276,34 +276,6 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 查询音视频互动计费时长。
-        # - 查询时间小于等于1天时，返回每5分钟粒度的数据；查询时间大于1天时，返回按天汇总的数据。
-        # - 单次查询统计区间最多不能超过31天。
-        # - 若查询当天用量，由于统计延迟等原因，返回数据可能不够准确。
-        # - 日结后付费将于次日上午推送账单，建议次日上午9点以后再来查询前一天的用量。
-
-        # @param request: Request instance for DescribeTrtcInteractiveTime.
-        # @type request: :class:`Tencentcloud::trtc::V20190722::DescribeTrtcInteractiveTimeRequest`
-        # @rtype: :class:`Tencentcloud::trtc::V20190722::DescribeTrtcInteractiveTimeResponse`
-        def DescribeTrtcInteractiveTime(request)
-          body = send_request('DescribeTrtcInteractiveTime', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = DescribeTrtcInteractiveTimeResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
         # 查询旁路转码计费时长。
         # - 查询时间小于等于1天时，返回每5分钟粒度的数据；查询时间大于1天时，返回按天汇总的数据。
         # - 单次查询统计区间最多不能超过31天。

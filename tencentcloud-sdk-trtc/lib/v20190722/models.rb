@@ -694,58 +694,6 @@ module TencentCloud
         end
       end
 
-      # DescribeTrtcInteractiveTime请求参数结构体
-      class DescribeTrtcInteractiveTimeRequest < TencentCloud::Common::AbstractModel
-        # @param StartTime: 查询开始时间，格式为YYYY-MM-DD。
-        # @type StartTime: String
-        # @param EndTime: 查询结束时间，格式为YYYY-MM-DD。
-        # 单次查询统计区间最多不能超过31天。
-        # @type EndTime: String
-        # @param SdkAppId: 应用ID，可不传。传应用ID时返回的是该应用的用量，不传时返回所有应用的合计值。
-        # @type SdkAppId: Integer
-
-        attr_accessor :StartTime, :EndTime, :SdkAppId
-        
-        def initialize(starttime=nil, endtime=nil, sdkappid=nil)
-          @StartTime = starttime
-          @EndTime = endtime
-          @SdkAppId = sdkappid
-        end
-
-        def deserialize(params)
-          @StartTime = params['StartTime']
-          @EndTime = params['EndTime']
-          @SdkAppId = params['SdkAppId']
-        end
-      end
-
-      # DescribeTrtcInteractiveTime返回参数结构体
-      class DescribeTrtcInteractiveTimeResponse < TencentCloud::Common::AbstractModel
-        # @param Usages: 应用的用量信息数组。
-        # @type Usages: Array
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :Usages, :RequestId
-        
-        def initialize(usages=nil, requestid=nil)
-          @Usages = usages
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          unless params['Usages'].nil?
-            @Usages = []
-            params['Usages'].each do |i|
-              onesdkappidusagesinfo_tmp = OneSdkAppIdUsagesInfo.new
-              onesdkappidusagesinfo_tmp.deserialize(i)
-              @Usages << onesdkappidusagesinfo_tmp
-            end
-          end
-          @RequestId = params['RequestId']
-        end
-      end
-
       # DescribeTrtcMcuTranscodeTime请求参数结构体
       class DescribeTrtcMcuTranscodeTimeRequest < TencentCloud::Common::AbstractModel
         # @param StartTime: 查询开始时间，格式为YYYY-MM-DD。
@@ -1220,37 +1168,6 @@ module TencentCloud
         end
       end
 
-      # 单个SdkAppId的音视频互动计费时长用量数组和数组长度。
-      class OneSdkAppIdUsagesInfo < TencentCloud::Common::AbstractModel
-        # @param TotalNum: 该 SdkAppId 对应的用量记录数长度
-        # @type TotalNum: Integer
-        # @param SdkAppIdTrtcTimeUsages: 用量数组
-        # @type SdkAppIdTrtcTimeUsages: Array
-        # @param SdkAppId: 应用ID
-        # @type SdkAppId: String
-
-        attr_accessor :TotalNum, :SdkAppIdTrtcTimeUsages, :SdkAppId
-        
-        def initialize(totalnum=nil, sdkappidtrtctimeusages=nil, sdkappid=nil)
-          @TotalNum = totalnum
-          @SdkAppIdTrtcTimeUsages = sdkappidtrtctimeusages
-          @SdkAppId = sdkappid
-        end
-
-        def deserialize(params)
-          @TotalNum = params['TotalNum']
-          unless params['SdkAppIdTrtcTimeUsages'].nil?
-            @SdkAppIdTrtcTimeUsages = []
-            params['SdkAppIdTrtcTimeUsages'].each do |i|
-              sdkappidtrtcusage_tmp = SdkAppIdTrtcUsage.new
-              sdkappidtrtcusage_tmp.deserialize(i)
-              @SdkAppIdTrtcTimeUsages << sdkappidtrtcusage_tmp
-            end
-          end
-          @SdkAppId = params['SdkAppId']
-        end
-      end
-
       # MCU混流的输出参数
       class OutputParams < TencentCloud::Common::AbstractModel
         # @param StreamId: 直播流 ID，由用户自定义设置，该流 ID 不能与用户旁路的流 ID 相同。
@@ -1659,44 +1576,6 @@ module TencentCloud
           @VideoTimeSd = params['VideoTimeSd']
           @VideoTimeHd = params['VideoTimeHd']
           @VideoTimeFhd = params['VideoTimeFhd']
-        end
-      end
-
-      # 查询音视频互动时长的输出数据。
-      # 查询时间小于等于1天时，返回每5分钟粒度的数据；查询时间大于1天时，返回按天汇总的数据。
-      class SdkAppIdTrtcUsage < TencentCloud::Common::AbstractModel
-        # @param TimeKey: 本组数据对应的时间点，格式如：2020-09-07或2020-09-07 00:05:05。
-        # @type TimeKey: String
-        # @param AudioTime: 语音时长，单位：秒。
-        # @type AudioTime: Integer
-        # @param AudioVideoTime: 音视频时长，单位：秒。
-        # 2019年10月11日前注册，没有变更为 [新计费模式](https://cloud.tencent.com/document/product/647/17157) 的用户才会返回此值。
-        # @type AudioVideoTime: Integer
-        # @param VideoTimeSd: 视频时长-标清SD，单位：秒。
-        # @type VideoTimeSd: Integer
-        # @param VideoTimeHd: 视频时长-高清HD，单位：秒。
-        # @type VideoTimeHd: Integer
-        # @param VideoTimeHdp: 视频时长-超清HD，单位：秒。
-        # @type VideoTimeHdp: Integer
-
-        attr_accessor :TimeKey, :AudioTime, :AudioVideoTime, :VideoTimeSd, :VideoTimeHd, :VideoTimeHdp
-        
-        def initialize(timekey=nil, audiotime=nil, audiovideotime=nil, videotimesd=nil, videotimehd=nil, videotimehdp=nil)
-          @TimeKey = timekey
-          @AudioTime = audiotime
-          @AudioVideoTime = audiovideotime
-          @VideoTimeSd = videotimesd
-          @VideoTimeHd = videotimehd
-          @VideoTimeHdp = videotimehdp
-        end
-
-        def deserialize(params)
-          @TimeKey = params['TimeKey']
-          @AudioTime = params['AudioTime']
-          @AudioVideoTime = params['AudioVideoTime']
-          @VideoTimeSd = params['VideoTimeSd']
-          @VideoTimeHd = params['VideoTimeHd']
-          @VideoTimeHdp = params['VideoTimeHdp']
         end
       end
 

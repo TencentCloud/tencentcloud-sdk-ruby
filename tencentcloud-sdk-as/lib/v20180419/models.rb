@@ -3836,42 +3836,6 @@ module TencentCloud
         end
       end
 
-      # PreviewPaiDomainName请求参数结构体
-      class PreviewPaiDomainNameRequest < TencentCloud::Common::AbstractModel
-        # @param DomainNameType: 域名类型
-        # @type DomainNameType: String
-
-        attr_accessor :DomainNameType
-        
-        def initialize(domainnametype=nil)
-          @DomainNameType = domainnametype
-        end
-
-        def deserialize(params)
-          @DomainNameType = params['DomainNameType']
-        end
-      end
-
-      # PreviewPaiDomainName返回参数结构体
-      class PreviewPaiDomainNameResponse < TencentCloud::Common::AbstractModel
-        # @param DomainName: 可用的PAI域名
-        # @type DomainName: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :DomainName, :RequestId
-        
-        def initialize(domainname=nil, requestid=nil)
-          @DomainName = domainname
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          @DomainName = params['DomainName']
-          @RequestId = params['RequestId']
-        end
-      end
-
       # RemoveInstances请求参数结构体
       class RemoveInstancesRequest < TencentCloud::Common::AbstractModel
         # @param AutoScalingGroupId: 伸缩组ID
