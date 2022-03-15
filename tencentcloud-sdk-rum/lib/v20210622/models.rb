@@ -290,10 +290,12 @@ module TencentCloud
         # @type CountNum: String
         # @param PeriodRetain: 数据存储时长计费
         # @type PeriodRetain: String
+        # @param BuyingChannel: 实例购买渠道("cdn" 等)
+        # @type BuyingChannel: String
 
-        attr_accessor :AreaId, :ChargeType, :DataRetentionDays, :InstanceName, :Tags, :InstanceDesc, :CountNum, :PeriodRetain
+        attr_accessor :AreaId, :ChargeType, :DataRetentionDays, :InstanceName, :Tags, :InstanceDesc, :CountNum, :PeriodRetain, :BuyingChannel
         
-        def initialize(areaid=nil, chargetype=nil, dataretentiondays=nil, instancename=nil, tags=nil, instancedesc=nil, countnum=nil, periodretain=nil)
+        def initialize(areaid=nil, chargetype=nil, dataretentiondays=nil, instancename=nil, tags=nil, instancedesc=nil, countnum=nil, periodretain=nil, buyingchannel=nil)
           @AreaId = areaid
           @ChargeType = chargetype
           @DataRetentionDays = dataretentiondays
@@ -302,6 +304,7 @@ module TencentCloud
           @InstanceDesc = instancedesc
           @CountNum = countnum
           @PeriodRetain = periodretain
+          @BuyingChannel = buyingchannel
         end
 
         def deserialize(params)
@@ -320,6 +323,7 @@ module TencentCloud
           @InstanceDesc = params['InstanceDesc']
           @CountNum = params['CountNum']
           @PeriodRetain = params['PeriodRetain']
+          @BuyingChannel = params['BuyingChannel']
         end
       end
 

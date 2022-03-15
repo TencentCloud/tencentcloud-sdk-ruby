@@ -937,16 +937,19 @@ module TencentCloud
         # @type PodCIDR: String
         # @param ServiceCIDR: 集群service cidr, 默认 10.2.0.0/16
         # @type ServiceCIDR: String
+        # @param OpenCloudMonitor: 是否开启监控。目前内存中权限开启联系产品开通白名单
+        # @type OpenCloudMonitor: Boolean
 
-        attr_accessor :Name, :K8sVersion, :VpcId, :Description, :PodCIDR, :ServiceCIDR
+        attr_accessor :Name, :K8sVersion, :VpcId, :Description, :PodCIDR, :ServiceCIDR, :OpenCloudMonitor
         
-        def initialize(name=nil, k8sversion=nil, vpcid=nil, description=nil, podcidr=nil, servicecidr=nil)
+        def initialize(name=nil, k8sversion=nil, vpcid=nil, description=nil, podcidr=nil, servicecidr=nil, opencloudmonitor=nil)
           @Name = name
           @K8sVersion = k8sversion
           @VpcId = vpcid
           @Description = description
           @PodCIDR = podcidr
           @ServiceCIDR = servicecidr
+          @OpenCloudMonitor = opencloudmonitor
         end
 
         def deserialize(params)
@@ -956,6 +959,7 @@ module TencentCloud
           @Description = params['Description']
           @PodCIDR = params['PodCIDR']
           @ServiceCIDR = params['ServiceCIDR']
+          @OpenCloudMonitor = params['OpenCloudMonitor']
         end
       end
 

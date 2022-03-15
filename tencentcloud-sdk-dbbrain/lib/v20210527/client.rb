@@ -749,7 +749,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 获取SQL优化建议。
+        # 获取SQL优化建议。【产品用户回馈，此接口限免开放，后续将并入dbbrain专业版】
 
         # @param request: Request instance for DescribeUserSqlAdvice.
         # @type request: :class:`Tencentcloud::dbbrain::V20210527::DescribeUserSqlAdviceRequest`

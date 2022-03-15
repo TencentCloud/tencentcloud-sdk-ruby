@@ -294,6 +294,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 根据收件id删除收件人列表,同时删除列表中的所有收件邮箱
+
+        # @param request: Request instance for DeleteReceiver.
+        # @type request: :class:`Tencentcloud::ses::V20201002::DeleteReceiverRequest`
+        # @rtype: :class:`Tencentcloud::ses::V20201002::DeleteReceiverResponse`
+        def DeleteReceiver(request)
+          body = send_request('DeleteReceiver', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteReceiverResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 获取某个发信域名的配置详情
 
         # @param request: Request instance for GetEmailIdentity.

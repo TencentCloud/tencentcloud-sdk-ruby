@@ -41,7 +41,7 @@ module TencentCloud
         # @type ThisMonthAmt: Integer
         # @param HasOverdueBill: 是否欠费,0：不欠费；1：欠费
         # @type HasOverdueBill: Integer
-        # @param ClientType: 客户类型：可以为new(新拓)/assign(指定)/old(存量已关联)/old_newchecking(存量-新关联考核中)/old_newnotpass(存量-新关联未达标)/direct(直销)/direct_newopp(直销(新商机))/空
+        # @param ClientType: 客户类型：可以为new(自拓)/assign(指派)/old(官网)/direct(直销)/direct_newopp(直销(新商机))/空
         # @type ClientType: String
         # @param ProjectType: 项目类型：可以为self(自拓项目)/platform(合作项目)/repeat(复算项目  )/空
         # @type ProjectType: String
@@ -118,7 +118,7 @@ module TencentCloud
         # @type Amt: Integer
         # @param PayerMode: agentpay：代付；selfpay：自付
         # @type PayerMode: String
-        # @param ClientType: 客户类型：可以为new(新拓)/assign(指定)/old(存量)/空
+        # @param ClientType: 客户类型：可以为new(自拓)/assign(指定)/old(官网)/direct(直销)/direct_newopp(直销(新商机))/空
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ClientType: String
         # @param ProjectType: 项目类型：可以为self(自拓项目)/platform(合作项目)/repeat(复算项目  )/空
@@ -277,7 +277,7 @@ module TencentCloud
         # @param BigDealId: 大订单号
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BigDealId: String
-        # @param ClientType: 客户类型（new：新拓；old：存量；assign：指派）
+        # @param ClientType: 客户类型（new：自拓；old：官网；assign：指派；direct：直销；direct_newopp：直销(新商机)）
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ClientType: String
         # @param ProjectType: 项目类型（self：自拓；repeat：直销；platform：官网合作）
@@ -435,7 +435,7 @@ module TencentCloud
         # @param BigDealId: 大订单号
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BigDealId: String
-        # @param ClientType: 客户类型（new：新拓；old：存量；assign：指派）
+        # @param ClientType: 客户类型（new：自拓；old：官网；assign：指派；direct：直销；direct_newopp：直销(新商机)）
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ClientType: String
         # @param ProjectType: 项目类型（self：自拓；repeat：直销；platform：官网合作）

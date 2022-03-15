@@ -403,6 +403,125 @@ module TencentCloud
         end
       end
 
+      # 特殊采集规则配置信息
+      class ConfigExtraInfo < TencentCloud::Common::AbstractModel
+        # @param ConfigExtraId: 采集规则扩展配置ID
+        # @type ConfigExtraId: String
+        # @param Name: 采集规则名称
+        # @type Name: String
+        # @param TopicId: 日志主题ID
+        # @type TopicId: String
+        # @param Type: 类型：container_stdout、container_file、host_file
+        # @type Type: String
+        # @param HostFile: 节点文件配置信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HostFile: :class:`Tencentcloud::Cls.v20201016.models.HostFileInfo`
+        # @param ContainerFile: 容器文件路径信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ContainerFile: :class:`Tencentcloud::Cls.v20201016.models.ContainerFileInfo`
+        # @param ContainerStdout: 容器标准输出信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ContainerStdout: :class:`Tencentcloud::Cls.v20201016.models.ContainerStdoutInfo`
+        # @param LogFormat: 日志格式化方式
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LogFormat: String
+        # @param LogType: 采集的日志类型，json_log代表json格式日志，delimiter_log代表分隔符格式日志，minimalist_log代表极简日志，multiline_log代表多行日志，fullregex_log代表完整正则，默认为minimalist_log
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LogType: String
+        # @param ExtractRule: 提取规则，如果设置了ExtractRule，则必须设置LogType
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExtractRule: :class:`Tencentcloud::Cls.v20201016.models.ExtractRuleInfo`
+        # @param ExcludePaths: 采集黑名单路径列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExcludePaths: Array
+        # @param UpdateTime: 更新时间
+        # @type UpdateTime: String
+        # @param CreateTime: 创建时间
+        # @type CreateTime: String
+        # @param UserDefineRule: 用户自定义解析字符串
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UserDefineRule: String
+        # @param GroupId: 机器组ID
+        # @type GroupId: String
+        # @param ConfigFlag: 自建采集配置标
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ConfigFlag: String
+        # @param LogsetId: 日志集ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LogsetId: String
+        # @param LogsetName: 日志集name
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LogsetName: String
+        # @param TopicName: 日志主题name
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TopicName: String
+
+        attr_accessor :ConfigExtraId, :Name, :TopicId, :Type, :HostFile, :ContainerFile, :ContainerStdout, :LogFormat, :LogType, :ExtractRule, :ExcludePaths, :UpdateTime, :CreateTime, :UserDefineRule, :GroupId, :ConfigFlag, :LogsetId, :LogsetName, :TopicName
+        
+        def initialize(configextraid=nil, name=nil, topicid=nil, type=nil, hostfile=nil, containerfile=nil, containerstdout=nil, logformat=nil, logtype=nil, extractrule=nil, excludepaths=nil, updatetime=nil, createtime=nil, userdefinerule=nil, groupid=nil, configflag=nil, logsetid=nil, logsetname=nil, topicname=nil)
+          @ConfigExtraId = configextraid
+          @Name = name
+          @TopicId = topicid
+          @Type = type
+          @HostFile = hostfile
+          @ContainerFile = containerfile
+          @ContainerStdout = containerstdout
+          @LogFormat = logformat
+          @LogType = logtype
+          @ExtractRule = extractrule
+          @ExcludePaths = excludepaths
+          @UpdateTime = updatetime
+          @CreateTime = createtime
+          @UserDefineRule = userdefinerule
+          @GroupId = groupid
+          @ConfigFlag = configflag
+          @LogsetId = logsetid
+          @LogsetName = logsetname
+          @TopicName = topicname
+        end
+
+        def deserialize(params)
+          @ConfigExtraId = params['ConfigExtraId']
+          @Name = params['Name']
+          @TopicId = params['TopicId']
+          @Type = params['Type']
+          unless params['HostFile'].nil?
+            @HostFile = HostFileInfo.new
+            @HostFile.deserialize(params['HostFile'])
+          end
+          unless params['ContainerFile'].nil?
+            @ContainerFile = ContainerFileInfo.new
+            @ContainerFile.deserialize(params['ContainerFile'])
+          end
+          unless params['ContainerStdout'].nil?
+            @ContainerStdout = ContainerStdoutInfo.new
+            @ContainerStdout.deserialize(params['ContainerStdout'])
+          end
+          @LogFormat = params['LogFormat']
+          @LogType = params['LogType']
+          unless params['ExtractRule'].nil?
+            @ExtractRule = ExtractRuleInfo.new
+            @ExtractRule.deserialize(params['ExtractRule'])
+          end
+          unless params['ExcludePaths'].nil?
+            @ExcludePaths = []
+            params['ExcludePaths'].each do |i|
+              excludepathinfo_tmp = ExcludePathInfo.new
+              excludepathinfo_tmp.deserialize(i)
+              @ExcludePaths << excludepathinfo_tmp
+            end
+          end
+          @UpdateTime = params['UpdateTime']
+          @CreateTime = params['CreateTime']
+          @UserDefineRule = params['UserDefineRule']
+          @GroupId = params['GroupId']
+          @ConfigFlag = params['ConfigFlag']
+          @LogsetId = params['LogsetId']
+          @LogsetName = params['LogsetName']
+          @TopicName = params['TopicName']
+        end
+      end
+
       # 采集规则配置信息
       class ConfigInfo < TencentCloud::Common::AbstractModel
         # @param ConfigId: 采集规则配置ID
@@ -480,17 +599,156 @@ module TencentCloud
         # @param MetaFields: 需要投递的元数据列表，目前仅支持：__SOURCE__，__FILENAME__和__TIMESTAMP__
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MetaFields: Array
+        # @param TagJsonNotTiled: 当EnableTag为true时，必须填写TagJsonNotTiled字段，TagJsonNotTiled用于标识tag信息是否json平铺，TagJsonNotTiled为true时不平铺，false时平铺
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TagJsonNotTiled: Boolean
 
-        attr_accessor :EnableTag, :MetaFields
+        attr_accessor :EnableTag, :MetaFields, :TagJsonNotTiled
         
-        def initialize(enabletag=nil, metafields=nil)
+        def initialize(enabletag=nil, metafields=nil, tagjsonnottiled=nil)
           @EnableTag = enabletag
           @MetaFields = metafields
+          @TagJsonNotTiled = tagjsonnottiled
         end
 
         def deserialize(params)
           @EnableTag = params['EnableTag']
           @MetaFields = params['MetaFields']
+          @TagJsonNotTiled = params['TagJsonNotTiled']
+        end
+      end
+
+      # 自建k8s-容器文件路径信息
+      class ContainerFileInfo < TencentCloud::Common::AbstractModel
+        # @param Namespace: namespace可以多个，用分隔号分割,例如A,B
+        # @type Namespace: String
+        # @param Container: 容器名称
+        # @type Container: String
+        # @param LogPath: 日志文件夹
+        # @type LogPath: String
+        # @param FilePattern: 日志名称
+        # @type FilePattern: String
+        # @param IncludeLabels: pod标签信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IncludeLabels: Array
+        # @param WorkLoad: 工作负载信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type WorkLoad: :class:`Tencentcloud::Cls.v20201016.models.ContainerWorkLoadInfo`
+        # @param ExcludeNamespace: 需要排除的namespace可以多个，用分隔号分割,例如A,B
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExcludeNamespace: String
+        # @param ExcludeLabels: 需要排除的pod标签信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExcludeLabels: Array
+
+        attr_accessor :Namespace, :Container, :LogPath, :FilePattern, :IncludeLabels, :WorkLoad, :ExcludeNamespace, :ExcludeLabels
+        
+        def initialize(namespace=nil, container=nil, logpath=nil, filepattern=nil, includelabels=nil, workload=nil, excludenamespace=nil, excludelabels=nil)
+          @Namespace = namespace
+          @Container = container
+          @LogPath = logpath
+          @FilePattern = filepattern
+          @IncludeLabels = includelabels
+          @WorkLoad = workload
+          @ExcludeNamespace = excludenamespace
+          @ExcludeLabels = excludelabels
+        end
+
+        def deserialize(params)
+          @Namespace = params['Namespace']
+          @Container = params['Container']
+          @LogPath = params['LogPath']
+          @FilePattern = params['FilePattern']
+          @IncludeLabels = params['IncludeLabels']
+          unless params['WorkLoad'].nil?
+            @WorkLoad = ContainerWorkLoadInfo.new
+            @WorkLoad.deserialize(params['WorkLoad'])
+          end
+          @ExcludeNamespace = params['ExcludeNamespace']
+          @ExcludeLabels = params['ExcludeLabels']
+        end
+      end
+
+      # 自建k8s-容器标准输出信息
+      class ContainerStdoutInfo < TencentCloud::Common::AbstractModel
+        # @param AllContainers: 是否所有容器
+        # @type AllContainers: Boolean
+        # @param Container: container为空表所有的，不为空采集指定的容器
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Container: String
+        # @param Namespace: namespace可以多个，用分隔号分割,例如A,B；为空或者没有这个字段，表示所有namespace
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Namespace: String
+        # @param IncludeLabels: pod标签信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IncludeLabels: Array
+        # @param WorkLoads: 工作负载信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type WorkLoads: Array
+        # @param ExcludeNamespace: 需要排除的namespace可以多个，用分隔号分割,例如A,B
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExcludeNamespace: String
+        # @param ExcludeLabels: 需要排除的pod标签信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExcludeLabels: Array
+
+        attr_accessor :AllContainers, :Container, :Namespace, :IncludeLabels, :WorkLoads, :ExcludeNamespace, :ExcludeLabels
+        
+        def initialize(allcontainers=nil, container=nil, namespace=nil, includelabels=nil, workloads=nil, excludenamespace=nil, excludelabels=nil)
+          @AllContainers = allcontainers
+          @Container = container
+          @Namespace = namespace
+          @IncludeLabels = includelabels
+          @WorkLoads = workloads
+          @ExcludeNamespace = excludenamespace
+          @ExcludeLabels = excludelabels
+        end
+
+        def deserialize(params)
+          @AllContainers = params['AllContainers']
+          @Container = params['Container']
+          @Namespace = params['Namespace']
+          @IncludeLabels = params['IncludeLabels']
+          unless params['WorkLoads'].nil?
+            @WorkLoads = []
+            params['WorkLoads'].each do |i|
+              containerworkloadinfo_tmp = ContainerWorkLoadInfo.new
+              containerworkloadinfo_tmp.deserialize(i)
+              @WorkLoads << containerworkloadinfo_tmp
+            end
+          end
+          @ExcludeNamespace = params['ExcludeNamespace']
+          @ExcludeLabels = params['ExcludeLabels']
+        end
+      end
+
+      # 自建k8s-工作负载信息
+      class ContainerWorkLoadInfo < TencentCloud::Common::AbstractModel
+        # @param Kind: 工作负载的类型
+        # @type Kind: String
+        # @param Name: 工作负载的名称
+        # @type Name: String
+        # @param Container: 容器名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Container: String
+        # @param Namespace: 命名空间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Namespace: String
+
+        attr_accessor :Kind, :Name, :Container, :Namespace
+        
+        def initialize(kind=nil, name=nil, container=nil, namespace=nil)
+          @Kind = kind
+          @Name = name
+          @Container = container
+          @Namespace = namespace
+        end
+
+        def deserialize(params)
+          @Kind = params['Kind']
+          @Name = params['Name']
+          @Container = params['Container']
+          @Namespace = params['Namespace']
         end
       end
 
@@ -683,6 +941,125 @@ module TencentCloud
 
         def deserialize(params)
           @AlarmId = params['AlarmId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateConfigExtra请求参数结构体
+      class CreateConfigExtraRequest < TencentCloud::Common::AbstractModel
+        # @param Name: 采集配置规程名称，最长63个字符，只能包含小写字符、数字及分隔符（“-”），且必须以小写字符开头，数字或小写字符结尾
+        # @type Name: String
+        # @param TopicId: 日志主题id
+        # @type TopicId: String
+        # @param Type: 类型：container_stdout、container_file、host_file
+        # @type Type: String
+        # @param LogType: 采集的日志类型，json_log代表json格式日志，delimiter_log代表分隔符格式日志，minimalist_log代表极简日志，multiline_log代表多行日志，fullregex_log代表完整正则，默认为minimalist_log
+        # @type LogType: String
+        # @param ConfigFlag: 采集配置标
+        # @type ConfigFlag: String
+        # @param LogsetId: 日志集id
+        # @type LogsetId: String
+        # @param LogsetName: 日志集name
+        # @type LogsetName: String
+        # @param TopicName: 日志主题名称
+        # @type TopicName: String
+        # @param HostFile: 节点文件配置信息
+        # @type HostFile: :class:`Tencentcloud::Cls.v20201016.models.HostFileInfo`
+        # @param ContainerFile: 容器文件路径信息
+        # @type ContainerFile: :class:`Tencentcloud::Cls.v20201016.models.ContainerFileInfo`
+        # @param ContainerStdout: 容器标准输出信息
+        # @type ContainerStdout: :class:`Tencentcloud::Cls.v20201016.models.ContainerStdoutInfo`
+        # @param LogFormat: 日志格式化方式
+        # @type LogFormat: String
+        # @param ExtractRule: 提取规则，如果设置了ExtractRule，则必须设置LogType
+        # @type ExtractRule: :class:`Tencentcloud::Cls.v20201016.models.ExtractRuleInfo`
+        # @param ExcludePaths: 采集黑名单路径列表
+        # @type ExcludePaths: Array
+        # @param UserDefineRule: 用户自定义采集规则，Json格式序列化的字符串
+        # @type UserDefineRule: String
+        # @param GroupId: 绑定的机器组id
+        # @type GroupId: String
+        # @param GroupIds: 绑定的机器组id列表
+        # @type GroupIds: Array
+
+        attr_accessor :Name, :TopicId, :Type, :LogType, :ConfigFlag, :LogsetId, :LogsetName, :TopicName, :HostFile, :ContainerFile, :ContainerStdout, :LogFormat, :ExtractRule, :ExcludePaths, :UserDefineRule, :GroupId, :GroupIds
+        
+        def initialize(name=nil, topicid=nil, type=nil, logtype=nil, configflag=nil, logsetid=nil, logsetname=nil, topicname=nil, hostfile=nil, containerfile=nil, containerstdout=nil, logformat=nil, extractrule=nil, excludepaths=nil, userdefinerule=nil, groupid=nil, groupids=nil)
+          @Name = name
+          @TopicId = topicid
+          @Type = type
+          @LogType = logtype
+          @ConfigFlag = configflag
+          @LogsetId = logsetid
+          @LogsetName = logsetname
+          @TopicName = topicname
+          @HostFile = hostfile
+          @ContainerFile = containerfile
+          @ContainerStdout = containerstdout
+          @LogFormat = logformat
+          @ExtractRule = extractrule
+          @ExcludePaths = excludepaths
+          @UserDefineRule = userdefinerule
+          @GroupId = groupid
+          @GroupIds = groupids
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @TopicId = params['TopicId']
+          @Type = params['Type']
+          @LogType = params['LogType']
+          @ConfigFlag = params['ConfigFlag']
+          @LogsetId = params['LogsetId']
+          @LogsetName = params['LogsetName']
+          @TopicName = params['TopicName']
+          unless params['HostFile'].nil?
+            @HostFile = HostFileInfo.new
+            @HostFile.deserialize(params['HostFile'])
+          end
+          unless params['ContainerFile'].nil?
+            @ContainerFile = ContainerFileInfo.new
+            @ContainerFile.deserialize(params['ContainerFile'])
+          end
+          unless params['ContainerStdout'].nil?
+            @ContainerStdout = ContainerStdoutInfo.new
+            @ContainerStdout.deserialize(params['ContainerStdout'])
+          end
+          @LogFormat = params['LogFormat']
+          unless params['ExtractRule'].nil?
+            @ExtractRule = ExtractRuleInfo.new
+            @ExtractRule.deserialize(params['ExtractRule'])
+          end
+          unless params['ExcludePaths'].nil?
+            @ExcludePaths = []
+            params['ExcludePaths'].each do |i|
+              excludepathinfo_tmp = ExcludePathInfo.new
+              excludepathinfo_tmp.deserialize(i)
+              @ExcludePaths << excludepathinfo_tmp
+            end
+          end
+          @UserDefineRule = params['UserDefineRule']
+          @GroupId = params['GroupId']
+          @GroupIds = params['GroupIds']
+        end
+      end
+
+      # CreateConfigExtra返回参数结构体
+      class CreateConfigExtraResponse < TencentCloud::Common::AbstractModel
+        # @param ConfigExtraId: 采集配置扩展信息ID
+        # @type ConfigExtraId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ConfigExtraId, :RequestId
+        
+        def initialize(configextraid=nil, requestid=nil)
+          @ConfigExtraId = configextraid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ConfigExtraId = params['ConfigExtraId']
           @RequestId = params['RequestId']
         end
       end
@@ -1280,6 +1657,38 @@ module TencentCloud
         end
       end
 
+      # DeleteConfigExtra请求参数结构体
+      class DeleteConfigExtraRequest < TencentCloud::Common::AbstractModel
+        # @param ConfigExtraId: 采集规则扩展配置ID
+        # @type ConfigExtraId: String
+
+        attr_accessor :ConfigExtraId
+        
+        def initialize(configextraid=nil)
+          @ConfigExtraId = configextraid
+        end
+
+        def deserialize(params)
+          @ConfigExtraId = params['ConfigExtraId']
+        end
+      end
+
+      # DeleteConfigExtra返回参数结构体
+      class DeleteConfigExtraResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DeleteConfigFromMachineGroup请求参数结构体
       class DeleteConfigFromMachineGroupRequest < TencentCloud::Common::AbstractModel
         # @param GroupId: 机器组ID
@@ -1739,6 +2148,69 @@ module TencentCloud
               alarminfo_tmp = AlarmInfo.new
               alarminfo_tmp.deserialize(i)
               @Alarms << alarminfo_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeConfigExtras请求参数结构体
+      class DescribeConfigExtrasRequest < TencentCloud::Common::AbstractModel
+        # @param Filters: 支持的key： topicId,name, configExtraId, machineGroupId
+        # @type Filters: Array
+        # @param Offset: 分页的偏移量，默认值为0
+        # @type Offset: Integer
+        # @param Limit: 分页单页的限制数目，默认值为20，最大值100
+        # @type Limit: Integer
+
+        attr_accessor :Filters, :Offset, :Limit
+        
+        def initialize(filters=nil, offset=nil, limit=nil)
+          @Filters = filters
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeConfigExtras返回参数结构体
+      class DescribeConfigExtrasResponse < TencentCloud::Common::AbstractModel
+        # @param Configs: 采集配置列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Configs: Array
+        # @param TotalCount: 过滤到的总数目
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Configs, :TotalCount, :RequestId
+        
+        def initialize(configs=nil, totalcount=nil, requestid=nil)
+          @Configs = configs
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Configs'].nil?
+            @Configs = []
+            params['Configs'].each do |i|
+              configextrainfo_tmp = ConfigExtraInfo.new
+              configextrainfo_tmp.deserialize(i)
+              @Configs << configextrainfo_tmp
             end
           end
           @TotalCount = params['TotalCount']
@@ -2978,6 +3450,31 @@ module TencentCloud
         end
       end
 
+      # 自建k8s-节点文件配置信息
+      class HostFileInfo < TencentCloud::Common::AbstractModel
+        # @param LogPath: 日志文件夹
+        # @type LogPath: String
+        # @param FilePattern: 日志文件名
+        # @type FilePattern: String
+        # @param CustomLabels: metadata信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CustomLabels: Array
+
+        attr_accessor :LogPath, :FilePattern, :CustomLabels
+        
+        def initialize(logpath=nil, filepattern=nil, customlabels=nil)
+          @LogPath = logpath
+          @FilePattern = filepattern
+          @CustomLabels = customlabels
+        end
+
+        def deserialize(params)
+          @LogPath = params['LogPath']
+          @FilePattern = params['FilePattern']
+          @CustomLabels = params['CustomLabels']
+        end
+      end
+
       # JSON类型描述
       class JsonInfo < TencentCloud::Common::AbstractModel
         # @param EnableTag: 启用标志
@@ -3545,6 +4042,121 @@ module TencentCloud
         end
       end
 
+      # ModifyConfigExtra请求参数结构体
+      class ModifyConfigExtraRequest < TencentCloud::Common::AbstractModel
+        # @param ConfigExtraId: 采集配置扩展信息id
+        # @type ConfigExtraId: String
+        # @param Name: 采集配置规程名称，最长63个字符，只能包含小写字符、数字及分隔符（“-”），且必须以小写字符开头，数字或小写字符结尾
+        # @type Name: String
+        # @param TopicId: 日志主题id
+        # @type TopicId: String
+        # @param HostFile: 节点文件配置信息
+        # @type HostFile: :class:`Tencentcloud::Cls.v20201016.models.HostFileInfo`
+        # @param ContainerFile: 容器文件路径信息
+        # @type ContainerFile: :class:`Tencentcloud::Cls.v20201016.models.ContainerFileInfo`
+        # @param ContainerStdout: 容器标准输出信息
+        # @type ContainerStdout: :class:`Tencentcloud::Cls.v20201016.models.ContainerStdoutInfo`
+        # @param LogType: 采集的日志类型，json_log代表json格式日志，delimiter_log代表分隔符格式日志，minimalist_log代表极简日志，multiline_log代表多行日志，fullregex_log代表完整正则，默认为minimalist_log
+        # @type LogType: String
+        # @param LogFormat: 日志格式化方式
+        # @type LogFormat: String
+        # @param ExtractRule: 提取规则，如果设置了ExtractRule，则必须设置LogType
+        # @type ExtractRule: :class:`Tencentcloud::Cls.v20201016.models.ExtractRuleInfo`
+        # @param ExcludePaths: 采集黑名单路径列表
+        # @type ExcludePaths: Array
+        # @param UserDefineRule: 用户自定义采集规则，Json格式序列化的字符串
+        # @type UserDefineRule: String
+        # @param Type: 类型：container_stdout、container_file、host_file
+        # @type Type: String
+        # @param GroupId: 机器组ID
+        # @type GroupId: String
+        # @param ConfigFlag: 自建采集配置标
+        # @type ConfigFlag: String
+        # @param LogsetId: 日志集ID
+        # @type LogsetId: String
+        # @param LogsetName: 日志集name
+        # @type LogsetName: String
+        # @param TopicName: 日志主题name
+        # @type TopicName: String
+
+        attr_accessor :ConfigExtraId, :Name, :TopicId, :HostFile, :ContainerFile, :ContainerStdout, :LogType, :LogFormat, :ExtractRule, :ExcludePaths, :UserDefineRule, :Type, :GroupId, :ConfigFlag, :LogsetId, :LogsetName, :TopicName
+        
+        def initialize(configextraid=nil, name=nil, topicid=nil, hostfile=nil, containerfile=nil, containerstdout=nil, logtype=nil, logformat=nil, extractrule=nil, excludepaths=nil, userdefinerule=nil, type=nil, groupid=nil, configflag=nil, logsetid=nil, logsetname=nil, topicname=nil)
+          @ConfigExtraId = configextraid
+          @Name = name
+          @TopicId = topicid
+          @HostFile = hostfile
+          @ContainerFile = containerfile
+          @ContainerStdout = containerstdout
+          @LogType = logtype
+          @LogFormat = logformat
+          @ExtractRule = extractrule
+          @ExcludePaths = excludepaths
+          @UserDefineRule = userdefinerule
+          @Type = type
+          @GroupId = groupid
+          @ConfigFlag = configflag
+          @LogsetId = logsetid
+          @LogsetName = logsetname
+          @TopicName = topicname
+        end
+
+        def deserialize(params)
+          @ConfigExtraId = params['ConfigExtraId']
+          @Name = params['Name']
+          @TopicId = params['TopicId']
+          unless params['HostFile'].nil?
+            @HostFile = HostFileInfo.new
+            @HostFile.deserialize(params['HostFile'])
+          end
+          unless params['ContainerFile'].nil?
+            @ContainerFile = ContainerFileInfo.new
+            @ContainerFile.deserialize(params['ContainerFile'])
+          end
+          unless params['ContainerStdout'].nil?
+            @ContainerStdout = ContainerStdoutInfo.new
+            @ContainerStdout.deserialize(params['ContainerStdout'])
+          end
+          @LogType = params['LogType']
+          @LogFormat = params['LogFormat']
+          unless params['ExtractRule'].nil?
+            @ExtractRule = ExtractRuleInfo.new
+            @ExtractRule.deserialize(params['ExtractRule'])
+          end
+          unless params['ExcludePaths'].nil?
+            @ExcludePaths = []
+            params['ExcludePaths'].each do |i|
+              excludepathinfo_tmp = ExcludePathInfo.new
+              excludepathinfo_tmp.deserialize(i)
+              @ExcludePaths << excludepathinfo_tmp
+            end
+          end
+          @UserDefineRule = params['UserDefineRule']
+          @Type = params['Type']
+          @GroupId = params['GroupId']
+          @ConfigFlag = params['ConfigFlag']
+          @LogsetId = params['LogsetId']
+          @LogsetName = params['LogsetName']
+          @TopicName = params['TopicName']
+        end
+      end
+
+      # ModifyConfigExtra返回参数结构体
+      class ModifyConfigExtraResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyConfig请求参数结构体
       class ModifyConfigRequest < TencentCloud::Common::AbstractModel
         # @param ConfigId: 采集规则配置ID
@@ -3619,7 +4231,7 @@ module TencentCloud
       class ModifyConsumerRequest < TencentCloud::Common::AbstractModel
         # @param TopicId: 投递任务绑定的日志主题 ID
         # @type TopicId: String
-        # @param Effective: 投递任务是否生效
+        # @param Effective: 投递任务是否生效，默认不生效
         # @type Effective: Boolean
         # @param NeedContent: 是否投递日志的元数据信息，默认为 false
         # @type NeedContent: Boolean

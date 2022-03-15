@@ -579,6 +579,38 @@ module TencentCloud
         end
       end
 
+      # DeleteReceiver请求参数结构体
+      class DeleteReceiverRequest < TencentCloud::Common::AbstractModel
+        # @param ReceiverId: 收件人列表id，创建收件人列表时会返回
+        # @type ReceiverId: Integer
+
+        attr_accessor :ReceiverId
+        
+        def initialize(receiverid=nil)
+          @ReceiverId = receiverid
+        end
+
+        def deserialize(params)
+          @ReceiverId = params['ReceiverId']
+        end
+      end
+
+      # DeleteReceiver返回参数结构体
+      class DeleteReceiverResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 发信域名验证列表结构体
       class EmailIdentity < TencentCloud::Common::AbstractModel
         # @param IdentityName: 发信域名

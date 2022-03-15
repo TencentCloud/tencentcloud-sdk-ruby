@@ -3437,7 +3437,7 @@ module TencentCloud
       class DescribeCDBProxyRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例ID
         # @type InstanceId: String
-        # @param ProxyGroupId: 代理ID
+        # @param ProxyGroupId: 代理组ID
         # @type ProxyGroupId: String
 
         attr_accessor :InstanceId, :ProxyGroupId

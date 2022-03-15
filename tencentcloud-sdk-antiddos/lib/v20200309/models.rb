@@ -496,14 +496,18 @@ module TencentCloud
         # 1：开启了自动续费
         # ]
         # @type AutoRenewFlag: Integer
+        # @param UnionPackFlag: 联合产品标记，0代表普通高防包，1代表联合高防包
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UnionPackFlag: Integer
 
-        attr_accessor :ProtectBandwidth, :ProtectCountLimit, :ProtectIPNumberLimit, :AutoRenewFlag
+        attr_accessor :ProtectBandwidth, :ProtectCountLimit, :ProtectIPNumberLimit, :AutoRenewFlag, :UnionPackFlag
         
-        def initialize(protectbandwidth=nil, protectcountlimit=nil, protectipnumberlimit=nil, autorenewflag=nil)
+        def initialize(protectbandwidth=nil, protectcountlimit=nil, protectipnumberlimit=nil, autorenewflag=nil, unionpackflag=nil)
           @ProtectBandwidth = protectbandwidth
           @ProtectCountLimit = protectcountlimit
           @ProtectIPNumberLimit = protectipnumberlimit
           @AutoRenewFlag = autorenewflag
+          @UnionPackFlag = unionpackflag
         end
 
         def deserialize(params)
@@ -511,6 +515,7 @@ module TencentCloud
           @ProtectCountLimit = params['ProtectCountLimit']
           @ProtectIPNumberLimit = params['ProtectIPNumberLimit']
           @AutoRenewFlag = params['AutoRenewFlag']
+          @UnionPackFlag = params['UnionPackFlag']
         end
       end
 

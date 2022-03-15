@@ -367,10 +367,13 @@ module TencentCloud
         # @param EnableConsoleIntranet: 引擎实例是否开启控制台内网访问地址
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EnableConsoleIntranet: Boolean
+        # @param ConfigInfoVisible: 引擎实例是否展示参数配置页面
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ConfigInfoVisible: Boolean
 
-        attr_accessor :InstanceId, :Name, :Edition, :Status, :SpecId, :Replica, :Type, :VpcId, :SubnetIds, :EnableStorage, :StorageType, :StorageCapacity, :Paymode, :EKSClusterID, :CreateTime, :EnvInfos, :EngineRegion, :EnableInternet, :VpcInfos, :ServiceGovernanceInfos, :Tags, :EnableConsoleInternet, :EnableConsoleIntranet
+        attr_accessor :InstanceId, :Name, :Edition, :Status, :SpecId, :Replica, :Type, :VpcId, :SubnetIds, :EnableStorage, :StorageType, :StorageCapacity, :Paymode, :EKSClusterID, :CreateTime, :EnvInfos, :EngineRegion, :EnableInternet, :VpcInfos, :ServiceGovernanceInfos, :Tags, :EnableConsoleInternet, :EnableConsoleIntranet, :ConfigInfoVisible
         
-        def initialize(instanceid=nil, name=nil, edition=nil, status=nil, specid=nil, replica=nil, type=nil, vpcid=nil, subnetids=nil, enablestorage=nil, storagetype=nil, storagecapacity=nil, paymode=nil, eksclusterid=nil, createtime=nil, envinfos=nil, engineregion=nil, enableinternet=nil, vpcinfos=nil, servicegovernanceinfos=nil, tags=nil, enableconsoleinternet=nil, enableconsoleintranet=nil)
+        def initialize(instanceid=nil, name=nil, edition=nil, status=nil, specid=nil, replica=nil, type=nil, vpcid=nil, subnetids=nil, enablestorage=nil, storagetype=nil, storagecapacity=nil, paymode=nil, eksclusterid=nil, createtime=nil, envinfos=nil, engineregion=nil, enableinternet=nil, vpcinfos=nil, servicegovernanceinfos=nil, tags=nil, enableconsoleinternet=nil, enableconsoleintranet=nil, configinfovisible=nil)
           @InstanceId = instanceid
           @Name = name
           @Edition = edition
@@ -394,6 +397,7 @@ module TencentCloud
           @Tags = tags
           @EnableConsoleInternet = enableconsoleinternet
           @EnableConsoleIntranet = enableconsoleintranet
+          @ConfigInfoVisible = configinfovisible
         end
 
         def deserialize(params)
@@ -448,6 +452,7 @@ module TencentCloud
           end
           @EnableConsoleInternet = params['EnableConsoleInternet']
           @EnableConsoleIntranet = params['EnableConsoleIntranet']
+          @ConfigInfoVisible = params['ConfigInfoVisible']
         end
       end
 

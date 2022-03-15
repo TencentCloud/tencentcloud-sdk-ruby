@@ -1393,6 +1393,53 @@ module TencentCloud
         end
       end
 
+      # TextSimilarityPro请求参数结构体
+      class TextSimilarityProRequest < TencentCloud::Common::AbstractModel
+        # @param SrcText: 需要与目标句子计算相似度的源句子（仅支持UTF-8格式，不超过128字符）
+        # @type SrcText: String
+        # @param TargetText: 目标句子（仅支持UTF-8格式，不超过128字符）
+        # @type TargetText: Array
+
+        attr_accessor :SrcText, :TargetText
+        
+        def initialize(srctext=nil, targettext=nil)
+          @SrcText = srctext
+          @TargetText = targettext
+        end
+
+        def deserialize(params)
+          @SrcText = params['SrcText']
+          @TargetText = params['TargetText']
+        end
+      end
+
+      # TextSimilarityPro返回参数结构体
+      class TextSimilarityProResponse < TencentCloud::Common::AbstractModel
+        # @param Similarity: 每个目标句子与源句子的相似度分值，按照分值降序排列
+        # @type Similarity: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Similarity, :RequestId
+        
+        def initialize(similarity=nil, requestid=nil)
+          @Similarity = similarity
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Similarity'].nil?
+            @Similarity = []
+            params['Similarity'].each do |i|
+              similarity_tmp = Similarity.new
+              similarity_tmp.deserialize(i)
+              @Similarity << similarity_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # TextSimilarity请求参数结构体
       class TextSimilarityRequest < TencentCloud::Common::AbstractModel
         # @param SrcText: 需要与目标句子计算相似度的源句子（仅支持UTF-8格式，不超过500字符）

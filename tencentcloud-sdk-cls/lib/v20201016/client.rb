@@ -125,6 +125,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口用于创建特殊采集配置任务
+
+        # @param request: Request instance for CreateConfigExtra.
+        # @type request: :class:`Tencentcloud::cls::V20201016::CreateConfigExtraRequest`
+        # @rtype: :class:`Tencentcloud::cls::V20201016::CreateConfigExtraResponse`
+        def CreateConfigExtra(request)
+          body = send_request('CreateConfigExtra', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateConfigExtraResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口用于创建投递任务
 
         # @param request: Request instance for CreateConsumer.
@@ -365,6 +389,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口用于删除特殊采集规则配置
+
+        # @param request: Request instance for DeleteConfigExtra.
+        # @type request: :class:`Tencentcloud::cls::V20201016::DeleteConfigExtraRequest`
+        # @rtype: :class:`Tencentcloud::cls::V20201016::DeleteConfigExtraResponse`
+        def DeleteConfigExtra(request)
+          body = send_request('DeleteConfigExtra', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteConfigExtraResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 删除应用到机器组的采集配置
 
         # @param request: Request instance for DeleteConfigFromMachineGroup.
@@ -591,6 +639,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeAlarmsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口用于获取特殊采集配置
+
+        # @param request: Request instance for DescribeConfigExtras.
+        # @type request: :class:`Tencentcloud::cls::V20201016::DescribeConfigExtrasRequest`
+        # @rtype: :class:`Tencentcloud::cls::V20201016::DescribeConfigExtrasResponse`
+        def DescribeConfigExtras(request)
+          body = send_request('DescribeConfigExtras', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeConfigExtrasResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1047,6 +1119,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyConfigResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口用于修改特殊采集配置任务
+
+        # @param request: Request instance for ModifyConfigExtra.
+        # @type request: :class:`Tencentcloud::cls::V20201016::ModifyConfigExtraRequest`
+        # @rtype: :class:`Tencentcloud::cls::V20201016::ModifyConfigExtraResponse`
+        def ModifyConfigExtra(request)
+          body = send_request('ModifyConfigExtra', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyConfigExtraResponse.new
             model.deserialize(response['Response'])
             model
           else
