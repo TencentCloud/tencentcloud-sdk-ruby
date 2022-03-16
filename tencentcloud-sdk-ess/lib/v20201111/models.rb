@@ -270,10 +270,12 @@ module TencentCloud
         # @type Agent: :class:`Tencentcloud::Ess.v20201111.models.Agent`
         # @param ClientToken: 客户端Token，保持接口幂等性
         # @type ClientToken: String
+        # @param NeedPreview: 是否需要生成预览文件 默认不生成
+        # @type NeedPreview: Boolean
 
-        attr_accessor :Operator, :TemplateId, :FlowId, :FileNames, :FormFields, :Agent, :ClientToken
+        attr_accessor :Operator, :TemplateId, :FlowId, :FileNames, :FormFields, :Agent, :ClientToken, :NeedPreview
         
-        def initialize(operator=nil, templateid=nil, flowid=nil, filenames=nil, formfields=nil, agent=nil, clienttoken=nil)
+        def initialize(operator=nil, templateid=nil, flowid=nil, filenames=nil, formfields=nil, agent=nil, clienttoken=nil, needpreview=nil)
           @Operator = operator
           @TemplateId = templateid
           @FlowId = flowid
@@ -281,6 +283,7 @@ module TencentCloud
           @FormFields = formfields
           @Agent = agent
           @ClientToken = clienttoken
+          @NeedPreview = needpreview
         end
 
         def deserialize(params)
@@ -304,6 +307,7 @@ module TencentCloud
             @Agent.deserialize(params['Agent'])
           end
           @ClientToken = params['ClientToken']
+          @NeedPreview = params['NeedPreview']
         end
       end
 
@@ -311,18 +315,23 @@ module TencentCloud
       class CreateDocumentResponse < TencentCloud::Common::AbstractModel
         # @param DocumentId: 返回的电子文档ID
         # @type DocumentId: String
+        # @param PreviewFileUrl: 返回合同文件的预览地址 5分钟内有效。仅当NeedPreview为true 时返回
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PreviewFileUrl: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :DocumentId, :RequestId
+        attr_accessor :DocumentId, :PreviewFileUrl, :RequestId
         
-        def initialize(documentid=nil, requestid=nil)
+        def initialize(documentid=nil, previewfileurl=nil, requestid=nil)
           @DocumentId = documentid
+          @PreviewFileUrl = previewfileurl
           @RequestId = requestid
         end
 
         def deserialize(params)
           @DocumentId = params['DocumentId']
+          @PreviewFileUrl = params['PreviewFileUrl']
           @RequestId = params['RequestId']
         end
       end
@@ -357,10 +366,12 @@ module TencentCloud
         # @type Components: Array
         # @param CcInfos: 被抄送人的信息列表
         # @type CcInfos: Array
+        # @param NeedPreview: 是否需要预览，true：预览模式，false：非预览（默认）
+        # @type NeedPreview: Boolean
 
-        attr_accessor :Operator, :FlowName, :FileIds, :Approvers, :FlowDescription, :Unordered, :FlowType, :Deadline, :Agent, :Components, :CcInfos
+        attr_accessor :Operator, :FlowName, :FileIds, :Approvers, :FlowDescription, :Unordered, :FlowType, :Deadline, :Agent, :Components, :CcInfos, :NeedPreview
         
-        def initialize(operator=nil, flowname=nil, fileids=nil, approvers=nil, flowdescription=nil, unordered=nil, flowtype=nil, deadline=nil, agent=nil, components=nil, ccinfos=nil)
+        def initialize(operator=nil, flowname=nil, fileids=nil, approvers=nil, flowdescription=nil, unordered=nil, flowtype=nil, deadline=nil, agent=nil, components=nil, ccinfos=nil, needpreview=nil)
           @Operator = operator
           @FlowName = flowname
           @FileIds = fileids
@@ -372,6 +383,7 @@ module TencentCloud
           @Agent = agent
           @Components = components
           @CcInfos = ccinfos
+          @NeedPreview = needpreview
         end
 
         def deserialize(params)
@@ -413,6 +425,7 @@ module TencentCloud
               @CcInfos << ccinfo_tmp
             end
           end
+          @NeedPreview = params['NeedPreview']
         end
       end
 
@@ -420,18 +433,23 @@ module TencentCloud
       class CreateFlowByFilesResponse < TencentCloud::Common::AbstractModel
         # @param FlowId: 流程编号
         # @type FlowId: String
+        # @param PreviewUrl: 合同预览链接
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PreviewUrl: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :FlowId, :RequestId
+        attr_accessor :FlowId, :PreviewUrl, :RequestId
         
-        def initialize(flowid=nil, requestid=nil)
+        def initialize(flowid=nil, previewurl=nil, requestid=nil)
           @FlowId = flowid
+          @PreviewUrl = previewurl
           @RequestId = requestid
         end
 
         def deserialize(params)
           @FlowId = params['FlowId']
+          @PreviewUrl = params['PreviewUrl']
           @RequestId = params['RequestId']
         end
       end

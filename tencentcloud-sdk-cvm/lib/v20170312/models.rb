@@ -3277,13 +3277,16 @@ module TencentCloud
         # @type InstanceChargeType: String
         # @param InstanceChargePrepaid: 预付费模式，即包年包月相关参数设置。通过该参数可以指定包年包月实例的购买时长、是否设置自动续费等属性。<dx-alert infotype="explain" title="">若指定实例的付费模式为预付费则该参数必传。</dx-alert>
         # @type InstanceChargePrepaid: :class:`Tencentcloud::Cvm.v20170312.models.InstanceChargePrepaid`
+        # @param ModifyPortableDataDisk: 是否同时切换弹性数据云盘计费模式。取值范围：<br><li>TRUE：表示切换弹性数据云盘计费模式<br><li>FALSE：表示不切换弹性数据云盘计费模式<br><br>默认取值：FALSE。
+        # @type ModifyPortableDataDisk: Boolean
 
-        attr_accessor :InstanceIds, :InstanceChargeType, :InstanceChargePrepaid
+        attr_accessor :InstanceIds, :InstanceChargeType, :InstanceChargePrepaid, :ModifyPortableDataDisk
         
-        def initialize(instanceids=nil, instancechargetype=nil, instancechargeprepaid=nil)
+        def initialize(instanceids=nil, instancechargetype=nil, instancechargeprepaid=nil, modifyportabledatadisk=nil)
           @InstanceIds = instanceids
           @InstanceChargeType = instancechargetype
           @InstanceChargePrepaid = instancechargeprepaid
+          @ModifyPortableDataDisk = modifyportabledatadisk
         end
 
         def deserialize(params)
@@ -3293,6 +3296,7 @@ module TencentCloud
             @InstanceChargePrepaid = InstanceChargePrepaid.new
             @InstanceChargePrepaid.deserialize(params['InstanceChargePrepaid'])
           end
+          @ModifyPortableDataDisk = params['ModifyPortableDataDisk']
         end
       end
 
@@ -5102,13 +5106,16 @@ module TencentCloud
         # @type InstanceChargeType: String
         # @param InstanceChargePrepaid: 预付费模式，即包年包月相关参数设置。通过该参数可以指定包年包月实例的购买时长、是否设置自动续费等属性。<dx-alert infotype="explain" title="">若指定实例的付费模式为预付费则该参数必传。</dx-alert>
         # @type InstanceChargePrepaid: :class:`Tencentcloud::Cvm.v20170312.models.InstanceChargePrepaid`
+        # @param ModifyPortableDataDisk: 是否同时切换弹性数据云盘计费模式。取值范围：<br><li>TRUE：表示切换弹性数据云盘计费模式<br><li>FALSE：表示不切换弹性数据云盘计费模式<br><br>默认取值：FALSE。
+        # @type ModifyPortableDataDisk: Boolean
 
-        attr_accessor :InstanceIds, :InstanceChargeType, :InstanceChargePrepaid
+        attr_accessor :InstanceIds, :InstanceChargeType, :InstanceChargePrepaid, :ModifyPortableDataDisk
         
-        def initialize(instanceids=nil, instancechargetype=nil, instancechargeprepaid=nil)
+        def initialize(instanceids=nil, instancechargetype=nil, instancechargeprepaid=nil, modifyportabledatadisk=nil)
           @InstanceIds = instanceids
           @InstanceChargeType = instancechargetype
           @InstanceChargePrepaid = instancechargeprepaid
+          @ModifyPortableDataDisk = modifyportabledatadisk
         end
 
         def deserialize(params)
@@ -5118,6 +5125,7 @@ module TencentCloud
             @InstanceChargePrepaid = InstanceChargePrepaid.new
             @InstanceChargePrepaid.deserialize(params['InstanceChargePrepaid'])
           end
+          @ModifyPortableDataDisk = params['ModifyPortableDataDisk']
         end
       end
 

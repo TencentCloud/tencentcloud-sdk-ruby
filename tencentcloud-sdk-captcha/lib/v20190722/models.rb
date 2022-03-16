@@ -652,19 +652,23 @@ module TencentCloud
         # @type Start: Integer
         # @param Type: 查询类型
         # @type Type: Integer
+        # @param End: 查询结束时间
+        # @type End: Integer
 
-        attr_accessor :CaptchaAppId, :Start, :Type
+        attr_accessor :CaptchaAppId, :Start, :Type, :End
         
-        def initialize(captchaappid=nil, start=nil, type=nil)
+        def initialize(captchaappid=nil, start=nil, type=nil, _end=nil)
           @CaptchaAppId = captchaappid
           @Start = start
           @Type = type
+          @End = _end
         end
 
         def deserialize(params)
           @CaptchaAppId = params['CaptchaAppId']
           @Start = params['Start']
           @Type = params['Type']
+          @End = params['End']
         end
       end
 
@@ -891,19 +895,23 @@ module TencentCloud
         # @type Start: Integer
         # @param Type: 查询类型
         # @type Type: Integer
+        # @param End: 查询结束时间
+        # @type End: Integer
 
-        attr_accessor :CaptchaAppId, :Start, :Type
+        attr_accessor :CaptchaAppId, :Start, :Type, :End
         
-        def initialize(captchaappid=nil, start=nil, type=nil)
+        def initialize(captchaappid=nil, start=nil, type=nil, _end=nil)
           @CaptchaAppId = captchaappid
           @Start = start
           @Type = type
+          @End = _end
         end
 
         def deserialize(params)
           @CaptchaAppId = params['CaptchaAppId']
           @Start = params['Start']
           @Type = params['Type']
+          @End = params['End']
         end
       end
 
@@ -1060,17 +1068,21 @@ module TencentCloud
         # @type CaptchaAppId: Integer
         # @param Start: 查询开始时间 例如：20200909
         # @type Start: Integer
+        # @param End: 查询结束时间 例如：20220314
+        # @type End: Integer
 
-        attr_accessor :CaptchaAppId, :Start
+        attr_accessor :CaptchaAppId, :Start, :End
         
-        def initialize(captchaappid=nil, start=nil)
+        def initialize(captchaappid=nil, start=nil, _end=nil)
           @CaptchaAppId = captchaappid
           @Start = start
+          @End = _end
         end
 
         def deserialize(params)
           @CaptchaAppId = params['CaptchaAppId']
           @Start = params['Start']
+          @End = params['End']
         end
       end
 

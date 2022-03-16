@@ -3148,19 +3148,29 @@ module TencentCloud
         # @type Namespace: String
         # @param FunctionsCount: 命名空间函数个数
         # @type FunctionsCount: Integer
+        # @param TotalConcurrencyMem: 命名空间配额总量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalConcurrencyMem: Integer
+        # @param TotalAllocatedConcurrencyMem: 命名空间配额使用量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalAllocatedConcurrencyMem: Integer
 
-        attr_accessor :Functions, :Namespace, :FunctionsCount
+        attr_accessor :Functions, :Namespace, :FunctionsCount, :TotalConcurrencyMem, :TotalAllocatedConcurrencyMem
         
-        def initialize(functions=nil, namespace=nil, functionscount=nil)
+        def initialize(functions=nil, namespace=nil, functionscount=nil, totalconcurrencymem=nil, totalallocatedconcurrencymem=nil)
           @Functions = functions
           @Namespace = namespace
           @FunctionsCount = functionscount
+          @TotalConcurrencyMem = totalconcurrencymem
+          @TotalAllocatedConcurrencyMem = totalallocatedconcurrencymem
         end
 
         def deserialize(params)
           @Functions = params['Functions']
           @Namespace = params['Namespace']
           @FunctionsCount = params['FunctionsCount']
+          @TotalConcurrencyMem = params['TotalConcurrencyMem']
+          @TotalAllocatedConcurrencyMem = params['TotalAllocatedConcurrencyMem']
         end
       end
 

@@ -1700,6 +1700,57 @@ module TencentCloud
         end
       end
 
+      # DescribeIPStatusList请求参数结构体
+      class DescribeIPStatusListRequest < TencentCloud::Common::AbstractModel
+        # @param IPList: 资产Id
+        # @type IPList: Array
+
+        attr_accessor :IPList
+        
+        def initialize(iplist=nil)
+          @IPList = iplist
+        end
+
+        def deserialize(params)
+          @IPList = params['IPList']
+        end
+      end
+
+      # DescribeIPStatusList返回参数结构体
+      class DescribeIPStatusListResponse < TencentCloud::Common::AbstractModel
+        # @param StatusList: ip状态信息
+        # @type StatusList: Array
+        # @param ReturnCode: 状态码
+        # @type ReturnCode: Integer
+        # @param ReturnMsg: 状态信息
+        # @type ReturnMsg: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :StatusList, :ReturnCode, :ReturnMsg, :RequestId
+        
+        def initialize(statuslist=nil, returncode=nil, returnmsg=nil, requestid=nil)
+          @StatusList = statuslist
+          @ReturnCode = returncode
+          @ReturnMsg = returnmsg
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['StatusList'].nil?
+            @StatusList = []
+            params['StatusList'].each do |i|
+              ipdefendstatus_tmp = IPDefendStatus.new
+              ipdefendstatus_tmp.deserialize(i)
+              @StatusList << ipdefendstatus_tmp
+            end
+          end
+          @ReturnCode = params['ReturnCode']
+          @ReturnMsg = params['ReturnMsg']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeNatFwInfoCount请求参数结构体
       class DescribeNatFwInfoCountRequest < TencentCloud::Common::AbstractModel
 
@@ -2792,6 +2843,26 @@ module TencentCloud
 
         def deserialize(params)
           @RequestId = params['RequestId']
+        end
+      end
+
+      # ip防护状态
+      class IPDefendStatus < TencentCloud::Common::AbstractModel
+        # @param IP: ip地址
+        # @type IP: String
+        # @param Status: 防护状态   1:防护打开; -1:地址错误; 其他:未防护
+        # @type Status: Integer
+
+        attr_accessor :IP, :Status
+        
+        def initialize(ip=nil, status=nil)
+          @IP = ip
+          @Status = status
+        end
+
+        def deserialize(params)
+          @IP = params['IP']
+          @Status = params['Status']
         end
       end
 

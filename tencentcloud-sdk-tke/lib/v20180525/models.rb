@@ -1212,10 +1212,13 @@ module TencentCloud
         # @param GpuLimit: Gpu限制
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type GpuLimit: Integer
+        # @param SecurityContext: 容器的安全上下文
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SecurityContext: :class:`Tencentcloud::Tke.v20180525.models.SecurityContext`
 
-        attr_accessor :Image, :Name, :Commands, :Args, :EnvironmentVars, :Cpu, :Memory, :VolumeMounts, :CurrentState, :RestartCount, :WorkingDir, :LivenessProbe, :ReadinessProbe, :GpuLimit
+        attr_accessor :Image, :Name, :Commands, :Args, :EnvironmentVars, :Cpu, :Memory, :VolumeMounts, :CurrentState, :RestartCount, :WorkingDir, :LivenessProbe, :ReadinessProbe, :GpuLimit, :SecurityContext
         
-        def initialize(image=nil, name=nil, commands=nil, args=nil, environmentvars=nil, cpu=nil, memory=nil, volumemounts=nil, currentstate=nil, restartcount=nil, workingdir=nil, livenessprobe=nil, readinessprobe=nil, gpulimit=nil)
+        def initialize(image=nil, name=nil, commands=nil, args=nil, environmentvars=nil, cpu=nil, memory=nil, volumemounts=nil, currentstate=nil, restartcount=nil, workingdir=nil, livenessprobe=nil, readinessprobe=nil, gpulimit=nil, securitycontext=nil)
           @Image = image
           @Name = name
           @Commands = commands
@@ -1230,6 +1233,7 @@ module TencentCloud
           @LivenessProbe = livenessprobe
           @ReadinessProbe = readinessprobe
           @GpuLimit = gpulimit
+          @SecurityContext = securitycontext
         end
 
         def deserialize(params)
@@ -1270,6 +1274,10 @@ module TencentCloud
             @ReadinessProbe.deserialize(params['ReadinessProbe'])
           end
           @GpuLimit = params['GpuLimit']
+          unless params['SecurityContext'].nil?
+            @SecurityContext = SecurityContext.new
+            @SecurityContext.deserialize(params['SecurityContext'])
+          end
         end
       end
 

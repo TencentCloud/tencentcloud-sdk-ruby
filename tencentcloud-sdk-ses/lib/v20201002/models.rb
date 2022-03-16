@@ -1268,10 +1268,12 @@ module TencentCloud
         # @type Attachments: Array
         # @param Unsubscribe: 退订选项 1: 加入退订链接 0: 不加入退订链接
         # @type Unsubscribe: String
+        # @param TriggerType: 邮件触发类型 0:非触发类，默认类型，营销类邮件、非即时类邮件等选择此类型  1:触发类，验证码等即时发送类邮件，若邮件超过一定大小，系统会自动选择非触发类型通道
+        # @type TriggerType: Integer
 
-        attr_accessor :FromEmailAddress, :Destination, :Subject, :ReplyToAddresses, :Template, :Simple, :Attachments, :Unsubscribe
+        attr_accessor :FromEmailAddress, :Destination, :Subject, :ReplyToAddresses, :Template, :Simple, :Attachments, :Unsubscribe, :TriggerType
         
-        def initialize(fromemailaddress=nil, destination=nil, subject=nil, replytoaddresses=nil, template=nil, simple=nil, attachments=nil, unsubscribe=nil)
+        def initialize(fromemailaddress=nil, destination=nil, subject=nil, replytoaddresses=nil, template=nil, simple=nil, attachments=nil, unsubscribe=nil, triggertype=nil)
           @FromEmailAddress = fromemailaddress
           @Destination = destination
           @Subject = subject
@@ -1280,6 +1282,7 @@ module TencentCloud
           @Simple = simple
           @Attachments = attachments
           @Unsubscribe = unsubscribe
+          @TriggerType = triggertype
         end
 
         def deserialize(params)
@@ -1304,6 +1307,7 @@ module TencentCloud
             end
           end
           @Unsubscribe = params['Unsubscribe']
+          @TriggerType = params['TriggerType']
         end
       end
 

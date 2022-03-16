@@ -242,7 +242,7 @@ module TencentCloud
 
       # CreateConsoleLoginUrl返回参数结构体
       class CreateConsoleLoginUrlResponse < TencentCloud::Common::AbstractModel
-        # @param ConsoleUrl: 控制台url
+        # @param ConsoleUrl: 控制台url，此链接5分钟内有效，且只能访问一次
         # @type ConsoleUrl: String
         # @param IsActivated: 渠道合作企业是否认证开通腾讯电子签。
         # 当渠道合作企业未完成认证开通腾讯电子签,建议先调用同步企业信息(SyncProxyOrganization)和同步经办人信息(SyncProxyOrganizationOperators)接口成功后再跳转到登录页面。
@@ -273,13 +273,16 @@ module TencentCloud
         # @type FlowInfos: Array
         # @param Operator: 操作者的信息
         # @type Operator: :class:`Tencentcloud::Essbasic.v20210526.models.UserInfo`
+        # @param NeedPreview: 是否为预览模式；默认为false，即非预览模式，此时发起合同并返回FlowIds；若为预览模式，则返回PreviewUrls；
+        # @type NeedPreview: Boolean
 
-        attr_accessor :Agent, :FlowInfos, :Operator
+        attr_accessor :Agent, :FlowInfos, :Operator, :NeedPreview
         
-        def initialize(agent=nil, flowinfos=nil, operator=nil)
+        def initialize(agent=nil, flowinfos=nil, operator=nil, needpreview=nil)
           @Agent = agent
           @FlowInfos = flowinfos
           @Operator = operator
+          @NeedPreview = needpreview
         end
 
         def deserialize(params)
@@ -299,6 +302,7 @@ module TencentCloud
             @Operator = UserInfo.new
             @Operator.deserialize(params['Operator'])
           end
+          @NeedPreview = params['NeedPreview']
         end
       end
 
@@ -311,15 +315,18 @@ module TencentCloud
         # @param ErrorMessages: 创建消息，对应多个合同ID，
         # 成功为“”,创建失败则对应失败消息
         # @type ErrorMessages: Array
+        # @param PreviewUrls: 预览模式下返回的预览文件url数组
+        # @type PreviewUrls: Array
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :FlowIds, :CustomerData, :ErrorMessages, :RequestId
+        attr_accessor :FlowIds, :CustomerData, :ErrorMessages, :PreviewUrls, :RequestId
         
-        def initialize(flowids=nil, customerdata=nil, errormessages=nil, requestid=nil)
+        def initialize(flowids=nil, customerdata=nil, errormessages=nil, previewurls=nil, requestid=nil)
           @FlowIds = flowids
           @CustomerData = customerdata
           @ErrorMessages = errormessages
+          @PreviewUrls = previewurls
           @RequestId = requestid
         end
 
@@ -327,6 +334,7 @@ module TencentCloud
           @FlowIds = params['FlowIds']
           @CustomerData = params['CustomerData']
           @ErrorMessages = params['ErrorMessages']
+          @PreviewUrls = params['PreviewUrls']
           @RequestId = params['RequestId']
         end
       end
@@ -341,7 +349,7 @@ module TencentCloud
         # @type Operator: :class:`Tencentcloud::Essbasic.v20210526.models.UserInfo`
         # @param Endpoint: 签署链接类型，默认：“WEIXINAPP”-直接跳小程序; “CHANNEL”-跳转H5页面; “APP”-第三方APP或小程序跳转电子签小程序;
         # @type Endpoint: String
-        # @param JumpUrl: 签署完成后H5引导页跳转URL
+        # @param JumpUrl: 签署完之后的H5页面的跳转链接，针对Endpoint为CHANNEL时有效
         # @type JumpUrl: String
 
         attr_accessor :Agent, :FlowIds, :Operator, :Endpoint, :JumpUrl
@@ -775,10 +783,13 @@ module TencentCloud
         # @type OrganizationName: String
         # @param OrganizationOpenId: 企业签署方在同一渠道下的其他合作企业OpenId，签署方为非发起方企业场景下必传；
         # @type OrganizationOpenId: String
+        # @param NotChannelOrganization: 指定签署人非渠道企业下员工，在ApproverType为ORGANIZATION时指定。
+        # 默认为false，即签署人位于同一个渠道应用号下；
+        # @type NotChannelOrganization: Boolean
 
-        attr_accessor :Name, :IdCardNumber, :Mobile, :JumpUrl, :Deadline, :CallbackUrl, :ApproverType, :OpenId, :PreReadTime, :ComponentLimitType, :RecipientId, :OrganizationName, :OrganizationOpenId
+        attr_accessor :Name, :IdCardNumber, :Mobile, :JumpUrl, :Deadline, :CallbackUrl, :ApproverType, :OpenId, :PreReadTime, :ComponentLimitType, :RecipientId, :OrganizationName, :OrganizationOpenId, :NotChannelOrganization
         
-        def initialize(name=nil, idcardnumber=nil, mobile=nil, jumpurl=nil, deadline=nil, callbackurl=nil, approvertype=nil, openid=nil, prereadtime=nil, componentlimittype=nil, recipientid=nil, organizationname=nil, organizationopenid=nil)
+        def initialize(name=nil, idcardnumber=nil, mobile=nil, jumpurl=nil, deadline=nil, callbackurl=nil, approvertype=nil, openid=nil, prereadtime=nil, componentlimittype=nil, recipientid=nil, organizationname=nil, organizationopenid=nil, notchannelorganization=nil)
           @Name = name
           @IdCardNumber = idcardnumber
           @Mobile = mobile
@@ -792,6 +803,7 @@ module TencentCloud
           @RecipientId = recipientid
           @OrganizationName = organizationname
           @OrganizationOpenId = organizationopenid
+          @NotChannelOrganization = notchannelorganization
         end
 
         def deserialize(params)
@@ -808,6 +820,7 @@ module TencentCloud
           @RecipientId = params['RecipientId']
           @OrganizationName = params['OrganizationName']
           @OrganizationOpenId = params['OrganizationOpenId']
+          @NotChannelOrganization = params['NotChannelOrganization']
         end
       end
 
@@ -870,7 +883,7 @@ module TencentCloud
       class FlowInfo < TencentCloud::Common::AbstractModel
         # @param FlowName: 合同名字
         # @type FlowName: String
-        # @param Deadline: 签署截止时间戳，超过有效签署时间则该签署流程失败
+        # @param Deadline: 签署截止时间戳，超过有效签署时间则该签署流程失败，默认一年
         # @type Deadline: Integer
         # @param TemplateId: 模板ID
         # @type TemplateId: String
@@ -882,7 +895,7 @@ module TencentCloud
         # @type FlowType: String
         # @param CallbackUrl: 回调地址
         # @type CallbackUrl: String
-        # @param FlowApprovers: 多个签署人信息
+        # @param FlowApprovers: 多个签署人信息，渠道侧目前不支持超过5个签署方信息
         # @type FlowApprovers: Array
         # @param FormFields: 表单K-V对列表
         # @type FormFields: Array
@@ -1328,7 +1341,7 @@ module TencentCloud
         # @param SignUrl: 签署链接
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SignUrl: String
-        # @param Deadline: 链接失效时间
+        # @param Deadline: 链接失效时间,默认30分钟
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Deadline: Integer
         # @param SignOrder: 当流程为顺序签署此参数有效时，数字越小优先级越高，暂不支持并行签署 可选
