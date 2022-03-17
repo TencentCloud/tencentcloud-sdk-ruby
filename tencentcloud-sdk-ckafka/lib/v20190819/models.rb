@@ -1055,10 +1055,14 @@ module TencentCloud
         # @type Tags: Array
         # @param DiskType: 磁盘类型（ssd填写CLOUD_SSD，sata填写CLOUD_BASIC）
         # @type DiskType: String
+        # @param MultiZoneFlag: 跨可用区，zoneIds必填
+        # @type MultiZoneFlag: Boolean
+        # @param ZoneIds: 可用区列表
+        # @type ZoneIds: Array
 
-        attr_accessor :InstanceName, :ZoneId, :Period, :InstanceType, :VpcId, :SubnetId, :MsgRetentionTime, :ClusterId, :RenewFlag, :KafkaVersion, :SpecificationsType, :DiskSize, :BandWidth, :Partition, :Tags, :DiskType
+        attr_accessor :InstanceName, :ZoneId, :Period, :InstanceType, :VpcId, :SubnetId, :MsgRetentionTime, :ClusterId, :RenewFlag, :KafkaVersion, :SpecificationsType, :DiskSize, :BandWidth, :Partition, :Tags, :DiskType, :MultiZoneFlag, :ZoneIds
         
-        def initialize(instancename=nil, zoneid=nil, period=nil, instancetype=nil, vpcid=nil, subnetid=nil, msgretentiontime=nil, clusterid=nil, renewflag=nil, kafkaversion=nil, specificationstype=nil, disksize=nil, bandwidth=nil, partition=nil, tags=nil, disktype=nil)
+        def initialize(instancename=nil, zoneid=nil, period=nil, instancetype=nil, vpcid=nil, subnetid=nil, msgretentiontime=nil, clusterid=nil, renewflag=nil, kafkaversion=nil, specificationstype=nil, disksize=nil, bandwidth=nil, partition=nil, tags=nil, disktype=nil, multizoneflag=nil, zoneids=nil)
           @InstanceName = instancename
           @ZoneId = zoneid
           @Period = period
@@ -1075,6 +1079,8 @@ module TencentCloud
           @Partition = partition
           @Tags = tags
           @DiskType = disktype
+          @MultiZoneFlag = multizoneflag
+          @ZoneIds = zoneids
         end
 
         def deserialize(params)
@@ -1101,6 +1107,8 @@ module TencentCloud
             end
           end
           @DiskType = params['DiskType']
+          @MultiZoneFlag = params['MultiZoneFlag']
+          @ZoneIds = params['ZoneIds']
         end
       end
 

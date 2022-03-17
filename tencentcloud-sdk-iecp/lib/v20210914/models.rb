@@ -619,6 +619,49 @@ module TencentCloud
         end
       end
 
+      # CreateEdgeNodeBatch请求参数结构体
+      class CreateEdgeNodeBatchRequest < TencentCloud::Common::AbstractModel
+        # @param EdgeUnitId: 边缘单元ID
+        # @type EdgeUnitId: Integer
+        # @param Nodes: 节点信息
+        # @type Nodes: Array
+
+        attr_accessor :EdgeUnitId, :Nodes
+        
+        def initialize(edgeunitid=nil, nodes=nil)
+          @EdgeUnitId = edgeunitid
+          @Nodes = nodes
+        end
+
+        def deserialize(params)
+          @EdgeUnitId = params['EdgeUnitId']
+          unless params['Nodes'].nil?
+            @Nodes = []
+            params['Nodes'].each do |i|
+              draconodeinfo_tmp = DracoNodeInfo.new
+              draconodeinfo_tmp.deserialize(i)
+              @Nodes << draconodeinfo_tmp
+            end
+          end
+        end
+      end
+
+      # CreateEdgeNodeBatch返回参数结构体
+      class CreateEdgeNodeBatchResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateEdgeNodeGroup请求参数结构体
       class CreateEdgeNodeGroupRequest < TencentCloud::Common::AbstractModel
         # @param EdgeUnitId: IECP边缘单元ID
@@ -1143,6 +1186,42 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateUserToken请求参数结构体
+      class CreateUserTokenRequest < TencentCloud::Common::AbstractModel
+        # @param Second: 无
+        # @type Second: Integer
+
+        attr_accessor :Second
+        
+        def initialize(second=nil)
+          @Second = second
+        end
+
+        def deserialize(params)
+          @Second = params['Second']
+        end
+      end
+
+      # CreateUserToken返回参数结构体
+      class CreateUserTokenResponse < TencentCloud::Common::AbstractModel
+        # @param Token: 无
+        # @type Token: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Token, :RequestId
+        
+        def initialize(token=nil, requestid=nil)
+          @Token = token
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Token = params['Token']
           @RequestId = params['RequestId']
         end
       end
@@ -2296,6 +2375,43 @@ module TencentCloud
         end
       end
 
+      # DescribeEdgeNodeRemarkList请求参数结构体
+      class DescribeEdgeNodeRemarkListRequest < TencentCloud::Common::AbstractModel
+        # @param EdgeUnitId: 边缘单元ID
+        # @type EdgeUnitId: Integer
+
+        attr_accessor :EdgeUnitId
+        
+        def initialize(edgeunitid=nil)
+          @EdgeUnitId = edgeunitid
+        end
+
+        def deserialize(params)
+          @EdgeUnitId = params['EdgeUnitId']
+        end
+      end
+
+      # DescribeEdgeNodeRemarkList返回参数结构体
+      class DescribeEdgeNodeRemarkListResponse < TencentCloud::Common::AbstractModel
+        # @param Remarks: 边缘单元内的备注列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Remarks: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Remarks, :RequestId
+        
+        def initialize(remarks=nil, requestid=nil)
+          @Remarks = remarks
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Remarks = params['Remarks']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeEdgeNode请求参数结构体
       class DescribeEdgeNodeRequest < TencentCloud::Common::AbstractModel
         # @param EdgeUnitId: IECP边缘单元ID
@@ -2591,6 +2707,75 @@ module TencentCloud
           unless params['Pod'].nil?
             @Pod = EdgeNodePodInfo.new
             @Pod.deserialize(params['Pod'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeEdgeSnNodes请求参数结构体
+      class DescribeEdgeSnNodesRequest < TencentCloud::Common::AbstractModel
+        # @param EdgeUnitId: 边缘单元ID
+        # @type EdgeUnitId: Integer
+        # @param NamePattern: 根据节点名称模糊匹配
+        # @type NamePattern: String
+        # @param SNPattern: 根据设备SN模糊匹配
+        # @type SNPattern: String
+        # @param RemarkPattern: 根据备注批次信息模糊匹配
+        # @type RemarkPattern: String
+        # @param Offset: 默认0
+        # @type Offset: Integer
+        # @param Limit: 默认20
+        # @type Limit: Integer
+
+        attr_accessor :EdgeUnitId, :NamePattern, :SNPattern, :RemarkPattern, :Offset, :Limit
+        
+        def initialize(edgeunitid=nil, namepattern=nil, snpattern=nil, remarkpattern=nil, offset=nil, limit=nil)
+          @EdgeUnitId = edgeunitid
+          @NamePattern = namepattern
+          @SNPattern = snpattern
+          @RemarkPattern = remarkpattern
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @EdgeUnitId = params['EdgeUnitId']
+          @NamePattern = params['NamePattern']
+          @SNPattern = params['SNPattern']
+          @RemarkPattern = params['RemarkPattern']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeEdgeSnNodes返回参数结构体
+      class DescribeEdgeSnNodesResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 满足条件的总条数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalCount: Integer
+        # @param NodeSet: 节点详情
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NodeSet: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :NodeSet, :RequestId
+        
+        def initialize(totalcount=nil, nodeset=nil, requestid=nil)
+          @TotalCount = totalcount
+          @NodeSet = nodeset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['NodeSet'].nil?
+            @NodeSet = []
+            params['NodeSet'].each do |i|
+              edgedraconodeinfo_tmp = EdgeDracoNodeInfo.new
+              edgedraconodeinfo_tmp.deserialize(i)
+              @NodeSet << edgedraconodeinfo_tmp
+            end
           end
           @RequestId = params['RequestId']
         end
@@ -4401,6 +4586,58 @@ module TencentCloud
         end
       end
 
+      # DescribeYeheResourceLimit请求参数结构体
+      class DescribeYeheResourceLimitRequest < TencentCloud::Common::AbstractModel
+
+        
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeYeheResourceLimit返回参数结构体
+      class DescribeYeheResourceLimitResponse < TencentCloud::Common::AbstractModel
+        # @param Uin: 用户父账号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Uin: String
+        # @param CreateNodeLimit: 允许创建的节点数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateNodeLimit: Integer
+        # @param CreateClusterLimit: 允许创建的集群数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateClusterLimit: Integer
+        # @param EnablePermMonitor: 是否有监控开启权限
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EnablePermMonitor: Boolean
+        # @param EnablePermAdminNode: 节点是否有admin的所有权限
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EnablePermAdminNode: Boolean
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Uin, :CreateNodeLimit, :CreateClusterLimit, :EnablePermMonitor, :EnablePermAdminNode, :RequestId
+        
+        def initialize(uin=nil, createnodelimit=nil, createclusterlimit=nil, enablepermmonitor=nil, enablepermadminnode=nil, requestid=nil)
+          @Uin = uin
+          @CreateNodeLimit = createnodelimit
+          @CreateClusterLimit = createclusterlimit
+          @EnablePermMonitor = enablepermmonitor
+          @EnablePermAdminNode = enablepermadminnode
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Uin = params['Uin']
+          @CreateNodeLimit = params['CreateNodeLimit']
+          @CreateClusterLimit = params['CreateClusterLimit']
+          @EnablePermMonitor = params['EnablePermMonitor']
+          @EnablePermAdminNode = params['EnablePermAdminNode']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # docker配置
       class DockerConfig < TencentCloud::Common::AbstractModel
         # @param RegistryDomain: 镜像仓库地址
@@ -4423,6 +4660,30 @@ module TencentCloud
           @RegistryDomain = params['RegistryDomain']
           @UserName = params['UserName']
           @Password = params['Password']
+        end
+      end
+
+      # Draco 设备预录入信息
+      class DracoNodeInfo < TencentCloud::Common::AbstractModel
+        # @param SN: 设备SN。SN仅支持大写字母、数字，长度限制为1~32个字符
+        # @type SN: String
+        # @param Name: 节点名称。长度限制为1~63个字符，节点名称只支持小写英文、数字、中横线、英文句号
+        # @type Name: String
+        # @param Remark: 节点备注
+        # @type Remark: String
+
+        attr_accessor :SN, :Name, :Remark
+        
+        def initialize(sn=nil, name=nil, remark=nil)
+          @SN = sn
+          @Name = name
+          @Remark = remark
+        end
+
+        def deserialize(params)
+          @SN = params['SN']
+          @Name = params['Name']
+          @Remark = params['Remark']
         end
       end
 
@@ -4500,6 +4761,42 @@ module TencentCloud
           @ServiceCIDR = params['ServiceCIDR']
           @EdgeClusterVersion = params['EdgeClusterVersion']
           @UID = params['UID']
+        end
+      end
+
+      # 预注册节点的信息
+      class EdgeDracoNodeInfo < TencentCloud::Common::AbstractModel
+        # @param Id: 节点ID
+        # @type Id: Integer
+        # @param Name: 节点名称
+        # @type Name: String
+        # @param IsUsed: 是否已激活
+        # @type IsUsed: Boolean
+        # @param CreateTime: 创建时间
+        # @type CreateTime: String
+        # @param Remark: 备注信息，如批次
+        # @type Remark: String
+        # @param SN: SN 设备号
+        # @type SN: String
+
+        attr_accessor :Id, :Name, :IsUsed, :CreateTime, :Remark, :SN
+        
+        def initialize(id=nil, name=nil, isused=nil, createtime=nil, remark=nil, sn=nil)
+          @Id = id
+          @Name = name
+          @IsUsed = isused
+          @CreateTime = createtime
+          @Remark = remark
+          @SN = sn
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @Name = params['Name']
+          @IsUsed = params['IsUsed']
+          @CreateTime = params['CreateTime']
+          @Remark = params['Remark']
+          @SN = params['SN']
         end
       end
 
@@ -5724,6 +6021,53 @@ module TencentCloud
         end
       end
 
+      # ModifyEdgeDracoNode请求参数结构体
+      class ModifyEdgeDracoNodeRequest < TencentCloud::Common::AbstractModel
+        # @param EdgeUnitId: 边缘单元ID
+        # @type EdgeUnitId: Integer
+        # @param NodeId: 边缘节点ID
+        # @type NodeId: Integer
+        # @param NodeInfo: 节点信息
+        # @type NodeInfo: :class:`Tencentcloud::Iecp.v20210914.models.DracoNodeInfo`
+        # @param IsReset: 是否重置draco设备
+        # @type IsReset: Boolean
+
+        attr_accessor :EdgeUnitId, :NodeId, :NodeInfo, :IsReset
+        
+        def initialize(edgeunitid=nil, nodeid=nil, nodeinfo=nil, isreset=nil)
+          @EdgeUnitId = edgeunitid
+          @NodeId = nodeid
+          @NodeInfo = nodeinfo
+          @IsReset = isreset
+        end
+
+        def deserialize(params)
+          @EdgeUnitId = params['EdgeUnitId']
+          @NodeId = params['NodeId']
+          unless params['NodeInfo'].nil?
+            @NodeInfo = DracoNodeInfo.new
+            @NodeInfo.deserialize(params['NodeInfo'])
+          end
+          @IsReset = params['IsReset']
+        end
+      end
+
+      # ModifyEdgeDracoNode返回参数结构体
+      class ModifyEdgeDracoNodeResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyEdgeNodeLabels请求参数结构体
       class ModifyEdgeNodeLabelsRequest < TencentCloud::Common::AbstractModel
         # @param EdgeUnitId: IECP边缘单元ID
@@ -5952,6 +6296,50 @@ module TencentCloud
 
       # ModifyEdgeUnitApplicationYaml返回参数结构体
       class ModifyEdgeUnitApplicationYamlResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyEdgeUnitCloudApi请求参数结构体
+      class ModifyEdgeUnitCloudApiRequest < TencentCloud::Common::AbstractModel
+        # @param EdgeUnitId: 边缘单元ID
+        # @type EdgeUnitId: Integer
+        # @param Name: 边缘单元名称，64字符内
+        # @type Name: String
+        # @param Description: 描述，200字符内
+        # @type Description: String
+        # @param OpenCloudMonitor: 是否开启监控
+        # @type OpenCloudMonitor: Boolean
+
+        attr_accessor :EdgeUnitId, :Name, :Description, :OpenCloudMonitor
+        
+        def initialize(edgeunitid=nil, name=nil, description=nil, opencloudmonitor=nil)
+          @EdgeUnitId = edgeunitid
+          @Name = name
+          @Description = description
+          @OpenCloudMonitor = opencloudmonitor
+        end
+
+        def deserialize(params)
+          @EdgeUnitId = params['EdgeUnitId']
+          @Name = params['Name']
+          @Description = params['Description']
+          @OpenCloudMonitor = params['OpenCloudMonitor']
+        end
+      end
+
+      # ModifyEdgeUnitCloudApi返回参数结构体
+      class ModifyEdgeUnitCloudApiResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 

@@ -3479,7 +3479,7 @@ module TencentCloud
       class JsonInfo < TencentCloud::Common::AbstractModel
         # @param EnableTag: 启用标志
         # @type EnableTag: Boolean
-        # @param MetaFields: 元数据信息列表
+        # @param MetaFields: 元数据信息列表, 可选值为 __SOURCE__、__FILENAME__、__TIMESTAMP__。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MetaFields: Array
 

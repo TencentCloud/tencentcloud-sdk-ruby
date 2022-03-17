@@ -6807,6 +6807,33 @@ module TencentCloud
         end
       end
 
+      # DescribeCrossBorderCcnRegionBandwidthLimits请求参数结构体
+      class DescribeCrossBorderCcnRegionBandwidthLimitsRequest < TencentCloud::Common::AbstractModel
+
+        
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeCrossBorderCcnRegionBandwidthLimits返回参数结构体
+      class DescribeCrossBorderCcnRegionBandwidthLimitsResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeCrossBorderCompliance请求参数结构体
       class DescribeCrossBorderComplianceRequest < TencentCloud::Common::AbstractModel
         # @param ServiceProvider: （精确匹配）服务商，可选值：`UNICOM`。
@@ -9241,6 +9268,33 @@ module TencentCloud
             @TemplateLimit = TemplateLimit.new
             @TemplateLimit.deserialize(params['TemplateLimit'])
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeTenantCcns请求参数结构体
+      class DescribeTenantCcnsRequest < TencentCloud::Common::AbstractModel
+
+        
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeTenantCcns返回参数结构体
+      class DescribeTenantCcnsResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
           @RequestId = params['RequestId']
         end
       end
@@ -12470,6 +12524,60 @@ module TencentCloud
           @LocalGatewayName = params['LocalGatewayName']
           @LocalGwIp = params['LocalGwIp']
           @CreateTime = params['CreateTime']
+        end
+      end
+
+      # LockCcnBandwidths请求参数结构体
+      class LockCcnBandwidthsRequest < TencentCloud::Common::AbstractModel
+
+        
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # LockCcnBandwidths返回参数结构体
+      class LockCcnBandwidthsResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # LockCcns请求参数结构体
+      class LockCcnsRequest < TencentCloud::Common::AbstractModel
+
+        
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # LockCcns返回参数结构体
+      class LockCcnsResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
         end
       end
 
@@ -17501,6 +17609,60 @@ module TencentCloud
 
       # UnassignPrivateIpAddresses返回参数结构体
       class UnassignPrivateIpAddressesResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # UnlockCcnBandwidths请求参数结构体
+      class UnlockCcnBandwidthsRequest < TencentCloud::Common::AbstractModel
+
+        
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # UnlockCcnBandwidths返回参数结构体
+      class UnlockCcnBandwidthsResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # UnlockCcns请求参数结构体
+      class UnlockCcnsRequest < TencentCloud::Common::AbstractModel
+
+        
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # UnlockCcns返回参数结构体
+      class UnlockCcnsResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 

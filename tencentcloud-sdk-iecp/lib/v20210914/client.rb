@@ -125,6 +125,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 批量预注册节点
+
+        # @param request: Request instance for CreateEdgeNodeBatch.
+        # @type request: :class:`Tencentcloud::iecp::V20210914::CreateEdgeNodeBatchRequest`
+        # @rtype: :class:`Tencentcloud::iecp::V20210914::CreateEdgeNodeBatchResponse`
+        def CreateEdgeNodeBatch(request)
+          body = send_request('CreateEdgeNodeBatch', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateEdgeNodeBatchResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 创建边缘单元NodeGroup
 
         # @param request: Request instance for CreateEdgeNodeGroup.
@@ -303,6 +327,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = CreateUpdateNodeUnitResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 创建token
+
+        # @param request: Request instance for CreateUserToken.
+        # @type request: :class:`Tencentcloud::iecp::V20210914::CreateUserTokenRequest`
+        # @rtype: :class:`Tencentcloud::iecp::V20210914::CreateUserTokenResponse`
+        def CreateUserToken(request)
+          body = send_request('CreateUserToken', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateUserTokenResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -893,6 +941,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 获取节点备注信息列表
+
+        # @param request: Request instance for DescribeEdgeNodeRemarkList.
+        # @type request: :class:`Tencentcloud::iecp::V20210914::DescribeEdgeNodeRemarkListRequest`
+        # @rtype: :class:`Tencentcloud::iecp::V20210914::DescribeEdgeNodeRemarkListResponse`
+        def DescribeEdgeNodeRemarkList(request)
+          body = send_request('DescribeEdgeNodeRemarkList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeEdgeNodeRemarkListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询边缘节点列表
 
         # @param request: Request instance for DescribeEdgeNodes.
@@ -951,6 +1023,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeEdgePodResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询预注册节点列表
+
+        # @param request: Request instance for DescribeEdgeSnNodes.
+        # @type request: :class:`Tencentcloud::iecp::V20210914::DescribeEdgeSnNodesRequest`
+        # @rtype: :class:`Tencentcloud::iecp::V20210914::DescribeEdgeSnNodesResponse`
+        def DescribeEdgeSnNodes(request)
+          body = send_request('DescribeEdgeSnNodes', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeEdgeSnNodesResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1637,6 +1733,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询用户的资源限制
+
+        # @param request: Request instance for DescribeYeheResourceLimit.
+        # @type request: :class:`Tencentcloud::iecp::V20210914::DescribeYeheResourceLimitRequest`
+        # @rtype: :class:`Tencentcloud::iecp::V20210914::DescribeYeheResourceLimitResponse`
+        def DescribeYeheResourceLimit(request)
+          body = send_request('DescribeYeheResourceLimit', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeYeheResourceLimitResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 获取组件市场的组件信息
 
         # @param request: Request instance for GetMarketComponent.
@@ -1757,6 +1877,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 编辑draco设备信息
+
+        # @param request: Request instance for ModifyEdgeDracoNode.
+        # @type request: :class:`Tencentcloud::iecp::V20210914::ModifyEdgeDracoNodeRequest`
+        # @rtype: :class:`Tencentcloud::iecp::V20210914::ModifyEdgeDracoNodeResponse`
+        def ModifyEdgeDracoNode(request)
+          body = send_request('ModifyEdgeDracoNode', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyEdgeDracoNodeResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 编辑边缘节点标签
 
         # @param request: Request instance for ModifyEdgeNodeLabels.
@@ -1863,6 +2007,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyEdgeUnitApplicationYamlResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 更新边缘单元信息
+
+        # @param request: Request instance for ModifyEdgeUnitCloudApi.
+        # @type request: :class:`Tencentcloud::iecp::V20210914::ModifyEdgeUnitCloudApiRequest`
+        # @rtype: :class:`Tencentcloud::iecp::V20210914::ModifyEdgeUnitCloudApiResponse`
+        def ModifyEdgeUnitCloudApi(request)
+          body = send_request('ModifyEdgeUnitCloudApi', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyEdgeUnitCloudApiResponse.new
             model.deserialize(response['Response'])
             model
           else

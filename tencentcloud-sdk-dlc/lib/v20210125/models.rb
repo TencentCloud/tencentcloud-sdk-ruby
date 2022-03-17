@@ -281,7 +281,7 @@ module TencentCloud
         # @param Nullable: 是否为null
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Nullable: String
-        # @param Position: 字段位置
+        # @param Position: 字段位置，小的在前
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Position: Integer
         # @param CreateTime: 字段创建时间
@@ -1471,15 +1471,18 @@ module TencentCloud
         # @type SortBy: String
         # @param Sorting: 排序方式，desc表示正序，asc表示反序， 默认为asc
         # @type Sorting: String
+        # @param Filters: 过滤条件，支持如下字段类型，user-type：根据用户类型过滤。
+        # @type Filters: Array
 
-        attr_accessor :UserId, :Offset, :Limit, :SortBy, :Sorting
+        attr_accessor :UserId, :Offset, :Limit, :SortBy, :Sorting, :Filters
         
-        def initialize(userid=nil, offset=nil, limit=nil, sortby=nil, sorting=nil)
+        def initialize(userid=nil, offset=nil, limit=nil, sortby=nil, sorting=nil, filters=nil)
           @UserId = userid
           @Offset = offset
           @Limit = limit
           @SortBy = sortby
           @Sorting = sorting
+          @Filters = filters
         end
 
         def deserialize(params)
@@ -1488,6 +1491,14 @@ module TencentCloud
           @Limit = params['Limit']
           @SortBy = params['SortBy']
           @Sorting = params['Sorting']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
         end
       end
 
@@ -1944,23 +1955,59 @@ module TencentCloud
       class Policy < TencentCloud::Common::AbstractModel
         # @param Database: 需要授权的数据库名，填*代表当前Catalog下所有数据库。当授权类型为管理员级别时，只允许填“*”，当授权类型为数据连接级别时只允许填空，其他类型下可以任意指定数据库。
         # @type Database: String
-        # @param Catalog: 需要授权的数据源名称，管理员级别下只支持填*（代表该级别全部资源）；数据源级别和数据库级别鉴权的情况下，只支持填COSDataCatalog或者*；在数据表级别鉴权下可以填写用户自定义数据源。不填情况下默认为COSDataCatalog。注意：如果是对用户自定义数据源进行鉴权，DLC能够管理的权限是用户接入数据源的时候提供的账户的子集。
+        # @param Catalog: 需要授权的数据源名称，管理员级别下只支持填*（代表该级别全部资源）；数据源级别和数据库级别鉴权的情况下，只支持填COSDataCatalog或者*；在数据表级别鉴权下可以填写用户自定义数据源。不填情况下默认为DataLakeCatalog。注意：如果是对用户自定义数据源进行鉴权，DLC能够管理的权限是用户接入数据源的时候提供的账户的子集。
         # @type Catalog: String
         # @param Table: 需要授权的表名，填*代表当前Database下所有表。当授权类型为管理员级别时，只允许填“*”，当授权类型为数据连接级别、数据库级别时只允许填空，其他类型下可以任意指定数据表。
         # @type Table: String
-        # @param Operation: 授权的权限操作，对于不同级别的鉴权提供不同操作。管理员权限：ALL，不填默认为ALL；数据连接级鉴权：CRETE；数据库级别鉴权：ALL、CREATE、ALTER、DROP；数据表权限：ALL、SELECT、INSERT、ALTER、DELETE、DROP、UPDATE。注意：在数据表权限下，指定的数据源不为COSDataCatalog的时候，只支持SELECT操作。
+        # @param Operation: 授权的权限操作，对于不同级别的鉴权提供不同操作。管理员权限：ALL，不填默认为ALL；数据连接级鉴权：CREATE；数据库级别鉴权：ALL、CREATE、ALTER、DROP；数据表权限：ALL、SELECT、INSERT、ALTER、DELETE、DROP、UPDATE。注意：在数据表权限下，指定的数据源不为COSDataCatalog的时候，只支持SELECT操作。
         # @type Operation: String
-        # @param PolicyType: 授权类型，现在支持四种授权类型：ADMIN:管理员级别鉴权 DATASOURCE：数据连接级别鉴权 DATABASE：数据库级别鉴权 TABLE：表级别鉴权。不填默认为管理员级别鉴权。
+        # @param PolicyType: 授权类型，现在支持八种授权类型：ADMIN:管理员级别鉴权 DATASOURCE：数据连接级别鉴权 DATABASE：数据库级别鉴权 TABLE：表级别鉴权 VIEW：视图级别鉴权 FUNCTION：函数级别鉴权 COLUMN：列级别鉴权 ENGINE：数据引擎鉴权。不填默认为管理员级别鉴权。
         # @type PolicyType: String
+        # @param Function: 需要授权的函数名，填*代表当前Catalog下所有函数。当授权类型为管理员级别时，只允许填“*”，当授权类型为数据连接级别时只允许填空，其他类型下可以任意指定函数。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Function: String
+        # @param View: 需要授权的视图，填*代表当前Database下所有视图。当授权类型为管理员级别时，只允许填“*”，当授权类型为数据连接级别、数据库级别时只允许填空，其他类型下可以任意指定视图。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type View: String
+        # @param Column: 需要授权的列，填*代表当前所有列。当授权类型为管理员级别时，只允许填“*”
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Column: String
+        # @param DataEngine: 需要授权的数据引擎，填*代表当前所有引擎。当授权类型为管理员级别时，只允许填“*”
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DataEngine: String
+        # @param ReAuth: 用户是否可以进行二次授权。当为true的时候，被授权的用户可以将本次获取的权限再次授权给其他子用户。默认为false
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ReAuth: Boolean
+        # @param Source: 权限来源，入参不填。USER：权限来自用户本身；WORKGROUP：权限来自绑定的工作组
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Source: String
+        # @param Mode: 授权模式，入参不填。COMMON：普通模式；SENIOR：高级模式。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Mode: String
+        # @param Operator: 操作者，入参不填。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Operator: String
+        # @param CreateTime: 权限创建的时间，入参不填
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateTime: String
 
-        attr_accessor :Database, :Catalog, :Table, :Operation, :PolicyType
+        attr_accessor :Database, :Catalog, :Table, :Operation, :PolicyType, :Function, :View, :Column, :DataEngine, :ReAuth, :Source, :Mode, :Operator, :CreateTime
         
-        def initialize(database=nil, catalog=nil, table=nil, operation=nil, policytype=nil)
+        def initialize(database=nil, catalog=nil, table=nil, operation=nil, policytype=nil, function=nil, view=nil, column=nil, dataengine=nil, reauth=nil, source=nil, mode=nil, operator=nil, createtime=nil)
           @Database = database
           @Catalog = catalog
           @Table = table
           @Operation = operation
           @PolicyType = policytype
+          @Function = function
+          @View = view
+          @Column = column
+          @DataEngine = dataengine
+          @ReAuth = reauth
+          @Source = source
+          @Mode = mode
+          @Operator = operator
+          @CreateTime = createtime
         end
 
         def deserialize(params)
@@ -1969,6 +2016,15 @@ module TencentCloud
           @Table = params['Table']
           @Operation = params['Operation']
           @PolicyType = params['PolicyType']
+          @Function = params['Function']
+          @View = params['View']
+          @Column = params['Column']
+          @DataEngine = params['DataEngine']
+          @ReAuth = params['ReAuth']
+          @Source = params['Source']
+          @Mode = params['Mode']
+          @Operator = params['Operator']
+          @CreateTime = params['CreateTime']
         end
       end
 
@@ -2178,10 +2234,16 @@ module TencentCloud
         # @param InputFormat: 数据格式。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InputFormat: String
+        # @param StorageSize: 数据表存储大小（单位：Byte）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StorageSize: Integer
+        # @param RecordCount: 数据表行数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RecordCount: Integer
 
-        attr_accessor :TableBaseInfo, :Columns, :Partitions, :Location, :Properties, :ModifiedTime, :CreateTime, :InputFormat
+        attr_accessor :TableBaseInfo, :Columns, :Partitions, :Location, :Properties, :ModifiedTime, :CreateTime, :InputFormat, :StorageSize, :RecordCount
         
-        def initialize(tablebaseinfo=nil, columns=nil, partitions=nil, location=nil, properties=nil, modifiedtime=nil, createtime=nil, inputformat=nil)
+        def initialize(tablebaseinfo=nil, columns=nil, partitions=nil, location=nil, properties=nil, modifiedtime=nil, createtime=nil, inputformat=nil, storagesize=nil, recordcount=nil)
           @TableBaseInfo = tablebaseinfo
           @Columns = columns
           @Partitions = partitions
@@ -2190,6 +2252,8 @@ module TencentCloud
           @ModifiedTime = modifiedtime
           @CreateTime = createtime
           @InputFormat = inputformat
+          @StorageSize = storagesize
+          @RecordCount = recordcount
         end
 
         def deserialize(params)
@@ -2225,6 +2289,8 @@ module TencentCloud
           @ModifiedTime = params['ModifiedTime']
           @CreateTime = params['CreateTime']
           @InputFormat = params['InputFormat']
+          @StorageSize = params['StorageSize']
+          @RecordCount = params['RecordCount']
         end
       end
 
@@ -2599,13 +2665,16 @@ module TencentCloud
         # @param WorkGroupSet: 关联的工作组集合
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type WorkGroupSet: Array
-        # @param IsOwner: 是否是管理员账号
+        # @param IsOwner: 是否是主账号
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsOwner: Boolean
+        # @param UserType: 用户类型。ADMIN：管理员 COMMON：普通用户。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UserType: String
 
-        attr_accessor :UserId, :UserDescription, :PolicySet, :Creator, :CreateTime, :WorkGroupSet, :IsOwner
+        attr_accessor :UserId, :UserDescription, :PolicySet, :Creator, :CreateTime, :WorkGroupSet, :IsOwner, :UserType
         
-        def initialize(userid=nil, userdescription=nil, policyset=nil, creator=nil, createtime=nil, workgroupset=nil, isowner=nil)
+        def initialize(userid=nil, userdescription=nil, policyset=nil, creator=nil, createtime=nil, workgroupset=nil, isowner=nil, usertype=nil)
           @UserId = userid
           @UserDescription = userdescription
           @PolicySet = policyset
@@ -2613,6 +2682,7 @@ module TencentCloud
           @CreateTime = createtime
           @WorkGroupSet = workgroupset
           @IsOwner = isowner
+          @UserType = usertype
         end
 
         def deserialize(params)
@@ -2637,6 +2707,7 @@ module TencentCloud
             end
           end
           @IsOwner = params['IsOwner']
+          @UserType = params['UserType']
         end
       end
 

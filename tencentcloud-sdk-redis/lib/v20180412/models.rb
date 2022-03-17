@@ -3234,7 +3234,7 @@ module TencentCloud
 
       # InquiryPriceCreateInstance返回参数结构体
       class InquiryPriceCreateInstanceResponse < TencentCloud::Common::AbstractModel
-        # @param Price: 价格，单位：元
+        # @param Price: 价格，单位：分
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Price: Float
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。

@@ -1617,19 +1617,28 @@ module TencentCloud
         # @param Authorization: API调用后端COS的签名开关，默认为false。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Authorization: Boolean
+        # @param PathMatchMode: API后端COS的路径匹配模式，可选值：
+        # BackEndPath ： 后端路径匹配
+        # FullPath ： 全路径匹配
 
-        attr_accessor :Action, :BucketName, :Authorization
+        # 默认值为：BackEndPath
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PathMatchMode: String
+
+        attr_accessor :Action, :BucketName, :Authorization, :PathMatchMode
         
-        def initialize(action=nil, bucketname=nil, authorization=nil)
+        def initialize(action=nil, bucketname=nil, authorization=nil, pathmatchmode=nil)
           @Action = action
           @BucketName = bucketname
           @Authorization = authorization
+          @PathMatchMode = pathmatchmode
         end
 
         def deserialize(params)
           @Action = params['Action']
           @BucketName = params['BucketName']
           @Authorization = params['Authorization']
+          @PathMatchMode = params['PathMatchMode']
         end
       end
 
@@ -2089,23 +2098,35 @@ module TencentCloud
         # @param ApiId: api id
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ApiId: String
-        # @param Path: path
+        # @param Path: 路径
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Path: String
-        # @param Method: method
+        # @param Method: 请求方法
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Method: String
         # @param CreatedTime: 创建时间
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreatedTime: String
+        # @param Status: 导入状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: String
+        # @param ErrMsg: 异常信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ErrMsg: String
+        # @param ApiName: api name
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ApiName: String
 
-        attr_accessor :ApiId, :Path, :Method, :CreatedTime
+        attr_accessor :ApiId, :Path, :Method, :CreatedTime, :Status, :ErrMsg, :ApiName
         
-        def initialize(apiid=nil, path=nil, method=nil, createdtime=nil)
+        def initialize(apiid=nil, path=nil, method=nil, createdtime=nil, status=nil, errmsg=nil, apiname=nil)
           @ApiId = apiid
           @Path = path
           @Method = method
           @CreatedTime = createdtime
+          @Status = status
+          @ErrMsg = errmsg
+          @ApiName = apiname
         end
 
         def deserialize(params)
@@ -2113,6 +2134,9 @@ module TencentCloud
           @Path = params['Path']
           @Method = params['Method']
           @CreatedTime = params['CreatedTime']
+          @Status = params['Status']
+          @ErrMsg = params['ErrMsg']
+          @ApiName = params['ApiName']
         end
       end
 
@@ -7762,7 +7786,7 @@ module TencentCloud
 
       # ServiceConfig配置
       class ServiceConfig < TencentCloud::Common::AbstractModel
-        # @param Product: 后端类型。启用vpc时生效，目前支持的类型为clb和vpc通道
+        # @param Product: 后端类型。启用vpc时生效，目前支持的类型为clb, cvm和upstream
         # @type Product: String
         # @param UniqVpcId: vpc 的唯一ID。
         # @type UniqVpcId: String

@@ -209,14 +209,26 @@ module TencentCloud
         # @type PageNumber: Integer
         # @param PageSize: 每页数目，整型，配合 PageNumber 使用，默认值为 20，最大值为 100。
         # @type PageSize: Integer
+        # @param OrderBy: 对指定列进行排序
+        # @type OrderBy: String
+        # @param OrderByType: 排序方式
+        # @type OrderByType: String
+        # @param AutoRenew: 续费管理筛选类型
+        # @type AutoRenew: Integer
+        # @param BindPhone: 超级管理管理员账号是否绑定了手机号
+        # @type BindPhone: Boolean
 
-        attr_accessor :SuperAdminAccount, :InstanceIds, :PageNumber, :PageSize
+        attr_accessor :SuperAdminAccount, :InstanceIds, :PageNumber, :PageSize, :OrderBy, :OrderByType, :AutoRenew, :BindPhone
         
-        def initialize(superadminaccount=nil, instanceids=nil, pagenumber=nil, pagesize=nil)
+        def initialize(superadminaccount=nil, instanceids=nil, pagenumber=nil, pagesize=nil, orderby=nil, orderbytype=nil, autorenew=nil, bindphone=nil)
           @SuperAdminAccount = superadminaccount
           @InstanceIds = instanceids
           @PageNumber = pagenumber
           @PageSize = pagesize
+          @OrderBy = orderby
+          @OrderByType = orderbytype
+          @AutoRenew = autorenew
+          @BindPhone = bindphone
         end
 
         def deserialize(params)
@@ -224,6 +236,10 @@ module TencentCloud
           @InstanceIds = params['InstanceIds']
           @PageNumber = params['PageNumber']
           @PageSize = params['PageSize']
+          @OrderBy = params['OrderBy']
+          @OrderByType = params['OrderByType']
+          @AutoRenew = params['AutoRenew']
+          @BindPhone = params['BindPhone']
         end
       end
 
@@ -309,19 +325,31 @@ module TencentCloud
         # @type PageNumber: Integer
         # @param PageSize: 每页数目，整型，配合 PageNumber 使用，默认值为 20，最大值为 100。
         # @type PageSize: Integer
+        # @param OrderBy: 对指定列进行排序
+        # @type OrderBy: String
+        # @param OrderByType: 排序方式
+        # @type OrderByType: String
+        # @param Type: 来源类型筛选
+        # @type Type: Integer
 
-        attr_accessor :ResourceIds, :PageNumber, :PageSize
+        attr_accessor :ResourceIds, :PageNumber, :PageSize, :OrderBy, :OrderByType, :Type
         
-        def initialize(resourceids=nil, pagenumber=nil, pagesize=nil)
+        def initialize(resourceids=nil, pagenumber=nil, pagesize=nil, orderby=nil, orderbytype=nil, type=nil)
           @ResourceIds = resourceids
           @PageNumber = pagenumber
           @PageSize = pagesize
+          @OrderBy = orderby
+          @OrderByType = orderbytype
+          @Type = type
         end
 
         def deserialize(params)
           @ResourceIds = params['ResourceIds']
           @PageNumber = params['PageNumber']
           @PageSize = params['PageSize']
+          @OrderBy = params['OrderBy']
+          @OrderByType = params['OrderByType']
+          @Type = params['Type']
         end
       end
 

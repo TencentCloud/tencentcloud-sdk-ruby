@@ -2935,6 +2935,32 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口（DescribeCrossBorderCcnRegionBandwidthLimits）用于获取要锁定的限速实例列表。
+        # 该接口一般用来封禁地域间限速的云联网实例下的限速实例, 目前联通内部运营系统通过云API调用, 如果是出口限速, 一般使用更粗的云联网实例粒度封禁（DescribeTenantCcns）
+        # 如有需要, 可以封禁任意限速实例, 可接入到内部运营系统
+
+        # @param request: Request instance for DescribeCrossBorderCcnRegionBandwidthLimits.
+        # @type request: :class:`Tencentcloud::vpc::V20170312::DescribeCrossBorderCcnRegionBandwidthLimitsRequest`
+        # @rtype: :class:`Tencentcloud::vpc::V20170312::DescribeCrossBorderCcnRegionBandwidthLimitsResponse`
+        def DescribeCrossBorderCcnRegionBandwidthLimits(request)
+          body = send_request('DescribeCrossBorderCcnRegionBandwidthLimits', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeCrossBorderCcnRegionBandwidthLimitsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（DescribeCrossBorderCompliance）用于查询用户创建的合规化资质审批单。
         # 服务商可以查询服务名下的任意 `APPID` 创建的审批单；非服务商，只能查询自己审批单。
 
@@ -3862,6 +3888,32 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeTemplateLimitsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口（DescribeTenantCcns）用于获取要锁定的云联网实例列表。
+        # 该接口一般用来封禁出口限速的云联网实例, 目前联通内部运营系统通过云API调用, 因为出口限速无法按地域间封禁, 只能按更粗的云联网实例粒度封禁, 如果是地域间限速, 一般可以通过更细的限速实例粒度封禁（DescribeCrossBorderCcnRegionBandwidthLimits）
+        # 如有需要, 可以封禁任意云联网实例, 可接入到内部运营系统
+
+        # @param request: Request instance for DescribeTenantCcns.
+        # @type request: :class:`Tencentcloud::vpc::V20170312::DescribeTenantCcnsRequest`
+        # @rtype: :class:`Tencentcloud::vpc::V20170312::DescribeTenantCcnsResponse`
+        def DescribeTenantCcns(request)
+          body = send_request('DescribeTenantCcns', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeTenantCcnsResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -4963,6 +5015,61 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = InquiryPriceResetVpnGatewayInternetMaxBandwidthResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口（LockCcnBandwidths）用户锁定云联网限速实例。
+        # 该接口一般用来封禁地域间限速的云联网实例下的限速实例, 目前联通内部运营系统通过云API调用, 如果是出口限速, 一般使用更粗的云联网实例粒度封禁（LockCcns）。
+        # 如有需要, 可以封禁任意限速实例, 可接入到内部运营系统。
+
+        # @param request: Request instance for LockCcnBandwidths.
+        # @type request: :class:`Tencentcloud::vpc::V20170312::LockCcnBandwidthsRequest`
+        # @rtype: :class:`Tencentcloud::vpc::V20170312::LockCcnBandwidthsResponse`
+        def LockCcnBandwidths(request)
+          body = send_request('LockCcnBandwidths', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = LockCcnBandwidthsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口（LockCcns）用于锁定云联网实例
+
+        # 该接口一般用来封禁出口限速的云联网实例, 目前联通内部运营系统通过云API调用, 因为出口限速无法按地域间封禁, 只能按更粗的云联网实例粒度封禁, 如果是地域间限速, 一般可以通过更细的限速实例粒度封禁（LockCcnBandwidths）
+
+        # 如有需要, 可以封禁任意限速实例, 可接入到内部运营系统
+
+
+        # @param request: Request instance for LockCcns.
+        # @type request: :class:`Tencentcloud::vpc::V20170312::LockCcnsRequest`
+        # @rtype: :class:`Tencentcloud::vpc::V20170312::LockCcnsResponse`
+        def LockCcns(request)
+          body = send_request('LockCcns', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = LockCcnsResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -6705,6 +6812,61 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = UnassignPrivateIpAddressesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口（UnlockCcnBandwidths）用户解锁云联网限速实例。
+        # 该接口一般用来封禁地域间限速的云联网实例下的限速实例, 目前联通内部运营系统通过云API调用, 如果是出口限速, 一般使用更粗的云联网实例粒度封禁（SecurityUnlockCcns）。
+        # 如有需要, 可以封禁任意限速实例, 可接入到内部运营系统。
+
+        # @param request: Request instance for UnlockCcnBandwidths.
+        # @type request: :class:`Tencentcloud::vpc::V20170312::UnlockCcnBandwidthsRequest`
+        # @rtype: :class:`Tencentcloud::vpc::V20170312::UnlockCcnBandwidthsResponse`
+        def UnlockCcnBandwidths(request)
+          body = send_request('UnlockCcnBandwidths', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = UnlockCcnBandwidthsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口（UnlockCcns）用于解锁云联网实例
+
+        # 该接口一般用来解封禁出口限速的云联网实例, 目前联通内部运营系统通过云API调用, 因为出口限速无法按地域间解封禁, 只能按更粗的云联网实例粒度解封禁, 如果是地域间限速, 一般可以通过更细的限速实例粒度解封禁（UnlockCcnBandwidths）
+
+        # 如有需要, 可以封禁任意限速实例, 可接入到内部运营系统
+
+
+        # @param request: Request instance for UnlockCcns.
+        # @type request: :class:`Tencentcloud::vpc::V20170312::UnlockCcnsRequest`
+        # @rtype: :class:`Tencentcloud::vpc::V20170312::UnlockCcnsResponse`
+        def UnlockCcns(request)
+          body = send_request('UnlockCcns', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = UnlockCcnsResponse.new
             model.deserialize(response['Response'])
             model
           else
