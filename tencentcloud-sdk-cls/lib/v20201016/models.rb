@@ -1503,9 +1503,9 @@ module TencentCloud
         # @type AutoSplit: Boolean
         # @param MaxSplitPartitions: 开启自动分裂后，每个主题能够允许的最大分区数，默认值为50
         # @type MaxSplitPartitions: Integer
-        # @param StorageType: 日志主题的存储类型，可选值 hot（实时存储），cold（离线存储）；默认为hot。若传入cold，请先联系客服进行开白。
+        # @param StorageType: 日志主题的存储类型，可选值 hot（实时存储），cold（低频存储）；默认为hot。
         # @type StorageType: String
-        # @param Period: 生命周期，单位天；可取值范围1~366。默认30天
+        # @param Period: 生命周期，单位天，可取值范围1~3600。取值为3640时代表永久保存
         # @type Period: Integer
 
         attr_accessor :LogsetId, :TopicName, :PartitionCount, :Tags, :AutoSplit, :MaxSplitPartitions, :StorageType, :Period
@@ -5183,7 +5183,7 @@ module TencentCloud
         # @param StorageType: 日主题的存储类型
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StorageType: String
-        # @param Period: 生命周期，单位为天
+        # @param Period: 生命周期，单位天，可取值范围1~3600。取值为3640时代表永久保存
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Period: Integer
 

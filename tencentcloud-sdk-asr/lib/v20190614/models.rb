@@ -319,22 +319,24 @@ module TencentCloud
         # @type Data: String
         # @param DataLen: 数据长度，非必填（此数据长度为数据未进行base64编码时的数据长度）。
         # @type DataLen: Integer
-        # @param HotwordId: 热词id。用于调用对应的热词表，如果在调用语音识别服务时，不进行单独的热词id设置，自动生效默认热词；如果进行了单独的热词id设置，那么将生效单独设置的热词id。
-        # @type HotwordId: String
-        # @param FilterDirty: 是否过滤脏词（目前支持中文普通话引擎）。0：不过滤脏词；1：过滤脏词；2：将脏词替换为 * 。默认值为 0。
-        # @type FilterDirty: Integer
-        # @param FilterModal: 是否过滤语气词（目前支持中文普通话引擎）。0：不过滤语气词；1：部分过滤；2：严格过滤 。默认值为 0。
-        # @type FilterModal: Integer
         # @param ConvertNumMode: 是否进行阿拉伯数字智能转换（目前支持中文普通话引擎）。0：不转换，直接输出中文数字，1：根据场景智能转换为阿拉伯数字，3: 打开数学相关数字转换。默认值为 1。
         # @type ConvertNumMode: Integer
+        # @param FilterDirty: 是否过滤脏词（目前支持中文普通话引擎）。0：不过滤脏词；1：过滤脏词；2：将脏词替换为 * 。默认值为 0。
+        # @type FilterDirty: Integer
+        # @param HotwordId: 热词表id。如不设置该参数，自动生效默认热词表；如果设置了该参数，那么将生效对应的热词表。
+        # @type HotwordId: String
+        # @param CustomizationId: 自学习模型 id。如不设置该参数，自动生效最后一次上线的自学习模型；如果设置了该参数，那么将生效对应的自学习模型。
+        # @type CustomizationId: String
         # @param Extra: 附加参数(该参数无意义，忽略即可)
         # @type Extra: String
         # @param FilterPunc: 是否过滤标点符号（目前支持中文普通话引擎）。 0：不过滤，1：过滤句末标点，2：过滤所有标点。默认值为 0。
         # @type FilterPunc: Integer
+        # @param FilterModal: 是否过滤语气词（目前支持中文普通话引擎）。0：不过滤语气词；1：部分过滤；2：严格过滤 。默认值为 0。
+        # @type FilterModal: Integer
 
-        attr_accessor :EngineModelType, :ChannelNum, :ResTextFormat, :SourceType, :SpeakerDiarization, :SpeakerNumber, :CallbackUrl, :Url, :Data, :DataLen, :HotwordId, :FilterDirty, :FilterModal, :ConvertNumMode, :Extra, :FilterPunc
+        attr_accessor :EngineModelType, :ChannelNum, :ResTextFormat, :SourceType, :SpeakerDiarization, :SpeakerNumber, :CallbackUrl, :Url, :Data, :DataLen, :ConvertNumMode, :FilterDirty, :HotwordId, :CustomizationId, :Extra, :FilterPunc, :FilterModal
         
-        def initialize(enginemodeltype=nil, channelnum=nil, restextformat=nil, sourcetype=nil, speakerdiarization=nil, speakernumber=nil, callbackurl=nil, url=nil, data=nil, datalen=nil, hotwordid=nil, filterdirty=nil, filtermodal=nil, convertnummode=nil, extra=nil, filterpunc=nil)
+        def initialize(enginemodeltype=nil, channelnum=nil, restextformat=nil, sourcetype=nil, speakerdiarization=nil, speakernumber=nil, callbackurl=nil, url=nil, data=nil, datalen=nil, convertnummode=nil, filterdirty=nil, hotwordid=nil, customizationid=nil, extra=nil, filterpunc=nil, filtermodal=nil)
           @EngineModelType = enginemodeltype
           @ChannelNum = channelnum
           @ResTextFormat = restextformat
@@ -345,12 +347,13 @@ module TencentCloud
           @Url = url
           @Data = data
           @DataLen = datalen
-          @HotwordId = hotwordid
-          @FilterDirty = filterdirty
-          @FilterModal = filtermodal
           @ConvertNumMode = convertnummode
+          @FilterDirty = filterdirty
+          @HotwordId = hotwordid
+          @CustomizationId = customizationid
           @Extra = extra
           @FilterPunc = filterpunc
+          @FilterModal = filtermodal
         end
 
         def deserialize(params)
@@ -364,12 +367,13 @@ module TencentCloud
           @Url = params['Url']
           @Data = params['Data']
           @DataLen = params['DataLen']
-          @HotwordId = params['HotwordId']
-          @FilterDirty = params['FilterDirty']
-          @FilterModal = params['FilterModal']
           @ConvertNumMode = params['ConvertNumMode']
+          @FilterDirty = params['FilterDirty']
+          @HotwordId = params['HotwordId']
+          @CustomizationId = params['CustomizationId']
           @Extra = params['Extra']
           @FilterPunc = params['FilterPunc']
+          @FilterModal = params['FilterModal']
         end
       end
 

@@ -3052,12 +3052,16 @@ module TencentCloud
         #     }
         # }
         # @type AdvancedInfo: String
+        # @param CodeSet: 最下方第一行 MRZ Code 序列
+        # @type CodeSet: String
+        # @param CodeCrc: 最下方第二行 MRZ Code 序列
+        # @type CodeCrc: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :ID, :Name, :DateOfBirth, :Sex, :DateOfExpiration, :IssuingCountry, :Nationality, :Warn, :Image, :AdvancedInfo, :RequestId
+        attr_accessor :ID, :Name, :DateOfBirth, :Sex, :DateOfExpiration, :IssuingCountry, :Nationality, :Warn, :Image, :AdvancedInfo, :CodeSet, :CodeCrc, :RequestId
         
-        def initialize(id=nil, name=nil, dateofbirth=nil, sex=nil, dateofexpiration=nil, issuingcountry=nil, nationality=nil, warn=nil, image=nil, advancedinfo=nil, requestid=nil)
+        def initialize(id=nil, name=nil, dateofbirth=nil, sex=nil, dateofexpiration=nil, issuingcountry=nil, nationality=nil, warn=nil, image=nil, advancedinfo=nil, codeset=nil, codecrc=nil, requestid=nil)
           @ID = id
           @Name = name
           @DateOfBirth = dateofbirth
@@ -3068,6 +3072,8 @@ module TencentCloud
           @Warn = warn
           @Image = image
           @AdvancedInfo = advancedinfo
+          @CodeSet = codeset
+          @CodeCrc = codecrc
           @RequestId = requestid
         end
 
@@ -3082,6 +3088,8 @@ module TencentCloud
           @Warn = params['Warn']
           @Image = params['Image']
           @AdvancedInfo = params['AdvancedInfo']
+          @CodeSet = params['CodeSet']
+          @CodeCrc = params['CodeCrc']
           @RequestId = params['RequestId']
         end
       end

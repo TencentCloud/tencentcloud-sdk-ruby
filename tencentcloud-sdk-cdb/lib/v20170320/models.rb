@@ -190,7 +190,7 @@ module TencentCloud
         # @type Mem: Integer
         # @param SecurityGroup: 安全组
         # @type SecurityGroup: Array
-        # @param Desc: 描述说明
+        # @param Desc: 描述说明，最大支持256位。
         # @type Desc: String
 
         attr_accessor :InstanceId, :UniqVpcId, :UniqSubnetId, :ProxyCount, :Cpu, :Mem, :SecurityGroup, :Desc
@@ -878,7 +878,7 @@ module TencentCloud
         # @type InstanceId: String
         # @param ProxyGroupId: 代理组ID
         # @type ProxyGroupId: String
-        # @param OnlyCloseRW: 是否只关闭读写分离，取值："true" | "false"
+        # @param OnlyCloseRW: 是否只关闭读写分离，取值："true" | "false"，默认为"false"
         # @type OnlyCloseRW: Boolean
 
         attr_accessor :InstanceId, :ProxyGroupId, :OnlyCloseRW
@@ -1959,7 +1959,7 @@ module TencentCloud
         # @type TemplateId: Integer
         # @param ParamList: 参数列表。
         # @type ParamList: Array
-        # @param TemplateType: 默认参数模板类型。支持值包括："HIGH_STABILITY" - 高稳定模版，"HIGH_PERFORMANCE" - 高性能模版。
+        # @param TemplateType: 默认参数模板类型。支持值包括："HIGH_STABILITY" - 高稳定模板，"HIGH_PERFORMANCE" - 高性能模板。
         # @type TemplateType: String
 
         attr_accessor :Name, :Description, :EngineVersion, :TemplateId, :ParamList, :TemplateType
@@ -2877,7 +2877,7 @@ module TencentCloud
         # @type RuleName: String
         # @param Limit: 分页大小参数。默认值为 20，最小值为 1，最大值为 100。
         # @type Limit: Integer
-        # @param Offset: 分页偏移量。
+        # @param Offset: 分页偏移量。默认值为0。
         # @type Offset: Integer
 
         attr_accessor :RuleId, :RuleName, :Limit, :Offset
@@ -4813,7 +4813,7 @@ module TencentCloud
         # @type Items: Array
         # @param Description: 参数模板描述
         # @type Description: String
-        # @param TemplateType: 参数模板类型。支持值包括："HIGH_STABILITY" - 高稳定模版，"HIGH_PERFORMANCE" - 高性能模版。
+        # @param TemplateType: 参数模板类型。支持值包括："HIGH_STABILITY" - 高稳定模板，"HIGH_PERFORMANCE" - 高性能模板。
         # @type TemplateType: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -6883,7 +6883,7 @@ module TencentCloud
         # @param ColumnPrivileges: 数据库表中列的权限。Privileges 权限的可选值为："SELECT","INSERT","UPDATE","REFERENCES"。
         # 注意，不传该参数表示清除该权限。
         # @type ColumnPrivileges: Array
-        # @param ModifyAction: 该参数不为空时，为批量修改权限。可选值为：grant，revoke。
+        # @param ModifyAction: 该参数不为空时，为批量修改权限。可选值为：grant - 授予权限，revoke - 回收权限。
         # @type ModifyAction: String
 
         attr_accessor :InstanceId, :Accounts, :GlobalPrivileges, :DatabasePrivileges, :TablePrivileges, :ColumnPrivileges, :ModifyAction

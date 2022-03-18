@@ -8215,7 +8215,7 @@ module TencentCloud
 
       # 指定时间点截图信息
       class MediaSnapshotByTimePicInfoItem < TencentCloud::Common::AbstractModel
-        # @param TimeOffset: 该张截图对应视频文件中的时间偏移，单位为<font color=red>毫秒</font>。
+        # @param TimeOffset: 该张截图对应视频文件中的时间偏移，单位为秒。
         # @type TimeOffset: Float
         # @param Path: 该张截图的路径。
         # @type Path: String

@@ -1345,6 +1345,54 @@ module TencentCloud
         end
       end
 
+      # TextCorrectionPro请求参数结构体
+      class TextCorrectionProRequest < TencentCloud::Common::AbstractModel
+        # @param Text: 待纠错的文本（仅支持UTF-8格式，不超过128字符）
+        # @type Text: String
+
+        attr_accessor :Text
+        
+        def initialize(text=nil)
+          @Text = text
+        end
+
+        def deserialize(params)
+          @Text = params['Text']
+        end
+      end
+
+      # TextCorrectionPro返回参数结构体
+      class TextCorrectionProResponse < TencentCloud::Common::AbstractModel
+        # @param CCITokens: 纠错详情
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CCITokens: Array
+        # @param ResultText: 纠错后的文本
+        # @type ResultText: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :CCITokens, :ResultText, :RequestId
+        
+        def initialize(ccitokens=nil, resulttext=nil, requestid=nil)
+          @CCITokens = ccitokens
+          @ResultText = resulttext
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['CCITokens'].nil?
+            @CCITokens = []
+            params['CCITokens'].each do |i|
+              ccitoken_tmp = CCIToken.new
+              ccitoken_tmp.deserialize(i)
+              @CCITokens << ccitoken_tmp
+            end
+          end
+          @ResultText = params['ResultText']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # TextCorrection请求参数结构体
       class TextCorrectionRequest < TencentCloud::Common::AbstractModel
         # @param Text: 待纠错的文本（仅支持UTF-8格式，不超过2000字符）

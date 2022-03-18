@@ -648,13 +648,19 @@ module TencentCloud
         # @type UserDescription: String
         # @param PolicySet: 绑定到用户的权限集合
         # @type PolicySet: Array
+        # @param UserType: 用户类型。ADMIN：管理员 COMMON：一般用户。当用户类型为管理员的时候，不能设置权限集合和绑定的工作组集合，管理员默认拥有所有权限。该参数不填默认为COMMON
+        # @type UserType: String
+        # @param WorkGroupIds: 绑定到用户的工作组ID集合。
+        # @type WorkGroupIds: Array
 
-        attr_accessor :UserId, :UserDescription, :PolicySet
+        attr_accessor :UserId, :UserDescription, :PolicySet, :UserType, :WorkGroupIds
         
-        def initialize(userid=nil, userdescription=nil, policyset=nil)
+        def initialize(userid=nil, userdescription=nil, policyset=nil, usertype=nil, workgroupids=nil)
           @UserId = userid
           @UserDescription = userdescription
           @PolicySet = policyset
+          @UserType = usertype
+          @WorkGroupIds = workgroupids
         end
 
         def deserialize(params)
@@ -668,6 +674,8 @@ module TencentCloud
               @PolicySet << policy_tmp
             end
           end
+          @UserType = params['UserType']
+          @WorkGroupIds = params['WorkGroupIds']
         end
       end
 
@@ -695,13 +703,16 @@ module TencentCloud
         # @type WorkGroupDescription: String
         # @param PolicySet: 工作组绑定的鉴权策略集合
         # @type PolicySet: Array
+        # @param UserIds: 需要绑定到工作组的用户Id集合
+        # @type UserIds: Array
 
-        attr_accessor :WorkGroupName, :WorkGroupDescription, :PolicySet
+        attr_accessor :WorkGroupName, :WorkGroupDescription, :PolicySet, :UserIds
         
-        def initialize(workgroupname=nil, workgroupdescription=nil, policyset=nil)
+        def initialize(workgroupname=nil, workgroupdescription=nil, policyset=nil, userids=nil)
           @WorkGroupName = workgroupname
           @WorkGroupDescription = workgroupdescription
           @PolicySet = policyset
+          @UserIds = userids
         end
 
         def deserialize(params)
@@ -715,6 +726,7 @@ module TencentCloud
               @PolicySet << policy_tmp
             end
           end
+          @UserIds = params['UserIds']
         end
       end
 

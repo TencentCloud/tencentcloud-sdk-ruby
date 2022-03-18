@@ -229,10 +229,13 @@ module TencentCloud
         # @param PolicyIds: 告警通知模板绑定的告警策略ID列表
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PolicyIds: Array
+        # @param CLSNotices: 推送cls渠道
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CLSNotices: Array
 
-        attr_accessor :Id, :Name, :UpdatedAt, :UpdatedBy, :NoticeType, :UserNotices, :URLNotices, :IsPreset, :NoticeLanguage, :PolicyIds
+        attr_accessor :Id, :Name, :UpdatedAt, :UpdatedBy, :NoticeType, :UserNotices, :URLNotices, :IsPreset, :NoticeLanguage, :PolicyIds, :CLSNotices
         
-        def initialize(id=nil, name=nil, updatedat=nil, updatedby=nil, noticetype=nil, usernotices=nil, urlnotices=nil, ispreset=nil, noticelanguage=nil, policyids=nil)
+        def initialize(id=nil, name=nil, updatedat=nil, updatedby=nil, noticetype=nil, usernotices=nil, urlnotices=nil, ispreset=nil, noticelanguage=nil, policyids=nil, clsnotices=nil)
           @Id = id
           @Name = name
           @UpdatedAt = updatedat
@@ -243,6 +246,7 @@ module TencentCloud
           @IsPreset = ispreset
           @NoticeLanguage = noticelanguage
           @PolicyIds = policyids
+          @CLSNotices = clsnotices
         end
 
         def deserialize(params)
@@ -270,6 +274,14 @@ module TencentCloud
           @IsPreset = params['IsPreset']
           @NoticeLanguage = params['NoticeLanguage']
           @PolicyIds = params['PolicyIds']
+          unless params['CLSNotices'].nil?
+            @CLSNotices = []
+            params['CLSNotices'].each do |i|
+              clsnotice_tmp = CLSNotice.new
+              clsnotice_tmp.deserialize(i)
+              @CLSNotices << clsnotice_tmp
+            end
+          end
         end
       end
 
@@ -793,6 +805,34 @@ module TencentCloud
         end
       end
 
+      # 告警通知中的推送CLS操作
+      class CLSNotice < TencentCloud::Common::AbstractModel
+        # @param Region: 地域
+        # @type Region: String
+        # @param LogSetId: 日志集Id
+        # @type LogSetId: String
+        # @param TopicId: 主题Id
+        # @type TopicId: String
+        # @param Enable: 启停状态，可不传，默认启用。0=停用，1=启用
+        # @type Enable: Integer
+
+        attr_accessor :Region, :LogSetId, :TopicId, :Enable
+        
+        def initialize(region=nil, logsetid=nil, topicid=nil, enable=nil)
+          @Region = region
+          @LogSetId = logsetid
+          @TopicId = topicid
+          @Enable = enable
+        end
+
+        def deserialize(params)
+          @Region = params['Region']
+          @LogSetId = params['LogSetId']
+          @TopicId = params['TopicId']
+          @Enable = params['Enable']
+        end
+      end
+
       # 统一的命名空间信息
       class CommonNamespace < TencentCloud::Common::AbstractModel
         # @param Id: 命名空间标示
@@ -939,16 +979,19 @@ module TencentCloud
         # @type UserNotices: Array
         # @param URLNotices: 回调通知 最多3个
         # @type URLNotices: Array
+        # @param CLSNotices: 推送CLS日志服务的操作 最多1个
+        # @type CLSNotices: Array
 
-        attr_accessor :Module, :Name, :NoticeType, :NoticeLanguage, :UserNotices, :URLNotices
+        attr_accessor :Module, :Name, :NoticeType, :NoticeLanguage, :UserNotices, :URLNotices, :CLSNotices
         
-        def initialize(_module=nil, name=nil, noticetype=nil, noticelanguage=nil, usernotices=nil, urlnotices=nil)
+        def initialize(_module=nil, name=nil, noticetype=nil, noticelanguage=nil, usernotices=nil, urlnotices=nil, clsnotices=nil)
           @Module = _module
           @Name = name
           @NoticeType = noticetype
           @NoticeLanguage = noticelanguage
           @UserNotices = usernotices
           @URLNotices = urlnotices
+          @CLSNotices = clsnotices
         end
 
         def deserialize(params)
@@ -970,6 +1013,14 @@ module TencentCloud
               urlnotice_tmp = URLNotice.new
               urlnotice_tmp.deserialize(i)
               @URLNotices << urlnotice_tmp
+            end
+          end
+          unless params['CLSNotices'].nil?
+            @CLSNotices = []
+            params['CLSNotices'].each do |i|
+              clsnotice_tmp = CLSNotice.new
+              clsnotice_tmp.deserialize(i)
+              @CLSNotices << clsnotice_tmp
             end
           end
         end
@@ -2232,10 +2283,12 @@ module TencentCloud
         # @type InstanceGroupId: Integer
         # @param NeedCorrespondence: 是否需要策略与入参过滤维度参数的对应关系，1：是  0：否，默认为0
         # @type NeedCorrespondence: Integer
+        # @param TriggerTasks: 按照触发任务（例如弹性伸缩）过滤策略。最多10个
+        # @type TriggerTasks: Array
 
-        attr_accessor :Module, :PageNumber, :PageSize, :PolicyName, :MonitorTypes, :Namespaces, :Dimensions, :ReceiverUids, :ReceiverGroups, :PolicyType, :Field, :Order, :ProjectIds, :NoticeIds, :RuleTypes, :Enable, :NotBindingNoticeRule, :InstanceGroupId, :NeedCorrespondence
+        attr_accessor :Module, :PageNumber, :PageSize, :PolicyName, :MonitorTypes, :Namespaces, :Dimensions, :ReceiverUids, :ReceiverGroups, :PolicyType, :Field, :Order, :ProjectIds, :NoticeIds, :RuleTypes, :Enable, :NotBindingNoticeRule, :InstanceGroupId, :NeedCorrespondence, :TriggerTasks
         
-        def initialize(_module=nil, pagenumber=nil, pagesize=nil, policyname=nil, monitortypes=nil, namespaces=nil, dimensions=nil, receiveruids=nil, receivergroups=nil, policytype=nil, field=nil, order=nil, projectids=nil, noticeids=nil, ruletypes=nil, enable=nil, notbindingnoticerule=nil, instancegroupid=nil, needcorrespondence=nil)
+        def initialize(_module=nil, pagenumber=nil, pagesize=nil, policyname=nil, monitortypes=nil, namespaces=nil, dimensions=nil, receiveruids=nil, receivergroups=nil, policytype=nil, field=nil, order=nil, projectids=nil, noticeids=nil, ruletypes=nil, enable=nil, notbindingnoticerule=nil, instancegroupid=nil, needcorrespondence=nil, triggertasks=nil)
           @Module = _module
           @PageNumber = pagenumber
           @PageSize = pagesize
@@ -2255,6 +2308,7 @@ module TencentCloud
           @NotBindingNoticeRule = notbindingnoticerule
           @InstanceGroupId = instancegroupid
           @NeedCorrespondence = needcorrespondence
+          @TriggerTasks = triggertasks
         end
 
         def deserialize(params)
@@ -2277,6 +2331,14 @@ module TencentCloud
           @NotBindingNoticeRule = params['NotBindingNoticeRule']
           @InstanceGroupId = params['InstanceGroupId']
           @NeedCorrespondence = params['NeedCorrespondence']
+          unless params['TriggerTasks'].nil?
+            @TriggerTasks = []
+            params['TriggerTasks'].each do |i|
+              alarmpolicytriggertask_tmp = AlarmPolicyTriggerTask.new
+              alarmpolicytriggertask_tmp.deserialize(i)
+              @TriggerTasks << alarmpolicytriggertask_tmp
+            end
+          end
         end
       end
 
@@ -5292,10 +5354,12 @@ module TencentCloud
         # @type UserNotices: Array
         # @param URLNotices: 回调通知 最多3个
         # @type URLNotices: Array
+        # @param CLSNotices: 告警通知推送到CLS服务 最多1个
+        # @type CLSNotices: Array
 
-        attr_accessor :Module, :Name, :NoticeType, :NoticeLanguage, :NoticeId, :UserNotices, :URLNotices
+        attr_accessor :Module, :Name, :NoticeType, :NoticeLanguage, :NoticeId, :UserNotices, :URLNotices, :CLSNotices
         
-        def initialize(_module=nil, name=nil, noticetype=nil, noticelanguage=nil, noticeid=nil, usernotices=nil, urlnotices=nil)
+        def initialize(_module=nil, name=nil, noticetype=nil, noticelanguage=nil, noticeid=nil, usernotices=nil, urlnotices=nil, clsnotices=nil)
           @Module = _module
           @Name = name
           @NoticeType = noticetype
@@ -5303,6 +5367,7 @@ module TencentCloud
           @NoticeId = noticeid
           @UserNotices = usernotices
           @URLNotices = urlnotices
+          @CLSNotices = clsnotices
         end
 
         def deserialize(params)
@@ -5325,6 +5390,14 @@ module TencentCloud
               urlnotice_tmp = URLNotice.new
               urlnotice_tmp.deserialize(i)
               @URLNotices << urlnotice_tmp
+            end
+          end
+          unless params['CLSNotices'].nil?
+            @CLSNotices = []
+            params['CLSNotices'].each do |i|
+              clsnotice_tmp = CLSNotice.new
+              clsnotice_tmp.deserialize(i)
+              @CLSNotices << clsnotice_tmp
             end
           end
         end

@@ -55,12 +55,7 @@ module TencentCloud
         # @type NotifyType: String
         # @param ApproverRole: 1--收款人、2--开具人、3--见证人
         # @type ApproverRole: Integer
-        # @param VerifyChannel: 认证方式：
-        # WEIXINAPP - 微信小程序；
-        # VERIFYCODE - 验证码；
-
-        # 可以选择多个, 按照顺序进行优先级选择
-        # 注：使用验证码方式认证签署时，请传入["VERIFYCODE","WEIXINAPP"]
+        # @param VerifyChannel: 签署意愿确认渠道,WEIXINAPP:人脸识别
         # @type VerifyChannel: Array
         # @param PreReadTime: 合同的强制预览时间：3~300s，未指定则按合同页数计算
         # @type PreReadTime: Integer
