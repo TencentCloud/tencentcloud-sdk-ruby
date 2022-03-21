@@ -3379,15 +3379,32 @@ module TencentCloud
         # @type Namespace: String
         # @param TriggerActions: 定时预置任务
         # @type TriggerActions: Array
+        # @param ProvisionedType: 预置类型，
+        # 静态预置：Default
+        # 动态追踪并发利用率指标预置：ConcurrencyUtilizationTracking
+        # 预置类型二选一，设置静态预置时可以设置VersionProvisionedConcurrencyNum。
 
-        attr_accessor :FunctionName, :Qualifier, :VersionProvisionedConcurrencyNum, :Namespace, :TriggerActions
+        # 动态利用率预置可以设置TrackingTarget，MinCapacity，MaxCapacity，保持向后兼容性此时VersionProvisionedConcurrencyNum设置为0.
+        # @type ProvisionedType: String
+        # @param TrackingTarget: 指标追踪的并发利用率。设置范围(0,1)
+        # @type TrackingTarget: Float
+        # @param MinCapacity: 缩容时的最小值, 最小值为1
+        # @type MinCapacity: Integer
+        # @param MaxCapacity: 扩容时的最大值
+        # @type MaxCapacity: Integer
+
+        attr_accessor :FunctionName, :Qualifier, :VersionProvisionedConcurrencyNum, :Namespace, :TriggerActions, :ProvisionedType, :TrackingTarget, :MinCapacity, :MaxCapacity
         
-        def initialize(functionname=nil, qualifier=nil, versionprovisionedconcurrencynum=nil, namespace=nil, triggeractions=nil)
+        def initialize(functionname=nil, qualifier=nil, versionprovisionedconcurrencynum=nil, namespace=nil, triggeractions=nil, provisionedtype=nil, trackingtarget=nil, mincapacity=nil, maxcapacity=nil)
           @FunctionName = functionname
           @Qualifier = qualifier
           @VersionProvisionedConcurrencyNum = versionprovisionedconcurrencynum
           @Namespace = namespace
           @TriggerActions = triggeractions
+          @ProvisionedType = provisionedtype
+          @TrackingTarget = trackingtarget
+          @MinCapacity = mincapacity
+          @MaxCapacity = maxcapacity
         end
 
         def deserialize(params)
@@ -3403,6 +3420,10 @@ module TencentCloud
               @TriggerActions << triggeraction_tmp
             end
           end
+          @ProvisionedType = params['ProvisionedType']
+          @TrackingTarget = params['TrackingTarget']
+          @MinCapacity = params['MinCapacity']
+          @MaxCapacity = params['MaxCapacity']
         end
       end
 

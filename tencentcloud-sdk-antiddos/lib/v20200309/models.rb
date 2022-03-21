@@ -2062,7 +2062,7 @@ module TencentCloud
       # DDoS防护的区域封禁配置
       class DDoSGeoIPBlockConfig < TencentCloud::Common::AbstractModel
         # @param RegionType: 区域类型，取值[
-        # oversea(海外)
+        # oversea(境外)
         # china(国内)
         # customized(自定义地区)
         # ]

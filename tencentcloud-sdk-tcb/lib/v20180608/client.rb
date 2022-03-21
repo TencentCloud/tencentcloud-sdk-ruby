@@ -1592,6 +1592,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 批量冻结
+
+        # @param request: Request instance for FreezeCloudBaseRunServers.
+        # @type request: :class:`Tencentcloud::tcb::V20180608::FreezeCloudBaseRunServersRequest`
+        # @rtype: :class:`Tencentcloud::tcb::V20180608::FreezeCloudBaseRunServersResponse`
+        def FreezeCloudBaseRunServers(request)
+          body = send_request('FreezeCloudBaseRunServers', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = FreezeCloudBaseRunServersResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 修改容器内的版本流量配置
 
         # @param request: Request instance for ModifyCloudBaseRunServerFlowConf.
@@ -1842,6 +1866,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = TurnOnStandaloneGatewayResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 批量解冻服务
+
+        # @param request: Request instance for UnfreezeCloudBaseRunServers.
+        # @type request: :class:`Tencentcloud::tcb::V20180608::UnfreezeCloudBaseRunServersRequest`
+        # @rtype: :class:`Tencentcloud::tcb::V20180608::UnfreezeCloudBaseRunServersResponse`
+        def UnfreezeCloudBaseRunServers(request)
+          body = send_request('UnfreezeCloudBaseRunServers', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = UnfreezeCloudBaseRunServersResponse.new
             model.deserialize(response['Response'])
             model
           else

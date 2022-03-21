@@ -2983,13 +2983,16 @@ module TencentCloud
         # @type Offset: Integer
         # @param Filters: 过滤条件
         # @type Filters: Array
+        # @param IsDemo: 是否为demo模式（1=是，2=否）
+        # @type IsDemo: Integer
 
-        attr_accessor :Limit, :Offset, :Filters
+        attr_accessor :Limit, :Offset, :Filters, :IsDemo
         
-        def initialize(limit=nil, offset=nil, filters=nil)
+        def initialize(limit=nil, offset=nil, filters=nil, isdemo=nil)
           @Limit = limit
           @Offset = offset
           @Filters = filters
+          @IsDemo = isdemo
         end
 
         def deserialize(params)
@@ -3003,6 +3006,7 @@ module TencentCloud
               @Filters << filter_tmp
             end
           end
+          @IsDemo = params['IsDemo']
         end
       end
 
@@ -3200,19 +3204,23 @@ module TencentCloud
         # @type StartTime: String
         # @param ID: 项目ID
         # @type ID: Integer
+        # @param IsDemo: 是否为demo模式（1=是，2=否）
+        # @type IsDemo: Integer
 
-        attr_accessor :EndTime, :StartTime, :ID
+        attr_accessor :EndTime, :StartTime, :ID, :IsDemo
         
-        def initialize(endtime=nil, starttime=nil, id=nil)
+        def initialize(endtime=nil, starttime=nil, id=nil, isdemo=nil)
           @EndTime = endtime
           @StartTime = starttime
           @ID = id
+          @IsDemo = isdemo
         end
 
         def deserialize(params)
           @EndTime = params['EndTime']
           @StartTime = params['StartTime']
           @ID = params['ID']
+          @IsDemo = params['IsDemo']
         end
       end
 
@@ -3324,10 +3332,12 @@ module TencentCloud
         # @type InstanceIds: Array
         # @param Filters: 过滤参数
         # @type Filters: Array
+        # @param IsDemo: 是否为demo模式（1=是，2=否）
+        # @type IsDemo: Integer
 
-        attr_accessor :ChargeStatuses, :ChargeTypes, :Limit, :Offset, :AreaIds, :InstanceStatuses, :InstanceIds, :Filters
+        attr_accessor :ChargeStatuses, :ChargeTypes, :Limit, :Offset, :AreaIds, :InstanceStatuses, :InstanceIds, :Filters, :IsDemo
         
-        def initialize(chargestatuses=nil, chargetypes=nil, limit=nil, offset=nil, areaids=nil, instancestatuses=nil, instanceids=nil, filters=nil)
+        def initialize(chargestatuses=nil, chargetypes=nil, limit=nil, offset=nil, areaids=nil, instancestatuses=nil, instanceids=nil, filters=nil, isdemo=nil)
           @ChargeStatuses = chargestatuses
           @ChargeTypes = chargetypes
           @Limit = limit
@@ -3336,6 +3346,7 @@ module TencentCloud
           @InstanceStatuses = instancestatuses
           @InstanceIds = instanceids
           @Filters = filters
+          @IsDemo = isdemo
         end
 
         def deserialize(params)
@@ -3354,6 +3365,7 @@ module TencentCloud
               @Filters << filter_tmp
             end
           end
+          @IsDemo = params['IsDemo']
         end
       end
 
@@ -3736,33 +3748,33 @@ module TencentCloud
 
       # 项目接口限制类型
       class ProjectLimit < TencentCloud::Common::AbstractModel
-        # @param ID: 主键ID
-        # @type ID: Integer
-        # @param ProjectID: 项目ID
-        # @type ProjectID: Integer
         # @param ProjectInterface: 接口
         # @type ProjectInterface: String
         # @param ReportRate: 上报率
         # @type ReportRate: Integer
         # @param ReportType: 上报类型 1：上报率  2：上报量限制
         # @type ReportType: Integer
+        # @param ID: 主键ID
+        # @type ID: Integer
+        # @param ProjectID: 项目ID
+        # @type ProjectID: Integer
 
-        attr_accessor :ID, :ProjectID, :ProjectInterface, :ReportRate, :ReportType
+        attr_accessor :ProjectInterface, :ReportRate, :ReportType, :ID, :ProjectID
         
-        def initialize(id=nil, projectid=nil, projectinterface=nil, reportrate=nil, reporttype=nil)
-          @ID = id
-          @ProjectID = projectid
+        def initialize(projectinterface=nil, reportrate=nil, reporttype=nil, id=nil, projectid=nil)
           @ProjectInterface = projectinterface
           @ReportRate = reportrate
           @ReportType = reporttype
+          @ID = id
+          @ProjectID = projectid
         end
 
         def deserialize(params)
-          @ID = params['ID']
-          @ProjectID = params['ProjectID']
           @ProjectInterface = params['ProjectInterface']
           @ReportRate = params['ReportRate']
           @ReportType = params['ReportType']
+          @ID = params['ID']
+          @ProjectID = params['ProjectID']
         end
       end
 
@@ -3962,10 +3974,13 @@ module TencentCloud
         # @param IsStar: 是否星标  1:是 0:否
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsStar: Integer
+        # @param ProjectStatus: 项目状态(1 创建中，2 运行中，3 异常，4 重启中，5 停止中，6 已停止， 7 销毁中，8 已销毁)
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProjectStatus: Integer
 
-        attr_accessor :Name, :Creator, :InstanceID, :Type, :CreateTime, :Repo, :URL, :Rate, :Key, :EnableURLGroup, :InstanceName, :ID, :InstanceKey, :Desc, :IsStar
+        attr_accessor :Name, :Creator, :InstanceID, :Type, :CreateTime, :Repo, :URL, :Rate, :Key, :EnableURLGroup, :InstanceName, :ID, :InstanceKey, :Desc, :IsStar, :ProjectStatus
         
-        def initialize(name=nil, creator=nil, instanceid=nil, type=nil, createtime=nil, repo=nil, url=nil, rate=nil, key=nil, enableurlgroup=nil, instancename=nil, id=nil, instancekey=nil, desc=nil, isstar=nil)
+        def initialize(name=nil, creator=nil, instanceid=nil, type=nil, createtime=nil, repo=nil, url=nil, rate=nil, key=nil, enableurlgroup=nil, instancename=nil, id=nil, instancekey=nil, desc=nil, isstar=nil, projectstatus=nil)
           @Name = name
           @Creator = creator
           @InstanceID = instanceid
@@ -3981,6 +3996,7 @@ module TencentCloud
           @InstanceKey = instancekey
           @Desc = desc
           @IsStar = isstar
+          @ProjectStatus = projectstatus
         end
 
         def deserialize(params)
@@ -3999,6 +4015,7 @@ module TencentCloud
           @InstanceKey = params['InstanceKey']
           @Desc = params['Desc']
           @IsStar = params['IsStar']
+          @ProjectStatus = params['ProjectStatus']
         end
       end
 

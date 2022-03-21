@@ -5783,6 +5783,57 @@ module TencentCloud
         end
       end
 
+      # FreezeCloudBaseRunServers请求参数结构体
+      class FreezeCloudBaseRunServersRequest < TencentCloud::Common::AbstractModel
+        # @param EnvId: 环境ID
+        # @type EnvId: String
+        # @param ServerNameList: 服务名列表
+        # @type ServerNameList: Array
+
+        attr_accessor :EnvId, :ServerNameList
+        
+        def initialize(envid=nil, servernamelist=nil)
+          @EnvId = envid
+          @ServerNameList = servernamelist
+        end
+
+        def deserialize(params)
+          @EnvId = params['EnvId']
+          @ServerNameList = params['ServerNameList']
+        end
+      end
+
+      # FreezeCloudBaseRunServers返回参数结构体
+      class FreezeCloudBaseRunServersResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 批量状态状态
+        # 成功：succ
+        # 失败：fail
+        # 部分：partial（部分成功、部分失败）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Result: String
+        # @param FailServerList: 冻结失败服务列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FailServerList: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :FailServerList, :RequestId
+        
+        def initialize(result=nil, failserverlist=nil, requestid=nil)
+          @Result = result
+          @FailServerList = failserverlist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Result = params['Result']
+          @FailServerList = params['FailServerList']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 函数的信息
       class FunctionInfo < TencentCloud::Common::AbstractModel
         # @param Namespace: 命名空间
@@ -7197,6 +7248,57 @@ module TencentCloud
 
         def deserialize(params)
           @Status = params['Status']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # UnfreezeCloudBaseRunServers请求参数结构体
+      class UnfreezeCloudBaseRunServersRequest < TencentCloud::Common::AbstractModel
+        # @param EnvId: 环境ID
+        # @type EnvId: String
+        # @param ServerNameList: 服务名称列表
+        # @type ServerNameList: Array
+
+        attr_accessor :EnvId, :ServerNameList
+        
+        def initialize(envid=nil, servernamelist=nil)
+          @EnvId = envid
+          @ServerNameList = servernamelist
+        end
+
+        def deserialize(params)
+          @EnvId = params['EnvId']
+          @ServerNameList = params['ServerNameList']
+        end
+      end
+
+      # UnfreezeCloudBaseRunServers返回参数结构体
+      class UnfreezeCloudBaseRunServersResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 批量执行结果
+        # 成功：succ
+        # 失败：fail
+        # 部分：partial（部分成功、部分失败）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Result: String
+        # @param FailServerList: 解冻失败列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FailServerList: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :FailServerList, :RequestId
+        
+        def initialize(result=nil, failserverlist=nil, requestid=nil)
+          @Result = result
+          @FailServerList = failserverlist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Result = params['Result']
+          @FailServerList = params['FailServerList']
           @RequestId = params['RequestId']
         end
       end

@@ -1907,9 +1907,9 @@ module TencentCloud
         # @type CurIndex: Integer
         # @param Position: 播放进度，单位：毫秒。
         # @type Position: Integer
-        # @param SetAudioParamInput: 音频参数
+        # @param SetAudioParamInput: 音频参数。
         # @type SetAudioParamInput: :class:`Tencentcloud::Ame.v20190916.models.SetAudioParamCommandInput`
-        # @param JoinRoomInput: 进房信息
+        # @param JoinRoomInput: 进房信息。
         # @type JoinRoomInput: :class:`Tencentcloud::Ame.v20190916.models.JoinRoomInput`
         # @param RTCSystem: RTC厂商类型，取值有：
         # <li>TRTC</li>
@@ -1920,10 +1920,12 @@ module TencentCloud
         # <li>RepeatSingle：单曲循环</li>
         # <li>Shuffle：随机播放</li>
         # @type SetPlayModeInput: :class:`Tencentcloud::Ame.v20190916.models.SetPlayModeCommandInput`
+        # @param SetVolumeInput: 音量，范围 0~100，默认为 50。
+        # @type SetVolumeInput: :class:`Tencentcloud::Ame.v20190916.models.SetVolumeCommandInput`
 
-        attr_accessor :RobotId, :Status, :Playlists, :CurIndex, :Position, :SetAudioParamInput, :JoinRoomInput, :RTCSystem, :SetPlayModeInput
+        attr_accessor :RobotId, :Status, :Playlists, :CurIndex, :Position, :SetAudioParamInput, :JoinRoomInput, :RTCSystem, :SetPlayModeInput, :SetVolumeInput
         
-        def initialize(robotid=nil, status=nil, playlists=nil, curindex=nil, position=nil, setaudioparaminput=nil, joinroominput=nil, rtcsystem=nil, setplaymodeinput=nil)
+        def initialize(robotid=nil, status=nil, playlists=nil, curindex=nil, position=nil, setaudioparaminput=nil, joinroominput=nil, rtcsystem=nil, setplaymodeinput=nil, setvolumeinput=nil)
           @RobotId = robotid
           @Status = status
           @Playlists = playlists
@@ -1933,6 +1935,7 @@ module TencentCloud
           @JoinRoomInput = joinroominput
           @RTCSystem = rtcsystem
           @SetPlayModeInput = setplaymodeinput
+          @SetVolumeInput = setvolumeinput
         end
 
         def deserialize(params)
@@ -1953,6 +1956,10 @@ module TencentCloud
           unless params['SetPlayModeInput'].nil?
             @SetPlayModeInput = SetPlayModeCommandInput.new
             @SetPlayModeInput.deserialize(params['SetPlayModeInput'])
+          end
+          unless params['SetVolumeInput'].nil?
+            @SetVolumeInput = SetVolumeCommandInput.new
+            @SetVolumeInput.deserialize(params['SetVolumeInput'])
           end
         end
       end
@@ -2743,6 +2750,22 @@ module TencentCloud
         end
       end
 
+      # 设置音量。
+      class SetVolumeCommandInput < TencentCloud::Common::AbstractModel
+        # @param Volume: 音量大小，取值范围为 0~100，默认值为 50。
+        # @type Volume: Integer
+
+        attr_accessor :Volume
+        
+        def initialize(volume=nil)
+          @Volume = volume
+        end
+
+        def deserialize(params)
+          @Volume = params['Volume']
+        end
+      end
+
       # 排序依据
       class SortBy < TencentCloud::Common::AbstractModel
         # @param Field: 排序字段
@@ -2821,6 +2844,7 @@ module TencentCloud
         # <li>SetAudioParam：音频参数变更</li>
         # <li>SendMessage：发送自定义消息</li>
         # <li>SetDestroyMode：设置销毁模式</li>
+        # <li>SetVolume：设置音量</li>
         # @type Command: String
         # @param PlayCommandInput: 播放参数。
         # @type PlayCommandInput: :class:`Tencentcloud::Ame.v20190916.models.PlayCommandInput`
@@ -2836,10 +2860,12 @@ module TencentCloud
         # @type SetPlayModeCommandInput: :class:`Tencentcloud::Ame.v20190916.models.SetPlayModeCommandInput`
         # @param SetDestroyModeCommandInput: 销毁模式，当Command取SetDestroyMode时，必填。
         # @type SetDestroyModeCommandInput: :class:`Tencentcloud::Ame.v20190916.models.SetDestroyModeCommandInput`
+        # @param SetVolumeCommandInput: 音量，当Command取SetVolume时，必填。
+        # @type SetVolumeCommandInput: :class:`Tencentcloud::Ame.v20190916.models.SetVolumeCommandInput`
 
-        attr_accessor :RobotId, :Command, :PlayCommandInput, :SetPlaylistCommandInput, :SeekCommandInput, :SetAudioParamCommandInput, :SendMessageCommandInput, :SetPlayModeCommandInput, :SetDestroyModeCommandInput
+        attr_accessor :RobotId, :Command, :PlayCommandInput, :SetPlaylistCommandInput, :SeekCommandInput, :SetAudioParamCommandInput, :SendMessageCommandInput, :SetPlayModeCommandInput, :SetDestroyModeCommandInput, :SetVolumeCommandInput
         
-        def initialize(robotid=nil, command=nil, playcommandinput=nil, setplaylistcommandinput=nil, seekcommandinput=nil, setaudioparamcommandinput=nil, sendmessagecommandinput=nil, setplaymodecommandinput=nil, setdestroymodecommandinput=nil)
+        def initialize(robotid=nil, command=nil, playcommandinput=nil, setplaylistcommandinput=nil, seekcommandinput=nil, setaudioparamcommandinput=nil, sendmessagecommandinput=nil, setplaymodecommandinput=nil, setdestroymodecommandinput=nil, setvolumecommandinput=nil)
           @RobotId = robotid
           @Command = command
           @PlayCommandInput = playcommandinput
@@ -2849,6 +2875,7 @@ module TencentCloud
           @SendMessageCommandInput = sendmessagecommandinput
           @SetPlayModeCommandInput = setplaymodecommandinput
           @SetDestroyModeCommandInput = setdestroymodecommandinput
+          @SetVolumeCommandInput = setvolumecommandinput
         end
 
         def deserialize(params)
@@ -2881,6 +2908,10 @@ module TencentCloud
           unless params['SetDestroyModeCommandInput'].nil?
             @SetDestroyModeCommandInput = SetDestroyModeCommandInput.new
             @SetDestroyModeCommandInput.deserialize(params['SetDestroyModeCommandInput'])
+          end
+          unless params['SetVolumeCommandInput'].nil?
+            @SetVolumeCommandInput = SetVolumeCommandInput.new
+            @SetVolumeCommandInput.deserialize(params['SetVolumeCommandInput'])
           end
         end
       end

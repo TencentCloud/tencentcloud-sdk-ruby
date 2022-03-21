@@ -102,20 +102,20 @@ module TencentCloud
       class CancelFlowRequest < TencentCloud::Common::AbstractModel
         # @param Operator: 操作用户id
         # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
-        # @param Agent: 应用相关信息
-        # @type Agent: :class:`Tencentcloud::Ess.v20201111.models.Agent`
         # @param FlowId: 流程id
         # @type FlowId: String
         # @param CancelMessage: 撤销原因
         # @type CancelMessage: String
+        # @param Agent: 应用相关信息
+        # @type Agent: :class:`Tencentcloud::Ess.v20201111.models.Agent`
 
-        attr_accessor :Operator, :Agent, :FlowId, :CancelMessage
+        attr_accessor :Operator, :FlowId, :CancelMessage, :Agent
         
-        def initialize(operator=nil, agent=nil, flowid=nil, cancelmessage=nil)
+        def initialize(operator=nil, flowid=nil, cancelmessage=nil, agent=nil)
           @Operator = operator
-          @Agent = agent
           @FlowId = flowid
           @CancelMessage = cancelmessage
+          @Agent = agent
         end
 
         def deserialize(params)
@@ -123,12 +123,12 @@ module TencentCloud
             @Operator = UserInfo.new
             @Operator.deserialize(params['Operator'])
           end
+          @FlowId = params['FlowId']
+          @CancelMessage = params['CancelMessage']
           unless params['Agent'].nil?
             @Agent = Agent.new
             @Agent.deserialize(params['Agent'])
           end
-          @FlowId = params['FlowId']
-          @CancelMessage = params['CancelMessage']
         end
       end
 
@@ -891,10 +891,12 @@ module TencentCloud
         # @type PreReadTime: Integer
         # @param NotifyType: 是否发送短信，sms--短信通知，none--不通知，默认为sms
         # @type NotifyType: String
+        # @param VerifyChannel: 签署意愿确认渠道,WEIXINAPP:人脸识别
+        # @type VerifyChannel: Array
 
-        attr_accessor :ApproverType, :OrganizationName, :Required, :ApproverName, :ApproverMobile, :ApproverIdCardNumber, :ApproverIdCardType, :RecipientId, :UserId, :IsFullText, :PreReadTime, :NotifyType
+        attr_accessor :ApproverType, :OrganizationName, :Required, :ApproverName, :ApproverMobile, :ApproverIdCardNumber, :ApproverIdCardType, :RecipientId, :UserId, :IsFullText, :PreReadTime, :NotifyType, :VerifyChannel
         
-        def initialize(approvertype=nil, organizationname=nil, required=nil, approvername=nil, approvermobile=nil, approveridcardnumber=nil, approveridcardtype=nil, recipientid=nil, userid=nil, isfulltext=nil, prereadtime=nil, notifytype=nil)
+        def initialize(approvertype=nil, organizationname=nil, required=nil, approvername=nil, approvermobile=nil, approveridcardnumber=nil, approveridcardtype=nil, recipientid=nil, userid=nil, isfulltext=nil, prereadtime=nil, notifytype=nil, verifychannel=nil)
           @ApproverType = approvertype
           @OrganizationName = organizationname
           @Required = required
@@ -907,6 +909,7 @@ module TencentCloud
           @IsFullText = isfulltext
           @PreReadTime = prereadtime
           @NotifyType = notifytype
+          @VerifyChannel = verifychannel
         end
 
         def deserialize(params)
@@ -922,6 +925,7 @@ module TencentCloud
           @IsFullText = params['IsFullText']
           @PreReadTime = params['PreReadTime']
           @NotifyType = params['NotifyType']
+          @VerifyChannel = params['VerifyChannel']
         end
       end
 

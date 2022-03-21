@@ -323,6 +323,22 @@ module TencentCloud
         end
       end
 
+      # 自动变配集群等级
+      class AutoUpgradeClusterLevel < TencentCloud::Common::AbstractModel
+        # @param IsAutoUpgrade: 是否开启自动变配集群等级
+        # @type IsAutoUpgrade: Boolean
+
+        attr_accessor :IsAutoUpgrade
+        
+        def initialize(isautoupgrade=nil)
+          @IsAutoUpgrade = isautoupgrade
+        end
+
+        def deserialize(params)
+          @IsAutoUpgrade = params['IsAutoUpgrade']
+        end
+      end
+
       # 自动扩所容的节点
       class AutoscalingAdded < TencentCloud::Common::AbstractModel
         # @param Joining: 正在加入中的节点数量
@@ -839,10 +855,14 @@ module TencentCloud
         # @type NeedWorkSecurityGroup: Boolean
         # @param SubnetId: 当选择Cilium Overlay网络插件时，TKE会从该子网获取2个IP用来创建内网负载均衡
         # @type SubnetId: String
+        # @param ClusterLevel: 集群等级，针对托管集群生效
+        # @type ClusterLevel: String
+        # @param AutoUpgradeClusterLevel: 自动变配集群等级，针对托管集群生效
+        # @type AutoUpgradeClusterLevel: :class:`Tencentcloud::Tke.v20180525.models.AutoUpgradeClusterLevel`
 
-        attr_accessor :ClusterOs, :ClusterVersion, :ClusterName, :ClusterDescription, :VpcId, :ProjectId, :TagSpecification, :OsCustomizeType, :NeedWorkSecurityGroup, :SubnetId
+        attr_accessor :ClusterOs, :ClusterVersion, :ClusterName, :ClusterDescription, :VpcId, :ProjectId, :TagSpecification, :OsCustomizeType, :NeedWorkSecurityGroup, :SubnetId, :ClusterLevel, :AutoUpgradeClusterLevel
         
-        def initialize(clusteros=nil, clusterversion=nil, clustername=nil, clusterdescription=nil, vpcid=nil, projectid=nil, tagspecification=nil, oscustomizetype=nil, needworksecuritygroup=nil, subnetid=nil)
+        def initialize(clusteros=nil, clusterversion=nil, clustername=nil, clusterdescription=nil, vpcid=nil, projectid=nil, tagspecification=nil, oscustomizetype=nil, needworksecuritygroup=nil, subnetid=nil, clusterlevel=nil, autoupgradeclusterlevel=nil)
           @ClusterOs = clusteros
           @ClusterVersion = clusterversion
           @ClusterName = clustername
@@ -853,6 +873,8 @@ module TencentCloud
           @OsCustomizeType = oscustomizetype
           @NeedWorkSecurityGroup = needworksecuritygroup
           @SubnetId = subnetid
+          @ClusterLevel = clusterlevel
+          @AutoUpgradeClusterLevel = autoupgradeclusterlevel
         end
 
         def deserialize(params)
@@ -873,6 +895,11 @@ module TencentCloud
           @OsCustomizeType = params['OsCustomizeType']
           @NeedWorkSecurityGroup = params['NeedWorkSecurityGroup']
           @SubnetId = params['SubnetId']
+          @ClusterLevel = params['ClusterLevel']
+          unless params['AutoUpgradeClusterLevel'].nil?
+            @AutoUpgradeClusterLevel = AutoUpgradeClusterLevel.new
+            @AutoUpgradeClusterLevel.deserialize(params['AutoUpgradeClusterLevel'])
+          end
         end
       end
 
@@ -7124,14 +7151,20 @@ module TencentCloud
         # @type ClusterName: String
         # @param ClusterDesc: 集群描述
         # @type ClusterDesc: String
+        # @param ClusterLevel: 集群等级
+        # @type ClusterLevel: String
+        # @param AutoUpgradeClusterLevel: 自动变配集群等级
+        # @type AutoUpgradeClusterLevel: :class:`Tencentcloud::Tke.v20180525.models.AutoUpgradeClusterLevel`
 
-        attr_accessor :ClusterId, :ProjectId, :ClusterName, :ClusterDesc
+        attr_accessor :ClusterId, :ProjectId, :ClusterName, :ClusterDesc, :ClusterLevel, :AutoUpgradeClusterLevel
         
-        def initialize(clusterid=nil, projectid=nil, clustername=nil, clusterdesc=nil)
+        def initialize(clusterid=nil, projectid=nil, clustername=nil, clusterdesc=nil, clusterlevel=nil, autoupgradeclusterlevel=nil)
           @ClusterId = clusterid
           @ProjectId = projectid
           @ClusterName = clustername
           @ClusterDesc = clusterdesc
+          @ClusterLevel = clusterlevel
+          @AutoUpgradeClusterLevel = autoupgradeclusterlevel
         end
 
         def deserialize(params)
@@ -7139,6 +7172,11 @@ module TencentCloud
           @ProjectId = params['ProjectId']
           @ClusterName = params['ClusterName']
           @ClusterDesc = params['ClusterDesc']
+          @ClusterLevel = params['ClusterLevel']
+          unless params['AutoUpgradeClusterLevel'].nil?
+            @AutoUpgradeClusterLevel = AutoUpgradeClusterLevel.new
+            @AutoUpgradeClusterLevel.deserialize(params['AutoUpgradeClusterLevel'])
+          end
         end
       end
 
@@ -7153,15 +7191,23 @@ module TencentCloud
         # @param ClusterDesc: 集群描述
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ClusterDesc: String
+        # @param ClusterLevel: 集群等级
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClusterLevel: String
+        # @param AutoUpgradeClusterLevel: 自动变配集群等级
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AutoUpgradeClusterLevel: :class:`Tencentcloud::Tke.v20180525.models.AutoUpgradeClusterLevel`
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :ProjectId, :ClusterName, :ClusterDesc, :RequestId
+        attr_accessor :ProjectId, :ClusterName, :ClusterDesc, :ClusterLevel, :AutoUpgradeClusterLevel, :RequestId
         
-        def initialize(projectid=nil, clustername=nil, clusterdesc=nil, requestid=nil)
+        def initialize(projectid=nil, clustername=nil, clusterdesc=nil, clusterlevel=nil, autoupgradeclusterlevel=nil, requestid=nil)
           @ProjectId = projectid
           @ClusterName = clustername
           @ClusterDesc = clusterdesc
+          @ClusterLevel = clusterlevel
+          @AutoUpgradeClusterLevel = autoupgradeclusterlevel
           @RequestId = requestid
         end
 
@@ -7169,6 +7215,11 @@ module TencentCloud
           @ProjectId = params['ProjectId']
           @ClusterName = params['ClusterName']
           @ClusterDesc = params['ClusterDesc']
+          @ClusterLevel = params['ClusterLevel']
+          unless params['AutoUpgradeClusterLevel'].nil?
+            @AutoUpgradeClusterLevel = AutoUpgradeClusterLevel.new
+            @AutoUpgradeClusterLevel.deserialize(params['AutoUpgradeClusterLevel'])
+          end
           @RequestId = params['RequestId']
         end
       end

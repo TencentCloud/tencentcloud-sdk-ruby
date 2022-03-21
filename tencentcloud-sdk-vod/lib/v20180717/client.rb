@@ -2730,6 +2730,36 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 对点播中的图片文件发起处理任务，功能包括：
+
+        # 1. 智能识别（令人反感的信息、不安全的信息、不适宜的信息）;
+
+        # ><li>图片文件大小支持：文件 < 5M；</li>
+        # ><li>图片文件分辨率支持：建议分辨率大于256x256，否则可能会影响识别效果；</li>
+        # ><li>图片文件支持格式：PNG、JPG、JPEG、BMP、GIF、WEBP格式。</li>
+
+        # @param request: Request instance for ProcessImage.
+        # @type request: :class:`Tencentcloud::vod::V20180717::ProcessImageRequest`
+        # @rtype: :class:`Tencentcloud::vod::V20180717::ProcessImageResponse`
+        def ProcessImage(request)
+          body = send_request('ProcessImage', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ProcessImageResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 对点播中的音视频媒体发起处理任务，功能包括：
         # 1. 视频转码（带水印）；
         # 2. 视频转动图；

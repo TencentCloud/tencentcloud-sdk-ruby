@@ -4618,6 +4618,107 @@ module TencentCloud
         end
       end
 
+      # 图片Ocr 文字鉴别信息的任务结果类型
+      class ContentReviewOcrResult < TencentCloud::Common::AbstractModel
+        # @param Confidence: Ocr 文字鉴别结果的评分，分值为0到100。
+        # @type Confidence: Float
+        # @param Suggestion: Ocr 文字鉴别的结果建议，取值范围：
+        # <li>pass；</li>
+        # <li>review；</li>
+        # <li>block。</li>
+        # @type Suggestion: String
+        # @param KeywordSet: Ocr 文字鉴别的嫌疑关键词列表。
+        # @type KeywordSet: Array
+        # @param AreaCoordSet: Ocr 文字鉴别的嫌疑文字出现的区域坐标 (像素级)，[x1, y1, x2, y2]，即左上角坐标、右下角坐标。
+        # @type AreaCoordSet: Array
+
+        attr_accessor :Confidence, :Suggestion, :KeywordSet, :AreaCoordSet
+        
+        def initialize(confidence=nil, suggestion=nil, keywordset=nil, areacoordset=nil)
+          @Confidence = confidence
+          @Suggestion = suggestion
+          @KeywordSet = keywordset
+          @AreaCoordSet = areacoordset
+        end
+
+        def deserialize(params)
+          @Confidence = params['Confidence']
+          @Suggestion = params['Suggestion']
+          @KeywordSet = params['KeywordSet']
+          @AreaCoordSet = params['AreaCoordSet']
+        end
+      end
+
+      # 图片智能内容识别任务结果
+      class ContentReviewResult < TencentCloud::Common::AbstractModel
+        # @param Type: 结果类型，取值范围：
+        # <li>Porn.Image：图片画面中的鉴别令人反感的信息结果；</li>
+        # <li>Terrorism.Image：图片画面中的鉴别令人不安全的信息结果；</li>
+        # <li>Political.Image：图片画面中的鉴别令人不适宜信息结果；</li>
+        # <li>Porn.Ocr：图片 OCR 文字中的鉴别令人反感的信息结果；</li>
+        # <li>Terrorism.Ocr：图片 OCR 文字中的鉴别令人不安全的信息结果；</li>
+        # <li>Political.Ocr：图片 OCR 文字中的鉴别令人不适宜信息结果。</li>
+        # @type Type: String
+        # @param PornImageResult: 图片画面中的鉴别令人反感的信息结果，当 Type 为 Porn.Image 时有效。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PornImageResult: :class:`Tencentcloud::Vod.v20180717.models.PornImageResult`
+        # @param TerrorismImageResult: 图片画面中的鉴别令人不安全的信息结果，当 Type 为 Terrorism.Image 时有效。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TerrorismImageResult: :class:`Tencentcloud::Vod.v20180717.models.TerrorismImageResult`
+        # @param PoliticalImageResult: 图片画面中的鉴别令人不适宜信息结果，当 Type 为 Political.Image 时有效。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PoliticalImageResult: :class:`Tencentcloud::Vod.v20180717.models.PoliticalImageResult`
+        # @param PornOcrResult: 图片 OCR 文字中的鉴别令人反感的信息结果，当 Type 为 Porn.Ocr 时有效。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PornOcrResult: :class:`Tencentcloud::Vod.v20180717.models.ContentReviewOcrResult`
+        # @param TerrorismOcrResult: 图片 OCR 中的鉴别令人不安全的信息结果，当 Type 为 Terrorism.Ocr 时有效。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TerrorismOcrResult: :class:`Tencentcloud::Vod.v20180717.models.ContentReviewOcrResult`
+        # @param PoliticalOcrResult: 图片 OCR 文字中的鉴别令人不适宜信息结果，当 Type 为 Political.Ocr 时有效。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PoliticalOcrResult: :class:`Tencentcloud::Vod.v20180717.models.ContentReviewOcrResult`
+
+        attr_accessor :Type, :PornImageResult, :TerrorismImageResult, :PoliticalImageResult, :PornOcrResult, :TerrorismOcrResult, :PoliticalOcrResult
+        
+        def initialize(type=nil, pornimageresult=nil, terrorismimageresult=nil, politicalimageresult=nil, pornocrresult=nil, terrorismocrresult=nil, politicalocrresult=nil)
+          @Type = type
+          @PornImageResult = pornimageresult
+          @TerrorismImageResult = terrorismimageresult
+          @PoliticalImageResult = politicalimageresult
+          @PornOcrResult = pornocrresult
+          @TerrorismOcrResult = terrorismocrresult
+          @PoliticalOcrResult = politicalocrresult
+        end
+
+        def deserialize(params)
+          @Type = params['Type']
+          unless params['PornImageResult'].nil?
+            @PornImageResult = PornImageResult.new
+            @PornImageResult.deserialize(params['PornImageResult'])
+          end
+          unless params['TerrorismImageResult'].nil?
+            @TerrorismImageResult = TerrorismImageResult.new
+            @TerrorismImageResult.deserialize(params['TerrorismImageResult'])
+          end
+          unless params['PoliticalImageResult'].nil?
+            @PoliticalImageResult = PoliticalImageResult.new
+            @PoliticalImageResult.deserialize(params['PoliticalImageResult'])
+          end
+          unless params['PornOcrResult'].nil?
+            @PornOcrResult = ContentReviewOcrResult.new
+            @PornOcrResult.deserialize(params['PornOcrResult'])
+          end
+          unless params['TerrorismOcrResult'].nil?
+            @TerrorismOcrResult = ContentReviewOcrResult.new
+            @TerrorismOcrResult.deserialize(params['TerrorismOcrResult'])
+          end
+          unless params['PoliticalOcrResult'].nil?
+            @PoliticalOcrResult = ContentReviewOcrResult.new
+            @PoliticalOcrResult.deserialize(params['PoliticalOcrResult'])
+          end
+        end
+      end
+
       # 智能识别模板详情
       class ContentReviewTemplateItem < TencentCloud::Common::AbstractModel
         # @param Definition: 智能识别模板唯一标识。
@@ -10501,6 +10602,23 @@ module TencentCloud
         end
       end
 
+      # 图片智能内容识别任务输入
+      class ImageContentReviewInput < TencentCloud::Common::AbstractModel
+        # @param Definition: 图片智能内容审核模板 ID。当前只支持：
+        # <li>10：所有审核类型均打开。</li>
+        # @type Definition: Integer
+
+        attr_accessor :Definition
+        
+        def initialize(definition=nil)
+          @Definition = definition
+        end
+
+        def deserialize(params)
+          @Definition = params['Definition']
+        end
+      end
+
       # 单个图片处理操作。
       class ImageOperation < TencentCloud::Common::AbstractModel
         # @param Type: 图片处理类型。可选类型有：
@@ -15187,6 +15305,37 @@ module TencentCloud
         end
       end
 
+      # 图片画面智能识别涉及令人不适宜信息的任务结果类型
+      class PoliticalImageResult < TencentCloud::Common::AbstractModel
+        # @param Confidence: 鉴别涉及令人不适宜信息的评分，分值为0到100。
+        # @type Confidence: Float
+        # @param Suggestion: 鉴别涉及令人不适宜信息的结果建议，取值范围：
+        # <li>pass；</li>
+        # <li>review；</li>
+        # <li>block。</li>
+        # @type Suggestion: String
+        # @param Name: 涉及令人不适宜的信息、违规图标名字。
+        # @type Name: String
+        # @param AreaCoordSet: 涉及令人不适宜的信息、违规图标出现的区域坐标 (像素级)，[x1, y1, x2, y2]，即左上角坐标、右下角坐标。
+        # @type AreaCoordSet: Array
+
+        attr_accessor :Confidence, :Suggestion, :Name, :AreaCoordSet
+        
+        def initialize(confidence=nil, suggestion=nil, name=nil, areacoordset=nil)
+          @Confidence = confidence
+          @Suggestion = suggestion
+          @Name = name
+          @AreaCoordSet = areacoordset
+        end
+
+        def deserialize(params)
+          @Confidence = params['Confidence']
+          @Suggestion = params['Suggestion']
+          @Name = params['Name']
+          @AreaCoordSet = params['AreaCoordSet']
+        end
+      end
+
       # 画面鉴别涉及令人不适宜的信息的任务控制参数
       class PoliticalImgReviewTemplateInfo < TencentCloud::Common::AbstractModel
         # @param Switch: 画面鉴别涉及令人不适宜的信息的任务开关，可选值：
@@ -15433,6 +15582,37 @@ module TencentCloud
             @OcrReviewInfo = PornOcrReviewTemplateInfoForUpdate.new
             @OcrReviewInfo.deserialize(params['OcrReviewInfo'])
           end
+        end
+      end
+
+      # 图片画面智能识别涉及令人反感的信息的任务结果类型
+      class PornImageResult < TencentCloud::Common::AbstractModel
+        # @param Confidence: 鉴别涉及令人反感的信息的评分，分值为0到100。
+        # @type Confidence: Float
+        # @param Suggestion: 鉴别涉及令人反感的信息的结果建议，取值范围：
+        # <li>pass；</li>
+        # <li>review；</li>
+        # <li>block。</li>
+        # @type Suggestion: String
+        # @param Label: 鉴别涉及令人反感的信息的结果标签，取值范围：
+        # <li>porn：色情；</li>
+        # <li>sexy：性感；</li>
+        # <li>vulgar：低俗；</li>
+        # <li>intimacy：亲密行为。</li>
+        # @type Label: String
+
+        attr_accessor :Confidence, :Suggestion, :Label
+        
+        def initialize(confidence=nil, suggestion=nil, label=nil)
+          @Confidence = confidence
+          @Suggestion = suggestion
+          @Label = label
+        end
+
+        def deserialize(params)
+          @Confidence = params['Confidence']
+          @Suggestion = params['Suggestion']
+          @Label = params['Label']
         end
       end
 
@@ -15746,6 +15926,64 @@ module TencentCloud
           end
           @CreateTime = params['CreateTime']
           @UpdateTime = params['UpdateTime']
+        end
+      end
+
+      # ProcessImage请求参数结构体
+      class ProcessImageRequest < TencentCloud::Common::AbstractModel
+        # @param FileId: 媒体文件 ID，即该文件在云点播上的全局唯一标识符。本接口要求媒体文件必须是图片格式。
+        # @type FileId: String
+        # @param Operation: 操作类型。现在仅支持填 ContentReview，表示内容智能识别。
+        # @type Operation: String
+        # @param ContentReviewInput: 图片内容智能识别参数，当 Operation 为 ContentReview 时该字段有效。
+        # @type ContentReviewInput: :class:`Tencentcloud::Vod.v20180717.models.ImageContentReviewInput`
+        # @param SubAppId: 点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。
+        # @type SubAppId: Integer
+
+        attr_accessor :FileId, :Operation, :ContentReviewInput, :SubAppId
+        
+        def initialize(fileid=nil, operation=nil, contentreviewinput=nil, subappid=nil)
+          @FileId = fileid
+          @Operation = operation
+          @ContentReviewInput = contentreviewinput
+          @SubAppId = subappid
+        end
+
+        def deserialize(params)
+          @FileId = params['FileId']
+          @Operation = params['Operation']
+          unless params['ContentReviewInput'].nil?
+            @ContentReviewInput = ImageContentReviewInput.new
+            @ContentReviewInput.deserialize(params['ContentReviewInput'])
+          end
+          @SubAppId = params['SubAppId']
+        end
+      end
+
+      # ProcessImage返回参数结构体
+      class ProcessImageResponse < TencentCloud::Common::AbstractModel
+        # @param ContentReviewResultSet: 图片内容智能识别任务结果。
+        # @type ContentReviewResultSet: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ContentReviewResultSet, :RequestId
+        
+        def initialize(contentreviewresultset=nil, requestid=nil)
+          @ContentReviewResultSet = contentreviewresultset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['ContentReviewResultSet'].nil?
+            @ContentReviewResultSet = []
+            params['ContentReviewResultSet'].each do |i|
+              contentreviewresult_tmp = ContentReviewResult.new
+              contentreviewresult_tmp.deserialize(i)
+              @ContentReviewResultSet << contentreviewresult_tmp
+            end
+          end
+          @RequestId = params['RequestId']
         end
       end
 
@@ -18185,6 +18423,40 @@ module TencentCloud
             @OcrReviewInfo = TerrorismOcrReviewTemplateInfoForUpdate.new
             @OcrReviewInfo.deserialize(params['OcrReviewInfo'])
           end
+        end
+      end
+
+      # 图片画面智能识别涉及令人不安全的信息的任务结果类型
+      class TerrorismImageResult < TencentCloud::Common::AbstractModel
+        # @param Confidence: 鉴别涉及令人不安全的信息的评分，分值为0到100。
+        # @type Confidence: Float
+        # @param Suggestion: 鉴别涉及令人不安全的信息的结果建议，取值范围：
+        # <li>pass；</li>
+        # <li>review；</li>
+        # <li>block。</li>
+        # @type Suggestion: String
+        # @param Label: 鉴别涉及令人不安全的信息的结果标签，取值范围：
+        # <li>guns：武器枪支；</li>
+        # <li>crowd：人群聚集；</li>
+        # <li>police：警察部队；</li>
+        # <li>bloody：血腥画面；</li>
+        # <li>banners：暴恐旗帜；</li>
+        # <li>explosion：爆炸火灾；</li>
+        # <li>scenario：暴恐画面。</li>
+        # @type Label: String
+
+        attr_accessor :Confidence, :Suggestion, :Label
+        
+        def initialize(confidence=nil, suggestion=nil, label=nil)
+          @Confidence = confidence
+          @Suggestion = suggestion
+          @Label = label
+        end
+
+        def deserialize(params)
+          @Confidence = params['Confidence']
+          @Suggestion = params['Suggestion']
+          @Label = params['Label']
         end
       end
 
