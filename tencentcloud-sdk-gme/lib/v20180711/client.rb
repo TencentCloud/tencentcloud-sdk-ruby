@@ -87,6 +87,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 新增自定义送检用户
+
+        # @param request: Request instance for CreateScanUser.
+        # @type request: :class:`Tencentcloud::gme::V20180711::CreateScanUserRequest`
+        # @rtype: :class:`Tencentcloud::gme::V20180711::CreateScanUserResponse`
+        def CreateScanUser(request)
+          body = send_request('CreateScanUser', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateScanUserResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除自定义送检用户
+
+        # @param request: Request instance for DeleteScanUser.
+        # @type request: :class:`Tencentcloud::gme::V20180711::DeleteScanUserRequest`
+        # @rtype: :class:`Tencentcloud::gme::V20180711::DeleteScanUserResponse`
+        def DeleteScanUser(request)
+          body = send_request('DeleteScanUser', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteScanUserResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询年龄语音识别任务结果，请求频率10次/秒。该接口目前通过白名单开放试用，如有需求，请提交工单申请。
 
         # @param request: Request instance for DescribeAgeDetectTask.

@@ -364,6 +364,130 @@ module TencentCloud
         end
       end
 
+      # CreateExportTask请求参数结构体
+      class CreateExportTaskRequest < TencentCloud::Common::AbstractModel
+        # @param InputType: 数据来源，lakefsStorage、taskResult
+        # @type InputType: String
+        # @param InputConf: 导出任务输入配置
+        # @type InputConf: Array
+        # @param OutputConf: 导出任务输出配置
+        # @type OutputConf: Array
+        # @param OutputType: 目标数据源的类型，目前支持导出到cos
+        # @type OutputType: String
+
+        attr_accessor :InputType, :InputConf, :OutputConf, :OutputType
+        
+        def initialize(inputtype=nil, inputconf=nil, outputconf=nil, outputtype=nil)
+          @InputType = inputtype
+          @InputConf = inputconf
+          @OutputConf = outputconf
+          @OutputType = outputtype
+        end
+
+        def deserialize(params)
+          @InputType = params['InputType']
+          unless params['InputConf'].nil?
+            @InputConf = []
+            params['InputConf'].each do |i|
+              kvpair_tmp = KVPair.new
+              kvpair_tmp.deserialize(i)
+              @InputConf << kvpair_tmp
+            end
+          end
+          unless params['OutputConf'].nil?
+            @OutputConf = []
+            params['OutputConf'].each do |i|
+              kvpair_tmp = KVPair.new
+              kvpair_tmp.deserialize(i)
+              @OutputConf << kvpair_tmp
+            end
+          end
+          @OutputType = params['OutputType']
+        end
+      end
+
+      # CreateExportTask返回参数结构体
+      class CreateExportTaskResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: 任务id
+        # @type TaskId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :RequestId
+        
+        def initialize(taskid=nil, requestid=nil)
+          @TaskId = taskid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateImportTask请求参数结构体
+      class CreateImportTaskRequest < TencentCloud::Common::AbstractModel
+        # @param InputType: 数据来源，cos
+        # @type InputType: String
+        # @param InputConf: 输入配置
+        # @type InputConf: Array
+        # @param OutputConf: 输出配置
+        # @type OutputConf: Array
+        # @param OutputType: 目标数据源的类型，目前支持导入到托管存储，即lakefsStorage
+        # @type OutputType: String
+
+        attr_accessor :InputType, :InputConf, :OutputConf, :OutputType
+        
+        def initialize(inputtype=nil, inputconf=nil, outputconf=nil, outputtype=nil)
+          @InputType = inputtype
+          @InputConf = inputconf
+          @OutputConf = outputconf
+          @OutputType = outputtype
+        end
+
+        def deserialize(params)
+          @InputType = params['InputType']
+          unless params['InputConf'].nil?
+            @InputConf = []
+            params['InputConf'].each do |i|
+              kvpair_tmp = KVPair.new
+              kvpair_tmp.deserialize(i)
+              @InputConf << kvpair_tmp
+            end
+          end
+          unless params['OutputConf'].nil?
+            @OutputConf = []
+            params['OutputConf'].each do |i|
+              kvpair_tmp = KVPair.new
+              kvpair_tmp.deserialize(i)
+              @OutputConf << kvpair_tmp
+            end
+          end
+          @OutputType = params['OutputType']
+        end
+      end
+
+      # CreateImportTask返回参数结构体
+      class CreateImportTaskResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: 任务id
+        # @type TaskId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :RequestId
+        
+        def initialize(taskid=nil, requestid=nil)
+          @TaskId = taskid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateScript请求参数结构体
       class CreateScriptRequest < TencentCloud::Common::AbstractModel
         # @param ScriptName: 脚本名称，最大不能超过255个字符。

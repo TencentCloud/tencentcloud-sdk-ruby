@@ -3954,17 +3954,20 @@ module TencentCloud
         # @type InternalLB: :class:`Tencentcloud::Tke.v20180525.models.ClusterInternalLB`
         # @param ProxyLB: 标记是否新的内外网功能
         # @type ProxyLB: Boolean
+        # @param Kubeconfig: 连接用户集群k8s 的Config
+        # @type Kubeconfig: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Addresses, :Credential, :PublicLB, :InternalLB, :ProxyLB, :RequestId
+        attr_accessor :Addresses, :Credential, :PublicLB, :InternalLB, :ProxyLB, :Kubeconfig, :RequestId
         
-        def initialize(addresses=nil, credential=nil, publiclb=nil, internallb=nil, proxylb=nil, requestid=nil)
+        def initialize(addresses=nil, credential=nil, publiclb=nil, internallb=nil, proxylb=nil, kubeconfig=nil, requestid=nil)
           @Addresses = addresses
           @Credential = credential
           @PublicLB = publiclb
           @InternalLB = internallb
           @ProxyLB = proxylb
+          @Kubeconfig = kubeconfig
           @RequestId = requestid
         end
 
@@ -3990,6 +3993,7 @@ module TencentCloud
             @InternalLB.deserialize(params['InternalLB'])
           end
           @ProxyLB = params['ProxyLB']
+          @Kubeconfig = params['Kubeconfig']
           @RequestId = params['RequestId']
         end
       end

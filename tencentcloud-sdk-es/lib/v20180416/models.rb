@@ -1908,6 +1908,62 @@ module TencentCloud
         end
       end
 
+      # UpdateDictionaries请求参数结构体
+      class UpdateDictionariesRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: ES实例ID
+        # @type InstanceId: String
+        # @param IkMainDicts: IK分词主词典COS地址
+        # @type IkMainDicts: Array
+        # @param IkStopwords: IK分词停用词词典COS地址
+        # @type IkStopwords: Array
+        # @param Synonym: 同义词词典COS地址
+        # @type Synonym: Array
+        # @param QQDict: QQ分词词典COS地址
+        # @type QQDict: Array
+        # @param UpdateType: 0：安装；1：删除
+        # @type UpdateType: Integer
+        # @param ForceRestart: 是否强制重启集群
+        # @type ForceRestart: Boolean
+
+        attr_accessor :InstanceId, :IkMainDicts, :IkStopwords, :Synonym, :QQDict, :UpdateType, :ForceRestart
+        
+        def initialize(instanceid=nil, ikmaindicts=nil, ikstopwords=nil, synonym=nil, qqdict=nil, updatetype=nil, forcerestart=nil)
+          @InstanceId = instanceid
+          @IkMainDicts = ikmaindicts
+          @IkStopwords = ikstopwords
+          @Synonym = synonym
+          @QQDict = qqdict
+          @UpdateType = updatetype
+          @ForceRestart = forcerestart
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @IkMainDicts = params['IkMainDicts']
+          @IkStopwords = params['IkStopwords']
+          @Synonym = params['Synonym']
+          @QQDict = params['QQDict']
+          @UpdateType = params['UpdateType']
+          @ForceRestart = params['ForceRestart']
+        end
+      end
+
+      # UpdateDictionaries返回参数结构体
+      class UpdateDictionariesResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # UpdateInstance请求参数结构体
       class UpdateInstanceRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例ID

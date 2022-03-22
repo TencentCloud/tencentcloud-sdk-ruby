@@ -1172,10 +1172,21 @@ module TencentCloud
         # @type ExtraCmd: String
         # @param Comment: 任务描述，限制 512 字节。
         # @type Comment: String
+        # @param BackupSourceType: 备源的类型：
+        # PullLivePushLive -直播，
+        # PullVodPushLive -点播。
+        # 注意：
+        # 1. 仅当主源类型为直播源时，备源才会生效。
+        # 2. 主直播源拉流中断时，自动使用备源进行拉流。
+        # 3. 如果备源为点播文件时，则每次轮播完点播文件就检查主源是否恢复，如果主源恢复则自动切回到主源，否则继续拉备源。
+        # @type BackupSourceType: String
+        # @param BackupSourceUrl: 备源 URL。
+        # 只允许填一个备源 URL
+        # @type BackupSourceUrl: String
 
-        attr_accessor :SourceType, :SourceUrls, :DomainName, :AppName, :StreamName, :StartTime, :EndTime, :Operator, :PushArgs, :CallbackEvents, :VodLoopTimes, :VodRefreshType, :CallbackUrl, :ExtraCmd, :Comment
+        attr_accessor :SourceType, :SourceUrls, :DomainName, :AppName, :StreamName, :StartTime, :EndTime, :Operator, :PushArgs, :CallbackEvents, :VodLoopTimes, :VodRefreshType, :CallbackUrl, :ExtraCmd, :Comment, :BackupSourceType, :BackupSourceUrl
         
-        def initialize(sourcetype=nil, sourceurls=nil, domainname=nil, appname=nil, streamname=nil, starttime=nil, endtime=nil, operator=nil, pushargs=nil, callbackevents=nil, vodlooptimes=nil, vodrefreshtype=nil, callbackurl=nil, extracmd=nil, comment=nil)
+        def initialize(sourcetype=nil, sourceurls=nil, domainname=nil, appname=nil, streamname=nil, starttime=nil, endtime=nil, operator=nil, pushargs=nil, callbackevents=nil, vodlooptimes=nil, vodrefreshtype=nil, callbackurl=nil, extracmd=nil, comment=nil, backupsourcetype=nil, backupsourceurl=nil)
           @SourceType = sourcetype
           @SourceUrls = sourceurls
           @DomainName = domainname
@@ -1191,6 +1202,8 @@ module TencentCloud
           @CallbackUrl = callbackurl
           @ExtraCmd = extracmd
           @Comment = comment
+          @BackupSourceType = backupsourcetype
+          @BackupSourceUrl = backupsourceurl
         end
 
         def deserialize(params)
@@ -1209,6 +1222,8 @@ module TencentCloud
           @CallbackUrl = params['CallbackUrl']
           @ExtraCmd = params['ExtraCmd']
           @Comment = params['Comment']
+          @BackupSourceType = params['BackupSourceType']
+          @BackupSourceUrl = params['BackupSourceUrl']
         end
       end
 
@@ -7303,10 +7318,21 @@ module TencentCloud
         # @type OffsetTime: Integer
         # @param Comment: 任务备注。
         # @type Comment: String
+        # @param BackupSourceType: 备源的类型：
+        # PullLivePushLive -直播，
+        # PullVodPushLive -点播。
+        # 注意：
+        # 1. 仅当主源类型为直播源时，备源才会生效。
+        # 2. 主直播源拉流中断时，自动使用备源进行拉流。
+        # 3. 如果备源为点播文件时，则每次轮播完点播文件就检查主源是否恢复，如果主源恢复则自动切回到主源，否则继续拉备源。
+        # @type BackupSourceType: String
+        # @param BackupSourceUrl: 备源 URL。
+        # 只允许填一个备源 URL
+        # @type BackupSourceUrl: String
 
-        attr_accessor :TaskId, :Operator, :SourceUrls, :StartTime, :EndTime, :VodLoopTimes, :VodRefreshType, :Status, :CallbackEvents, :CallbackUrl, :FileIndex, :OffsetTime, :Comment
+        attr_accessor :TaskId, :Operator, :SourceUrls, :StartTime, :EndTime, :VodLoopTimes, :VodRefreshType, :Status, :CallbackEvents, :CallbackUrl, :FileIndex, :OffsetTime, :Comment, :BackupSourceType, :BackupSourceUrl
         
-        def initialize(taskid=nil, operator=nil, sourceurls=nil, starttime=nil, endtime=nil, vodlooptimes=nil, vodrefreshtype=nil, status=nil, callbackevents=nil, callbackurl=nil, fileindex=nil, offsettime=nil, comment=nil)
+        def initialize(taskid=nil, operator=nil, sourceurls=nil, starttime=nil, endtime=nil, vodlooptimes=nil, vodrefreshtype=nil, status=nil, callbackevents=nil, callbackurl=nil, fileindex=nil, offsettime=nil, comment=nil, backupsourcetype=nil, backupsourceurl=nil)
           @TaskId = taskid
           @Operator = operator
           @SourceUrls = sourceurls
@@ -7320,6 +7346,8 @@ module TencentCloud
           @FileIndex = fileindex
           @OffsetTime = offsettime
           @Comment = comment
+          @BackupSourceType = backupsourcetype
+          @BackupSourceUrl = backupsourceurl
         end
 
         def deserialize(params)
@@ -7336,6 +7364,8 @@ module TencentCloud
           @FileIndex = params['FileIndex']
           @OffsetTime = params['OffsetTime']
           @Comment = params['Comment']
+          @BackupSourceType = params['BackupSourceType']
+          @BackupSourceUrl = params['BackupSourceUrl']
         end
       end
 

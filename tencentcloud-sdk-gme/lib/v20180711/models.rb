@@ -421,6 +421,86 @@ module TencentCloud
         end
       end
 
+      # CreateScanUser请求参数结构体
+      class CreateScanUserRequest < TencentCloud::Common::AbstractModel
+        # @param BizId: 应用ID，登录控制台 - 服务管理创建应用得到的AppID
+        # @type BizId: Integer
+        # @param UserId: 需要新增送检的用户号。示例：1234
+        # @type UserId: Integer
+
+        attr_accessor :BizId, :UserId
+        
+        def initialize(bizid=nil, userid=nil)
+          @BizId = bizid
+          @UserId = userid
+        end
+
+        def deserialize(params)
+          @BizId = params['BizId']
+          @UserId = params['UserId']
+        end
+      end
+
+      # CreateScanUser返回参数结构体
+      class CreateScanUserResponse < TencentCloud::Common::AbstractModel
+        # @param ErrorCode: 返回结果码
+        # @type ErrorCode: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ErrorCode, :RequestId
+        
+        def initialize(errorcode=nil, requestid=nil)
+          @ErrorCode = errorcode
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ErrorCode = params['ErrorCode']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteScanUser请求参数结构体
+      class DeleteScanUserRequest < TencentCloud::Common::AbstractModel
+        # @param BizId: 应用ID，登录控制台 - 服务管理创建应用得到的AppID
+        # @type BizId: Integer
+        # @param UserId: 需要删除送检的用户号。示例：1234
+        # @type UserId: Integer
+
+        attr_accessor :BizId, :UserId
+        
+        def initialize(bizid=nil, userid=nil)
+          @BizId = bizid
+          @UserId = userid
+        end
+
+        def deserialize(params)
+          @BizId = params['BizId']
+          @UserId = params['UserId']
+        end
+      end
+
+      # DeleteScanUser返回参数结构体
+      class DeleteScanUserResponse < TencentCloud::Common::AbstractModel
+        # @param ErrorCode: 返回结果码
+        # @type ErrorCode: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ErrorCode, :RequestId
+        
+        def initialize(errorcode=nil, requestid=nil)
+          @ErrorCode = errorcode
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ErrorCode = params['ErrorCode']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeAgeDetectTask请求参数结构体
       class DescribeAgeDetectTaskRequest < TencentCloud::Common::AbstractModel
         # @param BizId: 应用id

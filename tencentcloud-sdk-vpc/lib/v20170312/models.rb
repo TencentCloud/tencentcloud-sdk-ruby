@@ -8573,7 +8573,7 @@ module TencentCloud
 
       # DescribeProductQuota请求参数结构体
       class DescribeProductQuotaRequest < TencentCloud::Common::AbstractModel
-        # @param Product: 查询的网络产品名称，如vpc、ccn等
+        # @param Product: 查询的网络产品名称，可查询的产品有：vpc、ccn、vpn、dc、dfw、clb、eip。
         # @type Product: String
 
         attr_accessor :Product

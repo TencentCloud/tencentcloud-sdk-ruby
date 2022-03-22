@@ -631,17 +631,22 @@ module TencentCloud
         # @param HoldApplicationUntilProxyStarts: 是否等待sidecar启动
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HoldApplicationUntilProxyStarts: Boolean
+        # @param HoldProxyUntilApplicationEnds: 是否允许sidecar等待
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HoldProxyUntilApplicationEnds: Boolean
 
-        attr_accessor :ExcludeIPRanges, :HoldApplicationUntilProxyStarts
+        attr_accessor :ExcludeIPRanges, :HoldApplicationUntilProxyStarts, :HoldProxyUntilApplicationEnds
         
-        def initialize(excludeipranges=nil, holdapplicationuntilproxystarts=nil)
+        def initialize(excludeipranges=nil, holdapplicationuntilproxystarts=nil, holdproxyuntilapplicationends=nil)
           @ExcludeIPRanges = excludeipranges
           @HoldApplicationUntilProxyStarts = holdapplicationuntilproxystarts
+          @HoldProxyUntilApplicationEnds = holdproxyuntilapplicationends
         end
 
         def deserialize(params)
           @ExcludeIPRanges = params['ExcludeIPRanges']
           @HoldApplicationUntilProxyStarts = params['HoldApplicationUntilProxyStarts']
+          @HoldProxyUntilApplicationEnds = params['HoldProxyUntilApplicationEnds']
         end
       end
 
@@ -841,14 +846,22 @@ module TencentCloud
         # @param Inject: 自动注入配置
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Inject: :class:`Tencentcloud::Tcm.v20210413.models.InjectConfig`
+        # @param Tracing: 调用跟踪配置
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Tracing: :class:`Tencentcloud::Tcm.v20210413.models.TracingConfig`
+        # @param SidecarResources: Sidecar自定义资源
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SidecarResources: :class:`Tencentcloud::Tcm.v20210413.models.ResourceRequirements`
 
-        attr_accessor :Istio, :AccessLog, :Prometheus, :Inject
+        attr_accessor :Istio, :AccessLog, :Prometheus, :Inject, :Tracing, :SidecarResources
         
-        def initialize(istio=nil, accesslog=nil, prometheus=nil, inject=nil)
+        def initialize(istio=nil, accesslog=nil, prometheus=nil, inject=nil, tracing=nil, sidecarresources=nil)
           @Istio = istio
           @AccessLog = accesslog
           @Prometheus = prometheus
           @Inject = inject
+          @Tracing = tracing
+          @SidecarResources = sidecarresources
         end
 
         def deserialize(params)
@@ -867,6 +880,14 @@ module TencentCloud
           unless params['Inject'].nil?
             @Inject = InjectConfig.new
             @Inject.deserialize(params['Inject'])
+          end
+          unless params['Tracing'].nil?
+            @Tracing = TracingConfig.new
+            @Tracing.deserialize(params['Tracing'])
+          end
+          unless params['SidecarResources'].nil?
+            @SidecarResources = ResourceRequirements.new
+            @SidecarResources.deserialize(params['SidecarResources'])
           end
         end
       end

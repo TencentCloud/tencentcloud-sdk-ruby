@@ -325,6 +325,31 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 此接口（UploadFiles）用于文件上传。
+        # 调用时需要设置Domain 为 file.ess.tencent.cn
+
+        # @param request: Request instance for UploadFiles.
+        # @type request: :class:`Tencentcloud::essbasic::V20210526::UploadFilesRequest`
+        # @rtype: :class:`Tencentcloud::essbasic::V20210526::UploadFilesResponse`
+        def UploadFiles(request)
+          body = send_request('UploadFiles', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = UploadFilesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
 
       end
     end

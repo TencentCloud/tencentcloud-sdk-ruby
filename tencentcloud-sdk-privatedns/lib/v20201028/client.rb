@@ -365,6 +365,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询额度使用情况
+
+        # @param request: Request instance for DescribeQuotaUsage.
+        # @type request: :class:`Tencentcloud::privatedns::V20201028::DescribeQuotaUsageRequest`
+        # @rtype: :class:`Tencentcloud::privatedns::V20201028::DescribeQuotaUsageResponse`
+        def DescribeQuotaUsage(request)
+          body = send_request('DescribeQuotaUsage', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeQuotaUsageResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 获取私有域解析请求量
 
         # @param request: Request instance for DescribeRequestData.

@@ -919,6 +919,40 @@ module TencentCloud
         end
       end
 
+      # DescribeQuotaUsage请求参数结构体
+      class DescribeQuotaUsageRequest < TencentCloud::Common::AbstractModel
+
+        
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeQuotaUsage返回参数结构体
+      class DescribeQuotaUsageResponse < TencentCloud::Common::AbstractModel
+        # @param TldQuota: Tld额度使用情况
+        # @type TldQuota: :class:`Tencentcloud::Privatedns.v20201028.models.TldQuota`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TldQuota, :RequestId
+        
+        def initialize(tldquota=nil, requestid=nil)
+          @TldQuota = tldquota
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['TldQuota'].nil?
+            @TldQuota = TldQuota.new
+            @TldQuota.deserialize(params['TldQuota'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeRequestData请求参数结构体
       class DescribeRequestDataRequest < TencentCloud::Common::AbstractModel
         # @param TimeRangeBegin: 请求量统计起始时间，格式：2020-11-22 00:00:00
@@ -1454,6 +1488,34 @@ module TencentCloud
         def deserialize(params)
           @TagKey = params['TagKey']
           @TagValue = params['TagValue']
+        end
+      end
+
+      # Tld额度
+      class TldQuota < TencentCloud::Common::AbstractModel
+        # @param Total: 总共额度
+        # @type Total: Integer
+        # @param Used: 已使用额度
+        # @type Used: Integer
+        # @param Stock: 库存
+        # @type Stock: Integer
+        # @param Quota: 用户限额
+        # @type Quota: Integer
+
+        attr_accessor :Total, :Used, :Stock, :Quota
+        
+        def initialize(total=nil, used=nil, stock=nil, quota=nil)
+          @Total = total
+          @Used = used
+          @Stock = stock
+          @Quota = quota
+        end
+
+        def deserialize(params)
+          @Total = params['Total']
+          @Used = params['Used']
+          @Stock = params['Stock']
+          @Quota = params['Quota']
         end
       end
 

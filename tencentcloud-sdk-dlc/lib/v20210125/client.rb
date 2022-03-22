@@ -173,6 +173,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 该接口（CreateExportTask）用于创建导出任务
+
+        # @param request: Request instance for CreateExportTask.
+        # @type request: :class:`Tencentcloud::dlc::V20210125::CreateExportTaskRequest`
+        # @rtype: :class:`Tencentcloud::dlc::V20210125::CreateExportTaskResponse`
+        def CreateExportTask(request)
+          body = send_request('CreateExportTask', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateExportTaskResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 该接口（CreateImportTask）用于创建导入任务
+
+        # @param request: Request instance for CreateImportTask.
+        # @type request: :class:`Tencentcloud::dlc::V20210125::CreateImportTaskRequest`
+        # @rtype: :class:`Tencentcloud::dlc::V20210125::CreateImportTaskResponse`
+        def CreateImportTask(request)
+          body = send_request('CreateImportTask', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateImportTaskResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 该接口（CreateScript）用于创建sql脚本。
 
         # @param request: Request instance for CreateScript.

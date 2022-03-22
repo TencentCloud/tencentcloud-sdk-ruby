@@ -1636,6 +1636,97 @@ module TencentCloud
         end
       end
 
+      # 此结构体 (UploadFile) 用于描述多文件上传的文件信息。
+      class UploadFile < TencentCloud::Common::AbstractModel
+        # @param FileBody: Base64编码后的文件内容
+        # @type FileBody: String
+        # @param FileName: 文件名
+        # @type FileName: String
+
+        attr_accessor :FileBody, :FileName
+        
+        def initialize(filebody=nil, filename=nil)
+          @FileBody = filebody
+          @FileName = filename
+        end
+
+        def deserialize(params)
+          @FileBody = params['FileBody']
+          @FileName = params['FileName']
+        end
+      end
+
+      # UploadFiles请求参数结构体
+      class UploadFilesRequest < TencentCloud::Common::AbstractModel
+        # @param BusinessType: 文件对应业务类型，用于区分文件存储路径：
+        # 1. TEMPLATE - 模版； 文件类型：.pdf
+        # 2. DOCUMENT - 签署过程及签署后的合同文档/图片控件 文件类型：.pdf/.jpg/.png
+        # @type BusinessType: String
+        # @param Agent: 应用相关信息，若是渠道版调用 appid 和proxyappid 必填
+        # @type Agent: :class:`Tencentcloud::Essbasic.v20210526.models.Agent`
+        # @param FileInfos: 上传文件内容数组，最多支持20个文件
+        # @type FileInfos: Array
+        # @param Operator: 操作者的信息
+        # @type Operator: :class:`Tencentcloud::Essbasic.v20210526.models.UserInfo`
+
+        attr_accessor :BusinessType, :Agent, :FileInfos, :Operator
+        
+        def initialize(businesstype=nil, agent=nil, fileinfos=nil, operator=nil)
+          @BusinessType = businesstype
+          @Agent = agent
+          @FileInfos = fileinfos
+          @Operator = operator
+        end
+
+        def deserialize(params)
+          @BusinessType = params['BusinessType']
+          unless params['Agent'].nil?
+            @Agent = Agent.new
+            @Agent.deserialize(params['Agent'])
+          end
+          unless params['FileInfos'].nil?
+            @FileInfos = []
+            params['FileInfos'].each do |i|
+              uploadfile_tmp = UploadFile.new
+              uploadfile_tmp.deserialize(i)
+              @FileInfos << uploadfile_tmp
+            end
+          end
+          unless params['Operator'].nil?
+            @Operator = UserInfo.new
+            @Operator.deserialize(params['Operator'])
+          end
+        end
+      end
+
+      # UploadFiles返回参数结构体
+      class UploadFilesResponse < TencentCloud::Common::AbstractModel
+        # @param FileIds: 文件id数组
+        # @type FileIds: Array
+        # @param TotalCount: 上传成功文件数量
+        # @type TotalCount: Integer
+        # @param FileUrls: 文件Url
+        # @type FileUrls: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :FileIds, :TotalCount, :FileUrls, :RequestId
+        
+        def initialize(fileids=nil, totalcount=nil, fileurls=nil, requestid=nil)
+          @FileIds = fileids
+          @TotalCount = totalcount
+          @FileUrls = fileurls
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @FileIds = params['FileIds']
+          @TotalCount = params['TotalCount']
+          @FileUrls = params['FileUrls']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 用量明细
       class UsageDetail < TencentCloud::Common::AbstractModel
         # @param ProxyOrganizationOpenId: 渠道侧合作企业唯一标识
