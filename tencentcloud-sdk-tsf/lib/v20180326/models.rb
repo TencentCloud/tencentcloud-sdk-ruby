@@ -10598,7 +10598,7 @@ module TencentCloud
         # @param ApplicationId: applicationid值
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ApplicationId: String
-        # @param ApplicationName: ApplicationName值
+        # @param ApplicationName: ApplicationName值（类型是string）
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ApplicationName: :class:`Tencentcloud::Tsf.v20180326.models.ScalableRule`
 

@@ -1053,14 +1053,20 @@ module TencentCloud
         # @type PublicIpAddresses: Array
         # @param Zone: 弹性IP可用区，自动分配弹性IP时传递。
         # @type Zone: String
+        # @param StockPublicIpAddressesBandwidthOut: 绑定NAT网关的弹性IP带宽大小（单位Mbps），默认为当前用户类型所能使用的最大值。
+        # @type StockPublicIpAddressesBandwidthOut: Integer
+        # @param PublicIpAddressesBandwidthOut: 需要申请公网IP带宽大小（单位Mbps），默认为当前用户类型所能使用的最大值。
+        # @type PublicIpAddressesBandwidthOut: Integer
 
-        attr_accessor :NatGatewayId, :AddressCount, :PublicIpAddresses, :Zone
+        attr_accessor :NatGatewayId, :AddressCount, :PublicIpAddresses, :Zone, :StockPublicIpAddressesBandwidthOut, :PublicIpAddressesBandwidthOut
         
-        def initialize(natgatewayid=nil, addresscount=nil, publicipaddresses=nil, zone=nil)
+        def initialize(natgatewayid=nil, addresscount=nil, publicipaddresses=nil, zone=nil, stockpublicipaddressesbandwidthout=nil, publicipaddressesbandwidthout=nil)
           @NatGatewayId = natgatewayid
           @AddressCount = addresscount
           @PublicIpAddresses = publicipaddresses
           @Zone = zone
+          @StockPublicIpAddressesBandwidthOut = stockpublicipaddressesbandwidthout
+          @PublicIpAddressesBandwidthOut = publicipaddressesbandwidthout
         end
 
         def deserialize(params)
@@ -1068,6 +1074,8 @@ module TencentCloud
           @AddressCount = params['AddressCount']
           @PublicIpAddresses = params['PublicIpAddresses']
           @Zone = params['Zone']
+          @StockPublicIpAddressesBandwidthOut = params['StockPublicIpAddressesBandwidthOut']
+          @PublicIpAddressesBandwidthOut = params['PublicIpAddressesBandwidthOut']
         end
       end
 
@@ -3015,10 +3023,14 @@ module TencentCloud
         # @type Tags: Array
         # @param SubnetId: NAT网关所属子网
         # @type SubnetId: String
+        # @param StockPublicIpAddressesBandwidthOut: 绑定NAT网关的弹性IP带宽大小（单位Mbps），默认为当前用户类型所能使用的最大值。
+        # @type StockPublicIpAddressesBandwidthOut: Integer
+        # @param PublicIpAddressesBandwidthOut: 需要申请公网IP带宽大小（单位Mbps），默认为当前用户类型所能使用的最大值。
+        # @type PublicIpAddressesBandwidthOut: Integer
 
-        attr_accessor :NatGatewayName, :VpcId, :InternetMaxBandwidthOut, :MaxConcurrentConnection, :AddressCount, :PublicIpAddresses, :Zone, :Tags, :SubnetId
+        attr_accessor :NatGatewayName, :VpcId, :InternetMaxBandwidthOut, :MaxConcurrentConnection, :AddressCount, :PublicIpAddresses, :Zone, :Tags, :SubnetId, :StockPublicIpAddressesBandwidthOut, :PublicIpAddressesBandwidthOut
         
-        def initialize(natgatewayname=nil, vpcid=nil, internetmaxbandwidthout=nil, maxconcurrentconnection=nil, addresscount=nil, publicipaddresses=nil, zone=nil, tags=nil, subnetid=nil)
+        def initialize(natgatewayname=nil, vpcid=nil, internetmaxbandwidthout=nil, maxconcurrentconnection=nil, addresscount=nil, publicipaddresses=nil, zone=nil, tags=nil, subnetid=nil, stockpublicipaddressesbandwidthout=nil, publicipaddressesbandwidthout=nil)
           @NatGatewayName = natgatewayname
           @VpcId = vpcid
           @InternetMaxBandwidthOut = internetmaxbandwidthout
@@ -3028,6 +3040,8 @@ module TencentCloud
           @Zone = zone
           @Tags = tags
           @SubnetId = subnetid
+          @StockPublicIpAddressesBandwidthOut = stockpublicipaddressesbandwidthout
+          @PublicIpAddressesBandwidthOut = publicipaddressesbandwidthout
         end
 
         def deserialize(params)
@@ -3047,6 +3061,8 @@ module TencentCloud
             end
           end
           @SubnetId = params['SubnetId']
+          @StockPublicIpAddressesBandwidthOut = params['StockPublicIpAddressesBandwidthOut']
+          @PublicIpAddressesBandwidthOut = params['PublicIpAddressesBandwidthOut']
         end
       end
 

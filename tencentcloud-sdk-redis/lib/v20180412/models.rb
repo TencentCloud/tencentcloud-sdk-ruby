@@ -2651,6 +2651,65 @@ module TencentCloud
         end
       end
 
+      # DescribeReplicationGroup请求参数结构体
+      class DescribeReplicationGroupRequest < TencentCloud::Common::AbstractModel
+        # @param Limit: 实例列表的大小，参数默认值20
+        # @type Limit: Integer
+        # @param Offset: 偏移量，取Limit整数倍
+        # @type Offset: Integer
+        # @param GroupId: 复制组ID
+        # @type GroupId: String
+        # @param SearchKey: 实例ID和实例名称，支持模糊查询
+        # @type SearchKey: String
+
+        attr_accessor :Limit, :Offset, :GroupId, :SearchKey
+        
+        def initialize(limit=nil, offset=nil, groupid=nil, searchkey=nil)
+          @Limit = limit
+          @Offset = offset
+          @GroupId = groupid
+          @SearchKey = searchkey
+        end
+
+        def deserialize(params)
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          @GroupId = params['GroupId']
+          @SearchKey = params['SearchKey']
+        end
+      end
+
+      # DescribeReplicationGroup返回参数结构体
+      class DescribeReplicationGroupResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 复制组数
+        # @type TotalCount: Integer
+        # @param Groups: 复制组信息
+        # @type Groups: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :Groups, :RequestId
+        
+        def initialize(totalcount=nil, groups=nil, requestid=nil)
+          @TotalCount = totalcount
+          @Groups = groups
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['Groups'].nil?
+            @Groups = []
+            params['Groups'].each do |i|
+              groups_tmp = Groups.new
+              groups_tmp.deserialize(i)
+              @Groups << groups_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeSlowLog请求参数结构体
       class DescribeSlowLogRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例Id
@@ -3108,6 +3167,60 @@ module TencentCloud
           @Status = params['Status']
           @TaskId = params['TaskId']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 复制组信息
+      class Groups < TencentCloud::Common::AbstractModel
+        # @param AppId: 用户AppID
+        # @type AppId: Integer
+        # @param RegionId: 地域ID 1--广州 4--上海 5-- 中国香港 6--多伦多 7--上海金融 8--北京 9-- 新加坡 11--深圳金融 15--美西（硅谷）16--成都 17--德国 18--韩国 19--重庆 21--印度 22--美东（弗吉尼亚）23--泰国 24--俄罗斯 25--日本
+        # @type RegionId: Integer
+        # @param GroupId: 复制组信息
+        # @type GroupId: String
+        # @param GroupName: 复制组名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GroupName: String
+        # @param Status: 复制组状态，37："绑定复制组中"，38："复制组重连中"，51："解绑复制组中"，52："复制组实例切主中"，53："角色变更中"
+        # @type Status: Integer
+        # @param InstanceCount: 复制组数量
+        # @type InstanceCount: Integer
+        # @param Instances: 复制组实例
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Instances: Array
+        # @param Remark: 备注信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Remark: String
+
+        attr_accessor :AppId, :RegionId, :GroupId, :GroupName, :Status, :InstanceCount, :Instances, :Remark
+        
+        def initialize(appid=nil, regionid=nil, groupid=nil, groupname=nil, status=nil, instancecount=nil, instances=nil, remark=nil)
+          @AppId = appid
+          @RegionId = regionid
+          @GroupId = groupid
+          @GroupName = groupname
+          @Status = status
+          @InstanceCount = instancecount
+          @Instances = instances
+          @Remark = remark
+        end
+
+        def deserialize(params)
+          @AppId = params['AppId']
+          @RegionId = params['RegionId']
+          @GroupId = params['GroupId']
+          @GroupName = params['GroupName']
+          @Status = params['Status']
+          @InstanceCount = params['InstanceCount']
+          unless params['Instances'].nil?
+            @Instances = []
+            params['Instances'].each do |i|
+              instances_tmp = Instances.new
+              instances_tmp.deserialize(i)
+              @Instances << instances_tmp
+            end
+          end
+          @Remark = params['Remark']
         end
       end
 
@@ -4079,6 +4192,100 @@ module TencentCloud
         end
       end
 
+      # 复制组实例
+      class Instances < TencentCloud::Common::AbstractModel
+        # @param AppId: 用户AppID
+        # @type AppId: Integer
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+        # @param InstanceName: 实例名称
+        # @type InstanceName: String
+        # @param RegionId: 地域ID 1--广州 4--上海 5-- 香港 6--多伦多 7--上海金融 8--北京 9-- 新加坡 11--深圳金融 15--美西（硅谷）
+        # @type RegionId: Integer
+        # @param ZoneId: 区域ID
+        # @type ZoneId: Integer
+        # @param RedisReplicasNum: 副本数量
+        # @type RedisReplicasNum: Integer
+        # @param RedisShardNum: 分片数量
+        # @type RedisShardNum: Integer
+        # @param RedisShardSize: 分片大小
+        # @type RedisShardSize: Integer
+        # @param DiskSize: 实例的磁盘大小
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DiskSize: Integer
+        # @param Engine: 引擎：社区版Redis、腾讯云CKV
+        # @type Engine: String
+        # @param Role: 实例角色，rw可读写，r只读
+        # @type Role: String
+        # @param Vip: 实例VIP
+        # @type Vip: String
+        # @param Vip6: 内部参数，用户可忽略
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Vip6: String
+        # @param VpcID: vpc网络ID 如：75101
+        # @type VpcID: Integer
+        # @param VPort: 实例端口
+        # @type VPort: Integer
+        # @param Status: 实例状态：0-待初始化，1-流程中，2-运行中，-2-已隔离，-3-待删除
+        # @type Status: Integer
+        # @param GrocerySysId: 仓库ID
+        # @type GrocerySysId: Integer
+        # @param ProductType: 实例类型：1 – Redis2.8内存版（集群架构），2 – Redis2.8内存版（标准架构），3 – CKV 3.2内存版(标准架构)，4 – CKV 3.2内存版(集群架构)，5 – Redis2.8内存版（单机），6 – Redis4.0内存版（标准架构），7 – Redis4.0内存版（集群架构），8 – Redis5.0内存版（标准架构），9 – Redis5.0内存版（集群架构）
+        # @type ProductType: Integer
+        # @param CreateTime: 创建时间
+        # @type CreateTime: String
+        # @param UpdateTime: 更新实例
+        # @type UpdateTime: String
+
+        attr_accessor :AppId, :InstanceId, :InstanceName, :RegionId, :ZoneId, :RedisReplicasNum, :RedisShardNum, :RedisShardSize, :DiskSize, :Engine, :Role, :Vip, :Vip6, :VpcID, :VPort, :Status, :GrocerySysId, :ProductType, :CreateTime, :UpdateTime
+        
+        def initialize(appid=nil, instanceid=nil, instancename=nil, regionid=nil, zoneid=nil, redisreplicasnum=nil, redisshardnum=nil, redisshardsize=nil, disksize=nil, engine=nil, role=nil, vip=nil, vip6=nil, vpcid=nil, vport=nil, status=nil, grocerysysid=nil, producttype=nil, createtime=nil, updatetime=nil)
+          @AppId = appid
+          @InstanceId = instanceid
+          @InstanceName = instancename
+          @RegionId = regionid
+          @ZoneId = zoneid
+          @RedisReplicasNum = redisreplicasnum
+          @RedisShardNum = redisshardnum
+          @RedisShardSize = redisshardsize
+          @DiskSize = disksize
+          @Engine = engine
+          @Role = role
+          @Vip = vip
+          @Vip6 = vip6
+          @VpcID = vpcid
+          @VPort = vport
+          @Status = status
+          @GrocerySysId = grocerysysid
+          @ProductType = producttype
+          @CreateTime = createtime
+          @UpdateTime = updatetime
+        end
+
+        def deserialize(params)
+          @AppId = params['AppId']
+          @InstanceId = params['InstanceId']
+          @InstanceName = params['InstanceName']
+          @RegionId = params['RegionId']
+          @ZoneId = params['ZoneId']
+          @RedisReplicasNum = params['RedisReplicasNum']
+          @RedisShardNum = params['RedisShardNum']
+          @RedisShardSize = params['RedisShardSize']
+          @DiskSize = params['DiskSize']
+          @Engine = params['Engine']
+          @Role = params['Role']
+          @Vip = params['Vip']
+          @Vip6 = params['Vip6']
+          @VpcID = params['VpcID']
+          @VPort = params['VPort']
+          @Status = params['Status']
+          @GrocerySysId = params['GrocerySysId']
+          @ProductType = params['ProductType']
+          @CreateTime = params['CreateTime']
+          @UpdateTime = params['UpdateTime']
+        end
+      end
+
       # KillMasterGroup请求参数结构体
       class KillMasterGroupRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例ID
@@ -4249,15 +4456,18 @@ module TencentCloud
         # @type WeekDays: Array
         # @param TimePeriod: 时间段 00:00-01:00, 01:00-02:00...... 23:00-00:00
         # @type TimePeriod: String
+        # @param BackupStorageDays: 全量备份文件保存天数,单位：天
+        # @type BackupStorageDays: Integer
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :AutoBackupType, :WeekDays, :TimePeriod, :RequestId
+        attr_accessor :AutoBackupType, :WeekDays, :TimePeriod, :BackupStorageDays, :RequestId
         
-        def initialize(autobackuptype=nil, weekdays=nil, timeperiod=nil, requestid=nil)
+        def initialize(autobackuptype=nil, weekdays=nil, timeperiod=nil, backupstoragedays=nil, requestid=nil)
           @AutoBackupType = autobackuptype
           @WeekDays = weekdays
           @TimePeriod = timeperiod
+          @BackupStorageDays = backupstoragedays
           @RequestId = requestid
         end
 
@@ -4265,6 +4475,7 @@ module TencentCloud
           @AutoBackupType = params['AutoBackupType']
           @WeekDays = params['WeekDays']
           @TimePeriod = params['TimePeriod']
+          @BackupStorageDays = params['BackupStorageDays']
           @RequestId = params['RequestId']
         end
       end
@@ -4582,15 +4793,18 @@ module TencentCloud
         # @type VpcId: String
         # @param SubnetId: 子网ID，changeVpc、changeBaseToVpc的时候需要提供
         # @type SubnetId: String
+        # @param Recycle: vip保留时间，单位：天
+        # @type Recycle: Integer
 
-        attr_accessor :InstanceId, :Operation, :Vip, :VpcId, :SubnetId
+        attr_accessor :InstanceId, :Operation, :Vip, :VpcId, :SubnetId, :Recycle
         
-        def initialize(instanceid=nil, operation=nil, vip=nil, vpcid=nil, subnetid=nil)
+        def initialize(instanceid=nil, operation=nil, vip=nil, vpcid=nil, subnetid=nil, recycle=nil)
           @InstanceId = instanceid
           @Operation = operation
           @Vip = vip
           @VpcId = vpcid
           @SubnetId = subnetid
+          @Recycle = recycle
         end
 
         def deserialize(params)
@@ -4599,6 +4813,7 @@ module TencentCloud
           @Vip = params['Vip']
           @VpcId = params['VpcId']
           @SubnetId = params['SubnetId']
+          @Recycle = params['Recycle']
         end
       end
 

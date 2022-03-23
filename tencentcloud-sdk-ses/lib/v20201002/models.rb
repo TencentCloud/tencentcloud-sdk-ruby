@@ -63,10 +63,12 @@ module TencentCloud
         # @type TimedParam: :class:`Tencentcloud::Ses.v20201002.models.TimedEmailParam`
         # @param Unsubscribe: 退订选项 1: 加入退订链接 0: 不加入退订链接
         # @type Unsubscribe: String
+        # @param ADLocation: 是否添加广告标识 0:不添加 1:添加到subject前面，2:添加到subject后面
+        # @type ADLocation: Integer
 
-        attr_accessor :FromEmailAddress, :ReceiverId, :Subject, :TaskType, :ReplyToAddresses, :Template, :Simple, :Attachments, :CycleParam, :TimedParam, :Unsubscribe
+        attr_accessor :FromEmailAddress, :ReceiverId, :Subject, :TaskType, :ReplyToAddresses, :Template, :Simple, :Attachments, :CycleParam, :TimedParam, :Unsubscribe, :ADLocation
         
-        def initialize(fromemailaddress=nil, receiverid=nil, subject=nil, tasktype=nil, replytoaddresses=nil, template=nil, simple=nil, attachments=nil, cycleparam=nil, timedparam=nil, unsubscribe=nil)
+        def initialize(fromemailaddress=nil, receiverid=nil, subject=nil, tasktype=nil, replytoaddresses=nil, template=nil, simple=nil, attachments=nil, cycleparam=nil, timedparam=nil, unsubscribe=nil, adlocation=nil)
           @FromEmailAddress = fromemailaddress
           @ReceiverId = receiverid
           @Subject = subject
@@ -78,6 +80,7 @@ module TencentCloud
           @CycleParam = cycleparam
           @TimedParam = timedparam
           @Unsubscribe = unsubscribe
+          @ADLocation = adlocation
         end
 
         def deserialize(params)
@@ -111,6 +114,7 @@ module TencentCloud
             @TimedParam.deserialize(params['TimedParam'])
           end
           @Unsubscribe = params['Unsubscribe']
+          @ADLocation = params['ADLocation']
         end
       end
 

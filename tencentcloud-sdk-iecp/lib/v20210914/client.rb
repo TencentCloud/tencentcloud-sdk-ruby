@@ -581,6 +581,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 批量删除设备
+
+        # @param request: Request instance for DeleteIotDeviceBatch.
+        # @type request: :class:`Tencentcloud::iecp::V20210914::DeleteIotDeviceBatchRequest`
+        # @rtype: :class:`Tencentcloud::iecp::V20210914::DeleteIotDeviceBatchResponse`
+        def DeleteIotDeviceBatch(request)
+          body = send_request('DeleteIotDeviceBatch', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteIotDeviceBatchResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 删除命名空间
 
         # @param request: Request instance for DeleteNamespace.
@@ -807,6 +831,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeConfigMapsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 自动获取Draco设备的安装包
+
+        # @param request: Request instance for DescribeDracoEdgeNodeInstaller.
+        # @type request: :class:`Tencentcloud::iecp::V20210914::DescribeDracoEdgeNodeInstallerRequest`
+        # @rtype: :class:`Tencentcloud::iecp::V20210914::DescribeDracoEdgeNodeInstallerResponse`
+        def DescribeDracoEdgeNodeInstaller(request)
+          body = send_request('DescribeDracoEdgeNodeInstaller', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeDracoEdgeNodeInstallerResponse.new
             model.deserialize(response['Response'])
             model
           else

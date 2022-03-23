@@ -1577,6 +1577,33 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 该接口用于查询媒体文件按指定时间粒度统计的播放数据
+        # * 可以查询最近一年的播放统计数据。
+        # * 时间粒度为小时，结束时间和起始时间的跨度最大为7天。
+        # * 时间粒度为天，结束时间和起始时间的跨度最大为90天。
+
+        # @param request: Request instance for DescribeMediaPlayStatDetails.
+        # @type request: :class:`Tencentcloud::vod::V20180717::DescribeMediaPlayStatDetailsRequest`
+        # @rtype: :class:`Tencentcloud::vod::V20180717::DescribeMediaPlayStatDetailsResponse`
+        def DescribeMediaPlayStatDetails(request)
+          body = send_request('DescribeMediaPlayStatDetails', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeMediaPlayStatDetailsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 该接口返回查询时间范围内每天使用的视频处理用量信息。
         #    1. 可以查询最近365天内的视频处理统计数据。
         #    2. 查询时间跨度不超过90天。

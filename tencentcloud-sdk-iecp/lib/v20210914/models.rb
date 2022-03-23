@@ -1593,6 +1593,38 @@ module TencentCloud
         end
       end
 
+      # DeleteIotDeviceBatch请求参数结构体
+      class DeleteIotDeviceBatchRequest < TencentCloud::Common::AbstractModel
+        # @param DeviceIDList: 无
+        # @type DeviceIDList: Array
+
+        attr_accessor :DeviceIDList
+        
+        def initialize(deviceidlist=nil)
+          @DeviceIDList = deviceidlist
+        end
+
+        def deserialize(params)
+          @DeviceIDList = params['DeviceIDList']
+        end
+      end
+
+      # DeleteIotDeviceBatch返回参数结构体
+      class DeleteIotDeviceBatchResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DeleteNamespace请求参数结构体
       class DeleteNamespaceRequest < TencentCloud::Common::AbstractModel
         # @param EdgeUnitID: 单元ID
@@ -2168,6 +2200,43 @@ module TencentCloud
               @Items << configmapbasicinfo_tmp
             end
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeDracoEdgeNodeInstaller请求参数结构体
+      class DescribeDracoEdgeNodeInstallerRequest < TencentCloud::Common::AbstractModel
+        # @param SN: 设备SN
+        # @type SN: String
+
+        attr_accessor :SN
+        
+        def initialize(sn=nil)
+          @SN = sn
+        end
+
+        def deserialize(params)
+          @SN = params['SN']
+        end
+      end
+
+      # DescribeDracoEdgeNodeInstaller返回参数结构体
+      class DescribeDracoEdgeNodeInstallerResponse < TencentCloud::Common::AbstractModel
+        # @param OnlineInstallationCommand: 在线安装命名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OnlineInstallationCommand: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :OnlineInstallationCommand, :RequestId
+        
+        def initialize(onlineinstallationcommand=nil, requestid=nil)
+          @OnlineInstallationCommand = onlineinstallationcommand
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @OnlineInstallationCommand = params['OnlineInstallationCommand']
           @RequestId = params['RequestId']
         end
       end

@@ -221,7 +221,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 创建参数模板
+        # 创建参数模板。
 
         # @param request: Request instance for CreateParamTemplate.
         # @type request: :class:`Tencentcloud::redis::V20180412::CreateParamTemplateRequest`
@@ -1061,6 +1061,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询复制组
+
+        # @param request: Request instance for DescribeReplicationGroup.
+        # @type request: :class:`Tencentcloud::redis::V20180412::DescribeReplicationGroupRequest`
+        # @rtype: :class:`Tencentcloud::redis::V20180412::DescribeReplicationGroupResponse`
+        def DescribeReplicationGroup(request)
+          body = send_request('DescribeReplicationGroup', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeReplicationGroupResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询实例慢查询记录
 
         # @param request: Request instance for DescribeSlowLog.
@@ -1421,7 +1445,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 设置自动备份时间
+        # 设置自动备份配置
 
         # @param request: Request instance for ModifyAutoBackupConfig.
         # @type request: :class:`Tencentcloud::redis::V20180412::ModifyAutoBackupConfigRequest`

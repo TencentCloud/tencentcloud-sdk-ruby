@@ -1403,10 +1403,12 @@ module TencentCloud
         # @type HlsSpecialParam: :class:`Tencentcloud::Live.v20180801.models.HlsSpecialParam`
         # @param Mp3Param: Mp3录制参数，开启Mp3录制时设置。
         # @type Mp3Param: :class:`Tencentcloud::Live.v20180801.models.RecordParam`
+        # @param RemoveWatermark: 是否去除水印，类型为慢直播时此参数无效。
+        # @type RemoveWatermark: Boolean
 
-        attr_accessor :TemplateName, :Description, :FlvParam, :HlsParam, :Mp4Param, :AacParam, :IsDelayLive, :HlsSpecialParam, :Mp3Param
+        attr_accessor :TemplateName, :Description, :FlvParam, :HlsParam, :Mp4Param, :AacParam, :IsDelayLive, :HlsSpecialParam, :Mp3Param, :RemoveWatermark
         
-        def initialize(templatename=nil, description=nil, flvparam=nil, hlsparam=nil, mp4param=nil, aacparam=nil, isdelaylive=nil, hlsspecialparam=nil, mp3param=nil)
+        def initialize(templatename=nil, description=nil, flvparam=nil, hlsparam=nil, mp4param=nil, aacparam=nil, isdelaylive=nil, hlsspecialparam=nil, mp3param=nil, removewatermark=nil)
           @TemplateName = templatename
           @Description = description
           @FlvParam = flvparam
@@ -1416,6 +1418,7 @@ module TencentCloud
           @IsDelayLive = isdelaylive
           @HlsSpecialParam = hlsspecialparam
           @Mp3Param = mp3param
+          @RemoveWatermark = removewatermark
         end
 
         def deserialize(params)
@@ -1446,6 +1449,7 @@ module TencentCloud
             @Mp3Param = RecordParam.new
             @Mp3Param.deserialize(params['Mp3Param'])
           end
+          @RemoveWatermark = params['RemoveWatermark']
         end
       end
 
@@ -7456,10 +7460,12 @@ module TencentCloud
         # @type HlsSpecialParam: :class:`Tencentcloud::Live.v20180801.models.HlsSpecialParam`
         # @param Mp3Param: MP3 录制参数，开启 MP3 录制时设置。
         # @type Mp3Param: :class:`Tencentcloud::Live.v20180801.models.RecordParam`
+        # @param RemoveWatermark: 是否去除水印，类型为慢直播时此参数无效。
+        # @type RemoveWatermark: Boolean
 
-        attr_accessor :TemplateId, :TemplateName, :Description, :FlvParam, :HlsParam, :Mp4Param, :AacParam, :HlsSpecialParam, :Mp3Param
+        attr_accessor :TemplateId, :TemplateName, :Description, :FlvParam, :HlsParam, :Mp4Param, :AacParam, :HlsSpecialParam, :Mp3Param, :RemoveWatermark
         
-        def initialize(templateid=nil, templatename=nil, description=nil, flvparam=nil, hlsparam=nil, mp4param=nil, aacparam=nil, hlsspecialparam=nil, mp3param=nil)
+        def initialize(templateid=nil, templatename=nil, description=nil, flvparam=nil, hlsparam=nil, mp4param=nil, aacparam=nil, hlsspecialparam=nil, mp3param=nil, removewatermark=nil)
           @TemplateId = templateid
           @TemplateName = templatename
           @Description = description
@@ -7469,6 +7475,7 @@ module TencentCloud
           @AacParam = aacparam
           @HlsSpecialParam = hlsspecialparam
           @Mp3Param = mp3param
+          @RemoveWatermark = removewatermark
         end
 
         def deserialize(params)
@@ -7499,6 +7506,7 @@ module TencentCloud
             @Mp3Param = RecordParam.new
             @Mp3Param.deserialize(params['Mp3Param'])
           end
+          @RemoveWatermark = params['RemoveWatermark']
         end
       end
 
@@ -8680,10 +8688,13 @@ module TencentCloud
         # @type HlsSpecialParam: :class:`Tencentcloud::Live.v20180801.models.HlsSpecialParam`
         # @param Mp3Param: MP3 录制参数。
         # @type Mp3Param: :class:`Tencentcloud::Live.v20180801.models.RecordParam`
+        # @param RemoveWatermark: 是否去除水印。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RemoveWatermark: Boolean
 
-        attr_accessor :TemplateId, :TemplateName, :Description, :FlvParam, :HlsParam, :Mp4Param, :AacParam, :IsDelayLive, :HlsSpecialParam, :Mp3Param
+        attr_accessor :TemplateId, :TemplateName, :Description, :FlvParam, :HlsParam, :Mp4Param, :AacParam, :IsDelayLive, :HlsSpecialParam, :Mp3Param, :RemoveWatermark
         
-        def initialize(templateid=nil, templatename=nil, description=nil, flvparam=nil, hlsparam=nil, mp4param=nil, aacparam=nil, isdelaylive=nil, hlsspecialparam=nil, mp3param=nil)
+        def initialize(templateid=nil, templatename=nil, description=nil, flvparam=nil, hlsparam=nil, mp4param=nil, aacparam=nil, isdelaylive=nil, hlsspecialparam=nil, mp3param=nil, removewatermark=nil)
           @TemplateId = templateid
           @TemplateName = templatename
           @Description = description
@@ -8694,6 +8705,7 @@ module TencentCloud
           @IsDelayLive = isdelaylive
           @HlsSpecialParam = hlsspecialparam
           @Mp3Param = mp3param
+          @RemoveWatermark = removewatermark
         end
 
         def deserialize(params)
@@ -8725,6 +8737,7 @@ module TencentCloud
             @Mp3Param = RecordParam.new
             @Mp3Param.deserialize(params['Mp3Param'])
           end
+          @RemoveWatermark = params['RemoveWatermark']
         end
       end
 

@@ -59,16 +59,20 @@ module TencentCloud
         # @type RuleName: String
         # @param RuleId: 命中规则的id
         # @type RuleId: String
+        # @param OperationTime: 事件最后一次处理的时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OperationTime: String
 
-        attr_accessor :Description, :Solution, :Remark, :MatchRule, :RuleName, :RuleId
+        attr_accessor :Description, :Solution, :Remark, :MatchRule, :RuleName, :RuleId, :OperationTime
         
-        def initialize(description=nil, solution=nil, remark=nil, matchrule=nil, rulename=nil, ruleid=nil)
+        def initialize(description=nil, solution=nil, remark=nil, matchrule=nil, rulename=nil, ruleid=nil, operationtime=nil)
           @Description = description
           @Solution = solution
           @Remark = remark
           @MatchRule = matchrule
           @RuleName = rulename
           @RuleId = ruleid
+          @OperationTime = operationtime
         end
 
         def deserialize(params)
@@ -81,6 +85,7 @@ module TencentCloud
           end
           @RuleName = params['RuleName']
           @RuleId = params['RuleId']
+          @OperationTime = params['OperationTime']
         end
       end
 
@@ -200,16 +205,19 @@ module TencentCloud
         # @type RuleId: String
         # @param SystemChildRules: 系统策略的子策略数组
         # @type SystemChildRules: Array
+        # @param IsDefault: 是否是系统默认策略
+        # @type IsDefault: Boolean
 
-        attr_accessor :IsEnable, :ImageIds, :ChildRules, :RuleName, :RuleId, :SystemChildRules
+        attr_accessor :IsEnable, :ImageIds, :ChildRules, :RuleName, :RuleId, :SystemChildRules, :IsDefault
         
-        def initialize(isenable=nil, imageids=nil, childrules=nil, rulename=nil, ruleid=nil, systemchildrules=nil)
+        def initialize(isenable=nil, imageids=nil, childrules=nil, rulename=nil, ruleid=nil, systemchildrules=nil, isdefault=nil)
           @IsEnable = isenable
           @ImageIds = imageids
           @ChildRules = childrules
           @RuleName = rulename
           @RuleId = ruleid
           @SystemChildRules = systemchildrules
+          @IsDefault = isdefault
         end
 
         def deserialize(params)
@@ -233,6 +241,7 @@ module TencentCloud
               @SystemChildRules << abnormalprocesssystemchildruleinfo_tmp
             end
           end
+          @IsDefault = params['IsDefault']
         end
       end
 
@@ -319,16 +328,20 @@ module TencentCloud
         # @type RuleName: String
         # @param RuleId: 命中规则id
         # @type RuleId: String
+        # @param OperationTime: 事件最后一次处理的时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OperationTime: String
 
-        attr_accessor :Description, :Solution, :Remark, :MatchRule, :RuleName, :RuleId
+        attr_accessor :Description, :Solution, :Remark, :MatchRule, :RuleName, :RuleId, :OperationTime
         
-        def initialize(description=nil, solution=nil, remark=nil, matchrule=nil, rulename=nil, ruleid=nil)
+        def initialize(description=nil, solution=nil, remark=nil, matchrule=nil, rulename=nil, ruleid=nil, operationtime=nil)
           @Description = description
           @Solution = solution
           @Remark = remark
           @MatchRule = matchrule
           @RuleName = rulename
           @RuleId = ruleid
+          @OperationTime = operationtime
         end
 
         def deserialize(params)
@@ -341,6 +354,7 @@ module TencentCloud
           end
           @RuleName = params['RuleName']
           @RuleId = params['RuleId']
+          @OperationTime = params['OperationTime']
         end
       end
 
@@ -472,16 +486,19 @@ module TencentCloud
         # @type RuleId: String
         # @param SystemChildRules: 系统策略的子策略数组
         # @type SystemChildRules: Array
+        # @param IsDefault: 是否是系统默认策略
+        # @type IsDefault: Boolean
 
-        attr_accessor :IsEnable, :ImageIds, :ChildRules, :RuleName, :RuleId, :SystemChildRules
+        attr_accessor :IsEnable, :ImageIds, :ChildRules, :RuleName, :RuleId, :SystemChildRules, :IsDefault
         
-        def initialize(isenable=nil, imageids=nil, childrules=nil, rulename=nil, ruleid=nil, systemchildrules=nil)
+        def initialize(isenable=nil, imageids=nil, childrules=nil, rulename=nil, ruleid=nil, systemchildrules=nil, isdefault=nil)
           @IsEnable = isenable
           @ImageIds = imageids
           @ChildRules = childrules
           @RuleName = rulename
           @RuleId = ruleid
           @SystemChildRules = systemchildrules
+          @IsDefault = isdefault
         end
 
         def deserialize(params)
@@ -505,6 +522,7 @@ module TencentCloud
               @SystemChildRules << accesscontrolsystemchildruleinfo_tmp
             end
           end
+          @IsDefault = params['IsDefault']
         end
       end
 
@@ -3092,16 +3110,20 @@ module TencentCloud
         # @type ParentProcessInfo: :class:`Tencentcloud::Tcss.v20201101.models.ProcessDetailBaseInfo`
         # @param EventDetail: 事件描述
         # @type EventDetail: :class:`Tencentcloud::Tcss.v20201101.models.AbnormalProcessEventDescription`
+        # @param AncestorProcessInfo: 祖先进程信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AncestorProcessInfo: :class:`Tencentcloud::Tcss.v20201101.models.ProcessBaseInfo`
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :EventBaseInfo, :ProcessInfo, :ParentProcessInfo, :EventDetail, :RequestId
+        attr_accessor :EventBaseInfo, :ProcessInfo, :ParentProcessInfo, :EventDetail, :AncestorProcessInfo, :RequestId
         
-        def initialize(eventbaseinfo=nil, processinfo=nil, parentprocessinfo=nil, eventdetail=nil, requestid=nil)
+        def initialize(eventbaseinfo=nil, processinfo=nil, parentprocessinfo=nil, eventdetail=nil, ancestorprocessinfo=nil, requestid=nil)
           @EventBaseInfo = eventbaseinfo
           @ProcessInfo = processinfo
           @ParentProcessInfo = parentprocessinfo
           @EventDetail = eventdetail
+          @AncestorProcessInfo = ancestorprocessinfo
           @RequestId = requestid
         end
 
@@ -3121,6 +3143,10 @@ module TencentCloud
           unless params['EventDetail'].nil?
             @EventDetail = AbnormalProcessEventDescription.new
             @EventDetail.deserialize(params['EventDetail'])
+          end
+          unless params['AncestorProcessInfo'].nil?
+            @AncestorProcessInfo = ProcessBaseInfo.new
+            @AncestorProcessInfo.deserialize(params['AncestorProcessInfo'])
           end
           @RequestId = params['RequestId']
         end
@@ -3266,17 +3292,25 @@ module TencentCloud
         # @type RuleId: String
         # @param ImageId: 镜像id, 在添加白名单的时候使用
         # @type ImageId: String
+        # @param Limit: 需要返回的数量，默认为10，最大值为100
+        # @type Limit: Integer
+        # @param Offset: 偏移量，默认为0。
+        # @type Offset: Integer
 
-        attr_accessor :RuleId, :ImageId
+        attr_accessor :RuleId, :ImageId, :Limit, :Offset
         
-        def initialize(ruleid=nil, imageid=nil)
+        def initialize(ruleid=nil, imageid=nil, limit=nil, offset=nil)
           @RuleId = ruleid
           @ImageId = imageid
+          @Limit = limit
+          @Offset = offset
         end
 
         def deserialize(params)
           @RuleId = params['RuleId']
           @ImageId = params['ImageId']
+          @Limit = params['Limit']
+          @Offset = params['Offset']
         end
       end
 
@@ -3463,16 +3497,23 @@ module TencentCloud
         # @type TamperedFileInfo: :class:`Tencentcloud::Tcss.v20201101.models.FileAttributeInfo`
         # @param EventDetail: 事件描述
         # @type EventDetail: :class:`Tencentcloud::Tcss.v20201101.models.AccessControlEventDescription`
+        # @param ParentProcessInfo: 父进程信息
+        # @type ParentProcessInfo: :class:`Tencentcloud::Tcss.v20201101.models.ProcessBaseInfo`
+        # @param AncestorProcessInfo: 祖先进程信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AncestorProcessInfo: :class:`Tencentcloud::Tcss.v20201101.models.ProcessBaseInfo`
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :EventBaseInfo, :ProcessInfo, :TamperedFileInfo, :EventDetail, :RequestId
+        attr_accessor :EventBaseInfo, :ProcessInfo, :TamperedFileInfo, :EventDetail, :ParentProcessInfo, :AncestorProcessInfo, :RequestId
         
-        def initialize(eventbaseinfo=nil, processinfo=nil, tamperedfileinfo=nil, eventdetail=nil, requestid=nil)
+        def initialize(eventbaseinfo=nil, processinfo=nil, tamperedfileinfo=nil, eventdetail=nil, parentprocessinfo=nil, ancestorprocessinfo=nil, requestid=nil)
           @EventBaseInfo = eventbaseinfo
           @ProcessInfo = processinfo
           @TamperedFileInfo = tamperedfileinfo
           @EventDetail = eventdetail
+          @ParentProcessInfo = parentprocessinfo
+          @AncestorProcessInfo = ancestorprocessinfo
           @RequestId = requestid
         end
 
@@ -3492,6 +3533,14 @@ module TencentCloud
           unless params['EventDetail'].nil?
             @EventDetail = AccessControlEventDescription.new
             @EventDetail.deserialize(params['EventDetail'])
+          end
+          unless params['ParentProcessInfo'].nil?
+            @ParentProcessInfo = ProcessBaseInfo.new
+            @ParentProcessInfo.deserialize(params['ParentProcessInfo'])
+          end
+          unless params['AncestorProcessInfo'].nil?
+            @AncestorProcessInfo = ProcessBaseInfo.new
+            @AncestorProcessInfo.deserialize(params['AncestorProcessInfo'])
           end
           @RequestId = params['RequestId']
         end
@@ -3637,17 +3686,25 @@ module TencentCloud
         # @type RuleId: String
         # @param ImageId: 镜像id, 仅仅在事件加白的时候使用
         # @type ImageId: String
+        # @param Limit: 需要返回的数量，默认为10，最大值为100
+        # @type Limit: Integer
+        # @param Offset: 偏移量，默认为0。
+        # @type Offset: Integer
 
-        attr_accessor :RuleId, :ImageId
+        attr_accessor :RuleId, :ImageId, :Limit, :Offset
         
-        def initialize(ruleid=nil, imageid=nil)
+        def initialize(ruleid=nil, imageid=nil, limit=nil, offset=nil)
           @RuleId = ruleid
           @ImageId = imageid
+          @Limit = limit
+          @Offset = offset
         end
 
         def deserialize(params)
           @RuleId = params['RuleId']
           @ImageId = params['ImageId']
+          @Limit = params['Limit']
+          @Offset = params['Offset']
         end
       end
 
@@ -8021,15 +8078,22 @@ module TencentCloud
         # @type ProcessInfo: :class:`Tencentcloud::Tcss.v20201101.models.ProcessDetailInfo`
         # @param EventDetail: 事件描述
         # @type EventDetail: :class:`Tencentcloud::Tcss.v20201101.models.EscapeEventDescription`
+        # @param ParentProcessInfo: 父进程信息
+        # @type ParentProcessInfo: :class:`Tencentcloud::Tcss.v20201101.models.ProcessBaseInfo`
+        # @param AncestorProcessInfo: 祖先进程信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AncestorProcessInfo: :class:`Tencentcloud::Tcss.v20201101.models.ProcessBaseInfo`
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :EventBaseInfo, :ProcessInfo, :EventDetail, :RequestId
+        attr_accessor :EventBaseInfo, :ProcessInfo, :EventDetail, :ParentProcessInfo, :AncestorProcessInfo, :RequestId
         
-        def initialize(eventbaseinfo=nil, processinfo=nil, eventdetail=nil, requestid=nil)
+        def initialize(eventbaseinfo=nil, processinfo=nil, eventdetail=nil, parentprocessinfo=nil, ancestorprocessinfo=nil, requestid=nil)
           @EventBaseInfo = eventbaseinfo
           @ProcessInfo = processinfo
           @EventDetail = eventdetail
+          @ParentProcessInfo = parentprocessinfo
+          @AncestorProcessInfo = ancestorprocessinfo
           @RequestId = requestid
         end
 
@@ -8045,6 +8109,14 @@ module TencentCloud
           unless params['EventDetail'].nil?
             @EventDetail = EscapeEventDescription.new
             @EventDetail.deserialize(params['EventDetail'])
+          end
+          unless params['ParentProcessInfo'].nil?
+            @ParentProcessInfo = ProcessBaseInfo.new
+            @ParentProcessInfo.deserialize(params['ParentProcessInfo'])
+          end
+          unless params['AncestorProcessInfo'].nil?
+            @AncestorProcessInfo = ProcessBaseInfo.new
+            @AncestorProcessInfo.deserialize(params['AncestorProcessInfo'])
           end
           @RequestId = params['RequestId']
         end
@@ -8825,16 +8897,20 @@ module TencentCloud
         # @type ParentProcessInfo: :class:`Tencentcloud::Tcss.v20201101.models.ProcessDetailBaseInfo`
         # @param EventDetail: 事件描述
         # @type EventDetail: :class:`Tencentcloud::Tcss.v20201101.models.ReverseShellEventDescription`
+        # @param AncestorProcessInfo: 祖先进程信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AncestorProcessInfo: :class:`Tencentcloud::Tcss.v20201101.models.ProcessBaseInfo`
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :EventBaseInfo, :ProcessInfo, :ParentProcessInfo, :EventDetail, :RequestId
+        attr_accessor :EventBaseInfo, :ProcessInfo, :ParentProcessInfo, :EventDetail, :AncestorProcessInfo, :RequestId
         
-        def initialize(eventbaseinfo=nil, processinfo=nil, parentprocessinfo=nil, eventdetail=nil, requestid=nil)
+        def initialize(eventbaseinfo=nil, processinfo=nil, parentprocessinfo=nil, eventdetail=nil, ancestorprocessinfo=nil, requestid=nil)
           @EventBaseInfo = eventbaseinfo
           @ProcessInfo = processinfo
           @ParentProcessInfo = parentprocessinfo
           @EventDetail = eventdetail
+          @AncestorProcessInfo = ancestorprocessinfo
           @RequestId = requestid
         end
 
@@ -8854,6 +8930,10 @@ module TencentCloud
           unless params['EventDetail'].nil?
             @EventDetail = ReverseShellEventDescription.new
             @EventDetail.deserialize(params['EventDetail'])
+          end
+          unless params['AncestorProcessInfo'].nil?
+            @AncestorProcessInfo = ProcessBaseInfo.new
+            @AncestorProcessInfo.deserialize(params['AncestorProcessInfo'])
           end
           @RequestId = params['RequestId']
         end
@@ -9203,16 +9283,20 @@ module TencentCloud
         # @type ParentProcessInfo: :class:`Tencentcloud::Tcss.v20201101.models.ProcessDetailBaseInfo`
         # @param EventDetail: 事件描述
         # @type EventDetail: :class:`Tencentcloud::Tcss.v20201101.models.RiskSyscallEventDescription`
+        # @param AncestorProcessInfo: 祖先进程信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AncestorProcessInfo: :class:`Tencentcloud::Tcss.v20201101.models.ProcessBaseInfo`
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :EventBaseInfo, :ProcessInfo, :ParentProcessInfo, :EventDetail, :RequestId
+        attr_accessor :EventBaseInfo, :ProcessInfo, :ParentProcessInfo, :EventDetail, :AncestorProcessInfo, :RequestId
         
-        def initialize(eventbaseinfo=nil, processinfo=nil, parentprocessinfo=nil, eventdetail=nil, requestid=nil)
+        def initialize(eventbaseinfo=nil, processinfo=nil, parentprocessinfo=nil, eventdetail=nil, ancestorprocessinfo=nil, requestid=nil)
           @EventBaseInfo = eventbaseinfo
           @ProcessInfo = processinfo
           @ParentProcessInfo = parentprocessinfo
           @EventDetail = eventdetail
+          @AncestorProcessInfo = ancestorprocessinfo
           @RequestId = requestid
         end
 
@@ -9232,6 +9316,10 @@ module TencentCloud
           unless params['EventDetail'].nil?
             @EventDetail = RiskSyscallEventDescription.new
             @EventDetail.deserialize(params['EventDetail'])
+          end
+          unless params['AncestorProcessInfo'].nil?
+            @AncestorProcessInfo = ProcessBaseInfo.new
+            @AncestorProcessInfo.deserialize(params['AncestorProcessInfo'])
           end
           @RequestId = params['RequestId']
         end
@@ -9884,12 +9972,39 @@ module TencentCloud
         # @param ClientIP: 外网ip
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ClientIP: String
+        # @param PProcessStartUser: 父进程启动用户
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PProcessStartUser: String
+        # @param PProcessUserGroup: 父进程用户组
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PProcessUserGroup: String
+        # @param PProcessPath: 父进程路径
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PProcessPath: String
+        # @param PProcessParam: 父进程命令行参数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PProcessParam: String
+        # @param AncestorProcessStartUser: 祖先进程启动用户
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AncestorProcessStartUser: String
+        # @param AncestorProcessUserGroup: 祖先进程用户组
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AncestorProcessUserGroup: String
+        # @param AncestorProcessPath: 祖先进程路径
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AncestorProcessPath: String
+        # @param AncestorProcessParam: 祖先进程命令行参数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AncestorProcessParam: String
+        # @param OperationTime: 事件最后一次处理的时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OperationTime: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :ImageId, :ImageName, :CreateTime, :Size, :FilePath, :ModifyTime, :VirusName, :RiskLevel, :ContainerName, :ContainerId, :HostName, :HostId, :ProcessName, :ProcessPath, :ProcessMd5, :ProcessId, :ProcessArgv, :ProcessChan, :ProcessAccountGroup, :ProcessStartAccount, :ProcessFileAuthority, :SourceType, :PodName, :Tags, :HarmDescribe, :SuggestScheme, :Mark, :FileName, :FileMd5, :EventType, :Status, :SubStatus, :HostIP, :ClientIP, :RequestId
+        attr_accessor :ImageId, :ImageName, :CreateTime, :Size, :FilePath, :ModifyTime, :VirusName, :RiskLevel, :ContainerName, :ContainerId, :HostName, :HostId, :ProcessName, :ProcessPath, :ProcessMd5, :ProcessId, :ProcessArgv, :ProcessChan, :ProcessAccountGroup, :ProcessStartAccount, :ProcessFileAuthority, :SourceType, :PodName, :Tags, :HarmDescribe, :SuggestScheme, :Mark, :FileName, :FileMd5, :EventType, :Status, :SubStatus, :HostIP, :ClientIP, :PProcessStartUser, :PProcessUserGroup, :PProcessPath, :PProcessParam, :AncestorProcessStartUser, :AncestorProcessUserGroup, :AncestorProcessPath, :AncestorProcessParam, :OperationTime, :RequestId
         
-        def initialize(imageid=nil, imagename=nil, createtime=nil, size=nil, filepath=nil, modifytime=nil, virusname=nil, risklevel=nil, containername=nil, containerid=nil, hostname=nil, hostid=nil, processname=nil, processpath=nil, processmd5=nil, processid=nil, processargv=nil, processchan=nil, processaccountgroup=nil, processstartaccount=nil, processfileauthority=nil, sourcetype=nil, podname=nil, tags=nil, harmdescribe=nil, suggestscheme=nil, mark=nil, filename=nil, filemd5=nil, eventtype=nil, status=nil, substatus=nil, hostip=nil, clientip=nil, requestid=nil)
+        def initialize(imageid=nil, imagename=nil, createtime=nil, size=nil, filepath=nil, modifytime=nil, virusname=nil, risklevel=nil, containername=nil, containerid=nil, hostname=nil, hostid=nil, processname=nil, processpath=nil, processmd5=nil, processid=nil, processargv=nil, processchan=nil, processaccountgroup=nil, processstartaccount=nil, processfileauthority=nil, sourcetype=nil, podname=nil, tags=nil, harmdescribe=nil, suggestscheme=nil, mark=nil, filename=nil, filemd5=nil, eventtype=nil, status=nil, substatus=nil, hostip=nil, clientip=nil, pprocessstartuser=nil, pprocessusergroup=nil, pprocesspath=nil, pprocessparam=nil, ancestorprocessstartuser=nil, ancestorprocessusergroup=nil, ancestorprocesspath=nil, ancestorprocessparam=nil, operationtime=nil, requestid=nil)
           @ImageId = imageid
           @ImageName = imagename
           @CreateTime = createtime
@@ -9924,6 +10039,15 @@ module TencentCloud
           @SubStatus = substatus
           @HostIP = hostip
           @ClientIP = clientip
+          @PProcessStartUser = pprocessstartuser
+          @PProcessUserGroup = pprocessusergroup
+          @PProcessPath = pprocesspath
+          @PProcessParam = pprocessparam
+          @AncestorProcessStartUser = ancestorprocessstartuser
+          @AncestorProcessUserGroup = ancestorprocessusergroup
+          @AncestorProcessPath = ancestorprocesspath
+          @AncestorProcessParam = ancestorprocessparam
+          @OperationTime = operationtime
           @RequestId = requestid
         end
 
@@ -9962,6 +10086,15 @@ module TencentCloud
           @SubStatus = params['SubStatus']
           @HostIP = params['HostIP']
           @ClientIP = params['ClientIP']
+          @PProcessStartUser = params['PProcessStartUser']
+          @PProcessUserGroup = params['PProcessUserGroup']
+          @PProcessPath = params['PProcessPath']
+          @PProcessParam = params['PProcessParam']
+          @AncestorProcessStartUser = params['AncestorProcessStartUser']
+          @AncestorProcessUserGroup = params['AncestorProcessUserGroup']
+          @AncestorProcessPath = params['AncestorProcessPath']
+          @AncestorProcessParam = params['AncestorProcessParam']
+          @OperationTime = params['OperationTime']
           @RequestId = params['RequestId']
         end
       end
@@ -10459,19 +10592,24 @@ module TencentCloud
         # @param Remark: 事件备注信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Remark: String
+        # @param OperationTime: 事件最后一次处理的时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OperationTime: String
 
-        attr_accessor :Description, :Solution, :Remark
+        attr_accessor :Description, :Solution, :Remark, :OperationTime
         
-        def initialize(description=nil, solution=nil, remark=nil)
+        def initialize(description=nil, solution=nil, remark=nil, operationtime=nil)
           @Description = description
           @Solution = solution
           @Remark = remark
+          @OperationTime = operationtime
         end
 
         def deserialize(params)
           @Description = params['Description']
           @Solution = params['Solution']
           @Remark = params['Remark']
+          @OperationTime = params['OperationTime']
         end
       end
 
@@ -12583,6 +12721,38 @@ module TencentCloud
         end
       end
 
+      # 运行时安全，进程基础信息
+      class ProcessBaseInfo < TencentCloud::Common::AbstractModel
+        # @param ProcessStartUser: 进程启动用户
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProcessStartUser: String
+        # @param ProcessUserGroup: 进程用户组
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProcessUserGroup: String
+        # @param ProcessPath: 进程路径
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProcessPath: String
+        # @param ProcessParam: 进程命令行参数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProcessParam: String
+
+        attr_accessor :ProcessStartUser, :ProcessUserGroup, :ProcessPath, :ProcessParam
+        
+        def initialize(processstartuser=nil, processusergroup=nil, processpath=nil, processparam=nil)
+          @ProcessStartUser = processstartuser
+          @ProcessUserGroup = processusergroup
+          @ProcessPath = processpath
+          @ProcessParam = processparam
+        end
+
+        def deserialize(params)
+          @ProcessStartUser = params['ProcessStartUser']
+          @ProcessUserGroup = params['ProcessUserGroup']
+          @ProcessPath = params['ProcessPath']
+          @ProcessParam = params['ProcessParam']
+        end
+      end
+
       # 运行是安全详情，进程基础信息
       class ProcessDetailBaseInfo < TencentCloud::Common::AbstractModel
         # @param ProcessName: 进程名称
@@ -12806,14 +12976,18 @@ module TencentCloud
         # @type Remark: String
         # @param DstAddress: 目标地址
         # @type DstAddress: String
+        # @param OperationTime: 事件最后一次处理的时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OperationTime: String
 
-        attr_accessor :Description, :Solution, :Remark, :DstAddress
+        attr_accessor :Description, :Solution, :Remark, :DstAddress, :OperationTime
         
-        def initialize(description=nil, solution=nil, remark=nil, dstaddress=nil)
+        def initialize(description=nil, solution=nil, remark=nil, dstaddress=nil, operationtime=nil)
           @Description = description
           @Solution = solution
           @Remark = remark
           @DstAddress = dstaddress
+          @OperationTime = operationtime
         end
 
         def deserialize(params)
@@ -12821,6 +12995,7 @@ module TencentCloud
           @Solution = params['Solution']
           @Remark = params['Remark']
           @DstAddress = params['DstAddress']
+          @OperationTime = params['OperationTime']
         end
       end
 
@@ -12994,14 +13169,18 @@ module TencentCloud
         # @type Remark: String
         # @param SyscallName: 系统调用名称
         # @type SyscallName: String
+        # @param OperationTime: 事件最后一次处理的时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OperationTime: String
 
-        attr_accessor :Description, :Solution, :Remark, :SyscallName
+        attr_accessor :Description, :Solution, :Remark, :SyscallName, :OperationTime
         
-        def initialize(description=nil, solution=nil, remark=nil, syscallname=nil)
+        def initialize(description=nil, solution=nil, remark=nil, syscallname=nil, operationtime=nil)
           @Description = description
           @Solution = solution
           @Remark = remark
           @SyscallName = syscallname
+          @OperationTime = operationtime
         end
 
         def deserialize(params)
@@ -13009,6 +13188,7 @@ module TencentCloud
           @Solution = params['Solution']
           @Remark = params['Remark']
           @SyscallName = params['SyscallName']
+          @OperationTime = params['OperationTime']
         end
       end
 

@@ -8293,6 +8293,68 @@ module TencentCloud
         end
       end
 
+      # DescribeMediaPlayStatDetails请求参数结构体
+      class DescribeMediaPlayStatDetailsRequest < TencentCloud::Common::AbstractModel
+        # @param FileId: 媒体文件 ID。
+        # @type FileId: String
+        # @param StartTime: 起始时间，使用 [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#I)。
+        # @type StartTime: String
+        # @param EndTime: 结束时间，使用 [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#I)。
+        # @type EndTime: String
+        # @param Interval: 统计时间粒度，有效值：
+        # <li>Hour：以小时为粒度。</li>
+        # <li>Day：以天为粒度。</li>
+        # 默认按时间跨度决定，小于1天以小时为粒度，大于等于1天则以天为粒度。
+        # @type Interval: String
+        # @param SubAppId: 点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。
+        # @type SubAppId: Integer
+
+        attr_accessor :FileId, :StartTime, :EndTime, :Interval, :SubAppId
+        
+        def initialize(fileid=nil, starttime=nil, endtime=nil, interval=nil, subappid=nil)
+          @FileId = fileid
+          @StartTime = starttime
+          @EndTime = endtime
+          @Interval = interval
+          @SubAppId = subappid
+        end
+
+        def deserialize(params)
+          @FileId = params['FileId']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @Interval = params['Interval']
+          @SubAppId = params['SubAppId']
+        end
+      end
+
+      # DescribeMediaPlayStatDetails返回参数结构体
+      class DescribeMediaPlayStatDetailsResponse < TencentCloud::Common::AbstractModel
+        # @param PlayStatInfoSet: 播放统计数据。
+        # @type PlayStatInfoSet: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :PlayStatInfoSet, :RequestId
+        
+        def initialize(playstatinfoset=nil, requestid=nil)
+          @PlayStatInfoSet = playstatinfoset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['PlayStatInfoSet'].nil?
+            @PlayStatInfoSet = []
+            params['PlayStatInfoSet'].each do |i|
+              playstatinfo_tmp = PlayStatInfo.new
+              playstatinfo_tmp.deserialize(i)
+              @PlayStatInfoSet << playstatinfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeMediaProcessUsageData请求参数结构体
       class DescribeMediaProcessUsageDataRequest < TencentCloud::Common::AbstractModel
         # @param StartTime: 起始日期。使用 [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#52)。
@@ -15103,6 +15165,36 @@ module TencentCloud
         def deserialize(params)
           @Date = params['Date']
           @Url = params['Url']
+        end
+      end
+
+      # 播放统计信息。
+      class PlayStatInfo < TencentCloud::Common::AbstractModel
+        # @param Time: 数据所在时间区间的开始时间，使用 [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#I)。如：当时间粒度为天，2018-12-01T00:00:00+08:00，表示2018年12月1日（含）到2018年12月2日（不含）区间。
+        # <li>表示小时级别数据时，2019-08-22T00:00:00+08:00表示2019-08-22日0点到1点的统计数据。</li>
+        # <li>表示天级别数据时，2019-08-22T00:00:00+08:00表示2019-08-22日的统计数据。</li>
+        # @type Time: String
+        # @param FileId: 媒体文件ID。
+        # @type FileId: String
+        # @param PlayTimes: 播放次数。
+        # @type PlayTimes: Integer
+        # @param Traffic: 播放流量，单位：字节。
+        # @type Traffic: Integer
+
+        attr_accessor :Time, :FileId, :PlayTimes, :Traffic
+        
+        def initialize(time=nil, fileid=nil, playtimes=nil, traffic=nil)
+          @Time = time
+          @FileId = fileid
+          @PlayTimes = playtimes
+          @Traffic = traffic
+        end
+
+        def deserialize(params)
+          @Time = params['Time']
+          @FileId = params['FileId']
+          @PlayTimes = params['PlayTimes']
+          @Traffic = params['Traffic']
         end
       end
 
