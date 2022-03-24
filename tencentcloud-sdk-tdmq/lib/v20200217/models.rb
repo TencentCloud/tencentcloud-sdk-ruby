@@ -6443,6 +6443,58 @@ module TencentCloud
         end
       end
 
+      # ResetRocketMQConsumerOffSet请求参数结构体
+      class ResetRocketMQConsumerOffSetRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群ID
+        # @type ClusterId: String
+        # @param NamespaceId: 命名空间名称
+        # @type NamespaceId: String
+        # @param GroupId: 消费组名称
+        # @type GroupId: String
+        # @param Topic: 主题名称
+        # @type Topic: String
+        # @param Type: 重置方式，0表示从最新位点开始，1表示从指定时间点开始
+        # @type Type: Integer
+        # @param ResetTimestamp: 重置指定的时间戳，仅在 Type 为1是生效，以毫秒为单位
+        # @type ResetTimestamp: Integer
+
+        attr_accessor :ClusterId, :NamespaceId, :GroupId, :Topic, :Type, :ResetTimestamp
+        
+        def initialize(clusterid=nil, namespaceid=nil, groupid=nil, topic=nil, type=nil, resettimestamp=nil)
+          @ClusterId = clusterid
+          @NamespaceId = namespaceid
+          @GroupId = groupid
+          @Topic = topic
+          @Type = type
+          @ResetTimestamp = resettimestamp
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @NamespaceId = params['NamespaceId']
+          @GroupId = params['GroupId']
+          @Topic = params['Topic']
+          @Type = params['Type']
+          @ResetTimestamp = params['ResetTimestamp']
+        end
+      end
+
+      # ResetRocketMQConsumerOffSet返回参数结构体
+      class ResetRocketMQConsumerOffSetResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 消息保留策略
       class RetentionPolicy < TencentCloud::Common::AbstractModel
         # @param TimeInMinutes: 消息保留时长

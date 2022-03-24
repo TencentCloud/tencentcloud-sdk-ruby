@@ -499,15 +499,19 @@ module TencentCloud
         # @param UnionPackFlag: 联合产品标记，0代表普通高防包，1代表联合高防包
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UnionPackFlag: Integer
+        # @param ServiceBandWidth: 业务带宽
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ServiceBandWidth: Integer
 
-        attr_accessor :ProtectBandwidth, :ProtectCountLimit, :ProtectIPNumberLimit, :AutoRenewFlag, :UnionPackFlag
+        attr_accessor :ProtectBandwidth, :ProtectCountLimit, :ProtectIPNumberLimit, :AutoRenewFlag, :UnionPackFlag, :ServiceBandWidth
         
-        def initialize(protectbandwidth=nil, protectcountlimit=nil, protectipnumberlimit=nil, autorenewflag=nil, unionpackflag=nil)
+        def initialize(protectbandwidth=nil, protectcountlimit=nil, protectipnumberlimit=nil, autorenewflag=nil, unionpackflag=nil, servicebandwidth=nil)
           @ProtectBandwidth = protectbandwidth
           @ProtectCountLimit = protectcountlimit
           @ProtectIPNumberLimit = protectipnumberlimit
           @AutoRenewFlag = autorenewflag
           @UnionPackFlag = unionpackflag
+          @ServiceBandWidth = servicebandwidth
         end
 
         def deserialize(params)
@@ -516,6 +520,7 @@ module TencentCloud
           @ProtectIPNumberLimit = params['ProtectIPNumberLimit']
           @AutoRenewFlag = params['AutoRenewFlag']
           @UnionPackFlag = params['UnionPackFlag']
+          @ServiceBandWidth = params['ServiceBandWidth']
         end
       end
 
@@ -3922,10 +3927,12 @@ module TencentCloud
         # @type FilterStatus: String
         # @param FilterBoundStatus: 高防包绑定状态搜索，bounding：绑定中； failed：绑定失败
         # @type FilterBoundStatus: String
+        # @param FilterInstanceIdList: 实例id数组
+        # @type FilterInstanceIdList: Array
 
-        attr_accessor :Offset, :Limit, :FilterIp, :FilterInstanceId, :FilterRegion, :FilterName, :FilterLine, :FilterStatus, :FilterBoundStatus
+        attr_accessor :Offset, :Limit, :FilterIp, :FilterInstanceId, :FilterRegion, :FilterName, :FilterLine, :FilterStatus, :FilterBoundStatus, :FilterInstanceIdList
         
-        def initialize(offset=nil, limit=nil, filterip=nil, filterinstanceid=nil, filterregion=nil, filtername=nil, filterline=nil, filterstatus=nil, filterboundstatus=nil)
+        def initialize(offset=nil, limit=nil, filterip=nil, filterinstanceid=nil, filterregion=nil, filtername=nil, filterline=nil, filterstatus=nil, filterboundstatus=nil, filterinstanceidlist=nil)
           @Offset = offset
           @Limit = limit
           @FilterIp = filterip
@@ -3935,6 +3942,7 @@ module TencentCloud
           @FilterLine = filterline
           @FilterStatus = filterstatus
           @FilterBoundStatus = filterboundstatus
+          @FilterInstanceIdList = filterinstanceidlist
         end
 
         def deserialize(params)
@@ -3947,6 +3955,7 @@ module TencentCloud
           @FilterLine = params['FilterLine']
           @FilterStatus = params['FilterStatus']
           @FilterBoundStatus = params['FilterBoundStatus']
+          @FilterInstanceIdList = params['FilterInstanceIdList']
         end
       end
 

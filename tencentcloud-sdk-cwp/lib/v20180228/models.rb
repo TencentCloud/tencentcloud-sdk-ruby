@@ -10940,6 +10940,188 @@ module TencentCloud
         end
       end
 
+      # DescribeSecurityEventStat请求参数结构体
+      class DescribeSecurityEventStatRequest < TencentCloud::Common::AbstractModel
+        # @param Filters: 该接口无过滤条件
+        # @type Filters: Array
+
+        attr_accessor :Filters
+        
+        def initialize(filters=nil)
+          @Filters = filters
+        end
+
+        def deserialize(params)
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+        end
+      end
+
+      # DescribeSecurityEventStat返回参数结构体
+      class DescribeSecurityEventStatResponse < TencentCloud::Common::AbstractModel
+        # @param MalwareStat: 木马事件统计
+        # @type MalwareStat: :class:`Tencentcloud::Cwp.v20180228.models.EventStat`
+        # @param HostLoginStat: 异地事件统计
+        # @type HostLoginStat: :class:`Tencentcloud::Cwp.v20180228.models.EventStat`
+        # @param BruteAttackStat: 爆破事件统计
+        # @type BruteAttackStat: :class:`Tencentcloud::Cwp.v20180228.models.EventStat`
+        # @param MaliciousRequestStat: 恶意请求事件统计
+        # @type MaliciousRequestStat: :class:`Tencentcloud::Cwp.v20180228.models.EventStat`
+        # @param PrivilegeStat: 本地提权事件统计
+        # @type PrivilegeStat: :class:`Tencentcloud::Cwp.v20180228.models.EventStat`
+        # @param ReverseShellStat: 反弹Shell事件统计
+        # @type ReverseShellStat: :class:`Tencentcloud::Cwp.v20180228.models.EventStat`
+        # @param HighRiskBashStat: 高危命令事件统计
+        # @type HighRiskBashStat: :class:`Tencentcloud::Cwp.v20180228.models.EventStat`
+        # @param AttackLogsStat: 网络攻击事件统计
+        # @type AttackLogsStat: :class:`Tencentcloud::Cwp.v20180228.models.EventStat`
+        # @param VulHighStat: 高危漏洞事件统计
+        # @type VulHighStat: :class:`Tencentcloud::Cwp.v20180228.models.EventStat`
+        # @param VulNormalStat: 中危漏洞事件统计
+        # @type VulNormalStat: :class:`Tencentcloud::Cwp.v20180228.models.EventStat`
+        # @param VulLowStat: 低危漏洞事件统计
+        # @type VulLowStat: :class:`Tencentcloud::Cwp.v20180228.models.EventStat`
+        # @param BaselineHighStat: 高危基线漏洞事件统计
+        # @type BaselineHighStat: :class:`Tencentcloud::Cwp.v20180228.models.EventStat`
+        # @param BaselineNormalStat: 中危基线漏事件统计
+        # @type BaselineNormalStat: :class:`Tencentcloud::Cwp.v20180228.models.EventStat`
+        # @param BaselineLowStat: 低危基线漏事件统计
+        # @type BaselineLowStat: :class:`Tencentcloud::Cwp.v20180228.models.EventStat`
+        # @param MachineTotalAffectNum: 有未处理安全事件的机器总数
+        # @type MachineTotalAffectNum: Integer
+        # @param InvasionTotalAffectNum: 有未处理入侵安全事件的机器总数
+        # @type InvasionTotalAffectNum: Integer
+        # @param VulTotalAffectNum: 有未处理漏洞安全事件的机器总数
+        # @type VulTotalAffectNum: Integer
+        # @param BaseLineTotalAffectNum: 有未处理基线安全事件的机器总数
+        # @type BaseLineTotalAffectNum: Integer
+        # @param CyberAttackTotalAffectNum: 有未处理网络攻击安全事件的机器总数
+        # @type CyberAttackTotalAffectNum: Integer
+        # @param VulRiskStat: 严重漏洞事件统计
+        # @type VulRiskStat: :class:`Tencentcloud::Cwp.v20180228.models.EventStat`
+        # @param BaselineRiskStat: 严重基线漏洞事件统计
+        # @type BaselineRiskStat: :class:`Tencentcloud::Cwp.v20180228.models.EventStat`
+        # @param VulStat: 漏洞数统计
+        # @type VulStat: :class:`Tencentcloud::Cwp.v20180228.models.EventStat`
+        # @param Score: 安全得分
+        # @type Score: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :MalwareStat, :HostLoginStat, :BruteAttackStat, :MaliciousRequestStat, :PrivilegeStat, :ReverseShellStat, :HighRiskBashStat, :AttackLogsStat, :VulHighStat, :VulNormalStat, :VulLowStat, :BaselineHighStat, :BaselineNormalStat, :BaselineLowStat, :MachineTotalAffectNum, :InvasionTotalAffectNum, :VulTotalAffectNum, :BaseLineTotalAffectNum, :CyberAttackTotalAffectNum, :VulRiskStat, :BaselineRiskStat, :VulStat, :Score, :RequestId
+        
+        def initialize(malwarestat=nil, hostloginstat=nil, bruteattackstat=nil, maliciousrequeststat=nil, privilegestat=nil, reverseshellstat=nil, highriskbashstat=nil, attacklogsstat=nil, vulhighstat=nil, vulnormalstat=nil, vullowstat=nil, baselinehighstat=nil, baselinenormalstat=nil, baselinelowstat=nil, machinetotalaffectnum=nil, invasiontotalaffectnum=nil, vultotalaffectnum=nil, baselinetotalaffectnum=nil, cyberattacktotalaffectnum=nil, vulriskstat=nil, baselineriskstat=nil, vulstat=nil, score=nil, requestid=nil)
+          @MalwareStat = malwarestat
+          @HostLoginStat = hostloginstat
+          @BruteAttackStat = bruteattackstat
+          @MaliciousRequestStat = maliciousrequeststat
+          @PrivilegeStat = privilegestat
+          @ReverseShellStat = reverseshellstat
+          @HighRiskBashStat = highriskbashstat
+          @AttackLogsStat = attacklogsstat
+          @VulHighStat = vulhighstat
+          @VulNormalStat = vulnormalstat
+          @VulLowStat = vullowstat
+          @BaselineHighStat = baselinehighstat
+          @BaselineNormalStat = baselinenormalstat
+          @BaselineLowStat = baselinelowstat
+          @MachineTotalAffectNum = machinetotalaffectnum
+          @InvasionTotalAffectNum = invasiontotalaffectnum
+          @VulTotalAffectNum = vultotalaffectnum
+          @BaseLineTotalAffectNum = baselinetotalaffectnum
+          @CyberAttackTotalAffectNum = cyberattacktotalaffectnum
+          @VulRiskStat = vulriskstat
+          @BaselineRiskStat = baselineriskstat
+          @VulStat = vulstat
+          @Score = score
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['MalwareStat'].nil?
+            @MalwareStat = EventStat.new
+            @MalwareStat.deserialize(params['MalwareStat'])
+          end
+          unless params['HostLoginStat'].nil?
+            @HostLoginStat = EventStat.new
+            @HostLoginStat.deserialize(params['HostLoginStat'])
+          end
+          unless params['BruteAttackStat'].nil?
+            @BruteAttackStat = EventStat.new
+            @BruteAttackStat.deserialize(params['BruteAttackStat'])
+          end
+          unless params['MaliciousRequestStat'].nil?
+            @MaliciousRequestStat = EventStat.new
+            @MaliciousRequestStat.deserialize(params['MaliciousRequestStat'])
+          end
+          unless params['PrivilegeStat'].nil?
+            @PrivilegeStat = EventStat.new
+            @PrivilegeStat.deserialize(params['PrivilegeStat'])
+          end
+          unless params['ReverseShellStat'].nil?
+            @ReverseShellStat = EventStat.new
+            @ReverseShellStat.deserialize(params['ReverseShellStat'])
+          end
+          unless params['HighRiskBashStat'].nil?
+            @HighRiskBashStat = EventStat.new
+            @HighRiskBashStat.deserialize(params['HighRiskBashStat'])
+          end
+          unless params['AttackLogsStat'].nil?
+            @AttackLogsStat = EventStat.new
+            @AttackLogsStat.deserialize(params['AttackLogsStat'])
+          end
+          unless params['VulHighStat'].nil?
+            @VulHighStat = EventStat.new
+            @VulHighStat.deserialize(params['VulHighStat'])
+          end
+          unless params['VulNormalStat'].nil?
+            @VulNormalStat = EventStat.new
+            @VulNormalStat.deserialize(params['VulNormalStat'])
+          end
+          unless params['VulLowStat'].nil?
+            @VulLowStat = EventStat.new
+            @VulLowStat.deserialize(params['VulLowStat'])
+          end
+          unless params['BaselineHighStat'].nil?
+            @BaselineHighStat = EventStat.new
+            @BaselineHighStat.deserialize(params['BaselineHighStat'])
+          end
+          unless params['BaselineNormalStat'].nil?
+            @BaselineNormalStat = EventStat.new
+            @BaselineNormalStat.deserialize(params['BaselineNormalStat'])
+          end
+          unless params['BaselineLowStat'].nil?
+            @BaselineLowStat = EventStat.new
+            @BaselineLowStat.deserialize(params['BaselineLowStat'])
+          end
+          @MachineTotalAffectNum = params['MachineTotalAffectNum']
+          @InvasionTotalAffectNum = params['InvasionTotalAffectNum']
+          @VulTotalAffectNum = params['VulTotalAffectNum']
+          @BaseLineTotalAffectNum = params['BaseLineTotalAffectNum']
+          @CyberAttackTotalAffectNum = params['CyberAttackTotalAffectNum']
+          unless params['VulRiskStat'].nil?
+            @VulRiskStat = EventStat.new
+            @VulRiskStat.deserialize(params['VulRiskStat'])
+          end
+          unless params['BaselineRiskStat'].nil?
+            @BaselineRiskStat = EventStat.new
+            @BaselineRiskStat.deserialize(params['BaselineRiskStat'])
+          end
+          unless params['VulStat'].nil?
+            @VulStat = EventStat.new
+            @VulStat.deserialize(params['VulStat'])
+          end
+          @Score = params['Score']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeSecurityEventsCnt请求参数结构体
       class DescribeSecurityEventsCntRequest < TencentCloud::Common::AbstractModel
 
@@ -12654,6 +12836,26 @@ module TencentCloud
           @CvssScore = params['CvssScore']
           @Labels = params['Labels']
           @HostCount = params['HostCount']
+        end
+      end
+
+      # 未处理的安全事件统计信息
+      class EventStat < TencentCloud::Common::AbstractModel
+        # @param EventsNum: 事件数
+        # @type EventsNum: Integer
+        # @param MachineAffectNum: 受影响的主机数
+        # @type MachineAffectNum: Integer
+
+        attr_accessor :EventsNum, :MachineAffectNum
+        
+        def initialize(eventsnum=nil, machineaffectnum=nil)
+          @EventsNum = eventsnum
+          @MachineAffectNum = machineaffectnum
+        end
+
+        def deserialize(params)
+          @EventsNum = params['EventsNum']
+          @MachineAffectNum = params['MachineAffectNum']
         end
       end
 

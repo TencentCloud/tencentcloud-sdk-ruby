@@ -3801,16 +3801,20 @@ module TencentCloud
         # @type Constraint: :class:`Tencentcloud::Dcdb.v20180411.models.ParamConstraint`
         # @param HaveSetValue: 是否有设置过值，false:没有设置过值，true:有设置过值。
         # @type HaveSetValue: Boolean
+        # @param NeedRestart: 是否需要重启生效，false:不需要重启，
+        # true:需要重启
+        # @type NeedRestart: Boolean
 
-        attr_accessor :Param, :Value, :SetValue, :Default, :Constraint, :HaveSetValue
+        attr_accessor :Param, :Value, :SetValue, :Default, :Constraint, :HaveSetValue, :NeedRestart
         
-        def initialize(param=nil, value=nil, setvalue=nil, default=nil, constraint=nil, havesetvalue=nil)
+        def initialize(param=nil, value=nil, setvalue=nil, default=nil, constraint=nil, havesetvalue=nil, needrestart=nil)
           @Param = param
           @Value = value
           @SetValue = setvalue
           @Default = default
           @Constraint = constraint
           @HaveSetValue = havesetvalue
+          @NeedRestart = needrestart
         end
 
         def deserialize(params)
@@ -3823,6 +3827,7 @@ module TencentCloud
             @Constraint.deserialize(params['Constraint'])
           end
           @HaveSetValue = params['HaveSetValue']
+          @NeedRestart = params['NeedRestart']
         end
       end
 

@@ -2981,9 +2981,9 @@ module TencentCloud
         # @type Limit: Integer
         # @param Offset: 分页页码，整型
         # @type Offset: Integer
-        # @param Filters: 过滤条件
+        # @param Filters: 过滤参数；demo模式传{"Name": "IsDemo", "Values":["1"]}
         # @type Filters: Array
-        # @param IsDemo: 是否为demo模式（1=是，2=否）
+        # @param IsDemo: 该参数已废弃，demo模式请在Filters内注明
         # @type IsDemo: Integer
 
         attr_accessor :Limit, :Offset, :Filters, :IsDemo
@@ -3204,7 +3204,7 @@ module TencentCloud
         # @type StartTime: String
         # @param ID: 项目ID
         # @type ID: Integer
-        # @param IsDemo: 是否为demo模式（1=是，2=否）
+        # @param IsDemo: 该参数已废弃
         # @type IsDemo: Integer
 
         attr_accessor :EndTime, :StartTime, :ID, :IsDemo
@@ -3330,9 +3330,9 @@ module TencentCloud
         # @type InstanceStatuses: Array
         # @param InstanceIds: 实例Id
         # @type InstanceIds: Array
-        # @param Filters: 过滤参数
+        # @param Filters: 过滤参数；demo模式传{"Name": "IsDemo", "Values":["1"]}
         # @type Filters: Array
-        # @param IsDemo: 是否为demo模式（1=是，2=否）
+        # @param IsDemo: 该参数已废弃，demo模式请在Filters内注明
         # @type IsDemo: Integer
 
         attr_accessor :ChargeStatuses, :ChargeTypes, :Limit, :Offset, :AreaIds, :InstanceStatuses, :InstanceIds, :Filters, :IsDemo
