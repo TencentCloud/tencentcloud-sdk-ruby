@@ -845,7 +845,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 查询Redis节点信息
+        # 查询Redis节点详细信息
 
         # @param request: Request instance for DescribeInstanceZoneInfo.
         # @type request: :class:`Tencentcloud::redis::V20180412::DescribeInstanceZoneInfoRequest`
@@ -917,7 +917,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 查询参数模板详情
+        # 查询参数模板详情。
 
         # @param request: Request instance for DescribeParamTemplateInfo.
         # @type request: :class:`Tencentcloud::redis::V20180412::DescribeParamTemplateInfoRequest`
@@ -1469,7 +1469,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 修改实例的连接配置，包括带宽和最大连接数
+        # 修改实例的连接配置，包括带宽和最大连接数。
 
         # @param request: Request instance for ModifyConnectionConfig.
         # @type request: :class:`Tencentcloud::redis::V20180412::ModifyConnectionConfigRequest`

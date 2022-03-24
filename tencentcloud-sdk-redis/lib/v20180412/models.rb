@@ -275,7 +275,7 @@ module TencentCloud
       class ChangeReplicaToMasterRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例Id
         # @type InstanceId: String
-        # @param GroupId: 副本Id
+        # @param GroupId: 副本组Id，多AZ实例必填
         # @type GroupId: Integer
 
         attr_accessor :InstanceId, :GroupId
@@ -883,15 +883,21 @@ module TencentCloud
         # @type WeekDays: Array
         # @param TimePeriod: 时间段。
         # @type TimePeriod: String
+        # @param BackupStorageDays: 全量备份文件保存天数
+        # @type BackupStorageDays: Integer
+        # @param BinlogStorageDays: tendis binlog备份文件保存天数
+        # @type BinlogStorageDays: Integer
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :AutoBackupType, :WeekDays, :TimePeriod, :RequestId
+        attr_accessor :AutoBackupType, :WeekDays, :TimePeriod, :BackupStorageDays, :BinlogStorageDays, :RequestId
         
-        def initialize(autobackuptype=nil, weekdays=nil, timeperiod=nil, requestid=nil)
+        def initialize(autobackuptype=nil, weekdays=nil, timeperiod=nil, backupstoragedays=nil, binlogstoragedays=nil, requestid=nil)
           @AutoBackupType = autobackuptype
           @WeekDays = weekdays
           @TimePeriod = timeperiod
+          @BackupStorageDays = backupstoragedays
+          @BinlogStorageDays = binlogstoragedays
           @RequestId = requestid
         end
 
@@ -899,6 +905,8 @@ module TencentCloud
           @AutoBackupType = params['AutoBackupType']
           @WeekDays = params['WeekDays']
           @TimePeriod = params['TimePeriod']
+          @BackupStorageDays = params['BackupStorageDays']
+          @BinlogStorageDays = params['BinlogStorageDays']
           @RequestId = params['RequestId']
         end
       end
@@ -966,13 +974,13 @@ module TencentCloud
 
       # DescribeCommonDBInstances请求参数结构体
       class DescribeCommonDBInstancesRequest < TencentCloud::Common::AbstractModel
-        # @param VpcIds: 实例Vip信息列表
+        # @param VpcIds: vpc网络ID信息列表
         # @type VpcIds: Array
-        # @param SubnetIds: 子网id信息列表
+        # @param SubnetIds: 子网ID信息列表
         # @type SubnetIds: Array
         # @param PayMode: 计费类型过滤列表；0表示包年包月，1表示按量计费
         # @type PayMode: Integer
-        # @param InstanceIds: 实例id过滤信息列表
+        # @param InstanceIds: 实例ID过滤信息列表
         # @type InstanceIds: Array
         # @param InstanceNames: 实例名称过滤信息列表
         # @type InstanceNames: Array
@@ -1083,13 +1091,19 @@ module TencentCloud
       class DescribeDBSecurityGroupsResponse < TencentCloud::Common::AbstractModel
         # @param Groups: 安全组规则
         # @type Groups: Array
+        # @param VIP: 安全组生效内网地址
+        # @type VIP: String
+        # @param VPort: 安全组生效内网端口
+        # @type VPort: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Groups, :RequestId
+        attr_accessor :Groups, :VIP, :VPort, :RequestId
         
-        def initialize(groups=nil, requestid=nil)
+        def initialize(groups=nil, vip=nil, vport=nil, requestid=nil)
           @Groups = groups
+          @VIP = vip
+          @VPort = vport
           @RequestId = requestid
         end
 
@@ -1102,6 +1116,8 @@ module TencentCloud
               @Groups << securitygroup_tmp
             end
           end
+          @VIP = params['VIP']
+          @VPort = params['VPort']
           @RequestId = params['RequestId']
         end
       end
@@ -2149,7 +2165,7 @@ module TencentCloud
 
       # DescribeInstances请求参数结构体
       class DescribeInstancesRequest < TencentCloud::Common::AbstractModel
-        # @param Limit: 实例列表的大小，参数默认值20
+        # @param Limit: 实例列表的大小，参数默认值20，传值则以传参为准，如果传参大于具体配置etc/conf/component.properties中的DescribeInstancesPageLimit配置项 （读不到配置默认配置项为1000），则以配置项为准
         # @type Limit: Integer
         # @param Offset: 偏移量，取Limit整数倍
         # @type Offset: Integer
@@ -2193,10 +2209,14 @@ module TencentCloud
         # @type TypeList: Array
         # @param MonitorVersion: 内部参数，用户可忽略
         # @type MonitorVersion: String
+        # @param InstanceTags: 根据标签的Key和Value筛选资源，不传或者传空数组则不进行过滤
+        # @type InstanceTags: Array
+        # @param TagKeys: 根据标签的Key筛选资源，不传或者传空数组则不进行过滤
+        # @type TagKeys: Array
 
-        attr_accessor :Limit, :Offset, :InstanceId, :OrderBy, :OrderType, :VpcIds, :SubnetIds, :ProjectIds, :SearchKey, :InstanceName, :UniqVpcIds, :UniqSubnetIds, :RegionIds, :Status, :TypeVersion, :EngineName, :AutoRenew, :BillingMode, :Type, :SearchKeys, :TypeList, :MonitorVersion
+        attr_accessor :Limit, :Offset, :InstanceId, :OrderBy, :OrderType, :VpcIds, :SubnetIds, :ProjectIds, :SearchKey, :InstanceName, :UniqVpcIds, :UniqSubnetIds, :RegionIds, :Status, :TypeVersion, :EngineName, :AutoRenew, :BillingMode, :Type, :SearchKeys, :TypeList, :MonitorVersion, :InstanceTags, :TagKeys
         
-        def initialize(limit=nil, offset=nil, instanceid=nil, orderby=nil, ordertype=nil, vpcids=nil, subnetids=nil, projectids=nil, searchkey=nil, instancename=nil, uniqvpcids=nil, uniqsubnetids=nil, regionids=nil, status=nil, typeversion=nil, enginename=nil, autorenew=nil, billingmode=nil, type=nil, searchkeys=nil, typelist=nil, monitorversion=nil)
+        def initialize(limit=nil, offset=nil, instanceid=nil, orderby=nil, ordertype=nil, vpcids=nil, subnetids=nil, projectids=nil, searchkey=nil, instancename=nil, uniqvpcids=nil, uniqsubnetids=nil, regionids=nil, status=nil, typeversion=nil, enginename=nil, autorenew=nil, billingmode=nil, type=nil, searchkeys=nil, typelist=nil, monitorversion=nil, instancetags=nil, tagkeys=nil)
           @Limit = limit
           @Offset = offset
           @InstanceId = instanceid
@@ -2219,6 +2239,8 @@ module TencentCloud
           @SearchKeys = searchkeys
           @TypeList = typelist
           @MonitorVersion = monitorversion
+          @InstanceTags = instancetags
+          @TagKeys = tagkeys
         end
 
         def deserialize(params)
@@ -2244,6 +2266,15 @@ module TencentCloud
           @SearchKeys = params['SearchKeys']
           @TypeList = params['TypeList']
           @MonitorVersion = params['MonitorVersion']
+          unless params['InstanceTags'].nil?
+            @InstanceTags = []
+            params['InstanceTags'].each do |i|
+              instancetaginfo_tmp = InstanceTagInfo.new
+              instancetaginfo_tmp.deserialize(i)
+              @InstanceTags << instancetaginfo_tmp
+            end
+          end
+          @TagKeys = params['TagKeys']
         end
       end
 
@@ -2529,7 +2560,7 @@ module TencentCloud
         # @type ProjectId: Integer
         # @param Offset: 偏移量。
         # @type Offset: Integer
-        # @param Limit: 拉取数量限制。
+        # @param Limit: 拉取数量限制，默认20
         # @type Limit: Integer
         # @param SearchKey: 搜索条件，支持安全组id或者安全组名称。
         # @type SearchKey: String
@@ -2835,7 +2866,7 @@ module TencentCloud
         # @type InstanceId: String
         # @param InstanceName: 实例名称
         # @type InstanceName: String
-        # @param Limit: 分页大小
+        # @param Limit: 分页大小,默认20，上限不大于100
         # @type Limit: Integer
         # @param Offset: 偏移量，取Limit整数倍（自动向下取整）
         # @type Offset: Integer
@@ -4342,17 +4373,21 @@ module TencentCloud
         # @type InstanceId: String
         # @param Remark: 备份的备注信息
         # @type Remark: String
+        # @param StorageDays: 保存天数。0代表指定默认保留时间
+        # @type StorageDays: Integer
 
-        attr_accessor :InstanceId, :Remark
+        attr_accessor :InstanceId, :Remark, :StorageDays
         
-        def initialize(instanceid=nil, remark=nil)
+        def initialize(instanceid=nil, remark=nil, storagedays=nil)
           @InstanceId = instanceid
           @Remark = remark
+          @StorageDays = storagedays
         end
 
         def deserialize(params)
           @InstanceId = params['InstanceId']
           @Remark = params['Remark']
+          @StorageDays = params['StorageDays']
         end
       end
 
@@ -4576,7 +4611,7 @@ module TencentCloud
         # @type AccountPassword: String
         # @param Remark: 子账号描述信息
         # @type Remark: String
-        # @param ReadonlyPolicy: 子账号路由策略：填写master或者slave，表示路由主节点，从节点
+        # @param ReadonlyPolicy: 路由策略：填写master或者replication，表示主节点或者从节点
         # @type ReadonlyPolicy: Array
         # @param Privilege: 子账号读写策略：填写r、w、rw，表示只读，只写，读写策略
         # @type Privilege: String
@@ -5118,16 +5153,28 @@ module TencentCloud
         # @type Remark: String
         # @param Locked: 备份是否被锁定，0：未被锁定；1：已被锁定
         # @type Locked: Integer
+        # @param BackupSize: 内部字段，用户可忽略
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BackupSize: Integer
+        # @param FullBackup: 内部字段，用户可忽略
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FullBackup: Integer
+        # @param InstanceType: 内部字段，用户可忽略
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceType: Integer
 
-        attr_accessor :StartTime, :BackupId, :BackupType, :Status, :Remark, :Locked
+        attr_accessor :StartTime, :BackupId, :BackupType, :Status, :Remark, :Locked, :BackupSize, :FullBackup, :InstanceType
         
-        def initialize(starttime=nil, backupid=nil, backuptype=nil, status=nil, remark=nil, locked=nil)
+        def initialize(starttime=nil, backupid=nil, backuptype=nil, status=nil, remark=nil, locked=nil, backupsize=nil, fullbackup=nil, instancetype=nil)
           @StartTime = starttime
           @BackupId = backupid
           @BackupType = backuptype
           @Status = status
           @Remark = remark
           @Locked = locked
+          @BackupSize = backupsize
+          @FullBackup = fullbackup
+          @InstanceType = instancetype
         end
 
         def deserialize(params)
@@ -5137,6 +5184,9 @@ module TencentCloud
           @Status = params['Status']
           @Remark = params['Remark']
           @Locked = params['Locked']
+          @BackupSize = params['BackupSize']
+          @FullBackup = params['FullBackup']
+          @InstanceType = params['InstanceType']
         end
       end
 
@@ -5480,7 +5530,7 @@ module TencentCloud
 
       # RestoreInstance请求参数结构体
       class RestoreInstanceRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 待操作的实例ID，可通过 DescribeRedis 接口返回值中的 redisId 获取。
+        # @param InstanceId: 待操作的实例ID，可通过 DescribeInstances 接口返回值中的 InstanceId 获取。
         # @type InstanceId: String
         # @param BackupId: 备份ID，可通过 GetRedisBackupList 接口返回值中的 backupId 获取
         # @type BackupId: String
@@ -5967,7 +6017,7 @@ module TencentCloud
         # @type MemSize: Integer
         # @param RedisShardNum: 分片数量，标准架构不需要填写。该参数不支持与RedisReplicasNum或MemSize同时输入。
         # @type RedisShardNum: Integer
-        # @param RedisReplicasNum: 副本数量，标准架构不需要填写，多AZ实例修改副本时必须要传入NodeSet。该参数不支持与RedisShardNum或MemSize同时输入。
+        # @param RedisReplicasNum: 副本数量，多AZ实例修改副本时必须要传入NodeSet。该参数不支持与RedisShardNum或MemSize同时输入。
         # @type RedisReplicasNum: Integer
         # @param NodeSet: 多AZ实例增加副本时的附带信息，非多AZ实例不需要传此参数。多AZ增加副本时此参数为必传参数，传入要增加的副本的信息，包括副本的可用区和副本的类型（NodeType为1）
         # @type NodeSet: Array
@@ -6066,15 +6116,19 @@ module TencentCloud
       class UpgradeVersionToMultiAvailabilityZonesRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例ID
         # @type InstanceId: String
+        # @param UpgradeProxyAndRedisServer: 是否升级proxy和redis内核版本，升级后可支持就近接入
+        # @type UpgradeProxyAndRedisServer: Boolean
 
-        attr_accessor :InstanceId
+        attr_accessor :InstanceId, :UpgradeProxyAndRedisServer
         
-        def initialize(instanceid=nil)
+        def initialize(instanceid=nil, upgradeproxyandredisserver=nil)
           @InstanceId = instanceid
+          @UpgradeProxyAndRedisServer = upgradeproxyandredisserver
         end
 
         def deserialize(params)
           @InstanceId = params['InstanceId']
+          @UpgradeProxyAndRedisServer = params['UpgradeProxyAndRedisServer']
         end
       end
 

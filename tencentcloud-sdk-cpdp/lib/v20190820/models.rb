@@ -8196,6 +8196,27 @@ module TencentCloud
         end
       end
 
+      # 银行复核指引。银行侧返回网银授权指引链接，一般PC网银，手机网银链接
+      class OpenBankApprovalGuideInfo < TencentCloud::Common::AbstractModel
+        # @param PcGuideUrl: PC网银指引
+        # @type PcGuideUrl: String
+        # @param MobileGuideUrl: 手机网银指引
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MobileGuideUrl: String
+
+        attr_accessor :PcGuideUrl, :MobileGuideUrl
+        
+        def initialize(pcguideurl=nil, mobileguideurl=nil)
+          @PcGuideUrl = pcguideurl
+          @MobileGuideUrl = mobileguideurl
+        end
+
+        def deserialize(params)
+          @PcGuideUrl = params['PcGuideUrl']
+          @MobileGuideUrl = params['MobileGuideUrl']
+        end
+      end
+
       # 云企付-商品信息
       class OpenBankGoodsInfo < TencentCloud::Common::AbstractModel
         # @param GoodsName: 商品名称，默认值“商品支付”
@@ -13142,13 +13163,16 @@ module TencentCloud
         # 渠道为TENPAY，付款方式为EBANK_PAYMENT时返回
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RedirectInfo: :class:`Tencentcloud::Cpdp.v20190820.models.OpenBankRedirectInfo`
-        # @param ExternalReturnData: 第三方渠道返回信息，见渠道特殊说明
+        # @param ExternalReturnData: 第三方渠道返回信息，见渠道特殊说明,详情见附录-复杂类型。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExternalReturnData: String
+        # @param BankApprovalGuideInfo: 银行复核指引。当TENPAY下OPENBANT_PAYMENT时，下单受理成功是返回。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BankApprovalGuideInfo: :class:`Tencentcloud::Cpdp.v20190820.models.OpenBankApprovalGuideInfo`
 
-        attr_accessor :ChannelMerchantId, :OutOrderId, :ChannelOrderId, :ThirdPayOrderId, :OrderStatus, :ChannelName, :PaymentMethod, :TotalAmount, :PayAmount, :FailReason, :Attachment, :RedirectInfo, :ExternalReturnData
+        attr_accessor :ChannelMerchantId, :OutOrderId, :ChannelOrderId, :ThirdPayOrderId, :OrderStatus, :ChannelName, :PaymentMethod, :TotalAmount, :PayAmount, :FailReason, :Attachment, :RedirectInfo, :ExternalReturnData, :BankApprovalGuideInfo
         
-        def initialize(channelmerchantid=nil, outorderid=nil, channelorderid=nil, thirdpayorderid=nil, orderstatus=nil, channelname=nil, paymentmethod=nil, totalamount=nil, payamount=nil, failreason=nil, attachment=nil, redirectinfo=nil, externalreturndata=nil)
+        def initialize(channelmerchantid=nil, outorderid=nil, channelorderid=nil, thirdpayorderid=nil, orderstatus=nil, channelname=nil, paymentmethod=nil, totalamount=nil, payamount=nil, failreason=nil, attachment=nil, redirectinfo=nil, externalreturndata=nil, bankapprovalguideinfo=nil)
           @ChannelMerchantId = channelmerchantid
           @OutOrderId = outorderid
           @ChannelOrderId = channelorderid
@@ -13162,6 +13186,7 @@ module TencentCloud
           @Attachment = attachment
           @RedirectInfo = redirectinfo
           @ExternalReturnData = externalreturndata
+          @BankApprovalGuideInfo = bankapprovalguideinfo
         end
 
         def deserialize(params)
@@ -13181,6 +13206,10 @@ module TencentCloud
             @RedirectInfo.deserialize(params['RedirectInfo'])
           end
           @ExternalReturnData = params['ExternalReturnData']
+          unless params['BankApprovalGuideInfo'].nil?
+            @BankApprovalGuideInfo = OpenBankApprovalGuideInfo.new
+            @BankApprovalGuideInfo.deserialize(params['BankApprovalGuideInfo'])
+          end
         end
       end
 
