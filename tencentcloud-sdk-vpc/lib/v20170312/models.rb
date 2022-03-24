@@ -13916,7 +13916,7 @@ module TencentCloud
       class ModifyNetworkInterfaceQosRequest < TencentCloud::Common::AbstractModel
         # @param NetworkInterfaceIds: 弹性网卡ID，支持批量修改。
         # @type NetworkInterfaceIds: Array
-        # @param QosLevel: 服务质量，可选值：AU、AG、PT，分别代表金、银、白金三个等级。
+        # @param QosLevel: 服务质量，可选值：PT、AU、AG、DEFAULT，分别代表白金、金、银、默认四个等级。
         # @type QosLevel: String
 
         attr_accessor :NetworkInterfaceIds, :QosLevel

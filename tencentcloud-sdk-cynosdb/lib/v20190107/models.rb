@@ -418,6 +418,49 @@ module TencentCloud
         end
       end
 
+      # CreateAccounts请求参数结构体
+      class CreateAccountsRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群id
+        # @type ClusterId: String
+        # @param Accounts: 新账户列表
+        # @type Accounts: Array
+
+        attr_accessor :ClusterId, :Accounts
+        
+        def initialize(clusterid=nil, accounts=nil)
+          @ClusterId = clusterid
+          @Accounts = accounts
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          unless params['Accounts'].nil?
+            @Accounts = []
+            params['Accounts'].each do |i|
+              newaccount_tmp = NewAccount.new
+              newaccount_tmp.deserialize(i)
+              @Accounts << newaccount_tmp
+            end
+          end
+        end
+      end
+
+      # CreateAccounts返回参数结构体
+      class CreateAccountsResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateClusters请求参数结构体
       class CreateClustersRequest < TencentCloud::Common::AbstractModel
         # @param Zone: 可用区
@@ -664,7 +707,16 @@ module TencentCloud
 
       # 集群信息
       class CynosdbCluster < TencentCloud::Common::AbstractModel
-        # @param Status: 集群状态
+        # @param Status: 集群状态， 可选值如下:
+        # creating: 创建中
+        # running:运行中
+        # isolating:隔离中
+        # isolated:已隔离
+        # activating:解隔离中
+        # offlining:下线中
+        # offlined:已下线
+        # deleting:删除中
+        # deleted:已删除
         # @type Status: String
         # @param UpdateTime: 更新时间
         # @type UpdateTime: String
@@ -2832,6 +2884,34 @@ module TencentCloud
           @WanDomain = params['WanDomain']
           @WanPort = params['WanPort']
           @NetType = params['NetType']
+        end
+      end
+
+      # 新创建的账号
+      class NewAccount < TencentCloud::Common::AbstractModel
+        # @param AccountName: 账户名
+        # @type AccountName: String
+        # @param AccountPassword: 密码
+        # @type AccountPassword: String
+        # @param Host: 主机
+        # @type Host: String
+        # @param Description: 描述
+        # @type Description: String
+
+        attr_accessor :AccountName, :AccountPassword, :Host, :Description
+        
+        def initialize(accountname=nil, accountpassword=nil, host=nil, description=nil)
+          @AccountName = accountname
+          @AccountPassword = accountpassword
+          @Host = host
+          @Description = description
+        end
+
+        def deserialize(params)
+          @AccountName = params['AccountName']
+          @AccountPassword = params['AccountPassword']
+          @Host = params['Host']
+          @Description = params['Description']
         end
       end
 

@@ -4377,9 +4377,9 @@ module TencentCloud
 
       # 变量参数
       class Variable < TencentCloud::Common::AbstractModel
-        # @param Key: 变量的名称
+        # @param Key: 变量的名称，不可为空字符
         # @type Key: String
-        # @param Value: 变量的值
+        # @param Value: 变量的值，不可为空字符
         # @type Value: String
 
         attr_accessor :Key, :Value
