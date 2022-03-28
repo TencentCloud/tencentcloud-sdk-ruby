@@ -13069,9 +13069,9 @@ module TencentCloud
       class QueryOpenBankPaymentOrderRequest < TencentCloud::Common::AbstractModel
         # @param ChannelMerchantId: 渠道商户号。外部接入平台入驻云企付平台下发。
         # @type ChannelMerchantId: String
-        # @param OutOrderId: 外部商户订单号。与ChannelOrderId二者选一。
+        # @param OutOrderId: 外部商户订单号。与ChannelOrderId不能同时为空。
         # @type OutOrderId: String
-        # @param ChannelOrderId: 云平台订单号。与OutOrderId二者选一。
+        # @param ChannelOrderId: 云平台订单号。与OutOrderId不能同时为空。
         # @type ChannelOrderId: String
         # @param Environment: 接入环境。沙箱环境填 sandbox。缺省默认调用生产环境。
         # @type Environment: String

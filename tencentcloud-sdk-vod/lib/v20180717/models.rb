@@ -9744,14 +9744,20 @@ module TencentCloud
         # @type ClassId: Integer
         # @param ExpireTime: 输出文件的过期时间，超过该时间文件将被删除，默认为永久不过期，格式按照 ISO 8601标准表示，详见 [ISO 日期格式说明](https://cloud.tencent.com/document/product/266/11732#I)。
         # @type ExpireTime: String
+        # @param VideoStream: 输出的视频信息。
+        # @type VideoStream: :class:`Tencentcloud::Vod.v20180717.models.EditMediaVideoStream`
+        # @param TEHDConfig: 极速高清转码参数。
+        # @type TEHDConfig: :class:`Tencentcloud::Vod.v20180717.models.EditMediaTEHDConfig`
 
-        attr_accessor :MediaName, :Type, :ClassId, :ExpireTime
+        attr_accessor :MediaName, :Type, :ClassId, :ExpireTime, :VideoStream, :TEHDConfig
         
-        def initialize(medianame=nil, type=nil, classid=nil, expiretime=nil)
+        def initialize(medianame=nil, type=nil, classid=nil, expiretime=nil, videostream=nil, tehdconfig=nil)
           @MediaName = medianame
           @Type = type
           @ClassId = classid
           @ExpireTime = expiretime
+          @VideoStream = videostream
+          @TEHDConfig = tehdconfig
         end
 
         def deserialize(params)
@@ -9759,6 +9765,14 @@ module TencentCloud
           @Type = params['Type']
           @ClassId = params['ClassId']
           @ExpireTime = params['ExpireTime']
+          unless params['VideoStream'].nil?
+            @VideoStream = EditMediaVideoStream.new
+            @VideoStream.deserialize(params['VideoStream'])
+          end
+          unless params['TEHDConfig'].nil?
+            @TEHDConfig = EditMediaTEHDConfig.new
+            @TEHDConfig.deserialize(params['TEHDConfig'])
+          end
         end
       end
 
@@ -9772,7 +9786,7 @@ module TencentCloud
         # @type StreamInfos: Array
         # @param Definition: 编辑模板 ID，取值有 10，20，不填代表使用 10 模板。
         # <li>10：拼接时，以分辨率最高的输入为基准；</li>
-        # <li>20：拼接时，以码率最高的输入为基准；</li>
+        # <li>20：拼接时，以码率最高的输入为基准。</li>
         # @type Definition: Integer
         # @param ProcedureName: [任务流模板](/document/product/266/11700#.E4.BB.BB.E5.8A.A1.E6.B5.81.E6.A8.A1.E6.9D.BF)名字，如果要对生成的新视频执行任务流时填写。
         # @type ProcedureName: String
@@ -9878,6 +9892,22 @@ module TencentCloud
           @StreamId = params['StreamId']
           @StartTime = params['StartTime']
           @EndTime = params['EndTime']
+        end
+      end
+
+      # 视频编辑极速高清参数配置。
+      class EditMediaTEHDConfig < TencentCloud::Common::AbstractModel
+        # @param Type: 极速高清类型，可选值：<li>TEHD-100 表示极速高清-100;</li> <li>OFF 表示关闭极速高清。</li>不填表示 OFF。
+        # @type Type: String
+
+        attr_accessor :Type
+        
+        def initialize(type=nil)
+          @Type = type
+        end
+
+        def deserialize(params)
+          @Type = params['Type']
         end
       end
 
@@ -10029,6 +10059,43 @@ module TencentCloud
           @MediaName = params['MediaName']
           @ClassId = params['ClassId']
           @ExpireTime = params['ExpireTime']
+        end
+      end
+
+      # 视频流配置信息
+      class EditMediaVideoStream < TencentCloud::Common::AbstractModel
+        # @param ResolutionAdaptive: 分辨率自适应，可选值：
+        # <li>open：开启，此时，Width 代表视频的长边，Height 表示视频的短边；</li>
+        # <li>close：关闭，此时，Width 代表视频的宽度，Height 表示视频的高度。</li>
+        # 默认值：open。
+        # @type ResolutionAdaptive: String
+        # @param Width: 视频流宽度（或长边）的最大值，取值范围：0 和 [128, 4096]，单位：px。
+        # <li>当 Width、Height 均为 0，则分辨率取基准分辨率；</li>
+        # <li>当 Width 为 0，Height 非 0，则 Width 按基准分辨率比例缩放；</li>
+        # <li>当 Width 非 0，Height 为 0，则 Height 按基准分辨率比例缩放；</li>
+        # <li>当 Width、Height 均非 0，则分辨率按用户指定。</li>
+        # 默认值：0。
+        # @type Width: Integer
+        # @param Height: 视频流高度（或短边）的最大值，取值范围：0 和 [128, 4096]，单位：px。
+        # <li>当 Width、Height 均为 0，则分辨率取基准分辨率；</li>
+        # <li>当 Width 为 0，Height 非 0，则 Width 按基准分辨率比例缩放；</li>
+        # <li>当 Width 非 0，Height 为 0，则 Height 按基准分辨率比例缩放；</li>
+        # <li>当 Width、Height 均非 0，则分辨率按用户指定。</li>
+        # 默认值：0。
+        # @type Height: Integer
+
+        attr_accessor :ResolutionAdaptive, :Width, :Height
+        
+        def initialize(resolutionadaptive=nil, width=nil, height=nil)
+          @ResolutionAdaptive = resolutionadaptive
+          @Width = width
+          @Height = height
+        end
+
+        def deserialize(params)
+          @ResolutionAdaptive = params['ResolutionAdaptive']
+          @Width = params['Width']
+          @Height = params['Height']
         end
       end
 
@@ -17069,7 +17136,7 @@ module TencentCloud
         # @type CreateTime: String
         # @param UpdateTime: 模板最后修改时间，使用 [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#I)。
         # @type UpdateTime: String
-        # @param FillType: 填充方式，当视频流配置宽高参数与原始视频的宽高比不一致时，对转码的处理方式，即为“填充”。可选填充方式：
+        # @param FillType: 填充方式，当截图配置宽高参数与原始视频的宽高比不一致时，对截图的处理方式，即为“填充”。可选填充方式：
         # <li> stretch：拉伸，对每一帧进行拉伸，填满整个画面，可能导致转码后的视频被“压扁“或者“拉长“；</li>
         # <li>black：留黑，保持视频宽高比不变，边缘剩余部分使用黑色填充。</li>
         # <li>white：留白，保持视频宽高比不变，边缘剩余部分使用白色填充。</li>
@@ -17570,11 +17637,11 @@ module TencentCloud
         # @type CreateTime: String
         # @param UpdateTime: 模板最后修改时间，使用 [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#I)。
         # @type UpdateTime: String
-        # @param FillType: 填充方式，当视频流配置宽高参数与原始视频的宽高比不一致时，对转码的处理方式，即为“填充”。可选填充方式：
+        # @param FillType: 填充方式，当截图配置宽高参数与原始视频的宽高比不一致时，对截图的处理方式，即为“填充”。可选填充方式：
         # <li> stretch：拉伸，对每一帧进行拉伸，填满整个画面，可能导致转码后的视频被“压扁“或者“拉长“；</li>
         # <li>black：留黑，保持视频宽高比不变，边缘剩余部分使用黑色填充。</li>
-        # <li>black：留白，保持视频宽高比不变，边缘剩余部分使用白色填充。</li>
-        # <li>black：高斯模糊，保持视频宽高比不变，边缘剩余部分使用高斯模糊。</li>
+        # <li>white：留白，保持视频宽高比不变，边缘剩余部分使用白色填充。</li>
+        # <li>gauss：高斯模糊，保持视频宽高比不变，边缘剩余部分使用高斯模糊。</li>
         # 默认值：black 。
         # @type FillType: String
 

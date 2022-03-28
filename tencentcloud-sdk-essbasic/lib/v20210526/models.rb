@@ -1659,7 +1659,7 @@ module TencentCloud
       # UploadFiles请求参数结构体
       class UploadFilesRequest < TencentCloud::Common::AbstractModel
         # @param BusinessType: 文件对应业务类型，用于区分文件存储路径：
-        # 1. TEMPLATE - 模版； 文件类型：.pdf
+        # 1. TEMPLATE - 模板； 文件类型：.pdf
         # 2. DOCUMENT - 签署过程及签署后的合同文档/图片控件 文件类型：.pdf/.jpg/.png
         # @type BusinessType: String
         # @param Agent: 应用相关信息，若是渠道版调用 appid 和proxyappid 必填
