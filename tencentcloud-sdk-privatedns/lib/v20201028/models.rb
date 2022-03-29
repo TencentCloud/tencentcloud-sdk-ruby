@@ -791,7 +791,7 @@ module TencentCloud
         # @type Filters: Array
         # @param Offset: 分页偏移量，从0开始
         # @type Offset: Integer
-        # @param Limit: 分页限制数目， 最大100，默认20
+        # @param Limit: 分页限制数目， 最大200，默认20
         # @type Limit: Integer
 
         attr_accessor :ZoneId, :Filters, :Offset, :Limit
@@ -1322,10 +1322,13 @@ module TencentCloud
         # @param AccountVpcSet: 绑定的关联账号的vpc列表
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AccountVpcSet: Array
+        # @param IsCustomTld: 是否自定义TLD
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsCustomTld: Boolean
 
-        attr_accessor :ZoneId, :OwnerUin, :Domain, :CreatedOn, :UpdatedOn, :RecordCount, :Remark, :VpcSet, :Status, :DnsForwardStatus, :Tags, :AccountVpcSet
+        attr_accessor :ZoneId, :OwnerUin, :Domain, :CreatedOn, :UpdatedOn, :RecordCount, :Remark, :VpcSet, :Status, :DnsForwardStatus, :Tags, :AccountVpcSet, :IsCustomTld
         
-        def initialize(zoneid=nil, owneruin=nil, domain=nil, createdon=nil, updatedon=nil, recordcount=nil, remark=nil, vpcset=nil, status=nil, dnsforwardstatus=nil, tags=nil, accountvpcset=nil)
+        def initialize(zoneid=nil, owneruin=nil, domain=nil, createdon=nil, updatedon=nil, recordcount=nil, remark=nil, vpcset=nil, status=nil, dnsforwardstatus=nil, tags=nil, accountvpcset=nil, iscustomtld=nil)
           @ZoneId = zoneid
           @OwnerUin = owneruin
           @Domain = domain
@@ -1338,6 +1341,7 @@ module TencentCloud
           @DnsForwardStatus = dnsforwardstatus
           @Tags = tags
           @AccountVpcSet = accountvpcset
+          @IsCustomTld = iscustomtld
         end
 
         def deserialize(params)
@@ -1374,6 +1378,7 @@ module TencentCloud
               @AccountVpcSet << accountvpcinfooutput_tmp
             end
           end
+          @IsCustomTld = params['IsCustomTld']
         end
       end
 

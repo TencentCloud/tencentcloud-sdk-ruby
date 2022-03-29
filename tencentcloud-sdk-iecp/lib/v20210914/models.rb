@@ -1192,7 +1192,7 @@ module TencentCloud
 
       # CreateUserToken请求参数结构体
       class CreateUserTokenRequest < TencentCloud::Common::AbstractModel
-        # @param Second: 无
+        # @param Second: token过期时间，有效值是1~300秒
         # @type Second: Integer
 
         attr_accessor :Second

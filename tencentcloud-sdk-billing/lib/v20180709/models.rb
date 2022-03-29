@@ -1307,10 +1307,13 @@ module TencentCloud
         # @param SubProductName: 子产品编码中文名称
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SubProductName: String
+        # @param ResourceId: 订单对应的资源id, 查询参数Limit超过200，将返回null
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResourceId: Array
 
-        attr_accessor :OrderId, :Status, :Payer, :CreateTime, :Creator, :RealTotalCost, :VoucherDecline, :ProjectId, :GoodsCategoryId, :ProductInfo, :TimeSpan, :TimeUnit, :Currency, :Policy, :Price, :TotalCost, :ProductCode, :SubProductCode, :BigDealId, :Formula, :RefReturnDeals, :PayMode, :Action, :ProductName, :SubProductName
+        attr_accessor :OrderId, :Status, :Payer, :CreateTime, :Creator, :RealTotalCost, :VoucherDecline, :ProjectId, :GoodsCategoryId, :ProductInfo, :TimeSpan, :TimeUnit, :Currency, :Policy, :Price, :TotalCost, :ProductCode, :SubProductCode, :BigDealId, :Formula, :RefReturnDeals, :PayMode, :Action, :ProductName, :SubProductName, :ResourceId
         
-        def initialize(orderid=nil, status=nil, payer=nil, createtime=nil, creator=nil, realtotalcost=nil, voucherdecline=nil, projectid=nil, goodscategoryid=nil, productinfo=nil, timespan=nil, timeunit=nil, currency=nil, policy=nil, price=nil, totalcost=nil, productcode=nil, subproductcode=nil, bigdealid=nil, formula=nil, refreturndeals=nil, paymode=nil, action=nil, productname=nil, subproductname=nil)
+        def initialize(orderid=nil, status=nil, payer=nil, createtime=nil, creator=nil, realtotalcost=nil, voucherdecline=nil, projectid=nil, goodscategoryid=nil, productinfo=nil, timespan=nil, timeunit=nil, currency=nil, policy=nil, price=nil, totalcost=nil, productcode=nil, subproductcode=nil, bigdealid=nil, formula=nil, refreturndeals=nil, paymode=nil, action=nil, productname=nil, subproductname=nil, resourceid=nil)
           @OrderId = orderid
           @Status = status
           @Payer = payer
@@ -1336,6 +1339,7 @@ module TencentCloud
           @Action = action
           @ProductName = productname
           @SubProductName = subproductname
+          @ResourceId = resourceid
         end
 
         def deserialize(params)
@@ -1371,6 +1375,7 @@ module TencentCloud
           @Action = params['Action']
           @ProductName = params['ProductName']
           @SubProductName = params['SubProductName']
+          @ResourceId = params['ResourceId']
         end
       end
 
@@ -2587,10 +2592,12 @@ module TencentCloud
         # @type OrderId: String
         # @param BigDealId: 大订单号
         # @type BigDealId: String
+        # @param ResourceId: 资源id
+        # @type ResourceId: String
 
-        attr_accessor :StartTime, :EndTime, :Limit, :Offset, :Status, :OrderId, :BigDealId
+        attr_accessor :StartTime, :EndTime, :Limit, :Offset, :Status, :OrderId, :BigDealId, :ResourceId
         
-        def initialize(starttime=nil, endtime=nil, limit=nil, offset=nil, status=nil, orderid=nil, bigdealid=nil)
+        def initialize(starttime=nil, endtime=nil, limit=nil, offset=nil, status=nil, orderid=nil, bigdealid=nil, resourceid=nil)
           @StartTime = starttime
           @EndTime = endtime
           @Limit = limit
@@ -2598,6 +2605,7 @@ module TencentCloud
           @Status = status
           @OrderId = orderid
           @BigDealId = bigdealid
+          @ResourceId = resourceid
         end
 
         def deserialize(params)
@@ -2608,6 +2616,7 @@ module TencentCloud
           @Status = params['Status']
           @OrderId = params['OrderId']
           @BigDealId = params['BigDealId']
+          @ResourceId = params['ResourceId']
         end
       end
 

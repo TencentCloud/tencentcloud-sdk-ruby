@@ -131,10 +131,14 @@ module TencentCloud
         # @type ManagerNodeCount: Integer
         # @param ManagerNodeSet: 管控节点概览。
         # @type ManagerNodeSet: Array
+        # @param LoginNodeSet: 登录节点概览。
+        # @type LoginNodeSet: Array
+        # @param LoginNodeCount: 登录节点数量。
+        # @type LoginNodeCount: Integer
 
-        attr_accessor :ClusterId, :ClusterStatus, :ClusterName, :Placement, :CreateTime, :SchedulerType, :ComputeNodeCount, :ComputeNodeSet, :ManagerNodeCount, :ManagerNodeSet
+        attr_accessor :ClusterId, :ClusterStatus, :ClusterName, :Placement, :CreateTime, :SchedulerType, :ComputeNodeCount, :ComputeNodeSet, :ManagerNodeCount, :ManagerNodeSet, :LoginNodeSet, :LoginNodeCount
         
-        def initialize(clusterid=nil, clusterstatus=nil, clustername=nil, placement=nil, createtime=nil, schedulertype=nil, computenodecount=nil, computenodeset=nil, managernodecount=nil, managernodeset=nil)
+        def initialize(clusterid=nil, clusterstatus=nil, clustername=nil, placement=nil, createtime=nil, schedulertype=nil, computenodecount=nil, computenodeset=nil, managernodecount=nil, managernodeset=nil, loginnodeset=nil, loginnodecount=nil)
           @ClusterId = clusterid
           @ClusterStatus = clusterstatus
           @ClusterName = clustername
@@ -145,6 +149,8 @@ module TencentCloud
           @ComputeNodeSet = computenodeset
           @ManagerNodeCount = managernodecount
           @ManagerNodeSet = managernodeset
+          @LoginNodeSet = loginnodeset
+          @LoginNodeCount = loginnodecount
         end
 
         def deserialize(params)
@@ -175,6 +181,15 @@ module TencentCloud
               @ManagerNodeSet << managernodeoverview_tmp
             end
           end
+          unless params['LoginNodeSet'].nil?
+            @LoginNodeSet = []
+            params['LoginNodeSet'].each do |i|
+              loginnodeoverview_tmp = LoginNodeOverview.new
+              loginnodeoverview_tmp.deserialize(i)
+              @LoginNodeSet << loginnodeoverview_tmp
+            end
+          end
+          @LoginNodeCount = params['LoginNodeCount']
         end
       end
 
@@ -547,6 +562,22 @@ module TencentCloud
         def deserialize(params)
           @InternetChargeType = params['InternetChargeType']
           @InternetMaxBandwidthOut = params['InternetMaxBandwidthOut']
+        end
+      end
+
+      # 登录节点概览。
+      class LoginNodeOverview < TencentCloud::Common::AbstractModel
+        # @param NodeId: 登录节点ID。
+        # @type NodeId: String
+
+        attr_accessor :NodeId
+        
+        def initialize(nodeid=nil)
+          @NodeId = nodeid
+        end
+
+        def deserialize(params)
+          @NodeId = params['NodeId']
         end
       end
 

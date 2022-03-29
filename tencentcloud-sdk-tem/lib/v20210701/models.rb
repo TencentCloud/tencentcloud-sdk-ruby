@@ -94,7 +94,7 @@ module TencentCloud
         # - JAR
         # - WAR
         # @type DeployMode: String
-        # @param EnableTracing: 是否启用调用链功能
+        # @param EnableTracing: 是否开启 Java 应用的 APM 自动上报功能，1 表示启用；0 表示关闭
         # @type EnableTracing: Integer
 
         attr_accessor :ApplicationName, :Description, :UseDefaultImageService, :RepoType, :InstanceId, :RepoServer, :RepoName, :SourceChannel, :SubnetList, :CodingLanguage, :DeployMode, :EnableTracing
@@ -277,14 +277,20 @@ module TencentCloud
         # @type ResourceId: String
         # @param SourceChannel: 来源渠道
         # @type SourceChannel: Integer
+        # @param ResourceFrom: 资源来源，目前支持：existing，已有资源；creating，自动创建
+        # @type ResourceFrom: String
+        # @param ResourceConfig: 设置 resource 的额外配置
+        # @type ResourceConfig: String
 
-        attr_accessor :EnvironmentId, :ResourceType, :ResourceId, :SourceChannel
+        attr_accessor :EnvironmentId, :ResourceType, :ResourceId, :SourceChannel, :ResourceFrom, :ResourceConfig
         
-        def initialize(environmentid=nil, resourcetype=nil, resourceid=nil, sourcechannel=nil)
+        def initialize(environmentid=nil, resourcetype=nil, resourceid=nil, sourcechannel=nil, resourcefrom=nil, resourceconfig=nil)
           @EnvironmentId = environmentid
           @ResourceType = resourcetype
           @ResourceId = resourceid
           @SourceChannel = sourcechannel
+          @ResourceFrom = resourcefrom
+          @ResourceConfig = resourceconfig
         end
 
         def deserialize(params)
@@ -292,6 +298,8 @@ module TencentCloud
           @ResourceType = params['ResourceType']
           @ResourceId = params['ResourceId']
           @SourceChannel = params['SourceChannel']
+          @ResourceFrom = params['ResourceFrom']
+          @ResourceConfig = params['ResourceConfig']
         end
       end
 
@@ -573,10 +581,12 @@ module TencentCloud
         # - ALPINE
         # - TENCENTOS
         # @type OsFlavour: String
+        # @param EnablePrometheusConf: 是否开启prometheus 业务指标监控
+        # @type EnablePrometheusConf: :class:`Tencentcloud::Tem.v20210701.models.EnablePrometheusConf`
 
-        attr_accessor :ApplicationId, :InitPodNum, :CpuSpec, :MemorySpec, :EnvironmentId, :ImgRepo, :VersionDesc, :JvmOpts, :EsInfo, :EnvConf, :LogConfs, :StorageConfs, :StorageMountConfs, :DeployMode, :DeployVersion, :PkgName, :JdkVersion, :SecurityGroupIds, :LogOutputConf, :SourceChannel, :Description, :ImageCommand, :ImageArgs, :UseRegistryDefaultConfig, :SettingConfs, :Service, :VersionId, :PostStart, :PreStop, :Liveness, :Readiness, :DeployStrategyConf, :HorizontalAutoscaler, :CronHorizontalAutoscaler, :LogEnable, :ConfEdited, :SpeedUp, :StartupProbe, :OsFlavour
+        attr_accessor :ApplicationId, :InitPodNum, :CpuSpec, :MemorySpec, :EnvironmentId, :ImgRepo, :VersionDesc, :JvmOpts, :EsInfo, :EnvConf, :LogConfs, :StorageConfs, :StorageMountConfs, :DeployMode, :DeployVersion, :PkgName, :JdkVersion, :SecurityGroupIds, :LogOutputConf, :SourceChannel, :Description, :ImageCommand, :ImageArgs, :UseRegistryDefaultConfig, :SettingConfs, :Service, :VersionId, :PostStart, :PreStop, :Liveness, :Readiness, :DeployStrategyConf, :HorizontalAutoscaler, :CronHorizontalAutoscaler, :LogEnable, :ConfEdited, :SpeedUp, :StartupProbe, :OsFlavour, :EnablePrometheusConf
         
-        def initialize(applicationid=nil, initpodnum=nil, cpuspec=nil, memoryspec=nil, environmentid=nil, imgrepo=nil, versiondesc=nil, jvmopts=nil, esinfo=nil, envconf=nil, logconfs=nil, storageconfs=nil, storagemountconfs=nil, deploymode=nil, deployversion=nil, pkgname=nil, jdkversion=nil, securitygroupids=nil, logoutputconf=nil, sourcechannel=nil, description=nil, imagecommand=nil, imageargs=nil, useregistrydefaultconfig=nil, settingconfs=nil, service=nil, versionid=nil, poststart=nil, prestop=nil, liveness=nil, readiness=nil, deploystrategyconf=nil, horizontalautoscaler=nil, cronhorizontalautoscaler=nil, logenable=nil, confedited=nil, speedup=nil, startupprobe=nil, osflavour=nil)
+        def initialize(applicationid=nil, initpodnum=nil, cpuspec=nil, memoryspec=nil, environmentid=nil, imgrepo=nil, versiondesc=nil, jvmopts=nil, esinfo=nil, envconf=nil, logconfs=nil, storageconfs=nil, storagemountconfs=nil, deploymode=nil, deployversion=nil, pkgname=nil, jdkversion=nil, securitygroupids=nil, logoutputconf=nil, sourcechannel=nil, description=nil, imagecommand=nil, imageargs=nil, useregistrydefaultconfig=nil, settingconfs=nil, service=nil, versionid=nil, poststart=nil, prestop=nil, liveness=nil, readiness=nil, deploystrategyconf=nil, horizontalautoscaler=nil, cronhorizontalautoscaler=nil, logenable=nil, confedited=nil, speedup=nil, startupprobe=nil, osflavour=nil, enableprometheusconf=nil)
           @ApplicationId = applicationid
           @InitPodNum = initpodnum
           @CpuSpec = cpuspec
@@ -616,6 +626,7 @@ module TencentCloud
           @SpeedUp = speedup
           @StartupProbe = startupprobe
           @OsFlavour = osflavour
+          @EnablePrometheusConf = enableprometheusconf
         end
 
         def deserialize(params)
@@ -721,6 +732,10 @@ module TencentCloud
             @StartupProbe.deserialize(params['StartupProbe'])
           end
           @OsFlavour = params['OsFlavour']
+          unless params['EnablePrometheusConf'].nil?
+            @EnablePrometheusConf = EnablePrometheusConf.new
+            @EnablePrometheusConf.deserialize(params['EnablePrometheusConf'])
+          end
         end
       end
 
@@ -864,7 +879,7 @@ module TencentCloud
         # @type TotalBatchCount: Integer
         # @param BetaBatchNum: beta分批实例数
         # @type BetaBatchNum: Integer
-        # @param DeployStrategyType: 分批策略：0-全自动，1-全手动，2-beta分批，beta批一定是手动的
+        # @param DeployStrategyType: 分批策略：0-全自动，1-全手动，2-beta分批，beta批一定是手动的，3-首次发布
         # @type DeployStrategyType: Integer
         # @param BatchInterval: 每批暂停间隔
         # @type BatchInterval: Integer
@@ -1330,6 +1345,26 @@ module TencentCloud
         end
       end
 
+      # 开启prometheus监控配置
+      class EnablePrometheusConf < TencentCloud::Common::AbstractModel
+        # @param Port: 应用开放的监听端口
+        # @type Port: Integer
+        # @param Path: 业务指标暴露的url path
+        # @type Path: String
+
+        attr_accessor :Port, :Path
+        
+        def initialize(port=nil, path=nil)
+          @Port = port
+          @Path = path
+        end
+
+        def deserialize(params)
+          @Port = params['Port']
+          @Path = params['Path']
+        end
+      end
+
       # 弹性伸缩配置
       class EsInfo < TencentCloud::Common::AbstractModel
         # @param MinAliveInstances: 最小实例数
@@ -1513,10 +1548,15 @@ module TencentCloud
         # @type CreateTime: String
         # @param Mixed: 是否混合 https，默认 false，可选值 true 代表有 https 协议监听
         # @type Mixed: Boolean
+        # @param RewriteType: 重定向模式，可选值：
+        # - AUTO（自动重定向http到https）
+        # - NONE（不使用重定向）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RewriteType: String
 
-        attr_accessor :EnvironmentId, :ClusterNamespace, :AddressIPVersion, :IngressName, :Rules, :ClbId, :Tls, :ClusterId, :Vip, :CreateTime, :Mixed
+        attr_accessor :EnvironmentId, :ClusterNamespace, :AddressIPVersion, :IngressName, :Rules, :ClbId, :Tls, :ClusterId, :Vip, :CreateTime, :Mixed, :RewriteType
         
-        def initialize(environmentid=nil, clusternamespace=nil, addressipversion=nil, ingressname=nil, rules=nil, clbid=nil, tls=nil, clusterid=nil, vip=nil, createtime=nil, mixed=nil)
+        def initialize(environmentid=nil, clusternamespace=nil, addressipversion=nil, ingressname=nil, rules=nil, clbid=nil, tls=nil, clusterid=nil, vip=nil, createtime=nil, mixed=nil, rewritetype=nil)
           @EnvironmentId = environmentid
           @ClusterNamespace = clusternamespace
           @AddressIPVersion = addressipversion
@@ -1528,6 +1568,7 @@ module TencentCloud
           @Vip = vip
           @CreateTime = createtime
           @Mixed = mixed
+          @RewriteType = rewritetype
         end
 
         def deserialize(params)
@@ -1556,6 +1597,7 @@ module TencentCloud
           @Vip = params['Vip']
           @CreateTime = params['CreateTime']
           @Mixed = params['Mixed']
+          @RewriteType = params['RewriteType']
         end
       end
 
@@ -1911,13 +1953,16 @@ module TencentCloud
         # @type MountedPath: String
         # @param Data: 配置内容
         # @type Data: Array
+        # @param SecretDataName: 加密配置名称
+        # @type SecretDataName: String
 
-        attr_accessor :ConfigDataName, :MountedPath, :Data
+        attr_accessor :ConfigDataName, :MountedPath, :Data, :SecretDataName
         
-        def initialize(configdataname=nil, mountedpath=nil, data=nil)
+        def initialize(configdataname=nil, mountedpath=nil, data=nil, secretdataname=nil)
           @ConfigDataName = configdataname
           @MountedPath = mountedpath
           @Data = data
+          @SecretDataName = secretdataname
         end
 
         def deserialize(params)
@@ -1931,6 +1976,7 @@ module TencentCloud
               @Data << pair_tmp
             end
           end
+          @SecretDataName = params['SecretDataName']
         end
       end
 
@@ -1981,14 +2027,18 @@ module TencentCloud
         # @param Config: 配置名称
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Config: String
+        # @param Secret: 加密配置名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Secret: String
 
-        attr_accessor :Key, :Value, :Type, :Config
+        attr_accessor :Key, :Value, :Type, :Config, :Secret
         
-        def initialize(key=nil, value=nil, type=nil, config=nil)
+        def initialize(key=nil, value=nil, type=nil, config=nil, secret=nil)
           @Key = key
           @Value = value
           @Type = type
           @Config = config
+          @Secret = secret
         end
 
         def deserialize(params)
@@ -1996,6 +2046,7 @@ module TencentCloud
           @Value = params['Value']
           @Type = params['Type']
           @Config = params['Config']
+          @Secret = params['Secret']
         end
       end
 

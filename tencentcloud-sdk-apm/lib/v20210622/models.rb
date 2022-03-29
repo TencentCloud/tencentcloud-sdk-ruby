@@ -425,13 +425,16 @@ module TencentCloud
         # @type InstanceName: String
         # @param InstanceIds: 过滤实例ID
         # @type InstanceIds: Array
+        # @param DemoInstanceFlag: 是否查询官方demo实例
+        # @type DemoInstanceFlag: Integer
 
-        attr_accessor :Tags, :InstanceName, :InstanceIds
+        attr_accessor :Tags, :InstanceName, :InstanceIds, :DemoInstanceFlag
         
-        def initialize(tags=nil, instancename=nil, instanceids=nil)
+        def initialize(tags=nil, instancename=nil, instanceids=nil, demoinstanceflag=nil)
           @Tags = tags
           @InstanceName = instancename
           @InstanceIds = instanceids
+          @DemoInstanceFlag = demoinstanceflag
         end
 
         def deserialize(params)
@@ -445,6 +448,7 @@ module TencentCloud
           end
           @InstanceName = params['InstanceName']
           @InstanceIds = params['InstanceIds']
+          @DemoInstanceFlag = params['DemoInstanceFlag']
         end
       end
 

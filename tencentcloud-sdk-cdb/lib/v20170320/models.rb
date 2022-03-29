@@ -2815,16 +2815,19 @@ module TencentCloud
         # @param RuleId: 审计规则 ID。可使用该审计规则 ID 查询到其关联的审计策略。
         # 注意，参数 RuleId，InstanceId，PolicyId，PolicyName 必须至少传一个。
         # @type RuleId: String
+        # @param InstanceName: 实例名称
+        # @type InstanceName: String
 
-        attr_accessor :InstanceId, :PolicyId, :PolicyName, :Limit, :Offset, :RuleId
+        attr_accessor :InstanceId, :PolicyId, :PolicyName, :Limit, :Offset, :RuleId, :InstanceName
         
-        def initialize(instanceid=nil, policyid=nil, policyname=nil, limit=nil, offset=nil, ruleid=nil)
+        def initialize(instanceid=nil, policyid=nil, policyname=nil, limit=nil, offset=nil, ruleid=nil, instancename=nil)
           @InstanceId = instanceid
           @PolicyId = policyid
           @PolicyName = policyname
           @Limit = limit
           @Offset = offset
           @RuleId = ruleid
+          @InstanceName = instancename
         end
 
         def deserialize(params)
@@ -2834,6 +2837,7 @@ module TencentCloud
           @Limit = params['Limit']
           @Offset = params['Offset']
           @RuleId = params['RuleId']
+          @InstanceName = params['InstanceName']
         end
       end
 

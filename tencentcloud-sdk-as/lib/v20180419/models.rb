@@ -1268,14 +1268,18 @@ module TencentCloud
         # @param DeleteWithInstance: 数据盘是否随子机销毁。取值范围：<br><li>TRUE：子机销毁时，销毁数据盘，只支持按小时后付费云盘<br><li>FALSE：子机销毁时，保留数据盘
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DeleteWithInstance: Boolean
+        # @param Encrypt: 数据盘是否加密。取值范围：<br><li>TRUE：加密<br><li>FALSE：不加密
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Encrypt: Boolean
 
-        attr_accessor :DiskType, :DiskSize, :SnapshotId, :DeleteWithInstance
+        attr_accessor :DiskType, :DiskSize, :SnapshotId, :DeleteWithInstance, :Encrypt
         
-        def initialize(disktype=nil, disksize=nil, snapshotid=nil, deletewithinstance=nil)
+        def initialize(disktype=nil, disksize=nil, snapshotid=nil, deletewithinstance=nil, encrypt=nil)
           @DiskType = disktype
           @DiskSize = disksize
           @SnapshotId = snapshotid
           @DeleteWithInstance = deletewithinstance
+          @Encrypt = encrypt
         end
 
         def deserialize(params)
@@ -1283,6 +1287,7 @@ module TencentCloud
           @DiskSize = params['DiskSize']
           @SnapshotId = params['SnapshotId']
           @DeleteWithInstance = params['DeleteWithInstance']
+          @Encrypt = params['Encrypt']
         end
       end
 
