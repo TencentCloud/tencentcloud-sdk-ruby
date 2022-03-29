@@ -1057,16 +1057,19 @@ module TencentCloud
         # @type StockPublicIpAddressesBandwidthOut: Integer
         # @param PublicIpAddressesBandwidthOut: 需要申请公网IP带宽大小（单位Mbps），默认为当前用户类型所能使用的最大值。
         # @type PublicIpAddressesBandwidthOut: Integer
+        # @param PublicIpFromSameZone: 公网IP是否强制与NAT网关来自同可用区，true表示需要与NAT网关同可用区；false表示可与NAT网关不是同一个可用区。此参数只有当参数Zone存在时才能生效。
+        # @type PublicIpFromSameZone: Boolean
 
-        attr_accessor :NatGatewayId, :AddressCount, :PublicIpAddresses, :Zone, :StockPublicIpAddressesBandwidthOut, :PublicIpAddressesBandwidthOut
+        attr_accessor :NatGatewayId, :AddressCount, :PublicIpAddresses, :Zone, :StockPublicIpAddressesBandwidthOut, :PublicIpAddressesBandwidthOut, :PublicIpFromSameZone
         
-        def initialize(natgatewayid=nil, addresscount=nil, publicipaddresses=nil, zone=nil, stockpublicipaddressesbandwidthout=nil, publicipaddressesbandwidthout=nil)
+        def initialize(natgatewayid=nil, addresscount=nil, publicipaddresses=nil, zone=nil, stockpublicipaddressesbandwidthout=nil, publicipaddressesbandwidthout=nil, publicipfromsamezone=nil)
           @NatGatewayId = natgatewayid
           @AddressCount = addresscount
           @PublicIpAddresses = publicipaddresses
           @Zone = zone
           @StockPublicIpAddressesBandwidthOut = stockpublicipaddressesbandwidthout
           @PublicIpAddressesBandwidthOut = publicipaddressesbandwidthout
+          @PublicIpFromSameZone = publicipfromsamezone
         end
 
         def deserialize(params)
@@ -1076,6 +1079,7 @@ module TencentCloud
           @Zone = params['Zone']
           @StockPublicIpAddressesBandwidthOut = params['StockPublicIpAddressesBandwidthOut']
           @PublicIpAddressesBandwidthOut = params['PublicIpAddressesBandwidthOut']
+          @PublicIpFromSameZone = params['PublicIpFromSameZone']
         end
       end
 
@@ -3027,10 +3031,12 @@ module TencentCloud
         # @type StockPublicIpAddressesBandwidthOut: Integer
         # @param PublicIpAddressesBandwidthOut: 需要申请公网IP带宽大小（单位Mbps），默认为当前用户类型所能使用的最大值。
         # @type PublicIpAddressesBandwidthOut: Integer
+        # @param PublicIpFromSameZone: 公网IP是否强制与NAT网关来自同可用区，true表示需要与NAT网关同可用区；false表示可与NAT网关不是同一个可用区。此参数只有当参数Zone存在时才能生效。
+        # @type PublicIpFromSameZone: Boolean
 
-        attr_accessor :NatGatewayName, :VpcId, :InternetMaxBandwidthOut, :MaxConcurrentConnection, :AddressCount, :PublicIpAddresses, :Zone, :Tags, :SubnetId, :StockPublicIpAddressesBandwidthOut, :PublicIpAddressesBandwidthOut
+        attr_accessor :NatGatewayName, :VpcId, :InternetMaxBandwidthOut, :MaxConcurrentConnection, :AddressCount, :PublicIpAddresses, :Zone, :Tags, :SubnetId, :StockPublicIpAddressesBandwidthOut, :PublicIpAddressesBandwidthOut, :PublicIpFromSameZone
         
-        def initialize(natgatewayname=nil, vpcid=nil, internetmaxbandwidthout=nil, maxconcurrentconnection=nil, addresscount=nil, publicipaddresses=nil, zone=nil, tags=nil, subnetid=nil, stockpublicipaddressesbandwidthout=nil, publicipaddressesbandwidthout=nil)
+        def initialize(natgatewayname=nil, vpcid=nil, internetmaxbandwidthout=nil, maxconcurrentconnection=nil, addresscount=nil, publicipaddresses=nil, zone=nil, tags=nil, subnetid=nil, stockpublicipaddressesbandwidthout=nil, publicipaddressesbandwidthout=nil, publicipfromsamezone=nil)
           @NatGatewayName = natgatewayname
           @VpcId = vpcid
           @InternetMaxBandwidthOut = internetmaxbandwidthout
@@ -3042,6 +3048,7 @@ module TencentCloud
           @SubnetId = subnetid
           @StockPublicIpAddressesBandwidthOut = stockpublicipaddressesbandwidthout
           @PublicIpAddressesBandwidthOut = publicipaddressesbandwidthout
+          @PublicIpFromSameZone = publicipfromsamezone
         end
 
         def deserialize(params)
@@ -3063,6 +3070,7 @@ module TencentCloud
           @SubnetId = params['SubnetId']
           @StockPublicIpAddressesBandwidthOut = params['StockPublicIpAddressesBandwidthOut']
           @PublicIpAddressesBandwidthOut = params['PublicIpAddressesBandwidthOut']
+          @PublicIpFromSameZone = params['PublicIpFromSameZone']
         end
       end
 
@@ -12020,13 +12028,19 @@ module TencentCloud
         # @type InstanceChargeType: String
         # @param InstanceChargePrepaid: 预付费模式，即包年包月相关参数设置。通过该参数可以指定包年包月实例的购买时长、是否设置自动续费等属性。若指定实例的付费模式为预付费则该参数必传。
         # @type InstanceChargePrepaid: :class:`Tencentcloud::Vpc.v20170312.models.InstanceChargePrepaid`
+        # @param MaxConnection: SSL VPN连接数设置，可选规格：5, 10, 20, 50, 100；单位：个。
+        # @type MaxConnection: Integer
+        # @param Type: 查询的VPN类型，支持IPSEC和SSL两种类型，为SSL类型时，MaxConnection参数必传。
+        # @type Type: String
 
-        attr_accessor :InternetMaxBandwidthOut, :InstanceChargeType, :InstanceChargePrepaid
+        attr_accessor :InternetMaxBandwidthOut, :InstanceChargeType, :InstanceChargePrepaid, :MaxConnection, :Type
         
-        def initialize(internetmaxbandwidthout=nil, instancechargetype=nil, instancechargeprepaid=nil)
+        def initialize(internetmaxbandwidthout=nil, instancechargetype=nil, instancechargeprepaid=nil, maxconnection=nil, type=nil)
           @InternetMaxBandwidthOut = internetmaxbandwidthout
           @InstanceChargeType = instancechargetype
           @InstanceChargePrepaid = instancechargeprepaid
+          @MaxConnection = maxconnection
+          @Type = type
         end
 
         def deserialize(params)
@@ -12036,6 +12050,8 @@ module TencentCloud
             @InstanceChargePrepaid = InstanceChargePrepaid.new
             @InstanceChargePrepaid.deserialize(params['InstanceChargePrepaid'])
           end
+          @MaxConnection = params['MaxConnection']
+          @Type = params['Type']
         end
       end
 

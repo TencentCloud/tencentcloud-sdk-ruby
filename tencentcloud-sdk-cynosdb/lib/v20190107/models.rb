@@ -494,7 +494,7 @@ module TencentCloud
         # @type Port: Integer
         # @param PayMode: 计费模式，按量计费：0，包年包月：1。默认按量计费。
         # @type PayMode: Integer
-        # @param Count: 购买个数，目前只支持传1（不传默认为1）
+        # @param Count: 购买集群数，可选值范围[1,50]，默认为1
         # @type Count: Integer
         # @param RollbackStrategy: 回档类型：
         # noneRollback：不回档；
@@ -2715,6 +2715,42 @@ module TencentCloud
         end
       end
 
+      # ModifyClusterName请求参数结构体
+      class ModifyClusterNameRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群ID
+        # @type ClusterId: String
+        # @param ClusterName: 集群名
+        # @type ClusterName: String
+
+        attr_accessor :ClusterId, :ClusterName
+        
+        def initialize(clusterid=nil, clustername=nil)
+          @ClusterId = clusterid
+          @ClusterName = clustername
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @ClusterName = params['ClusterName']
+        end
+      end
+
+      # ModifyClusterName返回参数结构体
+      class ModifyClusterNameResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyClusterParam请求参数结构体
       class ModifyClusterParamRequest < TencentCloud::Common::AbstractModel
         # @param ClusterId: 集群ID
@@ -2792,6 +2828,42 @@ module TencentCloud
 
       # ModifyDBInstanceSecurityGroups返回参数结构体
       class ModifyDBInstanceSecurityGroupsResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyInstanceName请求参数结构体
+      class ModifyInstanceNameRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+        # @param InstanceName: 实例名称
+        # @type InstanceName: String
+
+        attr_accessor :InstanceId, :InstanceName
+        
+        def initialize(instanceid=nil, instancename=nil)
+          @InstanceId = instanceid
+          @InstanceName = instancename
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @InstanceName = params['InstanceName']
+        end
+      end
+
+      # ModifyInstanceName返回参数结构体
+      class ModifyInstanceNameResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 

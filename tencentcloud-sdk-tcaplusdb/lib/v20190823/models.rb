@@ -294,10 +294,19 @@ module TencentCloud
         # @param KafkaInfo: 数据订阅的kafka信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type KafkaInfo: :class:`Tencentcloud::Tcaplusdb.v20190823.models.KafkaInfo`
+        # @param TxhBackupExpireDay: 集群Txh备份文件多少天后过期删除
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TxhBackupExpireDay: Integer
+        # @param UlogBackupExpireDay: 集群Ulog备份文件多少天后过期删除
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UlogBackupExpireDay: Integer
+        # @param IsReadOnlyUlogBackupExpireDay: 集群Ulog备份文件过期策略是否为只读， 0： UlogBackupExpire是只读，不可修改， 1： UlogBackupExpire可以修改（当前业务存在Svrid第二段等于clusterid的机器）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsReadOnlyUlogBackupExpireDay: Integer
 
-        attr_accessor :ClusterName, :ClusterId, :Region, :IdlType, :NetworkType, :VpcId, :SubnetId, :CreatedTime, :Password, :PasswordStatus, :ApiAccessId, :ApiAccessIp, :ApiAccessPort, :OldPasswordExpireTime, :ApiAccessIpv6, :ClusterType, :ClusterStatus, :ReadCapacityUnit, :WriteCapacityUnit, :DiskVolume, :ServerList, :ProxyList, :Censorship, :DbaUins, :DataFlowStatus, :KafkaInfo
+        attr_accessor :ClusterName, :ClusterId, :Region, :IdlType, :NetworkType, :VpcId, :SubnetId, :CreatedTime, :Password, :PasswordStatus, :ApiAccessId, :ApiAccessIp, :ApiAccessPort, :OldPasswordExpireTime, :ApiAccessIpv6, :ClusterType, :ClusterStatus, :ReadCapacityUnit, :WriteCapacityUnit, :DiskVolume, :ServerList, :ProxyList, :Censorship, :DbaUins, :DataFlowStatus, :KafkaInfo, :TxhBackupExpireDay, :UlogBackupExpireDay, :IsReadOnlyUlogBackupExpireDay
         
-        def initialize(clustername=nil, clusterid=nil, region=nil, idltype=nil, networktype=nil, vpcid=nil, subnetid=nil, createdtime=nil, password=nil, passwordstatus=nil, apiaccessid=nil, apiaccessip=nil, apiaccessport=nil, oldpasswordexpiretime=nil, apiaccessipv6=nil, clustertype=nil, clusterstatus=nil, readcapacityunit=nil, writecapacityunit=nil, diskvolume=nil, serverlist=nil, proxylist=nil, censorship=nil, dbauins=nil, dataflowstatus=nil, kafkainfo=nil)
+        def initialize(clustername=nil, clusterid=nil, region=nil, idltype=nil, networktype=nil, vpcid=nil, subnetid=nil, createdtime=nil, password=nil, passwordstatus=nil, apiaccessid=nil, apiaccessip=nil, apiaccessport=nil, oldpasswordexpiretime=nil, apiaccessipv6=nil, clustertype=nil, clusterstatus=nil, readcapacityunit=nil, writecapacityunit=nil, diskvolume=nil, serverlist=nil, proxylist=nil, censorship=nil, dbauins=nil, dataflowstatus=nil, kafkainfo=nil, txhbackupexpireday=nil, ulogbackupexpireday=nil, isreadonlyulogbackupexpireday=nil)
           @ClusterName = clustername
           @ClusterId = clusterid
           @Region = region
@@ -324,6 +333,9 @@ module TencentCloud
           @DbaUins = dbauins
           @DataFlowStatus = dataflowstatus
           @KafkaInfo = kafkainfo
+          @TxhBackupExpireDay = txhbackupexpireday
+          @UlogBackupExpireDay = ulogbackupexpireday
+          @IsReadOnlyUlogBackupExpireDay = isreadonlyulogbackupexpireday
         end
 
         def deserialize(params)
@@ -370,6 +382,9 @@ module TencentCloud
             @KafkaInfo = KafkaInfo.new
             @KafkaInfo.deserialize(params['KafkaInfo'])
           end
+          @TxhBackupExpireDay = params['TxhBackupExpireDay']
+          @UlogBackupExpireDay = params['UlogBackupExpireDay']
+          @IsReadOnlyUlogBackupExpireDay = params['IsReadOnlyUlogBackupExpireDay']
         end
       end
 
@@ -1225,11 +1240,11 @@ module TencentCloud
       class DescribeApplicationsRequest < TencentCloud::Common::AbstractModel
         # @param ClusterId: 集群ID，用于获取指定集群的单据
         # @type ClusterId: String
-        # @param Limit: 分页
+        # @param Limit: 分页，限制当前返回多少条记录，大于等于10
         # @type Limit: Integer
-        # @param Offset: 分页
+        # @param Offset: 分页，从多少条数据开始返回
         # @type Offset: Integer
-        # @param CensorStatus: 申请单状态，用于过滤
+        # @param CensorStatus: 申请单状态，用于过滤，0-待审核 1-已经审核并提交任务 2-已驳回
         # @type CensorStatus: Integer
         # @param TableGroupId: 表格组id，用于过滤
         # @type TableGroupId: String
@@ -1237,7 +1252,7 @@ module TencentCloud
         # @type TableName: String
         # @param Applicant: 申请人uin，用于过滤
         # @type Applicant: String
-        # @param ApplyType: 申请类型，用于过滤
+        # @param ApplyType: 申请类型，用于过滤，0加表 1删除表 2清理表 3修改表 4表重建 5存储层扩缩容 6接入层扩缩容 7复制表数据 8key回档
         # @type ApplyType: Integer
 
         attr_accessor :ClusterId, :Limit, :Offset, :CensorStatus, :TableGroupId, :TableName, :Applicant, :ApplyType
@@ -4132,10 +4147,13 @@ module TencentCloud
         # @param DbClusterInfoStruct: 表格分布式索引/缓写、kafka数据订阅信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DbClusterInfoStruct: String
+        # @param TxhBackupExpireDay: 表格Txh备份文件多少天后过期删除
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TxhBackupExpireDay: Integer
 
-        attr_accessor :TableName, :TableInstanceId, :TableType, :TableIdlType, :ClusterId, :ClusterName, :TableGroupId, :TableGroupName, :KeyStruct, :ValueStruct, :ShardingKeySet, :IndexStruct, :ListElementNum, :IdlFiles, :ReservedVolume, :ReservedReadQps, :ReservedWriteQps, :TableSize, :Status, :CreatedTime, :UpdatedTime, :Memo, :Error, :ApiAccessId, :SortFieldNum, :SortRule, :DbClusterInfoStruct
+        attr_accessor :TableName, :TableInstanceId, :TableType, :TableIdlType, :ClusterId, :ClusterName, :TableGroupId, :TableGroupName, :KeyStruct, :ValueStruct, :ShardingKeySet, :IndexStruct, :ListElementNum, :IdlFiles, :ReservedVolume, :ReservedReadQps, :ReservedWriteQps, :TableSize, :Status, :CreatedTime, :UpdatedTime, :Memo, :Error, :ApiAccessId, :SortFieldNum, :SortRule, :DbClusterInfoStruct, :TxhBackupExpireDay
         
-        def initialize(tablename=nil, tableinstanceid=nil, tabletype=nil, tableidltype=nil, clusterid=nil, clustername=nil, tablegroupid=nil, tablegroupname=nil, keystruct=nil, valuestruct=nil, shardingkeyset=nil, indexstruct=nil, listelementnum=nil, idlfiles=nil, reservedvolume=nil, reservedreadqps=nil, reservedwriteqps=nil, tablesize=nil, status=nil, createdtime=nil, updatedtime=nil, memo=nil, error=nil, apiaccessid=nil, sortfieldnum=nil, sortrule=nil, dbclusterinfostruct=nil)
+        def initialize(tablename=nil, tableinstanceid=nil, tabletype=nil, tableidltype=nil, clusterid=nil, clustername=nil, tablegroupid=nil, tablegroupname=nil, keystruct=nil, valuestruct=nil, shardingkeyset=nil, indexstruct=nil, listelementnum=nil, idlfiles=nil, reservedvolume=nil, reservedreadqps=nil, reservedwriteqps=nil, tablesize=nil, status=nil, createdtime=nil, updatedtime=nil, memo=nil, error=nil, apiaccessid=nil, sortfieldnum=nil, sortrule=nil, dbclusterinfostruct=nil, txhbackupexpireday=nil)
           @TableName = tablename
           @TableInstanceId = tableinstanceid
           @TableType = tabletype
@@ -4163,6 +4181,7 @@ module TencentCloud
           @SortFieldNum = sortfieldnum
           @SortRule = sortrule
           @DbClusterInfoStruct = dbclusterinfostruct
+          @TxhBackupExpireDay = txhbackupexpireday
         end
 
         def deserialize(params)
@@ -4203,6 +4222,7 @@ module TencentCloud
           @SortFieldNum = params['SortFieldNum']
           @SortRule = params['SortRule']
           @DbClusterInfoStruct = params['DbClusterInfoStruct']
+          @TxhBackupExpireDay = params['TxhBackupExpireDay']
         end
       end
 

@@ -351,15 +351,18 @@ module TencentCloud
         # @type Endpoint: String
         # @param JumpUrl: 签署完之后的H5页面的跳转链接，针对Endpoint为CHANNEL时有效
         # @type JumpUrl: String
+        # @param AutoJumpBack: "APP" 类型的签署链接，可以设置此值；表示签署完成后自动回跳至源APP；
+        # @type AutoJumpBack: Boolean
 
-        attr_accessor :Agent, :FlowIds, :Operator, :Endpoint, :JumpUrl
+        attr_accessor :Agent, :FlowIds, :Operator, :Endpoint, :JumpUrl, :AutoJumpBack
         
-        def initialize(agent=nil, flowids=nil, operator=nil, endpoint=nil, jumpurl=nil)
+        def initialize(agent=nil, flowids=nil, operator=nil, endpoint=nil, jumpurl=nil, autojumpback=nil)
           @Agent = agent
           @FlowIds = flowids
           @Operator = operator
           @Endpoint = endpoint
           @JumpUrl = jumpurl
+          @AutoJumpBack = autojumpback
         end
 
         def deserialize(params)
@@ -374,6 +377,7 @@ module TencentCloud
           end
           @Endpoint = params['Endpoint']
           @JumpUrl = params['JumpUrl']
+          @AutoJumpBack = params['AutoJumpBack']
         end
       end
 
@@ -769,7 +773,9 @@ module TencentCloud
         # @type Deadline: Integer
         # @param CallbackUrl: 签署完回调url
         # @type CallbackUrl: String
-        # @param ApproverType: 签署人类型，PERSON和ORGANIZATION
+        # @param ApproverType: 签署人类型，PERSON-个人；ORGANIZATION-企业；
+        # ENTERPRISESERVER-企业静默签;
+        # 注：ENTERPRISESERVER 类型仅用于使用文件创建流程（ChannelCreateFlowByFiles）接口；并且仅能指定发起方企业签署方为静默签署；
         # @type ApproverType: String
         # @param OpenId: 用户侧第三方id
         # @type OpenId: String
@@ -786,10 +792,12 @@ module TencentCloud
         # @param NotChannelOrganization: 指定签署人非渠道企业下员工，在ApproverType为ORGANIZATION时指定。
         # 默认为false，即签署人位于同一个渠道应用号下；
         # @type NotChannelOrganization: Boolean
+        # @param SignComponents: 使用PDF文件直接发起合同时，签署人指定的签署控件
+        # @type SignComponents: Array
 
-        attr_accessor :Name, :IdCardNumber, :Mobile, :JumpUrl, :Deadline, :CallbackUrl, :ApproverType, :OpenId, :PreReadTime, :ComponentLimitType, :RecipientId, :OrganizationName, :OrganizationOpenId, :NotChannelOrganization
+        attr_accessor :Name, :IdCardNumber, :Mobile, :JumpUrl, :Deadline, :CallbackUrl, :ApproverType, :OpenId, :PreReadTime, :ComponentLimitType, :RecipientId, :OrganizationName, :OrganizationOpenId, :NotChannelOrganization, :SignComponents
         
-        def initialize(name=nil, idcardnumber=nil, mobile=nil, jumpurl=nil, deadline=nil, callbackurl=nil, approvertype=nil, openid=nil, prereadtime=nil, componentlimittype=nil, recipientid=nil, organizationname=nil, organizationopenid=nil, notchannelorganization=nil)
+        def initialize(name=nil, idcardnumber=nil, mobile=nil, jumpurl=nil, deadline=nil, callbackurl=nil, approvertype=nil, openid=nil, prereadtime=nil, componentlimittype=nil, recipientid=nil, organizationname=nil, organizationopenid=nil, notchannelorganization=nil, signcomponents=nil)
           @Name = name
           @IdCardNumber = idcardnumber
           @Mobile = mobile
@@ -804,6 +812,7 @@ module TencentCloud
           @OrganizationName = organizationname
           @OrganizationOpenId = organizationopenid
           @NotChannelOrganization = notchannelorganization
+          @SignComponents = signcomponents
         end
 
         def deserialize(params)
@@ -821,6 +830,14 @@ module TencentCloud
           @OrganizationName = params['OrganizationName']
           @OrganizationOpenId = params['OrganizationOpenId']
           @NotChannelOrganization = params['NotChannelOrganization']
+          unless params['SignComponents'].nil?
+            @SignComponents = []
+            params['SignComponents'].each do |i|
+              component_tmp = Component.new
+              component_tmp.deserialize(i)
+              @SignComponents << component_tmp
+            end
+          end
         end
       end
 

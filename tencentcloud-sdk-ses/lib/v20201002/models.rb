@@ -270,16 +270,20 @@ module TencentCloud
 
       # CreateEmailTemplate返回参数结构体
       class CreateEmailTemplateResponse < TencentCloud::Common::AbstractModel
+        # @param TemplateID: 模板id
+        # @type TemplateID: Integer
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RequestId
+        attr_accessor :TemplateID, :RequestId
         
-        def initialize(requestid=nil)
+        def initialize(templateid=nil, requestid=nil)
+          @TemplateID = templateid
           @RequestId = requestid
         end
 
         def deserialize(params)
+          @TemplateID = params['TemplateID']
           @RequestId = params['RequestId']
         end
       end
@@ -1678,7 +1682,7 @@ module TencentCloud
         # @type TemplateContent: :class:`Tencentcloud::Ses.v20201002.models.TemplateContent`
         # @param TemplateID: 模板ID
         # @type TemplateID: Integer
-        # @param TemplateName: 模版名字
+        # @param TemplateName: 模板名字
         # @type TemplateName: String
 
         attr_accessor :TemplateContent, :TemplateID, :TemplateName

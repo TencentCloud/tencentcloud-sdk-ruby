@@ -2081,16 +2081,19 @@ module TencentCloud
         # @type VpcId: String
         # @param SubNetIds: 子网列表
         # @type SubNetIds: Array
+        # @param IsOpenCloudInvoke: 是否打开云调用
+        # @type IsOpenCloudInvoke: Boolean
 
-        attr_accessor :WxAppId, :Alias, :FreeQuota, :Flag, :VpcId, :SubNetIds
+        attr_accessor :WxAppId, :Alias, :FreeQuota, :Flag, :VpcId, :SubNetIds, :IsOpenCloudInvoke
         
-        def initialize(wxappid=nil, _alias=nil, freequota=nil, flag=nil, vpcid=nil, subnetids=nil)
+        def initialize(wxappid=nil, _alias=nil, freequota=nil, flag=nil, vpcid=nil, subnetids=nil, isopencloudinvoke=nil)
           @WxAppId = wxappid
           @Alias = _alias
           @FreeQuota = freequota
           @Flag = flag
           @VpcId = vpcid
           @SubNetIds = subnetids
+          @IsOpenCloudInvoke = isopencloudinvoke
         end
 
         def deserialize(params)
@@ -2100,6 +2103,7 @@ module TencentCloud
           @Flag = params['Flag']
           @VpcId = params['VpcId']
           @SubNetIds = params['SubNetIds']
+          @IsOpenCloudInvoke = params['IsOpenCloudInvoke']
         end
       end
 

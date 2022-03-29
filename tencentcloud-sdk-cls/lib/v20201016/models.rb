@@ -2580,6 +2580,73 @@ module TencentCloud
         end
       end
 
+      # DescribeLogHistogram请求参数结构体
+      class DescribeLogHistogramRequest < TencentCloud::Common::AbstractModel
+        # @param TopicId: 要查询的日志主题ID
+        # @type TopicId: String
+        # @param From: 要查询的日志的起始时间，Unix时间戳，单位ms
+        # @type From: Integer
+        # @param To: 要查询的日志的结束时间，Unix时间戳，单位ms
+        # @type To: Integer
+        # @param Query: 查询语句
+        # @type Query: String
+        # @param Interval: 时间间隔: 单位ms
+        # @type Interval: Integer
+
+        attr_accessor :TopicId, :From, :To, :Query, :Interval
+        
+        def initialize(topicid=nil, from=nil, to=nil, query=nil, interval=nil)
+          @TopicId = topicid
+          @From = from
+          @To = to
+          @Query = query
+          @Interval = interval
+        end
+
+        def deserialize(params)
+          @TopicId = params['TopicId']
+          @From = params['From']
+          @To = params['To']
+          @Query = params['Query']
+          @Interval = params['Interval']
+        end
+      end
+
+      # DescribeLogHistogram返回参数结构体
+      class DescribeLogHistogramResponse < TencentCloud::Common::AbstractModel
+        # @param Interval: 统计周期： 单位ms
+        # @type Interval: Integer
+        # @param TotalCount: 命中关键字的日志总条数
+        # @type TotalCount: Integer
+        # @param HistogramInfos: 周期内统计结果详情
+        # @type HistogramInfos: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Interval, :TotalCount, :HistogramInfos, :RequestId
+        
+        def initialize(interval=nil, totalcount=nil, histograminfos=nil, requestid=nil)
+          @Interval = interval
+          @TotalCount = totalcount
+          @HistogramInfos = histograminfos
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Interval = params['Interval']
+          @TotalCount = params['TotalCount']
+          unless params['HistogramInfos'].nil?
+            @HistogramInfos = []
+            params['HistogramInfos'].each do |i|
+              histograminfo_tmp = HistogramInfo.new
+              histograminfo_tmp.deserialize(i)
+              @HistogramInfos << histograminfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeLogsets请求参数结构体
       class DescribeLogsetsRequest < TencentCloud::Common::AbstractModel
         # @param Filters: <br><li> logsetName
@@ -3447,6 +3514,26 @@ module TencentCloud
             end
           end
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 直方图详细信息
+      class HistogramInfo < TencentCloud::Common::AbstractModel
+        # @param Count: 统计周期内的日志条数
+        # @type Count: Integer
+        # @param BTime: 按 period 取整后的 unix timestamp： 单位毫秒
+        # @type BTime: Integer
+
+        attr_accessor :Count, :BTime
+        
+        def initialize(count=nil, btime=nil)
+          @Count = count
+          @BTime = btime
+        end
+
+        def deserialize(params)
+          @Count = params['Count']
+          @BTime = params['BTime']
         end
       end
 

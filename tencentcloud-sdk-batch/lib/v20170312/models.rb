@@ -3171,7 +3171,7 @@ module TencentCloud
         # @param AgentRunningMode: agent运行模式，适用于Windows系统
         # @type AgentRunningMode: :class:`Tencentcloud::Batch.v20170312.models.AgentRunningMode`
         # @param Notifications: 通知信息
-        # @type Notifications: :class:`Tencentcloud::Batch.v20170312.models.Notification`
+        # @type Notifications: Array
         # @param ActionIfComputeNodeInactive: 非活跃节点处理策略，默认“RECREATE”，即对于实例创建失败或异常退还的计算节点，定期重新创建实例资源。
         # @type ActionIfComputeNodeInactive: String
         # @param ResourceMaxRetryCount: 对于实例创建失败或异常退还的计算节点，定期重新创建实例资源的最大重试次数，最大值11，如果不设置的话，系统会设置一个默认值，当前为7
@@ -3235,8 +3235,12 @@ module TencentCloud
             @AgentRunningMode.deserialize(params['AgentRunningMode'])
           end
           unless params['Notifications'].nil?
-            @Notifications = Notification.new
-            @Notifications.deserialize(params['Notifications'])
+            @Notifications = []
+            params['Notifications'].each do |i|
+              notification_tmp = Notification.new
+              notification_tmp.deserialize(i)
+              @Notifications << notification_tmp
+            end
           end
           @ActionIfComputeNodeInactive = params['ActionIfComputeNodeInactive']
           @ResourceMaxRetryCount = params['ResourceMaxRetryCount']

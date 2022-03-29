@@ -24,17 +24,22 @@ module TencentCloud
         # @param BoundClusterType: 绑定的kubernetes的集群类型，分tke和eks两种
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BoundClusterType: String
+        # @param SyncMode: 服务同步模式，all为全量同步，demand为按需同步
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SyncMode: String
 
-        attr_accessor :BoundClusterId, :BoundClusterType
+        attr_accessor :BoundClusterId, :BoundClusterType, :SyncMode
         
-        def initialize(boundclusterid=nil, boundclustertype=nil)
+        def initialize(boundclusterid=nil, boundclustertype=nil, syncmode=nil)
           @BoundClusterId = boundclusterid
           @BoundClusterType = boundclustertype
+          @SyncMode = syncmode
         end
 
         def deserialize(params)
           @BoundClusterId = params['BoundClusterId']
           @BoundClusterType = params['BoundClusterType']
+          @SyncMode = params['SyncMode']
         end
       end
 
@@ -370,10 +375,13 @@ module TencentCloud
         # @param ConfigInfoVisible: 引擎实例是否展示参数配置页面
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ConfigInfoVisible: Boolean
+        # @param ConsoleDefaultPwd: 引擎实例控制台默认密码
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ConsoleDefaultPwd: String
 
-        attr_accessor :InstanceId, :Name, :Edition, :Status, :SpecId, :Replica, :Type, :VpcId, :SubnetIds, :EnableStorage, :StorageType, :StorageCapacity, :Paymode, :EKSClusterID, :CreateTime, :EnvInfos, :EngineRegion, :EnableInternet, :VpcInfos, :ServiceGovernanceInfos, :Tags, :EnableConsoleInternet, :EnableConsoleIntranet, :ConfigInfoVisible
+        attr_accessor :InstanceId, :Name, :Edition, :Status, :SpecId, :Replica, :Type, :VpcId, :SubnetIds, :EnableStorage, :StorageType, :StorageCapacity, :Paymode, :EKSClusterID, :CreateTime, :EnvInfos, :EngineRegion, :EnableInternet, :VpcInfos, :ServiceGovernanceInfos, :Tags, :EnableConsoleInternet, :EnableConsoleIntranet, :ConfigInfoVisible, :ConsoleDefaultPwd
         
-        def initialize(instanceid=nil, name=nil, edition=nil, status=nil, specid=nil, replica=nil, type=nil, vpcid=nil, subnetids=nil, enablestorage=nil, storagetype=nil, storagecapacity=nil, paymode=nil, eksclusterid=nil, createtime=nil, envinfos=nil, engineregion=nil, enableinternet=nil, vpcinfos=nil, servicegovernanceinfos=nil, tags=nil, enableconsoleinternet=nil, enableconsoleintranet=nil, configinfovisible=nil)
+        def initialize(instanceid=nil, name=nil, edition=nil, status=nil, specid=nil, replica=nil, type=nil, vpcid=nil, subnetids=nil, enablestorage=nil, storagetype=nil, storagecapacity=nil, paymode=nil, eksclusterid=nil, createtime=nil, envinfos=nil, engineregion=nil, enableinternet=nil, vpcinfos=nil, servicegovernanceinfos=nil, tags=nil, enableconsoleinternet=nil, enableconsoleintranet=nil, configinfovisible=nil, consoledefaultpwd=nil)
           @InstanceId = instanceid
           @Name = name
           @Edition = edition
@@ -398,6 +406,7 @@ module TencentCloud
           @EnableConsoleInternet = enableconsoleinternet
           @EnableConsoleIntranet = enableconsoleintranet
           @ConfigInfoVisible = configinfovisible
+          @ConsoleDefaultPwd = consoledefaultpwd
         end
 
         def deserialize(params)
@@ -453,6 +462,7 @@ module TencentCloud
           @EnableConsoleInternet = params['EnableConsoleInternet']
           @EnableConsoleIntranet = params['EnableConsoleIntranet']
           @ConfigInfoVisible = params['ConfigInfoVisible']
+          @ConsoleDefaultPwd = params['ConsoleDefaultPwd']
         end
       end
 
@@ -468,15 +478,18 @@ module TencentCloud
         # @type AuthOpen: Boolean
         # @param Features: 该实例支持的功能，鉴权就是 Auth
         # @type Features: Array
+        # @param MainPassword: 主账户名默认为 polaris，该值为主账户的默认密码
+        # @type MainPassword: String
 
-        attr_accessor :EngineRegion, :BoundK8SInfos, :VpcInfos, :AuthOpen, :Features
+        attr_accessor :EngineRegion, :BoundK8SInfos, :VpcInfos, :AuthOpen, :Features, :MainPassword
         
-        def initialize(engineregion=nil, boundk8sinfos=nil, vpcinfos=nil, authopen=nil, features=nil)
+        def initialize(engineregion=nil, boundk8sinfos=nil, vpcinfos=nil, authopen=nil, features=nil, mainpassword=nil)
           @EngineRegion = engineregion
           @BoundK8SInfos = boundk8sinfos
           @VpcInfos = vpcinfos
           @AuthOpen = authopen
           @Features = features
+          @MainPassword = mainpassword
         end
 
         def deserialize(params)
@@ -499,6 +512,7 @@ module TencentCloud
           end
           @AuthOpen = params['AuthOpen']
           @Features = params['Features']
+          @MainPassword = params['MainPassword']
         end
       end
 

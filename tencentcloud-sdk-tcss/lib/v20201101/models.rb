@@ -1646,10 +1646,16 @@ module TencentCloud
         # @type LastCheckTime: String
         # @param PeriodRule: 定时检测规则。
         # @type PeriodRule: :class:`Tencentcloud::Tcss.v20201101.models.CompliancePeriodTaskRule`
+        # @param OpenPolicyItemCount: 已开启的检查项总数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OpenPolicyItemCount: Integer
+        # @param IgnoredPolicyItemCount: 已忽略的检查项总数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IgnoredPolicyItemCount: Integer
 
-        attr_accessor :AssetType, :IsCustomerFirstCheck, :CheckStatus, :CheckProgress, :PassedPolicyItemCount, :FailedPolicyItemCount, :FailedCriticalPolicyItemCount, :FailedHighRiskPolicyItemCount, :FailedMediumRiskPolicyItemCount, :FailedLowRiskPolicyItemCount, :NoticePolicyItemCount, :PassedAssetCount, :FailedAssetCount, :AssetPassedRate, :ScanFailedAssetCount, :CheckCostTime, :LastCheckTime, :PeriodRule
+        attr_accessor :AssetType, :IsCustomerFirstCheck, :CheckStatus, :CheckProgress, :PassedPolicyItemCount, :FailedPolicyItemCount, :FailedCriticalPolicyItemCount, :FailedHighRiskPolicyItemCount, :FailedMediumRiskPolicyItemCount, :FailedLowRiskPolicyItemCount, :NoticePolicyItemCount, :PassedAssetCount, :FailedAssetCount, :AssetPassedRate, :ScanFailedAssetCount, :CheckCostTime, :LastCheckTime, :PeriodRule, :OpenPolicyItemCount, :IgnoredPolicyItemCount
         
-        def initialize(assettype=nil, iscustomerfirstcheck=nil, checkstatus=nil, checkprogress=nil, passedpolicyitemcount=nil, failedpolicyitemcount=nil, failedcriticalpolicyitemcount=nil, failedhighriskpolicyitemcount=nil, failedmediumriskpolicyitemcount=nil, failedlowriskpolicyitemcount=nil, noticepolicyitemcount=nil, passedassetcount=nil, failedassetcount=nil, assetpassedrate=nil, scanfailedassetcount=nil, checkcosttime=nil, lastchecktime=nil, periodrule=nil)
+        def initialize(assettype=nil, iscustomerfirstcheck=nil, checkstatus=nil, checkprogress=nil, passedpolicyitemcount=nil, failedpolicyitemcount=nil, failedcriticalpolicyitemcount=nil, failedhighriskpolicyitemcount=nil, failedmediumriskpolicyitemcount=nil, failedlowriskpolicyitemcount=nil, noticepolicyitemcount=nil, passedassetcount=nil, failedassetcount=nil, assetpassedrate=nil, scanfailedassetcount=nil, checkcosttime=nil, lastchecktime=nil, periodrule=nil, openpolicyitemcount=nil, ignoredpolicyitemcount=nil)
           @AssetType = assettype
           @IsCustomerFirstCheck = iscustomerfirstcheck
           @CheckStatus = checkstatus
@@ -1668,6 +1674,8 @@ module TencentCloud
           @CheckCostTime = checkcosttime
           @LastCheckTime = lastchecktime
           @PeriodRule = periodrule
+          @OpenPolicyItemCount = openpolicyitemcount
+          @IgnoredPolicyItemCount = ignoredpolicyitemcount
         end
 
         def deserialize(params)
@@ -1692,6 +1700,8 @@ module TencentCloud
             @PeriodRule = CompliancePeriodTaskRule.new
             @PeriodRule.deserialize(params['PeriodRule'])
           end
+          @OpenPolicyItemCount = params['OpenPolicyItemCount']
+          @IgnoredPolicyItemCount = params['IgnoredPolicyItemCount']
         end
       end
 
@@ -1922,17 +1932,22 @@ module TencentCloud
         # @type Frequency: Integer
         # @param ExecutionTime: 在这天的什么时间执行，格式为：HH:mm:SS。
         # @type ExecutionTime: String
+        # @param Enable: 是否开启
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Enable: Boolean
 
-        attr_accessor :Frequency, :ExecutionTime
+        attr_accessor :Frequency, :ExecutionTime, :Enable
         
-        def initialize(frequency=nil, executiontime=nil)
+        def initialize(frequency=nil, executiontime=nil, enable=nil)
           @Frequency = frequency
           @ExecutionTime = executiontime
+          @Enable = enable
         end
 
         def deserialize(params)
           @Frequency = params['Frequency']
           @ExecutionTime = params['ExecutionTime']
+          @Enable = params['Enable']
         end
       end
 

@@ -6055,9 +6055,9 @@ module TencentCloud
       class DescribeStreamPushInfoListRequest < TencentCloud::Common::AbstractModel
         # @param StreamName: 流名称。
         # @type StreamName: String
-        # @param StartTime: 起始时间点，格式为yyyy-mm-dd HH:MM:SS。
+        # @param StartTime: 起始时间点，北京时间，格式为yyyy-mm-dd HH:MM:SS。
         # @type StartTime: String
-        # @param EndTime: 结束时间点，格式为yyyy-mm-dd HH:MM:SS，支持查询最近7天数据，建议查询时间跨度在3小时之内。
+        # @param EndTime: 结束时间点，北京时间，格式为yyyy-mm-dd HH:MM:SS，支持查询最近7天数据，建议查询时间跨度在3小时之内。
         # @type EndTime: String
         # @param PushDomain: 推流域名。
         # @type PushDomain: String
@@ -8469,10 +8469,14 @@ module TencentCloud
         # @type MateFps: Integer
         # @param StreamParam: 推流参数
         # @type StreamParam: String
+        # @param Bandwidth: 带宽，单位Mbps。
+        # @type Bandwidth: Float
+        # @param Flux: 流量，单位MB。
+        # @type Flux: Float
 
-        attr_accessor :Time, :PushDomain, :AppName, :ClientIp, :BeginPushTime, :Resolution, :VCodec, :ACodec, :Sequence, :VideoFps, :VideoRate, :AudioFps, :AudioRate, :LocalTs, :VideoTs, :AudioTs, :MetaVideoRate, :MetaAudioRate, :MateFps, :StreamParam
+        attr_accessor :Time, :PushDomain, :AppName, :ClientIp, :BeginPushTime, :Resolution, :VCodec, :ACodec, :Sequence, :VideoFps, :VideoRate, :AudioFps, :AudioRate, :LocalTs, :VideoTs, :AudioTs, :MetaVideoRate, :MetaAudioRate, :MateFps, :StreamParam, :Bandwidth, :Flux
         
-        def initialize(time=nil, pushdomain=nil, appname=nil, clientip=nil, beginpushtime=nil, resolution=nil, vcodec=nil, acodec=nil, sequence=nil, videofps=nil, videorate=nil, audiofps=nil, audiorate=nil, localts=nil, videots=nil, audiots=nil, metavideorate=nil, metaaudiorate=nil, matefps=nil, streamparam=nil)
+        def initialize(time=nil, pushdomain=nil, appname=nil, clientip=nil, beginpushtime=nil, resolution=nil, vcodec=nil, acodec=nil, sequence=nil, videofps=nil, videorate=nil, audiofps=nil, audiorate=nil, localts=nil, videots=nil, audiots=nil, metavideorate=nil, metaaudiorate=nil, matefps=nil, streamparam=nil, bandwidth=nil, flux=nil)
           @Time = time
           @PushDomain = pushdomain
           @AppName = appname
@@ -8493,6 +8497,8 @@ module TencentCloud
           @MetaAudioRate = metaaudiorate
           @MateFps = matefps
           @StreamParam = streamparam
+          @Bandwidth = bandwidth
+          @Flux = flux
         end
 
         def deserialize(params)
@@ -8516,6 +8522,8 @@ module TencentCloud
           @MetaAudioRate = params['MetaAudioRate']
           @MateFps = params['MateFps']
           @StreamParam = params['StreamParam']
+          @Bandwidth = params['Bandwidth']
+          @Flux = params['Flux']
         end
       end
 
