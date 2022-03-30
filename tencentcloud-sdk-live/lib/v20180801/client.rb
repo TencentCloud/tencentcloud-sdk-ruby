@@ -1051,7 +1051,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 直播计费带宽和流量数据查询。
+        # 直播播放带宽和流量数据查询。
 
         # @param request: Request instance for DescribeBillBandwidthAndFluxList.
         # @type request: :class:`Tencentcloud::live::V20180801::DescribeBillBandwidthAndFluxListRequest`

@@ -1075,14 +1075,16 @@ module TencentCloud
         # @type Status: Integer
         # @param OwnerUins: 下单人账号ID列表
         # @type OwnerUins: Array
-        # @param DealNames: 订单号列表
+        # @param DealNames: 子订单号列表
         # @type DealNames: Array
+        # @param BigDealIds: 大订单号列表
+        # @type BigDealIds: Array
         # @param PayerMode: 支付方式，0：自付；1：代付
         # @type PayerMode: Integer
 
-        attr_accessor :Offset, :Limit, :CreatTimeRangeStart, :CreatTimeRangeEnd, :Order, :Status, :OwnerUins, :DealNames, :PayerMode
+        attr_accessor :Offset, :Limit, :CreatTimeRangeStart, :CreatTimeRangeEnd, :Order, :Status, :OwnerUins, :DealNames, :BigDealIds, :PayerMode
         
-        def initialize(offset=nil, limit=nil, creattimerangestart=nil, creattimerangeend=nil, order=nil, status=nil, owneruins=nil, dealnames=nil, payermode=nil)
+        def initialize(offset=nil, limit=nil, creattimerangestart=nil, creattimerangeend=nil, order=nil, status=nil, owneruins=nil, dealnames=nil, bigdealids=nil, payermode=nil)
           @Offset = offset
           @Limit = limit
           @CreatTimeRangeStart = creattimerangestart
@@ -1091,6 +1093,7 @@ module TencentCloud
           @Status = status
           @OwnerUins = owneruins
           @DealNames = dealnames
+          @BigDealIds = bigdealids
           @PayerMode = payermode
         end
 
@@ -1103,6 +1106,7 @@ module TencentCloud
           @Status = params['Status']
           @OwnerUins = params['OwnerUins']
           @DealNames = params['DealNames']
+          @BigDealIds = params['BigDealIds']
           @PayerMode = params['PayerMode']
         end
       end
@@ -1308,12 +1312,14 @@ module TencentCloud
         # @type Status: Integer
         # @param OwnerUins: 下单人账号ID列表
         # @type OwnerUins: Array
-        # @param DealNames: 订单号列表
+        # @param DealNames: 子订单号列表
         # @type DealNames: Array
+        # @param BigDealIds: 大订单号列表
+        # @type BigDealIds: Array
 
-        attr_accessor :Offset, :Limit, :CreatTimeRangeStart, :CreatTimeRangeEnd, :Order, :Status, :OwnerUins, :DealNames
+        attr_accessor :Offset, :Limit, :CreatTimeRangeStart, :CreatTimeRangeEnd, :Order, :Status, :OwnerUins, :DealNames, :BigDealIds
         
-        def initialize(offset=nil, limit=nil, creattimerangestart=nil, creattimerangeend=nil, order=nil, status=nil, owneruins=nil, dealnames=nil)
+        def initialize(offset=nil, limit=nil, creattimerangestart=nil, creattimerangeend=nil, order=nil, status=nil, owneruins=nil, dealnames=nil, bigdealids=nil)
           @Offset = offset
           @Limit = limit
           @CreatTimeRangeStart = creattimerangestart
@@ -1322,6 +1328,7 @@ module TencentCloud
           @Status = status
           @OwnerUins = owneruins
           @DealNames = dealnames
+          @BigDealIds = bigdealids
         end
 
         def deserialize(params)
@@ -1333,6 +1340,7 @@ module TencentCloud
           @Status = params['Status']
           @OwnerUins = params['OwnerUins']
           @DealNames = params['DealNames']
+          @BigDealIds = params['BigDealIds']
         end
       end
 
@@ -1458,12 +1466,14 @@ module TencentCloud
         # @type Order: Integer
         # @param Status: 订单的状态(1：未支付;2：已支付;3：发货中;4：已发货;5：发货失败;6：已退款;7：已关单;8：订单过期;9：订单已失效;10：产品已失效;11：代付拒绝;12：支付中)
         # @type Status: Integer
-        # @param DealNames: 订单号列表
+        # @param DealNames: 子订单号列表
         # @type DealNames: Array
+        # @param BigDealIds: 大订单号列表
+        # @type BigDealIds: Array
 
-        attr_accessor :OwnerUin, :Offset, :Limit, :CreatTimeRangeStart, :CreatTimeRangeEnd, :Order, :Status, :DealNames
+        attr_accessor :OwnerUin, :Offset, :Limit, :CreatTimeRangeStart, :CreatTimeRangeEnd, :Order, :Status, :DealNames, :BigDealIds
         
-        def initialize(owneruin=nil, offset=nil, limit=nil, creattimerangestart=nil, creattimerangeend=nil, order=nil, status=nil, dealnames=nil)
+        def initialize(owneruin=nil, offset=nil, limit=nil, creattimerangestart=nil, creattimerangeend=nil, order=nil, status=nil, dealnames=nil, bigdealids=nil)
           @OwnerUin = owneruin
           @Offset = offset
           @Limit = limit
@@ -1472,6 +1482,7 @@ module TencentCloud
           @Order = order
           @Status = status
           @DealNames = dealnames
+          @BigDealIds = bigdealids
         end
 
         def deserialize(params)
@@ -1483,6 +1494,7 @@ module TencentCloud
           @Order = params['Order']
           @Status = params['Status']
           @DealNames = params['DealNames']
+          @BigDealIds = params['BigDealIds']
         end
       end
 

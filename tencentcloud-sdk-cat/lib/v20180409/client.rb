@@ -365,6 +365,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 列出云拨测指标详细数据
+
+        # @param request: Request instance for DescribeProbeMetricData.
+        # @type request: :class:`Tencentcloud::cat::V20180409::DescribeProbeMetricDataRequest`
+        # @rtype: :class:`Tencentcloud::cat::V20180409::DescribeProbeMetricDataResponse`
+        def DescribeProbeMetricData(request)
+          body = send_request('DescribeProbeMetricData', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeProbeMetricDataResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询拨测节点
 
         # @param request: Request instance for DescribeProbeNodes.

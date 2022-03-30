@@ -367,6 +367,7 @@ module TencentCloud
         end
 
         # 获取邮件发送状态。仅支持查询30天之内的数据
+        # 默认接口请求频率限制：1次/秒
 
         # @param request: Request instance for GetSendEmailStatus.
         # @type request: :class:`Tencentcloud::ses::V20201002::GetSendEmailStatusRequest`

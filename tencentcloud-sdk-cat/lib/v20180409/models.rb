@@ -1407,6 +1407,62 @@ module TencentCloud
         end
       end
 
+      # DescribeProbeMetricData请求参数结构体
+      class DescribeProbeMetricDataRequest < TencentCloud::Common::AbstractModel
+        # @param AnalyzeTaskType: 分析任务类型
+        # @type AnalyzeTaskType: String
+        # @param MetricType: 指标类型，counter 或者 gauge
+        # @type MetricType: String
+        # @param Field: 指标详细字段
+        # @type Field: String
+        # @param Filter: 过滤条件
+        # @type Filter: String
+        # @param GroupBy: 聚合时间, 1m、1d、100d 等等
+        # @type GroupBy: String
+        # @param Filters: 过滤条件数组
+        # @type Filters: Array
+
+        attr_accessor :AnalyzeTaskType, :MetricType, :Field, :Filter, :GroupBy, :Filters
+        
+        def initialize(analyzetasktype=nil, metrictype=nil, field=nil, filter=nil, groupby=nil, filters=nil)
+          @AnalyzeTaskType = analyzetasktype
+          @MetricType = metrictype
+          @Field = field
+          @Filter = filter
+          @GroupBy = groupby
+          @Filters = filters
+        end
+
+        def deserialize(params)
+          @AnalyzeTaskType = params['AnalyzeTaskType']
+          @MetricType = params['MetricType']
+          @Field = params['Field']
+          @Filter = params['Filter']
+          @GroupBy = params['GroupBy']
+          @Filters = params['Filters']
+        end
+      end
+
+      # DescribeProbeMetricData返回参数结构体
+      class DescribeProbeMetricDataResponse < TencentCloud::Common::AbstractModel
+        # @param MetricSet: 指标 JSON 序列化后的字符串
+        # @type MetricSet: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :MetricSet, :RequestId
+        
+        def initialize(metricset=nil, requestid=nil)
+          @MetricSet = metricset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @MetricSet = params['MetricSet']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeProbeNodes请求参数结构体
       class DescribeProbeNodesRequest < TencentCloud::Common::AbstractModel
         # @param NodeType: 节点类型

@@ -707,6 +707,7 @@ module TencentCloud
         # @param DiskType: 数据盘类型。数据盘类型限制详见[存储概述](https://cloud.tencent.com/document/product/213/4952)。取值范围：<br><li>LOCAL_BASIC：本地硬盘<br><li>LOCAL_SSD：本地SSD硬盘<br><li>LOCAL_NVME：本地NVME硬盘，与InstanceType强相关，不支持指定<br><li>LOCAL_PRO：本地HDD硬盘，与InstanceType强相关，不支持指定<br><li>CLOUD_BASIC：普通云硬盘<br><li>CLOUD_PREMIUM：高性能云硬盘<br><li>CLOUD_SSD：SSD云硬盘<br><li>CLOUD_HSSD：增强型SSD云硬盘<br><li>CLOUD_TSSD：极速型SSD云硬盘<br><br>默认取值：LOCAL_BASIC。<br><br>该参数对`ResizeInstanceDisk`接口无效。
         # @type DiskType: String
         # @param DiskId: 数据盘ID。LOCAL_BASIC 和 LOCAL_SSD 类型没有ID，暂时不支持该参数。
+        # 该参数目前仅用于`DescribeInstances`接口。
         # @type DiskId: String
         # @param DeleteWithInstance: 数据盘是否随子机销毁。取值范围：
         # <li>TRUE：子机销毁时，销毁数据盘，只支持按小时后付费云盘
@@ -2856,10 +2857,15 @@ module TencentCloud
         # @type StateIfCreateCvmFailed: String
         # @param Tags: 标签列表。通过指定该参数可以支持绑定标签到作业。每个作业最多绑定10个标签。
         # @type Tags: Array
+        # @param NotificationTarget: 表示通知信息的通知目标类型。
+        # 取值范围：CMQ，TDMQ_CMQ。
+        # CMQ:表示向腾讯云CMQ发送消息。
+        # TDMQ_CMQ：表示向腾讯云TDMQ_CMQ发送消息。<br/>默认值为CMQ。<br/>注：腾讯云计划于2022年6月前正式下线消息队列 CMQ，建议使用TDMQ_CMQ。参考文档：[CMQ迁移到TDMQ_CMQ](https://cloud.tencent.com/document/product/406/60860)
+        # @type NotificationTarget: String
 
-        attr_accessor :Tasks, :JobName, :JobDescription, :Priority, :Dependences, :Notifications, :TaskExecutionDependOn, :StateIfCreateCvmFailed, :Tags
+        attr_accessor :Tasks, :JobName, :JobDescription, :Priority, :Dependences, :Notifications, :TaskExecutionDependOn, :StateIfCreateCvmFailed, :Tags, :NotificationTarget
         
-        def initialize(tasks=nil, jobname=nil, jobdescription=nil, priority=nil, dependences=nil, notifications=nil, taskexecutiondependon=nil, stateifcreatecvmfailed=nil, tags=nil)
+        def initialize(tasks=nil, jobname=nil, jobdescription=nil, priority=nil, dependences=nil, notifications=nil, taskexecutiondependon=nil, stateifcreatecvmfailed=nil, tags=nil, notificationtarget=nil)
           @Tasks = tasks
           @JobName = jobname
           @JobDescription = jobdescription
@@ -2869,6 +2875,7 @@ module TencentCloud
           @TaskExecutionDependOn = taskexecutiondependon
           @StateIfCreateCvmFailed = stateifcreatecvmfailed
           @Tags = tags
+          @NotificationTarget = notificationtarget
         end
 
         def deserialize(params)
@@ -2909,6 +2916,7 @@ module TencentCloud
               @Tags << tag_tmp
             end
           end
+          @NotificationTarget = params['NotificationTarget']
         end
       end
 
@@ -3178,10 +3186,15 @@ module TencentCloud
         # @type ResourceMaxRetryCount: Integer
         # @param Tags: 标签列表。通过指定该参数可以支持绑定标签到计算环境。每个计算环境最多绑定10个标签。
         # @type Tags: Array
+        # @param NotificationTarget: 表示通知信息的通知目标类型。
+        # 取值范围：CMQ，TDMQ_CMQ。
+        # CMQ:表示向腾讯云CMQ发送消息。
+        # TDMQ_CMQ：表示向腾讯云TDMQ_CMQ发送消息。<br/>默认值为CMQ。<br/>注：腾讯云计划于2022年6月前正式下线消息队列 CMQ，建议使用TDMQ_CMQ。参考文档：[CMQ迁移到TDMQ_CMQ](https://cloud.tencent.com/document/product/406/60860)
+        # @type NotificationTarget: String
 
-        attr_accessor :EnvName, :DesiredComputeNodeCount, :EnvDescription, :EnvType, :EnvData, :MountDataDisks, :Authentications, :InputMappings, :AgentRunningMode, :Notifications, :ActionIfComputeNodeInactive, :ResourceMaxRetryCount, :Tags
+        attr_accessor :EnvName, :DesiredComputeNodeCount, :EnvDescription, :EnvType, :EnvData, :MountDataDisks, :Authentications, :InputMappings, :AgentRunningMode, :Notifications, :ActionIfComputeNodeInactive, :ResourceMaxRetryCount, :Tags, :NotificationTarget
         
-        def initialize(envname=nil, desiredcomputenodecount=nil, envdescription=nil, envtype=nil, envdata=nil, mountdatadisks=nil, authentications=nil, inputmappings=nil, agentrunningmode=nil, notifications=nil, actionifcomputenodeinactive=nil, resourcemaxretrycount=nil, tags=nil)
+        def initialize(envname=nil, desiredcomputenodecount=nil, envdescription=nil, envtype=nil, envdata=nil, mountdatadisks=nil, authentications=nil, inputmappings=nil, agentrunningmode=nil, notifications=nil, actionifcomputenodeinactive=nil, resourcemaxretrycount=nil, tags=nil, notificationtarget=nil)
           @EnvName = envname
           @DesiredComputeNodeCount = desiredcomputenodecount
           @EnvDescription = envdescription
@@ -3195,6 +3208,7 @@ module TencentCloud
           @ActionIfComputeNodeInactive = actionifcomputenodeinactive
           @ResourceMaxRetryCount = resourcemaxretrycount
           @Tags = tags
+          @NotificationTarget = notificationtarget
         end
 
         def deserialize(params)
@@ -3252,6 +3266,7 @@ module TencentCloud
               @Tags << tag_tmp
             end
           end
+          @NotificationTarget = params['NotificationTarget']
         end
       end
 
@@ -3279,10 +3294,15 @@ module TencentCloud
         # @type ResourceMaxRetryCount: Integer
         # @param Tags: 标签列表。通过指定该参数可以支持绑定标签到黑石计算环境。每个黑石计算环境最多绑定10个标签。
         # @type Tags: Array
+        # @param NotificationTarget: 表示通知信息的通知目标类型。
+        # 取值范围：CMQ，TDMQ_CMQ。
+        # CMQ:表示向腾讯云CMQ发送消息。
+        # TDMQ_CMQ：表示向腾讯云TDMQ_CMQ发送消息。<br/>默认值为CMQ。<br/>注：腾讯云计划于2022年6月前正式下线消息队列 CMQ，建议使用TDMQ_CMQ。参考文档：[CMQ迁移到TDMQ_CMQ](https://cloud.tencent.com/document/product/406/60860)
+        # @type NotificationTarget: String
 
-        attr_accessor :EnvName, :EnvData, :DesiredComputeNodeCount, :EnvDescription, :EnvType, :Authentications, :InputMappings, :Notifications, :ActionIfComputeNodeInactive, :ResourceMaxRetryCount, :Tags
+        attr_accessor :EnvName, :EnvData, :DesiredComputeNodeCount, :EnvDescription, :EnvType, :Authentications, :InputMappings, :Notifications, :ActionIfComputeNodeInactive, :ResourceMaxRetryCount, :Tags, :NotificationTarget
         
-        def initialize(envname=nil, envdata=nil, desiredcomputenodecount=nil, envdescription=nil, envtype=nil, authentications=nil, inputmappings=nil, notifications=nil, actionifcomputenodeinactive=nil, resourcemaxretrycount=nil, tags=nil)
+        def initialize(envname=nil, envdata=nil, desiredcomputenodecount=nil, envdescription=nil, envtype=nil, authentications=nil, inputmappings=nil, notifications=nil, actionifcomputenodeinactive=nil, resourcemaxretrycount=nil, tags=nil, notificationtarget=nil)
           @EnvName = envname
           @EnvData = envdata
           @DesiredComputeNodeCount = desiredcomputenodecount
@@ -3294,6 +3314,7 @@ module TencentCloud
           @ActionIfComputeNodeInactive = actionifcomputenodeinactive
           @ResourceMaxRetryCount = resourcemaxretrycount
           @Tags = tags
+          @NotificationTarget = notificationtarget
         end
 
         def deserialize(params)
@@ -3335,6 +3356,7 @@ module TencentCloud
               @Tags << tag_tmp
             end
           end
+          @NotificationTarget = params['NotificationTarget']
         end
       end
 
