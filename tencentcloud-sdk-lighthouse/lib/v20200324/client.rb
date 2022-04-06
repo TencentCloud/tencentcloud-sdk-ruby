@@ -1226,7 +1226,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口（InquirePriceCreateInstances）用于续费实例询价。
+        # 本接口（InquirePriceRenewInstances）用于续费实例询价。
 
         # @param request: Request instance for InquirePriceRenewInstances.
         # @type request: :class:`Tencentcloud::lighthouse::V20200324::InquirePriceRenewInstancesRequest`

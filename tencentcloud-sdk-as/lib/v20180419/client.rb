@@ -723,33 +723,6 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口（DescribePaiInstances）用于查询PAI实例信息。
-
-        # * 可以根据实例ID、实例域名等信息来查询PAI实例的详细信息。过滤信息详细请见过滤器`Filter`。
-        # * 如果参数为空，返回当前用户一定数量（`Limit`所指定的数量，默认为20）的PAI实例。
-
-        # @param request: Request instance for DescribePaiInstances.
-        # @type request: :class:`Tencentcloud::as::V20180419::DescribePaiInstancesRequest`
-        # @rtype: :class:`Tencentcloud::as::V20180419::DescribePaiInstancesResponse`
-        def DescribePaiInstances(request)
-          body = send_request('DescribePaiInstances', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = DescribePaiInstancesResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
         # 本接口（DescribeScalingPolicies）用于查询告警触发策略。
 
         # @param request: Request instance for DescribeScalingPolicies.

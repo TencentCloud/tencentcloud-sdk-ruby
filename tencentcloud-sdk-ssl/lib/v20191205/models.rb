@@ -750,7 +750,7 @@ module TencentCloud
         # @param SubjectAltName: 证书包含的多个域名（不包含主域名，主域名使用Domain字段）
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SubjectAltName: Array
-        # @param IsVip: 是否为 VIP 客户。
+        # @param IsVip: 是否为付费证书。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsVip: Boolean
         # @param IsWildcard: 是否为泛域名证书。
@@ -765,7 +765,7 @@ module TencentCloud
         # @param SubmittedData: 提交的资料信息。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SubmittedData: :class:`Tencentcloud::Ssl.v20191205.models.SubmittedData`
-        # @param RenewAble: 是否可重颁发证书。
+        # @param RenewAble: 是否可续费。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RenewAble: Boolean
         # @param Deployable: 是否可部署。

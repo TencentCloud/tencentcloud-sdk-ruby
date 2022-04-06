@@ -601,15 +601,15 @@ module TencentCloud
 
       # CreateInstances请求参数结构体
       class CreateInstancesRequest < TencentCloud::Common::AbstractModel
-        # @param BundleId: Lighthouse套餐ID。
+        # @param BundleId: 套餐ID。
         # @type BundleId: String
-        # @param BlueprintId: Lighthouse镜像ID。
+        # @param BlueprintId: 镜像ID。
         # @type BlueprintId: String
-        # @param InstanceChargePrepaid: 当前Lighthouse实例仅支持预付费模式，即包年包月相关参数设置，单位（月）。通过该参数可以指定包年包月实例的购买时长、是否设置自动续费等属性。该参数必传。
+        # @param InstanceChargePrepaid: 当前实例仅支持预付费模式，即包年包月相关参数设置，单位（月）。通过该参数可以指定包年包月实例的购买时长、是否设置自动续费等属性。该参数必传。
         # @type InstanceChargePrepaid: :class:`Tencentcloud::Lighthouse.v20200324.models.InstanceChargePrepaid`
-        # @param InstanceName: Lighthouse实例显示名称。
+        # @param InstanceName: 实例显示名称。
         # @type InstanceName: String
-        # @param InstanceCount: 购买Lighthouse实例数量。包年包月实例取值范围：[1，30]。默认取值：1。指定购买实例的数量不能超过用户所能购买的剩余配额数量
+        # @param InstanceCount: 购买实例数量。包年包月实例取值范围：[1，30]。默认取值：1。指定购买实例的数量不能超过用户所能购买的剩余配额数量
         # @type InstanceCount: Integer
         # @param Zones: 可用区列表。默认为随机可用区
         # @type Zones: Array
@@ -1628,7 +1628,7 @@ module TencentCloud
 
       # DescribeGeneralResourceQuotas请求参数结构体
       class DescribeGeneralResourceQuotasRequest < TencentCloud::Common::AbstractModel
-        # @param ResourceNames: 资源名列表，取值为：USER_KEY_PAIR、INSTANCE、SNAPSHOT。
+        # @param ResourceNames: 资源名列表，取值为：USER_KEY_PAIR、GENERAL_BUNDLE_INSTANCE、STORAGE_BUNDLE_INSTANCE、ENTERPRISE_BUNDLE_INSTANCE、EXCLUSIVE_BUNDLE_INSTANCE、BEFAST_BUNDLE_INSTANCE、SNAPSHOT、BLUEPRINT、FREE_BLUEPRINT、DATA_DISK、ATTACHED_DATA_DISK、FIREWALL_RULE。
         # @type ResourceNames: Array
 
         attr_accessor :ResourceNames
@@ -3393,7 +3393,7 @@ module TencentCloud
         # @param LoginSettings: 实例登录设置。
         # @type LoginSettings: :class:`Tencentcloud::Lighthouse.v20200324.models.LoginSettings`
         # @param InstanceState: 实例状态。取值范围：
-        # <li>PENDING：表示创建中</li><li>LAUNCH_FAILED：表示创建失败</li><li>RUNNING：表示运行中</li><li>STOPPED：表示关机</li><li>STARTING：表示开机中</li><li>STOPPING：表示关机中</li><li>REBOOTING：表示重启中</li><li>SHUTDOWN：表示停止待销毁</li><li>TERMINATING：表示销毁中</li>
+        # <li>PENDING：表示创建中</li><li>LAUNCH_FAILED：表示创建失败</li><li>RUNNING：表示运行中</li><li>STOPPED：表示关机</li><li>STARTING：表示开机中</li><li>STOPPING：表示关机中</li><li>REBOOTING：表示重启中</li><li>SHUTDOWN：表示停止待销毁</li><li>TERMINATING：表示销毁中</li><li>DELETING：表示删除中</li><li>FREEZING：表示冻结中</li>
         # @type InstanceState: String
         # @param Uuid: 实例全局唯一 ID。
         # @type Uuid: String
@@ -3430,10 +3430,13 @@ module TencentCloud
         # @type Zone: String
         # @param Tags: 实例绑定的标签列表。
         # @type Tags: Array
+        # @param InstanceRestrictState: 实例封禁状态。取值范围：
+        # <li>NORMAL实例正常。</li><li>NETWORK_RESTRICT：网络封禁。</li>
+        # @type InstanceRestrictState: String
 
-        attr_accessor :InstanceId, :BundleId, :BlueprintId, :CPU, :Memory, :InstanceName, :InstanceChargeType, :SystemDisk, :PrivateAddresses, :PublicAddresses, :InternetAccessible, :RenewFlag, :LoginSettings, :InstanceState, :Uuid, :LatestOperation, :LatestOperationState, :LatestOperationRequestId, :IsolatedTime, :CreatedTime, :ExpiredTime, :PlatformType, :Platform, :OsName, :Zone, :Tags
+        attr_accessor :InstanceId, :BundleId, :BlueprintId, :CPU, :Memory, :InstanceName, :InstanceChargeType, :SystemDisk, :PrivateAddresses, :PublicAddresses, :InternetAccessible, :RenewFlag, :LoginSettings, :InstanceState, :Uuid, :LatestOperation, :LatestOperationState, :LatestOperationRequestId, :IsolatedTime, :CreatedTime, :ExpiredTime, :PlatformType, :Platform, :OsName, :Zone, :Tags, :InstanceRestrictState
         
-        def initialize(instanceid=nil, bundleid=nil, blueprintid=nil, cpu=nil, memory=nil, instancename=nil, instancechargetype=nil, systemdisk=nil, privateaddresses=nil, publicaddresses=nil, internetaccessible=nil, renewflag=nil, loginsettings=nil, instancestate=nil, uuid=nil, latestoperation=nil, latestoperationstate=nil, latestoperationrequestid=nil, isolatedtime=nil, createdtime=nil, expiredtime=nil, platformtype=nil, platform=nil, osname=nil, zone=nil, tags=nil)
+        def initialize(instanceid=nil, bundleid=nil, blueprintid=nil, cpu=nil, memory=nil, instancename=nil, instancechargetype=nil, systemdisk=nil, privateaddresses=nil, publicaddresses=nil, internetaccessible=nil, renewflag=nil, loginsettings=nil, instancestate=nil, uuid=nil, latestoperation=nil, latestoperationstate=nil, latestoperationrequestid=nil, isolatedtime=nil, createdtime=nil, expiredtime=nil, platformtype=nil, platform=nil, osname=nil, zone=nil, tags=nil, instancerestrictstate=nil)
           @InstanceId = instanceid
           @BundleId = bundleid
           @BlueprintId = blueprintid
@@ -3460,6 +3463,7 @@ module TencentCloud
           @OsName = osname
           @Zone = zone
           @Tags = tags
+          @InstanceRestrictState = instancerestrictstate
         end
 
         def deserialize(params)
@@ -3505,6 +3509,7 @@ module TencentCloud
               @Tags << tag_tmp
             end
           end
+          @InstanceRestrictState = params['InstanceRestrictState']
         end
       end
 

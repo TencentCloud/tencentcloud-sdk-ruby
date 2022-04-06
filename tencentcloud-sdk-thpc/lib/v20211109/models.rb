@@ -87,7 +87,10 @@ module TencentCloud
         # @type LocalPath: String
         # @param RemotePath: 文件系统远程挂载ip及路径
         # @type RemotePath: String
-        # @param Protocol: 文件系统协议类型，默认值NFS 3.0
+        # @param Protocol: 文件系统协议类型，默认值NFS 3.0。
+        # <li>NFS 3.0。
+        # <li>NFS 4.0。
+        # <li>TURBO。
         # @type Protocol: String
         # @param StorageType: 文件系统存储类型，默认值SD；其中 SD 为通用标准型标准型存储， HP为通用性能型存储， TB为turbo标准型， TP 为turbo性能型。
         # @type StorageType: String
@@ -275,15 +278,15 @@ module TencentCloud
         # @type Placement: :class:`Tencentcloud::Thpc.v20211109.models.Placement`
         # @param ManagerNode: 指定管理节点。
         # @type ManagerNode: :class:`Tencentcloud::Thpc.v20211109.models.ManagerNode`
-        # @param ManagerNodeCount: 指定管理节点的数量。目前仅支持一个管理节点。
+        # @param ManagerNodeCount: 指定管理节点的数量。默认取值：1。取值范围：1～2。
         # @type ManagerNodeCount: Integer
         # @param ComputeNode: 指定计算节点。
         # @type ComputeNode: :class:`Tencentcloud::Thpc.v20211109.models.ComputeNode`
         # @param ComputeNodeCount: 指定计算节点的数量。默认取值：0。
         # @type ComputeNodeCount: Integer
-        # @param SchedulerType: 调度器类型。<br><li>SGE：SGE调度器。
+        # @param SchedulerType: 调度器类型。<br><li>SGE：SGE调度器。<br><li>SLURM：SLURM调度器。
         # @type SchedulerType: String
-        # @param ImageId: 指定有效的[镜像](https://cloud.tencent.com/document/product/213/4940)ID，格式形如`img-xxx`。目前仅支持公有镜像和自定义镜像。
+        # @param ImageId: 指定有效的[镜像](https://cloud.tencent.com/document/product/213/4940)ID，格式形如`img-xxx`。目前仅支持公有镜像。
         # @type ImageId: String
         # @param VirtualPrivateCloud: 私有网络相关信息配置。
         # @type VirtualPrivateCloud: :class:`Tencentcloud::Thpc.v20211109.models.VirtualPrivateCloud`
@@ -299,16 +302,25 @@ module TencentCloud
         # 如果检查通过，则返回RequestId.
         # false（默认）：发送正常请求，通过检查后直接创建实例
         # @type DryRun: Boolean
-        # @param AccountType: 域名字服务类型。<br><li>NIS：NIS域名字服务。
+        # @param AccountType: 域名字服务类型。默认值：NIS
+        # <li>NIS：NIS域名字服务。
         # @type AccountType: String
         # @param ClusterName: 集群显示名称。
         # @type ClusterName: String
         # @param StorageOption: 集群存储选项
         # @type StorageOption: :class:`Tencentcloud::Thpc.v20211109.models.StorageOption`
+        # @param LoginNode: 已废弃。
+        # 指定登录节点。
+        # @type LoginNode: Array
+        # @param LoginNodeCount: 已废弃。
+        # 指定登录节点的数量。默认取值：0。取值范围：0～10。
+        # @type LoginNodeCount: Integer
+        # @param Tags: 创建集群时同时绑定的标签对说明。
+        # @type Tags: Array
 
-        attr_accessor :Placement, :ManagerNode, :ManagerNodeCount, :ComputeNode, :ComputeNodeCount, :SchedulerType, :ImageId, :VirtualPrivateCloud, :LoginSettings, :SecurityGroupIds, :ClientToken, :DryRun, :AccountType, :ClusterName, :StorageOption
+        attr_accessor :Placement, :ManagerNode, :ManagerNodeCount, :ComputeNode, :ComputeNodeCount, :SchedulerType, :ImageId, :VirtualPrivateCloud, :LoginSettings, :SecurityGroupIds, :ClientToken, :DryRun, :AccountType, :ClusterName, :StorageOption, :LoginNode, :LoginNodeCount, :Tags
         
-        def initialize(placement=nil, managernode=nil, managernodecount=nil, computenode=nil, computenodecount=nil, schedulertype=nil, imageid=nil, virtualprivatecloud=nil, loginsettings=nil, securitygroupids=nil, clienttoken=nil, dryrun=nil, accounttype=nil, clustername=nil, storageoption=nil)
+        def initialize(placement=nil, managernode=nil, managernodecount=nil, computenode=nil, computenodecount=nil, schedulertype=nil, imageid=nil, virtualprivatecloud=nil, loginsettings=nil, securitygroupids=nil, clienttoken=nil, dryrun=nil, accounttype=nil, clustername=nil, storageoption=nil, loginnode=nil, loginnodecount=nil, tags=nil)
           @Placement = placement
           @ManagerNode = managernode
           @ManagerNodeCount = managernodecount
@@ -324,6 +336,9 @@ module TencentCloud
           @AccountType = accounttype
           @ClusterName = clustername
           @StorageOption = storageoption
+          @LoginNode = loginnode
+          @LoginNodeCount = loginnodecount
+          @Tags = tags
         end
 
         def deserialize(params)
@@ -359,6 +374,23 @@ module TencentCloud
           unless params['StorageOption'].nil?
             @StorageOption = StorageOption.new
             @StorageOption.deserialize(params['StorageOption'])
+          end
+          unless params['LoginNode'].nil?
+            @LoginNode = []
+            params['LoginNode'].each do |i|
+              loginnode_tmp = LoginNode.new
+              loginnode_tmp.deserialize(i)
+              @LoginNode << loginnode_tmp
+            end
+          end
+          @LoginNodeCount = params['LoginNodeCount']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
+            end
           end
         end
       end
@@ -565,6 +597,73 @@ module TencentCloud
         end
       end
 
+      # 登录节点信息。
+      class LoginNode < TencentCloud::Common::AbstractModel
+        # @param InstanceChargeType: 节点[计费类型](https://cloud.tencent.com/document/product/213/2180)。<br><li>PREPAID：预付费，即包年包月<br><li>POSTPAID_BY_HOUR：按小时后付费<br><li>SPOTPAID：竞价付费<br>默认值：POSTPAID_BY_HOUR。
+        # @type InstanceChargeType: String
+        # @param InstanceChargePrepaid: 预付费模式，即包年包月相关参数设置。通过该参数可以指定包年包月节点的购买时长、是否设置自动续费等属性。若指定节点的付费模式为预付费则该参数必传。
+        # @type InstanceChargePrepaid: :class:`Tencentcloud::Thpc.v20211109.models.InstanceChargePrepaid`
+        # @param InstanceType: 节点机型。不同实例机型指定了不同的资源规格。
+        # <br><li>具体取值可通过调用接口[DescribeInstanceTypeConfigs](https://cloud.tencent.com/document/api/213/15749)来获得最新的规格表或参见[实例规格](https://cloud.tencent.com/document/product/213/11518)描述。
+        # @type InstanceType: String
+        # @param SystemDisk: 节点系统盘配置信息。若不指定该参数，则按照系统默认值进行分配。
+        # @type SystemDisk: Array
+        # @param DataDisks: 节点数据盘配置信息。若不指定该参数，则默认不购买数据盘。支持购买的时候指定21块数据盘，其中最多包含1块LOCAL_BASIC数据盘或者LOCAL_SSD数据盘，最多包含20块CLOUD_BASIC数据盘、CLOUD_PREMIUM数据盘或者CLOUD_SSD数据盘。
+        # @type DataDisks: Array
+        # @param InternetAccessible: 节点数据盘配置信息。若不指定该参数，则默认不购买数据盘。支持购买的时候指定21块数据盘，其中最多包含1块LOCAL_BASIC数据盘或者LOCAL_SSD数据盘，最多包含20块CLOUD_BASIC数据盘、CLOUD_PREMIUM数据盘或者CLOUD_SSD数据盘。
+        # @type InternetAccessible: Array
+        # @param InstanceName: 节点显示名称。<br><li>
+        # 不指定节点显示名称则默认显示‘未命名’。
+        # 最多支持60个字符。
+        # @type InstanceName: String
+
+        attr_accessor :InstanceChargeType, :InstanceChargePrepaid, :InstanceType, :SystemDisk, :DataDisks, :InternetAccessible, :InstanceName
+        
+        def initialize(instancechargetype=nil, instancechargeprepaid=nil, instancetype=nil, systemdisk=nil, datadisks=nil, internetaccessible=nil, instancename=nil)
+          @InstanceChargeType = instancechargetype
+          @InstanceChargePrepaid = instancechargeprepaid
+          @InstanceType = instancetype
+          @SystemDisk = systemdisk
+          @DataDisks = datadisks
+          @InternetAccessible = internetaccessible
+          @InstanceName = instancename
+        end
+
+        def deserialize(params)
+          @InstanceChargeType = params['InstanceChargeType']
+          unless params['InstanceChargePrepaid'].nil?
+            @InstanceChargePrepaid = InstanceChargePrepaid.new
+            @InstanceChargePrepaid.deserialize(params['InstanceChargePrepaid'])
+          end
+          @InstanceType = params['InstanceType']
+          unless params['SystemDisk'].nil?
+            @SystemDisk = []
+            params['SystemDisk'].each do |i|
+              systemdisk_tmp = SystemDisk.new
+              systemdisk_tmp.deserialize(i)
+              @SystemDisk << systemdisk_tmp
+            end
+          end
+          unless params['DataDisks'].nil?
+            @DataDisks = []
+            params['DataDisks'].each do |i|
+              datadisk_tmp = DataDisk.new
+              datadisk_tmp.deserialize(i)
+              @DataDisks << datadisk_tmp
+            end
+          end
+          unless params['InternetAccessible'].nil?
+            @InternetAccessible = []
+            params['InternetAccessible'].each do |i|
+              internetaccessible_tmp = InternetAccessible.new
+              internetaccessible_tmp.deserialize(i)
+              @InternetAccessible << internetaccessible_tmp
+            end
+          end
+          @InstanceName = params['InstanceName']
+        end
+      end
+
       # 登录节点概览。
       class LoginNodeOverview < TencentCloud::Common::AbstractModel
         # @param NodeId: 登录节点ID。
@@ -749,6 +848,26 @@ module TencentCloud
         def deserialize(params)
           @DiskType = params['DiskType']
           @DiskSize = params['DiskSize']
+        end
+      end
+
+      # 标签键值对。
+      class Tag < TencentCloud::Common::AbstractModel
+        # @param Key: 标签键
+        # @type Key: String
+        # @param Value: 标签值
+        # @type Value: String
+
+        attr_accessor :Key, :Value
+        
+        def initialize(key=nil, value=nil)
+          @Key = key
+          @Value = value
+        end
+
+        def deserialize(params)
+          @Key = params['Key']
+          @Value = params['Value']
         end
       end
 

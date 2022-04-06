@@ -813,6 +813,71 @@ module TencentCloud
         end
       end
 
+      # CreateUserOIDCConfig请求参数结构体
+      class CreateUserOIDCConfigRequest < TencentCloud::Common::AbstractModel
+        # @param IdentityUrl: 身份提供商URL。OpenID Connect身份提供商标识。
+        # 对应企业IdP提供的Openid-configuration中"issuer"字段的值。
+        # @type IdentityUrl: String
+        # @param IdentityKey: 签名公钥，需要base64_encode。验证OpenID Connect身份提供商ID Token签名的公钥。为了您的帐号安全，建议您定期轮换签名公钥。
+        # @type IdentityKey: String
+        # @param ClientId: 客户端ID，在OpenID Connect身份提供商注册的客户端ID。
+        # @type ClientId: String
+        # @param AuthorizationEndpoint: 授权请求Endpoint，OpenID Connect身份提供商授权地址。对应企业IdP提供的Openid-configuration中"authorization_endpoint"字段的值。
+        # @type AuthorizationEndpoint: String
+        # @param ResponseType: 授权请求Response type，固定值id_token
+        # @type ResponseType: String
+        # @param ResponseMode: 授权请求Response mode。授权请求返回模式，form_post和fragment两种可选模式，推荐选择form_post模式。
+        # @type ResponseMode: String
+        # @param MappingFiled: 映射字段名称。IdP的id_token中哪一个字段映射到子用户的用户名，通常是sub或者name字段
+        # @type MappingFiled: String
+        # @param Scope: 授权请求Scope。openid; email;profile。授权请求信息范围。默认必选openid。
+        # @type Scope: Array
+        # @param Description: 描述
+        # @type Description: String
+
+        attr_accessor :IdentityUrl, :IdentityKey, :ClientId, :AuthorizationEndpoint, :ResponseType, :ResponseMode, :MappingFiled, :Scope, :Description
+        
+        def initialize(identityurl=nil, identitykey=nil, clientid=nil, authorizationendpoint=nil, responsetype=nil, responsemode=nil, mappingfiled=nil, scope=nil, description=nil)
+          @IdentityUrl = identityurl
+          @IdentityKey = identitykey
+          @ClientId = clientid
+          @AuthorizationEndpoint = authorizationendpoint
+          @ResponseType = responsetype
+          @ResponseMode = responsemode
+          @MappingFiled = mappingfiled
+          @Scope = scope
+          @Description = description
+        end
+
+        def deserialize(params)
+          @IdentityUrl = params['IdentityUrl']
+          @IdentityKey = params['IdentityKey']
+          @ClientId = params['ClientId']
+          @AuthorizationEndpoint = params['AuthorizationEndpoint']
+          @ResponseType = params['ResponseType']
+          @ResponseMode = params['ResponseMode']
+          @MappingFiled = params['MappingFiled']
+          @Scope = params['Scope']
+          @Description = params['Description']
+        end
+      end
+
+      # CreateUserOIDCConfig返回参数结构体
+      class CreateUserOIDCConfigResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateUserSAMLConfig请求参数结构体
       class CreateUserSAMLConfigRequest < TencentCloud::Common::AbstractModel
         # @param SAMLMetadataDocument: SAML元数据文档，需要base64 encode
@@ -1401,6 +1466,77 @@ module TencentCloud
         end
       end
 
+      # DescribeUserOIDCConfig请求参数结构体
+      class DescribeUserOIDCConfigRequest < TencentCloud::Common::AbstractModel
+
+        
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeUserOIDCConfig返回参数结构体
+      class DescribeUserOIDCConfigResponse < TencentCloud::Common::AbstractModel
+        # @param ProviderType: 身份提供商类型。 12：用户OIDC身份提供商
+        # @type ProviderType: Integer
+        # @param IdentityUrl: 身份提供商URL
+        # @type IdentityUrl: String
+        # @param IdentityKey: 签名公钥
+        # @type IdentityKey: String
+        # @param ClientId: 客户端id
+        # @type ClientId: String
+        # @param Status: 状态：0:未设置，11:已开启，2:已禁用
+        # @type Status: Integer
+        # @param AuthorizationEndpoint: 授权请求Endpoint
+        # @type AuthorizationEndpoint: String
+        # @param Scope: 授权请求Scope
+        # @type Scope: Array
+        # @param ResponseType: 授权请求Response type
+        # @type ResponseType: String
+        # @param ResponseMode: 授权请求Response mode
+        # @type ResponseMode: String
+        # @param MappingFiled: 映射字段名称
+        # @type MappingFiled: String
+        # @param Description: 描述
+        # @type Description: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ProviderType, :IdentityUrl, :IdentityKey, :ClientId, :Status, :AuthorizationEndpoint, :Scope, :ResponseType, :ResponseMode, :MappingFiled, :Description, :RequestId
+        
+        def initialize(providertype=nil, identityurl=nil, identitykey=nil, clientid=nil, status=nil, authorizationendpoint=nil, scope=nil, responsetype=nil, responsemode=nil, mappingfiled=nil, description=nil, requestid=nil)
+          @ProviderType = providertype
+          @IdentityUrl = identityurl
+          @IdentityKey = identitykey
+          @ClientId = clientid
+          @Status = status
+          @AuthorizationEndpoint = authorizationendpoint
+          @Scope = scope
+          @ResponseType = responsetype
+          @ResponseMode = responsemode
+          @MappingFiled = mappingfiled
+          @Description = description
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ProviderType = params['ProviderType']
+          @IdentityUrl = params['IdentityUrl']
+          @IdentityKey = params['IdentityKey']
+          @ClientId = params['ClientId']
+          @Status = params['Status']
+          @AuthorizationEndpoint = params['AuthorizationEndpoint']
+          @Scope = params['Scope']
+          @ResponseType = params['ResponseType']
+          @ResponseMode = params['ResponseMode']
+          @MappingFiled = params['MappingFiled']
+          @Description = params['Description']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeUserSAMLConfig请求参数结构体
       class DescribeUserSAMLConfigRequest < TencentCloud::Common::AbstractModel
 
@@ -1538,6 +1674,33 @@ module TencentCloud
 
       # DetachUserPolicy返回参数结构体
       class DetachUserPolicyResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DisableUserSSO请求参数结构体
+      class DisableUserSSORequest < TencentCloud::Common::AbstractModel
+
+        
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DisableUserSSO返回参数结构体
+      class DisableUserSSOResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -4222,6 +4385,71 @@ module TencentCloud
 
       # UpdateSAMLProvider返回参数结构体
       class UpdateSAMLProviderResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # UpdateUserOIDCConfig请求参数结构体
+      class UpdateUserOIDCConfigRequest < TencentCloud::Common::AbstractModel
+        # @param IdentityUrl: 身份提供商URL。OpenID Connect身份提供商标识。
+        # 对应企业IdP提供的Openid-configuration中"issuer"字段的值。
+        # @type IdentityUrl: String
+        # @param IdentityKey: 签名公钥，需要base64_encode。验证OpenID Connect身份提供商ID Token签名的公钥。为了您的帐号安全，建议您定期轮换签名公钥。
+        # @type IdentityKey: String
+        # @param ClientId: 客户端ID，在OpenID Connect身份提供商注册的客户端ID。
+        # @type ClientId: String
+        # @param AuthorizationEndpoint: 授权请求Endpoint，OpenID Connect身份提供商授权地址。对应企业IdP提供的Openid-configuration中"authorization_endpoint"字段的值。
+        # @type AuthorizationEndpoint: String
+        # @param ResponseType: 授权请求Response type，固定值id_token。
+        # @type ResponseType: String
+        # @param ResponseMode: 授权请求Response mode。授权请求返回模式，form_post和fragment两种可选模式，推荐选择form_post模式。
+        # @type ResponseMode: String
+        # @param MappingFiled: 映射字段名称。IdP的id_token中哪一个字段映射到子用户的用户名，通常是sub或者name字段
+        # @type MappingFiled: String
+        # @param Scope: 授权请求Scope。openid; email;profile。授权请求信息范围。默认必选openid。
+        # @type Scope: Array
+        # @param Description: 描述
+        # @type Description: String
+
+        attr_accessor :IdentityUrl, :IdentityKey, :ClientId, :AuthorizationEndpoint, :ResponseType, :ResponseMode, :MappingFiled, :Scope, :Description
+        
+        def initialize(identityurl=nil, identitykey=nil, clientid=nil, authorizationendpoint=nil, responsetype=nil, responsemode=nil, mappingfiled=nil, scope=nil, description=nil)
+          @IdentityUrl = identityurl
+          @IdentityKey = identitykey
+          @ClientId = clientid
+          @AuthorizationEndpoint = authorizationendpoint
+          @ResponseType = responsetype
+          @ResponseMode = responsemode
+          @MappingFiled = mappingfiled
+          @Scope = scope
+          @Description = description
+        end
+
+        def deserialize(params)
+          @IdentityUrl = params['IdentityUrl']
+          @IdentityKey = params['IdentityKey']
+          @ClientId = params['ClientId']
+          @AuthorizationEndpoint = params['AuthorizationEndpoint']
+          @ResponseType = params['ResponseType']
+          @ResponseMode = params['ResponseMode']
+          @MappingFiled = params['MappingFiled']
+          @Scope = params['Scope']
+          @Description = params['Description']
+        end
+      end
+
+      # UpdateUserOIDCConfig返回参数结构体
+      class UpdateUserOIDCConfigResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 

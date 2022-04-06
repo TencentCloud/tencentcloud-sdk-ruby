@@ -1015,6 +1015,99 @@ module TencentCloud
         end
       end
 
+      # 托管集群等级属性
+      class ClusterLevelAttribute < TencentCloud::Common::AbstractModel
+        # @param Name: 集群等级
+        # @type Name: String
+        # @param Alias: 等级名称
+        # @type Alias: String
+        # @param NodeCount: 节点数量
+        # @type NodeCount: Integer
+        # @param PodCount: Pod数量
+        # @type PodCount: Integer
+        # @param ConfigMapCount: Configmap数量
+        # @type ConfigMapCount: Integer
+        # @param CRDCount: CRD数量
+        # @type CRDCount: Integer
+        # @param Enable: 是否启用
+        # @type Enable: Boolean
+        # @param OtherCount: 其他资源数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OtherCount: Integer
+
+        attr_accessor :Name, :Alias, :NodeCount, :PodCount, :ConfigMapCount, :CRDCount, :Enable, :OtherCount
+        
+        def initialize(name=nil, _alias=nil, nodecount=nil, podcount=nil, configmapcount=nil, crdcount=nil, enable=nil, othercount=nil)
+          @Name = name
+          @Alias = _alias
+          @NodeCount = nodecount
+          @PodCount = podcount
+          @ConfigMapCount = configmapcount
+          @CRDCount = crdcount
+          @Enable = enable
+          @OtherCount = othercount
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Alias = params['Alias']
+          @NodeCount = params['NodeCount']
+          @PodCount = params['PodCount']
+          @ConfigMapCount = params['ConfigMapCount']
+          @CRDCount = params['CRDCount']
+          @Enable = params['Enable']
+          @OtherCount = params['OtherCount']
+        end
+      end
+
+      # 集群等级变配记录
+      class ClusterLevelChangeRecord < TencentCloud::Common::AbstractModel
+        # @param ID: 记录ID
+        # @type ID: String
+        # @param ClusterID: 集群ID
+        # @type ClusterID: String
+        # @param Status: 变配状态：trading 发货中,upgrading 变配中,success 变配成功,failed 变配失败。
+        # @type Status: String
+        # @param Message: 状态描述
+        # @type Message: String
+        # @param OldLevel: 变配前规模
+        # @type OldLevel: String
+        # @param NewLevel: 变配后规模
+        # @type NewLevel: String
+        # @param TriggerType: 变配触发类型：manual 手动,auto 自动
+        # @type TriggerType: String
+        # @param StartedAt: 开始时间
+        # @type StartedAt: String
+        # @param EndedAt: 结束时间
+        # @type EndedAt: String
+
+        attr_accessor :ID, :ClusterID, :Status, :Message, :OldLevel, :NewLevel, :TriggerType, :StartedAt, :EndedAt
+        
+        def initialize(id=nil, clusterid=nil, status=nil, message=nil, oldlevel=nil, newlevel=nil, triggertype=nil, startedat=nil, endedat=nil)
+          @ID = id
+          @ClusterID = clusterid
+          @Status = status
+          @Message = message
+          @OldLevel = oldlevel
+          @NewLevel = newlevel
+          @TriggerType = triggertype
+          @StartedAt = startedat
+          @EndedAt = endedat
+        end
+
+        def deserialize(params)
+          @ID = params['ID']
+          @ClusterID = params['ClusterID']
+          @Status = params['Status']
+          @Message = params['Message']
+          @OldLevel = params['OldLevel']
+          @NewLevel = params['NewLevel']
+          @TriggerType = params['TriggerType']
+          @StartedAt = params['StartedAt']
+          @EndedAt = params['EndedAt']
+        end
+      end
+
       # 集群网络相关的参数
       class ClusterNetworkSettings < TencentCloud::Common::AbstractModel
         # @param ClusterCIDR: 用于分配集群容器和服务 IP 的 CIDR，不得与 VPC CIDR 冲突，也不得与同 VPC 内其他集群 CIDR 冲突
@@ -3479,6 +3572,116 @@ module TencentCloud
         end
       end
 
+      # DescribeClusterLevelAttribute请求参数结构体
+      class DescribeClusterLevelAttributeRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterID: 集群ID，变配时使用
+        # @type ClusterID: String
+
+        attr_accessor :ClusterID
+        
+        def initialize(clusterid=nil)
+          @ClusterID = clusterid
+        end
+
+        def deserialize(params)
+          @ClusterID = params['ClusterID']
+        end
+      end
+
+      # DescribeClusterLevelAttribute返回参数结构体
+      class DescribeClusterLevelAttributeResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 总数
+        # @type TotalCount: Integer
+        # @param Items: 集群规模
+        # @type Items: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :Items, :RequestId
+        
+        def initialize(totalcount=nil, items=nil, requestid=nil)
+          @TotalCount = totalcount
+          @Items = items
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['Items'].nil?
+            @Items = []
+            params['Items'].each do |i|
+              clusterlevelattribute_tmp = ClusterLevelAttribute.new
+              clusterlevelattribute_tmp.deserialize(i)
+              @Items << clusterlevelattribute_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeClusterLevelChangeRecords请求参数结构体
+      class DescribeClusterLevelChangeRecordsRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterID: 集群ID
+        # @type ClusterID: String
+        # @param StartAt: 开始时间
+        # @type StartAt: String
+        # @param EndAt: 结束时间
+        # @type EndAt: String
+        # @param Offset: 偏移量,默认0
+        # @type Offset: Integer
+        # @param Limit: 最大输出条数，默认20
+        # @type Limit: Integer
+
+        attr_accessor :ClusterID, :StartAt, :EndAt, :Offset, :Limit
+        
+        def initialize(clusterid=nil, startat=nil, endat=nil, offset=nil, limit=nil)
+          @ClusterID = clusterid
+          @StartAt = startat
+          @EndAt = endat
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @ClusterID = params['ClusterID']
+          @StartAt = params['StartAt']
+          @EndAt = params['EndAt']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeClusterLevelChangeRecords返回参数结构体
+      class DescribeClusterLevelChangeRecordsResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 总数
+        # @type TotalCount: Integer
+        # @param Items: 集群规模
+        # @type Items: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :Items, :RequestId
+        
+        def initialize(totalcount=nil, items=nil, requestid=nil)
+          @TotalCount = totalcount
+          @Items = items
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['Items'].nil?
+            @Items = []
+            params['Items'].each do |i|
+              clusterlevelchangerecord_tmp = ClusterLevelChangeRecord.new
+              clusterlevelchangerecord_tmp.deserialize(i)
+              @Items << clusterlevelchangerecord_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeClusterNodePoolDetail请求参数结构体
       class DescribeClusterNodePoolDetailRequest < TencentCloud::Common::AbstractModel
         # @param ClusterId: 集群id
@@ -5180,6 +5383,60 @@ module TencentCloud
         end
       end
 
+      # DescribeResourceUsage请求参数结构体
+      class DescribeResourceUsageRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群ID
+        # @type ClusterId: String
+
+        attr_accessor :ClusterId
+        
+        def initialize(clusterid=nil)
+          @ClusterId = clusterid
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+        end
+      end
+
+      # DescribeResourceUsage返回参数结构体
+      class DescribeResourceUsageResponse < TencentCloud::Common::AbstractModel
+        # @param CRDUsage: CRD使用量
+        # @type CRDUsage: :class:`Tencentcloud::Tke.v20180525.models.ResourceUsage`
+        # @param PodUsage: Pod使用量
+        # @type PodUsage: Integer
+        # @param ConfigMapUsage: ConfigMap使用量
+        # @type ConfigMapUsage: Integer
+        # @param OtherUsage: 其他资源使用量
+        # @type OtherUsage: :class:`Tencentcloud::Tke.v20180525.models.ResourceUsage`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :CRDUsage, :PodUsage, :ConfigMapUsage, :OtherUsage, :RequestId
+        
+        def initialize(crdusage=nil, podusage=nil, configmapusage=nil, otherusage=nil, requestid=nil)
+          @CRDUsage = crdusage
+          @PodUsage = podusage
+          @ConfigMapUsage = configmapusage
+          @OtherUsage = otherusage
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['CRDUsage'].nil?
+            @CRDUsage = ResourceUsage.new
+            @CRDUsage.deserialize(params['CRDUsage'])
+          end
+          @PodUsage = params['PodUsage']
+          @ConfigMapUsage = params['ConfigMapUsage']
+          unless params['OtherUsage'].nil?
+            @OtherUsage = ResourceUsage.new
+            @OtherUsage.deserialize(params['OtherUsage'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeRouteTableConflicts请求参数结构体
       class DescribeRouteTableConflictsRequest < TencentCloud::Common::AbstractModel
         # @param RouteTableCidrBlock: 路由表CIDR
@@ -6236,6 +6493,46 @@ module TencentCloud
 
         def deserialize(params)
           @ResponseBody = params['ResponseBody']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # GetClusterLevelPrice请求参数结构体
+      class GetClusterLevelPriceRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterLevel: 集群规格，托管集群询价
+        # @type ClusterLevel: String
+
+        attr_accessor :ClusterLevel
+        
+        def initialize(clusterlevel=nil)
+          @ClusterLevel = clusterlevel
+        end
+
+        def deserialize(params)
+          @ClusterLevel = params['ClusterLevel']
+        end
+      end
+
+      # GetClusterLevelPrice返回参数结构体
+      class GetClusterLevelPriceResponse < TencentCloud::Common::AbstractModel
+        # @param Cost: 询价结果，单位：分，打折后
+        # @type Cost: Integer
+        # @param TotalCost: 询价结果，单位：分，折扣前
+        # @type TotalCost: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Cost, :TotalCost, :RequestId
+        
+        def initialize(cost=nil, totalcost=nil, requestid=nil)
+          @Cost = cost
+          @TotalCost = totalcost
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Cost = params['Cost']
+          @TotalCost = params['TotalCost']
           @RequestId = params['RequestId']
         end
       end
@@ -8714,6 +9011,57 @@ module TencentCloud
         def deserialize(params)
           @ResourceType = params['ResourceType']
           @DeleteMode = params['DeleteMode']
+        end
+      end
+
+      # 集群资源使用量
+      class ResourceUsage < TencentCloud::Common::AbstractModel
+        # @param Name: 资源类型
+        # @type Name: String
+        # @param Usage: 资源使用量
+        # @type Usage: Integer
+        # @param Details: 资源使用详情
+        # @type Details: Array
+
+        attr_accessor :Name, :Usage, :Details
+        
+        def initialize(name=nil, usage=nil, details=nil)
+          @Name = name
+          @Usage = usage
+          @Details = details
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Usage = params['Usage']
+          unless params['Details'].nil?
+            @Details = []
+            params['Details'].each do |i|
+              resourceusagedetail_tmp = ResourceUsageDetail.new
+              resourceusagedetail_tmp.deserialize(i)
+              @Details << resourceusagedetail_tmp
+            end
+          end
+        end
+      end
+
+      # 资源使用明细
+      class ResourceUsageDetail < TencentCloud::Common::AbstractModel
+        # @param Name: 资源名称
+        # @type Name: String
+        # @param Usage: 资源使用量
+        # @type Usage: Integer
+
+        attr_accessor :Name, :Usage
+        
+        def initialize(name=nil, usage=nil)
+          @Name = name
+          @Usage = usage
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Usage = params['Usage']
         end
       end
 

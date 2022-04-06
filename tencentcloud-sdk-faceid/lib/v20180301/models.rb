@@ -677,7 +677,7 @@ module TencentCloud
         # @type ImageBase64: String
         # @param Encryption: 敏感数据加密信息。对传入信息（姓名、身份证号）有加密需求的用户可使用此参数，详情请点击左侧链接。
         # @type Encryption: :class:`Tencentcloud::Faceid.v20180301.models.Encryption`
-        # @param IntentionVerifyText: 意愿核身使用的文案，若未使用意愿核身功能，该字段无需传入。默认为空，最长可接受100的字符串长度。
+        # @param IntentionVerifyText: 意愿核身使用的文案，若未使用意愿核身功能，该字段无需传入。默认为空，最长可接受120的字符串长度。
         # @type IntentionVerifyText: String
 
         attr_accessor :RuleId, :TerminalType, :IdCard, :Name, :RedirectUrl, :Extra, :ImageBase64, :Encryption, :IntentionVerifyText
@@ -2200,15 +2200,19 @@ module TencentCloud
         # @param IntentionVerifyBestFrame: 意愿确认环节中录制视频的最佳帧（base64）。若不存在则为空字符串。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IntentionVerifyBestFrame: String
+        # @param AsrResultSimilarity: 本次流程用户语音与传入文本比对的相似度分值，取值范围 [0.00, 100.00]。只有配置了相似度阈值后才进行语音校验并返回相似度分值。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AsrResultSimilarity: String
 
-        attr_accessor :IntentionVerifyVideo, :AsrResult, :ErrorCode, :ErrorMessage, :IntentionVerifyBestFrame
+        attr_accessor :IntentionVerifyVideo, :AsrResult, :ErrorCode, :ErrorMessage, :IntentionVerifyBestFrame, :AsrResultSimilarity
         
-        def initialize(intentionverifyvideo=nil, asrresult=nil, errorcode=nil, errormessage=nil, intentionverifybestframe=nil)
+        def initialize(intentionverifyvideo=nil, asrresult=nil, errorcode=nil, errormessage=nil, intentionverifybestframe=nil, asrresultsimilarity=nil)
           @IntentionVerifyVideo = intentionverifyvideo
           @AsrResult = asrresult
           @ErrorCode = errorcode
           @ErrorMessage = errormessage
           @IntentionVerifyBestFrame = intentionverifybestframe
+          @AsrResultSimilarity = asrresultsimilarity
         end
 
         def deserialize(params)
@@ -2217,6 +2221,7 @@ module TencentCloud
           @ErrorCode = params['ErrorCode']
           @ErrorMessage = params['ErrorMessage']
           @IntentionVerifyBestFrame = params['IntentionVerifyBestFrame']
+          @AsrResultSimilarity = params['AsrResultSimilarity']
         end
       end
 

@@ -407,6 +407,66 @@ module TencentCloud
         end
       end
 
+      # 企业成员信息
+      class CorpUserInfo < TencentCloud::Common::AbstractModel
+        # @param UserId: 企业成员UserId
+        # @type UserId: Integer
+        # @param UserName: 企业成员在SaaS名片内填写的姓名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UserName: String
+        # @param UserOpenId: 企业成员在企微原生通讯录内的id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UserOpenId: String
+        # @param DealerId: 成员所属经销商id，可为空
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DealerId: Integer
+        # @param ShopId: 成员所属门店id，可为空
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ShopId: Integer
+        # @param Phone: 企业成员手机号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Phone: String
+        # @param OrgIds: 成员所属部门id列表，仅返回该应用有查看权限的部门id；成员授权模式下，固定返回根部门id，即固定为1；多个部门使用逗号分割
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OrgIds: String
+        # @param MainDepartment: 主部门，仅当应用对主部门有查看权限时返回
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MainDepartment: String
+        # @param IsLeaderInDept: 是否为部门负责人，第三方应用可为空。与orgIds值一一对应，多个部门使用逗号隔开，0-否， 1-是
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsLeaderInDept: String
+        # @param Status: 激活状态: 0=已激活，1=已禁用，-1=退出企业"
+        # @type Status: Integer
+
+        attr_accessor :UserId, :UserName, :UserOpenId, :DealerId, :ShopId, :Phone, :OrgIds, :MainDepartment, :IsLeaderInDept, :Status
+        
+        def initialize(userid=nil, username=nil, useropenid=nil, dealerid=nil, shopid=nil, phone=nil, orgids=nil, maindepartment=nil, isleaderindept=nil, status=nil)
+          @UserId = userid
+          @UserName = username
+          @UserOpenId = useropenid
+          @DealerId = dealerid
+          @ShopId = shopid
+          @Phone = phone
+          @OrgIds = orgids
+          @MainDepartment = maindepartment
+          @IsLeaderInDept = isleaderindept
+          @Status = status
+        end
+
+        def deserialize(params)
+          @UserId = params['UserId']
+          @UserName = params['UserName']
+          @UserOpenId = params['UserOpenId']
+          @DealerId = params['DealerId']
+          @ShopId = params['ShopId']
+          @Phone = params['Phone']
+          @OrgIds = params['OrgIds']
+          @MainDepartment = params['MainDepartment']
+          @IsLeaderInDept = params['IsLeaderInDept']
+          @Status = params['Status']
+        end
+      end
+
       # CreateChannelCode请求参数结构体
       class CreateChannelCodeRequest < TencentCloud::Common::AbstractModel
         # @param Type: 欢迎语类型:0普通欢迎语,1渠道欢迎语
@@ -640,6 +700,94 @@ module TencentCloud
         end
       end
 
+      # CRM统计数据响应
+      class CrmStatisticsData < TencentCloud::Common::AbstractModel
+        # @param LeadCnt: 新增线索
+        # @type LeadCnt: Integer
+        # @param BuildCnt: 新增建档
+        # @type BuildCnt: Integer
+        # @param InvitedCnt: 新增到店
+        # @type InvitedCnt: Integer
+        # @param OrderedCnt: 新增下订
+        # @type OrderedCnt: Integer
+        # @param DeliveredCnt: 新增成交
+        # @type DeliveredCnt: Integer
+        # @param DefeatCnt: 新增战败
+        # @type DefeatCnt: Integer
+        # @param NewContactCnt: 新增好友
+        # @type NewContactCnt: Integer
+        # @param StatisticalTime: 统计时间, 单位：天
+        # @type StatisticalTime: String
+
+        attr_accessor :LeadCnt, :BuildCnt, :InvitedCnt, :OrderedCnt, :DeliveredCnt, :DefeatCnt, :NewContactCnt, :StatisticalTime
+        
+        def initialize(leadcnt=nil, buildcnt=nil, invitedcnt=nil, orderedcnt=nil, deliveredcnt=nil, defeatcnt=nil, newcontactcnt=nil, statisticaltime=nil)
+          @LeadCnt = leadcnt
+          @BuildCnt = buildcnt
+          @InvitedCnt = invitedcnt
+          @OrderedCnt = orderedcnt
+          @DeliveredCnt = deliveredcnt
+          @DefeatCnt = defeatcnt
+          @NewContactCnt = newcontactcnt
+          @StatisticalTime = statisticaltime
+        end
+
+        def deserialize(params)
+          @LeadCnt = params['LeadCnt']
+          @BuildCnt = params['BuildCnt']
+          @InvitedCnt = params['InvitedCnt']
+          @OrderedCnt = params['OrderedCnt']
+          @DeliveredCnt = params['DeliveredCnt']
+          @DefeatCnt = params['DefeatCnt']
+          @NewContactCnt = params['NewContactCnt']
+          @StatisticalTime = params['StatisticalTime']
+        end
+      end
+
+      # 外部联系人SaaS使用明细数据
+      class CustomerActionEventDetail < TencentCloud::Common::AbstractModel
+        # @param EventCode: 事件码
+        # @type EventCode: String
+        # @param EventType: 事件类型
+        # @type EventType: Integer
+        # @param EventSource: 事件来源
+        # @type EventSource: Integer
+        # @param ExternalUserId: 外部联系人id
+        # @type ExternalUserId: String
+        # @param SalesId: 销售顾问id
+        # @type SalesId: Integer
+        # @param MaterialType: 素材类型
+        # @type MaterialType: Integer
+        # @param MaterialId: 素材编号id
+        # @type MaterialId: Integer
+        # @param EventTime: 事件上报时间，单位：秒
+        # @type EventTime: Integer
+
+        attr_accessor :EventCode, :EventType, :EventSource, :ExternalUserId, :SalesId, :MaterialType, :MaterialId, :EventTime
+        
+        def initialize(eventcode=nil, eventtype=nil, eventsource=nil, externaluserid=nil, salesid=nil, materialtype=nil, materialid=nil, eventtime=nil)
+          @EventCode = eventcode
+          @EventType = eventtype
+          @EventSource = eventsource
+          @ExternalUserId = externaluserid
+          @SalesId = salesid
+          @MaterialType = materialtype
+          @MaterialId = materialid
+          @EventTime = eventtime
+        end
+
+        def deserialize(params)
+          @EventCode = params['EventCode']
+          @EventType = params['EventType']
+          @EventSource = params['EventSource']
+          @ExternalUserId = params['ExternalUserId']
+          @SalesId = params['SalesId']
+          @MaterialType = params['MaterialType']
+          @MaterialId = params['MaterialId']
+          @EventTime = params['EventTime']
+        end
+      end
+
       # 经销商信息
       class DealerInfo < TencentCloud::Common::AbstractModel
         # @param DealerId: 企微SaaS平台经销商id
@@ -756,6 +904,34 @@ module TencentCloud
           @TagName = params['TagName']
           @Type = params['Type']
           @TagId = params['TagId']
+        end
+      end
+
+      # 外部联系人事件信息
+      class ExternalUserEventInfo < TencentCloud::Common::AbstractModel
+        # @param EventCode: 事件编码, 添加外部联系人(ADD_EXTERNAL_CUSTOMER)/成员删除外部联系人(DELETE_EXTERNAL_CUSTOMER)/外部联系人删除成员(DELETE_FOLLOW_USER)
+        # @type EventCode: String
+        # @param ExternalUserId: 外部联系人id
+        # @type ExternalUserId: String
+        # @param SalesId: 企微SaaS的成员id
+        # @type SalesId: String
+        # @param EventTime: 事件上报时间戳，单位：秒
+        # @type EventTime: Integer
+
+        attr_accessor :EventCode, :ExternalUserId, :SalesId, :EventTime
+        
+        def initialize(eventcode=nil, externaluserid=nil, salesid=nil, eventtime=nil)
+          @EventCode = eventcode
+          @ExternalUserId = externaluserid
+          @SalesId = salesid
+          @EventTime = eventtime
+        end
+
+        def deserialize(params)
+          @EventCode = params['EventCode']
+          @ExternalUserId = params['ExternalUserId']
+          @SalesId = params['SalesId']
+          @EventTime = params['EventTime']
         end
       end
 
@@ -929,6 +1105,31 @@ module TencentCloud
           @LiveCodeData = params['LiveCodeData']
           @CreateTime = params['CreateTime']
           @UpdateTime = params['UpdateTime']
+        end
+      end
+
+      # 素材信息响应体
+      class MaterialInfo < TencentCloud::Common::AbstractModel
+        # @param MaterialId: 素材id
+        # @type MaterialId: Integer
+        # @param MaterialName: 素材名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MaterialName: String
+        # @param Status: 素材状态, -1: 删除 0: 启用 1: 禁用
+        # @type Status: Integer
+
+        attr_accessor :MaterialId, :MaterialName, :Status
+        
+        def initialize(materialid=nil, materialname=nil, status=nil)
+          @MaterialId = materialid
+          @MaterialName = materialname
+          @Status = status
+        end
+
+        def deserialize(params)
+          @MaterialId = params['MaterialId']
+          @MaterialName = params['MaterialName']
+          @Status = params['Status']
         end
       end
 
@@ -1299,6 +1500,136 @@ module TencentCloud
         end
       end
 
+      # QueryCrmStatistics请求参数结构体
+      class QueryCrmStatisticsRequest < TencentCloud::Common::AbstractModel
+        # @param BeginTime: 查询开始时间， 单位秒
+        # @type BeginTime: Integer
+        # @param EndTime: 查询结束时间， 单位秒
+        # @type EndTime: Integer
+        # @param Cursor: 用于分页查询的游标，字符串类型，由上一次调用返回，首次调用可不填
+        # @type Cursor: String
+        # @param Limit: 返回的最大记录数，整型，最大值100，默认值50，超过最大值时取最大值
+        # @type Limit: Integer
+        # @param SalesId: 请求的企业成员id，为空时默认全租户
+        # @type SalesId: String
+        # @param OrgId: 请求的部门id，为空时默认全租户
+        # @type OrgId: Integer
+
+        attr_accessor :BeginTime, :EndTime, :Cursor, :Limit, :SalesId, :OrgId
+        
+        def initialize(begintime=nil, endtime=nil, cursor=nil, limit=nil, salesid=nil, orgid=nil)
+          @BeginTime = begintime
+          @EndTime = endtime
+          @Cursor = cursor
+          @Limit = limit
+          @SalesId = salesid
+          @OrgId = orgid
+        end
+
+        def deserialize(params)
+          @BeginTime = params['BeginTime']
+          @EndTime = params['EndTime']
+          @Cursor = params['Cursor']
+          @Limit = params['Limit']
+          @SalesId = params['SalesId']
+          @OrgId = params['OrgId']
+        end
+      end
+
+      # QueryCrmStatistics返回参数结构体
+      class QueryCrmStatisticsResponse < TencentCloud::Common::AbstractModel
+        # @param NextCursor: 分页游标，再下次请求时填写以获取之后分页的记录，如果已经没有更多的数据则返回空
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NextCursor: String
+        # @param PageData: CRM统计响应数据
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PageData: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :NextCursor, :PageData, :RequestId
+        
+        def initialize(nextcursor=nil, pagedata=nil, requestid=nil)
+          @NextCursor = nextcursor
+          @PageData = pagedata
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @NextCursor = params['NextCursor']
+          unless params['PageData'].nil?
+            @PageData = []
+            params['PageData'].each do |i|
+              crmstatisticsdata_tmp = CrmStatisticsData.new
+              crmstatisticsdata_tmp.deserialize(i)
+              @PageData << crmstatisticsdata_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # QueryCustomerEventDetailStatistics请求参数结构体
+      class QueryCustomerEventDetailStatisticsRequest < TencentCloud::Common::AbstractModel
+        # @param BeginTime: 查询开始时间， 单位秒
+        # @type BeginTime: Integer
+        # @param EndTime: 查询结束时间， 单位秒
+        # @type EndTime: Integer
+        # @param Cursor: 用于分页查询的游标，字符串类型，由上一次调用返回，首次调用可不填
+        # @type Cursor: String
+        # @param Limit: 返回的最大记录数，整型，最大值100，默认值50，超过最大值时取最大值
+        # @type Limit: Integer
+
+        attr_accessor :BeginTime, :EndTime, :Cursor, :Limit
+        
+        def initialize(begintime=nil, endtime=nil, cursor=nil, limit=nil)
+          @BeginTime = begintime
+          @EndTime = endtime
+          @Cursor = cursor
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @BeginTime = params['BeginTime']
+          @EndTime = params['EndTime']
+          @Cursor = params['Cursor']
+          @Limit = params['Limit']
+        end
+      end
+
+      # QueryCustomerEventDetailStatistics返回参数结构体
+      class QueryCustomerEventDetailStatisticsResponse < TencentCloud::Common::AbstractModel
+        # @param NextCursor: 分页游标，再下次请求时填写以获取之后分页的记录，如果已经没有更多的数据则返回空
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NextCursor: String
+        # @param PageData: 外部联系人SaaS使用明细统计响应数据
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PageData: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :NextCursor, :PageData, :RequestId
+        
+        def initialize(nextcursor=nil, pagedata=nil, requestid=nil)
+          @NextCursor = nextcursor
+          @PageData = pagedata
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @NextCursor = params['NextCursor']
+          unless params['PageData'].nil?
+            @PageData = []
+            params['PageData'].each do |i|
+              customeractioneventdetail_tmp = CustomerActionEventDetail.new
+              customeractioneventdetail_tmp.deserialize(i)
+              @PageData << customeractioneventdetail_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # QueryDealerInfoList请求参数结构体
       class QueryDealerInfoListRequest < TencentCloud::Common::AbstractModel
         # @param Cursor: 用于分页查询的游标，字符串类型，由上一次调用返回，首次调用可不填
@@ -1475,6 +1806,67 @@ module TencentCloud
         end
       end
 
+      # QueryExternalUserEventList请求参数结构体
+      class QueryExternalUserEventListRequest < TencentCloud::Common::AbstractModel
+        # @param BeginTime: 查询开始时间， 单位秒
+        # @type BeginTime: Integer
+        # @param EndTime: 查询结束时间， 单位秒
+        # @type EndTime: Integer
+        # @param Cursor: 用于分页查询的游标，字符串类型，由上一次调用返回，首次调用可不填
+        # @type Cursor: String
+        # @param Limit: 返回的最大记录数，整型，最大值100，默认值50，超过最大值时取最大值
+        # @type Limit: Integer
+
+        attr_accessor :BeginTime, :EndTime, :Cursor, :Limit
+        
+        def initialize(begintime=nil, endtime=nil, cursor=nil, limit=nil)
+          @BeginTime = begintime
+          @EndTime = endtime
+          @Cursor = cursor
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @BeginTime = params['BeginTime']
+          @EndTime = params['EndTime']
+          @Cursor = params['Cursor']
+          @Limit = params['Limit']
+        end
+      end
+
+      # QueryExternalUserEventList返回参数结构体
+      class QueryExternalUserEventListResponse < TencentCloud::Common::AbstractModel
+        # @param NextCursor: 分页游标，再下次请求时填写以获取之后分页的记录，如果已经没有更多的数据则返回空
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NextCursor: String
+        # @param PageData: 外部联系人事件信息响应数据
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PageData: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :NextCursor, :PageData, :RequestId
+        
+        def initialize(nextcursor=nil, pagedata=nil, requestid=nil)
+          @NextCursor = nextcursor
+          @PageData = pagedata
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @NextCursor = params['NextCursor']
+          unless params['PageData'].nil?
+            @PageData = []
+            params['PageData'].each do |i|
+              externalusereventinfo_tmp = ExternalUserEventInfo.new
+              externalusereventinfo_tmp.deserialize(i)
+              @PageData << externalusereventinfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # QueryExternalUserMappingInfo请求参数结构体
       class QueryExternalUserMappingInfoRequest < TencentCloud::Common::AbstractModel
         # @param CorpExternalUserIdList: 企业主体对应的外部联系人id列表，列表长度限制最大为50。
@@ -1559,6 +1951,63 @@ module TencentCloud
         end
       end
 
+      # QueryMaterialList请求参数结构体
+      class QueryMaterialListRequest < TencentCloud::Common::AbstractModel
+        # @param MaterialType: 素材类型：0-图片，1-视频，3-文章，10-车型，11-名片
+        # @type MaterialType: Integer
+        # @param Cursor: 用于分页查询的游标，字符串类型，由上一次调用返回，首次调用可不填
+        # @type Cursor: String
+        # @param Limit: 返回的最大记录数，整型，最大值100，默认值50，超过最大值时取最大值
+        # @type Limit: Integer
+
+        attr_accessor :MaterialType, :Cursor, :Limit
+        
+        def initialize(materialtype=nil, cursor=nil, limit=nil)
+          @MaterialType = materialtype
+          @Cursor = cursor
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @MaterialType = params['MaterialType']
+          @Cursor = params['Cursor']
+          @Limit = params['Limit']
+        end
+      end
+
+      # QueryMaterialList返回参数结构体
+      class QueryMaterialListResponse < TencentCloud::Common::AbstractModel
+        # @param NextCursor: 分页游标，再下次请求时填写以获取之后分页的记录，如果已经没有更多的数据则返回空
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NextCursor: String
+        # @param PageData: 企业素材列表响应数据
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PageData: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :NextCursor, :PageData, :RequestId
+        
+        def initialize(nextcursor=nil, pagedata=nil, requestid=nil)
+          @NextCursor = nextcursor
+          @PageData = pagedata
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @NextCursor = params['NextCursor']
+          unless params['PageData'].nil?
+            @PageData = []
+            params['PageData'].each do |i|
+              materialinfo_tmp = MaterialInfo.new
+              materialinfo_tmp.deserialize(i)
+              @PageData << materialinfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # QueryMiniAppCodeList请求参数结构体
       class QueryMiniAppCodeListRequest < TencentCloud::Common::AbstractModel
         # @param Cursor: 用于分页查询的游标，字符串类型，由上一次调用返回，首次调用可不填
@@ -1606,6 +2055,120 @@ module TencentCloud
               miniappcodeinfo_tmp = MiniAppCodeInfo.new
               miniappcodeinfo_tmp.deserialize(i)
               @PageData << miniappcodeinfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # QueryStaffEventDetailStatistics请求参数结构体
+      class QueryStaffEventDetailStatisticsRequest < TencentCloud::Common::AbstractModel
+        # @param BeginTime: 查询开始时间， 单位秒
+        # @type BeginTime: Integer
+        # @param EndTime: 查询结束时间， 单位秒
+        # @type EndTime: Integer
+        # @param Cursor: 用于分页查询的游标，字符串类型，由上一次调用返回，首次调用可不填
+        # @type Cursor: String
+        # @param Limit: 返回的最大记录数，整型，最大值100，默认值50，超过最大值时取最大值
+        # @type Limit: Integer
+
+        attr_accessor :BeginTime, :EndTime, :Cursor, :Limit
+        
+        def initialize(begintime=nil, endtime=nil, cursor=nil, limit=nil)
+          @BeginTime = begintime
+          @EndTime = endtime
+          @Cursor = cursor
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @BeginTime = params['BeginTime']
+          @EndTime = params['EndTime']
+          @Cursor = params['Cursor']
+          @Limit = params['Limit']
+        end
+      end
+
+      # QueryStaffEventDetailStatistics返回参数结构体
+      class QueryStaffEventDetailStatisticsResponse < TencentCloud::Common::AbstractModel
+        # @param NextCursor: 分页游标，再下次请求时填写以获取之后分页的记录，如果已经没有更多的数据则返回空
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NextCursor: String
+        # @param PageData: 企业成员SaaS使用明细统计响应数据
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PageData: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :NextCursor, :PageData, :RequestId
+        
+        def initialize(nextcursor=nil, pagedata=nil, requestid=nil)
+          @NextCursor = nextcursor
+          @PageData = pagedata
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @NextCursor = params['NextCursor']
+          unless params['PageData'].nil?
+            @PageData = []
+            params['PageData'].each do |i|
+              salesactioneventdetail_tmp = SalesActionEventDetail.new
+              salesactioneventdetail_tmp.deserialize(i)
+              @PageData << salesactioneventdetail_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # QueryUserInfoList请求参数结构体
+      class QueryUserInfoListRequest < TencentCloud::Common::AbstractModel
+        # @param Cursor: 用于分页查询的游标，字符串类型，由上一次调用返回，首次调用可不填
+        # @type Cursor: String
+        # @param Limit: 返回的最大记录数，整型，最大值100，默认值50，超过最大值时取最大值
+        # @type Limit: Integer
+
+        attr_accessor :Cursor, :Limit
+        
+        def initialize(cursor=nil, limit=nil)
+          @Cursor = cursor
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @Cursor = params['Cursor']
+          @Limit = params['Limit']
+        end
+      end
+
+      # QueryUserInfoList返回参数结构体
+      class QueryUserInfoListResponse < TencentCloud::Common::AbstractModel
+        # @param NextCursor: 分页游标，再下次请求时填写以获取之后分页的记录，如果已经没有更多的数据则返回空
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NextCursor: String
+        # @param PageData: 企业成员信息列表响应数据
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PageData: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :NextCursor, :PageData, :RequestId
+        
+        def initialize(nextcursor=nil, pagedata=nil, requestid=nil)
+          @NextCursor = nextcursor
+          @PageData = pagedata
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @NextCursor = params['NextCursor']
+          unless params['PageData'].nil?
+            @PageData = []
+            params['PageData'].each do |i|
+              corpuserinfo_tmp = CorpUserInfo.new
+              corpuserinfo_tmp.deserialize(i)
+              @PageData << corpuserinfo_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -1667,6 +2230,46 @@ module TencentCloud
           @NextCursor = params['NextCursor']
           @HasMore = params['HasMore']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 企业成员SaaS使用明细数据
+      class SalesActionEventDetail < TencentCloud::Common::AbstractModel
+        # @param EventCode: 事件码
+        # @type EventCode: String
+        # @param EventType: 事件类型
+        # @type EventType: Integer
+        # @param EventSource: 事件来源
+        # @type EventSource: Integer
+        # @param SalesId: 销售顾问id
+        # @type SalesId: Integer
+        # @param MaterialType: 素材类型
+        # @type MaterialType: Integer
+        # @param MaterialId: 素材编号id
+        # @type MaterialId: Integer
+        # @param EventTime: 事件上报时间，单位：秒
+        # @type EventTime: Integer
+
+        attr_accessor :EventCode, :EventType, :EventSource, :SalesId, :MaterialType, :MaterialId, :EventTime
+        
+        def initialize(eventcode=nil, eventtype=nil, eventsource=nil, salesid=nil, materialtype=nil, materialid=nil, eventtime=nil)
+          @EventCode = eventcode
+          @EventType = eventtype
+          @EventSource = eventsource
+          @SalesId = salesid
+          @MaterialType = materialtype
+          @MaterialId = materialid
+          @EventTime = eventtime
+        end
+
+        def deserialize(params)
+          @EventCode = params['EventCode']
+          @EventType = params['EventType']
+          @EventSource = params['EventSource']
+          @SalesId = params['SalesId']
+          @MaterialType = params['MaterialType']
+          @MaterialId = params['MaterialId']
+          @EventTime = params['EventTime']
         end
       end
 

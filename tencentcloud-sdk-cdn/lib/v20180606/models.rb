@@ -3931,12 +3931,15 @@ module TencentCloud
         # @type MidNodeInfo: :class:`Tencentcloud::Cdn.v20180606.models.DiagnoseData`
         # @param OriginInfo: 源站检测信息
         # @type OriginInfo: :class:`Tencentcloud::Cdn.v20180606.models.DiagnoseData`
+        # @param PurgeInfo: 刷新检测信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PurgeInfo: :class:`Tencentcloud::Cdn.v20180606.models.DiagnoseData`
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :BaskInfo, :CnameInfo, :ClientInfo, :DnsInfo, :NetworkInfo, :OcNodeInfo, :MidNodeInfo, :OriginInfo, :RequestId
+        attr_accessor :BaskInfo, :CnameInfo, :ClientInfo, :DnsInfo, :NetworkInfo, :OcNodeInfo, :MidNodeInfo, :OriginInfo, :PurgeInfo, :RequestId
         
-        def initialize(baskinfo=nil, cnameinfo=nil, clientinfo=nil, dnsinfo=nil, networkinfo=nil, ocnodeinfo=nil, midnodeinfo=nil, origininfo=nil, requestid=nil)
+        def initialize(baskinfo=nil, cnameinfo=nil, clientinfo=nil, dnsinfo=nil, networkinfo=nil, ocnodeinfo=nil, midnodeinfo=nil, origininfo=nil, purgeinfo=nil, requestid=nil)
           @BaskInfo = baskinfo
           @CnameInfo = cnameinfo
           @ClientInfo = clientinfo
@@ -3945,6 +3948,7 @@ module TencentCloud
           @OcNodeInfo = ocnodeinfo
           @MidNodeInfo = midnodeinfo
           @OriginInfo = origininfo
+          @PurgeInfo = purgeinfo
           @RequestId = requestid
         end
 
@@ -3980,6 +3984,10 @@ module TencentCloud
           unless params['OriginInfo'].nil?
             @OriginInfo = DiagnoseData.new
             @OriginInfo.deserialize(params['OriginInfo'])
+          end
+          unless params['PurgeInfo'].nil?
+            @PurgeInfo = DiagnoseData.new
+            @PurgeInfo.deserialize(params['PurgeInfo'])
           end
           @RequestId = params['RequestId']
         end
@@ -12350,14 +12358,14 @@ module TencentCloud
         # @type Referer: :class:`Tencentcloud::Cdn.v20180606.models.Referer`
         # @param MaxAge: 浏览器缓存配置（功能灰度中，尚未全量）
         # @type MaxAge: :class:`Tencentcloud::Cdn.v20180606.models.MaxAge`
+        # @param SpecificConfig: 地域属性特殊配置
+        # 适用于域名境内加速、境外加速配置不一致场景
+        # @type SpecificConfig: :class:`Tencentcloud::Cdn.v20180606.models.SpecificConfig`
         # @param ServiceType: 域名业务类型
         # web：静态加速
         # download：下载加速
         # media：流媒体点播加速
         # @type ServiceType: String
-        # @param SpecificConfig: 地域属性特殊配置
-        # 适用于域名境内加速、境外加速配置不一致场景
-        # @type SpecificConfig: :class:`Tencentcloud::Cdn.v20180606.models.SpecificConfig`
         # @param Area: 域名加速区域
         # mainland：中国境内加速
         # overseas：中国境外加速
@@ -12397,9 +12405,9 @@ module TencentCloud
         # @param ShareCname: 共享CNAME配置，白名单功能
         # @type ShareCname: :class:`Tencentcloud::Cdn.v20180606.models.ShareCname`
 
-        attr_accessor :Domain, :ProjectId, :Origin, :IpFilter, :IpFreqLimit, :StatusCodeCache, :Compression, :BandwidthAlert, :RangeOriginPull, :FollowRedirect, :ErrorPage, :RequestHeader, :ResponseHeader, :DownstreamCapping, :CacheKey, :ResponseHeaderCache, :VideoSeek, :Cache, :OriginPullOptimization, :Https, :Authentication, :Seo, :ForceRedirect, :Referer, :MaxAge, :ServiceType, :SpecificConfig, :Area, :OriginPullTimeout, :AwsPrivateAccess, :UserAgentFilter, :AccessControl, :UrlRedirect, :AccessPort, :AdvancedAuthentication, :OriginAuthentication, :Ipv6Access, :OfflineCache, :OriginCombine, :Quic, :OssPrivateAccess, :WebSocket, :RemoteAuthentication, :ShareCname
+        attr_accessor :Domain, :ProjectId, :Origin, :IpFilter, :IpFreqLimit, :StatusCodeCache, :Compression, :BandwidthAlert, :RangeOriginPull, :FollowRedirect, :ErrorPage, :RequestHeader, :ResponseHeader, :DownstreamCapping, :CacheKey, :ResponseHeaderCache, :VideoSeek, :Cache, :OriginPullOptimization, :Https, :Authentication, :Seo, :ForceRedirect, :Referer, :MaxAge, :SpecificConfig, :ServiceType, :Area, :OriginPullTimeout, :AwsPrivateAccess, :UserAgentFilter, :AccessControl, :UrlRedirect, :AccessPort, :AdvancedAuthentication, :OriginAuthentication, :Ipv6Access, :OfflineCache, :OriginCombine, :Quic, :OssPrivateAccess, :WebSocket, :RemoteAuthentication, :ShareCname
         
-        def initialize(domain=nil, projectid=nil, origin=nil, ipfilter=nil, ipfreqlimit=nil, statuscodecache=nil, compression=nil, bandwidthalert=nil, rangeoriginpull=nil, followredirect=nil, errorpage=nil, requestheader=nil, responseheader=nil, downstreamcapping=nil, cachekey=nil, responseheadercache=nil, videoseek=nil, cache=nil, originpulloptimization=nil, https=nil, authentication=nil, seo=nil, forceredirect=nil, referer=nil, maxage=nil, servicetype=nil, specificconfig=nil, area=nil, originpulltimeout=nil, awsprivateaccess=nil, useragentfilter=nil, accesscontrol=nil, urlredirect=nil, accessport=nil, advancedauthentication=nil, originauthentication=nil, ipv6access=nil, offlinecache=nil, origincombine=nil, quic=nil, ossprivateaccess=nil, websocket=nil, remoteauthentication=nil, sharecname=nil)
+        def initialize(domain=nil, projectid=nil, origin=nil, ipfilter=nil, ipfreqlimit=nil, statuscodecache=nil, compression=nil, bandwidthalert=nil, rangeoriginpull=nil, followredirect=nil, errorpage=nil, requestheader=nil, responseheader=nil, downstreamcapping=nil, cachekey=nil, responseheadercache=nil, videoseek=nil, cache=nil, originpulloptimization=nil, https=nil, authentication=nil, seo=nil, forceredirect=nil, referer=nil, maxage=nil, specificconfig=nil, servicetype=nil, area=nil, originpulltimeout=nil, awsprivateaccess=nil, useragentfilter=nil, accesscontrol=nil, urlredirect=nil, accessport=nil, advancedauthentication=nil, originauthentication=nil, ipv6access=nil, offlinecache=nil, origincombine=nil, quic=nil, ossprivateaccess=nil, websocket=nil, remoteauthentication=nil, sharecname=nil)
           @Domain = domain
           @ProjectId = projectid
           @Origin = origin
@@ -12425,8 +12433,8 @@ module TencentCloud
           @ForceRedirect = forceredirect
           @Referer = referer
           @MaxAge = maxage
-          @ServiceType = servicetype
           @SpecificConfig = specificconfig
+          @ServiceType = servicetype
           @Area = area
           @OriginPullTimeout = originpulltimeout
           @AwsPrivateAccess = awsprivateaccess
@@ -12541,11 +12549,11 @@ module TencentCloud
             @MaxAge = MaxAge.new
             @MaxAge.deserialize(params['MaxAge'])
           end
-          @ServiceType = params['ServiceType']
           unless params['SpecificConfig'].nil?
             @SpecificConfig = SpecificConfig.new
             @SpecificConfig.deserialize(params['SpecificConfig'])
           end
+          @ServiceType = params['ServiceType']
           @Area = params['Area']
           unless params['OriginPullTimeout'].nil?
             @OriginPullTimeout = OriginPullTimeout.new

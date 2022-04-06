@@ -773,15 +773,20 @@ module TencentCloud
         # @type StartTime: Float
         # @param EndTime: 违规事件结束时间，单位为毫秒（ms）；
         # @type EndTime: Float
+        # @param SubLabel: 该字段用于返回当前标签（Lable）下的二级标签。
+        # 注意：此字段可能返回null，表示取不到有效值。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SubLabel: String
 
-        attr_accessor :Label, :Score, :Suggestion, :StartTime, :EndTime
+        attr_accessor :Label, :Score, :Suggestion, :StartTime, :EndTime, :SubLabel
         
-        def initialize(label=nil, score=nil, suggestion=nil, starttime=nil, endtime=nil)
+        def initialize(label=nil, score=nil, suggestion=nil, starttime=nil, endtime=nil, sublabel=nil)
           @Label = label
           @Score = score
           @Suggestion = suggestion
           @StartTime = starttime
           @EndTime = endtime
+          @SubLabel = sublabel
         end
 
         def deserialize(params)
@@ -790,6 +795,7 @@ module TencentCloud
           @Suggestion = params['Suggestion']
           @StartTime = params['StartTime']
           @EndTime = params['EndTime']
+          @SubLabel = params['SubLabel']
         end
       end
 
@@ -1045,10 +1051,14 @@ module TencentCloud
 
         # 2：自定义库；
         # @type LibType: Integer
+        # @param SubLabel: 该字段用于返回当前标签（Lable）下的二级标签。
+        # 注意：此字段可能返回null，表示取不到有效值。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SubLabel: String
 
-        attr_accessor :Label, :Keywords, :LibId, :LibName, :Score, :Suggestion, :LibType
+        attr_accessor :Label, :Keywords, :LibId, :LibName, :Score, :Suggestion, :LibType, :SubLabel
         
-        def initialize(label=nil, keywords=nil, libid=nil, libname=nil, score=nil, suggestion=nil, libtype=nil)
+        def initialize(label=nil, keywords=nil, libid=nil, libname=nil, score=nil, suggestion=nil, libtype=nil, sublabel=nil)
           @Label = label
           @Keywords = keywords
           @LibId = libid
@@ -1056,6 +1066,7 @@ module TencentCloud
           @Score = score
           @Suggestion = suggestion
           @LibType = libtype
+          @SubLabel = sublabel
         end
 
         def deserialize(params)
@@ -1066,6 +1077,7 @@ module TencentCloud
           @Score = params['Score']
           @Suggestion = params['Suggestion']
           @LibType = params['LibType']
+          @SubLabel = params['SubLabel']
         end
       end
 

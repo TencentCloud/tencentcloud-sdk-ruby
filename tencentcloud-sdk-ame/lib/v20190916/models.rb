@@ -747,19 +747,28 @@ module TencentCloud
 
       # DescribeKTVPlaylists请求参数结构体
       class DescribeKTVPlaylistsRequest < TencentCloud::Common::AbstractModel
+        # @param Type: 歌单类型，取值有：
+        # ·OfficialRec：官方推荐
+        # ·Normal：自定义
+        # 当该字段未填时，默认为取OfficialRec
+        # @type Type: String
         # @param Offset: 分页返回的起始偏移量，默认值：0。将返回第 Offset 到第 Offset+Limit-1 条。
+        # 取值范围：Offset + Limit 不超过5000
         # @type Offset: Integer
         # @param Limit: 分页返回的记录条数，默认值：50。将返回第 Offset 到第 Offset+Limit-1 条。
+        # 取值范围：Offset + Limit 不超过5000
         # @type Limit: Integer
 
-        attr_accessor :Offset, :Limit
+        attr_accessor :Type, :Offset, :Limit
         
-        def initialize(offset=nil, limit=nil)
+        def initialize(type=nil, offset=nil, limit=nil)
+          @Type = type
           @Offset = offset
           @Limit = limit
         end
 
         def deserialize(params)
+          @Type = params['Type']
           @Offset = params['Offset']
           @Limit = params['Limit']
         end

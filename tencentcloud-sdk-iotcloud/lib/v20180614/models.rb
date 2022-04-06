@@ -2062,6 +2062,22 @@ module TencentCloud
         end
       end
 
+      # DescribeProduct请求参数结构体
+      class DescribeProductRequest < TencentCloud::Common::AbstractModel
+        # @param ProductId: 产品ID
+        # @type ProductId: String
+
+        attr_accessor :ProductId
+        
+        def initialize(productid=nil)
+          @ProductId = productid
+        end
+
+        def deserialize(params)
+          @ProductId = params['ProductId']
+        end
+      end
+
       # DescribeProductResource请求参数结构体
       class DescribeProductResourceRequest < TencentCloud::Common::AbstractModel
         # @param ProductID: 需要查看资源列表的产品 ID
@@ -2161,6 +2177,44 @@ module TencentCloud
               productresourceinfo_tmp.deserialize(i)
               @Result << productresourceinfo_tmp
             end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeProduct返回参数结构体
+      class DescribeProductResponse < TencentCloud::Common::AbstractModel
+        # @param ProductId: 产品ID
+        # @type ProductId: String
+        # @param ProductName: 产品名
+        # @type ProductName: String
+        # @param ProductMetadata: 产品元数据
+        # @type ProductMetadata: :class:`Tencentcloud::Iotcloud.v20180614.models.ProductMetadata`
+        # @param ProductProperties: 产品属性
+        # @type ProductProperties: :class:`Tencentcloud::Iotcloud.v20180614.models.ProductProperties`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ProductId, :ProductName, :ProductMetadata, :ProductProperties, :RequestId
+        
+        def initialize(productid=nil, productname=nil, productmetadata=nil, productproperties=nil, requestid=nil)
+          @ProductId = productid
+          @ProductName = productname
+          @ProductMetadata = productmetadata
+          @ProductProperties = productproperties
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ProductId = params['ProductId']
+          @ProductName = params['ProductName']
+          unless params['ProductMetadata'].nil?
+            @ProductMetadata = ProductMetadata.new
+            @ProductMetadata.deserialize(params['ProductMetadata'])
+          end
+          unless params['ProductProperties'].nil?
+            @ProductProperties = ProductProperties.new
+            @ProductProperties.deserialize(params['ProductProperties'])
           end
           @RequestId = params['RequestId']
         end
@@ -4503,6 +4557,58 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # UpdateProductDynamicRegister请求参数结构体
+      class UpdateProductDynamicRegisterRequest < TencentCloud::Common::AbstractModel
+        # @param ProductId: 产品Id
+        # @type ProductId: String
+        # @param RegisterType: 动态注册类型，0-关闭 1-预创建设备 2-自动创建设备
+        # @type RegisterType: Integer
+        # @param RegisterLimit: 动态注册设备上限
+        # @type RegisterLimit: Integer
+
+        attr_accessor :ProductId, :RegisterType, :RegisterLimit
+        
+        def initialize(productid=nil, registertype=nil, registerlimit=nil)
+          @ProductId = productid
+          @RegisterType = registertype
+          @RegisterLimit = registerlimit
+        end
+
+        def deserialize(params)
+          @ProductId = params['ProductId']
+          @RegisterType = params['RegisterType']
+          @RegisterLimit = params['RegisterLimit']
+        end
+      end
+
+      # UpdateProductDynamicRegister返回参数结构体
+      class UpdateProductDynamicRegisterResponse < TencentCloud::Common::AbstractModel
+        # @param RegisterType: 动态注册类型，0-关闭 1-预创建设备 2-自动创建设备
+        # @type RegisterType: Integer
+        # @param ProductSecret: 动态注册产品密钥
+        # @type ProductSecret: String
+        # @param RegisterLimit: 动态注册设备上限
+        # @type RegisterLimit: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RegisterType, :ProductSecret, :RegisterLimit, :RequestId
+        
+        def initialize(registertype=nil, productsecret=nil, registerlimit=nil, requestid=nil)
+          @RegisterType = registertype
+          @ProductSecret = productsecret
+          @RegisterLimit = registerlimit
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RegisterType = params['RegisterType']
+          @ProductSecret = params['ProductSecret']
+          @RegisterLimit = params['RegisterLimit']
           @RequestId = params['RequestId']
         end
       end

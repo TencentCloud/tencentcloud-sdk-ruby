@@ -100,7 +100,7 @@ module TencentCloud
 
       # 告警字段
       class AlertType < TencentCloud::Common::AbstractModel
-        # @param AlertTime: 时间戳
+        # @param AlertTime: 标准时间格式
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AlertTime: String
         # @param AlertId: 唯一id
@@ -936,14 +936,34 @@ module TencentCloud
         # @param StatisticsCount: 最近数量
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StatisticsCount: Integer
+        # @param SearchData: 可疑关注点字段
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SearchData: String
+        # @param IpCountryIso: 可疑关注点字段
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IpCountryIso: String
+        # @param IpProvinceIso: 可疑关注点字段
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IpProvinceIso: String
+        # @param IpCity: 可疑关注点字段
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IpCity: String
+        # @param EventSubType: 可疑关注点字段
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EventSubType: String
 
-        attr_accessor :ConcernType, :EntityType, :Concern, :StatisticsCount
+        attr_accessor :ConcernType, :EntityType, :Concern, :StatisticsCount, :SearchData, :IpCountryIso, :IpProvinceIso, :IpCity, :EventSubType
         
-        def initialize(concerntype=nil, entitytype=nil, concern=nil, statisticscount=nil)
+        def initialize(concerntype=nil, entitytype=nil, concern=nil, statisticscount=nil, searchdata=nil, ipcountryiso=nil, ipprovinceiso=nil, ipcity=nil, eventsubtype=nil)
           @ConcernType = concerntype
           @EntityType = entitytype
           @Concern = concern
           @StatisticsCount = statisticscount
+          @SearchData = searchdata
+          @IpCountryIso = ipcountryiso
+          @IpProvinceIso = ipprovinceiso
+          @IpCity = ipcity
+          @EventSubType = eventsubtype
         end
 
         def deserialize(params)
@@ -951,6 +971,11 @@ module TencentCloud
           @EntityType = params['EntityType']
           @Concern = params['Concern']
           @StatisticsCount = params['StatisticsCount']
+          @SearchData = params['SearchData']
+          @IpCountryIso = params['IpCountryIso']
+          @IpProvinceIso = params['IpProvinceIso']
+          @IpCity = params['IpCity']
+          @EventSubType = params['EventSubType']
         end
       end
 
@@ -2117,15 +2142,18 @@ module TencentCloud
         # @type Filter: Array
         # @param Sorter: 排序参数
         # @type Sorter: Array
+        # @param ExportFlag: 是否导出
+        # @type ExportFlag: Boolean
 
-        attr_accessor :PageSize, :PageIndex, :Scenes, :Filter, :Sorter
+        attr_accessor :PageSize, :PageIndex, :Scenes, :Filter, :Sorter, :ExportFlag
         
-        def initialize(pagesize=nil, pageindex=nil, scenes=nil, filter=nil, sorter=nil)
+        def initialize(pagesize=nil, pageindex=nil, scenes=nil, filter=nil, sorter=nil, exportflag=nil)
           @PageSize = pagesize
           @PageIndex = pageindex
           @Scenes = scenes
           @Filter = filter
           @Sorter = sorter
+          @ExportFlag = exportflag
         end
 
         def deserialize(params)
@@ -2148,6 +2176,7 @@ module TencentCloud
               @Sorter << querysort_tmp
             end
           end
+          @ExportFlag = params['ExportFlag']
         end
       end
 
@@ -2294,12 +2323,15 @@ module TencentCloud
         # @param SsaAssetCategory: 资产归属
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SsaAssetCategory: Integer
+        # @param VulPath: 资产文件路径
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VulPath: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :VulType, :SubVulType, :CvssScore, :Cvss, :Cve, :Cnvd, :Cnnvd, :Desc, :Reference, :Repair, :ReleaseTime, :UpdateTime, :Name, :Level, :Status, :ImpactAsset, :ImpactAssetName, :IsAssetDeleted, :Source, :VulUrl, :SsaAssetCategory, :RequestId
+        attr_accessor :VulType, :SubVulType, :CvssScore, :Cvss, :Cve, :Cnvd, :Cnnvd, :Desc, :Reference, :Repair, :ReleaseTime, :UpdateTime, :Name, :Level, :Status, :ImpactAsset, :ImpactAssetName, :IsAssetDeleted, :Source, :VulUrl, :SsaAssetCategory, :VulPath, :RequestId
         
-        def initialize(vultype=nil, subvultype=nil, cvssscore=nil, cvss=nil, cve=nil, cnvd=nil, cnnvd=nil, desc=nil, reference=nil, repair=nil, releasetime=nil, updatetime=nil, name=nil, level=nil, status=nil, impactasset=nil, impactassetname=nil, isassetdeleted=nil, source=nil, vulurl=nil, ssaassetcategory=nil, requestid=nil)
+        def initialize(vultype=nil, subvultype=nil, cvssscore=nil, cvss=nil, cve=nil, cnvd=nil, cnnvd=nil, desc=nil, reference=nil, repair=nil, releasetime=nil, updatetime=nil, name=nil, level=nil, status=nil, impactasset=nil, impactassetname=nil, isassetdeleted=nil, source=nil, vulurl=nil, ssaassetcategory=nil, vulpath=nil, requestid=nil)
           @VulType = vultype
           @SubVulType = subvultype
           @CvssScore = cvssscore
@@ -2321,6 +2353,7 @@ module TencentCloud
           @Source = source
           @VulUrl = vulurl
           @SsaAssetCategory = ssaassetcategory
+          @VulPath = vulpath
           @RequestId = requestid
         end
 
@@ -2346,6 +2379,7 @@ module TencentCloud
           @Source = params['Source']
           @VulUrl = params['VulUrl']
           @SsaAssetCategory = params['SsaAssetCategory']
+          @VulPath = params['VulPath']
           @RequestId = params['RequestId']
         end
       end
@@ -2894,10 +2928,13 @@ module TencentCloud
         # @param VulRepairPlan: 漏洞描述
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VulRepairPlan: String
+        # @param VulPath: 漏洞文件路径
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VulPath: String
 
-        attr_accessor :Id, :VulName, :Type, :Level, :Status, :Time, :ImpactAssetNum, :ImpactAsset, :ImpactAssetName, :VulDetail, :VulRefLink, :OldIdMd5, :UniqId, :OperateTime, :IsAssetDeleted, :DiscoverTime, :OriginId, :Region, :Vpcid, :AssetType, :AssetSubType, :AssetIpAll, :PublicIpAddresses, :PrivateIpAddresses, :VulSource, :AffectedUrl, :SsaAssetCategory, :VulUrl, :IsOpen, :YzHostId, :VulRepairPlan
+        attr_accessor :Id, :VulName, :Type, :Level, :Status, :Time, :ImpactAssetNum, :ImpactAsset, :ImpactAssetName, :VulDetail, :VulRefLink, :OldIdMd5, :UniqId, :OperateTime, :IsAssetDeleted, :DiscoverTime, :OriginId, :Region, :Vpcid, :AssetType, :AssetSubType, :AssetIpAll, :PublicIpAddresses, :PrivateIpAddresses, :VulSource, :AffectedUrl, :SsaAssetCategory, :VulUrl, :IsOpen, :YzHostId, :VulRepairPlan, :VulPath
         
-        def initialize(id=nil, vulname=nil, type=nil, level=nil, status=nil, time=nil, impactassetnum=nil, impactasset=nil, impactassetname=nil, vuldetail=nil, vulreflink=nil, oldidmd5=nil, uniqid=nil, operatetime=nil, isassetdeleted=nil, discovertime=nil, originid=nil, region=nil, vpcid=nil, assettype=nil, assetsubtype=nil, assetipall=nil, publicipaddresses=nil, privateipaddresses=nil, vulsource=nil, affectedurl=nil, ssaassetcategory=nil, vulurl=nil, isopen=nil, yzhostid=nil, vulrepairplan=nil)
+        def initialize(id=nil, vulname=nil, type=nil, level=nil, status=nil, time=nil, impactassetnum=nil, impactasset=nil, impactassetname=nil, vuldetail=nil, vulreflink=nil, oldidmd5=nil, uniqid=nil, operatetime=nil, isassetdeleted=nil, discovertime=nil, originid=nil, region=nil, vpcid=nil, assettype=nil, assetsubtype=nil, assetipall=nil, publicipaddresses=nil, privateipaddresses=nil, vulsource=nil, affectedurl=nil, ssaassetcategory=nil, vulurl=nil, isopen=nil, yzhostid=nil, vulrepairplan=nil, vulpath=nil)
           @Id = id
           @VulName = vulname
           @Type = type
@@ -2929,6 +2966,7 @@ module TencentCloud
           @IsOpen = isopen
           @YzHostId = yzhostid
           @VulRepairPlan = vulrepairplan
+          @VulPath = vulpath
         end
 
         def deserialize(params)
@@ -2963,6 +3001,7 @@ module TencentCloud
           @IsOpen = params['IsOpen']
           @YzHostId = params['YzHostId']
           @VulRepairPlan = params['VulRepairPlan']
+          @VulPath = params['VulPath']
         end
       end
 

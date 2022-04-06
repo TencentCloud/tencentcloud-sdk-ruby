@@ -1109,6 +1109,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 获取集群规模
+
+        # @param request: Request instance for DescribeClusterLevelAttribute.
+        # @type request: :class:`Tencentcloud::tke::V20180525::DescribeClusterLevelAttributeRequest`
+        # @rtype: :class:`Tencentcloud::tke::V20180525::DescribeClusterLevelAttributeResponse`
+        def DescribeClusterLevelAttribute(request)
+          body = send_request('DescribeClusterLevelAttribute', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeClusterLevelAttributeResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询集群变配记录
+
+        # @param request: Request instance for DescribeClusterLevelChangeRecords.
+        # @type request: :class:`Tencentcloud::tke::V20180525::DescribeClusterLevelChangeRecordsRequest`
+        # @rtype: :class:`Tencentcloud::tke::V20180525::DescribeClusterLevelChangeRecordsResponse`
+        def DescribeClusterLevelChangeRecords(request)
+          body = send_request('DescribeClusterLevelChangeRecords', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeClusterLevelChangeRecordsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询节点池详情
 
         # @param request: Request instance for DescribeClusterNodePoolDetail.
@@ -1781,6 +1829,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 获取集群资源使用量
+
+        # @param request: Request instance for DescribeResourceUsage.
+        # @type request: :class:`Tencentcloud::tke::V20180525::DescribeResourceUsageRequest`
+        # @rtype: :class:`Tencentcloud::tke::V20180525::DescribeResourceUsageResponse`
+        def DescribeResourceUsage(request)
+          body = send_request('DescribeResourceUsage', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeResourceUsageResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询路由表冲突列表
 
         # @param request: Request instance for DescribeRouteTableConflicts.
@@ -1983,6 +2055,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ForwardApplicationRequestV3Response.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取集群规模价格
+
+        # @param request: Request instance for GetClusterLevelPrice.
+        # @type request: :class:`Tencentcloud::tke::V20180525::GetClusterLevelPriceRequest`
+        # @rtype: :class:`Tencentcloud::tke::V20180525::GetClusterLevelPriceResponse`
+        def GetClusterLevelPrice(request)
+          body = send_request('GetClusterLevelPrice', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = GetClusterLevelPriceResponse.new
             model.deserialize(response['Response'])
             model
           else

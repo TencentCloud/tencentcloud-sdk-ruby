@@ -2043,72 +2043,6 @@ module TencentCloud
         end
       end
 
-      # DescribePaiInstances请求参数结构体
-      class DescribePaiInstancesRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceIds: 依据PAI实例的实例ID进行查询。
-        # @type InstanceIds: Array
-        # @param Filters: 过滤条件。
-        # @type Filters: Array
-        # @param Limit: 返回数量，默认为20，最大值为100。
-        # @type Limit: Integer
-        # @param Offset: 偏移量，默认为0。
-        # @type Offset: Integer
-
-        attr_accessor :InstanceIds, :Filters, :Limit, :Offset
-        
-        def initialize(instanceids=nil, filters=nil, limit=nil, offset=nil)
-          @InstanceIds = instanceids
-          @Filters = filters
-          @Limit = limit
-          @Offset = offset
-        end
-
-        def deserialize(params)
-          @InstanceIds = params['InstanceIds']
-          unless params['Filters'].nil?
-            @Filters = []
-            params['Filters'].each do |i|
-              filter_tmp = Filter.new
-              filter_tmp.deserialize(i)
-              @Filters << filter_tmp
-            end
-          end
-          @Limit = params['Limit']
-          @Offset = params['Offset']
-        end
-      end
-
-      # DescribePaiInstances返回参数结构体
-      class DescribePaiInstancesResponse < TencentCloud::Common::AbstractModel
-        # @param TotalCount: 符合条件的PAI实例数量
-        # @type TotalCount: Integer
-        # @param PaiInstanceSet: PAI实例详细信息
-        # @type PaiInstanceSet: Array
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :TotalCount, :PaiInstanceSet, :RequestId
-        
-        def initialize(totalcount=nil, paiinstanceset=nil, requestid=nil)
-          @TotalCount = totalcount
-          @PaiInstanceSet = paiinstanceset
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          @TotalCount = params['TotalCount']
-          unless params['PaiInstanceSet'].nil?
-            @PaiInstanceSet = []
-            params['PaiInstanceSet'].each do |i|
-              paiinstance_tmp = PaiInstance.new
-              paiinstance_tmp.deserialize(i)
-              @PaiInstanceSet << paiinstance_tmp
-            end
-          end
-          @RequestId = params['RequestId']
-        end
-      end
-
       # DescribeScalingPolicies请求参数结构体
       class DescribeScalingPoliciesRequest < TencentCloud::Common::AbstractModel
         # @param AutoScalingPolicyIds: 按照一个或者多个告警策略ID查询。告警策略ID形如：asp-i9vkg894。每次请求的实例的上限为100。参数不支持同时指定`AutoScalingPolicyIds`和`Filters`。
@@ -3814,30 +3748,6 @@ module TencentCloud
           @TargetType = params['TargetType']
           @QueueName = params['QueueName']
           @TopicName = params['TopicName']
-        end
-      end
-
-      # PAI实例
-      class PaiInstance < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例ID
-        # @type InstanceId: String
-        # @param DomainName: 实例域名
-        # @type DomainName: String
-        # @param PaiMateUrl: PAI管理页面URL
-        # @type PaiMateUrl: String
-
-        attr_accessor :InstanceId, :DomainName, :PaiMateUrl
-        
-        def initialize(instanceid=nil, domainname=nil, paimateurl=nil)
-          @InstanceId = instanceid
-          @DomainName = domainname
-          @PaiMateUrl = paimateurl
-        end
-
-        def deserialize(params)
-          @InstanceId = params['InstanceId']
-          @DomainName = params['DomainName']
-          @PaiMateUrl = params['PaiMateUrl']
         end
       end
 

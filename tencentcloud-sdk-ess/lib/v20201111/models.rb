@@ -34,7 +34,7 @@ module TencentCloud
         # 0：企业
         # 1：个人
         # 3：企业静默签署
-        # 注：类型为3（企业静默签署）时，此接口会默认完成该签署方的签署，目前只支持第一方进行静默签署。
+        # 注：类型为3（企业静默签署）时，此接口会默认完成该签署方的签署。
         # @type ApproverType: Integer
         # @param ApproverName: 本环节需要操作人的名字
         # @type ApproverName: String
@@ -863,7 +863,11 @@ module TencentCloud
 
       # 创建流程的签署方信息
       class FlowCreateApprover < TencentCloud::Common::AbstractModel
-        # @param ApproverType: 签署方类型 (0为企业/1为个人)
+        # @param ApproverType: 参与者类型：
+        # 0：企业
+        # 1：个人
+        # 3：企业静默签署
+        # 注：类型为3（企业静默签署）时，此接口会默认完成该签署方的签署。
         # @type ApproverType: Integer
         # @param OrganizationName: 如果签署方为企业，需要填入企业全称
         # @type OrganizationName: String

@@ -1372,10 +1372,12 @@ module TencentCloud
         # @type DryRun: Boolean
         # @param CageId: 金融围拢 ID 。
         # @type CageId: String
+        # @param ProjectId: 项目ID，默认项目ID0
+        # @type ProjectId: Integer
 
-        attr_accessor :InstanceId, :SpecifiedRollbackTime, :SpecifiedBackupId, :UniqVpcId, :UniqSubnetId, :Memory, :Volume, :InstanceName, :SecurityGroup, :ResourceTags, :Cpu, :ProtectMode, :DeployMode, :SlaveZone, :BackupZone, :DeviceType, :InstanceNodes, :DeployGroupId, :DryRun, :CageId
+        attr_accessor :InstanceId, :SpecifiedRollbackTime, :SpecifiedBackupId, :UniqVpcId, :UniqSubnetId, :Memory, :Volume, :InstanceName, :SecurityGroup, :ResourceTags, :Cpu, :ProtectMode, :DeployMode, :SlaveZone, :BackupZone, :DeviceType, :InstanceNodes, :DeployGroupId, :DryRun, :CageId, :ProjectId
         
-        def initialize(instanceid=nil, specifiedrollbacktime=nil, specifiedbackupid=nil, uniqvpcid=nil, uniqsubnetid=nil, memory=nil, volume=nil, instancename=nil, securitygroup=nil, resourcetags=nil, cpu=nil, protectmode=nil, deploymode=nil, slavezone=nil, backupzone=nil, devicetype=nil, instancenodes=nil, deploygroupid=nil, dryrun=nil, cageid=nil)
+        def initialize(instanceid=nil, specifiedrollbacktime=nil, specifiedbackupid=nil, uniqvpcid=nil, uniqsubnetid=nil, memory=nil, volume=nil, instancename=nil, securitygroup=nil, resourcetags=nil, cpu=nil, protectmode=nil, deploymode=nil, slavezone=nil, backupzone=nil, devicetype=nil, instancenodes=nil, deploygroupid=nil, dryrun=nil, cageid=nil, projectid=nil)
           @InstanceId = instanceid
           @SpecifiedRollbackTime = specifiedrollbacktime
           @SpecifiedBackupId = specifiedbackupid
@@ -1396,6 +1398,7 @@ module TencentCloud
           @DeployGroupId = deploygroupid
           @DryRun = dryrun
           @CageId = cageid
+          @ProjectId = projectid
         end
 
         def deserialize(params)
@@ -1426,6 +1429,7 @@ module TencentCloud
           @DeployGroupId = params['DeployGroupId']
           @DryRun = params['DryRun']
           @CageId = params['CageId']
+          @ProjectId = params['ProjectId']
         end
       end
 
@@ -7530,7 +7534,7 @@ module TencentCloud
 
       # ModifyDBInstanceVipVport请求参数结构体
       class ModifyDBInstanceVipVportRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例 ID，格式如：cdb-c1nl9rpv，与云数据库控制台页面中显示的实例 ID 相同，可使用 [查询实例列表](https://cloud.tencent.com/document/api/236/15872) 接口获取，其值为输出参数中字段 InstanceId 的值。
+        # @param InstanceId: 实例 ID，格式如：cdb-c1nl9rpv 或者 cdbro-c2nl9rpv 或者 cdbrg-c3nl9rpv，与云数据库控制台页面中显示的实例 ID 相同，可使用 [查询实例列表](https://cloud.tencent.com/document/api/236/15872) 接口获取，其值为输出参数中字段 InstanceId 的值。
         # @type InstanceId: String
         # @param DstIp: 目标 IP。该参数和 DstPort 参数，两者必传一个。
         # @type DstIp: String

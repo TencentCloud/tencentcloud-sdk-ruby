@@ -317,6 +317,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 创建用户OIDC配置。只能创建一个用户OIDC身份提供商，并且创建用户OIDC配置之后会自动关闭用户SAML SSO身份提供商。
+
+        # @param request: Request instance for CreateUserOIDCConfig.
+        # @type request: :class:`Tencentcloud::cam::V20190116::CreateUserOIDCConfigRequest`
+        # @rtype: :class:`Tencentcloud::cam::V20190116::CreateUserOIDCConfigResponse`
+        def CreateUserOIDCConfig(request)
+          body = send_request('CreateUserOIDCConfig', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateUserOIDCConfigResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 创建用户SAML配置
 
         # @param request: Request instance for CreateUserSAMLConfig.
@@ -677,6 +701,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询用户OIDC配置
+
+        # @param request: Request instance for DescribeUserOIDCConfig.
+        # @type request: :class:`Tencentcloud::cam::V20190116::DescribeUserOIDCConfigRequest`
+        # @rtype: :class:`Tencentcloud::cam::V20190116::DescribeUserOIDCConfigResponse`
+        def DescribeUserOIDCConfig(request)
+          body = send_request('DescribeUserOIDCConfig', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeUserOIDCConfigResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询用户SAML配置
 
         # @param request: Request instance for DescribeUserSAMLConfig.
@@ -759,6 +807,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DetachUserPolicyResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 禁用用户SSO
+
+        # @param request: Request instance for DisableUserSSO.
+        # @type request: :class:`Tencentcloud::cam::V20190116::DisableUserSSORequest`
+        # @rtype: :class:`Tencentcloud::cam::V20190116::DisableUserSSOResponse`
+        def DisableUserSSO(request)
+          body = send_request('DisableUserSSO', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DisableUserSSOResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1744,6 +1816,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = UpdateUserResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改用户OIDC配置
+
+        # @param request: Request instance for UpdateUserOIDCConfig.
+        # @type request: :class:`Tencentcloud::cam::V20190116::UpdateUserOIDCConfigRequest`
+        # @rtype: :class:`Tencentcloud::cam::V20190116::UpdateUserOIDCConfigResponse`
+        def UpdateUserOIDCConfig(request)
+          body = send_request('UpdateUserOIDCConfig', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = UpdateUserOIDCConfigResponse.new
             model.deserialize(response['Response'])
             model
           else

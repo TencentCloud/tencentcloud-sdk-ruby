@@ -2252,6 +2252,61 @@ module TencentCloud
         end
       end
 
+      # ModifyDBInstanceNetworkAddress请求参数结构体
+      class ModifyDBInstanceNetworkAddressRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+        # @param OldIpExpiredTime: 原IP保留时长，单位为分钟；原IP会在约定时间后释放，在释放前原IP和新IP均可访问；0表示立即回收原IP
+        # @type OldIpExpiredTime: Integer
+        # @param NewUniqVpcId: 切换后IP地址所属私有网络统一ID，若为基础网络，该字段为空
+        # @type NewUniqVpcId: String
+        # @param NewUniqSubnetId: 切换后IP地址所属子网统一ID，若为基础网络，该字段为空
+        # @type NewUniqSubnetId: String
+        # @param NetworkAddresses: 待修改IP信息
+        # @type NetworkAddresses: Array
+
+        attr_accessor :InstanceId, :OldIpExpiredTime, :NewUniqVpcId, :NewUniqSubnetId, :NetworkAddresses
+        
+        def initialize(instanceid=nil, oldipexpiredtime=nil, newuniqvpcid=nil, newuniqsubnetid=nil, networkaddresses=nil)
+          @InstanceId = instanceid
+          @OldIpExpiredTime = oldipexpiredtime
+          @NewUniqVpcId = newuniqvpcid
+          @NewUniqSubnetId = newuniqsubnetid
+          @NetworkAddresses = networkaddresses
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @OldIpExpiredTime = params['OldIpExpiredTime']
+          @NewUniqVpcId = params['NewUniqVpcId']
+          @NewUniqSubnetId = params['NewUniqSubnetId']
+          unless params['NetworkAddresses'].nil?
+            @NetworkAddresses = []
+            params['NetworkAddresses'].each do |i|
+              modifynetworkaddress_tmp = ModifyNetworkAddress.new
+              modifynetworkaddress_tmp.deserialize(i)
+              @NetworkAddresses << modifynetworkaddress_tmp
+            end
+          end
+        end
+      end
+
+      # ModifyDBInstanceNetworkAddress返回参数结构体
+      class ModifyDBInstanceNetworkAddressResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyDBInstanceSecurityGroup请求参数结构体
       class ModifyDBInstanceSecurityGroupRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例ID
@@ -2345,6 +2400,26 @@ module TencentCloud
         def deserialize(params)
           @DealId = params['DealId']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 修改数据库地址
+      class ModifyNetworkAddress < TencentCloud::Common::AbstractModel
+        # @param NewIPAddress: 新IP地址。
+        # @type NewIPAddress: String
+        # @param OldIpAddress: 原IP地址。
+        # @type OldIpAddress: String
+
+        attr_accessor :NewIPAddress, :OldIpAddress
+        
+        def initialize(newipaddress=nil, oldipaddress=nil)
+          @NewIPAddress = newipaddress
+          @OldIpAddress = oldipaddress
+        end
+
+        def deserialize(params)
+          @NewIPAddress = params['NewIPAddress']
+          @OldIpAddress = params['OldIpAddress']
         end
       end
 

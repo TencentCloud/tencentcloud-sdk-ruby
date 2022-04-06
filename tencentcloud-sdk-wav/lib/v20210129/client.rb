@@ -245,6 +245,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 通过接口拉取租户/指定成员/部门在指定日期范围内的CRM跟进统计数据
+
+        # @param request: Request instance for QueryCrmStatistics.
+        # @type request: :class:`Tencentcloud::wav::V20210129::QueryCrmStatisticsRequest`
+        # @rtype: :class:`Tencentcloud::wav::V20210129::QueryCrmStatisticsResponse`
+        def QueryCrmStatistics(request)
+          body = send_request('QueryCrmStatistics', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = QueryCrmStatisticsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 通过接口拉取SaaS内C端外部联系人在指定时间范围内的行为事件明细。此接口提供的数据以天为维度，查询的时间范围为[start_time,end_time]，即前后均为闭区间，支持的最大查询跨度为365天。
+
+        # @param request: Request instance for QueryCustomerEventDetailStatistics.
+        # @type request: :class:`Tencentcloud::wav::V20210129::QueryCustomerEventDetailStatisticsRequest`
+        # @rtype: :class:`Tencentcloud::wav::V20210129::QueryCustomerEventDetailStatisticsResponse`
+        def QueryCustomerEventDetailStatistics(request)
+          body = send_request('QueryCustomerEventDetailStatistics', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = QueryCustomerEventDetailStatisticsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 企业可通过此接口获取录入在企微SaaS平台上的经销商信息。
 
         # @param request: Request instance for QueryDealerInfoList.
@@ -317,6 +365,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 通过接口拉取租户在指定时间范围内的外部联系人添加/删除明细，此接口提供的数据以天为维度，查询的时间范围为[StarTime, EndTime]，即前后均为闭区间，支持的最大查询跨度为365天；
+
+        # @param request: Request instance for QueryExternalUserEventList.
+        # @type request: :class:`Tencentcloud::wav::V20210129::QueryExternalUserEventListRequest`
+        # @rtype: :class:`Tencentcloud::wav::V20210129::QueryExternalUserEventListResponse`
+        def QueryExternalUserEventList(request)
+          body = send_request('QueryExternalUserEventList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = QueryExternalUserEventListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 企业可通过此接口将企业主体对应的外部联系人id转换为乐销车应用主体对应的外部联系人。
 
         # @param request: Request instance for QueryExternalUserMappingInfo.
@@ -365,6 +437,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 通过接口按类型拉取租户当前的素材列表及关键信息
+
+        # @param request: Request instance for QueryMaterialList.
+        # @type request: :class:`Tencentcloud::wav::V20210129::QueryMaterialListRequest`
+        # @rtype: :class:`Tencentcloud::wav::V20210129::QueryMaterialListResponse`
+        def QueryMaterialList(request)
+          body = send_request('QueryMaterialList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = QueryMaterialListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询小程序码列表接口
 
         # @param request: Request instance for QueryMiniAppCodeList.
@@ -375,6 +471,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = QueryMiniAppCodeListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 通过接口拉取SaaS内企业成员在指定时间范围内的行为事件明细。此接口提供的数据以天为维度，查询的时间范围为[start_time,end_time]，即前后均为闭区间，支持的最大查询跨度为365天。
+
+        # @param request: Request instance for QueryStaffEventDetailStatistics.
+        # @type request: :class:`Tencentcloud::wav::V20210129::QueryStaffEventDetailStatisticsRequest`
+        # @rtype: :class:`Tencentcloud::wav::V20210129::QueryStaffEventDetailStatisticsResponse`
+        def QueryStaffEventDetailStatistics(request)
+          body = send_request('QueryStaffEventDetailStatistics', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = QueryStaffEventDetailStatisticsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询企业成员信息列表接口
+
+        # @param request: Request instance for QueryUserInfoList.
+        # @type request: :class:`Tencentcloud::wav::V20210129::QueryUserInfoListRequest`
+        # @rtype: :class:`Tencentcloud::wav::V20210129::QueryUserInfoListResponse`
+        def QueryUserInfoList(request)
+          body = send_request('QueryUserInfoList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = QueryUserInfoListResponse.new
             model.deserialize(response['Response'])
             model
           else

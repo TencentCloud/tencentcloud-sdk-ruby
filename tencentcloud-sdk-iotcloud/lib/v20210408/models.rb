@@ -60,6 +60,50 @@ module TencentCloud
         end
       end
 
+      # CLS日志
+      class CLSLogItem < TencentCloud::Common::AbstractModel
+        # @param Content: 日志内容
+        # @type Content: String
+        # @param DeviceName: 设备名称
+        # @type DeviceName: String
+        # @param ProductId: 产品ID
+        # @type ProductId: String
+        # @param RequestId: 请求ID
+        # @type RequestId: String
+        # @param Result: 结果
+        # @type Result: String
+        # @param Scene: 模块
+        # @type Scene: String
+        # @param Time: 日志时间
+        # @type Time: String
+        # @param Userid: 腾讯云账号
+        # @type Userid: String
+
+        attr_accessor :Content, :DeviceName, :ProductId, :RequestId, :Result, :Scene, :Time, :Userid
+        
+        def initialize(content=nil, devicename=nil, productid=nil, requestid=nil, result=nil, scene=nil, time=nil, userid=nil)
+          @Content = content
+          @DeviceName = devicename
+          @ProductId = productid
+          @RequestId = requestid
+          @Result = result
+          @Scene = scene
+          @Time = time
+          @Userid = userid
+        end
+
+        def deserialize(params)
+          @Content = params['Content']
+          @DeviceName = params['DeviceName']
+          @ProductId = params['ProductId']
+          @RequestId = params['RequestId']
+          @Result = params['Result']
+          @Scene = params['Scene']
+          @Time = params['Time']
+          @Userid = params['Userid']
+        end
+      end
+
       # X509证书信息
       class CertInfo < TencentCloud::Common::AbstractModel
         # @param CertName: 证书名称
@@ -323,6 +367,38 @@ module TencentCloud
         end
       end
 
+      # DeleteProductPrivateCA请求参数结构体
+      class DeleteProductPrivateCARequest < TencentCloud::Common::AbstractModel
+        # @param ProductId: 产品ID
+        # @type ProductId: String
+
+        attr_accessor :ProductId
+        
+        def initialize(productid=nil)
+          @ProductId = productid
+        end
+
+        def deserialize(params)
+          @ProductId = params['ProductId']
+        end
+      end
+
+      # DeleteProductPrivateCA返回参数结构体
+      class DeleteProductPrivateCAResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DeleteProduct请求参数结构体
       class DeleteProductRequest < TencentCloud::Common::AbstractModel
         # @param ProductId: 需要删除的产品 ID
@@ -438,12 +514,15 @@ module TencentCloud
         # @param FirmwareUpdateTime: 设备固件更新时间
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FirmwareUpdateTime: Integer
+        # @param CreateUserId: 创建者账号ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateUserId: Integer
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :DeviceName, :Online, :LoginTime, :Version, :LastUpdateTime, :DeviceCert, :DevicePsk, :Tags, :DeviceType, :Imei, :Isp, :ConnIP, :NbiotDeviceID, :LoraDevEui, :LoraMoteType, :LogLevel, :FirstOnlineTime, :LastOfflineTime, :CreateTime, :CertState, :EnableState, :Labels, :ClientIP, :FirmwareUpdateTime, :RequestId
+        attr_accessor :DeviceName, :Online, :LoginTime, :Version, :LastUpdateTime, :DeviceCert, :DevicePsk, :Tags, :DeviceType, :Imei, :Isp, :ConnIP, :NbiotDeviceID, :LoraDevEui, :LoraMoteType, :LogLevel, :FirstOnlineTime, :LastOfflineTime, :CreateTime, :CertState, :EnableState, :Labels, :ClientIP, :FirmwareUpdateTime, :CreateUserId, :RequestId
         
-        def initialize(devicename=nil, online=nil, logintime=nil, version=nil, lastupdatetime=nil, devicecert=nil, devicepsk=nil, tags=nil, devicetype=nil, imei=nil, isp=nil, connip=nil, nbiotdeviceid=nil, loradeveui=nil, loramotetype=nil, loglevel=nil, firstonlinetime=nil, lastofflinetime=nil, createtime=nil, certstate=nil, enablestate=nil, labels=nil, clientip=nil, firmwareupdatetime=nil, requestid=nil)
+        def initialize(devicename=nil, online=nil, logintime=nil, version=nil, lastupdatetime=nil, devicecert=nil, devicepsk=nil, tags=nil, devicetype=nil, imei=nil, isp=nil, connip=nil, nbiotdeviceid=nil, loradeveui=nil, loramotetype=nil, loglevel=nil, firstonlinetime=nil, lastofflinetime=nil, createtime=nil, certstate=nil, enablestate=nil, labels=nil, clientip=nil, firmwareupdatetime=nil, createuserid=nil, requestid=nil)
           @DeviceName = devicename
           @Online = online
           @LoginTime = logintime
@@ -468,6 +547,7 @@ module TencentCloud
           @Labels = labels
           @ClientIP = clientip
           @FirmwareUpdateTime = firmwareupdatetime
+          @CreateUserId = createuserid
           @RequestId = requestid
         end
 
@@ -510,6 +590,7 @@ module TencentCloud
           end
           @ClientIP = params['ClientIP']
           @FirmwareUpdateTime = params['FirmwareUpdateTime']
+          @CreateUserId = params['CreateUserId']
           @RequestId = params['RequestId']
         end
       end
@@ -986,6 +1067,269 @@ module TencentCloud
         end
       end
 
+      # ListLogPayload请求参数结构体
+      class ListLogPayloadRequest < TencentCloud::Common::AbstractModel
+        # @param MinTime: 日志开始时间
+        # @type MinTime: Integer
+        # @param MaxTime: 日志结束时间
+        # @type MaxTime: Integer
+        # @param Keywords: 查询关键字，可以同时支持键值查询和文本查询，例如，查询某key的值为value，并且包含某word的日志，该参数为：key:value word。键值或文本可以包含多个，以空格隔开。其中可以索引的key比如：RequestID、ProductID、DeviceName等。
+        # 一个典型的查询示例：ProductID:ABCDE12345 DeviceName:test publish
+        # @type Keywords: String
+        # @param Context: 日志检索上下文
+        # @type Context: String
+        # @param MaxNum: 日志最大条数
+        # @type MaxNum: Integer
+
+        attr_accessor :MinTime, :MaxTime, :Keywords, :Context, :MaxNum
+        
+        def initialize(mintime=nil, maxtime=nil, keywords=nil, context=nil, maxnum=nil)
+          @MinTime = mintime
+          @MaxTime = maxtime
+          @Keywords = keywords
+          @Context = context
+          @MaxNum = maxnum
+        end
+
+        def deserialize(params)
+          @MinTime = params['MinTime']
+          @MaxTime = params['MaxTime']
+          @Keywords = params['Keywords']
+          @Context = params['Context']
+          @MaxNum = params['MaxNum']
+        end
+      end
+
+      # ListLogPayload返回参数结构体
+      class ListLogPayloadResponse < TencentCloud::Common::AbstractModel
+        # @param Context: 日志上下文
+        # @type Context: String
+        # @param Listover: 是否还有日志，如有仍有日志，下次查询的请求带上当前请求返回的Context
+        # @type Listover: Boolean
+        # @param Results: 日志列表
+        # @type Results: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Context, :Listover, :Results, :RequestId
+        
+        def initialize(context=nil, listover=nil, results=nil, requestid=nil)
+          @Context = context
+          @Listover = listover
+          @Results = results
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Context = params['Context']
+          @Listover = params['Listover']
+          unless params['Results'].nil?
+            @Results = []
+            params['Results'].each do |i|
+              payloadlogitem_tmp = PayloadLogItem.new
+              payloadlogitem_tmp.deserialize(i)
+              @Results << payloadlogitem_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ListLog请求参数结构体
+      class ListLogRequest < TencentCloud::Common::AbstractModel
+        # @param MinTime: 日志开始时间
+        # @type MinTime: Integer
+        # @param MaxTime: 日志结束时间
+        # @type MaxTime: Integer
+        # @param Keywords: 查询关键字，可以同时支持键值查询和文本查询，例如，查询某key的值为value，并且包含某word的日志，该参数为：key:value word。键值或文本可以包含多个，以空格隔开。其中可以索引的key包括：requestid、productid、devicename、scene、content。
+        # 一个典型的查询示例：productid:ABCDE12345 devicename:test scene:SHADOW content:Device%20connect publish
+        # @type Keywords: String
+        # @param Context: 日志检索上下文
+        # @type Context: String
+        # @param MaxNum: 查询条数
+        # @type MaxNum: Integer
+
+        attr_accessor :MinTime, :MaxTime, :Keywords, :Context, :MaxNum
+        
+        def initialize(mintime=nil, maxtime=nil, keywords=nil, context=nil, maxnum=nil)
+          @MinTime = mintime
+          @MaxTime = maxtime
+          @Keywords = keywords
+          @Context = context
+          @MaxNum = maxnum
+        end
+
+        def deserialize(params)
+          @MinTime = params['MinTime']
+          @MaxTime = params['MaxTime']
+          @Keywords = params['Keywords']
+          @Context = params['Context']
+          @MaxNum = params['MaxNum']
+        end
+      end
+
+      # ListLog返回参数结构体
+      class ListLogResponse < TencentCloud::Common::AbstractModel
+        # @param Context: 日志上下文
+        # @type Context: String
+        # @param Listover: 是否还有日志，如有仍有日志，下次查询的请求带上当前请求返回的Context
+        # @type Listover: Boolean
+        # @param Results: 日志列表
+        # @type Results: Array
+        # @param TotalCount: 日志总条数
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Context, :Listover, :Results, :TotalCount, :RequestId
+        
+        def initialize(context=nil, listover=nil, results=nil, totalcount=nil, requestid=nil)
+          @Context = context
+          @Listover = listover
+          @Results = results
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Context = params['Context']
+          @Listover = params['Listover']
+          unless params['Results'].nil?
+            @Results = []
+            params['Results'].each do |i|
+              clslogitem_tmp = CLSLogItem.new
+              clslogitem_tmp.deserialize(i)
+              @Results << clslogitem_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ListSDKLog请求参数结构体
+      class ListSDKLogRequest < TencentCloud::Common::AbstractModel
+        # @param MinTime: 日志开始时间
+        # @type MinTime: Integer
+        # @param MaxTime: 日志结束时间
+        # @type MaxTime: Integer
+        # @param Keywords: 查询关键字，可以同时支持键值查询和文本查询，
+        # 例如，查询某key的值为value，并且包含某word的日志，该参数为：key:value word。
+        # 键值或文本可以包含多个，以空格隔开。
+        # 其中可以索引的key包括：productid、devicename、loglevel
+        # 一个典型的查询示例：productid:7JK1G72JNE devicename:name publish loglevel:WARN一个典型的查询示例：productid:ABCDE12345 devicename:test scene:SHADOW publish
+        # @type Keywords: String
+        # @param Context: 日志检索上下文
+        # @type Context: String
+        # @param MaxNum: 查询条数
+        # @type MaxNum: Integer
+
+        attr_accessor :MinTime, :MaxTime, :Keywords, :Context, :MaxNum
+        
+        def initialize(mintime=nil, maxtime=nil, keywords=nil, context=nil, maxnum=nil)
+          @MinTime = mintime
+          @MaxTime = maxtime
+          @Keywords = keywords
+          @Context = context
+          @MaxNum = maxnum
+        end
+
+        def deserialize(params)
+          @MinTime = params['MinTime']
+          @MaxTime = params['MaxTime']
+          @Keywords = params['Keywords']
+          @Context = params['Context']
+          @MaxNum = params['MaxNum']
+        end
+      end
+
+      # ListSDKLog返回参数结构体
+      class ListSDKLogResponse < TencentCloud::Common::AbstractModel
+        # @param Context: 日志检索上下文
+        # @type Context: String
+        # @param Listover: 是否还有日志，如有仍有日志，下次查询的请求带上当前请求返回的Context
+        # @type Listover: Boolean
+        # @param Results: 日志列表
+        # @type Results: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Context, :Listover, :Results, :RequestId
+        
+        def initialize(context=nil, listover=nil, results=nil, requestid=nil)
+          @Context = context
+          @Listover = listover
+          @Results = results
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Context = params['Context']
+          @Listover = params['Listover']
+          unless params['Results'].nil?
+            @Results = []
+            params['Results'].each do |i|
+              sdklogitem_tmp = SDKLogItem.new
+              sdklogitem_tmp.deserialize(i)
+              @Results << sdklogitem_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 内容日志项
+      class PayloadLogItem < TencentCloud::Common::AbstractModel
+        # @param Uin: 账号id
+        # @type Uin: String
+        # @param ProductId: 产品id
+        # @type ProductId: String
+        # @param DeviceName: 设备名称
+        # @type DeviceName: String
+        # @param SrcType: 来源类型
+        # @type SrcType: String
+        # @param SrcName: 来源名称
+        # @type SrcName: String
+        # @param Topic: 消息topic
+        # @type Topic: String
+        # @param PayloadFormatType: 内容格式类型
+        # @type PayloadFormatType: String
+        # @param Payload: 内容信息
+        # @type Payload: String
+        # @param RequestId: 请求ID
+        # @type RequestId: String
+        # @param DateTime: 日期时间
+        # @type DateTime: String
+
+        attr_accessor :Uin, :ProductId, :DeviceName, :SrcType, :SrcName, :Topic, :PayloadFormatType, :Payload, :RequestId, :DateTime
+        
+        def initialize(uin=nil, productid=nil, devicename=nil, srctype=nil, srcname=nil, topic=nil, payloadformattype=nil, payload=nil, requestid=nil, datetime=nil)
+          @Uin = uin
+          @ProductId = productid
+          @DeviceName = devicename
+          @SrcType = srctype
+          @SrcName = srcname
+          @Topic = topic
+          @PayloadFormatType = payloadformattype
+          @Payload = payload
+          @RequestId = requestid
+          @DateTime = datetime
+        end
+
+        def deserialize(params)
+          @Uin = params['Uin']
+          @ProductId = params['ProductId']
+          @DeviceName = params['DeviceName']
+          @SrcType = params['SrcType']
+          @SrcName = params['SrcName']
+          @Topic = params['Topic']
+          @PayloadFormatType = params['PayloadFormatType']
+          @Payload = params['Payload']
+          @RequestId = params['RequestId']
+          @DateTime = params['DateTime']
+        end
+      end
+
       # 产品元数据
       class ProductMetadata < TencentCloud::Common::AbstractModel
         # @param CreationDate: 产品创建时间
@@ -1079,6 +1423,122 @@ module TencentCloud
         end
       end
 
+      # PublishBroadcastMessage请求参数结构体
+      class PublishBroadcastMessageRequest < TencentCloud::Common::AbstractModel
+        # @param ProductId: 产品ID
+        # @type ProductId: String
+        # @param Payload: 消息内容
+        # @type Payload: String
+        # @param Qos: 消息质量等级
+        # @type Qos: Integer
+        # @param PayloadEncoding: Payload内容的编码格式，取值为base64或空。base64表示云端将收到的请求数据进行base64解码后下发到设备，空则直接将原始内容下发到设备
+        # @type PayloadEncoding: String
+
+        attr_accessor :ProductId, :Payload, :Qos, :PayloadEncoding
+        
+        def initialize(productid=nil, payload=nil, qos=nil, payloadencoding=nil)
+          @ProductId = productid
+          @Payload = payload
+          @Qos = qos
+          @PayloadEncoding = payloadencoding
+        end
+
+        def deserialize(params)
+          @ProductId = params['ProductId']
+          @Payload = params['Payload']
+          @Qos = params['Qos']
+          @PayloadEncoding = params['PayloadEncoding']
+        end
+      end
+
+      # PublishBroadcastMessage返回参数结构体
+      class PublishBroadcastMessageResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: 广播消息任务ID
+        # @type TaskId: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :RequestId
+        
+        def initialize(taskid=nil, requestid=nil)
+          @TaskId = taskid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # SDK日志项
+      class SDKLogItem < TencentCloud::Common::AbstractModel
+        # @param ProductId: 产品ID
+        # @type ProductId: String
+        # @param DeviceName: 设备名称
+        # @type DeviceName: String
+        # @param Level: 日志等级
+        # @type Level: String
+        # @param DateTime: 日志时间
+        # @type DateTime: String
+        # @param Content: 日志内容
+        # @type Content: String
+
+        attr_accessor :ProductId, :DeviceName, :Level, :DateTime, :Content
+        
+        def initialize(productid=nil, devicename=nil, level=nil, datetime=nil, content=nil)
+          @ProductId = productid
+          @DeviceName = devicename
+          @Level = level
+          @DateTime = datetime
+          @Content = content
+        end
+
+        def deserialize(params)
+          @ProductId = params['ProductId']
+          @DeviceName = params['DeviceName']
+          @Level = params['Level']
+          @DateTime = params['DateTime']
+          @Content = params['Content']
+        end
+      end
+
+      # SetProductsForbiddenStatus请求参数结构体
+      class SetProductsForbiddenStatusRequest < TencentCloud::Common::AbstractModel
+        # @param ProductId: 要设置禁用状态的产品列表
+        # @type ProductId: Array
+        # @param Status: 0启用，1禁用
+        # @type Status: Integer
+
+        attr_accessor :ProductId, :Status
+        
+        def initialize(productid=nil, status=nil)
+          @ProductId = productid
+          @Status = status
+        end
+
+        def deserialize(params)
+          @ProductId = params['ProductId']
+          @Status = params['Status']
+        end
+      end
+
+      # SetProductsForbiddenStatus返回参数结构体
+      class SetProductsForbiddenStatusResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # UpdateDeviceLogLevel请求参数结构体
       class UpdateDeviceLogLevelRequest < TencentCloud::Common::AbstractModel
         # @param ProductId: 产品ID
@@ -1105,6 +1565,46 @@ module TencentCloud
 
       # UpdateDeviceLogLevel返回参数结构体
       class UpdateDeviceLogLevelResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # UpdateDevicePSK请求参数结构体
+      class UpdateDevicePSKRequest < TencentCloud::Common::AbstractModel
+        # @param ProductId: 产品名
+        # @type ProductId: String
+        # @param DeviceName: 设备名
+        # @type DeviceName: String
+        # @param Psk: 设备的psk
+        # @type Psk: String
+
+        attr_accessor :ProductId, :DeviceName, :Psk
+        
+        def initialize(productid=nil, devicename=nil, psk=nil)
+          @ProductId = productid
+          @DeviceName = devicename
+          @Psk = psk
+        end
+
+        def deserialize(params)
+          @ProductId = params['ProductId']
+          @DeviceName = params['DeviceName']
+          @Psk = params['Psk']
+        end
+      end
+
+      # UpdateDevicePSK返回参数结构体
+      class UpdateDevicePSKResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -1185,6 +1685,94 @@ module TencentCloud
 
       # UpdatePrivateCA返回参数结构体
       class UpdatePrivateCAResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # UpdateProductDynamicRegister请求参数结构体
+      class UpdateProductDynamicRegisterRequest < TencentCloud::Common::AbstractModel
+        # @param ProductId: 产品Id
+        # @type ProductId: String
+        # @param RegisterType: 动态注册类型，0-关闭 1-预创建设备 2-自动创建设备
+        # @type RegisterType: Integer
+        # @param RegisterLimit: 动态注册设备上限
+        # @type RegisterLimit: Integer
+
+        attr_accessor :ProductId, :RegisterType, :RegisterLimit
+        
+        def initialize(productid=nil, registertype=nil, registerlimit=nil)
+          @ProductId = productid
+          @RegisterType = registertype
+          @RegisterLimit = registerlimit
+        end
+
+        def deserialize(params)
+          @ProductId = params['ProductId']
+          @RegisterType = params['RegisterType']
+          @RegisterLimit = params['RegisterLimit']
+        end
+      end
+
+      # UpdateProductDynamicRegister返回参数结构体
+      class UpdateProductDynamicRegisterResponse < TencentCloud::Common::AbstractModel
+        # @param RegisterType: 动态注册类型，0-关闭 1-预创建设备 2-自动创建设备
+        # @type RegisterType: Integer
+        # @param ProductSecret: 动态注册产品密钥
+        # @type ProductSecret: String
+        # @param RegisterLimit: 动态注册设备上限
+        # @type RegisterLimit: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RegisterType, :ProductSecret, :RegisterLimit, :RequestId
+        
+        def initialize(registertype=nil, productsecret=nil, registerlimit=nil, requestid=nil)
+          @RegisterType = registertype
+          @ProductSecret = productsecret
+          @RegisterLimit = registerlimit
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RegisterType = params['RegisterType']
+          @ProductSecret = params['ProductSecret']
+          @RegisterLimit = params['RegisterLimit']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # UpdateProductPrivateCA请求参数结构体
+      class UpdateProductPrivateCARequest < TencentCloud::Common::AbstractModel
+        # @param ProductId: 产品ID
+        # @type ProductId: String
+        # @param CertName: 私有CA证书名称
+        # @type CertName: String
+
+        attr_accessor :ProductId, :CertName
+        
+        def initialize(productid=nil, certname=nil)
+          @ProductId = productid
+          @CertName = certname
+        end
+
+        def deserialize(params)
+          @ProductId = params['ProductId']
+          @CertName = params['CertName']
+        end
+      end
+
+      # UpdateProductPrivateCA返回参数结构体
+      class UpdateProductPrivateCAResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 

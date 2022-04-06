@@ -2946,14 +2946,12 @@ module TencentCloud
         # @type Warn: Array
         # @param Image: 证件图片
         # @type Image: String
-        # @param AdvancedInfo: 扩展字段：
+        # @param AdvancedInfo: 此字段为扩展字段。
+        # 返回字段识别结果的置信度，格式如下
         # {
-        #     ID:{
-        #         Confidence:0.9999
-        #     },
-        #     Name:{
-        #         Confidence:0.9996
-        #     }
+        #   字段名:{
+        #     Confidence:0.9999
+        #   }
         # }
         # @type AdvancedInfo: String
         # @param Type: 证件类型

@@ -2737,7 +2737,7 @@ module TencentCloud
       class CreateFlowLogRequest < TencentCloud::Common::AbstractModel
         # @param FlowLogName: 流日志实例名字
         # @type FlowLogName: String
-        # @param ResourceType: 流日志所属资源类型，VPC|SUBNET|NETWORKINTERFACE|CCN
+        # @param ResourceType: 流日志所属资源类型，VPC|SUBNET|NETWORKINTERFACE|CCN|NAT|DCG
         # @type ResourceType: String
         # @param ResourceId: 资源唯一ID
         # @type ResourceId: String
@@ -11534,7 +11534,7 @@ module TencentCloud
         # @type FlowLogId: String
         # @param FlowLogName: 流日志实例名字。
         # @type FlowLogName: String
-        # @param ResourceType: 流日志所属资源类型，VPC|SUBNET|NETWORKINTERFACE|CCN。
+        # @param ResourceType: 流日志所属资源类型，VPC|SUBNET|NETWORKINTERFACE|CCN|NAT|DCG。
         # @type ResourceType: String
         # @param ResourceId: 资源唯一ID。
         # @type ResourceId: String

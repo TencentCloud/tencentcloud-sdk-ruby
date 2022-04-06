@@ -220,9 +220,9 @@ module TencentCloud
         # @type Query: String
         # @param Number: 告警对象序号。
         # @type Number: Integer
-        # @param StartTimeOffset: 查询范围起始时间相对当前的历史时间，取值为非正，最大值为0，最小值为-1440。
+        # @param StartTimeOffset: 查询范围起始时间相对于告警执行时间的偏移，单位为分钟，取值为非正，最大值为0，最小值为-1440。
         # @type StartTimeOffset: Integer
-        # @param EndTimeOffset: 查询范围终止时间相对当前的历史时间，取值为非正，须大于StartTimeOffset，最大值为0，最小值为-1440。
+        # @param EndTimeOffset: 查询范围终止时间相对于告警执行时间的偏移，单位为分钟，取值为非正，须大于StartTimeOffset，最大值为0，最小值为-1440。
         # @type EndTimeOffset: Integer
 
         attr_accessor :LogsetId, :LogsetName, :TopicId, :TopicName, :Query, :Number, :StartTimeOffset, :EndTimeOffset
