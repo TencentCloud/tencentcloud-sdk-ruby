@@ -53,6 +53,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 建立消息路由
+
+        # @param request: Request instance for BuildMessageRoute.
+        # @type request: :class:`Tencentcloud::iecp::V20210914::BuildMessageRouteRequest`
+        # @rtype: :class:`Tencentcloud::iecp::V20210914::BuildMessageRouteResponse`
+        def BuildMessageRoute(request)
+          body = send_request('BuildMessageRoute', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = BuildMessageRouteResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 创建可视化创建应用模板
 
         # @param request: Request instance for CreateApplicationVisualization.
@@ -255,6 +279,78 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = CreateEdgeUnitCloudResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 批量绑定设备到单元
+
+        # @param request: Request instance for CreateEdgeUnitDevices.
+        # @type request: :class:`Tencentcloud::iecp::V20210914::CreateEdgeUnitDevicesRequest`
+        # @rtype: :class:`Tencentcloud::iecp::V20210914::CreateEdgeUnitDevicesResponse`
+        def CreateEdgeUnitDevices(request)
+          body = send_request('CreateEdgeUnitDevices', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateEdgeUnitDevicesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 创建子设备
+
+        # @param request: Request instance for CreateIotDevice.
+        # @type request: :class:`Tencentcloud::iecp::V20210914::CreateIotDeviceRequest`
+        # @rtype: :class:`Tencentcloud::iecp::V20210914::CreateIotDeviceResponse`
+        def CreateIotDevice(request)
+          body = send_request('CreateIotDevice', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateIotDeviceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 创建消息路由
+
+        # @param request: Request instance for CreateMessageRoute.
+        # @type request: :class:`Tencentcloud::iecp::V20210914::CreateMessageRouteRequest`
+        # @rtype: :class:`Tencentcloud::iecp::V20210914::CreateMessageRouteResponse`
+        def CreateMessageRoute(request)
+          body = send_request('CreateMessageRoute', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateMessageRouteResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -557,6 +653,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 批量解绑单元设备
+
+        # @param request: Request instance for DeleteEdgeUnitDevices.
+        # @type request: :class:`Tencentcloud::iecp::V20210914::DeleteEdgeUnitDevicesRequest`
+        # @rtype: :class:`Tencentcloud::iecp::V20210914::DeleteEdgeUnitDevicesResponse`
+        def DeleteEdgeUnitDevices(request)
+          body = send_request('DeleteEdgeUnitDevices', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteEdgeUnitDevicesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 删除指定pod
 
         # @param request: Request instance for DeleteEdgeUnitPod.
@@ -581,6 +701,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 删除设备
+
+        # @param request: Request instance for DeleteIotDevice.
+        # @type request: :class:`Tencentcloud::iecp::V20210914::DeleteIotDeviceRequest`
+        # @rtype: :class:`Tencentcloud::iecp::V20210914::DeleteIotDeviceResponse`
+        def DeleteIotDevice(request)
+          body = send_request('DeleteIotDevice', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteIotDeviceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 批量删除设备
 
         # @param request: Request instance for DeleteIotDeviceBatch.
@@ -591,6 +735,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteIotDeviceBatchResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除消息路由
+
+        # @param request: Request instance for DeleteMessageRoute.
+        # @type request: :class:`Tencentcloud::iecp::V20210914::DeleteMessageRouteRequest`
+        # @rtype: :class:`Tencentcloud::iecp::V20210914::DeleteMessageRouteResponse`
+        def DeleteMessageRoute(request)
+          body = send_request('DeleteMessageRoute', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteMessageRouteResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1565,6 +1733,78 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 获取设备信息
+
+        # @param request: Request instance for DescribeIotDevice.
+        # @type request: :class:`Tencentcloud::iecp::V20210914::DescribeIotDeviceRequest`
+        # @rtype: :class:`Tencentcloud::iecp::V20210914::DescribeIotDeviceResponse`
+        def DescribeIotDevice(request)
+          body = send_request('DescribeIotDevice', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeIotDeviceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取设备列表信息
+
+        # @param request: Request instance for DescribeIotDevices.
+        # @type request: :class:`Tencentcloud::iecp::V20210914::DescribeIotDevicesRequest`
+        # @rtype: :class:`Tencentcloud::iecp::V20210914::DescribeIotDevicesResponse`
+        def DescribeIotDevices(request)
+          body = send_request('DescribeIotDevices', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeIotDevicesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取消息路由列表
+
+        # @param request: Request instance for DescribeMessageRouteList.
+        # @type request: :class:`Tencentcloud::iecp::V20210914::DescribeMessageRouteListRequest`
+        # @rtype: :class:`Tencentcloud::iecp::V20210914::DescribeMessageRouteListResponse`
+        def DescribeMessageRouteList(request)
+          body = send_request('DescribeMessageRouteList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeMessageRouteListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询边缘单元监控数据
 
         # @param request: Request instance for DescribeMonitorMetrics.
@@ -2117,6 +2357,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 修改设备信息
+
+        # @param request: Request instance for ModifyIotDevice.
+        # @type request: :class:`Tencentcloud::iecp::V20210914::ModifyIotDeviceRequest`
+        # @rtype: :class:`Tencentcloud::iecp::V20210914::ModifyIotDeviceResponse`
+        def ModifyIotDevice(request)
+          body = send_request('ModifyIotDevice', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyIotDeviceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 修改边缘单元NodeUnit模板
 
         # @param request: Request instance for ModifyNodeUnitTemplate.
@@ -2175,6 +2439,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = RedeployEdgeUnitApplicationResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 开关消息路由
+
+        # @param request: Request instance for SetRouteOnOff.
+        # @type request: :class:`Tencentcloud::iecp::V20210914::SetRouteOnOffRequest`
+        # @rtype: :class:`Tencentcloud::iecp::V20210914::SetRouteOnOffResponse`
+        def SetRouteOnOff(request)
+          body = send_request('SetRouteOnOff', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = SetRouteOnOffResponse.new
             model.deserialize(response['Response'])
             model
           else

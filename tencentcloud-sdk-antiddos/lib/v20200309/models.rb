@@ -3452,9 +3452,9 @@ module TencentCloud
         # @type Offset: Integer
         # @param Limit: 一页条数
         # @type Limit: Integer
-        # @param InstanceId: 指定特定实例Id
+        # @param InstanceId: 指定特定实例ID
         # @type InstanceId: String
-        # @param Ip: IP地址，普通高防ip要传该字段
+        # @param Ip: IP地址，普通高防IP要传该字段
         # @type Ip: String
         # @param Domain: 域名，普通高防IP要传该字段
         # @type Domain: String

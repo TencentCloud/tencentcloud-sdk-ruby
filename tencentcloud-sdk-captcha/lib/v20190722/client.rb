@@ -173,7 +173,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 核查验证码小程序插件票据结果
+        # 核查验证码票据结果(小程序插件)
 
         # @param request: Request instance for DescribeCaptchaMiniResult.
         # @type request: :class:`Tencentcloud::captcha::V20190722::DescribeCaptchaMiniResultRequest`
@@ -245,7 +245,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 核查验证码票据结果
+        # 核查验证码票据结果(Web|APP)
 
         # @param request: Request instance for DescribeCaptchaResult.
         # @type request: :class:`Tencentcloud::captcha::V20190722::DescribeCaptchaResultRequest`

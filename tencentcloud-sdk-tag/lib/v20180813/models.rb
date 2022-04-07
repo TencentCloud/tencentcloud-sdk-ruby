@@ -145,6 +145,46 @@ module TencentCloud
         end
       end
 
+      # CreateTags请求参数结构体
+      class CreateTagsRequest < TencentCloud::Common::AbstractModel
+        # @param Tags: 标签列表。
+        # N取值范围：0~9
+        # @type Tags: Array
+
+        attr_accessor :Tags
+        
+        def initialize(tags=nil)
+          @Tags = tags
+        end
+
+        def deserialize(params)
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
+            end
+          end
+        end
+      end
+
+      # CreateTags返回参数结构体
+      class CreateTagsResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DeleteResourceTag请求参数结构体
       class DeleteResourceTagRequest < TencentCloud::Common::AbstractModel
         # @param TagKey: 标签键
@@ -203,6 +243,46 @@ module TencentCloud
 
       # DeleteTag返回参数结构体
       class DeleteTagResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteTags请求参数结构体
+      class DeleteTagsRequest < TencentCloud::Common::AbstractModel
+        # @param Tags: 标签列表。
+        # N取值范围：0~9
+        # @type Tags: Array
+
+        attr_accessor :Tags
+        
+        def initialize(tags=nil)
+          @Tags = tags
+        end
+
+        def deserialize(params)
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
+            end
+          end
+        end
+      end
+
+      # DeleteTags返回参数结构体
+      class DeleteTagsResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -1111,6 +1191,269 @@ module TencentCloud
         end
       end
 
+      # 失败资源信息。
+      # 绑定或解绑资源标签时失败返回
+      class FailedResource < TencentCloud::Common::AbstractModel
+        # @param Resource: 失败的资源六段式
+        # @type Resource: String
+        # @param Code: 错误码
+        # @type Code: String
+        # @param Message: 错误信息
+        # @type Message: String
+
+        attr_accessor :Resource, :Code, :Message
+        
+        def initialize(resource=nil, code=nil, message=nil)
+          @Resource = resource
+          @Code = code
+          @Message = message
+        end
+
+        def deserialize(params)
+          @Resource = params['Resource']
+          @Code = params['Code']
+          @Message = params['Message']
+        end
+      end
+
+      # GetResources请求参数结构体
+      class GetResourcesRequest < TencentCloud::Common::AbstractModel
+        # @param ResourceList: 资源六段式列表。腾讯云使用资源六段式描述一个资源。
+        # 例如：ResourceList.1 = qcs::${ServiceType}:${Region}:${Account}:${ResourcePreifx}/${ResourceId}。
+        # 如果传入了此参数会返回所有匹配的资源列表，指定的MaxResults会失效。
+        # N取值范围：0~9
+        # @type ResourceList: Array
+        # @param TagFilters: 标签键和标签值。
+        # 指定多个标签，会查询同时绑定了该多个标签的资源。
+        # N取值范围：0~5。
+        # 每个TagFilters中的TagValue最多支持10个
+        # @type TagFilters: Array
+        # @param PaginationToken: 从上一页的响应中获取的下一页的Token值。
+        # 如果是第一次请求，设置为空。
+        # @type PaginationToken: String
+        # @param MaxResults: 每一页返回的数据最大条数，最大200。
+        # 缺省值：50。
+        # @type MaxResults: Integer
+
+        attr_accessor :ResourceList, :TagFilters, :PaginationToken, :MaxResults
+        
+        def initialize(resourcelist=nil, tagfilters=nil, paginationtoken=nil, maxresults=nil)
+          @ResourceList = resourcelist
+          @TagFilters = tagfilters
+          @PaginationToken = paginationtoken
+          @MaxResults = maxresults
+        end
+
+        def deserialize(params)
+          @ResourceList = params['ResourceList']
+          unless params['TagFilters'].nil?
+            @TagFilters = []
+            params['TagFilters'].each do |i|
+              tagfilter_tmp = TagFilter.new
+              tagfilter_tmp.deserialize(i)
+              @TagFilters << tagfilter_tmp
+            end
+          end
+          @PaginationToken = params['PaginationToken']
+          @MaxResults = params['MaxResults']
+        end
+      end
+
+      # GetResources返回参数结构体
+      class GetResourcesResponse < TencentCloud::Common::AbstractModel
+        # @param PaginationToken: 获取的下一页的Token值
+        # @type PaginationToken: String
+        # @param ResourceTagMappingList: 资源及关联的标签(键和值)列表
+        # @type ResourceTagMappingList: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :PaginationToken, :ResourceTagMappingList, :RequestId
+        
+        def initialize(paginationtoken=nil, resourcetagmappinglist=nil, requestid=nil)
+          @PaginationToken = paginationtoken
+          @ResourceTagMappingList = resourcetagmappinglist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @PaginationToken = params['PaginationToken']
+          unless params['ResourceTagMappingList'].nil?
+            @ResourceTagMappingList = []
+            params['ResourceTagMappingList'].each do |i|
+              resourcetagmapping_tmp = ResourceTagMapping.new
+              resourcetagmapping_tmp.deserialize(i)
+              @ResourceTagMappingList << resourcetagmapping_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # GetTagKeys请求参数结构体
+      class GetTagKeysRequest < TencentCloud::Common::AbstractModel
+        # @param PaginationToken: 从上一页的响应中获取的下一页的Token值。
+        # 如果是第一次请求，设置为空。
+        # @type PaginationToken: String
+        # @param MaxResults: 每一页返回的数据最大条数，最大1000。
+        # 缺省值：50。
+        # @type MaxResults: Integer
+
+        attr_accessor :PaginationToken, :MaxResults
+        
+        def initialize(paginationtoken=nil, maxresults=nil)
+          @PaginationToken = paginationtoken
+          @MaxResults = maxresults
+        end
+
+        def deserialize(params)
+          @PaginationToken = params['PaginationToken']
+          @MaxResults = params['MaxResults']
+        end
+      end
+
+      # GetTagKeys返回参数结构体
+      class GetTagKeysResponse < TencentCloud::Common::AbstractModel
+        # @param PaginationToken: 获取的下一页的Token值
+        # @type PaginationToken: String
+        # @param TagKeys: 标签键信息。
+        # @type TagKeys: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :PaginationToken, :TagKeys, :RequestId
+        
+        def initialize(paginationtoken=nil, tagkeys=nil, requestid=nil)
+          @PaginationToken = paginationtoken
+          @TagKeys = tagkeys
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @PaginationToken = params['PaginationToken']
+          @TagKeys = params['TagKeys']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # GetTagValues请求参数结构体
+      class GetTagValuesRequest < TencentCloud::Common::AbstractModel
+        # @param TagKeys: 标签键。
+        # 返回所有标签键列表对应的标签值。
+        # 最大长度：20
+        # @type TagKeys: Array
+        # @param PaginationToken: 从上一页的响应中获取的下一页的Token值。
+        # 如果是第一次请求，设置为空。
+        # @type PaginationToken: String
+        # @param MaxResults: 每一页返回的数据最大条数，最大1000。
+        # 缺省值：50。
+        # @type MaxResults: Integer
+
+        attr_accessor :TagKeys, :PaginationToken, :MaxResults
+        
+        def initialize(tagkeys=nil, paginationtoken=nil, maxresults=nil)
+          @TagKeys = tagkeys
+          @PaginationToken = paginationtoken
+          @MaxResults = maxresults
+        end
+
+        def deserialize(params)
+          @TagKeys = params['TagKeys']
+          @PaginationToken = params['PaginationToken']
+          @MaxResults = params['MaxResults']
+        end
+      end
+
+      # GetTagValues返回参数结构体
+      class GetTagValuesResponse < TencentCloud::Common::AbstractModel
+        # @param PaginationToken: 获取的下一页的Token值
+        # @type PaginationToken: String
+        # @param Tags: 标签列表。
+        # @type Tags: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :PaginationToken, :Tags, :RequestId
+        
+        def initialize(paginationtoken=nil, tags=nil, requestid=nil)
+          @PaginationToken = paginationtoken
+          @Tags = tags
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @PaginationToken = params['PaginationToken']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # GetTags请求参数结构体
+      class GetTagsRequest < TencentCloud::Common::AbstractModel
+        # @param PaginationToken: 从上一页的响应中获取的下一页的Token值。
+        # 如果是第一次请求，设置为空。
+        # @type PaginationToken: String
+        # @param MaxResults: 每一页返回的数据最大条数，最大1000。
+        # 缺省值：50。
+        # @type MaxResults: Integer
+        # @param TagKeys: 标签键。
+        # 返回所有标签键列表对应的标签。
+        # 最大长度：20
+        # @type TagKeys: Array
+
+        attr_accessor :PaginationToken, :MaxResults, :TagKeys
+        
+        def initialize(paginationtoken=nil, maxresults=nil, tagkeys=nil)
+          @PaginationToken = paginationtoken
+          @MaxResults = maxresults
+          @TagKeys = tagkeys
+        end
+
+        def deserialize(params)
+          @PaginationToken = params['PaginationToken']
+          @MaxResults = params['MaxResults']
+          @TagKeys = params['TagKeys']
+        end
+      end
+
+      # GetTags返回参数结构体
+      class GetTagsResponse < TencentCloud::Common::AbstractModel
+        # @param PaginationToken: 获取的下一页的Token值
+        # @type PaginationToken: String
+        # @param Tags: 标签列表。
+        # @type Tags: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :PaginationToken, :Tags, :RequestId
+        
+        def initialize(paginationtoken=nil, tags=nil, requestid=nil)
+          @PaginationToken = paginationtoken
+          @Tags = tags
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @PaginationToken = params['PaginationToken']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyResourceTags请求参数结构体
       class ModifyResourceTagsRequest < TencentCloud::Common::AbstractModel
         # @param Resource: [ 资源六段式描述 ](https://cloud.tencent.com/document/product/598/10606)
@@ -1290,6 +1633,34 @@ module TencentCloud
         end
       end
 
+      # 资源及关联的标签(键和值)。
+      class ResourceTagMapping < TencentCloud::Common::AbstractModel
+        # @param Resource: 资源六段式。腾讯云使用资源六段式描述一个资源。
+        # 例如：ResourceList.1 = qcs::${ServiceType}:${Region}:${Account}:${ResourcePreifx}/${ResourceId}。
+        # @type Resource: String
+        # @param Tags: 资源关联的标签列表
+        # @type Tags: Array
+
+        attr_accessor :Resource, :Tags
+        
+        def initialize(resource=nil, tags=nil)
+          @Resource = resource
+          @Tags = tags
+        end
+
+        def deserialize(params)
+          @Resource = params['Resource']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
+            end
+          end
+        end
+      end
+
       # 表示一个标签键值对
       class Tag < TencentCloud::Common::AbstractModel
         # @param TagKey: 标签键
@@ -1383,6 +1754,68 @@ module TencentCloud
         end
       end
 
+      # TagResources请求参数结构体
+      class TagResourcesRequest < TencentCloud::Common::AbstractModel
+        # @param ResourceList: 资源六段式列表。腾讯云使用资源六段式描述一个资源。可参考[访问管理](https://cloud.tencent.com/document/product/598/67350)-概览-接口列表-资源六段式信息
+        # 例如：ResourceList.1 = qcs::${ServiceType}:${Region}:${Account}:${ResourcePreifx}/${ResourceId}。
+        # N取值范围：0~9
+        # @type ResourceList: Array
+        # @param Tags: 标签键和标签值。
+        # 如果指定多个标签，则会为指定资源同时创建并绑定该多个标签。
+        # 同一个资源上的同一个标签键只能对应一个标签值。如果您尝试添加已有标签键，则对应的标签值会更新为新值。
+        # 如果标签不存在会为您自动创建标签。
+        # N取值范围：0~9
+        # @type Tags: Array
+
+        attr_accessor :ResourceList, :Tags
+        
+        def initialize(resourcelist=nil, tags=nil)
+          @ResourceList = resourcelist
+          @Tags = tags
+        end
+
+        def deserialize(params)
+          @ResourceList = params['ResourceList']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
+            end
+          end
+        end
+      end
+
+      # TagResources返回参数结构体
+      class TagResourcesResponse < TencentCloud::Common::AbstractModel
+        # @param FailedResources: 失败资源信息。
+        # 创建并绑定标签成功时，返回的FailedResources为空。
+        # 创建并绑定标签失败或部分失败时，返回的FailedResources会显示失败资源的详细信息。
+        # @type FailedResources: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :FailedResources, :RequestId
+        
+        def initialize(failedresources=nil, requestid=nil)
+          @FailedResources = failedresources
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['FailedResources'].nil?
+            @FailedResources = []
+            params['FailedResources'].each do |i|
+              failedresource_tmp = FailedResource.new
+              failedresource_tmp.deserialize(i)
+              @FailedResources << failedresource_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 表示一个标签键值对以及是否允许删除
       class TagWithDelete < TencentCloud::Common::AbstractModel
         # @param TagKey: 标签键
@@ -1404,6 +1837,58 @@ module TencentCloud
           @TagKey = params['TagKey']
           @TagValue = params['TagValue']
           @CanDelete = params['CanDelete']
+        end
+      end
+
+      # UnTagResources请求参数结构体
+      class UnTagResourcesRequest < TencentCloud::Common::AbstractModel
+        # @param ResourceList: 资源六段式列表。腾讯云使用资源六段式描述一个资源。可参考[访问管理](https://cloud.tencent.com/document/product/598/67350)-概览-接口列表-资源六段式信息
+        # 例如：ResourceList.1 = qcs::${ServiceType}:${Region}:${Account}:${ResourcePreifx}/${ResourceId}。
+        # N取值范围：0~9
+        # @type ResourceList: Array
+        # @param TagKeys: 标签键。
+        # 取值范围：0~9
+        # @type TagKeys: Array
+
+        attr_accessor :ResourceList, :TagKeys
+        
+        def initialize(resourcelist=nil, tagkeys=nil)
+          @ResourceList = resourcelist
+          @TagKeys = tagkeys
+        end
+
+        def deserialize(params)
+          @ResourceList = params['ResourceList']
+          @TagKeys = params['TagKeys']
+        end
+      end
+
+      # UnTagResources返回参数结构体
+      class UnTagResourcesResponse < TencentCloud::Common::AbstractModel
+        # @param FailedResources: 失败资源信息。
+        # 解绑标签成功时，返回的FailedResources为空。
+        # 解绑标签失败或部分失败时，返回的FailedResources会显示失败资源的详细信息。
+        # @type FailedResources: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :FailedResources, :RequestId
+        
+        def initialize(failedresources=nil, requestid=nil)
+          @FailedResources = failedresources
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['FailedResources'].nil?
+            @FailedResources = []
+            params['FailedResources'].each do |i|
+              failedresource_tmp = FailedResource.new
+              failedresource_tmp.deserialize(i)
+              @FailedResources << failedresource_tmp
+            end
+          end
+          @RequestId = params['RequestId']
         end
       end
 

@@ -827,10 +827,13 @@ module TencentCloud
         # @param MaxMsgBacklogSize: 最大消息堆积大小（字节）
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MaxMsgBacklogSize: Integer
+        # @param RetentionSizeInMB: 队列可回溯存储空间，取值范围1024MB - 10240MB，0表示不开启
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RetentionSizeInMB: Integer
 
-        attr_accessor :QueueId, :QueueName, :Qps, :Bps, :MaxDelaySeconds, :MaxMsgHeapNum, :PollingWaitSeconds, :MsgRetentionSeconds, :VisibilityTimeout, :MaxMsgSize, :RewindSeconds, :CreateTime, :LastModifyTime, :ActiveMsgNum, :InactiveMsgNum, :DelayMsgNum, :RewindMsgNum, :MinMsgTime, :Transaction, :DeadLetterSource, :DeadLetterPolicy, :TransactionPolicy, :CreateUin, :Tags, :Trace, :TenantId, :NamespaceName, :Status, :MaxUnackedMsgNum, :MaxMsgBacklogSize
+        attr_accessor :QueueId, :QueueName, :Qps, :Bps, :MaxDelaySeconds, :MaxMsgHeapNum, :PollingWaitSeconds, :MsgRetentionSeconds, :VisibilityTimeout, :MaxMsgSize, :RewindSeconds, :CreateTime, :LastModifyTime, :ActiveMsgNum, :InactiveMsgNum, :DelayMsgNum, :RewindMsgNum, :MinMsgTime, :Transaction, :DeadLetterSource, :DeadLetterPolicy, :TransactionPolicy, :CreateUin, :Tags, :Trace, :TenantId, :NamespaceName, :Status, :MaxUnackedMsgNum, :MaxMsgBacklogSize, :RetentionSizeInMB
         
-        def initialize(queueid=nil, queuename=nil, qps=nil, bps=nil, maxdelayseconds=nil, maxmsgheapnum=nil, pollingwaitseconds=nil, msgretentionseconds=nil, visibilitytimeout=nil, maxmsgsize=nil, rewindseconds=nil, createtime=nil, lastmodifytime=nil, activemsgnum=nil, inactivemsgnum=nil, delaymsgnum=nil, rewindmsgnum=nil, minmsgtime=nil, transaction=nil, deadlettersource=nil, deadletterpolicy=nil, transactionpolicy=nil, createuin=nil, tags=nil, trace=nil, tenantid=nil, namespacename=nil, status=nil, maxunackedmsgnum=nil, maxmsgbacklogsize=nil)
+        def initialize(queueid=nil, queuename=nil, qps=nil, bps=nil, maxdelayseconds=nil, maxmsgheapnum=nil, pollingwaitseconds=nil, msgretentionseconds=nil, visibilitytimeout=nil, maxmsgsize=nil, rewindseconds=nil, createtime=nil, lastmodifytime=nil, activemsgnum=nil, inactivemsgnum=nil, delaymsgnum=nil, rewindmsgnum=nil, minmsgtime=nil, transaction=nil, deadlettersource=nil, deadletterpolicy=nil, transactionpolicy=nil, createuin=nil, tags=nil, trace=nil, tenantid=nil, namespacename=nil, status=nil, maxunackedmsgnum=nil, maxmsgbacklogsize=nil, retentionsizeinmb=nil)
           @QueueId = queueid
           @QueueName = queuename
           @Qps = qps
@@ -861,6 +864,7 @@ module TencentCloud
           @Status = status
           @MaxUnackedMsgNum = maxunackedmsgnum
           @MaxMsgBacklogSize = maxmsgbacklogsize
+          @RetentionSizeInMB = retentionsizeinmb
         end
 
         def deserialize(params)
@@ -914,6 +918,7 @@ module TencentCloud
           @Status = params['Status']
           @MaxUnackedMsgNum = params['MaxUnackedMsgNum']
           @MaxMsgBacklogSize = params['MaxMsgBacklogSize']
+          @RetentionSizeInMB = params['RetentionSizeInMB']
         end
       end
 
@@ -1039,10 +1044,13 @@ module TencentCloud
         # @param NamespaceName: 命名空间名称
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NamespaceName: String
+        # @param Status: 集群状态，0:创建中，1:正常，2:销毁中，3:已删除，4: 隔离中，5:创建失败，6: 删除失败
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: Integer
 
-        attr_accessor :TopicId, :TopicName, :MsgRetentionSeconds, :MaxMsgSize, :Qps, :FilterType, :CreateTime, :LastModifyTime, :MsgCount, :CreateUin, :Tags, :Trace, :TenantId, :NamespaceName
+        attr_accessor :TopicId, :TopicName, :MsgRetentionSeconds, :MaxMsgSize, :Qps, :FilterType, :CreateTime, :LastModifyTime, :MsgCount, :CreateUin, :Tags, :Trace, :TenantId, :NamespaceName, :Status
         
-        def initialize(topicid=nil, topicname=nil, msgretentionseconds=nil, maxmsgsize=nil, qps=nil, filtertype=nil, createtime=nil, lastmodifytime=nil, msgcount=nil, createuin=nil, tags=nil, trace=nil, tenantid=nil, namespacename=nil)
+        def initialize(topicid=nil, topicname=nil, msgretentionseconds=nil, maxmsgsize=nil, qps=nil, filtertype=nil, createtime=nil, lastmodifytime=nil, msgcount=nil, createuin=nil, tags=nil, trace=nil, tenantid=nil, namespacename=nil, status=nil)
           @TopicId = topicid
           @TopicName = topicname
           @MsgRetentionSeconds = msgretentionseconds
@@ -1057,6 +1065,7 @@ module TencentCloud
           @Trace = trace
           @TenantId = tenantid
           @NamespaceName = namespacename
+          @Status = status
         end
 
         def deserialize(params)
@@ -1081,6 +1090,7 @@ module TencentCloud
           @Trace = params['Trace']
           @TenantId = params['TenantId']
           @NamespaceName = params['NamespaceName']
+          @Status = params['Status']
         end
       end
 
@@ -6647,10 +6657,13 @@ module TencentCloud
         # @type PublicEndPoint: String
         # @param VpcEndPoint: VPC接入地址
         # @type VpcEndPoint: String
+        # @param SupportNamespaceEndpoint: 是否支持命名空间接入点
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SupportNamespaceEndpoint: Boolean
 
-        attr_accessor :ClusterId, :ClusterName, :Region, :CreateTime, :Remark, :PublicEndPoint, :VpcEndPoint
+        attr_accessor :ClusterId, :ClusterName, :Region, :CreateTime, :Remark, :PublicEndPoint, :VpcEndPoint, :SupportNamespaceEndpoint
         
-        def initialize(clusterid=nil, clustername=nil, region=nil, createtime=nil, remark=nil, publicendpoint=nil, vpcendpoint=nil)
+        def initialize(clusterid=nil, clustername=nil, region=nil, createtime=nil, remark=nil, publicendpoint=nil, vpcendpoint=nil, supportnamespaceendpoint=nil)
           @ClusterId = clusterid
           @ClusterName = clustername
           @Region = region
@@ -6658,6 +6671,7 @@ module TencentCloud
           @Remark = remark
           @PublicEndPoint = publicendpoint
           @VpcEndPoint = vpcendpoint
+          @SupportNamespaceEndpoint = supportnamespaceendpoint
         end
 
         def deserialize(params)
@@ -6668,6 +6682,7 @@ module TencentCloud
           @Remark = params['Remark']
           @PublicEndPoint = params['PublicEndPoint']
           @VpcEndPoint = params['VpcEndPoint']
+          @SupportNamespaceEndpoint = params['SupportNamespaceEndpoint']
         end
       end
 
@@ -6777,14 +6792,22 @@ module TencentCloud
         # @param Remark: 说明
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Remark: String
+        # @param PublicEndpoint: 公网接入点地址
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PublicEndpoint: String
+        # @param VpcEndpoint: VPC接入点地址
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VpcEndpoint: String
 
-        attr_accessor :NamespaceId, :Ttl, :RetentionTime, :Remark
+        attr_accessor :NamespaceId, :Ttl, :RetentionTime, :Remark, :PublicEndpoint, :VpcEndpoint
         
-        def initialize(namespaceid=nil, ttl=nil, retentiontime=nil, remark=nil)
+        def initialize(namespaceid=nil, ttl=nil, retentiontime=nil, remark=nil, publicendpoint=nil, vpcendpoint=nil)
           @NamespaceId = namespaceid
           @Ttl = ttl
           @RetentionTime = retentiontime
           @Remark = remark
+          @PublicEndpoint = publicendpoint
+          @VpcEndpoint = vpcendpoint
         end
 
         def deserialize(params)
@@ -6792,6 +6815,8 @@ module TencentCloud
           @Ttl = params['Ttl']
           @RetentionTime = params['RetentionTime']
           @Remark = params['Remark']
+          @PublicEndpoint = params['PublicEndpoint']
+          @VpcEndpoint = params['VpcEndpoint']
         end
       end
 

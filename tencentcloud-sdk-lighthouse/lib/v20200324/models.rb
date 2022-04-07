@@ -625,10 +625,12 @@ module TencentCloud
         # @type LoginConfiguration: :class:`Tencentcloud::Lighthouse.v20200324.models.LoginConfiguration`
         # @param Containers: 要创建的容器配置列表。
         # @type Containers: Array
+        # @param AutoVoucher: 是否自动使用代金券。默认不使用。
+        # @type AutoVoucher: Boolean
 
-        attr_accessor :BundleId, :BlueprintId, :InstanceChargePrepaid, :InstanceName, :InstanceCount, :Zones, :DryRun, :ClientToken, :LoginConfiguration, :Containers
+        attr_accessor :BundleId, :BlueprintId, :InstanceChargePrepaid, :InstanceName, :InstanceCount, :Zones, :DryRun, :ClientToken, :LoginConfiguration, :Containers, :AutoVoucher
         
-        def initialize(bundleid=nil, blueprintid=nil, instancechargeprepaid=nil, instancename=nil, instancecount=nil, zones=nil, dryrun=nil, clienttoken=nil, loginconfiguration=nil, containers=nil)
+        def initialize(bundleid=nil, blueprintid=nil, instancechargeprepaid=nil, instancename=nil, instancecount=nil, zones=nil, dryrun=nil, clienttoken=nil, loginconfiguration=nil, containers=nil, autovoucher=nil)
           @BundleId = bundleid
           @BlueprintId = blueprintid
           @InstanceChargePrepaid = instancechargeprepaid
@@ -639,6 +641,7 @@ module TencentCloud
           @ClientToken = clienttoken
           @LoginConfiguration = loginconfiguration
           @Containers = containers
+          @AutoVoucher = autovoucher
         end
 
         def deserialize(params)
@@ -665,6 +668,7 @@ module TencentCloud
               @Containers << dockercontainerconfiguration_tmp
             end
           end
+          @AutoVoucher = params['AutoVoucher']
         end
       end
 

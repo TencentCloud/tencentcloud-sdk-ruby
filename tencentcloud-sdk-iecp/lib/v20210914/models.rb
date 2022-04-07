@@ -277,6 +277,66 @@ module TencentCloud
         end
       end
 
+      # BuildMessageRoute请求参数结构体
+      class BuildMessageRouteRequest < TencentCloud::Common::AbstractModel
+        # @param RouteName: 路由名字
+        # @type RouteName: String
+        # @param SourceProductID: 源产品id
+        # @type SourceProductID: String
+        # @param SourceDeviceNameList: 源设备名列表
+        # @type SourceDeviceNameList: Array
+        # @param TopicFilter: 第一个字符为 "0"或"1"，"1"表示自定义topic
+        # @type TopicFilter: String
+        # @param Mode: http或mqtt-broker
+        # @type Mode: String
+        # @param SourceUnitIDList: 源单元id列表
+        # @type SourceUnitIDList: Array
+        # @param Descript: 描述
+        # @type Descript: String
+        # @param TargetOptions: 无
+        # @type TargetOptions: String
+
+        attr_accessor :RouteName, :SourceProductID, :SourceDeviceNameList, :TopicFilter, :Mode, :SourceUnitIDList, :Descript, :TargetOptions
+        
+        def initialize(routename=nil, sourceproductid=nil, sourcedevicenamelist=nil, topicfilter=nil, mode=nil, sourceunitidlist=nil, descript=nil, targetoptions=nil)
+          @RouteName = routename
+          @SourceProductID = sourceproductid
+          @SourceDeviceNameList = sourcedevicenamelist
+          @TopicFilter = topicfilter
+          @Mode = mode
+          @SourceUnitIDList = sourceunitidlist
+          @Descript = descript
+          @TargetOptions = targetoptions
+        end
+
+        def deserialize(params)
+          @RouteName = params['RouteName']
+          @SourceProductID = params['SourceProductID']
+          @SourceDeviceNameList = params['SourceDeviceNameList']
+          @TopicFilter = params['TopicFilter']
+          @Mode = params['Mode']
+          @SourceUnitIDList = params['SourceUnitIDList']
+          @Descript = params['Descript']
+          @TargetOptions = params['TargetOptions']
+        end
+      end
+
+      # BuildMessageRoute返回参数结构体
+      class BuildMessageRouteResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ConfigMap基本信息
       class ConfigMapBasicInfo < TencentCloud::Common::AbstractModel
         # @param Name: 名称
@@ -1032,6 +1092,130 @@ module TencentCloud
         end
       end
 
+      # CreateEdgeUnitDevices请求参数结构体
+      class CreateEdgeUnitDevicesRequest < TencentCloud::Common::AbstractModel
+        # @param EdgeUnitId: 无
+        # @type EdgeUnitId: Integer
+        # @param ProductId: 无
+        # @type ProductId: String
+        # @param DeviceNames: 无
+        # @type DeviceNames: Array
+
+        attr_accessor :EdgeUnitId, :ProductId, :DeviceNames
+        
+        def initialize(edgeunitid=nil, productid=nil, devicenames=nil)
+          @EdgeUnitId = edgeunitid
+          @ProductId = productid
+          @DeviceNames = devicenames
+        end
+
+        def deserialize(params)
+          @EdgeUnitId = params['EdgeUnitId']
+          @ProductId = params['ProductId']
+          @DeviceNames = params['DeviceNames']
+        end
+      end
+
+      # CreateEdgeUnitDevices返回参数结构体
+      class CreateEdgeUnitDevicesResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateIotDevice请求参数结构体
+      class CreateIotDeviceRequest < TencentCloud::Common::AbstractModel
+        # @param DeviceName: 设备名称
+        # @type DeviceName: String
+        # @param ProductId: 设备所属的产品id
+        # @type ProductId: String
+        # @param Description: 描述
+        # @type Description: String
+        # @param UnitID: 无
+        # @type UnitID: Integer
+
+        attr_accessor :DeviceName, :ProductId, :Description, :UnitID
+        
+        def initialize(devicename=nil, productid=nil, description=nil, unitid=nil)
+          @DeviceName = devicename
+          @ProductId = productid
+          @Description = description
+          @UnitID = unitid
+        end
+
+        def deserialize(params)
+          @DeviceName = params['DeviceName']
+          @ProductId = params['ProductId']
+          @Description = params['Description']
+          @UnitID = params['UnitID']
+        end
+      end
+
+      # CreateIotDevice返回参数结构体
+      class CreateIotDeviceResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateMessageRoute请求参数结构体
+      class CreateMessageRouteRequest < TencentCloud::Common::AbstractModel
+        # @param RouteName: 路由名称
+        # @type RouteName: String
+        # @param Descript: 路由备注
+        # @type Descript: String
+
+        attr_accessor :RouteName, :Descript
+        
+        def initialize(routename=nil, descript=nil)
+          @RouteName = routename
+          @Descript = descript
+        end
+
+        def deserialize(params)
+          @RouteName = params['RouteName']
+          @Descript = params['Descript']
+        end
+      end
+
+      # CreateMessageRoute返回参数结构体
+      class CreateMessageRouteResponse < TencentCloud::Common::AbstractModel
+        # @param RouteID: 路由id
+        # @type RouteID: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RouteID, :RequestId
+        
+        def initialize(routeid=nil, requestid=nil)
+          @RouteID = routeid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RouteID = params['RouteID']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateNamespace请求参数结构体
       class CreateNamespaceRequest < TencentCloud::Common::AbstractModel
         # @param EdgeUnitID: 单元ID
@@ -1553,6 +1737,69 @@ module TencentCloud
         end
       end
 
+      # 从单元批量解绑设备
+      class DeleteEdgeUnitDevicesDevice < TencentCloud::Common::AbstractModel
+        # @param ProductId: 无
+        # @type ProductId: String
+        # @param DeviceName: 无
+        # @type DeviceName: String
+
+        attr_accessor :ProductId, :DeviceName
+        
+        def initialize(productid=nil, devicename=nil)
+          @ProductId = productid
+          @DeviceName = devicename
+        end
+
+        def deserialize(params)
+          @ProductId = params['ProductId']
+          @DeviceName = params['DeviceName']
+        end
+      end
+
+      # DeleteEdgeUnitDevices请求参数结构体
+      class DeleteEdgeUnitDevicesRequest < TencentCloud::Common::AbstractModel
+        # @param EdgeUnitId: 无
+        # @type EdgeUnitId: Integer
+        # @param Devices: 无
+        # @type Devices: Array
+
+        attr_accessor :EdgeUnitId, :Devices
+        
+        def initialize(edgeunitid=nil, devices=nil)
+          @EdgeUnitId = edgeunitid
+          @Devices = devices
+        end
+
+        def deserialize(params)
+          @EdgeUnitId = params['EdgeUnitId']
+          unless params['Devices'].nil?
+            @Devices = []
+            params['Devices'].each do |i|
+              deleteedgeunitdevicesdevice_tmp = DeleteEdgeUnitDevicesDevice.new
+              deleteedgeunitdevicesdevice_tmp.deserialize(i)
+              @Devices << deleteedgeunitdevicesdevice_tmp
+            end
+          end
+        end
+      end
+
+      # DeleteEdgeUnitDevices返回参数结构体
+      class DeleteEdgeUnitDevicesResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DeleteEdgeUnitPod请求参数结构体
       class DeleteEdgeUnitPodRequest < TencentCloud::Common::AbstractModel
         # @param ClusterID: 集群ID
@@ -1611,6 +1858,70 @@ module TencentCloud
 
       # DeleteIotDeviceBatch返回参数结构体
       class DeleteIotDeviceBatchResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteIotDevice请求参数结构体
+      class DeleteIotDeviceRequest < TencentCloud::Common::AbstractModel
+        # @param DeviceId: 设备id
+        # @type DeviceId: Integer
+
+        attr_accessor :DeviceId
+        
+        def initialize(deviceid=nil)
+          @DeviceId = deviceid
+        end
+
+        def deserialize(params)
+          @DeviceId = params['DeviceId']
+        end
+      end
+
+      # DeleteIotDevice返回参数结构体
+      class DeleteIotDeviceResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteMessageRoute请求参数结构体
+      class DeleteMessageRouteRequest < TencentCloud::Common::AbstractModel
+        # @param RouteID: 无
+        # @type RouteID: Integer
+
+        attr_accessor :RouteID
+        
+        def initialize(routeid=nil)
+          @RouteID = routeid
+        end
+
+        def deserialize(params)
+          @RouteID = params['RouteID']
+        end
+      end
+
+      # DeleteMessageRoute返回参数结构体
+      class DeleteMessageRouteResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -4090,6 +4401,252 @@ module TencentCloud
         end
       end
 
+      # DescribeIotDevice请求参数结构体
+      class DescribeIotDeviceRequest < TencentCloud::Common::AbstractModel
+        # @param DeviceId: 设备id，传0值表示此参数无效
+        # @type DeviceId: Integer
+        # @param ProductID: 无
+        # @type ProductID: String
+        # @param DeviceName: 无
+        # @type DeviceName: String
+
+        attr_accessor :DeviceId, :ProductID, :DeviceName
+        
+        def initialize(deviceid=nil, productid=nil, devicename=nil)
+          @DeviceId = deviceid
+          @ProductID = productid
+          @DeviceName = devicename
+        end
+
+        def deserialize(params)
+          @DeviceId = params['DeviceId']
+          @ProductID = params['ProductID']
+          @DeviceName = params['DeviceName']
+        end
+      end
+
+      # DescribeIotDevice返回参数结构体
+      class DescribeIotDeviceResponse < TencentCloud::Common::AbstractModel
+        # @param Id: 设备id
+        # @type Id: Integer
+        # @param Name: 设备名称
+        # @type Name: String
+        # @param Version: 版本号
+        # @type Version: String
+        # @param Cert: ssl证书
+        # @type Cert: String
+        # @param PrivateKey: ssl私钥
+        # @type PrivateKey: String
+        # @param Psk: psk认证密钥
+        # @type Psk: String
+        # @param Disabled: 设备是否打开
+        # @type Disabled: Boolean
+        # @param LogSetting: 设备日志
+        # @type LogSetting: Integer
+        # @param LogLevel: 设备日志级别
+        # @type LogLevel: Integer
+        # @param UserName: mqtt参数
+        # @type UserName: String
+        # @param Password: mqtt参数
+        # @type Password: String
+        # @param ClientID: mqtt参数
+        # @type ClientID: String
+        # @param PskHex: 16进制的psk格式
+        # @type PskHex: String
+        # @param Description: 描述
+        # @type Description: String
+        # @param Status: 设备在线状态
+        # @type Status: Integer
+        # @param Region: 无
+        # @type Region: String
+        # @param UnitID: 无
+        # @type UnitID: Integer
+        # @param UnitName: 无
+        # @type UnitName: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Id, :Name, :Version, :Cert, :PrivateKey, :Psk, :Disabled, :LogSetting, :LogLevel, :UserName, :Password, :ClientID, :PskHex, :Description, :Status, :Region, :UnitID, :UnitName, :RequestId
+        
+        def initialize(id=nil, name=nil, version=nil, cert=nil, privatekey=nil, psk=nil, disabled=nil, logsetting=nil, loglevel=nil, username=nil, password=nil, clientid=nil, pskhex=nil, description=nil, status=nil, region=nil, unitid=nil, unitname=nil, requestid=nil)
+          @Id = id
+          @Name = name
+          @Version = version
+          @Cert = cert
+          @PrivateKey = privatekey
+          @Psk = psk
+          @Disabled = disabled
+          @LogSetting = logsetting
+          @LogLevel = loglevel
+          @UserName = username
+          @Password = password
+          @ClientID = clientid
+          @PskHex = pskhex
+          @Description = description
+          @Status = status
+          @Region = region
+          @UnitID = unitid
+          @UnitName = unitname
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @Name = params['Name']
+          @Version = params['Version']
+          @Cert = params['Cert']
+          @PrivateKey = params['PrivateKey']
+          @Psk = params['Psk']
+          @Disabled = params['Disabled']
+          @LogSetting = params['LogSetting']
+          @LogLevel = params['LogLevel']
+          @UserName = params['UserName']
+          @Password = params['Password']
+          @ClientID = params['ClientID']
+          @PskHex = params['PskHex']
+          @Description = params['Description']
+          @Status = params['Status']
+          @Region = params['Region']
+          @UnitID = params['UnitID']
+          @UnitName = params['UnitName']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeIotDevices请求参数结构体
+      class DescribeIotDevicesRequest < TencentCloud::Common::AbstractModel
+        # @param Offset: 页偏移
+        # @type Offset: Integer
+        # @param Limit: 每页数量
+        # @type Limit: Integer
+        # @param ProductId: 产品id
+        # @type ProductId: String
+        # @param NamePattern: 设备名称模糊查找
+        # @type NamePattern: String
+        # @param Versions: 版本列表
+        # @type Versions: Array
+        # @param Order: ASC 或 DESC
+        # @type Order: String
+
+        attr_accessor :Offset, :Limit, :ProductId, :NamePattern, :Versions, :Order
+        
+        def initialize(offset=nil, limit=nil, productid=nil, namepattern=nil, versions=nil, order=nil)
+          @Offset = offset
+          @Limit = limit
+          @ProductId = productid
+          @NamePattern = namepattern
+          @Versions = versions
+          @Order = order
+        end
+
+        def deserialize(params)
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @ProductId = params['ProductId']
+          @NamePattern = params['NamePattern']
+          @Versions = params['Versions']
+          @Order = params['Order']
+        end
+      end
+
+      # DescribeIotDevices返回参数结构体
+      class DescribeIotDevicesResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 符合查找条件的总数量
+        # @type TotalCount: Integer
+        # @param DeviceSet: 设备列表
+        # @type DeviceSet: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :DeviceSet, :RequestId
+        
+        def initialize(totalcount=nil, deviceset=nil, requestid=nil)
+          @TotalCount = totalcount
+          @DeviceSet = deviceset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['DeviceSet'].nil?
+            @DeviceSet = []
+            params['DeviceSet'].each do |i|
+              iotdevicesinfo_tmp = IotDevicesInfo.new
+              iotdevicesinfo_tmp.deserialize(i)
+              @DeviceSet << iotdevicesinfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeMessageRouteList请求参数结构体
+      class DescribeMessageRouteListRequest < TencentCloud::Common::AbstractModel
+        # @param Limit: 无
+        # @type Limit: Integer
+        # @param Offset: 无
+        # @type Offset: Integer
+        # @param Filter: 无
+        # @type Filter: String
+        # @param StartTime: 无
+        # @type StartTime: String
+        # @param EndTime: 无
+        # @type EndTime: String
+        # @param Order: 无
+        # @type Order: String
+
+        attr_accessor :Limit, :Offset, :Filter, :StartTime, :EndTime, :Order
+        
+        def initialize(limit=nil, offset=nil, filter=nil, starttime=nil, endtime=nil, order=nil)
+          @Limit = limit
+          @Offset = offset
+          @Filter = filter
+          @StartTime = starttime
+          @EndTime = endtime
+          @Order = order
+        end
+
+        def deserialize(params)
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          @Filter = params['Filter']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @Order = params['Order']
+        end
+      end
+
+      # DescribeMessageRouteList返回参数结构体
+      class DescribeMessageRouteListResponse < TencentCloud::Common::AbstractModel
+        # @param RouteList: 无
+        # @type RouteList: Array
+        # @param TotalCount: 无
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RouteList, :TotalCount, :RequestId
+        
+        def initialize(routelist=nil, totalcount=nil, requestid=nil)
+          @RouteList = routelist
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['RouteList'].nil?
+            @RouteList = []
+            params['RouteList'].each do |i|
+              routeinfo_tmp = RouteInfo.new
+              routeinfo_tmp.deserialize(i)
+              @RouteList << routeinfo_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeMonitorMetrics请求参数结构体
       class DescribeMonitorMetricsRequest < TencentCloud::Common::AbstractModel
         # @param EdgeUnitId: IECP边缘单元ID
@@ -5768,6 +6325,66 @@ module TencentCloud
         end
       end
 
+      # 子设备列表信息
+      class IotDevicesInfo < TencentCloud::Common::AbstractModel
+        # @param Id: 设备id
+        # @type Id: Integer
+        # @param Name: 设备名称
+        # @type Name: String
+        # @param Status: 设备状态
+        # @type Status: Integer
+        # @param Disabled: 设备打开状态
+        # @type Disabled: Boolean
+        # @param Description: 描述
+        # @type Description: String
+        # @param CreateTime: 设备创建时间
+        # @type CreateTime: String
+        # @param LastOnlineTime: 最后在线时间
+        # @type LastOnlineTime: String
+        # @param IsBound: 设备是否绑定到节点
+        # @type IsBound: Boolean
+        # @param Version: 设备版本
+        # @type Version: String
+        # @param Region: 无
+        # @type Region: String
+        # @param UnitID: 无
+        # @type UnitID: Integer
+        # @param UnitName: 无
+        # @type UnitName: String
+
+        attr_accessor :Id, :Name, :Status, :Disabled, :Description, :CreateTime, :LastOnlineTime, :IsBound, :Version, :Region, :UnitID, :UnitName
+        
+        def initialize(id=nil, name=nil, status=nil, disabled=nil, description=nil, createtime=nil, lastonlinetime=nil, isbound=nil, version=nil, region=nil, unitid=nil, unitname=nil)
+          @Id = id
+          @Name = name
+          @Status = status
+          @Disabled = disabled
+          @Description = description
+          @CreateTime = createtime
+          @LastOnlineTime = lastonlinetime
+          @IsBound = isbound
+          @Version = version
+          @Region = region
+          @UnitID = unitid
+          @UnitName = unitname
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @Name = params['Name']
+          @Status = params['Status']
+          @Disabled = params['Disabled']
+          @Description = params['Description']
+          @CreateTime = params['CreateTime']
+          @LastOnlineTime = params['LastOnlineTime']
+          @IsBound = params['IsBound']
+          @Version = params['Version']
+          @Region = params['Region']
+          @UnitID = params['UnitID']
+          @UnitName = params['UnitName']
+        end
+      end
+
       # Job配置
       class Job < TencentCloud::Common::AbstractModel
         # @param Parallelism: 并发数
@@ -6511,6 +7128,54 @@ module TencentCloud
         end
       end
 
+      # ModifyIotDevice请求参数结构体
+      class ModifyIotDeviceRequest < TencentCloud::Common::AbstractModel
+        # @param DeviceId: 设备id
+        # @type DeviceId: Integer
+        # @param Description: 描述
+        # @type Description: String
+        # @param Disabled: 设备是否开启
+        # @type Disabled: Boolean
+        # @param LogSetting: 日志设置
+        # @type LogSetting: Integer
+        # @param LogLevel: 日志级别
+        # @type LogLevel: Integer
+
+        attr_accessor :DeviceId, :Description, :Disabled, :LogSetting, :LogLevel
+        
+        def initialize(deviceid=nil, description=nil, disabled=nil, logsetting=nil, loglevel=nil)
+          @DeviceId = deviceid
+          @Description = description
+          @Disabled = disabled
+          @LogSetting = logsetting
+          @LogLevel = loglevel
+        end
+
+        def deserialize(params)
+          @DeviceId = params['DeviceId']
+          @Description = params['Description']
+          @Disabled = params['Disabled']
+          @LogSetting = params['LogSetting']
+          @LogLevel = params['LogLevel']
+        end
+      end
+
+      # ModifyIotDevice返回参数结构体
+      class ModifyIotDeviceResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyNodeUnitTemplate请求参数结构体
       class ModifyNodeUnitTemplateRequest < TencentCloud::Common::AbstractModel
         # @param EdgeUnitId: IECP边缘单元ID
@@ -7196,6 +7861,82 @@ module TencentCloud
         end
       end
 
+      # 消息路由
+      class RouteInfo < TencentCloud::Common::AbstractModel
+        # @param RouteID: 无
+        # @type RouteID: Integer
+        # @param RouteName: 无
+        # @type RouteName: String
+        # @param SourceProductID: 无
+        # @type SourceProductID: String
+        # @param TopicFilter: 无
+        # @type TopicFilter: String
+        # @param Mode: 无
+        # @type Mode: String
+        # @param TargetOptions: 无
+        # @type TargetOptions: String
+        # @param CreateTime: 无
+        # @type CreateTime: String
+        # @param Descript: 无
+        # @type Descript: String
+        # @param Healthy: 无
+        # @type Healthy: String
+        # @param Status: 无
+        # @type Status: String
+        # @param MessageCount: 无
+        # @type MessageCount: Integer
+        # @param MessageLastTime: 无
+        # @type MessageLastTime: String
+        # @param SourceProductName: 无
+        # @type SourceProductName: String
+        # @param SourceUnitIDList: 无
+        # @type SourceUnitIDList: Array
+        # @param SourceUnitNameList: 无
+        # @type SourceUnitNameList: Array
+        # @param SourceDeviceNameList: 无
+        # @type SourceDeviceNameList: Array
+
+        attr_accessor :RouteID, :RouteName, :SourceProductID, :TopicFilter, :Mode, :TargetOptions, :CreateTime, :Descript, :Healthy, :Status, :MessageCount, :MessageLastTime, :SourceProductName, :SourceUnitIDList, :SourceUnitNameList, :SourceDeviceNameList
+        
+        def initialize(routeid=nil, routename=nil, sourceproductid=nil, topicfilter=nil, mode=nil, targetoptions=nil, createtime=nil, descript=nil, healthy=nil, status=nil, messagecount=nil, messagelasttime=nil, sourceproductname=nil, sourceunitidlist=nil, sourceunitnamelist=nil, sourcedevicenamelist=nil)
+          @RouteID = routeid
+          @RouteName = routename
+          @SourceProductID = sourceproductid
+          @TopicFilter = topicfilter
+          @Mode = mode
+          @TargetOptions = targetoptions
+          @CreateTime = createtime
+          @Descript = descript
+          @Healthy = healthy
+          @Status = status
+          @MessageCount = messagecount
+          @MessageLastTime = messagelasttime
+          @SourceProductName = sourceproductname
+          @SourceUnitIDList = sourceunitidlist
+          @SourceUnitNameList = sourceunitnamelist
+          @SourceDeviceNameList = sourcedevicenamelist
+        end
+
+        def deserialize(params)
+          @RouteID = params['RouteID']
+          @RouteName = params['RouteName']
+          @SourceProductID = params['SourceProductID']
+          @TopicFilter = params['TopicFilter']
+          @Mode = params['Mode']
+          @TargetOptions = params['TargetOptions']
+          @CreateTime = params['CreateTime']
+          @Descript = params['Descript']
+          @Healthy = params['Healthy']
+          @Status = params['Status']
+          @MessageCount = params['MessageCount']
+          @MessageLastTime = params['MessageLastTime']
+          @SourceProductName = params['SourceProductName']
+          @SourceUnitIDList = params['SourceUnitIDList']
+          @SourceUnitNameList = params['SourceUnitNameList']
+          @SourceDeviceNameList = params['SourceDeviceNameList']
+        end
+      end
+
       # Secret信息
       class SecretItem < TencentCloud::Common::AbstractModel
         # @param Name: Secret名
@@ -7324,6 +8065,42 @@ module TencentCloud
           end
           @Namespace = params['Namespace']
           @ClusterIP = params['ClusterIP']
+        end
+      end
+
+      # SetRouteOnOff请求参数结构体
+      class SetRouteOnOffRequest < TencentCloud::Common::AbstractModel
+        # @param RouteID: 无
+        # @type RouteID: Integer
+        # @param Status: on 或 off
+        # @type Status: String
+
+        attr_accessor :RouteID, :Status
+        
+        def initialize(routeid=nil, status=nil)
+          @RouteID = routeid
+          @Status = status
+        end
+
+        def deserialize(params)
+          @RouteID = params['RouteID']
+          @Status = params['Status']
+        end
+      end
+
+      # SetRouteOnOff返回参数结构体
+      class SetRouteOnOffResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
         end
       end
 

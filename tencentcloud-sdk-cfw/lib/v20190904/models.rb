@@ -1393,16 +1393,22 @@ module TencentCloud
         # @type Direction: String
         # @param Source: 来源
         # @type Source: String
+        # @param EdgeId: vpc间防火墙开关边id
+        # @type EdgeId: String
+        # @param LogSource: 日志来源 move：vpc间防火墙
+        # @type LogSource: String
 
-        attr_accessor :StartTime, :EndTime, :Ip, :Zone, :Direction, :Source
+        attr_accessor :StartTime, :EndTime, :Ip, :Zone, :Direction, :Source, :EdgeId, :LogSource
         
-        def initialize(starttime=nil, endtime=nil, ip=nil, zone=nil, direction=nil, source=nil)
+        def initialize(starttime=nil, endtime=nil, ip=nil, zone=nil, direction=nil, source=nil, edgeid=nil, logsource=nil)
           @StartTime = starttime
           @EndTime = endtime
           @Ip = ip
           @Zone = zone
           @Direction = direction
           @Source = source
+          @EdgeId = edgeid
+          @LogSource = logsource
         end
 
         def deserialize(params)
@@ -1412,6 +1418,8 @@ module TencentCloud
           @Zone = params['Zone']
           @Direction = params['Direction']
           @Source = params['Source']
+          @EdgeId = params['EdgeId']
+          @LogSource = params['LogSource']
         end
       end
 
@@ -5274,14 +5282,18 @@ module TencentCloud
         # @type BaseLineInSwitch: Integer
         # @param BaseLineOutSwitch: 1 打开 0 关闭
         # @type BaseLineOutSwitch: Integer
+        # @param VpcFwCount: vpc间防火墙实例数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VpcFwCount: Integer
 
-        attr_accessor :EventTableListStruct, :BaseLineUser, :BaseLineInSwitch, :BaseLineOutSwitch
+        attr_accessor :EventTableListStruct, :BaseLineUser, :BaseLineInSwitch, :BaseLineOutSwitch, :VpcFwCount
         
-        def initialize(eventtableliststruct=nil, baselineuser=nil, baselineinswitch=nil, baselineoutswitch=nil)
+        def initialize(eventtableliststruct=nil, baselineuser=nil, baselineinswitch=nil, baselineoutswitch=nil, vpcfwcount=nil)
           @EventTableListStruct = eventtableliststruct
           @BaseLineUser = baselineuser
           @BaseLineInSwitch = baselineinswitch
           @BaseLineOutSwitch = baselineoutswitch
+          @VpcFwCount = vpcfwcount
         end
 
         def deserialize(params)
@@ -5296,6 +5308,7 @@ module TencentCloud
           @BaseLineUser = params['BaseLineUser']
           @BaseLineInSwitch = params['BaseLineInSwitch']
           @BaseLineOutSwitch = params['BaseLineOutSwitch']
+          @VpcFwCount = params['VpcFwCount']
         end
       end
 

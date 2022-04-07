@@ -53,10 +53,14 @@ module TencentCloud
         # @type Role: String
         # @param GameContext: 游戏相关参数
         # @type GameContext: String
+        # @param RunMode: 云端运行模式。
+        # RunWithoutClient：允许无客户端连接的情况下仍保持云端 App 运行
+        # 默认值（空）：要求必须有客户端连接才会保持云端 App 运行。
+        # @type RunMode: String
 
-        attr_accessor :ClientSession, :UserId, :GameId, :GameRegion, :GameParas, :Resolution, :ImageUrl, :SetNo, :Bitrate, :MaxBitrate, :MinBitrate, :Fps, :UserIp, :Optimization, :HostUserId, :Role, :GameContext
+        attr_accessor :ClientSession, :UserId, :GameId, :GameRegion, :GameParas, :Resolution, :ImageUrl, :SetNo, :Bitrate, :MaxBitrate, :MinBitrate, :Fps, :UserIp, :Optimization, :HostUserId, :Role, :GameContext, :RunMode
         
-        def initialize(clientsession=nil, userid=nil, gameid=nil, gameregion=nil, gameparas=nil, resolution=nil, imageurl=nil, setno=nil, bitrate=nil, maxbitrate=nil, minbitrate=nil, fps=nil, userip=nil, optimization=nil, hostuserid=nil, role=nil, gamecontext=nil)
+        def initialize(clientsession=nil, userid=nil, gameid=nil, gameregion=nil, gameparas=nil, resolution=nil, imageurl=nil, setno=nil, bitrate=nil, maxbitrate=nil, minbitrate=nil, fps=nil, userip=nil, optimization=nil, hostuserid=nil, role=nil, gamecontext=nil, runmode=nil)
           @ClientSession = clientsession
           @UserId = userid
           @GameId = gameid
@@ -74,6 +78,7 @@ module TencentCloud
           @HostUserId = hostuserid
           @Role = role
           @GameContext = gamecontext
+          @RunMode = runmode
         end
 
         def deserialize(params)
@@ -94,6 +99,7 @@ module TencentCloud
           @HostUserId = params['HostUserId']
           @Role = params['Role']
           @GameContext = params['GameContext']
+          @RunMode = params['RunMode']
         end
       end
 
