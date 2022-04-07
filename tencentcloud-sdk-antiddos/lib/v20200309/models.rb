@@ -1934,12 +1934,19 @@ module TencentCloud
 
       # CreateSchedulingDomain请求参数结构体
       class CreateSchedulingDomainRequest < TencentCloud::Common::AbstractModel
+        # @param Product: 代表是否混合云本地化的产品。
+        # hybrid: 宙斯盾本地化
+        # 不填写：其他
+        # @type Product: String
 
+        attr_accessor :Product
         
-        def initialize()
+        def initialize(product=nil)
+          @Product = product
         end
 
         def deserialize(params)
+          @Product = params['Product']
         end
       end
 
@@ -3062,7 +3069,7 @@ module TencentCloud
 
       # DescribeCCPrecisionPlyList请求参数结构体
       class DescribeCCPrecisionPlyListRequest < TencentCloud::Common::AbstractModel
-        # @param Business: 大禹子产品代号（bgpip-multip：表示高防包；bgpip：表示高防ip）
+        # @param Business: 大禹子产品代号（bgpip-multip：表示高防包；bgpip：表示高防IP）
         # @type Business: String
         # @param Offset: 页起始偏移，取值为(页码-1)*一页条数
         # @type Offset: Integer
@@ -3070,11 +3077,11 @@ module TencentCloud
         # @type Limit: Integer
         # @param InstanceId: 指定特定实例Id
         # @type InstanceId: String
-        # @param Ip: ip地址，普通高防ip要传该字段
+        # @param Ip: IP地址，普通高防IP要传该字段
         # @type Ip: String
-        # @param Domain: 域名，普通高防ip要传该字段
+        # @param Domain: 域名，普通高防IP要传该字段
         # @type Domain: String
-        # @param Protocol: 协议，普通高防ip要传该字段
+        # @param Protocol: 协议，普通高防IP要传该字段
         # @type Protocol: String
 
         attr_accessor :Business, :Offset, :Limit, :InstanceId, :Ip, :Domain, :Protocol
@@ -3133,7 +3140,7 @@ module TencentCloud
 
       # DescribeCCReqLimitPolicyList请求参数结构体
       class DescribeCCReqLimitPolicyListRequest < TencentCloud::Common::AbstractModel
-        # @param Business: 大禹子产品代号（bgp-multip表示高防包，bgpip表示高防ip）
+        # @param Business: 大禹子产品代号（bgp-multip表示高防包，bgpip表示高防IP）
         # @type Business: String
         # @param Offset: 页起始偏移，取值为(页码-1)*一页条数
         # @type Offset: Integer
@@ -3141,11 +3148,11 @@ module TencentCloud
         # @type Limit: Integer
         # @param InstanceId: 指定实例Id
         # @type InstanceId: String
-        # @param Ip: Ip地址，普通高防ip要传该字段
+        # @param Ip: IP地址，普通高防IP要传该字段
         # @type Ip: String
-        # @param Domain: 域名，普通高防ip要传该字段
+        # @param Domain: 域名，普通高防IP要传该字段
         # @type Domain: String
-        # @param Protocol: 协议，普通高防ip要传该字段
+        # @param Protocol: 协议，普通高防IP要传该字段
         # @type Protocol: String
 
         attr_accessor :Business, :Offset, :Limit, :InstanceId, :Ip, :Domain, :Protocol
@@ -3360,7 +3367,7 @@ module TencentCloud
 
       # DescribeCcBlackWhiteIpList请求参数结构体
       class DescribeCcBlackWhiteIpListRequest < TencentCloud::Common::AbstractModel
-        # @param Business: 大禹子产品代号（bgp-multip：表示高防包；bgpip：表示高防ip）
+        # @param Business: 大禹子产品代号（bgp-multip：表示高防包；bgpip：表示高防IP）
         # @type Business: String
         # @param InstanceId: 指定特定实例Id
         # @type InstanceId: String
@@ -3368,13 +3375,13 @@ module TencentCloud
         # @type Offset: Integer
         # @param Limit: 一页条数
         # @type Limit: Integer
-        # @param Ip: Ip地址，普通高防ip要传该字段
+        # @param Ip: IP地址，普通高防IP要传该字段
         # @type Ip: String
-        # @param Domain: 域名，普通高防ip要传该字段
+        # @param Domain: 域名，普通高防IP要传该字段
         # @type Domain: String
-        # @param Protocol: 协议，普通高防ip要传该字段
+        # @param Protocol: 协议，普通高防IP要传该字段
         # @type Protocol: String
-        # @param FilterIp: 筛选ip，需要筛选黑白名单ip时传该字段
+        # @param FilterIp: 筛选IP，需要筛选黑白名单IP时传该字段
         # @type FilterIp: String
         # @param FilterType: 黑白名单筛选字段，需要筛选黑白名单列表时传该字段
         # @type FilterType: String
@@ -3439,7 +3446,7 @@ module TencentCloud
 
       # DescribeCcGeoIPBlockConfigList请求参数结构体
       class DescribeCcGeoIPBlockConfigListRequest < TencentCloud::Common::AbstractModel
-        # @param Business: 大禹子产品代号（bgpip-multip：表示高防包；bgpip：表示高防ip）
+        # @param Business: 大禹子产品代号（bgpip-multip：表示高防包；bgpip：表示高防IP）
         # @type Business: String
         # @param Offset: 页起始偏移，取值为(页码-1)*一页条数
         # @type Offset: Integer
@@ -3447,11 +3454,11 @@ module TencentCloud
         # @type Limit: Integer
         # @param InstanceId: 指定特定实例Id
         # @type InstanceId: String
-        # @param Ip: Ip地址，普通高防ip要传该字段
+        # @param Ip: IP地址，普通高防ip要传该字段
         # @type Ip: String
-        # @param Domain: 域名，普通高防ip要传该字段
+        # @param Domain: 域名，普通高防IP要传该字段
         # @type Domain: String
-        # @param Protocol: 协议，普通高防ip要传该字段
+        # @param Protocol: 协议，普通高防IP要传该字段
         # @type Protocol: String
 
         attr_accessor :Business, :Offset, :Limit, :InstanceId, :Ip, :Domain, :Protocol
@@ -5281,7 +5288,7 @@ module TencentCloud
       class ModifyCCLevelPolicyRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例Id
         # @type InstanceId: String
-        # @param Ip: Ip地址
+        # @param Ip: IP地址
         # @type Ip: String
         # @param Domain: 域名
         # @type Domain: String
@@ -5423,7 +5430,7 @@ module TencentCloud
       class ModifyCCThresholdPolicyRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例Id
         # @type InstanceId: String
-        # @param Ip: Ip地址
+        # @param Ip: IP地址
         # @type Ip: String
         # @param Domain: 域名
         # @type Domain: String

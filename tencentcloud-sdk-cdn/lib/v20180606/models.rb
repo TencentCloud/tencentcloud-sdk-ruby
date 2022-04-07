@@ -5662,17 +5662,27 @@ module TencentCloud
         # @type Offset: Integer
         # @param Limit: 分页查询记录个数，默认100，最大1000
         # @type Limit: Integer
+        # @param SortBy: 流量包排序方式，支持以下值：
+        # expireTimeDesc：默认值，按过期时间倒序
+        # expireTimeAsc：按过期时间正序
+        # createTimeDesc：按创建时间倒序
+        # createTimeAsc：按创建时间正序
+        # status：按状态排序，正常抵扣>未生效>已用尽>已过期
+        # channel：按来源排序，主动购买>自动续订>CDN赠送
+        # @type SortBy: String
 
-        attr_accessor :Offset, :Limit
+        attr_accessor :Offset, :Limit, :SortBy
         
-        def initialize(offset=nil, limit=nil)
+        def initialize(offset=nil, limit=nil, sortby=nil)
           @Offset = offset
           @Limit = limit
+          @SortBy = sortby
         end
 
         def deserialize(params)
           @Offset = params['Offset']
           @Limit = params['Limit']
+          @SortBy = params['SortBy']
         end
       end
 
@@ -5686,16 +5696,19 @@ module TencentCloud
         # @type ExpiringCount: Integer
         # @param EnabledCount: 有效流量包个数
         # @type EnabledCount: Integer
+        # @param PaidCount: 付费流量包个数
+        # @type PaidCount: Integer
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :TotalCount, :TrafficPackages, :ExpiringCount, :EnabledCount, :RequestId
+        attr_accessor :TotalCount, :TrafficPackages, :ExpiringCount, :EnabledCount, :PaidCount, :RequestId
         
-        def initialize(totalcount=nil, trafficpackages=nil, expiringcount=nil, enabledcount=nil, requestid=nil)
+        def initialize(totalcount=nil, trafficpackages=nil, expiringcount=nil, enabledcount=nil, paidcount=nil, requestid=nil)
           @TotalCount = totalcount
           @TrafficPackages = trafficpackages
           @ExpiringCount = expiringcount
           @EnabledCount = enabledcount
+          @PaidCount = paidcount
           @RequestId = requestid
         end
 
@@ -5711,6 +5724,7 @@ module TencentCloud
           end
           @ExpiringCount = params['ExpiringCount']
           @EnabledCount = params['EnabledCount']
+          @PaidCount = params['PaidCount']
           @RequestId = params['RequestId']
         end
       end

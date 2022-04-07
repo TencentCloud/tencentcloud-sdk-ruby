@@ -3924,7 +3924,7 @@ module TencentCloud
         # @type ZoneIds: Array
         # @param SubnetIds: 子网 ID。
         # @type SubnetIds: Array
-        # @param CdbErrors: 是否锁定标记。
+        # @param CdbErrors: 是否锁定标记，可选值：0 - 不锁定，1 - 锁定，默认为0。
         # @type CdbErrors: Array
         # @param OrderBy: 返回结果集排序的字段，目前支持："InstanceId"，"InstanceName"，"CreateTime"，"DeadlineTime"。
         # @type OrderBy: String
@@ -3952,10 +3952,16 @@ module TencentCloud
         # @type TagKeysForSearch: Array
         # @param CageIds: 金融围拢 ID 。
         # @type CageIds: Array
+        # @param TagValues: 标签值
+        # @type TagValues: Array
+        # @param UniqueVpcIds: 私有网络字符型vpcId
+        # @type UniqueVpcIds: Array
+        # @param UniqSubnetIds: 私有网络字符型subnetId
+        # @type UniqSubnetIds: Array
 
-        attr_accessor :ProjectId, :InstanceTypes, :Vips, :Status, :Offset, :Limit, :SecurityGroupId, :PayTypes, :InstanceNames, :TaskStatus, :EngineVersions, :VpcIds, :ZoneIds, :SubnetIds, :CdbErrors, :OrderBy, :OrderDirection, :WithSecurityGroup, :WithExCluster, :ExClusterId, :InstanceIds, :InitFlag, :WithDr, :WithRo, :WithMaster, :DeployGroupIds, :TagKeysForSearch, :CageIds
+        attr_accessor :ProjectId, :InstanceTypes, :Vips, :Status, :Offset, :Limit, :SecurityGroupId, :PayTypes, :InstanceNames, :TaskStatus, :EngineVersions, :VpcIds, :ZoneIds, :SubnetIds, :CdbErrors, :OrderBy, :OrderDirection, :WithSecurityGroup, :WithExCluster, :ExClusterId, :InstanceIds, :InitFlag, :WithDr, :WithRo, :WithMaster, :DeployGroupIds, :TagKeysForSearch, :CageIds, :TagValues, :UniqueVpcIds, :UniqSubnetIds
         
-        def initialize(projectid=nil, instancetypes=nil, vips=nil, status=nil, offset=nil, limit=nil, securitygroupid=nil, paytypes=nil, instancenames=nil, taskstatus=nil, engineversions=nil, vpcids=nil, zoneids=nil, subnetids=nil, cdberrors=nil, orderby=nil, orderdirection=nil, withsecuritygroup=nil, withexcluster=nil, exclusterid=nil, instanceids=nil, initflag=nil, withdr=nil, withro=nil, withmaster=nil, deploygroupids=nil, tagkeysforsearch=nil, cageids=nil)
+        def initialize(projectid=nil, instancetypes=nil, vips=nil, status=nil, offset=nil, limit=nil, securitygroupid=nil, paytypes=nil, instancenames=nil, taskstatus=nil, engineversions=nil, vpcids=nil, zoneids=nil, subnetids=nil, cdberrors=nil, orderby=nil, orderdirection=nil, withsecuritygroup=nil, withexcluster=nil, exclusterid=nil, instanceids=nil, initflag=nil, withdr=nil, withro=nil, withmaster=nil, deploygroupids=nil, tagkeysforsearch=nil, cageids=nil, tagvalues=nil, uniquevpcids=nil, uniqsubnetids=nil)
           @ProjectId = projectid
           @InstanceTypes = instancetypes
           @Vips = vips
@@ -3984,6 +3990,9 @@ module TencentCloud
           @DeployGroupIds = deploygroupids
           @TagKeysForSearch = tagkeysforsearch
           @CageIds = cageids
+          @TagValues = tagvalues
+          @UniqueVpcIds = uniquevpcids
+          @UniqSubnetIds = uniqsubnetids
         end
 
         def deserialize(params)
@@ -4015,6 +4024,9 @@ module TencentCloud
           @DeployGroupIds = params['DeployGroupIds']
           @TagKeysForSearch = params['TagKeysForSearch']
           @CageIds = params['CageIds']
+          @TagValues = params['TagValues']
+          @UniqueVpcIds = params['UniqueVpcIds']
+          @UniqSubnetIds = params['UniqSubnetIds']
         end
       end
 

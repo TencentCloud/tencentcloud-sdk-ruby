@@ -1053,7 +1053,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # DescribeTrafficPackages 用于查询中国境内 CDN 流量包详情。
+        # DescribeTrafficPackages 用于查询 CDN 流量包详情。
 
         # @param request: Request instance for DescribeTrafficPackages.
         # @type request: :class:`Tencentcloud::cdn::V20180606::DescribeTrafficPackagesRequest`

@@ -541,10 +541,16 @@ module TencentCloud
         # @param EnableExternalNode: 集群是否开启第三方节点支持
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EnableExternalNode: Boolean
+        # @param ClusterLevel: 集群等级，针对托管集群生效
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClusterLevel: String
+        # @param AutoUpgradeClusterLevel: 自动变配集群等级，针对托管集群生效
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AutoUpgradeClusterLevel: Boolean
 
-        attr_accessor :ClusterId, :ClusterName, :ClusterDescription, :ClusterVersion, :ClusterOs, :ClusterType, :ClusterNetworkSettings, :ClusterNodeNum, :ProjectId, :TagSpecification, :ClusterStatus, :Property, :ClusterMaterNodeNum, :ImageId, :OsCustomizeType, :ContainerRuntime, :CreatedTime, :DeletionProtection, :EnableExternalNode
+        attr_accessor :ClusterId, :ClusterName, :ClusterDescription, :ClusterVersion, :ClusterOs, :ClusterType, :ClusterNetworkSettings, :ClusterNodeNum, :ProjectId, :TagSpecification, :ClusterStatus, :Property, :ClusterMaterNodeNum, :ImageId, :OsCustomizeType, :ContainerRuntime, :CreatedTime, :DeletionProtection, :EnableExternalNode, :ClusterLevel, :AutoUpgradeClusterLevel
         
-        def initialize(clusterid=nil, clustername=nil, clusterdescription=nil, clusterversion=nil, clusteros=nil, clustertype=nil, clusternetworksettings=nil, clusternodenum=nil, projectid=nil, tagspecification=nil, clusterstatus=nil, property=nil, clustermaternodenum=nil, imageid=nil, oscustomizetype=nil, containerruntime=nil, createdtime=nil, deletionprotection=nil, enableexternalnode=nil)
+        def initialize(clusterid=nil, clustername=nil, clusterdescription=nil, clusterversion=nil, clusteros=nil, clustertype=nil, clusternetworksettings=nil, clusternodenum=nil, projectid=nil, tagspecification=nil, clusterstatus=nil, property=nil, clustermaternodenum=nil, imageid=nil, oscustomizetype=nil, containerruntime=nil, createdtime=nil, deletionprotection=nil, enableexternalnode=nil, clusterlevel=nil, autoupgradeclusterlevel=nil)
           @ClusterId = clusterid
           @ClusterName = clustername
           @ClusterDescription = clusterdescription
@@ -564,6 +570,8 @@ module TencentCloud
           @CreatedTime = createdtime
           @DeletionProtection = deletionprotection
           @EnableExternalNode = enableexternalnode
+          @ClusterLevel = clusterlevel
+          @AutoUpgradeClusterLevel = autoupgradeclusterlevel
         end
 
         def deserialize(params)
@@ -596,6 +604,8 @@ module TencentCloud
           @CreatedTime = params['CreatedTime']
           @DeletionProtection = params['DeletionProtection']
           @EnableExternalNode = params['EnableExternalNode']
+          @ClusterLevel = params['ClusterLevel']
+          @AutoUpgradeClusterLevel = params['AutoUpgradeClusterLevel']
         end
       end
 
