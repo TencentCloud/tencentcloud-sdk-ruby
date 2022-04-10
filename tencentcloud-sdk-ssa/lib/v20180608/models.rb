@@ -658,6 +658,55 @@ module TencentCloud
         end
       end
 
+      # 资产查询过滤参数
+      class AssetQueryFilter < TencentCloud::Common::AbstractModel
+        # @param Filter: 查询参数
+        # @type Filter: Array
+        # @param Logic: 查询连接符，1 and  ，2 or
+        # @type Logic: Integer
+
+        attr_accessor :Filter, :Logic
+        
+        def initialize(filter=nil, logic=nil)
+          @Filter = filter
+          @Logic = logic
+        end
+
+        def deserialize(params)
+          unless params['Filter'].nil?
+            @Filter = []
+            params['Filter'].each do |i|
+              queryfilter_tmp = QueryFilter.new
+              queryfilter_tmp.deserialize(i)
+              @Filter << queryfilter_tmp
+            end
+          end
+          @Logic = params['Logic']
+        end
+      end
+
+      # 资产测绘结果统计
+      class AssetTypeStatistic < TencentCloud::Common::AbstractModel
+        # @param AssetType: 资产类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AssetType: String
+        # @param AssetCount: 统计计数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AssetCount: Integer
+
+        attr_accessor :AssetType, :AssetCount
+        
+        def initialize(assettype=nil, assetcount=nil)
+          @AssetType = assettype
+          @AssetCount = assetcount
+        end
+
+        def deserialize(params)
+          @AssetType = params['AssetType']
+          @AssetCount = params['AssetCount']
+        end
+      end
+
       # es聚合数据类型
       class Bucket < TencentCloud::Common::AbstractModel
         # @param Key: key
@@ -2011,6 +2060,77 @@ module TencentCloud
         end
       end
 
+      # DescribeMappingResults请求参数结构体
+      class DescribeMappingResultsRequest < TencentCloud::Common::AbstractModel
+        # @param Filter: 过滤条件，FilterKey 取值范围：AssetId，AssetIp，PrivateIp，Protocol，Service，OS，Process，Component，AssetType，Domain，Port，LastMappingTime，MappingType，Disposal，Vpc
+        # @type Filter: Array
+        # @param Sorter: 排序条件，SortKey取值范围：CreateTime，LastMappingTime
+        # @type Sorter: Array
+        # @param PageIndex: 页码
+        # @type PageIndex: Integer
+        # @param PageSize: 页大小，默认大小20
+        # @type PageSize: Integer
+
+        attr_accessor :Filter, :Sorter, :PageIndex, :PageSize
+        
+        def initialize(filter=nil, sorter=nil, pageindex=nil, pagesize=nil)
+          @Filter = filter
+          @Sorter = sorter
+          @PageIndex = pageindex
+          @PageSize = pagesize
+        end
+
+        def deserialize(params)
+          unless params['Filter'].nil?
+            @Filter = []
+            params['Filter'].each do |i|
+              assetqueryfilter_tmp = AssetQueryFilter.new
+              assetqueryfilter_tmp.deserialize(i)
+              @Filter << assetqueryfilter_tmp
+            end
+          end
+          unless params['Sorter'].nil?
+            @Sorter = []
+            params['Sorter'].each do |i|
+              querysort_tmp = QuerySort.new
+              querysort_tmp.deserialize(i)
+              @Sorter << querysort_tmp
+            end
+          end
+          @PageIndex = params['PageIndex']
+          @PageSize = params['PageSize']
+        end
+      end
+
+      # DescribeMappingResults返回参数结构体
+      class DescribeMappingResultsResponse < TencentCloud::Common::AbstractModel
+        # @param Total: 总记录数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Total: Integer
+        # @param Data: 列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Data: :class:`Tencentcloud::Ssa.v20180608.models.Results`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Total, :Data, :RequestId
+        
+        def initialize(total=nil, data=nil, requestid=nil)
+          @Total = total
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Total = params['Total']
+          unless params['Data'].nil?
+            @Data = Results.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeSafetyEventList请求参数结构体
       class DescribeSafetyEventListRequest < TencentCloud::Common::AbstractModel
         # @param Filter: 搜索过滤查询参数
@@ -2450,13 +2570,122 @@ module TencentCloud
         end
       end
 
+      # 测绘记录
+      class MappingResult < TencentCloud::Common::AbstractModel
+        # @param AssetName: 资产名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AssetName: String
+        # @param AssetIp: 公网ip
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AssetIp: String
+        # @param PrivateIp: 内网ip
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PrivateIp: String
+        # @param AssetId: 资产id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AssetId: String
+        # @param Protocol: 协议
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Protocol: String
+        # @param Port: 端口
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Port: String
+        # @param Service: 服务
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Service: String
+        # @param Component: 组件
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Component: String
+        # @param Process: 进程
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Process: String
+        # @param OS: 操作系统
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OS: String
+        # @param LastMappingTime: 测绘时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LastMappingTime: String
+        # @param DisposalRecommendations: 处置建议
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DisposalRecommendations: String
+        # @param DisposalRecommendationDetails: 处置建议详情
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DisposalRecommendationDetails: String
+        # @param AssetType: 资产类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AssetType: String
+        # @param Domain: 域名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Domain: String
+        # @param MappingStatus: 测绘状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MappingStatus: Integer
+        # @param Region: 区域
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Region: String
+        # @param SecurityStatus: 安全防护状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SecurityStatus: Array
+
+        attr_accessor :AssetName, :AssetIp, :PrivateIp, :AssetId, :Protocol, :Port, :Service, :Component, :Process, :OS, :LastMappingTime, :DisposalRecommendations, :DisposalRecommendationDetails, :AssetType, :Domain, :MappingStatus, :Region, :SecurityStatus
+        
+        def initialize(assetname=nil, assetip=nil, privateip=nil, assetid=nil, protocol=nil, port=nil, service=nil, component=nil, process=nil, os=nil, lastmappingtime=nil, disposalrecommendations=nil, disposalrecommendationdetails=nil, assettype=nil, domain=nil, mappingstatus=nil, region=nil, securitystatus=nil)
+          @AssetName = assetname
+          @AssetIp = assetip
+          @PrivateIp = privateip
+          @AssetId = assetid
+          @Protocol = protocol
+          @Port = port
+          @Service = service
+          @Component = component
+          @Process = process
+          @OS = os
+          @LastMappingTime = lastmappingtime
+          @DisposalRecommendations = disposalrecommendations
+          @DisposalRecommendationDetails = disposalrecommendationdetails
+          @AssetType = assettype
+          @Domain = domain
+          @MappingStatus = mappingstatus
+          @Region = region
+          @SecurityStatus = securitystatus
+        end
+
+        def deserialize(params)
+          @AssetName = params['AssetName']
+          @AssetIp = params['AssetIp']
+          @PrivateIp = params['PrivateIp']
+          @AssetId = params['AssetId']
+          @Protocol = params['Protocol']
+          @Port = params['Port']
+          @Service = params['Service']
+          @Component = params['Component']
+          @Process = params['Process']
+          @OS = params['OS']
+          @LastMappingTime = params['LastMappingTime']
+          @DisposalRecommendations = params['DisposalRecommendations']
+          @DisposalRecommendationDetails = params['DisposalRecommendationDetails']
+          @AssetType = params['AssetType']
+          @Domain = params['Domain']
+          @MappingStatus = params['MappingStatus']
+          @Region = params['Region']
+          unless params['SecurityStatus'].nil?
+            @SecurityStatus = []
+            params['SecurityStatus'].each do |i|
+              securitystatus_tmp = SecurityStatus.new
+              securitystatus_tmp.deserialize(i)
+              @SecurityStatus << securitystatus_tmp
+            end
+          end
+        end
+      end
+
       # 查询参数
       class QueryFilter < TencentCloud::Common::AbstractModel
         # @param FilterKey: 查询的字段
         # @type FilterKey: String
         # @param FilterValue: 查询的值
         # @type FilterValue: String
-        # @param FilterOperatorType: 匹配类型，枚举见pb
+        # @param FilterOperatorType: 匹配类型，1等于；2大于；3小于；4大于等于；5小于等于；6不等于；7in；8not in；9模糊匹配
         # @type FilterOperatorType: Integer
 
         attr_accessor :FilterKey, :FilterValue, :FilterOperatorType
@@ -2491,6 +2720,52 @@ module TencentCloud
         def deserialize(params)
           @SortKey = params['SortKey']
           @SortType = params['SortType']
+        end
+      end
+
+      # 测绘结果
+      class Results < TencentCloud::Common::AbstractModel
+        # @param Statistics: 测绘类型统计
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Statistics: Array
+        # @param Result: 测绘结果列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Result: Array
+        # @param TaskCount: 测绘任务数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TaskCount: Integer
+        # @param TaskMaxCount: 最大测绘任务数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TaskMaxCount: Integer
+
+        attr_accessor :Statistics, :Result, :TaskCount, :TaskMaxCount
+        
+        def initialize(statistics=nil, result=nil, taskcount=nil, taskmaxcount=nil)
+          @Statistics = statistics
+          @Result = result
+          @TaskCount = taskcount
+          @TaskMaxCount = taskmaxcount
+        end
+
+        def deserialize(params)
+          unless params['Statistics'].nil?
+            @Statistics = []
+            params['Statistics'].each do |i|
+              assettypestatistic_tmp = AssetTypeStatistic.new
+              assettypestatistic_tmp.deserialize(i)
+              @Statistics << assettypestatistic_tmp
+            end
+          end
+          unless params['Result'].nil?
+            @Result = []
+            params['Result'].each do |i|
+              mappingresult_tmp = MappingResult.new
+              mappingresult_tmp.deserialize(i)
+              @Result << mappingresult_tmp
+            end
+          end
+          @TaskCount = params['TaskCount']
+          @TaskMaxCount = params['TaskMaxCount']
         end
       end
 
@@ -2677,6 +2952,17 @@ module TencentCloud
             @Data.deserialize(params['Data'])
           end
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 安全放回状态
+      class SecurityStatus < TencentCloud::Common::AbstractModel
+
+        
+        def initialize()
+        end
+
+        def deserialize(params)
         end
       end
 

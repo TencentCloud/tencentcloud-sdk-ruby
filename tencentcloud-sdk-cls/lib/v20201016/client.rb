@@ -53,6 +53,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 关闭Kafka协议消费
+
+        # @param request: Request instance for CloseKafkaConsumer.
+        # @type request: :class:`Tencentcloud::cls::V20201016::CloseKafkaConsumerRequest`
+        # @rtype: :class:`Tencentcloud::cls::V20201016::CloseKafkaConsumerResponse`
+        def CloseKafkaConsumer(request)
+          body = send_request('CloseKafkaConsumer', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CloseKafkaConsumerResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口用于创建告警策略。
 
         # @param request: Request instance for CreateAlarm.
@@ -1407,6 +1431,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyTopicResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 打开kafka协议消费
+
+        # @param request: Request instance for OpenKafkaConsumer.
+        # @type request: :class:`Tencentcloud::cls::V20201016::OpenKafkaConsumerRequest`
+        # @rtype: :class:`Tencentcloud::cls::V20201016::OpenKafkaConsumerResponse`
+        def OpenKafkaConsumer(request)
+          body = send_request('OpenKafkaConsumer', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = OpenKafkaConsumerResponse.new
             model.deserialize(response['Response'])
             model
           else

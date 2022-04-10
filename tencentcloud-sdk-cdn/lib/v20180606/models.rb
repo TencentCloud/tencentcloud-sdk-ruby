@@ -9950,15 +9950,20 @@ module TencentCloud
         # 2. 当前只支持递归解析一级索引和子索引中的ts分片，递归深度不超过3层
         # 3. 解析获取的ts分片会正常累加每日预热用量，当用量超出配额时，会静默处理，不再执行预热
         # @type ParseM3U8: Boolean
+        # @param DisableRange: 是否关闭Range回源
+        # 注意事项：
+        # 此功能灰度发布中，敬请期待
+        # @type DisableRange: Boolean
 
-        attr_accessor :Urls, :UserAgent, :Area, :Layer, :ParseM3U8
+        attr_accessor :Urls, :UserAgent, :Area, :Layer, :ParseM3U8, :DisableRange
         
-        def initialize(urls=nil, useragent=nil, area=nil, layer=nil, parsem3u8=nil)
+        def initialize(urls=nil, useragent=nil, area=nil, layer=nil, parsem3u8=nil, disablerange=nil)
           @Urls = urls
           @UserAgent = useragent
           @Area = area
           @Layer = layer
           @ParseM3U8 = parsem3u8
+          @DisableRange = disablerange
         end
 
         def deserialize(params)
@@ -9967,6 +9972,7 @@ module TencentCloud
           @Area = params['Area']
           @Layer = params['Layer']
           @ParseM3U8 = params['ParseM3U8']
+          @DisableRange = params['DisableRange']
         end
       end
 

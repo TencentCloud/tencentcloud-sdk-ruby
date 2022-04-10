@@ -6772,6 +6772,61 @@ module TencentCloud
         end
       end
 
+      # DescribeInstances请求参数结构体
+      class DescribeInstancesRequest < TencentCloud::Common::AbstractModel
+        # @param Filters: 过滤条件
+        # @type Filters: Array
+        # @param Offset: 偏移量，默认为0
+        # @type Offset: Integer
+        # @param Limit: 分页个数，默认为20，最大100
+        # @type Limit: Integer
+
+        attr_accessor :Filters, :Offset, :Limit
+        
+        def initialize(filters=nil, offset=nil, limit=nil)
+          @Filters = filters
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeInstances返回参数结构体
+      class DescribeInstancesResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 机器列表信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Result: :class:`Tencentcloud::Tsf.v20180326.models.InstanceEnrichedInfoPage`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+        
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Result'].nil?
+            @Result = InstanceEnrichedInfoPage.new
+            @Result.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeInvocationMetricDataCurve请求参数结构体
       class DescribeInvocationMetricDataCurveRequest < TencentCloud::Common::AbstractModel
         # @param StartTime: 查询开始时间
@@ -9782,6 +9837,26 @@ module TencentCloud
         end
       end
 
+      # 用于请求参数中的条件过滤字段
+      class Filter < TencentCloud::Common::AbstractModel
+        # @param Name: 过滤条件名
+        # @type Name: String
+        # @param Values: 过滤条件匹配值，几个条件间是或关系
+        # @type Values: Array
+
+        attr_accessor :Name, :Values
+        
+        def initialize(name=nil, values=nil)
+          @Name = name
+          @Values = values
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Values = params['Values']
+        end
+      end
+
       # 网关分组简单信息
       class GatewayApiGroupVo < TencentCloud::Common::AbstractModel
         # @param GroupId: 分组ID
@@ -11038,6 +11113,132 @@ module TencentCloud
         def deserialize(params)
           @MountTarget = params['MountTarget']
           @DockerGraphPath = params['DockerGraphPath']
+        end
+      end
+
+      # 包含虚拟机所在TSF中的位置信息
+      class InstanceEnrichedInfo < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 机器ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceId: String
+        # @param InstanceName: 机器名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceName: String
+        # @param LanIp: 机器内网IP
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LanIp: String
+        # @param WanIp: 机器外网IP
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type WanIp: String
+        # @param VpcId: 机器所在VPC
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VpcId: String
+        # @param InstanceStatus: 机器运行状态 Pending Running Stopped Rebooting Starting Stopping Abnormal Unknown
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceStatus: String
+        # @param InstanceAvailableStatus: 机器可用状态（表示机器上的Agent在线）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceAvailableStatus: String
+        # @param ApplicationId: 应用ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ApplicationId: String
+        # @param ApplicationName: 应用名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ApplicationName: String
+        # @param ApplicationType: 应用类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ApplicationType: String
+        # @param ClusterId: 集群ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClusterId: String
+        # @param ClusterName: 集群名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClusterName: String
+        # @param ClusterType: 集群类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClusterType: String
+        # @param NamespaceId: 命名空间ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NamespaceId: String
+        # @param NamespaceName: 命名空间名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NamespaceName: String
+        # @param GroupId: 机器所在部署组ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GroupId: String
+        # @param GroupName: 部署组名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GroupName: String
+
+        attr_accessor :InstanceId, :InstanceName, :LanIp, :WanIp, :VpcId, :InstanceStatus, :InstanceAvailableStatus, :ApplicationId, :ApplicationName, :ApplicationType, :ClusterId, :ClusterName, :ClusterType, :NamespaceId, :NamespaceName, :GroupId, :GroupName
+        
+        def initialize(instanceid=nil, instancename=nil, lanip=nil, wanip=nil, vpcid=nil, instancestatus=nil, instanceavailablestatus=nil, applicationid=nil, applicationname=nil, applicationtype=nil, clusterid=nil, clustername=nil, clustertype=nil, namespaceid=nil, namespacename=nil, groupid=nil, groupname=nil)
+          @InstanceId = instanceid
+          @InstanceName = instancename
+          @LanIp = lanip
+          @WanIp = wanip
+          @VpcId = vpcid
+          @InstanceStatus = instancestatus
+          @InstanceAvailableStatus = instanceavailablestatus
+          @ApplicationId = applicationid
+          @ApplicationName = applicationname
+          @ApplicationType = applicationtype
+          @ClusterId = clusterid
+          @ClusterName = clustername
+          @ClusterType = clustertype
+          @NamespaceId = namespaceid
+          @NamespaceName = namespacename
+          @GroupId = groupid
+          @GroupName = groupname
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @InstanceName = params['InstanceName']
+          @LanIp = params['LanIp']
+          @WanIp = params['WanIp']
+          @VpcId = params['VpcId']
+          @InstanceStatus = params['InstanceStatus']
+          @InstanceAvailableStatus = params['InstanceAvailableStatus']
+          @ApplicationId = params['ApplicationId']
+          @ApplicationName = params['ApplicationName']
+          @ApplicationType = params['ApplicationType']
+          @ClusterId = params['ClusterId']
+          @ClusterName = params['ClusterName']
+          @ClusterType = params['ClusterType']
+          @NamespaceId = params['NamespaceId']
+          @NamespaceName = params['NamespaceName']
+          @GroupId = params['GroupId']
+          @GroupName = params['GroupName']
+        end
+      end
+
+      # InstanceEnrichedInfo列表结构
+      class InstanceEnrichedInfoPage < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 总数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalCount: Integer
+        # @param Content: 列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Content: Array
+
+        attr_accessor :TotalCount, :Content
+        
+        def initialize(totalcount=nil, content=nil)
+          @TotalCount = totalcount
+          @Content = content
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['Content'].nil?
+            @Content = []
+            params['Content'].each do |i|
+              instanceenrichedinfo_tmp = InstanceEnrichedInfo.new
+              instanceenrichedinfo_tmp.deserialize(i)
+              @Content << instanceenrichedinfo_tmp
+            end
+          end
         end
       end
 

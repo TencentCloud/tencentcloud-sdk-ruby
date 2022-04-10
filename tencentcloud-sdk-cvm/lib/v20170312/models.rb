@@ -5974,7 +5974,7 @@ module TencentCloud
 
       # 描述用户已购买预留实例计费信息
       class ReservedInstances < TencentCloud::Common::AbstractModel
-        # @param ReservedInstancesId: 已购买的预留实例计费ID。形如：650c138f-ae7e-4750-952a-96841d6e9fc1。
+        # @param ReservedInstancesId: （此字段已废弃，建议使用字段：ReservedInstanceId）已购买的预留实例计费ID。形如：ri-rtbh4han。
         # @type ReservedInstancesId: String
         # @param InstanceType: 预留实例计费的规格。形如：S3.MEDIUM4。
         # 返回项：<a href="https://cloud.tencent.com/document/product/213/11518">预留实例计费规格列表</a>
@@ -6006,10 +6006,14 @@ module TencentCloud
         # @param InstanceFamily: 预留实例计费的类型。形如：S3。
         # 返回项：<a href="https://cloud.tencent.com/document/product/213/11518">预留实例计费类型列表</a>
         # @type InstanceFamily: String
+        # @param ReservedInstanceId: 已购买的预留实例计费ID。形如：ri-rtbh4han。
+        # @type ReservedInstanceId: String
+        # @param ReservedInstanceName: 预留实例显示名称。形如：riname-01
+        # @type ReservedInstanceName: String
 
-        attr_accessor :ReservedInstancesId, :InstanceType, :Zone, :StartTime, :EndTime, :Duration, :InstanceCount, :ProductDescription, :State, :CurrencyCode, :OfferingType, :InstanceFamily
+        attr_accessor :ReservedInstancesId, :InstanceType, :Zone, :StartTime, :EndTime, :Duration, :InstanceCount, :ProductDescription, :State, :CurrencyCode, :OfferingType, :InstanceFamily, :ReservedInstanceId, :ReservedInstanceName
         
-        def initialize(reservedinstancesid=nil, instancetype=nil, zone=nil, starttime=nil, endtime=nil, duration=nil, instancecount=nil, productdescription=nil, state=nil, currencycode=nil, offeringtype=nil, instancefamily=nil)
+        def initialize(reservedinstancesid=nil, instancetype=nil, zone=nil, starttime=nil, endtime=nil, duration=nil, instancecount=nil, productdescription=nil, state=nil, currencycode=nil, offeringtype=nil, instancefamily=nil, reservedinstanceid=nil, reservedinstancename=nil)
           @ReservedInstancesId = reservedinstancesid
           @InstanceType = instancetype
           @Zone = zone
@@ -6022,6 +6026,8 @@ module TencentCloud
           @CurrencyCode = currencycode
           @OfferingType = offeringtype
           @InstanceFamily = instancefamily
+          @ReservedInstanceId = reservedinstanceid
+          @ReservedInstanceName = reservedinstancename
         end
 
         def deserialize(params)
@@ -6037,6 +6043,8 @@ module TencentCloud
           @CurrencyCode = params['CurrencyCode']
           @OfferingType = params['OfferingType']
           @InstanceFamily = params['InstanceFamily']
+          @ReservedInstanceId = params['ReservedInstanceId']
+          @ReservedInstanceName = params['ReservedInstanceName']
         end
       end
 

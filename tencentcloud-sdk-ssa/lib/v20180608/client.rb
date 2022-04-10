@@ -293,6 +293,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 获取测绘列表
+
+        # @param request: Request instance for DescribeMappingResults.
+        # @type request: :class:`Tencentcloud::ssa::V20180608::DescribeMappingResultsRequest`
+        # @rtype: :class:`Tencentcloud::ssa::V20180608::DescribeMappingResultsResponse`
+        def DescribeMappingResults(request)
+          body = send_request('DescribeMappingResults', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeMappingResultsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 获取安全事件列表
 
         # @param request: Request instance for DescribeSafetyEventList.

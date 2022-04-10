@@ -273,10 +273,13 @@ module TencentCloud
         # @param DeadLetterRoutingKey: 死信交换机路由键
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DeadLetterRoutingKey: String
+        # @param TopicName: Queue对应的Topic名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TopicName: String
 
-        attr_accessor :Name, :Remark, :DestBindedNum, :CreateTime, :UpdateTime, :OnlineConsumerNum, :Tps, :AccumulativeMsgNum, :AutoDelete, :DeadLetterExchange, :DeadLetterRoutingKey
+        attr_accessor :Name, :Remark, :DestBindedNum, :CreateTime, :UpdateTime, :OnlineConsumerNum, :Tps, :AccumulativeMsgNum, :AutoDelete, :DeadLetterExchange, :DeadLetterRoutingKey, :TopicName
         
-        def initialize(name=nil, remark=nil, destbindednum=nil, createtime=nil, updatetime=nil, onlineconsumernum=nil, tps=nil, accumulativemsgnum=nil, autodelete=nil, deadletterexchange=nil, deadletterroutingkey=nil)
+        def initialize(name=nil, remark=nil, destbindednum=nil, createtime=nil, updatetime=nil, onlineconsumernum=nil, tps=nil, accumulativemsgnum=nil, autodelete=nil, deadletterexchange=nil, deadletterroutingkey=nil, topicname=nil)
           @Name = name
           @Remark = remark
           @DestBindedNum = destbindednum
@@ -288,6 +291,7 @@ module TencentCloud
           @AutoDelete = autodelete
           @DeadLetterExchange = deadletterexchange
           @DeadLetterRoutingKey = deadletterroutingkey
+          @TopicName = topicname
         end
 
         def deserialize(params)
@@ -302,6 +306,7 @@ module TencentCloud
           @AutoDelete = params['AutoDelete']
           @DeadLetterExchange = params['DeadLetterExchange']
           @DeadLetterRoutingKey = params['DeadLetterRoutingKey']
+          @TopicName = params['TopicName']
         end
       end
 

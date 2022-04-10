@@ -367,6 +367,38 @@ module TencentCloud
         end
       end
 
+      # CloseKafkaConsumer请求参数结构体
+      class CloseKafkaConsumerRequest < TencentCloud::Common::AbstractModel
+        # @param FromTopicId: CLS对应的topic标识
+        # @type FromTopicId: String
+
+        attr_accessor :FromTopicId
+        
+        def initialize(fromtopicid=nil)
+          @FromTopicId = fromtopicid
+        end
+
+        def deserialize(params)
+          @FromTopicId = params['FromTopicId']
+        end
+      end
+
+      # CloseKafkaConsumer返回参数结构体
+      class CloseKafkaConsumerResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 日志分析的列属性
       class Column < TencentCloud::Common::AbstractModel
         # @param Name: 列的名字
@@ -5078,6 +5110,42 @@ module TencentCloud
           @StartTime = params['StartTime']
           @EndTime = params['EndTime']
           @Index = params['Index']
+        end
+      end
+
+      # OpenKafkaConsumer请求参数结构体
+      class OpenKafkaConsumerRequest < TencentCloud::Common::AbstractModel
+        # @param FromTopicId: CLS控制台创建的TopicId
+        # @type FromTopicId: String
+
+        attr_accessor :FromTopicId
+        
+        def initialize(fromtopicid=nil)
+          @FromTopicId = fromtopicid
+        end
+
+        def deserialize(params)
+          @FromTopicId = params['FromTopicId']
+        end
+      end
+
+      # OpenKafkaConsumer返回参数结构体
+      class OpenKafkaConsumerResponse < TencentCloud::Common::AbstractModel
+        # @param TopicID: 待消费TopicId
+        # @type TopicID: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TopicID, :RequestId
+        
+        def initialize(topicid=nil, requestid=nil)
+          @TopicID = topicid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TopicID = params['TopicID']
+          @RequestId = params['RequestId']
         end
       end
 

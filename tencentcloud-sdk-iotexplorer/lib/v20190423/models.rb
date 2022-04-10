@@ -3383,7 +3383,7 @@ module TencentCloud
 
       # GetDeviceList请求参数结构体
       class GetDeviceListRequest < TencentCloud::Common::AbstractModel
-        # @param ProductId: 需要查看设备列表的产品 ID
+        # @param ProductId: 需要查看设备列表的产品ID, -1代表ProjectId来筛选
         # @type ProductId: String
         # @param Offset: 分页偏移
         # @type Offset: Integer
@@ -3806,9 +3806,9 @@ module TencentCloud
         # @type ProjectId: String
         # @param DevStatus: 产品DevStatus
         # @type DevStatus: String
-        # @param Offset: Offset
+        # @param Offset: 偏移量
         # @type Offset: Integer
-        # @param Limit: Limit
+        # @param Limit: 数量限制
         # @type Limit: Integer
 
         attr_accessor :ProjectId, :DevStatus, :Offset, :Limit
@@ -4219,29 +4219,29 @@ module TencentCloud
 
       # 网关坐标
       class LoRaGatewayLocation < TencentCloud::Common::AbstractModel
-        # @param Accuracy: 准确度
-        # @type Accuracy: Float
-        # @param Altitude: 海拔
-        # @type Altitude: Float
         # @param Latitude: 纬度
         # @type Latitude: Float
         # @param Longitude: 精度
         # @type Longitude: Float
+        # @param Accuracy: 准确度
+        # @type Accuracy: Float
+        # @param Altitude: 海拔
+        # @type Altitude: Float
 
-        attr_accessor :Accuracy, :Altitude, :Latitude, :Longitude
+        attr_accessor :Latitude, :Longitude, :Accuracy, :Altitude
         
-        def initialize(accuracy=nil, altitude=nil, latitude=nil, longitude=nil)
-          @Accuracy = accuracy
-          @Altitude = altitude
+        def initialize(latitude=nil, longitude=nil, accuracy=nil, altitude=nil)
           @Latitude = latitude
           @Longitude = longitude
+          @Accuracy = accuracy
+          @Altitude = altitude
         end
 
         def deserialize(params)
-          @Accuracy = params['Accuracy']
-          @Altitude = params['Altitude']
           @Latitude = params['Latitude']
           @Longitude = params['Longitude']
+          @Accuracy = params['Accuracy']
+          @Altitude = params['Altitude']
         end
       end
 
