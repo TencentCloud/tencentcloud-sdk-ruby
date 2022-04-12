@@ -401,7 +401,8 @@ module TencentCloud
         # @param Data: 返回信息
         # @type Data: String
         # @param Result: JSON字符串， 返回下发控制的结果信息,
-        # Sent = 1 表示设备已经在线并且订阅了控制下发的mqtt topic
+        # Sent = 1 表示设备已经在线并且订阅了控制下发的mqtt topic.
+        # pushResult 是表示发送结果，其中 0 表示成功， 23101 表示设备未在线或没有订阅相关的 MQTT Topic。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Result: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
@@ -1580,20 +1581,25 @@ module TencentCloud
         # @param GatewayDeviceName: 网关设备名
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type GatewayDeviceName: String
+        # @param GatewayName: 网关产品名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GatewayName: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :GatewayProductId, :GatewayDeviceName, :RequestId
+        attr_accessor :GatewayProductId, :GatewayDeviceName, :GatewayName, :RequestId
         
-        def initialize(gatewayproductid=nil, gatewaydevicename=nil, requestid=nil)
+        def initialize(gatewayproductid=nil, gatewaydevicename=nil, gatewayname=nil, requestid=nil)
           @GatewayProductId = gatewayproductid
           @GatewayDeviceName = gatewaydevicename
+          @GatewayName = gatewayname
           @RequestId = requestid
         end
 
         def deserialize(params)
           @GatewayProductId = params['GatewayProductId']
           @GatewayDeviceName = params['GatewayDeviceName']
+          @GatewayName = params['GatewayName']
           @RequestId = params['RequestId']
         end
       end

@@ -965,10 +965,13 @@ module TencentCloud
         # @param SpeechSpeed: 单句语速，单位：字数/秒
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SpeechSpeed: Float
+        # @param SpeakerId: 声道或说话人 Id（请求中如果设置了 speaker_diarization或者ChannelNum为双声道，可区分说话人或声道）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SpeakerId: Integer
 
-        attr_accessor :FinalSentence, :SliceSentence, :StartMs, :EndMs, :WordsNum, :Words, :SpeechSpeed
+        attr_accessor :FinalSentence, :SliceSentence, :StartMs, :EndMs, :WordsNum, :Words, :SpeechSpeed, :SpeakerId
         
-        def initialize(finalsentence=nil, slicesentence=nil, startms=nil, endms=nil, wordsnum=nil, words=nil, speechspeed=nil)
+        def initialize(finalsentence=nil, slicesentence=nil, startms=nil, endms=nil, wordsnum=nil, words=nil, speechspeed=nil, speakerid=nil)
           @FinalSentence = finalsentence
           @SliceSentence = slicesentence
           @StartMs = startms
@@ -976,6 +979,7 @@ module TencentCloud
           @WordsNum = wordsnum
           @Words = words
           @SpeechSpeed = speechspeed
+          @SpeakerId = speakerid
         end
 
         def deserialize(params)
@@ -993,6 +997,7 @@ module TencentCloud
             end
           end
           @SpeechSpeed = params['SpeechSpeed']
+          @SpeakerId = params['SpeakerId']
         end
       end
 

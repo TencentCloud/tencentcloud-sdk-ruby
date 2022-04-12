@@ -1362,13 +1362,19 @@ module TencentCloud
         # @type Rule: :class:`Tencentcloud::Cls.v20201016.models.RuleInfo`
         # @param Status: 是否生效，默认为true
         # @type Status: Boolean
+        # @param IncludeInternalFields: 全文索引系统预置字段标记，默认false。  false:不包含系统预置字段， true:包含系统预置字段
+        # @type IncludeInternalFields: Boolean
+        # @param MetadataFlag: 元数据相关标志位，默认为0。 0：全文索引包括开启键值索引的元数据字段， 1：全文索引包括所有元数据字段，2：全文索引不包括元数据字段。
+        # @type MetadataFlag: Integer
 
-        attr_accessor :TopicId, :Rule, :Status
+        attr_accessor :TopicId, :Rule, :Status, :IncludeInternalFields, :MetadataFlag
         
-        def initialize(topicid=nil, rule=nil, status=nil)
+        def initialize(topicid=nil, rule=nil, status=nil, includeinternalfields=nil, metadataflag=nil)
           @TopicId = topicid
           @Rule = rule
           @Status = status
+          @IncludeInternalFields = includeinternalfields
+          @MetadataFlag = metadataflag
         end
 
         def deserialize(params)
@@ -1378,6 +1384,8 @@ module TencentCloud
             @Rule.deserialize(params['Rule'])
           end
           @Status = params['Status']
+          @IncludeInternalFields = params['IncludeInternalFields']
+          @MetadataFlag = params['MetadataFlag']
         end
       end
 
@@ -2801,16 +2809,24 @@ module TencentCloud
         # @type Rule: :class:`Tencentcloud::Cls.v20201016.models.RuleInfo`
         # @param ModifyTime: 索引修改时间，初始值为索引创建时间。
         # @type ModifyTime: String
+        # @param IncludeInternalFields: 全文索引系统预置字段标记，默认false。  false:不包含系统预置字段， true:包含系统预置字段
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IncludeInternalFields: Boolean
+        # @param MetadataFlag: 元数据相关标志位，默认为0。 0：全文索引包括开启键值索引的元数据字段， 1：全文索引包括所有元数据字段，2：全文索引不包括元数据字段。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MetadataFlag: Integer
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :TopicId, :Status, :Rule, :ModifyTime, :RequestId
+        attr_accessor :TopicId, :Status, :Rule, :ModifyTime, :IncludeInternalFields, :MetadataFlag, :RequestId
         
-        def initialize(topicid=nil, status=nil, rule=nil, modifytime=nil, requestid=nil)
+        def initialize(topicid=nil, status=nil, rule=nil, modifytime=nil, includeinternalfields=nil, metadataflag=nil, requestid=nil)
           @TopicId = topicid
           @Status = status
           @Rule = rule
           @ModifyTime = modifytime
+          @IncludeInternalFields = includeinternalfields
+          @MetadataFlag = metadataflag
           @RequestId = requestid
         end
 
@@ -2822,6 +2838,8 @@ module TencentCloud
             @Rule.deserialize(params['Rule'])
           end
           @ModifyTime = params['ModifyTime']
+          @IncludeInternalFields = params['IncludeInternalFields']
+          @MetadataFlag = params['MetadataFlag']
           @RequestId = params['RequestId']
         end
       end
@@ -4748,13 +4766,19 @@ module TencentCloud
         # @type Status: Boolean
         # @param Rule: 索引规则
         # @type Rule: :class:`Tencentcloud::Cls.v20201016.models.RuleInfo`
+        # @param IncludeInternalFields: 全文索引系统预置字段标记，默认false。  false:不包含系统预置字段， true:包含系统预置字段
+        # @type IncludeInternalFields: Boolean
+        # @param MetadataFlag: 元数据相关标志位，默认为0。 0：全文索引包括开启键值索引的元数据字段， 1：全文索引包括所有元数据字段，2：全文索引不包括元数据字段。
+        # @type MetadataFlag: Integer
 
-        attr_accessor :TopicId, :Status, :Rule
+        attr_accessor :TopicId, :Status, :Rule, :IncludeInternalFields, :MetadataFlag
         
-        def initialize(topicid=nil, status=nil, rule=nil)
+        def initialize(topicid=nil, status=nil, rule=nil, includeinternalfields=nil, metadataflag=nil)
           @TopicId = topicid
           @Status = status
           @Rule = rule
+          @IncludeInternalFields = includeinternalfields
+          @MetadataFlag = metadataflag
         end
 
         def deserialize(params)
@@ -4764,6 +4788,8 @@ module TencentCloud
             @Rule = RuleInfo.new
             @Rule.deserialize(params['Rule'])
           end
+          @IncludeInternalFields = params['IncludeInternalFields']
+          @MetadataFlag = params['MetadataFlag']
         end
       end
 

@@ -6669,7 +6669,7 @@ module TencentCloud
         # @type EdgeUnitID: Integer
         # @param ConfigMapName: ConfigMap名称
         # @type ConfigMapName: String
-        # @param Yaml: Yaml配置
+        # @param Yaml: Yaml配置, base64之后的串
         # @type Yaml: String
         # @param ConfigMapNamespace: ConfigMap命名空间
         # @type ConfigMapNamespace: String

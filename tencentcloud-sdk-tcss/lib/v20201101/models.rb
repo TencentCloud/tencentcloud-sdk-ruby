@@ -8755,17 +8755,26 @@ module TencentCloud
         # @param ResourceId: 资源ID
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResourceId: String
+        # @param BuyStatus: 购买状态
+        # 待购: Pending
+        # 已购: Normal
+        # 隔离: Isolate
+        # @type BuyStatus: String
+        # @param IsPurchased: 是否曾经购买过(false:未曾 true:曾经购买过)
+        # @type IsPurchased: Boolean
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :StartTime, :EndTime, :CoresCnt, :MaxPostPayCoresCnt, :ResourceId, :RequestId
+        attr_accessor :StartTime, :EndTime, :CoresCnt, :MaxPostPayCoresCnt, :ResourceId, :BuyStatus, :IsPurchased, :RequestId
         
-        def initialize(starttime=nil, endtime=nil, corescnt=nil, maxpostpaycorescnt=nil, resourceid=nil, requestid=nil)
+        def initialize(starttime=nil, endtime=nil, corescnt=nil, maxpostpaycorescnt=nil, resourceid=nil, buystatus=nil, ispurchased=nil, requestid=nil)
           @StartTime = starttime
           @EndTime = endtime
           @CoresCnt = corescnt
           @MaxPostPayCoresCnt = maxpostpaycorescnt
           @ResourceId = resourceid
+          @BuyStatus = buystatus
+          @IsPurchased = ispurchased
           @RequestId = requestid
         end
 
@@ -8775,6 +8784,8 @@ module TencentCloud
           @CoresCnt = params['CoresCnt']
           @MaxPostPayCoresCnt = params['MaxPostPayCoresCnt']
           @ResourceId = params['ResourceId']
+          @BuyStatus = params['BuyStatus']
+          @IsPurchased = params['IsPurchased']
           @RequestId = params['RequestId']
         end
       end

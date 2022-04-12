@@ -1460,10 +1460,13 @@ module TencentCloud
         # @param Alias: 部署组备注
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Alias: String
+        # @param KubeInjectEnable: KubeInjectEnable值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type KubeInjectEnable: Boolean
 
-        attr_accessor :GroupId, :GroupName, :CreateTime, :Server, :RepoName, :TagName, :ClusterId, :ClusterName, :NamespaceId, :NamespaceName, :CpuRequest, :CpuLimit, :MemRequest, :MemLimit, :Alias
+        attr_accessor :GroupId, :GroupName, :CreateTime, :Server, :RepoName, :TagName, :ClusterId, :ClusterName, :NamespaceId, :NamespaceName, :CpuRequest, :CpuLimit, :MemRequest, :MemLimit, :Alias, :KubeInjectEnable
         
-        def initialize(groupid=nil, groupname=nil, createtime=nil, server=nil, reponame=nil, tagname=nil, clusterid=nil, clustername=nil, namespaceid=nil, namespacename=nil, cpurequest=nil, cpulimit=nil, memrequest=nil, memlimit=nil, _alias=nil)
+        def initialize(groupid=nil, groupname=nil, createtime=nil, server=nil, reponame=nil, tagname=nil, clusterid=nil, clustername=nil, namespaceid=nil, namespacename=nil, cpurequest=nil, cpulimit=nil, memrequest=nil, memlimit=nil, _alias=nil, kubeinjectenable=nil)
           @GroupId = groupid
           @GroupName = groupname
           @CreateTime = createtime
@@ -1479,6 +1482,7 @@ module TencentCloud
           @MemRequest = memrequest
           @MemLimit = memlimit
           @Alias = _alias
+          @KubeInjectEnable = kubeinjectenable
         end
 
         def deserialize(params)
@@ -1497,6 +1501,7 @@ module TencentCloud
           @MemRequest = params['MemRequest']
           @MemLimit = params['MemLimit']
           @Alias = params['Alias']
+          @KubeInjectEnable = params['KubeInjectEnable']
         end
       end
 
@@ -1684,10 +1689,13 @@ module TencentCloud
         # @param VolumeMountInfos: 数据卷挂载信息，list
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VolumeMountInfos: Array
+        # @param KubeInjectEnable: KubeInjectEnable值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type KubeInjectEnable: Boolean
 
-        attr_accessor :GroupId, :GroupName, :InstanceNum, :CurrentNum, :Server, :Reponame, :TagName, :CpuRequest, :CpuLimit, :MemRequest, :MemLimit, :AccessType, :ProtocolPorts, :UpdateType, :UpdateIvl, :JvmOpts, :SubnetId, :AgentCpuRequest, :AgentCpuLimit, :AgentMemRequest, :AgentMemLimit, :IstioCpuRequest, :IstioCpuLimit, :IstioMemRequest, :IstioMemLimit, :Envs, :HealthCheckSettings, :DeployAgent, :Alias, :DisableService, :HeadlessService, :TcrRepoInfo, :VolumeInfos, :VolumeMountInfos
+        attr_accessor :GroupId, :GroupName, :InstanceNum, :CurrentNum, :Server, :Reponame, :TagName, :CpuRequest, :CpuLimit, :MemRequest, :MemLimit, :AccessType, :ProtocolPorts, :UpdateType, :UpdateIvl, :JvmOpts, :SubnetId, :AgentCpuRequest, :AgentCpuLimit, :AgentMemRequest, :AgentMemLimit, :IstioCpuRequest, :IstioCpuLimit, :IstioMemRequest, :IstioMemLimit, :Envs, :HealthCheckSettings, :DeployAgent, :Alias, :DisableService, :HeadlessService, :TcrRepoInfo, :VolumeInfos, :VolumeMountInfos, :KubeInjectEnable
         
-        def initialize(groupid=nil, groupname=nil, instancenum=nil, currentnum=nil, server=nil, reponame=nil, tagname=nil, cpurequest=nil, cpulimit=nil, memrequest=nil, memlimit=nil, accesstype=nil, protocolports=nil, updatetype=nil, updateivl=nil, jvmopts=nil, subnetid=nil, agentcpurequest=nil, agentcpulimit=nil, agentmemrequest=nil, agentmemlimit=nil, istiocpurequest=nil, istiocpulimit=nil, istiomemrequest=nil, istiomemlimit=nil, envs=nil, healthchecksettings=nil, deployagent=nil, _alias=nil, disableservice=nil, headlessservice=nil, tcrrepoinfo=nil, volumeinfos=nil, volumemountinfos=nil)
+        def initialize(groupid=nil, groupname=nil, instancenum=nil, currentnum=nil, server=nil, reponame=nil, tagname=nil, cpurequest=nil, cpulimit=nil, memrequest=nil, memlimit=nil, accesstype=nil, protocolports=nil, updatetype=nil, updateivl=nil, jvmopts=nil, subnetid=nil, agentcpurequest=nil, agentcpulimit=nil, agentmemrequest=nil, agentmemlimit=nil, istiocpurequest=nil, istiocpulimit=nil, istiomemrequest=nil, istiomemlimit=nil, envs=nil, healthchecksettings=nil, deployagent=nil, _alias=nil, disableservice=nil, headlessservice=nil, tcrrepoinfo=nil, volumeinfos=nil, volumemountinfos=nil, kubeinjectenable=nil)
           @GroupId = groupid
           @GroupName = groupname
           @InstanceNum = instancenum
@@ -1722,6 +1730,7 @@ module TencentCloud
           @TcrRepoInfo = tcrrepoinfo
           @VolumeInfos = volumeinfos
           @VolumeMountInfos = volumemountinfos
+          @KubeInjectEnable = kubeinjectenable
         end
 
         def deserialize(params)
@@ -1793,6 +1802,7 @@ module TencentCloud
               @VolumeMountInfos << volumemountinfo_tmp
             end
           end
+          @KubeInjectEnable = params['KubeInjectEnable']
         end
       end
 
@@ -10673,13 +10683,16 @@ module TencentCloud
         # @param ApplicationId: applicationid值
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ApplicationId: String
-        # @param ApplicationName: ApplicationName值（类型是string）
+        # @param ApplicationName: ApplicationName值（废弃）
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ApplicationName: :class:`Tencentcloud::Tsf.v20180326.models.ScalableRule`
+        # @param ApplicationNameReal: ApplicationName值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ApplicationNameReal: String
 
-        attr_accessor :Reponame, :Repotype, :TagCount, :IsPublic, :IsUserFavor, :IsQcloudOfficial, :FavorCount, :PullCount, :Description, :CreationTime, :UpdateTime, :TcrRepoInfo, :TcrBindingId, :ApplicationId, :ApplicationName
+        attr_accessor :Reponame, :Repotype, :TagCount, :IsPublic, :IsUserFavor, :IsQcloudOfficial, :FavorCount, :PullCount, :Description, :CreationTime, :UpdateTime, :TcrRepoInfo, :TcrBindingId, :ApplicationId, :ApplicationName, :ApplicationNameReal
         
-        def initialize(reponame=nil, repotype=nil, tagcount=nil, ispublic=nil, isuserfavor=nil, isqcloudofficial=nil, favorcount=nil, pullcount=nil, description=nil, creationtime=nil, updatetime=nil, tcrrepoinfo=nil, tcrbindingid=nil, applicationid=nil, applicationname=nil)
+        def initialize(reponame=nil, repotype=nil, tagcount=nil, ispublic=nil, isuserfavor=nil, isqcloudofficial=nil, favorcount=nil, pullcount=nil, description=nil, creationtime=nil, updatetime=nil, tcrrepoinfo=nil, tcrbindingid=nil, applicationid=nil, applicationname=nil, applicationnamereal=nil)
           @Reponame = reponame
           @Repotype = repotype
           @TagCount = tagcount
@@ -10695,6 +10708,7 @@ module TencentCloud
           @TcrBindingId = tcrbindingid
           @ApplicationId = applicationid
           @ApplicationName = applicationname
+          @ApplicationNameReal = applicationnamereal
         end
 
         def deserialize(params)
@@ -10719,6 +10733,7 @@ module TencentCloud
             @ApplicationName = ScalableRule.new
             @ApplicationName.deserialize(params['ApplicationName'])
           end
+          @ApplicationNameReal = params['ApplicationNameReal']
         end
       end
 
@@ -12865,10 +12880,13 @@ module TencentCloud
         # @param IsHaEnable: 是否开启高可用
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsHaEnable: String
+        # @param KubeInjectEnable: KubeInjectEnable值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type KubeInjectEnable: Boolean
 
-        attr_accessor :NamespaceId, :NamespaceCode, :NamespaceName, :NamespaceDesc, :IsDefault, :NamespaceStatus, :DeleteFlag, :CreateTime, :UpdateTime, :ClusterList, :ClusterId, :NamespaceResourceType, :NamespaceType, :IsHaEnable
+        attr_accessor :NamespaceId, :NamespaceCode, :NamespaceName, :NamespaceDesc, :IsDefault, :NamespaceStatus, :DeleteFlag, :CreateTime, :UpdateTime, :ClusterList, :ClusterId, :NamespaceResourceType, :NamespaceType, :IsHaEnable, :KubeInjectEnable
         
-        def initialize(namespaceid=nil, namespacecode=nil, namespacename=nil, namespacedesc=nil, isdefault=nil, namespacestatus=nil, deleteflag=nil, createtime=nil, updatetime=nil, clusterlist=nil, clusterid=nil, namespaceresourcetype=nil, namespacetype=nil, ishaenable=nil)
+        def initialize(namespaceid=nil, namespacecode=nil, namespacename=nil, namespacedesc=nil, isdefault=nil, namespacestatus=nil, deleteflag=nil, createtime=nil, updatetime=nil, clusterlist=nil, clusterid=nil, namespaceresourcetype=nil, namespacetype=nil, ishaenable=nil, kubeinjectenable=nil)
           @NamespaceId = namespaceid
           @NamespaceCode = namespacecode
           @NamespaceName = namespacename
@@ -12883,6 +12901,7 @@ module TencentCloud
           @NamespaceResourceType = namespaceresourcetype
           @NamespaceType = namespacetype
           @IsHaEnable = ishaenable
+          @KubeInjectEnable = kubeinjectenable
         end
 
         def deserialize(params)
@@ -12907,6 +12926,7 @@ module TencentCloud
           @NamespaceResourceType = params['NamespaceResourceType']
           @NamespaceType = params['NamespaceType']
           @IsHaEnable = params['IsHaEnable']
+          @KubeInjectEnable = params['KubeInjectEnable']
         end
       end
 
@@ -14500,10 +14520,34 @@ module TencentCloud
         # @param DbType: 数据库类型
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DbType: String
+        # @param Apdex: Apdex值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Apdex: Float
+        # @param Qps: Qps值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Qps: Float
+        # @param InstanceOnlineCount: 实例在线数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceOnlineCount: Integer
+        # @param InstanceTotalCount: 实例总数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceTotalCount: Integer
+        # @param Status: normal/error
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: String
+        # @param ErrorRateLevel: normal/warn/error
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ErrorRateLevel: String
+        # @param AvgTimeConsumingLevel: normal/warn/error
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AvgTimeConsumingLevel: String
+        # @param ApdexLevel: normal/warn/error
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ApdexLevel: String
 
-        attr_accessor :Path, :Method, :MicroserviceId, :MicroserviceName, :RequestCount, :ErrorRate, :AvgTimeConsuming, :MetricDataCurves, :InstanceId, :InstanceName, :GroupId, :GroupName, :ClusterType, :GroupExist, :InstanceExist, :ApplicationId, :MicroserviceType, :CpuPercent, :HeapUsed, :DbName, :Script, :DbType
+        attr_accessor :Path, :Method, :MicroserviceId, :MicroserviceName, :RequestCount, :ErrorRate, :AvgTimeConsuming, :MetricDataCurves, :InstanceId, :InstanceName, :GroupId, :GroupName, :ClusterType, :GroupExist, :InstanceExist, :ApplicationId, :MicroserviceType, :CpuPercent, :HeapUsed, :DbName, :Script, :DbType, :Apdex, :Qps, :InstanceOnlineCount, :InstanceTotalCount, :Status, :ErrorRateLevel, :AvgTimeConsumingLevel, :ApdexLevel
         
-        def initialize(path=nil, method=nil, microserviceid=nil, microservicename=nil, requestcount=nil, errorrate=nil, avgtimeconsuming=nil, metricdatacurves=nil, instanceid=nil, instancename=nil, groupid=nil, groupname=nil, clustertype=nil, groupexist=nil, instanceexist=nil, applicationid=nil, microservicetype=nil, cpupercent=nil, heapused=nil, dbname=nil, script=nil, dbtype=nil)
+        def initialize(path=nil, method=nil, microserviceid=nil, microservicename=nil, requestcount=nil, errorrate=nil, avgtimeconsuming=nil, metricdatacurves=nil, instanceid=nil, instancename=nil, groupid=nil, groupname=nil, clustertype=nil, groupexist=nil, instanceexist=nil, applicationid=nil, microservicetype=nil, cpupercent=nil, heapused=nil, dbname=nil, script=nil, dbtype=nil, apdex=nil, qps=nil, instanceonlinecount=nil, instancetotalcount=nil, status=nil, errorratelevel=nil, avgtimeconsuminglevel=nil, apdexlevel=nil)
           @Path = path
           @Method = method
           @MicroserviceId = microserviceid
@@ -14526,6 +14570,14 @@ module TencentCloud
           @DbName = dbname
           @Script = script
           @DbType = dbtype
+          @Apdex = apdex
+          @Qps = qps
+          @InstanceOnlineCount = instanceonlinecount
+          @InstanceTotalCount = instancetotalcount
+          @Status = status
+          @ErrorRateLevel = errorratelevel
+          @AvgTimeConsumingLevel = avgtimeconsuminglevel
+          @ApdexLevel = apdexlevel
         end
 
         def deserialize(params)
@@ -14558,6 +14610,14 @@ module TencentCloud
           @DbName = params['DbName']
           @Script = params['Script']
           @DbType = params['DbType']
+          @Apdex = params['Apdex']
+          @Qps = params['Qps']
+          @InstanceOnlineCount = params['InstanceOnlineCount']
+          @InstanceTotalCount = params['InstanceTotalCount']
+          @Status = params['Status']
+          @ErrorRateLevel = params['ErrorRateLevel']
+          @AvgTimeConsumingLevel = params['AvgTimeConsumingLevel']
+          @ApdexLevel = params['ApdexLevel']
         end
       end
 
