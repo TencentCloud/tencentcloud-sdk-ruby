@@ -585,7 +585,7 @@ module TencentCloud
         # @type AdminPassword: String
         # @param ProjectId: 项目ID。
         # @type ProjectId: Integer
-        # @param DBVersion: PostgreSQL版本。当输入该参数时，会基于此版本创建对应的最新内核版本号实例
+        # @param DBVersion: PostgreSQL版本。当输入该参数时，会基于此版本创建对应的最新内核版本号实例。该参数和DBMajorVersion、DBKernelVersion至少需要传递一个。
         # @type DBVersion: String
         # @param InstanceChargeType: 实例计费类型。目前支持：PREPAID（预付费，即包年包月），POSTPAID_BY_HOUR（后付费，即按量计费）。
         # @type InstanceChargeType: String
@@ -609,16 +609,22 @@ module TencentCloud
         # @type TagList: Array
         # @param SecurityGroupIds: 安全组ID。
         # @type SecurityGroupIds: Array
-        # @param DBMajorVersion: PostgreSQL主要版本。目前支持10，11，12，13这几个版本。当输入该参数时，会基于此版本创建对应的最新内核版本号实例
+        # @param DBMajorVersion: PostgreSQL主要版本。目前支持10，11，12，13这几个版本。当输入该参数时，会基于此版本创建对应的最新内核版本号实例。该参数和DBVersion、DBKernelVersion至少需要传递一个。
         # @type DBMajorVersion: String
-        # @param DBKernelVersion: PostgreSQL内核版本。当输入该参数时，会创建该内核版本号实例
+        # @param DBKernelVersion: PostgreSQL内核版本。当输入该参数时，会创建该内核版本号实例。该参数和DBVersion、DBMajorVersion至少需要传递一个。
         # @type DBKernelVersion: String
         # @param DBNodeSet: 实例节点信息，购买跨可用区实例时填写。
         # @type DBNodeSet: Array
+        # @param NeedSupportTDE: 是否需要支持数据透明加密，1：是，0：否（默认）。
+        # @type NeedSupportTDE: Integer
+        # @param KMSKeyId: 自定义密钥的keyId，若选择自定义密匙加密，则需要传入自定义密匙的keyId，keyId是CMK的唯一标识。
+        # @type KMSKeyId: String
+        # @param KMSRegion: 使用KMS服务的地域，KMSRegion为空默认使用本地域的kms，本地域不支持的情况下需自选其他KMS支持的地域。
+        # @type KMSRegion: String
 
-        attr_accessor :SpecCode, :Storage, :InstanceCount, :Period, :Zone, :Charset, :AdminName, :AdminPassword, :ProjectId, :DBVersion, :InstanceChargeType, :AutoVoucher, :VoucherIds, :VpcId, :SubnetId, :AutoRenewFlag, :ActivityId, :Name, :NeedSupportIpv6, :TagList, :SecurityGroupIds, :DBMajorVersion, :DBKernelVersion, :DBNodeSet
+        attr_accessor :SpecCode, :Storage, :InstanceCount, :Period, :Zone, :Charset, :AdminName, :AdminPassword, :ProjectId, :DBVersion, :InstanceChargeType, :AutoVoucher, :VoucherIds, :VpcId, :SubnetId, :AutoRenewFlag, :ActivityId, :Name, :NeedSupportIpv6, :TagList, :SecurityGroupIds, :DBMajorVersion, :DBKernelVersion, :DBNodeSet, :NeedSupportTDE, :KMSKeyId, :KMSRegion
         
-        def initialize(speccode=nil, storage=nil, instancecount=nil, period=nil, zone=nil, charset=nil, adminname=nil, adminpassword=nil, projectid=nil, dbversion=nil, instancechargetype=nil, autovoucher=nil, voucherids=nil, vpcid=nil, subnetid=nil, autorenewflag=nil, activityid=nil, name=nil, needsupportipv6=nil, taglist=nil, securitygroupids=nil, dbmajorversion=nil, dbkernelversion=nil, dbnodeset=nil)
+        def initialize(speccode=nil, storage=nil, instancecount=nil, period=nil, zone=nil, charset=nil, adminname=nil, adminpassword=nil, projectid=nil, dbversion=nil, instancechargetype=nil, autovoucher=nil, voucherids=nil, vpcid=nil, subnetid=nil, autorenewflag=nil, activityid=nil, name=nil, needsupportipv6=nil, taglist=nil, securitygroupids=nil, dbmajorversion=nil, dbkernelversion=nil, dbnodeset=nil, needsupporttde=nil, kmskeyid=nil, kmsregion=nil)
           @SpecCode = speccode
           @Storage = storage
           @InstanceCount = instancecount
@@ -643,6 +649,9 @@ module TencentCloud
           @DBMajorVersion = dbmajorversion
           @DBKernelVersion = dbkernelversion
           @DBNodeSet = dbnodeset
+          @NeedSupportTDE = needsupporttde
+          @KMSKeyId = kmskeyid
+          @KMSRegion = kmsregion
         end
 
         def deserialize(params)
@@ -684,6 +693,9 @@ module TencentCloud
               @DBNodeSet << dbnode_tmp
             end
           end
+          @NeedSupportTDE = params['NeedSupportTDE']
+          @KMSKeyId = params['KMSKeyId']
+          @KMSRegion = params['KMSRegion']
         end
       end
 
@@ -753,7 +765,7 @@ module TencentCloud
         # @type NeedSupportIpv6: Integer
         # @param ReadOnlyGroupId: 只读组ID。
         # @type ReadOnlyGroupId: String
-        # @param TagList: 实例需要绑定的Tag信息，默认为空
+        # @param TagList: 实例需要绑定的Tag信息，默认为空（该类型为Tag数组类型）
         # @type TagList: :class:`Tencentcloud::Postgres.v20170312.models.Tag`
         # @param SecurityGroupIds: 安全组id
         # @type SecurityGroupIds: Array
@@ -1187,10 +1199,13 @@ module TencentCloud
         # @param DBNodeSet: 实例的节点信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DBNodeSet: Array
+        # @param IsSupportTDE: 实例是否支持TDE数据加密  0：不支持，1：支持
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsSupportTDE: Integer
 
-        attr_accessor :Region, :Zone, :ProjectId, :VpcId, :SubnetId, :DBInstanceId, :DBInstanceName, :DBInstanceStatus, :DBInstanceMemory, :DBInstanceStorage, :DBInstanceCpu, :DBInstanceClass, :DBInstanceType, :DBInstanceVersion, :DBCharset, :DBVersion, :CreateTime, :UpdateTime, :ExpireTime, :IsolatedTime, :PayType, :AutoRenew, :DBInstanceNetInfo, :Type, :AppId, :Uid, :SupportIpv6, :TagList, :MasterDBInstanceId, :ReadOnlyInstanceNum, :StatusInReadonlyGroup, :OfflineTime, :DBKernelVersion, :NetworkAccessList, :DBMajorVersion, :DBNodeSet
+        attr_accessor :Region, :Zone, :ProjectId, :VpcId, :SubnetId, :DBInstanceId, :DBInstanceName, :DBInstanceStatus, :DBInstanceMemory, :DBInstanceStorage, :DBInstanceCpu, :DBInstanceClass, :DBInstanceType, :DBInstanceVersion, :DBCharset, :DBVersion, :CreateTime, :UpdateTime, :ExpireTime, :IsolatedTime, :PayType, :AutoRenew, :DBInstanceNetInfo, :Type, :AppId, :Uid, :SupportIpv6, :TagList, :MasterDBInstanceId, :ReadOnlyInstanceNum, :StatusInReadonlyGroup, :OfflineTime, :DBKernelVersion, :NetworkAccessList, :DBMajorVersion, :DBNodeSet, :IsSupportTDE
         
-        def initialize(region=nil, zone=nil, projectid=nil, vpcid=nil, subnetid=nil, dbinstanceid=nil, dbinstancename=nil, dbinstancestatus=nil, dbinstancememory=nil, dbinstancestorage=nil, dbinstancecpu=nil, dbinstanceclass=nil, dbinstancetype=nil, dbinstanceversion=nil, dbcharset=nil, dbversion=nil, createtime=nil, updatetime=nil, expiretime=nil, isolatedtime=nil, paytype=nil, autorenew=nil, dbinstancenetinfo=nil, type=nil, appid=nil, uid=nil, supportipv6=nil, taglist=nil, masterdbinstanceid=nil, readonlyinstancenum=nil, statusinreadonlygroup=nil, offlinetime=nil, dbkernelversion=nil, networkaccesslist=nil, dbmajorversion=nil, dbnodeset=nil)
+        def initialize(region=nil, zone=nil, projectid=nil, vpcid=nil, subnetid=nil, dbinstanceid=nil, dbinstancename=nil, dbinstancestatus=nil, dbinstancememory=nil, dbinstancestorage=nil, dbinstancecpu=nil, dbinstanceclass=nil, dbinstancetype=nil, dbinstanceversion=nil, dbcharset=nil, dbversion=nil, createtime=nil, updatetime=nil, expiretime=nil, isolatedtime=nil, paytype=nil, autorenew=nil, dbinstancenetinfo=nil, type=nil, appid=nil, uid=nil, supportipv6=nil, taglist=nil, masterdbinstanceid=nil, readonlyinstancenum=nil, statusinreadonlygroup=nil, offlinetime=nil, dbkernelversion=nil, networkaccesslist=nil, dbmajorversion=nil, dbnodeset=nil, issupporttde=nil)
           @Region = region
           @Zone = zone
           @ProjectId = projectid
@@ -1227,6 +1242,7 @@ module TencentCloud
           @NetworkAccessList = networkaccesslist
           @DBMajorVersion = dbmajorversion
           @DBNodeSet = dbnodeset
+          @IsSupportTDE = issupporttde
         end
 
         def deserialize(params)
@@ -1294,6 +1310,7 @@ module TencentCloud
               @DBNodeSet << dbnode_tmp
             end
           end
+          @IsSupportTDE = params['IsSupportTDE']
         end
       end
 
@@ -4688,13 +4705,17 @@ module TencentCloud
         # @type Zone: String
         # @param SpecItemInfoList: 规格详细信息列表
         # @type SpecItemInfoList: Array
+        # @param SupportKMSRegions: 支持KMS的地域
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SupportKMSRegions: Array
 
-        attr_accessor :Region, :Zone, :SpecItemInfoList
+        attr_accessor :Region, :Zone, :SpecItemInfoList, :SupportKMSRegions
         
-        def initialize(region=nil, zone=nil, speciteminfolist=nil)
+        def initialize(region=nil, zone=nil, speciteminfolist=nil, supportkmsregions=nil)
           @Region = region
           @Zone = zone
           @SpecItemInfoList = speciteminfolist
+          @SupportKMSRegions = supportkmsregions
         end
 
         def deserialize(params)
@@ -4708,6 +4729,7 @@ module TencentCloud
               @SpecItemInfoList << speciteminfo_tmp
             end
           end
+          @SupportKMSRegions = params['SupportKMSRegions']
         end
       end
 
@@ -4739,10 +4761,13 @@ module TencentCloud
         # @param KernelVersion: PostgreSQL的内核版本编号
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type KernelVersion: String
+        # @param IsSupportTDE: 是否支持TDE数据加密功能，0-不支持，1-支持
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsSupportTDE: Integer
 
-        attr_accessor :SpecCode, :Version, :VersionName, :Cpu, :Memory, :MaxStorage, :MinStorage, :Qps, :Pid, :Type, :MajorVersion, :KernelVersion
+        attr_accessor :SpecCode, :Version, :VersionName, :Cpu, :Memory, :MaxStorage, :MinStorage, :Qps, :Pid, :Type, :MajorVersion, :KernelVersion, :IsSupportTDE
         
-        def initialize(speccode=nil, version=nil, versionname=nil, cpu=nil, memory=nil, maxstorage=nil, minstorage=nil, qps=nil, pid=nil, type=nil, majorversion=nil, kernelversion=nil)
+        def initialize(speccode=nil, version=nil, versionname=nil, cpu=nil, memory=nil, maxstorage=nil, minstorage=nil, qps=nil, pid=nil, type=nil, majorversion=nil, kernelversion=nil, issupporttde=nil)
           @SpecCode = speccode
           @Version = version
           @VersionName = versionname
@@ -4755,6 +4780,7 @@ module TencentCloud
           @Type = type
           @MajorVersion = majorversion
           @KernelVersion = kernelversion
+          @IsSupportTDE = issupporttde
         end
 
         def deserialize(params)
@@ -4770,6 +4796,7 @@ module TencentCloud
           @Type = params['Type']
           @MajorVersion = params['MajorVersion']
           @KernelVersion = params['KernelVersion']
+          @IsSupportTDE = params['IsSupportTDE']
         end
       end
 

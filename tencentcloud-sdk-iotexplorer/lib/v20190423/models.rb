@@ -3741,7 +3741,7 @@ module TencentCloud
         # @type Limit: Integer
         # @param InstanceId: 实例ID
         # @type InstanceId: String
-        # @param ProjectId: 按项目D搜索
+        # @param ProjectId: 按项目ID搜索
         # @type ProjectId: String
         # @param ProductId: 按产品ID搜索
         # @type ProductId: String

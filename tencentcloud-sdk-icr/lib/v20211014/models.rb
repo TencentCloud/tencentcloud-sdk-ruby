@@ -384,9 +384,9 @@ module TencentCloud
 
       # 请求参数的lbs
       class ReqMetadataLBS < TencentCloud::Common::AbstractModel
-        # @param Latitude: 无
+        # @param Latitude: 纬度
         # @type Latitude: Float
-        # @param Longitude: 无
+        # @param Longitude: 经度
         # @type Longitude: Float
 
         attr_accessor :Latitude, :Longitude

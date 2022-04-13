@@ -474,6 +474,32 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 该接口用于开通某地域的存储。
+        #   1. 用户开通点播业务时，系统默认为用户开通了部分地域的存储，用户如果需要开通其它地域的存储，可以通过该接口进行开通。
+        #   2. 通过 DescribeStorageRegions 接口可以查询到所有存储地域及已经开通的地域。
+
+        # @param request: Request instance for CreateStorageRegion.
+        # @type request: :class:`Tencentcloud::vod::V20180717::CreateStorageRegionRequest`
+        # @rtype: :class:`Tencentcloud::vod::V20180717::CreateStorageRegionResponse`
+        def CreateStorageRegion(request)
+          body = send_request('CreateStorageRegion', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateStorageRegionResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 该接口用于创建点播子应用。
 
         # @param request: Request instance for CreateSubAppId.
@@ -1832,6 +1858,33 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 该接口用于：
+        #   1. 查询点播可开通的所有存储园区列表。
+        #   2. 查询已经开通的园区列表。
+        #   3. 查询默认使用的存储园区。
+
+        # @param request: Request instance for DescribeStorageRegions.
+        # @type request: :class:`Tencentcloud::vod::V20180717::DescribeStorageRegionsRequest`
+        # @rtype: :class:`Tencentcloud::vod::V20180717::DescribeStorageRegionsResponse`
+        def DescribeStorageRegions(request)
+          body = send_request('DescribeStorageRegions', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeStorageRegionsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 该接口用于获取当前账号的子应用列表，包含主应用。
 
         # @param request: Request instance for DescribeSubAppIds.
@@ -2316,6 +2369,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyContentReviewTemplateResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 该接口用于设置默认的存储地域。上传文件时如果没有指定地域，将上传到默认地域。
+
+        # @param request: Request instance for ModifyDefaultStorageRegion.
+        # @type request: :class:`Tencentcloud::vod::V20180717::ModifyDefaultStorageRegionRequest`
+        # @rtype: :class:`Tencentcloud::vod::V20180717::ModifyDefaultStorageRegionResponse`
+        def ModifyDefaultStorageRegion(request)
+          body = send_request('ModifyDefaultStorageRegion', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyDefaultStorageRegionResponse.new
             model.deserialize(response['Response'])
             model
           else

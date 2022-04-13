@@ -1298,12 +1298,12 @@ module TencentCloud
         # @type StartTimeStamp: Integer
         # @param EndTimeStamp: 结束时间戳，Unix 时间戳
         # @type EndTimeStamp: Integer
+        # @param InstanceId: 实例 ID（deprecated）
+        # @type InstanceId: Integer
         # @param Limit: 返回数据条数，上限（deprecated）
         # @type Limit: Integer
         # @param Offset: 偏移（deprecated）
         # @type Offset: Integer
-        # @param InstanceId: 实例 ID（deprecated）
-        # @type InstanceId: Integer
         # @param SdkAppId: 应用 ID
         # @type SdkAppId: Integer
         # @param PageSize: 分页尺寸，上限 100
@@ -1315,14 +1315,14 @@ module TencentCloud
         # @param SessionIds: 按SessionId筛选
         # @type SessionIds: Array
 
-        attr_accessor :StartTimeStamp, :EndTimeStamp, :Limit, :Offset, :InstanceId, :SdkAppId, :PageSize, :PageNumber, :Phones, :SessionIds
+        attr_accessor :StartTimeStamp, :EndTimeStamp, :InstanceId, :Limit, :Offset, :SdkAppId, :PageSize, :PageNumber, :Phones, :SessionIds
         
-        def initialize(starttimestamp=nil, endtimestamp=nil, limit=nil, offset=nil, instanceid=nil, sdkappid=nil, pagesize=nil, pagenumber=nil, phones=nil, sessionids=nil)
+        def initialize(starttimestamp=nil, endtimestamp=nil, instanceid=nil, limit=nil, offset=nil, sdkappid=nil, pagesize=nil, pagenumber=nil, phones=nil, sessionids=nil)
           @StartTimeStamp = starttimestamp
           @EndTimeStamp = endtimestamp
+          @InstanceId = instanceid
           @Limit = limit
           @Offset = offset
-          @InstanceId = instanceid
           @SdkAppId = sdkappid
           @PageSize = pagesize
           @PageNumber = pagenumber
@@ -1333,9 +1333,9 @@ module TencentCloud
         def deserialize(params)
           @StartTimeStamp = params['StartTimeStamp']
           @EndTimeStamp = params['EndTimeStamp']
+          @InstanceId = params['InstanceId']
           @Limit = params['Limit']
           @Offset = params['Offset']
-          @InstanceId = params['InstanceId']
           @SdkAppId = params['SdkAppId']
           @PageSize = params['PageSize']
           @PageNumber = params['PageNumber']

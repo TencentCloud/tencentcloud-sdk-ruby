@@ -840,20 +840,25 @@ module TencentCloud
         # @type InstanceIds: Array
         # @param FlowId: 流程id，可以根据流程id查询创建进度
         # @type FlowId: Integer
+        # @param DealName: 订单号。可以据此调用 DescribeOrders
+        #  查询订单详细信息，或在支付失败时调用用户账号相关接口进行支付。
+        # @type DealName: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :InstanceIds, :FlowId, :RequestId
+        attr_accessor :InstanceIds, :FlowId, :DealName, :RequestId
         
-        def initialize(instanceids=nil, flowid=nil, requestid=nil)
+        def initialize(instanceids=nil, flowid=nil, dealname=nil, requestid=nil)
           @InstanceIds = instanceids
           @FlowId = flowid
+          @DealName = dealname
           @RequestId = requestid
         end
 
         def deserialize(params)
           @InstanceIds = params['InstanceIds']
           @FlowId = params['FlowId']
+          @DealName = params['DealName']
           @RequestId = params['RequestId']
         end
       end
@@ -1431,43 +1436,6 @@ module TencentCloud
         end
       end
 
-      # 订单信息
-      class Deal < TencentCloud::Common::AbstractModel
-        # @param DealName: 订单号
-        # @type DealName: String
-        # @param OwnerUin: 所属账号
-        # @type OwnerUin: String
-        # @param Count: 商品数量
-        # @type Count: Integer
-        # @param FlowId: 关联的流程 Id，可用于查询流程执行状态
-        # @type FlowId: Integer
-        # @param InstanceIds: 只有创建实例的订单会填充该字段，表示该订单创建的实例的 ID。
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type InstanceIds: Array
-        # @param PayMode: 付费模式，0后付费/1预付费
-        # @type PayMode: Integer
-
-        attr_accessor :DealName, :OwnerUin, :Count, :FlowId, :InstanceIds, :PayMode
-        
-        def initialize(dealname=nil, owneruin=nil, count=nil, flowid=nil, instanceids=nil, paymode=nil)
-          @DealName = dealname
-          @OwnerUin = owneruin
-          @Count = count
-          @FlowId = flowid
-          @InstanceIds = instanceids
-          @PayMode = paymode
-        end
-
-        def deserialize(params)
-          @DealName = params['DealName']
-          @OwnerUin = params['OwnerUin']
-          @Count = params['Count']
-          @FlowId = params['FlowId']
-          @InstanceIds = params['InstanceIds']
-          @PayMode = params['PayMode']
-        end
-      end
-
       # DeleteAccount请求参数结构体
       class DeleteAccountRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例ID，形如：dcdbt-ow728lmc，可以通过 DescribeDCDBInstances 查询实例详情获得。
@@ -1746,63 +1714,6 @@ module TencentCloud
               @Params << paramdesc_tmp
             end
           end
-          @RequestId = params['RequestId']
-        end
-      end
-
-      # DescribeDBSecurityGroups请求参数结构体
-      class DescribeDBSecurityGroupsRequest < TencentCloud::Common::AbstractModel
-        # @param Product: 数据库引擎名称，本接口取值：dcdb。
-        # @type Product: String
-        # @param InstanceId: 实例ID。
-        # @type InstanceId: String
-
-        attr_accessor :Product, :InstanceId
-        
-        def initialize(product=nil, instanceid=nil)
-          @Product = product
-          @InstanceId = instanceid
-        end
-
-        def deserialize(params)
-          @Product = params['Product']
-          @InstanceId = params['InstanceId']
-        end
-      end
-
-      # DescribeDBSecurityGroups返回参数结构体
-      class DescribeDBSecurityGroupsResponse < TencentCloud::Common::AbstractModel
-        # @param Groups: 安全组详情。
-        # @type Groups: Array
-        # @param VIP: 实例VIP
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type VIP: String
-        # @param VPort: 实例端口
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type VPort: Integer
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :Groups, :VIP, :VPort, :RequestId
-        
-        def initialize(groups=nil, vip=nil, vport=nil, requestid=nil)
-          @Groups = groups
-          @VIP = vip
-          @VPort = vport
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          unless params['Groups'].nil?
-            @Groups = []
-            params['Groups'].each do |i|
-              securitygroup_tmp = SecurityGroup.new
-              securitygroup_tmp.deserialize(i)
-              @Groups << securitygroup_tmp
-            end
-          end
-          @VIP = params['VIP']
-          @VPort = params['VPort']
           @RequestId = params['RequestId']
         end
       end
@@ -2730,53 +2641,6 @@ module TencentCloud
 
         def deserialize(params)
           @Status = params['Status']
-          @RequestId = params['RequestId']
-        end
-      end
-
-      # DescribeOrders请求参数结构体
-      class DescribeOrdersRequest < TencentCloud::Common::AbstractModel
-        # @param DealNames: 待查询的长订单号列表，创建实例、续费实例、扩容实例接口返回。
-        # @type DealNames: Array
-
-        attr_accessor :DealNames
-        
-        def initialize(dealnames=nil)
-          @DealNames = dealnames
-        end
-
-        def deserialize(params)
-          @DealNames = params['DealNames']
-        end
-      end
-
-      # DescribeOrders返回参数结构体
-      class DescribeOrdersResponse < TencentCloud::Common::AbstractModel
-        # @param TotalCount: 返回的订单数量。
-        # @type TotalCount: Array
-        # @param Deals: 订单信息列表。
-        # @type Deals: Array
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :TotalCount, :Deals, :RequestId
-        
-        def initialize(totalcount=nil, deals=nil, requestid=nil)
-          @TotalCount = totalcount
-          @Deals = deals
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          @TotalCount = params['TotalCount']
-          unless params['Deals'].nil?
-            @Deals = []
-            params['Deals'].each do |i|
-              deal_tmp = Deal.new
-              deal_tmp.deserialize(i)
-              @Deals << deal_tmp
-            end
-          end
           @RequestId = params['RequestId']
         end
       end

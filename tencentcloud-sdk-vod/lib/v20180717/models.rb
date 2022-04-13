@@ -5953,6 +5953,42 @@ module TencentCloud
         end
       end
 
+      # CreateStorageRegion请求参数结构体
+      class CreateStorageRegionRequest < TencentCloud::Common::AbstractModel
+        # @param StorageRegion: 待开通的存储地域，必须是系统支持的地域。
+        # @type StorageRegion: String
+        # @param SubAppId: 点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。
+        # @type SubAppId: Integer
+
+        attr_accessor :StorageRegion, :SubAppId
+        
+        def initialize(storageregion=nil, subappid=nil)
+          @StorageRegion = storageregion
+          @SubAppId = subappid
+        end
+
+        def deserialize(params)
+          @StorageRegion = params['StorageRegion']
+          @SubAppId = params['SubAppId']
+        end
+      end
+
+      # CreateStorageRegion返回参数结构体
+      class CreateStorageRegionResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateSubAppId请求参数结构体
       class CreateSubAppIdRequest < TencentCloud::Common::AbstractModel
         # @param Name: 子应用名称，长度限制：40个字符。
@@ -8922,6 +8958,49 @@ module TencentCloud
               statdataitem_tmp = StatDataItem.new
               statdataitem_tmp.deserialize(i)
               @Data << statdataitem_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeStorageRegions请求参数结构体
+      class DescribeStorageRegionsRequest < TencentCloud::Common::AbstractModel
+        # @param SubAppId: 点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。
+        # @type SubAppId: Integer
+
+        attr_accessor :SubAppId
+        
+        def initialize(subappid=nil)
+          @SubAppId = subappid
+        end
+
+        def deserialize(params)
+          @SubAppId = params['SubAppId']
+        end
+      end
+
+      # DescribeStorageRegions返回参数结构体
+      class DescribeStorageRegionsResponse < TencentCloud::Common::AbstractModel
+        # @param StorageRegionInfos: 存储地域信息列表。
+        # @type StorageRegionInfos: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :StorageRegionInfos, :RequestId
+        
+        def initialize(storageregioninfos=nil, requestid=nil)
+          @StorageRegionInfos = storageregioninfos
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['StorageRegionInfos'].nil?
+            @StorageRegionInfos = []
+            params['StorageRegionInfos'].each do |i|
+              storageregioninfo_tmp = StorageRegionInfo.new
+              storageregioninfo_tmp.deserialize(i)
+              @StorageRegionInfos << storageregioninfo_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -13775,6 +13854,42 @@ module TencentCloud
         end
       end
 
+      # ModifyDefaultStorageRegion请求参数结构体
+      class ModifyDefaultStorageRegionRequest < TencentCloud::Common::AbstractModel
+        # @param StorageRegion: 默认的存储地域，必须是已经开通的地域」，建议改成「默认的存储地域，必须是已经开通的地域（通过 DescribeStorageRegions 接口查询）。
+        # @type StorageRegion: String
+        # @param SubAppId: 点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。
+        # @type SubAppId: Integer
+
+        attr_accessor :StorageRegion, :SubAppId
+        
+        def initialize(storageregion=nil, subappid=nil)
+          @StorageRegion = storageregion
+          @SubAppId = subappid
+        end
+
+        def deserialize(params)
+          @StorageRegion = params['StorageRegion']
+          @SubAppId = params['SubAppId']
+        end
+      end
+
+      # ModifyDefaultStorageRegion返回参数结构体
+      class ModifyDefaultStorageRegionResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyEventConfig请求参数结构体
       class ModifyEventConfigRequest < TencentCloud::Common::AbstractModel
         # @param Mode: 接收事件通知的方式。
@@ -18075,6 +18190,36 @@ module TencentCloud
               @ImageOperations << imagetransform_tmp
             end
           end
+        end
+      end
+
+      # 存储地域信息
+      class StorageRegionInfo < TencentCloud::Common::AbstractModel
+        # @param Region: 存储地域
+        # @type Region: String
+        # @param Description: 存储地域描述信息
+        # @type Description: String
+        # @param Status: 状态，是否开通，取值有：
+        # <li>opened：已经开通。</li>
+        # <li>unopened：未开通。</li>
+        # @type Status: String
+        # @param IsDefault: 是否默认的存储地域，true：是；false：否
+        # @type IsDefault: Boolean
+
+        attr_accessor :Region, :Description, :Status, :IsDefault
+        
+        def initialize(region=nil, description=nil, status=nil, isdefault=nil)
+          @Region = region
+          @Description = description
+          @Status = status
+          @IsDefault = isdefault
+        end
+
+        def deserialize(params)
+          @Region = params['Region']
+          @Description = params['Description']
+          @Status = params['Status']
+          @IsDefault = params['IsDefault']
         end
       end
 

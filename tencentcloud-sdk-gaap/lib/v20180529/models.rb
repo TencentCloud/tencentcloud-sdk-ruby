@@ -5915,7 +5915,8 @@ module TencentCloud
         # ADJUSTING表示配置变更中；
         # ISOLATING表示隔离中；
         # ISOLATED表示已隔离；
-        # CLONING表示复制中。
+        # CLONING表示复制中；
+        # RECOVERING表示通道维护中。
         # @type Status: String
         # @param Domain: 接入域名。
         # @type Domain: String

@@ -468,10 +468,12 @@ module TencentCloud
         # @type DeleteSnapshot: Integer
         # @param AutoMountConfiguration: 创建云盘时指定自动挂载并初始化该数据盘。
         # @type AutoMountConfiguration: :class:`Tencentcloud::Cbs.v20170312.models.AutoMountConfiguration`
+        # @param DiskBackupQuota: 指定云硬盘备份点配额。
+        # @type DiskBackupQuota: Integer
 
-        attr_accessor :Placement, :DiskChargeType, :DiskType, :DiskName, :Tags, :SnapshotId, :DiskCount, :ThroughputPerformance, :DiskSize, :Shareable, :ClientToken, :Encrypt, :DiskChargePrepaid, :DeleteSnapshot, :AutoMountConfiguration
+        attr_accessor :Placement, :DiskChargeType, :DiskType, :DiskName, :Tags, :SnapshotId, :DiskCount, :ThroughputPerformance, :DiskSize, :Shareable, :ClientToken, :Encrypt, :DiskChargePrepaid, :DeleteSnapshot, :AutoMountConfiguration, :DiskBackupQuota
         
-        def initialize(placement=nil, diskchargetype=nil, disktype=nil, diskname=nil, tags=nil, snapshotid=nil, diskcount=nil, throughputperformance=nil, disksize=nil, shareable=nil, clienttoken=nil, encrypt=nil, diskchargeprepaid=nil, deletesnapshot=nil, automountconfiguration=nil)
+        def initialize(placement=nil, diskchargetype=nil, disktype=nil, diskname=nil, tags=nil, snapshotid=nil, diskcount=nil, throughputperformance=nil, disksize=nil, shareable=nil, clienttoken=nil, encrypt=nil, diskchargeprepaid=nil, deletesnapshot=nil, automountconfiguration=nil, diskbackupquota=nil)
           @Placement = placement
           @DiskChargeType = diskchargetype
           @DiskType = disktype
@@ -487,6 +489,7 @@ module TencentCloud
           @DiskChargePrepaid = diskchargeprepaid
           @DeleteSnapshot = deletesnapshot
           @AutoMountConfiguration = automountconfiguration
+          @DiskBackupQuota = diskbackupquota
         end
 
         def deserialize(params)
@@ -521,6 +524,7 @@ module TencentCloud
             @AutoMountConfiguration = AutoMountConfiguration.new
             @AutoMountConfiguration.deserialize(params['AutoMountConfiguration'])
           end
+          @DiskBackupQuota = params['DiskBackupQuota']
         end
       end
 
@@ -552,19 +556,23 @@ module TencentCloud
         # @type SnapshotName: String
         # @param Deadline: 快照的到期时间，到期后该快照将会自动删除,需要传入UTC时间下的ISO-8601标准时间格式,例如:2022-01-08T09:47:55+00:00
         # @type Deadline: String
+        # @param DiskBackupId: 云硬盘备份点ID。传入此参数时，将通过备份点创建快照。
+        # @type DiskBackupId: String
 
-        attr_accessor :DiskId, :SnapshotName, :Deadline
+        attr_accessor :DiskId, :SnapshotName, :Deadline, :DiskBackupId
         
-        def initialize(diskid=nil, snapshotname=nil, deadline=nil)
+        def initialize(diskid=nil, snapshotname=nil, deadline=nil, diskbackupid=nil)
           @DiskId = diskid
           @SnapshotName = snapshotname
           @Deadline = deadline
+          @DiskBackupId = diskbackupid
         end
 
         def deserialize(params)
           @DiskId = params['DiskId']
           @SnapshotName = params['SnapshotName']
           @Deadline = params['Deadline']
+          @DiskBackupId = params['DiskBackupId']
         end
       end
 
@@ -1395,10 +1403,14 @@ module TencentCloud
         # @type CreateTime: String
         # @param DeleteSnapshot: 销毁云盘时删除关联的非永久保留快照。0 表示非永久快照不随云盘销毁而销毁，1表示非永久快照随云盘销毁而销毁，默认取0。快照是否永久保留可以通过DescribeSnapshots接口返回的快照详情的IsPermanent字段来判断，true表示永久快照，false表示非永久快照。
         # @type DeleteSnapshot: Integer
+        # @param DiskBackupCount: 云硬盘备份点已使用的数量。
+        # @type DiskBackupCount: Integer
+        # @param InstanceType: 云硬盘挂载实例的类型。取值范围：<br><li>CVM<br><li>EKS
+        # @type InstanceType: String
 
-        attr_accessor :DeleteWithInstance, :RenewFlag, :DiskType, :DiskState, :SnapshotCount, :AutoRenewFlagError, :Rollbacking, :InstanceIdList, :Encrypt, :DiskName, :BackupDisk, :Tags, :InstanceId, :AttachMode, :AutoSnapshotPolicyIds, :ThroughputPerformance, :Migrating, :DiskId, :SnapshotSize, :Placement, :IsReturnable, :DeadlineTime, :Attached, :DiskSize, :MigratePercent, :DiskUsage, :DiskChargeType, :Portable, :SnapshotAbility, :DeadlineError, :RollbackPercent, :DifferDaysOfDeadline, :ReturnFailCode, :Shareable, :CreateTime, :DeleteSnapshot
+        attr_accessor :DeleteWithInstance, :RenewFlag, :DiskType, :DiskState, :SnapshotCount, :AutoRenewFlagError, :Rollbacking, :InstanceIdList, :Encrypt, :DiskName, :BackupDisk, :Tags, :InstanceId, :AttachMode, :AutoSnapshotPolicyIds, :ThroughputPerformance, :Migrating, :DiskId, :SnapshotSize, :Placement, :IsReturnable, :DeadlineTime, :Attached, :DiskSize, :MigratePercent, :DiskUsage, :DiskChargeType, :Portable, :SnapshotAbility, :DeadlineError, :RollbackPercent, :DifferDaysOfDeadline, :ReturnFailCode, :Shareable, :CreateTime, :DeleteSnapshot, :DiskBackupCount, :InstanceType
         
-        def initialize(deletewithinstance=nil, renewflag=nil, disktype=nil, diskstate=nil, snapshotcount=nil, autorenewflagerror=nil, rollbacking=nil, instanceidlist=nil, encrypt=nil, diskname=nil, backupdisk=nil, tags=nil, instanceid=nil, attachmode=nil, autosnapshotpolicyids=nil, throughputperformance=nil, migrating=nil, diskid=nil, snapshotsize=nil, placement=nil, isreturnable=nil, deadlinetime=nil, attached=nil, disksize=nil, migratepercent=nil, diskusage=nil, diskchargetype=nil, portable=nil, snapshotability=nil, deadlineerror=nil, rollbackpercent=nil, differdaysofdeadline=nil, returnfailcode=nil, shareable=nil, createtime=nil, deletesnapshot=nil)
+        def initialize(deletewithinstance=nil, renewflag=nil, disktype=nil, diskstate=nil, snapshotcount=nil, autorenewflagerror=nil, rollbacking=nil, instanceidlist=nil, encrypt=nil, diskname=nil, backupdisk=nil, tags=nil, instanceid=nil, attachmode=nil, autosnapshotpolicyids=nil, throughputperformance=nil, migrating=nil, diskid=nil, snapshotsize=nil, placement=nil, isreturnable=nil, deadlinetime=nil, attached=nil, disksize=nil, migratepercent=nil, diskusage=nil, diskchargetype=nil, portable=nil, snapshotability=nil, deadlineerror=nil, rollbackpercent=nil, differdaysofdeadline=nil, returnfailcode=nil, shareable=nil, createtime=nil, deletesnapshot=nil, diskbackupcount=nil, instancetype=nil)
           @DeleteWithInstance = deletewithinstance
           @RenewFlag = renewflag
           @DiskType = disktype
@@ -1435,6 +1447,8 @@ module TencentCloud
           @Shareable = shareable
           @CreateTime = createtime
           @DeleteSnapshot = deletesnapshot
+          @DiskBackupCount = diskbackupcount
+          @InstanceType = instancetype
         end
 
         def deserialize(params)
@@ -1484,6 +1498,8 @@ module TencentCloud
           @Shareable = params['Shareable']
           @CreateTime = params['CreateTime']
           @DeleteSnapshot = params['DeleteSnapshot']
+          @DiskBackupCount = params['DiskBackupCount']
+          @InstanceType = params['InstanceType']
         end
       end
 
@@ -1769,44 +1785,48 @@ module TencentCloud
 
       # InquiryPriceCreateDisks请求参数结构体
       class InquiryPriceCreateDisksRequest < TencentCloud::Common::AbstractModel
+        # @param DiskChargeType: 云硬盘计费类型。<br><li>PREPAID：预付费，即包年包月<br><li>POSTPAID_BY_HOUR：按小时后付费
+        # @type DiskChargeType: String
         # @param DiskType: 硬盘介质类型。取值范围：<br><li>CLOUD_BASIC：表示普通云硬盘<br><li>CLOUD_PREMIUM：表示高性能云硬盘<br><li>CLOUD_SSD：表示SSD云硬盘<br><li>CLOUD_HSSD：表示增强型SSD云硬盘<br><li>CLOUD_TSSD：表示极速型SSD云硬盘。
         # @type DiskType: String
         # @param DiskSize: 云硬盘大小，单位为GB。云盘大小取值范围参见云硬盘[产品分类](/document/product/362/2353)的说明。
         # @type DiskSize: Integer
-        # @param DiskChargeType: 云硬盘计费类型。<br><li>PREPAID：预付费，即包年包月<br><li>POSTPAID_BY_HOUR：按小时后付费
-        # @type DiskChargeType: String
-        # @param DiskChargePrepaid: 预付费模式，即包年包月相关参数设置。通过该参数指定包年包月云盘的购买时长、是否设置自动续费等属性。<br>创建预付费云盘该参数必传，创建按小时后付费云盘无需传该参数。
-        # @type DiskChargePrepaid: :class:`Tencentcloud::Cbs.v20170312.models.DiskChargePrepaid`
-        # @param DiskCount: 购买云盘的数量。不填则默认为1。
-        # @type DiskCount: Integer
         # @param ProjectId: 云盘所属项目ID。
         # @type ProjectId: Integer
+        # @param DiskCount: 购买云盘的数量。不填则默认为1。
+        # @type DiskCount: Integer
         # @param ThroughputPerformance: 额外购买的云硬盘性能值，单位MB/s。<br>目前仅支持增强型SSD云硬盘（CLOUD_HSSD）和极速型SSD云硬盘（CLOUD_TSSD）
         # @type ThroughputPerformance: Integer
+        # @param DiskChargePrepaid: 预付费模式，即包年包月相关参数设置。通过该参数指定包年包月云盘的购买时长、是否设置自动续费等属性。<br>创建预付费云盘该参数必传，创建按小时后付费云盘无需传该参数。
+        # @type DiskChargePrepaid: :class:`Tencentcloud::Cbs.v20170312.models.DiskChargePrepaid`
+        # @param DiskBackupQuota: 指定云硬盘备份点配额。
+        # @type DiskBackupQuota: Integer
 
-        attr_accessor :DiskType, :DiskSize, :DiskChargeType, :DiskChargePrepaid, :DiskCount, :ProjectId, :ThroughputPerformance
+        attr_accessor :DiskChargeType, :DiskType, :DiskSize, :ProjectId, :DiskCount, :ThroughputPerformance, :DiskChargePrepaid, :DiskBackupQuota
         
-        def initialize(disktype=nil, disksize=nil, diskchargetype=nil, diskchargeprepaid=nil, diskcount=nil, projectid=nil, throughputperformance=nil)
+        def initialize(diskchargetype=nil, disktype=nil, disksize=nil, projectid=nil, diskcount=nil, throughputperformance=nil, diskchargeprepaid=nil, diskbackupquota=nil)
+          @DiskChargeType = diskchargetype
           @DiskType = disktype
           @DiskSize = disksize
-          @DiskChargeType = diskchargetype
-          @DiskChargePrepaid = diskchargeprepaid
-          @DiskCount = diskcount
           @ProjectId = projectid
+          @DiskCount = diskcount
           @ThroughputPerformance = throughputperformance
+          @DiskChargePrepaid = diskchargeprepaid
+          @DiskBackupQuota = diskbackupquota
         end
 
         def deserialize(params)
+          @DiskChargeType = params['DiskChargeType']
           @DiskType = params['DiskType']
           @DiskSize = params['DiskSize']
-          @DiskChargeType = params['DiskChargeType']
+          @ProjectId = params['ProjectId']
+          @DiskCount = params['DiskCount']
+          @ThroughputPerformance = params['ThroughputPerformance']
           unless params['DiskChargePrepaid'].nil?
             @DiskChargePrepaid = DiskChargePrepaid.new
             @DiskChargePrepaid.deserialize(params['DiskChargePrepaid'])
           end
-          @DiskCount = params['DiskCount']
-          @ProjectId = params['ProjectId']
-          @ThroughputPerformance = params['ThroughputPerformance']
+          @DiskBackupQuota = params['DiskBackupQuota']
         end
       end
 
@@ -2366,58 +2386,58 @@ module TencentCloud
 
       # 描述预付费或后付费云盘的价格。
       class Price < TencentCloud::Common::AbstractModel
-        # @param OriginalPrice: 预付费云盘预支费用的原价，单位：元。
+        # @param UnitPriceDiscount: 后付费云盘折扣单价，单位：元。
         # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type OriginalPrice: Float
+        # @type UnitPriceDiscount: Float
         # @param DiscountPrice: 预付费云盘预支费用的折扣价，单位：元。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DiscountPrice: Float
         # @param UnitPrice: 后付费云盘原单价，单位：元。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UnitPrice: Float
-        # @param ChargeUnit: 后付费云盘的计价单元，取值范围：<br><li>HOUR：表示后付费云盘的计价单元是按小时计算。
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type ChargeUnit: String
-        # @param UnitPriceDiscount: 后付费云盘折扣单价，单位：元。
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type UnitPriceDiscount: Float
-        # @param OriginalPriceHigh: 高精度预付费云盘预支费用的原价, 单位：元	。
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type OriginalPriceHigh: String
-        # @param DiscountPriceHigh: 高精度预付费云盘预支费用的折扣价, 单位：元
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type DiscountPriceHigh: String
         # @param UnitPriceHigh: 高精度后付费云盘原单价, 单位：元
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UnitPriceHigh: String
+        # @param OriginalPriceHigh: 高精度预付费云盘预支费用的原价, 单位：元	。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OriginalPriceHigh: String
+        # @param OriginalPrice: 预付费云盘预支费用的原价，单位：元。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OriginalPrice: Float
+        # @param DiscountPriceHigh: 高精度预付费云盘预支费用的折扣价, 单位：元
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DiscountPriceHigh: String
         # @param UnitPriceDiscountHigh: 高精度后付费云盘折扣单价, 单位：元
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UnitPriceDiscountHigh: String
+        # @param ChargeUnit: 后付费云盘的计价单元，取值范围：<br><li>HOUR：表示后付费云盘的计价单元是按小时计算。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ChargeUnit: String
 
-        attr_accessor :OriginalPrice, :DiscountPrice, :UnitPrice, :ChargeUnit, :UnitPriceDiscount, :OriginalPriceHigh, :DiscountPriceHigh, :UnitPriceHigh, :UnitPriceDiscountHigh
+        attr_accessor :UnitPriceDiscount, :DiscountPrice, :UnitPrice, :UnitPriceHigh, :OriginalPriceHigh, :OriginalPrice, :DiscountPriceHigh, :UnitPriceDiscountHigh, :ChargeUnit
         
-        def initialize(originalprice=nil, discountprice=nil, unitprice=nil, chargeunit=nil, unitpricediscount=nil, originalpricehigh=nil, discountpricehigh=nil, unitpricehigh=nil, unitpricediscounthigh=nil)
-          @OriginalPrice = originalprice
+        def initialize(unitpricediscount=nil, discountprice=nil, unitprice=nil, unitpricehigh=nil, originalpricehigh=nil, originalprice=nil, discountpricehigh=nil, unitpricediscounthigh=nil, chargeunit=nil)
+          @UnitPriceDiscount = unitpricediscount
           @DiscountPrice = discountprice
           @UnitPrice = unitprice
-          @ChargeUnit = chargeunit
-          @UnitPriceDiscount = unitpricediscount
-          @OriginalPriceHigh = originalpricehigh
-          @DiscountPriceHigh = discountpricehigh
           @UnitPriceHigh = unitpricehigh
+          @OriginalPriceHigh = originalpricehigh
+          @OriginalPrice = originalprice
+          @DiscountPriceHigh = discountpricehigh
           @UnitPriceDiscountHigh = unitpricediscounthigh
+          @ChargeUnit = chargeunit
         end
 
         def deserialize(params)
-          @OriginalPrice = params['OriginalPrice']
+          @UnitPriceDiscount = params['UnitPriceDiscount']
           @DiscountPrice = params['DiscountPrice']
           @UnitPrice = params['UnitPrice']
-          @ChargeUnit = params['ChargeUnit']
-          @UnitPriceDiscount = params['UnitPriceDiscount']
-          @OriginalPriceHigh = params['OriginalPriceHigh']
-          @DiscountPriceHigh = params['DiscountPriceHigh']
           @UnitPriceHigh = params['UnitPriceHigh']
+          @OriginalPriceHigh = params['OriginalPriceHigh']
+          @OriginalPrice = params['OriginalPrice']
+          @DiscountPriceHigh = params['DiscountPriceHigh']
           @UnitPriceDiscountHigh = params['UnitPriceDiscountHigh']
+          @ChargeUnit = params['ChargeUnit']
         end
       end
 

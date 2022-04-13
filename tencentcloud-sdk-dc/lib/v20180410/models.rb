@@ -386,10 +386,18 @@ module TencentCloud
         # @type TencentBackupAddress: String
         # @param CloudAttachId: 高速上云服务ID
         # @type CloudAttachId: String
+        # @param BfdEnable: 是否开启BFD
+        # @type BfdEnable: Integer
+        # @param NqaEnable: 是否开启NQA
+        # @type NqaEnable: Integer
+        # @param BfdInfo: BFD配置信息
+        # @type BfdInfo: :class:`Tencentcloud::Dc.v20180410.models.BFDInfo`
+        # @param NqaInfo: NQA配置信息
+        # @type NqaInfo: :class:`Tencentcloud::Dc.v20180410.models.NQAInfo`
 
-        attr_accessor :DirectConnectId, :DirectConnectTunnelName, :DirectConnectOwnerAccount, :NetworkType, :NetworkRegion, :VpcId, :DirectConnectGatewayId, :Bandwidth, :RouteType, :BgpPeer, :RouteFilterPrefixes, :Vlan, :TencentAddress, :CustomerAddress, :TencentBackupAddress, :CloudAttachId
+        attr_accessor :DirectConnectId, :DirectConnectTunnelName, :DirectConnectOwnerAccount, :NetworkType, :NetworkRegion, :VpcId, :DirectConnectGatewayId, :Bandwidth, :RouteType, :BgpPeer, :RouteFilterPrefixes, :Vlan, :TencentAddress, :CustomerAddress, :TencentBackupAddress, :CloudAttachId, :BfdEnable, :NqaEnable, :BfdInfo, :NqaInfo
         
-        def initialize(directconnectid=nil, directconnecttunnelname=nil, directconnectowneraccount=nil, networktype=nil, networkregion=nil, vpcid=nil, directconnectgatewayid=nil, bandwidth=nil, routetype=nil, bgppeer=nil, routefilterprefixes=nil, vlan=nil, tencentaddress=nil, customeraddress=nil, tencentbackupaddress=nil, cloudattachid=nil)
+        def initialize(directconnectid=nil, directconnecttunnelname=nil, directconnectowneraccount=nil, networktype=nil, networkregion=nil, vpcid=nil, directconnectgatewayid=nil, bandwidth=nil, routetype=nil, bgppeer=nil, routefilterprefixes=nil, vlan=nil, tencentaddress=nil, customeraddress=nil, tencentbackupaddress=nil, cloudattachid=nil, bfdenable=nil, nqaenable=nil, bfdinfo=nil, nqainfo=nil)
           @DirectConnectId = directconnectid
           @DirectConnectTunnelName = directconnecttunnelname
           @DirectConnectOwnerAccount = directconnectowneraccount
@@ -406,6 +414,10 @@ module TencentCloud
           @CustomerAddress = customeraddress
           @TencentBackupAddress = tencentbackupaddress
           @CloudAttachId = cloudattachid
+          @BfdEnable = bfdenable
+          @NqaEnable = nqaenable
+          @BfdInfo = bfdinfo
+          @NqaInfo = nqainfo
         end
 
         def deserialize(params)
@@ -435,6 +447,16 @@ module TencentCloud
           @CustomerAddress = params['CustomerAddress']
           @TencentBackupAddress = params['TencentBackupAddress']
           @CloudAttachId = params['CloudAttachId']
+          @BfdEnable = params['BfdEnable']
+          @NqaEnable = params['NqaEnable']
+          unless params['BfdInfo'].nil?
+            @BfdInfo = BFDInfo.new
+            @BfdInfo.deserialize(params['BfdInfo'])
+          end
+          unless params['NqaInfo'].nil?
+            @NqaInfo = NQAInfo.new
+            @NqaInfo.deserialize(params['NqaInfo'])
+          end
         end
       end
 

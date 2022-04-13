@@ -1521,9 +1521,9 @@ module TencentCloud
         # @type VisibilityTimeout: Integer
         # @param MaxMsgSize: 消息最大长度。取值范围 1024-65536 Byte（即1-64K），默认值 65536。
         # @type MaxMsgSize: Integer
-        # @param MsgRetentionSeconds: 消息保留周期。取值范围 60-1296000 秒（1min-15天），默认值 345600 (4 天)。
+        # @param MsgRetentionSeconds: 消息最长未确认时间。取值范围 30-43200 秒（30秒~12小时），默认值 3600 (1 小时)。
         # @type MsgRetentionSeconds: Integer
-        # @param RewindSeconds: 队列是否开启回溯消息能力，该参数取值范围0-msgRetentionSeconds,即最大的回溯时间为消息在队列中的保留周期，0表示不开启。
+        # @param RewindSeconds: 队列是否开启回溯消息能力，该参数取值范围0-1296000，0表示不开启。
         # @type RewindSeconds: Integer
         # @param Transaction: 1 表示事务队列，0 表示普通队列
         # @type Transaction: Integer
@@ -1543,10 +1543,12 @@ module TencentCloud
         # @type Trace: Boolean
         # @param Tags: 标签数组
         # @type Tags: Array
+        # @param RetentionSizeInMB: 队列可回溯存储空间，取值范围1024MB - 10240MB，0表示不开启
+        # @type RetentionSizeInMB: Integer
 
-        attr_accessor :QueueName, :MaxMsgHeapNum, :PollingWaitSeconds, :VisibilityTimeout, :MaxMsgSize, :MsgRetentionSeconds, :RewindSeconds, :Transaction, :FirstQueryInterval, :MaxQueryCount, :DeadLetterQueueName, :Policy, :MaxReceiveCount, :MaxTimeToLive, :Trace, :Tags
+        attr_accessor :QueueName, :MaxMsgHeapNum, :PollingWaitSeconds, :VisibilityTimeout, :MaxMsgSize, :MsgRetentionSeconds, :RewindSeconds, :Transaction, :FirstQueryInterval, :MaxQueryCount, :DeadLetterQueueName, :Policy, :MaxReceiveCount, :MaxTimeToLive, :Trace, :Tags, :RetentionSizeInMB
         
-        def initialize(queuename=nil, maxmsgheapnum=nil, pollingwaitseconds=nil, visibilitytimeout=nil, maxmsgsize=nil, msgretentionseconds=nil, rewindseconds=nil, transaction=nil, firstqueryinterval=nil, maxquerycount=nil, deadletterqueuename=nil, policy=nil, maxreceivecount=nil, maxtimetolive=nil, trace=nil, tags=nil)
+        def initialize(queuename=nil, maxmsgheapnum=nil, pollingwaitseconds=nil, visibilitytimeout=nil, maxmsgsize=nil, msgretentionseconds=nil, rewindseconds=nil, transaction=nil, firstqueryinterval=nil, maxquerycount=nil, deadletterqueuename=nil, policy=nil, maxreceivecount=nil, maxtimetolive=nil, trace=nil, tags=nil, retentionsizeinmb=nil)
           @QueueName = queuename
           @MaxMsgHeapNum = maxmsgheapnum
           @PollingWaitSeconds = pollingwaitseconds
@@ -1563,6 +1565,7 @@ module TencentCloud
           @MaxTimeToLive = maxtimetolive
           @Trace = trace
           @Tags = tags
+          @RetentionSizeInMB = retentionsizeinmb
         end
 
         def deserialize(params)
@@ -1589,6 +1592,7 @@ module TencentCloud
               @Tags << tag_tmp
             end
           end
+          @RetentionSizeInMB = params['RetentionSizeInMB']
         end
       end
 
@@ -5578,9 +5582,9 @@ module TencentCloud
         # @type VisibilityTimeout: Integer
         # @param MaxMsgSize: 消息最大长度。取值范围 1024-65536 Byte（即1-64K），默认值 65536。
         # @type MaxMsgSize: Integer
-        # @param MsgRetentionSeconds: 消息保留周期。取值范围 60-1296000 秒（1min-15天），默认值 345600 (4 天)。
+        # @param MsgRetentionSeconds: 消息最长未确认时间。取值范围 30-43200 秒（30秒~12小时），默认值 3600 (1 小时)。
         # @type MsgRetentionSeconds: Integer
-        # @param RewindSeconds: 消息最长回溯时间，取值范围0-msgRetentionSeconds，消息的最大回溯之间为消息在队列中的保存周期，0表示不开启消息回溯。
+        # @param RewindSeconds: 队列是否开启回溯消息能力，该参数取值范围0-1296000，0表示不开启。
         # @type RewindSeconds: Integer
         # @param FirstQueryInterval: 第一次查询时间
         # @type FirstQueryInterval: Integer
@@ -5598,10 +5602,12 @@ module TencentCloud
         # @type Trace: Boolean
         # @param Transaction: 是否开启事务，1开启，0不开启
         # @type Transaction: Integer
+        # @param RetentionSizeInMB: 队列可回溯存储空间，取值范围1024MB - 10240MB，0表示不开启
+        # @type RetentionSizeInMB: Integer
 
-        attr_accessor :QueueName, :MaxMsgHeapNum, :PollingWaitSeconds, :VisibilityTimeout, :MaxMsgSize, :MsgRetentionSeconds, :RewindSeconds, :FirstQueryInterval, :MaxQueryCount, :DeadLetterQueueName, :MaxTimeToLive, :MaxReceiveCount, :Policy, :Trace, :Transaction
+        attr_accessor :QueueName, :MaxMsgHeapNum, :PollingWaitSeconds, :VisibilityTimeout, :MaxMsgSize, :MsgRetentionSeconds, :RewindSeconds, :FirstQueryInterval, :MaxQueryCount, :DeadLetterQueueName, :MaxTimeToLive, :MaxReceiveCount, :Policy, :Trace, :Transaction, :RetentionSizeInMB
         
-        def initialize(queuename=nil, maxmsgheapnum=nil, pollingwaitseconds=nil, visibilitytimeout=nil, maxmsgsize=nil, msgretentionseconds=nil, rewindseconds=nil, firstqueryinterval=nil, maxquerycount=nil, deadletterqueuename=nil, maxtimetolive=nil, maxreceivecount=nil, policy=nil, trace=nil, transaction=nil)
+        def initialize(queuename=nil, maxmsgheapnum=nil, pollingwaitseconds=nil, visibilitytimeout=nil, maxmsgsize=nil, msgretentionseconds=nil, rewindseconds=nil, firstqueryinterval=nil, maxquerycount=nil, deadletterqueuename=nil, maxtimetolive=nil, maxreceivecount=nil, policy=nil, trace=nil, transaction=nil, retentionsizeinmb=nil)
           @QueueName = queuename
           @MaxMsgHeapNum = maxmsgheapnum
           @PollingWaitSeconds = pollingwaitseconds
@@ -5617,6 +5623,7 @@ module TencentCloud
           @Policy = policy
           @Trace = trace
           @Transaction = transaction
+          @RetentionSizeInMB = retentionsizeinmb
         end
 
         def deserialize(params)
@@ -5635,6 +5642,7 @@ module TencentCloud
           @Policy = params['Policy']
           @Trace = params['Trace']
           @Transaction = params['Transaction']
+          @RetentionSizeInMB = params['RetentionSizeInMB']
         end
       end
 

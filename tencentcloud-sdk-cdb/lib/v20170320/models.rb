@@ -4412,7 +4412,7 @@ module TencentCloud
       class DescribeDefaultParamsRequest < TencentCloud::Common::AbstractModel
         # @param EngineVersion: mysql版本，目前支持 ["5.1", "5.5", "5.6", "5.7"]。
         # @type EngineVersion: String
-        # @param TemplateType: 默认参数模板类型。支持值包括："HIGH_STABILITY" - 高稳定模版，"HIGH_PERFORMANCE" - 高性能模版。
+        # @param TemplateType: 默认参数模板类型。支持值包括："HIGH_STABILITY" - 高稳定模板，"HIGH_PERFORMANCE" - 高性能模板。
         # @type TemplateType: String
 
         attr_accessor :EngineVersion, :TemplateType
@@ -4968,9 +4968,9 @@ module TencentCloud
       class DescribeProxyConnectionPoolConfRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例ID
         # @type InstanceId: String
-        # @param Offset: 分页
+        # @param Offset: 分页查询偏移量
         # @type Offset: Integer
-        # @param Limit: 限制
+        # @param Limit: 分页查询限制
         # @type Limit: Integer
 
         attr_accessor :InstanceId, :Offset, :Limit
