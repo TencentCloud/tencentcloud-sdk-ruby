@@ -168,10 +168,14 @@ module TencentCloud
         # @type AwsPrivateAccess: :class:`Tencentcloud::Cdn.v20180606.models.AwsPrivateAccess`
         # @param OssPrivateAccess: 回源OSS私有鉴权
         # @type OssPrivateAccess: :class:`Tencentcloud::Cdn.v20180606.models.OssPrivateAccess`
+        # @param HwPrivateAccess: 华为云对象存储回源鉴权
+        # @type HwPrivateAccess: :class:`Tencentcloud::Cdn.v20180606.models.HwPrivateAccess`
+        # @param QnPrivateAccess: 七牛云对象存储回源鉴权
+        # @type QnPrivateAccess: :class:`Tencentcloud::Cdn.v20180606.models.QnPrivateAccess`
 
-        attr_accessor :Domain, :ServiceType, :Origin, :ProjectId, :IpFilter, :IpFreqLimit, :StatusCodeCache, :Compression, :BandwidthAlert, :RangeOriginPull, :FollowRedirect, :ErrorPage, :RequestHeader, :ResponseHeader, :DownstreamCapping, :CacheKey, :ResponseHeaderCache, :VideoSeek, :Cache, :OriginPullOptimization, :Https, :Authentication, :Seo, :ForceRedirect, :Referer, :MaxAge, :Ipv6, :SpecificConfig, :Area, :OriginPullTimeout, :Tag, :Ipv6Access, :OfflineCache, :Quic, :AwsPrivateAccess, :OssPrivateAccess
+        attr_accessor :Domain, :ServiceType, :Origin, :ProjectId, :IpFilter, :IpFreqLimit, :StatusCodeCache, :Compression, :BandwidthAlert, :RangeOriginPull, :FollowRedirect, :ErrorPage, :RequestHeader, :ResponseHeader, :DownstreamCapping, :CacheKey, :ResponseHeaderCache, :VideoSeek, :Cache, :OriginPullOptimization, :Https, :Authentication, :Seo, :ForceRedirect, :Referer, :MaxAge, :Ipv6, :SpecificConfig, :Area, :OriginPullTimeout, :Tag, :Ipv6Access, :OfflineCache, :Quic, :AwsPrivateAccess, :OssPrivateAccess, :HwPrivateAccess, :QnPrivateAccess
         
-        def initialize(domain=nil, servicetype=nil, origin=nil, projectid=nil, ipfilter=nil, ipfreqlimit=nil, statuscodecache=nil, compression=nil, bandwidthalert=nil, rangeoriginpull=nil, followredirect=nil, errorpage=nil, requestheader=nil, responseheader=nil, downstreamcapping=nil, cachekey=nil, responseheadercache=nil, videoseek=nil, cache=nil, originpulloptimization=nil, https=nil, authentication=nil, seo=nil, forceredirect=nil, referer=nil, maxage=nil, ipv6=nil, specificconfig=nil, area=nil, originpulltimeout=nil, tag=nil, ipv6access=nil, offlinecache=nil, quic=nil, awsprivateaccess=nil, ossprivateaccess=nil)
+        def initialize(domain=nil, servicetype=nil, origin=nil, projectid=nil, ipfilter=nil, ipfreqlimit=nil, statuscodecache=nil, compression=nil, bandwidthalert=nil, rangeoriginpull=nil, followredirect=nil, errorpage=nil, requestheader=nil, responseheader=nil, downstreamcapping=nil, cachekey=nil, responseheadercache=nil, videoseek=nil, cache=nil, originpulloptimization=nil, https=nil, authentication=nil, seo=nil, forceredirect=nil, referer=nil, maxage=nil, ipv6=nil, specificconfig=nil, area=nil, originpulltimeout=nil, tag=nil, ipv6access=nil, offlinecache=nil, quic=nil, awsprivateaccess=nil, ossprivateaccess=nil, hwprivateaccess=nil, qnprivateaccess=nil)
           @Domain = domain
           @ServiceType = servicetype
           @Origin = origin
@@ -208,6 +212,8 @@ module TencentCloud
           @Quic = quic
           @AwsPrivateAccess = awsprivateaccess
           @OssPrivateAccess = ossprivateaccess
+          @HwPrivateAccess = hwprivateaccess
+          @QnPrivateAccess = qnprivateaccess
         end
 
         def deserialize(params)
@@ -346,6 +352,14 @@ module TencentCloud
           unless params['OssPrivateAccess'].nil?
             @OssPrivateAccess = OssPrivateAccess.new
             @OssPrivateAccess.deserialize(params['OssPrivateAccess'])
+          end
+          unless params['HwPrivateAccess'].nil?
+            @HwPrivateAccess = HwPrivateAccess.new
+            @HwPrivateAccess.deserialize(params['HwPrivateAccess'])
+          end
+          unless params['QnPrivateAccess'].nil?
+            @QnPrivateAccess = QnPrivateAccess.new
+            @QnPrivateAccess.deserialize(params['QnPrivateAccess'])
           end
         end
       end
@@ -1452,19 +1466,29 @@ module TencentCloud
         # @param SecretKey: 密钥。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SecretKey: String
+        # @param Region: 地域
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Region: String
+        # @param Bucket: Bucketname
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Bucket: String
 
-        attr_accessor :Switch, :AccessKey, :SecretKey
+        attr_accessor :Switch, :AccessKey, :SecretKey, :Region, :Bucket
         
-        def initialize(switch=nil, accesskey=nil, secretkey=nil)
+        def initialize(switch=nil, accesskey=nil, secretkey=nil, region=nil, bucket=nil)
           @Switch = switch
           @AccessKey = accesskey
           @SecretKey = secretkey
+          @Region = region
+          @Bucket = bucket
         end
 
         def deserialize(params)
           @Switch = params['Switch']
           @AccessKey = params['AccessKey']
           @SecretKey = params['SecretKey']
+          @Region = params['Region']
+          @Bucket = params['Bucket']
         end
       end
 
@@ -6100,10 +6124,16 @@ module TencentCloud
         # @param ParentHost: 主域名
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ParentHost: String
+        # @param HwPrivateAccess: 华为云对象存储回源鉴权
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HwPrivateAccess: :class:`Tencentcloud::Cdn.v20180606.models.HwPrivateAccess`
+        # @param QnPrivateAccess: 七牛云对象存储回源鉴权
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type QnPrivateAccess: :class:`Tencentcloud::Cdn.v20180606.models.QnPrivateAccess`
 
-        attr_accessor :ResourceId, :AppId, :Domain, :Cname, :Status, :ProjectId, :ServiceType, :CreateTime, :UpdateTime, :Origin, :IpFilter, :IpFreqLimit, :StatusCodeCache, :Compression, :BandwidthAlert, :RangeOriginPull, :FollowRedirect, :ErrorPage, :RequestHeader, :ResponseHeader, :DownstreamCapping, :CacheKey, :ResponseHeaderCache, :VideoSeek, :Cache, :OriginPullOptimization, :Https, :Authentication, :Seo, :Disable, :ForceRedirect, :Referer, :MaxAge, :Ipv6, :Compatibility, :SpecificConfig, :Area, :Readonly, :OriginPullTimeout, :AwsPrivateAccess, :SecurityConfig, :ImageOptimization, :UserAgentFilter, :AccessControl, :Advance, :UrlRedirect, :AccessPort, :Tag, :AdvancedAuthentication, :OriginAuthentication, :Ipv6Access, :AdvanceSet, :OfflineCache, :OriginCombine, :PostMaxSize, :Quic, :OssPrivateAccess, :WebSocket, :RemoteAuthentication, :ShareCname, :RuleEngine, :ParentHost
+        attr_accessor :ResourceId, :AppId, :Domain, :Cname, :Status, :ProjectId, :ServiceType, :CreateTime, :UpdateTime, :Origin, :IpFilter, :IpFreqLimit, :StatusCodeCache, :Compression, :BandwidthAlert, :RangeOriginPull, :FollowRedirect, :ErrorPage, :RequestHeader, :ResponseHeader, :DownstreamCapping, :CacheKey, :ResponseHeaderCache, :VideoSeek, :Cache, :OriginPullOptimization, :Https, :Authentication, :Seo, :Disable, :ForceRedirect, :Referer, :MaxAge, :Ipv6, :Compatibility, :SpecificConfig, :Area, :Readonly, :OriginPullTimeout, :AwsPrivateAccess, :SecurityConfig, :ImageOptimization, :UserAgentFilter, :AccessControl, :Advance, :UrlRedirect, :AccessPort, :Tag, :AdvancedAuthentication, :OriginAuthentication, :Ipv6Access, :AdvanceSet, :OfflineCache, :OriginCombine, :PostMaxSize, :Quic, :OssPrivateAccess, :WebSocket, :RemoteAuthentication, :ShareCname, :RuleEngine, :ParentHost, :HwPrivateAccess, :QnPrivateAccess
         
-        def initialize(resourceid=nil, appid=nil, domain=nil, cname=nil, status=nil, projectid=nil, servicetype=nil, createtime=nil, updatetime=nil, origin=nil, ipfilter=nil, ipfreqlimit=nil, statuscodecache=nil, compression=nil, bandwidthalert=nil, rangeoriginpull=nil, followredirect=nil, errorpage=nil, requestheader=nil, responseheader=nil, downstreamcapping=nil, cachekey=nil, responseheadercache=nil, videoseek=nil, cache=nil, originpulloptimization=nil, https=nil, authentication=nil, seo=nil, disable=nil, forceredirect=nil, referer=nil, maxage=nil, ipv6=nil, compatibility=nil, specificconfig=nil, area=nil, readonly=nil, originpulltimeout=nil, awsprivateaccess=nil, securityconfig=nil, imageoptimization=nil, useragentfilter=nil, accesscontrol=nil, advance=nil, urlredirect=nil, accessport=nil, tag=nil, advancedauthentication=nil, originauthentication=nil, ipv6access=nil, advanceset=nil, offlinecache=nil, origincombine=nil, postmaxsize=nil, quic=nil, ossprivateaccess=nil, websocket=nil, remoteauthentication=nil, sharecname=nil, ruleengine=nil, parenthost=nil)
+        def initialize(resourceid=nil, appid=nil, domain=nil, cname=nil, status=nil, projectid=nil, servicetype=nil, createtime=nil, updatetime=nil, origin=nil, ipfilter=nil, ipfreqlimit=nil, statuscodecache=nil, compression=nil, bandwidthalert=nil, rangeoriginpull=nil, followredirect=nil, errorpage=nil, requestheader=nil, responseheader=nil, downstreamcapping=nil, cachekey=nil, responseheadercache=nil, videoseek=nil, cache=nil, originpulloptimization=nil, https=nil, authentication=nil, seo=nil, disable=nil, forceredirect=nil, referer=nil, maxage=nil, ipv6=nil, compatibility=nil, specificconfig=nil, area=nil, readonly=nil, originpulltimeout=nil, awsprivateaccess=nil, securityconfig=nil, imageoptimization=nil, useragentfilter=nil, accesscontrol=nil, advance=nil, urlredirect=nil, accessport=nil, tag=nil, advancedauthentication=nil, originauthentication=nil, ipv6access=nil, advanceset=nil, offlinecache=nil, origincombine=nil, postmaxsize=nil, quic=nil, ossprivateaccess=nil, websocket=nil, remoteauthentication=nil, sharecname=nil, ruleengine=nil, parenthost=nil, hwprivateaccess=nil, qnprivateaccess=nil)
           @ResourceId = resourceid
           @AppId = appid
           @Domain = domain
@@ -6166,6 +6196,8 @@ module TencentCloud
           @ShareCname = sharecname
           @RuleEngine = ruleengine
           @ParentHost = parenthost
+          @HwPrivateAccess = hwprivateaccess
+          @QnPrivateAccess = qnprivateaccess
         end
 
         def deserialize(params)
@@ -6380,6 +6412,14 @@ module TencentCloud
             @RuleEngine.deserialize(params['RuleEngine'])
           end
           @ParentHost = params['ParentHost']
+          unless params['HwPrivateAccess'].nil?
+            @HwPrivateAccess = HwPrivateAccess.new
+            @HwPrivateAccess.deserialize(params['HwPrivateAccess'])
+          end
+          unless params['QnPrivateAccess'].nil?
+            @QnPrivateAccess = QnPrivateAccess.new
+            @QnPrivateAccess.deserialize(params['QnPrivateAccess'])
+          end
         end
       end
 
@@ -7446,6 +7486,37 @@ module TencentCloud
             @Hsts.deserialize(params['Hsts'])
           end
           @TlsVersion = params['TlsVersion']
+        end
+      end
+
+      #  华为云对象存储回源鉴权
+      class HwPrivateAccess < TencentCloud::Common::AbstractModel
+        # @param Switch: 开关 on/off
+        # @type Switch: String
+        # @param AccessKey: 访问 ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AccessKey: String
+        # @param SecretKey: 密钥
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SecretKey: String
+        # @param Bucket: bucketname
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Bucket: String
+
+        attr_accessor :Switch, :AccessKey, :SecretKey, :Bucket
+        
+        def initialize(switch=nil, accesskey=nil, secretkey=nil, bucket=nil)
+          @Switch = switch
+          @AccessKey = accesskey
+          @SecretKey = secretkey
+          @Bucket = bucket
+        end
+
+        def deserialize(params)
+          @Switch = params['Switch']
+          @AccessKey = params['AccessKey']
+          @SecretKey = params['SecretKey']
+          @Bucket = params['Bucket']
         end
       end
 
@@ -8778,10 +8849,16 @@ module TencentCloud
         # @param OssPrivateAccess: 回源OSS私有鉴权。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OssPrivateAccess: :class:`Tencentcloud::Cdn.v20180606.models.OssPrivateAccess`
+        # @param HwPrivateAccess: 华为云对象存储回源鉴权
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HwPrivateAccess: :class:`Tencentcloud::Cdn.v20180606.models.HwPrivateAccess`
+        # @param QnPrivateAccess: 七牛云对象存储回源鉴权
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type QnPrivateAccess: :class:`Tencentcloud::Cdn.v20180606.models.QnPrivateAccess`
 
-        attr_accessor :Authentication, :BandwidthAlert, :Cache, :CacheKey, :Compression, :DownstreamCapping, :ErrorPage, :FollowRedirect, :ForceRedirect, :Https, :IpFilter, :IpFreqLimit, :MaxAge, :Origin, :OriginPullOptimization, :RangeOriginPull, :Referer, :RequestHeader, :ResponseHeader, :ResponseHeaderCache, :Seo, :ServiceType, :StatusCodeCache, :VideoSeek, :AwsPrivateAccess, :OssPrivateAccess
+        attr_accessor :Authentication, :BandwidthAlert, :Cache, :CacheKey, :Compression, :DownstreamCapping, :ErrorPage, :FollowRedirect, :ForceRedirect, :Https, :IpFilter, :IpFreqLimit, :MaxAge, :Origin, :OriginPullOptimization, :RangeOriginPull, :Referer, :RequestHeader, :ResponseHeader, :ResponseHeaderCache, :Seo, :ServiceType, :StatusCodeCache, :VideoSeek, :AwsPrivateAccess, :OssPrivateAccess, :HwPrivateAccess, :QnPrivateAccess
         
-        def initialize(authentication=nil, bandwidthalert=nil, cache=nil, cachekey=nil, compression=nil, downstreamcapping=nil, errorpage=nil, followredirect=nil, forceredirect=nil, https=nil, ipfilter=nil, ipfreqlimit=nil, maxage=nil, origin=nil, originpulloptimization=nil, rangeoriginpull=nil, referer=nil, requestheader=nil, responseheader=nil, responseheadercache=nil, seo=nil, servicetype=nil, statuscodecache=nil, videoseek=nil, awsprivateaccess=nil, ossprivateaccess=nil)
+        def initialize(authentication=nil, bandwidthalert=nil, cache=nil, cachekey=nil, compression=nil, downstreamcapping=nil, errorpage=nil, followredirect=nil, forceredirect=nil, https=nil, ipfilter=nil, ipfreqlimit=nil, maxage=nil, origin=nil, originpulloptimization=nil, rangeoriginpull=nil, referer=nil, requestheader=nil, responseheader=nil, responseheadercache=nil, seo=nil, servicetype=nil, statuscodecache=nil, videoseek=nil, awsprivateaccess=nil, ossprivateaccess=nil, hwprivateaccess=nil, qnprivateaccess=nil)
           @Authentication = authentication
           @BandwidthAlert = bandwidthalert
           @Cache = cache
@@ -8808,6 +8885,8 @@ module TencentCloud
           @VideoSeek = videoseek
           @AwsPrivateAccess = awsprivateaccess
           @OssPrivateAccess = ossprivateaccess
+          @HwPrivateAccess = hwprivateaccess
+          @QnPrivateAccess = qnprivateaccess
         end
 
         def deserialize(params)
@@ -8911,6 +8990,14 @@ module TencentCloud
           unless params['OssPrivateAccess'].nil?
             @OssPrivateAccess = OssPrivateAccess.new
             @OssPrivateAccess.deserialize(params['OssPrivateAccess'])
+          end
+          unless params['HwPrivateAccess'].nil?
+            @HwPrivateAccess = HwPrivateAccess.new
+            @HwPrivateAccess.deserialize(params['HwPrivateAccess'])
+          end
+          unless params['QnPrivateAccess'].nil?
+            @QnPrivateAccess = QnPrivateAccess.new
+            @QnPrivateAccess.deserialize(params['QnPrivateAccess'])
           end
         end
       end
@@ -9202,10 +9289,13 @@ module TencentCloud
         # @param AdvanceHttps: HTTPS回源高级配置
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AdvanceHttps: :class:`Tencentcloud::Cdn.v20180606.models.AdvanceHttps`
+        # @param OriginCompany: 对象存储回源厂商
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OriginCompany: String
 
-        attr_accessor :Origins, :OriginType, :ServerName, :CosPrivateAccess, :OriginPullProtocol, :BackupOrigins, :BackupOriginType, :BackupServerName, :BasePath, :PathRules, :PathBasedOrigin, :AdvanceHttps
+        attr_accessor :Origins, :OriginType, :ServerName, :CosPrivateAccess, :OriginPullProtocol, :BackupOrigins, :BackupOriginType, :BackupServerName, :BasePath, :PathRules, :PathBasedOrigin, :AdvanceHttps, :OriginCompany
         
-        def initialize(origins=nil, origintype=nil, servername=nil, cosprivateaccess=nil, originpullprotocol=nil, backuporigins=nil, backuporigintype=nil, backupservername=nil, basepath=nil, pathrules=nil, pathbasedorigin=nil, advancehttps=nil)
+        def initialize(origins=nil, origintype=nil, servername=nil, cosprivateaccess=nil, originpullprotocol=nil, backuporigins=nil, backuporigintype=nil, backupservername=nil, basepath=nil, pathrules=nil, pathbasedorigin=nil, advancehttps=nil, origincompany=nil)
           @Origins = origins
           @OriginType = origintype
           @ServerName = servername
@@ -9218,6 +9308,7 @@ module TencentCloud
           @PathRules = pathrules
           @PathBasedOrigin = pathbasedorigin
           @AdvanceHttps = advancehttps
+          @OriginCompany = origincompany
         end
 
         def deserialize(params)
@@ -9250,6 +9341,7 @@ module TencentCloud
             @AdvanceHttps = AdvanceHttps.new
             @AdvanceHttps.deserialize(params['AdvanceHttps'])
           end
+          @OriginCompany = params['OriginCompany']
         end
       end
 
@@ -9384,19 +9476,29 @@ module TencentCloud
         # @param SecretKey: 密钥。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SecretKey: String
+        # @param Region: 地域
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Region: String
+        # @param Bucket: Bucketname
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Bucket: String
 
-        attr_accessor :Switch, :AccessKey, :SecretKey
+        attr_accessor :Switch, :AccessKey, :SecretKey, :Region, :Bucket
         
-        def initialize(switch=nil, accesskey=nil, secretkey=nil)
+        def initialize(switch=nil, accesskey=nil, secretkey=nil, region=nil, bucket=nil)
           @Switch = switch
           @AccessKey = accesskey
           @SecretKey = secretkey
+          @Region = region
+          @Bucket = bucket
         end
 
         def deserialize(params)
           @Switch = params['Switch']
           @AccessKey = params['AccessKey']
           @SecretKey = params['SecretKey']
+          @Region = params['Region']
+          @Bucket = params['Bucket']
         end
       end
 
@@ -9993,6 +10095,31 @@ module TencentCloud
         def deserialize(params)
           @TaskId = params['TaskId']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 七牛元对象存储回源鉴权配置
+      class QnPrivateAccess < TencentCloud::Common::AbstractModel
+        # @param Switch: 开关 on/off
+        # @type Switch: String
+        # @param AccessKey: 访问 ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AccessKey: String
+        # @param SecretKey: 密钥
+        # @type SecretKey: String
+
+        attr_accessor :Switch, :AccessKey, :SecretKey
+        
+        def initialize(switch=nil, accesskey=nil, secretkey=nil)
+          @Switch = switch
+          @AccessKey = accesskey
+          @SecretKey = secretkey
+        end
+
+        def deserialize(params)
+          @Switch = params['Switch']
+          @AccessKey = params['AccessKey']
+          @SecretKey = params['SecretKey']
         end
       end
 
@@ -12430,10 +12557,14 @@ module TencentCloud
         # @type RemoteAuthentication: :class:`Tencentcloud::Cdn.v20180606.models.RemoteAuthentication`
         # @param ShareCname: 共享CNAME配置，白名单功能
         # @type ShareCname: :class:`Tencentcloud::Cdn.v20180606.models.ShareCname`
+        # @param HwPrivateAccess: 华为云对象存储回源鉴权
+        # @type HwPrivateAccess: :class:`Tencentcloud::Cdn.v20180606.models.HwPrivateAccess`
+        # @param QnPrivateAccess: 七牛云对象存储回源鉴权
+        # @type QnPrivateAccess: :class:`Tencentcloud::Cdn.v20180606.models.QnPrivateAccess`
 
-        attr_accessor :Domain, :ProjectId, :Origin, :IpFilter, :IpFreqLimit, :StatusCodeCache, :Compression, :BandwidthAlert, :RangeOriginPull, :FollowRedirect, :ErrorPage, :RequestHeader, :ResponseHeader, :DownstreamCapping, :CacheKey, :ResponseHeaderCache, :VideoSeek, :Cache, :OriginPullOptimization, :Https, :Authentication, :Seo, :ForceRedirect, :Referer, :MaxAge, :SpecificConfig, :ServiceType, :Area, :OriginPullTimeout, :AwsPrivateAccess, :UserAgentFilter, :AccessControl, :UrlRedirect, :AccessPort, :AdvancedAuthentication, :OriginAuthentication, :Ipv6Access, :OfflineCache, :OriginCombine, :Quic, :OssPrivateAccess, :WebSocket, :RemoteAuthentication, :ShareCname
+        attr_accessor :Domain, :ProjectId, :Origin, :IpFilter, :IpFreqLimit, :StatusCodeCache, :Compression, :BandwidthAlert, :RangeOriginPull, :FollowRedirect, :ErrorPage, :RequestHeader, :ResponseHeader, :DownstreamCapping, :CacheKey, :ResponseHeaderCache, :VideoSeek, :Cache, :OriginPullOptimization, :Https, :Authentication, :Seo, :ForceRedirect, :Referer, :MaxAge, :SpecificConfig, :ServiceType, :Area, :OriginPullTimeout, :AwsPrivateAccess, :UserAgentFilter, :AccessControl, :UrlRedirect, :AccessPort, :AdvancedAuthentication, :OriginAuthentication, :Ipv6Access, :OfflineCache, :OriginCombine, :Quic, :OssPrivateAccess, :WebSocket, :RemoteAuthentication, :ShareCname, :HwPrivateAccess, :QnPrivateAccess
         
-        def initialize(domain=nil, projectid=nil, origin=nil, ipfilter=nil, ipfreqlimit=nil, statuscodecache=nil, compression=nil, bandwidthalert=nil, rangeoriginpull=nil, followredirect=nil, errorpage=nil, requestheader=nil, responseheader=nil, downstreamcapping=nil, cachekey=nil, responseheadercache=nil, videoseek=nil, cache=nil, originpulloptimization=nil, https=nil, authentication=nil, seo=nil, forceredirect=nil, referer=nil, maxage=nil, specificconfig=nil, servicetype=nil, area=nil, originpulltimeout=nil, awsprivateaccess=nil, useragentfilter=nil, accesscontrol=nil, urlredirect=nil, accessport=nil, advancedauthentication=nil, originauthentication=nil, ipv6access=nil, offlinecache=nil, origincombine=nil, quic=nil, ossprivateaccess=nil, websocket=nil, remoteauthentication=nil, sharecname=nil)
+        def initialize(domain=nil, projectid=nil, origin=nil, ipfilter=nil, ipfreqlimit=nil, statuscodecache=nil, compression=nil, bandwidthalert=nil, rangeoriginpull=nil, followredirect=nil, errorpage=nil, requestheader=nil, responseheader=nil, downstreamcapping=nil, cachekey=nil, responseheadercache=nil, videoseek=nil, cache=nil, originpulloptimization=nil, https=nil, authentication=nil, seo=nil, forceredirect=nil, referer=nil, maxage=nil, specificconfig=nil, servicetype=nil, area=nil, originpulltimeout=nil, awsprivateaccess=nil, useragentfilter=nil, accesscontrol=nil, urlredirect=nil, accessport=nil, advancedauthentication=nil, originauthentication=nil, ipv6access=nil, offlinecache=nil, origincombine=nil, quic=nil, ossprivateaccess=nil, websocket=nil, remoteauthentication=nil, sharecname=nil, hwprivateaccess=nil, qnprivateaccess=nil)
           @Domain = domain
           @ProjectId = projectid
           @Origin = origin
@@ -12478,6 +12609,8 @@ module TencentCloud
           @WebSocket = websocket
           @RemoteAuthentication = remoteauthentication
           @ShareCname = sharecname
+          @HwPrivateAccess = hwprivateaccess
+          @QnPrivateAccess = qnprivateaccess
         end
 
         def deserialize(params)
@@ -12641,6 +12774,14 @@ module TencentCloud
           unless params['ShareCname'].nil?
             @ShareCname = ShareCname.new
             @ShareCname.deserialize(params['ShareCname'])
+          end
+          unless params['HwPrivateAccess'].nil?
+            @HwPrivateAccess = HwPrivateAccess.new
+            @HwPrivateAccess.deserialize(params['HwPrivateAccess'])
+          end
+          unless params['QnPrivateAccess'].nil?
+            @QnPrivateAccess = QnPrivateAccess.new
+            @QnPrivateAccess.deserialize(params['QnPrivateAccess'])
           end
         end
       end

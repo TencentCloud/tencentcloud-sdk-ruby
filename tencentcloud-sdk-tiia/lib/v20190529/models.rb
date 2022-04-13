@@ -1526,6 +1526,73 @@ module TencentCloud
         end
       end
 
+      # RecognizeCarPro请求参数结构体
+      class RecognizeCarProRequest < TencentCloud::Common::AbstractModel
+        # @param ImageUrl: 图片URL地址。
+        # 图片限制：
+        # • 图片格式：PNG、JPG、JPEG。
+        # • 图片大小：所下载图片经Base64编码后不超过4M。图片下载时间不超过3秒。
+        # 建议：
+        # • 图片像素：大于50*50像素，否则影响识别效果；
+        # • 长宽比：长边：短边<5；
+        # 接口响应时间会受到图片下载时间的影响，建议使用更可靠的存储服务，推荐将图片存储在腾讯云COS。
+        # @type ImageUrl: String
+        # @param ImageBase64: 图片经过base64编码的内容。最大不超过4M。与ImageUrl同时存在时优先使用ImageUrl字段。
+        # **注意：图片需要base64编码，并且要去掉编码头部。**
+        # 支持的图片格式：PNG、JPG、JPEG、BMP，暂不支持GIF格式。支持的图片大小：所下载图片经Base64编码后不超过4M。图片下载时间不超过3秒。
+        # @type ImageBase64: String
+
+        attr_accessor :ImageUrl, :ImageBase64
+        
+        def initialize(imageurl=nil, imagebase64=nil)
+          @ImageUrl = imageurl
+          @ImageBase64 = imagebase64
+        end
+
+        def deserialize(params)
+          @ImageUrl = params['ImageUrl']
+          @ImageBase64 = params['ImageBase64']
+        end
+      end
+
+      # RecognizeCarPro返回参数结构体
+      class RecognizeCarProResponse < TencentCloud::Common::AbstractModel
+        # @param CarCoords: 汽车的四个矩形顶点坐标，如果图片中存在多辆车，则输出最大车辆的坐标。
+        # @type CarCoords: Array
+        # @param CarTags: 车辆属性识别的结果数组，如果识别到多辆车，则会输出每辆车的top1结果。
+        # @type CarTags: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :CarCoords, :CarTags, :RequestId
+        
+        def initialize(carcoords=nil, cartags=nil, requestid=nil)
+          @CarCoords = carcoords
+          @CarTags = cartags
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['CarCoords'].nil?
+            @CarCoords = []
+            params['CarCoords'].each do |i|
+              coord_tmp = Coord.new
+              coord_tmp.deserialize(i)
+              @CarCoords << coord_tmp
+            end
+          end
+          unless params['CarTags'].nil?
+            @CarTags = []
+            params['CarTags'].each do |i|
+              cartagitem_tmp = CarTagItem.new
+              cartagitem_tmp.deserialize(i)
+              @CarTags << cartagitem_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # RecognizeCar请求参数结构体
       class RecognizeCarRequest < TencentCloud::Common::AbstractModel
         # @param ImageUrl: 图片URL地址。

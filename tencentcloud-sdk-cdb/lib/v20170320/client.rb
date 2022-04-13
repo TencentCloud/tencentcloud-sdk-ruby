@@ -2873,6 +2873,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 重置实例ROOT账，初始化账号权限
+
+        # @param request: Request instance for ResetRootAccount.
+        # @type request: :class:`Tencentcloud::cdb::V20170320::ResetRootAccountRequest`
+        # @rtype: :class:`Tencentcloud::cdb::V20170320::ResetRootAccountResponse`
+        def ResetRootAccount(request)
+          body = send_request('ResetRootAccount', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ResetRootAccountResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口(RestartDBInstances)用于重启云数据库实例。
 
         # 注意：

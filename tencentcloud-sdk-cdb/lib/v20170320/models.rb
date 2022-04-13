@@ -95,10 +95,12 @@ module TencentCloud
         # @type Saturday: Array
         # @param Sunday: 星期日的可维护时间窗口。 一周中应至少设置一天的时间窗。
         # @type Sunday: Array
+        # @param MaxDelayTime: 最大延迟阈值，仅对主实例和灾备实例有效
+        # @type MaxDelayTime: Integer
 
-        attr_accessor :InstanceId, :Monday, :Tuesday, :Wednesday, :Thursday, :Friday, :Saturday, :Sunday
+        attr_accessor :InstanceId, :Monday, :Tuesday, :Wednesday, :Thursday, :Friday, :Saturday, :Sunday, :MaxDelayTime
         
-        def initialize(instanceid=nil, monday=nil, tuesday=nil, wednesday=nil, thursday=nil, friday=nil, saturday=nil, sunday=nil)
+        def initialize(instanceid=nil, monday=nil, tuesday=nil, wednesday=nil, thursday=nil, friday=nil, saturday=nil, sunday=nil, maxdelaytime=nil)
           @InstanceId = instanceid
           @Monday = monday
           @Tuesday = tuesday
@@ -107,6 +109,7 @@ module TencentCloud
           @Friday = friday
           @Saturday = saturday
           @Sunday = sunday
+          @MaxDelayTime = maxdelaytime
         end
 
         def deserialize(params)
@@ -118,6 +121,7 @@ module TencentCloud
           @Friday = params['Friday']
           @Saturday = params['Saturday']
           @Sunday = params['Sunday']
+          @MaxDelayTime = params['MaxDelayTime']
         end
       end
 
@@ -1559,7 +1563,7 @@ module TencentCloud
         # @type ResourceTags: Array
         # @param DeployGroupId: 置放群组 ID。
         # @type DeployGroupId: String
-        # @param ClientToken: 用于保证请求幂等性的字符串。该字符串由客户生成，需保证不同请求之间在当天内唯一，最大值不超过64个ASCII字符。若不指定该参数，则无法保证请求的幂等性。
+        # @param ClientToken: 用于保证请求幂等性的字符串。该字符串由客户生成，需保证不同请求之间在48小时内唯一，最大值不超过64个ASCII字符。若不指定该参数，则无法保证请求的幂等性。
         # @type ClientToken: String
         # @param DeviceType: 实例隔离类型。支持值包括： "UNIVERSAL" - 通用型实例， "EXCLUSIVE" - 独享型实例， "BASIC" - 基础版实例。 不指定则默认为通用型实例。
         # @type DeviceType: String
@@ -1581,10 +1585,12 @@ module TencentCloud
         # @type AlarmPolicyIdList: Array
         # @param DryRun: 是否只预检此次请求。true：发送检查请求，不会创建实例。检查项包括是否填写了必需参数，请求格式，业务限制等。如果检查不通过，则返回对应错误码；如果检查通过，则返回RequestId.默认为false：发送正常请求，通过检查后直接创建实例。
         # @type DryRun: Boolean
+        # @param Vips: 指定实例的IP列表。仅支持主实例指定，按实例顺序，不足则按未指定处理。
+        # @type Vips: Array
 
-        attr_accessor :GoodsNum, :Memory, :Volume, :EngineVersion, :UniqVpcId, :UniqSubnetId, :ProjectId, :Zone, :MasterInstanceId, :InstanceRole, :MasterRegion, :Port, :Password, :ParamList, :ProtectMode, :DeployMode, :SlaveZone, :BackupZone, :SecurityGroup, :RoGroup, :AutoRenewFlag, :InstanceName, :ResourceTags, :DeployGroupId, :ClientToken, :DeviceType, :ParamTemplateId, :AlarmPolicyList, :InstanceNodes, :Cpu, :AutoSyncFlag, :CageId, :ParamTemplateType, :AlarmPolicyIdList, :DryRun
+        attr_accessor :GoodsNum, :Memory, :Volume, :EngineVersion, :UniqVpcId, :UniqSubnetId, :ProjectId, :Zone, :MasterInstanceId, :InstanceRole, :MasterRegion, :Port, :Password, :ParamList, :ProtectMode, :DeployMode, :SlaveZone, :BackupZone, :SecurityGroup, :RoGroup, :AutoRenewFlag, :InstanceName, :ResourceTags, :DeployGroupId, :ClientToken, :DeviceType, :ParamTemplateId, :AlarmPolicyList, :InstanceNodes, :Cpu, :AutoSyncFlag, :CageId, :ParamTemplateType, :AlarmPolicyIdList, :DryRun, :Vips
         
-        def initialize(goodsnum=nil, memory=nil, volume=nil, engineversion=nil, uniqvpcid=nil, uniqsubnetid=nil, projectid=nil, zone=nil, masterinstanceid=nil, instancerole=nil, masterregion=nil, port=nil, password=nil, paramlist=nil, protectmode=nil, deploymode=nil, slavezone=nil, backupzone=nil, securitygroup=nil, rogroup=nil, autorenewflag=nil, instancename=nil, resourcetags=nil, deploygroupid=nil, clienttoken=nil, devicetype=nil, paramtemplateid=nil, alarmpolicylist=nil, instancenodes=nil, cpu=nil, autosyncflag=nil, cageid=nil, paramtemplatetype=nil, alarmpolicyidlist=nil, dryrun=nil)
+        def initialize(goodsnum=nil, memory=nil, volume=nil, engineversion=nil, uniqvpcid=nil, uniqsubnetid=nil, projectid=nil, zone=nil, masterinstanceid=nil, instancerole=nil, masterregion=nil, port=nil, password=nil, paramlist=nil, protectmode=nil, deploymode=nil, slavezone=nil, backupzone=nil, securitygroup=nil, rogroup=nil, autorenewflag=nil, instancename=nil, resourcetags=nil, deploygroupid=nil, clienttoken=nil, devicetype=nil, paramtemplateid=nil, alarmpolicylist=nil, instancenodes=nil, cpu=nil, autosyncflag=nil, cageid=nil, paramtemplatetype=nil, alarmpolicyidlist=nil, dryrun=nil, vips=nil)
           @GoodsNum = goodsnum
           @Memory = memory
           @Volume = volume
@@ -1620,6 +1626,7 @@ module TencentCloud
           @ParamTemplateType = paramtemplatetype
           @AlarmPolicyIdList = alarmpolicyidlist
           @DryRun = dryrun
+          @Vips = vips
         end
 
         def deserialize(params)
@@ -1675,6 +1682,7 @@ module TencentCloud
           @ParamTemplateType = params['ParamTemplateType']
           @AlarmPolicyIdList = params['AlarmPolicyIdList']
           @DryRun = params['DryRun']
+          @Vips = params['Vips']
         end
       end
 
@@ -1754,7 +1762,7 @@ module TencentCloud
         # @type ResourceTags: Array
         # @param DeployGroupId: 置放群组 ID。
         # @type DeployGroupId: String
-        # @param ClientToken: 用于保证请求幂等性的字符串。该字符串由客户生成，需保证不同请求之间在当天内唯一，最大值不超过64个ASCII字符。若不指定该参数，则无法保证请求的幂等性。
+        # @param ClientToken: 用于保证请求幂等性的字符串。该字符串由客户生成，需保证不同请求之间在48小时内唯一，最大值不超过64个ASCII字符。若不指定该参数，则无法保证请求的幂等性。
         # @type ClientToken: String
         # @param DeviceType: 实例隔离类型。支持值包括： "UNIVERSAL" - 通用型实例， "EXCLUSIVE" - 独享型实例， "BASIC" - 基础版实例。 不指定则默认为通用型实例。
         # @type DeviceType: String
@@ -1776,10 +1784,12 @@ module TencentCloud
         # @type AlarmPolicyIdList: Array
         # @param DryRun: 是否只预检此次请求。true：发送检查请求，不会创建实例。检查项包括是否填写了必需参数，请求格式，业务限制等。如果检查不通过，则返回对应错误码；如果检查通过，则返回RequestId.默认为false：发送正常请求，通过检查后直接创建实例。
         # @type DryRun: Boolean
+        # @param Vips: 指定实例的IP列表。仅支持主实例指定，按实例顺序，不足则按未指定处理。
+        # @type Vips: Array
 
-        attr_accessor :Memory, :Volume, :Period, :GoodsNum, :Zone, :UniqVpcId, :UniqSubnetId, :ProjectId, :Port, :InstanceRole, :MasterInstanceId, :EngineVersion, :Password, :ProtectMode, :DeployMode, :SlaveZone, :ParamList, :BackupZone, :AutoRenewFlag, :MasterRegion, :SecurityGroup, :RoGroup, :InstanceName, :ResourceTags, :DeployGroupId, :ClientToken, :DeviceType, :ParamTemplateId, :AlarmPolicyList, :InstanceNodes, :Cpu, :AutoSyncFlag, :CageId, :ParamTemplateType, :AlarmPolicyIdList, :DryRun
+        attr_accessor :Memory, :Volume, :Period, :GoodsNum, :Zone, :UniqVpcId, :UniqSubnetId, :ProjectId, :Port, :InstanceRole, :MasterInstanceId, :EngineVersion, :Password, :ProtectMode, :DeployMode, :SlaveZone, :ParamList, :BackupZone, :AutoRenewFlag, :MasterRegion, :SecurityGroup, :RoGroup, :InstanceName, :ResourceTags, :DeployGroupId, :ClientToken, :DeviceType, :ParamTemplateId, :AlarmPolicyList, :InstanceNodes, :Cpu, :AutoSyncFlag, :CageId, :ParamTemplateType, :AlarmPolicyIdList, :DryRun, :Vips
         
-        def initialize(memory=nil, volume=nil, period=nil, goodsnum=nil, zone=nil, uniqvpcid=nil, uniqsubnetid=nil, projectid=nil, port=nil, instancerole=nil, masterinstanceid=nil, engineversion=nil, password=nil, protectmode=nil, deploymode=nil, slavezone=nil, paramlist=nil, backupzone=nil, autorenewflag=nil, masterregion=nil, securitygroup=nil, rogroup=nil, instancename=nil, resourcetags=nil, deploygroupid=nil, clienttoken=nil, devicetype=nil, paramtemplateid=nil, alarmpolicylist=nil, instancenodes=nil, cpu=nil, autosyncflag=nil, cageid=nil, paramtemplatetype=nil, alarmpolicyidlist=nil, dryrun=nil)
+        def initialize(memory=nil, volume=nil, period=nil, goodsnum=nil, zone=nil, uniqvpcid=nil, uniqsubnetid=nil, projectid=nil, port=nil, instancerole=nil, masterinstanceid=nil, engineversion=nil, password=nil, protectmode=nil, deploymode=nil, slavezone=nil, paramlist=nil, backupzone=nil, autorenewflag=nil, masterregion=nil, securitygroup=nil, rogroup=nil, instancename=nil, resourcetags=nil, deploygroupid=nil, clienttoken=nil, devicetype=nil, paramtemplateid=nil, alarmpolicylist=nil, instancenodes=nil, cpu=nil, autosyncflag=nil, cageid=nil, paramtemplatetype=nil, alarmpolicyidlist=nil, dryrun=nil, vips=nil)
           @Memory = memory
           @Volume = volume
           @Period = period
@@ -1816,6 +1826,7 @@ module TencentCloud
           @ParamTemplateType = paramtemplatetype
           @AlarmPolicyIdList = alarmpolicyidlist
           @DryRun = dryrun
+          @Vips = vips
         end
 
         def deserialize(params)
@@ -1872,6 +1883,7 @@ module TencentCloud
           @ParamTemplateType = params['ParamTemplateType']
           @AlarmPolicyIdList = params['AlarmPolicyIdList']
           @DryRun = params['DryRun']
+          @Vips = params['Vips']
         end
       end
 
@@ -5705,12 +5717,14 @@ module TencentCloud
         # @type Saturday: Array
         # @param Sunday: 星期日的可维护时间列表。
         # @type Sunday: Array
+        # @param MaxDelayTime: 最大数据延迟阈值
+        # @type MaxDelayTime: Integer
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Monday, :Tuesday, :Wednesday, :Thursday, :Friday, :Saturday, :Sunday, :RequestId
+        attr_accessor :Monday, :Tuesday, :Wednesday, :Thursday, :Friday, :Saturday, :Sunday, :MaxDelayTime, :RequestId
         
-        def initialize(monday=nil, tuesday=nil, wednesday=nil, thursday=nil, friday=nil, saturday=nil, sunday=nil, requestid=nil)
+        def initialize(monday=nil, tuesday=nil, wednesday=nil, thursday=nil, friday=nil, saturday=nil, sunday=nil, maxdelaytime=nil, requestid=nil)
           @Monday = monday
           @Tuesday = tuesday
           @Wednesday = wednesday
@@ -5718,6 +5732,7 @@ module TencentCloud
           @Friday = friday
           @Saturday = saturday
           @Sunday = sunday
+          @MaxDelayTime = maxdelaytime
           @RequestId = requestid
         end
 
@@ -5729,6 +5744,7 @@ module TencentCloud
           @Friday = params['Friday']
           @Saturday = params['Saturday']
           @Sunday = params['Sunday']
+          @MaxDelayTime = params['MaxDelayTime']
           @RequestId = params['RequestId']
         end
       end
@@ -6892,16 +6908,16 @@ module TencentCloud
         # @param Accounts: 数据库的账号，包括用户名和域名。
         # @type Accounts: Array
         # @param GlobalPrivileges: 全局权限。其中，GlobalPrivileges 中权限的可选值为："SELECT","INSERT","UPDATE","DELETE","CREATE", "PROCESS", "DROP","REFERENCES","INDEX","ALTER","SHOW DATABASES","CREATE TEMPORARY TABLES","LOCK TABLES","EXECUTE","CREATE VIEW","SHOW VIEW","CREATE ROUTINE","ALTER ROUTINE","EVENT","TRIGGER","CREATE USER","RELOAD","REPLICATION CLIENT","REPLICATION SLAVE","UPDATE"。
-        # 注意，不传该参数表示清除该权限。
+        # 注意，ModifyAction为空时，不传该参数表示清除该权限。
         # @type GlobalPrivileges: Array
         # @param DatabasePrivileges: 数据库的权限。Privileges 权限的可选值为："SELECT","INSERT","UPDATE","DELETE","CREATE",	"DROP","REFERENCES","INDEX","ALTER","CREATE TEMPORARY TABLES","LOCK TABLES","EXECUTE","CREATE VIEW","SHOW VIEW","CREATE ROUTINE","ALTER ROUTINE","EVENT","TRIGGER"。
-        # 注意，不传该参数表示清除该权限。
+        # 注意，ModifyAction为空时，不传该参数表示清除该权限。
         # @type DatabasePrivileges: Array
         # @param TablePrivileges: 数据库中表的权限。Privileges 权限的可选值为：权限的可选值为："SELECT","INSERT","UPDATE","DELETE","CREATE",	"DROP","REFERENCES","INDEX","ALTER","CREATE VIEW","SHOW VIEW", "TRIGGER"。
-        # 注意，不传该参数表示清除该权限。
+        # 注意，ModifyAction为空时，不传该参数表示清除该权限。
         # @type TablePrivileges: Array
         # @param ColumnPrivileges: 数据库表中列的权限。Privileges 权限的可选值为："SELECT","INSERT","UPDATE","REFERENCES"。
-        # 注意，不传该参数表示清除该权限。
+        # 注意，ModifyAction为空时，不传该参数表示清除该权限。
         # @type ColumnPrivileges: Array
         # @param ModifyAction: 该参数不为空时，为批量修改权限。可选值为：grant - 授予权限，revoke - 回收权限。
         # @type ModifyAction: String
@@ -7912,19 +7928,23 @@ module TencentCloud
         # @type TimeRanges: Array
         # @param Weekdays: 指定修改哪一天的客户时间段，可能的取值为：monday，tuesday，wednesday，thursday，friday，saturday，sunday。如果不指定该值或者为空，则默认一周七天都修改。
         # @type Weekdays: Array
+        # @param MaxDelayTime: 数据延迟阈值，仅对主实例和灾备实例有效，不传默认修改为10
+        # @type MaxDelayTime: Integer
 
-        attr_accessor :InstanceId, :TimeRanges, :Weekdays
+        attr_accessor :InstanceId, :TimeRanges, :Weekdays, :MaxDelayTime
         
-        def initialize(instanceid=nil, timeranges=nil, weekdays=nil)
+        def initialize(instanceid=nil, timeranges=nil, weekdays=nil, maxdelaytime=nil)
           @InstanceId = instanceid
           @TimeRanges = timeranges
           @Weekdays = weekdays
+          @MaxDelayTime = maxdelaytime
         end
 
         def deserialize(params)
           @InstanceId = params['InstanceId']
           @TimeRanges = params['TimeRanges']
           @Weekdays = params['Weekdays']
+          @MaxDelayTime = params['MaxDelayTime']
         end
       end
 
@@ -8796,6 +8816,38 @@ module TencentCloud
 
         def deserialize(params)
           @DealId = params['DealId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ResetRootAccount请求参数结构体
+      class ResetRootAccountRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例id
+        # @type InstanceId: String
+
+        attr_accessor :InstanceId
+        
+        def initialize(instanceid=nil)
+          @InstanceId = instanceid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+        end
+      end
+
+      # ResetRootAccount返回参数结构体
+      class ResetRootAccountResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
           @RequestId = params['RequestId']
         end
       end

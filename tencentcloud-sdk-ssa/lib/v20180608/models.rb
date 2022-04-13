@@ -2325,28 +2325,96 @@ module TencentCloud
 
       # DescribeSocCheckItemList请求参数结构体
       class DescribeSocCheckItemListRequest < TencentCloud::Common::AbstractModel
+        # @param Filter: 查询参数,可支持的排序字段:Name,Type,AssetType,Level,Standard,IsFree
+        # @type Filter: Array
+        # @param Sorter: 排序参数:无
+        # @type Sorter: Array
+        # @param PageSize: 当前页码数据，默认值为10
+        # @type PageSize: Integer
+        # @param PageIndex: 当前页面索引，默认值为0
+        # @type PageIndex: Integer
 
+        attr_accessor :Filter, :Sorter, :PageSize, :PageIndex
         
-        def initialize()
+        def initialize(filter=nil, sorter=nil, pagesize=nil, pageindex=nil)
+          @Filter = filter
+          @Sorter = sorter
+          @PageSize = pagesize
+          @PageIndex = pageindex
         end
 
         def deserialize(params)
+          unless params['Filter'].nil?
+            @Filter = []
+            params['Filter'].each do |i|
+              queryfilter_tmp = QueryFilter.new
+              queryfilter_tmp.deserialize(i)
+              @Filter << queryfilter_tmp
+            end
+          end
+          unless params['Sorter'].nil?
+            @Sorter = []
+            params['Sorter'].each do |i|
+              querysort_tmp = QuerySort.new
+              querysort_tmp.deserialize(i)
+              @Sorter << querysort_tmp
+            end
+          end
+          @PageSize = params['PageSize']
+          @PageIndex = params['PageIndex']
         end
       end
 
       # DescribeSocCheckItemList返回参数结构体
       class DescribeSocCheckItemListResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 检查项列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Data: :class:`Tencentcloud::Ssa.v20180608.models.DescribeSocCheckItemListRspRsp`
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RequestId
+        attr_accessor :Data, :RequestId
         
-        def initialize(requestid=nil)
+        def initialize(data=nil, requestid=nil)
+          @Data = data
           @RequestId = requestid
         end
 
         def deserialize(params)
+          unless params['Data'].nil?
+            @Data = DescribeSocCheckItemListRspRsp.new
+            @Data.deserialize(params['Data'])
+          end
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 云安全配置检查项列表
+      class DescribeSocCheckItemListRspRsp < TencentCloud::Common::AbstractModel
+        # @param List: 检查项详情列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type List: Array
+        # @param Total: 检查项总数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Total: Integer
+
+        attr_accessor :List, :Total
+        
+        def initialize(list=nil, total=nil)
+          @List = list
+          @Total = total
+        end
+
+        def deserialize(params)
+          unless params['List'].nil?
+            @List = []
+            params['List'].each do |i|
+              soccheckitemv1_tmp = SocCheckItemV1.new
+              soccheckitemv1_tmp.deserialize(i)
+              @List << soccheckitemv1_tmp
+            end
+          end
+          @Total = params['Total']
         end
       end
 
@@ -2798,37 +2866,37 @@ module TencentCloud
 
       # 查询_通用字段
       class SaDivulgeDataQueryPub < TencentCloud::Common::AbstractModel
-        # @param Id: Id
+        # @param Id: Id信息
         # @type Id: String
-        # @param Uin: Uin
+        # @param Uin: 用户Uin
         # @type Uin: String
-        # @param AppId: AppId
+        # @param AppId: 用户AppId
         # @type AppId: String
-        # @param EventName: EventName
+        # @param EventName: 事件名称
         # @type EventName: String
-        # @param DivulgeSoure: DivulgeSoure
+        # @param DivulgeSoure: 监控源 0:全部 1:GitHub 2:暗网 默认值1
         # @type DivulgeSoure: String
-        # @param Asset: Asset
+        # @param Asset: 受影响资产
         # @type Asset: String
-        # @param RuleName: RuleName
+        # @param RuleName: 命中主题集下的规则topic名称
         # @type RuleName: String
-        # @param RuleId: RuleId
+        # @param RuleId: 命中主题集下的规则topic唯一id
         # @type RuleId: String
-        # @param RuleWord: RuleWord
+        # @param RuleWord: 命中主题集下的自定义规则策略
         # @type RuleWord: String
-        # @param ScanUrl: ScanUrl
+        # @param ScanUrl: 扫描监测url"
         # @type ScanUrl: String
-        # @param ScanCount: ScanCount
+        # @param ScanCount: 扫描监测命中次数
         # @type ScanCount: String
-        # @param Level: Level
+        # @param Level: 风险等级 -1:未知 1:低危 2:中危 3:高危 4:严重
         # @type Level: String
-        # @param Status: Status
+        # @param Status: 安全事件处理状态 -1:未知 1:待处理 2:已处理 3:误报 4:已忽略 5:已知晓 6:已信任
         # @type Status: String
-        # @param EventTime: EventTime
+        # @param EventTime: 安全事件发生时间
         # @type EventTime: String
-        # @param InsertTime: InsertTime
+        # @param InsertTime: 事件插入时间
         # @type InsertTime: String
-        # @param UpdateTime: UpdateTime
+        # @param UpdateTime: 事件更新时间
         # @type UpdateTime: String
 
         attr_accessor :Id, :Uin, :AppId, :EventName, :DivulgeSoure, :Asset, :RuleName, :RuleId, :RuleWord, :ScanUrl, :ScanCount, :Level, :Status, :EventTime, :InsertTime, :UpdateTime
@@ -2872,11 +2940,11 @@ module TencentCloud
         end
       end
 
-      # 查询_通用字段
+      # 自定义泄露事件列表
       class SaDivulgeDataQueryPubList < TencentCloud::Common::AbstractModel
-        # @param Count: Count
+        # @param Count: 数据条数
         # @type Count: Integer
-        # @param List: List
+        # @param List: 自定义泄露事件列表
         # @type List: Array
 
         attr_accessor :Count, :List
@@ -3022,6 +3090,53 @@ module TencentCloud
           @LevelId = params['LevelId']
           @SuccessCount = params['SuccessCount']
           @FailCount = params['FailCount']
+        end
+      end
+
+      # 检查项相关信息
+      class SocCheckItemV1 < TencentCloud::Common::AbstractModel
+        # @param CheckId: 检查项id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CheckId: String
+        # @param Name: 配置要求
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
+        # @param Type: 检查项类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Type: String
+        # @param AssetType: 检查对象
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AssetType: String
+        # @param Level: 默认风险等级 2:低危 3:中危 4:高危
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Level: Integer
+        # @param Standard: 相关规范
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Standard: String
+        # @param IsFree: 检查项是否付费 1:免费 2:付费
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsFree: Integer
+
+        attr_accessor :CheckId, :Name, :Type, :AssetType, :Level, :Standard, :IsFree
+        
+        def initialize(checkid=nil, name=nil, type=nil, assettype=nil, level=nil, standard=nil, isfree=nil)
+          @CheckId = checkid
+          @Name = name
+          @Type = type
+          @AssetType = assettype
+          @Level = level
+          @Standard = standard
+          @IsFree = isfree
+        end
+
+        def deserialize(params)
+          @CheckId = params['CheckId']
+          @Name = params['Name']
+          @Type = params['Type']
+          @AssetType = params['AssetType']
+          @Level = params['Level']
+          @Standard = params['Standard']
+          @IsFree = params['IsFree']
         end
       end
 
