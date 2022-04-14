@@ -2718,6 +2718,53 @@ module TencentCloud
         end
       end
 
+      # CloseCloudOrder请求参数结构体
+      class CloseCloudOrderRequest < TencentCloud::Common::AbstractModel
+        # @param MidasAppId: 米大师分配的支付主MidasAppId
+        # @type MidasAppId: String
+        # @param UserId: 用户Id，长度不小于5位，仅支持字母和数字的组合
+        # @type UserId: String
+        # @param OutTradeNo: 开发者订单号
+        # @type OutTradeNo: String
+        # @param MidasEnvironment: 环境类型
+        # __release__:生产环境
+        # __sandbox__:沙箱环境
+        # _不填默认为生产环境_
+        # @type MidasEnvironment: String
+
+        attr_accessor :MidasAppId, :UserId, :OutTradeNo, :MidasEnvironment
+        
+        def initialize(midasappid=nil, userid=nil, outtradeno=nil, midasenvironment=nil)
+          @MidasAppId = midasappid
+          @UserId = userid
+          @OutTradeNo = outtradeno
+          @MidasEnvironment = midasenvironment
+        end
+
+        def deserialize(params)
+          @MidasAppId = params['MidasAppId']
+          @UserId = params['UserId']
+          @OutTradeNo = params['OutTradeNo']
+          @MidasEnvironment = params['MidasEnvironment']
+        end
+      end
+
+      # CloseCloudOrder返回参数结构体
+      class CloseCloudOrderResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CloseOpenBankPaymentOrder请求参数结构体
       class CloseOpenBankPaymentOrderRequest < TencentCloud::Common::AbstractModel
         # @param ChannelMerchantId: 渠道商户ID，云企付平台下发给外部接入平台。
@@ -2859,6 +2906,666 @@ module TencentCloud
 
         def deserialize(params)
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 附加项信息对象
+      class CloudAttachmentInfo < TencentCloud::Common::AbstractModel
+        # @param AttachmentAmount: 附加项金额。
+        # 附加项的金额（必须是正数，单位：分），代表积分的数量、抵扣的金额、溢价的金额、补贴的金额
+        # @type AttachmentAmount: Integer
+        # @param AttachmentType: 附加项类型。
+        # Add：加项；
+        # Sub：减项；
+        # Point：积分项；
+        # Subsidy：补贴项。
+        # @type AttachmentType: String
+        # @param AttachmentName: 附加项名称。
+        # 当银行作为收单机构可能会对该字段有要求，请向米大师确认。
+        # @type AttachmentName: String
+        # @param AttachmentCode: 附加项编号。
+        # 当银行作为收单机构可能会对该字段有要求，请向米大师确认。
+        # @type AttachmentCode: String
+
+        attr_accessor :AttachmentAmount, :AttachmentType, :AttachmentName, :AttachmentCode
+        
+        def initialize(attachmentamount=nil, attachmenttype=nil, attachmentname=nil, attachmentcode=nil)
+          @AttachmentAmount = attachmentamount
+          @AttachmentType = attachmenttype
+          @AttachmentName = attachmentname
+          @AttachmentCode = attachmentcode
+        end
+
+        def deserialize(params)
+          @AttachmentAmount = params['AttachmentAmount']
+          @AttachmentType = params['AttachmentType']
+          @AttachmentName = params['AttachmentName']
+          @AttachmentCode = params['AttachmentCode']
+        end
+      end
+
+      # 渠道方用户信息
+      class CloudChannelExternalUserInfo < TencentCloud::Common::AbstractModel
+        # @param ChannelExternalUserType: 渠道方用户类型，枚举值:
+        # WX_OPENID 微信支付类型
+        # ALIPAY_BUYERID 支付宝支付类型
+        # @type ChannelExternalUserType: String
+        # @param ChannelExternalUserId: 渠道方用户Id
+        # @type ChannelExternalUserId: String
+
+        attr_accessor :ChannelExternalUserType, :ChannelExternalUserId
+        
+        def initialize(channelexternalusertype=nil, channelexternaluserid=nil)
+          @ChannelExternalUserType = channelexternalusertype
+          @ChannelExternalUserId = channelexternaluserid
+        end
+
+        def deserialize(params)
+          @ChannelExternalUserType = params['ChannelExternalUserType']
+          @ChannelExternalUserId = params['ChannelExternalUserId']
+        end
+      end
+
+      # 客户端信息
+      class CloudClientInfo < TencentCloud::Common::AbstractModel
+        # @param ClientType: 场景类型。
+        # wechat_ecommerce渠道 - h5支付方式，此字段必填；
+        # 枚举值：
+        # CLIENT_TYPE_UNKNOWN 未知;
+        # CLIENT_TYPE_IOS ios系统;
+        # CLIENT_TYPE_ANDROID 安卓系统;
+        # CLIENT_TYPE_WAP WAP场景;
+        # CLIENT_TYPE_H5 H5场景;
+        # @type ClientType: String
+        # @param AppName: 应用名称。
+        # @type AppName: String
+        # @param AppUrl: 网站URL。
+        # @type AppUrl: String
+        # @param BundleId: IOS平台BundleID。
+        # @type BundleId: String
+        # @param PackageName: Android平台PackageName
+        # @type PackageName: String
+
+        attr_accessor :ClientType, :AppName, :AppUrl, :BundleId, :PackageName
+        
+        def initialize(clienttype=nil, appname=nil, appurl=nil, bundleid=nil, packagename=nil)
+          @ClientType = clienttype
+          @AppName = appname
+          @AppUrl = appurl
+          @BundleId = bundleid
+          @PackageName = packagename
+        end
+
+        def deserialize(params)
+          @ClientType = params['ClientType']
+          @AppName = params['AppName']
+          @AppUrl = params['AppUrl']
+          @BundleId = params['BundleId']
+          @PackageName = params['PackageName']
+        end
+      end
+
+      # 第三方渠道数据信息
+      class CloudExternalChannelData < TencentCloud::Common::AbstractModel
+        # @param ExternalChannelDataName: 第三方渠道数据名。
+        # PAYMENT_ORDER_EXTERNAL_REQUEST_DATA: 支付下单请求数据
+        # PAYMENT_ORDER_EXTERNAL_RETURN_DATA: 支付下单返回数据
+        # PAYMENT_ORDER_EXTERNAL_NOTIFY_DATA: 支付通知数据
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExternalChannelDataName: String
+        # @param ExternalChannelDataValue: 第三方渠道数据值。
+        # 当ExternalChannelDataType=PAYMENT时，反序列化格式请参考[ExternalChannelPaymentDataValue](https://midas-juxin-next.pages.woa.com/apidocs/external-channel-data/QueryExternalChannelData.html#ExternalChannelPaymentDataValue)
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExternalChannelDataValue: String
+
+        attr_accessor :ExternalChannelDataName, :ExternalChannelDataValue
+        
+        def initialize(externalchanneldataname=nil, externalchanneldatavalue=nil)
+          @ExternalChannelDataName = externalchanneldataname
+          @ExternalChannelDataValue = externalchanneldatavalue
+        end
+
+        def deserialize(params)
+          @ExternalChannelDataName = params['ExternalChannelDataName']
+          @ExternalChannelDataValue = params['ExternalChannelDataValue']
+        end
+      end
+
+      # 渠道扩展促销信息
+      class CloudExternalPromptGroup < TencentCloud::Common::AbstractModel
+        # @param ChannelName: 渠道名。
+        # 为米大师定义的枚举值：
+        # wechat 微信渠道
+        # @type ChannelName: String
+        # @param ExternalPromptInfoList: 渠道扩展促销信息列表，由各个渠道自行定义。
+        # ChannelName为wechat时，组成为 <Wechat-ExternalPromptInfo>
+        # @type ExternalPromptInfoList: Array
+
+        attr_accessor :ChannelName, :ExternalPromptInfoList
+        
+        def initialize(channelname=nil, externalpromptinfolist=nil)
+          @ChannelName = channelname
+          @ExternalPromptInfoList = externalpromptinfolist
+        end
+
+        def deserialize(params)
+          @ChannelName = params['ChannelName']
+          unless params['ExternalPromptInfoList'].nil?
+            @ExternalPromptInfoList = []
+            params['ExternalPromptInfoList'].each do |i|
+              cloudexternalpromptinfo_tmp = CloudExternalPromptInfo.new
+              cloudexternalpromptinfo_tmp.deserialize(i)
+              @ExternalPromptInfoList << cloudexternalpromptinfo_tmp
+            end
+          end
+        end
+      end
+
+      # 渠道扩展促销信息
+      class CloudExternalPromptInfo < TencentCloud::Common::AbstractModel
+        # @param ExternalPromptType: 优惠商品信息类型。
+        # @type ExternalPromptType: String
+        # @param ExternalPromptValue: 优惠商品信息数据。
+        # @type ExternalPromptValue: String
+        # @param ExternalPromptName: 优惠商品名称。
+        # @type ExternalPromptName: String
+
+        attr_accessor :ExternalPromptType, :ExternalPromptValue, :ExternalPromptName
+        
+        def initialize(externalprompttype=nil, externalpromptvalue=nil, externalpromptname=nil)
+          @ExternalPromptType = externalprompttype
+          @ExternalPromptValue = externalpromptvalue
+          @ExternalPromptName = externalpromptname
+        end
+
+        def deserialize(params)
+          @ExternalPromptType = params['ExternalPromptType']
+          @ExternalPromptValue = params['ExternalPromptValue']
+          @ExternalPromptName = params['ExternalPromptName']
+        end
+      end
+
+      # 全局支付时间信息
+      class CloudGlobalPayTimeInfo < TencentCloud::Common::AbstractModel
+        # @param StartTimestamp: 订单开始时间。
+        # 不指定时默认为当前时间。
+        # @type StartTimestamp: Integer
+        # @param ExpireTimestamp: 订单结束时间。
+        # 逾期将会拒绝下单。不指定时默认为当前时间的7天后结束。
+        # @type ExpireTimestamp: Integer
+        # @param TimeOffset: 时区。
+        # 不指定时默认为28800，表示北京时间（东八区）。
+        # @type TimeOffset: Integer
+
+        attr_accessor :StartTimestamp, :ExpireTimestamp, :TimeOffset
+        
+        def initialize(starttimestamp=nil, expiretimestamp=nil, timeoffset=nil)
+          @StartTimestamp = starttimestamp
+          @ExpireTimestamp = expiretimestamp
+          @TimeOffset = timeoffset
+        end
+
+        def deserialize(params)
+          @StartTimestamp = params['StartTimestamp']
+          @ExpireTimestamp = params['ExpireTimestamp']
+          @TimeOffset = params['TimeOffset']
+        end
+      end
+
+      # 返回订单信息
+      class CloudOrderReturn < TencentCloud::Common::AbstractModel
+        # @param AppId: 米大师分配的支付主MidasAppId
+        # @type AppId: String
+        # @param OutTradeNo: 开发者支付订单号
+        # @type OutTradeNo: String
+        # @param SubOrderList: 调用下单接口传进来的子单列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SubOrderList: Array
+        # @param TransactionId: 调用下单接口获取的米大师交易订单号
+        # @type TransactionId: String
+        # @param UserId: 用户Id
+        # @type UserId: String
+        # @param Channel: 支付渠道
+        # wechat:微信支付
+        # @type Channel: String
+        # @param ProductId: 物品Id
+        # @type ProductId: String
+        # @param Metadata: 发货标识，由开发者在调用下单接口的时候传入
+        # @type Metadata: String
+        # @param CurrencyType: ISO货币代码
+        # @type CurrencyType: String
+        # @param Amt: 支付金额，单位：分
+        # @type Amt: Integer
+        # @param OrderState: 订单状态
+        # 0:初始状态，获取米大师交易订单成功
+        # 1:拉起米大师支付页面成功，用户未支付
+        # 2:用户支付成功，正在发货
+        # 3:用户支付成功，发货失败
+        # 4:用户支付成功，发货成功
+        # 5:关单中
+        # 6:已关单
+        # @type OrderState: String
+        # @param OrderTime: 下单时间，unix时间戳
+        # @type OrderTime: String
+        # @param PayTime: 支付时间，unix时间戳
+        # @type PayTime: String
+        # @param CallBackTime: 支付回调时间，unix时间戳
+        # @type CallBackTime: String
+        # @param ChannelExternalOrderId: 支付机构订单号
+        # @type ChannelExternalOrderId: String
+        # @param ChannelOrderId: 米大师内部渠道订单号
+        # @type ChannelOrderId: String
+        # @param RefundFlag: 是否曾退款
+        # @type RefundFlag: String
+        # @param CashAmt: 用户支付金额
+        # @type CashAmt: String
+        # @param CouponAmt: 抵扣券金额
+        # @type CouponAmt: String
+        # @param ProductName: 商品名称
+        # @type ProductName: String
+        # @param SettleInfo: 结算信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SettleInfo: :class:`Tencentcloud::Cpdp.v20190820.models.CloudSettleInfo`
+        # @param AttachmentInfoList: 附加项信息列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AttachmentInfoList: Array
+        # @param ChannelExternalUserInfoList: 渠道方返回的用户信息列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ChannelExternalUserInfoList: Array
+        # @param ExternalReturnPromptGroupList: 渠道扩展促销列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExternalReturnPromptGroupList: Array
+        # @param SceneInfo: 场景扩展信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SceneInfo: String
+
+        attr_accessor :AppId, :OutTradeNo, :SubOrderList, :TransactionId, :UserId, :Channel, :ProductId, :Metadata, :CurrencyType, :Amt, :OrderState, :OrderTime, :PayTime, :CallBackTime, :ChannelExternalOrderId, :ChannelOrderId, :RefundFlag, :CashAmt, :CouponAmt, :ProductName, :SettleInfo, :AttachmentInfoList, :ChannelExternalUserInfoList, :ExternalReturnPromptGroupList, :SceneInfo
+        
+        def initialize(appid=nil, outtradeno=nil, suborderlist=nil, transactionid=nil, userid=nil, channel=nil, productid=nil, metadata=nil, currencytype=nil, amt=nil, orderstate=nil, ordertime=nil, paytime=nil, callbacktime=nil, channelexternalorderid=nil, channelorderid=nil, refundflag=nil, cashamt=nil, couponamt=nil, productname=nil, settleinfo=nil, attachmentinfolist=nil, channelexternaluserinfolist=nil, externalreturnpromptgrouplist=nil, sceneinfo=nil)
+          @AppId = appid
+          @OutTradeNo = outtradeno
+          @SubOrderList = suborderlist
+          @TransactionId = transactionid
+          @UserId = userid
+          @Channel = channel
+          @ProductId = productid
+          @Metadata = metadata
+          @CurrencyType = currencytype
+          @Amt = amt
+          @OrderState = orderstate
+          @OrderTime = ordertime
+          @PayTime = paytime
+          @CallBackTime = callbacktime
+          @ChannelExternalOrderId = channelexternalorderid
+          @ChannelOrderId = channelorderid
+          @RefundFlag = refundflag
+          @CashAmt = cashamt
+          @CouponAmt = couponamt
+          @ProductName = productname
+          @SettleInfo = settleinfo
+          @AttachmentInfoList = attachmentinfolist
+          @ChannelExternalUserInfoList = channelexternaluserinfolist
+          @ExternalReturnPromptGroupList = externalreturnpromptgrouplist
+          @SceneInfo = sceneinfo
+        end
+
+        def deserialize(params)
+          @AppId = params['AppId']
+          @OutTradeNo = params['OutTradeNo']
+          unless params['SubOrderList'].nil?
+            @SubOrderList = []
+            params['SubOrderList'].each do |i|
+              cloudsuborderreturn_tmp = CloudSubOrderReturn.new
+              cloudsuborderreturn_tmp.deserialize(i)
+              @SubOrderList << cloudsuborderreturn_tmp
+            end
+          end
+          @TransactionId = params['TransactionId']
+          @UserId = params['UserId']
+          @Channel = params['Channel']
+          @ProductId = params['ProductId']
+          @Metadata = params['Metadata']
+          @CurrencyType = params['CurrencyType']
+          @Amt = params['Amt']
+          @OrderState = params['OrderState']
+          @OrderTime = params['OrderTime']
+          @PayTime = params['PayTime']
+          @CallBackTime = params['CallBackTime']
+          @ChannelExternalOrderId = params['ChannelExternalOrderId']
+          @ChannelOrderId = params['ChannelOrderId']
+          @RefundFlag = params['RefundFlag']
+          @CashAmt = params['CashAmt']
+          @CouponAmt = params['CouponAmt']
+          @ProductName = params['ProductName']
+          unless params['SettleInfo'].nil?
+            @SettleInfo = CloudSettleInfo.new
+            @SettleInfo.deserialize(params['SettleInfo'])
+          end
+          unless params['AttachmentInfoList'].nil?
+            @AttachmentInfoList = []
+            params['AttachmentInfoList'].each do |i|
+              cloudattachmentinfo_tmp = CloudAttachmentInfo.new
+              cloudattachmentinfo_tmp.deserialize(i)
+              @AttachmentInfoList << cloudattachmentinfo_tmp
+            end
+          end
+          unless params['ChannelExternalUserInfoList'].nil?
+            @ChannelExternalUserInfoList = []
+            params['ChannelExternalUserInfoList'].each do |i|
+              cloudchannelexternaluserinfo_tmp = CloudChannelExternalUserInfo.new
+              cloudchannelexternaluserinfo_tmp.deserialize(i)
+              @ChannelExternalUserInfoList << cloudchannelexternaluserinfo_tmp
+            end
+          end
+          unless params['ExternalReturnPromptGroupList'].nil?
+            @ExternalReturnPromptGroupList = []
+            params['ExternalReturnPromptGroupList'].each do |i|
+              cloudexternalpromptgroup_tmp = CloudExternalPromptGroup.new
+              cloudexternalpromptgroup_tmp.deserialize(i)
+              @ExternalReturnPromptGroupList << cloudexternalpromptgroup_tmp
+            end
+          end
+          @SceneInfo = params['SceneInfo']
+        end
+      end
+
+      # 结算信息对象
+      class CloudSettleInfo < TencentCloud::Common::AbstractModel
+        # @param NeedToBeConfirmed: 是否需要支付确认。
+        # 0: 不需要支付确认
+        # 1: 需要支付确认
+        # 传1时，需要在支付完成后成功调用了《支付确认》接口，该笔订单才会被清分出去
+        # @type NeedToBeConfirmed: Integer
+        # @param ProfitSharing: 是否指定分账。
+        # 0: 不指定分账
+        # 1: 指定分账
+        # @type ProfitSharing: Integer
+
+        attr_accessor :NeedToBeConfirmed, :ProfitSharing
+        
+        def initialize(needtobeconfirmed=nil, profitsharing=nil)
+          @NeedToBeConfirmed = needtobeconfirmed
+          @ProfitSharing = profitsharing
+        end
+
+        def deserialize(params)
+          @NeedToBeConfirmed = params['NeedToBeConfirmed']
+          @ProfitSharing = params['ProfitSharing']
+        end
+      end
+
+      # 门店信息
+      class CloudStoreInfo < TencentCloud::Common::AbstractModel
+        # @param StoreId: 门店ID。
+        # @type StoreId: String
+        # @param StoreName: 门店名称。
+        # @type StoreName: String
+        # @param StoreAddress: 门店地址。
+        # @type StoreAddress: String
+        # @param StoreAreaCode: 门店地区代码。
+        # @type StoreAreaCode: String
+        # @param StoreDeviceId: 设备ID。
+        # wechat_ecommerce渠道 - h5支付方式，此字段必填。
+        # @type StoreDeviceId: String
+
+        attr_accessor :StoreId, :StoreName, :StoreAddress, :StoreAreaCode, :StoreDeviceId
+        
+        def initialize(storeid=nil, storename=nil, storeaddress=nil, storeareacode=nil, storedeviceid=nil)
+          @StoreId = storeid
+          @StoreName = storename
+          @StoreAddress = storeaddress
+          @StoreAreaCode = storeareacode
+          @StoreDeviceId = storedeviceid
+        end
+
+        def deserialize(params)
+          @StoreId = params['StoreId']
+          @StoreName = params['StoreName']
+          @StoreAddress = params['StoreAddress']
+          @StoreAreaCode = params['StoreAreaCode']
+          @StoreDeviceId = params['StoreDeviceId']
+        end
+      end
+
+      # 子订单对象
+      class CloudSubOrder < TencentCloud::Common::AbstractModel
+        # @param SubOutTradeNo: 子订单号。
+        # 长度32个字符供参考，部分渠道存在长度更短的情况接入时请联系开发咨询。
+        # @type SubOutTradeNo: String
+        # @param SubAppId: 支付子商户ID。
+        # 米大师计费SubAppId，代表子商户。
+        # @type SubAppId: String
+        # @param ProductName: 商品名称。
+        # 业务自定义的子订单商品名称，无需URL编码，长度限制以具体所接入渠道为准。
+        # @type ProductName: String
+        # @param ProductDetail: 商品详情。
+        # 业务自定义的子订单商品详情，无需URL编码，长度限制以具体所接入渠道为准。
+        # @type ProductDetail: String
+        # @param PlatformIncome: 平台应收。
+        # 子订单平台应收金额，单位：分，需要注意的是Amt = PlatformIncome+SubMchIncome。
+        # @type PlatformIncome: Integer
+        # @param SubMchIncome: 商户应收。
+        # 子订单结算应收金额，单位：分，需要注意的是Amt = PlatformIncome+SubMchIncome。
+        # @type SubMchIncome: Integer
+        # @param Metadata: 透传字段。
+        # 发货标识，由开发者在调用米大师下单接口的 时候下发。
+        # @type Metadata: String
+        # @param Amt: 支付金额。
+        # 子订单支付金额，需要注意的是Amt = PlatformIncome+SubMchIncome。
+        # @type Amt: Integer
+        # @param OriginalAmt: 原始金额。
+        # 子订单原始金额，OriginalAmt>=Amt。
+        # @type OriginalAmt: Integer
+        # @param WxSubMchId: 微信子商户号。
+        # @type WxSubMchId: String
+        # @param SettleInfo: 结算信息。
+        # 例如是否需要分账、是否需要支付确认等。
+        # @type SettleInfo: :class:`Tencentcloud::Cpdp.v20190820.models.CloudSettleInfo`
+        # @param AttachmentInfoList: 附加项信息列表。
+        # 例如溢价信息、抵扣信息、积分信息、补贴信息
+        # 通过该字段可以实现渠道方的优惠抵扣补贴等营销功能。
+        # @type AttachmentInfoList: Array
+
+        attr_accessor :SubOutTradeNo, :SubAppId, :ProductName, :ProductDetail, :PlatformIncome, :SubMchIncome, :Metadata, :Amt, :OriginalAmt, :WxSubMchId, :SettleInfo, :AttachmentInfoList
+        
+        def initialize(subouttradeno=nil, subappid=nil, productname=nil, productdetail=nil, platformincome=nil, submchincome=nil, metadata=nil, amt=nil, originalamt=nil, wxsubmchid=nil, settleinfo=nil, attachmentinfolist=nil)
+          @SubOutTradeNo = subouttradeno
+          @SubAppId = subappid
+          @ProductName = productname
+          @ProductDetail = productdetail
+          @PlatformIncome = platformincome
+          @SubMchIncome = submchincome
+          @Metadata = metadata
+          @Amt = amt
+          @OriginalAmt = originalamt
+          @WxSubMchId = wxsubmchid
+          @SettleInfo = settleinfo
+          @AttachmentInfoList = attachmentinfolist
+        end
+
+        def deserialize(params)
+          @SubOutTradeNo = params['SubOutTradeNo']
+          @SubAppId = params['SubAppId']
+          @ProductName = params['ProductName']
+          @ProductDetail = params['ProductDetail']
+          @PlatformIncome = params['PlatformIncome']
+          @SubMchIncome = params['SubMchIncome']
+          @Metadata = params['Metadata']
+          @Amt = params['Amt']
+          @OriginalAmt = params['OriginalAmt']
+          @WxSubMchId = params['WxSubMchId']
+          unless params['SettleInfo'].nil?
+            @SettleInfo = CloudSettleInfo.new
+            @SettleInfo.deserialize(params['SettleInfo'])
+          end
+          unless params['AttachmentInfoList'].nil?
+            @AttachmentInfoList = []
+            params['AttachmentInfoList'].each do |i|
+              cloudattachmentinfo_tmp = CloudAttachmentInfo.new
+              cloudattachmentinfo_tmp.deserialize(i)
+              @AttachmentInfoList << cloudattachmentinfo_tmp
+            end
+          end
+        end
+      end
+
+      # 退款子单
+      class CloudSubOrderRefund < TencentCloud::Common::AbstractModel
+        # @param RefundAmt: 子订单退款金额
+        # @type RefundAmt: Integer
+        # @param PlatformRefundAmt: 平台应退金额
+        # @type PlatformRefundAmt: Integer
+        # @param SubMchRefundAmt: 商家应退金额
+        # @type SubMchRefundAmt: Integer
+        # @param SubOutTradeNo: 子订单号
+        # @type SubOutTradeNo: String
+        # @param SubRefundId: 子退款单号，调用方需要保证全局唯一性
+        # @type SubRefundId: String
+
+        attr_accessor :RefundAmt, :PlatformRefundAmt, :SubMchRefundAmt, :SubOutTradeNo, :SubRefundId
+        
+        def initialize(refundamt=nil, platformrefundamt=nil, submchrefundamt=nil, subouttradeno=nil, subrefundid=nil)
+          @RefundAmt = refundamt
+          @PlatformRefundAmt = platformrefundamt
+          @SubMchRefundAmt = submchrefundamt
+          @SubOutTradeNo = subouttradeno
+          @SubRefundId = subrefundid
+        end
+
+        def deserialize(params)
+          @RefundAmt = params['RefundAmt']
+          @PlatformRefundAmt = params['PlatformRefundAmt']
+          @SubMchRefundAmt = params['SubMchRefundAmt']
+          @SubOutTradeNo = params['SubOutTradeNo']
+          @SubRefundId = params['SubRefundId']
+        end
+      end
+
+      # 子订单详情
+      class CloudSubOrderReturn < TencentCloud::Common::AbstractModel
+        # @param SubOutTradeNo: 子订单号
+        # @type SubOutTradeNo: String
+        # @param SubAppId: 米大师计费SubAppId，代表子商户
+        # @type SubAppId: String
+        # @param ProductName: 子订单商品名称
+        # @type ProductName: String
+        # @param ProductDetail: 子订单商品详情
+        # @type ProductDetail: String
+        # @param PlatformIncome: 子订单平台应收金额，单位：分
+        # @type PlatformIncome: Integer
+        # @param SubMchIncome: 子订单结算应收金额，单位：分
+        # @type SubMchIncome: Integer
+        # @param Amt: 子订单支付金额
+        # @type Amt: Integer
+        # @param OriginalAmt: 子订单原始金额
+        # @type OriginalAmt: Integer
+        # @param SettleCheck: 核销状态，1表示核销，0表示未核销
+        # @type SettleCheck: Integer
+        # @param SettleInfo: 结算信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SettleInfo: :class:`Tencentcloud::Cpdp.v20190820.models.CloudSettleInfo`
+        # @param Metadata: 透传字段，由开发者在调用米大师下单接口的时候下发
+        # @type Metadata: String
+        # @param AttachmentInfoList: 附加项信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AttachmentInfoList: :class:`Tencentcloud::Cpdp.v20190820.models.CloudAttachmentInfo`
+        # @param ChannelExternalSubOrderId: 渠道方应答的订单号，透传处理
+        # @type ChannelExternalSubOrderId: String
+        # @param WxSubMchId: 微信子商户号
+        # @type WxSubMchId: String
+
+        attr_accessor :SubOutTradeNo, :SubAppId, :ProductName, :ProductDetail, :PlatformIncome, :SubMchIncome, :Amt, :OriginalAmt, :SettleCheck, :SettleInfo, :Metadata, :AttachmentInfoList, :ChannelExternalSubOrderId, :WxSubMchId
+        
+        def initialize(subouttradeno=nil, subappid=nil, productname=nil, productdetail=nil, platformincome=nil, submchincome=nil, amt=nil, originalamt=nil, settlecheck=nil, settleinfo=nil, metadata=nil, attachmentinfolist=nil, channelexternalsuborderid=nil, wxsubmchid=nil)
+          @SubOutTradeNo = subouttradeno
+          @SubAppId = subappid
+          @ProductName = productname
+          @ProductDetail = productdetail
+          @PlatformIncome = platformincome
+          @SubMchIncome = submchincome
+          @Amt = amt
+          @OriginalAmt = originalamt
+          @SettleCheck = settlecheck
+          @SettleInfo = settleinfo
+          @Metadata = metadata
+          @AttachmentInfoList = attachmentinfolist
+          @ChannelExternalSubOrderId = channelexternalsuborderid
+          @WxSubMchId = wxsubmchid
+        end
+
+        def deserialize(params)
+          @SubOutTradeNo = params['SubOutTradeNo']
+          @SubAppId = params['SubAppId']
+          @ProductName = params['ProductName']
+          @ProductDetail = params['ProductDetail']
+          @PlatformIncome = params['PlatformIncome']
+          @SubMchIncome = params['SubMchIncome']
+          @Amt = params['Amt']
+          @OriginalAmt = params['OriginalAmt']
+          @SettleCheck = params['SettleCheck']
+          unless params['SettleInfo'].nil?
+            @SettleInfo = CloudSettleInfo.new
+            @SettleInfo.deserialize(params['SettleInfo'])
+          end
+          @Metadata = params['Metadata']
+          unless params['AttachmentInfoList'].nil?
+            @AttachmentInfoList = CloudAttachmentInfo.new
+            @AttachmentInfoList.deserialize(params['AttachmentInfoList'])
+          end
+          @ChannelExternalSubOrderId = params['ChannelExternalSubOrderId']
+          @WxSubMchId = params['WxSubMchId']
+        end
+      end
+
+      # 子单退款信息
+      class CloudSubRefundItem < TencentCloud::Common::AbstractModel
+        # @param ChannelExternalRefundId: 渠道方应答的退款ID，透传处理
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ChannelExternalRefundId: String
+        # @param ChannelExternalOrderId: 渠道方应答的订单号，透传处理
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ChannelExternalOrderId: String
+        # @param RefundAmt: 子单退款金额
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RefundAmt: Integer
+        # @param SubOutTradeNo: 子单订单号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SubOutTradeNo: String
+        # @param SubRefundId: 子单退款id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SubRefundId: String
+        # @param SubAppId: 子应用ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SubAppId: String
+        # @param ChannelSubOrderId: 渠道子单支付订单号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ChannelSubOrderId: String
+        # @param ChannelSubRefundId: 渠道子退款订单号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ChannelSubRefundId: String
+
+        attr_accessor :ChannelExternalRefundId, :ChannelExternalOrderId, :RefundAmt, :SubOutTradeNo, :SubRefundId, :SubAppId, :ChannelSubOrderId, :ChannelSubRefundId
+        
+        def initialize(channelexternalrefundid=nil, channelexternalorderid=nil, refundamt=nil, subouttradeno=nil, subrefundid=nil, subappid=nil, channelsuborderid=nil, channelsubrefundid=nil)
+          @ChannelExternalRefundId = channelexternalrefundid
+          @ChannelExternalOrderId = channelexternalorderid
+          @RefundAmt = refundamt
+          @SubOutTradeNo = subouttradeno
+          @SubRefundId = subrefundid
+          @SubAppId = subappid
+          @ChannelSubOrderId = channelsuborderid
+          @ChannelSubRefundId = channelsubrefundid
+        end
+
+        def deserialize(params)
+          @ChannelExternalRefundId = params['ChannelExternalRefundId']
+          @ChannelExternalOrderId = params['ChannelExternalOrderId']
+          @RefundAmt = params['RefundAmt']
+          @SubOutTradeNo = params['SubOutTradeNo']
+          @SubRefundId = params['SubRefundId']
+          @SubAppId = params['SubAppId']
+          @ChannelSubOrderId = params['ChannelSubOrderId']
+          @ChannelSubRefundId = params['ChannelSubRefundId']
         end
       end
 
@@ -3848,6 +4555,84 @@ module TencentCloud
             @Result = CreateBatchPaymentData.new
             @Result.deserialize(params['Result'])
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateCloudSubMerchant请求参数结构体
+      class CreateCloudSubMerchantRequest < TencentCloud::Common::AbstractModel
+        # @param MidasAppId: 米大师分配的支付主MidasAppId，根应用Id。
+        # @type MidasAppId: String
+        # @param ParentAppId: 父应用Id。
+        # @type ParentAppId: String
+        # @param SubMchName: 子商户名。
+        # @type SubMchName: String
+        # @param SubMchDescription: 子商户描述。
+        # @type SubMchDescription: String
+        # @param MidasEnvironment: 环境类型
+        # __release__:生产环境
+        # __sandbox__:沙箱环境
+        # _不填默认为生产环境_
+        # @type MidasEnvironment: String
+        # @param SubAppId: 子应用Id，为空则自动创建子应用id。
+        # @type SubAppId: String
+        # @param SubMchShortName: 子商户名缩写。
+        # @type SubMchShortName: String
+        # @param OutSubMerchantId: 业务平台自定义的子商户Id，唯一。
+        # @type OutSubMerchantId: String
+
+        attr_accessor :MidasAppId, :ParentAppId, :SubMchName, :SubMchDescription, :MidasEnvironment, :SubAppId, :SubMchShortName, :OutSubMerchantId
+        
+        def initialize(midasappid=nil, parentappid=nil, submchname=nil, submchdescription=nil, midasenvironment=nil, subappid=nil, submchshortname=nil, outsubmerchantid=nil)
+          @MidasAppId = midasappid
+          @ParentAppId = parentappid
+          @SubMchName = submchname
+          @SubMchDescription = submchdescription
+          @MidasEnvironment = midasenvironment
+          @SubAppId = subappid
+          @SubMchShortName = submchshortname
+          @OutSubMerchantId = outsubmerchantid
+        end
+
+        def deserialize(params)
+          @MidasAppId = params['MidasAppId']
+          @ParentAppId = params['ParentAppId']
+          @SubMchName = params['SubMchName']
+          @SubMchDescription = params['SubMchDescription']
+          @MidasEnvironment = params['MidasEnvironment']
+          @SubAppId = params['SubAppId']
+          @SubMchShortName = params['SubMchShortName']
+          @OutSubMerchantId = params['OutSubMerchantId']
+        end
+      end
+
+      # CreateCloudSubMerchant返回参数结构体
+      class CreateCloudSubMerchantResponse < TencentCloud::Common::AbstractModel
+        # @param SubAppId: 子应用Id。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SubAppId: String
+        # @param ChannelSubMerchantId: 渠道子商户Id。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ChannelSubMerchantId: String
+        # @param Level: 层级，从0开始。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Level: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :SubAppId, :ChannelSubMerchantId, :Level, :RequestId
+        
+        def initialize(subappid=nil, channelsubmerchantid=nil, level=nil, requestid=nil)
+          @SubAppId = subappid
+          @ChannelSubMerchantId = channelsubmerchantid
+          @Level = level
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @SubAppId = params['SubAppId']
+          @ChannelSubMerchantId = params['ChannelSubMerchantId']
+          @Level = params['Level']
           @RequestId = params['RequestId']
         end
       end
@@ -10163,6 +10948,288 @@ module TencentCloud
         end
       end
 
+      # QueryCloudChannelData请求参数结构体
+      class QueryCloudChannelDataRequest < TencentCloud::Common::AbstractModel
+        # @param MidasAppId: 米大师分配的支付主MidasAppId
+        # @type MidasAppId: String
+        # @param OutOrderNo: 业务订单号，外部订单号
+        # @type OutOrderNo: String
+        # @param ExternalChannelDataType: 数据类型
+        # PAYMENT:支付
+        # @type ExternalChannelDataType: String
+        # @param MidasEnvironment: 环境类型
+        # __release__:生产环境
+        # __sandbox__:沙箱环境
+        # _不填默认为生产环境_
+        # @type MidasEnvironment: String
+        # @param SubAppId: 子应用ID
+        # @type SubAppId: String
+        # @param ChannelOrderId: 渠道订单号
+        # @type ChannelOrderId: String
+        # @param Channel: 渠道名称，指定渠道查询
+        # wechat:微信支付
+        # @type Channel: String
+
+        attr_accessor :MidasAppId, :OutOrderNo, :ExternalChannelDataType, :MidasEnvironment, :SubAppId, :ChannelOrderId, :Channel
+        
+        def initialize(midasappid=nil, outorderno=nil, externalchanneldatatype=nil, midasenvironment=nil, subappid=nil, channelorderid=nil, channel=nil)
+          @MidasAppId = midasappid
+          @OutOrderNo = outorderno
+          @ExternalChannelDataType = externalchanneldatatype
+          @MidasEnvironment = midasenvironment
+          @SubAppId = subappid
+          @ChannelOrderId = channelorderid
+          @Channel = channel
+        end
+
+        def deserialize(params)
+          @MidasAppId = params['MidasAppId']
+          @OutOrderNo = params['OutOrderNo']
+          @ExternalChannelDataType = params['ExternalChannelDataType']
+          @MidasEnvironment = params['MidasEnvironment']
+          @SubAppId = params['SubAppId']
+          @ChannelOrderId = params['ChannelOrderId']
+          @Channel = params['Channel']
+        end
+      end
+
+      # QueryCloudChannelData返回参数结构体
+      class QueryCloudChannelDataResponse < TencentCloud::Common::AbstractModel
+        # @param OutOrderNo: 外部订单号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OutOrderNo: String
+        # @param ChannelOrderId: 渠道订单号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ChannelOrderId: String
+        # @param ExternalChannelDataType: 第三方渠道数据类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExternalChannelDataType: String
+        # @param Channel: 渠道名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Channel: String
+        # @param ExternalChannelDataList: 第三方渠道数据列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExternalChannelDataList: Array
+        # @param SubAppId: 子应用ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SubAppId: String
+        # @param AppId: 米大师分配的支付主MidasAppId
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AppId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :OutOrderNo, :ChannelOrderId, :ExternalChannelDataType, :Channel, :ExternalChannelDataList, :SubAppId, :AppId, :RequestId
+        
+        def initialize(outorderno=nil, channelorderid=nil, externalchanneldatatype=nil, channel=nil, externalchanneldatalist=nil, subappid=nil, appid=nil, requestid=nil)
+          @OutOrderNo = outorderno
+          @ChannelOrderId = channelorderid
+          @ExternalChannelDataType = externalchanneldatatype
+          @Channel = channel
+          @ExternalChannelDataList = externalchanneldatalist
+          @SubAppId = subappid
+          @AppId = appid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @OutOrderNo = params['OutOrderNo']
+          @ChannelOrderId = params['ChannelOrderId']
+          @ExternalChannelDataType = params['ExternalChannelDataType']
+          @Channel = params['Channel']
+          unless params['ExternalChannelDataList'].nil?
+            @ExternalChannelDataList = []
+            params['ExternalChannelDataList'].each do |i|
+              cloudexternalchanneldata_tmp = CloudExternalChannelData.new
+              cloudexternalchanneldata_tmp.deserialize(i)
+              @ExternalChannelDataList << cloudexternalchanneldata_tmp
+            end
+          end
+          @SubAppId = params['SubAppId']
+          @AppId = params['AppId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # QueryCloudOrder请求参数结构体
+      class QueryCloudOrderRequest < TencentCloud::Common::AbstractModel
+        # @param MidasAppId: 米大师分配的支付主MidasAppId
+        # @type MidasAppId: String
+        # @param UserId: 用户Id，长度不小于5位，仅支持字母和数字的组合
+        # @type UserId: String
+        # @param Type: 查询类型
+        # by_order:根据订单号查订单
+        # @type Type: String
+        # @param MidasEnvironment: 环境类型
+        # __release__:生产环境
+        # __sandbox__:沙箱环境
+        # _不填默认为生产环境_
+        # @type MidasEnvironment: String
+        # @param OutTradeNo: 开发者的主订单号
+        # @type OutTradeNo: String
+
+        attr_accessor :MidasAppId, :UserId, :Type, :MidasEnvironment, :OutTradeNo
+        
+        def initialize(midasappid=nil, userid=nil, type=nil, midasenvironment=nil, outtradeno=nil)
+          @MidasAppId = midasappid
+          @UserId = userid
+          @Type = type
+          @MidasEnvironment = midasenvironment
+          @OutTradeNo = outtradeno
+        end
+
+        def deserialize(params)
+          @MidasAppId = params['MidasAppId']
+          @UserId = params['UserId']
+          @Type = params['Type']
+          @MidasEnvironment = params['MidasEnvironment']
+          @OutTradeNo = params['OutTradeNo']
+        end
+      end
+
+      # QueryCloudOrder返回参数结构体
+      class QueryCloudOrderResponse < TencentCloud::Common::AbstractModel
+        # @param TotalNum: 订单数量
+        # @type TotalNum: Integer
+        # @param OrderList: 订单列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OrderList: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalNum, :OrderList, :RequestId
+        
+        def initialize(totalnum=nil, orderlist=nil, requestid=nil)
+          @TotalNum = totalnum
+          @OrderList = orderlist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalNum = params['TotalNum']
+          unless params['OrderList'].nil?
+            @OrderList = []
+            params['OrderList'].each do |i|
+              cloudorderreturn_tmp = CloudOrderReturn.new
+              cloudorderreturn_tmp.deserialize(i)
+              @OrderList << cloudorderreturn_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # QueryCloudRefundOrder请求参数结构体
+      class QueryCloudRefundOrderRequest < TencentCloud::Common::AbstractModel
+        # @param MidasAppId: 米大师分配的支付主MidasAppId
+        # @type MidasAppId: String
+        # @param UserId: 用户Id，长度不小于5位，仅支持字母和数字的组合
+        # @type UserId: String
+        # @param RefundId: 退款订单号，仅支持数字、字母、下划线（_）、横杠字符（-）、点（.）的组合
+        # @type RefundId: String
+        # @param MidasEnvironment: 环境类型
+        # __release__:生产环境
+        # __sandbox__:沙箱环境
+        # _不填默认为生产环境_
+        # @type MidasEnvironment: String
+
+        attr_accessor :MidasAppId, :UserId, :RefundId, :MidasEnvironment
+        
+        def initialize(midasappid=nil, userid=nil, refundid=nil, midasenvironment=nil)
+          @MidasAppId = midasappid
+          @UserId = userid
+          @RefundId = refundid
+          @MidasEnvironment = midasenvironment
+        end
+
+        def deserialize(params)
+          @MidasAppId = params['MidasAppId']
+          @UserId = params['UserId']
+          @RefundId = params['RefundId']
+          @MidasEnvironment = params['MidasEnvironment']
+        end
+      end
+
+      # QueryCloudRefundOrder返回参数结构体
+      class QueryCloudRefundOrderResponse < TencentCloud::Common::AbstractModel
+        # @param OutTradeNo: 该笔退款订单对应的UnifiedOrder下单时传入的OutTradeNo
+        # @type OutTradeNo: String
+        # @param ChannelExternalOrderId: 该笔退款订单对应的支付成功后支付机构返回的支付订单号
+        # @type ChannelExternalOrderId: String
+        # @param ChannelExternalRefundId: 该笔退款订单退款后支付机构返回的退款单号
+        # @type ChannelExternalRefundId: String
+        # @param ChannelOrderId: 内部请求微信支付、银行等支付机构的订单号
+        # @type ChannelOrderId: String
+        # @param RefundId: 请求退款时传的退款ID后查询退款时传的RefundId
+        # @type RefundId: String
+        # @param UsedRefundId: 被使用的RefundId，业务可忽略该字段
+        # @type UsedRefundId: String
+        # @param TotalRefundAmt: 退款总金额
+        # @type TotalRefundAmt: Integer
+        # @param CurrencyType: ISO货币代码
+        # @type CurrencyType: String
+        # @param State: 退款状态码，退款提交成功后返回
+        # 1:退款中
+        # 2:退款成功
+        # 3:退款失败
+        # @type State: String
+        # @param SubRefundList: 子单退款信息列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SubRefundList: Array
+        # @param Metadata: 透传字段，退款成功回调透传给应用，用于开发者透传自定义内容
+        # @type Metadata: String
+        # @param AppId: 米大师分配的支付主MidasAppId
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AppId: String
+        # @param ChannelRefundId: 该笔退款订单退款后内部返回的退款单号
+        # @type ChannelRefundId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :OutTradeNo, :ChannelExternalOrderId, :ChannelExternalRefundId, :ChannelOrderId, :RefundId, :UsedRefundId, :TotalRefundAmt, :CurrencyType, :State, :SubRefundList, :Metadata, :AppId, :ChannelRefundId, :RequestId
+        
+        def initialize(outtradeno=nil, channelexternalorderid=nil, channelexternalrefundid=nil, channelorderid=nil, refundid=nil, usedrefundid=nil, totalrefundamt=nil, currencytype=nil, state=nil, subrefundlist=nil, metadata=nil, appid=nil, channelrefundid=nil, requestid=nil)
+          @OutTradeNo = outtradeno
+          @ChannelExternalOrderId = channelexternalorderid
+          @ChannelExternalRefundId = channelexternalrefundid
+          @ChannelOrderId = channelorderid
+          @RefundId = refundid
+          @UsedRefundId = usedrefundid
+          @TotalRefundAmt = totalrefundamt
+          @CurrencyType = currencytype
+          @State = state
+          @SubRefundList = subrefundlist
+          @Metadata = metadata
+          @AppId = appid
+          @ChannelRefundId = channelrefundid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @OutTradeNo = params['OutTradeNo']
+          @ChannelExternalOrderId = params['ChannelExternalOrderId']
+          @ChannelExternalRefundId = params['ChannelExternalRefundId']
+          @ChannelOrderId = params['ChannelOrderId']
+          @RefundId = params['RefundId']
+          @UsedRefundId = params['UsedRefundId']
+          @TotalRefundAmt = params['TotalRefundAmt']
+          @CurrencyType = params['CurrencyType']
+          @State = params['State']
+          unless params['SubRefundList'].nil?
+            @SubRefundList = []
+            params['SubRefundList'].each do |i|
+              cloudsubrefunditem_tmp = CloudSubRefundItem.new
+              cloudsubrefunditem_tmp.deserialize(i)
+              @SubRefundList << cloudsubrefunditem_tmp
+            end
+          end
+          @Metadata = params['Metadata']
+          @AppId = params['AppId']
+          @ChannelRefundId = params['ChannelRefundId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # QueryCommonTransferRecharge请求参数结构体
       class QueryCommonTransferRechargeRequest < TencentCloud::Common::AbstractModel
         # @param MrchCode: String(22)，商户号（签约客户号）
@@ -15918,6 +16985,99 @@ module TencentCloud
         end
       end
 
+      # RefundCloudOrder请求参数结构体
+      class RefundCloudOrderRequest < TencentCloud::Common::AbstractModel
+        # @param MidasAppId: 米大师分配的支付主MidasAppId
+        # @type MidasAppId: String
+        # @param UserId: 用户Id，长度不小于5位，仅支持字母和数字的组合
+        # @type UserId: String
+        # @param RefundId: 退款订单号，仅支持数字、字母、下划线（_）、横杠字符（-）、点（.）的组合
+        # @type RefundId: String
+        # @param TotalRefundAmt: 退款金额，单位：分
+        # 当该字段为空或者为0时，系统会默认使用订单当实付金额做为退款金额
+        # @type TotalRefundAmt: Integer
+        # @param OutTradeNo: 商品订单，仅支持数字、字母、下划线（_）、横杠字符（-）、点（.）的组合
+        # @type OutTradeNo: String
+        # @param MidasEnvironment: 环境类型
+        # __release__:生产环境
+        # __sandbox__:沙箱环境
+        # _不填默认为生产环境_
+        # @type MidasEnvironment: String
+        # @param PlatformRefundAmt: 平台应收金额，单位：分
+        # @type PlatformRefundAmt: Integer
+        # @param MchRefundAmt: 结算应收金额，单位：分
+        # @type MchRefundAmt: Integer
+        # @param SubOrderRefundList: 支持多个子订单批量退款单个子订单退款支持传SubOutTradeNo
+        # 也支持传SubOrderRefundList，都传的时候以SubOrderRefundList为准。
+        # 如果传了子单退款细节，外部不需要再传退款金额，平台应退，商户应退金额
+        # @type SubOrderRefundList: Array
+        # @param ChannelOrderId: 渠道订单号，当出现重复支付时，可以将重复支付订单的渠道订单号传入，以进行退款（注意：目前该重复支付订单的渠道订单号仅能通过米大师内部获取），更多重复支付订单退款说明，请参考[重复支付订单退款说明](https://dev.tke.midas.qq.com/juxin-doc-next/apidocs/receive-order/Refund.html#%E9%87%8D%E5%A4%8D%E6%94%AF%E4%BB%98%E8%AE%A2%E5%8D%95%E9%80%80%E6%AC%BE%E8%AF%B4%E6%98%8E)
+        # @type ChannelOrderId: String
+        # @param RefundNotifyUrl: 通知地址
+        # @type RefundNotifyUrl: String
+        # @param Metadata: 透传字段，退款成功回调透传给应用，用于开发者透传自定义内容
+        # @type Metadata: String
+        # @param ExternalRefundPromptGroupList: 渠道扩展退款促销列表，可将各个渠道的退款促销信息放于该列表
+        # @type ExternalRefundPromptGroupList: String
+
+        attr_accessor :MidasAppId, :UserId, :RefundId, :TotalRefundAmt, :OutTradeNo, :MidasEnvironment, :PlatformRefundAmt, :MchRefundAmt, :SubOrderRefundList, :ChannelOrderId, :RefundNotifyUrl, :Metadata, :ExternalRefundPromptGroupList
+        
+        def initialize(midasappid=nil, userid=nil, refundid=nil, totalrefundamt=nil, outtradeno=nil, midasenvironment=nil, platformrefundamt=nil, mchrefundamt=nil, suborderrefundlist=nil, channelorderid=nil, refundnotifyurl=nil, metadata=nil, externalrefundpromptgrouplist=nil)
+          @MidasAppId = midasappid
+          @UserId = userid
+          @RefundId = refundid
+          @TotalRefundAmt = totalrefundamt
+          @OutTradeNo = outtradeno
+          @MidasEnvironment = midasenvironment
+          @PlatformRefundAmt = platformrefundamt
+          @MchRefundAmt = mchrefundamt
+          @SubOrderRefundList = suborderrefundlist
+          @ChannelOrderId = channelorderid
+          @RefundNotifyUrl = refundnotifyurl
+          @Metadata = metadata
+          @ExternalRefundPromptGroupList = externalrefundpromptgrouplist
+        end
+
+        def deserialize(params)
+          @MidasAppId = params['MidasAppId']
+          @UserId = params['UserId']
+          @RefundId = params['RefundId']
+          @TotalRefundAmt = params['TotalRefundAmt']
+          @OutTradeNo = params['OutTradeNo']
+          @MidasEnvironment = params['MidasEnvironment']
+          @PlatformRefundAmt = params['PlatformRefundAmt']
+          @MchRefundAmt = params['MchRefundAmt']
+          unless params['SubOrderRefundList'].nil?
+            @SubOrderRefundList = []
+            params['SubOrderRefundList'].each do |i|
+              cloudsuborderrefund_tmp = CloudSubOrderRefund.new
+              cloudsuborderrefund_tmp.deserialize(i)
+              @SubOrderRefundList << cloudsuborderrefund_tmp
+            end
+          end
+          @ChannelOrderId = params['ChannelOrderId']
+          @RefundNotifyUrl = params['RefundNotifyUrl']
+          @Metadata = params['Metadata']
+          @ExternalRefundPromptGroupList = params['ExternalRefundPromptGroupList']
+        end
+      end
+
+      # RefundCloudOrder返回参数结构体
+      class RefundCloudOrderResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # RefundMemberTransaction请求参数结构体
       class RefundMemberTransactionRequest < TencentCloud::Common::AbstractModel
         # @param OutSubAccountName: 转出见证子账户的户名
@@ -18159,6 +19319,311 @@ module TencentCloud
           @CnsmrSeqNo = params['CnsmrSeqNo']
           @FrontSeqNo = params['FrontSeqNo']
           @ReservedMsg = params['ReservedMsg']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # UnifiedCloudOrder请求参数结构体
+      class UnifiedCloudOrderRequest < TencentCloud::Common::AbstractModel
+        # @param MidasAppId: 米大师分配的支付主MidasAppId
+        # @type MidasAppId: String
+        # @param UserId: 用户Id。
+        # 长度不小于5位，仅支持字母和数字的组合，长度限制以具体接入渠道为准
+        # @type UserId: String
+        # @param OutTradeNo: 开发者主订单号。
+        # 支付订单号，仅支持数字、字母、下划线（_）、横杠字符（-）、点（.）的组合，长度供参考，部分渠道存在长度更短的情况接入时请联系开发咨询
+        # @type OutTradeNo: String
+        # @param CurrencyType: 货币类型。
+        # ISO货币代码，CNY
+        # @type CurrencyType: String
+        # @param ProductId: 商品Id。
+        # 业务自定义的商品id，仅支持数字、字母、下划线（_）、横杠字符（-）、点（.）的组合。
+        # @type ProductId: String
+        # @param ProductName: 商品名称。
+        # 业务自定义的商品名称，无需URL编码，长度限制以具体所接入渠道为准。
+        # @type ProductName: String
+        # @param ProductDetail: 商品详情。
+        # 业务自定义的商品详情，无需URL编码，长度限制以具体所接入渠道为准。
+        # @type ProductDetail: String
+        # @param OriginalAmt: 原始金额。
+        # 单位：分，需要注意的是，OriginalAmt>=TotalAmt
+        # @type OriginalAmt: Integer
+        # @param TotalAmt: 支付金额。
+        # 单位：分，需要注意的是，TotalAmt=TotalPlatformIncome+TotalMchIncome。
+        # @type TotalAmt: Integer
+        # @param MidasEnvironment: 环境类型
+        # __release__:生产环境
+        # __sandbox__:沙箱环境
+        # _不填默认为生产环境_
+        # @type MidasEnvironment: String
+        # @param SubAppId: 支付SubAppId。
+        # 米大师计费SubAppId，代表子商户。指定使用该商户的商户号下单时必传。
+        # @type SubAppId: String
+        # @param RealChannel: 顶层支付渠道。
+        # 银行收单:
+        # openbank_ccb: 建设银行
+        # openbank_icbc: 工商银行
+        # openbank_cmb: 招商银行
+        # openbank_ping: 平安银行
+        # openbank_icbc_jft：工商银行聚付通
+        # 非银行收单，可以为空
+        # @type RealChannel: String
+        # @param Channel: 支付渠道。
+        # wechat：微信支付
+        # wechat_ecommerce: 微信电商收付通
+        # open_alipay: 支付宝
+        # open_quickpass: 银联云闪付
+        # icbc_epay: 工银e支付
+        # foreign_cardpay: 外卡支付
+        # icbc_jft_wechat: 工行聚付通-微信
+        # icbc_jft_alipay: 工行聚付通-支付宝
+        # icbc_jft_epay: 工行聚付通-e支付
+        # 指定渠道下单时必传
+        # @type Channel: String
+        # @param Metadata: 透传字段。
+        # 支付成功回调透传给应用，用于开发者透传自定义内容。
+        # @type Metadata: String
+        # @param Quantity: 数量。
+        # 购买数量,不传默认为1。
+        # @type Quantity: Integer
+        # @param CallbackUrl: Web端回调地址。
+        # Web端网页回调地址，仅当Web端SDK使用页面跳转方式时有效。
+        # @type CallbackUrl: String
+        # @param CancelUrl: 支付取消地址。
+        # @type CancelUrl: String
+        # @param WxAppId: 微信AppId。
+        # wechat渠道或wchat_ecommerce渠道可以指定下单时的wxappid。
+        # @type WxAppId: String
+        # @param WxSubAppId: 微信SubAppId。
+        # wechat渠道可以指定下单时的sub_appid。
+        # @type WxSubAppId: String
+        # @param WxOpenId: 微信公众号/小程序OpenId。
+        # 微信公众号/小程序支付时为必选，需要传微信下的openid。
+        # @type WxOpenId: String
+        # @param WxSubOpenId: 微信公众号/小程序SubOpenId。
+        # 在服务商模式下，微信公众号/小程序支付时wx_sub_openid和wx_openid二选一。
+        # @type WxSubOpenId: String
+        # @param TotalPlatformIncome: 平台应收金额。
+        # 单位：分，需要注意的是，TotalAmt=TotalPlatformIncome+TotalMchIncome
+        # @type TotalPlatformIncome: Integer
+        # @param TotalMchIncome: 结算应收金额。
+        # 单位：分，需要注意的是，TotalAmt=TotalPlatformIncome+TotalMchIncome
+        # @type TotalMchIncome: Integer
+        # @param SubOrderList: 子订单列表。
+        # 格式：子订单号、子应用Id、金额。压缩后最长不可超过32K字节(去除空格，换行，制表符等无意义字符)。
+        # @type SubOrderList: Array
+        # @param SettleInfo: 结算信息。
+        # 例如是否需要分账、是否需要支付确认等，
+        # 注意：如果子单列表中传入了SettleInfo，在主单中不可再传入SettleInfo字段。
+        # @type SettleInfo: :class:`Tencentcloud::Cpdp.v20190820.models.CloudSettleInfo`
+        # @param AttachmentInfoList: 附加项信息列表。
+        # 例如溢价信息、抵扣信息、积分信息、补贴信息
+        # 通过该字段可以实现渠道方的优惠抵扣补贴等营销功能
+        # 注意：当传SubOrderList时，请在子单信息中传附加项信息，不要在主单中传该字段。
+        # @type AttachmentInfoList: Array
+        # @param PaymentNotifyUrl: 支付通知地址。
+        # 调用方可通过该字段传入自定义支付通知地址。
+        # @type PaymentNotifyUrl: String
+        # @param PayScene: 支付场景。
+        # 需要结合 RealChannel和Channel字段使用可选值:
+        # wechat-app 微信APP支付方式
+        # wechat-mini 微信小程序支付，示例：当 RealChannel=wechat Channel=wechat PayScene=wechat-mini时，内部会直接以小程序方式调用微信统一下单接口。
+        # @type PayScene: String
+        # @param LocaleCode: 语言代码。
+        # (BCP-47格式)，取值请参考https://mpay.pages.woa.com/zh/api/objectdefinitions/objects/#mpayapisordersapplicationcontextapplicationcontext
+        # @type LocaleCode: String
+        # @param RegionCode: 地区代码。
+        # 取值请参考https://mpay.pages.woa.com/zh/api/objectdefinitions/objects/#mpayapisordersapplicationcontextapplicationcontext
+        # @type RegionCode: String
+        # @param UserClientIp: 用户IP。
+        # 请求用户的IP地址，特定的渠道或特定的支付方式，此字段为必填
+        # wechat_ecommerce渠道 - h5支付方式，此字段必填。
+        # @type UserClientIp: String
+        # @param ChannelOrderIdMode: 渠道订单号生成模式。
+        # 枚举值。决定请求渠道方时的订单号的生成模式，详情请联系米大师沟通。不指定时默认为由米大师自行生成。
+        # @type ChannelOrderIdMode: String
+        # @param GlobalPayTimeInfo: 全局支付时间信息。
+        # @type GlobalPayTimeInfo: :class:`Tencentcloud::Cpdp.v20190820.models.CloudGlobalPayTimeInfo`
+        # @param ChannelAppIdPolicy: 渠道应用Id取用方式。
+        # USE_APPID 使用渠道应用Id;
+        # USE_SUB_APPID 使用子渠道应用Id;
+        # USE_APPID_AND_SUB_APPID 既使用渠道应用Id也使用子渠道应用ID。
+        # @type ChannelAppIdPolicy: String
+        # @param StoreInfo: 门店信息。
+        # 特定的渠道或特定的支付方式，此字段为必填
+        # wechat_ecommerce渠道 - h5支付方式，此字段必填
+        # @type StoreInfo: :class:`Tencentcloud::Cpdp.v20190820.models.CloudStoreInfo`
+        # @param ClientInfo: 客户端信息。
+        # 特定的渠道或特定的支付方式，此字段为必填
+        # wechat_ecommerce渠道 - h5支付方式，此字段必填
+        # @type ClientInfo: :class:`Tencentcloud::Cpdp.v20190820.models.CloudClientInfo`
+        # @param ExternalPromptGroupList: 渠道扩展促销列表。
+        # 可将各个渠道的促销信息放于该列表。
+        # @type ExternalPromptGroupList: Array
+        # @param OrderReceiveMode: 收单模式。
+        # ORDER_RECEIVE_MODE_COMMON - 普通支付
+        # ORDER_RECEIVE_MODE_COMBINE - 合单支付
+        # ORDER_RECEIVE_MODE_V_COMBINE - 虚拟合单支付
+        # 若不传入该字段，则会根据是否传入子单来判断是 普通支付 还是 合单支付
+        # @type OrderReceiveMode: String
+
+        attr_accessor :MidasAppId, :UserId, :OutTradeNo, :CurrencyType, :ProductId, :ProductName, :ProductDetail, :OriginalAmt, :TotalAmt, :MidasEnvironment, :SubAppId, :RealChannel, :Channel, :Metadata, :Quantity, :CallbackUrl, :CancelUrl, :WxAppId, :WxSubAppId, :WxOpenId, :WxSubOpenId, :TotalPlatformIncome, :TotalMchIncome, :SubOrderList, :SettleInfo, :AttachmentInfoList, :PaymentNotifyUrl, :PayScene, :LocaleCode, :RegionCode, :UserClientIp, :ChannelOrderIdMode, :GlobalPayTimeInfo, :ChannelAppIdPolicy, :StoreInfo, :ClientInfo, :ExternalPromptGroupList, :OrderReceiveMode
+        
+        def initialize(midasappid=nil, userid=nil, outtradeno=nil, currencytype=nil, productid=nil, productname=nil, productdetail=nil, originalamt=nil, totalamt=nil, midasenvironment=nil, subappid=nil, realchannel=nil, channel=nil, metadata=nil, quantity=nil, callbackurl=nil, cancelurl=nil, wxappid=nil, wxsubappid=nil, wxopenid=nil, wxsubopenid=nil, totalplatformincome=nil, totalmchincome=nil, suborderlist=nil, settleinfo=nil, attachmentinfolist=nil, paymentnotifyurl=nil, payscene=nil, localecode=nil, regioncode=nil, userclientip=nil, channelorderidmode=nil, globalpaytimeinfo=nil, channelappidpolicy=nil, storeinfo=nil, clientinfo=nil, externalpromptgrouplist=nil, orderreceivemode=nil)
+          @MidasAppId = midasappid
+          @UserId = userid
+          @OutTradeNo = outtradeno
+          @CurrencyType = currencytype
+          @ProductId = productid
+          @ProductName = productname
+          @ProductDetail = productdetail
+          @OriginalAmt = originalamt
+          @TotalAmt = totalamt
+          @MidasEnvironment = midasenvironment
+          @SubAppId = subappid
+          @RealChannel = realchannel
+          @Channel = channel
+          @Metadata = metadata
+          @Quantity = quantity
+          @CallbackUrl = callbackurl
+          @CancelUrl = cancelurl
+          @WxAppId = wxappid
+          @WxSubAppId = wxsubappid
+          @WxOpenId = wxopenid
+          @WxSubOpenId = wxsubopenid
+          @TotalPlatformIncome = totalplatformincome
+          @TotalMchIncome = totalmchincome
+          @SubOrderList = suborderlist
+          @SettleInfo = settleinfo
+          @AttachmentInfoList = attachmentinfolist
+          @PaymentNotifyUrl = paymentnotifyurl
+          @PayScene = payscene
+          @LocaleCode = localecode
+          @RegionCode = regioncode
+          @UserClientIp = userclientip
+          @ChannelOrderIdMode = channelorderidmode
+          @GlobalPayTimeInfo = globalpaytimeinfo
+          @ChannelAppIdPolicy = channelappidpolicy
+          @StoreInfo = storeinfo
+          @ClientInfo = clientinfo
+          @ExternalPromptGroupList = externalpromptgrouplist
+          @OrderReceiveMode = orderreceivemode
+        end
+
+        def deserialize(params)
+          @MidasAppId = params['MidasAppId']
+          @UserId = params['UserId']
+          @OutTradeNo = params['OutTradeNo']
+          @CurrencyType = params['CurrencyType']
+          @ProductId = params['ProductId']
+          @ProductName = params['ProductName']
+          @ProductDetail = params['ProductDetail']
+          @OriginalAmt = params['OriginalAmt']
+          @TotalAmt = params['TotalAmt']
+          @MidasEnvironment = params['MidasEnvironment']
+          @SubAppId = params['SubAppId']
+          @RealChannel = params['RealChannel']
+          @Channel = params['Channel']
+          @Metadata = params['Metadata']
+          @Quantity = params['Quantity']
+          @CallbackUrl = params['CallbackUrl']
+          @CancelUrl = params['CancelUrl']
+          @WxAppId = params['WxAppId']
+          @WxSubAppId = params['WxSubAppId']
+          @WxOpenId = params['WxOpenId']
+          @WxSubOpenId = params['WxSubOpenId']
+          @TotalPlatformIncome = params['TotalPlatformIncome']
+          @TotalMchIncome = params['TotalMchIncome']
+          unless params['SubOrderList'].nil?
+            @SubOrderList = []
+            params['SubOrderList'].each do |i|
+              cloudsuborder_tmp = CloudSubOrder.new
+              cloudsuborder_tmp.deserialize(i)
+              @SubOrderList << cloudsuborder_tmp
+            end
+          end
+          unless params['SettleInfo'].nil?
+            @SettleInfo = CloudSettleInfo.new
+            @SettleInfo.deserialize(params['SettleInfo'])
+          end
+          unless params['AttachmentInfoList'].nil?
+            @AttachmentInfoList = []
+            params['AttachmentInfoList'].each do |i|
+              cloudattachmentinfo_tmp = CloudAttachmentInfo.new
+              cloudattachmentinfo_tmp.deserialize(i)
+              @AttachmentInfoList << cloudattachmentinfo_tmp
+            end
+          end
+          @PaymentNotifyUrl = params['PaymentNotifyUrl']
+          @PayScene = params['PayScene']
+          @LocaleCode = params['LocaleCode']
+          @RegionCode = params['RegionCode']
+          @UserClientIp = params['UserClientIp']
+          @ChannelOrderIdMode = params['ChannelOrderIdMode']
+          unless params['GlobalPayTimeInfo'].nil?
+            @GlobalPayTimeInfo = CloudGlobalPayTimeInfo.new
+            @GlobalPayTimeInfo.deserialize(params['GlobalPayTimeInfo'])
+          end
+          @ChannelAppIdPolicy = params['ChannelAppIdPolicy']
+          unless params['StoreInfo'].nil?
+            @StoreInfo = CloudStoreInfo.new
+            @StoreInfo.deserialize(params['StoreInfo'])
+          end
+          unless params['ClientInfo'].nil?
+            @ClientInfo = CloudClientInfo.new
+            @ClientInfo.deserialize(params['ClientInfo'])
+          end
+          unless params['ExternalPromptGroupList'].nil?
+            @ExternalPromptGroupList = []
+            params['ExternalPromptGroupList'].each do |i|
+              cloudexternalpromptgroup_tmp = CloudExternalPromptGroup.new
+              cloudexternalpromptgroup_tmp.deserialize(i)
+              @ExternalPromptGroupList << cloudexternalpromptgroup_tmp
+            end
+          end
+          @OrderReceiveMode = params['OrderReceiveMode']
+        end
+      end
+
+      # UnifiedCloudOrder返回参数结构体
+      class UnifiedCloudOrderResponse < TencentCloud::Common::AbstractModel
+        # @param TransactionId: 米大师的交易订单号。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TransactionId: String
+        # @param OutTradeNo: 开发者的支付订单号。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OutTradeNo: String
+        # @param PayInfo: SDK的支付参数。
+        # 支付参数透传给米大师SDK（原文透传给SDK即可，不需要解码）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PayInfo: String
+        # @param TotalAmt: 支付金额，单位：分。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalAmt: Integer
+        # @param ChannelInfo: 渠道信息，用于拉起渠道支付。j
+        # son字符串，注意此字段仅会在传入正确的PayScene入参时才会有效。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ChannelInfo: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TransactionId, :OutTradeNo, :PayInfo, :TotalAmt, :ChannelInfo, :RequestId
+        
+        def initialize(transactionid=nil, outtradeno=nil, payinfo=nil, totalamt=nil, channelinfo=nil, requestid=nil)
+          @TransactionId = transactionid
+          @OutTradeNo = outtradeno
+          @PayInfo = payinfo
+          @TotalAmt = totalamt
+          @ChannelInfo = channelinfo
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TransactionId = params['TransactionId']
+          @OutTradeNo = params['OutTradeNo']
+          @PayInfo = params['PayInfo']
+          @TotalAmt = params['TotalAmt']
+          @ChannelInfo = params['ChannelInfo']
           @RequestId = params['RequestId']
         end
       end

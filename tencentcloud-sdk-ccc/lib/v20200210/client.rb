@@ -365,6 +365,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 获取主被叫受保护的电话服务记录与录音
+
+        # @param request: Request instance for DescribeProtectedTelCdr.
+        # @type request: :class:`Tencentcloud::ccc::V20200210::DescribeProtectedTelCdrRequest`
+        # @rtype: :class:`Tencentcloud::ccc::V20200210::DescribeProtectedTelCdrResponse`
+        def DescribeProtectedTelCdr(request)
+          body = send_request('DescribeProtectedTelCdr', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeProtectedTelCdrResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 废弃接口下架
 
         # 获取坐席用户列表（废弃）

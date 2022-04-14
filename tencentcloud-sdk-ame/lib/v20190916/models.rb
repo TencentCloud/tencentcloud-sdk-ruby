@@ -211,13 +211,16 @@ module TencentCloud
         # @type JoinRoomInput: :class:`Tencentcloud::Ame.v20190916.models.JoinRoomInput`
         # @param ApplicationLicenseInput: license基础信息
         # @type ApplicationLicenseInput: :class:`Tencentcloud::Ame.v20190916.models.ApplicationLicenseInput`
+        # @param SyncRobotCommands: 创建机器人时初始化参数。
+        # @type SyncRobotCommands: Array
 
-        attr_accessor :RTCSystem, :JoinRoomInput, :ApplicationLicenseInput
+        attr_accessor :RTCSystem, :JoinRoomInput, :ApplicationLicenseInput, :SyncRobotCommands
         
-        def initialize(rtcsystem=nil, joinroominput=nil, applicationlicenseinput=nil)
+        def initialize(rtcsystem=nil, joinroominput=nil, applicationlicenseinput=nil, syncrobotcommands=nil)
           @RTCSystem = rtcsystem
           @JoinRoomInput = joinroominput
           @ApplicationLicenseInput = applicationlicenseinput
+          @SyncRobotCommands = syncrobotcommands
         end
 
         def deserialize(params)
@@ -229,6 +232,14 @@ module TencentCloud
           unless params['ApplicationLicenseInput'].nil?
             @ApplicationLicenseInput = ApplicationLicenseInput.new
             @ApplicationLicenseInput.deserialize(params['ApplicationLicenseInput'])
+          end
+          unless params['SyncRobotCommands'].nil?
+            @SyncRobotCommands = []
+            params['SyncRobotCommands'].each do |i|
+              syncrobotcommand_tmp = SyncRobotCommand.new
+              syncrobotcommand_tmp.deserialize(i)
+              @SyncRobotCommands << syncrobotcommand_tmp
+            end
           end
         end
       end
@@ -2938,6 +2949,89 @@ module TencentCloud
 
         def deserialize(params)
           @RequestId = params['RequestId']
+        end
+      end
+
+      # KTV 机器人初始化参数，在创建后自动完成相关初始化工作。
+      class SyncRobotCommand < TencentCloud::Common::AbstractModel
+        # @param Command: 可同时传入多个指令，顺序执行。取值有：
+        # <li>Play：播放</li>
+        # <li>Pause：暂停</li>
+        # <li>SwitchPrevious：上一首</li>
+        # <li>SwitchNext：下一首</li>
+        # <li>SetPlayMode：设置播放模式</li>
+        # <li>Seek：调整播放进度</li>
+        # <li>SetPlaylist：歌单变更</li>
+        # <li>SetAudioParam：音频参数变更</li>
+        # <li>SendMessage：发送自定义消息</li>
+        # <li>SetDestroyMode：设置销毁模式</li>
+        # <li>SetVolume：设置音量</li>
+        # @type Command: String
+        # @param PlayCommandInput: 播放参数。
+        # @type PlayCommandInput: :class:`Tencentcloud::Ame.v20190916.models.PlayCommandInput`
+        # @param SetPlaylistCommandInput: 播放列表变更信息，当Command取SetPlaylist时，必填。
+        # @type SetPlaylistCommandInput: :class:`Tencentcloud::Ame.v20190916.models.SetPlaylistCommandInput`
+        # @param SeekCommandInput: 播放进度，当Command取Seek时，必填。
+        # @type SeekCommandInput: :class:`Tencentcloud::Ame.v20190916.models.SeekCommandInput`
+        # @param SetAudioParamCommandInput: 音频参数，当Command取SetAudioParam时，必填。
+        # @type SetAudioParamCommandInput: :class:`Tencentcloud::Ame.v20190916.models.SetAudioParamCommandInput`
+        # @param SendMessageCommandInput: 自定义消息，当Command取SendMessage时，必填。
+        # @type SendMessageCommandInput: :class:`Tencentcloud::Ame.v20190916.models.SendMessageCommandInput`
+        # @param SetPlayModeCommandInput: 播放模式，当Command取SetPlayMode时，必填。
+        # @type SetPlayModeCommandInput: :class:`Tencentcloud::Ame.v20190916.models.SetPlayModeCommandInput`
+        # @param SetDestroyModeCommandInput: 销毁模式，当Command取SetDestroyMode时，必填。
+        # @type SetDestroyModeCommandInput: :class:`Tencentcloud::Ame.v20190916.models.SetDestroyModeCommandInput`
+        # @param SetVolumeCommandInput: 音量，当Command取SetVolume时，必填。
+        # @type SetVolumeCommandInput: :class:`Tencentcloud::Ame.v20190916.models.SetVolumeCommandInput`
+
+        attr_accessor :Command, :PlayCommandInput, :SetPlaylistCommandInput, :SeekCommandInput, :SetAudioParamCommandInput, :SendMessageCommandInput, :SetPlayModeCommandInput, :SetDestroyModeCommandInput, :SetVolumeCommandInput
+        
+        def initialize(command=nil, playcommandinput=nil, setplaylistcommandinput=nil, seekcommandinput=nil, setaudioparamcommandinput=nil, sendmessagecommandinput=nil, setplaymodecommandinput=nil, setdestroymodecommandinput=nil, setvolumecommandinput=nil)
+          @Command = command
+          @PlayCommandInput = playcommandinput
+          @SetPlaylistCommandInput = setplaylistcommandinput
+          @SeekCommandInput = seekcommandinput
+          @SetAudioParamCommandInput = setaudioparamcommandinput
+          @SendMessageCommandInput = sendmessagecommandinput
+          @SetPlayModeCommandInput = setplaymodecommandinput
+          @SetDestroyModeCommandInput = setdestroymodecommandinput
+          @SetVolumeCommandInput = setvolumecommandinput
+        end
+
+        def deserialize(params)
+          @Command = params['Command']
+          unless params['PlayCommandInput'].nil?
+            @PlayCommandInput = PlayCommandInput.new
+            @PlayCommandInput.deserialize(params['PlayCommandInput'])
+          end
+          unless params['SetPlaylistCommandInput'].nil?
+            @SetPlaylistCommandInput = SetPlaylistCommandInput.new
+            @SetPlaylistCommandInput.deserialize(params['SetPlaylistCommandInput'])
+          end
+          unless params['SeekCommandInput'].nil?
+            @SeekCommandInput = SeekCommandInput.new
+            @SeekCommandInput.deserialize(params['SeekCommandInput'])
+          end
+          unless params['SetAudioParamCommandInput'].nil?
+            @SetAudioParamCommandInput = SetAudioParamCommandInput.new
+            @SetAudioParamCommandInput.deserialize(params['SetAudioParamCommandInput'])
+          end
+          unless params['SendMessageCommandInput'].nil?
+            @SendMessageCommandInput = SendMessageCommandInput.new
+            @SendMessageCommandInput.deserialize(params['SendMessageCommandInput'])
+          end
+          unless params['SetPlayModeCommandInput'].nil?
+            @SetPlayModeCommandInput = SetPlayModeCommandInput.new
+            @SetPlayModeCommandInput.deserialize(params['SetPlayModeCommandInput'])
+          end
+          unless params['SetDestroyModeCommandInput'].nil?
+            @SetDestroyModeCommandInput = SetDestroyModeCommandInput.new
+            @SetDestroyModeCommandInput.deserialize(params['SetDestroyModeCommandInput'])
+          end
+          unless params['SetVolumeCommandInput'].nil?
+            @SetVolumeCommandInput = SetVolumeCommandInput.new
+            @SetVolumeCommandInput.deserialize(params['SetVolumeCommandInput'])
+          end
         end
       end
 

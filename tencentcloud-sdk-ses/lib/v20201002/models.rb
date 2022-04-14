@@ -1026,9 +1026,9 @@ module TencentCloud
 
       # ListEmailTemplates请求参数结构体
       class ListEmailTemplatesRequest < TencentCloud::Common::AbstractModel
-        # @param Limit: 获取模版数据量，用于分页
+        # @param Limit: 获取模板数据量，用于分页
         # @type Limit: Integer
-        # @param Offset: 获取模版偏移值，用于分页
+        # @param Offset: 获取模板偏移值，用于分页
         # @type Offset: Integer
 
         attr_accessor :Limit, :Offset
@@ -1048,7 +1048,7 @@ module TencentCloud
       class ListEmailTemplatesResponse < TencentCloud::Common::AbstractModel
         # @param TemplatesMetadata: 邮件模板列表
         # @type TemplatesMetadata: Array
-        # @param TotalCount: 模版总数量
+        # @param TotalCount: 模板总数量
         # @type TotalCount: Integer
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

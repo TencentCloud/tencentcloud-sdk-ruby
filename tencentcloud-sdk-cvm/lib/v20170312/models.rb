@@ -3013,10 +3013,13 @@ module TencentCloud
         # @param SnapshotSet: 镜像关联的快照信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SnapshotSet: Array
+        # @param Tags: 镜像关联的标签列表。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Tags: Array
 
-        attr_accessor :ImageId, :OsName, :ImageType, :CreatedTime, :ImageName, :ImageDescription, :ImageSize, :Architecture, :ImageState, :Platform, :ImageCreator, :ImageSource, :SyncPercent, :IsSupportCloudinit, :SnapshotSet
+        attr_accessor :ImageId, :OsName, :ImageType, :CreatedTime, :ImageName, :ImageDescription, :ImageSize, :Architecture, :ImageState, :Platform, :ImageCreator, :ImageSource, :SyncPercent, :IsSupportCloudinit, :SnapshotSet, :Tags
         
-        def initialize(imageid=nil, osname=nil, imagetype=nil, createdtime=nil, imagename=nil, imagedescription=nil, imagesize=nil, architecture=nil, imagestate=nil, platform=nil, imagecreator=nil, imagesource=nil, syncpercent=nil, issupportcloudinit=nil, snapshotset=nil)
+        def initialize(imageid=nil, osname=nil, imagetype=nil, createdtime=nil, imagename=nil, imagedescription=nil, imagesize=nil, architecture=nil, imagestate=nil, platform=nil, imagecreator=nil, imagesource=nil, syncpercent=nil, issupportcloudinit=nil, snapshotset=nil, tags=nil)
           @ImageId = imageid
           @OsName = osname
           @ImageType = imagetype
@@ -3032,6 +3035,7 @@ module TencentCloud
           @SyncPercent = syncpercent
           @IsSupportCloudinit = issupportcloudinit
           @SnapshotSet = snapshotset
+          @Tags = tags
         end
 
         def deserialize(params)
@@ -3055,6 +3059,14 @@ module TencentCloud
               snapshot_tmp = Snapshot.new
               snapshot_tmp.deserialize(i)
               @SnapshotSet << snapshot_tmp
+            end
+          end
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
             end
           end
         end

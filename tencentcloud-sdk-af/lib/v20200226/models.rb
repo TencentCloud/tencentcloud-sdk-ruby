@@ -132,10 +132,12 @@ module TencentCloud
         # 0：不加密（默认值）
         # 1：md5
         # @type NameCryptoType: String
+        # @param OldResponseType: 是否使用旧回包
+        # @type OldResponseType: String
 
-        attr_accessor :CustomerUin, :CustomerAppid, :IdNumber, :PhoneNumber, :Scene, :CustomerSubUin, :Authorization, :Name, :BankCardNumber, :UserIp, :Imei, :Idfa, :EmailAddress, :Address, :Mac, :Imsi, :AccountType, :Uid, :AppIdU, :WifiMac, :WifiSSID, :WifiBSSID, :ExtensionId, :ExtensionIn, :BusinessId, :IdCryptoType, :PhoneCryptoType, :NameCryptoType
+        attr_accessor :CustomerUin, :CustomerAppid, :IdNumber, :PhoneNumber, :Scene, :CustomerSubUin, :Authorization, :Name, :BankCardNumber, :UserIp, :Imei, :Idfa, :EmailAddress, :Address, :Mac, :Imsi, :AccountType, :Uid, :AppIdU, :WifiMac, :WifiSSID, :WifiBSSID, :ExtensionId, :ExtensionIn, :BusinessId, :IdCryptoType, :PhoneCryptoType, :NameCryptoType, :OldResponseType
         
-        def initialize(customeruin=nil, customerappid=nil, idnumber=nil, phonenumber=nil, scene=nil, customersubuin=nil, authorization=nil, name=nil, bankcardnumber=nil, userip=nil, imei=nil, idfa=nil, emailaddress=nil, address=nil, mac=nil, imsi=nil, accounttype=nil, uid=nil, appidu=nil, wifimac=nil, wifissid=nil, wifibssid=nil, extensionid=nil, extensionin=nil, businessid=nil, idcryptotype=nil, phonecryptotype=nil, namecryptotype=nil)
+        def initialize(customeruin=nil, customerappid=nil, idnumber=nil, phonenumber=nil, scene=nil, customersubuin=nil, authorization=nil, name=nil, bankcardnumber=nil, userip=nil, imei=nil, idfa=nil, emailaddress=nil, address=nil, mac=nil, imsi=nil, accounttype=nil, uid=nil, appidu=nil, wifimac=nil, wifissid=nil, wifibssid=nil, extensionid=nil, extensionin=nil, businessid=nil, idcryptotype=nil, phonecryptotype=nil, namecryptotype=nil, oldresponsetype=nil)
           @CustomerUin = customeruin
           @CustomerAppid = customerappid
           @IdNumber = idnumber
@@ -164,6 +166,7 @@ module TencentCloud
           @IdCryptoType = idcryptotype
           @PhoneCryptoType = phonecryptotype
           @NameCryptoType = namecryptotype
+          @OldResponseType = oldresponsetype
         end
 
         def deserialize(params)
@@ -195,6 +198,7 @@ module TencentCloud
           @IdCryptoType = params['IdCryptoType']
           @PhoneCryptoType = params['PhoneCryptoType']
           @NameCryptoType = params['NameCryptoType']
+          @OldResponseType = params['OldResponseType']
         end
       end
 

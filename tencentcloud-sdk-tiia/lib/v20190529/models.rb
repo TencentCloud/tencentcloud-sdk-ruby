@@ -215,13 +215,10 @@ module TencentCloud
         # @type Brief: String
         # @param MaxQps: 该库的访问限频 ，默认10。
         # @type MaxQps: Integer
-        # @param GroupType: 图库类型， 默认为通用。
-        # 类型：
-        # 1: 通用图库，以用户输入图提取特征。
-        # 2: 灰度图库，输入图和搜索图均转为灰度图提取特征。
-        # 3: 针对电商（通用品类）和logo优化。
-        # 4: 通用图库v2。
-        # 5: 电商模型。
+        # @param GroupType: 图库类型，对应不同产品功能，默认为1。建议调整为4或5，1~3为历史版本，不推荐。
+        # 参数值：
+        # 4：相同图像搜索，在自建图库中搜索相同原图，可支持裁剪、翻转、调色、加水印后的图片搜索，适用于版权场景。
+        # 5：商品图像搜索，在自建图库中搜索相同或相似的商品图片，适用于电商场景。
         # @type GroupType: Integer
 
         attr_accessor :GroupId, :GroupName, :MaxCapacity, :Brief, :MaxQps, :GroupType
@@ -269,7 +266,7 @@ module TencentCloud
         # 若EntityId已存在，则对其追加图片。
         # @type EntityId: String
         # @param PicName: 图片名称，最多支持64个字符，
-        # 同一个EntityId，最大支持10张图。如果图片名称已存在，则会更新库中的图片。
+        # 同一个EntityId，最大支持10张图。
         # @type PicName: String
         # @param ImageUrl: 图片的 Url 。对应图片 base64 编码后大小不可超过5M。
         # Url、Image必须提供一个，如果都提供，只使用 Url。

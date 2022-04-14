@@ -1012,6 +1012,69 @@ module TencentCloud
         end
       end
 
+      # DescribeProtectedTelCdr请求参数结构体
+      class DescribeProtectedTelCdrRequest < TencentCloud::Common::AbstractModel
+        # @param StartTimeStamp: 起始时间戳，Unix 秒级时间戳
+        # @type StartTimeStamp: Integer
+        # @param EndTimeStamp: 结束时间戳，Unix 秒级时间戳
+        # @type EndTimeStamp: Integer
+        # @param SdkAppId: 应用 ID，可以查看 https://console.cloud.tencent.com/ccc
+        # @type SdkAppId: Integer
+        # @param PageSize: 分页尺寸，上限 100
+        # @type PageSize: Integer
+        # @param PageNumber: 分页页码，从 0 开始
+        # @type PageNumber: Integer
+
+        attr_accessor :StartTimeStamp, :EndTimeStamp, :SdkAppId, :PageSize, :PageNumber
+        
+        def initialize(starttimestamp=nil, endtimestamp=nil, sdkappid=nil, pagesize=nil, pagenumber=nil)
+          @StartTimeStamp = starttimestamp
+          @EndTimeStamp = endtimestamp
+          @SdkAppId = sdkappid
+          @PageSize = pagesize
+          @PageNumber = pagenumber
+        end
+
+        def deserialize(params)
+          @StartTimeStamp = params['StartTimeStamp']
+          @EndTimeStamp = params['EndTimeStamp']
+          @SdkAppId = params['SdkAppId']
+          @PageSize = params['PageSize']
+          @PageNumber = params['PageNumber']
+        end
+      end
+
+      # DescribeProtectedTelCdr返回参数结构体
+      class DescribeProtectedTelCdrResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 话单记录总数
+        # @type TotalCount: Integer
+        # @param TelCdrs: 话单记录
+        # @type TelCdrs: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :TelCdrs, :RequestId
+        
+        def initialize(totalcount=nil, telcdrs=nil, requestid=nil)
+          @TotalCount = totalcount
+          @TelCdrs = telcdrs
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['TelCdrs'].nil?
+            @TelCdrs = []
+            params['TelCdrs'].each do |i|
+              telcdrinfo_tmp = TelCdrInfo.new
+              telcdrinfo_tmp.deserialize(i)
+              @TelCdrs << telcdrinfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeSeatUserList请求参数结构体
       class DescribeSeatUserListRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例ID
@@ -1294,21 +1357,21 @@ module TencentCloud
 
       # DescribeTelCdr请求参数结构体
       class DescribeTelCdrRequest < TencentCloud::Common::AbstractModel
-        # @param StartTimeStamp: 起始时间戳，Unix 时间戳
+        # @param StartTimeStamp: 起始时间戳，Unix 秒级时间戳
         # @type StartTimeStamp: Integer
-        # @param EndTimeStamp: 结束时间戳，Unix 时间戳
+        # @param EndTimeStamp: 结束时间戳，Unix 秒级时间戳
         # @type EndTimeStamp: Integer
-        # @param InstanceId: 实例 ID（deprecated）
+        # @param InstanceId: 实例 ID（废弃）
         # @type InstanceId: Integer
-        # @param Limit: 返回数据条数，上限（deprecated）
+        # @param Limit: 返回数据条数，上限（废弃）
         # @type Limit: Integer
-        # @param Offset: 偏移（deprecated）
+        # @param Offset: 偏移（废弃）
         # @type Offset: Integer
-        # @param SdkAppId: 应用 ID
+        # @param SdkAppId: 应用 ID（必填），可以查看 https://console.cloud.tencent.com/ccc
         # @type SdkAppId: Integer
-        # @param PageSize: 分页尺寸，上限 100
+        # @param PageSize: 分页尺寸（必填），上限 100
         # @type PageSize: Integer
-        # @param PageNumber: 分页页码，从 0 开始
+        # @param PageNumber: 分页页码（必填），从 0 开始
         # @type PageNumber: Integer
         # @param Phones: 按手机号筛选
         # @type Phones: Array
