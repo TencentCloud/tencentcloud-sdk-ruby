@@ -1445,7 +1445,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 打开kafka协议消费
+        # 打开Kafka协议消费功能
 
         # @param request: Request instance for OpenKafkaConsumer.
         # @type request: :class:`Tencentcloud::cls::V20201016::OpenKafkaConsumerRequest`

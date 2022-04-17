@@ -5154,6 +5154,54 @@ module TencentCloud
         end
       end
 
+      # PublishBroadcastMessage请求参数结构体
+      class PublishBroadcastMessageRequest < TencentCloud::Common::AbstractModel
+        # @param ProductId: 产品ID
+        # @type ProductId: String
+        # @param Payload: 消息内容
+        # @type Payload: String
+        # @param Qos: 消息质量等级
+        # @type Qos: Integer
+        # @param PayloadEncoding: ayload内容的编码格式，取值为base64或空。base64表示云端将收到的请求数据进行base64解码后下发到设备，空则直接将原始内容下发到设备
+        # @type PayloadEncoding: String
+
+        attr_accessor :ProductId, :Payload, :Qos, :PayloadEncoding
+        
+        def initialize(productid=nil, payload=nil, qos=nil, payloadencoding=nil)
+          @ProductId = productid
+          @Payload = payload
+          @Qos = qos
+          @PayloadEncoding = payloadencoding
+        end
+
+        def deserialize(params)
+          @ProductId = params['ProductId']
+          @Payload = params['Payload']
+          @Qos = params['Qos']
+          @PayloadEncoding = params['PayloadEncoding']
+        end
+      end
+
+      # PublishBroadcastMessage返回参数结构体
+      class PublishBroadcastMessageResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: 广播消息任务Id
+        # @type TaskId: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :RequestId
+        
+        def initialize(taskid=nil, requestid=nil)
+          @TaskId = taskid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # PublishMessage请求参数结构体
       class PublishMessageRequest < TencentCloud::Common::AbstractModel
         # @param ProductId: 产品ID

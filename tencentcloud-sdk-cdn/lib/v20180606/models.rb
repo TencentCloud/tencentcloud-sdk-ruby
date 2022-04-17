@@ -9588,10 +9588,16 @@ module TencentCloud
         # @param OssPrivateAccess: 回源OSS私有鉴权。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OssPrivateAccess: :class:`Tencentcloud::Cdn.v20180606.models.OssPrivateAccess`
+        # @param HwPrivateAccess: 华为云对象存储鉴权
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HwPrivateAccess: :class:`Tencentcloud::Cdn.v20180606.models.HwPrivateAccess`
+        # @param QnPrivateAccess: 七牛云对象存储鉴权
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type QnPrivateAccess: :class:`Tencentcloud::Cdn.v20180606.models.QnPrivateAccess`
 
-        attr_accessor :Authentication, :BandwidthAlert, :Cache, :CacheKey, :Compression, :DownstreamCapping, :ErrorPage, :FollowRedirect, :ForceRedirect, :Https, :IpFilter, :IpFreqLimit, :MaxAge, :Origin, :OriginPullOptimization, :RangeOriginPull, :Referer, :RequestHeader, :ResponseHeader, :ResponseHeaderCache, :Seo, :ServiceType, :StatusCodeCache, :VideoSeek, :AwsPrivateAccess, :OssPrivateAccess
+        attr_accessor :Authentication, :BandwidthAlert, :Cache, :CacheKey, :Compression, :DownstreamCapping, :ErrorPage, :FollowRedirect, :ForceRedirect, :Https, :IpFilter, :IpFreqLimit, :MaxAge, :Origin, :OriginPullOptimization, :RangeOriginPull, :Referer, :RequestHeader, :ResponseHeader, :ResponseHeaderCache, :Seo, :ServiceType, :StatusCodeCache, :VideoSeek, :AwsPrivateAccess, :OssPrivateAccess, :HwPrivateAccess, :QnPrivateAccess
         
-        def initialize(authentication=nil, bandwidthalert=nil, cache=nil, cachekey=nil, compression=nil, downstreamcapping=nil, errorpage=nil, followredirect=nil, forceredirect=nil, https=nil, ipfilter=nil, ipfreqlimit=nil, maxage=nil, origin=nil, originpulloptimization=nil, rangeoriginpull=nil, referer=nil, requestheader=nil, responseheader=nil, responseheadercache=nil, seo=nil, servicetype=nil, statuscodecache=nil, videoseek=nil, awsprivateaccess=nil, ossprivateaccess=nil)
+        def initialize(authentication=nil, bandwidthalert=nil, cache=nil, cachekey=nil, compression=nil, downstreamcapping=nil, errorpage=nil, followredirect=nil, forceredirect=nil, https=nil, ipfilter=nil, ipfreqlimit=nil, maxage=nil, origin=nil, originpulloptimization=nil, rangeoriginpull=nil, referer=nil, requestheader=nil, responseheader=nil, responseheadercache=nil, seo=nil, servicetype=nil, statuscodecache=nil, videoseek=nil, awsprivateaccess=nil, ossprivateaccess=nil, hwprivateaccess=nil, qnprivateaccess=nil)
           @Authentication = authentication
           @BandwidthAlert = bandwidthalert
           @Cache = cache
@@ -9618,6 +9624,8 @@ module TencentCloud
           @VideoSeek = videoseek
           @AwsPrivateAccess = awsprivateaccess
           @OssPrivateAccess = ossprivateaccess
+          @HwPrivateAccess = hwprivateaccess
+          @QnPrivateAccess = qnprivateaccess
         end
 
         def deserialize(params)
@@ -9721,6 +9729,14 @@ module TencentCloud
           unless params['OssPrivateAccess'].nil?
             @OssPrivateAccess = OssPrivateAccess.new
             @OssPrivateAccess.deserialize(params['OssPrivateAccess'])
+          end
+          unless params['HwPrivateAccess'].nil?
+            @HwPrivateAccess = HwPrivateAccess.new
+            @HwPrivateAccess.deserialize(params['HwPrivateAccess'])
+          end
+          unless params['QnPrivateAccess'].nil?
+            @QnPrivateAccess = QnPrivateAccess.new
+            @QnPrivateAccess.deserialize(params['QnPrivateAccess'])
           end
         end
       end

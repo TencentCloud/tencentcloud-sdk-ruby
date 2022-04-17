@@ -574,10 +574,12 @@ module TencentCloud
         # @type Way: String
         # @param ManualBackupName: 手动备份别名
         # @type ManualBackupName: String
+        # @param SaveMode: 备份保留类型，save_mode_regular - 常规保存备份，save_mode_period - 定期保存备份
+        # @type SaveMode: String
 
-        attr_accessor :Name, :Size, :Date, :IntranetUrl, :InternetUrl, :Type, :BackupId, :Status, :FinishTime, :Creator, :StartTime, :Method, :Way, :ManualBackupName
+        attr_accessor :Name, :Size, :Date, :IntranetUrl, :InternetUrl, :Type, :BackupId, :Status, :FinishTime, :Creator, :StartTime, :Method, :Way, :ManualBackupName, :SaveMode
         
-        def initialize(name=nil, size=nil, date=nil, intraneturl=nil, interneturl=nil, type=nil, backupid=nil, status=nil, finishtime=nil, creator=nil, starttime=nil, method=nil, way=nil, manualbackupname=nil)
+        def initialize(name=nil, size=nil, date=nil, intraneturl=nil, interneturl=nil, type=nil, backupid=nil, status=nil, finishtime=nil, creator=nil, starttime=nil, method=nil, way=nil, manualbackupname=nil, savemode=nil)
           @Name = name
           @Size = size
           @Date = date
@@ -592,6 +594,7 @@ module TencentCloud
           @Method = method
           @Way = way
           @ManualBackupName = manualbackupname
+          @SaveMode = savemode
         end
 
         def deserialize(params)
@@ -609,6 +612,7 @@ module TencentCloud
           @Method = params['Method']
           @Way = params['Way']
           @ManualBackupName = params['ManualBackupName']
+          @SaveMode = params['SaveMode']
         end
       end
 
@@ -2979,18 +2983,33 @@ module TencentCloud
         # @type BinlogExpireDays: Integer
         # @param BackupTimeWindow: 实例自动备份的时间窗。
         # @type BackupTimeWindow: :class:`Tencentcloud::Cdb.v20170320.models.CommonTimeWindow`
+        # @param EnableBackupPeriodSave: 定期保留开关，off - 不开启定期保留策略，on - 开启定期保留策略，默认为off
+        # @type EnableBackupPeriodSave: String
+        # @param BackupPeriodSaveDays: 定期保留最长天数，最小值：90，最大值：3650，默认值：1080
+        # @type BackupPeriodSaveDays: Integer
+        # @param BackupPeriodSaveInterval: 定期保留策略周期，可取值：weekly - 周，monthly - 月， quarterly - 季度，yearly - 年，默认为monthly
+        # @type BackupPeriodSaveInterval: String
+        # @param BackupPeriodSaveCount: 定期保留的备份数量，最小值为1，最大值不超过定期保留策略周期内常规备份个数，默认值为1
+        # @type BackupPeriodSaveCount: Integer
+        # @param StartBackupPeriodSaveDate: 定期保留策略周期起始日期，格式：YYYY-MM-dd HH:mm:ss
+        # @type StartBackupPeriodSaveDate: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :StartTimeMin, :StartTimeMax, :BackupExpireDays, :BackupMethod, :BinlogExpireDays, :BackupTimeWindow, :RequestId
+        attr_accessor :StartTimeMin, :StartTimeMax, :BackupExpireDays, :BackupMethod, :BinlogExpireDays, :BackupTimeWindow, :EnableBackupPeriodSave, :BackupPeriodSaveDays, :BackupPeriodSaveInterval, :BackupPeriodSaveCount, :StartBackupPeriodSaveDate, :RequestId
         
-        def initialize(starttimemin=nil, starttimemax=nil, backupexpiredays=nil, backupmethod=nil, binlogexpiredays=nil, backuptimewindow=nil, requestid=nil)
+        def initialize(starttimemin=nil, starttimemax=nil, backupexpiredays=nil, backupmethod=nil, binlogexpiredays=nil, backuptimewindow=nil, enablebackupperiodsave=nil, backupperiodsavedays=nil, backupperiodsaveinterval=nil, backupperiodsavecount=nil, startbackupperiodsavedate=nil, requestid=nil)
           @StartTimeMin = starttimemin
           @StartTimeMax = starttimemax
           @BackupExpireDays = backupexpiredays
           @BackupMethod = backupmethod
           @BinlogExpireDays = binlogexpiredays
           @BackupTimeWindow = backuptimewindow
+          @EnableBackupPeriodSave = enablebackupperiodsave
+          @BackupPeriodSaveDays = backupperiodsavedays
+          @BackupPeriodSaveInterval = backupperiodsaveinterval
+          @BackupPeriodSaveCount = backupperiodsavecount
+          @StartBackupPeriodSaveDate = startbackupperiodsavedate
           @RequestId = requestid
         end
 
@@ -3004,6 +3023,11 @@ module TencentCloud
             @BackupTimeWindow = CommonTimeWindow.new
             @BackupTimeWindow.deserialize(params['BackupTimeWindow'])
           end
+          @EnableBackupPeriodSave = params['EnableBackupPeriodSave']
+          @BackupPeriodSaveDays = params['BackupPeriodSaveDays']
+          @BackupPeriodSaveInterval = params['BackupPeriodSaveInterval']
+          @BackupPeriodSaveCount = params['BackupPeriodSaveCount']
+          @StartBackupPeriodSaveDate = params['StartBackupPeriodSaveDate']
           @RequestId = params['RequestId']
         end
       end
@@ -7146,16 +7170,34 @@ module TencentCloud
         # @type BinlogExpireDays: Integer
         # @param BackupTimeWindow: 备份时间窗，比如要设置每周二和周日 10:00-14:00之间备份，该参数如下：{"Monday": "", "Tuesday": "10:00-14:00", "Wednesday": "", "Thursday": "", "Friday": "", "Saturday": "", "Sunday": "10:00-14:00"}    （注：可以设置一周的某几天备份，但是每天的备份时间需要设置为相同的时间段。 如果设置了该字段，将忽略StartTime字段的设置）
         # @type BackupTimeWindow: :class:`Tencentcloud::Cdb.v20170320.models.CommonTimeWindow`
+        # @param EnableBackupPeriodSave: 定期保留开关，off - 不开启定期保留策略，on - 开启定期保留策略，默认为off
+        # @type EnableBackupPeriodSave: String
+        # @param EnableBackupPeriodLongTermSave: 长期保留开关,该字段功能暂未上线，可忽略。off - 不开启长期保留策略，on - 开启长期保留策略，默认为off，如果开启，则BackupPeriodSaveDays，BackupPeriodSaveInterval，BackupPeriodSaveCount参数无效
+        # @type EnableBackupPeriodLongTermSave: String
+        # @param BackupPeriodSaveDays: 定期保留最长天数，最小值：90，最大值：3650，默认值：1080
+        # @type BackupPeriodSaveDays: Integer
+        # @param BackupPeriodSaveInterval: 定期保留策略周期，可取值：weekly - 周，monthly - 月， quarterly - 季度，yearly - 年，默认为monthly
+        # @type BackupPeriodSaveInterval: String
+        # @param BackupPeriodSaveCount: 定期保留的备份数量，最小值为1，最大值不超过定期保留策略周期内常规备份个数，默认值为1
+        # @type BackupPeriodSaveCount: Integer
+        # @param StartBackupPeriodSaveDate: 定期保留策略周期起始日期，格式：YYYY-MM-dd HH:mm:ss
+        # @type StartBackupPeriodSaveDate: String
 
-        attr_accessor :InstanceId, :ExpireDays, :StartTime, :BackupMethod, :BinlogExpireDays, :BackupTimeWindow
+        attr_accessor :InstanceId, :ExpireDays, :StartTime, :BackupMethod, :BinlogExpireDays, :BackupTimeWindow, :EnableBackupPeriodSave, :EnableBackupPeriodLongTermSave, :BackupPeriodSaveDays, :BackupPeriodSaveInterval, :BackupPeriodSaveCount, :StartBackupPeriodSaveDate
         
-        def initialize(instanceid=nil, expiredays=nil, starttime=nil, backupmethod=nil, binlogexpiredays=nil, backuptimewindow=nil)
+        def initialize(instanceid=nil, expiredays=nil, starttime=nil, backupmethod=nil, binlogexpiredays=nil, backuptimewindow=nil, enablebackupperiodsave=nil, enablebackupperiodlongtermsave=nil, backupperiodsavedays=nil, backupperiodsaveinterval=nil, backupperiodsavecount=nil, startbackupperiodsavedate=nil)
           @InstanceId = instanceid
           @ExpireDays = expiredays
           @StartTime = starttime
           @BackupMethod = backupmethod
           @BinlogExpireDays = binlogexpiredays
           @BackupTimeWindow = backuptimewindow
+          @EnableBackupPeriodSave = enablebackupperiodsave
+          @EnableBackupPeriodLongTermSave = enablebackupperiodlongtermsave
+          @BackupPeriodSaveDays = backupperiodsavedays
+          @BackupPeriodSaveInterval = backupperiodsaveinterval
+          @BackupPeriodSaveCount = backupperiodsavecount
+          @StartBackupPeriodSaveDate = startbackupperiodsavedate
         end
 
         def deserialize(params)
@@ -7168,6 +7210,12 @@ module TencentCloud
             @BackupTimeWindow = CommonTimeWindow.new
             @BackupTimeWindow.deserialize(params['BackupTimeWindow'])
           end
+          @EnableBackupPeriodSave = params['EnableBackupPeriodSave']
+          @EnableBackupPeriodLongTermSave = params['EnableBackupPeriodLongTermSave']
+          @BackupPeriodSaveDays = params['BackupPeriodSaveDays']
+          @BackupPeriodSaveInterval = params['BackupPeriodSaveInterval']
+          @BackupPeriodSaveCount = params['BackupPeriodSaveCount']
+          @StartBackupPeriodSaveDate = params['StartBackupPeriodSaveDate']
         end
       end
 

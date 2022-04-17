@@ -209,7 +209,7 @@ module TencentCloud
         # @type SystemDisk: :class:`Tencentcloud::Thpc.v20211109.models.SystemDisk`
         # @param DataDisks: 节点数据盘配置信息。若不指定该参数，则默认不购买数据盘。支持购买的时候指定21块数据盘，其中最多包含1块LOCAL_BASIC数据盘或者LOCAL_SSD数据盘，最多包含20块CLOUD_BASIC数据盘、CLOUD_PREMIUM数据盘或者CLOUD_SSD数据盘。
         # @type DataDisks: Array
-        # @param InternetAccessible: 节点数据盘配置信息。若不指定该参数，则默认不购买数据盘。支持购买的时候指定21块数据盘，其中最多包含1块LOCAL_BASIC数据盘或者LOCAL_SSD数据盘，最多包含20块CLOUD_BASIC数据盘、CLOUD_PREMIUM数据盘或者CLOUD_SSD数据盘。
+        # @param InternetAccessible: 公网带宽相关信息设置。若不指定该参数，则默认公网带宽为0Mbps。
         # @type InternetAccessible: :class:`Tencentcloud::Thpc.v20211109.models.InternetAccessible`
         # @param InstanceName: 节点显示名称。<br><li>
         # 不指定节点显示名称则默认显示‘未命名’。
@@ -610,7 +610,7 @@ module TencentCloud
         # @type SystemDisk: Array
         # @param DataDisks: 节点数据盘配置信息。若不指定该参数，则默认不购买数据盘。支持购买的时候指定21块数据盘，其中最多包含1块LOCAL_BASIC数据盘或者LOCAL_SSD数据盘，最多包含20块CLOUD_BASIC数据盘、CLOUD_PREMIUM数据盘或者CLOUD_SSD数据盘。
         # @type DataDisks: Array
-        # @param InternetAccessible: 节点数据盘配置信息。若不指定该参数，则默认不购买数据盘。支持购买的时候指定21块数据盘，其中最多包含1块LOCAL_BASIC数据盘或者LOCAL_SSD数据盘，最多包含20块CLOUD_BASIC数据盘、CLOUD_PREMIUM数据盘或者CLOUD_SSD数据盘。
+        # @param InternetAccessible: 公网带宽相关信息设置。若不指定该参数，则默认公网带宽为0Mbps。
         # @type InternetAccessible: Array
         # @param InstanceName: 节点显示名称。<br><li>
         # 不指定节点显示名称则默认显示‘未命名’。

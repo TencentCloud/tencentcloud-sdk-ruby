@@ -2418,6 +2418,120 @@ module TencentCloud
         end
       end
 
+      # DescribeSocCheckResultList请求参数结构体
+      class DescribeSocCheckResultListRequest < TencentCloud::Common::AbstractModel
+        # @param Filter: 查询参数,可支持的查询参数：
+        # Name,Type,AssetType,Result,PloyName,PloyId
+        # @type Filter: Array
+        # @param Sorter: 排序参数,可支持的排序参数：CheckStatus,RiskCount
+        # @type Sorter: Array
+        # @param PageSize: 当前页码数据，默认值为10
+        # @type PageSize: Integer
+        # @param PageIndex: 当前页面索引，默认值为0
+        # @type PageIndex: Integer
+        # @param AssetId: 资产id
+        # @type AssetId: String
+
+        attr_accessor :Filter, :Sorter, :PageSize, :PageIndex, :AssetId
+        
+        def initialize(filter=nil, sorter=nil, pagesize=nil, pageindex=nil, assetid=nil)
+          @Filter = filter
+          @Sorter = sorter
+          @PageSize = pagesize
+          @PageIndex = pageindex
+          @AssetId = assetid
+        end
+
+        def deserialize(params)
+          unless params['Filter'].nil?
+            @Filter = []
+            params['Filter'].each do |i|
+              queryfilter_tmp = QueryFilter.new
+              queryfilter_tmp.deserialize(i)
+              @Filter << queryfilter_tmp
+            end
+          end
+          unless params['Sorter'].nil?
+            @Sorter = []
+            params['Sorter'].each do |i|
+              querysort_tmp = QuerySort.new
+              querysort_tmp.deserialize(i)
+              @Sorter << querysort_tmp
+            end
+          end
+          @PageSize = params['PageSize']
+          @PageIndex = params['PageIndex']
+          @AssetId = params['AssetId']
+        end
+      end
+
+      # DescribeSocCheckResultList返回参数结构体
+      class DescribeSocCheckResultListResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 无
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Data: :class:`Tencentcloud::Ssa.v20180608.models.DescribeSocCheckResultListRspRsp`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+        
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = DescribeSocCheckResultListRspRsp.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 检查项结果详情列表
+      class DescribeSocCheckResultListRspRsp < TencentCloud::Common::AbstractModel
+        # @param List: 具体检查项详情
+        # @type List: Array
+        # @param Total: 检查结果总数
+        # @type Total: Integer
+        # @param LowTotal: 低危个数
+        # @type LowTotal: Integer
+        # @param MiddleTotal: 中危个数
+        # @type MiddleTotal: Integer
+        # @param HighTotal: 高危个数
+        # @type HighTotal: Integer
+        # @param NormalTotal: 正常个数
+        # @type NormalTotal: Integer
+
+        attr_accessor :List, :Total, :LowTotal, :MiddleTotal, :HighTotal, :NormalTotal
+        
+        def initialize(list=nil, total=nil, lowtotal=nil, middletotal=nil, hightotal=nil, normaltotal=nil)
+          @List = list
+          @Total = total
+          @LowTotal = lowtotal
+          @MiddleTotal = middletotal
+          @HighTotal = hightotal
+          @NormalTotal = normaltotal
+        end
+
+        def deserialize(params)
+          unless params['List'].nil?
+            @List = []
+            params['List'].each do |i|
+              soccheckresult_tmp = SocCheckResult.new
+              soccheckresult_tmp.deserialize(i)
+              @List << soccheckresult_tmp
+            end
+          end
+          @Total = params['Total']
+          @LowTotal = params['LowTotal']
+          @MiddleTotal = params['MiddleTotal']
+          @HighTotal = params['HighTotal']
+          @NormalTotal = params['NormalTotal']
+        end
+      end
+
       # DescribeSocCspmCompliance请求参数结构体
       class DescribeSocCspmComplianceRequest < TencentCloud::Common::AbstractModel
 
@@ -3137,6 +3251,58 @@ module TencentCloud
           @Level = params['Level']
           @Standard = params['Standard']
           @IsFree = params['IsFree']
+        end
+      end
+
+      # 云安全配置检测结果
+      class SocCheckResult < TencentCloud::Common::AbstractModel
+        # @param CheckId: 检查项的uuid
+        # @type CheckId: String
+        # @param Name: 配置要求
+        # @type Name: String
+        # @param Type: 检查项的类型
+        # @type Type: String
+        # @param AssetType: 检查对象
+        # @type AssetType: String
+        # @param PloyName: 策略名
+        # @type PloyName: String
+        # @param PloyId: 策略id
+        # @type PloyId: Integer
+        # @param Result: 正常,低危,中危,高危
+        # @type Result: String
+        # @param FailAssetNum: 不符合数
+        # @type FailAssetNum: Integer
+        # @param TotalAssetNum: 总数
+        # @type TotalAssetNum: Integer
+        # @param DealUrl: 处置建议url链接
+        # @type DealUrl: String
+
+        attr_accessor :CheckId, :Name, :Type, :AssetType, :PloyName, :PloyId, :Result, :FailAssetNum, :TotalAssetNum, :DealUrl
+        
+        def initialize(checkid=nil, name=nil, type=nil, assettype=nil, ployname=nil, ployid=nil, result=nil, failassetnum=nil, totalassetnum=nil, dealurl=nil)
+          @CheckId = checkid
+          @Name = name
+          @Type = type
+          @AssetType = assettype
+          @PloyName = ployname
+          @PloyId = ployid
+          @Result = result
+          @FailAssetNum = failassetnum
+          @TotalAssetNum = totalassetnum
+          @DealUrl = dealurl
+        end
+
+        def deserialize(params)
+          @CheckId = params['CheckId']
+          @Name = params['Name']
+          @Type = params['Type']
+          @AssetType = params['AssetType']
+          @PloyName = params['PloyName']
+          @PloyId = params['PloyId']
+          @Result = params['Result']
+          @FailAssetNum = params['FailAssetNum']
+          @TotalAssetNum = params['TotalAssetNum']
+          @DealUrl = params['DealUrl']
         end
       end
 

@@ -5980,88 +5980,98 @@ module TencentCloud
 
       # L7规则
       class NewL7RuleEntry < TencentCloud::Common::AbstractModel
-        # @param KeepTime: 会话保持时间，单位秒
-        # @type KeepTime: Integer
-        # @param LbType: 负载均衡方式，取值[1(加权轮询)]
-        # @type LbType: Integer
-        # @param SourceList: 回源列表
-        # @type SourceList: Array
-        # @param KeepEnable: 会话保持开关，取值[0(会话保持关闭)，1(会话保持开启)]
-        # @type KeepEnable: Integer
-        # @param Domain: 转发域名
-        # @type Domain: String
         # @param Protocol: 转发协议，取值[http, https]
         # @type Protocol: String
+        # @param Domain: 转发域名
+        # @type Domain: String
+        # @param LbType: 负载均衡方式，取值[1(加权轮询)]
+        # @type LbType: Integer
+        # @param KeepEnable: 会话保持开关，取值[0(会话保持关闭)，1(会话保持开启)]
+        # @type KeepEnable: Integer
+        # @param KeepTime: 会话保持时间，单位秒
+        # @type KeepTime: Integer
         # @param SourceType: 回源方式，取值[1(域名回源)，2(IP回源)]
         # @type SourceType: Integer
-        # @param HttpsToHttpEnable: 是否开启Https协议使用Http回源，取值[0(关闭), 1(开启)]，不填写默认是关闭
-        # @type HttpsToHttpEnable: Integer
+        # @param SourceList: 回源列表
+        # @type SourceList: Array
+        # @param Region: 区域码
+        # @type Region: Integer
+        # @param Id: 资源Id
+        # @type Id: String
+        # @param Ip: 资源Ip
+        # @type Ip: String
+        # @param RuleId: 规则ID，当添加新规则时可以不用填写此字段；当修改或者删除规则时需要填写此字段；
+        # @type RuleId: String
+        # @param RuleName: 规则描述
+        # @type RuleName: String
+        # @param CertType: 证书来源，当转发协议为https时必须填，取值[2(腾讯云托管证书)]，当转发协议为http时也可以填0
+        # @type CertType: Integer
+        # @param SSLId: 当证书来源为腾讯云托管证书时，此字段必须填写托管证书ID
+        # @type SSLId: String
+        # @param Cert: 当证书来源为自有证书时，此字段必须填写证书内容；(因已不再支持自有证书，此字段已弃用，请不用填写此字段)
+        # @type Cert: String
+        # @param PrivateKey: 当证书来源为自有证书时，此字段必须填写证书密钥；(因已不再支持自有证书，此字段已弃用，请不用填写此字段)
+        # @type PrivateKey: String
         # @param Status: 规则状态，取值[0(规则配置成功)，1(规则配置生效中)，2(规则配置失败)，3(规则删除生效中)，5(规则删除失败)，6(规则等待配置)，7(规则等待删除)，8(规则待配置证书)]
         # @type Status: Integer
-        # @param CCLevel: HTTPS协议的CC防护等级
-        # @type CCLevel: String
+        # @param CCStatus: cc防护状态，取值[0(关闭), 1(开启)]
+        # @type CCStatus: Integer
         # @param CCEnable: HTTPS协议的CC防护状态，取值[0(关闭), 1(开启)]
         # @type CCEnable: Integer
         # @param CCThreshold: HTTPS协议的CC防护阈值
         # @type CCThreshold: Integer
-        # @param Region: 区域码
-        # @type Region: Integer
-        # @param RuleName: 规则描述
-        # @type RuleName: String
-        # @param Cert: 当证书来源为自有证书时，此字段必须填写证书内容；(因已不再支持自有证书，此字段已弃用，请不用填写此字段)
-        # @type Cert: String
+        # @param CCLevel: HTTPS协议的CC防护等级
+        # @type CCLevel: String
         # @param ModifyTime: 修改时间
         # @type ModifyTime: String
-        # @param RuleId: 规则ID，当添加新规则时可以不用填写此字段；当修改或者删除规则时需要填写此字段；
-        # @type RuleId: String
-        # @param Ip: 资源Ip
-        # @type Ip: String
-        # @param PrivateKey: 当证书来源为自有证书时，此字段必须填写证书密钥；(因已不再支持自有证书，此字段已弃用，请不用填写此字段)
-        # @type PrivateKey: String
-        # @param CertType: 证书来源，当转发协议为https时必须填，取值[2(腾讯云托管证书)]，当转发协议为http时也可以填0
-        # @type CertType: Integer
+        # @param HttpsToHttpEnable: 是否开启Https协议使用Http回源，取值[0(关闭), 1(开启)]，不填写默认是关闭
+        # @type HttpsToHttpEnable: Integer
         # @param VirtualPort: 接入端口值
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VirtualPort: Integer
-        # @param CCStatus: cc防护状态，取值[0(关闭), 1(开启)]
-        # @type CCStatus: Integer
-        # @param SSLId: 当证书来源为腾讯云托管证书时，此字段必须填写托管证书ID
-        # @type SSLId: String
-        # @param Id: 资源Id
-        # @type Id: String
+        # @param RewriteHttps: http强制跳转https，1表示打开，0表示关闭
+        # @type RewriteHttps: Integer
+        # @param ErrCode: 规则配置失败时的详细错误原因(仅当Status=2时有效)，1001证书不存在，1002证书获取失败，1003证书上传失败，1004证书已过期
+        # @type ErrCode: Integer
 
-        attr_accessor :KeepTime, :LbType, :SourceList, :KeepEnable, :Domain, :Protocol, :SourceType, :HttpsToHttpEnable, :Status, :CCLevel, :CCEnable, :CCThreshold, :Region, :RuleName, :Cert, :ModifyTime, :RuleId, :Ip, :PrivateKey, :CertType, :VirtualPort, :CCStatus, :SSLId, :Id
+        attr_accessor :Protocol, :Domain, :LbType, :KeepEnable, :KeepTime, :SourceType, :SourceList, :Region, :Id, :Ip, :RuleId, :RuleName, :CertType, :SSLId, :Cert, :PrivateKey, :Status, :CCStatus, :CCEnable, :CCThreshold, :CCLevel, :ModifyTime, :HttpsToHttpEnable, :VirtualPort, :RewriteHttps, :ErrCode
         
-        def initialize(keeptime=nil, lbtype=nil, sourcelist=nil, keepenable=nil, domain=nil, protocol=nil, sourcetype=nil, httpstohttpenable=nil, status=nil, cclevel=nil, ccenable=nil, ccthreshold=nil, region=nil, rulename=nil, cert=nil, modifytime=nil, ruleid=nil, ip=nil, privatekey=nil, certtype=nil, virtualport=nil, ccstatus=nil, sslid=nil, id=nil)
-          @KeepTime = keeptime
-          @LbType = lbtype
-          @SourceList = sourcelist
-          @KeepEnable = keepenable
-          @Domain = domain
+        def initialize(protocol=nil, domain=nil, lbtype=nil, keepenable=nil, keeptime=nil, sourcetype=nil, sourcelist=nil, region=nil, id=nil, ip=nil, ruleid=nil, rulename=nil, certtype=nil, sslid=nil, cert=nil, privatekey=nil, status=nil, ccstatus=nil, ccenable=nil, ccthreshold=nil, cclevel=nil, modifytime=nil, httpstohttpenable=nil, virtualport=nil, rewritehttps=nil, errcode=nil)
           @Protocol = protocol
+          @Domain = domain
+          @LbType = lbtype
+          @KeepEnable = keepenable
+          @KeepTime = keeptime
           @SourceType = sourcetype
-          @HttpsToHttpEnable = httpstohttpenable
+          @SourceList = sourcelist
+          @Region = region
+          @Id = id
+          @Ip = ip
+          @RuleId = ruleid
+          @RuleName = rulename
+          @CertType = certtype
+          @SSLId = sslid
+          @Cert = cert
+          @PrivateKey = privatekey
           @Status = status
-          @CCLevel = cclevel
+          @CCStatus = ccstatus
           @CCEnable = ccenable
           @CCThreshold = ccthreshold
-          @Region = region
-          @RuleName = rulename
-          @Cert = cert
+          @CCLevel = cclevel
           @ModifyTime = modifytime
-          @RuleId = ruleid
-          @Ip = ip
-          @PrivateKey = privatekey
-          @CertType = certtype
+          @HttpsToHttpEnable = httpstohttpenable
           @VirtualPort = virtualport
-          @CCStatus = ccstatus
-          @SSLId = sslid
-          @Id = id
+          @RewriteHttps = rewritehttps
+          @ErrCode = errcode
         end
 
         def deserialize(params)
-          @KeepTime = params['KeepTime']
+          @Protocol = params['Protocol']
+          @Domain = params['Domain']
           @LbType = params['LbType']
+          @KeepEnable = params['KeepEnable']
+          @KeepTime = params['KeepTime']
+          @SourceType = params['SourceType']
           unless params['SourceList'].nil?
             @SourceList = []
             params['SourceList'].each do |i|
@@ -6070,27 +6080,25 @@ module TencentCloud
               @SourceList << l4rulesource_tmp
             end
           end
-          @KeepEnable = params['KeepEnable']
-          @Domain = params['Domain']
-          @Protocol = params['Protocol']
-          @SourceType = params['SourceType']
-          @HttpsToHttpEnable = params['HttpsToHttpEnable']
+          @Region = params['Region']
+          @Id = params['Id']
+          @Ip = params['Ip']
+          @RuleId = params['RuleId']
+          @RuleName = params['RuleName']
+          @CertType = params['CertType']
+          @SSLId = params['SSLId']
+          @Cert = params['Cert']
+          @PrivateKey = params['PrivateKey']
           @Status = params['Status']
-          @CCLevel = params['CCLevel']
+          @CCStatus = params['CCStatus']
           @CCEnable = params['CCEnable']
           @CCThreshold = params['CCThreshold']
-          @Region = params['Region']
-          @RuleName = params['RuleName']
-          @Cert = params['Cert']
+          @CCLevel = params['CCLevel']
           @ModifyTime = params['ModifyTime']
-          @RuleId = params['RuleId']
-          @Ip = params['Ip']
-          @PrivateKey = params['PrivateKey']
-          @CertType = params['CertType']
+          @HttpsToHttpEnable = params['HttpsToHttpEnable']
           @VirtualPort = params['VirtualPort']
-          @CCStatus = params['CCStatus']
-          @SSLId = params['SSLId']
-          @Id = params['Id']
+          @RewriteHttps = params['RewriteHttps']
+          @ErrCode = params['ErrCode']
         end
       end
 

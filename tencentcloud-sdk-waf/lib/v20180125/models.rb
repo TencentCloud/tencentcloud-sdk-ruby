@@ -382,6 +382,94 @@ module TencentCloud
         end
       end
 
+      # AddDomainWhiteRule请求参数结构体
+      class AddDomainWhiteRuleRequest < TencentCloud::Common::AbstractModel
+        # @param Domain: 需要添加的域名
+        # @type Domain: String
+        # @param Rules: 需要添加的规则
+        # @type Rules: Array
+        # @param Url: 需要添加的规则url
+        # @type Url: String
+        # @param Function: 规则的方法
+        # @type Function: String
+        # @param Status: 规则的开关
+        # @type Status: Integer
+
+        attr_accessor :Domain, :Rules, :Url, :Function, :Status
+        
+        def initialize(domain=nil, rules=nil, url=nil, function=nil, status=nil)
+          @Domain = domain
+          @Rules = rules
+          @Url = url
+          @Function = function
+          @Status = status
+        end
+
+        def deserialize(params)
+          @Domain = params['Domain']
+          @Rules = params['Rules']
+          @Url = params['Url']
+          @Function = params['Function']
+          @Status = params['Status']
+        end
+      end
+
+      # AddDomainWhiteRule返回参数结构体
+      class AddDomainWhiteRuleResponse < TencentCloud::Common::AbstractModel
+        # @param Id: 规则id
+        # @type Id: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Id, :RequestId
+        
+        def initialize(id=nil, requestid=nil)
+          @Id = id
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # Waf 攻击自动封禁详情
+      class AutoDenyDetail < TencentCloud::Common::AbstractModel
+        # @param AttackTags: 攻击封禁类型标签
+        # @type AttackTags: Array
+        # @param AttackThreshold: 攻击次数阈值
+        # @type AttackThreshold: Integer
+        # @param DefenseStatus: 自动封禁状态
+        # @type DefenseStatus: Integer
+        # @param TimeThreshold: 攻击时间阈值
+        # @type TimeThreshold: Integer
+        # @param DenyTimeThreshold: 自动封禁时间
+        # @type DenyTimeThreshold: Integer
+        # @param LastUpdateTime: 最后更新时间
+        # @type LastUpdateTime: String
+
+        attr_accessor :AttackTags, :AttackThreshold, :DefenseStatus, :TimeThreshold, :DenyTimeThreshold, :LastUpdateTime
+        
+        def initialize(attacktags=nil, attackthreshold=nil, defensestatus=nil, timethreshold=nil, denytimethreshold=nil, lastupdatetime=nil)
+          @AttackTags = attacktags
+          @AttackThreshold = attackthreshold
+          @DefenseStatus = defensestatus
+          @TimeThreshold = timethreshold
+          @DenyTimeThreshold = denytimethreshold
+          @LastUpdateTime = lastupdatetime
+        end
+
+        def deserialize(params)
+          @AttackTags = params['AttackTags']
+          @AttackThreshold = params['AttackThreshold']
+          @DefenseStatus = params['DefenseStatus']
+          @TimeThreshold = params['TimeThreshold']
+          @DenyTimeThreshold = params['DenyTimeThreshold']
+          @LastUpdateTime = params['LastUpdateTime']
+        end
+      end
+
       # bot的趋势图对象
       class BotStatPointItem < TencentCloud::Common::AbstractModel
         # @param TimeStamp: 横坐标
@@ -606,6 +694,47 @@ module TencentCloud
         end
       end
 
+      # DeleteDomainWhiteRules请求参数结构体
+      class DeleteDomainWhiteRulesRequest < TencentCloud::Common::AbstractModel
+        # @param Domain: 需要删除的规则域名
+        # @type Domain: String
+        # @param Ids: 需要删除的白名单规则
+        # @type Ids: Array
+
+        attr_accessor :Domain, :Ids
+        
+        def initialize(domain=nil, ids=nil)
+          @Domain = domain
+          @Ids = ids
+        end
+
+        def deserialize(params)
+          @Domain = params['Domain']
+          @Ids = params['Ids']
+        end
+      end
+
+      # DeleteDomainWhiteRules返回参数结构体
+      class DeleteDomainWhiteRulesResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 出参
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Data: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+        
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Data = params['Data']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DeleteDownloadRecord请求参数结构体
       class DeleteDownloadRecordRequest < TencentCloud::Common::AbstractModel
         # @param Flow: 记录id
@@ -634,6 +763,56 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteIpAccessControl请求参数结构体
+      class DeleteIpAccessControlRequest < TencentCloud::Common::AbstractModel
+        # @param Domain: 域名
+        # @type Domain: String
+        # @param Items: 删除的ip数组
+        # @type Items: Array
+        # @param DeleteAll: 删除对应的域名下的所有黑/白IP名额单
+        # @type DeleteAll: Boolean
+
+        attr_accessor :Domain, :Items, :DeleteAll
+        
+        def initialize(domain=nil, items=nil, deleteall=nil)
+          @Domain = domain
+          @Items = items
+          @DeleteAll = deleteall
+        end
+
+        def deserialize(params)
+          @Domain = params['Domain']
+          @Items = params['Items']
+          @DeleteAll = params['DeleteAll']
+        end
+      end
+
+      # DeleteIpAccessControl返回参数结构体
+      class DeleteIpAccessControlResponse < TencentCloud::Common::AbstractModel
+        # @param FailedItems: 删除失败的条目
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FailedItems: String
+        # @param FailedCount: 删除失败的条目数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FailedCount: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :FailedItems, :FailedCount, :RequestId
+        
+        def initialize(faileditems=nil, failedcount=nil, requestid=nil)
+          @FailedItems = faileditems
+          @FailedCount = failedcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @FailedItems = params['FailedItems']
+          @FailedCount = params['FailedCount']
           @RequestId = params['RequestId']
         end
       end
@@ -827,6 +1006,89 @@ module TencentCloud
         end
       end
 
+      # DescribeAutoDenyIP请求参数结构体
+      class DescribeAutoDenyIPRequest < TencentCloud::Common::AbstractModel
+        # @param Domain: 域名
+        # @type Domain: String
+        # @param Ip: 查询IP自动封禁状态
+        # @type Ip: String
+        # @param Count: 计数标识
+        # @type Count: Integer
+        # @param Category: 类别
+        # @type Category: String
+        # @param VtsMin: 有效时间最小时间戳
+        # @type VtsMin: Integer
+        # @param VtsMax: 有效时间最大时间戳
+        # @type VtsMax: Integer
+        # @param CtsMin: 创建时间最小时间戳
+        # @type CtsMin: Integer
+        # @param CtsMax: 创建时间最大时间戳
+        # @type CtsMax: Integer
+        # @param Skip: 偏移量
+        # @type Skip: Integer
+        # @param Limit: 限制条数
+        # @type Limit: Integer
+        # @param Name: 策略名字
+        # @type Name: String
+        # @param Sort: 排序参数
+        # @type Sort: String
+
+        attr_accessor :Domain, :Ip, :Count, :Category, :VtsMin, :VtsMax, :CtsMin, :CtsMax, :Skip, :Limit, :Name, :Sort
+        
+        def initialize(domain=nil, ip=nil, count=nil, category=nil, vtsmin=nil, vtsmax=nil, ctsmin=nil, ctsmax=nil, skip=nil, limit=nil, name=nil, sort=nil)
+          @Domain = domain
+          @Ip = ip
+          @Count = count
+          @Category = category
+          @VtsMin = vtsmin
+          @VtsMax = vtsmax
+          @CtsMin = ctsmin
+          @CtsMax = ctsmax
+          @Skip = skip
+          @Limit = limit
+          @Name = name
+          @Sort = sort
+        end
+
+        def deserialize(params)
+          @Domain = params['Domain']
+          @Ip = params['Ip']
+          @Count = params['Count']
+          @Category = params['Category']
+          @VtsMin = params['VtsMin']
+          @VtsMax = params['VtsMax']
+          @CtsMin = params['CtsMin']
+          @CtsMax = params['CtsMax']
+          @Skip = params['Skip']
+          @Limit = params['Limit']
+          @Name = params['Name']
+          @Sort = params['Sort']
+        end
+      end
+
+      # DescribeAutoDenyIP返回参数结构体
+      class DescribeAutoDenyIPResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 查询IP封禁状态返回结果
+        # @type Data: :class:`Tencentcloud::Waf.v20180125.models.IpHitItemsData`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+        
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = IpHitItemsData.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeCustomRules接口的翻页参数
       class DescribeCustomRulesPagingInfo < TencentCloud::Common::AbstractModel
         # @param Offset: 当前页码
@@ -972,6 +1234,73 @@ module TencentCloud
         end
       end
 
+      # DescribeDomainWhiteRules请求参数结构体
+      class DescribeDomainWhiteRulesRequest < TencentCloud::Common::AbstractModel
+        # @param Domain: 需要查询的域名
+        # @type Domain: String
+        # @param Url: 请求的白名单匹配路径
+        # @type Url: String
+        # @param Page: 翻到多少页
+        # @type Page: Integer
+        # @param Count: 每页展示的条数
+        # @type Count: Integer
+        # @param Sort: 排序方式
+        # @type Sort: String
+        # @param RuleId: 规则ID
+        # @type RuleId: String
+
+        attr_accessor :Domain, :Url, :Page, :Count, :Sort, :RuleId
+        
+        def initialize(domain=nil, url=nil, page=nil, count=nil, sort=nil, ruleid=nil)
+          @Domain = domain
+          @Url = url
+          @Page = page
+          @Count = count
+          @Sort = sort
+          @RuleId = ruleid
+        end
+
+        def deserialize(params)
+          @Domain = params['Domain']
+          @Url = params['Url']
+          @Page = params['Page']
+          @Count = params['Count']
+          @Sort = params['Sort']
+          @RuleId = params['RuleId']
+        end
+      end
+
+      # DescribeDomainWhiteRules返回参数结构体
+      class DescribeDomainWhiteRulesResponse < TencentCloud::Common::AbstractModel
+        # @param RuleList: 规则列表
+        # @type RuleList: Array
+        # @param Total: 规则的数量
+        # @type Total: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RuleList, :Total, :RequestId
+        
+        def initialize(rulelist=nil, total=nil, requestid=nil)
+          @RuleList = rulelist
+          @Total = total
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['RuleList'].nil?
+            @RuleList = []
+            params['RuleList'].each do |i|
+              rulelist_tmp = RuleList.new
+              rulelist_tmp.deserialize(i)
+              @RuleList << rulelist_tmp
+            end
+          end
+          @Total = params['Total']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeFlowTrend请求参数结构体
       class DescribeFlowTrendRequest < TencentCloud::Common::AbstractModel
         # @param Domain: 需要获取流量趋势的域名, all表示所有域名
@@ -1023,6 +1352,174 @@ module TencentCloud
         end
       end
 
+      # DescribeIpAccessControl请求参数结构体
+      class DescribeIpAccessControlRequest < TencentCloud::Common::AbstractModel
+        # @param Domain: 域名
+        # @type Domain: String
+        # @param Count: 计数标识
+        # @type Count: Integer
+        # @param ActionType: 动作
+        # @type ActionType: Integer
+        # @param VtsMin: 有效时间最小时间戳
+        # @type VtsMin: Integer
+        # @param VtsMax: 有效时间最大时间戳
+        # @type VtsMax: Integer
+        # @param CtsMin: 创建时间最小时间戳
+        # @type CtsMin: Integer
+        # @param CtsMax: 创建时间最大时间戳
+        # @type CtsMax: Integer
+        # @param OffSet: 偏移
+        # @type OffSet: Integer
+        # @param Limit: 限制
+        # @type Limit: Integer
+        # @param Source: 来源
+        # @type Source: String
+        # @param Sort: 排序参数
+        # @type Sort: String
+        # @param Ip: ip
+        # @type Ip: String
+
+        attr_accessor :Domain, :Count, :ActionType, :VtsMin, :VtsMax, :CtsMin, :CtsMax, :OffSet, :Limit, :Source, :Sort, :Ip
+        
+        def initialize(domain=nil, count=nil, actiontype=nil, vtsmin=nil, vtsmax=nil, ctsmin=nil, ctsmax=nil, offset=nil, limit=nil, source=nil, sort=nil, ip=nil)
+          @Domain = domain
+          @Count = count
+          @ActionType = actiontype
+          @VtsMin = vtsmin
+          @VtsMax = vtsmax
+          @CtsMin = ctsmin
+          @CtsMax = ctsmax
+          @OffSet = offset
+          @Limit = limit
+          @Source = source
+          @Sort = sort
+          @Ip = ip
+        end
+
+        def deserialize(params)
+          @Domain = params['Domain']
+          @Count = params['Count']
+          @ActionType = params['ActionType']
+          @VtsMin = params['VtsMin']
+          @VtsMax = params['VtsMax']
+          @CtsMin = params['CtsMin']
+          @CtsMax = params['CtsMax']
+          @OffSet = params['OffSet']
+          @Limit = params['Limit']
+          @Source = params['Source']
+          @Sort = params['Sort']
+          @Ip = params['Ip']
+        end
+      end
+
+      # DescribeIpAccessControl返回参数结构体
+      class DescribeIpAccessControlResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 输出
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Data: :class:`Tencentcloud::Waf.v20180125.models.IpAccessControlData`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+        
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = IpAccessControlData.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeIpHitItems请求参数结构体
+      class DescribeIpHitItemsRequest < TencentCloud::Common::AbstractModel
+        # @param Domain: 域名
+        # @type Domain: String
+        # @param Count: 计数标识
+        # @type Count: Integer
+        # @param Category: 类别
+        # @type Category: String
+        # @param VtsMin: 有效时间最小时间戳
+        # @type VtsMin: Integer
+        # @param VtsMax: 有效时间最大时间戳
+        # @type VtsMax: Integer
+        # @param CtsMin: 创建时间最小时间戳
+        # @type CtsMin: Integer
+        # @param CtsMax: 创建时间最大时间戳
+        # @type CtsMax: Integer
+        # @param Skip: 偏移参数
+        # @type Skip: Integer
+        # @param Limit: 限制数目
+        # @type Limit: Integer
+        # @param Name: 策略名称
+        # @type Name: String
+        # @param Sort: 排序参数
+        # @type Sort: String
+        # @param Ip: IP
+        # @type Ip: String
+
+        attr_accessor :Domain, :Count, :Category, :VtsMin, :VtsMax, :CtsMin, :CtsMax, :Skip, :Limit, :Name, :Sort, :Ip
+        
+        def initialize(domain=nil, count=nil, category=nil, vtsmin=nil, vtsmax=nil, ctsmin=nil, ctsmax=nil, skip=nil, limit=nil, name=nil, sort=nil, ip=nil)
+          @Domain = domain
+          @Count = count
+          @Category = category
+          @VtsMin = vtsmin
+          @VtsMax = vtsmax
+          @CtsMin = ctsmin
+          @CtsMax = ctsmax
+          @Skip = skip
+          @Limit = limit
+          @Name = name
+          @Sort = sort
+          @Ip = ip
+        end
+
+        def deserialize(params)
+          @Domain = params['Domain']
+          @Count = params['Count']
+          @Category = params['Category']
+          @VtsMin = params['VtsMin']
+          @VtsMax = params['VtsMax']
+          @CtsMin = params['CtsMin']
+          @CtsMax = params['CtsMax']
+          @Skip = params['Skip']
+          @Limit = params['Limit']
+          @Name = params['Name']
+          @Sort = params['Sort']
+          @Ip = params['Ip']
+        end
+      end
+
+      # DescribeIpHitItems返回参数结构体
+      class DescribeIpHitItemsResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 结果
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Data: :class:`Tencentcloud::Waf.v20180125.models.IpHitItemsData`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+        
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = IpHitItemsData.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeUserClbWafRegions请求参数结构体
       class DescribeUserClbWafRegionsRequest < TencentCloud::Common::AbstractModel
 
@@ -1051,6 +1548,122 @@ module TencentCloud
 
         def deserialize(params)
           @Data = params['Data']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeWafAutoDenyRules请求参数结构体
+      class DescribeWafAutoDenyRulesRequest < TencentCloud::Common::AbstractModel
+        # @param Domain: 域名
+        # @type Domain: String
+
+        attr_accessor :Domain
+        
+        def initialize(domain=nil)
+          @Domain = domain
+        end
+
+        def deserialize(params)
+          @Domain = params['Domain']
+        end
+      end
+
+      # DescribeWafAutoDenyRules返回参数结构体
+      class DescribeWafAutoDenyRulesResponse < TencentCloud::Common::AbstractModel
+        # @param AttackThreshold: 攻击次数阈值
+        # @type AttackThreshold: Integer
+        # @param TimeThreshold: 攻击时间阈值
+        # @type TimeThreshold: Integer
+        # @param DenyTimeThreshold: 自动封禁时间
+        # @type DenyTimeThreshold: Integer
+        # @param DefenseStatus: 自动封禁状态
+        # @type DefenseStatus: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :AttackThreshold, :TimeThreshold, :DenyTimeThreshold, :DefenseStatus, :RequestId
+        
+        def initialize(attackthreshold=nil, timethreshold=nil, denytimethreshold=nil, defensestatus=nil, requestid=nil)
+          @AttackThreshold = attackthreshold
+          @TimeThreshold = timethreshold
+          @DenyTimeThreshold = denytimethreshold
+          @DefenseStatus = defensestatus
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @AttackThreshold = params['AttackThreshold']
+          @TimeThreshold = params['TimeThreshold']
+          @DenyTimeThreshold = params['DenyTimeThreshold']
+          @DefenseStatus = params['DefenseStatus']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeWafAutoDenyStatus请求参数结构体
+      class DescribeWafAutoDenyStatusRequest < TencentCloud::Common::AbstractModel
+
+        
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeWafAutoDenyStatus返回参数结构体
+      class DescribeWafAutoDenyStatusResponse < TencentCloud::Common::AbstractModel
+        # @param WafAutoDenyDetails: WAF 自动封禁详情
+        # @type WafAutoDenyDetails: :class:`Tencentcloud::Waf.v20180125.models.AutoDenyDetail`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :WafAutoDenyDetails, :RequestId
+        
+        def initialize(wafautodenydetails=nil, requestid=nil)
+          @WafAutoDenyDetails = wafautodenydetails
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['WafAutoDenyDetails'].nil?
+            @WafAutoDenyDetails = AutoDenyDetail.new
+            @WafAutoDenyDetails.deserialize(params['WafAutoDenyDetails'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeWafThreatenIntelligence请求参数结构体
+      class DescribeWafThreatenIntelligenceRequest < TencentCloud::Common::AbstractModel
+
+        
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeWafThreatenIntelligence返回参数结构体
+      class DescribeWafThreatenIntelligenceResponse < TencentCloud::Common::AbstractModel
+        # @param WafThreatenIntelligenceDetails: WAF 威胁情报封禁信息
+        # @type WafThreatenIntelligenceDetails: :class:`Tencentcloud::Waf.v20180125.models.WafThreatenIntelligenceDetails`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :WafThreatenIntelligenceDetails, :RequestId
+        
+        def initialize(wafthreatenintelligencedetails=nil, requestid=nil)
+          @WafThreatenIntelligenceDetails = wafthreatenintelligencedetails
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['WafThreatenIntelligenceDetails'].nil?
+            @WafThreatenIntelligenceDetails = WafThreatenIntelligenceDetails.new
+            @WafThreatenIntelligenceDetails.deserialize(params['WafThreatenIntelligenceDetails'])
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -1118,6 +1731,134 @@ module TencentCloud
           @To = params['To']
           @CosPath = params['CosPath']
           @CreateTime = params['CreateTime']
+        end
+      end
+
+      # 数据封装
+      class IpAccessControlData < TencentCloud::Common::AbstractModel
+        # @param Res: ip黑白名单
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Res: Array
+        # @param TotalCount: 计数
+        # @type TotalCount: Integer
+
+        attr_accessor :Res, :TotalCount
+        
+        def initialize(res=nil, totalcount=nil)
+          @Res = res
+          @TotalCount = totalcount
+        end
+
+        def deserialize(params)
+          unless params['Res'].nil?
+            @Res = []
+            params['Res'].each do |i|
+              ipaccesscontrolitem_tmp = IpAccessControlItem.new
+              ipaccesscontrolitem_tmp.deserialize(i)
+              @Res << ipaccesscontrolitem_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+        end
+      end
+
+      # ip黑白名单
+      class IpAccessControlItem < TencentCloud::Common::AbstractModel
+        # @param ActionType: 动作
+        # @type ActionType: Integer
+        # @param Ip: ip
+        # @type Ip: String
+        # @param Note: 备注
+        # @type Note: String
+        # @param Source: 来源
+        # @type Source: String
+        # @param TsVersion: 更新时间戳
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TsVersion: Integer
+        # @param ValidTs: 有效截止时间戳
+        # @type ValidTs: Integer
+
+        attr_accessor :ActionType, :Ip, :Note, :Source, :TsVersion, :ValidTs
+        
+        def initialize(actiontype=nil, ip=nil, note=nil, source=nil, tsversion=nil, validts=nil)
+          @ActionType = actiontype
+          @Ip = ip
+          @Note = note
+          @Source = source
+          @TsVersion = tsversion
+          @ValidTs = validts
+        end
+
+        def deserialize(params)
+          @ActionType = params['ActionType']
+          @Ip = params['Ip']
+          @Note = params['Note']
+          @Source = params['Source']
+          @TsVersion = params['TsVersion']
+          @ValidTs = params['ValidTs']
+        end
+      end
+
+      # ip封堵状态数据
+      class IpHitItem < TencentCloud::Common::AbstractModel
+        # @param Action: 动作
+        # @type Action: Integer
+        # @param Category: 类别
+        # @type Category: String
+        # @param Ip: ip
+        # @type Ip: String
+        # @param Name: 规则名称
+        # @type Name: String
+        # @param TsVersion: 时间戳
+        # @type TsVersion: Integer
+        # @param ValidTs: 有效截止时间戳
+        # @type ValidTs: Integer
+
+        attr_accessor :Action, :Category, :Ip, :Name, :TsVersion, :ValidTs
+        
+        def initialize(action=nil, category=nil, ip=nil, name=nil, tsversion=nil, validts=nil)
+          @Action = action
+          @Category = category
+          @Ip = ip
+          @Name = name
+          @TsVersion = tsversion
+          @ValidTs = validts
+        end
+
+        def deserialize(params)
+          @Action = params['Action']
+          @Category = params['Category']
+          @Ip = params['Ip']
+          @Name = params['Name']
+          @TsVersion = params['TsVersion']
+          @ValidTs = params['ValidTs']
+        end
+      end
+
+      # 封装参数
+      class IpHitItemsData < TencentCloud::Common::AbstractModel
+        # @param Res: 数组封装
+        # @type Res: Array
+        # @param TotalCount: 总数目
+        # @type TotalCount: Integer
+
+        attr_accessor :Res, :TotalCount
+        
+        def initialize(res=nil, totalcount=nil)
+          @Res = res
+          @TotalCount = totalcount
+        end
+
+        def deserialize(params)
+          unless params['Res'].nil?
+            @Res = []
+            params['Res'].each do |i|
+              iphititem_tmp = IpHitItem.new
+              iphititem_tmp.deserialize(i)
+              @Res << iphititem_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
         end
       end
 
@@ -1208,6 +1949,197 @@ module TencentCloud
         end
       end
 
+      # ModifyDomainWhiteRule请求参数结构体
+      class ModifyDomainWhiteRuleRequest < TencentCloud::Common::AbstractModel
+        # @param Domain: 需要更改的规则的域名
+        # @type Domain: String
+        # @param Id: 白名单id
+        # @type Id: Integer
+        # @param Rules: 规则的id列表
+        # @type Rules: Array
+        # @param Url: 规则匹配路径
+        # @type Url: String
+        # @param Function: 规则匹配方法
+        # @type Function: String
+        # @param Status: 规则的开关状态
+        # @type Status: Integer
+
+        attr_accessor :Domain, :Id, :Rules, :Url, :Function, :Status
+        
+        def initialize(domain=nil, id=nil, rules=nil, url=nil, function=nil, status=nil)
+          @Domain = domain
+          @Id = id
+          @Rules = rules
+          @Url = url
+          @Function = function
+          @Status = status
+        end
+
+        def deserialize(params)
+          @Domain = params['Domain']
+          @Id = params['Id']
+          @Rules = params['Rules']
+          @Url = params['Url']
+          @Function = params['Function']
+          @Status = params['Status']
+        end
+      end
+
+      # ModifyDomainWhiteRule返回参数结构体
+      class ModifyDomainWhiteRuleResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyWafAutoDenyRules请求参数结构体
+      class ModifyWafAutoDenyRulesRequest < TencentCloud::Common::AbstractModel
+        # @param Domain: 域名
+        # @type Domain: String
+        # @param AttackThreshold: 攻击次数阈值
+        # @type AttackThreshold: Integer
+        # @param TimeThreshold: 攻击时间阈值
+        # @type TimeThreshold: Integer
+        # @param DenyTimeThreshold: 自动封禁时间
+        # @type DenyTimeThreshold: Integer
+        # @param DefenseStatus: 自动封禁状态
+        # @type DefenseStatus: Integer
+
+        attr_accessor :Domain, :AttackThreshold, :TimeThreshold, :DenyTimeThreshold, :DefenseStatus
+        
+        def initialize(domain=nil, attackthreshold=nil, timethreshold=nil, denytimethreshold=nil, defensestatus=nil)
+          @Domain = domain
+          @AttackThreshold = attackthreshold
+          @TimeThreshold = timethreshold
+          @DenyTimeThreshold = denytimethreshold
+          @DefenseStatus = defensestatus
+        end
+
+        def deserialize(params)
+          @Domain = params['Domain']
+          @AttackThreshold = params['AttackThreshold']
+          @TimeThreshold = params['TimeThreshold']
+          @DenyTimeThreshold = params['DenyTimeThreshold']
+          @DefenseStatus = params['DefenseStatus']
+        end
+      end
+
+      # ModifyWafAutoDenyRules返回参数结构体
+      class ModifyWafAutoDenyRulesResponse < TencentCloud::Common::AbstractModel
+        # @param Success: 成功的状态码，需要JSON解码后再使用，返回的格式是{"域名":"状态"}，成功的状态码为Success，其它的为失败的状态码（yunapi定义的错误码）
+        # @type Success: :class:`Tencentcloud::Waf.v20180125.models.ResponseCode`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Success, :RequestId
+        
+        def initialize(success=nil, requestid=nil)
+          @Success = success
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Success'].nil?
+            @Success = ResponseCode.new
+            @Success.deserialize(params['Success'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyWafAutoDenyStatus请求参数结构体
+      class ModifyWafAutoDenyStatusRequest < TencentCloud::Common::AbstractModel
+        # @param WafAutoDenyDetails: WAF 自动封禁配置项
+        # @type WafAutoDenyDetails: :class:`Tencentcloud::Waf.v20180125.models.AutoDenyDetail`
+
+        attr_accessor :WafAutoDenyDetails
+        
+        def initialize(wafautodenydetails=nil)
+          @WafAutoDenyDetails = wafautodenydetails
+        end
+
+        def deserialize(params)
+          unless params['WafAutoDenyDetails'].nil?
+            @WafAutoDenyDetails = AutoDenyDetail.new
+            @WafAutoDenyDetails.deserialize(params['WafAutoDenyDetails'])
+          end
+        end
+      end
+
+      # ModifyWafAutoDenyStatus返回参数结构体
+      class ModifyWafAutoDenyStatusResponse < TencentCloud::Common::AbstractModel
+        # @param WafAutoDenyDetails: WAF 自动封禁配置项
+        # @type WafAutoDenyDetails: :class:`Tencentcloud::Waf.v20180125.models.AutoDenyDetail`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :WafAutoDenyDetails, :RequestId
+        
+        def initialize(wafautodenydetails=nil, requestid=nil)
+          @WafAutoDenyDetails = wafautodenydetails
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['WafAutoDenyDetails'].nil?
+            @WafAutoDenyDetails = AutoDenyDetail.new
+            @WafAutoDenyDetails.deserialize(params['WafAutoDenyDetails'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyWafThreatenIntelligence请求参数结构体
+      class ModifyWafThreatenIntelligenceRequest < TencentCloud::Common::AbstractModel
+        # @param WafThreatenIntelligenceDetails: 配置WAF威胁情报封禁模块详情
+        # @type WafThreatenIntelligenceDetails: :class:`Tencentcloud::Waf.v20180125.models.WafThreatenIntelligenceDetails`
+
+        attr_accessor :WafThreatenIntelligenceDetails
+        
+        def initialize(wafthreatenintelligencedetails=nil)
+          @WafThreatenIntelligenceDetails = wafthreatenintelligencedetails
+        end
+
+        def deserialize(params)
+          unless params['WafThreatenIntelligenceDetails'].nil?
+            @WafThreatenIntelligenceDetails = WafThreatenIntelligenceDetails.new
+            @WafThreatenIntelligenceDetails.deserialize(params['WafThreatenIntelligenceDetails'])
+          end
+        end
+      end
+
+      # ModifyWafThreatenIntelligence返回参数结构体
+      class ModifyWafThreatenIntelligenceResponse < TencentCloud::Common::AbstractModel
+        # @param WafThreatenIntelligenceDetails: 当前WAF威胁情报封禁模块详情
+        # @type WafThreatenIntelligenceDetails: :class:`Tencentcloud::Waf.v20180125.models.WafThreatenIntelligenceDetails`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :WafThreatenIntelligenceDetails, :RequestId
+        
+        def initialize(wafthreatenintelligencedetails=nil, requestid=nil)
+          @WafThreatenIntelligenceDetails = wafthreatenintelligencedetails
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['WafThreatenIntelligenceDetails'].nil?
+            @WafThreatenIntelligenceDetails = WafThreatenIntelligenceDetails.new
+            @WafThreatenIntelligenceDetails.deserialize(params['WafThreatenIntelligenceDetails'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 响应体的返回码
       class ResponseCode < TencentCloud::Common::AbstractModel
         # @param Code: 如果成功则返回Success，失败则返回yunapi定义的错误码
@@ -1225,6 +2157,42 @@ module TencentCloud
         def deserialize(params)
           @Code = params['Code']
           @Message = params['Message']
+        end
+      end
+
+      # 规则白名单
+      class RuleList < TencentCloud::Common::AbstractModel
+        # @param Id: 规则Id
+        # @type Id: Integer
+        # @param Rules: 规则列表的id
+        # @type Rules: Array
+        # @param Url: 请求url
+        # @type Url: String
+        # @param Function: 请求的方法
+        # @type Function: String
+        # @param Time: 时间戳
+        # @type Time: String
+        # @param Status: 开关状态
+        # @type Status: Integer
+
+        attr_accessor :Id, :Rules, :Url, :Function, :Time, :Status
+        
+        def initialize(id=nil, rules=nil, url=nil, function=nil, time=nil, status=nil)
+          @Id = id
+          @Rules = rules
+          @Url = url
+          @Function = function
+          @Time = time
+          @Status = status
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @Rules = params['Rules']
+          @Url = params['Url']
+          @Function = params['Function']
+          @Time = params['Time']
+          @Status = params['Status']
         end
       end
 
@@ -1353,6 +2321,81 @@ module TencentCloud
           @CompareFunc = params['CompareFunc']
           @Content = params['Content']
           @Arg = params['Arg']
+        end
+      end
+
+      # UpsertIpAccessControl请求参数结构体
+      class UpsertIpAccessControlRequest < TencentCloud::Common::AbstractModel
+        # @param Domain: 域名
+        # @type Domain: String
+        # @param Items: ip 参数列表，json数组由ip，source，note，action，valid_ts组成。ip对应配置的ip地址，source固定为custom值，note为注释，action值42为黑名单，40为白名单，valid_ts为有效日期，值为秒级时间戳
+        # @type Items: Array
+        # @param Edition: clb-waf或者sparta-waf
+        # @type Edition: String
+
+        attr_accessor :Domain, :Items, :Edition
+        
+        def initialize(domain=nil, items=nil, edition=nil)
+          @Domain = domain
+          @Items = items
+          @Edition = edition
+        end
+
+        def deserialize(params)
+          @Domain = params['Domain']
+          @Items = params['Items']
+          @Edition = params['Edition']
+        end
+      end
+
+      # UpsertIpAccessControl返回参数结构体
+      class UpsertIpAccessControlResponse < TencentCloud::Common::AbstractModel
+        # @param FailedItems: 添加或修改失败的条目
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FailedItems: String
+        # @param FailedCount: 添加或修改失败的数目
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FailedCount: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :FailedItems, :FailedCount, :RequestId
+        
+        def initialize(faileditems=nil, failedcount=nil, requestid=nil)
+          @FailedItems = faileditems
+          @FailedCount = failedcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @FailedItems = params['FailedItems']
+          @FailedCount = params['FailedCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # Waf 威胁情报封禁模块配置详情
+      class WafThreatenIntelligenceDetails < TencentCloud::Common::AbstractModel
+        # @param DefenseStatus: 封禁模组启用状态
+        # @type DefenseStatus: Integer
+        # @param Tags: 封禁属性标签
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Tags: Array
+        # @param LastUpdateTime: 最后更新时间
+        # @type LastUpdateTime: String
+
+        attr_accessor :DefenseStatus, :Tags, :LastUpdateTime
+        
+        def initialize(defensestatus=nil, tags=nil, lastupdatetime=nil)
+          @DefenseStatus = defensestatus
+          @Tags = tags
+          @LastUpdateTime = lastupdatetime
+        end
+
+        def deserialize(params)
+          @DefenseStatus = params['DefenseStatus']
+          @Tags = params['Tags']
+          @LastUpdateTime = params['LastUpdateTime']
         end
       end
 
