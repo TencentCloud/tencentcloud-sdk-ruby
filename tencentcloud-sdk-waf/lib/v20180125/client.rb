@@ -77,6 +77,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 添加Spart防护域名
+
+        # @param request: Request instance for AddSpartaProtection.
+        # @type request: :class:`Tencentcloud::waf::V20180125::AddSpartaProtectionRequest`
+        # @rtype: :class:`Tencentcloud::waf::V20180125::AddSpartaProtectionResponse`
+        def AddSpartaProtection(request)
+          body = send_request('AddSpartaProtection', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = AddSpartaProtectionResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口用于创建访问日志导出
 
         # @param request: Request instance for CreateAccessExport.

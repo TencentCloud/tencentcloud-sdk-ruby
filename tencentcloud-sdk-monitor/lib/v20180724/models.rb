@@ -6854,15 +6854,19 @@ module TencentCloud
         # @param EndTime: 通知结束时间 一天开始的秒数
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EndTime: Integer
+        # @param Weekday: 通知周期 1-7表示周一到周日
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Weekday: Array
 
-        attr_accessor :URL, :IsValid, :ValidationCode, :StartTime, :EndTime
+        attr_accessor :URL, :IsValid, :ValidationCode, :StartTime, :EndTime, :Weekday
         
-        def initialize(url=nil, isvalid=nil, validationcode=nil, starttime=nil, endtime=nil)
+        def initialize(url=nil, isvalid=nil, validationcode=nil, starttime=nil, endtime=nil, weekday=nil)
           @URL = url
           @IsValid = isvalid
           @ValidationCode = validationcode
           @StartTime = starttime
           @EndTime = endtime
+          @Weekday = weekday
         end
 
         def deserialize(params)
@@ -6871,6 +6875,7 @@ module TencentCloud
           @ValidationCode = params['ValidationCode']
           @StartTime = params['StartTime']
           @EndTime = params['EndTime']
+          @Weekday = params['Weekday']
         end
       end
 
@@ -7194,10 +7199,13 @@ module TencentCloud
         # @param PhoneCallType: 电话拨打类型 SYNC=同时拨打 CIRCLE=轮询拨打 不指定时默认是轮询
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PhoneCallType: String
+        # @param Weekday: 通知周期 1-7表示周一到周日
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Weekday: Array
 
-        attr_accessor :ReceiverType, :StartTime, :EndTime, :NoticeWay, :UserIds, :GroupIds, :PhoneOrder, :PhoneCircleTimes, :PhoneInnerInterval, :PhoneCircleInterval, :NeedPhoneArriveNotice, :PhoneCallType
+        attr_accessor :ReceiverType, :StartTime, :EndTime, :NoticeWay, :UserIds, :GroupIds, :PhoneOrder, :PhoneCircleTimes, :PhoneInnerInterval, :PhoneCircleInterval, :NeedPhoneArriveNotice, :PhoneCallType, :Weekday
         
-        def initialize(receivertype=nil, starttime=nil, endtime=nil, noticeway=nil, userids=nil, groupids=nil, phoneorder=nil, phonecircletimes=nil, phoneinnerinterval=nil, phonecircleinterval=nil, needphonearrivenotice=nil, phonecalltype=nil)
+        def initialize(receivertype=nil, starttime=nil, endtime=nil, noticeway=nil, userids=nil, groupids=nil, phoneorder=nil, phonecircletimes=nil, phoneinnerinterval=nil, phonecircleinterval=nil, needphonearrivenotice=nil, phonecalltype=nil, weekday=nil)
           @ReceiverType = receivertype
           @StartTime = starttime
           @EndTime = endtime
@@ -7210,6 +7218,7 @@ module TencentCloud
           @PhoneCircleInterval = phonecircleinterval
           @NeedPhoneArriveNotice = needphonearrivenotice
           @PhoneCallType = phonecalltype
+          @Weekday = weekday
         end
 
         def deserialize(params)
@@ -7225,6 +7234,7 @@ module TencentCloud
           @PhoneCircleInterval = params['PhoneCircleInterval']
           @NeedPhoneArriveNotice = params['NeedPhoneArriveNotice']
           @PhoneCallType = params['PhoneCallType']
+          @Weekday = params['Weekday']
         end
       end
 

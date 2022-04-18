@@ -434,6 +434,133 @@ module TencentCloud
         end
       end
 
+      # AddSpartaProtection请求参数结构体
+      class AddSpartaProtectionRequest < TencentCloud::Common::AbstractModel
+        # @param Domain: 需要防御的域名
+        # @type Domain: String
+        # @param CertType: 证书类型，0表示没有证书，CertType=1表示自有证书,2 为托管证书
+        # @type CertType: Integer
+        # @param IsCdn: 表示是否开启了CDN代理，1：有部署CDN，0：未部署CDN
+        # @type IsCdn: Integer
+        # @param UpstreamType: 回源类型，0表示通过IP回源,1 表示通过域名回源
+        # @type UpstreamType: Integer
+        # @param IsWebsocket: 是否开启WebSocket支持，1表示开启，0不开启
+        # @type IsWebsocket: Integer
+        # @param LoadBalance: 负载均衡策略，0表示轮徇，1表示IP hash
+        # @type LoadBalance: String
+        # @param Cert: CertType=1时，需要填次参数，表示证书内容
+        # @type Cert: String
+        # @param PrivateKey: CertType=1时，需要填次参数，表示证书的私钥
+        # @type PrivateKey: String
+        # @param SSLId: CertType=2时，需要填次参数，表示证书的ID
+        # @type SSLId: String
+        # @param ResourceId: Waf的资源ID
+        # @type ResourceId: String
+        # @param UpstreamScheme: HTTPS回源协议，填http或者https
+        # @type UpstreamScheme: String
+        # @param HttpsUpstreamPort: HTTPS回源端口,仅UpstreamScheme为http时需要填当前字段
+        # @type HttpsUpstreamPort: String
+        # @param IsGray: 是否开启灰度，0表示不开启灰度
+        # @type IsGray: Integer
+        # @param GrayAreas: 灰度的地区
+        # @type GrayAreas: Array
+        # @param UpstreamDomain: UpstreamType=1时，填次字段表示回源域名
+        # @type UpstreamDomain: String
+        # @param SrcList: UpstreamType=0时，填次字段表示回源ip
+        # @type SrcList: Array
+        # @param IsHttp2: 是否开启HTTP2,开启HTTP2需要HTTPS支持
+        # @type IsHttp2: Integer
+        # @param HttpsRewrite: 表示是否强制跳转到HTTPS，1强制跳转Https，0不强制跳转
+        # @type HttpsRewrite: Integer
+        # @param Ports: 服务有多端口需要设置此字段
+        # @type Ports: Array
+        # @param Edition: 版本：sparta-waf、clb-waf、cdn-waf
+        # @type Edition: String
+        # @param IsKeepAlive: 是否开启长连接，仅IP回源时可以用填次参数，域名回源时这个参数无效
+        # @type IsKeepAlive: String
+        # @param InstanceID: 实例id，上线之后带上此字段
+        # @type InstanceID: String
+        # @param Anycast: anycast ip类型开关： 0 普通ip 1 Anycast ip
+        # @type Anycast: Integer
+
+        attr_accessor :Domain, :CertType, :IsCdn, :UpstreamType, :IsWebsocket, :LoadBalance, :Cert, :PrivateKey, :SSLId, :ResourceId, :UpstreamScheme, :HttpsUpstreamPort, :IsGray, :GrayAreas, :UpstreamDomain, :SrcList, :IsHttp2, :HttpsRewrite, :Ports, :Edition, :IsKeepAlive, :InstanceID, :Anycast
+        
+        def initialize(domain=nil, certtype=nil, iscdn=nil, upstreamtype=nil, iswebsocket=nil, loadbalance=nil, cert=nil, privatekey=nil, sslid=nil, resourceid=nil, upstreamscheme=nil, httpsupstreamport=nil, isgray=nil, grayareas=nil, upstreamdomain=nil, srclist=nil, ishttp2=nil, httpsrewrite=nil, ports=nil, edition=nil, iskeepalive=nil, instanceid=nil, anycast=nil)
+          @Domain = domain
+          @CertType = certtype
+          @IsCdn = iscdn
+          @UpstreamType = upstreamtype
+          @IsWebsocket = iswebsocket
+          @LoadBalance = loadbalance
+          @Cert = cert
+          @PrivateKey = privatekey
+          @SSLId = sslid
+          @ResourceId = resourceid
+          @UpstreamScheme = upstreamscheme
+          @HttpsUpstreamPort = httpsupstreamport
+          @IsGray = isgray
+          @GrayAreas = grayareas
+          @UpstreamDomain = upstreamdomain
+          @SrcList = srclist
+          @IsHttp2 = ishttp2
+          @HttpsRewrite = httpsrewrite
+          @Ports = ports
+          @Edition = edition
+          @IsKeepAlive = iskeepalive
+          @InstanceID = instanceid
+          @Anycast = anycast
+        end
+
+        def deserialize(params)
+          @Domain = params['Domain']
+          @CertType = params['CertType']
+          @IsCdn = params['IsCdn']
+          @UpstreamType = params['UpstreamType']
+          @IsWebsocket = params['IsWebsocket']
+          @LoadBalance = params['LoadBalance']
+          @Cert = params['Cert']
+          @PrivateKey = params['PrivateKey']
+          @SSLId = params['SSLId']
+          @ResourceId = params['ResourceId']
+          @UpstreamScheme = params['UpstreamScheme']
+          @HttpsUpstreamPort = params['HttpsUpstreamPort']
+          @IsGray = params['IsGray']
+          @GrayAreas = params['GrayAreas']
+          @UpstreamDomain = params['UpstreamDomain']
+          @SrcList = params['SrcList']
+          @IsHttp2 = params['IsHttp2']
+          @HttpsRewrite = params['HttpsRewrite']
+          unless params['Ports'].nil?
+            @Ports = []
+            params['Ports'].each do |i|
+              portitem_tmp = PortItem.new
+              portitem_tmp.deserialize(i)
+              @Ports << portitem_tmp
+            end
+          end
+          @Edition = params['Edition']
+          @IsKeepAlive = params['IsKeepAlive']
+          @InstanceID = params['InstanceID']
+          @Anycast = params['Anycast']
+        end
+      end
+
+      # AddSpartaProtection返回参数结构体
+      class AddSpartaProtectionResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # Waf 攻击自动封禁详情
       class AutoDenyDetail < TencentCloud::Common::AbstractModel
         # @param AttackTags: 攻击封禁类型标签
@@ -2137,6 +2264,38 @@ module TencentCloud
             @WafThreatenIntelligenceDetails.deserialize(params['WafThreatenIntelligenceDetails'])
           end
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 防护域名端口配置信息
+      class PortItem < TencentCloud::Common::AbstractModel
+        # @param Port: 监听端口配置
+        # @type Port: String
+        # @param Protocol: 与Port一一对应，表示端口对应的协议
+        # @type Protocol: String
+        # @param UpstreamPort: 与Port一一对应,  表示回源端口
+        # @type UpstreamPort: String
+        # @param UpstreamProtocol: 与Port一一对应,  表示回源协议
+        # @type UpstreamProtocol: String
+        # @param NginxServerId: Nginx的服务器ID
+        # @type NginxServerId: String
+
+        attr_accessor :Port, :Protocol, :UpstreamPort, :UpstreamProtocol, :NginxServerId
+        
+        def initialize(port=nil, protocol=nil, upstreamport=nil, upstreamprotocol=nil, nginxserverid=nil)
+          @Port = port
+          @Protocol = protocol
+          @UpstreamPort = upstreamport
+          @UpstreamProtocol = upstreamprotocol
+          @NginxServerId = nginxserverid
+        end
+
+        def deserialize(params)
+          @Port = params['Port']
+          @Protocol = params['Protocol']
+          @UpstreamPort = params['UpstreamPort']
+          @UpstreamProtocol = params['UpstreamProtocol']
+          @NginxServerId = params['NginxServerId']
         end
       end
 

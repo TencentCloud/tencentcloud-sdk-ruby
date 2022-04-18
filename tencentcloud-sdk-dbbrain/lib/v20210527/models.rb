@@ -198,7 +198,7 @@ module TencentCloud
       class CreateKillTaskRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: kill会话任务的关联实例ID。
         # @type InstanceId: String
-        # @param Duration: 任务持续时间时间，单位秒，手动关闭任务传-1。
+        # @param Duration: 任务持续时间，单位秒，手动关闭任务传-1。
         # @type Duration: Integer
         # @param Host: 任务过滤条件，客户端IP。
         # @type Host: String
@@ -2430,7 +2430,7 @@ module TencentCloud
       class MailConfiguration < TencentCloud::Common::AbstractModel
         # @param SendMail: 是否开启邮件发送: 0, 否; 1, 是。
         # @type SendMail: Integer
-        # @param Region: 地域配置, 如["ap-guangzhou", "ap-shanghai"]。巡检的邮件发送模版，配置需要发送巡检邮件的地域；订阅的邮件发送模版，配置当前订阅实例的所属地域。
+        # @param Region: 地域配置, 如["ap-guangzhou", "ap-shanghai"]。巡检的邮件发送模板，配置需要发送巡检邮件的地域；订阅的邮件发送模板，配置当前订阅实例的所属地域。
         # @type Region: Array
         # @param HealthStatus: 发送指定的健康等级的报告, 如["HEALTH", "SUB_HEALTH", "RISK", "HIGH_RISK"]。
         # @type HealthStatus: Array

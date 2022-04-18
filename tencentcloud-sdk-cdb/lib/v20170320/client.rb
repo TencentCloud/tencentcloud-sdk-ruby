@@ -2873,7 +2873,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 重置实例ROOT账，初始化账号权限
+        # 重置实例ROOT账号，初始化账号权限
 
         # @param request: Request instance for ResetRootAccount.
         # @type request: :class:`Tencentcloud::cdb::V20170320::ResetRootAccountRequest`

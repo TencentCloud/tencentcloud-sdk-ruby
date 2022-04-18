@@ -2998,7 +2998,7 @@ module TencentCloud
         # @type RuleId: String
         # @param RuleWord: 命中主题集下的自定义规则策略
         # @type RuleWord: String
-        # @param ScanUrl: 扫描监测url"
+        # @param ScanUrl: 扫描监测url
         # @type ScanUrl: String
         # @param ScanCount: 扫描监测命中次数
         # @type ScanCount: String
