@@ -4270,44 +4270,70 @@ module TencentCloud
         # 图片存储于腾讯云的 Url 可保障更高的下载速度和稳定性，建议图片存储于腾讯云。
         # 非腾讯云存储的 Url 速度和稳定性可能受一定影响。
         # @type ImageUrl: String
+        # @param Type: 需要识别的健康码类型列表，为空或不填表示默认为粤康码。
 
-        attr_accessor :ImageBase64, :ImageUrl
+        # 1:粤康码
+
+        # 2:随申码
+
+        # 3:健康宝
+        # @type Type: Integer
+
+        attr_accessor :ImageBase64, :ImageUrl, :Type
         
-        def initialize(imagebase64=nil, imageurl=nil)
+        def initialize(imagebase64=nil, imageurl=nil, type=nil)
           @ImageBase64 = imagebase64
           @ImageUrl = imageurl
+          @Type = type
         end
 
         def deserialize(params)
           @ImageBase64 = params['ImageBase64']
           @ImageUrl = params['ImageUrl']
+          @Type = params['Type']
         end
       end
 
       # RecognizeHealthCodeOCR返回参数结构体
       class RecognizeHealthCodeOCRResponse < TencentCloud::Common::AbstractModel
-        # @param Name: 持码人姓名
+        # @param Name: 持码人姓名，如：王*
         # @type Name: String
+        # @param IDNumber: 持码人身份证号，如：11**************01
+        # @type IDNumber: String
         # @param Time: 健康码更新时间，格式为：XXXX-XX-XX XX:XX:XX
         # @type Time: String
         # @param Color: 健康码颜色：绿色、黄色、红色
         # @type Color: String
+        # @param TestingInterval: 核酸检测间隔时长：24小时、48小时、72小时、暂无核酸检测记录
+        # @type TestingInterval: String
+        # @param TestingResult: 核酸检测结果：阴性、阳性、暂无核酸检测记录
+        # @type TestingResult: String
+        # @param TestingTime: 核酸检测时间，格式为：XXXX-XX-XX XX:XX
+        # @type TestingTime: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Name, :Time, :Color, :RequestId
+        attr_accessor :Name, :IDNumber, :Time, :Color, :TestingInterval, :TestingResult, :TestingTime, :RequestId
         
-        def initialize(name=nil, time=nil, color=nil, requestid=nil)
+        def initialize(name=nil, idnumber=nil, time=nil, color=nil, testinginterval=nil, testingresult=nil, testingtime=nil, requestid=nil)
           @Name = name
+          @IDNumber = idnumber
           @Time = time
           @Color = color
+          @TestingInterval = testinginterval
+          @TestingResult = testingresult
+          @TestingTime = testingtime
           @RequestId = requestid
         end
 
         def deserialize(params)
           @Name = params['Name']
+          @IDNumber = params['IDNumber']
           @Time = params['Time']
           @Color = params['Color']
+          @TestingInterval = params['TestingInterval']
+          @TestingResult = params['TestingResult']
+          @TestingTime = params['TestingTime']
           @RequestId = params['RequestId']
         end
       end
