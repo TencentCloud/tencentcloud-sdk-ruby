@@ -466,7 +466,7 @@ module TencentCloud
         # @type GrayAreas: Array
         # @param UpstreamDomain: UpstreamType=1时，填次字段表示回源域名
         # @type UpstreamDomain: String
-        # @param SrcList: UpstreamType=0时，填次字段表示回源ip
+        # @param SrcList: UpstreamType=0时，填次字段表示回源IP
         # @type SrcList: Array
         # @param IsHttp2: 是否开启HTTP2,开启HTTP2需要HTTPS支持
         # @type IsHttp2: Integer
@@ -480,12 +480,14 @@ module TencentCloud
         # @type IsKeepAlive: String
         # @param InstanceID: 实例id，上线之后带上此字段
         # @type InstanceID: String
-        # @param Anycast: anycast ip类型开关： 0 普通ip 1 Anycast ip
+        # @param Anycast: anycast IP类型开关： 0 普通IP 1 Anycast IP
         # @type Anycast: Integer
+        # @param Weights: src权重
+        # @type Weights: Array
 
-        attr_accessor :Domain, :CertType, :IsCdn, :UpstreamType, :IsWebsocket, :LoadBalance, :Cert, :PrivateKey, :SSLId, :ResourceId, :UpstreamScheme, :HttpsUpstreamPort, :IsGray, :GrayAreas, :UpstreamDomain, :SrcList, :IsHttp2, :HttpsRewrite, :Ports, :Edition, :IsKeepAlive, :InstanceID, :Anycast
+        attr_accessor :Domain, :CertType, :IsCdn, :UpstreamType, :IsWebsocket, :LoadBalance, :Cert, :PrivateKey, :SSLId, :ResourceId, :UpstreamScheme, :HttpsUpstreamPort, :IsGray, :GrayAreas, :UpstreamDomain, :SrcList, :IsHttp2, :HttpsRewrite, :Ports, :Edition, :IsKeepAlive, :InstanceID, :Anycast, :Weights
         
-        def initialize(domain=nil, certtype=nil, iscdn=nil, upstreamtype=nil, iswebsocket=nil, loadbalance=nil, cert=nil, privatekey=nil, sslid=nil, resourceid=nil, upstreamscheme=nil, httpsupstreamport=nil, isgray=nil, grayareas=nil, upstreamdomain=nil, srclist=nil, ishttp2=nil, httpsrewrite=nil, ports=nil, edition=nil, iskeepalive=nil, instanceid=nil, anycast=nil)
+        def initialize(domain=nil, certtype=nil, iscdn=nil, upstreamtype=nil, iswebsocket=nil, loadbalance=nil, cert=nil, privatekey=nil, sslid=nil, resourceid=nil, upstreamscheme=nil, httpsupstreamport=nil, isgray=nil, grayareas=nil, upstreamdomain=nil, srclist=nil, ishttp2=nil, httpsrewrite=nil, ports=nil, edition=nil, iskeepalive=nil, instanceid=nil, anycast=nil, weights=nil)
           @Domain = domain
           @CertType = certtype
           @IsCdn = iscdn
@@ -509,6 +511,7 @@ module TencentCloud
           @IsKeepAlive = iskeepalive
           @InstanceID = instanceid
           @Anycast = anycast
+          @Weights = weights
         end
 
         def deserialize(params)
@@ -542,6 +545,7 @@ module TencentCloud
           @IsKeepAlive = params['IsKeepAlive']
           @InstanceID = params['InstanceID']
           @Anycast = params['Anycast']
+          @Weights = params['Weights']
         end
       end
 
@@ -1428,6 +1432,69 @@ module TencentCloud
         end
       end
 
+      # DescribeDomains请求参数结构体
+      class DescribeDomainsRequest < TencentCloud::Common::AbstractModel
+        # @param Offset: 偏移
+        # @type Offset: Integer
+        # @param Limit: 容量
+        # @type Limit: Integer
+        # @param Filters: 过滤数组
+        # @type Filters: Array
+
+        attr_accessor :Offset, :Limit, :Filters
+        
+        def initialize(offset=nil, limit=nil, filters=nil)
+          @Offset = offset
+          @Limit = limit
+          @Filters = filters
+        end
+
+        def deserialize(params)
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filtersitemnew_tmp = FiltersItemNew.new
+              filtersitemnew_tmp.deserialize(i)
+              @Filters << filtersitemnew_tmp
+            end
+          end
+        end
+      end
+
+      # DescribeDomains返回参数结构体
+      class DescribeDomainsResponse < TencentCloud::Common::AbstractModel
+        # @param Total: 总数
+        # @type Total: Integer
+        # @param Domains: domain列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Domains: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Total, :Domains, :RequestId
+        
+        def initialize(total=nil, domains=nil, requestid=nil)
+          @Total = total
+          @Domains = domains
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Total = params['Total']
+          unless params['Domains'].nil?
+            @Domains = []
+            params['Domains'].each do |i|
+              domaininfo_tmp = DomainInfo.new
+              domaininfo_tmp.deserialize(i)
+              @Domains << domaininfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeFlowTrend请求参数结构体
       class DescribeFlowTrendRequest < TencentCloud::Common::AbstractModel
         # @param Domain: 需要获取流量趋势的域名, all表示所有域名
@@ -1795,6 +1862,17 @@ module TencentCloud
         end
       end
 
+      # 域名的详细信息
+      class DomainInfo < TencentCloud::Common::AbstractModel
+
+        
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
       # DescribeAccessExports接口
       class ExportAccessInfo < TencentCloud::Common::AbstractModel
         # @param ExportId: 日志导出任务ID
@@ -1858,6 +1936,30 @@ module TencentCloud
           @To = params['To']
           @CosPath = params['CosPath']
           @CreateTime = params['CreateTime']
+        end
+      end
+
+      # 实例入参过滤器
+      class FiltersItemNew < TencentCloud::Common::AbstractModel
+        # @param Name: 字段名
+        # @type Name: String
+        # @param Values: 过滤值
+        # @type Values: Array
+        # @param ExactMatch: 是否精确查找
+        # @type ExactMatch: Boolean
+
+        attr_accessor :Name, :Values, :ExactMatch
+        
+        def initialize(name=nil, values=nil, exactmatch=nil)
+          @Name = name
+          @Values = values
+          @ExactMatch = exactmatch
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Values = params['Values']
+          @ExactMatch = params['ExactMatch']
         end
       end
 

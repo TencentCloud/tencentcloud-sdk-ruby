@@ -1397,10 +1397,12 @@ module TencentCloud
         # @type MinInsyncReplicas: Integer
         # @param UncleanLeaderElectionEnable: 是否允许未同步的副本选为leader，false:不允许，true:允许，默认不允许
         # @type UncleanLeaderElectionEnable: Integer
-        # @param RetentionMs: 可消息选。保留时间，单位ms，当前最小值为60000ms
+        # @param RetentionMs: 可选参数。消息保留时间，单位ms，当前最小值为60000ms
         # @type RetentionMs: Integer
         # @param SegmentMs: Segment分片滚动的时长，单位ms，当前最小为3600000ms
         # @type SegmentMs: Integer
+        # @param MaxMessageBytes: 主题消息最大值，单位为 Byte，最小值1024Byte(即1KB)，最大值为8388608Byte（即8MB）。
+        # @type MaxMessageBytes: Integer
         # @param EnableAclRule: 预设ACL规则, 1:打开  0:关闭，默认不打开
         # @type EnableAclRule: Integer
         # @param AclRuleName: 预设ACL规则的名称
@@ -1410,9 +1412,9 @@ module TencentCloud
         # @param Tags: 标签列表
         # @type Tags: Array
 
-        attr_accessor :InstanceId, :TopicName, :PartitionNum, :ReplicaNum, :EnableWhiteList, :IpWhiteList, :CleanUpPolicy, :Note, :MinInsyncReplicas, :UncleanLeaderElectionEnable, :RetentionMs, :SegmentMs, :EnableAclRule, :AclRuleName, :RetentionBytes, :Tags
+        attr_accessor :InstanceId, :TopicName, :PartitionNum, :ReplicaNum, :EnableWhiteList, :IpWhiteList, :CleanUpPolicy, :Note, :MinInsyncReplicas, :UncleanLeaderElectionEnable, :RetentionMs, :SegmentMs, :MaxMessageBytes, :EnableAclRule, :AclRuleName, :RetentionBytes, :Tags
         
-        def initialize(instanceid=nil, topicname=nil, partitionnum=nil, replicanum=nil, enablewhitelist=nil, ipwhitelist=nil, cleanuppolicy=nil, note=nil, mininsyncreplicas=nil, uncleanleaderelectionenable=nil, retentionms=nil, segmentms=nil, enableaclrule=nil, aclrulename=nil, retentionbytes=nil, tags=nil)
+        def initialize(instanceid=nil, topicname=nil, partitionnum=nil, replicanum=nil, enablewhitelist=nil, ipwhitelist=nil, cleanuppolicy=nil, note=nil, mininsyncreplicas=nil, uncleanleaderelectionenable=nil, retentionms=nil, segmentms=nil, maxmessagebytes=nil, enableaclrule=nil, aclrulename=nil, retentionbytes=nil, tags=nil)
           @InstanceId = instanceid
           @TopicName = topicname
           @PartitionNum = partitionnum
@@ -1425,6 +1427,7 @@ module TencentCloud
           @UncleanLeaderElectionEnable = uncleanleaderelectionenable
           @RetentionMs = retentionms
           @SegmentMs = segmentms
+          @MaxMessageBytes = maxmessagebytes
           @EnableAclRule = enableaclrule
           @AclRuleName = aclrulename
           @RetentionBytes = retentionbytes
@@ -1444,6 +1447,7 @@ module TencentCloud
           @UncleanLeaderElectionEnable = params['UncleanLeaderElectionEnable']
           @RetentionMs = params['RetentionMs']
           @SegmentMs = params['SegmentMs']
+          @MaxMessageBytes = params['MaxMessageBytes']
           @EnableAclRule = params['EnableAclRule']
           @AclRuleName = params['AclRuleName']
           @RetentionBytes = params['RetentionBytes']
@@ -2316,14 +2320,16 @@ module TencentCloud
         # @type Limit: Integer
         # @param TagKey: 匹配标签key值。
         # @type TagKey: String
-        # @param Filters: 过滤器。
+        # @param Filters: 过滤器。filter.Name 支持('Ip', 'VpcId', 'SubNetId', 'InstanceType','InstanceId') ,filter.Values最多传递10个值.
         # @type Filters: Array
         # @param InstanceIds: 已经废弃， 使用InstanceIdList
         # @type InstanceIds: String
+        # @param InstanceIdList: 按照实例ID过滤
+        # @type InstanceIdList: Array
 
-        attr_accessor :InstanceId, :SearchWord, :Status, :Offset, :Limit, :TagKey, :Filters, :InstanceIds
+        attr_accessor :InstanceId, :SearchWord, :Status, :Offset, :Limit, :TagKey, :Filters, :InstanceIds, :InstanceIdList
         
-        def initialize(instanceid=nil, searchword=nil, status=nil, offset=nil, limit=nil, tagkey=nil, filters=nil, instanceids=nil)
+        def initialize(instanceid=nil, searchword=nil, status=nil, offset=nil, limit=nil, tagkey=nil, filters=nil, instanceids=nil, instanceidlist=nil)
           @InstanceId = instanceid
           @SearchWord = searchword
           @Status = status
@@ -2332,6 +2338,7 @@ module TencentCloud
           @TagKey = tagkey
           @Filters = filters
           @InstanceIds = instanceids
+          @InstanceIdList = instanceidlist
         end
 
         def deserialize(params)
@@ -2350,6 +2357,7 @@ module TencentCloud
             end
           end
           @InstanceIds = params['InstanceIds']
+          @InstanceIdList = params['InstanceIdList']
         end
       end
 

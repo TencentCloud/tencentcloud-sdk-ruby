@@ -1953,6 +1953,27 @@ module TencentCloud
         end
       end
 
+      # 启发式自定义时间缓存配置
+      class CacheConfig < TencentCloud::Common::AbstractModel
+        # @param HeuristicCacheTimeSwitch: on 代表开启自定义启发式缓存时间
+        # off 代表关闭自定义启发式缓存时间
+        # @type HeuristicCacheTimeSwitch: String
+        # @param HeuristicCacheTime: 单位 秒.
+        # @type HeuristicCacheTime: Integer
+
+        attr_accessor :HeuristicCacheTimeSwitch, :HeuristicCacheTime
+        
+        def initialize(heuristiccachetimeswitch=nil, heuristiccachetime=nil)
+          @HeuristicCacheTimeSwitch = heuristiccachetimeswitch
+          @HeuristicCacheTime = heuristiccachetime
+        end
+
+        def deserialize(params)
+          @HeuristicCacheTimeSwitch = params['HeuristicCacheTimeSwitch']
+          @HeuristicCacheTime = params['HeuristicCacheTime']
+        end
+      end
+
       # 路径缓存缓存配置
       class CacheConfigCache < TencentCloud::Common::AbstractModel
         # @param Switch: 缓存配置开关
@@ -2008,15 +2029,23 @@ module TencentCloud
         # on：开启
         # off：关闭
         # @type Switch: String
+        # @param HeuristicCache: 启发式缓存配置
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HeuristicCache: :class:`Tencentcloud::Cdn.v20180606.models.HeuristicCache`
 
-        attr_accessor :Switch
+        attr_accessor :Switch, :HeuristicCache
         
-        def initialize(switch=nil)
+        def initialize(switch=nil, heuristiccache=nil)
           @Switch = switch
+          @HeuristicCache = heuristiccache
         end
 
         def deserialize(params)
           @Switch = params['Switch']
+          unless params['HeuristicCache'].nil?
+            @HeuristicCache = HeuristicCache.new
+            @HeuristicCache.deserialize(params['HeuristicCache'])
+          end
         end
       end
 
@@ -3301,10 +3330,12 @@ module TencentCloud
         # @type Metric: String
         # @param Product: 指定查询的产品数据，可选为cdn或者ecdn，默认为cdn
         # @type Product: String
+        # @param TimeZone: 指定查询时间的时区，默认UTC+08:00
+        # @type TimeZone: String
 
-        attr_accessor :StartTime, :EndTime, :Interval, :Domain, :Project, :Area, :District, :Metric, :Product
+        attr_accessor :StartTime, :EndTime, :Interval, :Domain, :Project, :Area, :District, :Metric, :Product, :TimeZone
         
-        def initialize(starttime=nil, endtime=nil, interval=nil, domain=nil, project=nil, area=nil, district=nil, metric=nil, product=nil)
+        def initialize(starttime=nil, endtime=nil, interval=nil, domain=nil, project=nil, area=nil, district=nil, metric=nil, product=nil, timezone=nil)
           @StartTime = starttime
           @EndTime = endtime
           @Interval = interval
@@ -3314,6 +3345,7 @@ module TencentCloud
           @District = district
           @Metric = metric
           @Product = product
+          @TimeZone = timezone
         end
 
         def deserialize(params)
@@ -3326,6 +3358,7 @@ module TencentCloud
           @District = params['District']
           @Metric = params['Metric']
           @Product = params['Product']
+          @TimeZone = params['TimeZone']
         end
       end
 
@@ -3561,10 +3594,12 @@ module TencentCloud
         # @type AreaType: String
         # @param Product: 指定查询的产品数据，可选为cdn或者ecdn，默认为cdn
         # @type Product: String
+        # @param TimeZone: 指定查询时间的时区，默认UTC+08:00
+        # @type TimeZone: String
 
-        attr_accessor :StartTime, :EndTime, :Metric, :Domains, :Project, :Interval, :Detail, :Isp, :District, :Protocol, :DataSource, :IpProtocol, :Area, :AreaType, :Product
+        attr_accessor :StartTime, :EndTime, :Metric, :Domains, :Project, :Interval, :Detail, :Isp, :District, :Protocol, :DataSource, :IpProtocol, :Area, :AreaType, :Product, :TimeZone
         
-        def initialize(starttime=nil, endtime=nil, metric=nil, domains=nil, project=nil, interval=nil, detail=nil, isp=nil, district=nil, protocol=nil, datasource=nil, ipprotocol=nil, area=nil, areatype=nil, product=nil)
+        def initialize(starttime=nil, endtime=nil, metric=nil, domains=nil, project=nil, interval=nil, detail=nil, isp=nil, district=nil, protocol=nil, datasource=nil, ipprotocol=nil, area=nil, areatype=nil, product=nil, timezone=nil)
           @StartTime = starttime
           @EndTime = endtime
           @Metric = metric
@@ -3580,6 +3615,7 @@ module TencentCloud
           @Area = area
           @AreaType = areatype
           @Product = product
+          @TimeZone = timezone
         end
 
         def deserialize(params)
@@ -3598,6 +3634,7 @@ module TencentCloud
           @Area = params['Area']
           @AreaType = params['AreaType']
           @Product = params['Product']
+          @TimeZone = params['TimeZone']
         end
       end
 
@@ -4619,10 +4656,12 @@ module TencentCloud
         # mainland：指定查询中国境内 CDN 数据
         # overseas：指定查询中国境外 CDN 数据
         # @type Area: String
+        # @param TimeZone: 指定查询时间的时区，默认UTC+08:00
+        # @type TimeZone: String
 
-        attr_accessor :StartTime, :EndTime, :Metric, :Domains, :Project, :Interval, :Detail, :Area
+        attr_accessor :StartTime, :EndTime, :Metric, :Domains, :Project, :Interval, :Detail, :Area, :TimeZone
         
-        def initialize(starttime=nil, endtime=nil, metric=nil, domains=nil, project=nil, interval=nil, detail=nil, area=nil)
+        def initialize(starttime=nil, endtime=nil, metric=nil, domains=nil, project=nil, interval=nil, detail=nil, area=nil, timezone=nil)
           @StartTime = starttime
           @EndTime = endtime
           @Metric = metric
@@ -4631,6 +4670,7 @@ module TencentCloud
           @Interval = interval
           @Detail = detail
           @Area = area
+          @TimeZone = timezone
         end
 
         def deserialize(params)
@@ -4642,6 +4682,7 @@ module TencentCloud
           @Interval = params['Interval']
           @Detail = params['Detail']
           @Area = params['Area']
+          @TimeZone = params['TimeZone']
         end
       end
 
@@ -7297,6 +7338,30 @@ module TencentCloud
         def deserialize(params)
           @Switch = params['Switch']
           @Value = params['Value']
+        end
+      end
+
+      # 启发式缓存配置
+      class HeuristicCache < TencentCloud::Common::AbstractModel
+        # @param Switch: on 代表开启启发式缓存
+        # off 代表关闭启发式缓存
+        # @type Switch: String
+        # @param CacheConfig: 自定义启发式缓存时间配置
+        # @type CacheConfig: :class:`Tencentcloud::Cdn.v20180606.models.CacheConfig`
+
+        attr_accessor :Switch, :CacheConfig
+        
+        def initialize(switch=nil, cacheconfig=nil)
+          @Switch = switch
+          @CacheConfig = cacheconfig
+        end
+
+        def deserialize(params)
+          @Switch = params['Switch']
+          unless params['CacheConfig'].nil?
+            @CacheConfig = CacheConfig.new
+            @CacheConfig.deserialize(params['CacheConfig'])
+          end
         end
       end
 
@@ -12563,6 +12628,8 @@ module TencentCloud
         # @type OfflineCache: :class:`Tencentcloud::Cdn.v20180606.models.OfflineCache`
         # @param OriginCombine: 合并回源
         # @type OriginCombine: :class:`Tencentcloud::Cdn.v20180606.models.OriginCombine`
+        # @param PostMaxSize: POST请求传输配置
+        # @type PostMaxSize: :class:`Tencentcloud::Cdn.v20180606.models.PostSize`
         # @param Quic: Quic访问（收费服务，详见计费说明和产品文档）
         # @type Quic: :class:`Tencentcloud::Cdn.v20180606.models.Quic`
         # @param OssPrivateAccess: 回源OSS私有鉴权
@@ -12578,9 +12645,9 @@ module TencentCloud
         # @param QnPrivateAccess: 七牛云对象存储回源鉴权
         # @type QnPrivateAccess: :class:`Tencentcloud::Cdn.v20180606.models.QnPrivateAccess`
 
-        attr_accessor :Domain, :ProjectId, :Origin, :IpFilter, :IpFreqLimit, :StatusCodeCache, :Compression, :BandwidthAlert, :RangeOriginPull, :FollowRedirect, :ErrorPage, :RequestHeader, :ResponseHeader, :DownstreamCapping, :CacheKey, :ResponseHeaderCache, :VideoSeek, :Cache, :OriginPullOptimization, :Https, :Authentication, :Seo, :ForceRedirect, :Referer, :MaxAge, :SpecificConfig, :ServiceType, :Area, :OriginPullTimeout, :AwsPrivateAccess, :UserAgentFilter, :AccessControl, :UrlRedirect, :AccessPort, :AdvancedAuthentication, :OriginAuthentication, :Ipv6Access, :OfflineCache, :OriginCombine, :Quic, :OssPrivateAccess, :WebSocket, :RemoteAuthentication, :ShareCname, :HwPrivateAccess, :QnPrivateAccess
+        attr_accessor :Domain, :ProjectId, :Origin, :IpFilter, :IpFreqLimit, :StatusCodeCache, :Compression, :BandwidthAlert, :RangeOriginPull, :FollowRedirect, :ErrorPage, :RequestHeader, :ResponseHeader, :DownstreamCapping, :CacheKey, :ResponseHeaderCache, :VideoSeek, :Cache, :OriginPullOptimization, :Https, :Authentication, :Seo, :ForceRedirect, :Referer, :MaxAge, :SpecificConfig, :ServiceType, :Area, :OriginPullTimeout, :AwsPrivateAccess, :UserAgentFilter, :AccessControl, :UrlRedirect, :AccessPort, :AdvancedAuthentication, :OriginAuthentication, :Ipv6Access, :OfflineCache, :OriginCombine, :PostMaxSize, :Quic, :OssPrivateAccess, :WebSocket, :RemoteAuthentication, :ShareCname, :HwPrivateAccess, :QnPrivateAccess
         
-        def initialize(domain=nil, projectid=nil, origin=nil, ipfilter=nil, ipfreqlimit=nil, statuscodecache=nil, compression=nil, bandwidthalert=nil, rangeoriginpull=nil, followredirect=nil, errorpage=nil, requestheader=nil, responseheader=nil, downstreamcapping=nil, cachekey=nil, responseheadercache=nil, videoseek=nil, cache=nil, originpulloptimization=nil, https=nil, authentication=nil, seo=nil, forceredirect=nil, referer=nil, maxage=nil, specificconfig=nil, servicetype=nil, area=nil, originpulltimeout=nil, awsprivateaccess=nil, useragentfilter=nil, accesscontrol=nil, urlredirect=nil, accessport=nil, advancedauthentication=nil, originauthentication=nil, ipv6access=nil, offlinecache=nil, origincombine=nil, quic=nil, ossprivateaccess=nil, websocket=nil, remoteauthentication=nil, sharecname=nil, hwprivateaccess=nil, qnprivateaccess=nil)
+        def initialize(domain=nil, projectid=nil, origin=nil, ipfilter=nil, ipfreqlimit=nil, statuscodecache=nil, compression=nil, bandwidthalert=nil, rangeoriginpull=nil, followredirect=nil, errorpage=nil, requestheader=nil, responseheader=nil, downstreamcapping=nil, cachekey=nil, responseheadercache=nil, videoseek=nil, cache=nil, originpulloptimization=nil, https=nil, authentication=nil, seo=nil, forceredirect=nil, referer=nil, maxage=nil, specificconfig=nil, servicetype=nil, area=nil, originpulltimeout=nil, awsprivateaccess=nil, useragentfilter=nil, accesscontrol=nil, urlredirect=nil, accessport=nil, advancedauthentication=nil, originauthentication=nil, ipv6access=nil, offlinecache=nil, origincombine=nil, postmaxsize=nil, quic=nil, ossprivateaccess=nil, websocket=nil, remoteauthentication=nil, sharecname=nil, hwprivateaccess=nil, qnprivateaccess=nil)
           @Domain = domain
           @ProjectId = projectid
           @Origin = origin
@@ -12620,6 +12687,7 @@ module TencentCloud
           @Ipv6Access = ipv6access
           @OfflineCache = offlinecache
           @OriginCombine = origincombine
+          @PostMaxSize = postmaxsize
           @Quic = quic
           @OssPrivateAccess = ossprivateaccess
           @WebSocket = websocket
@@ -12770,6 +12838,10 @@ module TencentCloud
           unless params['OriginCombine'].nil?
             @OriginCombine = OriginCombine.new
             @OriginCombine.deserialize(params['OriginCombine'])
+          end
+          unless params['PostMaxSize'].nil?
+            @PostMaxSize = PostSize.new
+            @PostMaxSize.deserialize(params['PostMaxSize'])
           end
           unless params['Quic'].nil?
             @Quic = Quic.new

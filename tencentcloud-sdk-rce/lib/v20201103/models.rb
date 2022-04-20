@@ -323,10 +323,12 @@ module TencentCloud
         # @type Sponsor: :class:`Tencentcloud::Rce.v20201103.models.SponsorInfo`
         # @param OnlineScam: 可选填写。详情请跳转至OnlineScamInfo查看。
         # @type OnlineScam: :class:`Tencentcloud::Rce.v20201103.models.OnlineScamInfo`
+        # @param Platform: 平台: 1android
+        # @type Platform: String
 
-        attr_accessor :Account, :SceneCode, :UserIp, :PostTime, :UserId, :DeviceToken, :DeviceBusinessId, :BusinessId, :Nickname, :EmailAddress, :CheckDevice, :CookieHash, :Referer, :UserAgent, :XForwardedFor, :MacAddress, :VendorId, :DeviceType, :Details, :Sponsor, :OnlineScam
+        attr_accessor :Account, :SceneCode, :UserIp, :PostTime, :UserId, :DeviceToken, :DeviceBusinessId, :BusinessId, :Nickname, :EmailAddress, :CheckDevice, :CookieHash, :Referer, :UserAgent, :XForwardedFor, :MacAddress, :VendorId, :DeviceType, :Details, :Sponsor, :OnlineScam, :Platform
         
-        def initialize(account=nil, scenecode=nil, userip=nil, posttime=nil, userid=nil, devicetoken=nil, devicebusinessid=nil, businessid=nil, nickname=nil, emailaddress=nil, checkdevice=nil, cookiehash=nil, referer=nil, useragent=nil, xforwardedfor=nil, macaddress=nil, vendorid=nil, devicetype=nil, details=nil, sponsor=nil, onlinescam=nil)
+        def initialize(account=nil, scenecode=nil, userip=nil, posttime=nil, userid=nil, devicetoken=nil, devicebusinessid=nil, businessid=nil, nickname=nil, emailaddress=nil, checkdevice=nil, cookiehash=nil, referer=nil, useragent=nil, xforwardedfor=nil, macaddress=nil, vendorid=nil, devicetype=nil, details=nil, sponsor=nil, onlinescam=nil, platform=nil)
           @Account = account
           @SceneCode = scenecode
           @UserIp = userip
@@ -348,6 +350,7 @@ module TencentCloud
           @Details = details
           @Sponsor = sponsor
           @OnlineScam = onlinescam
+          @Platform = platform
         end
 
         def deserialize(params)
@@ -388,6 +391,7 @@ module TencentCloud
             @OnlineScam = OnlineScamInfo.new
             @OnlineScam.deserialize(params['OnlineScam'])
           end
+          @Platform = params['Platform']
         end
       end
 
@@ -718,16 +722,20 @@ module TencentCloud
         # 2063 疑似 群控设备 请求设备为猫池、手机墙等群控设备
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RiskType: Array
+        # @param ConstId: 唯一ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ConstId: String
 
-        attr_accessor :UserId, :PostTime, :AssociateAccount, :UserIp, :RiskLevel, :RiskType
+        attr_accessor :UserId, :PostTime, :AssociateAccount, :UserIp, :RiskLevel, :RiskType, :ConstId
         
-        def initialize(userid=nil, posttime=nil, associateaccount=nil, userip=nil, risklevel=nil, risktype=nil)
+        def initialize(userid=nil, posttime=nil, associateaccount=nil, userip=nil, risklevel=nil, risktype=nil, constid=nil)
           @UserId = userid
           @PostTime = posttime
           @AssociateAccount = associateaccount
           @UserIp = userip
           @RiskLevel = risklevel
           @RiskType = risktype
+          @ConstId = constid
         end
 
         def deserialize(params)
@@ -737,6 +745,7 @@ module TencentCloud
           @UserIp = params['UserIp']
           @RiskLevel = params['RiskLevel']
           @RiskType = params['RiskType']
+          @ConstId = params['ConstId']
         end
       end
 

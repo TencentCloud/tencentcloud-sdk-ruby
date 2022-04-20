@@ -2200,20 +2200,23 @@ module TencentCloud
       class CreatePluginRequest < TencentCloud::Common::AbstractModel
         # @param PluginName: 用户自定义的插件名称。最长50个字符，最短2个字符，支持 a-z,A-Z,0-9,_, 必须字母开头，字母或者数字结尾。
         # @type PluginName: String
-        # @param PluginType: 插件类型。目前支持IPControl, TrafficControl, Cors, CustomReq, CustomAuth，Routing，TrafficControlByParameter。
+        # @param PluginType: 插件类型。目前支持IPControl, TrafficControl, Cors, CustomReq, CustomAuth，Routing，TrafficControlByParameter, CircuitBreaker, ProxyCache。
         # @type PluginType: String
         # @param PluginData: 插件定义语句，支持json。
         # @type PluginData: String
         # @param Description: 插件描述，限定200字以内。
         # @type Description: String
+        # @param Tags: 标签
+        # @type Tags: Array
 
-        attr_accessor :PluginName, :PluginType, :PluginData, :Description
+        attr_accessor :PluginName, :PluginType, :PluginData, :Description, :Tags
         
-        def initialize(pluginname=nil, plugintype=nil, plugindata=nil, description=nil)
+        def initialize(pluginname=nil, plugintype=nil, plugindata=nil, description=nil, tags=nil)
           @PluginName = pluginname
           @PluginType = plugintype
           @PluginData = plugindata
           @Description = description
+          @Tags = tags
         end
 
         def deserialize(params)
@@ -2221,6 +2224,14 @@ module TencentCloud
           @PluginType = params['PluginType']
           @PluginData = params['PluginData']
           @Description = params['Description']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
+            end
+          end
         end
       end
 
@@ -2361,36 +2372,45 @@ module TencentCloud
 
       # CreateUpstream请求参数结构体
       class CreateUpstreamRequest < TencentCloud::Common::AbstractModel
-        # @param Scheme: 后端协议，HTTP, HTTPS其中之一
+        # @param Scheme: 后端协议，取值范围：HTTP, HTTPS
         # @type Scheme: String
-        # @param Algorithm: 负载均衡算法目前支持ROUND_ROBIN
+        # @param Algorithm: 负载均衡算法，取值范围：ROUND-ROBIN
         # @type Algorithm: String
         # @param UniqVpcId: VPC唯一ID
         # @type UniqVpcId: String
-        # @param UpstreamName: VPC通道名字
+        # @param UpstreamName: 后端通道名字
         # @type UpstreamName: String
-        # @param UpstreamDescription: VPC通道描述
+        # @param UpstreamDescription: 后端通道描述
         # @type UpstreamDescription: String
+        # @param UpstreamType: 后端访问类型，取值范围：IP_PORT, K8S
+        # @type UpstreamType: String
         # @param Retries: 请求重试次数，默认3次
         # @type Retries: Integer
-        # @param UpstreamHost: 请求到后端的，host头
+        # @param UpstreamHost: 网关转发到后端的Host请求头
         # @type UpstreamHost: String
         # @param Nodes: 后端节点
         # @type Nodes: Array
-        # @param K8sService: k8s服务的配置
+        # @param Tags: 标签
+        # @type Tags: Array
+        # @param HealthChecker: 健康检查配置，目前只支持VPC通道
+        # @type HealthChecker: :class:`Tencentcloud::Apigateway.v20180808.models.UpstreamHealthChecker`
+        # @param K8sService: K8S容器服务的配置
         # @type K8sService: Array
 
-        attr_accessor :Scheme, :Algorithm, :UniqVpcId, :UpstreamName, :UpstreamDescription, :Retries, :UpstreamHost, :Nodes, :K8sService
+        attr_accessor :Scheme, :Algorithm, :UniqVpcId, :UpstreamName, :UpstreamDescription, :UpstreamType, :Retries, :UpstreamHost, :Nodes, :Tags, :HealthChecker, :K8sService
         
-        def initialize(scheme=nil, algorithm=nil, uniqvpcid=nil, upstreamname=nil, upstreamdescription=nil, retries=nil, upstreamhost=nil, nodes=nil, k8sservice=nil)
+        def initialize(scheme=nil, algorithm=nil, uniqvpcid=nil, upstreamname=nil, upstreamdescription=nil, upstreamtype=nil, retries=nil, upstreamhost=nil, nodes=nil, tags=nil, healthchecker=nil, k8sservice=nil)
           @Scheme = scheme
           @Algorithm = algorithm
           @UniqVpcId = uniqvpcid
           @UpstreamName = upstreamname
           @UpstreamDescription = upstreamdescription
+          @UpstreamType = upstreamtype
           @Retries = retries
           @UpstreamHost = upstreamhost
           @Nodes = nodes
+          @Tags = tags
+          @HealthChecker = healthchecker
           @K8sService = k8sservice
         end
 
@@ -2400,6 +2420,7 @@ module TencentCloud
           @UniqVpcId = params['UniqVpcId']
           @UpstreamName = params['UpstreamName']
           @UpstreamDescription = params['UpstreamDescription']
+          @UpstreamType = params['UpstreamType']
           @Retries = params['Retries']
           @UpstreamHost = params['UpstreamHost']
           unless params['Nodes'].nil?
@@ -2409,6 +2430,18 @@ module TencentCloud
               upstreamnode_tmp.deserialize(i)
               @Nodes << upstreamnode_tmp
             end
+          end
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
+            end
+          end
+          unless params['HealthChecker'].nil?
+            @HealthChecker = UpstreamHealthChecker.new
+            @HealthChecker.deserialize(params['HealthChecker'])
           end
           unless params['K8sService'].nil?
             @K8sService = []
@@ -2423,7 +2456,7 @@ module TencentCloud
 
       # CreateUpstream返回参数结构体
       class CreateUpstreamResponse < TencentCloud::Common::AbstractModel
-        # @param UpstreamId: 创建返回的唯一id
+        # @param UpstreamId: 创建返回的唯一ID
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UpstreamId: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
@@ -2809,7 +2842,7 @@ module TencentCloud
 
       # DeleteUpstream请求参数结构体
       class DeleteUpstreamRequest < TencentCloud::Common::AbstractModel
-        # @param UpstreamId: 待删除的VPC通道唯一ID
+        # @param UpstreamId: 待删除的后端通道ID
         # @type UpstreamId: String
 
         attr_accessor :UpstreamId
@@ -2825,7 +2858,7 @@ module TencentCloud
 
       # DeleteUpstream返回参数结构体
       class DeleteUpstreamResponse < TencentCloud::Common::AbstractModel
-        # @param UpstreamId: 成功删除的vpc通道id
+        # @param UpstreamId: 成功删除的后端通道ID
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UpstreamId: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
@@ -4730,7 +4763,7 @@ module TencentCloud
         # @param DeploymentType: 服务部署的集群类型
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DeploymentType: String
-        # @param SpecialUse: 特殊用途
+        # @param SpecialUse: 特殊用途, NULL和DEFAULT表示无特殊用途，其他用途如HTTP_DNS等
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SpecialUse: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
@@ -5042,11 +5075,11 @@ module TencentCloud
 
       # DescribeUpstreamBindApis请求参数结构体
       class DescribeUpstreamBindApisRequest < TencentCloud::Common::AbstractModel
-        # @param Limit: 分页
+        # @param Limit: 分页大小
         # @type Limit: Integer
-        # @param Offset: 分页
+        # @param Offset: 分页起始位置
         # @type Offset: Integer
-        # @param UpstreamId: vpc通道Id
+        # @param UpstreamId: 后端通道ID
         # @type UpstreamId: String
         # @param Filters: ServiceId和ApiId过滤查询
         # @type Filters: Array
@@ -5098,7 +5131,7 @@ module TencentCloud
         end
       end
 
-      # 查询vpc通道返回信息
+      # 查询后端通道返回信息
       class DescribeUpstreamInfo < TencentCloud::Common::AbstractModel
         # @param TotalCount: 查询总数
         # @type TotalCount: Integer
@@ -5127,11 +5160,11 @@ module TencentCloud
 
       # DescribeUpstreams请求参数结构体
       class DescribeUpstreamsRequest < TencentCloud::Common::AbstractModel
-        # @param Limit: 分页
+        # @param Limit: 分页大小
         # @type Limit: Integer
-        # @param Offset: 分页
+        # @param Offset: 分页起始位置
         # @type Offset: Integer
-        # @param Filters: 过滤条件
+        # @param Filters: 过滤条件，支持后端通道ID（UpstreamId）、后端通道名字（UpstreamName）过滤查询
         # @type Filters: Array
 
         attr_accessor :Limit, :Offset, :Filters
@@ -7074,39 +7107,45 @@ module TencentCloud
 
       # ModifyUpstream请求参数结构体
       class ModifyUpstreamRequest < TencentCloud::Common::AbstractModel
-        # @param UpstreamId: VPC通道唯一ID
+        # @param UpstreamId: 后端通道唯一ID
         # @type UpstreamId: String
-        # @param UpstreamName: VPC通道名字
+        # @param UpstreamName: 后端通道名字
         # @type UpstreamName: String
-        # @param UpstreamDescription: VPC通道描述
+        # @param UpstreamDescription: 后端通道描述
         # @type UpstreamDescription: String
-        # @param Scheme: 后端协议，HTTP, HTTPS其中之一
+        # @param Scheme: 后端协议，取值范围：HTTP, HTTPS
         # @type Scheme: String
-        # @param Algorithm: 负载均衡算法目前支持ROUND_ROBIN
+        # @param UpstreamType: 后端访问类型，取值范围：IP_PORT, K8S
+        # @type UpstreamType: String
+        # @param Algorithm: 负载均衡算法，取值范围：ROUND_ROBIN
         # @type Algorithm: String
         # @param UniqVpcId: VPC唯一ID
         # @type UniqVpcId: String
         # @param Retries: 请求重试次数，默认3次
         # @type Retries: Integer
-        # @param UpstreamHost: 请求到后端的，host头
+        # @param UpstreamHost: 网关转发到后端的 Host 请求头
         # @type UpstreamHost: String
         # @param Nodes: 后端节点列表
         # @type Nodes: Array
-        # @param K8sService: k8s服务配置
+        # @param HealthChecker: 健康检查配置，目前只支持VPC通道
+        # @type HealthChecker: :class:`Tencentcloud::Apigateway.v20180808.models.UpstreamHealthChecker`
+        # @param K8sService: 容器服务配置
         # @type K8sService: Array
 
-        attr_accessor :UpstreamId, :UpstreamName, :UpstreamDescription, :Scheme, :Algorithm, :UniqVpcId, :Retries, :UpstreamHost, :Nodes, :K8sService
+        attr_accessor :UpstreamId, :UpstreamName, :UpstreamDescription, :Scheme, :UpstreamType, :Algorithm, :UniqVpcId, :Retries, :UpstreamHost, :Nodes, :HealthChecker, :K8sService
         
-        def initialize(upstreamid=nil, upstreamname=nil, upstreamdescription=nil, scheme=nil, algorithm=nil, uniqvpcid=nil, retries=nil, upstreamhost=nil, nodes=nil, k8sservice=nil)
+        def initialize(upstreamid=nil, upstreamname=nil, upstreamdescription=nil, scheme=nil, upstreamtype=nil, algorithm=nil, uniqvpcid=nil, retries=nil, upstreamhost=nil, nodes=nil, healthchecker=nil, k8sservice=nil)
           @UpstreamId = upstreamid
           @UpstreamName = upstreamname
           @UpstreamDescription = upstreamdescription
           @Scheme = scheme
+          @UpstreamType = upstreamtype
           @Algorithm = algorithm
           @UniqVpcId = uniqvpcid
           @Retries = retries
           @UpstreamHost = upstreamhost
           @Nodes = nodes
+          @HealthChecker = healthchecker
           @K8sService = k8sservice
         end
 
@@ -7115,6 +7154,7 @@ module TencentCloud
           @UpstreamName = params['UpstreamName']
           @UpstreamDescription = params['UpstreamDescription']
           @Scheme = params['Scheme']
+          @UpstreamType = params['UpstreamType']
           @Algorithm = params['Algorithm']
           @UniqVpcId = params['UniqVpcId']
           @Retries = params['Retries']
@@ -7126,6 +7166,10 @@ module TencentCloud
               upstreamnode_tmp.deserialize(i)
               @Nodes << upstreamnode_tmp
             end
+          end
+          unless params['HealthChecker'].nil?
+            @HealthChecker = UpstreamHealthChecker.new
+            @HealthChecker.deserialize(params['HealthChecker'])
           end
           unless params['K8sService'].nil?
             @K8sService = []
@@ -7140,7 +7184,7 @@ module TencentCloud
 
       # ModifyUpstream返回参数结构体
       class ModifyUpstreamResponse < TencentCloud::Common::AbstractModel
-        # @param Result: 返回修改后的vpc通道信息
+        # @param Result: 返回修改后的后端通道信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Result: :class:`Tencentcloud::Apigateway.v20180808.models.UpstreamInfo`
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
@@ -8645,7 +8689,7 @@ module TencentCloud
         end
       end
 
-      # VPC通道健康检查参数配置
+      # 后端通道健康检查参数配置
       class UpstreamHealthChecker < TencentCloud::Common::AbstractModel
         # @param EnableActiveCheck: 标识是否开启主动健康检查。
         # @type EnableActiveCheck: Boolean
@@ -8712,7 +8756,7 @@ module TencentCloud
         end
       end
 
-      # VPC通道主动健康检查的请求头配置
+      # 后端通道主动健康检查的请求头配置
       class UpstreamHealthCheckerReqHeaders < TencentCloud::Common::AbstractModel
 
         
@@ -8723,21 +8767,21 @@ module TencentCloud
         end
       end
 
-      # VPC通道信息集合
+      # 后端通道详细信息
       class UpstreamInfo < TencentCloud::Common::AbstractModel
-        # @param UpstreamId: VPC通道唯一ID
+        # @param UpstreamId: 后端通道唯一ID
         # @type UpstreamId: String
-        # @param UpstreamName: VPC通道名字
+        # @param UpstreamName: 后端通道名字
         # @type UpstreamName: String
-        # @param UpstreamDescription: VPC通道描述
+        # @param UpstreamDescription: 后端通道描述
         # @type UpstreamDescription: String
-        # @param Scheme: 写意
+        # @param Scheme: 后端协议，取值范围：HTTP, HTTPS
         # @type Scheme: String
-        # @param Algorithm: 负载均衡算法
+        # @param Algorithm: 负载均衡算法，取值范围：ROUND_ROBIN
         # @type Algorithm: String
-        # @param UniqVpcId: vpc唯一ID
+        # @param UniqVpcId: VPC唯一ID
         # @type UniqVpcId: String
-        # @param Retries: 请求重拾次数
+        # @param Retries: 请求重试次数
         # @type Retries: Integer
         # @param Nodes: 后端节点
         # @type Nodes: Array
@@ -8749,12 +8793,12 @@ module TencentCloud
         # @param HealthChecker: 健康检查配置
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HealthChecker: :class:`Tencentcloud::Apigateway.v20180808.models.UpstreamHealthChecker`
-        # @param UpstreamType: Upstream的类型
+        # @param UpstreamType: 后端的类型，取值范围：IP_PORT, K8S
         # @type UpstreamType: String
-        # @param K8sServices: k8s服务配置
+        # @param K8sServices: K8S容器服务配置
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type K8sServices: Array
-        # @param UpstreamHost: vpc通道的Host
+        # @param UpstreamHost: 网关转发给后端的Host请求头
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UpstreamHost: String
 
@@ -8819,33 +8863,33 @@ module TencentCloud
         end
       end
 
-      # VPC通道后端节点元数据
+      # 后端通道后端节点元数据
       class UpstreamNode < TencentCloud::Common::AbstractModel
-        # @param Host: IP（domain）
+        # @param Host: IP或域名
         # @type Host: String
         # @param Port: 端口[0, 65535]
         # @type Port: Integer
         # @param Weight: 权重[0, 100], 0为禁用
         # @type Weight: Integer
-        # @param VmInstanceId: vm实例id
+        # @param VmInstanceId: CVM实例ID
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VmInstanceId: String
         # @param Tags: 染色标签
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Tags: Array
-        # @param Healthy: 节点健康状态，创建、编辑时不需要传该参数。OFF：关闭，HEALTHY：健康，UNHEALTHY：异常，NO_DATA：数据未上报
+        # @param Healthy: 节点健康状态，创建、编辑时不需要传该参数。OFF：关闭，HEALTHY：健康，UNHEALTHY：异常，NO_DATA：数据未上报。目前只支持VPC通道。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Healthy: String
-        # @param ServiceName: k8s服务名字
+        # @param ServiceName: K8S容器服务名字
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ServiceName: String
-        # @param NameSpace: k8s命名空间
+        # @param NameSpace: K8S命名空间
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NameSpace: String
         # @param ClusterId: TKE集群的ID
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ClusterId: String
-        # @param Source: Node的来源
+        # @param Source: Node的来源，取值范围：K8S
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Source: String
         # @param UniqueServiceName: API网关内部记录唯一的服务名字

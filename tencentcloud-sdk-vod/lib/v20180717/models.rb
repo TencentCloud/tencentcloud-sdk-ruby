@@ -9760,15 +9760,23 @@ module TencentCloud
       class DrmStreamingsInfo < TencentCloud::Common::AbstractModel
         # @param SimpleAesDefinition: 保护类型为 SimpleAES 的转自适应码流模板 ID。
         # @type SimpleAesDefinition: Integer
+        # @param WidevineDefinition: 保护类型为 Widevine 的转自适应码流模板 ID。
+        # @type WidevineDefinition: Integer
+        # @param FairPlayDefinition: 保护类型为 FairPlay 的转自适应码流模板 ID。
+        # @type FairPlayDefinition: Integer
 
-        attr_accessor :SimpleAesDefinition
+        attr_accessor :SimpleAesDefinition, :WidevineDefinition, :FairPlayDefinition
         
-        def initialize(simpleaesdefinition=nil)
+        def initialize(simpleaesdefinition=nil, widevinedefinition=nil, fairplaydefinition=nil)
           @SimpleAesDefinition = simpleaesdefinition
+          @WidevineDefinition = widevinedefinition
+          @FairPlayDefinition = fairplaydefinition
         end
 
         def deserialize(params)
           @SimpleAesDefinition = params['SimpleAesDefinition']
+          @WidevineDefinition = params['WidevineDefinition']
+          @FairPlayDefinition = params['FairPlayDefinition']
         end
       end
 
@@ -9776,15 +9784,23 @@ module TencentCloud
       class DrmStreamingsInfoForUpdate < TencentCloud::Common::AbstractModel
         # @param SimpleAesDefinition: 保护类型为 SimpleAES 的转自适应码流模板 ID。
         # @type SimpleAesDefinition: Integer
+        # @param WidevineDefinition: 保护类型为 Widevine 的转自适应码流模板 ID。
+        # @type WidevineDefinition: Integer
+        # @param FairPlayDefinition: 保护类型为 FairPlay 的转自适应码流模板 ID。
+        # @type FairPlayDefinition: Integer
 
-        attr_accessor :SimpleAesDefinition
+        attr_accessor :SimpleAesDefinition, :WidevineDefinition, :FairPlayDefinition
         
-        def initialize(simpleaesdefinition=nil)
+        def initialize(simpleaesdefinition=nil, widevinedefinition=nil, fairplaydefinition=nil)
           @SimpleAesDefinition = simpleaesdefinition
+          @WidevineDefinition = widevinedefinition
+          @FairPlayDefinition = fairplaydefinition
         end
 
         def deserialize(params)
           @SimpleAesDefinition = params['SimpleAesDefinition']
+          @WidevineDefinition = params['WidevineDefinition']
+          @FairPlayDefinition = params['FairPlayDefinition']
         end
       end
 
@@ -17327,7 +17343,7 @@ module TencentCloud
         # @param SourceTypes: 媒体文件来源集合，来源取值参见 [SourceType](https://cloud.tencent.com/document/product/266/31773#MediaSourceData)。
         # <li>数组长度限制：10。</li>
         # @type SourceTypes: Array
-        # @param StreamIds: 推流 [直播码](https://cloud.tencent.com/document/product/267/5959) 集合。匹配集合中的任意元素。
+        # @param StreamIds: 推流直播码集合。匹配集合中的任意元素。
         # <li>数组长度限制：10。</li>
         # @type StreamIds: Array
         # @param Vids: 直播录制文件的唯一标识。匹配集合中的任意元素。
@@ -17380,7 +17396,7 @@ module TencentCloud
         # 媒体文件来源，来源取值参见 [SourceType](https://cloud.tencent.com/document/product/266/31773#MediaSourceData)。
         # @type SourceType: String
         # @param StreamId: （不推荐：应使用 StreamIds 替代）
-        # 推流 [直播码](https://cloud.tencent.com/document/product/267/5959)。
+        # 推流直播码。
         # @type StreamId: String
         # @param Vid: （不推荐：应使用 Vids 替代）
         # 直播录制文件的唯一标识。

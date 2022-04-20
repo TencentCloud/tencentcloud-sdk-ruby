@@ -61,6 +61,46 @@ module TencentCloud
         end
       end
 
+      # CancelKillTask请求参数结构体
+      class CancelKillTaskRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID。
+        # @type InstanceId: String
+        # @param Product: 服务产品类型，支持值包括： "mysql" - 云数据库 MySQL， "cynosdb" - 云数据库 CynosDB  for MySQL，默认为"mysql"。
+        # @type Product: String
+
+        attr_accessor :InstanceId, :Product
+        
+        def initialize(instanceid=nil, product=nil)
+          @InstanceId = instanceid
+          @Product = product
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @Product = params['Product']
+        end
+      end
+
+      # CancelKillTask返回参数结构体
+      class CancelKillTaskResponse < TencentCloud::Common::AbstractModel
+        # @param Status: kill会话任务终止成功返回1。
+        # @type Status: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Status, :RequestId
+        
+        def initialize(status=nil, requestid=nil)
+          @Status = status
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Status = params['Status']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 联系人contact描述。
       class ContactItem < TencentCloud::Common::AbstractModel
         # @param Id: 联系人id。
@@ -460,6 +500,66 @@ module TencentCloud
         end
       end
 
+      # CreateSqlFilter请求参数结构体
+      class CreateSqlFilterRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID。
+        # @type InstanceId: String
+        # @param SessionToken: 通过VerifyUserAccount获取有效期为5分钟的会话token，使用后会自动延长token有效期至五分钟后。
+        # @type SessionToken: String
+        # @param SqlType: SQL类型，取值包括SELECT, UPDATE, DELETE, INSERT, REPLACE。
+        # @type SqlType: String
+        # @param FilterKey: 关键字，用于筛选SQL语句，多个关键字用英文逗号分隔，逗号不能作为关键词，多个关键词之间的关系为“逻辑与”。
+        # @type FilterKey: String
+        # @param MaxConcurrency: 最大并发度，取值不能小于0，如果该值设为 0，则表示限制所有匹配的SQL执行。
+        # @type MaxConcurrency: Integer
+        # @param Duration: 限流时长，单位秒，支持-1和小于2147483647的正整数，-1表示永不过期。
+        # @type Duration: Integer
+        # @param Product: 服务产品类型，支持值："mysql" - 云数据库 MySQL；"cynosdb" - 云数据库 TDSQL-C for MySQL，默认为"mysql"。
+        # @type Product: String
+
+        attr_accessor :InstanceId, :SessionToken, :SqlType, :FilterKey, :MaxConcurrency, :Duration, :Product
+        
+        def initialize(instanceid=nil, sessiontoken=nil, sqltype=nil, filterkey=nil, maxconcurrency=nil, duration=nil, product=nil)
+          @InstanceId = instanceid
+          @SessionToken = sessiontoken
+          @SqlType = sqltype
+          @FilterKey = filterkey
+          @MaxConcurrency = maxconcurrency
+          @Duration = duration
+          @Product = product
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @SessionToken = params['SessionToken']
+          @SqlType = params['SqlType']
+          @FilterKey = params['FilterKey']
+          @MaxConcurrency = params['MaxConcurrency']
+          @Duration = params['Duration']
+          @Product = params['Product']
+        end
+      end
+
+      # CreateSqlFilter返回参数结构体
+      class CreateSqlFilterResponse < TencentCloud::Common::AbstractModel
+        # @param FilterId: 限流任务ID。
+        # @type FilterId: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :FilterId, :RequestId
+        
+        def initialize(filterid=nil, requestid=nil)
+          @FilterId = filterid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @FilterId = params['FilterId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DeleteSecurityAuditLogExportTasks请求参数结构体
       class DeleteSecurityAuditLogExportTasksRequest < TencentCloud::Common::AbstractModel
         # @param SecAuditGroupId: 安全审计组Id。
@@ -486,6 +586,46 @@ module TencentCloud
 
       # DeleteSecurityAuditLogExportTasks返回参数结构体
       class DeleteSecurityAuditLogExportTasksResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteSqlFilters请求参数结构体
+      class DeleteSqlFiltersRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID。
+        # @type InstanceId: String
+        # @param SessionToken: 通过VerifyUserAccount获取有效期为5分钟的会话token，使用后会自动延长token有效期至五分钟后。
+        # @type SessionToken: String
+        # @param FilterIds: 限流任务ID列表。
+        # @type FilterIds: Array
+
+        attr_accessor :InstanceId, :SessionToken, :FilterIds
+        
+        def initialize(instanceid=nil, sessiontoken=nil, filterids=nil)
+          @InstanceId = instanceid
+          @SessionToken = sessiontoken
+          @FilterIds = filterids
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @SessionToken = params['SessionToken']
+          @FilterIds = params['FilterIds']
+        end
+      end
+
+      # DeleteSqlFilters返回参数结构体
+      class DeleteSqlFiltersResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -1216,6 +1356,81 @@ module TencentCloud
         end
       end
 
+      # DescribeNoPrimaryKeyTables请求参数结构体
+      class DescribeNoPrimaryKeyTablesRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID。
+        # @type InstanceId: String
+        # @param Date: 查询日期，最早为30天前的日期。
+        # @type Date: String
+        # @param Limit: 查询数目，默认为20，最大为100。
+        # @type Limit: Integer
+        # @param Offset: 偏移量，默认为0。
+        # @type Offset: Integer
+        # @param Product: 服务产品类型，支持值："mysql" - 云数据库 MySQL；"cynosdb" - 云数据库 TDSQL-C for MySQL，默认为"mysql"。
+        # @type Product: String
+
+        attr_accessor :InstanceId, :Date, :Limit, :Offset, :Product
+        
+        def initialize(instanceid=nil, date=nil, limit=nil, offset=nil, product=nil)
+          @InstanceId = instanceid
+          @Date = date
+          @Limit = limit
+          @Offset = offset
+          @Product = product
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @Date = params['Date']
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          @Product = params['Product']
+        end
+      end
+
+      # DescribeNoPrimaryKeyTables返回参数结构体
+      class DescribeNoPrimaryKeyTablesResponse < TencentCloud::Common::AbstractModel
+        # @param NoPrimaryKeyTableCount: 无主键表总数。
+        # @type NoPrimaryKeyTableCount: Integer
+        # @param NoPrimaryKeyTableCountDiff: 与昨日扫描无主键表的差值，正数为增加，负数为减少，0为无变化。
+        # @type NoPrimaryKeyTableCountDiff: Integer
+        # @param NoPrimaryKeyTableRecordCount: 记录的无主键表总数（不超过无主键表总数），可用于分页查询。
+        # @type NoPrimaryKeyTableRecordCount: Integer
+        # @param NoPrimaryKeyTables: 无主键表列表。
+        # @type NoPrimaryKeyTables: Array
+        # @param Timestamp: 采集时间戳（秒）。
+        # @type Timestamp: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :NoPrimaryKeyTableCount, :NoPrimaryKeyTableCountDiff, :NoPrimaryKeyTableRecordCount, :NoPrimaryKeyTables, :Timestamp, :RequestId
+        
+        def initialize(noprimarykeytablecount=nil, noprimarykeytablecountdiff=nil, noprimarykeytablerecordcount=nil, noprimarykeytables=nil, timestamp=nil, requestid=nil)
+          @NoPrimaryKeyTableCount = noprimarykeytablecount
+          @NoPrimaryKeyTableCountDiff = noprimarykeytablecountdiff
+          @NoPrimaryKeyTableRecordCount = noprimarykeytablerecordcount
+          @NoPrimaryKeyTables = noprimarykeytables
+          @Timestamp = timestamp
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @NoPrimaryKeyTableCount = params['NoPrimaryKeyTableCount']
+          @NoPrimaryKeyTableCountDiff = params['NoPrimaryKeyTableCountDiff']
+          @NoPrimaryKeyTableRecordCount = params['NoPrimaryKeyTableRecordCount']
+          unless params['NoPrimaryKeyTables'].nil?
+            @NoPrimaryKeyTables = []
+            params['NoPrimaryKeyTables'].each do |i|
+              table_tmp = Table.new
+              table_tmp.deserialize(i)
+              @NoPrimaryKeyTables << table_tmp
+            end
+          end
+          @Timestamp = params['Timestamp']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeProxySessionKillTasks请求参数结构体
       class DescribeProxySessionKillTasksRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例ID。
@@ -1267,6 +1482,73 @@ module TencentCloud
             end
           end
           @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeRedisTopBigKeys请求参数结构体
+      class DescribeRedisTopBigKeysRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID。
+        # @type InstanceId: String
+        # @param Date: 查询日期，最早可为前30天的日期。
+        # @type Date: String
+        # @param Product: 服务产品类型，支持值包括 "redis" - 云数据库 Redis。
+        # @type Product: String
+        # @param SortBy: 排序字段，取值包括Capacity - 内存，ItemCount - 元素数量。
+        # @type SortBy: String
+        # @param KeyType: key类型筛选条件，默认为不进行筛选，取值包括string, list, set, hash, sortedset, stream。
+        # @type KeyType: String
+        # @param Limit: 查询数目，默认为20，最大值为100。
+        # @type Limit: Integer
+
+        attr_accessor :InstanceId, :Date, :Product, :SortBy, :KeyType, :Limit
+        
+        def initialize(instanceid=nil, date=nil, product=nil, sortby=nil, keytype=nil, limit=nil)
+          @InstanceId = instanceid
+          @Date = date
+          @Product = product
+          @SortBy = sortby
+          @KeyType = keytype
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @Date = params['Date']
+          @Product = params['Product']
+          @SortBy = params['SortBy']
+          @KeyType = params['KeyType']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeRedisTopBigKeys返回参数结构体
+      class DescribeRedisTopBigKeysResponse < TencentCloud::Common::AbstractModel
+        # @param TopKeys: top key列表。
+        # @type TopKeys: Array
+        # @param Timestamp: 采集时间戳（秒）。
+        # @type Timestamp: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TopKeys, :Timestamp, :RequestId
+        
+        def initialize(topkeys=nil, timestamp=nil, requestid=nil)
+          @TopKeys = topkeys
+          @Timestamp = timestamp
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['TopKeys'].nil?
+            @TopKeys = []
+            params['TopKeys'].each do |i|
+              rediskeyspacedata_tmp = RedisKeySpaceData.new
+              rediskeyspacedata_tmp.deserialize(i)
+              @TopKeys << rediskeyspacedata_tmp
+            end
+          end
+          @Timestamp = params['Timestamp']
           @RequestId = params['RequestId']
         end
       end
@@ -1589,6 +1871,133 @@ module TencentCloud
               @Items << slowloghost_tmp
             end
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeSqlFilters请求参数结构体
+      class DescribeSqlFiltersRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID。
+        # @type InstanceId: String
+        # @param FilterIds: 任务ID列表，用于筛选任务列表。
+        # @type FilterIds: Array
+        # @param Statuses: 任务状态列表，用于筛选任务列表，取值包括RUNNING - 运行中, FINISHED - 已完成, TERMINATED - 已终止。
+        # @type Statuses: Array
+        # @param Offset: 偏移量，默认为0。
+        # @type Offset: Integer
+        # @param Limit: 返回数量，默认为20，最大值为100。
+        # @type Limit: Integer
+
+        attr_accessor :InstanceId, :FilterIds, :Statuses, :Offset, :Limit
+        
+        def initialize(instanceid=nil, filterids=nil, statuses=nil, offset=nil, limit=nil)
+          @InstanceId = instanceid
+          @FilterIds = filterids
+          @Statuses = statuses
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @FilterIds = params['FilterIds']
+          @Statuses = params['Statuses']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeSqlFilters返回参数结构体
+      class DescribeSqlFiltersResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 限流任务总数目。
+        # @type TotalCount: Integer
+        # @param Items: 限流任务列表。
+        # @type Items: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :Items, :RequestId
+        
+        def initialize(totalcount=nil, items=nil, requestid=nil)
+          @TotalCount = totalcount
+          @Items = items
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['Items'].nil?
+            @Items = []
+            params['Items'].each do |i|
+              sqlfilter_tmp = SQLFilter.new
+              sqlfilter_tmp.deserialize(i)
+              @Items << sqlfilter_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeSqlTemplate请求参数结构体
+      class DescribeSqlTemplateRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID。
+        # @type InstanceId: String
+        # @param Schema: 数据库名。
+        # @type Schema: String
+        # @param SqlText: SQL语句。
+        # @type SqlText: String
+        # @param Product: 服务产品类型，支持值包括： "mysql" - 云数据库 MySQL， "cynosdb" - 云数据库 CynosDB  for MySQL，默认为"mysql"。
+        # @type Product: String
+
+        attr_accessor :InstanceId, :Schema, :SqlText, :Product
+        
+        def initialize(instanceid=nil, schema=nil, sqltext=nil, product=nil)
+          @InstanceId = instanceid
+          @Schema = schema
+          @SqlText = sqltext
+          @Product = product
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @Schema = params['Schema']
+          @SqlText = params['SqlText']
+          @Product = params['Product']
+        end
+      end
+
+      # DescribeSqlTemplate返回参数结构体
+      class DescribeSqlTemplateResponse < TencentCloud::Common::AbstractModel
+        # @param Schema: 数据库名。
+        # @type Schema: String
+        # @param SqlText: SQL语句。
+        # @type SqlText: String
+        # @param SqlType: SQL类型。
+        # @type SqlType: String
+        # @param SqlTemplate: SQL模版内容。
+        # @type SqlTemplate: String
+        # @param SqlId: SQL模版ID。
+        # @type SqlId: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Schema, :SqlText, :SqlType, :SqlTemplate, :SqlId, :RequestId
+        
+        def initialize(schema=nil, sqltext=nil, sqltype=nil, sqltemplate=nil, sqlid=nil, requestid=nil)
+          @Schema = schema
+          @SqlText = sqltext
+          @SqlType = sqltype
+          @SqlTemplate = sqltemplate
+          @SqlId = sqlid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Schema = params['Schema']
+          @SqlText = params['SqlText']
+          @SqlType = params['SqlType']
+          @SqlTemplate = params['SqlTemplate']
+          @SqlId = params['SqlId']
           @RequestId = params['RequestId']
         end
       end
@@ -2505,6 +2914,54 @@ module TencentCloud
         end
       end
 
+      # ModifySqlFilters请求参数结构体
+      class ModifySqlFiltersRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID。
+        # @type InstanceId: String
+        # @param SessionToken: 通过VerifyUserAccount获取有效期为5分钟的会话token，使用后会自动延长token有效期至五分钟后。
+        # @type SessionToken: String
+        # @param FilterIds: SQL限流任务ID列表。
+        # @type FilterIds: Array
+        # @param Status: 限流任务状态，取值支持TERMINATED - 终止。
+        # @type Status: String
+        # @param Product: 服务产品类型，支持值："mysql" - 云数据库 MySQL；"cynosdb" - 云数据库 TDSQL-C for MySQL，默认为"mysql"。
+        # @type Product: String
+
+        attr_accessor :InstanceId, :SessionToken, :FilterIds, :Status, :Product
+        
+        def initialize(instanceid=nil, sessiontoken=nil, filterids=nil, status=nil, product=nil)
+          @InstanceId = instanceid
+          @SessionToken = sessiontoken
+          @FilterIds = filterids
+          @Status = status
+          @Product = product
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @SessionToken = params['SessionToken']
+          @FilterIds = params['FilterIds']
+          @Status = params['Status']
+          @Product = params['Product']
+        end
+      end
+
+      # ModifySqlFilters返回参数结构体
+      class ModifySqlFiltersResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 监控数据（浮点型）
       class MonitorFloatMetric < TencentCloud::Common::AbstractModel
         # @param Metric: 指标名称。
@@ -2673,6 +3130,102 @@ module TencentCloud
             @MailConfiguration = MailConfiguration.new
             @MailConfiguration.deserialize(params['MailConfiguration'])
           end
+        end
+      end
+
+      # redis key空间信息。
+      class RedisKeySpaceData < TencentCloud::Common::AbstractModel
+        # @param Key: key名。
+        # @type Key: String
+        # @param Type: key类型。
+        # @type Type: String
+        # @param Encoding: key编码方式。
+        # @type Encoding: String
+        # @param ExpireTime: key过期时间戳（毫秒），0代表未设置过期时间。
+        # @type ExpireTime: Integer
+        # @param Length: key内存大小，单位Byte。
+        # @type Length: Integer
+        # @param ItemCount: 元素个数。
+        # @type ItemCount: Integer
+        # @param MaxElementSize: 最大元素长度。
+        # @type MaxElementSize: Integer
+
+        attr_accessor :Key, :Type, :Encoding, :ExpireTime, :Length, :ItemCount, :MaxElementSize
+        
+        def initialize(key=nil, type=nil, encoding=nil, expiretime=nil, length=nil, itemcount=nil, maxelementsize=nil)
+          @Key = key
+          @Type = type
+          @Encoding = encoding
+          @ExpireTime = expiretime
+          @Length = length
+          @ItemCount = itemcount
+          @MaxElementSize = maxelementsize
+        end
+
+        def deserialize(params)
+          @Key = params['Key']
+          @Type = params['Type']
+          @Encoding = params['Encoding']
+          @ExpireTime = params['ExpireTime']
+          @Length = params['Length']
+          @ItemCount = params['ItemCount']
+          @MaxElementSize = params['MaxElementSize']
+        end
+      end
+
+      # 实例SQL限流任务。
+      class SQLFilter < TencentCloud::Common::AbstractModel
+        # @param Id: 任务ID。
+        # @type Id: Integer
+        # @param Status: 任务状态，取值包括RUNNING - 运行中, FINISHED - 已完成, TERMINATED - 已终止。
+        # @type Status: String
+        # @param SqlType: SQL类型，取值包括SELECT, UPDATE, DELETE, INSERT, REPLACE。
+        # @type SqlType: String
+        # @param OriginKeys: 筛选SQL的关键词，多个关键词用英文逗号拼接。
+        # @type OriginKeys: String
+        # @param OriginRule: 筛选SQL的规则。
+        # @type OriginRule: String
+        # @param RejectedSqlCount: 已拒绝SQL数目。
+        # @type RejectedSqlCount: Integer
+        # @param CurrentConcurrency: 当前并发数。
+        # @type CurrentConcurrency: Integer
+        # @param MaxConcurrency: 最大并发数。
+        # @type MaxConcurrency: Integer
+        # @param CreateTime: 任务创建时间。
+        # @type CreateTime: String
+        # @param CurrentTime: 当前时间。
+        # @type CurrentTime: String
+        # @param ExpireTime: 限流过期时间。
+        # @type ExpireTime: String
+
+        attr_accessor :Id, :Status, :SqlType, :OriginKeys, :OriginRule, :RejectedSqlCount, :CurrentConcurrency, :MaxConcurrency, :CreateTime, :CurrentTime, :ExpireTime
+        
+        def initialize(id=nil, status=nil, sqltype=nil, originkeys=nil, originrule=nil, rejectedsqlcount=nil, currentconcurrency=nil, maxconcurrency=nil, createtime=nil, currenttime=nil, expiretime=nil)
+          @Id = id
+          @Status = status
+          @SqlType = sqltype
+          @OriginKeys = originkeys
+          @OriginRule = originrule
+          @RejectedSqlCount = rejectedsqlcount
+          @CurrentConcurrency = currentconcurrency
+          @MaxConcurrency = maxconcurrency
+          @CreateTime = createtime
+          @CurrentTime = currenttime
+          @ExpireTime = expiretime
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @Status = params['Status']
+          @SqlType = params['SqlType']
+          @OriginKeys = params['OriginKeys']
+          @OriginRule = params['OriginRule']
+          @RejectedSqlCount = params['RejectedSqlCount']
+          @CurrentConcurrency = params['CurrentConcurrency']
+          @MaxConcurrency = params['MaxConcurrency']
+          @CreateTime = params['CreateTime']
+          @CurrentTime = params['CurrentTime']
+          @ExpireTime = params['ExpireTime']
         end
       end
 
@@ -3022,6 +3575,38 @@ module TencentCloud
         end
       end
 
+      # 表结构。
+      class Table < TencentCloud::Common::AbstractModel
+        # @param TableSchema: 库名。
+        # @type TableSchema: String
+        # @param TableName: 表名。
+        # @type TableName: String
+        # @param Engine: 库表的存储引擎。
+        # @type Engine: String
+        # @param TableRows: 行数。
+        # @type TableRows: Integer
+        # @param TotalLength: 总使用空间（MB）。
+        # @type TotalLength: Float
+
+        attr_accessor :TableSchema, :TableName, :Engine, :TableRows, :TotalLength
+        
+        def initialize(tableschema=nil, tablename=nil, engine=nil, tablerows=nil, totallength=nil)
+          @TableSchema = tableschema
+          @TableName = tablename
+          @Engine = engine
+          @TableRows = tablerows
+          @TotalLength = totallength
+        end
+
+        def deserialize(params)
+          @TableSchema = params['TableSchema']
+          @TableName = params['TableName']
+          @Engine = params['Engine']
+          @TableRows = params['TableRows']
+          @TotalLength = params['TotalLength']
+        end
+      end
+
       # 库表空间统计数据。
       class TableSpaceData < TencentCloud::Common::AbstractModel
         # @param TableName: 表名。
@@ -3217,6 +3802,54 @@ module TencentCloud
             @ProfileInfo = ProfileInfo.new
             @ProfileInfo.deserialize(params['ProfileInfo'])
           end
+        end
+      end
+
+      # VerifyUserAccount请求参数结构体
+      class VerifyUserAccountRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID。
+        # @type InstanceId: String
+        # @param User: 数据库账号名。
+        # @type User: String
+        # @param Password: 数据库账号密码。
+        # @type Password: String
+        # @param Product: 服务产品类型，支持值："mysql" - 云数据库 MySQL；"cynosdb" - 云数据库 TDSQL-C for MySQL，默认为"mysql"。
+        # @type Product: String
+
+        attr_accessor :InstanceId, :User, :Password, :Product
+        
+        def initialize(instanceid=nil, user=nil, password=nil, product=nil)
+          @InstanceId = instanceid
+          @User = user
+          @Password = password
+          @Product = product
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @User = params['User']
+          @Password = params['Password']
+          @Product = params['Product']
+        end
+      end
+
+      # VerifyUserAccount返回参数结构体
+      class VerifyUserAccountResponse < TencentCloud::Common::AbstractModel
+        # @param SessionToken: 会话token，有效期为5分钟。
+        # @type SessionToken: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :SessionToken, :RequestId
+        
+        def initialize(sessiontoken=nil, requestid=nil)
+          @SessionToken = sessiontoken
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @SessionToken = params['SessionToken']
+          @RequestId = params['RequestId']
         end
       end
 

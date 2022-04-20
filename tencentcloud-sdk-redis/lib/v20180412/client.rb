@@ -53,6 +53,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 开通外网
+
+        # @param request: Request instance for AllocateWanAddress.
+        # @type request: :class:`Tencentcloud::redis::V20180412::AllocateWanAddressRequest`
+        # @rtype: :class:`Tencentcloud::redis::V20180412::AllocateWanAddressResponse`
+        def AllocateWanAddress(request)
+          body = send_request('AllocateWanAddress', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = AllocateWanAddressResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 应用参数模板到实例
 
         # @param request: Request instance for ApplyParamsTemplate.
@@ -1647,6 +1671,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyParamTemplateResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 关闭外网
+
+        # @param request: Request instance for ReleaseWanAddress.
+        # @type request: :class:`Tencentcloud::redis::V20180412::ReleaseWanAddressRequest`
+        # @rtype: :class:`Tencentcloud::redis::V20180412::ReleaseWanAddressResponse`
+        def ReleaseWanAddress(request)
+          body = send_request('ReleaseWanAddress', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ReleaseWanAddressResponse.new
             model.deserialize(response['Response'])
             model
           else

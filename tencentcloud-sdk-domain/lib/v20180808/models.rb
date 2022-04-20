@@ -829,6 +829,49 @@ module TencentCloud
         end
       end
 
+      # DescribeDomainSimpleInfo请求参数结构体
+      class DescribeDomainSimpleInfoRequest < TencentCloud::Common::AbstractModel
+        # @param DomainName: 域名
+        # @type DomainName: String
+
+        attr_accessor :DomainName
+        
+        def initialize(domainname=nil)
+          @DomainName = domainname
+        end
+
+        def deserialize(params)
+          @DomainName = params['DomainName']
+        end
+      end
+
+      # DescribeDomainSimpleInfo返回参数结构体
+      class DescribeDomainSimpleInfoResponse < TencentCloud::Common::AbstractModel
+        # @param DomainInfo: 域名信息
+        # @type DomainInfo: :class:`Tencentcloud::Domain.v20180808.models.DomainSimpleInfo`
+        # @param Uin: 账号ID
+        # @type Uin: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :DomainInfo, :Uin, :RequestId
+        
+        def initialize(domaininfo=nil, uin=nil, requestid=nil)
+          @DomainInfo = domaininfo
+          @Uin = uin
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['DomainInfo'].nil?
+            @DomainInfo = DomainSimpleInfo.new
+            @DomainInfo.deserialize(params['DomainInfo'])
+          end
+          @Uin = params['Uin']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribePhoneEmailList请求参数结构体
       class DescribePhoneEmailListRequest < TencentCloud::Common::AbstractModel
         # @param Type: 0：所有类型  1：手机  2：邮箱，默认0
@@ -1231,6 +1274,136 @@ module TencentCloud
           @Tld = params['Tld']
           @CodeTld = params['CodeTld']
           @BuyStatus = params['BuyStatus']
+        end
+      end
+
+      # 获取域名基础模板信息
+      class DomainSimpleInfo < TencentCloud::Common::AbstractModel
+        # @param DomainId: 域名资源ID。
+        # @type DomainId: String
+        # @param DomainName: 域名名称。
+        # @type DomainName: String
+        # @param RealNameAuditStatus: 域名实名认证状态。
+        # NotUpload：未实名认证
+        # InAudit：实名审核中
+        # Approved：实名审核通过
+        # Reject：实名审核失败
+        # NoAudit: 无需实名认证
+        # @type RealNameAuditStatus: String
+        # @param RealNameAuditUnpassReason: 域名实名认证不通过原因。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RealNameAuditUnpassReason: String
+        # @param DomainNameAuditStatus: 域名命名审核状态。
+        # NotAudit：命名审核未上传
+        # Pending：命名审核待上传
+        # Auditing：域名命名审核中
+        # Approved：域名命名审核通过
+        # Rejected：域名命名审核拒绝
+        # @type DomainNameAuditStatus: String
+        # @param DomainNameAuditUnpassReason: 域名命名审核不通过原因。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DomainNameAuditUnpassReason: String
+        # @param CreationDate: 注册时间。
+        # @type CreationDate: String
+        # @param ExpirationDate: 到期时间
+        # @type ExpirationDate: String
+        # @param DomainStatus: 域名状态。
+        # ok：正常
+        # serverHold：注册局暂停解析
+        # clientHold：注册商暂停解析
+        # pendingTransfer：转移中
+        # renewingPeriod：续费期
+        # redemptionPeriod：偿还期
+        # pendingDelete：删除期
+        # serverTransferProhibited：注册局禁止转移
+        # serverUpdateProhibited：注册局禁止更新
+        # serverDeleteProhibited：注册局禁止删除
+        # clientTransferProhibited：注册商禁止转移
+        # clientUpdateProhibited：注册商禁止更新
+        # clientDeleteProhibited：注册商禁止删除
+        # @type DomainStatus: Array
+        # @param BuyStatus: 域名购买状态。
+        # ok：正常
+        # RegisterPending：待注册
+        # RegisterDoing：注册中
+        # RegisterFailed：注册失败
+        # AboutToExpire: 即将过期
+        # RenewPending：已进入续费期，需要进行续费
+        # RenewDoing：续费中
+        # RedemptionPending：已进入赎回期，需要进行续费
+        # RedemptionDoing：赎回中
+        # TransferPending：待转入中
+        # TransferTransing：转入中
+        # TransferFailed：转入失败
+        # @type BuyStatus: String
+        # @param RegistrarType: 注册商类型
+        # epp: DNSPod, Inc.（烟台帝思普网络科技有限公司）
+        # qcloud: Tencent Cloud Computing (Beijing) Limited Liability Company（腾讯云计算（北京）有限责任公司）
+        # yunxun: Guangzhou Yunxun Information Technology Co., Ltd.（广州云讯信息科技有限公司）
+        # xinnet: Xin Net Technology Corporation（北京新网数码信息技术有限公司）
+        # @type RegistrarType: String
+        # @param NameServer: 域名绑定的ns
+        # @type NameServer: Array
+        # @param LockTransfer: true：开启锁定
+        # false：关闭锁定
+        # @type LockTransfer: Boolean
+        # @param LockEndTime: 锁定结束时间
+        # @type LockEndTime: String
+        # @param RegistrantType: 认证类型：I=个人，E=企业
+        # @type RegistrantType: String
+        # @param OrganizationNameCN: 域名所有者，中文
+        # @type OrganizationNameCN: String
+        # @param OrganizationName: 域名所有者，英文
+        # @type OrganizationName: String
+        # @param RegistrantNameCN: 域名联系人，中文
+        # @type RegistrantNameCN: String
+        # @param RegistrantName: 域名联系人，英文
+        # @type RegistrantName: String
+
+        attr_accessor :DomainId, :DomainName, :RealNameAuditStatus, :RealNameAuditUnpassReason, :DomainNameAuditStatus, :DomainNameAuditUnpassReason, :CreationDate, :ExpirationDate, :DomainStatus, :BuyStatus, :RegistrarType, :NameServer, :LockTransfer, :LockEndTime, :RegistrantType, :OrganizationNameCN, :OrganizationName, :RegistrantNameCN, :RegistrantName
+        
+        def initialize(domainid=nil, domainname=nil, realnameauditstatus=nil, realnameauditunpassreason=nil, domainnameauditstatus=nil, domainnameauditunpassreason=nil, creationdate=nil, expirationdate=nil, domainstatus=nil, buystatus=nil, registrartype=nil, nameserver=nil, locktransfer=nil, lockendtime=nil, registranttype=nil, organizationnamecn=nil, organizationname=nil, registrantnamecn=nil, registrantname=nil)
+          @DomainId = domainid
+          @DomainName = domainname
+          @RealNameAuditStatus = realnameauditstatus
+          @RealNameAuditUnpassReason = realnameauditunpassreason
+          @DomainNameAuditStatus = domainnameauditstatus
+          @DomainNameAuditUnpassReason = domainnameauditunpassreason
+          @CreationDate = creationdate
+          @ExpirationDate = expirationdate
+          @DomainStatus = domainstatus
+          @BuyStatus = buystatus
+          @RegistrarType = registrartype
+          @NameServer = nameserver
+          @LockTransfer = locktransfer
+          @LockEndTime = lockendtime
+          @RegistrantType = registranttype
+          @OrganizationNameCN = organizationnamecn
+          @OrganizationName = organizationname
+          @RegistrantNameCN = registrantnamecn
+          @RegistrantName = registrantname
+        end
+
+        def deserialize(params)
+          @DomainId = params['DomainId']
+          @DomainName = params['DomainName']
+          @RealNameAuditStatus = params['RealNameAuditStatus']
+          @RealNameAuditUnpassReason = params['RealNameAuditUnpassReason']
+          @DomainNameAuditStatus = params['DomainNameAuditStatus']
+          @DomainNameAuditUnpassReason = params['DomainNameAuditUnpassReason']
+          @CreationDate = params['CreationDate']
+          @ExpirationDate = params['ExpirationDate']
+          @DomainStatus = params['DomainStatus']
+          @BuyStatus = params['BuyStatus']
+          @RegistrarType = params['RegistrarType']
+          @NameServer = params['NameServer']
+          @LockTransfer = params['LockTransfer']
+          @LockEndTime = params['LockEndTime']
+          @RegistrantType = params['RegistrantType']
+          @OrganizationNameCN = params['OrganizationNameCN']
+          @OrganizationName = params['OrganizationName']
+          @RegistrantNameCN = params['RegistrantNameCN']
+          @RegistrantName = params['RegistrantName']
         end
       end
 

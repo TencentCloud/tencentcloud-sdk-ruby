@@ -776,15 +776,18 @@ module TencentCloud
         # @type UserType: String
         # @param WorkGroupIds: 绑定到用户的工作组ID集合。
         # @type WorkGroupIds: Array
+        # @param UserAlias: 用户别名，字符长度小50
+        # @type UserAlias: String
 
-        attr_accessor :UserId, :UserDescription, :PolicySet, :UserType, :WorkGroupIds
+        attr_accessor :UserId, :UserDescription, :PolicySet, :UserType, :WorkGroupIds, :UserAlias
         
-        def initialize(userid=nil, userdescription=nil, policyset=nil, usertype=nil, workgroupids=nil)
+        def initialize(userid=nil, userdescription=nil, policyset=nil, usertype=nil, workgroupids=nil, useralias=nil)
           @UserId = userid
           @UserDescription = userdescription
           @PolicySet = policyset
           @UserType = usertype
           @WorkGroupIds = workgroupids
+          @UserAlias = useralias
         end
 
         def deserialize(params)
@@ -800,6 +803,7 @@ module TencentCloud
           end
           @UserType = params['UserType']
           @WorkGroupIds = params['WorkGroupIds']
+          @UserAlias = params['UserAlias']
         end
       end
 
@@ -1520,6 +1524,7 @@ module TencentCloud
         # task-state - String - （任务状态过滤）取值范围 0(初始化)， 1(运行中)， 2(成功)， -1(失败)。
         # task-sql-keyword - String - （SQL语句关键字模糊过滤）取值形如：DROP TABLE。
         # task-operator- string （子uin过滤）
+        # task-kind - string （任务类型过滤）
         # @type Filters: Array
         # @param SortBy: 排序字段，支持如下字段类型，create-time（创建时间，默认）、update-time（更新时间）
         # @type SortBy: String
@@ -1607,7 +1612,7 @@ module TencentCloud
         # @type SortBy: String
         # @param Sorting: 排序方式，desc表示正序，asc表示反序， 默认为asc
         # @type Sorting: String
-        # @param Filters: 过滤条件，支持如下字段类型，user-type：根据用户类型过滤。
+        # @param Filters: 过滤条件，支持如下字段类型，user-type：根据用户类型过滤。user-keyword：根据用户名称过滤
         # @type Filters: Array
 
         attr_accessor :UserId, :Offset, :Limit, :SortBy, :Sorting, :Filters
@@ -2518,10 +2523,13 @@ module TencentCloud
         # @param CanDownload: 查询数据能不能下载
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CanDownload: Boolean
+        # @param UserAlias: 用户别名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UserAlias: String
 
-        attr_accessor :DatabaseName, :DataAmount, :Id, :UsedTime, :OutputPath, :CreateTime, :State, :SQLType, :SQL, :ResultExpired, :RowAffectInfo, :DataSet, :Error, :Percentage, :OutputMessage, :TaskType, :ProgressDetail, :UpdateTime, :DataEngineId, :OperateUin, :DataEngineName, :InputType, :InputConf, :DataNumber, :CanDownload
+        attr_accessor :DatabaseName, :DataAmount, :Id, :UsedTime, :OutputPath, :CreateTime, :State, :SQLType, :SQL, :ResultExpired, :RowAffectInfo, :DataSet, :Error, :Percentage, :OutputMessage, :TaskType, :ProgressDetail, :UpdateTime, :DataEngineId, :OperateUin, :DataEngineName, :InputType, :InputConf, :DataNumber, :CanDownload, :UserAlias
         
-        def initialize(databasename=nil, dataamount=nil, id=nil, usedtime=nil, outputpath=nil, createtime=nil, state=nil, sqltype=nil, sql=nil, resultexpired=nil, rowaffectinfo=nil, dataset=nil, error=nil, percentage=nil, outputmessage=nil, tasktype=nil, progressdetail=nil, updatetime=nil, dataengineid=nil, operateuin=nil, dataenginename=nil, inputtype=nil, inputconf=nil, datanumber=nil, candownload=nil)
+        def initialize(databasename=nil, dataamount=nil, id=nil, usedtime=nil, outputpath=nil, createtime=nil, state=nil, sqltype=nil, sql=nil, resultexpired=nil, rowaffectinfo=nil, dataset=nil, error=nil, percentage=nil, outputmessage=nil, tasktype=nil, progressdetail=nil, updatetime=nil, dataengineid=nil, operateuin=nil, dataenginename=nil, inputtype=nil, inputconf=nil, datanumber=nil, candownload=nil, useralias=nil)
           @DatabaseName = databasename
           @DataAmount = dataamount
           @Id = id
@@ -2547,6 +2555,7 @@ module TencentCloud
           @InputConf = inputconf
           @DataNumber = datanumber
           @CanDownload = candownload
+          @UserAlias = useralias
         end
 
         def deserialize(params)
@@ -2575,6 +2584,7 @@ module TencentCloud
           @InputConf = params['InputConf']
           @DataNumber = params['DataNumber']
           @CanDownload = params['CanDownload']
+          @UserAlias = params['UserAlias']
         end
       end
 
@@ -2807,10 +2817,13 @@ module TencentCloud
         # @param UserType: 用户类型。ADMIN：管理员 COMMON：普通用户。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UserType: String
+        # @param UserAlias: 用户别名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UserAlias: String
 
-        attr_accessor :UserId, :UserDescription, :PolicySet, :Creator, :CreateTime, :WorkGroupSet, :IsOwner, :UserType
+        attr_accessor :UserId, :UserDescription, :PolicySet, :Creator, :CreateTime, :WorkGroupSet, :IsOwner, :UserType, :UserAlias
         
-        def initialize(userid=nil, userdescription=nil, policyset=nil, creator=nil, createtime=nil, workgroupset=nil, isowner=nil, usertype=nil)
+        def initialize(userid=nil, userdescription=nil, policyset=nil, creator=nil, createtime=nil, workgroupset=nil, isowner=nil, usertype=nil, useralias=nil)
           @UserId = userid
           @UserDescription = userdescription
           @PolicySet = policyset
@@ -2819,6 +2832,7 @@ module TencentCloud
           @WorkGroupSet = workgroupset
           @IsOwner = isowner
           @UserType = usertype
+          @UserAlias = useralias
         end
 
         def deserialize(params)
@@ -2844,6 +2858,7 @@ module TencentCloud
           end
           @IsOwner = params['IsOwner']
           @UserType = params['UserType']
+          @UserAlias = params['UserAlias']
         end
       end
 
@@ -2858,14 +2873,17 @@ module TencentCloud
         # @type Creator: String
         # @param CreateTime: 当前用户的创建时间，形如2021-07-28 16:19:32
         # @type CreateTime: String
+        # @param UserAlias: 用户别名
+        # @type UserAlias: String
 
-        attr_accessor :UserId, :UserDescription, :Creator, :CreateTime
+        attr_accessor :UserId, :UserDescription, :Creator, :CreateTime, :UserAlias
         
-        def initialize(userid=nil, userdescription=nil, creator=nil, createtime=nil)
+        def initialize(userid=nil, userdescription=nil, creator=nil, createtime=nil, useralias=nil)
           @UserId = userid
           @UserDescription = userdescription
           @Creator = creator
           @CreateTime = createtime
+          @UserAlias = useralias
         end
 
         def deserialize(params)
@@ -2873,6 +2891,7 @@ module TencentCloud
           @UserDescription = params['UserDescription']
           @Creator = params['Creator']
           @CreateTime = params['CreateTime']
+          @UserAlias = params['UserAlias']
         end
       end
 

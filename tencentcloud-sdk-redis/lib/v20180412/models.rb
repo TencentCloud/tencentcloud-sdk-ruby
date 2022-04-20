@@ -103,6 +103,46 @@ module TencentCloud
         end
       end
 
+      # AllocateWanAddress请求参数结构体
+      class AllocateWanAddressRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+
+        attr_accessor :InstanceId
+        
+        def initialize(instanceid=nil)
+          @InstanceId = instanceid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+        end
+      end
+
+      # AllocateWanAddress返回参数结构体
+      class AllocateWanAddressResponse < TencentCloud::Common::AbstractModel
+        # @param FlowId: 异步流程ID
+        # @type FlowId: Integer
+        # @param WanStatus: 开通外网的状态
+        # @type WanStatus: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :FlowId, :WanStatus, :RequestId
+        
+        def initialize(flowid=nil, wanstatus=nil, requestid=nil)
+          @FlowId = flowid
+          @WanStatus = wanstatus
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @FlowId = params['FlowId']
+          @WanStatus = params['WanStatus']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ApplyParamsTemplate请求参数结构体
       class ApplyParamsTemplateRequest < TencentCloud::Common::AbstractModel
         # @param InstanceIds: 实例ID列表
@@ -5382,6 +5422,46 @@ module TencentCloud
               @ZoneSet << zonecapacityconf_tmp
             end
           end
+        end
+      end
+
+      # ReleaseWanAddress请求参数结构体
+      class ReleaseWanAddressRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+
+        attr_accessor :InstanceId
+        
+        def initialize(instanceid=nil)
+          @InstanceId = instanceid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+        end
+      end
+
+      # ReleaseWanAddress返回参数结构体
+      class ReleaseWanAddressResponse < TencentCloud::Common::AbstractModel
+        # @param FlowId: 异步流程ID
+        # @type FlowId: Integer
+        # @param WanStatus: 关闭外网的状态
+        # @type WanStatus: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :FlowId, :WanStatus, :RequestId
+        
+        def initialize(flowid=nil, wanstatus=nil, requestid=nil)
+          @FlowId = flowid
+          @WanStatus = wanstatus
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @FlowId = params['FlowId']
+          @WanStatus = params['WanStatus']
+          @RequestId = params['RequestId']
         end
       end
 

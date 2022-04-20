@@ -3975,16 +3975,20 @@ module TencentCloud
         # @type PkgLogId: Integer
         # @param BTime: 日志时间戳
         # @type BTime: Integer
+        # @param HostName: 日志来源主机名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HostName: String
 
-        attr_accessor :Source, :Filename, :Content, :PkgId, :PkgLogId, :BTime
+        attr_accessor :Source, :Filename, :Content, :PkgId, :PkgLogId, :BTime, :HostName
         
-        def initialize(source=nil, filename=nil, content=nil, pkgid=nil, pkglogid=nil, btime=nil)
+        def initialize(source=nil, filename=nil, content=nil, pkgid=nil, pkglogid=nil, btime=nil, hostname=nil)
           @Source = source
           @Filename = filename
           @Content = content
           @PkgId = pkgid
           @PkgLogId = pkglogid
           @BTime = btime
+          @HostName = hostname
         end
 
         def deserialize(params)
@@ -3994,6 +3998,7 @@ module TencentCloud
           @PkgId = params['PkgId']
           @PkgLogId = params['PkgLogId']
           @BTime = params['BTime']
+          @HostName = params['HostName']
         end
       end
 
@@ -4016,10 +4021,13 @@ module TencentCloud
         # @param LogJson: 日志内容的Json序列化字符串
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LogJson: String
+        # @param HostName: 日志来源主机名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HostName: String
 
-        attr_accessor :Time, :TopicId, :TopicName, :Source, :FileName, :PkgId, :PkgLogId, :LogJson
+        attr_accessor :Time, :TopicId, :TopicName, :Source, :FileName, :PkgId, :PkgLogId, :LogJson, :HostName
         
-        def initialize(time=nil, topicid=nil, topicname=nil, source=nil, filename=nil, pkgid=nil, pkglogid=nil, logjson=nil)
+        def initialize(time=nil, topicid=nil, topicname=nil, source=nil, filename=nil, pkgid=nil, pkglogid=nil, logjson=nil, hostname=nil)
           @Time = time
           @TopicId = topicid
           @TopicName = topicname
@@ -4028,6 +4036,7 @@ module TencentCloud
           @PkgId = pkgid
           @PkgLogId = pkglogid
           @LogJson = logjson
+          @HostName = hostname
         end
 
         def deserialize(params)
@@ -4039,6 +4048,7 @@ module TencentCloud
           @PkgId = params['PkgId']
           @PkgLogId = params['PkgLogId']
           @LogJson = params['LogJson']
+          @HostName = params['HostName']
         end
       end
 

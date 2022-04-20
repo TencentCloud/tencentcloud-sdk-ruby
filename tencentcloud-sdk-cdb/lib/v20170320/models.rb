@@ -6354,7 +6354,7 @@ module TencentCloud
         # @type Vip: String
         # @param Vport: 端口号
         # @type Vport: Integer
-        # @param CdbError: 是否锁定标记
+        # @param CdbError: 磁盘写入是否被锁定（实例数据写入量已经超过磁盘配额）。0 -未被锁定 1 -已被锁定
         # @type CdbError: Integer
         # @param UniqVpcId: 私有网络描述符，例如：“vpc-5v8wn9mg”
         # @type UniqVpcId: String
