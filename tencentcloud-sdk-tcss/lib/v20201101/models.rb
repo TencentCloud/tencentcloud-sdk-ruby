@@ -28,19 +28,24 @@ module TencentCloud
         # @param RuleId: 子策略id
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RuleId: String
+        # @param RuleLevel: 威胁等级，HIGH:高，MIDDLE:中，LOW:低
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RuleLevel: String
 
-        attr_accessor :RuleMode, :ProcessPath, :RuleId
+        attr_accessor :RuleMode, :ProcessPath, :RuleId, :RuleLevel
         
-        def initialize(rulemode=nil, processpath=nil, ruleid=nil)
+        def initialize(rulemode=nil, processpath=nil, ruleid=nil, rulelevel=nil)
           @RuleMode = rulemode
           @ProcessPath = processpath
           @RuleId = ruleid
+          @RuleLevel = rulelevel
         end
 
         def deserialize(params)
           @RuleMode = params['RuleMode']
           @ProcessPath = params['ProcessPath']
           @RuleId = params['RuleId']
+          @RuleLevel = params['RuleLevel']
         end
       end
 
@@ -55,17 +60,20 @@ module TencentCloud
         # @type Remark: String
         # @param MatchRule: 命中规则详细信息
         # @type MatchRule: :class:`Tencentcloud::Tcss.v20201101.models.AbnormalProcessChildRuleInfo`
-        # @param RuleName: 命中规则名字
+        # @param RuleName: 命中规则名称，PROXY_TOOL：代理软件，TRANSFER_CONTROL：横向渗透，ATTACK_CMD：恶意命令，REVERSE_SHELL：反弹shell，FILELESS：无文件程序执行，RISK_CMD：高危命令，ABNORMAL_CHILD_PROC：敏感服务异常子进程启动，USER_DEFINED_RULE：用户自定义规则
         # @type RuleName: String
         # @param RuleId: 命中规则的id
         # @type RuleId: String
         # @param OperationTime: 事件最后一次处理的时间
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OperationTime: String
+        # @param GroupName: 命中策略名称：SYSTEM_DEFINED_RULE （系统策略）或  用户自定义的策略名字
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GroupName: String
 
-        attr_accessor :Description, :Solution, :Remark, :MatchRule, :RuleName, :RuleId, :OperationTime
+        attr_accessor :Description, :Solution, :Remark, :MatchRule, :RuleName, :RuleId, :OperationTime, :GroupName
         
-        def initialize(description=nil, solution=nil, remark=nil, matchrule=nil, rulename=nil, ruleid=nil, operationtime=nil)
+        def initialize(description=nil, solution=nil, remark=nil, matchrule=nil, rulename=nil, ruleid=nil, operationtime=nil, groupname=nil)
           @Description = description
           @Solution = solution
           @Remark = remark
@@ -73,6 +81,7 @@ module TencentCloud
           @RuleName = rulename
           @RuleId = ruleid
           @OperationTime = operationtime
+          @GroupName = groupname
         end
 
         def deserialize(params)
@@ -86,6 +95,7 @@ module TencentCloud
           @RuleName = params['RuleName']
           @RuleId = params['RuleId']
           @OperationTime = params['OperationTime']
+          @GroupName = params['GroupName']
         end
       end
 
@@ -95,7 +105,7 @@ module TencentCloud
         # @type ProcessPath: String
         # @param EventType: 事件类型，MALICE_PROCESS_START:恶意进程启动
         # @type EventType: String
-        # @param MatchRuleName: 命中规则
+        # @param MatchRuleName: 命中规则名称，PROXY_TOOL：代理软件，TRANSFER_CONTROL：横向渗透，ATTACK_CMD：恶意命令，REVERSE_SHELL：反弹shell，FILELESS：无文件程序执行，RISK_CMD：高危命令，ABNORMAL_CHILD_PROC：敏感服务异常子进程启动，USER_DEFINED_RULE：用户自定义规则
         # @type MatchRuleName: String
         # @param FoundTime: 生成时间
         # @type FoundTime: String
@@ -140,10 +150,14 @@ module TencentCloud
         # @type LatestFoundTime: String
         # @param RuleId: 规则组Id
         # @type RuleId: String
+        # @param MatchGroupName: 命中策略名称：SYSTEM_DEFINED_RULE （系统策略）或  用户自定义的策略名字
+        # @type MatchGroupName: String
+        # @param MatchRuleLevel: 命中规则等级，HIGH：高危，MIDDLE：中危，LOW：低危。
+        # @type MatchRuleLevel: String
 
-        attr_accessor :ProcessPath, :EventType, :MatchRuleName, :FoundTime, :ContainerName, :ImageName, :Behavior, :Status, :Id, :ImageId, :ContainerId, :Solution, :Description, :MatchRuleId, :MatchAction, :MatchProcessPath, :RuleExist, :EventCount, :LatestFoundTime, :RuleId
+        attr_accessor :ProcessPath, :EventType, :MatchRuleName, :FoundTime, :ContainerName, :ImageName, :Behavior, :Status, :Id, :ImageId, :ContainerId, :Solution, :Description, :MatchRuleId, :MatchAction, :MatchProcessPath, :RuleExist, :EventCount, :LatestFoundTime, :RuleId, :MatchGroupName, :MatchRuleLevel
         
-        def initialize(processpath=nil, eventtype=nil, matchrulename=nil, foundtime=nil, containername=nil, imagename=nil, behavior=nil, status=nil, id=nil, imageid=nil, containerid=nil, solution=nil, description=nil, matchruleid=nil, matchaction=nil, matchprocesspath=nil, ruleexist=nil, eventcount=nil, latestfoundtime=nil, ruleid=nil)
+        def initialize(processpath=nil, eventtype=nil, matchrulename=nil, foundtime=nil, containername=nil, imagename=nil, behavior=nil, status=nil, id=nil, imageid=nil, containerid=nil, solution=nil, description=nil, matchruleid=nil, matchaction=nil, matchprocesspath=nil, ruleexist=nil, eventcount=nil, latestfoundtime=nil, ruleid=nil, matchgroupname=nil, matchrulelevel=nil)
           @ProcessPath = processpath
           @EventType = eventtype
           @MatchRuleName = matchrulename
@@ -164,6 +178,8 @@ module TencentCloud
           @EventCount = eventcount
           @LatestFoundTime = latestfoundtime
           @RuleId = ruleid
+          @MatchGroupName = matchgroupname
+          @MatchRuleLevel = matchrulelevel
         end
 
         def deserialize(params)
@@ -187,6 +203,8 @@ module TencentCloud
           @EventCount = params['EventCount']
           @LatestFoundTime = params['LatestFoundTime']
           @RuleId = params['RuleId']
+          @MatchGroupName = params['MatchGroupName']
+          @MatchRuleLevel = params['MatchRuleLevel']
         end
       end
 
@@ -264,14 +282,18 @@ module TencentCloud
         # RISK_CMD：高危命令
         # ABNORMAL_CHILD_PROC: 敏感服务异常子进程启动
         # @type RuleType: String
+        # @param RuleLevel: 威胁等级，HIGH:高，MIDDLE:中，LOW:低
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RuleLevel: String
 
-        attr_accessor :RuleId, :IsEnable, :RuleMode, :RuleType
+        attr_accessor :RuleId, :IsEnable, :RuleMode, :RuleType, :RuleLevel
         
-        def initialize(ruleid=nil, isenable=nil, rulemode=nil, ruletype=nil)
+        def initialize(ruleid=nil, isenable=nil, rulemode=nil, ruletype=nil, rulelevel=nil)
           @RuleId = ruleid
           @IsEnable = isenable
           @RuleMode = rulemode
           @RuleType = ruletype
+          @RuleLevel = rulelevel
         end
 
         def deserialize(params)
@@ -279,6 +301,7 @@ module TencentCloud
           @IsEnable = params['IsEnable']
           @RuleMode = params['RuleMode']
           @RuleType = params['RuleType']
+          @RuleLevel = params['RuleLevel']
         end
       end
 
@@ -8143,7 +8166,7 @@ module TencentCloud
         # @type Limit: Integer
         # @param Offset: 偏移量，默认为0。
         # @type Offset: Integer
-        # @param Filters: 过滤参数,"Filters":[{"Name":"Status","Values":["2"]}]
+        # @param Filters: 过滤参数,Status：EVENT_UNDEAL:未处理，EVENT_DEALED:已处理，EVENT_INGNORE:忽略
         # @type Filters: Array
         # @param Order: 升序降序,asc desc
         # @type Order: String
@@ -10653,10 +10676,7 @@ module TencentCloud
         # @type ContainerName: String
         # @param ImageName: 镜像名
         # @type ImageName: String
-        # @param Status: 状态
-        #      EVENT_UNDEAL:事件未处理
-        #      EVENT_DEALED:事件已经处理
-        #      EVENT_INGNORE：事件忽略
+        # @param Status: 状态，EVENT_UNDEAL:未处理，EVENT_DEALED:已处理，EVENT_INGNORE:忽略
         # @type Status: String
         # @param EventId: 事件记录的唯一id
         # @type EventId: String
@@ -10686,10 +10706,16 @@ module TencentCloud
         # @type EventCount: Integer
         # @param LatestFoundTime: 最近生成时间
         # @type LatestFoundTime: String
+        # @param NodeIP: 节点IP
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NodeIP: String
+        # @param HostID: 主机IP
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HostID: String
 
-        attr_accessor :EventType, :ContainerName, :ImageName, :Status, :EventId, :NodeName, :PodName, :FoundTime, :EventName, :ImageId, :ContainerId, :Solution, :Description, :EventCount, :LatestFoundTime
+        attr_accessor :EventType, :ContainerName, :ImageName, :Status, :EventId, :NodeName, :PodName, :FoundTime, :EventName, :ImageId, :ContainerId, :Solution, :Description, :EventCount, :LatestFoundTime, :NodeIP, :HostID
         
-        def initialize(eventtype=nil, containername=nil, imagename=nil, status=nil, eventid=nil, nodename=nil, podname=nil, foundtime=nil, eventname=nil, imageid=nil, containerid=nil, solution=nil, description=nil, eventcount=nil, latestfoundtime=nil)
+        def initialize(eventtype=nil, containername=nil, imagename=nil, status=nil, eventid=nil, nodename=nil, podname=nil, foundtime=nil, eventname=nil, imageid=nil, containerid=nil, solution=nil, description=nil, eventcount=nil, latestfoundtime=nil, nodeip=nil, hostid=nil)
           @EventType = eventtype
           @ContainerName = containername
           @ImageName = imagename
@@ -10705,6 +10731,8 @@ module TencentCloud
           @Description = description
           @EventCount = eventcount
           @LatestFoundTime = latestfoundtime
+          @NodeIP = nodeip
+          @HostID = hostid
         end
 
         def deserialize(params)
@@ -10723,6 +10751,8 @@ module TencentCloud
           @Description = params['Description']
           @EventCount = params['EventCount']
           @LatestFoundTime = params['LatestFoundTime']
+          @NodeIP = params['NodeIP']
+          @HostID = params['HostID']
         end
       end
 
@@ -10746,19 +10776,23 @@ module TencentCloud
         # @type Name: String
         # @param IsEnable: 是否打开：false否 ，true是
         # @type IsEnable: Boolean
+        # @param Group: 规则组别。RISK_CONTAINER：风险容器，PROCESS_PRIVILEGE：程序特权，CONTAINER_ESCAPE：容器逃逸
+        # @type Group: String
 
-        attr_accessor :Type, :Name, :IsEnable
+        attr_accessor :Type, :Name, :IsEnable, :Group
         
-        def initialize(type=nil, name=nil, isenable=nil)
+        def initialize(type=nil, name=nil, isenable=nil, group=nil)
           @Type = type
           @Name = name
           @IsEnable = isenable
+          @Group = group
         end
 
         def deserialize(params)
           @Type = params['Type']
           @Name = params['Name']
           @IsEnable = params['IsEnable']
+          @Group = params['Group']
         end
       end
 
@@ -12320,10 +12354,7 @@ module TencentCloud
       class ModifyEscapeEventStatusRequest < TencentCloud::Common::AbstractModel
         # @param EventIdSet: 处理事件ids
         # @type EventIdSet: Array
-        # @param Status: 标记事件的状态
-        #    EVENT_DEALED:事件已经处理
-        #      EVENT_INGNORE：事件忽略
-        #      EVENT_DEL:事件删除
+        # @param Status: 标记事件的状态：EVENT_UNDEAL:未处理（取消忽略），EVENT_DEALED:已处理，EVENT_IGNORE:忽略，EVENT_DELETE：已删除
         # @type Status: String
         # @param Remark: 备注
         # @type Remark: String
@@ -13468,10 +13499,32 @@ module TencentCloud
         # @param ClientIP: 外网ip
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ClientIP: String
+        # @param ContainerNetStatus: 网络状态
+        # 未隔离  	NORMAL
+        # 已隔离		ISOLATED
+        # 隔离中		ISOLATING
+        # 隔离失败	ISOLATE_FAILED
+        # 解除隔离中  RESTORING
+        # 解除隔离失败 RESTORE_FAILED
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ContainerNetStatus: String
+        # @param ContainerNetSubStatus: 容器子状态
+        # "AGENT_OFFLINE"       //Agent离线
+        # "NODE_DESTROYED"      //节点已销毁
+        # "CONTAINER_EXITED"    //容器已退出
+        # "CONTAINER_DESTROYED" //容器已销毁
+        # "SHARED_HOST"         // 容器与主机共享网络
+        # "RESOURCE_LIMIT"      //隔离操作资源超限
+        # "UNKNOW"              // 原因未知
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ContainerNetSubStatus: String
+        # @param ContainerIsolateOperationSrc: 容器隔离操作来源
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ContainerIsolateOperationSrc: String
 
-        attr_accessor :EventId, :FoundTime, :ContainerId, :ContainerName, :ImageId, :ImageName, :NodeName, :PodName, :Status, :EventName, :EventType, :EventCount, :LatestFoundTime, :HostIP, :ClientIP
+        attr_accessor :EventId, :FoundTime, :ContainerId, :ContainerName, :ImageId, :ImageName, :NodeName, :PodName, :Status, :EventName, :EventType, :EventCount, :LatestFoundTime, :HostIP, :ClientIP, :ContainerNetStatus, :ContainerNetSubStatus, :ContainerIsolateOperationSrc
         
-        def initialize(eventid=nil, foundtime=nil, containerid=nil, containername=nil, imageid=nil, imagename=nil, nodename=nil, podname=nil, status=nil, eventname=nil, eventtype=nil, eventcount=nil, latestfoundtime=nil, hostip=nil, clientip=nil)
+        def initialize(eventid=nil, foundtime=nil, containerid=nil, containername=nil, imageid=nil, imagename=nil, nodename=nil, podname=nil, status=nil, eventname=nil, eventtype=nil, eventcount=nil, latestfoundtime=nil, hostip=nil, clientip=nil, containernetstatus=nil, containernetsubstatus=nil, containerisolateoperationsrc=nil)
           @EventId = eventid
           @FoundTime = foundtime
           @ContainerId = containerid
@@ -13487,6 +13540,9 @@ module TencentCloud
           @LatestFoundTime = latestfoundtime
           @HostIP = hostip
           @ClientIP = clientip
+          @ContainerNetStatus = containernetstatus
+          @ContainerNetSubStatus = containernetsubstatus
+          @ContainerIsolateOperationSrc = containerisolateoperationsrc
         end
 
         def deserialize(params)
@@ -13505,6 +13561,9 @@ module TencentCloud
           @LatestFoundTime = params['LatestFoundTime']
           @HostIP = params['HostIP']
           @ClientIP = params['ClientIP']
+          @ContainerNetStatus = params['ContainerNetStatus']
+          @ContainerNetSubStatus = params['ContainerNetSubStatus']
+          @ContainerIsolateOperationSrc = params['ContainerIsolateOperationSrc']
         end
       end
 

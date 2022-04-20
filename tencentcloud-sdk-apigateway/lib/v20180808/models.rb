@@ -1895,10 +1895,12 @@ module TencentCloud
         # @type TokenTimeout: Integer
         # @param EIAMAppId: EIAM应用ID。
         # @type EIAMAppId: String
+        # @param Owner: 资源的Owner
+        # @type Owner: String
 
-        attr_accessor :ServiceId, :ServiceType, :ServiceTimeout, :Protocol, :RequestConfig, :ApiName, :ApiDesc, :ApiType, :AuthType, :EnableCORS, :ConstantParameters, :RequestParameters, :ApiBusinessType, :ServiceMockReturnMessage, :MicroServices, :ServiceTsfLoadBalanceConf, :ServiceTsfHealthCheckConf, :TargetServices, :TargetServicesLoadBalanceConf, :TargetServicesHealthCheckConf, :ServiceScfFunctionName, :ServiceWebsocketRegisterFunctionName, :ServiceWebsocketCleanupFunctionName, :ServiceWebsocketTransportFunctionName, :ServiceScfFunctionNamespace, :ServiceScfFunctionQualifier, :ServiceWebsocketRegisterFunctionNamespace, :ServiceWebsocketRegisterFunctionQualifier, :ServiceWebsocketTransportFunctionNamespace, :ServiceWebsocketTransportFunctionQualifier, :ServiceWebsocketCleanupFunctionNamespace, :ServiceWebsocketCleanupFunctionQualifier, :ServiceScfIsIntegratedResponse, :IsDebugAfterCharge, :IsDeleteResponseErrorCodes, :ResponseType, :ResponseSuccessExample, :ResponseFailExample, :ServiceConfig, :AuthRelationApiId, :ServiceParameters, :OauthConfig, :ResponseErrorCodes, :TargetNamespaceId, :UserType, :IsBase64Encoded, :EventBusId, :ServiceScfFunctionType, :EIAMAppType, :EIAMAuthType, :TokenTimeout, :EIAMAppId
+        attr_accessor :ServiceId, :ServiceType, :ServiceTimeout, :Protocol, :RequestConfig, :ApiName, :ApiDesc, :ApiType, :AuthType, :EnableCORS, :ConstantParameters, :RequestParameters, :ApiBusinessType, :ServiceMockReturnMessage, :MicroServices, :ServiceTsfLoadBalanceConf, :ServiceTsfHealthCheckConf, :TargetServices, :TargetServicesLoadBalanceConf, :TargetServicesHealthCheckConf, :ServiceScfFunctionName, :ServiceWebsocketRegisterFunctionName, :ServiceWebsocketCleanupFunctionName, :ServiceWebsocketTransportFunctionName, :ServiceScfFunctionNamespace, :ServiceScfFunctionQualifier, :ServiceWebsocketRegisterFunctionNamespace, :ServiceWebsocketRegisterFunctionQualifier, :ServiceWebsocketTransportFunctionNamespace, :ServiceWebsocketTransportFunctionQualifier, :ServiceWebsocketCleanupFunctionNamespace, :ServiceWebsocketCleanupFunctionQualifier, :ServiceScfIsIntegratedResponse, :IsDebugAfterCharge, :IsDeleteResponseErrorCodes, :ResponseType, :ResponseSuccessExample, :ResponseFailExample, :ServiceConfig, :AuthRelationApiId, :ServiceParameters, :OauthConfig, :ResponseErrorCodes, :TargetNamespaceId, :UserType, :IsBase64Encoded, :EventBusId, :ServiceScfFunctionType, :EIAMAppType, :EIAMAuthType, :TokenTimeout, :EIAMAppId, :Owner
         
-        def initialize(serviceid=nil, servicetype=nil, servicetimeout=nil, protocol=nil, requestconfig=nil, apiname=nil, apidesc=nil, apitype=nil, authtype=nil, enablecors=nil, constantparameters=nil, requestparameters=nil, apibusinesstype=nil, servicemockreturnmessage=nil, microservices=nil, servicetsfloadbalanceconf=nil, servicetsfhealthcheckconf=nil, targetservices=nil, targetservicesloadbalanceconf=nil, targetserviceshealthcheckconf=nil, servicescffunctionname=nil, servicewebsocketregisterfunctionname=nil, servicewebsocketcleanupfunctionname=nil, servicewebsockettransportfunctionname=nil, servicescffunctionnamespace=nil, servicescffunctionqualifier=nil, servicewebsocketregisterfunctionnamespace=nil, servicewebsocketregisterfunctionqualifier=nil, servicewebsockettransportfunctionnamespace=nil, servicewebsockettransportfunctionqualifier=nil, servicewebsocketcleanupfunctionnamespace=nil, servicewebsocketcleanupfunctionqualifier=nil, servicescfisintegratedresponse=nil, isdebugaftercharge=nil, isdeleteresponseerrorcodes=nil, responsetype=nil, responsesuccessexample=nil, responsefailexample=nil, serviceconfig=nil, authrelationapiid=nil, serviceparameters=nil, oauthconfig=nil, responseerrorcodes=nil, targetnamespaceid=nil, usertype=nil, isbase64encoded=nil, eventbusid=nil, servicescffunctiontype=nil, eiamapptype=nil, eiamauthtype=nil, tokentimeout=nil, eiamappid=nil)
+        def initialize(serviceid=nil, servicetype=nil, servicetimeout=nil, protocol=nil, requestconfig=nil, apiname=nil, apidesc=nil, apitype=nil, authtype=nil, enablecors=nil, constantparameters=nil, requestparameters=nil, apibusinesstype=nil, servicemockreturnmessage=nil, microservices=nil, servicetsfloadbalanceconf=nil, servicetsfhealthcheckconf=nil, targetservices=nil, targetservicesloadbalanceconf=nil, targetserviceshealthcheckconf=nil, servicescffunctionname=nil, servicewebsocketregisterfunctionname=nil, servicewebsocketcleanupfunctionname=nil, servicewebsockettransportfunctionname=nil, servicescffunctionnamespace=nil, servicescffunctionqualifier=nil, servicewebsocketregisterfunctionnamespace=nil, servicewebsocketregisterfunctionqualifier=nil, servicewebsockettransportfunctionnamespace=nil, servicewebsockettransportfunctionqualifier=nil, servicewebsocketcleanupfunctionnamespace=nil, servicewebsocketcleanupfunctionqualifier=nil, servicescfisintegratedresponse=nil, isdebugaftercharge=nil, isdeleteresponseerrorcodes=nil, responsetype=nil, responsesuccessexample=nil, responsefailexample=nil, serviceconfig=nil, authrelationapiid=nil, serviceparameters=nil, oauthconfig=nil, responseerrorcodes=nil, targetnamespaceid=nil, usertype=nil, isbase64encoded=nil, eventbusid=nil, servicescffunctiontype=nil, eiamapptype=nil, eiamauthtype=nil, tokentimeout=nil, eiamappid=nil, owner=nil)
           @ServiceId = serviceid
           @ServiceType = servicetype
           @ServiceTimeout = servicetimeout
@@ -1951,6 +1953,7 @@ module TencentCloud
           @EIAMAuthType = eiamauthtype
           @TokenTimeout = tokentimeout
           @EIAMAppId = eiamappid
+          @Owner = owner
         end
 
         def deserialize(params)
@@ -2066,6 +2069,7 @@ module TencentCloud
           @EIAMAuthType = params['EIAMAuthType']
           @TokenTimeout = params['TokenTimeout']
           @EIAMAppId = params['EIAMAppId']
+          @Owner = params['Owner']
         end
       end
 
@@ -5009,11 +5013,11 @@ module TencentCloud
         end
       end
 
-      # 查询vpc通道绑定api列表
+      # 查询后端通道绑定API列表
       class DescribeUpstreamBindApis < TencentCloud::Common::AbstractModel
         # @param TotalCount: 总数
         # @type TotalCount: Integer
-        # @param BindApiSet: 绑定的api信息
+        # @param BindApiSet: 绑定的API信息
         # @type BindApiSet: Array
 
         attr_accessor :TotalCount, :BindApiSet
@@ -7796,18 +7800,22 @@ module TencentCloud
         # @type Path: String
         # @param Method: API的后端服务请求方法，如 GET。如果 ServiceType 是 HTTP，则此参数必传。前后端方法可不同。
         # @type Method: String
+        # @param UpstreamId: 当绑定vpc通道才需要
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UpstreamId: String
         # @param CosConfig: API后端COS配置。如果 ServiceType 是 COS，则此参数必传。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CosConfig: :class:`Tencentcloud::Apigateway.v20180808.models.CosConfig`
 
-        attr_accessor :Product, :UniqVpcId, :Url, :Path, :Method, :CosConfig
+        attr_accessor :Product, :UniqVpcId, :Url, :Path, :Method, :UpstreamId, :CosConfig
         
-        def initialize(product=nil, uniqvpcid=nil, url=nil, path=nil, method=nil, cosconfig=nil)
+        def initialize(product=nil, uniqvpcid=nil, url=nil, path=nil, method=nil, upstreamid=nil, cosconfig=nil)
           @Product = product
           @UniqVpcId = uniqvpcid
           @Url = url
           @Path = path
           @Method = method
+          @UpstreamId = upstreamid
           @CosConfig = cosconfig
         end
 
@@ -7817,6 +7825,7 @@ module TencentCloud
           @Url = params['Url']
           @Path = params['Path']
           @Method = params['Method']
+          @UpstreamId = params['UpstreamId']
           unless params['CosConfig'].nil?
             @CosConfig = CosConfig.new
             @CosConfig.deserialize(params['CosConfig'])
