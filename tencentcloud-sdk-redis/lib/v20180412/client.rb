@@ -341,7 +341,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 移除复制组成员
+        # 移除复制组成员 注：接口下线中，请使用 RemoveReplicationInstance
 
         # @param request: Request instance for DeleteReplicationInstance.
         # @type request: :class:`Tencentcloud::redis::V20180412::DeleteReplicationInstanceRequest`

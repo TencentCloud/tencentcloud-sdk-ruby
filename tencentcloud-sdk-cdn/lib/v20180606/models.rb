@@ -1525,10 +1525,13 @@ module TencentCloud
         # 流量：flux
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Metric: String
+        # @param StatisticItems: 累计用量配置
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StatisticItems: Array
 
-        attr_accessor :Switch, :BpsThreshold, :CounterMeasure, :LastTriggerTime, :AlertSwitch, :AlertPercentage, :LastTriggerTimeOverseas, :Metric
+        attr_accessor :Switch, :BpsThreshold, :CounterMeasure, :LastTriggerTime, :AlertSwitch, :AlertPercentage, :LastTriggerTimeOverseas, :Metric, :StatisticItems
         
-        def initialize(switch=nil, bpsthreshold=nil, countermeasure=nil, lasttriggertime=nil, alertswitch=nil, alertpercentage=nil, lasttriggertimeoverseas=nil, metric=nil)
+        def initialize(switch=nil, bpsthreshold=nil, countermeasure=nil, lasttriggertime=nil, alertswitch=nil, alertpercentage=nil, lasttriggertimeoverseas=nil, metric=nil, statisticitems=nil)
           @Switch = switch
           @BpsThreshold = bpsthreshold
           @CounterMeasure = countermeasure
@@ -1537,6 +1540,7 @@ module TencentCloud
           @AlertPercentage = alertpercentage
           @LastTriggerTimeOverseas = lasttriggertimeoverseas
           @Metric = metric
+          @StatisticItems = statisticitems
         end
 
         def deserialize(params)
@@ -1548,6 +1552,14 @@ module TencentCloud
           @AlertPercentage = params['AlertPercentage']
           @LastTriggerTimeOverseas = params['LastTriggerTimeOverseas']
           @Metric = params['Metric']
+          unless params['StatisticItems'].nil?
+            @StatisticItems = []
+            params['StatisticItems'].each do |i|
+              statisticitem_tmp = StatisticItem.new
+              statisticitem_tmp.deserialize(i)
+              @StatisticItems << statisticitem_tmp
+            end
+          end
         end
       end
 
@@ -3066,15 +3078,19 @@ module TencentCloud
         # @type Record: String
         # @param RecordType: 解析类型
         # @type RecordType: String
+        # @param FileVerifyUrl: 文件验证 URL 指引
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FileVerifyUrl: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :SubDomain, :Record, :RecordType, :RequestId
+        attr_accessor :SubDomain, :Record, :RecordType, :FileVerifyUrl, :RequestId
         
-        def initialize(subdomain=nil, record=nil, recordtype=nil, requestid=nil)
+        def initialize(subdomain=nil, record=nil, recordtype=nil, fileverifyurl=nil, requestid=nil)
           @SubDomain = subdomain
           @Record = record
           @RecordType = recordtype
+          @FileVerifyUrl = fileverifyurl
           @RequestId = requestid
         end
 
@@ -3082,6 +3098,7 @@ module TencentCloud
           @SubDomain = params['SubDomain']
           @Record = params['Record']
           @RecordType = params['RecordType']
+          @FileVerifyUrl = params['FileVerifyUrl']
           @RequestId = params['RequestId']
         end
       end
@@ -12095,6 +12112,63 @@ module TencentCloud
         end
       end
 
+      # 累计用量封顶的配置
+      class StatisticItem < TencentCloud::Common::AbstractModel
+        # @param Type: 封顶类型，累计用量total，瞬时用量moment
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Type: String
+        # @param UnBlockTime: 自动解封时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UnBlockTime: Integer
+        # @param BpsThreshold: 带宽、流量阈值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BpsThreshold: Integer
+        # @param CounterMeasure: 关闭方式 返回404:RETURN_404, dns回源：RESOLVE_DNS_TO_ORIGIN
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CounterMeasure: String
+        # @param AlertPercentage: 触发提醒阈值百分比
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AlertPercentage: Integer
+        # @param AlertSwitch: 提醒开关 on/off
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AlertSwitch: String
+        # @param Metric: 指标类型，流量flux或带宽bandwidth
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Metric: String
+        # @param Cycle: 检测周期，单位分钟，60或1440
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Cycle: Integer
+        # @param Switch: 是否开启该选项，on/off
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Switch: String
+
+        attr_accessor :Type, :UnBlockTime, :BpsThreshold, :CounterMeasure, :AlertPercentage, :AlertSwitch, :Metric, :Cycle, :Switch
+        
+        def initialize(type=nil, unblocktime=nil, bpsthreshold=nil, countermeasure=nil, alertpercentage=nil, alertswitch=nil, metric=nil, cycle=nil, switch=nil)
+          @Type = type
+          @UnBlockTime = unblocktime
+          @BpsThreshold = bpsthreshold
+          @CounterMeasure = countermeasure
+          @AlertPercentage = alertpercentage
+          @AlertSwitch = alertswitch
+          @Metric = metric
+          @Cycle = cycle
+          @Switch = switch
+        end
+
+        def deserialize(params)
+          @Type = params['Type']
+          @UnBlockTime = params['UnBlockTime']
+          @BpsThreshold = params['BpsThreshold']
+          @CounterMeasure = params['CounterMeasure']
+          @AlertPercentage = params['AlertPercentage']
+          @AlertSwitch = params['AlertSwitch']
+          @Metric = params['Metric']
+          @Cycle = params['Cycle']
+          @Switch = params['Switch']
+        end
+      end
+
       # 状态码缓存过期配置，默认情况下会对 404 状态码缓存 10 秒
       class StatusCodeCache < TencentCloud::Common::AbstractModel
         # @param Switch: 状态码缓存过期配置开关
@@ -13215,15 +13289,21 @@ module TencentCloud
       class VerifyDomainRecordRequest < TencentCloud::Common::AbstractModel
         # @param Domain: 域名
         # @type Domain: String
+        # @param VerifyType: 验证方式
+        # dns: DNS 解析验证（默认值）
+        # file: 文件验证
+        # @type VerifyType: String
 
-        attr_accessor :Domain
+        attr_accessor :Domain, :VerifyType
         
-        def initialize(domain=nil)
+        def initialize(domain=nil, verifytype=nil)
           @Domain = domain
+          @VerifyType = verifytype
         end
 
         def deserialize(params)
           @Domain = params['Domain']
+          @VerifyType = params['VerifyType']
         end
       end
 

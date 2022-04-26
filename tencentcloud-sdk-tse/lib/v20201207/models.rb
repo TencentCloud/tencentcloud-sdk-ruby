@@ -81,17 +81,25 @@ module TencentCloud
         # @param ConsoleIntranetAddress: 控制台内网访问地址
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ConsoleIntranetAddress: String
+        # @param InternetBandWidth: 客户端公网带宽
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InternetBandWidth: Integer
+        # @param ConsoleInternetBandWidth: 控制台公网带宽
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ConsoleInternetBandWidth: Integer
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :IntranetAddress, :InternetAddress, :EnvAddressInfos, :ConsoleInternetAddress, :ConsoleIntranetAddress, :RequestId
+        attr_accessor :IntranetAddress, :InternetAddress, :EnvAddressInfos, :ConsoleInternetAddress, :ConsoleIntranetAddress, :InternetBandWidth, :ConsoleInternetBandWidth, :RequestId
         
-        def initialize(intranetaddress=nil, internetaddress=nil, envaddressinfos=nil, consoleinternetaddress=nil, consoleintranetaddress=nil, requestid=nil)
+        def initialize(intranetaddress=nil, internetaddress=nil, envaddressinfos=nil, consoleinternetaddress=nil, consoleintranetaddress=nil, internetbandwidth=nil, consoleinternetbandwidth=nil, requestid=nil)
           @IntranetAddress = intranetaddress
           @InternetAddress = internetaddress
           @EnvAddressInfos = envaddressinfos
           @ConsoleInternetAddress = consoleinternetaddress
           @ConsoleIntranetAddress = consoleintranetaddress
+          @InternetBandWidth = internetbandwidth
+          @ConsoleInternetBandWidth = consoleinternetbandwidth
           @RequestId = requestid
         end
 
@@ -108,6 +116,8 @@ module TencentCloud
           end
           @ConsoleInternetAddress = params['ConsoleInternetAddress']
           @ConsoleIntranetAddress = params['ConsoleIntranetAddress']
+          @InternetBandWidth = params['InternetBandWidth']
+          @ConsoleInternetBandWidth = params['ConsoleInternetBandWidth']
           @RequestId = params['RequestId']
         end
       end
@@ -378,10 +388,22 @@ module TencentCloud
         # @param ConsoleDefaultPwd: 引擎实例控制台默认密码
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ConsoleDefaultPwd: String
+        # @param TradeType: 交易付费类型，0后付费/1预付费
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TradeType: Integer
+        # @param AutoRenewFlag: 自动续费标记：0表示默认状态(用户未设置，即初始状态)， 1表示自动续费，2表示明确不自动续费
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AutoRenewFlag: Integer
+        # @param CurDeadline: 预付费到期时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CurDeadline: String
+        # @param IsolateTime: 隔离开始时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsolateTime: String
 
-        attr_accessor :InstanceId, :Name, :Edition, :Status, :SpecId, :Replica, :Type, :VpcId, :SubnetIds, :EnableStorage, :StorageType, :StorageCapacity, :Paymode, :EKSClusterID, :CreateTime, :EnvInfos, :EngineRegion, :EnableInternet, :VpcInfos, :ServiceGovernanceInfos, :Tags, :EnableConsoleInternet, :EnableConsoleIntranet, :ConfigInfoVisible, :ConsoleDefaultPwd
+        attr_accessor :InstanceId, :Name, :Edition, :Status, :SpecId, :Replica, :Type, :VpcId, :SubnetIds, :EnableStorage, :StorageType, :StorageCapacity, :Paymode, :EKSClusterID, :CreateTime, :EnvInfos, :EngineRegion, :EnableInternet, :VpcInfos, :ServiceGovernanceInfos, :Tags, :EnableConsoleInternet, :EnableConsoleIntranet, :ConfigInfoVisible, :ConsoleDefaultPwd, :TradeType, :AutoRenewFlag, :CurDeadline, :IsolateTime
         
-        def initialize(instanceid=nil, name=nil, edition=nil, status=nil, specid=nil, replica=nil, type=nil, vpcid=nil, subnetids=nil, enablestorage=nil, storagetype=nil, storagecapacity=nil, paymode=nil, eksclusterid=nil, createtime=nil, envinfos=nil, engineregion=nil, enableinternet=nil, vpcinfos=nil, servicegovernanceinfos=nil, tags=nil, enableconsoleinternet=nil, enableconsoleintranet=nil, configinfovisible=nil, consoledefaultpwd=nil)
+        def initialize(instanceid=nil, name=nil, edition=nil, status=nil, specid=nil, replica=nil, type=nil, vpcid=nil, subnetids=nil, enablestorage=nil, storagetype=nil, storagecapacity=nil, paymode=nil, eksclusterid=nil, createtime=nil, envinfos=nil, engineregion=nil, enableinternet=nil, vpcinfos=nil, servicegovernanceinfos=nil, tags=nil, enableconsoleinternet=nil, enableconsoleintranet=nil, configinfovisible=nil, consoledefaultpwd=nil, tradetype=nil, autorenewflag=nil, curdeadline=nil, isolatetime=nil)
           @InstanceId = instanceid
           @Name = name
           @Edition = edition
@@ -407,6 +429,10 @@ module TencentCloud
           @EnableConsoleIntranet = enableconsoleintranet
           @ConfigInfoVisible = configinfovisible
           @ConsoleDefaultPwd = consoledefaultpwd
+          @TradeType = tradetype
+          @AutoRenewFlag = autorenewflag
+          @CurDeadline = curdeadline
+          @IsolateTime = isolatetime
         end
 
         def deserialize(params)
@@ -463,6 +489,10 @@ module TencentCloud
           @EnableConsoleIntranet = params['EnableConsoleIntranet']
           @ConfigInfoVisible = params['ConfigInfoVisible']
           @ConsoleDefaultPwd = params['ConsoleDefaultPwd']
+          @TradeType = params['TradeType']
+          @AutoRenewFlag = params['AutoRenewFlag']
+          @CurDeadline = params['CurDeadline']
+          @IsolateTime = params['IsolateTime']
         end
       end
 

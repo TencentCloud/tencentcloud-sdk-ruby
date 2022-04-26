@@ -1029,6 +1029,7 @@ module TencentCloud
       # DescribeTaskDetail返回参数结构体
       class DescribeTaskDetailResponse < TencentCloud::Common::AbstractModel
         # @param TaskInfo: 任务信息，不包含任务结果
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskInfo: :class:`Tencentcloud::Ivld.v20210903.models.TaskInfo`
         # @param TaskData: 任务结果数据，只在任务结束时返回
         # @type TaskData: :class:`Tencentcloud::Ivld.v20210903.models.Data`
@@ -1170,7 +1171,8 @@ module TencentCloud
         # @type MD5: String
         # @param Name: 待分析视频的名称，指定后可支持筛选，最多100个中文字符
         # @type Name: String
-        # @param WriteBackCosPath: 当非本人外部视频地址导入时，该字段为转存的cos桶地址且不可为空; 示例：https://${Bucket}-${AppId}.cos.${Region}.myqcloud.com/${PathPrefix}/  (注意，cos路径需要以/分隔符结尾)
+        # @param WriteBackCosPath: 当非本人外部视频地址导入时，该字段为转存的cos桶地址且不可为空; 示例：https://${Bucket}-${AppId}.cos.${Region}.myqcloud.com/${PathPrefix}/  (注意，cos路径需要以/分隔符结尾)。
+        # 推荐采用本主帐号COS桶，如果使用其他帐号COS桶，请确保COS桶可写，否则可导致分析失败
         # @type WriteBackCosPath: String
         # @param Label: 自定义标签，可用于查询
         # @type Label: String
@@ -1420,10 +1422,13 @@ module TencentCloud
         # @param Label: 媒资自定义标签
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Label: String
+        # @param CallbackURL: 媒资导入完成后的回调地址
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CallbackURL: String
 
-        attr_accessor :MediaId, :Name, :DownLoadURL, :Status, :FailedReason, :Metadata, :Progress, :Label
+        attr_accessor :MediaId, :Name, :DownLoadURL, :Status, :FailedReason, :Metadata, :Progress, :Label, :CallbackURL
         
-        def initialize(mediaid=nil, name=nil, downloadurl=nil, status=nil, failedreason=nil, metadata=nil, progress=nil, label=nil)
+        def initialize(mediaid=nil, name=nil, downloadurl=nil, status=nil, failedreason=nil, metadata=nil, progress=nil, label=nil, callbackurl=nil)
           @MediaId = mediaid
           @Name = name
           @DownLoadURL = downloadurl
@@ -1432,6 +1437,7 @@ module TencentCloud
           @Metadata = metadata
           @Progress = progress
           @Label = label
+          @CallbackURL = callbackurl
         end
 
         def deserialize(params)
@@ -1446,6 +1452,7 @@ module TencentCloud
           end
           @Progress = params['Progress']
           @Label = params['Label']
+          @CallbackURL = params['CallbackURL']
         end
       end
 
@@ -1957,10 +1964,13 @@ module TencentCloud
         # @param Label: 媒资自定义标签
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Label: String
+        # @param CallbackURL: 任务分析完成后的后调地址
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CallbackURL: String
 
-        attr_accessor :TaskId, :TaskName, :MediaId, :TaskStatus, :TaskProgress, :TaskTimeCost, :TaskCreateTime, :TaskStartTime, :FailedReason, :MediaPreknownInfo, :MediaName, :Label
+        attr_accessor :TaskId, :TaskName, :MediaId, :TaskStatus, :TaskProgress, :TaskTimeCost, :TaskCreateTime, :TaskStartTime, :FailedReason, :MediaPreknownInfo, :MediaName, :Label, :CallbackURL
         
-        def initialize(taskid=nil, taskname=nil, mediaid=nil, taskstatus=nil, taskprogress=nil, tasktimecost=nil, taskcreatetime=nil, taskstarttime=nil, failedreason=nil, mediapreknowninfo=nil, medianame=nil, label=nil)
+        def initialize(taskid=nil, taskname=nil, mediaid=nil, taskstatus=nil, taskprogress=nil, tasktimecost=nil, taskcreatetime=nil, taskstarttime=nil, failedreason=nil, mediapreknowninfo=nil, medianame=nil, label=nil, callbackurl=nil)
           @TaskId = taskid
           @TaskName = taskname
           @MediaId = mediaid
@@ -1973,6 +1983,7 @@ module TencentCloud
           @MediaPreknownInfo = mediapreknowninfo
           @MediaName = medianame
           @Label = label
+          @CallbackURL = callbackurl
         end
 
         def deserialize(params)
@@ -1991,6 +2002,7 @@ module TencentCloud
           end
           @MediaName = params['MediaName']
           @Label = params['Label']
+          @CallbackURL = params['CallbackURL']
         end
       end
 

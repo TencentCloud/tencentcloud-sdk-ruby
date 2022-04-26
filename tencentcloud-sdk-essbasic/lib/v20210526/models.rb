@@ -88,6 +88,103 @@ module TencentCloud
         end
       end
 
+      # ChannelCreateFlowByFiles请求参数结构体
+      class ChannelCreateFlowByFilesRequest < TencentCloud::Common::AbstractModel
+        # @param Agent: 渠道应用相关信息
+        # @type Agent: :class:`Tencentcloud::Essbasic.v20210526.models.Agent`
+        # @param Operator: 操作者的信息
+        # @type Operator: :class:`Tencentcloud::Essbasic.v20210526.models.UserInfo`
+        # @param FileIds: 签署文件资源Id列表，目前仅支持单个文件
+        # @type FileIds: Array
+        # @param FlowName: 流程名称，长度不超过200个字符
+        # @type FlowName: String
+        # @param Deadline: 流程截止时间，十位数时间戳，最大值为33162419560，即3020年
+        # @type Deadline: Integer
+        # @param FlowDescription: 流程的描述，长度不超过1000个字符
+        # @type FlowDescription: String
+        # @param FlowType: 流程的类型，长度不超过255个字符
+        # @type FlowType: String
+        # @param CallbackUrl: 流程回调地址，长度不超过255个字符
+        # @type CallbackUrl: String
+        # @param FlowApprovers: 流程签约方列表，最多不超过5个参与方
+        # @type FlowApprovers: Array
+        # @param Unordered: 合同签署顺序类型(无序签,顺序签)，默认为false，即有序签署
+        # @type Unordered: Boolean
+        # @param Components: 签署文件中的控件，如：填写控件等
+        # @type Components: Array
+
+        attr_accessor :Agent, :Operator, :FileIds, :FlowName, :Deadline, :FlowDescription, :FlowType, :CallbackUrl, :FlowApprovers, :Unordered, :Components
+        
+        def initialize(agent=nil, operator=nil, fileids=nil, flowname=nil, deadline=nil, flowdescription=nil, flowtype=nil, callbackurl=nil, flowapprovers=nil, unordered=nil, components=nil)
+          @Agent = agent
+          @Operator = operator
+          @FileIds = fileids
+          @FlowName = flowname
+          @Deadline = deadline
+          @FlowDescription = flowdescription
+          @FlowType = flowtype
+          @CallbackUrl = callbackurl
+          @FlowApprovers = flowapprovers
+          @Unordered = unordered
+          @Components = components
+        end
+
+        def deserialize(params)
+          unless params['Agent'].nil?
+            @Agent = Agent.new
+            @Agent.deserialize(params['Agent'])
+          end
+          unless params['Operator'].nil?
+            @Operator = UserInfo.new
+            @Operator.deserialize(params['Operator'])
+          end
+          @FileIds = params['FileIds']
+          @FlowName = params['FlowName']
+          @Deadline = params['Deadline']
+          @FlowDescription = params['FlowDescription']
+          @FlowType = params['FlowType']
+          @CallbackUrl = params['CallbackUrl']
+          unless params['FlowApprovers'].nil?
+            @FlowApprovers = []
+            params['FlowApprovers'].each do |i|
+              flowapproverinfo_tmp = FlowApproverInfo.new
+              flowapproverinfo_tmp.deserialize(i)
+              @FlowApprovers << flowapproverinfo_tmp
+            end
+          end
+          @Unordered = params['Unordered']
+          unless params['Components'].nil?
+            @Components = []
+            params['Components'].each do |i|
+              component_tmp = Component.new
+              component_tmp.deserialize(i)
+              @Components << component_tmp
+            end
+          end
+        end
+      end
+
+      # ChannelCreateFlowByFiles返回参数结构体
+      class ChannelCreateFlowByFilesResponse < TencentCloud::Common::AbstractModel
+        # @param FlowId: 合同流程ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FlowId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :FlowId, :RequestId
+        
+        def initialize(flowid=nil, requestid=nil)
+          @FlowId = flowid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @FlowId = params['FlowId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 此结构体 (Component) 用于描述控件属性。
       class Component < TencentCloud::Common::AbstractModel
         # @param ComponentId: 控件编号
@@ -335,6 +432,60 @@ module TencentCloud
           @CustomerData = params['CustomerData']
           @ErrorMessages = params['ErrorMessages']
           @PreviewUrls = params['PreviewUrls']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateSealByImage请求参数结构体
+      class CreateSealByImageRequest < TencentCloud::Common::AbstractModel
+        # @param Agent: 渠道应用相关信息
+        # @type Agent: :class:`Tencentcloud::Essbasic.v20210526.models.Agent`
+        # @param SealName: 印章名称
+        # @type SealName: String
+        # @param SealImage: 印章图片base64
+        # @type SealImage: String
+        # @param Operator: 操作者的信息
+        # @type Operator: :class:`Tencentcloud::Essbasic.v20210526.models.UserInfo`
+
+        attr_accessor :Agent, :SealName, :SealImage, :Operator
+        
+        def initialize(agent=nil, sealname=nil, sealimage=nil, operator=nil)
+          @Agent = agent
+          @SealName = sealname
+          @SealImage = sealimage
+          @Operator = operator
+        end
+
+        def deserialize(params)
+          unless params['Agent'].nil?
+            @Agent = Agent.new
+            @Agent.deserialize(params['Agent'])
+          end
+          @SealName = params['SealName']
+          @SealImage = params['SealImage']
+          unless params['Operator'].nil?
+            @Operator = UserInfo.new
+            @Operator.deserialize(params['Operator'])
+          end
+        end
+      end
+
+      # CreateSealByImage返回参数结构体
+      class CreateSealByImageResponse < TencentCloud::Common::AbstractModel
+        # @param SealId: 印章id
+        # @type SealId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :SealId, :RequestId
+        
+        def initialize(sealid=nil, requestid=nil)
+          @SealId = sealid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @SealId = params['SealId']
           @RequestId = params['RequestId']
         end
       end

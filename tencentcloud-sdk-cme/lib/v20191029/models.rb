@@ -2134,7 +2134,8 @@ module TencentCloud
         # <li>Material.Deleted：媒体删除事件；</li>
         # <li>Class.Created：分类新增事件；</li>
         # <li>Class.Moved：分类移动事件；</li>
-        # <li>Class.Deleted：分类删除事件。</li>
+        # <li>Class.Deleted：分类删除事件；</li>
+        # <li>Task.VideoExportCompleted：视频导出完成事件。 </li>
         # @type EventType: String
         # @param Operator: 操作者，表示触发事件的操作者。如果是 `cmeid_system` 表示平台管理员操作。
         # @type Operator: String
@@ -2169,10 +2170,13 @@ module TencentCloud
         # @param ClassDeletedEvent: 分类删除事件。仅当 EventType 为 Class.Deleted 时有效。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ClassDeletedEvent: :class:`Tencentcloud::Cme.v20191029.models.ClassDeletedEvent`
+        # @param VideoExportCompletedEvent: 视频导出完成事件。仅当 EventType 为 Task.VideoExportCompleted 时有效。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VideoExportCompletedEvent: :class:`Tencentcloud::Cme.v20191029.models.VideoExportCompletedEvent`
 
-        attr_accessor :EventType, :Operator, :StorageNewFileCreatedEvent, :ProjectStreamConnectStatusChangedEvent, :ProjectSwitcherStatusChangedEvent, :MaterialImportedEvent, :MaterialAddedEvent, :MaterialMovedEvent, :MaterialModifiedEvent, :MaterialDeletedEvent, :ClassCreatedEvent, :ClassMovedEvent, :ClassDeletedEvent
+        attr_accessor :EventType, :Operator, :StorageNewFileCreatedEvent, :ProjectStreamConnectStatusChangedEvent, :ProjectSwitcherStatusChangedEvent, :MaterialImportedEvent, :MaterialAddedEvent, :MaterialMovedEvent, :MaterialModifiedEvent, :MaterialDeletedEvent, :ClassCreatedEvent, :ClassMovedEvent, :ClassDeletedEvent, :VideoExportCompletedEvent
         
-        def initialize(eventtype=nil, operator=nil, storagenewfilecreatedevent=nil, projectstreamconnectstatuschangedevent=nil, projectswitcherstatuschangedevent=nil, materialimportedevent=nil, materialaddedevent=nil, materialmovedevent=nil, materialmodifiedevent=nil, materialdeletedevent=nil, classcreatedevent=nil, classmovedevent=nil, classdeletedevent=nil)
+        def initialize(eventtype=nil, operator=nil, storagenewfilecreatedevent=nil, projectstreamconnectstatuschangedevent=nil, projectswitcherstatuschangedevent=nil, materialimportedevent=nil, materialaddedevent=nil, materialmovedevent=nil, materialmodifiedevent=nil, materialdeletedevent=nil, classcreatedevent=nil, classmovedevent=nil, classdeletedevent=nil, videoexportcompletedevent=nil)
           @EventType = eventtype
           @Operator = operator
           @StorageNewFileCreatedEvent = storagenewfilecreatedevent
@@ -2186,6 +2190,7 @@ module TencentCloud
           @ClassCreatedEvent = classcreatedevent
           @ClassMovedEvent = classmovedevent
           @ClassDeletedEvent = classdeletedevent
+          @VideoExportCompletedEvent = videoexportcompletedevent
         end
 
         def deserialize(params)
@@ -2234,6 +2239,10 @@ module TencentCloud
           unless params['ClassDeletedEvent'].nil?
             @ClassDeletedEvent = ClassDeletedEvent.new
             @ClassDeletedEvent.deserialize(params['ClassDeletedEvent'])
+          end
+          unless params['VideoExportCompletedEvent'].nil?
+            @VideoExportCompletedEvent = VideoExportCompletedEvent.new
+            @VideoExportCompletedEvent.deserialize(params['VideoExportCompletedEvent'])
           end
         end
       end
@@ -5820,6 +5829,46 @@ module TencentCloud
           @ShortEdge = params['ShortEdge']
           @Bitrate = params['Bitrate']
           @FrameRate = params['FrameRate']
+        end
+      end
+
+      # 视频导出完成事件。
+      class VideoExportCompletedEvent < TencentCloud::Common::AbstractModel
+        # @param TaskId: 任务 Id。
+        # @type TaskId: String
+        # @param Status: 任务状态，取值有：
+        # <li>SUCCESS：成功；</li>
+        # <li>FAIL：失败。</li>
+        # @type Status: String
+        # @param ErrCode: 错误码，取值有：
+        # <li>0：成功；</li>
+        # <li>其他值：失败。</li>
+        # @type ErrCode: Integer
+        # @param ErrMsg: 错误信息。
+        # @type ErrMsg: String
+        # @param Output: 任务输出。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Output: :class:`Tencentcloud::Cme.v20191029.models.VideoEditProjectOutput`
+
+        attr_accessor :TaskId, :Status, :ErrCode, :ErrMsg, :Output
+        
+        def initialize(taskid=nil, status=nil, errcode=nil, errmsg=nil, output=nil)
+          @TaskId = taskid
+          @Status = status
+          @ErrCode = errcode
+          @ErrMsg = errmsg
+          @Output = output
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @Status = params['Status']
+          @ErrCode = params['ErrCode']
+          @ErrMsg = params['ErrMsg']
+          unless params['Output'].nil?
+            @Output = VideoEditProjectOutput.new
+            @Output.deserialize(params['Output'])
+          end
         end
       end
 

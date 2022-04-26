@@ -289,7 +289,7 @@ module TencentCloud
       class Candidate < TencentCloud::Common::AbstractModel
         # @param PersonId: 人员ID。
         # @type PersonId: String
-        # @param TraceId: 人体轨迹ID。
+        # @param TraceId: 人体动作轨迹ID。
         # @type TraceId: String
         # @param Score: 候选者的匹配得分。
         # 十万人体库下，误识率百分之五对应的分数为70分；误识率百分之二对应的分数为80分；误识率百分之一对应的分数为90分。
@@ -369,7 +369,7 @@ module TencentCloud
         # @param PersonId: 人员ID，单个腾讯云账号下不可修改，不可重复。
         # 支持英文、数字、-%@#&_，，长度限制64B。
         # @type PersonId: String
-        # @param Trace: 人体轨迹信息。
+        # @param Trace: 人体动作轨迹信息。
         # @type Trace: :class:`Tencentcloud::Bda.v20200324.models.Trace`
 
         attr_accessor :GroupId, :PersonName, :PersonId, :Trace
@@ -394,16 +394,16 @@ module TencentCloud
 
       # CreatePerson返回参数结构体
       class CreatePersonResponse < TencentCloud::Common::AbstractModel
-        # @param TraceId: 人员轨迹唯一标识。
+        # @param TraceId: 人员动作轨迹唯一标识。
         # @type TraceId: String
         # @param BodyModelVersion: 人体识别所用的算法模型版本。
         # @type BodyModelVersion: String
-        # @param InputRetCode: 输入的人体轨迹图片中的合法性校验结果。
+        # @param InputRetCode: 输入的人体动作轨迹图片中的合法性校验结果。
         # 只有为0时结果才有意义。
-        # -1001: 输入图片不合法。-1002: 输入图片不能构成轨迹。
+        # -1001: 输入图片不合法。-1002: 输入图片不能构成动作轨迹。
         # @type InputRetCode: Integer
-        # @param InputRetCodeDetails: 输入的人体轨迹图片中的合法性校验结果详情。
-        # -1101:图片无效，-1102:url不合法。-1103:图片过大。-1104:图片下载失败。-1105:图片解码失败。-1109:图片分辨率过高。-2023:轨迹中有非同人图片。-2024: 轨迹提取失败。-2025: 人体检测失败。
+        # @param InputRetCodeDetails: 输入的人体动作轨迹图片中的合法性校验结果详情。
+        # -1101:图片无效，-1102:url不合法。-1103:图片过大。-1104:图片下载失败。-1105:图片解码失败。-1109:图片分辨率过高。-2023:动作轨迹中有非同人图片。-2024: 动作轨迹提取失败。-2025: 人体检测失败。
         # RetCode 的顺序和入参中Images 或 Urls 的顺序一致。
         # @type InputRetCodeDetails: Array
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
@@ -482,7 +482,7 @@ module TencentCloud
       class CreateTraceRequest < TencentCloud::Common::AbstractModel
         # @param PersonId: 人员ID。
         # @type PersonId: String
-        # @param Trace: 人体轨迹信息。
+        # @param Trace: 人体动作轨迹信息。
         # @type Trace: :class:`Tencentcloud::Bda.v20200324.models.Trace`
 
         attr_accessor :PersonId, :Trace
@@ -503,16 +503,16 @@ module TencentCloud
 
       # CreateTrace返回参数结构体
       class CreateTraceResponse < TencentCloud::Common::AbstractModel
-        # @param TraceId: 人员轨迹唯一标识。
+        # @param TraceId: 人员动作轨迹唯一标识。
         # @type TraceId: String
         # @param BodyModelVersion: 人体识别所用的算法模型版本。
         # @type BodyModelVersion: String
-        # @param InputRetCode: 输入的人体轨迹图片中的合法性校验结果。
+        # @param InputRetCode: 输入的人体动作轨迹图片中的合法性校验结果。
         # 只有为0时结果才有意义。
         # -1001: 输入图片不合法。-1002: 输入图片不能构成轨迹。
         # @type InputRetCode: Integer
-        # @param InputRetCodeDetails: 输入的人体轨迹图片中的合法性校验结果详情。
-        # -1101:图片无效，-1102:url不合法。-1103:图片过大。-1104:图片下载失败。-1105:图片解码失败。-1109:图片分辨率过高。-2023:轨迹中有非同人图片。-2024: 轨迹提取失败。-2025: 人体检测失败。
+        # @param InputRetCodeDetails: 输入的人体动作轨迹图片中的合法性校验结果详情。
+        # -1101:图片无效，-1102:url不合法。-1103:图片过大。-1104:图片下载失败。-1105:图片解码失败。-1109:图片分辨率过高。-2023:动作轨迹中有非同人图片。-2024: 动作轨迹提取失败。-2025: 人体检测失败。
         # @type InputRetCodeDetails: Array
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1245,7 +1245,7 @@ module TencentCloud
         # @type PersonName: String
         # @param PersonId: 人员ID。
         # @type PersonId: String
-        # @param TraceInfos: 包含的人体轨迹图片信息列表。
+        # @param TraceInfos: 包含的人体动作轨迹图片信息列表。
         # @type TraceInfos: Array
 
         attr_accessor :PersonName, :PersonId, :TraceInfos
@@ -1274,9 +1274,9 @@ module TencentCloud
       class SearchTraceRequest < TencentCloud::Common::AbstractModel
         # @param GroupId: 希望搜索的人体库ID。
         # @type GroupId: String
-        # @param Trace: 人体轨迹信息。
+        # @param Trace: 人体动作轨迹信息。
         # @type Trace: :class:`Tencentcloud::Bda.v20200324.models.Trace`
-        # @param MaxPersonNum: 单张被识别的人体轨迹返回的最相似人员数量。
+        # @param MaxPersonNum: 单张被识别的人体动作轨迹返回的最相似人员数量。
         # 默认值为5，最大值为100。
         #  例，设MaxPersonNum为8，则返回Top8相似的人员信息。 值越大，需要处理的时间越长。建议不要超过10。
         # @type MaxPersonNum: Integer
@@ -1308,12 +1308,12 @@ module TencentCloud
       class SearchTraceResponse < TencentCloud::Common::AbstractModel
         # @param Candidates: 识别出的最相似候选人。
         # @type Candidates: Array
-        # @param InputRetCode: 输入的人体轨迹图片中的合法性校验结果。
+        # @param InputRetCode: 输入的人体动作轨迹图片中的合法性校验结果。
         # 只有为0时结果才有意义。
-        # -1001: 输入图片不合法。-1002: 输入图片不能构成轨迹。
+        # -1001: 输入图片不合法。-1002: 输入图片不能构成动作轨迹。
         # @type InputRetCode: Integer
-        # @param InputRetCodeDetails: 输入的人体轨迹图片中的合法性校验结果详情。
-        # -1101:图片无效，-1102:url不合法。-1103:图片过大。-1104:图片下载失败。-1105:图片解码失败。-1109:图片分辨率过高。-2023:轨迹中有非同人图片。-2024: 轨迹提取失败。-2025: 人体检测失败。
+        # @param InputRetCodeDetails: 输入的人体动作轨迹图片中的合法性校验结果详情。
+        # -1101:图片无效，-1102:url不合法。-1103:图片过大。-1104:图片下载失败。-1105:图片解码失败。-1109:图片分辨率过高。-2023:动作轨迹中有非同人图片。-2024: 动作轨迹提取失败。-2025: 人体检测失败。
         # @type InputRetCodeDetails: Array
         # @param BodyModelVersion: 人体识别所用的算法模型版本。
         # @type BodyModelVersion: String
@@ -1595,14 +1595,14 @@ module TencentCloud
         end
       end
 
-      # 人体轨迹信息
+      # 人体动作轨迹信息
       class Trace < TencentCloud::Common::AbstractModel
-        # @param Images: 人体轨迹图片 Base64 数组。
+        # @param Images: 人体动作轨迹图片 Base64 数组。
         # 数组长度最小为1最大为5。
         # 单个图片 base64 编码后大小不可超过2M。
         # 支持PNG、JPG、JPEG、BMP，不支持 GIF 图片。
         # @type Images: Array
-        # @param Urls: 人体轨迹图片 Url 数组。
+        # @param Urls: 人体动作轨迹图片 Url 数组。
         # 数组长度最小为1最大为5。
         # 单个图片 base64 编码后大小不可超过2M。
         # Urls、Images必须提供一个，如果都提供，只使用 Urls。
@@ -1638,11 +1638,11 @@ module TencentCloud
         end
       end
 
-      # 人体轨迹信息。
+      # 人体动作轨迹信息。
       class TraceInfo < TencentCloud::Common::AbstractModel
-        # @param TraceId: 人体轨迹ID。
+        # @param TraceId: 人体动作轨迹ID。
         # @type TraceId: String
-        # @param BodyIds: 包含的人体轨迹图片Id列表。
+        # @param BodyIds: 包含的人体动作轨迹图片Id列表。
         # @type BodyIds: Array
 
         attr_accessor :TraceId, :BodyIds

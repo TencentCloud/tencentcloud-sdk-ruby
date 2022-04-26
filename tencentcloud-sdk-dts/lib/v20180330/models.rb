@@ -194,10 +194,14 @@ module TencentCloud
         # @type DatabaseInfo: String
         # @param Tags: 迁移实例的tag
         # @type Tags: Array
+        # @param SrcNodeType: 源实例类型: ""或者"simple":主从节点，"cluster": 集群节点
+        # @type SrcNodeType: String
+        # @param SrcInfoMulti: 源实例信息，具体内容跟迁移任务类型相关
+        # @type SrcInfoMulti: Array
 
-        attr_accessor :JobName, :MigrateOption, :SrcDatabaseType, :SrcAccessType, :SrcInfo, :DstDatabaseType, :DstAccessType, :DstInfo, :DatabaseInfo, :Tags
+        attr_accessor :JobName, :MigrateOption, :SrcDatabaseType, :SrcAccessType, :SrcInfo, :DstDatabaseType, :DstAccessType, :DstInfo, :DatabaseInfo, :Tags, :SrcNodeType, :SrcInfoMulti
         
-        def initialize(jobname=nil, migrateoption=nil, srcdatabasetype=nil, srcaccesstype=nil, srcinfo=nil, dstdatabasetype=nil, dstaccesstype=nil, dstinfo=nil, databaseinfo=nil, tags=nil)
+        def initialize(jobname=nil, migrateoption=nil, srcdatabasetype=nil, srcaccesstype=nil, srcinfo=nil, dstdatabasetype=nil, dstaccesstype=nil, dstinfo=nil, databaseinfo=nil, tags=nil, srcnodetype=nil, srcinfomulti=nil)
           @JobName = jobname
           @MigrateOption = migrateoption
           @SrcDatabaseType = srcdatabasetype
@@ -208,6 +212,8 @@ module TencentCloud
           @DstInfo = dstinfo
           @DatabaseInfo = databaseinfo
           @Tags = tags
+          @SrcNodeType = srcnodetype
+          @SrcInfoMulti = srcinfomulti
         end
 
         def deserialize(params)
@@ -235,6 +241,15 @@ module TencentCloud
               tagitem_tmp = TagItem.new
               tagitem_tmp.deserialize(i)
               @Tags << tagitem_tmp
+            end
+          end
+          @SrcNodeType = params['SrcNodeType']
+          unless params['SrcInfoMulti'].nil?
+            @SrcInfoMulti = []
+            params['SrcInfoMulti'].each do |i|
+              srcinfo_tmp = SrcInfo.new
+              srcinfo_tmp.deserialize(i)
+              @SrcInfoMulti << srcinfo_tmp
             end
           end
         end
@@ -1188,10 +1203,14 @@ module TencentCloud
 
         # 如果是'整个实例'的迁移模式,不需设置该字段
         # @type DatabaseInfo: String
+        # @param SrcNodeType: 源实例类型: ""或者"simple":主从节点，"cluster": 集群节点
+        # @type SrcNodeType: String
+        # @param SrcInfoMulti: 源实例信息，具体内容跟迁移任务类型相关
+        # @type SrcInfoMulti: Array
 
-        attr_accessor :JobId, :JobName, :MigrateOption, :SrcAccessType, :SrcInfo, :DstAccessType, :DstInfo, :DatabaseInfo
+        attr_accessor :JobId, :JobName, :MigrateOption, :SrcAccessType, :SrcInfo, :DstAccessType, :DstInfo, :DatabaseInfo, :SrcNodeType, :SrcInfoMulti
         
-        def initialize(jobid=nil, jobname=nil, migrateoption=nil, srcaccesstype=nil, srcinfo=nil, dstaccesstype=nil, dstinfo=nil, databaseinfo=nil)
+        def initialize(jobid=nil, jobname=nil, migrateoption=nil, srcaccesstype=nil, srcinfo=nil, dstaccesstype=nil, dstinfo=nil, databaseinfo=nil, srcnodetype=nil, srcinfomulti=nil)
           @JobId = jobid
           @JobName = jobname
           @MigrateOption = migrateoption
@@ -1200,6 +1219,8 @@ module TencentCloud
           @DstAccessType = dstaccesstype
           @DstInfo = dstinfo
           @DatabaseInfo = databaseinfo
+          @SrcNodeType = srcnodetype
+          @SrcInfoMulti = srcinfomulti
         end
 
         def deserialize(params)
@@ -1220,6 +1241,15 @@ module TencentCloud
             @DstInfo.deserialize(params['DstInfo'])
           end
           @DatabaseInfo = params['DatabaseInfo']
+          @SrcNodeType = params['SrcNodeType']
+          unless params['SrcInfoMulti'].nil?
+            @SrcInfoMulti = []
+            params['SrcInfoMulti'].each do |i|
+              srcinfo_tmp = SrcInfo.new
+              srcinfo_tmp.deserialize(i)
+              @SrcInfoMulti << srcinfo_tmp
+            end
+          end
         end
       end
 

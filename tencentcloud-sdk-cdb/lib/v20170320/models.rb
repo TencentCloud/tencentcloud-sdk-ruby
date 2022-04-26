@@ -10361,9 +10361,9 @@ module TencentCloud
         # @type InstanceId: String
         # @param ProxyGroupId: 数据库代理ID
         # @type ProxyGroupId: String
-        # @param ProxyCount: 代理节点个数，实际规格支持数
+        # @param ProxyCount: 代理节点个数
         # @type ProxyCount: Integer
-        # @param Cpu: 代理节点核数，实际规格支持数
+        # @param Cpu: 代理节点核数
         # @type Cpu: Integer
         # @param Mem: 代理节点内存大小
         # @type Mem: Integer

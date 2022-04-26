@@ -649,21 +649,25 @@ module TencentCloud
         # @type Purpose: String
         # @param InstanceId: 官方云盘实例 ID
         # @type InstanceId: String
-        # @param PhoneNumber: 将作为超级管理员账号的手机号码，仅限中国境内手机号，无需国家代码“+86”。
+        # @param PhoneNumber: 将作为超级管理员账号的手机号码
         # @type PhoneNumber: String
+        # @param CountryCode: 将作为超级管理员账号的手机号码的国家代码。默认为 +86。
+        # @type CountryCode: String
 
-        attr_accessor :Purpose, :InstanceId, :PhoneNumber
+        attr_accessor :Purpose, :InstanceId, :PhoneNumber, :CountryCode
         
-        def initialize(purpose=nil, instanceid=nil, phonenumber=nil)
+        def initialize(purpose=nil, instanceid=nil, phonenumber=nil, countrycode=nil)
           @Purpose = purpose
           @InstanceId = instanceid
           @PhoneNumber = phonenumber
+          @CountryCode = countrycode
         end
 
         def deserialize(params)
           @Purpose = params['Purpose']
           @InstanceId = params['InstanceId']
           @PhoneNumber = params['PhoneNumber']
+          @CountryCode = params['CountryCode']
         end
       end
 
@@ -743,18 +747,21 @@ module TencentCloud
         # @type Purpose: String
         # @param InstanceId: 官方云盘实例 ID
         # @type InstanceId: String
-        # @param PhoneNumber: 将作为超级管理员账号的手机号码，仅限中国境内手机号，无需国家代码“+86”。
+        # @param PhoneNumber: 将作为超级管理员账号的手机号码
         # @type PhoneNumber: String
         # @param Code: 短信验证码
         # @type Code: String
+        # @param CountryCode: 将作为超级管理员账号的手机号码的国家代码。默认为 +86。
+        # @type CountryCode: String
 
-        attr_accessor :Purpose, :InstanceId, :PhoneNumber, :Code
+        attr_accessor :Purpose, :InstanceId, :PhoneNumber, :Code, :CountryCode
         
-        def initialize(purpose=nil, instanceid=nil, phonenumber=nil, code=nil)
+        def initialize(purpose=nil, instanceid=nil, phonenumber=nil, code=nil, countrycode=nil)
           @Purpose = purpose
           @InstanceId = instanceid
           @PhoneNumber = phonenumber
           @Code = code
+          @CountryCode = countrycode
         end
 
         def deserialize(params)
@@ -762,6 +769,7 @@ module TencentCloud
           @InstanceId = params['InstanceId']
           @PhoneNumber = params['PhoneNumber']
           @Code = params['Code']
+          @CountryCode = params['CountryCode']
         end
       end
 

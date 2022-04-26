@@ -2216,6 +2216,50 @@ module TencentCloud
         end
       end
 
+      # DescribeEncryptionKeys请求参数结构体
+      class DescribeEncryptionKeysRequest < TencentCloud::Common::AbstractModel
+        # @param DBInstanceId: 实例ID。
+        # @type DBInstanceId: String
+
+        attr_accessor :DBInstanceId
+        
+        def initialize(dbinstanceid=nil)
+          @DBInstanceId = dbinstanceid
+        end
+
+        def deserialize(params)
+          @DBInstanceId = params['DBInstanceId']
+        end
+      end
+
+      # DescribeEncryptionKeys返回参数结构体
+      class DescribeEncryptionKeysResponse < TencentCloud::Common::AbstractModel
+        # @param EncryptionKeys: 实例密钥信息列表。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EncryptionKeys: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :EncryptionKeys, :RequestId
+        
+        def initialize(encryptionkeys=nil, requestid=nil)
+          @EncryptionKeys = encryptionkeys
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['EncryptionKeys'].nil?
+            @EncryptionKeys = []
+            params['EncryptionKeys'].each do |i|
+              encryptionkey_tmp = EncryptionKey.new
+              encryptionkey_tmp.deserialize(i)
+              @EncryptionKeys << encryptionkey_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeOrders请求参数结构体
       class DescribeOrdersRequest < TencentCloud::Common::AbstractModel
         # @param DealNames: 订单名集合
@@ -2858,6 +2902,48 @@ module TencentCloud
         def deserialize(params)
           @TimeSegment = params['TimeSegment']
           @Count = params['Count']
+        end
+      end
+
+      # KMS密钥信息
+      class EncryptionKey < TencentCloud::Common::AbstractModel
+        # @param KeyId: KMS实例加密的KeyId。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type KeyId: String
+        # @param KeyAlias: KMS实例加密Key的别名。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type KeyAlias: String
+        # @param DEKCipherTextBlob: 实例加密密钥DEK的密文。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DEKCipherTextBlob: String
+        # @param IsEnabled: 密钥是否启用，1-启用， 0-未启用。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsEnabled: Integer
+        # @param KeyRegion: KMS密钥所在地域。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type KeyRegion: String
+        # @param CreateTime: DEK密钥创建时间。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateTime: String
+
+        attr_accessor :KeyId, :KeyAlias, :DEKCipherTextBlob, :IsEnabled, :KeyRegion, :CreateTime
+        
+        def initialize(keyid=nil, keyalias=nil, dekciphertextblob=nil, isenabled=nil, keyregion=nil, createtime=nil)
+          @KeyId = keyid
+          @KeyAlias = keyalias
+          @DEKCipherTextBlob = dekciphertextblob
+          @IsEnabled = isenabled
+          @KeyRegion = keyregion
+          @CreateTime = createtime
+        end
+
+        def deserialize(params)
+          @KeyId = params['KeyId']
+          @KeyAlias = params['KeyAlias']
+          @DEKCipherTextBlob = params['DEKCipherTextBlob']
+          @IsEnabled = params['IsEnabled']
+          @KeyRegion = params['KeyRegion']
+          @CreateTime = params['CreateTime']
         end
       end
 

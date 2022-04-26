@@ -797,7 +797,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 查询SQL模版。
+        # 查询SQL模板。
 
         # @param request: Request instance for DescribeSqlTemplate.
         # @type request: :class:`Tencentcloud::dbbrain::V20210527::DescribeSqlTemplateRequest`

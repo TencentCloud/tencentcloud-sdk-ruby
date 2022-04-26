@@ -177,6 +177,69 @@ module TencentCloud
         end
       end
 
+      # AssumeRoleWithWebIdentity请求参数结构体
+      class AssumeRoleWithWebIdentityRequest < TencentCloud::Common::AbstractModel
+        # @param ProviderId: 身份提供商名称
+        # @type ProviderId: String
+        # @param WebIdentityToken: IdP签发的OIDC令牌
+        # @type WebIdentityToken: String
+        # @param RoleArn: 角色访问描述名
+        # @type RoleArn: String
+        # @param RoleSessionName: 会话名称
+        # @type RoleSessionName: String
+        # @param DurationSeconds: 指定临时证书的有效期，单位：秒，默认 7200 秒，最长可设定有效期为 43200 秒
+        # @type DurationSeconds: Integer
+
+        attr_accessor :ProviderId, :WebIdentityToken, :RoleArn, :RoleSessionName, :DurationSeconds
+        
+        def initialize(providerid=nil, webidentitytoken=nil, rolearn=nil, rolesessionname=nil, durationseconds=nil)
+          @ProviderId = providerid
+          @WebIdentityToken = webidentitytoken
+          @RoleArn = rolearn
+          @RoleSessionName = rolesessionname
+          @DurationSeconds = durationseconds
+        end
+
+        def deserialize(params)
+          @ProviderId = params['ProviderId']
+          @WebIdentityToken = params['WebIdentityToken']
+          @RoleArn = params['RoleArn']
+          @RoleSessionName = params['RoleSessionName']
+          @DurationSeconds = params['DurationSeconds']
+        end
+      end
+
+      # AssumeRoleWithWebIdentity返回参数结构体
+      class AssumeRoleWithWebIdentityResponse < TencentCloud::Common::AbstractModel
+        # @param ExpiredTime: 临时秘钥过期时间(时间戳)
+        # @type ExpiredTime: Integer
+        # @param Expiration: 临时秘钥过期时间
+        # @type Expiration: String
+        # @param Credentials: 临时秘钥
+        # @type Credentials: :class:`Tencentcloud::Sts.v20180813.models.Credentials`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ExpiredTime, :Expiration, :Credentials, :RequestId
+        
+        def initialize(expiredtime=nil, expiration=nil, credentials=nil, requestid=nil)
+          @ExpiredTime = expiredtime
+          @Expiration = expiration
+          @Credentials = credentials
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ExpiredTime = params['ExpiredTime']
+          @Expiration = params['Expiration']
+          unless params['Credentials'].nil?
+            @Credentials = Credentials.new
+            @Credentials.deserialize(params['Credentials'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 临时证书
       class Credentials < TencentCloud::Common::AbstractModel
         # @param Token: token。token长度和绑定的策略有关，最长不超过4096字节。

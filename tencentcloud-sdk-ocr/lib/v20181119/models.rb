@@ -4270,13 +4270,16 @@ module TencentCloud
         # 图片存储于腾讯云的 Url 可保障更高的下载速度和稳定性，建议图片存储于腾讯云。
         # 非腾讯云存储的 Url 速度和稳定性可能受一定影响。
         # @type ImageUrl: String
-        # @param Type: 需要识别的健康码类型列表，为空或不填表示默认为粤康码。
+        # @param Type: 需要识别的健康码类型列表，为空或不填表示默认为自动识别。
+        # 0:自动识别
 
         # 1:粤康码
 
         # 2:随申码
 
         # 3:健康宝
+
+        # 4.穗康码
         # @type Type: Integer
 
         attr_accessor :ImageBase64, :ImageUrl, :Type
@@ -4300,7 +4303,7 @@ module TencentCloud
         # @type Name: String
         # @param IDNumber: 持码人身份证号，如：11**************01
         # @type IDNumber: String
-        # @param Time: 健康码更新时间，格式为：XXXX-XX-XX XX:XX:XX
+        # @param Time: 健康码更新时间
         # @type Time: String
         # @param Color: 健康码颜色：绿色、黄色、红色
         # @type Color: String
@@ -4308,7 +4311,7 @@ module TencentCloud
         # @type TestingInterval: String
         # @param TestingResult: 核酸检测结果：阴性、阳性、暂无核酸检测记录
         # @type TestingResult: String
-        # @param TestingTime: 核酸检测时间，格式为：XXXX-XX-XX XX:XX
+        # @param TestingTime: 核酸检测时间
         # @type TestingTime: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

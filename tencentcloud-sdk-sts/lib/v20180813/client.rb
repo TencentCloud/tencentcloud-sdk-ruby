@@ -77,6 +77,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 申请OIDC角色临时密钥
+
+        # @param request: Request instance for AssumeRoleWithWebIdentity.
+        # @type request: :class:`Tencentcloud::sts::V20180813::AssumeRoleWithWebIdentityRequest`
+        # @rtype: :class:`Tencentcloud::sts::V20180813::AssumeRoleWithWebIdentityResponse`
+        def AssumeRoleWithWebIdentity(request)
+          body = send_request('AssumeRoleWithWebIdentity', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = AssumeRoleWithWebIdentityResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 获取当前调用者的身份信息。
         # 接口支持主账号，子账号长期密钥以及AssumeRole，GetFederationToken生成的临时凭据的身份获取。
 

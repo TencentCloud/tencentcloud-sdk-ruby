@@ -1360,7 +1360,7 @@ module TencentCloud
       class DescribeNoPrimaryKeyTablesRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例ID。
         # @type InstanceId: String
-        # @param Date: 查询日期，最早为30天前的日期。
+        # @param Date: 查询日期，如2021-05-27，最早为30天前的日期。
         # @type Date: String
         # @param Limit: 查询数目，默认为20，最大为100。
         # @type Limit: Integer
@@ -1490,11 +1490,11 @@ module TencentCloud
       class DescribeRedisTopBigKeysRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例ID。
         # @type InstanceId: String
-        # @param Date: 查询日期，最早可为前30天的日期。
+        # @param Date: 查询日期，如2021-05-27，最早可为前30天的日期。
         # @type Date: String
         # @param Product: 服务产品类型，支持值包括 "redis" - 云数据库 Redis。
         # @type Product: String
-        # @param SortBy: 排序字段，取值包括Capacity - 内存，ItemCount - 元素数量。
+        # @param SortBy: 排序字段，取值包括Capacity - 内存，ItemCount - 元素数量，默认为Capacity。
         # @type SortBy: String
         # @param KeyType: key类型筛选条件，默认为不进行筛选，取值包括string, list, set, hash, sortedset, stream。
         # @type KeyType: String

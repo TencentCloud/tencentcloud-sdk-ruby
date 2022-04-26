@@ -29,6 +29,30 @@ module TencentCloud
         end
 
 
+        # 接口（ChannelCreateFlowByFiles）用于渠道版通过文件创建流程。此接口不可直接使用，需要运营申请
+
+        # @param request: Request instance for ChannelCreateFlowByFiles.
+        # @type request: :class:`Tencentcloud::essbasic::V20210526::ChannelCreateFlowByFilesRequest`
+        # @rtype: :class:`Tencentcloud::essbasic::V20210526::ChannelCreateFlowByFilesResponse`
+        def ChannelCreateFlowByFiles(request)
+          body = send_request('ChannelCreateFlowByFiles', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ChannelCreateFlowByFilesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 此接口（CreateConsoleLoginUrl）用于创建电子签控制台登录链接。若企业未激活，调用同步企业信息、同步经办人信息
 
         # @param request: Request instance for CreateConsoleLoginUrl.
@@ -63,6 +87,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = CreateFlowsByTemplatesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 渠道通过图片为子客代创建印章，图片最大5m；此接口不可直接使用，需要运营申请
+
+        # @param request: Request instance for CreateSealByImage.
+        # @type request: :class:`Tencentcloud::essbasic::V20210526::CreateSealByImageRequest`
+        # @rtype: :class:`Tencentcloud::essbasic::V20210526::CreateSealByImageResponse`
+        def CreateSealByImage(request)
+          body = send_request('CreateSealByImage', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateSealByImageResponse.new
             model.deserialize(response['Response'])
             model
           else

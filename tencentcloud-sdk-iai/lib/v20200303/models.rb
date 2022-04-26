@@ -255,50 +255,6 @@ module TencentCloud
         end
       end
 
-      # CheckSimilarPerson请求参数结构体
-      class CheckSimilarPersonRequest < TencentCloud::Common::AbstractModel
-        # @param GroupIds: 待整理的人员库列表。
-        # 人员库总人数不可超过200万，人员库个数不可超过10个。
-        # 数组元素取值为创建人员库接口中的GroupId
-        # @type GroupIds: Array
-        # @param UniquePersonControl: 人员查重整理力度的控制。
-        # 1：力度较高的人员整理，能够消除更多的重复身份，对应稍高的非重复身份误清除率；
-        # 2：力度较低的人员整理，非重复身份的误清除率较低，对应稍低的重复身份消除率。
-        # @type UniquePersonControl: Integer
-
-        attr_accessor :GroupIds, :UniquePersonControl
-        
-        def initialize(groupids=nil, uniquepersoncontrol=nil)
-          @GroupIds = groupids
-          @UniquePersonControl = uniquepersoncontrol
-        end
-
-        def deserialize(params)
-          @GroupIds = params['GroupIds']
-          @UniquePersonControl = params['UniquePersonControl']
-        end
-      end
-
-      # CheckSimilarPerson返回参数结构体
-      class CheckSimilarPersonResponse < TencentCloud::Common::AbstractModel
-        # @param JobId: 查重任务ID，用于查询、获取查重的进度和结果。
-        # @type JobId: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :JobId, :RequestId
-        
-        def initialize(jobid=nil, requestid=nil)
-          @JobId = jobid
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          @JobId = params['JobId']
-          @RequestId = params['RequestId']
-        end
-      end
-
       # CompareFace请求参数结构体
       class CompareFaceRequest < TencentCloud::Common::AbstractModel
         # @param ImageA: A 图片 base64 数据，base64 编码后大小不可超过5M。
@@ -1476,44 +1432,6 @@ module TencentCloud
         end
       end
 
-      # EstimateCheckSimilarPersonCostTime请求参数结构体
-      class EstimateCheckSimilarPersonCostTimeRequest < TencentCloud::Common::AbstractModel
-        # @param GroupIds: 待整理的人员库列表。
-        # 人员库总人数不可超过200万，人员库个数不可超过10个。
-        # 数组元素取值为创建人员库接口中的GroupId
-        # @type GroupIds: Array
-
-        attr_accessor :GroupIds
-        
-        def initialize(groupids=nil)
-          @GroupIds = groupids
-        end
-
-        def deserialize(params)
-          @GroupIds = params['GroupIds']
-        end
-      end
-
-      # EstimateCheckSimilarPersonCostTime返回参数结构体
-      class EstimateCheckSimilarPersonCostTimeResponse < TencentCloud::Common::AbstractModel
-        # @param EstimatedTimeCost: 人员查重任务预估需要耗费时间。 单位为分钟。
-        # @type EstimatedTimeCost: Integer
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :EstimatedTimeCost, :RequestId
-        
-        def initialize(estimatedtimecost=nil, requestid=nil)
-          @EstimatedTimeCost = estimatedtimecost
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          @EstimatedTimeCost = params['EstimatedTimeCost']
-          @RequestId = params['RequestId']
-        end
-      end
-
       # 眼睛信息
       class Eye < TencentCloud::Common::AbstractModel
         # @param Glass: 识别是否佩戴眼镜。
@@ -2145,57 +2063,6 @@ module TencentCloud
         end
       end
 
-      # GetCheckSimilarPersonJobIdList请求参数结构体
-      class GetCheckSimilarPersonJobIdListRequest < TencentCloud::Common::AbstractModel
-        # @param Offset: 起始序号，默认值为0。
-        # @type Offset: Integer
-        # @param Limit: 返回数量，默认值为10，最大值为1000。
-        # @type Limit: Integer
-
-        attr_accessor :Offset, :Limit
-        
-        def initialize(offset=nil, limit=nil)
-          @Offset = offset
-          @Limit = limit
-        end
-
-        def deserialize(params)
-          @Offset = params['Offset']
-          @Limit = params['Limit']
-        end
-      end
-
-      # GetCheckSimilarPersonJobIdList返回参数结构体
-      class GetCheckSimilarPersonJobIdListResponse < TencentCloud::Common::AbstractModel
-        # @param JobIdInfos: 人员查重任务信息列表。
-        # @type JobIdInfos: Array
-        # @param JobIdNum: 查重任务总数量。
-        # @type JobIdNum: Integer
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :JobIdInfos, :JobIdNum, :RequestId
-        
-        def initialize(jobidinfos=nil, jobidnum=nil, requestid=nil)
-          @JobIdInfos = jobidinfos
-          @JobIdNum = jobidnum
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          unless params['JobIdInfos'].nil?
-            @JobIdInfos = []
-            params['JobIdInfos'].each do |i|
-              jobidinfo_tmp = JobIdInfo.new
-              jobidinfo_tmp.deserialize(i)
-              @JobIdInfos << jobidinfo_tmp
-            end
-          end
-          @JobIdNum = params['JobIdNum']
-          @RequestId = params['RequestId']
-        end
-      end
-
       # GetGroupInfo请求参数结构体
       class GetGroupInfoRequest < TencentCloud::Common::AbstractModel
         # @param GroupId: 人员库 ID，取值为创建人员库接口中的GroupId
@@ -2515,47 +2382,6 @@ module TencentCloud
         end
       end
 
-      # GetSimilarPersonResult请求参数结构体
-      class GetSimilarPersonResultRequest < TencentCloud::Common::AbstractModel
-        # @param JobId: 查重任务ID，用于查询、获取查重的进度和结果。取值为人员查重接口返回的JobId
-        # @type JobId: String
-
-        attr_accessor :JobId
-        
-        def initialize(jobid=nil)
-          @JobId = jobid
-        end
-
-        def deserialize(params)
-          @JobId = params['JobId']
-        end
-      end
-
-      # GetSimilarPersonResult返回参数结构体
-      class GetSimilarPersonResultResponse < TencentCloud::Common::AbstractModel
-        # @param Progress: 查重任务完成进度。取值[0.0，100.0]。当且仅当值为100时，SimilarPersons才有意义。
-        # @type Progress: Float
-        # @param SimilarPersonsUrl: 疑似同一人的人员信息文件临时下载链接， 有效时间为5分钟，结果文件实际保存90天。
-        # 文件内容由 SimilarPerson 的数组组成。
-        # @type SimilarPersonsUrl: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :Progress, :SimilarPersonsUrl, :RequestId
-        
-        def initialize(progress=nil, similarpersonsurl=nil, requestid=nil)
-          @Progress = progress
-          @SimilarPersonsUrl = similarpersonsurl
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          @Progress = params['Progress']
-          @SimilarPersonsUrl = params['SimilarPersonsUrl']
-          @RequestId = params['RequestId']
-        end
-      end
-
       # GetUpgradeGroupFaceModelVersionJobList请求参数结构体
       class GetUpgradeGroupFaceModelVersionJobListRequest < TencentCloud::Common::AbstractModel
         # @param Offset: 起始序号，默认值为0。
@@ -2850,33 +2676,6 @@ module TencentCloud
           @Pitch = params['Pitch']
           @Yaw = params['Yaw']
           @Roll = params['Roll']
-        end
-      end
-
-      # 查重任务信息
-      class JobIdInfo < TencentCloud::Common::AbstractModel
-        # @param JobId: 查重任务ID，用于查询、获取查重的进度和结果。
-        # @type JobId: String
-        # @param StartTime: 查重起始时间。
-        # StartTime的值是自 Unix 纪元时间到Group创建时间的毫秒数。
-        # Unix 纪元时间是 1970 年 1 月 1 日星期四，协调世界时 (UTC) 00:00:00。
-        # 有关更多信息，请参阅 Unix 时间。
-        # @type StartTime: Integer
-        # @param JobStatus: 查重任务是否已完成。0: 成功 1: 未完成 2: 失败
-        # @type JobStatus: Integer
-
-        attr_accessor :JobId, :StartTime, :JobStatus
-        
-        def initialize(jobid=nil, starttime=nil, jobstatus=nil)
-          @JobId = jobid
-          @StartTime = starttime
-          @JobStatus = jobstatus
-        end
-
-        def deserialize(params)
-          @JobId = params['JobId']
-          @StartTime = params['StartTime']
-          @JobStatus = params['JobStatus']
         end
       end
 

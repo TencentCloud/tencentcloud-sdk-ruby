@@ -258,18 +258,25 @@ module TencentCloud
       class AutoScalingAdvice < TencentCloud::Common::AbstractModel
         # @param AutoScalingGroupId: 伸缩组ID。
         # @type AutoScalingGroupId: String
+        # @param Level: 伸缩组警告级别。取值范围：<br>
+        # <li>NORMAL：正常<br>
+        # <li>WARNING：警告级别<br>
+        # <li>CRITICAL：严重级别<br>
+        # @type Level: String
         # @param Advices: 伸缩组配置建议集合。
         # @type Advices: Array
 
-        attr_accessor :AutoScalingGroupId, :Advices
+        attr_accessor :AutoScalingGroupId, :Level, :Advices
         
-        def initialize(autoscalinggroupid=nil, advices=nil)
+        def initialize(autoscalinggroupid=nil, level=nil, advices=nil)
           @AutoScalingGroupId = autoscalinggroupid
+          @Level = level
           @Advices = advices
         end
 
         def deserialize(params)
           @AutoScalingGroupId = params['AutoScalingGroupId']
+          @Level = params['Level']
           unless params['Advices'].nil?
             @Advices = []
             params['Advices'].each do |i|
@@ -287,7 +294,17 @@ module TencentCloud
         # @type AutoScalingGroupId: String
         # @param AutoScalingGroupName: 伸缩组名称
         # @type AutoScalingGroupName: String
-        # @param AutoScalingGroupStatus: 伸缩组当前状态。取值范围：<br><li>NORMAL：正常<br><li>CVM_ABNORMAL：启动配置异常<br><li>LB_ABNORMAL：负载均衡器异常<br><li>VPC_ABNORMAL：VPC网络异常<br><li>INSUFFICIENT_BALANCE：余额不足<br><li>LB_BACKEND_REGION_NOT_MATCH：CLB实例后端地域与AS服务所在地域不匹配<br>
+        # @param AutoScalingGroupStatus: 伸缩组当前状态。取值范围：<br>
+        # <li>NORMAL：正常<br>
+        # <li>CVM_ABNORMAL：启动配置异常<br>
+        # <li>LB_ABNORMAL：负载均衡器异常<br>
+        # <li>LB_LISTENER_ABNORMAL：负载均衡器监听器异常<br>
+        # <li>LB_LOCATION_ABNORMAL：负载均衡器监听器转发配置异常<br>
+        # <li>VPC_ABNORMAL：VPC网络异常<br>
+        # <li>SUBNET_ABNORMAL：VPC子网异常<br>
+        # <li>INSUFFICIENT_BALANCE：余额不足<br>
+        # <li>LB_BACKEND_REGION_NOT_MATCH：CLB实例后端地域与AS服务所在地域不匹配<br>
+        # <li>LB_BACKEND_VPC_NOT_MATCH：CLB实例VPC与伸缩组VPC不匹配
         # @type AutoScalingGroupStatus: String
         # @param CreatedTime: 创建时间，采用UTC标准计时
         # @type CreatedTime: String
@@ -3431,6 +3448,73 @@ module TencentCloud
 
       # ModifyLaunchConfigurationAttributes返回参数结构体
       class ModifyLaunchConfigurationAttributesResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyLifecycleHook请求参数结构体
+      class ModifyLifecycleHookRequest < TencentCloud::Common::AbstractModel
+        # @param LifecycleHookId: 生命周期挂钩ID。
+        # @type LifecycleHookId: String
+        # @param LifecycleHookName: 生命周期挂钩名称。
+        # @type LifecycleHookName: String
+        # @param LifecycleTransition: 进入生命周期挂钩场景，取值包括：
+        # <li> INSTANCE_LAUNCHING：实例启动后
+        # <li> INSTANCE_TERMINATING：实例销毁前
+        # @type LifecycleTransition: String
+        # @param DefaultResult: 定义伸缩组在生命周期挂钩超时的情况下应采取的操作，取值包括：
+        # <li> CONTINUE： 超时后继续伸缩活动
+        # <li> ABANDON：超时后终止伸缩活动
+        # @type DefaultResult: String
+        # @param HeartbeatTimeout: 生命周期挂钩超时之前可以经过的最长时间（以秒为单位），范围从 30 到 7200 秒。
+        # @type HeartbeatTimeout: Integer
+        # @param NotificationMetadata: 弹性伸缩向通知目标发送的附加信息。
+        # @type NotificationMetadata: String
+        # @param LifecycleTransitionType: 进行生命周期挂钩的场景类型，取值范围包括`NORMAL`和 `EXTENSION`。说明：设置为`EXTENSION`值，在AttachInstances、DetachInstances、RemoveInstances 接口时会触发生命周期挂钩操作，值为`NORMAL`则不会在这些接口中触发生命周期挂钩。
+        # @type LifecycleTransitionType: String
+        # @param NotificationTarget: 通知目标信息。
+        # @type NotificationTarget: :class:`Tencentcloud::As.v20180419.models.NotificationTarget`
+
+        attr_accessor :LifecycleHookId, :LifecycleHookName, :LifecycleTransition, :DefaultResult, :HeartbeatTimeout, :NotificationMetadata, :LifecycleTransitionType, :NotificationTarget
+        
+        def initialize(lifecyclehookid=nil, lifecyclehookname=nil, lifecycletransition=nil, defaultresult=nil, heartbeattimeout=nil, notificationmetadata=nil, lifecycletransitiontype=nil, notificationtarget=nil)
+          @LifecycleHookId = lifecyclehookid
+          @LifecycleHookName = lifecyclehookname
+          @LifecycleTransition = lifecycletransition
+          @DefaultResult = defaultresult
+          @HeartbeatTimeout = heartbeattimeout
+          @NotificationMetadata = notificationmetadata
+          @LifecycleTransitionType = lifecycletransitiontype
+          @NotificationTarget = notificationtarget
+        end
+
+        def deserialize(params)
+          @LifecycleHookId = params['LifecycleHookId']
+          @LifecycleHookName = params['LifecycleHookName']
+          @LifecycleTransition = params['LifecycleTransition']
+          @DefaultResult = params['DefaultResult']
+          @HeartbeatTimeout = params['HeartbeatTimeout']
+          @NotificationMetadata = params['NotificationMetadata']
+          @LifecycleTransitionType = params['LifecycleTransitionType']
+          unless params['NotificationTarget'].nil?
+            @NotificationTarget = NotificationTarget.new
+            @NotificationTarget.deserialize(params['NotificationTarget'])
+          end
+        end
+      end
+
+      # ModifyLifecycleHook返回参数结构体
+      class ModifyLifecycleHookResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
