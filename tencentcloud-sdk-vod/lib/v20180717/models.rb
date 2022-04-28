@@ -298,9 +298,9 @@ module TencentCloud
         # <li>HLS。</li>
         # @type Format: String
         # @param DrmType: DRM 类型，取值范围：
-        # <li>FairPlay；</li>
-        # <li>SimpleAES；</li>
-        # <li>Widevine。</li>
+        # <li>SimpleAES</li>
+        # <li>Widevine</li>
+        # <li>FairPlay</li>
         # 如果取值为空字符串，代表不对视频做 DRM 保护。
         # @type DrmType: String
         # @param StreamInfos: 自适应转码输入流参数信息，最多输入10路流。
@@ -5087,8 +5087,10 @@ module TencentCloud
         # @type StreamInfos: Array
         # @param Name: 模板名称，长度限制：64 个字符。
         # @type Name: String
-        # @param DrmType: DRM方案类型，取值范围：
-        # <li>SimpleAES。</li>
+        # @param DrmType: DRM 方案类型，取值范围：
+        # <li>SimpleAES</li>
+        # <li>Widevine</li>
+        # <li>FairPlay</li>
         # 如果取值为空字符串，代表不对视频做 DRM 保护。
         # @type DrmType: String
         # @param DisableHigherVideoBitrate: 是否禁止视频低码率转高码率，取值范围：
@@ -8199,6 +8201,57 @@ module TencentCloud
         end
       end
 
+      # DescribeImageReviewUsageData请求参数结构体
+      class DescribeImageReviewUsageDataRequest < TencentCloud::Common::AbstractModel
+        # @param StartTime: 起始日期。使用 [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#52)。
+        # @type StartTime: String
+        # @param EndTime: 结束日期，需大于等于起始日期。使用 [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#52)。
+        # @type EndTime: String
+        # @param SubAppId: 点播 [子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。
+        # @type SubAppId: Integer
+
+        attr_accessor :StartTime, :EndTime, :SubAppId
+        
+        def initialize(starttime=nil, endtime=nil, subappid=nil)
+          @StartTime = starttime
+          @EndTime = endtime
+          @SubAppId = subappid
+        end
+
+        def deserialize(params)
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @SubAppId = params['SubAppId']
+        end
+      end
+
+      # DescribeImageReviewUsageData返回参数结构体
+      class DescribeImageReviewUsageDataResponse < TencentCloud::Common::AbstractModel
+        # @param ImageReviewUsageDataSet: 图片智能识别次数统计数据，展示查询时间范围内的图片智能识别次数的概览数据。
+        # @type ImageReviewUsageDataSet: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ImageReviewUsageDataSet, :RequestId
+        
+        def initialize(imagereviewusagedataset=nil, requestid=nil)
+          @ImageReviewUsageDataSet = imagereviewusagedataset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['ImageReviewUsageDataSet'].nil?
+            @ImageReviewUsageDataSet = []
+            params['ImageReviewUsageDataSet'].each do |i|
+              imagereviewusagedataitem_tmp = ImageReviewUsageDataItem.new
+              imagereviewusagedataitem_tmp.deserialize(i)
+              @ImageReviewUsageDataSet << imagereviewusagedataitem_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeImageSpriteTemplates请求参数结构体
       class DescribeImageSpriteTemplatesRequest < TencentCloud::Common::AbstractModel
         # @param Definitions: 雪碧图模板唯一标识过滤条件，数组长度限制：100。
@@ -10920,6 +10973,26 @@ module TencentCloud
             end
           end
           @CreateTime = params['CreateTime']
+        end
+      end
+
+      # 图片智能识别次数统计数据。
+      class ImageReviewUsageDataItem < TencentCloud::Common::AbstractModel
+        # @param Time: 数据所在时间区间的开始时间，使用 [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#52)。如：当时间粒度为天，2018-12-01T00:00:00+08:00，表示2018年12月1日（含）到2018年12月2日（不含）区间。
+        # @type Time: String
+        # @param Count: 次数。
+        # @type Count: Integer
+
+        attr_accessor :Time, :Count
+        
+        def initialize(time=nil, count=nil)
+          @Time = time
+          @Count = count
+        end
+
+        def deserialize(params)
+          @Time = params['Time']
+          @Count = params['Count']
         end
       end
 
@@ -17198,6 +17271,57 @@ module TencentCloud
           @RestoreDay = params['RestoreDay']
           @Status = params['Status']
           @Message = params['Message']
+        end
+      end
+
+      # ReviewImage请求参数结构体
+      class ReviewImageRequest < TencentCloud::Common::AbstractModel
+        # @param FileId: 媒体文件 ID，即该文件在云点播上的全局唯一标识符。本接口要求媒体文件必须是图片格式。
+        # @type FileId: String
+        # @param Definition: 图片智能识别模板 ID，当前固定填 10。
+        # @type Definition: Integer
+        # @param SubAppId: 点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。
+        # @type SubAppId: Integer
+
+        attr_accessor :FileId, :Definition, :SubAppId
+        
+        def initialize(fileid=nil, definition=nil, subappid=nil)
+          @FileId = fileid
+          @Definition = definition
+          @SubAppId = subappid
+        end
+
+        def deserialize(params)
+          @FileId = params['FileId']
+          @Definition = params['Definition']
+          @SubAppId = params['SubAppId']
+        end
+      end
+
+      # ReviewImage返回参数结构体
+      class ReviewImageResponse < TencentCloud::Common::AbstractModel
+        # @param ReviewResultSet: 图片智能识别任务结果。
+        # @type ReviewResultSet: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ReviewResultSet, :RequestId
+        
+        def initialize(reviewresultset=nil, requestid=nil)
+          @ReviewResultSet = reviewresultset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['ReviewResultSet'].nil?
+            @ReviewResultSet = []
+            params['ReviewResultSet'].each do |i|
+              contentreviewresult_tmp = ContentReviewResult.new
+              contentreviewresult_tmp.deserialize(i)
+              @ReviewResultSet << contentreviewresult_tmp
+            end
+          end
+          @RequestId = params['RequestId']
         end
       end
 

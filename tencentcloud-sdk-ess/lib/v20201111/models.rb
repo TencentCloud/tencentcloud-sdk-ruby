@@ -581,16 +581,25 @@ module TencentCloud
         # @type PathType: Integer
         # @param FlowId: 合同详情 id (PathType=1时必传)
         # @type FlowId: String
+        # @param OrganizationName: 企业名称
+        # @type OrganizationName: String
+        # @param EndPoint: 链接类型 HTTP：跳转电子签小程序的http_url，APP：第三方APP或小程序跳转电子签小程序，默认为HTTP类型
+        # @type EndPoint: String
+        # @param AutoJumpBack: 是否自动回跳 true：是， false：否。该参数只针对"APP" 类型的签署链接有效
+        # @type AutoJumpBack: Boolean
 
-        attr_accessor :Operator, :Agent, :Name, :Mobile, :PathType, :FlowId
+        attr_accessor :Operator, :Agent, :Name, :Mobile, :PathType, :FlowId, :OrganizationName, :EndPoint, :AutoJumpBack
         
-        def initialize(operator=nil, agent=nil, name=nil, mobile=nil, pathtype=nil, flowid=nil)
+        def initialize(operator=nil, agent=nil, name=nil, mobile=nil, pathtype=nil, flowid=nil, organizationname=nil, endpoint=nil, autojumpback=nil)
           @Operator = operator
           @Agent = agent
           @Name = name
           @Mobile = mobile
           @PathType = pathtype
           @FlowId = flowid
+          @OrganizationName = organizationname
+          @EndPoint = endpoint
+          @AutoJumpBack = autojumpback
         end
 
         def deserialize(params)
@@ -606,6 +615,9 @@ module TencentCloud
           @Mobile = params['Mobile']
           @PathType = params['PathType']
           @FlowId = params['FlowId']
+          @OrganizationName = params['OrganizationName']
+          @EndPoint = params['EndPoint']
+          @AutoJumpBack = params['AutoJumpBack']
         end
       end
 

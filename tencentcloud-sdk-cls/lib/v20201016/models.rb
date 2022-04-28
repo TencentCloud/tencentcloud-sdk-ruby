@@ -794,13 +794,17 @@ module TencentCloud
         # @param Json: json格式内容描述
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Json: :class:`Tencentcloud::Cls.v20201016.models.JsonInfo`
+        # @param Parquet: parquet格式内容描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Parquet: :class:`Tencentcloud::Cls.v20201016.models.ParquetInfo`
 
-        attr_accessor :Format, :Csv, :Json
+        attr_accessor :Format, :Csv, :Json, :Parquet
         
-        def initialize(format=nil, csv=nil, json=nil)
+        def initialize(format=nil, csv=nil, json=nil, parquet=nil)
           @Format = format
           @Csv = csv
           @Json = json
+          @Parquet = parquet
         end
 
         def deserialize(params)
@@ -812,6 +816,10 @@ module TencentCloud
           unless params['Json'].nil?
             @Json = JsonInfo.new
             @Json.deserialize(params['Json'])
+          end
+          unless params['Parquet'].nil?
+            @Parquet = ParquetInfo.new
+            @Parquet.deserialize(params['Parquet'])
           end
         end
       end
@@ -5182,6 +5190,54 @@ module TencentCloud
         def deserialize(params)
           @TopicID = params['TopicID']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # Parquet内容
+      class ParquetInfo < TencentCloud::Common::AbstractModel
+        # @param ParquetKeyInfo: ParquetKeyInfo数组
+        # @type ParquetKeyInfo: Array
+
+        attr_accessor :ParquetKeyInfo
+        
+        def initialize(parquetkeyinfo=nil)
+          @ParquetKeyInfo = parquetkeyinfo
+        end
+
+        def deserialize(params)
+          unless params['ParquetKeyInfo'].nil?
+            @ParquetKeyInfo = []
+            params['ParquetKeyInfo'].each do |i|
+              parquetkeyinfo_tmp = ParquetKeyInfo.new
+              parquetkeyinfo_tmp.deserialize(i)
+              @ParquetKeyInfo << parquetkeyinfo_tmp
+            end
+          end
+        end
+      end
+
+      # Parquet内容描述
+      class ParquetKeyInfo < TencentCloud::Common::AbstractModel
+        # @param KeyName: 键值名称
+        # @type KeyName: String
+        # @param KeyType: 数据类型，目前支持6种类型：string、boolean、int32、int64、float、double
+        # @type KeyType: String
+        # @param KeyNonExistingField: 解析失败赋值信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type KeyNonExistingField: String
+
+        attr_accessor :KeyName, :KeyType, :KeyNonExistingField
+        
+        def initialize(keyname=nil, keytype=nil, keynonexistingfield=nil)
+          @KeyName = keyname
+          @KeyType = keytype
+          @KeyNonExistingField = keynonexistingfield
+        end
+
+        def deserialize(params)
+          @KeyName = params['KeyName']
+          @KeyType = params['KeyType']
+          @KeyNonExistingField = params['KeyNonExistingField']
         end
       end
 

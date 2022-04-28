@@ -3685,6 +3685,45 @@ module TencentCloud
         end
       end
 
+      # IsolateInstances请求参数结构体
+      class IsolateInstancesRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceIds: 实例ID列表。一个或多个待操作的实例ID。可通过[DescribeInstances](https://cloud.tencent.com/document/api/1207/47573)接口返回值中的InstanceId获取。每次请求退还实例和数据盘数量总计上限为20。
+        # @type InstanceIds: Array
+        # @param IsolateDataDisk: 是否退还挂载的数据盘。取值范围：
+        # TRUE：表示退还实例同时退还其挂载的数据盘。
+        # FALSE：表示退还实例同时不再退还其挂载的数据盘。
+        # 默认取值：TRUE。
+        # @type IsolateDataDisk: Boolean
+
+        attr_accessor :InstanceIds, :IsolateDataDisk
+        
+        def initialize(instanceids=nil, isolatedatadisk=nil)
+          @InstanceIds = instanceids
+          @IsolateDataDisk = isolatedatadisk
+        end
+
+        def deserialize(params)
+          @InstanceIds = params['InstanceIds']
+          @IsolateDataDisk = params['IsolateDataDisk']
+        end
+      end
+
+      # IsolateInstances返回参数结构体
+      class IsolateInstancesResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 描述密钥对信息。
       class KeyPair < TencentCloud::Common::AbstractModel
         # @param KeyId: 密钥对 ID ，是密钥对的唯一标识。
@@ -4283,7 +4322,7 @@ module TencentCloud
 
       # RenewInstances请求参数结构体
       class RenewInstancesRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceIds: 实例ID列表。一个或多个待操作的实例ID。可通过DescribeInstances接口返回值中的InstanceId获取。每次请求批量实例的上限为100。
+        # @param InstanceIds: 实例ID列表。一个或多个待操作的实例ID。可通过[DescribeInstances](https://cloud.tencent.com/document/api/1207/47573)接口返回值中的InstanceId获取。每次请求批量实例的上限为100。
         # @type InstanceIds: Array
         # @param InstanceChargePrepaid: 预付费模式，即包年包月相关参数设置。通过该参数可以指定包年包月实例的购买时长、是否设置自动续费等属性。若指定实例的付费模式为预付费则该参数必传。
         # @type InstanceChargePrepaid: :class:`Tencentcloud::Lighthouse.v20200324.models.InstanceChargePrepaid`

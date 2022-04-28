@@ -1733,6 +1733,57 @@ module TencentCloud
         end
       end
 
+      # DeleteRoute请求参数结构体
+      class DeleteRouteRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例唯一id
+        # @type InstanceId: String
+        # @param RouteId: 路由id
+        # @type RouteId: Integer
+        # @param CallerAppid: 调用方appId
+        # @type CallerAppid: Integer
+        # @param DeleteRouteTime: 删除路由时间
+        # @type DeleteRouteTime: String
+
+        attr_accessor :InstanceId, :RouteId, :CallerAppid, :DeleteRouteTime
+        
+        def initialize(instanceid=nil, routeid=nil, callerappid=nil, deleteroutetime=nil)
+          @InstanceId = instanceid
+          @RouteId = routeid
+          @CallerAppid = callerappid
+          @DeleteRouteTime = deleteroutetime
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @RouteId = params['RouteId']
+          @CallerAppid = params['CallerAppid']
+          @DeleteRouteTime = params['DeleteRouteTime']
+        end
+      end
+
+      # DeleteRoute返回参数结构体
+      class DeleteRouteResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 返回结果
+        # @type Result: :class:`Tencentcloud::Ckafka.v20190819.models.JgwOperateResponse`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+        
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Result'].nil?
+            @Result = JgwOperateResponse.new
+            @Result.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DeleteRouteTriggerTime请求参数结构体
       class DeleteRouteTriggerTimeRequest < TencentCloud::Common::AbstractModel
         # @param DelayTime: 修改时间
