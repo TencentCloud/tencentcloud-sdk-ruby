@@ -502,16 +502,24 @@ module TencentCloud
         # @param ServiceBandWidth: 业务带宽
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ServiceBandWidth: Integer
+        # @param BattleEditionFlag: 战斗服版本标记，0表示普通高防包，1表示战斗服高防包
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BattleEditionFlag: Integer
+        # @param ChannelEditionFlag: 渠道版标记，0表示普通高防包，1表示渠道版高防包
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ChannelEditionFlag: Integer
 
-        attr_accessor :ProtectBandwidth, :ProtectCountLimit, :ProtectIPNumberLimit, :AutoRenewFlag, :UnionPackFlag, :ServiceBandWidth
+        attr_accessor :ProtectBandwidth, :ProtectCountLimit, :ProtectIPNumberLimit, :AutoRenewFlag, :UnionPackFlag, :ServiceBandWidth, :BattleEditionFlag, :ChannelEditionFlag
         
-        def initialize(protectbandwidth=nil, protectcountlimit=nil, protectipnumberlimit=nil, autorenewflag=nil, unionpackflag=nil, servicebandwidth=nil)
+        def initialize(protectbandwidth=nil, protectcountlimit=nil, protectipnumberlimit=nil, autorenewflag=nil, unionpackflag=nil, servicebandwidth=nil, battleeditionflag=nil, channeleditionflag=nil)
           @ProtectBandwidth = protectbandwidth
           @ProtectCountLimit = protectcountlimit
           @ProtectIPNumberLimit = protectipnumberlimit
           @AutoRenewFlag = autorenewflag
           @UnionPackFlag = unionpackflag
           @ServiceBandWidth = servicebandwidth
+          @BattleEditionFlag = battleeditionflag
+          @ChannelEditionFlag = channeleditionflag
         end
 
         def deserialize(params)
@@ -521,6 +529,8 @@ module TencentCloud
           @AutoRenewFlag = params['AutoRenewFlag']
           @UnionPackFlag = params['UnionPackFlag']
           @ServiceBandWidth = params['ServiceBandWidth']
+          @BattleEditionFlag = params['BattleEditionFlag']
+          @ChannelEditionFlag = params['ChannelEditionFlag']
         end
       end
 

@@ -96,10 +96,12 @@ module TencentCloud
         # @type DeployMode: String
         # @param EnableTracing: 是否开启 Java 应用的 APM 自动上报功能，1 表示启用；0 表示关闭
         # @type EnableTracing: Integer
+        # @param UseDefaultImageServiceParameters: 使用默认镜像服务额外参数
+        # @type UseDefaultImageServiceParameters: :class:`Tencentcloud::Tem.v20210701.models.UseDefaultRepoParameters`
 
-        attr_accessor :ApplicationName, :Description, :UseDefaultImageService, :RepoType, :InstanceId, :RepoServer, :RepoName, :SourceChannel, :SubnetList, :CodingLanguage, :DeployMode, :EnableTracing
+        attr_accessor :ApplicationName, :Description, :UseDefaultImageService, :RepoType, :InstanceId, :RepoServer, :RepoName, :SourceChannel, :SubnetList, :CodingLanguage, :DeployMode, :EnableTracing, :UseDefaultImageServiceParameters
         
-        def initialize(applicationname=nil, description=nil, usedefaultimageservice=nil, repotype=nil, instanceid=nil, reposerver=nil, reponame=nil, sourcechannel=nil, subnetlist=nil, codinglanguage=nil, deploymode=nil, enabletracing=nil)
+        def initialize(applicationname=nil, description=nil, usedefaultimageservice=nil, repotype=nil, instanceid=nil, reposerver=nil, reponame=nil, sourcechannel=nil, subnetlist=nil, codinglanguage=nil, deploymode=nil, enabletracing=nil, usedefaultimageserviceparameters=nil)
           @ApplicationName = applicationname
           @Description = description
           @UseDefaultImageService = usedefaultimageservice
@@ -112,6 +114,7 @@ module TencentCloud
           @CodingLanguage = codinglanguage
           @DeployMode = deploymode
           @EnableTracing = enabletracing
+          @UseDefaultImageServiceParameters = usedefaultimageserviceparameters
         end
 
         def deserialize(params)
@@ -127,6 +130,10 @@ module TencentCloud
           @CodingLanguage = params['CodingLanguage']
           @DeployMode = params['DeployMode']
           @EnableTracing = params['EnableTracing']
+          unless params['UseDefaultImageServiceParameters'].nil?
+            @UseDefaultImageServiceParameters = UseDefaultRepoParameters.new
+            @UseDefaultImageServiceParameters.deserialize(params['UseDefaultImageServiceParameters'])
+          end
         end
       end
 
@@ -2653,6 +2660,33 @@ module TencentCloud
           @ClusterStatus = params['ClusterStatus']
           @EnableTswTraceService = params['EnableTswTraceService']
           @Locked = params['Locked']
+        end
+      end
+
+      # 创建应用，创建仓库参数
+      class UseDefaultRepoParameters < TencentCloud::Common::AbstractModel
+        # @param EnterpriseInstanceName: 企业版实例名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EnterpriseInstanceName: String
+        # @param EnterpriseInstanceChargeType: 企业版收费类型  0 按量收费   1 包年包月
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EnterpriseInstanceChargeType: Integer
+        # @param EnterpriseInstanceType: 企业版规格：basic-基础班 ，standard-标准版，premium-高级版
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EnterpriseInstanceType: String
+
+        attr_accessor :EnterpriseInstanceName, :EnterpriseInstanceChargeType, :EnterpriseInstanceType
+        
+        def initialize(enterpriseinstancename=nil, enterpriseinstancechargetype=nil, enterpriseinstancetype=nil)
+          @EnterpriseInstanceName = enterpriseinstancename
+          @EnterpriseInstanceChargeType = enterpriseinstancechargetype
+          @EnterpriseInstanceType = enterpriseinstancetype
+        end
+
+        def deserialize(params)
+          @EnterpriseInstanceName = params['EnterpriseInstanceName']
+          @EnterpriseInstanceChargeType = params['EnterpriseInstanceChargeType']
+          @EnterpriseInstanceType = params['EnterpriseInstanceType']
         end
       end
 

@@ -585,10 +585,14 @@ module TencentCloud
         # @type Cron: String
         # @param Tag: 资源标签值
         # @type Tag: Array
+        # @param ProbeType: 测试类型，包含定时测试与即时测试
+        # @type ProbeType: Integer
+        # @param PluginSource: 插件类型
+        # @type PluginSource: String
 
-        attr_accessor :BatchTasks, :TaskType, :Nodes, :Interval, :Parameters, :TaskCategory, :Cron, :Tag
+        attr_accessor :BatchTasks, :TaskType, :Nodes, :Interval, :Parameters, :TaskCategory, :Cron, :Tag, :ProbeType, :PluginSource
         
-        def initialize(batchtasks=nil, tasktype=nil, nodes=nil, interval=nil, parameters=nil, taskcategory=nil, cron=nil, tag=nil)
+        def initialize(batchtasks=nil, tasktype=nil, nodes=nil, interval=nil, parameters=nil, taskcategory=nil, cron=nil, tag=nil, probetype=nil, pluginsource=nil)
           @BatchTasks = batchtasks
           @TaskType = tasktype
           @Nodes = nodes
@@ -597,6 +601,8 @@ module TencentCloud
           @TaskCategory = taskcategory
           @Cron = cron
           @Tag = tag
+          @ProbeType = probetype
+          @PluginSource = pluginsource
         end
 
         def deserialize(params)
@@ -622,6 +628,8 @@ module TencentCloud
               @Tag << tag_tmp
             end
           end
+          @ProbeType = params['ProbeType']
+          @PluginSource = params['PluginSource']
         end
       end
 

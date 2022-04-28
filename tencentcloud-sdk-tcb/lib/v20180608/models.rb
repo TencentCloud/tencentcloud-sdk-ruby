@@ -2188,19 +2188,24 @@ module TencentCloud
         # @param Region: 所属地域。
         # 当前支持ap-shanghai
         # @type Region: String
+        # @param UpdateTime: 更新时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UpdateTime: String
 
-        attr_accessor :InstanceId, :Status, :Region
+        attr_accessor :InstanceId, :Status, :Region, :UpdateTime
         
-        def initialize(instanceid=nil, status=nil, region=nil)
+        def initialize(instanceid=nil, status=nil, region=nil, updatetime=nil)
           @InstanceId = instanceid
           @Status = status
           @Region = region
+          @UpdateTime = updatetime
         end
 
         def deserialize(params)
           @InstanceId = params['InstanceId']
           @Status = params['Status']
           @Region = params['Region']
+          @UpdateTime = params['UpdateTime']
         end
       end
 
@@ -5041,15 +5046,19 @@ module TencentCloud
       class DescribeWxCloudBaseRunEnvsRequest < TencentCloud::Common::AbstractModel
         # @param WxAppId: wx应用Id
         # @type WxAppId: String
+        # @param AllRegions: 是否查询全地域
+        # @type AllRegions: Boolean
 
-        attr_accessor :WxAppId
+        attr_accessor :WxAppId, :AllRegions
         
-        def initialize(wxappid=nil)
+        def initialize(wxappid=nil, allregions=nil)
           @WxAppId = wxappid
+          @AllRegions = allregions
         end
 
         def deserialize(params)
           @WxAppId = params['WxAppId']
+          @AllRegions = params['AllRegions']
         end
       end
 
@@ -5451,10 +5460,13 @@ module TencentCloud
         # @param EnvType: 环境类型：baas, run, hoting, weda
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EnvType: String
+        # @param IsDauPackage: 是否是dau新套餐
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsDauPackage: Boolean
 
-        attr_accessor :EnvId, :Source, :Alias, :CreateTime, :UpdateTime, :Status, :Databases, :Storages, :Functions, :PackageId, :PackageName, :LogServices, :StaticStorages, :IsAutoDegrade, :EnvChannel, :PayMode, :IsDefault, :Region, :Tags, :CustomLogServices, :EnvType
+        attr_accessor :EnvId, :Source, :Alias, :CreateTime, :UpdateTime, :Status, :Databases, :Storages, :Functions, :PackageId, :PackageName, :LogServices, :StaticStorages, :IsAutoDegrade, :EnvChannel, :PayMode, :IsDefault, :Region, :Tags, :CustomLogServices, :EnvType, :IsDauPackage
         
-        def initialize(envid=nil, source=nil, _alias=nil, createtime=nil, updatetime=nil, status=nil, databases=nil, storages=nil, functions=nil, packageid=nil, packagename=nil, logservices=nil, staticstorages=nil, isautodegrade=nil, envchannel=nil, paymode=nil, isdefault=nil, region=nil, tags=nil, customlogservices=nil, envtype=nil)
+        def initialize(envid=nil, source=nil, _alias=nil, createtime=nil, updatetime=nil, status=nil, databases=nil, storages=nil, functions=nil, packageid=nil, packagename=nil, logservices=nil, staticstorages=nil, isautodegrade=nil, envchannel=nil, paymode=nil, isdefault=nil, region=nil, tags=nil, customlogservices=nil, envtype=nil, isdaupackage=nil)
           @EnvId = envid
           @Source = source
           @Alias = _alias
@@ -5476,6 +5488,7 @@ module TencentCloud
           @Tags = tags
           @CustomLogServices = customlogservices
           @EnvType = envtype
+          @IsDauPackage = isdaupackage
         end
 
         def deserialize(params)
@@ -5549,6 +5562,7 @@ module TencentCloud
             end
           end
           @EnvType = params['EnvType']
+          @IsDauPackage = params['IsDauPackage']
         end
       end
 

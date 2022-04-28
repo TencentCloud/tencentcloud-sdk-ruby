@@ -3003,31 +3003,6 @@ module TencentCloud
         end
       end
 
-      # 预付费模式，即包年包月相关参数设置。通过该参数可以指定包年包月实例的购买时长、是否设置自动续费等属性。
-      class ChargePrepaid < TencentCloud::Common::AbstractModel
-        # @param Period: 购买实例的时长，单位：月。取值范围：1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 24, 36。
-        # @type Period: Integer
-        # @param RenewFlag: 自动续费标识。取值范围：
-        # <li>NOTIFY_AND_AUTO_RENEW：通知过期且自动续费</li>
-        # <li>NOTIFY_AND_MANUAL_RENEW：通知过期不自动续费</li>
-        # <li>DISABLE_NOTIFY_AND_MANUAL_RENEW：不通知过期不自动续费</li>
-
-        # 默认取值：NOTIFY_AND_MANUAL_RENEW。若该参数指定为NOTIFY_AND_AUTO_RENEW，在账户余额充足的情况下，实例到期后将按月自动续费。
-        # @type RenewFlag: String
-
-        attr_accessor :Period, :RenewFlag
-        
-        def initialize(period=nil, renewflag=nil)
-          @Period = period
-          @RenewFlag = renewflag
-        end
-
-        def deserialize(params)
-          @Period = params['Period']
-          @RenewFlag = params['RenewFlag']
-        end
-      end
-
       # CheckBashRuleParams请求参数结构体
       class CheckBashRuleParamsRequest < TencentCloud::Common::AbstractModel
         # @param CheckField: 校验内容 Name或Rule ，两个都要校验时逗号分割
@@ -3080,39 +3055,6 @@ module TencentCloud
         def deserialize(params)
           @ErrCode = params['ErrCode']
           @ErrMsg = params['ErrMsg']
-          @RequestId = params['RequestId']
-        end
-      end
-
-      # CloseProVersion请求参数结构体
-      class CloseProVersionRequest < TencentCloud::Common::AbstractModel
-        # @param Quuid: 主机唯一标识Uuid数组。
-        # 黑石的InstanceId，CVM的Uuid ,边缘计算的Uuid , 轻量应用服务器的Uuid ,混合云机器的Quuid 。 当前参数最大长度限制20
-        # @type Quuid: String
-
-        attr_accessor :Quuid
-        
-        def initialize(quuid=nil)
-          @Quuid = quuid
-        end
-
-        def deserialize(params)
-          @Quuid = params['Quuid']
-        end
-      end
-
-      # CloseProVersion返回参数结构体
-      class CloseProVersionResponse < TencentCloud::Common::AbstractModel
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :RequestId
-        
-        def initialize(requestid=nil)
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
           @RequestId = params['RequestId']
         end
       end
@@ -14425,60 +14367,6 @@ module TencentCloud
         end
       end
 
-      # InquiryPriceOpenProVersionPrepaid请求参数结构体
-      class InquiryPriceOpenProVersionPrepaidRequest < TencentCloud::Common::AbstractModel
-        # @param ChargePrepaid: 预付费模式(包年包月)参数设置。
-        # @type ChargePrepaid: :class:`Tencentcloud::Cwp.v20180228.models.ChargePrepaid`
-        # @param Machines: 需要开通专业版机器列表数组。
-        # @type Machines: Array
-
-        attr_accessor :ChargePrepaid, :Machines
-        
-        def initialize(chargeprepaid=nil, machines=nil)
-          @ChargePrepaid = chargeprepaid
-          @Machines = machines
-        end
-
-        def deserialize(params)
-          unless params['ChargePrepaid'].nil?
-            @ChargePrepaid = ChargePrepaid.new
-            @ChargePrepaid.deserialize(params['ChargePrepaid'])
-          end
-          unless params['Machines'].nil?
-            @Machines = []
-            params['Machines'].each do |i|
-              proversionmachine_tmp = ProVersionMachine.new
-              proversionmachine_tmp.deserialize(i)
-              @Machines << proversionmachine_tmp
-            end
-          end
-        end
-      end
-
-      # InquiryPriceOpenProVersionPrepaid返回参数结构体
-      class InquiryPriceOpenProVersionPrepaidResponse < TencentCloud::Common::AbstractModel
-        # @param OriginalPrice: 预支费用的原价，单位：元。
-        # @type OriginalPrice: Float
-        # @param DiscountPrice: 预支费用的折扣价，单位：元。
-        # @type DiscountPrice: Float
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :OriginalPrice, :DiscountPrice, :RequestId
-        
-        def initialize(originalprice=nil, discountprice=nil, requestid=nil)
-          @OriginalPrice = originalprice
-          @DiscountPrice = discountprice
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          @OriginalPrice = params['OriginalPrice']
-          @DiscountPrice = params['DiscountPrice']
-          @RequestId = params['RequestId']
-        end
-      end
-
       # 异地登录合并后白名单
       class LoginWhiteCombinedInfo < TencentCloud::Common::AbstractModel
         # @param Places: 白名单地域
@@ -15249,45 +15137,6 @@ module TencentCloud
         end
       end
 
-      # ModifyProVersionRenewFlag请求参数结构体
-      class ModifyProVersionRenewFlagRequest < TencentCloud::Common::AbstractModel
-        # @param RenewFlag: 自动续费标识。取值范围：
-        # <li>NOTIFY_AND_AUTO_RENEW：通知过期且自动续费</li>
-        # <li>NOTIFY_AND_MANUAL_RENEW：通知过期不自动续费</li>
-        # <li>DISABLE_NOTIFY_AND_MANUAL_RENEW：不通知过期不自动续费</li>
-        # @type RenewFlag: String
-        # @param Quuid: 主机唯一ID，对应CVM的uuid、BM的instanceId。
-        # @type Quuid: String
-
-        attr_accessor :RenewFlag, :Quuid
-        
-        def initialize(renewflag=nil, quuid=nil)
-          @RenewFlag = renewflag
-          @Quuid = quuid
-        end
-
-        def deserialize(params)
-          @RenewFlag = params['RenewFlag']
-          @Quuid = params['Quuid']
-        end
-      end
-
-      # ModifyProVersionRenewFlag返回参数结构体
-      class ModifyProVersionRenewFlagResponse < TencentCloud::Common::AbstractModel
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :RequestId
-        
-        def initialize(requestid=nil)
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          @RequestId = params['RequestId']
-        end
-      end
-
       # ModifyWarningSetting请求参数结构体
       class ModifyWarningSettingRequest < TencentCloud::Common::AbstractModel
         # @param WarningObjects: 告警设置的修改内容
@@ -15502,101 +15351,6 @@ module TencentCloud
         end
       end
 
-      # OpenProVersionPrepaid请求参数结构体
-      class OpenProVersionPrepaidRequest < TencentCloud::Common::AbstractModel
-        # @param ChargePrepaid: 购买相关参数。
-        # @type ChargePrepaid: :class:`Tencentcloud::Cwp.v20180228.models.ChargePrepaid`
-        # @param Machines: 需要开通专业版主机信息数组。
-        # @type Machines: Array
-
-        attr_accessor :ChargePrepaid, :Machines
-        
-        def initialize(chargeprepaid=nil, machines=nil)
-          @ChargePrepaid = chargeprepaid
-          @Machines = machines
-        end
-
-        def deserialize(params)
-          unless params['ChargePrepaid'].nil?
-            @ChargePrepaid = ChargePrepaid.new
-            @ChargePrepaid.deserialize(params['ChargePrepaid'])
-          end
-          unless params['Machines'].nil?
-            @Machines = []
-            params['Machines'].each do |i|
-              proversionmachine_tmp = ProVersionMachine.new
-              proversionmachine_tmp.deserialize(i)
-              @Machines << proversionmachine_tmp
-            end
-          end
-        end
-      end
-
-      # OpenProVersionPrepaid返回参数结构体
-      class OpenProVersionPrepaidResponse < TencentCloud::Common::AbstractModel
-        # @param DealIds: 订单ID列表。
-        # @type DealIds: Array
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :DealIds, :RequestId
-        
-        def initialize(dealids=nil, requestid=nil)
-          @DealIds = dealids
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          @DealIds = params['DealIds']
-          @RequestId = params['RequestId']
-        end
-      end
-
-      # OpenProVersion请求参数结构体
-      class OpenProVersionRequest < TencentCloud::Common::AbstractModel
-        # @param MachineType: 云服务器类型（当前字段已作废，暂时填string类型空字符串代替，例如：""，英文双引号）
-        # @type MachineType: String
-        # @param MachineRegion: 机器所属地域（当前字段已作废，暂时填string类型空字符串代替，例如：""，英文双引号）
-        # @type MachineRegion: String
-        # @param Quuids: 主机唯一标识Uuid数组。
-        # 黑石的InstanceId，CVM的Uuid ,边缘计算的Uuid , 轻量应用服务器的Uuid ,混合云机器的Quuid 。 当前参数最大长度限制20
-        # @type Quuids: Array
-        # @param ActivityId: 活动ID。
-        # @type ActivityId: Integer
-
-        attr_accessor :MachineType, :MachineRegion, :Quuids, :ActivityId
-        
-        def initialize(machinetype=nil, machineregion=nil, quuids=nil, activityid=nil)
-          @MachineType = machinetype
-          @MachineRegion = machineregion
-          @Quuids = quuids
-          @ActivityId = activityid
-        end
-
-        def deserialize(params)
-          @MachineType = params['MachineType']
-          @MachineRegion = params['MachineRegion']
-          @Quuids = params['Quuids']
-          @ActivityId = params['ActivityId']
-        end
-      end
-
-      # OpenProVersion返回参数结构体
-      class OpenProVersionResponse < TencentCloud::Common::AbstractModel
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :RequestId
-        
-        def initialize(requestid=nil)
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          @RequestId = params['RequestId']
-        end
-      end
-
       # 操作系统名称
       class OsName < TencentCloud::Common::AbstractModel
         # @param Name: 系统名称
@@ -15778,37 +15532,6 @@ module TencentCloud
           @CreateTime = params['CreateTime']
           @ModifyTime = params['ModifyTime']
           @Hostip = params['Hostip']
-        end
-      end
-
-      # 需要开通专业版机器信息。
-      class ProVersionMachine < TencentCloud::Common::AbstractModel
-        # @param MachineType: 主机类型。
-        # <li>CVM: 云服务器</li>
-        # <li>BM: 黑石物理机</li>
-        # <li>ECM: 边缘计算服务器</li>
-        # <li>LH: 轻量应用服务器</li>
-        # <li>Other: 混合云机器</li>
-        # @type MachineType: String
-        # @param MachineRegion: 主机所在地域。
-        # 如：ap-guangzhou、ap-beijing
-        # @type MachineRegion: String
-        # @param Quuid: 主机唯一标识Uuid数组。
-        # 黑石的InstanceId，CVM的Uuid ,边缘计算的Uuid , 轻量应用服务器的Uuid ,混合云机器的Quuid 。 当前参数最大长度限制20
-        # @type Quuid: String
-
-        attr_accessor :MachineType, :MachineRegion, :Quuid
-        
-        def initialize(machinetype=nil, machineregion=nil, quuid=nil)
-          @MachineType = machinetype
-          @MachineRegion = machineregion
-          @Quuid = quuid
-        end
-
-        def deserialize(params)
-          @MachineType = params['MachineType']
-          @MachineRegion = params['MachineRegion']
-          @Quuid = params['Quuid']
         end
       end
 
@@ -16220,45 +15943,6 @@ module TencentCloud
               @ZoneSet << zoneinfo_tmp
             end
           end
-        end
-      end
-
-      # RenewProVersion请求参数结构体
-      class RenewProVersionRequest < TencentCloud::Common::AbstractModel
-        # @param ChargePrepaid: 购买相关参数。
-        # @type ChargePrepaid: :class:`Tencentcloud::Cwp.v20180228.models.ChargePrepaid`
-        # @param Quuid: 主机唯一ID，对应CVM的uuid、BM的InstanceId。
-        # @type Quuid: String
-
-        attr_accessor :ChargePrepaid, :Quuid
-        
-        def initialize(chargeprepaid=nil, quuid=nil)
-          @ChargePrepaid = chargeprepaid
-          @Quuid = quuid
-        end
-
-        def deserialize(params)
-          unless params['ChargePrepaid'].nil?
-            @ChargePrepaid = ChargePrepaid.new
-            @ChargePrepaid.deserialize(params['ChargePrepaid'])
-          end
-          @Quuid = params['Quuid']
-        end
-      end
-
-      # RenewProVersion返回参数结构体
-      class RenewProVersionResponse < TencentCloud::Common::AbstractModel
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :RequestId
-        
-        def initialize(requestid=nil)
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          @RequestId = params['RequestId']
         end
       end
 

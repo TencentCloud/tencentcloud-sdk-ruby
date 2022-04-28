@@ -4349,18 +4349,22 @@ module TencentCloud
       class CreateVpnGatewaySslClientResponse < TencentCloud::Common::AbstractModel
         # @param TaskId: 异步任务ID。
         # @type TaskId: Integer
+        # @param SslVpnClientId: SSL-VPN client 唯一ID
+        # @type SslVpnClientId: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :TaskId, :RequestId
+        attr_accessor :TaskId, :SslVpnClientId, :RequestId
         
-        def initialize(taskid=nil, requestid=nil)
+        def initialize(taskid=nil, sslvpnclientid=nil, requestid=nil)
           @TaskId = taskid
+          @SslVpnClientId = sslvpnclientid
           @RequestId = requestid
         end
 
         def deserialize(params)
           @TaskId = params['TaskId']
+          @SslVpnClientId = params['SslVpnClientId']
           @RequestId = params['RequestId']
         end
       end
@@ -4417,18 +4421,22 @@ module TencentCloud
       class CreateVpnGatewaySslServerResponse < TencentCloud::Common::AbstractModel
         # @param TaskId: 创建SSL-VPN server 异步任务ID
         # @type TaskId: Integer
+        # @param SslVpnServerId: SSL-VPN server 唯一ID
+        # @type SslVpnServerId: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :TaskId, :RequestId
+        attr_accessor :TaskId, :SslVpnServerId, :RequestId
         
-        def initialize(taskid=nil, requestid=nil)
+        def initialize(taskid=nil, sslvpnserverid=nil, requestid=nil)
           @TaskId = taskid
+          @SslVpnServerId = sslvpnserverid
           @RequestId = requestid
         end
 
         def deserialize(params)
           @TaskId = params['TaskId']
+          @SslVpnServerId = params['SslVpnServerId']
           @RequestId = params['RequestId']
         end
       end

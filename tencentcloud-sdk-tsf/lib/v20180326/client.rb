@@ -581,30 +581,6 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 创建Serverless部署组
-
-        # @param request: Request instance for CreateServerlessGroup.
-        # @type request: :class:`Tencentcloud::tsf::V20180326::CreateServerlessGroupRequest`
-        # @rtype: :class:`Tencentcloud::tsf::V20180326::CreateServerlessGroupResponse`
-        def CreateServerlessGroup(request)
-          body = send_request('CreateServerlessGroup', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = CreateServerlessGroupResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
         # 创建任务
 
         # @param request: Request instance for CreateTask.
@@ -1144,30 +1120,6 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeployGroupResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # 部署Serverless应用
-
-        # @param request: Request instance for DeployServerlessGroup.
-        # @type request: :class:`Tencentcloud::tsf::V20180326::DeployServerlessGroupRequest`
-        # @rtype: :class:`Tencentcloud::tsf::V20180326::DeployServerlessGroupResponse`
-        def DeployServerlessGroup(request)
-          body = send_request('DeployServerlessGroup', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = DeployServerlessGroupResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -2729,54 +2681,6 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeRepositoryResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # 查询Serverless部署组明细
-
-        # @param request: Request instance for DescribeServerlessGroup.
-        # @type request: :class:`Tencentcloud::tsf::V20180326::DescribeServerlessGroupRequest`
-        # @rtype: :class:`Tencentcloud::tsf::V20180326::DescribeServerlessGroupResponse`
-        def DescribeServerlessGroup(request)
-          body = send_request('DescribeServerlessGroup', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = DescribeServerlessGroupResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # 查询Serverless部署组列表
-
-        # @param request: Request instance for DescribeServerlessGroups.
-        # @type request: :class:`Tencentcloud::tsf::V20180326::DescribeServerlessGroupsRequest`
-        # @rtype: :class:`Tencentcloud::tsf::V20180326::DescribeServerlessGroupsResponse`
-        def DescribeServerlessGroups(request)
-          body = send_request('DescribeServerlessGroups', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = DescribeServerlessGroupsResponse.new
             model.deserialize(response['Response'])
             model
           else

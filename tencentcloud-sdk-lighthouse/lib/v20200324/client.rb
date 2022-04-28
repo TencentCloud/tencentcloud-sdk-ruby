@@ -1524,6 +1524,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口(RenewInstances)用于续费一个或多个轻量应用服务器实例。
+
+        # @param request: Request instance for RenewInstances.
+        # @type request: :class:`Tencentcloud::lighthouse::V20200324::RenewInstancesRequest`
+        # @rtype: :class:`Tencentcloud::lighthouse::V20200324::RenewInstancesResponse`
+        def RenewInstances(request)
+          body = send_request('RenewInstances', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = RenewInstancesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口 (ResetAttachCcn) 用于关联云联网实例申请过期时，重新申请关联操作。
 
         # @param request: Request instance for ResetAttachCcn.

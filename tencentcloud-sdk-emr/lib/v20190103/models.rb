@@ -1174,6 +1174,54 @@ module TencentCloud
         end
       end
 
+      # DescribeResourceSchedule请求参数结构体
+      class DescribeResourceScheduleRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: emr集群的英文id
+        # @type InstanceId: String
+
+        attr_accessor :InstanceId
+        
+        def initialize(instanceid=nil)
+          @InstanceId = instanceid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+        end
+      end
+
+      # DescribeResourceSchedule返回参数结构体
+      class DescribeResourceScheduleResponse < TencentCloud::Common::AbstractModel
+        # @param OpenSwitch: 资源调度功能是否开启
+        # @type OpenSwitch: Boolean
+        # @param Scheduler: 正在使用的资源调度器
+        # @type Scheduler: String
+        # @param FSInfo: 公平调度器的信息
+        # @type FSInfo: String
+        # @param CSInfo: 容量调度器的信息
+        # @type CSInfo: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :OpenSwitch, :Scheduler, :FSInfo, :CSInfo, :RequestId
+        
+        def initialize(openswitch=nil, scheduler=nil, fsinfo=nil, csinfo=nil, requestid=nil)
+          @OpenSwitch = openswitch
+          @Scheduler = scheduler
+          @FSInfo = fsinfo
+          @CSInfo = csinfo
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @OpenSwitch = params['OpenSwitch']
+          @Scheduler = params['Scheduler']
+          @FSInfo = params['FSInfo']
+          @CSInfo = params['CSInfo']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 磁盘组。
       class DiskGroup < TencentCloud::Common::AbstractModel
         # @param Spec: 磁盘规格。
@@ -2142,6 +2190,140 @@ module TencentCloud
             @MetaDBInfo = CustomMetaInfo.new
             @MetaDBInfo.deserialize(params['MetaDBInfo'])
           end
+        end
+      end
+
+      # ModifyResourcePools请求参数结构体
+      class ModifyResourcePoolsRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: emr集群id
+        # @type InstanceId: String
+        # @param Key: 标识是fair还是capacity
+        # @type Key: String
+
+        attr_accessor :InstanceId, :Key
+        
+        def initialize(instanceid=nil, key=nil)
+          @InstanceId = instanceid
+          @Key = key
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @Key = params['Key']
+        end
+      end
+
+      # ModifyResourcePools返回参数结构体
+      class ModifyResourcePoolsResponse < TencentCloud::Common::AbstractModel
+        # @param IsDraft: false表示不是草稿，提交刷新请求成功
+        # @type IsDraft: Boolean
+        # @param ErrorMsg: 扩展字段，暂时没用
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ErrorMsg: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :IsDraft, :ErrorMsg, :RequestId
+        
+        def initialize(isdraft=nil, errormsg=nil, requestid=nil)
+          @IsDraft = isdraft
+          @ErrorMsg = errormsg
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @IsDraft = params['IsDraft']
+          @ErrorMsg = params['ErrorMsg']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyResourceScheduleConfig请求参数结构体
+      class ModifyResourceScheduleConfigRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: emr集群的英文id
+        # @type InstanceId: String
+        # @param Key: 业务标识，fair表示编辑公平的配置项，fairPlan表示编辑执行计划，capacity表示编辑容量的配置项
+        # @type Key: String
+        # @param Value: 修改后的模块消息
+        # @type Value: String
+
+        attr_accessor :InstanceId, :Key, :Value
+        
+        def initialize(instanceid=nil, key=nil, value=nil)
+          @InstanceId = instanceid
+          @Key = key
+          @Value = value
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @Key = params['Key']
+          @Value = params['Value']
+        end
+      end
+
+      # ModifyResourceScheduleConfig返回参数结构体
+      class ModifyResourceScheduleConfigResponse < TencentCloud::Common::AbstractModel
+        # @param IsDraft: true为草稿，表示还没有刷新资源池
+        # @type IsDraft: Boolean
+        # @param ErrorMsg: 校验错误信息，如果不为空，则说明校验失败，配置没有成功
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ErrorMsg: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :IsDraft, :ErrorMsg, :RequestId
+        
+        def initialize(isdraft=nil, errormsg=nil, requestid=nil)
+          @IsDraft = isdraft
+          @ErrorMsg = errormsg
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @IsDraft = params['IsDraft']
+          @ErrorMsg = params['ErrorMsg']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyResourceScheduler请求参数结构体
+      class ModifyResourceSchedulerRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: emr集群的英文id
+        # @type InstanceId: String
+        # @param OldValue: 老的调度器:fair
+        # @type OldValue: String
+        # @param NewValue: 新的调度器:capacity
+        # @type NewValue: String
+
+        attr_accessor :InstanceId, :OldValue, :NewValue
+        
+        def initialize(instanceid=nil, oldvalue=nil, newvalue=nil)
+          @InstanceId = instanceid
+          @OldValue = oldvalue
+          @NewValue = newvalue
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @OldValue = params['OldValue']
+          @NewValue = params['NewValue']
+        end
+      end
+
+      # ModifyResourceScheduler返回参数结构体
+      class ModifyResourceSchedulerResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
         end
       end
 

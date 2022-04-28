@@ -3726,12 +3726,27 @@ module TencentCloud
 
       # 实例密码登录配置信息。
       class LoginConfiguration < TencentCloud::Common::AbstractModel
+        # @param AutoGeneratePassword: <li>"YES"代表选择自动生成密码，这时不指定Password字段。</li>
+        # <li>"NO"代表选择自定义密码，这时要指定Password字段。</li>
+        # @type AutoGeneratePassword: String
+        # @param Password: 实例登录密码。具体按照操作系统的复杂度要求。
+        # WINDOWS 实例密码必须 12-30 位，不能以“/”开头且不包括用户名，至少包含以下字符中的三种不同字符
+        # <li>小写字母：[a-z]</li>
+        # <li>大写字母：[A-Z]</li>
+        # <li>数字： 0-9</li>
+        # <li>特殊字符：()`~!@#$%^&*-+=_|{}[]:;' <>,.?/</li>
+        # @type Password: String
 
+        attr_accessor :AutoGeneratePassword, :Password
         
-        def initialize()
+        def initialize(autogeneratepassword=nil, password=nil)
+          @AutoGeneratePassword = autogeneratepassword
+          @Password = password
         end
 
         def deserialize(params)
+          @AutoGeneratePassword = params['AutoGeneratePassword']
+          @Password = params['Password']
         end
       end
 
@@ -4263,6 +4278,59 @@ module TencentCloud
           @RenewFlag = params['RenewFlag']
           @TimeUnit = params['TimeUnit']
           @CurInstanceDeadline = params['CurInstanceDeadline']
+        end
+      end
+
+      # RenewInstances请求参数结构体
+      class RenewInstancesRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceIds: 实例ID列表。一个或多个待操作的实例ID。可通过DescribeInstances接口返回值中的InstanceId获取。每次请求批量实例的上限为100。
+        # @type InstanceIds: Array
+        # @param InstanceChargePrepaid: 预付费模式，即包年包月相关参数设置。通过该参数可以指定包年包月实例的购买时长、是否设置自动续费等属性。若指定实例的付费模式为预付费则该参数必传。
+        # @type InstanceChargePrepaid: :class:`Tencentcloud::Lighthouse.v20200324.models.InstanceChargePrepaid`
+        # @param RenewDataDisk: 是否续费弹性数据盘。取值范围：
+        # TRUE：表示续费实例同时续费其挂载的数据盘
+        # FALSE：表示续费实例同时不再续费其挂载的数据盘
+        # 默认取值：TRUE。
+        # @type RenewDataDisk: Boolean
+        # @param AutoVoucher: 是否自动抵扣代金券。取值范围：
+        # TRUE：表示自动抵扣代金券
+        # FALSE：表示不自动抵扣代金券
+        # 默认取值：FALSE。
+        # @type AutoVoucher: Boolean
+
+        attr_accessor :InstanceIds, :InstanceChargePrepaid, :RenewDataDisk, :AutoVoucher
+        
+        def initialize(instanceids=nil, instancechargeprepaid=nil, renewdatadisk=nil, autovoucher=nil)
+          @InstanceIds = instanceids
+          @InstanceChargePrepaid = instancechargeprepaid
+          @RenewDataDisk = renewdatadisk
+          @AutoVoucher = autovoucher
+        end
+
+        def deserialize(params)
+          @InstanceIds = params['InstanceIds']
+          unless params['InstanceChargePrepaid'].nil?
+            @InstanceChargePrepaid = InstanceChargePrepaid.new
+            @InstanceChargePrepaid.deserialize(params['InstanceChargePrepaid'])
+          end
+          @RenewDataDisk = params['RenewDataDisk']
+          @AutoVoucher = params['AutoVoucher']
+        end
+      end
+
+      # RenewInstances返回参数结构体
+      class RenewInstancesResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
         end
       end
 

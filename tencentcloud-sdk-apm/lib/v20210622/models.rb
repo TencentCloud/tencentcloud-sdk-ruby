@@ -577,6 +577,99 @@ module TencentCloud
         end
       end
 
+      # DescribeServiceOverview请求参数结构体
+      class DescribeServiceOverviewRequest < TencentCloud::Common::AbstractModel
+        # @param Filters: 过滤条件
+        # @type Filters: Array
+        # @param Metrics: 指标列表
+        # @type Metrics: Array
+        # @param GroupBy: 聚合维度
+        # @type GroupBy: Array
+        # @param OrderBy: 排序
+        # @type OrderBy: :class:`Tencentcloud::Apm.v20210622.models.OrderBy`
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+        # @param Limit: 每页大小
+        # @type Limit: Integer
+        # @param StartTime: 开始时间
+        # @type StartTime: Integer
+        # @param Offset: 分页起始点
+        # @type Offset: Integer
+        # @param EndTime: 结束时间
+        # @type EndTime: Integer
+
+        attr_accessor :Filters, :Metrics, :GroupBy, :OrderBy, :InstanceId, :Limit, :StartTime, :Offset, :EndTime
+        
+        def initialize(filters=nil, metrics=nil, groupby=nil, orderby=nil, instanceid=nil, limit=nil, starttime=nil, offset=nil, endtime=nil)
+          @Filters = filters
+          @Metrics = metrics
+          @GroupBy = groupby
+          @OrderBy = orderby
+          @InstanceId = instanceid
+          @Limit = limit
+          @StartTime = starttime
+          @Offset = offset
+          @EndTime = endtime
+        end
+
+        def deserialize(params)
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+          unless params['Metrics'].nil?
+            @Metrics = []
+            params['Metrics'].each do |i|
+              querymetricitem_tmp = QueryMetricItem.new
+              querymetricitem_tmp.deserialize(i)
+              @Metrics << querymetricitem_tmp
+            end
+          end
+          @GroupBy = params['GroupBy']
+          unless params['OrderBy'].nil?
+            @OrderBy = OrderBy.new
+            @OrderBy.deserialize(params['OrderBy'])
+          end
+          @InstanceId = params['InstanceId']
+          @Limit = params['Limit']
+          @StartTime = params['StartTime']
+          @Offset = params['Offset']
+          @EndTime = params['EndTime']
+        end
+      end
+
+      # DescribeServiceOverview返回参数结构体
+      class DescribeServiceOverviewResponse < TencentCloud::Common::AbstractModel
+        # @param Records: 指标结果集
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Records: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Records, :RequestId
+        
+        def initialize(records=nil, requestid=nil)
+          @Records = records
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Records'].nil?
+            @Records = []
+            params['Records'].each do |i|
+              apmmetricrecord_tmp = ApmMetricRecord.new
+              apmmetricrecord_tmp.deserialize(i)
+              @Records << apmmetricrecord_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 查询过滤参数
       class Filter < TencentCloud::Common::AbstractModel
         # @param Type: 过滤方式（=, !=, in）

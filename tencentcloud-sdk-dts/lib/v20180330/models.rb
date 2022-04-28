@@ -289,16 +289,19 @@ module TencentCloud
         # @type AutoRenew: Integer
         # @param Tags: 实例资源标签
         # @type Tags: Array
+        # @param Name: 用户自定义实例名
+        # @type Name: String
 
-        attr_accessor :Product, :PayType, :Duration, :Count, :AutoRenew, :Tags
+        attr_accessor :Product, :PayType, :Duration, :Count, :AutoRenew, :Tags, :Name
         
-        def initialize(product=nil, paytype=nil, duration=nil, count=nil, autorenew=nil, tags=nil)
+        def initialize(product=nil, paytype=nil, duration=nil, count=nil, autorenew=nil, tags=nil, name=nil)
           @Product = product
           @PayType = paytype
           @Duration = duration
           @Count = count
           @AutoRenew = autorenew
           @Tags = tags
+          @Name = name
         end
 
         def deserialize(params)
@@ -315,6 +318,7 @@ module TencentCloud
               @Tags << tagitem_tmp
             end
           end
+          @Name = params['Name']
         end
       end
 
@@ -655,12 +659,17 @@ module TencentCloud
         # @param AutoRenewFlag: 自动续费标识,0-不自动续费，1-自动续费
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AutoRenewFlag: Integer
+        # @param SubscribeVersion: 数据订阅版本。老版订阅填txdts，kafka版填kafka
+        # @type SubscribeVersion: String
+        # @param Errors: 错误信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Errors: Array
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :SubscribeId, :SubscribeName, :ChannelId, :Product, :InstanceId, :InstanceStatus, :SubsStatus, :Status, :CreateTime, :IsolateTime, :ExpireTime, :OfflineTime, :ConsumeStartTime, :PayType, :Vip, :Vport, :UniqVpcId, :UniqSubnetId, :SdkConsumedTime, :SdkHost, :SubscribeObjectType, :SubscribeObjects, :ModifyTime, :Region, :Tags, :AutoRenewFlag, :RequestId
+        attr_accessor :SubscribeId, :SubscribeName, :ChannelId, :Product, :InstanceId, :InstanceStatus, :SubsStatus, :Status, :CreateTime, :IsolateTime, :ExpireTime, :OfflineTime, :ConsumeStartTime, :PayType, :Vip, :Vport, :UniqVpcId, :UniqSubnetId, :SdkConsumedTime, :SdkHost, :SubscribeObjectType, :SubscribeObjects, :ModifyTime, :Region, :Tags, :AutoRenewFlag, :SubscribeVersion, :Errors, :RequestId
         
-        def initialize(subscribeid=nil, subscribename=nil, channelid=nil, product=nil, instanceid=nil, instancestatus=nil, subsstatus=nil, status=nil, createtime=nil, isolatetime=nil, expiretime=nil, offlinetime=nil, consumestarttime=nil, paytype=nil, vip=nil, vport=nil, uniqvpcid=nil, uniqsubnetid=nil, sdkconsumedtime=nil, sdkhost=nil, subscribeobjecttype=nil, subscribeobjects=nil, modifytime=nil, region=nil, tags=nil, autorenewflag=nil, requestid=nil)
+        def initialize(subscribeid=nil, subscribename=nil, channelid=nil, product=nil, instanceid=nil, instancestatus=nil, subsstatus=nil, status=nil, createtime=nil, isolatetime=nil, expiretime=nil, offlinetime=nil, consumestarttime=nil, paytype=nil, vip=nil, vport=nil, uniqvpcid=nil, uniqsubnetid=nil, sdkconsumedtime=nil, sdkhost=nil, subscribeobjecttype=nil, subscribeobjects=nil, modifytime=nil, region=nil, tags=nil, autorenewflag=nil, subscribeversion=nil, errors=nil, requestid=nil)
           @SubscribeId = subscribeid
           @SubscribeName = subscribename
           @ChannelId = channelid
@@ -687,6 +696,8 @@ module TencentCloud
           @Region = region
           @Tags = tags
           @AutoRenewFlag = autorenewflag
+          @SubscribeVersion = subscribeversion
+          @Errors = errors
           @RequestId = requestid
         end
 
@@ -731,6 +742,15 @@ module TencentCloud
             end
           end
           @AutoRenewFlag = params['AutoRenewFlag']
+          @SubscribeVersion = params['SubscribeVersion']
+          unless params['Errors'].nil?
+            @Errors = []
+            params['Errors'].each do |i|
+              subserr_tmp = SubsErr.new
+              subserr_tmp.deserialize(i)
+              @Errors << subserr_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -1013,10 +1033,13 @@ module TencentCloud
         # @param Tags: 标签
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Tags: Array
+        # @param SrcInfoMulti: 源实例为集群时且接入为非cdb时源实例信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SrcInfoMulti: Array
 
-        attr_accessor :JobId, :JobName, :MigrateOption, :SrcDatabaseType, :SrcAccessType, :SrcInfo, :DstDatabaseType, :DstAccessType, :DstInfo, :DatabaseInfo, :CreateTime, :StartTime, :EndTime, :Status, :Detail, :ErrorInfo, :Tags
+        attr_accessor :JobId, :JobName, :MigrateOption, :SrcDatabaseType, :SrcAccessType, :SrcInfo, :DstDatabaseType, :DstAccessType, :DstInfo, :DatabaseInfo, :CreateTime, :StartTime, :EndTime, :Status, :Detail, :ErrorInfo, :Tags, :SrcInfoMulti
         
-        def initialize(jobid=nil, jobname=nil, migrateoption=nil, srcdatabasetype=nil, srcaccesstype=nil, srcinfo=nil, dstdatabasetype=nil, dstaccesstype=nil, dstinfo=nil, databaseinfo=nil, createtime=nil, starttime=nil, endtime=nil, status=nil, detail=nil, errorinfo=nil, tags=nil)
+        def initialize(jobid=nil, jobname=nil, migrateoption=nil, srcdatabasetype=nil, srcaccesstype=nil, srcinfo=nil, dstdatabasetype=nil, dstaccesstype=nil, dstinfo=nil, databaseinfo=nil, createtime=nil, starttime=nil, endtime=nil, status=nil, detail=nil, errorinfo=nil, tags=nil, srcinfomulti=nil)
           @JobId = jobid
           @JobName = jobname
           @MigrateOption = migrateoption
@@ -1034,6 +1057,7 @@ module TencentCloud
           @Detail = detail
           @ErrorInfo = errorinfo
           @Tags = tags
+          @SrcInfoMulti = srcinfomulti
         end
 
         def deserialize(params)
@@ -1078,6 +1102,14 @@ module TencentCloud
               tagitem_tmp = TagItem.new
               tagitem_tmp.deserialize(i)
               @Tags << tagitem_tmp
+            end
+          end
+          unless params['SrcInfoMulti'].nil?
+            @SrcInfoMulti = []
+            params['SrcInfoMulti'].each do |i|
+              srcinfo_tmp = SrcInfo.new
+              srcinfo_tmp.deserialize(i)
+              @SrcInfoMulti << srcinfo_tmp
             end
           end
         end
@@ -1674,6 +1706,23 @@ module TencentCloud
 
         def deserialize(params)
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 查询订阅配置的错误信息
+      class SubsErr < TencentCloud::Common::AbstractModel
+        # @param Message: 错误信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Message: String
+
+        attr_accessor :Message
+        
+        def initialize(message=nil)
+          @Message = message
+        end
+
+        def deserialize(params)
+          @Message = params['Message']
         end
       end
 

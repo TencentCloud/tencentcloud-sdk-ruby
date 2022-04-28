@@ -861,7 +861,7 @@ module TencentCloud
         # @type TagSpecification: Array
         # @param OsCustomizeType: 容器的镜像版本，"DOCKER_CUSTOMIZE"(容器定制版),"GENERAL"(普通版本，默认值)
         # @type OsCustomizeType: String
-        # @param NeedWorkSecurityGroup: 是否开启节点的默认安全组(默认: 否，Aphla特性)
+        # @param NeedWorkSecurityGroup: 是否开启节点的默认安全组(默认: 否，Alpha特性)
         # @type NeedWorkSecurityGroup: Boolean
         # @param SubnetId: 当选择Cilium Overlay网络插件时，TKE会从该子网获取2个IP用来创建内网负载均衡
         # @type SubnetId: String

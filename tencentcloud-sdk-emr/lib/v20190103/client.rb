@@ -173,6 +173,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 获取yarn资源调度页面的数据
+
+        # @param request: Request instance for DescribeResourceSchedule.
+        # @type request: :class:`Tencentcloud::emr::V20190103::DescribeResourceScheduleRequest`
+        # @rtype: :class:`Tencentcloud::emr::V20190103::DescribeResourceScheduleResponse`
+        def DescribeResourceSchedule(request)
+          body = send_request('DescribeResourceSchedule', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeResourceScheduleResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 集群续费询价。
 
         # @param request: Request instance for InquirePriceRenewEmr.
@@ -279,6 +303,78 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = InquiryPriceUpdateInstanceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 刷新动态资源池
+
+        # @param request: Request instance for ModifyResourcePools.
+        # @type request: :class:`Tencentcloud::emr::V20190103::ModifyResourcePoolsRequest`
+        # @rtype: :class:`Tencentcloud::emr::V20190103::ModifyResourcePoolsResponse`
+        def ModifyResourcePools(request)
+          body = send_request('ModifyResourcePools', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyResourcePoolsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改yarn资源调度的资源配置
+
+        # @param request: Request instance for ModifyResourceScheduleConfig.
+        # @type request: :class:`Tencentcloud::emr::V20190103::ModifyResourceScheduleConfigRequest`
+        # @rtype: :class:`Tencentcloud::emr::V20190103::ModifyResourceScheduleConfigResponse`
+        def ModifyResourceScheduleConfig(request)
+          body = send_request('ModifyResourceScheduleConfig', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyResourceScheduleConfigResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改了yarn的资源调度器，点击部署生效
+
+        # @param request: Request instance for ModifyResourceScheduler.
+        # @type request: :class:`Tencentcloud::emr::V20190103::ModifyResourceSchedulerRequest`
+        # @rtype: :class:`Tencentcloud::emr::V20190103::ModifyResourceSchedulerResponse`
+        def ModifyResourceScheduler(request)
+          body = send_request('ModifyResourceScheduler', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyResourceSchedulerResponse.new
             model.deserialize(response['Response'])
             model
           else

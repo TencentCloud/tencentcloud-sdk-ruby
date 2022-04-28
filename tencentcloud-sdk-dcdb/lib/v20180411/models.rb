@@ -3368,6 +3368,46 @@ module TencentCloud
         end
       end
 
+      # ModifyDBInstanceName请求参数结构体
+      class ModifyDBInstanceNameRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID，形如tdsql-hdaprz0v
+        # @type InstanceId: String
+        # @param InstanceName: 实例名称
+        # @type InstanceName: String
+
+        attr_accessor :InstanceId, :InstanceName
+        
+        def initialize(instanceid=nil, instancename=nil)
+          @InstanceId = instanceid
+          @InstanceName = instancename
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @InstanceName = params['InstanceName']
+        end
+      end
+
+      # ModifyDBInstanceName返回参数结构体
+      class ModifyDBInstanceNameResponse < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :InstanceId, :RequestId
+        
+        def initialize(instanceid=nil, requestid=nil)
+          @InstanceId = instanceid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyDBInstanceSecurityGroups请求参数结构体
       class ModifyDBInstanceSecurityGroupsRequest < TencentCloud::Common::AbstractModel
         # @param Product: 数据库引擎名称，本接口取值：dcdb。

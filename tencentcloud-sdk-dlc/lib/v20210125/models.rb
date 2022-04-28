@@ -2693,14 +2693,17 @@ module TencentCloud
         # @type SQL: String
         # @param Config: 任务的配置信息，当前仅支持SparkSQLTask任务。
         # @type Config: Array
+        # @param Params: 任务的用户自定义参数信息
+        # @type Params: Array
 
-        attr_accessor :TaskType, :FailureTolerance, :SQL, :Config
+        attr_accessor :TaskType, :FailureTolerance, :SQL, :Config, :Params
         
-        def initialize(tasktype=nil, failuretolerance=nil, sql=nil, config=nil)
+        def initialize(tasktype=nil, failuretolerance=nil, sql=nil, config=nil, params=nil)
           @TaskType = tasktype
           @FailureTolerance = failuretolerance
           @SQL = sql
           @Config = config
+          @Params = params
         end
 
         def deserialize(params)
@@ -2713,6 +2716,14 @@ module TencentCloud
               kvpair_tmp = KVPair.new
               kvpair_tmp.deserialize(i)
               @Config << kvpair_tmp
+            end
+          end
+          unless params['Params'].nil?
+            @Params = []
+            params['Params'].each do |i|
+              kvpair_tmp = KVPair.new
+              kvpair_tmp.deserialize(i)
+              @Params << kvpair_tmp
             end
           end
         end

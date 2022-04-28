@@ -39,7 +39,7 @@ module TencentCloud
         # @type SystemDisk: Array
         # @param DataDisks: 节点数据盘配置信息。若不指定该参数，则默认不购买数据盘。支持购买的时候指定21块数据盘，其中最多包含1块LOCAL_BASIC数据盘或者LOCAL_SSD数据盘，最多包含20块CLOUD_BASIC数据盘、CLOUD_PREMIUM数据盘或者CLOUD_SSD数据盘。
         # @type DataDisks: Array
-        # @param InternetAccessible: 节点数据盘配置信息。若不指定该参数，则默认不购买数据盘。支持购买的时候指定21块数据盘，其中最多包含1块LOCAL_BASIC数据盘或者LOCAL_SSD数据盘，最多包含20块CLOUD_BASIC数据盘、CLOUD_PREMIUM数据盘或者CLOUD_SSD数据盘。
+        # @param InternetAccessible: 公网带宽相关信息设置。若不指定该参数，则默认公网带宽为0Mbps。
         # @type InternetAccessible: :class:`Tencentcloud::Thpc.v20220401.models.InternetAccessible`
         # @param InstanceName: 节点显示名称。
         # 不指定节点显示名称则默认显示‘未命名’。
@@ -160,6 +160,8 @@ module TencentCloud
         # @type LaunchConfigurationId: String
         # @param AutoScalingGroupId: 弹性伸缩组ID。
         # @type AutoScalingGroupId: String
+        # @param QueueName: 队列名称。
+        # @type QueueName: String
         # @param ExpansionBusyTime: 任务连续等待时间，队列的任务处于连续等待的时间。单位秒。默认值120。
         # @type ExpansionBusyTime: Integer
         # @param ShrinkIdleTime: 节点连续空闲（未运行作业）时间，一个节点连续处于空闲状态时间。单位秒。默认值300。
@@ -175,12 +177,13 @@ module TencentCloud
         # false（默认）：发送正常请求，通过检查后直接绑定弹性伸缩组。
         # @type DryRun: Boolean
 
-        attr_accessor :ClusterId, :LaunchConfigurationId, :AutoScalingGroupId, :ExpansionBusyTime, :ShrinkIdleTime, :EnableAutoExpansion, :EnableAutoShrink, :DryRun
+        attr_accessor :ClusterId, :LaunchConfigurationId, :AutoScalingGroupId, :QueueName, :ExpansionBusyTime, :ShrinkIdleTime, :EnableAutoExpansion, :EnableAutoShrink, :DryRun
         
-        def initialize(clusterid=nil, launchconfigurationid=nil, autoscalinggroupid=nil, expansionbusytime=nil, shrinkidletime=nil, enableautoexpansion=nil, enableautoshrink=nil, dryrun=nil)
+        def initialize(clusterid=nil, launchconfigurationid=nil, autoscalinggroupid=nil, queuename=nil, expansionbusytime=nil, shrinkidletime=nil, enableautoexpansion=nil, enableautoshrink=nil, dryrun=nil)
           @ClusterId = clusterid
           @LaunchConfigurationId = launchconfigurationid
           @AutoScalingGroupId = autoscalinggroupid
+          @QueueName = queuename
           @ExpansionBusyTime = expansionbusytime
           @ShrinkIdleTime = shrinkidletime
           @EnableAutoExpansion = enableautoexpansion
@@ -192,6 +195,7 @@ module TencentCloud
           @ClusterId = params['ClusterId']
           @LaunchConfigurationId = params['LaunchConfigurationId']
           @AutoScalingGroupId = params['AutoScalingGroupId']
+          @QueueName = params['QueueName']
           @ExpansionBusyTime = params['ExpansionBusyTime']
           @ShrinkIdleTime = params['ShrinkIdleTime']
           @EnableAutoExpansion = params['EnableAutoExpansion']

@@ -25,6 +25,8 @@ module TencentCloud
         # @type LaunchConfigurationId: String
         # @param AutoScalingGroupId: 弹性伸缩组ID。
         # @type AutoScalingGroupId: String
+        # @param QueueName: 队列名称。
+        # @type QueueName: String
         # @param ExpansionBusyTime: 任务连续等待时间，队列的任务处于连续等待的时间。单位秒。默认值120。
         # @type ExpansionBusyTime: Integer
         # @param ShrinkIdleTime: 节点连续空闲（未运行作业）时间，一个节点连续处于空闲状态时间。单位秒。默认值300。
@@ -40,12 +42,13 @@ module TencentCloud
         # false（默认）：发送正常请求，通过检查后直接绑定弹性伸缩组。
         # @type DryRun: Boolean
 
-        attr_accessor :ClusterId, :LaunchConfigurationId, :AutoScalingGroupId, :ExpansionBusyTime, :ShrinkIdleTime, :EnableAutoExpansion, :EnableAutoShrink, :DryRun
+        attr_accessor :ClusterId, :LaunchConfigurationId, :AutoScalingGroupId, :QueueName, :ExpansionBusyTime, :ShrinkIdleTime, :EnableAutoExpansion, :EnableAutoShrink, :DryRun
         
-        def initialize(clusterid=nil, launchconfigurationid=nil, autoscalinggroupid=nil, expansionbusytime=nil, shrinkidletime=nil, enableautoexpansion=nil, enableautoshrink=nil, dryrun=nil)
+        def initialize(clusterid=nil, launchconfigurationid=nil, autoscalinggroupid=nil, queuename=nil, expansionbusytime=nil, shrinkidletime=nil, enableautoexpansion=nil, enableautoshrink=nil, dryrun=nil)
           @ClusterId = clusterid
           @LaunchConfigurationId = launchconfigurationid
           @AutoScalingGroupId = autoscalinggroupid
+          @QueueName = queuename
           @ExpansionBusyTime = expansionbusytime
           @ShrinkIdleTime = shrinkidletime
           @EnableAutoExpansion = enableautoexpansion
@@ -57,6 +60,7 @@ module TencentCloud
           @ClusterId = params['ClusterId']
           @LaunchConfigurationId = params['LaunchConfigurationId']
           @AutoScalingGroupId = params['AutoScalingGroupId']
+          @QueueName = params['QueueName']
           @ExpansionBusyTime = params['ExpansionBusyTime']
           @ShrinkIdleTime = params['ShrinkIdleTime']
           @EnableAutoExpansion = params['EnableAutoExpansion']

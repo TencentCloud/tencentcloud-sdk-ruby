@@ -10410,8 +10410,8 @@ module TencentCloud
         # @param Referers: referer 内容列表列表
         # @type Referers: Array
         # @param AllowEmpty: 是否允许空 referer
-        # true：允许空 referer
-        # false：不允许空 referer
+        # 防盗链类型为白名单时，true表示允许空 referer，false表示不允许空 referer；
+        # 防盗链类型为黑名单时，true表示拒绝空referer，false表示不拒绝空referer；
         # @type AllowEmpty: Boolean
 
         attr_accessor :RuleType, :RulePaths, :RefererType, :Referers, :AllowEmpty
