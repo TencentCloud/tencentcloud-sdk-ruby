@@ -4716,6 +4716,282 @@ module TencentCloud
         end
       end
 
+      # DescribeOverviewAttackTrend请求参数结构体
+      class DescribeOverviewAttackTrendRequest < TencentCloud::Common::AbstractModel
+        # @param Type: 攻击类型，取值ddos， cc
+        # @type Type: String
+        # @param Dimension: 纬度，当前仅支持attackcount
+        # @type Dimension: String
+        # @param Period: 周期，当前仅支持86400
+        # @type Period: Integer
+        # @param StartTime: 起始时间
+        # @type StartTime: String
+        # @param EndTime: 结束时间
+        # @type EndTime: String
+
+        attr_accessor :Type, :Dimension, :Period, :StartTime, :EndTime
+        
+        def initialize(type=nil, dimension=nil, period=nil, starttime=nil, endtime=nil)
+          @Type = type
+          @Dimension = dimension
+          @Period = period
+          @StartTime = starttime
+          @EndTime = endtime
+        end
+
+        def deserialize(params)
+          @Type = params['Type']
+          @Dimension = params['Dimension']
+          @Period = params['Period']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+        end
+      end
+
+      # DescribeOverviewAttackTrend返回参数结构体
+      class DescribeOverviewAttackTrendResponse < TencentCloud::Common::AbstractModel
+        # @param Type: 攻击类型
+        # @type Type: String
+        # @param StartTime: 起始时间
+        # @type StartTime: String
+        # @param EndTime: 结束时间
+        # @type EndTime: String
+        # @param Period: 周期
+        # @type Period: Integer
+        # @param Data: 每个周期点的攻击次数
+        # @type Data: Array
+        # @param Count: 包含的周期点数
+        # @type Count: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Type, :StartTime, :EndTime, :Period, :Data, :Count, :RequestId
+        
+        def initialize(type=nil, starttime=nil, endtime=nil, period=nil, data=nil, count=nil, requestid=nil)
+          @Type = type
+          @StartTime = starttime
+          @EndTime = endtime
+          @Period = period
+          @Data = data
+          @Count = count
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Type = params['Type']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @Period = params['Period']
+          @Data = params['Data']
+          @Count = params['Count']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeOverviewCCTrend请求参数结构体
+      class DescribeOverviewCCTrendRequest < TencentCloud::Common::AbstractModel
+        # @param Business: 大禹子产品代号（bgpip表示高防IP；bgp-multip表示共享包；basic表示DDoS基础防护）
+        # @type Business: String
+        # @param Period: 统计粒度，取值[300(5分钟)，3600(小时)，86400(天)]
+        # @type Period: Integer
+        # @param StartTime: 统计开始时间
+        # @type StartTime: String
+        # @param EndTime: 统计结束时间
+        # @type EndTime: String
+        # @param MetricName: 指标，取值[inqps(总请求峰值，dropqps(攻击请求峰值))，incount(请求次数), dropcount(攻击次数)]
+        # @type MetricName: String
+        # @param IpList: 资源的IP
+        # @type IpList: Array
+        # @param Id: 资源实例ID
+        # @type Id: String
+
+        attr_accessor :Business, :Period, :StartTime, :EndTime, :MetricName, :IpList, :Id
+        
+        def initialize(business=nil, period=nil, starttime=nil, endtime=nil, metricname=nil, iplist=nil, id=nil)
+          @Business = business
+          @Period = period
+          @StartTime = starttime
+          @EndTime = endtime
+          @MetricName = metricname
+          @IpList = iplist
+          @Id = id
+        end
+
+        def deserialize(params)
+          @Business = params['Business']
+          @Period = params['Period']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @MetricName = params['MetricName']
+          @IpList = params['IpList']
+          @Id = params['Id']
+        end
+      end
+
+      # DescribeOverviewCCTrend返回参数结构体
+      class DescribeOverviewCCTrendResponse < TencentCloud::Common::AbstractModel
+        # @param Count: 值个数
+        # @type Count: Integer
+        # @param Data: 值数组
+        # @type Data: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Count, :Data, :RequestId
+        
+        def initialize(count=nil, data=nil, requestid=nil)
+          @Count = count
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Count = params['Count']
+          @Data = params['Data']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeOverviewDDoSTrend请求参数结构体
+      class DescribeOverviewDDoSTrendRequest < TencentCloud::Common::AbstractModel
+        # @param Business: 大禹子产品代号（bgpip表示高防IP；bgp-multip表示高防包；basic表示DDoS基础防护）
+        # @type Business: String
+        # @param Period: 统计粒度，取值[300(5分钟)，3600(小时)，86400(天)]
+        # @type Period: Integer
+        # @param StartTime: 统计开始时间
+        # @type StartTime: String
+        # @param EndTime: 统计结束时间
+        # @type EndTime: String
+        # @param MetricName: 指标，取值[bps(攻击流量带宽，pps(攻击包速率))]
+        # @type MetricName: String
+        # @param IpList: 资源实例的IP列表
+        # @type IpList: Array
+        # @param Id: 资源实例ID
+        # @type Id: String
+
+        attr_accessor :Business, :Period, :StartTime, :EndTime, :MetricName, :IpList, :Id
+        
+        def initialize(business=nil, period=nil, starttime=nil, endtime=nil, metricname=nil, iplist=nil, id=nil)
+          @Business = business
+          @Period = period
+          @StartTime = starttime
+          @EndTime = endtime
+          @MetricName = metricname
+          @IpList = iplist
+          @Id = id
+        end
+
+        def deserialize(params)
+          @Business = params['Business']
+          @Period = params['Period']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @MetricName = params['MetricName']
+          @IpList = params['IpList']
+          @Id = params['Id']
+        end
+      end
+
+      # DescribeOverviewDDoSTrend返回参数结构体
+      class DescribeOverviewDDoSTrendResponse < TencentCloud::Common::AbstractModel
+        # @param Count: 值个数
+        # @type Count: Integer
+        # @param Data: 值数组，攻击流量带宽单位为Mbps，包速率单位为pps
+        # @type Data: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Count, :Data, :RequestId
+        
+        def initialize(count=nil, data=nil, requestid=nil)
+          @Count = count
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Count = params['Count']
+          @Data = params['Data']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeOverviewIndex请求参数结构体
+      class DescribeOverviewIndexRequest < TencentCloud::Common::AbstractModel
+        # @param StartTime: 拉取指标起始时间
+        # @type StartTime: String
+        # @param EndTime: 拉取指标结束时间
+        # @type EndTime: String
+
+        attr_accessor :StartTime, :EndTime
+        
+        def initialize(starttime=nil, endtime=nil)
+          @StartTime = starttime
+          @EndTime = endtime
+        end
+
+        def deserialize(params)
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+        end
+      end
+
+      # DescribeOverviewIndex返回参数结构体
+      class DescribeOverviewIndexResponse < TencentCloud::Common::AbstractModel
+        # @param AllIpCount: IP总数
+        # @type AllIpCount: Integer
+        # @param AntiddosIpCount: 高防IP总数（包含高防包+高防IP）
+        # @type AntiddosIpCount: Integer
+        # @param AttackIpCount: 攻击IP总数
+        # @type AttackIpCount: Integer
+        # @param BlockIpCount: 封堵IP总数
+        # @type BlockIpCount: Integer
+        # @param AntiddosDomainCount: 高防域名总数
+        # @type AntiddosDomainCount: Integer
+        # @param AttackDomainCount: 攻击域名总数
+        # @type AttackDomainCount: Integer
+        # @param MaxAttackFlow: 攻击流量峰值
+        # @type MaxAttackFlow: Integer
+        # @param NewAttackTime: 当前最近一条攻击中的起始时间
+        # @type NewAttackTime: String
+        # @param NewAttackIp: 当前最近一条攻击中的IP
+        # @type NewAttackIp: String
+        # @param NewAttackType: 当前最近一条攻击中的攻击类型
+        # @type NewAttackType: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :AllIpCount, :AntiddosIpCount, :AttackIpCount, :BlockIpCount, :AntiddosDomainCount, :AttackDomainCount, :MaxAttackFlow, :NewAttackTime, :NewAttackIp, :NewAttackType, :RequestId
+        
+        def initialize(allipcount=nil, antiddosipcount=nil, attackipcount=nil, blockipcount=nil, antiddosdomaincount=nil, attackdomaincount=nil, maxattackflow=nil, newattacktime=nil, newattackip=nil, newattacktype=nil, requestid=nil)
+          @AllIpCount = allipcount
+          @AntiddosIpCount = antiddosipcount
+          @AttackIpCount = attackipcount
+          @BlockIpCount = blockipcount
+          @AntiddosDomainCount = antiddosdomaincount
+          @AttackDomainCount = attackdomaincount
+          @MaxAttackFlow = maxattackflow
+          @NewAttackTime = newattacktime
+          @NewAttackIp = newattackip
+          @NewAttackType = newattacktype
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @AllIpCount = params['AllIpCount']
+          @AntiddosIpCount = params['AntiddosIpCount']
+          @AttackIpCount = params['AttackIpCount']
+          @BlockIpCount = params['BlockIpCount']
+          @AntiddosDomainCount = params['AntiddosDomainCount']
+          @AttackDomainCount = params['AttackDomainCount']
+          @MaxAttackFlow = params['MaxAttackFlow']
+          @NewAttackTime = params['NewAttackTime']
+          @NewAttackIp = params['NewAttackIp']
+          @NewAttackType = params['NewAttackType']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DisassociateDDoSEipAddress请求参数结构体
       class DisassociateDDoSEipAddressRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 资源实例ID，实例ID形如：bgpip-0000011x。只能填写高防IP实例。

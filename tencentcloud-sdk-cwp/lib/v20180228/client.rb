@@ -2909,7 +2909,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 专家服务-旗舰护网列表
+        # 专家服务-旗舰重保列表
 
         # @param request: Request instance for DescribeProtectNetList.
         # @type request: :class:`Tencentcloud::cwp::V20180228::DescribeProtectNetListRequest`

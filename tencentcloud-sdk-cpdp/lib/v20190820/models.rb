@@ -8716,6 +8716,63 @@ module TencentCloud
         end
       end
 
+      # GetDistributeBillDownloadUrl请求参数结构体
+      class GetDistributeBillDownloadUrlRequest < TencentCloud::Common::AbstractModel
+        # @param OpenId: 收单系统分配的开放ID
+        # @type OpenId: String
+        # @param OpenKey: 收单系统分配的密钥
+        # @type OpenKey: String
+        # @param Day: 分账日期（YYYYMMDD，今天传昨天的日期）
+        # @type Day: String
+
+        attr_accessor :OpenId, :OpenKey, :Day
+        
+        def initialize(openid=nil, openkey=nil, day=nil)
+          @OpenId = openid
+          @OpenKey = openkey
+          @Day = day
+        end
+
+        def deserialize(params)
+          @OpenId = params['OpenId']
+          @OpenKey = params['OpenKey']
+          @Day = params['Day']
+        end
+      end
+
+      # GetDistributeBillDownloadUrl返回参数结构体
+      class GetDistributeBillDownloadUrlResponse < TencentCloud::Common::AbstractModel
+        # @param ErrCode: 业务系统返回码
+        # @type ErrCode: String
+        # @param ErrMessage: 业务系统返回消息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ErrMessage: String
+        # @param Result: 账单文件下载地址响应对象
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Result: :class:`Tencentcloud::Cpdp.v20190820.models.BillDownloadUrlResult`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ErrCode, :ErrMessage, :Result, :RequestId
+        
+        def initialize(errcode=nil, errmessage=nil, result=nil, requestid=nil)
+          @ErrCode = errcode
+          @ErrMessage = errmessage
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ErrCode = params['ErrCode']
+          @ErrMessage = params['ErrMessage']
+          unless params['Result'].nil?
+            @Result = BillDownloadUrlResult.new
+            @Result.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 会员间交易明细信息
       class MemberTransactionItem < TencentCloud::Common::AbstractModel
         # @param TransType: 交易类型。

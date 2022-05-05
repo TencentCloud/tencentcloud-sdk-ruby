@@ -12811,7 +12811,7 @@ module TencentCloud
       class ExpertServiceOrderInfo < TencentCloud::Common::AbstractModel
         # @param OrderId: 订单id
         # @type OrderId: Integer
-        # @param InquireType: 订单类型 1应急 2 旗舰护网 3 安全管家
+        # @param InquireType: 订单类型 1应急 2 旗舰重保 3 安全管家
         # @type InquireType: Integer
         # @param InquireNum: 服务数量
         # @type InquireNum: Integer

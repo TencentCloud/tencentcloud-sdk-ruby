@@ -166,6 +166,69 @@ module TencentCloud
         end
       end
 
+      # DescribeZones请求参数结构体
+      class DescribeZonesRequest < TencentCloud::Common::AbstractModel
+        # @param Offset: 分页参数，页偏移
+        # @type Offset: Integer
+        # @param Limit: 分页参数，每页返回的站点个数
+        # @type Limit: Integer
+        # @param Filters: 查询条件过滤器，复杂类型
+        # @type Filters: Array
+
+        attr_accessor :Offset, :Limit, :Filters
+        
+        def initialize(offset=nil, limit=nil, filters=nil)
+          @Offset = offset
+          @Limit = limit
+          @Filters = filters
+        end
+
+        def deserialize(params)
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              zonefilter_tmp = ZoneFilter.new
+              zonefilter_tmp.deserialize(i)
+              @Filters << zonefilter_tmp
+            end
+          end
+        end
+      end
+
+      # DescribeZones返回参数结构体
+      class DescribeZonesResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 符合条件的站点数
+        # @type TotalCount: Integer
+        # @param Zones: 站点详细信息列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Zones: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :Zones, :RequestId
+        
+        def initialize(totalcount=nil, zones=nil, requestid=nil)
+          @TotalCount = totalcount
+          @Zones = zones
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['Zones'].nil?
+            @Zones = []
+            params['Zones'].each do |i|
+              zone_tmp = Zone.new
+              zone_tmp.deserialize(i)
+              @Zones << zone_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 失败原因
       class FailReason < TencentCloud::Common::AbstractModel
         # @param Reason: 失败原因
@@ -219,6 +282,86 @@ module TencentCloud
           @Type = params['Type']
           @CreateTime = params['CreateTime']
           @UpdateTime = params['UpdateTime']
+        end
+      end
+
+      # 站点信息
+      class Zone < TencentCloud::Common::AbstractModel
+        # @param Id: 站点ID
+        # @type Id: String
+        # @param Name: 站点名称
+        # @type Name: String
+        # @param OriginalNameServers: 站点当前使用的 NS 列表
+        # @type OriginalNameServers: Array
+        # @param NameServers: 腾讯云分配的 NS 列表
+        # @type NameServers: Array
+        # @param Status: 站点状态
+        # - active：NS 已切换
+        # - pending：NS 未切换
+        # - moved：NS 已切走
+        # - deactivated：被封禁
+        # @type Status: String
+        # @param Type: 站点接入方式
+        # - full：NS 接入
+        # - partial：CNAME 接入
+        # @type Type: String
+        # @param Paused: 站点是否关闭
+        # @type Paused: Boolean
+        # @param CreatedOn: 站点创建时间
+        # @type CreatedOn: String
+        # @param ModifiedOn: 站点修改时间
+        # @type ModifiedOn: String
+
+        attr_accessor :Id, :Name, :OriginalNameServers, :NameServers, :Status, :Type, :Paused, :CreatedOn, :ModifiedOn
+        
+        def initialize(id=nil, name=nil, originalnameservers=nil, nameservers=nil, status=nil, type=nil, paused=nil, createdon=nil, modifiedon=nil)
+          @Id = id
+          @Name = name
+          @OriginalNameServers = originalnameservers
+          @NameServers = nameservers
+          @Status = status
+          @Type = type
+          @Paused = paused
+          @CreatedOn = createdon
+          @ModifiedOn = modifiedon
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @Name = params['Name']
+          @OriginalNameServers = params['OriginalNameServers']
+          @NameServers = params['NameServers']
+          @Status = params['Status']
+          @Type = params['Type']
+          @Paused = params['Paused']
+          @CreatedOn = params['CreatedOn']
+          @ModifiedOn = params['ModifiedOn']
+        end
+      end
+
+      # 站点查询过滤条件
+      class ZoneFilter < TencentCloud::Common::AbstractModel
+        # @param Name: 过滤字段名，支持的列表如下：
+        # - name: 站点名。
+        # - status: 站点状态
+        # @type Name: String
+        # @param Values: 过滤字段值
+        # @type Values: Array
+        # @param Fuzzy: 是否启用模糊查询，仅支持过滤字段名为name。模糊查询时，Values长度最大为1
+        # @type Fuzzy: Boolean
+
+        attr_accessor :Name, :Values, :Fuzzy
+        
+        def initialize(name=nil, values=nil, fuzzy=nil)
+          @Name = name
+          @Values = values
+          @Fuzzy = fuzzy
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Values = params['Values']
+          @Fuzzy = params['Fuzzy']
         end
       end
 
