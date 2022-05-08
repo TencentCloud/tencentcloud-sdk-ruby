@@ -17,6 +17,73 @@
 module TencentCloud
   module Teo
     module V20220106
+      # CreatePrefetchTask请求参数结构体
+      class CreatePrefetchTaskRequest < TencentCloud::Common::AbstractModel
+        # @param ZoneId: Zone ID
+        # @type ZoneId: String
+        # @param Targets: 预热的资源列表
+        # @type Targets: Array
+        # @param EncodeUrl: 是否对url进行encode
+        # @type EncodeUrl: Boolean
+        # @param Headers: 附带的http头部信息
+        # @type Headers: Array
+
+        attr_accessor :ZoneId, :Targets, :EncodeUrl, :Headers
+        
+        def initialize(zoneid=nil, targets=nil, encodeurl=nil, headers=nil)
+          @ZoneId = zoneid
+          @Targets = targets
+          @EncodeUrl = encodeurl
+          @Headers = headers
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+          @Targets = params['Targets']
+          @EncodeUrl = params['EncodeUrl']
+          unless params['Headers'].nil?
+            @Headers = []
+            params['Headers'].each do |i|
+              header_tmp = Header.new
+              header_tmp.deserialize(i)
+              @Headers << header_tmp
+            end
+          end
+        end
+      end
+
+      # CreatePrefetchTask返回参数结构体
+      class CreatePrefetchTaskResponse < TencentCloud::Common::AbstractModel
+        # @param JobId: 任务ID
+        # @type JobId: String
+        # @param FailedList: 失败的任务列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FailedList: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :JobId, :FailedList, :RequestId
+        
+        def initialize(jobid=nil, failedlist=nil, requestid=nil)
+          @JobId = jobid
+          @FailedList = failedlist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @JobId = params['JobId']
+          unless params['FailedList'].nil?
+            @FailedList = []
+            params['FailedList'].each do |i|
+              failreason_tmp = FailReason.new
+              failreason_tmp.deserialize(i)
+              @FailedList << failreason_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreatePurgeTask请求参数结构体
       class CreatePurgeTaskRequest < TencentCloud::Common::AbstractModel
         # @param ZoneId: Zone ID
@@ -76,6 +143,86 @@ module TencentCloud
               failreason_tmp = FailReason.new
               failreason_tmp.deserialize(i)
               @FailedList << failreason_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribePrefetchTasks请求参数结构体
+      class DescribePrefetchTasksRequest < TencentCloud::Common::AbstractModel
+        # @param JobId: 任务ID
+        # @type JobId: String
+        # @param StartTime: 查询起始时间
+        # @type StartTime: String
+        # @param EndTime: 查询结束时间
+        # @type EndTime: String
+        # @param Offset: 查询起始偏移量
+        # @type Offset: Integer
+        # @param Limit: 查询最大返回的结果条数
+        # @type Limit: Integer
+        # @param Statuses: 查询的状态
+        # 允许的值为：processing、success、failed、timeout、invalid
+        # @type Statuses: Array
+        # @param ZoneId: zone id
+        # @type ZoneId: String
+        # @param Domains: 查询的域名列表
+        # @type Domains: Array
+        # @param Target: 查询的资源
+        # @type Target: String
+
+        attr_accessor :JobId, :StartTime, :EndTime, :Offset, :Limit, :Statuses, :ZoneId, :Domains, :Target
+        
+        def initialize(jobid=nil, starttime=nil, endtime=nil, offset=nil, limit=nil, statuses=nil, zoneid=nil, domains=nil, target=nil)
+          @JobId = jobid
+          @StartTime = starttime
+          @EndTime = endtime
+          @Offset = offset
+          @Limit = limit
+          @Statuses = statuses
+          @ZoneId = zoneid
+          @Domains = domains
+          @Target = target
+        end
+
+        def deserialize(params)
+          @JobId = params['JobId']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @Statuses = params['Statuses']
+          @ZoneId = params['ZoneId']
+          @Domains = params['Domains']
+          @Target = params['Target']
+        end
+      end
+
+      # DescribePrefetchTasks返回参数结构体
+      class DescribePrefetchTasksResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 该查询条件总共条目数
+        # @type TotalCount: Integer
+        # @param Tasks: 任务结果列表
+        # @type Tasks: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :Tasks, :RequestId
+        
+        def initialize(totalcount=nil, tasks=nil, requestid=nil)
+          @TotalCount = totalcount
+          @Tasks = tasks
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['Tasks'].nil?
+            @Tasks = []
+            params['Tasks'].each do |i|
+              task_tmp = Task.new
+              task_tmp.deserialize(i)
+              @Tasks << task_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -246,6 +393,26 @@ module TencentCloud
         def deserialize(params)
           @Reason = params['Reason']
           @Targets = params['Targets']
+        end
+      end
+
+      # 刷新预热附带的头部信息
+      class Header < TencentCloud::Common::AbstractModel
+        # @param Name: HTTP头部
+        # @type Name: String
+        # @param Value: HTTP头部值
+        # @type Value: String
+
+        attr_accessor :Name, :Value
+        
+        def initialize(name=nil, value=nil)
+          @Name = name
+          @Value = value
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Value = params['Value']
         end
       end
 

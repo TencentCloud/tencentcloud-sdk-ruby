@@ -2503,6 +2503,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询数据集列表
+
+        # @param request: Request instance for DescribePrograms.
+        # @type request: :class:`Tencentcloud::tsf::V20180326::DescribeProgramsRequest`
+        # @rtype: :class:`Tencentcloud::tsf::V20180326::DescribeProgramsResponse`
+        def DescribePrograms(request)
+          body = send_request('DescribePrograms', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeProgramsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询公共配置（单条）
 
         # @param request: Request instance for DescribePublicConfig.

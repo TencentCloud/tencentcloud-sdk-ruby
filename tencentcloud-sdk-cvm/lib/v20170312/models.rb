@@ -2782,6 +2782,66 @@ module TencentCloud
         end
       end
 
+      # ExportImages请求参数结构体
+      class ExportImagesRequest < TencentCloud::Common::AbstractModel
+        # @param BucketName: COS存储桶名称
+        # @type BucketName: String
+        # @param ImageIds: 镜像ID列表
+        # @type ImageIds: Array
+        # @param ExportFormat: 镜像文件导出格式。取值范围：RAW，QCOW2，VHD，VMDK。默认为RAW
+        # @type ExportFormat: String
+        # @param FileNamePrefixList: 导出文件的名称前缀列表
+        # @type FileNamePrefixList: Array
+        # @param OnlyExportRootDisk: 是否只导出系统盘
+        # @type OnlyExportRootDisk: Boolean
+        # @param DryRun: 检测镜像是否支持导出
+        # @type DryRun: Boolean
+        # @param RoleName: 角色名称。默认为CVM_QcsRole，发起请求前请确认是否存在该角色，以及是否已正确配置COS写入权限。
+        # @type RoleName: String
+
+        attr_accessor :BucketName, :ImageIds, :ExportFormat, :FileNamePrefixList, :OnlyExportRootDisk, :DryRun, :RoleName
+        
+        def initialize(bucketname=nil, imageids=nil, exportformat=nil, filenameprefixlist=nil, onlyexportrootdisk=nil, dryrun=nil, rolename=nil)
+          @BucketName = bucketname
+          @ImageIds = imageids
+          @ExportFormat = exportformat
+          @FileNamePrefixList = filenameprefixlist
+          @OnlyExportRootDisk = onlyexportrootdisk
+          @DryRun = dryrun
+          @RoleName = rolename
+        end
+
+        def deserialize(params)
+          @BucketName = params['BucketName']
+          @ImageIds = params['ImageIds']
+          @ExportFormat = params['ExportFormat']
+          @FileNamePrefixList = params['FileNamePrefixList']
+          @OnlyExportRootDisk = params['OnlyExportRootDisk']
+          @DryRun = params['DryRun']
+          @RoleName = params['RoleName']
+        end
+      end
+
+      # ExportImages返回参数结构体
+      class ExportImagesResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: 导出镜像任务ID
+        # @type TaskId: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :RequestId
+        
+        def initialize(taskid=nil, requestid=nil)
+          @TaskId = taskid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 扩展数据
       class Externals < TencentCloud::Common::AbstractModel
         # @param ReleaseAddress: 释放地址

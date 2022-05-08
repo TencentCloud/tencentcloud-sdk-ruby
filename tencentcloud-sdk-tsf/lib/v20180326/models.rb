@@ -7718,6 +7718,53 @@ module TencentCloud
         end
       end
 
+      # DescribePrograms请求参数结构体
+      class DescribeProgramsRequest < TencentCloud::Common::AbstractModel
+        # @param SearchWord: 模糊查询数据集ID，数据集名称，不传入时查询全量
+        # @type SearchWord: String
+        # @param Limit: 每页数量
+        # @type Limit: Integer
+        # @param Offset: 起始偏移量
+        # @type Offset: Integer
+
+        attr_accessor :SearchWord, :Limit, :Offset
+        
+        def initialize(searchword=nil, limit=nil, offset=nil)
+          @SearchWord = searchword
+          @Limit = limit
+          @Offset = offset
+        end
+
+        def deserialize(params)
+          @SearchWord = params['SearchWord']
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+        end
+      end
+
+      # DescribePrograms返回参数结构体
+      class DescribeProgramsResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 数据集列表
+        # @type Result: :class:`Tencentcloud::Tsf.v20180326.models.PagedProgram`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+        
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Result'].nil?
+            @Result = PagedProgram.new
+            @Result.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribePublicConfigReleaseLogs请求参数结构体
       class DescribePublicConfigReleaseLogsRequest < TencentCloud::Common::AbstractModel
         # @param NamespaceId: 命名空间ID，不传入时查询全量
@@ -12864,6 +12911,33 @@ module TencentCloud
         end
       end
 
+      # tsf-privilege模块，分页数据集列表
+      class PagedProgram < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 总条数
+        # @type TotalCount: Integer
+        # @param Content: 数据集列表
+        # @type Content: Array
+
+        attr_accessor :TotalCount, :Content
+        
+        def initialize(totalcount=nil, content=nil)
+          @TotalCount = totalcount
+          @Content = content
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['Content'].nil?
+            @Content = []
+            params['Content'].each do |i|
+              program_tmp = Program.new
+              program_tmp.deserialize(i)
+              @Content << program_tmp
+            end
+          end
+        end
+      end
+
       # 路径重写
       class PathRewrite < TencentCloud::Common::AbstractModel
         # @param PathRewriteId: 路径重写规则ID
@@ -13105,6 +13179,115 @@ module TencentCloud
         def deserialize(params)
           @TargetPort = params['TargetPort']
           @Protocol = params['Protocol']
+        end
+      end
+
+      # tsf-privilege模块 Program数据集
+      class Program < TencentCloud::Common::AbstractModel
+        # @param ProgramId: 数据集ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProgramId: String
+        # @param ProgramName: 数据集名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProgramName: String
+        # @param ProgramDesc: 数据集描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProgramDesc: String
+        # @param DeleteFlag: 删除标识，true: 可以删除; false: 不可删除
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DeleteFlag: Boolean
+        # @param CreationTime: 创建时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreationTime: Integer
+        # @param LastUpdateTime: 最后更新时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LastUpdateTime: Integer
+        # @param ProgramItemList: 数据项列表，无值时返回空数组
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProgramItemList: Array
+
+        attr_accessor :ProgramId, :ProgramName, :ProgramDesc, :DeleteFlag, :CreationTime, :LastUpdateTime, :ProgramItemList
+        
+        def initialize(programid=nil, programname=nil, programdesc=nil, deleteflag=nil, creationtime=nil, lastupdatetime=nil, programitemlist=nil)
+          @ProgramId = programid
+          @ProgramName = programname
+          @ProgramDesc = programdesc
+          @DeleteFlag = deleteflag
+          @CreationTime = creationtime
+          @LastUpdateTime = lastupdatetime
+          @ProgramItemList = programitemlist
+        end
+
+        def deserialize(params)
+          @ProgramId = params['ProgramId']
+          @ProgramName = params['ProgramName']
+          @ProgramDesc = params['ProgramDesc']
+          @DeleteFlag = params['DeleteFlag']
+          @CreationTime = params['CreationTime']
+          @LastUpdateTime = params['LastUpdateTime']
+          unless params['ProgramItemList'].nil?
+            @ProgramItemList = []
+            params['ProgramItemList'].each do |i|
+              programitem_tmp = ProgramItem.new
+              programitem_tmp.deserialize(i)
+              @ProgramItemList << programitem_tmp
+            end
+          end
+        end
+      end
+
+      # tsf-privilege模块，数据项
+      class ProgramItem < TencentCloud::Common::AbstractModel
+        # @param ProgramItemId: 数据项ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProgramItemId: String
+        # @param Resource: 资源
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Resource: :class:`Tencentcloud::Tsf.v20180326.models.Resource`
+        # @param ValueList: 数据值列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ValueList: Array
+        # @param IsAll: 全选标识，true: 全选；false: 非全选
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsAll: Boolean
+        # @param CreationTime: 创建时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreationTime: Integer
+        # @param LastUpdateTime: 最后更新时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LastUpdateTime: Integer
+        # @param DeleteFlag: 删除标识，true: 可删除；false: 不可删除
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DeleteFlag: Boolean
+        # @param ProgramId: 数据集ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProgramId: String
+
+        attr_accessor :ProgramItemId, :Resource, :ValueList, :IsAll, :CreationTime, :LastUpdateTime, :DeleteFlag, :ProgramId
+        
+        def initialize(programitemid=nil, resource=nil, valuelist=nil, isall=nil, creationtime=nil, lastupdatetime=nil, deleteflag=nil, programid=nil)
+          @ProgramItemId = programitemid
+          @Resource = resource
+          @ValueList = valuelist
+          @IsAll = isall
+          @CreationTime = creationtime
+          @LastUpdateTime = lastupdatetime
+          @DeleteFlag = deleteflag
+          @ProgramId = programid
+        end
+
+        def deserialize(params)
+          @ProgramItemId = params['ProgramItemId']
+          unless params['Resource'].nil?
+            @Resource = Resource.new
+            @Resource.deserialize(params['Resource'])
+          end
+          @ValueList = params['ValueList']
+          @IsAll = params['IsAll']
+          @CreationTime = params['CreationTime']
+          @LastUpdateTime = params['LastUpdateTime']
+          @DeleteFlag = params['DeleteFlag']
+          @ProgramId = params['ProgramId']
         end
       end
 
@@ -13642,6 +13825,93 @@ module TencentCloud
               @Content << repositoryinfo_tmp
             end
           end
+        end
+      end
+
+      # tsf-privilege 模块，资源
+      class Resource < TencentCloud::Common::AbstractModel
+        # @param ResourceId: 资源ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResourceId: String
+        # @param ResourceCode: 资源编码
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResourceCode: String
+        # @param ResourceName: 资源名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResourceName: String
+        # @param ServiceCode: 资源所属产品编码
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ServiceCode: String
+        # @param ResourceAction: 选取资源使用的Action
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResourceAction: String
+        # @param IdField: 资源数据查询的ID字段名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IdField: String
+        # @param NameField: 资源数据查询的名称字段名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NameField: String
+        # @param SelectIdsField: 资源数据查询的ID过滤字段名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SelectIdsField: String
+        # @param CreationTime: 创建时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreationTime: Integer
+        # @param LastUpdateTime: 最后更新时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LastUpdateTime: Integer
+        # @param DeleteFlag: 删除标识
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DeleteFlag: Boolean
+        # @param ResourceDesc: 资源描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResourceDesc: String
+        # @param CanSelectAll: 是否可以选择全部
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CanSelectAll: Boolean
+        # @param SearchWordField: 资源数据查询的模糊查询字段名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SearchWordField: String
+        # @param Index: 排序
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Index: Integer
+
+        attr_accessor :ResourceId, :ResourceCode, :ResourceName, :ServiceCode, :ResourceAction, :IdField, :NameField, :SelectIdsField, :CreationTime, :LastUpdateTime, :DeleteFlag, :ResourceDesc, :CanSelectAll, :SearchWordField, :Index
+        
+        def initialize(resourceid=nil, resourcecode=nil, resourcename=nil, servicecode=nil, resourceaction=nil, idfield=nil, namefield=nil, selectidsfield=nil, creationtime=nil, lastupdatetime=nil, deleteflag=nil, resourcedesc=nil, canselectall=nil, searchwordfield=nil, index=nil)
+          @ResourceId = resourceid
+          @ResourceCode = resourcecode
+          @ResourceName = resourcename
+          @ServiceCode = servicecode
+          @ResourceAction = resourceaction
+          @IdField = idfield
+          @NameField = namefield
+          @SelectIdsField = selectidsfield
+          @CreationTime = creationtime
+          @LastUpdateTime = lastupdatetime
+          @DeleteFlag = deleteflag
+          @ResourceDesc = resourcedesc
+          @CanSelectAll = canselectall
+          @SearchWordField = searchwordfield
+          @Index = index
+        end
+
+        def deserialize(params)
+          @ResourceId = params['ResourceId']
+          @ResourceCode = params['ResourceCode']
+          @ResourceName = params['ResourceName']
+          @ServiceCode = params['ServiceCode']
+          @ResourceAction = params['ResourceAction']
+          @IdField = params['IdField']
+          @NameField = params['NameField']
+          @SelectIdsField = params['SelectIdsField']
+          @CreationTime = params['CreationTime']
+          @LastUpdateTime = params['LastUpdateTime']
+          @DeleteFlag = params['DeleteFlag']
+          @ResourceDesc = params['ResourceDesc']
+          @CanSelectAll = params['CanSelectAll']
+          @SearchWordField = params['SearchWordField']
+          @Index = params['Index']
         end
       end
 

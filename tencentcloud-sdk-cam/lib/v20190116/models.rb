@@ -583,6 +583,54 @@ module TencentCloud
         end
       end
 
+      # CreateOIDCConfig请求参数结构体
+      class CreateOIDCConfigRequest < TencentCloud::Common::AbstractModel
+        # @param IdentityUrl: 身份提供商URL
+        # @type IdentityUrl: String
+        # @param IdentityKey: 签名公钥，需要base64
+        # @type IdentityKey: String
+        # @param ClientId: 客户端ID
+        # @type ClientId: Array
+        # @param Name: 名称
+        # @type Name: String
+        # @param Description: 描述
+        # @type Description: String
+
+        attr_accessor :IdentityUrl, :IdentityKey, :ClientId, :Name, :Description
+        
+        def initialize(identityurl=nil, identitykey=nil, clientid=nil, name=nil, description=nil)
+          @IdentityUrl = identityurl
+          @IdentityKey = identitykey
+          @ClientId = clientid
+          @Name = name
+          @Description = description
+        end
+
+        def deserialize(params)
+          @IdentityUrl = params['IdentityUrl']
+          @IdentityKey = params['IdentityKey']
+          @ClientId = params['ClientId']
+          @Name = params['Name']
+          @Description = params['Description']
+        end
+      end
+
+      # CreateOIDCConfig返回参数结构体
+      class CreateOIDCConfigResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreatePolicy请求参数结构体
       class CreatePolicyRequest < TencentCloud::Common::AbstractModel
         # @param PolicyName: 策略名
@@ -942,6 +990,38 @@ module TencentCloud
         end
       end
 
+      # DeleteOIDCConfig请求参数结构体
+      class DeleteOIDCConfigRequest < TencentCloud::Common::AbstractModel
+        # @param Name: OIDC身份提供商名称
+        # @type Name: String
+
+        attr_accessor :Name
+        
+        def initialize(name=nil)
+          @Name = name
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+        end
+      end
+
+      # DeleteOIDCConfig返回参数结构体
+      class DeleteOIDCConfigResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DeletePolicy请求参数结构体
       class DeletePolicyRequest < TencentCloud::Common::AbstractModel
         # @param PolicyId: 数组，数组成员是策略 id，支持批量删除策略
@@ -1214,6 +1294,66 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeOIDCConfig请求参数结构体
+      class DescribeOIDCConfigRequest < TencentCloud::Common::AbstractModel
+        # @param Name: 名称
+        # @type Name: String
+
+        attr_accessor :Name
+        
+        def initialize(name=nil)
+          @Name = name
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+        end
+      end
+
+      # DescribeOIDCConfig返回参数结构体
+      class DescribeOIDCConfigResponse < TencentCloud::Common::AbstractModel
+        # @param ProviderType: 身份提供商类型 11角色身份提供商
+        # @type ProviderType: Integer
+        # @param IdentityUrl: 身份提供商URL
+        # @type IdentityUrl: String
+        # @param IdentityKey: 签名公钥
+        # @type IdentityKey: String
+        # @param ClientId: 客户端id
+        # @type ClientId: Array
+        # @param Status: 状态：0:未设置，11:已开启，2:已禁用
+        # @type Status: Integer
+        # @param Description: 描述
+        # @type Description: String
+        # @param Name: 名称
+        # @type Name: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ProviderType, :IdentityUrl, :IdentityKey, :ClientId, :Status, :Description, :Name, :RequestId
+        
+        def initialize(providertype=nil, identityurl=nil, identitykey=nil, clientid=nil, status=nil, description=nil, name=nil, requestid=nil)
+          @ProviderType = providertype
+          @IdentityUrl = identityurl
+          @IdentityKey = identitykey
+          @ClientId = clientid
+          @Status = status
+          @Description = description
+          @Name = name
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ProviderType = params['ProviderType']
+          @IdentityUrl = params['IdentityUrl']
+          @IdentityKey = params['IdentityKey']
+          @ClientId = params['ClientId']
+          @Status = params['Status']
+          @Description = params['Description']
+          @Name = params['Name']
           @RequestId = params['RequestId']
         end
       end
@@ -4212,6 +4352,54 @@ module TencentCloud
 
       # UpdateGroup返回参数结构体
       class UpdateGroupResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # UpdateOIDCConfig请求参数结构体
+      class UpdateOIDCConfigRequest < TencentCloud::Common::AbstractModel
+        # @param IdentityUrl: 身份提供商URL
+        # @type IdentityUrl: String
+        # @param IdentityKey: 签名公钥，需要base64
+        # @type IdentityKey: String
+        # @param ClientId: 客户端ID
+        # @type ClientId: Array
+        # @param Name: 名称
+        # @type Name: String
+        # @param Description: 描述
+        # @type Description: String
+
+        attr_accessor :IdentityUrl, :IdentityKey, :ClientId, :Name, :Description
+        
+        def initialize(identityurl=nil, identitykey=nil, clientid=nil, name=nil, description=nil)
+          @IdentityUrl = identityurl
+          @IdentityKey = identitykey
+          @ClientId = clientid
+          @Name = name
+          @Description = description
+        end
+
+        def deserialize(params)
+          @IdentityUrl = params['IdentityUrl']
+          @IdentityKey = params['IdentityKey']
+          @ClientId = params['ClientId']
+          @Name = params['Name']
+          @Description = params['Description']
+        end
+      end
+
+      # UpdateOIDCConfig返回参数结构体
+      class UpdateOIDCConfigResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 

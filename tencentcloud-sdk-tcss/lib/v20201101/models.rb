@@ -7224,12 +7224,28 @@ module TencentCloud
         # @type DefenderStatus: String
         # @param TaskCreateTime: 扫描任务创建时间
         # @type TaskCreateTime: String
+        # @param NetworkType: 网络类型.PublicNetwork为公网类型,VPCNetwork为VPC网络
+        # @type NetworkType: String
+        # @param ApiServerAddress: API Server地址
+        # @type ApiServerAddress: String
+        # @param NodeCount: 节点数
+        # @type NodeCount: Integer
+        # @param NamespaceCount: 命名空间数
+        # @type NamespaceCount: Integer
+        # @param WorkloadCount: 工作负载数
+        # @type WorkloadCount: Integer
+        # @param PodCount: Pod数量
+        # @type PodCount: Integer
+        # @param ServiceCount: Service数量
+        # @type ServiceCount: Integer
+        # @param IngressCount: Ingress数量
+        # @type IngressCount: Integer
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :ClusterId, :ClusterName, :ScanTaskProgress, :ClusterVersion, :ContainerRuntime, :ClusterNodeNum, :ClusterStatus, :ClusterType, :Region, :SeriousRiskCount, :HighRiskCount, :MiddleRiskCount, :HintRiskCount, :CheckStatus, :DefenderStatus, :TaskCreateTime, :RequestId
+        attr_accessor :ClusterId, :ClusterName, :ScanTaskProgress, :ClusterVersion, :ContainerRuntime, :ClusterNodeNum, :ClusterStatus, :ClusterType, :Region, :SeriousRiskCount, :HighRiskCount, :MiddleRiskCount, :HintRiskCount, :CheckStatus, :DefenderStatus, :TaskCreateTime, :NetworkType, :ApiServerAddress, :NodeCount, :NamespaceCount, :WorkloadCount, :PodCount, :ServiceCount, :IngressCount, :RequestId
         
-        def initialize(clusterid=nil, clustername=nil, scantaskprogress=nil, clusterversion=nil, containerruntime=nil, clusternodenum=nil, clusterstatus=nil, clustertype=nil, region=nil, seriousriskcount=nil, highriskcount=nil, middleriskcount=nil, hintriskcount=nil, checkstatus=nil, defenderstatus=nil, taskcreatetime=nil, requestid=nil)
+        def initialize(clusterid=nil, clustername=nil, scantaskprogress=nil, clusterversion=nil, containerruntime=nil, clusternodenum=nil, clusterstatus=nil, clustertype=nil, region=nil, seriousriskcount=nil, highriskcount=nil, middleriskcount=nil, hintriskcount=nil, checkstatus=nil, defenderstatus=nil, taskcreatetime=nil, networktype=nil, apiserveraddress=nil, nodecount=nil, namespacecount=nil, workloadcount=nil, podcount=nil, servicecount=nil, ingresscount=nil, requestid=nil)
           @ClusterId = clusterid
           @ClusterName = clustername
           @ScanTaskProgress = scantaskprogress
@@ -7246,6 +7262,14 @@ module TencentCloud
           @CheckStatus = checkstatus
           @DefenderStatus = defenderstatus
           @TaskCreateTime = taskcreatetime
+          @NetworkType = networktype
+          @ApiServerAddress = apiserveraddress
+          @NodeCount = nodecount
+          @NamespaceCount = namespacecount
+          @WorkloadCount = workloadcount
+          @PodCount = podcount
+          @ServiceCount = servicecount
+          @IngressCount = ingresscount
           @RequestId = requestid
         end
 
@@ -7266,6 +7290,14 @@ module TencentCloud
           @CheckStatus = params['CheckStatus']
           @DefenderStatus = params['DefenderStatus']
           @TaskCreateTime = params['TaskCreateTime']
+          @NetworkType = params['NetworkType']
+          @ApiServerAddress = params['ApiServerAddress']
+          @NodeCount = params['NodeCount']
+          @NamespaceCount = params['NamespaceCount']
+          @WorkloadCount = params['WorkloadCount']
+          @PodCount = params['PodCount']
+          @ServiceCount = params['ServiceCount']
+          @IngressCount = params['IngressCount']
           @RequestId = params['RequestId']
         end
       end

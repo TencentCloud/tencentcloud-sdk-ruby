@@ -3151,18 +3151,22 @@ module TencentCloud
         # @param TotalConcurrencyMem: 命名空间配额总量
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TotalConcurrencyMem: Integer
-        # @param TotalAllocatedConcurrencyMem: 命名空间配额使用量
+        # @param TotalAllocatedConcurrencyMem: 命名空间并发使用量
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TotalAllocatedConcurrencyMem: Integer
+        # @param TotalAllocatedProvisionedMem: 命名空间预置使用量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalAllocatedProvisionedMem: Integer
 
-        attr_accessor :Functions, :Namespace, :FunctionsCount, :TotalConcurrencyMem, :TotalAllocatedConcurrencyMem
+        attr_accessor :Functions, :Namespace, :FunctionsCount, :TotalConcurrencyMem, :TotalAllocatedConcurrencyMem, :TotalAllocatedProvisionedMem
         
-        def initialize(functions=nil, namespace=nil, functionscount=nil, totalconcurrencymem=nil, totalallocatedconcurrencymem=nil)
+        def initialize(functions=nil, namespace=nil, functionscount=nil, totalconcurrencymem=nil, totalallocatedconcurrencymem=nil, totalallocatedprovisionedmem=nil)
           @Functions = functions
           @Namespace = namespace
           @FunctionsCount = functionscount
           @TotalConcurrencyMem = totalconcurrencymem
           @TotalAllocatedConcurrencyMem = totalallocatedconcurrencymem
+          @TotalAllocatedProvisionedMem = totalallocatedprovisionedmem
         end
 
         def deserialize(params)
@@ -3171,6 +3175,7 @@ module TencentCloud
           @FunctionsCount = params['FunctionsCount']
           @TotalConcurrencyMem = params['TotalConcurrencyMem']
           @TotalAllocatedConcurrencyMem = params['TotalAllocatedConcurrencyMem']
+          @TotalAllocatedProvisionedMem = params['TotalAllocatedProvisionedMem']
         end
       end
 

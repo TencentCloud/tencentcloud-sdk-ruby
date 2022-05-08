@@ -197,30 +197,6 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 为已经存在的集群创建伸缩组
-
-        # @param request: Request instance for CreateClusterAsGroup.
-        # @type request: :class:`Tencentcloud::tke::V20180525::CreateClusterAsGroupRequest`
-        # @rtype: :class:`Tencentcloud::tke::V20180525::CreateClusterAsGroupResponse`
-        def CreateClusterAsGroup(request)
-          body = send_request('CreateClusterAsGroup', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = CreateClusterAsGroupResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
         # 创建集群访问端口(独立集群开启内网/外网访问，托管集群支持开启内网访问)
 
         # @param request: Request instance for CreateClusterEndpoint.

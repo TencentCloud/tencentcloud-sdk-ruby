@@ -262,10 +262,12 @@ module TencentCloud
         # @type BackupName: String
         # @param GroupId: 聚合Id，对于打包备份文件不返回此值。通过此值调用DescribeBackupFiles接口，获取单库备份文件的详细信息
         # @type GroupId: String
+        # @param BackupFormat: 备份文件形式（pkg-打包备份文件，single-单库备份文件）
+        # @type BackupFormat: String
 
-        attr_accessor :FileName, :Size, :StartTime, :EndTime, :InternalAddr, :ExternalAddr, :Id, :Status, :DBs, :Strategy, :BackupWay, :BackupName, :GroupId
+        attr_accessor :FileName, :Size, :StartTime, :EndTime, :InternalAddr, :ExternalAddr, :Id, :Status, :DBs, :Strategy, :BackupWay, :BackupName, :GroupId, :BackupFormat
         
-        def initialize(filename=nil, size=nil, starttime=nil, endtime=nil, internaladdr=nil, externaladdr=nil, id=nil, status=nil, dbs=nil, strategy=nil, backupway=nil, backupname=nil, groupid=nil)
+        def initialize(filename=nil, size=nil, starttime=nil, endtime=nil, internaladdr=nil, externaladdr=nil, id=nil, status=nil, dbs=nil, strategy=nil, backupway=nil, backupname=nil, groupid=nil, backupformat=nil)
           @FileName = filename
           @Size = size
           @StartTime = starttime
@@ -279,6 +281,7 @@ module TencentCloud
           @BackupWay = backupway
           @BackupName = backupname
           @GroupId = groupid
+          @BackupFormat = backupformat
         end
 
         def deserialize(params)
@@ -295,6 +298,7 @@ module TencentCloud
           @BackupWay = params['BackupWay']
           @BackupName = params['BackupName']
           @GroupId = params['GroupId']
+          @BackupFormat = params['BackupFormat']
         end
       end
 
@@ -1373,10 +1377,21 @@ module TencentCloud
         # @param BackupModel: 备份模式，master_pkg-主节点打包备份(默认) ；master_no_pkg-主节点不打包备份；slave_pkg-从节点打包备份(always on集群有效)；slave_no_pkg-从节点不打包备份(always on集群有效)；只读副本对该值无效。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BackupModel: String
+        # @param InstanceNote: 实例备份信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceNote: String
+        # @param BackupCycle: 备份周期
+        # @type BackupCycle: Array
+        # @param BackupCycleType: 备份周期类型，[daily、weekly、monthly]
+        # @type BackupCycleType: String
+        # @param BackupSaveDays: 数据(日志)备份保留时间
+        # @type BackupSaveDays: Integer
+        # @param InstanceType: 实例类型 HA-高可用 RO-只读实例 SI-基础版 BI-商业智能服务
+        # @type InstanceType: String
 
-        attr_accessor :InstanceId, :Name, :ProjectId, :RegionId, :ZoneId, :VpcId, :SubnetId, :Status, :Vip, :Vport, :CreateTime, :UpdateTime, :StartTime, :EndTime, :IsolateTime, :Memory, :UsedStorage, :Storage, :VersionName, :RenewFlag, :Model, :Region, :Zone, :BackupTime, :PayMode, :Uid, :Cpu, :Version, :Type, :Pid, :UniqVpcId, :UniqSubnetId, :IsolateOperator, :SubFlag, :ROFlag, :HAFlag, :ResourceTags, :BackupModel
+        attr_accessor :InstanceId, :Name, :ProjectId, :RegionId, :ZoneId, :VpcId, :SubnetId, :Status, :Vip, :Vport, :CreateTime, :UpdateTime, :StartTime, :EndTime, :IsolateTime, :Memory, :UsedStorage, :Storage, :VersionName, :RenewFlag, :Model, :Region, :Zone, :BackupTime, :PayMode, :Uid, :Cpu, :Version, :Type, :Pid, :UniqVpcId, :UniqSubnetId, :IsolateOperator, :SubFlag, :ROFlag, :HAFlag, :ResourceTags, :BackupModel, :InstanceNote, :BackupCycle, :BackupCycleType, :BackupSaveDays, :InstanceType
         
-        def initialize(instanceid=nil, name=nil, projectid=nil, regionid=nil, zoneid=nil, vpcid=nil, subnetid=nil, status=nil, vip=nil, vport=nil, createtime=nil, updatetime=nil, starttime=nil, endtime=nil, isolatetime=nil, memory=nil, usedstorage=nil, storage=nil, versionname=nil, renewflag=nil, model=nil, region=nil, zone=nil, backuptime=nil, paymode=nil, uid=nil, cpu=nil, version=nil, type=nil, pid=nil, uniqvpcid=nil, uniqsubnetid=nil, isolateoperator=nil, subflag=nil, roflag=nil, haflag=nil, resourcetags=nil, backupmodel=nil)
+        def initialize(instanceid=nil, name=nil, projectid=nil, regionid=nil, zoneid=nil, vpcid=nil, subnetid=nil, status=nil, vip=nil, vport=nil, createtime=nil, updatetime=nil, starttime=nil, endtime=nil, isolatetime=nil, memory=nil, usedstorage=nil, storage=nil, versionname=nil, renewflag=nil, model=nil, region=nil, zone=nil, backuptime=nil, paymode=nil, uid=nil, cpu=nil, version=nil, type=nil, pid=nil, uniqvpcid=nil, uniqsubnetid=nil, isolateoperator=nil, subflag=nil, roflag=nil, haflag=nil, resourcetags=nil, backupmodel=nil, instancenote=nil, backupcycle=nil, backupcycletype=nil, backupsavedays=nil, instancetype=nil)
           @InstanceId = instanceid
           @Name = name
           @ProjectId = projectid
@@ -1415,6 +1430,11 @@ module TencentCloud
           @HAFlag = haflag
           @ResourceTags = resourcetags
           @BackupModel = backupmodel
+          @InstanceNote = instancenote
+          @BackupCycle = backupcycle
+          @BackupCycleType = backupcycletype
+          @BackupSaveDays = backupsavedays
+          @InstanceType = instancetype
         end
 
         def deserialize(params)
@@ -1463,6 +1483,11 @@ module TencentCloud
             end
           end
           @BackupModel = params['BackupModel']
+          @InstanceNote = params['InstanceNote']
+          @BackupCycle = params['BackupCycle']
+          @BackupCycleType = params['BackupCycleType']
+          @BackupSaveDays = params['BackupSaveDays']
+          @InstanceType = params['InstanceType']
         end
       end
 
@@ -2188,15 +2213,18 @@ module TencentCloud
         # @type Offset: Integer
         # @param DatabaseName: 按照备份的库名称筛选，不填则不筛选此项
         # @type DatabaseName: String
+        # @param OrderBy: 列表项排序，目前只按照备份大小排序（desc-降序，asc-升序），默认desc
+        # @type OrderBy: String
 
-        attr_accessor :InstanceId, :GroupId, :Limit, :Offset, :DatabaseName
+        attr_accessor :InstanceId, :GroupId, :Limit, :Offset, :DatabaseName, :OrderBy
         
-        def initialize(instanceid=nil, groupid=nil, limit=nil, offset=nil, databasename=nil)
+        def initialize(instanceid=nil, groupid=nil, limit=nil, offset=nil, databasename=nil, orderby=nil)
           @InstanceId = instanceid
           @GroupId = groupid
           @Limit = limit
           @Offset = offset
           @DatabaseName = databasename
+          @OrderBy = orderby
         end
 
         def deserialize(params)
@@ -2205,6 +2233,7 @@ module TencentCloud
           @Limit = params['Limit']
           @Offset = params['Offset']
           @DatabaseName = params['DatabaseName']
+          @OrderBy = params['OrderBy']
         end
       end
 
@@ -2401,10 +2430,14 @@ module TencentCloud
         # @type DatabaseName: String
         # @param Group: 是否分组查询，默认是0，单库备份情况下 0-兼容老方式不分组，1-单库备份分组后展示
         # @type Group: Integer
+        # @param Type: 备份类型，1-数据备份，2-日志备份，默认值为1
+        # @type Type: Integer
+        # @param BackupFormat: 按照备份文件形式筛选，pkg-打包备份文件，single-单库备份文件
+        # @type BackupFormat: String
 
-        attr_accessor :StartTime, :EndTime, :InstanceId, :Limit, :Offset, :BackupName, :Strategy, :BackupWay, :BackupId, :DatabaseName, :Group
+        attr_accessor :StartTime, :EndTime, :InstanceId, :Limit, :Offset, :BackupName, :Strategy, :BackupWay, :BackupId, :DatabaseName, :Group, :Type, :BackupFormat
         
-        def initialize(starttime=nil, endtime=nil, instanceid=nil, limit=nil, offset=nil, backupname=nil, strategy=nil, backupway=nil, backupid=nil, databasename=nil, group=nil)
+        def initialize(starttime=nil, endtime=nil, instanceid=nil, limit=nil, offset=nil, backupname=nil, strategy=nil, backupway=nil, backupid=nil, databasename=nil, group=nil, type=nil, backupformat=nil)
           @StartTime = starttime
           @EndTime = endtime
           @InstanceId = instanceid
@@ -2416,6 +2449,8 @@ module TencentCloud
           @BackupId = backupid
           @DatabaseName = databasename
           @Group = group
+          @Type = type
+          @BackupFormat = backupformat
         end
 
         def deserialize(params)
@@ -2430,6 +2465,8 @@ module TencentCloud
           @BackupId = params['BackupId']
           @DatabaseName = params['DatabaseName']
           @Group = params['Group']
+          @Type = params['Type']
+          @BackupFormat = params['BackupFormat']
         end
       end
 
@@ -2584,10 +2621,12 @@ module TencentCloud
         # @type SearchKey: String
         # @param UidSet: 实例唯一Uid列表
         # @type UidSet: Array
+        # @param InstanceType: 实例类型 HA-高可用 RO-只读实例 SI-基础版 BI-商业智能服务
+        # @type InstanceType: String
 
-        attr_accessor :ProjectId, :Status, :Offset, :Limit, :InstanceIdSet, :PayMode, :VpcId, :SubnetId, :VipSet, :InstanceNameSet, :VersionSet, :Zone, :TagKeys, :SearchKey, :UidSet
+        attr_accessor :ProjectId, :Status, :Offset, :Limit, :InstanceIdSet, :PayMode, :VpcId, :SubnetId, :VipSet, :InstanceNameSet, :VersionSet, :Zone, :TagKeys, :SearchKey, :UidSet, :InstanceType
         
-        def initialize(projectid=nil, status=nil, offset=nil, limit=nil, instanceidset=nil, paymode=nil, vpcid=nil, subnetid=nil, vipset=nil, instancenameset=nil, versionset=nil, zone=nil, tagkeys=nil, searchkey=nil, uidset=nil)
+        def initialize(projectid=nil, status=nil, offset=nil, limit=nil, instanceidset=nil, paymode=nil, vpcid=nil, subnetid=nil, vipset=nil, instancenameset=nil, versionset=nil, zone=nil, tagkeys=nil, searchkey=nil, uidset=nil, instancetype=nil)
           @ProjectId = projectid
           @Status = status
           @Offset = offset
@@ -2603,6 +2642,7 @@ module TencentCloud
           @TagKeys = tagkeys
           @SearchKey = searchkey
           @UidSet = uidset
+          @InstanceType = instancetype
         end
 
         def deserialize(params)
@@ -2621,6 +2661,7 @@ module TencentCloud
           @TagKeys = params['TagKeys']
           @SearchKey = params['SearchKey']
           @UidSet = params['UidSet']
+          @InstanceType = params['InstanceType']
         end
       end
 
@@ -4854,7 +4895,7 @@ module TencentCloud
       class ModifyBackupStrategyRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例ID
         # @type InstanceId: String
-        # @param BackupType: 备份类型，当前只支持按天备份，取值为daily
+        # @param BackupType: 备份类型，当length(BackupDay) <=7 && length(BackupDay) >=2时，取值为weekly，当length(BackupDay)=1时，取值daily，默认daily
         # @type BackupType: String
         # @param BackupTime: 备份时间点，取值为0-23的整数
         # @type BackupTime: Integer
@@ -4862,15 +4903,21 @@ module TencentCloud
         # @type BackupDay: Integer
         # @param BackupModel: 备份模式，master_pkg-主节点上打包备份文件；master_no_pkg-主节点单库备份文件；slave_pkg-从节点上打包备份文件；slave_no_pkg-从节点上单库备份文件，从节点上备份只有在always on容灾模式下支持。
         # @type BackupModel: String
+        # @param BackupCycle: BackupType取值为weekly时，表示每周的星期N做备份。（如果数据备份保留时间<7天，则取值[1,2,3,4,5,6,7]。如果数据备份保留时间>=7天，则备份周期取值至少是一周的任意2天）
+        # @type BackupCycle: Array
+        # @param BackupSaveDays: 数据(日志)备份保留时间，取值[3-1830]天，默认7天
+        # @type BackupSaveDays: Integer
 
-        attr_accessor :InstanceId, :BackupType, :BackupTime, :BackupDay, :BackupModel
+        attr_accessor :InstanceId, :BackupType, :BackupTime, :BackupDay, :BackupModel, :BackupCycle, :BackupSaveDays
         
-        def initialize(instanceid=nil, backuptype=nil, backuptime=nil, backupday=nil, backupmodel=nil)
+        def initialize(instanceid=nil, backuptype=nil, backuptime=nil, backupday=nil, backupmodel=nil, backupcycle=nil, backupsavedays=nil)
           @InstanceId = instanceid
           @BackupType = backuptype
           @BackupTime = backuptime
           @BackupDay = backupday
           @BackupModel = backupmodel
+          @BackupCycle = backupcycle
+          @BackupSaveDays = backupsavedays
         end
 
         def deserialize(params)
@@ -4879,6 +4926,8 @@ module TencentCloud
           @BackupTime = params['BackupTime']
           @BackupDay = params['BackupDay']
           @BackupModel = params['BackupModel']
+          @BackupCycle = params['BackupCycle']
+          @BackupSaveDays = params['BackupSaveDays']
         end
       end
 

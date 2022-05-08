@@ -1076,6 +1076,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 提供导出自定义镜像到指定COS存储桶的能力
+
+        # @param request: Request instance for ExportImages.
+        # @type request: :class:`Tencentcloud::cvm::V20170312::ExportImagesRequest`
+        # @rtype: :class:`Tencentcloud::cvm::V20170312::ExportImagesResponse`
+        def ExportImages(request)
+          body = send_request('ExportImages', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ExportImagesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口(ImportImage)用于导入镜像，导入后的镜像可用于创建实例。目前支持 RAW、VHD、QCOW2、VMDK 镜像格式。
 
         # @param request: Request instance for ImportImage.

@@ -4868,7 +4868,7 @@ module TencentCloud
         # @type VpcId: String
         # @param SubnetId: 子网ID，changeVpc、changeBaseToVpc的时候需要提供
         # @type SubnetId: String
-        # @param Recycle: vip保留时间，单位：天，注：需要最新版SDK支持
+        # @param Recycle: 原VIP保留时间，单位：天，注：需要最新版SDK，否则原VIP立即释放，查看SDK版本，详见 [SDK中心](https://cloud.tencent.com/document/sdk)
         # @type Recycle: Integer
 
         attr_accessor :InstanceId, :Operation, :Vip, :VpcId, :SubnetId, :Recycle

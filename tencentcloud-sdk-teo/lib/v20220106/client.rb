@@ -29,6 +29,30 @@ module TencentCloud
         end
 
 
+        # 创建预热任务
+
+        # @param request: Request instance for CreatePrefetchTask.
+        # @type request: :class:`Tencentcloud::teo::V20220106::CreatePrefetchTaskRequest`
+        # @rtype: :class:`Tencentcloud::teo::V20220106::CreatePrefetchTaskResponse`
+        def CreatePrefetchTask(request)
+          body = send_request('CreatePrefetchTask', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreatePrefetchTaskResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 创建清除缓存任务
 
         # @param request: Request instance for CreatePurgeTask.
@@ -39,6 +63,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = CreatePurgeTaskResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询预热任务状态
+
+        # @param request: Request instance for DescribePrefetchTasks.
+        # @type request: :class:`Tencentcloud::teo::V20220106::DescribePrefetchTasksRequest`
+        # @rtype: :class:`Tencentcloud::teo::V20220106::DescribePrefetchTasksResponse`
+        def DescribePrefetchTasks(request)
+          body = send_request('DescribePrefetchTasks', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribePrefetchTasksResponse.new
             model.deserialize(response['Response'])
             model
           else

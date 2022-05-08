@@ -197,6 +197,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 创建角色OIDC配置
+
+        # @param request: Request instance for CreateOIDCConfig.
+        # @type request: :class:`Tencentcloud::cam::V20190116::CreateOIDCConfigRequest`
+        # @rtype: :class:`Tencentcloud::cam::V20190116::CreateOIDCConfigResponse`
+        def CreateOIDCConfig(request)
+          body = send_request('CreateOIDCConfig', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateOIDCConfigResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（CreatePolicy）可用于创建策略。
 
         # @param request: Request instance for CreatePolicy.
@@ -389,6 +413,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 删除OIDC身份提供商
+
+        # @param request: Request instance for DeleteOIDCConfig.
+        # @type request: :class:`Tencentcloud::cam::V20190116::DeleteOIDCConfigRequest`
+        # @rtype: :class:`Tencentcloud::cam::V20190116::DeleteOIDCConfigResponse`
+        def DeleteOIDCConfig(request)
+          body = send_request('DeleteOIDCConfig', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteOIDCConfigResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（DeletePolicy）可用于删除策略。
 
         # @param request: Request instance for DeletePolicy.
@@ -567,6 +615,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteUserPermissionsBoundaryResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询角色OIDC配置
+
+        # @param request: Request instance for DescribeOIDCConfig.
+        # @type request: :class:`Tencentcloud::cam::V20190116::DescribeOIDCConfigRequest`
+        # @rtype: :class:`Tencentcloud::cam::V20190116::DescribeOIDCConfigResponse`
+        def DescribeOIDCConfig(request)
+          body = send_request('DescribeOIDCConfig', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeOIDCConfigResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1695,6 +1767,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = UpdateGroupResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改角色OIDC配置
+
+        # @param request: Request instance for UpdateOIDCConfig.
+        # @type request: :class:`Tencentcloud::cam::V20190116::UpdateOIDCConfigRequest`
+        # @rtype: :class:`Tencentcloud::cam::V20190116::UpdateOIDCConfigResponse`
+        def UpdateOIDCConfig(request)
+          body = send_request('UpdateOIDCConfig', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = UpdateOIDCConfigResponse.new
             model.deserialize(response['Response'])
             model
           else
