@@ -851,7 +851,6 @@ module TencentCloud
         end
 
         # DescribePushTasks  用于查询预热任务提交历史记录及执行进度。
-        # 接口灰度中，暂未全量开放，敬请期待。
 
         # @param request: Request instance for DescribePushTasks.
         # @type request: :class:`Tencentcloud::cdn::V20180606::DescribePushTasksRequest`

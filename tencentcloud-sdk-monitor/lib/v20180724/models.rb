@@ -380,10 +380,16 @@ module TencentCloud
         # @param FilterDimensionsParam: 策略关联的过滤维度信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FilterDimensionsParam: String
+        # @param IsOneClick: 是否为一键告警策略
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsOneClick: Integer
+        # @param OneClickStatus: 一键告警策略是否开启
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OneClickStatus: Integer
 
-        attr_accessor :PolicyId, :PolicyName, :Remark, :MonitorType, :Enable, :UseSum, :ProjectId, :ProjectName, :Namespace, :ConditionTemplateId, :Condition, :EventCondition, :NoticeIds, :Notices, :TriggerTasks, :ConditionsTemp, :LastEditUin, :UpdateTime, :InsertTime, :Region, :NamespaceShowName, :IsDefault, :CanSetDefault, :InstanceGroupId, :InstanceSum, :InstanceGroupName, :RuleType, :OriginId, :TagInstances, :FilterDimensionsParam
+        attr_accessor :PolicyId, :PolicyName, :Remark, :MonitorType, :Enable, :UseSum, :ProjectId, :ProjectName, :Namespace, :ConditionTemplateId, :Condition, :EventCondition, :NoticeIds, :Notices, :TriggerTasks, :ConditionsTemp, :LastEditUin, :UpdateTime, :InsertTime, :Region, :NamespaceShowName, :IsDefault, :CanSetDefault, :InstanceGroupId, :InstanceSum, :InstanceGroupName, :RuleType, :OriginId, :TagInstances, :FilterDimensionsParam, :IsOneClick, :OneClickStatus
         
-        def initialize(policyid=nil, policyname=nil, remark=nil, monitortype=nil, enable=nil, usesum=nil, projectid=nil, projectname=nil, namespace=nil, conditiontemplateid=nil, condition=nil, eventcondition=nil, noticeids=nil, notices=nil, triggertasks=nil, conditionstemp=nil, lastedituin=nil, updatetime=nil, inserttime=nil, region=nil, namespaceshowname=nil, isdefault=nil, cansetdefault=nil, instancegroupid=nil, instancesum=nil, instancegroupname=nil, ruletype=nil, originid=nil, taginstances=nil, filterdimensionsparam=nil)
+        def initialize(policyid=nil, policyname=nil, remark=nil, monitortype=nil, enable=nil, usesum=nil, projectid=nil, projectname=nil, namespace=nil, conditiontemplateid=nil, condition=nil, eventcondition=nil, noticeids=nil, notices=nil, triggertasks=nil, conditionstemp=nil, lastedituin=nil, updatetime=nil, inserttime=nil, region=nil, namespaceshowname=nil, isdefault=nil, cansetdefault=nil, instancegroupid=nil, instancesum=nil, instancegroupname=nil, ruletype=nil, originid=nil, taginstances=nil, filterdimensionsparam=nil, isoneclick=nil, oneclickstatus=nil)
           @PolicyId = policyid
           @PolicyName = policyname
           @Remark = remark
@@ -414,6 +420,8 @@ module TencentCloud
           @OriginId = originid
           @TagInstances = taginstances
           @FilterDimensionsParam = filterdimensionsparam
+          @IsOneClick = isoneclick
+          @OneClickStatus = oneclickstatus
         end
 
         def deserialize(params)
@@ -477,6 +485,8 @@ module TencentCloud
             end
           end
           @FilterDimensionsParam = params['FilterDimensionsParam']
+          @IsOneClick = params['IsOneClick']
+          @OneClickStatus = params['OneClickStatus']
         end
       end
 

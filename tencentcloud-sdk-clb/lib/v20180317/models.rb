@@ -3908,10 +3908,13 @@ module TencentCloud
         # @param SourceIpType: 自定义探测相关参数。健康检查源IP类型：0（使用LB的VIP作为源IP），1（使用100.64网段IP作为源IP），默认值：0
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SourceIpType: Integer
+        # @param ExtendedCode: GRPC健康检查状态码（仅适用于后端转发协议为GRPC的规则）。默认值为 12，可输入值为数值、多个数值、或者范围，例如 20 或 20,25 或 0-99
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExtendedCode: String
 
-        attr_accessor :HealthSwitch, :TimeOut, :IntervalTime, :HealthNum, :UnHealthNum, :HttpCode, :HttpCheckPath, :HttpCheckDomain, :HttpCheckMethod, :CheckPort, :ContextType, :SendContext, :RecvContext, :CheckType, :HttpVersion, :SourceIpType
+        attr_accessor :HealthSwitch, :TimeOut, :IntervalTime, :HealthNum, :UnHealthNum, :HttpCode, :HttpCheckPath, :HttpCheckDomain, :HttpCheckMethod, :CheckPort, :ContextType, :SendContext, :RecvContext, :CheckType, :HttpVersion, :SourceIpType, :ExtendedCode
         
-        def initialize(healthswitch=nil, timeout=nil, intervaltime=nil, healthnum=nil, unhealthnum=nil, httpcode=nil, httpcheckpath=nil, httpcheckdomain=nil, httpcheckmethod=nil, checkport=nil, contexttype=nil, sendcontext=nil, recvcontext=nil, checktype=nil, httpversion=nil, sourceiptype=nil)
+        def initialize(healthswitch=nil, timeout=nil, intervaltime=nil, healthnum=nil, unhealthnum=nil, httpcode=nil, httpcheckpath=nil, httpcheckdomain=nil, httpcheckmethod=nil, checkport=nil, contexttype=nil, sendcontext=nil, recvcontext=nil, checktype=nil, httpversion=nil, sourceiptype=nil, extendedcode=nil)
           @HealthSwitch = healthswitch
           @TimeOut = timeout
           @IntervalTime = intervaltime
@@ -3928,6 +3931,7 @@ module TencentCloud
           @CheckType = checktype
           @HttpVersion = httpversion
           @SourceIpType = sourceiptype
+          @ExtendedCode = extendedcode
         end
 
         def deserialize(params)
@@ -3947,6 +3951,7 @@ module TencentCloud
           @CheckType = params['CheckType']
           @HttpVersion = params['HttpVersion']
           @SourceIpType = params['SourceIpType']
+          @ExtendedCode = params['ExtendedCode']
         end
       end
 
