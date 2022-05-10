@@ -1045,10 +1045,13 @@ module TencentCloud
         # @param Grafana: Grafana信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Grafana: :class:`Tencentcloud::Tcm.v20210413.models.GrafanaInfo`
+        # @param Type: Prometheus 类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Type: String
 
-        attr_accessor :PrometheusId, :DisplayName, :InstanceId, :VpcId, :State, :Region, :Grafana
+        attr_accessor :PrometheusId, :DisplayName, :InstanceId, :VpcId, :State, :Region, :Grafana, :Type
         
-        def initialize(prometheusid=nil, displayname=nil, instanceid=nil, vpcid=nil, state=nil, region=nil, grafana=nil)
+        def initialize(prometheusid=nil, displayname=nil, instanceid=nil, vpcid=nil, state=nil, region=nil, grafana=nil, type=nil)
           @PrometheusId = prometheusid
           @DisplayName = displayname
           @InstanceId = instanceid
@@ -1056,6 +1059,7 @@ module TencentCloud
           @State = state
           @Region = region
           @Grafana = grafana
+          @Type = type
         end
 
         def deserialize(params)
@@ -1069,6 +1073,7 @@ module TencentCloud
             @Grafana = GrafanaInfo.new
             @Grafana.deserialize(params['Grafana'])
           end
+          @Type = params['Type']
         end
       end
 

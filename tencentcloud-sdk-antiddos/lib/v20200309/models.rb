@@ -5457,17 +5457,20 @@ module TencentCloud
         # @type Protocol: String
         # @param RealServers: 源站列表
         # @type RealServers: Array
-        # @param InstanceDetails: 规则所属的资源实例
+        # @param InstanceDetails: 资源实例
         # @type InstanceDetails: Array
+        # @param InstanceDetailRule: 规则所属的资源实例
+        # @type InstanceDetailRule: Array
 
-        attr_accessor :BackendPort, :FrontendPort, :Protocol, :RealServers, :InstanceDetails
+        attr_accessor :BackendPort, :FrontendPort, :Protocol, :RealServers, :InstanceDetails, :InstanceDetailRule
         
-        def initialize(backendport=nil, frontendport=nil, protocol=nil, realservers=nil, instancedetails=nil)
+        def initialize(backendport=nil, frontendport=nil, protocol=nil, realservers=nil, instancedetails=nil, instancedetailrule=nil)
           @BackendPort = backendport
           @FrontendPort = frontendport
           @Protocol = protocol
           @RealServers = realservers
           @InstanceDetails = instancedetails
+          @InstanceDetailRule = instancedetailrule
         end
 
         def deserialize(params)
@@ -5490,6 +5493,14 @@ module TencentCloud
               @InstanceDetails << instancerelation_tmp
             end
           end
+          unless params['InstanceDetailRule'].nil?
+            @InstanceDetailRule = []
+            params['InstanceDetailRule'].each do |i|
+              ruleinstancerelation_tmp = RuleInstanceRelation.new
+              ruleinstancerelation_tmp.deserialize(i)
+              @InstanceDetailRule << ruleinstancerelation_tmp
+            end
+          end
         end
       end
 
@@ -5501,16 +5512,19 @@ module TencentCloud
         # @type ProxyTypeList: Array
         # @param RealServers: 源站列表
         # @type RealServers: Array
-        # @param InstanceDetails: 规则所属的资源实例
+        # @param InstanceDetails: 资源实例
         # @type InstanceDetails: Array
+        # @param InstanceDetailRule: 规则所属的资源实例
+        # @type InstanceDetailRule: Array
 
-        attr_accessor :Domain, :ProxyTypeList, :RealServers, :InstanceDetails
+        attr_accessor :Domain, :ProxyTypeList, :RealServers, :InstanceDetails, :InstanceDetailRule
         
-        def initialize(domain=nil, proxytypelist=nil, realservers=nil, instancedetails=nil)
+        def initialize(domain=nil, proxytypelist=nil, realservers=nil, instancedetails=nil, instancedetailrule=nil)
           @Domain = domain
           @ProxyTypeList = proxytypelist
           @RealServers = realservers
           @InstanceDetails = instancedetails
+          @InstanceDetailRule = instancedetailrule
         end
 
         def deserialize(params)
@@ -5537,6 +5551,14 @@ module TencentCloud
               instancerelation_tmp = InstanceRelation.new
               instancerelation_tmp.deserialize(i)
               @InstanceDetails << instancerelation_tmp
+            end
+          end
+          unless params['InstanceDetailRule'].nil?
+            @InstanceDetailRule = []
+            params['InstanceDetailRule'].each do |i|
+              ruleinstancerelation_tmp = RuleInstanceRelation.new
+              ruleinstancerelation_tmp.deserialize(i)
+              @InstanceDetailRule << ruleinstancerelation_tmp
             end
           end
         end
@@ -6779,6 +6801,30 @@ module TencentCloud
 
         def deserialize(params)
           @Region = params['Region']
+        end
+      end
+
+      # 四七层规则的
+      class RuleInstanceRelation < TencentCloud::Common::AbstractModel
+        # @param EipList: 资源实例的IP
+        # @type EipList: Array
+        # @param InstanceId: 资源实例的ID
+        # @type InstanceId: String
+        # @param Cname: 资源实例的Cname
+        # @type Cname: String
+
+        attr_accessor :EipList, :InstanceId, :Cname
+        
+        def initialize(eiplist=nil, instanceid=nil, cname=nil)
+          @EipList = eiplist
+          @InstanceId = instanceid
+          @Cname = cname
+        end
+
+        def deserialize(params)
+          @EipList = params['EipList']
+          @InstanceId = params['InstanceId']
+          @Cname = params['Cname']
         end
       end
 

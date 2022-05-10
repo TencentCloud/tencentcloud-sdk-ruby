@@ -41,10 +41,15 @@ module TencentCloud
         # @type CreateTime: String
         # @param UpdateTime: 模板最后修改时间，使用 [ISO 日期格式](https://cloud.tencent.com/document/product/862/37710#52)。
         # @type UpdateTime: String
+        # @param Type: 模板类型，取值范围：
+        # * Preset：系统预置模板；
+        # * Custom：用户自定义模板。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Type: String
 
-        attr_accessor :Definition, :Name, :Comment, :ClassificationConfigure, :TagConfigure, :CoverConfigure, :FrameTagConfigure, :CreateTime, :UpdateTime
+        attr_accessor :Definition, :Name, :Comment, :ClassificationConfigure, :TagConfigure, :CoverConfigure, :FrameTagConfigure, :CreateTime, :UpdateTime, :Type
         
-        def initialize(definition=nil, name=nil, comment=nil, classificationconfigure=nil, tagconfigure=nil, coverconfigure=nil, frametagconfigure=nil, createtime=nil, updatetime=nil)
+        def initialize(definition=nil, name=nil, comment=nil, classificationconfigure=nil, tagconfigure=nil, coverconfigure=nil, frametagconfigure=nil, createtime=nil, updatetime=nil, type=nil)
           @Definition = definition
           @Name = name
           @Comment = comment
@@ -54,6 +59,7 @@ module TencentCloud
           @FrameTagConfigure = frametagconfigure
           @CreateTime = createtime
           @UpdateTime = updatetime
+          @Type = type
         end
 
         def deserialize(params)
@@ -78,6 +84,7 @@ module TencentCloud
           end
           @CreateTime = params['CreateTime']
           @UpdateTime = params['UpdateTime']
+          @Type = params['Type']
         end
       end
 
@@ -103,10 +110,15 @@ module TencentCloud
         # @type CreateTime: String
         # @param UpdateTime: 模板最后修改时间，使用 [ISO 日期格式](https://cloud.tencent.com/document/product/862/37710#52)。
         # @type UpdateTime: String
+        # @param Type: 模板类型，取值范围：
+        # * Preset：系统预置模板；
+        # * Custom：用户自定义模板。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Type: String
 
-        attr_accessor :Definition, :Name, :Comment, :FaceConfigure, :OcrFullTextConfigure, :OcrWordsConfigure, :AsrFullTextConfigure, :AsrWordsConfigure, :CreateTime, :UpdateTime
+        attr_accessor :Definition, :Name, :Comment, :FaceConfigure, :OcrFullTextConfigure, :OcrWordsConfigure, :AsrFullTextConfigure, :AsrWordsConfigure, :CreateTime, :UpdateTime, :Type
         
-        def initialize(definition=nil, name=nil, comment=nil, faceconfigure=nil, ocrfulltextconfigure=nil, ocrwordsconfigure=nil, asrfulltextconfigure=nil, asrwordsconfigure=nil, createtime=nil, updatetime=nil)
+        def initialize(definition=nil, name=nil, comment=nil, faceconfigure=nil, ocrfulltextconfigure=nil, ocrwordsconfigure=nil, asrfulltextconfigure=nil, asrwordsconfigure=nil, createtime=nil, updatetime=nil, type=nil)
           @Definition = definition
           @Name = name
           @Comment = comment
@@ -117,6 +129,7 @@ module TencentCloud
           @AsrWordsConfigure = asrwordsconfigure
           @CreateTime = createtime
           @UpdateTime = updatetime
+          @Type = type
         end
 
         def deserialize(params)
@@ -145,6 +158,7 @@ module TencentCloud
           end
           @CreateTime = params['CreateTime']
           @UpdateTime = params['UpdateTime']
+          @Type = params['Type']
         end
       end
 
@@ -3168,10 +3182,15 @@ module TencentCloud
         # @type CreateTime: String
         # @param UpdateTime: 模板最后修改时间，使用 [ISO 日期格式](https://cloud.tencent.com/document/product/862/37710#52)。
         # @type UpdateTime: String
+        # @param Type: 模板类型，取值范围：
+        # * Preset：系统预置模板；
+        # * Custom：用户自定义模板。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Type: String
 
-        attr_accessor :Definition, :Name, :Comment, :PornConfigure, :TerrorismConfigure, :PoliticalConfigure, :ProhibitedConfigure, :UserDefineConfigure, :CreateTime, :UpdateTime
+        attr_accessor :Definition, :Name, :Comment, :PornConfigure, :TerrorismConfigure, :PoliticalConfigure, :ProhibitedConfigure, :UserDefineConfigure, :CreateTime, :UpdateTime, :Type
         
-        def initialize(definition=nil, name=nil, comment=nil, pornconfigure=nil, terrorismconfigure=nil, politicalconfigure=nil, prohibitedconfigure=nil, userdefineconfigure=nil, createtime=nil, updatetime=nil)
+        def initialize(definition=nil, name=nil, comment=nil, pornconfigure=nil, terrorismconfigure=nil, politicalconfigure=nil, prohibitedconfigure=nil, userdefineconfigure=nil, createtime=nil, updatetime=nil, type=nil)
           @Definition = definition
           @Name = name
           @Comment = comment
@@ -3182,6 +3201,7 @@ module TencentCloud
           @UserDefineConfigure = userdefineconfigure
           @CreateTime = createtime
           @UpdateTime = updatetime
+          @Type = type
         end
 
         def deserialize(params)
@@ -3210,6 +3230,7 @@ module TencentCloud
           end
           @CreateTime = params['CreateTime']
           @UpdateTime = params['UpdateTime']
+          @Type = params['Type']
         end
       end
 
@@ -4765,19 +4786,25 @@ module TencentCloud
         # @type Offset: Integer
         # @param Limit: 返回记录条数，默认值：10，最大值：100。
         # @type Limit: Integer
+        # @param Type: 模板类型过滤条件，不填则返回所有，可选值：
+        # * Preset：系统预置模板；
+        # * Custom：用户自定义模板。
+        # @type Type: String
 
-        attr_accessor :Definitions, :Offset, :Limit
+        attr_accessor :Definitions, :Offset, :Limit, :Type
         
-        def initialize(definitions=nil, offset=nil, limit=nil)
+        def initialize(definitions=nil, offset=nil, limit=nil, type=nil)
           @Definitions = definitions
           @Offset = offset
           @Limit = limit
+          @Type = type
         end
 
         def deserialize(params)
           @Definitions = params['Definitions']
           @Offset = params['Offset']
           @Limit = params['Limit']
+          @Type = params['Type']
         end
       end
 
@@ -4820,19 +4847,25 @@ module TencentCloud
         # @type Offset: Integer
         # @param Limit: 返回记录条数，默认值：10，最大值：50。
         # @type Limit: Integer
+        # @param Type: 模板类型过滤条件，不填则返回所有，可选值：
+        # * Preset：系统预置模板；
+        # * Custom：用户自定义模板。
+        # @type Type: String
 
-        attr_accessor :Definitions, :Offset, :Limit
+        attr_accessor :Definitions, :Offset, :Limit, :Type
         
-        def initialize(definitions=nil, offset=nil, limit=nil)
+        def initialize(definitions=nil, offset=nil, limit=nil, type=nil)
           @Definitions = definitions
           @Offset = offset
           @Limit = limit
+          @Type = type
         end
 
         def deserialize(params)
           @Definitions = params['Definitions']
           @Offset = params['Offset']
           @Limit = params['Limit']
+          @Type = params['Type']
         end
       end
 
@@ -4997,19 +5030,25 @@ module TencentCloud
         # @type Offset: Integer
         # @param Limit: 返回记录条数，默认值：10，最大值：50。
         # @type Limit: Integer
+        # @param Type: 模板类型过滤条件，不填则返回所有，可选值：
+        # * Preset：系统预置模板；
+        # * Custom：用户自定义模板。
+        # @type Type: String
 
-        attr_accessor :Definitions, :Offset, :Limit
+        attr_accessor :Definitions, :Offset, :Limit, :Type
         
-        def initialize(definitions=nil, offset=nil, limit=nil)
+        def initialize(definitions=nil, offset=nil, limit=nil, type=nil)
           @Definitions = definitions
           @Offset = offset
           @Limit = limit
+          @Type = type
         end
 
         def deserialize(params)
           @Definitions = params['Definitions']
           @Offset = params['Offset']
           @Limit = params['Limit']
+          @Type = params['Type']
         end
       end
 
