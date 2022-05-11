@@ -1397,10 +1397,12 @@ module TencentCloud
         # @type Asc: Boolean
         # @param TableType: table type，表类型查询,可用值:EXTERNAL_TABLE,INDEX_TABLE,MANAGED_TABLE,MATERIALIZED_VIEW,TABLE,VIEW,VIRTUAL_VIEW
         # @type TableType: String
+        # @param TableFormat: 筛选字段-表格式：不传（默认）为查全部；LAKEFS：托管表；ICEBERG：非托管iceberg表；HIVE：非托管hive表；OTHER：非托管其它；
+        # @type TableFormat: String
 
-        attr_accessor :DatabaseName, :Limit, :Offset, :Filters, :DatasourceConnectionName, :StartTime, :EndTime, :Sort, :Asc, :TableType
+        attr_accessor :DatabaseName, :Limit, :Offset, :Filters, :DatasourceConnectionName, :StartTime, :EndTime, :Sort, :Asc, :TableType, :TableFormat
         
-        def initialize(databasename=nil, limit=nil, offset=nil, filters=nil, datasourceconnectionname=nil, starttime=nil, endtime=nil, sort=nil, asc=nil, tabletype=nil)
+        def initialize(databasename=nil, limit=nil, offset=nil, filters=nil, datasourceconnectionname=nil, starttime=nil, endtime=nil, sort=nil, asc=nil, tabletype=nil, tableformat=nil)
           @DatabaseName = databasename
           @Limit = limit
           @Offset = offset
@@ -1411,6 +1413,7 @@ module TencentCloud
           @Sort = sort
           @Asc = asc
           @TableType = tabletype
+          @TableFormat = tableformat
         end
 
         def deserialize(params)
@@ -1431,6 +1434,7 @@ module TencentCloud
           @Sort = params['Sort']
           @Asc = params['Asc']
           @TableType = params['TableType']
+          @TableFormat = params['TableFormat']
         end
       end
 
@@ -2076,19 +2080,34 @@ module TencentCloud
         # @type Type: String
         # @param Comment: 对分区的描述。
         # @type Comment: String
+        # @param Transform: 隐式分区转换策略
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Transform: String
+        # @param TransformArgs: 转换策略参数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TransformArgs: Array
+        # @param CreateTime: 创建时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateTime: Integer
 
-        attr_accessor :Name, :Type, :Comment
+        attr_accessor :Name, :Type, :Comment, :Transform, :TransformArgs, :CreateTime
         
-        def initialize(name=nil, type=nil, comment=nil)
+        def initialize(name=nil, type=nil, comment=nil, transform=nil, transformargs=nil, createtime=nil)
           @Name = name
           @Type = type
           @Comment = comment
+          @Transform = transform
+          @TransformArgs = transformargs
+          @CreateTime = createtime
         end
 
         def deserialize(params)
           @Name = params['Name']
           @Type = params['Type']
           @Comment = params['Comment']
+          @Transform = params['Transform']
+          @TransformArgs = params['TransformArgs']
+          @CreateTime = params['CreateTime']
         end
       end
 
@@ -2131,10 +2150,16 @@ module TencentCloud
         # @param CreateTime: 权限创建的时间，入参不填
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreateTime: String
+        # @param SourceId: 权限所属工作组的ID，只有当该权限的来源为工作组时才会有值。即仅当Source字段的值为WORKGROUP时该字段才有值。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SourceId: Integer
+        # @param SourceName: 权限所属工作组的名称，只有当该权限的来源为工作组时才会有值。即仅当Source字段的值为WORKGROUP时该字段才有值。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SourceName: String
 
-        attr_accessor :Database, :Catalog, :Table, :Operation, :PolicyType, :Function, :View, :Column, :DataEngine, :ReAuth, :Source, :Mode, :Operator, :CreateTime
+        attr_accessor :Database, :Catalog, :Table, :Operation, :PolicyType, :Function, :View, :Column, :DataEngine, :ReAuth, :Source, :Mode, :Operator, :CreateTime, :SourceId, :SourceName
         
-        def initialize(database=nil, catalog=nil, table=nil, operation=nil, policytype=nil, function=nil, view=nil, column=nil, dataengine=nil, reauth=nil, source=nil, mode=nil, operator=nil, createtime=nil)
+        def initialize(database=nil, catalog=nil, table=nil, operation=nil, policytype=nil, function=nil, view=nil, column=nil, dataengine=nil, reauth=nil, source=nil, mode=nil, operator=nil, createtime=nil, sourceid=nil, sourcename=nil)
           @Database = database
           @Catalog = catalog
           @Table = table
@@ -2149,6 +2174,8 @@ module TencentCloud
           @Mode = mode
           @Operator = operator
           @CreateTime = createtime
+          @SourceId = sourceid
+          @SourceName = sourcename
         end
 
         def deserialize(params)
@@ -2166,6 +2193,8 @@ module TencentCloud
           @Mode = params['Mode']
           @Operator = params['Operator']
           @CreateTime = params['CreateTime']
+          @SourceId = params['SourceId']
+          @SourceName = params['SourceName']
         end
       end
 

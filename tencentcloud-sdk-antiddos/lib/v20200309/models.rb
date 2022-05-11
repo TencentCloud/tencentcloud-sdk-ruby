@@ -240,10 +240,13 @@ module TencentCloud
         # @param V6Flag: 是否Ipv6版本的IP, 是为1，否为0
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type V6Flag: Integer
+        # @param BGPIPChannelFlag: 是否渠道版高防IP，是为1，否为0
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BGPIPChannelFlag: Integer
 
-        attr_accessor :InstanceDetail, :SpecificationLimit, :Usage, :Region, :Status, :ExpiredTime, :CreatedTime, :Name, :PackInfo, :StaticPackRelation, :ZoneId, :Tgw, :EipAddressStatus, :EipFlag, :EipAddressPackRelation, :EipAddressInfo, :Domain, :DamDDoSStatus, :V6Flag
+        attr_accessor :InstanceDetail, :SpecificationLimit, :Usage, :Region, :Status, :ExpiredTime, :CreatedTime, :Name, :PackInfo, :StaticPackRelation, :ZoneId, :Tgw, :EipAddressStatus, :EipFlag, :EipAddressPackRelation, :EipAddressInfo, :Domain, :DamDDoSStatus, :V6Flag, :BGPIPChannelFlag
         
-        def initialize(instancedetail=nil, specificationlimit=nil, usage=nil, region=nil, status=nil, expiredtime=nil, createdtime=nil, name=nil, packinfo=nil, staticpackrelation=nil, zoneid=nil, tgw=nil, eipaddressstatus=nil, eipflag=nil, eipaddresspackrelation=nil, eipaddressinfo=nil, domain=nil, damddosstatus=nil, v6flag=nil)
+        def initialize(instancedetail=nil, specificationlimit=nil, usage=nil, region=nil, status=nil, expiredtime=nil, createdtime=nil, name=nil, packinfo=nil, staticpackrelation=nil, zoneid=nil, tgw=nil, eipaddressstatus=nil, eipflag=nil, eipaddresspackrelation=nil, eipaddressinfo=nil, domain=nil, damddosstatus=nil, v6flag=nil, bgpipchannelflag=nil)
           @InstanceDetail = instancedetail
           @SpecificationLimit = specificationlimit
           @Usage = usage
@@ -263,6 +266,7 @@ module TencentCloud
           @Domain = domain
           @DamDDoSStatus = damddosstatus
           @V6Flag = v6flag
+          @BGPIPChannelFlag = bgpipchannelflag
         end
 
         def deserialize(params)
@@ -309,6 +313,7 @@ module TencentCloud
           @Domain = params['Domain']
           @DamDDoSStatus = params['DamDDoSStatus']
           @V6Flag = params['V6Flag']
+          @BGPIPChannelFlag = params['BGPIPChannelFlag']
         end
       end
 
@@ -508,10 +513,16 @@ module TencentCloud
         # @param ChannelEditionFlag: 渠道版标记，0表示普通高防包，1表示渠道版高防包
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ChannelEditionFlag: Integer
+        # @param EnterpriseFlag: 高防包企业版标记，0表示普通高防包；1表示企业版高防包
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EnterpriseFlag: Integer
+        # @param ElasticLimit: 高防包企业版弹性阈值，0表示未开启；大于0为弹性防护阈值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ElasticLimit: Integer
 
-        attr_accessor :ProtectBandwidth, :ProtectCountLimit, :ProtectIPNumberLimit, :AutoRenewFlag, :UnionPackFlag, :ServiceBandWidth, :BattleEditionFlag, :ChannelEditionFlag
+        attr_accessor :ProtectBandwidth, :ProtectCountLimit, :ProtectIPNumberLimit, :AutoRenewFlag, :UnionPackFlag, :ServiceBandWidth, :BattleEditionFlag, :ChannelEditionFlag, :EnterpriseFlag, :ElasticLimit
         
-        def initialize(protectbandwidth=nil, protectcountlimit=nil, protectipnumberlimit=nil, autorenewflag=nil, unionpackflag=nil, servicebandwidth=nil, battleeditionflag=nil, channeleditionflag=nil)
+        def initialize(protectbandwidth=nil, protectcountlimit=nil, protectipnumberlimit=nil, autorenewflag=nil, unionpackflag=nil, servicebandwidth=nil, battleeditionflag=nil, channeleditionflag=nil, enterpriseflag=nil, elasticlimit=nil)
           @ProtectBandwidth = protectbandwidth
           @ProtectCountLimit = protectcountlimit
           @ProtectIPNumberLimit = protectipnumberlimit
@@ -520,6 +531,8 @@ module TencentCloud
           @ServiceBandWidth = servicebandwidth
           @BattleEditionFlag = battleeditionflag
           @ChannelEditionFlag = channeleditionflag
+          @EnterpriseFlag = enterpriseflag
+          @ElasticLimit = elasticlimit
         end
 
         def deserialize(params)
@@ -531,6 +544,8 @@ module TencentCloud
           @ServiceBandWidth = params['ServiceBandWidth']
           @BattleEditionFlag = params['BattleEditionFlag']
           @ChannelEditionFlag = params['ChannelEditionFlag']
+          @EnterpriseFlag = params['EnterpriseFlag']
+          @ElasticLimit = params['ElasticLimit']
         end
       end
 
@@ -3861,10 +3876,14 @@ module TencentCloud
         # @type FilterDamDDoSStatus: Integer
         # @param FilterStatus: 获取特定状态的资源，运行中填idle，攻击中填attacking，封堵中填blocking
         # @type FilterStatus: String
+        # @param FilterCname: 获取特定的实例Cname
+        # @type FilterCname: String
+        # @param FilterInstanceIdList: 批量查询实例ID对应的高防IP实例资源
+        # @type FilterInstanceIdList: Array
 
-        attr_accessor :Offset, :Limit, :FilterIp, :FilterInstanceId, :FilterLine, :FilterRegion, :FilterName, :FilterEipType, :FilterEipEipAddressStatus, :FilterDamDDoSStatus, :FilterStatus
+        attr_accessor :Offset, :Limit, :FilterIp, :FilterInstanceId, :FilterLine, :FilterRegion, :FilterName, :FilterEipType, :FilterEipEipAddressStatus, :FilterDamDDoSStatus, :FilterStatus, :FilterCname, :FilterInstanceIdList
         
-        def initialize(offset=nil, limit=nil, filterip=nil, filterinstanceid=nil, filterline=nil, filterregion=nil, filtername=nil, filtereiptype=nil, filtereipeipaddressstatus=nil, filterdamddosstatus=nil, filterstatus=nil)
+        def initialize(offset=nil, limit=nil, filterip=nil, filterinstanceid=nil, filterline=nil, filterregion=nil, filtername=nil, filtereiptype=nil, filtereipeipaddressstatus=nil, filterdamddosstatus=nil, filterstatus=nil, filtercname=nil, filterinstanceidlist=nil)
           @Offset = offset
           @Limit = limit
           @FilterIp = filterip
@@ -3876,6 +3895,8 @@ module TencentCloud
           @FilterEipEipAddressStatus = filtereipeipaddressstatus
           @FilterDamDDoSStatus = filterdamddosstatus
           @FilterStatus = filterstatus
+          @FilterCname = filtercname
+          @FilterInstanceIdList = filterinstanceidlist
         end
 
         def deserialize(params)
@@ -3890,6 +3911,8 @@ module TencentCloud
           @FilterEipEipAddressStatus = params['FilterEipEipAddressStatus']
           @FilterDamDDoSStatus = params['FilterDamDDoSStatus']
           @FilterStatus = params['FilterStatus']
+          @FilterCname = params['FilterCname']
+          @FilterInstanceIdList = params['FilterInstanceIdList']
         end
       end
 
@@ -4258,15 +4281,18 @@ module TencentCloud
         # @type FilterAlarmType: Integer
         # @param FilterIp: IP搜索
         # @type FilterIp: String
+        # @param FilterCname: 高防IP实例资源的cname
+        # @type FilterCname: String
 
-        attr_accessor :Offset, :Limit, :FilterInstanceId, :FilterAlarmType, :FilterIp
+        attr_accessor :Offset, :Limit, :FilterInstanceId, :FilterAlarmType, :FilterIp, :FilterCname
         
-        def initialize(offset=nil, limit=nil, filterinstanceid=nil, filteralarmtype=nil, filterip=nil)
+        def initialize(offset=nil, limit=nil, filterinstanceid=nil, filteralarmtype=nil, filterip=nil, filtercname=nil)
           @Offset = offset
           @Limit = limit
           @FilterInstanceId = filterinstanceid
           @FilterAlarmType = filteralarmtype
           @FilterIp = filterip
+          @FilterCname = filtercname
         end
 
         def deserialize(params)
@@ -4275,6 +4301,7 @@ module TencentCloud
           @FilterInstanceId = params['FilterInstanceId']
           @FilterAlarmType = params['FilterAlarmType']
           @FilterIp = params['FilterIp']
+          @FilterCname = params['FilterCname']
         end
       end
 
@@ -4852,6 +4879,69 @@ module TencentCloud
         end
       end
 
+      # DescribeOverviewDDoSEventList请求参数结构体
+      class DescribeOverviewDDoSEventListRequest < TencentCloud::Common::AbstractModel
+        # @param StartTime: 起始时间
+        # @type StartTime: String
+        # @param EndTime: 结束时间
+        # @type EndTime: String
+        # @param AttackStatus: 可选按攻击状态过滤，start：攻击中；end：攻击结束
+        # @type AttackStatus: String
+        # @param Offset: 偏移量
+        # @type Offset: Integer
+        # @param Limit: 记录条数
+        # @type Limit: Integer
+
+        attr_accessor :StartTime, :EndTime, :AttackStatus, :Offset, :Limit
+        
+        def initialize(starttime=nil, endtime=nil, attackstatus=nil, offset=nil, limit=nil)
+          @StartTime = starttime
+          @EndTime = endtime
+          @AttackStatus = attackstatus
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @AttackStatus = params['AttackStatus']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeOverviewDDoSEventList返回参数结构体
+      class DescribeOverviewDDoSEventListResponse < TencentCloud::Common::AbstractModel
+        # @param Total: 记录总数
+        # @type Total: Integer
+        # @param EventList: 事件列表
+        # @type EventList: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Total, :EventList, :RequestId
+        
+        def initialize(total=nil, eventlist=nil, requestid=nil)
+          @Total = total
+          @EventList = eventlist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Total = params['Total']
+          unless params['EventList'].nil?
+            @EventList = []
+            params['EventList'].each do |i|
+              overviewddosevent_tmp = OverviewDDoSEvent.new
+              overviewddosevent_tmp.deserialize(i)
+              @EventList << overviewddosevent_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeOverviewDDoSTrend请求参数结构体
       class DescribeOverviewDDoSTrendRequest < TencentCloud::Common::AbstractModel
         # @param Business: 大禹子产品代号（bgpip表示高防IP；bgp-multip表示高防包；basic表示DDoS基础防护）
@@ -5200,17 +5290,25 @@ module TencentCloud
         # @type Type: String
         # @param Eip: 线路IP
         # @type Eip: String
+        # @param Cname: 实例对应的cname
+        # @type Cname: String
+        # @param ResourceFlag: 资源flag，0：高防包资源，1：高防IP资源，2：非高防资源IP
+        # @type ResourceFlag: Integer
 
-        attr_accessor :Type, :Eip
+        attr_accessor :Type, :Eip, :Cname, :ResourceFlag
         
-        def initialize(type=nil, eip=nil)
+        def initialize(type=nil, eip=nil, cname=nil, resourceflag=nil)
           @Type = type
           @Eip = eip
+          @Cname = cname
+          @ResourceFlag = resourceflag
         end
 
         def deserialize(params)
           @Type = params['Type']
           @Eip = params['Eip']
+          @Cname = params['Cname']
+          @ResourceFlag = params['ResourceFlag']
         end
       end
 
@@ -6407,6 +6505,62 @@ module TencentCloud
           @VirtualPort = params['VirtualPort']
           @RewriteHttps = params['RewriteHttps']
           @ErrCode = params['ErrCode']
+        end
+      end
+
+      # 防护概览DDoS攻击事件
+      class OverviewDDoSEvent < TencentCloud::Common::AbstractModel
+        # @param Id: 事件Id
+        # @type Id: String
+        # @param Vip: ip
+        # @type Vip: String
+        # @param StartTime: 开始时间
+        # @type StartTime: String
+        # @param EndTime: 结束时间
+        # @type EndTime: String
+        # @param AttackType: 攻击类型
+        # @type AttackType: String
+        # @param AttackStatus: 攻击状态，0：攻击中；1：攻击结束
+        # @type AttackStatus: Integer
+        # @param Mbps: 攻击流量，单位Mbps
+        # @type Mbps: Integer
+        # @param Pps: 攻击包量，单位pps
+        # @type Pps: Integer
+        # @param Business: 业务类型，bgp-multip：高防包；bgpip：高防ip；basic：基础防护
+        # @type Business: String
+        # @param InstanceId: 高防实例Id
+        # @type InstanceId: String
+        # @param InstanceName: 高防实例名称
+        # @type InstanceName: String
+
+        attr_accessor :Id, :Vip, :StartTime, :EndTime, :AttackType, :AttackStatus, :Mbps, :Pps, :Business, :InstanceId, :InstanceName
+        
+        def initialize(id=nil, vip=nil, starttime=nil, endtime=nil, attacktype=nil, attackstatus=nil, mbps=nil, pps=nil, business=nil, instanceid=nil, instancename=nil)
+          @Id = id
+          @Vip = vip
+          @StartTime = starttime
+          @EndTime = endtime
+          @AttackType = attacktype
+          @AttackStatus = attackstatus
+          @Mbps = mbps
+          @Pps = pps
+          @Business = business
+          @InstanceId = instanceid
+          @InstanceName = instancename
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @Vip = params['Vip']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @AttackType = params['AttackType']
+          @AttackStatus = params['AttackStatus']
+          @Mbps = params['Mbps']
+          @Pps = params['Pps']
+          @Business = params['Business']
+          @InstanceId = params['InstanceId']
+          @InstanceName = params['InstanceName']
         end
       end
 

@@ -1485,19 +1485,31 @@ module TencentCloud
         # @type SubnetId: String
         # @param IsExtranet: 是否为外网访问（TRUE 外网访问 FALSE 内网访问，默认值： FALSE）
         # @type IsExtranet: Boolean
+        # @param Domain: 设置域名
+        # @type Domain: String
+        # @param SecurityGroup: 使用的安全组，只有外网访问需要传递
+        # @type SecurityGroup: String
+        # @param ExtensiveParameters: 创建lb参数，只有外网访问需要设置
+        # @type ExtensiveParameters: String
 
-        attr_accessor :ClusterId, :SubnetId, :IsExtranet
+        attr_accessor :ClusterId, :SubnetId, :IsExtranet, :Domain, :SecurityGroup, :ExtensiveParameters
         
-        def initialize(clusterid=nil, subnetid=nil, isextranet=nil)
+        def initialize(clusterid=nil, subnetid=nil, isextranet=nil, domain=nil, securitygroup=nil, extensiveparameters=nil)
           @ClusterId = clusterid
           @SubnetId = subnetid
           @IsExtranet = isextranet
+          @Domain = domain
+          @SecurityGroup = securitygroup
+          @ExtensiveParameters = extensiveparameters
         end
 
         def deserialize(params)
           @ClusterId = params['ClusterId']
           @SubnetId = params['SubnetId']
           @IsExtranet = params['IsExtranet']
+          @Domain = params['Domain']
+          @SecurityGroup = params['SecurityGroup']
+          @ExtensiveParameters = params['ExtensiveParameters']
         end
       end
 

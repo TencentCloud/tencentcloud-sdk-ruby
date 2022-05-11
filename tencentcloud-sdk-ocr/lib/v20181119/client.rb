@@ -1779,6 +1779,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口支持增值税发票的准确性核验，您可以通过输入增值税发票的关键字段提供所需的验证信息，接口返回真实的票面相关信息，包括发票代码、发票号码、开票日期、金额、消费类型、购方名称、购方税号、销方名称、销方税号等多个常用字段。支持多种发票类型核验，包括增值税专用发票、增值税普通发票（含电子普通发票、卷式发票、通行费发票）、全电发票、机动车销售统一发票、货物运输业增值税专用发票、二手车销售统一发票。
+
+        # @param request: Request instance for VatInvoiceVerifyNew.
+        # @type request: :class:`Tencentcloud::ocr::V20181119::VatInvoiceVerifyNewRequest`
+        # @rtype: :class:`Tencentcloud::ocr::V20181119::VatInvoiceVerifyNewResponse`
+        def VatInvoiceVerifyNew(request)
+          body = send_request('VatInvoiceVerifyNew', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = VatInvoiceVerifyNewResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口支持对增值税发票（卷票）的发票代码、发票号码、日期、校验码、合计金额（小写）等关键字段的识别。
 
         # @param request: Request instance for VatRollInvoiceOCR.

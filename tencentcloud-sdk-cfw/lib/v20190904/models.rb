@@ -222,13 +222,16 @@ module TencentCloud
         # @type Type: Integer
         # @param ClientToken: 保证请求幂等性。从您的客户端生成一个参数值，确保不同请求间该参数值唯一。ClientToken只支持ASCII字符，且不能超过64个字符。
         # @type ClientToken: String
+        # @param IsDelay: 是否延迟下发，1则延迟下发，否则立即下发
+        # @type IsDelay: Integer
 
-        attr_accessor :Data, :Type, :ClientToken
+        attr_accessor :Data, :Type, :ClientToken, :IsDelay
         
-        def initialize(data=nil, type=nil, clienttoken=nil)
+        def initialize(data=nil, type=nil, clienttoken=nil, isdelay=nil)
           @Data = data
           @Type = type
           @ClientToken = clienttoken
+          @IsDelay = isdelay
         end
 
         def deserialize(params)
@@ -242,6 +245,7 @@ module TencentCloud
           end
           @Type = params['Type']
           @ClientToken = params['ClientToken']
+          @IsDelay = params['IsDelay']
         end
       end
 

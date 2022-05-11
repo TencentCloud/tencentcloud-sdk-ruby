@@ -1685,6 +1685,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 获取防护概览的ddos攻击事件
+
+        # @param request: Request instance for DescribeOverviewDDoSEventList.
+        # @type request: :class:`Tencentcloud::antiddos::V20200309::DescribeOverviewDDoSEventListRequest`
+        # @rtype: :class:`Tencentcloud::antiddos::V20200309::DescribeOverviewDDoSEventListResponse`
+        def DescribeOverviewDDoSEventList(request)
+          body = send_request('DescribeOverviewDDoSEventList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeOverviewDDoSEventListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 获取防护概览DDoS攻击流量带宽和攻击包速率数据
 
         # @param request: Request instance for DescribeOverviewDDoSTrend.

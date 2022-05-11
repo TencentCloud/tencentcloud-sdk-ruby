@@ -3447,6 +3447,38 @@ module TencentCloud
         end
       end
 
+      # 通行费发票信息
+      class PassInvoiceInfo < TencentCloud::Common::AbstractModel
+        # @param NumberPlate: 通行费车牌号
+        # @type NumberPlate: String
+        # @param Type: 通行费类型
+        # @type Type: String
+        # @param PassDateBegin: 通行日期起
+        # @type PassDateBegin: String
+        # @param PassDateEnd: 通行日期止
+        # @type PassDateEnd: String
+        # @param TaxClassifyCode: 税收分类编码
+        # @type TaxClassifyCode: String
+
+        attr_accessor :NumberPlate, :Type, :PassDateBegin, :PassDateEnd, :TaxClassifyCode
+        
+        def initialize(numberplate=nil, type=nil, passdatebegin=nil, passdateend=nil, taxclassifycode=nil)
+          @NumberPlate = numberplate
+          @Type = type
+          @PassDateBegin = passdatebegin
+          @PassDateEnd = passdateend
+          @TaxClassifyCode = taxclassifycode
+        end
+
+        def deserialize(params)
+          @NumberPlate = params['NumberPlate']
+          @Type = params['Type']
+          @PassDateBegin = params['PassDateBegin']
+          @PassDateEnd = params['PassDateEnd']
+          @TaxClassifyCode = params['TaxClassifyCode']
+        end
+      end
+
       # PassportOCR请求参数结构体
       class PassportOCRRequest < TencentCloud::Common::AbstractModel
         # @param ImageBase64: 图片的 Base64 值。要求图片经Base64编码后不超过 7M，分辨率建议500*800以上，支持PNG、JPG、JPEG、BMP格式。建议卡片部分占据图片2/3以上。
@@ -6713,6 +6745,91 @@ module TencentCloud
           @TaxId = params['TaxId']
           @AddrTel = params['AddrTel']
           @FinancialAccount = params['FinancialAccount']
+        end
+      end
+
+      # VatInvoiceVerifyNew请求参数结构体
+      class VatInvoiceVerifyNewRequest < TencentCloud::Common::AbstractModel
+        # @param InvoiceNo: 发票号码，8位、20位（全电票）
+        # @type InvoiceNo: String
+        # @param InvoiceDate: 开票日期（不支持当天发票查询，支持五年以内开具的发票），格式：“YYYY-MM-DD”，如：2019-12-20。
+        # @type InvoiceDate: String
+        # @param InvoiceCode: 发票代码（10或12 位），全电发票为空。查验未成功超过5次后当日无法再查。
+        # @type InvoiceCode: String
+        # @param InvoiceKind: 票种类型 01:增值税专用发票， 02:货运运输业增值税专用发 票， 03:机动车销售统一发票， 04:增值税普通发票， 08:增值税电子专用发票(含全电)， 10:增值税电子普通发票(含全电)， 11:增值税普通发票(卷式)， 14:增值税电子(通行费)发 票， 15:二手车销售统一发票， 32:深圳区块链发票(云南区块链因业务调整现已下线)。
+        # @type InvoiceKind: String
+        # @param CheckCode: 校验码后 6 位，增值税普通发票、增值税电子普通发票、增值税普通发票(卷式)、增值税电子普通发票(通行费)时必填;
+        # 区块链为 5 位
+        # @type CheckCode: String
+        # @param Amount: 不含税金额，增值税专用发票、增值税电子专用发票、机动车销售统一发票、二手车销售统一发票、区块链发票时必填; 全电发票为价税合计(含税金额)
+        # @type Amount: String
+
+        attr_accessor :InvoiceNo, :InvoiceDate, :InvoiceCode, :InvoiceKind, :CheckCode, :Amount
+        
+        def initialize(invoiceno=nil, invoicedate=nil, invoicecode=nil, invoicekind=nil, checkcode=nil, amount=nil)
+          @InvoiceNo = invoiceno
+          @InvoiceDate = invoicedate
+          @InvoiceCode = invoicecode
+          @InvoiceKind = invoicekind
+          @CheckCode = checkcode
+          @Amount = amount
+        end
+
+        def deserialize(params)
+          @InvoiceNo = params['InvoiceNo']
+          @InvoiceDate = params['InvoiceDate']
+          @InvoiceCode = params['InvoiceCode']
+          @InvoiceKind = params['InvoiceKind']
+          @CheckCode = params['CheckCode']
+          @Amount = params['Amount']
+        end
+      end
+
+      # VatInvoiceVerifyNew返回参数结构体
+      class VatInvoiceVerifyNewResponse < TencentCloud::Common::AbstractModel
+        # @param Invoice: 增值税发票信息，详情请点击左侧链接。
+        # @type Invoice: :class:`Tencentcloud::Ocr.v20181119.models.VatInvoice`
+        # @param VehicleInvoiceInfo: 机动车销售统一发票信息
+        # @type VehicleInvoiceInfo: :class:`Tencentcloud::Ocr.v20181119.models.VehicleInvoiceInfo`
+        # @param UsedVehicleInvoiceInfo: 二手车销售统一发票信息
+        # @type UsedVehicleInvoiceInfo: :class:`Tencentcloud::Ocr.v20181119.models.UsedVehicleInvoiceInfo`
+        # @param PassInvoiceInfoList: 通行费发票信息
+        # @type PassInvoiceInfoList: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Invoice, :VehicleInvoiceInfo, :UsedVehicleInvoiceInfo, :PassInvoiceInfoList, :RequestId
+        
+        def initialize(invoice=nil, vehicleinvoiceinfo=nil, usedvehicleinvoiceinfo=nil, passinvoiceinfolist=nil, requestid=nil)
+          @Invoice = invoice
+          @VehicleInvoiceInfo = vehicleinvoiceinfo
+          @UsedVehicleInvoiceInfo = usedvehicleinvoiceinfo
+          @PassInvoiceInfoList = passinvoiceinfolist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Invoice'].nil?
+            @Invoice = VatInvoice.new
+            @Invoice.deserialize(params['Invoice'])
+          end
+          unless params['VehicleInvoiceInfo'].nil?
+            @VehicleInvoiceInfo = VehicleInvoiceInfo.new
+            @VehicleInvoiceInfo.deserialize(params['VehicleInvoiceInfo'])
+          end
+          unless params['UsedVehicleInvoiceInfo'].nil?
+            @UsedVehicleInvoiceInfo = UsedVehicleInvoiceInfo.new
+            @UsedVehicleInvoiceInfo.deserialize(params['UsedVehicleInvoiceInfo'])
+          end
+          unless params['PassInvoiceInfoList'].nil?
+            @PassInvoiceInfoList = []
+            params['PassInvoiceInfoList'].each do |i|
+              passinvoiceinfo_tmp = PassInvoiceInfo.new
+              passinvoiceinfo_tmp.deserialize(i)
+              @PassInvoiceInfoList << passinvoiceinfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
         end
       end
 

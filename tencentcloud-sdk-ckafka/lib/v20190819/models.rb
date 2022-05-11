@@ -2972,7 +2972,7 @@ module TencentCloud
         # @type Topic: String
         # @param Partition: 分区id
         # @type Partition: Integer
-        # @param Offset: 位点信息
+        # @param Offset: 位点信息，必填
         # @type Offset: Integer
 
         attr_accessor :InstanceId, :Topic, :Partition, :Offset
