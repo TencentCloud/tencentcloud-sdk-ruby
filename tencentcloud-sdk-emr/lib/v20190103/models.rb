@@ -327,10 +327,22 @@ module TencentCloud
         # @param ClusterExternalServiceInfo: 集群依赖关系
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ClusterExternalServiceInfo: Array
+        # @param UniqVpcId: 集群vpcid 字符串类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UniqVpcId: String
+        # @param UniqSubnetId: 子网id 字符串类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UniqSubnetId: String
+        # @param TopologyInfoList: 节点信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TopologyInfoList: Array
+        # @param IsMultiZoneCluster: 是否是跨AZ集群
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsMultiZoneCluster: Boolean
 
-        attr_accessor :Id, :ClusterId, :Ftitle, :ClusterName, :RegionId, :ZoneId, :AppId, :Uin, :ProjectId, :VpcId, :SubnetId, :Status, :AddTime, :RunTime, :Config, :MasterIp, :EmrVersion, :ChargeType, :TradeVersion, :ResourceOrderId, :IsTradeCluster, :AlarmInfo, :IsWoodpeckerCluster, :MetaDb, :Tags, :HiveMetaDb, :ServiceClass, :AliasInfo, :ProductId, :Zone, :SceneName, :SceneServiceClass, :SceneEmrVersion, :DisplayName, :VpcName, :SubnetName, :ClusterExternalServiceInfo
+        attr_accessor :Id, :ClusterId, :Ftitle, :ClusterName, :RegionId, :ZoneId, :AppId, :Uin, :ProjectId, :VpcId, :SubnetId, :Status, :AddTime, :RunTime, :Config, :MasterIp, :EmrVersion, :ChargeType, :TradeVersion, :ResourceOrderId, :IsTradeCluster, :AlarmInfo, :IsWoodpeckerCluster, :MetaDb, :Tags, :HiveMetaDb, :ServiceClass, :AliasInfo, :ProductId, :Zone, :SceneName, :SceneServiceClass, :SceneEmrVersion, :DisplayName, :VpcName, :SubnetName, :ClusterExternalServiceInfo, :UniqVpcId, :UniqSubnetId, :TopologyInfoList, :IsMultiZoneCluster
         
-        def initialize(id=nil, clusterid=nil, ftitle=nil, clustername=nil, regionid=nil, zoneid=nil, appid=nil, uin=nil, projectid=nil, vpcid=nil, subnetid=nil, status=nil, addtime=nil, runtime=nil, config=nil, masterip=nil, emrversion=nil, chargetype=nil, tradeversion=nil, resourceorderid=nil, istradecluster=nil, alarminfo=nil, iswoodpeckercluster=nil, metadb=nil, tags=nil, hivemetadb=nil, serviceclass=nil, aliasinfo=nil, productid=nil, zone=nil, scenename=nil, sceneserviceclass=nil, sceneemrversion=nil, displayname=nil, vpcname=nil, subnetname=nil, clusterexternalserviceinfo=nil)
+        def initialize(id=nil, clusterid=nil, ftitle=nil, clustername=nil, regionid=nil, zoneid=nil, appid=nil, uin=nil, projectid=nil, vpcid=nil, subnetid=nil, status=nil, addtime=nil, runtime=nil, config=nil, masterip=nil, emrversion=nil, chargetype=nil, tradeversion=nil, resourceorderid=nil, istradecluster=nil, alarminfo=nil, iswoodpeckercluster=nil, metadb=nil, tags=nil, hivemetadb=nil, serviceclass=nil, aliasinfo=nil, productid=nil, zone=nil, scenename=nil, sceneserviceclass=nil, sceneemrversion=nil, displayname=nil, vpcname=nil, subnetname=nil, clusterexternalserviceinfo=nil, uniqvpcid=nil, uniqsubnetid=nil, topologyinfolist=nil, ismultizonecluster=nil)
           @Id = id
           @ClusterId = clusterid
           @Ftitle = ftitle
@@ -368,6 +380,10 @@ module TencentCloud
           @VpcName = vpcname
           @SubnetName = subnetname
           @ClusterExternalServiceInfo = clusterexternalserviceinfo
+          @UniqVpcId = uniqvpcid
+          @UniqSubnetId = uniqsubnetid
+          @TopologyInfoList = topologyinfolist
+          @IsMultiZoneCluster = ismultizonecluster
         end
 
         def deserialize(params)
@@ -425,6 +441,17 @@ module TencentCloud
               @ClusterExternalServiceInfo << clusterexternalserviceinfo_tmp
             end
           end
+          @UniqVpcId = params['UniqVpcId']
+          @UniqSubnetId = params['UniqSubnetId']
+          unless params['TopologyInfoList'].nil?
+            @TopologyInfoList = []
+            params['TopologyInfoList'].each do |i|
+              topologyinfo_tmp = TopologyInfo.new
+              topologyinfo_tmp.deserialize(i)
+              @TopologyInfoList << topologyinfo_tmp
+            end
+          end
+          @IsMultiZoneCluster = params['IsMultiZoneCluster']
         end
       end
 
@@ -560,13 +587,9 @@ module TencentCloud
         # <li>29：表示EMR-V2.5.1。</li>
         # <li>30：表示EMR-V2.6.0。</li>
         # @type ProductId: Integer
-        # @param VPCSettings: 私有网络相关信息配置。通过该参数可以指定私有网络的ID，子网ID等信息。
-        # @type VPCSettings: :class:`Tencentcloud::Emr.v20190103.models.VPCSettings`
         # @param Software: 部署的组件列表。不同的EMR产品ID（ProductId：具体含义参考入参ProductId字段）对应不同可选组件列表，不同产品版本可选组件列表查询：[组件版本](https://cloud.tencent.com/document/product/589/20279) ；
         # 填写实例值：hive、flink。
         # @type Software: Array
-        # @param ResourceSpec: 节点资源的规格。
-        # @type ResourceSpec: :class:`Tencentcloud::Emr.v20190103.models.NewResourceSpec`
         # @param SupportHA: 是否开启节点高可用。取值范围：
         # <li>0：表示不开启节点高可用。</li>
         # <li>1：表示开启节点高可用。</li>
@@ -579,8 +602,6 @@ module TencentCloud
         # <li>0：表示按量计费。</li>
         # <li>1：表示包年包月。</li>
         # @type PayMode: Integer
-        # @param Placement: 实例所在的位置。通过该参数可以指定实例所属可用区，所属项目等属性。
-        # @type Placement: :class:`Tencentcloud::Emr.v20190103.models.Placement`
         # @param TimeSpan: 购买实例的时长。结合TimeUnit一起使用。
         # <li>TimeUnit为s时，该参数只能填写3600，表示按量计费实例。</li>
         # <li>TimeUnit为m时，该参数填写的数字表示包年包月实例的购买时长，如1表示购买一个月</li>
@@ -593,8 +614,14 @@ module TencentCloud
         # <li>设置密钥时，密码仅用于组件原生WebUI快捷入口登录。</li>
         # <li>未设置密钥时，密码用于登录所购节点以及组件原生WebUI快捷入口登录。</li>
         # @type LoginSettings: :class:`Tencentcloud::Emr.v20190103.models.LoginSettings`
+        # @param VPCSettings: 私有网络相关信息配置。通过该参数可以指定私有网络的ID，子网ID等信息。
+        # @type VPCSettings: :class:`Tencentcloud::Emr.v20190103.models.VPCSettings`
+        # @param ResourceSpec: 节点资源的规格。
+        # @type ResourceSpec: :class:`Tencentcloud::Emr.v20190103.models.NewResourceSpec`
         # @param COSSettings: 开启COS访问需要设置的参数。
         # @type COSSettings: :class:`Tencentcloud::Emr.v20190103.models.COSSettings`
+        # @param Placement: 实例所在的位置。通过该参数可以指定实例所属可用区，所属项目等属性。
+        # @type Placement: :class:`Tencentcloud::Emr.v20190103.models.Placement`
         # @param SgId: 实例所属安全组的ID，形如sg-xxxxxxxx。该参数可以通过调用 [DescribeSecurityGroups](https://cloud.tencent.com/document/api/215/15808) 的返回值中的SecurityGroupId字段来获取。
         # @type SgId: String
         # @param PreExecutedFileSettings: [引导操作](https://cloud.tencent.com/document/product/589/35656)脚本设置。
@@ -641,22 +668,28 @@ module TencentCloud
         # @type SceneName: String
         # @param ExternalService: 共享组件信息
         # @type ExternalService: Array
+        # @param VersionID: 如果为0，则MultiZone、MultiDeployStrategy、MultiZoneSettings是disable的状态，如果为1，则废弃ResourceSpec，使用MultiZoneSettings。
+        # @type VersionID: Integer
+        # @param MultiZone: true表示开启跨AZ部署；仅为新建集群时的用户参数，后续不支持调整。
+        # @type MultiZone: Boolean
+        # @param MultiZoneSettings: 节点资源的规格，有几个可用区，就填几个，按顺序第一个为主可用区，第二个为备可用区，第三个为仲裁可用区。如果没有开启跨AZ，则长度为1即可。
+        # @type MultiZoneSettings: Array
 
-        attr_accessor :ProductId, :VPCSettings, :Software, :ResourceSpec, :SupportHA, :InstanceName, :PayMode, :Placement, :TimeSpan, :TimeUnit, :LoginSettings, :COSSettings, :SgId, :PreExecutedFileSettings, :AutoRenew, :ClientToken, :NeedMasterWan, :RemoteLoginAtCreate, :CheckSecurity, :ExtendFsField, :Tags, :DisasterRecoverGroupIds, :CbsEncrypt, :MetaType, :UnifyMetaInstanceId, :MetaDBInfo, :ApplicationRole, :SceneName, :ExternalService
+        attr_accessor :ProductId, :Software, :SupportHA, :InstanceName, :PayMode, :TimeSpan, :TimeUnit, :LoginSettings, :VPCSettings, :ResourceSpec, :COSSettings, :Placement, :SgId, :PreExecutedFileSettings, :AutoRenew, :ClientToken, :NeedMasterWan, :RemoteLoginAtCreate, :CheckSecurity, :ExtendFsField, :Tags, :DisasterRecoverGroupIds, :CbsEncrypt, :MetaType, :UnifyMetaInstanceId, :MetaDBInfo, :ApplicationRole, :SceneName, :ExternalService, :VersionID, :MultiZone, :MultiZoneSettings
         
-        def initialize(productid=nil, vpcsettings=nil, software=nil, resourcespec=nil, supportha=nil, instancename=nil, paymode=nil, placement=nil, timespan=nil, timeunit=nil, loginsettings=nil, cossettings=nil, sgid=nil, preexecutedfilesettings=nil, autorenew=nil, clienttoken=nil, needmasterwan=nil, remoteloginatcreate=nil, checksecurity=nil, extendfsfield=nil, tags=nil, disasterrecovergroupids=nil, cbsencrypt=nil, metatype=nil, unifymetainstanceid=nil, metadbinfo=nil, applicationrole=nil, scenename=nil, externalservice=nil)
+        def initialize(productid=nil, software=nil, supportha=nil, instancename=nil, paymode=nil, timespan=nil, timeunit=nil, loginsettings=nil, vpcsettings=nil, resourcespec=nil, cossettings=nil, placement=nil, sgid=nil, preexecutedfilesettings=nil, autorenew=nil, clienttoken=nil, needmasterwan=nil, remoteloginatcreate=nil, checksecurity=nil, extendfsfield=nil, tags=nil, disasterrecovergroupids=nil, cbsencrypt=nil, metatype=nil, unifymetainstanceid=nil, metadbinfo=nil, applicationrole=nil, scenename=nil, externalservice=nil, versionid=nil, multizone=nil, multizonesettings=nil)
           @ProductId = productid
-          @VPCSettings = vpcsettings
           @Software = software
-          @ResourceSpec = resourcespec
           @SupportHA = supportha
           @InstanceName = instancename
           @PayMode = paymode
-          @Placement = placement
           @TimeSpan = timespan
           @TimeUnit = timeunit
           @LoginSettings = loginsettings
+          @VPCSettings = vpcsettings
+          @ResourceSpec = resourcespec
           @COSSettings = cossettings
+          @Placement = placement
           @SgId = sgid
           @PreExecutedFileSettings = preexecutedfilesettings
           @AutoRenew = autorenew
@@ -674,35 +707,38 @@ module TencentCloud
           @ApplicationRole = applicationrole
           @SceneName = scenename
           @ExternalService = externalservice
+          @VersionID = versionid
+          @MultiZone = multizone
+          @MultiZoneSettings = multizonesettings
         end
 
         def deserialize(params)
           @ProductId = params['ProductId']
-          unless params['VPCSettings'].nil?
-            @VPCSettings = VPCSettings.new
-            @VPCSettings.deserialize(params['VPCSettings'])
-          end
           @Software = params['Software']
-          unless params['ResourceSpec'].nil?
-            @ResourceSpec = NewResourceSpec.new
-            @ResourceSpec.deserialize(params['ResourceSpec'])
-          end
           @SupportHA = params['SupportHA']
           @InstanceName = params['InstanceName']
           @PayMode = params['PayMode']
-          unless params['Placement'].nil?
-            @Placement = Placement.new
-            @Placement.deserialize(params['Placement'])
-          end
           @TimeSpan = params['TimeSpan']
           @TimeUnit = params['TimeUnit']
           unless params['LoginSettings'].nil?
             @LoginSettings = LoginSettings.new
             @LoginSettings.deserialize(params['LoginSettings'])
           end
+          unless params['VPCSettings'].nil?
+            @VPCSettings = VPCSettings.new
+            @VPCSettings.deserialize(params['VPCSettings'])
+          end
+          unless params['ResourceSpec'].nil?
+            @ResourceSpec = NewResourceSpec.new
+            @ResourceSpec.deserialize(params['ResourceSpec'])
+          end
           unless params['COSSettings'].nil?
             @COSSettings = COSSettings.new
             @COSSettings.deserialize(params['COSSettings'])
+          end
+          unless params['Placement'].nil?
+            @Placement = Placement.new
+            @Placement.deserialize(params['Placement'])
           end
           @SgId = params['SgId']
           unless params['PreExecutedFileSettings'].nil?
@@ -743,6 +779,16 @@ module TencentCloud
               externalservice_tmp = ExternalService.new
               externalservice_tmp.deserialize(i)
               @ExternalService << externalservice_tmp
+            end
+          end
+          @VersionID = params['VersionID']
+          @MultiZone = params['MultiZone']
+          unless params['MultiZoneSettings'].nil?
+            @MultiZoneSettings = []
+            params['MultiZoneSettings'].each do |i|
+              multizonesetting_tmp = MultiZoneSetting.new
+              multizonesetting_tmp.deserialize(i)
+              @MultiZoneSettings << multizonesetting_tmp
             end
           end
         end
@@ -1581,8 +1627,6 @@ module TencentCloud
         # <li>TimeUnit为s时，该参数只能填写3600，表示按量计费实例。</li>
         # <li>TimeUnit为m时，该参数填写的数字表示包年包月实例的购买时长，如1表示购买一个月</li>
         # @type TimeSpan: Integer
-        # @param ResourceSpec: 询价的节点规格。
-        # @type ResourceSpec: :class:`Tencentcloud::Emr.v20190103.models.NewResourceSpec`
         # @param Currency: 货币种类。取值范围：
         # <li>CNY：表示人民币。</li>
         # @type Currency: String
@@ -1600,6 +1644,8 @@ module TencentCloud
         # <li>ProductId为4的时候，必选组件包括：hadoop-2.8.4、knox-1.2.0、zookeeper-3.4.9</li>
         # <li>ProductId为7的时候，必选组件包括：hadoop-3.1.2、knox-1.2.0、zookeeper-3.4.9</li>
         # @type Software: Array
+        # @param ResourceSpec: 询价的节点规格。
+        # @type ResourceSpec: :class:`Tencentcloud::Emr.v20190103.models.NewResourceSpec`
         # @param Placement: 实例所在的位置。通过该参数可以指定实例所属可用区，所属项目等属性。
         # @type Placement: :class:`Tencentcloud::Emr.v20190103.models.Placement`
         # @param VPCSettings: 私有网络相关信息配置。通过该参数可以指定私有网络的ID，子网ID等信息。
@@ -1627,17 +1673,21 @@ module TencentCloud
         # @type SceneName: String
         # @param ExternalService: 共用组件信息
         # @type ExternalService: Array
+        # @param VersionID: 当前默认值为0，跨AZ特性支持后为1
+        # @type VersionID: Integer
+        # @param MultiZoneSettings: 可用区的规格信息
+        # @type MultiZoneSettings: Array
 
-        attr_accessor :TimeUnit, :TimeSpan, :ResourceSpec, :Currency, :PayMode, :SupportHA, :Software, :Placement, :VPCSettings, :MetaType, :UnifyMetaInstanceId, :MetaDBInfo, :ProductId, :SceneName, :ExternalService
+        attr_accessor :TimeUnit, :TimeSpan, :Currency, :PayMode, :SupportHA, :Software, :ResourceSpec, :Placement, :VPCSettings, :MetaType, :UnifyMetaInstanceId, :MetaDBInfo, :ProductId, :SceneName, :ExternalService, :VersionID, :MultiZoneSettings
         
-        def initialize(timeunit=nil, timespan=nil, resourcespec=nil, currency=nil, paymode=nil, supportha=nil, software=nil, placement=nil, vpcsettings=nil, metatype=nil, unifymetainstanceid=nil, metadbinfo=nil, productid=nil, scenename=nil, externalservice=nil)
+        def initialize(timeunit=nil, timespan=nil, currency=nil, paymode=nil, supportha=nil, software=nil, resourcespec=nil, placement=nil, vpcsettings=nil, metatype=nil, unifymetainstanceid=nil, metadbinfo=nil, productid=nil, scenename=nil, externalservice=nil, versionid=nil, multizonesettings=nil)
           @TimeUnit = timeunit
           @TimeSpan = timespan
-          @ResourceSpec = resourcespec
           @Currency = currency
           @PayMode = paymode
           @SupportHA = supportha
           @Software = software
+          @ResourceSpec = resourcespec
           @Placement = placement
           @VPCSettings = vpcsettings
           @MetaType = metatype
@@ -1646,19 +1696,21 @@ module TencentCloud
           @ProductId = productid
           @SceneName = scenename
           @ExternalService = externalservice
+          @VersionID = versionid
+          @MultiZoneSettings = multizonesettings
         end
 
         def deserialize(params)
           @TimeUnit = params['TimeUnit']
           @TimeSpan = params['TimeSpan']
-          unless params['ResourceSpec'].nil?
-            @ResourceSpec = NewResourceSpec.new
-            @ResourceSpec.deserialize(params['ResourceSpec'])
-          end
           @Currency = params['Currency']
           @PayMode = params['PayMode']
           @SupportHA = params['SupportHA']
           @Software = params['Software']
+          unless params['ResourceSpec'].nil?
+            @ResourceSpec = NewResourceSpec.new
+            @ResourceSpec.deserialize(params['ResourceSpec'])
+          end
           unless params['Placement'].nil?
             @Placement = Placement.new
             @Placement.deserialize(params['Placement'])
@@ -1681,6 +1733,15 @@ module TencentCloud
               externalservice_tmp = ExternalService.new
               externalservice_tmp.deserialize(i)
               @ExternalService << externalservice_tmp
+            end
+          end
+          @VersionID = params['VersionID']
+          unless params['MultiZoneSettings'].nil?
+            @MultiZoneSettings = []
+            params['MultiZoneSettings'].each do |i|
+              multizonesetting_tmp = MultiZoneSetting.new
+              multizonesetting_tmp.deserialize(i)
+              @MultiZoneSettings << multizonesetting_tmp
             end
           end
         end
@@ -2381,6 +2442,44 @@ module TencentCloud
         end
       end
 
+      # 各个可用区的参数信息
+      class MultiZoneSetting < TencentCloud::Common::AbstractModel
+        # @param ZoneTag: "master"、"standby"、"third-party"
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ZoneTag: String
+        # @param VPCSettings: 无
+        # @type VPCSettings: :class:`Tencentcloud::Emr.v20190103.models.VPCSettings`
+        # @param Placement: 无
+        # @type Placement: :class:`Tencentcloud::Emr.v20190103.models.Placement`
+        # @param ResourceSpec: 无
+        # @type ResourceSpec: :class:`Tencentcloud::Emr.v20190103.models.NewResourceSpec`
+
+        attr_accessor :ZoneTag, :VPCSettings, :Placement, :ResourceSpec
+        
+        def initialize(zonetag=nil, vpcsettings=nil, placement=nil, resourcespec=nil)
+          @ZoneTag = zonetag
+          @VPCSettings = vpcsettings
+          @Placement = placement
+          @ResourceSpec = resourcespec
+        end
+
+        def deserialize(params)
+          @ZoneTag = params['ZoneTag']
+          unless params['VPCSettings'].nil?
+            @VPCSettings = VPCSettings.new
+            @VPCSettings.deserialize(params['VPCSettings'])
+          end
+          unless params['Placement'].nil?
+            @Placement = Placement.new
+            @Placement.deserialize(params['Placement'])
+          end
+          unless params['ResourceSpec'].nil?
+            @ResourceSpec = NewResourceSpec.new
+            @ResourceSpec.deserialize(params['ResourceSpec'])
+          end
+        end
+      end
+
       # 资源描述
       class NewResourceSpec < TencentCloud::Common::AbstractModel
         # @param MasterResourceSpec: 描述Master节点资源
@@ -2560,10 +2659,22 @@ module TencentCloud
         # @param SupportModifyPayMode: 是否支持变更计费类型 1是，0否
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SupportModifyPayMode: Integer
+        # @param RootStorageType: 系统盘类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RootStorageType: Integer
+        # @param Zone: 可用区信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Zone: String
+        # @param SubnetInfo: 子网
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SubnetInfo: :class:`Tencentcloud::Emr.v20190103.models.SubnetInfo`
+        # @param Clients: 客户端
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Clients: String
 
-        attr_accessor :AppId, :SerialNo, :OrderNo, :WanIp, :Flag, :Spec, :CpuNum, :MemSize, :MemDesc, :RegionId, :ZoneId, :ApplyTime, :FreeTime, :DiskSize, :NameTag, :Services, :StorageType, :RootSize, :ChargeType, :CdbIp, :CdbPort, :HwDiskSize, :HwDiskSizeDesc, :HwMemSize, :HwMemSizeDesc, :ExpireTime, :EmrResourceId, :IsAutoRenew, :DeviceClass, :Mutable, :MCMultiDisk, :CdbNodeInfo, :Ip, :Destroyable, :Tags, :AutoFlag, :HardwareResourceType, :IsDynamicSpec, :DynamicPodSpec, :SupportModifyPayMode
+        attr_accessor :AppId, :SerialNo, :OrderNo, :WanIp, :Flag, :Spec, :CpuNum, :MemSize, :MemDesc, :RegionId, :ZoneId, :ApplyTime, :FreeTime, :DiskSize, :NameTag, :Services, :StorageType, :RootSize, :ChargeType, :CdbIp, :CdbPort, :HwDiskSize, :HwDiskSizeDesc, :HwMemSize, :HwMemSizeDesc, :ExpireTime, :EmrResourceId, :IsAutoRenew, :DeviceClass, :Mutable, :MCMultiDisk, :CdbNodeInfo, :Ip, :Destroyable, :Tags, :AutoFlag, :HardwareResourceType, :IsDynamicSpec, :DynamicPodSpec, :SupportModifyPayMode, :RootStorageType, :Zone, :SubnetInfo, :Clients
         
-        def initialize(appid=nil, serialno=nil, orderno=nil, wanip=nil, flag=nil, spec=nil, cpunum=nil, memsize=nil, memdesc=nil, regionid=nil, zoneid=nil, applytime=nil, freetime=nil, disksize=nil, nametag=nil, services=nil, storagetype=nil, rootsize=nil, chargetype=nil, cdbip=nil, cdbport=nil, hwdisksize=nil, hwdisksizedesc=nil, hwmemsize=nil, hwmemsizedesc=nil, expiretime=nil, emrresourceid=nil, isautorenew=nil, deviceclass=nil, mutable=nil, mcmultidisk=nil, cdbnodeinfo=nil, ip=nil, destroyable=nil, tags=nil, autoflag=nil, hardwareresourcetype=nil, isdynamicspec=nil, dynamicpodspec=nil, supportmodifypaymode=nil)
+        def initialize(appid=nil, serialno=nil, orderno=nil, wanip=nil, flag=nil, spec=nil, cpunum=nil, memsize=nil, memdesc=nil, regionid=nil, zoneid=nil, applytime=nil, freetime=nil, disksize=nil, nametag=nil, services=nil, storagetype=nil, rootsize=nil, chargetype=nil, cdbip=nil, cdbport=nil, hwdisksize=nil, hwdisksizedesc=nil, hwmemsize=nil, hwmemsizedesc=nil, expiretime=nil, emrresourceid=nil, isautorenew=nil, deviceclass=nil, mutable=nil, mcmultidisk=nil, cdbnodeinfo=nil, ip=nil, destroyable=nil, tags=nil, autoflag=nil, hardwareresourcetype=nil, isdynamicspec=nil, dynamicpodspec=nil, supportmodifypaymode=nil, rootstoragetype=nil, zone=nil, subnetinfo=nil, clients=nil)
           @AppId = appid
           @SerialNo = serialno
           @OrderNo = orderno
@@ -2604,6 +2715,10 @@ module TencentCloud
           @IsDynamicSpec = isdynamicspec
           @DynamicPodSpec = dynamicpodspec
           @SupportModifyPayMode = supportmodifypaymode
+          @RootStorageType = rootstoragetype
+          @Zone = zone
+          @SubnetInfo = subnetinfo
+          @Clients = clients
         end
 
         def deserialize(params)
@@ -2664,6 +2779,13 @@ module TencentCloud
           @IsDynamicSpec = params['IsDynamicSpec']
           @DynamicPodSpec = params['DynamicPodSpec']
           @SupportModifyPayMode = params['SupportModifyPayMode']
+          @RootStorageType = params['RootStorageType']
+          @Zone = params['Zone']
+          unless params['SubnetInfo'].nil?
+            @SubnetInfo = SubnetInfo.new
+            @SubnetInfo.deserialize(params['SubnetInfo'])
+          end
+          @Clients = params['Clients']
         end
       end
 
@@ -2960,10 +3082,13 @@ module TencentCloud
         # @param SubnetId: 代表vpc子网唯一id
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SubnetId: String
+        # @param PodName: pod name
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PodName: String
 
-        attr_accessor :ResourceProviderIdentifier, :ResourceProviderType, :NodeType, :Cpu, :Memory, :DataVolumes, :CpuType, :PodVolumes, :IsDynamicSpec, :DynamicPodSpec, :VpcId, :SubnetId
+        attr_accessor :ResourceProviderIdentifier, :ResourceProviderType, :NodeType, :Cpu, :Memory, :DataVolumes, :CpuType, :PodVolumes, :IsDynamicSpec, :DynamicPodSpec, :VpcId, :SubnetId, :PodName
         
-        def initialize(resourceprovideridentifier=nil, resourceprovidertype=nil, nodetype=nil, cpu=nil, memory=nil, datavolumes=nil, cputype=nil, podvolumes=nil, isdynamicspec=nil, dynamicpodspec=nil, vpcid=nil, subnetid=nil)
+        def initialize(resourceprovideridentifier=nil, resourceprovidertype=nil, nodetype=nil, cpu=nil, memory=nil, datavolumes=nil, cputype=nil, podvolumes=nil, isdynamicspec=nil, dynamicpodspec=nil, vpcid=nil, subnetid=nil, podname=nil)
           @ResourceProviderIdentifier = resourceprovideridentifier
           @ResourceProviderType = resourceprovidertype
           @NodeType = nodetype
@@ -2976,6 +3101,7 @@ module TencentCloud
           @DynamicPodSpec = dynamicpodspec
           @VpcId = vpcid
           @SubnetId = subnetid
+          @PodName = podname
         end
 
         def deserialize(params)
@@ -3001,6 +3127,7 @@ module TencentCloud
           end
           @VpcId = params['VpcId']
           @SubnetId = params['SubnetId']
+          @PodName = params['PodName']
         end
       end
 
@@ -3576,10 +3703,14 @@ module TencentCloud
         # @type MasterCount: Integer
         # @param StartServiceAfterScaleOut: 扩容后是否启动服务，true：启动，false：不启动
         # @type StartServiceAfterScaleOut: String
+        # @param ZoneId: 可用区，默认是集群的主可用区
+        # @type ZoneId: Integer
+        # @param SubnetId: 子网，默认是集群创建时的子网
+        # @type SubnetId: String
 
-        attr_accessor :TimeUnit, :TimeSpan, :InstanceId, :PayMode, :ClientToken, :PreExecutedFileSettings, :TaskCount, :CoreCount, :UnNecessaryNodeList, :RouterCount, :SoftDeployInfo, :ServiceNodeInfo, :DisasterRecoverGroupIds, :Tags, :HardwareResourceType, :PodSpec, :ClickHouseClusterName, :ClickHouseClusterType, :YarnNodeLabel, :PodParameter, :MasterCount, :StartServiceAfterScaleOut
+        attr_accessor :TimeUnit, :TimeSpan, :InstanceId, :PayMode, :ClientToken, :PreExecutedFileSettings, :TaskCount, :CoreCount, :UnNecessaryNodeList, :RouterCount, :SoftDeployInfo, :ServiceNodeInfo, :DisasterRecoverGroupIds, :Tags, :HardwareResourceType, :PodSpec, :ClickHouseClusterName, :ClickHouseClusterType, :YarnNodeLabel, :PodParameter, :MasterCount, :StartServiceAfterScaleOut, :ZoneId, :SubnetId
         
-        def initialize(timeunit=nil, timespan=nil, instanceid=nil, paymode=nil, clienttoken=nil, preexecutedfilesettings=nil, taskcount=nil, corecount=nil, unnecessarynodelist=nil, routercount=nil, softdeployinfo=nil, servicenodeinfo=nil, disasterrecovergroupids=nil, tags=nil, hardwareresourcetype=nil, podspec=nil, clickhouseclustername=nil, clickhouseclustertype=nil, yarnnodelabel=nil, podparameter=nil, mastercount=nil, startserviceafterscaleout=nil)
+        def initialize(timeunit=nil, timespan=nil, instanceid=nil, paymode=nil, clienttoken=nil, preexecutedfilesettings=nil, taskcount=nil, corecount=nil, unnecessarynodelist=nil, routercount=nil, softdeployinfo=nil, servicenodeinfo=nil, disasterrecovergroupids=nil, tags=nil, hardwareresourcetype=nil, podspec=nil, clickhouseclustername=nil, clickhouseclustertype=nil, yarnnodelabel=nil, podparameter=nil, mastercount=nil, startserviceafterscaleout=nil, zoneid=nil, subnetid=nil)
           @TimeUnit = timeunit
           @TimeSpan = timespan
           @InstanceId = instanceid
@@ -3602,6 +3733,8 @@ module TencentCloud
           @PodParameter = podparameter
           @MasterCount = mastercount
           @StartServiceAfterScaleOut = startserviceafterscaleout
+          @ZoneId = zoneid
+          @SubnetId = subnetid
         end
 
         def deserialize(params)
@@ -3647,6 +3780,8 @@ module TencentCloud
           end
           @MasterCount = params['MasterCount']
           @StartServiceAfterScaleOut = params['StartServiceAfterScaleOut']
+          @ZoneId = params['ZoneId']
+          @SubnetId = params['SubnetId']
         end
       end
 
@@ -3710,6 +3845,28 @@ module TencentCloud
         end
       end
 
+      # 节点信息
+      class ShortNodeInfo < TencentCloud::Common::AbstractModel
+        # @param NodeType: 节点类型，Master/Core/Task/Router/Common
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NodeType: String
+        # @param NodeSize: 节点数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NodeSize: Integer
+
+        attr_accessor :NodeType, :NodeSize
+        
+        def initialize(nodetype=nil, nodesize=nil)
+          @NodeType = nodetype
+          @NodeSize = nodesize
+        end
+
+        def deserialize(params)
+          @NodeType = params['NodeType']
+          @NodeSize = params['NodeSize']
+        end
+      end
+
       # 执行步骤
       class Step < TencentCloud::Common::AbstractModel
         # @param Name: 执行步骤名称。
@@ -3741,6 +3898,28 @@ module TencentCloud
           end
           @ActionOnFailure = params['ActionOnFailure']
           @User = params['User']
+        end
+      end
+
+      # 子网信息
+      class SubnetInfo < TencentCloud::Common::AbstractModel
+        # @param SubnetName: 子网信息（名字）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SubnetName: String
+        # @param SubnetId: 子网信息（ID）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SubnetId: String
+
+        attr_accessor :SubnetName, :SubnetId
+        
+        def initialize(subnetname=nil, subnetid=nil)
+          @SubnetName = subnetname
+          @SubnetId = subnetid
+        end
+
+        def deserialize(params)
+          @SubnetName = params['SubnetName']
+          @SubnetId = params['SubnetId']
         end
       end
 
@@ -3868,6 +4047,52 @@ module TencentCloud
 
         def deserialize(params)
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 集群节点拓扑信息
+      class TopologyInfo < TencentCloud::Common::AbstractModel
+        # @param ZoneId: 可用区ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ZoneId: Integer
+        # @param Zone: 可用区信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Zone: String
+        # @param SubnetInfoList: 子网信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SubnetInfoList: Array
+        # @param NodeInfoList: 节点信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NodeInfoList: Array
+
+        attr_accessor :ZoneId, :Zone, :SubnetInfoList, :NodeInfoList
+        
+        def initialize(zoneid=nil, zone=nil, subnetinfolist=nil, nodeinfolist=nil)
+          @ZoneId = zoneid
+          @Zone = zone
+          @SubnetInfoList = subnetinfolist
+          @NodeInfoList = nodeinfolist
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+          @Zone = params['Zone']
+          unless params['SubnetInfoList'].nil?
+            @SubnetInfoList = []
+            params['SubnetInfoList'].each do |i|
+              subnetinfo_tmp = SubnetInfo.new
+              subnetinfo_tmp.deserialize(i)
+              @SubnetInfoList << subnetinfo_tmp
+            end
+          end
+          unless params['NodeInfoList'].nil?
+            @NodeInfoList = []
+            params['NodeInfoList'].each do |i|
+              shortnodeinfo_tmp = ShortNodeInfo.new
+              shortnodeinfo_tmp.deserialize(i)
+              @NodeInfoList << shortnodeinfo_tmp
+            end
+          end
         end
       end
 

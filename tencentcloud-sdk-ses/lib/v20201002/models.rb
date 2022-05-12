@@ -53,7 +53,7 @@ module TencentCloud
         # @type ReplyToAddresses: String
         # @param Template: 使用模板发送时，填写的模板相关参数
         # @type Template: :class:`Tencentcloud::Ses.v20201002.models.Template`
-        # @param Simple: 使用API直接发送内容时，填写的邮件内容（暂未支持）
+        # @param Simple: 已废弃
         # @type Simple: :class:`Tencentcloud::Ses.v20201002.models.Simple`
         # @param Attachments: 需要发送附件时，填写附件相关参数（暂未支持）
         # @type Attachments: Array
@@ -1270,7 +1270,7 @@ module TencentCloud
         # @type ReplyToAddresses: String
         # @param Template: 使用模板发送时，填写的模板相关参数
         # @type Template: :class:`Tencentcloud::Ses.v20201002.models.Template`
-        # @param Simple: 使用API直接发送内容时，填写的邮件内容
+        # @param Simple: 已废弃
         # @type Simple: :class:`Tencentcloud::Ses.v20201002.models.Simple`
         # @param Attachments: 需要发送附件时，填写附件相关参数。
         # @type Attachments: Array

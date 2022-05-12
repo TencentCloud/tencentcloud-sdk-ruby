@@ -6968,7 +6968,7 @@ module TencentCloud
 
       # 创建资源实例时同时绑定的标签对说明
       class TagSpecification < TencentCloud::Common::AbstractModel
-        # @param ResourceType: 标签绑定的资源类型，云服务器为“instance”，专用宿主机为“host”
+        # @param ResourceType: 标签绑定的资源类型，云服务器为“instance”，专用宿主机为“host”，镜像为“image”
         # @type ResourceType: String
         # @param Tags: 标签对列表
         # @type Tags: Array

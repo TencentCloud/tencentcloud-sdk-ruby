@@ -2295,10 +2295,12 @@ module TencentCloud
         # @type NeedCorrespondence: Integer
         # @param TriggerTasks: 按照触发任务（例如弹性伸缩）过滤策略。最多10个
         # @type TriggerTasks: Array
+        # @param OneClickPolicyType: 根据一键告警策略筛选 不传展示全部策略 ONECLICK=展示一键告警策略 NOT_ONECLICK=展示非一键告警策略
+        # @type OneClickPolicyType: Array
 
-        attr_accessor :Module, :PageNumber, :PageSize, :PolicyName, :MonitorTypes, :Namespaces, :Dimensions, :ReceiverUids, :ReceiverGroups, :PolicyType, :Field, :Order, :ProjectIds, :NoticeIds, :RuleTypes, :Enable, :NotBindingNoticeRule, :InstanceGroupId, :NeedCorrespondence, :TriggerTasks
+        attr_accessor :Module, :PageNumber, :PageSize, :PolicyName, :MonitorTypes, :Namespaces, :Dimensions, :ReceiverUids, :ReceiverGroups, :PolicyType, :Field, :Order, :ProjectIds, :NoticeIds, :RuleTypes, :Enable, :NotBindingNoticeRule, :InstanceGroupId, :NeedCorrespondence, :TriggerTasks, :OneClickPolicyType
         
-        def initialize(_module=nil, pagenumber=nil, pagesize=nil, policyname=nil, monitortypes=nil, namespaces=nil, dimensions=nil, receiveruids=nil, receivergroups=nil, policytype=nil, field=nil, order=nil, projectids=nil, noticeids=nil, ruletypes=nil, enable=nil, notbindingnoticerule=nil, instancegroupid=nil, needcorrespondence=nil, triggertasks=nil)
+        def initialize(_module=nil, pagenumber=nil, pagesize=nil, policyname=nil, monitortypes=nil, namespaces=nil, dimensions=nil, receiveruids=nil, receivergroups=nil, policytype=nil, field=nil, order=nil, projectids=nil, noticeids=nil, ruletypes=nil, enable=nil, notbindingnoticerule=nil, instancegroupid=nil, needcorrespondence=nil, triggertasks=nil, oneclickpolicytype=nil)
           @Module = _module
           @PageNumber = pagenumber
           @PageSize = pagesize
@@ -2319,6 +2321,7 @@ module TencentCloud
           @InstanceGroupId = instancegroupid
           @NeedCorrespondence = needcorrespondence
           @TriggerTasks = triggertasks
+          @OneClickPolicyType = oneclickpolicytype
         end
 
         def deserialize(params)
@@ -2349,6 +2352,7 @@ module TencentCloud
               @TriggerTasks << alarmpolicytriggertask_tmp
             end
           end
+          @OneClickPolicyType = params['OneClickPolicyType']
         end
       end
 

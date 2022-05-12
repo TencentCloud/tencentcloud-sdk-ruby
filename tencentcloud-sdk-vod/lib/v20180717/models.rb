@@ -10559,19 +10559,58 @@ module TencentCloud
         end
       end
 
+      # 文件删除结果信息
+      class FileDeleteResultItem < TencentCloud::Common::AbstractModel
+        # @param FileId: 删除的文件 ID 。
+        # @type FileId: String
+        # @param DeleteParts: 本次删除的文件部分。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DeleteParts: Array
+
+        attr_accessor :FileId, :DeleteParts
+        
+        def initialize(fileid=nil, deleteparts=nil)
+          @FileId = fileid
+          @DeleteParts = deleteparts
+        end
+
+        def deserialize(params)
+          @FileId = params['FileId']
+          unless params['DeleteParts'].nil?
+            @DeleteParts = []
+            params['DeleteParts'].each do |i|
+              mediadeleteitem_tmp = MediaDeleteItem.new
+              mediadeleteitem_tmp.deserialize(i)
+              @DeleteParts << mediadeleteitem_tmp
+            end
+          end
+        end
+      end
+
       # 文件删除任务
       class FileDeleteTask < TencentCloud::Common::AbstractModel
         # @param FileIdSet: 删除文件 ID 列表。
         # @type FileIdSet: Array
+        # @param FileDeleteResultInfo: 删除文件结果信息列表。
+        # @type FileDeleteResultInfo: Array
 
-        attr_accessor :FileIdSet
+        attr_accessor :FileIdSet, :FileDeleteResultInfo
         
-        def initialize(fileidset=nil)
+        def initialize(fileidset=nil, filedeleteresultinfo=nil)
           @FileIdSet = fileidset
+          @FileDeleteResultInfo = filedeleteresultinfo
         end
 
         def deserialize(params)
           @FileIdSet = params['FileIdSet']
+          unless params['FileDeleteResultInfo'].nil?
+            @FileDeleteResultInfo = []
+            params['FileDeleteResultInfo'].each do |i|
+              filedeleteresultitem_tmp = FileDeleteResultItem.new
+              filedeleteresultitem_tmp.deserialize(i)
+              @FileDeleteResultInfo << filedeleteresultitem_tmp
+            end
+          end
         end
       end
 
@@ -11294,7 +11333,7 @@ module TencentCloud
 
       # LiveRealTimeClip请求参数结构体
       class LiveRealTimeClipRequest < TencentCloud::Common::AbstractModel
-        # @param StreamId: 推流[直播码](https://cloud.tencent.com/document/product/267/5959)。
+        # @param StreamId: 推流直播码。
         # @type StreamId: String
         # @param StartTime: 流剪辑的开始时间，格式参照 [ISO 日期格式说明](https://cloud.tencent.com/document/product/266/11732#I)。
         # @type StartTime: String
