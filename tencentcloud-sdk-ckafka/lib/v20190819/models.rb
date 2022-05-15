@@ -3950,6 +3950,57 @@ module TencentCloud
         end
       end
 
+      # ModifyInstancePre请求参数结构体
+      class ModifyInstancePreRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例名称
+        # @type InstanceId: String
+        # @param DiskSize: 预计磁盘，根据磁盘步长，规格向上调整。
+        # @type DiskSize: Integer
+        # @param BandWidth: 预计带宽，根据带宽步长，规格向上调整。
+        # @type BandWidth: Integer
+        # @param Partition: 预计分区，根据带宽步长，规格向上调整。
+        # @type Partition: Integer
+
+        attr_accessor :InstanceId, :DiskSize, :BandWidth, :Partition
+        
+        def initialize(instanceid=nil, disksize=nil, bandwidth=nil, partition=nil)
+          @InstanceId = instanceid
+          @DiskSize = disksize
+          @BandWidth = bandwidth
+          @Partition = partition
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @DiskSize = params['DiskSize']
+          @BandWidth = params['BandWidth']
+          @Partition = params['Partition']
+        end
+      end
+
+      # ModifyInstancePre返回参数结构体
+      class ModifyInstancePreResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 变更预付费实例配置返回结构
+        # @type Result: :class:`Tencentcloud::Ckafka.v20190819.models.CreateInstancePreResp`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+        
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Result'].nil?
+            @Result = CreateInstancePreResp.new
+            @Result.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyPassword请求参数结构体
       class ModifyPasswordRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例Id

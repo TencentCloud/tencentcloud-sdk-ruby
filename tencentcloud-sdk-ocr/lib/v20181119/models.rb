@@ -4304,14 +4304,6 @@ module TencentCloud
         # @type ImageUrl: String
         # @param Type: 需要识别的健康码类型列表，为空或不填表示默认为自动识别。
         # 0:自动识别
-
-        # 1:粤康码
-
-        # 2:随申码
-
-        # 3:健康宝
-
-        # 4.穗康码
         # @type Type: Integer
 
         attr_accessor :ImageBase64, :ImageUrl, :Type
@@ -4331,19 +4323,19 @@ module TencentCloud
 
       # RecognizeHealthCodeOCR返回参数结构体
       class RecognizeHealthCodeOCRResponse < TencentCloud::Common::AbstractModel
-        # @param Name: 持码人姓名，如：王*
+        # @param Name: 持码人姓名，如：王*（允许返回空值）
         # @type Name: String
-        # @param IDNumber: 持码人身份证号，如：11**************01
+        # @param IDNumber: 持码人身份证号，如：11**************01（允许返回空值）
         # @type IDNumber: String
-        # @param Time: 健康码更新时间
+        # @param Time: 健康码更新时间（允许返回空值）
         # @type Time: String
-        # @param Color: 健康码颜色：绿色、黄色、红色
+        # @param Color: 健康码颜色：绿色、黄色、红色（允许返回空值）
         # @type Color: String
-        # @param TestingInterval: 核酸检测间隔时长：24小时、48小时、72小时、暂无核酸检测记录
+        # @param TestingInterval: 核酸检测间隔时长（允许返回空值）
         # @type TestingInterval: String
-        # @param TestingResult: 核酸检测结果：阴性、阳性、暂无核酸检测记录
+        # @param TestingResult: 核酸检测结果：阴性、阳性、暂无核酸检测记录（允许返回空值）
         # @type TestingResult: String
-        # @param TestingTime: 核酸检测时间
+        # @param TestingTime: 核酸检测时间（允许返回空值）
         # @type TestingTime: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

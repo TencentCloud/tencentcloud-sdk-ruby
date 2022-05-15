@@ -1086,6 +1086,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 预付费实例变配接口，调整磁盘，带宽
+
+        # @param request: Request instance for ModifyInstancePre.
+        # @type request: :class:`Tencentcloud::ckafka::V20190819::ModifyInstancePreRequest`
+        # @rtype: :class:`Tencentcloud::ckafka::V20190819::ModifyInstancePreResponse`
+        def ModifyInstancePre(request)
+          body = send_request('ModifyInstancePre', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyInstancePreResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 修改密码
 
         # @param request: Request instance for ModifyPassword.

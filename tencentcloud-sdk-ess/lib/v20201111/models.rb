@@ -203,25 +203,33 @@ module TencentCloud
         # SIGN_DATE - 签署日期控件
         # SIGN_SIGNATURE - 手写签名控件
         # @type ComponentType: String
-        # @param ComponentWidth: 参数控件宽度，单位px
+        # @param ComponentWidth: 参数控件宽度，单位pt
         # @type ComponentWidth: Float
-        # @param ComponentHeight: 参数控件高度，单位px
+        # @param ComponentHeight: 参数控件高度，单位pt
         # @type ComponentHeight: Float
         # @param ComponentPage: 参数控件所在页码，取值为：1-N
         # @type ComponentPage: Integer
-        # @param ComponentPosX: 参数控件X位置，单位px
+        # @param ComponentPosX: 参数控件X位置，单位pt
         # @type ComponentPosX: Float
-        # @param ComponentPosY: 参数控件Y位置，单位px
+        # @param ComponentPosY: 参数控件Y位置，单位pt
         # @type ComponentPosY: Float
         # @param FileIndex: 控件所属文件的序号（模板中的resourceId排列序号，取值为：0-N）
         # @type FileIndex: Integer
-        # @param ComponentId: 控件编号
+        # @param ComponentId: GenerateMode==KEYWORD 指定关键字
         # @type ComponentId: String
-        # @param ComponentName: 控件名称
+        # @param ComponentName: GenerateMode==FIELD 指定表单域名称
         # @type ComponentName: String
         # @param ComponentRequired: 是否必选，默认为false
         # @type ComponentRequired: Boolean
-        # @param ComponentExtra: 参数控件样式
+        # @param ComponentExtra: 扩展参数：
+        # ComponentType为SIGN_SIGNATURE类型可以控制签署方式
+        # {“ComponentTypeLimit”: [“xxx”]}
+        # xxx可以为：
+        # HANDWRITE – 手写签名
+        # BORDERLESS_ESIGN – 自动生成无边框腾讯体
+        # OCR_ESIGN -- AI智能识别手写签名
+        # ESIGN -- 个人印章类型
+        # 如：{“ComponentTypeLimit”: [“BORDERLESS_ESIGN”]}
         # @type ComponentExtra: String
         # @param ComponentRecipientId: 控件关联的签署人ID
         # @type ComponentRecipientId: String
@@ -235,10 +243,14 @@ module TencentCloud
         # @type GenerateMode: String
         # @param ComponentDateFontSize: 日期控件类型字号
         # @type ComponentDateFontSize: Integer
+        # @param OffsetX: 指定关键字时横坐标偏移量
+        # @type OffsetX: Float
+        # @param OffsetY: 指定关键字时纵坐标偏移量
+        # @type OffsetY: Float
 
-        attr_accessor :ComponentType, :ComponentWidth, :ComponentHeight, :ComponentPage, :ComponentPosX, :ComponentPosY, :FileIndex, :ComponentId, :ComponentName, :ComponentRequired, :ComponentExtra, :ComponentRecipientId, :ComponentValue, :IsFormType, :GenerateMode, :ComponentDateFontSize
+        attr_accessor :ComponentType, :ComponentWidth, :ComponentHeight, :ComponentPage, :ComponentPosX, :ComponentPosY, :FileIndex, :ComponentId, :ComponentName, :ComponentRequired, :ComponentExtra, :ComponentRecipientId, :ComponentValue, :IsFormType, :GenerateMode, :ComponentDateFontSize, :OffsetX, :OffsetY
         
-        def initialize(componenttype=nil, componentwidth=nil, componentheight=nil, componentpage=nil, componentposx=nil, componentposy=nil, fileindex=nil, componentid=nil, componentname=nil, componentrequired=nil, componentextra=nil, componentrecipientid=nil, componentvalue=nil, isformtype=nil, generatemode=nil, componentdatefontsize=nil)
+        def initialize(componenttype=nil, componentwidth=nil, componentheight=nil, componentpage=nil, componentposx=nil, componentposy=nil, fileindex=nil, componentid=nil, componentname=nil, componentrequired=nil, componentextra=nil, componentrecipientid=nil, componentvalue=nil, isformtype=nil, generatemode=nil, componentdatefontsize=nil, offsetx=nil, offsety=nil)
           @ComponentType = componenttype
           @ComponentWidth = componentwidth
           @ComponentHeight = componentheight
@@ -255,6 +267,8 @@ module TencentCloud
           @IsFormType = isformtype
           @GenerateMode = generatemode
           @ComponentDateFontSize = componentdatefontsize
+          @OffsetX = offsetx
+          @OffsetY = offsety
         end
 
         def deserialize(params)
@@ -274,6 +288,8 @@ module TencentCloud
           @IsFormType = params['IsFormType']
           @GenerateMode = params['GenerateMode']
           @ComponentDateFontSize = params['ComponentDateFontSize']
+          @OffsetX = params['OffsetX']
+          @OffsetY = params['OffsetY']
         end
       end
 

@@ -376,6 +376,26 @@ module TencentCloud
         end
       end
 
+      # 接口扩展参数
+      class Capacity < TencentCloud::Common::AbstractModel
+        # @param CTCCToken: 电信鉴权的Token
+        # @type CTCCToken: String
+        # @param Province: 终端所处在的省份，建议不填写由服务端自动获取，若需填写请填写带有省、市、自治区、特别行政区等后缀的省份中文全称
+        # @type Province: String
+
+        attr_accessor :CTCCToken, :Province
+        
+        def initialize(ctcctoken=nil, province=nil)
+          @CTCCToken = ctcctoken
+          @Province = province
+        end
+
+        def deserialize(params)
+          @CTCCToken = params['CTCCToken']
+          @Province = params['Province']
+        end
+      end
+
       # 服务器证书
       class Certificate < TencentCloud::Common::AbstractModel
         # @param CertificateId: 证书ID
@@ -959,6 +979,76 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateFirstLinkSession请求参数结构体
+      class CreateFirstLinkSessionRequest < TencentCloud::Common::AbstractModel
+        # @param TemplateId: 模版ID
+        # @type TemplateId: String
+        # @param SrcAddressInfo: 终端网络信息
+        # @type SrcAddressInfo: :class:`Tencentcloud::Gaap.v20180529.models.SrcAddressInfo`
+        # @param DestAddressInfo: 加速目标网络信息
+        # @type DestAddressInfo: :class:`Tencentcloud::Gaap.v20180529.models.DestAddressInfo`
+        # @param DeviceInfo: 终端设备信息
+        # @type DeviceInfo: :class:`Tencentcloud::Gaap.v20180529.models.DeviceInfo`
+        # @param Capacity: 接口扩展参数，如果是电信用户，需要填充CTCC Token字段
+        # @type Capacity: :class:`Tencentcloud::Gaap.v20180529.models.Capacity`
+
+        attr_accessor :TemplateId, :SrcAddressInfo, :DestAddressInfo, :DeviceInfo, :Capacity
+        
+        def initialize(templateid=nil, srcaddressinfo=nil, destaddressinfo=nil, deviceinfo=nil, capacity=nil)
+          @TemplateId = templateid
+          @SrcAddressInfo = srcaddressinfo
+          @DestAddressInfo = destaddressinfo
+          @DeviceInfo = deviceinfo
+          @Capacity = capacity
+        end
+
+        def deserialize(params)
+          @TemplateId = params['TemplateId']
+          unless params['SrcAddressInfo'].nil?
+            @SrcAddressInfo = SrcAddressInfo.new
+            @SrcAddressInfo.deserialize(params['SrcAddressInfo'])
+          end
+          unless params['DestAddressInfo'].nil?
+            @DestAddressInfo = DestAddressInfo.new
+            @DestAddressInfo.deserialize(params['DestAddressInfo'])
+          end
+          unless params['DeviceInfo'].nil?
+            @DeviceInfo = DeviceInfo.new
+            @DeviceInfo.deserialize(params['DeviceInfo'])
+          end
+          unless params['Capacity'].nil?
+            @Capacity = Capacity.new
+            @Capacity.deserialize(params['Capacity'])
+          end
+        end
+      end
+
+      # CreateFirstLinkSession返回参数结构体
+      class CreateFirstLinkSessionResponse < TencentCloud::Common::AbstractModel
+        # @param SessionId: 加速成功时返回，单次加速唯一会话Id。。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SessionId: String
+        # @param Duration: 剩余的加速时间，单位秒。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Duration: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :SessionId, :Duration, :RequestId
+        
+        def initialize(sessionid=nil, duration=nil, requestid=nil)
+          @SessionId = sessionid
+          @Duration = duration
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @SessionId = params['SessionId']
+          @Duration = params['Duration']
           @RequestId = params['RequestId']
         end
       end
@@ -1733,6 +1823,38 @@ module TencentCloud
         end
       end
 
+      # DeleteFirstLinkSession请求参数结构体
+      class DeleteFirstLinkSessionRequest < TencentCloud::Common::AbstractModel
+        # @param SessionId: 单次加速唯一会话Id
+        # @type SessionId: String
+
+        attr_accessor :SessionId
+        
+        def initialize(sessionid=nil)
+          @SessionId = sessionid
+        end
+
+        def deserialize(params)
+          @SessionId = params['SessionId']
+        end
+      end
+
+      # DeleteFirstLinkSession返回参数结构体
+      class DeleteFirstLinkSessionResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DeleteListeners请求参数结构体
       class DeleteListenersRequest < TencentCloud::Common::AbstractModel
         # @param ListenerIds: 待删除的监听器ID列表
@@ -2378,6 +2500,69 @@ module TencentCloud
               @ErrorPageSet << domainerrorpageinfo_tmp
             end
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeFirstLinkSession请求参数结构体
+      class DescribeFirstLinkSessionRequest < TencentCloud::Common::AbstractModel
+        # @param SessionId: 单次加速唯一会话Id
+        # @type SessionId: String
+
+        attr_accessor :SessionId
+        
+        def initialize(sessionid=nil)
+          @SessionId = sessionid
+        end
+
+        def deserialize(params)
+          @SessionId = params['SessionId']
+        end
+      end
+
+      # DescribeFirstLinkSession返回参数结构体
+      class DescribeFirstLinkSessionResponse < TencentCloud::Common::AbstractModel
+        # @param Status: 会话状态，具体如下：
+        # 1： 加速中；
+        # 0： 非加速中。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: Integer
+        # @param Duration: 剩余加速时间，单位秒。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Duration: Integer
+        # @param SuiteType: 加速套餐类型。
+        # 套餐说明如下：
+        # T100K：上/下行保障100kbps；
+        # BD4M：下行带宽保障4Mbps；
+        # BU4M：上行带宽保障4Mbps。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SuiteType: String
+        # @param SrcPublicIpv4: 加速终端的公网ip
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SrcPublicIpv4: String
+        # @param DestIpv4: 加速目标ip
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DestIpv4: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Status, :Duration, :SuiteType, :SrcPublicIpv4, :DestIpv4, :RequestId
+        
+        def initialize(status=nil, duration=nil, suitetype=nil, srcpublicipv4=nil, destipv4=nil, requestid=nil)
+          @Status = status
+          @Duration = duration
+          @SuiteType = suitetype
+          @SrcPublicIpv4 = srcpublicipv4
+          @DestIpv4 = destipv4
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Status = params['Status']
+          @Duration = params['Duration']
+          @SuiteType = params['SuiteType']
+          @SrcPublicIpv4 = params['SrcPublicIpv4']
+          @DestIpv4 = params['DestIpv4']
           @RequestId = params['RequestId']
         end
       end
@@ -4036,6 +4221,22 @@ module TencentCloud
         end
       end
 
+      # 网络加速的目标地址信息
+      class DestAddressInfo < TencentCloud::Common::AbstractModel
+        # @param DestIp: 加速的目标IP，可多ip一起加速
+        # @type DestIp: Array
+
+        attr_accessor :DestIp
+        
+        def initialize(destip=nil)
+          @DestIp = destip
+        end
+
+        def deserialize(params)
+          @DestIp = params['DestIp']
+        end
+      end
+
       # DestroyProxies请求参数结构体
       class DestroyProxiesRequest < TencentCloud::Common::AbstractModel
         # @param Force: 强制删除标识。
@@ -4089,6 +4290,52 @@ module TencentCloud
           @InvalidStatusInstanceSet = params['InvalidStatusInstanceSet']
           @OperationFailedInstanceSet = params['OperationFailedInstanceSet']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 终端设备信息
+      class DeviceInfo < TencentCloud::Common::AbstractModel
+        # @param Vendor: 设备数据卡所属的运营商
+        # 1：移动
+        # 2：电信
+        # 3：联通
+        # 4：广电
+        # 99：其他
+        # @type Vendor: Integer
+        # @param OS: 设备操作系统
+        # 1：Android
+        # 2： IOS
+        # 99：其他
+        # @type OS: Integer
+        # @param DeviceId: 设备唯一标识
+        # IOS 填写 IDFV
+        # Android 填写 IMEI
+        # @type DeviceId: String
+        # @param PhoneNum: 用户手机号码
+        # @type PhoneNum: String
+        # @param Wireless: 无线信息
+        # 1：4G
+        # 2：5G
+        # 3：WIFI
+        # 99：其他
+        # @type Wireless: Integer
+
+        attr_accessor :Vendor, :OS, :DeviceId, :PhoneNum, :Wireless
+        
+        def initialize(vendor=nil, os=nil, deviceid=nil, phonenum=nil, wireless=nil)
+          @Vendor = vendor
+          @OS = os
+          @DeviceId = deviceid
+          @PhoneNum = phonenum
+          @Wireless = wireless
+        end
+
+        def deserialize(params)
+          @Vendor = params['Vendor']
+          @OS = params['OS']
+          @DeviceId = params['DeviceId']
+          @PhoneNum = params['PhoneNum']
+          @Wireless = params['Wireless']
         end
       end
 
@@ -6611,6 +6858,26 @@ module TencentCloud
 
         def deserialize(params)
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 网络加速的原地址信息
+      class SrcAddressInfo < TencentCloud::Common::AbstractModel
+        # @param SrcIpv4: 内网Ip4地址
+        # @type SrcIpv4: String
+        # @param SrcPublicIpv4: 公网Ip4地址
+        # @type SrcPublicIpv4: String
+
+        attr_accessor :SrcIpv4, :SrcPublicIpv4
+        
+        def initialize(srcipv4=nil, srcpublicipv4=nil)
+          @SrcIpv4 = srcipv4
+          @SrcPublicIpv4 = srcpublicipv4
+        end
+
+        def deserialize(params)
+          @SrcIpv4 = params['SrcIpv4']
+          @SrcPublicIpv4 = params['SrcPublicIpv4']
         end
       end
 

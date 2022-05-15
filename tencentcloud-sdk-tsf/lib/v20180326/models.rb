@@ -1692,10 +1692,13 @@ module TencentCloud
         # @param KubeInjectEnable: KubeInjectEnable值
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type KubeInjectEnable: Boolean
+        # @param RepoType: 仓库类型 (person, tcr)
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RepoType: String
 
-        attr_accessor :GroupId, :GroupName, :InstanceNum, :CurrentNum, :Server, :Reponame, :TagName, :CpuRequest, :CpuLimit, :MemRequest, :MemLimit, :AccessType, :ProtocolPorts, :UpdateType, :UpdateIvl, :JvmOpts, :SubnetId, :AgentCpuRequest, :AgentCpuLimit, :AgentMemRequest, :AgentMemLimit, :IstioCpuRequest, :IstioCpuLimit, :IstioMemRequest, :IstioMemLimit, :Envs, :HealthCheckSettings, :DeployAgent, :Alias, :DisableService, :HeadlessService, :TcrRepoInfo, :VolumeInfos, :VolumeMountInfos, :KubeInjectEnable
+        attr_accessor :GroupId, :GroupName, :InstanceNum, :CurrentNum, :Server, :Reponame, :TagName, :CpuRequest, :CpuLimit, :MemRequest, :MemLimit, :AccessType, :ProtocolPorts, :UpdateType, :UpdateIvl, :JvmOpts, :SubnetId, :AgentCpuRequest, :AgentCpuLimit, :AgentMemRequest, :AgentMemLimit, :IstioCpuRequest, :IstioCpuLimit, :IstioMemRequest, :IstioMemLimit, :Envs, :HealthCheckSettings, :DeployAgent, :Alias, :DisableService, :HeadlessService, :TcrRepoInfo, :VolumeInfos, :VolumeMountInfos, :KubeInjectEnable, :RepoType
         
-        def initialize(groupid=nil, groupname=nil, instancenum=nil, currentnum=nil, server=nil, reponame=nil, tagname=nil, cpurequest=nil, cpulimit=nil, memrequest=nil, memlimit=nil, accesstype=nil, protocolports=nil, updatetype=nil, updateivl=nil, jvmopts=nil, subnetid=nil, agentcpurequest=nil, agentcpulimit=nil, agentmemrequest=nil, agentmemlimit=nil, istiocpurequest=nil, istiocpulimit=nil, istiomemrequest=nil, istiomemlimit=nil, envs=nil, healthchecksettings=nil, deployagent=nil, _alias=nil, disableservice=nil, headlessservice=nil, tcrrepoinfo=nil, volumeinfos=nil, volumemountinfos=nil, kubeinjectenable=nil)
+        def initialize(groupid=nil, groupname=nil, instancenum=nil, currentnum=nil, server=nil, reponame=nil, tagname=nil, cpurequest=nil, cpulimit=nil, memrequest=nil, memlimit=nil, accesstype=nil, protocolports=nil, updatetype=nil, updateivl=nil, jvmopts=nil, subnetid=nil, agentcpurequest=nil, agentcpulimit=nil, agentmemrequest=nil, agentmemlimit=nil, istiocpurequest=nil, istiocpulimit=nil, istiomemrequest=nil, istiomemlimit=nil, envs=nil, healthchecksettings=nil, deployagent=nil, _alias=nil, disableservice=nil, headlessservice=nil, tcrrepoinfo=nil, volumeinfos=nil, volumemountinfos=nil, kubeinjectenable=nil, repotype=nil)
           @GroupId = groupid
           @GroupName = groupname
           @InstanceNum = instancenum
@@ -1731,6 +1734,7 @@ module TencentCloud
           @VolumeInfos = volumeinfos
           @VolumeMountInfos = volumemountinfos
           @KubeInjectEnable = kubeinjectenable
+          @RepoType = repotype
         end
 
         def deserialize(params)
@@ -1803,6 +1807,7 @@ module TencentCloud
             end
           end
           @KubeInjectEnable = params['KubeInjectEnable']
+          @RepoType = params['RepoType']
         end
       end
 
