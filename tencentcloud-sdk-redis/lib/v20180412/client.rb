@@ -1613,6 +1613,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 设置实例输入模式
+
+        # @param request: Request instance for ModifyInstanceReadOnly.
+        # @type request: :class:`Tencentcloud::redis::V20180412::ModifyInstanceReadOnlyRequest`
+        # @rtype: :class:`Tencentcloud::redis::V20180412::ModifyInstanceReadOnlyResponse`
+        def ModifyInstanceReadOnly(request)
+          body = send_request('ModifyInstanceReadOnly', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyInstanceReadOnlyResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 修改实例维护时间窗时间，需要进行版本升级或者架构升级的实例，会在维护时间窗内进行时间切换。注意：已经发起版本升级或者架构升级的实例，无法修改维护时间窗。
 
         # @param request: Request instance for ModifyMaintenanceWindow.

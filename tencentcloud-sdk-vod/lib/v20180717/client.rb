@@ -1596,6 +1596,33 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 该接口返回查询时间范围内每天 License 请求次数信息。
+        #    1. 可以查询最近365天内的 License 请求次数统计数据。
+        #    2. 查询时间跨度不超过90天。
+        #    3. 查询时间跨度超过1天的，返回以天为粒度的数据，否则，返回以5分钟为粒度的数据。
+
+        # @param request: Request instance for DescribeLicenseUsageData.
+        # @type request: :class:`Tencentcloud::vod::V20180717::DescribeLicenseUsageDataRequest`
+        # @rtype: :class:`Tencentcloud::vod::V20180717::DescribeLicenseUsageDataResponse`
+        def DescribeLicenseUsageData(request)
+          body = send_request('DescribeLicenseUsageData', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeLicenseUsageDataResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 1. 该接口可以获取多个媒体文件的多种信息，包括：
         #     1. 基础信息（basicInfo）：包括媒体名称、分类、播放地址、封面图片等。
         #     2. 元信息（metaData）：包括大小、时长、视频流信息、音频流信息等。

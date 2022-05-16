@@ -4752,6 +4752,46 @@ module TencentCloud
         end
       end
 
+      # ModifyInstanceReadOnly请求参数结构体
+      class ModifyInstanceReadOnlyRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+        # @param InputMode: 实例输入模式，0：读写 1：只读
+        # @type InputMode: String
+
+        attr_accessor :InstanceId, :InputMode
+        
+        def initialize(instanceid=nil, inputmode=nil)
+          @InstanceId = instanceid
+          @InputMode = inputmode
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @InputMode = params['InputMode']
+        end
+      end
+
+      # ModifyInstanceReadOnly返回参数结构体
+      class ModifyInstanceReadOnlyResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: 任务ID
+        # @type TaskId: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :RequestId
+        
+        def initialize(taskid=nil, requestid=nil)
+          @TaskId = taskid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyInstance请求参数结构体
       class ModifyInstanceRequest < TencentCloud::Common::AbstractModel
         # @param Operation: 修改实例操作，如填写：rename-表示实例重命名；modifyProject-修改实例所属项目；modifyAutoRenew-修改实例续费标记

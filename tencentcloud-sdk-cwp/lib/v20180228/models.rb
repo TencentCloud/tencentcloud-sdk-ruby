@@ -8168,18 +8168,21 @@ module TencentCloud
         # @type ResourceId: String
         # @param Status: 0 没开通 1 正常 2隔离 3销毁
         # @type Status: Integer
+        # @param StartTime: 开始时间
+        # @type StartTime: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :BuyStatus, :InquireNum, :EndTime, :IsAutoOpenRenew, :ResourceId, :Status, :RequestId
+        attr_accessor :BuyStatus, :InquireNum, :EndTime, :IsAutoOpenRenew, :ResourceId, :Status, :StartTime, :RequestId
         
-        def initialize(buystatus=nil, inquirenum=nil, endtime=nil, isautoopenrenew=nil, resourceid=nil, status=nil, requestid=nil)
+        def initialize(buystatus=nil, inquirenum=nil, endtime=nil, isautoopenrenew=nil, resourceid=nil, status=nil, starttime=nil, requestid=nil)
           @BuyStatus = buystatus
           @InquireNum = inquirenum
           @EndTime = endtime
           @IsAutoOpenRenew = isautoopenrenew
           @ResourceId = resourceid
           @Status = status
+          @StartTime = starttime
           @RequestId = requestid
         end
 
@@ -8190,6 +8193,7 @@ module TencentCloud
           @IsAutoOpenRenew = params['IsAutoOpenRenew']
           @ResourceId = params['ResourceId']
           @Status = params['Status']
+          @StartTime = params['StartTime']
           @RequestId = params['RequestId']
         end
       end

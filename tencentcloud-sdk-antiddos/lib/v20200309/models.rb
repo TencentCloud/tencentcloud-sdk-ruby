@@ -3969,10 +3969,12 @@ module TencentCloud
         # @type FilterBoundStatus: String
         # @param FilterInstanceIdList: 实例id数组
         # @type FilterInstanceIdList: Array
+        # @param FilterEnterpriseFlag: 企业版搜索
+        # @type FilterEnterpriseFlag: Integer
 
-        attr_accessor :Offset, :Limit, :FilterIp, :FilterInstanceId, :FilterRegion, :FilterName, :FilterLine, :FilterStatus, :FilterBoundStatus, :FilterInstanceIdList
+        attr_accessor :Offset, :Limit, :FilterIp, :FilterInstanceId, :FilterRegion, :FilterName, :FilterLine, :FilterStatus, :FilterBoundStatus, :FilterInstanceIdList, :FilterEnterpriseFlag
         
-        def initialize(offset=nil, limit=nil, filterip=nil, filterinstanceid=nil, filterregion=nil, filtername=nil, filterline=nil, filterstatus=nil, filterboundstatus=nil, filterinstanceidlist=nil)
+        def initialize(offset=nil, limit=nil, filterip=nil, filterinstanceid=nil, filterregion=nil, filtername=nil, filterline=nil, filterstatus=nil, filterboundstatus=nil, filterinstanceidlist=nil, filterenterpriseflag=nil)
           @Offset = offset
           @Limit = limit
           @FilterIp = filterip
@@ -3983,6 +3985,7 @@ module TencentCloud
           @FilterStatus = filterstatus
           @FilterBoundStatus = filterboundstatus
           @FilterInstanceIdList = filterinstanceidlist
+          @FilterEnterpriseFlag = filterenterpriseflag
         end
 
         def deserialize(params)
@@ -3996,6 +3999,7 @@ module TencentCloud
           @FilterStatus = params['FilterStatus']
           @FilterBoundStatus = params['FilterBoundStatus']
           @FilterInstanceIdList = params['FilterInstanceIdList']
+          @FilterEnterpriseFlag = params['FilterEnterpriseFlag']
         end
       end
 

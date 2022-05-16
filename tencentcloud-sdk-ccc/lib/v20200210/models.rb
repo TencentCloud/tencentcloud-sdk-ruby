@@ -80,7 +80,7 @@ module TencentCloud
 
       # BindStaffSkillGroupList请求参数结构体
       class BindStaffSkillGroupListRequest < TencentCloud::Common::AbstractModel
-        # @param SdkAppId: 实例ID
+        # @param SdkAppId: 应用 ID（必填），可以查看 https://console.cloud.tencent.com/ccc
         # @type SdkAppId: Integer
         # @param StaffEmail: 坐席邮箱
         # @type StaffEmail: String
@@ -237,7 +237,7 @@ module TencentCloud
 
       # CreateAutoCalloutTask请求参数结构体
       class CreateAutoCalloutTaskRequest < TencentCloud::Common::AbstractModel
-        # @param SdkAppId: 呼叫中心实例Id
+        # @param SdkAppId: 应用 ID（必填），可以查看 https://console.cloud.tencent.com/ccc
         # @type SdkAppId: Integer
         # @param NotBefore: 任务起始时间戳，Unix 秒级时间戳
         # @type NotBefore: Integer
@@ -361,7 +361,7 @@ module TencentCloud
 
       # CreateSDKLoginToken请求参数结构体
       class CreateSDKLoginTokenRequest < TencentCloud::Common::AbstractModel
-        # @param SdkAppId: 应用ID。
+        # @param SdkAppId: 应用 ID（必填），可以查看 https://console.cloud.tencent.com/ccc
         # @type SdkAppId: Integer
         # @param SeatUserId: 坐席账号。
         # @type SeatUserId: String
@@ -409,7 +409,7 @@ module TencentCloud
 
       # CreateStaff请求参数结构体
       class CreateStaffRequest < TencentCloud::Common::AbstractModel
-        # @param SdkAppId: 应用ID
+        # @param SdkAppId: 应用 ID（必填），可以查看 https://console.cloud.tencent.com/ccc
         # @type SdkAppId: Integer
         # @param Staffs: 客服信息，个数不超过 10
         # @type Staffs: Array
@@ -464,7 +464,7 @@ module TencentCloud
 
       # CreateUserSig请求参数结构体
       class CreateUserSigRequest < TencentCloud::Common::AbstractModel
-        # @param SdkAppId: 应用 ID
+        # @param SdkAppId: 应用 ID（必填），可以查看 https://console.cloud.tencent.com/ccc
         # @type SdkAppId: Integer
         # @param Uid: 用户 ID
         # @type Uid: String
@@ -512,7 +512,7 @@ module TencentCloud
 
       # DeleteStaff请求参数结构体
       class DeleteStaffRequest < TencentCloud::Common::AbstractModel
-        # @param SdkAppId: 实例ID
+        # @param SdkAppId: 应用 ID（必填），可以查看 https://console.cloud.tencent.com/ccc
         # @type SdkAppId: Integer
         # @param StaffList: 待删除客服邮箱列表
         # @type StaffList: Array
@@ -553,7 +553,7 @@ module TencentCloud
 
       # DescribeAutoCalloutTask请求参数结构体
       class DescribeAutoCalloutTaskRequest < TencentCloud::Common::AbstractModel
-        # @param SdkAppId: 呼叫中心实例Id
+        # @param SdkAppId: 应用 ID（必填），可以查看 https://console.cloud.tencent.com/ccc
         # @type SdkAppId: Integer
         # @param TaskId: 任务Id
         # @type TaskId: Integer
@@ -629,7 +629,7 @@ module TencentCloud
 
       # DescribeAutoCalloutTasks请求参数结构体
       class DescribeAutoCalloutTasksRequest < TencentCloud::Common::AbstractModel
-        # @param SdkAppId: 呼叫中心实例Id
+        # @param SdkAppId: 应用 ID（必填），可以查看 https://console.cloud.tencent.com/ccc
         # @type SdkAppId: Integer
         # @param PageSize: 分页大小
         # @type PageSize: Integer
@@ -742,7 +742,7 @@ module TencentCloud
 
       # DescribeCallInMetrics请求参数结构体
       class DescribeCallInMetricsRequest < TencentCloud::Common::AbstractModel
-        # @param SdkAppId: 实例ID
+        # @param SdkAppId: 应用 ID（必填），可以查看 https://console.cloud.tencent.com/ccc
         # @type SdkAppId: Integer
         # @param EnabledSkillGroup: 是否返回技能组维度信息，默认“是”
         # @type EnabledSkillGroup: Boolean
@@ -817,9 +817,9 @@ module TencentCloud
 
       # DescribeChatMessages请求参数结构体
       class DescribeChatMessagesRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例ID
+        # @param InstanceId: 实例 ID（废弃）
         # @type InstanceId: Integer
-        # @param SdkAppId: 应用ID
+        # @param SdkAppId: 应用 ID（必填），可以查看 https://console.cloud.tencent.com/ccc
         # @type SdkAppId: Integer
         # @param CdrId: 服务记录ID
         # @type CdrId: String
@@ -860,6 +860,7 @@ module TencentCloud
         # @param TotalCount: 总记录数
         # @type TotalCount: Integer
         # @param Messages: 消息列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Messages: Array
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -892,9 +893,9 @@ module TencentCloud
         # @type StartTimestamp: Integer
         # @param EndTimestamp: 结束时间
         # @type EndTimestamp: Integer
-        # @param InstanceId: 实例ID
+        # @param InstanceId: 实例 ID（废弃）
         # @type InstanceId: Integer
-        # @param SdkAppId: 应用ID
+        # @param SdkAppId: 应用 ID（必填），可以查看 https://console.cloud.tencent.com/ccc
         # @type SdkAppId: Integer
         # @param Limit: 返回记录条数 最大为100默认20
         # @type Limit: Integer
@@ -959,7 +960,7 @@ module TencentCloud
 
       # DescribePSTNActiveSessionList请求参数结构体
       class DescribePSTNActiveSessionListRequest < TencentCloud::Common::AbstractModel
-        # @param SdkAppId: 应用 ID
+        # @param SdkAppId: 应用 ID（必填），可以查看 https://console.cloud.tencent.com/ccc
         # @type SdkAppId: Integer
         # @param Offset: 数据偏移
         # @type Offset: Integer
@@ -1132,7 +1133,7 @@ module TencentCloud
 
       # DescribeSkillGroupInfoList请求参数结构体
       class DescribeSkillGroupInfoListRequest < TencentCloud::Common::AbstractModel
-        # @param SdkAppId: 应用ID
+        # @param SdkAppId: 应用 ID（必填），可以查看 https://console.cloud.tencent.com/ccc
         # @type SdkAppId: Integer
         # @param PageSize: 分页尺寸，上限 100
         # @type PageSize: Integer
@@ -1195,7 +1196,7 @@ module TencentCloud
 
       # DescribeStaffInfoList请求参数结构体
       class DescribeStaffInfoListRequest < TencentCloud::Common::AbstractModel
-        # @param SdkAppId: 应用ID
+        # @param SdkAppId: 应用 ID（必填），可以查看 https://console.cloud.tencent.com/ccc
         # @type SdkAppId: Integer
         # @param PageSize: 分页尺寸，上限 100
         # @type PageSize: Integer
@@ -1258,7 +1259,7 @@ module TencentCloud
 
       # DescribeStaffStatusMetrics请求参数结构体
       class DescribeStaffStatusMetricsRequest < TencentCloud::Common::AbstractModel
-        # @param SdkAppId: 实例ID
+        # @param SdkAppId: 应用 ID（必填），可以查看 https://console.cloud.tencent.com/ccc
         # @type SdkAppId: Integer
         # @param StaffList: 筛选坐席列表，默认不传返回全部坐席信息
         # @type StaffList: Array
@@ -1440,9 +1441,9 @@ module TencentCloud
 
       # DescribeTelSession请求参数结构体
       class DescribeTelSessionRequest < TencentCloud::Common::AbstractModel
-        # @param SdkAppId: 应用ID
+        # @param SdkAppId: 应用 ID（必填），可以查看 https://console.cloud.tencent.com/ccc
         # @type SdkAppId: Integer
-        # @param SessionId: 会话ID
+        # @param SessionId: 会话 ID
         # @type SessionId: String
 
         attr_accessor :SdkAppId, :SessionId
@@ -2527,7 +2528,7 @@ module TencentCloud
 
       # UnbindStaffSkillGroupList请求参数结构体
       class UnbindStaffSkillGroupListRequest < TencentCloud::Common::AbstractModel
-        # @param SdkAppId: 实例ID
+        # @param SdkAppId: 应用 ID（必填），可以查看 https://console.cloud.tencent.com/ccc
         # @type SdkAppId: Integer
         # @param StaffEmail: 客服邮箱
         # @type StaffEmail: String

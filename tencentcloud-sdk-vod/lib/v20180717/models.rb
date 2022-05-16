@@ -8317,6 +8317,62 @@ module TencentCloud
         end
       end
 
+      # DescribeLicenseUsageData请求参数结构体
+      class DescribeLicenseUsageDataRequest < TencentCloud::Common::AbstractModel
+        # @param StartTime: 起始日期。使用 [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#52)。
+        # @type StartTime: String
+        # @param EndTime: 结束日期，需大于等于起始日期。使用 [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#52)。
+        # @type EndTime: String
+        # @param LicenseType: License 类型，默认为 DRM 。目前支持的 License 类型包括：
+        # <li> DRM: DRM 加密播放 License</li>
+        # @type LicenseType: String
+        # @param SubAppId: 点播 [子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。
+        # @type SubAppId: Integer
+
+        attr_accessor :StartTime, :EndTime, :LicenseType, :SubAppId
+        
+        def initialize(starttime=nil, endtime=nil, licensetype=nil, subappid=nil)
+          @StartTime = starttime
+          @EndTime = endtime
+          @LicenseType = licensetype
+          @SubAppId = subappid
+        end
+
+        def deserialize(params)
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @LicenseType = params['LicenseType']
+          @SubAppId = params['SubAppId']
+        end
+      end
+
+      # DescribeLicenseUsageData返回参数结构体
+      class DescribeLicenseUsageDataResponse < TencentCloud::Common::AbstractModel
+        # @param LicenseUsageDataSet: License 查询次数统计数据，展示所查询 License 次数的明细数据。
+        # @type LicenseUsageDataSet: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :LicenseUsageDataSet, :RequestId
+        
+        def initialize(licenseusagedataset=nil, requestid=nil)
+          @LicenseUsageDataSet = licenseusagedataset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['LicenseUsageDataSet'].nil?
+            @LicenseUsageDataSet = []
+            params['LicenseUsageDataSet'].each do |i|
+              licenseusagedataitem_tmp = LicenseUsageDataItem.new
+              licenseusagedataitem_tmp.deserialize(i)
+              @LicenseUsageDataSet << licenseusagedataitem_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeMediaInfos请求参数结构体
       class DescribeMediaInfosRequest < TencentCloud::Common::AbstractModel
         # @param FileIds: 媒体文件 ID 列表，N 从 0 开始取值，最大 19。
@@ -11308,6 +11364,26 @@ module TencentCloud
           @Width = params['Width']
           @Height = params['Height']
           @RepeatType = params['RepeatType']
+        end
+      end
+
+      # License 请求次数统计数据。
+      class LicenseUsageDataItem < TencentCloud::Common::AbstractModel
+        # @param Time: 数据所在时间区间的开始时间，使用 [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#52)。如：当时间粒度为天，2018-12-01T00:00:00+08:00，表示2018年12月1日（含）到2018年12月2日（不含）区间。
+        # @type Time: String
+        # @param Count: License 请求次数。
+        # @type Count: Integer
+
+        attr_accessor :Time, :Count
+        
+        def initialize(time=nil, count=nil)
+          @Time = time
+          @Count = count
+        end
+
+        def deserialize(params)
+          @Time = params['Time']
+          @Count = params['Count']
         end
       end
 
