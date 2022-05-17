@@ -2704,7 +2704,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 云企付-查询账户余额
+        # 云企付-子商户银行卡余额查询
 
         # @param request: Request instance for QueryOpenBankBankAccountBalance.
         # @type request: :class:`Tencentcloud::cpdp::V20190820::QueryOpenBankBankAccountBalanceRequest`

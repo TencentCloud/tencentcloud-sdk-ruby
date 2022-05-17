@@ -63,15 +63,18 @@ module TencentCloud
         # @param ExternalId: 角色外部ID，可在[访问管理](https://console.cloud.tencent.com/cam/role)，点击角色名获取。
         # 长度在2到128之间，可包含大小写字符，数字以及特殊字符：=,.@:/-。 正则为：[\w+=,.@:\/-]*
         # @type ExternalId: String
+        # @param Tags: 会话标签列表。最多可以传递 50 个会话标签，不支持包含相同标签键。
+        # @type Tags: Array
 
-        attr_accessor :RoleArn, :RoleSessionName, :DurationSeconds, :Policy, :ExternalId
+        attr_accessor :RoleArn, :RoleSessionName, :DurationSeconds, :Policy, :ExternalId, :Tags
         
-        def initialize(rolearn=nil, rolesessionname=nil, durationseconds=nil, policy=nil, externalid=nil)
+        def initialize(rolearn=nil, rolesessionname=nil, durationseconds=nil, policy=nil, externalid=nil, tags=nil)
           @RoleArn = rolearn
           @RoleSessionName = rolesessionname
           @DurationSeconds = durationseconds
           @Policy = policy
           @ExternalId = externalid
+          @Tags = tags
         end
 
         def deserialize(params)
@@ -80,6 +83,14 @@ module TencentCloud
           @DurationSeconds = params['DurationSeconds']
           @Policy = params['Policy']
           @ExternalId = params['ExternalId']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
+            end
+          end
         end
       end
 
@@ -416,6 +427,26 @@ module TencentCloud
             end
           end
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 标签
+      class Tag < TencentCloud::Common::AbstractModel
+        # @param Key: 标签键，最长128个字符，区分大小写。
+        # @type Key: String
+        # @param Value: 标签值，最长256个字符，区分大小写。
+        # @type Value: String
+
+        attr_accessor :Key, :Value
+        
+        def initialize(key=nil, value=nil)
+          @Key = key
+          @Value = value
+        end
+
+        def deserialize(params)
+          @Key = params['Key']
+          @Value = params['Value']
         end
       end
 

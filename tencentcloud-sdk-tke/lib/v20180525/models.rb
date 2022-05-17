@@ -2278,6 +2278,33 @@ module TencentCloud
         end
       end
 
+      # CreatePrometheusAlertPolicy请求参数结构体
+      class CreatePrometheusAlertPolicyRequest < TencentCloud::Common::AbstractModel
+
+        
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # CreatePrometheusAlertPolicy返回参数结构体
+      class CreatePrometheusAlertPolicyResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreatePrometheusAlertRule请求参数结构体
       class CreatePrometheusAlertRuleRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例id
@@ -2348,6 +2375,33 @@ module TencentCloud
 
       # CreatePrometheusDashboard返回参数结构体
       class CreatePrometheusDashboardResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreatePrometheusTemp请求参数结构体
+      class CreatePrometheusTempRequest < TencentCloud::Common::AbstractModel
+
+        
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # CreatePrometheusTemp返回参数结构体
+      class CreatePrometheusTempResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -2925,6 +2979,33 @@ module TencentCloud
         end
       end
 
+      # DeletePrometheusAlertPolicy请求参数结构体
+      class DeletePrometheusAlertPolicyRequest < TencentCloud::Common::AbstractModel
+
+        
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DeletePrometheusAlertPolicy返回参数结构体
+      class DeletePrometheusAlertPolicyResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DeletePrometheusAlertRule请求参数结构体
       class DeletePrometheusAlertRuleRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例id
@@ -2947,6 +3028,60 @@ module TencentCloud
 
       # DeletePrometheusAlertRule返回参数结构体
       class DeletePrometheusAlertRuleResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeletePrometheusTemp请求参数结构体
+      class DeletePrometheusTempRequest < TencentCloud::Common::AbstractModel
+
+        
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DeletePrometheusTemp返回参数结构体
+      class DeletePrometheusTempResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeletePrometheusTempSync请求参数结构体
+      class DeletePrometheusTempSyncRequest < TencentCloud::Common::AbstractModel
+
+        
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DeletePrometheusTempSync返回参数结构体
+      class DeletePrometheusTempSyncResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -4921,6 +5056,33 @@ module TencentCloud
         end
       end
 
+      # DescribePrometheusAlertPolicy请求参数结构体
+      class DescribePrometheusAlertPolicyRequest < TencentCloud::Common::AbstractModel
+
+        
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribePrometheusAlertPolicy返回参数结构体
+      class DescribePrometheusAlertPolicyResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribePrometheusAlertRule请求参数结构体
       class DescribePrometheusAlertRuleRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例id
@@ -4984,6 +5146,33 @@ module TencentCloud
             end
           end
           @Total = params['Total']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribePrometheusClusterAgents请求参数结构体
+      class DescribePrometheusClusterAgentsRequest < TencentCloud::Common::AbstractModel
+
+        
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribePrometheusClusterAgents返回参数结构体
+      class DescribePrometheusClusterAgentsResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
           @RequestId = params['RequestId']
         end
       end
@@ -5057,6 +5246,33 @@ module TencentCloud
         end
       end
 
+      # DescribePrometheusInstancesOverview请求参数结构体
+      class DescribePrometheusInstancesOverviewRequest < TencentCloud::Common::AbstractModel
+
+        
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribePrometheusInstancesOverview返回参数结构体
+      class DescribePrometheusInstancesOverviewResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribePrometheusOverviews请求参数结构体
       class DescribePrometheusOverviewsRequest < TencentCloud::Common::AbstractModel
         # @param Offset: 用于分页
@@ -5122,6 +5338,33 @@ module TencentCloud
         end
       end
 
+      # DescribePrometheusRecordRules请求参数结构体
+      class DescribePrometheusRecordRulesRequest < TencentCloud::Common::AbstractModel
+
+        
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribePrometheusRecordRules返回参数结构体
+      class DescribePrometheusRecordRulesResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribePrometheusTargets请求参数结构体
       class DescribePrometheusTargetsRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例id
@@ -5182,6 +5425,60 @@ module TencentCloud
               @Jobs << prometheusjobtargets_tmp
             end
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribePrometheusTemp请求参数结构体
+      class DescribePrometheusTempRequest < TencentCloud::Common::AbstractModel
+
+        
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribePrometheusTemp返回参数结构体
+      class DescribePrometheusTempResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribePrometheusTempSync请求参数结构体
+      class DescribePrometheusTempSyncRequest < TencentCloud::Common::AbstractModel
+
+        
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribePrometheusTempSync返回参数结构体
+      class DescribePrometheusTempSyncResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
           @RequestId = params['RequestId']
         end
       end
@@ -5590,6 +5887,38 @@ module TencentCloud
         end
       end
 
+      # DisableClusterAudit请求参数结构体
+      class DisableClusterAuditRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群ID
+        # @type ClusterId: String
+
+        attr_accessor :ClusterId
+        
+        def initialize(clusterid=nil)
+          @ClusterId = clusterid
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+        end
+      end
+
+      # DisableClusterAudit返回参数结构体
+      class DisableClusterAuditResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DisableClusterDeletionProtection请求参数结构体
       class DisableClusterDeletionProtectionRequest < TencentCloud::Common::AbstractModel
         # @param ClusterId: 集群ID
@@ -5608,6 +5937,38 @@ module TencentCloud
 
       # DisableClusterDeletionProtection返回参数结构体
       class DisableClusterDeletionProtectionResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DisableEventPersistence请求参数结构体
+      class DisableEventPersistenceRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群ID
+        # @type ClusterId: String
+
+        attr_accessor :ClusterId
+        
+        def initialize(clusterid=nil)
+          @ClusterId = clusterid
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+        end
+      end
+
+      # DisableEventPersistence返回参数结构体
+      class DisableEventPersistenceResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -5991,6 +6352,46 @@ module TencentCloud
         end
       end
 
+      # EnableClusterAudit请求参数结构体
+      class EnableClusterAuditRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群ID
+        # @type ClusterId: String
+        # @param LogsetId: CLS日志集ID
+        # @type LogsetId: String
+        # @param TopicId: CLS日志主题ID
+        # @type TopicId: String
+
+        attr_accessor :ClusterId, :LogsetId, :TopicId
+        
+        def initialize(clusterid=nil, logsetid=nil, topicid=nil)
+          @ClusterId = clusterid
+          @LogsetId = logsetid
+          @TopicId = topicid
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @LogsetId = params['LogsetId']
+          @TopicId = params['TopicId']
+        end
+      end
+
+      # EnableClusterAudit返回参数结构体
+      class EnableClusterAuditResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # EnableClusterDeletionProtection请求参数结构体
       class EnableClusterDeletionProtectionRequest < TencentCloud::Common::AbstractModel
         # @param ClusterId: 集群ID
@@ -6009,6 +6410,46 @@ module TencentCloud
 
       # EnableClusterDeletionProtection返回参数结构体
       class EnableClusterDeletionProtectionResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # EnableEventPersistence请求参数结构体
+      class EnableEventPersistenceRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群ID
+        # @type ClusterId: String
+        # @param LogsetId: cls服务的logsetID
+        # @type LogsetId: String
+        # @param TopicId: cls服务的topicID
+        # @type TopicId: String
+
+        attr_accessor :ClusterId, :LogsetId, :TopicId
+        
+        def initialize(clusterid=nil, logsetid=nil, topicid=nil)
+          @ClusterId = clusterid
+          @LogsetId = logsetid
+          @TopicId = topicid
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @LogsetId = params['LogsetId']
+          @TopicId = params['TopicId']
+        end
+      end
+
+      # EnableEventPersistence返回参数结构体
+      class EnableEventPersistenceResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -6877,6 +7318,42 @@ module TencentCloud
         end
       end
 
+      # InstallLogAgent请求参数结构体
+      class InstallLogAgentRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: TKE集群ID
+        # @type ClusterId: String
+        # @param KubeletRootDir: kubelet根目录
+        # @type KubeletRootDir: String
+
+        attr_accessor :ClusterId, :KubeletRootDir
+        
+        def initialize(clusterid=nil, kubeletrootdir=nil)
+          @ClusterId = clusterid
+          @KubeletRootDir = kubeletrootdir
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @KubeletRootDir = params['KubeletRootDir']
+        end
+      end
+
+      # InstallLogAgent返回参数结构体
+      class InstallLogAgentResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 集群的实例信息
       class Instance < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例ID
@@ -7726,6 +8203,33 @@ module TencentCloud
 
       # ModifyNodePoolInstanceTypes返回参数结构体
       class ModifyNodePoolInstanceTypesResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyPrometheusAlertPolicy请求参数结构体
+      class ModifyPrometheusAlertPolicyRequest < TencentCloud::Common::AbstractModel
+
+        
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # ModifyPrometheusAlertPolicy返回参数结构体
+      class ModifyPrometheusAlertPolicyResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -9447,6 +9951,33 @@ module TencentCloud
         end
       end
 
+      # SyncPrometheusTemp请求参数结构体
+      class SyncPrometheusTempRequest < TencentCloud::Common::AbstractModel
+
+        
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # SyncPrometheusTemp返回参数结构体
+      class SyncPrometheusTempResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # SyncPrometheusTemplate请求参数结构体
       class SyncPrometheusTemplateRequest < TencentCloud::Common::AbstractModel
         # @param TemplateId: 实例id
@@ -9616,6 +10147,38 @@ module TencentCloud
 
         def deserialize(params)
           @Port = params['Port']
+        end
+      end
+
+      # UninstallLogAgent请求参数结构体
+      class UninstallLogAgentRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群ID
+        # @type ClusterId: String
+
+        attr_accessor :ClusterId
+        
+        def initialize(clusterid=nil)
+          @ClusterId = clusterid
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+        end
+      end
+
+      # UninstallLogAgent返回参数结构体
+      class UninstallLogAgentResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
         end
       end
 

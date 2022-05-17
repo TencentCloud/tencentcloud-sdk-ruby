@@ -10727,6 +10727,38 @@ module TencentCloud
         end
       end
 
+      # DisableFlowLogs请求参数结构体
+      class DisableFlowLogsRequest < TencentCloud::Common::AbstractModel
+        # @param FlowLogIds: 流日志Id。
+        # @type FlowLogIds: Array
+
+        attr_accessor :FlowLogIds
+        
+        def initialize(flowlogids=nil)
+          @FlowLogIds = flowlogids
+        end
+
+        def deserialize(params)
+          @FlowLogIds = params['FlowLogIds']
+        end
+      end
+
+      # DisableFlowLogs返回参数结构体
+      class DisableFlowLogsResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DisableGatewayFlowMonitor请求参数结构体
       class DisableGatewayFlowMonitorRequest < TencentCloud::Common::AbstractModel
         # @param GatewayId: 网关实例ID，目前我们支持的网关实例类型有，
@@ -11203,6 +11235,38 @@ module TencentCloud
 
       # EnableCcnRoutes返回参数结构体
       class EnableCcnRoutesResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # EnableFlowLogs请求参数结构体
+      class EnableFlowLogsRequest < TencentCloud::Common::AbstractModel
+        # @param FlowLogIds: 流日志Id。
+        # @type FlowLogIds: Array
+
+        attr_accessor :FlowLogIds
+        
+        def initialize(flowlogids=nil)
+          @FlowLogIds = flowlogids
+        end
+
+        def deserialize(params)
+          @FlowLogIds = params['FlowLogIds']
+        end
+      end
+
+      # EnableFlowLogs返回参数结构体
+      class EnableFlowLogsResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 

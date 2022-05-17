@@ -480,6 +480,92 @@ module TencentCloud
         end
       end
 
+      # DescribeGeneralMetricData请求参数结构体
+      class DescribeGeneralMetricDataRequest < TencentCloud::Common::AbstractModel
+        # @param Filters: 要过滤的维度信息，支持：service.name（服务名）、span.kind（客户端/服务端视角）为维度进行过滤。
+
+        # span.kind:
+
+        #        server:服务端视角
+        #        client:客户端视角
+
+        # 默认为服务端视角进行查询。
+        # @type Filters: Array
+        # @param Metrics: 需要查询的指标，不可自定义输入。支持：service_request_count（总请求）、service_duration（平均响应时间）的指标数据。
+        # @type Metrics: Array
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+        # @param ViewName: 视图名称
+        # @type ViewName: String
+        # @param GroupBy: 聚合维度，支持：service.name（服务名）、span.kind （客户端/服务端视角）维度进行聚合。
+        # @type GroupBy: Array
+        # @param StartTime: 起始时间的时间戳，单位为秒，只支持查询2天内最多1小时的指标数据。
+        # @type StartTime: Integer
+        # @param EndTime: 结束时间的时间戳，单位为秒，只支持查询2天内最多1小时的指标数据。
+        # @type EndTime: Integer
+        # @param Period: 聚合粒度，单位为秒，最小为60s，即一分钟的聚合粒度；如果为空或0则计算开始时间到截止时间的指标数据，上报其他值会报错。
+        # @type Period: Integer
+
+        attr_accessor :Filters, :Metrics, :InstanceId, :ViewName, :GroupBy, :StartTime, :EndTime, :Period
+        
+        def initialize(filters=nil, metrics=nil, instanceid=nil, viewname=nil, groupby=nil, starttime=nil, endtime=nil, period=nil)
+          @Filters = filters
+          @Metrics = metrics
+          @InstanceId = instanceid
+          @ViewName = viewname
+          @GroupBy = groupby
+          @StartTime = starttime
+          @EndTime = endtime
+          @Period = period
+        end
+
+        def deserialize(params)
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              generalfilter_tmp = GeneralFilter.new
+              generalfilter_tmp.deserialize(i)
+              @Filters << generalfilter_tmp
+            end
+          end
+          @Metrics = params['Metrics']
+          @InstanceId = params['InstanceId']
+          @ViewName = params['ViewName']
+          @GroupBy = params['GroupBy']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @Period = params['Period']
+        end
+      end
+
+      # DescribeGeneralMetricData返回参数结构体
+      class DescribeGeneralMetricDataResponse < TencentCloud::Common::AbstractModel
+        # @param Records: 指标结果集
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Records: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Records, :RequestId
+        
+        def initialize(records=nil, requestid=nil)
+          @Records = records
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Records'].nil?
+            @Records = []
+            params['Records'].each do |i|
+              line_tmp = Line.new
+              line_tmp.deserialize(i)
+              @Records << line_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeMetricRecords请求参数结构体
       class DescribeMetricRecordsRequest < TencentCloud::Common::AbstractModel
         # @param Filters: 过滤条件
@@ -691,6 +777,67 @@ module TencentCloud
           @Type = params['Type']
           @Key = params['Key']
           @Value = params['Value']
+        end
+      end
+
+      # 查询过滤参数
+      class GeneralFilter < TencentCloud::Common::AbstractModel
+        # @param Key: 过滤维度名
+        # @type Key: String
+        # @param Value: 过滤值
+        # @type Value: String
+
+        attr_accessor :Key, :Value
+        
+        def initialize(key=nil, value=nil)
+          @Key = key
+          @Value = value
+        end
+
+        def deserialize(params)
+          @Key = params['Key']
+          @Value = params['Value']
+        end
+      end
+
+      # 指标曲线数据
+      class Line < TencentCloud::Common::AbstractModel
+        # @param MetricName: 指标名
+        # @type MetricName: String
+        # @param MetricNameCN: 指标中文名
+        # @type MetricNameCN: String
+        # @param TimeSerial: 时间序列
+        # @type TimeSerial: Array
+        # @param DataSerial: 数据序列
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DataSerial: Array
+        # @param Tags: 维度列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Tags: Array
+
+        attr_accessor :MetricName, :MetricNameCN, :TimeSerial, :DataSerial, :Tags
+        
+        def initialize(metricname=nil, metricnamecn=nil, timeserial=nil, dataserial=nil, tags=nil)
+          @MetricName = metricname
+          @MetricNameCN = metricnamecn
+          @TimeSerial = timeserial
+          @DataSerial = dataserial
+          @Tags = tags
+        end
+
+        def deserialize(params)
+          @MetricName = params['MetricName']
+          @MetricNameCN = params['MetricNameCN']
+          @TimeSerial = params['TimeSerial']
+          @DataSerial = params['DataSerial']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              apmtag_tmp = ApmTag.new
+              apmtag_tmp.deserialize(i)
+              @Tags << apmtag_tmp
+            end
+          end
         end
       end
 

@@ -17,6 +17,174 @@
 module TencentCloud
   module Tmt
     module V20180321
+      # FileTranslate请求参数结构体
+      class FileTranslateRequest < TencentCloud::Common::AbstractModel
+        # @param Source: 源语言，支持
+        # zh:简体中文
+        # zh-HK：繁体中文
+        # zh-TW : 繁体中文
+        # zh-TR:  繁体中文
+        # en ：英语
+        # ar：阿拉伯语
+        # de：德语
+        # es：西班牙语
+        # fr：法语
+        # it：意大利语
+        # ja：日语
+        # pt：葡萄牙语
+        # ru：俄语
+        # ko：韩语
+        # km：高棉语
+        # lo：老挝语
+        # @type Source: String
+        # @param Target: 目标语言，各源语言的目标语言支持列表如下
+        # zh（简体中文）： en （英语）、 ar (阿拉伯语）、 de （德语）、  es（西班牙语） 、fr（法语）、  it（意大利语） 、 ja （日语）、 pt （葡萄牙语）、 ru（俄语）、  ko（韩语）、 km（高棉语）、   lo（老挝语）
+        # zh-HK（繁体中文） ：en （英语）、 ar (阿拉伯语）、 de （德语）、  es（西班牙语） 、fr（法语）、  it（意大利语） 、 ja （日语）、 pt （葡萄牙语）、 ru（俄语）、  ko（韩语）、 km（高棉语）、   lo（老挝语）
+        # zh-TW（繁体中文）：en （英语）、 ar (阿拉伯语）、 de （德语）、  es（西班牙语） 、fr（法语）、  it（意大利语） 、 ja （日语）、 pt （葡萄牙语）、 ru（俄语）、  ko（韩语）、 km（高棉语）、   lo（老挝语）
+        # zh-TR 繁体中文 : en （英语）、 ar (阿拉伯语）、 de （德语）、  es（西班牙语） 、fr（法语）、  it（意大利语） 、 ja （日语）、 pt （葡萄牙语）、 ru（俄语）、  ko（韩语）、 km（高棉语）、   lo（老挝语）
+        # en （英语） ：zh（简体中文）、zh-HK（繁体中文）、 zh-TW（繁体中文)、 zh-TR(繁体中文）、 ar (阿拉伯语）、 de （德语）、  es（西班牙语） 、fr（法语）、  it（意大利语） 、 ja （日语）、 pt （葡萄牙语）、 ru（俄语）、  ko（韩语）、 km（高棉语）、   lo（老挝语）
+        # ar（阿拉伯语） ：zh（简体中文）、zh-HK（繁体中文）、 zh-TW（繁体中文)、zh-TR(繁体中文）
+        # de（德语 ）：zh（简体中文）、zh-HK（繁体中文）、 zh-TW（繁体中文)、zh-TR(繁体中文）
+        # es（西班牙语）：zh（简体中文）、zh-HK（繁体中文）、 zh-TW（繁体中文)、zh-TR(繁体中文）
+        # fr（法语）：zh（简体中文）、zh-HK（繁体中文）、 zh-TW（繁体中文)、zh-TR(繁体中文）
+        # it（意大利语）：zh（简体中文）、zh-HK（繁体中文）、 zh-TW（繁体中文)、zh-TR(繁体中文）
+        # ja（日语）：zh（简体中文）、zh-HK（繁体中文）、 zh-TW（繁体中文)、zh-TR(繁体中文）
+        # pt（葡萄牙语）：zh（简体中文）、zh-HK（繁体中文）、 zh-TW（繁体中文)、zh-TR(繁体中文）
+        # ru（俄语）：zh（简体中文）、zh-HK（繁体中文）、 zh-TW（繁体中文)、zh-TR(繁体中文）
+        # ko（韩语）：zh（简体中文）、zh-HK（繁体中文）、 zh-TW（繁体中文)、zh-TR(繁体中文）
+        # km（高棉语）：zh（简体中文）、zh-HK（繁体中文）、 zh-TW（繁体中文)、zh-TR(繁体中文）
+        # lo（老挝语）：zh（简体中文）、zh-HK（繁体中文）、 zh-TW（繁体中文)、zh-TR(繁体中文）
+        # @type Target: String
+        # @param DocumentType: 文档类型：可支持以下几种(pdf,docx,pptx,xlsx,txt,xml,html,markdown,properties)
+        # @type DocumentType: String
+        # @param SourceType: 数据来源，0：url，1：直接传文件编码后数据
+        # @type SourceType: Integer
+        # @param Url: 需要翻译文件url
+        # @type Url: String
+        # @param BasicDocumentType: 原始文档类型
+        # @type BasicDocumentType: String
+        # @param CallbackUrl: 回调url
+        # @type CallbackUrl: String
+        # @param Data: 文件数据，当SourceType 值为1时必须填写，为0可不写。要base64编码(采用python语言时注意读取文件应该为string而不是byte，以byte格式读取后要decode()。编码后的数据不可带有回车换行符)。数据要小于5MB。
+        # @type Data: String
+
+        attr_accessor :Source, :Target, :DocumentType, :SourceType, :Url, :BasicDocumentType, :CallbackUrl, :Data
+        
+        def initialize(source=nil, target=nil, documenttype=nil, sourcetype=nil, url=nil, basicdocumenttype=nil, callbackurl=nil, data=nil)
+          @Source = source
+          @Target = target
+          @DocumentType = documenttype
+          @SourceType = sourcetype
+          @Url = url
+          @BasicDocumentType = basicdocumenttype
+          @CallbackUrl = callbackurl
+          @Data = data
+        end
+
+        def deserialize(params)
+          @Source = params['Source']
+          @Target = params['Target']
+          @DocumentType = params['DocumentType']
+          @SourceType = params['SourceType']
+          @Url = params['Url']
+          @BasicDocumentType = params['BasicDocumentType']
+          @CallbackUrl = params['CallbackUrl']
+          @Data = params['Data']
+        end
+      end
+
+      # FileTranslate返回参数结构体
+      class FileTranslateResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 文件翻译的请求返回结果，包含结果查询需要的TaskId
+        # @type Data: :class:`Tencentcloud::Tmt.v20180321.models.Task`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+        
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = Task.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 查询文件翻译任务
+      class GetFileTranslateData < TencentCloud::Common::AbstractModel
+        # @param TaskId: 任务ID
+        # @type TaskId: String
+        # @param Status: 状态
+        # @type Status: String
+        # @param FileData: 文件数据
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FileData: String
+        # @param Message: 错误提示
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Message: String
+
+        attr_accessor :TaskId, :Status, :FileData, :Message
+        
+        def initialize(taskid=nil, status=nil, filedata=nil, message=nil)
+          @TaskId = taskid
+          @Status = status
+          @FileData = filedata
+          @Message = message
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @Status = params['Status']
+          @FileData = params['FileData']
+          @Message = params['Message']
+        end
+      end
+
+      # GetFileTranslate请求参数结构体
+      class GetFileTranslateRequest < TencentCloud::Common::AbstractModel
+        # @param TaskId: 任务ID
+        # @type TaskId: String
+
+        attr_accessor :TaskId
+        
+        def initialize(taskid=nil)
+          @TaskId = taskid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+        end
+      end
+
+      # GetFileTranslate返回参数结构体
+      class GetFileTranslateResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 任务id
+        # @type Data: :class:`Tencentcloud::Tmt.v20180321.models.GetFileTranslateData`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+        
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = GetFileTranslateData.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 图片翻译结果
       class ImageRecord < TencentCloud::Common::AbstractModel
         # @param Value: 图片翻译结果
@@ -299,6 +467,22 @@ module TencentCloud
           @Target = params['Target']
           @VadSeq = params['VadSeq']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 文件翻译请求的返回数据
+      class Task < TencentCloud::Common::AbstractModel
+        # @param TaskId: 任务ID，可通过此ID在轮询接口获取识别状态与结果。注意：TaskId数据类型为字符串类型
+        # @type TaskId: String
+
+        attr_accessor :TaskId
+        
+        def initialize(taskid=nil)
+          @TaskId = taskid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
         end
       end
 

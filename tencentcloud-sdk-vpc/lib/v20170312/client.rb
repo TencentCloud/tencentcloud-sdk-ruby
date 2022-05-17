@@ -4444,6 +4444,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口（DisableFlowLogs）用于停止流日志。
+
+        # @param request: Request instance for DisableFlowLogs.
+        # @type request: :class:`Tencentcloud::vpc::V20170312::DisableFlowLogsRequest`
+        # @rtype: :class:`Tencentcloud::vpc::V20170312::DisableFlowLogsResponse`
+        def DisableFlowLogs(request)
+          body = send_request('DisableFlowLogs', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DisableFlowLogsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（DisableGatewayFlowMonitor）用于关闭网关流量监控。
 
         # @param request: Request instance for DisableGatewayFlowMonitor.
@@ -4749,6 +4773,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = EnableCcnRoutesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口（EnableFlowLogs）用于启动流日志。
+
+        # @param request: Request instance for EnableFlowLogs.
+        # @type request: :class:`Tencentcloud::vpc::V20170312::EnableFlowLogsRequest`
+        # @rtype: :class:`Tencentcloud::vpc::V20170312::EnableFlowLogsResponse`
+        def EnableFlowLogs(request)
+          body = send_request('EnableFlowLogs', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = EnableFlowLogsResponse.new
             model.deserialize(response['Response'])
             model
           else

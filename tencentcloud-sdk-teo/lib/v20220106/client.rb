@@ -149,6 +149,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询七层离线日志
+
+        # @param request: Request instance for DownloadL7Logs.
+        # @type request: :class:`Tencentcloud::teo::V20220106::DownloadL7LogsRequest`
+        # @rtype: :class:`Tencentcloud::teo::V20220106::DownloadL7LogsResponse`
+        def DownloadL7Logs(request)
+          body = send_request('DownloadL7Logs', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DownloadL7LogsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
 
       end
     end
