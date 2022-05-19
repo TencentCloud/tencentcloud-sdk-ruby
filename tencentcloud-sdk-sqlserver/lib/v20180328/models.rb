@@ -157,12 +157,15 @@ module TencentCloud
         # @type UserName: String
         # @param DBPrivileges: 账号权限变更信息
         # @type DBPrivileges: Array
+        # @param IsAdmin: 是否为管理员账户
+        # @type IsAdmin: Boolean
 
-        attr_accessor :UserName, :DBPrivileges
+        attr_accessor :UserName, :DBPrivileges, :IsAdmin
         
-        def initialize(username=nil, dbprivileges=nil)
+        def initialize(username=nil, dbprivileges=nil, isadmin=nil)
           @UserName = username
           @DBPrivileges = dbprivileges
+          @IsAdmin = isadmin
         end
 
         def deserialize(params)
@@ -175,6 +178,7 @@ module TencentCloud
               @DBPrivileges << dbprivilegemodifyinfo_tmp
             end
           end
+          @IsAdmin = params['IsAdmin']
         end
       end
 

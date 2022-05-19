@@ -2180,10 +2180,12 @@ module TencentCloud
         # @type SubDomain: String
         # @param RecordLineId: 线路的 ID，通过 API 记录线路获得，英文字符串，比如：10=1。参数RecordLineId优先级高于RecordLine，如果同时传递二者，优先使用RecordLineId参数。
         # @type RecordLineId: String
+        # @param Ttl: TTL值，如果不传，默认为域名的TTL值。
+        # @type Ttl: Integer
 
-        attr_accessor :Domain, :RecordId, :RecordLine, :Value, :DomainId, :SubDomain, :RecordLineId
+        attr_accessor :Domain, :RecordId, :RecordLine, :Value, :DomainId, :SubDomain, :RecordLineId, :Ttl
         
-        def initialize(domain=nil, recordid=nil, recordline=nil, value=nil, domainid=nil, subdomain=nil, recordlineid=nil)
+        def initialize(domain=nil, recordid=nil, recordline=nil, value=nil, domainid=nil, subdomain=nil, recordlineid=nil, ttl=nil)
           @Domain = domain
           @RecordId = recordid
           @RecordLine = recordline
@@ -2191,6 +2193,7 @@ module TencentCloud
           @DomainId = domainid
           @SubDomain = subdomain
           @RecordLineId = recordlineid
+          @Ttl = ttl
         end
 
         def deserialize(params)
@@ -2201,6 +2204,7 @@ module TencentCloud
           @DomainId = params['DomainId']
           @SubDomain = params['SubDomain']
           @RecordLineId = params['RecordLineId']
+          @Ttl = params['Ttl']
         end
       end
 

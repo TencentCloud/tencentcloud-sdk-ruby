@@ -732,15 +732,18 @@ module TencentCloud
         # @type ConsoleLogin: Integer
         # @param SessionDuration: 申请角色临时密钥的最长有效期限制(范围：0~43200)
         # @type SessionDuration: Integer
+        # @param Tags: 角色绑定标签
+        # @type Tags: Array
 
-        attr_accessor :RoleName, :PolicyDocument, :Description, :ConsoleLogin, :SessionDuration
+        attr_accessor :RoleName, :PolicyDocument, :Description, :ConsoleLogin, :SessionDuration, :Tags
         
-        def initialize(rolename=nil, policydocument=nil, description=nil, consolelogin=nil, sessionduration=nil)
+        def initialize(rolename=nil, policydocument=nil, description=nil, consolelogin=nil, sessionduration=nil, tags=nil)
           @RoleName = rolename
           @PolicyDocument = policydocument
           @Description = description
           @ConsoleLogin = consolelogin
           @SessionDuration = sessionduration
+          @Tags = tags
         end
 
         def deserialize(params)
@@ -749,6 +752,14 @@ module TencentCloud
           @Description = params['Description']
           @ConsoleLogin = params['ConsoleLogin']
           @SessionDuration = params['SessionDuration']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              roletags_tmp = RoleTags.new
+              roletags_tmp.deserialize(i)
+              @Tags << roletags_tmp
+            end
+          end
         end
       end
 
@@ -825,19 +836,30 @@ module TencentCloud
         # @type CustomSuffix: String
         # @param Description: 角色说明。
         # @type Description: String
+        # @param Tags: 角色绑定标签。
+        # @type Tags: Array
 
-        attr_accessor :QCSServiceName, :CustomSuffix, :Description
+        attr_accessor :QCSServiceName, :CustomSuffix, :Description, :Tags
         
-        def initialize(qcsservicename=nil, customsuffix=nil, description=nil)
+        def initialize(qcsservicename=nil, customsuffix=nil, description=nil, tags=nil)
           @QCSServiceName = qcsservicename
           @CustomSuffix = customsuffix
           @Description = description
+          @Tags = tags
         end
 
         def deserialize(params)
           @QCSServiceName = params['QCSServiceName']
           @CustomSuffix = params['CustomSuffix']
           @Description = params['Description']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              roletags_tmp = RoleTags.new
+              roletags_tmp.deserialize(i)
+              @Tags << roletags_tmp
+            end
+          end
         end
       end
 
@@ -1364,17 +1386,28 @@ module TencentCloud
         # @type Page: Integer
         # @param Rp: 每页行数，不能大于200
         # @type Rp: Integer
+        # @param Tags: 标签筛选
+        # @type Tags: Array
 
-        attr_accessor :Page, :Rp
+        attr_accessor :Page, :Rp, :Tags
         
-        def initialize(page=nil, rp=nil)
+        def initialize(page=nil, rp=nil, tags=nil)
           @Page = page
           @Rp = rp
+          @Tags = tags
         end
 
         def deserialize(params)
           @Page = params['Page']
           @Rp = params['Rp']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              roletags_tmp = RoleTags.new
+              roletags_tmp.deserialize(i)
+              @Tags << roletags_tmp
+            end
+          end
         end
       end
 
@@ -3943,10 +3976,13 @@ module TencentCloud
         # @param DeletionTaskId: 服务相关角色删除TaskId
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DeletionTaskId: String
+        # @param Tags: 标签
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Tags: Array
 
-        attr_accessor :RoleId, :RoleName, :PolicyDocument, :Description, :AddTime, :UpdateTime, :ConsoleLogin, :RoleType, :SessionDuration, :DeletionTaskId
+        attr_accessor :RoleId, :RoleName, :PolicyDocument, :Description, :AddTime, :UpdateTime, :ConsoleLogin, :RoleType, :SessionDuration, :DeletionTaskId, :Tags
         
-        def initialize(roleid=nil, rolename=nil, policydocument=nil, description=nil, addtime=nil, updatetime=nil, consolelogin=nil, roletype=nil, sessionduration=nil, deletiontaskid=nil)
+        def initialize(roleid=nil, rolename=nil, policydocument=nil, description=nil, addtime=nil, updatetime=nil, consolelogin=nil, roletype=nil, sessionduration=nil, deletiontaskid=nil, tags=nil)
           @RoleId = roleid
           @RoleName = rolename
           @PolicyDocument = policydocument
@@ -3957,6 +3993,7 @@ module TencentCloud
           @RoleType = roletype
           @SessionDuration = sessionduration
           @DeletionTaskId = deletiontaskid
+          @Tags = tags
         end
 
         def deserialize(params)
@@ -3970,6 +4007,34 @@ module TencentCloud
           @RoleType = params['RoleType']
           @SessionDuration = params['SessionDuration']
           @DeletionTaskId = params['DeletionTaskId']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              roletags_tmp = RoleTags.new
+              roletags_tmp.deserialize(i)
+              @Tags << roletags_tmp
+            end
+          end
+        end
+      end
+
+      # 角色标签类型
+      class RoleTags < TencentCloud::Common::AbstractModel
+        # @param Key: 标签键
+        # @type Key: String
+        # @param Value: 标签值
+        # @type Value: String
+
+        attr_accessor :Key, :Value
+        
+        def initialize(key=nil, value=nil)
+          @Key = key
+          @Value = value
+        end
+
+        def deserialize(params)
+          @Key = params['Key']
+          @Value = params['Value']
         end
       end
 
