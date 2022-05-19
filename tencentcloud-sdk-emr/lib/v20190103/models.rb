@@ -17,6 +17,45 @@
 module TencentCloud
   module Emr
     module V20190103
+      # AddUsersForUserManager请求参数结构体
+      class AddUsersForUserManagerRequest < TencentCloud::Common::AbstractModel
+        # @param UserManagerUserList: 用户信息列表
+        # @type UserManagerUserList: Array
+
+        attr_accessor :UserManagerUserList
+        
+        def initialize(usermanageruserlist=nil)
+          @UserManagerUserList = usermanageruserlist
+        end
+
+        def deserialize(params)
+          unless params['UserManagerUserList'].nil?
+            @UserManagerUserList = []
+            params['UserManagerUserList'].each do |i|
+              userinfoforusermanager_tmp = UserInfoForUserManager.new
+              userinfoforusermanager_tmp.deserialize(i)
+              @UserManagerUserList << userinfoforusermanager_tmp
+            end
+          end
+        end
+      end
+
+      # AddUsersForUserManager返回参数结构体
+      class AddUsersForUserManagerResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 引导脚本
       class BootstrapAction < TencentCloud::Common::AbstractModel
         # @param Path: 脚本位置，支持cos上的文件，且只支持https协议。
@@ -1079,6 +1118,80 @@ module TencentCloud
         end
       end
 
+      # DescribeInstancesList请求参数结构体
+      class DescribeInstancesListRequest < TencentCloud::Common::AbstractModel
+        # @param DisplayStrategy: 集群筛选策略。取值范围：<li>clusterList：表示查询除了已销毁集群之外的集群列表。</li><li>monitorManage：表示查询除了已销毁、创建中以及创建失败的集群之外的集群列表。</li><li>cloudHardwareManage/componentManage：目前这两个取值为预留取值，暂时和monitorManage表示同样的含义。</li>
+        # @type DisplayStrategy: String
+        # @param Offset: 页编号，默认值为0，表示第一页。
+        # @type Offset: Integer
+        # @param Limit: 每页返回数量，默认值为10，最大值为100。
+        # @type Limit: Integer
+        # @param OrderField: 排序字段。取值范围：<li>clusterId：表示按照实例ID排序。</li><li>addTime：表示按照实例创建时间排序。</li><li>status：表示按照实例的状态码排序。</li>
+        # @type OrderField: String
+        # @param Asc: 按照OrderField升序或者降序进行排序。取值范围：<li>0：表示降序。</li><li>1：表示升序。</li>默认值为0。
+        # @type Asc: Integer
+        # @param Filters: 自定义查询
+        # @type Filters: Array
+
+        attr_accessor :DisplayStrategy, :Offset, :Limit, :OrderField, :Asc, :Filters
+        
+        def initialize(displaystrategy=nil, offset=nil, limit=nil, orderfield=nil, asc=nil, filters=nil)
+          @DisplayStrategy = displaystrategy
+          @Offset = offset
+          @Limit = limit
+          @OrderField = orderfield
+          @Asc = asc
+          @Filters = filters
+        end
+
+        def deserialize(params)
+          @DisplayStrategy = params['DisplayStrategy']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @OrderField = params['OrderField']
+          @Asc = params['Asc']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filters_tmp = Filters.new
+              filters_tmp.deserialize(i)
+              @Filters << filters_tmp
+            end
+          end
+        end
+      end
+
+      # DescribeInstancesList返回参数结构体
+      class DescribeInstancesListResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCnt: 符合条件的实例总数。
+        # @type TotalCnt: Integer
+        # @param InstancesList: 集群实例列表
+        # @type InstancesList: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCnt, :InstancesList, :RequestId
+        
+        def initialize(totalcnt=nil, instanceslist=nil, requestid=nil)
+          @TotalCnt = totalcnt
+          @InstancesList = instanceslist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCnt = params['TotalCnt']
+          unless params['InstancesList'].nil?
+            @InstancesList = []
+            params['InstancesList'].each do |i|
+              emrlistinstance_tmp = EmrListInstance.new
+              emrlistinstance_tmp.deserialize(i)
+              @InstancesList << emrlistinstance_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeInstances请求参数结构体
       class DescribeInstancesRequest < TencentCloud::Common::AbstractModel
         # @param DisplayStrategy: 集群筛选策略。取值范围：
@@ -1345,6 +1458,150 @@ module TencentCloud
         end
       end
 
+      # 集群列表返回示例
+      class EmrListInstance < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群ID
+        # @type ClusterId: String
+        # @param StatusDesc: 状态描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StatusDesc: String
+        # @param ClusterName: 集群名字
+        # @type ClusterName: String
+        # @param ZoneId: 集群地域
+        # @type ZoneId: Integer
+        # @param AppId: 用户APPID
+        # @type AppId: Integer
+        # @param AddTime: 创建时间
+        # @type AddTime: String
+        # @param RunTime: 运行时间
+        # @type RunTime: String
+        # @param MasterIp: 集群IP
+        # @type MasterIp: String
+        # @param EmrVersion: 集群版本
+        # @type EmrVersion: String
+        # @param ChargeType: 集群计费类型
+        # @type ChargeType: Integer
+        # @param Id: emr ID
+        # @type Id: Integer
+        # @param ProductId: 产品ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProductId: Integer
+        # @param ProjectId: 项目ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProjectId: Integer
+        # @param RegionId: 区域
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RegionId: Integer
+        # @param SubnetId: 子网ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SubnetId: Integer
+        # @param VpcId: 网络ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VpcId: Integer
+        # @param Zone: 地区
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Zone: String
+        # @param Status: 状态码
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: Integer
+        # @param Tags: 实例标签
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Tags: Array
+        # @param AlarmInfo: 告警信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AlarmInfo: String
+        # @param IsWoodpeckerCluster: 是否是woodpecker集群
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsWoodpeckerCluster: Integer
+        # @param VpcName: Vpc中文
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VpcName: String
+        # @param SubnetName: 子网中文
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SubnetName: String
+        # @param UniqVpcId: 字符串VpcId
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UniqVpcId: String
+        # @param UniqSubnetId: 字符串子网
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UniqSubnetId: String
+        # @param ClusterClass: 集群类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClusterClass: String
+        # @param IsMultiZoneCluster: 是否为跨AZ集群
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsMultiZoneCluster: Boolean
+
+        attr_accessor :ClusterId, :StatusDesc, :ClusterName, :ZoneId, :AppId, :AddTime, :RunTime, :MasterIp, :EmrVersion, :ChargeType, :Id, :ProductId, :ProjectId, :RegionId, :SubnetId, :VpcId, :Zone, :Status, :Tags, :AlarmInfo, :IsWoodpeckerCluster, :VpcName, :SubnetName, :UniqVpcId, :UniqSubnetId, :ClusterClass, :IsMultiZoneCluster
+        
+        def initialize(clusterid=nil, statusdesc=nil, clustername=nil, zoneid=nil, appid=nil, addtime=nil, runtime=nil, masterip=nil, emrversion=nil, chargetype=nil, id=nil, productid=nil, projectid=nil, regionid=nil, subnetid=nil, vpcid=nil, zone=nil, status=nil, tags=nil, alarminfo=nil, iswoodpeckercluster=nil, vpcname=nil, subnetname=nil, uniqvpcid=nil, uniqsubnetid=nil, clusterclass=nil, ismultizonecluster=nil)
+          @ClusterId = clusterid
+          @StatusDesc = statusdesc
+          @ClusterName = clustername
+          @ZoneId = zoneid
+          @AppId = appid
+          @AddTime = addtime
+          @RunTime = runtime
+          @MasterIp = masterip
+          @EmrVersion = emrversion
+          @ChargeType = chargetype
+          @Id = id
+          @ProductId = productid
+          @ProjectId = projectid
+          @RegionId = regionid
+          @SubnetId = subnetid
+          @VpcId = vpcid
+          @Zone = zone
+          @Status = status
+          @Tags = tags
+          @AlarmInfo = alarminfo
+          @IsWoodpeckerCluster = iswoodpeckercluster
+          @VpcName = vpcname
+          @SubnetName = subnetname
+          @UniqVpcId = uniqvpcid
+          @UniqSubnetId = uniqsubnetid
+          @ClusterClass = clusterclass
+          @IsMultiZoneCluster = ismultizonecluster
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @StatusDesc = params['StatusDesc']
+          @ClusterName = params['ClusterName']
+          @ZoneId = params['ZoneId']
+          @AppId = params['AppId']
+          @AddTime = params['AddTime']
+          @RunTime = params['RunTime']
+          @MasterIp = params['MasterIp']
+          @EmrVersion = params['EmrVersion']
+          @ChargeType = params['ChargeType']
+          @Id = params['Id']
+          @ProductId = params['ProductId']
+          @ProjectId = params['ProjectId']
+          @RegionId = params['RegionId']
+          @SubnetId = params['SubnetId']
+          @VpcId = params['VpcId']
+          @Zone = params['Zone']
+          @Status = params['Status']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
+            end
+          end
+          @AlarmInfo = params['AlarmInfo']
+          @IsWoodpeckerCluster = params['IsWoodpeckerCluster']
+          @VpcName = params['VpcName']
+          @SubnetName = params['SubnetName']
+          @UniqVpcId = params['UniqVpcId']
+          @UniqSubnetId = params['UniqSubnetId']
+          @ClusterClass = params['ClusterClass']
+          @IsMultiZoneCluster = params['IsMultiZoneCluster']
+        end
+      end
+
       # EMR产品配置
       class EmrProductConfigOutter < TencentCloud::Common::AbstractModel
         # @param SoftInfo: 软件信息
@@ -1519,6 +1776,26 @@ module TencentCloud
           end
           @Service = params['Service']
           @InstanceId = params['InstanceId']
+        end
+      end
+
+      # Emr集群列表实例自定义查询过滤
+      class Filters < TencentCloud::Common::AbstractModel
+        # @param Name: 字段名称
+        # @type Name: String
+        # @param Values: 过滤字段值
+        # @type Values: Array
+
+        attr_accessor :Name, :Values
+        
+        def initialize(name=nil, values=nil)
+          @Name = name
+          @Values = values
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Values = params['Values']
         end
       end
 
@@ -4121,6 +4398,34 @@ module TencentCloud
           @CPUCores = params['CPUCores']
           @ResourceId = params['ResourceId']
           @InstanceType = params['InstanceType']
+        end
+      end
+
+      # 添加的用户信息列表
+      class UserInfoForUserManager < TencentCloud::Common::AbstractModel
+        # @param UserName: 用户名
+        # @type UserName: String
+        # @param UserGroup: 用户所属的组
+        # @type UserGroup: String
+        # @param PassWord: 密码
+        # @type PassWord: String
+        # @param ReMark: 备注
+        # @type ReMark: String
+
+        attr_accessor :UserName, :UserGroup, :PassWord, :ReMark
+        
+        def initialize(username=nil, usergroup=nil, password=nil, remark=nil)
+          @UserName = username
+          @UserGroup = usergroup
+          @PassWord = password
+          @ReMark = remark
+        end
+
+        def deserialize(params)
+          @UserName = params['UserName']
+          @UserGroup = params['UserGroup']
+          @PassWord = params['PassWord']
+          @ReMark = params['ReMark']
         end
       end
 

@@ -2437,12 +2437,27 @@ module TencentCloud
 
       # DescribeZones请求参数结构体
       class DescribeZonesRequest < TencentCloud::Common::AbstractModel
+        # @param OrderField: 可用区列表排序的依据字段。取值范围：
+        # <li>ZONE：依据可用区排序。
+        # <li>INSTANCE_DISPLAY_LABEL：依据可用区展示标签排序, 可用区展示标签按可选择程度, 升序排列为: ['HIDDEN', 'NORMAL', 'SELECTED']。
+        # 默认按可用区排序。
+        # @type OrderField: String
+        # @param Order: 输出可用区列表的排列顺序。取值范围：
+        # <li>ASC：升序排列。
+        # <li>DESC：降序排列。
+        # 默认按升序排列。
+        # @type Order: String
 
+        attr_accessor :OrderField, :Order
         
-        def initialize()
+        def initialize(orderfield=nil, order=nil)
+          @OrderField = orderfield
+          @Order = order
         end
 
         def deserialize(params)
+          @OrderField = params['OrderField']
+          @Order = params['Order']
         end
       end
 

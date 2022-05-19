@@ -2555,10 +2555,22 @@ module TencentCloud
         # @param UserAlias: 用户别名
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UserAlias: String
+        # @param SparkJobName: spark应用作业名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SparkJobName: String
+        # @param SparkJobId: spark应用作业Id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SparkJobId: String
+        # @param SparkJobFile: spark应用入口jar文件
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SparkJobFile: String
+        # @param UiUrl: spark ui url
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UiUrl: String
 
-        attr_accessor :DatabaseName, :DataAmount, :Id, :UsedTime, :OutputPath, :CreateTime, :State, :SQLType, :SQL, :ResultExpired, :RowAffectInfo, :DataSet, :Error, :Percentage, :OutputMessage, :TaskType, :ProgressDetail, :UpdateTime, :DataEngineId, :OperateUin, :DataEngineName, :InputType, :InputConf, :DataNumber, :CanDownload, :UserAlias
+        attr_accessor :DatabaseName, :DataAmount, :Id, :UsedTime, :OutputPath, :CreateTime, :State, :SQLType, :SQL, :ResultExpired, :RowAffectInfo, :DataSet, :Error, :Percentage, :OutputMessage, :TaskType, :ProgressDetail, :UpdateTime, :DataEngineId, :OperateUin, :DataEngineName, :InputType, :InputConf, :DataNumber, :CanDownload, :UserAlias, :SparkJobName, :SparkJobId, :SparkJobFile, :UiUrl
         
-        def initialize(databasename=nil, dataamount=nil, id=nil, usedtime=nil, outputpath=nil, createtime=nil, state=nil, sqltype=nil, sql=nil, resultexpired=nil, rowaffectinfo=nil, dataset=nil, error=nil, percentage=nil, outputmessage=nil, tasktype=nil, progressdetail=nil, updatetime=nil, dataengineid=nil, operateuin=nil, dataenginename=nil, inputtype=nil, inputconf=nil, datanumber=nil, candownload=nil, useralias=nil)
+        def initialize(databasename=nil, dataamount=nil, id=nil, usedtime=nil, outputpath=nil, createtime=nil, state=nil, sqltype=nil, sql=nil, resultexpired=nil, rowaffectinfo=nil, dataset=nil, error=nil, percentage=nil, outputmessage=nil, tasktype=nil, progressdetail=nil, updatetime=nil, dataengineid=nil, operateuin=nil, dataenginename=nil, inputtype=nil, inputconf=nil, datanumber=nil, candownload=nil, useralias=nil, sparkjobname=nil, sparkjobid=nil, sparkjobfile=nil, uiurl=nil)
           @DatabaseName = databasename
           @DataAmount = dataamount
           @Id = id
@@ -2585,6 +2597,10 @@ module TencentCloud
           @DataNumber = datanumber
           @CanDownload = candownload
           @UserAlias = useralias
+          @SparkJobName = sparkjobname
+          @SparkJobId = sparkjobid
+          @SparkJobFile = sparkjobfile
+          @UiUrl = uiurl
         end
 
         def deserialize(params)
@@ -2614,6 +2630,10 @@ module TencentCloud
           @DataNumber = params['DataNumber']
           @CanDownload = params['CanDownload']
           @UserAlias = params['UserAlias']
+          @SparkJobName = params['SparkJobName']
+          @SparkJobId = params['SparkJobId']
+          @SparkJobFile = params['SparkJobFile']
+          @UiUrl = params['UiUrl']
         end
       end
 

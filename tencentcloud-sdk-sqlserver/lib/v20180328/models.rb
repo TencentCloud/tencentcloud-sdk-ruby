@@ -29,15 +29,18 @@ module TencentCloud
         # @type Remark: String
         # @param IsAdmin: 是否为管理员账户，默认为否
         # @type IsAdmin: Boolean
+        # @param Authentication: win-windows鉴权,sql-sqlserver鉴权，不填模式兼容接口sqlserver鉴权
+        # @type Authentication: String
 
-        attr_accessor :UserName, :Password, :DBPrivileges, :Remark, :IsAdmin
+        attr_accessor :UserName, :Password, :DBPrivileges, :Remark, :IsAdmin, :Authentication
         
-        def initialize(username=nil, password=nil, dbprivileges=nil, remark=nil, isadmin=nil)
+        def initialize(username=nil, password=nil, dbprivileges=nil, remark=nil, isadmin=nil, authentication=nil)
           @UserName = username
           @Password = password
           @DBPrivileges = dbprivileges
           @Remark = remark
           @IsAdmin = isadmin
+          @Authentication = authentication
         end
 
         def deserialize(params)
@@ -53,6 +56,7 @@ module TencentCloud
           end
           @Remark = params['Remark']
           @IsAdmin = params['IsAdmin']
+          @Authentication = params['Authentication']
         end
       end
 
@@ -76,10 +80,14 @@ module TencentCloud
         # @type Dbs: Array
         # @param IsAdmin: 是否为管理员账户
         # @type IsAdmin: Boolean
+        # @param Authentication: win-windows鉴权,sql-sqlserver鉴权
+        # @type Authentication: String
+        # @param Host: win-windows鉴权账户需要host
+        # @type Host: String
 
-        attr_accessor :Name, :Remark, :CreateTime, :Status, :UpdateTime, :PassTime, :InternalStatus, :Dbs, :IsAdmin
+        attr_accessor :Name, :Remark, :CreateTime, :Status, :UpdateTime, :PassTime, :InternalStatus, :Dbs, :IsAdmin, :Authentication, :Host
         
-        def initialize(name=nil, remark=nil, createtime=nil, status=nil, updatetime=nil, passtime=nil, internalstatus=nil, dbs=nil, isadmin=nil)
+        def initialize(name=nil, remark=nil, createtime=nil, status=nil, updatetime=nil, passtime=nil, internalstatus=nil, dbs=nil, isadmin=nil, authentication=nil, host=nil)
           @Name = name
           @Remark = remark
           @CreateTime = createtime
@@ -89,6 +97,8 @@ module TencentCloud
           @InternalStatus = internalstatus
           @Dbs = dbs
           @IsAdmin = isadmin
+          @Authentication = authentication
+          @Host = host
         end
 
         def deserialize(params)
@@ -108,6 +118,8 @@ module TencentCloud
             end
           end
           @IsAdmin = params['IsAdmin']
+          @Authentication = params['Authentication']
+          @Host = params['Host']
         end
       end
 
@@ -3135,6 +3147,7 @@ module TencentCloud
         # @param Amount: 数据库数量
         # @type Amount: Integer
         # @param MigrateDBSet: 数据库名称数组
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MigrateDBSet: Array
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -7077,10 +7090,12 @@ module TencentCloud
         # @type HAType: String
         # @param MultiZones: 修改实例是否为跨可用区容灾，SameZones-修改为同可用区 MultiZones-修改为夸可用区
         # @type MultiZones: String
+        # @param WaitSwitch: 执行变配的方式，默认为 1。支持值包括：0 - 立刻执行，1 - 维护时间窗执行
+        # @type WaitSwitch: Integer
 
-        attr_accessor :InstanceId, :Memory, :Storage, :AutoVoucher, :VoucherIds, :Cpu, :DBVersion, :HAType, :MultiZones
+        attr_accessor :InstanceId, :Memory, :Storage, :AutoVoucher, :VoucherIds, :Cpu, :DBVersion, :HAType, :MultiZones, :WaitSwitch
         
-        def initialize(instanceid=nil, memory=nil, storage=nil, autovoucher=nil, voucherids=nil, cpu=nil, dbversion=nil, hatype=nil, multizones=nil)
+        def initialize(instanceid=nil, memory=nil, storage=nil, autovoucher=nil, voucherids=nil, cpu=nil, dbversion=nil, hatype=nil, multizones=nil, waitswitch=nil)
           @InstanceId = instanceid
           @Memory = memory
           @Storage = storage
@@ -7090,6 +7105,7 @@ module TencentCloud
           @DBVersion = dbversion
           @HAType = hatype
           @MultiZones = multizones
+          @WaitSwitch = waitswitch
         end
 
         def deserialize(params)
@@ -7102,6 +7118,7 @@ module TencentCloud
           @DBVersion = params['DBVersion']
           @HAType = params['HAType']
           @MultiZones = params['MultiZones']
+          @WaitSwitch = params['WaitSwitch']
         end
       end
 

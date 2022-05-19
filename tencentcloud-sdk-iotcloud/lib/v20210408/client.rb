@@ -1109,6 +1109,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口（GetAllVersion）用于获取所有的版本列表
+
+        # @param request: Request instance for GetAllVersion.
+        # @type request: :class:`Tencentcloud::iotcloud::V20210408::GetAllVersionRequest`
+        # @rtype: :class:`Tencentcloud::iotcloud::V20210408::GetAllVersionResponse`
+        def GetAllVersion(request)
+          body = send_request('GetAllVersion', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = GetAllVersionResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（GetCOSURL）用于获取固件存储在COS的URL
 
         # @param request: Request instance for GetCOSURL.
@@ -1143,6 +1167,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = GetUserResourceInfoResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口（ListFirmwares）用于获取固件列表
+
+        # @param request: Request instance for ListFirmwares.
+        # @type request: :class:`Tencentcloud::iotcloud::V20210408::ListFirmwaresRequest`
+        # @rtype: :class:`Tencentcloud::iotcloud::V20210408::ListFirmwaresResponse`
+        def ListFirmwares(request)
+          body = send_request('ListFirmwares', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ListFirmwaresResponse.new
             model.deserialize(response['Response'])
             model
           else

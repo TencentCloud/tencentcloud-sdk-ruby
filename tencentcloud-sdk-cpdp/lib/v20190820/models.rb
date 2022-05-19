@@ -6442,6 +6442,266 @@ module TencentCloud
         end
       end
 
+      # CreatePayRollPreOrder请求参数结构体
+      class CreatePayRollPreOrderRequest < TencentCloud::Common::AbstractModel
+        # @param OpenId: 用户在商户对应appid下的唯一标识
+        # @type OpenId: String
+        # @param SubMerchantId: 微信服务商下特约商户的商户号，由微信支付生成并下发
+        # @type SubMerchantId: String
+        # @param AuthNumber: 商户系统内部的商家核身单号，要求此参数只能由数字、大小写字母组成，在服务商内部唯一
+        # @type AuthNumber: String
+        # @param ProjectName: 该劳务活动的项目名称
+        # @type ProjectName: String
+        # @param CompanyName: 该工人所属的用工企业
+        # @type CompanyName: String
+        # @param WechatAppId: 是服务商在微信申请公众号/小程序或移动应用成功后分配的账号ID（与服务商主体一致）
+        # 当输入服务商Appid时，会校验其与服务商商户号的绑定关系。服务商APPID和与特约商户APPID至少输入一个，且必须要有拉起领薪卡小程序时使用的APPID
+        # @type WechatAppId: String
+        # @param WechatSubAppId: 特约商户在微信申请公众号/小程序或移动应用成功后分配的账号ID（与特约商户主体一致）
+        # 当输入特约商户Appid时，会校验其与特约商户号的绑定关系。服务商APPID和与特约商户APPID至少输入一个，且必须要有拉起领薪卡小程序时使用的APPID
+        # @type WechatSubAppId: String
+
+        attr_accessor :OpenId, :SubMerchantId, :AuthNumber, :ProjectName, :CompanyName, :WechatAppId, :WechatSubAppId
+        
+        def initialize(openid=nil, submerchantid=nil, authnumber=nil, projectname=nil, companyname=nil, wechatappid=nil, wechatsubappid=nil)
+          @OpenId = openid
+          @SubMerchantId = submerchantid
+          @AuthNumber = authnumber
+          @ProjectName = projectname
+          @CompanyName = companyname
+          @WechatAppId = wechatappid
+          @WechatSubAppId = wechatsubappid
+        end
+
+        def deserialize(params)
+          @OpenId = params['OpenId']
+          @SubMerchantId = params['SubMerchantId']
+          @AuthNumber = params['AuthNumber']
+          @ProjectName = params['ProjectName']
+          @CompanyName = params['CompanyName']
+          @WechatAppId = params['WechatAppId']
+          @WechatSubAppId = params['WechatSubAppId']
+        end
+      end
+
+      # CreatePayRollPreOrder返回参数结构体
+      class CreatePayRollPreOrderResponse < TencentCloud::Common::AbstractModel
+        # @param AuthNumber: 商户系统内部的商家核身单号，要求此参数只能由数字、大小写字母组成，在服务商内部唯一
+        # @type AuthNumber: String
+        # @param ExpireTime: Token有效时间，单位秒
+        # @type ExpireTime: Integer
+        # @param MerchantId: 微信服务商商户的商户号，由微信支付生成并下发
+        # @type MerchantId: String
+        # @param OpenId: 用户在商户对应appid下的唯一标识
+        # @type OpenId: String
+        # @param SubMerchantId: 微信服务商下特约商户的商户号，由微信支付生成并下发
+        # @type SubMerchantId: String
+        # @param Token: Token值
+        # @type Token: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :AuthNumber, :ExpireTime, :MerchantId, :OpenId, :SubMerchantId, :Token, :RequestId
+        
+        def initialize(authnumber=nil, expiretime=nil, merchantid=nil, openid=nil, submerchantid=nil, token=nil, requestid=nil)
+          @AuthNumber = authnumber
+          @ExpireTime = expiretime
+          @MerchantId = merchantid
+          @OpenId = openid
+          @SubMerchantId = submerchantid
+          @Token = token
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @AuthNumber = params['AuthNumber']
+          @ExpireTime = params['ExpireTime']
+          @MerchantId = params['MerchantId']
+          @OpenId = params['OpenId']
+          @SubMerchantId = params['SubMerchantId']
+          @Token = params['Token']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreatePayRollPreOrderWithAuth请求参数结构体
+      class CreatePayRollPreOrderWithAuthRequest < TencentCloud::Common::AbstractModel
+        # @param OpenId: 用户在商户对应appid下的唯一标识
+        # @type OpenId: String
+        # @param SubMerchantId: 微信服务商下特约商户的商户号，由微信支付生成并下发
+        # @type SubMerchantId: String
+        # @param AuthNumber: 商户系统内部的商家核身单号，要求此参数只能由数字、大小写字母组成，在服务商内部唯一
+        # @type AuthNumber: String
+        # @param ProjectName: 该劳务活动的项目名称
+        # @type ProjectName: String
+        # @param CompanyName: 该工人所属的用工企业
+        # @type CompanyName: String
+        # @param UserName: 用户实名信息，该字段需进行加密处理，加密方法详见[敏感信息加密说明](https://pay.weixin.qq.com/wiki/doc/apiv3_partner/wechatpay/wechatpay4_3.shtml)
+        # @type UserName: String
+        # @param IdNo: 用户证件号，该字段需进行加密处理，加密方法详见[敏感信息加密说明](https://pay.weixin.qq.com/wiki/doc/apiv3_partner/wechatpay/wechatpay4_3.shtml)
+        # @type IdNo: String
+        # @param EmploymentType: 微工卡服务仅支持用于与商户有用工关系的用户，需明确用工类型；参考值：
+        # LONG_TERM_EMPLOYMENT：长期用工，
+        # SHORT_TERM_EMPLOYMENT： 短期用工，
+        # COOPERATION_EMPLOYMENT：合作关系
+        # @type EmploymentType: String
+        # @param WechatAppId: 是服务商在微信申请公众号/小程序或移动应用成功后分配的账号ID（与服务商主体一致）
+        # 当输入服务商Appid时，会校验其与服务商商户号的绑定关系。服务商APPID和与特约商户APPID至少输入一个，且必须要有拉起领薪卡小程序时使用的APPID
+        # @type WechatAppId: String
+        # @param WechatSubAppId: 特约商户在微信申请公众号/小程序或移动应用成功后分配的账号ID（与特约商户主体一致）
+        # 当输入特约商户Appid时，会校验其与特约商户号的绑定关系。服务商APPID和与特约商户APPID至少输入一个，且必须要有拉起领薪卡小程序时使用的APPID
+        # @type WechatSubAppId: String
+
+        attr_accessor :OpenId, :SubMerchantId, :AuthNumber, :ProjectName, :CompanyName, :UserName, :IdNo, :EmploymentType, :WechatAppId, :WechatSubAppId
+        
+        def initialize(openid=nil, submerchantid=nil, authnumber=nil, projectname=nil, companyname=nil, username=nil, idno=nil, employmenttype=nil, wechatappid=nil, wechatsubappid=nil)
+          @OpenId = openid
+          @SubMerchantId = submerchantid
+          @AuthNumber = authnumber
+          @ProjectName = projectname
+          @CompanyName = companyname
+          @UserName = username
+          @IdNo = idno
+          @EmploymentType = employmenttype
+          @WechatAppId = wechatappid
+          @WechatSubAppId = wechatsubappid
+        end
+
+        def deserialize(params)
+          @OpenId = params['OpenId']
+          @SubMerchantId = params['SubMerchantId']
+          @AuthNumber = params['AuthNumber']
+          @ProjectName = params['ProjectName']
+          @CompanyName = params['CompanyName']
+          @UserName = params['UserName']
+          @IdNo = params['IdNo']
+          @EmploymentType = params['EmploymentType']
+          @WechatAppId = params['WechatAppId']
+          @WechatSubAppId = params['WechatSubAppId']
+        end
+      end
+
+      # CreatePayRollPreOrderWithAuth返回参数结构体
+      class CreatePayRollPreOrderWithAuthResponse < TencentCloud::Common::AbstractModel
+        # @param AuthNumber: 商户系统内部的商家核身单号，要求此参数只能由数字、大小写字母组成，在服务商内部唯一
+        # @type AuthNumber: String
+        # @param ExpireTime: Token有效时间，单位秒
+        # @type ExpireTime: Integer
+        # @param MerchantId: 微信服务商商户的商户号，由微信支付生成并下发
+        # @type MerchantId: String
+        # @param OpenId: 用户在商户对应appid下的唯一标识
+        # @type OpenId: String
+        # @param SubMerchantId: 微信服务商下特约商户的商户号，由微信支付生成并下发
+        # @type SubMerchantId: String
+        # @param Token: Token值
+        # @type Token: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :AuthNumber, :ExpireTime, :MerchantId, :OpenId, :SubMerchantId, :Token, :RequestId
+        
+        def initialize(authnumber=nil, expiretime=nil, merchantid=nil, openid=nil, submerchantid=nil, token=nil, requestid=nil)
+          @AuthNumber = authnumber
+          @ExpireTime = expiretime
+          @MerchantId = merchantid
+          @OpenId = openid
+          @SubMerchantId = submerchantid
+          @Token = token
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @AuthNumber = params['AuthNumber']
+          @ExpireTime = params['ExpireTime']
+          @MerchantId = params['MerchantId']
+          @OpenId = params['OpenId']
+          @SubMerchantId = params['SubMerchantId']
+          @Token = params['Token']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreatePayRollToken请求参数结构体
+      class CreatePayRollTokenRequest < TencentCloud::Common::AbstractModel
+        # @param OpenId: 用户在商户对应appid下的唯一标识
+        # @type OpenId: String
+        # @param SubMerchantId: 微信服务商下特约商户的商户号，由微信支付生成并下发
+        # @type SubMerchantId: String
+        # @param UserName: 用户实名信息，该字段需进行加密处理，加密方法详见[敏感信息加密说明](https://pay.weixin.qq.com/wiki/doc/apiv3_partner/wechatpay/wechatpay4_3.shtml)
+        # @type UserName: String
+        # @param IdNo: 用户证件号，该字段需进行加密处理，加密方法详见[敏感信息加密说明](https://pay.weixin.qq.com/wiki/doc/apiv3_partner/wechatpay/wechatpay4_3.shtml)
+        # @type IdNo: String
+        # @param EmploymentType: 微工卡服务仅支持用于与商户有用工关系的用户，需明确用工类型；参考值：
+        # LONG_TERM_EMPLOYMENT：长期用工，
+        # SHORT_TERM_EMPLOYMENT： 短期用工，
+        # COOPERATION_EMPLOYMENT：合作关系
+        # @type EmploymentType: String
+        # @param WechatAppId: 是服务商在微信申请公众号/小程序或移动应用成功后分配的账号ID（与服务商主体一致）
+        # 当输入服务商Appid时，会校验其与服务商商户号的绑定关系。服务商APPID和与特约商户APPID至少输入一个，且必须要有拉起领薪卡小程序时使用的APPID
+        # @type WechatAppId: String
+        # @param WechatSubAppId: 特约商户在微信申请公众号/小程序或移动应用成功后分配的账号ID（与特约商户主体一致）
+        # 当输入特约商户Appid时，会校验其与特约商户号的绑定关系。服务商APPID和与特约商户APPID至少输入一个，且必须要有拉起领薪卡小程序时使用的APPID
+        # @type WechatSubAppId: String
+
+        attr_accessor :OpenId, :SubMerchantId, :UserName, :IdNo, :EmploymentType, :WechatAppId, :WechatSubAppId
+        
+        def initialize(openid=nil, submerchantid=nil, username=nil, idno=nil, employmenttype=nil, wechatappid=nil, wechatsubappid=nil)
+          @OpenId = openid
+          @SubMerchantId = submerchantid
+          @UserName = username
+          @IdNo = idno
+          @EmploymentType = employmenttype
+          @WechatAppId = wechatappid
+          @WechatSubAppId = wechatsubappid
+        end
+
+        def deserialize(params)
+          @OpenId = params['OpenId']
+          @SubMerchantId = params['SubMerchantId']
+          @UserName = params['UserName']
+          @IdNo = params['IdNo']
+          @EmploymentType = params['EmploymentType']
+          @WechatAppId = params['WechatAppId']
+          @WechatSubAppId = params['WechatSubAppId']
+        end
+      end
+
+      # CreatePayRollToken返回参数结构体
+      class CreatePayRollTokenResponse < TencentCloud::Common::AbstractModel
+        # @param ExpireTime: Token有效时间，单位秒
+        # @type ExpireTime: Integer
+        # @param MerchantId: 微信服务商商户的商户号，由微信支付生成并下发
+        # @type MerchantId: String
+        # @param OpenId: 用户在商户对应appid下的唯一标识
+        # @type OpenId: String
+        # @param SubMerchantId: 微信服务商下特约商户的商户号，由微信支付生成并下发
+        # @type SubMerchantId: String
+        # @param Token: Token值
+        # @type Token: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ExpireTime, :MerchantId, :OpenId, :SubMerchantId, :Token, :RequestId
+        
+        def initialize(expiretime=nil, merchantid=nil, openid=nil, submerchantid=nil, token=nil, requestid=nil)
+          @ExpireTime = expiretime
+          @MerchantId = merchantid
+          @OpenId = openid
+          @SubMerchantId = submerchantid
+          @Token = token
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ExpireTime = params['ExpireTime']
+          @MerchantId = params['MerchantId']
+          @OpenId = params['OpenId']
+          @SubMerchantId = params['SubMerchantId']
+          @Token = params['Token']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 创建红票明细
       class CreateRedInvoiceItem < TencentCloud::Common::AbstractModel
         # @param OrderId: 订单号
@@ -8775,6 +9035,210 @@ module TencentCloud
         end
       end
 
+      # GetPayRollAuthList请求参数结构体
+      class GetPayRollAuthListRequest < TencentCloud::Common::AbstractModel
+        # @param OpenId: 用户在商户对应appid下的唯一标识
+        # @type OpenId: String
+        # @param SubMerchantId: 微信服务商下特约商户的商户号，由微信支付生成并下发
+        # @type SubMerchantId: String
+        # @param AuthDate: 核身日期，一次只能查询一天，最久可查询90天内的记录，格式为YYYY-MM-DD
+        # @type AuthDate: String
+        # @param Offset: 非负整数，表示该次请求资源的起始位置，从0开始计数
+        # @type Offset: Integer
+        # @param Limit: 非0非负的整数，该次请求可返回的最大资源条数，默认值为10，最大支持10条
+        # @type Limit: Integer
+        # @param WechatAppId: 是服务商在微信申请公众号/小程序或移动应用成功后分配的账号ID（与服务商主体一致）
+        # 当输入服务商Appid时，会校验其与服务商商户号的绑定关系。服务商APPID和与特约商户APPID至少输入一个，且必须要有拉起领薪卡小程序时使用的APPID
+        # @type WechatAppId: String
+        # @param WechatSubAppId: 特约商户在微信申请公众号/小程序或移动应用成功后分配的账号ID（与特约商户主体一致）
+        # 当输入特约商户Appid时，会校验其与特约商户号的绑定关系。服务商APPID和与特约商户APPID至少输入一个，且必须要有拉起领薪卡小程序时使用的APPID
+        # @type WechatSubAppId: String
+        # @param AuthStatus: 核身状态，列表查询仅提供成功状态的核身记录查询，故此字段固定AUTHENTICATE_SUCCESS即可
+        # @type AuthStatus: String
+
+        attr_accessor :OpenId, :SubMerchantId, :AuthDate, :Offset, :Limit, :WechatAppId, :WechatSubAppId, :AuthStatus
+        
+        def initialize(openid=nil, submerchantid=nil, authdate=nil, offset=nil, limit=nil, wechatappid=nil, wechatsubappid=nil, authstatus=nil)
+          @OpenId = openid
+          @SubMerchantId = submerchantid
+          @AuthDate = authdate
+          @Offset = offset
+          @Limit = limit
+          @WechatAppId = wechatappid
+          @WechatSubAppId = wechatsubappid
+          @AuthStatus = authstatus
+        end
+
+        def deserialize(params)
+          @OpenId = params['OpenId']
+          @SubMerchantId = params['SubMerchantId']
+          @AuthDate = params['AuthDate']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @WechatAppId = params['WechatAppId']
+          @WechatSubAppId = params['WechatSubAppId']
+          @AuthStatus = params['AuthStatus']
+        end
+      end
+
+      # GetPayRollAuthList返回参数结构体
+      class GetPayRollAuthListResponse < TencentCloud::Common::AbstractModel
+        # @param Results: 核身结果列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Results: Array
+        # @param Total: 总记录条数
+        # @type Total: Integer
+        # @param Offset: 记录起始位置，该次请求资源的起始位置，请求中包含偏移量时应答消息返回相同偏移量，否则返回默认值0
+        # @type Offset: Integer
+        # @param Limit: 本次返回条数
+        # @type Limit: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Results, :Total, :Offset, :Limit, :RequestId
+        
+        def initialize(results=nil, total=nil, offset=nil, limit=nil, requestid=nil)
+          @Results = results
+          @Total = total
+          @Offset = offset
+          @Limit = limit
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Results'].nil?
+            @Results = []
+            params['Results'].each do |i|
+              payrollauthresult_tmp = PayRollAuthResult.new
+              payrollauthresult_tmp.deserialize(i)
+              @Results << payrollauthresult_tmp
+            end
+          end
+          @Total = params['Total']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # GetPayRollAuth请求参数结构体
+      class GetPayRollAuthRequest < TencentCloud::Common::AbstractModel
+        # @param OpenId: 用户在商户对应appid下的唯一标识
+        # @type OpenId: String
+        # @param SubMerchantId: 微信服务商下特约商户的商户号，由微信支付生成并下发
+        # @type SubMerchantId: String
+        # @param WechatAppId: 是服务商在微信申请公众号/小程序或移动应用成功后分配的账号ID（与服务商主体一致）
+        # 当输入服务商Appid时，会校验其与服务商商户号的绑定关系。服务商APPID和与特约商户APPID至少输入一个，且必须要有拉起领薪卡小程序时使用的APPID
+        # @type WechatAppId: String
+        # @param WechatSubAppId: 特约商户在微信申请公众号/小程序或移动应用成功后分配的账号ID（与特约商户主体一致）
+        # 当输入特约商户Appid时，会校验其与特约商户号的绑定关系。服务商APPID和与特约商户APPID至少输入一个，且必须要有拉起领薪卡小程序时使用的APPID
+        # @type WechatSubAppId: String
+
+        attr_accessor :OpenId, :SubMerchantId, :WechatAppId, :WechatSubAppId
+        
+        def initialize(openid=nil, submerchantid=nil, wechatappid=nil, wechatsubappid=nil)
+          @OpenId = openid
+          @SubMerchantId = submerchantid
+          @WechatAppId = wechatappid
+          @WechatSubAppId = wechatsubappid
+        end
+
+        def deserialize(params)
+          @OpenId = params['OpenId']
+          @SubMerchantId = params['SubMerchantId']
+          @WechatAppId = params['WechatAppId']
+          @WechatSubAppId = params['WechatSubAppId']
+        end
+      end
+
+      # GetPayRollAuth返回参数结构体
+      class GetPayRollAuthResponse < TencentCloud::Common::AbstractModel
+        # @param AuthStatus: 授权状态：
+        # UNAUTHORIZED：未授权
+        # AUTHORIZED：已授权
+        # DEAUTHORIZED：已取消授权
+        # @type AuthStatus: String
+        # @param AuthTime: 授权时间，遵循[rfc3339](https://datatracker.ietf.org/doc/html/rfc3339)标准格式，格式为YYYY-MM-DDTHH:mm:ss.sss+TIMEZONE，空字符串等同null
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AuthTime: String
+        # @param CancelAuthTime: 授权时间，遵循[rfc3339](https://datatracker.ietf.org/doc/html/rfc3339)标准格式，格式为YYYY-MM-DDTHH:mm:ss.sss+TIMEZONE，空字符串等同null
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CancelAuthTime: String
+        # @param MerchantId: 微信服务商商户的商户号，由微信支付生成并下发
+        # @type MerchantId: String
+        # @param OpenId: 用户在商户对应appid下的唯一标识
+        # @type OpenId: String
+        # @param SubMerchantId: 微信服务商下特约商户的商户号，由微信支付生成并下发
+        # @type SubMerchantId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :AuthStatus, :AuthTime, :CancelAuthTime, :MerchantId, :OpenId, :SubMerchantId, :RequestId
+        
+        def initialize(authstatus=nil, authtime=nil, cancelauthtime=nil, merchantid=nil, openid=nil, submerchantid=nil, requestid=nil)
+          @AuthStatus = authstatus
+          @AuthTime = authtime
+          @CancelAuthTime = cancelauthtime
+          @MerchantId = merchantid
+          @OpenId = openid
+          @SubMerchantId = submerchantid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @AuthStatus = params['AuthStatus']
+          @AuthTime = params['AuthTime']
+          @CancelAuthTime = params['CancelAuthTime']
+          @MerchantId = params['MerchantId']
+          @OpenId = params['OpenId']
+          @SubMerchantId = params['SubMerchantId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # GetPayRollAuthResult请求参数结构体
+      class GetPayRollAuthResultRequest < TencentCloud::Common::AbstractModel
+        # @param AuthNumber: 商户系统内部的商家核身单号，要求此参数只能由数字、大小写字母组成，在服务商内部唯一
+        # @type AuthNumber: String
+        # @param SubMerchantId: 微信服务商下特约商户的商户号，由微信支付生成并下发
+        # @type SubMerchantId: String
+
+        attr_accessor :AuthNumber, :SubMerchantId
+        
+        def initialize(authnumber=nil, submerchantid=nil)
+          @AuthNumber = authnumber
+          @SubMerchantId = submerchantid
+        end
+
+        def deserialize(params)
+          @AuthNumber = params['AuthNumber']
+          @SubMerchantId = params['SubMerchantId']
+        end
+      end
+
+      # GetPayRollAuthResult返回参数结构体
+      class GetPayRollAuthResultResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 核身结果
+        # @type Result: :class:`Tencentcloud::Cpdp.v20190820.models.PayRollAuthResult`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+        
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Result'].nil?
+            @Result = PayRollAuthResult.new
+            @Result.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 会员间交易明细信息
       class MemberTransactionItem < TencentCloud::Common::AbstractModel
         # @param TransType: 交易类型。
@@ -10140,6 +10604,68 @@ module TencentCloud
           @WechatSignType = params['WechatSignType']
           @WechatPackage = params['WechatPackage']
           @WechatPaySign = params['WechatPaySign']
+        end
+      end
+
+      # 微工卡核身结果
+      class PayRollAuthResult < TencentCloud::Common::AbstractModel
+        # @param AuthFailedReason: 结果为核身失败时的原因描述，仅在失败记录返回，空字符串等同null
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AuthFailedReason: String
+        # @param AuthNumber: 商户系统内部的商家核身单号，要求此参数只能由数字、大小写字母组成，在服务商内部唯一
+        # @type AuthNumber: String
+        # @param AuthScene: 核身渠道，发起核身时的来源渠道，如通过小程序，硬件设备等
+        # FROM_MINI_APP：来自小程序方式核身
+        # FROM_HARDWARE：来自硬件设备方式核身
+        # @type AuthScene: String
+        # @param AuthSource: 核身渠道标识，用于定位渠道具体来源，如果是扫码打卡渠道标识就是具体的小程序appid，若是硬件设备，则是设备的序列号等
+        # @type AuthSource: String
+        # @param AuthStatus: 核身状态
+        # AUTHENTICATE_PROCESSING：核身中
+        # AUTHENTICATE_SUCCESS：核身成功
+        # AUTHENTICATE_FAILED：核身失败
+        # @type AuthStatus: String
+        # @param AuthTime: 核身时间，遵循[rfc3339](https://datatracker.ietf.org/doc/html/rfc3339)标准格式，格式为YYYY-MM-DDTHH:mm:ss.sss+TIMEZONE
+        # @type AuthTime: String
+        # @param CompanyName: 该用户所属的单位名称
+        # @type CompanyName: String
+        # @param MerchantId: 微信服务商商户的商户号，由微信支付生成并下发
+        # @type MerchantId: String
+        # @param OpenId: 用户在商户对应appid下的唯一标识
+        # @type OpenId: String
+        # @param ProjectName: 该项目的名称
+        # @type ProjectName: String
+        # @param SubMerchantId: 微信服务商下特约商户的商户号，由微信支付生成并下发
+        # @type SubMerchantId: String
+
+        attr_accessor :AuthFailedReason, :AuthNumber, :AuthScene, :AuthSource, :AuthStatus, :AuthTime, :CompanyName, :MerchantId, :OpenId, :ProjectName, :SubMerchantId
+        
+        def initialize(authfailedreason=nil, authnumber=nil, authscene=nil, authsource=nil, authstatus=nil, authtime=nil, companyname=nil, merchantid=nil, openid=nil, projectname=nil, submerchantid=nil)
+          @AuthFailedReason = authfailedreason
+          @AuthNumber = authnumber
+          @AuthScene = authscene
+          @AuthSource = authsource
+          @AuthStatus = authstatus
+          @AuthTime = authtime
+          @CompanyName = companyname
+          @MerchantId = merchantid
+          @OpenId = openid
+          @ProjectName = projectname
+          @SubMerchantId = submerchantid
+        end
+
+        def deserialize(params)
+          @AuthFailedReason = params['AuthFailedReason']
+          @AuthNumber = params['AuthNumber']
+          @AuthScene = params['AuthScene']
+          @AuthSource = params['AuthSource']
+          @AuthStatus = params['AuthStatus']
+          @AuthTime = params['AuthTime']
+          @CompanyName = params['CompanyName']
+          @MerchantId = params['MerchantId']
+          @OpenId = params['OpenId']
+          @ProjectName = params['ProjectName']
+          @SubMerchantId = params['SubMerchantId']
         end
       end
 

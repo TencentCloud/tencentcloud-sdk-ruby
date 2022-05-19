@@ -4671,7 +4671,7 @@ module TencentCloud
         # @type Limit: Integer
         # @param GroupType: 分组类型。 ms： 微服务分组； external:外部Api分组
         # @type GroupType: String
-        # @param AuthType: 鉴权类型。 secret： 秘钥鉴权； none:无鉴权
+        # @param AuthType: 鉴权类型。 secret： 密钥鉴权； none:无鉴权
         # @type AuthType: String
         # @param Status: 发布状态, drafted: 未发布。 released: 发布
         # @type Status: String
@@ -4712,6 +4712,7 @@ module TencentCloud
       # DescribeApiGroups返回参数结构体
       class DescribeApiGroupsResponse < TencentCloud::Common::AbstractModel
         # @param Result: 翻页结构体
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Result: :class:`Tencentcloud::Tsf.v20180326.models.TsfPageApiGroupInfo`
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

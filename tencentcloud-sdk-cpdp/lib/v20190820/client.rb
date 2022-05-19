@@ -1021,6 +1021,78 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 务工卡-核身预下单
+
+        # @param request: Request instance for CreatePayRollPreOrder.
+        # @type request: :class:`Tencentcloud::cpdp::V20190820::CreatePayRollPreOrderRequest`
+        # @rtype: :class:`Tencentcloud::cpdp::V20190820::CreatePayRollPreOrderResponse`
+        def CreatePayRollPreOrder(request)
+          body = send_request('CreatePayRollPreOrder', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreatePayRollPreOrderResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 务工卡-核身预下单带授权
+
+        # @param request: Request instance for CreatePayRollPreOrderWithAuth.
+        # @type request: :class:`Tencentcloud::cpdp::V20190820::CreatePayRollPreOrderWithAuthRequest`
+        # @rtype: :class:`Tencentcloud::cpdp::V20190820::CreatePayRollPreOrderWithAuthResponse`
+        def CreatePayRollPreOrderWithAuth(request)
+          body = send_request('CreatePayRollPreOrderWithAuth', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreatePayRollPreOrderWithAuthResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 务工卡-生成授权令牌
+
+        # @param request: Request instance for CreatePayRollToken.
+        # @type request: :class:`Tencentcloud::cpdp::V20190820::CreatePayRollTokenRequest`
+        # @rtype: :class:`Tencentcloud::cpdp::V20190820::CreatePayRollTokenResponse`
+        def CreatePayRollToken(request)
+          body = send_request('CreatePayRollToken', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreatePayRollTokenResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 智慧零售-发票红冲
 
         # @param request: Request instance for CreateRedInvoice.
@@ -1585,6 +1657,78 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = GetDistributeBillDownloadUrlResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 务工卡-查询授权关系
+
+        # @param request: Request instance for GetPayRollAuth.
+        # @type request: :class:`Tencentcloud::cpdp::V20190820::GetPayRollAuthRequest`
+        # @rtype: :class:`Tencentcloud::cpdp::V20190820::GetPayRollAuthResponse`
+        def GetPayRollAuth(request)
+          body = send_request('GetPayRollAuth', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = GetPayRollAuthResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 务工卡-查询核身记录
+
+        # @param request: Request instance for GetPayRollAuthList.
+        # @type request: :class:`Tencentcloud::cpdp::V20190820::GetPayRollAuthListRequest`
+        # @rtype: :class:`Tencentcloud::cpdp::V20190820::GetPayRollAuthListResponse`
+        def GetPayRollAuthList(request)
+          body = send_request('GetPayRollAuthList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = GetPayRollAuthListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 务工卡-获取核身结果
+
+        # @param request: Request instance for GetPayRollAuthResult.
+        # @type request: :class:`Tencentcloud::cpdp::V20190820::GetPayRollAuthResultRequest`
+        # @rtype: :class:`Tencentcloud::cpdp::V20190820::GetPayRollAuthResultResponse`
+        def GetPayRollAuthResult(request)
+          body = send_request('GetPayRollAuthResult', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = GetPayRollAuthResultResponse.new
             model.deserialize(response['Response'])
             model
           else

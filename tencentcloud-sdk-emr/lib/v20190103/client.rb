@@ -29,6 +29,30 @@ module TencentCloud
         end
 
 
+        # 新增用户列表（用户管理）
+
+        # @param request: Request instance for AddUsersForUserManager.
+        # @type request: :class:`Tencentcloud::emr::V20190103::AddUsersForUserManagerRequest`
+        # @rtype: :class:`Tencentcloud::emr::V20190103::AddUsersForUserManagerResponse`
+        def AddUsersForUserManager(request)
+          body = send_request('AddUsersForUserManager', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = AddUsersForUserManagerResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 创建EMR集群实例
 
         # @param request: Request instance for CreateInstance.
@@ -135,6 +159,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeInstancesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # EMR集群实例列表查询
+
+        # @param request: Request instance for DescribeInstancesList.
+        # @type request: :class:`Tencentcloud::emr::V20190103::DescribeInstancesListRequest`
+        # @rtype: :class:`Tencentcloud::emr::V20190103::DescribeInstancesListResponse`
+        def DescribeInstancesList(request)
+          body = send_request('DescribeInstancesList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeInstancesListResponse.new
             model.deserialize(response['Response'])
             model
           else
