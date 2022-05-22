@@ -29,6 +29,30 @@ module TencentCloud
         end
 
 
+        # 检查快照是否可用
+
+        # @param request: Request instance for CheckSavepoint.
+        # @type request: :class:`Tencentcloud::oceanus::V20190422::CheckSavepointRequest`
+        # @rtype: :class:`Tencentcloud::oceanus::V20190422::CheckSavepointResponse`
+        def CheckSavepoint(request)
+          body = send_request('CheckSavepoint', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CheckSavepointResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 新建作业接口，一个 AppId 最多允许创建1000个作业
 
         # @param request: Request instance for CreateJob.
@@ -207,6 +231,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeJobConfigsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查找Savepoint列表
+
+        # @param request: Request instance for DescribeJobSavepoint.
+        # @type request: :class:`Tencentcloud::oceanus::V20190422::DescribeJobSavepointRequest`
+        # @rtype: :class:`Tencentcloud::oceanus::V20190422::DescribeJobSavepointResponse`
+        def DescribeJobSavepoint(request)
+          body = send_request('DescribeJobSavepoint', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeJobSavepointResponse.new
             model.deserialize(response['Response'])
             model
           else

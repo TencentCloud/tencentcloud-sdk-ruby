@@ -3003,26 +3003,30 @@ module TencentCloud
         end
       end
 
-      # cdh实例的资源信息
+      # 专用宿主机实例的资源信息
       class HostResource < TencentCloud::Common::AbstractModel
-        # @param CpuTotal: cdh实例总cpu核数
+        # @param CpuTotal: 专用宿主机实例总cpu核数
         # @type CpuTotal: Integer
-        # @param CpuAvailable: cdh实例可用cpu核数
+        # @param CpuAvailable: 专用宿主机实例可用cpu核数
         # @type CpuAvailable: Integer
-        # @param MemTotal: cdh实例总内存大小（单位为:GiB）
+        # @param MemTotal: 专用宿主机实例总内存大小（单位为:GiB）
         # @type MemTotal: Float
-        # @param MemAvailable: cdh实例可用内存大小（单位为:GiB）
+        # @param MemAvailable: 专用宿主机实例可用内存大小（单位为:GiB）
         # @type MemAvailable: Float
-        # @param DiskTotal: cdh实例总磁盘大小（单位为:GiB）
+        # @param DiskTotal: 专用宿主机实例总磁盘大小（单位为:GiB）
         # @type DiskTotal: Integer
-        # @param DiskAvailable: cdh实例可用磁盘大小（单位为:GiB）
+        # @param DiskAvailable: 专用宿主机实例可用磁盘大小（单位为:GiB）
         # @type DiskAvailable: Integer
-        # @param DiskType: cdh实例磁盘类型
+        # @param DiskType: 专用宿主机实例磁盘类型
         # @type DiskType: String
+        # @param GpuTotal: 专用宿主机实例总GPU卡数
+        # @type GpuTotal: Integer
+        # @param GpuAvailable: 专用宿主机实例可用GPU卡数
+        # @type GpuAvailable: Integer
 
-        attr_accessor :CpuTotal, :CpuAvailable, :MemTotal, :MemAvailable, :DiskTotal, :DiskAvailable, :DiskType
+        attr_accessor :CpuTotal, :CpuAvailable, :MemTotal, :MemAvailable, :DiskTotal, :DiskAvailable, :DiskType, :GpuTotal, :GpuAvailable
         
-        def initialize(cputotal=nil, cpuavailable=nil, memtotal=nil, memavailable=nil, disktotal=nil, diskavailable=nil, disktype=nil)
+        def initialize(cputotal=nil, cpuavailable=nil, memtotal=nil, memavailable=nil, disktotal=nil, diskavailable=nil, disktype=nil, gputotal=nil, gpuavailable=nil)
           @CpuTotal = cputotal
           @CpuAvailable = cpuavailable
           @MemTotal = memtotal
@@ -3030,6 +3034,8 @@ module TencentCloud
           @DiskTotal = disktotal
           @DiskAvailable = diskavailable
           @DiskType = disktype
+          @GpuTotal = gputotal
+          @GpuAvailable = gpuavailable
         end
 
         def deserialize(params)
@@ -3040,6 +3046,8 @@ module TencentCloud
           @DiskTotal = params['DiskTotal']
           @DiskAvailable = params['DiskAvailable']
           @DiskType = params['DiskType']
+          @GpuTotal = params['GpuTotal']
+          @GpuAvailable = params['GpuAvailable']
         end
       end
 
@@ -3891,7 +3899,7 @@ module TencentCloud
         # @type RestrictState: String
         # @param InstanceName: 实例名称。
         # @type InstanceName: String
-        # @param InstanceChargeType: 实例计费模式。取值范围：<br><li>`PREPAID`：表示预付费，即包年包月<br><li>`POSTPAID_BY_HOUR`：表示后付费，即按量计费<br><li>`CDHPAID`：`CDH`付费，即只对`CDH`计费，不对`CDH`上的实例计费。<br><li>`SPOTPAID`：表示竞价实例付费。
+        # @param InstanceChargeType: 实例计费模式。取值范围：<br><li>`PREPAID`：表示预付费，即包年包月<br><li>`POSTPAID_BY_HOUR`：表示后付费，即按量计费<br><li>`CDHPAID`：`专用宿主机`付费，即只对`专用宿主机`计费，不对`专用宿主机`上的实例计费。<br><li>`SPOTPAID`：表示竞价实例付费。
         # @type InstanceChargeType: String
         # @param SystemDisk: 实例系统盘信息。
         # @type SystemDisk: :class:`Tencentcloud::Cvm.v20170312.models.SystemDisk`
@@ -4257,7 +4265,7 @@ module TencentCloud
         # @type Zone: String
         # @param InstanceType: 实例机型。
         # @type InstanceType: String
-        # @param InstanceChargeType: 实例计费模式。取值范围： <br><li>PREPAID：表示预付费，即包年包月<br><li>POSTPAID_BY_HOUR：表示后付费，即按量计费<br><li>CDHPAID：表示[CDH](https://cloud.tencent.com/document/product/416)付费，即只对CDH计费，不对CDH上的实例计费。<br><li>`SPOTPAID`：表示竞价实例付费。
+        # @param InstanceChargeType: 实例计费模式。取值范围： <br><li>PREPAID：表示预付费，即包年包月<br><li>POSTPAID_BY_HOUR：表示后付费，即按量计费<br><li>CDHPAID：表示[专用宿主机](https://cloud.tencent.com/document/product/416)付费，即只对`专用宿主机`计费，不对`专用宿主机`上的实例计费。<br><li>`SPOTPAID`：表示竞价实例付费。
         # @type InstanceChargeType: String
         # @param NetworkCard: 网卡类型，例如：25代表25G网卡
         # @type NetworkCard: Integer
@@ -4671,7 +4679,7 @@ module TencentCloud
         # @param InstanceName: 实例名称。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceName: String
-        # @param InstanceChargeType: 实例计费模式。取值范围：<br><li>`PREPAID`：表示预付费，即包年包月<br><li>`POSTPAID_BY_HOUR`：表示后付费，即按量计费<br><li>`CDHPAID`：`CDH`付费，即只对`CDH`计费，不对`CDH`上的实例计费。<br><li>`SPOTPAID`：表示竞价实例付费。
+        # @param InstanceChargeType: 实例计费模式。取值范围：<br><li>`PREPAID`：表示预付费，即包年包月<br><li>`POSTPAID_BY_HOUR`：表示后付费，即按量计费<br><li>`CDHPAID`：`专用宿主机`付费，即只对`专用宿主机`计费，不对`专用宿主机`上的实例计费。<br><li>`SPOTPAID`：表示竞价实例付费。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceChargeType: String
         # @param SystemDisk: 实例系统盘信息。
@@ -5481,7 +5489,7 @@ module TencentCloud
         end
       end
 
-      # 描述了实例的抽象位置，包括其所在的可用区，所属的项目，宿主机（仅CDH产品可用），母机ip等
+      # 描述了实例的抽象位置，包括其所在的可用区，所属的项目，宿主机（仅专用宿主机产品可用），母机ip等
       class Placement < TencentCloud::Common::AbstractModel
         # @param Zone: 实例所属的可用区ID。该参数可以通过调用  [DescribeZones](https://cloud.tencent.com/document/product/213/15707) 的返回值中的Zone字段来获取。
         # @type Zone: String

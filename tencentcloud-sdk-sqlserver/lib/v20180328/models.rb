@@ -3597,12 +3597,14 @@ module TencentCloud
         # @type SubnetId: String
         # @param MasterInstanceId: 主实例ID，形如mssql-sgeshe3th
         # @type MasterInstanceId: String
+        # @param MasterRegionId: 主实例的地域ID
+        # @type MasterRegionId: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :ReadOnlyGroupId, :ReadOnlyGroupName, :RegionId, :ZoneId, :IsOfflineDelay, :ReadOnlyMaxDelayTime, :MinReadOnlyInGroup, :Vip, :Vport, :VpcId, :SubnetId, :MasterInstanceId, :RequestId
+        attr_accessor :ReadOnlyGroupId, :ReadOnlyGroupName, :RegionId, :ZoneId, :IsOfflineDelay, :ReadOnlyMaxDelayTime, :MinReadOnlyInGroup, :Vip, :Vport, :VpcId, :SubnetId, :MasterInstanceId, :MasterRegionId, :RequestId
         
-        def initialize(readonlygroupid=nil, readonlygroupname=nil, regionid=nil, zoneid=nil, isofflinedelay=nil, readonlymaxdelaytime=nil, minreadonlyingroup=nil, vip=nil, vport=nil, vpcid=nil, subnetid=nil, masterinstanceid=nil, requestid=nil)
+        def initialize(readonlygroupid=nil, readonlygroupname=nil, regionid=nil, zoneid=nil, isofflinedelay=nil, readonlymaxdelaytime=nil, minreadonlyingroup=nil, vip=nil, vport=nil, vpcid=nil, subnetid=nil, masterinstanceid=nil, masterregionid=nil, requestid=nil)
           @ReadOnlyGroupId = readonlygroupid
           @ReadOnlyGroupName = readonlygroupname
           @RegionId = regionid
@@ -3615,6 +3617,7 @@ module TencentCloud
           @VpcId = vpcid
           @SubnetId = subnetid
           @MasterInstanceId = masterinstanceid
+          @MasterRegionId = masterregionid
           @RequestId = requestid
         end
 
@@ -3631,6 +3634,7 @@ module TencentCloud
           @VpcId = params['VpcId']
           @SubnetId = params['SubnetId']
           @MasterInstanceId = params['MasterInstanceId']
+          @MasterRegionId = params['MasterRegionId']
           @RequestId = params['RequestId']
         end
       end
@@ -6070,10 +6074,14 @@ module TencentCloud
         # @type EndTime: String
         # @param IsolateTime: 只读副本隔离时间
         # @type IsolateTime: String
+        # @param RegionId: 只读副本所在地域
+        # @type RegionId: String
+        # @param ZoneId: 只读副本所在可用区
+        # @type ZoneId: String
 
-        attr_accessor :InstanceId, :Name, :Uid, :ProjectId, :Status, :CreateTime, :UpdateTime, :Memory, :Storage, :Cpu, :Version, :Type, :Model, :PayMode, :Weight, :DelayTime, :SynStatus, :DatabaseDifference, :AccountDifference, :StartTime, :EndTime, :IsolateTime
+        attr_accessor :InstanceId, :Name, :Uid, :ProjectId, :Status, :CreateTime, :UpdateTime, :Memory, :Storage, :Cpu, :Version, :Type, :Model, :PayMode, :Weight, :DelayTime, :SynStatus, :DatabaseDifference, :AccountDifference, :StartTime, :EndTime, :IsolateTime, :RegionId, :ZoneId
         
-        def initialize(instanceid=nil, name=nil, uid=nil, projectid=nil, status=nil, createtime=nil, updatetime=nil, memory=nil, storage=nil, cpu=nil, version=nil, type=nil, model=nil, paymode=nil, weight=nil, delaytime=nil, synstatus=nil, databasedifference=nil, accountdifference=nil, starttime=nil, endtime=nil, isolatetime=nil)
+        def initialize(instanceid=nil, name=nil, uid=nil, projectid=nil, status=nil, createtime=nil, updatetime=nil, memory=nil, storage=nil, cpu=nil, version=nil, type=nil, model=nil, paymode=nil, weight=nil, delaytime=nil, synstatus=nil, databasedifference=nil, accountdifference=nil, starttime=nil, endtime=nil, isolatetime=nil, regionid=nil, zoneid=nil)
           @InstanceId = instanceid
           @Name = name
           @Uid = uid
@@ -6096,6 +6104,8 @@ module TencentCloud
           @StartTime = starttime
           @EndTime = endtime
           @IsolateTime = isolatetime
+          @RegionId = regionid
+          @ZoneId = zoneid
         end
 
         def deserialize(params)
@@ -6121,6 +6131,8 @@ module TencentCloud
           @StartTime = params['StartTime']
           @EndTime = params['EndTime']
           @IsolateTime = params['IsolateTime']
+          @RegionId = params['RegionId']
+          @ZoneId = params['ZoneId']
         end
       end
 

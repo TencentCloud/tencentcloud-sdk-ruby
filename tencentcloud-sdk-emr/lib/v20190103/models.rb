@@ -1381,6 +1381,38 @@ module TencentCloud
         end
       end
 
+      # DescribeUsersForUserManager请求参数结构体
+      class DescribeUsersForUserManagerRequest < TencentCloud::Common::AbstractModel
+        # @param NeedKeytabInfo: 是否需要keytab文件的信息，仅对开启kerberos的集群有效，默认为false
+        # @type NeedKeytabInfo: Boolean
+
+        attr_accessor :NeedKeytabInfo
+        
+        def initialize(needkeytabinfo=nil)
+          @NeedKeytabInfo = needkeytabinfo
+        end
+
+        def deserialize(params)
+          @NeedKeytabInfo = params['NeedKeytabInfo']
+        end
+      end
+
+      # DescribeUsersForUserManager返回参数结构体
+      class DescribeUsersForUserManagerResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 磁盘组。
       class DiskGroup < TencentCloud::Common::AbstractModel
         # @param Spec: 磁盘规格。

@@ -589,10 +589,12 @@ module TencentCloud
         # @type ProbeType: Integer
         # @param PluginSource: 插件类型
         # @type PluginSource: String
+        # @param ClientNum: 客户度ID
+        # @type ClientNum: String
 
-        attr_accessor :BatchTasks, :TaskType, :Nodes, :Interval, :Parameters, :TaskCategory, :Cron, :Tag, :ProbeType, :PluginSource
+        attr_accessor :BatchTasks, :TaskType, :Nodes, :Interval, :Parameters, :TaskCategory, :Cron, :Tag, :ProbeType, :PluginSource, :ClientNum
         
-        def initialize(batchtasks=nil, tasktype=nil, nodes=nil, interval=nil, parameters=nil, taskcategory=nil, cron=nil, tag=nil, probetype=nil, pluginsource=nil)
+        def initialize(batchtasks=nil, tasktype=nil, nodes=nil, interval=nil, parameters=nil, taskcategory=nil, cron=nil, tag=nil, probetype=nil, pluginsource=nil, clientnum=nil)
           @BatchTasks = batchtasks
           @TaskType = tasktype
           @Nodes = nodes
@@ -603,6 +605,7 @@ module TencentCloud
           @Tag = tag
           @ProbeType = probetype
           @PluginSource = pluginsource
+          @ClientNum = clientnum
         end
 
         def deserialize(params)
@@ -630,21 +633,26 @@ module TencentCloud
           end
           @ProbeType = params['ProbeType']
           @PluginSource = params['PluginSource']
+          @ClientNum = params['ClientNum']
         end
       end
 
       # CreateProbeTasks返回参数结构体
       class CreateProbeTasksResponse < TencentCloud::Common::AbstractModel
+        # @param TaskIDs: 任务ID列表
+        # @type TaskIDs: Array
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RequestId
+        attr_accessor :TaskIDs, :RequestId
         
-        def initialize(requestid=nil)
+        def initialize(taskids=nil, requestid=nil)
+          @TaskIDs = taskids
           @RequestId = requestid
         end
 
         def deserialize(params)
+          @TaskIDs = params['TaskIDs']
           @RequestId = params['RequestId']
         end
       end
@@ -2734,10 +2742,16 @@ module TencentCloud
         # <li> 3 = 国外 </li>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Location: Integer
+        # @param CodeType: 节点类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CodeType: String
+        # @param NodeDefineStatus: 节点状态：1-运行,2-下线
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NodeDefineStatus: Integer
 
-        attr_accessor :Name, :Code, :Type, :NetService, :District, :City, :IPType, :Location
+        attr_accessor :Name, :Code, :Type, :NetService, :District, :City, :IPType, :Location, :CodeType, :NodeDefineStatus
         
-        def initialize(name=nil, code=nil, type=nil, netservice=nil, district=nil, city=nil, iptype=nil, location=nil)
+        def initialize(name=nil, code=nil, type=nil, netservice=nil, district=nil, city=nil, iptype=nil, location=nil, codetype=nil, nodedefinestatus=nil)
           @Name = name
           @Code = code
           @Type = type
@@ -2746,6 +2760,8 @@ module TencentCloud
           @City = city
           @IPType = iptype
           @Location = location
+          @CodeType = codetype
+          @NodeDefineStatus = nodedefinestatus
         end
 
         def deserialize(params)
@@ -2757,6 +2773,8 @@ module TencentCloud
           @City = params['City']
           @IPType = params['IPType']
           @Location = params['Location']
+          @CodeType = params['CodeType']
+          @NodeDefineStatus = params['NodeDefineStatus']
         end
       end
 

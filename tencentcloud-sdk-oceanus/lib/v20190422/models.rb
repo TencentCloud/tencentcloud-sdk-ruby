@@ -17,6 +17,62 @@
 module TencentCloud
   module Oceanus
     module V20190422
+      # CheckSavepoint请求参数结构体
+      class CheckSavepointRequest < TencentCloud::Common::AbstractModel
+        # @param JobId: 作业 id
+        # @type JobId: String
+        # @param SerialId: 快照资源 id
+        # @type SerialId: String
+        # @param RecordType: 快照类型 1: savepoint；2: checkpoint；3: cancelWithSavepoint
+        # @type RecordType: Integer
+        # @param SavepointPath: 快照路径，目前只支持 cos 路径
+        # @type SavepointPath: String
+        # @param WorkSpaceId: 工作空间 id
+        # @type WorkSpaceId: String
+
+        attr_accessor :JobId, :SerialId, :RecordType, :SavepointPath, :WorkSpaceId
+        
+        def initialize(jobid=nil, serialid=nil, recordtype=nil, savepointpath=nil, workspaceid=nil)
+          @JobId = jobid
+          @SerialId = serialid
+          @RecordType = recordtype
+          @SavepointPath = savepointpath
+          @WorkSpaceId = workspaceid
+        end
+
+        def deserialize(params)
+          @JobId = params['JobId']
+          @SerialId = params['SerialId']
+          @RecordType = params['RecordType']
+          @SavepointPath = params['SavepointPath']
+          @WorkSpaceId = params['WorkSpaceId']
+        end
+      end
+
+      # CheckSavepoint返回参数结构体
+      class CheckSavepointResponse < TencentCloud::Common::AbstractModel
+        # @param SerialId: 资源 id
+        # @type SerialId: String
+        # @param SavepointStatus: 1=可用，2=不可用
+        # @type SavepointStatus: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :SerialId, :SavepointStatus, :RequestId
+        
+        def initialize(serialid=nil, savepointstatus=nil, requestid=nil)
+          @SerialId = serialid
+          @SavepointStatus = savepointstatus
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @SerialId = params['SerialId']
+          @SavepointStatus = params['SavepointStatus']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateJobConfig请求参数结构体
       class CreateJobConfigRequest < TencentCloud::Common::AbstractModel
         # @param JobId: 作业Id
@@ -515,6 +571,84 @@ module TencentCloud
               @JobConfigSet << jobconfig_tmp
             end
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeJobSavepoint请求参数结构体
+      class DescribeJobSavepointRequest < TencentCloud::Common::AbstractModel
+        # @param JobId: 作业 SerialId
+        # @type JobId: String
+        # @param Limit: 分页参数，单页总数
+        # @type Limit: Integer
+        # @param Offset: 分页参数，偏移量
+        # @type Offset: Integer
+        # @param WorkSpaceId: 工作空间 SerialId
+        # @type WorkSpaceId: String
+
+        attr_accessor :JobId, :Limit, :Offset, :WorkSpaceId
+        
+        def initialize(jobid=nil, limit=nil, offset=nil, workspaceid=nil)
+          @JobId = jobid
+          @Limit = limit
+          @Offset = offset
+          @WorkSpaceId = workspaceid
+        end
+
+        def deserialize(params)
+          @JobId = params['JobId']
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          @WorkSpaceId = params['WorkSpaceId']
+        end
+      end
+
+      # DescribeJobSavepoint返回参数结构体
+      class DescribeJobSavepointResponse < TencentCloud::Common::AbstractModel
+        # @param TotalNumber: 快照列表总数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalNumber: Integer
+        # @param Savepoint: 快照列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Savepoint: Array
+        # @param RunningSavepoint: 进行中的快照列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RunningSavepoint: Array
+        # @param RunningTotalNumber: 进行中的快照列表总数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RunningTotalNumber: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalNumber, :Savepoint, :RunningSavepoint, :RunningTotalNumber, :RequestId
+        
+        def initialize(totalnumber=nil, savepoint=nil, runningsavepoint=nil, runningtotalnumber=nil, requestid=nil)
+          @TotalNumber = totalnumber
+          @Savepoint = savepoint
+          @RunningSavepoint = runningsavepoint
+          @RunningTotalNumber = runningtotalnumber
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalNumber = params['TotalNumber']
+          unless params['Savepoint'].nil?
+            @Savepoint = []
+            params['Savepoint'].each do |i|
+              savepoint_tmp = Savepoint.new
+              savepoint_tmp.deserialize(i)
+              @Savepoint << savepoint_tmp
+            end
+          end
+          unless params['RunningSavepoint'].nil?
+            @RunningSavepoint = []
+            params['RunningSavepoint'].each do |i|
+              savepoint_tmp = Savepoint.new
+              savepoint_tmp.deserialize(i)
+              @RunningSavepoint << savepoint_tmp
+            end
+          end
+          @RunningTotalNumber = params['RunningTotalNumber']
           @RequestId = params['RequestId']
         end
       end
@@ -1540,6 +1674,78 @@ module TencentCloud
 
         def deserialize(params)
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 描述Savepoint信息
+      class Savepoint < TencentCloud::Common::AbstractModel
+        # @param Id: 主键
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Id: Integer
+        # @param VersionId: 版本号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VersionId: Integer
+        # @param Status: 状态 1: Active; 2: Expired; 3: InProgress; 4: Failed; 5: Timeout
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: Integer
+        # @param CreateTime: 创建时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateTime: Integer
+        # @param UpdateTime: 更新时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UpdateTime: Integer
+        # @param Path: 路径
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Path: String
+        # @param Size: 大小
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Size: Integer
+        # @param RecordType: 快照类型 1: savepoint；2: checkpoint；3: cancelWithSavepoint
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RecordType: Integer
+        # @param JobRuntimeId: 运行作业实例的顺序 ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type JobRuntimeId: Integer
+        # @param Description: 描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Description: String
+        # @param Timeout: 固定超时时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Timeout: Integer
+        # @param SerialId: 快照 serialId
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SerialId: String
+
+        attr_accessor :Id, :VersionId, :Status, :CreateTime, :UpdateTime, :Path, :Size, :RecordType, :JobRuntimeId, :Description, :Timeout, :SerialId
+        
+        def initialize(id=nil, versionid=nil, status=nil, createtime=nil, updatetime=nil, path=nil, size=nil, recordtype=nil, jobruntimeid=nil, description=nil, timeout=nil, serialid=nil)
+          @Id = id
+          @VersionId = versionid
+          @Status = status
+          @CreateTime = createtime
+          @UpdateTime = updatetime
+          @Path = path
+          @Size = size
+          @RecordType = recordtype
+          @JobRuntimeId = jobruntimeid
+          @Description = description
+          @Timeout = timeout
+          @SerialId = serialid
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @VersionId = params['VersionId']
+          @Status = params['Status']
+          @CreateTime = params['CreateTime']
+          @UpdateTime = params['UpdateTime']
+          @Path = params['Path']
+          @Size = params['Size']
+          @RecordType = params['RecordType']
+          @JobRuntimeId = params['JobRuntimeId']
+          @Description = params['Description']
+          @Timeout = params['Timeout']
+          @SerialId = params['SerialId']
         end
       end
 
