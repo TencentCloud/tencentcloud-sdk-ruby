@@ -1242,13 +1242,16 @@ module TencentCloud
         # @type Enable: Boolean
         # @param APM: 腾讯云 APM 服务相关参数
         # @type APM: :class:`Tencentcloud::Tcm.v20210413.models.APM`
+        # @param Zipkin: 启动第三方服务器的地址
+        # @type Zipkin: :class:`Tencentcloud::Tcm.v20210413.models.TracingZipkin`
 
-        attr_accessor :Sampling, :Enable, :APM
+        attr_accessor :Sampling, :Enable, :APM, :Zipkin
         
-        def initialize(sampling=nil, enable=nil, apm=nil)
+        def initialize(sampling=nil, enable=nil, apm=nil, zipkin=nil)
           @Sampling = sampling
           @Enable = enable
           @APM = apm
+          @Zipkin = zipkin
         end
 
         def deserialize(params)
@@ -1258,6 +1261,26 @@ module TencentCloud
             @APM = APM.new
             @APM.deserialize(params['APM'])
           end
+          unless params['Zipkin'].nil?
+            @Zipkin = TracingZipkin.new
+            @Zipkin.deserialize(params['Zipkin'])
+          end
+        end
+      end
+
+      # 调用追踪的Zipkin设置
+      class TracingZipkin < TencentCloud::Common::AbstractModel
+        # @param Address: Zipkin调用地址
+        # @type Address: String
+
+        attr_accessor :Address
+        
+        def initialize(address=nil)
+          @Address = address
+        end
+
+        def deserialize(params)
+          @Address = params['Address']
         end
       end
 

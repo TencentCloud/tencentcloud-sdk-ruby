@@ -1028,7 +1028,7 @@ module TencentCloud
         # @param TaskTag: 任务标签
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskTag: String
-        # @param TaskStatus: 任务状态
+        # @param TaskStatus: 任务状态(1001 -- 未开始   1002 -- 进行中  1003 -- 暂停中   1004 -- 任务结束)
         # @type TaskStatus: Integer
         # @param TaskCreateTime: 任务创建时间
         # @type TaskCreateTime: String

@@ -1455,19 +1455,23 @@ module TencentCloud
         # @type NewOwnerUin: String
         # @param TransferDns: 是否同时转移对应的 DNS 解析域名，默认false
         # @type TransferDns: Boolean
+        # @param NewOwnerAppId: 转入账户的appid。
+        # @type NewOwnerAppId: String
 
-        attr_accessor :Domains, :NewOwnerUin, :TransferDns
+        attr_accessor :Domains, :NewOwnerUin, :TransferDns, :NewOwnerAppId
         
-        def initialize(domains=nil, newowneruin=nil, transferdns=nil)
+        def initialize(domains=nil, newowneruin=nil, transferdns=nil, newownerappid=nil)
           @Domains = domains
           @NewOwnerUin = newowneruin
           @TransferDns = transferdns
+          @NewOwnerAppId = newownerappid
         end
 
         def deserialize(params)
           @Domains = params['Domains']
           @NewOwnerUin = params['NewOwnerUin']
           @TransferDns = params['TransferDns']
+          @NewOwnerAppId = params['NewOwnerAppId']
         end
       end
 

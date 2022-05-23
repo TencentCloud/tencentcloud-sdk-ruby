@@ -2963,7 +2963,7 @@ module TencentCloud
         # IKAD   劳工证
         # MyKid 儿童卡
         # @type Type: String
-        # @param Birthday: 出生日期（目前该字段仅支持IKAD劳工证）
+        # @param Birthday: 出生日期（目前该字段仅支持IKAD劳工证、MyKad 身份证）
         # @type Birthday: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

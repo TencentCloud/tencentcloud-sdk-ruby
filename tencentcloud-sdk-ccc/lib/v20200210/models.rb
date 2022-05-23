@@ -54,10 +54,12 @@ module TencentCloud
         # @type IvrId: Integer
         # @param State: 任务状态0初始 1运行中 2已完成 3结束中 4已结束
         # @type State: Integer
+        # @param TaskId: 任务Id
+        # @type TaskId: Integer
 
-        attr_accessor :Name, :CalleeCount, :Callers, :NotBefore, :NotAfter, :IvrId, :State
+        attr_accessor :Name, :CalleeCount, :Callers, :NotBefore, :NotAfter, :IvrId, :State, :TaskId
         
-        def initialize(name=nil, calleecount=nil, callers=nil, notbefore=nil, notafter=nil, ivrid=nil, state=nil)
+        def initialize(name=nil, calleecount=nil, callers=nil, notbefore=nil, notafter=nil, ivrid=nil, state=nil, taskid=nil)
           @Name = name
           @CalleeCount = calleecount
           @Callers = callers
@@ -65,6 +67,7 @@ module TencentCloud
           @NotAfter = notafter
           @IvrId = ivrid
           @State = state
+          @TaskId = taskid
         end
 
         def deserialize(params)
@@ -75,6 +78,7 @@ module TencentCloud
           @NotAfter = params['NotAfter']
           @IvrId = params['IvrId']
           @State = params['State']
+          @TaskId = params['TaskId']
         end
       end
 
