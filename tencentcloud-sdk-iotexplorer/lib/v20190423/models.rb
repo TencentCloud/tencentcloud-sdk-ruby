@@ -4842,19 +4842,29 @@ module TencentCloud
         # @type Longitude: Float
         # @param Latitude: 位置点的纬度
         # @type Latitude: Float
+        # @param LocationType: 位置点的定位类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LocationType: String
+        # @param Accuracy: 位置点的精度预估，单位为米
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Accuracy: Float
 
-        attr_accessor :CreateTime, :Longitude, :Latitude
+        attr_accessor :CreateTime, :Longitude, :Latitude, :LocationType, :Accuracy
         
-        def initialize(createtime=nil, longitude=nil, latitude=nil)
+        def initialize(createtime=nil, longitude=nil, latitude=nil, locationtype=nil, accuracy=nil)
           @CreateTime = createtime
           @Longitude = longitude
           @Latitude = latitude
+          @LocationType = locationtype
+          @Accuracy = accuracy
         end
 
         def deserialize(params)
           @CreateTime = params['CreateTime']
           @Longitude = params['Longitude']
           @Latitude = params['Latitude']
+          @LocationType = params['LocationType']
+          @Accuracy = params['Accuracy']
         end
       end
 

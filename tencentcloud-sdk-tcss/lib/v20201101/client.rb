@@ -3101,7 +3101,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 运行时文件查杀事件列表
+        # 查询运行时文件查杀事件列表
 
         # @param request: Request instance for DescribeVirusList.
         # @type request: :class:`Tencentcloud::tcss::V20201101::DescribeVirusListRequest`

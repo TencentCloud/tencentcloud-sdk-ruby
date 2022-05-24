@@ -3687,9 +3687,9 @@ module TencentCloud
 
       # CreateContentReviewTemplate请求参数结构体
       class CreateContentReviewTemplateRequest < TencentCloud::Common::AbstractModel
-        # @param Name: 内容智能识别模板名称，长度限制：64 个字符。
+        # @param Name: 内容审核模板名称，长度限制：64 个字符。
         # @type Name: String
-        # @param Comment: 内容智能识别模板描述信息，长度限制：256 个字符。
+        # @param Comment: 内容审核模板描述信息，长度限制：256 个字符。
         # @type Comment: String
         # @param PornConfigure: 令人反感的信息的控制参数。
         # @type PornConfigure: :class:`Tencentcloud::Mps.v20190612.models.PornConfigureInfo`
@@ -3702,7 +3702,7 @@ module TencentCloud
         # <li>涉毒违法。</li>
         # 注意：此参数尚未支持。
         # @type ProhibitedConfigure: :class:`Tencentcloud::Mps.v20190612.models.ProhibitedConfigureInfo`
-        # @param UserDefineConfigure: 用户自定义内容智能识别控制参数。
+        # @param UserDefineConfigure: 用户自定义内容审核控制参数。
         # @type UserDefineConfigure: :class:`Tencentcloud::Mps.v20190612.models.UserDefineConfigureInfo`
 
         attr_accessor :Name, :Comment, :PornConfigure, :TerrorismConfigure, :PoliticalConfigure, :ProhibitedConfigure, :UserDefineConfigure
@@ -3745,7 +3745,7 @@ module TencentCloud
 
       # CreateContentReviewTemplate返回参数结构体
       class CreateContentReviewTemplateResponse < TencentCloud::Common::AbstractModel
-        # @param Definition: 内容智能识别模板唯一标识。
+        # @param Definition: 内容审核模板唯一标识。
         # @type Definition: Integer
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

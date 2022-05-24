@@ -17,6 +17,43 @@
 module TencentCloud
   module Es
     module V20180416
+      # 后备索引元数据字段
+      class BackingIndexMetaField < TencentCloud::Common::AbstractModel
+        # @param IndexName: 后备索引名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IndexName: String
+        # @param IndexStatus: 后备索引状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IndexStatus: String
+        # @param IndexStorage: 后备索引存储大小
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IndexStorage: Integer
+        # @param IndexPhrase: 后备索引当前生命周期
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IndexPhrase: String
+        # @param IndexCreateTime: 后备索引创建时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IndexCreateTime: String
+
+        attr_accessor :IndexName, :IndexStatus, :IndexStorage, :IndexPhrase, :IndexCreateTime
+        
+        def initialize(indexname=nil, indexstatus=nil, indexstorage=nil, indexphrase=nil, indexcreatetime=nil)
+          @IndexName = indexname
+          @IndexStatus = indexstatus
+          @IndexStorage = indexstorage
+          @IndexPhrase = indexphrase
+          @IndexCreateTime = indexcreatetime
+        end
+
+        def deserialize(params)
+          @IndexName = params['IndexName']
+          @IndexStatus = params['IndexStatus']
+          @IndexStorage = params['IndexStorage']
+          @IndexPhrase = params['IndexPhrase']
+          @IndexCreateTime = params['IndexCreateTime']
+        end
+      end
+
       # 集群维度视图数据
       class ClusterView < TencentCloud::Common::AbstractModel
         # @param Health: 集群健康状态
@@ -136,6 +173,58 @@ module TencentCloud
         def deserialize(params)
           @IsAutoBackup = params['IsAutoBackup']
           @BackupTime = params['BackupTime']
+        end
+      end
+
+      # CreateIndex请求参数结构体
+      class CreateIndexRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: ES集群ID
+        # @type InstanceId: String
+        # @param IndexType: 创建的索引类型。auto：自治索引；normal：普通索引
+        # @type IndexType: String
+        # @param IndexName: 创建的索引名
+        # @type IndexName: String
+        # @param IndexMetaJson: 创建的索引元数据JSON，如mappings、settings
+        # @type IndexMetaJson: String
+        # @param Username: 集群访问用户名
+        # @type Username: String
+        # @param Password: 集群访问密码
+        # @type Password: String
+
+        attr_accessor :InstanceId, :IndexType, :IndexName, :IndexMetaJson, :Username, :Password
+        
+        def initialize(instanceid=nil, indextype=nil, indexname=nil, indexmetajson=nil, username=nil, password=nil)
+          @InstanceId = instanceid
+          @IndexType = indextype
+          @IndexName = indexname
+          @IndexMetaJson = indexmetajson
+          @Username = username
+          @Password = password
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @IndexType = params['IndexType']
+          @IndexName = params['IndexName']
+          @IndexMetaJson = params['IndexMetaJson']
+          @Username = params['Username']
+          @Password = params['Password']
+        end
+      end
+
+      # CreateIndex返回参数结构体
+      class CreateIndexResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
         end
       end
 
@@ -328,6 +417,58 @@ module TencentCloud
         end
       end
 
+      # DeleteIndex请求参数结构体
+      class DeleteIndexRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: ES集群ID
+        # @type InstanceId: String
+        # @param IndexType: 删除的索引类型。auto：自治索引；normal：普通索引
+        # @type IndexType: String
+        # @param IndexName: 删除的索引名
+        # @type IndexName: String
+        # @param Username: 集群访问用户名
+        # @type Username: String
+        # @param Password: 集群访问密码
+        # @type Password: String
+        # @param BackingIndexName: 后备索引名
+        # @type BackingIndexName: String
+
+        attr_accessor :InstanceId, :IndexType, :IndexName, :Username, :Password, :BackingIndexName
+        
+        def initialize(instanceid=nil, indextype=nil, indexname=nil, username=nil, password=nil, backingindexname=nil)
+          @InstanceId = instanceid
+          @IndexType = indextype
+          @IndexName = indexname
+          @Username = username
+          @Password = password
+          @BackingIndexName = backingindexname
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @IndexType = params['IndexType']
+          @IndexName = params['IndexName']
+          @Username = params['Username']
+          @Password = params['Password']
+          @BackingIndexName = params['BackingIndexName']
+        end
+      end
+
+      # DeleteIndex返回参数结构体
+      class DeleteIndexResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DeleteInstance请求参数结构体
       class DeleteInstanceRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例ID
@@ -356,6 +497,147 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeIndexList请求参数结构体
+      class DescribeIndexListRequest < TencentCloud::Common::AbstractModel
+        # @param IndexType: 索引类型。auto：自治索引；normal：普通索引
+        # @type IndexType: String
+        # @param InstanceId: ES集群ID
+        # @type InstanceId: String
+        # @param IndexName: 索引名，若填空则获取所有索引
+        # @type IndexName: String
+        # @param Username: 集群访问用户名
+        # @type Username: String
+        # @param Password: 集群访问密码
+        # @type Password: String
+        # @param Offset: 分页起始位置
+        # @type Offset: Integer
+        # @param Limit: 一页展示数量
+        # @type Limit: Integer
+        # @param OrderBy: 排序字段，支持索引名：IndexName、索引存储量：IndexStorage、索引创建时间：IndexCreateTime
+        # @type OrderBy: String
+        # @param IndexStatusList: 过滤索引状态
+        # @type IndexStatusList: Array
+        # @param Order: 排序顺序，支持asc、desc
+        # @type Order: String
+
+        attr_accessor :IndexType, :InstanceId, :IndexName, :Username, :Password, :Offset, :Limit, :OrderBy, :IndexStatusList, :Order
+        
+        def initialize(indextype=nil, instanceid=nil, indexname=nil, username=nil, password=nil, offset=nil, limit=nil, orderby=nil, indexstatuslist=nil, order=nil)
+          @IndexType = indextype
+          @InstanceId = instanceid
+          @IndexName = indexname
+          @Username = username
+          @Password = password
+          @Offset = offset
+          @Limit = limit
+          @OrderBy = orderby
+          @IndexStatusList = indexstatuslist
+          @Order = order
+        end
+
+        def deserialize(params)
+          @IndexType = params['IndexType']
+          @InstanceId = params['InstanceId']
+          @IndexName = params['IndexName']
+          @Username = params['Username']
+          @Password = params['Password']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @OrderBy = params['OrderBy']
+          @IndexStatusList = params['IndexStatusList']
+          @Order = params['Order']
+        end
+      end
+
+      # DescribeIndexList返回参数结构体
+      class DescribeIndexListResponse < TencentCloud::Common::AbstractModel
+        # @param IndexMetaFields: 索引元数据字段
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IndexMetaFields: Array
+        # @param TotalCount: 查询总数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :IndexMetaFields, :TotalCount, :RequestId
+        
+        def initialize(indexmetafields=nil, totalcount=nil, requestid=nil)
+          @IndexMetaFields = indexmetafields
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['IndexMetaFields'].nil?
+            @IndexMetaFields = []
+            params['IndexMetaFields'].each do |i|
+              indexmetafield_tmp = IndexMetaField.new
+              indexmetafield_tmp.deserialize(i)
+              @IndexMetaFields << indexmetafield_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeIndexMeta请求参数结构体
+      class DescribeIndexMetaRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: ES集群ID
+        # @type InstanceId: String
+        # @param IndexType: 索引类型。auto：自治索引；normal：普通索引
+        # @type IndexType: String
+        # @param IndexName: 索引名，若填空则获取所有索引
+        # @type IndexName: String
+        # @param Username: 集群访问用户名
+        # @type Username: String
+        # @param Password: 集群访问密码
+        # @type Password: String
+
+        attr_accessor :InstanceId, :IndexType, :IndexName, :Username, :Password
+        
+        def initialize(instanceid=nil, indextype=nil, indexname=nil, username=nil, password=nil)
+          @InstanceId = instanceid
+          @IndexType = indextype
+          @IndexName = indexname
+          @Username = username
+          @Password = password
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @IndexType = params['IndexType']
+          @IndexName = params['IndexName']
+          @Username = params['Username']
+          @Password = params['Password']
+        end
+      end
+
+      # DescribeIndexMeta返回参数结构体
+      class DescribeIndexMetaResponse < TencentCloud::Common::AbstractModel
+        # @param IndexMetaField: 索引元数据字段
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IndexMetaField: :class:`Tencentcloud::Es.v20180416.models.IndexMetaField`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :IndexMetaField, :RequestId
+        
+        def initialize(indexmetafield=nil, requestid=nil)
+          @IndexMetaField = indexmetafield
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['IndexMetaField'].nil?
+            @IndexMetaField = IndexMetaField.new
+            @IndexMetaField.deserialize(params['IndexMetaField'])
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -746,6 +1028,26 @@ module TencentCloud
         end
       end
 
+      # 配置组信息
+      class EsConfigSetInfo < TencentCloud::Common::AbstractModel
+        # @param Type: 配置组类型，如ldap,ad等
+        # @type Type: String
+        # @param EsConfig: "{\"order\":0,\"url\":\"ldap://10.0.1.72:389\",\"bind_dn\":\"cn=admin,dc=tencent,dc=com\",\"user_search.base_dn\":\"dc=tencent,dc=com\",\"user_search.filter\":\"(cn={0})\",\"group_search.base_dn\":\"dc=tencent,dc=com\"}"
+        # @type EsConfig: String
+
+        attr_accessor :Type, :EsConfig
+        
+        def initialize(type=nil, esconfig=nil)
+          @Type = type
+          @EsConfig = esconfig
+        end
+
+        def deserialize(params)
+          @Type = params['Type']
+          @EsConfig = params['EsConfig']
+        end
+      end
+
       # ES 词库信息
       class EsDictionaryInfo < TencentCloud::Common::AbstractModel
         # @param MainDict: 启用词词典列表
@@ -859,6 +1161,215 @@ module TencentCloud
         def deserialize(params)
           @TargetNodeTypes = params['TargetNodeTypes']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 索引元数据字段
+      class IndexMetaField < TencentCloud::Common::AbstractModel
+        # @param IndexType: 索引类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IndexType: String
+        # @param IndexName: 索引名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IndexName: String
+        # @param IndexStatus: 索引状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IndexStatus: String
+        # @param IndexStorage: 索引存储大小，单位Byte
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IndexStorage: Integer
+        # @param IndexCreateTime: 索引创建时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IndexCreateTime: String
+        # @param BackingIndices: 后备索引
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BackingIndices: Array
+        # @param ClusterId: 索引所属集群ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClusterId: String
+        # @param ClusterName: 索引所属集群名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClusterName: String
+        # @param ClusterVersion: 索引所属集群版本
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClusterVersion: String
+        # @param IndexPolicyField: 索引生命周期字段
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IndexPolicyField: :class:`Tencentcloud::Es.v20180416.models.IndexPolicyField`
+        # @param IndexOptionsField: 索引自治字段
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IndexOptionsField: :class:`Tencentcloud::Es.v20180416.models.IndexOptionsField`
+        # @param IndexSettingsField: 索引配置字段
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IndexSettingsField: :class:`Tencentcloud::Es.v20180416.models.IndexSettingsField`
+        # @param AppId: 索引所属集群APP ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AppId: Integer
+
+        attr_accessor :IndexType, :IndexName, :IndexStatus, :IndexStorage, :IndexCreateTime, :BackingIndices, :ClusterId, :ClusterName, :ClusterVersion, :IndexPolicyField, :IndexOptionsField, :IndexSettingsField, :AppId
+        
+        def initialize(indextype=nil, indexname=nil, indexstatus=nil, indexstorage=nil, indexcreatetime=nil, backingindices=nil, clusterid=nil, clustername=nil, clusterversion=nil, indexpolicyfield=nil, indexoptionsfield=nil, indexsettingsfield=nil, appid=nil)
+          @IndexType = indextype
+          @IndexName = indexname
+          @IndexStatus = indexstatus
+          @IndexStorage = indexstorage
+          @IndexCreateTime = indexcreatetime
+          @BackingIndices = backingindices
+          @ClusterId = clusterid
+          @ClusterName = clustername
+          @ClusterVersion = clusterversion
+          @IndexPolicyField = indexpolicyfield
+          @IndexOptionsField = indexoptionsfield
+          @IndexSettingsField = indexsettingsfield
+          @AppId = appid
+        end
+
+        def deserialize(params)
+          @IndexType = params['IndexType']
+          @IndexName = params['IndexName']
+          @IndexStatus = params['IndexStatus']
+          @IndexStorage = params['IndexStorage']
+          @IndexCreateTime = params['IndexCreateTime']
+          unless params['BackingIndices'].nil?
+            @BackingIndices = []
+            params['BackingIndices'].each do |i|
+              backingindexmetafield_tmp = BackingIndexMetaField.new
+              backingindexmetafield_tmp.deserialize(i)
+              @BackingIndices << backingindexmetafield_tmp
+            end
+          end
+          @ClusterId = params['ClusterId']
+          @ClusterName = params['ClusterName']
+          @ClusterVersion = params['ClusterVersion']
+          unless params['IndexPolicyField'].nil?
+            @IndexPolicyField = IndexPolicyField.new
+            @IndexPolicyField.deserialize(params['IndexPolicyField'])
+          end
+          unless params['IndexOptionsField'].nil?
+            @IndexOptionsField = IndexOptionsField.new
+            @IndexOptionsField.deserialize(params['IndexOptionsField'])
+          end
+          unless params['IndexSettingsField'].nil?
+            @IndexSettingsField = IndexSettingsField.new
+            @IndexSettingsField.deserialize(params['IndexSettingsField'])
+          end
+          @AppId = params['AppId']
+        end
+      end
+
+      # 索引自治字段
+      class IndexOptionsField < TencentCloud::Common::AbstractModel
+        # @param ExpireMaxAge: 过期时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExpireMaxAge: String
+        # @param ExpireMaxSize: 过期大小
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExpireMaxSize: String
+        # @param RolloverMaxAge: 滚动周期
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RolloverMaxAge: String
+        # @param RolloverDynamic: 是否开启动态滚动
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RolloverDynamic: String
+        # @param ShardNumDynamic: 是否开启动态分片
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ShardNumDynamic: String
+        # @param TimestampField: 时间分区字段
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TimestampField: String
+        # @param WriteMode: 写入模式
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type WriteMode: String
+
+        attr_accessor :ExpireMaxAge, :ExpireMaxSize, :RolloverMaxAge, :RolloverDynamic, :ShardNumDynamic, :TimestampField, :WriteMode
+        
+        def initialize(expiremaxage=nil, expiremaxsize=nil, rollovermaxage=nil, rolloverdynamic=nil, shardnumdynamic=nil, timestampfield=nil, writemode=nil)
+          @ExpireMaxAge = expiremaxage
+          @ExpireMaxSize = expiremaxsize
+          @RolloverMaxAge = rollovermaxage
+          @RolloverDynamic = rolloverdynamic
+          @ShardNumDynamic = shardnumdynamic
+          @TimestampField = timestampfield
+          @WriteMode = writemode
+        end
+
+        def deserialize(params)
+          @ExpireMaxAge = params['ExpireMaxAge']
+          @ExpireMaxSize = params['ExpireMaxSize']
+          @RolloverMaxAge = params['RolloverMaxAge']
+          @RolloverDynamic = params['RolloverDynamic']
+          @ShardNumDynamic = params['ShardNumDynamic']
+          @TimestampField = params['TimestampField']
+          @WriteMode = params['WriteMode']
+        end
+      end
+
+      # 索引生命周期字段
+      class IndexPolicyField < TencentCloud::Common::AbstractModel
+        # @param WarmEnable: 是否开启warm阶段
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type WarmEnable: String
+        # @param WarmMinAge: warm阶段转入时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type WarmMinAge: String
+        # @param ColdEnable: 是否开启cold阶段
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ColdEnable: String
+        # @param ColdMinAge: cold阶段转入时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ColdMinAge: String
+        # @param FrozenEnable: 是否开启frozen阶段
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FrozenEnable: String
+        # @param FrozenMinAge: frozen阶段转入时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FrozenMinAge: String
+
+        attr_accessor :WarmEnable, :WarmMinAge, :ColdEnable, :ColdMinAge, :FrozenEnable, :FrozenMinAge
+        
+        def initialize(warmenable=nil, warmminage=nil, coldenable=nil, coldminage=nil, frozenenable=nil, frozenminage=nil)
+          @WarmEnable = warmenable
+          @WarmMinAge = warmminage
+          @ColdEnable = coldenable
+          @ColdMinAge = coldminage
+          @FrozenEnable = frozenenable
+          @FrozenMinAge = frozenminage
+        end
+
+        def deserialize(params)
+          @WarmEnable = params['WarmEnable']
+          @WarmMinAge = params['WarmMinAge']
+          @ColdEnable = params['ColdEnable']
+          @ColdMinAge = params['ColdMinAge']
+          @FrozenEnable = params['FrozenEnable']
+          @FrozenMinAge = params['FrozenMinAge']
+        end
+      end
+
+      # 索引配置字段
+      class IndexSettingsField < TencentCloud::Common::AbstractModel
+        # @param NumberOfShards: 索引主分片数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NumberOfShards: String
+        # @param NumberOfReplicas: 索引副本分片数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NumberOfReplicas: String
+        # @param RefreshInterval: 索引刷新频率
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RefreshInterval: String
+
+        attr_accessor :NumberOfShards, :NumberOfReplicas, :RefreshInterval
+        
+        def initialize(numberofshards=nil, numberofreplicas=nil, refreshinterval=nil)
+          @NumberOfShards = numberofshards
+          @NumberOfReplicas = numberofreplicas
+          @RefreshInterval = refreshinterval
+        end
+
+        def deserialize(params)
+          @NumberOfShards = params['NumberOfShards']
+          @NumberOfReplicas = params['NumberOfReplicas']
+          @RefreshInterval = params['RefreshInterval']
         end
       end
 
@@ -1969,6 +2480,58 @@ module TencentCloud
         end
       end
 
+      # UpdateIndex请求参数结构体
+      class UpdateIndexRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: ES集群ID
+        # @type InstanceId: String
+        # @param IndexType: 更新的索引类型。auto：自治索引；normal：普通索引
+        # @type IndexType: String
+        # @param IndexName: 更新的索引名
+        # @type IndexName: String
+        # @param UpdateMetaJson: 更新的索引元数据JSON，如mappings、settings
+        # @type UpdateMetaJson: String
+        # @param Username: 集群访问用户名
+        # @type Username: String
+        # @param Password: 集群访问密码
+        # @type Password: String
+
+        attr_accessor :InstanceId, :IndexType, :IndexName, :UpdateMetaJson, :Username, :Password
+        
+        def initialize(instanceid=nil, indextype=nil, indexname=nil, updatemetajson=nil, username=nil, password=nil)
+          @InstanceId = instanceid
+          @IndexType = indextype
+          @IndexName = indexname
+          @UpdateMetaJson = updatemetajson
+          @Username = username
+          @Password = password
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @IndexType = params['IndexType']
+          @IndexName = params['IndexName']
+          @UpdateMetaJson = params['UpdateMetaJson']
+          @Username = params['Username']
+          @Password = params['Password']
+        end
+      end
+
+      # UpdateIndex返回参数结构体
+      class UpdateIndexResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # UpdateInstance请求参数结构体
       class UpdateInstanceRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例ID
@@ -2035,10 +2598,12 @@ module TencentCloud
         # @type CerebroPublicAccess: String
         # @param CerebroPrivateAccess: Cerebro内网访问状态
         # @type CerebroPrivateAccess: String
+        # @param EsConfigSet: 新增或修改的配置组信息
+        # @type EsConfigSet: :class:`Tencentcloud::Es.v20180416.models.EsConfigSetInfo`
 
-        attr_accessor :InstanceId, :InstanceName, :NodeNum, :EsConfig, :Password, :EsAcl, :DiskSize, :NodeType, :MasterNodeNum, :MasterNodeType, :MasterNodeDiskSize, :ForceRestart, :CosBackup, :NodeInfoList, :PublicAccess, :EsPublicAcl, :KibanaPublicAccess, :KibanaPrivateAccess, :BasicSecurityType, :KibanaPrivatePort, :ScaleType, :MultiZoneInfo, :SceneType, :KibanaConfig, :WebNodeTypeInfo, :SwitchPrivateLink, :EnableCerebro, :CerebroPublicAccess, :CerebroPrivateAccess
+        attr_accessor :InstanceId, :InstanceName, :NodeNum, :EsConfig, :Password, :EsAcl, :DiskSize, :NodeType, :MasterNodeNum, :MasterNodeType, :MasterNodeDiskSize, :ForceRestart, :CosBackup, :NodeInfoList, :PublicAccess, :EsPublicAcl, :KibanaPublicAccess, :KibanaPrivateAccess, :BasicSecurityType, :KibanaPrivatePort, :ScaleType, :MultiZoneInfo, :SceneType, :KibanaConfig, :WebNodeTypeInfo, :SwitchPrivateLink, :EnableCerebro, :CerebroPublicAccess, :CerebroPrivateAccess, :EsConfigSet
         
-        def initialize(instanceid=nil, instancename=nil, nodenum=nil, esconfig=nil, password=nil, esacl=nil, disksize=nil, nodetype=nil, masternodenum=nil, masternodetype=nil, masternodedisksize=nil, forcerestart=nil, cosbackup=nil, nodeinfolist=nil, publicaccess=nil, espublicacl=nil, kibanapublicaccess=nil, kibanaprivateaccess=nil, basicsecuritytype=nil, kibanaprivateport=nil, scaletype=nil, multizoneinfo=nil, scenetype=nil, kibanaconfig=nil, webnodetypeinfo=nil, switchprivatelink=nil, enablecerebro=nil, cerebropublicaccess=nil, cerebroprivateaccess=nil)
+        def initialize(instanceid=nil, instancename=nil, nodenum=nil, esconfig=nil, password=nil, esacl=nil, disksize=nil, nodetype=nil, masternodenum=nil, masternodetype=nil, masternodedisksize=nil, forcerestart=nil, cosbackup=nil, nodeinfolist=nil, publicaccess=nil, espublicacl=nil, kibanapublicaccess=nil, kibanaprivateaccess=nil, basicsecuritytype=nil, kibanaprivateport=nil, scaletype=nil, multizoneinfo=nil, scenetype=nil, kibanaconfig=nil, webnodetypeinfo=nil, switchprivatelink=nil, enablecerebro=nil, cerebropublicaccess=nil, cerebroprivateaccess=nil, esconfigset=nil)
           @InstanceId = instanceid
           @InstanceName = instancename
           @NodeNum = nodenum
@@ -2068,6 +2633,7 @@ module TencentCloud
           @EnableCerebro = enablecerebro
           @CerebroPublicAccess = cerebropublicaccess
           @CerebroPrivateAccess = cerebroprivateaccess
+          @EsConfigSet = esconfigset
         end
 
         def deserialize(params)
@@ -2126,6 +2692,10 @@ module TencentCloud
           @EnableCerebro = params['EnableCerebro']
           @CerebroPublicAccess = params['CerebroPublicAccess']
           @CerebroPrivateAccess = params['CerebroPrivateAccess']
+          unless params['EsConfigSet'].nil?
+            @EsConfigSet = EsConfigSetInfo.new
+            @EsConfigSet.deserialize(params['EsConfigSet'])
+          end
         end
       end
 

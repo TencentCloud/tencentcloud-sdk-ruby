@@ -4351,6 +4351,93 @@ module TencentCloud
         end
       end
 
+      # TagRole请求参数结构体
+      class TagRoleRequest < TencentCloud::Common::AbstractModel
+        # @param Tags: 标签
+        # @type Tags: Array
+        # @param RoleName: 角色名，与角色ID至少输入一个
+        # @type RoleName: String
+        # @param RoleId: 角色ID，与角色名至少输入一个
+        # @type RoleId: String
+
+        attr_accessor :Tags, :RoleName, :RoleId
+        
+        def initialize(tags=nil, rolename=nil, roleid=nil)
+          @Tags = tags
+          @RoleName = rolename
+          @RoleId = roleid
+        end
+
+        def deserialize(params)
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              roletags_tmp = RoleTags.new
+              roletags_tmp.deserialize(i)
+              @Tags << roletags_tmp
+            end
+          end
+          @RoleName = params['RoleName']
+          @RoleId = params['RoleId']
+        end
+      end
+
+      # TagRole返回参数结构体
+      class TagRoleResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # UntagRole请求参数结构体
+      class UntagRoleRequest < TencentCloud::Common::AbstractModel
+        # @param TagKeys: 标签键
+        # @type TagKeys: Array
+        # @param RoleName: 角色名，与角色ID至少输入一个
+        # @type RoleName: String
+        # @param RoleId: 角色ID，与角色名至少输入一个
+        # @type RoleId: String
+
+        attr_accessor :TagKeys, :RoleName, :RoleId
+        
+        def initialize(tagkeys=nil, rolename=nil, roleid=nil)
+          @TagKeys = tagkeys
+          @RoleName = rolename
+          @RoleId = roleid
+        end
+
+        def deserialize(params)
+          @TagKeys = params['TagKeys']
+          @RoleName = params['RoleName']
+          @RoleId = params['RoleId']
+        end
+      end
+
+      # UntagRole返回参数结构体
+      class UntagRoleResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # UpdateAssumeRolePolicy请求参数结构体
       class UpdateAssumeRolePolicyRequest < TencentCloud::Common::AbstractModel
         # @param PolicyDocument: 策略文档，示例：{"version":"2.0","statement":[{"action":"name/sts:AssumeRole","effect":"allow","principal":{"service":["cloudaudit.cloud.tencent.com","cls.cloud.tencent.com"]}}]}，principal用于指定角色的授权对象。获取该参数可参阅 获取角色详情（https://cloud.tencent.com/document/product/598/36221） 输出参数RoleInfo

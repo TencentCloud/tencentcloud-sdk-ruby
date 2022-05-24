@@ -235,10 +235,12 @@ module TencentCloud
         # @type EnableRanger: Boolean
         # @param RangerServiceAddresses: Ranger地址列表，默认为空数组
         # @type RangerServiceAddresses: Array
+        # @param Tags: 多个资源标签，可以为空数组
+        # @type Tags: Array
 
-        attr_accessor :FileSystemName, :CapacityQuota, :PosixAcl, :Description, :SuperUsers, :RootInodeUser, :RootInodeGroup, :EnableRanger, :RangerServiceAddresses
+        attr_accessor :FileSystemName, :CapacityQuota, :PosixAcl, :Description, :SuperUsers, :RootInodeUser, :RootInodeGroup, :EnableRanger, :RangerServiceAddresses, :Tags
         
-        def initialize(filesystemname=nil, capacityquota=nil, posixacl=nil, description=nil, superusers=nil, rootinodeuser=nil, rootinodegroup=nil, enableranger=nil, rangerserviceaddresses=nil)
+        def initialize(filesystemname=nil, capacityquota=nil, posixacl=nil, description=nil, superusers=nil, rootinodeuser=nil, rootinodegroup=nil, enableranger=nil, rangerserviceaddresses=nil, tags=nil)
           @FileSystemName = filesystemname
           @CapacityQuota = capacityquota
           @PosixAcl = posixacl
@@ -248,6 +250,7 @@ module TencentCloud
           @RootInodeGroup = rootinodegroup
           @EnableRanger = enableranger
           @RangerServiceAddresses = rangerserviceaddresses
+          @Tags = tags
         end
 
         def deserialize(params)
@@ -260,6 +263,14 @@ module TencentCloud
           @RootInodeGroup = params['RootInodeGroup']
           @EnableRanger = params['EnableRanger']
           @RangerServiceAddresses = params['RangerServiceAddresses']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
+            end
+          end
         end
       end
 

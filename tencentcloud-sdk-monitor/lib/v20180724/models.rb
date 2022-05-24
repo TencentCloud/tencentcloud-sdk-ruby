@@ -386,10 +386,13 @@ module TencentCloud
         # @param OneClickStatus: 一键告警策略是否开启
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OneClickStatus: Integer
+        # @param AdvancedMetricNumber: 高级指标数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AdvancedMetricNumber: Integer
 
-        attr_accessor :PolicyId, :PolicyName, :Remark, :MonitorType, :Enable, :UseSum, :ProjectId, :ProjectName, :Namespace, :ConditionTemplateId, :Condition, :EventCondition, :NoticeIds, :Notices, :TriggerTasks, :ConditionsTemp, :LastEditUin, :UpdateTime, :InsertTime, :Region, :NamespaceShowName, :IsDefault, :CanSetDefault, :InstanceGroupId, :InstanceSum, :InstanceGroupName, :RuleType, :OriginId, :TagInstances, :FilterDimensionsParam, :IsOneClick, :OneClickStatus
+        attr_accessor :PolicyId, :PolicyName, :Remark, :MonitorType, :Enable, :UseSum, :ProjectId, :ProjectName, :Namespace, :ConditionTemplateId, :Condition, :EventCondition, :NoticeIds, :Notices, :TriggerTasks, :ConditionsTemp, :LastEditUin, :UpdateTime, :InsertTime, :Region, :NamespaceShowName, :IsDefault, :CanSetDefault, :InstanceGroupId, :InstanceSum, :InstanceGroupName, :RuleType, :OriginId, :TagInstances, :FilterDimensionsParam, :IsOneClick, :OneClickStatus, :AdvancedMetricNumber
         
-        def initialize(policyid=nil, policyname=nil, remark=nil, monitortype=nil, enable=nil, usesum=nil, projectid=nil, projectname=nil, namespace=nil, conditiontemplateid=nil, condition=nil, eventcondition=nil, noticeids=nil, notices=nil, triggertasks=nil, conditionstemp=nil, lastedituin=nil, updatetime=nil, inserttime=nil, region=nil, namespaceshowname=nil, isdefault=nil, cansetdefault=nil, instancegroupid=nil, instancesum=nil, instancegroupname=nil, ruletype=nil, originid=nil, taginstances=nil, filterdimensionsparam=nil, isoneclick=nil, oneclickstatus=nil)
+        def initialize(policyid=nil, policyname=nil, remark=nil, monitortype=nil, enable=nil, usesum=nil, projectid=nil, projectname=nil, namespace=nil, conditiontemplateid=nil, condition=nil, eventcondition=nil, noticeids=nil, notices=nil, triggertasks=nil, conditionstemp=nil, lastedituin=nil, updatetime=nil, inserttime=nil, region=nil, namespaceshowname=nil, isdefault=nil, cansetdefault=nil, instancegroupid=nil, instancesum=nil, instancegroupname=nil, ruletype=nil, originid=nil, taginstances=nil, filterdimensionsparam=nil, isoneclick=nil, oneclickstatus=nil, advancedmetricnumber=nil)
           @PolicyId = policyid
           @PolicyName = policyname
           @Remark = remark
@@ -422,6 +425,7 @@ module TencentCloud
           @FilterDimensionsParam = filterdimensionsparam
           @IsOneClick = isoneclick
           @OneClickStatus = oneclickstatus
+          @AdvancedMetricNumber = advancedmetricnumber
         end
 
         def deserialize(params)
@@ -487,6 +491,7 @@ module TencentCloud
           @FilterDimensionsParam = params['FilterDimensionsParam']
           @IsOneClick = params['IsOneClick']
           @OneClickStatus = params['OneClickStatus']
+          @AdvancedMetricNumber = params['AdvancedMetricNumber']
         end
       end
 
@@ -618,10 +623,19 @@ module TencentCloud
         # @param RuleType: 触发条件类型 STATIC=静态阈值 DYNAMIC=动态阈值。创建或编辑策略时，如不填则默认为 STATIC。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RuleType: String
+        # @param IsAdvanced: 是否为高级指标，0否，1是
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsAdvanced: Integer
+        # @param IsOpen: 高级指标是否开通，0否，1是
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsOpen: Integer
+        # @param ProductId: 集成中心产品ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProductId: String
 
-        attr_accessor :MetricName, :Period, :Operator, :Value, :ContinuePeriod, :NoticeFrequency, :IsPowerNotice, :Filter, :Description, :Unit, :RuleType
+        attr_accessor :MetricName, :Period, :Operator, :Value, :ContinuePeriod, :NoticeFrequency, :IsPowerNotice, :Filter, :Description, :Unit, :RuleType, :IsAdvanced, :IsOpen, :ProductId
         
-        def initialize(metricname=nil, period=nil, operator=nil, value=nil, continueperiod=nil, noticefrequency=nil, ispowernotice=nil, filter=nil, description=nil, unit=nil, ruletype=nil)
+        def initialize(metricname=nil, period=nil, operator=nil, value=nil, continueperiod=nil, noticefrequency=nil, ispowernotice=nil, filter=nil, description=nil, unit=nil, ruletype=nil, isadvanced=nil, isopen=nil, productid=nil)
           @MetricName = metricname
           @Period = period
           @Operator = operator
@@ -633,6 +647,9 @@ module TencentCloud
           @Description = description
           @Unit = unit
           @RuleType = ruletype
+          @IsAdvanced = isadvanced
+          @IsOpen = isopen
+          @ProductId = productid
         end
 
         def deserialize(params)
@@ -650,6 +667,9 @@ module TencentCloud
           @Description = params['Description']
           @Unit = params['Unit']
           @RuleType = params['RuleType']
+          @IsAdvanced = params['IsAdvanced']
+          @IsOpen = params['IsOpen']
+          @ProductId = params['ProductId']
         end
       end
 
@@ -5108,10 +5128,19 @@ module TencentCloud
         # @param MetricConfig: 指标配置
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MetricConfig: :class:`Tencentcloud::Monitor.v20180724.models.MetricConfig`
+        # @param IsAdvanced: 是否为高级指标。1是 0否
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsAdvanced: Integer
+        # @param IsOpen: 高级指标是否开通。1是 0否
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsOpen: Integer
+        # @param ProductId: 集成中心产品ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProductId: Integer
 
-        attr_accessor :Namespace, :MetricName, :Description, :Min, :Max, :Dimensions, :Unit, :MetricConfig
+        attr_accessor :Namespace, :MetricName, :Description, :Min, :Max, :Dimensions, :Unit, :MetricConfig, :IsAdvanced, :IsOpen, :ProductId
         
-        def initialize(namespace=nil, metricname=nil, description=nil, min=nil, max=nil, dimensions=nil, unit=nil, metricconfig=nil)
+        def initialize(namespace=nil, metricname=nil, description=nil, min=nil, max=nil, dimensions=nil, unit=nil, metricconfig=nil, isadvanced=nil, isopen=nil, productid=nil)
           @Namespace = namespace
           @MetricName = metricname
           @Description = description
@@ -5120,6 +5149,9 @@ module TencentCloud
           @Dimensions = dimensions
           @Unit = unit
           @MetricConfig = metricconfig
+          @IsAdvanced = isadvanced
+          @IsOpen = isopen
+          @ProductId = productid
         end
 
         def deserialize(params)
@@ -5134,6 +5166,9 @@ module TencentCloud
             @MetricConfig = MetricConfig.new
             @MetricConfig.deserialize(params['MetricConfig'])
           end
+          @IsAdvanced = params['IsAdvanced']
+          @IsOpen = params['IsOpen']
+          @ProductId = params['ProductId']
         end
       end
 

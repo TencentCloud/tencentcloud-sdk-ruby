@@ -584,6 +584,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口（DescribeDBSecurityGroups）用于查询实例安全组信息
+
+        # @param request: Request instance for DescribeDBSecurityGroups.
+        # @type request: :class:`Tencentcloud::mariadb::V20170312::DescribeDBSecurityGroupsRequest`
+        # @rtype: :class:`Tencentcloud::mariadb::V20170312::DescribeDBSecurityGroupsResponse`
+        def DescribeDBSecurityGroups(request)
+          body = send_request('DescribeDBSecurityGroups', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeDBSecurityGroupsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口(DescribeDBSlowLogs)用于查询慢查询日志列表。
 
         # @param request: Request instance for DescribeDBSlowLogs.
@@ -786,6 +810,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeLogFileRetentionPeriodResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口（DescribeOrders）用于查询云数据库订单信息。传入订单ID来查询订单关联的云数据库实例，和对应的任务流程ID。
+
+        # @param request: Request instance for DescribeOrders.
+        # @type request: :class:`Tencentcloud::mariadb::V20170312::DescribeOrdersRequest`
+        # @rtype: :class:`Tencentcloud::mariadb::V20170312::DescribeOrdersResponse`
+        def DescribeOrders(request)
+          body = send_request('DescribeOrders', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeOrdersResponse.new
             model.deserialize(response['Response'])
             model
           else

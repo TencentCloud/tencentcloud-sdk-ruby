@@ -1733,6 +1733,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 角色绑定标签
+
+        # @param request: Request instance for TagRole.
+        # @type request: :class:`Tencentcloud::cam::V20190116::TagRoleRequest`
+        # @rtype: :class:`Tencentcloud::cam::V20190116::TagRoleResponse`
+        def TagRole(request)
+          body = send_request('TagRole', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = TagRoleResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 角色解绑标签。
+
+        # @param request: Request instance for UntagRole.
+        # @type request: :class:`Tencentcloud::cam::V20190116::UntagRoleRequest`
+        # @rtype: :class:`Tencentcloud::cam::V20190116::UntagRoleResponse`
+        def UntagRole(request)
+          body = send_request('UntagRole', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = UntagRoleResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（UpdateAssumeRolePolicy）用于修改角色信任策略的策略文档。
 
         # @param request: Request instance for UpdateAssumeRolePolicy.

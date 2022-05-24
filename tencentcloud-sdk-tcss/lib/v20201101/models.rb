@@ -154,10 +154,32 @@ module TencentCloud
         # @type MatchGroupName: String
         # @param MatchRuleLevel: 命中规则等级，HIGH：高危，MIDDLE：中危，LOW：低危。
         # @type MatchRuleLevel: String
+        # @param ContainerNetStatus: 网络状态
+        # 未隔离  	NORMAL
+        # 已隔离		ISOLATED
+        # 隔离中		ISOLATING
+        # 隔离失败	ISOLATE_FAILED
+        # 解除隔离中  RESTORING
+        # 解除隔离失败 RESTORE_FAILED
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ContainerNetStatus: String
+        # @param ContainerNetSubStatus: 容器子状态
+        # "AGENT_OFFLINE"       //Agent离线
+        # "NODE_DESTROYED"      //节点已销毁
+        # "CONTAINER_EXITED"    //容器已退出
+        # "CONTAINER_DESTROYED" //容器已销毁
+        # "SHARED_HOST"         // 容器与主机共享网络
+        # "RESOURCE_LIMIT"      //隔离操作资源超限
+        # "UNKNOW"              // 原因未知
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ContainerNetSubStatus: String
+        # @param ContainerIsolateOperationSrc: 容器隔离操作来源
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ContainerIsolateOperationSrc: String
 
-        attr_accessor :ProcessPath, :EventType, :MatchRuleName, :FoundTime, :ContainerName, :ImageName, :Behavior, :Status, :Id, :ImageId, :ContainerId, :Solution, :Description, :MatchRuleId, :MatchAction, :MatchProcessPath, :RuleExist, :EventCount, :LatestFoundTime, :RuleId, :MatchGroupName, :MatchRuleLevel
+        attr_accessor :ProcessPath, :EventType, :MatchRuleName, :FoundTime, :ContainerName, :ImageName, :Behavior, :Status, :Id, :ImageId, :ContainerId, :Solution, :Description, :MatchRuleId, :MatchAction, :MatchProcessPath, :RuleExist, :EventCount, :LatestFoundTime, :RuleId, :MatchGroupName, :MatchRuleLevel, :ContainerNetStatus, :ContainerNetSubStatus, :ContainerIsolateOperationSrc
         
-        def initialize(processpath=nil, eventtype=nil, matchrulename=nil, foundtime=nil, containername=nil, imagename=nil, behavior=nil, status=nil, id=nil, imageid=nil, containerid=nil, solution=nil, description=nil, matchruleid=nil, matchaction=nil, matchprocesspath=nil, ruleexist=nil, eventcount=nil, latestfoundtime=nil, ruleid=nil, matchgroupname=nil, matchrulelevel=nil)
+        def initialize(processpath=nil, eventtype=nil, matchrulename=nil, foundtime=nil, containername=nil, imagename=nil, behavior=nil, status=nil, id=nil, imageid=nil, containerid=nil, solution=nil, description=nil, matchruleid=nil, matchaction=nil, matchprocesspath=nil, ruleexist=nil, eventcount=nil, latestfoundtime=nil, ruleid=nil, matchgroupname=nil, matchrulelevel=nil, containernetstatus=nil, containernetsubstatus=nil, containerisolateoperationsrc=nil)
           @ProcessPath = processpath
           @EventType = eventtype
           @MatchRuleName = matchrulename
@@ -180,6 +202,9 @@ module TencentCloud
           @RuleId = ruleid
           @MatchGroupName = matchgroupname
           @MatchRuleLevel = matchrulelevel
+          @ContainerNetStatus = containernetstatus
+          @ContainerNetSubStatus = containernetsubstatus
+          @ContainerIsolateOperationSrc = containerisolateoperationsrc
         end
 
         def deserialize(params)
@@ -205,6 +230,9 @@ module TencentCloud
           @RuleId = params['RuleId']
           @MatchGroupName = params['MatchGroupName']
           @MatchRuleLevel = params['MatchRuleLevel']
+          @ContainerNetStatus = params['ContainerNetStatus']
+          @ContainerNetSubStatus = params['ContainerNetSubStatus']
+          @ContainerIsolateOperationSrc = params['ContainerIsolateOperationSrc']
         end
       end
 
@@ -438,10 +466,29 @@ module TencentCloud
         # @type LatestFoundTime: String
         # @param RuleId: 规则组id
         # @type RuleId: String
+        # @param ContainerNetStatus: 网络状态
+        # 未隔离  	NORMAL
+        # 已隔离		ISOLATED
+        # 隔离中		ISOLATING
+        # 隔离失败	ISOLATE_FAILED
+        # 解除隔离中  RESTORING
+        # 解除隔离失败 RESTORE_FAILED
+        # @type ContainerNetStatus: String
+        # @param ContainerNetSubStatus: 容器子状态
+        # "AGENT_OFFLINE"       //Agent离线
+        # "NODE_DESTROYED"      //节点已销毁
+        # "CONTAINER_EXITED"    //容器已退出
+        # "CONTAINER_DESTROYED" //容器已销毁
+        # "SHARED_HOST"         // 容器与主机共享网络
+        # "RESOURCE_LIMIT"      //隔离操作资源超限
+        # "UNKNOW"              // 原因未知
+        # @type ContainerNetSubStatus: String
+        # @param ContainerIsolateOperationSrc: 容器隔离操作来源
+        # @type ContainerIsolateOperationSrc: String
 
-        attr_accessor :ProcessName, :MatchRuleName, :FoundTime, :ContainerName, :ImageName, :Behavior, :Status, :Id, :FileName, :EventType, :ImageId, :ContainerId, :Solution, :Description, :MatchRuleId, :MatchAction, :MatchProcessPath, :MatchFilePath, :FilePath, :RuleExist, :EventCount, :LatestFoundTime, :RuleId
+        attr_accessor :ProcessName, :MatchRuleName, :FoundTime, :ContainerName, :ImageName, :Behavior, :Status, :Id, :FileName, :EventType, :ImageId, :ContainerId, :Solution, :Description, :MatchRuleId, :MatchAction, :MatchProcessPath, :MatchFilePath, :FilePath, :RuleExist, :EventCount, :LatestFoundTime, :RuleId, :ContainerNetStatus, :ContainerNetSubStatus, :ContainerIsolateOperationSrc
         
-        def initialize(processname=nil, matchrulename=nil, foundtime=nil, containername=nil, imagename=nil, behavior=nil, status=nil, id=nil, filename=nil, eventtype=nil, imageid=nil, containerid=nil, solution=nil, description=nil, matchruleid=nil, matchaction=nil, matchprocesspath=nil, matchfilepath=nil, filepath=nil, ruleexist=nil, eventcount=nil, latestfoundtime=nil, ruleid=nil)
+        def initialize(processname=nil, matchrulename=nil, foundtime=nil, containername=nil, imagename=nil, behavior=nil, status=nil, id=nil, filename=nil, eventtype=nil, imageid=nil, containerid=nil, solution=nil, description=nil, matchruleid=nil, matchaction=nil, matchprocesspath=nil, matchfilepath=nil, filepath=nil, ruleexist=nil, eventcount=nil, latestfoundtime=nil, ruleid=nil, containernetstatus=nil, containernetsubstatus=nil, containerisolateoperationsrc=nil)
           @ProcessName = processname
           @MatchRuleName = matchrulename
           @FoundTime = foundtime
@@ -465,6 +512,9 @@ module TencentCloud
           @EventCount = eventcount
           @LatestFoundTime = latestfoundtime
           @RuleId = ruleid
+          @ContainerNetStatus = containernetstatus
+          @ContainerNetSubStatus = containernetsubstatus
+          @ContainerIsolateOperationSrc = containerisolateoperationsrc
         end
 
         def deserialize(params)
@@ -491,6 +541,9 @@ module TencentCloud
           @EventCount = params['EventCount']
           @LatestFoundTime = params['LatestFoundTime']
           @RuleId = params['RuleId']
+          @ContainerNetStatus = params['ContainerNetStatus']
+          @ContainerNetSubStatus = params['ContainerNetSubStatus']
+          @ContainerIsolateOperationSrc = params['ContainerIsolateOperationSrc']
         end
       end
 
@@ -816,9 +869,9 @@ module TencentCloud
 
       # AddEditRiskSyscallWhiteList请求参数结构体
       class AddEditRiskSyscallWhiteListRequest < TencentCloud::Common::AbstractModel
-        # @param EventId: 仅在添加白名单时候使用
+        # @param EventId: 仅在添加事件白名单时候使用
         # @type EventId: String
-        # @param WhiteListInfo: 增加白名单信息，白名单id为空，编辑白名单id不能为空
+        # @param WhiteListInfo: 增加或编辑白名单信。新增白名单时WhiteListInfo.id为空，编辑白名单WhiteListInfo.id不能为空.
         # @type WhiteListInfo: :class:`Tencentcloud::Tcss.v20201101.models.RiskSyscallWhiteListInfo`
 
         attr_accessor :EventId, :WhiteListInfo
@@ -2225,10 +2278,26 @@ module TencentCloud
         # @type HostName: String
         # @param PublicIp: 外网ip
         # @type PublicIp: String
+        # @param NetStatus: 网络状态
+        # 未隔离  	NORMAL
+        # 已隔离		ISOLATED
+        # 隔离中		ISOLATING
+        # 隔离失败	ISOLATE_FAILED
+        # 解除隔离中  RESTORING
+        # 解除隔离失败 RESTORE_FAILED
+        # @type NetStatus: String
+        # @param NetSubStatus: 网络子状态
+        # @type NetSubStatus: String
+        # @param IsolateSource: 隔离来源
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsolateSource: String
+        # @param IsolateTime: 隔离时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsolateTime: String
 
-        attr_accessor :ContainerID, :ContainerName, :Status, :CreateTime, :RunAs, :Cmd, :CPUUsage, :RamUsage, :ImageName, :ImageID, :POD, :HostID, :HostIP, :UpdateTime, :HostName, :PublicIp
+        attr_accessor :ContainerID, :ContainerName, :Status, :CreateTime, :RunAs, :Cmd, :CPUUsage, :RamUsage, :ImageName, :ImageID, :POD, :HostID, :HostIP, :UpdateTime, :HostName, :PublicIp, :NetStatus, :NetSubStatus, :IsolateSource, :IsolateTime
         
-        def initialize(containerid=nil, containername=nil, status=nil, createtime=nil, runas=nil, cmd=nil, cpuusage=nil, ramusage=nil, imagename=nil, imageid=nil, pod=nil, hostid=nil, hostip=nil, updatetime=nil, hostname=nil, publicip=nil)
+        def initialize(containerid=nil, containername=nil, status=nil, createtime=nil, runas=nil, cmd=nil, cpuusage=nil, ramusage=nil, imagename=nil, imageid=nil, pod=nil, hostid=nil, hostip=nil, updatetime=nil, hostname=nil, publicip=nil, netstatus=nil, netsubstatus=nil, isolatesource=nil, isolatetime=nil)
           @ContainerID = containerid
           @ContainerName = containername
           @Status = status
@@ -2245,6 +2314,10 @@ module TencentCloud
           @UpdateTime = updatetime
           @HostName = hostname
           @PublicIp = publicip
+          @NetStatus = netstatus
+          @NetSubStatus = netsubstatus
+          @IsolateSource = isolatesource
+          @IsolateTime = isolatetime
         end
 
         def deserialize(params)
@@ -2264,6 +2337,10 @@ module TencentCloud
           @UpdateTime = params['UpdateTime']
           @HostName = params['HostName']
           @PublicIp = params['PublicIp']
+          @NetStatus = params['NetStatus']
+          @NetSubStatus = params['NetSubStatus']
+          @IsolateSource = params['IsolateSource']
+          @IsolateTime = params['IsolateTime']
         end
       end
 
@@ -3586,8 +3663,6 @@ module TencentCloud
 
       # DescribeAccessControlEventsExport请求参数结构体
       class DescribeAccessControlEventsExportRequest < TencentCloud::Common::AbstractModel
-        # @param ExportField: 导出字段
-        # @type ExportField: Array
         # @param Limit: 需要返回的数量，默认为10，最大值为100
         # @type Limit: Integer
         # @param Offset: 偏移量，默认为0。
@@ -3598,20 +3673,21 @@ module TencentCloud
         # @type Order: String
         # @param By: 排序字段
         # @type By: String
+        # @param ExportField: 导出字段
+        # @type ExportField: Array
 
-        attr_accessor :ExportField, :Limit, :Offset, :Filters, :Order, :By
+        attr_accessor :Limit, :Offset, :Filters, :Order, :By, :ExportField
         
-        def initialize(exportfield=nil, limit=nil, offset=nil, filters=nil, order=nil, by=nil)
-          @ExportField = exportfield
+        def initialize(limit=nil, offset=nil, filters=nil, order=nil, by=nil, exportfield=nil)
           @Limit = limit
           @Offset = offset
           @Filters = filters
           @Order = order
           @By = by
+          @ExportField = exportfield
         end
 
         def deserialize(params)
-          @ExportField = params['ExportField']
           @Limit = params['Limit']
           @Offset = params['Offset']
           unless params['Filters'].nil?
@@ -3624,6 +3700,7 @@ module TencentCloud
           end
           @Order = params['Order']
           @By = params['By']
+          @ExportField = params['ExportField']
         end
       end
 
@@ -3632,18 +3709,23 @@ module TencentCloud
         # @param DownloadUrl: execle下载地址
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DownloadUrl: String
+        # @param JobId: 任务id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type JobId: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :DownloadUrl, :RequestId
+        attr_accessor :DownloadUrl, :JobId, :RequestId
         
-        def initialize(downloadurl=nil, requestid=nil)
+        def initialize(downloadurl=nil, jobid=nil, requestid=nil)
           @DownloadUrl = downloadurl
+          @JobId = jobid
           @RequestId = requestid
         end
 
         def deserialize(params)
           @DownloadUrl = params['DownloadUrl']
+          @JobId = params['JobId']
           @RequestId = params['RequestId']
         end
       end
@@ -4289,12 +4371,28 @@ module TencentCloud
         # @type ImageSize: Integer
         # @param HostStatus: 主机状态 offline,online,pause
         # @type HostStatus: String
+        # @param NetStatus: 网络状态
+        # 未隔离  	NORMAL
+        # 已隔离		ISOLATED
+        # 隔离中		ISOLATING
+        # 隔离失败	ISOLATE_FAILED
+        # 解除隔离中  RESTORING
+        # 解除隔离失败 RESTORE_FAILED
+        # @type NetStatus: String
+        # @param NetSubStatus: 网络子状态
+        # @type NetSubStatus: String
+        # @param IsolateSource: 隔离来源
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsolateSource: String
+        # @param IsolateTime: 隔离时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsolateTime: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :HostID, :HostIP, :ContainerName, :Status, :RunAs, :Cmd, :CPUUsage, :RamUsage, :ImageName, :ImageID, :POD, :K8sMaster, :ProcessCnt, :PortCnt, :ComponentCnt, :AppCnt, :WebServiceCnt, :Mounts, :Network, :CreateTime, :ImageCreateTime, :ImageSize, :HostStatus, :RequestId
+        attr_accessor :HostID, :HostIP, :ContainerName, :Status, :RunAs, :Cmd, :CPUUsage, :RamUsage, :ImageName, :ImageID, :POD, :K8sMaster, :ProcessCnt, :PortCnt, :ComponentCnt, :AppCnt, :WebServiceCnt, :Mounts, :Network, :CreateTime, :ImageCreateTime, :ImageSize, :HostStatus, :NetStatus, :NetSubStatus, :IsolateSource, :IsolateTime, :RequestId
         
-        def initialize(hostid=nil, hostip=nil, containername=nil, status=nil, runas=nil, cmd=nil, cpuusage=nil, ramusage=nil, imagename=nil, imageid=nil, pod=nil, k8smaster=nil, processcnt=nil, portcnt=nil, componentcnt=nil, appcnt=nil, webservicecnt=nil, mounts=nil, network=nil, createtime=nil, imagecreatetime=nil, imagesize=nil, hoststatus=nil, requestid=nil)
+        def initialize(hostid=nil, hostip=nil, containername=nil, status=nil, runas=nil, cmd=nil, cpuusage=nil, ramusage=nil, imagename=nil, imageid=nil, pod=nil, k8smaster=nil, processcnt=nil, portcnt=nil, componentcnt=nil, appcnt=nil, webservicecnt=nil, mounts=nil, network=nil, createtime=nil, imagecreatetime=nil, imagesize=nil, hoststatus=nil, netstatus=nil, netsubstatus=nil, isolatesource=nil, isolatetime=nil, requestid=nil)
           @HostID = hostid
           @HostIP = hostip
           @ContainerName = containername
@@ -4318,6 +4416,10 @@ module TencentCloud
           @ImageCreateTime = imagecreatetime
           @ImageSize = imagesize
           @HostStatus = hoststatus
+          @NetStatus = netstatus
+          @NetSubStatus = netsubstatus
+          @IsolateSource = isolatesource
+          @IsolateTime = isolatetime
           @RequestId = requestid
         end
 
@@ -4355,6 +4457,10 @@ module TencentCloud
           @ImageCreateTime = params['ImageCreateTime']
           @ImageSize = params['ImageSize']
           @HostStatus = params['HostStatus']
+          @NetStatus = params['NetStatus']
+          @NetSubStatus = params['NetSubStatus']
+          @IsolateSource = params['IsolateSource']
+          @IsolateTime = params['IsolateTime']
           @RequestId = params['RequestId']
         end
       end
@@ -4372,6 +4478,7 @@ module TencentCloud
         # <li>ImageName- String - 是否必填：否 - 镜像名称搜索</li>
         # <li>HostIP- string - 是否必填：否 - 主机ip搜索</li>
         # <li>OrderBy - String 是否必填：否 -排序字段，支持：cpu_usage, mem_usage的动态排序 ["cpu_usage","+"]  '+'升序、'-'降序</li>
+        # <li>NetStatus - String -是否必填: 否 -  容器网络状态筛选 normal isolated isolating isolate_failed restoring restore_failed</li>
         # @type Filters: Array
         # @param By: 排序字段
         # @type By: String
@@ -9022,8 +9129,6 @@ module TencentCloud
 
       # DescribeReverseShellEventsExport请求参数结构体
       class DescribeReverseShellEventsExportRequest < TencentCloud::Common::AbstractModel
-        # @param ExportField: 导出字段
-        # @type ExportField: Array
         # @param Limit: 需要返回的数量，默认为10，最大值为100
         # @type Limit: Integer
         # @param Offset: 偏移量，默认为0。
@@ -9034,20 +9139,21 @@ module TencentCloud
         # @type Order: String
         # @param By: 排序字段
         # @type By: String
+        # @param ExportField: 导出字段
+        # @type ExportField: Array
 
-        attr_accessor :ExportField, :Limit, :Offset, :Filters, :Order, :By
+        attr_accessor :Limit, :Offset, :Filters, :Order, :By, :ExportField
         
-        def initialize(exportfield=nil, limit=nil, offset=nil, filters=nil, order=nil, by=nil)
-          @ExportField = exportfield
+        def initialize(limit=nil, offset=nil, filters=nil, order=nil, by=nil, exportfield=nil)
           @Limit = limit
           @Offset = offset
           @Filters = filters
           @Order = order
           @By = by
+          @ExportField = exportfield
         end
 
         def deserialize(params)
-          @ExportField = params['ExportField']
           @Limit = params['Limit']
           @Offset = params['Offset']
           unless params['Filters'].nil?
@@ -9060,6 +9166,7 @@ module TencentCloud
           end
           @Order = params['Order']
           @By = params['By']
+          @ExportField = params['ExportField']
         end
       end
 
@@ -9068,18 +9175,23 @@ module TencentCloud
         # @param DownloadUrl: execle下载地址
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DownloadUrl: String
+        # @param JobId: 任务ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type JobId: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :DownloadUrl, :RequestId
+        attr_accessor :DownloadUrl, :JobId, :RequestId
         
-        def initialize(downloadurl=nil, requestid=nil)
+        def initialize(downloadurl=nil, jobid=nil, requestid=nil)
           @DownloadUrl = downloadurl
+          @JobId = jobid
           @RequestId = requestid
         end
 
         def deserialize(params)
           @DownloadUrl = params['DownloadUrl']
+          @JobId = params['JobId']
           @RequestId = params['RequestId']
         end
       end
@@ -9408,8 +9520,6 @@ module TencentCloud
 
       # DescribeRiskSyscallEventsExport请求参数结构体
       class DescribeRiskSyscallEventsExportRequest < TencentCloud::Common::AbstractModel
-        # @param ExportField: 导出字段
-        # @type ExportField: Array
         # @param Limit: 需要返回的数量，默认为10，最大值为100
         # @type Limit: Integer
         # @param Offset: 偏移量，默认为0。
@@ -9420,20 +9530,21 @@ module TencentCloud
         # @type Order: String
         # @param By: 排序字段
         # @type By: String
+        # @param ExportField: 导出字段
+        # @type ExportField: Array
 
-        attr_accessor :ExportField, :Limit, :Offset, :Filters, :Order, :By
+        attr_accessor :Limit, :Offset, :Filters, :Order, :By, :ExportField
         
-        def initialize(exportfield=nil, limit=nil, offset=nil, filters=nil, order=nil, by=nil)
-          @ExportField = exportfield
+        def initialize(limit=nil, offset=nil, filters=nil, order=nil, by=nil, exportfield=nil)
           @Limit = limit
           @Offset = offset
           @Filters = filters
           @Order = order
           @By = by
+          @ExportField = exportfield
         end
 
         def deserialize(params)
-          @ExportField = params['ExportField']
           @Limit = params['Limit']
           @Offset = params['Offset']
           unless params['Filters'].nil?
@@ -9446,6 +9557,7 @@ module TencentCloud
           end
           @Order = params['Order']
           @By = params['By']
+          @ExportField = params['ExportField']
         end
       end
 
@@ -9454,18 +9566,23 @@ module TencentCloud
         # @param DownloadUrl: Excel下载地址
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DownloadUrl: String
+        # @param JobId: 任务Id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type JobId: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :DownloadUrl, :RequestId
+        attr_accessor :DownloadUrl, :JobId, :RequestId
         
-        def initialize(downloadurl=nil, requestid=nil)
+        def initialize(downloadurl=nil, jobid=nil, requestid=nil)
           @DownloadUrl = downloadurl
+          @JobId = jobid
           @RequestId = requestid
         end
 
         def deserialize(params)
           @DownloadUrl = params['DownloadUrl']
+          @JobId = params['JobId']
           @RequestId = params['RequestId']
         end
       end
@@ -10080,12 +10197,21 @@ module TencentCloud
         # @param OperationTime: 事件最后一次处理的时间
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OperationTime: String
+        # @param ContainerNetStatus: 容器隔离状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ContainerNetStatus: String
+        # @param ContainerNetSubStatus: 容器隔离子状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ContainerNetSubStatus: String
+        # @param ContainerIsolateOperationSrc: 容器隔离操作来源
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ContainerIsolateOperationSrc: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :ImageId, :ImageName, :CreateTime, :Size, :FilePath, :ModifyTime, :VirusName, :RiskLevel, :ContainerName, :ContainerId, :HostName, :HostId, :ProcessName, :ProcessPath, :ProcessMd5, :ProcessId, :ProcessArgv, :ProcessChan, :ProcessAccountGroup, :ProcessStartAccount, :ProcessFileAuthority, :SourceType, :PodName, :Tags, :HarmDescribe, :SuggestScheme, :Mark, :FileName, :FileMd5, :EventType, :Status, :SubStatus, :HostIP, :ClientIP, :PProcessStartUser, :PProcessUserGroup, :PProcessPath, :PProcessParam, :AncestorProcessStartUser, :AncestorProcessUserGroup, :AncestorProcessPath, :AncestorProcessParam, :OperationTime, :RequestId
+        attr_accessor :ImageId, :ImageName, :CreateTime, :Size, :FilePath, :ModifyTime, :VirusName, :RiskLevel, :ContainerName, :ContainerId, :HostName, :HostId, :ProcessName, :ProcessPath, :ProcessMd5, :ProcessId, :ProcessArgv, :ProcessChan, :ProcessAccountGroup, :ProcessStartAccount, :ProcessFileAuthority, :SourceType, :PodName, :Tags, :HarmDescribe, :SuggestScheme, :Mark, :FileName, :FileMd5, :EventType, :Status, :SubStatus, :HostIP, :ClientIP, :PProcessStartUser, :PProcessUserGroup, :PProcessPath, :PProcessParam, :AncestorProcessStartUser, :AncestorProcessUserGroup, :AncestorProcessPath, :AncestorProcessParam, :OperationTime, :ContainerNetStatus, :ContainerNetSubStatus, :ContainerIsolateOperationSrc, :RequestId
         
-        def initialize(imageid=nil, imagename=nil, createtime=nil, size=nil, filepath=nil, modifytime=nil, virusname=nil, risklevel=nil, containername=nil, containerid=nil, hostname=nil, hostid=nil, processname=nil, processpath=nil, processmd5=nil, processid=nil, processargv=nil, processchan=nil, processaccountgroup=nil, processstartaccount=nil, processfileauthority=nil, sourcetype=nil, podname=nil, tags=nil, harmdescribe=nil, suggestscheme=nil, mark=nil, filename=nil, filemd5=nil, eventtype=nil, status=nil, substatus=nil, hostip=nil, clientip=nil, pprocessstartuser=nil, pprocessusergroup=nil, pprocesspath=nil, pprocessparam=nil, ancestorprocessstartuser=nil, ancestorprocessusergroup=nil, ancestorprocesspath=nil, ancestorprocessparam=nil, operationtime=nil, requestid=nil)
+        def initialize(imageid=nil, imagename=nil, createtime=nil, size=nil, filepath=nil, modifytime=nil, virusname=nil, risklevel=nil, containername=nil, containerid=nil, hostname=nil, hostid=nil, processname=nil, processpath=nil, processmd5=nil, processid=nil, processargv=nil, processchan=nil, processaccountgroup=nil, processstartaccount=nil, processfileauthority=nil, sourcetype=nil, podname=nil, tags=nil, harmdescribe=nil, suggestscheme=nil, mark=nil, filename=nil, filemd5=nil, eventtype=nil, status=nil, substatus=nil, hostip=nil, clientip=nil, pprocessstartuser=nil, pprocessusergroup=nil, pprocesspath=nil, pprocessparam=nil, ancestorprocessstartuser=nil, ancestorprocessusergroup=nil, ancestorprocesspath=nil, ancestorprocessparam=nil, operationtime=nil, containernetstatus=nil, containernetsubstatus=nil, containerisolateoperationsrc=nil, requestid=nil)
           @ImageId = imageid
           @ImageName = imagename
           @CreateTime = createtime
@@ -10129,6 +10255,9 @@ module TencentCloud
           @AncestorProcessPath = ancestorprocesspath
           @AncestorProcessParam = ancestorprocessparam
           @OperationTime = operationtime
+          @ContainerNetStatus = containernetstatus
+          @ContainerNetSubStatus = containernetsubstatus
+          @ContainerIsolateOperationSrc = containerisolateoperationsrc
           @RequestId = requestid
         end
 
@@ -10176,6 +10305,9 @@ module TencentCloud
           @AncestorProcessPath = params['AncestorProcessPath']
           @AncestorProcessParam = params['AncestorProcessParam']
           @OperationTime = params['OperationTime']
+          @ContainerNetStatus = params['ContainerNetStatus']
+          @ContainerNetSubStatus = params['ContainerNetSubStatus']
+          @ContainerIsolateOperationSrc = params['ContainerIsolateOperationSrc']
           @RequestId = params['RequestId']
         end
       end
@@ -10196,6 +10328,8 @@ module TencentCloud
         # <li>ImageId- string - 是否必填：否 - 镜像id</li>
         # <li>IsRealTime- int - 是否必填：否 - 过滤是否实时监控数据</li>
         # <li>TaskId- string - 是否必填：否 - 任务ID</li>
+        # <li>ContainerNetStatus - String -是否必填: 否 -  容器网络状态筛选 NORMAL ISOLATED ISOLATING RESTORING RESTORE_FAILED</li>
+        # <li>TimeRange - string -是否必填: 否 - 时间范围筛选 ["2022-03-31 16:55:00", "2022-03-31 17:00:00"]</li>
         # @type Filters: Array
         # @param Order: 排序方式
         # @type Order: String
@@ -10744,10 +10878,32 @@ module TencentCloud
         # @param HostID: 主机IP
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HostID: String
+        # @param ContainerNetStatus: 网络状态
+        # 未隔离  	NORMAL
+        # 已隔离		ISOLATED
+        # 隔离中		ISOLATING
+        # 隔离失败	ISOLATE_FAILED
+        # 解除隔离中  RESTORING
+        # 解除隔离失败 RESTORE_FAILED
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ContainerNetStatus: String
+        # @param ContainerNetSubStatus: 容器子状态
+        # "AGENT_OFFLINE"       //Agent离线
+        # "NODE_DESTROYED"      //节点已销毁
+        # "CONTAINER_EXITED"    //容器已退出
+        # "CONTAINER_DESTROYED" //容器已销毁
+        # "SHARED_HOST"         // 容器与主机共享网络
+        # "RESOURCE_LIMIT"      //隔离操作资源超限
+        # "UNKNOW"              // 原因未知
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ContainerNetSubStatus: String
+        # @param ContainerIsolateOperationSrc: 容器隔离操作来源
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ContainerIsolateOperationSrc: String
 
-        attr_accessor :EventType, :ContainerName, :ImageName, :Status, :EventId, :NodeName, :PodName, :FoundTime, :EventName, :ImageId, :ContainerId, :Solution, :Description, :EventCount, :LatestFoundTime, :NodeIP, :HostID
+        attr_accessor :EventType, :ContainerName, :ImageName, :Status, :EventId, :NodeName, :PodName, :FoundTime, :EventName, :ImageId, :ContainerId, :Solution, :Description, :EventCount, :LatestFoundTime, :NodeIP, :HostID, :ContainerNetStatus, :ContainerNetSubStatus, :ContainerIsolateOperationSrc
         
-        def initialize(eventtype=nil, containername=nil, imagename=nil, status=nil, eventid=nil, nodename=nil, podname=nil, foundtime=nil, eventname=nil, imageid=nil, containerid=nil, solution=nil, description=nil, eventcount=nil, latestfoundtime=nil, nodeip=nil, hostid=nil)
+        def initialize(eventtype=nil, containername=nil, imagename=nil, status=nil, eventid=nil, nodename=nil, podname=nil, foundtime=nil, eventname=nil, imageid=nil, containerid=nil, solution=nil, description=nil, eventcount=nil, latestfoundtime=nil, nodeip=nil, hostid=nil, containernetstatus=nil, containernetsubstatus=nil, containerisolateoperationsrc=nil)
           @EventType = eventtype
           @ContainerName = containername
           @ImageName = imagename
@@ -10765,6 +10921,9 @@ module TencentCloud
           @LatestFoundTime = latestfoundtime
           @NodeIP = nodeip
           @HostID = hostid
+          @ContainerNetStatus = containernetstatus
+          @ContainerNetSubStatus = containernetsubstatus
+          @ContainerIsolateOperationSrc = containerisolateoperationsrc
         end
 
         def deserialize(params)
@@ -10785,6 +10944,9 @@ module TencentCloud
           @LatestFoundTime = params['LatestFoundTime']
           @NodeIP = params['NodeIP']
           @HostID = params['HostID']
+          @ContainerNetStatus = params['ContainerNetStatus']
+          @ContainerNetSubStatus = params['ContainerNetSubStatus']
+          @ContainerIsolateOperationSrc = params['ContainerIsolateOperationSrc']
         end
       end
 
@@ -10864,6 +11026,10 @@ module TencentCloud
         # <li>ContainerId- string - 是否必填：否 - 容器id</li>
         # <li>ImageName- string - 是否必填：否 - 镜像名称</li>
         # <li>ImageId- string - 是否必填：否 - 镜像id</li>
+        # <li>IsRealTime- int - 是否必填：否 - 过滤是否实时监控数据</li>
+        # <li>TaskId- string - 是否必填：否 - 任务ID</li>
+        # <li>NetStatus - String -是否必填: 否 -  容器网络状态筛选 NORMAL ISOLATED ISOLATING RESTORING RESTORE_FAILED</li>
+        # <li>TimeRange - string -是否必填: 否 - 时间范围筛选 ["2022-03-31 16:55:00", "2022-03-31 17:00:00"]</li>
         # @type Filters: Array
         # @param Order: 排序方式
         # @type Order: String
@@ -12556,25 +12722,31 @@ module TencentCloud
         # @param Status: 标记事件的状态，
         #     EVENT_DEALED:事件处理
         #     EVENT_INGNORE"：事件忽略
-        #      EVENT_DEL:事件删除
-        #      EVENT_ADD_WHITE:事件加白
-        #      EVENT_PENDING: 事件待处理
+        #     EVENT_DEL:事件删除
+        #     EVENT_ADD_WHITE:事件加白
+        #     EVENT_PENDING: 事件待处理
+        # 	EVENT_ISOLATE_CONTAINER: 隔离容器
+        # 	EVENT_RESOTRE_CONTAINER: 恢复容器
         # @type Status: String
         # @param Remark: 事件备注
         # @type Remark: String
+        # @param AutoIsolate: 是否后续自动隔离相同MD5文件
+        # @type AutoIsolate: Boolean
 
-        attr_accessor :EventIdSet, :Status, :Remark
+        attr_accessor :EventIdSet, :Status, :Remark, :AutoIsolate
         
-        def initialize(eventidset=nil, status=nil, remark=nil)
+        def initialize(eventidset=nil, status=nil, remark=nil, autoisolate=nil)
           @EventIdSet = eventidset
           @Status = status
           @Remark = remark
+          @AutoIsolate = autoisolate
         end
 
         def deserialize(params)
           @EventIdSet = params['EventIdSet']
           @Status = params['Status']
           @Remark = params['Remark']
+          @AutoIsolate = params['AutoIsolate']
         end
       end
 
@@ -13125,10 +13297,29 @@ module TencentCloud
         # @type LatestFoundTime: String
         # @param DstAddress: 目标地址
         # @type DstAddress: String
+        # @param ContainerNetStatus: 网络状态
+        # 未隔离  	NORMAL
+        # 已隔离		ISOLATED
+        # 隔离中		ISOLATING
+        # 隔离失败	ISOLATE_FAILED
+        # 解除隔离中  RESTORING
+        # 解除隔离失败 RESTORE_FAILED
+        # @type ContainerNetStatus: String
+        # @param ContainerNetSubStatus: 容器子状态
+        # "AGENT_OFFLINE"       //Agent离线
+        # 	"NODE_DESTROYED"      //节点已销毁
+        # 	"CONTAINER_EXITED"    //容器已退出
+        # 	"CONTAINER_DESTROYED" //容器已销毁
+        # 	"SHARED_HOST"         // 容器与主机共享网络
+        # 	"RESOURCE_LIMIT"      //隔离操作资源超限
+        # 	"UNKNOW"              // 原因未知
+        # @type ContainerNetSubStatus: String
+        # @param ContainerIsolateOperationSrc: 容器隔离操作来源
+        # @type ContainerIsolateOperationSrc: String
 
-        attr_accessor :ProcessName, :ProcessPath, :ImageId, :ContainerId, :ImageName, :ContainerName, :FoundTime, :Solution, :Description, :Status, :EventId, :Remark, :PProcessName, :EventCount, :LatestFoundTime, :DstAddress
+        attr_accessor :ProcessName, :ProcessPath, :ImageId, :ContainerId, :ImageName, :ContainerName, :FoundTime, :Solution, :Description, :Status, :EventId, :Remark, :PProcessName, :EventCount, :LatestFoundTime, :DstAddress, :ContainerNetStatus, :ContainerNetSubStatus, :ContainerIsolateOperationSrc
         
-        def initialize(processname=nil, processpath=nil, imageid=nil, containerid=nil, imagename=nil, containername=nil, foundtime=nil, solution=nil, description=nil, status=nil, eventid=nil, remark=nil, pprocessname=nil, eventcount=nil, latestfoundtime=nil, dstaddress=nil)
+        def initialize(processname=nil, processpath=nil, imageid=nil, containerid=nil, imagename=nil, containername=nil, foundtime=nil, solution=nil, description=nil, status=nil, eventid=nil, remark=nil, pprocessname=nil, eventcount=nil, latestfoundtime=nil, dstaddress=nil, containernetstatus=nil, containernetsubstatus=nil, containerisolateoperationsrc=nil)
           @ProcessName = processname
           @ProcessPath = processpath
           @ImageId = imageid
@@ -13145,6 +13336,9 @@ module TencentCloud
           @EventCount = eventcount
           @LatestFoundTime = latestfoundtime
           @DstAddress = dstaddress
+          @ContainerNetStatus = containernetstatus
+          @ContainerNetSubStatus = containernetsubstatus
+          @ContainerIsolateOperationSrc = containerisolateoperationsrc
         end
 
         def deserialize(params)
@@ -13164,6 +13358,9 @@ module TencentCloud
           @EventCount = params['EventCount']
           @LatestFoundTime = params['LatestFoundTime']
           @DstAddress = params['DstAddress']
+          @ContainerNetStatus = params['ContainerNetStatus']
+          @ContainerNetSubStatus = params['ContainerNetSubStatus']
+          @ContainerIsolateOperationSrc = params['ContainerIsolateOperationSrc']
         end
       end
 
@@ -13322,10 +13519,29 @@ module TencentCloud
         # @type EventCount: Integer
         # @param LatestFoundTime: 最近生成时间
         # @type LatestFoundTime: String
+        # @param ContainerNetStatus: 网络状态
+        # 未隔离  	NORMAL
+        # 已隔离		ISOLATED
+        # 隔离中		ISOLATING
+        # 隔离失败	ISOLATE_FAILED
+        # 解除隔离中  RESTORING
+        # 解除隔离失败 RESTORE_FAILED
+        # @type ContainerNetStatus: String
+        # @param ContainerNetSubStatus: 容器子状态
+        # "AGENT_OFFLINE"       //Agent离线
+        # "NODE_DESTROYED"      //节点已销毁
+        # "CONTAINER_EXITED"    //容器已退出
+        # "CONTAINER_DESTROYED" //容器已销毁
+        # "SHARED_HOST"         // 容器与主机共享网络
+        # "RESOURCE_LIMIT"      //隔离操作资源超限
+        # "UNKNOW"              // 原因未知
+        # @type ContainerNetSubStatus: String
+        # @param ContainerIsolateOperationSrc: 容器隔离操作来源
+        # @type ContainerIsolateOperationSrc: String
 
-        attr_accessor :ProcessName, :ProcessPath, :ImageId, :ContainerId, :ImageName, :ContainerName, :FoundTime, :Solution, :Description, :SyscallName, :Status, :EventId, :NodeName, :PodName, :Remark, :RuleExist, :EventCount, :LatestFoundTime
+        attr_accessor :ProcessName, :ProcessPath, :ImageId, :ContainerId, :ImageName, :ContainerName, :FoundTime, :Solution, :Description, :SyscallName, :Status, :EventId, :NodeName, :PodName, :Remark, :RuleExist, :EventCount, :LatestFoundTime, :ContainerNetStatus, :ContainerNetSubStatus, :ContainerIsolateOperationSrc
         
-        def initialize(processname=nil, processpath=nil, imageid=nil, containerid=nil, imagename=nil, containername=nil, foundtime=nil, solution=nil, description=nil, syscallname=nil, status=nil, eventid=nil, nodename=nil, podname=nil, remark=nil, ruleexist=nil, eventcount=nil, latestfoundtime=nil)
+        def initialize(processname=nil, processpath=nil, imageid=nil, containerid=nil, imagename=nil, containername=nil, foundtime=nil, solution=nil, description=nil, syscallname=nil, status=nil, eventid=nil, nodename=nil, podname=nil, remark=nil, ruleexist=nil, eventcount=nil, latestfoundtime=nil, containernetstatus=nil, containernetsubstatus=nil, containerisolateoperationsrc=nil)
           @ProcessName = processname
           @ProcessPath = processpath
           @ImageId = imageid
@@ -13344,6 +13560,9 @@ module TencentCloud
           @RuleExist = ruleexist
           @EventCount = eventcount
           @LatestFoundTime = latestfoundtime
+          @ContainerNetStatus = containernetstatus
+          @ContainerNetSubStatus = containernetsubstatus
+          @ContainerIsolateOperationSrc = containerisolateoperationsrc
         end
 
         def deserialize(params)
@@ -13365,6 +13584,9 @@ module TencentCloud
           @RuleExist = params['RuleExist']
           @EventCount = params['EventCount']
           @LatestFoundTime = params['LatestFoundTime']
+          @ContainerNetStatus = params['ContainerNetStatus']
+          @ContainerNetSubStatus = params['ContainerNetSubStatus']
+          @ContainerIsolateOperationSrc = params['ContainerIsolateOperationSrc']
         end
       end
 
@@ -14271,10 +14493,32 @@ module TencentCloud
         # INTERNAL: 服务内部错误
         # VALIDATION: 参数非法
         # @type SubStatus: String
+        # @param ContainerNetStatus: 网络状态
+        # 未隔离  	NORMAL
+        # 已隔离		ISOLATED
+        # 隔离中		ISOLATING
+        # 隔离失败	ISOLATE_FAILED
+        # 解除隔离中  RESTORING
+        # 解除隔离失败 RESTORE_FAILED
+        # @type ContainerNetStatus: String
+        # @param ContainerNetSubStatus: 容器子状态
+        # "AGENT_OFFLINE"       //Agent离线
+        # 	"NODE_DESTROYED"      //节点已销毁
+        # 	"CONTAINER_EXITED"    //容器已退出
+        # 	"CONTAINER_DESTROYED" //容器已销毁
+        # 	"SHARED_HOST"         // 容器与主机共享网络
+        # 	"RESOURCE_LIMIT"      //隔离操作资源超限
+        # 	"UNKNOW"              // 原因未知
+        # @type ContainerNetSubStatus: String
+        # @param ContainerIsolateOperationSrc: 容器隔离操作来源
+        # @type ContainerIsolateOperationSrc: String
+        # @param MD5: md5值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MD5: String
 
-        attr_accessor :FileName, :FilePath, :VirusName, :CreateTime, :ModifyTime, :ContainerName, :ContainerId, :ContainerStatus, :ImageName, :ImageId, :Status, :Id, :HarmDescribe, :SuggestScheme, :SubStatus
+        attr_accessor :FileName, :FilePath, :VirusName, :CreateTime, :ModifyTime, :ContainerName, :ContainerId, :ContainerStatus, :ImageName, :ImageId, :Status, :Id, :HarmDescribe, :SuggestScheme, :SubStatus, :ContainerNetStatus, :ContainerNetSubStatus, :ContainerIsolateOperationSrc, :MD5
         
-        def initialize(filename=nil, filepath=nil, virusname=nil, createtime=nil, modifytime=nil, containername=nil, containerid=nil, containerstatus=nil, imagename=nil, imageid=nil, status=nil, id=nil, harmdescribe=nil, suggestscheme=nil, substatus=nil)
+        def initialize(filename=nil, filepath=nil, virusname=nil, createtime=nil, modifytime=nil, containername=nil, containerid=nil, containerstatus=nil, imagename=nil, imageid=nil, status=nil, id=nil, harmdescribe=nil, suggestscheme=nil, substatus=nil, containernetstatus=nil, containernetsubstatus=nil, containerisolateoperationsrc=nil, md5=nil)
           @FileName = filename
           @FilePath = filepath
           @VirusName = virusname
@@ -14290,6 +14534,10 @@ module TencentCloud
           @HarmDescribe = harmdescribe
           @SuggestScheme = suggestscheme
           @SubStatus = substatus
+          @ContainerNetStatus = containernetstatus
+          @ContainerNetSubStatus = containernetsubstatus
+          @ContainerIsolateOperationSrc = containerisolateoperationsrc
+          @MD5 = md5
         end
 
         def deserialize(params)
@@ -14308,6 +14556,10 @@ module TencentCloud
           @HarmDescribe = params['HarmDescribe']
           @SuggestScheme = params['SuggestScheme']
           @SubStatus = params['SubStatus']
+          @ContainerNetStatus = params['ContainerNetStatus']
+          @ContainerNetSubStatus = params['ContainerNetSubStatus']
+          @ContainerIsolateOperationSrc = params['ContainerIsolateOperationSrc']
+          @MD5 = params['MD5']
         end
       end
 

@@ -29,6 +29,30 @@ module TencentCloud
         end
 
 
+        # 创建索引
+
+        # @param request: Request instance for CreateIndex.
+        # @type request: :class:`Tencentcloud::es::V20180416::CreateIndexRequest`
+        # @rtype: :class:`Tencentcloud::es::V20180416::CreateIndexResponse`
+        def CreateIndex(request)
+          body = send_request('CreateIndex', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateIndexResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 创建指定规格的ES集群实例
 
         # @param request: Request instance for CreateInstance.
@@ -53,6 +77,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 删除索引
+
+        # @param request: Request instance for DeleteIndex.
+        # @type request: :class:`Tencentcloud::es::V20180416::DeleteIndexRequest`
+        # @rtype: :class:`Tencentcloud::es::V20180416::DeleteIndexResponse`
+        def DeleteIndex(request)
+          body = send_request('DeleteIndex', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteIndexResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 销毁集群实例
 
         # @param request: Request instance for DeleteInstance.
@@ -63,6 +111,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteInstanceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取索引列表
+
+        # @param request: Request instance for DescribeIndexList.
+        # @type request: :class:`Tencentcloud::es::V20180416::DescribeIndexListRequest`
+        # @rtype: :class:`Tencentcloud::es::V20180416::DescribeIndexListResponse`
+        def DescribeIndexList(request)
+          body = send_request('DescribeIndexList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeIndexListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取索引元数据
+
+        # @param request: Request instance for DescribeIndexMeta.
+        # @type request: :class:`Tencentcloud::es::V20180416::DescribeIndexMetaRequest`
+        # @rtype: :class:`Tencentcloud::es::V20180416::DescribeIndexMetaResponse`
+        def DescribeIndexMeta(request)
+          body = send_request('DescribeIndexMeta', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeIndexMetaResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -327,6 +423,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = UpdateDictionariesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 更新索引
+
+        # @param request: Request instance for UpdateIndex.
+        # @type request: :class:`Tencentcloud::es::V20180416::UpdateIndexRequest`
+        # @rtype: :class:`Tencentcloud::es::V20180416::UpdateIndexResponse`
+        def UpdateIndex(request)
+          body = send_request('UpdateIndex', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = UpdateIndexResponse.new
             model.deserialize(response['Response'])
             model
           else
