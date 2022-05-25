@@ -4896,6 +4896,8 @@ module TencentCloud
 
       # CreateAIAnalysisTemplate请求参数结构体
       class CreateAIAnalysisTemplateRequest < TencentCloud::Common::AbstractModel
+        # @param SubAppId: <b>点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。</b>
+        # @type SubAppId: Integer
         # @param Name: 视频内容分析模板名称，长度限制：64 个字符。
         # @type Name: String
         # @param Comment: 视频内容分析模板描述信息，长度限制：256 个字符。
@@ -4910,12 +4912,11 @@ module TencentCloud
         # @type FrameTagConfigure: :class:`Tencentcloud::Vod.v20180717.models.FrameTagConfigureInfo`
         # @param HighlightConfigure: 智能精彩集锦任务控制参数。
         # @type HighlightConfigure: :class:`Tencentcloud::Vod.v20180717.models.HighlightsConfigureInfo`
-        # @param SubAppId: 点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。
-        # @type SubAppId: Integer
 
-        attr_accessor :Name, :Comment, :ClassificationConfigure, :TagConfigure, :CoverConfigure, :FrameTagConfigure, :HighlightConfigure, :SubAppId
+        attr_accessor :SubAppId, :Name, :Comment, :ClassificationConfigure, :TagConfigure, :CoverConfigure, :FrameTagConfigure, :HighlightConfigure
         
-        def initialize(name=nil, comment=nil, classificationconfigure=nil, tagconfigure=nil, coverconfigure=nil, frametagconfigure=nil, highlightconfigure=nil, subappid=nil)
+        def initialize(subappid=nil, name=nil, comment=nil, classificationconfigure=nil, tagconfigure=nil, coverconfigure=nil, frametagconfigure=nil, highlightconfigure=nil)
+          @SubAppId = subappid
           @Name = name
           @Comment = comment
           @ClassificationConfigure = classificationconfigure
@@ -4923,10 +4924,10 @@ module TencentCloud
           @CoverConfigure = coverconfigure
           @FrameTagConfigure = frametagconfigure
           @HighlightConfigure = highlightconfigure
-          @SubAppId = subappid
         end
 
         def deserialize(params)
+          @SubAppId = params['SubAppId']
           @Name = params['Name']
           @Comment = params['Comment']
           unless params['ClassificationConfigure'].nil?
@@ -4949,7 +4950,6 @@ module TencentCloud
             @HighlightConfigure = HighlightsConfigureInfo.new
             @HighlightConfigure.deserialize(params['HighlightConfigure'])
           end
-          @SubAppId = params['SubAppId']
         end
       end
 
@@ -4975,6 +4975,8 @@ module TencentCloud
 
       # CreateAIRecognitionTemplate请求参数结构体
       class CreateAIRecognitionTemplateRequest < TencentCloud::Common::AbstractModel
+        # @param SubAppId: <b>点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。</b>
+        # @type SubAppId: Integer
         # @param Name: 视频内容识别模板名称，长度限制：64 个字符。
         # @type Name: String
         # @param Comment: 视频内容识别模板描述信息，长度限制：256 个字符。
@@ -4997,12 +4999,11 @@ module TencentCloud
         # @type ObjectConfigure: :class:`Tencentcloud::Vod.v20180717.models.ObjectConfigureInfo`
         # @param ScreenshotInterval: 截帧间隔，单位为秒。当不填时，默认截帧间隔为 1 秒，最小值为 0.5 秒。
         # @type ScreenshotInterval: Float
-        # @param SubAppId: 点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。
-        # @type SubAppId: Integer
 
-        attr_accessor :Name, :Comment, :HeadTailConfigure, :SegmentConfigure, :FaceConfigure, :OcrFullTextConfigure, :OcrWordsConfigure, :AsrFullTextConfigure, :AsrWordsConfigure, :ObjectConfigure, :ScreenshotInterval, :SubAppId
+        attr_accessor :SubAppId, :Name, :Comment, :HeadTailConfigure, :SegmentConfigure, :FaceConfigure, :OcrFullTextConfigure, :OcrWordsConfigure, :AsrFullTextConfigure, :AsrWordsConfigure, :ObjectConfigure, :ScreenshotInterval
         
-        def initialize(name=nil, comment=nil, headtailconfigure=nil, segmentconfigure=nil, faceconfigure=nil, ocrfulltextconfigure=nil, ocrwordsconfigure=nil, asrfulltextconfigure=nil, asrwordsconfigure=nil, objectconfigure=nil, screenshotinterval=nil, subappid=nil)
+        def initialize(subappid=nil, name=nil, comment=nil, headtailconfigure=nil, segmentconfigure=nil, faceconfigure=nil, ocrfulltextconfigure=nil, ocrwordsconfigure=nil, asrfulltextconfigure=nil, asrwordsconfigure=nil, objectconfigure=nil, screenshotinterval=nil)
+          @SubAppId = subappid
           @Name = name
           @Comment = comment
           @HeadTailConfigure = headtailconfigure
@@ -5014,10 +5015,10 @@ module TencentCloud
           @AsrWordsConfigure = asrwordsconfigure
           @ObjectConfigure = objectconfigure
           @ScreenshotInterval = screenshotinterval
-          @SubAppId = subappid
         end
 
         def deserialize(params)
+          @SubAppId = params['SubAppId']
           @Name = params['Name']
           @Comment = params['Comment']
           unless params['HeadTailConfigure'].nil?
@@ -5053,7 +5054,6 @@ module TencentCloud
             @ObjectConfigure.deserialize(params['ObjectConfigure'])
           end
           @ScreenshotInterval = params['ScreenshotInterval']
-          @SubAppId = params['SubAppId']
         end
       end
 
@@ -5085,6 +5085,8 @@ module TencentCloud
         # @param StreamInfos: 自适应转码输出子流参数信息，最多输出10路子流。
         # 注意：各个子流的帧率必须保持一致；如果不一致，采用第一个子流的帧率作为输出帧率。
         # @type StreamInfos: Array
+        # @param SubAppId: <b>点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。</b>
+        # @type SubAppId: Integer
         # @param Name: 模板名称，长度限制：64 个字符。
         # @type Name: String
         # @param DrmType: DRM 方案类型，取值范围：
@@ -5105,20 +5107,18 @@ module TencentCloud
         # @type DisableHigherVideoResolution: Integer
         # @param Comment: 模板描述信息，长度限制：256 个字符。
         # @type Comment: String
-        # @param SubAppId: 点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。
-        # @type SubAppId: Integer
 
-        attr_accessor :Format, :StreamInfos, :Name, :DrmType, :DisableHigherVideoBitrate, :DisableHigherVideoResolution, :Comment, :SubAppId
+        attr_accessor :Format, :StreamInfos, :SubAppId, :Name, :DrmType, :DisableHigherVideoBitrate, :DisableHigherVideoResolution, :Comment
         
-        def initialize(format=nil, streaminfos=nil, name=nil, drmtype=nil, disablehighervideobitrate=nil, disablehighervideoresolution=nil, comment=nil, subappid=nil)
+        def initialize(format=nil, streaminfos=nil, subappid=nil, name=nil, drmtype=nil, disablehighervideobitrate=nil, disablehighervideoresolution=nil, comment=nil)
           @Format = format
           @StreamInfos = streaminfos
+          @SubAppId = subappid
           @Name = name
           @DrmType = drmtype
           @DisableHigherVideoBitrate = disablehighervideobitrate
           @DisableHigherVideoResolution = disablehighervideoresolution
           @Comment = comment
-          @SubAppId = subappid
         end
 
         def deserialize(params)
@@ -5131,12 +5131,12 @@ module TencentCloud
               @StreamInfos << adaptivestreamtemplate_tmp
             end
           end
+          @SubAppId = params['SubAppId']
           @Name = params['Name']
           @DrmType = params['DrmType']
           @DisableHigherVideoBitrate = params['DisableHigherVideoBitrate']
           @DisableHigherVideoResolution = params['DisableHigherVideoResolution']
           @Comment = params['Comment']
-          @SubAppId = params['SubAppId']
         end
       end
 
@@ -5164,6 +5164,8 @@ module TencentCloud
       class CreateAnimatedGraphicsTemplateRequest < TencentCloud::Common::AbstractModel
         # @param Fps: 帧率，取值范围：[1, 30]，单位：Hz。
         # @type Fps: Integer
+        # @param SubAppId: <b>点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。</b>
+        # @type SubAppId: Integer
         # @param Width: 动图宽度（或长边）的最大值，取值范围：0 和 [128, 4096]，单位：px。
         # <li>当 Width、Height 均为 0，则分辨率同源；</li>
         # <li>当 Width 为 0，Height 非 0，则 Width 按比例缩放；</li>
@@ -5191,13 +5193,12 @@ module TencentCloud
         # @type Name: String
         # @param Comment: 模板描述信息，长度限制：256 个字符。
         # @type Comment: String
-        # @param SubAppId: 点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。
-        # @type SubAppId: Integer
 
-        attr_accessor :Fps, :Width, :Height, :ResolutionAdaptive, :Format, :Quality, :Name, :Comment, :SubAppId
+        attr_accessor :Fps, :SubAppId, :Width, :Height, :ResolutionAdaptive, :Format, :Quality, :Name, :Comment
         
-        def initialize(fps=nil, width=nil, height=nil, resolutionadaptive=nil, format=nil, quality=nil, name=nil, comment=nil, subappid=nil)
+        def initialize(fps=nil, subappid=nil, width=nil, height=nil, resolutionadaptive=nil, format=nil, quality=nil, name=nil, comment=nil)
           @Fps = fps
+          @SubAppId = subappid
           @Width = width
           @Height = height
           @ResolutionAdaptive = resolutionadaptive
@@ -5205,11 +5206,11 @@ module TencentCloud
           @Quality = quality
           @Name = name
           @Comment = comment
-          @SubAppId = subappid
         end
 
         def deserialize(params)
           @Fps = params['Fps']
+          @SubAppId = params['SubAppId']
           @Width = params['Width']
           @Height = params['Height']
           @ResolutionAdaptive = params['ResolutionAdaptive']
@@ -5217,7 +5218,6 @@ module TencentCloud
           @Quality = params['Quality']
           @Name = params['Name']
           @Comment = params['Comment']
-          @SubAppId = params['SubAppId']
         end
       end
 
@@ -5291,6 +5291,8 @@ module TencentCloud
         # <li>ON：是；</li>
         # <li>OFF：否。</li>
         # @type ReviewWallSwitch: String
+        # @param SubAppId: <b>点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。</b>
+        # @type SubAppId: Integer
         # @param Name: 内容智能识别模板名称，长度限制：64 个字符。
         # @type Name: String
         # @param Comment: 内容智能识别模板描述信息，长度限制：256 个字符。
@@ -5309,13 +5311,12 @@ module TencentCloud
         # @type UserDefineConfigure: :class:`Tencentcloud::Vod.v20180717.models.UserDefineConfigureInfo`
         # @param ScreenshotInterval: 截帧间隔，单位为秒。当不填时，默认截帧间隔为 1 秒，最小值为 0.5 秒。
         # @type ScreenshotInterval: Float
-        # @param SubAppId: 点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。
-        # @type SubAppId: Integer
 
-        attr_accessor :ReviewWallSwitch, :Name, :Comment, :PornConfigure, :TerrorismConfigure, :PoliticalConfigure, :ProhibitedConfigure, :UserDefineConfigure, :ScreenshotInterval, :SubAppId
+        attr_accessor :ReviewWallSwitch, :SubAppId, :Name, :Comment, :PornConfigure, :TerrorismConfigure, :PoliticalConfigure, :ProhibitedConfigure, :UserDefineConfigure, :ScreenshotInterval
         
-        def initialize(reviewwallswitch=nil, name=nil, comment=nil, pornconfigure=nil, terrorismconfigure=nil, politicalconfigure=nil, prohibitedconfigure=nil, userdefineconfigure=nil, screenshotinterval=nil, subappid=nil)
+        def initialize(reviewwallswitch=nil, subappid=nil, name=nil, comment=nil, pornconfigure=nil, terrorismconfigure=nil, politicalconfigure=nil, prohibitedconfigure=nil, userdefineconfigure=nil, screenshotinterval=nil)
           @ReviewWallSwitch = reviewwallswitch
+          @SubAppId = subappid
           @Name = name
           @Comment = comment
           @PornConfigure = pornconfigure
@@ -5324,11 +5325,11 @@ module TencentCloud
           @ProhibitedConfigure = prohibitedconfigure
           @UserDefineConfigure = userdefineconfigure
           @ScreenshotInterval = screenshotinterval
-          @SubAppId = subappid
         end
 
         def deserialize(params)
           @ReviewWallSwitch = params['ReviewWallSwitch']
+          @SubAppId = params['SubAppId']
           @Name = params['Name']
           @Comment = params['Comment']
           unless params['PornConfigure'].nil?
@@ -5352,7 +5353,6 @@ module TencentCloud
             @UserDefineConfigure.deserialize(params['UserDefineConfigure'])
           end
           @ScreenshotInterval = params['ScreenshotInterval']
-          @SubAppId = params['SubAppId']
         end
       end
 
@@ -5553,6 +5553,8 @@ module TencentCloud
         # @type RowCount: Integer
         # @param ColumnCount: 雪碧图中小图的列数。
         # @type ColumnCount: Integer
+        # @param SubAppId: <b>点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。</b>
+        # @type SubAppId: Integer
         # @param Name: 雪碧图模板名称，长度限制：64 个字符。
         # @type Name: String
         # @param Comment: 模板描述信息，长度限制：256 个字符。
@@ -5581,23 +5583,21 @@ module TencentCloud
         # <li>close：关闭，此时，Width 代表视频的宽度，Height 表示视频的高度。</li>
         # 默认值：open。
         # @type ResolutionAdaptive: String
-        # @param SubAppId: 点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。
-        # @type SubAppId: Integer
 
-        attr_accessor :SampleType, :SampleInterval, :RowCount, :ColumnCount, :Name, :Comment, :FillType, :Width, :Height, :ResolutionAdaptive, :SubAppId
+        attr_accessor :SampleType, :SampleInterval, :RowCount, :ColumnCount, :SubAppId, :Name, :Comment, :FillType, :Width, :Height, :ResolutionAdaptive
         
-        def initialize(sampletype=nil, sampleinterval=nil, rowcount=nil, columncount=nil, name=nil, comment=nil, filltype=nil, width=nil, height=nil, resolutionadaptive=nil, subappid=nil)
+        def initialize(sampletype=nil, sampleinterval=nil, rowcount=nil, columncount=nil, subappid=nil, name=nil, comment=nil, filltype=nil, width=nil, height=nil, resolutionadaptive=nil)
           @SampleType = sampletype
           @SampleInterval = sampleinterval
           @RowCount = rowcount
           @ColumnCount = columncount
+          @SubAppId = subappid
           @Name = name
           @Comment = comment
           @FillType = filltype
           @Width = width
           @Height = height
           @ResolutionAdaptive = resolutionadaptive
-          @SubAppId = subappid
         end
 
         def deserialize(params)
@@ -5605,13 +5605,13 @@ module TencentCloud
           @SampleInterval = params['SampleInterval']
           @RowCount = params['RowCount']
           @ColumnCount = params['ColumnCount']
+          @SubAppId = params['SubAppId']
           @Name = params['Name']
           @Comment = params['Comment']
           @FillType = params['FillType']
           @Width = params['Width']
           @Height = params['Height']
           @ResolutionAdaptive = params['ResolutionAdaptive']
-          @SubAppId = params['SubAppId']
         end
       end
 
@@ -5644,6 +5644,8 @@ module TencentCloud
         # 2. Review：用于内容不适宜，等价于 Review.Face。
         # 3. All：包含以上全部，等价于 1+2。
         # @type Usages: Array
+        # @param SubAppId: <b>点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。</b>
+        # @type SubAppId: Integer
         # @param Description: 素材描述，长度限制：1024 个字符。
         # @type Description: String
         # @param FaceContents: 素材图片 [Base64](https://tools.ietf.org/html/rfc4648) 编码后的字符串，仅支持 jpeg、png 图片格式。数组长度限制：5 张图片。
@@ -5653,27 +5655,25 @@ module TencentCloud
         # <li>数组长度限制：20 个标签；</li>
         # <li>单个标签长度限制：128 个字符。</li>
         # @type Tags: Array
-        # @param SubAppId: 点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。
-        # @type SubAppId: Integer
 
-        attr_accessor :Name, :Usages, :Description, :FaceContents, :Tags, :SubAppId
+        attr_accessor :Name, :Usages, :SubAppId, :Description, :FaceContents, :Tags
         
-        def initialize(name=nil, usages=nil, description=nil, facecontents=nil, tags=nil, subappid=nil)
+        def initialize(name=nil, usages=nil, subappid=nil, description=nil, facecontents=nil, tags=nil)
           @Name = name
           @Usages = usages
+          @SubAppId = subappid
           @Description = description
           @FaceContents = facecontents
           @Tags = tags
-          @SubAppId = subappid
         end
 
         def deserialize(params)
           @Name = params['Name']
           @Usages = params['Usages']
+          @SubAppId = params['SubAppId']
           @Description = params['Description']
           @FaceContents = params['FaceContents']
           @Tags = params['Tags']
-          @SubAppId = params['SubAppId']
         end
       end
 
@@ -5789,6 +5789,8 @@ module TencentCloud
         # <li>当 SampleType 为 Percent 时，指定采样间隔的百分比。</li>
         # <li>当 SampleType 为 Time 时，指定采样间隔的时间，单位为秒。</li>
         # @type SampleInterval: Integer
+        # @param SubAppId: <b>点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。</b>
+        # @type SubAppId: Integer
         # @param Name: 采样截图模板名称，长度限制：64 个字符。
         # @type Name: String
         # @param Width: 截图宽度（或长边）的最大值，取值范围：0 和 [128, 4096]，单位：px。
@@ -5814,8 +5816,6 @@ module TencentCloud
         # @type Format: String
         # @param Comment: 模板描述信息，长度限制：256 个字符。
         # @type Comment: String
-        # @param SubAppId: 点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。
-        # @type SubAppId: Integer
         # @param FillType: 填充方式，当视频流配置宽高参数与原始视频的宽高比不一致时，对转码的处理方式，即为“填充”。可选填充方式：
         # <li> stretch：拉伸，对每一帧进行拉伸，填满整个画面，可能导致转码后的视频被“压扁“或者“拉长“；</li>
         # <li>black：留黑，保持视频宽高比不变，边缘剩余部分使用黑色填充。</li>
@@ -5824,31 +5824,31 @@ module TencentCloud
         # 默认值：black 。
         # @type FillType: String
 
-        attr_accessor :SampleType, :SampleInterval, :Name, :Width, :Height, :ResolutionAdaptive, :Format, :Comment, :SubAppId, :FillType
+        attr_accessor :SampleType, :SampleInterval, :SubAppId, :Name, :Width, :Height, :ResolutionAdaptive, :Format, :Comment, :FillType
         
-        def initialize(sampletype=nil, sampleinterval=nil, name=nil, width=nil, height=nil, resolutionadaptive=nil, format=nil, comment=nil, subappid=nil, filltype=nil)
+        def initialize(sampletype=nil, sampleinterval=nil, subappid=nil, name=nil, width=nil, height=nil, resolutionadaptive=nil, format=nil, comment=nil, filltype=nil)
           @SampleType = sampletype
           @SampleInterval = sampleinterval
+          @SubAppId = subappid
           @Name = name
           @Width = width
           @Height = height
           @ResolutionAdaptive = resolutionadaptive
           @Format = format
           @Comment = comment
-          @SubAppId = subappid
           @FillType = filltype
         end
 
         def deserialize(params)
           @SampleType = params['SampleType']
           @SampleInterval = params['SampleInterval']
+          @SubAppId = params['SubAppId']
           @Name = params['Name']
           @Width = params['Width']
           @Height = params['Height']
           @ResolutionAdaptive = params['ResolutionAdaptive']
           @Format = params['Format']
           @Comment = params['Comment']
-          @SubAppId = params['SubAppId']
           @FillType = params['FillType']
         end
       end
@@ -5875,6 +5875,8 @@ module TencentCloud
 
       # CreateSnapshotByTimeOffsetTemplate请求参数结构体
       class CreateSnapshotByTimeOffsetTemplateRequest < TencentCloud::Common::AbstractModel
+        # @param SubAppId: <b>点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。</b>
+        # @type SubAppId: Integer
         # @param Name: 指定时间点截图模板名称，长度限制：64 个字符。
         # @type Name: String
         # @param Width: 截图宽度（或长边）的最大值，取值范围：0 和 [128, 4096]，单位：px。
@@ -5900,8 +5902,6 @@ module TencentCloud
         # @type Format: String
         # @param Comment: 模板描述信息，长度限制：256 个字符。
         # @type Comment: String
-        # @param SubAppId: 点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。
-        # @type SubAppId: Integer
         # @param FillType: 填充方式，当视频流配置宽高参数与原始视频的宽高比不一致时，对转码的处理方式，即为“填充”。可选填充方式：
         # <li> stretch：拉伸，对每一帧进行拉伸，填满整个画面，可能导致转码后的视频被“压扁“或者“拉长“；</li>
         # <li>black：留黑，保持视频宽高比不变，边缘剩余部分使用黑色填充。</li>
@@ -5910,27 +5910,27 @@ module TencentCloud
         # 默认值：black 。
         # @type FillType: String
 
-        attr_accessor :Name, :Width, :Height, :ResolutionAdaptive, :Format, :Comment, :SubAppId, :FillType
+        attr_accessor :SubAppId, :Name, :Width, :Height, :ResolutionAdaptive, :Format, :Comment, :FillType
         
-        def initialize(name=nil, width=nil, height=nil, resolutionadaptive=nil, format=nil, comment=nil, subappid=nil, filltype=nil)
+        def initialize(subappid=nil, name=nil, width=nil, height=nil, resolutionadaptive=nil, format=nil, comment=nil, filltype=nil)
+          @SubAppId = subappid
           @Name = name
           @Width = width
           @Height = height
           @ResolutionAdaptive = resolutionadaptive
           @Format = format
           @Comment = comment
-          @SubAppId = subappid
           @FillType = filltype
         end
 
         def deserialize(params)
+          @SubAppId = params['SubAppId']
           @Name = params['Name']
           @Width = params['Width']
           @Height = params['Height']
           @ResolutionAdaptive = params['ResolutionAdaptive']
           @Format = params['Format']
           @Comment = params['Comment']
-          @SubAppId = params['SubAppId']
           @FillType = params['FillType']
         end
       end
@@ -6144,6 +6144,8 @@ module TencentCloud
       class CreateTranscodeTemplateRequest < TencentCloud::Common::AbstractModel
         # @param Container: 封装格式，可选值：mp4、flv、hls、mp3、flac、ogg、m4a。其中，mp3、flac、ogg、m4a 为纯音频文件。
         # @type Container: String
+        # @param SubAppId: <b>点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。</b>
+        # @type SubAppId: Integer
         # @param Name: 转码模板名称，长度限制：64 个字符。
         # @type Name: String
         # @param Comment: 模板描述信息，长度限制：256 个字符。
@@ -6164,13 +6166,12 @@ module TencentCloud
         # @type AudioTemplate: :class:`Tencentcloud::Vod.v20180717.models.AudioTemplateInfo`
         # @param TEHDConfig: 极速高清转码参数。
         # @type TEHDConfig: :class:`Tencentcloud::Vod.v20180717.models.TEHDConfig`
-        # @param SubAppId: 点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。
-        # @type SubAppId: Integer
 
-        attr_accessor :Container, :Name, :Comment, :RemoveVideo, :RemoveAudio, :VideoTemplate, :AudioTemplate, :TEHDConfig, :SubAppId
+        attr_accessor :Container, :SubAppId, :Name, :Comment, :RemoveVideo, :RemoveAudio, :VideoTemplate, :AudioTemplate, :TEHDConfig
         
-        def initialize(container=nil, name=nil, comment=nil, removevideo=nil, removeaudio=nil, videotemplate=nil, audiotemplate=nil, tehdconfig=nil, subappid=nil)
+        def initialize(container=nil, subappid=nil, name=nil, comment=nil, removevideo=nil, removeaudio=nil, videotemplate=nil, audiotemplate=nil, tehdconfig=nil)
           @Container = container
+          @SubAppId = subappid
           @Name = name
           @Comment = comment
           @RemoveVideo = removevideo
@@ -6178,11 +6179,11 @@ module TencentCloud
           @VideoTemplate = videotemplate
           @AudioTemplate = audiotemplate
           @TEHDConfig = tehdconfig
-          @SubAppId = subappid
         end
 
         def deserialize(params)
           @Container = params['Container']
+          @SubAppId = params['SubAppId']
           @Name = params['Name']
           @Comment = params['Comment']
           @RemoveVideo = params['RemoveVideo']
@@ -6199,7 +6200,6 @@ module TencentCloud
             @TEHDConfig = TEHDConfig.new
             @TEHDConfig.deserialize(params['TEHDConfig'])
           end
-          @SubAppId = params['SubAppId']
         end
       end
 
@@ -6274,6 +6274,8 @@ module TencentCloud
         # <li>text：文字水印；</li>
         # <li>svg：SVG 水印。</li>
         # @type Type: String
+        # @param SubAppId: <b>点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。</b>
+        # @type SubAppId: Integer
         # @param Name: 水印模板名称，长度限制：64 个字符。
         # @type Name: String
         # @param Comment: 模板描述信息，长度限制：256 个字符。
@@ -6301,13 +6303,12 @@ module TencentCloud
         # @type TextTemplate: :class:`Tencentcloud::Vod.v20180717.models.TextWatermarkTemplateInput`
         # @param SvgTemplate: SVG水印模板，当 Type 为 svg，该字段必填。当 Type 为 image 或 text，该字段无效。
         # @type SvgTemplate: :class:`Tencentcloud::Vod.v20180717.models.SvgWatermarkInput`
-        # @param SubAppId: 点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。
-        # @type SubAppId: Integer
 
-        attr_accessor :Type, :Name, :Comment, :CoordinateOrigin, :XPos, :YPos, :ImageTemplate, :TextTemplate, :SvgTemplate, :SubAppId
+        attr_accessor :Type, :SubAppId, :Name, :Comment, :CoordinateOrigin, :XPos, :YPos, :ImageTemplate, :TextTemplate, :SvgTemplate
         
-        def initialize(type=nil, name=nil, comment=nil, coordinateorigin=nil, xpos=nil, ypos=nil, imagetemplate=nil, texttemplate=nil, svgtemplate=nil, subappid=nil)
+        def initialize(type=nil, subappid=nil, name=nil, comment=nil, coordinateorigin=nil, xpos=nil, ypos=nil, imagetemplate=nil, texttemplate=nil, svgtemplate=nil)
           @Type = type
+          @SubAppId = subappid
           @Name = name
           @Comment = comment
           @CoordinateOrigin = coordinateorigin
@@ -6316,11 +6317,11 @@ module TencentCloud
           @ImageTemplate = imagetemplate
           @TextTemplate = texttemplate
           @SvgTemplate = svgtemplate
-          @SubAppId = subappid
         end
 
         def deserialize(params)
           @Type = params['Type']
+          @SubAppId = params['SubAppId']
           @Name = params['Name']
           @Comment = params['Comment']
           @CoordinateOrigin = params['CoordinateOrigin']
@@ -6338,7 +6339,6 @@ module TencentCloud
             @SvgTemplate = SvgWatermarkInput.new
             @SvgTemplate.deserialize(params['SvgTemplate'])
           end
-          @SubAppId = params['SubAppId']
         end
       end
 
@@ -6380,7 +6380,7 @@ module TencentCloud
         # @type Usages: Array
         # @param Words: 关键词，数组长度限制：100。
         # @type Words: Array
-        # @param SubAppId: 点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。
+        # @param SubAppId: <b>点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。</b>
         # @type SubAppId: Integer
 
         attr_accessor :Usages, :Words, :SubAppId
@@ -6824,7 +6824,7 @@ module TencentCloud
       class DeletePersonSampleRequest < TencentCloud::Common::AbstractModel
         # @param PersonId: 素材 ID。
         # @type PersonId: String
-        # @param SubAppId: 点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。
+        # @param SubAppId: <b>点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。</b>
         # @type SubAppId: Integer
 
         attr_accessor :PersonId, :SubAppId
@@ -7112,7 +7112,7 @@ module TencentCloud
       class DeleteWordSamplesRequest < TencentCloud::Common::AbstractModel
         # @param Keywords: 关键词，数组长度限制：100 个词。
         # @type Keywords: Array
-        # @param SubAppId: 点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。
+        # @param SubAppId: <b>点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。</b>
         # @type SubAppId: Integer
 
         attr_accessor :Keywords, :SubAppId
@@ -8565,6 +8565,8 @@ module TencentCloud
 
       # DescribePersonSamples请求参数结构体
       class DescribePersonSamplesRequest < TencentCloud::Common::AbstractModel
+        # @param SubAppId: <b>点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。</b>
+        # @type SubAppId: Integer
         # @param Type: 拉取的素材类型，可选值：
         # <li>UserDefine：用户自定义素材库；</li>
         # <li>Default：系统默认素材库。</li>
@@ -8582,29 +8584,27 @@ module TencentCloud
         # @type Offset: Integer
         # @param Limit: 返回记录条数，默认值：100，最大值：100。
         # @type Limit: Integer
-        # @param SubAppId: 点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。
-        # @type SubAppId: Integer
 
-        attr_accessor :Type, :PersonIds, :Names, :Tags, :Offset, :Limit, :SubAppId
+        attr_accessor :SubAppId, :Type, :PersonIds, :Names, :Tags, :Offset, :Limit
         
-        def initialize(type=nil, personids=nil, names=nil, tags=nil, offset=nil, limit=nil, subappid=nil)
+        def initialize(subappid=nil, type=nil, personids=nil, names=nil, tags=nil, offset=nil, limit=nil)
+          @SubAppId = subappid
           @Type = type
           @PersonIds = personids
           @Names = names
           @Tags = tags
           @Offset = offset
           @Limit = limit
-          @SubAppId = subappid
         end
 
         def deserialize(params)
+          @SubAppId = params['SubAppId']
           @Type = params['Type']
           @PersonIds = params['PersonIds']
           @Names = params['Names']
           @Tags = params['Tags']
           @Offset = params['Offset']
           @Limit = params['Limit']
-          @SubAppId = params['SubAppId']
         end
       end
 
@@ -9713,6 +9713,8 @@ module TencentCloud
 
       # DescribeWordSamples请求参数结构体
       class DescribeWordSamplesRequest < TencentCloud::Common::AbstractModel
+        # @param SubAppId: <b>点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。</b>
+        # @type SubAppId: Integer
         # @param Usages: <b>关键词应用场景过滤条件，可选值：</b>
         # 1. Recognition.Ocr：通过光学字符识别技术，进行内容识别；
         # 2. Recognition.Asr：通过音频识别技术，进行内容识别；
@@ -9731,27 +9733,25 @@ module TencentCloud
         # @type Offset: Integer
         # @param Limit: 返回记录条数，默认值：100，最大值：100。
         # @type Limit: Integer
-        # @param SubAppId: 点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。
-        # @type SubAppId: Integer
 
-        attr_accessor :Usages, :Keywords, :Tags, :Offset, :Limit, :SubAppId
+        attr_accessor :SubAppId, :Usages, :Keywords, :Tags, :Offset, :Limit
         
-        def initialize(usages=nil, keywords=nil, tags=nil, offset=nil, limit=nil, subappid=nil)
+        def initialize(subappid=nil, usages=nil, keywords=nil, tags=nil, offset=nil, limit=nil)
+          @SubAppId = subappid
           @Usages = usages
           @Keywords = keywords
           @Tags = tags
           @Offset = offset
           @Limit = limit
-          @SubAppId = subappid
         end
 
         def deserialize(params)
+          @SubAppId = params['SubAppId']
           @Usages = params['Usages']
           @Keywords = params['Keywords']
           @Tags = params['Tags']
           @Offset = params['Offset']
           @Limit = params['Limit']
-          @SubAppId = params['SubAppId']
         end
       end
 
@@ -14478,6 +14478,8 @@ module TencentCloud
       class ModifyPersonSampleRequest < TencentCloud::Common::AbstractModel
         # @param PersonId: 素材 ID。
         # @type PersonId: String
+        # @param SubAppId: <b>点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。</b>
+        # @type SubAppId: Integer
         # @param Name: 名称，长度限制：128 个字符。
         # @type Name: String
         # @param Description: 描述，长度限制：1024 个字符。
@@ -14491,23 +14493,22 @@ module TencentCloud
         # @type FaceOperationInfo: :class:`Tencentcloud::Vod.v20180717.models.AiSampleFaceOperation`
         # @param TagOperationInfo: 标签操作信息。
         # @type TagOperationInfo: :class:`Tencentcloud::Vod.v20180717.models.AiSampleTagOperation`
-        # @param SubAppId: 点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。
-        # @type SubAppId: Integer
 
-        attr_accessor :PersonId, :Name, :Description, :Usages, :FaceOperationInfo, :TagOperationInfo, :SubAppId
+        attr_accessor :PersonId, :SubAppId, :Name, :Description, :Usages, :FaceOperationInfo, :TagOperationInfo
         
-        def initialize(personid=nil, name=nil, description=nil, usages=nil, faceoperationinfo=nil, tagoperationinfo=nil, subappid=nil)
+        def initialize(personid=nil, subappid=nil, name=nil, description=nil, usages=nil, faceoperationinfo=nil, tagoperationinfo=nil)
           @PersonId = personid
+          @SubAppId = subappid
           @Name = name
           @Description = description
           @Usages = usages
           @FaceOperationInfo = faceoperationinfo
           @TagOperationInfo = tagoperationinfo
-          @SubAppId = subappid
         end
 
         def deserialize(params)
           @PersonId = params['PersonId']
+          @SubAppId = params['SubAppId']
           @Name = params['Name']
           @Description = params['Description']
           @Usages = params['Usages']
@@ -14519,7 +14520,6 @@ module TencentCloud
             @TagOperationInfo = AiSampleTagOperation.new
             @TagOperationInfo.deserialize(params['TagOperationInfo'])
           end
-          @SubAppId = params['SubAppId']
         end
       end
 
@@ -15182,6 +15182,8 @@ module TencentCloud
       class ModifyWordSampleRequest < TencentCloud::Common::AbstractModel
         # @param Keyword: 关键词，长度限制：128 个字符。
         # @type Keyword: String
+        # @param SubAppId: <b>点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。</b>
+        # @type SubAppId: Integer
         # @param Usages: <b>关键词应用场景，可选值：</b>
         # 1. Recognition.Ocr：通过光学字符识别技术，进行内容识别；
         # 2. Recognition.Asr：通过音频识别技术，进行内容识别；
@@ -15194,26 +15196,24 @@ module TencentCloud
         # @type Usages: Array
         # @param TagOperationInfo: 标签操作信息。
         # @type TagOperationInfo: :class:`Tencentcloud::Vod.v20180717.models.AiSampleTagOperation`
-        # @param SubAppId: 点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。
-        # @type SubAppId: Integer
 
-        attr_accessor :Keyword, :Usages, :TagOperationInfo, :SubAppId
+        attr_accessor :Keyword, :SubAppId, :Usages, :TagOperationInfo
         
-        def initialize(keyword=nil, usages=nil, tagoperationinfo=nil, subappid=nil)
+        def initialize(keyword=nil, subappid=nil, usages=nil, tagoperationinfo=nil)
           @Keyword = keyword
+          @SubAppId = subappid
           @Usages = usages
           @TagOperationInfo = tagoperationinfo
-          @SubAppId = subappid
         end
 
         def deserialize(params)
           @Keyword = params['Keyword']
+          @SubAppId = params['SubAppId']
           @Usages = params['Usages']
           unless params['TagOperationInfo'].nil?
             @TagOperationInfo = AiSampleTagOperation.new
             @TagOperationInfo.deserialize(params['TagOperationInfo'])
           end
-          @SubAppId = params['SubAppId']
         end
       end
 
