@@ -3350,6 +3350,57 @@ module TencentCloud
         end
       end
 
+      # ListTopicRules请求参数结构体
+      class ListTopicRulesRequest < TencentCloud::Common::AbstractModel
+        # @param PageNum: 请求的页数
+        # @type PageNum: Integer
+        # @param PageSize: 分页的大小
+        # @type PageSize: Integer
+
+        attr_accessor :PageNum, :PageSize
+        
+        def initialize(pagenum=nil, pagesize=nil)
+          @PageNum = pagenum
+          @PageSize = pagesize
+        end
+
+        def deserialize(params)
+          @PageNum = params['PageNum']
+          @PageSize = params['PageSize']
+        end
+      end
+
+      # ListTopicRules返回参数结构体
+      class ListTopicRulesResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCnt: 规则总数量
+        # @type TotalCnt: Integer
+        # @param Rules: 规则列表
+        # @type Rules: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCnt, :Rules, :RequestId
+        
+        def initialize(totalcnt=nil, rules=nil, requestid=nil)
+          @TotalCnt = totalcnt
+          @Rules = rules
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCnt = params['TotalCnt']
+          unless params['Rules'].nil?
+            @Rules = []
+            params['Rules'].each do |i|
+              topicruleinfo_tmp = TopicRuleInfo.new
+              topicruleinfo_tmp.deserialize(i)
+              @Rules << topicruleinfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 内容日志项
       class PayloadLogItem < TencentCloud::Common::AbstractModel
         # @param Uin: 账号id
@@ -4049,6 +4100,38 @@ module TencentCloud
         def deserialize(params)
           @Status = params['Status']
           @Total = params['Total']
+        end
+      end
+
+      # 规则详细信息
+      class TopicRuleInfo < TencentCloud::Common::AbstractModel
+        # @param RuleName: 规则名称
+        # @type RuleName: String
+        # @param Description: 规则描述
+        # @type Description: String
+        # @param CreatedAt: 创建时间
+        # @type CreatedAt: Integer
+        # @param RuleDisabled: 不生效
+        # @type RuleDisabled: Boolean
+        # @param TopicPattern: 规则模式
+        # @type TopicPattern: String
+
+        attr_accessor :RuleName, :Description, :CreatedAt, :RuleDisabled, :TopicPattern
+        
+        def initialize(rulename=nil, description=nil, createdat=nil, ruledisabled=nil, topicpattern=nil)
+          @RuleName = rulename
+          @Description = description
+          @CreatedAt = createdat
+          @RuleDisabled = ruledisabled
+          @TopicPattern = topicpattern
+        end
+
+        def deserialize(params)
+          @RuleName = params['RuleName']
+          @Description = params['Description']
+          @CreatedAt = params['CreatedAt']
+          @RuleDisabled = params['RuleDisabled']
+          @TopicPattern = params['TopicPattern']
         end
       end
 

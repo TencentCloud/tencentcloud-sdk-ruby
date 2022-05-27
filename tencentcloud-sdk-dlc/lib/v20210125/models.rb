@@ -532,6 +532,154 @@ module TencentCloud
         end
       end
 
+      # CreateSparkApp请求参数结构体
+      class CreateSparkAppRequest < TencentCloud::Common::AbstractModel
+        # @param AppName: spark应用名
+        # @type AppName: String
+        # @param AppType: 1代表spark jar应用，2代表spark streaming应用
+        # @type AppType: Integer
+        # @param DataEngine: 执行spark作业的数据引擎
+        # @type DataEngine: String
+        # @param AppFile: spark应用的执行入口
+        # @type AppFile: String
+        # @param RoleArn: 执行spark作业的角色ID
+        # @type RoleArn: Integer
+        # @param AppDriverSize: spark作业driver资源规格大小, 可取small,medium,large,xlarge
+        # @type AppDriverSize: String
+        # @param AppExecutorSize: spark作业executor资源规格大小, 可取small,medium,large,xlarge
+        # @type AppExecutorSize: String
+        # @param AppExecutorNums: spark作业executor个数
+        # @type AppExecutorNums: Integer
+        # @param Eni: 该字段已下线，请使用字段Datasource
+        # @type Eni: String
+        # @param IsLocal: 是否本地上传，可去cos,lakefs
+        # @type IsLocal: String
+        # @param MainClass: spark jar作业时的主类
+        # @type MainClass: String
+        # @param AppConf: spark配置，以换行符分隔
+        # @type AppConf: String
+        # @param IsLocalJars: 是否本地上传，包含cos,lakefs
+        # @type IsLocalJars: String
+        # @param AppJars: spark jar作业依赖jars，以逗号分隔
+        # @type AppJars: String
+        # @param IsLocalFiles: 是否本地上传，包含cos,lakefs
+        # @type IsLocalFiles: String
+        # @param AppFiles: spark作业依赖资源，以逗号分隔
+        # @type AppFiles: String
+        # @param CmdArgs: spark作业命令行参数
+        # @type CmdArgs: String
+        # @param MaxRetries: 只对spark流任务生效
+        # @type MaxRetries: Integer
+        # @param DataSource: 数据源名
+        # @type DataSource: String
+
+        attr_accessor :AppName, :AppType, :DataEngine, :AppFile, :RoleArn, :AppDriverSize, :AppExecutorSize, :AppExecutorNums, :Eni, :IsLocal, :MainClass, :AppConf, :IsLocalJars, :AppJars, :IsLocalFiles, :AppFiles, :CmdArgs, :MaxRetries, :DataSource
+        
+        def initialize(appname=nil, apptype=nil, dataengine=nil, appfile=nil, rolearn=nil, appdriversize=nil, appexecutorsize=nil, appexecutornums=nil, eni=nil, islocal=nil, mainclass=nil, appconf=nil, islocaljars=nil, appjars=nil, islocalfiles=nil, appfiles=nil, cmdargs=nil, maxretries=nil, datasource=nil)
+          @AppName = appname
+          @AppType = apptype
+          @DataEngine = dataengine
+          @AppFile = appfile
+          @RoleArn = rolearn
+          @AppDriverSize = appdriversize
+          @AppExecutorSize = appexecutorsize
+          @AppExecutorNums = appexecutornums
+          @Eni = eni
+          @IsLocal = islocal
+          @MainClass = mainclass
+          @AppConf = appconf
+          @IsLocalJars = islocaljars
+          @AppJars = appjars
+          @IsLocalFiles = islocalfiles
+          @AppFiles = appfiles
+          @CmdArgs = cmdargs
+          @MaxRetries = maxretries
+          @DataSource = datasource
+        end
+
+        def deserialize(params)
+          @AppName = params['AppName']
+          @AppType = params['AppType']
+          @DataEngine = params['DataEngine']
+          @AppFile = params['AppFile']
+          @RoleArn = params['RoleArn']
+          @AppDriverSize = params['AppDriverSize']
+          @AppExecutorSize = params['AppExecutorSize']
+          @AppExecutorNums = params['AppExecutorNums']
+          @Eni = params['Eni']
+          @IsLocal = params['IsLocal']
+          @MainClass = params['MainClass']
+          @AppConf = params['AppConf']
+          @IsLocalJars = params['IsLocalJars']
+          @AppJars = params['AppJars']
+          @IsLocalFiles = params['IsLocalFiles']
+          @AppFiles = params['AppFiles']
+          @CmdArgs = params['CmdArgs']
+          @MaxRetries = params['MaxRetries']
+          @DataSource = params['DataSource']
+        end
+      end
+
+      # CreateSparkApp返回参数结构体
+      class CreateSparkAppResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateSparkAppTask请求参数结构体
+      class CreateSparkAppTaskRequest < TencentCloud::Common::AbstractModel
+        # @param JobName: spark作业名
+        # @type JobName: String
+        # @param CmdArgs: spark作业的命令行参数，以空格分隔；一般用于周期性调用使用
+        # @type CmdArgs: String
+
+        attr_accessor :JobName, :CmdArgs
+        
+        def initialize(jobname=nil, cmdargs=nil)
+          @JobName = jobname
+          @CmdArgs = cmdargs
+        end
+
+        def deserialize(params)
+          @JobName = params['JobName']
+          @CmdArgs = params['CmdArgs']
+        end
+      end
+
+      # CreateSparkAppTask返回参数结构体
+      class CreateSparkAppTaskResponse < TencentCloud::Common::AbstractModel
+        # @param BatchId: 批Id
+        # @type BatchId: String
+        # @param TaskId: 任务Id
+        # @type TaskId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :BatchId, :TaskId, :RequestId
+        
+        def initialize(batchid=nil, taskid=nil, requestid=nil)
+          @BatchId = batchid
+          @TaskId = taskid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @BatchId = params['BatchId']
+          @TaskId = params['TaskId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateStoreLocation请求参数结构体
       class CreateStoreLocationRequest < TencentCloud::Common::AbstractModel
         # @param StoreLocation: 计算结果存储cos路径，如：cosn://bucketname/
@@ -1055,6 +1203,38 @@ module TencentCloud
         end
       end
 
+      # DeleteSparkApp请求参数结构体
+      class DeleteSparkAppRequest < TencentCloud::Common::AbstractModel
+        # @param AppName: spark应用名
+        # @type AppName: String
+
+        attr_accessor :AppName
+        
+        def initialize(appname=nil)
+          @AppName = appname
+        end
+
+        def deserialize(params)
+          @AppName = params['AppName']
+        end
+      end
+
+      # DeleteSparkApp返回参数结构体
+      class DeleteSparkAppResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DeleteUser请求参数结构体
       class DeleteUserRequest < TencentCloud::Common::AbstractModel
         # @param UserIds: 需要删除的用户的Id
@@ -1288,6 +1468,184 @@ module TencentCloud
               script_tmp.deserialize(i)
               @Scripts << script_tmp
             end
+          end
+          @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeSparkAppJob请求参数结构体
+      class DescribeSparkAppJobRequest < TencentCloud::Common::AbstractModel
+        # @param JobId: spark作业Id，与JobName同时存在时，JobName无效
+        # @type JobId: String
+        # @param JobName: spark作业名
+        # @type JobName: String
+
+        attr_accessor :JobId, :JobName
+        
+        def initialize(jobid=nil, jobname=nil)
+          @JobId = jobid
+          @JobName = jobname
+        end
+
+        def deserialize(params)
+          @JobId = params['JobId']
+          @JobName = params['JobName']
+        end
+      end
+
+      # DescribeSparkAppJob返回参数结构体
+      class DescribeSparkAppJobResponse < TencentCloud::Common::AbstractModel
+        # @param Job: spark作业详情
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Job: :class:`Tencentcloud::Dlc.v20210125.models.SparkJobInfo`
+        # @param IsExists: 查询的spark作业是否存在
+        # @type IsExists: Boolean
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Job, :IsExists, :RequestId
+        
+        def initialize(job=nil, isexists=nil, requestid=nil)
+          @Job = job
+          @IsExists = isexists
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Job'].nil?
+            @Job = SparkJobInfo.new
+            @Job.deserialize(params['Job'])
+          end
+          @IsExists = params['IsExists']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeSparkAppJobs请求参数结构体
+      class DescribeSparkAppJobsRequest < TencentCloud::Common::AbstractModel
+        # @param SortBy: 返回结果按照该字段排序
+        # @type SortBy: String
+        # @param Sorting: 正序或者倒序，例如：desc
+        # @type Sorting: String
+        # @param Filters: 按照该参数过滤
+        # @type Filters: Array
+        # @param StartTime: 更新时间起始点
+        # @type StartTime: String
+        # @param EndTime: 更新时间截止点
+        # @type EndTime: String
+        # @param Offset: 查询列表偏移量
+        # @type Offset: Integer
+        # @param Limit: 查询列表限制数量
+        # @type Limit: Integer
+
+        attr_accessor :SortBy, :Sorting, :Filters, :StartTime, :EndTime, :Offset, :Limit
+        
+        def initialize(sortby=nil, sorting=nil, filters=nil, starttime=nil, endtime=nil, offset=nil, limit=nil)
+          @SortBy = sortby
+          @Sorting = sorting
+          @Filters = filters
+          @StartTime = starttime
+          @EndTime = endtime
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @SortBy = params['SortBy']
+          @Sorting = params['Sorting']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeSparkAppJobs返回参数结构体
+      class DescribeSparkAppJobsResponse < TencentCloud::Common::AbstractModel
+        # @param SparkAppJobs: spark作业列表详情
+        # @type SparkAppJobs: Array
+        # @param TotalCount: spark作业总数
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :SparkAppJobs, :TotalCount, :RequestId
+        
+        def initialize(sparkappjobs=nil, totalcount=nil, requestid=nil)
+          @SparkAppJobs = sparkappjobs
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['SparkAppJobs'].nil?
+            @SparkAppJobs = []
+            params['SparkAppJobs'].each do |i|
+              sparkjobinfo_tmp = SparkJobInfo.new
+              sparkjobinfo_tmp.deserialize(i)
+              @SparkAppJobs << sparkjobinfo_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeSparkAppTasks请求参数结构体
+      class DescribeSparkAppTasksRequest < TencentCloud::Common::AbstractModel
+        # @param JobId: spark作业Id
+        # @type JobId: String
+        # @param Offset: 分页查询偏移量
+        # @type Offset: Integer
+        # @param Limit: 分页查询Limit
+        # @type Limit: Integer
+
+        attr_accessor :JobId, :Offset, :Limit
+        
+        def initialize(jobid=nil, offset=nil, limit=nil)
+          @JobId = jobid
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @JobId = params['JobId']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeSparkAppTasks返回参数结构体
+      class DescribeSparkAppTasksResponse < TencentCloud::Common::AbstractModel
+        # @param Tasks: 任务列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Tasks: :class:`Tencentcloud::Dlc.v20210125.models.TaskResponseInfo`
+        # @param TotalCount: 任务总数
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Tasks, :TotalCount, :RequestId
+        
+        def initialize(tasks=nil, totalcount=nil, requestid=nil)
+          @Tasks = tasks
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Tasks'].nil?
+            @Tasks = TaskResponseInfo.new
+            @Tasks.deserialize(params['Tasks'])
           end
           @TotalCount = params['TotalCount']
           @RequestId = params['RequestId']
@@ -1984,6 +2342,114 @@ module TencentCloud
         end
       end
 
+      # ModifySparkApp请求参数结构体
+      class ModifySparkAppRequest < TencentCloud::Common::AbstractModel
+        # @param AppName: spark应用名
+        # @type AppName: String
+        # @param AppType: 1代表spark jar应用，2代表spark streaming应用
+        # @type AppType: Integer
+        # @param DataEngine: 执行spark作业的数据引擎
+        # @type DataEngine: String
+        # @param AppFile: spark应用的执行入口
+        # @type AppFile: String
+        # @param RoleArn: 执行spark作业的角色ID
+        # @type RoleArn: Integer
+        # @param AppDriverSize: spark作业driver资源规格大小, 可取small,medium,large,xlarge
+        # @type AppDriverSize: String
+        # @param AppExecutorSize: spark作业executor资源规格大小, 可取small,medium,large,xlarge
+        # @type AppExecutorSize: String
+        # @param AppExecutorNums: spark作业executor个数
+        # @type AppExecutorNums: Integer
+        # @param SparkAppId: spark应用Id
+        # @type SparkAppId: String
+        # @param Eni: 该字段已下线，请使用字段Datasource
+        # @type Eni: String
+        # @param IsLocal: 是否本地上传，可取cos,lakefs
+        # @type IsLocal: String
+        # @param MainClass: spark jar作业时的主类
+        # @type MainClass: String
+        # @param AppConf: spark配置，以换行符分隔
+        # @type AppConf: String
+        # @param IsLocalJars: 是否本地上传，可去cos,lakefs
+        # @type IsLocalJars: String
+        # @param AppJars: spark jar作业依赖jars，以逗号分隔
+        # @type AppJars: String
+        # @param IsLocalFiles: 是否本地上传，可去cos,lakefs
+        # @type IsLocalFiles: String
+        # @param AppFiles: spark作业依赖资源，以逗号分隔
+        # @type AppFiles: String
+        # @param CmdArgs: spark作业命令行参数
+        # @type CmdArgs: String
+        # @param MaxRetries: 只对spark流任务生效
+        # @type MaxRetries: Integer
+        # @param DataSource: 数据源名
+        # @type DataSource: String
+
+        attr_accessor :AppName, :AppType, :DataEngine, :AppFile, :RoleArn, :AppDriverSize, :AppExecutorSize, :AppExecutorNums, :SparkAppId, :Eni, :IsLocal, :MainClass, :AppConf, :IsLocalJars, :AppJars, :IsLocalFiles, :AppFiles, :CmdArgs, :MaxRetries, :DataSource
+        
+        def initialize(appname=nil, apptype=nil, dataengine=nil, appfile=nil, rolearn=nil, appdriversize=nil, appexecutorsize=nil, appexecutornums=nil, sparkappid=nil, eni=nil, islocal=nil, mainclass=nil, appconf=nil, islocaljars=nil, appjars=nil, islocalfiles=nil, appfiles=nil, cmdargs=nil, maxretries=nil, datasource=nil)
+          @AppName = appname
+          @AppType = apptype
+          @DataEngine = dataengine
+          @AppFile = appfile
+          @RoleArn = rolearn
+          @AppDriverSize = appdriversize
+          @AppExecutorSize = appexecutorsize
+          @AppExecutorNums = appexecutornums
+          @SparkAppId = sparkappid
+          @Eni = eni
+          @IsLocal = islocal
+          @MainClass = mainclass
+          @AppConf = appconf
+          @IsLocalJars = islocaljars
+          @AppJars = appjars
+          @IsLocalFiles = islocalfiles
+          @AppFiles = appfiles
+          @CmdArgs = cmdargs
+          @MaxRetries = maxretries
+          @DataSource = datasource
+        end
+
+        def deserialize(params)
+          @AppName = params['AppName']
+          @AppType = params['AppType']
+          @DataEngine = params['DataEngine']
+          @AppFile = params['AppFile']
+          @RoleArn = params['RoleArn']
+          @AppDriverSize = params['AppDriverSize']
+          @AppExecutorSize = params['AppExecutorSize']
+          @AppExecutorNums = params['AppExecutorNums']
+          @SparkAppId = params['SparkAppId']
+          @Eni = params['Eni']
+          @IsLocal = params['IsLocal']
+          @MainClass = params['MainClass']
+          @AppConf = params['AppConf']
+          @IsLocalJars = params['IsLocalJars']
+          @AppJars = params['AppJars']
+          @IsLocalFiles = params['IsLocalFiles']
+          @AppFiles = params['AppFiles']
+          @CmdArgs = params['CmdArgs']
+          @MaxRetries = params['MaxRetries']
+          @DataSource = params['DataSource']
+        end
+      end
+
+      # ModifySparkApp返回参数结构体
+      class ModifySparkAppResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyUser请求参数结构体
       class ModifyUserRequest < TencentCloud::Common::AbstractModel
         # @param UserId: 用户Id，和CAM侧Uin匹配
@@ -2284,6 +2750,183 @@ module TencentCloud
           @DatabaseName = params['DatabaseName']
           @SQLStatement = params['SQLStatement']
           @UpdateTime = params['UpdateTime']
+        end
+      end
+
+      # spark作业详情
+      class SparkJobInfo < TencentCloud::Common::AbstractModel
+        # @param JobId: spark作业ID
+        # @type JobId: String
+        # @param JobName: spark作业名
+        # @type JobName: String
+        # @param JobType: spark作业类型，可去1或者2，1表示batch作业， 2表示streaming作业
+        # @type JobType: Integer
+        # @param DataEngine: 引擎名
+        # @type DataEngine: String
+        # @param Eni: 该字段已下线，请使用字段Datasource
+        # @type Eni: String
+        # @param IsLocal: 程序包是否本地上传，cos或者lakefs
+        # @type IsLocal: String
+        # @param JobFile: 程序包路径
+        # @type JobFile: String
+        # @param RoleArn: 角色ID
+        # @type RoleArn: Integer
+        # @param MainClass: spark作业运行主类
+        # @type MainClass: String
+        # @param CmdArgs: 命令行参数，spark作业命令行参数，空格分隔
+        # @type CmdArgs: String
+        # @param JobConf: spark原生配置，换行符分隔
+        # @type JobConf: String
+        # @param IsLocalJars: 依赖jars是否本地上传，cos或者lakefs
+        # @type IsLocalJars: String
+        # @param JobJars: spark作业依赖jars，逗号分隔
+        # @type JobJars: String
+        # @param IsLocalFiles: 依赖文件是否本地上传，cos或者lakefs
+        # @type IsLocalFiles: String
+        # @param JobFiles: spark作业依赖文件，逗号分隔
+        # @type JobFiles: String
+        # @param JobDriverSize: spark作业driver资源大小
+        # @type JobDriverSize: String
+        # @param JobExecutorSize: spark作业executor资源大小
+        # @type JobExecutorSize: String
+        # @param JobExecutorNums: spark作业executor个数
+        # @type JobExecutorNums: Integer
+        # @param JobMaxAttempts: spark流任务最大重试次数
+        # @type JobMaxAttempts: Integer
+        # @param JobCreator: spark作业创建者
+        # @type JobCreator: String
+        # @param JobCreateTime: spark作业创建时间
+        # @type JobCreateTime: Integer
+        # @param JobUpdateTime: spark作业更新时间
+        # @type JobUpdateTime: Integer
+        # @param CurrentTaskId: spark作业最近任务ID
+        # @type CurrentTaskId: String
+        # @param JobStatus: spark作业最近运行状态
+        # @type JobStatus: Integer
+        # @param StreamingStat: spark流作业统计
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StreamingStat: :class:`Tencentcloud::Dlc.v20210125.models.StreamingStatistics`
+        # @param DataSource: 数据源名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DataSource: String
+
+        attr_accessor :JobId, :JobName, :JobType, :DataEngine, :Eni, :IsLocal, :JobFile, :RoleArn, :MainClass, :CmdArgs, :JobConf, :IsLocalJars, :JobJars, :IsLocalFiles, :JobFiles, :JobDriverSize, :JobExecutorSize, :JobExecutorNums, :JobMaxAttempts, :JobCreator, :JobCreateTime, :JobUpdateTime, :CurrentTaskId, :JobStatus, :StreamingStat, :DataSource
+        
+        def initialize(jobid=nil, jobname=nil, jobtype=nil, dataengine=nil, eni=nil, islocal=nil, jobfile=nil, rolearn=nil, mainclass=nil, cmdargs=nil, jobconf=nil, islocaljars=nil, jobjars=nil, islocalfiles=nil, jobfiles=nil, jobdriversize=nil, jobexecutorsize=nil, jobexecutornums=nil, jobmaxattempts=nil, jobcreator=nil, jobcreatetime=nil, jobupdatetime=nil, currenttaskid=nil, jobstatus=nil, streamingstat=nil, datasource=nil)
+          @JobId = jobid
+          @JobName = jobname
+          @JobType = jobtype
+          @DataEngine = dataengine
+          @Eni = eni
+          @IsLocal = islocal
+          @JobFile = jobfile
+          @RoleArn = rolearn
+          @MainClass = mainclass
+          @CmdArgs = cmdargs
+          @JobConf = jobconf
+          @IsLocalJars = islocaljars
+          @JobJars = jobjars
+          @IsLocalFiles = islocalfiles
+          @JobFiles = jobfiles
+          @JobDriverSize = jobdriversize
+          @JobExecutorSize = jobexecutorsize
+          @JobExecutorNums = jobexecutornums
+          @JobMaxAttempts = jobmaxattempts
+          @JobCreator = jobcreator
+          @JobCreateTime = jobcreatetime
+          @JobUpdateTime = jobupdatetime
+          @CurrentTaskId = currenttaskid
+          @JobStatus = jobstatus
+          @StreamingStat = streamingstat
+          @DataSource = datasource
+        end
+
+        def deserialize(params)
+          @JobId = params['JobId']
+          @JobName = params['JobName']
+          @JobType = params['JobType']
+          @DataEngine = params['DataEngine']
+          @Eni = params['Eni']
+          @IsLocal = params['IsLocal']
+          @JobFile = params['JobFile']
+          @RoleArn = params['RoleArn']
+          @MainClass = params['MainClass']
+          @CmdArgs = params['CmdArgs']
+          @JobConf = params['JobConf']
+          @IsLocalJars = params['IsLocalJars']
+          @JobJars = params['JobJars']
+          @IsLocalFiles = params['IsLocalFiles']
+          @JobFiles = params['JobFiles']
+          @JobDriverSize = params['JobDriverSize']
+          @JobExecutorSize = params['JobExecutorSize']
+          @JobExecutorNums = params['JobExecutorNums']
+          @JobMaxAttempts = params['JobMaxAttempts']
+          @JobCreator = params['JobCreator']
+          @JobCreateTime = params['JobCreateTime']
+          @JobUpdateTime = params['JobUpdateTime']
+          @CurrentTaskId = params['CurrentTaskId']
+          @JobStatus = params['JobStatus']
+          unless params['StreamingStat'].nil?
+            @StreamingStat = StreamingStatistics.new
+            @StreamingStat.deserialize(params['StreamingStat'])
+          end
+          @DataSource = params['DataSource']
+        end
+      end
+
+      # spark流任务统计信息
+      class StreamingStatistics < TencentCloud::Common::AbstractModel
+        # @param StartTime: 任务开始时间
+        # @type StartTime: String
+        # @param Receivers: 数据接收器数
+        # @type Receivers: Integer
+        # @param NumActiveReceivers: 运行中的接收器数
+        # @type NumActiveReceivers: Integer
+        # @param NumInactiveReceivers: 不活跃的接收器数
+        # @type NumInactiveReceivers: Integer
+        # @param NumActiveBatches: 运行中的批数
+        # @type NumActiveBatches: Integer
+        # @param NumRetainedCompletedBatches: 待处理的批数
+        # @type NumRetainedCompletedBatches: Integer
+        # @param NumTotalCompletedBatches: 已完成的批数
+        # @type NumTotalCompletedBatches: Integer
+        # @param AverageInputRate: 平均输入速率
+        # @type AverageInputRate: Float
+        # @param AverageSchedulingDelay: 平均等待时长
+        # @type AverageSchedulingDelay: Float
+        # @param AverageProcessingTime: 平均处理时长
+        # @type AverageProcessingTime: Float
+        # @param AverageTotalDelay: 平均延时
+        # @type AverageTotalDelay: Float
+
+        attr_accessor :StartTime, :Receivers, :NumActiveReceivers, :NumInactiveReceivers, :NumActiveBatches, :NumRetainedCompletedBatches, :NumTotalCompletedBatches, :AverageInputRate, :AverageSchedulingDelay, :AverageProcessingTime, :AverageTotalDelay
+        
+        def initialize(starttime=nil, receivers=nil, numactivereceivers=nil, numinactivereceivers=nil, numactivebatches=nil, numretainedcompletedbatches=nil, numtotalcompletedbatches=nil, averageinputrate=nil, averageschedulingdelay=nil, averageprocessingtime=nil, averagetotaldelay=nil)
+          @StartTime = starttime
+          @Receivers = receivers
+          @NumActiveReceivers = numactivereceivers
+          @NumInactiveReceivers = numinactivereceivers
+          @NumActiveBatches = numactivebatches
+          @NumRetainedCompletedBatches = numretainedcompletedbatches
+          @NumTotalCompletedBatches = numtotalcompletedbatches
+          @AverageInputRate = averageinputrate
+          @AverageSchedulingDelay = averageschedulingdelay
+          @AverageProcessingTime = averageprocessingtime
+          @AverageTotalDelay = averagetotaldelay
+        end
+
+        def deserialize(params)
+          @StartTime = params['StartTime']
+          @Receivers = params['Receivers']
+          @NumActiveReceivers = params['NumActiveReceivers']
+          @NumInactiveReceivers = params['NumInactiveReceivers']
+          @NumActiveBatches = params['NumActiveBatches']
+          @NumRetainedCompletedBatches = params['NumRetainedCompletedBatches']
+          @NumTotalCompletedBatches = params['NumTotalCompletedBatches']
+          @AverageInputRate = params['AverageInputRate']
+          @AverageSchedulingDelay = params['AverageSchedulingDelay']
+          @AverageProcessingTime = params['AverageProcessingTime']
+          @AverageTotalDelay = params['AverageTotalDelay']
         end
       end
 

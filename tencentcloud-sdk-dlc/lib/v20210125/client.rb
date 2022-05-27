@@ -245,6 +245,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 创建spark应用
+
+        # @param request: Request instance for CreateSparkApp.
+        # @type request: :class:`Tencentcloud::dlc::V20210125::CreateSparkAppRequest`
+        # @rtype: :class:`Tencentcloud::dlc::V20210125::CreateSparkAppResponse`
+        def CreateSparkApp(request)
+          body = send_request('CreateSparkApp', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateSparkAppResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 创建spark任务
+
+        # @param request: Request instance for CreateSparkAppTask.
+        # @type request: :class:`Tencentcloud::dlc::V20210125::CreateSparkAppTaskRequest`
+        # @rtype: :class:`Tencentcloud::dlc::V20210125::CreateSparkAppTaskResponse`
+        def CreateSparkAppTask(request)
+          body = send_request('CreateSparkAppTask', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateSparkAppTaskResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 该接口（CreateStoreLocation）新增或覆盖计算结果存储位置。
 
         # @param request: Request instance for CreateStoreLocation.
@@ -437,6 +485,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 删除spark应用
+
+        # @param request: Request instance for DeleteSparkApp.
+        # @type request: :class:`Tencentcloud::dlc::V20210125::DeleteSparkAppRequest`
+        # @rtype: :class:`Tencentcloud::dlc::V20210125::DeleteSparkAppResponse`
+        def DeleteSparkApp(request)
+          body = send_request('DeleteSparkApp', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteSparkAppResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 删除用户
 
         # @param request: Request instance for DeleteUser.
@@ -543,6 +615,78 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeScriptsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询具体的spark应用
+
+        # @param request: Request instance for DescribeSparkAppJob.
+        # @type request: :class:`Tencentcloud::dlc::V20210125::DescribeSparkAppJobRequest`
+        # @rtype: :class:`Tencentcloud::dlc::V20210125::DescribeSparkAppJobResponse`
+        def DescribeSparkAppJob(request)
+          body = send_request('DescribeSparkAppJob', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeSparkAppJobResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取spark应用列表
+
+        # @param request: Request instance for DescribeSparkAppJobs.
+        # @type request: :class:`Tencentcloud::dlc::V20210125::DescribeSparkAppJobsRequest`
+        # @rtype: :class:`Tencentcloud::dlc::V20210125::DescribeSparkAppJobsResponse`
+        def DescribeSparkAppJobs(request)
+          body = send_request('DescribeSparkAppJobs', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeSparkAppJobsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询spark应用的运行任务实例列表
+
+        # @param request: Request instance for DescribeSparkAppTasks.
+        # @type request: :class:`Tencentcloud::dlc::V20210125::DescribeSparkAppTasksRequest`
+        # @rtype: :class:`Tencentcloud::dlc::V20210125::DescribeSparkAppTasksResponse`
+        def DescribeSparkAppTasks(request)
+          body = send_request('DescribeSparkAppTasks', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeSparkAppTasksResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -783,6 +927,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DetachWorkGroupPolicyResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 更新spark应用
+
+        # @param request: Request instance for ModifySparkApp.
+        # @type request: :class:`Tencentcloud::dlc::V20210125::ModifySparkAppRequest`
+        # @rtype: :class:`Tencentcloud::dlc::V20210125::ModifySparkAppResponse`
+        def ModifySparkApp(request)
+          body = send_request('ModifySparkApp', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifySparkAppResponse.new
             model.deserialize(response['Response'])
             model
           else
