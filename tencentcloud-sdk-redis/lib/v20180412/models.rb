@@ -6236,6 +6236,102 @@ module TencentCloud
         end
       end
 
+      # UpgradeProxyVersion请求参数结构体
+      class UpgradeProxyVersionRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+        # @param CurrentProxyVersion: 当前proxy版本
+        # @type CurrentProxyVersion: String
+        # @param UpgradeProxyVersion: 可升级的redis版本
+        # @type UpgradeProxyVersion: String
+        # @param InstanceTypeUpgradeNow: 1-立即升级   0-维护时间窗口升级
+        # @type InstanceTypeUpgradeNow: Integer
+
+        attr_accessor :InstanceId, :CurrentProxyVersion, :UpgradeProxyVersion, :InstanceTypeUpgradeNow
+        
+        def initialize(instanceid=nil, currentproxyversion=nil, upgradeproxyversion=nil, instancetypeupgradenow=nil)
+          @InstanceId = instanceid
+          @CurrentProxyVersion = currentproxyversion
+          @UpgradeProxyVersion = upgradeproxyversion
+          @InstanceTypeUpgradeNow = instancetypeupgradenow
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @CurrentProxyVersion = params['CurrentProxyVersion']
+          @UpgradeProxyVersion = params['UpgradeProxyVersion']
+          @InstanceTypeUpgradeNow = params['InstanceTypeUpgradeNow']
+        end
+      end
+
+      # UpgradeProxyVersion返回参数结构体
+      class UpgradeProxyVersionResponse < TencentCloud::Common::AbstractModel
+        # @param FlowId: 异步流程ID
+        # @type FlowId: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :FlowId, :RequestId
+        
+        def initialize(flowid=nil, requestid=nil)
+          @FlowId = flowid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @FlowId = params['FlowId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # UpgradeSmallVersion请求参数结构体
+      class UpgradeSmallVersionRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+        # @param CurrentRedisVersion: 当前redis版本
+        # @type CurrentRedisVersion: String
+        # @param UpgradeRedisVersion: 可升级的redis版本
+        # @type UpgradeRedisVersion: String
+        # @param InstanceTypeUpgradeNow: 1-立即升级   0-维护时间窗口升级
+        # @type InstanceTypeUpgradeNow: Integer
+
+        attr_accessor :InstanceId, :CurrentRedisVersion, :UpgradeRedisVersion, :InstanceTypeUpgradeNow
+        
+        def initialize(instanceid=nil, currentredisversion=nil, upgraderedisversion=nil, instancetypeupgradenow=nil)
+          @InstanceId = instanceid
+          @CurrentRedisVersion = currentredisversion
+          @UpgradeRedisVersion = upgraderedisversion
+          @InstanceTypeUpgradeNow = instancetypeupgradenow
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @CurrentRedisVersion = params['CurrentRedisVersion']
+          @UpgradeRedisVersion = params['UpgradeRedisVersion']
+          @InstanceTypeUpgradeNow = params['InstanceTypeUpgradeNow']
+        end
+      end
+
+      # UpgradeSmallVersion返回参数结构体
+      class UpgradeSmallVersionResponse < TencentCloud::Common::AbstractModel
+        # @param FlowId: 异步流程ID
+        # @type FlowId: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :FlowId, :RequestId
+        
+        def initialize(flowid=nil, requestid=nil)
+          @FlowId = flowid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @FlowId = params['FlowId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # UpgradeVersionToMultiAvailabilityZones请求参数结构体
       class UpgradeVersionToMultiAvailabilityZonesRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例ID

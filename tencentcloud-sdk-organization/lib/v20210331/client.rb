@@ -77,6 +77,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 创建组织成员的授权策略
+
+        # @param request: Request instance for CreateOrganizationMemberPolicy.
+        # @type request: :class:`Tencentcloud::organization::V20210331::CreateOrganizationMemberPolicyRequest`
+        # @rtype: :class:`Tencentcloud::organization::V20210331::CreateOrganizationMemberPolicyResponse`
+        def CreateOrganizationMemberPolicy(request)
+          body = send_request('CreateOrganizationMemberPolicy', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateOrganizationMemberPolicyResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 获取企业组织信息
 
         # @param request: Request instance for DescribeOrganization.

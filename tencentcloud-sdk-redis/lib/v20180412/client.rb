@@ -1901,6 +1901,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 实例proxy版本升级
+
+        # @param request: Request instance for UpgradeProxyVersion.
+        # @type request: :class:`Tencentcloud::redis::V20180412::UpgradeProxyVersionRequest`
+        # @rtype: :class:`Tencentcloud::redis::V20180412::UpgradeProxyVersionResponse`
+        def UpgradeProxyVersion(request)
+          body = send_request('UpgradeProxyVersion', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = UpgradeProxyVersionResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 实例小版本升级
+
+        # @param request: Request instance for UpgradeSmallVersion.
+        # @type request: :class:`Tencentcloud::redis::V20180412::UpgradeSmallVersionRequest`
+        # @rtype: :class:`Tencentcloud::redis::V20180412::UpgradeSmallVersionResponse`
+        def UpgradeSmallVersion(request)
+          body = send_request('UpgradeSmallVersion', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = UpgradeSmallVersionResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 升级实例支持多AZ
 
         # @param request: Request instance for UpgradeVersionToMultiAvailabilityZones.

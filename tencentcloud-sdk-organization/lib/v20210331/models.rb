@@ -57,6 +57,55 @@ module TencentCloud
         end
       end
 
+      # CreateOrganizationMemberPolicy请求参数结构体
+      class CreateOrganizationMemberPolicyRequest < TencentCloud::Common::AbstractModel
+        # @param MemberUin: 成员Uin。
+        # @type MemberUin: Integer
+        # @param PolicyName: 策略名。
+        # @type PolicyName: String
+        # @param IdentityId: 身份ID。
+        # @type IdentityId: Integer
+        # @param Description: 描述。
+        # @type Description: String
+
+        attr_accessor :MemberUin, :PolicyName, :IdentityId, :Description
+        
+        def initialize(memberuin=nil, policyname=nil, identityid=nil, description=nil)
+          @MemberUin = memberuin
+          @PolicyName = policyname
+          @IdentityId = identityid
+          @Description = description
+        end
+
+        def deserialize(params)
+          @MemberUin = params['MemberUin']
+          @PolicyName = params['PolicyName']
+          @IdentityId = params['IdentityId']
+          @Description = params['Description']
+        end
+      end
+
+      # CreateOrganizationMemberPolicy返回参数结构体
+      class CreateOrganizationMemberPolicyResponse < TencentCloud::Common::AbstractModel
+        # @param PolicyId: 策略ID。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PolicyId: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :PolicyId, :RequestId
+        
+        def initialize(policyid=nil, requestid=nil)
+          @PolicyId = policyid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @PolicyId = params['PolicyId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateOrganizationMember请求参数结构体
       class CreateOrganizationMemberRequest < TencentCloud::Common::AbstractModel
         # @param Name: 名称
