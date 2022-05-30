@@ -20215,7 +20215,7 @@ module TencentCloud
         # @type FileId: String
         # @param SourceDefinition: 发布视频所对应的转码模板 ID，为0代表原始视频。
         # @type SourceDefinition: Integer
-        # @param SubAppId: 点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。
+        # @param SubAppId: <b>点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。</b>
         # @type SubAppId: Integer
 
         attr_accessor :FileId, :SourceDefinition, :SubAppId

@@ -29,7 +29,7 @@ module TencentCloud
         # @type Remark: String
         # @param IsAdmin: 是否为管理员账户，默认为否
         # @type IsAdmin: Boolean
-        # @param Authentication: win-windows鉴权,sql-sqlserver鉴权，不填模式兼容接口sqlserver鉴权
+        # @param Authentication: win-windows鉴权,sql-sqlserver鉴权，不填默认值为sql-sqlserver鉴权
         # @type Authentication: String
 
         attr_accessor :UserName, :Password, :DBPrivileges, :Remark, :IsAdmin, :Authentication

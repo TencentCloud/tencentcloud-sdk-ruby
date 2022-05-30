@@ -1334,9 +1334,9 @@ module TencentCloud
 
       # DescribeTelCallInfo返回参数结构体
       class DescribeTelCallInfoResponse < TencentCloud::Common::AbstractModel
-        # @param TelCallOutCount: 电话呼出统计分钟数
+        # @param TelCallOutCount: 呼出套餐包消耗分钟数
         # @type TelCallOutCount: Integer
-        # @param TelCallInCount: 电话呼入统计分钟数
+        # @param TelCallInCount: 呼入套餐包消耗分钟数
         # @type TelCallInCount: Integer
         # @param SeatUsedCount: 坐席使用统计个数
         # @type SeatUsedCount: Integer

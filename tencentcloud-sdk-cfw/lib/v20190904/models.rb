@@ -1159,7 +1159,7 @@ module TencentCloud
         # @type Limit: Integer
         # @param Offset: 偏移值
         # @type Offset: Integer
-        # @param Direction: 出站还是入站，0：入站，1：出站
+        # @param Direction: 出站还是入站，1：入站，0：出站
         # @type Direction: Integer
         # @param EdgeId: EdgeId值
         # @type EdgeId: String

@@ -155,51 +155,63 @@ module TencentCloud
 
       # 描述了定期快照策略的详细信息
       class AutoSnapshotPolicy < TencentCloud::Common::AbstractModel
-        # @param AutoSnapshotPolicyId: 定期快照策略ID。
-        # @type AutoSnapshotPolicyId: String
-        # @param AutoSnapshotPolicyName: 定期快照策略名称。
-        # @type AutoSnapshotPolicyName: String
-        # @param AutoSnapshotPolicyState: 定期快照策略的状态。取值范围：<br><li>NORMAL：正常<br><li>ISOLATED：已隔离。
-        # @type AutoSnapshotPolicyState: String
-        # @param IsActivated: 定期快照策略是否激活。
-        # @type IsActivated: Boolean
-        # @param IsPermanent: 使用该定期快照策略创建出来的快照是否永久保留。
-        # @type IsPermanent: Boolean
-        # @param RetentionDays: 使用该定期快照策略创建出来的快照保留天数。
-        # @type RetentionDays: Integer
-        # @param CreateTime: 定期快照策略的创建时间。
-        # @type CreateTime: String
-        # @param NextTriggerTime: 定期快照下次触发的时间。
-        # @type NextTriggerTime: String
-        # @param Policy: 定期快照的执行策略。
-        # @type Policy: Array
         # @param DiskIdSet: 已绑定当前定期快照策略的云盘ID列表。
         # @type DiskIdSet: Array
+        # @param IsActivated: 定期快照策略是否激活。
+        # @type IsActivated: Boolean
+        # @param AutoSnapshotPolicyState: 定期快照策略的状态。取值范围：<br><li>NORMAL：正常<br><li>ISOLATED：已隔离。
+        # @type AutoSnapshotPolicyState: String
+        # @param IsCopyToRemote: 是否是跨账号复制快照快照, 1：是, 0: 不是
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsCopyToRemote: Integer
+        # @param IsPermanent: 使用该定期快照策略创建出来的快照是否永久保留。
+        # @type IsPermanent: Boolean
+        # @param NextTriggerTime: 定期快照下次触发的时间。
+        # @type NextTriggerTime: String
+        # @param AutoSnapshotPolicyName: 定期快照策略名称。
+        # @type AutoSnapshotPolicyName: String
+        # @param AutoSnapshotPolicyId: 定期快照策略ID。
+        # @type AutoSnapshotPolicyId: String
+        # @param Policy: 定期快照的执行策略。
+        # @type Policy: Array
+        # @param CreateTime: 定期快照策略的创建时间。
+        # @type CreateTime: String
+        # @param RetentionDays: 使用该定期快照策略创建出来的快照保留天数。
+        # @type RetentionDays: Integer
+        # @param CopyToAccountUin: 复制的目标账户ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CopyToAccountUin: String
+        # @param InstanceIdSet: 已绑定当前定期快照策略的实例ID列表。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceIdSet: Array
 
-        attr_accessor :AutoSnapshotPolicyId, :AutoSnapshotPolicyName, :AutoSnapshotPolicyState, :IsActivated, :IsPermanent, :RetentionDays, :CreateTime, :NextTriggerTime, :Policy, :DiskIdSet
+        attr_accessor :DiskIdSet, :IsActivated, :AutoSnapshotPolicyState, :IsCopyToRemote, :IsPermanent, :NextTriggerTime, :AutoSnapshotPolicyName, :AutoSnapshotPolicyId, :Policy, :CreateTime, :RetentionDays, :CopyToAccountUin, :InstanceIdSet
         
-        def initialize(autosnapshotpolicyid=nil, autosnapshotpolicyname=nil, autosnapshotpolicystate=nil, isactivated=nil, ispermanent=nil, retentiondays=nil, createtime=nil, nexttriggertime=nil, policy=nil, diskidset=nil)
-          @AutoSnapshotPolicyId = autosnapshotpolicyid
-          @AutoSnapshotPolicyName = autosnapshotpolicyname
-          @AutoSnapshotPolicyState = autosnapshotpolicystate
-          @IsActivated = isactivated
-          @IsPermanent = ispermanent
-          @RetentionDays = retentiondays
-          @CreateTime = createtime
-          @NextTriggerTime = nexttriggertime
-          @Policy = policy
+        def initialize(diskidset=nil, isactivated=nil, autosnapshotpolicystate=nil, iscopytoremote=nil, ispermanent=nil, nexttriggertime=nil, autosnapshotpolicyname=nil, autosnapshotpolicyid=nil, policy=nil, createtime=nil, retentiondays=nil, copytoaccountuin=nil, instanceidset=nil)
           @DiskIdSet = diskidset
+          @IsActivated = isactivated
+          @AutoSnapshotPolicyState = autosnapshotpolicystate
+          @IsCopyToRemote = iscopytoremote
+          @IsPermanent = ispermanent
+          @NextTriggerTime = nexttriggertime
+          @AutoSnapshotPolicyName = autosnapshotpolicyname
+          @AutoSnapshotPolicyId = autosnapshotpolicyid
+          @Policy = policy
+          @CreateTime = createtime
+          @RetentionDays = retentiondays
+          @CopyToAccountUin = copytoaccountuin
+          @InstanceIdSet = instanceidset
         end
 
         def deserialize(params)
-          @AutoSnapshotPolicyId = params['AutoSnapshotPolicyId']
-          @AutoSnapshotPolicyName = params['AutoSnapshotPolicyName']
-          @AutoSnapshotPolicyState = params['AutoSnapshotPolicyState']
+          @DiskIdSet = params['DiskIdSet']
           @IsActivated = params['IsActivated']
+          @AutoSnapshotPolicyState = params['AutoSnapshotPolicyState']
+          @IsCopyToRemote = params['IsCopyToRemote']
           @IsPermanent = params['IsPermanent']
-          @RetentionDays = params['RetentionDays']
-          @CreateTime = params['CreateTime']
           @NextTriggerTime = params['NextTriggerTime']
+          @AutoSnapshotPolicyName = params['AutoSnapshotPolicyName']
+          @AutoSnapshotPolicyId = params['AutoSnapshotPolicyId']
           unless params['Policy'].nil?
             @Policy = []
             params['Policy'].each do |i|
@@ -208,7 +220,10 @@ module TencentCloud
               @Policy << policy_tmp
             end
           end
-          @DiskIdSet = params['DiskIdSet']
+          @CreateTime = params['CreateTime']
+          @RetentionDays = params['RetentionDays']
+          @CopyToAccountUin = params['CopyToAccountUin']
+          @InstanceIdSet = params['InstanceIdSet']
         end
       end
 
@@ -558,14 +573,17 @@ module TencentCloud
         # @type Deadline: String
         # @param DiskBackupId: 云硬盘备份点ID。传入此参数时，将通过备份点创建快照。
         # @type DiskBackupId: String
+        # @param Tags: 快照绑定的标签。
+        # @type Tags: Array
 
-        attr_accessor :DiskId, :SnapshotName, :Deadline, :DiskBackupId
+        attr_accessor :DiskId, :SnapshotName, :Deadline, :DiskBackupId, :Tags
         
-        def initialize(diskid=nil, snapshotname=nil, deadline=nil, diskbackupid=nil)
+        def initialize(diskid=nil, snapshotname=nil, deadline=nil, diskbackupid=nil, tags=nil)
           @DiskId = diskid
           @SnapshotName = snapshotname
           @Deadline = deadline
           @DiskBackupId = diskbackupid
+          @Tags = tags
         end
 
         def deserialize(params)
@@ -573,6 +591,14 @@ module TencentCloud
           @SnapshotName = params['SnapshotName']
           @Deadline = params['Deadline']
           @DiskBackupId = params['DiskBackupId']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
+            end
+          end
         end
       end
 
@@ -2576,10 +2602,12 @@ module TencentCloud
         # @type SnapshotId: String
         # @param TimeStartShare: 快照开始共享的时间。
         # @type TimeStartShare: String
+        # @param Tags: 快照绑定的标签列表。
+        # @type Tags: Array
 
-        attr_accessor :Placement, :CopyFromRemote, :SnapshotState, :IsPermanent, :SnapshotName, :DeadlineTime, :Percent, :Images, :ShareReference, :SnapshotType, :DiskSize, :DiskId, :CopyingToRegions, :Encrypt, :CreateTime, :ImageCount, :DiskUsage, :SnapshotId, :TimeStartShare
+        attr_accessor :Placement, :CopyFromRemote, :SnapshotState, :IsPermanent, :SnapshotName, :DeadlineTime, :Percent, :Images, :ShareReference, :SnapshotType, :DiskSize, :DiskId, :CopyingToRegions, :Encrypt, :CreateTime, :ImageCount, :DiskUsage, :SnapshotId, :TimeStartShare, :Tags
         
-        def initialize(placement=nil, copyfromremote=nil, snapshotstate=nil, ispermanent=nil, snapshotname=nil, deadlinetime=nil, percent=nil, images=nil, sharereference=nil, snapshottype=nil, disksize=nil, diskid=nil, copyingtoregions=nil, encrypt=nil, createtime=nil, imagecount=nil, diskusage=nil, snapshotid=nil, timestartshare=nil)
+        def initialize(placement=nil, copyfromremote=nil, snapshotstate=nil, ispermanent=nil, snapshotname=nil, deadlinetime=nil, percent=nil, images=nil, sharereference=nil, snapshottype=nil, disksize=nil, diskid=nil, copyingtoregions=nil, encrypt=nil, createtime=nil, imagecount=nil, diskusage=nil, snapshotid=nil, timestartshare=nil, tags=nil)
           @Placement = placement
           @CopyFromRemote = copyfromremote
           @SnapshotState = snapshotstate
@@ -2599,6 +2627,7 @@ module TencentCloud
           @DiskUsage = diskusage
           @SnapshotId = snapshotid
           @TimeStartShare = timestartshare
+          @Tags = tags
         end
 
         def deserialize(params)
@@ -2631,6 +2660,14 @@ module TencentCloud
           @DiskUsage = params['DiskUsage']
           @SnapshotId = params['SnapshotId']
           @TimeStartShare = params['TimeStartShare']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
+            end
+          end
         end
       end
 
@@ -2767,21 +2804,21 @@ module TencentCloud
 
       # UnbindAutoSnapshotPolicy请求参数结构体
       class UnbindAutoSnapshotPolicyRequest < TencentCloud::Common::AbstractModel
-        # @param DiskIds: 要解绑定期快照策略的云盘ID列表。
-        # @type DiskIds: Array
         # @param AutoSnapshotPolicyId: 要解绑的定期快照策略ID。
         # @type AutoSnapshotPolicyId: String
+        # @param DiskIds: 要解绑定期快照策略的云盘ID列表。
+        # @type DiskIds: Array
 
-        attr_accessor :DiskIds, :AutoSnapshotPolicyId
+        attr_accessor :AutoSnapshotPolicyId, :DiskIds
         
-        def initialize(diskids=nil, autosnapshotpolicyid=nil)
-          @DiskIds = diskids
+        def initialize(autosnapshotpolicyid=nil, diskids=nil)
           @AutoSnapshotPolicyId = autosnapshotpolicyid
+          @DiskIds = diskids
         end
 
         def deserialize(params)
-          @DiskIds = params['DiskIds']
           @AutoSnapshotPolicyId = params['AutoSnapshotPolicyId']
+          @DiskIds = params['DiskIds']
         end
       end
 

@@ -3284,10 +3284,12 @@ module TencentCloud
         # @type PrivateIpAddresses: Array
         # @param Tags: 指定绑定的标签列表，例如：[{"Key": "city", "Value": "shanghai"}]
         # @type Tags: Array
+        # @param TrunkingFlag: 网卡trunking模式设置，Enable-开启，Disable--关闭，默认关闭。
+        # @type TrunkingFlag: String
 
-        attr_accessor :VpcId, :NetworkInterfaceName, :SubnetId, :NetworkInterfaceDescription, :SecondaryPrivateIpAddressCount, :SecurityGroupIds, :PrivateIpAddresses, :Tags
+        attr_accessor :VpcId, :NetworkInterfaceName, :SubnetId, :NetworkInterfaceDescription, :SecondaryPrivateIpAddressCount, :SecurityGroupIds, :PrivateIpAddresses, :Tags, :TrunkingFlag
         
-        def initialize(vpcid=nil, networkinterfacename=nil, subnetid=nil, networkinterfacedescription=nil, secondaryprivateipaddresscount=nil, securitygroupids=nil, privateipaddresses=nil, tags=nil)
+        def initialize(vpcid=nil, networkinterfacename=nil, subnetid=nil, networkinterfacedescription=nil, secondaryprivateipaddresscount=nil, securitygroupids=nil, privateipaddresses=nil, tags=nil, trunkingflag=nil)
           @VpcId = vpcid
           @NetworkInterfaceName = networkinterfacename
           @SubnetId = subnetid
@@ -3296,6 +3298,7 @@ module TencentCloud
           @SecurityGroupIds = securitygroupids
           @PrivateIpAddresses = privateipaddresses
           @Tags = tags
+          @TrunkingFlag = trunkingflag
         end
 
         def deserialize(params)
@@ -3321,6 +3324,7 @@ module TencentCloud
               @Tags << tag_tmp
             end
           end
+          @TrunkingFlag = params['TrunkingFlag']
         end
       end
 
@@ -8503,16 +8507,24 @@ module TencentCloud
         # @param ExtendEniPrivateIpAddressQuantity: 每个扩展型弹性网卡可以分配的IP配额
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExtendEniPrivateIpAddressQuantity: Integer
+        # @param SubEniQuantity: 中继网卡配额
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SubEniQuantity: Integer
+        # @param SubEniPrivateIpAddressQuantity: 每个中继网卡可以分配的IP配额
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SubEniPrivateIpAddressQuantity: Integer
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :EniQuantity, :EniPrivateIpAddressQuantity, :ExtendEniQuantity, :ExtendEniPrivateIpAddressQuantity, :RequestId
+        attr_accessor :EniQuantity, :EniPrivateIpAddressQuantity, :ExtendEniQuantity, :ExtendEniPrivateIpAddressQuantity, :SubEniQuantity, :SubEniPrivateIpAddressQuantity, :RequestId
         
-        def initialize(eniquantity=nil, eniprivateipaddressquantity=nil, extendeniquantity=nil, extendeniprivateipaddressquantity=nil, requestid=nil)
+        def initialize(eniquantity=nil, eniprivateipaddressquantity=nil, extendeniquantity=nil, extendeniprivateipaddressquantity=nil, subeniquantity=nil, subeniprivateipaddressquantity=nil, requestid=nil)
           @EniQuantity = eniquantity
           @EniPrivateIpAddressQuantity = eniprivateipaddressquantity
           @ExtendEniQuantity = extendeniquantity
           @ExtendEniPrivateIpAddressQuantity = extendeniprivateipaddressquantity
+          @SubEniQuantity = subeniquantity
+          @SubEniPrivateIpAddressQuantity = subeniprivateipaddressquantity
           @RequestId = requestid
         end
 
@@ -8521,6 +8533,8 @@ module TencentCloud
           @EniPrivateIpAddressQuantity = params['EniPrivateIpAddressQuantity']
           @ExtendEniQuantity = params['ExtendEniQuantity']
           @ExtendEniPrivateIpAddressQuantity = params['ExtendEniPrivateIpAddressQuantity']
+          @SubEniQuantity = params['SubEniQuantity']
+          @SubEniPrivateIpAddressQuantity = params['SubEniPrivateIpAddressQuantity']
           @RequestId = params['RequestId']
         end
       end
@@ -8542,6 +8556,7 @@ module TencentCloud
         # <li>tag-key - String -是否必填：否- （过滤条件）按照标签键进行过滤。使用请参考示例2</li>
         # <li>tag:tag-key - String - 是否必填：否 - （过滤条件）按照标签键值对进行过滤。 tag-key使用具体的标签键进行替换。使用请参考示例3。</li>
         # <li>is-primary - Boolean - 是否必填：否 - （过滤条件）按照是否主网卡进行过滤。值为true时，仅过滤主网卡；值为false时，仅过滤辅助网卡；此过滤参数未提供时，同时过滤主网卡和辅助网卡。</li>
+        # <li>eni-type - String -是否必填：否- （过滤条件）按照网卡类型进行过滤。“0”-辅助网卡，“1”-主网卡，“2”：中继网卡</li>
         # @type Filters: Array
         # @param Offset: 偏移量，默认为0。
         # @type Offset: Integer
@@ -13966,14 +13981,17 @@ module TencentCloud
         # @type NetworkInterfaceDescription: String
         # @param SecurityGroupIds: 指定绑定的安全组，例如:['sg-1dd51d']。
         # @type SecurityGroupIds: Array
+        # @param TrunkingFlag: 网卡trunking模式设置，Enable-开启，Disable--关闭，默认关闭。
+        # @type TrunkingFlag: String
 
-        attr_accessor :NetworkInterfaceId, :NetworkInterfaceName, :NetworkInterfaceDescription, :SecurityGroupIds
+        attr_accessor :NetworkInterfaceId, :NetworkInterfaceName, :NetworkInterfaceDescription, :SecurityGroupIds, :TrunkingFlag
         
-        def initialize(networkinterfaceid=nil, networkinterfacename=nil, networkinterfacedescription=nil, securitygroupids=nil)
+        def initialize(networkinterfaceid=nil, networkinterfacename=nil, networkinterfacedescription=nil, securitygroupids=nil, trunkingflag=nil)
           @NetworkInterfaceId = networkinterfaceid
           @NetworkInterfaceName = networkinterfacename
           @NetworkInterfaceDescription = networkinterfacedescription
           @SecurityGroupIds = securitygroupids
+          @TrunkingFlag = trunkingflag
         end
 
         def deserialize(params)
@@ -13981,6 +13999,7 @@ module TencentCloud
           @NetworkInterfaceName = params['NetworkInterfaceName']
           @NetworkInterfaceDescription = params['NetworkInterfaceDescription']
           @SecurityGroupIds = params['SecurityGroupIds']
+          @TrunkingFlag = params['TrunkingFlag']
         end
       end
 

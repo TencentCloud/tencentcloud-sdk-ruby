@@ -4420,7 +4420,7 @@ module TencentCloud
       class SendMessageRequest < TencentCloud::Common::AbstractModel
         # @param DataHubId: DataHub接入ID
         # @type DataHubId: String
-        # @param Message: 发送消息内容
+        # @param Message: 发送消息内容(单次请求最多500条)
         # @type Message: Array
 
         attr_accessor :DataHubId, :Message

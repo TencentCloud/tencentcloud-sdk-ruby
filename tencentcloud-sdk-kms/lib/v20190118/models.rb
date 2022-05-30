@@ -281,15 +281,18 @@ module TencentCloud
         # @type Type: Integer
         # @param Tags: 标签列表
         # @type Tags: Array
+        # @param HsmClusterId: KMS 高级版对应的 HSM 集群 ID（仅对 KMS 独占版/托管版服务实例有效）。
+        # @type HsmClusterId: String
 
-        attr_accessor :Alias, :Description, :KeyUsage, :Type, :Tags
+        attr_accessor :Alias, :Description, :KeyUsage, :Type, :Tags, :HsmClusterId
         
-        def initialize(_alias=nil, description=nil, keyusage=nil, type=nil, tags=nil)
+        def initialize(_alias=nil, description=nil, keyusage=nil, type=nil, tags=nil, hsmclusterid=nil)
           @Alias = _alias
           @Description = description
           @KeyUsage = keyusage
           @Type = type
           @Tags = tags
+          @HsmClusterId = hsmclusterid
         end
 
         def deserialize(params)
@@ -305,6 +308,7 @@ module TencentCloud
               @Tags << tag_tmp
             end
           end
+          @HsmClusterId = params['HsmClusterId']
         end
       end
 
@@ -329,12 +333,15 @@ module TencentCloud
         # @param TagMsg: 标签操作的返回信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TagMsg: String
+        # @param HsmClusterId: HSM 集群 ID（仅对 KMS 独占版/托管版服务实例有效）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HsmClusterId: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :KeyId, :Alias, :CreateTime, :Description, :KeyState, :KeyUsage, :TagCode, :TagMsg, :RequestId
+        attr_accessor :KeyId, :Alias, :CreateTime, :Description, :KeyState, :KeyUsage, :TagCode, :TagMsg, :HsmClusterId, :RequestId
         
-        def initialize(keyid=nil, _alias=nil, createtime=nil, description=nil, keystate=nil, keyusage=nil, tagcode=nil, tagmsg=nil, requestid=nil)
+        def initialize(keyid=nil, _alias=nil, createtime=nil, description=nil, keystate=nil, keyusage=nil, tagcode=nil, tagmsg=nil, hsmclusterid=nil, requestid=nil)
           @KeyId = keyid
           @Alias = _alias
           @CreateTime = createtime
@@ -343,6 +350,7 @@ module TencentCloud
           @KeyUsage = keyusage
           @TagCode = tagcode
           @TagMsg = tagmsg
+          @HsmClusterId = hsmclusterid
           @RequestId = requestid
         end
 
@@ -355,6 +363,7 @@ module TencentCloud
           @KeyUsage = params['KeyUsage']
           @TagCode = params['TagCode']
           @TagMsg = params['TagMsg']
+          @HsmClusterId = params['HsmClusterId']
           @RequestId = params['RequestId']
         end
       end
@@ -1584,18 +1593,26 @@ module TencentCloud
         # @param ProResourceId: 旗舰版购买记录的唯一性标识。如果为开通旗舰版，则返回值为空
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProResourceId: String
+        # @param ExclusiveVSMEnabled: 是否开通 KMS 托管版
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExclusiveVSMEnabled: Boolean
+        # @param ExclusiveHSMEnabled: 是否开通 KMS 独享版
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExclusiveHSMEnabled: Boolean
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :ServiceEnabled, :InvalidType, :UserLevel, :ProExpireTime, :ProRenewFlag, :ProResourceId, :RequestId
+        attr_accessor :ServiceEnabled, :InvalidType, :UserLevel, :ProExpireTime, :ProRenewFlag, :ProResourceId, :ExclusiveVSMEnabled, :ExclusiveHSMEnabled, :RequestId
         
-        def initialize(serviceenabled=nil, invalidtype=nil, userlevel=nil, proexpiretime=nil, prorenewflag=nil, proresourceid=nil, requestid=nil)
+        def initialize(serviceenabled=nil, invalidtype=nil, userlevel=nil, proexpiretime=nil, prorenewflag=nil, proresourceid=nil, exclusivevsmenabled=nil, exclusivehsmenabled=nil, requestid=nil)
           @ServiceEnabled = serviceenabled
           @InvalidType = invalidtype
           @UserLevel = userlevel
           @ProExpireTime = proexpiretime
           @ProRenewFlag = prorenewflag
           @ProResourceId = proresourceid
+          @ExclusiveVSMEnabled = exclusivevsmenabled
+          @ExclusiveHSMEnabled = exclusivehsmenabled
           @RequestId = requestid
         end
 
@@ -1606,6 +1623,8 @@ module TencentCloud
           @ProExpireTime = params['ProExpireTime']
           @ProRenewFlag = params['ProRenewFlag']
           @ProResourceId = params['ProResourceId']
+          @ExclusiveVSMEnabled = params['ExclusiveVSMEnabled']
+          @ExclusiveHSMEnabled = params['ExclusiveHSMEnabled']
           @RequestId = params['RequestId']
         end
       end
@@ -1705,10 +1724,13 @@ module TencentCloud
         # @type ValidTo: Integer
         # @param ResourceId: 资源ID，格式：creatorUin/$creatorUin/$keyId
         # @type ResourceId: String
+        # @param HsmClusterId: HSM 集群 ID（仅对 KMS 独占版/托管版服务实例有效）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HsmClusterId: String
 
-        attr_accessor :KeyId, :Alias, :CreateTime, :Description, :KeyState, :KeyUsage, :Type, :CreatorUin, :KeyRotationEnabled, :Owner, :NextRotateTime, :DeletionDate, :Origin, :ValidTo, :ResourceId
+        attr_accessor :KeyId, :Alias, :CreateTime, :Description, :KeyState, :KeyUsage, :Type, :CreatorUin, :KeyRotationEnabled, :Owner, :NextRotateTime, :DeletionDate, :Origin, :ValidTo, :ResourceId, :HsmClusterId
         
-        def initialize(keyid=nil, _alias=nil, createtime=nil, description=nil, keystate=nil, keyusage=nil, type=nil, creatoruin=nil, keyrotationenabled=nil, owner=nil, nextrotatetime=nil, deletiondate=nil, origin=nil, validto=nil, resourceid=nil)
+        def initialize(keyid=nil, _alias=nil, createtime=nil, description=nil, keystate=nil, keyusage=nil, type=nil, creatoruin=nil, keyrotationenabled=nil, owner=nil, nextrotatetime=nil, deletiondate=nil, origin=nil, validto=nil, resourceid=nil, hsmclusterid=nil)
           @KeyId = keyid
           @Alias = _alias
           @CreateTime = createtime
@@ -1724,6 +1746,7 @@ module TencentCloud
           @Origin = origin
           @ValidTo = validto
           @ResourceId = resourceid
+          @HsmClusterId = hsmclusterid
         end
 
         def deserialize(params)
@@ -1742,6 +1765,7 @@ module TencentCloud
           @Origin = params['Origin']
           @ValidTo = params['ValidTo']
           @ResourceId = params['ResourceId']
+          @HsmClusterId = params['HsmClusterId']
         end
       end
 
@@ -1825,10 +1849,12 @@ module TencentCloud
         # @type KeyUsage: String
         # @param TagFilters: 标签过滤条件
         # @type TagFilters: Array
+        # @param HsmClusterId: KMS 高级版对应的 HSM 集群 ID（仅对 KMS 独占版/托管版服务实例有效）。
+        # @type HsmClusterId: String
 
-        attr_accessor :Offset, :Limit, :Role, :OrderType, :KeyState, :SearchKeyAlias, :Origin, :KeyUsage, :TagFilters
+        attr_accessor :Offset, :Limit, :Role, :OrderType, :KeyState, :SearchKeyAlias, :Origin, :KeyUsage, :TagFilters, :HsmClusterId
         
-        def initialize(offset=nil, limit=nil, role=nil, ordertype=nil, keystate=nil, searchkeyalias=nil, origin=nil, keyusage=nil, tagfilters=nil)
+        def initialize(offset=nil, limit=nil, role=nil, ordertype=nil, keystate=nil, searchkeyalias=nil, origin=nil, keyusage=nil, tagfilters=nil, hsmclusterid=nil)
           @Offset = offset
           @Limit = limit
           @Role = role
@@ -1838,6 +1864,7 @@ module TencentCloud
           @Origin = origin
           @KeyUsage = keyusage
           @TagFilters = tagfilters
+          @HsmClusterId = hsmclusterid
         end
 
         def deserialize(params)
@@ -1857,6 +1884,7 @@ module TencentCloud
               @TagFilters << tagfilter_tmp
             end
           end
+          @HsmClusterId = params['HsmClusterId']
         end
       end
 
@@ -1900,19 +1928,23 @@ module TencentCloud
         # @type Limit: Integer
         # @param Role: 根据创建者角色筛选，默认 0 表示用户自己创建的cmk， 1 表示授权其它云产品自动创建的cmk
         # @type Role: Integer
+        # @param HsmClusterId: KMS 高级版对应的 HSM 集群 ID（仅对 KMS 独占版/托管版服务实例有效）。
+        # @type HsmClusterId: String
 
-        attr_accessor :Offset, :Limit, :Role
+        attr_accessor :Offset, :Limit, :Role, :HsmClusterId
         
-        def initialize(offset=nil, limit=nil, role=nil)
+        def initialize(offset=nil, limit=nil, role=nil, hsmclusterid=nil)
           @Offset = offset
           @Limit = limit
           @Role = role
+          @HsmClusterId = hsmclusterid
         end
 
         def deserialize(params)
           @Offset = params['Offset']
           @Limit = params['Limit']
           @Role = params['Role']
+          @HsmClusterId = params['HsmClusterId']
         end
       end
 

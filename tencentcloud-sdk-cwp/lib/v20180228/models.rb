@@ -9102,7 +9102,7 @@ module TencentCloud
         # <li>VirusName - String - 是否必填：否 - 描述筛选</li>
         # <li>CreateBeginTime - String - 是否必填：否 - 创建时间筛选-开始时间</li>
         # <li>CreateEndTime - String - 是否必填：否 - 创建时间筛选-结束时间</li>
-        # <li>Status - String - 是否必填：否 - 状态筛选 4待处理,5信任沃尔玛可哦啊吗,6已隔离,10隔离中,11恢复隔离中</li>
+        # <li>Status - String - 是否必填：否 - 状态筛选 4待处理,5信任,6已隔离,10隔离中,11恢复隔离中</li>
         # @type Filters: Array
         # @param By: 检测排序 CreateTime
         # @type By: String
@@ -14684,7 +14684,7 @@ module TencentCloud
         # @type Id: Integer
         # @param Alias: 主机别名
         # @type Alias: String
-        # @param Tags: 特性标签
+        # @param Tags: 特性标签，已废弃字段，不会再返回标签，详情中才会返回标签信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Tags: Array
         # @param FileCreateTime: 首次运行时间
@@ -14699,10 +14699,16 @@ module TencentCloud
         # @type LatestScanTime: String
         # @param Level: 风险等级 0未知、1低、2中、3高、4严重
         # @type Level: Integer
+        # @param CheckPlatform: '木马检测平台用,分割 1云查杀引擎、2TAV、3binaryAi、4异常行为、5威胁情报
+        # @type CheckPlatform: String
+        # @param ProcessExists: 木马进程是否存在 0:不存在，1:存在
+        # @type ProcessExists: Integer
+        # @param FileExists: 木马文件是否存在 0:不存在，1:存在
+        # @type FileExists: Integer
 
-        attr_accessor :HostIp, :Uuid, :FilePath, :VirusName, :Status, :Id, :Alias, :Tags, :FileCreateTime, :FileModifierTime, :CreateTime, :LatestScanTime, :Level
+        attr_accessor :HostIp, :Uuid, :FilePath, :VirusName, :Status, :Id, :Alias, :Tags, :FileCreateTime, :FileModifierTime, :CreateTime, :LatestScanTime, :Level, :CheckPlatform, :ProcessExists, :FileExists
         
-        def initialize(hostip=nil, uuid=nil, filepath=nil, virusname=nil, status=nil, id=nil, _alias=nil, tags=nil, filecreatetime=nil, filemodifiertime=nil, createtime=nil, latestscantime=nil, level=nil)
+        def initialize(hostip=nil, uuid=nil, filepath=nil, virusname=nil, status=nil, id=nil, _alias=nil, tags=nil, filecreatetime=nil, filemodifiertime=nil, createtime=nil, latestscantime=nil, level=nil, checkplatform=nil, processexists=nil, fileexists=nil)
           @HostIp = hostip
           @Uuid = uuid
           @FilePath = filepath
@@ -14716,6 +14722,9 @@ module TencentCloud
           @CreateTime = createtime
           @LatestScanTime = latestscantime
           @Level = level
+          @CheckPlatform = checkplatform
+          @ProcessExists = processexists
+          @FileExists = fileexists
         end
 
         def deserialize(params)
@@ -14732,6 +14741,9 @@ module TencentCloud
           @CreateTime = params['CreateTime']
           @LatestScanTime = params['LatestScanTime']
           @Level = params['Level']
+          @CheckPlatform = params['CheckPlatform']
+          @ProcessExists = params['ProcessExists']
+          @FileExists = params['FileExists']
         end
       end
 

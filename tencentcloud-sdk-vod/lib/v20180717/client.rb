@@ -3268,6 +3268,7 @@ module TencentCloud
         end
 
         # 将点播视频发布到微信小程序，供微信小程序播放器播放。
+        # 本接口支持发布原始视频和转码后视频，暂不支持发布自适应码流。
 
         # @param request: Request instance for WeChatMiniProgramPublish.
         # @type request: :class:`Tencentcloud::vod::V20180717::WeChatMiniProgramPublishRequest`
