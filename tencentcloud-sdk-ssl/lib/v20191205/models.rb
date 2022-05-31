@@ -805,12 +805,21 @@ module TencentCloud
         # @param Tags: 关联标签列表。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Tags: Array
+        # @param RootCert: 根证书。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RootCert: :class:`Tencentcloud::Ssl.v20191205.models.RootCertificates`
+        # @param EncryptCert: 国密加密证书
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EncryptCert: String
+        # @param EncryptPrivateKey: 国密加密私钥
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EncryptPrivateKey: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :OwnerUin, :ProjectId, :From, :CertificateType, :PackageType, :ProductZhName, :Domain, :Alias, :Status, :StatusMsg, :VerifyType, :VulnerabilityStatus, :CertBeginTime, :CertEndTime, :ValidityPeriod, :InsertTime, :OrderId, :CertificateExtra, :CertificatePrivateKey, :CertificatePublicKey, :DvAuthDetail, :VulnerabilityReport, :CertificateId, :TypeName, :StatusName, :SubjectAltName, :IsVip, :IsWildcard, :IsDv, :IsVulnerability, :SubmittedData, :RenewAble, :Deployable, :Tags, :RequestId
+        attr_accessor :OwnerUin, :ProjectId, :From, :CertificateType, :PackageType, :ProductZhName, :Domain, :Alias, :Status, :StatusMsg, :VerifyType, :VulnerabilityStatus, :CertBeginTime, :CertEndTime, :ValidityPeriod, :InsertTime, :OrderId, :CertificateExtra, :CertificatePrivateKey, :CertificatePublicKey, :DvAuthDetail, :VulnerabilityReport, :CertificateId, :TypeName, :StatusName, :SubjectAltName, :IsVip, :IsWildcard, :IsDv, :IsVulnerability, :SubmittedData, :RenewAble, :Deployable, :Tags, :RootCert, :EncryptCert, :EncryptPrivateKey, :RequestId
         
-        def initialize(owneruin=nil, projectid=nil, from=nil, certificatetype=nil, packagetype=nil, productzhname=nil, domain=nil, _alias=nil, status=nil, statusmsg=nil, verifytype=nil, vulnerabilitystatus=nil, certbegintime=nil, certendtime=nil, validityperiod=nil, inserttime=nil, orderid=nil, certificateextra=nil, certificateprivatekey=nil, certificatepublickey=nil, dvauthdetail=nil, vulnerabilityreport=nil, certificateid=nil, typename=nil, statusname=nil, subjectaltname=nil, isvip=nil, iswildcard=nil, isdv=nil, isvulnerability=nil, submitteddata=nil, renewable=nil, deployable=nil, tags=nil, requestid=nil)
+        def initialize(owneruin=nil, projectid=nil, from=nil, certificatetype=nil, packagetype=nil, productzhname=nil, domain=nil, _alias=nil, status=nil, statusmsg=nil, verifytype=nil, vulnerabilitystatus=nil, certbegintime=nil, certendtime=nil, validityperiod=nil, inserttime=nil, orderid=nil, certificateextra=nil, certificateprivatekey=nil, certificatepublickey=nil, dvauthdetail=nil, vulnerabilityreport=nil, certificateid=nil, typename=nil, statusname=nil, subjectaltname=nil, isvip=nil, iswildcard=nil, isdv=nil, isvulnerability=nil, submitteddata=nil, renewable=nil, deployable=nil, tags=nil, rootcert=nil, encryptcert=nil, encryptprivatekey=nil, requestid=nil)
           @OwnerUin = owneruin
           @ProjectId = projectid
           @From = from
@@ -845,6 +854,9 @@ module TencentCloud
           @RenewAble = renewable
           @Deployable = deployable
           @Tags = tags
+          @RootCert = rootcert
+          @EncryptCert = encryptcert
+          @EncryptPrivateKey = encryptprivatekey
           @RequestId = requestid
         end
 
@@ -899,6 +911,12 @@ module TencentCloud
               @Tags << tags_tmp
             end
           end
+          unless params['RootCert'].nil?
+            @RootCert = RootCertificates.new
+            @RootCert.deserialize(params['RootCert'])
+          end
+          @EncryptCert = params['EncryptCert']
+          @EncryptPrivateKey = params['EncryptPrivateKey']
           @RequestId = params['RequestId']
         end
       end
@@ -2058,6 +2076,17 @@ module TencentCloud
           @DomainValidateAuthKey = params['DomainValidateAuthKey']
           @DomainValidateAuthValue = params['DomainValidateAuthValue']
           @DomainValidateAuthDomain = params['DomainValidateAuthDomain']
+        end
+      end
+
+      # 根证书
+      class RootCertificates < TencentCloud::Common::AbstractModel
+
+        
+        def initialize()
+        end
+
+        def deserialize(params)
         end
       end
 
