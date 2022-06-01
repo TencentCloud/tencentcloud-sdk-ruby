@@ -127,6 +127,11 @@ module TencentCloud
 
         # 获取小程序跳转链接
 
+        # 跳转到小程序的实现，参考官方文档（分为<a href="https://developers.weixin.qq.com/miniprogram/dev/api/navigate/wx.navigateToMiniProgram.html">全屏</a>、<a href="https://developers.weixin.qq.com/miniprogram/dev/framework/open-ability/openEmbeddedMiniProgram.html">半屏</a>两种方式）
+
+
+        # 如您需要自主配置小程序跳转链接，请参考: <a href="https://tcloud-doc.isd.com/document/product/1323/74774">跳转小程序链接配置说明</a>
+
         # @param request: Request instance for CreateSchemeUrl.
         # @type request: :class:`Tencentcloud::ess::V20201111::CreateSchemeUrlRequest`
         # @rtype: :class:`Tencentcloud::ess::V20201111::CreateSchemeUrlResponse`
@@ -183,6 +188,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeFlowBriefsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 二期接口-查询模板
+
+        # @param request: Request instance for DescribeFlowTemplates.
+        # @type request: :class:`Tencentcloud::ess::V20201111::DescribeFlowTemplatesRequest`
+        # @rtype: :class:`Tencentcloud::ess::V20201111::DescribeFlowTemplatesResponse`
+        def DescribeFlowTemplates(request)
+          body = send_request('DescribeFlowTemplates', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeFlowTemplatesResponse.new
             model.deserialize(response['Response'])
             model
           else

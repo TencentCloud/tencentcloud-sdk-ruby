@@ -2696,6 +2696,140 @@ module TencentCloud
         end
       end
 
+      # ParseNfcData请求参数结构体
+      class ParseNfcDataRequest < TencentCloud::Common::AbstractModel
+        # @param ReqId: 前端SDK返回
+        # @type ReqId: String
+
+        attr_accessor :ReqId
+        
+        def initialize(reqid=nil)
+          @ReqId = reqid
+        end
+
+        def deserialize(params)
+          @ReqId = params['ReqId']
+        end
+      end
+
+      # ParseNfcData返回参数结构体
+      class ParseNfcDataResponse < TencentCloud::Common::AbstractModel
+        # @param ResultCode: 0为首次查询成功，-1为查询失败。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResultCode: String
+        # @param IdNum: 身份证号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IdNum: String
+        # @param Name: 姓名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
+        # @param Picture: 照片
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Picture: String
+        # @param BirthDate: 出生日期
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BirthDate: String
+        # @param BeginTime: 有效期起始时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BeginTime: String
+        # @param EndTime: 有效期结束时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EndTime: String
+        # @param Address: 住址
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Address: String
+        # @param Nation: 民族
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Nation: String
+        # @param Sex: 性别
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Sex: String
+        # @param IdType: 身份证 01 中国护照 03 军官证 04 武警证 05 港澳通行证 06 台胞证 07 外国护照 08 士兵证 09 临时身份证 10 户口本 11 警官证 12 外国人永久居留证 13 港澳台居民居住证 14 回乡证 15 大陆居民来往台湾通行证 16 其他证件 99
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IdType: String
+        # @param EnName: 英文姓名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EnName: String
+        # @param SigningOrganization: 签发机关
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SigningOrganization: String
+        # @param OtherIdNum: 港澳台居民居住证，通行证号码
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OtherIdNum: String
+        # @param Nationality: 旅行证件国籍
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Nationality: String
+        # @param PersonalNumber: 旅行证件机读区第二行 29~42 位
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PersonalNumber: String
+        # @param CheckMRTD: 旅行证件类的核验结果。JSON格式如下：
+        # {"result_issuer ":"签发者证书合法性验证结果 ","result_pape r":"证件安全对象合法性验证 结果 ","result_data" :"防数据篡改验证结果 ","result_chip" :"防证书件芯片被复制验证结果"}
+        #  0:验证通过，1: 验证不通过，2: 未验证，3:部分通过，当4项核验结果都为0时，表示证件为真
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CheckMRTD: String
+        # @param ImageA: 身份证照片面合成图片
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ImageA: String
+        # @param ImageB: 身份证国徽面合成图片
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ImageB: String
+        # @param ResultDescription: 对result code的结果描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResultDescription: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ResultCode, :IdNum, :Name, :Picture, :BirthDate, :BeginTime, :EndTime, :Address, :Nation, :Sex, :IdType, :EnName, :SigningOrganization, :OtherIdNum, :Nationality, :PersonalNumber, :CheckMRTD, :ImageA, :ImageB, :ResultDescription, :RequestId
+        
+        def initialize(resultcode=nil, idnum=nil, name=nil, picture=nil, birthdate=nil, begintime=nil, endtime=nil, address=nil, nation=nil, sex=nil, idtype=nil, enname=nil, signingorganization=nil, otheridnum=nil, nationality=nil, personalnumber=nil, checkmrtd=nil, imagea=nil, imageb=nil, resultdescription=nil, requestid=nil)
+          @ResultCode = resultcode
+          @IdNum = idnum
+          @Name = name
+          @Picture = picture
+          @BirthDate = birthdate
+          @BeginTime = begintime
+          @EndTime = endtime
+          @Address = address
+          @Nation = nation
+          @Sex = sex
+          @IdType = idtype
+          @EnName = enname
+          @SigningOrganization = signingorganization
+          @OtherIdNum = otheridnum
+          @Nationality = nationality
+          @PersonalNumber = personalnumber
+          @CheckMRTD = checkmrtd
+          @ImageA = imagea
+          @ImageB = imageb
+          @ResultDescription = resultdescription
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ResultCode = params['ResultCode']
+          @IdNum = params['IdNum']
+          @Name = params['Name']
+          @Picture = params['Picture']
+          @BirthDate = params['BirthDate']
+          @BeginTime = params['BeginTime']
+          @EndTime = params['EndTime']
+          @Address = params['Address']
+          @Nation = params['Nation']
+          @Sex = params['Sex']
+          @IdType = params['IdType']
+          @EnName = params['EnName']
+          @SigningOrganization = params['SigningOrganization']
+          @OtherIdNum = params['OtherIdNum']
+          @Nationality = params['Nationality']
+          @PersonalNumber = params['PersonalNumber']
+          @CheckMRTD = params['CheckMRTD']
+          @ImageA = params['ImageA']
+          @ImageB = params['ImageB']
+          @ResultDescription = params['ResultDescription']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # PhoneVerificationCMCC请求参数结构体
       class PhoneVerificationCMCCRequest < TencentCloud::Common::AbstractModel
         # @param IdCard: 身份证号

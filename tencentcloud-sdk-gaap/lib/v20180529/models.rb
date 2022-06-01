@@ -5939,6 +5939,7 @@ module TencentCloud
         # 1表示创建中；
         # 4表示销毁中；
         # 11表示迁移中；
+        # 12表示部分部署中。
         # @type Status: Integer
         # @param OwnerUin: 归属Uin
         # @type OwnerUin: String
@@ -6057,7 +6058,8 @@ module TencentCloud
         # RUNNING表示运行中；
         # CREATING表示创建中；
         # DESTROYING表示销毁中；
-        # MOVING表示通道迁移中。
+        # MOVING表示通道迁移中；
+        # CHANGING表示部分部署中。
         # @type Status: String
         # @param TagSet: 标签列表。
         # @type TagSet: Array
@@ -6071,8 +6073,8 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProxyType: Integer
         # @param Http3Supported: 支持Http3特性的标识，其中：
-        # 0，表示不支持Http3；
-        # 1，表示支持Http3。
+        # 0表示关闭；
+        # 1表示启用。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Http3Supported: Integer
 
@@ -6163,7 +6165,8 @@ module TencentCloud
         # ISOLATING表示隔离中；
         # ISOLATED表示已隔离；
         # CLONING表示复制中；
-        # RECOVERING表示通道维护中。
+        # RECOVERING表示通道维护中；
+        # MOVING表示迁移中。
         # @type Status: String
         # @param Domain: 接入域名。
         # @type Domain: String
@@ -6216,7 +6219,7 @@ module TencentCloud
         # @param IPAddressVersion: IP版本：IPv4、IPv6
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IPAddressVersion: String
-        # @param NetworkType: 网络类型：normal表示常规BGP，cn2表示精品BGP，triple表示三网，secure_eip表示定制安全eip
+        # @param NetworkType: 网络类型：normal表示常规BGP，cn2表示精品BGP，triple表示三网，secure_eip表示定制安全EIP
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NetworkType: String
         # @param PackageType: 通道套餐类型：Thunder表示标准通道，Accelerator表示银牌加速通道，
@@ -6380,7 +6383,8 @@ module TencentCloud
         # CLOSED表示已关闭；
         # ADJUSTING表示配置变更中；
         # ISOLATING表示隔离中；
-        # ISOLATED表示已隔离。
+        # ISOLATED表示已隔离；
+        # MOVING表示迁移中。
         # @type Status: String
 
         attr_accessor :InstanceId, :Status

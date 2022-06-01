@@ -599,7 +599,10 @@ module TencentCloud
         # @type FlowId: String
         # @param OrganizationName: 企业名称
         # @type OrganizationName: String
-        # @param EndPoint: 链接类型 HTTP：跳转电子签小程序的http_url，APP：第三方APP或小程序跳转电子签小程序，默认为HTTP类型
+        # @param EndPoint: 链接类型
+        # HTTP：跳转电子签小程序的http_url，
+        # APP：第三方APP或小程序跳转电子签小程序的path。
+        # 默认为HTTP类型
         # @type EndPoint: String
         # @param AutoJumpBack: 是否自动回跳 true：是， false：否。该参数只针对"APP" 类型的签署链接有效
         # @type AutoJumpBack: Boolean
@@ -811,6 +814,90 @@ module TencentCloud
         end
       end
 
+      # DescribeFlowTemplates请求参数结构体
+      class DescribeFlowTemplatesRequest < TencentCloud::Common::AbstractModel
+        # @param Operator: 操作人信息
+        # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
+        # @param Offset: 查询偏移位置，默认0
+        # @type Offset: Integer
+        # @param Limit: 查询个数，默认20，最大100
+        # @type Limit: Integer
+        # @param Filters: 搜索条件，具体参考Filter结构体。本接口取值：template-id：按照【 **模板唯一标识** 】进行过滤
+        # @type Filters: Array
+        # @param Agent: 应用相关信息
+        # @type Agent: :class:`Tencentcloud::Ess.v20201111.models.Agent`
+        # @param GenerateSource: 暂未开放
+        # @type GenerateSource: Integer
+        # @param ContentType: 查询内容：0-模版列表及详情（默认），1-仅模版列表
+        # @type ContentType: Integer
+
+        attr_accessor :Operator, :Offset, :Limit, :Filters, :Agent, :GenerateSource, :ContentType
+        
+        def initialize(operator=nil, offset=nil, limit=nil, filters=nil, agent=nil, generatesource=nil, contenttype=nil)
+          @Operator = operator
+          @Offset = offset
+          @Limit = limit
+          @Filters = filters
+          @Agent = agent
+          @GenerateSource = generatesource
+          @ContentType = contenttype
+        end
+
+        def deserialize(params)
+          unless params['Operator'].nil?
+            @Operator = UserInfo.new
+            @Operator.deserialize(params['Operator'])
+          end
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+          unless params['Agent'].nil?
+            @Agent = Agent.new
+            @Agent.deserialize(params['Agent'])
+          end
+          @GenerateSource = params['GenerateSource']
+          @ContentType = params['ContentType']
+        end
+      end
+
+      # DescribeFlowTemplates返回参数结构体
+      class DescribeFlowTemplatesResponse < TencentCloud::Common::AbstractModel
+        # @param Templates: 模板详情列表
+        # @type Templates: Array
+        # @param TotalCount: 查询到的总个数
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Templates, :TotalCount, :RequestId
+        
+        def initialize(templates=nil, totalcount=nil, requestid=nil)
+          @Templates = templates
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Templates'].nil?
+            @Templates = []
+            params['Templates'].each do |i|
+              templateinfo_tmp = TemplateInfo.new
+              templateinfo_tmp.deserialize(i)
+              @Templates << templateinfo_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeThirdPartyAuthCode请求参数结构体
       class DescribeThirdPartyAuthCodeRequest < TencentCloud::Common::AbstractModel
         # @param AuthCode: AuthCode 值
@@ -847,6 +934,34 @@ module TencentCloud
         end
       end
 
+      # 二期接口返回的模板中文件的信息结构
+      class FileInfo < TencentCloud::Common::AbstractModel
+        # @param FileId: 文件Id
+        # @type FileId: String
+        # @param FileName: 文件名
+        # @type FileName: String
+        # @param FileSize: 文件大小，单位为Byte
+        # @type FileSize: Integer
+        # @param CreatedOn: 文件上传时间，10位时间戳（精确到秒）
+        # @type CreatedOn: Integer
+
+        attr_accessor :FileId, :FileName, :FileSize, :CreatedOn
+        
+        def initialize(fileid=nil, filename=nil, filesize=nil, createdon=nil)
+          @FileId = fileid
+          @FileName = filename
+          @FileSize = filesize
+          @CreatedOn = createdon
+        end
+
+        def deserialize(params)
+          @FileId = params['FileId']
+          @FileName = params['FileName']
+          @FileSize = params['FileSize']
+          @CreatedOn = params['CreatedOn']
+        end
+      end
+
       # 下载文件的URL信息
       class FileUrl < TencentCloud::Common::AbstractModel
         # @param Url: 下载文件的URL
@@ -865,6 +980,26 @@ module TencentCloud
         def deserialize(params)
           @Url = params['Url']
           @Option = params['Option']
+        end
+      end
+
+      # 查询过滤条件
+      class Filter < TencentCloud::Common::AbstractModel
+        # @param Key: 查询过滤条件的Key
+        # @type Key: String
+        # @param Values: 查询过滤条件的Value列表
+        # @type Values: Array
+
+        attr_accessor :Key, :Values
+        
+        def initialize(key=nil, values=nil)
+          @Key = key
+          @Values = values
+        end
+
+        def deserialize(params)
+          @Key = params['Key']
+          @Values = params['Values']
         end
       end
 
@@ -1014,6 +1149,70 @@ module TencentCloud
         end
       end
 
+      # 签署参与者信息
+      class Recipient < TencentCloud::Common::AbstractModel
+        # @param RecipientId: 签署参与者ID
+        # @type RecipientId: String
+        # @param RecipientType: 参与者类型（ENTERPRISE/INDIVIDUAL）
+        # @type RecipientType: String
+        # @param Description: 描述信息
+        # @type Description: String
+        # @param RoleName: 角色名称
+        # @type RoleName: String
+        # @param RequireValidation: 是否需要验证，默认为false
+        # @type RequireValidation: Boolean
+        # @param RequireSign: 是否需要签署，默认为true
+        # @type RequireSign: Boolean
+        # @param RoutingOrder: 添加序列
+        # @type RoutingOrder: Integer
+        # @param RequireDelivery: 是否需要发送，默认为true
+        # @type RequireDelivery: Boolean
+        # @param Email: 邮箱地址
+        # @type Email: String
+        # @param Mobile: 电话号码
+        # @type Mobile: String
+        # @param UserId: 关联的用户ID
+        # @type UserId: String
+        # @param DeliveryMethod: 发送方式（EMAIL/MOBILE）
+        # @type DeliveryMethod: String
+        # @param RecipientExtra: 附属信息
+        # @type RecipientExtra: String
+
+        attr_accessor :RecipientId, :RecipientType, :Description, :RoleName, :RequireValidation, :RequireSign, :RoutingOrder, :RequireDelivery, :Email, :Mobile, :UserId, :DeliveryMethod, :RecipientExtra
+        
+        def initialize(recipientid=nil, recipienttype=nil, description=nil, rolename=nil, requirevalidation=nil, requiresign=nil, routingorder=nil, requiredelivery=nil, email=nil, mobile=nil, userid=nil, deliverymethod=nil, recipientextra=nil)
+          @RecipientId = recipientid
+          @RecipientType = recipienttype
+          @Description = description
+          @RoleName = rolename
+          @RequireValidation = requirevalidation
+          @RequireSign = requiresign
+          @RoutingOrder = routingorder
+          @RequireDelivery = requiredelivery
+          @Email = email
+          @Mobile = mobile
+          @UserId = userid
+          @DeliveryMethod = deliverymethod
+          @RecipientExtra = recipientextra
+        end
+
+        def deserialize(params)
+          @RecipientId = params['RecipientId']
+          @RecipientType = params['RecipientType']
+          @Description = params['Description']
+          @RoleName = params['RoleName']
+          @RequireValidation = params['RequireValidation']
+          @RequireSign = params['RequireSign']
+          @RoutingOrder = params['RoutingOrder']
+          @RequireDelivery = params['RequireDelivery']
+          @Email = params['Email']
+          @Mobile = params['Mobile']
+          @UserId = params['UserId']
+          @DeliveryMethod = params['DeliveryMethod']
+          @RecipientExtra = params['RecipientExtra']
+        end
+      end
+
       # StartFlow请求参数结构体
       class StartFlowRequest < TencentCloud::Common::AbstractModel
         # @param Operator: 用户信息
@@ -1065,6 +1264,105 @@ module TencentCloud
         def deserialize(params)
           @Status = params['Status']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 二期接口返回的模板的信息结构
+      class TemplateInfo < TencentCloud::Common::AbstractModel
+        # @param TemplateId: 模板ID
+        # @type TemplateId: String
+        # @param TemplateName: 模板名字
+        # @type TemplateName: String
+        # @param Description: 模板描述信息
+        # @type Description: String
+        # @param DocumentResourceIds: 模板关联的资源IDs
+        # @type DocumentResourceIds: Array
+        # @param FileInfos: 返回的文件信息结构
+        # @type FileInfos: Array
+        # @param AttachmentResourceIds: 附件关联的资源ID是
+        # @type AttachmentResourceIds: Array
+        # @param SignOrder: 签署顺序
+        # @type SignOrder: Array
+        # @param Recipients: 签署参与者的信息
+        # @type Recipients: Array
+        # @param Components: 模板信息结构
+        # @type Components: Array
+        # @param SignComponents: 签署区模板信息结构
+        # @type SignComponents: Array
+        # @param Status: 模板状态(-1:不可用；0:草稿态；1:正式态)
+        # @type Status: Integer
+        # @param Creator: 模板的创建人
+        # @type Creator: String
+        # @param CreatedOn: 模板创建的时间戳（精确到秒）
+        # @type CreatedOn: Integer
+        # @param Promoter: 发起人角色信息
+        # @type Promoter: :class:`Tencentcloud::Ess.v20201111.models.Recipient`
+
+        attr_accessor :TemplateId, :TemplateName, :Description, :DocumentResourceIds, :FileInfos, :AttachmentResourceIds, :SignOrder, :Recipients, :Components, :SignComponents, :Status, :Creator, :CreatedOn, :Promoter
+        
+        def initialize(templateid=nil, templatename=nil, description=nil, documentresourceids=nil, fileinfos=nil, attachmentresourceids=nil, signorder=nil, recipients=nil, components=nil, signcomponents=nil, status=nil, creator=nil, createdon=nil, promoter=nil)
+          @TemplateId = templateid
+          @TemplateName = templatename
+          @Description = description
+          @DocumentResourceIds = documentresourceids
+          @FileInfos = fileinfos
+          @AttachmentResourceIds = attachmentresourceids
+          @SignOrder = signorder
+          @Recipients = recipients
+          @Components = components
+          @SignComponents = signcomponents
+          @Status = status
+          @Creator = creator
+          @CreatedOn = createdon
+          @Promoter = promoter
+        end
+
+        def deserialize(params)
+          @TemplateId = params['TemplateId']
+          @TemplateName = params['TemplateName']
+          @Description = params['Description']
+          @DocumentResourceIds = params['DocumentResourceIds']
+          unless params['FileInfos'].nil?
+            @FileInfos = []
+            params['FileInfos'].each do |i|
+              fileinfo_tmp = FileInfo.new
+              fileinfo_tmp.deserialize(i)
+              @FileInfos << fileinfo_tmp
+            end
+          end
+          @AttachmentResourceIds = params['AttachmentResourceIds']
+          @SignOrder = params['SignOrder']
+          unless params['Recipients'].nil?
+            @Recipients = []
+            params['Recipients'].each do |i|
+              recipient_tmp = Recipient.new
+              recipient_tmp.deserialize(i)
+              @Recipients << recipient_tmp
+            end
+          end
+          unless params['Components'].nil?
+            @Components = []
+            params['Components'].each do |i|
+              component_tmp = Component.new
+              component_tmp.deserialize(i)
+              @Components << component_tmp
+            end
+          end
+          unless params['SignComponents'].nil?
+            @SignComponents = []
+            params['SignComponents'].each do |i|
+              component_tmp = Component.new
+              component_tmp.deserialize(i)
+              @SignComponents << component_tmp
+            end
+          end
+          @Status = params['Status']
+          @Creator = params['Creator']
+          @CreatedOn = params['CreatedOn']
+          unless params['Promoter'].nil?
+            @Promoter = Recipient.new
+            @Promoter.deserialize(params['Promoter'])
+          end
         end
       end
 

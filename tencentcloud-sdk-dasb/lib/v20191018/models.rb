@@ -21,7 +21,7 @@ module TencentCloud
       class Acl < TencentCloud::Common::AbstractModel
         # @param Id: 访问权限ID
         # @type Id: Integer
-        # @param Name: 规则名
+        # @param Name: 访问权限名称
         # @type Name: String
         # @param AllowDiskRedirect: 是否开启磁盘映射
         # @type AllowDiskRedirect: Boolean
@@ -29,47 +29,49 @@ module TencentCloud
         # @type AllowClipFileUp: Boolean
         # @param AllowClipFileDown: 是否开启剪贴板文件下行
         # @type AllowClipFileDown: Boolean
-        # @param AllowClipTextUp: 是否开启剪贴板text（目前含图片）上行
+        # @param AllowClipTextUp: 是否开启剪贴板文本（目前含图片）上行
         # @type AllowClipTextUp: Boolean
-        # @param AllowClipTextDown: 是否开启剪贴板text（目前含图片）下行
+        # @param AllowClipTextDown: 是否开启剪贴板文本（目前含图片）下行
         # @type AllowClipTextDown: Boolean
         # @param AllowFileUp: 是否开启文件传输上传
         # @type AllowFileUp: Boolean
-        # @param MaxFileUpSize: 文件传输上传大小限制
+        # @param MaxFileUpSize: 文件传输上传大小限制（预留参数，暂未启用）
         # @type MaxFileUpSize: Integer
         # @param AllowFileDown: 是否开启文件传输下载
         # @type AllowFileDown: Boolean
-        # @param MaxFileDownSize: 文件传输下载大小限制
+        # @param MaxFileDownSize: 文件传输下载大小限制（预留参数，暂未启用）
         # @type MaxFileDownSize: Integer
-        # @param AllowAnyAccount: 是否允许任意账号登陆
+        # @param AllowAnyAccount: 是否允许任意账号登录
         # @type AllowAnyAccount: Boolean
         # @param UserSet: 关联的用户列表
         # @type UserSet: Array
         # @param UserGroupSet: 关联的用户组列表
         # @type UserGroupSet: Array
-        # @param DeviceSet: 关联的主机列表
+        # @param DeviceSet: 关联的资产列表
         # @type DeviceSet: Array
-        # @param DeviceGroupSet: 关联的主机组列表
+        # @param DeviceGroupSet: 关联的资产组列表
         # @type DeviceGroupSet: Array
         # @param AccountSet: 关联的账号列表
         # @type AccountSet: Array
         # @param CmdTemplateSet: 关联的高危命令模板列表
         # @type CmdTemplateSet: Array
-        # @param AllowDiskFileUp: 是否开启rdp磁盘映射文件上传
+        # @param AllowDiskFileUp: 是否开启 RDP 磁盘映射文件上传
         # @type AllowDiskFileUp: Boolean
-        # @param AllowDiskFileDown: 是否开启rdp磁盘映射文件下载
+        # @param AllowDiskFileDown: 是否开启 RDP 磁盘映射文件下载
         # @type AllowDiskFileDown: Boolean
-        # @param AllowShellFileUp: 是否开启rz sz文件上传
+        # @param AllowShellFileUp: 是否开启 rz sz 文件上传
         # @type AllowShellFileUp: Boolean
-        # @param AllowShellFileDown: 是否开启rz sz文件下载
+        # @param AllowShellFileDown: 是否开启 rz sz 文件下载
         # @type AllowShellFileDown: Boolean
-        # @param AllowFileDel: 是否开启SFTP文件删除
+        # @param AllowFileDel: 是否开启 SFTP 文件删除
         # @type AllowFileDel: Boolean
-        # @param ValidateFrom: 生效日期
+        # @param ValidateFrom: 访问权限生效时间，如:"2021-09-22T00:00:00+00:00"
+        # 生效、失效时间不填则访问权限长期有效
         # @type ValidateFrom: String
-        # @param ValidateTo: 失效日期
+        # @param ValidateTo: 访问权限失效时间，如:"2021-09-23T00:00:00+00:00"
+        # 生效、失效时间不填则访问权限长期有效
         # @type ValidateTo: String
-        # @param Status: 策略状态，1-已生效，2-未生效，3-已过期
+        # @param Status: 访问权限状态，1 - 已生效，2 - 未生效，3 - 已过期
         # @type Status: Integer
 
         attr_accessor :Id, :Name, :AllowDiskRedirect, :AllowClipFileUp, :AllowClipFileDown, :AllowClipTextUp, :AllowClipTextDown, :AllowFileUp, :MaxFileUpSize, :AllowFileDown, :MaxFileDownSize, :AllowAnyAccount, :UserSet, :UserGroupSet, :DeviceSet, :DeviceGroupSet, :AccountSet, :CmdTemplateSet, :AllowDiskFileUp, :AllowDiskFileDown, :AllowShellFileUp, :AllowShellFileDown, :AllowFileDel, :ValidateFrom, :ValidateTo, :Status
@@ -168,13 +170,121 @@ module TencentCloud
         end
       end
 
-      # 命令模板
-      class CmdTemplate < TencentCloud::Common::AbstractModel
-        # @param Id: 模板ID
+      # AddDeviceGroupMembers请求参数结构体
+      class AddDeviceGroupMembersRequest < TencentCloud::Common::AbstractModel
+        # @param Id: 资产组ID
         # @type Id: Integer
-        # @param Name: 模板名称
+        # @param MemberIdSet: 需要添加到资产组的资产ID集合
+        # @type MemberIdSet: Array
+
+        attr_accessor :Id, :MemberIdSet
+        
+        def initialize(id=nil, memberidset=nil)
+          @Id = id
+          @MemberIdSet = memberidset
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @MemberIdSet = params['MemberIdSet']
+        end
+      end
+
+      # AddDeviceGroupMembers返回参数结构体
+      class AddDeviceGroupMembersResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # AddUserGroupMembers请求参数结构体
+      class AddUserGroupMembersRequest < TencentCloud::Common::AbstractModel
+        # @param Id: 用户组ID
+        # @type Id: Integer
+        # @param MemberIdSet: 成员用户ID集合
+        # @type MemberIdSet: Array
+
+        attr_accessor :Id, :MemberIdSet
+        
+        def initialize(id=nil, memberidset=nil)
+          @Id = id
+          @MemberIdSet = memberidset
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @MemberIdSet = params['MemberIdSet']
+        end
+      end
+
+      # AddUserGroupMembers返回参数结构体
+      class AddUserGroupMembersResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # BindDeviceResource请求参数结构体
+      class BindDeviceResourceRequest < TencentCloud::Common::AbstractModel
+        # @param DeviceIdSet: 资产ID集合
+        # @type DeviceIdSet: Array
+        # @param ResourceId: 堡垒机服务ID
+        # @type ResourceId: String
+
+        attr_accessor :DeviceIdSet, :ResourceId
+        
+        def initialize(deviceidset=nil, resourceid=nil)
+          @DeviceIdSet = deviceidset
+          @ResourceId = resourceid
+        end
+
+        def deserialize(params)
+          @DeviceIdSet = params['DeviceIdSet']
+          @ResourceId = params['ResourceId']
+        end
+      end
+
+      # BindDeviceResource返回参数结构体
+      class BindDeviceResourceResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 高危命令模板
+      class CmdTemplate < TencentCloud::Common::AbstractModel
+        # @param Id: 高危命令模板ID
+        # @type Id: Integer
+        # @param Name: 高危命令模板名称
         # @type Name: String
-        # @param CmdList: 命令列表，\n分隔
+        # @param CmdList: 命令列表，命令之间用换行符（"\n"）分隔
         # @type CmdList: String
 
         attr_accessor :Id, :Name, :CmdList
@@ -194,37 +304,37 @@ module TencentCloud
 
       # CreateAcl请求参数结构体
       class CreateAclRequest < TencentCloud::Common::AbstractModel
-        # @param Name: 权限名称，最大32字符，不能为空，不能包含空白字符
+        # @param Name: 权限名称，最大32字符，不能包含空白字符
         # @type Name: String
         # @param AllowDiskRedirect: 是否开启磁盘映射
         # @type AllowDiskRedirect: Boolean
-        # @param AllowAnyAccount: 是否允许任意账号登陆
+        # @param AllowAnyAccount: 是否允许任意账号登录
         # @type AllowAnyAccount: Boolean
         # @param AllowClipFileUp: 是否开启剪贴板文件上行
         # @type AllowClipFileUp: Boolean
         # @param AllowClipFileDown: 是否开启剪贴板文件下行
         # @type AllowClipFileDown: Boolean
-        # @param AllowClipTextUp: 是否开启剪贴板text（含图片）上行
+        # @param AllowClipTextUp: 是否开启剪贴板文本（含图片）上行
         # @type AllowClipTextUp: Boolean
-        # @param AllowClipTextDown: 是否开启剪贴板text（含图片）下行
+        # @param AllowClipTextDown: 是否开启剪贴板文本（含图片）下行
         # @type AllowClipTextDown: Boolean
-        # @param AllowFileUp: 是否开启SFTP文件上传
+        # @param AllowFileUp: 是否开启 SFTP 文件上传
         # @type AllowFileUp: Boolean
-        # @param MaxFileUpSize: 文件传输上传大小限制
+        # @param MaxFileUpSize: 文件传输上传大小限制（预留参数，目前暂未使用）
         # @type MaxFileUpSize: Integer
-        # @param AllowFileDown: 是否开启SFTP文件下载
+        # @param AllowFileDown: 是否开启 SFTP 文件下载
         # @type AllowFileDown: Boolean
-        # @param MaxFileDownSize: 文件传输下载大小限制
+        # @param MaxFileDownSize: 文件传输下载大小限制（预留参数，目前暂未使用）
         # @type MaxFileDownSize: Integer
-        # @param UserIdSet: 关联的用户ID
+        # @param UserIdSet: 关联的用户ID集合
         # @type UserIdSet: Array
         # @param UserGroupIdSet: 关联的用户组ID
         # @type UserGroupIdSet: Array
-        # @param DeviceIdSet: 关联的主机ID
+        # @param DeviceIdSet: 关联的资产ID集合
         # @type DeviceIdSet: Array
-        # @param DeviceGroupIdSet: 关联的主机组ID
+        # @param DeviceGroupIdSet: 关联的资产组ID
         # @type DeviceGroupIdSet: Array
-        # @param AccountSet: 关联的账号，账号name
+        # @param AccountSet: 关联的账号
         # @type AccountSet: Array
         # @param CmdTemplateIdSet: 关联的高危命令模板ID
         # @type CmdTemplateIdSet: Array
@@ -236,11 +346,13 @@ module TencentCloud
         # @type AllowShellFileUp: Boolean
         # @param AllowShellFileDown: 是否开启rz sz文件下载
         # @type AllowShellFileDown: Boolean
-        # @param AllowFileDel: 是否开启SFTP文件删除
+        # @param AllowFileDel: 是否开启 SFTP 文件删除
         # @type AllowFileDel: Boolean
-        # @param ValidateFrom: 生效日期，如果为空，默认1970-01-01T08:00:01+08:00
+        # @param ValidateFrom: 访问权限生效时间，如:"2021-09-22T00:00:00+00:00"
+        # 生效、失效时间不填则访问权限长期有效
         # @type ValidateFrom: String
-        # @param ValidateTo: 失效日期，如果为空，默认1970-01-01T08:00:01+08:00
+        # @param ValidateTo: 访问权限失效时间，如:"2021-09-23T00:00:00+00:00"
+        # 生效、失效时间不填则访问权限长期有效
         # @type ValidateTo: String
 
         attr_accessor :Name, :AllowDiskRedirect, :AllowAnyAccount, :AllowClipFileUp, :AllowClipFileDown, :AllowClipTextUp, :AllowClipTextDown, :AllowFileUp, :MaxFileUpSize, :AllowFileDown, :MaxFileDownSize, :UserIdSet, :UserGroupIdSet, :DeviceIdSet, :DeviceGroupIdSet, :AccountSet, :CmdTemplateIdSet, :AllowDiskFileUp, :AllowDiskFileDown, :AllowShellFileUp, :AllowShellFileDown, :AllowFileDel, :ValidateFrom, :ValidateTo
@@ -302,7 +414,79 @@ module TencentCloud
 
       # CreateAcl返回参数结构体
       class CreateAclResponse < TencentCloud::Common::AbstractModel
-        # @param Id: 访问权限ID
+        # @param Id: 新建成功的访问权限ID
+        # @type Id: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Id, :RequestId
+        
+        def initialize(id=nil, requestid=nil)
+          @Id = id
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateDeviceGroup请求参数结构体
+      class CreateDeviceGroupRequest < TencentCloud::Common::AbstractModel
+        # @param Name: 资产组名，最大长度32字符
+        # @type Name: String
+
+        attr_accessor :Name
+        
+        def initialize(name=nil)
+          @Name = name
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+        end
+      end
+
+      # CreateDeviceGroup返回参数结构体
+      class CreateDeviceGroupResponse < TencentCloud::Common::AbstractModel
+        # @param Id: 新建成功的资产组ID
+        # @type Id: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Id, :RequestId
+        
+        def initialize(id=nil, requestid=nil)
+          @Id = id
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateUserGroup请求参数结构体
+      class CreateUserGroupRequest < TencentCloud::Common::AbstractModel
+        # @param Name: 用户组名，最大长度32字符
+        # @type Name: String
+
+        attr_accessor :Name
+        
+        def initialize(name=nil)
+          @Name = name
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+        end
+      end
+
+      # CreateUserGroup返回参数结构体
+      class CreateUserGroupResponse < TencentCloud::Common::AbstractModel
+        # @param Id: 新建成功的用户组ID
         # @type Id: Integer
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -322,23 +506,25 @@ module TencentCloud
 
       # CreateUser请求参数结构体
       class CreateUserRequest < TencentCloud::Common::AbstractModel
-        # @param UserName: 用户名，最大长度32字符，不能为空
+        # @param UserName: 用户名, 3-20个字符, 必须以英文字母开头，且不能包含字母、数字、.、_、-以外的字符
         # @type UserName: String
-        # @param RealName: 用户姓名，最大长度32字符，不能为空
+        # @param RealName: 用户姓名，最大长度20个字符，不能包含空白字符
         # @type RealName: String
-        # @param Phone: 手机号
+        # @param Phone: 大陆手机号直接填写，如果是其他国家、地区号码， 按照"国家地区代码|手机号"的格式输入。如: "+852|xxxxxxxx"
         # @type Phone: String
         # @param Email: 电子邮件
         # @type Email: String
-        # @param ValidateFrom: 生效起始时间,不设置则为1970-01-01T08:00:01+08:00
+        # @param ValidateFrom: 用户生效时间，如:"2021-09-22T00:00:00+00:00"
+        # 生效、失效时间不填则用户长期有效
         # @type ValidateFrom: String
-        # @param ValidateTo: 生效结束时间,不设置则为1970-01-01T08:00:01+08:00
+        # @param ValidateTo: 用户失效时间，如:"2021-09-23T00:00:00+00:00"
+        # 生效、失效时间不填则用户长期有效
         # @type ValidateTo: String
         # @param GroupIdSet: 所属用户组ID集合
         # @type GroupIdSet: Array
-        # @param AuthType: 认证方式，0-本地 1-ldap 2-oauth,不传则默认为0
+        # @param AuthType: 认证方式，0 - 本地， 1 - LDAP， 2 - OAuth 不传则默认为0
         # @type AuthType: Integer
-        # @param ValidateTime: 生效时间段, 0、1组成的字符串，长度168(7*24), 代表该用户的生效时间. 0 - 未生效，1 - 生效
+        # @param ValidateTime: 访问时间段限制， 由0、1组成的字符串，长度168(7 × 24)，代表该用户在一周中允许访问的时间段。字符串中第N个字符代表在一周中的第N个小时， 0 - 代表不允许访问，1 - 代表允许访问
         # @type ValidateTime: String
 
         attr_accessor :UserName, :RealName, :Phone, :Email, :ValidateFrom, :ValidateTo, :GroupIdSet, :AuthType, :ValidateTime
@@ -370,7 +556,7 @@ module TencentCloud
 
       # CreateUser返回参数结构体
       class CreateUserResponse < TencentCloud::Common::AbstractModel
-        # @param Id: 新建成功后返回的记录ID
+        # @param Id: 新建用户的ID
         # @type Id: Integer
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -420,6 +606,142 @@ module TencentCloud
         end
       end
 
+      # DeleteDeviceGroupMembers请求参数结构体
+      class DeleteDeviceGroupMembersRequest < TencentCloud::Common::AbstractModel
+        # @param Id: 资产组ID
+        # @type Id: Integer
+        # @param MemberIdSet: 需要删除的资产ID集合
+        # @type MemberIdSet: Array
+
+        attr_accessor :Id, :MemberIdSet
+        
+        def initialize(id=nil, memberidset=nil)
+          @Id = id
+          @MemberIdSet = memberidset
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @MemberIdSet = params['MemberIdSet']
+        end
+      end
+
+      # DeleteDeviceGroupMembers返回参数结构体
+      class DeleteDeviceGroupMembersResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteDeviceGroups请求参数结构体
+      class DeleteDeviceGroupsRequest < TencentCloud::Common::AbstractModel
+        # @param IdSet: 待删除的资产组ID集合
+        # @type IdSet: Array
+
+        attr_accessor :IdSet
+        
+        def initialize(idset=nil)
+          @IdSet = idset
+        end
+
+        def deserialize(params)
+          @IdSet = params['IdSet']
+        end
+      end
+
+      # DeleteDeviceGroups返回参数结构体
+      class DeleteDeviceGroupsResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteUserGroupMembers请求参数结构体
+      class DeleteUserGroupMembersRequest < TencentCloud::Common::AbstractModel
+        # @param Id: 用户组ID
+        # @type Id: Integer
+        # @param MemberIdSet: 需删除的成员用户ID集合
+        # @type MemberIdSet: Array
+
+        attr_accessor :Id, :MemberIdSet
+        
+        def initialize(id=nil, memberidset=nil)
+          @Id = id
+          @MemberIdSet = memberidset
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @MemberIdSet = params['MemberIdSet']
+        end
+      end
+
+      # DeleteUserGroupMembers返回参数结构体
+      class DeleteUserGroupMembersResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteUserGroups请求参数结构体
+      class DeleteUserGroupsRequest < TencentCloud::Common::AbstractModel
+        # @param IdSet: 待删除的用户组ID集合
+        # @type IdSet: Array
+
+        attr_accessor :IdSet
+        
+        def initialize(idset=nil)
+          @IdSet = idset
+        end
+
+        def deserialize(params)
+          @IdSet = params['IdSet']
+        end
+      end
+
+      # DeleteUserGroups返回参数结构体
+      class DeleteUserGroupsResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DeleteUsers请求参数结构体
       class DeleteUsersRequest < TencentCloud::Common::AbstractModel
         # @param IdSet: 待删除的用户ID集合
@@ -454,21 +776,21 @@ module TencentCloud
 
       # DescribeAcls请求参数结构体
       class DescribeAclsRequest < TencentCloud::Common::AbstractModel
-        # @param IdSet: 访问权限ID集合，非必需
+        # @param IdSet: 访问权限ID集合
         # @type IdSet: Array
         # @param Name: 访问权限名称，模糊查询，最长64字符
         # @type Name: String
-        # @param Offset: 分页，偏移位置
+        # @param Offset: 分页偏移位置
         # @type Offset: Integer
-        # @param Limit: 每页条目数量，默认20
+        # @param Limit: 每页条目数量，默认20，最大500
         # @type Limit: Integer
-        # @param Exact: 是否根据Name进行精确查询,默认值false
+        # @param Exact: 是否根据Name进行精确查询，默认值false
         # @type Exact: Boolean
-        # @param AuthorizedUserIdSet: 有权限的用户ID集合
+        # @param AuthorizedUserIdSet: 有访问权限的用户ID集合
         # @type AuthorizedUserIdSet: Array
-        # @param AuthorizedDeviceIdSet: 有权限的主机ID集合
+        # @param AuthorizedDeviceIdSet: 有访问权限的资产ID集合
         # @type AuthorizedDeviceIdSet: Array
-        # @param Status: 策略状态，0-不限，1-已生效，2-未生效，3-已过期
+        # @param Status: 访问权限状态，1 - 已生效，2 - 未生效，3 - 已过期
         # @type Status: Integer
 
         attr_accessor :IdSet, :Name, :Offset, :Limit, :Exact, :AuthorizedUserIdSet, :AuthorizedDeviceIdSet, :Status
@@ -498,9 +820,9 @@ module TencentCloud
 
       # DescribeAcls返回参数结构体
       class DescribeAclsResponse < TencentCloud::Common::AbstractModel
-        # @param TotalCount: 记录总数
+        # @param TotalCount: 访问权限总数
         # @type TotalCount: Integer
-        # @param AclSet: 访问权限记录集合，当前分页
+        # @param AclSet: 访问权限列表
         # @type AclSet: Array
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -562,27 +884,153 @@ module TencentCloud
         end
       end
 
+      # DescribeDeviceGroupMembers请求参数结构体
+      class DescribeDeviceGroupMembersRequest < TencentCloud::Common::AbstractModel
+        # @param Id: 资产组ID
+        # @type Id: Integer
+        # @param Bound: true - 查询已在该资产组的资产，false - 查询未在该资产组的资产
+        # @type Bound: Boolean
+        # @param Name: 资产名或资产IP，模糊查询
+        # @type Name: String
+        # @param Offset: 分页偏移位置
+        # @type Offset: Integer
+        # @param Limit: 每页条目数，默认20, 最大500
+        # @type Limit: Integer
+        # @param Kind: 资产类型，1 - Linux，2 - Windows，3 - MySQL，4 - SQLServer
+        # @type Kind: Integer
+
+        attr_accessor :Id, :Bound, :Name, :Offset, :Limit, :Kind
+        
+        def initialize(id=nil, bound=nil, name=nil, offset=nil, limit=nil, kind=nil)
+          @Id = id
+          @Bound = bound
+          @Name = name
+          @Offset = offset
+          @Limit = limit
+          @Kind = kind
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @Bound = params['Bound']
+          @Name = params['Name']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @Kind = params['Kind']
+        end
+      end
+
+      # DescribeDeviceGroupMembers返回参数结构体
+      class DescribeDeviceGroupMembersResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 资产组成员总数
+        # @type TotalCount: Integer
+        # @param DeviceSet: 资产组成员列表
+        # @type DeviceSet: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :DeviceSet, :RequestId
+        
+        def initialize(totalcount=nil, deviceset=nil, requestid=nil)
+          @TotalCount = totalcount
+          @DeviceSet = deviceset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['DeviceSet'].nil?
+            @DeviceSet = []
+            params['DeviceSet'].each do |i|
+              device_tmp = Device.new
+              device_tmp.deserialize(i)
+              @DeviceSet << device_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeDeviceGroups请求参数结构体
+      class DescribeDeviceGroupsRequest < TencentCloud::Common::AbstractModel
+        # @param IdSet: 资产组ID集合
+        # @type IdSet: Array
+        # @param Name: 资产组名，最长64个字符，模糊查询
+        # @type Name: String
+        # @param Offset: 分页偏移位置
+        # @type Offset: Integer
+        # @param Limit: 每页条目数量，缺省20，最大500
+        # @type Limit: Integer
+
+        attr_accessor :IdSet, :Name, :Offset, :Limit
+        
+        def initialize(idset=nil, name=nil, offset=nil, limit=nil)
+          @IdSet = idset
+          @Name = name
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @IdSet = params['IdSet']
+          @Name = params['Name']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeDeviceGroups返回参数结构体
+      class DescribeDeviceGroupsResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 资产组总数
+        # @type TotalCount: Integer
+        # @param GroupSet: 资产组列表
+        # @type GroupSet: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :GroupSet, :RequestId
+        
+        def initialize(totalcount=nil, groupset=nil, requestid=nil)
+          @TotalCount = totalcount
+          @GroupSet = groupset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['GroupSet'].nil?
+            @GroupSet = []
+            params['GroupSet'].each do |i|
+              group_tmp = Group.new
+              group_tmp.deserialize(i)
+              @GroupSet << group_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeDevices请求参数结构体
       class DescribeDevicesRequest < TencentCloud::Common::AbstractModel
-        # @param IdSet: 主机ID集合，非必需
+        # @param IdSet: 资产ID集合
         # @type IdSet: Array
-        # @param Name: 主机名或主机IP，模糊查询
+        # @param Name: 资产名或资产IP，模糊查询
         # @type Name: String
         # @param Ip: 暂未使用
         # @type Ip: String
         # @param ApCodeSet: 地域码集合
         # @type ApCodeSet: Array
-        # @param Kind: 操作系统类型
+        # @param Kind: 操作系统类型, 1 - Linux, 2 - Windows, 3 - MySQL, 4 - SQLServer
         # @type Kind: Integer
         # @param Offset: 分页，偏移位置
         # @type Offset: Integer
         # @param Limit: 每页条目数量，默认20
         # @type Limit: Integer
-        # @param AuthorizedUserIdSet: 有该主机访问权限的用户ID集合
+        # @param AuthorizedUserIdSet: 有该资产访问权限的用户ID集合
         # @type AuthorizedUserIdSet: Array
-        # @param ResourceIdSet: 过滤条件，主机绑定的堡垒机服务ID集合
+        # @param ResourceIdSet: 过滤条件，资产绑定的堡垒机服务ID集合
         # @type ResourceIdSet: Array
-        # @param KindSet: 可提供按照多种类型过滤, 1-Linux, 2-Windows, 3-MySQL
+        # @param KindSet: 可提供按照多种类型过滤, 1 - Linux, 2 - Windows, 3 - MySQL, 4 - SQLServer
         # @type KindSet: Array
 
         attr_accessor :IdSet, :Name, :Ip, :ApCodeSet, :Kind, :Offset, :Limit, :AuthorizedUserIdSet, :ResourceIdSet, :KindSet
@@ -616,9 +1064,9 @@ module TencentCloud
 
       # DescribeDevices返回参数结构体
       class DescribeDevicesResponse < TencentCloud::Common::AbstractModel
-        # @param TotalCount: 记录总数
+        # @param TotalCount: 资产总数
         # @type TotalCount: Integer
-        # @param DeviceSet: 主机信息列表
+        # @param DeviceSet: 资产信息列表
         # @type DeviceSet: Array
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -645,6 +1093,179 @@ module TencentCloud
         end
       end
 
+      # DescribeResources请求参数结构体
+      class DescribeResourcesRequest < TencentCloud::Common::AbstractModel
+        # @param ApCode: 地域码, 如: ap-guangzhou
+        # @type ApCode: String
+        # @param VpcId: 按照堡垒机开通的 VPC 实例ID查询
+        # @type VpcId: String
+        # @param ResourceIds: 资源ID集合，当传入ID集合时忽略 ApCode 和 VpcId
+        # @type ResourceIds: Array
+
+        attr_accessor :ApCode, :VpcId, :ResourceIds
+        
+        def initialize(apcode=nil, vpcid=nil, resourceids=nil)
+          @ApCode = apcode
+          @VpcId = vpcid
+          @ResourceIds = resourceids
+        end
+
+        def deserialize(params)
+          @ApCode = params['ApCode']
+          @VpcId = params['VpcId']
+          @ResourceIds = params['ResourceIds']
+        end
+      end
+
+      # DescribeResources返回参数结构体
+      class DescribeResourcesResponse < TencentCloud::Common::AbstractModel
+        # @param ResourceSet: 堡垒机资源列表
+        # @type ResourceSet: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ResourceSet, :RequestId
+        
+        def initialize(resourceset=nil, requestid=nil)
+          @ResourceSet = resourceset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['ResourceSet'].nil?
+            @ResourceSet = []
+            params['ResourceSet'].each do |i|
+              resource_tmp = Resource.new
+              resource_tmp.deserialize(i)
+              @ResourceSet << resource_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeUserGroupMembers请求参数结构体
+      class DescribeUserGroupMembersRequest < TencentCloud::Common::AbstractModel
+        # @param Id: 用户组ID
+        # @type Id: Integer
+        # @param Bound: true - 查询已添加到该用户组的用户，false - 查询未添加到该用户组的用户
+        # @type Bound: Boolean
+        # @param Name: 用户名或用户姓名，最长64个字符，模糊查询
+        # @type Name: String
+        # @param Offset: 分页偏移位置
+        # @type Offset: Integer
+        # @param Limit: 每页条目数量，默认20, 最大500
+        # @type Limit: Integer
+
+        attr_accessor :Id, :Bound, :Name, :Offset, :Limit
+        
+        def initialize(id=nil, bound=nil, name=nil, offset=nil, limit=nil)
+          @Id = id
+          @Bound = bound
+          @Name = name
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @Bound = params['Bound']
+          @Name = params['Name']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeUserGroupMembers返回参数结构体
+      class DescribeUserGroupMembersResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 用户组成员总数
+        # @type TotalCount: Integer
+        # @param UserSet: 用户组成员列表
+        # @type UserSet: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :UserSet, :RequestId
+        
+        def initialize(totalcount=nil, userset=nil, requestid=nil)
+          @TotalCount = totalcount
+          @UserSet = userset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['UserSet'].nil?
+            @UserSet = []
+            params['UserSet'].each do |i|
+              user_tmp = User.new
+              user_tmp.deserialize(i)
+              @UserSet << user_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeUserGroups请求参数结构体
+      class DescribeUserGroupsRequest < TencentCloud::Common::AbstractModel
+        # @param IdSet: 用户组ID集合
+        # @type IdSet: Array
+        # @param Name: 用户组名，模糊查询,长度：0-64字符
+        # @type Name: String
+        # @param Offset: 分页偏移位置
+        # @type Offset: Integer
+        # @param Limit: 每页条目数量，缺省20，最大500
+        # @type Limit: Integer
+
+        attr_accessor :IdSet, :Name, :Offset, :Limit
+        
+        def initialize(idset=nil, name=nil, offset=nil, limit=nil)
+          @IdSet = idset
+          @Name = name
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @IdSet = params['IdSet']
+          @Name = params['Name']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeUserGroups返回参数结构体
+      class DescribeUserGroupsResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 用户组总数
+        # @type TotalCount: Integer
+        # @param GroupSet: 用户组列表
+        # @type GroupSet: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :GroupSet, :RequestId
+        
+        def initialize(totalcount=nil, groupset=nil, requestid=nil)
+          @TotalCount = totalcount
+          @GroupSet = groupset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['GroupSet'].nil?
+            @GroupSet = []
+            params['GroupSet'].each do |i|
+              group_tmp = Group.new
+              group_tmp.deserialize(i)
+              @GroupSet << group_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeUsers请求参数结构体
       class DescribeUsersRequest < TencentCloud::Common::AbstractModel
         # @param IdSet: 如果IdSet不为空，则忽略其他参数
@@ -653,15 +1274,16 @@ module TencentCloud
         # @type Name: String
         # @param Offset: 分页，偏移位置
         # @type Offset: Integer
-        # @param Limit: 每页条目数量，默认20
+        # @param Limit: 每页条目数量，默认20, 最大500
         # @type Limit: Integer
         # @param UserName: 精确查询，IdSet为空时才生效
         # @type UserName: String
-        # @param Phone: 精确查询，IdSet、UserName为空时才生效
+        # @param Phone: 精确查询，IdSet、UserName为空时才生效。
+        # 大陆手机号直接填写，如果是其他国家、地区号码,按照"国家地区代码|手机号"的格式输入。如: "+852|xxxxxxxx"
         # @type Phone: String
-        # @param AuthorizedDeviceIdSet: 有访问权限的主机ID集合
+        # @param AuthorizedDeviceIdSet: 查询具有指定资产ID访问权限的用户
         # @type AuthorizedDeviceIdSet: Array
-        # @param AuthTypeSet: 认证方式，0-本地，1-ldap, 2-oauth 不传为全部
+        # @param AuthTypeSet: 认证方式，0 - 本地, 1 - LDAP, 2 - OAuth, 不传为全部
         # @type AuthTypeSet: Array
 
         attr_accessor :IdSet, :Name, :Offset, :Limit, :UserName, :Phone, :AuthorizedDeviceIdSet, :AuthTypeSet
@@ -691,9 +1313,9 @@ module TencentCloud
 
       # DescribeUsers返回参数结构体
       class DescribeUsersResponse < TencentCloud::Common::AbstractModel
-        # @param TotalCount: 记录总数
+        # @param TotalCount: 用户总数
         # @type TotalCount: Integer
-        # @param UserSet: 用户信息列表
+        # @param UserSet: 用户列表
         # @type UserSet: Array
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -720,13 +1342,13 @@ module TencentCloud
         end
       end
 
-      # 主机信息
+      # 资产信息
       class Device < TencentCloud::Common::AbstractModel
-        # @param Id: 主机记录ID
+        # @param Id: 资产ID
         # @type Id: Integer
-        # @param InstanceId: 主机ID，对应cvm实例id
+        # @param InstanceId: 实例ID，对应CVM、CDB等实例ID
         # @type InstanceId: String
-        # @param Name: 主机名
+        # @param Name: 资产名
         # @type Name: String
         # @param PublicIp: 公网IP
         # @type PublicIp: String
@@ -736,13 +1358,13 @@ module TencentCloud
         # @type ApCode: String
         # @param OsName: 操作系统名称
         # @type OsName: String
-        # @param Kind: 主机类型，1-Linux, 2-Windows
+        # @param Kind: 资产类型 1 - Linux, 2 - Windows, 3 - MySQL, 4 - SQLServer
         # @type Kind: Integer
         # @param Port: 管理端口
         # @type Port: Integer
-        # @param GroupSet: 所属主机组信息列表
+        # @param GroupSet: 所属资产组列表
         # @type GroupSet: Array
-        # @param AccountCount: 主机绑定的账号数
+        # @param AccountCount: 资产绑定的账号数
         # @type AccountCount: Integer
         # @param VpcId: VPC ID
         # @type VpcId: String
@@ -821,11 +1443,11 @@ module TencentCloud
 
       # ModifyAcl请求参数结构体
       class ModifyAclRequest < TencentCloud::Common::AbstractModel
-        # @param Name: 权限名称，最大32字符，不能包含空白字符
+        # @param Name: 访问权限名称，最大32字符，不能包含空白字符
         # @type Name: String
         # @param AllowDiskRedirect: 是否开启磁盘映射
         # @type AllowDiskRedirect: Boolean
-        # @param AllowAnyAccount: 是否允许任意账号登陆
+        # @param AllowAnyAccount: 是否允许任意账号登录
         # @type AllowAnyAccount: Boolean
         # @param Id: 访问权限ID
         # @type Id: Integer
@@ -833,43 +1455,45 @@ module TencentCloud
         # @type AllowClipFileUp: Boolean
         # @param AllowClipFileDown: 是否开启剪贴板文件下行
         # @type AllowClipFileDown: Boolean
-        # @param AllowClipTextUp: 是否开启剪贴板text（含图片）上行
+        # @param AllowClipTextUp: 是否开启剪贴板文本（含图片）上行
         # @type AllowClipTextUp: Boolean
-        # @param AllowClipTextDown: 是否开启剪贴板text（含图片）下行
+        # @param AllowClipTextDown: 是否开启剪贴板文本（含图片）下行
         # @type AllowClipTextDown: Boolean
         # @param AllowFileUp: 是否开启文件传输上传
         # @type AllowFileUp: Boolean
-        # @param MaxFileUpSize: 文件传输上传大小限制
+        # @param MaxFileUpSize: 文件传输上传大小限制（预留参数，目前暂未使用）
         # @type MaxFileUpSize: Integer
         # @param AllowFileDown: 是否开启文件传输下载
         # @type AllowFileDown: Boolean
-        # @param MaxFileDownSize: 文件传输下载大小限制
+        # @param MaxFileDownSize: 文件传输下载大小限制（预留参数，目前暂未使用）
         # @type MaxFileDownSize: Integer
         # @param UserIdSet: 关联的用户ID
         # @type UserIdSet: Array
         # @param UserGroupIdSet: 关联的用户组ID
         # @type UserGroupIdSet: Array
-        # @param DeviceIdSet: 关联的主机ID
+        # @param DeviceIdSet: 关联的资产ID
         # @type DeviceIdSet: Array
-        # @param DeviceGroupIdSet: 关联的主机组ID
+        # @param DeviceGroupIdSet: 关联的资产组ID
         # @type DeviceGroupIdSet: Array
-        # @param AccountSet: 关联的账号，账号name
+        # @param AccountSet: 关联的账号
         # @type AccountSet: Array
         # @param CmdTemplateIdSet: 关联的高危命令模板ID
         # @type CmdTemplateIdSet: Array
-        # @param AllowDiskFileUp: 是否开启rdp磁盘映射文件上传
+        # @param AllowDiskFileUp: 是否开启 RDP 磁盘映射文件上传
         # @type AllowDiskFileUp: Boolean
-        # @param AllowDiskFileDown: 是否开启rdp磁盘映射文件下载
+        # @param AllowDiskFileDown: 是否开启 RDP 磁盘映射文件下载
         # @type AllowDiskFileDown: Boolean
         # @param AllowShellFileUp: 是否开启rz sz文件上传
         # @type AllowShellFileUp: Boolean
         # @param AllowShellFileDown: 是否开启rz sz文件下载
         # @type AllowShellFileDown: Boolean
-        # @param AllowFileDel: 是否开启SFTP文件删除
+        # @param AllowFileDel: 是否开启 SFTP 文件删除
         # @type AllowFileDel: Boolean
-        # @param ValidateFrom: 生效日期，如果为空，默认1970-01-01T08:00:01+08:00
+        # @param ValidateFrom: 访问权限生效时间，如:"2021-09-22T00:00:00+00:00"
+        # 生效、失效时间不填则访问权限长期有效
         # @type ValidateFrom: String
-        # @param ValidateTo: 失效日期，如果为空，默认1970-01-01T08:00:01+08:00
+        # @param ValidateTo: 访问权限失效时间，如:"2021-09-23T00:00:00+00:00"
+        # 生效、失效时间不填则访问权限长期有效
         # @type ValidateTo: String
 
         attr_accessor :Name, :AllowDiskRedirect, :AllowAnyAccount, :Id, :AllowClipFileUp, :AllowClipFileDown, :AllowClipTextUp, :AllowClipTextDown, :AllowFileUp, :MaxFileUpSize, :AllowFileDown, :MaxFileDownSize, :UserIdSet, :UserGroupIdSet, :DeviceIdSet, :DeviceGroupIdSet, :AccountSet, :CmdTemplateIdSet, :AllowDiskFileUp, :AllowDiskFileDown, :AllowShellFileUp, :AllowShellFileDown, :AllowFileDel, :ValidateFrom, :ValidateTo
@@ -951,21 +1575,23 @@ module TencentCloud
       class ModifyUserRequest < TencentCloud::Common::AbstractModel
         # @param Id: 用户ID
         # @type Id: Integer
-        # @param RealName: 用户姓名，最大长度32字符，不能为空
+        # @param RealName: 用户姓名，最大长度20个字符，不能包含空格
         # @type RealName: String
-        # @param Phone: 手机号
+        # @param Phone: 大陆手机号直接填写，如果是其他国家、地区号码,按照"国家地区代码|手机号"的格式输入。如: "+852|xxxxxxxx"
         # @type Phone: String
         # @param Email: 电子邮件
         # @type Email: String
-        # @param ValidateFrom: 生效起始时间,不设置则为1970-01-01 08:00:01
+        # @param ValidateFrom: 用户生效时间，如:"2021-09-22T00:00:00+00:00"
+        # 生效、失效时间不填则用户长期有效
         # @type ValidateFrom: String
-        # @param ValidateTo: 生效结束时间,不设置则为1970-01-01 08:00:01
+        # @param ValidateTo: 用户失效时间，如:"2021-09-23T00:00:00+00:00"
+        # 生效、失效时间不填则用户长期有效
         # @type ValidateTo: String
         # @param GroupIdSet: 所属用户组ID集合
         # @type GroupIdSet: Array
-        # @param AuthType: 认证方式，0-本地 1-ldap, 2-oauth不传则默认为0
+        # @param AuthType: 认证方式，0 - 本地，1 - LDAP，2 - OAuth 不传则默认为0
         # @type AuthType: Integer
-        # @param ValidateTime: 生效时间段, 0、1组成的字符串，长度168(7*24), 代表该用户的生效时间. 0 - 未生效，1 - 生效
+        # @param ValidateTime: 访问时间段限制， 由0、1组成的字符串，长度168(7 × 24)，代表该用户在一周中允许访问的时间段。字符串中第N个字符代表在一周中的第N个小时， 0 - 代表不允许访问，1 - 代表允许访问
         # @type ValidateTime: String
 
         attr_accessor :Id, :RealName, :Phone, :Email, :ValidateFrom, :ValidateTo, :GroupIdSet, :AuthType, :ValidateTime
@@ -1011,25 +1637,25 @@ module TencentCloud
         end
       end
 
-      # 用户购买的堡垒机资源信息
+      # 堡垒机服务信息
       class Resource < TencentCloud::Common::AbstractModel
-        # @param ResourceId: 资源实例id，如bh-saas-s3ed4r5e
+        # @param ResourceId: 服务实例ID，如bh-saas-s3ed4r5e
         # @type ResourceId: String
         # @param ApCode: 地域编码
         # @type ApCode: String
-        # @param SvArgs: 实例规格信息（询价参数）
+        # @param SvArgs: 服务实例规格信息
         # @type SvArgs: String
-        # @param VpcId: vpc id
+        # @param VpcId: VPC ID
         # @type VpcId: String
-        # @param Nodes: 堡垒机规格对应的资产数
+        # @param Nodes: 服务规格对应的资产数
         # @type Nodes: Integer
-        # @param RenewFlag: 自动续费标记，0表示默认状态，1表示自动续费，2表示明确不自动续费
+        # @param RenewFlag: 自动续费标记，0 - 表示默认状态，1 - 表示自动续费，2 - 表示明确不自动续费
         # @type RenewFlag: Integer
         # @param ExpireTime: 过期时间
         # @type ExpireTime: String
-        # @param Status: 资源状态，0未初始化，1正常，2隔离，3销毁，4初始化失败，5初始化中
+        # @param Status: 资源状态，0 - 未初始化，1 - 正常，2 - 隔离，3 - 销毁，4 - 初始化失败，5 - 初始化中
         # @type Status: Integer
-        # @param ResourceName: 实例名，如T-Sec-堡垒机（SaaS型）
+        # @param ResourceName: 服务实例名，如T-Sec-堡垒机（SaaS型）
         # @type ResourceName: String
         # @param Pid: 定价模型ID
         # @type Pid: Integer
@@ -1045,9 +1671,9 @@ module TencentCloud
         # @type Expired: Boolean
         # @param Deployed: 是否开通，true-开通，false-未开通
         # @type Deployed: Boolean
-        # @param VpcName: 开通服务的VPC名称
+        # @param VpcName: 开通服务的 VPC 名称
         # @type VpcName: String
-        # @param VpcCidrBlock: 开通服务的VPC对应的网段
+        # @param VpcCidrBlock: 开通服务的 VPC 对应的网段
         # @type VpcCidrBlock: String
         # @param SubnetId: 开通服务的子网ID
         # @type SubnetId: String
@@ -1059,7 +1685,7 @@ module TencentCloud
         # @type PublicIpSet: Array
         # @param PrivateIpSet: 内部IP
         # @type PrivateIpSet: Array
-        # @param ModuleSet: 资源开通的高级功能列表，如:[DB]
+        # @param ModuleSet: 服务开通的高级功能列表，如:[DB]
         # @type ModuleSet: Array
         # @param UsedNodes: 已使用的授权点数
         # @type UsedNodes: Integer
@@ -1137,25 +1763,27 @@ module TencentCloud
 
       # 用户信息
       class User < TencentCloud::Common::AbstractModel
-        # @param UserName: 用户名
+        # @param UserName: 用户名, 3-20个字符 必须以英文字母开头，且不能包含字母、数字、.、_、-以外的字符
         # @type UserName: String
-        # @param RealName: 用户姓名
+        # @param RealName: 用户姓名， 最大20个字符，不能包含空白字符
         # @type RealName: String
-        # @param Phone: 手机号码
+        # @param Phone: 手机号码， 大陆手机号直接填写，如果是其他国家、地区号码,按照"国家地区代码|手机号"的格式输入。如: "+852|xxxxxxxx"
         # @type Phone: String
         # @param Id: 用户ID
         # @type Id: Integer
         # @param Email: 电子邮件
         # @type Email: String
-        # @param ValidateFrom: 生效起始时间
+        # @param ValidateFrom: 用户生效时间，如:"2021-09-22T00:00:00+00:00"
+        # 生效、失效时间不填则用户长期有效
         # @type ValidateFrom: String
-        # @param ValidateTo: 生效结束时间
+        # @param ValidateTo: 用户失效时间，如:"2021-09-22T00:00:00+00:00"
+        # 生效、失效时间不填则用户长期有效
         # @type ValidateTo: String
         # @param GroupSet: 所属用户组列表
         # @type GroupSet: Array
-        # @param AuthType: 认证方式，0-本地 1-ldap
+        # @param AuthType: 认证方式，0 - 本地，1 - LDAP，2 - OAuth
         # @type AuthType: Integer
-        # @param ValidateTime: 生效时间段, 0、1组成的字符串，长度168(7*24), 代表该用户的生效时间. 0 - 未生效，1 - 生效
+        # @param ValidateTime: 访问时间段限制， 由0、1组成的字符串，长度168(7 × 24)，代表该用户在一周中允许访问的时间段。字符串中第N个字符代表在一周中的第N个小时， 0 - 代表不允许访问，1 - 代表允许访问
         # @type ValidateTime: String
 
         attr_accessor :UserName, :RealName, :Phone, :Id, :Email, :ValidateFrom, :ValidateTo, :GroupSet, :AuthType, :ValidateTime

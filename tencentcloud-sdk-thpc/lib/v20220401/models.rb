@@ -23,7 +23,7 @@ module TencentCloud
         # @type Placement: :class:`Tencentcloud::Thpc.v20220401.models.Placement`
         # @param ClusterId: 集群ID。
         # @type ClusterId: String
-        # @param ImageId: 指定有效的[镜像](https://cloud.tencent.com/document/product/213/4940)ID，格式形如`img-xxx`。目前仅支持公有镜像和自定义镜像。
+        # @param ImageId: 指定有效的[镜像](https://cloud.tencent.com/document/product/213/4940)ID，格式形如`img-xxx`。目前仅支持公有镜。
         # @type ImageId: String
         # @param VirtualPrivateCloud: 私有网络相关信息配置。
         # @type VirtualPrivateCloud: :class:`Tencentcloud::Thpc.v20220401.models.VirtualPrivateCloud`

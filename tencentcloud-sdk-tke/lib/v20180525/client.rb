@@ -149,6 +149,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 检查边缘计算集群的CIDR是否冲突
+
+        # @param request: Request instance for CheckEdgeClusterCIDR.
+        # @type request: :class:`Tencentcloud::tke::V20180525::CheckEdgeClusterCIDRRequest`
+        # @rtype: :class:`Tencentcloud::tke::V20180525::CheckEdgeClusterCIDRResponse`
+        def CheckEdgeClusterCIDR(request)
+          body = send_request('CheckEdgeClusterCIDR', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CheckEdgeClusterCIDRResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 检查给定节点列表中哪些是可升级的
 
         # @param request: Request instance for CheckInstancesUpgradeAble.
@@ -351,6 +375,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = CreateClusterRouteTableResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 创建边缘计算ECM机器
+
+        # @param request: Request instance for CreateECMInstances.
+        # @type request: :class:`Tencentcloud::tke::V20180525::CreateECMInstancesRequest`
+        # @rtype: :class:`Tencentcloud::tke::V20180525::CreateECMInstancesResponse`
+        def CreateECMInstances(request)
+          body = send_request('CreateECMInstances', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateECMInstancesResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -581,6 +629,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 创建边缘计算集群
+
+        # @param request: Request instance for CreateTKEEdgeCluster.
+        # @type request: :class:`Tencentcloud::tke::V20180525::CreateTKEEdgeClusterRequest`
+        # @rtype: :class:`Tencentcloud::tke::V20180525::CreateTKEEdgeClusterResponse`
+        def CreateTKEEdgeCluster(request)
+          body = send_request('CreateTKEEdgeCluster', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateTKEEdgeClusterResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 删除集群(YUNAPI V3版本)
 
         # @param request: Request instance for DeleteCluster.
@@ -773,6 +845,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 删除ECM实例
+
+        # @param request: Request instance for DeleteECMInstances.
+        # @type request: :class:`Tencentcloud::tke::V20180525::DeleteECMInstancesRequest`
+        # @rtype: :class:`Tencentcloud::tke::V20180525::DeleteECMInstancesResponse`
+        def DeleteECMInstances(request)
+          body = send_request('DeleteECMInstances', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteECMInstancesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 删除弹性集群(yunapiv3)
 
         # @param request: Request instance for DeleteEKSCluster.
@@ -807,6 +903,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteEKSContainerInstancesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除边缘容器CVM实例
+
+        # @param request: Request instance for DeleteEdgeCVMInstances.
+        # @type request: :class:`Tencentcloud::tke::V20180525::DeleteEdgeCVMInstancesRequest`
+        # @rtype: :class:`Tencentcloud::tke::V20180525::DeleteEdgeCVMInstancesResponse`
+        def DeleteEdgeCVMInstances(request)
+          body = send_request('DeleteEdgeCVMInstances', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteEdgeCVMInstancesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除边缘计算实例
+
+        # @param request: Request instance for DeleteEdgeClusterInstances.
+        # @type request: :class:`Tencentcloud::tke::V20180525::DeleteEdgeClusterInstancesRequest`
+        # @rtype: :class:`Tencentcloud::tke::V20180525::DeleteEdgeClusterInstancesResponse`
+        def DeleteEdgeClusterInstances(request)
+          body = send_request('DeleteEdgeClusterInstances', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteEdgeClusterInstancesResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -989,6 +1133,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 删除边缘计算集群
+
+        # @param request: Request instance for DeleteTKEEdgeCluster.
+        # @type request: :class:`Tencentcloud::tke::V20180525::DeleteTKEEdgeClusterRequest`
+        # @rtype: :class:`Tencentcloud::tke::V20180525::DeleteTKEEdgeClusterResponse`
+        def DeleteTKEEdgeCluster(request)
+          body = send_request('DeleteTKEEdgeCluster', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteTKEEdgeClusterResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 获取集群可以升级的所有版本
 
         # @param request: Request instance for DescribeAvailableClusterVersion.
@@ -999,6 +1167,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeAvailableClusterVersionResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 边缘计算支持的k8s版本
+
+        # @param request: Request instance for DescribeAvailableTKEEdgeVersion.
+        # @type request: :class:`Tencentcloud::tke::V20180525::DescribeAvailableTKEEdgeVersionRequest`
+        # @rtype: :class:`Tencentcloud::tke::V20180525::DescribeAvailableTKEEdgeVersionResponse`
+        def DescribeAvailableTKEEdgeVersion(request)
+          body = send_request('DescribeAvailableTKEEdgeVersion', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeAvailableTKEEdgeVersionResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1445,6 +1637,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 获取ECM实例相关信息
+
+        # @param request: Request instance for DescribeECMInstances.
+        # @type request: :class:`Tencentcloud::tke::V20180525::DescribeECMInstancesRequest`
+        # @rtype: :class:`Tencentcloud::tke::V20180525::DescribeECMInstancesResponse`
+        def DescribeECMInstances(request)
+          body = send_request('DescribeECMInstances', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeECMInstancesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 获取弹性容器集群的接入认证信息
 
         # @param request: Request instance for DescribeEKSClusterCredential.
@@ -1551,6 +1767,102 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeEKSContainerInstancesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询边缘容器集群可用的自定义参数
+
+        # @param request: Request instance for DescribeEdgeAvailableExtraArgs.
+        # @type request: :class:`Tencentcloud::tke::V20180525::DescribeEdgeAvailableExtraArgsRequest`
+        # @rtype: :class:`Tencentcloud::tke::V20180525::DescribeEdgeAvailableExtraArgsResponse`
+        def DescribeEdgeAvailableExtraArgs(request)
+          body = send_request('DescribeEdgeAvailableExtraArgs', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeEdgeAvailableExtraArgsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取边缘容器CVM实例相关信息
+
+        # @param request: Request instance for DescribeEdgeCVMInstances.
+        # @type request: :class:`Tencentcloud::tke::V20180525::DescribeEdgeCVMInstancesRequest`
+        # @rtype: :class:`Tencentcloud::tke::V20180525::DescribeEdgeCVMInstancesResponse`
+        def DescribeEdgeCVMInstances(request)
+          body = send_request('DescribeEdgeCVMInstances', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeEdgeCVMInstancesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询边缘集群自定义参数
+
+        # @param request: Request instance for DescribeEdgeClusterExtraArgs.
+        # @type request: :class:`Tencentcloud::tke::V20180525::DescribeEdgeClusterExtraArgsRequest`
+        # @rtype: :class:`Tencentcloud::tke::V20180525::DescribeEdgeClusterExtraArgsResponse`
+        def DescribeEdgeClusterExtraArgs(request)
+          body = send_request('DescribeEdgeClusterExtraArgs', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeEdgeClusterExtraArgsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询边缘计算集群的节点信息
+
+        # @param request: Request instance for DescribeEdgeClusterInstances.
+        # @type request: :class:`Tencentcloud::tke::V20180525::DescribeEdgeClusterInstancesRequest`
+        # @rtype: :class:`Tencentcloud::tke::V20180525::DescribeEdgeClusterInstancesResponse`
+        def DescribeEdgeClusterInstances(request)
+          body = send_request('DescribeEdgeClusterInstances', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeEdgeClusterInstancesResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -2151,6 +2463,102 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeRouteTableConflictsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取边缘计算集群的认证信息
+
+        # @param request: Request instance for DescribeTKEEdgeClusterCredential.
+        # @type request: :class:`Tencentcloud::tke::V20180525::DescribeTKEEdgeClusterCredentialRequest`
+        # @rtype: :class:`Tencentcloud::tke::V20180525::DescribeTKEEdgeClusterCredentialResponse`
+        def DescribeTKEEdgeClusterCredential(request)
+          body = send_request('DescribeTKEEdgeClusterCredential', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeTKEEdgeClusterCredentialResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取边缘计算集群的当前状态以及过程信息
+
+        # @param request: Request instance for DescribeTKEEdgeClusterStatus.
+        # @type request: :class:`Tencentcloud::tke::V20180525::DescribeTKEEdgeClusterStatusRequest`
+        # @rtype: :class:`Tencentcloud::tke::V20180525::DescribeTKEEdgeClusterStatusResponse`
+        def DescribeTKEEdgeClusterStatus(request)
+          body = send_request('DescribeTKEEdgeClusterStatus', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeTKEEdgeClusterStatusResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询边缘集群列表
+
+        # @param request: Request instance for DescribeTKEEdgeClusters.
+        # @type request: :class:`Tencentcloud::tke::V20180525::DescribeTKEEdgeClustersRequest`
+        # @rtype: :class:`Tencentcloud::tke::V20180525::DescribeTKEEdgeClustersResponse`
+        def DescribeTKEEdgeClusters(request)
+          body = send_request('DescribeTKEEdgeClusters', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeTKEEdgeClustersResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取边缘计算外部访问的kubeconfig
+
+        # @param request: Request instance for DescribeTKEEdgeExternalKubeconfig.
+        # @type request: :class:`Tencentcloud::tke::V20180525::DescribeTKEEdgeExternalKubeconfigRequest`
+        # @rtype: :class:`Tencentcloud::tke::V20180525::DescribeTKEEdgeExternalKubeconfigResponse`
+        def DescribeTKEEdgeExternalKubeconfig(request)
+          body = send_request('DescribeTKEEdgeExternalKubeconfig', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeTKEEdgeExternalKubeconfigResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -3159,6 +3567,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = UpdateImageCacheResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改边缘计算集群名称等属性
+
+        # @param request: Request instance for UpdateTKEEdgeCluster.
+        # @type request: :class:`Tencentcloud::tke::V20180525::UpdateTKEEdgeClusterRequest`
+        # @rtype: :class:`Tencentcloud::tke::V20180525::UpdateTKEEdgeClusterResponse`
+        def UpdateTKEEdgeCluster(request)
+          body = send_request('UpdateTKEEdgeCluster', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = UpdateTKEEdgeClusterResponse.new
             model.deserialize(response['Response'])
             model
           else

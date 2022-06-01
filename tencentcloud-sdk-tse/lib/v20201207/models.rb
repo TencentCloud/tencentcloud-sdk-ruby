@@ -240,10 +240,12 @@ module TencentCloud
         # @type EnvReplica: Integer
         # @param RunningCount: 环境运行的节点数
         # @type RunningCount: Integer
+        # @param AliasEnvName: 环境别名
+        # @type AliasEnvName: String
 
-        attr_accessor :EnvName, :VpcInfos, :StorageCapacity, :Status, :AdminServiceIp, :ConfigServiceIp, :EnableConfigInternet, :ConfigInternetServiceIp, :SpecId, :EnvReplica, :RunningCount
+        attr_accessor :EnvName, :VpcInfos, :StorageCapacity, :Status, :AdminServiceIp, :ConfigServiceIp, :EnableConfigInternet, :ConfigInternetServiceIp, :SpecId, :EnvReplica, :RunningCount, :AliasEnvName
         
-        def initialize(envname=nil, vpcinfos=nil, storagecapacity=nil, status=nil, adminserviceip=nil, configserviceip=nil, enableconfiginternet=nil, configinternetserviceip=nil, specid=nil, envreplica=nil, runningcount=nil)
+        def initialize(envname=nil, vpcinfos=nil, storagecapacity=nil, status=nil, adminserviceip=nil, configserviceip=nil, enableconfiginternet=nil, configinternetserviceip=nil, specid=nil, envreplica=nil, runningcount=nil, aliasenvname=nil)
           @EnvName = envname
           @VpcInfos = vpcinfos
           @StorageCapacity = storagecapacity
@@ -255,6 +257,7 @@ module TencentCloud
           @SpecId = specid
           @EnvReplica = envreplica
           @RunningCount = runningcount
+          @AliasEnvName = aliasenvname
         end
 
         def deserialize(params)
@@ -276,6 +279,7 @@ module TencentCloud
           @SpecId = params['SpecId']
           @EnvReplica = params['EnvReplica']
           @RunningCount = params['RunningCount']
+          @AliasEnvName = params['AliasEnvName']
         end
       end
 

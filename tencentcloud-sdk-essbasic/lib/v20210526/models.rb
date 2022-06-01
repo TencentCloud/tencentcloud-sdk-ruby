@@ -699,13 +699,22 @@ module TencentCloud
         # @type Operator: :class:`Tencentcloud::Essbasic.v20210526.models.UserInfo`
         # @param TemplateId: 模板唯一标识
         # @type TemplateId: String
+        # @param ContentType: 查询内容：0-模版列表及详情（默认），1-仅模版列表
+        # @type ContentType: Integer
+        # @param Limit: 查询个数，默认20，最大100
+        # @type Limit: Integer
+        # @param Offset: 查询偏移位置，默认0
+        # @type Offset: Integer
 
-        attr_accessor :Agent, :Operator, :TemplateId
+        attr_accessor :Agent, :Operator, :TemplateId, :ContentType, :Limit, :Offset
         
-        def initialize(agent=nil, operator=nil, templateid=nil)
+        def initialize(agent=nil, operator=nil, templateid=nil, contenttype=nil, limit=nil, offset=nil)
           @Agent = agent
           @Operator = operator
           @TemplateId = templateid
+          @ContentType = contenttype
+          @Limit = limit
+          @Offset = offset
         end
 
         def deserialize(params)
@@ -718,6 +727,9 @@ module TencentCloud
             @Operator.deserialize(params['Operator'])
           end
           @TemplateId = params['TemplateId']
+          @ContentType = params['ContentType']
+          @Limit = params['Limit']
+          @Offset = params['Offset']
         end
       end
 
@@ -725,13 +737,22 @@ module TencentCloud
       class DescribeTemplatesResponse < TencentCloud::Common::AbstractModel
         # @param Templates: 模板详情
         # @type Templates: Array
+        # @param TotalCount: 查询总数
+        # @type TotalCount: Integer
+        # @param Limit: 查询数量
+        # @type Limit: Integer
+        # @param Offset: 查询起始偏移
+        # @type Offset: Integer
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Templates, :RequestId
+        attr_accessor :Templates, :TotalCount, :Limit, :Offset, :RequestId
         
-        def initialize(templates=nil, requestid=nil)
+        def initialize(templates=nil, totalcount=nil, limit=nil, offset=nil, requestid=nil)
           @Templates = templates
+          @TotalCount = totalcount
+          @Limit = limit
+          @Offset = offset
           @RequestId = requestid
         end
 
@@ -744,6 +765,9 @@ module TencentCloud
               @Templates << templateinfo_tmp
             end
           end
+          @TotalCount = params['TotalCount']
+          @Limit = params['Limit']
+          @Offset = params['Offset']
           @RequestId = params['RequestId']
         end
       end
