@@ -5171,23 +5171,33 @@ module TencentCloud
         # @type InstanceName: String
         # @param SecurityGroups: 指定实例的安全组Id列表，子机将重新关联指定列表的安全组，原本关联的安全组会被解绑。<dx-alert infotype="explain" title="">必须指定SecurityGroups与InstanceName的其中一个，但不能同时设置</dx-alert>
         # @type SecurityGroups: Array
+        # @param CamRoleName: 给实例绑定用户角色，传空值为解绑操作
+        # @type CamRoleName: String
         # @param DisableApiTermination: 实例销毁保护标志，表示是否允许通过api接口删除实例。取值范围：<br><li>TRUE：表示开启实例保护，不允许通过api接口删除实例<br><li>FALSE：表示关闭实例保护，允许通过api接口删除实例<br><br>默认取值：FALSE。
         # @type DisableApiTermination: Boolean
+        # @param CamRoleType: 角色类别，与CamRoleName搭配使用，该值可从CAM DescribeRoleList, GetRole接口返回RoleType字段获取，当前只接受user、system和service_linked三种类别。
+        # 举例：一般CamRoleName中包含“LinkedRoleIn”（如TKE_QCSLinkedRoleInPrometheusService）时，DescribeRoleList和GetRole返回的RoleType为service_linked，则本参数也需要传递service_linked。
+        # 该参数默认值为user，若CameRoleName为非service_linked类型，本参数可不传递。
+        # @type CamRoleType: String
 
-        attr_accessor :InstanceIds, :InstanceName, :SecurityGroups, :DisableApiTermination
+        attr_accessor :InstanceIds, :InstanceName, :SecurityGroups, :CamRoleName, :DisableApiTermination, :CamRoleType
         
-        def initialize(instanceids=nil, instancename=nil, securitygroups=nil, disableapitermination=nil)
+        def initialize(instanceids=nil, instancename=nil, securitygroups=nil, camrolename=nil, disableapitermination=nil, camroletype=nil)
           @InstanceIds = instanceids
           @InstanceName = instancename
           @SecurityGroups = securitygroups
+          @CamRoleName = camrolename
           @DisableApiTermination = disableapitermination
+          @CamRoleType = camroletype
         end
 
         def deserialize(params)
           @InstanceIds = params['InstanceIds']
           @InstanceName = params['InstanceName']
           @SecurityGroups = params['SecurityGroups']
+          @CamRoleName = params['CamRoleName']
           @DisableApiTermination = params['DisableApiTermination']
+          @CamRoleType = params['CamRoleType']
         end
       end
 

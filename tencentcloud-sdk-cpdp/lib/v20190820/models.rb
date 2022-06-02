@@ -6095,11 +6095,9 @@ module TencentCloud
         # @type NotifyUrl: String
         # @param ExpireTime: 订单过期时间，yyyy-MM-dd HH:mm:ss格式。
         # @type ExpireTime: String
-        # @param FrontUrl: 前端成功回调URL。条件可选
-        # 当付款方式PaymentMethod为EBANK_PAYMENT时必填
+        # @param FrontUrl: 前端成功回调URL。条件可选。
         # @type FrontUrl: String
-        # @param RefreshUrl: 前端刷新 URL。条件可选
-        # 当付款方式PaymentMethod为EBANK_PAYMENT时必填
+        # @param RefreshUrl: 前端刷新 URL。条件可选。
         # @type RefreshUrl: String
         # @param SceneInfo: 设备信息，条件可选。
         # @type SceneInfo: :class:`Tencentcloud::Cpdp.v20190820.models.OpenBankSceneInfo`
@@ -9947,11 +9945,11 @@ module TencentCloud
 
       # 云企付-商品信息
       class OpenBankGoodsInfo < TencentCloud::Common::AbstractModel
-        # @param GoodsName: 商品名称，默认值“商品支付”
+        # @param GoodsName: 商品标题，默认值“商品支付”
         # @type GoodsName: String
         # @param GoodsDetail: 商品详细描述（商品列表）
         # @type GoodsDetail: String
-        # @param GoodsDescription: 商品简单描述。需传入应用市场上的 APP 名字-实际商品名称，例如：天天爱消除-游戏充值
+        # @param GoodsDescription: 银行附言，不可以有以下字符：<>+{}()%*&';"[]等特殊符号
         # @type GoodsDescription: String
 
         attr_accessor :GoodsName, :GoodsDetail, :GoodsDescription

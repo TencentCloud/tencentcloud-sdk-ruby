@@ -986,10 +986,12 @@ module TencentCloud
         # @type EniSubnetIds: Array
         # @param ClaimExpiredSeconds: VPC-CNI网络模式下，弹性网卡IP的回收时间，取值范围[300,15768000)
         # @type ClaimExpiredSeconds: Integer
+        # @param IgnoreServiceCIDRConflict: 是否忽略 ServiceCIDR 冲突错误, 仅在 VPC-CNI 模式生效，默认不忽略
+        # @type IgnoreServiceCIDRConflict: Boolean
 
-        attr_accessor :ClusterCIDR, :IgnoreClusterCIDRConflict, :MaxNodePodNum, :MaxClusterServiceNum, :ServiceCIDR, :EniSubnetIds, :ClaimExpiredSeconds
+        attr_accessor :ClusterCIDR, :IgnoreClusterCIDRConflict, :MaxNodePodNum, :MaxClusterServiceNum, :ServiceCIDR, :EniSubnetIds, :ClaimExpiredSeconds, :IgnoreServiceCIDRConflict
         
-        def initialize(clustercidr=nil, ignoreclustercidrconflict=nil, maxnodepodnum=nil, maxclusterservicenum=nil, servicecidr=nil, enisubnetids=nil, claimexpiredseconds=nil)
+        def initialize(clustercidr=nil, ignoreclustercidrconflict=nil, maxnodepodnum=nil, maxclusterservicenum=nil, servicecidr=nil, enisubnetids=nil, claimexpiredseconds=nil, ignoreservicecidrconflict=nil)
           @ClusterCIDR = clustercidr
           @IgnoreClusterCIDRConflict = ignoreclustercidrconflict
           @MaxNodePodNum = maxnodepodnum
@@ -997,6 +999,7 @@ module TencentCloud
           @ServiceCIDR = servicecidr
           @EniSubnetIds = enisubnetids
           @ClaimExpiredSeconds = claimexpiredseconds
+          @IgnoreServiceCIDRConflict = ignoreservicecidrconflict
         end
 
         def deserialize(params)
@@ -1007,6 +1010,7 @@ module TencentCloud
           @ServiceCIDR = params['ServiceCIDR']
           @EniSubnetIds = params['EniSubnetIds']
           @ClaimExpiredSeconds = params['ClaimExpiredSeconds']
+          @IgnoreServiceCIDRConflict = params['IgnoreServiceCIDRConflict']
         end
       end
 
@@ -1240,10 +1244,13 @@ module TencentCloud
         # @param Subnets: 集群关联的容器子网
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Subnets: Array
+        # @param IgnoreServiceCIDRConflict: 是否忽略 ServiceCIDR 冲突错误, 仅在 VPC-CNI 模式生效，默认不忽略
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IgnoreServiceCIDRConflict: Boolean
 
-        attr_accessor :ClusterCIDR, :IgnoreClusterCIDRConflict, :MaxNodePodNum, :MaxClusterServiceNum, :Ipvs, :VpcId, :Cni, :KubeProxyMode, :ServiceCIDR, :Subnets
+        attr_accessor :ClusterCIDR, :IgnoreClusterCIDRConflict, :MaxNodePodNum, :MaxClusterServiceNum, :Ipvs, :VpcId, :Cni, :KubeProxyMode, :ServiceCIDR, :Subnets, :IgnoreServiceCIDRConflict
         
-        def initialize(clustercidr=nil, ignoreclustercidrconflict=nil, maxnodepodnum=nil, maxclusterservicenum=nil, ipvs=nil, vpcid=nil, cni=nil, kubeproxymode=nil, servicecidr=nil, subnets=nil)
+        def initialize(clustercidr=nil, ignoreclustercidrconflict=nil, maxnodepodnum=nil, maxclusterservicenum=nil, ipvs=nil, vpcid=nil, cni=nil, kubeproxymode=nil, servicecidr=nil, subnets=nil, ignoreservicecidrconflict=nil)
           @ClusterCIDR = clustercidr
           @IgnoreClusterCIDRConflict = ignoreclustercidrconflict
           @MaxNodePodNum = maxnodepodnum
@@ -1254,6 +1261,7 @@ module TencentCloud
           @KubeProxyMode = kubeproxymode
           @ServiceCIDR = servicecidr
           @Subnets = subnets
+          @IgnoreServiceCIDRConflict = ignoreservicecidrconflict
         end
 
         def deserialize(params)
@@ -1267,6 +1275,7 @@ module TencentCloud
           @KubeProxyMode = params['KubeProxyMode']
           @ServiceCIDR = params['ServiceCIDR']
           @Subnets = params['Subnets']
+          @IgnoreServiceCIDRConflict = params['IgnoreServiceCIDRConflict']
         end
       end
 
