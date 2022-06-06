@@ -6266,17 +6266,25 @@ module TencentCloud
         # @type InstanceId: String
         # @param BackupNames: 待删除的备份名称，备份名称可通过DescribeBackups接口的FileName字段获得。单次请求批量删除备份数不能超过10个。
         # @type BackupNames: Array
+        # @param StartTime: 批量删除手动备份起始时间
+        # @type StartTime: String
+        # @param EndTime: 批量删除手动备份截止时间
+        # @type EndTime: String
 
-        attr_accessor :InstanceId, :BackupNames
+        attr_accessor :InstanceId, :BackupNames, :StartTime, :EndTime
         
-        def initialize(instanceid=nil, backupnames=nil)
+        def initialize(instanceid=nil, backupnames=nil, starttime=nil, endtime=nil)
           @InstanceId = instanceid
           @BackupNames = backupnames
+          @StartTime = starttime
+          @EndTime = endtime
         end
 
         def deserialize(params)
           @InstanceId = params['InstanceId']
           @BackupNames = params['BackupNames']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
         end
       end
 

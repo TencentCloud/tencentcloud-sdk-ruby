@@ -84,6 +84,57 @@ module TencentCloud
         end
       end
 
+      # AddCLSTopicDomains请求参数结构体
+      class AddCLSTopicDomainsRequest < TencentCloud::Common::AbstractModel
+        # @param LogsetId: 日志集ID
+        # @type LogsetId: String
+        # @param TopicId: 日志主题ID
+        # @type TopicId: String
+        # @param DomainAreaConfigs: 域名区域配置
+        # @type DomainAreaConfigs: Array
+        # @param Channel: 接入渠道，cdn或者ecdn，默认值为cdn
+        # @type Channel: String
+
+        attr_accessor :LogsetId, :TopicId, :DomainAreaConfigs, :Channel
+        
+        def initialize(logsetid=nil, topicid=nil, domainareaconfigs=nil, channel=nil)
+          @LogsetId = logsetid
+          @TopicId = topicid
+          @DomainAreaConfigs = domainareaconfigs
+          @Channel = channel
+        end
+
+        def deserialize(params)
+          @LogsetId = params['LogsetId']
+          @TopicId = params['TopicId']
+          unless params['DomainAreaConfigs'].nil?
+            @DomainAreaConfigs = []
+            params['DomainAreaConfigs'].each do |i|
+              domainareaconfig_tmp = DomainAreaConfig.new
+              domainareaconfig_tmp.deserialize(i)
+              @DomainAreaConfigs << domainareaconfig_tmp
+            end
+          end
+          @Channel = params['Channel']
+        end
+      end
+
+      # AddCLSTopicDomains返回参数结构体
+      class AddCLSTopicDomainsResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # AddCdnDomain请求参数结构体
       class AddCdnDomainRequest < TencentCloud::Common::AbstractModel
         # @param Domain: 域名

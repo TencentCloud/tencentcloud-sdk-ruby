@@ -828,7 +828,7 @@ module TencentCloud
         # @type Agent: :class:`Tencentcloud::Ess.v20201111.models.Agent`
         # @param GenerateSource: 暂未开放
         # @type GenerateSource: Integer
-        # @param ContentType: 查询内容：0-模版列表及详情（默认），1-仅模版列表
+        # @param ContentType: 查询内容：0-模板列表及详情（默认），1-仅模板列表
         # @type ContentType: Integer
 
         attr_accessor :Operator, :Offset, :Limit, :Filters, :Agent, :GenerateSource, :ContentType

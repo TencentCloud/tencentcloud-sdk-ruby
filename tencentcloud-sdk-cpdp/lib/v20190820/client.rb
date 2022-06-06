@@ -125,6 +125,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 灵云V2-付款
+
+        # @param request: Request instance for ApplyFlexPayment.
+        # @type request: :class:`Tencentcloud::cpdp::V20190820::ApplyFlexPaymentRequest`
+        # @rtype: :class:`Tencentcloud::cpdp::V20190820::ApplyFlexPaymentResponse`
+        def ApplyFlexPayment(request)
+          body = send_request('ApplyFlexPayment', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ApplyFlexPaymentResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 灵云V2-结算
+
+        # @param request: Request instance for ApplyFlexSettlement.
+        # @type request: :class:`Tencentcloud::cpdp::V20190820::ApplyFlexSettlementRequest`
+        # @rtype: :class:`Tencentcloud::cpdp::V20190820::ApplyFlexSettlementResponse`
+        def ApplyFlexSettlement(request)
+          body = send_request('ApplyFlexSettlement', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ApplyFlexSettlementResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 云企付-申请单笔交易回单
 
         # @param request: Request instance for ApplyOpenBankOrderDetailReceipt.
@@ -767,6 +815,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = CreateExternalAnchorResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 灵云V2-收款用户开立
+
+        # @param request: Request instance for CreateFlexPayee.
+        # @type request: :class:`Tencentcloud::cpdp::V20190820::CreateFlexPayeeRequest`
+        # @rtype: :class:`Tencentcloud::cpdp::V20190820::CreateFlexPayeeResponse`
+        def CreateFlexPayee(request)
+          body = send_request('CreateFlexPayee', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateFlexPayeeResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1621,6 +1693,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 灵云V2-冻结余额
+
+        # @param request: Request instance for FreezeFlexBalance.
+        # @type request: :class:`Tencentcloud::cpdp::V20190820::FreezeFlexBalanceRequest`
+        # @rtype: :class:`Tencentcloud::cpdp::V20190820::FreezeFlexBalanceResponse`
+        def FreezeFlexBalance(request)
+          body = send_request('FreezeFlexBalance', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = FreezeFlexBalanceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 调用该接口返回对账单下载地址，对账单下载URL通过GET方式访问，返回zip包，解压后为csv格式文件。文件首行如下：
         # 订单号,订单归属日期,机构编号,订单描述,交易类型,订单状态,支付场景,原始金额,折扣金额,实际交易金额,支付渠道优惠金额,抹零金额,币种,下单时间,付款成功时间,商户编号,门店编号,付款方式编号,付款方式名称,商户手续费T1,商户扣率,是否信用卡交易,原始订单号,用户账号,外部订单号,订单备注
 
@@ -1825,6 +1921,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyBindedAccountResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 灵云V2-收款用户账户权益状态修改
+
+        # @param request: Request instance for ModifyFlexPayeeAccountRightStatus.
+        # @type request: :class:`Tencentcloud::cpdp::V20190820::ModifyFlexPayeeAccountRightStatusRequest`
+        # @rtype: :class:`Tencentcloud::cpdp::V20190820::ModifyFlexPayeeAccountRightStatusResponse`
+        def ModifyFlexPayeeAccountRightStatus(request)
+          body = send_request('ModifyFlexPayeeAccountRightStatus', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyFlexPayeeAccountRightStatusResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -2521,6 +2641,222 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = QueryExchangeRateResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 灵云V2-查询税前金额
+
+        # @param request: Request instance for QueryFlexAmountBeforeTax.
+        # @type request: :class:`Tencentcloud::cpdp::V20190820::QueryFlexAmountBeforeTaxRequest`
+        # @rtype: :class:`Tencentcloud::cpdp::V20190820::QueryFlexAmountBeforeTaxResponse`
+        def QueryFlexAmountBeforeTax(request)
+          body = send_request('QueryFlexAmountBeforeTax', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = QueryFlexAmountBeforeTaxResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 灵云V2-查询冻结订单列表
+
+        # @param request: Request instance for QueryFlexFreezeOrderList.
+        # @type request: :class:`Tencentcloud::cpdp::V20190820::QueryFlexFreezeOrderListRequest`
+        # @rtype: :class:`Tencentcloud::cpdp::V20190820::QueryFlexFreezeOrderListResponse`
+        def QueryFlexFreezeOrderList(request)
+          body = send_request('QueryFlexFreezeOrderList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = QueryFlexFreezeOrderListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 灵云V2-收款用户账户余额查询
+
+        # @param request: Request instance for QueryFlexPayeeAccountBalance.
+        # @type request: :class:`Tencentcloud::cpdp::V20190820::QueryFlexPayeeAccountBalanceRequest`
+        # @rtype: :class:`Tencentcloud::cpdp::V20190820::QueryFlexPayeeAccountBalanceResponse`
+        def QueryFlexPayeeAccountBalance(request)
+          body = send_request('QueryFlexPayeeAccountBalance', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = QueryFlexPayeeAccountBalanceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 灵云V2-收款用户账户信息查询
+
+        # @param request: Request instance for QueryFlexPayeeAccountInfo.
+        # @type request: :class:`Tencentcloud::cpdp::V20190820::QueryFlexPayeeAccountInfoRequest`
+        # @rtype: :class:`Tencentcloud::cpdp::V20190820::QueryFlexPayeeAccountInfoResponse`
+        def QueryFlexPayeeAccountInfo(request)
+          body = send_request('QueryFlexPayeeAccountInfo', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = QueryFlexPayeeAccountInfoResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 灵云V2-收款用户账户列表查询
+
+        # @param request: Request instance for QueryFlexPayeeAccountList.
+        # @type request: :class:`Tencentcloud::cpdp::V20190820::QueryFlexPayeeAccountListRequest`
+        # @rtype: :class:`Tencentcloud::cpdp::V20190820::QueryFlexPayeeAccountListResponse`
+        def QueryFlexPayeeAccountList(request)
+          body = send_request('QueryFlexPayeeAccountList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = QueryFlexPayeeAccountListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 灵云V2-收款用户信息查询
+
+        # @param request: Request instance for QueryFlexPayeeInfo.
+        # @type request: :class:`Tencentcloud::cpdp::V20190820::QueryFlexPayeeInfoRequest`
+        # @rtype: :class:`Tencentcloud::cpdp::V20190820::QueryFlexPayeeInfoResponse`
+        def QueryFlexPayeeInfo(request)
+          body = send_request('QueryFlexPayeeInfo', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = QueryFlexPayeeInfoResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 灵云V2-查询付款订单列表
+
+        # @param request: Request instance for QueryFlexPaymentOrderList.
+        # @type request: :class:`Tencentcloud::cpdp::V20190820::QueryFlexPaymentOrderListRequest`
+        # @rtype: :class:`Tencentcloud::cpdp::V20190820::QueryFlexPaymentOrderListResponse`
+        def QueryFlexPaymentOrderList(request)
+          body = send_request('QueryFlexPaymentOrderList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = QueryFlexPaymentOrderListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 灵云V2-查询付款订单状态
+
+        # @param request: Request instance for QueryFlexPaymentOrderStatus.
+        # @type request: :class:`Tencentcloud::cpdp::V20190820::QueryFlexPaymentOrderStatusRequest`
+        # @rtype: :class:`Tencentcloud::cpdp::V20190820::QueryFlexPaymentOrderStatusResponse`
+        def QueryFlexPaymentOrderStatus(request)
+          body = send_request('QueryFlexPaymentOrderStatus', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = QueryFlexPaymentOrderStatusResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 灵云V2-查询结算订单列表
+
+        # @param request: Request instance for QueryFlexSettlementOrderList.
+        # @type request: :class:`Tencentcloud::cpdp::V20190820::QueryFlexSettlementOrderListRequest`
+        # @rtype: :class:`Tencentcloud::cpdp::V20190820::QueryFlexSettlementOrderListResponse`
+        def QueryFlexSettlementOrderList(request)
+          body = send_request('QueryFlexSettlementOrderList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = QueryFlexSettlementOrderListResponse.new
             model.deserialize(response['Response'])
             model
           else

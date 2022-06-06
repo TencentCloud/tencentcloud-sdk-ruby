@@ -806,6 +806,23 @@ module TencentCloud
         end
       end
 
+      # 税前金额结果
+      class AmountBeforeTaxResult < TencentCloud::Common::AbstractModel
+        # @param AmountBeforeTax: 税前金额
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AmountBeforeTax: String
+
+        attr_accessor :AmountBeforeTax
+        
+        def initialize(amountbeforetax=nil)
+          @AmountBeforeTax = amountbeforetax
+        end
+
+        def deserialize(params)
+          @AmountBeforeTax = params['AmountBeforeTax']
+        end
+      end
+
       # 主播签约信息
       class AnchorContractInfo < TencentCloud::Common::AbstractModel
         # @param AnchorId: 主播ID
@@ -996,6 +1013,201 @@ module TencentCloud
             @Data = ApplyDeclareData.new
             @Data.deserialize(params['Data'])
           end
+        end
+      end
+
+      # ApplyFlexPayment请求参数结构体
+      class ApplyFlexPaymentRequest < TencentCloud::Common::AbstractModel
+        # @param PayeeId: 收款用户ID
+        # @type PayeeId: String
+        # @param IncomeType: 收入类型
+        # LABOR:劳务所得
+        # OCCASION:偶然所得
+        # @type IncomeType: String
+        # @param AmountBeforeTax: 税前金额
+        # @type AmountBeforeTax: String
+        # @param OutOrderId: 外部订单ID
+        # @type OutOrderId: String
+        # @param FundingAccountInfo: 资金账户信息
+        # @type FundingAccountInfo: :class:`Tencentcloud::Cpdp.v20190820.models.FlexFundingAccountInfo`
+        # @param Remark: 提现备注
+        # @type Remark: String
+
+        attr_accessor :PayeeId, :IncomeType, :AmountBeforeTax, :OutOrderId, :FundingAccountInfo, :Remark
+        
+        def initialize(payeeid=nil, incometype=nil, amountbeforetax=nil, outorderid=nil, fundingaccountinfo=nil, remark=nil)
+          @PayeeId = payeeid
+          @IncomeType = incometype
+          @AmountBeforeTax = amountbeforetax
+          @OutOrderId = outorderid
+          @FundingAccountInfo = fundingaccountinfo
+          @Remark = remark
+        end
+
+        def deserialize(params)
+          @PayeeId = params['PayeeId']
+          @IncomeType = params['IncomeType']
+          @AmountBeforeTax = params['AmountBeforeTax']
+          @OutOrderId = params['OutOrderId']
+          unless params['FundingAccountInfo'].nil?
+            @FundingAccountInfo = FlexFundingAccountInfo.new
+            @FundingAccountInfo.deserialize(params['FundingAccountInfo'])
+          end
+          @Remark = params['Remark']
+        end
+      end
+
+      # ApplyFlexPayment返回参数结构体
+      class ApplyFlexPaymentResponse < TencentCloud::Common::AbstractModel
+        # @param ErrCode: 错误码。SUCCESS为成功，其他为失败
+        # @type ErrCode: String
+        # @param ErrMessage: 错误消息
+        # @type ErrMessage: String
+        # @param Result: 返回结果
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Result: :class:`Tencentcloud::Cpdp.v20190820.models.ApplyFlexPaymentResult`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ErrCode, :ErrMessage, :Result, :RequestId
+        
+        def initialize(errcode=nil, errmessage=nil, result=nil, requestid=nil)
+          @ErrCode = errcode
+          @ErrMessage = errmessage
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ErrCode = params['ErrCode']
+          @ErrMessage = params['ErrMessage']
+          unless params['Result'].nil?
+            @Result = ApplyFlexPaymentResult.new
+            @Result.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 付款结果
+      class ApplyFlexPaymentResult < TencentCloud::Common::AbstractModel
+        # @param OrderId: 订单ID
+        # @type OrderId: String
+        # @param AmountBeforeTax: 税前金额
+        # @type AmountBeforeTax: String
+        # @param AmountAfterTax: 税后金额
+        # @type AmountAfterTax: String
+        # @param Tax: 税金
+        # @type Tax: String
+
+        attr_accessor :OrderId, :AmountBeforeTax, :AmountAfterTax, :Tax
+        
+        def initialize(orderid=nil, amountbeforetax=nil, amountaftertax=nil, tax=nil)
+          @OrderId = orderid
+          @AmountBeforeTax = amountbeforetax
+          @AmountAfterTax = amountaftertax
+          @Tax = tax
+        end
+
+        def deserialize(params)
+          @OrderId = params['OrderId']
+          @AmountBeforeTax = params['AmountBeforeTax']
+          @AmountAfterTax = params['AmountAfterTax']
+          @Tax = params['Tax']
+        end
+      end
+
+      # ApplyFlexSettlement请求参数结构体
+      class ApplyFlexSettlementRequest < TencentCloud::Common::AbstractModel
+        # @param PayeeId: 收款用户ID
+        # @type PayeeId: String
+        # @param IncomeType: 收入类型
+        # LABOR:劳务所得
+        # OCCASION:偶然所得
+        # @type IncomeType: String
+        # @param AmountBeforeTax: 税前金额
+        # @type AmountBeforeTax: String
+        # @param OutOrderId: 外部订单ID
+        # @type OutOrderId: String
+        # @param Remark: 备注
+        # @type Remark: String
+
+        attr_accessor :PayeeId, :IncomeType, :AmountBeforeTax, :OutOrderId, :Remark
+        
+        def initialize(payeeid=nil, incometype=nil, amountbeforetax=nil, outorderid=nil, remark=nil)
+          @PayeeId = payeeid
+          @IncomeType = incometype
+          @AmountBeforeTax = amountbeforetax
+          @OutOrderId = outorderid
+          @Remark = remark
+        end
+
+        def deserialize(params)
+          @PayeeId = params['PayeeId']
+          @IncomeType = params['IncomeType']
+          @AmountBeforeTax = params['AmountBeforeTax']
+          @OutOrderId = params['OutOrderId']
+          @Remark = params['Remark']
+        end
+      end
+
+      # ApplyFlexSettlement返回参数结构体
+      class ApplyFlexSettlementResponse < TencentCloud::Common::AbstractModel
+        # @param ErrCode: 错误码。SUCCESS为成功，其他为失败
+        # @type ErrCode: String
+        # @param ErrMessage: 错误消息
+        # @type ErrMessage: String
+        # @param Result: 返回结果
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Result: :class:`Tencentcloud::Cpdp.v20190820.models.ApplyFlexSettlementResult`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ErrCode, :ErrMessage, :Result, :RequestId
+        
+        def initialize(errcode=nil, errmessage=nil, result=nil, requestid=nil)
+          @ErrCode = errcode
+          @ErrMessage = errmessage
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ErrCode = params['ErrCode']
+          @ErrMessage = params['ErrMessage']
+          unless params['Result'].nil?
+            @Result = ApplyFlexSettlementResult.new
+            @Result.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 结算结果
+      class ApplyFlexSettlementResult < TencentCloud::Common::AbstractModel
+        # @param OrderId: 订单ID
+        # @type OrderId: String
+        # @param AmountBeforeTax: 税前金额
+        # @type AmountBeforeTax: String
+        # @param AmountAfterTax: 税后金额
+        # @type AmountAfterTax: String
+        # @param Tax: 税金
+        # @type Tax: String
+
+        attr_accessor :OrderId, :AmountBeforeTax, :AmountAfterTax, :Tax
+        
+        def initialize(orderid=nil, amountbeforetax=nil, amountaftertax=nil, tax=nil)
+          @OrderId = orderid
+          @AmountBeforeTax = amountbeforetax
+          @AmountAfterTax = amountaftertax
+          @Tax = tax
+        end
+
+        def deserialize(params)
+          @OrderId = params['OrderId']
+          @AmountBeforeTax = params['AmountBeforeTax']
+          @AmountAfterTax = params['AmountAfterTax']
+          @Tax = params['Tax']
         end
       end
 
@@ -4973,6 +5185,103 @@ module TencentCloud
         end
       end
 
+      # CreateFlexPayee请求参数结构体
+      class CreateFlexPayeeRequest < TencentCloud::Common::AbstractModel
+        # @param OutUserId: 用户外部业务ID
+        # @type OutUserId: String
+        # @param Name: 姓名
+        # @type Name: String
+        # @param IdNo: 证件号
+        # @type IdNo: String
+        # @param AccountName: 账户名称
+        # @type AccountName: String
+        # @param ServiceProviderId: 服务商ID
+        # @type ServiceProviderId: String
+        # @param TaxInfo: 计税信息
+        # @type TaxInfo: :class:`Tencentcloud::Cpdp.v20190820.models.PayeeTaxInfo`
+        # @param IdType: 证件类型
+        # 0:身份证
+        # 1:社会信用代码
+        # @type IdType: Integer
+        # @param Remark: 备注
+        # @type Remark: String
+
+        attr_accessor :OutUserId, :Name, :IdNo, :AccountName, :ServiceProviderId, :TaxInfo, :IdType, :Remark
+        
+        def initialize(outuserid=nil, name=nil, idno=nil, accountname=nil, serviceproviderid=nil, taxinfo=nil, idtype=nil, remark=nil)
+          @OutUserId = outuserid
+          @Name = name
+          @IdNo = idno
+          @AccountName = accountname
+          @ServiceProviderId = serviceproviderid
+          @TaxInfo = taxinfo
+          @IdType = idtype
+          @Remark = remark
+        end
+
+        def deserialize(params)
+          @OutUserId = params['OutUserId']
+          @Name = params['Name']
+          @IdNo = params['IdNo']
+          @AccountName = params['AccountName']
+          @ServiceProviderId = params['ServiceProviderId']
+          unless params['TaxInfo'].nil?
+            @TaxInfo = PayeeTaxInfo.new
+            @TaxInfo.deserialize(params['TaxInfo'])
+          end
+          @IdType = params['IdType']
+          @Remark = params['Remark']
+        end
+      end
+
+      # CreateFlexPayee返回参数结构体
+      class CreateFlexPayeeResponse < TencentCloud::Common::AbstractModel
+        # @param ErrCode: 错误码。SUCCESS为成功，其他为失败
+        # @type ErrCode: String
+        # @param ErrMessage: 错误消息
+        # @type ErrMessage: String
+        # @param Result: 返回结果
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Result: :class:`Tencentcloud::Cpdp.v20190820.models.CreateFlexPayeeResult`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ErrCode, :ErrMessage, :Result, :RequestId
+        
+        def initialize(errcode=nil, errmessage=nil, result=nil, requestid=nil)
+          @ErrCode = errcode
+          @ErrMessage = errmessage
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ErrCode = params['ErrCode']
+          @ErrMessage = params['ErrMessage']
+          unless params['Result'].nil?
+            @Result = CreateFlexPayeeResult.new
+            @Result.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 账户开立结果
+      class CreateFlexPayeeResult < TencentCloud::Common::AbstractModel
+        # @param PayeeId: 收款用户ID
+        # @type PayeeId: String
+
+        attr_accessor :PayeeId
+        
+        def initialize(payeeid=nil)
+          @PayeeId = payeeid
+        end
+
+        def deserialize(params)
+          @PayeeId = params['PayeeId']
+        end
+      end
+
       # 发票开具明细
       class CreateInvoiceItem < TencentCloud::Common::AbstractModel
         # @param Name: 商品名称
@@ -8845,6 +9154,209 @@ module TencentCloud
         end
       end
 
+      # 灵云V2-银行信息
+      class FlexFundingAccountInfo < TencentCloud::Common::AbstractModel
+        # @param FundingAccountNo: 资金账户号
+        # @type FundingAccountNo: String
+        # @param FundingAccountType: 资金账户类型
+        # @type FundingAccountType: String
+        # @param FundingAccountBindSerialNo: 资金账户绑定序列号
+        # @type FundingAccountBindSerialNo: String
+
+        attr_accessor :FundingAccountNo, :FundingAccountType, :FundingAccountBindSerialNo
+        
+        def initialize(fundingaccountno=nil, fundingaccounttype=nil, fundingaccountbindserialno=nil)
+          @FundingAccountNo = fundingaccountno
+          @FundingAccountType = fundingaccounttype
+          @FundingAccountBindSerialNo = fundingaccountbindserialno
+        end
+
+        def deserialize(params)
+          @FundingAccountNo = params['FundingAccountNo']
+          @FundingAccountType = params['FundingAccountType']
+          @FundingAccountBindSerialNo = params['FundingAccountBindSerialNo']
+        end
+      end
+
+      # FreezeFlexBalance请求参数结构体
+      class FreezeFlexBalanceRequest < TencentCloud::Common::AbstractModel
+        # @param PayeeId: 收款用户ID
+        # @type PayeeId: String
+        # @param AmountBeforeTax: 税前金额
+        # @type AmountBeforeTax: String
+        # @param IncomeType: 收入类型
+        # LABOR:劳务所得
+        # OCCASION:偶然所得
+        # @type IncomeType: String
+        # @param OutOrderId: 外部订单ID
+        # @type OutOrderId: String
+        # @param OperationType: 操作类型
+        # FREEZE:冻结
+        # UNFREEZE:解冻
+        # @type OperationType: String
+        # @param Remark: 冻结备注
+        # @type Remark: String
+
+        attr_accessor :PayeeId, :AmountBeforeTax, :IncomeType, :OutOrderId, :OperationType, :Remark
+        
+        def initialize(payeeid=nil, amountbeforetax=nil, incometype=nil, outorderid=nil, operationtype=nil, remark=nil)
+          @PayeeId = payeeid
+          @AmountBeforeTax = amountbeforetax
+          @IncomeType = incometype
+          @OutOrderId = outorderid
+          @OperationType = operationtype
+          @Remark = remark
+        end
+
+        def deserialize(params)
+          @PayeeId = params['PayeeId']
+          @AmountBeforeTax = params['AmountBeforeTax']
+          @IncomeType = params['IncomeType']
+          @OutOrderId = params['OutOrderId']
+          @OperationType = params['OperationType']
+          @Remark = params['Remark']
+        end
+      end
+
+      # FreezeFlexBalance返回参数结构体
+      class FreezeFlexBalanceResponse < TencentCloud::Common::AbstractModel
+        # @param ErrCode: 错误码。SUCCESS为成功，其他为失败
+        # @type ErrCode: String
+        # @param ErrMessage: 错误消息
+        # @type ErrMessage: String
+        # @param Result: 返回结果
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Result: :class:`Tencentcloud::Cpdp.v20190820.models.FreezeFlexBalanceResult`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ErrCode, :ErrMessage, :Result, :RequestId
+        
+        def initialize(errcode=nil, errmessage=nil, result=nil, requestid=nil)
+          @ErrCode = errcode
+          @ErrMessage = errmessage
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ErrCode = params['ErrCode']
+          @ErrMessage = params['ErrMessage']
+          unless params['Result'].nil?
+            @Result = FreezeFlexBalanceResult.new
+            @Result.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 冻结余额结果
+      class FreezeFlexBalanceResult < TencentCloud::Common::AbstractModel
+        # @param OrderId: 冻结订单ID
+        # @type OrderId: String
+
+        attr_accessor :OrderId
+        
+        def initialize(orderid=nil)
+          @OrderId = orderid
+        end
+
+        def deserialize(params)
+          @OrderId = params['OrderId']
+        end
+      end
+
+      # 冻结单结果
+      class FreezeOrderResult < TencentCloud::Common::AbstractModel
+        # @param AmountBeforeTax: 税前金额
+        # @type AmountBeforeTax: String
+        # @param IncomeType: 收入类型
+        # LABOR:劳务所得
+        # OCCASION:偶然所得
+        # @type IncomeType: String
+        # @param OutOrderId: 外部订单ID
+        # @type OutOrderId: String
+        # @param OrderId: 订单ID
+        # @type OrderId: String
+        # @param OperationType: 操作类型
+        # FREEZE:冻结
+        # UNFREEZE:解冻
+        # @type OperationType: String
+        # @param InitiateTime: 发起时间
+        # @type InitiateTime: String
+        # @param FinishTime: 完成时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FinishTime: String
+        # @param Status: 状态
+        # ACCEPTED:已受理
+        # ACCOUNTED:已记账
+        # SUCCEED:已成功
+        # FAILED:已失败
+        # @type Status: String
+        # @param StatusDesc: 状态描述
+        # @type StatusDesc: String
+        # @param Remark: 冻结备注
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Remark: String
+
+        attr_accessor :AmountBeforeTax, :IncomeType, :OutOrderId, :OrderId, :OperationType, :InitiateTime, :FinishTime, :Status, :StatusDesc, :Remark
+        
+        def initialize(amountbeforetax=nil, incometype=nil, outorderid=nil, orderid=nil, operationtype=nil, initiatetime=nil, finishtime=nil, status=nil, statusdesc=nil, remark=nil)
+          @AmountBeforeTax = amountbeforetax
+          @IncomeType = incometype
+          @OutOrderId = outorderid
+          @OrderId = orderid
+          @OperationType = operationtype
+          @InitiateTime = initiatetime
+          @FinishTime = finishtime
+          @Status = status
+          @StatusDesc = statusdesc
+          @Remark = remark
+        end
+
+        def deserialize(params)
+          @AmountBeforeTax = params['AmountBeforeTax']
+          @IncomeType = params['IncomeType']
+          @OutOrderId = params['OutOrderId']
+          @OrderId = params['OrderId']
+          @OperationType = params['OperationType']
+          @InitiateTime = params['InitiateTime']
+          @FinishTime = params['FinishTime']
+          @Status = params['Status']
+          @StatusDesc = params['StatusDesc']
+          @Remark = params['Remark']
+        end
+      end
+
+      # 冻结订单列表
+      class FreezeOrders < TencentCloud::Common::AbstractModel
+        # @param List: 列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type List: Array
+        # @param Count: 总数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Count: Integer
+
+        attr_accessor :List, :Count
+        
+        def initialize(list=nil, count=nil)
+          @List = list
+          @Count = count
+        end
+
+        def deserialize(params)
+          unless params['List'].nil?
+            @List = []
+            params['List'].each do |i|
+              freezeorderresult_tmp = FreezeOrderResult.new
+              freezeorderresult_tmp.deserialize(i)
+              @List << freezeorderresult_tmp
+            end
+          end
+          @Count = params['Count']
+        end
+      end
+
       # 会员资金交易明细信息
       class FundsTransactionItem < TencentCloud::Common::AbstractModel
         # @param TransType: 资金交易类型。
@@ -9705,6 +10217,63 @@ module TencentCloud
         # @param ErrMessage: 响应消息。
         # @type ErrMessage: String
         # @param Result: 该字段为null。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Result: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ErrCode, :ErrMessage, :Result, :RequestId
+        
+        def initialize(errcode=nil, errmessage=nil, result=nil, requestid=nil)
+          @ErrCode = errcode
+          @ErrMessage = errmessage
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ErrCode = params['ErrCode']
+          @ErrMessage = params['ErrMessage']
+          @Result = params['Result']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyFlexPayeeAccountRightStatus请求参数结构体
+      class ModifyFlexPayeeAccountRightStatusRequest < TencentCloud::Common::AbstractModel
+        # @param PayeeId: 收款用户ID
+        # @type PayeeId: String
+        # @param AccountRightType: 账户权益类型
+        # SETTLEMENT:结算权益
+        # PAYMENT:付款权益
+        # @type AccountRightType: String
+        # @param AccountRightStatus: 账户权益状态
+        # ENABLE:启用
+        # DISABLE:停用
+        # @type AccountRightStatus: String
+
+        attr_accessor :PayeeId, :AccountRightType, :AccountRightStatus
+        
+        def initialize(payeeid=nil, accountrighttype=nil, accountrightstatus=nil)
+          @PayeeId = payeeid
+          @AccountRightType = accountrighttype
+          @AccountRightStatus = accountrightstatus
+        end
+
+        def deserialize(params)
+          @PayeeId = params['PayeeId']
+          @AccountRightType = params['AccountRightType']
+          @AccountRightStatus = params['AccountRightStatus']
+        end
+      end
+
+      # ModifyFlexPayeeAccountRightStatus返回参数结构体
+      class ModifyFlexPayeeAccountRightStatusResponse < TencentCloud::Common::AbstractModel
+        # @param ErrCode: 错误码。SUCCESS为成功，其他为失败
+        # @type ErrCode: String
+        # @param ErrMessage: 错误消息
+        # @type ErrMessage: String
+        # @param Result: 返回结果。默认为空。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Result: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
@@ -10664,6 +11233,426 @@ module TencentCloud
           @OpenId = params['OpenId']
           @ProjectName = params['ProjectName']
           @SubMerchantId = params['SubMerchantId']
+        end
+      end
+
+      # 账户余额信息
+      class PayeeAccountBalanceResult < TencentCloud::Common::AbstractModel
+        # @param AccountId: 账户ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AccountId: String
+        # @param IncomeType: 收入类型
+        # LABOR:劳务所得
+        # OCCASION:偶然所得
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IncomeType: Integer
+        # @param Balance: 总余额
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Balance: String
+        # @param SystemFreezeBalance: 系统冻结余额
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SystemFreezeBalance: String
+        # @param ManualFreezeBalance: 人工冻结余额
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ManualFreezeBalance: String
+        # @param PayableBalance: 可提现余额
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PayableBalance: String
+        # @param PaidBalance: 已提现余额
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PaidBalance: String
+        # @param InPayBalance: 提现中余额
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InPayBalance: String
+
+        attr_accessor :AccountId, :IncomeType, :Balance, :SystemFreezeBalance, :ManualFreezeBalance, :PayableBalance, :PaidBalance, :InPayBalance
+        
+        def initialize(accountid=nil, incometype=nil, balance=nil, systemfreezebalance=nil, manualfreezebalance=nil, payablebalance=nil, paidbalance=nil, inpaybalance=nil)
+          @AccountId = accountid
+          @IncomeType = incometype
+          @Balance = balance
+          @SystemFreezeBalance = systemfreezebalance
+          @ManualFreezeBalance = manualfreezebalance
+          @PayableBalance = payablebalance
+          @PaidBalance = paidbalance
+          @InPayBalance = inpaybalance
+        end
+
+        def deserialize(params)
+          @AccountId = params['AccountId']
+          @IncomeType = params['IncomeType']
+          @Balance = params['Balance']
+          @SystemFreezeBalance = params['SystemFreezeBalance']
+          @ManualFreezeBalance = params['ManualFreezeBalance']
+          @PayableBalance = params['PayableBalance']
+          @PaidBalance = params['PaidBalance']
+          @InPayBalance = params['InPayBalance']
+        end
+      end
+
+      # 账户信息结果
+      class PayeeAccountInfoResult < TencentCloud::Common::AbstractModel
+        # @param AccountId: 账户ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AccountId: String
+        # @param AccountName: 账户名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AccountName: String
+        # @param Remark: 备注
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Remark: String
+        # @param CreateTime: 创建时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateTime: String
+        # @param UserInfo: 用户信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UserInfo: :class:`Tencentcloud::Cpdp.v20190820.models.PayeeAccountUserInfo`
+        # @param PropertyInfo: 属性信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PropertyInfo: :class:`Tencentcloud::Cpdp.v20190820.models.PayeeAccountPropertyInfo`
+
+        attr_accessor :AccountId, :AccountName, :Remark, :CreateTime, :UserInfo, :PropertyInfo
+        
+        def initialize(accountid=nil, accountname=nil, remark=nil, createtime=nil, userinfo=nil, propertyinfo=nil)
+          @AccountId = accountid
+          @AccountName = accountname
+          @Remark = remark
+          @CreateTime = createtime
+          @UserInfo = userinfo
+          @PropertyInfo = propertyinfo
+        end
+
+        def deserialize(params)
+          @AccountId = params['AccountId']
+          @AccountName = params['AccountName']
+          @Remark = params['Remark']
+          @CreateTime = params['CreateTime']
+          unless params['UserInfo'].nil?
+            @UserInfo = PayeeAccountUserInfo.new
+            @UserInfo.deserialize(params['UserInfo'])
+          end
+          unless params['PropertyInfo'].nil?
+            @PropertyInfo = PayeeAccountPropertyInfo.new
+            @PropertyInfo.deserialize(params['PropertyInfo'])
+          end
+        end
+      end
+
+      # 账户信息列表
+      class PayeeAccountInfos < TencentCloud::Common::AbstractModel
+        # @param List: 列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type List: Array
+        # @param Count: 总数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Count: Integer
+
+        attr_accessor :List, :Count
+        
+        def initialize(list=nil, count=nil)
+          @List = list
+          @Count = count
+        end
+
+        def deserialize(params)
+          unless params['List'].nil?
+            @List = []
+            params['List'].each do |i|
+              payeeaccountinforesult_tmp = PayeeAccountInfoResult.new
+              payeeaccountinforesult_tmp.deserialize(i)
+              @List << payeeaccountinforesult_tmp
+            end
+          end
+          @Count = params['Count']
+        end
+      end
+
+      # 账户属性信息
+      class PayeeAccountPropertyInfo < TencentCloud::Common::AbstractModel
+        # @param SettleRightStatus: 结算权益状态
+        # ENABLE:启用
+        # DISABLE:停用
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SettleRightStatus: String
+        # @param PaymentRightStatus: 付款权益状态
+        # ENABLE:启用
+        # DISABLE:停用
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PaymentRightStatus: String
+
+        attr_accessor :SettleRightStatus, :PaymentRightStatus
+        
+        def initialize(settlerightstatus=nil, paymentrightstatus=nil)
+          @SettleRightStatus = settlerightstatus
+          @PaymentRightStatus = paymentrightstatus
+        end
+
+        def deserialize(params)
+          @SettleRightStatus = params['SettleRightStatus']
+          @PaymentRightStatus = params['PaymentRightStatus']
+        end
+      end
+
+      # 账户用户信息
+      class PayeeAccountUserInfo < TencentCloud::Common::AbstractModel
+        # @param OutUserId: 外部用户ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OutUserId: String
+        # @param UserType: 用户类型
+        # 0:B端用户
+        # 1:C端用户
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UserType: Integer
+        # @param IdType: 证件类型
+        # 0:身份证
+        # 1:社会信用代码
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IdType: Integer
+        # @param IdNo: 证件号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IdNo: String
+        # @param Name: 姓名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
+
+        attr_accessor :OutUserId, :UserType, :IdType, :IdNo, :Name
+        
+        def initialize(outuserid=nil, usertype=nil, idtype=nil, idno=nil, name=nil)
+          @OutUserId = outuserid
+          @UserType = usertype
+          @IdType = idtype
+          @IdNo = idno
+          @Name = name
+        end
+
+        def deserialize(params)
+          @OutUserId = params['OutUserId']
+          @UserType = params['UserType']
+          @IdType = params['IdType']
+          @IdNo = params['IdNo']
+          @Name = params['Name']
+        end
+      end
+
+      # 收款用户信息结果
+      class PayeeInfoResult < TencentCloud::Common::AbstractModel
+        # @param PayeeId: 收款用户ID
+        # @type PayeeId: String
+        # @param OutUserId: 用户外部业务ID
+        # @type OutUserId: String
+        # @param Name: 姓名
+        # @type Name: String
+        # @param IdType: 证件类型
+        # 0:身份证
+        # 1:社会信用代码
+        # @type IdType: Integer
+        # @param IdNo: 证件号
+        # @type IdNo: String
+        # @param ServiceProviderId: 服务商ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ServiceProviderId: String
+        # @param Remark: 备注
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Remark: String
+
+        attr_accessor :PayeeId, :OutUserId, :Name, :IdType, :IdNo, :ServiceProviderId, :Remark
+        
+        def initialize(payeeid=nil, outuserid=nil, name=nil, idtype=nil, idno=nil, serviceproviderid=nil, remark=nil)
+          @PayeeId = payeeid
+          @OutUserId = outuserid
+          @Name = name
+          @IdType = idtype
+          @IdNo = idno
+          @ServiceProviderId = serviceproviderid
+          @Remark = remark
+        end
+
+        def deserialize(params)
+          @PayeeId = params['PayeeId']
+          @OutUserId = params['OutUserId']
+          @Name = params['Name']
+          @IdType = params['IdType']
+          @IdNo = params['IdNo']
+          @ServiceProviderId = params['ServiceProviderId']
+          @Remark = params['Remark']
+        end
+      end
+
+      # 计税信息
+      class PayeeTaxInfo < TencentCloud::Common::AbstractModel
+        # @param TaxTemplateInfoList: 计税模板列表
+        # @type TaxTemplateInfoList: Array
+        # @param TaxpayerIdNo: 纳税人识别号
+        # @type TaxpayerIdNo: String
+        # @param TaxEntityType: 纳税主体类型
+        # NATURAL:自然人
+        # NON_NATURAL:非自然人
+        # @type TaxEntityType: String
+        # @param TaxServiceProviderId: 财税服务商ID
+        # @type TaxServiceProviderId: String
+
+        attr_accessor :TaxTemplateInfoList, :TaxpayerIdNo, :TaxEntityType, :TaxServiceProviderId
+        
+        def initialize(taxtemplateinfolist=nil, taxpayeridno=nil, taxentitytype=nil, taxserviceproviderid=nil)
+          @TaxTemplateInfoList = taxtemplateinfolist
+          @TaxpayerIdNo = taxpayeridno
+          @TaxEntityType = taxentitytype
+          @TaxServiceProviderId = taxserviceproviderid
+        end
+
+        def deserialize(params)
+          unless params['TaxTemplateInfoList'].nil?
+            @TaxTemplateInfoList = []
+            params['TaxTemplateInfoList'].each do |i|
+              payeetaxtemplateinfo_tmp = PayeeTaxTemplateInfo.new
+              payeetaxtemplateinfo_tmp.deserialize(i)
+              @TaxTemplateInfoList << payeetaxtemplateinfo_tmp
+            end
+          end
+          @TaxpayerIdNo = params['TaxpayerIdNo']
+          @TaxEntityType = params['TaxEntityType']
+          @TaxServiceProviderId = params['TaxServiceProviderId']
+        end
+      end
+
+      # 收款用户计税模板信息
+      class PayeeTaxTemplateInfo < TencentCloud::Common::AbstractModel
+        # @param IncomeType: 收入类型
+        # LABOR: 劳务所得
+        # OCCASION: 偶然所得
+        # @type IncomeType: String
+        # @param TaxTemplateId: 计税模板ID
+        # @type TaxTemplateId: String
+
+        attr_accessor :IncomeType, :TaxTemplateId
+        
+        def initialize(incometype=nil, taxtemplateid=nil)
+          @IncomeType = incometype
+          @TaxTemplateId = taxtemplateid
+        end
+
+        def deserialize(params)
+          @IncomeType = params['IncomeType']
+          @TaxTemplateId = params['TaxTemplateId']
+        end
+      end
+
+      # 付款订单结果
+      class PaymentOrderResult < TencentCloud::Common::AbstractModel
+        # @param IncomeType: 收入类型
+        # LABOR:劳务所得
+        # OCCASION:偶然所得
+        # @type IncomeType: String
+        # @param AmountBeforeTax: 税前金额
+        # @type AmountBeforeTax: String
+        # @param AmountAfterTax: 税后金额
+        # @type AmountAfterTax: String
+        # @param Tax: 税金
+        # @type Tax: String
+        # @param OutOrderId: 外部订单ID
+        # @type OutOrderId: String
+        # @param OrderId: 订单ID
+        # @type OrderId: String
+        # @param InitiateTime: 发起时间
+        # @type InitiateTime: String
+        # @param FinishTime: 完成时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FinishTime: String
+        # @param Status: 状态
+        # ACCEPTED:已受理
+        # ACCOUNTED:已记账
+        # PAYING:付款中
+        # PAYED:完成付款渠道调用
+        # SUCCEED:已成功
+        # FAILED:已失败
+        # @type Status: String
+        # @param StatusDesc: 状态描述
+        # @type StatusDesc: String
+        # @param Remark: 提现备注
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Remark: String
+
+        attr_accessor :IncomeType, :AmountBeforeTax, :AmountAfterTax, :Tax, :OutOrderId, :OrderId, :InitiateTime, :FinishTime, :Status, :StatusDesc, :Remark
+        
+        def initialize(incometype=nil, amountbeforetax=nil, amountaftertax=nil, tax=nil, outorderid=nil, orderid=nil, initiatetime=nil, finishtime=nil, status=nil, statusdesc=nil, remark=nil)
+          @IncomeType = incometype
+          @AmountBeforeTax = amountbeforetax
+          @AmountAfterTax = amountaftertax
+          @Tax = tax
+          @OutOrderId = outorderid
+          @OrderId = orderid
+          @InitiateTime = initiatetime
+          @FinishTime = finishtime
+          @Status = status
+          @StatusDesc = statusdesc
+          @Remark = remark
+        end
+
+        def deserialize(params)
+          @IncomeType = params['IncomeType']
+          @AmountBeforeTax = params['AmountBeforeTax']
+          @AmountAfterTax = params['AmountAfterTax']
+          @Tax = params['Tax']
+          @OutOrderId = params['OutOrderId']
+          @OrderId = params['OrderId']
+          @InitiateTime = params['InitiateTime']
+          @FinishTime = params['FinishTime']
+          @Status = params['Status']
+          @StatusDesc = params['StatusDesc']
+          @Remark = params['Remark']
+        end
+      end
+
+      # 付款订单状态结果
+      class PaymentOrderStatusResult < TencentCloud::Common::AbstractModel
+        # @param Status: 状态
+        # ACCEPTED:已受理
+        # ACCOUNTED:已记账
+        # PAYING:付款中
+        # PAYED:完成付款渠道调用
+        # SUCCEED:已成功
+        # FAILED:已失败
+        # @type Status: String
+        # @param StatusDesc: 状态描述
+        # @type StatusDesc: String
+
+        attr_accessor :Status, :StatusDesc
+        
+        def initialize(status=nil, statusdesc=nil)
+          @Status = status
+          @StatusDesc = statusdesc
+        end
+
+        def deserialize(params)
+          @Status = params['Status']
+          @StatusDesc = params['StatusDesc']
+        end
+      end
+
+      # 付款订单列表
+      class PaymentOrders < TencentCloud::Common::AbstractModel
+        # @param List: 列表
+        # @type List: Array
+        # @param Count: 总数
+        # @type Count: Integer
+
+        attr_accessor :List, :Count
+        
+        def initialize(list=nil, count=nil)
+          @List = list
+          @Count = count
+        end
+
+        def deserialize(params)
+          unless params['List'].nil?
+            @List = []
+            params['List'].each do |i|
+              paymentorderresult_tmp = PaymentOrderResult.new
+              paymentorderresult_tmp.deserialize(i)
+              @List << paymentorderresult_tmp
+            end
+          end
+          @Count = params['Count']
         end
       end
 
@@ -13225,6 +14214,535 @@ module TencentCloud
           @ChannelAccountBookId = params['ChannelAccountBookId']
           @AvailableBalance = params['AvailableBalance']
           @CollectMoneyAccountInfo = params['CollectMoneyAccountInfo']
+        end
+      end
+
+      # QueryFlexAmountBeforeTax请求参数结构体
+      class QueryFlexAmountBeforeTaxRequest < TencentCloud::Common::AbstractModel
+        # @param PayeeId: 收款用户ID
+        # @type PayeeId: String
+        # @param IncomeType: 收入类型
+        # LABOR:劳务所得
+        # OCCASION:偶然所得
+        # @type IncomeType: String
+        # @param AmountAfterTax: 税后金额
+        # @type AmountAfterTax: String
+
+        attr_accessor :PayeeId, :IncomeType, :AmountAfterTax
+        
+        def initialize(payeeid=nil, incometype=nil, amountaftertax=nil)
+          @PayeeId = payeeid
+          @IncomeType = incometype
+          @AmountAfterTax = amountaftertax
+        end
+
+        def deserialize(params)
+          @PayeeId = params['PayeeId']
+          @IncomeType = params['IncomeType']
+          @AmountAfterTax = params['AmountAfterTax']
+        end
+      end
+
+      # QueryFlexAmountBeforeTax返回参数结构体
+      class QueryFlexAmountBeforeTaxResponse < TencentCloud::Common::AbstractModel
+        # @param ErrCode: 错误码。SUCCESS为成功，其他为失败
+        # @type ErrCode: String
+        # @param ErrMessage: 错误消息
+        # @type ErrMessage: String
+        # @param Result: 返回结果
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Result: :class:`Tencentcloud::Cpdp.v20190820.models.AmountBeforeTaxResult`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ErrCode, :ErrMessage, :Result, :RequestId
+        
+        def initialize(errcode=nil, errmessage=nil, result=nil, requestid=nil)
+          @ErrCode = errcode
+          @ErrMessage = errmessage
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ErrCode = params['ErrCode']
+          @ErrMessage = params['ErrMessage']
+          unless params['Result'].nil?
+            @Result = AmountBeforeTaxResult.new
+            @Result.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # QueryFlexFreezeOrderList请求参数结构体
+      class QueryFlexFreezeOrderListRequest < TencentCloud::Common::AbstractModel
+        # @param PayeeId: 收款用户ID
+        # @type PayeeId: String
+        # @param OperationType: 操作类型
+        # FREEZE:冻结
+        # UNFREEZE:解冻
+        # @type OperationType: String
+        # @param StartTime: 开始时间，格式"yyyy-MM-dd hh:mm:ss"
+        # @type StartTime: String
+        # @param EndTime: 结束时间，格式"yyyy-MM-dd hh:mm:ss"
+        # @type EndTime: String
+        # @param PageNumber: 分页
+        # @type PageNumber: :class:`Tencentcloud::Cpdp.v20190820.models.Paging`
+
+        attr_accessor :PayeeId, :OperationType, :StartTime, :EndTime, :PageNumber
+        
+        def initialize(payeeid=nil, operationtype=nil, starttime=nil, endtime=nil, pagenumber=nil)
+          @PayeeId = payeeid
+          @OperationType = operationtype
+          @StartTime = starttime
+          @EndTime = endtime
+          @PageNumber = pagenumber
+        end
+
+        def deserialize(params)
+          @PayeeId = params['PayeeId']
+          @OperationType = params['OperationType']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          unless params['PageNumber'].nil?
+            @PageNumber = Paging.new
+            @PageNumber.deserialize(params['PageNumber'])
+          end
+        end
+      end
+
+      # QueryFlexFreezeOrderList返回参数结构体
+      class QueryFlexFreezeOrderListResponse < TencentCloud::Common::AbstractModel
+        # @param ErrCode: 错误码。SUCCESS为成功，其他为失败
+        # @type ErrCode: String
+        # @param ErrMessage: 错误消息
+        # @type ErrMessage: String
+        # @param Result: 返回结果
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Result: :class:`Tencentcloud::Cpdp.v20190820.models.FreezeOrders`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ErrCode, :ErrMessage, :Result, :RequestId
+        
+        def initialize(errcode=nil, errmessage=nil, result=nil, requestid=nil)
+          @ErrCode = errcode
+          @ErrMessage = errmessage
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ErrCode = params['ErrCode']
+          @ErrMessage = params['ErrMessage']
+          unless params['Result'].nil?
+            @Result = FreezeOrders.new
+            @Result.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # QueryFlexPayeeAccountBalance请求参数结构体
+      class QueryFlexPayeeAccountBalanceRequest < TencentCloud::Common::AbstractModel
+        # @param PayeeId: 收款用户ID
+        # @type PayeeId: String
+        # @param IncomeType: 收入类型
+        # LABOR:劳务所得
+        # OCCASION:偶然所得
+        # @type IncomeType: String
+
+        attr_accessor :PayeeId, :IncomeType
+        
+        def initialize(payeeid=nil, incometype=nil)
+          @PayeeId = payeeid
+          @IncomeType = incometype
+        end
+
+        def deserialize(params)
+          @PayeeId = params['PayeeId']
+          @IncomeType = params['IncomeType']
+        end
+      end
+
+      # QueryFlexPayeeAccountBalance返回参数结构体
+      class QueryFlexPayeeAccountBalanceResponse < TencentCloud::Common::AbstractModel
+        # @param ErrCode: 错误码。SUCCESS为成功，其他为失败
+        # @type ErrCode: String
+        # @param ErrMessage: 错误消息
+        # @type ErrMessage: String
+        # @param Result: 返回结果
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Result: :class:`Tencentcloud::Cpdp.v20190820.models.PayeeAccountBalanceResult`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ErrCode, :ErrMessage, :Result, :RequestId
+        
+        def initialize(errcode=nil, errmessage=nil, result=nil, requestid=nil)
+          @ErrCode = errcode
+          @ErrMessage = errmessage
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ErrCode = params['ErrCode']
+          @ErrMessage = params['ErrMessage']
+          unless params['Result'].nil?
+            @Result = PayeeAccountBalanceResult.new
+            @Result.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # QueryFlexPayeeAccountInfo请求参数结构体
+      class QueryFlexPayeeAccountInfoRequest < TencentCloud::Common::AbstractModel
+        # @param PayeeId: 收款用户ID
+        # @type PayeeId: String
+        # @param OutUserId: 外部用户ID
+        # @type OutUserId: String
+
+        attr_accessor :PayeeId, :OutUserId
+        
+        def initialize(payeeid=nil, outuserid=nil)
+          @PayeeId = payeeid
+          @OutUserId = outuserid
+        end
+
+        def deserialize(params)
+          @PayeeId = params['PayeeId']
+          @OutUserId = params['OutUserId']
+        end
+      end
+
+      # QueryFlexPayeeAccountInfo返回参数结构体
+      class QueryFlexPayeeAccountInfoResponse < TencentCloud::Common::AbstractModel
+        # @param ErrCode: 错误码。SUCCESS为成功，其他为失败
+        # @type ErrCode: String
+        # @param ErrMessage: 错误消息
+        # @type ErrMessage: String
+        # @param Result: 返回结果
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Result: :class:`Tencentcloud::Cpdp.v20190820.models.PayeeAccountInfoResult`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ErrCode, :ErrMessage, :Result, :RequestId
+        
+        def initialize(errcode=nil, errmessage=nil, result=nil, requestid=nil)
+          @ErrCode = errcode
+          @ErrMessage = errmessage
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ErrCode = params['ErrCode']
+          @ErrMessage = params['ErrMessage']
+          unless params['Result'].nil?
+            @Result = PayeeAccountInfoResult.new
+            @Result.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # QueryFlexPayeeAccountList请求参数结构体
+      class QueryFlexPayeeAccountListRequest < TencentCloud::Common::AbstractModel
+        # @param PropertyInfo: 账户属性信息
+        # @type PropertyInfo: :class:`Tencentcloud::Cpdp.v20190820.models.PayeeAccountPropertyInfo`
+        # @param StartTime: 开始时间
+        # @type StartTime: String
+        # @param EndTime: 结束时间
+        # @type EndTime: String
+        # @param PageNumber: 分页
+        # @type PageNumber: :class:`Tencentcloud::Cpdp.v20190820.models.Paging`
+
+        attr_accessor :PropertyInfo, :StartTime, :EndTime, :PageNumber
+        
+        def initialize(propertyinfo=nil, starttime=nil, endtime=nil, pagenumber=nil)
+          @PropertyInfo = propertyinfo
+          @StartTime = starttime
+          @EndTime = endtime
+          @PageNumber = pagenumber
+        end
+
+        def deserialize(params)
+          unless params['PropertyInfo'].nil?
+            @PropertyInfo = PayeeAccountPropertyInfo.new
+            @PropertyInfo.deserialize(params['PropertyInfo'])
+          end
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          unless params['PageNumber'].nil?
+            @PageNumber = Paging.new
+            @PageNumber.deserialize(params['PageNumber'])
+          end
+        end
+      end
+
+      # QueryFlexPayeeAccountList返回参数结构体
+      class QueryFlexPayeeAccountListResponse < TencentCloud::Common::AbstractModel
+        # @param ErrCode: 错误码。SUCCESS为成功，其他为失败
+        # @type ErrCode: String
+        # @param ErrMessage: 错误消息
+        # @type ErrMessage: String
+        # @param Result: 返回结果
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Result: :class:`Tencentcloud::Cpdp.v20190820.models.PayeeAccountInfos`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ErrCode, :ErrMessage, :Result, :RequestId
+        
+        def initialize(errcode=nil, errmessage=nil, result=nil, requestid=nil)
+          @ErrCode = errcode
+          @ErrMessage = errmessage
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ErrCode = params['ErrCode']
+          @ErrMessage = params['ErrMessage']
+          unless params['Result'].nil?
+            @Result = PayeeAccountInfos.new
+            @Result.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # QueryFlexPayeeInfo请求参数结构体
+      class QueryFlexPayeeInfoRequest < TencentCloud::Common::AbstractModel
+        # @param PayeeId: 收款用户ID
+        # @type PayeeId: String
+        # @param OutUserId: 外部用户ID
+        # @type OutUserId: String
+
+        attr_accessor :PayeeId, :OutUserId
+        
+        def initialize(payeeid=nil, outuserid=nil)
+          @PayeeId = payeeid
+          @OutUserId = outuserid
+        end
+
+        def deserialize(params)
+          @PayeeId = params['PayeeId']
+          @OutUserId = params['OutUserId']
+        end
+      end
+
+      # QueryFlexPayeeInfo返回参数结构体
+      class QueryFlexPayeeInfoResponse < TencentCloud::Common::AbstractModel
+        # @param ErrCode: 错误码。SUCCESS为成功，其他为失败
+        # @type ErrCode: String
+        # @param ErrMessage: 错误消息
+        # @type ErrMessage: String
+        # @param Result: 返回结果
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Result: :class:`Tencentcloud::Cpdp.v20190820.models.PayeeInfoResult`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ErrCode, :ErrMessage, :Result, :RequestId
+        
+        def initialize(errcode=nil, errmessage=nil, result=nil, requestid=nil)
+          @ErrCode = errcode
+          @ErrMessage = errmessage
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ErrCode = params['ErrCode']
+          @ErrMessage = params['ErrMessage']
+          unless params['Result'].nil?
+            @Result = PayeeInfoResult.new
+            @Result.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # QueryFlexPaymentOrderList请求参数结构体
+      class QueryFlexPaymentOrderListRequest < TencentCloud::Common::AbstractModel
+        # @param PayeeId: 收款用户ID
+        # @type PayeeId: String
+        # @param StartTime: 开始时间，格式"yyyy-MM-dd hh:mm:ss"
+        # @type StartTime: String
+        # @param EndTime: 结束时间，格式"yyyy-MM-dd hh:mm:ss"
+        # @type EndTime: String
+        # @param PageNumber: 分页
+        # @type PageNumber: :class:`Tencentcloud::Cpdp.v20190820.models.Paging`
+
+        attr_accessor :PayeeId, :StartTime, :EndTime, :PageNumber
+        
+        def initialize(payeeid=nil, starttime=nil, endtime=nil, pagenumber=nil)
+          @PayeeId = payeeid
+          @StartTime = starttime
+          @EndTime = endtime
+          @PageNumber = pagenumber
+        end
+
+        def deserialize(params)
+          @PayeeId = params['PayeeId']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          unless params['PageNumber'].nil?
+            @PageNumber = Paging.new
+            @PageNumber.deserialize(params['PageNumber'])
+          end
+        end
+      end
+
+      # QueryFlexPaymentOrderList返回参数结构体
+      class QueryFlexPaymentOrderListResponse < TencentCloud::Common::AbstractModel
+        # @param ErrCode: 错误码。SUCCESS为成功，其他为失败
+        # @type ErrCode: String
+        # @param ErrMessage: 错误消息
+        # @type ErrMessage: String
+        # @param Result: 返回结果
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Result: :class:`Tencentcloud::Cpdp.v20190820.models.PaymentOrders`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ErrCode, :ErrMessage, :Result, :RequestId
+        
+        def initialize(errcode=nil, errmessage=nil, result=nil, requestid=nil)
+          @ErrCode = errcode
+          @ErrMessage = errmessage
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ErrCode = params['ErrCode']
+          @ErrMessage = params['ErrMessage']
+          unless params['Result'].nil?
+            @Result = PaymentOrders.new
+            @Result.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # QueryFlexPaymentOrderStatus请求参数结构体
+      class QueryFlexPaymentOrderStatusRequest < TencentCloud::Common::AbstractModel
+        # @param OutOrderId: 外部订单ID
+        # @type OutOrderId: String
+        # @param OrderId: 订单ID
+        # @type OrderId: String
+
+        attr_accessor :OutOrderId, :OrderId
+        
+        def initialize(outorderid=nil, orderid=nil)
+          @OutOrderId = outorderid
+          @OrderId = orderid
+        end
+
+        def deserialize(params)
+          @OutOrderId = params['OutOrderId']
+          @OrderId = params['OrderId']
+        end
+      end
+
+      # QueryFlexPaymentOrderStatus返回参数结构体
+      class QueryFlexPaymentOrderStatusResponse < TencentCloud::Common::AbstractModel
+        # @param ErrCode: 错误码。SUCCESS为成功，其他为失败
+        # @type ErrCode: String
+        # @param ErrMessage: 错误消息
+        # @type ErrMessage: String
+        # @param Result: 返回结果
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Result: :class:`Tencentcloud::Cpdp.v20190820.models.PaymentOrderStatusResult`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ErrCode, :ErrMessage, :Result, :RequestId
+        
+        def initialize(errcode=nil, errmessage=nil, result=nil, requestid=nil)
+          @ErrCode = errcode
+          @ErrMessage = errmessage
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ErrCode = params['ErrCode']
+          @ErrMessage = params['ErrMessage']
+          unless params['Result'].nil?
+            @Result = PaymentOrderStatusResult.new
+            @Result.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # QueryFlexSettlementOrderList请求参数结构体
+      class QueryFlexSettlementOrderListRequest < TencentCloud::Common::AbstractModel
+        # @param PayeeId: 收款用户ID
+        # @type PayeeId: String
+        # @param StartTime: 开始时间，格式"yyyy-MM-dd hh:mm:ss"
+        # @type StartTime: String
+        # @param EndTime: 结束时间，格式"yyyy-MM-dd hh:mm:ss"
+        # @type EndTime: String
+        # @param PageNumber: 分页
+        # @type PageNumber: :class:`Tencentcloud::Cpdp.v20190820.models.Paging`
+
+        attr_accessor :PayeeId, :StartTime, :EndTime, :PageNumber
+        
+        def initialize(payeeid=nil, starttime=nil, endtime=nil, pagenumber=nil)
+          @PayeeId = payeeid
+          @StartTime = starttime
+          @EndTime = endtime
+          @PageNumber = pagenumber
+        end
+
+        def deserialize(params)
+          @PayeeId = params['PayeeId']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          unless params['PageNumber'].nil?
+            @PageNumber = Paging.new
+            @PageNumber.deserialize(params['PageNumber'])
+          end
+        end
+      end
+
+      # QueryFlexSettlementOrderList返回参数结构体
+      class QueryFlexSettlementOrderListResponse < TencentCloud::Common::AbstractModel
+        # @param ErrCode: 错误码。SUCCESS为成功，其他为失败
+        # @type ErrCode: String
+        # @param ErrMessage: 错误消息
+        # @type ErrMessage: String
+        # @param Result: 返回结果
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Result: :class:`Tencentcloud::Cpdp.v20190820.models.SettlementOrders`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ErrCode, :ErrMessage, :Result, :RequestId
+        
+        def initialize(errcode=nil, errmessage=nil, result=nil, requestid=nil)
+          @ErrCode = errcode
+          @ErrMessage = errmessage
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ErrCode = params['ErrCode']
+          @ErrMessage = params['ErrMessage']
+          unless params['Result'].nil?
+            @Result = SettlementOrders.new
+            @Result.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
         end
       end
 
@@ -19655,6 +21173,101 @@ module TencentCloud
           @LocaleCode = params['LocaleCode']
           @RegionCode = params['RegionCode']
           @UserClientIp = params['UserClientIp']
+        end
+      end
+
+      # 结算订单结果
+      class SettlementOrderResult < TencentCloud::Common::AbstractModel
+        # @param IncomeType: 收入类型
+        # LABOR:劳务所得
+        # OCCASION:偶然所得
+        # @type IncomeType: String
+        # @param AmountBeforeTax: 税前金额
+        # @type AmountBeforeTax: String
+        # @param AmountAfterTax: 税后金额
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AmountAfterTax: String
+        # @param Tax: 税金
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Tax: String
+        # @param OutOrderId: 外部订单ID
+        # @type OutOrderId: String
+        # @param OrderId: 订单ID
+        # @type OrderId: String
+        # @param InitiateTime: 发起时间
+        # @type InitiateTime: String
+        # @param FinishTime: 完成时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FinishTime: String
+        # @param Status: 状态
+        # ACCEPTED:已受理
+        # ACCOUNTED:已记账
+        # SUCCEED:已成功
+        # FAILED:已失败
+        # @type Status: String
+        # @param StatusDesc: 状态描述
+        # @type StatusDesc: String
+        # @param Remark: 备注
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Remark: String
+
+        attr_accessor :IncomeType, :AmountBeforeTax, :AmountAfterTax, :Tax, :OutOrderId, :OrderId, :InitiateTime, :FinishTime, :Status, :StatusDesc, :Remark
+        
+        def initialize(incometype=nil, amountbeforetax=nil, amountaftertax=nil, tax=nil, outorderid=nil, orderid=nil, initiatetime=nil, finishtime=nil, status=nil, statusdesc=nil, remark=nil)
+          @IncomeType = incometype
+          @AmountBeforeTax = amountbeforetax
+          @AmountAfterTax = amountaftertax
+          @Tax = tax
+          @OutOrderId = outorderid
+          @OrderId = orderid
+          @InitiateTime = initiatetime
+          @FinishTime = finishtime
+          @Status = status
+          @StatusDesc = statusdesc
+          @Remark = remark
+        end
+
+        def deserialize(params)
+          @IncomeType = params['IncomeType']
+          @AmountBeforeTax = params['AmountBeforeTax']
+          @AmountAfterTax = params['AmountAfterTax']
+          @Tax = params['Tax']
+          @OutOrderId = params['OutOrderId']
+          @OrderId = params['OrderId']
+          @InitiateTime = params['InitiateTime']
+          @FinishTime = params['FinishTime']
+          @Status = params['Status']
+          @StatusDesc = params['StatusDesc']
+          @Remark = params['Remark']
+        end
+      end
+
+      # 结算订单列表
+      class SettlementOrders < TencentCloud::Common::AbstractModel
+        # @param List: 列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type List: Array
+        # @param Count: 总数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Count: Integer
+
+        attr_accessor :List, :Count
+        
+        def initialize(list=nil, count=nil)
+          @List = list
+          @Count = count
+        end
+
+        def deserialize(params)
+          unless params['List'].nil?
+            @List = []
+            params['List'].each do |i|
+              settlementorderresult_tmp = SettlementOrderResult.new
+              settlementorderresult_tmp.deserialize(i)
+              @List << settlementorderresult_tmp
+            end
+          end
+          @Count = params['Count']
         end
       end
 

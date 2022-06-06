@@ -70,7 +70,7 @@ module TencentCloud
 
       # DescribeRegions请求参数结构体
       class DescribeRegionsRequest < TencentCloud::Common::AbstractModel
-        # @param Product: 待查询产品的名称，例如cvm
+        # @param Product: 待查询产品的名称，例如cvm，具体取值请查询DescribeProducts接口
         # @type Product: String
 
         attr_accessor :Product
@@ -117,7 +117,7 @@ module TencentCloud
 
       # DescribeZones请求参数结构体
       class DescribeZonesRequest < TencentCloud::Common::AbstractModel
-        # @param Product: 待查询产品的名称，例如cvm
+        # @param Product: 待查询产品的名称，例如cvm，具体取值请查询DescribeProducts接口
         # @type Product: String
 
         attr_accessor :Product

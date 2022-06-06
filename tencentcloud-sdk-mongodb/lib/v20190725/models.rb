@@ -2943,13 +2943,16 @@ module TencentCloud
         # @type Zone: String
         # @param SpecItems: 售卖规格信息
         # @type SpecItems: Array
+        # @param SupportMultiAZ: 是否支持跨可用区部署 1-支持，0-不支持
+        # @type SupportMultiAZ: Integer
 
-        attr_accessor :Region, :Zone, :SpecItems
+        attr_accessor :Region, :Zone, :SpecItems, :SupportMultiAZ
         
-        def initialize(region=nil, zone=nil, specitems=nil)
+        def initialize(region=nil, zone=nil, specitems=nil, supportmultiaz=nil)
           @Region = region
           @Zone = zone
           @SpecItems = specitems
+          @SupportMultiAZ = supportmultiaz
         end
 
         def deserialize(params)
@@ -2963,6 +2966,7 @@ module TencentCloud
               @SpecItems << specitem_tmp
             end
           end
+          @SupportMultiAZ = params['SupportMultiAZ']
         end
       end
 

@@ -29,6 +29,30 @@ module TencentCloud
         end
 
 
+        # AddCLSTopicDomains 用于新增域名到某日志主题下
+
+        # @param request: Request instance for AddCLSTopicDomains.
+        # @type request: :class:`Tencentcloud::cdn::V20180606::AddCLSTopicDomainsRequest`
+        # @rtype: :class:`Tencentcloud::cdn::V20180606::AddCLSTopicDomainsResponse`
+        def AddCLSTopicDomains(request)
+          body = send_request('AddCLSTopicDomains', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = AddCLSTopicDomainsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # AddCdnDomain 用于新增内容分发网络加速域名。1分钟内最多可新增100个域名。
 
         # @param request: Request instance for AddCdnDomain.

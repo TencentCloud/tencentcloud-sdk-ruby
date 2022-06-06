@@ -1634,19 +1634,23 @@ module TencentCloud
 
       # DescribeSparkAppTasks返回参数结构体
       class DescribeSparkAppTasksResponse < TencentCloud::Common::AbstractModel
-        # @param Tasks: 任务列表
+        # @param Tasks: 任务结果（该字段已废弃）
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Tasks: :class:`Tencentcloud::Dlc.v20210125.models.TaskResponseInfo`
         # @param TotalCount: 任务总数
         # @type TotalCount: Integer
+        # @param SparkAppTasks: 任务结果列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SparkAppTasks: Array
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Tasks, :TotalCount, :RequestId
+        attr_accessor :Tasks, :TotalCount, :SparkAppTasks, :RequestId
         
-        def initialize(tasks=nil, totalcount=nil, requestid=nil)
+        def initialize(tasks=nil, totalcount=nil, sparkapptasks=nil, requestid=nil)
           @Tasks = tasks
           @TotalCount = totalcount
+          @SparkAppTasks = sparkapptasks
           @RequestId = requestid
         end
 
@@ -1656,6 +1660,14 @@ module TencentCloud
             @Tasks.deserialize(params['Tasks'])
           end
           @TotalCount = params['TotalCount']
+          unless params['SparkAppTasks'].nil?
+            @SparkAppTasks = []
+            params['SparkAppTasks'].each do |i|
+              taskresponseinfo_tmp = TaskResponseInfo.new
+              taskresponseinfo_tmp.deserialize(i)
+              @SparkAppTasks << taskresponseinfo_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
