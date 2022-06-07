@@ -10656,18 +10656,26 @@ module TencentCloud
         # @param RiskIncrease: 待处理风险个数较昨日增长
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RiskIncrease: Integer
+        # @param IsolateIncrease: 隔离事件个数较昨日新增
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsolateIncrease: Integer
+        # @param IsolateCnt: 隔离事件总数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsolateCnt: Integer
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :TaskId, :RiskContainerCnt, :RiskCnt, :VirusDataBaseModifyTime, :RiskContainerIncrease, :RiskIncrease, :RequestId
+        attr_accessor :TaskId, :RiskContainerCnt, :RiskCnt, :VirusDataBaseModifyTime, :RiskContainerIncrease, :RiskIncrease, :IsolateIncrease, :IsolateCnt, :RequestId
         
-        def initialize(taskid=nil, riskcontainercnt=nil, riskcnt=nil, virusdatabasemodifytime=nil, riskcontainerincrease=nil, riskincrease=nil, requestid=nil)
+        def initialize(taskid=nil, riskcontainercnt=nil, riskcnt=nil, virusdatabasemodifytime=nil, riskcontainerincrease=nil, riskincrease=nil, isolateincrease=nil, isolatecnt=nil, requestid=nil)
           @TaskId = taskid
           @RiskContainerCnt = riskcontainercnt
           @RiskCnt = riskcnt
           @VirusDataBaseModifyTime = virusdatabasemodifytime
           @RiskContainerIncrease = riskcontainerincrease
           @RiskIncrease = riskincrease
+          @IsolateIncrease = isolateincrease
+          @IsolateCnt = isolatecnt
           @RequestId = requestid
         end
 
@@ -10678,6 +10686,8 @@ module TencentCloud
           @VirusDataBaseModifyTime = params['VirusDataBaseModifyTime']
           @RiskContainerIncrease = params['RiskContainerIncrease']
           @RiskIncrease = params['RiskIncrease']
+          @IsolateIncrease = params['IsolateIncrease']
+          @IsolateCnt = params['IsolateCnt']
           @RequestId = params['RequestId']
         end
       end
@@ -10694,7 +10704,10 @@ module TencentCloud
         # <li>ContainerName - String - 是否必填：否 - 容器名称</li>
         # <li>ContainerId - String - 是否必填：否 - 容器id</li>
         # <li>Hostname - String - 是否必填：否 - 主机名称</li>
-        # <li>HostIp- String - 是否必填：是 - 容器名称</li>
+        # <li>HostIp- String - 是否必填：否 - 主机IP</li>
+        # <li>ImageId- String - 是否必填：否 - 镜像ID</li>
+        # <li>ImageName- String - 是否必填：否 - 镜像名称</li>
+        # <li>Status- String - 是否必填：否 - 状态</li>
         # @type Filters: Array
         # @param By: 排序字段
         # @type By: String

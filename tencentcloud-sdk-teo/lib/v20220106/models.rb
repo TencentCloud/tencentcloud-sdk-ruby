@@ -17,6 +17,158 @@
 module TencentCloud
   module Teo
     module V20220106
+      # 精准防护条件
+      class ACLCondition < TencentCloud::Common::AbstractModel
+        # @param MatchFrom: 匹配字段
+        # @type MatchFrom: String
+        # @param MatchParam: 匹配字符串
+        # @type MatchParam: String
+        # @param Operator: 匹配关系
+        # @type Operator: String
+        # @param MatchContent: 匹配内容
+        # @type MatchContent: String
+
+        attr_accessor :MatchFrom, :MatchParam, :Operator, :MatchContent
+        
+        def initialize(matchfrom=nil, matchparam=nil, operator=nil, matchcontent=nil)
+          @MatchFrom = matchfrom
+          @MatchParam = matchparam
+          @Operator = operator
+          @MatchContent = matchcontent
+        end
+
+        def deserialize(params)
+          @MatchFrom = params['MatchFrom']
+          @MatchParam = params['MatchParam']
+          @Operator = params['Operator']
+          @MatchContent = params['MatchContent']
+        end
+      end
+
+      # ACL用户规则
+      class ACLUserRule < TencentCloud::Common::AbstractModel
+        # @param RuleName: 规则名
+        # @type RuleName: String
+        # @param Action: 动作
+        # @type Action: String
+        # @param RuleStatus: 状态
+        # @type RuleStatus: String
+        # @param Conditions: ACL规则
+        # @type Conditions: Array
+        # @param RulePriority: 规则优先级
+        # @type RulePriority: Integer
+        # @param RuleID: 规则id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RuleID: Integer
+        # @param UpdateTime: 更新时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UpdateTime: String
+        # @param PunishTime: ip封禁的惩罚时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PunishTime: Integer
+        # @param PunishTimeUnit: ip封禁的惩罚时间单位
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PunishTimeUnit: String
+        # @param Name: 自定义返回页面的名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
+        # @param PageId: 自定义返回页面的实例id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PageId: Integer
+        # @param RedirectUrl: 重定向时候的地址，必须为本用户接入的站点子域名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RedirectUrl: String
+        # @param ResponseCode: 重定向时候的返回码
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResponseCode: Integer
+
+        attr_accessor :RuleName, :Action, :RuleStatus, :Conditions, :RulePriority, :RuleID, :UpdateTime, :PunishTime, :PunishTimeUnit, :Name, :PageId, :RedirectUrl, :ResponseCode
+        
+        def initialize(rulename=nil, action=nil, rulestatus=nil, conditions=nil, rulepriority=nil, ruleid=nil, updatetime=nil, punishtime=nil, punishtimeunit=nil, name=nil, pageid=nil, redirecturl=nil, responsecode=nil)
+          @RuleName = rulename
+          @Action = action
+          @RuleStatus = rulestatus
+          @Conditions = conditions
+          @RulePriority = rulepriority
+          @RuleID = ruleid
+          @UpdateTime = updatetime
+          @PunishTime = punishtime
+          @PunishTimeUnit = punishtimeunit
+          @Name = name
+          @PageId = pageid
+          @RedirectUrl = redirecturl
+          @ResponseCode = responsecode
+        end
+
+        def deserialize(params)
+          @RuleName = params['RuleName']
+          @Action = params['Action']
+          @RuleStatus = params['RuleStatus']
+          unless params['Conditions'].nil?
+            @Conditions = []
+            params['Conditions'].each do |i|
+              aclcondition_tmp = ACLCondition.new
+              aclcondition_tmp.deserialize(i)
+              @Conditions << aclcondition_tmp
+            end
+          end
+          @RulePriority = params['RulePriority']
+          @RuleID = params['RuleID']
+          @UpdateTime = params['UpdateTime']
+          @PunishTime = params['PunishTime']
+          @PunishTimeUnit = params['PunishTimeUnit']
+          @Name = params['Name']
+          @PageId = params['PageId']
+          @RedirectUrl = params['RedirectUrl']
+          @ResponseCode = params['ResponseCode']
+        end
+      end
+
+      # ACL配置
+      class AclConfig < TencentCloud::Common::AbstractModel
+        # @param Switch: 开关
+        # @type Switch: String
+        # @param UserRules: ACL用户规则
+        # @type UserRules: Array
+
+        attr_accessor :Switch, :UserRules
+        
+        def initialize(switch=nil, userrules=nil)
+          @Switch = switch
+          @UserRules = userrules
+        end
+
+        def deserialize(params)
+          @Switch = params['Switch']
+          unless params['UserRules'].nil?
+            @UserRules = []
+            params['UserRules'].each do |i|
+              acluserrule_tmp = ACLUserRule.new
+              acluserrule_tmp.deserialize(i)
+              @UserRules << acluserrule_tmp
+            end
+          end
+        end
+      end
+
+      # AI规则引擎防护
+      class AiRule < TencentCloud::Common::AbstractModel
+        # @param Mode: smart_status_close-关闭；smart_status_open-拦截处置；
+        # smart_status_observe-观察处置
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Mode: String
+
+        attr_accessor :Mode
+        
+        def initialize(mode=nil)
+          @Mode = mode
+        end
+
+        def deserialize(params)
+          @Mode = params['Mode']
+        end
+      end
+
       # 应用代理实例
       class ApplicationProxy < TencentCloud::Common::AbstractModel
         # @param ProxyId: 实例ID
@@ -182,6 +334,195 @@ module TencentCloud
           @Status = params['Status']
           @ForwardClientIp = params['ForwardClientIp']
           @SessionPersist = params['SessionPersist']
+        end
+      end
+
+      # 安全Bot配置
+      class BotConfig < TencentCloud::Common::AbstractModel
+        # @param Switch: bot开关
+        # @type Switch: String
+        # @param ManagedRule: 预置规则
+        # @type ManagedRule: :class:`Tencentcloud::Teo.v20220106.models.BotManagedRule`
+        # @param UaBotRule: 保留
+        # @type UaBotRule: :class:`Tencentcloud::Teo.v20220106.models.BotManagedRule`
+        # @param IspBotRule: 保留
+        # @type IspBotRule: :class:`Tencentcloud::Teo.v20220106.models.BotManagedRule`
+        # @param PortraitRule: 用户画像规则
+        # @type PortraitRule: :class:`Tencentcloud::Teo.v20220106.models.BotPortraitRule`
+
+        attr_accessor :Switch, :ManagedRule, :UaBotRule, :IspBotRule, :PortraitRule
+        
+        def initialize(switch=nil, managedrule=nil, uabotrule=nil, ispbotrule=nil, portraitrule=nil)
+          @Switch = switch
+          @ManagedRule = managedrule
+          @UaBotRule = uabotrule
+          @IspBotRule = ispbotrule
+          @PortraitRule = portraitrule
+        end
+
+        def deserialize(params)
+          @Switch = params['Switch']
+          unless params['ManagedRule'].nil?
+            @ManagedRule = BotManagedRule.new
+            @ManagedRule.deserialize(params['ManagedRule'])
+          end
+          unless params['UaBotRule'].nil?
+            @UaBotRule = BotManagedRule.new
+            @UaBotRule.deserialize(params['UaBotRule'])
+          end
+          unless params['IspBotRule'].nil?
+            @IspBotRule = BotManagedRule.new
+            @IspBotRule.deserialize(params['IspBotRule'])
+          end
+          unless params['PortraitRule'].nil?
+            @PortraitRule = BotPortraitRule.new
+            @PortraitRule.deserialize(params['PortraitRule'])
+          end
+        end
+      end
+
+      # Bot 规则
+      class BotManagedRule < TencentCloud::Common::AbstractModel
+        # @param ManagedIds: 想开启的规则id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ManagedIds: Array
+        # @param RuleID: 本规则的id
+        # @type RuleID: Integer
+        # @param Action: drop/trans/monitor/alg
+        # @type Action: String
+        # @param PunishTime: ip封禁的惩罚时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PunishTime: Integer
+        # @param PunishTimeUnit: 单位
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PunishTimeUnit: String
+        # @param Name: 自定义返回页面的名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
+        # @param PageId: 自定义返回页面的实例id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PageId: Integer
+        # @param RedirectUrl: 重定向时候的地址，必须为本用户接入的站点子域名，使用URLENCODE
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RedirectUrl: String
+        # @param ResponseCode: 重定向时候的返回码
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResponseCode: Integer
+        # @param TransManagedIds: 放行的规则ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TransManagedIds: Array
+        # @param AlgManagedIds: JS挑战的规则ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AlgManagedIds: Array
+        # @param CapManagedIds: 数字验证码的规则ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CapManagedIds: Array
+        # @param MonManagedIds: 观察的规则ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MonManagedIds: Array
+        # @param DropManagedIds: 拦截的规则ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DropManagedIds: Array
+
+        attr_accessor :ManagedIds, :RuleID, :Action, :PunishTime, :PunishTimeUnit, :Name, :PageId, :RedirectUrl, :ResponseCode, :TransManagedIds, :AlgManagedIds, :CapManagedIds, :MonManagedIds, :DropManagedIds
+        
+        def initialize(managedids=nil, ruleid=nil, action=nil, punishtime=nil, punishtimeunit=nil, name=nil, pageid=nil, redirecturl=nil, responsecode=nil, transmanagedids=nil, algmanagedids=nil, capmanagedids=nil, monmanagedids=nil, dropmanagedids=nil)
+          @ManagedIds = managedids
+          @RuleID = ruleid
+          @Action = action
+          @PunishTime = punishtime
+          @PunishTimeUnit = punishtimeunit
+          @Name = name
+          @PageId = pageid
+          @RedirectUrl = redirecturl
+          @ResponseCode = responsecode
+          @TransManagedIds = transmanagedids
+          @AlgManagedIds = algmanagedids
+          @CapManagedIds = capmanagedids
+          @MonManagedIds = monmanagedids
+          @DropManagedIds = dropmanagedids
+        end
+
+        def deserialize(params)
+          @ManagedIds = params['ManagedIds']
+          @RuleID = params['RuleID']
+          @Action = params['Action']
+          @PunishTime = params['PunishTime']
+          @PunishTimeUnit = params['PunishTimeUnit']
+          @Name = params['Name']
+          @PageId = params['PageId']
+          @RedirectUrl = params['RedirectUrl']
+          @ResponseCode = params['ResponseCode']
+          @TransManagedIds = params['TransManagedIds']
+          @AlgManagedIds = params['AlgManagedIds']
+          @CapManagedIds = params['CapManagedIds']
+          @MonManagedIds = params['MonManagedIds']
+          @DropManagedIds = params['DropManagedIds']
+        end
+      end
+
+      # bot托管规则详情
+      class BotManagedRuleDetail < TencentCloud::Common::AbstractModel
+        # @param RuleId: 规则ID
+        # @type RuleId: Integer
+        # @param Description: 规则描述
+        # @type Description: String
+        # @param RuleTypeName: 规则分类
+        # @type RuleTypeName: String
+        # @param Status: 该规则开启/关闭
+        # @type Status: String
+
+        attr_accessor :RuleId, :Description, :RuleTypeName, :Status
+        
+        def initialize(ruleid=nil, description=nil, ruletypename=nil, status=nil)
+          @RuleId = ruleid
+          @Description = description
+          @RuleTypeName = ruletypename
+          @Status = status
+        end
+
+        def deserialize(params)
+          @RuleId = params['RuleId']
+          @Description = params['Description']
+          @RuleTypeName = params['RuleTypeName']
+          @Status = params['Status']
+        end
+      end
+
+      # bot 用户画像规则
+      class BotPortraitRule < TencentCloud::Common::AbstractModel
+        # @param RuleID: 本规则的id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RuleID: Integer
+        # @param AlgManagedIds: JS挑战的规则ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AlgManagedIds: Array
+        # @param CapManagedIds: 数字验证码的规则ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CapManagedIds: Array
+        # @param MonManagedIds: 观察的规则ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MonManagedIds: Array
+        # @param DropManagedIds: 拦截的规则ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DropManagedIds: Array
+
+        attr_accessor :RuleID, :AlgManagedIds, :CapManagedIds, :MonManagedIds, :DropManagedIds
+        
+        def initialize(ruleid=nil, algmanagedids=nil, capmanagedids=nil, monmanagedids=nil, dropmanagedids=nil)
+          @RuleID = ruleid
+          @AlgManagedIds = algmanagedids
+          @CapManagedIds = capmanagedids
+          @MonManagedIds = monmanagedids
+          @DropManagedIds = dropmanagedids
+        end
+
+        def deserialize(params)
+          @RuleID = params['RuleID']
+          @AlgManagedIds = params['AlgManagedIds']
+          @CapManagedIds = params['CapManagedIds']
+          @MonManagedIds = params['MonManagedIds']
+          @DropManagedIds = params['DropManagedIds']
         end
       end
 
@@ -698,6 +1039,54 @@ module TencentCloud
         end
       end
 
+      # CreateCustomErrorPage请求参数结构体
+      class CreateCustomErrorPageRequest < TencentCloud::Common::AbstractModel
+        # @param ZoneId: zone的id
+        # @type ZoneId: String
+        # @param Entity: 具体所属实体
+        # @type Entity: String
+        # @param Name: 自定义页面的文件名
+        # @type Name: String
+        # @param Content: 自定义页面的内容
+        # @type Content: String
+
+        attr_accessor :ZoneId, :Entity, :Name, :Content
+        
+        def initialize(zoneid=nil, entity=nil, name=nil, content=nil)
+          @ZoneId = zoneid
+          @Entity = entity
+          @Name = name
+          @Content = content
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+          @Entity = params['Entity']
+          @Name = params['Name']
+          @Content = params['Content']
+        end
+      end
+
+      # CreateCustomErrorPage返回参数结构体
+      class CreateCustomErrorPageResponse < TencentCloud::Common::AbstractModel
+        # @param PageId: 自定义页面上传后的唯一id
+        # @type PageId: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :PageId, :RequestId
+        
+        def initialize(pageid=nil, requestid=nil)
+          @PageId = pageid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @PageId = params['PageId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateDnsRecord请求参数结构体
       class CreateDnsRecordRequest < TencentCloud::Common::AbstractModel
         # @param ZoneId: 站点 ID
@@ -863,6 +1252,70 @@ module TencentCloud
 
         def deserialize(params)
           @LoadBalancingId = params['LoadBalancingId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateOriginGroup请求参数结构体
+      class CreateOriginGroupRequest < TencentCloud::Common::AbstractModel
+        # @param OriginName: 源站组名称
+        # @type OriginName: String
+        # @param Type: 配置类型，当OriginType=self 时，需要填写：
+        # area: 按区域配置
+        # weight: 按权重配置
+        # 当OriginType=third_party 时，不需要填写
+        # @type Type: String
+        # @param Record: 源站记录
+        # @type Record: Array
+        # @param ZoneId: 站点ID
+        # @type ZoneId: String
+        # @param OriginType: 源站类型
+        # self：自有源站
+        # third_party：第三方源站
+        # @type OriginType: String
+
+        attr_accessor :OriginName, :Type, :Record, :ZoneId, :OriginType
+        
+        def initialize(originname=nil, type=nil, record=nil, zoneid=nil, origintype=nil)
+          @OriginName = originname
+          @Type = type
+          @Record = record
+          @ZoneId = zoneid
+          @OriginType = origintype
+        end
+
+        def deserialize(params)
+          @OriginName = params['OriginName']
+          @Type = params['Type']
+          unless params['Record'].nil?
+            @Record = []
+            params['Record'].each do |i|
+              originrecord_tmp = OriginRecord.new
+              originrecord_tmp.deserialize(i)
+              @Record << originrecord_tmp
+            end
+          end
+          @ZoneId = params['ZoneId']
+          @OriginType = params['OriginType']
+        end
+      end
+
+      # CreateOriginGroup返回参数结构体
+      class CreateOriginGroupResponse < TencentCloud::Common::AbstractModel
+        # @param OriginId: 新增的源站组ID
+        # @type OriginId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :OriginId, :RequestId
+        
+        def initialize(originid=nil, requestid=nil)
+          @OriginId = originid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @OriginId = params['OriginId']
           @RequestId = params['RequestId']
         end
       end
@@ -1086,6 +1539,346 @@ module TencentCloud
         end
       end
 
+      # DDoS配置端口过滤
+      class DDoSAcl < TencentCloud::Common::AbstractModel
+        # @param DportEnd: 目的端口end
+        # @type DportEnd: Integer
+        # @param DportStart: 目的端口start
+        # @type DportStart: Integer
+        # @param SportEnd: 源端口end
+        # @type SportEnd: Integer
+        # @param SportStart: 源端口start
+        # @type SportStart: Integer
+        # @param Protocol: 协议 'tcp', 'udp', 'all'
+        # @type Protocol: String
+        # @param Action: 动作  drop-丢弃,；transmit-放行； forward-继续防护
+        # @type Action: String
+        # @param Default: 是否为系统配置 0-人工配置；1-系统配置
+        # @type Default: Integer
+
+        attr_accessor :DportEnd, :DportStart, :SportEnd, :SportStart, :Protocol, :Action, :Default
+        
+        def initialize(dportend=nil, dportstart=nil, sportend=nil, sportstart=nil, protocol=nil, action=nil, default=nil)
+          @DportEnd = dportend
+          @DportStart = dportstart
+          @SportEnd = sportend
+          @SportStart = sportstart
+          @Protocol = protocol
+          @Action = action
+          @Default = default
+        end
+
+        def deserialize(params)
+          @DportEnd = params['DportEnd']
+          @DportStart = params['DportStart']
+          @SportEnd = params['SportEnd']
+          @SportStart = params['SportStart']
+          @Protocol = params['Protocol']
+          @Action = params['Action']
+          @Default = params['Default']
+        end
+      end
+
+      # DDoS协议防护+连接防护
+      class DDoSAntiPly < TencentCloud::Common::AbstractModel
+        # @param DropTcp: tcp协议封禁 on-开；off-关
+        # @type DropTcp: String
+        # @param DropUdp: udp协议封禁 on-开；off-关
+        # @type DropUdp: String
+        # @param DropIcmp: icmp协议封禁 on-开；off-关
+        # @type DropIcmp: String
+        # @param DropOther: 其他协议封禁 on-开；off-关
+        # @type DropOther: String
+        # @param SourceCreateLimit: 源每秒新建数限制  0-4294967295
+        # @type SourceCreateLimit: Integer
+        # @param SourceConnectLimit: 源并发连接控制 0-4294967295
+        # @type SourceConnectLimit: Integer
+        # @param DestinationCreateLimit: 目的每秒新建数限制 0-4294967295
+        # @type DestinationCreateLimit: Integer
+        # @param DestinationConnectLimit: 目的端口的并发连接控制 0-4294967295
+        # @type DestinationConnectLimit: Integer
+        # @param AbnormalConnectNum: 异常连接数阈值  0-4294967295
+        # @type AbnormalConnectNum: Integer
+        # @param AbnormalSynRatio: syn占比异常阈值 0-100
+        # @type AbnormalSynRatio: Integer
+        # @param AbnormalSynNum: syn个数异常阈值 0-65535
+        # @type AbnormalSynNum: Integer
+        # @param ConnectTimeout: 连接超时检测 0-65535
+        # @type ConnectTimeout: Integer
+        # @param EmptyConnectProtect: 空连接防护开启 0-1
+        # @type EmptyConnectProtect: String
+
+        attr_accessor :DropTcp, :DropUdp, :DropIcmp, :DropOther, :SourceCreateLimit, :SourceConnectLimit, :DestinationCreateLimit, :DestinationConnectLimit, :AbnormalConnectNum, :AbnormalSynRatio, :AbnormalSynNum, :ConnectTimeout, :EmptyConnectProtect
+        
+        def initialize(droptcp=nil, dropudp=nil, dropicmp=nil, dropother=nil, sourcecreatelimit=nil, sourceconnectlimit=nil, destinationcreatelimit=nil, destinationconnectlimit=nil, abnormalconnectnum=nil, abnormalsynratio=nil, abnormalsynnum=nil, connecttimeout=nil, emptyconnectprotect=nil)
+          @DropTcp = droptcp
+          @DropUdp = dropudp
+          @DropIcmp = dropicmp
+          @DropOther = dropother
+          @SourceCreateLimit = sourcecreatelimit
+          @SourceConnectLimit = sourceconnectlimit
+          @DestinationCreateLimit = destinationcreatelimit
+          @DestinationConnectLimit = destinationconnectlimit
+          @AbnormalConnectNum = abnormalconnectnum
+          @AbnormalSynRatio = abnormalsynratio
+          @AbnormalSynNum = abnormalsynnum
+          @ConnectTimeout = connecttimeout
+          @EmptyConnectProtect = emptyconnectprotect
+        end
+
+        def deserialize(params)
+          @DropTcp = params['DropTcp']
+          @DropUdp = params['DropUdp']
+          @DropIcmp = params['DropIcmp']
+          @DropOther = params['DropOther']
+          @SourceCreateLimit = params['SourceCreateLimit']
+          @SourceConnectLimit = params['SourceConnectLimit']
+          @DestinationCreateLimit = params['DestinationCreateLimit']
+          @DestinationConnectLimit = params['DestinationConnectLimit']
+          @AbnormalConnectNum = params['AbnormalConnectNum']
+          @AbnormalSynRatio = params['AbnormalSynRatio']
+          @AbnormalSynNum = params['AbnormalSynNum']
+          @ConnectTimeout = params['ConnectTimeout']
+          @EmptyConnectProtect = params['EmptyConnectProtect']
+        end
+      end
+
+      # DDoS7层应用
+      class DDoSApplication < TencentCloud::Common::AbstractModel
+        # @param Host: 二级域名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Host: String
+        # @param Status: 域名状态；
+        # init  待切ns
+        # offline 需要dns开启站点加速
+        # process 在部署中，稍等一会
+        # online 正常状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: String
+        # @param AccelerateType: 加速开关；on-开启加速；off-关闭加速（AccelerateType：on，SecurityType：on，安全加速，未开防护增强；AccelerateType：off，SecurityType：on，安全加速，开启防护增强；AccelerateType：on，SecurityType：off，内容加速，未开防护增强）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AccelerateType: String
+        # @param SecurityType: 安全开关；on-开启安全；off-关闭安全（AccelerateType：on，SecurityType：on，安全加速，未开防护增强；AccelerateType：off，SecurityType：on，安全加速，开启防护增强；AccelerateType：on，SecurityType：off，内容加速，未开防护增强）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SecurityType: String
+
+        attr_accessor :Host, :Status, :AccelerateType, :SecurityType
+        
+        def initialize(host=nil, status=nil, acceleratetype=nil, securitytype=nil)
+          @Host = host
+          @Status = status
+          @AccelerateType = acceleratetype
+          @SecurityType = securitytype
+        end
+
+        def deserialize(params)
+          @Host = params['Host']
+          @Status = params['Status']
+          @AccelerateType = params['AccelerateType']
+          @SecurityType = params['SecurityType']
+        end
+      end
+
+      # DDoS配置
+      class DDoSConfig < TencentCloud::Common::AbstractModel
+        # @param Switch: 开关
+        # @type Switch: String
+
+        attr_accessor :Switch
+        
+        def initialize(switch=nil)
+          @Switch = switch
+        end
+
+        def deserialize(params)
+          @Switch = params['Switch']
+        end
+      end
+
+      # DDoS特征过滤
+      class DDoSFeaturesFilter < TencentCloud::Common::AbstractModel
+        # @param Action: 动作 drop-丢弃；transmit-放行；drop_block-丢弃并拉黑；forward-继续防护
+        # @type Action: String
+        # @param Depth: 深度值1
+        # @type Depth: Integer
+        # @param Depth2: 深度值2
+        # @type Depth2: Integer
+        # @param DportEnd: 目标端口结束
+        # @type DportEnd: Integer
+        # @param DportStart: 目标端口开始
+        # @type DportStart: Integer
+        # @param IsNot: 取非判断1
+        # @type IsNot: Integer
+        # @param IsNot2: 取非判断2
+        # @type IsNot2: Integer
+        # @param MatchLogic: 多特征关系（单特征时(none)，第二特征相关配置可不填） none；and；or
+        # @type MatchLogic: String
+        # @param MatchType: 匹配方式1 pcre-正则匹配, sunday-字符串匹配
+        # @type MatchType: String
+        # @param MatchType2: 匹配方式2 pcre-正则匹配, sunday-字符串匹配
+        # @type MatchType2: String
+        # @param Offset: 偏移量1
+        # @type Offset: Integer
+        # @param Offset2: 偏移量2
+        # @type Offset2: Integer
+        # @param PacketMax: 最大包长
+        # @type PacketMax: Integer
+        # @param PacketMin: 最小包长
+        # @type PacketMin: Integer
+        # @param Protocol: 协议 tcp；udp；icmp；all
+        # @type Protocol: String
+        # @param SportEnd: 源端口结束
+        # @type SportEnd: Integer
+        # @param SportStart: 源端口开始
+        # @type SportStart: Integer
+        # @param Str: 匹配字符串1
+        # @type Str: String
+        # @param Str2: 匹配字符串2
+        # @type Str2: String
+        # @param MatchBegin: 匹配开始层级，层级参考计算机网络结构 begin_l5, no_match, begin_l3, begin_l4
+        # @type MatchBegin: String
+        # @param MatchBegin2: 匹配开始层级，层级参考计算机网络结构 begin_l5, no_match, begin_l3, begin_l4
+        # @type MatchBegin2: String
+
+        attr_accessor :Action, :Depth, :Depth2, :DportEnd, :DportStart, :IsNot, :IsNot2, :MatchLogic, :MatchType, :MatchType2, :Offset, :Offset2, :PacketMax, :PacketMin, :Protocol, :SportEnd, :SportStart, :Str, :Str2, :MatchBegin, :MatchBegin2
+        
+        def initialize(action=nil, depth=nil, depth2=nil, dportend=nil, dportstart=nil, isnot=nil, isnot2=nil, matchlogic=nil, matchtype=nil, matchtype2=nil, offset=nil, offset2=nil, packetmax=nil, packetmin=nil, protocol=nil, sportend=nil, sportstart=nil, str=nil, str2=nil, matchbegin=nil, matchbegin2=nil)
+          @Action = action
+          @Depth = depth
+          @Depth2 = depth2
+          @DportEnd = dportend
+          @DportStart = dportstart
+          @IsNot = isnot
+          @IsNot2 = isnot2
+          @MatchLogic = matchlogic
+          @MatchType = matchtype
+          @MatchType2 = matchtype2
+          @Offset = offset
+          @Offset2 = offset2
+          @PacketMax = packetmax
+          @PacketMin = packetmin
+          @Protocol = protocol
+          @SportEnd = sportend
+          @SportStart = sportstart
+          @Str = str
+          @Str2 = str2
+          @MatchBegin = matchbegin
+          @MatchBegin2 = matchbegin2
+        end
+
+        def deserialize(params)
+          @Action = params['Action']
+          @Depth = params['Depth']
+          @Depth2 = params['Depth2']
+          @DportEnd = params['DportEnd']
+          @DportStart = params['DportStart']
+          @IsNot = params['IsNot']
+          @IsNot2 = params['IsNot2']
+          @MatchLogic = params['MatchLogic']
+          @MatchType = params['MatchType']
+          @MatchType2 = params['MatchType2']
+          @Offset = params['Offset']
+          @Offset2 = params['Offset2']
+          @PacketMax = params['PacketMax']
+          @PacketMin = params['PacketMin']
+          @Protocol = params['Protocol']
+          @SportEnd = params['SportEnd']
+          @SportStart = params['SportStart']
+          @Str = params['Str']
+          @Str2 = params['Str2']
+          @MatchBegin = params['MatchBegin']
+          @MatchBegin2 = params['MatchBegin2']
+        end
+      end
+
+      # DDoS地域封禁
+      class DDoSGeoIp < TencentCloud::Common::AbstractModel
+        # @param RegionId: 地域信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RegionId: Array
+        # @param Switch: 区域封禁清空标识
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Switch: String
+
+        attr_accessor :RegionId, :Switch
+        
+        def initialize(regionid=nil, switch=nil)
+          @RegionId = regionid
+          @Switch = switch
+        end
+
+        def deserialize(params)
+          @RegionId = params['RegionId']
+          @Switch = params['Switch']
+        end
+      end
+
+      # DDoS封禁等级
+      class DDoSStatusInfo < TencentCloud::Common::AbstractModel
+        # @param AiStatus: 不支持，填off
+        # @type AiStatus: String
+        # @param Appid: 用户appid
+        # @type Appid: String
+        # @param PlyLevel: 策略等级 low, middle, high
+        # @type PlyLevel: String
+
+        attr_accessor :AiStatus, :Appid, :PlyLevel
+        
+        def initialize(aistatus=nil, appid=nil, plylevel=nil)
+          @AiStatus = aistatus
+          @Appid = appid
+          @PlyLevel = plylevel
+        end
+
+        def deserialize(params)
+          @AiStatus = params['AiStatus']
+          @Appid = params['Appid']
+          @PlyLevel = params['PlyLevel']
+        end
+      end
+
+      # DDoS黑白名单
+      class DDoSUserAllowBlockIP < TencentCloud::Common::AbstractModel
+        # @param Ip: 用户ip
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Ip: String
+        # @param Mask: 掩码
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Mask: Integer
+        # @param Type: 类型 block-丢弃；allow-允许
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Type: String
+        # @param UpdateTime: 时间戳
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UpdateTime: Integer
+        # @param Ip2: 用户ip范围截止
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Ip2: String
+        # @param Mask2: 掩码截止范围
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Mask2: Integer
+
+        attr_accessor :Ip, :Mask, :Type, :UpdateTime, :Ip2, :Mask2
+        
+        def initialize(ip=nil, mask=nil, type=nil, updatetime=nil, ip2=nil, mask2=nil)
+          @Ip = ip
+          @Mask = mask
+          @Type = type
+          @UpdateTime = updatetime
+          @Ip2 = ip2
+          @Mask2 = mask2
+        end
+
+        def deserialize(params)
+          @Ip = params['Ip']
+          @Mask = params['Mask']
+          @Type = params['Type']
+          @UpdateTime = params['UpdateTime']
+          @Ip2 = params['Ip2']
+          @Mask2 = params['Mask2']
+        end
+      end
+
       # 统计曲线数据项
       class DataItem < TencentCloud::Common::AbstractModel
         # @param Time: 时间
@@ -1104,6 +1897,152 @@ module TencentCloud
         def deserialize(params)
           @Time = params['Time']
           @Value = params['Value']
+        end
+      end
+
+      # ddos端口过滤
+      class DdosAcls < TencentCloud::Common::AbstractModel
+        # @param Switch: 开关 off清空规则标识
+        # @type Switch: String
+        # @param Acl: 端口过了详细参数
+        # @type Acl: Array
+
+        attr_accessor :Switch, :Acl
+        
+        def initialize(switch=nil, acl=nil)
+          @Switch = switch
+          @Acl = acl
+        end
+
+        def deserialize(params)
+          @Switch = params['Switch']
+          unless params['Acl'].nil?
+            @Acl = []
+            params['Acl'].each do |i|
+              ddosacl_tmp = DDoSAcl.new
+              ddosacl_tmp.deserialize(i)
+              @Acl << ddosacl_tmp
+            end
+          end
+        end
+      end
+
+      # ddos黑白名单
+      class DdosAllowBlock < TencentCloud::Common::AbstractModel
+        # @param Switch: 开关标识防护是否清空
+        # @type Switch: String
+        # @param UserAllowBlockIp: 黑白名单数组
+        # @type UserAllowBlockIp: Array
+
+        attr_accessor :Switch, :UserAllowBlockIp
+        
+        def initialize(switch=nil, userallowblockip=nil)
+          @Switch = switch
+          @UserAllowBlockIp = userallowblockip
+        end
+
+        def deserialize(params)
+          @Switch = params['Switch']
+          unless params['UserAllowBlockIp'].nil?
+            @UserAllowBlockIp = []
+            params['UserAllowBlockIp'].each do |i|
+              ddosuserallowblockip_tmp = DDoSUserAllowBlockIP.new
+              ddosuserallowblockip_tmp.deserialize(i)
+              @UserAllowBlockIp << ddosuserallowblockip_tmp
+            end
+          end
+        end
+      end
+
+      # ddos特征过滤
+      class DdosPacketFilter < TencentCloud::Common::AbstractModel
+        # @param Switch: 特征过滤清空标识，off清空处理
+        # @type Switch: String
+        # @param PacketFilter: 特征过滤数组
+        # @type PacketFilter: Array
+
+        attr_accessor :Switch, :PacketFilter
+        
+        def initialize(switch=nil, packetfilter=nil)
+          @Switch = switch
+          @PacketFilter = packetfilter
+        end
+
+        def deserialize(params)
+          @Switch = params['Switch']
+          unless params['PacketFilter'].nil?
+            @PacketFilter = []
+            params['PacketFilter'].each do |i|
+              ddosfeaturesfilter_tmp = DDoSFeaturesFilter.new
+              ddosfeaturesfilter_tmp.deserialize(i)
+              @PacketFilter << ddosfeaturesfilter_tmp
+            end
+          end
+        end
+      end
+
+      # Ddos防护配置
+      class DdosRule < TencentCloud::Common::AbstractModel
+        # @param DdosStatusInfo: DDoS防护等级
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DdosStatusInfo: :class:`Tencentcloud::Teo.v20220106.models.DDoSStatusInfo`
+        # @param DdosGeoIp: DDoS地域封禁
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DdosGeoIp: :class:`Tencentcloud::Teo.v20220106.models.DDoSGeoIp`
+        # @param DdosAllowBlock: DDoS黑白名单
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DdosAllowBlock: :class:`Tencentcloud::Teo.v20220106.models.DdosAllowBlock`
+        # @param DdosAntiPly: DDoS 协议封禁+连接防护
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DdosAntiPly: :class:`Tencentcloud::Teo.v20220106.models.DDoSAntiPly`
+        # @param DdosPacketFilter: DDoS特征过滤
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DdosPacketFilter: :class:`Tencentcloud::Teo.v20220106.models.DdosPacketFilter`
+        # @param DdosAcl: DDoS端口过滤
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DdosAcl: :class:`Tencentcloud::Teo.v20220106.models.DdosAcls`
+        # @param Switch: DDoS开关 on-开启；off-关闭
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Switch: String
+
+        attr_accessor :DdosStatusInfo, :DdosGeoIp, :DdosAllowBlock, :DdosAntiPly, :DdosPacketFilter, :DdosAcl, :Switch
+        
+        def initialize(ddosstatusinfo=nil, ddosgeoip=nil, ddosallowblock=nil, ddosantiply=nil, ddospacketfilter=nil, ddosacl=nil, switch=nil)
+          @DdosStatusInfo = ddosstatusinfo
+          @DdosGeoIp = ddosgeoip
+          @DdosAllowBlock = ddosallowblock
+          @DdosAntiPly = ddosantiply
+          @DdosPacketFilter = ddospacketfilter
+          @DdosAcl = ddosacl
+          @Switch = switch
+        end
+
+        def deserialize(params)
+          unless params['DdosStatusInfo'].nil?
+            @DdosStatusInfo = DDoSStatusInfo.new
+            @DdosStatusInfo.deserialize(params['DdosStatusInfo'])
+          end
+          unless params['DdosGeoIp'].nil?
+            @DdosGeoIp = DDoSGeoIp.new
+            @DdosGeoIp.deserialize(params['DdosGeoIp'])
+          end
+          unless params['DdosAllowBlock'].nil?
+            @DdosAllowBlock = DdosAllowBlock.new
+            @DdosAllowBlock.deserialize(params['DdosAllowBlock'])
+          end
+          unless params['DdosAntiPly'].nil?
+            @DdosAntiPly = DDoSAntiPly.new
+            @DdosAntiPly.deserialize(params['DdosAntiPly'])
+          end
+          unless params['DdosPacketFilter'].nil?
+            @DdosPacketFilter = DdosPacketFilter.new
+            @DdosPacketFilter.deserialize(params['DdosPacketFilter'])
+          end
+          unless params['DdosAcl'].nil?
+            @DdosAcl = DdosAcls.new
+            @DdosAcl.deserialize(params['DdosAcl'])
+          end
+          @Switch = params['Switch']
         end
       end
 
@@ -1336,6 +2275,46 @@ module TencentCloud
         end
       end
 
+      # DeleteOriginGroup请求参数结构体
+      class DeleteOriginGroupRequest < TencentCloud::Common::AbstractModel
+        # @param OriginId: 源站组ID
+        # @type OriginId: String
+        # @param ZoneId: 站点ID
+        # @type ZoneId: String
+
+        attr_accessor :OriginId, :ZoneId
+        
+        def initialize(originid=nil, zoneid=nil)
+          @OriginId = originid
+          @ZoneId = zoneid
+        end
+
+        def deserialize(params)
+          @OriginId = params['OriginId']
+          @ZoneId = params['ZoneId']
+        end
+      end
+
+      # DeleteOriginGroup返回参数结构体
+      class DeleteOriginGroupResponse < TencentCloud::Common::AbstractModel
+        # @param OriginId: 源站组ID
+        # @type OriginId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :OriginId, :RequestId
+        
+        def initialize(originid=nil, requestid=nil)
+          @OriginId = originid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @OriginId = params['OriginId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DeleteZone请求参数结构体
       class DeleteZoneRequest < TencentCloud::Common::AbstractModel
         # @param Id: 站点 ID
@@ -1548,6 +2527,73 @@ module TencentCloud
         end
       end
 
+      # DescribeBotManagedRules请求参数结构体
+      class DescribeBotManagedRulesRequest < TencentCloud::Common::AbstractModel
+        # @param ZoneId: 一级域名
+        # @type ZoneId: String
+        # @param Entity: 子域名/应用名
+        # @type Entity: String
+        # @param Page: 页数
+        # @type Page: Integer
+        # @param PerPage: 每页数量
+        # @type PerPage: Integer
+        # @param RuleType: idcid/sipbot/uabot规则类型，空代表拉取全部
+        # @type RuleType: String
+
+        attr_accessor :ZoneId, :Entity, :Page, :PerPage, :RuleType
+        
+        def initialize(zoneid=nil, entity=nil, page=nil, perpage=nil, ruletype=nil)
+          @ZoneId = zoneid
+          @Entity = entity
+          @Page = page
+          @PerPage = perpage
+          @RuleType = ruletype
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+          @Entity = params['Entity']
+          @Page = params['Page']
+          @PerPage = params['PerPage']
+          @RuleType = params['RuleType']
+        end
+      end
+
+      # DescribeBotManagedRules返回参数结构体
+      class DescribeBotManagedRulesResponse < TencentCloud::Common::AbstractModel
+        # @param Count: 本次返回的规则数
+        # @type Count: Integer
+        # @param Rules: Bot规则
+        # @type Rules: Array
+        # @param Total: 总规则数
+        # @type Total: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Count, :Rules, :Total, :RequestId
+        
+        def initialize(count=nil, rules=nil, total=nil, requestid=nil)
+          @Count = count
+          @Rules = rules
+          @Total = total
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Count = params['Count']
+          unless params['Rules'].nil?
+            @Rules = []
+            params['Rules'].each do |i|
+              botmanagedruledetail_tmp = BotManagedRuleDetail.new
+              botmanagedruledetail_tmp.deserialize(i)
+              @Rules << botmanagedruledetail_tmp
+            end
+          end
+          @Total = params['Total']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeCnameStatus请求参数结构体
       class DescribeCnameStatusRequest < TencentCloud::Common::AbstractModel
         # @param ZoneId: 站点 ID
@@ -1591,6 +2637,42 @@ module TencentCloud
               @Status << cnamestatus_tmp
             end
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeDDoSPolicy请求参数结构体
+      class DescribeDDoSPolicyRequest < TencentCloud::Common::AbstractModel
+        # @param PolicyId: 策略组id
+        # @type PolicyId: Integer
+        # @param ZoneId: 一级域名zone
+        # @type ZoneId: String
+
+        attr_accessor :PolicyId, :ZoneId
+        
+        def initialize(policyid=nil, zoneid=nil)
+          @PolicyId = policyid
+          @ZoneId = zoneid
+        end
+
+        def deserialize(params)
+          @PolicyId = params['PolicyId']
+          @ZoneId = params['ZoneId']
+        end
+      end
+
+      # DescribeDDoSPolicy返回参数结构体
+      class DescribeDDoSPolicyResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
           @RequestId = params['RequestId']
         end
       end
@@ -2193,6 +3275,159 @@ module TencentCloud
         end
       end
 
+      # DescribeOriginGroupDetail请求参数结构体
+      class DescribeOriginGroupDetailRequest < TencentCloud::Common::AbstractModel
+        # @param OriginId: 源站组ID
+        # @type OriginId: String
+        # @param ZoneId: 站点ID
+        # @type ZoneId: String
+
+        attr_accessor :OriginId, :ZoneId
+        
+        def initialize(originid=nil, zoneid=nil)
+          @OriginId = originid
+          @ZoneId = zoneid
+        end
+
+        def deserialize(params)
+          @OriginId = params['OriginId']
+          @ZoneId = params['ZoneId']
+        end
+      end
+
+      # DescribeOriginGroupDetail返回参数结构体
+      class DescribeOriginGroupDetailResponse < TencentCloud::Common::AbstractModel
+        # @param OriginId: 源站组ID
+        # @type OriginId: String
+        # @param OriginName: 源站组名称
+        # @type OriginName: String
+        # @param Type: 配置类型
+        # @type Type: String
+        # @param Record: 记录
+        # @type Record: Array
+        # @param UpdateTime: 更新时间
+        # @type UpdateTime: String
+        # @param ZoneId: 站点ID
+        # @type ZoneId: String
+        # @param ZoneName: 站点名称
+        # @type ZoneName: String
+        # @param OriginType: 源站类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OriginType: String
+        # @param ApplicationProxyUsed: 是否被四层代理使用
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ApplicationProxyUsed: Boolean
+        # @param LoadBalancingUsed: 是否被负载均衡使用
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LoadBalancingUsed: Boolean
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :OriginId, :OriginName, :Type, :Record, :UpdateTime, :ZoneId, :ZoneName, :OriginType, :ApplicationProxyUsed, :LoadBalancingUsed, :RequestId
+        
+        def initialize(originid=nil, originname=nil, type=nil, record=nil, updatetime=nil, zoneid=nil, zonename=nil, origintype=nil, applicationproxyused=nil, loadbalancingused=nil, requestid=nil)
+          @OriginId = originid
+          @OriginName = originname
+          @Type = type
+          @Record = record
+          @UpdateTime = updatetime
+          @ZoneId = zoneid
+          @ZoneName = zonename
+          @OriginType = origintype
+          @ApplicationProxyUsed = applicationproxyused
+          @LoadBalancingUsed = loadbalancingused
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @OriginId = params['OriginId']
+          @OriginName = params['OriginName']
+          @Type = params['Type']
+          unless params['Record'].nil?
+            @Record = []
+            params['Record'].each do |i|
+              originrecord_tmp = OriginRecord.new
+              originrecord_tmp.deserialize(i)
+              @Record << originrecord_tmp
+            end
+          end
+          @UpdateTime = params['UpdateTime']
+          @ZoneId = params['ZoneId']
+          @ZoneName = params['ZoneName']
+          @OriginType = params['OriginType']
+          @ApplicationProxyUsed = params['ApplicationProxyUsed']
+          @LoadBalancingUsed = params['LoadBalancingUsed']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeOriginGroup请求参数结构体
+      class DescribeOriginGroupRequest < TencentCloud::Common::AbstractModel
+        # @param Offset: 分页参数Offset
+        # @type Offset: Integer
+        # @param Limit: 分页参数Limit
+        # @type Limit: Integer
+        # @param Filters: 过滤参数
+        # @type Filters: Array
+        # @param ZoneId: 站点ID
+        # 不填写获取所有站点源站组
+        # @type ZoneId: String
+
+        attr_accessor :Offset, :Limit, :Filters, :ZoneId
+        
+        def initialize(offset=nil, limit=nil, filters=nil, zoneid=nil)
+          @Offset = offset
+          @Limit = limit
+          @Filters = filters
+          @ZoneId = zoneid
+        end
+
+        def deserialize(params)
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              originfilter_tmp = OriginFilter.new
+              originfilter_tmp.deserialize(i)
+              @Filters << originfilter_tmp
+            end
+          end
+          @ZoneId = params['ZoneId']
+        end
+      end
+
+      # DescribeOriginGroup返回参数结构体
+      class DescribeOriginGroupResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 源站组信息
+        # @type Data: Array
+        # @param TotalCount: 记录总数
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :TotalCount, :RequestId
+        
+        def initialize(data=nil, totalcount=nil, requestid=nil)
+          @Data = data
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = []
+            params['Data'].each do |i|
+              origingroup_tmp = OriginGroup.new
+              origingroup_tmp.deserialize(i)
+              @Data << origingroup_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribePrefetchTasks请求参数结构体
       class DescribePrefetchTasksRequest < TencentCloud::Common::AbstractModel
         # @param JobId: 任务ID
@@ -2351,6 +3586,316 @@ module TencentCloud
               task_tmp = Task.new
               task_tmp.deserialize(i)
               @Tasks << task_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeSecurityPolicyList请求参数结构体
+      class DescribeSecurityPolicyListRequest < TencentCloud::Common::AbstractModel
+        # @param ZoneId: 一级域名
+        # @type ZoneId: String
+
+        attr_accessor :ZoneId
+        
+        def initialize(zoneid=nil)
+          @ZoneId = zoneid
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+        end
+      end
+
+      # DescribeSecurityPolicyList返回参数结构体
+      class DescribeSecurityPolicyListResponse < TencentCloud::Common::AbstractModel
+        # @param Entities: 防护资源列表
+        # @type Entities: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Entities, :RequestId
+        
+        def initialize(entities=nil, requestid=nil)
+          @Entities = entities
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Entities'].nil?
+            @Entities = []
+            params['Entities'].each do |i|
+              securityentity_tmp = SecurityEntity.new
+              securityentity_tmp.deserialize(i)
+              @Entities << securityentity_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeSecurityPolicyManagedRulesId请求参数结构体
+      class DescribeSecurityPolicyManagedRulesIdRequest < TencentCloud::Common::AbstractModel
+        # @param RuleId: 规则id集合
+        # @type RuleId: Array
+
+        attr_accessor :RuleId
+        
+        def initialize(ruleid=nil)
+          @RuleId = ruleid
+        end
+
+        def deserialize(params)
+          @RuleId = params['RuleId']
+        end
+      end
+
+      # DescribeSecurityPolicyManagedRulesId返回参数结构体
+      class DescribeSecurityPolicyManagedRulesIdResponse < TencentCloud::Common::AbstractModel
+        # @param Total: 返回总数
+        # @type Total: Integer
+        # @param Rules: 门神规则
+        # @type Rules: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Total, :Rules, :RequestId
+        
+        def initialize(total=nil, rules=nil, requestid=nil)
+          @Total = total
+          @Rules = rules
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Total = params['Total']
+          unless params['Rules'].nil?
+            @Rules = []
+            params['Rules'].each do |i|
+              managedrule_tmp = ManagedRule.new
+              managedrule_tmp.deserialize(i)
+              @Rules << managedrule_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeSecurityPolicyManagedRules请求参数结构体
+      class DescribeSecurityPolicyManagedRulesRequest < TencentCloud::Common::AbstractModel
+        # @param ZoneId: 一级域名
+        # @type ZoneId: String
+        # @param Entity: 子域名/应用名
+        # @type Entity: String
+        # @param Page: 页数
+        # @type Page: Integer
+        # @param PerPage: 每页数量
+        # @type PerPage: Integer
+
+        attr_accessor :ZoneId, :Entity, :Page, :PerPage
+        
+        def initialize(zoneid=nil, entity=nil, page=nil, perpage=nil)
+          @ZoneId = zoneid
+          @Entity = entity
+          @Page = page
+          @PerPage = perpage
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+          @Entity = params['Entity']
+          @Page = params['Page']
+          @PerPage = params['PerPage']
+        end
+      end
+
+      # DescribeSecurityPolicyManagedRules返回参数结构体
+      class DescribeSecurityPolicyManagedRulesResponse < TencentCloud::Common::AbstractModel
+        # @param Count: 本次返回的规则数
+        # @type Count: Integer
+        # @param Rules: 门神规则
+        # @type Rules: Array
+        # @param Total: 总规则数
+        # @type Total: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Count, :Rules, :Total, :RequestId
+        
+        def initialize(count=nil, rules=nil, total=nil, requestid=nil)
+          @Count = count
+          @Rules = rules
+          @Total = total
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Count = params['Count']
+          unless params['Rules'].nil?
+            @Rules = []
+            params['Rules'].each do |i|
+              managedrule_tmp = ManagedRule.new
+              managedrule_tmp.deserialize(i)
+              @Rules << managedrule_tmp
+            end
+          end
+          @Total = params['Total']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeSecurityPolicyRegions请求参数结构体
+      class DescribeSecurityPolicyRegionsRequest < TencentCloud::Common::AbstractModel
+
+        
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeSecurityPolicyRegions返回参数结构体
+      class DescribeSecurityPolicyRegionsResponse < TencentCloud::Common::AbstractModel
+        # @param Count: 总数
+        # @type Count: Integer
+        # @param GeoIp: 地域信息
+        # @type GeoIp: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Count, :GeoIp, :RequestId
+        
+        def initialize(count=nil, geoip=nil, requestid=nil)
+          @Count = count
+          @GeoIp = geoip
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Count = params['Count']
+          unless params['GeoIp'].nil?
+            @GeoIp = []
+            params['GeoIp'].each do |i|
+              geoip_tmp = GeoIp.new
+              geoip_tmp.deserialize(i)
+              @GeoIp << geoip_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeSecurityPolicy请求参数结构体
+      class DescribeSecurityPolicyRequest < TencentCloud::Common::AbstractModel
+        # @param ZoneId: 一级域名
+        # @type ZoneId: String
+        # @param Entity: 二级域名
+        # @type Entity: String
+
+        attr_accessor :ZoneId, :Entity
+        
+        def initialize(zoneid=nil, entity=nil)
+          @ZoneId = zoneid
+          @Entity = entity
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+          @Entity = params['Entity']
+        end
+      end
+
+      # DescribeSecurityPolicy返回参数结构体
+      class DescribeSecurityPolicyResponse < TencentCloud::Common::AbstractModel
+        # @param AppId: 用户id
+        # @type AppId: Integer
+        # @param ZoneId: 一级域名
+        # @type ZoneId: String
+        # @param Entity: 二级域名
+        # @type Entity: String
+        # @param Config: 安全配置
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Config: :class:`Tencentcloud::Teo.v20220106.models.SecurityConfig`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :AppId, :ZoneId, :Entity, :Config, :RequestId
+        
+        def initialize(appid=nil, zoneid=nil, entity=nil, config=nil, requestid=nil)
+          @AppId = appid
+          @ZoneId = zoneid
+          @Entity = entity
+          @Config = config
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @AppId = params['AppId']
+          @ZoneId = params['ZoneId']
+          @Entity = params['Entity']
+          unless params['Config'].nil?
+            @Config = SecurityConfig.new
+            @Config.deserialize(params['Config'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeZoneDDoSPolicy请求参数结构体
+      class DescribeZoneDDoSPolicyRequest < TencentCloud::Common::AbstractModel
+        # @param ZoneId: 一级域名id
+        # @type ZoneId: String
+
+        attr_accessor :ZoneId
+        
+        def initialize(zoneid=nil)
+          @ZoneId = zoneid
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+        end
+      end
+
+      # DescribeZoneDDoSPolicy返回参数结构体
+      class DescribeZoneDDoSPolicyResponse < TencentCloud::Common::AbstractModel
+        # @param AppId: 用户appid
+        # @type AppId: Integer
+        # @param ShieldAreas: 防护分区
+        # @type ShieldAreas: Array
+        # @param Domains: 所有子域名信息，包含安全加速/内容加速
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Domains: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :AppId, :ShieldAreas, :Domains, :RequestId
+        
+        def initialize(appid=nil, shieldareas=nil, domains=nil, requestid=nil)
+          @AppId = appid
+          @ShieldAreas = shieldareas
+          @Domains = domains
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @AppId = params['AppId']
+          unless params['ShieldAreas'].nil?
+            @ShieldAreas = []
+            params['ShieldAreas'].each do |i|
+              shieldarea_tmp = ShieldArea.new
+              shieldarea_tmp.deserialize(i)
+              @ShieldAreas << shieldarea_tmp
+            end
+          end
+          unless params['Domains'].nil?
+            @Domains = []
+            params['Domains'].each do |i|
+              ddosapplication_tmp = DDoSApplication.new
+              ddosapplication_tmp.deserialize(i)
+              @Domains << ddosapplication_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -3049,6 +4594,38 @@ module TencentCloud
         end
       end
 
+      # 地域信息
+      class GeoIp < TencentCloud::Common::AbstractModel
+        # @param RegionId: 地域ID
+        # @type RegionId: Integer
+        # @param Country: 国家名
+        # @type Country: String
+        # @param Continent: 洲
+        # @type Continent: String
+        # @param CountryEn: 国家英文名
+        # @type CountryEn: String
+        # @param ContinentEn: 洲
+        # @type ContinentEn: String
+
+        attr_accessor :RegionId, :Country, :Continent, :CountryEn, :ContinentEn
+        
+        def initialize(regionid=nil, country=nil, continent=nil, countryen=nil, continenten=nil)
+          @RegionId = regionid
+          @Country = country
+          @Continent = continent
+          @CountryEn = countryen
+          @ContinentEn = continenten
+        end
+
+        def deserialize(params)
+          @RegionId = params['RegionId']
+          @Country = params['Country']
+          @Continent = params['Continent']
+          @CountryEn = params['CountryEn']
+          @ContinentEn = params['ContinentEn']
+        end
+      end
+
       # 刷新预热附带的头部信息
       class Header < TencentCloud::Common::AbstractModel
         # @param Name: HTTP头部
@@ -3356,6 +4933,57 @@ module TencentCloud
         end
       end
 
+      # 门神规则
+      class ManagedRule < TencentCloud::Common::AbstractModel
+        # @param RuleId: 规则id
+        # @type RuleId: Integer
+        # @param Description: 规则描述
+        # @type Description: String
+        # @param RuleTypeName: 规则类型名
+        # @type RuleTypeName: String
+        # @param RuleLevelDesc: 策略规则防护等级
+        # @type RuleLevelDesc: String
+        # @param UpdateTime: 更新时间
+        # @type UpdateTime: String
+        # @param Status: 规则当前状态  block, allow
+        # @type Status: String
+        # @param RuleTags: 规则标签
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RuleTags: Array
+        # @param RuleTypeDesc: 规则类型详细描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RuleTypeDesc: String
+        # @param RuleTypeId: 规则类型id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RuleTypeId: Integer
+
+        attr_accessor :RuleId, :Description, :RuleTypeName, :RuleLevelDesc, :UpdateTime, :Status, :RuleTags, :RuleTypeDesc, :RuleTypeId
+        
+        def initialize(ruleid=nil, description=nil, ruletypename=nil, ruleleveldesc=nil, updatetime=nil, status=nil, ruletags=nil, ruletypedesc=nil, ruletypeid=nil)
+          @RuleId = ruleid
+          @Description = description
+          @RuleTypeName = ruletypename
+          @RuleLevelDesc = ruleleveldesc
+          @UpdateTime = updatetime
+          @Status = status
+          @RuleTags = ruletags
+          @RuleTypeDesc = ruletypedesc
+          @RuleTypeId = ruletypeid
+        end
+
+        def deserialize(params)
+          @RuleId = params['RuleId']
+          @Description = params['Description']
+          @RuleTypeName = params['RuleTypeName']
+          @RuleLevelDesc = params['RuleLevelDesc']
+          @UpdateTime = params['UpdateTime']
+          @Status = params['Status']
+          @RuleTags = params['RuleTags']
+          @RuleTypeDesc = params['RuleTypeDesc']
+          @RuleTypeId = params['RuleTypeId']
+        end
+      end
+
       # 浏览器缓存规则配置，用于设置 MaxAge 默认值，默认为关闭状态
       class MaxAge < TencentCloud::Common::AbstractModel
         # @param MaxAgeTime: MaxAge 时间设置，单位秒，最大365天
@@ -3618,6 +5246,105 @@ module TencentCloud
 
         def deserialize(params)
           @ProxyId = params['ProxyId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyDDoSPolicyHost请求参数结构体
+      class ModifyDDoSPolicyHostRequest < TencentCloud::Common::AbstractModel
+        # @param ZoneId: 站点id
+        # @type ZoneId: String
+        # @param Host: 二级域名
+        # @type Host: String
+        # @param AccelerateType: 加速开关 on-开启加速；off-关闭加速（AccelerateType：on，SecurityType：on，安全加速，未开防护增强；AccelerateType：off，SecurityType：on，安全加速，开启防护增强；AccelerateType：on，SecurityType：off，内容加速，未开防护增强）
+        # @type AccelerateType: String
+        # @param PolicyId: 策略id
+        # @type PolicyId: Integer
+        # @param SecurityType: 安全开关 on-开启安全；off-关闭安全（AccelerateType：on，SecurityType：on，安全加速，未开防护增强；AccelerateType：off，SecurityType：on，安全加速，开启防护增强；AccelerateType：on，SecurityType：off，内容加速，未开防护增强）
+        # @type SecurityType: String
+
+        attr_accessor :ZoneId, :Host, :AccelerateType, :PolicyId, :SecurityType
+        
+        def initialize(zoneid=nil, host=nil, acceleratetype=nil, policyid=nil, securitytype=nil)
+          @ZoneId = zoneid
+          @Host = host
+          @AccelerateType = acceleratetype
+          @PolicyId = policyid
+          @SecurityType = securitytype
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+          @Host = params['Host']
+          @AccelerateType = params['AccelerateType']
+          @PolicyId = params['PolicyId']
+          @SecurityType = params['SecurityType']
+        end
+      end
+
+      # ModifyDDoSPolicyHost返回参数结构体
+      class ModifyDDoSPolicyHostResponse < TencentCloud::Common::AbstractModel
+        # @param Host: 修改成功的host
+        # @type Host: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Host, :RequestId
+        
+        def initialize(host=nil, requestid=nil)
+          @Host = host
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Host = params['Host']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyDDoSPolicy请求参数结构体
+      class ModifyDDoSPolicyRequest < TencentCloud::Common::AbstractModel
+        # @param PolicyId: 策略组ID
+        # @type PolicyId: Integer
+        # @param ZoneId: 一级域名
+        # @type ZoneId: String
+        # @param DdosRule: DDoS具体防护配置
+        # @type DdosRule: :class:`Tencentcloud::Teo.v20220106.models.DdosRule`
+
+        attr_accessor :PolicyId, :ZoneId, :DdosRule
+        
+        def initialize(policyid=nil, zoneid=nil, ddosrule=nil)
+          @PolicyId = policyid
+          @ZoneId = zoneid
+          @DdosRule = ddosrule
+        end
+
+        def deserialize(params)
+          @PolicyId = params['PolicyId']
+          @ZoneId = params['ZoneId']
+          unless params['DdosRule'].nil?
+            @DdosRule = DdosRule.new
+            @DdosRule.deserialize(params['DdosRule'])
+          end
+        end
+      end
+
+      # ModifyDDoSPolicy返回参数结构体
+      class ModifyDDoSPolicyResponse < TencentCloud::Common::AbstractModel
+        # @param PolicyId: 策略组ID
+        # @type PolicyId: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :PolicyId, :RequestId
+        
+        def initialize(policyid=nil, requestid=nil)
+          @PolicyId = policyid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @PolicyId = params['PolicyId']
           @RequestId = params['RequestId']
         end
       end
@@ -3989,6 +5716,117 @@ module TencentCloud
 
         def deserialize(params)
           @LoadBalancingId = params['LoadBalancingId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyOriginGroup请求参数结构体
+      class ModifyOriginGroupRequest < TencentCloud::Common::AbstractModel
+        # @param OriginId: 源站组ID
+        # @type OriginId: String
+        # @param OriginName: 源站组名称
+        # @type OriginName: String
+        # @param Type: 配置类型，当OriginType=self 时，需要填写：
+        # area: 按区域配置
+        # weight: 按权重配置
+        # 当OriginType=third_party 时，不需要填写
+        # @type Type: String
+        # @param Record: 源站记录
+        # @type Record: Array
+        # @param ZoneId: 站点ID
+        # @type ZoneId: String
+        # @param OriginType: 源站类型
+        # self：自有源站
+        # third_party：第三方源站
+        # @type OriginType: String
+
+        attr_accessor :OriginId, :OriginName, :Type, :Record, :ZoneId, :OriginType
+        
+        def initialize(originid=nil, originname=nil, type=nil, record=nil, zoneid=nil, origintype=nil)
+          @OriginId = originid
+          @OriginName = originname
+          @Type = type
+          @Record = record
+          @ZoneId = zoneid
+          @OriginType = origintype
+        end
+
+        def deserialize(params)
+          @OriginId = params['OriginId']
+          @OriginName = params['OriginName']
+          @Type = params['Type']
+          unless params['Record'].nil?
+            @Record = []
+            params['Record'].each do |i|
+              originrecord_tmp = OriginRecord.new
+              originrecord_tmp.deserialize(i)
+              @Record << originrecord_tmp
+            end
+          end
+          @ZoneId = params['ZoneId']
+          @OriginType = params['OriginType']
+        end
+      end
+
+      # ModifyOriginGroup返回参数结构体
+      class ModifyOriginGroupResponse < TencentCloud::Common::AbstractModel
+        # @param OriginId: 源站组ID
+        # @type OriginId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :OriginId, :RequestId
+        
+        def initialize(originid=nil, requestid=nil)
+          @OriginId = originid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @OriginId = params['OriginId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifySecurityPolicy请求参数结构体
+      class ModifySecurityPolicyRequest < TencentCloud::Common::AbstractModel
+        # @param ZoneId: 一级域名
+        # @type ZoneId: String
+        # @param Entity: 二级域名/应用名
+        # @type Entity: String
+        # @param Config: 安全配置
+        # @type Config: :class:`Tencentcloud::Teo.v20220106.models.SecurityConfig`
+
+        attr_accessor :ZoneId, :Entity, :Config
+        
+        def initialize(zoneid=nil, entity=nil, config=nil)
+          @ZoneId = zoneid
+          @Entity = entity
+          @Config = config
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+          @Entity = params['Entity']
+          unless params['Config'].nil?
+            @Config = SecurityConfig.new
+            @Config.deserialize(params['Config'])
+          end
+        end
+      end
+
+      # ModifySecurityPolicy返回参数结构体
+      class ModifySecurityPolicyResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
           @RequestId = params['RequestId']
         end
       end
@@ -4365,6 +6203,26 @@ module TencentCloud
         end
       end
 
+      # 源站组查询过滤参数
+      class OriginFilter < TencentCloud::Common::AbstractModel
+        # @param Name: 要过滤的字段，支持：name
+        # @type Name: String
+        # @param Value: 要过滤的值
+        # @type Value: String
+
+        attr_accessor :Name, :Value
+        
+        def initialize(name=nil, value=nil)
+          @Name = name
+          @Value = value
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Value = params['Value']
+        end
+      end
+
       # 源站组信息
       class OriginGroup < TencentCloud::Common::AbstractModel
         # @param OriginId: 源站组ID
@@ -4568,6 +6426,178 @@ module TencentCloud
         end
       end
 
+      # RateLimit配置
+      class RateLimitConfig < TencentCloud::Common::AbstractModel
+        # @param Switch: 开关
+        # @type Switch: String
+        # @param UserRules: 用户规则
+        # @type UserRules: Array
+        # @param Template: 默认模板
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Template: :class:`Tencentcloud::Teo.v20220106.models.RateLimitTemplate`
+
+        attr_accessor :Switch, :UserRules, :Template
+        
+        def initialize(switch=nil, userrules=nil, template=nil)
+          @Switch = switch
+          @UserRules = userrules
+          @Template = template
+        end
+
+        def deserialize(params)
+          @Switch = params['Switch']
+          unless params['UserRules'].nil?
+            @UserRules = []
+            params['UserRules'].each do |i|
+              ratelimituserrule_tmp = RateLimitUserRule.new
+              ratelimituserrule_tmp.deserialize(i)
+              @UserRules << ratelimituserrule_tmp
+            end
+          end
+          unless params['Template'].nil?
+            @Template = RateLimitTemplate.new
+            @Template.deserialize(params['Template'])
+          end
+        end
+      end
+
+      # 速率限制模板
+      class RateLimitTemplate < TencentCloud::Common::AbstractModel
+        # @param Mode: 模板名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Mode: String
+        # @param Detail: 模板值详情
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Detail: :class:`Tencentcloud::Teo.v20220106.models.RateLimitTemplateDetail`
+
+        attr_accessor :Mode, :Detail
+        
+        def initialize(mode=nil, detail=nil)
+          @Mode = mode
+          @Detail = detail
+        end
+
+        def deserialize(params)
+          @Mode = params['Mode']
+          unless params['Detail'].nil?
+            @Detail = RateLimitTemplateDetail.new
+            @Detail.deserialize(params['Detail'])
+          end
+        end
+      end
+
+      # 模板当前详细配置
+      class RateLimitTemplateDetail < TencentCloud::Common::AbstractModel
+        # @param Mode: 模板名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Mode: String
+        # @param ID: 唯一id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ID: Integer
+        # @param Action: 处置动作
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Action: String
+        # @param PunishTime: 惩罚时间，秒
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PunishTime: Integer
+        # @param Threshold: 阈值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Threshold: Integer
+        # @param Period: 统计周期
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Period: Integer
+
+        attr_accessor :Mode, :ID, :Action, :PunishTime, :Threshold, :Period
+        
+        def initialize(mode=nil, id=nil, action=nil, punishtime=nil, threshold=nil, period=nil)
+          @Mode = mode
+          @ID = id
+          @Action = action
+          @PunishTime = punishtime
+          @Threshold = threshold
+          @Period = period
+        end
+
+        def deserialize(params)
+          @Mode = params['Mode']
+          @ID = params['ID']
+          @Action = params['Action']
+          @PunishTime = params['PunishTime']
+          @Threshold = params['Threshold']
+          @Period = params['Period']
+        end
+      end
+
+      # RateLimit规则
+      class RateLimitUserRule < TencentCloud::Common::AbstractModel
+        # @param Threshold: RateLimit统计阈值
+        # @type Threshold: Integer
+        # @param Period: RateLimit统计时间
+        # @type Period: Integer
+        # @param RuleName: 规则名
+        # @type RuleName: String
+        # @param Action: 动作：monitor(观察), drop(拦截)
+        # @type Action: String
+        # @param PunishTime: 惩罚时长
+        # @type PunishTime: Integer
+        # @param PunishTimeUnit: 处罚时长单位，second
+        # @type PunishTimeUnit: String
+        # @param RuleStatus: 规则状态
+        # @type RuleStatus: String
+        # @param Conditions: 规则
+        # @type Conditions: Array
+        # @param RulePriority: 规则权重
+        # @type RulePriority: Integer
+        # @param RuleID: 规则id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RuleID: Integer
+        # @param FreqFields: 过滤词
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FreqFields: Array
+        # @param UpdateTime: 更新时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UpdateTime: String
+
+        attr_accessor :Threshold, :Period, :RuleName, :Action, :PunishTime, :PunishTimeUnit, :RuleStatus, :Conditions, :RulePriority, :RuleID, :FreqFields, :UpdateTime
+        
+        def initialize(threshold=nil, period=nil, rulename=nil, action=nil, punishtime=nil, punishtimeunit=nil, rulestatus=nil, conditions=nil, rulepriority=nil, ruleid=nil, freqfields=nil, updatetime=nil)
+          @Threshold = threshold
+          @Period = period
+          @RuleName = rulename
+          @Action = action
+          @PunishTime = punishtime
+          @PunishTimeUnit = punishtimeunit
+          @RuleStatus = rulestatus
+          @Conditions = conditions
+          @RulePriority = rulepriority
+          @RuleID = ruleid
+          @FreqFields = freqfields
+          @UpdateTime = updatetime
+        end
+
+        def deserialize(params)
+          @Threshold = params['Threshold']
+          @Period = params['Period']
+          @RuleName = params['RuleName']
+          @Action = params['Action']
+          @PunishTime = params['PunishTime']
+          @PunishTimeUnit = params['PunishTimeUnit']
+          @RuleStatus = params['RuleStatus']
+          unless params['Conditions'].nil?
+            @Conditions = []
+            params['Conditions'].each do |i|
+              aclcondition_tmp = ACLCondition.new
+              aclcondition_tmp.deserialize(i)
+              @Conditions << aclcondition_tmp
+            end
+          end
+          @RulePriority = params['RulePriority']
+          @RuleID = params['RuleID']
+          @FreqFields = params['FreqFields']
+          @UpdateTime = params['UpdateTime']
+        end
+      end
+
       # ReclaimZone请求参数结构体
       class ReclaimZoneRequest < TencentCloud::Common::AbstractModel
         # @param Name: 站点名称
@@ -4646,6 +6676,94 @@ module TencentCloud
         end
       end
 
+      # 安全配置
+      class SecurityConfig < TencentCloud::Common::AbstractModel
+        # @param WafConfig: 门神配置
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type WafConfig: :class:`Tencentcloud::Teo.v20220106.models.WafConfig`
+        # @param RateLimitConfig: RateLimit配置
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RateLimitConfig: :class:`Tencentcloud::Teo.v20220106.models.RateLimitConfig`
+        # @param DdosConfig: DDoS配置
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DdosConfig: :class:`Tencentcloud::Teo.v20220106.models.DDoSConfig`
+        # @param AclConfig: ACL配置
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AclConfig: :class:`Tencentcloud::Teo.v20220106.models.AclConfig`
+        # @param BotConfig: Bot配置
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BotConfig: :class:`Tencentcloud::Teo.v20220106.models.BotConfig`
+        # @param SwitchConfig: 总开关
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SwitchConfig: :class:`Tencentcloud::Teo.v20220106.models.SwitchConfig`
+
+        attr_accessor :WafConfig, :RateLimitConfig, :DdosConfig, :AclConfig, :BotConfig, :SwitchConfig
+        
+        def initialize(wafconfig=nil, ratelimitconfig=nil, ddosconfig=nil, aclconfig=nil, botconfig=nil, switchconfig=nil)
+          @WafConfig = wafconfig
+          @RateLimitConfig = ratelimitconfig
+          @DdosConfig = ddosconfig
+          @AclConfig = aclconfig
+          @BotConfig = botconfig
+          @SwitchConfig = switchconfig
+        end
+
+        def deserialize(params)
+          unless params['WafConfig'].nil?
+            @WafConfig = WafConfig.new
+            @WafConfig.deserialize(params['WafConfig'])
+          end
+          unless params['RateLimitConfig'].nil?
+            @RateLimitConfig = RateLimitConfig.new
+            @RateLimitConfig.deserialize(params['RateLimitConfig'])
+          end
+          unless params['DdosConfig'].nil?
+            @DdosConfig = DDoSConfig.new
+            @DdosConfig.deserialize(params['DdosConfig'])
+          end
+          unless params['AclConfig'].nil?
+            @AclConfig = AclConfig.new
+            @AclConfig.deserialize(params['AclConfig'])
+          end
+          unless params['BotConfig'].nil?
+            @BotConfig = BotConfig.new
+            @BotConfig.deserialize(params['BotConfig'])
+          end
+          unless params['SwitchConfig'].nil?
+            @SwitchConfig = SwitchConfig.new
+            @SwitchConfig.deserialize(params['SwitchConfig'])
+          end
+        end
+      end
+
+      # 安全防护实例
+      class SecurityEntity < TencentCloud::Common::AbstractModel
+        # @param AppId: 用户appid
+        # @type AppId: Integer
+        # @param ZoneId: 一级域名
+        # @type ZoneId: String
+        # @param Entity: 二级域名
+        # @type Entity: String
+        # @param EntityType: 类型 domain/application
+        # @type EntityType: String
+
+        attr_accessor :AppId, :ZoneId, :Entity, :EntityType
+        
+        def initialize(appid=nil, zoneid=nil, entity=nil, entitytype=nil)
+          @AppId = appid
+          @ZoneId = zoneid
+          @Entity = entity
+          @EntityType = entitytype
+        end
+
+        def deserialize(params)
+          @AppId = params['AppId']
+          @ZoneId = params['ZoneId']
+          @Entity = params['Entity']
+          @EntityType = params['EntityType']
+        end
+      end
+
       # https 服务端证书配置
       class ServerCertInfo < TencentCloud::Common::AbstractModel
         # @param CertId: 服务器证书 ID, 默认证书ID, 或在 SSL 证书管理进行证书托管时自动生成
@@ -4693,6 +6811,67 @@ module TencentCloud
         end
       end
 
+      # DDoS防护分区
+      class ShieldArea < TencentCloud::Common::AbstractModel
+        # @param ZoneId: 一级域名id
+        # @type ZoneId: String
+        # @param PolicyId: 策略id
+        # @type PolicyId: Integer
+        # @param Type: 防护类型 domain/application
+        # @type Type: String
+        # @param EntityName: 四层应用名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EntityName: String
+        # @param Application: 7层域名参数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Application: Array
+        # @param TcpNum: 四层tcp转发规则数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TcpNum: Integer
+        # @param UdpNum: 四层udp转发规则数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UdpNum: Integer
+        # @param Entity: 实例名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Entity: String
+        # @param Share: 是否为共享资源客户，注意共享资源用户不可以切换代理模式，true-是；false-否
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Share: Boolean
+
+        attr_accessor :ZoneId, :PolicyId, :Type, :EntityName, :Application, :TcpNum, :UdpNum, :Entity, :Share
+        
+        def initialize(zoneid=nil, policyid=nil, type=nil, entityname=nil, application=nil, tcpnum=nil, udpnum=nil, entity=nil, share=nil)
+          @ZoneId = zoneid
+          @PolicyId = policyid
+          @Type = type
+          @EntityName = entityname
+          @Application = application
+          @TcpNum = tcpnum
+          @UdpNum = udpnum
+          @Entity = entity
+          @Share = share
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+          @PolicyId = params['PolicyId']
+          @Type = params['Type']
+          @EntityName = params['EntityName']
+          unless params['Application'].nil?
+            @Application = []
+            params['Application'].each do |i|
+              ddosapplication_tmp = DDoSApplication.new
+              ddosapplication_tmp.deserialize(i)
+              @Application << ddosapplication_tmp
+            end
+          end
+          @TcpNum = params['TcpNum']
+          @UdpNum = params['UdpNum']
+          @Entity = params['Entity']
+          @Share = params['Share']
+        end
+      end
+
       # 智能加速配置
       class SmartRouting < TencentCloud::Common::AbstractModel
         # @param Switch: 智能加速配置开关
@@ -4708,6 +6887,22 @@ module TencentCloud
 
         def deserialize(params)
           @Switch = params['Switch']
+        end
+      end
+
+      # 功能总开关
+      class SwitchConfig < TencentCloud::Common::AbstractModel
+        # @param WebSwitch: Web类型的安全总开关：Web基础防护，自定义规则，速率限制
+        # @type WebSwitch: String
+
+        attr_accessor :WebSwitch
+        
+        def initialize(webswitch=nil)
+          @WebSwitch = webswitch
+        end
+
+        def deserialize(params)
+          @WebSwitch = params['WebSwitch']
         end
       end
 
@@ -4804,6 +6999,70 @@ module TencentCloud
         def deserialize(params)
           @Name = params['Name']
           @IPv4 = params['IPv4']
+        end
+      end
+
+      # 门神配置
+      class WafConfig < TencentCloud::Common::AbstractModel
+        # @param Switch: 开关
+        # @type Switch: String
+        # @param Level: 防护级别，loose/normal/strict/stricter/custom
+        # @type Level: String
+        # @param Mode: 模式 block-阻断；observe-观察模式；close-关闭
+        # @type Mode: String
+        # @param WafRules: 门神黑白名单
+        # @type WafRules: :class:`Tencentcloud::Teo.v20220106.models.WafRule`
+        # @param AiRule: AI规则引擎防护
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AiRule: :class:`Tencentcloud::Teo.v20220106.models.AiRule`
+
+        attr_accessor :Switch, :Level, :Mode, :WafRules, :AiRule
+        
+        def initialize(switch=nil, level=nil, mode=nil, wafrules=nil, airule=nil)
+          @Switch = switch
+          @Level = level
+          @Mode = mode
+          @WafRules = wafrules
+          @AiRule = airule
+        end
+
+        def deserialize(params)
+          @Switch = params['Switch']
+          @Level = params['Level']
+          @Mode = params['Mode']
+          unless params['WafRules'].nil?
+            @WafRules = WafRule.new
+            @WafRules.deserialize(params['WafRules'])
+          end
+          unless params['AiRule'].nil?
+            @AiRule = AiRule.new
+            @AiRule.deserialize(params['AiRule'])
+          end
+        end
+      end
+
+      # Waf规则
+      class WafRule < TencentCloud::Common::AbstractModel
+        # @param BlockRuleIDs: 黑名单
+        # @type BlockRuleIDs: Array
+        # @param Switch: id的开关
+        # @type Switch: String
+        # @param ObserveRuleIDs: 观察模式
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ObserveRuleIDs: Array
+
+        attr_accessor :BlockRuleIDs, :Switch, :ObserveRuleIDs
+        
+        def initialize(blockruleids=nil, switch=nil, observeruleids=nil)
+          @BlockRuleIDs = blockruleids
+          @Switch = switch
+          @ObserveRuleIDs = observeruleids
+        end
+
+        def deserialize(params)
+          @BlockRuleIDs = params['BlockRuleIDs']
+          @Switch = params['Switch']
+          @ObserveRuleIDs = params['ObserveRuleIDs']
         end
       end
 

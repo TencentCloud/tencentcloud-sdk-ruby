@@ -159,19 +159,27 @@ module TencentCloud
         # @type Limit: Integer
         # @param Offset: 偏移量,默认0
         # @type Offset: Integer
+        # @param Env: 环境
+        # @type Env: String
+        # @param TaskType: 任务类型
+        # @type TaskType: String
 
-        attr_accessor :StrategyId, :Limit, :Offset
+        attr_accessor :StrategyId, :Limit, :Offset, :Env, :TaskType
         
-        def initialize(strategyid=nil, limit=nil, offset=nil)
+        def initialize(strategyid=nil, limit=nil, offset=nil, env=nil, tasktype=nil)
           @StrategyId = strategyid
           @Limit = limit
           @Offset = offset
+          @Env = env
+          @TaskType = tasktype
         end
 
         def deserialize(params)
           @StrategyId = params['StrategyId']
           @Limit = params['Limit']
           @Offset = params['Offset']
+          @Env = params['Env']
+          @TaskType = params['TaskType']
         end
       end
 
@@ -190,16 +198,20 @@ module TencentCloud
         # @param Risks: 风险实例详情列表，需要json decode
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Risks: String
+        # @param ResourceCount: 巡检资源数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResourceCount: Integer
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RiskFieldsDesc, :StrategyId, :RiskTotalCount, :Risks, :RequestId
+        attr_accessor :RiskFieldsDesc, :StrategyId, :RiskTotalCount, :Risks, :ResourceCount, :RequestId
         
-        def initialize(riskfieldsdesc=nil, strategyid=nil, risktotalcount=nil, risks=nil, requestid=nil)
+        def initialize(riskfieldsdesc=nil, strategyid=nil, risktotalcount=nil, risks=nil, resourcecount=nil, requestid=nil)
           @RiskFieldsDesc = riskfieldsdesc
           @StrategyId = strategyid
           @RiskTotalCount = risktotalcount
           @Risks = risks
+          @ResourceCount = resourcecount
           @RequestId = requestid
         end
 
@@ -215,6 +227,7 @@ module TencentCloud
           @StrategyId = params['StrategyId']
           @RiskTotalCount = params['RiskTotalCount']
           @Risks = params['Risks']
+          @ResourceCount = params['ResourceCount']
           @RequestId = params['RequestId']
         end
       end

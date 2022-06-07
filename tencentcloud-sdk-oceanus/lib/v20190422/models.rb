@@ -1848,6 +1848,65 @@ module TencentCloud
         end
       end
 
+      # TriggerJobSavepoint请求参数结构体
+      class TriggerJobSavepointRequest < TencentCloud::Common::AbstractModel
+        # @param JobId: 作业 SerialId
+        # @type JobId: String
+        # @param Description: 描述
+        # @type Description: String
+        # @param WorkSpaceId: 工作空间 SerialId
+        # @type WorkSpaceId: String
+
+        attr_accessor :JobId, :Description, :WorkSpaceId
+        
+        def initialize(jobid=nil, description=nil, workspaceid=nil)
+          @JobId = jobid
+          @Description = description
+          @WorkSpaceId = workspaceid
+        end
+
+        def deserialize(params)
+          @JobId = params['JobId']
+          @Description = params['Description']
+          @WorkSpaceId = params['WorkSpaceId']
+        end
+      end
+
+      # TriggerJobSavepoint返回参数结构体
+      class TriggerJobSavepointResponse < TencentCloud::Common::AbstractModel
+        # @param SavepointTrigger: 是否成功
+        # @type SavepointTrigger: Boolean
+        # @param ErrorMsg: 错误消息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ErrorMsg: String
+        # @param FinalSavepointPath: 快照路径
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FinalSavepointPath: String
+        # @param SavepointId: 快照 ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SavepointId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :SavepointTrigger, :ErrorMsg, :FinalSavepointPath, :SavepointId, :RequestId
+        
+        def initialize(savepointtrigger=nil, errormsg=nil, finalsavepointpath=nil, savepointid=nil, requestid=nil)
+          @SavepointTrigger = savepointtrigger
+          @ErrorMsg = errormsg
+          @FinalSavepointPath = finalsavepointpath
+          @SavepointId = savepointid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @SavepointTrigger = params['SavepointTrigger']
+          @ErrorMsg = params['ErrorMsg']
+          @FinalSavepointPath = params['FinalSavepointPath']
+          @SavepointId = params['SavepointId']
+          @RequestId = params['RequestId']
+        end
+      end
+
     end
   end
 end

@@ -255,10 +255,31 @@ module TencentCloud
         # @param ContractPrice: 合同价
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ContractPrice: String
+        # @param InstanceType: 资源包、预留实例、节省计划、竞价实例这四类特殊实例本身的扣费行为，此字段体现对应的实例类型。枚举值如下：
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceType: String
+        # @param RiTimeSpan: 预留实例抵扣的使用时长，时长单位与被抵扣的时长单位保持一致
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RiTimeSpan: String
+        # @param OriginalCostWithRI: 按组件原价的口径换算的预留实例抵扣金额
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OriginalCostWithRI: String
+        # @param SPDeductionRate: 节省计划可用余额额度范围内，节省计划对于此组件打的折扣率
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SPDeductionRate: String
+        # @param SPDeduction: 节省计划抵扣的SP包面值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SPDeduction: String
+        # @param OriginalCostWithSP: 按组件原价的口径换算的节省计划抵扣金额
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OriginalCostWithSP: String
+        # @param BlendedDiscount: 综合了官网折扣、预留实例抵扣、节省计划抵扣的混合折扣率。若没有预留实例抵扣、节省计划抵扣,混合折扣率等于折扣率
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BlendedDiscount: String
 
-        attr_accessor :ComponentCodeName, :ItemCodeName, :SinglePrice, :SpecifiedPrice, :PriceUnit, :UsedAmount, :UsedAmountUnit, :TimeSpan, :TimeUnitName, :Cost, :Discount, :ReduceType, :RealCost, :VoucherPayAmount, :CashPayAmount, :IncentivePayAmount, :ItemCode, :ComponentCode, :ContractPrice
+        attr_accessor :ComponentCodeName, :ItemCodeName, :SinglePrice, :SpecifiedPrice, :PriceUnit, :UsedAmount, :UsedAmountUnit, :TimeSpan, :TimeUnitName, :Cost, :Discount, :ReduceType, :RealCost, :VoucherPayAmount, :CashPayAmount, :IncentivePayAmount, :ItemCode, :ComponentCode, :ContractPrice, :InstanceType, :RiTimeSpan, :OriginalCostWithRI, :SPDeductionRate, :SPDeduction, :OriginalCostWithSP, :BlendedDiscount
         
-        def initialize(componentcodename=nil, itemcodename=nil, singleprice=nil, specifiedprice=nil, priceunit=nil, usedamount=nil, usedamountunit=nil, timespan=nil, timeunitname=nil, cost=nil, discount=nil, reducetype=nil, realcost=nil, voucherpayamount=nil, cashpayamount=nil, incentivepayamount=nil, itemcode=nil, componentcode=nil, contractprice=nil)
+        def initialize(componentcodename=nil, itemcodename=nil, singleprice=nil, specifiedprice=nil, priceunit=nil, usedamount=nil, usedamountunit=nil, timespan=nil, timeunitname=nil, cost=nil, discount=nil, reducetype=nil, realcost=nil, voucherpayamount=nil, cashpayamount=nil, incentivepayamount=nil, itemcode=nil, componentcode=nil, contractprice=nil, instancetype=nil, ritimespan=nil, originalcostwithri=nil, spdeductionrate=nil, spdeduction=nil, originalcostwithsp=nil, blendeddiscount=nil)
           @ComponentCodeName = componentcodename
           @ItemCodeName = itemcodename
           @SinglePrice = singleprice
@@ -278,6 +299,13 @@ module TencentCloud
           @ItemCode = itemcode
           @ComponentCode = componentcode
           @ContractPrice = contractprice
+          @InstanceType = instancetype
+          @RiTimeSpan = ritimespan
+          @OriginalCostWithRI = originalcostwithri
+          @SPDeductionRate = spdeductionrate
+          @SPDeduction = spdeduction
+          @OriginalCostWithSP = originalcostwithsp
+          @BlendedDiscount = blendeddiscount
         end
 
         def deserialize(params)
@@ -300,6 +328,13 @@ module TencentCloud
           @ItemCode = params['ItemCode']
           @ComponentCode = params['ComponentCode']
           @ContractPrice = params['ContractPrice']
+          @InstanceType = params['InstanceType']
+          @RiTimeSpan = params['RiTimeSpan']
+          @OriginalCostWithRI = params['OriginalCostWithRI']
+          @SPDeductionRate = params['SPDeductionRate']
+          @SPDeduction = params['SPDeduction']
+          @OriginalCostWithSP = params['OriginalCostWithSP']
+          @BlendedDiscount = params['BlendedDiscount']
         end
       end
 
@@ -373,10 +408,26 @@ module TencentCloud
         # @type ProductCode: String
         # @param RegionId: 区域ID
         # @type RegionId: Integer
+        # @param InstanceType: 资源包、预留实例、节省计划、竞价实例这四类特殊实例本身的扣费行为，此字段体现对应的实例类型。枚举值如下：
 
-        attr_accessor :BusinessCodeName, :ProductCodeName, :PayModeName, :ProjectName, :RegionName, :ZoneName, :ResourceId, :ResourceName, :ActionTypeName, :OrderId, :PayTime, :FeeBeginTime, :FeeEndTime, :ConfigDesc, :ExtendField1, :ExtendField2, :TotalCost, :Discount, :ReduceType, :RealTotalCost, :VoucherPayAmount, :CashPayAmount, :IncentivePayAmount, :ExtendField3, :ExtendField4, :ExtendField5, :Tags, :PayerUin, :OwnerUin, :OperateUin, :BusinessCode, :ProductCode, :RegionId
+        # ri=Standard RI
+
+        # svp=Savings Plan
+
+        # si=Spot Instances
+
+        # rp=Resource Pack
+        # @type InstanceType: String
+        # @param OriginalCostWithRI: 按组件原价的口径换算的预留实例抵扣金额
+        # @type OriginalCostWithRI: String
+        # @param SPDeduction: 节省计划抵扣的SP包面值
+        # @type SPDeduction: String
+        # @param OriginalCostWithSP: 按组件原价的口径换算的节省计划抵扣金额
+        # @type OriginalCostWithSP: String
+
+        attr_accessor :BusinessCodeName, :ProductCodeName, :PayModeName, :ProjectName, :RegionName, :ZoneName, :ResourceId, :ResourceName, :ActionTypeName, :OrderId, :PayTime, :FeeBeginTime, :FeeEndTime, :ConfigDesc, :ExtendField1, :ExtendField2, :TotalCost, :Discount, :ReduceType, :RealTotalCost, :VoucherPayAmount, :CashPayAmount, :IncentivePayAmount, :ExtendField3, :ExtendField4, :ExtendField5, :Tags, :PayerUin, :OwnerUin, :OperateUin, :BusinessCode, :ProductCode, :RegionId, :InstanceType, :OriginalCostWithRI, :SPDeduction, :OriginalCostWithSP
         
-        def initialize(businesscodename=nil, productcodename=nil, paymodename=nil, projectname=nil, regionname=nil, zonename=nil, resourceid=nil, resourcename=nil, actiontypename=nil, orderid=nil, paytime=nil, feebegintime=nil, feeendtime=nil, configdesc=nil, extendfield1=nil, extendfield2=nil, totalcost=nil, discount=nil, reducetype=nil, realtotalcost=nil, voucherpayamount=nil, cashpayamount=nil, incentivepayamount=nil, extendfield3=nil, extendfield4=nil, extendfield5=nil, tags=nil, payeruin=nil, owneruin=nil, operateuin=nil, businesscode=nil, productcode=nil, regionid=nil)
+        def initialize(businesscodename=nil, productcodename=nil, paymodename=nil, projectname=nil, regionname=nil, zonename=nil, resourceid=nil, resourcename=nil, actiontypename=nil, orderid=nil, paytime=nil, feebegintime=nil, feeendtime=nil, configdesc=nil, extendfield1=nil, extendfield2=nil, totalcost=nil, discount=nil, reducetype=nil, realtotalcost=nil, voucherpayamount=nil, cashpayamount=nil, incentivepayamount=nil, extendfield3=nil, extendfield4=nil, extendfield5=nil, tags=nil, payeruin=nil, owneruin=nil, operateuin=nil, businesscode=nil, productcode=nil, regionid=nil, instancetype=nil, originalcostwithri=nil, spdeduction=nil, originalcostwithsp=nil)
           @BusinessCodeName = businesscodename
           @ProductCodeName = productcodename
           @PayModeName = paymodename
@@ -410,6 +461,10 @@ module TencentCloud
           @BusinessCode = businesscode
           @ProductCode = productcode
           @RegionId = regionid
+          @InstanceType = instancetype
+          @OriginalCostWithRI = originalcostwithri
+          @SPDeduction = spdeduction
+          @OriginalCostWithSP = originalcostwithsp
         end
 
         def deserialize(params)
@@ -453,6 +508,10 @@ module TencentCloud
           @BusinessCode = params['BusinessCode']
           @ProductCode = params['ProductCode']
           @RegionId = params['RegionId']
+          @InstanceType = params['InstanceType']
+          @OriginalCostWithRI = params['OriginalCostWithRI']
+          @SPDeduction = params['SPDeduction']
+          @OriginalCostWithSP = params['OriginalCostWithSP']
         end
       end
 
@@ -1507,10 +1566,6 @@ module TencentCloud
         # 小时费用
         # 预留实例退款
         # 按量计费冲正
-        # 按量计费冲正
-        # 按量计费冲正
-        # 按量计费冲正
-        # 按量计费冲正
         # 包年包月转按量
         # @type ActionType: String
         # @param ProjectId: 项目ID:资源所属项目ID
@@ -1758,10 +1813,6 @@ module TencentCloud
         # 预付费用
         # 小时费用
         # 预留实例退款
-        # 按量计费冲正
-        # 按量计费冲正
-        # 按量计费冲正
-        # 按量计费冲正
         # 按量计费冲正
         # 包年包月转按量
         # @type ActionType: String

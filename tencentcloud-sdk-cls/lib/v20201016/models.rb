@@ -628,25 +628,30 @@ module TencentCloud
         # @param EnableTag: 是否投递 TAG 信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EnableTag: Boolean
-        # @param MetaFields: 需要投递的元数据列表，目前仅支持：__SOURCE__，__FILENAME__和__TIMESTAMP__
+        # @param MetaFields: 需要投递的元数据列表，目前仅支持：\_\_SOURCE\_\_，\_\_FILENAME\_\_和\_\_TIMESTAMP\_\_
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MetaFields: Array
         # @param TagJsonNotTiled: 当EnableTag为true时，必须填写TagJsonNotTiled字段，TagJsonNotTiled用于标识tag信息是否json平铺，TagJsonNotTiled为true时不平铺，false时平铺
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TagJsonNotTiled: Boolean
+        # @param TimestampAccuracy: 投递时间戳精度，可选项 [1:秒；2:毫秒] ，默认是秒
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TimestampAccuracy: Integer
 
-        attr_accessor :EnableTag, :MetaFields, :TagJsonNotTiled
+        attr_accessor :EnableTag, :MetaFields, :TagJsonNotTiled, :TimestampAccuracy
         
-        def initialize(enabletag=nil, metafields=nil, tagjsonnottiled=nil)
+        def initialize(enabletag=nil, metafields=nil, tagjsonnottiled=nil, timestampaccuracy=nil)
           @EnableTag = enabletag
           @MetaFields = metafields
           @TagJsonNotTiled = tagjsonnottiled
+          @TimestampAccuracy = timestampaccuracy
         end
 
         def deserialize(params)
           @EnableTag = params['EnableTag']
           @MetaFields = params['MetaFields']
           @TagJsonNotTiled = params['TagJsonNotTiled']
+          @TimestampAccuracy = params['TimestampAccuracy']
         end
       end
 

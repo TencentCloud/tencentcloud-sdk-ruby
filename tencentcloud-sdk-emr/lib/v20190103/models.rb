@@ -19,16 +19,20 @@ module TencentCloud
     module V20190103
       # AddUsersForUserManager请求参数结构体
       class AddUsersForUserManagerRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 集群字符串ID
+        # @type InstanceId: String
         # @param UserManagerUserList: 用户信息列表
         # @type UserManagerUserList: Array
 
-        attr_accessor :UserManagerUserList
+        attr_accessor :InstanceId, :UserManagerUserList
         
-        def initialize(usermanageruserlist=nil)
+        def initialize(instanceid=nil, usermanageruserlist=nil)
+          @InstanceId = instanceid
           @UserManagerUserList = usermanageruserlist
         end
 
         def deserialize(params)
+          @InstanceId = params['InstanceId']
           unless params['UserManagerUserList'].nil?
             @UserManagerUserList = []
             params['UserManagerUserList'].each do |i|
@@ -42,16 +46,26 @@ module TencentCloud
 
       # AddUsersForUserManager返回参数结构体
       class AddUsersForUserManagerResponse < TencentCloud::Common::AbstractModel
+        # @param SuccessUserList: 添加成功的用户列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SuccessUserList: Array
+        # @param FailedUserList: 添加失败的用户列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FailedUserList: Array
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RequestId
+        attr_accessor :SuccessUserList, :FailedUserList, :RequestId
         
-        def initialize(requestid=nil)
+        def initialize(successuserlist=nil, faileduserlist=nil, requestid=nil)
+          @SuccessUserList = successuserlist
+          @FailedUserList = faileduserlist
           @RequestId = requestid
         end
 
         def deserialize(params)
+          @SuccessUserList = params['SuccessUserList']
+          @FailedUserList = params['FailedUserList']
           @RequestId = params['RequestId']
         end
       end
@@ -1383,32 +1397,67 @@ module TencentCloud
 
       # DescribeUsersForUserManager请求参数结构体
       class DescribeUsersForUserManagerRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 集群实例ID
+        # @type InstanceId: String
+        # @param PageNo: 页码
+        # @type PageNo: Integer
+        # @param PageSize: 分页的大小
+        # @type PageSize: Integer
+        # @param UserManagerFilter: 查询用户列表过滤器
+        # @type UserManagerFilter: :class:`Tencentcloud::Emr.v20190103.models.UserManagerFilter`
         # @param NeedKeytabInfo: 是否需要keytab文件的信息，仅对开启kerberos的集群有效，默认为false
         # @type NeedKeytabInfo: Boolean
 
-        attr_accessor :NeedKeytabInfo
+        attr_accessor :InstanceId, :PageNo, :PageSize, :UserManagerFilter, :NeedKeytabInfo
         
-        def initialize(needkeytabinfo=nil)
+        def initialize(instanceid=nil, pageno=nil, pagesize=nil, usermanagerfilter=nil, needkeytabinfo=nil)
+          @InstanceId = instanceid
+          @PageNo = pageno
+          @PageSize = pagesize
+          @UserManagerFilter = usermanagerfilter
           @NeedKeytabInfo = needkeytabinfo
         end
 
         def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @PageNo = params['PageNo']
+          @PageSize = params['PageSize']
+          unless params['UserManagerFilter'].nil?
+            @UserManagerFilter = UserManagerFilter.new
+            @UserManagerFilter.deserialize(params['UserManagerFilter'])
+          end
           @NeedKeytabInfo = params['NeedKeytabInfo']
         end
       end
 
       # DescribeUsersForUserManager返回参数结构体
       class DescribeUsersForUserManagerResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCnt: 总数
+        # @type TotalCnt: Integer
+        # @param UserManagerUserList: 用户信息列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UserManagerUserList: Array
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RequestId
+        attr_accessor :TotalCnt, :UserManagerUserList, :RequestId
         
-        def initialize(requestid=nil)
+        def initialize(totalcnt=nil, usermanageruserlist=nil, requestid=nil)
+          @TotalCnt = totalcnt
+          @UserManagerUserList = usermanageruserlist
           @RequestId = requestid
         end
 
         def deserialize(params)
+          @TotalCnt = params['TotalCnt']
+          unless params['UserManagerUserList'].nil?
+            @UserManagerUserList = []
+            params['UserManagerUserList'].each do |i|
+              usermanageruserbriefinfo_tmp = UserManagerUserBriefInfo.new
+              usermanageruserbriefinfo_tmp.deserialize(i)
+              @UserManagerUserList << usermanageruserbriefinfo_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -4458,6 +4507,55 @@ module TencentCloud
           @UserGroup = params['UserGroup']
           @PassWord = params['PassWord']
           @ReMark = params['ReMark']
+        end
+      end
+
+      # 用户管理列表过滤器
+      class UserManagerFilter < TencentCloud::Common::AbstractModel
+
+        
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # 用户管理中用户的简要信息
+      class UserManagerUserBriefInfo < TencentCloud::Common::AbstractModel
+        # @param UserName: 用户名
+        # @type UserName: String
+        # @param UserGroup: 用户所属的组
+        # @type UserGroup: String
+        # @param UserType: Manager表示管理员、NormalUser表示普通用户
+        # @type UserType: String
+        # @param CreateTime: 用户创建时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateTime: String
+        # @param SupportDownLoadKeyTab: 是否可以下载用户对应的keytab文件，对开启kerberos的集群才有意义
+        # @type SupportDownLoadKeyTab: Boolean
+        # @param DownLoadKeyTabUrl: keytab文件的下载地址
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DownLoadKeyTabUrl: String
+
+        attr_accessor :UserName, :UserGroup, :UserType, :CreateTime, :SupportDownLoadKeyTab, :DownLoadKeyTabUrl
+        
+        def initialize(username=nil, usergroup=nil, usertype=nil, createtime=nil, supportdownloadkeytab=nil, downloadkeytaburl=nil)
+          @UserName = username
+          @UserGroup = usergroup
+          @UserType = usertype
+          @CreateTime = createtime
+          @SupportDownLoadKeyTab = supportdownloadkeytab
+          @DownLoadKeyTabUrl = downloadkeytaburl
+        end
+
+        def deserialize(params)
+          @UserName = params['UserName']
+          @UserGroup = params['UserGroup']
+          @UserType = params['UserType']
+          @CreateTime = params['CreateTime']
+          @SupportDownLoadKeyTab = params['SupportDownLoadKeyTab']
+          @DownLoadKeyTabUrl = params['DownLoadKeyTabUrl']
         end
       end
 

@@ -3323,20 +3323,28 @@ module TencentCloud
         # 11：增值税发票（卷票 ）
         # 12：购车发票
         # 13：过路过桥费发票
+        # 15：非税发票
+        # 16：全电发票
         # @type Types: Array
+        # @param ReturnOther: 是否识别其他类型发票，默认为Yes
+        # Yes：识别其他类型发票
+        # No：不识别其他类型发票
+        # @type ReturnOther: String
 
-        attr_accessor :ImageBase64, :ImageUrl, :Types
+        attr_accessor :ImageBase64, :ImageUrl, :Types, :ReturnOther
         
-        def initialize(imagebase64=nil, imageurl=nil, types=nil)
+        def initialize(imagebase64=nil, imageurl=nil, types=nil, returnother=nil)
           @ImageBase64 = imagebase64
           @ImageUrl = imageurl
           @Types = types
+          @ReturnOther = returnother
         end
 
         def deserialize(params)
           @ImageBase64 = params['ImageBase64']
           @ImageUrl = params['ImageUrl']
           @Types = params['Types']
+          @ReturnOther = params['ReturnOther']
         end
       end
 
@@ -6454,6 +6462,7 @@ module TencentCloud
         # 11：卷式发票
         # 14：通行费发票
         # 15：二手车发票
+        # 32：深圳区块链发票（仅支持新版接口）
         # @type Type: String
         # @param CheckCode: 检验码
         # @type CheckCode: String

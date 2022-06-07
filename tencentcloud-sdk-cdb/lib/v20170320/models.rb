@@ -9544,10 +9544,13 @@ module TencentCloud
         # @param DeviceTypeName: 实例类型描述，可能的取值范围有：通用型， 独享型， 基础型
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DeviceTypeName: String
+        # @param EngineType: 引擎类型描述，可能的取值范围有：Innodb，RocksDB
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EngineType: String
 
-        attr_accessor :Device, :Type, :CdbType, :Memory, :Cpu, :VolumeMin, :VolumeMax, :VolumeStep, :Connection, :Qps, :Iops, :Info, :Status, :Tag, :DeviceType, :DeviceTypeName
+        attr_accessor :Device, :Type, :CdbType, :Memory, :Cpu, :VolumeMin, :VolumeMax, :VolumeStep, :Connection, :Qps, :Iops, :Info, :Status, :Tag, :DeviceType, :DeviceTypeName, :EngineType
         
-        def initialize(device=nil, type=nil, cdbtype=nil, memory=nil, cpu=nil, volumemin=nil, volumemax=nil, volumestep=nil, connection=nil, qps=nil, iops=nil, info=nil, status=nil, tag=nil, devicetype=nil, devicetypename=nil)
+        def initialize(device=nil, type=nil, cdbtype=nil, memory=nil, cpu=nil, volumemin=nil, volumemax=nil, volumestep=nil, connection=nil, qps=nil, iops=nil, info=nil, status=nil, tag=nil, devicetype=nil, devicetypename=nil, enginetype=nil)
           @Device = device
           @Type = type
           @CdbType = cdbtype
@@ -9564,6 +9567,7 @@ module TencentCloud
           @Tag = tag
           @DeviceType = devicetype
           @DeviceTypeName = devicetypename
+          @EngineType = enginetype
         end
 
         def deserialize(params)
@@ -9583,6 +9587,7 @@ module TencentCloud
           @Tag = params['Tag']
           @DeviceType = params['DeviceType']
           @DeviceTypeName = params['DeviceTypeName']
+          @EngineType = params['EngineType']
         end
       end
 

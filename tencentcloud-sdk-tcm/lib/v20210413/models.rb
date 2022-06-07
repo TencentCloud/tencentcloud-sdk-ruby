@@ -57,16 +57,25 @@ module TencentCloud
         # @type Encoding: String
         # @param Format: 日志格式
         # @type Format: String
+        # @param Address: GRPC第三方服务器地址
+        # @type Address: String
+        # @param EnableServer: 是否启用GRPC第三方服务器
+        # @type EnableServer: Boolean
+        # @param EnableStdout: 是否启用标准输出
+        # @type EnableStdout: Boolean
 
-        attr_accessor :Enable, :Template, :SelectedRange, :CLS, :Encoding, :Format
+        attr_accessor :Enable, :Template, :SelectedRange, :CLS, :Encoding, :Format, :Address, :EnableServer, :EnableStdout
         
-        def initialize(enable=nil, template=nil, selectedrange=nil, cls=nil, encoding=nil, format=nil)
+        def initialize(enable=nil, template=nil, selectedrange=nil, cls=nil, encoding=nil, format=nil, address=nil, enableserver=nil, enablestdout=nil)
           @Enable = enable
           @Template = template
           @SelectedRange = selectedrange
           @CLS = cls
           @Encoding = encoding
           @Format = format
+          @Address = address
+          @EnableServer = enableserver
+          @EnableStdout = enablestdout
         end
 
         def deserialize(params)
@@ -82,6 +91,9 @@ module TencentCloud
           end
           @Encoding = params['Encoding']
           @Format = params['Format']
+          @Address = params['Address']
+          @EnableServer = params['EnableServer']
+          @EnableStdout = params['EnableStdout']
         end
       end
 
@@ -307,6 +319,42 @@ module TencentCloud
         def deserialize(params)
           @LinkState = params['LinkState']
           @LinkErrorDetail = params['LinkErrorDetail']
+        end
+      end
+
+      # 第三方 Prometheus 配置参数
+      class CustomPromConfig < TencentCloud::Common::AbstractModel
+        # @param Url: Prometheus 访问地址
+        # @type Url: String
+        # @param AuthType: 认证方式
+        # @type AuthType: String
+        # @param IsPublicAddr: 是否公网地址，缺省为 false
+        # @type IsPublicAddr: Boolean
+        # @param VpcId: 虚拟网络id
+        # @type VpcId: String
+        # @param Username: Prometheus 用户名（用于 basic 认证方式）
+        # @type Username: String
+        # @param Password: Prometheus 密码（用于 basic 认证方式）
+        # @type Password: String
+
+        attr_accessor :Url, :AuthType, :IsPublicAddr, :VpcId, :Username, :Password
+        
+        def initialize(url=nil, authtype=nil, ispublicaddr=nil, vpcid=nil, username=nil, password=nil)
+          @Url = url
+          @AuthType = authtype
+          @IsPublicAddr = ispublicaddr
+          @VpcId = vpcid
+          @Username = username
+          @Password = password
+        end
+
+        def deserialize(params)
+          @Url = params['Url']
+          @AuthType = params['AuthType']
+          @IsPublicAddr = params['IsPublicAddr']
+          @VpcId = params['VpcId']
+          @Username = params['Username']
+          @Password = params['Password']
         end
       end
 
@@ -1010,14 +1058,18 @@ module TencentCloud
         # @type Region: String
         # @param InstanceId: 关联已存在实例Id，不填则默认创建
         # @type InstanceId: String
+        # @param CustomProm: 第三方 Prometheus
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CustomProm: :class:`Tencentcloud::Tcm.v20210413.models.CustomPromConfig`
 
-        attr_accessor :VpcId, :SubnetId, :Region, :InstanceId
+        attr_accessor :VpcId, :SubnetId, :Region, :InstanceId, :CustomProm
         
-        def initialize(vpcid=nil, subnetid=nil, region=nil, instanceid=nil)
+        def initialize(vpcid=nil, subnetid=nil, region=nil, instanceid=nil, customprom=nil)
           @VpcId = vpcid
           @SubnetId = subnetid
           @Region = region
           @InstanceId = instanceid
+          @CustomProm = customprom
         end
 
         def deserialize(params)
@@ -1025,6 +1077,10 @@ module TencentCloud
           @SubnetId = params['SubnetId']
           @Region = params['Region']
           @InstanceId = params['InstanceId']
+          unless params['CustomProm'].nil?
+            @CustomProm = CustomPromConfig.new
+            @CustomProm.deserialize(params['CustomProm'])
+          end
         end
       end
 

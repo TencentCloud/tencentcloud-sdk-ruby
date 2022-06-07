@@ -1138,13 +1138,17 @@ module TencentCloud
         # @param Template: 报告结构化结果
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Template: :class:`Tencentcloud::Mrs.v20200910.models.Template`
+        # @param TextTypeList: 多级分类结果
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TextTypeList: Array
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Template, :RequestId
+        attr_accessor :Template, :TextTypeList, :RequestId
         
-        def initialize(template=nil, requestid=nil)
+        def initialize(template=nil, texttypelist=nil, requestid=nil)
           @Template = template
+          @TextTypeList = texttypelist
           @RequestId = requestid
         end
 
@@ -1152,6 +1156,14 @@ module TencentCloud
           unless params['Template'].nil?
             @Template = Template.new
             @Template.deserialize(params['Template'])
+          end
+          unless params['TextTypeList'].nil?
+            @TextTypeList = []
+            params['TextTypeList'].each do |i|
+              texttype_tmp = TextType.new
+              texttype_tmp.deserialize(i)
+              @TextTypeList << texttype_tmp
+            end
           end
           @RequestId = params['RequestId']
         end

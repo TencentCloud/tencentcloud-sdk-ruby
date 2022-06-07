@@ -245,7 +245,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 批量导出用户
+        # 批量导出用户。对于kerberos集群，如果需要kertab文件下载地址，可以将NeedKeytabInfo设置为true；注意SupportDownLoadKeyTab为true，但是DownLoadKeyTabUrl为空字符串，表示keytab文件在后台没有准备好（正在生成）
 
         # @param request: Request instance for DescribeUsersForUserManager.
         # @type request: :class:`Tencentcloud::emr::V20190103::DescribeUsersForUserManagerRequest`

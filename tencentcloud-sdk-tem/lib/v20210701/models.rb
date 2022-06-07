@@ -1499,22 +1499,25 @@ module TencentCloud
 
       # 弹性伸缩策略
       class HorizontalAutoscaler < TencentCloud::Common::AbstractModel
-        # @param MinReplicas: 最小实例数
+        # @param MinReplicas: 最小实例数（可以不传）
         # @type MinReplicas: Integer
-        # @param MaxReplicas: 最大实例数
+        # @param MaxReplicas: 最大实例数（可以不传）
         # @type MaxReplicas: Integer
         # @param Metrics: 指标度量（CPU or MEMORY）
         # @type Metrics: String
         # @param Threshold: 阈值（百分比）
         # @type Threshold: Integer
+        # @param Enabled: 是否启用
+        # @type Enabled: Boolean
 
-        attr_accessor :MinReplicas, :MaxReplicas, :Metrics, :Threshold
+        attr_accessor :MinReplicas, :MaxReplicas, :Metrics, :Threshold, :Enabled
         
-        def initialize(minreplicas=nil, maxreplicas=nil, metrics=nil, threshold=nil)
+        def initialize(minreplicas=nil, maxreplicas=nil, metrics=nil, threshold=nil, enabled=nil)
           @MinReplicas = minreplicas
           @MaxReplicas = maxreplicas
           @Metrics = metrics
           @Threshold = threshold
+          @Enabled = enabled
         end
 
         def deserialize(params)
@@ -1522,6 +1525,7 @@ module TencentCloud
           @MaxReplicas = params['MaxReplicas']
           @Metrics = params['Metrics']
           @Threshold = params['Threshold']
+          @Enabled = params['Enabled']
         end
       end
 
