@@ -17,6 +17,42 @@
 module TencentCloud
   module Tse
     module V20201207
+      # Apollo 环境配置参数
+      class ApolloEnvParam < TencentCloud::Common::AbstractModel
+        # @param Name: 环境名称
+        # @type Name: String
+        # @param EngineResourceSpec: 环境内引擎的节点规格 ID
+        # @type EngineResourceSpec: String
+        # @param EngineNodeNum: 环境内引擎的节点数量
+        # @type EngineNodeNum: Integer
+        # @param StorageCapacity: 配置存储空间大小，以GB为单位
+        # @type StorageCapacity: Integer
+        # @param VpcId: VPC ID。在 VPC 的子网内分配一个 IP 作为 ConfigServer 的访问地址
+        # @type VpcId: String
+        # @param SubnetId: 子网 ID。在 VPC 的子网内分配一个 IP 作为 ConfigServer 的访问地址
+        # @type SubnetId: String
+
+        attr_accessor :Name, :EngineResourceSpec, :EngineNodeNum, :StorageCapacity, :VpcId, :SubnetId
+        
+        def initialize(name=nil, engineresourcespec=nil, enginenodenum=nil, storagecapacity=nil, vpcid=nil, subnetid=nil)
+          @Name = name
+          @EngineResourceSpec = engineresourcespec
+          @EngineNodeNum = enginenodenum
+          @StorageCapacity = storagecapacity
+          @VpcId = vpcid
+          @SubnetId = subnetid
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @EngineResourceSpec = params['EngineResourceSpec']
+          @EngineNodeNum = params['EngineNodeNum']
+          @StorageCapacity = params['StorageCapacity']
+          @VpcId = params['VpcId']
+          @SubnetId = params['SubnetId']
+        end
+      end
+
       # 服务治理引擎绑定的kubernetes信息
       class BoundK8SInfo < TencentCloud::Common::AbstractModel
         # @param BoundClusterId: 绑定的kubernetes集群ID
@@ -40,6 +76,198 @@ module TencentCloud
           @BoundClusterId = params['BoundClusterId']
           @BoundClusterType = params['BoundClusterType']
           @SyncMode = params['SyncMode']
+        end
+      end
+
+      # CreateEngine请求参数结构体
+      class CreateEngineRequest < TencentCloud::Common::AbstractModel
+        # @param EngineType: 引擎类型。参考值：
+        # - zookeeper
+        # - nacos
+        # - consul
+        # - apollo
+        # - eureka
+        # - polaris
+        # @type EngineType: String
+        # @param EngineVersion: 引擎的开源版本。每种引擎支持的开源版本不同，请参考产品文档或者控制台购买页
+        # @type EngineVersion: String
+        # @param EngineProductVersion: 引擎的产品版本。参考值：
+        # - STANDARD： 标准版
+
+        # 引擎各版本及可选择的规格、节点数说明：
+        # apollo - STANDARD版本
+        # 规格列表：spec-qcr53kf1t（1C2G）,spec-qdr53kf2w（2C4G）
+        # 节点数：1，2，3，4，5
+
+        # eureka - STANDARD版本
+        # 规格列表：spec-qvj6k7t4q（1C2G）,spec-qcr53kfjt（2C4G）,spec-qvj6k7t4m（4G8G）,spec-qcr54kfjt（8C16G）,spec-qcr55kfjt（16C32G）
+        # 节点数：3，4，5
+        # @type EngineProductVersion: String
+        # @param EngineRegion: 引擎所在地域。参考值说明：
+        # 中国区 参考值：
+        # - ap-guangzhou：广州
+        # - ap-beijing：北京
+        # - ap-chengdu：成都
+        # - ap-chongqing：重庆
+        # - ap-nanjing：南京
+        # - ap-shanghai：上海
+        # - ap-hongkong：香港
+        # - ap-taipei：台北
+        # 亚太区 参考值：
+        # - ap-jakarta：雅加达
+        # - ap-singapore：新加坡
+        # 北美区 参考值
+        # - na-toronto：多伦多
+        # 金融专区 参考值
+        # - ap-beijing-fsi：北京金融
+        # - ap-shanghai-fsi：上海金融
+        # - ap-shenzhen-fsi：深圳金融
+        # @type EngineRegion: String
+        # @param EngineName: 引擎名称。参考值：
+        # - eurek-test
+        # @type EngineName: String
+        # @param TradeType: 付费类型。参考值：
+        # - 0：后付费
+        # - 1：预付费
+        # @type TradeType: Integer
+        # @param EngineResourceSpec: 引擎的节点规格 ID。参见EngineProductVersion字段说明
+        # @type EngineResourceSpec: String
+        # @param EngineNodeNum: 引擎的节点数量。参见EngineProductVersion字段说明
+        # @type EngineNodeNum: Integer
+        # @param VpcId: VPC ID。在 VPC 的子网内分配一个 IP 作为引擎的访问地址。参考值：
+        # - vpc-conz6aix
+        # @type VpcId: String
+        # @param SubnetId: 子网 ID。在 VPC 的子网内分配一个 IP 作为引擎的访问地址。参考值：
+        # - subnet-ahde9me9
+        # @type SubnetId: String
+        # @param ApolloEnvParams: Apollo 环境配置参数列表。参数说明：
+        # 如果创建Apollo类型，此参数为必填的环境信息列表，最多可选4个环境。环境信息参数说明：
+        # - Name：环境名。参考值：prod, dev, fat, uat
+        # - EngineResourceSpec：环境内引擎的节点规格ID。参见EngineProductVersion参数说明
+        # - EngineNodeNum：环境内引擎的节点数量。参见EngineProductVersion参数说明，其中prod环境支持的节点数为2，3，4，5
+        # - StorageCapacity：配置存储空间大小，以GB为单位，步长为5.参考值：35
+        # - VpcId：VPC ID。参考值：vpc-conz6aix
+        # - SubnetId：子网 ID。参考值：subnet-ahde9me9
+        # @type ApolloEnvParams: Array
+        # @param EngineTags: 引擎的标签列表。用户自定义的key/value形式，无参考值
+        # @type EngineTags: Array
+        # @param EngineAdmin: 引擎的初始帐号信息。可设置参数：
+        # - Name：控制台初始用户名
+        # - Password：控制台初始密码
+        # - Token：引擎接口的管理员 Token
+        # @type EngineAdmin: :class:`Tencentcloud::Tse.v20201207.models.EngineAdmin`
+        # @param PrepaidPeriod: 预付费时长，以月为单位
+        # @type PrepaidPeriod: Integer
+        # @param PrepaidRenewFlag: 自动续费标记，仅预付费使用。参考值：
+        # - 0：不自动续费
+        # - 1：自动续费
+        # @type PrepaidRenewFlag: Integer
+
+        attr_accessor :EngineType, :EngineVersion, :EngineProductVersion, :EngineRegion, :EngineName, :TradeType, :EngineResourceSpec, :EngineNodeNum, :VpcId, :SubnetId, :ApolloEnvParams, :EngineTags, :EngineAdmin, :PrepaidPeriod, :PrepaidRenewFlag
+        
+        def initialize(enginetype=nil, engineversion=nil, engineproductversion=nil, engineregion=nil, enginename=nil, tradetype=nil, engineresourcespec=nil, enginenodenum=nil, vpcid=nil, subnetid=nil, apolloenvparams=nil, enginetags=nil, engineadmin=nil, prepaidperiod=nil, prepaidrenewflag=nil)
+          @EngineType = enginetype
+          @EngineVersion = engineversion
+          @EngineProductVersion = engineproductversion
+          @EngineRegion = engineregion
+          @EngineName = enginename
+          @TradeType = tradetype
+          @EngineResourceSpec = engineresourcespec
+          @EngineNodeNum = enginenodenum
+          @VpcId = vpcid
+          @SubnetId = subnetid
+          @ApolloEnvParams = apolloenvparams
+          @EngineTags = enginetags
+          @EngineAdmin = engineadmin
+          @PrepaidPeriod = prepaidperiod
+          @PrepaidRenewFlag = prepaidrenewflag
+        end
+
+        def deserialize(params)
+          @EngineType = params['EngineType']
+          @EngineVersion = params['EngineVersion']
+          @EngineProductVersion = params['EngineProductVersion']
+          @EngineRegion = params['EngineRegion']
+          @EngineName = params['EngineName']
+          @TradeType = params['TradeType']
+          @EngineResourceSpec = params['EngineResourceSpec']
+          @EngineNodeNum = params['EngineNodeNum']
+          @VpcId = params['VpcId']
+          @SubnetId = params['SubnetId']
+          unless params['ApolloEnvParams'].nil?
+            @ApolloEnvParams = []
+            params['ApolloEnvParams'].each do |i|
+              apolloenvparam_tmp = ApolloEnvParam.new
+              apolloenvparam_tmp.deserialize(i)
+              @ApolloEnvParams << apolloenvparam_tmp
+            end
+          end
+          unless params['EngineTags'].nil?
+            @EngineTags = []
+            params['EngineTags'].each do |i|
+              instancetaginfo_tmp = InstanceTagInfo.new
+              instancetaginfo_tmp.deserialize(i)
+              @EngineTags << instancetaginfo_tmp
+            end
+          end
+          unless params['EngineAdmin'].nil?
+            @EngineAdmin = EngineAdmin.new
+            @EngineAdmin.deserialize(params['EngineAdmin'])
+          end
+          @PrepaidPeriod = params['PrepaidPeriod']
+          @PrepaidRenewFlag = params['PrepaidRenewFlag']
+        end
+      end
+
+      # CreateEngine返回参数结构体
+      class CreateEngineResponse < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 引擎实例 ID
+        # @type InstanceId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :InstanceId, :RequestId
+        
+        def initialize(instanceid=nil, requestid=nil)
+          @InstanceId = instanceid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteEngine请求参数结构体
+      class DeleteEngineRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 引擎实例 ID
+        # @type InstanceId: String
+
+        attr_accessor :InstanceId
+        
+        def initialize(instanceid=nil)
+          @InstanceId = instanceid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+        end
+      end
+
+      # DeleteEngine返回参数结构体
+      class DeleteEngineResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
         end
       end
 
@@ -192,6 +420,30 @@ module TencentCloud
         end
       end
 
+      # 引擎的初始管理帐号
+      class EngineAdmin < TencentCloud::Common::AbstractModel
+        # @param Name: 控制台初始用户名
+        # @type Name: String
+        # @param Password: 控制台初始密码
+        # @type Password: String
+        # @param Token: 引擎接口的管理员 Token
+        # @type Token: String
+
+        attr_accessor :Name, :Password, :Token
+        
+        def initialize(name=nil, password=nil, token=nil)
+          @Name = name
+          @Password = password
+          @Token = token
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Password = params['Password']
+          @Token = params['Token']
+        end
+      end
+
       # 多环境网络信息
       class EnvAddressInfo < TencentCloud::Common::AbstractModel
         # @param EnvName: 环境名
@@ -300,6 +552,26 @@ module TencentCloud
         def deserialize(params)
           @Name = params['Name']
           @Values = params['Values']
+        end
+      end
+
+      # 引擎实例的标签信息
+      class InstanceTagInfo < TencentCloud::Common::AbstractModel
+        # @param TagKey: 标签键
+        # @type TagKey: String
+        # @param TagValue: 标签值
+        # @type TagValue: String
+
+        attr_accessor :TagKey, :TagValue
+        
+        def initialize(tagkey=nil, tagvalue=nil)
+          @TagKey = tagkey
+          @TagValue = tagvalue
+        end
+
+        def deserialize(params)
+          @TagKey = params['TagKey']
+          @TagValue = params['TagValue']
         end
       end
 

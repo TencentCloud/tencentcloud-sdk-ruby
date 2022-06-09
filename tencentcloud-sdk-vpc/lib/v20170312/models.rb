@@ -2755,10 +2755,12 @@ module TencentCloud
         # @type StorageType: String
         # @param FlowLogStorage: 流日志消费端信息，当消费端类型为ckafka时，必填。
         # @type FlowLogStorage: :class:`Tencentcloud::Vpc.v20170312.models.FlowLogStorage`
+        # @param CloudLogRegion: 流日志存储ID对应的地域，不传递默认为本地域。
+        # @type CloudLogRegion: String
 
-        attr_accessor :FlowLogName, :ResourceType, :ResourceId, :TrafficType, :VpcId, :FlowLogDescription, :CloudLogId, :Tags, :StorageType, :FlowLogStorage
+        attr_accessor :FlowLogName, :ResourceType, :ResourceId, :TrafficType, :VpcId, :FlowLogDescription, :CloudLogId, :Tags, :StorageType, :FlowLogStorage, :CloudLogRegion
         
-        def initialize(flowlogname=nil, resourcetype=nil, resourceid=nil, traffictype=nil, vpcid=nil, flowlogdescription=nil, cloudlogid=nil, tags=nil, storagetype=nil, flowlogstorage=nil)
+        def initialize(flowlogname=nil, resourcetype=nil, resourceid=nil, traffictype=nil, vpcid=nil, flowlogdescription=nil, cloudlogid=nil, tags=nil, storagetype=nil, flowlogstorage=nil, cloudlogregion=nil)
           @FlowLogName = flowlogname
           @ResourceType = resourcetype
           @ResourceId = resourceid
@@ -2769,6 +2771,7 @@ module TencentCloud
           @Tags = tags
           @StorageType = storagetype
           @FlowLogStorage = flowlogstorage
+          @CloudLogRegion = cloudlogregion
         end
 
         def deserialize(params)
@@ -2792,6 +2795,7 @@ module TencentCloud
             @FlowLogStorage = FlowLogStorage.new
             @FlowLogStorage.deserialize(params['FlowLogStorage'])
           end
+          @CloudLogRegion = params['CloudLogRegion']
         end
       end
 
@@ -7374,10 +7378,12 @@ module TencentCloud
         # <li>tag-key - String -是否必填：否- （过滤条件）按照标签键进行过滤。</li>
         # <li>tag:tag-key - String - 是否必填：否 - （过滤条件）按照标签键值对进行过滤。 tag-key使用具体的标签键进行替换。</li>
         # @type Filters: :class:`Tencentcloud::Vpc.v20170312.models.Filter`
+        # @param CloudLogRegion: 流日志存储ID对应的地域信息
+        # @type CloudLogRegion: String
 
-        attr_accessor :VpcId, :FlowLogId, :FlowLogName, :ResourceType, :ResourceId, :TrafficType, :CloudLogId, :CloudLogState, :OrderField, :OrderDirection, :Offset, :Limit, :Filters
+        attr_accessor :VpcId, :FlowLogId, :FlowLogName, :ResourceType, :ResourceId, :TrafficType, :CloudLogId, :CloudLogState, :OrderField, :OrderDirection, :Offset, :Limit, :Filters, :CloudLogRegion
         
-        def initialize(vpcid=nil, flowlogid=nil, flowlogname=nil, resourcetype=nil, resourceid=nil, traffictype=nil, cloudlogid=nil, cloudlogstate=nil, orderfield=nil, orderdirection=nil, offset=nil, limit=nil, filters=nil)
+        def initialize(vpcid=nil, flowlogid=nil, flowlogname=nil, resourcetype=nil, resourceid=nil, traffictype=nil, cloudlogid=nil, cloudlogstate=nil, orderfield=nil, orderdirection=nil, offset=nil, limit=nil, filters=nil, cloudlogregion=nil)
           @VpcId = vpcid
           @FlowLogId = flowlogid
           @FlowLogName = flowlogname
@@ -7391,6 +7397,7 @@ module TencentCloud
           @Offset = offset
           @Limit = limit
           @Filters = filters
+          @CloudLogRegion = cloudlogregion
         end
 
         def deserialize(params)
@@ -7410,6 +7417,7 @@ module TencentCloud
             @Filters = Filter.new
             @Filters.deserialize(params['Filters'])
           end
+          @CloudLogRegion = params['CloudLogRegion']
         end
       end
 
@@ -11645,10 +11653,13 @@ module TencentCloud
         # @param FlowLogStorage: 消费端信息，当消费端类型为ckafka时返回
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FlowLogStorage: :class:`Tencentcloud::Vpc.v20170312.models.FlowLogStorage`
+        # @param CloudLogRegion: 流日志存储ID对应的地域信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CloudLogRegion: String
 
-        attr_accessor :VpcId, :FlowLogId, :FlowLogName, :ResourceType, :ResourceId, :TrafficType, :CloudLogId, :CloudLogState, :FlowLogDescription, :CreatedTime, :TagSet, :Enable, :StorageType, :FlowLogStorage
+        attr_accessor :VpcId, :FlowLogId, :FlowLogName, :ResourceType, :ResourceId, :TrafficType, :CloudLogId, :CloudLogState, :FlowLogDescription, :CreatedTime, :TagSet, :Enable, :StorageType, :FlowLogStorage, :CloudLogRegion
         
-        def initialize(vpcid=nil, flowlogid=nil, flowlogname=nil, resourcetype=nil, resourceid=nil, traffictype=nil, cloudlogid=nil, cloudlogstate=nil, flowlogdescription=nil, createdtime=nil, tagset=nil, enable=nil, storagetype=nil, flowlogstorage=nil)
+        def initialize(vpcid=nil, flowlogid=nil, flowlogname=nil, resourcetype=nil, resourceid=nil, traffictype=nil, cloudlogid=nil, cloudlogstate=nil, flowlogdescription=nil, createdtime=nil, tagset=nil, enable=nil, storagetype=nil, flowlogstorage=nil, cloudlogregion=nil)
           @VpcId = vpcid
           @FlowLogId = flowlogid
           @FlowLogName = flowlogname
@@ -11663,6 +11674,7 @@ module TencentCloud
           @Enable = enable
           @StorageType = storagetype
           @FlowLogStorage = flowlogstorage
+          @CloudLogRegion = cloudlogregion
         end
 
         def deserialize(params)
@@ -11690,6 +11702,7 @@ module TencentCloud
             @FlowLogStorage = FlowLogStorage.new
             @FlowLogStorage.deserialize(params['FlowLogStorage'])
           end
+          @CloudLogRegion = params['CloudLogRegion']
         end
       end
 

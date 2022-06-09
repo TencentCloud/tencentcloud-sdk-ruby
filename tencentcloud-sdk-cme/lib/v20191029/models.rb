@@ -4557,19 +4557,37 @@ module TencentCloud
         # @type ProjectId: String
         # @param Status: 项目状态，取值有：
         # <li>Working：云转推推流开始；</li>
-        # <li>Stopped：云转推推流结束。</li>
+        # <li>Stopped：云转推推流结束；</li>
+        # <li>InputInterrupted：云转推输入断流；</li>
+        # <li>OutputInterrupted：云转推输出断流。</li>
         # @type Status: String
+        # @param InputInterruptInfo: 云转推输入断流信息，仅当 Status 取值 InputInterrupted 时有效。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InputInterruptInfo: :class:`Tencentcloud::Cme.v20191029.models.StreamConnectInputInterruptInfo`
+        # @param OutputInterruptInfo: 云转推输出断流信息，仅当 Status 取值 OutputInterrupted 时有效。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OutputInterruptInfo: :class:`Tencentcloud::Cme.v20191029.models.StreamConnectOutputInterruptInfo`
 
-        attr_accessor :ProjectId, :Status
+        attr_accessor :ProjectId, :Status, :InputInterruptInfo, :OutputInterruptInfo
         
-        def initialize(projectid=nil, status=nil)
+        def initialize(projectid=nil, status=nil, inputinterruptinfo=nil, outputinterruptinfo=nil)
           @ProjectId = projectid
           @Status = status
+          @InputInterruptInfo = inputinterruptinfo
+          @OutputInterruptInfo = outputinterruptinfo
         end
 
         def deserialize(params)
           @ProjectId = params['ProjectId']
           @Status = params['Status']
+          unless params['InputInterruptInfo'].nil?
+            @InputInterruptInfo = StreamConnectInputInterruptInfo.new
+            @InputInterruptInfo.deserialize(params['InputInterruptInfo'])
+          end
+          unless params['OutputInterruptInfo'].nil?
+            @OutputInterruptInfo = StreamConnectOutputInterruptInfo.new
+            @OutputInterruptInfo.deserialize(params['OutputInterruptInfo'])
+          end
         end
       end
 
@@ -5057,6 +5075,24 @@ module TencentCloud
         end
       end
 
+      # 云转推输入断流信息。
+      class StreamConnectInputInterruptInfo < TencentCloud::Common::AbstractModel
+        # @param EndPoint: 云转推输入源标识，取值有：
+        # <li>Main：主源；</li>
+        # <li>Backup：备源。</li>
+        # @type EndPoint: String
+
+        attr_accessor :EndPoint
+        
+        def initialize(endpoint=nil)
+          @EndPoint = endpoint
+        end
+
+        def deserialize(params)
+          @EndPoint = params['EndPoint']
+        end
+      end
+
       # 云转推输出源。
       class StreamConnectOutput < TencentCloud::Common::AbstractModel
         # @param Id: 云转推输出源标识，转推项目级别唯一。若不填则由后端生成。
@@ -5110,6 +5146,30 @@ module TencentCloud
             @StreamConnectOutput.deserialize(params['StreamConnectOutput'])
           end
           @PushSwitch = params['PushSwitch']
+        end
+      end
+
+      # 云转推输出断流信息
+      class StreamConnectOutputInterruptInfo < TencentCloud::Common::AbstractModel
+        # @param Id: 云转推输出标识。
+        # @type Id: String
+        # @param Name: 云转推输出名称。
+        # @type Name: String
+        # @param Url: 云转推输出地址。
+        # @type Url: String
+
+        attr_accessor :Id, :Name, :Url
+        
+        def initialize(id=nil, name=nil, url=nil)
+          @Id = id
+          @Name = name
+          @Url = url
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @Name = params['Name']
+          @Url = params['Url']
         end
       end
 

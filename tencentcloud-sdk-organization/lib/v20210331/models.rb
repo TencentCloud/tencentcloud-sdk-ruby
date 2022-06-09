@@ -185,14 +185,20 @@ module TencentCloud
         # @type Lang: String
         # @param SearchKey: 成员名或者成员ID搜索
         # @type SearchKey: String
+        # @param AuthName: 主体名称
+        # @type AuthName: String
+        # @param Product: 集团服务（服务管理员查询时，必须指定）
+        # @type Product: String
 
-        attr_accessor :Offset, :Limit, :Lang, :SearchKey
+        attr_accessor :Offset, :Limit, :Lang, :SearchKey, :AuthName, :Product
         
-        def initialize(offset=nil, limit=nil, lang=nil, searchkey=nil)
+        def initialize(offset=nil, limit=nil, lang=nil, searchkey=nil, authname=nil, product=nil)
           @Offset = offset
           @Limit = limit
           @Lang = lang
           @SearchKey = searchkey
+          @AuthName = authname
+          @Product = product
         end
 
         def deserialize(params)
@@ -200,6 +206,8 @@ module TencentCloud
           @Limit = params['Limit']
           @Lang = params['Lang']
           @SearchKey = params['SearchKey']
+          @AuthName = params['AuthName']
+          @Product = params['Product']
         end
       end
 
@@ -238,15 +246,19 @@ module TencentCloud
       class DescribeOrganizationRequest < TencentCloud::Common::AbstractModel
         # @param Lang: 国际站：en，国内站：zh
         # @type Lang: String
+        # @param Product: 产品简称（查询是否集团服务委派管理员必须）
+        # @type Product: String
 
-        attr_accessor :Lang
+        attr_accessor :Lang, :Product
         
-        def initialize(lang=nil)
+        def initialize(lang=nil, product=nil)
           @Lang = lang
+          @Product = product
         end
 
         def deserialize(params)
           @Lang = params['Lang']
+          @Product = params['Product']
         end
       end
 
@@ -294,12 +306,15 @@ module TencentCloud
         # @param PayName: 代付者名称
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PayName: String
+        # @param IsAssignManager: 是否集团服务委派管理员 true-是、false-否
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsAssignManager: Boolean
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :OrgId, :HostUin, :NickName, :OrgType, :IsManager, :OrgPolicyType, :OrgPolicyName, :OrgPermission, :RootNodeId, :CreateTime, :JoinTime, :IsAllowQuit, :PayUin, :PayName, :RequestId
+        attr_accessor :OrgId, :HostUin, :NickName, :OrgType, :IsManager, :OrgPolicyType, :OrgPolicyName, :OrgPermission, :RootNodeId, :CreateTime, :JoinTime, :IsAllowQuit, :PayUin, :PayName, :IsAssignManager, :RequestId
         
-        def initialize(orgid=nil, hostuin=nil, nickname=nil, orgtype=nil, ismanager=nil, orgpolicytype=nil, orgpolicyname=nil, orgpermission=nil, rootnodeid=nil, createtime=nil, jointime=nil, isallowquit=nil, payuin=nil, payname=nil, requestid=nil)
+        def initialize(orgid=nil, hostuin=nil, nickname=nil, orgtype=nil, ismanager=nil, orgpolicytype=nil, orgpolicyname=nil, orgpermission=nil, rootnodeid=nil, createtime=nil, jointime=nil, isallowquit=nil, payuin=nil, payname=nil, isassignmanager=nil, requestid=nil)
           @OrgId = orgid
           @HostUin = hostuin
           @NickName = nickname
@@ -314,6 +329,7 @@ module TencentCloud
           @IsAllowQuit = isallowquit
           @PayUin = payuin
           @PayName = payname
+          @IsAssignManager = isassignmanager
           @RequestId = requestid
         end
 
@@ -339,6 +355,7 @@ module TencentCloud
           @IsAllowQuit = params['IsAllowQuit']
           @PayUin = params['PayUin']
           @PayName = params['PayName']
+          @IsAssignManager = params['IsAssignManager']
           @RequestId = params['RequestId']
         end
       end
