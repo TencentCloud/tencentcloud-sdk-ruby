@@ -590,6 +590,49 @@ module TencentCloud
         end
       end
 
+      # MatchKBPURLList请求参数结构体
+      class MatchKBPURLListRequest < TencentCloud::Common::AbstractModel
+        # @param SHA1: SHA1。
+        # @type SHA1: String
+
+        attr_accessor :SHA1
+        
+        def initialize(sha1=nil)
+          @SHA1 = sha1
+        end
+
+        def deserialize(params)
+          @SHA1 = params['SHA1']
+        end
+      end
+
+      # MatchKBPURLList返回参数结构体
+      class MatchKBPURLListResponse < TencentCloud::Common::AbstractModel
+        # @param PURLList: 组件列表。
+        # @type PURLList: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :PURLList, :RequestId
+        
+        def initialize(purllist=nil, requestid=nil)
+          @PURLList = purllist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['PURLList'].nil?
+            @PURLList = []
+            params['PURLList'].each do |i|
+              purl_tmp = PURL.new
+              purl_tmp.deserialize(i)
+              @PURLList << purl_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # PURL(Package URL)用于定位一个产品或组件，见 https://github.com/package-url/purl-spec。
       class PURL < TencentCloud::Common::AbstractModel
         # @param Name: 组件名称

@@ -1352,6 +1352,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 印尼身份证识别
+
+        # @param request: Request instance for RecognizeIndonesiaIDCardOCR.
+        # @type request: :class:`Tencentcloud::ocr::V20181119::RecognizeIndonesiaIDCardOCRRequest`
+        # @rtype: :class:`Tencentcloud::ocr::V20181119::RecognizeIndonesiaIDCardOCRResponse`
+        def RecognizeIndonesiaIDCardOCR(request)
+          body = send_request('RecognizeIndonesiaIDCardOCR', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = RecognizeIndonesiaIDCardOCRResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口支持网约车行程单关键字段的识别，包括行程起止日期、上车时间、起点、终点、里程、金额等字段。
 
         # @param request: Request instance for RecognizeOnlineTaxiItineraryOCR.
@@ -1362,6 +1386,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = RecognizeOnlineTaxiItineraryOCRResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 菲律宾驾驶证识别
+
+        # @param request: Request instance for RecognizePhilippinesDrivingLicenseOCR.
+        # @type request: :class:`Tencentcloud::ocr::V20181119::RecognizePhilippinesDrivingLicenseOCRRequest`
+        # @rtype: :class:`Tencentcloud::ocr::V20181119::RecognizePhilippinesDrivingLicenseOCRResponse`
+        def RecognizePhilippinesDrivingLicenseOCR(request)
+          body = send_request('RecognizePhilippinesDrivingLicenseOCR', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = RecognizePhilippinesDrivingLicenseOCRResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 菲律宾VoteID识别
+
+        # @param request: Request instance for RecognizePhilippinesVoteIDOCR.
+        # @type request: :class:`Tencentcloud::ocr::V20181119::RecognizePhilippinesVoteIDOCRRequest`
+        # @rtype: :class:`Tencentcloud::ocr::V20181119::RecognizePhilippinesVoteIDOCRResponse`
+        def RecognizePhilippinesVoteIDOCR(request)
+          body = send_request('RecognizePhilippinesVoteIDOCR', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = RecognizePhilippinesVoteIDOCRResponse.new
             model.deserialize(response['Response'])
             model
           else

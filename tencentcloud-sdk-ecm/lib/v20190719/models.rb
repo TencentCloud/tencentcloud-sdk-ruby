@@ -263,14 +263,20 @@ module TencentCloud
         # @type Ipv6Addresses: Array
         # @param Ipv6AddressCount: 自动分配IPv6地址个数，内网IP地址个数总和不能超过配数。与入参Ipv6Addresses合并计算配额。与Ipv6Addresses必填一个。
         # @type Ipv6AddressCount: Integer
+        # @param Ipv6ISP: ipv6运营商如下：
+        # CTCC：中国电信
+        # CUCC：中国联通
+        # CMCC：中国移动
+        # @type Ipv6ISP: String
 
-        attr_accessor :EcmRegion, :NetworkInterfaceId, :Ipv6Addresses, :Ipv6AddressCount
+        attr_accessor :EcmRegion, :NetworkInterfaceId, :Ipv6Addresses, :Ipv6AddressCount, :Ipv6ISP
         
-        def initialize(ecmregion=nil, networkinterfaceid=nil, ipv6addresses=nil, ipv6addresscount=nil)
+        def initialize(ecmregion=nil, networkinterfaceid=nil, ipv6addresses=nil, ipv6addresscount=nil, ipv6isp=nil)
           @EcmRegion = ecmregion
           @NetworkInterfaceId = networkinterfaceid
           @Ipv6Addresses = ipv6addresses
           @Ipv6AddressCount = ipv6addresscount
+          @Ipv6ISP = ipv6isp
         end
 
         def deserialize(params)
@@ -285,6 +291,7 @@ module TencentCloud
             end
           end
           @Ipv6AddressCount = params['Ipv6AddressCount']
+          @Ipv6ISP = params['Ipv6ISP']
         end
       end
 

@@ -2178,10 +2178,12 @@ module TencentCloud
         # @type EnableVpcCoreDNS: Boolean
         # @param TagSpecification: 标签描述列表。通过指定该参数可以同时绑定标签到相应的资源实例，当前仅支持绑定标签到集群实例。
         # @type TagSpecification: Array
+        # @param SubnetInfos: 子网信息列表
+        # @type SubnetInfos: Array
 
-        attr_accessor :K8SVersion, :VpcId, :ClusterName, :SubnetIds, :ClusterDesc, :ServiceSubnetId, :DnsServers, :ExtraParam, :EnableVpcCoreDNS, :TagSpecification
+        attr_accessor :K8SVersion, :VpcId, :ClusterName, :SubnetIds, :ClusterDesc, :ServiceSubnetId, :DnsServers, :ExtraParam, :EnableVpcCoreDNS, :TagSpecification, :SubnetInfos
         
-        def initialize(k8sversion=nil, vpcid=nil, clustername=nil, subnetids=nil, clusterdesc=nil, servicesubnetid=nil, dnsservers=nil, extraparam=nil, enablevpccoredns=nil, tagspecification=nil)
+        def initialize(k8sversion=nil, vpcid=nil, clustername=nil, subnetids=nil, clusterdesc=nil, servicesubnetid=nil, dnsservers=nil, extraparam=nil, enablevpccoredns=nil, tagspecification=nil, subnetinfos=nil)
           @K8SVersion = k8sversion
           @VpcId = vpcid
           @ClusterName = clustername
@@ -2192,6 +2194,7 @@ module TencentCloud
           @ExtraParam = extraparam
           @EnableVpcCoreDNS = enablevpccoredns
           @TagSpecification = tagspecification
+          @SubnetInfos = subnetinfos
         end
 
         def deserialize(params)
@@ -2217,6 +2220,14 @@ module TencentCloud
               tagspecification_tmp = TagSpecification.new
               tagspecification_tmp.deserialize(i)
               @TagSpecification << tagspecification_tmp
+            end
+          end
+          unless params['SubnetInfos'].nil?
+            @SubnetInfos = []
+            params['SubnetInfos'].each do |i|
+              subnetinfos_tmp = SubnetInfos.new
+              subnetinfos_tmp.deserialize(i)
+              @SubnetInfos << subnetinfos_tmp
             end
           end
         end
@@ -12129,6 +12140,26 @@ module TencentCloud
           @SucceedInstanceIds = params['SucceedInstanceIds']
           @FailedInstanceIds = params['FailedInstanceIds']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 子网信息
+      class SubnetInfos < TencentCloud::Common::AbstractModel
+        # @param SubnetId: 子网id
+        # @type SubnetId: String
+        # @param Name: 子网节点名称
+        # @type Name: String
+
+        attr_accessor :SubnetId, :Name
+        
+        def initialize(subnetid=nil, name=nil)
+          @SubnetId = subnetid
+          @Name = name
+        end
+
+        def deserialize(params)
+          @SubnetId = params['SubnetId']
+          @Name = params['Name']
         end
       end
 

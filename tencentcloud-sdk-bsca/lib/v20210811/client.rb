@@ -125,6 +125,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口(MatchKBPURLList)用于在知识库中匹配与特征对应的开源组件列表。
+
+        # @param request: Request instance for MatchKBPURLList.
+        # @type request: :class:`Tencentcloud::bsca::V20210811::MatchKBPURLListRequest`
+        # @rtype: :class:`Tencentcloud::bsca::V20210811::MatchKBPURLListResponse`
+        def MatchKBPURLList(request)
+          body = send_request('MatchKBPURLList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = MatchKBPURLListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
 
       end
     end

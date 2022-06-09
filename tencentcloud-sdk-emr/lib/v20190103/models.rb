@@ -4512,12 +4512,18 @@ module TencentCloud
 
       # 用户管理列表过滤器
       class UserManagerFilter < TencentCloud::Common::AbstractModel
+        # @param UserName: 用户名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UserName: String
 
+        attr_accessor :UserName
         
-        def initialize()
+        def initialize(username=nil)
+          @UserName = username
         end
 
         def deserialize(params)
+          @UserName = params['UserName']
         end
       end
 

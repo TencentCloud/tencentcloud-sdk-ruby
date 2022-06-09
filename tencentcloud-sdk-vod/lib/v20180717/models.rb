@@ -3600,6 +3600,8 @@ module TencentCloud
       class ApplyUploadRequest < TencentCloud::Common::AbstractModel
         # @param MediaType: 媒体类型，可选值请参考 [上传能力综述](/document/product/266/9760#.E6.96.87.E4.BB.B6.E7.B1.BB.E5.9E.8B)。
         # @type MediaType: String
+        # @param SubAppId: <b>点播 [子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。</b>
+        # @type SubAppId: Integer
         # @param MediaName: 媒体名称。
         # @type MediaName: String
         # @param CoverType: 封面类型，可选值请参考 [上传能力综述](/document/product/266/9760#.E6.96.87.E4.BB.B6.E7.B1.BB.E5.9E.8B)。
@@ -3619,13 +3621,12 @@ module TencentCloud
         # @type SessionContext: String
         # @param ExtInfo: 保留字段，特殊用途时使用。
         # @type ExtInfo: String
-        # @param SubAppId: 点播 [子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。
-        # @type SubAppId: Integer
 
-        attr_accessor :MediaType, :MediaName, :CoverType, :Procedure, :ExpireTime, :StorageRegion, :ClassId, :SourceContext, :SessionContext, :ExtInfo, :SubAppId
+        attr_accessor :MediaType, :SubAppId, :MediaName, :CoverType, :Procedure, :ExpireTime, :StorageRegion, :ClassId, :SourceContext, :SessionContext, :ExtInfo
         
-        def initialize(mediatype=nil, medianame=nil, covertype=nil, procedure=nil, expiretime=nil, storageregion=nil, classid=nil, sourcecontext=nil, sessioncontext=nil, extinfo=nil, subappid=nil)
+        def initialize(mediatype=nil, subappid=nil, medianame=nil, covertype=nil, procedure=nil, expiretime=nil, storageregion=nil, classid=nil, sourcecontext=nil, sessioncontext=nil, extinfo=nil)
           @MediaType = mediatype
+          @SubAppId = subappid
           @MediaName = medianame
           @CoverType = covertype
           @Procedure = procedure
@@ -3635,11 +3636,11 @@ module TencentCloud
           @SourceContext = sourcecontext
           @SessionContext = sessioncontext
           @ExtInfo = extinfo
-          @SubAppId = subappid
         end
 
         def deserialize(params)
           @MediaType = params['MediaType']
+          @SubAppId = params['SubAppId']
           @MediaName = params['MediaName']
           @CoverType = params['CoverType']
           @Procedure = params['Procedure']
@@ -3649,7 +3650,6 @@ module TencentCloud
           @SourceContext = params['SourceContext']
           @SessionContext = params['SessionContext']
           @ExtInfo = params['ExtInfo']
-          @SubAppId = params['SubAppId']
         end
       end
 

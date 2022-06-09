@@ -51,10 +51,13 @@ module TencentCloud
         # @param SubLabel: 该字段用于返回当前标签（Lable）下的二级标签。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SubLabel: String
+        # @param RecognitionResults: 识别类标签结果信息列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RecognitionResults: Array
 
-        attr_accessor :HitFlag, :Label, :Suggestion, :Score, :Text, :Url, :Duration, :Extra, :TextResults, :MoanResults, :LanguageResults, :SubLabel
+        attr_accessor :HitFlag, :Label, :Suggestion, :Score, :Text, :Url, :Duration, :Extra, :TextResults, :MoanResults, :LanguageResults, :SubLabel, :RecognitionResults
         
-        def initialize(hitflag=nil, label=nil, suggestion=nil, score=nil, text=nil, url=nil, duration=nil, extra=nil, textresults=nil, moanresults=nil, languageresults=nil, sublabel=nil)
+        def initialize(hitflag=nil, label=nil, suggestion=nil, score=nil, text=nil, url=nil, duration=nil, extra=nil, textresults=nil, moanresults=nil, languageresults=nil, sublabel=nil, recognitionresults=nil)
           @HitFlag = hitflag
           @Label = label
           @Suggestion = suggestion
@@ -67,6 +70,7 @@ module TencentCloud
           @MoanResults = moanresults
           @LanguageResults = languageresults
           @SubLabel = sublabel
+          @RecognitionResults = recognitionresults
         end
 
         def deserialize(params)
@@ -103,6 +107,14 @@ module TencentCloud
             end
           end
           @SubLabel = params['SubLabel']
+          unless params['RecognitionResults'].nil?
+            @RecognitionResults = []
+            params['RecognitionResults'].each do |i|
+              recognitionresult_tmp = RecognitionResult.new
+              recognitionresult_tmp.deserialize(i)
+              @RecognitionResults << recognitionresult_tmp
+            end
+          end
         end
       end
 
@@ -799,6 +811,35 @@ module TencentCloud
         end
       end
 
+      # 识别类标签结果信息
+      class RecognitionResult < TencentCloud::Common::AbstractModel
+        # @param Label: 可能的取值有：Teenager 、Gender
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Label: String
+        # @param Tags: 识别标签列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Tags: Array
+
+        attr_accessor :Label, :Tags
+        
+        def initialize(label=nil, tags=nil)
+          @Label = label
+          @Tags = tags
+        end
+
+        def deserialize(params)
+          @Label = params['Label']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
+            end
+          end
+        end
+      end
+
       # 用于表示数据存储的相关信息
       class StorageInfo < TencentCloud::Common::AbstractModel
         # @param Type: 该字段表示文件访问类型，取值为**URL**（资源链接）和**COS** (腾讯云对象存储)；该字段应当与传入的访问类型相对应，可用于强校验并方便系统快速识别访问地址；若不传入此参数，则默认值为URL，此时系统将自动判定访问地址类型。
@@ -823,6 +864,40 @@ module TencentCloud
             @BucketInfo = BucketInfo.new
             @BucketInfo.deserialize(params['BucketInfo'])
           end
+        end
+      end
+
+      # 音频切片识别标签
+      class Tag < TencentCloud::Common::AbstractModel
+        # @param Name: 根据Label字段确定具体名称：
+        # 当Label 为Teenager 时 Name可能取值有：Teenager
+        # 当Label 为Gender 时 Name可能取值有：Male 、Female
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
+        # @param Score: 置信分：0～100，数值越大表示置信度越高
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Score: Integer
+        # @param StartTime: 识别开始偏移时间，单位：毫秒
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StartTime: Float
+        # @param EndTime: 识别结束偏移时间，单位：毫秒
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EndTime: Float
+
+        attr_accessor :Name, :Score, :StartTime, :EndTime
+        
+        def initialize(name=nil, score=nil, starttime=nil, endtime=nil)
+          @Name = name
+          @Score = score
+          @StartTime = starttime
+          @EndTime = endtime
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Score = params['Score']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
         end
       end
 
