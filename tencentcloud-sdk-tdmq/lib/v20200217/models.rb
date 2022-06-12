@@ -1543,7 +1543,7 @@ module TencentCloud
         # @type Trace: Boolean
         # @param Tags: 标签数组
         # @type Tags: Array
-        # @param RetentionSizeInMB: 队列可回溯存储空间，取值范围1024MB - 10240MB，0表示不开启
+        # @param RetentionSizeInMB: 队列可回溯存储空间：若开启消息回溯，取值范围：10240MB - 512000MB，若不开启消息回溯，取值：0
         # @type RetentionSizeInMB: Integer
 
         attr_accessor :QueueName, :MaxMsgHeapNum, :PollingWaitSeconds, :VisibilityTimeout, :MaxMsgSize, :MsgRetentionSeconds, :RewindSeconds, :Transaction, :FirstQueryInterval, :MaxQueryCount, :DeadLetterQueueName, :Policy, :MaxReceiveCount, :MaxTimeToLive, :Trace, :Tags, :RetentionSizeInMB
@@ -5602,7 +5602,7 @@ module TencentCloud
         # @type Trace: Boolean
         # @param Transaction: 是否开启事务，1开启，0不开启
         # @type Transaction: Integer
-        # @param RetentionSizeInMB: 队列可回溯存储空间，取值范围1024MB - 10240MB，0表示不开启
+        # @param RetentionSizeInMB: 队列可回溯存储空间：若开启消息回溯，取值范围：10240MB - 512000MB，若不开启消息回溯，取值：0
         # @type RetentionSizeInMB: Integer
 
         attr_accessor :QueueName, :MaxMsgHeapNum, :PollingWaitSeconds, :VisibilityTimeout, :MaxMsgSize, :MsgRetentionSeconds, :RewindSeconds, :FirstQueryInterval, :MaxQueryCount, :DeadLetterQueueName, :MaxTimeToLive, :MaxReceiveCount, :Policy, :Trace, :Transaction, :RetentionSizeInMB
@@ -6246,9 +6246,9 @@ module TencentCloud
       class PublishCmqMsgRequest < TencentCloud::Common::AbstractModel
         # @param TopicName: 主题名
         # @type TopicName: String
-        # @param MsgContent: 消息内容
+        # @param MsgContent: 消息内容，消息总大小需不大于1024K
         # @type MsgContent: String
-        # @param MsgTag: 消息标签
+        # @param MsgTag: 消息标签，支持传递多标签或单路由，单个标签、路由长度不能超过64个字符。
         # @type MsgTag: Array
 
         attr_accessor :TopicName, :MsgContent, :MsgTag

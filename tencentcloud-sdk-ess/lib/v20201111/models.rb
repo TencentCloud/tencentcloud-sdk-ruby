@@ -176,6 +176,52 @@ module TencentCloud
         end
       end
 
+      # CancelMultiFlowSignQRCode请求参数结构体
+      class CancelMultiFlowSignQRCodeRequest < TencentCloud::Common::AbstractModel
+        # @param Operator: 用户信息
+        # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
+        # @param QrCodeId: 二维码id
+        # @type QrCodeId: String
+        # @param Agent: 应用信息
+        # @type Agent: :class:`Tencentcloud::Ess.v20201111.models.Agent`
+
+        attr_accessor :Operator, :QrCodeId, :Agent
+        
+        def initialize(operator=nil, qrcodeid=nil, agent=nil)
+          @Operator = operator
+          @QrCodeId = qrcodeid
+          @Agent = agent
+        end
+
+        def deserialize(params)
+          unless params['Operator'].nil?
+            @Operator = UserInfo.new
+            @Operator.deserialize(params['Operator'])
+          end
+          @QrCodeId = params['QrCodeId']
+          unless params['Agent'].nil?
+            @Agent = Agent.new
+            @Agent.deserialize(params['Agent'])
+          end
+        end
+      end
+
+      # CancelMultiFlowSignQRCode返回参数结构体
+      class CancelMultiFlowSignQRCodeResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 抄送信息
       class CcInfo < TencentCloud::Common::AbstractModel
         # @param Mobile: 被抄送人手机号
@@ -579,6 +625,79 @@ module TencentCloud
 
         def deserialize(params)
           @FlowId = params['FlowId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateMultiFlowSignQRCode请求参数结构体
+      class CreateMultiFlowSignQRCodeRequest < TencentCloud::Common::AbstractModel
+        # @param TemplateId: 模版ID
+        # @type TemplateId: String
+        # @param Operator: 用户信息
+        # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
+        # @param FlowName: 合同名称
+        # @type FlowName: String
+        # @param Agent: 应用信息
+        # @type Agent: :class:`Tencentcloud::Ess.v20201111.models.Agent`
+        # @param FlowEffectiveDay: 合同有效天数 默认7天 最高设置不超过30天
+        # @type FlowEffectiveDay: Integer
+        # @param QrEffectiveDay: 二维码有效天数 默认7天 最高设置不超过90天
+        # @type QrEffectiveDay: Integer
+        # @param MaxFlowNum: 最大合同份数，默认5份 超过此上限 二维码自动失效
+        # @type MaxFlowNum: Integer
+        # @param CallbackUrl: 回调地址
+        # @type CallbackUrl: String
+
+        attr_accessor :TemplateId, :Operator, :FlowName, :Agent, :FlowEffectiveDay, :QrEffectiveDay, :MaxFlowNum, :CallbackUrl
+        
+        def initialize(templateid=nil, operator=nil, flowname=nil, agent=nil, floweffectiveday=nil, qreffectiveday=nil, maxflownum=nil, callbackurl=nil)
+          @TemplateId = templateid
+          @Operator = operator
+          @FlowName = flowname
+          @Agent = agent
+          @FlowEffectiveDay = floweffectiveday
+          @QrEffectiveDay = qreffectiveday
+          @MaxFlowNum = maxflownum
+          @CallbackUrl = callbackurl
+        end
+
+        def deserialize(params)
+          @TemplateId = params['TemplateId']
+          unless params['Operator'].nil?
+            @Operator = UserInfo.new
+            @Operator.deserialize(params['Operator'])
+          end
+          @FlowName = params['FlowName']
+          unless params['Agent'].nil?
+            @Agent = Agent.new
+            @Agent.deserialize(params['Agent'])
+          end
+          @FlowEffectiveDay = params['FlowEffectiveDay']
+          @QrEffectiveDay = params['QrEffectiveDay']
+          @MaxFlowNum = params['MaxFlowNum']
+          @CallbackUrl = params['CallbackUrl']
+        end
+      end
+
+      # CreateMultiFlowSignQRCode返回参数结构体
+      class CreateMultiFlowSignQRCodeResponse < TencentCloud::Common::AbstractModel
+        # @param QrCode: 签署二维码对象
+        # @type QrCode: :class:`Tencentcloud::Ess.v20201111.models.SignQrCode`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :QrCode, :RequestId
+        
+        def initialize(qrcode=nil, requestid=nil)
+          @QrCode = qrcode
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['QrCode'].nil?
+            @QrCode = SignQrCode.new
+            @QrCode.deserialize(params['QrCode'])
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -1210,6 +1329,30 @@ module TencentCloud
           @UserId = params['UserId']
           @DeliveryMethod = params['DeliveryMethod']
           @RecipientExtra = params['RecipientExtra']
+        end
+      end
+
+      # 一码多扫签署二维码对象
+      class SignQrCode < TencentCloud::Common::AbstractModel
+        # @param QrCodeId: 二维码id
+        # @type QrCodeId: String
+        # @param QrCodeUrl: 二维码url
+        # @type QrCodeUrl: String
+        # @param ExpiredTime: 二维码过期时间
+        # @type ExpiredTime: Integer
+
+        attr_accessor :QrCodeId, :QrCodeUrl, :ExpiredTime
+        
+        def initialize(qrcodeid=nil, qrcodeurl=nil, expiredtime=nil)
+          @QrCodeId = qrcodeid
+          @QrCodeUrl = qrcodeurl
+          @ExpiredTime = expiredtime
+        end
+
+        def deserialize(params)
+          @QrCodeId = params['QrCodeId']
+          @QrCodeUrl = params['QrCodeUrl']
+          @ExpiredTime = params['ExpiredTime']
         end
       end
 

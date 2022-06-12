@@ -12620,10 +12620,16 @@ module TencentCloud
         # @param ExtensionMode: 流量包当前续订模式，0 未续订、1到期续订、2用完续订、3到期或用完续订
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExtensionMode: Integer
+        # @param TrueEnableTime: 流量包实际生效时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TrueEnableTime: String
+        # @param TrueExpireTime: 流量包实际过期时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TrueExpireTime: String
 
-        attr_accessor :Id, :Type, :Bytes, :BytesUsed, :Status, :CreateTime, :EnableTime, :ExpireTime, :ContractExtension, :AutoExtension, :Channel, :Area, :LifeTimeMonth, :ExtensionAvailable, :RefundAvailable, :Region, :ConfigId, :ExtensionMode
+        attr_accessor :Id, :Type, :Bytes, :BytesUsed, :Status, :CreateTime, :EnableTime, :ExpireTime, :ContractExtension, :AutoExtension, :Channel, :Area, :LifeTimeMonth, :ExtensionAvailable, :RefundAvailable, :Region, :ConfigId, :ExtensionMode, :TrueEnableTime, :TrueExpireTime
         
-        def initialize(id=nil, type=nil, bytes=nil, bytesused=nil, status=nil, createtime=nil, enabletime=nil, expiretime=nil, contractextension=nil, autoextension=nil, channel=nil, area=nil, lifetimemonth=nil, extensionavailable=nil, refundavailable=nil, region=nil, configid=nil, extensionmode=nil)
+        def initialize(id=nil, type=nil, bytes=nil, bytesused=nil, status=nil, createtime=nil, enabletime=nil, expiretime=nil, contractextension=nil, autoextension=nil, channel=nil, area=nil, lifetimemonth=nil, extensionavailable=nil, refundavailable=nil, region=nil, configid=nil, extensionmode=nil, trueenabletime=nil, trueexpiretime=nil)
           @Id = id
           @Type = type
           @Bytes = bytes
@@ -12642,6 +12648,8 @@ module TencentCloud
           @Region = region
           @ConfigId = configid
           @ExtensionMode = extensionmode
+          @TrueEnableTime = trueenabletime
+          @TrueExpireTime = trueexpiretime
         end
 
         def deserialize(params)
@@ -12663,6 +12671,8 @@ module TencentCloud
           @Region = params['Region']
           @ConfigId = params['ConfigId']
           @ExtensionMode = params['ExtensionMode']
+          @TrueEnableTime = params['TrueEnableTime']
+          @TrueExpireTime = params['TrueExpireTime']
         end
       end
 
@@ -13464,7 +13474,7 @@ module TencentCloud
 
         # * WebSocket 为ECDN产品功能，如需使用请通过ECDN域名配置.
         # @type Switch: String
-        # @param Timeout: 设置超时时间，单位为秒，最大超时时间65秒。
+        # @param Timeout: 设置超时时间，单位为秒，最大超时时间300秒。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Timeout: Integer
 

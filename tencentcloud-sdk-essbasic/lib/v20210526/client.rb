@@ -29,6 +29,30 @@ module TencentCloud
         end
 
 
+        # 此接口（ChannelCancelMultiFlowSignQRCode）用于取消一码多扫二维码。该接口对传入的二维码ID，若还在有效期内，可以提前失效。
+
+        # @param request: Request instance for ChannelCancelMultiFlowSignQRCode.
+        # @type request: :class:`Tencentcloud::essbasic::V20210526::ChannelCancelMultiFlowSignQRCodeRequest`
+        # @rtype: :class:`Tencentcloud::essbasic::V20210526::ChannelCancelMultiFlowSignQRCodeResponse`
+        def ChannelCancelMultiFlowSignQRCode(request)
+          body = send_request('ChannelCancelMultiFlowSignQRCode', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ChannelCancelMultiFlowSignQRCodeResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 接口（ChannelCreateFlowByFiles）用于渠道版通过文件创建流程。此接口不可直接使用，需要运营申请
 
         # @param request: Request instance for ChannelCreateFlowByFiles.
@@ -39,6 +63,31 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ChannelCreateFlowByFilesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 此接口（ChannelCreateMultiFlowSignQRCode）用于创建一码多扫流程签署二维码。
+        # 适用的模版仅限于B2C（1、无序签署，2、顺序签署时B静默签署，3、顺序签署时B非首位签署）、单C的模版，且模版中发起方没有填写控件。
+
+        # @param request: Request instance for ChannelCreateMultiFlowSignQRCode.
+        # @type request: :class:`Tencentcloud::essbasic::V20210526::ChannelCreateMultiFlowSignQRCodeRequest`
+        # @rtype: :class:`Tencentcloud::essbasic::V20210526::ChannelCreateMultiFlowSignQRCodeResponse`
+        def ChannelCreateMultiFlowSignQRCode(request)
+          body = send_request('ChannelCreateMultiFlowSignQRCode', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ChannelCreateMultiFlowSignQRCodeResponse.new
             model.deserialize(response['Response'])
             model
           else

@@ -2081,12 +2081,28 @@ module TencentCloud
 
       # 根证书
       class RootCertificates < TencentCloud::Common::AbstractModel
+        # @param Sign: 国密签名证书
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Sign: String
+        # @param Encrypt: 国密加密证书
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Encrypt: String
+        # @param Standard: 标准证书
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Standard: String
 
+        attr_accessor :Sign, :Encrypt, :Standard
         
-        def initialize()
+        def initialize(sign=nil, encrypt=nil, standard=nil)
+          @Sign = sign
+          @Encrypt = encrypt
+          @Standard = standard
         end
 
         def deserialize(params)
+          @Sign = params['Sign']
+          @Encrypt = params['Encrypt']
+          @Standard = params['Standard']
         end
       end
 

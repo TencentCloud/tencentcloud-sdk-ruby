@@ -414,14 +414,17 @@ module TencentCloud
         # @type TagSpecification: :class:`Tencentcloud::Tcr.v20190924.models.TagSpecification`
         # @param RegistryChargeType: 实例计费类型，0表示按量计费，1表示预付费，默认为按量计费
         # @type RegistryChargeType: Integer
+        # @param SyncTag: 是否同步TCR云标签至生成的COS Bucket
+        # @type SyncTag: Boolean
 
-        attr_accessor :RegistryName, :RegistryType, :TagSpecification, :RegistryChargeType
+        attr_accessor :RegistryName, :RegistryType, :TagSpecification, :RegistryChargeType, :SyncTag
         
-        def initialize(registryname=nil, registrytype=nil, tagspecification=nil, registrychargetype=nil)
+        def initialize(registryname=nil, registrytype=nil, tagspecification=nil, registrychargetype=nil, synctag=nil)
           @RegistryName = registryname
           @RegistryType = registrytype
           @TagSpecification = tagspecification
           @RegistryChargeType = registrychargetype
+          @SyncTag = synctag
         end
 
         def deserialize(params)
@@ -432,6 +435,7 @@ module TencentCloud
             @TagSpecification.deserialize(params['TagSpecification'])
           end
           @RegistryChargeType = params['RegistryChargeType']
+          @SyncTag = params['SyncTag']
         end
       end
 
@@ -690,19 +694,23 @@ module TencentCloud
         # @type ReplicationRegionId: Integer
         # @param ReplicationRegionName: 复制实例地域名称
         # @type ReplicationRegionName: String
+        # @param SyncTag: 是否同步TCR云标签至生成的COS Bucket
+        # @type SyncTag: Boolean
 
-        attr_accessor :RegistryId, :ReplicationRegionId, :ReplicationRegionName
+        attr_accessor :RegistryId, :ReplicationRegionId, :ReplicationRegionName, :SyncTag
         
-        def initialize(registryid=nil, replicationregionid=nil, replicationregionname=nil)
+        def initialize(registryid=nil, replicationregionid=nil, replicationregionname=nil, synctag=nil)
           @RegistryId = registryid
           @ReplicationRegionId = replicationregionid
           @ReplicationRegionName = replicationregionname
+          @SyncTag = synctag
         end
 
         def deserialize(params)
           @RegistryId = params['RegistryId']
           @ReplicationRegionId = params['ReplicationRegionId']
           @ReplicationRegionName = params['ReplicationRegionName']
+          @SyncTag = params['SyncTag']
         end
       end
 
@@ -1248,17 +1256,21 @@ module TencentCloud
         # @type RegistryId: String
         # @param DeleteBucket: 是否删除存储桶，默认为false
         # @type DeleteBucket: Boolean
+        # @param DryRun: 是否dryRun模式，缺省值：false
+        # @type DryRun: Boolean
 
-        attr_accessor :RegistryId, :DeleteBucket
+        attr_accessor :RegistryId, :DeleteBucket, :DryRun
         
-        def initialize(registryid=nil, deletebucket=nil)
+        def initialize(registryid=nil, deletebucket=nil, dryrun=nil)
           @RegistryId = registryid
           @DeleteBucket = deletebucket
+          @DryRun = dryrun
         end
 
         def deserialize(params)
           @RegistryId = params['RegistryId']
           @DeleteBucket = params['DeleteBucket']
+          @DryRun = params['DryRun']
         end
       end
 

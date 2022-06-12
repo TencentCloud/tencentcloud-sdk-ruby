@@ -49,7 +49,7 @@ module TencentCloud
         # @type Subject: String
         # @param TaskType: 任务类型 1: 立即发送 2: 定时发送 3: 周期（频率）发送
         # @type TaskType: Integer
-        # @param ReplyToAddresses: 邮件的“回复”电子邮件地址。可以填写您能收到邮件的邮箱地址，可以是个人邮箱。如果不填，收件人将会回复到腾讯云
+        # @param ReplyToAddresses: 邮件的“回复”电子邮件地址。可以填写您能收到邮件的邮箱地址，可以是个人邮箱。如果不填，收件人的回复邮件将会发送失败。
         # @type ReplyToAddresses: String
         # @param Template: 使用模板发送时，填写的模板相关参数
         # @type Template: :class:`Tencentcloud::Ses.v20201002.models.Template`
@@ -1266,7 +1266,7 @@ module TencentCloud
         # @type Destination: Array
         # @param Subject: 邮件主题
         # @type Subject: String
-        # @param ReplyToAddresses: 邮件的“回复”电子邮件地址。可以填写您能收到邮件的邮箱地址，可以是个人邮箱。如果不填，收件人将会回复到腾讯云。
+        # @param ReplyToAddresses: 邮件的“回复”电子邮件地址。可以填写您能收到邮件的邮箱地址，可以是个人邮箱。如果不填，收件人的回复邮件将会发送失败。
         # @type ReplyToAddresses: String
         # @param Template: 使用模板发送时，填写的模板相关参数
         # @type Template: :class:`Tencentcloud::Ses.v20201002.models.Template`

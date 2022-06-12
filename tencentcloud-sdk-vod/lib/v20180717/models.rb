@@ -3854,8 +3854,9 @@ module TencentCloud
         # <li>libmp3lame：更适合 flv；</li>
         # <li>mp2。</li>
         # 当外层参数 Container 为 hls 时，可选值为：
-        # <li>libfdk_aac；</li>
-        # <li>libmp3lame。</li>
+        # <li>libfdk_aac。</li>
+        # 当外层参数 Format 为 HLS 或 MPEG-DASH 时，可选值为：
+        # <li>libfdk_aac。</li>
         # @type Codec: String
         # @param Bitrate: 音频流的码率，取值范围：0 和 [26, 256]，单位：kbps。
         # 当取值为 0，表示音频码率和原始音频保持一致。
@@ -3907,8 +3908,9 @@ module TencentCloud
         # <li>libmp3lame：更适合 flv；</li>
         # <li>mp2。</li>
         # 当外层参数 Container 为 hls 时，可选值为：
-        # <li>libfdk_aac；</li>
-        # <li>libmp3lame。</li>
+        # <li>libfdk_aac。</li>
+        # 当外层参数 Format 为 HLS 或 MPEG-DASH 时，可选值为：
+        # <li>libfdk_aac。</li>
         # @type Codec: String
         # @param Bitrate: 音频流的码率，取值范围：0 和 [26, 256]，单位：kbps。 当取值为 0，表示音频码率和原始音频保持一致。
         # @type Bitrate: Integer
@@ -5080,7 +5082,8 @@ module TencentCloud
       # CreateAdaptiveDynamicStreamingTemplate请求参数结构体
       class CreateAdaptiveDynamicStreamingTemplateRequest < TencentCloud::Common::AbstractModel
         # @param Format: 自适应转码格式，取值范围：
-        # <li>HLS。</li>
+        # <li>HLS；</li>
+        # <li>MPEG-DASH。</li>
         # @type Format: String
         # @param StreamInfos: 自适应转码输出子流参数信息，最多输出10路子流。
         # 注意：各个子流的帧率必须保持一致；如果不一致，采用第一个子流的帧率作为输出帧率。
@@ -13779,10 +13782,13 @@ module TencentCloud
       class ModifyAdaptiveDynamicStreamingTemplateRequest < TencentCloud::Common::AbstractModel
         # @param Definition: 自适应转码模板唯一标识。
         # @type Definition: Integer
+        # @param SubAppId: <b>点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。</b>
+        # @type SubAppId: Integer
         # @param Name: 模板名称，长度限制：64 个字符。
         # @type Name: String
         # @param Format: 自适应转码格式，取值范围：
-        # <li>HLS。</li>
+        # <li>HLS；</li>
+        # <li>MPEG-DASH。</li>
         # @type Format: String
         # @param DisableHigherVideoBitrate: 是否禁止视频低码率转高码率，取值范围：
         # <li>0：否，</li>
@@ -13797,24 +13803,23 @@ module TencentCloud
         # @type StreamInfos: Array
         # @param Comment: 模板描述信息，长度限制：256 个字符。
         # @type Comment: String
-        # @param SubAppId: 点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。
-        # @type SubAppId: Integer
 
-        attr_accessor :Definition, :Name, :Format, :DisableHigherVideoBitrate, :DisableHigherVideoResolution, :StreamInfos, :Comment, :SubAppId
+        attr_accessor :Definition, :SubAppId, :Name, :Format, :DisableHigherVideoBitrate, :DisableHigherVideoResolution, :StreamInfos, :Comment
         
-        def initialize(definition=nil, name=nil, format=nil, disablehighervideobitrate=nil, disablehighervideoresolution=nil, streaminfos=nil, comment=nil, subappid=nil)
+        def initialize(definition=nil, subappid=nil, name=nil, format=nil, disablehighervideobitrate=nil, disablehighervideoresolution=nil, streaminfos=nil, comment=nil)
           @Definition = definition
+          @SubAppId = subappid
           @Name = name
           @Format = format
           @DisableHigherVideoBitrate = disablehighervideobitrate
           @DisableHigherVideoResolution = disablehighervideoresolution
           @StreamInfos = streaminfos
           @Comment = comment
-          @SubAppId = subappid
         end
 
         def deserialize(params)
           @Definition = params['Definition']
+          @SubAppId = params['SubAppId']
           @Name = params['Name']
           @Format = params['Format']
           @DisableHigherVideoBitrate = params['DisableHigherVideoBitrate']
@@ -13828,7 +13833,6 @@ module TencentCloud
             end
           end
           @Comment = params['Comment']
-          @SubAppId = params['SubAppId']
         end
       end
 
