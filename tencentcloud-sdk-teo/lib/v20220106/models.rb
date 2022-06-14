@@ -506,15 +506,19 @@ module TencentCloud
         # @param DropManagedIds: 拦截的规则ID
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DropManagedIds: Array
+        # @param Switch: 本功能的开关
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Switch: String
 
-        attr_accessor :RuleID, :AlgManagedIds, :CapManagedIds, :MonManagedIds, :DropManagedIds
+        attr_accessor :RuleID, :AlgManagedIds, :CapManagedIds, :MonManagedIds, :DropManagedIds, :Switch
         
-        def initialize(ruleid=nil, algmanagedids=nil, capmanagedids=nil, monmanagedids=nil, dropmanagedids=nil)
+        def initialize(ruleid=nil, algmanagedids=nil, capmanagedids=nil, monmanagedids=nil, dropmanagedids=nil, switch=nil)
           @RuleID = ruleid
           @AlgManagedIds = algmanagedids
           @CapManagedIds = capmanagedids
           @MonManagedIds = monmanagedids
           @DropManagedIds = dropmanagedids
+          @Switch = switch
         end
 
         def deserialize(params)
@@ -523,6 +527,7 @@ module TencentCloud
           @CapManagedIds = params['CapManagedIds']
           @MonManagedIds = params['MonManagedIds']
           @DropManagedIds = params['DropManagedIds']
+          @Switch = params['Switch']
         end
       end
 
@@ -3843,6 +3848,61 @@ module TencentCloud
         end
       end
 
+      # DescribeSecurityPortraitRules请求参数结构体
+      class DescribeSecurityPortraitRulesRequest < TencentCloud::Common::AbstractModel
+        # @param ZoneId: 一级域名
+        # @type ZoneId: String
+        # @param Entity: 子域名/应用名
+        # @type Entity: String
+
+        attr_accessor :ZoneId, :Entity
+        
+        def initialize(zoneid=nil, entity=nil)
+          @ZoneId = zoneid
+          @Entity = entity
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+          @Entity = params['Entity']
+        end
+      end
+
+      # DescribeSecurityPortraitRules返回参数结构体
+      class DescribeSecurityPortraitRulesResponse < TencentCloud::Common::AbstractModel
+        # @param Count: 本次返回的规则数
+        # @type Count: Integer
+        # @param Rules: Bot用户画像规则
+        # @type Rules: Array
+        # @param Total: 总规则数
+        # @type Total: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Count, :Rules, :Total, :RequestId
+        
+        def initialize(count=nil, rules=nil, total=nil, requestid=nil)
+          @Count = count
+          @Rules = rules
+          @Total = total
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Count = params['Count']
+          unless params['Rules'].nil?
+            @Rules = []
+            params['Rules'].each do |i|
+              portraitmanagedruledetail_tmp = PortraitManagedRuleDetail.new
+              portraitmanagedruledetail_tmp.deserialize(i)
+              @Rules << portraitmanagedruledetail_tmp
+            end
+          end
+          @Total = params['Total']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeZoneDDoSPolicy请求参数结构体
       class DescribeZoneDDoSPolicyRequest < TencentCloud::Common::AbstractModel
         # @param ZoneId: 一级域名id
@@ -6356,6 +6416,43 @@ module TencentCloud
         def deserialize(params)
           @Name = params['Name']
           @Value = params['Value']
+        end
+      end
+
+      # 用户画像规则详情
+      class PortraitManagedRuleDetail < TencentCloud::Common::AbstractModel
+        # @param RuleId: 规则唯一id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RuleId: Integer
+        # @param Description: 规则的描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Description: String
+        # @param RuleTypeName: 规则所属类型的名字, botdb(用户画像)
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RuleTypeName: String
+        # @param ClassificationId: 规则内的功能分类Id(扫描器，Bot行为等)
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClassificationId: Integer
+        # @param Status: 规则当前所属动作状态(block, alg, ...)
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: String
+
+        attr_accessor :RuleId, :Description, :RuleTypeName, :ClassificationId, :Status
+        
+        def initialize(ruleid=nil, description=nil, ruletypename=nil, classificationid=nil, status=nil)
+          @RuleId = ruleid
+          @Description = description
+          @RuleTypeName = ruletypename
+          @ClassificationId = classificationid
+          @Status = status
+        end
+
+        def deserialize(params)
+          @RuleId = params['RuleId']
+          @Description = params['Description']
+          @RuleTypeName = params['RuleTypeName']
+          @ClassificationId = params['ClassificationId']
+          @Status = params['Status']
         end
       end
 

@@ -1073,6 +1073,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询专享实例列表（新）
+
+        # @param request: Request instance for DescribeExclusiveInstancesStatus.
+        # @type request: :class:`Tencentcloud::apigateway::V20180808::DescribeExclusiveInstancesStatusRequest`
+        # @rtype: :class:`Tencentcloud::apigateway::V20180808::DescribeExclusiveInstancesStatusResponse`
+        def DescribeExclusiveInstancesStatus(request)
+          body = send_request('DescribeExclusiveInstancesStatus', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeExclusiveInstancesStatusResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（DescribeIPStrategy）用于查询IP策略详情。
 
         # @param request: Request instance for DescribeIPStrategy.

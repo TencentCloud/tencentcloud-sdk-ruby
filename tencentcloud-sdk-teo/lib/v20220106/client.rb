@@ -989,6 +989,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询Bot用户画像规则
+
+        # @param request: Request instance for DescribeSecurityPortraitRules.
+        # @type request: :class:`Tencentcloud::teo::V20220106::DescribeSecurityPortraitRulesRequest`
+        # @rtype: :class:`Tencentcloud::teo::V20220106::DescribeSecurityPortraitRulesResponse`
+        def DescribeSecurityPortraitRules(request)
+          body = send_request('DescribeSecurityPortraitRules', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeSecurityPortraitRulesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询所有DDoS防护分区
 
         # @param request: Request instance for DescribeZoneDDoSPolicy.

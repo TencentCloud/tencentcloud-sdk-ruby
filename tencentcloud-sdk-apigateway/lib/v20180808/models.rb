@@ -3861,6 +3861,60 @@ module TencentCloud
         end
       end
 
+      # DescribeExclusiveInstancesStatus请求参数结构体
+      class DescribeExclusiveInstancesStatusRequest < TencentCloud::Common::AbstractModel
+        # @param Limit: 分页查询，limit
+        # @type Limit: Integer
+        # @param Offset: 分页查询，offset
+        # @type Offset: Integer
+        # @param Filters: 过滤条件
+        # @type Filters: Array
+
+        attr_accessor :Limit, :Offset, :Filters
+        
+        def initialize(limit=nil, offset=nil, filters=nil)
+          @Limit = limit
+          @Offset = offset
+          @Filters = filters
+        end
+
+        def deserialize(params)
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+        end
+      end
+
+      # DescribeExclusiveInstancesStatus返回参数结构体
+      class DescribeExclusiveInstancesStatusResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 独享实例列表查询结果
+        # @type Result: :class:`Tencentcloud::Apigateway.v20180808.models.InstanceSummary`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+        
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Result'].nil?
+            @Result = InstanceSummary.new
+            @Result.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeIPStrategyApisStatus请求参数结构体
       class DescribeIPStrategyApisStatusRequest < TencentCloud::Common::AbstractModel
         # @param ServiceId: 服务唯一ID。
@@ -6144,6 +6198,35 @@ module TencentCloud
         def deserialize(params)
           @Name = params['Name']
           @Value = params['Value']
+        end
+      end
+
+      # 专享查询列表
+      class InstanceSummary < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 专享实例总数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalCount: Integer
+        # @param InstanceSet: 专享实例列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceSet: Array
+
+        attr_accessor :TotalCount, :InstanceSet
+        
+        def initialize(totalcount=nil, instanceset=nil)
+          @TotalCount = totalcount
+          @InstanceSet = instanceset
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['InstanceSet'].nil?
+            @InstanceSet = []
+            params['InstanceSet'].each do |i|
+              instanceinfo_tmp = InstanceInfo.new
+              instanceinfo_tmp.deserialize(i)
+              @InstanceSet << instanceinfo_tmp
+            end
+          end
         end
       end
 

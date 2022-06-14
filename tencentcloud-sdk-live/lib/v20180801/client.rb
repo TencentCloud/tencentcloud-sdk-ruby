@@ -1865,6 +1865,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 提供给客户对账，按天统计，维度：推流域名、时移文件时长（累加）、配置天数（不累加）、时移总时长（累加）。
+
+        # @param request: Request instance for DescribeLiveTimeShiftBillInfoList.
+        # @type request: :class:`Tencentcloud::live::V20180801::DescribeLiveTimeShiftBillInfoListRequest`
+        # @rtype: :class:`Tencentcloud::live::V20180801::DescribeLiveTimeShiftBillInfoListResponse`
+        def DescribeLiveTimeShiftBillInfoList(request)
+          body = send_request('DescribeLiveTimeShiftBillInfoList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeLiveTimeShiftBillInfoListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 支持查询某天或某段时间的转码详细信息。
 
         # @param request: Request instance for DescribeLiveTranscodeDetailInfo.

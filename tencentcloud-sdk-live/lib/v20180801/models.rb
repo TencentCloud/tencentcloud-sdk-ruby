@@ -4735,6 +4735,65 @@ module TencentCloud
         end
       end
 
+      # DescribeLiveTimeShiftBillInfoList请求参数结构体
+      class DescribeLiveTimeShiftBillInfoListRequest < TencentCloud::Common::AbstractModel
+        # @param StartTime: UTC开始时间，支持最近三个月的查询，查询时间最长跨度为一个月。
+
+        # 使用 UTC 格式时间，
+        # 例如：2019-01-08T10:00:00Z。
+        # 注意：北京时间值为 UTC 时间值 + 8 小时，格式按照 ISO 8601 标准表示，详见 [ISO 日期格式说明](https://cloud.tencent.com/document/product/266/11732#I)。
+        # @type StartTime: String
+        # @param EndTime: UTC结束时间，支持最近三个月的查询，查询时间最长跨度为一个月。
+
+        # 使用 UTC 格式时间，
+        # 例如：2019-01-08T10:00:00Z。
+        # 注意：北京时间值为 UTC 时间值 + 8 小时，格式按照 ISO 8601 标准表示，详见 [ISO 日期格式说明](https://cloud.tencent.com/document/product/266/11732#I)。
+        # @type EndTime: String
+        # @param PushDomains: 推流域名列表，若不传递此参数，则表示查询总体数据。
+        # @type PushDomains: Array
+
+        attr_accessor :StartTime, :EndTime, :PushDomains
+        
+        def initialize(starttime=nil, endtime=nil, pushdomains=nil)
+          @StartTime = starttime
+          @EndTime = endtime
+          @PushDomains = pushdomains
+        end
+
+        def deserialize(params)
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @PushDomains = params['PushDomains']
+        end
+      end
+
+      # DescribeLiveTimeShiftBillInfoList返回参数结构体
+      class DescribeLiveTimeShiftBillInfoListResponse < TencentCloud::Common::AbstractModel
+        # @param DataInfoList: 时移计费明细数据。
+        # @type DataInfoList: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :DataInfoList, :RequestId
+        
+        def initialize(datainfolist=nil, requestid=nil)
+          @DataInfoList = datainfolist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['DataInfoList'].nil?
+            @DataInfoList = []
+            params['DataInfoList'].each do |i|
+              timeshiftbilldata_tmp = TimeShiftBillData.new
+              timeshiftbilldata_tmp.deserialize(i)
+              @DataInfoList << timeshiftbilldata_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeLiveTranscodeDetailInfo请求参数结构体
       class DescribeLiveTranscodeDetailInfoRequest < TencentCloud::Common::AbstractModel
         # @param PushDomain: 推流域名。
@@ -9403,6 +9462,34 @@ module TencentCloud
           @AiTransCode = params['AiTransCode']
           @AdaptBitratePercent = params['AdaptBitratePercent']
           @ShortEdgeAsHeight = params['ShortEdgeAsHeight']
+        end
+      end
+
+      # 时移计费明细数据。
+      class TimeShiftBillData < TencentCloud::Common::AbstractModel
+        # @param Domain: 推流域名。
+        # @type Domain: String
+        # @param Duration: 时移时长,单位分钟。
+        # @type Duration: Float
+        # @param StoragePeriod: 时移配置天数，单位天。
+        # @type StoragePeriod: Float
+        # @param Time: 时间点，格式: yyyy-mm-ddTHH:MM:SSZ。
+        # @type Time: String
+
+        attr_accessor :Domain, :Duration, :StoragePeriod, :Time
+        
+        def initialize(domain=nil, duration=nil, storageperiod=nil, time=nil)
+          @Domain = domain
+          @Duration = duration
+          @StoragePeriod = storageperiod
+          @Time = time
+        end
+
+        def deserialize(params)
+          @Domain = params['Domain']
+          @Duration = params['Duration']
+          @StoragePeriod = params['StoragePeriod']
+          @Time = params['Time']
         end
       end
 

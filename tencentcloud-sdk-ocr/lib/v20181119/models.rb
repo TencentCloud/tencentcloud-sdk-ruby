@@ -5305,6 +5305,33 @@ module TencentCloud
         end
       end
 
+      # 印章信息
+      class SealInfo < TencentCloud::Common::AbstractModel
+        # @param SealBody: 印章主体内容
+        # @type SealBody: String
+        # @param Location: 印章坐标
+        # @type Location: :class:`Tencentcloud::Ocr.v20181119.models.Rect`
+        # @param OtherTexts: 印章其它文本内容
+        # @type OtherTexts: Array
+
+        attr_accessor :SealBody, :Location, :OtherTexts
+        
+        def initialize(sealbody=nil, location=nil, othertexts=nil)
+          @SealBody = sealbody
+          @Location = location
+          @OtherTexts = othertexts
+        end
+
+        def deserialize(params)
+          @SealBody = params['SealBody']
+          unless params['Location'].nil?
+            @Location = Rect.new
+            @Location.deserialize(params['Location'])
+          end
+          @OtherTexts = params['OtherTexts']
+        end
+      end
+
       # SealOCR请求参数结构体
       class SealOCRRequest < TencentCloud::Common::AbstractModel
         # @param ImageBase64: 图片的 Base64 值。要求图片经Base64编码后不超过 7M，分辨率建议500*800以上，支持PNG、JPG、JPEG、BMP格式。建议卡片部分占据图片2/3以上。
@@ -5335,15 +5362,18 @@ module TencentCloud
         # @type Location: :class:`Tencentcloud::Ocr.v20181119.models.Rect`
         # @param OtherTexts: 其它文本内容
         # @type OtherTexts: Array
+        # @param SealInfos: 全部印章信息
+        # @type SealInfos: Array
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :SealBody, :Location, :OtherTexts, :RequestId
+        attr_accessor :SealBody, :Location, :OtherTexts, :SealInfos, :RequestId
         
-        def initialize(sealbody=nil, location=nil, othertexts=nil, requestid=nil)
+        def initialize(sealbody=nil, location=nil, othertexts=nil, sealinfos=nil, requestid=nil)
           @SealBody = sealbody
           @Location = location
           @OtherTexts = othertexts
+          @SealInfos = sealinfos
           @RequestId = requestid
         end
 
@@ -5354,6 +5384,14 @@ module TencentCloud
             @Location.deserialize(params['Location'])
           end
           @OtherTexts = params['OtherTexts']
+          unless params['SealInfos'].nil?
+            @SealInfos = []
+            params['SealInfos'].each do |i|
+              sealinfo_tmp = SealInfo.new
+              sealinfo_tmp.deserialize(i)
+              @SealInfos << sealinfo_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end

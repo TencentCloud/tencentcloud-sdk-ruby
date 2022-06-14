@@ -290,10 +290,13 @@ module TencentCloud
         # @param ModifiedTime: 字段修改时间
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ModifiedTime: String
+        # @param IsPartition: 是否为分区字段
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsPartition: Boolean
 
-        attr_accessor :Name, :Type, :Comment, :Precision, :Scale, :Nullable, :Position, :CreateTime, :ModifiedTime
+        attr_accessor :Name, :Type, :Comment, :Precision, :Scale, :Nullable, :Position, :CreateTime, :ModifiedTime, :IsPartition
         
-        def initialize(name=nil, type=nil, comment=nil, precision=nil, scale=nil, nullable=nil, position=nil, createtime=nil, modifiedtime=nil)
+        def initialize(name=nil, type=nil, comment=nil, precision=nil, scale=nil, nullable=nil, position=nil, createtime=nil, modifiedtime=nil, ispartition=nil)
           @Name = name
           @Type = type
           @Comment = comment
@@ -303,6 +306,7 @@ module TencentCloud
           @Position = position
           @CreateTime = createtime
           @ModifiedTime = modifiedtime
+          @IsPartition = ispartition
         end
 
         def deserialize(params)
@@ -315,6 +319,7 @@ module TencentCloud
           @Position = params['Position']
           @CreateTime = params['CreateTime']
           @ModifiedTime = params['ModifiedTime']
+          @IsPartition = params['IsPartition']
         end
       end
 
