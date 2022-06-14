@@ -2387,7 +2387,7 @@ module TencentCloud
         # @type ClusterId: String
         # @param ChainId: 业务链编号，可在业务链列表中获取
         # @type ChainId: String
-        # @param BlockHeight: 区块高度，-1表示最新区块
+        # @param BlockHeight: 区块高度
         # @type BlockHeight: Integer
 
         attr_accessor :ClusterId, :ChainId, :BlockHeight

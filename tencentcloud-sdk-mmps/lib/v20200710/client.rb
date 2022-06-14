@@ -125,6 +125,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询翼扬安全基础诊断资源使用情况
+
+        # @param request: Request instance for DescribeBasicDiagnosisResourceUsageInfo.
+        # @type request: :class:`Tencentcloud::mmps::V20200710::DescribeBasicDiagnosisResourceUsageInfoRequest`
+        # @rtype: :class:`Tencentcloud::mmps::V20200710::DescribeBasicDiagnosisResourceUsageInfoResponse`
+        def DescribeBasicDiagnosisResourceUsageInfo(request)
+          body = send_request('DescribeBasicDiagnosisResourceUsageInfo', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeBasicDiagnosisResourceUsageInfoResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 获取翼扬诊断任务报告链接地址
 
         # @param request: Request instance for DescribeFlySecMiniAppReportUrl.
@@ -207,6 +231,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeFlySecMiniAppScanTaskStatusResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询翼扬安全资源使用情况
+
+        # @param request: Request instance for DescribeResourceUsageInfo.
+        # @type request: :class:`Tencentcloud::mmps::V20200710::DescribeResourceUsageInfoRequest`
+        # @rtype: :class:`Tencentcloud::mmps::V20200710::DescribeResourceUsageInfoResponse`
+        def DescribeResourceUsageInfo(request)
+          body = send_request('DescribeResourceUsageInfo', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeResourceUsageInfoResponse.new
             model.deserialize(response['Response'])
             model
           else

@@ -101,6 +101,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询应用合规平台用户资源的使用情况
+
+        # @param request: Request instance for DescribeResourceUsageInfo.
+        # @type request: :class:`Tencentcloud::acp::V20220105::DescribeResourceUsageInfoRequest`
+        # @rtype: :class:`Tencentcloud::acp::V20220105::DescribeResourceUsageInfoResponse`
+        def DescribeResourceUsageInfo(request)
+          body = send_request('DescribeResourceUsageInfo', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeResourceUsageInfoResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 获取App隐私合规诊断任务列表
 
         # @param request: Request instance for DescribeScanTaskList.

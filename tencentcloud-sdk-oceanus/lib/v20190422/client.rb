@@ -389,6 +389,39 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 更新作业属性，仅允许以下3种操作，不支持组合操作：
+        # (1)	更新作业名称
+        # (2)	更新作业备注
+        # (3)	更新作业最大并行度
+        # 变更前提：WorkerCuNum<=MaxParallelism
+        # 如果MaxParallelism变小，不重启作业，待下一次重启生效
+        # 如果MaxParallelism变大，则要求入参RestartAllowed必须为True
+        # 假设作业运行状态，则先停止作业，再启动作业，中间状态丢失
+        # 假设作业暂停状态，则将作业更改为停止状态，中间状态丢失
+
+
+        # @param request: Request instance for ModifyJob.
+        # @type request: :class:`Tencentcloud::oceanus::V20190422::ModifyJobRequest`
+        # @rtype: :class:`Tencentcloud::oceanus::V20190422::ModifyJobResponse`
+        def ModifyJob(request)
+          body = send_request('ModifyJob', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyJobResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 批量启动或者恢复作业，批量操作数量上限20
 
         # @param request: Request instance for RunJobs.

@@ -1311,6 +1311,54 @@ module TencentCloud
         end
       end
 
+      # ModifyJob请求参数结构体
+      class ModifyJobRequest < TencentCloud::Common::AbstractModel
+        # @param JobId: 作业Id
+        # @type JobId: String
+        # @param Name: 作业名称，支持长度小于50的中文/英文/数字/”-”/”_”/”.”，不能重名
+        # @type Name: String
+        # @param Remark: 描述
+        # @type Remark: String
+        # @param TargetFolderId: 拖拽文件需传入此参数
+        # @type TargetFolderId: String
+        # @param WorkSpaceId: 工作空间 SerialId
+        # @type WorkSpaceId: String
+
+        attr_accessor :JobId, :Name, :Remark, :TargetFolderId, :WorkSpaceId
+        
+        def initialize(jobid=nil, name=nil, remark=nil, targetfolderid=nil, workspaceid=nil)
+          @JobId = jobid
+          @Name = name
+          @Remark = remark
+          @TargetFolderId = targetfolderid
+          @WorkSpaceId = workspaceid
+        end
+
+        def deserialize(params)
+          @JobId = params['JobId']
+          @Name = params['Name']
+          @Remark = params['Remark']
+          @TargetFolderId = params['TargetFolderId']
+          @WorkSpaceId = params['WorkSpaceId']
+        end
+      end
+
+      # ModifyJob返回参数结构体
+      class ModifyJobResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 系统配置属性
       class Property < TencentCloud::Common::AbstractModel
         # @param Key: 系统配置的Key

@@ -792,6 +792,70 @@ module TencentCloud
         end
       end
 
+      # DetectEnvelope请求参数结构体
+      class DetectEnvelopeRequest < TencentCloud::Common::AbstractModel
+        # @param ImageUrl: 图片的URL地址。图片存储于腾讯云的Url可保障更高下载速度和稳定性，建议图片存储于腾讯云。
+        # 非腾讯云存储的Url速度和稳定性可能受一定影响。
+        # 图片大小的限制为4M，图片像素的限制为4k。
+        # @type ImageUrl: String
+        # @param ImageBase64: 图片经过base64编码的内容。与ImageUrl同时存在时优先使用ImageUrl字段。
+        # 图片大小的限制为4M，图片像素的限制为4k。
+        # **注意：图片需要base64编码，并且要去掉编码头部。
+        # @type ImageBase64: String
+
+        attr_accessor :ImageUrl, :ImageBase64
+        
+        def initialize(imageurl=nil, imagebase64=nil)
+          @ImageUrl = imageurl
+          @ImageBase64 = imagebase64
+        end
+
+        def deserialize(params)
+          @ImageUrl = params['ImageUrl']
+          @ImageBase64 = params['ImageBase64']
+        end
+      end
+
+      # DetectEnvelope返回参数结构体
+      class DetectEnvelopeResponse < TencentCloud::Common::AbstractModel
+        # @param FirstTags: 一级标签结果数组。识别是否文件封。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FirstTags: Array
+        # @param SecondTags: 二级标签结果数组。识别文件封正反面。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SecondTags: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :FirstTags, :SecondTags, :RequestId
+        
+        def initialize(firsttags=nil, secondtags=nil, requestid=nil)
+          @FirstTags = firsttags
+          @SecondTags = secondtags
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['FirstTags'].nil?
+            @FirstTags = []
+            params['FirstTags'].each do |i|
+              imagetag_tmp = ImageTag.new
+              imagetag_tmp.deserialize(i)
+              @FirstTags << imagetag_tmp
+            end
+          end
+          unless params['SecondTags'].nil?
+            @SecondTags = []
+            params['SecondTags'].each do |i|
+              imagetag_tmp = ImageTag.new
+              imagetag_tmp.deserialize(i)
+              @SecondTags << imagetag_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DetectLabelBeta请求参数结构体
       class DetectLabelBetaRequest < TencentCloud::Common::AbstractModel
         # @param ImageUrl: 图片URL地址。
@@ -1505,6 +1569,26 @@ module TencentCloud
           @Y = params['Y']
           @Width = params['Width']
           @Height = params['Height']
+        end
+      end
+
+      # 图片标签。
+      class ImageTag < TencentCloud::Common::AbstractModel
+        # @param Name: 标签内容。
+        # @type Name: String
+        # @param Confidence: 置信度范围在0-100之间。值越高，表示目标为相应结果的可能性越高。
+        # @type Confidence: Float
+
+        attr_accessor :Name, :Confidence
+        
+        def initialize(name=nil, confidence=nil)
+          @Name = name
+          @Confidence = confidence
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Confidence = params['Confidence']
         end
       end
 

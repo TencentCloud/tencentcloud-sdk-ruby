@@ -387,6 +387,54 @@ module TencentCloud
         end
       end
 
+      # DescribeBasicDiagnosisResourceUsageInfo请求参数结构体
+      class DescribeBasicDiagnosisResourceUsageInfoRequest < TencentCloud::Common::AbstractModel
+        # @param Mode: 诊断模式 1:基础诊断，2:深度诊断
+        # @type Mode: Integer
+
+        attr_accessor :Mode
+        
+        def initialize(mode=nil)
+          @Mode = mode
+        end
+
+        def deserialize(params)
+          @Mode = params['Mode']
+        end
+      end
+
+      # DescribeBasicDiagnosisResourceUsageInfo返回参数结构体
+      class DescribeBasicDiagnosisResourceUsageInfoResponse < TencentCloud::Common::AbstractModel
+        # @param Ret: 返回值, 0:成功, 其他值请查看“返回值”定义
+        # @type Ret: Integer
+        # @param ResourceName: 资源类型
+        # @type ResourceName: String
+        # @param Total: 资源总数
+        # @type Total: Integer
+        # @param UnusedCount: 资源未使用次数
+        # @type UnusedCount: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Ret, :ResourceName, :Total, :UnusedCount, :RequestId
+        
+        def initialize(ret=nil, resourcename=nil, total=nil, unusedcount=nil, requestid=nil)
+          @Ret = ret
+          @ResourceName = resourcename
+          @Total = total
+          @UnusedCount = unusedcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Ret = params['Ret']
+          @ResourceName = params['ResourceName']
+          @Total = params['Total']
+          @UnusedCount = params['UnusedCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeFlySecMiniAppReportUrl请求参数结构体
       class DescribeFlySecMiniAppReportUrlRequest < TencentCloud::Common::AbstractModel
         # @param TaskID: 任务id
@@ -615,6 +663,52 @@ module TencentCloud
           @Errno = params['Errno']
           @MiniAppName = params['MiniAppName']
           @MiniAppVersion = params['MiniAppVersion']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeResourceUsageInfo请求参数结构体
+      class DescribeResourceUsageInfoRequest < TencentCloud::Common::AbstractModel
+
+        
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeResourceUsageInfo返回参数结构体
+      class DescribeResourceUsageInfoResponse < TencentCloud::Common::AbstractModel
+        # @param Ret: 返回值, 0:成功, 其他值请查看“返回值”定义
+        # @type Ret: Integer
+        # @param Data: 安全资源数据列表
+        # @type Data: Array
+        # @param Total: 安全资源数量
+        # @type Total: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Ret, :Data, :Total, :RequestId
+        
+        def initialize(ret=nil, data=nil, total=nil, requestid=nil)
+          @Ret = ret
+          @Data = data
+          @Total = total
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Ret = params['Ret']
+          unless params['Data'].nil?
+            @Data = []
+            params['Data'].each do |i|
+              resourceusageinfodata_tmp = ResourceUsageInfoData.new
+              resourceusageinfodata_tmp.deserialize(i)
+              @Data << resourceusageinfodata_tmp
+            end
+          end
+          @Total = params['Total']
           @RequestId = params['RequestId']
         end
       end
@@ -875,6 +969,30 @@ module TencentCloud
           @CreateTime = params['CreateTime']
           @Status = params['Status']
           @Error = params['Error']
+        end
+      end
+
+      # 翼扬安全资源使用情况
+      class ResourceUsageInfoData < TencentCloud::Common::AbstractModel
+        # @param ResourceName: 资源名称, 具体名称请查看产品配置
+        # @type ResourceName: String
+        # @param Total: 资源总数
+        # @type Total: Integer
+        # @param UnusedCount: 资源未使用次数
+        # @type UnusedCount: Integer
+
+        attr_accessor :ResourceName, :Total, :UnusedCount
+        
+        def initialize(resourcename=nil, total=nil, unusedcount=nil)
+          @ResourceName = resourcename
+          @Total = total
+          @UnusedCount = unusedcount
+        end
+
+        def deserialize(params)
+          @ResourceName = params['ResourceName']
+          @Total = params['Total']
+          @UnusedCount = params['UnusedCount']
         end
       end
 

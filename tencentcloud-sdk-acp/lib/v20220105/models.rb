@@ -375,6 +375,49 @@ module TencentCloud
         end
       end
 
+      # DescribeResourceUsageInfo请求参数结构体
+      class DescribeResourceUsageInfoRequest < TencentCloud::Common::AbstractModel
+        # @param PriceName: 资源计费项名称
+        # @type PriceName: String
+
+        attr_accessor :PriceName
+        
+        def initialize(pricename=nil)
+          @PriceName = pricename
+        end
+
+        def deserialize(params)
+          @PriceName = params['PriceName']
+        end
+      end
+
+      # DescribeResourceUsageInfo返回参数结构体
+      class DescribeResourceUsageInfoResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 返回值, 0:成功, 其他值请查看“返回值”定义，暂时未定
+        # @type Result: Integer
+        # @param Data: 资源使用信息
+        # @type Data: :class:`Tencentcloud::Acp.v20220105.models.ResourceUsageInfoData`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :Data, :RequestId
+        
+        def initialize(result=nil, data=nil, requestid=nil)
+          @Result = result
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Result = params['Result']
+          unless params['Data'].nil?
+            @Data = ResourceUsageInfoData.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeScanTaskList请求参数结构体
       class DescribeScanTaskListRequest < TencentCloud::Common::AbstractModel
         # @param Source: 任务来源, -1:所有, 0:默认值(私域), 1:灵犀, 2:灵鲲;
@@ -587,6 +630,30 @@ module TencentCloud
             end
           end
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 资源使用情况信息
+      class ResourceUsageInfoData < TencentCloud::Common::AbstractModel
+        # @param ResourceName: 资源计费项名称
+        # @type ResourceName: String
+        # @param Total: 资源总数
+        # @type Total: Integer
+        # @param UnusedCount: 未使用资源数
+        # @type UnusedCount: Integer
+
+        attr_accessor :ResourceName, :Total, :UnusedCount
+        
+        def initialize(resourcename=nil, total=nil, unusedcount=nil)
+          @ResourceName = resourcename
+          @Total = total
+          @UnusedCount = unusedcount
+        end
+
+        def deserialize(params)
+          @ResourceName = params['ResourceName']
+          @Total = params['Total']
+          @UnusedCount = params['UnusedCount']
         end
       end
 

@@ -617,9 +617,9 @@ module TencentCloud
         # @type DBNodeSet: Array
         # @param NeedSupportTDE: 是否需要支持数据透明加密，1：是，0：否（默认）。
         # @type NeedSupportTDE: Integer
-        # @param KMSKeyId: 自定义密钥的keyId，若选择自定义密匙加密，则需要传入自定义密匙的keyId，keyId是CMK的唯一标识。
+        # @param KMSKeyId: 自定义密钥的KeyId，若选择自定义密匙加密，则需要传入自定义密匙的KeyId，KeyId是CMK的唯一标识。
         # @type KMSKeyId: String
-        # @param KMSRegion: 使用KMS服务的地域，KMSRegion为空默认使用本地域的kms，本地域不支持的情况下需自选其他KMS支持的地域。
+        # @param KMSRegion: 使用KMS服务的地域，KMSRegion为空默认使用本地域的KMS，本地域不支持的情况下需自选其他KMS支持的地域。
         # @type KMSRegion: String
 
         attr_accessor :SpecCode, :Storage, :InstanceCount, :Period, :Zone, :Charset, :AdminName, :AdminPassword, :ProjectId, :DBVersion, :InstanceChargeType, :AutoVoucher, :VoucherIds, :VpcId, :SubnetId, :AutoRenewFlag, :ActivityId, :Name, :NeedSupportIpv6, :TagList, :SecurityGroupIds, :DBMajorVersion, :DBKernelVersion, :DBNodeSet, :NeedSupportTDE, :KMSKeyId, :KMSRegion
@@ -1553,9 +1553,9 @@ module TencentCloud
       class DescribeAccountsRequest < TencentCloud::Common::AbstractModel
         # @param DBInstanceId: 实例ID，形如postgres-6fego161
         # @type DBInstanceId: String
-        # @param Limit: 分页返回，每页最大返回数目，默认20，取值范围为1-100
+        # @param Limit: 分页返回，每页最大返回数目，默认10，取值范围为1-100
         # @type Limit: Integer
-        # @param Offset: 分页返回，返回第几页的用户数据。页码从0开始计数
+        # @param Offset: 数据偏移量，从0开始。
         # @type Offset: Integer
         # @param OrderBy: 返回数据按照创建时间或者用户名排序。取值只能为createTime或者name。createTime-按照创建时间排序；name-按照用户名排序
         # @type OrderBy: String
@@ -1982,20 +1982,20 @@ module TencentCloud
         # @type Filters: Array
         # @param Limit: 每页显示数量，取值范围为1-100，默认为返回10条。
         # @type Limit: Integer
+        # @param Offset: 数据偏移量，从0开始。
+        # @type Offset: Integer
         # @param OrderBy: 排序指标，如实例名、创建时间等，支持DBInstanceId,CreateTime,Name,EndTime
         # @type OrderBy: String
-        # @param Offset: 页码偏移量，从0开始。
-        # @type Offset: Integer
         # @param OrderByType: 排序方式，包括升序：asc、降序：desc。
         # @type OrderByType: String
 
-        attr_accessor :Filters, :Limit, :OrderBy, :Offset, :OrderByType
+        attr_accessor :Filters, :Limit, :Offset, :OrderBy, :OrderByType
         
-        def initialize(filters=nil, limit=nil, orderby=nil, offset=nil, orderbytype=nil)
+        def initialize(filters=nil, limit=nil, offset=nil, orderby=nil, orderbytype=nil)
           @Filters = filters
           @Limit = limit
-          @OrderBy = orderby
           @Offset = offset
+          @OrderBy = orderby
           @OrderByType = orderbytype
         end
 
@@ -2009,8 +2009,8 @@ module TencentCloud
             end
           end
           @Limit = params['Limit']
-          @OrderBy = params['OrderBy']
           @Offset = params['Offset']
+          @OrderBy = params['OrderBy']
           @OrderByType = params['OrderByType']
         end
       end
@@ -2843,7 +2843,7 @@ module TencentCloud
 
       # DisIsolateDBInstances请求参数结构体
       class DisIsolateDBInstancesRequest < TencentCloud::Common::AbstractModel
-        # @param DBInstanceIdSet: 资源ID列表
+        # @param DBInstanceIdSet: 资源ID列表。注意：当前已不支持同时解隔离多个实例，这里只能传入单个实例ID。
         # @type DBInstanceIdSet: Array
         # @param Period: 包年包月实例解隔离时购买时常 以月为单位
         # @type Period: Integer
@@ -3177,20 +3177,24 @@ module TencentCloud
         # @type OriginalPrice: Integer
         # @param Price: 折后价格，单位：分
         # @type Price: Integer
+        # @param Currency: 币种。例如，CNY：人民币。
+        # @type Currency: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :OriginalPrice, :Price, :RequestId
+        attr_accessor :OriginalPrice, :Price, :Currency, :RequestId
         
-        def initialize(originalprice=nil, price=nil, requestid=nil)
+        def initialize(originalprice=nil, price=nil, currency=nil, requestid=nil)
           @OriginalPrice = originalprice
           @Price = price
+          @Currency = currency
           @RequestId = requestid
         end
 
         def deserialize(params)
           @OriginalPrice = params['OriginalPrice']
           @Price = params['Price']
+          @Currency = params['Currency']
           @RequestId = params['RequestId']
         end
       end
@@ -3221,20 +3225,24 @@ module TencentCloud
         # @type OriginalPrice: Integer
         # @param Price: 实际需要付款金额。比如24650表示246.5元
         # @type Price: Integer
+        # @param Currency: 币种。例如，CNY：人民币。
+        # @type Currency: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :OriginalPrice, :Price, :RequestId
+        attr_accessor :OriginalPrice, :Price, :Currency, :RequestId
         
-        def initialize(originalprice=nil, price=nil, requestid=nil)
+        def initialize(originalprice=nil, price=nil, currency=nil, requestid=nil)
           @OriginalPrice = originalprice
           @Price = price
+          @Currency = currency
           @RequestId = requestid
         end
 
         def deserialize(params)
           @OriginalPrice = params['OriginalPrice']
           @Price = params['Price']
+          @Currency = params['Currency']
           @RequestId = params['RequestId']
         end
       end
@@ -3273,27 +3281,31 @@ module TencentCloud
         # @type OriginalPrice: Integer
         # @param Price: 实际需要付款金额
         # @type Price: Integer
+        # @param Currency: 币种。例如，CNY：人民币。
+        # @type Currency: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :OriginalPrice, :Price, :RequestId
+        attr_accessor :OriginalPrice, :Price, :Currency, :RequestId
         
-        def initialize(originalprice=nil, price=nil, requestid=nil)
+        def initialize(originalprice=nil, price=nil, currency=nil, requestid=nil)
           @OriginalPrice = originalprice
           @Price = price
+          @Currency = currency
           @RequestId = requestid
         end
 
         def deserialize(params)
           @OriginalPrice = params['OriginalPrice']
           @Price = params['Price']
+          @Currency = params['Currency']
           @RequestId = params['RequestId']
         end
       end
 
       # IsolateDBInstances请求参数结构体
       class IsolateDBInstancesRequest < TencentCloud::Common::AbstractModel
-        # @param DBInstanceIdSet: 实例ID集合
+        # @param DBInstanceIdSet: 实例ID集合。注意：当前已不支持同时隔离多个实例，这里只能传入单个实例ID。
         # @type DBInstanceIdSet: Array
 
         attr_accessor :DBInstanceIdSet
@@ -3663,9 +3675,9 @@ module TencentCloud
 
       # ModifyDBInstancesProject请求参数结构体
       class ModifyDBInstancesProjectRequest < TencentCloud::Common::AbstractModel
-        # @param DBInstanceIdSet: postgresql实例ID数组
+        # @param DBInstanceIdSet: 实例ID集合。注意：当前已不支持同时操作多个实例，这里只能传入单个实例ID。
         # @type DBInstanceIdSet: Array
-        # @param ProjectId: postgresql实例所属新项目的ID
+        # @param ProjectId: 所属新项目的ID
         # @type ProjectId: String
 
         attr_accessor :DBInstanceIdSet, :ProjectId
@@ -4714,7 +4726,7 @@ module TencentCloud
 
       # SetAutoRenewFlag请求参数结构体
       class SetAutoRenewFlagRequest < TencentCloud::Common::AbstractModel
-        # @param DBInstanceIdSet: 实例ID数组
+        # @param DBInstanceIdSet: 实例ID集合。注意：当前已不支持同时操作多个实例，这里只能传入单个实例ID。
         # @type DBInstanceIdSet: Array
         # @param AutoRenewFlag: 续费标记。0-正常续费；1-自动续费；2-到期不续费
         # @type AutoRenewFlag: Integer

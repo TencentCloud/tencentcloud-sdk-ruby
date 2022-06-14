@@ -1561,7 +1561,7 @@ module TencentCloud
         # @type RoGroup: :class:`Tencentcloud::Cdb.v20170320.models.RoGroup`
         # @param AutoRenewFlag: 购买按量计费实例该字段无意义。
         # @type AutoRenewFlag: Integer
-        # @param InstanceName: 实例名称。
+        # @param InstanceName: 实例名称。一次购买多个实例命名会用后缀数字区分，例instnaceName=db，goodsNum=3，实例命名分别为db1，db2，db3。
         # @type InstanceName: String
         # @param ResourceTags: 实例标签信息。
         # @type ResourceTags: Array
@@ -1764,7 +1764,7 @@ module TencentCloud
         # @type SecurityGroup: Array
         # @param RoGroup: 只读实例参数。购买只读实例时，该参数必传。
         # @type RoGroup: :class:`Tencentcloud::Cdb.v20170320.models.RoGroup`
-        # @param InstanceName: 实例名称。
+        # @param InstanceName: 实例名称。一次购买多个实例命名会用后缀数字区分，例instnaceName=db，goodsNum=3，实例命名分别为db1，db2，db3。
         # @type InstanceName: String
         # @param ResourceTags: 实例标签信息。
         # @type ResourceTags: Array

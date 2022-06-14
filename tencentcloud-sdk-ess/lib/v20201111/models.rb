@@ -631,7 +631,7 @@ module TencentCloud
 
       # CreateMultiFlowSignQRCode请求参数结构体
       class CreateMultiFlowSignQRCodeRequest < TencentCloud::Common::AbstractModel
-        # @param TemplateId: 模版ID
+        # @param TemplateId: 模板ID
         # @type TemplateId: String
         # @param Operator: 用户信息
         # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
