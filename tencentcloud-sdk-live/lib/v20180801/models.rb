@@ -9469,7 +9469,7 @@ module TencentCloud
       class TimeShiftBillData < TencentCloud::Common::AbstractModel
         # @param Domain: 推流域名。
         # @type Domain: String
-        # @param Duration: 时移时长,单位分钟。
+        # @param Duration: 时移文件时长,单位分钟。
         # @type Duration: Float
         # @param StoragePeriod: 时移配置天数，单位天。
         # @type StoragePeriod: Float

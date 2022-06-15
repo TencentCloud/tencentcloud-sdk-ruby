@@ -31,16 +31,22 @@ module TencentCloud
         # @type Area: String
         # @param Addr: 运行时应用listener地址后缀
         # @type Addr: String
+        # @param Status: 运行时状态
+        # @type Status: Integer
+        # @param ExpiredAt: 运行时过期时间
+        # @type ExpiredAt: Integer
 
-        attr_accessor :RuntimeId, :DisplayName, :Type, :Zone, :Area, :Addr
+        attr_accessor :RuntimeId, :DisplayName, :Type, :Zone, :Area, :Addr, :Status, :ExpiredAt
         
-        def initialize(runtimeid=nil, displayname=nil, type=nil, zone=nil, area=nil, addr=nil)
+        def initialize(runtimeid=nil, displayname=nil, type=nil, zone=nil, area=nil, addr=nil, status=nil, expiredat=nil)
           @RuntimeId = runtimeid
           @DisplayName = displayname
           @Type = type
           @Zone = zone
           @Area = area
           @Addr = addr
+          @Status = status
+          @ExpiredAt = expiredat
         end
 
         def deserialize(params)
@@ -50,6 +56,8 @@ module TencentCloud
           @Zone = params['Zone']
           @Area = params['Area']
           @Addr = params['Addr']
+          @Status = params['Status']
+          @ExpiredAt = params['ExpiredAt']
         end
       end
 
@@ -215,16 +223,19 @@ module TencentCloud
         # @type Sort: String
         # @param Zone: 运行时地域
         # @type Zone: String
+        # @param ApiVersion: 1:3.0版本新控制台传1；否则传0
+        # @type ApiVersion: Integer
 
-        attr_accessor :RuntimeId, :Limit, :Offset, :SortType, :Sort, :Zone
+        attr_accessor :RuntimeId, :Limit, :Offset, :SortType, :Sort, :Zone, :ApiVersion
         
-        def initialize(runtimeid=nil, limit=nil, offset=nil, sorttype=nil, sort=nil, zone=nil)
+        def initialize(runtimeid=nil, limit=nil, offset=nil, sorttype=nil, sort=nil, zone=nil, apiversion=nil)
           @RuntimeId = runtimeid
           @Limit = limit
           @Offset = offset
           @SortType = sorttype
           @Sort = sort
           @Zone = zone
+          @ApiVersion = apiversion
         end
 
         def deserialize(params)
@@ -234,6 +245,7 @@ module TencentCloud
           @SortType = params['SortType']
           @Sort = params['Sort']
           @Zone = params['Zone']
+          @ApiVersion = params['ApiVersion']
         end
       end
 
@@ -416,10 +428,22 @@ module TencentCloud
         # @type MemoryUsed: Float
         # @param MemoryLimit: 内存上限 MB
         # @type MemoryLimit: Float
+        # @param ExpiredAt: 运行时过期时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExpiredAt: Integer
+        # @param ChargeType: 收费类型：0:缺省，1:通过订单页自助下单(支持续费/升配等操作)
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ChargeType: Integer
+        # @param ResourceLimitType: 资源限制类型：0:无限制，1:有限制
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResourceLimitType: Integer
+        # @param AutoRenewal: 是否开启自动续费
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AutoRenewal: Boolean
 
-        attr_accessor :RuntimeId, :Uin, :DisplayName, :Zone, :Type, :Status, :CreatedAt, :UpdatedAt, :WorkerSize, :WorkerReplica, :RunningInstanceCount, :CpuUsed, :CpuLimit, :MemoryUsed, :MemoryLimit
+        attr_accessor :RuntimeId, :Uin, :DisplayName, :Zone, :Type, :Status, :CreatedAt, :UpdatedAt, :WorkerSize, :WorkerReplica, :RunningInstanceCount, :CpuUsed, :CpuLimit, :MemoryUsed, :MemoryLimit, :ExpiredAt, :ChargeType, :ResourceLimitType, :AutoRenewal
         
-        def initialize(runtimeid=nil, uin=nil, displayname=nil, zone=nil, type=nil, status=nil, createdat=nil, updatedat=nil, workersize=nil, workerreplica=nil, runninginstancecount=nil, cpuused=nil, cpulimit=nil, memoryused=nil, memorylimit=nil)
+        def initialize(runtimeid=nil, uin=nil, displayname=nil, zone=nil, type=nil, status=nil, createdat=nil, updatedat=nil, workersize=nil, workerreplica=nil, runninginstancecount=nil, cpuused=nil, cpulimit=nil, memoryused=nil, memorylimit=nil, expiredat=nil, chargetype=nil, resourcelimittype=nil, autorenewal=nil)
           @RuntimeId = runtimeid
           @Uin = uin
           @DisplayName = displayname
@@ -435,6 +459,10 @@ module TencentCloud
           @CpuLimit = cpulimit
           @MemoryUsed = memoryused
           @MemoryLimit = memorylimit
+          @ExpiredAt = expiredat
+          @ChargeType = chargetype
+          @ResourceLimitType = resourcelimittype
+          @AutoRenewal = autorenewal
         end
 
         def deserialize(params)
@@ -453,6 +481,10 @@ module TencentCloud
           @CpuLimit = params['CpuLimit']
           @MemoryUsed = params['MemoryUsed']
           @MemoryLimit = params['MemoryLimit']
+          @ExpiredAt = params['ExpiredAt']
+          @ChargeType = params['ChargeType']
+          @ResourceLimitType = params['ResourceLimitType']
+          @AutoRenewal = params['AutoRenewal']
         end
       end
 

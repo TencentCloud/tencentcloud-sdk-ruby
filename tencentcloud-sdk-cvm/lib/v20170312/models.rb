@@ -2021,7 +2021,11 @@ module TencentCloud
         # @type KeyIds: Array
         # @param Filters: 过滤条件。
         # <li> project-id - Integer - 是否必填：否 -（过滤条件）按照项目ID过滤。可以通过[项目列表](https://console.cloud.tencent.com/project)查询项目ID，或者调用接口 [DescribeProject](https://cloud.tencent.com/document/api/378/4400)，取返回信息中的projectId获取项目ID。</li>
-        # <li> key-name - String - 是否必填：否 -（过滤条件）按照密钥对名称过滤。</li>参数不支持同时指定 `KeyIds` 和 `Filters`。
+        # <li> key-name - String - 是否必填：否 -（过滤条件）按照密钥对名称过滤。</li>
+        # <li> tag-key - String - 是否必填：否 -（过滤条件）按照标签键过滤。</li>
+        # <li> tag-value - String - 是否必填：否 -（过滤条件）按照标签值过滤。</li>
+        # <li> tag:tag-key - String - 是否必填：否 -（过滤条件）按照标签键值对过滤。tag-key使用具体的标签键进行替换。</li>
+        # 参数不支持同时指定 `KeyIds` 和 `Filters`。
         # @type Filters: Array
         # @param Offset: 偏移量，默认为0。关于 `Offset` 的更进一步介绍请参考 API [简介](https://cloud.tencent.com/document/api/213/15688)中的相关小节。返回数量，默认为20，最大值为100。关于 `Limit` 的更进一步介绍请参考 API [简介](https://cloud.tencent.com/document/api/213/15688)中的相关小节。
         # @type Offset: Integer
@@ -4587,10 +4591,13 @@ module TencentCloud
         # @type AssociatedInstanceIds: Array
         # @param CreatedTime: 创建时间。按照`ISO8601`标准表示，并且使用`UTC`时间。格式为：`YYYY-MM-DDThh:mm:ssZ`。
         # @type CreatedTime: String
+        # @param Tags: 密钥关联的标签列表。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Tags: Array
 
-        attr_accessor :KeyId, :KeyName, :ProjectId, :Description, :PublicKey, :PrivateKey, :AssociatedInstanceIds, :CreatedTime
+        attr_accessor :KeyId, :KeyName, :ProjectId, :Description, :PublicKey, :PrivateKey, :AssociatedInstanceIds, :CreatedTime, :Tags
         
-        def initialize(keyid=nil, keyname=nil, projectid=nil, description=nil, publickey=nil, privatekey=nil, associatedinstanceids=nil, createdtime=nil)
+        def initialize(keyid=nil, keyname=nil, projectid=nil, description=nil, publickey=nil, privatekey=nil, associatedinstanceids=nil, createdtime=nil, tags=nil)
           @KeyId = keyid
           @KeyName = keyname
           @ProjectId = projectid
@@ -4599,6 +4606,7 @@ module TencentCloud
           @PrivateKey = privatekey
           @AssociatedInstanceIds = associatedinstanceids
           @CreatedTime = createdtime
+          @Tags = tags
         end
 
         def deserialize(params)
@@ -4610,6 +4618,14 @@ module TencentCloud
           @PrivateKey = params['PrivateKey']
           @AssociatedInstanceIds = params['AssociatedInstanceIds']
           @CreatedTime = params['CreatedTime']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
+            end
+          end
         end
       end
 

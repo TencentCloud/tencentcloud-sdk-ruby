@@ -243,10 +243,13 @@ module TencentCloud
         # @param BGPIPChannelFlag: 是否渠道版高防IP，是为1，否为0
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BGPIPChannelFlag: Integer
+        # @param TagInfoList: 资源关联标签
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TagInfoList: Array
 
-        attr_accessor :InstanceDetail, :SpecificationLimit, :Usage, :Region, :Status, :ExpiredTime, :CreatedTime, :Name, :PackInfo, :StaticPackRelation, :ZoneId, :Tgw, :EipAddressStatus, :EipFlag, :EipAddressPackRelation, :EipAddressInfo, :Domain, :DamDDoSStatus, :V6Flag, :BGPIPChannelFlag
+        attr_accessor :InstanceDetail, :SpecificationLimit, :Usage, :Region, :Status, :ExpiredTime, :CreatedTime, :Name, :PackInfo, :StaticPackRelation, :ZoneId, :Tgw, :EipAddressStatus, :EipFlag, :EipAddressPackRelation, :EipAddressInfo, :Domain, :DamDDoSStatus, :V6Flag, :BGPIPChannelFlag, :TagInfoList
         
-        def initialize(instancedetail=nil, specificationlimit=nil, usage=nil, region=nil, status=nil, expiredtime=nil, createdtime=nil, name=nil, packinfo=nil, staticpackrelation=nil, zoneid=nil, tgw=nil, eipaddressstatus=nil, eipflag=nil, eipaddresspackrelation=nil, eipaddressinfo=nil, domain=nil, damddosstatus=nil, v6flag=nil, bgpipchannelflag=nil)
+        def initialize(instancedetail=nil, specificationlimit=nil, usage=nil, region=nil, status=nil, expiredtime=nil, createdtime=nil, name=nil, packinfo=nil, staticpackrelation=nil, zoneid=nil, tgw=nil, eipaddressstatus=nil, eipflag=nil, eipaddresspackrelation=nil, eipaddressinfo=nil, domain=nil, damddosstatus=nil, v6flag=nil, bgpipchannelflag=nil, taginfolist=nil)
           @InstanceDetail = instancedetail
           @SpecificationLimit = specificationlimit
           @Usage = usage
@@ -267,6 +270,7 @@ module TencentCloud
           @DamDDoSStatus = damddosstatus
           @V6Flag = v6flag
           @BGPIPChannelFlag = bgpipchannelflag
+          @TagInfoList = taginfolist
         end
 
         def deserialize(params)
@@ -314,6 +318,14 @@ module TencentCloud
           @DamDDoSStatus = params['DamDDoSStatus']
           @V6Flag = params['V6Flag']
           @BGPIPChannelFlag = params['BGPIPChannelFlag']
+          unless params['TagInfoList'].nil?
+            @TagInfoList = []
+            params['TagInfoList'].each do |i|
+              taginfo_tmp = TagInfo.new
+              taginfo_tmp.deserialize(i)
+              @TagInfoList << taginfo_tmp
+            end
+          end
         end
       end
 
@@ -430,10 +442,12 @@ module TencentCloud
         # @type DDoSLevel: String
         # @param CCEnable: CC防护开关
         # @type CCEnable: Integer
+        # @param TagInfoList: 资源关联标签
+        # @type TagInfoList: Array
 
-        attr_accessor :InstanceDetail, :SpecificationLimit, :Usage, :Region, :Status, :CreatedTime, :ExpiredTime, :Name, :PackInfo, :EipProductInfos, :BoundStatus, :DDoSLevel, :CCEnable
+        attr_accessor :InstanceDetail, :SpecificationLimit, :Usage, :Region, :Status, :CreatedTime, :ExpiredTime, :Name, :PackInfo, :EipProductInfos, :BoundStatus, :DDoSLevel, :CCEnable, :TagInfoList
         
-        def initialize(instancedetail=nil, specificationlimit=nil, usage=nil, region=nil, status=nil, createdtime=nil, expiredtime=nil, name=nil, packinfo=nil, eipproductinfos=nil, boundstatus=nil, ddoslevel=nil, ccenable=nil)
+        def initialize(instancedetail=nil, specificationlimit=nil, usage=nil, region=nil, status=nil, createdtime=nil, expiredtime=nil, name=nil, packinfo=nil, eipproductinfos=nil, boundstatus=nil, ddoslevel=nil, ccenable=nil, taginfolist=nil)
           @InstanceDetail = instancedetail
           @SpecificationLimit = specificationlimit
           @Usage = usage
@@ -447,6 +461,7 @@ module TencentCloud
           @BoundStatus = boundstatus
           @DDoSLevel = ddoslevel
           @CCEnable = ccenable
+          @TagInfoList = taginfolist
         end
 
         def deserialize(params)
@@ -485,6 +500,14 @@ module TencentCloud
           @BoundStatus = params['BoundStatus']
           @DDoSLevel = params['DDoSLevel']
           @CCEnable = params['CCEnable']
+          unless params['TagInfoList'].nil?
+            @TagInfoList = []
+            params['TagInfoList'].each do |i|
+              taginfo_tmp = TagInfo.new
+              taginfo_tmp.deserialize(i)
+              @TagInfoList << taginfo_tmp
+            end
+          end
         end
       end
 
@@ -583,14 +606,17 @@ module TencentCloud
         # @type InstanceDetailList: Array
         # @param Mask: ip掩码，0表示32位完整ip
         # @type Mask: Integer
+        # @param ModifyTime: 修改时间
+        # @type ModifyTime: String
 
-        attr_accessor :Ip, :Type, :InstanceDetailList, :Mask
+        attr_accessor :Ip, :Type, :InstanceDetailList, :Mask, :ModifyTime
         
-        def initialize(ip=nil, type=nil, instancedetaillist=nil, mask=nil)
+        def initialize(ip=nil, type=nil, instancedetaillist=nil, mask=nil, modifytime=nil)
           @Ip = ip
           @Type = type
           @InstanceDetailList = instancedetaillist
           @Mask = mask
+          @ModifyTime = modifytime
         end
 
         def deserialize(params)
@@ -605,6 +631,7 @@ module TencentCloud
             end
           end
           @Mask = params['Mask']
+          @ModifyTime = params['ModifyTime']
         end
       end
 
@@ -1318,15 +1345,18 @@ module TencentCloud
         # @type Domain: String
         # @param Policy: 策略项
         # @type Policy: :class:`Tencentcloud::Antiddos.v20200309.models.CCReqLimitPolicyRecord`
+        # @param IsGlobal: 是否为兜底频控
+        # @type IsGlobal: Integer
 
-        attr_accessor :InstanceId, :Ip, :Protocol, :Domain, :Policy
+        attr_accessor :InstanceId, :Ip, :Protocol, :Domain, :Policy, :IsGlobal
         
-        def initialize(instanceid=nil, ip=nil, protocol=nil, domain=nil, policy=nil)
+        def initialize(instanceid=nil, ip=nil, protocol=nil, domain=nil, policy=nil, isglobal=nil)
           @InstanceId = instanceid
           @Ip = ip
           @Protocol = protocol
           @Domain = domain
           @Policy = policy
+          @IsGlobal = isglobal
         end
 
         def deserialize(params)
@@ -1338,6 +1368,7 @@ module TencentCloud
             @Policy = CCReqLimitPolicyRecord.new
             @Policy.deserialize(params['Policy'])
           end
+          @IsGlobal = params['IsGlobal']
         end
       end
 
@@ -3017,7 +3048,7 @@ module TencentCloud
       class DescribeCCLevelListResponse < TencentCloud::Common::AbstractModel
         # @param Total: 分级策略列表总数
         # @type Total: Integer
-        # @param LevelList: 分级策略列表详情
+        # @param LevelList: 分级策略列表总数
         # @type LevelList: Array
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -3880,10 +3911,12 @@ module TencentCloud
         # @type FilterCname: String
         # @param FilterInstanceIdList: 批量查询实例ID对应的高防IP实例资源
         # @type FilterInstanceIdList: Array
+        # @param FilterTag: 标签搜索
+        # @type FilterTag: :class:`Tencentcloud::Antiddos.v20200309.models.TagFilter`
 
-        attr_accessor :Offset, :Limit, :FilterIp, :FilterInstanceId, :FilterLine, :FilterRegion, :FilterName, :FilterEipType, :FilterEipEipAddressStatus, :FilterDamDDoSStatus, :FilterStatus, :FilterCname, :FilterInstanceIdList
+        attr_accessor :Offset, :Limit, :FilterIp, :FilterInstanceId, :FilterLine, :FilterRegion, :FilterName, :FilterEipType, :FilterEipEipAddressStatus, :FilterDamDDoSStatus, :FilterStatus, :FilterCname, :FilterInstanceIdList, :FilterTag
         
-        def initialize(offset=nil, limit=nil, filterip=nil, filterinstanceid=nil, filterline=nil, filterregion=nil, filtername=nil, filtereiptype=nil, filtereipeipaddressstatus=nil, filterdamddosstatus=nil, filterstatus=nil, filtercname=nil, filterinstanceidlist=nil)
+        def initialize(offset=nil, limit=nil, filterip=nil, filterinstanceid=nil, filterline=nil, filterregion=nil, filtername=nil, filtereiptype=nil, filtereipeipaddressstatus=nil, filterdamddosstatus=nil, filterstatus=nil, filtercname=nil, filterinstanceidlist=nil, filtertag=nil)
           @Offset = offset
           @Limit = limit
           @FilterIp = filterip
@@ -3897,6 +3930,7 @@ module TencentCloud
           @FilterStatus = filterstatus
           @FilterCname = filtercname
           @FilterInstanceIdList = filterinstanceidlist
+          @FilterTag = filtertag
         end
 
         def deserialize(params)
@@ -3913,6 +3947,10 @@ module TencentCloud
           @FilterStatus = params['FilterStatus']
           @FilterCname = params['FilterCname']
           @FilterInstanceIdList = params['FilterInstanceIdList']
+          unless params['FilterTag'].nil?
+            @FilterTag = TagFilter.new
+            @FilterTag.deserialize(params['FilterTag'])
+          end
         end
       end
 
@@ -3971,10 +4009,12 @@ module TencentCloud
         # @type FilterInstanceIdList: Array
         # @param FilterEnterpriseFlag: 企业版搜索
         # @type FilterEnterpriseFlag: Integer
+        # @param FilterTag: 标签搜索
+        # @type FilterTag: :class:`Tencentcloud::Antiddos.v20200309.models.TagFilter`
 
-        attr_accessor :Offset, :Limit, :FilterIp, :FilterInstanceId, :FilterRegion, :FilterName, :FilterLine, :FilterStatus, :FilterBoundStatus, :FilterInstanceIdList, :FilterEnterpriseFlag
+        attr_accessor :Offset, :Limit, :FilterIp, :FilterInstanceId, :FilterRegion, :FilterName, :FilterLine, :FilterStatus, :FilterBoundStatus, :FilterInstanceIdList, :FilterEnterpriseFlag, :FilterTag
         
-        def initialize(offset=nil, limit=nil, filterip=nil, filterinstanceid=nil, filterregion=nil, filtername=nil, filterline=nil, filterstatus=nil, filterboundstatus=nil, filterinstanceidlist=nil, filterenterpriseflag=nil)
+        def initialize(offset=nil, limit=nil, filterip=nil, filterinstanceid=nil, filterregion=nil, filtername=nil, filterline=nil, filterstatus=nil, filterboundstatus=nil, filterinstanceidlist=nil, filterenterpriseflag=nil, filtertag=nil)
           @Offset = offset
           @Limit = limit
           @FilterIp = filterip
@@ -3986,6 +4026,7 @@ module TencentCloud
           @FilterBoundStatus = filterboundstatus
           @FilterInstanceIdList = filterinstanceidlist
           @FilterEnterpriseFlag = filterenterpriseflag
+          @FilterTag = filtertag
         end
 
         def deserialize(params)
@@ -4000,6 +4041,10 @@ module TencentCloud
           @FilterBoundStatus = params['FilterBoundStatus']
           @FilterInstanceIdList = params['FilterInstanceIdList']
           @FilterEnterpriseFlag = params['FilterEnterpriseFlag']
+          unless params['FilterTag'].nil?
+            @FilterTag = TagFilter.new
+            @FilterTag.deserialize(params['FilterTag'])
+          end
         end
       end
 
@@ -5670,7 +5715,7 @@ module TencentCloud
       class ListenerCcThreholdConfig < TencentCloud::Common::AbstractModel
         # @param Domain: 域名
         # @type Domain: String
-        # @param Protocol: 协议（可取值htttps）
+        # @param Protocol: 协议（可取值https）
         # @type Protocol: String
         # @param CCEnable: 开关状态（0：关闭，1：开启）
         # @type CCEnable: Integer
@@ -6733,12 +6778,15 @@ module TencentCloud
         # @type PacketFilterConfig: :class:`Tencentcloud::Antiddos.v20200309.models.PacketFilterConfig`
         # @param InstanceDetailList: 特征过滤配置所属的实例
         # @type InstanceDetailList: Array
+        # @param ModifyTime: 修改时间
+        # @type ModifyTime: String
 
-        attr_accessor :PacketFilterConfig, :InstanceDetailList
+        attr_accessor :PacketFilterConfig, :InstanceDetailList, :ModifyTime
         
-        def initialize(packetfilterconfig=nil, instancedetaillist=nil)
+        def initialize(packetfilterconfig=nil, instancedetaillist=nil, modifytime=nil)
           @PacketFilterConfig = packetfilterconfig
           @InstanceDetailList = instancedetaillist
+          @ModifyTime = modifytime
         end
 
         def deserialize(params)
@@ -6754,6 +6802,7 @@ module TencentCloud
               @InstanceDetailList << instancerelation_tmp
             end
           end
+          @ModifyTime = params['ModifyTime']
         end
       end
 
@@ -7182,6 +7231,46 @@ module TencentCloud
 
         def deserialize(params)
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 标签类型
+      class TagFilter < TencentCloud::Common::AbstractModel
+        # @param TagKey: 标签键
+        # @type TagKey: String
+        # @param TagValue: 标签键值列表
+        # @type TagValue: Array
+
+        attr_accessor :TagKey, :TagValue
+        
+        def initialize(tagkey=nil, tagvalue=nil)
+          @TagKey = tagkey
+          @TagValue = tagvalue
+        end
+
+        def deserialize(params)
+          @TagKey = params['TagKey']
+          @TagValue = params['TagValue']
+        end
+      end
+
+      # 标签信息，用于资源列表返回关联的标签
+      class TagInfo < TencentCloud::Common::AbstractModel
+        # @param TagKey: 标签键
+        # @type TagKey: String
+        # @param TagValue: 标签值
+        # @type TagValue: String
+
+        attr_accessor :TagKey, :TagValue
+        
+        def initialize(tagkey=nil, tagvalue=nil)
+          @TagKey = tagkey
+          @TagValue = tagvalue
+        end
+
+        def deserialize(params)
+          @TagKey = params['TagKey']
+          @TagValue = params['TagValue']
         end
       end
 

@@ -989,7 +989,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 获取CC防护等级列表
+        # 获取边界防护CC防护等级列表
 
         # @param request: Request instance for DescribeCCLevelList.
         # @type request: :class:`Tencentcloud::antiddos::V20200309::DescribeCCLevelListRequest`

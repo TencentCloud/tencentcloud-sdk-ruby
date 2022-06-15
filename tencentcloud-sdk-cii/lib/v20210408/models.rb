@@ -922,6 +922,29 @@ module TencentCloud
         end
       end
 
+      # 位置信息
+      class Location < TencentCloud::Common::AbstractModel
+        # @param Points: 位置信息
+        # @type Points: Array
+
+        attr_accessor :Points
+        
+        def initialize(points=nil)
+          @Points = points
+        end
+
+        def deserialize(params)
+          unless params['Points'].nil?
+            @Points = []
+            params['Points'].each do |i|
+              point_tmp = Point.new
+              point_tmp.deserialize(i)
+              @Points << point_tmp
+            end
+          end
+        end
+      end
+
       # 机器核保预测结果
       class MachinePredict < TencentCloud::Common::AbstractModel
         # @param Title: 核保引擎名称
@@ -1006,6 +1029,37 @@ module TencentCloud
         end
       end
 
+      # Ocr识别结果
+      class OcrRecognise < TencentCloud::Common::AbstractModel
+        # @param OriginalField: 原文字段
+        # @type OriginalField: String
+        # @param Value: 识别结果
+        # @type Value: String
+        # @param Confidence: 置信度
+        # @type Confidence: Float
+        # @param Location: 位置信息
+        # @type Location: :class:`Tencentcloud::Cii.v20210408.models.Location`
+
+        attr_accessor :OriginalField, :Value, :Confidence, :Location
+        
+        def initialize(originalfield=nil, value=nil, confidence=nil, location=nil)
+          @OriginalField = originalfield
+          @Value = value
+          @Confidence = confidence
+          @Location = location
+        end
+
+        def deserialize(params)
+          @OriginalField = params['OriginalField']
+          @Value = params['Value']
+          @Confidence = params['Confidence']
+          unless params['Location'].nil?
+            @Location = Location.new
+            @Location.deserialize(params['Location'])
+          end
+        end
+      end
+
       # 复核差异接口的每一份报告的差异结果
       class PerStructDifference < TencentCloud::Common::AbstractModel
         # @param SubTaskId: 子任务ID
@@ -1056,6 +1110,30 @@ module TencentCloud
               @RemoveItems << structureoneitem_tmp
             end
           end
+        end
+      end
+
+      # 点信息
+      class Point < TencentCloud::Common::AbstractModel
+        # @param XCoordinate: x坐标
+        # @type XCoordinate: Integer
+        # @param YCoordinate: y坐标
+        # @type YCoordinate: Integer
+        # @param Page: 页码
+        # @type Page: Integer
+
+        attr_accessor :XCoordinate, :YCoordinate, :Page
+        
+        def initialize(xcoordinate=nil, ycoordinate=nil, page=nil)
+          @XCoordinate = xcoordinate
+          @YCoordinate = ycoordinate
+          @Page = page
+        end
+
+        def deserialize(params)
+          @XCoordinate = params['XCoordinate']
+          @YCoordinate = params['YCoordinate']
+          @Page = params['Page']
         end
       end
 
@@ -1180,15 +1258,19 @@ module TencentCloud
         # @type SubTaskId: String
         # @param TaskFiles: 任务文件列表
         # @type TaskFiles: Array
+        # @param ResultFields: 结构化字段结果数组
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResultFields: Array
 
-        attr_accessor :Code, :TaskType, :StructureResult, :SubTaskId, :TaskFiles
+        attr_accessor :Code, :TaskType, :StructureResult, :SubTaskId, :TaskFiles, :ResultFields
         
-        def initialize(code=nil, tasktype=nil, structureresult=nil, subtaskid=nil, taskfiles=nil)
+        def initialize(code=nil, tasktype=nil, structureresult=nil, subtaskid=nil, taskfiles=nil, resultfields=nil)
           @Code = code
           @TaskType = tasktype
           @StructureResult = structureresult
           @SubTaskId = subtaskid
           @TaskFiles = taskfiles
+          @ResultFields = resultfields
         end
 
         def deserialize(params)
@@ -1197,6 +1279,14 @@ module TencentCloud
           @StructureResult = params['StructureResult']
           @SubTaskId = params['SubTaskId']
           @TaskFiles = params['TaskFiles']
+          unless params['ResultFields'].nil?
+            @ResultFields = []
+            params['ResultFields'].each do |i|
+              ocrrecognise_tmp = OcrRecognise.new
+              ocrrecognise_tmp.deserialize(i)
+              @ResultFields << ocrrecognise_tmp
+            end
+          end
         end
       end
 

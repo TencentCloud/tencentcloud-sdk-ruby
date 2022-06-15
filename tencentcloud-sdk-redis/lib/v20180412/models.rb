@@ -2924,10 +2924,14 @@ module TencentCloud
         # @type EndTime: String
         # @param TaskStatus: 任务状态
         # @type TaskStatus: Array
+        # @param Result: 任务状态
+        # @type Result: Array
+        # @param OperatorUin: 操作者Uin
+        # @type OperatorUin: Array
 
-        attr_accessor :InstanceId, :InstanceName, :Limit, :Offset, :ProjectIds, :TaskTypes, :BeginTime, :EndTime, :TaskStatus
+        attr_accessor :InstanceId, :InstanceName, :Limit, :Offset, :ProjectIds, :TaskTypes, :BeginTime, :EndTime, :TaskStatus, :Result, :OperatorUin
         
-        def initialize(instanceid=nil, instancename=nil, limit=nil, offset=nil, projectids=nil, tasktypes=nil, begintime=nil, endtime=nil, taskstatus=nil)
+        def initialize(instanceid=nil, instancename=nil, limit=nil, offset=nil, projectids=nil, tasktypes=nil, begintime=nil, endtime=nil, taskstatus=nil, result=nil, operatoruin=nil)
           @InstanceId = instanceid
           @InstanceName = instancename
           @Limit = limit
@@ -2937,6 +2941,8 @@ module TencentCloud
           @BeginTime = begintime
           @EndTime = endtime
           @TaskStatus = taskstatus
+          @Result = result
+          @OperatorUin = operatoruin
         end
 
         def deserialize(params)
@@ -2949,6 +2955,8 @@ module TencentCloud
           @BeginTime = params['BeginTime']
           @EndTime = params['EndTime']
           @TaskStatus = params['TaskStatus']
+          @Result = params['Result']
+          @OperatorUin = params['OperatorUin']
         end
       end
 

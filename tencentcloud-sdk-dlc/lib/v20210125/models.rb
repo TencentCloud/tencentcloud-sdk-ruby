@@ -1776,7 +1776,7 @@ module TencentCloud
         # @type EndTime: String
         # @param Sort: 排序字段，支持：ModifiedTime（默认）；CreateTime
         # @type Sort: String
-        # @param Asc: 排序字段，false：降序（默认）；true
+        # @param Asc: 排序字段，false：降序（默认）；true：升序
         # @type Asc: Boolean
         # @param TableType: table type，表类型查询,可用值:EXTERNAL_TABLE,INDEX_TABLE,MANAGED_TABLE,MATERIALIZED_VIEW,TABLE,VIEW,VIRTUAL_VIEW
         # @type TableType: String
@@ -2077,11 +2077,11 @@ module TencentCloud
         # @type DatasourceConnectionName: String
         # @param Sort: 排序字段
         # @type Sort: String
-        # @param Asc: 排序规则
+        # @param Asc: 排序规则，true:升序；false:降序
         # @type Asc: Boolean
-        # @param StartTime: 开始时间
+        # @param StartTime: 按视图更新时间筛选，开始时间，如2021-11-11 00:00:00
         # @type StartTime: String
-        # @param EndTime: 结束时间
+        # @param EndTime: 按视图更新时间筛选，结束时间，如2021-11-12 00:00:00
         # @type EndTime: String
 
         attr_accessor :DatabaseName, :Limit, :Offset, :Filters, :DatasourceConnectionName, :Sort, :Asc, :StartTime, :EndTime
@@ -2345,6 +2345,38 @@ module TencentCloud
         end
       end
 
+      # 日志详情
+      class JobLogResult < TencentCloud::Common::AbstractModel
+        # @param Time: 日志时间戳，毫秒
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Time: Integer
+        # @param TopicId: 日志topic id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TopicId: String
+        # @param TopicName: 日志topic name
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TopicName: String
+        # @param LogJson: 日志内容，json字符串
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LogJson: String
+
+        attr_accessor :Time, :TopicId, :TopicName, :LogJson
+        
+        def initialize(time=nil, topicid=nil, topicname=nil, logjson=nil)
+          @Time = time
+          @TopicId = topicid
+          @TopicName = topicname
+          @LogJson = logjson
+        end
+
+        def deserialize(params)
+          @Time = params['Time']
+          @TopicId = params['TopicId']
+          @TopicName = params['TopicName']
+          @LogJson = params['LogJson']
+        end
+      end
+
       # 配置格式
       class KVPair < TencentCloud::Common::AbstractModel
         # @param Key: 配置的key值
@@ -2364,6 +2396,76 @@ module TencentCloud
         def deserialize(params)
           @Key = params['Key']
           @Value = params['Value']
+        end
+      end
+
+      # ListTaskJobLogDetail请求参数结构体
+      class ListTaskJobLogDetailRequest < TencentCloud::Common::AbstractModel
+        # @param TaskId: 列表返回的Id
+        # @type TaskId: String
+        # @param StartTime: 开始运行时间，unix时间戳（毫秒）
+        # @type StartTime: Integer
+        # @param EndTime: 结束运行时间，unix时间戳（毫秒）
+        # @type EndTime: Integer
+        # @param Limit: 分页大小，最大100，配合Context一起使用
+        # @type Limit: Integer
+        # @param Context: 下一次分页参数，第一次传空
+        # @type Context: String
+
+        attr_accessor :TaskId, :StartTime, :EndTime, :Limit, :Context
+        
+        def initialize(taskid=nil, starttime=nil, endtime=nil, limit=nil, context=nil)
+          @TaskId = taskid
+          @StartTime = starttime
+          @EndTime = endtime
+          @Limit = limit
+          @Context = context
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @Limit = params['Limit']
+          @Context = params['Context']
+        end
+      end
+
+      # ListTaskJobLogDetail返回参数结构体
+      class ListTaskJobLogDetailResponse < TencentCloud::Common::AbstractModel
+        # @param Context: 下一次分页参数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Context: String
+        # @param ListOver: 是否获取完结
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ListOver: Boolean
+        # @param Results: 日志详情
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Results: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Context, :ListOver, :Results, :RequestId
+        
+        def initialize(context=nil, listover=nil, results=nil, requestid=nil)
+          @Context = context
+          @ListOver = listover
+          @Results = results
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Context = params['Context']
+          @ListOver = params['ListOver']
+          unless params['Results'].nil?
+            @Results = []
+            params['Results'].each do |i|
+              joblogresult_tmp = JobLogResult.new
+              joblogresult_tmp.deserialize(i)
+              @Results << joblogresult_tmp
+            end
+          end
+          @RequestId = params['RequestId']
         end
       end
 
@@ -2395,11 +2497,11 @@ module TencentCloud
         # @type MainClass: String
         # @param AppConf: spark配置，以换行符分隔
         # @type AppConf: String
-        # @param IsLocalJars: 是否本地上传，可去cos,lakefs
+        # @param IsLocalJars: jar资源依赖上传方式，1、cos；2、lakefs（控制台使用，该方式不支持直接接口调用）
         # @type IsLocalJars: String
         # @param AppJars: spark jar作业依赖jars，以逗号分隔
         # @type AppJars: String
-        # @param IsLocalFiles: 是否本地上传，可去cos,lakefs
+        # @param IsLocalFiles: file资源依赖上传方式，1、cos；2、lakefs（控制台使用，该方式不支持直接接口调用）
         # @type IsLocalFiles: String
         # @param AppFiles: spark作业依赖资源，以逗号分隔
         # @type AppFiles: String
