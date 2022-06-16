@@ -3461,7 +3461,7 @@ module TencentCloud
 
       # DescribeDDosAttackEventDetail请求参数结构体
       class DescribeDDosAttackEventDetailRequest < TencentCloud::Common::AbstractModel
-        # @param EventId: 时间id
+        # @param EventId: 事件id
         # @type EventId: String
 
         attr_accessor :EventId
@@ -5265,6 +5265,85 @@ module TencentCloud
         end
       end
 
+      # DescribeTimingL7CacheData请求参数结构体
+      class DescribeTimingL7CacheDataRequest < TencentCloud::Common::AbstractModel
+        # @param StartTime: RFC3339标准，客户端时间
+        # @type StartTime: String
+        # @param EndTime: RFC3339标准，客户端时间
+        # @type EndTime: String
+        # @param MetricNames: 时序类访问流量指标列表
+        # @type MetricNames: Array
+        # @param Interval: 时间间隔，选填{min, 5min, hour, day, week}
+        # @type Interval: String
+        # @param ZoneIds: 站点id列表
+        # @type ZoneIds: Array
+        # @param Filters: 筛选条件
+        # @type Filters: Array
+
+        attr_accessor :StartTime, :EndTime, :MetricNames, :Interval, :ZoneIds, :Filters
+        
+        def initialize(starttime=nil, endtime=nil, metricnames=nil, interval=nil, zoneids=nil, filters=nil)
+          @StartTime = starttime
+          @EndTime = endtime
+          @MetricNames = metricnames
+          @Interval = interval
+          @ZoneIds = zoneids
+          @Filters = filters
+        end
+
+        def deserialize(params)
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @MetricNames = params['MetricNames']
+          @Interval = params['Interval']
+          @ZoneIds = params['ZoneIds']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+        end
+      end
+
+      # DescribeTimingL7CacheData返回参数结构体
+      class DescribeTimingL7CacheDataResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 详细数据
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Data: Array
+        # @param Type: 查询维度
+        # @type Type: String
+        # @param Interval: 时间间隔
+        # @type Interval: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :Type, :Interval, :RequestId
+        
+        def initialize(data=nil, type=nil, interval=nil, requestid=nil)
+          @Data = data
+          @Type = type
+          @Interval = interval
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = []
+            params['Data'].each do |i|
+              timingdatarecord_tmp = TimingDataRecord.new
+              timingdatarecord_tmp.deserialize(i)
+              @Data << timingdatarecord_tmp
+            end
+          end
+          @Type = params['Type']
+          @Interval = params['Interval']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeTopL7AnalysisData请求参数结构体
       class DescribeTopL7AnalysisDataRequest < TencentCloud::Common::AbstractModel
         # @param StartTime: RFC3339标准，客户端时间
@@ -5348,6 +5427,89 @@ module TencentCloud
         end
       end
 
+      # DescribeTopL7CacheData请求参数结构体
+      class DescribeTopL7CacheDataRequest < TencentCloud::Common::AbstractModel
+        # @param StartTime: RFC3339标准，客户端时间
+        # @type StartTime: String
+        # @param EndTime: RFC3339标准，客户端时间
+        # @type EndTime: String
+        # @param MetricName: 时序类访问流量指标
+        # @type MetricName: String
+        # @param Limit: topN,填0时返回全量数据
+        # @type Limit: Integer
+        # @param Interval: 时间间隔，选填{min, 5min, hour, day, week}
+        # @type Interval: String
+        # @param ZoneIds: ZoneId数组
+        # @type ZoneIds: Array
+        # @param Filters: 筛选条件
+        # @type Filters: Array
+
+        attr_accessor :StartTime, :EndTime, :MetricName, :Limit, :Interval, :ZoneIds, :Filters
+        
+        def initialize(starttime=nil, endtime=nil, metricname=nil, limit=nil, interval=nil, zoneids=nil, filters=nil)
+          @StartTime = starttime
+          @EndTime = endtime
+          @MetricName = metricname
+          @Limit = limit
+          @Interval = interval
+          @ZoneIds = zoneids
+          @Filters = filters
+        end
+
+        def deserialize(params)
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @MetricName = params['MetricName']
+          @Limit = params['Limit']
+          @Interval = params['Interval']
+          @ZoneIds = params['ZoneIds']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+        end
+      end
+
+      # DescribeTopL7CacheData返回参数结构体
+      class DescribeTopL7CacheDataResponse < TencentCloud::Common::AbstractModel
+        # @param Data: top详细数据
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Data: Array
+        # @param Type: 查询维度
+        # @type Type: String
+        # @param MetricName: 查询指标
+        # @type MetricName: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :Type, :MetricName, :RequestId
+        
+        def initialize(data=nil, type=nil, metricname=nil, requestid=nil)
+          @Data = data
+          @Type = type
+          @MetricName = metricname
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = []
+            params['Data'].each do |i|
+              topdatarecord_tmp = TopDataRecord.new
+              topdatarecord_tmp.deserialize(i)
+              @Data << topdatarecord_tmp
+            end
+          end
+          @Type = params['Type']
+          @MetricName = params['MetricName']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeWebManagedRulesAttackEvents请求参数结构体
       class DescribeWebManagedRulesAttackEventsRequest < TencentCloud::Common::AbstractModel
         # @param StartTime: 开始时间
@@ -5358,11 +5520,11 @@ module TencentCloud
         # @type PageSize: Integer
         # @param PageNo: 当前页
         # @type PageNo: Integer
-        # @param PolicyIds: ddos策略组id 集合
+        # @param PolicyIds: ddos策略组id列表
         # @type PolicyIds: Array
         # @param ZoneIds: 站点集合
         # @type ZoneIds: Array
-        # @param Domains: 协议类型,{tcp,udp,all}
+        # @param Domains: 子域名列表
         # @type Domains: Array
         # @param IsShowDetail: 选填{Y、N},默认为Y；Y：展示，N：不展示
         # @type IsShowDetail: String

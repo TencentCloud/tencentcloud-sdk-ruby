@@ -29,6 +29,54 @@ module TencentCloud
         end
 
 
+        # 新建接口导入用户任务
+
+        # @param request: Request instance for CreateApiImportUserJob.
+        # @type request: :class:`Tencentcloud::ciam::V20220331::CreateApiImportUserJobRequest`
+        # @rtype: :class:`Tencentcloud::ciam::V20220331::CreateApiImportUserJobResponse`
+        def CreateApiImportUserJob(request)
+          body = send_request('CreateApiImportUserJob', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateApiImportUserJobResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 新建文件导出用户任务
+
+        # @param request: Request instance for CreateFileExportUserJob.
+        # @type request: :class:`Tencentcloud::ciam::V20220331::CreateFileExportUserJobRequest`
+        # @rtype: :class:`Tencentcloud::ciam::V20220331::CreateFileExportUserJobResponse`
+        def CreateFileExportUserJob(request)
+          body = send_request('CreateFileExportUserJob', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateFileExportUserJobResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 创建用户
 
         # @param request: Request instance for CreateUser.
@@ -111,6 +159,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = LinkAccountResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询任务详情
+
+        # @param request: Request instance for ListJobs.
+        # @type request: :class:`Tencentcloud::ciam::V20220331::ListJobsRequest`
+        # @rtype: :class:`Tencentcloud::ciam::V20220331::ListJobsResponse`
+        def ListJobs(request)
+          body = send_request('ListJobs', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ListJobsResponse.new
             model.deserialize(response['Response'])
             model
           else

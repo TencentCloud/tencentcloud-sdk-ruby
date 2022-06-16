@@ -1253,6 +1253,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 七层查询缓存分析时序类流量数据
+
+        # @param request: Request instance for DescribeTimingL7CacheData.
+        # @type request: :class:`Tencentcloud::teo::V20220106::DescribeTimingL7CacheDataRequest`
+        # @rtype: :class:`Tencentcloud::teo::V20220106::DescribeTimingL7CacheDataResponse`
+        def DescribeTimingL7CacheData(request)
+          body = send_request('DescribeTimingL7CacheData', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeTimingL7CacheDataResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询top类流量数据
 
         # @param request: Request instance for DescribeTopL7AnalysisData.
@@ -1263,6 +1287,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeTopL7AnalysisDataResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 七层查询缓存分析top类流量数据
+
+        # @param request: Request instance for DescribeTopL7CacheData.
+        # @type request: :class:`Tencentcloud::teo::V20220106::DescribeTopL7CacheDataRequest`
+        # @rtype: :class:`Tencentcloud::teo::V20220106::DescribeTopL7CacheDataResponse`
+        def DescribeTopL7CacheData(request)
+          body = send_request('DescribeTopL7CacheData', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeTopL7CacheDataResponse.new
             model.deserialize(response['Response'])
             model
           else

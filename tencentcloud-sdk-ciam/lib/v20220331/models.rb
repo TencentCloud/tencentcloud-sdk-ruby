@@ -17,6 +17,128 @@
 module TencentCloud
   module Ciam
     module V20220331
+      # CreateApiImportUserJob请求参数结构体
+      class CreateApiImportUserJobRequest < TencentCloud::Common::AbstractModel
+        # @param UserStoreId: 用户目录ID
+        # @type UserStoreId: String
+        # @param DataFlowUserCreateList: 导入的用户数据
+        # @type DataFlowUserCreateList: Array
+
+        attr_accessor :UserStoreId, :DataFlowUserCreateList
+        
+        def initialize(userstoreid=nil, dataflowusercreatelist=nil)
+          @UserStoreId = userstoreid
+          @DataFlowUserCreateList = dataflowusercreatelist
+        end
+
+        def deserialize(params)
+          @UserStoreId = params['UserStoreId']
+          unless params['DataFlowUserCreateList'].nil?
+            @DataFlowUserCreateList = []
+            params['DataFlowUserCreateList'].each do |i|
+              importuser_tmp = ImportUser.new
+              importuser_tmp.deserialize(i)
+              @DataFlowUserCreateList << importuser_tmp
+            end
+          end
+        end
+      end
+
+      # CreateApiImportUserJob返回参数结构体
+      class CreateApiImportUserJobResponse < TencentCloud::Common::AbstractModel
+        # @param Job: 数据流任务
+        # @type Job: :class:`Tencentcloud::Ciam.v20220331.models.Job`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Job, :RequestId
+        
+        def initialize(job=nil, requestid=nil)
+          @Job = job
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Job'].nil?
+            @Job = Job.new
+            @Job.deserialize(params['Job'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateFileExportUserJob请求参数结构体
+      class CreateFileExportUserJobRequest < TencentCloud::Common::AbstractModel
+        # @param UserStoreId: 用户目录ID
+        # @type UserStoreId: String
+        # @param Format: 导出的数据类型
+
+        # <li> **JSON** </li>  JSON
+        # <li> **NDJSON** </li>  New-line Delimited JSON
+        # <li> **CSV** </li>  Comma-Separated Values
+        # @type Format: String
+        # @param Filters: Key可选值为condition、userGroupId
+
+        # <li> **condition** </li>	Values = 查询条件，用户ID，用户名称，手机或邮箱
+        # <li> **userGroupId** </li>	Values = 用户组ID
+        # @type Filters: Array
+        # @param ExportPropertyMaps: 导出用户包含的属性和映射名称，为空时包含所有的属性
+        # @type ExportPropertyMaps: Array
+
+        attr_accessor :UserStoreId, :Format, :Filters, :ExportPropertyMaps
+        
+        def initialize(userstoreid=nil, format=nil, filters=nil, exportpropertymaps=nil)
+          @UserStoreId = userstoreid
+          @Format = format
+          @Filters = filters
+          @ExportPropertyMaps = exportpropertymaps
+        end
+
+        def deserialize(params)
+          @UserStoreId = params['UserStoreId']
+          @Format = params['Format']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+          unless params['ExportPropertyMaps'].nil?
+            @ExportPropertyMaps = []
+            params['ExportPropertyMaps'].each do |i|
+              exportpropertymap_tmp = ExportPropertyMap.new
+              exportpropertymap_tmp.deserialize(i)
+              @ExportPropertyMaps << exportpropertymap_tmp
+            end
+          end
+        end
+      end
+
+      # CreateFileExportUserJob返回参数结构体
+      class CreateFileExportUserJobResponse < TencentCloud::Common::AbstractModel
+        # @param Job: 数据流任务
+        # @type Job: :class:`Tencentcloud::Ciam.v20220331.models.Job`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Job, :RequestId
+        
+        def initialize(job=nil, requestid=nil)
+          @Job = job
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Job'].nil?
+            @Job = Job.new
+            @Job.deserialize(params['Job'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateUser请求参数结构体
       class CreateUserRequest < TencentCloud::Common::AbstractModel
         # @param UserStoreId: 用户目录ID
@@ -180,6 +302,69 @@ module TencentCloud
         end
       end
 
+      # 失败详情
+      class ErrorDetails < TencentCloud::Common::AbstractModel
+        # @param UserId: 用户信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UserId: String
+        # @param Error: 失败原因
+        # @type Error: String
+
+        attr_accessor :UserId, :Error
+        
+        def initialize(userid=nil, error=nil)
+          @UserId = userid
+          @Error = error
+        end
+
+        def deserialize(params)
+          @UserId = params['UserId']
+          @Error = params['Error']
+        end
+      end
+
+      # 导出属性映射
+      class ExportPropertyMap < TencentCloud::Common::AbstractModel
+        # @param UserPropertyCode: 用户属性code
+        # @type UserPropertyCode: String
+        # @param ColumnName: 用户属性映射名称
+        # @type ColumnName: String
+
+        attr_accessor :UserPropertyCode, :ColumnName
+        
+        def initialize(userpropertycode=nil, columnname=nil)
+          @UserPropertyCode = userpropertycode
+          @ColumnName = columnname
+        end
+
+        def deserialize(params)
+          @UserPropertyCode = params['UserPropertyCode']
+          @ColumnName = params['ColumnName']
+        end
+      end
+
+      # 失败的用户
+      class FailedUsers < TencentCloud::Common::AbstractModel
+        # @param FailedUserIdentification: 失败用户标识
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FailedUserIdentification: String
+        # @param FailedReason: 导入的用户失败原因
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FailedReason: String
+
+        attr_accessor :FailedUserIdentification, :FailedReason
+        
+        def initialize(faileduseridentification=nil, failedreason=nil)
+          @FailedUserIdentification = faileduseridentification
+          @FailedReason = failedreason
+        end
+
+        def deserialize(params)
+          @FailedUserIdentification = params['FailedUserIdentification']
+          @FailedReason = params['FailedReason']
+        end
+      end
+
       # 查询条件
       class Filter < TencentCloud::Common::AbstractModel
         # @param Key: key值
@@ -204,6 +389,212 @@ module TencentCloud
         end
       end
 
+      # 导入用户信息
+      # 1、UserName，PhoneNumber ，Email ，WechatOpenId ，WechatUnionId ，AlipayUserId ，QqOpenId ，QqUnionId 八个属性中，导入时必须包含其中一个属性并遵守初始化自定义属性的正则表达式规则。UserName，PhoneNumber，Email的正则表达式在控制台的自定义属性中可以查询到。
+      # 2、对于密码的导入，导入的密码支持明文导入，MD5密文导入，SHA1密文导入，BCRYPT密文导入 ，这个需要在PasswordEncryptTypeEnum 字段中指定。
+      # 3、IdentityVerified，IdentityVerificationMethod 支持导入，
+      # IdentityVerified 为true，IdentityVerificationMethod必传；
+      # IdentityVerificationMethod 为nameAndIdCard，Name,ResidentIdentityCard必传
+      # IdentityVerificationMethod 为nameIdCardAndPhone，Name,PhoneNumber,ResidentIdentityCard必传;
+      class ImportUser < TencentCloud::Common::AbstractModel
+        # @param UserName: 用户名
+        # @type UserName: String
+        # @param PhoneNumber: 手机号
+        # @type PhoneNumber: String
+        # @param Email: 邮箱
+        # @type Email: String
+        # @param ResidentIdentityCard: 身份证号
+        # @type ResidentIdentityCard: String
+        # @param Nickname: 昵称
+        # @type Nickname: String
+        # @param Address: 地址
+        # @type Address: String
+        # @param UserGroup: 用户组ID
+        # @type UserGroup: Array
+        # @param QqOpenId: QQ qqOpenId
+        # @type QqOpenId: String
+        # @param QqUnionId: QQ qqUnionId
+        # @type QqUnionId: String
+        # @param WechatOpenId: 微信wechatOpenId
+        # @type WechatOpenId: String
+        # @param WechatUnionId: 微信wechatUnionId
+        # @type WechatUnionId: String
+        # @param AlipayUserId: 支付宝alipayUserId
+        # @type AlipayUserId: String
+        # @param Description: 描述
+        # @type Description: String
+        # @param Birthdate: 生日
+        # @type Birthdate: String
+        # @param Name: 姓名
+        # @type Name: String
+        # @param Locale: 坐标
+        # @type Locale: String
+        # @param Gender: 性别（MALE;FEMALE;UNKNOWN）
+        # @type Gender: String
+        # @param IdentityVerificationMethod: 实名核验方式
+        # @type IdentityVerificationMethod: String
+        # @param IdentityVerified: 是否已实名核验
+        # @type IdentityVerified: Boolean
+        # @param Job: 工作
+        # @type Job: String
+        # @param Nationality: 国家
+        # @type Nationality: String
+        # @param Zone: 时区
+        # @type Zone: String
+        # @param Password: 密码密文
+        # @type Password: String
+        # @param CustomizationAttributes: 自定义属性
+        # @type CustomizationAttributes: Array
+        # @param Salt: 密码盐
+        # @type Salt: :class:`Tencentcloud::Ciam.v20220331.models.Salt`
+        # @param PasswordEncryptTypeEnum: 密码加密方式（SHA1;BCRYPT）
+        # @type PasswordEncryptTypeEnum: String
+
+        attr_accessor :UserName, :PhoneNumber, :Email, :ResidentIdentityCard, :Nickname, :Address, :UserGroup, :QqOpenId, :QqUnionId, :WechatOpenId, :WechatUnionId, :AlipayUserId, :Description, :Birthdate, :Name, :Locale, :Gender, :IdentityVerificationMethod, :IdentityVerified, :Job, :Nationality, :Zone, :Password, :CustomizationAttributes, :Salt, :PasswordEncryptTypeEnum
+        
+        def initialize(username=nil, phonenumber=nil, email=nil, residentidentitycard=nil, nickname=nil, address=nil, usergroup=nil, qqopenid=nil, qqunionid=nil, wechatopenid=nil, wechatunionid=nil, alipayuserid=nil, description=nil, birthdate=nil, name=nil, locale=nil, gender=nil, identityverificationmethod=nil, identityverified=nil, job=nil, nationality=nil, zone=nil, password=nil, customizationattributes=nil, salt=nil, passwordencrypttypeenum=nil)
+          @UserName = username
+          @PhoneNumber = phonenumber
+          @Email = email
+          @ResidentIdentityCard = residentidentitycard
+          @Nickname = nickname
+          @Address = address
+          @UserGroup = usergroup
+          @QqOpenId = qqopenid
+          @QqUnionId = qqunionid
+          @WechatOpenId = wechatopenid
+          @WechatUnionId = wechatunionid
+          @AlipayUserId = alipayuserid
+          @Description = description
+          @Birthdate = birthdate
+          @Name = name
+          @Locale = locale
+          @Gender = gender
+          @IdentityVerificationMethod = identityverificationmethod
+          @IdentityVerified = identityverified
+          @Job = job
+          @Nationality = nationality
+          @Zone = zone
+          @Password = password
+          @CustomizationAttributes = customizationattributes
+          @Salt = salt
+          @PasswordEncryptTypeEnum = passwordencrypttypeenum
+        end
+
+        def deserialize(params)
+          @UserName = params['UserName']
+          @PhoneNumber = params['PhoneNumber']
+          @Email = params['Email']
+          @ResidentIdentityCard = params['ResidentIdentityCard']
+          @Nickname = params['Nickname']
+          @Address = params['Address']
+          @UserGroup = params['UserGroup']
+          @QqOpenId = params['QqOpenId']
+          @QqUnionId = params['QqUnionId']
+          @WechatOpenId = params['WechatOpenId']
+          @WechatUnionId = params['WechatUnionId']
+          @AlipayUserId = params['AlipayUserId']
+          @Description = params['Description']
+          @Birthdate = params['Birthdate']
+          @Name = params['Name']
+          @Locale = params['Locale']
+          @Gender = params['Gender']
+          @IdentityVerificationMethod = params['IdentityVerificationMethod']
+          @IdentityVerified = params['IdentityVerified']
+          @Job = params['Job']
+          @Nationality = params['Nationality']
+          @Zone = params['Zone']
+          @Password = params['Password']
+          unless params['CustomizationAttributes'].nil?
+            @CustomizationAttributes = []
+            params['CustomizationAttributes'].each do |i|
+              membermap_tmp = MemberMap.new
+              membermap_tmp.deserialize(i)
+              @CustomizationAttributes << membermap_tmp
+            end
+          end
+          unless params['Salt'].nil?
+            @Salt = Salt.new
+            @Salt.deserialize(params['Salt'])
+          end
+          @PasswordEncryptTypeEnum = params['PasswordEncryptTypeEnum']
+        end
+      end
+
+      # 任务详情
+      class Job < TencentCloud::Common::AbstractModel
+        # @param Id: 任务ID
+        # @type Id: String
+        # @param Status: 任务状态
+
+        # <li> **PENDING** </li>  待执行
+        # <li> **PROCESSING** </li>  执行中
+        # <li> **COMPLETED** </li>  完成
+        # <li> **FAILED** </li>  失败
+        # @type Status: String
+        # @param Type: 任务类型
+
+        # <li> **IMPORT_USER** </li>  用户导入
+        # <li> **EXPORT_USER** </li>  用户导出
+        # @type Type: String
+        # @param CreatedDate: 任务创建时间
+        # @type CreatedDate: Integer
+        # @param Format: 任务的数据类型
+
+        # <li> **JSON** </li>  JSON
+        # <li> **NDJSON** </li>  New-line Delimited JSON
+        # <li> **CSV** </li>  Comma-Separated Values
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Format: String
+        # @param Location: 任务结果下载地址
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Location: String
+        # @param ErrorDetails: 失败详情
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ErrorDetails: Array
+        # @param FailedUsers: 失败的用户
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FailedUsers: Array
+
+        attr_accessor :Id, :Status, :Type, :CreatedDate, :Format, :Location, :ErrorDetails, :FailedUsers
+        
+        def initialize(id=nil, status=nil, type=nil, createddate=nil, format=nil, location=nil, errordetails=nil, failedusers=nil)
+          @Id = id
+          @Status = status
+          @Type = type
+          @CreatedDate = createddate
+          @Format = format
+          @Location = location
+          @ErrorDetails = errordetails
+          @FailedUsers = failedusers
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @Status = params['Status']
+          @Type = params['Type']
+          @CreatedDate = params['CreatedDate']
+          @Format = params['Format']
+          @Location = params['Location']
+          unless params['ErrorDetails'].nil?
+            @ErrorDetails = []
+            params['ErrorDetails'].each do |i|
+              errordetails_tmp = ErrorDetails.new
+              errordetails_tmp.deserialize(i)
+              @ErrorDetails << errordetails_tmp
+            end
+          end
+          unless params['FailedUsers'].nil?
+            @FailedUsers = []
+            params['FailedUsers'].each do |i|
+              failedusers_tmp = FailedUsers.new
+              failedusers_tmp.deserialize(i)
+              @FailedUsers << failedusers_tmp
+            end
+          end
+        end
+      end
+
       # LinkAccount请求参数结构体
       class LinkAccountRequest < TencentCloud::Common::AbstractModel
         # @param UserStoreId: 用户目录ID
@@ -212,7 +603,10 @@ module TencentCloud
         # @type PrimaryUserId: String
         # @param SecondaryUserId: 从用户ID
         # @type SecondaryUserId: String
-        # @param UserLinkedOnAttribute: 融合属性(PHONENUMBER,EMAIL)
+        # @param UserLinkedOnAttribute: 融合属性
+
+        # <li> **PHONENUMBER** </li>	  手机号码
+        # <li> **EMAIL** </li>  邮箱
         # @type UserLinkedOnAttribute: String
 
         attr_accessor :UserStoreId, :PrimaryUserId, :SecondaryUserId, :UserLinkedOnAttribute
@@ -248,11 +642,62 @@ module TencentCloud
         end
       end
 
+      # ListJobs请求参数结构体
+      class ListJobsRequest < TencentCloud::Common::AbstractModel
+        # @param UserStoreId: 用户目录ID
+        # @type UserStoreId: String
+        # @param JobIds: 任务ID列表，为空时返回全部任务
+        # @type JobIds: Array
+
+        attr_accessor :UserStoreId, :JobIds
+        
+        def initialize(userstoreid=nil, jobids=nil)
+          @UserStoreId = userstoreid
+          @JobIds = jobids
+        end
+
+        def deserialize(params)
+          @UserStoreId = params['UserStoreId']
+          @JobIds = params['JobIds']
+        end
+      end
+
+      # ListJobs返回参数结构体
+      class ListJobsResponse < TencentCloud::Common::AbstractModel
+        # @param JobSet: 任务列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type JobSet: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :JobSet, :RequestId
+        
+        def initialize(jobset=nil, requestid=nil)
+          @JobSet = jobset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['JobSet'].nil?
+            @JobSet = []
+            params['JobSet'].each do |i|
+              job_tmp = Job.new
+              job_tmp.deserialize(i)
+              @JobSet << job_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ListUserByProperty请求参数结构体
       class ListUserByPropertyRequest < TencentCloud::Common::AbstractModel
         # @param UserStoreId: 用户目录ID
         # @type UserStoreId: String
-        # @param PropertyCode: 查询的属性（支持phoneNumber，email）
+        # @param PropertyCode: 查询的属性
+
+        # <li> **phoneNumber** </li>	  手机号码
+        # <li> **email** </li>  邮箱
         # @type PropertyCode: String
         # @param PropertyValue: 属性值
         # @type PropertyValue: String
@@ -463,6 +908,40 @@ module TencentCloud
         end
       end
 
+      # 密码盐
+      class Salt < TencentCloud::Common::AbstractModel
+        # @param SaltValue: 盐值
+        # @type SaltValue: String
+        # @param SaltLocation: 盐值位置
+        # @type SaltLocation: :class:`Tencentcloud::Ciam.v20220331.models.SaltLocation`
+
+        attr_accessor :SaltValue, :SaltLocation
+        
+        def initialize(saltvalue=nil, saltlocation=nil)
+          @SaltValue = saltvalue
+          @SaltLocation = saltlocation
+        end
+
+        def deserialize(params)
+          @SaltValue = params['SaltValue']
+          unless params['SaltLocation'].nil?
+            @SaltLocation = SaltLocation.new
+            @SaltLocation.deserialize(params['SaltLocation'])
+          end
+        end
+      end
+
+      # 盐位
+      class SaltLocation < TencentCloud::Common::AbstractModel
+
+        
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
       # SetPassword请求参数结构体
       class SetPasswordRequest < TencentCloud::Common::AbstractModel
         # @param UserStoreId: 用户目录ID
@@ -592,7 +1071,11 @@ module TencentCloud
         # @type UserStoreId: String
         # @param UserId: 用户ID
         # @type UserId: String
-        # @param Status: NORMAL（正常）,LOCK（锁定）,FREEZE（冻结）,请传英文大写字母
+        # @param Status: 用户状态
+
+        # <li> **NORMAL** </li>	  正常
+        # <li> **LOCK** </li>  锁定
+        # <li> **FREEZE** </li>	  冻结
         # @type Status: String
 
         attr_accessor :UserStoreId, :UserId, :Status

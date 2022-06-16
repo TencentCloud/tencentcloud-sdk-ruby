@@ -4345,12 +4345,14 @@ module TencentCloud
         # @type TestingResult: String
         # @param TestingTime: 核酸检测时间（允许返回空值）
         # @type TestingTime: String
+        # @param Vaccination: 疫苗接种信息，返回接种针数或接种情况（允许返回空值）
+        # @type Vaccination: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Name, :IDNumber, :Time, :Color, :TestingInterval, :TestingResult, :TestingTime, :RequestId
+        attr_accessor :Name, :IDNumber, :Time, :Color, :TestingInterval, :TestingResult, :TestingTime, :Vaccination, :RequestId
         
-        def initialize(name=nil, idnumber=nil, time=nil, color=nil, testinginterval=nil, testingresult=nil, testingtime=nil, requestid=nil)
+        def initialize(name=nil, idnumber=nil, time=nil, color=nil, testinginterval=nil, testingresult=nil, testingtime=nil, vaccination=nil, requestid=nil)
           @Name = name
           @IDNumber = idnumber
           @Time = time
@@ -4358,6 +4360,7 @@ module TencentCloud
           @TestingInterval = testinginterval
           @TestingResult = testingresult
           @TestingTime = testingtime
+          @Vaccination = vaccination
           @RequestId = requestid
         end
 
@@ -4369,6 +4372,7 @@ module TencentCloud
           @TestingInterval = params['TestingInterval']
           @TestingResult = params['TestingResult']
           @TestingTime = params['TestingTime']
+          @Vaccination = params['Vaccination']
           @RequestId = params['RequestId']
         end
       end

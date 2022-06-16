@@ -3800,7 +3800,7 @@ module TencentCloud
         # @type AdaptiveDynamicStreamingDefinition: Integer
         # @param SubtitleIds: 字幕的唯一标识。
         # @type SubtitleIds: Array
-        # @param SubAppId: 点播[子应用](/document/product/266/14574) ID 。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。
+        # @param SubAppId: <b>点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。</b>
         # @type SubAppId: Integer
 
         attr_accessor :FileId, :Operation, :AdaptiveDynamicStreamingDefinition, :SubtitleIds, :SubAppId
@@ -4197,7 +4197,7 @@ module TencentCloud
       class CommitUploadRequest < TencentCloud::Common::AbstractModel
         # @param VodSessionKey: 点播会话，取申请上传接口的返回值 VodSessionKey。
         # @type VodSessionKey: String
-        # @param SubAppId: 点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。
+        # @param SubAppId: <b>点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。</b>
         # @type SubAppId: Integer
 
         attr_accessor :VodSessionKey, :SubAppId
@@ -4218,10 +4218,8 @@ module TencentCloud
         # @param FileId: 媒体文件的唯一标识。
         # @type FileId: String
         # @param MediaUrl: 媒体播放地址。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MediaUrl: String
         # @param CoverUrl: 媒体封面地址。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CoverUrl: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -4312,24 +4310,24 @@ module TencentCloud
         # @type Tracks: Array
         # @param Output: 输出的媒体文件信息。
         # @type Output: :class:`Tencentcloud::Vod.v20180717.models.ComposeMediaOutput`
+        # @param SubAppId: <b>点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。</b>
+        # @type SubAppId: Integer
         # @param Canvas: 制作视频文件时使用的画布。
         # @type Canvas: :class:`Tencentcloud::Vod.v20180717.models.Canvas`
         # @param SessionContext: 标识来源上下文，用于透传用户请求信息，在ComposeMediaComplete回调将返回该字段值，最长 1000个字符。
         # @type SessionContext: String
         # @param SessionId: 用于任务去重的识别码，如果三天内曾有过相同的识别码的请求，则本次的请求会返回错误。最长 50 个字符，不带或者带空字符串表示不做去重。
         # @type SessionId: String
-        # @param SubAppId: 点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。
-        # @type SubAppId: Integer
 
-        attr_accessor :Tracks, :Output, :Canvas, :SessionContext, :SessionId, :SubAppId
+        attr_accessor :Tracks, :Output, :SubAppId, :Canvas, :SessionContext, :SessionId
         
-        def initialize(tracks=nil, output=nil, canvas=nil, sessioncontext=nil, sessionid=nil, subappid=nil)
+        def initialize(tracks=nil, output=nil, subappid=nil, canvas=nil, sessioncontext=nil, sessionid=nil)
           @Tracks = tracks
           @Output = output
+          @SubAppId = subappid
           @Canvas = canvas
           @SessionContext = sessioncontext
           @SessionId = sessionid
-          @SubAppId = subappid
         end
 
         def deserialize(params)
@@ -4345,13 +4343,13 @@ module TencentCloud
             @Output = ComposeMediaOutput.new
             @Output.deserialize(params['Output'])
           end
+          @SubAppId = params['SubAppId']
           unless params['Canvas'].nil?
             @Canvas = Canvas.new
             @Canvas.deserialize(params['Canvas'])
           end
           @SessionContext = params['SessionContext']
           @SessionId = params['SessionId']
-          @SubAppId = params['SubAppId']
         end
       end
 
@@ -5250,7 +5248,7 @@ module TencentCloud
         # @type ParentId: Integer
         # @param ClassName: 分类名称，长度限制：1-64 个字符。
         # @type ClassName: String
-        # @param SubAppId: 点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。
+        # @param SubAppId: <b>点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。</b>
         # @type SubAppId: Integer
 
         attr_accessor :ParentId, :ClassName, :SubAppId
@@ -5962,7 +5960,7 @@ module TencentCloud
       class CreateStorageRegionRequest < TencentCloud::Common::AbstractModel
         # @param StorageRegion: 待开通的存储地域，必须是系统支持的地域。
         # @type StorageRegion: String
-        # @param SubAppId: 点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。
+        # @param SubAppId: <b>点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。</b>
         # @type SubAppId: Integer
 
         attr_accessor :StorageRegion, :SubAppId
@@ -6038,6 +6036,8 @@ module TencentCloud
       class CreateSuperPlayerConfigRequest < TencentCloud::Common::AbstractModel
         # @param Name: 播放器配置名称，长度限制：64 个字符。只允许出现 [0-9a-zA-Z] 及 _- 字符（如 test_ABC-123），同一个用户该名称唯一。
         # @type Name: String
+        # @param SubAppId: <b>点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。</b>
+        # @type SubAppId: Integer
         # @param AudioVideoType: 播放的音视频类型，可选值：
         # <li>AdaptiveDynamicStream：自适应码流输出；</li>
         # <li>Transcode：转码输出；</li>
@@ -6081,13 +6081,12 @@ module TencentCloud
         # @type Scheme: String
         # @param Comment: 模板描述信息，长度限制：256 个字符。
         # @type Comment: String
-        # @param SubAppId: 点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。
-        # @type SubAppId: Integer
 
-        attr_accessor :Name, :AudioVideoType, :DrmSwitch, :AdaptiveDynamicStreamingDefinition, :DrmStreamingsInfo, :TranscodeDefinition, :ImageSpriteDefinition, :ResolutionNames, :Domain, :Scheme, :Comment, :SubAppId
+        attr_accessor :Name, :SubAppId, :AudioVideoType, :DrmSwitch, :AdaptiveDynamicStreamingDefinition, :DrmStreamingsInfo, :TranscodeDefinition, :ImageSpriteDefinition, :ResolutionNames, :Domain, :Scheme, :Comment
         
-        def initialize(name=nil, audiovideotype=nil, drmswitch=nil, adaptivedynamicstreamingdefinition=nil, drmstreamingsinfo=nil, transcodedefinition=nil, imagespritedefinition=nil, resolutionnames=nil, domain=nil, scheme=nil, comment=nil, subappid=nil)
+        def initialize(name=nil, subappid=nil, audiovideotype=nil, drmswitch=nil, adaptivedynamicstreamingdefinition=nil, drmstreamingsinfo=nil, transcodedefinition=nil, imagespritedefinition=nil, resolutionnames=nil, domain=nil, scheme=nil, comment=nil)
           @Name = name
+          @SubAppId = subappid
           @AudioVideoType = audiovideotype
           @DrmSwitch = drmswitch
           @AdaptiveDynamicStreamingDefinition = adaptivedynamicstreamingdefinition
@@ -6098,11 +6097,11 @@ module TencentCloud
           @Domain = domain
           @Scheme = scheme
           @Comment = comment
-          @SubAppId = subappid
         end
 
         def deserialize(params)
           @Name = params['Name']
+          @SubAppId = params['SubAppId']
           @AudioVideoType = params['AudioVideoType']
           @DrmSwitch = params['DrmSwitch']
           @AdaptiveDynamicStreamingDefinition = params['AdaptiveDynamicStreamingDefinition']
@@ -6123,7 +6122,6 @@ module TencentCloud
           @Domain = params['Domain']
           @Scheme = params['Scheme']
           @Comment = params['Comment']
-          @SubAppId = params['SubAppId']
         end
       end
 
@@ -6230,27 +6228,27 @@ module TencentCloud
       class CreateVodDomainRequest < TencentCloud::Common::AbstractModel
         # @param Domain: 需要接入点播的加速域名。注意：不支持填写泛域名。
         # @type Domain: String
+        # @param SubAppId: <b>点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。</b>
+        # @type SubAppId: Integer
         # @param AccelerateArea: 需要开启 CDN 加速的区域：
         # <li>Chinese Mainland：中国境内（不包含港澳台）。</li>
         # <li>Outside Chinese Mainland: 中国境外。</li>
         # <li>Global: 全球范围。</li>
         # 如果没有设置 AccelerateArea， 点播会根据用户在腾讯云设置的地域信息自动开通中国境内或者中国境外的 CDN 加速。开启中国境内加速的域名，需要先[备案域名](/document/product/243/18905)。
         # @type AccelerateArea: String
-        # @param SubAppId: 点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。
-        # @type SubAppId: Integer
 
-        attr_accessor :Domain, :AccelerateArea, :SubAppId
+        attr_accessor :Domain, :SubAppId, :AccelerateArea
         
-        def initialize(domain=nil, acceleratearea=nil, subappid=nil)
+        def initialize(domain=nil, subappid=nil, acceleratearea=nil)
           @Domain = domain
-          @AccelerateArea = acceleratearea
           @SubAppId = subappid
+          @AccelerateArea = acceleratearea
         end
 
         def deserialize(params)
           @Domain = params['Domain']
-          @AccelerateArea = params['AccelerateArea']
           @SubAppId = params['SubAppId']
+          @AccelerateArea = params['AccelerateArea']
         end
       end
 
@@ -6600,7 +6598,7 @@ module TencentCloud
       class DeleteClassRequest < TencentCloud::Common::AbstractModel
         # @param ClassId: 分类 ID
         # @type ClassId: Integer
-        # @param SubAppId: 点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。
+        # @param SubAppId: <b>点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。</b>
         # @type SubAppId: Integer
 
         attr_accessor :ClassId, :SubAppId
@@ -6780,21 +6778,22 @@ module TencentCloud
       class DeleteMediaRequest < TencentCloud::Common::AbstractModel
         # @param FileId: 媒体文件的唯一标识。
         # @type FileId: String
+        # @param SubAppId: <b>点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。</b>
+        # @type SubAppId: Integer
         # @param DeleteParts: 指定本次需要删除的部分。默认值为 "[]", 表示删除媒体及其对应的全部视频处理文件。
         # @type DeleteParts: Array
-        # @param SubAppId: 点播[子应用](/document/product/266/14574) ID 。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。
-        # @type SubAppId: Integer
 
-        attr_accessor :FileId, :DeleteParts, :SubAppId
+        attr_accessor :FileId, :SubAppId, :DeleteParts
         
-        def initialize(fileid=nil, deleteparts=nil, subappid=nil)
+        def initialize(fileid=nil, subappid=nil, deleteparts=nil)
           @FileId = fileid
-          @DeleteParts = deleteparts
           @SubAppId = subappid
+          @DeleteParts = deleteparts
         end
 
         def deserialize(params)
           @FileId = params['FileId']
+          @SubAppId = params['SubAppId']
           unless params['DeleteParts'].nil?
             @DeleteParts = []
             params['DeleteParts'].each do |i|
@@ -6803,7 +6802,6 @@ module TencentCloud
               @DeleteParts << mediadeleteitem_tmp
             end
           end
-          @SubAppId = params['SubAppId']
         end
       end
 
@@ -6863,7 +6861,7 @@ module TencentCloud
       class DeleteProcedureTemplateRequest < TencentCloud::Common::AbstractModel
         # @param Name: 任务流名字。
         # @type Name: String
-        # @param SubAppId: 点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。
+        # @param SubAppId: <b>点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。</b>
         # @type SubAppId: Integer
 
         attr_accessor :Name, :SubAppId
@@ -6971,7 +6969,7 @@ module TencentCloud
       class DeleteSuperPlayerConfigRequest < TencentCloud::Common::AbstractModel
         # @param Name: 播放器配置名称。
         # @type Name: String
-        # @param SubAppId: 点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。
+        # @param SubAppId: <b>点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。</b>
         # @type SubAppId: Integer
 
         attr_accessor :Name, :SubAppId
@@ -7043,7 +7041,7 @@ module TencentCloud
       class DeleteVodDomainRequest < TencentCloud::Common::AbstractModel
         # @param Domain: 要删除的点播加速域名。
         # @type Domain: String
-        # @param SubAppId: 点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。
+        # @param SubAppId: <b>点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。</b>
         # @type SubAppId: Integer
 
         attr_accessor :Domain, :SubAppId
@@ -7332,7 +7330,7 @@ module TencentCloud
 
       # DescribeAllClass请求参数结构体
       class DescribeAllClassRequest < TencentCloud::Common::AbstractModel
-        # @param SubAppId: 点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。
+        # @param SubAppId: <b>点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。</b>
         # @type SubAppId: Integer
 
         attr_accessor :SubAppId
@@ -7450,6 +7448,8 @@ module TencentCloud
         # @type StartTime: String
         # @param EndTime: 结束时间，使用 [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#I)。
         # @type EndTime: String
+        # @param SubAppId: <b>点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。</b>
+        # @type SubAppId: Integer
         # @param DomainNames: 域名列表。一次最多查询20个域名的数据。默认返回所有域名叠加的用量数据。
         # @type DomainNames: Array
         # @param Area: 服务区域，取值有：
@@ -7515,33 +7515,31 @@ module TencentCloud
         # <li>1440：天粒度，返回指定查询时间内1天粒度的数据。起始时间和结束时间跨度大于24小时，只支持天粒度的数据。</li>
         # 当 StartTime 和 EndTime 时间跨度大于24小时时，DataInterval 默认为 1440。
         # @type DataInterval: Integer
-        # @param SubAppId: 点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。
-        # @type SubAppId: Integer
 
-        attr_accessor :Metric, :StartTime, :EndTime, :DomainNames, :Area, :Districts, :Isps, :DataInterval, :SubAppId
+        attr_accessor :Metric, :StartTime, :EndTime, :SubAppId, :DomainNames, :Area, :Districts, :Isps, :DataInterval
         
-        def initialize(metric=nil, starttime=nil, endtime=nil, domainnames=nil, area=nil, districts=nil, isps=nil, datainterval=nil, subappid=nil)
+        def initialize(metric=nil, starttime=nil, endtime=nil, subappid=nil, domainnames=nil, area=nil, districts=nil, isps=nil, datainterval=nil)
           @Metric = metric
           @StartTime = starttime
           @EndTime = endtime
+          @SubAppId = subappid
           @DomainNames = domainnames
           @Area = area
           @Districts = districts
           @Isps = isps
           @DataInterval = datainterval
-          @SubAppId = subappid
         end
 
         def deserialize(params)
           @Metric = params['Metric']
           @StartTime = params['StartTime']
           @EndTime = params['EndTime']
+          @SubAppId = params['SubAppId']
           @DomainNames = params['DomainNames']
           @Area = params['Area']
           @Districts = params['Districts']
           @Isps = params['Isps']
           @DataInterval = params['DataInterval']
-          @SubAppId = params['SubAppId']
         end
       end
 
@@ -7586,6 +7584,9 @@ module TencentCloud
         # <li>Flux：流量，单位为 byte。</li>
         # <li>Bandwidth：带宽，单位为 bps。</li>
         # @type DataType: String
+        # @param SubAppId: <b>点播 [子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。
+        # 当该字段为1时，表示以管理员身份查询所有子应用（含主应用）的用量合计，此时时间粒度只支持天粒度。</b>
+        # @type SubAppId: Integer
         # @param DataInterval: 用量数据的时间粒度，单位：分钟，取值有：
         # <li>5：5 分钟粒度，返回指定查询时间内5分钟粒度的明细数据。</li>
         # <li>60：小时粒度，返回指定查询时间内1小时粒度的数据。</li>
@@ -7594,28 +7595,25 @@ module TencentCloud
         # @type DataInterval: Integer
         # @param DomainNames: 域名列表。一次最多查询20个域名的用量数据。可以指定多个域名，查询这些域名叠加的用量数据。默认返回所有域名叠加的用量数据。
         # @type DomainNames: Array
-        # @param SubAppId: 点播 [子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。
-        # 当该字段为1时，表示以管理员身份查询所有子应用（含主应用）的用量合计，此时时间粒度只支持天粒度。
-        # @type SubAppId: Integer
 
-        attr_accessor :StartTime, :EndTime, :DataType, :DataInterval, :DomainNames, :SubAppId
+        attr_accessor :StartTime, :EndTime, :DataType, :SubAppId, :DataInterval, :DomainNames
         
-        def initialize(starttime=nil, endtime=nil, datatype=nil, datainterval=nil, domainnames=nil, subappid=nil)
+        def initialize(starttime=nil, endtime=nil, datatype=nil, subappid=nil, datainterval=nil, domainnames=nil)
           @StartTime = starttime
           @EndTime = endtime
           @DataType = datatype
+          @SubAppId = subappid
           @DataInterval = datainterval
           @DomainNames = domainnames
-          @SubAppId = subappid
         end
 
         def deserialize(params)
           @StartTime = params['StartTime']
           @EndTime = params['EndTime']
           @DataType = params['DataType']
+          @SubAppId = params['SubAppId']
           @DataInterval = params['DataInterval']
           @DomainNames = params['DomainNames']
-          @SubAppId = params['SubAppId']
         end
       end
 
@@ -7658,31 +7656,31 @@ module TencentCloud
         # @type StartTime: String
         # @param EndTime: 结束时间需大于起始时间；使用 [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#iso-.E6.97.A5.E6.9C.9F.E6.A0.BC.E5.BC.8F)。
         # @type EndTime: String
+        # @param SubAppId: <b>点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。</b>
+        # @type SubAppId: Integer
         # @param Limit: 分页拉取的最大返回结果数。默认值：100；最大值：1000。
         # @type Limit: Integer
         # @param Offset: 分页拉取的起始偏移量。默认值：0。
         # @type Offset: Integer
-        # @param SubAppId: 点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。
-        # @type SubAppId: Integer
 
-        attr_accessor :DomainName, :StartTime, :EndTime, :Limit, :Offset, :SubAppId
+        attr_accessor :DomainName, :StartTime, :EndTime, :SubAppId, :Limit, :Offset
         
-        def initialize(domainname=nil, starttime=nil, endtime=nil, limit=nil, offset=nil, subappid=nil)
+        def initialize(domainname=nil, starttime=nil, endtime=nil, subappid=nil, limit=nil, offset=nil)
           @DomainName = domainname
           @StartTime = starttime
           @EndTime = endtime
+          @SubAppId = subappid
           @Limit = limit
           @Offset = offset
-          @SubAppId = subappid
         end
 
         def deserialize(params)
           @DomainName = params['DomainName']
           @StartTime = params['StartTime']
           @EndTime = params['EndTime']
+          @SubAppId = params['SubAppId']
           @Limit = params['Limit']
           @Offset = params['Offset']
-          @SubAppId = params['SubAppId']
         end
       end
 
@@ -7798,7 +7796,7 @@ module TencentCloud
         # @type StartDate: String
         # @param EndDate: 结束日期，使用 [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#I)。该参数仅日期部分有效。
         # @type EndDate: String
-        # @param SubAppId: 点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。
+        # @param SubAppId: <b>点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。</b>
         # @type SubAppId: Integer
 
         attr_accessor :FileId, :StartDate, :EndDate, :SubAppId
@@ -7908,7 +7906,7 @@ module TencentCloud
         # @type StartTime: String
         # @param EndTime: 结束日期，使用 [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#I)。
         # @type EndTime: String
-        # @param SubAppId: 点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。
+        # @param SubAppId: <b>点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。</b>
         # @type SubAppId: Integer
 
         attr_accessor :StartTime, :EndTime, :SubAppId
@@ -8046,7 +8044,7 @@ module TencentCloud
 
       # DescribeEventsState请求参数结构体
       class DescribeEventsStateRequest < TencentCloud::Common::AbstractModel
-        # @param SubAppId: 点播 [子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。
+        # @param SubAppId: <b>点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。</b>
         # @type SubAppId: Integer
 
         attr_accessor :SubAppId
@@ -8210,7 +8208,7 @@ module TencentCloud
         # @type StartTime: String
         # @param EndTime: 结束日期，需大于等于起始日期。使用 [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#52)。
         # @type EndTime: String
-        # @param SubAppId: 点播 [子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。
+        # @param SubAppId: <b>点播 [子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。</b>
         # @type SubAppId: Integer
 
         attr_accessor :StartTime, :EndTime, :SubAppId
@@ -8449,30 +8447,30 @@ module TencentCloud
         # @type StartTime: String
         # @param EndTime: 结束时间，使用 [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#I)。
         # @type EndTime: String
+        # @param SubAppId: <b>点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。</b>
+        # @type SubAppId: Integer
         # @param Interval: 统计时间粒度，有效值：
         # <li>Hour：以小时为粒度。</li>
         # <li>Day：以天为粒度。</li>
         # 默认按时间跨度决定，小于1天以小时为粒度，大于等于1天则以天为粒度。
         # @type Interval: String
-        # @param SubAppId: 点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。
-        # @type SubAppId: Integer
 
-        attr_accessor :FileId, :StartTime, :EndTime, :Interval, :SubAppId
+        attr_accessor :FileId, :StartTime, :EndTime, :SubAppId, :Interval
         
-        def initialize(fileid=nil, starttime=nil, endtime=nil, interval=nil, subappid=nil)
+        def initialize(fileid=nil, starttime=nil, endtime=nil, subappid=nil, interval=nil)
           @FileId = fileid
           @StartTime = starttime
           @EndTime = endtime
-          @Interval = interval
           @SubAppId = subappid
+          @Interval = interval
         end
 
         def deserialize(params)
           @FileId = params['FileId']
           @StartTime = params['StartTime']
           @EndTime = params['EndTime']
-          @Interval = params['Interval']
           @SubAppId = params['SubAppId']
+          @Interval = params['Interval']
         end
       end
 
@@ -8751,7 +8749,7 @@ module TencentCloud
         # @type StartTime: String
         # @param EndTime: 结束日期，需大于起始日期。使用 [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#I)。
         # @type EndTime: String
-        # @param SubAppId: 点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。
+        # @param SubAppId: <b>点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。</b>
         # @type SubAppId: Integer
 
         attr_accessor :StartTime, :EndTime, :SubAppId
@@ -8936,7 +8934,7 @@ module TencentCloud
 
       # DescribeStorageData请求参数结构体
       class DescribeStorageDataRequest < TencentCloud::Common::AbstractModel
-        # @param SubAppId: 点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。
+        # @param SubAppId: <b>点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。</b>
         # @type SubAppId: Integer
 
         attr_accessor :SubAppId
@@ -8956,22 +8954,28 @@ module TencentCloud
         # @type MediaCount: Integer
         # @param TotalStorage: 当前总存储量，单位是字节。
         # @type TotalStorage: Integer
-        # @param InfrequentStorage: 当前低频存储量，单位是字节。
-        # @type InfrequentStorage: Integer
         # @param StandardStorage: 当前标准存储量，单位是字节。
         # @type StandardStorage: Integer
+        # @param InfrequentStorage: 当前低频存储量，单位是字节。
+        # @type InfrequentStorage: Integer
+        # @param ArchiveStorage: 当前归档存储量，单位是字节。
+        # @type ArchiveStorage: Integer
+        # @param DeepArchiveStorage: 当前深度归档存储量，单位是字节。
+        # @type DeepArchiveStorage: Integer
         # @param StorageStat: 各计费区域的存储用量。
         # @type StorageStat: Array
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :MediaCount, :TotalStorage, :InfrequentStorage, :StandardStorage, :StorageStat, :RequestId
+        attr_accessor :MediaCount, :TotalStorage, :StandardStorage, :InfrequentStorage, :ArchiveStorage, :DeepArchiveStorage, :StorageStat, :RequestId
         
-        def initialize(mediacount=nil, totalstorage=nil, infrequentstorage=nil, standardstorage=nil, storagestat=nil, requestid=nil)
+        def initialize(mediacount=nil, totalstorage=nil, standardstorage=nil, infrequentstorage=nil, archivestorage=nil, deeparchivestorage=nil, storagestat=nil, requestid=nil)
           @MediaCount = mediacount
           @TotalStorage = totalstorage
-          @InfrequentStorage = infrequentstorage
           @StandardStorage = standardstorage
+          @InfrequentStorage = infrequentstorage
+          @ArchiveStorage = archivestorage
+          @DeepArchiveStorage = deeparchivestorage
           @StorageStat = storagestat
           @RequestId = requestid
         end
@@ -8979,8 +8983,10 @@ module TencentCloud
         def deserialize(params)
           @MediaCount = params['MediaCount']
           @TotalStorage = params['TotalStorage']
-          @InfrequentStorage = params['InfrequentStorage']
           @StandardStorage = params['StandardStorage']
+          @InfrequentStorage = params['InfrequentStorage']
+          @ArchiveStorage = params['ArchiveStorage']
+          @DeepArchiveStorage = params['DeepArchiveStorage']
           unless params['StorageStat'].nil?
             @StorageStat = []
             params['StorageStat'].each do |i|
@@ -8999,6 +9005,9 @@ module TencentCloud
         # @type StartTime: String
         # @param EndTime: 结束时间，需大于开始日期，格式按照 ISO 8601标准表示，详见 [ISO 日期格式说明](https://cloud.tencent.com/document/product/266/11732#52)。
         # @type EndTime: String
+        # @param SubAppId: <b>点播 [子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。
+        # 当该字段为1时，表示以管理员身份查询所有子应用（含主应用）的用量合计。</b>
+        # @type SubAppId: Integer
         # @param Interval: 统计时间粒度，有效值：
         # <li>Minute：以5分钟为粒度。</li>
         # <li>Day：以天为粒度。</li>
@@ -9020,32 +9029,29 @@ module TencentCloud
         # <li>DeepArchiveBulkRetrieval：深度归档批量取回量。</li>
         # 默认值为 TotalStorage。
         # @type StorageType: String
-        # @param SubAppId: 点播 [子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。
-        # 当该字段为1时，表示以管理员身份查询所有子应用（含主应用）的用量合计。
-        # @type SubAppId: Integer
         # @param Area: 查询的存储区域，有效值：
         # <li>Chinese Mainland：中国境内（不包含港澳台）。</li>
         # <li>Outside Chinese Mainland：中国境外。</li>
         # 默认值为 Chinese Mainland。
         # @type Area: String
 
-        attr_accessor :StartTime, :EndTime, :Interval, :StorageType, :SubAppId, :Area
+        attr_accessor :StartTime, :EndTime, :SubAppId, :Interval, :StorageType, :Area
         
-        def initialize(starttime=nil, endtime=nil, interval=nil, storagetype=nil, subappid=nil, area=nil)
+        def initialize(starttime=nil, endtime=nil, subappid=nil, interval=nil, storagetype=nil, area=nil)
           @StartTime = starttime
           @EndTime = endtime
+          @SubAppId = subappid
           @Interval = interval
           @StorageType = storagetype
-          @SubAppId = subappid
           @Area = area
         end
 
         def deserialize(params)
           @StartTime = params['StartTime']
           @EndTime = params['EndTime']
+          @SubAppId = params['SubAppId']
           @Interval = params['Interval']
           @StorageType = params['StorageType']
-          @SubAppId = params['SubAppId']
           @Area = params['Area']
         end
       end
@@ -9079,7 +9085,7 @@ module TencentCloud
 
       # DescribeStorageRegions请求参数结构体
       class DescribeStorageRegionsRequest < TencentCloud::Common::AbstractModel
-        # @param SubAppId: 点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。
+        # @param SubAppId: <b>点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。</b>
         # @type SubAppId: Integer
 
         attr_accessor :SubAppId
@@ -9423,6 +9429,8 @@ module TencentCloud
 
       # DescribeTasks请求参数结构体
       class DescribeTasksRequest < TencentCloud::Common::AbstractModel
+        # @param SubAppId: <b>点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。</b>
+        # @type SubAppId: Integer
         # @param Status: 过滤条件：任务状态，可选值：WAITING（等待中）、PROCESSING（处理中）、FINISH（已完成）。
         # @type Status: String
         # @param FileId: 过滤条件：文件 ID。
@@ -9439,12 +9447,11 @@ module TencentCloud
         # @type Limit: Integer
         # @param ScrollToken: 翻页标识，分批拉取时使用：当单次请求无法拉取所有数据，接口将会返回 ScrollToken，下一次请求携带该 Token，将会从下一条记录开始获取。
         # @type ScrollToken: String
-        # @param SubAppId: 点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。
-        # @type SubAppId: Integer
 
-        attr_accessor :Status, :FileId, :CreateTime, :FinishTime, :Sort, :Limit, :ScrollToken, :SubAppId
+        attr_accessor :SubAppId, :Status, :FileId, :CreateTime, :FinishTime, :Sort, :Limit, :ScrollToken
         
-        def initialize(status=nil, fileid=nil, createtime=nil, finishtime=nil, sort=nil, limit=nil, scrolltoken=nil, subappid=nil)
+        def initialize(subappid=nil, status=nil, fileid=nil, createtime=nil, finishtime=nil, sort=nil, limit=nil, scrolltoken=nil)
+          @SubAppId = subappid
           @Status = status
           @FileId = fileid
           @CreateTime = createtime
@@ -9452,10 +9459,10 @@ module TencentCloud
           @Sort = sort
           @Limit = limit
           @ScrollToken = scrolltoken
-          @SubAppId = subappid
         end
 
         def deserialize(params)
+          @SubAppId = params['SubAppId']
           @Status = params['Status']
           @FileId = params['FileId']
           unless params['CreateTime'].nil?
@@ -9472,7 +9479,6 @@ module TencentCloud
           end
           @Limit = params['Limit']
           @ScrollToken = params['ScrollToken']
-          @SubAppId = params['SubAppId']
         end
       end
 
@@ -9989,6 +9995,8 @@ module TencentCloud
       class EditMediaRequest < TencentCloud::Common::AbstractModel
         # @param InputType: 输入视频的类型，可以取的值为  File，Stream 两种。
         # @type InputType: String
+        # @param SubAppId: <b>点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。</b>
+        # @type SubAppId: Integer
         # @param FileInfos: 输入的视频文件信息，当 InputType 为 File 时必填。
         # @type FileInfos: Array
         # @param StreamInfos: 输入的流信息，当 InputType 为 Stream 时必填。
@@ -10009,13 +10017,12 @@ module TencentCloud
         # @type SessionId: String
         # @param ExtInfo: 保留字段，特殊用途时使用。
         # @type ExtInfo: String
-        # @param SubAppId: 点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。
-        # @type SubAppId: Integer
 
-        attr_accessor :InputType, :FileInfos, :StreamInfos, :Definition, :ProcedureName, :OutputConfig, :SessionContext, :TasksPriority, :SessionId, :ExtInfo, :SubAppId
+        attr_accessor :InputType, :SubAppId, :FileInfos, :StreamInfos, :Definition, :ProcedureName, :OutputConfig, :SessionContext, :TasksPriority, :SessionId, :ExtInfo
         
-        def initialize(inputtype=nil, fileinfos=nil, streaminfos=nil, definition=nil, procedurename=nil, outputconfig=nil, sessioncontext=nil, taskspriority=nil, sessionid=nil, extinfo=nil, subappid=nil)
+        def initialize(inputtype=nil, subappid=nil, fileinfos=nil, streaminfos=nil, definition=nil, procedurename=nil, outputconfig=nil, sessioncontext=nil, taskspriority=nil, sessionid=nil, extinfo=nil)
           @InputType = inputtype
+          @SubAppId = subappid
           @FileInfos = fileinfos
           @StreamInfos = streaminfos
           @Definition = definition
@@ -10025,11 +10032,11 @@ module TencentCloud
           @TasksPriority = taskspriority
           @SessionId = sessionid
           @ExtInfo = extinfo
-          @SubAppId = subappid
         end
 
         def deserialize(params)
           @InputType = params['InputType']
+          @SubAppId = params['SubAppId']
           unless params['FileInfos'].nil?
             @FileInfos = []
             params['FileInfos'].each do |i|
@@ -10056,7 +10063,6 @@ module TencentCloud
           @TasksPriority = params['TasksPriority']
           @SessionId = params['SessionId']
           @ExtInfo = params['ExtInfo']
-          @SubAppId = params['SubAppId']
         end
       end
 
@@ -10485,33 +10491,33 @@ module TencentCloud
         # @type FunctionName: String
         # @param FunctionArg: 接口参数，具体参数格式调用时与后端协调。
         # @type FunctionArg: String
+        # @param SubAppId: <b>点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。</b>
+        # @type SubAppId: Integer
         # @param SessionContext: 来源上下文，用于透传用户请求信息，任务流状态变更回调将返回该字段值，最长 1000 个字符。
         # @type SessionContext: String
         # @param SessionId: 用于去重的识别码，如果七天内曾有过相同的识别码的请求，则本次的请求会返回错误。最长 50 个字符，不带或者带空字符串表示不做去重。
         # @type SessionId: String
         # @param ExtInfo: 保留字段，特殊用途时使用。
         # @type ExtInfo: String
-        # @param SubAppId: 点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。
-        # @type SubAppId: Integer
 
-        attr_accessor :FunctionName, :FunctionArg, :SessionContext, :SessionId, :ExtInfo, :SubAppId
+        attr_accessor :FunctionName, :FunctionArg, :SubAppId, :SessionContext, :SessionId, :ExtInfo
         
-        def initialize(functionname=nil, functionarg=nil, sessioncontext=nil, sessionid=nil, extinfo=nil, subappid=nil)
+        def initialize(functionname=nil, functionarg=nil, subappid=nil, sessioncontext=nil, sessionid=nil, extinfo=nil)
           @FunctionName = functionname
           @FunctionArg = functionarg
+          @SubAppId = subappid
           @SessionContext = sessioncontext
           @SessionId = sessionid
           @ExtInfo = extinfo
-          @SubAppId = subappid
         end
 
         def deserialize(params)
           @FunctionName = params['FunctionName']
           @FunctionArg = params['FunctionArg']
+          @SubAppId = params['SubAppId']
           @SessionContext = params['SessionContext']
           @SessionId = params['SessionId']
           @ExtInfo = params['ExtInfo']
-          @SubAppId = params['SubAppId']
         end
       end
 
@@ -10714,7 +10720,7 @@ module TencentCloud
         # @type FileIds: Array
         # @param Operation: forbid：禁播，recover：解禁。
         # @type Operation: String
-        # @param SubAppId: 点播[子应用](/document/product/266/14574) ID 。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。
+        # @param SubAppId: <b>点播[子应用](/document/product/266/14574) ID 。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。</b>
         # @type SubAppId: Integer
 
         attr_accessor :FileIds, :Operation, :SubAppId
@@ -11418,6 +11424,8 @@ module TencentCloud
         # @type StartTime: String
         # @param EndTime: 流剪辑的结束时间，格式参照 [ISO 日期格式说明](https://cloud.tencent.com/document/product/266/11732#I)。
         # @type EndTime: String
+        # @param SubAppId: <b>点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。</b>
+        # @type SubAppId: Integer
         # @param IsPersistence: 是否固化。0 不固化，1 固化。默认不固化。
         # @type IsPersistence: Integer
         # @param ExpireTime: 剪辑固化后的视频存储过期时间。格式参照 [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#I)。填“9999-12-31T23:59:59Z”表示永不过期。过期后该媒体文件及其相关资源（转码结果、雪碧图等）将被永久删除。仅 IsPersistence 为 1 时有效，默认剪辑固化的视频永不过期。
@@ -11430,35 +11438,33 @@ module TencentCloud
         # @type Host: String
         # @param ExtInfo: 系统保留字段，请勿填写。
         # @type ExtInfo: String
-        # @param SubAppId: 点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。
-        # @type SubAppId: Integer
 
-        attr_accessor :StreamId, :StartTime, :EndTime, :IsPersistence, :ExpireTime, :Procedure, :MetaDataRequired, :Host, :ExtInfo, :SubAppId
+        attr_accessor :StreamId, :StartTime, :EndTime, :SubAppId, :IsPersistence, :ExpireTime, :Procedure, :MetaDataRequired, :Host, :ExtInfo
         
-        def initialize(streamid=nil, starttime=nil, endtime=nil, ispersistence=nil, expiretime=nil, procedure=nil, metadatarequired=nil, host=nil, extinfo=nil, subappid=nil)
+        def initialize(streamid=nil, starttime=nil, endtime=nil, subappid=nil, ispersistence=nil, expiretime=nil, procedure=nil, metadatarequired=nil, host=nil, extinfo=nil)
           @StreamId = streamid
           @StartTime = starttime
           @EndTime = endtime
+          @SubAppId = subappid
           @IsPersistence = ispersistence
           @ExpireTime = expiretime
           @Procedure = procedure
           @MetaDataRequired = metadatarequired
           @Host = host
           @ExtInfo = extinfo
-          @SubAppId = subappid
         end
 
         def deserialize(params)
           @StreamId = params['StreamId']
           @StartTime = params['StartTime']
           @EndTime = params['EndTime']
+          @SubAppId = params['SubAppId']
           @IsPersistence = params['IsPersistence']
           @ExpireTime = params['ExpireTime']
           @Procedure = params['Procedure']
           @MetaDataRequired = params['MetaDataRequired']
           @Host = params['Host']
           @ExtInfo = params['ExtInfo']
-          @SubAppId = params['SubAppId']
         end
       end
 
@@ -11516,7 +11522,7 @@ module TencentCloud
         # @param OperationType: 操作类型，取值范围：
         # <li>Abort：终止任务。只能终止已发起且状态为等待中（WAITING）的任务。</li>
         # @type OperationType: String
-        # @param SubAppId: 点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。
+        # @param SubAppId: <b>点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。</b>
         # @type SubAppId: Integer
 
         attr_accessor :TaskId, :OperationType, :SubAppId
@@ -13939,7 +13945,7 @@ module TencentCloud
         # @type ClassId: Integer
         # @param ClassName: 分类名称。长度限制：1-64 个字符。
         # @type ClassName: String
-        # @param SubAppId: 点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。
+        # @param SubAppId: <b>点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。</b>
         # @type SubAppId: Integer
 
         attr_accessor :ClassId, :ClassName, :SubAppId
@@ -14066,9 +14072,9 @@ module TencentCloud
 
       # ModifyDefaultStorageRegion请求参数结构体
       class ModifyDefaultStorageRegionRequest < TencentCloud::Common::AbstractModel
-        # @param StorageRegion: 默认的存储地域，必须是已经开通的地域」，建议改成「默认的存储地域，必须是已经开通的地域（通过 DescribeStorageRegions 接口查询）。
+        # @param StorageRegion: 默认的存储地域，必须是已经开通的地域（通过 DescribeStorageRegions 接口查询）。
         # @type StorageRegion: String
-        # @param SubAppId: 点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。
+        # @param SubAppId: <b>点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。</b>
         # @type SubAppId: Integer
 
         attr_accessor :StorageRegion, :SubAppId
@@ -14302,6 +14308,8 @@ module TencentCloud
       class ModifyMediaInfoRequest < TencentCloud::Common::AbstractModel
         # @param FileId: 媒体文件唯一标识。
         # @type FileId: String
+        # @param SubAppId: <b>点播[子应用](/document/product/266/14574) ID 。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。</b>
+        # @type SubAppId: Integer
         # @param Name: 媒体文件名称，最长 64 个字符。
         # @type Name: String
         # @param Description: 媒体文件描述，最长 128 个字符。
@@ -14333,13 +14341,12 @@ module TencentCloud
         # @param ClearSubtitles: 取值 1 表示清空媒体文件所有的字幕信息，其他值无意义。
         # 同一个请求里，ClearSubtitles 与 AddSubtitles不能同时出现。
         # @type ClearSubtitles: Integer
-        # @param SubAppId: 点播[子应用](/document/product/266/14574) ID 。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。
-        # @type SubAppId: Integer
 
-        attr_accessor :FileId, :Name, :Description, :ClassId, :ExpireTime, :CoverData, :AddKeyFrameDescs, :DeleteKeyFrameDescs, :ClearKeyFrameDescs, :AddTags, :DeleteTags, :ClearTags, :AddSubtitles, :DeleteSubtitleIds, :ClearSubtitles, :SubAppId
+        attr_accessor :FileId, :SubAppId, :Name, :Description, :ClassId, :ExpireTime, :CoverData, :AddKeyFrameDescs, :DeleteKeyFrameDescs, :ClearKeyFrameDescs, :AddTags, :DeleteTags, :ClearTags, :AddSubtitles, :DeleteSubtitleIds, :ClearSubtitles
         
-        def initialize(fileid=nil, name=nil, description=nil, classid=nil, expiretime=nil, coverdata=nil, addkeyframedescs=nil, deletekeyframedescs=nil, clearkeyframedescs=nil, addtags=nil, deletetags=nil, cleartags=nil, addsubtitles=nil, deletesubtitleids=nil, clearsubtitles=nil, subappid=nil)
+        def initialize(fileid=nil, subappid=nil, name=nil, description=nil, classid=nil, expiretime=nil, coverdata=nil, addkeyframedescs=nil, deletekeyframedescs=nil, clearkeyframedescs=nil, addtags=nil, deletetags=nil, cleartags=nil, addsubtitles=nil, deletesubtitleids=nil, clearsubtitles=nil)
           @FileId = fileid
+          @SubAppId = subappid
           @Name = name
           @Description = description
           @ClassId = classid
@@ -14354,11 +14361,11 @@ module TencentCloud
           @AddSubtitles = addsubtitles
           @DeleteSubtitleIds = deletesubtitleids
           @ClearSubtitles = clearsubtitles
-          @SubAppId = subappid
         end
 
         def deserialize(params)
           @FileId = params['FileId']
+          @SubAppId = params['SubAppId']
           @Name = params['Name']
           @Description = params['Description']
           @ClassId = params['ClassId']
@@ -14387,7 +14394,6 @@ module TencentCloud
           end
           @DeleteSubtitleIds = params['DeleteSubtitleIds']
           @ClearSubtitles = params['ClearSubtitles']
-          @SubAppId = params['SubAppId']
         end
       end
 
@@ -14433,7 +14439,7 @@ module TencentCloud
         # <li> ARCHIVE：归档存储。</li>
         # <li> DEEP_ARCHIVE：深度归档存储。</li>
         # @type StorageClass: String
-        # @param SubAppId: 点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。
+        # @param SubAppId: <b>点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。</b>
         # @type SubAppId: Integer
         # @param RestoreTier: 取回模式。当文件的存储类型从归档或深度归档转换为标准存储时，需要指定取回（也称为解冻）操作的模式，具体说明请参考[数据取回及取回模式](https://cloud.tencent.com/document/product/266/56196#retake)。
         # 当媒体文件目前的存储类型为归档存储时，有以下取值：
@@ -14740,7 +14746,7 @@ module TencentCloud
 
       # ModifySubAppIdInfo请求参数结构体
       class ModifySubAppIdInfoRequest < TencentCloud::Common::AbstractModel
-        # @param SubAppId: 子应用 ID。
+        # @param SubAppId: <b>点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。</b>
         # @type SubAppId: Integer
         # @param Name: 子应用名称，长度限制：40个字符。
         # @type Name: String
@@ -14780,7 +14786,7 @@ module TencentCloud
 
       # ModifySubAppIdStatus请求参数结构体
       class ModifySubAppIdStatusRequest < TencentCloud::Common::AbstractModel
-        # @param SubAppId: 子应用 ID。
+        # @param SubAppId: <b>点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。</b>
         # @type SubAppId: Integer
         # @param Status: 子应用状态，取值范围：
         # <li>On：启用。</li>
@@ -15007,7 +15013,7 @@ module TencentCloud
         # <li>Disabled：关闭。</li>
         # 开启中国境内加速的域名，需要先[备案域名](/document/product/243/18905)。
         # @type Status: String
-        # @param SubAppId: 点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。
+        # @param SubAppId: <b>点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。</b>
         # @type SubAppId: Integer
 
         attr_accessor :Domain, :Area, :Status, :SubAppId
@@ -15047,24 +15053,25 @@ module TencentCloud
       class ModifyVodDomainConfigRequest < TencentCloud::Common::AbstractModel
         # @param Domain: 域名。
         # @type Domain: String
+        # @param SubAppId: <b>点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。</b>
+        # @type SubAppId: Integer
         # @param RefererAuthPolicy: [Referer 防盗链](/document/product/266/14046)规则。
         # @type RefererAuthPolicy: :class:`Tencentcloud::Vod.v20180717.models.RefererAuthPolicy`
         # @param UrlSignatureAuthPolicy: [Key 防盗链](/document/product/266/14047)规则。
         # @type UrlSignatureAuthPolicy: :class:`Tencentcloud::Vod.v20180717.models.UrlSignatureAuthPolicy`
-        # @param SubAppId: 点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。
-        # @type SubAppId: Integer
 
-        attr_accessor :Domain, :RefererAuthPolicy, :UrlSignatureAuthPolicy, :SubAppId
+        attr_accessor :Domain, :SubAppId, :RefererAuthPolicy, :UrlSignatureAuthPolicy
         
-        def initialize(domain=nil, refererauthpolicy=nil, urlsignatureauthpolicy=nil, subappid=nil)
+        def initialize(domain=nil, subappid=nil, refererauthpolicy=nil, urlsignatureauthpolicy=nil)
           @Domain = domain
+          @SubAppId = subappid
           @RefererAuthPolicy = refererauthpolicy
           @UrlSignatureAuthPolicy = urlsignatureauthpolicy
-          @SubAppId = subappid
         end
 
         def deserialize(params)
           @Domain = params['Domain']
+          @SubAppId = params['SubAppId']
           unless params['RefererAuthPolicy'].nil?
             @RefererAuthPolicy = RefererAuthPolicy.new
             @RefererAuthPolicy.deserialize(params['RefererAuthPolicy'])
@@ -15073,7 +15080,6 @@ module TencentCloud
             @UrlSignatureAuthPolicy = UrlSignatureAuthPolicy.new
             @UrlSignatureAuthPolicy.deserialize(params['UrlSignatureAuthPolicy'])
           end
-          @SubAppId = params['SubAppId']
         end
       end
 
@@ -16477,6 +16483,8 @@ module TencentCloud
         # @type FileId: String
         # @param ProcedureName: [任务流模板](/document/product/266/11700#.E4.BB.BB.E5.8A.A1.E6.B5.81.E6.A8.A1.E6.9D.BF)名字。
         # @type ProcedureName: String
+        # @param SubAppId: <b>点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。</b>
+        # @type SubAppId: Integer
         # @param TasksPriority: 任务流的优先级，数值越大优先级越高，取值范围是-10到10，不填代表0。
         # @type TasksPriority: Integer
         # @param TasksNotifyMode: 任务流状态变更通知模式，可取值有 Finish，Change 和 None，不填代表 Finish。
@@ -16487,31 +16495,29 @@ module TencentCloud
         # @type SessionId: String
         # @param ExtInfo: 保留字段，特殊用途时使用。
         # @type ExtInfo: String
-        # @param SubAppId: 点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。
-        # @type SubAppId: Integer
 
-        attr_accessor :FileId, :ProcedureName, :TasksPriority, :TasksNotifyMode, :SessionContext, :SessionId, :ExtInfo, :SubAppId
+        attr_accessor :FileId, :ProcedureName, :SubAppId, :TasksPriority, :TasksNotifyMode, :SessionContext, :SessionId, :ExtInfo
         
-        def initialize(fileid=nil, procedurename=nil, taskspriority=nil, tasksnotifymode=nil, sessioncontext=nil, sessionid=nil, extinfo=nil, subappid=nil)
+        def initialize(fileid=nil, procedurename=nil, subappid=nil, taskspriority=nil, tasksnotifymode=nil, sessioncontext=nil, sessionid=nil, extinfo=nil)
           @FileId = fileid
           @ProcedureName = procedurename
+          @SubAppId = subappid
           @TasksPriority = taskspriority
           @TasksNotifyMode = tasksnotifymode
           @SessionContext = sessioncontext
           @SessionId = sessionid
           @ExtInfo = extinfo
-          @SubAppId = subappid
         end
 
         def deserialize(params)
           @FileId = params['FileId']
           @ProcedureName = params['ProcedureName']
+          @SubAppId = params['SubAppId']
           @TasksPriority = params['TasksPriority']
           @TasksNotifyMode = params['TasksNotifyMode']
           @SessionContext = params['SessionContext']
           @SessionId = params['SessionId']
           @ExtInfo = params['ExtInfo']
-          @SubAppId = params['SubAppId']
         end
       end
 
@@ -17022,8 +17028,10 @@ module TencentCloud
       # PullUpload请求参数结构体
       class PullUploadRequest < TencentCloud::Common::AbstractModel
         # @param MediaUrl: 要拉取的媒体 URL，暂不支持拉取 Dash 格式（可以支持 HLS）。
-        # 支持的扩展名详见[媒体类型](https://cloud.tencent.com/document/product/266/9760#.E5.AA.92.E4.BD.93.E7.B1.BB.E5.9E.8B)。
+        # 支持的扩展名详见[媒体类型](https://cloud.tencent.com/document/product/266/9760#.E5.AA.92.E4.BD.93.E7.B1.BB.E5.9E.8B)。请确保媒体 URL 可以访问。
         # @type MediaUrl: String
+        # @param SubAppId: <b>点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。</b>
+        # @type SubAppId: Integer
         # @param MediaName: 媒体名称。
         # @type MediaName: String
         # @param CoverUrl: 要拉取的视频封面 URL。仅支持 gif、jpeg、png 三种图片格式。
@@ -17044,15 +17052,14 @@ module TencentCloud
         # @type SessionId: String
         # @param ExtInfo: 保留字段，特殊用途时使用。
         # @type ExtInfo: String
-        # @param SubAppId: 点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。
-        # @type SubAppId: Integer
         # @param SourceContext: 来源上下文，用于透传用户请求信息，[上传完成回调](/document/product/266/7830) 将返回该字段值，最长 250 个字符。
         # @type SourceContext: String
 
-        attr_accessor :MediaUrl, :MediaName, :CoverUrl, :Procedure, :ExpireTime, :StorageRegion, :ClassId, :SessionContext, :SessionId, :ExtInfo, :SubAppId, :SourceContext
+        attr_accessor :MediaUrl, :SubAppId, :MediaName, :CoverUrl, :Procedure, :ExpireTime, :StorageRegion, :ClassId, :SessionContext, :SessionId, :ExtInfo, :SourceContext
         
-        def initialize(mediaurl=nil, medianame=nil, coverurl=nil, procedure=nil, expiretime=nil, storageregion=nil, classid=nil, sessioncontext=nil, sessionid=nil, extinfo=nil, subappid=nil, sourcecontext=nil)
+        def initialize(mediaurl=nil, subappid=nil, medianame=nil, coverurl=nil, procedure=nil, expiretime=nil, storageregion=nil, classid=nil, sessioncontext=nil, sessionid=nil, extinfo=nil, sourcecontext=nil)
           @MediaUrl = mediaurl
+          @SubAppId = subappid
           @MediaName = medianame
           @CoverUrl = coverurl
           @Procedure = procedure
@@ -17062,12 +17069,12 @@ module TencentCloud
           @SessionContext = sessioncontext
           @SessionId = sessionid
           @ExtInfo = extinfo
-          @SubAppId = subappid
           @SourceContext = sourcecontext
         end
 
         def deserialize(params)
           @MediaUrl = params['MediaUrl']
+          @SubAppId = params['SubAppId']
           @MediaName = params['MediaName']
           @CoverUrl = params['CoverUrl']
           @Procedure = params['Procedure']
@@ -17077,7 +17084,6 @@ module TencentCloud
           @SessionContext = params['SessionContext']
           @SessionId = params['SessionId']
           @ExtInfo = params['ExtInfo']
-          @SubAppId = params['SubAppId']
           @SourceContext = params['SourceContext']
         end
       end
@@ -17242,6 +17248,42 @@ module TencentCloud
         end
       end
 
+      # RefreshUrlCache请求参数结构体
+      class RefreshUrlCacheRequest < TencentCloud::Common::AbstractModel
+        # @param Urls: 刷新的 URL 列表，单次最多指定20个 URL。
+        # @type Urls: Array
+        # @param SubAppId: <b>点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。</b>
+        # @type SubAppId: Integer
+
+        attr_accessor :Urls, :SubAppId
+        
+        def initialize(urls=nil, subappid=nil)
+          @Urls = urls
+          @SubAppId = subappid
+        end
+
+        def deserialize(params)
+          @Urls = params['Urls']
+          @SubAppId = params['SubAppId']
+        end
+      end
+
+      # RefreshUrlCache返回参数结构体
+      class RefreshUrlCacheResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ResetProcedureTemplate请求参数结构体
       class ResetProcedureTemplateRequest < TencentCloud::Common::AbstractModel
         # @param Name: 任务流名字
@@ -17347,6 +17389,56 @@ module TencentCloud
         def deserialize(params)
           @TagKey = params['TagKey']
           @TagValue = params['TagValue']
+        end
+      end
+
+      # RestoreMedia请求参数结构体
+      class RestoreMediaRequest < TencentCloud::Common::AbstractModel
+        # @param FileIds: 媒体文件唯一标识列表。
+        # @type FileIds: Array
+        # @param RestoreDay: 解冻出的临时媒体文件的可访问持续时长，单位为“天”。
+        # @type RestoreDay: Integer
+        # @param RestoreTier: 解冻模式。当媒体文件当前的存储类型为归档存储时，有以下取值：
+        # <li>极速模式：Expedited，解冻任务在5分钟后完成。</li>
+        # <li>标准模式：Standard，解冻任务在5小时后完成 。</li>
+        # <li>批量模式：Bulk，，解冻任务在12小时后完成。</li>
+        # 当媒体文件的存储类型为深度归档存储时，有以下取值：
+        # <li>标准模式：Standard，解冻任务在24小时后完成。</li>
+        # <li>批量模式：Bulk，解冻任务在48小时后完成。</li>
+        # @type RestoreTier: String
+        # @param SubAppId: 点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。
+        # @type SubAppId: Integer
+
+        attr_accessor :FileIds, :RestoreDay, :RestoreTier, :SubAppId
+        
+        def initialize(fileids=nil, restoreday=nil, restoretier=nil, subappid=nil)
+          @FileIds = fileids
+          @RestoreDay = restoreday
+          @RestoreTier = restoretier
+          @SubAppId = subappid
+        end
+
+        def deserialize(params)
+          @FileIds = params['FileIds']
+          @RestoreDay = params['RestoreDay']
+          @RestoreTier = params['RestoreTier']
+          @SubAppId = params['SubAppId']
+        end
+      end
+
+      # RestoreMedia返回参数结构体
+      class RestoreMediaResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
         end
       end
 
@@ -17819,31 +17911,31 @@ module TencentCloud
       class SimpleHlsClipRequest < TencentCloud::Common::AbstractModel
         # @param Url: 需要裁剪的腾讯云点播 HLS 视频 URL。
         # @type Url: String
+        # @param SubAppId: <b>点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。</b>
+        # @type SubAppId: Integer
         # @param StartTimeOffset: 裁剪的开始偏移时间，单位秒。默认 0，即从视频开头开始裁剪。负数表示距离视频结束多少秒开始裁剪。例如 -10 表示从倒数第 10 秒开始裁剪。
         # @type StartTimeOffset: Float
         # @param EndTimeOffset: 裁剪的结束偏移时间，单位秒。默认 0，即裁剪到视频尾部。负数表示距离视频结束多少秒结束裁剪。例如 -10 表示到倒数第 10 秒结束裁剪。
         # @type EndTimeOffset: Float
         # @param IsPersistence: 是否固化。0 不固化，1 固化。默认不固化。
         # @type IsPersistence: Integer
-        # @param SubAppId: 点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。
-        # @type SubAppId: Integer
 
-        attr_accessor :Url, :StartTimeOffset, :EndTimeOffset, :IsPersistence, :SubAppId
+        attr_accessor :Url, :SubAppId, :StartTimeOffset, :EndTimeOffset, :IsPersistence
         
-        def initialize(url=nil, starttimeoffset=nil, endtimeoffset=nil, ispersistence=nil, subappid=nil)
+        def initialize(url=nil, subappid=nil, starttimeoffset=nil, endtimeoffset=nil, ispersistence=nil)
           @Url = url
+          @SubAppId = subappid
           @StartTimeOffset = starttimeoffset
           @EndTimeOffset = endtimeoffset
           @IsPersistence = ispersistence
-          @SubAppId = subappid
         end
 
         def deserialize(params)
           @Url = params['Url']
+          @SubAppId = params['SubAppId']
           @StartTimeOffset = params['StartTimeOffset']
           @EndTimeOffset = params['EndTimeOffset']
           @IsPersistence = params['IsPersistence']
-          @SubAppId = params['SubAppId']
         end
       end
 
@@ -18134,24 +18226,24 @@ module TencentCloud
         # @type FileId: String
         # @param Segments: 视频拆条任务信息列表，最多同时支持100个拆条信息。
         # @type Segments: Array
+        # @param SubAppId: <b>点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。</b>
+        # @type SubAppId: Integer
         # @param SessionContext: 标识来源上下文，用于透传用户请求信息，在 SplitMediaComplete 回调和任务流状态变更回调将返回该字段值，最长 1000个字符。
         # @type SessionContext: String
         # @param SessionId: 用于任务去重的识别码，如果三天内曾有过相同的识别码的请求，则本次的请求会返回错误。最长 50 个字符，不带或者带空字符串表示不做去重。
         # @type SessionId: String
         # @param TasksPriority: 任务的优先级，数值越大优先级越高，取值范围是 -10 到 10，不填代表 0。
         # @type TasksPriority: Integer
-        # @param SubAppId: 点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。
-        # @type SubAppId: Integer
 
-        attr_accessor :FileId, :Segments, :SessionContext, :SessionId, :TasksPriority, :SubAppId
+        attr_accessor :FileId, :Segments, :SubAppId, :SessionContext, :SessionId, :TasksPriority
         
-        def initialize(fileid=nil, segments=nil, sessioncontext=nil, sessionid=nil, taskspriority=nil, subappid=nil)
+        def initialize(fileid=nil, segments=nil, subappid=nil, sessioncontext=nil, sessionid=nil, taskspriority=nil)
           @FileId = fileid
           @Segments = segments
+          @SubAppId = subappid
           @SessionContext = sessioncontext
           @SessionId = sessionid
           @TasksPriority = taskspriority
-          @SubAppId = subappid
         end
 
         def deserialize(params)
@@ -18164,10 +18256,10 @@ module TencentCloud
               @Segments << splitmediataskconfig_tmp
             end
           end
+          @SubAppId = params['SubAppId']
           @SessionContext = params['SessionContext']
           @SessionId = params['SessionId']
           @TasksPriority = params['TasksPriority']
-          @SubAppId = params['SubAppId']
         end
       end
 
@@ -20217,23 +20309,23 @@ module TencentCloud
       class WeChatMiniProgramPublishRequest < TencentCloud::Common::AbstractModel
         # @param FileId: 媒体文件 ID。
         # @type FileId: String
-        # @param SourceDefinition: 发布视频所对应的转码模板 ID，为0代表原始视频。
-        # @type SourceDefinition: Integer
         # @param SubAppId: <b>点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。</b>
         # @type SubAppId: Integer
+        # @param SourceDefinition: 发布视频所对应的转码模板 ID，为0代表原始视频。
+        # @type SourceDefinition: Integer
 
-        attr_accessor :FileId, :SourceDefinition, :SubAppId
+        attr_accessor :FileId, :SubAppId, :SourceDefinition
         
-        def initialize(fileid=nil, sourcedefinition=nil, subappid=nil)
+        def initialize(fileid=nil, subappid=nil, sourcedefinition=nil)
           @FileId = fileid
-          @SourceDefinition = sourcedefinition
           @SubAppId = subappid
+          @SourceDefinition = sourcedefinition
         end
 
         def deserialize(params)
           @FileId = params['FileId']
-          @SourceDefinition = params['SourceDefinition']
           @SubAppId = params['SubAppId']
+          @SourceDefinition = params['SourceDefinition']
         end
       end
 
