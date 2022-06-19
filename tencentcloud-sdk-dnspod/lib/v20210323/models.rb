@@ -1005,6 +1005,83 @@ module TencentCloud
         end
       end
 
+      # DescribeDomainAnalytics请求参数结构体
+      class DescribeDomainAnalyticsRequest < TencentCloud::Common::AbstractModel
+        # @param Domain: 要查询解析量的域名
+        # @type Domain: String
+        # @param StartDate: 查询的开始时间，格式：YYYY-MM-DD
+        # @type StartDate: String
+        # @param EndDate: 查询的结束时间，格式：YYYY-MM-DD
+        # @type EndDate: String
+        # @param DnsFormat: DATE:按天维度统计 HOUR:按小时维度统计
+        # @type DnsFormat: String
+        # @param DomainId: 域名 ID 。参数 DomainId 优先级比参数 Domain 高，如果传递参数 DomainId 将忽略参数 Domain 。
+        # @type DomainId: Integer
+
+        attr_accessor :Domain, :StartDate, :EndDate, :DnsFormat, :DomainId
+        
+        def initialize(domain=nil, startdate=nil, enddate=nil, dnsformat=nil, domainid=nil)
+          @Domain = domain
+          @StartDate = startdate
+          @EndDate = enddate
+          @DnsFormat = dnsformat
+          @DomainId = domainid
+        end
+
+        def deserialize(params)
+          @Domain = params['Domain']
+          @StartDate = params['StartDate']
+          @EndDate = params['EndDate']
+          @DnsFormat = params['DnsFormat']
+          @DomainId = params['DomainId']
+        end
+      end
+
+      # DescribeDomainAnalytics返回参数结构体
+      class DescribeDomainAnalyticsResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 当前统计维度解析量小计
+        # @type Data: Array
+        # @param Info: 域名解析量统计查询信息
+        # @type Info: :class:`Tencentcloud::Dnspod.v20210323.models.DomainAnalyticsInfo`
+        # @param AliasData: 域名别名解析量统计信息
+        # @type AliasData: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :Info, :AliasData, :RequestId
+        
+        def initialize(data=nil, info=nil, aliasdata=nil, requestid=nil)
+          @Data = data
+          @Info = info
+          @AliasData = aliasdata
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = []
+            params['Data'].each do |i|
+              domainanalyticsdetail_tmp = DomainAnalyticsDetail.new
+              domainanalyticsdetail_tmp.deserialize(i)
+              @Data << domainanalyticsdetail_tmp
+            end
+          end
+          unless params['Info'].nil?
+            @Info = DomainAnalyticsInfo.new
+            @Info.deserialize(params['Info'])
+          end
+          unless params['AliasData'].nil?
+            @AliasData = []
+            params['AliasData'].each do |i|
+              domainaliasanalyticsitem_tmp = DomainAliasAnalyticsItem.new
+              domainaliasanalyticsitem_tmp.deserialize(i)
+              @AliasData << domainaliasanalyticsitem_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeDomainList请求参数结构体
       class DescribeDomainListRequest < TencentCloud::Common::AbstractModel
         # @param Type: 域名分组类型，默认为ALL。可取值为ALL，MINE，SHARE，ISMARK，PAUSE，VIP，RECENT，SHARE_OUT。
@@ -1512,6 +1589,87 @@ module TencentCloud
         end
       end
 
+      # DescribeSubdomainAnalytics请求参数结构体
+      class DescribeSubdomainAnalyticsRequest < TencentCloud::Common::AbstractModel
+        # @param Domain: 要查询解析量的域名
+        # @type Domain: String
+        # @param StartDate: 查询的开始时间，格式：YYYY-MM-DD
+        # @type StartDate: String
+        # @param EndDate: 查询的结束时间，格式：YYYY-MM-DD
+        # @type EndDate: String
+        # @param Subdomain: 要查询解析量的子域名
+        # @type Subdomain: String
+        # @param DnsFormat: DATE:按天维度统计 HOUR:按小时维度统计
+        # @type DnsFormat: String
+        # @param DomainId: 域名 ID 。参数 DomainId 优先级比参数 Domain 高，如果传递参数 DomainId 将忽略参数 Domain 。
+        # @type DomainId: Integer
+
+        attr_accessor :Domain, :StartDate, :EndDate, :Subdomain, :DnsFormat, :DomainId
+        
+        def initialize(domain=nil, startdate=nil, enddate=nil, subdomain=nil, dnsformat=nil, domainid=nil)
+          @Domain = domain
+          @StartDate = startdate
+          @EndDate = enddate
+          @Subdomain = subdomain
+          @DnsFormat = dnsformat
+          @DomainId = domainid
+        end
+
+        def deserialize(params)
+          @Domain = params['Domain']
+          @StartDate = params['StartDate']
+          @EndDate = params['EndDate']
+          @Subdomain = params['Subdomain']
+          @DnsFormat = params['DnsFormat']
+          @DomainId = params['DomainId']
+        end
+      end
+
+      # DescribeSubdomainAnalytics返回参数结构体
+      class DescribeSubdomainAnalyticsResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 当前统计维度解析量小计
+        # @type Data: Array
+        # @param Info: 子域名解析量统计查询信息
+        # @type Info: :class:`Tencentcloud::Dnspod.v20210323.models.SubdomainAnalyticsInfo`
+        # @param AliasData: 子域名别名解析量统计信息
+        # @type AliasData: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :Info, :AliasData, :RequestId
+        
+        def initialize(data=nil, info=nil, aliasdata=nil, requestid=nil)
+          @Data = data
+          @Info = info
+          @AliasData = aliasdata
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = []
+            params['Data'].each do |i|
+              domainanalyticsdetail_tmp = DomainAnalyticsDetail.new
+              domainanalyticsdetail_tmp.deserialize(i)
+              @Data << domainanalyticsdetail_tmp
+            end
+          end
+          unless params['Info'].nil?
+            @Info = SubdomainAnalyticsInfo.new
+            @Info.deserialize(params['Info'])
+          end
+          unless params['AliasData'].nil?
+            @AliasData = []
+            params['AliasData'].each do |i|
+              subdomainaliasanalyticsitem_tmp = SubdomainAliasAnalyticsItem.new
+              subdomainaliasanalyticsitem_tmp.deserialize(i)
+              @AliasData << subdomainaliasanalyticsitem_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeUserDetail请求参数结构体
       class DescribeUserDetailRequest < TencentCloud::Common::AbstractModel
 
@@ -1546,6 +1704,36 @@ module TencentCloud
         end
       end
 
+      # 域名别名解析量统计信息
+      class DomainAliasAnalyticsItem < TencentCloud::Common::AbstractModel
+        # @param Info: 域名解析量统计查询信息
+        # @type Info: :class:`Tencentcloud::Dnspod.v20210323.models.DomainAnalyticsInfo`
+        # @param Data: 当前统计维度解析量小计
+        # @type Data: Array
+
+        attr_accessor :Info, :Data
+        
+        def initialize(info=nil, data=nil)
+          @Info = info
+          @Data = data
+        end
+
+        def deserialize(params)
+          unless params['Info'].nil?
+            @Info = DomainAnalyticsInfo.new
+            @Info.deserialize(params['Info'])
+          end
+          unless params['Data'].nil?
+            @Data = []
+            params['Data'].each do |i|
+              domainanalyticsdetail_tmp = DomainAnalyticsDetail.new
+              domainanalyticsdetail_tmp.deserialize(i)
+              @Data << domainanalyticsdetail_tmp
+            end
+          end
+        end
+      end
+
       # 域名别名信息
       class DomainAliasInfo < TencentCloud::Common::AbstractModel
         # @param Id: 域名别名ID
@@ -1563,6 +1751,63 @@ module TencentCloud
         def deserialize(params)
           @Id = params['Id']
           @DomainAlias = params['DomainAlias']
+        end
+      end
+
+      # 当前统计维度解析量小计
+      class DomainAnalyticsDetail < TencentCloud::Common::AbstractModel
+        # @param Num: 当前统计维度解析量小计
+        # @type Num: Integer
+        # @param DateKey: 按天统计时，为统计日期
+        # @type DateKey: String
+        # @param HourKey: 按小时统计时，为统计的当前时间的小时数(0-23)，例：HourKey为23时，统计周期为22点-23点的解析量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HourKey: Integer
+
+        attr_accessor :Num, :DateKey, :HourKey
+        
+        def initialize(num=nil, datekey=nil, hourkey=nil)
+          @Num = num
+          @DateKey = datekey
+          @HourKey = hourkey
+        end
+
+        def deserialize(params)
+          @Num = params['Num']
+          @DateKey = params['DateKey']
+          @HourKey = params['HourKey']
+        end
+      end
+
+      # 域名解析量统计查询信息
+      class DomainAnalyticsInfo < TencentCloud::Common::AbstractModel
+        # @param DnsFormat: DATE:按天维度统计 HOUR:按小时维度统计
+        # @type DnsFormat: String
+        # @param DnsTotal: 当前统计周期解析量总计
+        # @type DnsTotal: Integer
+        # @param Domain: 当前查询的域名
+        # @type Domain: String
+        # @param StartDate: 当前统计周期开始时间
+        # @type StartDate: String
+        # @param EndDate: 当前统计周期结束时间
+        # @type EndDate: String
+
+        attr_accessor :DnsFormat, :DnsTotal, :Domain, :StartDate, :EndDate
+        
+        def initialize(dnsformat=nil, dnstotal=nil, domain=nil, startdate=nil, enddate=nil)
+          @DnsFormat = dnsformat
+          @DnsTotal = dnstotal
+          @Domain = domain
+          @StartDate = startdate
+          @EndDate = enddate
+        end
+
+        def deserialize(params)
+          @DnsFormat = params['DnsFormat']
+          @DnsTotal = params['DnsTotal']
+          @Domain = params['Domain']
+          @StartDate = params['StartDate']
+          @EndDate = params['EndDate']
         end
       end
 
@@ -2750,6 +2995,72 @@ module TencentCloud
           @Remark = params['Remark']
           @TTL = params['TTL']
           @MX = params['MX']
+        end
+      end
+
+      # 子域名别名解析量统计信息
+      class SubdomainAliasAnalyticsItem < TencentCloud::Common::AbstractModel
+        # @param Info: 子域名解析量统计查询信息
+        # @type Info: :class:`Tencentcloud::Dnspod.v20210323.models.SubdomainAnalyticsInfo`
+        # @param Data: 当前统计维度解析量小计
+        # @type Data: Array
+
+        attr_accessor :Info, :Data
+        
+        def initialize(info=nil, data=nil)
+          @Info = info
+          @Data = data
+        end
+
+        def deserialize(params)
+          unless params['Info'].nil?
+            @Info = SubdomainAnalyticsInfo.new
+            @Info.deserialize(params['Info'])
+          end
+          unless params['Data'].nil?
+            @Data = []
+            params['Data'].each do |i|
+              domainanalyticsdetail_tmp = DomainAnalyticsDetail.new
+              domainanalyticsdetail_tmp.deserialize(i)
+              @Data << domainanalyticsdetail_tmp
+            end
+          end
+        end
+      end
+
+      # 子域名解析量统计查询信息
+      class SubdomainAnalyticsInfo < TencentCloud::Common::AbstractModel
+        # @param DnsFormat: DATE:按天维度统计 HOUR:按小时维度统计
+        # @type DnsFormat: String
+        # @param DnsTotal: 当前统计周期解析量总计
+        # @type DnsTotal: Integer
+        # @param Domain: 当前查询的域名
+        # @type Domain: String
+        # @param StartDate: 当前统计周期开始时间
+        # @type StartDate: String
+        # @param EndDate: 当前统计周期结束时间
+        # @type EndDate: String
+        # @param Subdomain: 当前统计的子域名
+        # @type Subdomain: String
+
+        attr_accessor :DnsFormat, :DnsTotal, :Domain, :StartDate, :EndDate, :Subdomain
+        
+        def initialize(dnsformat=nil, dnstotal=nil, domain=nil, startdate=nil, enddate=nil, subdomain=nil)
+          @DnsFormat = dnsformat
+          @DnsTotal = dnstotal
+          @Domain = domain
+          @StartDate = startdate
+          @EndDate = enddate
+          @Subdomain = subdomain
+        end
+
+        def deserialize(params)
+          @DnsFormat = params['DnsFormat']
+          @DnsTotal = params['DnsTotal']
+          @Domain = params['Domain']
+          @StartDate = params['StartDate']
+          @EndDate = params['EndDate']
+          @Subdomain = params['Subdomain']
         end
       end
 

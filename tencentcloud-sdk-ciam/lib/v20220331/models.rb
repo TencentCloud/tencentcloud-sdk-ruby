@@ -933,12 +933,40 @@ module TencentCloud
 
       # 盐位
       class SaltLocation < TencentCloud::Common::AbstractModel
+        # @param SaltLocationTypeEnum: 密码加盐的类型（HEAD，TAIL，OTHER）
+        # @type SaltLocationTypeEnum: String
+        # @param SaltLocationRule: 加盐规则
+        # @type SaltLocationRule: :class:`Tencentcloud::Ciam.v20220331.models.SaltLocationRule`
 
+        attr_accessor :SaltLocationTypeEnum, :SaltLocationRule
         
-        def initialize()
+        def initialize(saltlocationtypeenum=nil, saltlocationrule=nil)
+          @SaltLocationTypeEnum = saltlocationtypeenum
+          @SaltLocationRule = saltlocationrule
         end
 
         def deserialize(params)
+          @SaltLocationTypeEnum = params['SaltLocationTypeEnum']
+          unless params['SaltLocationRule'].nil?
+            @SaltLocationRule = SaltLocationRule.new
+            @SaltLocationRule.deserialize(params['SaltLocationRule'])
+          end
+        end
+      end
+
+      # 盐位规则
+      class SaltLocationRule < TencentCloud::Common::AbstractModel
+        # @param Regex: 表达式
+        # @type Regex: String
+
+        attr_accessor :Regex
+        
+        def initialize(regex=nil)
+          @Regex = regex
+        end
+
+        def deserialize(params)
+          @Regex = params['Regex']
         end
       end
 

@@ -159,18 +159,24 @@ module TencentCloud
 
       # DescribeSupportedHsm请求参数结构体
       class DescribeSupportedHsmRequest < TencentCloud::Common::AbstractModel
+        # @param HsmType: Hsm类型，可选值all、virtulization、GHSM、EHSM、SHSM
+        # @type HsmType: String
 
+        attr_accessor :HsmType
         
-        def initialize()
+        def initialize(hsmtype=nil)
+          @HsmType = hsmtype
         end
 
         def deserialize(params)
+          @HsmType = params['HsmType']
         end
       end
 
       # DescribeSupportedHsm返回参数结构体
       class DescribeSupportedHsmResponse < TencentCloud::Common::AbstractModel
         # @param DeviceTypes: 当前地域所支持的设备列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DeviceTypes: Array
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -518,15 +524,18 @@ module TencentCloud
         # @type TagFilters: Array
         # @param Manufacturer: 设备所属的厂商名称，根据厂商来进行筛选
         # @type Manufacturer: String
+        # @param HsmType: Hsm服务类型，可选virtualization、physical、GHSM、EHSM、SHSM、all
+        # @type HsmType: String
 
-        attr_accessor :Offset, :Limit, :SearchWord, :TagFilters, :Manufacturer
+        attr_accessor :Offset, :Limit, :SearchWord, :TagFilters, :Manufacturer, :HsmType
         
-        def initialize(offset=nil, limit=nil, searchword=nil, tagfilters=nil, manufacturer=nil)
+        def initialize(offset=nil, limit=nil, searchword=nil, tagfilters=nil, manufacturer=nil, hsmtype=nil)
           @Offset = offset
           @Limit = limit
           @SearchWord = searchword
           @TagFilters = tagfilters
           @Manufacturer = manufacturer
+          @HsmType = hsmtype
         end
 
         def deserialize(params)
@@ -542,6 +551,7 @@ module TencentCloud
             end
           end
           @Manufacturer = params['Manufacturer']
+          @HsmType = params['HsmType']
         end
       end
 
@@ -637,7 +647,7 @@ module TencentCloud
         # @type GoodsNum: Integer
         # @param PayMode: 付费模式：0表示按需计费/后付费，1表示预付费
         # @type PayMode: Integer
-        # @param TimeSpan: 商品的时间大小
+        # @param TimeSpan: 商品的时间大小，整型参数，举例：当TimeSpan为1，TImeUnit为m时，表示询价购买时长为1个月时的价格
         # @type TimeSpan: String
         # @param TimeUnit: 商品的时间单位，m表示月，y表示年
         # @type TimeUnit: String
@@ -645,16 +655,19 @@ module TencentCloud
         # @type Currency: String
         # @param Type: 默认为CREATE，可选RENEW
         # @type Type: String
+        # @param HsmType: Hsm服务类型，可选值virtualization、physical、GHSM、EHSM、SHSM
+        # @type HsmType: String
 
-        attr_accessor :GoodsNum, :PayMode, :TimeSpan, :TimeUnit, :Currency, :Type
+        attr_accessor :GoodsNum, :PayMode, :TimeSpan, :TimeUnit, :Currency, :Type, :HsmType
         
-        def initialize(goodsnum=nil, paymode=nil, timespan=nil, timeunit=nil, currency=nil, type=nil)
+        def initialize(goodsnum=nil, paymode=nil, timespan=nil, timeunit=nil, currency=nil, type=nil, hsmtype=nil)
           @GoodsNum = goodsnum
           @PayMode = paymode
           @TimeSpan = timespan
           @TimeUnit = timeunit
           @Currency = currency
           @Type = type
+          @HsmType = hsmtype
         end
 
         def deserialize(params)
@@ -664,12 +677,13 @@ module TencentCloud
           @TimeUnit = params['TimeUnit']
           @Currency = params['Currency']
           @Type = params['Type']
+          @HsmType = params['HsmType']
         end
       end
 
       # InquiryPriceBuyVsm返回参数结构体
       class InquiryPriceBuyVsmResponse < TencentCloud::Common::AbstractModel
-        # @param TotalCost: 原始总金额
+        # @param TotalCost: 原始总金额，浮点型参数，精确到小数点后两位，如：2000.99
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TotalCost: Float
         # @param GoodsNum: 购买的实例数量
@@ -681,7 +695,7 @@ module TencentCloud
         # @param TimeUnit: 商品的时间单位
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TimeUnit: String
-        # @param OriginalCost: 应付总金额
+        # @param OriginalCost: 应付总金额，浮点型参数，精确到小数点后两位，如：2000.99
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OriginalCost: Float
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。

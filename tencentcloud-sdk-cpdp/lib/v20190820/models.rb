@@ -1225,16 +1225,22 @@ module TencentCloud
         # @type PaymentMethod: String
         # @param ChannelOrderId: 云企付平台订单号
         # @type ChannelOrderId: String
+        # @param Environment: 环境类型。
+        # __release__:生产环境
+        # __sandbox__:沙箱环境
+        # _不填默认为生产环境_
+        # @type Environment: String
 
-        attr_accessor :OutApplyId, :ChannelMerchantId, :ChannelSubMerchantId, :ChannelName, :PaymentMethod, :ChannelOrderId
+        attr_accessor :OutApplyId, :ChannelMerchantId, :ChannelSubMerchantId, :ChannelName, :PaymentMethod, :ChannelOrderId, :Environment
         
-        def initialize(outapplyid=nil, channelmerchantid=nil, channelsubmerchantid=nil, channelname=nil, paymentmethod=nil, channelorderid=nil)
+        def initialize(outapplyid=nil, channelmerchantid=nil, channelsubmerchantid=nil, channelname=nil, paymentmethod=nil, channelorderid=nil, environment=nil)
           @OutApplyId = outapplyid
           @ChannelMerchantId = channelmerchantid
           @ChannelSubMerchantId = channelsubmerchantid
           @ChannelName = channelname
           @PaymentMethod = paymentmethod
           @ChannelOrderId = channelorderid
+          @Environment = environment
         end
 
         def deserialize(params)
@@ -1244,6 +1250,7 @@ module TencentCloud
           @ChannelName = params['ChannelName']
           @PaymentMethod = params['PaymentMethod']
           @ChannelOrderId = params['ChannelOrderId']
+          @Environment = params['Environment']
         end
       end
 
@@ -6009,15 +6016,21 @@ module TencentCloud
         # __OPENBANK_PAYMENT__: openbank支付
         # __SAFT_ISV__: 安心发支付
         # @type PaymentMethod: String
+        # @param Environment: 环境类型。
+        # __release__:生产环境
+        # __sandbox__:沙箱环境
+        # _不填默认为生产环境_
+        # @type Environment: String
 
-        attr_accessor :OutAccountBookId, :ChannelMerchantId, :ChannelSubMerchantId, :ChannelName, :PaymentMethod
+        attr_accessor :OutAccountBookId, :ChannelMerchantId, :ChannelSubMerchantId, :ChannelName, :PaymentMethod, :Environment
         
-        def initialize(outaccountbookid=nil, channelmerchantid=nil, channelsubmerchantid=nil, channelname=nil, paymentmethod=nil)
+        def initialize(outaccountbookid=nil, channelmerchantid=nil, channelsubmerchantid=nil, channelname=nil, paymentmethod=nil, environment=nil)
           @OutAccountBookId = outaccountbookid
           @ChannelMerchantId = channelmerchantid
           @ChannelSubMerchantId = channelsubmerchantid
           @ChannelName = channelname
           @PaymentMethod = paymentmethod
+          @Environment = environment
         end
 
         def deserialize(params)
@@ -6026,6 +6039,7 @@ module TencentCloud
           @ChannelSubMerchantId = params['ChannelSubMerchantId']
           @ChannelName = params['ChannelName']
           @PaymentMethod = params['PaymentMethod']
+          @Environment = params['Environment']
         end
       end
 
@@ -6560,10 +6574,15 @@ module TencentCloud
         # @type NotifyUrl: String
         # @param Remark: 备注信息。
         # @type Remark: String
+        # @param Environment: 环境类型。
+        # __release__:生产环境
+        # __sandbox__:沙箱环境
+        # _不填默认为生产环境_
+        # @type Environment: String
 
-        attr_accessor :ChannelMerchantId, :OutOrderId, :TotalAmount, :Currency, :ExpireTime, :ChannelName, :PaymentMethod, :PayeeInfo, :ChannelSubMerchantId, :NotifyUrl, :Remark
+        attr_accessor :ChannelMerchantId, :OutOrderId, :TotalAmount, :Currency, :ExpireTime, :ChannelName, :PaymentMethod, :PayeeInfo, :ChannelSubMerchantId, :NotifyUrl, :Remark, :Environment
         
-        def initialize(channelmerchantid=nil, outorderid=nil, totalamount=nil, currency=nil, expiretime=nil, channelname=nil, paymentmethod=nil, payeeinfo=nil, channelsubmerchantid=nil, notifyurl=nil, remark=nil)
+        def initialize(channelmerchantid=nil, outorderid=nil, totalamount=nil, currency=nil, expiretime=nil, channelname=nil, paymentmethod=nil, payeeinfo=nil, channelsubmerchantid=nil, notifyurl=nil, remark=nil, environment=nil)
           @ChannelMerchantId = channelmerchantid
           @OutOrderId = outorderid
           @TotalAmount = totalamount
@@ -6575,6 +6594,7 @@ module TencentCloud
           @ChannelSubMerchantId = channelsubmerchantid
           @NotifyUrl = notifyurl
           @Remark = remark
+          @Environment = environment
         end
 
         def deserialize(params)
@@ -6592,6 +6612,7 @@ module TencentCloud
           @ChannelSubMerchantId = params['ChannelSubMerchantId']
           @NotifyUrl = params['NotifyUrl']
           @Remark = params['Remark']
+          @Environment = params['Environment']
         end
       end
 
@@ -16515,16 +16536,22 @@ module TencentCloud
         # @type OutAccountBookId: String
         # @param ChannelAccountBookId: 渠道账本号ID。与OutAccountBookId二者选填其一。
         # @type ChannelAccountBookId: String
+        # @param Environment: 环境类型。
+        # __release__:生产环境
+        # __sandbox__:沙箱环境
+        # _不填默认为生产环境_
+        # @type Environment: String
 
-        attr_accessor :ChannelMerchantId, :ChannelSubMerchantId, :ChannelName, :PaymentMethod, :OutAccountBookId, :ChannelAccountBookId
+        attr_accessor :ChannelMerchantId, :ChannelSubMerchantId, :ChannelName, :PaymentMethod, :OutAccountBookId, :ChannelAccountBookId, :Environment
         
-        def initialize(channelmerchantid=nil, channelsubmerchantid=nil, channelname=nil, paymentmethod=nil, outaccountbookid=nil, channelaccountbookid=nil)
+        def initialize(channelmerchantid=nil, channelsubmerchantid=nil, channelname=nil, paymentmethod=nil, outaccountbookid=nil, channelaccountbookid=nil, environment=nil)
           @ChannelMerchantId = channelmerchantid
           @ChannelSubMerchantId = channelsubmerchantid
           @ChannelName = channelname
           @PaymentMethod = paymentmethod
           @OutAccountBookId = outaccountbookid
           @ChannelAccountBookId = channelaccountbookid
+          @Environment = environment
         end
 
         def deserialize(params)
@@ -16534,6 +16561,7 @@ module TencentCloud
           @PaymentMethod = params['PaymentMethod']
           @OutAccountBookId = params['OutAccountBookId']
           @ChannelAccountBookId = params['ChannelAccountBookId']
+          @Environment = params['Environment']
         end
       end
 
@@ -16851,16 +16879,22 @@ module TencentCloud
         # @type OutApplyId: String
         # @param ChannelApplyId: 渠道回单申请ID，与外部回单申请ID二者选填其一
         # @type ChannelApplyId: String
+        # @param Environment: 环境类型。
+        # __release__:生产环境
+        # __sandbox__:沙箱环境
+        # _不填默认为生产环境_
+        # @type Environment: String
 
-        attr_accessor :ChannelMerchantId, :ChannelSubMerchantId, :ChannelName, :PaymentMethod, :OutApplyId, :ChannelApplyId
+        attr_accessor :ChannelMerchantId, :ChannelSubMerchantId, :ChannelName, :PaymentMethod, :OutApplyId, :ChannelApplyId, :Environment
         
-        def initialize(channelmerchantid=nil, channelsubmerchantid=nil, channelname=nil, paymentmethod=nil, outapplyid=nil, channelapplyid=nil)
+        def initialize(channelmerchantid=nil, channelsubmerchantid=nil, channelname=nil, paymentmethod=nil, outapplyid=nil, channelapplyid=nil, environment=nil)
           @ChannelMerchantId = channelmerchantid
           @ChannelSubMerchantId = channelsubmerchantid
           @ChannelName = channelname
           @PaymentMethod = paymentmethod
           @OutApplyId = outapplyid
           @ChannelApplyId = channelapplyid
+          @Environment = environment
         end
 
         def deserialize(params)
@@ -16870,6 +16904,7 @@ module TencentCloud
           @PaymentMethod = params['PaymentMethod']
           @OutApplyId = params['OutApplyId']
           @ChannelApplyId = params['ChannelApplyId']
+          @Environment = params['Environment']
         end
       end
 

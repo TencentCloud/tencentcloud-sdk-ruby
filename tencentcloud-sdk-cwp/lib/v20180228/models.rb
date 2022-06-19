@@ -17347,7 +17347,7 @@ module TencentCloud
         # @param Description: 说明
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Description: String
-        # @param HostVersion: 版本信息 0=普通版本 1=专业版 2=旗舰版
+        # @param HostVersion: 版本信息：0-基础版 1-专业版 2-旗舰版 3-普惠版
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HostVersion: Integer
         # @param IsSupportAutoFix: 是否能自动修复 0 :漏洞不可自动修复，  1：可自动修复， 2：客户端已离线， 3：主机不是旗舰版只能手动修复， 4：机型不允许 ，5：修复中 ，6：已修复， 7：检测中  9:修复失败，10:已忽略 11:漏洞只支持linux不支持Windows 12：漏洞只支持Windows不支持linux，13:修复失败但此时主机已离线，14:修复失败但此时主机不是旗舰版， 15:已手动修复
@@ -17356,10 +17356,16 @@ module TencentCloud
         # @param FixStatusMsg: 失败原因
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FixStatusMsg: String
+        # @param FirstDiscoveryTime: 首次发现时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FirstDiscoveryTime: String
+        # @param InstanceState: 实例状态："PENDING"-创建中 "LAUNCH_FAILED"-创建失败 "RUNNING"-运行中 "STOPPED"-关机 "STARTING"-表示开机中 "STOPPING"-表示关机中 "REBOOTING"-重启中 "SHUTDOWN"-表示停止待销毁 "TERMINATING"-表示销毁中 "
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceState: String
 
-        attr_accessor :EventId, :Status, :LastTime, :Level, :Quuid, :Uuid, :HostIp, :AliasName, :Tags, :Description, :HostVersion, :IsSupportAutoFix, :FixStatusMsg
+        attr_accessor :EventId, :Status, :LastTime, :Level, :Quuid, :Uuid, :HostIp, :AliasName, :Tags, :Description, :HostVersion, :IsSupportAutoFix, :FixStatusMsg, :FirstDiscoveryTime, :InstanceState
         
-        def initialize(eventid=nil, status=nil, lasttime=nil, level=nil, quuid=nil, uuid=nil, hostip=nil, aliasname=nil, tags=nil, description=nil, hostversion=nil, issupportautofix=nil, fixstatusmsg=nil)
+        def initialize(eventid=nil, status=nil, lasttime=nil, level=nil, quuid=nil, uuid=nil, hostip=nil, aliasname=nil, tags=nil, description=nil, hostversion=nil, issupportautofix=nil, fixstatusmsg=nil, firstdiscoverytime=nil, instancestate=nil)
           @EventId = eventid
           @Status = status
           @LastTime = lasttime
@@ -17373,6 +17379,8 @@ module TencentCloud
           @HostVersion = hostversion
           @IsSupportAutoFix = issupportautofix
           @FixStatusMsg = fixstatusmsg
+          @FirstDiscoveryTime = firstdiscoverytime
+          @InstanceState = instancestate
         end
 
         def deserialize(params)
@@ -17389,6 +17397,8 @@ module TencentCloud
           @HostVersion = params['HostVersion']
           @IsSupportAutoFix = params['IsSupportAutoFix']
           @FixStatusMsg = params['FixStatusMsg']
+          @FirstDiscoveryTime = params['FirstDiscoveryTime']
+          @InstanceState = params['InstanceState']
         end
       end
 

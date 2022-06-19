@@ -341,6 +341,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 统计各个域名的解析量，帮助您了解流量情况、时间段分布。支持查看近 3 个月内的统计情况
+
+        # @param request: Request instance for DescribeDomainAnalytics.
+        # @type request: :class:`Tencentcloud::dnspod::V20210323::DescribeDomainAnalyticsRequest`
+        # @rtype: :class:`Tencentcloud::dnspod::V20210323::DescribeDomainAnalyticsResponse`
+        def DescribeDomainAnalytics(request)
+          body = send_request('DescribeDomainAnalytics', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeDomainAnalyticsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 获取域名列表
 
         # @param request: Request instance for DescribeDomainList.
@@ -519,6 +543,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeRecordTypeResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 统计子域名的解析量，帮助您了解流量情况、时间段分布。支持查看近 3 个月内的统计情况。仅付费套餐域名可用。
+
+        # @param request: Request instance for DescribeSubdomainAnalytics.
+        # @type request: :class:`Tencentcloud::dnspod::V20210323::DescribeSubdomainAnalyticsRequest`
+        # @rtype: :class:`Tencentcloud::dnspod::V20210323::DescribeSubdomainAnalyticsResponse`
+        def DescribeSubdomainAnalytics(request)
+          body = send_request('DescribeSubdomainAnalytics', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeSubdomainAnalyticsResponse.new
             model.deserialize(response['Response'])
             model
           else

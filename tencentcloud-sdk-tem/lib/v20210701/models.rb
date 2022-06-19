@@ -986,6 +986,53 @@ module TencentCloud
         end
       end
 
+      # DescribeApplicationsStatus请求参数结构体
+      class DescribeApplicationsStatusRequest < TencentCloud::Common::AbstractModel
+        # @param SourceChannel: 来源渠道
+        # @type SourceChannel: Integer
+        # @param EnvironmentId: 环境ID
+        # @type EnvironmentId: String
+
+        attr_accessor :SourceChannel, :EnvironmentId
+        
+        def initialize(sourcechannel=nil, environmentid=nil)
+          @SourceChannel = sourcechannel
+          @EnvironmentId = environmentid
+        end
+
+        def deserialize(params)
+          @SourceChannel = params['SourceChannel']
+          @EnvironmentId = params['EnvironmentId']
+        end
+      end
+
+      # DescribeApplicationsStatus返回参数结构体
+      class DescribeApplicationsStatusResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 返回结果
+        # @type Result: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+        
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Result'].nil?
+            @Result = []
+            params['Result'].each do |i|
+              serviceversionbrief_tmp = ServiceVersionBrief.new
+              serviceversionbrief_tmp.deserialize(i)
+              @Result << serviceversionbrief_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeDeployApplicationDetail请求参数结构体
       class DescribeDeployApplicationDetailRequest < TencentCloud::Common::AbstractModel
         # @param ApplicationId: 服务id
@@ -2400,6 +2447,86 @@ module TencentCloud
           @RestartCount = params['RestartCount']
           @Ready = params['Ready']
           @ContainerState = params['ContainerState']
+        end
+      end
+
+      # 服务版本信息列表
+      class ServiceVersionBrief < TencentCloud::Common::AbstractModel
+        # @param VersionName: 版本名称
+        # @type VersionName: String
+        # @param Status: 状态
+        # @type Status: String
+        # @param EnableEs: 是否启动弹性 -- 已废弃
+        # @type EnableEs: Integer
+        # @param CurrentInstances: 当前实例
+        # @type CurrentInstances: Integer
+        # @param VersionId: version的id
+        # @type VersionId: String
+        # @param LogOutputConf: 日志输出配置 -- 已废弃
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LogOutputConf: :class:`Tencentcloud::Tem.v20210701.models.LogOutputConf`
+        # @param ExpectedInstances: 期望实例
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExpectedInstances: Integer
+        # @param DeployMode: 部署方式
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DeployMode: String
+        # @param BuildTaskId: 建构任务ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BuildTaskId: String
+        # @param EnvironmentId: 环境ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EnvironmentId: String
+        # @param EnvironmentName: 环境name
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EnvironmentName: String
+        # @param ApplicationId: 服务ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ApplicationId: String
+        # @param ApplicationName: 服务name
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ApplicationName: String
+        # @param UnderDeploying: 是否正在发布中
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UnderDeploying: Boolean
+
+        attr_accessor :VersionName, :Status, :EnableEs, :CurrentInstances, :VersionId, :LogOutputConf, :ExpectedInstances, :DeployMode, :BuildTaskId, :EnvironmentId, :EnvironmentName, :ApplicationId, :ApplicationName, :UnderDeploying
+        
+        def initialize(versionname=nil, status=nil, enablees=nil, currentinstances=nil, versionid=nil, logoutputconf=nil, expectedinstances=nil, deploymode=nil, buildtaskid=nil, environmentid=nil, environmentname=nil, applicationid=nil, applicationname=nil, underdeploying=nil)
+          @VersionName = versionname
+          @Status = status
+          @EnableEs = enablees
+          @CurrentInstances = currentinstances
+          @VersionId = versionid
+          @LogOutputConf = logoutputconf
+          @ExpectedInstances = expectedinstances
+          @DeployMode = deploymode
+          @BuildTaskId = buildtaskid
+          @EnvironmentId = environmentid
+          @EnvironmentName = environmentname
+          @ApplicationId = applicationid
+          @ApplicationName = applicationname
+          @UnderDeploying = underdeploying
+        end
+
+        def deserialize(params)
+          @VersionName = params['VersionName']
+          @Status = params['Status']
+          @EnableEs = params['EnableEs']
+          @CurrentInstances = params['CurrentInstances']
+          @VersionId = params['VersionId']
+          unless params['LogOutputConf'].nil?
+            @LogOutputConf = LogOutputConf.new
+            @LogOutputConf.deserialize(params['LogOutputConf'])
+          end
+          @ExpectedInstances = params['ExpectedInstances']
+          @DeployMode = params['DeployMode']
+          @BuildTaskId = params['BuildTaskId']
+          @EnvironmentId = params['EnvironmentId']
+          @EnvironmentName = params['EnvironmentName']
+          @ApplicationId = params['ApplicationId']
+          @ApplicationName = params['ApplicationName']
+          @UnderDeploying = params['UnderDeploying']
         end
       end
 

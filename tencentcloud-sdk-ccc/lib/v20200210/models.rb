@@ -307,6 +307,55 @@ module TencentCloud
         end
       end
 
+      # CreateCCCSkillGroup请求参数结构体
+      class CreateCCCSkillGroupRequest < TencentCloud::Common::AbstractModel
+        # @param SdkAppId: 应用 ID（必填）
+        # @type SdkAppId: Integer
+        # @param SkillGroupName: 技能组名称
+        # @type SkillGroupName: String
+        # @param SkillGroupType: 技能组类型0-电话，1-在线，3-音频，4-视频
+        # @type SkillGroupType: Integer
+        # @param MaxConcurrency: 技能组接待人数上限（该技能组中1个座席可接待的人数上限）默认为1。1、若技能组类型为在线，则接待上限可设置为1及以上
+        # 2、若技能组类型为电话、音频、视频，则接待上线必须只能为1
+        # @type MaxConcurrency: Integer
+
+        attr_accessor :SdkAppId, :SkillGroupName, :SkillGroupType, :MaxConcurrency
+        
+        def initialize(sdkappid=nil, skillgroupname=nil, skillgrouptype=nil, maxconcurrency=nil)
+          @SdkAppId = sdkappid
+          @SkillGroupName = skillgroupname
+          @SkillGroupType = skillgrouptype
+          @MaxConcurrency = maxconcurrency
+        end
+
+        def deserialize(params)
+          @SdkAppId = params['SdkAppId']
+          @SkillGroupName = params['SkillGroupName']
+          @SkillGroupType = params['SkillGroupType']
+          @MaxConcurrency = params['MaxConcurrency']
+        end
+      end
+
+      # CreateCCCSkillGroup返回参数结构体
+      class CreateCCCSkillGroupResponse < TencentCloud::Common::AbstractModel
+        # @param SkillGroupId: 技能组ID
+        # @type SkillGroupId: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :SkillGroupId, :RequestId
+        
+        def initialize(skillgroupid=nil, requestid=nil)
+          @SkillGroupId = skillgroupid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @SkillGroupId = params['SkillGroupId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateCallOutSession请求参数结构体
       class CreateCallOutSessionRequest < TencentCloud::Common::AbstractModel
         # @param SdkAppId: 应用 ID

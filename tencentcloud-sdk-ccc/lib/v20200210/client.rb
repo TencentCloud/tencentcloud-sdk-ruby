@@ -77,6 +77,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 创建技能组
+
+        # @param request: Request instance for CreateCCCSkillGroup.
+        # @type request: :class:`Tencentcloud::ccc::V20200210::CreateCCCSkillGroupRequest`
+        # @rtype: :class:`Tencentcloud::ccc::V20200210::CreateCCCSkillGroupResponse`
+        def CreateCCCSkillGroup(request)
+          body = send_request('CreateCCCSkillGroup', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateCCCSkillGroupResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 创建外呼会话，当前仅支持双呼，即先使用平台号码呼出到坐席手机上，坐席接听后，然后再外呼用户，而且由于运营商频率限制，坐席手机号必须先加白名单，避免频控导致外呼失败。
 
         # @param request: Request instance for CreateCallOutSession.

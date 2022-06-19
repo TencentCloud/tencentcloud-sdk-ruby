@@ -375,14 +375,17 @@ module TencentCloud
         # @type NetworkMode: String
         # @param LanguageEnvironment: 语言
         # @type LanguageEnvironment: String
+        # @param ReportMethod: 上报方式
+        # @type ReportMethod: String
 
-        attr_accessor :InstanceId, :AgentType, :NetworkMode, :LanguageEnvironment
+        attr_accessor :InstanceId, :AgentType, :NetworkMode, :LanguageEnvironment, :ReportMethod
         
-        def initialize(instanceid=nil, agenttype=nil, networkmode=nil, languageenvironment=nil)
+        def initialize(instanceid=nil, agenttype=nil, networkmode=nil, languageenvironment=nil, reportmethod=nil)
           @InstanceId = instanceid
           @AgentType = agenttype
           @NetworkMode = networkmode
           @LanguageEnvironment = languageenvironment
+          @ReportMethod = reportmethod
         end
 
         def deserialize(params)
@@ -390,6 +393,7 @@ module TencentCloud
           @AgentType = params['AgentType']
           @NetworkMode = params['NetworkMode']
           @LanguageEnvironment = params['LanguageEnvironment']
+          @ReportMethod = params['ReportMethod']
         end
       end
 
@@ -495,7 +499,7 @@ module TencentCloud
         # @type Metrics: Array
         # @param InstanceId: 实例ID
         # @type InstanceId: String
-        # @param ViewName: 视图名称
+        # @param ViewName: 视图名称，不可自定义输入。支持：service_metric
         # @type ViewName: String
         # @param GroupBy: 聚合维度，支持：service.name（服务名）、span.kind （客户端/服务端视角）维度进行聚合。
         # @type GroupBy: Array

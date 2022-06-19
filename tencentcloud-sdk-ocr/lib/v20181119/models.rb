@@ -3258,9 +3258,11 @@ module TencentCloud
         # 8：通用机打发票
         # 9：汽车票
         # 10：轮船票
-        # 11：增值税发票（卷票 ）
+        # 11：增值税发票（卷票）
         # 12：购车发票
         # 13：过路过桥费发票
+        # 15：非税发票
+        # 16：全电发票
         # @type Type: Integer
         # @param Rect: 识别出的图片在混贴票据图片中的位置信息。与Angel结合可以得出原图位置，组成RotatedRect((X+0.5\*Width,Y+0.5\*Height), (Width, Height), Angle)，详情可参考OpenCV文档。
         # @type Rect: :class:`Tencentcloud::Ocr.v20181119.models.Rect`
