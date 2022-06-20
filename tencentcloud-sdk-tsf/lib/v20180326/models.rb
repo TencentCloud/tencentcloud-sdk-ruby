@@ -841,6 +841,111 @@ module TencentCloud
         end
       end
 
+      # AssociateBusinessLogConfig请求参数结构体
+      class AssociateBusinessLogConfigRequest < TencentCloud::Common::AbstractModel
+        # @param GroupId: TSF分组ID
+        # @type GroupId: String
+        # @param ConfigIdList: 日志配置项ID列表
+        # @type ConfigIdList: Array
+
+        attr_accessor :GroupId, :ConfigIdList
+        
+        def initialize(groupid=nil, configidlist=nil)
+          @GroupId = groupid
+          @ConfigIdList = configidlist
+        end
+
+        def deserialize(params)
+          @GroupId = params['GroupId']
+          @ConfigIdList = params['ConfigIdList']
+        end
+      end
+
+      # AssociateBusinessLogConfig返回参数结构体
+      class AssociateBusinessLogConfigResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 操作结果
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Result: Boolean
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+        
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Result = params['Result']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # AssociateConfigWithGroup请求参数结构体
+      class AssociateConfigWithGroupRequest < TencentCloud::Common::AbstractModel
+        # @param ConfigId: 配置项id
+        # @type ConfigId: String
+        # @param Groups: 部署组信息
+        # @type Groups: Array
+        # @param SelectAll: 是否选择全部投递，1 表示全部，0或不填表示非全部
+        # @type SelectAll: Integer
+        # @param NamespaceId: 命名空间id
+        # @type NamespaceId: String
+        # @param ClusterId: 集群id
+        # @type ClusterId: String
+        # @param SearchWord: 模糊搜索关键词
+        # @type SearchWord: String
+
+        attr_accessor :ConfigId, :Groups, :SelectAll, :NamespaceId, :ClusterId, :SearchWord
+        
+        def initialize(configid=nil, groups=nil, selectall=nil, namespaceid=nil, clusterid=nil, searchword=nil)
+          @ConfigId = configid
+          @Groups = groups
+          @SelectAll = selectall
+          @NamespaceId = namespaceid
+          @ClusterId = clusterid
+          @SearchWord = searchword
+        end
+
+        def deserialize(params)
+          @ConfigId = params['ConfigId']
+          unless params['Groups'].nil?
+            @Groups = []
+            params['Groups'].each do |i|
+              groupinfo_tmp = GroupInfo.new
+              groupinfo_tmp.deserialize(i)
+              @Groups << groupinfo_tmp
+            end
+          end
+          @SelectAll = params['SelectAll']
+          @NamespaceId = params['NamespaceId']
+          @ClusterId = params['ClusterId']
+          @SearchWord = params['SearchWord']
+        end
+      end
+
+      # AssociateConfigWithGroup返回参数结构体
+      class AssociateConfigWithGroupResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 绑定是否成功
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Result: Boolean
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+        
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Result = params['Result']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # BindApiGroup请求参数结构体
       class BindApiGroupRequest < TencentCloud::Common::AbstractModel
         # @param GroupGatewayList: 分组绑定网关列表
@@ -924,6 +1029,184 @@ module TencentCloud
         def deserialize(params)
           @Result = params['Result']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 业务日志配置关联部署组信息
+      class BusinesLogConfigAssociatedGroup < TencentCloud::Common::AbstractModel
+        # @param GroupId: 部署组ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GroupId: String
+        # @param GroupName: 部署组名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GroupName: String
+        # @param ApplicationId: 部署组所属应用ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ApplicationId: String
+        # @param ApplicationName: 部署组所属应用名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ApplicationName: String
+        # @param ApplicationType: 部署组所属应用类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ApplicationType: String
+        # @param NamespaceId: 部署组所属命名空间ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NamespaceId: String
+        # @param NamespaceName: 部署组所属命名空间名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NamespaceName: String
+        # @param ClusterId: 部署组所属集群ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClusterId: String
+        # @param ClusterName: 部署组所属集群名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClusterName: String
+        # @param ClusterType: 部署组所属集群类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClusterType: String
+        # @param AssociatedTime: 部署组关联日志配置时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AssociatedTime: String
+
+        attr_accessor :GroupId, :GroupName, :ApplicationId, :ApplicationName, :ApplicationType, :NamespaceId, :NamespaceName, :ClusterId, :ClusterName, :ClusterType, :AssociatedTime
+        
+        def initialize(groupid=nil, groupname=nil, applicationid=nil, applicationname=nil, applicationtype=nil, namespaceid=nil, namespacename=nil, clusterid=nil, clustername=nil, clustertype=nil, associatedtime=nil)
+          @GroupId = groupid
+          @GroupName = groupname
+          @ApplicationId = applicationid
+          @ApplicationName = applicationname
+          @ApplicationType = applicationtype
+          @NamespaceId = namespaceid
+          @NamespaceName = namespacename
+          @ClusterId = clusterid
+          @ClusterName = clustername
+          @ClusterType = clustertype
+          @AssociatedTime = associatedtime
+        end
+
+        def deserialize(params)
+          @GroupId = params['GroupId']
+          @GroupName = params['GroupName']
+          @ApplicationId = params['ApplicationId']
+          @ApplicationName = params['ApplicationName']
+          @ApplicationType = params['ApplicationType']
+          @NamespaceId = params['NamespaceId']
+          @NamespaceName = params['NamespaceName']
+          @ClusterId = params['ClusterId']
+          @ClusterName = params['ClusterName']
+          @ClusterType = params['ClusterType']
+          @AssociatedTime = params['AssociatedTime']
+        end
+      end
+
+      # 业务日志配置
+      class BusinessLogConfig < TencentCloud::Common::AbstractModel
+        # @param ConfigId: 配置项ID
+        # @type ConfigId: String
+        # @param ConfigName: 配置项名称
+        # @type ConfigName: String
+        # @param ConfigPath: 配置项日志路径
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ConfigPath: String
+        # @param ConfigDesc: 配置项描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ConfigDesc: String
+        # @param ConfigTags: 配置项标签
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ConfigTags: String
+        # @param ConfigPipeline: 配置项对应的ES管道
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ConfigPipeline: String
+        # @param ConfigCreateTime: 配置项创建时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ConfigCreateTime: String
+        # @param ConfigUpdateTime: 配置项更新时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ConfigUpdateTime: String
+        # @param ConfigSchema: 配置项解析规则
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ConfigSchema: :class:`Tencentcloud::Tsf.v20180326.models.BusinessLogConfigSchema`
+        # @param ConfigAssociatedGroups: 配置项关联部署组
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ConfigAssociatedGroups: Array
+
+        attr_accessor :ConfigId, :ConfigName, :ConfigPath, :ConfigDesc, :ConfigTags, :ConfigPipeline, :ConfigCreateTime, :ConfigUpdateTime, :ConfigSchema, :ConfigAssociatedGroups
+        
+        def initialize(configid=nil, configname=nil, configpath=nil, configdesc=nil, configtags=nil, configpipeline=nil, configcreatetime=nil, configupdatetime=nil, configschema=nil, configassociatedgroups=nil)
+          @ConfigId = configid
+          @ConfigName = configname
+          @ConfigPath = configpath
+          @ConfigDesc = configdesc
+          @ConfigTags = configtags
+          @ConfigPipeline = configpipeline
+          @ConfigCreateTime = configcreatetime
+          @ConfigUpdateTime = configupdatetime
+          @ConfigSchema = configschema
+          @ConfigAssociatedGroups = configassociatedgroups
+        end
+
+        def deserialize(params)
+          @ConfigId = params['ConfigId']
+          @ConfigName = params['ConfigName']
+          @ConfigPath = params['ConfigPath']
+          @ConfigDesc = params['ConfigDesc']
+          @ConfigTags = params['ConfigTags']
+          @ConfigPipeline = params['ConfigPipeline']
+          @ConfigCreateTime = params['ConfigCreateTime']
+          @ConfigUpdateTime = params['ConfigUpdateTime']
+          unless params['ConfigSchema'].nil?
+            @ConfigSchema = BusinessLogConfigSchema.new
+            @ConfigSchema.deserialize(params['ConfigSchema'])
+          end
+          unless params['ConfigAssociatedGroups'].nil?
+            @ConfigAssociatedGroups = []
+            params['ConfigAssociatedGroups'].each do |i|
+              busineslogconfigassociatedgroup_tmp = BusinesLogConfigAssociatedGroup.new
+              busineslogconfigassociatedgroup_tmp.deserialize(i)
+              @ConfigAssociatedGroups << busineslogconfigassociatedgroup_tmp
+            end
+          end
+        end
+      end
+
+      # 业务日志配置解析规则
+      class BusinessLogConfigSchema < TencentCloud::Common::AbstractModel
+        # @param SchemaType: 解析规则类型
+        # @type SchemaType: Integer
+        # @param SchemaContent: 解析规则内容
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SchemaContent: String
+        # @param SchemaDateFormat: 解析规则时间格式
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SchemaDateFormat: String
+        # @param SchemaMultilinePattern: 解析规则对应的多行匹配规则
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SchemaMultilinePattern: String
+        # @param SchemaCreateTime: 解析规则创建时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SchemaCreateTime: String
+        # @param SchemaPatternLayout: 用户填写的解析规则
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SchemaPatternLayout: String
+
+        attr_accessor :SchemaType, :SchemaContent, :SchemaDateFormat, :SchemaMultilinePattern, :SchemaCreateTime, :SchemaPatternLayout
+        
+        def initialize(schematype=nil, schemacontent=nil, schemadateformat=nil, schemamultilinepattern=nil, schemacreatetime=nil, schemapatternlayout=nil)
+          @SchemaType = schematype
+          @SchemaContent = schemacontent
+          @SchemaDateFormat = schemadateformat
+          @SchemaMultilinePattern = schemamultilinepattern
+          @SchemaCreateTime = schemacreatetime
+          @SchemaPatternLayout = schemapatternlayout
+        end
+
+        def deserialize(params)
+          @SchemaType = params['SchemaType']
+          @SchemaContent = params['SchemaContent']
+          @SchemaDateFormat = params['SchemaDateFormat']
+          @SchemaMultilinePattern = params['SchemaMultilinePattern']
+          @SchemaCreateTime = params['SchemaCreateTime']
+          @SchemaPatternLayout = params['SchemaPatternLayout']
         end
       end
 
@@ -4246,6 +4529,77 @@ module TencentCloud
         end
       end
 
+      # 描述投递配置项绑定的部署组
+      class DeliveryConfigBindGroup < TencentCloud::Common::AbstractModel
+        # @param ConfigId: 配置id
+        # @type ConfigId: String
+        # @param ConfigName: 配置名
+        # @type ConfigName: String
+        # @param CollectPath: 采集路径
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CollectPath: Array
+        # @param Groups: 关联部署组信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Groups: Array
+        # @param CreateTime: 创建时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateTime: String
+
+        attr_accessor :ConfigId, :ConfigName, :CollectPath, :Groups, :CreateTime
+        
+        def initialize(configid=nil, configname=nil, collectpath=nil, groups=nil, createtime=nil)
+          @ConfigId = configid
+          @ConfigName = configname
+          @CollectPath = collectpath
+          @Groups = groups
+          @CreateTime = createtime
+        end
+
+        def deserialize(params)
+          @ConfigId = params['ConfigId']
+          @ConfigName = params['ConfigName']
+          @CollectPath = params['CollectPath']
+          unless params['Groups'].nil?
+            @Groups = []
+            params['Groups'].each do |i|
+              groupinfo_tmp = GroupInfo.new
+              groupinfo_tmp.deserialize(i)
+              @Groups << groupinfo_tmp
+            end
+          end
+          @CreateTime = params['CreateTime']
+        end
+      end
+
+      # 描述配置项绑定的部署组
+      class DeliveryConfigBindGroups < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 公共条数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalCount: Integer
+        # @param Content: 内容
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Content: Array
+
+        attr_accessor :TotalCount, :Content
+        
+        def initialize(totalcount=nil, content=nil)
+          @TotalCount = totalcount
+          @Content = content
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['Content'].nil?
+            @Content = []
+            params['Content'].each do |i|
+              deliveryconfigbindgroup_tmp = DeliveryConfigBindGroup.new
+              deliveryconfigbindgroup_tmp.deserialize(i)
+              @Content << deliveryconfigbindgroup_tmp
+            end
+          end
+        end
+      end
+
       # DeployContainerGroup请求参数结构体
       class DeployContainerGroupRequest < TencentCloud::Common::AbstractModel
         # @param GroupId: 部署组ID，分组唯一标识
@@ -4917,6 +5271,38 @@ module TencentCloud
         end
       end
 
+      # DescribeApplicationBusinessLogConfig请求参数结构体
+      class DescribeApplicationBusinessLogConfigRequest < TencentCloud::Common::AbstractModel
+        # @param ApplicationId: TSF应用ID
+        # @type ApplicationId: String
+
+        attr_accessor :ApplicationId
+        
+        def initialize(applicationid=nil)
+          @ApplicationId = applicationid
+        end
+
+        def deserialize(params)
+          @ApplicationId = params['ApplicationId']
+        end
+      end
+
+      # DescribeApplicationBusinessLogConfig返回参数结构体
+      class DescribeApplicationBusinessLogConfigResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeApplication请求参数结构体
       class DescribeApplicationRequest < TencentCloud::Common::AbstractModel
         # @param ApplicationId: 应用ID
@@ -5058,6 +5444,102 @@ module TencentCloud
         def deserialize(params)
           unless params['Result'].nil?
             @Result = OverviewBasicResourceUsage.new
+            @Result.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeBusinessLogConfig请求参数结构体
+      class DescribeBusinessLogConfigRequest < TencentCloud::Common::AbstractModel
+        # @param ConfigId: 配置项ID
+        # @type ConfigId: String
+
+        attr_accessor :ConfigId
+        
+        def initialize(configid=nil)
+          @ConfigId = configid
+        end
+
+        def deserialize(params)
+          @ConfigId = params['ConfigId']
+        end
+      end
+
+      # DescribeBusinessLogConfig返回参数结构体
+      class DescribeBusinessLogConfigResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 日志配置项
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Result: :class:`Tencentcloud::Tsf.v20180326.models.BusinessLogConfig`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+        
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Result'].nil?
+            @Result = BusinessLogConfig.new
+            @Result.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeBusinessLogConfigs请求参数结构体
+      class DescribeBusinessLogConfigsRequest < TencentCloud::Common::AbstractModel
+        # @param Offset: 偏移量，取值范围大于等于0，默认值为0
+        # @type Offset: Integer
+        # @param Limit: 单页请求配置数量，取值范围[1, 50]，默认值为10
+        # @type Limit: Integer
+        # @param SearchWord: 模糊匹配关键词
+        # @type SearchWord: String
+        # @param DisableProgramAuthCheck: 无
+        # @type DisableProgramAuthCheck: Boolean
+        # @param ConfigIdList: 无
+        # @type ConfigIdList: Array
+
+        attr_accessor :Offset, :Limit, :SearchWord, :DisableProgramAuthCheck, :ConfigIdList
+        
+        def initialize(offset=nil, limit=nil, searchword=nil, disableprogramauthcheck=nil, configidlist=nil)
+          @Offset = offset
+          @Limit = limit
+          @SearchWord = searchword
+          @DisableProgramAuthCheck = disableprogramauthcheck
+          @ConfigIdList = configidlist
+        end
+
+        def deserialize(params)
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @SearchWord = params['SearchWord']
+          @DisableProgramAuthCheck = params['DisableProgramAuthCheck']
+          @ConfigIdList = params['ConfigIdList']
+        end
+      end
+
+      # DescribeBusinessLogConfigs返回参数结构体
+      class DescribeBusinessLogConfigsResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 业务日志配置列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Result: :class:`Tencentcloud::Tsf.v20180326.models.TsfPageBusinessLogConfig`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+        
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Result'].nil?
+            @Result = TsfPageBusinessLogConfig.new
             @Result.deserialize(params['Result'])
           end
           @RequestId = params['RequestId']
@@ -5668,6 +6150,132 @@ module TencentCloud
         end
       end
 
+      # DescribeDeliveryConfigByGroupId请求参数结构体
+      class DescribeDeliveryConfigByGroupIdRequest < TencentCloud::Common::AbstractModel
+        # @param GroupId: 部署组id
+        # @type GroupId: String
+
+        attr_accessor :GroupId
+        
+        def initialize(groupid=nil)
+          @GroupId = groupid
+        end
+
+        def deserialize(params)
+          @GroupId = params['GroupId']
+        end
+      end
+
+      # DescribeDeliveryConfigByGroupId返回参数结构体
+      class DescribeDeliveryConfigByGroupIdResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 投递kafak配置项
+        # @type Result: :class:`Tencentcloud::Tsf.v20180326.models.SimpleKafkaDeliveryConfig`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+        
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Result'].nil?
+            @Result = SimpleKafkaDeliveryConfig.new
+            @Result.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeDeliveryConfig请求参数结构体
+      class DescribeDeliveryConfigRequest < TencentCloud::Common::AbstractModel
+        # @param ConfigId: 投递配置id
+        # @type ConfigId: String
+
+        attr_accessor :ConfigId
+        
+        def initialize(configid=nil)
+          @ConfigId = configid
+        end
+
+        def deserialize(params)
+          @ConfigId = params['ConfigId']
+        end
+      end
+
+      # DescribeDeliveryConfig返回参数结构体
+      class DescribeDeliveryConfigResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 投递kafka配置
+        # @type Result: :class:`Tencentcloud::Tsf.v20180326.models.KafkaDeliveryConfig`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+        
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Result'].nil?
+            @Result = KafkaDeliveryConfig.new
+            @Result.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeDeliveryConfigs请求参数结构体
+      class DescribeDeliveryConfigsRequest < TencentCloud::Common::AbstractModel
+        # @param SearchWord: 关键字
+        # @type SearchWord: String
+        # @param Offset: 偏移
+        # @type Offset: Integer
+        # @param Limit: 搜索条数
+        # @type Limit: Integer
+
+        attr_accessor :SearchWord, :Offset, :Limit
+        
+        def initialize(searchword=nil, offset=nil, limit=nil)
+          @SearchWord = searchword
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @SearchWord = params['SearchWord']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeDeliveryConfigs返回参数结构体
+      class DescribeDeliveryConfigsResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 投递项关联部署组信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Result: :class:`Tencentcloud::Tsf.v20180326.models.DeliveryConfigBindGroups`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+        
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Result'].nil?
+            @Result = DeliveryConfigBindGroups.new
+            @Result.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeDownloadInfo请求参数结构体
       class DescribeDownloadInfoRequest < TencentCloud::Common::AbstractModel
         # @param ApplicationId: 应用ID
@@ -6084,6 +6692,46 @@ module TencentCloud
         def deserialize(params)
           unless params['Result'].nil?
             @Result = TsfPageGatewayDeployGroup.new
+            @Result.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeGroupBusinessLogConfigs请求参数结构体
+      class DescribeGroupBusinessLogConfigsRequest < TencentCloud::Common::AbstractModel
+        # @param GroupId: 分组ID
+        # @type GroupId: String
+
+        attr_accessor :GroupId
+        
+        def initialize(groupid=nil)
+          @GroupId = groupid
+        end
+
+        def deserialize(params)
+          @GroupId = params['GroupId']
+        end
+      end
+
+      # DescribeGroupBusinessLogConfigs返回参数结构体
+      class DescribeGroupBusinessLogConfigsResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 业务日志配置列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Result: :class:`Tencentcloud::Tsf.v20180326.models.TsfPageBusinessLogConfig`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+        
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Result'].nil?
+            @Result = TsfPageBusinessLogConfig.new
             @Result.deserialize(params['Result'])
           end
           @RequestId = params['RequestId']
@@ -9180,6 +9828,88 @@ module TencentCloud
         end
       end
 
+      # DisassociateBusinessLogConfig请求参数结构体
+      class DisassociateBusinessLogConfigRequest < TencentCloud::Common::AbstractModel
+        # @param ConfigIdList: 业务日志配置项ID列表
+        # @type ConfigIdList: Array
+        # @param GroupId: TSF分组ID
+        # @type GroupId: String
+
+        attr_accessor :ConfigIdList, :GroupId
+        
+        def initialize(configidlist=nil, groupid=nil)
+          @ConfigIdList = configidlist
+          @GroupId = groupid
+        end
+
+        def deserialize(params)
+          @ConfigIdList = params['ConfigIdList']
+          @GroupId = params['GroupId']
+        end
+      end
+
+      # DisassociateBusinessLogConfig返回参数结构体
+      class DisassociateBusinessLogConfigResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 操作结果
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Result: Boolean
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+        
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Result = params['Result']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DisassociateKafkaConfig请求参数结构体
+      class DisassociateKafkaConfigRequest < TencentCloud::Common::AbstractModel
+        # @param ConfigId: 配置项id
+        # @type ConfigId: String
+        # @param GroupIds: 部署组id
+        # @type GroupIds: Array
+
+        attr_accessor :ConfigId, :GroupIds
+        
+        def initialize(configid=nil, groupids=nil)
+          @ConfigId = configid
+          @GroupIds = groupids
+        end
+
+        def deserialize(params)
+          @ConfigId = params['ConfigId']
+          @GroupIds = params['GroupIds']
+        end
+      end
+
+      # DisassociateKafkaConfig返回参数结构体
+      class DisassociateKafkaConfigResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 解除绑定是否成功
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Result: Boolean
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+        
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Result = params['Result']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DraftApiGroup请求参数结构体
       class DraftApiGroupRequest < TencentCloud::Common::AbstractModel
         # @param GroupId: Api 分组ID
@@ -10053,6 +10783,50 @@ module TencentCloud
               @TopAvgTimeCost << groupusestatisticsentity_tmp
             end
           end
+        end
+      end
+
+      # 日志投递kafka用，描述部署组信息
+      class GroupInfo < TencentCloud::Common::AbstractModel
+        # @param GroupId: 部署组id
+        # @type GroupId: String
+        # @param GroupName: 部署组名称
+        # @type GroupName: String
+        # @param ClusterType: 集群类型
+        # @type ClusterType: String
+        # @param ClusterId: 集群id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClusterId: String
+        # @param ClusterName: 集群名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClusterName: String
+        # @param NamespaceName: 命名空间名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NamespaceName: String
+        # @param AssociateTime: 绑定时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AssociateTime: String
+
+        attr_accessor :GroupId, :GroupName, :ClusterType, :ClusterId, :ClusterName, :NamespaceName, :AssociateTime
+        
+        def initialize(groupid=nil, groupname=nil, clustertype=nil, clusterid=nil, clustername=nil, namespacename=nil, associatetime=nil)
+          @GroupId = groupid
+          @GroupName = groupname
+          @ClusterType = clustertype
+          @ClusterId = clusterid
+          @ClusterName = clustername
+          @NamespaceName = namespacename
+          @AssociateTime = associatetime
+        end
+
+        def deserialize(params)
+          @GroupId = params['GroupId']
+          @GroupName = params['GroupName']
+          @ClusterType = params['ClusterType']
+          @ClusterId = params['ClusterId']
+          @ClusterName = params['ClusterName']
+          @NamespaceName = params['NamespaceName']
+          @AssociateTime = params['AssociateTime']
         end
       end
 
@@ -11333,6 +12107,53 @@ module TencentCloud
               @ClassCount << curvepoint_tmp
             end
           end
+        end
+      end
+
+      # 投递kafka配置项
+      class KafkaDeliveryConfig < TencentCloud::Common::AbstractModel
+        # @param ConfigId: 配置项id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ConfigId: String
+        # @param ConfigName: 配置名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ConfigName: String
+        # @param CollectPath: 采集路径
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CollectPath: Array
+        # @param KafkaVIp: kafka vip
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type KafkaVIp: String
+        # @param KafkaVPort: kafka vport
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type KafkaVPort: String
+        # @param Topic: kafka topic
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Topic: String
+        # @param LineRule: 换行规则
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LineRule: String
+
+        attr_accessor :ConfigId, :ConfigName, :CollectPath, :KafkaVIp, :KafkaVPort, :Topic, :LineRule
+        
+        def initialize(configid=nil, configname=nil, collectpath=nil, kafkavip=nil, kafkavport=nil, topic=nil, linerule=nil)
+          @ConfigId = configid
+          @ConfigName = configname
+          @CollectPath = collectpath
+          @KafkaVIp = kafkavip
+          @KafkaVPort = kafkavport
+          @Topic = topic
+          @LineRule = linerule
+        end
+
+        def deserialize(params)
+          @ConfigId = params['ConfigId']
+          @ConfigName = params['ConfigName']
+          @CollectPath = params['CollectPath']
+          @KafkaVIp = params['KafkaVIp']
+          @KafkaVPort = params['KafkaVPort']
+          @Topic = params['Topic']
+          @LineRule = params['LineRule']
         end
       end
 
@@ -13383,6 +14204,50 @@ module TencentCloud
         end
       end
 
+      # ReassociateBusinessLogConfig请求参数结构体
+      class ReassociateBusinessLogConfigRequest < TencentCloud::Common::AbstractModel
+        # @param ConfigId: 原关联日志配置ID
+        # @type ConfigId: String
+        # @param NewConfigId: 新关联日志配置ID
+        # @type NewConfigId: String
+        # @param ApplicationId: TSF应用ID
+        # @type ApplicationId: String
+        # @param GroupId: TSF部署组ID
+        # @type GroupId: String
+
+        attr_accessor :ConfigId, :NewConfigId, :ApplicationId, :GroupId
+        
+        def initialize(configid=nil, newconfigid=nil, applicationid=nil, groupid=nil)
+          @ConfigId = configid
+          @NewConfigId = newconfigid
+          @ApplicationId = applicationid
+          @GroupId = groupid
+        end
+
+        def deserialize(params)
+          @ConfigId = params['ConfigId']
+          @NewConfigId = params['NewConfigId']
+          @ApplicationId = params['ApplicationId']
+          @GroupId = params['GroupId']
+        end
+      end
+
+      # ReassociateBusinessLogConfig返回参数结构体
+      class ReassociateBusinessLogConfigResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # RedoTaskBatch请求参数结构体
       class RedoTaskBatchRequest < TencentCloud::Common::AbstractModel
         # @param TaskId: 任务ID
@@ -14825,6 +15690,28 @@ module TencentCloud
         end
       end
 
+      # 日志投递kafka配置描述的缩简版
+      class SimpleKafkaDeliveryConfig < TencentCloud::Common::AbstractModel
+        # @param ConfigId: 配置项id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ConfigId: String
+        # @param ConfigName: 配置项名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ConfigName: String
+
+        attr_accessor :ConfigId, :ConfigName
+        
+        def initialize(configid=nil, configname=nil)
+          @ConfigId = configid
+          @ConfigName = configname
+        end
+
+        def deserialize(params)
+          @ConfigId = params['ConfigId']
+          @ConfigName = params['ConfigName']
+        end
+      end
+
       # StartContainerGroup请求参数结构体
       class StartContainerGroupRequest < TencentCloud::Common::AbstractModel
         # @param GroupId: 部署组ID
@@ -15632,6 +16519,35 @@ module TencentCloud
               applicationforpage_tmp = ApplicationForPage.new
               applicationforpage_tmp.deserialize(i)
               @Content << applicationforpage_tmp
+            end
+          end
+        end
+      end
+
+      # 业务日志配置项列表
+      class TsfPageBusinessLogConfig < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 总条数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalCount: Integer
+        # @param Content: 业务日志配置项列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Content: Array
+
+        attr_accessor :TotalCount, :Content
+        
+        def initialize(totalcount=nil, content=nil)
+          @TotalCount = totalcount
+          @Content = content
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['Content'].nil?
+            @Content = []
+            params['Content'].each do |i|
+              businesslogconfig_tmp = BusinessLogConfig.new
+              businesslogconfig_tmp.deserialize(i)
+              @Content << businesslogconfig_tmp
             end
           end
         end

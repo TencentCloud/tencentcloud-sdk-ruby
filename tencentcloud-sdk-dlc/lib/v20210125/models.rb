@@ -1621,19 +1621,23 @@ module TencentCloud
         # @type Offset: Integer
         # @param Limit: 分页查询Limit
         # @type Limit: Integer
+        # @param TaskId: 执行实例id
+        # @type TaskId: String
 
-        attr_accessor :JobId, :Offset, :Limit
+        attr_accessor :JobId, :Offset, :Limit, :TaskId
         
-        def initialize(jobid=nil, offset=nil, limit=nil)
+        def initialize(jobid=nil, offset=nil, limit=nil, taskid=nil)
           @JobId = jobid
           @Offset = offset
           @Limit = limit
+          @TaskId = taskid
         end
 
         def deserialize(params)
           @JobId = params['JobId']
           @Offset = params['Offset']
           @Limit = params['Limit']
+          @TaskId = params['TaskId']
         end
       end
 

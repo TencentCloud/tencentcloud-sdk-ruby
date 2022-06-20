@@ -257,14 +257,17 @@ module TencentCloud
         # @type Definition: Integer
         # @param WatermarkSet: 水印列表，支持多张图片或文字水印，最大可支持 10 张。
         # @type WatermarkSet: Array
+        # @param TraceWatermark: 溯源水印。
+        # @type TraceWatermark: :class:`Tencentcloud::Vod.v20180717.models.TraceWatermarkInput`
         # @param SubtitleSet: 字幕列表，元素为字幕 ID，支持多个字幕，最大可支持16个。
         # @type SubtitleSet: Array
 
-        attr_accessor :Definition, :WatermarkSet, :SubtitleSet
+        attr_accessor :Definition, :WatermarkSet, :TraceWatermark, :SubtitleSet
         
-        def initialize(definition=nil, watermarkset=nil, subtitleset=nil)
+        def initialize(definition=nil, watermarkset=nil, tracewatermark=nil, subtitleset=nil)
           @Definition = definition
           @WatermarkSet = watermarkset
+          @TraceWatermark = tracewatermark
           @SubtitleSet = subtitleset
         end
 
@@ -277,6 +280,10 @@ module TencentCloud
               watermarkinput_tmp.deserialize(i)
               @WatermarkSet << watermarkinput_tmp
             end
+          end
+          unless params['TraceWatermark'].nil?
+            @TraceWatermark = TraceWatermarkInput.new
+            @TraceWatermark.deserialize(params['TraceWatermark'])
           end
           @SubtitleSet = params['SubtitleSet']
         end
@@ -16632,6 +16639,8 @@ module TencentCloud
       class ProcessMediaRequest < TencentCloud::Common::AbstractModel
         # @param FileId: 媒体文件 ID，即该文件在云点播上的全局唯一标识符，在上传成功后由云点播后台分配。可以在 [视频上传完成事件通知](/document/product/266/7830) 或 [云点播控制台](https://console.cloud.tencent.com/vod/media) 获取该字段。
         # @type FileId: String
+        # @param SubAppId: <b>点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。</b>
+        # @type SubAppId: Integer
         # @param MediaProcessTask: 视频处理类型任务参数。
         # @type MediaProcessTask: :class:`Tencentcloud::Vod.v20180717.models.MediaProcessTaskInput`
         # @param AiContentReviewTask: 视频智能识别类型任务参数。
@@ -16650,13 +16659,12 @@ module TencentCloud
         # @type SessionId: String
         # @param ExtInfo: 保留字段，特殊用途时使用。
         # @type ExtInfo: String
-        # @param SubAppId: 点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。
-        # @type SubAppId: Integer
 
-        attr_accessor :FileId, :MediaProcessTask, :AiContentReviewTask, :AiAnalysisTask, :AiRecognitionTask, :TasksPriority, :TasksNotifyMode, :SessionContext, :SessionId, :ExtInfo, :SubAppId
+        attr_accessor :FileId, :SubAppId, :MediaProcessTask, :AiContentReviewTask, :AiAnalysisTask, :AiRecognitionTask, :TasksPriority, :TasksNotifyMode, :SessionContext, :SessionId, :ExtInfo
         
-        def initialize(fileid=nil, mediaprocesstask=nil, aicontentreviewtask=nil, aianalysistask=nil, airecognitiontask=nil, taskspriority=nil, tasksnotifymode=nil, sessioncontext=nil, sessionid=nil, extinfo=nil, subappid=nil)
+        def initialize(fileid=nil, subappid=nil, mediaprocesstask=nil, aicontentreviewtask=nil, aianalysistask=nil, airecognitiontask=nil, taskspriority=nil, tasksnotifymode=nil, sessioncontext=nil, sessionid=nil, extinfo=nil)
           @FileId = fileid
+          @SubAppId = subappid
           @MediaProcessTask = mediaprocesstask
           @AiContentReviewTask = aicontentreviewtask
           @AiAnalysisTask = aianalysistask
@@ -16666,11 +16674,11 @@ module TencentCloud
           @SessionContext = sessioncontext
           @SessionId = sessionid
           @ExtInfo = extinfo
-          @SubAppId = subappid
         end
 
         def deserialize(params)
           @FileId = params['FileId']
+          @SubAppId = params['SubAppId']
           unless params['MediaProcessTask'].nil?
             @MediaProcessTask = MediaProcessTaskInput.new
             @MediaProcessTask.deserialize(params['MediaProcessTask'])
@@ -16692,7 +16700,6 @@ module TencentCloud
           @SessionContext = params['SessionContext']
           @SessionId = params['SessionId']
           @ExtInfo = params['ExtInfo']
-          @SubAppId = params['SubAppId']
         end
       end
 
@@ -19345,6 +19352,22 @@ module TencentCloud
         end
       end
 
+      # 溯源水印参数
+      class TraceWatermarkInput < TencentCloud::Common::AbstractModel
+        # @param Definition: 水印模板 ID。
+        # @type Definition: Integer
+
+        attr_accessor :Definition
+        
+        def initialize(definition=nil)
+          @Definition = definition
+        end
+
+        def deserialize(params)
+          @Definition = params['Definition']
+        end
+      end
+
       # 视频转码播放信息（2017 版）
       class TranscodePlayInfo2017 < TencentCloud::Common::AbstractModel
         # @param Url: 播放地址。
@@ -19436,30 +19459,33 @@ module TencentCloud
         # @type Definition: Integer
         # @param WatermarkSet: 水印列表，支持多张图片或文字水印，最大可支持 10 张。
         # @type WatermarkSet: Array
-        # @param MosaicSet: 马赛克列表，最大可支持 10 张。
-        # @type MosaicSet: Array
+        # @param TraceWatermark: 溯源水印。
+        # @type TraceWatermark: :class:`Tencentcloud::Vod.v20180717.models.TraceWatermarkInput`
         # @param HeadTailSet: 片头片尾列表，支持多片头片尾，最大可支持 10 个。
         # @type HeadTailSet: Array
-        # @param StartTimeOffset: 转码后的视频的起始时间偏移，单位：秒。
-        # <li>不填或填0，表示转码后的视频从原始视频的起始位置开始；</li>
-        # <li>当数值大于0时（假设为 n），表示转码后的视频从原始视频的第 n 秒位置开始；</li>
-        # <li>当数值小于0时（假设为 -n），表示转码后的视频从原始视频结束 n 秒前的位置开始。</li>
-        # @type StartTimeOffset: Float
+        # @param MosaicSet: 马赛克列表，最大可支持 10 张。
+        # @type MosaicSet: Array
         # @param EndTimeOffset: 转码后视频的终止时间偏移，单位：秒。
         # <li>不填或填0，表示转码后的视频持续到原始视频的末尾终止；</li>
         # <li>当数值大于0时（假设为 n），表示转码后的视频持续到原始视频第 n 秒时终止；</li>
         # <li>当数值小于0时（假设为 -n），表示转码后的视频持续到原始视频结束 n 秒前终止。</li>
         # @type EndTimeOffset: Float
+        # @param StartTimeOffset: 转码后的视频的起始时间偏移，单位：秒。
+        # <li>不填或填0，表示转码后的视频从原始视频的起始位置开始；</li>
+        # <li>当数值大于0时（假设为 n），表示转码后的视频从原始视频的第 n 秒位置开始；</li>
+        # <li>当数值小于0时（假设为 -n），表示转码后的视频从原始视频结束 n 秒前的位置开始。</li>
+        # @type StartTimeOffset: Float
 
-        attr_accessor :Definition, :WatermarkSet, :MosaicSet, :HeadTailSet, :StartTimeOffset, :EndTimeOffset
+        attr_accessor :Definition, :WatermarkSet, :TraceWatermark, :HeadTailSet, :MosaicSet, :EndTimeOffset, :StartTimeOffset
         
-        def initialize(definition=nil, watermarkset=nil, mosaicset=nil, headtailset=nil, starttimeoffset=nil, endtimeoffset=nil)
+        def initialize(definition=nil, watermarkset=nil, tracewatermark=nil, headtailset=nil, mosaicset=nil, endtimeoffset=nil, starttimeoffset=nil)
           @Definition = definition
           @WatermarkSet = watermarkset
-          @MosaicSet = mosaicset
+          @TraceWatermark = tracewatermark
           @HeadTailSet = headtailset
-          @StartTimeOffset = starttimeoffset
+          @MosaicSet = mosaicset
           @EndTimeOffset = endtimeoffset
+          @StartTimeOffset = starttimeoffset
         end
 
         def deserialize(params)
@@ -19472,13 +19498,9 @@ module TencentCloud
               @WatermarkSet << watermarkinput_tmp
             end
           end
-          unless params['MosaicSet'].nil?
-            @MosaicSet = []
-            params['MosaicSet'].each do |i|
-              mosaicinput_tmp = MosaicInput.new
-              mosaicinput_tmp.deserialize(i)
-              @MosaicSet << mosaicinput_tmp
-            end
+          unless params['TraceWatermark'].nil?
+            @TraceWatermark = TraceWatermarkInput.new
+            @TraceWatermark.deserialize(params['TraceWatermark'])
           end
           unless params['HeadTailSet'].nil?
             @HeadTailSet = []
@@ -19488,8 +19510,16 @@ module TencentCloud
               @HeadTailSet << headtailtaskinput_tmp
             end
           end
-          @StartTimeOffset = params['StartTimeOffset']
+          unless params['MosaicSet'].nil?
+            @MosaicSet = []
+            params['MosaicSet'].each do |i|
+              mosaicinput_tmp = MosaicInput.new
+              mosaicinput_tmp.deserialize(i)
+              @MosaicSet << mosaicinput_tmp
+            end
+          end
           @EndTimeOffset = params['EndTimeOffset']
+          @StartTimeOffset = params['StartTimeOffset']
         end
       end
 

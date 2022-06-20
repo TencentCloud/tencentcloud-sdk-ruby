@@ -1836,7 +1836,7 @@ module TencentCloud
         # @type EndTime: Integer
         # @param Context: 请求上下文, 用作查询游标
         # @type Context: String
-        # @param Size: 单次获取的历史数据项目的最大数量, 缺省10
+        # @param Size: 查询数据项目的最大数量, 默认为10。假设传Size=10，返回的实际事件数量为N，则 5 <= N <= 10。
         # @type Size: Integer
         # @param EventId: 事件标识符，可以用来指定查询特定的事件，如果不指定，则查询所有事件。
         # @type EventId: String

@@ -1418,64 +1418,6 @@ module TencentCloud
         end
       end
 
-      # MeasureTrtcMcuExternal请求参数结构体
-      class MeasureTrtcMcuExternalRequest < TencentCloud::Common::AbstractModel
-        # @param StartTime: 查询开始时间，格式为YYYY-MM-DD。
-        # @type StartTime: String
-        # @param EndTime: 查询结束时间，格式为YYYY-MM-DD。
-        # 单次查询统计区间最多不能超过2天。
-        # @type EndTime: String
-        # @param SdkAppId: 应用ID，可不传。传应用ID时返回的是该应用的用量，不传时返回多个应用的合计值。
-        # @type SdkAppId: Integer
-
-        attr_accessor :StartTime, :EndTime, :SdkAppId
-        
-        def initialize(starttime=nil, endtime=nil, sdkappid=nil)
-          @StartTime = starttime
-          @EndTime = endtime
-          @SdkAppId = sdkappid
-        end
-
-        def deserialize(params)
-          @StartTime = params['StartTime']
-          @EndTime = params['EndTime']
-          @SdkAppId = params['SdkAppId']
-        end
-      end
-
-      # MeasureTrtcMcuExternal返回参数结构体
-      class MeasureTrtcMcuExternalResponse < TencentCloud::Common::AbstractModel
-        # @param Usages: 应用的用量信息数组。
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Usages: Array
-        # @param Type: 用户计费类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Type: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :Usages, :Type, :RequestId
-        
-        def initialize(usages=nil, type=nil, requestid=nil)
-          @Usages = usages
-          @Type = type
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          unless params['Usages'].nil?
-            @Usages = []
-            params['Usages'].each do |i|
-              onesdkappidtranscodetimeusagesnewinfo_tmp = OneSdkAppIdTranscodeTimeUsagesNewInfo.new
-              onesdkappidtranscodetimeusagesnewinfo_tmp.deserialize(i)
-              @Usages << onesdkappidtranscodetimeusagesnewinfo_tmp
-            end
-          end
-          @Type = params['Type']
-          @RequestId = params['RequestId']
-        end
-      end
-
       # 用户自定义混流布局参数列表。
       class MixLayout < TencentCloud::Common::AbstractModel
         # @param Top: 画布上该画面左上角的 y 轴坐标，取值范围 [0, 1920]，不能超过画布的高。
@@ -1773,37 +1715,6 @@ module TencentCloud
               sdkappidtrtcmcutranscodetimeusage_tmp = SdkAppIdTrtcMcuTranscodeTimeUsage.new
               sdkappidtrtcmcutranscodetimeusage_tmp.deserialize(i)
               @SdkAppIdTranscodeTimeUsages << sdkappidtrtcmcutranscodetimeusage_tmp
-            end
-          end
-          @TotalNum = params['TotalNum']
-          @SdkAppId = params['SdkAppId']
-        end
-      end
-
-      # 旁路转码时长的查询结果
-      class OneSdkAppIdTranscodeTimeUsagesNewInfo < TencentCloud::Common::AbstractModel
-        # @param SdkAppIdTranscodeTimeUsages: 旁路转码时长查询结果数组
-        # @type SdkAppIdTranscodeTimeUsages: Array
-        # @param TotalNum: 查询记录数量
-        # @type TotalNum: Integer
-        # @param SdkAppId: 所查询的应用ID，可能值为:1-应用的应用ID，2-total，显示为total则表示查询的是所有应用的用量合计值。
-        # @type SdkAppId: String
-
-        attr_accessor :SdkAppIdTranscodeTimeUsages, :TotalNum, :SdkAppId
-        
-        def initialize(sdkappidtranscodetimeusages=nil, totalnum=nil, sdkappid=nil)
-          @SdkAppIdTranscodeTimeUsages = sdkappidtranscodetimeusages
-          @TotalNum = totalnum
-          @SdkAppId = sdkappid
-        end
-
-        def deserialize(params)
-          unless params['SdkAppIdTranscodeTimeUsages'].nil?
-            @SdkAppIdTranscodeTimeUsages = []
-            params['SdkAppIdTranscodeTimeUsages'].each do |i|
-              sdkappidtrtcmcutranscodetimenewusage_tmp = SdkAppIdTrtcMcuTranscodeTimeNewUsage.new
-              sdkappidtrtcmcutranscodetimenewusage_tmp.deserialize(i)
-              @SdkAppIdTranscodeTimeUsages << sdkappidtrtcmcutranscodetimenewusage_tmp
             end
           end
           @TotalNum = params['TotalNum']
@@ -2264,71 +2175,6 @@ module TencentCloud
               @Usages << recordusage_tmp
             end
           end
-        end
-      end
-
-      # 查询旁路转码计费时长。
-      # 查询时间小于等于1天时，返回每5分钟粒度的数据；查询时间大于1天时，返回按天汇总的数据。
-      class SdkAppIdTrtcMcuTranscodeTimeNewUsage < TencentCloud::Common::AbstractModel
-        # @param TimeKey: 本组数据对应的时间点，格式如：2020-09-07或2020-09-07 00:05:05。
-        # @type TimeKey: String
-        # @param AudioTime: 语音时长，单位：秒。
-        # @type AudioTime: Integer
-        # @param VideoTimeH264SD: 视频时长-标清SD，单位：秒。
-        # @type VideoTimeH264SD: Integer
-        # @param VideoTimeH264HD: 视频时长-高清HD，单位：秒。
-        # @type VideoTimeH264HD: Integer
-        # @param VideoTimeH264FHD: 视频时长-全高清FHD，单位：秒。
-        # @type VideoTimeH264FHD: Integer
-        # @param Flux: 视频时长-带宽，单位：mbps。
-        # @type Flux: Float
-        # @param VideoTimeH2642K: 视频时长-标清2K，单位：秒。
-        # @type VideoTimeH2642K: Integer
-        # @param VideoTimeH2644K: 视频时长-标清4K，单位：秒。
-        # @type VideoTimeH2644K: Integer
-        # @param VideoTimeH265SD: 视频时长-标清265SD，单位：秒。
-        # @type VideoTimeH265SD: Integer
-        # @param VideoTimeH265HD: 视频时长-高清265HD，单位：秒。
-        # @type VideoTimeH265HD: Integer
-        # @param VideoTimeH265FHD: 视频时长-全高清265FHD，单位：秒。
-        # @type VideoTimeH265FHD: Integer
-        # @param VideoTimeH2652K: 视频时长-标清2652K，单位：秒。
-        # @type VideoTimeH2652K: Integer
-        # @param VideoTimeH2654K: 视频时长-标清265 4K，单位：秒。
-        # @type VideoTimeH2654K: Integer
-
-        attr_accessor :TimeKey, :AudioTime, :VideoTimeH264SD, :VideoTimeH264HD, :VideoTimeH264FHD, :Flux, :VideoTimeH2642K, :VideoTimeH2644K, :VideoTimeH265SD, :VideoTimeH265HD, :VideoTimeH265FHD, :VideoTimeH2652K, :VideoTimeH2654K
-        
-        def initialize(timekey=nil, audiotime=nil, videotimeh264sd=nil, videotimeh264hd=nil, videotimeh264fhd=nil, flux=nil, videotimeh2642k=nil, videotimeh2644k=nil, videotimeh265sd=nil, videotimeh265hd=nil, videotimeh265fhd=nil, videotimeh2652k=nil, videotimeh2654k=nil)
-          @TimeKey = timekey
-          @AudioTime = audiotime
-          @VideoTimeH264SD = videotimeh264sd
-          @VideoTimeH264HD = videotimeh264hd
-          @VideoTimeH264FHD = videotimeh264fhd
-          @Flux = flux
-          @VideoTimeH2642K = videotimeh2642k
-          @VideoTimeH2644K = videotimeh2644k
-          @VideoTimeH265SD = videotimeh265sd
-          @VideoTimeH265HD = videotimeh265hd
-          @VideoTimeH265FHD = videotimeh265fhd
-          @VideoTimeH2652K = videotimeh2652k
-          @VideoTimeH2654K = videotimeh2654k
-        end
-
-        def deserialize(params)
-          @TimeKey = params['TimeKey']
-          @AudioTime = params['AudioTime']
-          @VideoTimeH264SD = params['VideoTimeH264SD']
-          @VideoTimeH264HD = params['VideoTimeH264HD']
-          @VideoTimeH264FHD = params['VideoTimeH264FHD']
-          @Flux = params['Flux']
-          @VideoTimeH2642K = params['VideoTimeH2642K']
-          @VideoTimeH2644K = params['VideoTimeH2644K']
-          @VideoTimeH265SD = params['VideoTimeH265SD']
-          @VideoTimeH265HD = params['VideoTimeH265HD']
-          @VideoTimeH265FHD = params['VideoTimeH265FHD']
-          @VideoTimeH2652K = params['VideoTimeH2652K']
-          @VideoTimeH2654K = params['VideoTimeH2654K']
         end
       end
 

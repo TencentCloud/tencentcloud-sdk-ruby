@@ -1174,10 +1174,19 @@ module TencentCloud
         # @param AffectedVersion: 受影响的版本信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AffectedVersion: String
+        # @param IgnoredAssetNum: 忽略的资产数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IgnoredAssetNum: Integer
+        # @param IsIgnored: 是否忽略该检测项
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsIgnored: Boolean
+        # @param RiskAssessment: 受影响评估
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RiskAssessment: String
 
-        attr_accessor :CheckItemId, :Name, :ItemDetail, :RiskLevel, :RiskTarget, :RiskType, :RiskAttribute, :RiskProperty, :CVENumber, :DiscoverTime, :Solution, :CVSS, :CVSSScore, :RelateLink, :AffectedType, :AffectedVersion
+        attr_accessor :CheckItemId, :Name, :ItemDetail, :RiskLevel, :RiskTarget, :RiskType, :RiskAttribute, :RiskProperty, :CVENumber, :DiscoverTime, :Solution, :CVSS, :CVSSScore, :RelateLink, :AffectedType, :AffectedVersion, :IgnoredAssetNum, :IsIgnored, :RiskAssessment
         
-        def initialize(checkitemid=nil, name=nil, itemdetail=nil, risklevel=nil, risktarget=nil, risktype=nil, riskattribute=nil, riskproperty=nil, cvenumber=nil, discovertime=nil, solution=nil, cvss=nil, cvssscore=nil, relatelink=nil, affectedtype=nil, affectedversion=nil)
+        def initialize(checkitemid=nil, name=nil, itemdetail=nil, risklevel=nil, risktarget=nil, risktype=nil, riskattribute=nil, riskproperty=nil, cvenumber=nil, discovertime=nil, solution=nil, cvss=nil, cvssscore=nil, relatelink=nil, affectedtype=nil, affectedversion=nil, ignoredassetnum=nil, isignored=nil, riskassessment=nil)
           @CheckItemId = checkitemid
           @Name = name
           @ItemDetail = itemdetail
@@ -1194,6 +1203,9 @@ module TencentCloud
           @RelateLink = relatelink
           @AffectedType = affectedtype
           @AffectedVersion = affectedversion
+          @IgnoredAssetNum = ignoredassetnum
+          @IsIgnored = isignored
+          @RiskAssessment = riskassessment
         end
 
         def deserialize(params)
@@ -1213,6 +1225,9 @@ module TencentCloud
           @RelateLink = params['RelateLink']
           @AffectedType = params['AffectedType']
           @AffectedVersion = params['AffectedVersion']
+          @IgnoredAssetNum = params['IgnoredAssetNum']
+          @IsIgnored = params['IsIgnored']
+          @RiskAssessment = params['RiskAssessment']
         end
       end
 
