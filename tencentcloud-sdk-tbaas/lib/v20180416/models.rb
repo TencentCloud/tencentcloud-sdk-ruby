@@ -2242,6 +2242,66 @@ module TencentCloud
         end
       end
 
+      # InvokeChainMakerDemoContract请求参数结构体
+      class InvokeChainMakerDemoContractRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 网络ID，可在区块链网络详情或列表中获取
+        # @type ClusterId: String
+        # @param ChainId: 业务链编号，可在业务链列表中获取
+        # @type ChainId: String
+        # @param ContractName: 合约名称，可在合约管理中获取
+        # @type ContractName: String
+        # @param FuncName: 合约方法名
+        # @type FuncName: String
+        # @param FuncParam: 合约方法入参，json格式字符串，key/value都是string类型的map
+        # @type FuncParam: String
+        # @param AsyncFlag: 是否异步执行，1为是，否则为0；如果异步执行，可使用返回值中的交易TxID查询执行结果
+        # @type AsyncFlag: Integer
+
+        attr_accessor :ClusterId, :ChainId, :ContractName, :FuncName, :FuncParam, :AsyncFlag
+        
+        def initialize(clusterid=nil, chainid=nil, contractname=nil, funcname=nil, funcparam=nil, asyncflag=nil)
+          @ClusterId = clusterid
+          @ChainId = chainid
+          @ContractName = contractname
+          @FuncName = funcname
+          @FuncParam = funcparam
+          @AsyncFlag = asyncflag
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @ChainId = params['ChainId']
+          @ContractName = params['ContractName']
+          @FuncName = params['FuncName']
+          @FuncParam = params['FuncParam']
+          @AsyncFlag = params['AsyncFlag']
+        end
+      end
+
+      # InvokeChainMakerDemoContract返回参数结构体
+      class InvokeChainMakerDemoContractResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 交易结果
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Result: :class:`Tencentcloud::Tbaas.v20180416.models.ChainMakerContractResult`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+        
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Result'].nil?
+            @Result = ChainMakerContractResult.new
+            @Result.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # Invoke请求参数结构体
       class InvokeRequest < TencentCloud::Common::AbstractModel
         # @param Module: 模块名，固定字段：transaction
@@ -2496,6 +2556,175 @@ module TencentCloud
         def deserialize(params)
           unless params['Result'].nil?
             @Result = ChainMakerContractResult.new
+            @Result.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # QueryChainMakerDemoBlockTransaction请求参数结构体
+      class QueryChainMakerDemoBlockTransactionRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 网络ID，可在区块链网络详情或列表中获取
+        # @type ClusterId: String
+        # @param ChainId: 业务链编号，可在业务链列表中获取
+        # @type ChainId: String
+        # @param BlockHeight: 区块高度
+        # @type BlockHeight: Integer
+
+        attr_accessor :ClusterId, :ChainId, :BlockHeight
+        
+        def initialize(clusterid=nil, chainid=nil, blockheight=nil)
+          @ClusterId = clusterid
+          @ChainId = chainid
+          @BlockHeight = blockheight
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @ChainId = params['ChainId']
+          @BlockHeight = params['BlockHeight']
+        end
+      end
+
+      # QueryChainMakerDemoBlockTransaction返回参数结构体
+      class QueryChainMakerDemoBlockTransactionResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 区块交易
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Result: Array
+        # @param BlockHeight: 区块高度
+        # @type BlockHeight: Integer
+        # @param TxCount: 交易数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TxCount: Integer
+        # @param BlockTimestamp: 区块时间戳，单位是秒
+        # @type BlockTimestamp: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :BlockHeight, :TxCount, :BlockTimestamp, :RequestId
+        
+        def initialize(result=nil, blockheight=nil, txcount=nil, blocktimestamp=nil, requestid=nil)
+          @Result = result
+          @BlockHeight = blockheight
+          @TxCount = txcount
+          @BlockTimestamp = blocktimestamp
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Result'].nil?
+            @Result = []
+            params['Result'].each do |i|
+              chainmakertransactionresult_tmp = ChainMakerTransactionResult.new
+              chainmakertransactionresult_tmp.deserialize(i)
+              @Result << chainmakertransactionresult_tmp
+            end
+          end
+          @BlockHeight = params['BlockHeight']
+          @TxCount = params['TxCount']
+          @BlockTimestamp = params['BlockTimestamp']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # QueryChainMakerDemoContract请求参数结构体
+      class QueryChainMakerDemoContractRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 网络ID，可在区块链网络详情或列表中获取
+        # @type ClusterId: String
+        # @param ChainId: 业务链编号，可在业务链列表中获取
+        # @type ChainId: String
+        # @param ContractName: 合约名称，可在合约管理中获取
+        # @type ContractName: String
+        # @param FuncName: 合约方法名
+        # @type FuncName: String
+        # @param FuncParam: 合约方法入参，json格式字符串，key/value都是string类型的map
+        # @type FuncParam: String
+
+        attr_accessor :ClusterId, :ChainId, :ContractName, :FuncName, :FuncParam
+        
+        def initialize(clusterid=nil, chainid=nil, contractname=nil, funcname=nil, funcparam=nil)
+          @ClusterId = clusterid
+          @ChainId = chainid
+          @ContractName = contractname
+          @FuncName = funcname
+          @FuncParam = funcparam
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @ChainId = params['ChainId']
+          @ContractName = params['ContractName']
+          @FuncName = params['FuncName']
+          @FuncParam = params['FuncParam']
+        end
+      end
+
+      # QueryChainMakerDemoContract返回参数结构体
+      class QueryChainMakerDemoContractResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 交易结果
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Result: :class:`Tencentcloud::Tbaas.v20180416.models.ChainMakerContractResult`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+        
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Result'].nil?
+            @Result = ChainMakerContractResult.new
+            @Result.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # QueryChainMakerDemoTransaction请求参数结构体
+      class QueryChainMakerDemoTransactionRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 网络ID，可在区块链网络详情或列表中获取
+        # @type ClusterId: String
+        # @param ChainId: 业务链编号，可在业务链列表中获取
+        # @type ChainId: String
+        # @param TxID: 交易ID，通过调用合约的返回值获取
+        # @type TxID: String
+
+        attr_accessor :ClusterId, :ChainId, :TxID
+        
+        def initialize(clusterid=nil, chainid=nil, txid=nil)
+          @ClusterId = clusterid
+          @ChainId = chainid
+          @TxID = txid
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @ChainId = params['ChainId']
+          @TxID = params['TxID']
+        end
+      end
+
+      # QueryChainMakerDemoTransaction返回参数结构体
+      class QueryChainMakerDemoTransactionResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 交易结果
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Result: :class:`Tencentcloud::Tbaas.v20180416.models.ChainMakerTransactionResult`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+        
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Result'].nil?
+            @Result = ChainMakerTransactionResult.new
             @Result.deserialize(params['Result'])
           end
           @RequestId = params['RequestId']
