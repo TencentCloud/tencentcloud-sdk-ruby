@@ -1736,10 +1736,16 @@ module TencentCloud
         # @type AdaptBitratePercent: Float
         # @param ShortEdgeAsHeight: 是否以短边作为高度，0：否，1：是。默认0。
         # @type ShortEdgeAsHeight: Integer
+        # @param DRMType: DRM 加密类型，可选值：fairplay、normalaes、widevine。
+        # 不传递或着为空字符串，清空之前的DRM配置。
+        # @type DRMType: String
+        # @param DRMTracks: DRM 加密项，可选值：AUDIO、SD、HD、UHD1、UHD2，后四个为一组，同组中的内容只能选一个。
+        # 不传递或着为空字符串，清空之前的DRM配置。
+        # @type DRMTracks: String
 
-        attr_accessor :TemplateName, :VideoBitrate, :Acodec, :AudioBitrate, :Vcodec, :Description, :NeedVideo, :Width, :NeedAudio, :Height, :Fps, :Gop, :Rotate, :Profile, :BitrateToOrig, :HeightToOrig, :FpsToOrig, :AiTransCode, :AdaptBitratePercent, :ShortEdgeAsHeight
+        attr_accessor :TemplateName, :VideoBitrate, :Acodec, :AudioBitrate, :Vcodec, :Description, :NeedVideo, :Width, :NeedAudio, :Height, :Fps, :Gop, :Rotate, :Profile, :BitrateToOrig, :HeightToOrig, :FpsToOrig, :AiTransCode, :AdaptBitratePercent, :ShortEdgeAsHeight, :DRMType, :DRMTracks
         
-        def initialize(templatename=nil, videobitrate=nil, acodec=nil, audiobitrate=nil, vcodec=nil, description=nil, needvideo=nil, width=nil, needaudio=nil, height=nil, fps=nil, gop=nil, rotate=nil, profile=nil, bitratetoorig=nil, heighttoorig=nil, fpstoorig=nil, aitranscode=nil, adaptbitratepercent=nil, shortedgeasheight=nil)
+        def initialize(templatename=nil, videobitrate=nil, acodec=nil, audiobitrate=nil, vcodec=nil, description=nil, needvideo=nil, width=nil, needaudio=nil, height=nil, fps=nil, gop=nil, rotate=nil, profile=nil, bitratetoorig=nil, heighttoorig=nil, fpstoorig=nil, aitranscode=nil, adaptbitratepercent=nil, shortedgeasheight=nil, drmtype=nil, drmtracks=nil)
           @TemplateName = templatename
           @VideoBitrate = videobitrate
           @Acodec = acodec
@@ -1760,6 +1766,8 @@ module TencentCloud
           @AiTransCode = aitranscode
           @AdaptBitratePercent = adaptbitratepercent
           @ShortEdgeAsHeight = shortedgeasheight
+          @DRMType = drmtype
+          @DRMTracks = drmtracks
         end
 
         def deserialize(params)
@@ -1783,6 +1791,8 @@ module TencentCloud
           @AiTransCode = params['AiTransCode']
           @AdaptBitratePercent = params['AdaptBitratePercent']
           @ShortEdgeAsHeight = params['ShortEdgeAsHeight']
+          @DRMType = params['DRMType']
+          @DRMTracks = params['DRMTracks']
         end
       end
 
@@ -7765,10 +7775,16 @@ module TencentCloud
         # @type AdaptBitratePercent: Float
         # @param ShortEdgeAsHeight: 是否以短边作为高度，0：否，1：是。默认0。
         # @type ShortEdgeAsHeight: Integer
+        # @param DRMType: DRM 加密类型，可选值：fairplay、normalaes、widevine。
+        # 不传递或着为空字符串，清空之前的DRM配置。
+        # @type DRMType: String
+        # @param DRMTracks: DRM 加密项，可选值：AUDIO、SD、HD、UHD1、UHD2，后四个为一组，同组中的内容只能选一个。
+        # 不传递或着为空字符串，清空之前的DRM配置。
+        # @type DRMTracks: String
 
-        attr_accessor :TemplateId, :Vcodec, :Acodec, :AudioBitrate, :Description, :VideoBitrate, :Width, :NeedVideo, :NeedAudio, :Height, :Fps, :Gop, :Rotate, :Profile, :BitrateToOrig, :HeightToOrig, :FpsToOrig, :AdaptBitratePercent, :ShortEdgeAsHeight
+        attr_accessor :TemplateId, :Vcodec, :Acodec, :AudioBitrate, :Description, :VideoBitrate, :Width, :NeedVideo, :NeedAudio, :Height, :Fps, :Gop, :Rotate, :Profile, :BitrateToOrig, :HeightToOrig, :FpsToOrig, :AdaptBitratePercent, :ShortEdgeAsHeight, :DRMType, :DRMTracks
         
-        def initialize(templateid=nil, vcodec=nil, acodec=nil, audiobitrate=nil, description=nil, videobitrate=nil, width=nil, needvideo=nil, needaudio=nil, height=nil, fps=nil, gop=nil, rotate=nil, profile=nil, bitratetoorig=nil, heighttoorig=nil, fpstoorig=nil, adaptbitratepercent=nil, shortedgeasheight=nil)
+        def initialize(templateid=nil, vcodec=nil, acodec=nil, audiobitrate=nil, description=nil, videobitrate=nil, width=nil, needvideo=nil, needaudio=nil, height=nil, fps=nil, gop=nil, rotate=nil, profile=nil, bitratetoorig=nil, heighttoorig=nil, fpstoorig=nil, adaptbitratepercent=nil, shortedgeasheight=nil, drmtype=nil, drmtracks=nil)
           @TemplateId = templateid
           @Vcodec = vcodec
           @Acodec = acodec
@@ -7788,6 +7804,8 @@ module TencentCloud
           @FpsToOrig = fpstoorig
           @AdaptBitratePercent = adaptbitratepercent
           @ShortEdgeAsHeight = shortedgeasheight
+          @DRMType = drmtype
+          @DRMTracks = drmtracks
         end
 
         def deserialize(params)
@@ -7810,6 +7828,8 @@ module TencentCloud
           @FpsToOrig = params['FpsToOrig']
           @AdaptBitratePercent = params['AdaptBitratePercent']
           @ShortEdgeAsHeight = params['ShortEdgeAsHeight']
+          @DRMType = params['DRMType']
+          @DRMTracks = params['DRMTracks']
         end
       end
 
@@ -9413,10 +9433,16 @@ module TencentCloud
         # @param ShortEdgeAsHeight: 是否以短边作为高度，0：否，1：是。默认0。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ShortEdgeAsHeight: Integer
+        # @param DRMType: DRM 加密类型，可选值：fairplay、normalaes、widevine。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DRMType: String
+        # @param DRMTracks: DRM 加密项，多个用|分割，可选值：AUDIO、SD、HD、UHD1、UHD2，后四个为一组，同组中的内容只能选一个。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DRMTracks: String
 
-        attr_accessor :Vcodec, :VideoBitrate, :Acodec, :AudioBitrate, :Width, :Height, :Fps, :Gop, :Rotate, :Profile, :BitrateToOrig, :HeightToOrig, :FpsToOrig, :NeedVideo, :NeedAudio, :TemplateId, :TemplateName, :Description, :AiTransCode, :AdaptBitratePercent, :ShortEdgeAsHeight
+        attr_accessor :Vcodec, :VideoBitrate, :Acodec, :AudioBitrate, :Width, :Height, :Fps, :Gop, :Rotate, :Profile, :BitrateToOrig, :HeightToOrig, :FpsToOrig, :NeedVideo, :NeedAudio, :TemplateId, :TemplateName, :Description, :AiTransCode, :AdaptBitratePercent, :ShortEdgeAsHeight, :DRMType, :DRMTracks
         
-        def initialize(vcodec=nil, videobitrate=nil, acodec=nil, audiobitrate=nil, width=nil, height=nil, fps=nil, gop=nil, rotate=nil, profile=nil, bitratetoorig=nil, heighttoorig=nil, fpstoorig=nil, needvideo=nil, needaudio=nil, templateid=nil, templatename=nil, description=nil, aitranscode=nil, adaptbitratepercent=nil, shortedgeasheight=nil)
+        def initialize(vcodec=nil, videobitrate=nil, acodec=nil, audiobitrate=nil, width=nil, height=nil, fps=nil, gop=nil, rotate=nil, profile=nil, bitratetoorig=nil, heighttoorig=nil, fpstoorig=nil, needvideo=nil, needaudio=nil, templateid=nil, templatename=nil, description=nil, aitranscode=nil, adaptbitratepercent=nil, shortedgeasheight=nil, drmtype=nil, drmtracks=nil)
           @Vcodec = vcodec
           @VideoBitrate = videobitrate
           @Acodec = acodec
@@ -9438,6 +9464,8 @@ module TencentCloud
           @AiTransCode = aitranscode
           @AdaptBitratePercent = adaptbitratepercent
           @ShortEdgeAsHeight = shortedgeasheight
+          @DRMType = drmtype
+          @DRMTracks = drmtracks
         end
 
         def deserialize(params)
@@ -9462,6 +9490,8 @@ module TencentCloud
           @AiTransCode = params['AiTransCode']
           @AdaptBitratePercent = params['AdaptBitratePercent']
           @ShortEdgeAsHeight = params['ShortEdgeAsHeight']
+          @DRMType = params['DRMType']
+          @DRMTracks = params['DRMTracks']
         end
       end
 
@@ -9469,20 +9499,23 @@ module TencentCloud
       class TimeShiftBillData < TencentCloud::Common::AbstractModel
         # @param Domain: 推流域名。
         # @type Domain: String
-        # @param Duration: 时移文件时长,单位分钟。
+        # @param Duration: 时移文件时长，单位分钟。
         # @type Duration: Float
         # @param StoragePeriod: 时移配置天数，单位天。
         # @type StoragePeriod: Float
         # @param Time: 时间点，格式: yyyy-mm-ddTHH:MM:SSZ。
         # @type Time: String
+        # @param TotalDuration: 时移总时长，单位分钟。
+        # @type TotalDuration: Float
 
-        attr_accessor :Domain, :Duration, :StoragePeriod, :Time
+        attr_accessor :Domain, :Duration, :StoragePeriod, :Time, :TotalDuration
         
-        def initialize(domain=nil, duration=nil, storageperiod=nil, time=nil)
+        def initialize(domain=nil, duration=nil, storageperiod=nil, time=nil, totalduration=nil)
           @Domain = domain
           @Duration = duration
           @StoragePeriod = storageperiod
           @Time = time
+          @TotalDuration = totalduration
         end
 
         def deserialize(params)
@@ -9490,6 +9523,7 @@ module TencentCloud
           @Duration = params['Duration']
           @StoragePeriod = params['StoragePeriod']
           @Time = params['Time']
+          @TotalDuration = params['TotalDuration']
         end
       end
 

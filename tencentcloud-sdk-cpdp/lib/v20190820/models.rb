@@ -10535,25 +10535,29 @@ module TencentCloud
 
       # 云企付-商品信息
       class OpenBankGoodsInfo < TencentCloud::Common::AbstractModel
-        # @param GoodsName: 商品标题，默认值“商品支付”
+        # @param GoodsName: 商品标题。默认值“商品支付”。
         # @type GoodsName: String
-        # @param GoodsDetail: 商品详细描述（商品列表）
+        # @param GoodsDetail: 商品详细描述（商品列表）。
         # @type GoodsDetail: String
-        # @param GoodsDescription: 银行附言，不可以有以下字符：<>+{}()%*&';"[]等特殊符号
+        # @param GoodsDescription: 银行附言。不可以有以下字符：<>+{}()%*&';"[]等特殊符号
         # @type GoodsDescription: String
+        # @param GoodsBizType: 业务类型。汇付渠道必填，汇付渠道传入固定值100099。
+        # @type GoodsBizType: String
 
-        attr_accessor :GoodsName, :GoodsDetail, :GoodsDescription
+        attr_accessor :GoodsName, :GoodsDetail, :GoodsDescription, :GoodsBizType
         
-        def initialize(goodsname=nil, goodsdetail=nil, goodsdescription=nil)
+        def initialize(goodsname=nil, goodsdetail=nil, goodsdescription=nil, goodsbiztype=nil)
           @GoodsName = goodsname
           @GoodsDetail = goodsdetail
           @GoodsDescription = goodsdescription
+          @GoodsBizType = goodsbiztype
         end
 
         def deserialize(params)
           @GoodsName = params['GoodsName']
           @GoodsDetail = params['GoodsDetail']
           @GoodsDescription = params['GoodsDescription']
+          @GoodsBizType = params['GoodsBizType']
         end
       end
 
@@ -10618,21 +10622,26 @@ module TencentCloud
         # @param PayerName: 付款方名称。当TENPAY上送付款方入驻云企付的商户名称。
         # @type PayerName: String
         # @param BindSerialNo: 付款方付款账户标识。
-        # 当付款方式为OPENBANK_PAYMENT时，必输表示企业账户ID；当付款方式为SAFT_ISV时，必须上送付款方的渠道电子记账本ID。
+        # 当付款方式为OPENBANK_PAYMENT时，必输表示企业账户ID；当付款方式为SAFT_ISV时，必须上送付款方的渠道电子记账本ID；当付款方式为ONLINEBANK，上送付款方银行编号BankId。
         # @type BindSerialNo: String
         # @param AccountType: 付款账户标识类型
         # BANK_ACCOUNT：绑定银行账户
         # ACCOUNT_BOOK_ID：电子记账本ID。
         # 当付款方式为SAFT_ISV时，必须上送类型为ACCOUNT_BOOK_ID。
         # @type AccountType: String
+        # @param BankCardType: 付款卡类型。汇付渠道必填。
+        # DEBIT_CARD：借记卡
+        # CREDIT_CARD：信用卡
+        # @type BankCardType: String
 
-        attr_accessor :PayerId, :PayerName, :BindSerialNo, :AccountType
+        attr_accessor :PayerId, :PayerName, :BindSerialNo, :AccountType, :BankCardType
         
-        def initialize(payerid=nil, payername=nil, bindserialno=nil, accounttype=nil)
+        def initialize(payerid=nil, payername=nil, bindserialno=nil, accounttype=nil, bankcardtype=nil)
           @PayerId = payerid
           @PayerName = payername
           @BindSerialNo = bindserialno
           @AccountType = accounttype
+          @BankCardType = bankcardtype
         end
 
         def deserialize(params)
@@ -10640,6 +10649,7 @@ module TencentCloud
           @PayerName = params['PayerName']
           @BindSerialNo = params['BindSerialNo']
           @AccountType = params['AccountType']
+          @BankCardType = params['BankCardType']
         end
       end
 
@@ -10749,22 +10759,26 @@ module TencentCloud
 
       # 云企付-设备信息
       class OpenBankSceneInfo < TencentCloud::Common::AbstractModel
-        # @param PayerClientIp: 用户端实际 ip，示例值：14.17.22.32
+        # @param PayerClientIp: 用户端实际 ip。汇付渠道必填。
         # @type PayerClientIp: String
-        # @param PayerUa: 浏览器 User-Agent
+        # @param PayerUa: 浏览器 User-Agent。
         # @type PayerUa: String
-        # @param OrderTime: 用户下单时间，若不上送，服务端默认当前时间
+        # @param OrderTime: 用户下单时间。若不上送，服务端默认当前时间。
         # @type OrderTime: String
-        # @param DeviceId: 终端设备号（门店号或收银设备 ID），示例值：POS1:1
+        # @param DeviceId: 终端设备号（门店号或收银设备 ID），示例值：POS1:1。
         # @type DeviceId: String
+        # @param DeviceType: 终端设备类型。MOBILE_BROWSER:手机浏览器，MOBILE_APP:手机应用程序，TABLET:平板；WATCH:手表，PC:电脑PC，OTHER:其他。
+        # 汇付渠道必填。
+        # @type DeviceType: String
 
-        attr_accessor :PayerClientIp, :PayerUa, :OrderTime, :DeviceId
+        attr_accessor :PayerClientIp, :PayerUa, :OrderTime, :DeviceId, :DeviceType
         
-        def initialize(payerclientip=nil, payerua=nil, ordertime=nil, deviceid=nil)
+        def initialize(payerclientip=nil, payerua=nil, ordertime=nil, deviceid=nil, devicetype=nil)
           @PayerClientIp = payerclientip
           @PayerUa = payerua
           @OrderTime = ordertime
           @DeviceId = deviceid
+          @DeviceType = devicetype
         end
 
         def deserialize(params)
@@ -10772,6 +10786,7 @@ module TencentCloud
           @PayerUa = params['PayerUa']
           @OrderTime = params['OrderTime']
           @DeviceId = params['DeviceId']
+          @DeviceType = params['DeviceType']
         end
       end
 
@@ -21320,14 +21335,23 @@ module TencentCloud
         # @param BankNotice: 银行渠道维护公告。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BankNotice: String
+        # @param BankId: 支持银行代码
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BankId: String
+        # @param CardType: 卡类型。
+        # D：借记卡，C：信用卡，Z：借贷合一卡。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CardType: String
 
-        attr_accessor :BankCode, :BankName, :MaintainStatus, :BankNotice
+        attr_accessor :BankCode, :BankName, :MaintainStatus, :BankNotice, :BankId, :CardType
         
-        def initialize(bankcode=nil, bankname=nil, maintainstatus=nil, banknotice=nil)
+        def initialize(bankcode=nil, bankname=nil, maintainstatus=nil, banknotice=nil, bankid=nil, cardtype=nil)
           @BankCode = bankcode
           @BankName = bankname
           @MaintainStatus = maintainstatus
           @BankNotice = banknotice
+          @BankId = bankid
+          @CardType = cardtype
         end
 
         def deserialize(params)
@@ -21335,6 +21359,8 @@ module TencentCloud
           @BankName = params['BankName']
           @MaintainStatus = params['MaintainStatus']
           @BankNotice = params['BankNotice']
+          @BankId = params['BankId']
+          @CardType = params['CardType']
         end
       end
 

@@ -746,6 +746,137 @@ module TencentCloud
         end
       end
 
+      # 通用Key Value
+      class ObjectKV < TencentCloud::Common::AbstractModel
+        # @param Key: 键值对Key
+        # @type Key: String
+        # @param Value: 键值对Value
+        # @type Value: String
+
+        attr_accessor :Key, :Value
+        
+        def initialize(key=nil, value=nil)
+          @Key = key
+          @Value = value
+        end
+
+        def deserialize(params)
+          @Key = params['Key']
+          @Value = params['Value']
+        end
+      end
+
+      # OperateServerManage请求参数结构体
+      class OperateServerManageRequest < TencentCloud::Common::AbstractModel
+        # @param EnvId: 环境Id
+        # @type EnvId: String
+        # @param ServerName: 服务名
+        # @type ServerName: String
+        # @param TaskId: 任报Id
+        # @type TaskId: Integer
+        # @param OperateType: 操作类型:cancel | go_back | done
+        # @type OperateType: String
+        # @param OperatorRemark: 操作标识
+        # @type OperatorRemark: String
+
+        attr_accessor :EnvId, :ServerName, :TaskId, :OperateType, :OperatorRemark
+        
+        def initialize(envid=nil, servername=nil, taskid=nil, operatetype=nil, operatorremark=nil)
+          @EnvId = envid
+          @ServerName = servername
+          @TaskId = taskid
+          @OperateType = operatetype
+          @OperatorRemark = operatorremark
+        end
+
+        def deserialize(params)
+          @EnvId = params['EnvId']
+          @ServerName = params['ServerName']
+          @TaskId = params['TaskId']
+          @OperateType = params['OperateType']
+          @OperatorRemark = params['OperatorRemark']
+        end
+      end
+
+      # OperateServerManage返回参数结构体
+      class OperateServerManageResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ReleaseGray请求参数结构体
+      class ReleaseGrayRequest < TencentCloud::Common::AbstractModel
+        # @param EnvId: 环境Id
+        # @type EnvId: String
+        # @param ServerName: 服务名
+        # @type ServerName: String
+        # @param GrayType: 灰度类型
+        # @type GrayType: String
+        # @param TrafficType: 流量类型
+        # @type TrafficType: String
+        # @param VersionFlowItems: 流量策略
+        # @type VersionFlowItems: Array
+        # @param OperatorRemark: 操作标识
+        # @type OperatorRemark: String
+        # @param GrayFlowRatio: 流量比例
+        # @type GrayFlowRatio: Integer
+
+        attr_accessor :EnvId, :ServerName, :GrayType, :TrafficType, :VersionFlowItems, :OperatorRemark, :GrayFlowRatio
+        
+        def initialize(envid=nil, servername=nil, graytype=nil, traffictype=nil, versionflowitems=nil, operatorremark=nil, grayflowratio=nil)
+          @EnvId = envid
+          @ServerName = servername
+          @GrayType = graytype
+          @TrafficType = traffictype
+          @VersionFlowItems = versionflowitems
+          @OperatorRemark = operatorremark
+          @GrayFlowRatio = grayflowratio
+        end
+
+        def deserialize(params)
+          @EnvId = params['EnvId']
+          @ServerName = params['ServerName']
+          @GrayType = params['GrayType']
+          @TrafficType = params['TrafficType']
+          unless params['VersionFlowItems'].nil?
+            @VersionFlowItems = []
+            params['VersionFlowItems'].each do |i|
+              versionflowinfo_tmp = VersionFlowInfo.new
+              versionflowinfo_tmp.deserialize(i)
+              @VersionFlowItems << versionflowinfo_tmp
+            end
+          end
+          @OperatorRemark = params['OperatorRemark']
+          @GrayFlowRatio = params['GrayFlowRatio']
+        end
+      end
+
+      # ReleaseGray返回参数结构体
+      class ReleaseGrayResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 代码仓库信息
       class RepositoryInfo < TencentCloud::Common::AbstractModel
         # @param Source: git source
@@ -1037,6 +1168,41 @@ module TencentCloud
           @EnvId = params['EnvId']
           @TaskId = params['TaskId']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 版本流量信息
+      class VersionFlowInfo < TencentCloud::Common::AbstractModel
+        # @param VersionName: 版本名
+        # @type VersionName: String
+        # @param IsDefaultPriority: 是否默认版本
+        # @type IsDefaultPriority: Boolean
+        # @param FlowRatio: 流量比例
+        # @type FlowRatio: Integer
+        # @param UrlParam: 测试KV值
+        # @type UrlParam: :class:`Tencentcloud::Tcbr.v20220217.models.ObjectKV`
+        # @param Priority: 权重
+        # @type Priority: Integer
+
+        attr_accessor :VersionName, :IsDefaultPriority, :FlowRatio, :UrlParam, :Priority
+        
+        def initialize(versionname=nil, isdefaultpriority=nil, flowratio=nil, urlparam=nil, priority=nil)
+          @VersionName = versionname
+          @IsDefaultPriority = isdefaultpriority
+          @FlowRatio = flowratio
+          @UrlParam = urlparam
+          @Priority = priority
+        end
+
+        def deserialize(params)
+          @VersionName = params['VersionName']
+          @IsDefaultPriority = params['IsDefaultPriority']
+          @FlowRatio = params['FlowRatio']
+          unless params['UrlParam'].nil?
+            @UrlParam = ObjectKV.new
+            @UrlParam.deserialize(params['UrlParam'])
+          end
+          @Priority = params['Priority']
         end
       end
 

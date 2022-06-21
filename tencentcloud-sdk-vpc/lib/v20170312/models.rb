@@ -492,6 +492,46 @@ module TencentCloud
         end
       end
 
+      # AdjustPublicAddress请求参数结构体
+      class AdjustPublicAddressRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 标识CVM实例的唯一 ID。CVM 唯一 ID 形如：`ins-11112222`。
+        # @type InstanceId: String
+        # @param AddressId: 标识EIP实例的唯一 ID。EIP 唯一 ID 形如：`eip-11112222`。
+        # @type AddressId: String
+
+        attr_accessor :InstanceId, :AddressId
+        
+        def initialize(instanceid=nil, addressid=nil)
+          @InstanceId = instanceid
+          @AddressId = addressid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @AddressId = params['AddressId']
+        end
+      end
+
+      # AdjustPublicAddress返回参数结构体
+      class AdjustPublicAddressResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: 异步任务TaskId。可以使用[DescribeTaskResult](https://cloud.tencent.com/document/api/215/36271)接口查询任务状态。
+        # @type TaskId: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :RequestId
+        
+        def initialize(taskid=nil, requestid=nil)
+          @TaskId = taskid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ALG协议类型
       class AlgType < TencentCloud::Common::AbstractModel
         # @param Ftp: Ftp协议Alg功能是否开启
@@ -4397,10 +4437,16 @@ module TencentCloud
         # @type EncryptAlgorithm: String
         # @param Compress: 是否支持压缩。当前仅支持不支持压缩。默认False
         # @type Compress: Boolean
+        # @param SsoEnabled: 是否开启SSO认证
+        # @type SsoEnabled: Boolean
+        # @param AccessPolicyEnabled: 是否开启策略访问控制
+        # @type AccessPolicyEnabled: Boolean
+        # @param SamlData: SAML-DATA
+        # @type SamlData: String
 
-        attr_accessor :VpnGatewayId, :SslVpnServerName, :LocalAddress, :RemoteAddress, :SslVpnProtocol, :SslVpnPort, :IntegrityAlgorithm, :EncryptAlgorithm, :Compress
+        attr_accessor :VpnGatewayId, :SslVpnServerName, :LocalAddress, :RemoteAddress, :SslVpnProtocol, :SslVpnPort, :IntegrityAlgorithm, :EncryptAlgorithm, :Compress, :SsoEnabled, :AccessPolicyEnabled, :SamlData
         
-        def initialize(vpngatewayid=nil, sslvpnservername=nil, localaddress=nil, remoteaddress=nil, sslvpnprotocol=nil, sslvpnport=nil, integrityalgorithm=nil, encryptalgorithm=nil, compress=nil)
+        def initialize(vpngatewayid=nil, sslvpnservername=nil, localaddress=nil, remoteaddress=nil, sslvpnprotocol=nil, sslvpnport=nil, integrityalgorithm=nil, encryptalgorithm=nil, compress=nil, ssoenabled=nil, accesspolicyenabled=nil, samldata=nil)
           @VpnGatewayId = vpngatewayid
           @SslVpnServerName = sslvpnservername
           @LocalAddress = localaddress
@@ -4410,6 +4456,9 @@ module TencentCloud
           @IntegrityAlgorithm = integrityalgorithm
           @EncryptAlgorithm = encryptalgorithm
           @Compress = compress
+          @SsoEnabled = ssoenabled
+          @AccessPolicyEnabled = accesspolicyenabled
+          @SamlData = samldata
         end
 
         def deserialize(params)
@@ -4422,6 +4471,9 @@ module TencentCloud
           @IntegrityAlgorithm = params['IntegrityAlgorithm']
           @EncryptAlgorithm = params['EncryptAlgorithm']
           @Compress = params['Compress']
+          @SsoEnabled = params['SsoEnabled']
+          @AccessPolicyEnabled = params['AccessPolicyEnabled']
+          @SamlData = params['SamlData']
         end
       end
 
