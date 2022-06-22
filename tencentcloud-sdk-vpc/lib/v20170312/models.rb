@@ -60,6 +60,38 @@ module TencentCloud
         end
       end
 
+      # 策略信息
+      class AccessPolicy < TencentCloud::Common::AbstractModel
+        # @param TargetCidr: 目的CIDR
+        # @type TargetCidr: String
+        # @param VpnGatewayIdSslAccessPolicyId: 策略ID
+        # @type VpnGatewayIdSslAccessPolicyId: String
+        # @param ForAllClient: 是否对所有用户都生效。1 生效 0不生效
+        # @type ForAllClient: Integer
+        # @param UserGroupIds: 用户组ID
+        # @type UserGroupIds: Array
+        # @param UpdateTime: 更新时间
+        # @type UpdateTime: String
+
+        attr_accessor :TargetCidr, :VpnGatewayIdSslAccessPolicyId, :ForAllClient, :UserGroupIds, :UpdateTime
+        
+        def initialize(targetcidr=nil, vpngatewayidsslaccesspolicyid=nil, forallclient=nil, usergroupids=nil, updatetime=nil)
+          @TargetCidr = targetcidr
+          @VpnGatewayIdSslAccessPolicyId = vpngatewayidsslaccesspolicyid
+          @ForAllClient = forallclient
+          @UserGroupIds = usergroupids
+          @UpdateTime = updatetime
+        end
+
+        def deserialize(params)
+          @TargetCidr = params['TargetCidr']
+          @VpnGatewayIdSslAccessPolicyId = params['VpnGatewayIdSslAccessPolicyId']
+          @ForAllClient = params['ForAllClient']
+          @UserGroupIds = params['UserGroupIds']
+          @UpdateTime = params['UpdateTime']
+        end
+      end
+
       # 账户属性对象
       class AccountAttribute < TencentCloud::Common::AbstractModel
         # @param AttributeName: 属性名
@@ -10183,14 +10215,17 @@ module TencentCloud
         # @type Limit: Integer
         # @param SslVpnClientIds: SSL-VPN-CLIENT实例ID。形如：vpngwSslClient-f49l6u0z。每次请求的实例的上限为100。参数不支持同时指定SslVpnClientIds和Filters。
         # @type SslVpnClientIds: Array
+        # @param IsVpnPortal: VPN门户网站使用。默认是False。
+        # @type IsVpnPortal: Boolean
 
-        attr_accessor :Filters, :Offset, :Limit, :SslVpnClientIds
+        attr_accessor :Filters, :Offset, :Limit, :SslVpnClientIds, :IsVpnPortal
         
-        def initialize(filters=nil, offset=nil, limit=nil, sslvpnclientids=nil)
+        def initialize(filters=nil, offset=nil, limit=nil, sslvpnclientids=nil, isvpnportal=nil)
           @Filters = filters
           @Offset = offset
           @Limit = limit
           @SslVpnClientIds = sslvpnclientids
+          @IsVpnPortal = isvpnportal
         end
 
         def deserialize(params)
@@ -10205,6 +10240,7 @@ module TencentCloud
           @Offset = params['Offset']
           @Limit = params['Limit']
           @SslVpnClientIds = params['SslVpnClientIds']
+          @IsVpnPortal = params['IsVpnPortal']
         end
       end
 
@@ -10254,14 +10290,17 @@ module TencentCloud
         # <li>ssl-vpn-server-name - String - （过滤条件）SSL-VPN-SERVER实例名称。</li>
         # <li>ssl-vpn-server-id - String - （过滤条件）SSL-VPN-SERVER实例ID形如：vpngwSslServer-123456。</li>
         # @type Filters: Array
+        # @param IsVpnPortal: vpn门户使用。 默认Flase
+        # @type IsVpnPortal: Boolean
 
-        attr_accessor :Offset, :Limit, :SslVpnServerIds, :Filters
+        attr_accessor :Offset, :Limit, :SslVpnServerIds, :Filters, :IsVpnPortal
         
-        def initialize(offset=nil, limit=nil, sslvpnserverids=nil, filters=nil)
+        def initialize(offset=nil, limit=nil, sslvpnserverids=nil, filters=nil, isvpnportal=nil)
           @Offset = offset
           @Limit = limit
           @SslVpnServerIds = sslvpnserverids
           @Filters = filters
+          @IsVpnPortal = isvpnportal
         end
 
         def deserialize(params)
@@ -10276,6 +10315,7 @@ module TencentCloud
               @Filters << filterobject_tmp
             end
           end
+          @IsVpnPortal = params['IsVpnPortal']
         end
       end
 
@@ -11256,34 +11296,57 @@ module TencentCloud
       class DownloadVpnGatewaySslClientCertRequest < TencentCloud::Common::AbstractModel
         # @param SslVpnClientId: SSL-VPN-CLIENT 实例ID。
         # @type SslVpnClientId: String
+        # @param SamlToken: SAML-TOKEN
+        # @type SamlToken: String
+        # @param IsVpnPortal: VPN门户网站使用。默认Flase
+        # @type IsVpnPortal: Boolean
 
-        attr_accessor :SslVpnClientId
+        attr_accessor :SslVpnClientId, :SamlToken, :IsVpnPortal
         
-        def initialize(sslvpnclientid=nil)
+        def initialize(sslvpnclientid=nil, samltoken=nil, isvpnportal=nil)
           @SslVpnClientId = sslvpnclientid
+          @SamlToken = samltoken
+          @IsVpnPortal = isvpnportal
         end
 
         def deserialize(params)
           @SslVpnClientId = params['SslVpnClientId']
+          @SamlToken = params['SamlToken']
+          @IsVpnPortal = params['IsVpnPortal']
         end
       end
 
       # DownloadVpnGatewaySslClientCert返回参数结构体
       class DownloadVpnGatewaySslClientCertResponse < TencentCloud::Common::AbstractModel
-        # @param SslClientConfigsSet: SSL-VPN-CLIENT 证书配置
+        # @param SslClientConfigsSet: 无
         # @type SslClientConfigsSet: String
+        # @param SslClientConfig: SSL-VPN client配置
+        # @type SslClientConfig: Array
+        # @param Authenticated: 是否鉴权成功 只有传入SamlToken 才生效
+        # @type Authenticated: Integer
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :SslClientConfigsSet, :RequestId
+        attr_accessor :SslClientConfigsSet, :SslClientConfig, :Authenticated, :RequestId
         
-        def initialize(sslclientconfigsset=nil, requestid=nil)
+        def initialize(sslclientconfigsset=nil, sslclientconfig=nil, authenticated=nil, requestid=nil)
           @SslClientConfigsSet = sslclientconfigsset
+          @SslClientConfig = sslclientconfig
+          @Authenticated = authenticated
           @RequestId = requestid
         end
 
         def deserialize(params)
           @SslClientConfigsSet = params['SslClientConfigsSet']
+          unless params['SslClientConfig'].nil?
+            @SslClientConfig = []
+            params['SslClientConfig'].each do |i|
+              sslclientconfig_tmp = SslClientConfig.new
+              sslclientconfig_tmp.deserialize(i)
+              @SslClientConfig << sslclientconfig_tmp
+            end
+          end
+          @Authenticated = params['Authenticated']
           @RequestId = params['RequestId']
         end
       end
@@ -17305,6 +17368,34 @@ module TencentCloud
         end
       end
 
+      # DownloadVpnGatewaySslClientCert 使用
+      class SslClientConfig < TencentCloud::Common::AbstractModel
+        # @param SslVpnClientConfiguration: 客户端配置
+        # @type SslVpnClientConfiguration: String
+        # @param SslVpnRootCert: 更证书
+        # @type SslVpnRootCert: String
+        # @param SslVpnKey: 客户端密钥
+        # @type SslVpnKey: String
+        # @param SslVpnCert: 客户端证书
+        # @type SslVpnCert: String
+
+        attr_accessor :SslVpnClientConfiguration, :SslVpnRootCert, :SslVpnKey, :SslVpnCert
+        
+        def initialize(sslvpnclientconfiguration=nil, sslvpnrootcert=nil, sslvpnkey=nil, sslvpncert=nil)
+          @SslVpnClientConfiguration = sslvpnclientconfiguration
+          @SslVpnRootCert = sslvpnrootcert
+          @SslVpnKey = sslvpnkey
+          @SslVpnCert = sslvpncert
+        end
+
+        def deserialize(params)
+          @SslVpnClientConfiguration = params['SslVpnClientConfiguration']
+          @SslVpnRootCert = params['SslVpnRootCert']
+          @SslVpnKey = params['SslVpnKey']
+          @SslVpnCert = params['SslVpnCert']
+        end
+      end
+
       # SSL-VPN-CLIENT 出参
       class SslVpnClient < TencentCloud::Common::AbstractModel
         # @param VpcId: VPC实例ID
@@ -17403,10 +17494,18 @@ module TencentCloud
         # 6 已连通
         # 7 未知
         # @type State: Integer
+        # @param SsoEnabled: 是否开启SSO认证。1：开启  0： 不开启
+        # @type SsoEnabled: Integer
+        # @param EiamApplicationId: EIAM应用ID
+        # @type EiamApplicationId: String
+        # @param AccessPolicyEnabled: 是否开启策略控制。0：不开启 1： 开启
+        # @type AccessPolicyEnabled: Integer
+        # @param AccessPolicy: 策略信息
+        # @type AccessPolicy: Array
 
-        attr_accessor :VpcId, :SslVpnServerId, :VpnGatewayId, :SslVpnServerName, :LocalAddress, :RemoteAddress, :MaxConnection, :WanIp, :SslVpnProtocol, :SslVpnPort, :EncryptAlgorithm, :IntegrityAlgorithm, :Compress, :CreateTime, :State
+        attr_accessor :VpcId, :SslVpnServerId, :VpnGatewayId, :SslVpnServerName, :LocalAddress, :RemoteAddress, :MaxConnection, :WanIp, :SslVpnProtocol, :SslVpnPort, :EncryptAlgorithm, :IntegrityAlgorithm, :Compress, :CreateTime, :State, :SsoEnabled, :EiamApplicationId, :AccessPolicyEnabled, :AccessPolicy
         
-        def initialize(vpcid=nil, sslvpnserverid=nil, vpngatewayid=nil, sslvpnservername=nil, localaddress=nil, remoteaddress=nil, maxconnection=nil, wanip=nil, sslvpnprotocol=nil, sslvpnport=nil, encryptalgorithm=nil, integrityalgorithm=nil, compress=nil, createtime=nil, state=nil)
+        def initialize(vpcid=nil, sslvpnserverid=nil, vpngatewayid=nil, sslvpnservername=nil, localaddress=nil, remoteaddress=nil, maxconnection=nil, wanip=nil, sslvpnprotocol=nil, sslvpnport=nil, encryptalgorithm=nil, integrityalgorithm=nil, compress=nil, createtime=nil, state=nil, ssoenabled=nil, eiamapplicationid=nil, accesspolicyenabled=nil, accesspolicy=nil)
           @VpcId = vpcid
           @SslVpnServerId = sslvpnserverid
           @VpnGatewayId = vpngatewayid
@@ -17422,6 +17521,10 @@ module TencentCloud
           @Compress = compress
           @CreateTime = createtime
           @State = state
+          @SsoEnabled = ssoenabled
+          @EiamApplicationId = eiamapplicationid
+          @AccessPolicyEnabled = accesspolicyenabled
+          @AccessPolicy = accesspolicy
         end
 
         def deserialize(params)
@@ -17440,6 +17543,17 @@ module TencentCloud
           @Compress = params['Compress']
           @CreateTime = params['CreateTime']
           @State = params['State']
+          @SsoEnabled = params['SsoEnabled']
+          @EiamApplicationId = params['EiamApplicationId']
+          @AccessPolicyEnabled = params['AccessPolicyEnabled']
+          unless params['AccessPolicy'].nil?
+            @AccessPolicy = []
+            params['AccessPolicy'].each do |i|
+              accesspolicy_tmp = AccessPolicy.new
+              accesspolicy_tmp.deserialize(i)
+              @AccessPolicy << accesspolicy_tmp
+            end
+          end
         end
       end
 

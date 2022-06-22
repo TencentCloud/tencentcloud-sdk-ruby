@@ -601,6 +601,53 @@ module TencentCloud
         end
       end
 
+      # Bot资源信息
+      class BotPkg < TencentCloud::Common::AbstractModel
+        # @param ResourceIds: 资源id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResourceIds: String
+        # @param Status: 状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: Integer
+        # @param Region: 地域
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Region: Integer
+        # @param BeginTime: 开始时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BeginTime: String
+        # @param EndTime: 结束时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EndTime: String
+        # @param InquireNum: 申请数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InquireNum: Integer
+        # @param UsedNum: 使用数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UsedNum: Integer
+
+        attr_accessor :ResourceIds, :Status, :Region, :BeginTime, :EndTime, :InquireNum, :UsedNum
+        
+        def initialize(resourceids=nil, status=nil, region=nil, begintime=nil, endtime=nil, inquirenum=nil, usednum=nil)
+          @ResourceIds = resourceids
+          @Status = status
+          @Region = region
+          @BeginTime = begintime
+          @EndTime = endtime
+          @InquireNum = inquirenum
+          @UsedNum = usednum
+        end
+
+        def deserialize(params)
+          @ResourceIds = params['ResourceIds']
+          @Status = params['Status']
+          @Region = params['Region']
+          @BeginTime = params['BeginTime']
+          @EndTime = params['EndTime']
+          @InquireNum = params['InquireNum']
+          @UsedNum = params['UsedNum']
+        end
+      end
+
       # bot的趋势图对象
       class BotStatPointItem < TencentCloud::Common::AbstractModel
         # @param TimeStamp: 横坐标
@@ -1546,6 +1593,68 @@ module TencentCloud
         end
       end
 
+      # DescribeInstances请求参数结构体
+      class DescribeInstancesRequest < TencentCloud::Common::AbstractModel
+        # @param Offset: 偏移
+        # @type Offset: Integer
+        # @param Limit: 容量
+        # @type Limit: Integer
+        # @param Filters: 过滤数组
+        # @type Filters: Array
+
+        attr_accessor :Offset, :Limit, :Filters
+        
+        def initialize(offset=nil, limit=nil, filters=nil)
+          @Offset = offset
+          @Limit = limit
+          @Filters = filters
+        end
+
+        def deserialize(params)
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filtersitemnew_tmp = FiltersItemNew.new
+              filtersitemnew_tmp.deserialize(i)
+              @Filters << filtersitemnew_tmp
+            end
+          end
+        end
+      end
+
+      # DescribeInstances返回参数结构体
+      class DescribeInstancesResponse < TencentCloud::Common::AbstractModel
+        # @param Total: 总数
+        # @type Total: Integer
+        # @param Instances: instance列表
+        # @type Instances: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Total, :Instances, :RequestId
+        
+        def initialize(total=nil, instances=nil, requestid=nil)
+          @Total = total
+          @Instances = instances
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Total = params['Total']
+          unless params['Instances'].nil?
+            @Instances = []
+            params['Instances'].each do |i|
+              instanceinfo_tmp = InstanceInfo.new
+              instanceinfo_tmp.deserialize(i)
+              @Instances << instanceinfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeIpAccessControl请求参数结构体
       class DescribeIpAccessControlRequest < TencentCloud::Common::AbstractModel
         # @param Domain: 域名
@@ -1873,6 +1982,38 @@ module TencentCloud
         end
       end
 
+      # clb-waf 域名扩展套餐
+      class DomainPackageNew < TencentCloud::Common::AbstractModel
+        # @param ResourceIds: 资源ID
+        # @type ResourceIds: String
+        # @param ValidTime: 过期时间
+        # @type ValidTime: String
+        # @param RenewFlag: 是否自动续费，1：自动续费，0：不自动续费
+        # @type RenewFlag: Integer
+        # @param Count: 套餐购买个数
+        # @type Count: Integer
+        # @param Region: 套餐购买地域，clb-waf暂时没有用到
+        # @type Region: String
+
+        attr_accessor :ResourceIds, :ValidTime, :RenewFlag, :Count, :Region
+        
+        def initialize(resourceids=nil, validtime=nil, renewflag=nil, count=nil, region=nil)
+          @ResourceIds = resourceids
+          @ValidTime = validtime
+          @RenewFlag = renewflag
+          @Count = count
+          @Region = region
+        end
+
+        def deserialize(params)
+          @ResourceIds = params['ResourceIds']
+          @ValidTime = params['ValidTime']
+          @RenewFlag = params['RenewFlag']
+          @Count = params['Count']
+          @Region = params['Region']
+        end
+      end
+
       # DescribeAccessExports接口
       class ExportAccessInfo < TencentCloud::Common::AbstractModel
         # @param ExportId: 日志导出任务ID
@@ -1960,6 +2101,163 @@ module TencentCloud
           @Name = params['Name']
           @Values = params['Values']
           @ExactMatch = params['ExactMatch']
+        end
+      end
+
+      # 业务安全资源信息
+      class FraudPkg < TencentCloud::Common::AbstractModel
+        # @param ResourceIds: 资源id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResourceIds: String
+        # @param Status: 状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: Integer
+        # @param Region: 地域
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Region: Integer
+        # @param BeginTime: 开始时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BeginTime: String
+        # @param EndTime: 结束时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EndTime: String
+        # @param InquireNum: 申请数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InquireNum: Integer
+        # @param UsedNum: 使用数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UsedNum: Integer
+
+        attr_accessor :ResourceIds, :Status, :Region, :BeginTime, :EndTime, :InquireNum, :UsedNum
+        
+        def initialize(resourceids=nil, status=nil, region=nil, begintime=nil, endtime=nil, inquirenum=nil, usednum=nil)
+          @ResourceIds = resourceids
+          @Status = status
+          @Region = region
+          @BeginTime = begintime
+          @EndTime = endtime
+          @InquireNum = inquirenum
+          @UsedNum = usednum
+        end
+
+        def deserialize(params)
+          @ResourceIds = params['ResourceIds']
+          @Status = params['Status']
+          @Region = params['Region']
+          @BeginTime = params['BeginTime']
+          @EndTime = params['EndTime']
+          @InquireNum = params['InquireNum']
+          @UsedNum = params['UsedNum']
+        end
+      end
+
+      # 一个实例的详细信息
+      class InstanceInfo < TencentCloud::Common::AbstractModel
+        # @param InstanceId: id
+        # @type InstanceId: String
+        # @param InstanceName: name
+        # @type InstanceName: String
+        # @param ResourceIds: 资源id
+        # @type ResourceIds: String
+        # @param Region: 地域
+        # @type Region: String
+        # @param PayMode: 付费模式
+        # @type PayMode: Integer
+        # @param RenewFlag: 自动续费
+        # @type RenewFlag: Integer
+        # @param Mode: 弹性计费
+        # @type Mode: Integer
+        # @param Level: 套餐版本
+        # @type Level: Integer
+        # @param ValidTime: 过期时间
+        # @type ValidTime: String
+        # @param BeginTime: 开始时间
+        # @type BeginTime: String
+        # @param DomainCount: 已用
+        # @type DomainCount: Integer
+        # @param SubDomainLimit: 上限
+        # @type SubDomainLimit: Integer
+        # @param MainDomainCount: 已用
+        # @type MainDomainCount: Integer
+        # @param MainDomainLimit: 上限
+        # @type MainDomainLimit: Integer
+        # @param MaxQPS: 峰值
+        # @type MaxQPS: Integer
+        # @param QPS: qps套餐
+        # @type QPS: :class:`Tencentcloud::Waf.v20180125.models.QPSPackageNew`
+        # @param DomainPkg: 域名套餐
+        # @type DomainPkg: :class:`Tencentcloud::Waf.v20180125.models.DomainPackageNew`
+        # @param AppId: 用户appid
+        # @type AppId: Integer
+        # @param Edition: clb或saas
+        # @type Edition: String
+        # @param FraudPkg: 业务安全包
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FraudPkg: :class:`Tencentcloud::Waf.v20180125.models.FraudPkg`
+        # @param BotPkg: Bot资源包
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BotPkg: :class:`Tencentcloud::Waf.v20180125.models.BotPkg`
+
+        attr_accessor :InstanceId, :InstanceName, :ResourceIds, :Region, :PayMode, :RenewFlag, :Mode, :Level, :ValidTime, :BeginTime, :DomainCount, :SubDomainLimit, :MainDomainCount, :MainDomainLimit, :MaxQPS, :QPS, :DomainPkg, :AppId, :Edition, :FraudPkg, :BotPkg
+        
+        def initialize(instanceid=nil, instancename=nil, resourceids=nil, region=nil, paymode=nil, renewflag=nil, mode=nil, level=nil, validtime=nil, begintime=nil, domaincount=nil, subdomainlimit=nil, maindomaincount=nil, maindomainlimit=nil, maxqps=nil, qps=nil, domainpkg=nil, appid=nil, edition=nil, fraudpkg=nil, botpkg=nil)
+          @InstanceId = instanceid
+          @InstanceName = instancename
+          @ResourceIds = resourceids
+          @Region = region
+          @PayMode = paymode
+          @RenewFlag = renewflag
+          @Mode = mode
+          @Level = level
+          @ValidTime = validtime
+          @BeginTime = begintime
+          @DomainCount = domaincount
+          @SubDomainLimit = subdomainlimit
+          @MainDomainCount = maindomaincount
+          @MainDomainLimit = maindomainlimit
+          @MaxQPS = maxqps
+          @QPS = qps
+          @DomainPkg = domainpkg
+          @AppId = appid
+          @Edition = edition
+          @FraudPkg = fraudpkg
+          @BotPkg = botpkg
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @InstanceName = params['InstanceName']
+          @ResourceIds = params['ResourceIds']
+          @Region = params['Region']
+          @PayMode = params['PayMode']
+          @RenewFlag = params['RenewFlag']
+          @Mode = params['Mode']
+          @Level = params['Level']
+          @ValidTime = params['ValidTime']
+          @BeginTime = params['BeginTime']
+          @DomainCount = params['DomainCount']
+          @SubDomainLimit = params['SubDomainLimit']
+          @MainDomainCount = params['MainDomainCount']
+          @MainDomainLimit = params['MainDomainLimit']
+          @MaxQPS = params['MaxQPS']
+          unless params['QPS'].nil?
+            @QPS = QPSPackageNew.new
+            @QPS.deserialize(params['QPS'])
+          end
+          unless params['DomainPkg'].nil?
+            @DomainPkg = DomainPackageNew.new
+            @DomainPkg.deserialize(params['DomainPkg'])
+          end
+          @AppId = params['AppId']
+          @Edition = params['Edition']
+          unless params['FraudPkg'].nil?
+            @FraudPkg = FraudPkg.new
+            @FraudPkg.deserialize(params['FraudPkg'])
+          end
+          unless params['BotPkg'].nil?
+            @BotPkg = BotPkg.new
+            @BotPkg.deserialize(params['BotPkg'])
+          end
         end
       end
 
@@ -2398,6 +2696,38 @@ module TencentCloud
           @UpstreamPort = params['UpstreamPort']
           @UpstreamProtocol = params['UpstreamProtocol']
           @NginxServerId = params['NginxServerId']
+        end
+      end
+
+      # clb-waf QPS套餐 New
+      class QPSPackageNew < TencentCloud::Common::AbstractModel
+        # @param ResourceIds: 资源ID
+        # @type ResourceIds: String
+        # @param ValidTime: 过期时间
+        # @type ValidTime: String
+        # @param RenewFlag: 是否自动续费，1：自动续费，0：不自动续费
+        # @type RenewFlag: Integer
+        # @param Count: 套餐购买个数
+        # @type Count: Integer
+        # @param Region: 套餐购买地域，clb-waf暂时没有用到
+        # @type Region: String
+
+        attr_accessor :ResourceIds, :ValidTime, :RenewFlag, :Count, :Region
+        
+        def initialize(resourceids=nil, validtime=nil, renewflag=nil, count=nil, region=nil)
+          @ResourceIds = resourceids
+          @ValidTime = validtime
+          @RenewFlag = renewflag
+          @Count = count
+          @Region = region
+        end
+
+        def deserialize(params)
+          @ResourceIds = params['ResourceIds']
+          @ValidTime = params['ValidTime']
+          @RenewFlag = params['RenewFlag']
+          @Count = params['Count']
+          @Region = params['Region']
         end
       end
 

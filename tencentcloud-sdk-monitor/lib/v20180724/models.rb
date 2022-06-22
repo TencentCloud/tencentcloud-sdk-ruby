@@ -788,34 +788,45 @@ module TencentCloud
         # @type PolicyId: String
         # @param GroupId: 用于实例、实例组绑定和解绑接口（BindingPolicyObject、UnBindingAllPolicyObject、UnBindingPolicyObject）的策略 ID
         # @type GroupId: String
-        # @param Tag: 策略标签
-        # @type Tag: :class:`Tencentcloud::Monitor.v20180724.models.PolicyTag`
         # @param ServiceType: 产品类型
         # @type ServiceType: String
+        # @param Tag: 策略标签
+        # @type Tag: :class:`Tencentcloud::Monitor.v20180724.models.PolicyTag`
         # @param InstanceGroupId: 实例分组ID
         # @type InstanceGroupId: Integer
+        # @param BatchTag: 批量绑定标签
+        # @type BatchTag: Array
 
-        attr_accessor :Module, :PolicyId, :GroupId, :Tag, :ServiceType, :InstanceGroupId
+        attr_accessor :Module, :PolicyId, :GroupId, :ServiceType, :Tag, :InstanceGroupId, :BatchTag
         
-        def initialize(_module=nil, policyid=nil, groupid=nil, tag=nil, servicetype=nil, instancegroupid=nil)
+        def initialize(_module=nil, policyid=nil, groupid=nil, servicetype=nil, tag=nil, instancegroupid=nil, batchtag=nil)
           @Module = _module
           @PolicyId = policyid
           @GroupId = groupid
-          @Tag = tag
           @ServiceType = servicetype
+          @Tag = tag
           @InstanceGroupId = instancegroupid
+          @BatchTag = batchtag
         end
 
         def deserialize(params)
           @Module = params['Module']
           @PolicyId = params['PolicyId']
           @GroupId = params['GroupId']
+          @ServiceType = params['ServiceType']
           unless params['Tag'].nil?
             @Tag = PolicyTag.new
             @Tag.deserialize(params['Tag'])
           end
-          @ServiceType = params['ServiceType']
           @InstanceGroupId = params['InstanceGroupId']
+          unless params['BatchTag'].nil?
+            @BatchTag = []
+            params['BatchTag'].each do |i|
+              policytag_tmp = PolicyTag.new
+              policytag_tmp.deserialize(i)
+              @BatchTag << policytag_tmp
+            end
+          end
         end
       end
 

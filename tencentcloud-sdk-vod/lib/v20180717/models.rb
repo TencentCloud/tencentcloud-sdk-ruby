@@ -13491,22 +13491,23 @@ module TencentCloud
         # @type Height: Integer
         # @param Width: 视频流宽度的最大值，单位：px。
         # @type Width: Integer
-        # @param Size: 媒体文件总大小（视频为 HLS 时，大小是 m3u8 和 ts 文件大小的总和），单位：字节。
+        # @param Size: 媒体文件总大小，单位：字节。
+        # <li>当媒体文件为 HLS 时，大小是 m3u8 和 ts 文件大小的总和。</li>
         # @type Size: Integer
         # @param Duration: 视频时长，单位：秒。
         # @type Duration: Float
-        # @param Container: 容器类型，例如 m4a，mp4 等。
-        # @type Container: String
         # @param Md5: 视频的 md5 值。
         # @type Md5: String
-        # @param AudioStreamSet: 音频流信息。
-        # @type AudioStreamSet: Array
+        # @param Container: 容器类型，例如 m4a，mp4 等。
+        # @type Container: String
         # @param VideoStreamSet: 视频流信息。
         # @type VideoStreamSet: Array
+        # @param AudioStreamSet: 音频流信息。
+        # @type AudioStreamSet: Array
 
-        attr_accessor :Url, :Definition, :Bitrate, :Height, :Width, :Size, :Duration, :Container, :Md5, :AudioStreamSet, :VideoStreamSet
+        attr_accessor :Url, :Definition, :Bitrate, :Height, :Width, :Size, :Duration, :Md5, :Container, :VideoStreamSet, :AudioStreamSet
         
-        def initialize(url=nil, definition=nil, bitrate=nil, height=nil, width=nil, size=nil, duration=nil, container=nil, md5=nil, audiostreamset=nil, videostreamset=nil)
+        def initialize(url=nil, definition=nil, bitrate=nil, height=nil, width=nil, size=nil, duration=nil, md5=nil, container=nil, videostreamset=nil, audiostreamset=nil)
           @Url = url
           @Definition = definition
           @Bitrate = bitrate
@@ -13514,10 +13515,10 @@ module TencentCloud
           @Width = width
           @Size = size
           @Duration = duration
-          @Container = container
           @Md5 = md5
-          @AudioStreamSet = audiostreamset
+          @Container = container
           @VideoStreamSet = videostreamset
+          @AudioStreamSet = audiostreamset
         end
 
         def deserialize(params)
@@ -13528,22 +13529,22 @@ module TencentCloud
           @Width = params['Width']
           @Size = params['Size']
           @Duration = params['Duration']
-          @Container = params['Container']
           @Md5 = params['Md5']
-          unless params['AudioStreamSet'].nil?
-            @AudioStreamSet = []
-            params['AudioStreamSet'].each do |i|
-              mediaaudiostreamitem_tmp = MediaAudioStreamItem.new
-              mediaaudiostreamitem_tmp.deserialize(i)
-              @AudioStreamSet << mediaaudiostreamitem_tmp
-            end
-          end
+          @Container = params['Container']
           unless params['VideoStreamSet'].nil?
             @VideoStreamSet = []
             params['VideoStreamSet'].each do |i|
               mediavideostreamitem_tmp = MediaVideoStreamItem.new
               mediavideostreamitem_tmp.deserialize(i)
               @VideoStreamSet << mediavideostreamitem_tmp
+            end
+          end
+          unless params['AudioStreamSet'].nil?
+            @AudioStreamSet = []
+            params['AudioStreamSet'].each do |i|
+              mediaaudiostreamitem_tmp = MediaAudioStreamItem.new
+              mediaaudiostreamitem_tmp.deserialize(i)
+              @AudioStreamSet << mediaaudiostreamitem_tmp
             end
           end
         end
@@ -17656,6 +17657,8 @@ module TencentCloud
 
       # SearchMedia请求参数结构体
       class SearchMediaRequest < TencentCloud::Common::AbstractModel
+        # @param SubAppId: <b>点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。</b>
+        # @type SubAppId: Integer
         # @param FileIds: 文件 ID 集合，匹配集合中的任意元素。
         # <li>数组长度限制：10。</li>
         # <li>单个 ID 长度限制：40个字符。</li>
@@ -17676,7 +17679,7 @@ module TencentCloud
         # <li>数组长度限制：10。</li>
         # @type ClassIds: Array
         # @param Tags: 标签集合，匹配集合中任意元素。
-        # <li>单个标签长度限制：8个字符。</li>
+        # <li>单个标签长度限制：16个字符。</li>
         # <li>数组长度限制：10。</li>
         # @type Tags: Array
         # @param Categories: 文件类型。匹配集合中的任意元素：
@@ -17725,8 +17728,6 @@ module TencentCloud
         # <li>单个存储地区长度限制：20个字符。</li>
         # <li>数组长度限制：20。</li>
         # @type StorageRegions: Array
-        # @param SubAppId: 点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。
-        # @type SubAppId: Integer
         # @param StorageClasses: 存储类型数组。可选值有：
         # <li> STANDARD：标准存储。</li>
         # <li> STANDARD_IA：低频存储。</li>
@@ -17758,9 +17759,10 @@ module TencentCloud
         # <li>格式按照 ISO 8601标准表示，详见 [ISO 日期格式说明](https://cloud.tencent.com/document/product/266/11732#I)。</li>
         # @type EndTime: String
 
-        attr_accessor :FileIds, :Names, :NamePrefixes, :Descriptions, :ClassIds, :Tags, :Categories, :SourceTypes, :StreamIds, :Vids, :CreateTime, :ExpireTime, :Sort, :Offset, :Limit, :Filters, :StorageRegions, :SubAppId, :StorageClasses, :Text, :SourceType, :StreamId, :Vid, :StartTime, :EndTime
+        attr_accessor :SubAppId, :FileIds, :Names, :NamePrefixes, :Descriptions, :ClassIds, :Tags, :Categories, :SourceTypes, :StreamIds, :Vids, :CreateTime, :ExpireTime, :Sort, :Offset, :Limit, :Filters, :StorageRegions, :StorageClasses, :Text, :SourceType, :StreamId, :Vid, :StartTime, :EndTime
         
-        def initialize(fileids=nil, names=nil, nameprefixes=nil, descriptions=nil, classids=nil, tags=nil, categories=nil, sourcetypes=nil, streamids=nil, vids=nil, createtime=nil, expiretime=nil, sort=nil, offset=nil, limit=nil, filters=nil, storageregions=nil, subappid=nil, storageclasses=nil, text=nil, sourcetype=nil, streamid=nil, vid=nil, starttime=nil, endtime=nil)
+        def initialize(subappid=nil, fileids=nil, names=nil, nameprefixes=nil, descriptions=nil, classids=nil, tags=nil, categories=nil, sourcetypes=nil, streamids=nil, vids=nil, createtime=nil, expiretime=nil, sort=nil, offset=nil, limit=nil, filters=nil, storageregions=nil, storageclasses=nil, text=nil, sourcetype=nil, streamid=nil, vid=nil, starttime=nil, endtime=nil)
+          @SubAppId = subappid
           @FileIds = fileids
           @Names = names
           @NamePrefixes = nameprefixes
@@ -17778,7 +17780,6 @@ module TencentCloud
           @Limit = limit
           @Filters = filters
           @StorageRegions = storageregions
-          @SubAppId = subappid
           @StorageClasses = storageclasses
           @Text = text
           @SourceType = sourcetype
@@ -17789,6 +17790,7 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @SubAppId = params['SubAppId']
           @FileIds = params['FileIds']
           @Names = params['Names']
           @NamePrefixes = params['NamePrefixes']
@@ -17815,7 +17817,6 @@ module TencentCloud
           @Limit = params['Limit']
           @Filters = params['Filters']
           @StorageRegions = params['StorageRegions']
-          @SubAppId = params['SubAppId']
           @StorageClasses = params['StorageClasses']
           @Text = params['Text']
           @SourceType = params['SourceType']

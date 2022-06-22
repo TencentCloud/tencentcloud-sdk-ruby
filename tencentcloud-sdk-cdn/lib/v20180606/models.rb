@@ -3132,16 +3132,24 @@ module TencentCloud
         # @param FileVerifyUrl: 文件验证 URL 指引
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FileVerifyUrl: String
+        # @param FileVerifyDomains: 文件校验域名列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FileVerifyDomains: Array
+        # @param FileVerifyName: 文件校验文件名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FileVerifyName: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :SubDomain, :Record, :RecordType, :FileVerifyUrl, :RequestId
+        attr_accessor :SubDomain, :Record, :RecordType, :FileVerifyUrl, :FileVerifyDomains, :FileVerifyName, :RequestId
         
-        def initialize(subdomain=nil, record=nil, recordtype=nil, fileverifyurl=nil, requestid=nil)
+        def initialize(subdomain=nil, record=nil, recordtype=nil, fileverifyurl=nil, fileverifydomains=nil, fileverifyname=nil, requestid=nil)
           @SubDomain = subdomain
           @Record = record
           @RecordType = recordtype
           @FileVerifyUrl = fileverifyurl
+          @FileVerifyDomains = fileverifydomains
+          @FileVerifyName = fileverifyname
           @RequestId = requestid
         end
 
@@ -3150,6 +3158,8 @@ module TencentCloud
           @Record = params['Record']
           @RecordType = params['RecordType']
           @FileVerifyUrl = params['FileVerifyUrl']
+          @FileVerifyDomains = params['FileVerifyDomains']
+          @FileVerifyName = params['FileVerifyName']
           @RequestId = params['RequestId']
         end
       end

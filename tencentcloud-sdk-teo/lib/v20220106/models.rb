@@ -6724,9 +6724,9 @@ module TencentCloud
         # @type PageSize: Integer
         # @param PageNo: 当前页
         # @type PageNo: Integer
-        # @param Zones: 站点集合
+        # @param Zones: 站点名集合
         # @type Zones: Array
-        # @param Domains: 域名集合
+        # @param Domains: 子域名集合
         # @type Domains: Array
 
         attr_accessor :StartTime, :EndTime, :PageSize, :PageNo, :Zones, :Domains
@@ -7113,7 +7113,7 @@ module TencentCloud
         # @param LogTime: 日志打包开始时间
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LogTime: Integer
-        # @param Domain: 站点名称
+        # @param Domain: 子域名
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Domain: String
         # @param Size: 原始大小 单位byte

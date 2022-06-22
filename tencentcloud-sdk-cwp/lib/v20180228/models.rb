@@ -8431,8 +8431,8 @@ module TencentCloud
         # @type ImportType: String
         # @param IsQueryProMachine: 该参数已作废.
         # @type IsQueryProMachine: Boolean
-        # @param Filters: 过滤条件。
-        # <li>Version - String  是否必填：否 - 当前防护版本（ PRO_VERSION：专业版 | BASIC_VERSION：基础版 | Flagship : 旗舰版 | ProtectedMachines: 专业版+旗舰版）</li>
+        # @param Filters: 过滤条件：
+        # <li>Version - String  是否必填：否 - 当前防护版本（ PRO_VERSION：专业版 | BASIC_VERSION：基础版 | Flagship：旗舰版 | ProtectedMachines：专业版+旗舰版） | BASIC_PROPOST_GENERAL_DISCOUNT：普惠版+专业版按量计费+基础版主机 | UnFlagship：专业版预付费+专业版后付费+基础版+普惠版</li>
         # @type Filters: Array
 
         attr_accessor :MachineList, :ImportType, :IsQueryProMachine, :Filters
@@ -12700,10 +12700,13 @@ module TencentCloud
         # @param MachineStatus: 在线状态 OFFLINE，ONLINE
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MachineStatus: String
+        # @param LicenseOrder: 授权订单对象
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LicenseOrder: :class:`Tencentcloud::Cwp.v20180228.models.LicenseOrder`
 
-        attr_accessor :MachineName, :MachinePublicIp, :MachinePrivateIp, :MachineTag, :Quuid, :Uuid, :KernelVersion, :MachineStatus
+        attr_accessor :MachineName, :MachinePublicIp, :MachinePrivateIp, :MachineTag, :Quuid, :Uuid, :KernelVersion, :MachineStatus, :LicenseOrder
         
-        def initialize(machinename=nil, machinepublicip=nil, machineprivateip=nil, machinetag=nil, quuid=nil, uuid=nil, kernelversion=nil, machinestatus=nil)
+        def initialize(machinename=nil, machinepublicip=nil, machineprivateip=nil, machinetag=nil, quuid=nil, uuid=nil, kernelversion=nil, machinestatus=nil, licenseorder=nil)
           @MachineName = machinename
           @MachinePublicIp = machinepublicip
           @MachinePrivateIp = machineprivateip
@@ -12712,6 +12715,7 @@ module TencentCloud
           @Uuid = uuid
           @KernelVersion = kernelversion
           @MachineStatus = machinestatus
+          @LicenseOrder = licenseorder
         end
 
         def deserialize(params)
@@ -12730,6 +12734,10 @@ module TencentCloud
           @Uuid = params['Uuid']
           @KernelVersion = params['KernelVersion']
           @MachineStatus = params['MachineStatus']
+          unless params['LicenseOrder'].nil?
+            @LicenseOrder = LicenseOrder.new
+            @LicenseOrder.deserialize(params['LicenseOrder'])
+          end
         end
       end
 
@@ -14410,6 +14418,38 @@ module TencentCloud
           @LastScanTime = params['LastScanTime']
           @EventId = params['EventId']
           @Quuid = params['Quuid']
+        end
+      end
+
+      # 授权订单对象内容
+      class LicenseOrder < TencentCloud::Common::AbstractModel
+        # @param LicenseId: 授权ID
+        # @type LicenseId: Integer
+        # @param LicenseType: 授权类型
+        # @type LicenseType: Integer
+        # @param Status: 授权订单资源状态
+        # @type Status: Integer
+        # @param SourceType: 订单类型
+        # @type SourceType: Integer
+        # @param ResourceId: 资源ID
+        # @type ResourceId: String
+
+        attr_accessor :LicenseId, :LicenseType, :Status, :SourceType, :ResourceId
+        
+        def initialize(licenseid=nil, licensetype=nil, status=nil, sourcetype=nil, resourceid=nil)
+          @LicenseId = licenseid
+          @LicenseType = licensetype
+          @Status = status
+          @SourceType = sourcetype
+          @ResourceId = resourceid
+        end
+
+        def deserialize(params)
+          @LicenseId = params['LicenseId']
+          @LicenseType = params['LicenseType']
+          @Status = params['Status']
+          @SourceType = params['SourceType']
+          @ResourceId = params['ResourceId']
         end
       end
 

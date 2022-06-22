@@ -369,10 +369,14 @@ module TencentCloud
         # @type DocumentId: String
         # @param ComponentDescription: 控件描述
         # @type ComponentDescription: String
+        # @param OffsetX: 指定关键字时横坐标偏移量
+        # @type OffsetX: Float
+        # @param OffsetY: 指定关键字时纵坐标偏移量
+        # @type OffsetY: Float
 
-        attr_accessor :ComponentId, :ComponentType, :ComponentName, :ComponentRequired, :FileIndex, :GenerateMode, :ComponentWidth, :ComponentHeight, :ComponentPage, :ComponentPosX, :ComponentPosY, :ComponentExtra, :ComponentValue, :ComponentDateFontSize, :DocumentId, :ComponentDescription
+        attr_accessor :ComponentId, :ComponentType, :ComponentName, :ComponentRequired, :FileIndex, :GenerateMode, :ComponentWidth, :ComponentHeight, :ComponentPage, :ComponentPosX, :ComponentPosY, :ComponentExtra, :ComponentValue, :ComponentDateFontSize, :DocumentId, :ComponentDescription, :OffsetX, :OffsetY
         
-        def initialize(componentid=nil, componenttype=nil, componentname=nil, componentrequired=nil, fileindex=nil, generatemode=nil, componentwidth=nil, componentheight=nil, componentpage=nil, componentposx=nil, componentposy=nil, componentextra=nil, componentvalue=nil, componentdatefontsize=nil, documentid=nil, componentdescription=nil)
+        def initialize(componentid=nil, componenttype=nil, componentname=nil, componentrequired=nil, fileindex=nil, generatemode=nil, componentwidth=nil, componentheight=nil, componentpage=nil, componentposx=nil, componentposy=nil, componentextra=nil, componentvalue=nil, componentdatefontsize=nil, documentid=nil, componentdescription=nil, offsetx=nil, offsety=nil)
           @ComponentId = componentid
           @ComponentType = componenttype
           @ComponentName = componentname
@@ -389,6 +393,8 @@ module TencentCloud
           @ComponentDateFontSize = componentdatefontsize
           @DocumentId = documentid
           @ComponentDescription = componentdescription
+          @OffsetX = offsetx
+          @OffsetY = offsety
         end
 
         def deserialize(params)
@@ -408,6 +414,8 @@ module TencentCloud
           @ComponentDateFontSize = params['ComponentDateFontSize']
           @DocumentId = params['DocumentId']
           @ComponentDescription = params['ComponentDescription']
+          @OffsetX = params['OffsetX']
+          @OffsetY = params['OffsetY']
         end
       end
 

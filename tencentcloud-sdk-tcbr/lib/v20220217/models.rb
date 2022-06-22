@@ -883,7 +883,7 @@ module TencentCloud
         # @type Source: String
         # @param Repo: 仓库名
         # @type Repo: String
-        # @param Branch: 分之名
+        # @param Branch: 分支名
         # @type Branch: String
 
         attr_accessor :Source, :Repo, :Branch

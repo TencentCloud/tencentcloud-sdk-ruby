@@ -29,6 +29,30 @@ module TencentCloud
         end
 
 
+        # DNSPod商品下单
+
+        # @param request: Request instance for CreateDeal.
+        # @type request: :class:`Tencentcloud::dnspod::V20210323::CreateDealRequest`
+        # @rtype: :class:`Tencentcloud::dnspod::V20210323::CreateDealResponse`
+        def CreateDeal(request)
+          body = send_request('CreateDeal', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateDealResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 添加域名
 
         # @param request: Request instance for CreateDomain.
@@ -749,6 +773,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        #  DNS 解析套餐自动续费设置
+
+        # @param request: Request instance for ModifyPackageAutoRenew.
+        # @type request: :class:`Tencentcloud::dnspod::V20210323::ModifyPackageAutoRenewRequest`
+        # @rtype: :class:`Tencentcloud::dnspod::V20210323::ModifyPackageAutoRenewResponse`
+        def ModifyPackageAutoRenew(request)
+          body = send_request('ModifyPackageAutoRenew', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyPackageAutoRenewResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 修改记录
 
         # @param request: Request instance for ModifyRecord.
@@ -855,6 +903,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifySubdomainStatusResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 增值服务自动续费设置
+
+        # @param request: Request instance for ModifyVasAutoRenewStatus.
+        # @type request: :class:`Tencentcloud::dnspod::V20210323::ModifyVasAutoRenewStatusRequest`
+        # @rtype: :class:`Tencentcloud::dnspod::V20210323::ModifyVasAutoRenewStatusResponse`
+        def ModifyVasAutoRenewStatus(request)
+          body = send_request('ModifyVasAutoRenewStatus', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyVasAutoRenewStatusResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # DNSPod商品余额支付
+
+        # @param request: Request instance for PayOrderWithBalance.
+        # @type request: :class:`Tencentcloud::dnspod::V20210323::PayOrderWithBalanceRequest`
+        # @rtype: :class:`Tencentcloud::dnspod::V20210323::PayOrderWithBalanceResponse`
+        def PayOrderWithBalance(request)
+          body = send_request('PayOrderWithBalance', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = PayOrderWithBalanceResponse.new
             model.deserialize(response['Response'])
             model
           else

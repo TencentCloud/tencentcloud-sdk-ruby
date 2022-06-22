@@ -141,6 +141,95 @@ module TencentCloud
         end
       end
 
+      # CreateDeal请求参数结构体
+      class CreateDealRequest < TencentCloud::Common::AbstractModel
+        # @param DealType: 询价类型，1 新购，2 续费，3 套餐升级（增值服务暂时只支持新购）
+        # @type DealType: Integer
+        # @param GoodsType: 商品类型，1 域名套餐 2 增值服务
+        # @type GoodsType: Integer
+        # @param GoodsChildType: 套餐类型：
+        # DP_PLUS：专业版
+        # DP_EXPERT：企业版
+        # DP_ULTRA：尊享版
+
+        # 增值服务类型
+        # LB：负载均衡
+        # URL：URL转发
+        # DMONITOR_TASKS：D监控任务数
+        # DMONITOR_IP：D监控备用 IP 数
+        # CUSTOMLINE：自定义线路数
+        # @type GoodsChildType: String
+        # @param GoodsNum: 增值服务购买数量，如果是域名套餐固定为1，如果是增值服务则按以下规则：
+        # 负载均衡、D监控任务数、D监控备用 IP 数、自定义线路数、URL 转发（必须是5的正整数倍，如 5、10、15 等）
+        # @type GoodsNum: Integer
+        # @param AutoRenew: 是否开启自动续费，1 开启，2 不开启（增值服务暂不支持自动续费），默认值为 2 不开启
+        # @type AutoRenew: Integer
+        # @param Domain: 需要绑定套餐的域名，如 dnspod.cn，如果是续费或升级，domain 参数必须要传，新购可不传。
+        # @type Domain: String
+        # @param TimeSpan: 套餐时长：
+        # 1. 套餐以月为单位（按月只能是 3、6 还有 12 的倍数），套餐例如购买一年则传12，最大120 。（续费最低一年）
+        # 2. 升级套餐时不需要传。
+        # 3. 增值服务的时长单位为年，买一年传1（增值服务新购按年只能是 1，增值服务续费最大为 10）
+        # @type TimeSpan: Integer
+        # @param NewPackageType: 套餐类型，需要升级到的套餐类型，只有升级时需要。
+        # @type NewPackageType: String
+
+        attr_accessor :DealType, :GoodsType, :GoodsChildType, :GoodsNum, :AutoRenew, :Domain, :TimeSpan, :NewPackageType
+        
+        def initialize(dealtype=nil, goodstype=nil, goodschildtype=nil, goodsnum=nil, autorenew=nil, domain=nil, timespan=nil, newpackagetype=nil)
+          @DealType = dealtype
+          @GoodsType = goodstype
+          @GoodsChildType = goodschildtype
+          @GoodsNum = goodsnum
+          @AutoRenew = autorenew
+          @Domain = domain
+          @TimeSpan = timespan
+          @NewPackageType = newpackagetype
+        end
+
+        def deserialize(params)
+          @DealType = params['DealType']
+          @GoodsType = params['GoodsType']
+          @GoodsChildType = params['GoodsChildType']
+          @GoodsNum = params['GoodsNum']
+          @AutoRenew = params['AutoRenew']
+          @Domain = params['Domain']
+          @TimeSpan = params['TimeSpan']
+          @NewPackageType = params['NewPackageType']
+        end
+      end
+
+      # CreateDeal返回参数结构体
+      class CreateDealResponse < TencentCloud::Common::AbstractModel
+        # @param BigDealId: 大订单号，一个大订单号下可以有多个子订单，说明是同一次下单
+        # @type BigDealId: String
+        # @param DealList: 子订单列表
+        # @type DealList: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :BigDealId, :DealList, :RequestId
+        
+        def initialize(bigdealid=nil, deallist=nil, requestid=nil)
+          @BigDealId = bigdealid
+          @DealList = deallist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @BigDealId = params['BigDealId']
+          unless params['DealList'].nil?
+            @DealList = []
+            params['DealList'].each do |i|
+              deals_tmp = Deals.new
+              deals_tmp.deserialize(i)
+              @DealList << deals_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateDomainAlias请求参数结构体
       class CreateDomainAliasRequest < TencentCloud::Common::AbstractModel
         # @param DomainAlias: 域名别名
@@ -678,6 +767,26 @@ module TencentCloud
         def deserialize(params)
           @RecordId = params['RecordId']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 子订单号列表
+      class Deals < TencentCloud::Common::AbstractModel
+        # @param DealId: 子订单ID
+        # @type DealId: String
+        # @param DealName: 子订单号
+        # @type DealName: String
+
+        attr_accessor :DealId, :DealName
+        
+        def initialize(dealid=nil, dealname=nil)
+          @DealId = dealid
+          @DealName = dealname
+        end
+
+        def deserialize(params)
+          @DealId = params['DealId']
+          @DealName = params['DealName']
         end
       end
 
@@ -2473,6 +2582,42 @@ module TencentCloud
         end
       end
 
+      # ModifyPackageAutoRenew请求参数结构体
+      class ModifyPackageAutoRenewRequest < TencentCloud::Common::AbstractModel
+        # @param ResourceId: 资源ID
+        # @type ResourceId: String
+        # @param Status: enable 开启自动续费；disable 关闭自动续费
+        # @type Status: String
+
+        attr_accessor :ResourceId, :Status
+        
+        def initialize(resourceid=nil, status=nil)
+          @ResourceId = resourceid
+          @Status = status
+        end
+
+        def deserialize(params)
+          @ResourceId = params['ResourceId']
+          @Status = params['Status']
+        end
+      end
+
+      # ModifyPackageAutoRenew返回参数结构体
+      class ModifyPackageAutoRenewResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 批量添加记录返回结构
       class ModifyRecordBatchDetail < TencentCloud::Common::AbstractModel
         # @param RecordList: 见RecordInfoBatchModify
@@ -2810,6 +2955,90 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyVasAutoRenewStatus请求参数结构体
+      class ModifyVasAutoRenewStatusRequest < TencentCloud::Common::AbstractModel
+        # @param ResourceId: 资源ID
+        # @type ResourceId: String
+        # @param Status: enable 开启自动续费；disable 关闭自动续费
+        # @type Status: String
+
+        attr_accessor :ResourceId, :Status
+        
+        def initialize(resourceid=nil, status=nil)
+          @ResourceId = resourceid
+          @Status = status
+        end
+
+        def deserialize(params)
+          @ResourceId = params['ResourceId']
+          @Status = params['Status']
+        end
+      end
+
+      # ModifyVasAutoRenewStatus返回参数结构体
+      class ModifyVasAutoRenewStatusResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # PayOrderWithBalance请求参数结构体
+      class PayOrderWithBalanceRequest < TencentCloud::Common::AbstractModel
+        # @param BigDealIdList: 需要支付的大订单号数组
+        # @type BigDealIdList: Array
+        # @param VoucherIdList: 代金券ID数组
+        # @type VoucherIdList: Array
+
+        attr_accessor :BigDealIdList, :VoucherIdList
+        
+        def initialize(bigdealidlist=nil, voucheridlist=nil)
+          @BigDealIdList = bigdealidlist
+          @VoucherIdList = voucheridlist
+        end
+
+        def deserialize(params)
+          @BigDealIdList = params['BigDealIdList']
+          @VoucherIdList = params['VoucherIdList']
+        end
+      end
+
+      # PayOrderWithBalance返回参数结构体
+      class PayOrderWithBalanceResponse < TencentCloud::Common::AbstractModel
+        # @param DealIdList: 此次操作支付成功的订单id数组
+        # @type DealIdList: Array
+        # @param BigDealIdList: 此次操作支付成功的大订单号数组
+        # @type BigDealIdList: Array
+        # @param DealNameList: 此次操作支付成功的订单号数组
+        # @type DealNameList: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :DealIdList, :BigDealIdList, :DealNameList, :RequestId
+        
+        def initialize(dealidlist=nil, bigdealidlist=nil, dealnamelist=nil, requestid=nil)
+          @DealIdList = dealidlist
+          @BigDealIdList = bigdealidlist
+          @DealNameList = dealnamelist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @DealIdList = params['DealIdList']
+          @BigDealIdList = params['BigDealIdList']
+          @DealNameList = params['DealNameList']
           @RequestId = params['RequestId']
         end
       end
