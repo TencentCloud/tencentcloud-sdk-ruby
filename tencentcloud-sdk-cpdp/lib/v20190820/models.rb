@@ -6085,12 +6085,12 @@ module TencentCloud
         # @type ChannelMerchantId: String
         # @param OutSubMerchantId: 外部子商户ID,平台侧商户唯一ID。
         # @type OutSubMerchantId: String
-        # @param ChannelName: 渠道名称。
+        # @param ChannelName: 渠道名称。详见附录-云企付枚举类说明-ChannelName。
         # __TENPAY__: 商企付
         # __WECHAT__: 微信支付
         # __ALIPAY__: 支付宝
         # @type ChannelName: String
-        # @param PaymentMethod: 支付方式。
+        # @param PaymentMethod: 支付方式。详见附录-云企付枚举类说明-PaymentMethod。
         # __EBANK_PAYMENT__: ebank支付
         # __OPENBANK_PAYMENT__: openbank支付
         # @type PaymentMethod: String
@@ -6388,13 +6388,13 @@ module TencentCloud
       class CreateOpenBankPaymentOrderRequest < TencentCloud::Common::AbstractModel
         # @param ChannelMerchantId: 云企付渠道商户号。外部接入平台入驻云企付平台后下发。
         # @type ChannelMerchantId: String
-        # @param ChannelName: 渠道名称。
+        # @param ChannelName: 渠道名称。详见附录-云企付枚举类说明-ChannelName。
         # __TENPAY__: 商企付
         # __WECHAT__: 微信支付
         # __ALIPAY__: 支付宝
         # __WECHAT__: 微信支付
         # @type ChannelName: String
-        # @param PaymentMethod: 付款方式。如
+        # @param PaymentMethod: 付款方式。详见附录-云企付枚举类说明-PaymentMethod。
         # __EBANK_PAYMENT__:B2B EBank付款
         # __OPENBANK_PAYMENT__:B2C  openbank付款
         # __SAFT_ISV__:支付宝安心发
@@ -17065,9 +17065,9 @@ module TencentCloud
         # @type ChannelOrderId: String
         # @param ThirdPayOrderId: 第三方支付平台订单号
         # @type ThirdPayOrderId: String
-        # @param OrderStatus: INIT：初始化
+        # @param OrderStatus: 订单状态。
+        # INIT：初始化
         # PAYING：支付中
-        # DEDUCTED：扣款成功
         # ACCEPTED：支付受理成功
         # SUCCESS：支付成功
         # CLOSED：关单
@@ -17099,10 +17099,16 @@ module TencentCloud
         # @param BankApprovalGuideInfo: 银行复核指引。当TENPAY下OPENBANT_PAYMENT时，下单受理成功是返回。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BankApprovalGuideInfo: :class:`Tencentcloud::Cpdp.v20190820.models.OpenBankApprovalGuideInfo`
+        # @param FeeAmount: 手续费金额
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FeeAmount: Integer
+        # @param FeeRate: 手续费费率
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FeeRate: Integer
 
-        attr_accessor :ChannelMerchantId, :OutOrderId, :ChannelOrderId, :ThirdPayOrderId, :OrderStatus, :ChannelName, :PaymentMethod, :TotalAmount, :PayAmount, :FailReason, :Attachment, :RedirectInfo, :ExternalReturnData, :BankApprovalGuideInfo
+        attr_accessor :ChannelMerchantId, :OutOrderId, :ChannelOrderId, :ThirdPayOrderId, :OrderStatus, :ChannelName, :PaymentMethod, :TotalAmount, :PayAmount, :FailReason, :Attachment, :RedirectInfo, :ExternalReturnData, :BankApprovalGuideInfo, :FeeAmount, :FeeRate
         
-        def initialize(channelmerchantid=nil, outorderid=nil, channelorderid=nil, thirdpayorderid=nil, orderstatus=nil, channelname=nil, paymentmethod=nil, totalamount=nil, payamount=nil, failreason=nil, attachment=nil, redirectinfo=nil, externalreturndata=nil, bankapprovalguideinfo=nil)
+        def initialize(channelmerchantid=nil, outorderid=nil, channelorderid=nil, thirdpayorderid=nil, orderstatus=nil, channelname=nil, paymentmethod=nil, totalamount=nil, payamount=nil, failreason=nil, attachment=nil, redirectinfo=nil, externalreturndata=nil, bankapprovalguideinfo=nil, feeamount=nil, feerate=nil)
           @ChannelMerchantId = channelmerchantid
           @OutOrderId = outorderid
           @ChannelOrderId = channelorderid
@@ -17117,6 +17123,8 @@ module TencentCloud
           @RedirectInfo = redirectinfo
           @ExternalReturnData = externalreturndata
           @BankApprovalGuideInfo = bankapprovalguideinfo
+          @FeeAmount = feeamount
+          @FeeRate = feerate
         end
 
         def deserialize(params)
@@ -17140,6 +17148,8 @@ module TencentCloud
             @BankApprovalGuideInfo = OpenBankApprovalGuideInfo.new
             @BankApprovalGuideInfo.deserialize(params['BankApprovalGuideInfo'])
           end
+          @FeeAmount = params['FeeAmount']
+          @FeeRate = params['FeeRate']
         end
       end
 

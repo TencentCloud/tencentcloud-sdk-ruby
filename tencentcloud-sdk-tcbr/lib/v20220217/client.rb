@@ -173,6 +173,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询服务管理任务信息
+
+        # @param request: Request instance for DescribeServerManageTask.
+        # @type request: :class:`Tencentcloud::tcbr::V20220217::DescribeServerManageTaskRequest`
+        # @rtype: :class:`Tencentcloud::tcbr::V20220217::DescribeServerManageTaskResponse`
+        def DescribeServerManageTask(request)
+          body = send_request('DescribeServerManageTask', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeServerManageTaskResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 操作发布单
 
         # @param request: Request instance for OperateServerManage.

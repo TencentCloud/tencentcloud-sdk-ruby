@@ -2838,18 +2838,26 @@ module TencentCloud
       class HandleStreamConnectProjectResponse < TencentCloud::Common::AbstractModel
         # @param StreamInputRtmpPushUrl: 输入源推流地址，当 Operation 取值 AddInput 且 InputType 为 RtmpPush 类型时有效。
         # @type StreamInputRtmpPushUrl: String
+        # @param VodPullInputPlayInfo: 点播输入源播放进度信息，当 Operation 取值 DescribeInputPlayInfo 且 InputType 为 VodPull 类型时有效。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VodPullInputPlayInfo: :class:`Tencentcloud::Cme.v20191029.models.VodPullInputPlayInfo`
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :StreamInputRtmpPushUrl, :RequestId
+        attr_accessor :StreamInputRtmpPushUrl, :VodPullInputPlayInfo, :RequestId
         
-        def initialize(streaminputrtmppushurl=nil, requestid=nil)
+        def initialize(streaminputrtmppushurl=nil, vodpullinputplayinfo=nil, requestid=nil)
           @StreamInputRtmpPushUrl = streaminputrtmppushurl
+          @VodPullInputPlayInfo = vodpullinputplayinfo
           @RequestId = requestid
         end
 
         def deserialize(params)
           @StreamInputRtmpPushUrl = params['StreamInputRtmpPushUrl']
+          unless params['VodPullInputPlayInfo'].nil?
+            @VodPullInputPlayInfo = VodPullInputPlayInfo.new
+            @VodPullInputPlayInfo.deserialize(params['VodPullInputPlayInfo'])
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -6208,6 +6216,26 @@ module TencentCloud
         def deserialize(params)
           @InputUrls = params['InputUrls']
           @LoopTimes = params['LoopTimes']
+        end
+      end
+
+      # 点播文件播放信息，包含当前在播地址和该地址已播时长 。
+      class VodPullInputPlayInfo < TencentCloud::Common::AbstractModel
+        # @param Url: 当前正在播放文件 Url 。
+        # @type Url: String
+        # @param TimeOffset: 点播文件已播放时长，单位：秒。
+        # @type TimeOffset: Float
+
+        attr_accessor :Url, :TimeOffset
+        
+        def initialize(url=nil, timeoffset=nil)
+          @Url = url
+          @TimeOffset = timeoffset
+        end
+
+        def deserialize(params)
+          @Url = params['Url']
+          @TimeOffset = params['TimeOffset']
         end
       end
 

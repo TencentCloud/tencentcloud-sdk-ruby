@@ -41,10 +41,13 @@ module TencentCloud
         # @param BehaviorTitle: 小程序隐私诊断堆栈报告名称
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BehaviorTitle: String
+        # @param HighRiskCount: 诊断风险项数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HighRiskCount: Integer
 
-        attr_accessor :AppPackage, :AppName, :AppVersion, :Platform, :ReportUrl, :ReportTitle, :BehaviorUrl, :BehaviorTitle
+        attr_accessor :AppPackage, :AppName, :AppVersion, :Platform, :ReportUrl, :ReportTitle, :BehaviorUrl, :BehaviorTitle, :HighRiskCount
         
-        def initialize(apppackage=nil, appname=nil, appversion=nil, platform=nil, reporturl=nil, reporttitle=nil, behaviorurl=nil, behaviortitle=nil)
+        def initialize(apppackage=nil, appname=nil, appversion=nil, platform=nil, reporturl=nil, reporttitle=nil, behaviorurl=nil, behaviortitle=nil, highriskcount=nil)
           @AppPackage = apppackage
           @AppName = appname
           @AppVersion = appversion
@@ -53,6 +56,7 @@ module TencentCloud
           @ReportTitle = reporttitle
           @BehaviorUrl = behaviorurl
           @BehaviorTitle = behaviortitle
+          @HighRiskCount = highriskcount
         end
 
         def deserialize(params)
@@ -64,6 +68,7 @@ module TencentCloud
           @ReportTitle = params['ReportTitle']
           @BehaviorUrl = params['BehaviorUrl']
           @BehaviorTitle = params['BehaviorTitle']
+          @HighRiskCount = params['HighRiskCount']
         end
       end
 

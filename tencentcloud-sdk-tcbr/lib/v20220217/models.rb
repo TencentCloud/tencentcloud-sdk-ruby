@@ -466,6 +466,61 @@ module TencentCloud
         end
       end
 
+      # DescribeServerManageTask请求参数结构体
+      class DescribeServerManageTaskRequest < TencentCloud::Common::AbstractModel
+        # @param EnvId: 环境Id
+        # @type EnvId: String
+        # @param ServerName: 服务名
+        # @type ServerName: String
+        # @param TaskId: 任务Id
+        # @type TaskId: Integer
+        # @param OperatorRemark: 操作标识
+        # @type OperatorRemark: String
+
+        attr_accessor :EnvId, :ServerName, :TaskId, :OperatorRemark
+        
+        def initialize(envid=nil, servername=nil, taskid=nil, operatorremark=nil)
+          @EnvId = envid
+          @ServerName = servername
+          @TaskId = taskid
+          @OperatorRemark = operatorremark
+        end
+
+        def deserialize(params)
+          @EnvId = params['EnvId']
+          @ServerName = params['ServerName']
+          @TaskId = params['TaskId']
+          @OperatorRemark = params['OperatorRemark']
+        end
+      end
+
+      # DescribeServerManageTask返回参数结构体
+      class DescribeServerManageTaskResponse < TencentCloud::Common::AbstractModel
+        # @param IsExist: 是否存在
+        # @type IsExist: Boolean
+        # @param Task: 任务信息
+        # @type Task: :class:`Tencentcloud::Tcbr.v20220217.models.ServerManageTaskInfo`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :IsExist, :Task, :RequestId
+        
+        def initialize(isexist=nil, task=nil, requestid=nil)
+          @IsExist = isexist
+          @Task = task
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @IsExist = params['IsExist']
+          unless params['Task'].nil?
+            @Task = ServerManageTaskInfo.new
+            @Task.deserialize(params['Task'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 环境基础信息
       class EnvBaseInfo < TencentCloud::Common::AbstractModel
         # @param EnvId: 环境Id
@@ -1032,6 +1087,89 @@ module TencentCloud
         end
       end
 
+      # 服务管理任务信息
+      class ServerManageTaskInfo < TencentCloud::Common::AbstractModel
+        # @param Id: 任务Id
+        # @type Id: Integer
+        # @param EnvId: 环境Id
+        # @type EnvId: String
+        # @param ServerName: 服务名
+        # @type ServerName: String
+        # @param CreateTime: 创建时间
+        # @type CreateTime: String
+        # @param ChangeType: 变更类型
+        # @type ChangeType: String
+        # @param ReleaseType: 发布类型
+        # @type ReleaseType: String
+        # @param DeployType: 部署类型
+        # @type DeployType: String
+        # @param PreVersionName: 上一个版本名
+        # @type PreVersionName: String
+        # @param VersionName: 版本名
+        # @type VersionName: String
+        # @param PipelineId: 流水线Id
+        # @type PipelineId: Integer
+        # @param PipelineTaskId: 流水线任务Id
+        # @type PipelineTaskId: Integer
+        # @param ReleaseId: 发布单Id
+        # @type ReleaseId: Integer
+        # @param Status: 状态
+        # @type Status: String
+        # @param Steps: 步骤信息
+        # @type Steps: Array
+        # @param FailReason: 失败原因
+        # @type FailReason: String
+        # @param OperatorRemark: 操作标识
+        # @type OperatorRemark: String
+
+        attr_accessor :Id, :EnvId, :ServerName, :CreateTime, :ChangeType, :ReleaseType, :DeployType, :PreVersionName, :VersionName, :PipelineId, :PipelineTaskId, :ReleaseId, :Status, :Steps, :FailReason, :OperatorRemark
+        
+        def initialize(id=nil, envid=nil, servername=nil, createtime=nil, changetype=nil, releasetype=nil, deploytype=nil, preversionname=nil, versionname=nil, pipelineid=nil, pipelinetaskid=nil, releaseid=nil, status=nil, steps=nil, failreason=nil, operatorremark=nil)
+          @Id = id
+          @EnvId = envid
+          @ServerName = servername
+          @CreateTime = createtime
+          @ChangeType = changetype
+          @ReleaseType = releasetype
+          @DeployType = deploytype
+          @PreVersionName = preversionname
+          @VersionName = versionname
+          @PipelineId = pipelineid
+          @PipelineTaskId = pipelinetaskid
+          @ReleaseId = releaseid
+          @Status = status
+          @Steps = steps
+          @FailReason = failreason
+          @OperatorRemark = operatorremark
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @EnvId = params['EnvId']
+          @ServerName = params['ServerName']
+          @CreateTime = params['CreateTime']
+          @ChangeType = params['ChangeType']
+          @ReleaseType = params['ReleaseType']
+          @DeployType = params['DeployType']
+          @PreVersionName = params['PreVersionName']
+          @VersionName = params['VersionName']
+          @PipelineId = params['PipelineId']
+          @PipelineTaskId = params['PipelineTaskId']
+          @ReleaseId = params['ReleaseId']
+          @Status = params['Status']
+          unless params['Steps'].nil?
+            @Steps = []
+            params['Steps'].each do |i|
+              taskstepinfo_tmp = TaskStepInfo.new
+              taskstepinfo_tmp.deserialize(i)
+              @Steps << taskstepinfo_tmp
+            end
+          end
+          @FailReason = params['FailReason']
+          @OperatorRemark = params['OperatorRemark']
+        end
+      end
+
       # 静态CDN资源信息
       class StaticStorageInfo < TencentCloud::Common::AbstractModel
         # @param StaticDomain: 静态CDN域名
@@ -1110,6 +1248,45 @@ module TencentCloud
         def deserialize(params)
           @Key = params['Key']
           @Value = params['Value']
+        end
+      end
+
+      # 任务步骤信息
+      class TaskStepInfo < TencentCloud::Common::AbstractModel
+        # @param Name: 步骤名
+        # @type Name: String
+        # @param Status: 未启动："todo"
+        # 运行中："running"
+        # 失败："failed"
+        # 成功结束："finished"
+        # @type Status: String
+        # @param StartTime: 开始时间
+        # @type StartTime: String
+        # @param EndTime: 结束时间
+        # @type EndTime: String
+        # @param CostTime: 消耗时间：秒
+        # @type CostTime: Integer
+        # @param FailReason: 失败原因
+        # @type FailReason: String
+
+        attr_accessor :Name, :Status, :StartTime, :EndTime, :CostTime, :FailReason
+        
+        def initialize(name=nil, status=nil, starttime=nil, endtime=nil, costtime=nil, failreason=nil)
+          @Name = name
+          @Status = status
+          @StartTime = starttime
+          @EndTime = endtime
+          @CostTime = costtime
+          @FailReason = failreason
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Status = params['Status']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @CostTime = params['CostTime']
+          @FailReason = params['FailReason']
         end
       end
 

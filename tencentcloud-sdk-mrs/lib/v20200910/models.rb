@@ -2096,10 +2096,13 @@ module TencentCloud
         # @param MedicalInsuranceTypeCode: 居民医保代码
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MedicalInsuranceTypeCode: String
+        # @param BedNo: 床号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BedNo: String
 
-        attr_accessor :Name, :Sex, :Age, :Phone, :Address, :IdCard, :HealthCardNo, :SocialSecurityCardNo, :Birthday, :Ethnicity, :Married, :Profession, :EducationBackground, :Nationality, :BirthPlace, :MedicalInsuranceType, :AgeNorm, :Nation, :MarriedCode, :ProfessionCode, :MedicalInsuranceTypeCode
+        attr_accessor :Name, :Sex, :Age, :Phone, :Address, :IdCard, :HealthCardNo, :SocialSecurityCardNo, :Birthday, :Ethnicity, :Married, :Profession, :EducationBackground, :Nationality, :BirthPlace, :MedicalInsuranceType, :AgeNorm, :Nation, :MarriedCode, :ProfessionCode, :MedicalInsuranceTypeCode, :BedNo
         
-        def initialize(name=nil, sex=nil, age=nil, phone=nil, address=nil, idcard=nil, healthcardno=nil, socialsecuritycardno=nil, birthday=nil, ethnicity=nil, married=nil, profession=nil, educationbackground=nil, nationality=nil, birthplace=nil, medicalinsurancetype=nil, agenorm=nil, nation=nil, marriedcode=nil, professioncode=nil, medicalinsurancetypecode=nil)
+        def initialize(name=nil, sex=nil, age=nil, phone=nil, address=nil, idcard=nil, healthcardno=nil, socialsecuritycardno=nil, birthday=nil, ethnicity=nil, married=nil, profession=nil, educationbackground=nil, nationality=nil, birthplace=nil, medicalinsurancetype=nil, agenorm=nil, nation=nil, marriedcode=nil, professioncode=nil, medicalinsurancetypecode=nil, bedno=nil)
           @Name = name
           @Sex = sex
           @Age = age
@@ -2121,6 +2124,7 @@ module TencentCloud
           @MarriedCode = marriedcode
           @ProfessionCode = professioncode
           @MedicalInsuranceTypeCode = medicalinsurancetypecode
+          @BedNo = bedno
         end
 
         def deserialize(params)
@@ -2145,6 +2149,7 @@ module TencentCloud
           @MarriedCode = params['MarriedCode']
           @ProfessionCode = params['ProfessionCode']
           @MedicalInsuranceTypeCode = params['MedicalInsuranceTypeCode']
+          @BedNo = params['BedNo']
         end
       end
 
@@ -2265,10 +2270,31 @@ module TencentCloud
         # @param Diagnose: 临床诊断
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Diagnose: String
+        # @param CheckItem: 检查项目
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CheckItem: String
+        # @param CheckMethod: 检查方法
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CheckMethod: String
+        # @param DiagnoseTime: 诊断时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DiagnoseTime: String
+        # @param HealthCheckupNum: 体检号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HealthCheckupNum: String
+        # @param OtherTime: 其它时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OtherTime: String
+        # @param PrintTime: 打印时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PrintTime: String
+        # @param Times: 未归类时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Times: Array
 
-        attr_accessor :Hospital, :DepartmentName, :BillingTime, :ReportTime, :InspectTime, :CheckNum, :ImageNum, :RadiationNum, :TestNum, :OutpatientNum, :PathologyNum, :InHospitalNum, :SampleNum, :SampleType, :MedicalRecordNum, :ReportName, :UltraNum, :Diagnose
+        attr_accessor :Hospital, :DepartmentName, :BillingTime, :ReportTime, :InspectTime, :CheckNum, :ImageNum, :RadiationNum, :TestNum, :OutpatientNum, :PathologyNum, :InHospitalNum, :SampleNum, :SampleType, :MedicalRecordNum, :ReportName, :UltraNum, :Diagnose, :CheckItem, :CheckMethod, :DiagnoseTime, :HealthCheckupNum, :OtherTime, :PrintTime, :Times
         
-        def initialize(hospital=nil, departmentname=nil, billingtime=nil, reporttime=nil, inspecttime=nil, checknum=nil, imagenum=nil, radiationnum=nil, testnum=nil, outpatientnum=nil, pathologynum=nil, inhospitalnum=nil, samplenum=nil, sampletype=nil, medicalrecordnum=nil, reportname=nil, ultranum=nil, diagnose=nil)
+        def initialize(hospital=nil, departmentname=nil, billingtime=nil, reporttime=nil, inspecttime=nil, checknum=nil, imagenum=nil, radiationnum=nil, testnum=nil, outpatientnum=nil, pathologynum=nil, inhospitalnum=nil, samplenum=nil, sampletype=nil, medicalrecordnum=nil, reportname=nil, ultranum=nil, diagnose=nil, checkitem=nil, checkmethod=nil, diagnosetime=nil, healthcheckupnum=nil, othertime=nil, printtime=nil, times=nil)
           @Hospital = hospital
           @DepartmentName = departmentname
           @BillingTime = billingtime
@@ -2287,6 +2313,13 @@ module TencentCloud
           @ReportName = reportname
           @UltraNum = ultranum
           @Diagnose = diagnose
+          @CheckItem = checkitem
+          @CheckMethod = checkmethod
+          @DiagnoseTime = diagnosetime
+          @HealthCheckupNum = healthcheckupnum
+          @OtherTime = othertime
+          @PrintTime = printtime
+          @Times = times
         end
 
         def deserialize(params)
@@ -2308,6 +2341,20 @@ module TencentCloud
           @ReportName = params['ReportName']
           @UltraNum = params['UltraNum']
           @Diagnose = params['Diagnose']
+          @CheckItem = params['CheckItem']
+          @CheckMethod = params['CheckMethod']
+          @DiagnoseTime = params['DiagnoseTime']
+          @HealthCheckupNum = params['HealthCheckupNum']
+          @OtherTime = params['OtherTime']
+          @PrintTime = params['PrintTime']
+          unless params['Times'].nil?
+            @Times = []
+            params['Times'].each do |i|
+              time_tmp = Time.new
+              time_tmp.deserialize(i)
+              @Times << time_tmp
+            end
+          end
         end
       end
 
@@ -2797,6 +2844,28 @@ module TencentCloud
           @Id = params['Id']
           @Level = params['Level']
           @Name = params['Name']
+        end
+      end
+
+      # 时间
+      class Time < TencentCloud::Common::AbstractModel
+        # @param Name: 具体时间类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
+        # @param Value: 时间值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Value: String
+
+        attr_accessor :Name, :Value
+        
+        def initialize(name=nil, value=nil)
+          @Name = name
+          @Value = value
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Value = params['Value']
         end
       end
 
