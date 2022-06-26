@@ -8501,6 +8501,66 @@ module TencentCloud
         end
       end
 
+      # ForwardTKEEdgeApplicationRequestV3请求参数结构体
+      class ForwardTKEEdgeApplicationRequestV3Request < TencentCloud::Common::AbstractModel
+        # @param Method: 请求集群addon的访问
+        # @type Method: String
+        # @param Path: 请求集群addon的路径
+        # @type Path: String
+        # @param Accept: 请求集群addon后允许接收的数据格式
+        # @type Accept: String
+        # @param ContentType: 请求集群addon的数据格式
+        # @type ContentType: String
+        # @param RequestBody: 请求集群addon的数据
+        # @type RequestBody: String
+        # @param ClusterName: 集群名称，例如cls-1234abcd
+        # @type ClusterName: String
+        # @param EncodedBody: 是否编码请求内容
+        # @type EncodedBody: String
+
+        attr_accessor :Method, :Path, :Accept, :ContentType, :RequestBody, :ClusterName, :EncodedBody
+        
+        def initialize(method=nil, path=nil, accept=nil, contenttype=nil, requestbody=nil, clustername=nil, encodedbody=nil)
+          @Method = method
+          @Path = path
+          @Accept = accept
+          @ContentType = contenttype
+          @RequestBody = requestbody
+          @ClusterName = clustername
+          @EncodedBody = encodedbody
+        end
+
+        def deserialize(params)
+          @Method = params['Method']
+          @Path = params['Path']
+          @Accept = params['Accept']
+          @ContentType = params['ContentType']
+          @RequestBody = params['RequestBody']
+          @ClusterName = params['ClusterName']
+          @EncodedBody = params['EncodedBody']
+        end
+      end
+
+      # ForwardTKEEdgeApplicationRequestV3返回参数结构体
+      class ForwardTKEEdgeApplicationRequestV3Response < TencentCloud::Common::AbstractModel
+        # @param ResponseBody: 请求集群addon后返回的数据
+        # @type ResponseBody: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ResponseBody, :RequestId
+        
+        def initialize(responsebody=nil, requestid=nil)
+          @ResponseBody = responsebody
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ResponseBody = params['ResponseBody']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # GetClusterLevelPrice请求参数结构体
       class GetClusterLevelPriceRequest < TencentCloud::Common::AbstractModel
         # @param ClusterLevel: 集群规格，托管集群询价

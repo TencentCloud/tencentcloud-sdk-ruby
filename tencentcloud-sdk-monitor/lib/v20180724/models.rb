@@ -1611,6 +1611,59 @@ module TencentCloud
         end
       end
 
+      # CreateRecordingRule请求参数结构体
+      class CreateRecordingRuleRequest < TencentCloud::Common::AbstractModel
+        # @param Name: 聚合规则名称
+        # @type Name: String
+        # @param Group: 聚合规则组内容，格式为 yaml
+        # @type Group: String
+        # @param InstanceId: Prometheus 实例 ID
+        # @type InstanceId: String
+        # @param RuleState: 规则状态码，取值如下：
+        # <li>1=RuleDeleted</li>
+        # <li>2=RuleEnabled</li>
+        # <li>3=RuleDisabled</li>
+        # 默认状态码为 2 启用。
+        # @type RuleState: Integer
+
+        attr_accessor :Name, :Group, :InstanceId, :RuleState
+        
+        def initialize(name=nil, group=nil, instanceid=nil, rulestate=nil)
+          @Name = name
+          @Group = group
+          @InstanceId = instanceid
+          @RuleState = rulestate
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Group = params['Group']
+          @InstanceId = params['InstanceId']
+          @RuleState = params['RuleState']
+        end
+      end
+
+      # CreateRecordingRule返回参数结构体
+      class CreateRecordingRuleResponse < TencentCloud::Common::AbstractModel
+        # @param RuleId: 规则 ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RuleId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RuleId, :RequestId
+        
+        def initialize(ruleid=nil, requestid=nil)
+          @RuleId = ruleid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RuleId = params['RuleId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateServiceDiscovery请求参数结构体
       class CreateServiceDiscoveryRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: Prometheus 实例 ID
@@ -1922,6 +1975,42 @@ module TencentCloud
 
       # DeletePrometheusScrapeJobs返回参数结构体
       class DeletePrometheusScrapeJobsResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteRecordingRules请求参数结构体
+      class DeleteRecordingRulesRequest < TencentCloud::Common::AbstractModel
+        # @param RuleIds: 规则 ID 列表
+        # @type RuleIds: Array
+        # @param InstanceId: Prometheus 实例 ID
+        # @type InstanceId: String
+
+        attr_accessor :RuleIds, :InstanceId
+        
+        def initialize(ruleids=nil, instanceid=nil)
+          @RuleIds = ruleids
+          @InstanceId = instanceid
+        end
+
+        def deserialize(params)
+          @RuleIds = params['RuleIds']
+          @InstanceId = params['InstanceId']
+        end
+      end
+
+      # DeleteRecordingRules返回参数结构体
+      class DeleteRecordingRulesResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -5199,6 +5288,77 @@ module TencentCloud
         end
       end
 
+      # DescribeRecordingRules请求参数结构体
+      class DescribeRecordingRulesRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: Prometheus 实例 ID
+        # @type InstanceId: String
+        # @param Limit: 返回数量，默认为 20，最大值为 100
+        # @type Limit: Integer
+        # @param Offset: 偏移量，默认为 0
+        # @type Offset: Integer
+        # @param RuleId: 规则 ID
+        # @type RuleId: String
+        # @param RuleState: 规则状态码，取值如下：
+        # <li>1=RuleDeleted</li>
+        # <li>2=RuleEnabled</li>
+        # <li>3=RuleDisabled</li>
+        # @type RuleState: Integer
+        # @param Name: 规则名称
+        # @type Name: String
+
+        attr_accessor :InstanceId, :Limit, :Offset, :RuleId, :RuleState, :Name
+        
+        def initialize(instanceid=nil, limit=nil, offset=nil, ruleid=nil, rulestate=nil, name=nil)
+          @InstanceId = instanceid
+          @Limit = limit
+          @Offset = offset
+          @RuleId = ruleid
+          @RuleState = rulestate
+          @Name = name
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          @RuleId = params['RuleId']
+          @RuleState = params['RuleState']
+          @Name = params['Name']
+        end
+      end
+
+      # DescribeRecordingRules返回参数结构体
+      class DescribeRecordingRulesResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 规则组数量
+        # @type TotalCount: Integer
+        # @param RecordingRuleSet: 规则组详情
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RecordingRuleSet: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :RecordingRuleSet, :RequestId
+        
+        def initialize(totalcount=nil, recordingruleset=nil, requestid=nil)
+          @TotalCount = totalcount
+          @RecordingRuleSet = recordingruleset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['RecordingRuleSet'].nil?
+            @RecordingRuleSet = []
+            params['RecordingRuleSet'].each do |i|
+              recordingruleset_tmp = RecordingRuleSet.new
+              recordingruleset_tmp.deserialize(i)
+              @RecordingRuleSet << recordingruleset_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeServiceDiscovery请求参数结构体
       class DescribeServiceDiscoveryRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: Prometheus 实例 ID
@@ -7375,6 +7535,46 @@ module TencentCloud
         end
       end
 
+      # Prometheus 聚合规则响应结构体内信息
+      class RecordingRuleSet < TencentCloud::Common::AbstractModel
+        # @param RuleId: 规则 ID
+        # @type RuleId: String
+        # @param RuleState: 规则状态码
+        # @type RuleState: Integer
+        # @param Name: 规则名称
+        # @type Name: String
+        # @param Group: 规则内容组
+        # @type Group: String
+        # @param Total: 规则数量
+        # @type Total: Integer
+        # @param CreatedAt: 规则创建时间
+        # @type CreatedAt: String
+        # @param UpdatedAt: 规则最近更新时间
+        # @type UpdatedAt: String
+
+        attr_accessor :RuleId, :RuleState, :Name, :Group, :Total, :CreatedAt, :UpdatedAt
+        
+        def initialize(ruleid=nil, rulestate=nil, name=nil, group=nil, total=nil, createdat=nil, updatedat=nil)
+          @RuleId = ruleid
+          @RuleState = rulestate
+          @Name = name
+          @Group = group
+          @Total = total
+          @CreatedAt = createdat
+          @UpdatedAt = updatedat
+        end
+
+        def deserialize(params)
+          @RuleId = params['RuleId']
+          @RuleState = params['RuleState']
+          @Name = params['Name']
+          @Group = params['Group']
+          @Total = params['Total']
+          @CreatedAt = params['CreatedAt']
+          @UpdatedAt = params['UpdatedAt']
+        end
+      end
+
       # SendCustomAlarmMsg请求参数结构体
       class SendCustomAlarmMsgRequest < TencentCloud::Common::AbstractModel
         # @param Module: 接口模块名，当前取值monitor
@@ -8140,6 +8340,63 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # UpdateRecordingRule请求参数结构体
+      class UpdateRecordingRuleRequest < TencentCloud::Common::AbstractModel
+        # @param Name: 聚合规则名称
+        # @type Name: String
+        # @param Group: 聚合规则组内容，格式为 yaml，通过 base64 进行编码。
+        # @type Group: String
+        # @param InstanceId: Prometheus 实例 ID
+        # @type InstanceId: String
+        # @param RuleId: Prometheus 聚合规则 ID
+        # @type RuleId: String
+        # @param RuleState: 规则状态码，取值如下：
+        # <li>1=RuleDeleted</li>
+        # <li>2=RuleEnabled</li>
+        # <li>3=RuleDisabled</li>
+        # 默认状态码为 2 启用。
+        # @type RuleState: Integer
+
+        attr_accessor :Name, :Group, :InstanceId, :RuleId, :RuleState
+        
+        def initialize(name=nil, group=nil, instanceid=nil, ruleid=nil, rulestate=nil)
+          @Name = name
+          @Group = group
+          @InstanceId = instanceid
+          @RuleId = ruleid
+          @RuleState = rulestate
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Group = params['Group']
+          @InstanceId = params['InstanceId']
+          @RuleId = params['RuleId']
+          @RuleState = params['RuleState']
+        end
+      end
+
+      # UpdateRecordingRule返回参数结构体
+      class UpdateRecordingRuleResponse < TencentCloud::Common::AbstractModel
+        # @param RuleId: 规则 ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RuleId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RuleId, :RequestId
+        
+        def initialize(ruleid=nil, requestid=nil)
+          @RuleId = ruleid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RuleId = params['RuleId']
           @RequestId = params['RequestId']
         end
       end

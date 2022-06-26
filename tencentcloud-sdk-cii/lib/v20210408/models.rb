@@ -1039,14 +1039,17 @@ module TencentCloud
         # @type Confidence: Float
         # @param Location: 位置信息
         # @type Location: :class:`Tencentcloud::Cii.v20210408.models.Location`
+        # @param Field: 字段名
+        # @type Field: String
 
-        attr_accessor :OriginalField, :Value, :Confidence, :Location
+        attr_accessor :OriginalField, :Value, :Confidence, :Location, :Field
         
-        def initialize(originalfield=nil, value=nil, confidence=nil, location=nil)
+        def initialize(originalfield=nil, value=nil, confidence=nil, location=nil, field=nil)
           @OriginalField = originalfield
           @Value = value
           @Confidence = confidence
           @Location = location
+          @Field = field
         end
 
         def deserialize(params)
@@ -1057,6 +1060,7 @@ module TencentCloud
             @Location = Location.new
             @Location.deserialize(params['Location'])
           end
+          @Field = params['Field']
         end
       end
 

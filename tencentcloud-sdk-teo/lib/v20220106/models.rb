@@ -991,6 +991,27 @@ module TencentCloud
         end
       end
 
+      # 缓存预刷新
+      class CachePrefresh < TencentCloud::Common::AbstractModel
+        # @param Switch: 缓存预刷新配置开关
+        # @type Switch: String
+        # @param Percent: 缓存预刷新百分比：1-99
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Percent: Integer
+
+        attr_accessor :Switch, :Percent
+        
+        def initialize(switch=nil, percent=nil)
+          @Switch = switch
+          @Percent = percent
+        end
+
+        def deserialize(params)
+          @Switch = params['Switch']
+          @Percent = params['Percent']
+        end
+      end
+
       # 证书查询过滤条件
       class CertFilter < TencentCloud::Common::AbstractModel
         # @param Name: 过滤字段名，支持的列表如下:
@@ -6325,12 +6346,15 @@ module TencentCloud
         # @param ClientIpHeader: 客户端IP回源请求头配置
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ClientIpHeader: :class:`Tencentcloud::Teo.v20220106.models.ClientIp`
+        # @param CachePrefresh: 缓存预刷新配置
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CachePrefresh: :class:`Tencentcloud::Teo.v20220106.models.CachePrefresh`
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Cache, :CacheKey, :MaxAge, :OfflineCache, :Quic, :PostMaxSize, :Compression, :UpstreamHttp2, :ForceRedirect, :Https, :Origin, :SmartRouting, :ZoneId, :Zone, :WebSocket, :ClientIpHeader, :RequestId
+        attr_accessor :Cache, :CacheKey, :MaxAge, :OfflineCache, :Quic, :PostMaxSize, :Compression, :UpstreamHttp2, :ForceRedirect, :Https, :Origin, :SmartRouting, :ZoneId, :Zone, :WebSocket, :ClientIpHeader, :CachePrefresh, :RequestId
         
-        def initialize(cache=nil, cachekey=nil, maxage=nil, offlinecache=nil, quic=nil, postmaxsize=nil, compression=nil, upstreamhttp2=nil, forceredirect=nil, https=nil, origin=nil, smartrouting=nil, zoneid=nil, zone=nil, websocket=nil, clientipheader=nil, requestid=nil)
+        def initialize(cache=nil, cachekey=nil, maxage=nil, offlinecache=nil, quic=nil, postmaxsize=nil, compression=nil, upstreamhttp2=nil, forceredirect=nil, https=nil, origin=nil, smartrouting=nil, zoneid=nil, zone=nil, websocket=nil, clientipheader=nil, cacheprefresh=nil, requestid=nil)
           @Cache = cache
           @CacheKey = cachekey
           @MaxAge = maxage
@@ -6347,6 +6371,7 @@ module TencentCloud
           @Zone = zone
           @WebSocket = websocket
           @ClientIpHeader = clientipheader
+          @CachePrefresh = cacheprefresh
           @RequestId = requestid
         end
 
@@ -6408,6 +6433,10 @@ module TencentCloud
           unless params['ClientIpHeader'].nil?
             @ClientIpHeader = ClientIp.new
             @ClientIpHeader.deserialize(params['ClientIpHeader'])
+          end
+          unless params['CachePrefresh'].nil?
+            @CachePrefresh = CachePrefresh.new
+            @CachePrefresh.deserialize(params['CachePrefresh'])
           end
           @RequestId = params['RequestId']
         end
@@ -8282,10 +8311,12 @@ module TencentCloud
         # @type WebSocket: :class:`Tencentcloud::Teo.v20220106.models.WebSocket`
         # @param ClientIpHeader: 客户端IP回源请求头配置
         # @type ClientIpHeader: :class:`Tencentcloud::Teo.v20220106.models.ClientIp`
+        # @param CachePrefresh: 缓存预刷新配置
+        # @type CachePrefresh: :class:`Tencentcloud::Teo.v20220106.models.CachePrefresh`
 
-        attr_accessor :ZoneId, :Cache, :CacheKey, :MaxAge, :OfflineCache, :Quic, :PostMaxSize, :Compression, :UpstreamHttp2, :ForceRedirect, :Https, :Origin, :SmartRouting, :WebSocket, :ClientIpHeader
+        attr_accessor :ZoneId, :Cache, :CacheKey, :MaxAge, :OfflineCache, :Quic, :PostMaxSize, :Compression, :UpstreamHttp2, :ForceRedirect, :Https, :Origin, :SmartRouting, :WebSocket, :ClientIpHeader, :CachePrefresh
         
-        def initialize(zoneid=nil, cache=nil, cachekey=nil, maxage=nil, offlinecache=nil, quic=nil, postmaxsize=nil, compression=nil, upstreamhttp2=nil, forceredirect=nil, https=nil, origin=nil, smartrouting=nil, websocket=nil, clientipheader=nil)
+        def initialize(zoneid=nil, cache=nil, cachekey=nil, maxage=nil, offlinecache=nil, quic=nil, postmaxsize=nil, compression=nil, upstreamhttp2=nil, forceredirect=nil, https=nil, origin=nil, smartrouting=nil, websocket=nil, clientipheader=nil, cacheprefresh=nil)
           @ZoneId = zoneid
           @Cache = cache
           @CacheKey = cachekey
@@ -8301,6 +8332,7 @@ module TencentCloud
           @SmartRouting = smartrouting
           @WebSocket = websocket
           @ClientIpHeader = clientipheader
+          @CachePrefresh = cacheprefresh
         end
 
         def deserialize(params)
@@ -8360,6 +8392,10 @@ module TencentCloud
           unless params['ClientIpHeader'].nil?
             @ClientIpHeader = ClientIp.new
             @ClientIpHeader.deserialize(params['ClientIpHeader'])
+          end
+          unless params['CachePrefresh'].nil?
+            @CachePrefresh = CachePrefresh.new
+            @CachePrefresh.deserialize(params['CachePrefresh'])
           end
         end
       end

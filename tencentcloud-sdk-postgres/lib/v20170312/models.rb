@@ -3277,9 +3277,9 @@ module TencentCloud
 
       # InquiryPriceUpgradeDBInstance返回参数结构体
       class InquiryPriceUpgradeDBInstanceResponse < TencentCloud::Common::AbstractModel
-        # @param OriginalPrice: 总费用，打折前的
+        # @param OriginalPrice: 刊例价费用
         # @type OriginalPrice: Integer
-        # @param Price: 实际需要付款金额
+        # @param Price: 折后实际付款金额
         # @type Price: Integer
         # @param Currency: 币种。例如，CNY：人民币。
         # @type Currency: String

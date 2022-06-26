@@ -271,6 +271,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 创建 Prometheus 的预聚合规则
+
+        # @param request: Request instance for CreateRecordingRule.
+        # @type request: :class:`Tencentcloud::monitor::V20180724::CreateRecordingRuleRequest`
+        # @rtype: :class:`Tencentcloud::monitor::V20180724::CreateRecordingRuleResponse`
+        def CreateRecordingRule(request)
+          body = send_request('CreateRecordingRule', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateRecordingRuleResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 在腾讯云容器服务下创建 Prometheus 服务发现。
         # <p>注意：前提条件，已经通过 Prometheus 控制台集成了对应的腾讯云容器服务，具体请参考
         # <a href="https://cloud.tencent.com/document/product/248/48859" target="_blank">Agent 安装</a>。</p>
@@ -427,6 +451,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeletePrometheusScrapeJobsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 批量删除 Prometheus 预聚合规则
+
+        # @param request: Request instance for DeleteRecordingRules.
+        # @type request: :class:`Tencentcloud::monitor::V20180724::DeleteRecordingRulesRequest`
+        # @rtype: :class:`Tencentcloud::monitor::V20180724::DeleteRecordingRulesResponse`
+        def DeleteRecordingRules(request)
+          body = send_request('DeleteRecordingRules', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteRecordingRulesResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1059,6 +1107,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribePrometheusScrapeJobsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 根据条件查询 Prometheus 预聚合规则
+
+        # @param request: Request instance for DescribeRecordingRules.
+        # @type request: :class:`Tencentcloud::monitor::V20180724::DescribeRecordingRulesRequest`
+        # @rtype: :class:`Tencentcloud::monitor::V20180724::DescribeRecordingRulesResponse`
+        def DescribeRecordingRules(request)
+          body = send_request('DescribeRecordingRules', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeRecordingRulesResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1721,6 +1793,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = UpdatePrometheusScrapeJobResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 更新 Prometheus 的预聚合规则
+
+        # @param request: Request instance for UpdateRecordingRule.
+        # @type request: :class:`Tencentcloud::monitor::V20180724::UpdateRecordingRuleRequest`
+        # @rtype: :class:`Tencentcloud::monitor::V20180724::UpdateRecordingRuleResponse`
+        def UpdateRecordingRule(request)
+          body = send_request('UpdateRecordingRule', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = UpdateRecordingRuleResponse.new
             model.deserialize(response['Response'])
             model
           else
