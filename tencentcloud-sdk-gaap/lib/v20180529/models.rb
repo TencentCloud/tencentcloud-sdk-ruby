@@ -739,16 +739,20 @@ module TencentCloud
         # @type ContinentName: String
         # @param ContinentInnerCode: 大洲编码。
         # @type ContinentInnerCode: String
+        # @param Remark: 标注信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Remark: String
 
-        attr_accessor :NationCountryName, :NationCountryInnerCode, :GeographicalZoneName, :GeographicalZoneInnerCode, :ContinentName, :ContinentInnerCode
+        attr_accessor :NationCountryName, :NationCountryInnerCode, :GeographicalZoneName, :GeographicalZoneInnerCode, :ContinentName, :ContinentInnerCode, :Remark
         
-        def initialize(nationcountryname=nil, nationcountryinnercode=nil, geographicalzonename=nil, geographicalzoneinnercode=nil, continentname=nil, continentinnercode=nil)
+        def initialize(nationcountryname=nil, nationcountryinnercode=nil, geographicalzonename=nil, geographicalzoneinnercode=nil, continentname=nil, continentinnercode=nil, remark=nil)
           @NationCountryName = nationcountryname
           @NationCountryInnerCode = nationcountryinnercode
           @GeographicalZoneName = geographicalzonename
           @GeographicalZoneInnerCode = geographicalzoneinnercode
           @ContinentName = continentname
           @ContinentInnerCode = continentinnercode
+          @Remark = remark
         end
 
         def deserialize(params)
@@ -758,6 +762,7 @@ module TencentCloud
           @GeographicalZoneInnerCode = params['GeographicalZoneInnerCode']
           @ContinentName = params['ContinentName']
           @ContinentInnerCode = params['ContinentInnerCode']
+          @Remark = params['Remark']
         end
       end
 

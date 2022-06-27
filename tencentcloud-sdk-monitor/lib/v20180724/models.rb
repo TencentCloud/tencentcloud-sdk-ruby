@@ -1571,6 +1571,73 @@ module TencentCloud
         end
       end
 
+      # CreatePrometheusMultiTenantInstancePostPayMode请求参数结构体
+      class CreatePrometheusMultiTenantInstancePostPayModeRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceName: 实例名
+        # @type InstanceName: String
+        # @param VpcId: VPC ID
+        # @type VpcId: String
+        # @param SubnetId: 子网 ID
+        # @type SubnetId: String
+        # @param DataRetentionTime: 数据存储时间（单位天），限制值为15，30，45之一
+        # @type DataRetentionTime: Integer
+        # @param Zone: 可用区
+        # @type Zone: String
+        # @param TagSpecification: 实例的标签
+        # @type TagSpecification: Array
+        # @param GrafanaInstanceId: 需要关联的 Grafana 实例
+        # @type GrafanaInstanceId: String
+
+        attr_accessor :InstanceName, :VpcId, :SubnetId, :DataRetentionTime, :Zone, :TagSpecification, :GrafanaInstanceId
+        
+        def initialize(instancename=nil, vpcid=nil, subnetid=nil, dataretentiontime=nil, zone=nil, tagspecification=nil, grafanainstanceid=nil)
+          @InstanceName = instancename
+          @VpcId = vpcid
+          @SubnetId = subnetid
+          @DataRetentionTime = dataretentiontime
+          @Zone = zone
+          @TagSpecification = tagspecification
+          @GrafanaInstanceId = grafanainstanceid
+        end
+
+        def deserialize(params)
+          @InstanceName = params['InstanceName']
+          @VpcId = params['VpcId']
+          @SubnetId = params['SubnetId']
+          @DataRetentionTime = params['DataRetentionTime']
+          @Zone = params['Zone']
+          unless params['TagSpecification'].nil?
+            @TagSpecification = []
+            params['TagSpecification'].each do |i|
+              prometheustag_tmp = PrometheusTag.new
+              prometheustag_tmp.deserialize(i)
+              @TagSpecification << prometheustag_tmp
+            end
+          end
+          @GrafanaInstanceId = params['GrafanaInstanceId']
+        end
+      end
+
+      # CreatePrometheusMultiTenantInstancePostPayMode返回参数结构体
+      class CreatePrometheusMultiTenantInstancePostPayModeResponse < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例 ID
+        # @type InstanceId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :InstanceId, :RequestId
+        
+        def initialize(instanceid=nil, requestid=nil)
+          @InstanceId = instanceid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreatePrometheusScrapeJob请求参数结构体
       class CreatePrometheusScrapeJobRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例 ID

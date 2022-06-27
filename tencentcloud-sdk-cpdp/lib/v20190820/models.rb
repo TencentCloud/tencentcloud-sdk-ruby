@@ -2748,6 +2748,42 @@ module TencentCloud
         end
       end
 
+      # 营业证件信息
+      class BusinessLicenseInfo < TencentCloud::Common::AbstractModel
+        # @param BusinessLicenseType: 营业证件类型
+        #  IDCARD：身份证
+        #  CREDITCODE：统一社会信用代码
+        # @type BusinessLicenseType: String
+        # @param BusinessLicenseNumber: 营业证件号码 非个人商户上送统一社会信用代码，个人商户上送身份证号码
+        # @type BusinessLicenseNumber: String
+        # @param BusinessLicenseValidityType: 营业证件有效期类型
+        # LONGTERM：长期有效
+        # OTHER：非长期有效
+        # @type BusinessLicenseValidityType: String
+        # @param BusinessLicenseEffectiveDate: 营业证件生效日期，yyyy-MM-dd
+        # @type BusinessLicenseEffectiveDate: String
+        # @param BusinessLicenseExpireDate: 营业证件失效日期，yyyy-MM-dd
+        # @type BusinessLicenseExpireDate: String
+
+        attr_accessor :BusinessLicenseType, :BusinessLicenseNumber, :BusinessLicenseValidityType, :BusinessLicenseEffectiveDate, :BusinessLicenseExpireDate
+        
+        def initialize(businesslicensetype=nil, businesslicensenumber=nil, businesslicensevaliditytype=nil, businesslicenseeffectivedate=nil, businesslicenseexpiredate=nil)
+          @BusinessLicenseType = businesslicensetype
+          @BusinessLicenseNumber = businesslicensenumber
+          @BusinessLicenseValidityType = businesslicensevaliditytype
+          @BusinessLicenseEffectiveDate = businesslicenseeffectivedate
+          @BusinessLicenseExpireDate = businesslicenseexpiredate
+        end
+
+        def deserialize(params)
+          @BusinessLicenseType = params['BusinessLicenseType']
+          @BusinessLicenseNumber = params['BusinessLicenseNumber']
+          @BusinessLicenseValidityType = params['BusinessLicenseValidityType']
+          @BusinessLicenseEffectiveDate = params['BusinessLicenseEffectiveDate']
+          @BusinessLicenseExpireDate = params['BusinessLicenseExpireDate']
+        end
+      end
+
       # 米大师内部存放的合约信息
       class ChannelContractInfo < TencentCloud::Common::AbstractModel
         # @param OutContractCode: 外部合约协议号
@@ -5998,6 +6034,192 @@ module TencentCloud
         end
       end
 
+      # CreateOpenBankAggregatedSubMerchantRegistration请求参数结构体
+      class CreateOpenBankAggregatedSubMerchantRegistrationRequest < TencentCloud::Common::AbstractModel
+        # @param OutRegistrationNo: 外部进件序列号。
+        # @type OutRegistrationNo: String
+        # @param ChannelMerchantId: 渠道商户ID。
+        # @type ChannelMerchantId: String
+        # @param OutSubMerchantId: 外部子商户ID。
+        # @type OutSubMerchantId: String
+        # @param ChannelName: 渠道名称。详见附录-云企付枚举类说明-ChannelName。
+        # TENPAY: 商企付
+        # WECHAT: 微信支付
+        # ALIPAY: 支付宝
+        # HELIPAY:合利宝
+        # @type ChannelName: String
+        # @param OutSubMerchantType: 外部子商户类型。
+        # ENTERPRISE：企业商户
+        # INSTITUTION：事业单位商户
+        # INDIVIDUALBISS：个体工商户
+        # PERSON：个人商户(小微商户)
+        # SUBJECT_TYPE_OTHERS：其他组织
+        # @type OutSubMerchantType: String
+        # @param OutSubMerchantName: 外部子商户名称。
+        # HELIPAY渠道(长度不能小于5大于150)。
+        # @type OutSubMerchantName: String
+        # @param LegalPersonInfo: 商户法人代表信息。
+        # @type LegalPersonInfo: :class:`Tencentcloud::Cpdp.v20190820.models.LegalPersonInfo`
+        # @param BusinessLicenseInfo: 营业证件信息。
+        # @type BusinessLicenseInfo: :class:`Tencentcloud::Cpdp.v20190820.models.BusinessLicenseInfo`
+        # @param InterConnectionSubMerchantData: 支付渠道子商户进件信息。
+        # json字符串，详情见附录-复杂类型-InterConnectionSubMerchantData。
+        # @type InterConnectionSubMerchantData: String
+        # @param PaymentMethod: 支付方式。详见附录-云企付枚举类说明-PaymentMethod。
+        # 合利宝渠道不需要传。
+        # @type PaymentMethod: String
+        # @param OutSubMerchantShortName: 外部子商户简称。
+        # HELIPAY渠道必传(长度不能小于2大于20)。
+        # @type OutSubMerchantShortName: String
+        # @param OutSubMerchantDescription: 外部子商户描述。
+        # @type OutSubMerchantDescription: String
+        # @param NotifyUrl: 通知地址。
+        # @type NotifyUrl: String
+        # @param NaturalPersonList: 相关自然人信息列表。
+        # HELIPAY渠道必传业务联系人。
+        # @type NaturalPersonList: Array
+        # @param SettleInfo: 商户结算信息。
+        # HELIPAY渠道必传。
+        # @type SettleInfo: :class:`Tencentcloud::Cpdp.v20190820.models.SettleInfo`
+        # @param OutSubMerchantExtensionInfo: 外部子商户其他公用扩展信息。
+        # HELIPAY渠道必传。
+        # @type OutSubMerchantExtensionInfo: :class:`Tencentcloud::Cpdp.v20190820.models.OutSubMerchantExtensionInfo`
+        # @param Environment: 环境类型。
+        # __release__:生产环境
+        # __sandbox__:沙箱环境
+        # _不填默认为生产环境_
+        # @type Environment: String
+
+        attr_accessor :OutRegistrationNo, :ChannelMerchantId, :OutSubMerchantId, :ChannelName, :OutSubMerchantType, :OutSubMerchantName, :LegalPersonInfo, :BusinessLicenseInfo, :InterConnectionSubMerchantData, :PaymentMethod, :OutSubMerchantShortName, :OutSubMerchantDescription, :NotifyUrl, :NaturalPersonList, :SettleInfo, :OutSubMerchantExtensionInfo, :Environment
+        
+        def initialize(outregistrationno=nil, channelmerchantid=nil, outsubmerchantid=nil, channelname=nil, outsubmerchanttype=nil, outsubmerchantname=nil, legalpersoninfo=nil, businesslicenseinfo=nil, interconnectionsubmerchantdata=nil, paymentmethod=nil, outsubmerchantshortname=nil, outsubmerchantdescription=nil, notifyurl=nil, naturalpersonlist=nil, settleinfo=nil, outsubmerchantextensioninfo=nil, environment=nil)
+          @OutRegistrationNo = outregistrationno
+          @ChannelMerchantId = channelmerchantid
+          @OutSubMerchantId = outsubmerchantid
+          @ChannelName = channelname
+          @OutSubMerchantType = outsubmerchanttype
+          @OutSubMerchantName = outsubmerchantname
+          @LegalPersonInfo = legalpersoninfo
+          @BusinessLicenseInfo = businesslicenseinfo
+          @InterConnectionSubMerchantData = interconnectionsubmerchantdata
+          @PaymentMethod = paymentmethod
+          @OutSubMerchantShortName = outsubmerchantshortname
+          @OutSubMerchantDescription = outsubmerchantdescription
+          @NotifyUrl = notifyurl
+          @NaturalPersonList = naturalpersonlist
+          @SettleInfo = settleinfo
+          @OutSubMerchantExtensionInfo = outsubmerchantextensioninfo
+          @Environment = environment
+        end
+
+        def deserialize(params)
+          @OutRegistrationNo = params['OutRegistrationNo']
+          @ChannelMerchantId = params['ChannelMerchantId']
+          @OutSubMerchantId = params['OutSubMerchantId']
+          @ChannelName = params['ChannelName']
+          @OutSubMerchantType = params['OutSubMerchantType']
+          @OutSubMerchantName = params['OutSubMerchantName']
+          unless params['LegalPersonInfo'].nil?
+            @LegalPersonInfo = LegalPersonInfo.new
+            @LegalPersonInfo.deserialize(params['LegalPersonInfo'])
+          end
+          unless params['BusinessLicenseInfo'].nil?
+            @BusinessLicenseInfo = BusinessLicenseInfo.new
+            @BusinessLicenseInfo.deserialize(params['BusinessLicenseInfo'])
+          end
+          @InterConnectionSubMerchantData = params['InterConnectionSubMerchantData']
+          @PaymentMethod = params['PaymentMethod']
+          @OutSubMerchantShortName = params['OutSubMerchantShortName']
+          @OutSubMerchantDescription = params['OutSubMerchantDescription']
+          @NotifyUrl = params['NotifyUrl']
+          unless params['NaturalPersonList'].nil?
+            @NaturalPersonList = []
+            params['NaturalPersonList'].each do |i|
+              naturalpersoninfo_tmp = NaturalPersonInfo.new
+              naturalpersoninfo_tmp.deserialize(i)
+              @NaturalPersonList << naturalpersoninfo_tmp
+            end
+          end
+          unless params['SettleInfo'].nil?
+            @SettleInfo = SettleInfo.new
+            @SettleInfo.deserialize(params['SettleInfo'])
+          end
+          unless params['OutSubMerchantExtensionInfo'].nil?
+            @OutSubMerchantExtensionInfo = OutSubMerchantExtensionInfo.new
+            @OutSubMerchantExtensionInfo.deserialize(params['OutSubMerchantExtensionInfo'])
+          end
+          @Environment = params['Environment']
+        end
+      end
+
+      # CreateOpenBankAggregatedSubMerchantRegistration返回参数结构体
+      class CreateOpenBankAggregatedSubMerchantRegistrationResponse < TencentCloud::Common::AbstractModel
+        # @param ErrCode: 错误码。
+        # __SUCCESS__: 成功
+        # __其他__: 见附录-错误码表
+        # @type ErrCode: String
+        # @param ErrMessage: 错误消息。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ErrMessage: String
+        # @param Result: 返回结果。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Result: :class:`Tencentcloud::Cpdp.v20190820.models.CreateOpenBankExternalAggregatedSubMerchantRegistrationResult`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ErrCode, :ErrMessage, :Result, :RequestId
+        
+        def initialize(errcode=nil, errmessage=nil, result=nil, requestid=nil)
+          @ErrCode = errcode
+          @ErrMessage = errmessage
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ErrCode = params['ErrCode']
+          @ErrMessage = params['ErrMessage']
+          unless params['Result'].nil?
+            @Result = CreateOpenBankExternalAggregatedSubMerchantRegistrationResult.new
+            @Result.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 聚合支付子商户线上入驻结果
+      class CreateOpenBankExternalAggregatedSubMerchantRegistrationResult < TencentCloud::Common::AbstractModel
+        # @param RegistrationStatus: 进件状态
+        # SUCCESS: 进件成功
+        # FAILED: 进件失败
+        # PROCESSING: 进件中
+        # 注意：若返回进件中，需要再次调用进件结果查询接口，查询结果。
+        # @type RegistrationStatus: String
+        # @param RegistrationMessage: 进件返回描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RegistrationMessage: String
+        # @param ChannelRegistrationNo: 渠道进件序列号
+        # @type ChannelRegistrationNo: String
+        # @param ChannelSubMerchantId: 渠道子商户ID
+        # @type ChannelSubMerchantId: String
+
+        attr_accessor :RegistrationStatus, :RegistrationMessage, :ChannelRegistrationNo, :ChannelSubMerchantId
+        
+        def initialize(registrationstatus=nil, registrationmessage=nil, channelregistrationno=nil, channelsubmerchantid=nil)
+          @RegistrationStatus = registrationstatus
+          @RegistrationMessage = registrationmessage
+          @ChannelRegistrationNo = channelregistrationno
+          @ChannelSubMerchantId = channelsubmerchantid
+        end
+
+        def deserialize(params)
+          @RegistrationStatus = params['RegistrationStatus']
+          @RegistrationMessage = params['RegistrationMessage']
+          @ChannelRegistrationNo = params['ChannelRegistrationNo']
+          @ChannelSubMerchantId = params['ChannelSubMerchantId']
+        end
+      end
+
       # CreateOpenBankExternalSubMerchantAccountBook请求参数结构体
       class CreateOpenBankExternalSubMerchantAccountBookRequest < TencentCloud::Common::AbstractModel
         # @param OutAccountBookId: 外部账本ID
@@ -6643,6 +6865,325 @@ module TencentCloud
           @ErrMessage = params['ErrMessage']
           unless params['Result'].nil?
             @Result = CreateOpenBankOrderRechargeResult.new
+            @Result.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateOpenBankSubMerchantRateConfigure请求参数结构体
+      class CreateOpenBankSubMerchantRateConfigureRequest < TencentCloud::Common::AbstractModel
+        # @param ChannelRegistrationNo: 渠道进件序列号。
+        # 填写子商户进件返回的渠道进件编号。
+        # @type ChannelRegistrationNo: String
+        # @param OutProductFeeNo: 外部产品费率申请序列号。
+        # @type OutProductFeeNo: String
+        # @param ChannelMerchantId: 渠道商户ID。
+        # @type ChannelMerchantId: String
+        # @param ChannelSubMerchantId: 渠道子商户ID。
+        # @type ChannelSubMerchantId: String
+        # @param ChannelName: 渠道名称。详见附录-云企付枚举类说明-ChannelName。
+        # @type ChannelName: String
+        # @param PayType: 支付类型。
+        # SWIPE:刷卡
+        # SCAN:扫码
+        # WAP:WAP
+        # PUBLIC:公众号支付
+        # SDK:SDK
+        # MINI_PROGRAM:小程序
+        # 注意：HELIPAY渠道传SDK。
+        # @type PayType: String
+        # @param PayChannel: 支付渠道。
+        # ALIPAY：支付宝
+        # WXPAY：微信支付
+        # UNIONPAY：银联
+        # @type PayChannel: String
+        # @param FeeMode: 计费模式。
+        # SINGLE：按单笔金额计费
+        # RATIO：按单笔费率计费
+        # RANGE：按分段区间计费
+        # @type FeeMode: String
+        # @param FeeValue: 费用值，单位（0.01%或分）。
+        # @type FeeValue: Integer
+        # @param PaymentMethod: 支付方式。详见附录-云企付枚举类说明-PaymentMethod。
+        # HELIPAY渠道不需要传入。
+        # @type PaymentMethod: String
+        # @param MinFee: 最低收费金额，单位（分）。
+        # @type MinFee: Integer
+        # @param MaxFee: 最高收费金额，单位（分）。
+        # @type MaxFee: Integer
+        # @param NotifyUrl: 通知地址。
+        # @type NotifyUrl: String
+        # @param FeeRangeList: 分段计费区间列表。
+        # @type FeeRangeList: Array
+        # @param Environment: 环境类型。
+        # __release__:生产环境
+        # __sandbox__:沙箱环境
+        # _不填默认为生产环境_
+        # @type Environment: String
+
+        attr_accessor :ChannelRegistrationNo, :OutProductFeeNo, :ChannelMerchantId, :ChannelSubMerchantId, :ChannelName, :PayType, :PayChannel, :FeeMode, :FeeValue, :PaymentMethod, :MinFee, :MaxFee, :NotifyUrl, :FeeRangeList, :Environment
+        
+        def initialize(channelregistrationno=nil, outproductfeeno=nil, channelmerchantid=nil, channelsubmerchantid=nil, channelname=nil, paytype=nil, paychannel=nil, feemode=nil, feevalue=nil, paymentmethod=nil, minfee=nil, maxfee=nil, notifyurl=nil, feerangelist=nil, environment=nil)
+          @ChannelRegistrationNo = channelregistrationno
+          @OutProductFeeNo = outproductfeeno
+          @ChannelMerchantId = channelmerchantid
+          @ChannelSubMerchantId = channelsubmerchantid
+          @ChannelName = channelname
+          @PayType = paytype
+          @PayChannel = paychannel
+          @FeeMode = feemode
+          @FeeValue = feevalue
+          @PaymentMethod = paymentmethod
+          @MinFee = minfee
+          @MaxFee = maxfee
+          @NotifyUrl = notifyurl
+          @FeeRangeList = feerangelist
+          @Environment = environment
+        end
+
+        def deserialize(params)
+          @ChannelRegistrationNo = params['ChannelRegistrationNo']
+          @OutProductFeeNo = params['OutProductFeeNo']
+          @ChannelMerchantId = params['ChannelMerchantId']
+          @ChannelSubMerchantId = params['ChannelSubMerchantId']
+          @ChannelName = params['ChannelName']
+          @PayType = params['PayType']
+          @PayChannel = params['PayChannel']
+          @FeeMode = params['FeeMode']
+          @FeeValue = params['FeeValue']
+          @PaymentMethod = params['PaymentMethod']
+          @MinFee = params['MinFee']
+          @MaxFee = params['MaxFee']
+          @NotifyUrl = params['NotifyUrl']
+          unless params['FeeRangeList'].nil?
+            @FeeRangeList = []
+            params['FeeRangeList'].each do |i|
+              feeranginfo_tmp = FeeRangInfo.new
+              feeranginfo_tmp.deserialize(i)
+              @FeeRangeList << feeranginfo_tmp
+            end
+          end
+          @Environment = params['Environment']
+        end
+      end
+
+      # CreateOpenBankSubMerchantRateConfigure返回参数结构体
+      class CreateOpenBankSubMerchantRateConfigureResponse < TencentCloud::Common::AbstractModel
+        # @param ErrCode: 错误码。
+        # __SUCCESS__: 成功
+        # __其他__: 见附录-错误码表
+        # @type ErrCode: String
+        # @param ErrMessage: 错误消息。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ErrMessage: String
+        # @param Result: 返回结果。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Result: :class:`Tencentcloud::Cpdp.v20190820.models.CreateOpenBankSubMerchantRateConfigureResult`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ErrCode, :ErrMessage, :Result, :RequestId
+        
+        def initialize(errcode=nil, errmessage=nil, result=nil, requestid=nil)
+          @ErrCode = errcode
+          @ErrMessage = errmessage
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ErrCode = params['ErrCode']
+          @ErrMessage = params['ErrMessage']
+          unless params['Result'].nil?
+            @Result = CreateOpenBankSubMerchantRateConfigureResult.new
+            @Result.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 聚合支付子商户费率配置结果
+      class CreateOpenBankSubMerchantRateConfigureResult < TencentCloud::Common::AbstractModel
+        # @param DealStatus: 处理状态
+        # SUCCESS: 开通成功
+        # FAILED: 开通失败
+        # PROCESSING: 开通中
+        # 注意：若返回开通中，需要再次调用费率配置结果查询接口，查询结果。
+        # @type DealStatus: String
+        # @param DealMessage: 处理描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DealMessage: String
+        # @param ChannelProductFeeNo: 渠道产品费率序列号
+        # @type ChannelProductFeeNo: String
+
+        attr_accessor :DealStatus, :DealMessage, :ChannelProductFeeNo
+        
+        def initialize(dealstatus=nil, dealmessage=nil, channelproductfeeno=nil)
+          @DealStatus = dealstatus
+          @DealMessage = dealmessage
+          @ChannelProductFeeNo = channelproductfeeno
+        end
+
+        def deserialize(params)
+          @DealStatus = params['DealStatus']
+          @DealMessage = params['DealMessage']
+          @ChannelProductFeeNo = params['ChannelProductFeeNo']
+        end
+      end
+
+      # CreateOpenBankUnifiedOrder请求参数结构体
+      class CreateOpenBankUnifiedOrderRequest < TencentCloud::Common::AbstractModel
+        # @param ChannelMerchantId: 渠道商户号。
+        # @type ChannelMerchantId: String
+        # @param ChannelName: 渠道名称。
+        # @type ChannelName: String
+        # @param PayType: 支付产品类型。
+        # 被扫（扫码）：SWIPE, 主扫（刷卡）：SCAN,
+        # H5：WAP, 公众号：PUBLIC,
+        # APP-SDK：SDK, 小程序：MINI_PROGRAM,
+        # 快捷支付：QUICK, 网银支付：ONLINE_BANK。
+        # @type PayType: String
+        # @param OutOrderId: 外部商户订单号。
+        # 只能是数字、大小写字母，且在同一个接入平台下唯一。
+        # @type OutOrderId: String
+        # @param TotalAmount: 交易金额，单位分。
+        # @type TotalAmount: Integer
+        # @param Currency: 币种。固定：CNY。
+        # @type Currency: String
+        # @param ChannelSubMerchantId: 渠道子商户号。
+        # @type ChannelSubMerchantId: String
+        # @param PayChannel: 实际支付渠道。没有则无需填写。如
+        # 支付宝 ALIPAY
+        # 微信支付 WXPAY
+        # 银联 UNIONPAY
+        # 一般在间连模式下使用。
+        # @type PayChannel: String
+        # @param SceneInfo: 设备信息。
+        # @type SceneInfo: :class:`Tencentcloud::Cpdp.v20190820.models.OpenBankSceneInfo`
+        # @param ProfitShareInfoList: 分账信息列表。
+        # @type ProfitShareInfoList: Array
+        # @param OrderSubject: 订单标题。
+        # @type OrderSubject: String
+        # @param GoodsDetail: 商品信息。
+        # @type GoodsDetail: String
+        # @param ExpireTime: 超时时间。
+        # @type ExpireTime: String
+        # @param NotifyUrl: 支付成功回调地址。
+        # @type NotifyUrl: String
+        # @param FrontUrl: 支付成功前端跳转URL。
+        # @type FrontUrl: String
+        # @param Attachment: 订单附加信息，查询或者回调的时候原样返回。
+        # @type Attachment: String
+        # @param ExternalPaymentData: 第三方渠道扩展字段。见附录-复杂类型。
+        # 未作特殊说明，则无需传入。
+        # @type ExternalPaymentData: String
+        # @param Remark: 备注。
+        # @type Remark: String
+        # @param StoreInfo: 门店信息。
+        # @type StoreInfo: :class:`Tencentcloud::Cpdp.v20190820.models.OpenBankStoreInfo`
+        # @param PayLimitInfo: 支付限制。
+        # @type PayLimitInfo: :class:`Tencentcloud::Cpdp.v20190820.models.OpenBankPayLimitInfo`
+        # @param Environment: 环境类型。
+        # __release__:生产环境
+        # __sandbox__:沙箱环境
+        # _不填默认为生产环境_
+        # @type Environment: String
+
+        attr_accessor :ChannelMerchantId, :ChannelName, :PayType, :OutOrderId, :TotalAmount, :Currency, :ChannelSubMerchantId, :PayChannel, :SceneInfo, :ProfitShareInfoList, :OrderSubject, :GoodsDetail, :ExpireTime, :NotifyUrl, :FrontUrl, :Attachment, :ExternalPaymentData, :Remark, :StoreInfo, :PayLimitInfo, :Environment
+        
+        def initialize(channelmerchantid=nil, channelname=nil, paytype=nil, outorderid=nil, totalamount=nil, currency=nil, channelsubmerchantid=nil, paychannel=nil, sceneinfo=nil, profitshareinfolist=nil, ordersubject=nil, goodsdetail=nil, expiretime=nil, notifyurl=nil, fronturl=nil, attachment=nil, externalpaymentdata=nil, remark=nil, storeinfo=nil, paylimitinfo=nil, environment=nil)
+          @ChannelMerchantId = channelmerchantid
+          @ChannelName = channelname
+          @PayType = paytype
+          @OutOrderId = outorderid
+          @TotalAmount = totalamount
+          @Currency = currency
+          @ChannelSubMerchantId = channelsubmerchantid
+          @PayChannel = paychannel
+          @SceneInfo = sceneinfo
+          @ProfitShareInfoList = profitshareinfolist
+          @OrderSubject = ordersubject
+          @GoodsDetail = goodsdetail
+          @ExpireTime = expiretime
+          @NotifyUrl = notifyurl
+          @FrontUrl = fronturl
+          @Attachment = attachment
+          @ExternalPaymentData = externalpaymentdata
+          @Remark = remark
+          @StoreInfo = storeinfo
+          @PayLimitInfo = paylimitinfo
+          @Environment = environment
+        end
+
+        def deserialize(params)
+          @ChannelMerchantId = params['ChannelMerchantId']
+          @ChannelName = params['ChannelName']
+          @PayType = params['PayType']
+          @OutOrderId = params['OutOrderId']
+          @TotalAmount = params['TotalAmount']
+          @Currency = params['Currency']
+          @ChannelSubMerchantId = params['ChannelSubMerchantId']
+          @PayChannel = params['PayChannel']
+          unless params['SceneInfo'].nil?
+            @SceneInfo = OpenBankSceneInfo.new
+            @SceneInfo.deserialize(params['SceneInfo'])
+          end
+          unless params['ProfitShareInfoList'].nil?
+            @ProfitShareInfoList = []
+            params['ProfitShareInfoList'].each do |i|
+              openbankprofitshareinfo_tmp = OpenBankProfitShareInfo.new
+              openbankprofitshareinfo_tmp.deserialize(i)
+              @ProfitShareInfoList << openbankprofitshareinfo_tmp
+            end
+          end
+          @OrderSubject = params['OrderSubject']
+          @GoodsDetail = params['GoodsDetail']
+          @ExpireTime = params['ExpireTime']
+          @NotifyUrl = params['NotifyUrl']
+          @FrontUrl = params['FrontUrl']
+          @Attachment = params['Attachment']
+          @ExternalPaymentData = params['ExternalPaymentData']
+          @Remark = params['Remark']
+          unless params['StoreInfo'].nil?
+            @StoreInfo = OpenBankStoreInfo.new
+            @StoreInfo.deserialize(params['StoreInfo'])
+          end
+          unless params['PayLimitInfo'].nil?
+            @PayLimitInfo = OpenBankPayLimitInfo.new
+            @PayLimitInfo.deserialize(params['PayLimitInfo'])
+          end
+          @Environment = params['Environment']
+        end
+      end
+
+      # CreateOpenBankUnifiedOrder返回参数结构体
+      class CreateOpenBankUnifiedOrderResponse < TencentCloud::Common::AbstractModel
+        # @param ErrCode: 业务系统返回码，SUCCESS表示成功，其他表示失败。
+        # @type ErrCode: String
+        # @param ErrMessage: 业务系统返回消息。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ErrMessage: String
+        # @param Result: 统一下单响应对象。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Result: :class:`Tencentcloud::Cpdp.v20190820.models.CreateOpenBankOrderPaymentResult`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ErrCode, :ErrMessage, :Result, :RequestId
+        
+        def initialize(errcode=nil, errmessage=nil, result=nil, requestid=nil)
+          @ErrCode = errcode
+          @ErrMessage = errmessage
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ErrCode = params['ErrCode']
+          @ErrMessage = params['ErrMessage']
+          unless params['Result'].nil?
+            @Result = CreateOpenBankOrderPaymentResult.new
             @Result.deserialize(params['Result'])
           end
           @RequestId = params['RequestId']
@@ -9143,6 +9684,50 @@ module TencentCloud
         end
       end
 
+      # 分段计费区间信息
+      class FeeRangInfo < TencentCloud::Common::AbstractModel
+        # @param CardType: 卡类型，银联产品使用
+        # DEBIT：借记卡
+        # CREDIT：贷记卡
+        # @type CardType: String
+        # @param RangeStartValue: 区间起始金额，单位（分）
+        # @type RangeStartValue: Integer
+        # @param RangeEndValue: 区间结束金额，单位（分）
+        # @type RangeEndValue: Integer
+        # @param RangeFeeMode: 分段计费模式
+        # SINGLE：按金额计费
+        # RATIO：按费率计费
+        # @type RangeFeeMode: String
+        # @param FeeValue: 费用值，单位（0.01%或分）
+        # @type FeeValue: Integer
+        # @param MinFee: 最低收费金额，单位（分）
+        # @type MinFee: Integer
+        # @param MaxFee: 最高收费金额，单位（分）
+        # @type MaxFee: Integer
+
+        attr_accessor :CardType, :RangeStartValue, :RangeEndValue, :RangeFeeMode, :FeeValue, :MinFee, :MaxFee
+        
+        def initialize(cardtype=nil, rangestartvalue=nil, rangeendvalue=nil, rangefeemode=nil, feevalue=nil, minfee=nil, maxfee=nil)
+          @CardType = cardtype
+          @RangeStartValue = rangestartvalue
+          @RangeEndValue = rangeendvalue
+          @RangeFeeMode = rangefeemode
+          @FeeValue = feevalue
+          @MinFee = minfee
+          @MaxFee = maxfee
+        end
+
+        def deserialize(params)
+          @CardType = params['CardType']
+          @RangeStartValue = params['RangeStartValue']
+          @RangeEndValue = params['RangeEndValue']
+          @RangeFeeMode = params['RangeFeeMode']
+          @FeeValue = params['FeeValue']
+          @MinFee = params['MinFee']
+          @MaxFee = params['MaxFee']
+        end
+      end
+
       # 对账文件信息
       class FileItem < TencentCloud::Common::AbstractModel
         # @param FileName: STRING(256)，文件名称
@@ -9767,6 +10352,59 @@ module TencentCloud
             @Result.deserialize(params['Result'])
           end
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 商户法人代表信息
+      class LegalPersonInfo < TencentCloud::Common::AbstractModel
+        # @param IdType: 证件类型
+        # IDCARD：身份证
+        # PASSPORT：护照 SOLDIERSCERTIFICATE：士兵证 OFFICERSCERTIFICATE：军官证 GATXCERTIFICATE：香港居民来往内地通行证 TWNDCERTIFICATE：台湾同胞来往内地通行证
+        # MACAOCERTIFICATE：澳门来往内地通行证
+        # @type IdType: String
+        # @param IdNumber: 证件号码
+        # @type IdNumber: String
+        # @param PersonName: 姓名
+        # @type PersonName: String
+        # @param IdValidityType: 证件有效期类型
+        # LONGTERM：长期有效
+        # OTHER：非长期有效
+        # @type IdValidityType: String
+        # @param IdEffectiveDate: 证件生效日期，yyyy-MM-dd
+        # @type IdEffectiveDate: String
+        # @param ContactPhone: 联系电话
+        # @type ContactPhone: String
+        # @param IdExpireDate: 证件失效日期，yyyy-MM-dd
+        # @type IdExpireDate: String
+        # @param ContactAddress: 联系地址
+        # @type ContactAddress: String
+        # @param EmailAddress: 邮箱地址
+        # @type EmailAddress: String
+
+        attr_accessor :IdType, :IdNumber, :PersonName, :IdValidityType, :IdEffectiveDate, :ContactPhone, :IdExpireDate, :ContactAddress, :EmailAddress
+        
+        def initialize(idtype=nil, idnumber=nil, personname=nil, idvaliditytype=nil, ideffectivedate=nil, contactphone=nil, idexpiredate=nil, contactaddress=nil, emailaddress=nil)
+          @IdType = idtype
+          @IdNumber = idnumber
+          @PersonName = personname
+          @IdValidityType = idvaliditytype
+          @IdEffectiveDate = ideffectivedate
+          @ContactPhone = contactphone
+          @IdExpireDate = idexpiredate
+          @ContactAddress = contactaddress
+          @EmailAddress = emailaddress
+        end
+
+        def deserialize(params)
+          @IdType = params['IdType']
+          @IdNumber = params['IdNumber']
+          @PersonName = params['PersonName']
+          @IdValidityType = params['IdValidityType']
+          @IdEffectiveDate = params['IdEffectiveDate']
+          @ContactPhone = params['ContactPhone']
+          @IdExpireDate = params['IdExpireDate']
+          @ContactAddress = params['ContactAddress']
+          @EmailAddress = params['EmailAddress']
         end
       end
 
@@ -10512,6 +11150,70 @@ module TencentCloud
         end
       end
 
+      # 自然人信息
+      class NaturalPersonInfo < TencentCloud::Common::AbstractModel
+        # @param PersonType: 自然人类型
+        # 2：商户负责人
+        # 3：授权经办人
+        # 4：业务联系人
+        # 5：实际控制人
+        # 6：控股股东
+        # 7：受益人
+        # 8：结算人
+        # 注意：HELIPAY渠道必传业务联系人
+        # @type PersonType: String
+        # @param IdType: 证件类型
+        # IDCARD：身份证
+        # PASSPORT：护照 SOLDIERSCERTIFICATE：士兵证 OFFICERSCERTIFICATE：军官证 GATXCERTIFICATE：香港居民来往内地通行证 TWNDCERTIFICATE：台湾同胞来往内地通行证 MACAOCERTIFICATE：澳门来往内地通行证
+        # @type IdType: String
+        # @param IdNumber: 证件号码
+        # @type IdNumber: String
+        # @param PersonName: 姓名
+        # @type PersonName: String
+        # @param IdValidityType: 证件有效期类型
+        # LONGTERM：长期有效
+        # OTHER：非长期有效
+        # @type IdValidityType: String
+        # @param IdEffectiveDate: 证件生效日期，yyyy-MM-dd
+        # @type IdEffectiveDate: String
+        # @param IdExpireDate: 证件失效日期，yyyy-MM-dd
+        # @type IdExpireDate: String
+        # @param ContactPhone: 联系电话，HELIPAY渠道业务联系人必传
+        # @type ContactPhone: String
+        # @param ContactAddress: 联系地址
+        # @type ContactAddress: String
+        # @param EmailAddress: 邮箱地址
+        # @type EmailAddress: String
+
+        attr_accessor :PersonType, :IdType, :IdNumber, :PersonName, :IdValidityType, :IdEffectiveDate, :IdExpireDate, :ContactPhone, :ContactAddress, :EmailAddress
+        
+        def initialize(persontype=nil, idtype=nil, idnumber=nil, personname=nil, idvaliditytype=nil, ideffectivedate=nil, idexpiredate=nil, contactphone=nil, contactaddress=nil, emailaddress=nil)
+          @PersonType = persontype
+          @IdType = idtype
+          @IdNumber = idnumber
+          @PersonName = personname
+          @IdValidityType = idvaliditytype
+          @IdEffectiveDate = ideffectivedate
+          @IdExpireDate = idexpiredate
+          @ContactPhone = contactphone
+          @ContactAddress = contactaddress
+          @EmailAddress = emailaddress
+        end
+
+        def deserialize(params)
+          @PersonType = params['PersonType']
+          @IdType = params['IdType']
+          @IdNumber = params['IdNumber']
+          @PersonName = params['PersonName']
+          @IdValidityType = params['IdValidityType']
+          @IdEffectiveDate = params['IdEffectiveDate']
+          @IdExpireDate = params['IdExpireDate']
+          @ContactPhone = params['ContactPhone']
+          @ContactAddress = params['ContactAddress']
+          @EmailAddress = params['EmailAddress']
+        end
+      end
+
       # 银行复核指引。银行侧返回网银授权指引链接，一般PC网银，手机网银链接
       class OpenBankApprovalGuideInfo < TencentCloud::Common::AbstractModel
         # @param PcGuideUrl: PC网银指引
@@ -10558,6 +11260,26 @@ module TencentCloud
           @GoodsDetail = params['GoodsDetail']
           @GoodsDescription = params['GoodsDescription']
           @GoodsBizType = params['GoodsBizType']
+        end
+      end
+
+      # 云企付-支付限制
+      class OpenBankPayLimitInfo < TencentCloud::Common::AbstractModel
+        # @param PayLimitType: 限制类型
+        # @type PayLimitType: String
+        # @param PayLimitValue: 限制类型值
+        # @type PayLimitValue: String
+
+        attr_accessor :PayLimitType, :PayLimitValue
+        
+        def initialize(paylimittype=nil, paylimitvalue=nil)
+          @PayLimitType = paylimittype
+          @PayLimitValue = paylimitvalue
+        end
+
+        def deserialize(params)
+          @PayLimitType = params['PayLimitType']
+          @PayLimitValue = params['PayLimitValue']
         end
       end
 
@@ -10673,6 +11395,73 @@ module TencentCloud
         end
       end
 
+      # 云企付-退款查询结果
+      class OpenBankQueryRefundOrderResult < TencentCloud::Common::AbstractModel
+        # @param OutRefundId: 外部商户退款单号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OutRefundId: String
+        # @param ChannelRefundId: 渠道退款单号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ChannelRefundId: String
+        # @param RefundReason: 退款原因
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RefundReason: String
+        # @param RefundAmount: 退款金额，单位分
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RefundAmount: Integer
+        # @param RealRefundAmount: 实际退款金额，单位分
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RealRefundAmount: Integer
+        # @param TotalAmount: 原支付订单总金额，单位分
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalAmount: Integer
+        # @param TimeFinish: 退款完成时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TimeFinish: String
+        # @param RefundStatus: 退款订单状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RefundStatus: String
+        # @param RefundInfo: 退款明细信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RefundInfo: String
+        # @param FeeAmount: 退款手续费金额
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FeeAmount: Integer
+        # @param RefundMessage: 退款返回描述，比如失败原因等。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RefundMessage: String
+
+        attr_accessor :OutRefundId, :ChannelRefundId, :RefundReason, :RefundAmount, :RealRefundAmount, :TotalAmount, :TimeFinish, :RefundStatus, :RefundInfo, :FeeAmount, :RefundMessage
+        
+        def initialize(outrefundid=nil, channelrefundid=nil, refundreason=nil, refundamount=nil, realrefundamount=nil, totalamount=nil, timefinish=nil, refundstatus=nil, refundinfo=nil, feeamount=nil, refundmessage=nil)
+          @OutRefundId = outrefundid
+          @ChannelRefundId = channelrefundid
+          @RefundReason = refundreason
+          @RefundAmount = refundamount
+          @RealRefundAmount = realrefundamount
+          @TotalAmount = totalamount
+          @TimeFinish = timefinish
+          @RefundStatus = refundstatus
+          @RefundInfo = refundinfo
+          @FeeAmount = feeamount
+          @RefundMessage = refundmessage
+        end
+
+        def deserialize(params)
+          @OutRefundId = params['OutRefundId']
+          @ChannelRefundId = params['ChannelRefundId']
+          @RefundReason = params['RefundReason']
+          @RefundAmount = params['RefundAmount']
+          @RealRefundAmount = params['RealRefundAmount']
+          @TotalAmount = params['TotalAmount']
+          @TimeFinish = params['TimeFinish']
+          @RefundStatus = params['RefundStatus']
+          @RefundInfo = params['RefundInfo']
+          @FeeAmount = params['FeeAmount']
+          @RefundMessage = params['RefundMessage']
+        end
+      end
+
       # 云企付-充值单收款人信息
       class OpenBankRechargePayeeInfo < TencentCloud::Common::AbstractModel
         # @param PayeeId: 收款方标识
@@ -10757,6 +11546,58 @@ module TencentCloud
         end
       end
 
+      # 云企付-退款申请结果
+      class OpenBankRefundOrderApplyResult < TencentCloud::Common::AbstractModel
+        # @param ChannelOrderId: 云企付订单号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ChannelOrderId: String
+        # @param ChannelRefundId: 云企付退款流水号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ChannelRefundId: String
+        # @param OutRefundId: 外部商户退款单号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OutRefundId: String
+        # @param OutOrderId: 外部商户订单号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OutOrderId: String
+        # @param RefundMessage: 退款返回描述，比如失败原因等。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RefundMessage: String
+        # @param RefundAmount: 退款金额
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RefundAmount: Integer
+        # @param FeeAmount: 退款手续费金额
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FeeAmount: Integer
+        # @param RefundStatus: 退款状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RefundStatus: String
+
+        attr_accessor :ChannelOrderId, :ChannelRefundId, :OutRefundId, :OutOrderId, :RefundMessage, :RefundAmount, :FeeAmount, :RefundStatus
+        
+        def initialize(channelorderid=nil, channelrefundid=nil, outrefundid=nil, outorderid=nil, refundmessage=nil, refundamount=nil, feeamount=nil, refundstatus=nil)
+          @ChannelOrderId = channelorderid
+          @ChannelRefundId = channelrefundid
+          @OutRefundId = outrefundid
+          @OutOrderId = outorderid
+          @RefundMessage = refundmessage
+          @RefundAmount = refundamount
+          @FeeAmount = feeamount
+          @RefundStatus = refundstatus
+        end
+
+        def deserialize(params)
+          @ChannelOrderId = params['ChannelOrderId']
+          @ChannelRefundId = params['ChannelRefundId']
+          @OutRefundId = params['OutRefundId']
+          @OutOrderId = params['OutOrderId']
+          @RefundMessage = params['RefundMessage']
+          @RefundAmount = params['RefundAmount']
+          @FeeAmount = params['FeeAmount']
+          @RefundStatus = params['RefundStatus']
+        end
+      end
+
       # 云企付-设备信息
       class OpenBankSceneInfo < TencentCloud::Common::AbstractModel
         # @param PayerClientIp: 用户端实际 ip。汇付渠道必填。
@@ -10787,6 +11628,34 @@ module TencentCloud
           @OrderTime = params['OrderTime']
           @DeviceId = params['DeviceId']
           @DeviceType = params['DeviceType']
+        end
+      end
+
+      # 云企付-门店信息
+      class OpenBankStoreInfo < TencentCloud::Common::AbstractModel
+        # @param Name: 门店名称
+        # @type Name: String
+        # @param AreaCode: 地区编码
+        # @type AreaCode: String
+        # @param Address: 详细地址
+        # @type Address: String
+        # @param Id: 门店编号
+        # @type Id: String
+
+        attr_accessor :Name, :AreaCode, :Address, :Id
+        
+        def initialize(name=nil, areacode=nil, address=nil, id=nil)
+          @Name = name
+          @AreaCode = areacode
+          @Address = address
+          @Id = id
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @AreaCode = params['AreaCode']
+          @Address = params['Address']
+          @Id = params['Id']
         end
       end
 
@@ -10951,6 +11820,48 @@ module TencentCloud
           @LegalPersonName = params['LegalPersonName']
           @LegalPersonIdType = params['LegalPersonIdType']
           @LegalPersonIdCode = params['LegalPersonIdCode']
+        end
+      end
+
+      # 外部子商户扩展信息
+      class OutSubMerchantExtensionInfo < TencentCloud::Common::AbstractModel
+        # @param RegionCode: 地区代码，国标码
+        # HELIPAY渠道必传
+        # @type RegionCode: String
+        # @param RegisterAddress: 注册地址
+        # @type RegisterAddress: String
+        # @param MailingAddress: 通讯地址
+        # HELIPAY渠道必传
+        # @type MailingAddress: String
+        # @param BusinessAddress: 营业地址/经营地址
+        # @type BusinessAddress: String
+        # @param ServicePhone: 客服电话
+        # @type ServicePhone: String
+        # @param WebSiteUrl: 网站url
+        # @type WebSiteUrl: String
+        # @param EmailAddress: 邮箱地址
+        # @type EmailAddress: String
+
+        attr_accessor :RegionCode, :RegisterAddress, :MailingAddress, :BusinessAddress, :ServicePhone, :WebSiteUrl, :EmailAddress
+        
+        def initialize(regioncode=nil, registeraddress=nil, mailingaddress=nil, businessaddress=nil, servicephone=nil, websiteurl=nil, emailaddress=nil)
+          @RegionCode = regioncode
+          @RegisterAddress = registeraddress
+          @MailingAddress = mailingaddress
+          @BusinessAddress = businessaddress
+          @ServicePhone = servicephone
+          @WebSiteUrl = websiteurl
+          @EmailAddress = emailaddress
+        end
+
+        def deserialize(params)
+          @RegionCode = params['RegionCode']
+          @RegisterAddress = params['RegisterAddress']
+          @MailingAddress = params['MailingAddress']
+          @BusinessAddress = params['BusinessAddress']
+          @ServicePhone = params['ServicePhone']
+          @WebSiteUrl = params['WebSiteUrl']
+          @EmailAddress = params['EmailAddress']
         end
       end
 
@@ -16217,6 +17128,254 @@ module TencentCloud
         end
       end
 
+      # 云企付-分页查询对账单数据结果
+      class QueryOpenBankBillData < TencentCloud::Common::AbstractModel
+        # @param BillDate: 交易日期
+        # @type BillDate: String
+        # @param Channel: 渠道编码
+        # @type Channel: String
+        # @param SubChannel: 二级渠道
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SubChannel: String
+        # @param ParentMerchantId: 系统父商户号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ParentMerchantId: String
+        # @param OutMerchantId: 外部商户号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OutMerchantId: String
+        # @param MerchantId: 系统商户号
+        # @type MerchantId: String
+        # @param EndMerchantId: 第三方商户号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EndMerchantId: String
+        # @param OutTradeNo: 外部订单号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OutTradeNo: String
+        # @param TradeNo: 系统订单号
+        # @type TradeNo: String
+        # @param EndTradeNo: 第三方订单号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EndTradeNo: String
+        # @param PaymentType: 收付类型，PAYMENT:付款，INCOME:收款
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PaymentType: String
+        # @param BusinessType: 业务类型，WITHDRAW:提现，PAY:支付，RECHARGE:充值，TRANSFER:转账，REFUND:退款
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BusinessType: String
+        # @param TradeTime: 发起交易时间，格式yyyy-MM-dd HH:mm:ss
+        # @type TradeTime: String
+        # @param FinishTime: 交易完成时间，格式yyyy-MM-dd HH:mm:ss
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FinishTime: String
+        # @param TradeStatus: 交易状态，0:未知，1:成功，2:失败
+        # @type TradeStatus: String
+        # @param CheckStatus: 对账状态，1:成功，2:失败 3:长账 4:短账
+        # @type CheckStatus: String
+        # @param CheckFailReason: 对账失败原因
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CheckFailReason: String
+        # @param OrderAmount: 交易金额（元）
+        # @type OrderAmount: String
+        # @param ServiceFee: 服务费（元）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ServiceFee: String
+        # @param PayeeAccount: 收款人账号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PayeeAccount: String
+        # @param PayeeName: 收款人名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PayeeName: String
+        # @param PayerAccount: 付款人账号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PayerAccount: String
+        # @param PayerName: 付款人名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PayerName: String
+        # @param Description: 支付信息描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Description: String
+
+        attr_accessor :BillDate, :Channel, :SubChannel, :ParentMerchantId, :OutMerchantId, :MerchantId, :EndMerchantId, :OutTradeNo, :TradeNo, :EndTradeNo, :PaymentType, :BusinessType, :TradeTime, :FinishTime, :TradeStatus, :CheckStatus, :CheckFailReason, :OrderAmount, :ServiceFee, :PayeeAccount, :PayeeName, :PayerAccount, :PayerName, :Description
+        
+        def initialize(billdate=nil, channel=nil, subchannel=nil, parentmerchantid=nil, outmerchantid=nil, merchantid=nil, endmerchantid=nil, outtradeno=nil, tradeno=nil, endtradeno=nil, paymenttype=nil, businesstype=nil, tradetime=nil, finishtime=nil, tradestatus=nil, checkstatus=nil, checkfailreason=nil, orderamount=nil, servicefee=nil, payeeaccount=nil, payeename=nil, payeraccount=nil, payername=nil, description=nil)
+          @BillDate = billdate
+          @Channel = channel
+          @SubChannel = subchannel
+          @ParentMerchantId = parentmerchantid
+          @OutMerchantId = outmerchantid
+          @MerchantId = merchantid
+          @EndMerchantId = endmerchantid
+          @OutTradeNo = outtradeno
+          @TradeNo = tradeno
+          @EndTradeNo = endtradeno
+          @PaymentType = paymenttype
+          @BusinessType = businesstype
+          @TradeTime = tradetime
+          @FinishTime = finishtime
+          @TradeStatus = tradestatus
+          @CheckStatus = checkstatus
+          @CheckFailReason = checkfailreason
+          @OrderAmount = orderamount
+          @ServiceFee = servicefee
+          @PayeeAccount = payeeaccount
+          @PayeeName = payeename
+          @PayerAccount = payeraccount
+          @PayerName = payername
+          @Description = description
+        end
+
+        def deserialize(params)
+          @BillDate = params['BillDate']
+          @Channel = params['Channel']
+          @SubChannel = params['SubChannel']
+          @ParentMerchantId = params['ParentMerchantId']
+          @OutMerchantId = params['OutMerchantId']
+          @MerchantId = params['MerchantId']
+          @EndMerchantId = params['EndMerchantId']
+          @OutTradeNo = params['OutTradeNo']
+          @TradeNo = params['TradeNo']
+          @EndTradeNo = params['EndTradeNo']
+          @PaymentType = params['PaymentType']
+          @BusinessType = params['BusinessType']
+          @TradeTime = params['TradeTime']
+          @FinishTime = params['FinishTime']
+          @TradeStatus = params['TradeStatus']
+          @CheckStatus = params['CheckStatus']
+          @CheckFailReason = params['CheckFailReason']
+          @OrderAmount = params['OrderAmount']
+          @ServiceFee = params['ServiceFee']
+          @PayeeAccount = params['PayeeAccount']
+          @PayeeName = params['PayeeName']
+          @PayerAccount = params['PayerAccount']
+          @PayerName = params['PayerName']
+          @Description = params['Description']
+        end
+      end
+
+      # QueryOpenBankBillDataPage请求参数结构体
+      class QueryOpenBankBillDataPageRequest < TencentCloud::Common::AbstractModel
+        # @param ChannelMerchantId: 渠道商户号，外部接入平台方入驻云企付平台后下发。
+        # EBANK_PAYMENT支付方式下，填写渠道商户号；
+        # SAFT_ISV支付方式下，填写渠道子商户号;
+        # HELIPAY渠道下，填写渠道子商户号。
+        # @type ChannelMerchantId: String
+        # @param BillDate: 账单日期,yyyy-MM-dd。
+        # @type BillDate: String
+        # @param ChannelName: 渠道名称。详见附录-云企付枚举类说明-ChannelName。
+        # __TENPAY__: 商企付
+        # __WECHAT__: 微信支付
+        # __ALIPAY__: 支付宝
+        # HELIPAY：合利宝
+        # @type ChannelName: String
+        # @param PageNo: 分页页码。
+        # @type PageNo: Integer
+        # @param PageSize: 分页大小，最大1000。
+        # @type PageSize: Integer
+        # @param BillType: 账单类型，默认交易账单。
+        # @type BillType: String
+        # @param PaymentMethod: 支付方式。详见附录-云企付枚举类说明-PaymentMethod。
+        # @type PaymentMethod: String
+        # @param Environment: 环境类型。
+        # __release__:生产环境
+        # __sandbox__:沙箱环境
+        # _不填默认为生产环境_
+        # @type Environment: String
+
+        attr_accessor :ChannelMerchantId, :BillDate, :ChannelName, :PageNo, :PageSize, :BillType, :PaymentMethod, :Environment
+        
+        def initialize(channelmerchantid=nil, billdate=nil, channelname=nil, pageno=nil, pagesize=nil, billtype=nil, paymentmethod=nil, environment=nil)
+          @ChannelMerchantId = channelmerchantid
+          @BillDate = billdate
+          @ChannelName = channelname
+          @PageNo = pageno
+          @PageSize = pagesize
+          @BillType = billtype
+          @PaymentMethod = paymentmethod
+          @Environment = environment
+        end
+
+        def deserialize(params)
+          @ChannelMerchantId = params['ChannelMerchantId']
+          @BillDate = params['BillDate']
+          @ChannelName = params['ChannelName']
+          @PageNo = params['PageNo']
+          @PageSize = params['PageSize']
+          @BillType = params['BillType']
+          @PaymentMethod = params['PaymentMethod']
+          @Environment = params['Environment']
+        end
+      end
+
+      # QueryOpenBankBillDataPage返回参数结构体
+      class QueryOpenBankBillDataPageResponse < TencentCloud::Common::AbstractModel
+        # @param ErrCode: 错误码。
+        # __SUCCESS__: 成功
+        # __其他__: 见附录-错误码表
+        # @type ErrCode: String
+        # @param ErrMessage: 错误消息。
+        # @type ErrMessage: String
+        # @param Result: 结果
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Result: :class:`Tencentcloud::Cpdp.v20190820.models.QueryOpenBankBillDataPageResult`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ErrCode, :ErrMessage, :Result, :RequestId
+        
+        def initialize(errcode=nil, errmessage=nil, result=nil, requestid=nil)
+          @ErrCode = errcode
+          @ErrMessage = errmessage
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ErrCode = params['ErrCode']
+          @ErrMessage = params['ErrMessage']
+          unless params['Result'].nil?
+            @Result = QueryOpenBankBillDataPageResult.new
+            @Result.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 云企付-分页查询对账单数据结果
+      class QueryOpenBankBillDataPageResult < TencentCloud::Common::AbstractModel
+        # @param PageNo: 页码
+        # @type PageNo: Integer
+        # @param PageSize: 分页大小
+        # @type PageSize: Integer
+        # @param Count: 总数
+        # @type Count: Integer
+        # @param DataList: 账单数据明细
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DataList: Array
+
+        attr_accessor :PageNo, :PageSize, :Count, :DataList
+        
+        def initialize(pageno=nil, pagesize=nil, count=nil, datalist=nil)
+          @PageNo = pageno
+          @PageSize = pagesize
+          @Count = count
+          @DataList = datalist
+        end
+
+        def deserialize(params)
+          @PageNo = params['PageNo']
+          @PageSize = params['PageSize']
+          @Count = params['Count']
+          unless params['DataList'].nil?
+            @DataList = []
+            params['DataList'].each do |i|
+              queryopenbankbilldata_tmp = QueryOpenBankBillData.new
+              queryopenbankbilldata_tmp.deserialize(i)
+              @DataList << queryopenbankbilldata_tmp
+            end
+          end
+        end
+      end
+
       # QueryOpenBankBindExternalSubMerchantBankAccount请求参数结构体
       class QueryOpenBankBindExternalSubMerchantBankAccountRequest < TencentCloud::Common::AbstractModel
         # @param ChannelSubMerchantId: 渠道子商户ID。
@@ -17150,6 +18309,275 @@ module TencentCloud
           end
           @FeeAmount = params['FeeAmount']
           @FeeRate = params['FeeRate']
+        end
+      end
+
+      # QueryOpenBankRefundOrder请求参数结构体
+      class QueryOpenBankRefundOrderRequest < TencentCloud::Common::AbstractModel
+        # @param ChannelMerchantId: 渠道商户号。
+        # @type ChannelMerchantId: String
+        # @param OutRefundId: 外部商户退单号，与渠道退款单号二者选填其一。
+        # @type OutRefundId: String
+        # @param ChannelRefundId: 渠道退款订单号，与外部商户退款单号二者选填其一。
+        # @type ChannelRefundId: String
+        # @param Environment: 环境类型。
+        # __release__:生产环境
+        # __sandbox__:沙箱环境
+        # _不填默认为生产环境_
+        # @type Environment: String
+
+        attr_accessor :ChannelMerchantId, :OutRefundId, :ChannelRefundId, :Environment
+        
+        def initialize(channelmerchantid=nil, outrefundid=nil, channelrefundid=nil, environment=nil)
+          @ChannelMerchantId = channelmerchantid
+          @OutRefundId = outrefundid
+          @ChannelRefundId = channelrefundid
+          @Environment = environment
+        end
+
+        def deserialize(params)
+          @ChannelMerchantId = params['ChannelMerchantId']
+          @OutRefundId = params['OutRefundId']
+          @ChannelRefundId = params['ChannelRefundId']
+          @Environment = params['Environment']
+        end
+      end
+
+      # QueryOpenBankRefundOrder返回参数结构体
+      class QueryOpenBankRefundOrderResponse < TencentCloud::Common::AbstractModel
+        # @param ErrCode: 错误码
+        # @type ErrCode: String
+        # @param ErrMessage: 错误消息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ErrMessage: String
+        # @param Result: 返回结果
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Result: :class:`Tencentcloud::Cpdp.v20190820.models.OpenBankQueryRefundOrderResult`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ErrCode, :ErrMessage, :Result, :RequestId
+        
+        def initialize(errcode=nil, errmessage=nil, result=nil, requestid=nil)
+          @ErrCode = errcode
+          @ErrMessage = errmessage
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ErrCode = params['ErrCode']
+          @ErrMessage = params['ErrMessage']
+          unless params['Result'].nil?
+            @Result = OpenBankQueryRefundOrderResult.new
+            @Result.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # QueryOpenBankSubMerchantCredential请求参数结构体
+      class QueryOpenBankSubMerchantCredentialRequest < TencentCloud::Common::AbstractModel
+        # @param ChannelMerchantId: 渠道商户ID。
+        # @type ChannelMerchantId: String
+        # @param ChannelSubMerchantId: 渠道子商户ID。
+        # @type ChannelSubMerchantId: String
+        # @param ChannelName: 渠道名称。详见附录-枚举类型-ChannelName。
+        # @type ChannelName: String
+        # @param PaymentMethod: 支付方式。
+        # 合利宝渠道不需要传。
+        # @type PaymentMethod: String
+        # @param OutApplyId: 外部申请流水号。
+        # 外部申请流水号与渠道申请流水号两者选填其一。
+        # @type OutApplyId: String
+        # @param ChannelApplyId: 渠道申请流水号。
+        # 外部申请流水号与渠道申请流水号两者选填其一。
+        # @type ChannelApplyId: String
+        # @param Environment: 环境类型。
+        # __release__:生产环境
+        # __sandbox__:沙箱环境
+        # _不填默认为生产环境_
+        # @type Environment: String
+
+        attr_accessor :ChannelMerchantId, :ChannelSubMerchantId, :ChannelName, :PaymentMethod, :OutApplyId, :ChannelApplyId, :Environment
+        
+        def initialize(channelmerchantid=nil, channelsubmerchantid=nil, channelname=nil, paymentmethod=nil, outapplyid=nil, channelapplyid=nil, environment=nil)
+          @ChannelMerchantId = channelmerchantid
+          @ChannelSubMerchantId = channelsubmerchantid
+          @ChannelName = channelname
+          @PaymentMethod = paymentmethod
+          @OutApplyId = outapplyid
+          @ChannelApplyId = channelapplyid
+          @Environment = environment
+        end
+
+        def deserialize(params)
+          @ChannelMerchantId = params['ChannelMerchantId']
+          @ChannelSubMerchantId = params['ChannelSubMerchantId']
+          @ChannelName = params['ChannelName']
+          @PaymentMethod = params['PaymentMethod']
+          @OutApplyId = params['OutApplyId']
+          @ChannelApplyId = params['ChannelApplyId']
+          @Environment = params['Environment']
+        end
+      end
+
+      # QueryOpenBankSubMerchantCredential返回参数结构体
+      class QueryOpenBankSubMerchantCredentialResponse < TencentCloud::Common::AbstractModel
+        # @param ErrCode: 错误码。
+        # @type ErrCode: String
+        # @param ErrMessage: 错误消息。
+        # @type ErrMessage: String
+        # @param Result: 返回结果
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Result: :class:`Tencentcloud::Cpdp.v20190820.models.QueryOpenBankSubMerchantCredentialResult`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ErrCode, :ErrMessage, :Result, :RequestId
+        
+        def initialize(errcode=nil, errmessage=nil, result=nil, requestid=nil)
+          @ErrCode = errcode
+          @ErrMessage = errmessage
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ErrCode = params['ErrCode']
+          @ErrMessage = params['ErrMessage']
+          unless params['Result'].nil?
+            @Result = QueryOpenBankSubMerchantCredentialResult.new
+            @Result.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 子商户资质文件查询
+      class QueryOpenBankSubMerchantCredentialResult < TencentCloud::Common::AbstractModel
+        # @param UploadStatus: 上传状态
+        # @type UploadStatus: String
+        # @param UploadMessage: 上传描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UploadMessage: String
+
+        attr_accessor :UploadStatus, :UploadMessage
+        
+        def initialize(uploadstatus=nil, uploadmessage=nil)
+          @UploadStatus = uploadstatus
+          @UploadMessage = uploadmessage
+        end
+
+        def deserialize(params)
+          @UploadStatus = params['UploadStatus']
+          @UploadMessage = params['UploadMessage']
+        end
+      end
+
+      # QueryOpenBankSubMerchantRateConfigure请求参数结构体
+      class QueryOpenBankSubMerchantRateConfigureRequest < TencentCloud::Common::AbstractModel
+        # @param ChannelRegistrationNo: 渠道进件序列号。
+        # @type ChannelRegistrationNo: String
+        # @param ChannelMerchantId: 渠道商户ID。
+        # @type ChannelMerchantId: String
+        # @param ChannelSubMerchantId: 渠道子商户ID。
+        # @type ChannelSubMerchantId: String
+        # @param ChannelName: 渠道名称。详见附录-云企付枚举类说明-ChannelName。
+        # TENPAY: 商企付
+        # WECHAT: 微信支付
+        # ALIPAY: 支付宝
+        # HELIPAY:合利宝
+        # @type ChannelName: String
+        # @param ChannelProductFeeNo: 渠道产品费率序列号。与外部产品费率序列号二者选填其一。
+        # @type ChannelProductFeeNo: String
+        # @param OutProductFeeNo: 外部产品费率序列号。与渠道产品费率序列号二者选填其一。
+        # @type OutProductFeeNo: String
+        # @param Environment: 环境类型。
+        # __release__:生产环境
+        # __sandbox__:沙箱环境
+        # _不填默认为生产环境_
+        # @type Environment: String
+
+        attr_accessor :ChannelRegistrationNo, :ChannelMerchantId, :ChannelSubMerchantId, :ChannelName, :ChannelProductFeeNo, :OutProductFeeNo, :Environment
+        
+        def initialize(channelregistrationno=nil, channelmerchantid=nil, channelsubmerchantid=nil, channelname=nil, channelproductfeeno=nil, outproductfeeno=nil, environment=nil)
+          @ChannelRegistrationNo = channelregistrationno
+          @ChannelMerchantId = channelmerchantid
+          @ChannelSubMerchantId = channelsubmerchantid
+          @ChannelName = channelname
+          @ChannelProductFeeNo = channelproductfeeno
+          @OutProductFeeNo = outproductfeeno
+          @Environment = environment
+        end
+
+        def deserialize(params)
+          @ChannelRegistrationNo = params['ChannelRegistrationNo']
+          @ChannelMerchantId = params['ChannelMerchantId']
+          @ChannelSubMerchantId = params['ChannelSubMerchantId']
+          @ChannelName = params['ChannelName']
+          @ChannelProductFeeNo = params['ChannelProductFeeNo']
+          @OutProductFeeNo = params['OutProductFeeNo']
+          @Environment = params['Environment']
+        end
+      end
+
+      # QueryOpenBankSubMerchantRateConfigure返回参数结构体
+      class QueryOpenBankSubMerchantRateConfigureResponse < TencentCloud::Common::AbstractModel
+        # @param ErrCode: 错误码。
+        # __SUCCESS__: 成功
+        # __其他__: 见附录-错误码表
+        # @type ErrCode: String
+        # @param ErrMessage: 错误消息。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ErrMessage: String
+        # @param Result: 返回结果。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Result: :class:`Tencentcloud::Cpdp.v20190820.models.QueryOpenBankSubMerchantRateConfigureResult`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ErrCode, :ErrMessage, :Result, :RequestId
+        
+        def initialize(errcode=nil, errmessage=nil, result=nil, requestid=nil)
+          @ErrCode = errcode
+          @ErrMessage = errmessage
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ErrCode = params['ErrCode']
+          @ErrMessage = params['ErrMessage']
+          unless params['Result'].nil?
+            @Result = QueryOpenBankSubMerchantRateConfigureResult.new
+            @Result.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 子商户费率配置查询结果
+      class QueryOpenBankSubMerchantRateConfigureResult < TencentCloud::Common::AbstractModel
+        # @param DealStatus: 处理状态
+        # SUCCESS: 开通成功
+        # FAILED: 开通失败
+        # PROCESSING: 开通中
+        # @type DealStatus: String
+        # @param DealMessage: 处理描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DealMessage: String
+
+        attr_accessor :DealStatus, :DealMessage
+        
+        def initialize(dealstatus=nil, dealmessage=nil)
+          @DealStatus = dealstatus
+          @DealMessage = dealmessage
+        end
+
+        def deserialize(params)
+          @DealStatus = params['DealStatus']
+          @DealMessage = params['DealMessage']
         end
       end
 
@@ -20014,6 +21442,95 @@ module TencentCloud
         end
       end
 
+      # RefundOpenBankOrder请求参数结构体
+      class RefundOpenBankOrderRequest < TencentCloud::Common::AbstractModel
+        # @param OutRefundId: 外部商户退款单号。
+        # @type OutRefundId: String
+        # @param RefundAmount: 退款金额。单位分。
+        # @type RefundAmount: Integer
+        # @param ChannelMerchantId: 渠道商户号。
+        # @type ChannelMerchantId: String
+        # @param OutOrderId: 外部商户订单号，与云企付渠道订单号二者选填其一。
+        # @type OutOrderId: String
+        # @param ChannelOrderId: 云企付渠道订单号，与外部订单号二者选填其一。
+        # @type ChannelOrderId: String
+        # @param NotifyUrl: 退款通知地址。
+        # @type NotifyUrl: String
+        # @param RefundReason: 退款原因。
+        # @type RefundReason: String
+        # @param ExternalRefundData: 第三方渠道退款附加信息。详见附录-复杂类型。
+        # 若未作特殊说明，则无需传入。
+        # @type ExternalRefundData: String
+        # @param Remark: 备注信息
+        # @type Remark: String
+        # @param Environment: 环境类型。
+        # __release__:生产环境
+        # __sandbox__:沙箱环境
+        # _不填默认为生产环境_
+        # @type Environment: String
+
+        attr_accessor :OutRefundId, :RefundAmount, :ChannelMerchantId, :OutOrderId, :ChannelOrderId, :NotifyUrl, :RefundReason, :ExternalRefundData, :Remark, :Environment
+        
+        def initialize(outrefundid=nil, refundamount=nil, channelmerchantid=nil, outorderid=nil, channelorderid=nil, notifyurl=nil, refundreason=nil, externalrefunddata=nil, remark=nil, environment=nil)
+          @OutRefundId = outrefundid
+          @RefundAmount = refundamount
+          @ChannelMerchantId = channelmerchantid
+          @OutOrderId = outorderid
+          @ChannelOrderId = channelorderid
+          @NotifyUrl = notifyurl
+          @RefundReason = refundreason
+          @ExternalRefundData = externalrefunddata
+          @Remark = remark
+          @Environment = environment
+        end
+
+        def deserialize(params)
+          @OutRefundId = params['OutRefundId']
+          @RefundAmount = params['RefundAmount']
+          @ChannelMerchantId = params['ChannelMerchantId']
+          @OutOrderId = params['OutOrderId']
+          @ChannelOrderId = params['ChannelOrderId']
+          @NotifyUrl = params['NotifyUrl']
+          @RefundReason = params['RefundReason']
+          @ExternalRefundData = params['ExternalRefundData']
+          @Remark = params['Remark']
+          @Environment = params['Environment']
+        end
+      end
+
+      # RefundOpenBankOrder返回参数结构体
+      class RefundOpenBankOrderResponse < TencentCloud::Common::AbstractModel
+        # @param ErrCode: 错误码
+        # @type ErrCode: String
+        # @param ErrMessage: 错误消息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ErrMessage: String
+        # @param Result: 返回结果
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Result: :class:`Tencentcloud::Cpdp.v20190820.models.OpenBankRefundOrderApplyResult`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ErrCode, :ErrMessage, :Result, :RequestId
+        
+        def initialize(errcode=nil, errmessage=nil, result=nil, requestid=nil)
+          @ErrCode = errcode
+          @ErrMessage = errmessage
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ErrCode = params['ErrCode']
+          @ErrMessage = params['ErrMessage']
+          unless params['Result'].nil?
+            @Result = OpenBankRefundOrderApplyResult.new
+            @Result.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # RefundOrder请求参数结构体
       class RefundOrderRequest < TencentCloud::Common::AbstractModel
         # @param MerchantAppId: 进件成功后返给商户方的AppId
@@ -21233,6 +22750,59 @@ module TencentCloud
           @LocaleCode = params['LocaleCode']
           @RegionCode = params['RegionCode']
           @UserClientIp = params['UserClientIp']
+        end
+      end
+
+      # 商户结算信息
+      class SettleInfo < TencentCloud::Common::AbstractModel
+        # @param SettleAccountType: 结算账户类型
+        # PRIVATE：对私
+        # BUSINESS：对公
+        # HELIPAY渠道必传
+        # @type SettleAccountType: String
+        # @param SettleAccountNumber: 结算账号
+        # HELIPAY渠道必传
+        # @type SettleAccountNumber: String
+        # @param SettleAccountName: 结算账户名称
+        # HELIPAY渠道必传
+        # @type SettleAccountName: String
+        # @param BankBranchId: 支行号
+        # HELIPAY渠道必传
+        # @type BankBranchId: String
+        # @param BankBranchName: 支行名称
+        # @type BankBranchName: String
+        # @param SettleMode: 结算方式
+        # AUTO：自动结算
+        # SELF：自主结算
+        # HELIPAY渠道必传
+        # @type SettleMode: String
+        # @param SettlePeriod: 结算周期
+        # T1：工作日隔天结算
+        # D1：自然日隔天结算
+        # D0：当日结算
+        # HELIPAY渠道必传
+        # @type SettlePeriod: String
+
+        attr_accessor :SettleAccountType, :SettleAccountNumber, :SettleAccountName, :BankBranchId, :BankBranchName, :SettleMode, :SettlePeriod
+        
+        def initialize(settleaccounttype=nil, settleaccountnumber=nil, settleaccountname=nil, bankbranchid=nil, bankbranchname=nil, settlemode=nil, settleperiod=nil)
+          @SettleAccountType = settleaccounttype
+          @SettleAccountNumber = settleaccountnumber
+          @SettleAccountName = settleaccountname
+          @BankBranchId = bankbranchid
+          @BankBranchName = bankbranchname
+          @SettleMode = settlemode
+          @SettlePeriod = settleperiod
+        end
+
+        def deserialize(params)
+          @SettleAccountType = params['SettleAccountType']
+          @SettleAccountNumber = params['SettleAccountNumber']
+          @SettleAccountName = params['SettleAccountName']
+          @BankBranchId = params['BankBranchId']
+          @BankBranchName = params['BankBranchName']
+          @SettleMode = params['SettleMode']
+          @SettlePeriod = params['SettlePeriod']
         end
       end
 
@@ -23016,6 +24586,125 @@ module TencentCloud
         def deserialize(params)
           @Storage = params['Storage']
           @FilePath = params['FilePath']
+        end
+      end
+
+      # UploadOpenBankSubMerchantCredential请求参数结构体
+      class UploadOpenBankSubMerchantCredentialRequest < TencentCloud::Common::AbstractModel
+        # @param ChannelMerchantId: 渠道商户ID。
+        # @type ChannelMerchantId: String
+        # @param ChannelSubMerchantId: 渠道子商户ID。
+        # @type ChannelSubMerchantId: String
+        # @param ChannelName: 渠道名称。详见附录-枚举类型-ChannelName。
+        # @type ChannelName: String
+        # @param OutApplyId: 外部序列进件号。
+        # @type OutApplyId: String
+        # @param CredentialType: 资质类型，详见附录-枚举类型-CredentialType。
+        # @type CredentialType: String
+        # @param FileType: 文件类型。
+        # 合利宝渠道，文件类型为PNG/JPG格式。
+        # @type FileType: String
+        # @param PaymentMethod: 支付方式。
+        # 合利宝渠道不需要传。
+        # @type PaymentMethod: String
+        # @param CredentialContent: 资质文件内容。Base64编码，资质文件内容和链接二选一。
+        # 合利宝渠道，文件限制大小5M以内。
+        # @type CredentialContent: String
+        # @param CredentialUrl: 资质文件链接。资质文件内容和链接二选一。
+        # 合利宝渠道，文件限制大小5M以内。
+        # @type CredentialUrl: String
+        # @param Environment: 环境类型。
+        # __release__:生产环境
+        # __sandbox__:沙箱环境
+        # _不填默认为生产环境_
+        # @type Environment: String
+
+        attr_accessor :ChannelMerchantId, :ChannelSubMerchantId, :ChannelName, :OutApplyId, :CredentialType, :FileType, :PaymentMethod, :CredentialContent, :CredentialUrl, :Environment
+        
+        def initialize(channelmerchantid=nil, channelsubmerchantid=nil, channelname=nil, outapplyid=nil, credentialtype=nil, filetype=nil, paymentmethod=nil, credentialcontent=nil, credentialurl=nil, environment=nil)
+          @ChannelMerchantId = channelmerchantid
+          @ChannelSubMerchantId = channelsubmerchantid
+          @ChannelName = channelname
+          @OutApplyId = outapplyid
+          @CredentialType = credentialtype
+          @FileType = filetype
+          @PaymentMethod = paymentmethod
+          @CredentialContent = credentialcontent
+          @CredentialUrl = credentialurl
+          @Environment = environment
+        end
+
+        def deserialize(params)
+          @ChannelMerchantId = params['ChannelMerchantId']
+          @ChannelSubMerchantId = params['ChannelSubMerchantId']
+          @ChannelName = params['ChannelName']
+          @OutApplyId = params['OutApplyId']
+          @CredentialType = params['CredentialType']
+          @FileType = params['FileType']
+          @PaymentMethod = params['PaymentMethod']
+          @CredentialContent = params['CredentialContent']
+          @CredentialUrl = params['CredentialUrl']
+          @Environment = params['Environment']
+        end
+      end
+
+      # UploadOpenBankSubMerchantCredential返回参数结构体
+      class UploadOpenBankSubMerchantCredentialResponse < TencentCloud::Common::AbstractModel
+        # @param ErrCode: 错误码。
+        # @type ErrCode: String
+        # @param ErrMessage: 错误消息。
+        # @type ErrMessage: String
+        # @param Result: 返回结果
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Result: :class:`Tencentcloud::Cpdp.v20190820.models.UploadOpenBankSubMerchantCredentialResult`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ErrCode, :ErrMessage, :Result, :RequestId
+        
+        def initialize(errcode=nil, errmessage=nil, result=nil, requestid=nil)
+          @ErrCode = errcode
+          @ErrMessage = errmessage
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ErrCode = params['ErrCode']
+          @ErrMessage = params['ErrMessage']
+          unless params['Result'].nil?
+            @Result = UploadOpenBankSubMerchantCredentialResult.new
+            @Result.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 上传子商户资质文件返回值
+      class UploadOpenBankSubMerchantCredentialResult < TencentCloud::Common::AbstractModel
+        # @param UploadStatus: 上传状态
+        # SUCCESS：上传成功
+        # FAILED：上传失败
+        # PROCESSING:上传中
+        # @type UploadStatus: String
+        # @param UploadMessage: 上传描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UploadMessage: String
+        # @param ChannelApplyId: 渠道上传流水号
+        # @type ChannelApplyId: String
+
+        attr_accessor :UploadStatus, :UploadMessage, :ChannelApplyId
+        
+        def initialize(uploadstatus=nil, uploadmessage=nil, channelapplyid=nil)
+          @UploadStatus = uploadstatus
+          @UploadMessage = uploadmessage
+          @ChannelApplyId = channelapplyid
+        end
+
+        def deserialize(params)
+          @UploadStatus = params['UploadStatus']
+          @UploadMessage = params['UploadMessage']
+          @ChannelApplyId = params['ChannelApplyId']
         end
       end
 

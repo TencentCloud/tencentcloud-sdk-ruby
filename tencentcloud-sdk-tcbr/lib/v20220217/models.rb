@@ -360,14 +360,18 @@ module TencentCloud
         # @param ServerConfig: 服务配置信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ServerConfig: :class:`Tencentcloud::Tcbr.v20220217.models.ServerBaseConfig`
+        # @param OnlineVersionInfos: 在线版本信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OnlineVersionInfos: Array
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :BaseInfo, :ServerConfig, :RequestId
+        attr_accessor :BaseInfo, :ServerConfig, :OnlineVersionInfos, :RequestId
         
-        def initialize(baseinfo=nil, serverconfig=nil, requestid=nil)
+        def initialize(baseinfo=nil, serverconfig=nil, onlineversioninfos=nil, requestid=nil)
           @BaseInfo = baseinfo
           @ServerConfig = serverconfig
+          @OnlineVersionInfos = onlineversioninfos
           @RequestId = requestid
         end
 
@@ -379,6 +383,14 @@ module TencentCloud
           unless params['ServerConfig'].nil?
             @ServerConfig = ServerBaseConfig.new
             @ServerConfig.deserialize(params['ServerConfig'])
+          end
+          unless params['OnlineVersionInfos'].nil?
+            @OnlineVersionInfos = []
+            params['OnlineVersionInfos'].each do |i|
+              onlineversioninfo_tmp = OnlineVersionInfo.new
+              onlineversioninfo_tmp.deserialize(i)
+              @OnlineVersionInfos << onlineversioninfo_tmp
+            end
           end
           @RequestId = params['RequestId']
         end
@@ -818,6 +830,33 @@ module TencentCloud
         def deserialize(params)
           @Key = params['Key']
           @Value = params['Value']
+        end
+      end
+
+      # 在线版本信息
+      class OnlineVersionInfo < TencentCloud::Common::AbstractModel
+        # @param VersionName: 版本名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VersionName: String
+        # @param ImageUrl: 镜像url
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ImageUrl: String
+        # @param FlowRatio: 流量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FlowRatio: String
+
+        attr_accessor :VersionName, :ImageUrl, :FlowRatio
+        
+        def initialize(versionname=nil, imageurl=nil, flowratio=nil)
+          @VersionName = versionname
+          @ImageUrl = imageurl
+          @FlowRatio = flowratio
+        end
+
+        def deserialize(params)
+          @VersionName = params['VersionName']
+          @ImageUrl = params['ImageUrl']
+          @FlowRatio = params['FlowRatio']
         end
       end
 

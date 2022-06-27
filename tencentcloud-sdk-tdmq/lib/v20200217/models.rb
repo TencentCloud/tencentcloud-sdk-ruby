@@ -6357,14 +6357,23 @@ module TencentCloud
         # @type ReceiverQueueSize: Integer
         # @param SubInitialPosition: 默认值为：Latest。用作判定consumer初始接收消息的位置，可选参数为：Earliest, Latest
         # @type SubInitialPosition: String
+        # @param MaxNumMessages: 用于设置BatchReceivePolicy，指在一次batch中最多接收多少条消息，默认是 0。即不开启BatchReceivePolicy
+        # @type MaxNumMessages: Integer
+        # @param MaxNumBytes: 用于设置BatchReceivePolicy，指在一次batch中最多接收的消息体有多大，单位是 bytes。默认是 0，即不开启BatchReceivePolicy
+        # @type MaxNumBytes: Integer
+        # @param Timeout: 用于设置BatchReceivePolicy，指在一次batch消息的接收z中最多等待的超时时间，单位是毫秒。默认是 0，即不开启BatchReceivePolicy
+        # @type Timeout: Integer
 
-        attr_accessor :Topic, :SubscriptionName, :ReceiverQueueSize, :SubInitialPosition
+        attr_accessor :Topic, :SubscriptionName, :ReceiverQueueSize, :SubInitialPosition, :MaxNumMessages, :MaxNumBytes, :Timeout
         
-        def initialize(topic=nil, subscriptionname=nil, receiverqueuesize=nil, subinitialposition=nil)
+        def initialize(topic=nil, subscriptionname=nil, receiverqueuesize=nil, subinitialposition=nil, maxnummessages=nil, maxnumbytes=nil, timeout=nil)
           @Topic = topic
           @SubscriptionName = subscriptionname
           @ReceiverQueueSize = receiverqueuesize
           @SubInitialPosition = subinitialposition
+          @MaxNumMessages = maxnummessages
+          @MaxNumBytes = maxnumbytes
+          @Timeout = timeout
         end
 
         def deserialize(params)
@@ -6372,6 +6381,9 @@ module TencentCloud
           @SubscriptionName = params['SubscriptionName']
           @ReceiverQueueSize = params['ReceiverQueueSize']
           @SubInitialPosition = params['SubInitialPosition']
+          @MaxNumMessages = params['MaxNumMessages']
+          @MaxNumBytes = params['MaxNumBytes']
+          @Timeout = params['Timeout']
         end
       end
 
@@ -6389,17 +6401,25 @@ module TencentCloud
         # @param SubName: 返回订阅者的名字，用来创建 ack consumer时使用
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SubName: String
+        # @param MessageIDList: BatchReceivePolicy 一次性返回的多条消息的 MessageID，用 ‘###’ 来区分不同的 MessageID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MessageIDList: String
+        # @param MessagesPayload: BatchReceivePolicy 一次性返回的多条消息的消息内容，用 ‘###’ 来区分不同的消息内容
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MessagesPayload: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :MessageID, :MessagePayload, :AckTopic, :ErrorMsg, :SubName, :RequestId
+        attr_accessor :MessageID, :MessagePayload, :AckTopic, :ErrorMsg, :SubName, :MessageIDList, :MessagesPayload, :RequestId
         
-        def initialize(messageid=nil, messagepayload=nil, acktopic=nil, errormsg=nil, subname=nil, requestid=nil)
+        def initialize(messageid=nil, messagepayload=nil, acktopic=nil, errormsg=nil, subname=nil, messageidlist=nil, messagespayload=nil, requestid=nil)
           @MessageID = messageid
           @MessagePayload = messagepayload
           @AckTopic = acktopic
           @ErrorMsg = errormsg
           @SubName = subname
+          @MessageIDList = messageidlist
+          @MessagesPayload = messagespayload
           @RequestId = requestid
         end
 
@@ -6409,6 +6429,8 @@ module TencentCloud
           @AckTopic = params['AckTopic']
           @ErrorMsg = params['ErrorMsg']
           @SubName = params['SubName']
+          @MessageIDList = params['MessageIDList']
+          @MessagesPayload = params['MessagesPayload']
           @RequestId = params['RequestId']
         end
       end

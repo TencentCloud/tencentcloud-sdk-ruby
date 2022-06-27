@@ -1242,12 +1242,12 @@ module TencentCloud
 
       # ListTargets请求参数结构体
       class ListTargetsRequest < TencentCloud::Common::AbstractModel
-        # @param RuleId: 事件规则ID
-        # @type RuleId: String
         # @param EventBusId: 事件集ID
         # @type EventBusId: String
         # @param OrderBy: 根据哪个字段进行返回结果排序,支持以下字段：AddTime（创建时间）, ModTime（修改时间）
         # @type OrderBy: String
+        # @param RuleId: 事件规则ID
+        # @type RuleId: String
         # @param Limit: 返回数量，默认为20，最大值为100。
         # @type Limit: Integer
         # @param Offset: 分页偏移量，默认为0。
@@ -1255,21 +1255,21 @@ module TencentCloud
         # @param Order: 以升序还是降序的方式返回结果，可选值 ASC（升序） 和 DESC（降序）
         # @type Order: String
 
-        attr_accessor :RuleId, :EventBusId, :OrderBy, :Limit, :Offset, :Order
+        attr_accessor :EventBusId, :OrderBy, :RuleId, :Limit, :Offset, :Order
         
-        def initialize(ruleid=nil, eventbusid=nil, orderby=nil, limit=nil, offset=nil, order=nil)
-          @RuleId = ruleid
+        def initialize(eventbusid=nil, orderby=nil, ruleid=nil, limit=nil, offset=nil, order=nil)
           @EventBusId = eventbusid
           @OrderBy = orderby
+          @RuleId = ruleid
           @Limit = limit
           @Offset = offset
           @Order = order
         end
 
         def deserialize(params)
-          @RuleId = params['RuleId']
           @EventBusId = params['EventBusId']
           @OrderBy = params['OrderBy']
+          @RuleId = params['RuleId']
           @Limit = params['Limit']
           @Offset = params['Offset']
           @Order = params['Order']

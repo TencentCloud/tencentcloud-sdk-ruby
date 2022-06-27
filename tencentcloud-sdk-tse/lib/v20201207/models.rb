@@ -271,6 +271,117 @@ module TencentCloud
         end
       end
 
+      # DescribeNacosReplicas请求参数结构体
+      class DescribeNacosReplicasRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 引擎实例ID
+        # @type InstanceId: String
+        # @param Limit: 副本列表Limit
+        # @type Limit: Integer
+        # @param Offset: 副本列表Offset
+        # @type Offset: Integer
+
+        attr_accessor :InstanceId, :Limit, :Offset
+        
+        def initialize(instanceid=nil, limit=nil, offset=nil)
+          @InstanceId = instanceid
+          @Limit = limit
+          @Offset = offset
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+        end
+      end
+
+      # DescribeNacosReplicas返回参数结构体
+      class DescribeNacosReplicasResponse < TencentCloud::Common::AbstractModel
+        # @param Replicas: 引擎实例副本信息
+        # @type Replicas: Array
+        # @param TotalCount: 副本个数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Replicas, :TotalCount, :RequestId
+        
+        def initialize(replicas=nil, totalcount=nil, requestid=nil)
+          @Replicas = replicas
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Replicas'].nil?
+            @Replicas = []
+            params['Replicas'].each do |i|
+              nacosreplica_tmp = NacosReplica.new
+              nacosreplica_tmp.deserialize(i)
+              @Replicas << nacosreplica_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeNacosServerInterfaces请求参数结构体
+      class DescribeNacosServerInterfacesRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例id
+        # @type InstanceId: String
+        # @param Limit: 返回的列表个数
+        # @type Limit: Integer
+        # @param Offset: 返回的列表起始偏移量
+        # @type Offset: Integer
+
+        attr_accessor :InstanceId, :Limit, :Offset
+        
+        def initialize(instanceid=nil, limit=nil, offset=nil)
+          @InstanceId = instanceid
+          @Limit = limit
+          @Offset = offset
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+        end
+      end
+
+      # DescribeNacosServerInterfaces返回参数结构体
+      class DescribeNacosServerInterfacesResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 接口总个数
+        # @type TotalCount: Integer
+        # @param Content: 接口列表
+        # @type Content: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :Content, :RequestId
+        
+        def initialize(totalcount=nil, content=nil, requestid=nil)
+          @TotalCount = totalcount
+          @Content = content
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['Content'].nil?
+            @Content = []
+            params['Content'].each do |i|
+              nacosserverinterface_tmp = NacosServerInterface.new
+              nacosserverinterface_tmp.deserialize(i)
+              @Content << nacosserverinterface_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeSREInstanceAccessAddress请求参数结构体
       class DescribeSREInstanceAccessAddressRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 注册引擎实例Id
@@ -414,6 +525,117 @@ module TencentCloud
               sreinstance_tmp = SREInstance.new
               sreinstance_tmp.deserialize(i)
               @Content << sreinstance_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeZookeeperReplicas请求参数结构体
+      class DescribeZookeeperReplicasRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 注册引擎实例ID
+        # @type InstanceId: String
+        # @param Limit: 副本列表Limit
+        # @type Limit: Integer
+        # @param Offset: 副本列表Offset
+        # @type Offset: Integer
+
+        attr_accessor :InstanceId, :Limit, :Offset
+        
+        def initialize(instanceid=nil, limit=nil, offset=nil)
+          @InstanceId = instanceid
+          @Limit = limit
+          @Offset = offset
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+        end
+      end
+
+      # DescribeZookeeperReplicas返回参数结构体
+      class DescribeZookeeperReplicasResponse < TencentCloud::Common::AbstractModel
+        # @param Replicas: 注册引擎实例副本信息
+        # @type Replicas: Array
+        # @param TotalCount: 副本个数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Replicas, :TotalCount, :RequestId
+        
+        def initialize(replicas=nil, totalcount=nil, requestid=nil)
+          @Replicas = replicas
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Replicas'].nil?
+            @Replicas = []
+            params['Replicas'].each do |i|
+              zookeeperreplica_tmp = ZookeeperReplica.new
+              zookeeperreplica_tmp.deserialize(i)
+              @Replicas << zookeeperreplica_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeZookeeperServerInterfaces请求参数结构体
+      class DescribeZookeeperServerInterfacesRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例id
+        # @type InstanceId: String
+        # @param Limit: 返回的列表个数
+        # @type Limit: Integer
+        # @param Offset: 返回的列表起始偏移量
+        # @type Offset: Integer
+
+        attr_accessor :InstanceId, :Limit, :Offset
+        
+        def initialize(instanceid=nil, limit=nil, offset=nil)
+          @InstanceId = instanceid
+          @Limit = limit
+          @Offset = offset
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+        end
+      end
+
+      # DescribeZookeeperServerInterfaces返回参数结构体
+      class DescribeZookeeperServerInterfacesResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 接口总个数
+        # @type TotalCount: Integer
+        # @param Content: 接口列表
+        # @type Content: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :Content, :RequestId
+        
+        def initialize(totalcount=nil, content=nil, requestid=nil)
+          @TotalCount = totalcount
+          @Content = content
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['Content'].nil?
+            @Content = []
+            params['Content'].each do |i|
+              zookeeperserverinterface_tmp = ZookeeperServerInterface.new
+              zookeeperserverinterface_tmp.deserialize(i)
+              @Content << zookeeperserverinterface_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -592,6 +814,62 @@ module TencentCloud
         def deserialize(params)
           @Key = params['Key']
           @Value = params['Value']
+        end
+      end
+
+      # Nacos副本信息
+      class NacosReplica < TencentCloud::Common::AbstractModel
+        # @param Name: 名称
+        # @type Name: String
+        # @param Role: 角色
+        # @type Role: String
+        # @param Status: 状态
+        # @type Status: String
+        # @param SubnetId: 子网ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SubnetId: String
+        # @param Zone: 可用区ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Zone: String
+        # @param ZoneId: 可用区ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ZoneId: String
+
+        attr_accessor :Name, :Role, :Status, :SubnetId, :Zone, :ZoneId
+        
+        def initialize(name=nil, role=nil, status=nil, subnetid=nil, zone=nil, zoneid=nil)
+          @Name = name
+          @Role = role
+          @Status = status
+          @SubnetId = subnetid
+          @Zone = zone
+          @ZoneId = zoneid
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Role = params['Role']
+          @Status = params['Status']
+          @SubnetId = params['SubnetId']
+          @Zone = params['Zone']
+          @ZoneId = params['ZoneId']
+        end
+      end
+
+      # nacos服务端接口列表，用于云监控
+      class NacosServerInterface < TencentCloud::Common::AbstractModel
+        # @param Interface: 接口名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Interface: String
+
+        attr_accessor :Interface
+        
+        def initialize(interface=nil)
+          @Interface = interface
+        end
+
+        def deserialize(params)
+          @Interface = params['Interface']
         end
       end
 
@@ -844,6 +1122,62 @@ module TencentCloud
           @VpcId = params['VpcId']
           @SubnetId = params['SubnetId']
           @IntranetAddress = params['IntranetAddress']
+        end
+      end
+
+      # Zookeeper副本信息
+      class ZookeeperReplica < TencentCloud::Common::AbstractModel
+        # @param Name: 名称
+        # @type Name: String
+        # @param Role: 角色
+        # @type Role: String
+        # @param Status: 状态
+        # @type Status: String
+        # @param SubnetId: 子网ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SubnetId: String
+        # @param Zone: 可用区ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Zone: String
+        # @param ZoneId: 可用区ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ZoneId: String
+
+        attr_accessor :Name, :Role, :Status, :SubnetId, :Zone, :ZoneId
+        
+        def initialize(name=nil, role=nil, status=nil, subnetid=nil, zone=nil, zoneid=nil)
+          @Name = name
+          @Role = role
+          @Status = status
+          @SubnetId = subnetid
+          @Zone = zone
+          @ZoneId = zoneid
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Role = params['Role']
+          @Status = params['Status']
+          @SubnetId = params['SubnetId']
+          @Zone = params['Zone']
+          @ZoneId = params['ZoneId']
+        end
+      end
+
+      # Zookeeper服务端接口列表，用于云监控
+      class ZookeeperServerInterface < TencentCloud::Common::AbstractModel
+        # @param Interface: 接口名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Interface: String
+
+        attr_accessor :Interface
+        
+        def initialize(interface=nil)
+          @Interface = interface
+        end
+
+        def deserialize(params)
+          @Interface = params['Interface']
         end
       end
 

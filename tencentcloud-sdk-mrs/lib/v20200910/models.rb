@@ -163,6 +163,38 @@ module TencentCloud
         end
       end
 
+      # 坐标
+      class Coordinate < TencentCloud::Common::AbstractModel
+        # @param X: 左上角x坐标
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type X: Integer
+        # @param Y: 左上角y坐标
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Y: Integer
+        # @param Width: 宽度，单位像素
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Width: Integer
+        # @param Height: 高度，单位像素
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Height: Integer
+
+        attr_accessor :X, :Y, :Width, :Height
+        
+        def initialize(x=nil, y=nil, width=nil, height=nil)
+          @X = x
+          @Y = y
+          @Width = width
+          @Height = height
+        end
+
+        def deserialize(params)
+          @X = params['X']
+          @Y = params['Y']
+          @Width = params['Width']
+          @Height = params['Height']
+        end
+      end
+
       # 描述
       class Desc < TencentCloud::Common::AbstractModel
         # @param Text: 描述
@@ -1225,10 +1257,16 @@ module TencentCloud
         # @param ItemString: 项目原文
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ItemString: String
+        # @param Id: 指标项ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Id: Integer
+        # @param Coords: 指标项坐标位置
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Coords: :class:`Tencentcloud::Mrs.v20200910.models.Coordinate`
 
-        attr_accessor :Code, :Scode, :Name, :Sname, :Result, :Unit, :Range, :Arrow, :Normal, :ItemString
+        attr_accessor :Code, :Scode, :Name, :Sname, :Result, :Unit, :Range, :Arrow, :Normal, :ItemString, :Id, :Coords
         
-        def initialize(code=nil, scode=nil, name=nil, sname=nil, result=nil, unit=nil, range=nil, arrow=nil, normal=nil, itemstring=nil)
+        def initialize(code=nil, scode=nil, name=nil, sname=nil, result=nil, unit=nil, range=nil, arrow=nil, normal=nil, itemstring=nil, id=nil, coords=nil)
           @Code = code
           @Scode = scode
           @Name = name
@@ -1239,6 +1277,8 @@ module TencentCloud
           @Arrow = arrow
           @Normal = normal
           @ItemString = itemstring
+          @Id = id
+          @Coords = coords
         end
 
         def deserialize(params)
@@ -1252,6 +1292,11 @@ module TencentCloud
           @Arrow = params['Arrow']
           @Normal = params['Normal']
           @ItemString = params['ItemString']
+          @Id = params['Id']
+          unless params['Coords'].nil?
+            @Coords = Coordinate.new
+            @Coords.deserialize(params['Coords'])
+          end
         end
       end
 

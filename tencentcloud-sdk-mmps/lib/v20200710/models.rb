@@ -493,6 +493,75 @@ module TencentCloud
         end
       end
 
+      # DescribeFlySecMiniAppScanReportList请求参数结构体
+      class DescribeFlySecMiniAppScanReportListRequest < TencentCloud::Common::AbstractModel
+        # @param MiniAppID: 任务id
+        # @type MiniAppID: String
+        # @param Mode: 诊断方式 1:基础诊断，2:深度诊断
+        # @type Mode: Integer
+        # @param Status: 诊断状态 -1:查询全部, 0:排队中, 1:成功, 2:失败, 3:进行中
+        # @type Status: Integer
+        # @param Size: 查询数量, 0:查询所有, 其他值:最近几次的诊断数量
+        # @type Size: Integer
+        # @param MiniAppVersion: 小程序版本
+        # @type MiniAppVersion: String
+
+        attr_accessor :MiniAppID, :Mode, :Status, :Size, :MiniAppVersion
+        
+        def initialize(miniappid=nil, mode=nil, status=nil, size=nil, miniappversion=nil)
+          @MiniAppID = miniappid
+          @Mode = mode
+          @Status = status
+          @Size = size
+          @MiniAppVersion = miniappversion
+        end
+
+        def deserialize(params)
+          @MiniAppID = params['MiniAppID']
+          @Mode = params['Mode']
+          @Status = params['Status']
+          @Size = params['Size']
+          @MiniAppVersion = params['MiniAppVersion']
+        end
+      end
+
+      # DescribeFlySecMiniAppScanReportList返回参数结构体
+      class DescribeFlySecMiniAppScanReportListResponse < TencentCloud::Common::AbstractModel
+        # @param Ret: 返回值, 0:成功, 其他值请查看“返回值”定义
+        # @type Ret: Integer
+        # @param Data: 诊断报告数据
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Data: Array
+        # @param Total: 诊断任务数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Total: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Ret, :Data, :Total, :RequestId
+        
+        def initialize(ret=nil, data=nil, total=nil, requestid=nil)
+          @Ret = ret
+          @Data = data
+          @Total = total
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Ret = params['Ret']
+          unless params['Data'].nil?
+            @Data = []
+            params['Data'].each do |i|
+              flysecminiappreportdata_tmp = FlySecMiniAppReportData.new
+              flysecminiappreportdata_tmp.deserialize(i)
+              @Data << flysecminiappreportdata_tmp
+            end
+          end
+          @Total = params['Total']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeFlySecMiniAppScanTaskList请求参数结构体
       class DescribeFlySecMiniAppScanTaskListRequest < TencentCloud::Common::AbstractModel
         # @param Mode: 诊断方式 1:基础诊断，2:深度诊断
@@ -930,6 +999,105 @@ module TencentCloud
             end
           end
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 翼扬诊断小程序报告数据
+      class FlySecMiniAppReportData < TencentCloud::Common::AbstractModel
+        # @param TaskID: 任务id
+        # @type TaskID: String
+        # @param MiniAppID: 小程序appid
+        # @type MiniAppID: String
+        # @param MiniAppName: 小程序名称
+        # @type MiniAppName: String
+        # @param MiniAppVersion: 小程序版本
+        # @type MiniAppVersion: String
+        # @param Mode: 诊断模式 1:基础诊断，2:深度诊断
+        # @type Mode: Integer
+        # @param Status: 诊断状态, 0:排队中, 1:成功, 2:失败, 3:进行中
+        # @type Status: Integer
+        # @param CreateTime: 诊断时间
+        # @type CreateTime: Integer
+        # @param RiskScore: 诊断得分
+        # @type RiskScore: String
+        # @param RiskLevel: 诊断风险等级 1:高风险 2:中风险 3:低风险
+        # @type RiskLevel: Integer
+        # @param RiskItems: 诊断8大维度得分情况(每项总分100分)
+        # @type RiskItems: :class:`Tencentcloud::Mmps.v20200710.models.FlySecMiniAppRiskItems`
+
+        attr_accessor :TaskID, :MiniAppID, :MiniAppName, :MiniAppVersion, :Mode, :Status, :CreateTime, :RiskScore, :RiskLevel, :RiskItems
+        
+        def initialize(taskid=nil, miniappid=nil, miniappname=nil, miniappversion=nil, mode=nil, status=nil, createtime=nil, riskscore=nil, risklevel=nil, riskitems=nil)
+          @TaskID = taskid
+          @MiniAppID = miniappid
+          @MiniAppName = miniappname
+          @MiniAppVersion = miniappversion
+          @Mode = mode
+          @Status = status
+          @CreateTime = createtime
+          @RiskScore = riskscore
+          @RiskLevel = risklevel
+          @RiskItems = riskitems
+        end
+
+        def deserialize(params)
+          @TaskID = params['TaskID']
+          @MiniAppID = params['MiniAppID']
+          @MiniAppName = params['MiniAppName']
+          @MiniAppVersion = params['MiniAppVersion']
+          @Mode = params['Mode']
+          @Status = params['Status']
+          @CreateTime = params['CreateTime']
+          @RiskScore = params['RiskScore']
+          @RiskLevel = params['RiskLevel']
+          unless params['RiskItems'].nil?
+            @RiskItems = FlySecMiniAppRiskItems.new
+            @RiskItems.deserialize(params['RiskItems'])
+          end
+        end
+      end
+
+      # 翼扬诊断小程序的诊断报告风险数据
+      class FlySecMiniAppRiskItems < TencentCloud::Common::AbstractModel
+        # @param RiskItem1Score: 代码防护(基础诊断)
+        # @type RiskItem1Score: Integer
+        # @param RiskItem2Score: 开发测试信息泄露(基础诊断)
+        # @type RiskItem2Score: Integer
+        # @param RiskItem3Score: 编码规范(基础诊断)
+        # @type RiskItem3Score: Integer
+        # @param RiskItem4Score: 配置风险(基础诊断)
+        # @type RiskItem4Score: Integer
+        # @param RiskItem5Score: 账号安全(基础诊断)
+        # @type RiskItem5Score: Integer
+        # @param RiskItem6Score: 用户信息安全(基础诊断)
+        # @type RiskItem6Score: Integer
+        # @param RiskItem7Score: 内部信息泄露(基础诊断)
+        # @type RiskItem7Score: Integer
+        # @param RiskItem8Score: 其他安全(基础诊断)
+        # @type RiskItem8Score: Integer
+
+        attr_accessor :RiskItem1Score, :RiskItem2Score, :RiskItem3Score, :RiskItem4Score, :RiskItem5Score, :RiskItem6Score, :RiskItem7Score, :RiskItem8Score
+        
+        def initialize(riskitem1score=nil, riskitem2score=nil, riskitem3score=nil, riskitem4score=nil, riskitem5score=nil, riskitem6score=nil, riskitem7score=nil, riskitem8score=nil)
+          @RiskItem1Score = riskitem1score
+          @RiskItem2Score = riskitem2score
+          @RiskItem3Score = riskitem3score
+          @RiskItem4Score = riskitem4score
+          @RiskItem5Score = riskitem5score
+          @RiskItem6Score = riskitem6score
+          @RiskItem7Score = riskitem7score
+          @RiskItem8Score = riskitem8score
+        end
+
+        def deserialize(params)
+          @RiskItem1Score = params['RiskItem1Score']
+          @RiskItem2Score = params['RiskItem2Score']
+          @RiskItem3Score = params['RiskItem3Score']
+          @RiskItem4Score = params['RiskItem4Score']
+          @RiskItem5Score = params['RiskItem5Score']
+          @RiskItem6Score = params['RiskItem6Score']
+          @RiskItem7Score = params['RiskItem7Score']
+          @RiskItem8Score = params['RiskItem8Score']
         end
       end
 

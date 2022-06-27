@@ -90,8 +90,7 @@ module TencentCloud
 
       # ChannelCancelMultiFlowSignQRCode请求参数结构体
       class ChannelCancelMultiFlowSignQRCodeRequest < TencentCloud::Common::AbstractModel
-        # @param Agent: 应用信息
-        # 此接口Agent.ProxyOrganizationOpenId 和 Agent. ProxyOperator.OpenId 必填
+        # @param Agent: 渠道应用相关信息。 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 和 Agent.ProxyAppId 均必填。
         # @type Agent: :class:`Tencentcloud::Essbasic.v20210526.models.Agent`
         # @param QrCodeId: 二维码id
         # @type QrCodeId: String
@@ -234,8 +233,8 @@ module TencentCloud
 
       # ChannelCreateMultiFlowSignQRCode请求参数结构体
       class ChannelCreateMultiFlowSignQRCodeRequest < TencentCloud::Common::AbstractModel
-        # @param Agent: 应用信息
-        # 此接口Agent.ProxyOrganizationOpenId 和 Agent. ProxyOperator.OpenId 必填
+        # @param Agent: 渠道应用相关信息。
+        # 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 和 Agent.ProxyAppId 必填。
         # @type Agent: :class:`Tencentcloud::Essbasic.v20210526.models.Agent`
         # @param TemplateId: 模版ID
         # @type TemplateId: String
@@ -621,7 +620,7 @@ module TencentCloud
 
       # CreateSignUrls请求参数结构体
       class CreateSignUrlsRequest < TencentCloud::Common::AbstractModel
-        # @param Agent: 渠道应用相关信息
+        # @param Agent: 渠道应用相关信息。 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 和 Agent.ProxyAppId 均必填。
         # @type Agent: :class:`Tencentcloud::Essbasic.v20210526.models.Agent`
         # @param FlowIds: 所签署合同ID数组
         # @type FlowIds: Array
@@ -694,7 +693,7 @@ module TencentCloud
 
       # DescribeFlowDetailInfo请求参数结构体
       class DescribeFlowDetailInfoRequest < TencentCloud::Common::AbstractModel
-        # @param Agent: 应用信息
+        # @param Agent: 渠道应用相关信息。 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 和 Agent.ProxyAppId 均必填。
         # @type Agent: :class:`Tencentcloud::Essbasic.v20210526.models.Agent`
         # @param FlowIds: 合同(流程)编号数组
         # @type FlowIds: Array
@@ -760,7 +759,8 @@ module TencentCloud
 
       # DescribeResourceUrlsByFlows请求参数结构体
       class DescribeResourceUrlsByFlowsRequest < TencentCloud::Common::AbstractModel
-        # @param Agent: 渠道应用相关信息
+        # @param Agent: 渠道应用相关信息。
+        # 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 和 Agent.ProxyAppId 均必填。
         # @type Agent: :class:`Tencentcloud::Essbasic.v20210526.models.Agent`
         # @param Operator: 操作者的信息
         # @type Operator: :class:`Tencentcloud::Essbasic.v20210526.models.UserInfo`
@@ -822,7 +822,7 @@ module TencentCloud
 
       # DescribeTemplates请求参数结构体
       class DescribeTemplatesRequest < TencentCloud::Common::AbstractModel
-        # @param Agent: 渠道应用相关信息
+        # @param Agent: 渠道应用相关信息。 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 和 Agent.ProxyAppId 均必填。
         # @type Agent: :class:`Tencentcloud::Essbasic.v20210526.models.Agent`
         # @param Operator: 操作者的信息
         # @type Operator: :class:`Tencentcloud::Essbasic.v20210526.models.UserInfo`
@@ -1334,8 +1334,7 @@ module TencentCloud
 
       # GetDownloadFlowUrl请求参数结构体
       class GetDownloadFlowUrlRequest < TencentCloud::Common::AbstractModel
-        # @param Agent: 应用信息
-        # 此接口Agent.ProxyOrganizationOpenId 和 Agent. ProxyOperator.OpenId 必填
+        # @param Agent: 渠道应用相关信息。 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 和 Agent.ProxyAppId 均必填。
         # @type Agent: :class:`Tencentcloud::Essbasic.v20210526.models.Agent`
         # @param Operator: 操作者的信息
         # @type Operator: :class:`Tencentcloud::Essbasic.v20210526.models.UserInfo`
@@ -1392,7 +1391,7 @@ module TencentCloud
 
       # OperateChannelTemplate请求参数结构体
       class OperateChannelTemplateRequest < TencentCloud::Common::AbstractModel
-        # @param Agent: 应用信息
+        # @param Agent: 渠道应用相关信息。 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 和 Agent.ProxyAppId 均必填。
         # @type Agent: :class:`Tencentcloud::Essbasic.v20210526.models.Agent`
         # @param TemplateId: 渠道方模板库模板唯一标识
         # @type TemplateId: String
