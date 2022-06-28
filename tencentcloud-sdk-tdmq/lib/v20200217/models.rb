@@ -1747,7 +1747,7 @@ module TencentCloud
       class CreateEnvironmentRequest < TencentCloud::Common::AbstractModel
         # @param EnvironmentId: 环境（命名空间）名称，不支持中字以及除了短线和下划线外的特殊字符且不超过16个字符。
         # @type EnvironmentId: String
-        # @param MsgTTL: 未消费消息过期时间，单位：秒，最小60，最大1296000，（15天）。
+        # @param MsgTTL: 未消费消息过期时间，单位：秒，取值范围：60秒~1天。
         # @type MsgTTL: Integer
         # @param Remark: 说明，128个字符以内。
         # @type Remark: String
@@ -2170,11 +2170,12 @@ module TencentCloud
         # @type EnvironmentId: String
         # @param TopicName: 主题名，不支持中字以及除了短线和下划线外的特殊字符且不超过64个字符。
         # @type TopicName: String
-        # @param Partitions: 0：非分区topic，无分区；非0：具体分区topic的分区数，最大不允许超过128。
+        # @param Partitions: 入参为1，即是创建非分区topic，无分区；入参大于1，表示分区topic的分区数，最大不允许超过128。
         # @type Partitions: Integer
         # @param Remark: 备注，128字符以内。
         # @type Remark: String
-        # @param TopicType: 0： 普通消息；
+        # @param TopicType: 该入参将逐步弃用，可切换至PulsarTopicType参数
+        # 0： 普通消息；
         # 1 ：全局顺序消息；
         # 2 ：局部顺序消息；
         # 3 ：重试队列；
@@ -2218,7 +2219,7 @@ module TencentCloud
         # @type EnvironmentId: String
         # @param TopicName: 主题名。
         # @type TopicName: String
-        # @param Partitions: 0：非分区topic，无分区；非0：具体分区topic的分区数。
+        # @param Partitions: 0或1：非分区topic，无分区；大于1：具体分区topic的分区数。（存量非分区主题返回0，增量非分区主题返回1）
         # @type Partitions: Integer
         # @param Remark: 备注，128字符以内。
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -2228,7 +2229,6 @@ module TencentCloud
         # 2 ：局部顺序消息；
         # 3 ：重试队列；
         # 4 ：死信队列；
-        # 5 ：事务消息。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TopicType: Integer
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
@@ -5026,12 +5026,10 @@ module TencentCloud
         # @param Limit: 返回数量，不填则默认为10，最大值为20。
         # @type Limit: Integer
         # @param TopicType: topic类型描述：
-        # 0：普通消息；
-        # 1：全局顺序消息；
-        # 2：局部顺序消息；
-        # 3：重试队列；
-        # 4：死信队列；
-        # 5：事务消息。
+        # 0：非持久非分区主题类型；
+        # 1：非持久分区主题类型；
+        # 2：持久非分区主题类型；
+        # 3：持久分区主题类型；
         # @type TopicType: Integer
         # @param ClusterId: Pulsar 集群的ID
         # @type ClusterId: String
@@ -5040,10 +5038,14 @@ module TencentCloud
         # 类型：String
         # 必选：否
         # @type Filters: Array
+        # @param TopicCreator: 创建来源：
+        # 1：用户创建
+        # 2：系统创建
+        # @type TopicCreator: Integer
 
-        attr_accessor :EnvironmentId, :TopicName, :Offset, :Limit, :TopicType, :ClusterId, :Filters
+        attr_accessor :EnvironmentId, :TopicName, :Offset, :Limit, :TopicType, :ClusterId, :Filters, :TopicCreator
         
-        def initialize(environmentid=nil, topicname=nil, offset=nil, limit=nil, topictype=nil, clusterid=nil, filters=nil)
+        def initialize(environmentid=nil, topicname=nil, offset=nil, limit=nil, topictype=nil, clusterid=nil, filters=nil, topiccreator=nil)
           @EnvironmentId = environmentid
           @TopicName = topicname
           @Offset = offset
@@ -5051,6 +5053,7 @@ module TencentCloud
           @TopicType = topictype
           @ClusterId = clusterid
           @Filters = filters
+          @TopicCreator = topiccreator
         end
 
         def deserialize(params)
@@ -5068,6 +5071,7 @@ module TencentCloud
               @Filters << filter_tmp
             end
           end
+          @TopicCreator = params['TopicCreator']
         end
       end
 
@@ -5764,7 +5768,7 @@ module TencentCloud
       class ModifyEnvironmentAttributesRequest < TencentCloud::Common::AbstractModel
         # @param EnvironmentId: 命名空间名称。
         # @type EnvironmentId: String
-        # @param MsgTTL: 未消费消息过期时间，单位：秒，最大1296000。
+        # @param MsgTTL: 未消费消息过期时间，单位：秒，范围60秒~1天。
         # @type MsgTTL: Integer
         # @param Remark: 备注，字符串最长不超过128。
         # @type Remark: String

@@ -4147,10 +4147,13 @@ module TencentCloud
         # @param DeregisterTargetRst: 解绑后端目标时，是否发RST给客户端，（此参数仅对于TCP监听器有意义）。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DeregisterTargetRst: Boolean
+        # @param AttrFlags: 监听器的属性
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AttrFlags: Array
 
-        attr_accessor :ListenerId, :Protocol, :Port, :Certificate, :HealthCheck, :Scheduler, :SessionExpireTime, :SniSwitch, :Rules, :ListenerName, :CreateTime, :EndPort, :TargetType, :TargetGroup, :SessionType, :KeepaliveEnable, :Toa, :DeregisterTargetRst
+        attr_accessor :ListenerId, :Protocol, :Port, :Certificate, :HealthCheck, :Scheduler, :SessionExpireTime, :SniSwitch, :Rules, :ListenerName, :CreateTime, :EndPort, :TargetType, :TargetGroup, :SessionType, :KeepaliveEnable, :Toa, :DeregisterTargetRst, :AttrFlags
         
-        def initialize(listenerid=nil, protocol=nil, port=nil, certificate=nil, healthcheck=nil, scheduler=nil, sessionexpiretime=nil, sniswitch=nil, rules=nil, listenername=nil, createtime=nil, endport=nil, targettype=nil, targetgroup=nil, sessiontype=nil, keepaliveenable=nil, toa=nil, deregistertargetrst=nil)
+        def initialize(listenerid=nil, protocol=nil, port=nil, certificate=nil, healthcheck=nil, scheduler=nil, sessionexpiretime=nil, sniswitch=nil, rules=nil, listenername=nil, createtime=nil, endport=nil, targettype=nil, targetgroup=nil, sessiontype=nil, keepaliveenable=nil, toa=nil, deregistertargetrst=nil, attrflags=nil)
           @ListenerId = listenerid
           @Protocol = protocol
           @Port = port
@@ -4169,6 +4172,7 @@ module TencentCloud
           @KeepaliveEnable = keepaliveenable
           @Toa = toa
           @DeregisterTargetRst = deregistertargetrst
+          @AttrFlags = attrflags
         end
 
         def deserialize(params)
@@ -4206,6 +4210,7 @@ module TencentCloud
           @KeepaliveEnable = params['KeepaliveEnable']
           @Toa = params['Toa']
           @DeregisterTargetRst = params['DeregisterTargetRst']
+          @AttrFlags = params['AttrFlags']
         end
       end
 

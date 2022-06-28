@@ -426,10 +426,12 @@ module TencentCloud
         # @type SetDate: String
         # @param RecognizeWarnCode: Code 告警码列表和释义：
         # -20001 非营业执照
+        # -9102 黑白复印件告警
         # 注：告警码可以同时存在多个
         # @type RecognizeWarnCode: Array
         # @param RecognizeWarnMsg: 告警码说明：
         # OCR_WARNING_TPYE_NOT_MATCH 非营业执照
+        # WARN_COPY_CARD 黑白复印件告警
         # 注：告警信息可以同时存在多个
         # @type RecognizeWarnMsg: Array
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。

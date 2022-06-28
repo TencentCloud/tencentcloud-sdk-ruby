@@ -14259,10 +14259,13 @@ module TencentCloud
         # @param Location: 位置名称
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Location: String
+        # @param Quuid: 主机quuid
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Quuid: String
 
-        attr_accessor :Id, :Uuid, :MachineIp, :MachineName, :UserName, :SrcIp, :Status, :Country, :City, :Province, :LoginTime, :ModifyTime, :IsRiskArea, :IsRiskUser, :IsRiskTime, :IsRiskSrcIp, :RiskLevel, :Location
+        attr_accessor :Id, :Uuid, :MachineIp, :MachineName, :UserName, :SrcIp, :Status, :Country, :City, :Province, :LoginTime, :ModifyTime, :IsRiskArea, :IsRiskUser, :IsRiskTime, :IsRiskSrcIp, :RiskLevel, :Location, :Quuid
         
-        def initialize(id=nil, uuid=nil, machineip=nil, machinename=nil, username=nil, srcip=nil, status=nil, country=nil, city=nil, province=nil, logintime=nil, modifytime=nil, isriskarea=nil, isriskuser=nil, isrisktime=nil, isrisksrcip=nil, risklevel=nil, location=nil)
+        def initialize(id=nil, uuid=nil, machineip=nil, machinename=nil, username=nil, srcip=nil, status=nil, country=nil, city=nil, province=nil, logintime=nil, modifytime=nil, isriskarea=nil, isriskuser=nil, isrisktime=nil, isrisksrcip=nil, risklevel=nil, location=nil, quuid=nil)
           @Id = id
           @Uuid = uuid
           @MachineIp = machineip
@@ -14281,6 +14284,7 @@ module TencentCloud
           @IsRiskSrcIp = isrisksrcip
           @RiskLevel = risklevel
           @Location = location
+          @Quuid = quuid
         end
 
         def deserialize(params)
@@ -14302,6 +14306,7 @@ module TencentCloud
           @IsRiskSrcIp = params['IsRiskSrcIp']
           @RiskLevel = params['RiskLevel']
           @Location = params['Location']
+          @Quuid = params['Quuid']
         end
       end
 

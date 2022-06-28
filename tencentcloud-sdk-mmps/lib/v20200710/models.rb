@@ -495,7 +495,7 @@ module TencentCloud
 
       # DescribeFlySecMiniAppScanReportList请求参数结构体
       class DescribeFlySecMiniAppScanReportListRequest < TencentCloud::Common::AbstractModel
-        # @param MiniAppID: 任务id
+        # @param MiniAppID: 小程序AppID
         # @type MiniAppID: String
         # @param Mode: 诊断方式 1:基础诊断，2:深度诊断
         # @type Mode: Integer
