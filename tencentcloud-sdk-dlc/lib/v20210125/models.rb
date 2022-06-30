@@ -17,6 +17,60 @@
 module TencentCloud
   module Dlc
     module V20210125
+      # AddDMSPartitions请求参数结构体
+      class AddDMSPartitionsRequest < TencentCloud::Common::AbstractModel
+        # @param Partitions: 分区
+        # @type Partitions: Array
+
+        attr_accessor :Partitions
+        
+        def initialize(partitions=nil)
+          @Partitions = partitions
+        end
+
+        def deserialize(params)
+          unless params['Partitions'].nil?
+            @Partitions = []
+            params['Partitions'].each do |i|
+              dmspartition_tmp = DMSPartition.new
+              dmspartition_tmp.deserialize(i)
+              @Partitions << dmspartition_tmp
+            end
+          end
+        end
+      end
+
+      # AddDMSPartitions返回参数结构体
+      class AddDMSPartitionsResponse < TencentCloud::Common::AbstractModel
+        # @param Total: 成功数量
+        # @type Total: Integer
+        # @param Partitions: 分区值
+        # @type Partitions: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Total, :Partitions, :RequestId
+        
+        def initialize(total=nil, partitions=nil, requestid=nil)
+          @Total = total
+          @Partitions = partitions
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Total = params['Total']
+          unless params['Partitions'].nil?
+            @Partitions = []
+            params['Partitions'].each do |i|
+              dmspartition_tmp = DMSPartition.new
+              dmspartition_tmp.deserialize(i)
+              @Partitions << dmspartition_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # AddUsersToWorkGroup请求参数结构体
       class AddUsersToWorkGroupRequest < TencentCloud::Common::AbstractModel
         # @param AddInfo: 要操作的工作组和用户信息
@@ -49,6 +103,214 @@ module TencentCloud
 
         def deserialize(params)
           @RequestId = params['RequestId']
+        end
+      end
+
+      # AlterDMSDatabase请求参数结构体
+      class AlterDMSDatabaseRequest < TencentCloud::Common::AbstractModel
+
+        
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # AlterDMSDatabase返回参数结构体
+      class AlterDMSDatabaseResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # AlterDMSPartition请求参数结构体
+      class AlterDMSPartitionRequest < TencentCloud::Common::AbstractModel
+        # @param CurrentDbName: 当前名称，变更前db名称
+        # @type CurrentDbName: String
+        # @param CurrentTableName: 当前名称，变更前table名称
+        # @type CurrentTableName: String
+        # @param CurrentValues: 当前名称，变更前Part名称
+        # @type CurrentValues: String
+        # @param Partition: 分区
+        # @type Partition: :class:`Tencentcloud::Dlc.v20210125.models.DMSPartition`
+
+        attr_accessor :CurrentDbName, :CurrentTableName, :CurrentValues, :Partition
+        
+        def initialize(currentdbname=nil, currenttablename=nil, currentvalues=nil, partition=nil)
+          @CurrentDbName = currentdbname
+          @CurrentTableName = currenttablename
+          @CurrentValues = currentvalues
+          @Partition = partition
+        end
+
+        def deserialize(params)
+          @CurrentDbName = params['CurrentDbName']
+          @CurrentTableName = params['CurrentTableName']
+          @CurrentValues = params['CurrentValues']
+          unless params['Partition'].nil?
+            @Partition = DMSPartition.new
+            @Partition.deserialize(params['Partition'])
+          end
+        end
+      end
+
+      # AlterDMSPartition返回参数结构体
+      class AlterDMSPartitionResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # AlterDMSTable请求参数结构体
+      class AlterDMSTableRequest < TencentCloud::Common::AbstractModel
+        # @param CurrentName: 当前名称
+        # @type CurrentName: String
+        # @param CurrentDbName: 当前数据库名称
+        # @type CurrentDbName: String
+        # @param Asset: 基础对象
+        # @type Asset: :class:`Tencentcloud::Dlc.v20210125.models.Asset`
+        # @param Type: 表类型
+        # @type Type: String
+        # @param DbName: 数据库名称
+        # @type DbName: String
+        # @param StorageSize: 存储大小
+        # @type StorageSize: Integer
+        # @param RecordCount: 记录数量
+        # @type RecordCount: Integer
+        # @param LifeTime: 生命周期
+        # @type LifeTime: Integer
+        # @param DataUpdateTime: 数据更新时间
+        # @type DataUpdateTime: String
+        # @param StructUpdateTime: 结构更新时间
+        # @type StructUpdateTime: String
+        # @param LastAccessTime: 最后访问时间
+        # @type LastAccessTime: String
+        # @param Sds: 存储对象
+        # @type Sds: :class:`Tencentcloud::Dlc.v20210125.models.DMSSds`
+        # @param Columns: 列
+        # @type Columns: Array
+        # @param PartitionKeys: 分区键值
+        # @type PartitionKeys: Array
+        # @param ViewOriginalText: 视图文本
+        # @type ViewOriginalText: String
+        # @param ViewExpandedText: 视图文本
+        # @type ViewExpandedText: String
+        # @param Partitions: 分区
+        # @type Partitions: Array
+
+        attr_accessor :CurrentName, :CurrentDbName, :Asset, :Type, :DbName, :StorageSize, :RecordCount, :LifeTime, :DataUpdateTime, :StructUpdateTime, :LastAccessTime, :Sds, :Columns, :PartitionKeys, :ViewOriginalText, :ViewExpandedText, :Partitions
+        
+        def initialize(currentname=nil, currentdbname=nil, asset=nil, type=nil, dbname=nil, storagesize=nil, recordcount=nil, lifetime=nil, dataupdatetime=nil, structupdatetime=nil, lastaccesstime=nil, sds=nil, columns=nil, partitionkeys=nil, vieworiginaltext=nil, viewexpandedtext=nil, partitions=nil)
+          @CurrentName = currentname
+          @CurrentDbName = currentdbname
+          @Asset = asset
+          @Type = type
+          @DbName = dbname
+          @StorageSize = storagesize
+          @RecordCount = recordcount
+          @LifeTime = lifetime
+          @DataUpdateTime = dataupdatetime
+          @StructUpdateTime = structupdatetime
+          @LastAccessTime = lastaccesstime
+          @Sds = sds
+          @Columns = columns
+          @PartitionKeys = partitionkeys
+          @ViewOriginalText = vieworiginaltext
+          @ViewExpandedText = viewexpandedtext
+          @Partitions = partitions
+        end
+
+        def deserialize(params)
+          @CurrentName = params['CurrentName']
+          @CurrentDbName = params['CurrentDbName']
+          unless params['Asset'].nil?
+            @Asset = Asset.new
+            @Asset.deserialize(params['Asset'])
+          end
+          @Type = params['Type']
+          @DbName = params['DbName']
+          @StorageSize = params['StorageSize']
+          @RecordCount = params['RecordCount']
+          @LifeTime = params['LifeTime']
+          @DataUpdateTime = params['DataUpdateTime']
+          @StructUpdateTime = params['StructUpdateTime']
+          @LastAccessTime = params['LastAccessTime']
+          unless params['Sds'].nil?
+            @Sds = DMSSds.new
+            @Sds.deserialize(params['Sds'])
+          end
+          unless params['Columns'].nil?
+            @Columns = []
+            params['Columns'].each do |i|
+              dmscolumn_tmp = DMSColumn.new
+              dmscolumn_tmp.deserialize(i)
+              @Columns << dmscolumn_tmp
+            end
+          end
+          unless params['PartitionKeys'].nil?
+            @PartitionKeys = []
+            params['PartitionKeys'].each do |i|
+              dmscolumn_tmp = DMSColumn.new
+              dmscolumn_tmp.deserialize(i)
+              @PartitionKeys << dmscolumn_tmp
+            end
+          end
+          @ViewOriginalText = params['ViewOriginalText']
+          @ViewExpandedText = params['ViewExpandedText']
+          unless params['Partitions'].nil?
+            @Partitions = []
+            params['Partitions'].each do |i|
+              dmspartition_tmp = DMSPartition.new
+              dmspartition_tmp.deserialize(i)
+              @Partitions << dmspartition_tmp
+            end
+          end
+        end
+      end
+
+      # AlterDMSTable返回参数结构体
+      class AlterDMSTableResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 元数据基本对象
+      class Asset < TencentCloud::Common::AbstractModel
+
+        
+        def initialize()
+        end
+
+        def deserialize(params)
         end
       end
 
@@ -262,6 +524,58 @@ module TencentCloud
         end
       end
 
+      # CheckLockMetaData请求参数结构体
+      class CheckLockMetaDataRequest < TencentCloud::Common::AbstractModel
+        # @param LockId: 锁ID
+        # @type LockId: Integer
+        # @param DatasourceConnectionName: 数据源名称
+        # @type DatasourceConnectionName: String
+        # @param TxnId: 事务ID
+        # @type TxnId: Integer
+        # @param ElapsedMs: 过期时间ms
+        # @type ElapsedMs: Integer
+
+        attr_accessor :LockId, :DatasourceConnectionName, :TxnId, :ElapsedMs
+        
+        def initialize(lockid=nil, datasourceconnectionname=nil, txnid=nil, elapsedms=nil)
+          @LockId = lockid
+          @DatasourceConnectionName = datasourceconnectionname
+          @TxnId = txnid
+          @ElapsedMs = elapsedms
+        end
+
+        def deserialize(params)
+          @LockId = params['LockId']
+          @DatasourceConnectionName = params['DatasourceConnectionName']
+          @TxnId = params['TxnId']
+          @ElapsedMs = params['ElapsedMs']
+        end
+      end
+
+      # CheckLockMetaData返回参数结构体
+      class CheckLockMetaDataResponse < TencentCloud::Common::AbstractModel
+        # @param LockId: 锁ID
+        # @type LockId: Integer
+        # @param LockState: 锁状态：ACQUIRED、WAITING、ABORT、NOT_ACQUIRED
+        # @type LockState: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :LockId, :LockState, :RequestId
+        
+        def initialize(lockid=nil, lockstate=nil, requestid=nil)
+          @LockId = lockid
+          @LockState = lockstate
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @LockId = params['LockId']
+          @LockState = params['LockState']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 数据表列信息。
       class Column < TencentCloud::Common::AbstractModel
         # @param Name: 列名称，不区分大小写，最大支持25个字符。
@@ -320,6 +634,157 @@ module TencentCloud
           @CreateTime = params['CreateTime']
           @ModifiedTime = params['ModifiedTime']
           @IsPartition = params['IsPartition']
+        end
+      end
+
+      # CreateDMSDatabase请求参数结构体
+      class CreateDMSDatabaseRequest < TencentCloud::Common::AbstractModel
+        # @param Name: 数据库名称
+        # @type Name: String
+
+        attr_accessor :Name
+        
+        def initialize(name=nil)
+          @Name = name
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+        end
+      end
+
+      # CreateDMSDatabase返回参数结构体
+      class CreateDMSDatabaseResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateDMSTable请求参数结构体
+      class CreateDMSTableRequest < TencentCloud::Common::AbstractModel
+        # @param Asset: 基础对象
+        # @type Asset: :class:`Tencentcloud::Dlc.v20210125.models.Asset`
+        # @param Type: 表类型
+        # @type Type: String
+        # @param DbName: 数据库名称
+        # @type DbName: String
+        # @param StorageSize: 存储大小
+        # @type StorageSize: Integer
+        # @param RecordCount: 记录数量
+        # @type RecordCount: Integer
+        # @param LifeTime: 生命周期
+        # @type LifeTime: Integer
+        # @param DataUpdateTime: 数据更新时间
+        # @type DataUpdateTime: String
+        # @param StructUpdateTime: 结构更新时间
+        # @type StructUpdateTime: String
+        # @param LastAccessTime: 最后访问时间
+        # @type LastAccessTime: String
+        # @param Sds: 存储对象
+        # @type Sds: :class:`Tencentcloud::Dlc.v20210125.models.DMSSds`
+        # @param Columns: 列
+        # @type Columns: Array
+        # @param PartitionKeys: 分区键值
+        # @type PartitionKeys: Array
+        # @param ViewOriginalText: 视图文本
+        # @type ViewOriginalText: String
+        # @param ViewExpandedText: 视图文本
+        # @type ViewExpandedText: String
+        # @param Partitions: 分区
+        # @type Partitions: Array
+        # @param Name: 表名称
+        # @type Name: String
+
+        attr_accessor :Asset, :Type, :DbName, :StorageSize, :RecordCount, :LifeTime, :DataUpdateTime, :StructUpdateTime, :LastAccessTime, :Sds, :Columns, :PartitionKeys, :ViewOriginalText, :ViewExpandedText, :Partitions, :Name
+        
+        def initialize(asset=nil, type=nil, dbname=nil, storagesize=nil, recordcount=nil, lifetime=nil, dataupdatetime=nil, structupdatetime=nil, lastaccesstime=nil, sds=nil, columns=nil, partitionkeys=nil, vieworiginaltext=nil, viewexpandedtext=nil, partitions=nil, name=nil)
+          @Asset = asset
+          @Type = type
+          @DbName = dbname
+          @StorageSize = storagesize
+          @RecordCount = recordcount
+          @LifeTime = lifetime
+          @DataUpdateTime = dataupdatetime
+          @StructUpdateTime = structupdatetime
+          @LastAccessTime = lastaccesstime
+          @Sds = sds
+          @Columns = columns
+          @PartitionKeys = partitionkeys
+          @ViewOriginalText = vieworiginaltext
+          @ViewExpandedText = viewexpandedtext
+          @Partitions = partitions
+          @Name = name
+        end
+
+        def deserialize(params)
+          unless params['Asset'].nil?
+            @Asset = Asset.new
+            @Asset.deserialize(params['Asset'])
+          end
+          @Type = params['Type']
+          @DbName = params['DbName']
+          @StorageSize = params['StorageSize']
+          @RecordCount = params['RecordCount']
+          @LifeTime = params['LifeTime']
+          @DataUpdateTime = params['DataUpdateTime']
+          @StructUpdateTime = params['StructUpdateTime']
+          @LastAccessTime = params['LastAccessTime']
+          unless params['Sds'].nil?
+            @Sds = DMSSds.new
+            @Sds.deserialize(params['Sds'])
+          end
+          unless params['Columns'].nil?
+            @Columns = []
+            params['Columns'].each do |i|
+              dmscolumn_tmp = DMSColumn.new
+              dmscolumn_tmp.deserialize(i)
+              @Columns << dmscolumn_tmp
+            end
+          end
+          unless params['PartitionKeys'].nil?
+            @PartitionKeys = []
+            params['PartitionKeys'].each do |i|
+              dmscolumn_tmp = DMSColumn.new
+              dmscolumn_tmp.deserialize(i)
+              @PartitionKeys << dmscolumn_tmp
+            end
+          end
+          @ViewOriginalText = params['ViewOriginalText']
+          @ViewExpandedText = params['ViewExpandedText']
+          unless params['Partitions'].nil?
+            @Partitions = []
+            params['Partitions'].each do |i|
+              dmspartition_tmp = DMSPartition.new
+              dmspartition_tmp.deserialize(i)
+              @Partitions << dmspartition_tmp
+            end
+          end
+          @Name = params['Name']
+        end
+      end
+
+      # CreateDMSTable返回参数结构体
+      class CreateDMSTableResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
         end
       end
 
@@ -1039,6 +1504,425 @@ module TencentCloud
         end
       end
 
+      # 迁移列对象
+      class DMSColumn < TencentCloud::Common::AbstractModel
+        # @param Name: 名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
+        # @param Description: 描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Description: String
+        # @param Type: 类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Type: String
+        # @param Position: 排序
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Position: Integer
+        # @param Params: 附加参数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Params: Array
+        # @param BizParams: 业务参数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BizParams: Array
+        # @param IsPartition: 是否分区
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsPartition: Boolean
+
+        attr_accessor :Name, :Description, :Type, :Position, :Params, :BizParams, :IsPartition
+        
+        def initialize(name=nil, description=nil, type=nil, position=nil, params=nil, bizparams=nil, ispartition=nil)
+          @Name = name
+          @Description = description
+          @Type = type
+          @Position = position
+          @Params = params
+          @BizParams = bizparams
+          @IsPartition = ispartition
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Description = params['Description']
+          @Type = params['Type']
+          @Position = params['Position']
+          unless params['Params'].nil?
+            @Params = []
+            params['Params'].each do |i|
+              kvpair_tmp = KVPair.new
+              kvpair_tmp.deserialize(i)
+              @Params << kvpair_tmp
+            end
+          end
+          unless params['BizParams'].nil?
+            @BizParams = []
+            params['BizParams'].each do |i|
+              kvpair_tmp = KVPair.new
+              kvpair_tmp.deserialize(i)
+              @BizParams << kvpair_tmp
+            end
+          end
+          @IsPartition = params['IsPartition']
+        end
+      end
+
+      # 列排序对象
+      class DMSColumnOrder < TencentCloud::Common::AbstractModel
+        # @param Col: 列名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Col: String
+        # @param Order: 排序
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Order: Integer
+
+        attr_accessor :Col, :Order
+        
+        def initialize(col=nil, order=nil)
+          @Col = col
+          @Order = order
+        end
+
+        def deserialize(params)
+          @Col = params['Col']
+          @Order = params['Order']
+        end
+      end
+
+      # 迁移元数据分区对象
+      class DMSPartition < TencentCloud::Common::AbstractModel
+        # @param DatabaseName: 数据库名称
+        # @type DatabaseName: String
+        # @param SchemaName: 数据目录名称
+        # @type SchemaName: String
+        # @param TableName: 表名称
+        # @type TableName: String
+        # @param DataVersion: 数据版本
+        # @type DataVersion: Integer
+        # @param Name: 分区名称
+        # @type Name: String
+        # @param Values: 值列表
+        # @type Values: Array
+        # @param StorageSize: 存储大小
+        # @type StorageSize: Integer
+        # @param RecordCount: 记录数量
+        # @type RecordCount: Integer
+        # @param CreateTime: 创建时间
+        # @type CreateTime: String
+        # @param ModifiedTime: 修改时间
+        # @type ModifiedTime: String
+        # @param LastAccessTime: 最后访问时间
+        # @type LastAccessTime: String
+        # @param Params: 附件属性
+        # @type Params: Array
+        # @param Sds: 存储对象
+        # @type Sds: :class:`Tencentcloud::Dlc.v20210125.models.DMSSds`
+
+        attr_accessor :DatabaseName, :SchemaName, :TableName, :DataVersion, :Name, :Values, :StorageSize, :RecordCount, :CreateTime, :ModifiedTime, :LastAccessTime, :Params, :Sds
+        
+        def initialize(databasename=nil, schemaname=nil, tablename=nil, dataversion=nil, name=nil, values=nil, storagesize=nil, recordcount=nil, createtime=nil, modifiedtime=nil, lastaccesstime=nil, params=nil, sds=nil)
+          @DatabaseName = databasename
+          @SchemaName = schemaname
+          @TableName = tablename
+          @DataVersion = dataversion
+          @Name = name
+          @Values = values
+          @StorageSize = storagesize
+          @RecordCount = recordcount
+          @CreateTime = createtime
+          @ModifiedTime = modifiedtime
+          @LastAccessTime = lastaccesstime
+          @Params = params
+          @Sds = sds
+        end
+
+        def deserialize(params)
+          @DatabaseName = params['DatabaseName']
+          @SchemaName = params['SchemaName']
+          @TableName = params['TableName']
+          @DataVersion = params['DataVersion']
+          @Name = params['Name']
+          @Values = params['Values']
+          @StorageSize = params['StorageSize']
+          @RecordCount = params['RecordCount']
+          @CreateTime = params['CreateTime']
+          @ModifiedTime = params['ModifiedTime']
+          @LastAccessTime = params['LastAccessTime']
+          unless params['Params'].nil?
+            @Params = []
+            params['Params'].each do |i|
+              kvpair_tmp = KVPair.new
+              kvpair_tmp.deserialize(i)
+              @Params << kvpair_tmp
+            end
+          end
+          unless params['Sds'].nil?
+            @Sds = DMSSds.new
+            @Sds.deserialize(params['Sds'])
+          end
+        end
+      end
+
+      # 元数据存储描述属性
+      class DMSSds < TencentCloud::Common::AbstractModel
+        # @param Location: 存储地址
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Location: String
+        # @param InputFormat: 输入格式
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InputFormat: String
+        # @param OutputFormat: 输出格式
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OutputFormat: String
+        # @param NumBuckets: bucket数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NumBuckets: Integer
+        # @param Compressed: 是是否压缩
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Compressed: Boolean
+        # @param StoredAsSubDirectories: 是否有子目录
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StoredAsSubDirectories: Boolean
+        # @param SerdeLib: 序列化lib
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SerdeLib: String
+        # @param SerdeName: 序列化名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SerdeName: String
+        # @param BucketCols: 桶名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BucketCols: Array
+        # @param SerdeParams: 序列化参数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SerdeParams: Array
+        # @param Params: 附加参数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Params: Array
+        # @param SortCols: 列排序(Expired)
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SortCols: :class:`Tencentcloud::Dlc.v20210125.models.DMSColumnOrder`
+        # @param Cols: 列
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Cols: Array
+        # @param SortColumns: 列排序字段
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SortColumns: Array
+
+        attr_accessor :Location, :InputFormat, :OutputFormat, :NumBuckets, :Compressed, :StoredAsSubDirectories, :SerdeLib, :SerdeName, :BucketCols, :SerdeParams, :Params, :SortCols, :Cols, :SortColumns
+        
+        def initialize(location=nil, inputformat=nil, outputformat=nil, numbuckets=nil, compressed=nil, storedassubdirectories=nil, serdelib=nil, serdename=nil, bucketcols=nil, serdeparams=nil, params=nil, sortcols=nil, cols=nil, sortcolumns=nil)
+          @Location = location
+          @InputFormat = inputformat
+          @OutputFormat = outputformat
+          @NumBuckets = numbuckets
+          @Compressed = compressed
+          @StoredAsSubDirectories = storedassubdirectories
+          @SerdeLib = serdelib
+          @SerdeName = serdename
+          @BucketCols = bucketcols
+          @SerdeParams = serdeparams
+          @Params = params
+          @SortCols = sortcols
+          @Cols = cols
+          @SortColumns = sortcolumns
+        end
+
+        def deserialize(params)
+          @Location = params['Location']
+          @InputFormat = params['InputFormat']
+          @OutputFormat = params['OutputFormat']
+          @NumBuckets = params['NumBuckets']
+          @Compressed = params['Compressed']
+          @StoredAsSubDirectories = params['StoredAsSubDirectories']
+          @SerdeLib = params['SerdeLib']
+          @SerdeName = params['SerdeName']
+          @BucketCols = params['BucketCols']
+          unless params['SerdeParams'].nil?
+            @SerdeParams = []
+            params['SerdeParams'].each do |i|
+              kvpair_tmp = KVPair.new
+              kvpair_tmp.deserialize(i)
+              @SerdeParams << kvpair_tmp
+            end
+          end
+          unless params['Params'].nil?
+            @Params = []
+            params['Params'].each do |i|
+              kvpair_tmp = KVPair.new
+              kvpair_tmp.deserialize(i)
+              @Params << kvpair_tmp
+            end
+          end
+          unless params['SortCols'].nil?
+            @SortCols = DMSColumnOrder.new
+            @SortCols.deserialize(params['SortCols'])
+          end
+          unless params['Cols'].nil?
+            @Cols = []
+            params['Cols'].each do |i|
+              dmscolumn_tmp = DMSColumn.new
+              dmscolumn_tmp.deserialize(i)
+              @Cols << dmscolumn_tmp
+            end
+          end
+          unless params['SortColumns'].nil?
+            @SortColumns = []
+            params['SortColumns'].each do |i|
+              dmscolumnorder_tmp = DMSColumnOrder.new
+              dmscolumnorder_tmp.deserialize(i)
+              @SortColumns << dmscolumnorder_tmp
+            end
+          end
+        end
+      end
+
+      # DMSTable基本信息
+      class DMSTable < TencentCloud::Common::AbstractModel
+        # @param ViewOriginalText: 视图文本
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ViewOriginalText: String
+        # @param ViewExpandedText: 视图文本
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ViewExpandedText: String
+        # @param Retention: hive维护版本
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Retention: Integer
+        # @param Sds: 存储对象
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Sds: :class:`Tencentcloud::Dlc.v20210125.models.DMSSds`
+        # @param PartitionKeys: 分区列
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PartitionKeys: Array
+        # @param Partitions: 分区
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Partitions: Array
+        # @param Type: 表类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Type: String
+        # @param DbName: 数据库名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DbName: String
+        # @param SchemaName: Schema名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SchemaName: String
+        # @param StorageSize: 存储大小
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StorageSize: Integer
+        # @param RecordCount: 记录数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RecordCount: Integer
+        # @param LifeTime: 生命周期
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LifeTime: Integer
+        # @param LastAccessTime: 最后访问时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LastAccessTime: String
+        # @param DataUpdateTime: 数据更新时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DataUpdateTime: String
+        # @param StructUpdateTime: 结构更新时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StructUpdateTime: String
+        # @param Columns: 列
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Columns: Array
+        # @param Name: 表名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
+
+        attr_accessor :ViewOriginalText, :ViewExpandedText, :Retention, :Sds, :PartitionKeys, :Partitions, :Type, :DbName, :SchemaName, :StorageSize, :RecordCount, :LifeTime, :LastAccessTime, :DataUpdateTime, :StructUpdateTime, :Columns, :Name
+        
+        def initialize(vieworiginaltext=nil, viewexpandedtext=nil, retention=nil, sds=nil, partitionkeys=nil, partitions=nil, type=nil, dbname=nil, schemaname=nil, storagesize=nil, recordcount=nil, lifetime=nil, lastaccesstime=nil, dataupdatetime=nil, structupdatetime=nil, columns=nil, name=nil)
+          @ViewOriginalText = vieworiginaltext
+          @ViewExpandedText = viewexpandedtext
+          @Retention = retention
+          @Sds = sds
+          @PartitionKeys = partitionkeys
+          @Partitions = partitions
+          @Type = type
+          @DbName = dbname
+          @SchemaName = schemaname
+          @StorageSize = storagesize
+          @RecordCount = recordcount
+          @LifeTime = lifetime
+          @LastAccessTime = lastaccesstime
+          @DataUpdateTime = dataupdatetime
+          @StructUpdateTime = structupdatetime
+          @Columns = columns
+          @Name = name
+        end
+
+        def deserialize(params)
+          @ViewOriginalText = params['ViewOriginalText']
+          @ViewExpandedText = params['ViewExpandedText']
+          @Retention = params['Retention']
+          unless params['Sds'].nil?
+            @Sds = DMSSds.new
+            @Sds.deserialize(params['Sds'])
+          end
+          unless params['PartitionKeys'].nil?
+            @PartitionKeys = []
+            params['PartitionKeys'].each do |i|
+              dmscolumn_tmp = DMSColumn.new
+              dmscolumn_tmp.deserialize(i)
+              @PartitionKeys << dmscolumn_tmp
+            end
+          end
+          unless params['Partitions'].nil?
+            @Partitions = []
+            params['Partitions'].each do |i|
+              dmspartition_tmp = DMSPartition.new
+              dmspartition_tmp.deserialize(i)
+              @Partitions << dmspartition_tmp
+            end
+          end
+          @Type = params['Type']
+          @DbName = params['DbName']
+          @SchemaName = params['SchemaName']
+          @StorageSize = params['StorageSize']
+          @RecordCount = params['RecordCount']
+          @LifeTime = params['LifeTime']
+          @LastAccessTime = params['LastAccessTime']
+          @DataUpdateTime = params['DataUpdateTime']
+          @StructUpdateTime = params['StructUpdateTime']
+          unless params['Columns'].nil?
+            @Columns = []
+            params['Columns'].each do |i|
+              dmscolumn_tmp = DMSColumn.new
+              dmscolumn_tmp.deserialize(i)
+              @Columns << dmscolumn_tmp
+            end
+          end
+          @Name = params['Name']
+        end
+      end
+
+      # DMSTable信息
+      class DMSTableInfo < TencentCloud::Common::AbstractModel
+        # @param Table: DMS表信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Table: :class:`Tencentcloud::Dlc.v20210125.models.DMSTable`
+        # @param Asset: 基础对象信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Asset: :class:`Tencentcloud::Dlc.v20210125.models.Asset`
+
+        attr_accessor :Table, :Asset
+        
+        def initialize(table=nil, asset=nil)
+          @Table = table
+          @Asset = asset
+        end
+
+        def deserialize(params)
+          unless params['Table'].nil?
+            @Table = DMSTable.new
+            @Table.deserialize(params['Table'])
+          end
+          unless params['Asset'].nil?
+            @Asset = Asset.new
+            @Asset.deserialize(params['Asset'])
+          end
+        end
+      end
+
       # 数据表数据格式。
       class DataFormat < TencentCloud::Common::AbstractModel
         # @param TextFile: 文本格式，TextFile。
@@ -1343,6 +2227,390 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeDMSDatabase请求参数结构体
+      class DescribeDMSDatabaseRequest < TencentCloud::Common::AbstractModel
+
+        
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeDMSDatabase返回参数结构体
+      class DescribeDMSDatabaseResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeDMSPartitions请求参数结构体
+      class DescribeDMSPartitionsRequest < TencentCloud::Common::AbstractModel
+        # @param DatabaseName: 数据库名
+        # @type DatabaseName: String
+        # @param TableName: 表名称
+        # @type TableName: String
+        # @param SchemaName: schema名称
+        # @type SchemaName: String
+        # @param Name: 名称
+        # @type Name: String
+        # @param Values: 单个分区名称，精准匹配
+        # @type Values: Array
+        # @param PartitionNames: 多个分区名称，精准匹配
+        # @type PartitionNames: Array
+        # @param PartValues: 多个分区字段的匹配，模糊匹配
+        # @type PartValues: Array
+        # @param Filter: 过滤SQL
+        # @type Filter: String
+        # @param MaxParts: 最大分区数量
+        # @type MaxParts: Integer
+        # @param Offset: 翻页跳过数量
+        # @type Offset: Integer
+        # @param Limit: 页面数量
+        # @type Limit: Integer
+
+        attr_accessor :DatabaseName, :TableName, :SchemaName, :Name, :Values, :PartitionNames, :PartValues, :Filter, :MaxParts, :Offset, :Limit
+        
+        def initialize(databasename=nil, tablename=nil, schemaname=nil, name=nil, values=nil, partitionnames=nil, partvalues=nil, filter=nil, maxparts=nil, offset=nil, limit=nil)
+          @DatabaseName = databasename
+          @TableName = tablename
+          @SchemaName = schemaname
+          @Name = name
+          @Values = values
+          @PartitionNames = partitionnames
+          @PartValues = partvalues
+          @Filter = filter
+          @MaxParts = maxparts
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @DatabaseName = params['DatabaseName']
+          @TableName = params['TableName']
+          @SchemaName = params['SchemaName']
+          @Name = params['Name']
+          @Values = params['Values']
+          @PartitionNames = params['PartitionNames']
+          @PartValues = params['PartValues']
+          @Filter = params['Filter']
+          @MaxParts = params['MaxParts']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeDMSPartitions返回参数结构体
+      class DescribeDMSPartitionsResponse < TencentCloud::Common::AbstractModel
+        # @param Partitions: 分区信息
+        # @type Partitions: Array
+        # @param Total: 总数
+        # @type Total: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Partitions, :Total, :RequestId
+        
+        def initialize(partitions=nil, total=nil, requestid=nil)
+          @Partitions = partitions
+          @Total = total
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Partitions'].nil?
+            @Partitions = []
+            params['Partitions'].each do |i|
+              dmspartition_tmp = DMSPartition.new
+              dmspartition_tmp.deserialize(i)
+              @Partitions << dmspartition_tmp
+            end
+          end
+          @Total = params['Total']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeDMSTable请求参数结构体
+      class DescribeDMSTableRequest < TencentCloud::Common::AbstractModel
+        # @param DbName: 数据库名称
+        # @type DbName: String
+        # @param SchemaName: 数据库schema名称
+        # @type SchemaName: String
+        # @param Name: 表名称
+        # @type Name: String
+        # @param Catalog: 数据目录
+        # @type Catalog: String
+        # @param Keyword: 查询关键词
+        # @type Keyword: String
+        # @param Pattern: 查询模式
+        # @type Pattern: String
+        # @param Type: 表类型
+        # @type Type: String
+
+        attr_accessor :DbName, :SchemaName, :Name, :Catalog, :Keyword, :Pattern, :Type
+        
+        def initialize(dbname=nil, schemaname=nil, name=nil, catalog=nil, keyword=nil, pattern=nil, type=nil)
+          @DbName = dbname
+          @SchemaName = schemaname
+          @Name = name
+          @Catalog = catalog
+          @Keyword = keyword
+          @Pattern = pattern
+          @Type = type
+        end
+
+        def deserialize(params)
+          @DbName = params['DbName']
+          @SchemaName = params['SchemaName']
+          @Name = params['Name']
+          @Catalog = params['Catalog']
+          @Keyword = params['Keyword']
+          @Pattern = params['Pattern']
+          @Type = params['Type']
+        end
+      end
+
+      # DescribeDMSTable返回参数结构体
+      class DescribeDMSTableResponse < TencentCloud::Common::AbstractModel
+        # @param Asset: 基础对象
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Asset: :class:`Tencentcloud::Dlc.v20210125.models.Asset`
+        # @param ViewOriginalText: 视图文本
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ViewOriginalText: String
+        # @param ViewExpandedText: 视图文本
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ViewExpandedText: String
+        # @param Retention: hive维护版本
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Retention: Integer
+        # @param Sds: 存储对象
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Sds: :class:`Tencentcloud::Dlc.v20210125.models.DMSSds`
+        # @param PartitionKeys: 分区列
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PartitionKeys: Array
+        # @param Partitions: 分区
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Partitions: Array
+        # @param Type: 表类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Type: String
+        # @param DbName: 数据库名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DbName: String
+        # @param SchemaName: Schame名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SchemaName: String
+        # @param StorageSize: 存储大小
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StorageSize: Integer
+        # @param RecordCount: 记录数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RecordCount: Integer
+        # @param LifeTime: 生命周期
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LifeTime: Integer
+        # @param LastAccessTime: 最后访问时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LastAccessTime: String
+        # @param DataUpdateTime: 数据更新时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DataUpdateTime: String
+        # @param StructUpdateTime: 结构更新时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StructUpdateTime: String
+        # @param Columns: 列
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Columns: Array
+        # @param Name: 表名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Asset, :ViewOriginalText, :ViewExpandedText, :Retention, :Sds, :PartitionKeys, :Partitions, :Type, :DbName, :SchemaName, :StorageSize, :RecordCount, :LifeTime, :LastAccessTime, :DataUpdateTime, :StructUpdateTime, :Columns, :Name, :RequestId
+        
+        def initialize(asset=nil, vieworiginaltext=nil, viewexpandedtext=nil, retention=nil, sds=nil, partitionkeys=nil, partitions=nil, type=nil, dbname=nil, schemaname=nil, storagesize=nil, recordcount=nil, lifetime=nil, lastaccesstime=nil, dataupdatetime=nil, structupdatetime=nil, columns=nil, name=nil, requestid=nil)
+          @Asset = asset
+          @ViewOriginalText = vieworiginaltext
+          @ViewExpandedText = viewexpandedtext
+          @Retention = retention
+          @Sds = sds
+          @PartitionKeys = partitionkeys
+          @Partitions = partitions
+          @Type = type
+          @DbName = dbname
+          @SchemaName = schemaname
+          @StorageSize = storagesize
+          @RecordCount = recordcount
+          @LifeTime = lifetime
+          @LastAccessTime = lastaccesstime
+          @DataUpdateTime = dataupdatetime
+          @StructUpdateTime = structupdatetime
+          @Columns = columns
+          @Name = name
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Asset'].nil?
+            @Asset = Asset.new
+            @Asset.deserialize(params['Asset'])
+          end
+          @ViewOriginalText = params['ViewOriginalText']
+          @ViewExpandedText = params['ViewExpandedText']
+          @Retention = params['Retention']
+          unless params['Sds'].nil?
+            @Sds = DMSSds.new
+            @Sds.deserialize(params['Sds'])
+          end
+          unless params['PartitionKeys'].nil?
+            @PartitionKeys = []
+            params['PartitionKeys'].each do |i|
+              dmscolumn_tmp = DMSColumn.new
+              dmscolumn_tmp.deserialize(i)
+              @PartitionKeys << dmscolumn_tmp
+            end
+          end
+          unless params['Partitions'].nil?
+            @Partitions = []
+            params['Partitions'].each do |i|
+              dmspartition_tmp = DMSPartition.new
+              dmspartition_tmp.deserialize(i)
+              @Partitions << dmspartition_tmp
+            end
+          end
+          @Type = params['Type']
+          @DbName = params['DbName']
+          @SchemaName = params['SchemaName']
+          @StorageSize = params['StorageSize']
+          @RecordCount = params['RecordCount']
+          @LifeTime = params['LifeTime']
+          @LastAccessTime = params['LastAccessTime']
+          @DataUpdateTime = params['DataUpdateTime']
+          @StructUpdateTime = params['StructUpdateTime']
+          unless params['Columns'].nil?
+            @Columns = []
+            params['Columns'].each do |i|
+              dmscolumn_tmp = DMSColumn.new
+              dmscolumn_tmp.deserialize(i)
+              @Columns << dmscolumn_tmp
+            end
+          end
+          @Name = params['Name']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeDMSTables请求参数结构体
+      class DescribeDMSTablesRequest < TencentCloud::Common::AbstractModel
+        # @param DbName: 数据库名称
+        # @type DbName: String
+        # @param SchemaName: 数据库schema名称
+        # @type SchemaName: String
+        # @param Name: 表名称
+        # @type Name: String
+        # @param Catalog: 数据目录
+        # @type Catalog: String
+        # @param Keyword: 查询关键词
+        # @type Keyword: String
+        # @param Pattern: 查询模式
+        # @type Pattern: String
+        # @param Type: 表类型
+        # @type Type: String
+        # @param StartTime: 筛选参数：更新开始时间
+        # @type StartTime: String
+        # @param EndTime: 筛选参数：更新结束时间
+        # @type EndTime: String
+        # @param Limit: 分页参数
+        # @type Limit: Integer
+        # @param Offset: 分页参数
+        # @type Offset: Integer
+        # @param Sort: 排序字段：create_time：创建时间
+        # @type Sort: String
+        # @param Asc: 排序字段：true：升序（默认），false：降序
+        # @type Asc: Boolean
+
+        attr_accessor :DbName, :SchemaName, :Name, :Catalog, :Keyword, :Pattern, :Type, :StartTime, :EndTime, :Limit, :Offset, :Sort, :Asc
+        
+        def initialize(dbname=nil, schemaname=nil, name=nil, catalog=nil, keyword=nil, pattern=nil, type=nil, starttime=nil, endtime=nil, limit=nil, offset=nil, sort=nil, asc=nil)
+          @DbName = dbname
+          @SchemaName = schemaname
+          @Name = name
+          @Catalog = catalog
+          @Keyword = keyword
+          @Pattern = pattern
+          @Type = type
+          @StartTime = starttime
+          @EndTime = endtime
+          @Limit = limit
+          @Offset = offset
+          @Sort = sort
+          @Asc = asc
+        end
+
+        def deserialize(params)
+          @DbName = params['DbName']
+          @SchemaName = params['SchemaName']
+          @Name = params['Name']
+          @Catalog = params['Catalog']
+          @Keyword = params['Keyword']
+          @Pattern = params['Pattern']
+          @Type = params['Type']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          @Sort = params['Sort']
+          @Asc = params['Asc']
+        end
+      end
+
+      # DescribeDMSTables返回参数结构体
+      class DescribeDMSTablesResponse < TencentCloud::Common::AbstractModel
+        # @param TableList: DMS元数据列表信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TableList: Array
+        # @param TotalCount: 统计值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TableList, :TotalCount, :RequestId
+        
+        def initialize(tablelist=nil, totalcount=nil, requestid=nil)
+          @TableList = tablelist
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['TableList'].nil?
+            @TableList = []
+            params['TableList'].each do |i|
+              dmstableinfo_tmp = DMSTableInfo.new
+              dmstableinfo_tmp.deserialize(i)
+              @TableList << dmstableinfo_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
           @RequestId = params['RequestId']
         end
       end
@@ -2313,6 +3581,136 @@ module TencentCloud
         end
       end
 
+      # DropDMSDatabase请求参数结构体
+      class DropDMSDatabaseRequest < TencentCloud::Common::AbstractModel
+
+        
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DropDMSDatabase返回参数结构体
+      class DropDMSDatabaseResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DropDMSPartitions请求参数结构体
+      class DropDMSPartitionsRequest < TencentCloud::Common::AbstractModel
+        # @param DatabaseName: 数据库名称
+        # @type DatabaseName: String
+        # @param SchemaName: 数据库Schema名称
+        # @type SchemaName: String
+        # @param TableName: 数据表名称
+        # @type TableName: String
+        # @param Name: 分区名称
+        # @type Name: String
+        # @param Values: 单个分区名称
+        # @type Values: Array
+        # @param DeleteData: 是否删除分区数据
+        # @type DeleteData: Boolean
+
+        attr_accessor :DatabaseName, :SchemaName, :TableName, :Name, :Values, :DeleteData
+        
+        def initialize(databasename=nil, schemaname=nil, tablename=nil, name=nil, values=nil, deletedata=nil)
+          @DatabaseName = databasename
+          @SchemaName = schemaname
+          @TableName = tablename
+          @Name = name
+          @Values = values
+          @DeleteData = deletedata
+        end
+
+        def deserialize(params)
+          @DatabaseName = params['DatabaseName']
+          @SchemaName = params['SchemaName']
+          @TableName = params['TableName']
+          @Name = params['Name']
+          @Values = params['Values']
+          @DeleteData = params['DeleteData']
+        end
+      end
+
+      # DropDMSPartitions返回参数结构体
+      class DropDMSPartitionsResponse < TencentCloud::Common::AbstractModel
+        # @param Status: 状态
+        # @type Status: Boolean
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Status, :RequestId
+        
+        def initialize(status=nil, requestid=nil)
+          @Status = status
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Status = params['Status']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DropDMSTable请求参数结构体
+      class DropDMSTableRequest < TencentCloud::Common::AbstractModel
+        # @param DbName: 数据库名称
+        # @type DbName: String
+        # @param Name: 表名称
+        # @type Name: String
+        # @param DeleteData: 是否删除数据
+        # @type DeleteData: Boolean
+        # @param EnvProps: 环境属性
+        # @type EnvProps: :class:`Tencentcloud::Dlc.v20210125.models.KVPair`
+
+        attr_accessor :DbName, :Name, :DeleteData, :EnvProps
+        
+        def initialize(dbname=nil, name=nil, deletedata=nil, envprops=nil)
+          @DbName = dbname
+          @Name = name
+          @DeleteData = deletedata
+          @EnvProps = envprops
+        end
+
+        def deserialize(params)
+          @DbName = params['DbName']
+          @Name = params['Name']
+          @DeleteData = params['DeleteData']
+          unless params['EnvProps'].nil?
+            @EnvProps = KVPair.new
+            @EnvProps.deserialize(params['EnvProps'])
+          end
+        end
+      end
+
+      # DropDMSTable返回参数结构体
+      class DropDMSTableResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # SQL语句对象
       class Execution < TencentCloud::Common::AbstractModel
         # @param SQL: 自动生成SQL语句。
@@ -2469,6 +3867,113 @@ module TencentCloud
               @Results << joblogresult_tmp
             end
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 元数据加锁内容
+      class LockComponentInfo < TencentCloud::Common::AbstractModel
+        # @param DbName: 数据库名称
+        # @type DbName: String
+        # @param TableName: 表名称
+        # @type TableName: String
+        # @param Partition: 分区
+        # @type Partition: String
+        # @param LockType: 锁类型：SHARED_READ、SHARED_WRITE、EXCLUSIVE
+        # @type LockType: String
+        # @param LockLevel: 锁级别：DB、TABLE、PARTITION
+        # @type LockLevel: String
+        # @param DataOperationType: 锁操作：SELECT,INSERT,UPDATE,DELETE,UNSET,NO_TXN
+        # @type DataOperationType: String
+        # @param IsAcid: 是否保持Acid
+        # @type IsAcid: Boolean
+        # @param IsDynamicPartitionWrite: 是否动态分区写
+        # @type IsDynamicPartitionWrite: Boolean
+
+        attr_accessor :DbName, :TableName, :Partition, :LockType, :LockLevel, :DataOperationType, :IsAcid, :IsDynamicPartitionWrite
+        
+        def initialize(dbname=nil, tablename=nil, partition=nil, locktype=nil, locklevel=nil, dataoperationtype=nil, isacid=nil, isdynamicpartitionwrite=nil)
+          @DbName = dbname
+          @TableName = tablename
+          @Partition = partition
+          @LockType = locktype
+          @LockLevel = locklevel
+          @DataOperationType = dataoperationtype
+          @IsAcid = isacid
+          @IsDynamicPartitionWrite = isdynamicpartitionwrite
+        end
+
+        def deserialize(params)
+          @DbName = params['DbName']
+          @TableName = params['TableName']
+          @Partition = params['Partition']
+          @LockType = params['LockType']
+          @LockLevel = params['LockLevel']
+          @DataOperationType = params['DataOperationType']
+          @IsAcid = params['IsAcid']
+          @IsDynamicPartitionWrite = params['IsDynamicPartitionWrite']
+        end
+      end
+
+      # LockMetaData请求参数结构体
+      class LockMetaDataRequest < TencentCloud::Common::AbstractModel
+        # @param LockComponentList: 加锁内容
+        # @type LockComponentList: Array
+        # @param DatasourceConnectionName: 数据源名称
+        # @type DatasourceConnectionName: String
+        # @param TxnId: 事务id
+        # @type TxnId: Integer
+        # @param AgentInfo: 客户端信息
+        # @type AgentInfo: String
+        # @param Hostname: 主机名
+        # @type Hostname: String
+
+        attr_accessor :LockComponentList, :DatasourceConnectionName, :TxnId, :AgentInfo, :Hostname
+        
+        def initialize(lockcomponentlist=nil, datasourceconnectionname=nil, txnid=nil, agentinfo=nil, hostname=nil)
+          @LockComponentList = lockcomponentlist
+          @DatasourceConnectionName = datasourceconnectionname
+          @TxnId = txnid
+          @AgentInfo = agentinfo
+          @Hostname = hostname
+        end
+
+        def deserialize(params)
+          unless params['LockComponentList'].nil?
+            @LockComponentList = []
+            params['LockComponentList'].each do |i|
+              lockcomponentinfo_tmp = LockComponentInfo.new
+              lockcomponentinfo_tmp.deserialize(i)
+              @LockComponentList << lockcomponentinfo_tmp
+            end
+          end
+          @DatasourceConnectionName = params['DatasourceConnectionName']
+          @TxnId = params['TxnId']
+          @AgentInfo = params['AgentInfo']
+          @Hostname = params['Hostname']
+        end
+      end
+
+      # LockMetaData返回参数结构体
+      class LockMetaDataResponse < TencentCloud::Common::AbstractModel
+        # @param LockId: 锁id
+        # @type LockId: Integer
+        # @param LockState: 锁状态：ACQUIRED、WAITING、ABORT、NOT_ACQUIRED
+        # @type LockState: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :LockId, :LockState, :RequestId
+        
+        def initialize(lockid=nil, lockstate=nil, requestid=nil)
+          @LockId = lockid
+          @LockState = lockstate
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @LockId = params['LockId']
+          @LockState = params['LockState']
           @RequestId = params['RequestId']
         end
       end
@@ -3612,6 +5117,42 @@ module TencentCloud
 
       # UnbindWorkGroupsFromUser返回参数结构体
       class UnbindWorkGroupsFromUserResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # UnlockMetaData请求参数结构体
+      class UnlockMetaDataRequest < TencentCloud::Common::AbstractModel
+        # @param LockId: 锁ID
+        # @type LockId: Integer
+        # @param DatasourceConnectionName: 数据源名称
+        # @type DatasourceConnectionName: String
+
+        attr_accessor :LockId, :DatasourceConnectionName
+        
+        def initialize(lockid=nil, datasourceconnectionname=nil)
+          @LockId = lockid
+          @DatasourceConnectionName = datasourceconnectionname
+        end
+
+        def deserialize(params)
+          @LockId = params['LockId']
+          @DatasourceConnectionName = params['DatasourceConnectionName']
+        end
+      end
+
+      # UnlockMetaData返回参数结构体
+      class UnlockMetaDataResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 

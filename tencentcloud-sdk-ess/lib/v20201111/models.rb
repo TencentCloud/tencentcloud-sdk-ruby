@@ -104,55 +104,55 @@ module TencentCloud
         # @type ApplicationId: String
         # @param OrganizationId: 主机构ID
         # @type OrganizationId: String
-        # @param SubOrganizationId: 下属机构ID
-        # @type SubOrganizationId: String
         # @param OperatorId: 经办人的用户ID
         # @type OperatorId: String
+        # @param SubOrganizationId: 下属机构ID
+        # @type SubOrganizationId: String
 
-        attr_accessor :ApplicationId, :OrganizationId, :SubOrganizationId, :OperatorId
+        attr_accessor :ApplicationId, :OrganizationId, :OperatorId, :SubOrganizationId
         
-        def initialize(applicationid=nil, organizationid=nil, suborganizationid=nil, operatorid=nil)
+        def initialize(applicationid=nil, organizationid=nil, operatorid=nil, suborganizationid=nil)
           @ApplicationId = applicationid
           @OrganizationId = organizationid
-          @SubOrganizationId = suborganizationid
           @OperatorId = operatorid
+          @SubOrganizationId = suborganizationid
         end
 
         def deserialize(params)
           @ApplicationId = params['ApplicationId']
           @OrganizationId = params['OrganizationId']
-          @SubOrganizationId = params['SubOrganizationId']
           @OperatorId = params['OperatorId']
+          @SubOrganizationId = params['SubOrganizationId']
         end
       end
 
       # CancelFlow请求参数结构体
       class CancelFlowRequest < TencentCloud::Common::AbstractModel
+        # @param FlowId: 签署流程id
+        # @type FlowId: String
+        # @param CancelMessage: 撤销原因，最长200个字符；
+        # @type CancelMessage: String
         # @param Operator: 操作用户id
         # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
-        # @param FlowId: 流程id
-        # @type FlowId: String
-        # @param CancelMessage: 撤销原因
-        # @type CancelMessage: String
         # @param Agent: 应用相关信息
         # @type Agent: :class:`Tencentcloud::Ess.v20201111.models.Agent`
 
-        attr_accessor :Operator, :FlowId, :CancelMessage, :Agent
+        attr_accessor :FlowId, :CancelMessage, :Operator, :Agent
         
-        def initialize(operator=nil, flowid=nil, cancelmessage=nil, agent=nil)
-          @Operator = operator
+        def initialize(flowid=nil, cancelmessage=nil, operator=nil, agent=nil)
           @FlowId = flowid
           @CancelMessage = cancelmessage
+          @Operator = operator
           @Agent = agent
         end
 
         def deserialize(params)
+          @FlowId = params['FlowId']
+          @CancelMessage = params['CancelMessage']
           unless params['Operator'].nil?
             @Operator = UserInfo.new
             @Operator.deserialize(params['Operator'])
           end
-          @FlowId = params['FlowId']
-          @CancelMessage = params['CancelMessage']
           unless params['Agent'].nil?
             @Agent = Agent.new
             @Agent.deserialize(params['Agent'])
@@ -243,7 +243,7 @@ module TencentCloud
         # @param ComponentType: 如果是 Component 控件类型，则可选类型为：
         # TEXT - 内容文本控件
         # DATE - 内容日期控件
-        # SELECT - 勾选框控件
+        # CHECK_BOX - 勾选框控件
         # 如果是 SignComponent 控件类型，则可选类型为：
         # SIGN_SEAL - 签署印章控件
         # SIGN_DATE - 签署日期控件
@@ -289,9 +289,9 @@ module TencentCloud
         # @type GenerateMode: String
         # @param ComponentDateFontSize: 日期控件类型字号
         # @type ComponentDateFontSize: Integer
-        # @param OffsetX: 指定关键字时横坐标偏移量
+        # @param OffsetX: 指定关键字时横坐标偏移量，单位pt
         # @type OffsetX: Float
-        # @param OffsetY: 指定关键字时纵坐标偏移量
+        # @param OffsetY: 指定关键字时纵坐标偏移量，单位pt
         # @type OffsetY: Float
 
         attr_accessor :ComponentType, :ComponentWidth, :ComponentHeight, :ComponentPage, :ComponentPosX, :ComponentPosY, :FileIndex, :ComponentId, :ComponentName, :ComponentRequired, :ComponentExtra, :ComponentRecipientId, :ComponentValue, :IsFormType, :GenerateMode, :ComponentDateFontSize, :OffsetX, :OffsetY
@@ -341,45 +341,49 @@ module TencentCloud
 
       # CreateDocument请求参数结构体
       class CreateDocumentRequest < TencentCloud::Common::AbstractModel
-        # @param Operator: 无
-        # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
+        # @param FlowId: 签署流程编号,由CreateFlow接口返回
+        # @type FlowId: String
         # @param TemplateId: 用户上传的模板ID
         # @type TemplateId: String
-        # @param FlowId: 流程ID
-        # @type FlowId: String
-        # @param FileNames: 文件名列表
+        # @param FileNames: 文件名列表,单个文件名最大长度200个字符
         # @type FileNames: Array
-        # @param FormFields: 内容控件信息数组
-        # @type FormFields: Array
+        # @param Operator: 无
+        # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
         # @param Agent: 应用相关信息
         # @type Agent: :class:`Tencentcloud::Ess.v20201111.models.Agent`
-        # @param ClientToken: 客户端Token，保持接口幂等性
-        # @type ClientToken: String
+        # @param FormFields: 内容控件信息数组
+        # @type FormFields: Array
         # @param NeedPreview: 是否需要生成预览文件 默认不生成；
         # 预览链接有效期300秒；
         # @type NeedPreview: Boolean
+        # @param ClientToken: 客户端Token，保持接口幂等性,最大长度64个字符
+        # @type ClientToken: String
 
-        attr_accessor :Operator, :TemplateId, :FlowId, :FileNames, :FormFields, :Agent, :ClientToken, :NeedPreview
+        attr_accessor :FlowId, :TemplateId, :FileNames, :Operator, :Agent, :FormFields, :NeedPreview, :ClientToken
         
-        def initialize(operator=nil, templateid=nil, flowid=nil, filenames=nil, formfields=nil, agent=nil, clienttoken=nil, needpreview=nil)
-          @Operator = operator
-          @TemplateId = templateid
+        def initialize(flowid=nil, templateid=nil, filenames=nil, operator=nil, agent=nil, formfields=nil, needpreview=nil, clienttoken=nil)
           @FlowId = flowid
+          @TemplateId = templateid
           @FileNames = filenames
-          @FormFields = formfields
+          @Operator = operator
           @Agent = agent
-          @ClientToken = clienttoken
+          @FormFields = formfields
           @NeedPreview = needpreview
+          @ClientToken = clienttoken
         end
 
         def deserialize(params)
+          @FlowId = params['FlowId']
+          @TemplateId = params['TemplateId']
+          @FileNames = params['FileNames']
           unless params['Operator'].nil?
             @Operator = UserInfo.new
             @Operator.deserialize(params['Operator'])
           end
-          @TemplateId = params['TemplateId']
-          @FlowId = params['FlowId']
-          @FileNames = params['FileNames']
+          unless params['Agent'].nil?
+            @Agent = Agent.new
+            @Agent.deserialize(params['Agent'])
+          end
           unless params['FormFields'].nil?
             @FormFields = []
             params['FormFields'].each do |i|
@@ -388,20 +392,16 @@ module TencentCloud
               @FormFields << formfield_tmp
             end
           end
-          unless params['Agent'].nil?
-            @Agent = Agent.new
-            @Agent.deserialize(params['Agent'])
-          end
-          @ClientToken = params['ClientToken']
           @NeedPreview = params['NeedPreview']
+          @ClientToken = params['ClientToken']
         end
       end
 
       # CreateDocument返回参数结构体
       class CreateDocumentResponse < TencentCloud::Common::AbstractModel
-        # @param DocumentId: 返回的电子文档ID
+        # @param DocumentId: 签署流程电子文档ID
         # @type DocumentId: String
-        # @param PreviewFileUrl: 返回合同文件的预览地址 5分钟内有效。仅当NeedPreview为true 时返回
+        # @param PreviewFileUrl: 签署流程文件的预览地址, 5分钟内有效。仅当NeedPreview为true 时返回
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PreviewFileUrl: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
@@ -424,61 +424,63 @@ module TencentCloud
 
       # CreateFlowByFiles请求参数结构体
       class CreateFlowByFilesRequest < TencentCloud::Common::AbstractModel
-        # @param Operator: 调用方用户信息
-        # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
-        # @param FlowName: 流程名称
+        # @param FlowName: 签署流程名称,最大长度200个字符
         # @type FlowName: String
-        # @param FileIds: 签署pdf文件的资源编号列表
-        # @type FileIds: Array
         # @param Approvers: 签署参与者信息
         # @type Approvers: Array
-        # @param FlowDescription: 流程描述
-        # @type FlowDescription: String
-        # @param Unordered: 发送类型：
-        # true：无序签
-        # false：有序签
-        # 注：默认为false（有序签）
-        # @type Unordered: Boolean
-        # @param FlowType: 流程的类型
-        # @type FlowType: String
-        # @param Deadline: 流程的签署截止时间
-        # @type Deadline: Integer
+        # @param FileIds: 签署pdf文件的资源编号列表，通过UploadFiles接口获取
+        # @type FileIds: Array
+        # @param Operator: 调用方用户信息
+        # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
         # @param Agent: 应用号信息
         # @type Agent: :class:`Tencentcloud::Ess.v20201111.models.Agent`
         # @param Components: 经办人内容控件配置。可选类型为：
         # TEXT - 内容文本控件
         # MULTI_LINE_TEXT - 多行文本控件
+        # CHECK_BOX - 勾选框控件
         # 注：默认字体大小为 字号12
         # @type Components: Array
-        # @param CcInfos: 被抄送人的信息列表
-        # @type CcInfos: Array
-        # @param NeedPreview: 是否需要预览，true：预览模式，false：非预览（默认）
+        # @param Deadline: 签署流程的签署截止时间。
+        # 值为unix时间戳,精确到秒,不传默认为当前时间一年后
+        # @type Deadline: Integer
+        # @param Unordered: 发送类型：
+        # true：无序签
+        # false：有序签
+        # 注：默认为false（有序签）
+        # @type Unordered: Boolean
+        # @param NeedPreview: 是否需要预览，true：预览模式，false：非预览（默认）；
+        # 预览链接有效期300秒；
         # @type NeedPreview: Boolean
+        # @param FlowDescription: 签署流程描述,最大长度1000个字符
+        # @type FlowDescription: String
+        # @param FlowType: 签署流程的类型(如销售合同/入职合同等)，最大长度200个字符
+        # @type FlowType: String
+        # @param CcInfos: 被抄送人的信息列表。
+        # 注:此功能为白名单功能，若有需要，请联系电子签客服开白使用
+        # @type CcInfos: Array
+        # @param CustomShowMap: 合同显示的页卡模板，说明：只支持{合同名称}, {发起方企业}, {发起方姓名}, {签署方N企业}, {签署方N姓名}，且N不能超过签署人的数量，N从1开始
+        # @type CustomShowMap: String
 
-        attr_accessor :Operator, :FlowName, :FileIds, :Approvers, :FlowDescription, :Unordered, :FlowType, :Deadline, :Agent, :Components, :CcInfos, :NeedPreview
+        attr_accessor :FlowName, :Approvers, :FileIds, :Operator, :Agent, :Components, :Deadline, :Unordered, :NeedPreview, :FlowDescription, :FlowType, :CcInfos, :CustomShowMap
         
-        def initialize(operator=nil, flowname=nil, fileids=nil, approvers=nil, flowdescription=nil, unordered=nil, flowtype=nil, deadline=nil, agent=nil, components=nil, ccinfos=nil, needpreview=nil)
-          @Operator = operator
+        def initialize(flowname=nil, approvers=nil, fileids=nil, operator=nil, agent=nil, components=nil, deadline=nil, unordered=nil, needpreview=nil, flowdescription=nil, flowtype=nil, ccinfos=nil, customshowmap=nil)
           @FlowName = flowname
-          @FileIds = fileids
           @Approvers = approvers
-          @FlowDescription = flowdescription
-          @Unordered = unordered
-          @FlowType = flowtype
-          @Deadline = deadline
+          @FileIds = fileids
+          @Operator = operator
           @Agent = agent
           @Components = components
-          @CcInfos = ccinfos
+          @Deadline = deadline
+          @Unordered = unordered
           @NeedPreview = needpreview
+          @FlowDescription = flowdescription
+          @FlowType = flowtype
+          @CcInfos = ccinfos
+          @CustomShowMap = customshowmap
         end
 
         def deserialize(params)
-          unless params['Operator'].nil?
-            @Operator = UserInfo.new
-            @Operator.deserialize(params['Operator'])
-          end
           @FlowName = params['FlowName']
-          @FileIds = params['FileIds']
           unless params['Approvers'].nil?
             @Approvers = []
             params['Approvers'].each do |i|
@@ -487,10 +489,11 @@ module TencentCloud
               @Approvers << approverinfo_tmp
             end
           end
-          @FlowDescription = params['FlowDescription']
-          @Unordered = params['Unordered']
-          @FlowType = params['FlowType']
-          @Deadline = params['Deadline']
+          @FileIds = params['FileIds']
+          unless params['Operator'].nil?
+            @Operator = UserInfo.new
+            @Operator.deserialize(params['Operator'])
+          end
           unless params['Agent'].nil?
             @Agent = Agent.new
             @Agent.deserialize(params['Agent'])
@@ -503,6 +506,11 @@ module TencentCloud
               @Components << component_tmp
             end
           end
+          @Deadline = params['Deadline']
+          @Unordered = params['Unordered']
+          @NeedPreview = params['NeedPreview']
+          @FlowDescription = params['FlowDescription']
+          @FlowType = params['FlowType']
           unless params['CcInfos'].nil?
             @CcInfos = []
             params['CcInfos'].each do |i|
@@ -511,13 +519,13 @@ module TencentCloud
               @CcInfos << ccinfo_tmp
             end
           end
-          @NeedPreview = params['NeedPreview']
+          @CustomShowMap = params['CustomShowMap']
         end
       end
 
       # CreateFlowByFiles返回参数结构体
       class CreateFlowByFilesResponse < TencentCloud::Common::AbstractModel
-        # @param FlowId: 流程编号
+        # @param FlowId: 签署流程编号
         # @type FlowId: String
         # @param PreviewUrl: 合同预览链接
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -542,50 +550,53 @@ module TencentCloud
 
       # CreateFlow请求参数结构体
       class CreateFlowRequest < TencentCloud::Common::AbstractModel
+        # @param FlowName: 签署流程名称,最大长度200个字符
+        # @type FlowName: String
+        # @param Approvers: 签署流程参与者信息
+        # @type Approvers: Array
         # @param Operator: 操作人信息
         # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
-        # @param FlowName: 流程的名字, 长度不能超过200，中文字母数字下划线
-        # @type FlowName: String
-        # @param Approvers: 参与者信息
-        # @type Approvers: Array
-        # @param FlowDescription: 流程的描述, 长度不能超过1000
-        # @type FlowDescription: String
-        # @param Unordered: 发送类型(true为无序签,false为顺序签)
-        # @type Unordered: Boolean
-        # @param FlowType: 流程的种类(如销售合同/入职合同等)
-        # @type FlowType: String
-        # @param DeadLine: 过期时间戳,如果是0则为不过期
-        # @type DeadLine: Integer
-        # @param CallbackUrl: 执行结果的回调URL(需要以http://或者https://)开头
-        # @type CallbackUrl: String
-        # @param UserData: 用户自定义字段(需进行base64 encode),回调的时候会进行透传, 长度需要小于20480
-        # @type UserData: String
         # @param Agent: 应用相关信息
         # @type Agent: :class:`Tencentcloud::Ess.v20201111.models.Agent`
-        # @param ClientToken: 客户端Token，保持接口幂等性
+        # @param Unordered: 发送类型(true为无序签,false为顺序签)
+        # @type Unordered: Boolean
+        # @param DeadLine: 签署流程的签署截止时间。
+        # 值为unix时间戳,精确到秒,不传默认为当前时间一年后
+        # @type DeadLine: Integer
+        # @param FlowType: 签署流程的类型(如销售合同/入职合同等)，最大长度200个字符
+        # @type FlowType: String
+        # @param UserData: 用户自定义字段(需进行base64 encode),回调的时候会进行透传, 长度需要小于20480
+        # @type UserData: String
+        # @param FlowDescription: 签署流程描述,最大长度1000个字符
+        # @type FlowDescription: String
+        # @param ClientToken: 客户端Token，保持接口幂等性,最大长度64个字符
         # @type ClientToken: String
+        # @param CustomShowMap: 合同显示的页卡模板，说明：只支持{合同名称}, {发起方企业}, {发起方姓名}, {签署方N企业}, {签署方N姓名}，且N不能超过签署人的数量，N从1开始
+        # @type CustomShowMap: String
+        # @param RelatedFlowId: 暂未开放
+        # @type RelatedFlowId: String
+        # @param CallbackUrl: 暂未开放
+        # @type CallbackUrl: String
 
-        attr_accessor :Operator, :FlowName, :Approvers, :FlowDescription, :Unordered, :FlowType, :DeadLine, :CallbackUrl, :UserData, :Agent, :ClientToken
+        attr_accessor :FlowName, :Approvers, :Operator, :Agent, :Unordered, :DeadLine, :FlowType, :UserData, :FlowDescription, :ClientToken, :CustomShowMap, :RelatedFlowId, :CallbackUrl
         
-        def initialize(operator=nil, flowname=nil, approvers=nil, flowdescription=nil, unordered=nil, flowtype=nil, deadline=nil, callbackurl=nil, userdata=nil, agent=nil, clienttoken=nil)
-          @Operator = operator
+        def initialize(flowname=nil, approvers=nil, operator=nil, agent=nil, unordered=nil, deadline=nil, flowtype=nil, userdata=nil, flowdescription=nil, clienttoken=nil, customshowmap=nil, relatedflowid=nil, callbackurl=nil)
           @FlowName = flowname
           @Approvers = approvers
-          @FlowDescription = flowdescription
-          @Unordered = unordered
-          @FlowType = flowtype
-          @DeadLine = deadline
-          @CallbackUrl = callbackurl
-          @UserData = userdata
+          @Operator = operator
           @Agent = agent
+          @Unordered = unordered
+          @DeadLine = deadline
+          @FlowType = flowtype
+          @UserData = userdata
+          @FlowDescription = flowdescription
           @ClientToken = clienttoken
+          @CustomShowMap = customshowmap
+          @RelatedFlowId = relatedflowid
+          @CallbackUrl = callbackurl
         end
 
         def deserialize(params)
-          unless params['Operator'].nil?
-            @Operator = UserInfo.new
-            @Operator.deserialize(params['Operator'])
-          end
           @FlowName = params['FlowName']
           unless params['Approvers'].nil?
             @Approvers = []
@@ -595,23 +606,29 @@ module TencentCloud
               @Approvers << flowcreateapprover_tmp
             end
           end
-          @FlowDescription = params['FlowDescription']
-          @Unordered = params['Unordered']
-          @FlowType = params['FlowType']
-          @DeadLine = params['DeadLine']
-          @CallbackUrl = params['CallbackUrl']
-          @UserData = params['UserData']
+          unless params['Operator'].nil?
+            @Operator = UserInfo.new
+            @Operator.deserialize(params['Operator'])
+          end
           unless params['Agent'].nil?
             @Agent = Agent.new
             @Agent.deserialize(params['Agent'])
           end
+          @Unordered = params['Unordered']
+          @DeadLine = params['DeadLine']
+          @FlowType = params['FlowType']
+          @UserData = params['UserData']
+          @FlowDescription = params['FlowDescription']
           @ClientToken = params['ClientToken']
+          @CustomShowMap = params['CustomShowMap']
+          @RelatedFlowId = params['RelatedFlowId']
+          @CallbackUrl = params['CallbackUrl']
         end
       end
 
       # CreateFlow返回参数结构体
       class CreateFlowResponse < TencentCloud::Common::AbstractModel
-        # @param FlowId: 流程编号
+        # @param FlowId: 签署流程编号
         # @type FlowId: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -633,49 +650,52 @@ module TencentCloud
       class CreateMultiFlowSignQRCodeRequest < TencentCloud::Common::AbstractModel
         # @param TemplateId: 模板ID
         # @type TemplateId: String
+        # @param FlowName: 签署流程名称，最大长度不超过200字符
+        # @type FlowName: String
         # @param Operator: 用户信息
         # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
-        # @param FlowName: 合同名称
-        # @type FlowName: String
         # @param Agent: 应用信息
         # @type Agent: :class:`Tencentcloud::Ess.v20201111.models.Agent`
-        # @param FlowEffectiveDay: 合同有效天数 默认7天 最高设置不超过30天
+        # @param CallbackUrl: 回调地址,最大长度1000字符串
+        # 回调时机：
+        # 用户通过签署二维码发起签署流程时，企业额度不足导致失败
+        # @type CallbackUrl: String
+        # @param MaxFlowNum: 最大可发起签署流程份数，默认5份
+        # 发起流程数量超过此上限后二维码自动失效
+        # @type MaxFlowNum: Integer
+        # @param FlowEffectiveDay: 签署流程有效天数 默认7天 最高设置不超过30天
         # @type FlowEffectiveDay: Integer
         # @param QrEffectiveDay: 二维码有效天数 默认7天 最高设置不超过90天
         # @type QrEffectiveDay: Integer
-        # @param MaxFlowNum: 最大合同份数，默认5份 超过此上限 二维码自动失效
-        # @type MaxFlowNum: Integer
-        # @param CallbackUrl: 回调地址
-        # @type CallbackUrl: String
 
-        attr_accessor :TemplateId, :Operator, :FlowName, :Agent, :FlowEffectiveDay, :QrEffectiveDay, :MaxFlowNum, :CallbackUrl
+        attr_accessor :TemplateId, :FlowName, :Operator, :Agent, :CallbackUrl, :MaxFlowNum, :FlowEffectiveDay, :QrEffectiveDay
         
-        def initialize(templateid=nil, operator=nil, flowname=nil, agent=nil, floweffectiveday=nil, qreffectiveday=nil, maxflownum=nil, callbackurl=nil)
+        def initialize(templateid=nil, flowname=nil, operator=nil, agent=nil, callbackurl=nil, maxflownum=nil, floweffectiveday=nil, qreffectiveday=nil)
           @TemplateId = templateid
-          @Operator = operator
           @FlowName = flowname
+          @Operator = operator
           @Agent = agent
+          @CallbackUrl = callbackurl
+          @MaxFlowNum = maxflownum
           @FlowEffectiveDay = floweffectiveday
           @QrEffectiveDay = qreffectiveday
-          @MaxFlowNum = maxflownum
-          @CallbackUrl = callbackurl
         end
 
         def deserialize(params)
           @TemplateId = params['TemplateId']
+          @FlowName = params['FlowName']
           unless params['Operator'].nil?
             @Operator = UserInfo.new
             @Operator.deserialize(params['Operator'])
           end
-          @FlowName = params['FlowName']
           unless params['Agent'].nil?
             @Agent = Agent.new
             @Agent.deserialize(params['Agent'])
           end
+          @CallbackUrl = params['CallbackUrl']
+          @MaxFlowNum = params['MaxFlowNum']
           @FlowEffectiveDay = params['FlowEffectiveDay']
           @QrEffectiveDay = params['QrEffectiveDay']
-          @MaxFlowNum = params['MaxFlowNum']
-          @CallbackUrl = params['CallbackUrl']
         end
       end
 
@@ -706,37 +726,37 @@ module TencentCloud
       class CreateSchemeUrlRequest < TencentCloud::Common::AbstractModel
         # @param Operator: 调用方用户信息，参考通用结构
         # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
-        # @param Agent: 调用方渠道信息，参考通用结构
+        # @param Agent: 应用相关信息
         # @type Agent: :class:`Tencentcloud::Ess.v20201111.models.Agent`
-        # @param Name: 姓名
-        # @type Name: String
-        # @param Mobile: 手机号
-        # @type Mobile: String
-        # @param PathType: 跳转页面 1: 小程序合同详情 2: 小程序合同列表页 0: 不传, 默认主页
-        # @type PathType: Integer
-        # @param FlowId: 合同详情 id (PathType=1时必传)
-        # @type FlowId: String
-        # @param OrganizationName: 企业名称
-        # @type OrganizationName: String
         # @param EndPoint: 链接类型
         # HTTP：跳转电子签小程序的http_url，
         # APP：第三方APP或小程序跳转电子签小程序的path。
         # 默认为HTTP类型
         # @type EndPoint: String
+        # @param Name: 姓名,最大长度50个字符
+        # @type Name: String
+        # @param Mobile: 手机号，大陆手机号11位
+        # @type Mobile: String
+        # @param OrganizationName: 企业名称
+        # @type OrganizationName: String
+        # @param FlowId: 签署流程编号 (PathType=1时必传)
+        # @type FlowId: String
+        # @param PathType: 跳转页面 1: 小程序合同详情 2: 小程序合同列表页 0: 不传, 默认主页
+        # @type PathType: Integer
         # @param AutoJumpBack: 是否自动回跳 true：是， false：否。该参数只针对"APP" 类型的签署链接有效
         # @type AutoJumpBack: Boolean
 
-        attr_accessor :Operator, :Agent, :Name, :Mobile, :PathType, :FlowId, :OrganizationName, :EndPoint, :AutoJumpBack
+        attr_accessor :Operator, :Agent, :EndPoint, :Name, :Mobile, :OrganizationName, :FlowId, :PathType, :AutoJumpBack
         
-        def initialize(operator=nil, agent=nil, name=nil, mobile=nil, pathtype=nil, flowid=nil, organizationname=nil, endpoint=nil, autojumpback=nil)
+        def initialize(operator=nil, agent=nil, endpoint=nil, name=nil, mobile=nil, organizationname=nil, flowid=nil, pathtype=nil, autojumpback=nil)
           @Operator = operator
           @Agent = agent
+          @EndPoint = endpoint
           @Name = name
           @Mobile = mobile
-          @PathType = pathtype
-          @FlowId = flowid
           @OrganizationName = organizationname
-          @EndPoint = endpoint
+          @FlowId = flowid
+          @PathType = pathtype
           @AutoJumpBack = autojumpback
         end
 
@@ -749,12 +769,12 @@ module TencentCloud
             @Agent = Agent.new
             @Agent.deserialize(params['Agent'])
           end
+          @EndPoint = params['EndPoint']
           @Name = params['Name']
           @Mobile = params['Mobile']
-          @PathType = params['PathType']
-          @FlowId = params['FlowId']
           @OrganizationName = params['OrganizationName']
-          @EndPoint = params['EndPoint']
+          @FlowId = params['FlowId']
+          @PathType = params['PathType']
           @AutoJumpBack = params['AutoJumpBack']
         end
       end
@@ -787,61 +807,62 @@ module TencentCloud
         # - 印章  “SEAL”
         # - 流程 "FLOW"
         # @type BusinessType: String
+        # @param BusinessIds: 业务编号的数组，如模板编号、文档编号、印章编号
+        # 最大支持20个资源
+        # @type BusinessIds: Array
         # @param Operator: 操作者信息
         # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
-        # @param BusinessIds: 业务编号的数组，如模板编号、文档编号、印章编号
-        # @type BusinessIds: Array
-        # @param FileType: 文件类型，"JPG", "PDF","ZIP"等
-        # @type FileType: String
+        # @param Agent: 应用相关信息
+        # @type Agent: :class:`Tencentcloud::Ess.v20201111.models.Agent`
         # @param FileName: 下载后的文件命名，只有fileType为zip的时候生效
         # @type FileName: String
-        # @param Offset: 指定资源起始偏移量
+        # @param FileType: 文件类型，"JPG", "PDF","ZIP"等
+        # @type FileType: String
+        # @param Offset: 指定资源起始偏移量，默认0
         # @type Offset: Integer
         # @param Limit: 指定资源数量，查询全部资源则传入-1
         # @type Limit: Integer
-        # @param Agent: 应用相关信息
-        # @type Agent: :class:`Tencentcloud::Ess.v20201111.models.Agent`
-        # @param UrlTtl: 下载url过期时间，0: 按默认值5分钟，允许范围：1s~24*60*60s(1天)
+        # @param UrlTtl: 下载url过期时间，单位秒。0: 按默认值5分钟，允许范围：1s~24*60*60s(1天)
         # @type UrlTtl: Integer
-        # @param CcToken: 流程校验发送邮件权限
-        # @type CcToken: String
-        # @param Scene: 场景
+        # @param Scene: 暂不开放
         # @type Scene: String
+        # @param CcToken: 暂不开放
+        # @type CcToken: String
 
-        attr_accessor :BusinessType, :Operator, :BusinessIds, :FileType, :FileName, :Offset, :Limit, :Agent, :UrlTtl, :CcToken, :Scene
+        attr_accessor :BusinessType, :BusinessIds, :Operator, :Agent, :FileName, :FileType, :Offset, :Limit, :UrlTtl, :Scene, :CcToken
         
-        def initialize(businesstype=nil, operator=nil, businessids=nil, filetype=nil, filename=nil, offset=nil, limit=nil, agent=nil, urlttl=nil, cctoken=nil, scene=nil)
+        def initialize(businesstype=nil, businessids=nil, operator=nil, agent=nil, filename=nil, filetype=nil, offset=nil, limit=nil, urlttl=nil, scene=nil, cctoken=nil)
           @BusinessType = businesstype
-          @Operator = operator
           @BusinessIds = businessids
-          @FileType = filetype
+          @Operator = operator
+          @Agent = agent
           @FileName = filename
+          @FileType = filetype
           @Offset = offset
           @Limit = limit
-          @Agent = agent
           @UrlTtl = urlttl
-          @CcToken = cctoken
           @Scene = scene
+          @CcToken = cctoken
         end
 
         def deserialize(params)
           @BusinessType = params['BusinessType']
+          @BusinessIds = params['BusinessIds']
           unless params['Operator'].nil?
             @Operator = UserInfo.new
             @Operator.deserialize(params['Operator'])
           end
-          @BusinessIds = params['BusinessIds']
-          @FileType = params['FileType']
-          @FileName = params['FileName']
-          @Offset = params['Offset']
-          @Limit = params['Limit']
           unless params['Agent'].nil?
             @Agent = Agent.new
             @Agent.deserialize(params['Agent'])
           end
+          @FileName = params['FileName']
+          @FileType = params['FileType']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
           @UrlTtl = params['UrlTtl']
-          @CcToken = params['CcToken']
           @Scene = params['Scene']
+          @CcToken = params['CcToken']
         end
       end
 
@@ -878,27 +899,27 @@ module TencentCloud
 
       # DescribeFlowBriefs请求参数结构体
       class DescribeFlowBriefsRequest < TencentCloud::Common::AbstractModel
-        # @param Operator: 操作人信息
-        # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
         # @param FlowIds: 需要查询的流程ID列表
         # @type FlowIds: Array
-        # @param Agent: 代理商信息
+        # @param Operator: 操作人信息
+        # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
+        # @param Agent: 应用相关信息
         # @type Agent: :class:`Tencentcloud::Ess.v20201111.models.Agent`
 
-        attr_accessor :Operator, :FlowIds, :Agent
+        attr_accessor :FlowIds, :Operator, :Agent
         
-        def initialize(operator=nil, flowids=nil, agent=nil)
-          @Operator = operator
+        def initialize(flowids=nil, operator=nil, agent=nil)
           @FlowIds = flowids
+          @Operator = operator
           @Agent = agent
         end
 
         def deserialize(params)
+          @FlowIds = params['FlowIds']
           unless params['Operator'].nil?
             @Operator = UserInfo.new
             @Operator.deserialize(params['Operator'])
           end
-          @FlowIds = params['FlowIds']
           unless params['Agent'].nil?
             @Agent = Agent.new
             @Agent.deserialize(params['Agent'])
@@ -1019,7 +1040,7 @@ module TencentCloud
 
       # DescribeThirdPartyAuthCode请求参数结构体
       class DescribeThirdPartyAuthCodeRequest < TencentCloud::Common::AbstractModel
-        # @param AuthCode: AuthCode 值
+        # @param AuthCode: 电子签小程序跳转客户小程序时携带的授权查看码
         # @type AuthCode: String
 
         attr_accessor :AuthCode
@@ -1182,65 +1203,63 @@ module TencentCloud
         # @type ApproverType: Integer
         # @param OrganizationName: 如果签署方为企业，需要填入企业全称
         # @type OrganizationName: String
-        # @param Required: 是否需要签署
-        # - `false`: 不需要签署
-        # -  `true`:  需要签署
-        # @type Required: Boolean
         # @param ApproverName: 签署方经办人姓名
         # @type ApproverName: String
         # @param ApproverMobile: 签署方经办人手机号码
         # @type ApproverMobile: String
-        # @param ApproverIdCardNumber: 签署方经办人证件号码
-        # @type ApproverIdCardNumber: String
         # @param ApproverIdCardType: 签署方经办人证件类型ID_CARD 身份证
         # HONGKONG_AND_MACAO 港澳居民来往内地通行证
         # HONGKONG_MACAO_AND_TAIWAN 港澳台居民居住证(格式同居民身份证)
         # @type ApproverIdCardType: String
+        # @param ApproverIdCardNumber: 签署方经办人证件号码
+        # @type ApproverIdCardNumber: String
         # @param RecipientId: 签署方经办人在模板中的角色ID
         # @type RecipientId: String
-        # @param UserId: 签署方经办人的用户ID,和签署方经办人姓名+手机号+证件必须有一个
-        # @type UserId: String
+        # @param VerifyChannel: 签署意愿确认渠道,WEIXINAPP:人脸识别
+        # @type VerifyChannel: Array
+        # @param NotifyType: 是否发送短信，sms--短信通知，none--不通知，默认为sms
+        # @type NotifyType: String
         # @param IsFullText: 签署前置条件：是否需要阅读全文，默认为不需要
         # @type IsFullText: Boolean
         # @param PreReadTime: 签署前置条件：阅读时长限制，默认为不需要
         # @type PreReadTime: Integer
-        # @param NotifyType: 是否发送短信，sms--短信通知，none--不通知，默认为sms
-        # @type NotifyType: String
-        # @param VerifyChannel: 签署意愿确认渠道,WEIXINAPP:人脸识别
-        # @type VerifyChannel: Array
+        # @param UserId: 签署方经办人的用户ID,和签署方经办人姓名+手机号+证件必须有一个
+        # @type UserId: String
+        # @param Required: 当前只支持true，默认为true
+        # @type Required: Boolean
 
-        attr_accessor :ApproverType, :OrganizationName, :Required, :ApproverName, :ApproverMobile, :ApproverIdCardNumber, :ApproverIdCardType, :RecipientId, :UserId, :IsFullText, :PreReadTime, :NotifyType, :VerifyChannel
+        attr_accessor :ApproverType, :OrganizationName, :ApproverName, :ApproverMobile, :ApproverIdCardType, :ApproverIdCardNumber, :RecipientId, :VerifyChannel, :NotifyType, :IsFullText, :PreReadTime, :UserId, :Required
         
-        def initialize(approvertype=nil, organizationname=nil, required=nil, approvername=nil, approvermobile=nil, approveridcardnumber=nil, approveridcardtype=nil, recipientid=nil, userid=nil, isfulltext=nil, prereadtime=nil, notifytype=nil, verifychannel=nil)
+        def initialize(approvertype=nil, organizationname=nil, approvername=nil, approvermobile=nil, approveridcardtype=nil, approveridcardnumber=nil, recipientid=nil, verifychannel=nil, notifytype=nil, isfulltext=nil, prereadtime=nil, userid=nil, required=nil)
           @ApproverType = approvertype
           @OrganizationName = organizationname
-          @Required = required
           @ApproverName = approvername
           @ApproverMobile = approvermobile
-          @ApproverIdCardNumber = approveridcardnumber
           @ApproverIdCardType = approveridcardtype
+          @ApproverIdCardNumber = approveridcardnumber
           @RecipientId = recipientid
-          @UserId = userid
+          @VerifyChannel = verifychannel
+          @NotifyType = notifytype
           @IsFullText = isfulltext
           @PreReadTime = prereadtime
-          @NotifyType = notifytype
-          @VerifyChannel = verifychannel
+          @UserId = userid
+          @Required = required
         end
 
         def deserialize(params)
           @ApproverType = params['ApproverType']
           @OrganizationName = params['OrganizationName']
-          @Required = params['Required']
           @ApproverName = params['ApproverName']
           @ApproverMobile = params['ApproverMobile']
-          @ApproverIdCardNumber = params['ApproverIdCardNumber']
           @ApproverIdCardType = params['ApproverIdCardType']
+          @ApproverIdCardNumber = params['ApproverIdCardNumber']
           @RecipientId = params['RecipientId']
-          @UserId = params['UserId']
+          @VerifyChannel = params['VerifyChannel']
+          @NotifyType = params['NotifyType']
           @IsFullText = params['IsFullText']
           @PreReadTime = params['PreReadTime']
-          @NotifyType = params['NotifyType']
-          @VerifyChannel = params['VerifyChannel']
+          @UserId = params['UserId']
+          @Required = params['Required']
         end
       end
 
@@ -1250,7 +1269,7 @@ module TencentCloud
         # @type ComponentValue: String
         # @param ComponentId: 控件id
         # @type ComponentId: String
-        # @param ComponentName: 控件名字
+        # @param ComponentName: 控件名字，最大长度不超过30字符
         # @type ComponentName: String
 
         attr_accessor :ComponentValue, :ComponentId, :ComponentName
@@ -1358,30 +1377,30 @@ module TencentCloud
 
       # StartFlow请求参数结构体
       class StartFlowRequest < TencentCloud::Common::AbstractModel
+        # @param FlowId: 签署流程编号，由CreateFlow接口返回
+        # @type FlowId: String
         # @param Operator: 用户信息
         # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
-        # @param FlowId: 流程编号
-        # @type FlowId: String
         # @param Agent: 应用相关信息
         # @type Agent: :class:`Tencentcloud::Ess.v20201111.models.Agent`
-        # @param ClientToken: 客户端Token，保持接口幂等性
+        # @param ClientToken: 客户端Token，保持接口幂等性,最大长度64个字符
         # @type ClientToken: String
 
-        attr_accessor :Operator, :FlowId, :Agent, :ClientToken
+        attr_accessor :FlowId, :Operator, :Agent, :ClientToken
         
-        def initialize(operator=nil, flowid=nil, agent=nil, clienttoken=nil)
-          @Operator = operator
+        def initialize(flowid=nil, operator=nil, agent=nil, clienttoken=nil)
           @FlowId = flowid
+          @Operator = operator
           @Agent = agent
           @ClientToken = clienttoken
         end
 
         def deserialize(params)
+          @FlowId = params['FlowId']
           unless params['Operator'].nil?
             @Operator = UserInfo.new
             @Operator.deserialize(params['Operator'])
           end
-          @FlowId = params['FlowId']
           unless params['Agent'].nil?
             @Agent = Agent.new
             @Agent.deserialize(params['Agent'])
@@ -1513,7 +1532,7 @@ module TencentCloud
       class UploadFile < TencentCloud::Common::AbstractModel
         # @param FileBody: Base64编码后的文件内容
         # @type FileBody: String
-        # @param FileName: 文件名
+        # @param FileName: 文件名，最大长度不超过200字符
         # @type FileName: String
 
         attr_accessor :FileBody, :FileName

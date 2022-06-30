@@ -400,15 +400,25 @@ module TencentCloud
       class DescribeCloudRunServersRequest < TencentCloud::Common::AbstractModel
         # @param EnvId: 环境Id
         # @type EnvId: String
+        # @param PageSize: 默认为9， 最大为30
+        # 不传或传0时 取默认9
+        # 大于30时取30
+        # @type PageSize: Integer
+        # @param PageNum: 不传或传0时 会默认为1
+        # @type PageNum: Integer
 
-        attr_accessor :EnvId
+        attr_accessor :EnvId, :PageSize, :PageNum
         
-        def initialize(envid=nil)
+        def initialize(envid=nil, pagesize=nil, pagenum=nil)
           @EnvId = envid
+          @PageSize = pagesize
+          @PageNum = pagenum
         end
 
         def deserialize(params)
           @EnvId = params['EnvId']
+          @PageSize = params['PageSize']
+          @PageNum = params['PageNum']
         end
       end
 
@@ -416,13 +426,16 @@ module TencentCloud
       class DescribeCloudRunServersResponse < TencentCloud::Common::AbstractModel
         # @param ServerList: 服务列表
         # @type ServerList: Array
+        # @param Total: 服务总数
+        # @type Total: Integer
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :ServerList, :RequestId
+        attr_accessor :ServerList, :Total, :RequestId
         
-        def initialize(serverlist=nil, requestid=nil)
+        def initialize(serverlist=nil, total=nil, requestid=nil)
           @ServerList = serverlist
+          @Total = total
           @RequestId = requestid
         end
 
@@ -435,6 +448,7 @@ module TencentCloud
               @ServerList << serverbaseinfo_tmp
             end
           end
+          @Total = params['Total']
           @RequestId = params['RequestId']
         end
       end

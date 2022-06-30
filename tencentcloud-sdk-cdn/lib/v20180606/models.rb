@@ -10015,19 +10015,27 @@ module TencentCloud
         # @type FlushType: String
         # @param UrlEncode: 是否对中文字符进行编码后刷新
         # @type UrlEncode: Boolean
+        # @param Area: 刷新区域
+        # 无此参数时，默认刷新加速域名所在加速区域
+        # 填充 mainland 时，仅刷新中国境内加速节点上缓存内容
+        # 填充 overseas 时，仅刷新中国境外加速节点上缓存内容
+        # 指定刷新区域时，需要与域名加速区域匹配
+        # @type Area: String
 
-        attr_accessor :Paths, :FlushType, :UrlEncode
+        attr_accessor :Paths, :FlushType, :UrlEncode, :Area
         
-        def initialize(paths=nil, flushtype=nil, urlencode=nil)
+        def initialize(paths=nil, flushtype=nil, urlencode=nil, area=nil)
           @Paths = paths
           @FlushType = flushtype
           @UrlEncode = urlencode
+          @Area = area
         end
 
         def deserialize(params)
           @Paths = params['Paths']
           @FlushType = params['FlushType']
           @UrlEncode = params['UrlEncode']
+          @Area = params['Area']
         end
       end
 

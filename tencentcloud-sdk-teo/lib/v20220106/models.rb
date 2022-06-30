@@ -171,10 +171,12 @@ module TencentCloud
 
       # 应用代理实例
       class ApplicationProxy < TencentCloud::Common::AbstractModel
-        # @param ProxyId: 实例ID
+        # @param ProxyId: 代理ID
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProxyId: String
-        # @param ProxyName: 实例名称
+        # @param ProxyName: 代理名称
+        # 当ProxyType=hostname时，表示域名或者子域名
+        # 当ProxyType=instance时，表示实例名称
         # @type ProxyName: String
         # @param PlatType: 调度模式：
         # ip表示Anycast IP
@@ -214,11 +216,13 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SessionPersistTime: Integer
         # @param ProxyType: 服务类型
-        # hostname：子域名
-        # instance：实例
+        # hostname：子域名模式
+        # instance：实例模式
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProxyType: String
-        # @param HostId: 七层实例ID
+        # @param HostId: 当ProxyType=hostname时：
+        # ProxyName为域名，如：test.123.com
+        # HostId表示该域名，即test.123.com对应的代理加速唯一标识
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HostId: String
 
@@ -281,14 +285,14 @@ module TencentCloud
         # @param OriginType: 源站类型，取值：
         # custom：手动添加
         # origins：源站组
-        # load_balancing：负载均衡
         # @type OriginType: String
         # @param OriginValue: 源站信息：
-        # 当OriginType=custom时，表示多个：
-        # IP:端口
-        # 域名:端口
-        # 当OriginType=origins时，包含一个元素，表示源站组ID
-        # 当OriginType=load_balancing时，包含一个元素，表示负载均衡ID
+        # 当OriginType=custom时，表示一个或多个源站，如：
+        # OriginValue=["8.8.8.8:80","9.9.9.9:80"]
+        # OriginValue=["test.com:80"]
+
+        # 当OriginType=origins时，包含一个元素，表示源站组ID，如：
+        # OriginValue=["origin-xxx"]
         # @type OriginValue: Array
         # @param RuleId: 规则ID
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -1174,7 +1178,9 @@ module TencentCloud
         # @type ZoneId: String
         # @param ZoneName: 站点名称
         # @type ZoneName: String
-        # @param ProxyName: 四层代理名称
+        # @param ProxyName: 代理名称
+        # 当ProxyType=hostname时，表示域名或者子域名
+        # 当ProxyType=instance时，表示实例名称
         # @type ProxyName: String
         # @param PlatType: 调度模式：
         # ip表示Anycast IP
@@ -1193,8 +1199,8 @@ module TencentCloud
         # @param SessionPersistTime: 会话保持时间，取值范围：30-3600，单位：秒
         # @type SessionPersistTime: Integer
         # @param ProxyType: 服务类型
-        # hostname：子域名
-        # instance：实例
+        # hostname：子域名模式
+        # instance：实例模式
         # @type ProxyType: String
 
         attr_accessor :ZoneId, :ZoneName, :ProxyName, :PlatType, :SecurityType, :AccelerateType, :ForwardClientIp, :SessionPersist, :Rule, :SessionPersistTime, :ProxyType
@@ -1270,14 +1276,12 @@ module TencentCloud
         # @param OriginType: 源站类型，取值：
         # custom：手动添加
         # origins：源站组
-        # load_balancing：负载均衡
         # @type OriginType: String
         # @param OriginValue: 源站信息：
         # 当OriginType=custom时，表示多个：
         # IP:端口
         # 域名:端口
         # 当OriginType=origins时，包含一个元素，表示源站组ID
-        # 当OriginType=load_balancing时，包含一个元素，表示负载均衡ID
         # @type OriginValue: Array
         # @param ForwardClientIp: 传递客户端IP，当Proto=TCP时，取值：
         # TOA：TOA
@@ -1611,7 +1615,7 @@ module TencentCloud
         # @param Type: 配置类型，当OriginType=self 时，需要填写：
         # area: 按区域配置
         # weight: 按权重配置
-        # 当OriginType=third_party 时，不需要填写
+        # 当OriginType=third_party/cos 时，不需要填写
         # @type Type: String
         # @param Record: 源站记录
         # @type Record: Array
@@ -1620,6 +1624,7 @@ module TencentCloud
         # @param OriginType: 源站类型
         # self：自有源站
         # third_party：第三方源站
+        # cos：腾讯云COS源站
         # @type OriginType: String
 
         attr_accessor :OriginName, :Type, :Record, :ZoneId, :OriginType
@@ -3012,7 +3017,9 @@ module TencentCloud
       class DescribeApplicationProxyDetailResponse < TencentCloud::Common::AbstractModel
         # @param ProxyId: 实例ID
         # @type ProxyId: String
-        # @param ProxyName: 实例名称
+        # @param ProxyName: 代理名称
+        # 当ProxyType=hostname时，表示域名或者子域名
+        # 当ProxyType=instance时，表示实例名称
         # @type ProxyName: String
         # @param PlatType: 调度模式：
         # ip表示Anycast IP
@@ -3044,10 +3051,12 @@ module TencentCloud
         # @param SessionPersistTime: 会话保持时间
         # @type SessionPersistTime: Integer
         # @param ProxyType: 服务类型
-        # hostname：子域名
-        # instance：实例
+        # hostname：子域名模式
+        # instance：实例模式
         # @type ProxyType: String
-        # @param HostId: 七层实例ID
+        # @param HostId: 当ProxyType=hostname时：
+        # ProxyName为域名，如：test.123.com
+        # HostId表示该域名，即test.123.com对应的代理加速唯一标识
         # @type HostId: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -3134,18 +3143,26 @@ module TencentCloud
         # @param TotalCount: 记录总数
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TotalCount: Integer
-        # @param Quota: 当ZoneId不为空时，表示当前站点允许创建的实例数量
+        # @param Quota: 字段已废弃
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Quota: Integer
+        # @param IpCount: 表示套餐内PlatType为ip的Anycast IP实例数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IpCount: Integer
+        # @param DomainCount: 表示套餐内PlatType为domain的CNAME实例数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DomainCount: Integer
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Data, :TotalCount, :Quota, :RequestId
+        attr_accessor :Data, :TotalCount, :Quota, :IpCount, :DomainCount, :RequestId
         
-        def initialize(data=nil, totalcount=nil, quota=nil, requestid=nil)
+        def initialize(data=nil, totalcount=nil, quota=nil, ipcount=nil, domaincount=nil, requestid=nil)
           @Data = data
           @TotalCount = totalcount
           @Quota = quota
+          @IpCount = ipcount
+          @DomainCount = domaincount
           @RequestId = requestid
         end
 
@@ -3160,6 +3177,8 @@ module TencentCloud
           end
           @TotalCount = params['TotalCount']
           @Quota = params['Quota']
+          @IpCount = params['IpCount']
+          @DomainCount = params['DomainCount']
           @RequestId = params['RequestId']
         end
       end
@@ -4451,7 +4470,9 @@ module TencentCloud
         # @type OriginId: String
         # @param OriginName: 源站组名称
         # @type OriginName: String
-        # @param Type: 配置类型
+        # @param Type: 源站组配置类型
+        # area：表示按照Record记录中的Area字段进行按客户端IP所在区域回源。
+        # weight：表示按照Record记录中的Weight字段进行按权重回源。
         # @type Type: String
         # @param Record: 记录
         # @type Record: Array
@@ -4464,18 +4485,25 @@ module TencentCloud
         # @param OriginType: 源站类型
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OriginType: String
-        # @param ApplicationProxyUsed: 是否被四层代理使用
+        # @param ApplicationProxyUsed: 当前源站组是否被四层代理使用。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ApplicationProxyUsed: Boolean
-        # @param LoadBalancingUsed: 是否被负载均衡使用
+        # @param LoadBalancingUsed: 当前源站组是否被负载均衡使用。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LoadBalancingUsed: Boolean
+        # @param LoadBalancingUsedType: 使用当前源站组的负载均衡的类型：
+        # none：未被使用
+        # dns_only：被仅DNS类型负载均衡使用
+        # proxied：被代理加速类型负载均衡使用
+        # both：同时被仅DNS和代理加速类型负载均衡使用
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LoadBalancingUsedType: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :OriginId, :OriginName, :Type, :Record, :UpdateTime, :ZoneId, :ZoneName, :OriginType, :ApplicationProxyUsed, :LoadBalancingUsed, :RequestId
+        attr_accessor :OriginId, :OriginName, :Type, :Record, :UpdateTime, :ZoneId, :ZoneName, :OriginType, :ApplicationProxyUsed, :LoadBalancingUsed, :LoadBalancingUsedType, :RequestId
         
-        def initialize(originid=nil, originname=nil, type=nil, record=nil, updatetime=nil, zoneid=nil, zonename=nil, origintype=nil, applicationproxyused=nil, loadbalancingused=nil, requestid=nil)
+        def initialize(originid=nil, originname=nil, type=nil, record=nil, updatetime=nil, zoneid=nil, zonename=nil, origintype=nil, applicationproxyused=nil, loadbalancingused=nil, loadbalancingusedtype=nil, requestid=nil)
           @OriginId = originid
           @OriginName = originname
           @Type = type
@@ -4486,6 +4514,7 @@ module TencentCloud
           @OriginType = origintype
           @ApplicationProxyUsed = applicationproxyused
           @LoadBalancingUsed = loadbalancingused
+          @LoadBalancingUsedType = loadbalancingusedtype
           @RequestId = requestid
         end
 
@@ -4507,6 +4536,7 @@ module TencentCloud
           @OriginType = params['OriginType']
           @ApplicationProxyUsed = params['ApplicationProxyUsed']
           @LoadBalancingUsed = params['LoadBalancingUsed']
+          @LoadBalancingUsedType = params['LoadBalancingUsedType']
           @RequestId = params['RequestId']
         end
       end
@@ -6623,10 +6653,10 @@ module TencentCloud
         # @param Cname: CNAME 地址
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Cname: String
-        # @param DomainStatus: 域名是否开启了lb，四层，安全
+        # @param DomainStatus: 域名是否开启了负载均衡，四层代理，安全
         # - lb 负载均衡
         # - security 安全
-        # - l4 四层
+        # - l4 四层代理
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DomainStatus: Array
 
@@ -7314,9 +7344,11 @@ module TencentCloud
       class ModifyApplicationProxyRequest < TencentCloud::Common::AbstractModel
         # @param ZoneId: 站点ID
         # @type ZoneId: String
-        # @param ProxyId: 四层代理ID
+        # @param ProxyId: 代理ID
         # @type ProxyId: String
-        # @param ProxyName: 四层代理名称
+        # @param ProxyName: 代理名称
+        # 当ProxyType=hostname时，表示域名或者子域名
+        # 当ProxyType=instance时，表示实例名称
         # @type ProxyName: String
         # @param ForwardClientIp: 参数已经废弃
         # @type ForwardClientIp: String
@@ -7325,8 +7357,8 @@ module TencentCloud
         # @param SessionPersistTime: 会话保持时间，取值范围：30-3600，单位：秒
         # @type SessionPersistTime: Integer
         # @param ProxyType: 服务类型
-        # hostname：子域名
-        # instance：实例
+        # hostname：子域名模式
+        # instance：实例模式
         # @type ProxyType: String
 
         attr_accessor :ZoneId, :ProxyId, :ProxyName, :ForwardClientIp, :SessionPersist, :SessionPersistTime, :ProxyType
@@ -7354,7 +7386,7 @@ module TencentCloud
 
       # ModifyApplicationProxy返回参数结构体
       class ModifyApplicationProxyResponse < TencentCloud::Common::AbstractModel
-        # @param ProxyId: 四层代理ID
+        # @param ProxyId: 代理ID
         # @type ProxyId: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -7389,14 +7421,14 @@ module TencentCloud
         # @param OriginType: 源站类型，取值：
         # custom：手动添加
         # origins：源站组
-        # load_balancing：负载均衡
         # @type OriginType: String
         # @param OriginValue: 源站信息：
-        # 当OriginType=custom时，表示多个：
-        # IP:端口
-        # 域名:端口
-        # 当OriginType=origins时，包含一个元素，表示源站组ID
-        # 当OriginType=load_balancing时，包含一个元素，表示负载均衡ID
+        # 当OriginType=custom时，表示一个或多个源站，如：
+        # OriginValue=["8.8.8.8:80","9.9.9.9:80"]
+        # OriginValue=["test.com:80"]
+
+        # 当OriginType=origins时，包含一个元素，表示源站组ID，如：
+        # OriginValue=["origin-xxx"]
         # @type OriginValue: Array
         # @param ForwardClientIp: 传递客户端IP，当Proto=TCP时，取值：
         # TOA：TOA
@@ -7461,7 +7493,7 @@ module TencentCloud
       class ModifyApplicationProxyRuleStatusRequest < TencentCloud::Common::AbstractModel
         # @param ZoneId: 站点ID
         # @type ZoneId: String
-        # @param ProxyId: 四层代理ID
+        # @param ProxyId: 代理ID
         # @type ProxyId: String
         # @param RuleId: 规则ID
         # @type RuleId: String
@@ -7511,7 +7543,7 @@ module TencentCloud
       class ModifyApplicationProxyStatusRequest < TencentCloud::Common::AbstractModel
         # @param ZoneId: 站点ID
         # @type ZoneId: String
-        # @param ProxyId: 四层代理ID
+        # @param ProxyId: 代理ID
         # @type ProxyId: String
         # @param Status: 状态
         # offline: 停用
@@ -7535,7 +7567,7 @@ module TencentCloud
 
       # ModifyApplicationProxyStatus返回参数结构体
       class ModifyApplicationProxyStatusResponse < TencentCloud::Common::AbstractModel
-        # @param ProxyId: 四层代理ID
+        # @param ProxyId: 代理ID
         # @type ProxyId: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -8032,7 +8064,7 @@ module TencentCloud
         # @param Type: 配置类型，当OriginType=self 时，需要填写：
         # area: 按区域配置
         # weight: 按权重配置
-        # 当OriginType=third_party 时，不需要填写
+        # 当OriginType=third_party/cos 时，不需要填写
         # @type Type: String
         # @param Record: 源站记录
         # @type Record: Array
@@ -8041,6 +8073,7 @@ module TencentCloud
         # @param OriginType: 源站类型
         # self：自有源站
         # third_party：第三方源站
+        # cos：腾讯云COS源站
         # @type OriginType: String
 
         attr_accessor :OriginId, :OriginName, :Type, :Record, :ZoneId, :OriginType
@@ -8513,6 +8546,27 @@ module TencentCloud
         end
       end
 
+      # 源站健康检查，源站状态信息
+      class OriginCheckOriginStatus < TencentCloud::Common::AbstractModel
+        # @param Status: healthy: 健康，unhealthy: 不健康，process: 探测中
+        # @type Status: String
+        # @param Host: host列表，源站组不健康时存在值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Host: Array
+
+        attr_accessor :Status, :Host
+        
+        def initialize(status=nil, host=nil)
+          @Status = status
+          @Host = host
+        end
+
+        def deserialize(params)
+          @Status = params['Status']
+          @Host = params['Host']
+        end
+      end
+
       # 源站组查询过滤参数
       class OriginFilter < TencentCloud::Common::AbstractModel
         # @param Name: 要过滤的字段，支持：name
@@ -8539,7 +8593,9 @@ module TencentCloud
         # @type OriginId: String
         # @param OriginName: 源站组名称
         # @type OriginName: String
-        # @param Type: 配置类型
+        # @param Type: 源站组配置类型
+        # area：表示按照Record记录中的Area字段进行按客户端IP所在区域回源。
+        # weight：表示按照Record记录中的Weight字段进行按权重回源。
         # @type Type: String
         # @param Record: 记录
         # @type Record: Array
@@ -8552,16 +8608,26 @@ module TencentCloud
         # @param OriginType: 源站类型
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OriginType: String
-        # @param ApplicationProxyUsed: 是否为四层代理使用
+        # @param ApplicationProxyUsed: 当前源站组是否被四层代理使用。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ApplicationProxyUsed: Boolean
-        # @param LoadBalancingUsed: 是否为负载均衡使用
+        # @param LoadBalancingUsed: 当前源站组是否被负载均衡使用。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LoadBalancingUsed: Boolean
+        # @param Status: 源站状态信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: :class:`Tencentcloud::Teo.v20220106.models.OriginCheckOriginStatus`
+        # @param LoadBalancingUsedType: 使用当前源站组的负载均衡的类型：
+        # none：未被使用
+        # dns_only：被仅DNS类型负载均衡使用
+        # proxied：被代理加速类型负载均衡使用
+        # both：同时被仅DNS和代理加速类型负载均衡使用
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LoadBalancingUsedType: String
 
-        attr_accessor :OriginId, :OriginName, :Type, :Record, :UpdateTime, :ZoneId, :ZoneName, :OriginType, :ApplicationProxyUsed, :LoadBalancingUsed
+        attr_accessor :OriginId, :OriginName, :Type, :Record, :UpdateTime, :ZoneId, :ZoneName, :OriginType, :ApplicationProxyUsed, :LoadBalancingUsed, :Status, :LoadBalancingUsedType
         
-        def initialize(originid=nil, originname=nil, type=nil, record=nil, updatetime=nil, zoneid=nil, zonename=nil, origintype=nil, applicationproxyused=nil, loadbalancingused=nil)
+        def initialize(originid=nil, originname=nil, type=nil, record=nil, updatetime=nil, zoneid=nil, zonename=nil, origintype=nil, applicationproxyused=nil, loadbalancingused=nil, status=nil, loadbalancingusedtype=nil)
           @OriginId = originid
           @OriginName = originname
           @Type = type
@@ -8572,6 +8638,8 @@ module TencentCloud
           @OriginType = origintype
           @ApplicationProxyUsed = applicationproxyused
           @LoadBalancingUsed = loadbalancingused
+          @Status = status
+          @LoadBalancingUsedType = loadbalancingusedtype
         end
 
         def deserialize(params)
@@ -8592,6 +8660,11 @@ module TencentCloud
           @OriginType = params['OriginType']
           @ApplicationProxyUsed = params['ApplicationProxyUsed']
           @LoadBalancingUsed = params['LoadBalancingUsed']
+          unless params['Status'].nil?
+            @Status = OriginCheckOriginStatus.new
+            @Status.deserialize(params['Status'])
+          end
+          @LoadBalancingUsedType = params['LoadBalancingUsedType']
         end
       end
 
@@ -8600,9 +8673,11 @@ module TencentCloud
         # @param Record: 记录值
         # @type Record: String
         # @param Area: 当源站配置类型Type=area时，表示区域
-        # 当源站类型Type=area时，为空表示默认区域
+        # 为空表示默认区域
         # @type Area: Array
         # @param Weight: 当源站配置类型Type=weight时，表示权重
+        # 取值范围为[1-100]
+        # 源站组内多个源站权重总和应为100
         # @type Weight: Integer
         # @param Port: 端口
         # @type Port: Integer

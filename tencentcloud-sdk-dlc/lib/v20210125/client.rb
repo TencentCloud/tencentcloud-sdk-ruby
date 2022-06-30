@@ -29,6 +29,30 @@ module TencentCloud
         end
 
 
+        # DMS元数据新增分区
+
+        # @param request: Request instance for AddDMSPartitions.
+        # @type request: :class:`Tencentcloud::dlc::V20210125::AddDMSPartitionsRequest`
+        # @rtype: :class:`Tencentcloud::dlc::V20210125::AddDMSPartitionsResponse`
+        def AddDMSPartitions(request)
+          body = send_request('AddDMSPartitions', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = AddDMSPartitionsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 添加用户到工作组
 
         # @param request: Request instance for AddUsersToWorkGroup.
@@ -39,6 +63,78 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = AddUsersToWorkGroupResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # DMS元数据更新库
+
+        # @param request: Request instance for AlterDMSDatabase.
+        # @type request: :class:`Tencentcloud::dlc::V20210125::AlterDMSDatabaseRequest`
+        # @rtype: :class:`Tencentcloud::dlc::V20210125::AlterDMSDatabaseResponse`
+        def AlterDMSDatabase(request)
+          body = send_request('AlterDMSDatabase', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = AlterDMSDatabaseResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # DMS元数据更新分区
+
+        # @param request: Request instance for AlterDMSPartition.
+        # @type request: :class:`Tencentcloud::dlc::V20210125::AlterDMSPartitionRequest`
+        # @rtype: :class:`Tencentcloud::dlc::V20210125::AlterDMSPartitionResponse`
+        def AlterDMSPartition(request)
+          body = send_request('AlterDMSPartition', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = AlterDMSPartitionResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # DMS元数据更新表
+
+        # @param request: Request instance for AlterDMSTable.
+        # @type request: :class:`Tencentcloud::dlc::V20210125::AlterDMSTableRequest`
+        # @rtype: :class:`Tencentcloud::dlc::V20210125::AlterDMSTableResponse`
+        def AlterDMSTable(request)
+          body = send_request('AlterDMSTable', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = AlterDMSTableResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -135,6 +231,78 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = CancelTaskResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 元数据锁检查
+
+        # @param request: Request instance for CheckLockMetaData.
+        # @type request: :class:`Tencentcloud::dlc::V20210125::CheckLockMetaDataRequest`
+        # @rtype: :class:`Tencentcloud::dlc::V20210125::CheckLockMetaDataResponse`
+        def CheckLockMetaData(request)
+          body = send_request('CheckLockMetaData', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CheckLockMetaDataResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # DMS元数据创建库
+
+        # @param request: Request instance for CreateDMSDatabase.
+        # @type request: :class:`Tencentcloud::dlc::V20210125::CreateDMSDatabaseRequest`
+        # @rtype: :class:`Tencentcloud::dlc::V20210125::CreateDMSDatabaseResponse`
+        def CreateDMSDatabase(request)
+          body = send_request('CreateDMSDatabase', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateDMSDatabaseResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # DMS元数据创建表
+
+        # @param request: Request instance for CreateDMSTable.
+        # @type request: :class:`Tencentcloud::dlc::V20210125::CreateDMSTableRequest`
+        # @rtype: :class:`Tencentcloud::dlc::V20210125::CreateDMSTableResponse`
+        def CreateDMSTable(request)
+          body = send_request('CreateDMSTable', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateDMSTableResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -581,6 +749,102 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # DMS元数据获取库
+
+        # @param request: Request instance for DescribeDMSDatabase.
+        # @type request: :class:`Tencentcloud::dlc::V20210125::DescribeDMSDatabaseRequest`
+        # @rtype: :class:`Tencentcloud::dlc::V20210125::DescribeDMSDatabaseResponse`
+        def DescribeDMSDatabase(request)
+          body = send_request('DescribeDMSDatabase', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeDMSDatabaseResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # DMS元数据获取分区
+
+        # @param request: Request instance for DescribeDMSPartitions.
+        # @type request: :class:`Tencentcloud::dlc::V20210125::DescribeDMSPartitionsRequest`
+        # @rtype: :class:`Tencentcloud::dlc::V20210125::DescribeDMSPartitionsResponse`
+        def DescribeDMSPartitions(request)
+          body = send_request('DescribeDMSPartitions', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeDMSPartitionsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # DMS元数据获取表
+
+        # @param request: Request instance for DescribeDMSTable.
+        # @type request: :class:`Tencentcloud::dlc::V20210125::DescribeDMSTableRequest`
+        # @rtype: :class:`Tencentcloud::dlc::V20210125::DescribeDMSTableResponse`
+        def DescribeDMSTable(request)
+          body = send_request('DescribeDMSTable', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeDMSTableResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # DMS元数据获取表列表
+
+        # @param request: Request instance for DescribeDMSTables.
+        # @type request: :class:`Tencentcloud::dlc::V20210125::DescribeDMSTablesRequest`
+        # @rtype: :class:`Tencentcloud::dlc::V20210125::DescribeDMSTablesResponse`
+        def DescribeDMSTables(request)
+          body = send_request('DescribeDMSTables', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeDMSTablesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（DescribeDatabases）用于查询数据库列表。
 
         # @param request: Request instance for DescribeDatabases.
@@ -941,6 +1205,78 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # DMS元数据删除库
+
+        # @param request: Request instance for DropDMSDatabase.
+        # @type request: :class:`Tencentcloud::dlc::V20210125::DropDMSDatabaseRequest`
+        # @rtype: :class:`Tencentcloud::dlc::V20210125::DropDMSDatabaseResponse`
+        def DropDMSDatabase(request)
+          body = send_request('DropDMSDatabase', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DropDMSDatabaseResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # DMS元数据删除分区
+
+        # @param request: Request instance for DropDMSPartitions.
+        # @type request: :class:`Tencentcloud::dlc::V20210125::DropDMSPartitionsRequest`
+        # @rtype: :class:`Tencentcloud::dlc::V20210125::DropDMSPartitionsResponse`
+        def DropDMSPartitions(request)
+          body = send_request('DropDMSPartitions', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DropDMSPartitionsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # DMS元数据删除表
+
+        # @param request: Request instance for DropDMSTable.
+        # @type request: :class:`Tencentcloud::dlc::V20210125::DropDMSTableRequest`
+        # @rtype: :class:`Tencentcloud::dlc::V20210125::DropDMSTableResponse`
+        def DropDMSTable(request)
+          body = send_request('DropDMSTable', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DropDMSTableResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（ListTaskJobLogDetail）用于获取spark-jar日志列表
 
         # @param request: Request instance for ListTaskJobLogDetail.
@@ -951,6 +1287,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ListTaskJobLogDetailResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 元数据锁
+
+        # @param request: Request instance for LockMetaData.
+        # @type request: :class:`Tencentcloud::dlc::V20210125::LockMetaDataRequest`
+        # @rtype: :class:`Tencentcloud::dlc::V20210125::LockMetaDataResponse`
+        def LockMetaData(request)
+          body = send_request('LockMetaData', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = LockMetaDataResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1047,6 +1407,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = UnbindWorkGroupsFromUserResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 元数据解锁
+
+        # @param request: Request instance for UnlockMetaData.
+        # @type request: :class:`Tencentcloud::dlc::V20210125::UnlockMetaDataRequest`
+        # @rtype: :class:`Tencentcloud::dlc::V20210125::UnlockMetaDataResponse`
+        def UnlockMetaData(request)
+          body = send_request('UnlockMetaData', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = UnlockMetaDataResponse.new
             model.deserialize(response['Response'])
             model
           else

@@ -6546,7 +6546,7 @@ module TencentCloud
         # @param ThirdPayOrderId: 第三方支付平台返回支付订单号。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ThirdPayOrderId: String
-        # @param RedirectInfo: 小程序跳转参数
+        # @param RedirectInfo: 跳转参数
         # 渠道为TENPAY，付款方式为EBANK_PAYMENT时必选。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RedirectInfo: :class:`Tencentcloud::Cpdp.v20190820.models.OpenBankRedirectInfo`
@@ -11235,6 +11235,28 @@ module TencentCloud
         end
       end
 
+      # 网银页面提交html
+      class OpenBankFormInfo < TencentCloud::Common::AbstractModel
+        # @param FormHtml: 网银页面提交html
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FormHtml: String
+        # @param FormEncoding: 网银提交页面字符集
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FormEncoding: String
+
+        attr_accessor :FormHtml, :FormEncoding
+        
+        def initialize(formhtml=nil, formencoding=nil)
+          @FormHtml = formhtml
+          @FormEncoding = formencoding
+        end
+
+        def deserialize(params)
+          @FormHtml = params['FormHtml']
+          @FormEncoding = params['FormEncoding']
+        end
+      end
+
       # 云企付-商品信息
       class OpenBankGoodsInfo < TencentCloud::Common::AbstractModel
         # @param GoodsName: 商品标题。默认值“商品支付”。
@@ -11522,10 +11544,13 @@ module TencentCloud
         # @type MpPath: String
         # @param MpUserName: 小程序原始 id
         # @type MpUserName: String
+        # @param FormInfo: 网银支付提交页面信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FormInfo: :class:`Tencentcloud::Cpdp.v20190820.models.OpenBankFormInfo`
 
-        attr_accessor :QRCodeUrl, :QRCodeKey, :Url, :ExpireTime, :MpAppId, :MpPath, :MpUserName
+        attr_accessor :QRCodeUrl, :QRCodeKey, :Url, :ExpireTime, :MpAppId, :MpPath, :MpUserName, :FormInfo
         
-        def initialize(qrcodeurl=nil, qrcodekey=nil, url=nil, expiretime=nil, mpappid=nil, mppath=nil, mpusername=nil)
+        def initialize(qrcodeurl=nil, qrcodekey=nil, url=nil, expiretime=nil, mpappid=nil, mppath=nil, mpusername=nil, forminfo=nil)
           @QRCodeUrl = qrcodeurl
           @QRCodeKey = qrcodekey
           @Url = url
@@ -11533,6 +11558,7 @@ module TencentCloud
           @MpAppId = mpappid
           @MpPath = mppath
           @MpUserName = mpusername
+          @FormInfo = forminfo
         end
 
         def deserialize(params)
@@ -11543,6 +11569,10 @@ module TencentCloud
           @MpAppId = params['MpAppId']
           @MpPath = params['MpPath']
           @MpUserName = params['MpUserName']
+          unless params['FormInfo'].nil?
+            @FormInfo = OpenBankFormInfo.new
+            @FormInfo.deserialize(params['FormInfo'])
+          end
         end
       end
 

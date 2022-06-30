@@ -722,6 +722,42 @@ module TencentCloud
         end
       end
 
+      # 描述Es规则目标
+      class ESTargetParams < TencentCloud::Common::AbstractModel
+        # @param NetMode: 网络连接类型
+        # @type NetMode: String
+        # @param IndexPrefix: 索引前缀
+        # @type IndexPrefix: String
+        # @param RotationInterval: es日志轮换粒度
+        # @type RotationInterval: String
+        # @param OutputMode: DTS事件配置
+        # @type OutputMode: String
+        # @param IndexSuffixMode: DTS索引配置
+        # @type IndexSuffixMode: String
+        # @param IndexTemplateType: es模版类型
+        # @type IndexTemplateType: String
+
+        attr_accessor :NetMode, :IndexPrefix, :RotationInterval, :OutputMode, :IndexSuffixMode, :IndexTemplateType
+        
+        def initialize(netmode=nil, indexprefix=nil, rotationinterval=nil, outputmode=nil, indexsuffixmode=nil, indextemplatetype=nil)
+          @NetMode = netmode
+          @IndexPrefix = indexprefix
+          @RotationInterval = rotationinterval
+          @OutputMode = outputmode
+          @IndexSuffixMode = indexsuffixmode
+          @IndexTemplateType = indextemplatetype
+        end
+
+        def deserialize(params)
+          @NetMode = params['NetMode']
+          @IndexPrefix = params['IndexPrefix']
+          @RotationInterval = params['RotationInterval']
+          @OutputMode = params['OutputMode']
+          @IndexSuffixMode = params['IndexSuffixMode']
+          @IndexTemplateType = params['IndexTemplateType']
+        end
+      end
+
       # 描述如何过滤数据
       class EtlFilter < TencentCloud::Common::AbstractModel
         # @param Filter: 语法Rule规则保持一致
@@ -1603,13 +1639,16 @@ module TencentCloud
         # @type SCFParams: :class:`Tencentcloud::Eb.v20210416.models.SCFParams`
         # @param CkafkaTargetParams: Ckafka参数
         # @type CkafkaTargetParams: :class:`Tencentcloud::Eb.v20210416.models.CkafkaTargetParams`
+        # @param ESTargetParams: ElasticSearch参数
+        # @type ESTargetParams: :class:`Tencentcloud::Eb.v20210416.models.ESTargetParams`
 
-        attr_accessor :ResourceDescription, :SCFParams, :CkafkaTargetParams
+        attr_accessor :ResourceDescription, :SCFParams, :CkafkaTargetParams, :ESTargetParams
         
-        def initialize(resourcedescription=nil, scfparams=nil, ckafkatargetparams=nil)
+        def initialize(resourcedescription=nil, scfparams=nil, ckafkatargetparams=nil, estargetparams=nil)
           @ResourceDescription = resourcedescription
           @SCFParams = scfparams
           @CkafkaTargetParams = ckafkatargetparams
+          @ESTargetParams = estargetparams
         end
 
         def deserialize(params)
@@ -1621,6 +1660,10 @@ module TencentCloud
           unless params['CkafkaTargetParams'].nil?
             @CkafkaTargetParams = CkafkaTargetParams.new
             @CkafkaTargetParams.deserialize(params['CkafkaTargetParams'])
+          end
+          unless params['ESTargetParams'].nil?
+            @ESTargetParams = ESTargetParams.new
+            @ESTargetParams.deserialize(params['ESTargetParams'])
           end
         end
       end

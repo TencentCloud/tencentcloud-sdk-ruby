@@ -1695,6 +1695,58 @@ module TencentCloud
         end
       end
 
+      # ModifyStaff请求参数结构体
+      class ModifyStaffRequest < TencentCloud::Common::AbstractModel
+        # @param SdkAppId: 应用ID
+        # @type SdkAppId: Integer
+        # @param Email: 坐席账户
+        # @type Email: String
+        # @param Name: 坐席名称
+        # @type Name: String
+        # @param Phone: 坐席手机号（带0086前缀,示例：008618011111111）
+        # @type Phone: String
+        # @param Nick: 坐席昵称
+        # @type Nick: String
+        # @param SkillGroupIds: 绑定技能组ID列表
+        # @type SkillGroupIds: Array
+
+        attr_accessor :SdkAppId, :Email, :Name, :Phone, :Nick, :SkillGroupIds
+        
+        def initialize(sdkappid=nil, email=nil, name=nil, phone=nil, nick=nil, skillgroupids=nil)
+          @SdkAppId = sdkappid
+          @Email = email
+          @Name = name
+          @Phone = phone
+          @Nick = nick
+          @SkillGroupIds = skillgroupids
+        end
+
+        def deserialize(params)
+          @SdkAppId = params['SdkAppId']
+          @Email = params['Email']
+          @Name = params['Name']
+          @Phone = params['Phone']
+          @Nick = params['Nick']
+          @SkillGroupIds = params['SkillGroupIds']
+        end
+      end
+
+      # ModifyStaff返回参数结构体
+      class ModifyStaffResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # PSTN 会话类型。
       class PSTNSession < TencentCloud::Common::AbstractModel
         # @param SessionID: 会话 ID

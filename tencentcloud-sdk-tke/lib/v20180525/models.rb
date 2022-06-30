@@ -708,10 +708,12 @@ module TencentCloud
         # @type BasePodNumber: Integer
         # @param CiliumMode: 启用 CiliumMode 的模式，空值表示不启用，“clusterIP” 表示启用 Cilium 支持 ClusterIP
         # @type CiliumMode: String
+        # @param IsDualStack: 集群VPC-CNI模式下是否是双栈集群，默认false，表明非双栈集群。
+        # @type IsDualStack: Boolean
 
-        attr_accessor :IPVS, :AsEnabled, :ContainerRuntime, :NodeNameType, :ExtraArgs, :NetworkType, :IsNonStaticIpMode, :DeletionProtection, :KubeProxyMode, :AuditEnabled, :AuditLogsetId, :AuditLogTopicId, :VpcCniType, :RuntimeVersion, :EnableCustomizedPodCIDR, :BasePodNumber, :CiliumMode
+        attr_accessor :IPVS, :AsEnabled, :ContainerRuntime, :NodeNameType, :ExtraArgs, :NetworkType, :IsNonStaticIpMode, :DeletionProtection, :KubeProxyMode, :AuditEnabled, :AuditLogsetId, :AuditLogTopicId, :VpcCniType, :RuntimeVersion, :EnableCustomizedPodCIDR, :BasePodNumber, :CiliumMode, :IsDualStack
         
-        def initialize(ipvs=nil, asenabled=nil, containerruntime=nil, nodenametype=nil, extraargs=nil, networktype=nil, isnonstaticipmode=nil, deletionprotection=nil, kubeproxymode=nil, auditenabled=nil, auditlogsetid=nil, auditlogtopicid=nil, vpccnitype=nil, runtimeversion=nil, enablecustomizedpodcidr=nil, basepodnumber=nil, ciliummode=nil)
+        def initialize(ipvs=nil, asenabled=nil, containerruntime=nil, nodenametype=nil, extraargs=nil, networktype=nil, isnonstaticipmode=nil, deletionprotection=nil, kubeproxymode=nil, auditenabled=nil, auditlogsetid=nil, auditlogtopicid=nil, vpccnitype=nil, runtimeversion=nil, enablecustomizedpodcidr=nil, basepodnumber=nil, ciliummode=nil, isdualstack=nil)
           @IPVS = ipvs
           @AsEnabled = asenabled
           @ContainerRuntime = containerruntime
@@ -729,6 +731,7 @@ module TencentCloud
           @EnableCustomizedPodCIDR = enablecustomizedpodcidr
           @BasePodNumber = basepodnumber
           @CiliumMode = ciliummode
+          @IsDualStack = isdualstack
         end
 
         def deserialize(params)
@@ -752,6 +755,7 @@ module TencentCloud
           @EnableCustomizedPodCIDR = params['EnableCustomizedPodCIDR']
           @BasePodNumber = params['BasePodNumber']
           @CiliumMode = params['CiliumMode']
+          @IsDualStack = params['IsDualStack']
         end
       end
 
@@ -2579,6 +2583,106 @@ module TencentCloud
         end
       end
 
+      # CreatePrometheusClusterAgent请求参数结构体
+      class CreatePrometheusClusterAgentRequest < TencentCloud::Common::AbstractModel
+
+        
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # CreatePrometheusClusterAgent返回参数结构体
+      class CreatePrometheusClusterAgentResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreatePrometheusConfig请求参数结构体
+      class CreatePrometheusConfigRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例id
+        # @type InstanceId: String
+        # @param ClusterType: 集群类型
+        # @type ClusterType: String
+        # @param ClusterId: 集群id
+        # @type ClusterId: String
+        # @param ServiceMonitors: ServiceMonitors配置
+        # @type ServiceMonitors: Array
+        # @param PodMonitors: PodMonitors配置
+        # @type PodMonitors: Array
+        # @param RawJobs: prometheus原生Job配置
+        # @type RawJobs: Array
+
+        attr_accessor :InstanceId, :ClusterType, :ClusterId, :ServiceMonitors, :PodMonitors, :RawJobs
+        
+        def initialize(instanceid=nil, clustertype=nil, clusterid=nil, servicemonitors=nil, podmonitors=nil, rawjobs=nil)
+          @InstanceId = instanceid
+          @ClusterType = clustertype
+          @ClusterId = clusterid
+          @ServiceMonitors = servicemonitors
+          @PodMonitors = podmonitors
+          @RawJobs = rawjobs
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @ClusterType = params['ClusterType']
+          @ClusterId = params['ClusterId']
+          unless params['ServiceMonitors'].nil?
+            @ServiceMonitors = []
+            params['ServiceMonitors'].each do |i|
+              prometheusconfigitem_tmp = PrometheusConfigItem.new
+              prometheusconfigitem_tmp.deserialize(i)
+              @ServiceMonitors << prometheusconfigitem_tmp
+            end
+          end
+          unless params['PodMonitors'].nil?
+            @PodMonitors = []
+            params['PodMonitors'].each do |i|
+              prometheusconfigitem_tmp = PrometheusConfigItem.new
+              prometheusconfigitem_tmp.deserialize(i)
+              @PodMonitors << prometheusconfigitem_tmp
+            end
+          end
+          unless params['RawJobs'].nil?
+            @RawJobs = []
+            params['RawJobs'].each do |i|
+              prometheusconfigitem_tmp = PrometheusConfigItem.new
+              prometheusconfigitem_tmp.deserialize(i)
+              @RawJobs << prometheusconfigitem_tmp
+            end
+          end
+        end
+      end
+
+      # CreatePrometheusConfig返回参数结构体
+      class CreatePrometheusConfigResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreatePrometheusDashboard请求参数结构体
       class CreatePrometheusDashboardRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例id
@@ -2660,6 +2764,42 @@ module TencentCloud
 
         def deserialize(params)
           @Id = params['Id']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreatePrometheusRecordRuleYaml请求参数结构体
+      class CreatePrometheusRecordRuleYamlRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例id
+        # @type InstanceId: String
+        # @param Content: yaml的内容
+        # @type Content: String
+
+        attr_accessor :InstanceId, :Content
+        
+        def initialize(instanceid=nil, content=nil)
+          @InstanceId = instanceid
+          @Content = content
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @Content = params['Content']
+        end
+      end
+
+      # CreatePrometheusRecordRuleYaml返回参数结构体
+      class CreatePrometheusRecordRuleYamlResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
           @RequestId = params['RequestId']
         end
       end
@@ -3510,6 +3650,121 @@ module TencentCloud
 
       # DeletePrometheusAlertRule返回参数结构体
       class DeletePrometheusAlertRuleResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeletePrometheusClusterAgent请求参数结构体
+      class DeletePrometheusClusterAgentRequest < TencentCloud::Common::AbstractModel
+
+        
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DeletePrometheusClusterAgent返回参数结构体
+      class DeletePrometheusClusterAgentResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeletePrometheusConfig请求参数结构体
+      class DeletePrometheusConfigRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例id
+        # @type InstanceId: String
+        # @param ClusterType: 集群类型
+        # @type ClusterType: String
+        # @param ClusterId: 集群id
+        # @type ClusterId: String
+        # @param ServiceMonitors: 要删除的ServiceMonitor名字列表
+        # @type ServiceMonitors: Array
+        # @param PodMonitors: 要删除的PodMonitor名字列表
+        # @type PodMonitors: Array
+        # @param RawJobs: 要删除的RawJobs名字列表
+        # @type RawJobs: Array
+
+        attr_accessor :InstanceId, :ClusterType, :ClusterId, :ServiceMonitors, :PodMonitors, :RawJobs
+        
+        def initialize(instanceid=nil, clustertype=nil, clusterid=nil, servicemonitors=nil, podmonitors=nil, rawjobs=nil)
+          @InstanceId = instanceid
+          @ClusterType = clustertype
+          @ClusterId = clusterid
+          @ServiceMonitors = servicemonitors
+          @PodMonitors = podmonitors
+          @RawJobs = rawjobs
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @ClusterType = params['ClusterType']
+          @ClusterId = params['ClusterId']
+          @ServiceMonitors = params['ServiceMonitors']
+          @PodMonitors = params['PodMonitors']
+          @RawJobs = params['RawJobs']
+        end
+      end
+
+      # DeletePrometheusConfig返回参数结构体
+      class DeletePrometheusConfigResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeletePrometheusRecordRuleYaml请求参数结构体
+      class DeletePrometheusRecordRuleYamlRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例id
+        # @type InstanceId: String
+        # @param Names: 聚合规则列表
+        # @type Names: Array
+
+        attr_accessor :InstanceId, :Names
+        
+        def initialize(instanceid=nil, names=nil)
+          @InstanceId = instanceid
+          @Names = names
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @Names = params['Names']
+        end
+      end
+
+      # DeletePrometheusRecordRuleYaml返回参数结构体
+      class DeletePrometheusRecordRuleYamlResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -6060,6 +6315,159 @@ module TencentCloud
         end
       end
 
+      # DescribePrometheusConfig请求参数结构体
+      class DescribePrometheusConfigRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例id
+        # @type InstanceId: String
+        # @param ClusterId: 集群id
+        # @type ClusterId: String
+        # @param ClusterType: 集群类型
+        # @type ClusterType: String
+
+        attr_accessor :InstanceId, :ClusterId, :ClusterType
+        
+        def initialize(instanceid=nil, clusterid=nil, clustertype=nil)
+          @InstanceId = instanceid
+          @ClusterId = clusterid
+          @ClusterType = clustertype
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @ClusterId = params['ClusterId']
+          @ClusterType = params['ClusterType']
+        end
+      end
+
+      # DescribePrometheusConfig返回参数结构体
+      class DescribePrometheusConfigResponse < TencentCloud::Common::AbstractModel
+        # @param Config: 全局配置
+        # @type Config: String
+        # @param ServiceMonitors: ServiceMonitor配置
+        # @type ServiceMonitors: Array
+        # @param PodMonitors: PodMonitor配置
+        # @type PodMonitors: Array
+        # @param RawJobs: 原生Job
+        # @type RawJobs: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Config, :ServiceMonitors, :PodMonitors, :RawJobs, :RequestId
+        
+        def initialize(config=nil, servicemonitors=nil, podmonitors=nil, rawjobs=nil, requestid=nil)
+          @Config = config
+          @ServiceMonitors = servicemonitors
+          @PodMonitors = podmonitors
+          @RawJobs = rawjobs
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Config = params['Config']
+          unless params['ServiceMonitors'].nil?
+            @ServiceMonitors = []
+            params['ServiceMonitors'].each do |i|
+              prometheusconfigitem_tmp = PrometheusConfigItem.new
+              prometheusconfigitem_tmp.deserialize(i)
+              @ServiceMonitors << prometheusconfigitem_tmp
+            end
+          end
+          unless params['PodMonitors'].nil?
+            @PodMonitors = []
+            params['PodMonitors'].each do |i|
+              prometheusconfigitem_tmp = PrometheusConfigItem.new
+              prometheusconfigitem_tmp.deserialize(i)
+              @PodMonitors << prometheusconfigitem_tmp
+            end
+          end
+          unless params['RawJobs'].nil?
+            @RawJobs = []
+            params['RawJobs'].each do |i|
+              prometheusconfigitem_tmp = PrometheusConfigItem.new
+              prometheusconfigitem_tmp.deserialize(i)
+              @RawJobs << prometheusconfigitem_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribePrometheusGlobalConfig请求参数结构体
+      class DescribePrometheusGlobalConfigRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例级别抓取配置
+        # @type InstanceId: String
+        # @param DisableStatistics: 是否禁用统计
+        # @type DisableStatistics: Boolean
+
+        attr_accessor :InstanceId, :DisableStatistics
+        
+        def initialize(instanceid=nil, disablestatistics=nil)
+          @InstanceId = instanceid
+          @DisableStatistics = disablestatistics
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @DisableStatistics = params['DisableStatistics']
+        end
+      end
+
+      # DescribePrometheusGlobalConfig返回参数结构体
+      class DescribePrometheusGlobalConfigResponse < TencentCloud::Common::AbstractModel
+        # @param Config: 配置内容
+        # @type Config: String
+        # @param ServiceMonitors: ServiceMonitors列表以及对应targets信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ServiceMonitors: Array
+        # @param PodMonitors: PodMonitors列表以及对应targets信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PodMonitors: Array
+        # @param RawJobs: RawJobs列表以及对应targets信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RawJobs: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Config, :ServiceMonitors, :PodMonitors, :RawJobs, :RequestId
+        
+        def initialize(config=nil, servicemonitors=nil, podmonitors=nil, rawjobs=nil, requestid=nil)
+          @Config = config
+          @ServiceMonitors = servicemonitors
+          @PodMonitors = podmonitors
+          @RawJobs = rawjobs
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Config = params['Config']
+          unless params['ServiceMonitors'].nil?
+            @ServiceMonitors = []
+            params['ServiceMonitors'].each do |i|
+              prometheusconfigitem_tmp = PrometheusConfigItem.new
+              prometheusconfigitem_tmp.deserialize(i)
+              @ServiceMonitors << prometheusconfigitem_tmp
+            end
+          end
+          unless params['PodMonitors'].nil?
+            @PodMonitors = []
+            params['PodMonitors'].each do |i|
+              prometheusconfigitem_tmp = PrometheusConfigItem.new
+              prometheusconfigitem_tmp.deserialize(i)
+              @PodMonitors << prometheusconfigitem_tmp
+            end
+          end
+          unless params['RawJobs'].nil?
+            @RawJobs = []
+            params['RawJobs'].each do |i|
+              prometheusconfigitem_tmp = PrometheusConfigItem.new
+              prometheusconfigitem_tmp.deserialize(i)
+              @RawJobs << prometheusconfigitem_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribePrometheusGlobalNotification请求参数结构体
       class DescribePrometheusGlobalNotificationRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例ID
@@ -6096,6 +6504,33 @@ module TencentCloud
             @Notification = PrometheusNotificationItem.new
             @Notification.deserialize(params['Notification'])
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribePrometheusInstanceInitStatus请求参数结构体
+      class DescribePrometheusInstanceInitStatusRequest < TencentCloud::Common::AbstractModel
+
+        
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribePrometheusInstanceInitStatus返回参数结构体
+      class DescribePrometheusInstanceInitStatusResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
           @RequestId = params['RequestId']
         end
       end
@@ -9896,6 +10331,53 @@ module TencentCloud
         end
       end
 
+      # ModifyPrometheusAgentExternalLabels请求参数结构体
+      class ModifyPrometheusAgentExternalLabelsRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+        # @param ClusterId: 集群ID
+        # @type ClusterId: String
+        # @param ExternalLabels: 新的external_labels
+        # @type ExternalLabels: Array
+
+        attr_accessor :InstanceId, :ClusterId, :ExternalLabels
+        
+        def initialize(instanceid=nil, clusterid=nil, externallabels=nil)
+          @InstanceId = instanceid
+          @ClusterId = clusterid
+          @ExternalLabels = externallabels
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @ClusterId = params['ClusterId']
+          unless params['ExternalLabels'].nil?
+            @ExternalLabels = []
+            params['ExternalLabels'].each do |i|
+              label_tmp = Label.new
+              label_tmp.deserialize(i)
+              @ExternalLabels << label_tmp
+            end
+          end
+        end
+      end
+
+      # ModifyPrometheusAgentExternalLabels返回参数结构体
+      class ModifyPrometheusAgentExternalLabelsResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyPrometheusAlertPolicy请求参数结构体
       class ModifyPrometheusAlertPolicyRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例id
@@ -9974,6 +10456,79 @@ module TencentCloud
         end
       end
 
+      # ModifyPrometheusConfig请求参数结构体
+      class ModifyPrometheusConfigRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例id
+        # @type InstanceId: String
+        # @param ClusterType: 集群类型
+        # @type ClusterType: String
+        # @param ClusterId: 集群id
+        # @type ClusterId: String
+        # @param ServiceMonitors: ServiceMonitors配置
+        # @type ServiceMonitors: Array
+        # @param PodMonitors: PodMonitors配置
+        # @type PodMonitors: Array
+        # @param RawJobs: prometheus原生Job配置
+        # @type RawJobs: Array
+
+        attr_accessor :InstanceId, :ClusterType, :ClusterId, :ServiceMonitors, :PodMonitors, :RawJobs
+        
+        def initialize(instanceid=nil, clustertype=nil, clusterid=nil, servicemonitors=nil, podmonitors=nil, rawjobs=nil)
+          @InstanceId = instanceid
+          @ClusterType = clustertype
+          @ClusterId = clusterid
+          @ServiceMonitors = servicemonitors
+          @PodMonitors = podmonitors
+          @RawJobs = rawjobs
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @ClusterType = params['ClusterType']
+          @ClusterId = params['ClusterId']
+          unless params['ServiceMonitors'].nil?
+            @ServiceMonitors = []
+            params['ServiceMonitors'].each do |i|
+              prometheusconfigitem_tmp = PrometheusConfigItem.new
+              prometheusconfigitem_tmp.deserialize(i)
+              @ServiceMonitors << prometheusconfigitem_tmp
+            end
+          end
+          unless params['PodMonitors'].nil?
+            @PodMonitors = []
+            params['PodMonitors'].each do |i|
+              prometheusconfigitem_tmp = PrometheusConfigItem.new
+              prometheusconfigitem_tmp.deserialize(i)
+              @PodMonitors << prometheusconfigitem_tmp
+            end
+          end
+          unless params['RawJobs'].nil?
+            @RawJobs = []
+            params['RawJobs'].each do |i|
+              prometheusconfigitem_tmp = PrometheusConfigItem.new
+              prometheusconfigitem_tmp.deserialize(i)
+              @RawJobs << prometheusconfigitem_tmp
+            end
+          end
+        end
+      end
+
+      # ModifyPrometheusConfig返回参数结构体
+      class ModifyPrometheusConfigResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyPrometheusGlobalNotification请求参数结构体
       class ModifyPrometheusGlobalNotificationRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例ID
@@ -9999,6 +10554,46 @@ module TencentCloud
 
       # ModifyPrometheusGlobalNotification返回参数结构体
       class ModifyPrometheusGlobalNotificationResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyPrometheusRecordRuleYaml请求参数结构体
+      class ModifyPrometheusRecordRuleYamlRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例id
+        # @type InstanceId: String
+        # @param Name: 聚合实例名称
+        # @type Name: String
+        # @param Content: 新的内容
+        # @type Content: String
+
+        attr_accessor :InstanceId, :Name, :Content
+        
+        def initialize(instanceid=nil, name=nil, content=nil)
+          @InstanceId = instanceid
+          @Name = name
+          @Content = content
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @Name = params['Name']
+          @Content = params['Content']
+        end
+      end
+
+      # ModifyPrometheusRecordRuleYaml返回参数结构体
+      class ModifyPrometheusRecordRuleYamlResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -11948,6 +12543,33 @@ module TencentCloud
 
         def deserialize(params)
           @Enabled = params['Enabled']
+        end
+      end
+
+      # RunPrometheusInstance请求参数结构体
+      class RunPrometheusInstanceRequest < TencentCloud::Common::AbstractModel
+
+        
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # RunPrometheusInstance返回参数结构体
+      class RunPrometheusInstanceResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
         end
       end
 

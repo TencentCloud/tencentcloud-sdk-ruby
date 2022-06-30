@@ -5417,12 +5417,17 @@ module TencentCloud
 
       # DescribeBasicResourceUsage请求参数结构体
       class DescribeBasicResourceUsageRequest < TencentCloud::Common::AbstractModel
+        # @param All: 是否无视权限查询全租户的，默认 true。注：无论 true 还是 false，PackageSpaceUsed 和 ConsulInstanceCount  都是全租户的
+        # @type All: Boolean
 
+        attr_accessor :All
         
-        def initialize()
+        def initialize(all=nil)
+          @All = all
         end
 
         def deserialize(params)
+          @All = params['All']
         end
       end
 
@@ -9129,10 +9134,12 @@ module TencentCloud
         # @type BucketKey: String
         # @param DbName: 数据库
         # @type DbName: String
+        # @param NamespaceIdList: 命名空间id数组
+        # @type NamespaceIdList: Array
 
-        attr_accessor :Type, :TimeStep, :Offset, :Limit, :NamespaceId, :OrderBy, :OrderType, :EndTime, :StartTime, :ServiceName, :SearchWord, :MetricDimensionValues, :BucketKey, :DbName
+        attr_accessor :Type, :TimeStep, :Offset, :Limit, :NamespaceId, :OrderBy, :OrderType, :EndTime, :StartTime, :ServiceName, :SearchWord, :MetricDimensionValues, :BucketKey, :DbName, :NamespaceIdList
         
-        def initialize(type=nil, timestep=nil, offset=nil, limit=nil, namespaceid=nil, orderby=nil, ordertype=nil, endtime=nil, starttime=nil, servicename=nil, searchword=nil, metricdimensionvalues=nil, bucketkey=nil, dbname=nil)
+        def initialize(type=nil, timestep=nil, offset=nil, limit=nil, namespaceid=nil, orderby=nil, ordertype=nil, endtime=nil, starttime=nil, servicename=nil, searchword=nil, metricdimensionvalues=nil, bucketkey=nil, dbname=nil, namespaceidlist=nil)
           @Type = type
           @TimeStep = timestep
           @Offset = offset
@@ -9147,6 +9154,7 @@ module TencentCloud
           @MetricDimensionValues = metricdimensionvalues
           @BucketKey = bucketkey
           @DbName = dbname
+          @NamespaceIdList = namespaceidlist
         end
 
         def deserialize(params)
@@ -9171,6 +9179,7 @@ module TencentCloud
           end
           @BucketKey = params['BucketKey']
           @DbName = params['DbName']
+          @NamespaceIdList = params['NamespaceIdList']
         end
       end
 
@@ -11636,10 +11645,13 @@ module TencentCloud
         # @param AgentVersion: agent版本
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AgentVersion: String
+        # @param NodeInstanceId: 容器母机实例ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NodeInstanceId: String
 
-        attr_accessor :InstanceId, :InstanceName, :LanIp, :WanIp, :InstanceDesc, :ClusterId, :ClusterName, :InstanceStatus, :InstanceAvailableStatus, :ServiceInstanceStatus, :CountInTsf, :GroupId, :ApplicationId, :ApplicationName, :InstanceCreatedTime, :InstanceExpiredTime, :InstanceChargeType, :InstanceTotalCpu, :InstanceTotalMem, :InstanceUsedCpu, :InstanceUsedMem, :InstanceLimitCpu, :InstanceLimitMem, :InstancePkgVersion, :ClusterType, :RestrictState, :UpdateTime, :OperationState, :NamespaceId, :InstanceZoneId, :InstanceImportMode, :ApplicationType, :ApplicationResourceType, :ServiceSidecarStatus, :GroupName, :NamespaceName, :Reason, :AgentVersion
+        attr_accessor :InstanceId, :InstanceName, :LanIp, :WanIp, :InstanceDesc, :ClusterId, :ClusterName, :InstanceStatus, :InstanceAvailableStatus, :ServiceInstanceStatus, :CountInTsf, :GroupId, :ApplicationId, :ApplicationName, :InstanceCreatedTime, :InstanceExpiredTime, :InstanceChargeType, :InstanceTotalCpu, :InstanceTotalMem, :InstanceUsedCpu, :InstanceUsedMem, :InstanceLimitCpu, :InstanceLimitMem, :InstancePkgVersion, :ClusterType, :RestrictState, :UpdateTime, :OperationState, :NamespaceId, :InstanceZoneId, :InstanceImportMode, :ApplicationType, :ApplicationResourceType, :ServiceSidecarStatus, :GroupName, :NamespaceName, :Reason, :AgentVersion, :NodeInstanceId
         
-        def initialize(instanceid=nil, instancename=nil, lanip=nil, wanip=nil, instancedesc=nil, clusterid=nil, clustername=nil, instancestatus=nil, instanceavailablestatus=nil, serviceinstancestatus=nil, countintsf=nil, groupid=nil, applicationid=nil, applicationname=nil, instancecreatedtime=nil, instanceexpiredtime=nil, instancechargetype=nil, instancetotalcpu=nil, instancetotalmem=nil, instanceusedcpu=nil, instanceusedmem=nil, instancelimitcpu=nil, instancelimitmem=nil, instancepkgversion=nil, clustertype=nil, restrictstate=nil, updatetime=nil, operationstate=nil, namespaceid=nil, instancezoneid=nil, instanceimportmode=nil, applicationtype=nil, applicationresourcetype=nil, servicesidecarstatus=nil, groupname=nil, namespacename=nil, reason=nil, agentversion=nil)
+        def initialize(instanceid=nil, instancename=nil, lanip=nil, wanip=nil, instancedesc=nil, clusterid=nil, clustername=nil, instancestatus=nil, instanceavailablestatus=nil, serviceinstancestatus=nil, countintsf=nil, groupid=nil, applicationid=nil, applicationname=nil, instancecreatedtime=nil, instanceexpiredtime=nil, instancechargetype=nil, instancetotalcpu=nil, instancetotalmem=nil, instanceusedcpu=nil, instanceusedmem=nil, instancelimitcpu=nil, instancelimitmem=nil, instancepkgversion=nil, clustertype=nil, restrictstate=nil, updatetime=nil, operationstate=nil, namespaceid=nil, instancezoneid=nil, instanceimportmode=nil, applicationtype=nil, applicationresourcetype=nil, servicesidecarstatus=nil, groupname=nil, namespacename=nil, reason=nil, agentversion=nil, nodeinstanceid=nil)
           @InstanceId = instanceid
           @InstanceName = instancename
           @LanIp = lanip
@@ -11678,6 +11690,7 @@ module TencentCloud
           @NamespaceName = namespacename
           @Reason = reason
           @AgentVersion = agentversion
+          @NodeInstanceId = nodeinstanceid
         end
 
         def deserialize(params)
@@ -11719,6 +11732,7 @@ module TencentCloud
           @NamespaceName = params['NamespaceName']
           @Reason = params['Reason']
           @AgentVersion = params['AgentVersion']
+          @NodeInstanceId = params['NodeInstanceId']
         end
       end
 
@@ -12644,19 +12658,24 @@ module TencentCloud
         # @param MetricDataValue: 指标值
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MetricDataValue: String
+        # @param DailyPercent: 日环比
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DailyPercent: Float
 
-        attr_accessor :MetricName, :MetricFunction, :MetricDataValue
+        attr_accessor :MetricName, :MetricFunction, :MetricDataValue, :DailyPercent
         
-        def initialize(metricname=nil, metricfunction=nil, metricdatavalue=nil)
+        def initialize(metricname=nil, metricfunction=nil, metricdatavalue=nil, dailypercent=nil)
           @MetricName = metricname
           @MetricFunction = metricfunction
           @MetricDataValue = metricdatavalue
+          @DailyPercent = dailypercent
         end
 
         def deserialize(params)
           @MetricName = params['MetricName']
           @MetricFunction = params['MetricFunction']
           @MetricDataValue = params['MetricDataValue']
+          @DailyPercent = params['DailyPercent']
         end
       end
 

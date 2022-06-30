@@ -690,6 +690,85 @@ module TencentCloud
         end
       end
 
+      # ListLogMessageByCondition请求参数结构体
+      class ListLogMessageByConditionRequest < TencentCloud::Common::AbstractModel
+        # @param UserStoreId: 用户池ID
+        # @type UserStoreId: String
+        # @param Pageable: 分页数据
+        # @type Pageable: :class:`Tencentcloud::Ciam.v20220331.models.Pageable`
+        # @param StartTime: 开始时间，时间戳精确到毫秒
+        # @type StartTime: Integer
+        # @param Filters: Key可选值为events
+
+        # <li> **events** </li>	Values为["SIGNUP", "USER_UPDATE", "USER_DELETE", "USER_CREATE", "ACCOUNT_LINKING"] 中的一个或多个
+        # @type Filters: Array
+
+        attr_accessor :UserStoreId, :Pageable, :StartTime, :Filters
+        
+        def initialize(userstoreid=nil, pageable=nil, starttime=nil, filters=nil)
+          @UserStoreId = userstoreid
+          @Pageable = pageable
+          @StartTime = starttime
+          @Filters = filters
+        end
+
+        def deserialize(params)
+          @UserStoreId = params['UserStoreId']
+          unless params['Pageable'].nil?
+            @Pageable = Pageable.new
+            @Pageable.deserialize(params['Pageable'])
+          end
+          @StartTime = params['StartTime']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+        end
+      end
+
+      # ListLogMessageByCondition返回参数结构体
+      class ListLogMessageByConditionResponse < TencentCloud::Common::AbstractModel
+        # @param Total: 总条数
+        # @type Total: Integer
+        # @param Pageable: 分页对象
+        # @type Pageable: :class:`Tencentcloud::Ciam.v20220331.models.Pageable`
+        # @param Content: 日志列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Content: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Total, :Pageable, :Content, :RequestId
+        
+        def initialize(total=nil, pageable=nil, content=nil, requestid=nil)
+          @Total = total
+          @Pageable = pageable
+          @Content = content
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Total = params['Total']
+          unless params['Pageable'].nil?
+            @Pageable = Pageable.new
+            @Pageable.deserialize(params['Pageable'])
+          end
+          unless params['Content'].nil?
+            @Content = []
+            params['Content'].each do |i|
+              logmessage_tmp = LogMessage.new
+              logmessage_tmp.deserialize(i)
+              @Content << logmessage_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ListUserByProperty请求参数结构体
       class ListUserByPropertyRequest < TencentCloud::Common::AbstractModel
         # @param UserStoreId: 用户目录ID
@@ -820,6 +899,105 @@ module TencentCloud
             end
           end
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 日志详情
+      class LogMessage < TencentCloud::Common::AbstractModel
+        # @param LogId: 日志标识
+        # @type LogId: String
+        # @param TenantId: 租户ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TenantId: String
+        # @param UserStoreId: 用户池ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UserStoreId: String
+        # @param EventCode: 事件编码
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EventCode: String
+        # @param EventDate: 事件发生时间戳，单位：毫秒
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EventDate: Integer
+        # @param Description: 描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Description: String
+        # @param Participant: 事件参与者
+
+        # <li> **TENANT** </li>  租户
+        # <li> **USER** </li>  用户
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Participant: String
+        # @param ApplicationClientId: 应用clientId
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ApplicationClientId: String
+        # @param ApplicationName: 应用名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ApplicationName: String
+        # @param AuthSourceId: 认证源ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AuthSourceId: String
+        # @param AuthSourceName: 认证源名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AuthSourceName: String
+        # @param AuthSourceType: 认证源类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AuthSourceType: String
+        # @param AuthSourceCategory: 认证源类别
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AuthSourceCategory: String
+        # @param Ip: IP地址
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Ip: String
+        # @param UserAgent: 用户代理
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UserAgent: String
+        # @param UserId: 用户ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UserId: String
+        # @param Detail: 详情
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Detail: String
+
+        attr_accessor :LogId, :TenantId, :UserStoreId, :EventCode, :EventDate, :Description, :Participant, :ApplicationClientId, :ApplicationName, :AuthSourceId, :AuthSourceName, :AuthSourceType, :AuthSourceCategory, :Ip, :UserAgent, :UserId, :Detail
+        
+        def initialize(logid=nil, tenantid=nil, userstoreid=nil, eventcode=nil, eventdate=nil, description=nil, participant=nil, applicationclientid=nil, applicationname=nil, authsourceid=nil, authsourcename=nil, authsourcetype=nil, authsourcecategory=nil, ip=nil, useragent=nil, userid=nil, detail=nil)
+          @LogId = logid
+          @TenantId = tenantid
+          @UserStoreId = userstoreid
+          @EventCode = eventcode
+          @EventDate = eventdate
+          @Description = description
+          @Participant = participant
+          @ApplicationClientId = applicationclientid
+          @ApplicationName = applicationname
+          @AuthSourceId = authsourceid
+          @AuthSourceName = authsourcename
+          @AuthSourceType = authsourcetype
+          @AuthSourceCategory = authsourcecategory
+          @Ip = ip
+          @UserAgent = useragent
+          @UserId = userid
+          @Detail = detail
+        end
+
+        def deserialize(params)
+          @LogId = params['LogId']
+          @TenantId = params['TenantId']
+          @UserStoreId = params['UserStoreId']
+          @EventCode = params['EventCode']
+          @EventDate = params['EventDate']
+          @Description = params['Description']
+          @Participant = params['Participant']
+          @ApplicationClientId = params['ApplicationClientId']
+          @ApplicationName = params['ApplicationName']
+          @AuthSourceId = params['AuthSourceId']
+          @AuthSourceName = params['AuthSourceName']
+          @AuthSourceType = params['AuthSourceType']
+          @AuthSourceCategory = params['AuthSourceCategory']
+          @Ip = params['Ip']
+          @UserAgent = params['UserAgent']
+          @UserId = params['UserId']
+          @Detail = params['Detail']
         end
       end
 

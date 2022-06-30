@@ -88,6 +88,38 @@ module TencentCloud
         end
       end
 
+      # Anycast转外套餐详情
+      class AnycastOutPackRelation < TencentCloud::Common::AbstractModel
+        # @param NormalBandwidth: 业务带宽(单位M)
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NormalBandwidth: Integer
+        # @param ForwardRulesLimit: 转发规则数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ForwardRulesLimit: Integer
+        # @param AutoRenewFlag: 自动续费标记
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AutoRenewFlag: Integer
+        # @param CurDeadline: 到期时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CurDeadline: String
+
+        attr_accessor :NormalBandwidth, :ForwardRulesLimit, :AutoRenewFlag, :CurDeadline
+        
+        def initialize(normalbandwidth=nil, forwardruleslimit=nil, autorenewflag=nil, curdeadline=nil)
+          @NormalBandwidth = normalbandwidth
+          @ForwardRulesLimit = forwardruleslimit
+          @AutoRenewFlag = autorenewflag
+          @CurDeadline = curdeadline
+        end
+
+        def deserialize(params)
+          @NormalBandwidth = params['NormalBandwidth']
+          @ForwardRulesLimit = params['ForwardRulesLimit']
+          @AutoRenewFlag = params['AutoRenewFlag']
+          @CurDeadline = params['CurDeadline']
+        end
+      end
+
       # AssociateDDoSEipAddress请求参数结构体
       class AssociateDDoSEipAddressRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 资源实例ID，实例ID形如：bgpip-0000011x。只能填写高防IP实例。
@@ -246,10 +278,14 @@ module TencentCloud
         # @param TagInfoList: 资源关联标签
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TagInfoList: Array
+        # @param AnycastOutPackRelation: 资产实例所属的全力防护套餐包详情，
+        # 注意：当资产实例不是全力防护套餐包的实例时，此字段为null
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AnycastOutPackRelation: :class:`Tencentcloud::Antiddos.v20200309.models.AnycastOutPackRelation`
 
-        attr_accessor :InstanceDetail, :SpecificationLimit, :Usage, :Region, :Status, :ExpiredTime, :CreatedTime, :Name, :PackInfo, :StaticPackRelation, :ZoneId, :Tgw, :EipAddressStatus, :EipFlag, :EipAddressPackRelation, :EipAddressInfo, :Domain, :DamDDoSStatus, :V6Flag, :BGPIPChannelFlag, :TagInfoList
+        attr_accessor :InstanceDetail, :SpecificationLimit, :Usage, :Region, :Status, :ExpiredTime, :CreatedTime, :Name, :PackInfo, :StaticPackRelation, :ZoneId, :Tgw, :EipAddressStatus, :EipFlag, :EipAddressPackRelation, :EipAddressInfo, :Domain, :DamDDoSStatus, :V6Flag, :BGPIPChannelFlag, :TagInfoList, :AnycastOutPackRelation
         
-        def initialize(instancedetail=nil, specificationlimit=nil, usage=nil, region=nil, status=nil, expiredtime=nil, createdtime=nil, name=nil, packinfo=nil, staticpackrelation=nil, zoneid=nil, tgw=nil, eipaddressstatus=nil, eipflag=nil, eipaddresspackrelation=nil, eipaddressinfo=nil, domain=nil, damddosstatus=nil, v6flag=nil, bgpipchannelflag=nil, taginfolist=nil)
+        def initialize(instancedetail=nil, specificationlimit=nil, usage=nil, region=nil, status=nil, expiredtime=nil, createdtime=nil, name=nil, packinfo=nil, staticpackrelation=nil, zoneid=nil, tgw=nil, eipaddressstatus=nil, eipflag=nil, eipaddresspackrelation=nil, eipaddressinfo=nil, domain=nil, damddosstatus=nil, v6flag=nil, bgpipchannelflag=nil, taginfolist=nil, anycastoutpackrelation=nil)
           @InstanceDetail = instancedetail
           @SpecificationLimit = specificationlimit
           @Usage = usage
@@ -271,6 +307,7 @@ module TencentCloud
           @V6Flag = v6flag
           @BGPIPChannelFlag = bgpipchannelflag
           @TagInfoList = taginfolist
+          @AnycastOutPackRelation = anycastoutpackrelation
         end
 
         def deserialize(params)
@@ -325,6 +362,10 @@ module TencentCloud
               taginfo_tmp.deserialize(i)
               @TagInfoList << taginfo_tmp
             end
+          end
+          unless params['AnycastOutPackRelation'].nil?
+            @AnycastOutPackRelation = AnycastOutPackRelation.new
+            @AnycastOutPackRelation.deserialize(params['AnycastOutPackRelation'])
           end
         end
       end
@@ -444,10 +485,12 @@ module TencentCloud
         # @type CCEnable: Integer
         # @param TagInfoList: 资源关联标签
         # @type TagInfoList: Array
+        # @param IpCountNewFlag: 新版本1ip高防包
+        # @type IpCountNewFlag: Integer
 
-        attr_accessor :InstanceDetail, :SpecificationLimit, :Usage, :Region, :Status, :CreatedTime, :ExpiredTime, :Name, :PackInfo, :EipProductInfos, :BoundStatus, :DDoSLevel, :CCEnable, :TagInfoList
+        attr_accessor :InstanceDetail, :SpecificationLimit, :Usage, :Region, :Status, :CreatedTime, :ExpiredTime, :Name, :PackInfo, :EipProductInfos, :BoundStatus, :DDoSLevel, :CCEnable, :TagInfoList, :IpCountNewFlag
         
-        def initialize(instancedetail=nil, specificationlimit=nil, usage=nil, region=nil, status=nil, createdtime=nil, expiredtime=nil, name=nil, packinfo=nil, eipproductinfos=nil, boundstatus=nil, ddoslevel=nil, ccenable=nil, taginfolist=nil)
+        def initialize(instancedetail=nil, specificationlimit=nil, usage=nil, region=nil, status=nil, createdtime=nil, expiredtime=nil, name=nil, packinfo=nil, eipproductinfos=nil, boundstatus=nil, ddoslevel=nil, ccenable=nil, taginfolist=nil, ipcountnewflag=nil)
           @InstanceDetail = instancedetail
           @SpecificationLimit = specificationlimit
           @Usage = usage
@@ -462,6 +505,7 @@ module TencentCloud
           @DDoSLevel = ddoslevel
           @CCEnable = ccenable
           @TagInfoList = taginfolist
+          @IpCountNewFlag = ipcountnewflag
         end
 
         def deserialize(params)
@@ -508,6 +552,7 @@ module TencentCloud
               @TagInfoList << taginfo_tmp
             end
           end
+          @IpCountNewFlag = params['IpCountNewFlag']
         end
       end
 
@@ -3913,10 +3958,12 @@ module TencentCloud
         # @type FilterInstanceIdList: Array
         # @param FilterTag: 标签搜索
         # @type FilterTag: :class:`Tencentcloud::Antiddos.v20200309.models.TagFilter`
+        # @param FilterPackType: 按照套餐类型进行过滤
+        # @type FilterPackType: Array
 
-        attr_accessor :Offset, :Limit, :FilterIp, :FilterInstanceId, :FilterLine, :FilterRegion, :FilterName, :FilterEipType, :FilterEipEipAddressStatus, :FilterDamDDoSStatus, :FilterStatus, :FilterCname, :FilterInstanceIdList, :FilterTag
+        attr_accessor :Offset, :Limit, :FilterIp, :FilterInstanceId, :FilterLine, :FilterRegion, :FilterName, :FilterEipType, :FilterEipEipAddressStatus, :FilterDamDDoSStatus, :FilterStatus, :FilterCname, :FilterInstanceIdList, :FilterTag, :FilterPackType
         
-        def initialize(offset=nil, limit=nil, filterip=nil, filterinstanceid=nil, filterline=nil, filterregion=nil, filtername=nil, filtereiptype=nil, filtereipeipaddressstatus=nil, filterdamddosstatus=nil, filterstatus=nil, filtercname=nil, filterinstanceidlist=nil, filtertag=nil)
+        def initialize(offset=nil, limit=nil, filterip=nil, filterinstanceid=nil, filterline=nil, filterregion=nil, filtername=nil, filtereiptype=nil, filtereipeipaddressstatus=nil, filterdamddosstatus=nil, filterstatus=nil, filtercname=nil, filterinstanceidlist=nil, filtertag=nil, filterpacktype=nil)
           @Offset = offset
           @Limit = limit
           @FilterIp = filterip
@@ -3931,6 +3978,7 @@ module TencentCloud
           @FilterCname = filtercname
           @FilterInstanceIdList = filterinstanceidlist
           @FilterTag = filtertag
+          @FilterPackType = filterpacktype
         end
 
         def deserialize(params)
@@ -3951,6 +3999,7 @@ module TencentCloud
             @FilterTag = TagFilter.new
             @FilterTag.deserialize(params['FilterTag'])
           end
+          @FilterPackType = params['FilterPackType']
         end
       end
 
