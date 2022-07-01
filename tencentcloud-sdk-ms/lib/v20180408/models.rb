@@ -1130,6 +1130,90 @@ module TencentCloud
         end
       end
 
+      # DescribeUrlDetectionResult请求参数结构体
+      class DescribeUrlDetectionResultRequest < TencentCloud::Common::AbstractModel
+        # @param Url: 查询的网址
+        # @type Url: String
+
+        attr_accessor :Url
+        
+        def initialize(url=nil)
+          @Url = url
+        end
+
+        def deserialize(params)
+          @Url = params['Url']
+        end
+      end
+
+      # DescribeUrlDetectionResult返回参数结构体
+      class DescribeUrlDetectionResultResponse < TencentCloud::Common::AbstractModel
+        # @param ResultCode: [查询结果]查询结果；枚举值：0 查询成功，否则查询失败
+        # @type ResultCode: Integer
+        # @param RespVer: [固定信息]响应协议版本号；
+        # @type RespVer: Integer
+        # @param UrlType: [查询结果]url恶意状态；枚举值：1-灰， 2-黑（具体的恶意类型参考恶意类型定义Eviltype字段) ，3-非腾讯白名单，4-腾讯白名单。查询结果（level、evilclass、eviltype）这3个字段在Urltype=2（url状态为黑）下才有意义。
+        # @type UrlType: Integer
+        # @param EvilClass: [查询结果]url恶意大类；枚举值：1-链接，2-Cgi，3-路劲，4-整站，5-整域。
+        # @type EvilClass: Integer
+        # @param EvilType: [查询结果]url恶意类型；枚举值：1-社工欺诈（仿冒、账号钓鱼、中奖诈骗）；2-信息诈骗（虚假充值、虚假兼职、虚假金融投资、虚假信用卡代办、网络赌博诈骗；3-虚假销售（男女保健美容减肥产品、电子产品、虚假广告、违法销售）；4-恶意文件（病毒文件，木马文件，恶意apk文件的下载链接以及站点，挂马网站）；5-博彩网站（博彩网站，在线赌博网站）；6-色情网站（涉嫌传播色情内容，提供色情服务的网站；7-风险网站（弱类型，传播垃圾信息的网站, 如果客户端有阻断，不建议使用这个数据）；8-非法内容（根据法律法规不能传播的内容，主要为政治敏感内容，默认内部使用）
+        # @type EvilType: Integer
+        # @param Level: [查询结果]url恶意级别
+        # @type Level: Integer
+        # @param DetectTime: [查询详情]url检出时间
+        # @type DetectTime: Integer
+        # @param Wording: [查询详情]拦截Wording
+        # @type Wording: String
+        # @param WordingTitle: [查询详情]拦截Wording 标题
+        # @type WordingTitle: String
+        # @param UrlTypeDesc: [查询结果]url恶意状态说明
+        # @type UrlTypeDesc: String
+        # @param EvilClassDesc: [查询结果]url恶意大类说明
+        # @type EvilClassDesc: String
+        # @param EvilTypeDesc: [查询结果]url恶意类型说明
+        # @type EvilTypeDesc: String
+        # @param LevelDesc: [查询结果]url恶意级别说明
+        # @type LevelDesc: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ResultCode, :RespVer, :UrlType, :EvilClass, :EvilType, :Level, :DetectTime, :Wording, :WordingTitle, :UrlTypeDesc, :EvilClassDesc, :EvilTypeDesc, :LevelDesc, :RequestId
+        
+        def initialize(resultcode=nil, respver=nil, urltype=nil, evilclass=nil, eviltype=nil, level=nil, detecttime=nil, wording=nil, wordingtitle=nil, urltypedesc=nil, evilclassdesc=nil, eviltypedesc=nil, leveldesc=nil, requestid=nil)
+          @ResultCode = resultcode
+          @RespVer = respver
+          @UrlType = urltype
+          @EvilClass = evilclass
+          @EvilType = eviltype
+          @Level = level
+          @DetectTime = detecttime
+          @Wording = wording
+          @WordingTitle = wordingtitle
+          @UrlTypeDesc = urltypedesc
+          @EvilClassDesc = evilclassdesc
+          @EvilTypeDesc = eviltypedesc
+          @LevelDesc = leveldesc
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ResultCode = params['ResultCode']
+          @RespVer = params['RespVer']
+          @UrlType = params['UrlType']
+          @EvilClass = params['EvilClass']
+          @EvilType = params['EvilType']
+          @Level = params['Level']
+          @DetectTime = params['DetectTime']
+          @Wording = params['Wording']
+          @WordingTitle = params['WordingTitle']
+          @UrlTypeDesc = params['UrlTypeDesc']
+          @EvilClassDesc = params['EvilClassDesc']
+          @EvilTypeDesc = params['EvilTypeDesc']
+          @LevelDesc = params['LevelDesc']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeUserBaseInfoInstance请求参数结构体
       class DescribeUserBaseInfoInstanceRequest < TencentCloud::Common::AbstractModel
 

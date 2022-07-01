@@ -168,6 +168,65 @@ module TencentCloud
         end
       end
 
+      # DescribeHostList请求参数结构体
+      class DescribeHostListRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 独享集群实例Id
+        # @type InstanceId: String
+        # @param Limit: 分页返回数量
+        # @type Limit: Integer
+        # @param Offset: 分页偏移量
+        # @type Offset: Integer
+        # @param AssignStatus: 分配状态过滤，0-可分配，1-禁止分配
+        # @type AssignStatus: Array
+
+        attr_accessor :InstanceId, :Limit, :Offset, :AssignStatus
+        
+        def initialize(instanceid=nil, limit=nil, offset=nil, assignstatus=nil)
+          @InstanceId = instanceid
+          @Limit = limit
+          @Offset = offset
+          @AssignStatus = assignstatus
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          @AssignStatus = params['AssignStatus']
+        end
+      end
+
+      # DescribeHostList返回参数结构体
+      class DescribeHostListResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 主机总数
+        # @type TotalCount: Integer
+        # @param Hosts: 主机详情
+        # @type Hosts: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :Hosts, :RequestId
+        
+        def initialize(totalcount=nil, hosts=nil, requestid=nil)
+          @TotalCount = totalcount
+          @Hosts = hosts
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['Hosts'].nil?
+            @Hosts = []
+            params['Hosts'].each do |i|
+              hostdetail_tmp = HostDetail.new
+              hostdetail_tmp.deserialize(i)
+              @Hosts << hostdetail_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 独享集群详情
       class DescribeInstanceDetail < TencentCloud::Common::AbstractModel
         # @param InstanceId: 独享集群实例Id
@@ -621,6 +680,110 @@ module TencentCloud
           @RestDisk = params['RestDisk']
           @RawDeviceNum = params['RawDeviceNum']
           @InstanceNum = params['InstanceNum']
+        end
+      end
+
+      # 主机详情
+      class HostDetail < TencentCloud::Common::AbstractModel
+        # @param HostId: 主机Id
+        # @type HostId: String
+        # @param HostName: 主机名称
+        # @type HostName: String
+        # @param Zone: 可用区
+        # @type Zone: String
+        # @param Status: 主机状态
+        # @type Status: Integer
+        # @param AssignStatus: 分配DB实例状态,0:可分配,1:不可分配
+        # @type AssignStatus: Integer
+        # @param HostType: 主机类型, 0:物理机, 1:cvm本地盘, 2:cvm云盘
+        # @type HostType: Integer
+        # @param DbNum: DB实例数
+        # @type DbNum: Integer
+        # @param CpuSpec: 主机CPU(单位:核数)
+        # @type CpuSpec: Integer
+        # @param CpuAssigned: 已分配CPU(单位:核数)
+        # @type CpuAssigned: Integer
+        # @param CpuAssignable: 可分配CPU(单位:核数)
+        # @type CpuAssignable: Integer
+        # @param MemorySpec: 主机内存(单位:GB)
+        # @type MemorySpec: Integer
+        # @param MemoryAssigned: 已分配内存(单位:GB)
+        # @type MemoryAssigned: Integer
+        # @param MemoryAssignable: 可分配内存(单位:GB)
+        # @type MemoryAssignable: Integer
+        # @param DiskSpec: 主机磁盘(单位:GB)
+        # @type DiskSpec: Integer
+        # @param DiskAssigned: 已分配磁盘(单位:GB)
+        # @type DiskAssigned: Integer
+        # @param DiskAssignable: 可分配磁盘(GB)
+        # @type DiskAssignable: Integer
+        # @param CpuRatio: CPU分配比
+        # @type CpuRatio: Float
+        # @param MemoryRatio: 内存分配比
+        # @type MemoryRatio: Float
+        # @param DiskRatio: 磁盘分配比
+        # @type DiskRatio: Float
+        # @param MachineName: 机型名称
+        # @type MachineName: String
+        # @param MachineType: 机型类别
+        # @type MachineType: String
+        # @param PidTag: 计费标签
+        # @type PidTag: String
+        # @param Pid: 计费ID
+        # @type Pid: Integer
+
+        attr_accessor :HostId, :HostName, :Zone, :Status, :AssignStatus, :HostType, :DbNum, :CpuSpec, :CpuAssigned, :CpuAssignable, :MemorySpec, :MemoryAssigned, :MemoryAssignable, :DiskSpec, :DiskAssigned, :DiskAssignable, :CpuRatio, :MemoryRatio, :DiskRatio, :MachineName, :MachineType, :PidTag, :Pid
+        
+        def initialize(hostid=nil, hostname=nil, zone=nil, status=nil, assignstatus=nil, hosttype=nil, dbnum=nil, cpuspec=nil, cpuassigned=nil, cpuassignable=nil, memoryspec=nil, memoryassigned=nil, memoryassignable=nil, diskspec=nil, diskassigned=nil, diskassignable=nil, cpuratio=nil, memoryratio=nil, diskratio=nil, machinename=nil, machinetype=nil, pidtag=nil, pid=nil)
+          @HostId = hostid
+          @HostName = hostname
+          @Zone = zone
+          @Status = status
+          @AssignStatus = assignstatus
+          @HostType = hosttype
+          @DbNum = dbnum
+          @CpuSpec = cpuspec
+          @CpuAssigned = cpuassigned
+          @CpuAssignable = cpuassignable
+          @MemorySpec = memoryspec
+          @MemoryAssigned = memoryassigned
+          @MemoryAssignable = memoryassignable
+          @DiskSpec = diskspec
+          @DiskAssigned = diskassigned
+          @DiskAssignable = diskassignable
+          @CpuRatio = cpuratio
+          @MemoryRatio = memoryratio
+          @DiskRatio = diskratio
+          @MachineName = machinename
+          @MachineType = machinetype
+          @PidTag = pidtag
+          @Pid = pid
+        end
+
+        def deserialize(params)
+          @HostId = params['HostId']
+          @HostName = params['HostName']
+          @Zone = params['Zone']
+          @Status = params['Status']
+          @AssignStatus = params['AssignStatus']
+          @HostType = params['HostType']
+          @DbNum = params['DbNum']
+          @CpuSpec = params['CpuSpec']
+          @CpuAssigned = params['CpuAssigned']
+          @CpuAssignable = params['CpuAssignable']
+          @MemorySpec = params['MemorySpec']
+          @MemoryAssigned = params['MemoryAssigned']
+          @MemoryAssignable = params['MemoryAssignable']
+          @DiskSpec = params['DiskSpec']
+          @DiskAssigned = params['DiskAssigned']
+          @DiskAssignable = params['DiskAssignable']
+          @CpuRatio = params['CpuRatio']
+          @MemoryRatio = params['MemoryRatio']
+          @DiskRatio = params['DiskRatio']
+          @MachineName = params['MachineName']
+          @MachineType = params['MachineType']
+          @PidTag = params['PidTag']
+          @Pid = params['Pid']
         end
       end
 

@@ -367,6 +367,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 移动安全-网址检测服务
+
+        # @param request: Request instance for DescribeUrlDetectionResult.
+        # @type request: :class:`Tencentcloud::ms::V20180408::DescribeUrlDetectionResultRequest`
+        # @rtype: :class:`Tencentcloud::ms::V20180408::DescribeUrlDetectionResultResponse`
+        def DescribeUrlDetectionResult(request)
+          body = send_request('DescribeUrlDetectionResult', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeUrlDetectionResultResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 获取用户基础信息
 
         # @param request: Request instance for DescribeUserBaseInfoInstance.
