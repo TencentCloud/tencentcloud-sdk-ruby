@@ -388,6 +388,33 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口 (DescribeChcHosts) 用于查询一个或多个CHC物理服务器详细信息。
+
+        # * 可以根据实例`ID`、实例名称或者设备类型等信息来查询实例的详细信息。过滤信息详细请见过滤器`Filter`。
+        # * 如果参数为空，返回当前用户一定数量（`Limit`所指定的数量，默认为20）的实例。
+
+        # @param request: Request instance for DescribeChcHosts.
+        # @type request: :class:`Tencentcloud::cvm::V20170312::DescribeChcHostsRequest`
+        # @rtype: :class:`Tencentcloud::cvm::V20170312::DescribeChcHostsResponse`
+        def DescribeChcHosts(request)
+          body = send_request('DescribeChcHosts', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeChcHostsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口 (DescribeDisasterRecoverGroupQuota)用于查询[分散置放群组](https://cloud.tencent.com/document/product/213/15486)配额。
 
         # @param request: Request instance for DescribeDisasterRecoverGroupQuota.

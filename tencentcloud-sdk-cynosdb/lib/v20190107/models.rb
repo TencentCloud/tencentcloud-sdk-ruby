@@ -117,17 +117,17 @@ module TencentCloud
         # @type Cpu: Integer
         # @param Memory: 内存，单位为GB
         # @type Memory: Integer
-        # @param ReadOnlyCount: 新增只读实例数，取值范围为(0,16]
+        # @param ReadOnlyCount: 新增只读实例数，取值范围为[0,4]
         # @type ReadOnlyCount: Integer
-        # @param InstanceGrpId: 实例组ID，在已有RO组中新增实例时使用，不传则新增RO组
+        # @param InstanceGrpId: 实例组ID，在已有RO组中新增实例时使用，不传则新增RO组。当前版本不建议传输该值。
         # @type InstanceGrpId: String
-        # @param VpcId: 所属VPC网络ID
+        # @param VpcId: 所属VPC网络ID，该参数已废弃
         # @type VpcId: String
-        # @param SubnetId: 所属子网ID，如果设置了VpcId，则SubnetId必填
+        # @param SubnetId: 所属子网ID，如果设置了VpcId，则SubnetId必填。该参数已废弃。
         # @type SubnetId: String
         # @param Port: 新增RO组时使用的Port，取值范围为[0,65535)
         # @type Port: Integer
-        # @param InstanceName: 实例名称，字符串长度范围为[0,64)
+        # @param InstanceName: 实例名称，字符串长度范围为[0,64)，取值范围为大小写字母，0-9数字，'_','-','.'
         # @type InstanceName: String
         # @param AutoVoucher: 是否自动选择代金券 1是 0否 默认为0
         # @type AutoVoucher: Integer
@@ -335,6 +335,38 @@ module TencentCloud
         def deserialize(params)
           @ClusterId = params['ClusterId']
           @InstanceIds = params['InstanceIds']
+        end
+      end
+
+      # Binlog描述
+      class BinlogItem < TencentCloud::Common::AbstractModel
+        # @param FileName: Binlog文件名称
+        # @type FileName: String
+        # @param FileSize: 文件大小，单位：字节
+        # @type FileSize: Integer
+        # @param StartTime: 事务最早时间
+        # @type StartTime: String
+        # @param FinishTime: 事务最晚时间
+        # @type FinishTime: String
+        # @param BinlogId: Binlog文件ID
+        # @type BinlogId: Integer
+
+        attr_accessor :FileName, :FileSize, :StartTime, :FinishTime, :BinlogId
+        
+        def initialize(filename=nil, filesize=nil, starttime=nil, finishtime=nil, binlogid=nil)
+          @FileName = filename
+          @FileSize = filesize
+          @StartTime = starttime
+          @FinishTime = finishtime
+          @BinlogId = binlogid
+        end
+
+        def deserialize(params)
+          @FileName = params['FileName']
+          @FileSize = params['FileSize']
+          @StartTime = params['StartTime']
+          @FinishTime = params['FinishTime']
+          @BinlogId = params['BinlogId']
         end
       end
 
@@ -1649,6 +1681,46 @@ module TencentCloud
         end
       end
 
+      # DescribeBackupDownloadUrl请求参数结构体
+      class DescribeBackupDownloadUrlRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群ID
+        # @type ClusterId: String
+        # @param BackupId: 备份ID
+        # @type BackupId: Integer
+
+        attr_accessor :ClusterId, :BackupId
+        
+        def initialize(clusterid=nil, backupid=nil)
+          @ClusterId = clusterid
+          @BackupId = backupid
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @BackupId = params['BackupId']
+        end
+      end
+
+      # DescribeBackupDownloadUrl返回参数结构体
+      class DescribeBackupDownloadUrlResponse < TencentCloud::Common::AbstractModel
+        # @param DownloadUrl: 备份下载地址
+        # @type DownloadUrl: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :DownloadUrl, :RequestId
+        
+        def initialize(downloadurl=nil, requestid=nil)
+          @DownloadUrl = downloadurl
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @DownloadUrl = params['DownloadUrl']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeBackupList请求参数结构体
       class DescribeBackupListRequest < TencentCloud::Common::AbstractModel
         # @param ClusterId: 集群ID
@@ -1703,6 +1775,146 @@ module TencentCloud
               backupfileinfo_tmp = BackupFileInfo.new
               backupfileinfo_tmp.deserialize(i)
               @BackupList << backupfileinfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeBinlogDownloadUrl请求参数结构体
+      class DescribeBinlogDownloadUrlRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群ID
+        # @type ClusterId: String
+        # @param BinlogId: Binlog文件ID
+        # @type BinlogId: Integer
+
+        attr_accessor :ClusterId, :BinlogId
+        
+        def initialize(clusterid=nil, binlogid=nil)
+          @ClusterId = clusterid
+          @BinlogId = binlogid
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @BinlogId = params['BinlogId']
+        end
+      end
+
+      # DescribeBinlogDownloadUrl返回参数结构体
+      class DescribeBinlogDownloadUrlResponse < TencentCloud::Common::AbstractModel
+        # @param DownloadUrl: 下载地址
+        # @type DownloadUrl: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :DownloadUrl, :RequestId
+        
+        def initialize(downloadurl=nil, requestid=nil)
+          @DownloadUrl = downloadurl
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @DownloadUrl = params['DownloadUrl']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeBinlogSaveDays请求参数结构体
+      class DescribeBinlogSaveDaysRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群ID
+        # @type ClusterId: String
+
+        attr_accessor :ClusterId
+        
+        def initialize(clusterid=nil)
+          @ClusterId = clusterid
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+        end
+      end
+
+      # DescribeBinlogSaveDays返回参数结构体
+      class DescribeBinlogSaveDaysResponse < TencentCloud::Common::AbstractModel
+        # @param BinlogSaveDays: Binlog保留天数
+        # @type BinlogSaveDays: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :BinlogSaveDays, :RequestId
+        
+        def initialize(binlogsavedays=nil, requestid=nil)
+          @BinlogSaveDays = binlogsavedays
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @BinlogSaveDays = params['BinlogSaveDays']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeBinlogs请求参数结构体
+      class DescribeBinlogsRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群ID
+        # @type ClusterId: String
+        # @param StartTime: 开始时间
+        # @type StartTime: String
+        # @param EndTime: 结束时间
+        # @type EndTime: String
+        # @param Offset: 偏移量
+        # @type Offset: Integer
+        # @param Limit: 限制条数
+        # @type Limit: Integer
+
+        attr_accessor :ClusterId, :StartTime, :EndTime, :Offset, :Limit
+        
+        def initialize(clusterid=nil, starttime=nil, endtime=nil, offset=nil, limit=nil)
+          @ClusterId = clusterid
+          @StartTime = starttime
+          @EndTime = endtime
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeBinlogs返回参数结构体
+      class DescribeBinlogsResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 记录总条数
+        # @type TotalCount: Integer
+        # @param Binlogs: Binlog列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Binlogs: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :Binlogs, :RequestId
+        
+        def initialize(totalcount=nil, binlogs=nil, requestid=nil)
+          @TotalCount = totalcount
+          @Binlogs = binlogs
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['Binlogs'].nil?
+            @Binlogs = []
+            params['Binlogs'].each do |i|
+              binlogitem_tmp = BinlogItem.new
+              binlogitem_tmp.deserialize(i)
+              @Binlogs << binlogitem_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -2006,6 +2218,89 @@ module TencentCloud
           unless params['Detail'].nil?
             @Detail = CynosdbInstanceDetail.new
             @Detail.deserialize(params['Detail'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeInstanceSlowQueries请求参数结构体
+      class DescribeInstanceSlowQueriesRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+        # @param StartTime: 事务开始最早时间
+        # @type StartTime: String
+        # @param EndTime: 事务开始最晚时间
+        # @type EndTime: String
+        # @param Limit: 限制条数
+        # @type Limit: Integer
+        # @param Offset: 偏移量
+        # @type Offset: Integer
+        # @param Username: 用户名
+        # @type Username: String
+        # @param Host: 客户端host
+        # @type Host: String
+        # @param Database: 数据库名
+        # @type Database: String
+        # @param OrderBy: 排序字段，可选值：QueryTime,LockTime,RowsExamined,RowsSent
+        # @type OrderBy: String
+        # @param OrderByType: 排序类型，可选值：asc,desc
+        # @type OrderByType: String
+
+        attr_accessor :InstanceId, :StartTime, :EndTime, :Limit, :Offset, :Username, :Host, :Database, :OrderBy, :OrderByType
+        
+        def initialize(instanceid=nil, starttime=nil, endtime=nil, limit=nil, offset=nil, username=nil, host=nil, database=nil, orderby=nil, orderbytype=nil)
+          @InstanceId = instanceid
+          @StartTime = starttime
+          @EndTime = endtime
+          @Limit = limit
+          @Offset = offset
+          @Username = username
+          @Host = host
+          @Database = database
+          @OrderBy = orderby
+          @OrderByType = orderbytype
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          @Username = params['Username']
+          @Host = params['Host']
+          @Database = params['Database']
+          @OrderBy = params['OrderBy']
+          @OrderByType = params['OrderByType']
+        end
+      end
+
+      # DescribeInstanceSlowQueries返回参数结构体
+      class DescribeInstanceSlowQueriesResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 总条数
+        # @type TotalCount: Integer
+        # @param SlowQueries: 慢查询记录
+        # @type SlowQueries: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :SlowQueries, :RequestId
+        
+        def initialize(totalcount=nil, slowqueries=nil, requestid=nil)
+          @TotalCount = totalcount
+          @SlowQueries = slowqueries
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['SlowQueries'].nil?
+            @SlowQueries = []
+            params['SlowQueries'].each do |i|
+              slowqueriesitem_tmp = SlowQueriesItem.new
+              slowqueriesitem_tmp.deserialize(i)
+              @SlowQueries << slowqueriesitem_tmp
+            end
           end
           @RequestId = params['RequestId']
         end
@@ -2414,6 +2709,74 @@ module TencentCloud
         end
       end
 
+      # ExportInstanceSlowQueries请求参数结构体
+      class ExportInstanceSlowQueriesRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+        # @param StartTime: 事务开始最早时间
+        # @type StartTime: String
+        # @param EndTime: 事务开始最晚时间
+        # @type EndTime: String
+        # @param Limit: 限制条数
+        # @type Limit: Integer
+        # @param Offset: 偏移量
+        # @type Offset: Integer
+        # @param Username: 用户名
+        # @type Username: String
+        # @param Host: 客户端host
+        # @type Host: String
+        # @param Database: 数据库名
+        # @type Database: String
+        # @param FileType: 文件类型，可选值：csv, original
+        # @type FileType: String
+
+        attr_accessor :InstanceId, :StartTime, :EndTime, :Limit, :Offset, :Username, :Host, :Database, :FileType
+        
+        def initialize(instanceid=nil, starttime=nil, endtime=nil, limit=nil, offset=nil, username=nil, host=nil, database=nil, filetype=nil)
+          @InstanceId = instanceid
+          @StartTime = starttime
+          @EndTime = endtime
+          @Limit = limit
+          @Offset = offset
+          @Username = username
+          @Host = host
+          @Database = database
+          @FileType = filetype
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          @Username = params['Username']
+          @Host = params['Host']
+          @Database = params['Database']
+          @FileType = params['FileType']
+        end
+      end
+
+      # ExportInstanceSlowQueries返回参数结构体
+      class ExportInstanceSlowQueriesResponse < TencentCloud::Common::AbstractModel
+        # @param FileContent: 慢查询导出内容
+        # @type FileContent: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :FileContent, :RequestId
+        
+        def initialize(filecontent=nil, requestid=nil)
+          @FileContent = filecontent
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @FileContent = params['FileContent']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # GrantAccountPrivileges请求参数结构体
       class GrantAccountPrivilegesRequest < TencentCloud::Common::AbstractModel
         # @param ClusterId: 集群id
@@ -2520,8 +2883,7 @@ module TencentCloud
       class IsolateClusterRequest < TencentCloud::Common::AbstractModel
         # @param ClusterId: 集群ID
         # @type ClusterId: String
-        # @param DbType: 数据库类型，取值范围:
-        # <li> MYSQL </li>
+        # @param DbType: 该参数已废用
         # @type DbType: String
 
         attr_accessor :ClusterId, :DbType
@@ -2569,8 +2931,7 @@ module TencentCloud
         # @type ClusterId: String
         # @param InstanceIdList: 实例ID数组
         # @type InstanceIdList: Array
-        # @param DbType: 数据库类型，取值范围:
-        # <li> MYSQL </li>
+        # @param DbType: 该参数已废弃
         # @type DbType: String
 
         attr_accessor :ClusterId, :InstanceIdList, :DbType
@@ -2619,7 +2980,7 @@ module TencentCloud
         # @type ClusterId: String
         # @param Account: 账号信息
         # @type Account: :class:`Tencentcloud::Cynosdb.v20190107.models.InputAccount`
-        # @param AccountParams: 数据库表权限数组,当前仅支持参数：max_user_connections
+        # @param AccountParams: 数据库表权限数组,当前仅支持参数：max_user_connections，max_user_connections不能大于10240
         # @type AccountParams: Array
 
         attr_accessor :ClusterId, :Account, :AccountParams
@@ -2671,11 +3032,11 @@ module TencentCloud
         # @type BackupTimeBeg: Integer
         # @param BackupTimeEnd: 表示全备结束时间，[0-24*3600]， 如0:00, 1:00, 2:00 分别为 0，3600， 7200
         # @type BackupTimeEnd: Integer
-        # @param ReserveDuration: 表示保留备份时长, 单位秒，超过该时间将被清理, 七天表示为3600*24*7=604800
+        # @param ReserveDuration: 表示保留备份时长, 单位秒，超过该时间将被清理, 七天表示为3600*24*7=604800，最大为158112000
         # @type ReserveDuration: Integer
-        # @param BackupFreq: 备份频率，长度为7的数组，分别对应周一到周日的备份方式，full-全量备份，increment-增量备份
+        # @param BackupFreq: 该参数目前不支持修改，无需填写。备份频率，长度为7的数组，分别对应周一到周日的备份方式，full-全量备份，increment-增量备份
         # @type BackupFreq: Array
-        # @param BackupType: 备份方式，logic-逻辑备份，snapshot-快照备份
+        # @param BackupType: 该参数目前不支持修改，无需填写。备份方式，logic-逻辑备份，snapshot-快照备份
         # @type BackupType: String
 
         attr_accessor :ClusterId, :BackupTimeBeg, :BackupTimeEnd, :ReserveDuration, :BackupFreq, :BackupType
@@ -2701,6 +3062,46 @@ module TencentCloud
 
       # ModifyBackupConfig返回参数结构体
       class ModifyBackupConfigResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyBackupName请求参数结构体
+      class ModifyBackupNameRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群ID
+        # @type ClusterId: String
+        # @param BackupId: 备份文件ID
+        # @type BackupId: Integer
+        # @param BackupName: 备注名，长度不能超过60个字符
+        # @type BackupName: String
+
+        attr_accessor :ClusterId, :BackupId, :BackupName
+        
+        def initialize(clusterid=nil, backupid=nil, backupname=nil)
+          @ClusterId = clusterid
+          @BackupId = backupid
+          @BackupName = backupname
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @BackupId = params['BackupId']
+          @BackupName = params['BackupName']
+        end
+      end
+
+      # ModifyBackupName返回参数结构体
+      class ModifyBackupNameResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -2886,7 +3287,7 @@ module TencentCloud
         # @type MaintainStartTime: Integer
         # @param MaintainDuration: 维护持续时间，单位为秒，如1小时为3600
         # @type MaintainDuration: Integer
-        # @param MaintainWeekDays: 每周维护日期
+        # @param MaintainWeekDays: 每周维护日期，日期取值范围[Mon, Tue, Wed, Thu, Fri, Sat, Sun]
         # @type MaintainWeekDays: Array
 
         attr_accessor :InstanceId, :MaintainStartTime, :MaintainDuration, :MaintainWeekDays
@@ -3561,6 +3962,62 @@ module TencentCloud
         end
       end
 
+      # 实例慢查询信息
+      class SlowQueriesItem < TencentCloud::Common::AbstractModel
+        # @param Timestamp: 执行时间戳
+        # @type Timestamp: Integer
+        # @param QueryTime: 执行时长，单位秒
+        # @type QueryTime: Float
+        # @param SqlText: sql语句
+        # @type SqlText: String
+        # @param UserHost: 客户端host
+        # @type UserHost: String
+        # @param UserName: 用户名
+        # @type UserName: String
+        # @param Database: 数据库名
+        # @type Database: String
+        # @param LockTime: 锁时长，单位秒
+        # @type LockTime: Float
+        # @param RowsExamined: 扫描行数
+        # @type RowsExamined: Integer
+        # @param RowsSent: 返回行数
+        # @type RowsSent: Integer
+        # @param SqlTemplate: sql模版
+        # @type SqlTemplate: String
+        # @param SqlMd5: sql语句md5
+        # @type SqlMd5: String
+
+        attr_accessor :Timestamp, :QueryTime, :SqlText, :UserHost, :UserName, :Database, :LockTime, :RowsExamined, :RowsSent, :SqlTemplate, :SqlMd5
+        
+        def initialize(timestamp=nil, querytime=nil, sqltext=nil, userhost=nil, username=nil, database=nil, locktime=nil, rowsexamined=nil, rowssent=nil, sqltemplate=nil, sqlmd5=nil)
+          @Timestamp = timestamp
+          @QueryTime = querytime
+          @SqlText = sqltext
+          @UserHost = userhost
+          @UserName = username
+          @Database = database
+          @LockTime = locktime
+          @RowsExamined = rowsexamined
+          @RowsSent = rowssent
+          @SqlTemplate = sqltemplate
+          @SqlMd5 = sqlmd5
+        end
+
+        def deserialize(params)
+          @Timestamp = params['Timestamp']
+          @QueryTime = params['QueryTime']
+          @SqlText = params['SqlText']
+          @UserHost = params['UserHost']
+          @UserName = params['UserName']
+          @Database = params['Database']
+          @LockTime = params['LockTime']
+          @RowsExamined = params['RowsExamined']
+          @RowsSent = params['RowsSent']
+          @SqlTemplate = params['SqlTemplate']
+          @SqlMd5 = params['SqlMd5']
+        end
+      end
+
       # mysql表权限
       class TablePrivileges < TencentCloud::Common::AbstractModel
         # @param Db: 数据库名
@@ -3615,12 +4072,11 @@ module TencentCloud
         # @type Memory: Integer
         # @param UpgradeType: 升级类型：upgradeImmediate，upgradeInMaintain
         # @type UpgradeType: String
-        # @param StorageLimit: 存储上限，为0表示使用标准配置
+        # @param StorageLimit: 该参数已废弃
         # @type StorageLimit: Integer
         # @param AutoVoucher: 是否自动选择代金券 1是 0否 默认为0
         # @type AutoVoucher: Integer
-        # @param DbType: 数据库类型，取值范围:
-        # <li> MYSQL </li>
+        # @param DbType: 该参数已废弃
         # @type DbType: String
         # @param DealMode: 交易模式 0-下单并支付 1-下单
         # @type DealMode: Integer

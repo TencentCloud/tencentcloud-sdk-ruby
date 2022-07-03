@@ -303,6 +303,153 @@ module TencentCloud
         end
       end
 
+      # chc部署网络minos引导配置。
+      class ChcDeployExtraConfig < TencentCloud::Common::AbstractModel
+
+        
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # CHC物理服务器信息
+      class ChcHost < TencentCloud::Common::AbstractModel
+        # @param ChcId: CHC物理服务器ID。
+        # @type ChcId: String
+        # @param InstanceName: 实例名称。
+        # @type InstanceName: String
+        # @param SerialNumber: 服务器序列号。
+        # @type SerialNumber: String
+        # @param InstanceState: CHC的状态<br/>
+        # <ul>
+        # <li>REGISTERED: 设备已录入。还未配置带外和部署网络</li>
+        # <li>VPC_READY: 已配置带外和部署网络</li>
+        # <li>PREPARED: 可分配云主机</li>
+        # <li>ONLINE: 已分配云主机</li>
+        # </ul>
+        # @type InstanceState: String
+        # @param DeviceType: 设备类型。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DeviceType: String
+        # @param Placement: 所属可用区
+        # @type Placement: :class:`Tencentcloud::Cvm.v20170312.models.Placement`
+        # @param BmcVirtualPrivateCloud: 带外网络。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BmcVirtualPrivateCloud: :class:`Tencentcloud::Cvm.v20170312.models.VirtualPrivateCloud`
+        # @param BmcIp: 带外网络Ip。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BmcIp: String
+        # @param BmcSecurityGroupIds: 带外网络安全组Id。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BmcSecurityGroupIds: Array
+        # @param DeployVirtualPrivateCloud: 部署网络。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DeployVirtualPrivateCloud: :class:`Tencentcloud::Cvm.v20170312.models.VirtualPrivateCloud`
+        # @param DeployIp: 部署网络Ip。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DeployIp: String
+        # @param DeploySecurityGroupIds: 部署网络安全组Id。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DeploySecurityGroupIds: Array
+        # @param CvmInstanceId: 关联的云主机Id。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CvmInstanceId: String
+        # @param CreatedTime: 服务器导入的时间。
+        # @type CreatedTime: String
+        # @param HardwareDescription: 机型的硬件描述，分别为CPU核数，内存容量和磁盘容量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HardwareDescription: String
+        # @param CPU: CHC物理服务器的CPU核数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CPU: Integer
+        # @param Memory: CHC物理服务器的内存大小，单位为GB
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Memory: Integer
+        # @param Disk: CHC物理服务器的磁盘信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Disk: String
+        # @param BmcMAC: 带外网络下分配的MAC地址
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BmcMAC: String
+        # @param DeployMAC: 部署网络下分配的MAC地址
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DeployMAC: String
+        # @param TenantType: 设备托管类型。
+        # HOSTING: 托管
+        # TENANT: 租赁
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TenantType: String
+        # @param DeployExtraConfig: chc dhcp选项，用于minios调试
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DeployExtraConfig: :class:`Tencentcloud::Cvm.v20170312.models.ChcDeployExtraConfig`
+
+        attr_accessor :ChcId, :InstanceName, :SerialNumber, :InstanceState, :DeviceType, :Placement, :BmcVirtualPrivateCloud, :BmcIp, :BmcSecurityGroupIds, :DeployVirtualPrivateCloud, :DeployIp, :DeploySecurityGroupIds, :CvmInstanceId, :CreatedTime, :HardwareDescription, :CPU, :Memory, :Disk, :BmcMAC, :DeployMAC, :TenantType, :DeployExtraConfig
+        
+        def initialize(chcid=nil, instancename=nil, serialnumber=nil, instancestate=nil, devicetype=nil, placement=nil, bmcvirtualprivatecloud=nil, bmcip=nil, bmcsecuritygroupids=nil, deployvirtualprivatecloud=nil, deployip=nil, deploysecuritygroupids=nil, cvminstanceid=nil, createdtime=nil, hardwaredescription=nil, cpu=nil, memory=nil, disk=nil, bmcmac=nil, deploymac=nil, tenanttype=nil, deployextraconfig=nil)
+          @ChcId = chcid
+          @InstanceName = instancename
+          @SerialNumber = serialnumber
+          @InstanceState = instancestate
+          @DeviceType = devicetype
+          @Placement = placement
+          @BmcVirtualPrivateCloud = bmcvirtualprivatecloud
+          @BmcIp = bmcip
+          @BmcSecurityGroupIds = bmcsecuritygroupids
+          @DeployVirtualPrivateCloud = deployvirtualprivatecloud
+          @DeployIp = deployip
+          @DeploySecurityGroupIds = deploysecuritygroupids
+          @CvmInstanceId = cvminstanceid
+          @CreatedTime = createdtime
+          @HardwareDescription = hardwaredescription
+          @CPU = cpu
+          @Memory = memory
+          @Disk = disk
+          @BmcMAC = bmcmac
+          @DeployMAC = deploymac
+          @TenantType = tenanttype
+          @DeployExtraConfig = deployextraconfig
+        end
+
+        def deserialize(params)
+          @ChcId = params['ChcId']
+          @InstanceName = params['InstanceName']
+          @SerialNumber = params['SerialNumber']
+          @InstanceState = params['InstanceState']
+          @DeviceType = params['DeviceType']
+          unless params['Placement'].nil?
+            @Placement = Placement.new
+            @Placement.deserialize(params['Placement'])
+          end
+          unless params['BmcVirtualPrivateCloud'].nil?
+            @BmcVirtualPrivateCloud = VirtualPrivateCloud.new
+            @BmcVirtualPrivateCloud.deserialize(params['BmcVirtualPrivateCloud'])
+          end
+          @BmcIp = params['BmcIp']
+          @BmcSecurityGroupIds = params['BmcSecurityGroupIds']
+          unless params['DeployVirtualPrivateCloud'].nil?
+            @DeployVirtualPrivateCloud = VirtualPrivateCloud.new
+            @DeployVirtualPrivateCloud.deserialize(params['DeployVirtualPrivateCloud'])
+          end
+          @DeployIp = params['DeployIp']
+          @DeploySecurityGroupIds = params['DeploySecurityGroupIds']
+          @CvmInstanceId = params['CvmInstanceId']
+          @CreatedTime = params['CreatedTime']
+          @HardwareDescription = params['HardwareDescription']
+          @CPU = params['CPU']
+          @Memory = params['Memory']
+          @Disk = params['Disk']
+          @BmcMAC = params['BmcMAC']
+          @DeployMAC = params['DeployMAC']
+          @TenantType = params['TenantType']
+          unless params['DeployExtraConfig'].nil?
+            @DeployExtraConfig = ChcDeployExtraConfig.new
+            @DeployExtraConfig.deserialize(params['DeployExtraConfig'])
+          end
+        end
+      end
+
       # CreateDisasterRecoverGroup请求参数结构体
       class CreateDisasterRecoverGroupRequest < TencentCloud::Common::AbstractModel
         # @param Name: 分散置放群组名称，长度1-60个字符，支持中、英文。
@@ -1154,6 +1301,83 @@ module TencentCloud
           unless params['AccountQuotaOverview'].nil?
             @AccountQuotaOverview = AccountQuotaOverview.new
             @AccountQuotaOverview.deserialize(params['AccountQuotaOverview'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeChcHosts请求参数结构体
+      class DescribeChcHostsRequest < TencentCloud::Common::AbstractModel
+        # @param ChcIds: CHC物理服务器实例ID。每次请求的实例的上限为100。参数不支持同时指定`ChcIds`和`Filters`。
+        # @type ChcIds: Array
+        # @param Filters: <li><strong>zone</strong></li>
+        # <p style="padding-left: 30px;">按照【<strong>可用区</strong>】进行过滤。可用区形如：ap-guangzhou-1。</p><p style="padding-left: 30px;">类型：String</p><p style="padding-left: 30px;">必选：否</p><p style="padding-left: 30px;">可选项：<a href="https://cloud.tencent.com/document/product/213/6091">可用区列表</a></p>
+        # <li><strong>instance-name</strong></li>
+        # <p style="padding-left: 30px;">按照【<strong>实例名称</strong>】进行过滤。</p><p style="padding-left: 30px;">类型：String</p><p style="padding-left: 30px;">必选：否</p>
+        # <li><strong>instance-state</strong></li>
+        # <p style="padding-left: 30px;">按照【<strong>实例状态</strong>】进行过滤。状态类型详见[实例状态表](https://cloud.tencent.com/document/api/213/15753#InstanceStatus)</p><p style="padding-left: 30px;">类型：String</p><p style="padding-left: 30px;">必选：否</p>
+        # <li><strong>device-type</strong></li>
+        # <p style="padding-left: 30px;">按照【<strong>设备类型</strong>】进行过滤。</p><p style="padding-left: 30px;">类型：String</p><p style="padding-left: 30px;">必选：否</p>
+        # <li><strong>vpc-id</strong></li>
+        # <p style="padding-left: 30px;">按照【<strong>私有网络唯一ID</strong>】进行过滤。</p><p style="padding-left: 30px;">类型：String</p><p style="padding-left: 30px;">必选：否</p>
+        # <li><strong>subnet-id</strong></li>
+        # <p style="padding-left: 30px;">按照【<strong>私有子网唯一ID</strong>】进行过滤。</p><p style="padding-left: 30px;">类型：String</p><p style="padding-left: 30px;">必选：否</p>
+        # @type Filters: Array
+        # @param Offset: 偏移量，默认为0。关于`Offset`的更进一步介绍请参考 API [简介](https://cloud.tencent.com/document/api/213/15688)中的相关小节。
+        # @type Offset: Integer
+        # @param Limit: 返回数量，默认为20，最大值为100。关于`Limit`的更进一步介绍请参考 API [简介](https://cloud.tencent.com/document/api/213/15688)中的相关小节。
+        # @type Limit: Integer
+
+        attr_accessor :ChcIds, :Filters, :Offset, :Limit
+        
+        def initialize(chcids=nil, filters=nil, offset=nil, limit=nil)
+          @ChcIds = chcids
+          @Filters = filters
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @ChcIds = params['ChcIds']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeChcHosts返回参数结构体
+      class DescribeChcHostsResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 符合条件的实例数量。
+        # @type TotalCount: Integer
+        # @param ChcHostSet: 返回的实例列表
+        # @type ChcHostSet: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :ChcHostSet, :RequestId
+        
+        def initialize(totalcount=nil, chchostset=nil, requestid=nil)
+          @TotalCount = totalcount
+          @ChcHostSet = chchostset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['ChcHostSet'].nil?
+            @ChcHostSet = []
+            params['ChcHostSet'].each do |i|
+              chchost_tmp = ChcHost.new
+              chchost_tmp.deserialize(i)
+              @ChcHostSet << chchost_tmp
+            end
           end
           @RequestId = params['RequestId']
         end

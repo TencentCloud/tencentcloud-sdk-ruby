@@ -2585,12 +2585,28 @@ module TencentCloud
 
       # CreatePrometheusClusterAgent请求参数结构体
       class CreatePrometheusClusterAgentRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+        # @param Agents: agent列表
+        # @type Agents: Array
 
+        attr_accessor :InstanceId, :Agents
         
-        def initialize()
+        def initialize(instanceid=nil, agents=nil)
+          @InstanceId = instanceid
+          @Agents = agents
         end
 
         def deserialize(params)
+          @InstanceId = params['InstanceId']
+          unless params['Agents'].nil?
+            @Agents = []
+            params['Agents'].each do |i|
+              prometheusclusteragentbasic_tmp = PrometheusClusterAgentBasic.new
+              prometheusclusteragentbasic_tmp.deserialize(i)
+              @Agents << prometheusclusteragentbasic_tmp
+            end
+          end
         end
       end
 
@@ -11269,6 +11285,98 @@ module TencentCloud
         end
       end
 
+      # 与云监控融合托管prometheus实例，关联集群基础信息
+      class PrometheusClusterAgentBasic < TencentCloud::Common::AbstractModel
+        # @param Region: 集群ID
+        # @type Region: String
+        # @param ClusterType: 集群类型
+        # @type ClusterType: String
+        # @param ClusterId: 集群ID
+        # @type ClusterId: String
+        # @param EnableExternal: 是否开启公网CLB
+        # @type EnableExternal: Boolean
+        # @param InClusterPodConfig: 集群内部署组件的pod配置
+        # @type InClusterPodConfig: :class:`Tencentcloud::Tke.v20180525.models.PrometheusClusterAgentPodConfig`
+        # @param ExternalLabels: 该集群采集的所有指标都会带上这些labels
+        # @type ExternalLabels: Array
+        # @param NotInstallBasicScrape: 是否安装默认采集配置
+        # @type NotInstallBasicScrape: Boolean
+        # @param NotScrape: 是否采集指标，true代表drop所有指标，false代表采集默认指标
+        # @type NotScrape: Boolean
+
+        attr_accessor :Region, :ClusterType, :ClusterId, :EnableExternal, :InClusterPodConfig, :ExternalLabels, :NotInstallBasicScrape, :NotScrape
+        
+        def initialize(region=nil, clustertype=nil, clusterid=nil, enableexternal=nil, inclusterpodconfig=nil, externallabels=nil, notinstallbasicscrape=nil, notscrape=nil)
+          @Region = region
+          @ClusterType = clustertype
+          @ClusterId = clusterid
+          @EnableExternal = enableexternal
+          @InClusterPodConfig = inclusterpodconfig
+          @ExternalLabels = externallabels
+          @NotInstallBasicScrape = notinstallbasicscrape
+          @NotScrape = notscrape
+        end
+
+        def deserialize(params)
+          @Region = params['Region']
+          @ClusterType = params['ClusterType']
+          @ClusterId = params['ClusterId']
+          @EnableExternal = params['EnableExternal']
+          unless params['InClusterPodConfig'].nil?
+            @InClusterPodConfig = PrometheusClusterAgentPodConfig.new
+            @InClusterPodConfig.deserialize(params['InClusterPodConfig'])
+          end
+          unless params['ExternalLabels'].nil?
+            @ExternalLabels = []
+            params['ExternalLabels'].each do |i|
+              label_tmp = Label.new
+              label_tmp.deserialize(i)
+              @ExternalLabels << label_tmp
+            end
+          end
+          @NotInstallBasicScrape = params['NotInstallBasicScrape']
+          @NotScrape = params['NotScrape']
+        end
+      end
+
+      # 关联集群时在集群内部署组件的pod额外配置
+      class PrometheusClusterAgentPodConfig < TencentCloud::Common::AbstractModel
+        # @param HostNet: 是否使用HostNetWork
+        # @type HostNet: Boolean
+        # @param NodeSelector: 指定pod运行节点
+        # @type NodeSelector: Array
+        # @param Tolerations: 容忍污点
+        # @type Tolerations: Array
+
+        attr_accessor :HostNet, :NodeSelector, :Tolerations
+        
+        def initialize(hostnet=nil, nodeselector=nil, tolerations=nil)
+          @HostNet = hostnet
+          @NodeSelector = nodeselector
+          @Tolerations = tolerations
+        end
+
+        def deserialize(params)
+          @HostNet = params['HostNet']
+          unless params['NodeSelector'].nil?
+            @NodeSelector = []
+            params['NodeSelector'].each do |i|
+              label_tmp = Label.new
+              label_tmp.deserialize(i)
+              @NodeSelector << label_tmp
+            end
+          end
+          unless params['Tolerations'].nil?
+            @Tolerations = []
+            params['Tolerations'].each do |i|
+              toleration_tmp = Toleration.new
+              toleration_tmp.deserialize(i)
+              @Tolerations << toleration_tmp
+            end
+          end
+        end
+      end
+
       # prometheus配置
       class PrometheusConfigItem < TencentCloud::Common::AbstractModel
         # @param Name: 名称
@@ -13057,6 +13165,30 @@ module TencentCloud
 
         def deserialize(params)
           @Port = params['Port']
+        end
+      end
+
+      # kubernetes Taint
+      class Toleration < TencentCloud::Common::AbstractModel
+        # @param Key: 容忍应用到的 taint key
+        # @type Key: String
+        # @param Operator: 键与值的关系
+        # @type Operator: String
+        # @param Effect: 要匹配的污点效果
+        # @type Effect: String
+
+        attr_accessor :Key, :Operator, :Effect
+        
+        def initialize(key=nil, operator=nil, effect=nil)
+          @Key = key
+          @Operator = operator
+          @Effect = effect
+        end
+
+        def deserialize(params)
+          @Key = params['Key']
+          @Operator = params['Operator']
+          @Effect = params['Effect']
         end
       end
 

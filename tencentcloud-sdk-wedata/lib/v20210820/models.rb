@@ -17,6 +17,62 @@
 module TencentCloud
   module Wedata
     module V20210820
+      # DescribeProject请求参数结构体
+      class DescribeProjectRequest < TencentCloud::Common::AbstractModel
+        # @param ProjectId: 项目id。一般使用项目Id来查询，与projectName必须存在一个。
+        # @type ProjectId: String
+        # @param DescribeClusters: 是否展示关联集群信息
+        # @type DescribeClusters: Boolean
+        # @param DescribeExecutors: 是否展示关联执行组的信息，仅部分信息。
+        # @type DescribeExecutors: Boolean
+        # @param DescribeAdminUsers: 默认不展示项目管理员信息
+        # @type DescribeAdminUsers: Boolean
+        # @param DescribeMemberCount: 默认不统计项目人员数量
+        # @type DescribeMemberCount: Boolean
+        # @param DescribeCreator: 默认不查询创建者的信息
+        # @type DescribeCreator: Boolean
+        # @param ProjectName: 项目名只在租户内唯一，一般用来转化为项目ID。
+        # @type ProjectName: String
+
+        attr_accessor :ProjectId, :DescribeClusters, :DescribeExecutors, :DescribeAdminUsers, :DescribeMemberCount, :DescribeCreator, :ProjectName
+        
+        def initialize(projectid=nil, describeclusters=nil, describeexecutors=nil, describeadminusers=nil, describemembercount=nil, describecreator=nil, projectname=nil)
+          @ProjectId = projectid
+          @DescribeClusters = describeclusters
+          @DescribeExecutors = describeexecutors
+          @DescribeAdminUsers = describeadminusers
+          @DescribeMemberCount = describemembercount
+          @DescribeCreator = describecreator
+          @ProjectName = projectname
+        end
+
+        def deserialize(params)
+          @ProjectId = params['ProjectId']
+          @DescribeClusters = params['DescribeClusters']
+          @DescribeExecutors = params['DescribeExecutors']
+          @DescribeAdminUsers = params['DescribeAdminUsers']
+          @DescribeMemberCount = params['DescribeMemberCount']
+          @DescribeCreator = params['DescribeCreator']
+          @ProjectName = params['ProjectName']
+        end
+      end
+
+      # DescribeProject返回参数结构体
+      class DescribeProjectResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeRelatedInstances请求参数结构体
       class DescribeRelatedInstancesRequest < TencentCloud::Common::AbstractModel
         # @param ProjectId: 项目id

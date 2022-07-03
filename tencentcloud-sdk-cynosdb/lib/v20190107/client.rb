@@ -221,6 +221,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 此接口（DescribeBackupDownloadUrl）用于查询集群备份文件下载地址。
+
+        # @param request: Request instance for DescribeBackupDownloadUrl.
+        # @type request: :class:`Tencentcloud::cynosdb::V20190107::DescribeBackupDownloadUrlRequest`
+        # @rtype: :class:`Tencentcloud::cynosdb::V20190107::DescribeBackupDownloadUrlResponse`
+        def DescribeBackupDownloadUrl(request)
+          body = send_request('DescribeBackupDownloadUrl', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeBackupDownloadUrlResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询备份文件列表
 
         # @param request: Request instance for DescribeBackupList.
@@ -231,6 +255,78 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeBackupListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 此接口（DescribeBinlogDownloadUrl）用于查询Binlog的下载地址。
+
+        # @param request: Request instance for DescribeBinlogDownloadUrl.
+        # @type request: :class:`Tencentcloud::cynosdb::V20190107::DescribeBinlogDownloadUrlRequest`
+        # @rtype: :class:`Tencentcloud::cynosdb::V20190107::DescribeBinlogDownloadUrlResponse`
+        def DescribeBinlogDownloadUrl(request)
+          body = send_request('DescribeBinlogDownloadUrl', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeBinlogDownloadUrlResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 此接口（DescribeBinlogSaveDays）用于查询集群的Binlog保留天数。
+
+        # @param request: Request instance for DescribeBinlogSaveDays.
+        # @type request: :class:`Tencentcloud::cynosdb::V20190107::DescribeBinlogSaveDaysRequest`
+        # @rtype: :class:`Tencentcloud::cynosdb::V20190107::DescribeBinlogSaveDaysResponse`
+        def DescribeBinlogSaveDays(request)
+          body = send_request('DescribeBinlogSaveDays', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeBinlogSaveDaysResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 此接口（DescribeBinlogs）用来查询集群Binlog日志列表。
+
+        # @param request: Request instance for DescribeBinlogs.
+        # @type request: :class:`Tencentcloud::cynosdb::V20190107::DescribeBinlogsRequest`
+        # @rtype: :class:`Tencentcloud::cynosdb::V20190107::DescribeBinlogsResponse`
+        def DescribeBinlogs(request)
+          body = send_request('DescribeBinlogs', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeBinlogsResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -375,6 +471,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeInstanceDetailResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 此接口（DescribeInstanceSlowQueries）用于查询实例慢查询日志。
+
+        # @param request: Request instance for DescribeInstanceSlowQueries.
+        # @type request: :class:`Tencentcloud::cynosdb::V20190107::DescribeInstanceSlowQueriesRequest`
+        # @rtype: :class:`Tencentcloud::cynosdb::V20190107::DescribeInstanceSlowQueriesResponse`
+        def DescribeInstanceSlowQueries(request)
+          body = send_request('DescribeInstanceSlowQueries', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeInstanceSlowQueriesResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -581,6 +701,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 此接口（ExportInstanceSlowQueries）用于导出实例慢日志。
+
+        # @param request: Request instance for ExportInstanceSlowQueries.
+        # @type request: :class:`Tencentcloud::cynosdb::V20190107::ExportInstanceSlowQueriesRequest`
+        # @rtype: :class:`Tencentcloud::cynosdb::V20190107::ExportInstanceSlowQueriesResponse`
+        def ExportInstanceSlowQueries(request)
+          body = send_request('ExportInstanceSlowQueries', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ExportInstanceSlowQueriesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 批量授权账号权限
 
         # @param request: Request instance for GrantAccountPrivileges.
@@ -687,6 +831,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyBackupConfigResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 此接口（ModifyBackupName）用于修改备份文件备注名。
+
+        # @param request: Request instance for ModifyBackupName.
+        # @type request: :class:`Tencentcloud::cynosdb::V20190107::ModifyBackupNameRequest`
+        # @rtype: :class:`Tencentcloud::cynosdb::V20190107::ModifyBackupNameResponse`
+        def ModifyBackupName(request)
+          body = send_request('ModifyBackupName', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyBackupNameResponse.new
             model.deserialize(response['Response'])
             model
           else

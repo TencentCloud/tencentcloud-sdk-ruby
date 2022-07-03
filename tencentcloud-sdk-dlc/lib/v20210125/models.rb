@@ -4328,6 +4328,46 @@ module TencentCloud
         end
       end
 
+      # ReportHeartbeatMetaData请求参数结构体
+      class ReportHeartbeatMetaDataRequest < TencentCloud::Common::AbstractModel
+        # @param DatasourceConnectionName: 数据源名称
+        # @type DatasourceConnectionName: String
+        # @param LockId: 锁ID
+        # @type LockId: Integer
+        # @param TxnId: 事务ID
+        # @type TxnId: Integer
+
+        attr_accessor :DatasourceConnectionName, :LockId, :TxnId
+        
+        def initialize(datasourceconnectionname=nil, lockid=nil, txnid=nil)
+          @DatasourceConnectionName = datasourceconnectionname
+          @LockId = lockid
+          @TxnId = txnid
+        end
+
+        def deserialize(params)
+          @DatasourceConnectionName = params['DatasourceConnectionName']
+          @LockId = params['LockId']
+          @TxnId = params['TxnId']
+        end
+      end
+
+      # ReportHeartbeatMetaData返回参数结构体
+      class ReportHeartbeatMetaDataResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       #  SQL查询任务
       class SQLTask < TencentCloud::Common::AbstractModel
         # @param SQL: base64加密后的SQL语句

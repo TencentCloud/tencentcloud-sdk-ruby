@@ -1032,16 +1032,23 @@ module TencentCloud
         # @type FundingAccountInfo: :class:`Tencentcloud::Cpdp.v20190820.models.FlexFundingAccountInfo`
         # @param Remark: 提现备注
         # @type Remark: String
+        # @param Environment: 环境类型
+        # __release__:生产环境
+        # __sandbox__:沙箱环境
+        # __test__:测试环境
+        # 缺省默认为生产环境
+        # @type Environment: String
 
-        attr_accessor :PayeeId, :IncomeType, :AmountBeforeTax, :OutOrderId, :FundingAccountInfo, :Remark
+        attr_accessor :PayeeId, :IncomeType, :AmountBeforeTax, :OutOrderId, :FundingAccountInfo, :Remark, :Environment
         
-        def initialize(payeeid=nil, incometype=nil, amountbeforetax=nil, outorderid=nil, fundingaccountinfo=nil, remark=nil)
+        def initialize(payeeid=nil, incometype=nil, amountbeforetax=nil, outorderid=nil, fundingaccountinfo=nil, remark=nil, environment=nil)
           @PayeeId = payeeid
           @IncomeType = incometype
           @AmountBeforeTax = amountbeforetax
           @OutOrderId = outorderid
           @FundingAccountInfo = fundingaccountinfo
           @Remark = remark
+          @Environment = environment
         end
 
         def deserialize(params)
@@ -1054,6 +1061,7 @@ module TencentCloud
             @FundingAccountInfo.deserialize(params['FundingAccountInfo'])
           end
           @Remark = params['Remark']
+          @Environment = params['Environment']
         end
       end
 
@@ -1131,15 +1139,22 @@ module TencentCloud
         # @type OutOrderId: String
         # @param Remark: 备注
         # @type Remark: String
+        # @param Environment: 环境类型
+        # __release__:生产环境
+        # __sandbox__:沙箱环境
+        # __test__:测试环境
+        # 缺省默认为生产环境
+        # @type Environment: String
 
-        attr_accessor :PayeeId, :IncomeType, :AmountBeforeTax, :OutOrderId, :Remark
+        attr_accessor :PayeeId, :IncomeType, :AmountBeforeTax, :OutOrderId, :Remark, :Environment
         
-        def initialize(payeeid=nil, incometype=nil, amountbeforetax=nil, outorderid=nil, remark=nil)
+        def initialize(payeeid=nil, incometype=nil, amountbeforetax=nil, outorderid=nil, remark=nil, environment=nil)
           @PayeeId = payeeid
           @IncomeType = incometype
           @AmountBeforeTax = amountbeforetax
           @OutOrderId = outorderid
           @Remark = remark
+          @Environment = environment
         end
 
         def deserialize(params)
@@ -1148,6 +1163,7 @@ module TencentCloud
           @AmountBeforeTax = params['AmountBeforeTax']
           @OutOrderId = params['OutOrderId']
           @Remark = params['Remark']
+          @Environment = params['Environment']
         end
       end
 
@@ -5248,10 +5264,18 @@ module TencentCloud
         # @type IdType: Integer
         # @param Remark: 备注
         # @type Remark: String
+        # @param PhoneNo: 手机号码
+        # @type PhoneNo: String
+        # @param Environment: 环境类型
+        # __release__:生产环境
+        # __sandbox__:沙箱环境
+        # __test__:测试环境
+        # 缺省默认为生产环境
+        # @type Environment: String
 
-        attr_accessor :OutUserId, :Name, :IdNo, :AccountName, :ServiceProviderId, :TaxInfo, :IdType, :Remark
+        attr_accessor :OutUserId, :Name, :IdNo, :AccountName, :ServiceProviderId, :TaxInfo, :IdType, :Remark, :PhoneNo, :Environment
         
-        def initialize(outuserid=nil, name=nil, idno=nil, accountname=nil, serviceproviderid=nil, taxinfo=nil, idtype=nil, remark=nil)
+        def initialize(outuserid=nil, name=nil, idno=nil, accountname=nil, serviceproviderid=nil, taxinfo=nil, idtype=nil, remark=nil, phoneno=nil, environment=nil)
           @OutUserId = outuserid
           @Name = name
           @IdNo = idno
@@ -5260,6 +5284,8 @@ module TencentCloud
           @TaxInfo = taxinfo
           @IdType = idtype
           @Remark = remark
+          @PhoneNo = phoneno
+          @Environment = environment
         end
 
         def deserialize(params)
@@ -5274,6 +5300,8 @@ module TencentCloud
           end
           @IdType = params['IdType']
           @Remark = params['Remark']
+          @PhoneNo = params['PhoneNo']
+          @Environment = params['Environment']
         end
       end
 
@@ -9802,16 +9830,23 @@ module TencentCloud
         # @type OperationType: String
         # @param Remark: 冻结备注
         # @type Remark: String
+        # @param Environment: 环境类型
+        # __release__:生产环境
+        # __sandbox__:沙箱环境
+        # __test__:测试环境
+        # 缺省默认为生产环境
+        # @type Environment: String
 
-        attr_accessor :PayeeId, :AmountBeforeTax, :IncomeType, :OutOrderId, :OperationType, :Remark
+        attr_accessor :PayeeId, :AmountBeforeTax, :IncomeType, :OutOrderId, :OperationType, :Remark, :Environment
         
-        def initialize(payeeid=nil, amountbeforetax=nil, incometype=nil, outorderid=nil, operationtype=nil, remark=nil)
+        def initialize(payeeid=nil, amountbeforetax=nil, incometype=nil, outorderid=nil, operationtype=nil, remark=nil, environment=nil)
           @PayeeId = payeeid
           @AmountBeforeTax = amountbeforetax
           @IncomeType = incometype
           @OutOrderId = outorderid
           @OperationType = operationtype
           @Remark = remark
+          @Environment = environment
         end
 
         def deserialize(params)
@@ -9821,6 +9856,7 @@ module TencentCloud
           @OutOrderId = params['OutOrderId']
           @OperationType = params['OperationType']
           @Remark = params['Remark']
+          @Environment = params['Environment']
         end
       end
 
@@ -10910,19 +10946,27 @@ module TencentCloud
         # ENABLE:启用
         # DISABLE:停用
         # @type AccountRightStatus: String
+        # @param Environment: 环境类型
+        # __release__:生产环境
+        # __sandbox__:沙箱环境
+        # __test__:测试环境
+        # 缺省默认为生产环境
+        # @type Environment: String
 
-        attr_accessor :PayeeId, :AccountRightType, :AccountRightStatus
+        attr_accessor :PayeeId, :AccountRightType, :AccountRightStatus, :Environment
         
-        def initialize(payeeid=nil, accountrighttype=nil, accountrightstatus=nil)
+        def initialize(payeeid=nil, accountrighttype=nil, accountrightstatus=nil, environment=nil)
           @PayeeId = payeeid
           @AccountRightType = accountrighttype
           @AccountRightStatus = accountrightstatus
+          @Environment = environment
         end
 
         def deserialize(params)
           @PayeeId = params['PayeeId']
           @AccountRightType = params['AccountRightType']
           @AccountRightStatus = params['AccountRightStatus']
+          @Environment = params['Environment']
         end
       end
 
@@ -12548,10 +12592,12 @@ module TencentCloud
         # @param Remark: 提现备注
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Remark: String
+        # @param PayeeId: 收款用户ID
+        # @type PayeeId: String
 
-        attr_accessor :IncomeType, :AmountBeforeTax, :AmountAfterTax, :Tax, :OutOrderId, :OrderId, :InitiateTime, :FinishTime, :Status, :StatusDesc, :Remark
+        attr_accessor :IncomeType, :AmountBeforeTax, :AmountAfterTax, :Tax, :OutOrderId, :OrderId, :InitiateTime, :FinishTime, :Status, :StatusDesc, :Remark, :PayeeId
         
-        def initialize(incometype=nil, amountbeforetax=nil, amountaftertax=nil, tax=nil, outorderid=nil, orderid=nil, initiatetime=nil, finishtime=nil, status=nil, statusdesc=nil, remark=nil)
+        def initialize(incometype=nil, amountbeforetax=nil, amountaftertax=nil, tax=nil, outorderid=nil, orderid=nil, initiatetime=nil, finishtime=nil, status=nil, statusdesc=nil, remark=nil, payeeid=nil)
           @IncomeType = incometype
           @AmountBeforeTax = amountbeforetax
           @AmountAfterTax = amountaftertax
@@ -12563,6 +12609,7 @@ module TencentCloud
           @Status = status
           @StatusDesc = statusdesc
           @Remark = remark
+          @PayeeId = payeeid
         end
 
         def deserialize(params)
@@ -12577,6 +12624,7 @@ module TencentCloud
           @Status = params['Status']
           @StatusDesc = params['StatusDesc']
           @Remark = params['Remark']
+          @PayeeId = params['PayeeId']
         end
       end
 
@@ -15204,19 +15252,27 @@ module TencentCloud
         # @type IncomeType: String
         # @param AmountAfterTax: 税后金额
         # @type AmountAfterTax: String
+        # @param Environment: 环境类型
+        # __release__:生产环境
+        # __sandbox__:沙箱环境
+        # __test__:测试环境
+        # 缺省默认为生产环境
+        # @type Environment: String
 
-        attr_accessor :PayeeId, :IncomeType, :AmountAfterTax
+        attr_accessor :PayeeId, :IncomeType, :AmountAfterTax, :Environment
         
-        def initialize(payeeid=nil, incometype=nil, amountaftertax=nil)
+        def initialize(payeeid=nil, incometype=nil, amountaftertax=nil, environment=nil)
           @PayeeId = payeeid
           @IncomeType = incometype
           @AmountAfterTax = amountaftertax
+          @Environment = environment
         end
 
         def deserialize(params)
           @PayeeId = params['PayeeId']
           @IncomeType = params['IncomeType']
           @AmountAfterTax = params['AmountAfterTax']
+          @Environment = params['Environment']
         end
       end
 
@@ -15266,15 +15322,22 @@ module TencentCloud
         # @type EndTime: String
         # @param PageNumber: 分页
         # @type PageNumber: :class:`Tencentcloud::Cpdp.v20190820.models.Paging`
+        # @param Environment: 环境类型
+        # __release__:生产环境
+        # __sandbox__:沙箱环境
+        # __test__:测试环境
+        # 缺省默认为生产环境
+        # @type Environment: String
 
-        attr_accessor :PayeeId, :OperationType, :StartTime, :EndTime, :PageNumber
+        attr_accessor :PayeeId, :OperationType, :StartTime, :EndTime, :PageNumber, :Environment
         
-        def initialize(payeeid=nil, operationtype=nil, starttime=nil, endtime=nil, pagenumber=nil)
+        def initialize(payeeid=nil, operationtype=nil, starttime=nil, endtime=nil, pagenumber=nil, environment=nil)
           @PayeeId = payeeid
           @OperationType = operationtype
           @StartTime = starttime
           @EndTime = endtime
           @PageNumber = pagenumber
+          @Environment = environment
         end
 
         def deserialize(params)
@@ -15286,6 +15349,7 @@ module TencentCloud
             @PageNumber = Paging.new
             @PageNumber.deserialize(params['PageNumber'])
           end
+          @Environment = params['Environment']
         end
       end
 
@@ -15329,17 +15393,25 @@ module TencentCloud
         # LABOR:劳务所得
         # OCCASION:偶然所得
         # @type IncomeType: String
+        # @param Environment: 环境类型
+        # __release__:生产环境
+        # __sandbox__:沙箱环境
+        # __test__:测试环境
+        # 缺省默认为生产环境
+        # @type Environment: String
 
-        attr_accessor :PayeeId, :IncomeType
+        attr_accessor :PayeeId, :IncomeType, :Environment
         
-        def initialize(payeeid=nil, incometype=nil)
+        def initialize(payeeid=nil, incometype=nil, environment=nil)
           @PayeeId = payeeid
           @IncomeType = incometype
+          @Environment = environment
         end
 
         def deserialize(params)
           @PayeeId = params['PayeeId']
           @IncomeType = params['IncomeType']
+          @Environment = params['Environment']
         end
       end
 
@@ -15381,17 +15453,25 @@ module TencentCloud
         # @type PayeeId: String
         # @param OutUserId: 外部用户ID
         # @type OutUserId: String
+        # @param Environment: 环境类型
+        # __release__:生产环境
+        # __sandbox__:沙箱环境
+        # __test__:测试环境
+        # 缺省默认为生产环境
+        # @type Environment: String
 
-        attr_accessor :PayeeId, :OutUserId
+        attr_accessor :PayeeId, :OutUserId, :Environment
         
-        def initialize(payeeid=nil, outuserid=nil)
+        def initialize(payeeid=nil, outuserid=nil, environment=nil)
           @PayeeId = payeeid
           @OutUserId = outuserid
+          @Environment = environment
         end
 
         def deserialize(params)
           @PayeeId = params['PayeeId']
           @OutUserId = params['OutUserId']
+          @Environment = params['Environment']
         end
       end
 
@@ -15437,14 +15517,21 @@ module TencentCloud
         # @type EndTime: String
         # @param PageNumber: 分页
         # @type PageNumber: :class:`Tencentcloud::Cpdp.v20190820.models.Paging`
+        # @param Environment: 环境类型
+        # __release__:生产环境
+        # __sandbox__:沙箱环境
+        # __test__:测试环境
+        # 缺省默认为生产环境
+        # @type Environment: String
 
-        attr_accessor :PropertyInfo, :StartTime, :EndTime, :PageNumber
+        attr_accessor :PropertyInfo, :StartTime, :EndTime, :PageNumber, :Environment
         
-        def initialize(propertyinfo=nil, starttime=nil, endtime=nil, pagenumber=nil)
+        def initialize(propertyinfo=nil, starttime=nil, endtime=nil, pagenumber=nil, environment=nil)
           @PropertyInfo = propertyinfo
           @StartTime = starttime
           @EndTime = endtime
           @PageNumber = pagenumber
+          @Environment = environment
         end
 
         def deserialize(params)
@@ -15458,6 +15545,7 @@ module TencentCloud
             @PageNumber = Paging.new
             @PageNumber.deserialize(params['PageNumber'])
           end
+          @Environment = params['Environment']
         end
       end
 
@@ -15499,17 +15587,25 @@ module TencentCloud
         # @type PayeeId: String
         # @param OutUserId: 外部用户ID
         # @type OutUserId: String
+        # @param Environment: 环境类型
+        # __release__:生产环境
+        # __sandbox__:沙箱环境
+        # __test__:测试环境
+        # 缺省默认为生产环境
+        # @type Environment: String
 
-        attr_accessor :PayeeId, :OutUserId
+        attr_accessor :PayeeId, :OutUserId, :Environment
         
-        def initialize(payeeid=nil, outuserid=nil)
+        def initialize(payeeid=nil, outuserid=nil, environment=nil)
           @PayeeId = payeeid
           @OutUserId = outuserid
+          @Environment = environment
         end
 
         def deserialize(params)
           @PayeeId = params['PayeeId']
           @OutUserId = params['OutUserId']
+          @Environment = params['Environment']
         end
       end
 
@@ -15555,14 +15651,21 @@ module TencentCloud
         # @type EndTime: String
         # @param PageNumber: 分页
         # @type PageNumber: :class:`Tencentcloud::Cpdp.v20190820.models.Paging`
+        # @param Environment: 环境类型
+        # __release__:生产环境
+        # __sandbox__:沙箱环境
+        # __test__:测试环境
+        # 缺省默认为生产环境
+        # @type Environment: String
 
-        attr_accessor :PayeeId, :StartTime, :EndTime, :PageNumber
+        attr_accessor :PayeeId, :StartTime, :EndTime, :PageNumber, :Environment
         
-        def initialize(payeeid=nil, starttime=nil, endtime=nil, pagenumber=nil)
+        def initialize(payeeid=nil, starttime=nil, endtime=nil, pagenumber=nil, environment=nil)
           @PayeeId = payeeid
           @StartTime = starttime
           @EndTime = endtime
           @PageNumber = pagenumber
+          @Environment = environment
         end
 
         def deserialize(params)
@@ -15573,6 +15676,7 @@ module TencentCloud
             @PageNumber = Paging.new
             @PageNumber.deserialize(params['PageNumber'])
           end
+          @Environment = params['Environment']
         end
       end
 
@@ -15614,17 +15718,25 @@ module TencentCloud
         # @type OutOrderId: String
         # @param OrderId: 订单ID
         # @type OrderId: String
+        # @param Environment: 环境类型
+        # __release__:生产环境
+        # __sandbox__:沙箱环境
+        # __test__:测试环境
+        # 缺省默认为生产环境
+        # @type Environment: String
 
-        attr_accessor :OutOrderId, :OrderId
+        attr_accessor :OutOrderId, :OrderId, :Environment
         
-        def initialize(outorderid=nil, orderid=nil)
+        def initialize(outorderid=nil, orderid=nil, environment=nil)
           @OutOrderId = outorderid
           @OrderId = orderid
+          @Environment = environment
         end
 
         def deserialize(params)
           @OutOrderId = params['OutOrderId']
           @OrderId = params['OrderId']
+          @Environment = params['Environment']
         end
       end
 
@@ -15670,14 +15782,28 @@ module TencentCloud
         # @type EndTime: String
         # @param PageNumber: 分页
         # @type PageNumber: :class:`Tencentcloud::Cpdp.v20190820.models.Paging`
+        # @param OperationType: 操作类型。
+        # ENABLE_SETTLE: 正常结算
+        # DISABLE_SETTLE: 停用结算
+        # UNFREEZE_SETTLE: 解冻结算
+        # 若需要支持多个操作类型，则以;分隔
+        # @type OperationType: String
+        # @param Environment: 环境类型
+        # __release__:生产环境
+        # __sandbox__:沙箱环境
+        # __test__:测试环境
+        # 缺省默认为生产环境
+        # @type Environment: String
 
-        attr_accessor :PayeeId, :StartTime, :EndTime, :PageNumber
+        attr_accessor :PayeeId, :StartTime, :EndTime, :PageNumber, :OperationType, :Environment
         
-        def initialize(payeeid=nil, starttime=nil, endtime=nil, pagenumber=nil)
+        def initialize(payeeid=nil, starttime=nil, endtime=nil, pagenumber=nil, operationtype=nil, environment=nil)
           @PayeeId = payeeid
           @StartTime = starttime
           @EndTime = endtime
           @PageNumber = pagenumber
+          @OperationType = operationtype
+          @Environment = environment
         end
 
         def deserialize(params)
@@ -15688,6 +15814,8 @@ module TencentCloud
             @PageNumber = Paging.new
             @PageNumber.deserialize(params['PageNumber'])
           end
+          @OperationType = params['OperationType']
+          @Environment = params['Environment']
         end
       end
 

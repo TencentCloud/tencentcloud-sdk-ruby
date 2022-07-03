@@ -29,6 +29,30 @@ module TencentCloud
         end
 
 
+        # 获取项目信息
+
+        # @param request: Request instance for DescribeProject.
+        # @type request: :class:`Tencentcloud::wedata::V20210820::DescribeProjectRequest`
+        # @rtype: :class:`Tencentcloud::wedata::V20210820::DescribeProjectResponse`
+        def DescribeProject(request)
+          body = send_request('DescribeProject', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeProjectResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询任务实例的关联实例列表
 
         # @param request: Request instance for DescribeRelatedInstances.
