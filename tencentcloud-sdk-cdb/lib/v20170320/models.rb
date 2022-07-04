@@ -7052,19 +7052,29 @@ module TencentCloud
         # 当关闭审计服务时，会删除用户的审计日志和文件，并删除该实例的所有审计策略。
         # CloseAudit、LogExpireDay必须至少提供一个，如果两个都提供则按照CloseAudit优先的逻辑处理。
         # @type CloseAudit: Boolean
+        # @param HighLogExpireDay: 高频审计日志保存时长。支持值包括：
+        # 7 - 一周
+        # 30 - 一个月；
+        # 180 - 六个月；
+        # 365 - 一年；
+        # 1095 - 三年；
+        # 1825 - 五年；
+        # @type HighLogExpireDay: Integer
 
-        attr_accessor :InstanceId, :LogExpireDay, :CloseAudit
+        attr_accessor :InstanceId, :LogExpireDay, :CloseAudit, :HighLogExpireDay
         
-        def initialize(instanceid=nil, logexpireday=nil, closeaudit=nil)
+        def initialize(instanceid=nil, logexpireday=nil, closeaudit=nil, highlogexpireday=nil)
           @InstanceId = instanceid
           @LogExpireDay = logexpireday
           @CloseAudit = closeaudit
+          @HighLogExpireDay = highlogexpireday
         end
 
         def deserialize(params)
           @InstanceId = params['InstanceId']
           @LogExpireDay = params['LogExpireDay']
           @CloseAudit = params['CloseAudit']
+          @HighLogExpireDay = params['HighLogExpireDay']
         end
       end
 
@@ -8049,6 +8059,58 @@ module TencentCloud
 
       # OfflineIsolatedInstances返回参数结构体
       class OfflineIsolatedInstancesResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # OpenAuditService请求参数结构体
+      class OpenAuditServiceRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: CDB实例ID
+        # @type InstanceId: String
+        # @param LogExpireDay: 审计日志保存时长。支持值包括：
+        # 7 - 一周
+        # 30 - 一个月；
+        # 180 - 六个月；
+        # 365 - 一年；
+        # 1095 - 三年；
+        # 1825 - 五年；
+        # @type LogExpireDay: Integer
+        # @param HighLogExpireDay: 高频审计日志保存时长。支持值包括：
+        # 7 - 一周
+        # 30 - 一个月；
+        # 180 - 六个月；
+        # 365 - 一年；
+        # 1095 - 三年；
+        # 1825 - 五年；
+        # @type HighLogExpireDay: Integer
+
+        attr_accessor :InstanceId, :LogExpireDay, :HighLogExpireDay
+        
+        def initialize(instanceid=nil, logexpireday=nil, highlogexpireday=nil)
+          @InstanceId = instanceid
+          @LogExpireDay = logexpireday
+          @HighLogExpireDay = highlogexpireday
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @LogExpireDay = params['LogExpireDay']
+          @HighLogExpireDay = params['HighLogExpireDay']
+        end
+      end
+
+      # OpenAuditService返回参数结构体
+      class OpenAuditServiceResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 

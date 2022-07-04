@@ -353,15 +353,19 @@ module TencentCloud
         # @type IspBotRule: :class:`Tencentcloud::Teo.v20220106.models.BotManagedRule`
         # @param PortraitRule: 用户画像规则
         # @type PortraitRule: :class:`Tencentcloud::Teo.v20220106.models.BotPortraitRule`
+        # @param IntelligenceRule: Bot智能分析
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IntelligenceRule: :class:`Tencentcloud::Teo.v20220106.models.IntelligenceRule`
 
-        attr_accessor :Switch, :ManagedRule, :UaBotRule, :IspBotRule, :PortraitRule
+        attr_accessor :Switch, :ManagedRule, :UaBotRule, :IspBotRule, :PortraitRule, :IntelligenceRule
         
-        def initialize(switch=nil, managedrule=nil, uabotrule=nil, ispbotrule=nil, portraitrule=nil)
+        def initialize(switch=nil, managedrule=nil, uabotrule=nil, ispbotrule=nil, portraitrule=nil, intelligencerule=nil)
           @Switch = switch
           @ManagedRule = managedrule
           @UaBotRule = uabotrule
           @IspBotRule = ispbotrule
           @PortraitRule = portraitrule
+          @IntelligenceRule = intelligencerule
         end
 
         def deserialize(params)
@@ -381,6 +385,10 @@ module TencentCloud
           unless params['PortraitRule'].nil?
             @PortraitRule = BotPortraitRule.new
             @PortraitRule.deserialize(params['PortraitRule'])
+          end
+          unless params['IntelligenceRule'].nil?
+            @IntelligenceRule = IntelligenceRule.new
+            @IntelligenceRule.deserialize(params['IntelligenceRule'])
           end
         end
       end
@@ -1960,10 +1968,13 @@ module TencentCloud
         # @type ConnectTimeout: Integer
         # @param EmptyConnectProtect: 空连接防护开启 0-1
         # @type EmptyConnectProtect: String
+        # @param UdpShard: UDP分片开关；off-关闭，on-开启
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UdpShard: String
 
-        attr_accessor :DropTcp, :DropUdp, :DropIcmp, :DropOther, :SourceCreateLimit, :SourceConnectLimit, :DestinationCreateLimit, :DestinationConnectLimit, :AbnormalConnectNum, :AbnormalSynRatio, :AbnormalSynNum, :ConnectTimeout, :EmptyConnectProtect
+        attr_accessor :DropTcp, :DropUdp, :DropIcmp, :DropOther, :SourceCreateLimit, :SourceConnectLimit, :DestinationCreateLimit, :DestinationConnectLimit, :AbnormalConnectNum, :AbnormalSynRatio, :AbnormalSynNum, :ConnectTimeout, :EmptyConnectProtect, :UdpShard
         
-        def initialize(droptcp=nil, dropudp=nil, dropicmp=nil, dropother=nil, sourcecreatelimit=nil, sourceconnectlimit=nil, destinationcreatelimit=nil, destinationconnectlimit=nil, abnormalconnectnum=nil, abnormalsynratio=nil, abnormalsynnum=nil, connecttimeout=nil, emptyconnectprotect=nil)
+        def initialize(droptcp=nil, dropudp=nil, dropicmp=nil, dropother=nil, sourcecreatelimit=nil, sourceconnectlimit=nil, destinationcreatelimit=nil, destinationconnectlimit=nil, abnormalconnectnum=nil, abnormalsynratio=nil, abnormalsynnum=nil, connecttimeout=nil, emptyconnectprotect=nil, udpshard=nil)
           @DropTcp = droptcp
           @DropUdp = dropudp
           @DropIcmp = dropicmp
@@ -1977,6 +1988,7 @@ module TencentCloud
           @AbnormalSynNum = abnormalsynnum
           @ConnectTimeout = connecttimeout
           @EmptyConnectProtect = emptyconnectprotect
+          @UdpShard = udpshard
         end
 
         def deserialize(params)
@@ -1993,6 +2005,7 @@ module TencentCloud
           @AbnormalSynNum = params['AbnormalSynNum']
           @ConnectTimeout = params['ConnectTimeout']
           @EmptyConnectProtect = params['EmptyConnectProtect']
+          @UdpShard = params['UdpShard']
         end
       end
 
@@ -2646,10 +2659,13 @@ module TencentCloud
         # @param Switch: DDoS开关 on-开启；off-关闭
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Switch: String
+        # @param UdpShardOpen: UDP分片功能是否支持，off-不支持，on-支持
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UdpShardOpen: String
 
-        attr_accessor :DdosStatusInfo, :DdosGeoIp, :DdosAllowBlock, :DdosAntiPly, :DdosPacketFilter, :DdosAcl, :Switch
+        attr_accessor :DdosStatusInfo, :DdosGeoIp, :DdosAllowBlock, :DdosAntiPly, :DdosPacketFilter, :DdosAcl, :Switch, :UdpShardOpen
         
-        def initialize(ddosstatusinfo=nil, ddosgeoip=nil, ddosallowblock=nil, ddosantiply=nil, ddospacketfilter=nil, ddosacl=nil, switch=nil)
+        def initialize(ddosstatusinfo=nil, ddosgeoip=nil, ddosallowblock=nil, ddosantiply=nil, ddospacketfilter=nil, ddosacl=nil, switch=nil, udpshardopen=nil)
           @DdosStatusInfo = ddosstatusinfo
           @DdosGeoIp = ddosgeoip
           @DdosAllowBlock = ddosallowblock
@@ -2657,6 +2673,7 @@ module TencentCloud
           @DdosPacketFilter = ddospacketfilter
           @DdosAcl = ddosacl
           @Switch = switch
+          @UdpShardOpen = udpshardopen
         end
 
         def deserialize(params)
@@ -2685,6 +2702,7 @@ module TencentCloud
             @DdosAcl.deserialize(params['DdosAcl'])
           end
           @Switch = params['Switch']
+          @UdpShardOpen = params['UdpShardOpen']
         end
       end
 
@@ -5165,20 +5183,24 @@ module TencentCloud
         # @type EndTime: String
         # @param MetricNames: 指标列表
         # @type MetricNames: Array
-        # @param ZoneIds: ZoneId列表，仅在zone/instance维度下查询时该参数有效
+        # @param ZoneIds: 站点id列表
         # @type ZoneIds: Array
-        # @param InstanceIds: InstanceId列表，仅在Instance维度下查询时该参数有效
+        # @param InstanceIds: 该字段已废弃，请使用ProxyIds字段
         # @type InstanceIds: Array
-        # @param Protocol: 协议类型， 该字段当前无效
+        # @param Protocol: 该字段当前无效
         # @type Protocol: String
         # @param Interval: 时间间隔，选填{min, 5min, hour, day}
         # @type Interval: String
-        # @param RuleId: 规则ID，仅在instance维度有效
+        # @param RuleId: 该字段当前无效，请使用Filter筛选
         # @type RuleId: String
+        # @param Filters: 支持的 Filter：proxyd,ruleId
+        # @type Filters: Array
+        # @param ProxyIds: 四层实例列表
+        # @type ProxyIds: Array
 
-        attr_accessor :StartTime, :EndTime, :MetricNames, :ZoneIds, :InstanceIds, :Protocol, :Interval, :RuleId
+        attr_accessor :StartTime, :EndTime, :MetricNames, :ZoneIds, :InstanceIds, :Protocol, :Interval, :RuleId, :Filters, :ProxyIds
         
-        def initialize(starttime=nil, endtime=nil, metricnames=nil, zoneids=nil, instanceids=nil, protocol=nil, interval=nil, ruleid=nil)
+        def initialize(starttime=nil, endtime=nil, metricnames=nil, zoneids=nil, instanceids=nil, protocol=nil, interval=nil, ruleid=nil, filters=nil, proxyids=nil)
           @StartTime = starttime
           @EndTime = endtime
           @MetricNames = metricnames
@@ -5187,6 +5209,8 @@ module TencentCloud
           @Protocol = protocol
           @Interval = interval
           @RuleId = ruleid
+          @Filters = filters
+          @ProxyIds = proxyids
         end
 
         def deserialize(params)
@@ -5198,6 +5222,15 @@ module TencentCloud
           @Protocol = params['Protocol']
           @Interval = params['Interval']
           @RuleId = params['RuleId']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+          @ProxyIds = params['ProxyIds']
         end
       end
 
@@ -7167,6 +7200,123 @@ module TencentCloud
         end
       end
 
+      # 智能分析规则
+      class IntelligenceRule < TencentCloud::Common::AbstractModel
+        # @param Switch: 开关
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Switch: String
+        # @param Items: 规则详情
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Items: Array
+
+        attr_accessor :Switch, :Items
+        
+        def initialize(switch=nil, items=nil)
+          @Switch = switch
+          @Items = items
+        end
+
+        def deserialize(params)
+          @Switch = params['Switch']
+          unless params['Items'].nil?
+            @Items = []
+            params['Items'].each do |i|
+              intelligenceruleitem_tmp = IntelligenceRuleItem.new
+              intelligenceruleitem_tmp.deserialize(i)
+              @Items << intelligenceruleitem_tmp
+            end
+          end
+        end
+      end
+
+      # Bot智能分析规则详情
+      class IntelligenceRuleItem < TencentCloud::Common::AbstractModel
+        # @param Label: 恶意BOT
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Label: String
+        # @param Action: 动作
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Action: String
+
+        attr_accessor :Label, :Action
+        
+        def initialize(label=nil, action=nil)
+          @Label = label
+          @Action = action
+        end
+
+        def deserialize(params)
+          @Label = params['Label']
+          @Action = params['Action']
+        end
+      end
+
+      # IP黑白名单及IP区域控制配置
+      class IpTableConfig < TencentCloud::Common::AbstractModel
+        # @param Switch: 开关
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Switch: String
+        # @param Rules: []
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Rules: Array
+
+        attr_accessor :Switch, :Rules
+        
+        def initialize(switch=nil, rules=nil)
+          @Switch = switch
+          @Rules = rules
+        end
+
+        def deserialize(params)
+          @Switch = params['Switch']
+          unless params['Rules'].nil?
+            @Rules = []
+            params['Rules'].each do |i|
+              iptablerule_tmp = IpTableRule.new
+              iptablerule_tmp.deserialize(i)
+              @Rules << iptablerule_tmp
+            end
+          end
+        end
+      end
+
+      # IP黑白名单详细规则
+      class IpTableRule < TencentCloud::Common::AbstractModel
+        # @param Action: 动作: drop拦截，trans放行，monitor观察
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Action: String
+        # @param MatchFrom: 根据类型匹配：ip(根据ip), area(根据区域)
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MatchFrom: String
+        # @param MatchContent: 匹配内容
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MatchContent: String
+        # @param RuleID: 规则id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RuleID: Integer
+        # @param UpdateTime: 更新时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UpdateTime: String
+
+        attr_accessor :Action, :MatchFrom, :MatchContent, :RuleID, :UpdateTime
+        
+        def initialize(action=nil, matchfrom=nil, matchcontent=nil, ruleid=nil, updatetime=nil)
+          @Action = action
+          @MatchFrom = matchfrom
+          @MatchContent = matchcontent
+          @RuleID = ruleid
+          @UpdateTime = updatetime
+        end
+
+        def deserialize(params)
+          @Action = params['Action']
+          @MatchFrom = params['MatchFrom']
+          @MatchContent = params['MatchContent']
+          @RuleID = params['RuleID']
+          @UpdateTime = params['UpdateTime']
+        end
+      end
+
       # 离线日志详细信息
       class L7OfflineLog < TencentCloud::Common::AbstractModel
         # @param LogTime: 日志打包开始时间
@@ -8881,13 +9031,17 @@ module TencentCloud
         # @param Template: 默认模板
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Template: :class:`Tencentcloud::Teo.v20220106.models.RateLimitTemplate`
+        # @param Intelligence: 智能客户端过滤
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Intelligence: :class:`Tencentcloud::Teo.v20220106.models.RateLimitIntelligence`
 
-        attr_accessor :Switch, :UserRules, :Template
+        attr_accessor :Switch, :UserRules, :Template, :Intelligence
         
-        def initialize(switch=nil, userrules=nil, template=nil)
+        def initialize(switch=nil, userrules=nil, template=nil, intelligence=nil)
           @Switch = switch
           @UserRules = userrules
           @Template = template
+          @Intelligence = intelligence
         end
 
         def deserialize(params)
@@ -8904,6 +9058,32 @@ module TencentCloud
             @Template = RateLimitTemplate.new
             @Template.deserialize(params['Template'])
           end
+          unless params['Intelligence'].nil?
+            @Intelligence = RateLimitIntelligence.new
+            @Intelligence.deserialize(params['Intelligence'])
+          end
+        end
+      end
+
+      # 智能客户端过滤
+      class RateLimitIntelligence < TencentCloud::Common::AbstractModel
+        # @param Switch: 功能开关
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Switch: String
+        # @param Action: 执行动作 monitor(观察), alg(挑战)
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Action: String
+
+        attr_accessor :Switch, :Action
+        
+        def initialize(switch=nil, action=nil)
+          @Switch = switch
+          @Action = action
+        end
+
+        def deserialize(params)
+          @Switch = params['Switch']
+          @Action = params['Action']
         end
       end
 
@@ -9215,16 +9395,20 @@ module TencentCloud
         # @param SwitchConfig: 总开关
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SwitchConfig: :class:`Tencentcloud::Teo.v20220106.models.SwitchConfig`
+        # @param IpTableConfig: IP黑白名单
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IpTableConfig: :class:`Tencentcloud::Teo.v20220106.models.IpTableConfig`
 
-        attr_accessor :WafConfig, :RateLimitConfig, :DdosConfig, :AclConfig, :BotConfig, :SwitchConfig
+        attr_accessor :WafConfig, :RateLimitConfig, :DdosConfig, :AclConfig, :BotConfig, :SwitchConfig, :IpTableConfig
         
-        def initialize(wafconfig=nil, ratelimitconfig=nil, ddosconfig=nil, aclconfig=nil, botconfig=nil, switchconfig=nil)
+        def initialize(wafconfig=nil, ratelimitconfig=nil, ddosconfig=nil, aclconfig=nil, botconfig=nil, switchconfig=nil, iptableconfig=nil)
           @WafConfig = wafconfig
           @RateLimitConfig = ratelimitconfig
           @DdosConfig = ddosconfig
           @AclConfig = aclconfig
           @BotConfig = botconfig
           @SwitchConfig = switchconfig
+          @IpTableConfig = iptableconfig
         end
 
         def deserialize(params)
@@ -9251,6 +9435,10 @@ module TencentCloud
           unless params['SwitchConfig'].nil?
             @SwitchConfig = SwitchConfig.new
             @SwitchConfig.deserialize(params['SwitchConfig'])
+          end
+          unless params['IpTableConfig'].nil?
+            @IpTableConfig = IpTableConfig.new
+            @IpTableConfig.deserialize(params['IpTableConfig'])
           end
         end
       end

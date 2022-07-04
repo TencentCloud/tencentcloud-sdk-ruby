@@ -1550,35 +1550,32 @@ module TencentCloud
 
       # UploadFiles请求参数结构体
       class UploadFilesRequest < TencentCloud::Common::AbstractModel
-        # @param Caller: 调用方信息
-        # @type Caller: :class:`Tencentcloud::Ess.v20201111.models.Caller`
         # @param BusinessType: 文件对应业务类型，用于区分文件存储路径：
         # 1. TEMPLATE - 模板； 文件类型：.pdf/.html
         # 2. DOCUMENT - 签署过程及签署后的合同文档 文件类型：.pdf/.html
-        # 3. FLOW - 签署过程 文件类型：.pdf/.html
-        # 4. SEAL - 印章； 文件类型：.jpg/.jpeg/.png
-        # 5. BUSINESSLICENSE - 营业执照 文件类型：.jpg/.jpeg/.png
-        # 6. IDCARD - 身份证 文件类型：.jpg/.jpeg/.png
+        # 3. SEAL - 印章； 文件类型：.jpg/.jpeg/.png
         # @type BusinessType: String
+        # @param Caller: 调用方信息
+        # @type Caller: :class:`Tencentcloud::Ess.v20201111.models.Caller`
         # @param FileInfos: 上传文件内容数组，最多支持20个文件
         # @type FileInfos: Array
         # @param FileUrls: 上传文件链接数组，最多支持20个URL
         # @type FileUrls: String
-        # @param CoverRect: 是否将pdf灰色矩阵置白
+        # @param CoverRect: 此参数只对 PDF 文件有效。是否将pdf灰色矩阵置白
         # true--是，处理置白
         # false--否，不处理
         # @type CoverRect: Boolean
-        # @param FileType: 特殊文件类型需要指定文件类型：
-        # HTML-- .html文件
+        # @param FileType: 文件类型， 默认通过文件内容解析得到文件类型，客户可以显示的说明上传文件的类型。
+        # 如：PDF 表示上传的文件 xxx.pdf的文件类型是 PDF
         # @type FileType: String
         # @param CustomIds: 用户自定义ID数组，与上传文件一一对应
         # @type CustomIds: Array
 
-        attr_accessor :Caller, :BusinessType, :FileInfos, :FileUrls, :CoverRect, :FileType, :CustomIds
+        attr_accessor :BusinessType, :Caller, :FileInfos, :FileUrls, :CoverRect, :FileType, :CustomIds
         
-        def initialize(caller=nil, businesstype=nil, fileinfos=nil, fileurls=nil, coverrect=nil, filetype=nil, customids=nil)
-          @Caller = caller
+        def initialize(businesstype=nil, caller=nil, fileinfos=nil, fileurls=nil, coverrect=nil, filetype=nil, customids=nil)
           @BusinessType = businesstype
+          @Caller = caller
           @FileInfos = fileinfos
           @FileUrls = fileurls
           @CoverRect = coverrect
@@ -1587,11 +1584,11 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @BusinessType = params['BusinessType']
           unless params['Caller'].nil?
             @Caller = Caller.new
             @Caller.deserialize(params['Caller'])
           end
-          @BusinessType = params['BusinessType']
           unless params['FileInfos'].nil?
             @FileInfos = []
             params['FileInfos'].each do |i|

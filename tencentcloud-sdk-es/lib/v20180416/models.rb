@@ -1992,10 +1992,16 @@ module TencentCloud
         # @type DiskCount: Integer
         # @param DiskEncrypt: 节点磁盘是否加密 0: 不加密，1: 加密；默认不加密
         # @type DiskEncrypt: Integer
+        # @param CpuNum: cpu数目
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CpuNum: Integer
+        # @param MemSize: 内存大小，单位GB
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MemSize: Integer
 
-        attr_accessor :NodeNum, :NodeType, :Type, :DiskType, :DiskSize, :LocalDiskInfo, :DiskCount, :DiskEncrypt
+        attr_accessor :NodeNum, :NodeType, :Type, :DiskType, :DiskSize, :LocalDiskInfo, :DiskCount, :DiskEncrypt, :CpuNum, :MemSize
         
-        def initialize(nodenum=nil, nodetype=nil, type=nil, disktype=nil, disksize=nil, localdiskinfo=nil, diskcount=nil, diskencrypt=nil)
+        def initialize(nodenum=nil, nodetype=nil, type=nil, disktype=nil, disksize=nil, localdiskinfo=nil, diskcount=nil, diskencrypt=nil, cpunum=nil, memsize=nil)
           @NodeNum = nodenum
           @NodeType = nodetype
           @Type = type
@@ -2004,6 +2010,8 @@ module TencentCloud
           @LocalDiskInfo = localdiskinfo
           @DiskCount = diskcount
           @DiskEncrypt = diskencrypt
+          @CpuNum = cpunum
+          @MemSize = memsize
         end
 
         def deserialize(params)
@@ -2018,6 +2026,8 @@ module TencentCloud
           end
           @DiskCount = params['DiskCount']
           @DiskEncrypt = params['DiskEncrypt']
+          @CpuNum = params['CpuNum']
+          @MemSize = params['MemSize']
         end
       end
 

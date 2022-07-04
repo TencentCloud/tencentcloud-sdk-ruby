@@ -108,6 +108,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 配置CHC物理服务器的带外和部署网络。传入带外网络和部署网络信息
+
+        # @param request: Request instance for ConfigureChcAssistVpc.
+        # @type request: :class:`Tencentcloud::cvm::V20170312::ConfigureChcAssistVpcRequest`
+        # @rtype: :class:`Tencentcloud::cvm::V20170312::ConfigureChcAssistVpcResponse`
+        def ConfigureChcAssistVpc(request)
+          body = send_request('ConfigureChcAssistVpc', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ConfigureChcAssistVpcResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 配置CHC物理服务器部署网络
+
+        # @param request: Request instance for ConfigureChcDeployVpc.
+        # @type request: :class:`Tencentcloud::cvm::V20170312::ConfigureChcDeployVpcRequest`
+        # @rtype: :class:`Tencentcloud::cvm::V20170312::ConfigureChcDeployVpcResponse`
+        def ConfigureChcDeployVpc(request)
+          body = send_request('ConfigureChcDeployVpc', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ConfigureChcDeployVpcResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口 (CreateDisasterRecoverGroup)用于创建[分散置放群组](https://cloud.tencent.com/document/product/213/15486)。创建好的置放群组，可在[创建实例](https://cloud.tencent.com/document/api/213/15730)时指定。
 
         # @param request: Request instance for CreateDisasterRecoverGroup.
@@ -1421,6 +1469,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 修改CHC物理服务器的属性
+
+        # @param request: Request instance for ModifyChcAttribute.
+        # @type request: :class:`Tencentcloud::cvm::V20170312::ModifyChcAttributeRequest`
+        # @rtype: :class:`Tencentcloud::cvm::V20170312::ModifyChcAttributeResponse`
+        def ModifyChcAttribute(request)
+          body = send_request('ModifyChcAttribute', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyChcAttributeResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口 (ModifyDisasterRecoverGroupAttribute)用于修改[分散置放群组](https://cloud.tencent.com/document/product/213/15486)属性。
 
         # @param request: Request instance for ModifyDisasterRecoverGroupAttribute.
@@ -1814,6 +1886,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = RebootInstancesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 清理CHC物理服务器的带外网络和部署网络
+
+        # @param request: Request instance for RemoveChcAssistVpc.
+        # @type request: :class:`Tencentcloud::cvm::V20170312::RemoveChcAssistVpcRequest`
+        # @rtype: :class:`Tencentcloud::cvm::V20170312::RemoveChcAssistVpcResponse`
+        def RemoveChcAssistVpc(request)
+          body = send_request('RemoveChcAssistVpc', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = RemoveChcAssistVpcResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 清理CHC物理服务器的部署网络
+
+        # @param request: Request instance for RemoveChcDeployVpc.
+        # @type request: :class:`Tencentcloud::cvm::V20170312::RemoveChcDeployVpcRequest`
+        # @rtype: :class:`Tencentcloud::cvm::V20170312::RemoveChcDeployVpcResponse`
+        def RemoveChcDeployVpc(request)
+          body = send_request('RemoveChcDeployVpc', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = RemoveChcDeployVpcResponse.new
             model.deserialize(response['Response'])
             model
           else

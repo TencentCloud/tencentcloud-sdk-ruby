@@ -218,7 +218,7 @@ module TencentCloud
         # @type Region: String
         # @param Zone: 可用区
         # @type Zone: String
-        # @param DBVersion: 数据库版本
+        # @param DBVersion: TDSQL-C PostgreSQL 合入的社区版本号
         # @type DBVersion: String
         # @param ProjectId: 项目ID
         # @type ProjectId: Integer
@@ -255,10 +255,14 @@ module TencentCloud
         # @type InstanceCount: Integer
         # @param EndpointSet: 集群内访问点信息
         # @type EndpointSet: Array
+        # @param DBMajorVersion: TDSQL-C PostgreSQL 合入的社区主要版本号
+        # @type DBMajorVersion: String
+        # @param DBKernelVersion: TDSQL-C PostgreSQL 内核版本号
+        # @type DBKernelVersion: String
 
-        attr_accessor :ClusterId, :ClusterName, :Region, :Zone, :DBVersion, :ProjectId, :Status, :StatusDesc, :CreateTime, :StorageUsed, :StorageLimit, :PayMode, :PayPeriodEndTime, :AutoRenewFlag, :DBCharset, :InstanceCount, :EndpointSet
+        attr_accessor :ClusterId, :ClusterName, :Region, :Zone, :DBVersion, :ProjectId, :Status, :StatusDesc, :CreateTime, :StorageUsed, :StorageLimit, :PayMode, :PayPeriodEndTime, :AutoRenewFlag, :DBCharset, :InstanceCount, :EndpointSet, :DBMajorVersion, :DBKernelVersion
         
-        def initialize(clusterid=nil, clustername=nil, region=nil, zone=nil, dbversion=nil, projectid=nil, status=nil, statusdesc=nil, createtime=nil, storageused=nil, storagelimit=nil, paymode=nil, payperiodendtime=nil, autorenewflag=nil, dbcharset=nil, instancecount=nil, endpointset=nil)
+        def initialize(clusterid=nil, clustername=nil, region=nil, zone=nil, dbversion=nil, projectid=nil, status=nil, statusdesc=nil, createtime=nil, storageused=nil, storagelimit=nil, paymode=nil, payperiodendtime=nil, autorenewflag=nil, dbcharset=nil, instancecount=nil, endpointset=nil, dbmajorversion=nil, dbkernelversion=nil)
           @ClusterId = clusterid
           @ClusterName = clustername
           @Region = region
@@ -276,6 +280,8 @@ module TencentCloud
           @DBCharset = dbcharset
           @InstanceCount = instancecount
           @EndpointSet = endpointset
+          @DBMajorVersion = dbmajorversion
+          @DBKernelVersion = dbkernelversion
         end
 
         def deserialize(params)
@@ -303,6 +309,8 @@ module TencentCloud
               @EndpointSet << endpoint_tmp
             end
           end
+          @DBMajorVersion = params['DBMajorVersion']
+          @DBKernelVersion = params['DBKernelVersion']
         end
       end
 
@@ -362,8 +370,6 @@ module TencentCloud
       class CreateClusterRequest < TencentCloud::Common::AbstractModel
         # @param Zone: 可用区
         # @type Zone: String
-        # @param DBVersion: 数据库版本，目前仅支持 10.17
-        # @type DBVersion: String
         # @param MasterUserPassword: 数据库用户密码，必须满足 8-64个字符，至少包含 大写字母、小写字母、数字和符号~!@#$%^&*_-+=`|\(){}[]:;'<>,.?/中的任意三种
         # @type MasterUserPassword: String
         # @param CPU: CPU核数。取值参考文档【购买指南】
@@ -380,6 +386,10 @@ module TencentCloud
         # @type PayMode: String
         # @param ClusterName: 集群名，1-60个字符，可以包含中文、英文、数字和符号"-"、"_"、"."。不输入此参数时默认与ClusterId保持一致
         # @type ClusterName: String
+        # @param DBVersion: TDSQL-C PostgreSQL 合入的社区版本号。
+        # 支持入参值为：10.17。当输入该参数时，会基于此版本号创建对应的最新DBKernelVersion数据库内核。
+        # 注：该参数与DBMajorVersion、DBKernelVersion只能传递一个，且需要传递一个。
+        # @type DBVersion: String
         # @param ProjectId: 项目Id，默认为0表示默认项目
         # @type ProjectId: Integer
         # @param Port: 连接数据库时，Endpoint使用的端口。取值范围为[1,65534]，默认值为5432
@@ -391,12 +401,19 @@ module TencentCloud
         # @type Period: Integer
         # @param AutoRenewFlag: 是否自动续费，0-不 1-是。默认值为0，只有当PayMode为PREPAID时生效。
         # @type AutoRenewFlag: Integer
+        # @param DBMajorVersion: TDSQL-C PostgreSQL 合入的社区主要版本号。
+        # 支持入参值为：10。当输入该参数时，会基于此版本号创建对应的最新DBKernelVersion数据库内核。
+        # 注：该参数和DBVersion、DBKernelVersion只能传递一个，且需要传递一个。
+        # @type DBMajorVersion: String
+        # @param DBKernelVersion: TDSQL-C PostgreSQL 内核版本号。
+        # 支持入参值为：v10.17_r1.4。当输入该参数时，会创建此版本号对应的数据库内核。
+        # 注：该参数和DBVersion、DBMajorVersion只能传递一个，且需要传递一个。
+        # @type DBKernelVersion: String
 
-        attr_accessor :Zone, :DBVersion, :MasterUserPassword, :CPU, :Memory, :VpcId, :SubnetId, :PayMode, :ClusterName, :ProjectId, :Port, :InstanceCount, :Period, :AutoRenewFlag
+        attr_accessor :Zone, :MasterUserPassword, :CPU, :Memory, :VpcId, :SubnetId, :PayMode, :ClusterName, :DBVersion, :ProjectId, :Port, :InstanceCount, :Period, :AutoRenewFlag, :DBMajorVersion, :DBKernelVersion
         
-        def initialize(zone=nil, dbversion=nil, masteruserpassword=nil, cpu=nil, memory=nil, vpcid=nil, subnetid=nil, paymode=nil, clustername=nil, projectid=nil, port=nil, instancecount=nil, period=nil, autorenewflag=nil)
+        def initialize(zone=nil, masteruserpassword=nil, cpu=nil, memory=nil, vpcid=nil, subnetid=nil, paymode=nil, clustername=nil, dbversion=nil, projectid=nil, port=nil, instancecount=nil, period=nil, autorenewflag=nil, dbmajorversion=nil, dbkernelversion=nil)
           @Zone = zone
-          @DBVersion = dbversion
           @MasterUserPassword = masteruserpassword
           @CPU = cpu
           @Memory = memory
@@ -404,16 +421,18 @@ module TencentCloud
           @SubnetId = subnetid
           @PayMode = paymode
           @ClusterName = clustername
+          @DBVersion = dbversion
           @ProjectId = projectid
           @Port = port
           @InstanceCount = instancecount
           @Period = period
           @AutoRenewFlag = autorenewflag
+          @DBMajorVersion = dbmajorversion
+          @DBKernelVersion = dbkernelversion
         end
 
         def deserialize(params)
           @Zone = params['Zone']
-          @DBVersion = params['DBVersion']
           @MasterUserPassword = params['MasterUserPassword']
           @CPU = params['CPU']
           @Memory = params['Memory']
@@ -421,11 +440,14 @@ module TencentCloud
           @SubnetId = params['SubnetId']
           @PayMode = params['PayMode']
           @ClusterName = params['ClusterName']
+          @DBVersion = params['DBVersion']
           @ProjectId = params['ProjectId']
           @Port = params['Port']
           @InstanceCount = params['InstanceCount']
           @Period = params['Period']
           @AutoRenewFlag = params['AutoRenewFlag']
+          @DBMajorVersion = params['DBMajorVersion']
+          @DBKernelVersion = params['DBKernelVersion']
         end
       end
 
@@ -1038,10 +1060,14 @@ module TencentCloud
         #  - RW：读写实例
         #  - RO：只读实例
         # @type InstanceType: String
+        # @param DBMajorVersion: TDSQL-C PostgreSQL 合入的社区主要版本号
+        # @type DBMajorVersion: String
+        # @param DBKernelVersion: TDSQL-C PostgreSQL 内核版本号
+        # @type DBKernelVersion: String
 
-        attr_accessor :InstanceId, :InstanceName, :ClusterId, :EndpointId, :Region, :Zone, :DBVersion, :Status, :StatusDesc, :CreateTime, :PayMode, :PayPeriodEndTime, :CPU, :Memory, :InstanceType
+        attr_accessor :InstanceId, :InstanceName, :ClusterId, :EndpointId, :Region, :Zone, :DBVersion, :Status, :StatusDesc, :CreateTime, :PayMode, :PayPeriodEndTime, :CPU, :Memory, :InstanceType, :DBMajorVersion, :DBKernelVersion
         
-        def initialize(instanceid=nil, instancename=nil, clusterid=nil, endpointid=nil, region=nil, zone=nil, dbversion=nil, status=nil, statusdesc=nil, createtime=nil, paymode=nil, payperiodendtime=nil, cpu=nil, memory=nil, instancetype=nil)
+        def initialize(instanceid=nil, instancename=nil, clusterid=nil, endpointid=nil, region=nil, zone=nil, dbversion=nil, status=nil, statusdesc=nil, createtime=nil, paymode=nil, payperiodendtime=nil, cpu=nil, memory=nil, instancetype=nil, dbmajorversion=nil, dbkernelversion=nil)
           @InstanceId = instanceid
           @InstanceName = instancename
           @ClusterId = clusterid
@@ -1057,6 +1083,8 @@ module TencentCloud
           @CPU = cpu
           @Memory = memory
           @InstanceType = instancetype
+          @DBMajorVersion = dbmajorversion
+          @DBKernelVersion = dbkernelversion
         end
 
         def deserialize(params)
@@ -1075,6 +1103,8 @@ module TencentCloud
           @CPU = params['CPU']
           @Memory = params['Memory']
           @InstanceType = params['InstanceType']
+          @DBMajorVersion = params['DBMajorVersion']
+          @DBKernelVersion = params['DBKernelVersion']
         end
       end
 

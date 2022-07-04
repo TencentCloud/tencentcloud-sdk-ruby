@@ -259,17 +259,23 @@ module TencentCloud
 
       # DescribeProbeMetricData请求参数结构体
       class DescribeProbeMetricDataRequest < TencentCloud::Common::AbstractModel
-        # @param AnalyzeTaskType: 分析任务类型
+        # @param AnalyzeTaskType: 分析任务类型，支持以下几种类型：
+        # AnalyzeTaskType_Network：网络质量
+        # AnalyzeTaskType_Browse：页面性能
+        # AnalyzeTaskType_Transport：端口性能
+        # AnalyzeTaskType_UploadDownload：文件传输
+        # AnalyzeTaskType_MediaStream：音视频体验
         # @type AnalyzeTaskType: String
-        # @param MetricType: 指标类型，counter 或者 gauge
+        # @param MetricType: 指标类型，指标查询默认传gauge
         # @type MetricType: String
-        # @param Field: 指标详细字段
+        # @param Field: 指标详细字段，可以传递传具体的指标也可以对指标进行聚合查询例如："avg(ping_time)"代表整体时延(ms)
         # @type Field: String
-        # @param Filter: 过滤条件
+        # @param Filter: 过滤条件可以传单个过滤条件也可以拼接多个参数
         # @type Filter: String
-        # @param GroupBy: 聚合时间, 1m、1d、100d 等等
+        # @param GroupBy: 聚合时间, 1m、1d、30d 等等
         # @type GroupBy: String
-        # @param Filters: 过滤条件数组
+        # @param Filters: 多条件过滤，支持多个过滤条件组合查询
+        # 例如：[""host" = 'www.test.com'", "time >= now()-1h"]
         # @type Filters: Array
 
         attr_accessor :AnalyzeTaskType, :MetricType, :Field, :Filter, :GroupBy, :Filters
@@ -295,7 +301,8 @@ module TencentCloud
 
       # DescribeProbeMetricData返回参数结构体
       class DescribeProbeMetricDataResponse < TencentCloud::Common::AbstractModel
-        # @param MetricSet: 指标 JSON 序列化后的字符串
+        # @param MetricSet: 返回指标 JSON 序列化后的字符串,具体如下所示：
+        # "[{\"name\":\"task_navigate_request_gauge\",\"columns\":[\"time\",\"avg(first_screen_time) / 1000\"],\"values\":[[1641571200,6.756600000000001]],\"tags\":null}]"
         # @type MetricSet: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

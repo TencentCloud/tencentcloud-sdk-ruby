@@ -370,10 +370,14 @@ module TencentCloud
         # @param DelayThresh: 如果备机延迟超过本参数设置值，系统将认为备机发生故障
         # 建议该参数值大于10。当ReadOnly选择1、2时该参数生效。
         # @type DelayThresh: Integer
+        # @param SlaveConst: 针对只读账号，设置策略是否固定备机，0：不固定备机，即备机不满足条件与客户端不断开连接，Proxy选择其他可用备机，1：备机不满足条件断开连接，确保一个连接固定备机。
+        # @type SlaveConst: Integer
+        # @param MaxUserConnections: 用户最大连接数限制参数。不传或者传0表示为不限制，对应max_user_connections参数，目前10.1内核版本不支持设置。
+        # @type MaxUserConnections: Integer
 
-        attr_accessor :InstanceId, :UserName, :Host, :Password, :ReadOnly, :Description, :DelayThresh
+        attr_accessor :InstanceId, :UserName, :Host, :Password, :ReadOnly, :Description, :DelayThresh, :SlaveConst, :MaxUserConnections
         
-        def initialize(instanceid=nil, username=nil, host=nil, password=nil, readonly=nil, description=nil, delaythresh=nil)
+        def initialize(instanceid=nil, username=nil, host=nil, password=nil, readonly=nil, description=nil, delaythresh=nil, slaveconst=nil, maxuserconnections=nil)
           @InstanceId = instanceid
           @UserName = username
           @Host = host
@@ -381,6 +385,8 @@ module TencentCloud
           @ReadOnly = readonly
           @Description = description
           @DelayThresh = delaythresh
+          @SlaveConst = slaveconst
+          @MaxUserConnections = maxuserconnections
         end
 
         def deserialize(params)
@@ -391,6 +397,8 @@ module TencentCloud
           @ReadOnly = params['ReadOnly']
           @Description = params['Description']
           @DelayThresh = params['DelayThresh']
+          @SlaveConst = params['SlaveConst']
+          @MaxUserConnections = params['MaxUserConnections']
         end
       end
 
@@ -880,10 +888,12 @@ module TencentCloud
         # @param DelayThresh: 如果备机延迟超过本参数设置值，系统将认为备机发生故障
         # 建议该参数值大于10。当ReadOnly选择1、2时该参数生效。
         # @type DelayThresh: Integer
+        # @param SlaveConst: 针对只读账号，设置策略是否固定备机，0：不固定备机，即备机不满足条件与客户端不断开连接，Proxy选择其他可用备机，1：备机不满足条件断开连接，确保一个连接固定备机。
+        # @type SlaveConst: Integer
 
-        attr_accessor :UserName, :Host, :Description, :CreateTime, :UpdateTime, :ReadOnly, :DelayThresh
+        attr_accessor :UserName, :Host, :Description, :CreateTime, :UpdateTime, :ReadOnly, :DelayThresh, :SlaveConst
         
-        def initialize(username=nil, host=nil, description=nil, createtime=nil, updatetime=nil, readonly=nil, delaythresh=nil)
+        def initialize(username=nil, host=nil, description=nil, createtime=nil, updatetime=nil, readonly=nil, delaythresh=nil, slaveconst=nil)
           @UserName = username
           @Host = host
           @Description = description
@@ -891,6 +901,7 @@ module TencentCloud
           @UpdateTime = updatetime
           @ReadOnly = readonly
           @DelayThresh = delaythresh
+          @SlaveConst = slaveconst
         end
 
         def deserialize(params)
@@ -901,6 +912,7 @@ module TencentCloud
           @UpdateTime = params['UpdateTime']
           @ReadOnly = params['ReadOnly']
           @DelayThresh = params['DelayThresh']
+          @SlaveConst = params['SlaveConst']
         end
       end
 

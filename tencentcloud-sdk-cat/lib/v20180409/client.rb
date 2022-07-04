@@ -101,7 +101,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 列出云拨测指标详细数据
+        # 查询云拨测指标数据，指标支持使用sum,avg,max,min聚合函数进行指标数据查询
 
         # @param request: Request instance for DescribeProbeMetricData.
         # @type request: :class:`Tencentcloud::cat::V20180409::DescribeProbeMetricDataRequest`

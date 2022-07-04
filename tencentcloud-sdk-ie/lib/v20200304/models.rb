@@ -936,6 +936,24 @@ module TencentCloud
         end
       end
 
+      # 动图参数
+      class DynamicImageInfo < TencentCloud::Common::AbstractModel
+        # @param Quality: 画面质量，范围：1~100。
+        # <li>对于webp格式，默认：75</li>
+        # <li>对于gif格式，小于10为低质量，大于50为高质量，其它为普通。默认：低质量。</li>
+        # @type Quality: Integer
+
+        attr_accessor :Quality
+        
+        def initialize(quality=nil)
+          @Quality = quality
+        end
+
+        def deserialize(params)
+          @Quality = params['Quality']
+        end
+      end
+
       # 画质重生子任务视频剪辑参数
       class EditInfo < TencentCloud::Common::AbstractModel
         # @param StartTime: 剪辑开始时间，单位：ms。
@@ -1445,7 +1463,8 @@ module TencentCloud
         end
       end
 
-      # 编辑处理/剪切任务信息
+      # 编辑处理/剪切任务信息。
+      # 截图结果默认存在 SaveInfoSet 的第一个存储位置。
       class MediaCuttingInfo < TencentCloud::Common::AbstractModel
         # @param TimeInfo: 截取时间信息。
         # @type TimeInfo: :class:`Tencentcloud::Ie.v20200304.models.MediaCuttingTimeInfo`
@@ -1454,17 +1473,24 @@ module TencentCloud
         # @param OutForm: 截取结果形式信息。
         # @type OutForm: :class:`Tencentcloud::Ie.v20200304.models.MediaCuttingOutForm`
         # @param ResultListSaveType: 列表文件形式，存储到用户存储服务中，可选值：
-        # UseSaveInfo：默认，结果列表和结果存储同一位置；
-        # NoListFile：不存储结果列表。
+        # <li>NoListFile：不存储结果列表; </li>
+        # <li>UseSaveInfo：默认，结果列表和结果存储同一位置（即SaveInfoSet 的第一个存储位置）；</li>
+        # <li>SaveInfoSet 存储的Id：存储在指定的存储位置。</li>
         # @type ResultListSaveType: String
+        # @param WatermarkInfoSet: 水印信息，最多支持 10 个水印。
+        # @type WatermarkInfoSet: Array
+        # @param DropPureColor: 是否去除纯色截图，如果值为 True ，对应时间点的截图如果是纯色，将略过。
+        # @type DropPureColor: String
 
-        attr_accessor :TimeInfo, :TargetInfo, :OutForm, :ResultListSaveType
+        attr_accessor :TimeInfo, :TargetInfo, :OutForm, :ResultListSaveType, :WatermarkInfoSet, :DropPureColor
         
-        def initialize(timeinfo=nil, targetinfo=nil, outform=nil, resultlistsavetype=nil)
+        def initialize(timeinfo=nil, targetinfo=nil, outform=nil, resultlistsavetype=nil, watermarkinfoset=nil, droppurecolor=nil)
           @TimeInfo = timeinfo
           @TargetInfo = targetinfo
           @OutForm = outform
           @ResultListSaveType = resultlistsavetype
+          @WatermarkInfoSet = watermarkinfoset
+          @DropPureColor = droppurecolor
         end
 
         def deserialize(params)
@@ -1481,6 +1507,15 @@ module TencentCloud
             @OutForm.deserialize(params['OutForm'])
           end
           @ResultListSaveType = params['ResultListSaveType']
+          unless params['WatermarkInfoSet'].nil?
+            @WatermarkInfoSet = []
+            params['WatermarkInfoSet'].each do |i|
+              mediacuttingwatermark_tmp = MediaCuttingWatermark.new
+              mediacuttingwatermark_tmp.deserialize(i)
+              @WatermarkInfoSet << mediacuttingwatermark_tmp
+            end
+          end
+          @DropPureColor = params['DropPureColor']
         end
       end
 
@@ -1507,18 +1542,24 @@ module TencentCloud
         # Gaussian：高斯模糊；
         # 默认White。
         # @type FillType: String
-        # @param SpriteRowCount: Type=Sprite时有效，表示雪碧图行数，范围为 [1,200]，默认100。
+        # @param SpriteRowCount: 【废弃】参考SpriteInfo
         # @type SpriteRowCount: Integer
-        # @param SpriteColumnCount: Type=Sprite时有效，表示雪碧图列数，范围为 [1,200]，默认100。
+        # @param SpriteColumnCount: 【废弃】参考SpriteInfo
         # @type SpriteColumnCount: Integer
+        # @param SpriteInfo: Type=Sprite时有效，表示雪碧图参数信息。
+        # @type SpriteInfo: :class:`Tencentcloud::Ie.v20200304.models.SpriteImageInfo`
+        # @param DynamicInfo: Type=Dynamic时有效，表示动图参数信息。
+        # @type DynamicInfo: :class:`Tencentcloud::Ie.v20200304.models.DynamicImageInfo`
 
-        attr_accessor :Type, :FillType, :SpriteRowCount, :SpriteColumnCount
+        attr_accessor :Type, :FillType, :SpriteRowCount, :SpriteColumnCount, :SpriteInfo, :DynamicInfo
         
-        def initialize(type=nil, filltype=nil, spriterowcount=nil, spritecolumncount=nil)
+        def initialize(type=nil, filltype=nil, spriterowcount=nil, spritecolumncount=nil, spriteinfo=nil, dynamicinfo=nil)
           @Type = type
           @FillType = filltype
           @SpriteRowCount = spriterowcount
           @SpriteColumnCount = spritecolumncount
+          @SpriteInfo = spriteinfo
+          @DynamicInfo = dynamicinfo
         end
 
         def deserialize(params)
@@ -1526,6 +1567,14 @@ module TencentCloud
           @FillType = params['FillType']
           @SpriteRowCount = params['SpriteRowCount']
           @SpriteColumnCount = params['SpriteColumnCount']
+          unless params['SpriteInfo'].nil?
+            @SpriteInfo = SpriteImageInfo.new
+            @SpriteInfo.deserialize(params['SpriteInfo'])
+          end
+          unless params['DynamicInfo'].nil?
+            @DynamicInfo = DynamicImageInfo.new
+            @DynamicInfo.deserialize(params['DynamicInfo'])
+          end
         end
       end
 
@@ -1543,14 +1592,21 @@ module TencentCloud
         # @param LastFile: 最后一个结果文件。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LastFile: :class:`Tencentcloud::Ie.v20200304.models.TaskResultFile`
+        # @param ImageCount: 任务结果包含的图片总数。
+        # 静态图：总数即为文件数；
+        # 雪碧图：所有小图总数；
+        # 动图、视频：不计算图片数，为 0。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ImageCount: Integer
 
-        attr_accessor :ListFile, :ResultCount, :FirstFile, :LastFile
+        attr_accessor :ListFile, :ResultCount, :FirstFile, :LastFile, :ImageCount
         
-        def initialize(listfile=nil, resultcount=nil, firstfile=nil, lastfile=nil)
+        def initialize(listfile=nil, resultcount=nil, firstfile=nil, lastfile=nil, imagecount=nil)
           @ListFile = listfile
           @ResultCount = resultcount
           @FirstFile = firstfile
           @LastFile = lastfile
+          @ImageCount = imagecount
         end
 
         def deserialize(params)
@@ -1567,6 +1623,7 @@ module TencentCloud
             @LastFile = TaskResultFile.new
             @LastFile.deserialize(params['LastFile'])
           end
+          @ImageCount = params['ImageCount']
         end
       end
 
@@ -1611,16 +1668,156 @@ module TencentCloud
         end
       end
 
+      # 媒体剪切水印信息。
+      class MediaCuttingWatermark < TencentCloud::Common::AbstractModel
+        # @param Type: 水印类型，可选值：
+        # <li>Image：图像水印；</li>
+        # <li>Text：文字水印。</li>
+        # @type Type: String
+        # @param Image: 图像水印信息，当 Type=Image 时必选。
+        # @type Image: :class:`Tencentcloud::Ie.v20200304.models.MediaCuttingWatermarkImage`
+        # @param Text: 文字水印信息，当 Type=Text 时必选。
+        # @type Text: :class:`Tencentcloud::Ie.v20200304.models.MediaCuttingWatermarkText`
+
+        attr_accessor :Type, :Image, :Text
+        
+        def initialize(type=nil, image=nil, text=nil)
+          @Type = type
+          @Image = image
+          @Text = text
+        end
+
+        def deserialize(params)
+          @Type = params['Type']
+          unless params['Image'].nil?
+            @Image = MediaCuttingWatermarkImage.new
+            @Image.deserialize(params['Image'])
+          end
+          unless params['Text'].nil?
+            @Text = MediaCuttingWatermarkText.new
+            @Text.deserialize(params['Text'])
+          end
+        end
+      end
+
+      # 媒体剪切图像水印参数。
+      class MediaCuttingWatermarkImage < TencentCloud::Common::AbstractModel
+        # @param SourceId: 水印源的ID，对应SourceInfoSet内的源。
+        # 注意1：对应的 MediaSourceInfo.Type需要为Image。
+        # 注意2：对于动图，只取第一帧图像作为水印源。
+        # @type SourceId: String
+        # @param PosX: 水印水平坐标，单位像素，默认：0。
+        # @type PosX: Integer
+        # @param PosY: 水印垂直坐标，单位像素，默认：0。
+        # @type PosY: Integer
+        # @param Width: 水印宽度，单位像素，默认：0。
+        # @type Width: Integer
+        # @param Height: 水印高度，单位像素，默认：0。
+        # 注意：对于宽高符合以下规则：
+        # 1、Width>0 且 Height>0，按指定宽高拉伸；
+        # 2、Width=0 且 Height>0，以Height为基准等比缩放；
+        # 3、Width>0 且 Height=0，以Width为基准等比缩放；
+        # 4、Width=0 且 Height=0，采用源的宽高。
+        # @type Height: Integer
+        # @param PosOriginType: 指定坐标原点，可选值：
+        # <li>LeftTop：PosXY 表示水印左上点到图片左上点的相对位置</li>
+        # <li>RightTop：PosXY 表示水印右上点到图片右上点的相对位置</li>
+        # <li>LeftBottom：PosXY 表示水印左下点到图片左下点的相对位置</li>
+        # <li>RightBottom：PosXY 表示水印右下点到图片右下点的相对位置</li>
+        # <li>Center：PosXY 表示水印中心点到图片中心点的相对位置</li>
+        # 默认：LeftTop。
+        # @type PosOriginType: String
+
+        attr_accessor :SourceId, :PosX, :PosY, :Width, :Height, :PosOriginType
+        
+        def initialize(sourceid=nil, posx=nil, posy=nil, width=nil, height=nil, posorigintype=nil)
+          @SourceId = sourceid
+          @PosX = posx
+          @PosY = posy
+          @Width = width
+          @Height = height
+          @PosOriginType = posorigintype
+        end
+
+        def deserialize(params)
+          @SourceId = params['SourceId']
+          @PosX = params['PosX']
+          @PosY = params['PosY']
+          @Width = params['Width']
+          @Height = params['Height']
+          @PosOriginType = params['PosOriginType']
+        end
+      end
+
+      # 媒体剪切文字水印参数。
+      class MediaCuttingWatermarkText < TencentCloud::Common::AbstractModel
+        # @param Text: 水印文字。
+        # @type Text: String
+        # @param FontSize: 文字大小
+        # @type FontSize: Integer
+        # @param PosX: 水印水平坐标，单位像素，默认：0。
+        # @type PosX: Integer
+        # @param PosY: 水印垂直坐标，单位像素，默认：0。
+        # @type PosY: Integer
+        # @param FontColor: 文字颜色，格式为：#RRGGBBAA，默认值：#000000。
+        # @type FontColor: String
+        # @param FontAlpha: 文字透明度，范围：0~100，默认值：100。
+        # @type FontAlpha: Integer
+        # @param PosOriginType: 指定坐标原点，可选值：
+        # <li>LeftTop：PosXY 表示水印左上点到图片左上点的相对位置</li>
+        # <li>RightTop：PosXY 表示水印右上点到图片右上点的相对位置</li>
+        # <li>LeftBottom：PosXY 表示水印左下点到图片左下点的相对位置</li>
+        # <li>RightBottom：PosXY 表示水印右下点到图片右下点的相对位置</li>
+        # <li>Center：PosXY 表示水印中心点到图片中心点的相对位置</li>
+        # 默认：LeftTop。
+        # @type PosOriginType: String
+        # @param Font: 字体，可选值：
+        # <li>SimHei</li>
+        # <li>SimKai</li>
+        # <li>Arial</li>
+        # 默认 SimHei。
+        # @type Font: String
+
+        attr_accessor :Text, :FontSize, :PosX, :PosY, :FontColor, :FontAlpha, :PosOriginType, :Font
+        
+        def initialize(text=nil, fontsize=nil, posx=nil, posy=nil, fontcolor=nil, fontalpha=nil, posorigintype=nil, font=nil)
+          @Text = text
+          @FontSize = fontsize
+          @PosX = posx
+          @PosY = posy
+          @FontColor = fontcolor
+          @FontAlpha = fontalpha
+          @PosOriginType = posorigintype
+          @Font = font
+        end
+
+        def deserialize(params)
+          @Text = params['Text']
+          @FontSize = params['FontSize']
+          @PosX = params['PosX']
+          @PosY = params['PosY']
+          @FontColor = params['FontColor']
+          @FontAlpha = params['FontAlpha']
+          @PosOriginType = params['PosOriginType']
+          @Font = params['Font']
+        end
+      end
+
       # 编辑处理/拼接任务信息
       class MediaJoiningInfo < TencentCloud::Common::AbstractModel
         # @param TargetInfo: 输出目标信息，拼接只采用FileName和Format，用于指定目标文件名和格式。
         # 其中Format只支持mp4.
         # @type TargetInfo: :class:`Tencentcloud::Ie.v20200304.models.MediaTargetInfo`
+        # @param Mode: 拼接模式：
+        # Fast：快速；
+        # Normal：正常；
+        # @type Mode: String
 
-        attr_accessor :TargetInfo
+        attr_accessor :TargetInfo, :Mode
         
-        def initialize(targetinfo=nil)
+        def initialize(targetinfo=nil, mode=nil)
           @TargetInfo = targetinfo
+          @Mode = mode
         end
 
         def deserialize(params)
@@ -1628,6 +1825,7 @@ module TencentCloud
             @TargetInfo = MediaTargetInfo.new
             @TargetInfo.deserialize(params['TargetInfo'])
           end
+          @Mode = params['Mode']
         end
       end
 
@@ -1931,9 +2129,7 @@ module TencentCloud
         # @type Format: String
         # @param TargetVideoInfo: 视频流信息。
         # @type TargetVideoInfo: :class:`Tencentcloud::Ie.v20200304.models.TargetVideoInfo`
-        # @param ResultListSaveType: 【不再使用】 对于多输出任务，部分子服务推荐结果信息以列表文件形式，存储到用户存储服务中，可选值：
-        # UseSaveInfo：默认，结果列表和结果存储同一位置；
-        # NoListFile：不存储结果列表。
+        # @param ResultListSaveType: 【不再使用】
         # @type ResultListSaveType: String
 
         attr_accessor :FileName, :Format, :TargetVideoInfo, :ResultListSaveType
@@ -2457,7 +2653,7 @@ module TencentCloud
         # @param Height: 画面高度
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Height: Integer
-        # @param Fps: 视频帧率
+        # @param Fps: 视频帧率，如果高于原始帧率，部分服务将无效。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Fps: Integer
 
@@ -2487,12 +2683,16 @@ module TencentCloud
         # @type Type: Integer
         # @param CosInfo: Cos形式存储信息，当Type等于1时必选。
         # @type CosInfo: :class:`Tencentcloud::Ie.v20200304.models.CosInfo`
+        # @param Id: 存储信息ID标记，用于多个输出场景。部分任务支持多输出时，一般要求必选。
+        # ID只能包含字母、数字、下划线、中划线，长读不能超过128。
+        # @type Id: String
 
-        attr_accessor :Type, :CosInfo
+        attr_accessor :Type, :CosInfo, :Id
         
-        def initialize(type=nil, cosinfo=nil)
+        def initialize(type=nil, cosinfo=nil, id=nil)
           @Type = type
           @CosInfo = cosinfo
+          @Id = id
         end
 
         def deserialize(params)
@@ -2501,6 +2701,7 @@ module TencentCloud
             @CosInfo = CosInfo.new
             @CosInfo.deserialize(params['CosInfo'])
           end
+          @Id = params['Id']
         end
       end
 
@@ -2587,6 +2788,63 @@ module TencentCloud
         def deserialize(params)
           @Type = params['Type']
           @Ratio = params['Ratio']
+        end
+      end
+
+      # 雪碧图参数信息
+      # 注意：雪碧图大图整体的宽和高都不能大于 65000 像素。
+      class SpriteImageInfo < TencentCloud::Common::AbstractModel
+        # @param RowCount: 表示雪碧图行数，默认：10。
+        # @type RowCount: Integer
+        # @param ColumnCount: 表示雪碧图列数，默认：10。
+        # @type ColumnCount: Integer
+        # @param MarginTop: 第一行元素与顶部像素距离，默认：0。
+        # @type MarginTop: Integer
+        # @param MarginBottom: 最后一行元素与底部像素距离，默认：0。
+        # @type MarginBottom: Integer
+        # @param MarginLeft: 最左一行元素与左边像素距离，默认：0。
+        # @type MarginLeft: Integer
+        # @param MarginRight: 最右一行元素与右边像素距离，默认：0。
+        # @type MarginRight: Integer
+        # @param PaddingTop: 小图与元素顶部像素距离，默认：0。
+        # @type PaddingTop: Integer
+        # @param PaddingBottom: 小图与元素底部像素距离，默认：0。
+        # @type PaddingBottom: Integer
+        # @param PaddingLeft: 小图与元素左边像素距离，默认：0。
+        # @type PaddingLeft: Integer
+        # @param PaddingRight: 小图与元素右边像素距离，默认：0。
+        # @type PaddingRight: Integer
+        # @param BackgroundColor: 背景颜色，格式：#RRGGBB，默认：#FFFFFF。
+        # @type BackgroundColor: String
+
+        attr_accessor :RowCount, :ColumnCount, :MarginTop, :MarginBottom, :MarginLeft, :MarginRight, :PaddingTop, :PaddingBottom, :PaddingLeft, :PaddingRight, :BackgroundColor
+        
+        def initialize(rowcount=nil, columncount=nil, margintop=nil, marginbottom=nil, marginleft=nil, marginright=nil, paddingtop=nil, paddingbottom=nil, paddingleft=nil, paddingright=nil, backgroundcolor=nil)
+          @RowCount = rowcount
+          @ColumnCount = columncount
+          @MarginTop = margintop
+          @MarginBottom = marginbottom
+          @MarginLeft = marginleft
+          @MarginRight = marginright
+          @PaddingTop = paddingtop
+          @PaddingBottom = paddingbottom
+          @PaddingLeft = paddingleft
+          @PaddingRight = paddingright
+          @BackgroundColor = backgroundcolor
+        end
+
+        def deserialize(params)
+          @RowCount = params['RowCount']
+          @ColumnCount = params['ColumnCount']
+          @MarginTop = params['MarginTop']
+          @MarginBottom = params['MarginBottom']
+          @MarginLeft = params['MarginLeft']
+          @MarginRight = params['MarginRight']
+          @PaddingTop = params['PaddingTop']
+          @PaddingBottom = params['PaddingBottom']
+          @PaddingLeft = params['PaddingLeft']
+          @PaddingRight = params['PaddingRight']
+          @BackgroundColor = params['BackgroundColor']
         end
       end
 
@@ -3077,9 +3335,9 @@ module TencentCloud
 
       # 目标视频信息。
       class TargetVideoInfo < TencentCloud::Common::AbstractModel
-        # @param Width: 视频宽度，单位像素
+        # @param Width: 视频宽度，单位像素，一般要求是偶数，否则会向下对齐。
         # @type Width: Integer
-        # @param Height: 视频高度，单位像素
+        # @param Height: 视频高度，单位像素，一般要求是偶数，否则会向下对齐。
         # @type Height: Integer
         # @param FrameRate: 视频帧率，范围在1到120之间
         # @type FrameRate: Integer
@@ -3110,13 +3368,17 @@ module TencentCloud
         # @param MediaInfo: 媒体信息，对于媒体文件，部分任务支持返回
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MediaInfo: :class:`Tencentcloud::Ie.v20200304.models.MediaResultInfo`
+        # @param Md5: 文件对应的md5。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Md5: String
 
-        attr_accessor :Url, :FileSize, :MediaInfo
+        attr_accessor :Url, :FileSize, :MediaInfo, :Md5
         
-        def initialize(url=nil, filesize=nil, mediainfo=nil)
+        def initialize(url=nil, filesize=nil, mediainfo=nil, md5=nil)
           @Url = url
           @FileSize = filesize
           @MediaInfo = mediainfo
+          @Md5 = md5
         end
 
         def deserialize(params)
@@ -3126,6 +3388,7 @@ module TencentCloud
             @MediaInfo = MediaResultInfo.new
             @MediaInfo.deserialize(params['MediaInfo'])
           end
+          @Md5 = params['Md5']
         end
       end
 

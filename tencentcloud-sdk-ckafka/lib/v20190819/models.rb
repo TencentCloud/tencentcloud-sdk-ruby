@@ -2053,12 +2053,17 @@ module TencentCloud
 
       # DescribeCkafkaZone请求参数结构体
       class DescribeCkafkaZoneRequest < TencentCloud::Common::AbstractModel
+        # @param CdcId: cdc专业集群业务参数
+        # @type CdcId: String
 
+        attr_accessor :CdcId
         
-        def initialize()
+        def initialize(cdcid=nil)
+          @CdcId = cdcid
         end
 
         def deserialize(params)
+          @CdcId = params['CdcId']
         end
       end
 
@@ -2506,19 +2511,23 @@ module TencentCloud
         # @type Limit: Integer
         # @param Business: 业务字段，可忽略
         # @type Business: String
+        # @param CdcId: cdc专有集群业务字段，可忽略
+        # @type CdcId: String
 
-        attr_accessor :Offset, :Limit, :Business
+        attr_accessor :Offset, :Limit, :Business, :CdcId
         
-        def initialize(offset=nil, limit=nil, business=nil)
+        def initialize(offset=nil, limit=nil, business=nil, cdcid=nil)
           @Offset = offset
           @Limit = limit
           @Business = business
+          @CdcId = cdcid
         end
 
         def deserialize(params)
           @Offset = params['Offset']
           @Limit = params['Limit']
           @Business = params['Business']
+          @CdcId = params['CdcId']
         end
       end
 
@@ -3593,10 +3602,13 @@ module TencentCloud
         # @param PublicNetwork: 公网带宽值
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PublicNetwork: Integer
+        # @param ClusterType: 实例类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClusterType: String
 
-        attr_accessor :InstanceId, :InstanceName, :Vip, :Vport, :VipList, :Status, :Bandwidth, :DiskSize, :ZoneId, :VpcId, :SubnetId, :RenewFlag, :Healthy, :HealthyMessage, :CreateTime, :ExpireTime, :IsInternal, :TopicNum, :Tags, :Version, :ZoneIds, :Cvm, :InstanceType, :DiskType, :MaxTopicNumber, :MaxPartitionNumber, :RebalanceTime, :PartitionNumber, :PublicNetworkChargeType, :PublicNetwork
+        attr_accessor :InstanceId, :InstanceName, :Vip, :Vport, :VipList, :Status, :Bandwidth, :DiskSize, :ZoneId, :VpcId, :SubnetId, :RenewFlag, :Healthy, :HealthyMessage, :CreateTime, :ExpireTime, :IsInternal, :TopicNum, :Tags, :Version, :ZoneIds, :Cvm, :InstanceType, :DiskType, :MaxTopicNumber, :MaxPartitionNumber, :RebalanceTime, :PartitionNumber, :PublicNetworkChargeType, :PublicNetwork, :ClusterType
         
-        def initialize(instanceid=nil, instancename=nil, vip=nil, vport=nil, viplist=nil, status=nil, bandwidth=nil, disksize=nil, zoneid=nil, vpcid=nil, subnetid=nil, renewflag=nil, healthy=nil, healthymessage=nil, createtime=nil, expiretime=nil, isinternal=nil, topicnum=nil, tags=nil, version=nil, zoneids=nil, cvm=nil, instancetype=nil, disktype=nil, maxtopicnumber=nil, maxpartitionnumber=nil, rebalancetime=nil, partitionnumber=nil, publicnetworkchargetype=nil, publicnetwork=nil)
+        def initialize(instanceid=nil, instancename=nil, vip=nil, vport=nil, viplist=nil, status=nil, bandwidth=nil, disksize=nil, zoneid=nil, vpcid=nil, subnetid=nil, renewflag=nil, healthy=nil, healthymessage=nil, createtime=nil, expiretime=nil, isinternal=nil, topicnum=nil, tags=nil, version=nil, zoneids=nil, cvm=nil, instancetype=nil, disktype=nil, maxtopicnumber=nil, maxpartitionnumber=nil, rebalancetime=nil, partitionnumber=nil, publicnetworkchargetype=nil, publicnetwork=nil, clustertype=nil)
           @InstanceId = instanceid
           @InstanceName = instancename
           @Vip = vip
@@ -3627,6 +3639,7 @@ module TencentCloud
           @PartitionNumber = partitionnumber
           @PublicNetworkChargeType = publicnetworkchargetype
           @PublicNetwork = publicnetwork
+          @ClusterType = clustertype
         end
 
         def deserialize(params)
@@ -3674,6 +3687,7 @@ module TencentCloud
           @PartitionNumber = params['PartitionNumber']
           @PublicNetworkChargeType = params['PublicNetworkChargeType']
           @PublicNetwork = params['PublicNetwork']
+          @ClusterType = params['ClusterType']
         end
       end
 

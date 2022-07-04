@@ -250,6 +250,126 @@ module TencentCloud
         end
       end
 
+      # AddFlexIdInfo请求参数结构体
+      class AddFlexIdInfoRequest < TencentCloud::Common::AbstractModel
+        # @param IdType: 证件类型
+        # 0:身份证
+        # 1:社会信用代码
+        # @type IdType: Integer
+        # @param IdNo: 证件号
+        # @type IdNo: String
+        # @param PayeeId: 收款用户ID
+        # @type PayeeId: String
+        # @param Environment: 环境类型
+        # __release__:生产环境
+        # __sandbox__:沙箱环境
+        # __test__:测试环境
+        # 缺省默认为生产环境
+        # @type Environment: String
+
+        attr_accessor :IdType, :IdNo, :PayeeId, :Environment
+        
+        def initialize(idtype=nil, idno=nil, payeeid=nil, environment=nil)
+          @IdType = idtype
+          @IdNo = idno
+          @PayeeId = payeeid
+          @Environment = environment
+        end
+
+        def deserialize(params)
+          @IdType = params['IdType']
+          @IdNo = params['IdNo']
+          @PayeeId = params['PayeeId']
+          @Environment = params['Environment']
+        end
+      end
+
+      # AddFlexIdInfo返回参数结构体
+      class AddFlexIdInfoResponse < TencentCloud::Common::AbstractModel
+        # @param ErrCode: 错误码。SUCCESS为成功，其他为失败
+        # @type ErrCode: String
+        # @param ErrMessage: 错误消息
+        # @type ErrMessage: String
+        # @param Result: 无
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Result: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ErrCode, :ErrMessage, :Result, :RequestId
+        
+        def initialize(errcode=nil, errmessage=nil, result=nil, requestid=nil)
+          @ErrCode = errcode
+          @ErrMessage = errmessage
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ErrCode = params['ErrCode']
+          @ErrMessage = params['ErrMessage']
+          @Result = params['Result']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # AddFlexPhoneNo请求参数结构体
+      class AddFlexPhoneNoRequest < TencentCloud::Common::AbstractModel
+        # @param PhoneNo: 手机号
+        # @type PhoneNo: String
+        # @param PayeeId: 收款用户ID
+        # @type PayeeId: String
+        # @param Environment: 环境类型
+        # __release__:生产环境
+        # __sandbox__:沙箱环境
+        # __test__:测试环境
+        # 缺省默认为生产环境
+        # @type Environment: String
+
+        attr_accessor :PhoneNo, :PayeeId, :Environment
+        
+        def initialize(phoneno=nil, payeeid=nil, environment=nil)
+          @PhoneNo = phoneno
+          @PayeeId = payeeid
+          @Environment = environment
+        end
+
+        def deserialize(params)
+          @PhoneNo = params['PhoneNo']
+          @PayeeId = params['PayeeId']
+          @Environment = params['Environment']
+        end
+      end
+
+      # AddFlexPhoneNo返回参数结构体
+      class AddFlexPhoneNoResponse < TencentCloud::Common::AbstractModel
+        # @param ErrCode: 错误码。SUCCESS为成功，其他为失败
+        # @type ErrCode: String
+        # @param ErrMessage: 错误消息
+        # @type ErrMessage: String
+        # @param Result: 无
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Result: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ErrCode, :ErrMessage, :Result, :RequestId
+        
+        def initialize(errcode=nil, errmessage=nil, result=nil, requestid=nil)
+          @ErrCode = errcode
+          @ErrMessage = errmessage
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ErrCode = params['ErrCode']
+          @ErrMessage = params['ErrMessage']
+          @Result = params['Result']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # AddMerchant请求参数结构体
       class AddMerchantRequest < TencentCloud::Common::AbstractModel
         # @param OpenId: 收单系统分配的开放ID
@@ -9788,6 +9908,26 @@ module TencentCloud
         end
       end
 
+      # 对账单文件下载链接
+      class FlexBillDownloadUrlResult < TencentCloud::Common::AbstractModel
+        # @param Url: 对账单文件下载链接
+        # @type Url: String
+        # @param ExpireTime: 下载链接过期时间
+        # @type ExpireTime: String
+
+        attr_accessor :Url, :ExpireTime
+        
+        def initialize(url=nil, expiretime=nil)
+          @Url = url
+          @ExpireTime = expiretime
+        end
+
+        def deserialize(params)
+          @Url = params['Url']
+          @ExpireTime = params['ExpireTime']
+        end
+      end
+
       # 灵云V2-银行信息
       class FlexFundingAccountInfo < TencentCloud::Common::AbstractModel
         # @param FundingAccountNo: 资金账户号
@@ -11856,6 +11996,73 @@ module TencentCloud
           @Status = params['Status']
           @Price = params['Price']
           @TaxCode = params['TaxCode']
+        end
+      end
+
+      # 订单汇总列表
+      class OrderSummaries < TencentCloud::Common::AbstractModel
+        # @param List: 汇总列表
+        # @type List: Array
+        # @param Count: 总数
+        # @type Count: Integer
+
+        attr_accessor :List, :Count
+        
+        def initialize(list=nil, count=nil)
+          @List = list
+          @Count = count
+        end
+
+        def deserialize(params)
+          unless params['List'].nil?
+            @List = []
+            params['List'].each do |i|
+              ordersummaryresult_tmp = OrderSummaryResult.new
+              ordersummaryresult_tmp.deserialize(i)
+              @List << ordersummaryresult_tmp
+            end
+          end
+          @Count = params['Count']
+        end
+      end
+
+      # 订单汇总结果
+      class OrderSummaryResult < TencentCloud::Common::AbstractModel
+        # @param SummaryId: 汇总ID
+        # @type SummaryId: String
+        # @param PayeeId: 收款账户ID
+        # @type PayeeId: String
+        # @param Name: 收款账户名称
+        # @type Name: String
+        # @param IncomeType: 收入类型
+        # @type IncomeType: String
+        # @param SummaryAmount: 汇总金额
+        # @type SummaryAmount: String
+        # @param SummaryTime: 汇总日期
+        # @type SummaryTime: String
+        # @param SummaryCount: 汇总记录数量
+        # @type SummaryCount: Integer
+
+        attr_accessor :SummaryId, :PayeeId, :Name, :IncomeType, :SummaryAmount, :SummaryTime, :SummaryCount
+        
+        def initialize(summaryid=nil, payeeid=nil, name=nil, incometype=nil, summaryamount=nil, summarytime=nil, summarycount=nil)
+          @SummaryId = summaryid
+          @PayeeId = payeeid
+          @Name = name
+          @IncomeType = incometype
+          @SummaryAmount = summaryamount
+          @SummaryTime = summarytime
+          @SummaryCount = summarycount
+        end
+
+        def deserialize(params)
+          @SummaryId = params['SummaryId']
+          @PayeeId = params['PayeeId']
+          @Name = params['Name']
+          @IncomeType = params['IncomeType']
+          @SummaryAmount = params['SummaryAmount']
+          @SummaryTime = params['SummaryTime']
+          @SummaryCount = params['SummaryCount']
         end
       end
 
@@ -15308,6 +15515,70 @@ module TencentCloud
         end
       end
 
+      # QueryFlexBillDownloadUrl请求参数结构体
+      class QueryFlexBillDownloadUrlRequest < TencentCloud::Common::AbstractModel
+        # @param BillDate: 对账单日期
+        # @type BillDate: String
+        # @param BillType: 对账单类型：FREEZE, SETTLEMENT,PAYMENT
+        # @type BillType: String
+        # @param ServiceProviderId: 服务商ID，如不填则查询平台级别对账单文件
+        # @type ServiceProviderId: String
+        # @param Environment: 环境类型
+        # __release__:生产环境
+        # __sandbox__:沙箱环境
+        # __test__:测试环境
+        # 缺省默认为生产环境
+        # @type Environment: String
+
+        attr_accessor :BillDate, :BillType, :ServiceProviderId, :Environment
+        
+        def initialize(billdate=nil, billtype=nil, serviceproviderid=nil, environment=nil)
+          @BillDate = billdate
+          @BillType = billtype
+          @ServiceProviderId = serviceproviderid
+          @Environment = environment
+        end
+
+        def deserialize(params)
+          @BillDate = params['BillDate']
+          @BillType = params['BillType']
+          @ServiceProviderId = params['ServiceProviderId']
+          @Environment = params['Environment']
+        end
+      end
+
+      # QueryFlexBillDownloadUrl返回参数结构体
+      class QueryFlexBillDownloadUrlResponse < TencentCloud::Common::AbstractModel
+        # @param ErrCode: 错误码。SUCCESS为成功，其他为失败
+        # @type ErrCode: String
+        # @param ErrMessage: 错误消息
+        # @type ErrMessage: String
+        # @param Result: 返回结果
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Result: :class:`Tencentcloud::Cpdp.v20190820.models.FlexBillDownloadUrlResult`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ErrCode, :ErrMessage, :Result, :RequestId
+        
+        def initialize(errcode=nil, errmessage=nil, result=nil, requestid=nil)
+          @ErrCode = errcode
+          @ErrMessage = errmessage
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ErrCode = params['ErrCode']
+          @ErrMessage = params['ErrMessage']
+          unless params['Result'].nil?
+            @Result = FlexBillDownloadUrlResult.new
+            @Result.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # QueryFlexFreezeOrderList请求参数结构体
       class QueryFlexFreezeOrderListRequest < TencentCloud::Common::AbstractModel
         # @param PayeeId: 收款用户ID
@@ -15379,6 +15650,77 @@ module TencentCloud
           @ErrMessage = params['ErrMessage']
           unless params['Result'].nil?
             @Result = FreezeOrders.new
+            @Result.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # QueryFlexOrderSummaryList请求参数结构体
+      class QueryFlexOrderSummaryListRequest < TencentCloud::Common::AbstractModel
+        # @param SummaryDate: 汇总日期:yyyy-MM-dd
+        # @type SummaryDate: String
+        # @param PageNumber: 分页
+        # @type PageNumber: :class:`Tencentcloud::Cpdp.v20190820.models.Paging`
+        # @param OrderType: 汇总订单类型:FREEZE, SETTLEMENT,PAYMENT
+        # @type OrderType: String
+        # @param PayeeId: 收款用户ID
+        # @type PayeeId: String
+        # @param Environment: 环境类型
+        # __release__:生产环境
+        # __sandbox__:沙箱环境
+        # __test__:测试环境
+        # 缺省默认为生产环境
+        # @type Environment: String
+
+        attr_accessor :SummaryDate, :PageNumber, :OrderType, :PayeeId, :Environment
+        
+        def initialize(summarydate=nil, pagenumber=nil, ordertype=nil, payeeid=nil, environment=nil)
+          @SummaryDate = summarydate
+          @PageNumber = pagenumber
+          @OrderType = ordertype
+          @PayeeId = payeeid
+          @Environment = environment
+        end
+
+        def deserialize(params)
+          @SummaryDate = params['SummaryDate']
+          unless params['PageNumber'].nil?
+            @PageNumber = Paging.new
+            @PageNumber.deserialize(params['PageNumber'])
+          end
+          @OrderType = params['OrderType']
+          @PayeeId = params['PayeeId']
+          @Environment = params['Environment']
+        end
+      end
+
+      # QueryFlexOrderSummaryList返回参数结构体
+      class QueryFlexOrderSummaryListResponse < TencentCloud::Common::AbstractModel
+        # @param ErrCode: 错误码。SUCCESS为成功，其他为失败
+        # @type ErrCode: String
+        # @param ErrMessage: 错误消息
+        # @type ErrMessage: String
+        # @param Result: 返回结果
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Result: :class:`Tencentcloud::Cpdp.v20190820.models.OrderSummaries`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ErrCode, :ErrMessage, :Result, :RequestId
+        
+        def initialize(errcode=nil, errmessage=nil, result=nil, requestid=nil)
+          @ErrCode = errcode
+          @ErrMessage = errmessage
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ErrCode = params['ErrCode']
+          @ErrMessage = params['ErrMessage']
+          unless params['Result'].nil?
+            @Result = OrderSummaries.new
             @Result.deserialize(params['Result'])
           end
           @RequestId = params['RequestId']

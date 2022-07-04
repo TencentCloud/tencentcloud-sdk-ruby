@@ -450,6 +450,103 @@ module TencentCloud
         end
       end
 
+      # ConfigureChcAssistVpc请求参数结构体
+      class ConfigureChcAssistVpcRequest < TencentCloud::Common::AbstractModel
+        # @param ChcIds: CHC物理服务器的实例Id。
+        # @type ChcIds: Array
+        # @param BmcVirtualPrivateCloud: 带外网络信息。
+        # @type BmcVirtualPrivateCloud: :class:`Tencentcloud::Cvm.v20170312.models.VirtualPrivateCloud`
+        # @param BmcSecurityGroupIds: 带外网络的安全组列表
+        # @type BmcSecurityGroupIds: Array
+        # @param DeployVirtualPrivateCloud: 部署网络信息。
+        # @type DeployVirtualPrivateCloud: :class:`Tencentcloud::Cvm.v20170312.models.VirtualPrivateCloud`
+        # @param DeploySecurityGroupIds: 部署网络的安全组列表
+        # @type DeploySecurityGroupIds: Array
+
+        attr_accessor :ChcIds, :BmcVirtualPrivateCloud, :BmcSecurityGroupIds, :DeployVirtualPrivateCloud, :DeploySecurityGroupIds
+        
+        def initialize(chcids=nil, bmcvirtualprivatecloud=nil, bmcsecuritygroupids=nil, deployvirtualprivatecloud=nil, deploysecuritygroupids=nil)
+          @ChcIds = chcids
+          @BmcVirtualPrivateCloud = bmcvirtualprivatecloud
+          @BmcSecurityGroupIds = bmcsecuritygroupids
+          @DeployVirtualPrivateCloud = deployvirtualprivatecloud
+          @DeploySecurityGroupIds = deploysecuritygroupids
+        end
+
+        def deserialize(params)
+          @ChcIds = params['ChcIds']
+          unless params['BmcVirtualPrivateCloud'].nil?
+            @BmcVirtualPrivateCloud = VirtualPrivateCloud.new
+            @BmcVirtualPrivateCloud.deserialize(params['BmcVirtualPrivateCloud'])
+          end
+          @BmcSecurityGroupIds = params['BmcSecurityGroupIds']
+          unless params['DeployVirtualPrivateCloud'].nil?
+            @DeployVirtualPrivateCloud = VirtualPrivateCloud.new
+            @DeployVirtualPrivateCloud.deserialize(params['DeployVirtualPrivateCloud'])
+          end
+          @DeploySecurityGroupIds = params['DeploySecurityGroupIds']
+        end
+      end
+
+      # ConfigureChcAssistVpc返回参数结构体
+      class ConfigureChcAssistVpcResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ConfigureChcDeployVpc请求参数结构体
+      class ConfigureChcDeployVpcRequest < TencentCloud::Common::AbstractModel
+        # @param ChcIds: CHC物理服务器的实例Id。
+        # @type ChcIds: Array
+        # @param DeployVirtualPrivateCloud: 部署网络信息。
+        # @type DeployVirtualPrivateCloud: :class:`Tencentcloud::Cvm.v20170312.models.VirtualPrivateCloud`
+        # @param DeploySecurityGroupIds: 部署网络的安全组列表。
+        # @type DeploySecurityGroupIds: Array
+
+        attr_accessor :ChcIds, :DeployVirtualPrivateCloud, :DeploySecurityGroupIds
+        
+        def initialize(chcids=nil, deployvirtualprivatecloud=nil, deploysecuritygroupids=nil)
+          @ChcIds = chcids
+          @DeployVirtualPrivateCloud = deployvirtualprivatecloud
+          @DeploySecurityGroupIds = deploysecuritygroupids
+        end
+
+        def deserialize(params)
+          @ChcIds = params['ChcIds']
+          unless params['DeployVirtualPrivateCloud'].nil?
+            @DeployVirtualPrivateCloud = VirtualPrivateCloud.new
+            @DeployVirtualPrivateCloud.deserialize(params['DeployVirtualPrivateCloud'])
+          end
+          @DeploySecurityGroupIds = params['DeploySecurityGroupIds']
+        end
+      end
+
+      # ConfigureChcDeployVpc返回参数结构体
+      class ConfigureChcDeployVpcResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateDisasterRecoverGroup请求参数结构体
       class CreateDisasterRecoverGroupRequest < TencentCloud::Common::AbstractModel
         # @param Name: 分散置放群组名称，长度1-60个字符，支持中、英文。
@@ -5198,6 +5295,58 @@ module TencentCloud
         end
       end
 
+      # ModifyChcAttribute请求参数结构体
+      class ModifyChcAttributeRequest < TencentCloud::Common::AbstractModel
+        # @param ChcIds: CHC物理服务器ID。
+        # @type ChcIds: Array
+        # @param InstanceName: CHC物理服务器名称
+        # @type InstanceName: String
+        # @param DeviceType: 服务器类型
+        # @type DeviceType: String
+        # @param BmcUser: 合法字符为字母,数字, 横线和下划线
+        # @type BmcUser: String
+        # @param Password: 密码8-16位字符, 允许数字，字母， 和特殊字符()`~!@#$%^&*-+=_|{}[]:;'<>,.?/
+        # @type Password: String
+        # @param BmcSecurityGroupIds: bmc网络的安全组列表
+        # @type BmcSecurityGroupIds: Array
+
+        attr_accessor :ChcIds, :InstanceName, :DeviceType, :BmcUser, :Password, :BmcSecurityGroupIds
+        
+        def initialize(chcids=nil, instancename=nil, devicetype=nil, bmcuser=nil, password=nil, bmcsecuritygroupids=nil)
+          @ChcIds = chcids
+          @InstanceName = instancename
+          @DeviceType = devicetype
+          @BmcUser = bmcuser
+          @Password = password
+          @BmcSecurityGroupIds = bmcsecuritygroupids
+        end
+
+        def deserialize(params)
+          @ChcIds = params['ChcIds']
+          @InstanceName = params['InstanceName']
+          @DeviceType = params['DeviceType']
+          @BmcUser = params['BmcUser']
+          @Password = params['Password']
+          @BmcSecurityGroupIds = params['BmcSecurityGroupIds']
+        end
+      end
+
+      # ModifyChcAttribute返回参数结构体
+      class ModifyChcAttributeResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyDisasterRecoverGroupAttribute请求参数结构体
       class ModifyDisasterRecoverGroupAttributeRequest < TencentCloud::Common::AbstractModel
         # @param DisasterRecoverGroupId: 分散置放群组ID，可使用[DescribeDisasterRecoverGroups](https://cloud.tencent.com/document/api/213/17810)接口获取。
@@ -6032,6 +6181,70 @@ module TencentCloud
           @Region = params['Region']
           @RegionName = params['RegionName']
           @RegionState = params['RegionState']
+        end
+      end
+
+      # RemoveChcAssistVpc请求参数结构体
+      class RemoveChcAssistVpcRequest < TencentCloud::Common::AbstractModel
+        # @param ChcIds: CHC物理服务器Id。
+        # @type ChcIds: Array
+
+        attr_accessor :ChcIds
+        
+        def initialize(chcids=nil)
+          @ChcIds = chcids
+        end
+
+        def deserialize(params)
+          @ChcIds = params['ChcIds']
+        end
+      end
+
+      # RemoveChcAssistVpc返回参数结构体
+      class RemoveChcAssistVpcResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # RemoveChcDeployVpc请求参数结构体
+      class RemoveChcDeployVpcRequest < TencentCloud::Common::AbstractModel
+        # @param ChcIds: CHC物理服务器Id。
+        # @type ChcIds: Array
+
+        attr_accessor :ChcIds
+        
+        def initialize(chcids=nil)
+          @ChcIds = chcids
+        end
+
+        def deserialize(params)
+          @ChcIds = params['ChcIds']
+        end
+      end
+
+      # RemoveChcDeployVpc返回参数结构体
+      class RemoveChcDeployVpcResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
         end
       end
 
@@ -7251,7 +7464,7 @@ module TencentCloud
 
       # 创建资源实例时同时绑定的标签对说明
       class TagSpecification < TencentCloud::Common::AbstractModel
-        # @param ResourceType: 标签绑定的资源类型，云服务器为“instance”，专用宿主机为“host”，镜像为“image”
+        # @param ResourceType: 标签绑定的资源类型，云服务器为“instance”，专用宿主机为“host”，镜像为“image”，密钥为“keypair”
         # @type ResourceType: String
         # @param Tags: 标签对列表
         # @type Tags: Array

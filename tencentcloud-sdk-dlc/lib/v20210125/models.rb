@@ -216,10 +216,12 @@ module TencentCloud
         # @type ViewExpandedText: String
         # @param Partitions: 分区
         # @type Partitions: Array
+        # @param Name: 当前表名
+        # @type Name: String
 
-        attr_accessor :CurrentName, :CurrentDbName, :Asset, :Type, :DbName, :StorageSize, :RecordCount, :LifeTime, :DataUpdateTime, :StructUpdateTime, :LastAccessTime, :Sds, :Columns, :PartitionKeys, :ViewOriginalText, :ViewExpandedText, :Partitions
+        attr_accessor :CurrentName, :CurrentDbName, :Asset, :Type, :DbName, :StorageSize, :RecordCount, :LifeTime, :DataUpdateTime, :StructUpdateTime, :LastAccessTime, :Sds, :Columns, :PartitionKeys, :ViewOriginalText, :ViewExpandedText, :Partitions, :Name
         
-        def initialize(currentname=nil, currentdbname=nil, asset=nil, type=nil, dbname=nil, storagesize=nil, recordcount=nil, lifetime=nil, dataupdatetime=nil, structupdatetime=nil, lastaccesstime=nil, sds=nil, columns=nil, partitionkeys=nil, vieworiginaltext=nil, viewexpandedtext=nil, partitions=nil)
+        def initialize(currentname=nil, currentdbname=nil, asset=nil, type=nil, dbname=nil, storagesize=nil, recordcount=nil, lifetime=nil, dataupdatetime=nil, structupdatetime=nil, lastaccesstime=nil, sds=nil, columns=nil, partitionkeys=nil, vieworiginaltext=nil, viewexpandedtext=nil, partitions=nil, name=nil)
           @CurrentName = currentname
           @CurrentDbName = currentdbname
           @Asset = asset
@@ -237,6 +239,7 @@ module TencentCloud
           @ViewOriginalText = vieworiginaltext
           @ViewExpandedText = viewexpandedtext
           @Partitions = partitions
+          @Name = name
         end
 
         def deserialize(params)
@@ -284,6 +287,7 @@ module TencentCloud
               @Partitions << dmspartition_tmp
             end
           end
+          @Name = params['Name']
         end
       end
 
