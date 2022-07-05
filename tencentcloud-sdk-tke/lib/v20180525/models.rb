@@ -7510,16 +7510,28 @@ module TencentCloud
 
       # DescribeTKEEdgeScript返回参数结构体
       class DescribeTKEEdgeScriptResponse < TencentCloud::Common::AbstractModel
+        # @param Link: 下载链接
+        # @type Link: String
+        # @param Token: 下载需要的token
+        # @type Token: String
+        # @param Command: 下载命令
+        # @type Command: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RequestId
+        attr_accessor :Link, :Token, :Command, :RequestId
         
-        def initialize(requestid=nil)
+        def initialize(link=nil, token=nil, command=nil, requestid=nil)
+          @Link = link
+          @Token = token
+          @Command = command
           @RequestId = requestid
         end
 
         def deserialize(params)
+          @Link = params['Link']
+          @Token = params['Token']
+          @Command = params['Command']
           @RequestId = params['RequestId']
         end
       end

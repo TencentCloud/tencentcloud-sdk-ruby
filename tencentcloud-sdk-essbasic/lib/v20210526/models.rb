@@ -631,23 +631,45 @@ module TencentCloud
         # @type Agent: :class:`Tencentcloud::Essbasic.v20210526.models.Agent`
         # @param FlowIds: 签署流程编号数组，最多支持100个。
         # @type FlowIds: Array
-        # @param Endpoint: 签署链接类型：“WEIXINAPP”-直接跳小程序；“CHANNEL”-跳转H5页面；“APP”-第三方APP或小程序跳转电子签小程序；默认“WEIXINAPP”类型，即跳转至小程序。
+        # @param Endpoint: 签署链接类型：“WEIXINAPP”-直接跳小程序；“CHANNEL”-跳转H5页面；“APP”-第三方APP或小程序跳转电子签小程序；默认“WEIXINAPP”类型，即跳转至小程序；
         # @type Endpoint: String
-        # @param JumpUrl: 签署完之后的H5页面的跳转链接，针对Endpoint为CHANNEL时有效，最大长度1000个字符。
-        # @type JumpUrl: String
+        # @param GenerateType: 签署链接生成类型，默认是 "ALL"；
+        # "ALL"：全部签署方签署链接；
+        # "CHANNEL"：渠道合作企业；
+        # "NOT_CHANNEL"：非渠道合作企业；
+        # "PERSON"：个人；
+        # @type GenerateType: String
+        # @param OrganizationName: 非渠道合作企业参与方的企业名称，GenerateType为"NOT_CHANNEL"时必填
+        # @type OrganizationName: String
+        # @param Name: 参与人姓名，GenerateType为"PERSON"时必填
+        # @type Name: String
+        # @param Mobile: 参与人手机号，GenerateType为"PERSON"时必填
+        # @type Mobile: String
+        # @param OrganizationOpenId: 渠道合作企业的企业Id，GenerateType为"CHANNEL"时必填
+        # @type OrganizationOpenId: String
+        # @param OpenId: 渠道合作企业参与人OpenId，GenerateType为"CHANNEL"时可用，指定到具体参与人
+        # @type OpenId: String
         # @param AutoJumpBack: Endpoint为"APP" 类型的签署链接，可以设置此值；支持调用方小程序打开签署链接，在电子签小程序完成签署后自动回跳至调用方小程序
         # @type AutoJumpBack: Boolean
+        # @param JumpUrl: 签署完之后的H5页面的跳转链接，针对Endpoint为CHANNEL时有效，最大长度1000个字符。
+        # @type JumpUrl: String
         # @param Operator: 操作者的信息
         # @type Operator: :class:`Tencentcloud::Essbasic.v20210526.models.UserInfo`
 
-        attr_accessor :Agent, :FlowIds, :Endpoint, :JumpUrl, :AutoJumpBack, :Operator
+        attr_accessor :Agent, :FlowIds, :Endpoint, :GenerateType, :OrganizationName, :Name, :Mobile, :OrganizationOpenId, :OpenId, :AutoJumpBack, :JumpUrl, :Operator
         
-        def initialize(agent=nil, flowids=nil, endpoint=nil, jumpurl=nil, autojumpback=nil, operator=nil)
+        def initialize(agent=nil, flowids=nil, endpoint=nil, generatetype=nil, organizationname=nil, name=nil, mobile=nil, organizationopenid=nil, openid=nil, autojumpback=nil, jumpurl=nil, operator=nil)
           @Agent = agent
           @FlowIds = flowids
           @Endpoint = endpoint
-          @JumpUrl = jumpurl
+          @GenerateType = generatetype
+          @OrganizationName = organizationname
+          @Name = name
+          @Mobile = mobile
+          @OrganizationOpenId = organizationopenid
+          @OpenId = openid
           @AutoJumpBack = autojumpback
+          @JumpUrl = jumpurl
           @Operator = operator
         end
 
@@ -658,8 +680,14 @@ module TencentCloud
           end
           @FlowIds = params['FlowIds']
           @Endpoint = params['Endpoint']
-          @JumpUrl = params['JumpUrl']
+          @GenerateType = params['GenerateType']
+          @OrganizationName = params['OrganizationName']
+          @Name = params['Name']
+          @Mobile = params['Mobile']
+          @OrganizationOpenId = params['OrganizationOpenId']
+          @OpenId = params['OpenId']
           @AutoJumpBack = params['AutoJumpBack']
+          @JumpUrl = params['JumpUrl']
           unless params['Operator'].nil?
             @Operator = UserInfo.new
             @Operator.deserialize(params['Operator'])

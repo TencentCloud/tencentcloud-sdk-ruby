@@ -12728,10 +12728,13 @@ module TencentCloud
         # @param LicenseOrder: 授权订单对象
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LicenseOrder: :class:`Tencentcloud::Cwp.v20180228.models.LicenseOrder`
+        # @param VulNum: 漏洞数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VulNum: Integer
 
-        attr_accessor :MachineName, :MachinePublicIp, :MachinePrivateIp, :MachineTag, :Quuid, :Uuid, :KernelVersion, :MachineStatus, :LicenseOrder
+        attr_accessor :MachineName, :MachinePublicIp, :MachinePrivateIp, :MachineTag, :Quuid, :Uuid, :KernelVersion, :MachineStatus, :LicenseOrder, :VulNum
         
-        def initialize(machinename=nil, machinepublicip=nil, machineprivateip=nil, machinetag=nil, quuid=nil, uuid=nil, kernelversion=nil, machinestatus=nil, licenseorder=nil)
+        def initialize(machinename=nil, machinepublicip=nil, machineprivateip=nil, machinetag=nil, quuid=nil, uuid=nil, kernelversion=nil, machinestatus=nil, licenseorder=nil, vulnum=nil)
           @MachineName = machinename
           @MachinePublicIp = machinepublicip
           @MachinePrivateIp = machineprivateip
@@ -12741,6 +12744,7 @@ module TencentCloud
           @KernelVersion = kernelversion
           @MachineStatus = machinestatus
           @LicenseOrder = licenseorder
+          @VulNum = vulnum
         end
 
         def deserialize(params)
@@ -12763,6 +12767,7 @@ module TencentCloud
             @LicenseOrder = LicenseOrder.new
             @LicenseOrder.deserialize(params['LicenseOrder'])
           end
+          @VulNum = params['VulNum']
         end
       end
 

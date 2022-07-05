@@ -3159,6 +3159,46 @@ module TencentCloud
         end
       end
 
+      # DestroyDBInstance请求参数结构体
+      class DestroyDBInstanceRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例 ID，格式如：tdsqlshard-c1nl9rpv，与云数据库控制台页面中显示的实例 ID 相同。
+        # @type InstanceId: String
+
+        attr_accessor :InstanceId
+        
+        def initialize(instanceid=nil)
+          @InstanceId = instanceid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+        end
+      end
+
+      # DestroyDBInstance返回参数结构体
+      class DestroyDBInstanceResponse < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例 ID，与入参InstanceId一致。
+        # @type InstanceId: String
+        # @param FlowId: 异步任务的请求 ID，可使用此 ID [查询异步任务的执行结果](https://cloud.tencent.com/document/product/237/16177)。
+        # @type FlowId: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :InstanceId, :FlowId, :RequestId
+        
+        def initialize(instanceid=nil, flowid=nil, requestid=nil)
+          @InstanceId = instanceid
+          @FlowId = flowid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @FlowId = params['FlowId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DestroyHourDBInstance请求参数结构体
       class DestroyHourDBInstanceRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例 ID，格式如：tdsql-avw0207d，与云数据库控制台页面中显示的实例 ID 相同。

@@ -2789,7 +2789,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 获取边缘脚本链接
+        # 获取边缘脚本链接，此接口用于添加第三方节点，通过下载脚本从而将节点添加到边缘集群。
 
         # @param request: Request instance for DescribeTKEEdgeScript.
         # @type request: :class:`Tencentcloud::tke::V20180525::DescribeTKEEdgeScriptRequest`

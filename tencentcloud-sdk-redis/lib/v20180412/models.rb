@@ -2926,12 +2926,14 @@ module TencentCloud
         # @type TaskStatus: Array
         # @param Result: 任务状态
         # @type Result: Array
-        # @param OperatorUin: 操作者Uin
+        # @param OperatorUin: 操作者Uin，该字段已废弃，使用OperateUin代替
         # @type OperatorUin: Array
+        # @param OperateUin: 操作者Uin
+        # @type OperateUin: Array
 
-        attr_accessor :InstanceId, :InstanceName, :Limit, :Offset, :ProjectIds, :TaskTypes, :BeginTime, :EndTime, :TaskStatus, :Result, :OperatorUin
+        attr_accessor :InstanceId, :InstanceName, :Limit, :Offset, :ProjectIds, :TaskTypes, :BeginTime, :EndTime, :TaskStatus, :Result, :OperatorUin, :OperateUin
         
-        def initialize(instanceid=nil, instancename=nil, limit=nil, offset=nil, projectids=nil, tasktypes=nil, begintime=nil, endtime=nil, taskstatus=nil, result=nil, operatoruin=nil)
+        def initialize(instanceid=nil, instancename=nil, limit=nil, offset=nil, projectids=nil, tasktypes=nil, begintime=nil, endtime=nil, taskstatus=nil, result=nil, operatoruin=nil, operateuin=nil)
           @InstanceId = instanceid
           @InstanceName = instancename
           @Limit = limit
@@ -2943,6 +2945,7 @@ module TencentCloud
           @TaskStatus = taskstatus
           @Result = result
           @OperatorUin = operatoruin
+          @OperateUin = operateuin
         end
 
         def deserialize(params)
@@ -2957,6 +2960,7 @@ module TencentCloud
           @TaskStatus = params['TaskStatus']
           @Result = params['Result']
           @OperatorUin = params['OperatorUin']
+          @OperateUin = params['OperateUin']
         end
       end
 

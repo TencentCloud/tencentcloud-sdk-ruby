@@ -108,12 +108,32 @@ module TencentCloud
 
       # AlterDMSDatabase请求参数结构体
       class AlterDMSDatabaseRequest < TencentCloud::Common::AbstractModel
+        # @param CurrentName: 当前名称
+        # @type CurrentName: String
+        # @param SchemaName: schema名称
+        # @type SchemaName: String
+        # @param Location: 路径
+        # @type Location: String
+        # @param Asset: 基础对象
+        # @type Asset: :class:`Tencentcloud::Dlc.v20210125.models.Asset`
 
+        attr_accessor :CurrentName, :SchemaName, :Location, :Asset
         
-        def initialize()
+        def initialize(currentname=nil, schemaname=nil, location=nil, asset=nil)
+          @CurrentName = currentname
+          @SchemaName = schemaname
+          @Location = location
+          @Asset = asset
         end
 
         def deserialize(params)
+          @CurrentName = params['CurrentName']
+          @SchemaName = params['SchemaName']
+          @Location = params['Location']
+          unless params['Asset'].nil?
+            @Asset = Asset.new
+            @Asset.deserialize(params['Asset'])
+          end
         end
       end
 
@@ -309,12 +329,94 @@ module TencentCloud
 
       # 元数据基本对象
       class Asset < TencentCloud::Common::AbstractModel
+        # @param Id: 主键
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Id: Integer
+        # @param Name: 名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
+        # @param Guid: 对象GUID值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Guid: String
+        # @param Catalog: 数据目录
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Catalog: String
+        # @param Description: 描述信息
+        # @type Description: String
+        # @param Owner: 对象owner
+        # @type Owner: String
+        # @param OwnerAccount: 对象owner账户
+        # @type OwnerAccount: String
+        # @param PermValues: 权限
+        # @type PermValues: Array
+        # @param Params: 附加属性
+        # @type Params: Array
+        # @param BizParams: 附加业务属性
+        # @type BizParams: Array
+        # @param DataVersion: 数据版本
+        # @type DataVersion: Integer
+        # @param CreateTime: 创建时间
+        # @type CreateTime: String
+        # @param ModifiedTime: 修改时间
+        # @type ModifiedTime: String
+        # @param DatasourceId: 数据源主键
+        # @type DatasourceId: Integer
 
+        attr_accessor :Id, :Name, :Guid, :Catalog, :Description, :Owner, :OwnerAccount, :PermValues, :Params, :BizParams, :DataVersion, :CreateTime, :ModifiedTime, :DatasourceId
         
-        def initialize()
+        def initialize(id=nil, name=nil, guid=nil, catalog=nil, description=nil, owner=nil, owneraccount=nil, permvalues=nil, params=nil, bizparams=nil, dataversion=nil, createtime=nil, modifiedtime=nil, datasourceid=nil)
+          @Id = id
+          @Name = name
+          @Guid = guid
+          @Catalog = catalog
+          @Description = description
+          @Owner = owner
+          @OwnerAccount = owneraccount
+          @PermValues = permvalues
+          @Params = params
+          @BizParams = bizparams
+          @DataVersion = dataversion
+          @CreateTime = createtime
+          @ModifiedTime = modifiedtime
+          @DatasourceId = datasourceid
         end
 
         def deserialize(params)
+          @Id = params['Id']
+          @Name = params['Name']
+          @Guid = params['Guid']
+          @Catalog = params['Catalog']
+          @Description = params['Description']
+          @Owner = params['Owner']
+          @OwnerAccount = params['OwnerAccount']
+          unless params['PermValues'].nil?
+            @PermValues = []
+            params['PermValues'].each do |i|
+              kvpair_tmp = KVPair.new
+              kvpair_tmp.deserialize(i)
+              @PermValues << kvpair_tmp
+            end
+          end
+          unless params['Params'].nil?
+            @Params = []
+            params['Params'].each do |i|
+              kvpair_tmp = KVPair.new
+              kvpair_tmp.deserialize(i)
+              @Params << kvpair_tmp
+            end
+          end
+          unless params['BizParams'].nil?
+            @BizParams = []
+            params['BizParams'].each do |i|
+              kvpair_tmp = KVPair.new
+              kvpair_tmp.deserialize(i)
+              @BizParams << kvpair_tmp
+            end
+          end
+          @DataVersion = params['DataVersion']
+          @CreateTime = params['CreateTime']
+          @ModifiedTime = params['ModifiedTime']
+          @DatasourceId = params['DatasourceId']
         end
       end
 
@@ -643,16 +745,31 @@ module TencentCloud
 
       # CreateDMSDatabase请求参数结构体
       class CreateDMSDatabaseRequest < TencentCloud::Common::AbstractModel
+        # @param Asset: 基础元数据对象
+        # @type Asset: :class:`Tencentcloud::Dlc.v20210125.models.Asset`
+        # @param SchemaName: Schema目录
+        # @type SchemaName: String
+        # @param Location: Db存储路径
+        # @type Location: String
         # @param Name: 数据库名称
         # @type Name: String
 
-        attr_accessor :Name
+        attr_accessor :Asset, :SchemaName, :Location, :Name
         
-        def initialize(name=nil)
+        def initialize(asset=nil, schemaname=nil, location=nil, name=nil)
+          @Asset = asset
+          @SchemaName = schemaname
+          @Location = location
           @Name = name
         end
 
         def deserialize(params)
+          unless params['Asset'].nil?
+            @Asset = Asset.new
+            @Asset.deserialize(params['Asset'])
+          end
+          @SchemaName = params['SchemaName']
+          @Location = params['Location']
           @Name = params['Name']
         end
       end
@@ -2237,27 +2354,63 @@ module TencentCloud
 
       # DescribeDMSDatabase请求参数结构体
       class DescribeDMSDatabaseRequest < TencentCloud::Common::AbstractModel
+        # @param Name: 数据库名称
+        # @type Name: String
+        # @param SchemaName: schema名称
+        # @type SchemaName: String
+        # @param Pattern: 匹配规则
+        # @type Pattern: String
 
+        attr_accessor :Name, :SchemaName, :Pattern
         
-        def initialize()
+        def initialize(name=nil, schemaname=nil, pattern=nil)
+          @Name = name
+          @SchemaName = schemaname
+          @Pattern = pattern
         end
 
         def deserialize(params)
+          @Name = params['Name']
+          @SchemaName = params['SchemaName']
+          @Pattern = params['Pattern']
         end
       end
 
       # DescribeDMSDatabase返回参数结构体
       class DescribeDMSDatabaseResponse < TencentCloud::Common::AbstractModel
+        # @param Name: 数据库名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
+        # @param SchemaName: schema名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SchemaName: String
+        # @param Location: 存储地址
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Location: String
+        # @param Asset: 数据对象
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Asset: :class:`Tencentcloud::Dlc.v20210125.models.Asset`
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RequestId
+        attr_accessor :Name, :SchemaName, :Location, :Asset, :RequestId
         
-        def initialize(requestid=nil)
+        def initialize(name=nil, schemaname=nil, location=nil, asset=nil, requestid=nil)
+          @Name = name
+          @SchemaName = schemaname
+          @Location = location
+          @Asset = asset
           @RequestId = requestid
         end
 
         def deserialize(params)
+          @Name = params['Name']
+          @SchemaName = params['SchemaName']
+          @Location = params['Location']
+          unless params['Asset'].nil?
+            @Asset = Asset.new
+            @Asset.deserialize(params['Asset'])
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -2286,10 +2439,12 @@ module TencentCloud
         # @type Offset: Integer
         # @param Limit: 页面数量
         # @type Limit: Integer
+        # @param Expression: 表达式
+        # @type Expression: String
 
-        attr_accessor :DatabaseName, :TableName, :SchemaName, :Name, :Values, :PartitionNames, :PartValues, :Filter, :MaxParts, :Offset, :Limit
+        attr_accessor :DatabaseName, :TableName, :SchemaName, :Name, :Values, :PartitionNames, :PartValues, :Filter, :MaxParts, :Offset, :Limit, :Expression
         
-        def initialize(databasename=nil, tablename=nil, schemaname=nil, name=nil, values=nil, partitionnames=nil, partvalues=nil, filter=nil, maxparts=nil, offset=nil, limit=nil)
+        def initialize(databasename=nil, tablename=nil, schemaname=nil, name=nil, values=nil, partitionnames=nil, partvalues=nil, filter=nil, maxparts=nil, offset=nil, limit=nil, expression=nil)
           @DatabaseName = databasename
           @TableName = tablename
           @SchemaName = schemaname
@@ -2301,6 +2456,7 @@ module TencentCloud
           @MaxParts = maxparts
           @Offset = offset
           @Limit = limit
+          @Expression = expression
         end
 
         def deserialize(params)
@@ -2315,6 +2471,7 @@ module TencentCloud
           @MaxParts = params['MaxParts']
           @Offset = params['Offset']
           @Limit = params['Limit']
+          @Expression = params['Expression']
         end
       end
 
@@ -3587,12 +3744,25 @@ module TencentCloud
 
       # DropDMSDatabase请求参数结构体
       class DropDMSDatabaseRequest < TencentCloud::Common::AbstractModel
+        # @param Name: 数据库名称
+        # @type Name: String
+        # @param DeleteData: 是否删除数据
+        # @type DeleteData: Boolean
+        # @param Cascade: 是否级联删除
+        # @type Cascade: Boolean
 
+        attr_accessor :Name, :DeleteData, :Cascade
         
-        def initialize()
+        def initialize(name=nil, deletedata=nil, cascade=nil)
+          @Name = name
+          @DeleteData = deletedata
+          @Cascade = cascade
         end
 
         def deserialize(params)
+          @Name = params['Name']
+          @DeleteData = params['DeleteData']
+          @Cascade = params['Cascade']
         end
       end
 

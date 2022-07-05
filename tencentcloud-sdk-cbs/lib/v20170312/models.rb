@@ -388,26 +388,26 @@ module TencentCloud
       class CreateAutoSnapshotPolicyRequest < TencentCloud::Common::AbstractModel
         # @param Policy: 定期快照的执行策略。
         # @type Policy: Array
-        # @param AutoSnapshotPolicyName: 要创建的定期快照策略名。不传则默认为“未命名”。最大长度不能超60个字节。
-        # @type AutoSnapshotPolicyName: String
+        # @param DryRun: 是否创建定期快照的执行策略。TRUE表示只需获取首次开始备份的时间，不实际创建定期快照策略，FALSE表示创建，默认为FALSE。
+        # @type DryRun: Boolean
         # @param IsActivated: 是否激活定期快照策略，FALSE表示未激活，TRUE表示激活，默认为TRUE。
         # @type IsActivated: Boolean
+        # @param AutoSnapshotPolicyName: 要创建的定期快照策略名。不传则默认为“未命名”。最大长度不能超60个字节。
+        # @type AutoSnapshotPolicyName: String
         # @param IsPermanent: 通过该定期快照策略创建的快照是否永久保留。FALSE表示非永久保留，TRUE表示永久保留，默认为FALSE。
         # @type IsPermanent: Boolean
         # @param RetentionDays: 通过该定期快照策略创建的快照保留天数，默认保留7天。如果指定本参数，则IsPermanent入参不可指定为TRUE，否则会产生冲突。
         # @type RetentionDays: Integer
-        # @param DryRun: 是否创建定期快照的执行策略。TRUE表示只需获取首次开始备份的时间，不实际创建定期快照策略，FALSE表示创建，默认为FALSE。
-        # @type DryRun: Boolean
 
-        attr_accessor :Policy, :AutoSnapshotPolicyName, :IsActivated, :IsPermanent, :RetentionDays, :DryRun
+        attr_accessor :Policy, :DryRun, :IsActivated, :AutoSnapshotPolicyName, :IsPermanent, :RetentionDays
         
-        def initialize(policy=nil, autosnapshotpolicyname=nil, isactivated=nil, ispermanent=nil, retentiondays=nil, dryrun=nil)
+        def initialize(policy=nil, dryrun=nil, isactivated=nil, autosnapshotpolicyname=nil, ispermanent=nil, retentiondays=nil)
           @Policy = policy
-          @AutoSnapshotPolicyName = autosnapshotpolicyname
+          @DryRun = dryrun
           @IsActivated = isactivated
+          @AutoSnapshotPolicyName = autosnapshotpolicyname
           @IsPermanent = ispermanent
           @RetentionDays = retentiondays
-          @DryRun = dryrun
         end
 
         def deserialize(params)
@@ -419,11 +419,11 @@ module TencentCloud
               @Policy << policy_tmp
             end
           end
-          @AutoSnapshotPolicyName = params['AutoSnapshotPolicyName']
+          @DryRun = params['DryRun']
           @IsActivated = params['IsActivated']
+          @AutoSnapshotPolicyName = params['AutoSnapshotPolicyName']
           @IsPermanent = params['IsPermanent']
           @RetentionDays = params['RetentionDays']
-          @DryRun = params['DryRun']
         end
       end
 
@@ -1988,30 +1988,33 @@ module TencentCloud
       class ModifyAutoSnapshotPolicyAttributeRequest < TencentCloud::Common::AbstractModel
         # @param AutoSnapshotPolicyId: 定期快照策略ID。
         # @type AutoSnapshotPolicyId: String
-        # @param Policy: 定期快照的执行策略。
-        # @type Policy: Array
-        # @param AutoSnapshotPolicyName: 要创建的定期快照策略名。不传则默认为“未命名”。最大长度不能超60个字节。
-        # @type AutoSnapshotPolicyName: String
         # @param IsActivated: 是否激活定期快照策略，FALSE表示未激活，TRUE表示激活，默认为TRUE。
         # @type IsActivated: Boolean
         # @param IsPermanent: 通过该定期快照策略创建的快照是否永久保留。FALSE表示非永久保留，TRUE表示永久保留，默认为FALSE。
         # @type IsPermanent: Boolean
-        # @param RetentionDays: 通过该定期快照策略创建的快照保留天数，该参数不可与`IsPermanent`参数冲突，即若定期快照策略设置为永久保留，`RetentionDays`应置0。
+        # @param AutoSnapshotPolicyName: 要创建的定期快照策略名。不传则默认为“未命名”。最大长度不能超60个字节。
+        # @type AutoSnapshotPolicyName: String
+        # @param Policy: 定期快照的执行策略。
+        # @type Policy: Array
+        # @param RetentionDays: 通过该定期快照策略创建的快照保留天数。如果指定本参数，则IsPermanent入参不可指定为TRUE，否则会产生冲突。
         # @type RetentionDays: Integer
 
-        attr_accessor :AutoSnapshotPolicyId, :Policy, :AutoSnapshotPolicyName, :IsActivated, :IsPermanent, :RetentionDays
+        attr_accessor :AutoSnapshotPolicyId, :IsActivated, :IsPermanent, :AutoSnapshotPolicyName, :Policy, :RetentionDays
         
-        def initialize(autosnapshotpolicyid=nil, policy=nil, autosnapshotpolicyname=nil, isactivated=nil, ispermanent=nil, retentiondays=nil)
+        def initialize(autosnapshotpolicyid=nil, isactivated=nil, ispermanent=nil, autosnapshotpolicyname=nil, policy=nil, retentiondays=nil)
           @AutoSnapshotPolicyId = autosnapshotpolicyid
-          @Policy = policy
-          @AutoSnapshotPolicyName = autosnapshotpolicyname
           @IsActivated = isactivated
           @IsPermanent = ispermanent
+          @AutoSnapshotPolicyName = autosnapshotpolicyname
+          @Policy = policy
           @RetentionDays = retentiondays
         end
 
         def deserialize(params)
           @AutoSnapshotPolicyId = params['AutoSnapshotPolicyId']
+          @IsActivated = params['IsActivated']
+          @IsPermanent = params['IsPermanent']
+          @AutoSnapshotPolicyName = params['AutoSnapshotPolicyName']
           unless params['Policy'].nil?
             @Policy = []
             params['Policy'].each do |i|
@@ -2020,9 +2023,6 @@ module TencentCloud
               @Policy << policy_tmp
             end
           end
-          @AutoSnapshotPolicyName = params['AutoSnapshotPolicyName']
-          @IsActivated = params['IsActivated']
-          @IsPermanent = params['IsPermanent']
           @RetentionDays = params['RetentionDays']
         end
       end
@@ -2333,23 +2333,23 @@ module TencentCloud
         end
       end
 
-      # 描述了定期快照的执行策略。可理解为在DayOfWeek指定的那几天中，在Hour指定的小时执行该条定期快照策略。
+      # 描述了定期快照的执行策略。可理解为在DayOfWeek/DayOfMonth指定的几天中，或者是IntervalDays设定的间隔的几天，在Hour指定的小时执行该条定期快照策略。注：DayOfWeek/DayOfMonth/IntervalDays为互斥规则，仅可设置其中一条策略规则。
       class Policy < TencentCloud::Common::AbstractModel
-        # @param DayOfWeek: 指定每周从周一到周日需要触发定期快照的日期，取值范围：[0, 6]。0表示周日触发，1-6分别表示周一至周六。
-        # @type DayOfWeek: Array
         # @param Hour: 指定定期快照策略的触发时间。单位为小时，取值范围：[0, 23]。00:00 ~ 23:00 共 24 个时间点可选，1表示 01:00，依此类推。
         # @type Hour: Array
+        # @param DayOfWeek: 指定每周从周一到周日需要触发定期快照的日期，取值范围：[0, 6]。0表示周日触发，1-6分别表示周一至周六。
+        # @type DayOfWeek: Array
 
-        attr_accessor :DayOfWeek, :Hour
+        attr_accessor :Hour, :DayOfWeek
         
-        def initialize(dayofweek=nil, hour=nil)
-          @DayOfWeek = dayofweek
+        def initialize(hour=nil, dayofweek=nil)
           @Hour = hour
+          @DayOfWeek = dayofweek
         end
 
         def deserialize(params)
-          @DayOfWeek = params['DayOfWeek']
           @Hour = params['Hour']
+          @DayOfWeek = params['DayOfWeek']
         end
       end
 

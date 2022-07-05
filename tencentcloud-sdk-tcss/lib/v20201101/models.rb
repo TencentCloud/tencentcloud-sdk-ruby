@@ -9006,12 +9006,19 @@ module TencentCloud
         # @param GivenAuthorizedCnt: 试用期间赠送镜像授权数，可能会过期
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type GivenAuthorizedCnt: Integer
+        # @param BeginTime: 起始时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BeginTime: String
+        # @param SubState: 子状态(具体意义依据State字段而定)
+        # State为4时，有效值为: ISOLATE(隔离) DESTROED(已销毁)
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SubState: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :State, :CoresCnt, :AuthorizedCoresCnt, :ImageCnt, :AuthorizedImageCnt, :PurchasedAuthorizedCnt, :ExpirationTime, :AutomaticRenewal, :GivenAuthorizedCnt, :RequestId
+        attr_accessor :State, :CoresCnt, :AuthorizedCoresCnt, :ImageCnt, :AuthorizedImageCnt, :PurchasedAuthorizedCnt, :ExpirationTime, :AutomaticRenewal, :GivenAuthorizedCnt, :BeginTime, :SubState, :RequestId
         
-        def initialize(state=nil, corescnt=nil, authorizedcorescnt=nil, imagecnt=nil, authorizedimagecnt=nil, purchasedauthorizedcnt=nil, expirationtime=nil, automaticrenewal=nil, givenauthorizedcnt=nil, requestid=nil)
+        def initialize(state=nil, corescnt=nil, authorizedcorescnt=nil, imagecnt=nil, authorizedimagecnt=nil, purchasedauthorizedcnt=nil, expirationtime=nil, automaticrenewal=nil, givenauthorizedcnt=nil, begintime=nil, substate=nil, requestid=nil)
           @State = state
           @CoresCnt = corescnt
           @AuthorizedCoresCnt = authorizedcorescnt
@@ -9021,6 +9028,8 @@ module TencentCloud
           @ExpirationTime = expirationtime
           @AutomaticRenewal = automaticrenewal
           @GivenAuthorizedCnt = givenauthorizedcnt
+          @BeginTime = begintime
+          @SubState = substate
           @RequestId = requestid
         end
 
@@ -9034,6 +9043,8 @@ module TencentCloud
           @ExpirationTime = params['ExpirationTime']
           @AutomaticRenewal = params['AutomaticRenewal']
           @GivenAuthorizedCnt = params['GivenAuthorizedCnt']
+          @BeginTime = params['BeginTime']
+          @SubState = params['SubState']
           @RequestId = params['RequestId']
         end
       end
