@@ -4632,7 +4632,10 @@ module TencentCloud
         # @type StartTime: String
         # @param EndTime: RFC3339格式，客户端时间
         # @type EndTime: String
-        # @param MetricNames: 指标列表
+        # @param MetricNames: 指标列表，支持的指标
+        # l7Flow_outFlux: 访问流量
+        # l7Flow_request: 访问请求数
+        # l7Flow_outBandwidth: 访问带宽
         # @type MetricNames: Array
         # @param Interval: 时间间隔，选填{min, 5min, hour, day, week}
         # @type Interval: String
@@ -5181,7 +5184,11 @@ module TencentCloud
         # @type StartTime: String
         # @param EndTime: RFC3339格式，客户端时间
         # @type EndTime: String
-        # @param MetricNames: 指标列表
+        # @param MetricNames: 支持的指标：
+        # l4Flow_connections: 访问连接数
+        # l4Flow_flux: 访问总流量
+        # l4Flow_inFlux: 访问入流量
+        # l4Flow_outFlux: 访问出流量
         # @type MetricNames: Array
         # @param ZoneIds: 站点id列表
         # @type ZoneIds: Array
@@ -5276,7 +5283,10 @@ module TencentCloud
         # @type StartTime: String
         # @param EndTime: RFC3339标准，客户端时间
         # @type EndTime: String
-        # @param MetricNames: 时序类访问流量指标
+        # @param MetricNames: 指标列表，支持的指标
+        # l7Flow_outFlux: 访问流量
+        # l7Flow_request: 访问请求数
+        # l7Flow_outBandwidth: 访问带宽
         # @type MetricNames: Array
         # @param Interval: 时间间隔，选填{min, 5min, hour, day, week}
         # @type Interval: String
@@ -5355,7 +5365,9 @@ module TencentCloud
         # @type StartTime: String
         # @param EndTime: RFC3339标准，客户端时间
         # @type EndTime: String
-        # @param MetricNames: 时序类访问流量指标列表
+        # @param MetricNames: 时序类访问流量指标列表，支持的指标
+        # l7Cache_outFlux: 访问流量
+        # l7Cache_request: 访问请求数
         # @type MetricNames: Array
         # @param Interval: 时间间隔，选填{min, 5min, hour, day, week}
         # @type Interval: String

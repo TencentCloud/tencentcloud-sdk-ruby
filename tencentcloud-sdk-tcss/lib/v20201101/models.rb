@@ -176,10 +176,19 @@ module TencentCloud
         # @param ContainerIsolateOperationSrc: 容器隔离操作来源
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ContainerIsolateOperationSrc: String
+        # @param ContainerStatus: 容器状态
+        # 正在运行: RUNNING
+        # 暂停: PAUSED
+        # 停止: STOPPED
+        # 已经创建: CREATED
+        # 已经销毁: DESTROYED
+        # 正在重启中: RESTARTING
+        # 迁移中: REMOVING
+        # @type ContainerStatus: String
 
-        attr_accessor :ProcessPath, :EventType, :MatchRuleName, :FoundTime, :ContainerName, :ImageName, :Behavior, :Status, :Id, :ImageId, :ContainerId, :Solution, :Description, :MatchRuleId, :MatchAction, :MatchProcessPath, :RuleExist, :EventCount, :LatestFoundTime, :RuleId, :MatchGroupName, :MatchRuleLevel, :ContainerNetStatus, :ContainerNetSubStatus, :ContainerIsolateOperationSrc
+        attr_accessor :ProcessPath, :EventType, :MatchRuleName, :FoundTime, :ContainerName, :ImageName, :Behavior, :Status, :Id, :ImageId, :ContainerId, :Solution, :Description, :MatchRuleId, :MatchAction, :MatchProcessPath, :RuleExist, :EventCount, :LatestFoundTime, :RuleId, :MatchGroupName, :MatchRuleLevel, :ContainerNetStatus, :ContainerNetSubStatus, :ContainerIsolateOperationSrc, :ContainerStatus
         
-        def initialize(processpath=nil, eventtype=nil, matchrulename=nil, foundtime=nil, containername=nil, imagename=nil, behavior=nil, status=nil, id=nil, imageid=nil, containerid=nil, solution=nil, description=nil, matchruleid=nil, matchaction=nil, matchprocesspath=nil, ruleexist=nil, eventcount=nil, latestfoundtime=nil, ruleid=nil, matchgroupname=nil, matchrulelevel=nil, containernetstatus=nil, containernetsubstatus=nil, containerisolateoperationsrc=nil)
+        def initialize(processpath=nil, eventtype=nil, matchrulename=nil, foundtime=nil, containername=nil, imagename=nil, behavior=nil, status=nil, id=nil, imageid=nil, containerid=nil, solution=nil, description=nil, matchruleid=nil, matchaction=nil, matchprocesspath=nil, ruleexist=nil, eventcount=nil, latestfoundtime=nil, ruleid=nil, matchgroupname=nil, matchrulelevel=nil, containernetstatus=nil, containernetsubstatus=nil, containerisolateoperationsrc=nil, containerstatus=nil)
           @ProcessPath = processpath
           @EventType = eventtype
           @MatchRuleName = matchrulename
@@ -205,6 +214,7 @@ module TencentCloud
           @ContainerNetStatus = containernetstatus
           @ContainerNetSubStatus = containernetsubstatus
           @ContainerIsolateOperationSrc = containerisolateoperationsrc
+          @ContainerStatus = containerstatus
         end
 
         def deserialize(params)
@@ -233,6 +243,7 @@ module TencentCloud
           @ContainerNetStatus = params['ContainerNetStatus']
           @ContainerNetSubStatus = params['ContainerNetSubStatus']
           @ContainerIsolateOperationSrc = params['ContainerIsolateOperationSrc']
+          @ContainerStatus = params['ContainerStatus']
         end
       end
 
@@ -485,10 +496,19 @@ module TencentCloud
         # @type ContainerNetSubStatus: String
         # @param ContainerIsolateOperationSrc: 容器隔离操作来源
         # @type ContainerIsolateOperationSrc: String
+        # @param ContainerStatus: 容器状态
+        # 正在运行: RUNNING
+        # 暂停: PAUSED
+        # 停止: STOPPED
+        # 已经创建: CREATED
+        # 已经销毁: DESTROYED
+        # 正在重启中: RESTARTING
+        # 迁移中: REMOVING
+        # @type ContainerStatus: String
 
-        attr_accessor :ProcessName, :MatchRuleName, :FoundTime, :ContainerName, :ImageName, :Behavior, :Status, :Id, :FileName, :EventType, :ImageId, :ContainerId, :Solution, :Description, :MatchRuleId, :MatchAction, :MatchProcessPath, :MatchFilePath, :FilePath, :RuleExist, :EventCount, :LatestFoundTime, :RuleId, :ContainerNetStatus, :ContainerNetSubStatus, :ContainerIsolateOperationSrc
+        attr_accessor :ProcessName, :MatchRuleName, :FoundTime, :ContainerName, :ImageName, :Behavior, :Status, :Id, :FileName, :EventType, :ImageId, :ContainerId, :Solution, :Description, :MatchRuleId, :MatchAction, :MatchProcessPath, :MatchFilePath, :FilePath, :RuleExist, :EventCount, :LatestFoundTime, :RuleId, :ContainerNetStatus, :ContainerNetSubStatus, :ContainerIsolateOperationSrc, :ContainerStatus
         
-        def initialize(processname=nil, matchrulename=nil, foundtime=nil, containername=nil, imagename=nil, behavior=nil, status=nil, id=nil, filename=nil, eventtype=nil, imageid=nil, containerid=nil, solution=nil, description=nil, matchruleid=nil, matchaction=nil, matchprocesspath=nil, matchfilepath=nil, filepath=nil, ruleexist=nil, eventcount=nil, latestfoundtime=nil, ruleid=nil, containernetstatus=nil, containernetsubstatus=nil, containerisolateoperationsrc=nil)
+        def initialize(processname=nil, matchrulename=nil, foundtime=nil, containername=nil, imagename=nil, behavior=nil, status=nil, id=nil, filename=nil, eventtype=nil, imageid=nil, containerid=nil, solution=nil, description=nil, matchruleid=nil, matchaction=nil, matchprocesspath=nil, matchfilepath=nil, filepath=nil, ruleexist=nil, eventcount=nil, latestfoundtime=nil, ruleid=nil, containernetstatus=nil, containernetsubstatus=nil, containerisolateoperationsrc=nil, containerstatus=nil)
           @ProcessName = processname
           @MatchRuleName = matchrulename
           @FoundTime = foundtime
@@ -515,6 +535,7 @@ module TencentCloud
           @ContainerNetStatus = containernetstatus
           @ContainerNetSubStatus = containernetsubstatus
           @ContainerIsolateOperationSrc = containerisolateoperationsrc
+          @ContainerStatus = containerstatus
         end
 
         def deserialize(params)
@@ -544,6 +565,7 @@ module TencentCloud
           @ContainerNetStatus = params['ContainerNetStatus']
           @ContainerNetSubStatus = params['ContainerNetSubStatus']
           @ContainerIsolateOperationSrc = params['ContainerIsolateOperationSrc']
+          @ContainerStatus = params['ContainerStatus']
         end
       end
 
@@ -10356,6 +10378,7 @@ module TencentCloud
         # <li>TaskId- string - 是否必填：否 - 任务ID</li>
         # <li>ContainerNetStatus - String -是否必填: 否 -  容器网络状态筛选 NORMAL ISOLATED ISOLATING RESTORING RESTORE_FAILED</li>
         # <li>TimeRange - string -是否必填: 否 - 时间范围筛选 ["2022-03-31 16:55:00", "2022-03-31 17:00:00"]</li>
+        # <li>ContainerStatus - string -是否必填: 否 - 容器状态 RUNNING PAUSED STOPPED CREATED DESTROYED RESTARTING REMOVING</li>
         # @type Filters: Array
         # @param Order: 排序方式
         # @type Order: String
@@ -10939,10 +10962,19 @@ module TencentCloud
         # @param ContainerIsolateOperationSrc: 容器隔离操作来源
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ContainerIsolateOperationSrc: String
+        # @param ContainerStatus: 容器状态
+        # 正在运行: RUNNING
+        # 暂停: PAUSED
+        # 停止: STOPPED
+        # 已经创建: CREATED
+        # 已经销毁: DESTROYED
+        # 正在重启中: RESTARTING
+        # 迁移中: REMOVING
+        # @type ContainerStatus: String
 
-        attr_accessor :EventType, :ContainerName, :ImageName, :Status, :EventId, :NodeName, :PodName, :FoundTime, :EventName, :ImageId, :ContainerId, :Solution, :Description, :EventCount, :LatestFoundTime, :NodeIP, :HostID, :ContainerNetStatus, :ContainerNetSubStatus, :ContainerIsolateOperationSrc
+        attr_accessor :EventType, :ContainerName, :ImageName, :Status, :EventId, :NodeName, :PodName, :FoundTime, :EventName, :ImageId, :ContainerId, :Solution, :Description, :EventCount, :LatestFoundTime, :NodeIP, :HostID, :ContainerNetStatus, :ContainerNetSubStatus, :ContainerIsolateOperationSrc, :ContainerStatus
         
-        def initialize(eventtype=nil, containername=nil, imagename=nil, status=nil, eventid=nil, nodename=nil, podname=nil, foundtime=nil, eventname=nil, imageid=nil, containerid=nil, solution=nil, description=nil, eventcount=nil, latestfoundtime=nil, nodeip=nil, hostid=nil, containernetstatus=nil, containernetsubstatus=nil, containerisolateoperationsrc=nil)
+        def initialize(eventtype=nil, containername=nil, imagename=nil, status=nil, eventid=nil, nodename=nil, podname=nil, foundtime=nil, eventname=nil, imageid=nil, containerid=nil, solution=nil, description=nil, eventcount=nil, latestfoundtime=nil, nodeip=nil, hostid=nil, containernetstatus=nil, containernetsubstatus=nil, containerisolateoperationsrc=nil, containerstatus=nil)
           @EventType = eventtype
           @ContainerName = containername
           @ImageName = imagename
@@ -10963,6 +10995,7 @@ module TencentCloud
           @ContainerNetStatus = containernetstatus
           @ContainerNetSubStatus = containernetsubstatus
           @ContainerIsolateOperationSrc = containerisolateoperationsrc
+          @ContainerStatus = containerstatus
         end
 
         def deserialize(params)
@@ -10986,6 +11019,7 @@ module TencentCloud
           @ContainerNetStatus = params['ContainerNetStatus']
           @ContainerNetSubStatus = params['ContainerNetSubStatus']
           @ContainerIsolateOperationSrc = params['ContainerIsolateOperationSrc']
+          @ContainerStatus = params['ContainerStatus']
         end
       end
 
@@ -13355,10 +13389,19 @@ module TencentCloud
         # @type ContainerNetSubStatus: String
         # @param ContainerIsolateOperationSrc: 容器隔离操作来源
         # @type ContainerIsolateOperationSrc: String
+        # @param ContainerStatus: 容器状态
+        # 正在运行: RUNNING
+        # 暂停: PAUSED
+        # 停止: STOPPED
+        # 已经创建: CREATED
+        # 已经销毁: DESTROYED
+        # 正在重启中: RESTARTING
+        # 迁移中: REMOVING
+        # @type ContainerStatus: String
 
-        attr_accessor :ProcessName, :ProcessPath, :ImageId, :ContainerId, :ImageName, :ContainerName, :FoundTime, :Solution, :Description, :Status, :EventId, :Remark, :PProcessName, :EventCount, :LatestFoundTime, :DstAddress, :ContainerNetStatus, :ContainerNetSubStatus, :ContainerIsolateOperationSrc
+        attr_accessor :ProcessName, :ProcessPath, :ImageId, :ContainerId, :ImageName, :ContainerName, :FoundTime, :Solution, :Description, :Status, :EventId, :Remark, :PProcessName, :EventCount, :LatestFoundTime, :DstAddress, :ContainerNetStatus, :ContainerNetSubStatus, :ContainerIsolateOperationSrc, :ContainerStatus
         
-        def initialize(processname=nil, processpath=nil, imageid=nil, containerid=nil, imagename=nil, containername=nil, foundtime=nil, solution=nil, description=nil, status=nil, eventid=nil, remark=nil, pprocessname=nil, eventcount=nil, latestfoundtime=nil, dstaddress=nil, containernetstatus=nil, containernetsubstatus=nil, containerisolateoperationsrc=nil)
+        def initialize(processname=nil, processpath=nil, imageid=nil, containerid=nil, imagename=nil, containername=nil, foundtime=nil, solution=nil, description=nil, status=nil, eventid=nil, remark=nil, pprocessname=nil, eventcount=nil, latestfoundtime=nil, dstaddress=nil, containernetstatus=nil, containernetsubstatus=nil, containerisolateoperationsrc=nil, containerstatus=nil)
           @ProcessName = processname
           @ProcessPath = processpath
           @ImageId = imageid
@@ -13378,6 +13421,7 @@ module TencentCloud
           @ContainerNetStatus = containernetstatus
           @ContainerNetSubStatus = containernetsubstatus
           @ContainerIsolateOperationSrc = containerisolateoperationsrc
+          @ContainerStatus = containerstatus
         end
 
         def deserialize(params)
@@ -13400,6 +13444,7 @@ module TencentCloud
           @ContainerNetStatus = params['ContainerNetStatus']
           @ContainerNetSubStatus = params['ContainerNetSubStatus']
           @ContainerIsolateOperationSrc = params['ContainerIsolateOperationSrc']
+          @ContainerStatus = params['ContainerStatus']
         end
       end
 
@@ -13577,10 +13622,19 @@ module TencentCloud
         # @type ContainerNetSubStatus: String
         # @param ContainerIsolateOperationSrc: 容器隔离操作来源
         # @type ContainerIsolateOperationSrc: String
+        # @param ContainerStatus: 容器状态
+        # 正在运行: RUNNING
+        # 暂停: PAUSED
+        # 停止: STOPPED
+        # 已经创建: CREATED
+        # 已经销毁: DESTROYED
+        # 正在重启中: RESTARTING
+        # 迁移中: REMOVING
+        # @type ContainerStatus: String
 
-        attr_accessor :ProcessName, :ProcessPath, :ImageId, :ContainerId, :ImageName, :ContainerName, :FoundTime, :Solution, :Description, :SyscallName, :Status, :EventId, :NodeName, :PodName, :Remark, :RuleExist, :EventCount, :LatestFoundTime, :ContainerNetStatus, :ContainerNetSubStatus, :ContainerIsolateOperationSrc
+        attr_accessor :ProcessName, :ProcessPath, :ImageId, :ContainerId, :ImageName, :ContainerName, :FoundTime, :Solution, :Description, :SyscallName, :Status, :EventId, :NodeName, :PodName, :Remark, :RuleExist, :EventCount, :LatestFoundTime, :ContainerNetStatus, :ContainerNetSubStatus, :ContainerIsolateOperationSrc, :ContainerStatus
         
-        def initialize(processname=nil, processpath=nil, imageid=nil, containerid=nil, imagename=nil, containername=nil, foundtime=nil, solution=nil, description=nil, syscallname=nil, status=nil, eventid=nil, nodename=nil, podname=nil, remark=nil, ruleexist=nil, eventcount=nil, latestfoundtime=nil, containernetstatus=nil, containernetsubstatus=nil, containerisolateoperationsrc=nil)
+        def initialize(processname=nil, processpath=nil, imageid=nil, containerid=nil, imagename=nil, containername=nil, foundtime=nil, solution=nil, description=nil, syscallname=nil, status=nil, eventid=nil, nodename=nil, podname=nil, remark=nil, ruleexist=nil, eventcount=nil, latestfoundtime=nil, containernetstatus=nil, containernetsubstatus=nil, containerisolateoperationsrc=nil, containerstatus=nil)
           @ProcessName = processname
           @ProcessPath = processpath
           @ImageId = imageid
@@ -13602,6 +13656,7 @@ module TencentCloud
           @ContainerNetStatus = containernetstatus
           @ContainerNetSubStatus = containernetsubstatus
           @ContainerIsolateOperationSrc = containerisolateoperationsrc
+          @ContainerStatus = containerstatus
         end
 
         def deserialize(params)
@@ -13626,6 +13681,7 @@ module TencentCloud
           @ContainerNetStatus = params['ContainerNetStatus']
           @ContainerNetSubStatus = params['ContainerNetSubStatus']
           @ContainerIsolateOperationSrc = params['ContainerIsolateOperationSrc']
+          @ContainerStatus = params['ContainerStatus']
         end
       end
 
@@ -14496,8 +14552,14 @@ module TencentCloud
         # @type ContainerName: String
         # @param ContainerId: 容器id
         # @type ContainerId: String
-        # @param ContainerStatus: 容器状态，CS_RUNING:运行， CS_PAUSE:暂停，CS_STOP:停止，
-        # 												       CS_CREATE:已经创建， CS_DESTORY:销毁
+        # @param ContainerStatus: 容器状态
+        # 正在运行: RUNNING
+        # 暂停: PAUSED
+        # 停止: STOPPED
+        # 已经创建: CREATED
+        # 已经销毁: DESTROYED
+        # 正在重启中: RESTARTING
+        # 迁移中: REMOVING
         # @type ContainerStatus: String
         # @param ImageName: 镜像名称
         # @type ImageName: String

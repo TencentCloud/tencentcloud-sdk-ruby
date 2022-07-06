@@ -1679,14 +1679,18 @@ module TencentCloud
         # @type Colors: Array
         # @param Attributes: 属性信息。
         # @type Attributes: Array
+        # @param AllBox: 图像的所有主体区域。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AllBox: Array
 
-        attr_accessor :Box, :CategoryId, :Colors, :Attributes
+        attr_accessor :Box, :CategoryId, :Colors, :Attributes, :AllBox
         
-        def initialize(box=nil, categoryid=nil, colors=nil, attributes=nil)
+        def initialize(box=nil, categoryid=nil, colors=nil, attributes=nil, allbox=nil)
           @Box = box
           @CategoryId = categoryid
           @Colors = colors
           @Attributes = attributes
+          @AllBox = allbox
         end
 
         def deserialize(params)
@@ -1709,6 +1713,14 @@ module TencentCloud
               attribute_tmp = Attribute.new
               attribute_tmp.deserialize(i)
               @Attributes << attribute_tmp
+            end
+          end
+          unless params['AllBox'].nil?
+            @AllBox = []
+            params['AllBox'].each do |i|
+              box_tmp = Box.new
+              box_tmp.deserialize(i)
+              @AllBox << box_tmp
             end
           end
         end

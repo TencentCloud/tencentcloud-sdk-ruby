@@ -604,10 +604,13 @@ module TencentCloud
         # @param AutoUpgradeClusterLevel: 自动变配集群等级，针对托管集群生效
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AutoUpgradeClusterLevel: Boolean
+        # @param QGPUShareEnable: 是否开启QGPU共享
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type QGPUShareEnable: Boolean
 
-        attr_accessor :ClusterId, :ClusterName, :ClusterDescription, :ClusterVersion, :ClusterOs, :ClusterType, :ClusterNetworkSettings, :ClusterNodeNum, :ProjectId, :TagSpecification, :ClusterStatus, :Property, :ClusterMaterNodeNum, :ImageId, :OsCustomizeType, :ContainerRuntime, :CreatedTime, :DeletionProtection, :EnableExternalNode, :ClusterLevel, :AutoUpgradeClusterLevel
+        attr_accessor :ClusterId, :ClusterName, :ClusterDescription, :ClusterVersion, :ClusterOs, :ClusterType, :ClusterNetworkSettings, :ClusterNodeNum, :ProjectId, :TagSpecification, :ClusterStatus, :Property, :ClusterMaterNodeNum, :ImageId, :OsCustomizeType, :ContainerRuntime, :CreatedTime, :DeletionProtection, :EnableExternalNode, :ClusterLevel, :AutoUpgradeClusterLevel, :QGPUShareEnable
         
-        def initialize(clusterid=nil, clustername=nil, clusterdescription=nil, clusterversion=nil, clusteros=nil, clustertype=nil, clusternetworksettings=nil, clusternodenum=nil, projectid=nil, tagspecification=nil, clusterstatus=nil, property=nil, clustermaternodenum=nil, imageid=nil, oscustomizetype=nil, containerruntime=nil, createdtime=nil, deletionprotection=nil, enableexternalnode=nil, clusterlevel=nil, autoupgradeclusterlevel=nil)
+        def initialize(clusterid=nil, clustername=nil, clusterdescription=nil, clusterversion=nil, clusteros=nil, clustertype=nil, clusternetworksettings=nil, clusternodenum=nil, projectid=nil, tagspecification=nil, clusterstatus=nil, property=nil, clustermaternodenum=nil, imageid=nil, oscustomizetype=nil, containerruntime=nil, createdtime=nil, deletionprotection=nil, enableexternalnode=nil, clusterlevel=nil, autoupgradeclusterlevel=nil, qgpushareenable=nil)
           @ClusterId = clusterid
           @ClusterName = clustername
           @ClusterDescription = clusterdescription
@@ -629,6 +632,7 @@ module TencentCloud
           @EnableExternalNode = enableexternalnode
           @ClusterLevel = clusterlevel
           @AutoUpgradeClusterLevel = autoupgradeclusterlevel
+          @QGPUShareEnable = qgpushareenable
         end
 
         def deserialize(params)
@@ -663,6 +667,7 @@ module TencentCloud
           @EnableExternalNode = params['EnableExternalNode']
           @ClusterLevel = params['ClusterLevel']
           @AutoUpgradeClusterLevel = params['AutoUpgradeClusterLevel']
+          @QGPUShareEnable = params['QGPUShareEnable']
         end
       end
 
@@ -710,10 +715,12 @@ module TencentCloud
         # @type CiliumMode: String
         # @param IsDualStack: 集群VPC-CNI模式下是否是双栈集群，默认false，表明非双栈集群。
         # @type IsDualStack: Boolean
+        # @param QGPUShareEnable: 是否开启QGPU共享
+        # @type QGPUShareEnable: Boolean
 
-        attr_accessor :IPVS, :AsEnabled, :ContainerRuntime, :NodeNameType, :ExtraArgs, :NetworkType, :IsNonStaticIpMode, :DeletionProtection, :KubeProxyMode, :AuditEnabled, :AuditLogsetId, :AuditLogTopicId, :VpcCniType, :RuntimeVersion, :EnableCustomizedPodCIDR, :BasePodNumber, :CiliumMode, :IsDualStack
+        attr_accessor :IPVS, :AsEnabled, :ContainerRuntime, :NodeNameType, :ExtraArgs, :NetworkType, :IsNonStaticIpMode, :DeletionProtection, :KubeProxyMode, :AuditEnabled, :AuditLogsetId, :AuditLogTopicId, :VpcCniType, :RuntimeVersion, :EnableCustomizedPodCIDR, :BasePodNumber, :CiliumMode, :IsDualStack, :QGPUShareEnable
         
-        def initialize(ipvs=nil, asenabled=nil, containerruntime=nil, nodenametype=nil, extraargs=nil, networktype=nil, isnonstaticipmode=nil, deletionprotection=nil, kubeproxymode=nil, auditenabled=nil, auditlogsetid=nil, auditlogtopicid=nil, vpccnitype=nil, runtimeversion=nil, enablecustomizedpodcidr=nil, basepodnumber=nil, ciliummode=nil, isdualstack=nil)
+        def initialize(ipvs=nil, asenabled=nil, containerruntime=nil, nodenametype=nil, extraargs=nil, networktype=nil, isnonstaticipmode=nil, deletionprotection=nil, kubeproxymode=nil, auditenabled=nil, auditlogsetid=nil, auditlogtopicid=nil, vpccnitype=nil, runtimeversion=nil, enablecustomizedpodcidr=nil, basepodnumber=nil, ciliummode=nil, isdualstack=nil, qgpushareenable=nil)
           @IPVS = ipvs
           @AsEnabled = asenabled
           @ContainerRuntime = containerruntime
@@ -732,6 +739,7 @@ module TencentCloud
           @BasePodNumber = basepodnumber
           @CiliumMode = ciliummode
           @IsDualStack = isdualstack
+          @QGPUShareEnable = qgpushareenable
         end
 
         def deserialize(params)
@@ -756,6 +764,7 @@ module TencentCloud
           @BasePodNumber = params['BasePodNumber']
           @CiliumMode = params['CiliumMode']
           @IsDualStack = params['IsDualStack']
+          @QGPUShareEnable = params['QGPUShareEnable']
         end
       end
 
@@ -1251,10 +1260,16 @@ module TencentCloud
         # @param IgnoreServiceCIDRConflict: 是否忽略 ServiceCIDR 冲突错误, 仅在 VPC-CNI 模式生效，默认不忽略
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IgnoreServiceCIDRConflict: Boolean
+        # @param IsDualStack: 集群VPC-CNI模式是否为非双栈集群，默认false，非双栈。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsDualStack: Boolean
+        # @param Ipv6ServiceCIDR: 用于分配service的IP range，由系统自动分配
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Ipv6ServiceCIDR: String
 
-        attr_accessor :ClusterCIDR, :IgnoreClusterCIDRConflict, :MaxNodePodNum, :MaxClusterServiceNum, :Ipvs, :VpcId, :Cni, :KubeProxyMode, :ServiceCIDR, :Subnets, :IgnoreServiceCIDRConflict
+        attr_accessor :ClusterCIDR, :IgnoreClusterCIDRConflict, :MaxNodePodNum, :MaxClusterServiceNum, :Ipvs, :VpcId, :Cni, :KubeProxyMode, :ServiceCIDR, :Subnets, :IgnoreServiceCIDRConflict, :IsDualStack, :Ipv6ServiceCIDR
         
-        def initialize(clustercidr=nil, ignoreclustercidrconflict=nil, maxnodepodnum=nil, maxclusterservicenum=nil, ipvs=nil, vpcid=nil, cni=nil, kubeproxymode=nil, servicecidr=nil, subnets=nil, ignoreservicecidrconflict=nil)
+        def initialize(clustercidr=nil, ignoreclustercidrconflict=nil, maxnodepodnum=nil, maxclusterservicenum=nil, ipvs=nil, vpcid=nil, cni=nil, kubeproxymode=nil, servicecidr=nil, subnets=nil, ignoreservicecidrconflict=nil, isdualstack=nil, ipv6servicecidr=nil)
           @ClusterCIDR = clustercidr
           @IgnoreClusterCIDRConflict = ignoreclustercidrconflict
           @MaxNodePodNum = maxnodepodnum
@@ -1266,6 +1281,8 @@ module TencentCloud
           @ServiceCIDR = servicecidr
           @Subnets = subnets
           @IgnoreServiceCIDRConflict = ignoreservicecidrconflict
+          @IsDualStack = isdualstack
+          @Ipv6ServiceCIDR = ipv6servicecidr
         end
 
         def deserialize(params)
@@ -1280,6 +1297,8 @@ module TencentCloud
           @ServiceCIDR = params['ServiceCIDR']
           @Subnets = params['Subnets']
           @IgnoreServiceCIDRConflict = params['IgnoreServiceCIDRConflict']
+          @IsDualStack = params['IsDualStack']
+          @Ipv6ServiceCIDR = params['Ipv6ServiceCIDR']
         end
       end
 
@@ -1798,10 +1817,12 @@ module TencentCloud
         # @type OsCustomizeType: String
         # @param Tags: 资源标签
         # @type Tags: Array
+        # @param DeletionProtection: 删除保护开关
+        # @type DeletionProtection: Boolean
 
-        attr_accessor :ClusterId, :AutoScalingGroupPara, :LaunchConfigurePara, :InstanceAdvancedSettings, :EnableAutoscale, :Name, :Labels, :Taints, :ContainerRuntime, :RuntimeVersion, :NodePoolOs, :OsCustomizeType, :Tags
+        attr_accessor :ClusterId, :AutoScalingGroupPara, :LaunchConfigurePara, :InstanceAdvancedSettings, :EnableAutoscale, :Name, :Labels, :Taints, :ContainerRuntime, :RuntimeVersion, :NodePoolOs, :OsCustomizeType, :Tags, :DeletionProtection
         
-        def initialize(clusterid=nil, autoscalinggrouppara=nil, launchconfigurepara=nil, instanceadvancedsettings=nil, enableautoscale=nil, name=nil, labels=nil, taints=nil, containerruntime=nil, runtimeversion=nil, nodepoolos=nil, oscustomizetype=nil, tags=nil)
+        def initialize(clusterid=nil, autoscalinggrouppara=nil, launchconfigurepara=nil, instanceadvancedsettings=nil, enableautoscale=nil, name=nil, labels=nil, taints=nil, containerruntime=nil, runtimeversion=nil, nodepoolos=nil, oscustomizetype=nil, tags=nil, deletionprotection=nil)
           @ClusterId = clusterid
           @AutoScalingGroupPara = autoscalinggrouppara
           @LaunchConfigurePara = launchconfigurepara
@@ -1815,6 +1836,7 @@ module TencentCloud
           @NodePoolOs = nodepoolos
           @OsCustomizeType = oscustomizetype
           @Tags = tags
+          @DeletionProtection = deletionprotection
         end
 
         def deserialize(params)
@@ -1855,6 +1877,7 @@ module TencentCloud
               @Tags << tag_tmp
             end
           end
+          @DeletionProtection = params['DeletionProtection']
         end
       end
 
@@ -10031,16 +10054,19 @@ module TencentCloud
         # @type ClusterLevel: String
         # @param AutoUpgradeClusterLevel: 自动变配集群等级
         # @type AutoUpgradeClusterLevel: :class:`Tencentcloud::Tke.v20180525.models.AutoUpgradeClusterLevel`
+        # @param QGPUShareEnable: 是否开启QGPU共享
+        # @type QGPUShareEnable: Boolean
 
-        attr_accessor :ClusterId, :ProjectId, :ClusterName, :ClusterDesc, :ClusterLevel, :AutoUpgradeClusterLevel
+        attr_accessor :ClusterId, :ProjectId, :ClusterName, :ClusterDesc, :ClusterLevel, :AutoUpgradeClusterLevel, :QGPUShareEnable
         
-        def initialize(clusterid=nil, projectid=nil, clustername=nil, clusterdesc=nil, clusterlevel=nil, autoupgradeclusterlevel=nil)
+        def initialize(clusterid=nil, projectid=nil, clustername=nil, clusterdesc=nil, clusterlevel=nil, autoupgradeclusterlevel=nil, qgpushareenable=nil)
           @ClusterId = clusterid
           @ProjectId = projectid
           @ClusterName = clustername
           @ClusterDesc = clusterdesc
           @ClusterLevel = clusterlevel
           @AutoUpgradeClusterLevel = autoupgradeclusterlevel
+          @QGPUShareEnable = qgpushareenable
         end
 
         def deserialize(params)
@@ -10053,6 +10079,7 @@ module TencentCloud
             @AutoUpgradeClusterLevel = AutoUpgradeClusterLevel.new
             @AutoUpgradeClusterLevel.deserialize(params['AutoUpgradeClusterLevel'])
           end
+          @QGPUShareEnable = params['QGPUShareEnable']
         end
       end
 
@@ -10073,17 +10100,21 @@ module TencentCloud
         # @param AutoUpgradeClusterLevel: 自动变配集群等级
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AutoUpgradeClusterLevel: :class:`Tencentcloud::Tke.v20180525.models.AutoUpgradeClusterLevel`
+        # @param QGPUShareEnable: 是否开启QGPU共享
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type QGPUShareEnable: Boolean
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :ProjectId, :ClusterName, :ClusterDesc, :ClusterLevel, :AutoUpgradeClusterLevel, :RequestId
+        attr_accessor :ProjectId, :ClusterName, :ClusterDesc, :ClusterLevel, :AutoUpgradeClusterLevel, :QGPUShareEnable, :RequestId
         
-        def initialize(projectid=nil, clustername=nil, clusterdesc=nil, clusterlevel=nil, autoupgradeclusterlevel=nil, requestid=nil)
+        def initialize(projectid=nil, clustername=nil, clusterdesc=nil, clusterlevel=nil, autoupgradeclusterlevel=nil, qgpushareenable=nil, requestid=nil)
           @ProjectId = projectid
           @ClusterName = clustername
           @ClusterDesc = clusterdesc
           @ClusterLevel = clusterlevel
           @AutoUpgradeClusterLevel = autoupgradeclusterlevel
+          @QGPUShareEnable = qgpushareenable
           @RequestId = requestid
         end
 
@@ -10096,6 +10127,7 @@ module TencentCloud
             @AutoUpgradeClusterLevel = AutoUpgradeClusterLevel.new
             @AutoUpgradeClusterLevel.deserialize(params['AutoUpgradeClusterLevel'])
           end
+          @QGPUShareEnable = params['QGPUShareEnable']
           @RequestId = params['RequestId']
         end
       end
@@ -10203,10 +10235,12 @@ module TencentCloud
         # @type Tags: Array
         # @param Unschedulable: 设置加入的节点是否参与调度，默认值为0，表示参与调度；非0表示不参与调度, 待节点初始化完成之后, 可执行kubectl uncordon nodename使node加入调度.
         # @type Unschedulable: Integer
+        # @param DeletionProtection: 删除保护开关
+        # @type DeletionProtection: Boolean
 
-        attr_accessor :ClusterId, :NodePoolId, :Name, :MaxNodesNum, :MinNodesNum, :Labels, :Taints, :EnableAutoscale, :OsName, :OsCustomizeType, :ExtraArgs, :Tags, :Unschedulable
+        attr_accessor :ClusterId, :NodePoolId, :Name, :MaxNodesNum, :MinNodesNum, :Labels, :Taints, :EnableAutoscale, :OsName, :OsCustomizeType, :ExtraArgs, :Tags, :Unschedulable, :DeletionProtection
         
-        def initialize(clusterid=nil, nodepoolid=nil, name=nil, maxnodesnum=nil, minnodesnum=nil, labels=nil, taints=nil, enableautoscale=nil, osname=nil, oscustomizetype=nil, extraargs=nil, tags=nil, unschedulable=nil)
+        def initialize(clusterid=nil, nodepoolid=nil, name=nil, maxnodesnum=nil, minnodesnum=nil, labels=nil, taints=nil, enableautoscale=nil, osname=nil, oscustomizetype=nil, extraargs=nil, tags=nil, unschedulable=nil, deletionprotection=nil)
           @ClusterId = clusterid
           @NodePoolId = nodepoolid
           @Name = name
@@ -10220,6 +10254,7 @@ module TencentCloud
           @ExtraArgs = extraargs
           @Tags = tags
           @Unschedulable = unschedulable
+          @DeletionProtection = deletionprotection
         end
 
         def deserialize(params)
@@ -10260,6 +10295,7 @@ module TencentCloud
             end
           end
           @Unschedulable = params['Unschedulable']
+          @DeletionProtection = params['DeletionProtection']
         end
       end
 
@@ -10820,10 +10856,13 @@ module TencentCloud
         # @param Tags: 资源标签
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Tags: Array
+        # @param DeletionProtection: 删除保护开关
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DeletionProtection: Boolean
 
-        attr_accessor :NodePoolId, :Name, :ClusterInstanceId, :LifeState, :LaunchConfigurationId, :AutoscalingGroupId, :Labels, :Taints, :NodeCountSummary, :AutoscalingGroupStatus, :MaxNodesNum, :MinNodesNum, :DesiredNodesNum, :NodePoolOs, :OsCustomizeType, :ImageId, :DesiredPodNum, :UserScript, :Tags
+        attr_accessor :NodePoolId, :Name, :ClusterInstanceId, :LifeState, :LaunchConfigurationId, :AutoscalingGroupId, :Labels, :Taints, :NodeCountSummary, :AutoscalingGroupStatus, :MaxNodesNum, :MinNodesNum, :DesiredNodesNum, :NodePoolOs, :OsCustomizeType, :ImageId, :DesiredPodNum, :UserScript, :Tags, :DeletionProtection
         
-        def initialize(nodepoolid=nil, name=nil, clusterinstanceid=nil, lifestate=nil, launchconfigurationid=nil, autoscalinggroupid=nil, labels=nil, taints=nil, nodecountsummary=nil, autoscalinggroupstatus=nil, maxnodesnum=nil, minnodesnum=nil, desirednodesnum=nil, nodepoolos=nil, oscustomizetype=nil, imageid=nil, desiredpodnum=nil, userscript=nil, tags=nil)
+        def initialize(nodepoolid=nil, name=nil, clusterinstanceid=nil, lifestate=nil, launchconfigurationid=nil, autoscalinggroupid=nil, labels=nil, taints=nil, nodecountsummary=nil, autoscalinggroupstatus=nil, maxnodesnum=nil, minnodesnum=nil, desirednodesnum=nil, nodepoolos=nil, oscustomizetype=nil, imageid=nil, desiredpodnum=nil, userscript=nil, tags=nil, deletionprotection=nil)
           @NodePoolId = nodepoolid
           @Name = name
           @ClusterInstanceId = clusterinstanceid
@@ -10843,6 +10882,7 @@ module TencentCloud
           @DesiredPodNum = desiredpodnum
           @UserScript = userscript
           @Tags = tags
+          @DeletionProtection = deletionprotection
         end
 
         def deserialize(params)
@@ -10889,6 +10929,7 @@ module TencentCloud
               @Tags << tag_tmp
             end
           end
+          @DeletionProtection = params['DeletionProtection']
         end
       end
 

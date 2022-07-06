@@ -654,19 +654,26 @@ module TencentCloud
         # @type NamespaceName: String
         # @param IsPublic: 是否公开，true为公开，fale为私有
         # @type IsPublic: Boolean
+        # @param TagSpecification: 云标签描述
+        # @type TagSpecification: :class:`Tencentcloud::Tcr.v20190924.models.TagSpecification`
 
-        attr_accessor :RegistryId, :NamespaceName, :IsPublic
+        attr_accessor :RegistryId, :NamespaceName, :IsPublic, :TagSpecification
         
-        def initialize(registryid=nil, namespacename=nil, ispublic=nil)
+        def initialize(registryid=nil, namespacename=nil, ispublic=nil, tagspecification=nil)
           @RegistryId = registryid
           @NamespaceName = namespacename
           @IsPublic = ispublic
+          @TagSpecification = tagspecification
         end
 
         def deserialize(params)
           @RegistryId = params['RegistryId']
           @NamespaceName = params['NamespaceName']
           @IsPublic = params['IsPublic']
+          unless params['TagSpecification'].nil?
+            @TagSpecification = TagSpecification.new
+            @TagSpecification.deserialize(params['TagSpecification'])
+          end
         end
       end
 
@@ -2643,16 +2650,22 @@ module TencentCloud
         # @type NamespaceName: String
         # @param Limit: 每页个数
         # @type Limit: Integer
-        # @param Offset: 页偏移
+        # @param Offset: 页面偏移（第几页）
         # @type Offset: Integer
+        # @param All: 列出所有命名空间
+        # @type All: Boolean
+        # @param Filters: 过滤条件
+        # @type Filters: Array
 
-        attr_accessor :RegistryId, :NamespaceName, :Limit, :Offset
+        attr_accessor :RegistryId, :NamespaceName, :Limit, :Offset, :All, :Filters
         
-        def initialize(registryid=nil, namespacename=nil, limit=nil, offset=nil)
+        def initialize(registryid=nil, namespacename=nil, limit=nil, offset=nil, all=nil, filters=nil)
           @RegistryId = registryid
           @NamespaceName = namespacename
           @Limit = limit
           @Offset = offset
+          @All = all
+          @Filters = filters
         end
 
         def deserialize(params)
@@ -2660,6 +2673,15 @@ module TencentCloud
           @NamespaceName = params['NamespaceName']
           @Limit = params['Limit']
           @Offset = params['Offset']
+          @All = params['All']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
         end
       end
 
@@ -5608,14 +5630,18 @@ module TencentCloud
         # @type Public: Boolean
         # @param NamespaceId: 命名空间的Id
         # @type NamespaceId: Integer
+        # @param TagSpecification: 实例云标签
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TagSpecification: :class:`Tencentcloud::Tcr.v20190924.models.TagSpecification`
 
-        attr_accessor :Name, :CreationTime, :Public, :NamespaceId
+        attr_accessor :Name, :CreationTime, :Public, :NamespaceId, :TagSpecification
         
-        def initialize(name=nil, creationtime=nil, public=nil, namespaceid=nil)
+        def initialize(name=nil, creationtime=nil, public=nil, namespaceid=nil, tagspecification=nil)
           @Name = name
           @CreationTime = creationtime
           @Public = public
           @NamespaceId = namespaceid
+          @TagSpecification = tagspecification
         end
 
         def deserialize(params)
@@ -5623,6 +5649,10 @@ module TencentCloud
           @CreationTime = params['CreationTime']
           @Public = params['Public']
           @NamespaceId = params['NamespaceId']
+          unless params['TagSpecification'].nil?
+            @TagSpecification = TagSpecification.new
+            @TagSpecification.deserialize(params['TagSpecification'])
+          end
         end
       end
 

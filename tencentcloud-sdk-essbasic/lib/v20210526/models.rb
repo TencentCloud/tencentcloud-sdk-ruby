@@ -2086,7 +2086,7 @@ module TencentCloud
 
       # UploadFiles返回参数结构体
       class UploadFilesResponse < TencentCloud::Common::AbstractModel
-        # @param FileIds: 文件id数组
+        # @param FileIds: 文件id数组，有效期一个小时
         # @type FileIds: Array
         # @param TotalCount: 上传成功文件数量
         # @type TotalCount: Integer
@@ -2122,16 +2122,20 @@ module TencentCloud
         # @param Date: 日期，当需要汇总数据时日期为空
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Date: String
-        # @param Usage: 消耗量
+        # @param Usage: 消耗数量
         # @type Usage: Integer
+        # @param Cancel: 撤回数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Cancel: Integer
 
-        attr_accessor :ProxyOrganizationOpenId, :ProxyOrganizationName, :Date, :Usage
+        attr_accessor :ProxyOrganizationOpenId, :ProxyOrganizationName, :Date, :Usage, :Cancel
         
-        def initialize(proxyorganizationopenid=nil, proxyorganizationname=nil, date=nil, usage=nil)
+        def initialize(proxyorganizationopenid=nil, proxyorganizationname=nil, date=nil, usage=nil, cancel=nil)
           @ProxyOrganizationOpenId = proxyorganizationopenid
           @ProxyOrganizationName = proxyorganizationname
           @Date = date
           @Usage = usage
+          @Cancel = cancel
         end
 
         def deserialize(params)
@@ -2139,6 +2143,7 @@ module TencentCloud
           @ProxyOrganizationName = params['ProxyOrganizationName']
           @Date = params['Date']
           @Usage = params['Usage']
+          @Cancel = params['Cancel']
         end
       end
 

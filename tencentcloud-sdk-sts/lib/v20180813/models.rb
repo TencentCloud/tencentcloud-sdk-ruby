@@ -65,16 +65,19 @@ module TencentCloud
         # @type ExternalId: String
         # @param Tags: 会话标签列表。最多可以传递 50 个会话标签，不支持包含相同标签键。
         # @type Tags: Array
+        # @param SourceIdentity: 调用者身份uin
+        # @type SourceIdentity: String
 
-        attr_accessor :RoleArn, :RoleSessionName, :DurationSeconds, :Policy, :ExternalId, :Tags
+        attr_accessor :RoleArn, :RoleSessionName, :DurationSeconds, :Policy, :ExternalId, :Tags, :SourceIdentity
         
-        def initialize(rolearn=nil, rolesessionname=nil, durationseconds=nil, policy=nil, externalid=nil, tags=nil)
+        def initialize(rolearn=nil, rolesessionname=nil, durationseconds=nil, policy=nil, externalid=nil, tags=nil, sourceidentity=nil)
           @RoleArn = rolearn
           @RoleSessionName = rolesessionname
           @DurationSeconds = durationseconds
           @Policy = policy
           @ExternalId = externalid
           @Tags = tags
+          @SourceIdentity = sourceidentity
         end
 
         def deserialize(params)
@@ -91,6 +94,7 @@ module TencentCloud
               @Tags << tag_tmp
             end
           end
+          @SourceIdentity = params['SourceIdentity']
         end
       end
 

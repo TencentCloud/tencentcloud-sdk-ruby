@@ -744,32 +744,31 @@ module TencentCloud
 
       # DescribeResourceInstances请求参数结构体
       class DescribeResourceInstancesRequest < TencentCloud::Common::AbstractModel
-        # @param Pids: 资源类别id数组，13624：加固专业版，12750：企业版。空数组表示返回全部资源。
-        # @type Pids: Array
-        # @param Filters: 支持通过资源id，pid进行查询
+        # @param Filters: 支持CreateTime、ExpireTime、AppName、AppPkgName、BindValue、IsBind过滤
         # @type Filters: Array
         # @param Offset: 偏移量，默认为0
         # @type Offset: Integer
         # @param Limit: 数量限制，默认为20，最大值为100。
         # @type Limit: Integer
+        # @param Pids: 资源类别id数组，13624：加固专业版，12750：企业版。空数组表示返回全部资源。
+        # @type Pids: Array
         # @param OrderField: 按某个字段排序，目前支持CreateTime、ExpireTime其中的一个排序。
         # @type OrderField: String
         # @param OrderDirection: 升序（asc）还是降序（desc），默认：desc。
         # @type OrderDirection: String
 
-        attr_accessor :Pids, :Filters, :Offset, :Limit, :OrderField, :OrderDirection
+        attr_accessor :Filters, :Offset, :Limit, :Pids, :OrderField, :OrderDirection
         
-        def initialize(pids=nil, filters=nil, offset=nil, limit=nil, orderfield=nil, orderdirection=nil)
-          @Pids = pids
+        def initialize(filters=nil, offset=nil, limit=nil, pids=nil, orderfield=nil, orderdirection=nil)
           @Filters = filters
           @Offset = offset
           @Limit = limit
+          @Pids = pids
           @OrderField = orderfield
           @OrderDirection = orderdirection
         end
 
         def deserialize(params)
-          @Pids = params['Pids']
           unless params['Filters'].nil?
             @Filters = []
             params['Filters'].each do |i|
@@ -780,6 +779,7 @@ module TencentCloud
           end
           @Offset = params['Offset']
           @Limit = params['Limit']
+          @Pids = params['Pids']
           @OrderField = params['OrderField']
           @OrderDirection = params['OrderDirection']
         end
