@@ -169,8 +169,15 @@ module TencentCloud
         # @param EndTime: 结束时间戳（毫秒级）
         # @type EndTime: Integer
         # @param TaskType: 任务类型
+        # AnalyzeTaskType_Network：网络质量
+        # AnalyzeTaskType_Browse：页面性能
+        # AnalyzeTaskType_UploadDownload：文件传输（含文件上传、文件下载）
+        # AnalyzeTaskType_Transport：端口性能
+        # AnalyzeTaskType_MediaStream：音视频体验
         # @type TaskType: String
         # @param SortField: 待排序字段
+        # 可以填写 ProbeTime 拨测时间排序
+        # 也可填写SelectedFields 中的选中字段
         # @type SortField: String
         # @param Ascending: true表示升序
         # @type Ascending: Boolean
@@ -183,12 +190,32 @@ module TencentCloud
         # @param TaskID: 任务ID
         # @type TaskID: Array
         # @param Operators: 拨测点运营商
+
+        # 这里实际按拨测结果中的运营商来填写即可
+
+        # 电信：中国电信
+        # 移动：中国移动
+        # 联通：中国联通
         # @type Operators: Array
         # @param Districts: 拨测点地区
+
+        # 这里实际按拨测结果中的地区来填写即可
+
+        # 国内一般是省级单位，如广东、广西、香港特区、新疆；直辖市则填北京、上海
+
+        # 海外一般是国家名，如澳大利亚、新加坡
         # @type Districts: Array
         # @param ErrorTypes: 错误类型
         # @type ErrorTypes: Array
         # @param City: 城市
+        # 这里实际按拨测结果中的城市来填写即可
+
+        # 示例：
+
+        # 深圳市
+        # 武汉市
+        # 首尔
+        # 多伦多
         # @type City: Array
 
         attr_accessor :BeginTime, :EndTime, :TaskType, :SortField, :Ascending, :SelectedFields, :Offset, :Limit, :TaskID, :Operators, :Districts, :ErrorTypes, :City
@@ -411,6 +438,17 @@ module TencentCloud
         # <li> 2 = 欠费 </li>
         # @type OrderState: Integer
         # @param TaskType: 拨测类型
+
+        # <li>1 = 创建中</li>
+        # <li> 2 = 运行中 </li>
+        # <li> 3 = 运行异常 </li>
+        # <li> 4 = 暂停中 </li>
+        # <li> 5 = 暂停异常 </li>
+        # <li> 6 = 任务暂停 </li>
+        # <li> 7 = 任务删除中 </li>
+        # <li> 8 = 任务删除异常 </li>
+        # <li> 9 = 任务删除</li>
+        # <li> 10 = 定时任务暂停中 </li>
         # @type TaskType: Array
         # @param TaskCategory: 节点类型
         # @type TaskCategory: Array

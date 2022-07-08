@@ -447,14 +447,14 @@ module TencentCloud
 
       # DescribeEvents返回参数结构体
       class DescribeEventsResponse < TencentCloud::Common::AbstractModel
-        # @param ListOver: 日志集合是否结束
+        # @param ListOver: 日志集合是否结束。true表示结束，无需进行翻页。
         # @type ListOver: Boolean
         # @param NextToken: 查看更多日志的凭证
         # @type NextToken: Integer
         # @param Events: 日志集合
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Events: Array
-        # @param TotalCount: 总数
+        # @param TotalCount: 此字段已经废弃。翻页请使用ListOver配合NextToken，在ListOver为false进行下一页数据读取。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TotalCount: Integer
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。

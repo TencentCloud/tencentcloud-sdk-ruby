@@ -17,6 +17,26 @@
 module TencentCloud
   module Cls
     module V20201016
+      # 告警多维分析一些配置信息
+      class AlarmAnalysisConfig < TencentCloud::Common::AbstractModel
+        # @param Key: 键
+        # @type Key: String
+        # @param Value: 值
+        # @type Value: String
+
+        attr_accessor :Key, :Value
+        
+        def initialize(key=nil, value=nil)
+          @Key = key
+          @Value = value
+        end
+
+        def deserialize(params)
+          @Key = params['Key']
+          @Value = params['Value']
+        end
+      end
+
       # 告警策略描述
       class AlarmInfo < TencentCloud::Common::AbstractModel
         # @param Name: 告警策略名称。
@@ -254,23 +274,34 @@ module TencentCloud
       class AnalysisDimensional < TencentCloud::Common::AbstractModel
         # @param Name: 分析名称
         # @type Name: String
-        # @param Type: 分析类型：query，field
+        # @param Type: 分析类型：query，field ，original
         # @type Type: String
         # @param Content: 分析内容
         # @type Content: String
+        # @param ConfigInfo: 配置
+        # @type ConfigInfo: Array
 
-        attr_accessor :Name, :Type, :Content
+        attr_accessor :Name, :Type, :Content, :ConfigInfo
         
-        def initialize(name=nil, type=nil, content=nil)
+        def initialize(name=nil, type=nil, content=nil, configinfo=nil)
           @Name = name
           @Type = type
           @Content = content
+          @ConfigInfo = configinfo
         end
 
         def deserialize(params)
           @Name = params['Name']
           @Type = params['Type']
           @Content = params['Content']
+          unless params['ConfigInfo'].nil?
+            @ConfigInfo = []
+            params['ConfigInfo'].each do |i|
+              alarmanalysisconfig_tmp = AlarmAnalysisConfig.new
+              alarmanalysisconfig_tmp.deserialize(i)
+              @ConfigInfo << alarmanalysisconfig_tmp
+            end
+          end
         end
       end
 

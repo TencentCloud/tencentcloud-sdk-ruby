@@ -4563,8 +4563,6 @@ module TencentCloud
 
       # RecognizePhilippinesDrivingLicenseOCR请求参数结构体
       class RecognizePhilippinesDrivingLicenseOCRRequest < TencentCloud::Common::AbstractModel
-        # @param ReturnHeadImage: 是否返回人像照片。
-        # @type ReturnHeadImage: Boolean
         # @param ImageBase64: 图片的 Base64 值。
         # 支持的图片格式：PNG、JPG、JPEG，暂不支持 GIF 格式。
         # 支持的图片大小：所下载图片经Base64编码后不超过 7M。图片下载时间不超过 3 秒。
@@ -4576,19 +4574,21 @@ module TencentCloud
         # 图片存储于腾讯云的 Url 可保障更高的下载速度和稳定性，建议图片存储于腾讯云。
         # 非腾讯云存储的 Url 速度和稳定性可能受一定影响。
         # @type ImageUrl: String
+        # @param ReturnHeadImage: 是否返回人像照片。
+        # @type ReturnHeadImage: Boolean
 
-        attr_accessor :ReturnHeadImage, :ImageBase64, :ImageUrl
+        attr_accessor :ImageBase64, :ImageUrl, :ReturnHeadImage
         
-        def initialize(returnheadimage=nil, imagebase64=nil, imageurl=nil)
-          @ReturnHeadImage = returnheadimage
+        def initialize(imagebase64=nil, imageurl=nil, returnheadimage=nil)
           @ImageBase64 = imagebase64
           @ImageUrl = imageurl
+          @ReturnHeadImage = returnheadimage
         end
 
         def deserialize(params)
-          @ReturnHeadImage = params['ReturnHeadImage']
           @ImageBase64 = params['ImageBase64']
           @ImageUrl = params['ImageUrl']
+          @ReturnHeadImage = params['ReturnHeadImage']
         end
       end
 
@@ -5527,19 +5527,27 @@ module TencentCloud
         # 若客户只想返回姓名、性别两个字段的识别结果，则输入
         # ItemNames=["姓名","性别"]
         # @type ItemNames: Array
+        # @param IsPdf: 是否开启PDF识别，默认值为false，开启后可同时支持图片和PDF的识别。
+        # @type IsPdf: Boolean
+        # @param PdfPageNumber: 需要识别的PDF页面的对应页码，仅支持PDF单页识别，当上传文件为PDF且IsPdf参数值为true时有效，默认值为1。
+        # @type PdfPageNumber: Integer
 
-        attr_accessor :ImageUrl, :ImageBase64, :ItemNames
+        attr_accessor :ImageUrl, :ImageBase64, :ItemNames, :IsPdf, :PdfPageNumber
         
-        def initialize(imageurl=nil, imagebase64=nil, itemnames=nil)
+        def initialize(imageurl=nil, imagebase64=nil, itemnames=nil, ispdf=nil, pdfpagenumber=nil)
           @ImageUrl = imageurl
           @ImageBase64 = imagebase64
           @ItemNames = itemnames
+          @IsPdf = ispdf
+          @PdfPageNumber = pdfpagenumber
         end
 
         def deserialize(params)
           @ImageUrl = params['ImageUrl']
           @ImageBase64 = params['ImageBase64']
           @ItemNames = params['ItemNames']
+          @IsPdf = params['IsPdf']
+          @PdfPageNumber = params['PdfPageNumber']
         end
       end
 

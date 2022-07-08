@@ -10080,10 +10080,14 @@ module TencentCloud
         # @param Remark: 冻结备注
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Remark: String
+        # @param PayeeId: 收款用户ID
+        # @type PayeeId: String
+        # @param OutUserId: 外部用户ID
+        # @type OutUserId: String
 
-        attr_accessor :AmountBeforeTax, :IncomeType, :OutOrderId, :OrderId, :OperationType, :InitiateTime, :FinishTime, :Status, :StatusDesc, :Remark
+        attr_accessor :AmountBeforeTax, :IncomeType, :OutOrderId, :OrderId, :OperationType, :InitiateTime, :FinishTime, :Status, :StatusDesc, :Remark, :PayeeId, :OutUserId
         
-        def initialize(amountbeforetax=nil, incometype=nil, outorderid=nil, orderid=nil, operationtype=nil, initiatetime=nil, finishtime=nil, status=nil, statusdesc=nil, remark=nil)
+        def initialize(amountbeforetax=nil, incometype=nil, outorderid=nil, orderid=nil, operationtype=nil, initiatetime=nil, finishtime=nil, status=nil, statusdesc=nil, remark=nil, payeeid=nil, outuserid=nil)
           @AmountBeforeTax = amountbeforetax
           @IncomeType = incometype
           @OutOrderId = outorderid
@@ -10094,6 +10098,8 @@ module TencentCloud
           @Status = status
           @StatusDesc = statusdesc
           @Remark = remark
+          @PayeeId = payeeid
+          @OutUserId = outuserid
         end
 
         def deserialize(params)
@@ -10107,6 +10113,8 @@ module TencentCloud
           @Status = params['Status']
           @StatusDesc = params['StatusDesc']
           @Remark = params['Remark']
+          @PayeeId = params['PayeeId']
+          @OutUserId = params['OutUserId']
         end
       end
 
@@ -12042,10 +12050,12 @@ module TencentCloud
         # @type SummaryTime: String
         # @param SummaryCount: 汇总记录数量
         # @type SummaryCount: Integer
+        # @param OutUserId: 外部用户ID
+        # @type OutUserId: String
 
-        attr_accessor :SummaryId, :PayeeId, :Name, :IncomeType, :SummaryAmount, :SummaryTime, :SummaryCount
+        attr_accessor :SummaryId, :PayeeId, :Name, :IncomeType, :SummaryAmount, :SummaryTime, :SummaryCount, :OutUserId
         
-        def initialize(summaryid=nil, payeeid=nil, name=nil, incometype=nil, summaryamount=nil, summarytime=nil, summarycount=nil)
+        def initialize(summaryid=nil, payeeid=nil, name=nil, incometype=nil, summaryamount=nil, summarytime=nil, summarycount=nil, outuserid=nil)
           @SummaryId = summaryid
           @PayeeId = payeeid
           @Name = name
@@ -12053,6 +12063,7 @@ module TencentCloud
           @SummaryAmount = summaryamount
           @SummaryTime = summarytime
           @SummaryCount = summarycount
+          @OutUserId = outuserid
         end
 
         def deserialize(params)
@@ -12063,6 +12074,7 @@ module TencentCloud
           @SummaryAmount = params['SummaryAmount']
           @SummaryTime = params['SummaryTime']
           @SummaryCount = params['SummaryCount']
+          @OutUserId = params['OutUserId']
         end
       end
 
@@ -12801,10 +12813,12 @@ module TencentCloud
         # @type Remark: String
         # @param PayeeId: 收款用户ID
         # @type PayeeId: String
+        # @param OutUserId: 外部用户ID
+        # @type OutUserId: String
 
-        attr_accessor :IncomeType, :AmountBeforeTax, :AmountAfterTax, :Tax, :OutOrderId, :OrderId, :InitiateTime, :FinishTime, :Status, :StatusDesc, :Remark, :PayeeId
+        attr_accessor :IncomeType, :AmountBeforeTax, :AmountAfterTax, :Tax, :OutOrderId, :OrderId, :InitiateTime, :FinishTime, :Status, :StatusDesc, :Remark, :PayeeId, :OutUserId
         
-        def initialize(incometype=nil, amountbeforetax=nil, amountaftertax=nil, tax=nil, outorderid=nil, orderid=nil, initiatetime=nil, finishtime=nil, status=nil, statusdesc=nil, remark=nil, payeeid=nil)
+        def initialize(incometype=nil, amountbeforetax=nil, amountaftertax=nil, tax=nil, outorderid=nil, orderid=nil, initiatetime=nil, finishtime=nil, status=nil, statusdesc=nil, remark=nil, payeeid=nil, outuserid=nil)
           @IncomeType = incometype
           @AmountBeforeTax = amountbeforetax
           @AmountAfterTax = amountaftertax
@@ -12817,6 +12831,7 @@ module TencentCloud
           @StatusDesc = statusdesc
           @Remark = remark
           @PayeeId = payeeid
+          @OutUserId = outuserid
         end
 
         def deserialize(params)
@@ -12832,6 +12847,7 @@ module TencentCloud
           @StatusDesc = params['StatusDesc']
           @Remark = params['Remark']
           @PayeeId = params['PayeeId']
+          @OutUserId = params['OutUserId']
         end
       end
 
@@ -15985,14 +16001,14 @@ module TencentCloud
 
       # QueryFlexPaymentOrderList请求参数结构体
       class QueryFlexPaymentOrderListRequest < TencentCloud::Common::AbstractModel
-        # @param PayeeId: 收款用户ID
-        # @type PayeeId: String
         # @param StartTime: 开始时间，格式"yyyy-MM-dd hh:mm:ss"
         # @type StartTime: String
         # @param EndTime: 结束时间，格式"yyyy-MM-dd hh:mm:ss"
         # @type EndTime: String
         # @param PageNumber: 分页
         # @type PageNumber: :class:`Tencentcloud::Cpdp.v20190820.models.Paging`
+        # @param PayeeId: 收款用户ID
+        # @type PayeeId: String
         # @param Environment: 环境类型
         # __release__:生产环境
         # __sandbox__:沙箱环境
@@ -16000,24 +16016,24 @@ module TencentCloud
         # 缺省默认为生产环境
         # @type Environment: String
 
-        attr_accessor :PayeeId, :StartTime, :EndTime, :PageNumber, :Environment
+        attr_accessor :StartTime, :EndTime, :PageNumber, :PayeeId, :Environment
         
-        def initialize(payeeid=nil, starttime=nil, endtime=nil, pagenumber=nil, environment=nil)
-          @PayeeId = payeeid
+        def initialize(starttime=nil, endtime=nil, pagenumber=nil, payeeid=nil, environment=nil)
           @StartTime = starttime
           @EndTime = endtime
           @PageNumber = pagenumber
+          @PayeeId = payeeid
           @Environment = environment
         end
 
         def deserialize(params)
-          @PayeeId = params['PayeeId']
           @StartTime = params['StartTime']
           @EndTime = params['EndTime']
           unless params['PageNumber'].nil?
             @PageNumber = Paging.new
             @PageNumber.deserialize(params['PageNumber'])
           end
+          @PayeeId = params['PayeeId']
           @Environment = params['Environment']
         end
       end
@@ -23340,10 +23356,16 @@ module TencentCloud
         # @param Remark: 备注
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Remark: String
+        # @param PayeeId: 收款用户ID
+        # @type PayeeId: String
+        # @param OutUserId: 外部用户ID
+        # @type OutUserId: String
+        # @param OperationType: 操作类型
+        # @type OperationType: String
 
-        attr_accessor :IncomeType, :AmountBeforeTax, :AmountAfterTax, :Tax, :OutOrderId, :OrderId, :InitiateTime, :FinishTime, :Status, :StatusDesc, :Remark
+        attr_accessor :IncomeType, :AmountBeforeTax, :AmountAfterTax, :Tax, :OutOrderId, :OrderId, :InitiateTime, :FinishTime, :Status, :StatusDesc, :Remark, :PayeeId, :OutUserId, :OperationType
         
-        def initialize(incometype=nil, amountbeforetax=nil, amountaftertax=nil, tax=nil, outorderid=nil, orderid=nil, initiatetime=nil, finishtime=nil, status=nil, statusdesc=nil, remark=nil)
+        def initialize(incometype=nil, amountbeforetax=nil, amountaftertax=nil, tax=nil, outorderid=nil, orderid=nil, initiatetime=nil, finishtime=nil, status=nil, statusdesc=nil, remark=nil, payeeid=nil, outuserid=nil, operationtype=nil)
           @IncomeType = incometype
           @AmountBeforeTax = amountbeforetax
           @AmountAfterTax = amountaftertax
@@ -23355,6 +23377,9 @@ module TencentCloud
           @Status = status
           @StatusDesc = statusdesc
           @Remark = remark
+          @PayeeId = payeeid
+          @OutUserId = outuserid
+          @OperationType = operationtype
         end
 
         def deserialize(params)
@@ -23369,6 +23394,9 @@ module TencentCloud
           @Status = params['Status']
           @StatusDesc = params['StatusDesc']
           @Remark = params['Remark']
+          @PayeeId = params['PayeeId']
+          @OutUserId = params['OutUserId']
+          @OperationType = params['OperationType']
         end
       end
 

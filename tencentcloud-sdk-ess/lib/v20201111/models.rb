@@ -558,7 +558,10 @@ module TencentCloud
         # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
         # @param Agent: 应用相关信息
         # @type Agent: :class:`Tencentcloud::Ess.v20201111.models.Agent`
-        # @param Unordered: 发送类型(true为无序签,false为顺序签)
+        # @param Unordered: 发送类型：
+        # true：无序签
+        # false：有序签
+        # 注：默认为false（有序签），请和模板中的配置保持一致
         # @type Unordered: Boolean
         # @param DeadLine: 签署流程的签署截止时间。
         # 值为unix时间戳,精确到秒,不传默认为当前时间一年后

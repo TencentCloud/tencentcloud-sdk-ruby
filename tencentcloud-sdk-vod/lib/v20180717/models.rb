@@ -1173,16 +1173,19 @@ module TencentCloud
         # @param Output: 语音全文识别任务输出信息。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Output: :class:`Tencentcloud::Vod.v20180717.models.AiRecognitionTaskAsrFullTextResultOutput`
+        # @param Progress: 任务进度，取值范围 [0-100] 。
+        # @type Progress: Integer
 
-        attr_accessor :Status, :ErrCodeExt, :ErrCode, :Message, :Input, :Output
+        attr_accessor :Status, :ErrCodeExt, :ErrCode, :Message, :Input, :Output, :Progress
         
-        def initialize(status=nil, errcodeext=nil, errcode=nil, message=nil, input=nil, output=nil)
+        def initialize(status=nil, errcodeext=nil, errcode=nil, message=nil, input=nil, output=nil, progress=nil)
           @Status = status
           @ErrCodeExt = errcodeext
           @ErrCode = errcode
           @Message = message
           @Input = input
           @Output = output
+          @Progress = progress
         end
 
         def deserialize(params)
@@ -1198,6 +1201,7 @@ module TencentCloud
             @Output = AiRecognitionTaskAsrFullTextResultOutput.new
             @Output.deserialize(params['Output'])
           end
+          @Progress = params['Progress']
         end
       end
 
