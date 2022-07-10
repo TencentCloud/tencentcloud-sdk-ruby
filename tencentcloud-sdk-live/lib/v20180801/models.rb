@@ -291,46 +291,6 @@ module TencentCloud
         end
       end
 
-      # BindLiveDomainCert请求参数结构体
-      class BindLiveDomainCertRequest < TencentCloud::Common::AbstractModel
-        # @param CertId: 证书Id。使用添加证书接口获取证书Id。
-        # @type CertId: Integer
-        # @param DomainName: 播放域名。
-        # @type DomainName: String
-        # @param Status: HTTPS开启状态，0： 关闭  1：打开。
-        # @type Status: Integer
-
-        attr_accessor :CertId, :DomainName, :Status
-        
-        def initialize(certid=nil, domainname=nil, status=nil)
-          @CertId = certid
-          @DomainName = domainname
-          @Status = status
-        end
-
-        def deserialize(params)
-          @CertId = params['CertId']
-          @DomainName = params['DomainName']
-          @Status = params['Status']
-        end
-      end
-
-      # BindLiveDomainCert返回参数结构体
-      class BindLiveDomainCertResponse < TencentCloud::Common::AbstractModel
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :RequestId
-        
-        def initialize(requestid=nil)
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          @RequestId = params['RequestId']
-        end
-      end
-
       # 规则信息
       class CallBackRuleInfo < TencentCloud::Common::AbstractModel
         # @param CreateTime: 规则创建时间。
@@ -1027,64 +987,6 @@ module TencentCloud
 
         def deserialize(params)
           @TemplateId = params['TemplateId']
-          @RequestId = params['RequestId']
-        end
-      end
-
-      # CreateLiveCert请求参数结构体
-      class CreateLiveCertRequest < TencentCloud::Common::AbstractModel
-        # @param CertType: 证书类型。0-用户添加证书；1-腾讯云托管证书。
-        # 注意：当证书类型为0时，HttpsCrt和HttpsKey必选；
-        # 当证书类型为1时，优先使用CloudCertId对应证书，若CloudCertId为空则使用HttpsCrt和HttpsKey。
-        # @type CertType: Integer
-        # @param CertName: 证书名称。
-        # @type CertName: String
-        # @param HttpsCrt: 证书内容，即公钥。
-        # @type HttpsCrt: String
-        # @param HttpsKey: 私钥。
-        # @type HttpsKey: String
-        # @param Description: 描述。
-        # @type Description: String
-        # @param CloudCertId: 腾讯云证书托管ID。
-        # @type CloudCertId: String
-
-        attr_accessor :CertType, :CertName, :HttpsCrt, :HttpsKey, :Description, :CloudCertId
-        
-        def initialize(certtype=nil, certname=nil, httpscrt=nil, httpskey=nil, description=nil, cloudcertid=nil)
-          @CertType = certtype
-          @CertName = certname
-          @HttpsCrt = httpscrt
-          @HttpsKey = httpskey
-          @Description = description
-          @CloudCertId = cloudcertid
-        end
-
-        def deserialize(params)
-          @CertType = params['CertType']
-          @CertName = params['CertName']
-          @HttpsCrt = params['HttpsCrt']
-          @HttpsKey = params['HttpsKey']
-          @Description = params['Description']
-          @CloudCertId = params['CloudCertId']
-        end
-      end
-
-      # CreateLiveCert返回参数结构体
-      class CreateLiveCertResponse < TencentCloud::Common::AbstractModel
-        # @param CertId: 证书ID
-        # @type CertId: Integer
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :CertId, :RequestId
-        
-        def initialize(certid=nil, requestid=nil)
-          @CertId = certid
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          @CertId = params['CertId']
           @RequestId = params['RequestId']
         end
       end
@@ -2206,38 +2108,6 @@ module TencentCloud
 
       # DeleteLiveCallbackTemplate返回参数结构体
       class DeleteLiveCallbackTemplateResponse < TencentCloud::Common::AbstractModel
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :RequestId
-        
-        def initialize(requestid=nil)
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          @RequestId = params['RequestId']
-        end
-      end
-
-      # DeleteLiveCert请求参数结构体
-      class DeleteLiveCertRequest < TencentCloud::Common::AbstractModel
-        # @param CertId: DescribeLiveCerts接口获取到的证书Id。
-        # @type CertId: Integer
-
-        attr_accessor :CertId
-        
-        def initialize(certid=nil)
-          @CertId = certid
-        end
-
-        def deserialize(params)
-          @CertId = params['CertId']
-        end
-      end
-
-      # DeleteLiveCert返回参数结构体
-      class DeleteLiveCertResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -7122,98 +6992,6 @@ module TencentCloud
 
       # ModifyLiveCallbackTemplate返回参数结构体
       class ModifyLiveCallbackTemplateResponse < TencentCloud::Common::AbstractModel
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :RequestId
-        
-        def initialize(requestid=nil)
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          @RequestId = params['RequestId']
-        end
-      end
-
-      # ModifyLiveCert请求参数结构体
-      class ModifyLiveCertRequest < TencentCloud::Common::AbstractModel
-        # @param CertId: 证书Id。
-        # @type CertId: String
-        # @param CertType: 证书类型。0-用户添加证书；1-腾讯云托管证书。
-        # @type CertType: Integer
-        # @param CertName: 证书名称。
-        # @type CertName: String
-        # @param HttpsCrt: 证书内容，即公钥。
-        # @type HttpsCrt: String
-        # @param HttpsKey: 私钥。
-        # @type HttpsKey: String
-        # @param Description: 描述信息。
-        # @type Description: String
-
-        attr_accessor :CertId, :CertType, :CertName, :HttpsCrt, :HttpsKey, :Description
-        
-        def initialize(certid=nil, certtype=nil, certname=nil, httpscrt=nil, httpskey=nil, description=nil)
-          @CertId = certid
-          @CertType = certtype
-          @CertName = certname
-          @HttpsCrt = httpscrt
-          @HttpsKey = httpskey
-          @Description = description
-        end
-
-        def deserialize(params)
-          @CertId = params['CertId']
-          @CertType = params['CertType']
-          @CertName = params['CertName']
-          @HttpsCrt = params['HttpsCrt']
-          @HttpsKey = params['HttpsKey']
-          @Description = params['Description']
-        end
-      end
-
-      # ModifyLiveCert返回参数结构体
-      class ModifyLiveCertResponse < TencentCloud::Common::AbstractModel
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :RequestId
-        
-        def initialize(requestid=nil)
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          @RequestId = params['RequestId']
-        end
-      end
-
-      # ModifyLiveDomainCert请求参数结构体
-      class ModifyLiveDomainCertRequest < TencentCloud::Common::AbstractModel
-        # @param DomainName: 播放域名。
-        # @type DomainName: String
-        # @param CertId: 证书Id。
-        # @type CertId: Integer
-        # @param Status: 状态，0：关闭  1：打开。
-        # @type Status: Integer
-
-        attr_accessor :DomainName, :CertId, :Status
-        
-        def initialize(domainname=nil, certid=nil, status=nil)
-          @DomainName = domainname
-          @CertId = certid
-          @Status = status
-        end
-
-        def deserialize(params)
-          @DomainName = params['DomainName']
-          @CertId = params['CertId']
-          @Status = params['Status']
-        end
-      end
-
-      # ModifyLiveDomainCert返回参数结构体
-      class ModifyLiveDomainCertResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 

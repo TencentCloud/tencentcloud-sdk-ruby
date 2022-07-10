@@ -4841,6 +4841,92 @@ module TencentCloud
         end
       end
 
+      # DescribeNewL7Rules请求参数结构体
+      class DescribeNewL7RulesRequest < TencentCloud::Common::AbstractModel
+        # @param Business: 大禹子产品代号（bgpip表示高防IP）
+        # @type Business: String
+        # @param StatusList: 状态搜索，选填，取值[0(规则配置成功)，1(规则配置生效中)，2(规则配置失败)，3(规则删除生效中)，5(规则删除失败)，6(规则等待配置)，7(规则等待删除)，8(规则待配置证书)]
+        # @type StatusList: Array
+        # @param Domain: 域名搜索，选填，当需要搜索域名请填写
+        # @type Domain: String
+        # @param Ip: IP搜索，选填，当需要搜索IP请填写
+        # @type Ip: String
+        # @param Limit: 一页条数，填0表示不分页
+        # @type Limit: Integer
+        # @param Offset: 页起始偏移，取值为(页码-1)*一页条数
+        # @type Offset: Integer
+        # @param ProtocolList: 转发协议搜索，选填，取值[http, https, http/https]
+        # @type ProtocolList: Array
+        # @param Cname: 高防IP实例的Cname
+        # @type Cname: String
+
+        attr_accessor :Business, :StatusList, :Domain, :Ip, :Limit, :Offset, :ProtocolList, :Cname
+        
+        def initialize(business=nil, statuslist=nil, domain=nil, ip=nil, limit=nil, offset=nil, protocollist=nil, cname=nil)
+          @Business = business
+          @StatusList = statuslist
+          @Domain = domain
+          @Ip = ip
+          @Limit = limit
+          @Offset = offset
+          @ProtocolList = protocollist
+          @Cname = cname
+        end
+
+        def deserialize(params)
+          @Business = params['Business']
+          @StatusList = params['StatusList']
+          @Domain = params['Domain']
+          @Ip = params['Ip']
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          @ProtocolList = params['ProtocolList']
+          @Cname = params['Cname']
+        end
+      end
+
+      # DescribeNewL7Rules返回参数结构体
+      class DescribeNewL7RulesResponse < TencentCloud::Common::AbstractModel
+        # @param Rules: 转发规则列表
+        # @type Rules: Array
+        # @param Healths: 健康检查配置列表
+        # @type Healths: Array
+        # @param Total: 总规则数
+        # @type Total: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Rules, :Healths, :Total, :RequestId
+        
+        def initialize(rules=nil, healths=nil, total=nil, requestid=nil)
+          @Rules = rules
+          @Healths = healths
+          @Total = total
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Rules'].nil?
+            @Rules = []
+            params['Rules'].each do |i|
+              newl7ruleentry_tmp = NewL7RuleEntry.new
+              newl7ruleentry_tmp.deserialize(i)
+              @Rules << newl7ruleentry_tmp
+            end
+          end
+          unless params['Healths'].nil?
+            @Healths = []
+            params['Healths'].each do |i|
+              l7rulehealth_tmp = L7RuleHealth.new
+              l7rulehealth_tmp.deserialize(i)
+              @Healths << l7rulehealth_tmp
+            end
+          end
+          @Total = params['Total']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeOverviewAttackTrend请求参数结构体
       class DescribeOverviewAttackTrendRequest < TencentCloud::Common::AbstractModel
         # @param Type: 攻击类型，取值ddos， cc
@@ -5637,6 +5723,54 @@ module TencentCloud
           @VirtualPort = params['VirtualPort']
           @SSLId = params['SSLId']
           @Id = params['Id']
+        end
+      end
+
+      # L7规则健康检查参数
+      class L7RuleHealth < TencentCloud::Common::AbstractModel
+        # @param Status: 配置状态，0： 正常，1：配置中，2：配置失败
+        # @type Status: Integer
+        # @param Enable: =1表示开启；=0表示关闭
+        # @type Enable: Integer
+        # @param RuleId: 规则ID
+        # @type RuleId: String
+        # @param Url: 检查目录的URL，默认为/
+        # @type Url: String
+        # @param Interval: 检测间隔时间，单位秒
+        # @type Interval: Integer
+        # @param AliveNum: 健康阈值，单位次
+        # @type AliveNum: Integer
+        # @param KickNum: 不健康阈值，单位次
+        # @type KickNum: Integer
+        # @param Method: HTTP请求方式，取值[HEAD,GET]
+        # @type Method: String
+        # @param StatusCode: 健康检查判定正常状态码，1xx =1, 2xx=2, 3xx=4, 4xx=8,5xx=16，多个状态码值加和
+        # @type StatusCode: Integer
+
+        attr_accessor :Status, :Enable, :RuleId, :Url, :Interval, :AliveNum, :KickNum, :Method, :StatusCode
+        
+        def initialize(status=nil, enable=nil, ruleid=nil, url=nil, interval=nil, alivenum=nil, kicknum=nil, method=nil, statuscode=nil)
+          @Status = status
+          @Enable = enable
+          @RuleId = ruleid
+          @Url = url
+          @Interval = interval
+          @AliveNum = alivenum
+          @KickNum = kicknum
+          @Method = method
+          @StatusCode = statuscode
+        end
+
+        def deserialize(params)
+          @Status = params['Status']
+          @Enable = params['Enable']
+          @RuleId = params['RuleId']
+          @Url = params['Url']
+          @Interval = params['Interval']
+          @AliveNum = params['AliveNum']
+          @KickNum = params['KickNum']
+          @Method = params['Method']
+          @StatusCode = params['StatusCode']
         end
       end
 

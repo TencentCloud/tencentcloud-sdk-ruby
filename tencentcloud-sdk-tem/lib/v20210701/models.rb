@@ -590,7 +590,8 @@ module TencentCloud
         # @type OsFlavour: String
         # @param EnablePrometheusConf: 是否开启prometheus 业务指标监控
         # @type EnablePrometheusConf: :class:`Tencentcloud::Tem.v20210701.models.EnablePrometheusConf`
-        # @param EnableTracing: 1：开始apm采集；0：关闭apm采集
+        # @param EnableTracing: 1：开始apm采集（skywalking）；
+        # 0：关闭apm采集；
         # @type EnableTracing: Integer
 
         attr_accessor :ApplicationId, :InitPodNum, :CpuSpec, :MemorySpec, :EnvironmentId, :ImgRepo, :VersionDesc, :JvmOpts, :EsInfo, :EnvConf, :LogConfs, :StorageConfs, :StorageMountConfs, :DeployMode, :DeployVersion, :PkgName, :JdkVersion, :SecurityGroupIds, :LogOutputConf, :SourceChannel, :Description, :ImageCommand, :ImageArgs, :UseRegistryDefaultConfig, :SettingConfs, :Service, :VersionId, :PostStart, :PreStop, :Liveness, :Readiness, :DeployStrategyConf, :HorizontalAutoscaler, :CronHorizontalAutoscaler, :LogEnable, :ConfEdited, :SpeedUp, :StartupProbe, :OsFlavour, :EnablePrometheusConf, :EnableTracing
@@ -1821,7 +1822,7 @@ module TencentCloud
         # @type Description: String
         # @param SourceChannel: 来源渠道
         # @type SourceChannel: Integer
-        # @param EnableTracing: 是否开启调用链, 0 为关闭，1位开启
+        # @param EnableTracing: 是否开启调用链,（此参数已弃用）
         # @type EnableTracing: Integer
 
         attr_accessor :ApplicationId, :Description, :SourceChannel, :EnableTracing
@@ -2120,19 +2121,23 @@ module TencentCloud
         # @type TargetPort: Integer
         # @param Protocol: 协议栈 TCP/UDP
         # @type Protocol: String
+        # @param ServiceName: k8s service名称
+        # @type ServiceName: String
 
-        attr_accessor :Port, :TargetPort, :Protocol
+        attr_accessor :Port, :TargetPort, :Protocol, :ServiceName
         
-        def initialize(port=nil, targetport=nil, protocol=nil)
+        def initialize(port=nil, targetport=nil, protocol=nil, servicename=nil)
           @Port = port
           @TargetPort = targetport
           @Protocol = protocol
+          @ServiceName = servicename
         end
 
         def deserialize(params)
           @Port = params['Port']
           @TargetPort = params['TargetPort']
           @Protocol = params['Protocol']
+          @ServiceName = params['ServiceName']
         end
       end
 

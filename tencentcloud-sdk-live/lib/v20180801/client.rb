@@ -104,31 +104,6 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 域名绑定证书。
-        # 注意：需先调用添加证书接口进行证书添加。获取到证书Id后再调用该接口进行绑定。
-
-        # @param request: Request instance for BindLiveDomainCert.
-        # @type request: :class:`Tencentcloud::live::V20180801::BindLiveDomainCertRequest`
-        # @rtype: :class:`Tencentcloud::live::V20180801::BindLiveDomainCertResponse`
-        def BindLiveDomainCert(request)
-          body = send_request('BindLiveDomainCert', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = BindLiveDomainCertResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
         # 该接口用来取消混流。用法与 mix_streamv2.cancel_mix_stream 基本一致。
 
         # @param request: Request instance for CancelCommonMixStream.
@@ -216,30 +191,6 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = CreateLiveCallbackTemplateResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # 添加证书
-
-        # @param request: Request instance for CreateLiveCert.
-        # @type request: :class:`Tencentcloud::live::V20180801::CreateLiveCertRequest`
-        # @rtype: :class:`Tencentcloud::live::V20180801::CreateLiveCertResponse`
-        def CreateLiveCert(request)
-          body = send_request('CreateLiveCert', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = CreateLiveCertResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -624,30 +575,6 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteLiveCallbackTemplateResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # 删除域名对应的证书
-
-        # @param request: Request instance for DeleteLiveCert.
-        # @type request: :class:`Tencentcloud::live::V20180801::DeleteLiveCertRequest`
-        # @rtype: :class:`Tencentcloud::live::V20180801::DeleteLiveCertResponse`
-        def DeleteLiveCert(request)
-          body = send_request('DeleteLiveCert', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = DeleteLiveCertResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -2584,54 +2511,6 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyLiveCallbackTemplateResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # 修改证书
-
-        # @param request: Request instance for ModifyLiveCert.
-        # @type request: :class:`Tencentcloud::live::V20180801::ModifyLiveCertRequest`
-        # @rtype: :class:`Tencentcloud::live::V20180801::ModifyLiveCertResponse`
-        def ModifyLiveCert(request)
-          body = send_request('ModifyLiveCert', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = ModifyLiveCertResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # 修改域名和证书绑定信息
-
-        # @param request: Request instance for ModifyLiveDomainCert.
-        # @type request: :class:`Tencentcloud::live::V20180801::ModifyLiveDomainCertRequest`
-        # @rtype: :class:`Tencentcloud::live::V20180801::ModifyLiveDomainCertResponse`
-        def ModifyLiveDomainCert(request)
-          body = send_request('ModifyLiveDomainCert', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = ModifyLiveDomainCertResponse.new
             model.deserialize(response['Response'])
             model
           else

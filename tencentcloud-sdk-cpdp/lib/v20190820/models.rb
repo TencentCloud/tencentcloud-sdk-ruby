@@ -6762,13 +6762,15 @@ module TencentCloud
         # __TENPAY__: 商企付
         # __WECHAT__: 微信支付
         # __ALIPAY__: 支付宝
-        # __WECHAT__: 微信支付
+        # __HUIFU__: 汇付斗拱
         # @type ChannelName: String
         # @param PaymentMethod: 付款方式。详见附录-云企付枚举类说明-PaymentMethod。
         # __EBANK_PAYMENT__:B2B EBank付款
         # __OPENBANK_PAYMENT__:B2C  openbank付款
         # __SAFT_ISV__:支付宝安心发
         # __TRANS_TO_CHANGE__: 微信支付转账到零钱v2
+        # __TRANS_TO_CHANGE_V3__: 微信支付转账到零钱v3
+        # __ONLINEBANK__: 汇付网银
         # @type PaymentMethod: String
         # @param PaymentMode: 付款模式。默认直接支付，如
         # __DIRECT__:直接支付
@@ -7335,6 +7337,127 @@ module TencentCloud
             @Result.deserialize(params['Result'])
           end
           @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateOpenBankVerificationOrder请求参数结构体
+      class CreateOpenBankVerificationOrderRequest < TencentCloud::Common::AbstractModel
+        # @param ChannelMerchantId: 云企付渠道商户号。外部接入平台入驻云企付平台后下发。
+        # @type ChannelMerchantId: String
+        # @param OutVerificationId: 外部核销申请订单号
+        # @type OutVerificationId: String
+        # @param VerificationAmount: 核销金额，单位分
+        # @type VerificationAmount: Integer
+        # @param OutOrderId: 外部支付订单号。调用创建支付订单时，下单支付时的外部订单号。与ChannelOrderId不能同时为空。
+        # @type OutOrderId: String
+        # @param ChannelOrderId: 云企付渠道订单号。调用创建支付订单时，下单支付时的云企付渠道订单号。与OutOrderId不能同时为空。
+        # @type ChannelOrderId: String
+        # @param NotifyUrl: 核销成功回调地址。若不上送，则不回调通知。
+        # @type NotifyUrl: String
+        # @param Remark: 备注。
+        # @type Remark: String
+        # @param ExternalVerificationData: 第三方支付渠道需要额外上送字段。详情见附录描述。
+        # @type ExternalVerificationData: String
+        # @param Environment: 环境类型。
+        # __release__:生产环境
+        # __sandbox__:沙箱环境
+        # _不填默认为生产环境_
+        # @type Environment: String
+
+        attr_accessor :ChannelMerchantId, :OutVerificationId, :VerificationAmount, :OutOrderId, :ChannelOrderId, :NotifyUrl, :Remark, :ExternalVerificationData, :Environment
+        
+        def initialize(channelmerchantid=nil, outverificationid=nil, verificationamount=nil, outorderid=nil, channelorderid=nil, notifyurl=nil, remark=nil, externalverificationdata=nil, environment=nil)
+          @ChannelMerchantId = channelmerchantid
+          @OutVerificationId = outverificationid
+          @VerificationAmount = verificationamount
+          @OutOrderId = outorderid
+          @ChannelOrderId = channelorderid
+          @NotifyUrl = notifyurl
+          @Remark = remark
+          @ExternalVerificationData = externalverificationdata
+          @Environment = environment
+        end
+
+        def deserialize(params)
+          @ChannelMerchantId = params['ChannelMerchantId']
+          @OutVerificationId = params['OutVerificationId']
+          @VerificationAmount = params['VerificationAmount']
+          @OutOrderId = params['OutOrderId']
+          @ChannelOrderId = params['ChannelOrderId']
+          @NotifyUrl = params['NotifyUrl']
+          @Remark = params['Remark']
+          @ExternalVerificationData = params['ExternalVerificationData']
+          @Environment = params['Environment']
+        end
+      end
+
+      # CreateOpenBankVerificationOrder返回参数结构体
+      class CreateOpenBankVerificationOrderResponse < TencentCloud::Common::AbstractModel
+        # @param ErrCode: 业务系统返回码，SUCCESS表示成功，其他表示失败。
+        # @type ErrCode: String
+        # @param ErrMessage: 业务系统返回消息。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ErrMessage: String
+        # @param Result: 核销申请响应对象。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Result: :class:`Tencentcloud::Cpdp.v20190820.models.CreateOpenBankVerificationResult`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ErrCode, :ErrMessage, :Result, :RequestId
+        
+        def initialize(errcode=nil, errmessage=nil, result=nil, requestid=nil)
+          @ErrCode = errcode
+          @ErrMessage = errmessage
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ErrCode = params['ErrCode']
+          @ErrMessage = params['ErrMessage']
+          unless params['Result'].nil?
+            @Result = CreateOpenBankVerificationResult.new
+            @Result.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 云企付-核销确认收货申请响应结果
+      class CreateOpenBankVerificationResult < TencentCloud::Common::AbstractModel
+        # @param ChannelVerificationId: 云企付渠道核销订单号
+        # @type ChannelVerificationId: String
+        # @param ThirdVerificationId: 第三方支付渠道核销订单号
+        # @type ThirdVerificationId: String
+        # @param VerificationStatus: 核销状态
+        # INIT("INIT","初始化"),
+        # SUCCESS("SUCCESS","核销成功"),
+        # FAILED("FAILED","核销失败"),
+        # PROCESSING("PROCESSING","核销中");
+        # @type VerificationStatus: String
+        # @param VerificationAmount: 核销金额，单位分
+        # @type VerificationAmount: Integer
+        # @param ThirdVerificationReturnInfo: 渠道附加返回信息，一般情况可以不关注
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ThirdVerificationReturnInfo: String
+
+        attr_accessor :ChannelVerificationId, :ThirdVerificationId, :VerificationStatus, :VerificationAmount, :ThirdVerificationReturnInfo
+        
+        def initialize(channelverificationid=nil, thirdverificationid=nil, verificationstatus=nil, verificationamount=nil, thirdverificationreturninfo=nil)
+          @ChannelVerificationId = channelverificationid
+          @ThirdVerificationId = thirdverificationid
+          @VerificationStatus = verificationstatus
+          @VerificationAmount = verificationamount
+          @ThirdVerificationReturnInfo = thirdverificationreturninfo
+        end
+
+        def deserialize(params)
+          @ChannelVerificationId = params['ChannelVerificationId']
+          @ThirdVerificationId = params['ThirdVerificationId']
+          @VerificationStatus = params['VerificationStatus']
+          @VerificationAmount = params['VerificationAmount']
+          @ThirdVerificationReturnInfo = params['ThirdVerificationReturnInfo']
         end
       end
 
@@ -9936,19 +10059,23 @@ module TencentCloud
         # @type FundingAccountType: String
         # @param FundingAccountBindSerialNo: 资金账户绑定序列号
         # @type FundingAccountBindSerialNo: String
+        # @param FundingAccountName: 资金账户名称
+        # @type FundingAccountName: String
 
-        attr_accessor :FundingAccountNo, :FundingAccountType, :FundingAccountBindSerialNo
+        attr_accessor :FundingAccountNo, :FundingAccountType, :FundingAccountBindSerialNo, :FundingAccountName
         
-        def initialize(fundingaccountno=nil, fundingaccounttype=nil, fundingaccountbindserialno=nil)
+        def initialize(fundingaccountno=nil, fundingaccounttype=nil, fundingaccountbindserialno=nil, fundingaccountname=nil)
           @FundingAccountNo = fundingaccountno
           @FundingAccountType = fundingaccounttype
           @FundingAccountBindSerialNo = fundingaccountbindserialno
+          @FundingAccountName = fundingaccountname
         end
 
         def deserialize(params)
           @FundingAccountNo = params['FundingAccountNo']
           @FundingAccountType = params['FundingAccountType']
           @FundingAccountBindSerialNo = params['FundingAccountBindSerialNo']
+          @FundingAccountName = params['FundingAccountName']
         end
       end
 
@@ -19288,6 +19415,112 @@ module TencentCloud
         end
       end
 
+      # QueryOpenBankVerificationOrder请求参数结构体
+      class QueryOpenBankVerificationOrderRequest < TencentCloud::Common::AbstractModel
+        # @param ChannelMerchantId: 云企付渠道商户号。外部接入平台入驻云企付平台后下发。
+        # @type ChannelMerchantId: String
+        # @param ChannelVerificationId: 云企付渠道核销订单号。与OutVerificationId不能同时为空。
+        # @type ChannelVerificationId: String
+        # @param OutVerificationId: 外部核销申请订单号。与ChannelVerificationId不能同时为空。
+        # @type OutVerificationId: String
+        # @param Environment: 环境类型。
+        # __release__:生产环境
+        # __sandbox__:沙箱环境
+        # _不填默认为生产环境_
+        # @type Environment: String
+
+        attr_accessor :ChannelMerchantId, :ChannelVerificationId, :OutVerificationId, :Environment
+        
+        def initialize(channelmerchantid=nil, channelverificationid=nil, outverificationid=nil, environment=nil)
+          @ChannelMerchantId = channelmerchantid
+          @ChannelVerificationId = channelverificationid
+          @OutVerificationId = outverificationid
+          @Environment = environment
+        end
+
+        def deserialize(params)
+          @ChannelMerchantId = params['ChannelMerchantId']
+          @ChannelVerificationId = params['ChannelVerificationId']
+          @OutVerificationId = params['OutVerificationId']
+          @Environment = params['Environment']
+        end
+      end
+
+      # QueryOpenBankVerificationOrder返回参数结构体
+      class QueryOpenBankVerificationOrderResponse < TencentCloud::Common::AbstractModel
+        # @param ErrCode: 业务系统返回码，SUCCESS表示成功，其他表示失败。
+        # @type ErrCode: String
+        # @param ErrMessage: 业务系统返回消息。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ErrMessage: String
+        # @param Result: 核销查询响应对象。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Result: :class:`Tencentcloud::Cpdp.v20190820.models.QueryOpenBankVerificationResult`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ErrCode, :ErrMessage, :Result, :RequestId
+        
+        def initialize(errcode=nil, errmessage=nil, result=nil, requestid=nil)
+          @ErrCode = errcode
+          @ErrMessage = errmessage
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ErrCode = params['ErrCode']
+          @ErrMessage = params['ErrMessage']
+          unless params['Result'].nil?
+            @Result = QueryOpenBankVerificationResult.new
+            @Result.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 云企付-查询核销申请结果
+      class QueryOpenBankVerificationResult < TencentCloud::Common::AbstractModel
+        # @param ChannelVerificationId: 云企付渠道核销订单号
+        # @type ChannelVerificationId: String
+        # @param ThirdVerificationId: 第三方支付渠道核销订单号
+        # @type ThirdVerificationId: String
+        # @param VerificationAmount: 核销金额，单位分
+        # @type VerificationAmount: Integer
+        # @param VerificationStatus: 核销状态
+        # INIT("INIT","初始化"),
+        # SUCCESS("SUCCESS","核销成功"),
+        # FAILED("FAILED","核销失败"),
+        # PROCESSING("PROCESSING","核销中");
+        # @type VerificationStatus: String
+        # @param FailReason: 失败原因，若核销失败，附上原因。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FailReason: String
+        # @param ThirdVerificationReturnData: 渠道附加返回信息，一般情况可以不关注
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ThirdVerificationReturnData: String
+
+        attr_accessor :ChannelVerificationId, :ThirdVerificationId, :VerificationAmount, :VerificationStatus, :FailReason, :ThirdVerificationReturnData
+        
+        def initialize(channelverificationid=nil, thirdverificationid=nil, verificationamount=nil, verificationstatus=nil, failreason=nil, thirdverificationreturndata=nil)
+          @ChannelVerificationId = channelverificationid
+          @ThirdVerificationId = thirdverificationid
+          @VerificationAmount = verificationamount
+          @VerificationStatus = verificationstatus
+          @FailReason = failreason
+          @ThirdVerificationReturnData = thirdverificationreturndata
+        end
+
+        def deserialize(params)
+          @ChannelVerificationId = params['ChannelVerificationId']
+          @ThirdVerificationId = params['ThirdVerificationId']
+          @VerificationAmount = params['VerificationAmount']
+          @VerificationStatus = params['VerificationStatus']
+          @FailReason = params['FailReason']
+          @ThirdVerificationReturnData = params['ThirdVerificationReturnData']
+        end
+      end
+
       # 查询订单接口的出参，订单列表
       class QueryOrderOutOrderList < TencentCloud::Common::AbstractModel
         # @param MidasAppId: 聚鑫分配的支付主MidasAppId
@@ -21964,15 +22197,16 @@ module TencentCloud
         # @type OutRefundId: String
         # @param RefundAmount: 退款金额。单位分。
         # @type RefundAmount: Integer
-        # @param ChannelMerchantId: 渠道商户号。
+        # @param ChannelMerchantId: 渠道商户号。外部平台接入云企付平台下发。必填。
         # @type ChannelMerchantId: String
-        # @param OutOrderId: 外部商户订单号，与云企付渠道订单号二者选填其一。
+        # @param OutOrderId: 外部商户订单号，与云企付渠道订单号二者不能同时为空。
         # @type OutOrderId: String
-        # @param ChannelOrderId: 云企付渠道订单号，与外部订单号二者选填其一。
+        # @param ChannelOrderId: 云企付渠道订单号，与外部订单号二者不能同时为空。
         # @type ChannelOrderId: String
         # @param NotifyUrl: 退款通知地址。
         # @type NotifyUrl: String
         # @param RefundReason: 退款原因。
+        # 当EBANK_PAYMENT担保支付订单退款时，此字段必传。
         # @type RefundReason: String
         # @param ExternalRefundData: 第三方渠道退款附加信息。详见附录-复杂类型。
         # 若未作特殊说明，则无需传入。
@@ -25394,6 +25628,106 @@ module TencentCloud
 
         def deserialize(params)
           @RequestId = params['RequestId']
+        end
+      end
+
+      # VerifyOpenBankAccount请求参数结构体
+      class VerifyOpenBankAccountRequest < TencentCloud::Common::AbstractModel
+        # @param ChannelMerchantId: 渠道商户号。外部接入平台入驻云企付平台下发
+        # @type ChannelMerchantId: String
+        # @param ChannelName: 渠道名称。详见附录-云企付枚举类说明-ChannelName。
+        # __TENPAY__: 商企付
+        # @type ChannelName: String
+        # @param PayeeInfo: 收款方信息。
+        # @type PayeeInfo: :class:`Tencentcloud::Cpdp.v20190820.models.OpenBankPayeeInfo`
+        # @param NotifyUrl: 通知地址，如www.test.com。
+        # @type NotifyUrl: String
+        # @param Environment: 环境类型。
+        # __release__:生产环境
+        # __sandbox__:沙箱环境
+        # _不填默认为生产环境_
+        # @type Environment: String
+
+        attr_accessor :ChannelMerchantId, :ChannelName, :PayeeInfo, :NotifyUrl, :Environment
+        
+        def initialize(channelmerchantid=nil, channelname=nil, payeeinfo=nil, notifyurl=nil, environment=nil)
+          @ChannelMerchantId = channelmerchantid
+          @ChannelName = channelname
+          @PayeeInfo = payeeinfo
+          @NotifyUrl = notifyurl
+          @Environment = environment
+        end
+
+        def deserialize(params)
+          @ChannelMerchantId = params['ChannelMerchantId']
+          @ChannelName = params['ChannelName']
+          unless params['PayeeInfo'].nil?
+            @PayeeInfo = OpenBankPayeeInfo.new
+            @PayeeInfo.deserialize(params['PayeeInfo'])
+          end
+          @NotifyUrl = params['NotifyUrl']
+          @Environment = params['Environment']
+        end
+      end
+
+      # VerifyOpenBankAccount返回参数结构体
+      class VerifyOpenBankAccountResponse < TencentCloud::Common::AbstractModel
+        # @param ErrCode: 业务系统返回码，SUCCESS表示成功，其他表示失败。
+        # @type ErrCode: String
+        # @param ErrMessage: 业务系统返回消息。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ErrMessage: String
+        # @param Result: 打款验证结果。前端使用url字段，根据指引完成打款验证动作
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Result: :class:`Tencentcloud::Cpdp.v20190820.models.VerifyOpenBankAccountResult`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ErrCode, :ErrMessage, :Result, :RequestId
+        
+        def initialize(errcode=nil, errmessage=nil, result=nil, requestid=nil)
+          @ErrCode = errcode
+          @ErrMessage = errmessage
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ErrCode = params['ErrCode']
+          @ErrMessage = params['ErrMessage']
+          unless params['Result'].nil?
+            @Result = VerifyOpenBankAccountResult.new
+            @Result.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 打款验证响应结果结构体
+      class VerifyOpenBankAccountResult < TencentCloud::Common::AbstractModel
+        # @param VerifyState: 打款验证状态。
+        #  INIT("打款中"),
+        # PENDING("打款成功待验证"),
+        # VERIFIED("验证成功"),
+        # FAILED("打款失败"),
+        # VERIFY_FAILED("验证失败")
+        # @type VerifyState: String
+        # @param RedirectInfo: 重定向参数，用于客户端跳转，收款商户未完成打款验证时返回该参数
+        # @type RedirectInfo: :class:`Tencentcloud::Cpdp.v20190820.models.OpenBankRedirectInfo`
+
+        attr_accessor :VerifyState, :RedirectInfo
+        
+        def initialize(verifystate=nil, redirectinfo=nil)
+          @VerifyState = verifystate
+          @RedirectInfo = redirectinfo
+        end
+
+        def deserialize(params)
+          @VerifyState = params['VerifyState']
+          unless params['RedirectInfo'].nil?
+            @RedirectInfo = OpenBankRedirectInfo.new
+            @RedirectInfo.deserialize(params['RedirectInfo'])
+          end
         end
       end
 

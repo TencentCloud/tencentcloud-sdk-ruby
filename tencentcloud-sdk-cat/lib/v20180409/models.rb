@@ -424,6 +424,16 @@ module TencentCloud
         # @param TargetAddress: 拨测目标
         # @type TargetAddress: String
         # @param TaskStatus: 任务状态列表
+        # <li>1 = 创建中</li>
+        # <li> 2 = 运行中 </li>
+        # <li> 3 = 运行异常 </li>
+        # <li> 4 = 暂停中 </li>
+        # <li> 5 = 暂停异常 </li>
+        # <li> 6 = 任务暂停 </li>
+        # <li> 7 = 任务删除中 </li>
+        # <li> 8 = 任务删除异常 </li>
+        # <li> 9 = 任务删除</li>
+        # <li> 10 = 定时任务暂停中 </li>
         # @type TaskStatus: Array
         # @param Offset: 偏移量，默认为0
         # @type Offset: Integer
@@ -438,17 +448,14 @@ module TencentCloud
         # <li> 2 = 欠费 </li>
         # @type OrderState: Integer
         # @param TaskType: 拨测类型
+        # <li>1 = 页面浏览</li>
+        # <li> 2 =文件上传 </li>
+        # <li> 3 = 文件下载</li>
+        # <li> 4 = 端口性能 </li>
+        # <li> 5 = 网络质量 </li>
+        # <li> 6 =流媒体 </li>
 
-        # <li>1 = 创建中</li>
-        # <li> 2 = 运行中 </li>
-        # <li> 3 = 运行异常 </li>
-        # <li> 4 = 暂停中 </li>
-        # <li> 5 = 暂停异常 </li>
-        # <li> 6 = 任务暂停 </li>
-        # <li> 7 = 任务删除中 </li>
-        # <li> 8 = 任务删除异常 </li>
-        # <li> 9 = 任务删除</li>
-        # <li> 10 = 定时任务暂停中 </li>
+        # 即使拨测只支持页面浏览，网络质量，文件下载
         # @type TaskType: Array
         # @param TaskCategory: 节点类型
         # @type TaskCategory: Array

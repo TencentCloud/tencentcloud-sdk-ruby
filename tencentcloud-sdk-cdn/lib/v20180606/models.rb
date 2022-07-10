@@ -7256,15 +7256,23 @@ module TencentCloud
         # on：开启
         # off：关闭
         # @type Switch: String
+        # @param RedirectConfig: 自定义回源302 follow请求host配置，该功能为白名单功能，需要开启请联系腾讯云工程师。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RedirectConfig: :class:`Tencentcloud::Cdn.v20180606.models.RedirectConfig`
 
-        attr_accessor :Switch
+        attr_accessor :Switch, :RedirectConfig
         
-        def initialize(switch=nil)
+        def initialize(switch=nil, redirectconfig=nil)
           @Switch = switch
+          @RedirectConfig = redirectconfig
         end
 
         def deserialize(params)
           @Switch = params['Switch']
+          unless params['RedirectConfig'].nil?
+            @RedirectConfig = RedirectConfig.new
+            @RedirectConfig.deserialize(params['RedirectConfig'])
+          end
         end
       end
 
@@ -10426,6 +10434,30 @@ module TencentCloud
           @Switch = params['Switch']
           @RuleType = params['RuleType']
           @RulePaths = params['RulePaths']
+        end
+      end
+
+      # 自定义回源302 follow请求host配置
+      class RedirectConfig < TencentCloud::Common::AbstractModel
+        # @param Switch: 配置开关
+        # @type Switch: String
+        # @param FollowRedirectHost: 主源站follow302请求时带的自定义的host头部
+        # @type FollowRedirectHost: String
+        # @param FollowRedirectBackupHost: 备份源站follow302请求时带的自定义的host头部
+        # @type FollowRedirectBackupHost: String
+
+        attr_accessor :Switch, :FollowRedirectHost, :FollowRedirectBackupHost
+        
+        def initialize(switch=nil, followredirecthost=nil, followredirectbackuphost=nil)
+          @Switch = switch
+          @FollowRedirectHost = followredirecthost
+          @FollowRedirectBackupHost = followredirectbackuphost
+        end
+
+        def deserialize(params)
+          @Switch = params['Switch']
+          @FollowRedirectHost = params['FollowRedirectHost']
+          @FollowRedirectBackupHost = params['FollowRedirectBackupHost']
         end
       end
 

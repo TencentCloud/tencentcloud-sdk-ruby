@@ -29,6 +29,8 @@ module TencentCloud
         end
 
 
+        # 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
+
         # 本接口（AttachCcnInstances）用于关联云联网实例。
 
         # @param request: Request instance for AttachCcnInstances.
@@ -52,6 +54,8 @@ module TencentCloud
         rescue StandardError => e
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
+
+        # 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
 
         # 本接口（CopyFleet）用于复制服务器舰队。
 
@@ -77,6 +81,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
+
         # 本接口（CreateAlias）用于创建别名。
 
         # @param request: Request instance for CreateAlias.
@@ -100,6 +106,8 @@ module TencentCloud
         rescue StandardError => e
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
+
+        # 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
 
         # 本接口（CreateAsset）用于创建生成包。
         # 通过获取上传cos的临时密钥，将文件上传至cos，然后将生成包的zip名称下发给本接口完成资源创建。
@@ -138,6 +146,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
+
         # 本接口（CreateAssetWithImage）用于创建生成包镜像信息。
 
         # @param request: Request instance for CreateAssetWithImage.
@@ -161,6 +171,8 @@ module TencentCloud
         rescue StandardError => e
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
+
+        # 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
 
         # 本接口（CreateFleet）用于创建服务器舰队。
 
@@ -186,6 +198,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
+
         # 本接口（CreateGameServerSession）用于创建游戏服务会话。
 
         # @param request: Request instance for CreateGameServerSession.
@@ -209,6 +223,8 @@ module TencentCloud
         rescue StandardError => e
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
+
+        # 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
 
         # 本接口（CreateGameServerSessionQueue）用于创建游戏服务器会话队列。
 
@@ -234,6 +250,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
+
         # 本接口（DeleteAlias）用于删除别名。
 
         # @param request: Request instance for DeleteAlias.
@@ -257,6 +275,8 @@ module TencentCloud
         rescue StandardError => e
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
+
+        # 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
 
         # 本接口（DeleteAsset）用于删除生成包。
 
@@ -282,6 +302,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
+
         # 本接口（DeleteFleet）用于删除服务器舰队。
 
         # @param request: Request instance for DeleteFleet.
@@ -306,6 +328,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
+
         # 本接口（DeleteGameServerSessionQueue）用于删除游戏服务器会话队列。
 
         # @param request: Request instance for DeleteGameServerSessionQueue.
@@ -329,6 +353,8 @@ module TencentCloud
         rescue StandardError => e
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
+
+        # 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
 
         # 本接口（DeleteScalingPolicy）用于删除服务器舰队的扩缩容策略。
         # 通过服务器舰队ID和策略名称删除服务器舰队的扩缩容策略，只传递服务器舰队ID时，会将这个服务器舰队下的所有策略都删除。
@@ -356,6 +382,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
+
         # 本接口（DeleteTimerScalingPolicy）用于删除fleet下的定时器。
 
         # @param request: Request instance for DeleteTimerScalingPolicy.
@@ -379,6 +407,8 @@ module TencentCloud
         rescue StandardError => e
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
+
+        # 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
 
         # 本接口（DescribeAlias）用于获取别名详情。
 
@@ -404,6 +434,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
+
         # 本接口（DescribeAsset）获取生成包信息。
 
         # @param request: Request instance for DescribeAsset.
@@ -427,6 +459,8 @@ module TencentCloud
         rescue StandardError => e
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
+
+        # 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
 
         # 本接口（DescribeAssetSystems）用于获取生成包支持的操作系统。
 
@@ -452,6 +486,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
+
         # 本接口（DescribeAssets）用于获取生成包列表。
 
         # @param request: Request instance for DescribeAssets.
@@ -475,6 +511,8 @@ module TencentCloud
         rescue StandardError => e
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
+
+        # 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
 
         # 本接口（DescribeCcnInstances）用于查询云联网实例。
 
@@ -500,6 +538,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
+
         # 本接口（DescribeFleetAttributes）用于查询服务器舰队属性。
 
         # @param request: Request instance for DescribeFleetAttributes.
@@ -523,6 +563,8 @@ module TencentCloud
         rescue StandardError => e
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
+
+        # 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
 
         # 本接口（DescribeFleetCapacity）用于查询服务部署容量配置。
 
@@ -548,6 +590,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
+
         # 本接口（DescribeFleetEvents）用于查询服务器舰队相关的事件列表。
 
         # @param request: Request instance for DescribeFleetEvents.
@@ -571,6 +615,8 @@ module TencentCloud
         rescue StandardError => e
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
+
+        # 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
 
         # 本接口（DescribeFleetPortSettings）用于获取服务器舰队安全组信息。
 
@@ -596,6 +642,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
+
         # 本接口（DescribeFleetRelatedResources）用于获取与游戏服务器舰队关联的资源信息，如别名、队列
 
         # @param request: Request instance for DescribeFleetRelatedResources.
@@ -619,6 +667,8 @@ module TencentCloud
         rescue StandardError => e
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
+
+        # 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
 
         # 本接口（DescribeFleetStatisticDetails）用于查询服务部署统计详情。
 
@@ -644,6 +694,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
+
         # 本接口（DescribeFleetStatisticFlows）用于查询服务部署统计用量。
 
         # @param request: Request instance for DescribeFleetStatisticFlows.
@@ -667,6 +719,8 @@ module TencentCloud
         rescue StandardError => e
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
+
+        # 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
 
         # 本接口（DescribeFleetStatisticSummary）用于查询服务部署统计汇总信息。
 
@@ -692,6 +746,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
+
         # 本接口（DescribeFleetUtilization）用于查询服务器舰队的利用率信息。
 
         # @param request: Request instance for DescribeFleetUtilization.
@@ -715,6 +771,8 @@ module TencentCloud
         rescue StandardError => e
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
+
+        # 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
 
         # 本接口（DescribeGameServerSessionDetails）用于查询游戏服务器会话详情列表。
 
@@ -740,6 +798,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
+
         # 本接口（DescribeGameServerSessionPlacement）用于查询游戏服务器会话的放置。
 
         # @param request: Request instance for DescribeGameServerSessionPlacement.
@@ -763,6 +823,8 @@ module TencentCloud
         rescue StandardError => e
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
+
+        # 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
 
         # 本接口（DescribeGameServerSessionQueues）用于查询游戏服务器会话队列。
 
@@ -788,6 +850,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
+
         # 本接口（DescribeGameServerSessions）用于查询游戏服务器会话列表。
 
         # @param request: Request instance for DescribeGameServerSessions.
@@ -811,6 +875,8 @@ module TencentCloud
         rescue StandardError => e
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
+
+        # 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
 
         # 本接口（DescribeInstanceLimit）用于查询用户实例数限额。
 
@@ -836,6 +902,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
+
         # 本接口（DescribeInstanceTypes）用于获取服务器实例类型列表。
 
         # @param request: Request instance for DescribeInstanceTypes.
@@ -859,6 +927,8 @@ module TencentCloud
         rescue StandardError => e
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
+
+        # 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
 
         # 本接口（DescribeInstances）用于查询服务器实例列表。
 
@@ -884,6 +954,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
+
         # 本接口（DescribeInstancesExtend）用于查询实例扩展信息列表。
 
         # @param request: Request instance for DescribeInstancesExtend.
@@ -907,6 +979,8 @@ module TencentCloud
         rescue StandardError => e
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
+
+        # 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
 
         # 本接口（DescribePlayerSessions）用于获取玩家会话列表。
 
@@ -932,6 +1006,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
+
         # 本接口（DescribeRuntimeConfiguration）用于获取服务器舰队运行配置。
 
         # @param request: Request instance for DescribeRuntimeConfiguration.
@@ -955,6 +1031,8 @@ module TencentCloud
         rescue StandardError => e
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
+
+        # 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
 
         # 本接口（DescribeScalingPolicies）用于查询服务器舰队的动态扩缩容策略列表。
 
@@ -980,6 +1058,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
+
         # 本接口（DescribeTimerScalingPolicies）用于查询fleet下的定时器列表。可以通过fleetid，定时器名称分页查询。
 
         # @param request: Request instance for DescribeTimerScalingPolicies.
@@ -1003,6 +1083,8 @@ module TencentCloud
         rescue StandardError => e
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
+
+        # 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
 
         # 本接口（DescribeUserQuota）获取用户单个模块配额。
 
@@ -1028,6 +1110,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
+
         # 本接口（DescribeUserQuotas）用于获取用户配额
 
         # @param request: Request instance for DescribeUserQuotas.
@@ -1051,6 +1135,8 @@ module TencentCloud
         rescue StandardError => e
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
+
+        # 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
 
         # 本接口（DetachCcnInstances）用于解关联云联网实例。
 
@@ -1076,6 +1162,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
+
         # 本接口（EndGameServerSessionAndProcess）用于终止游戏服务器会话和对应的进程，适用于时限保护和不保护。
 
         # @param request: Request instance for EndGameServerSessionAndProcess.
@@ -1099,6 +1187,8 @@ module TencentCloud
         rescue StandardError => e
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
+
+        # 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
 
         # 本接口用于获取游戏服务器实例的日志URL。
 
@@ -1124,6 +1214,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
+
         # 本接口（GetGameServerSessionLogUrl）用于获取游戏服务器会话的日志URL。
 
         # @param request: Request instance for GetGameServerSessionLogUrl.
@@ -1148,6 +1240,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
+
         # 本接口（GetInstanceAccess）用于获取实例登录所需要的凭据。
 
         # @param request: Request instance for GetInstanceAccess.
@@ -1171,6 +1265,8 @@ module TencentCloud
         rescue StandardError => e
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
+
+        # 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
 
         # 本接口（GetUploadCredentials）获取上传文件授权信息。
         # 通过 [GetUploadCredentials](https://cloud.tencent.com/document/product/1165/48727) 接口获取临时授权信息后，调用 COS API将数据上传，根据上传的 BucketKey 信息进行生成包 [CreateAsset](https://cloud.tencent.com/document/product/1165/48731) 的创建。参考下面的示例部分。
@@ -1197,6 +1293,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
+
         # 本接口（GetUploadFederationToken）用于 获取生成包上传所需要的临时密钥。
 
         # @param request: Request instance for GetUploadFederationToken.
@@ -1220,6 +1318,8 @@ module TencentCloud
         rescue StandardError => e
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
+
+        # 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
 
         # 本接口（JoinGameServerSession）用于加入游戏服务器会话。
 
@@ -1245,6 +1345,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
+
         # 本接口（JoinGameServerSessionBatch）用于批量加入游戏服务器会话。
 
         # @param request: Request instance for JoinGameServerSessionBatch.
@@ -1268,6 +1370,8 @@ module TencentCloud
         rescue StandardError => e
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
+
+        # 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
 
         # 本接口（ListAliases）用于检索帐户下的所有别名。
 
@@ -1293,6 +1397,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
+
         # 本接口（ListFleets）用于获取服务器舰队列表。
 
         # @param request: Request instance for ListFleets.
@@ -1316,6 +1422,8 @@ module TencentCloud
         rescue StandardError => e
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
+
+        # 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
 
         # 本接口（PutScalingPolicy）用于设置服务器舰队的动态扩缩容策略。
 
@@ -1438,6 +1546,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
+
         # 本接口（PutTimerScalingPolicy）用于给fleet创建或更新定时器。
 
         # 填写字段timer_id，表示更新；不填字段timer_id表示新增。
@@ -1464,6 +1574,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
+
         # 本接口（ResolveAlias）用于获取别名当前指向的fleetId。
 
         # @param request: Request instance for ResolveAlias.
@@ -1488,6 +1600,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
+
         # 本接口（SearchGameServerSessions）用于搜索游戏服务器会话列表。
 
         # @param request: Request instance for SearchGameServerSessions.
@@ -1511,6 +1625,8 @@ module TencentCloud
         rescue StandardError => e
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
+
+        # 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
 
         # 本接口（SetServerReserved）用于将异常的实例标记为保留，用于问题排查。
 
@@ -1538,6 +1654,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
+
         # 本接口（SetServerWeight）用于设置服务器权重。
 
         # @param request: Request instance for SetServerWeight.
@@ -1561,6 +1679,8 @@ module TencentCloud
         rescue StandardError => e
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
+
+        # 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
 
         # 本接口（StartFleetActions）用于启用服务器舰队自动扩缩容。
 
@@ -1586,6 +1706,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
+
         # 本接口（StartGameServerSessionPlacement）用于开始放置游戏服务器会话。
 
         # @param request: Request instance for StartGameServerSessionPlacement.
@@ -1609,6 +1731,8 @@ module TencentCloud
         rescue StandardError => e
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
+
+        # 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
 
         # 本接口（StopFleetActions）用于停止服务器舰队自动扩缩容，改为手动扩缩容。
 
@@ -1634,6 +1758,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
+
         # 本接口（StopGameServerSessionPlacement）用于停止放置游戏服务器会话。
 
         # @param request: Request instance for StopGameServerSessionPlacement.
@@ -1657,6 +1783,8 @@ module TencentCloud
         rescue StandardError => e
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
+
+        # 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
 
         # 本接口（UpdateAlias）用于更新别名的属性。
 
@@ -1682,6 +1810,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
+
         # 本接口（UpdateAsset）用于修改生成包信息。
 
         # @param request: Request instance for UpdateAsset.
@@ -1705,6 +1835,8 @@ module TencentCloud
         rescue StandardError => e
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
+
+        # 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
 
         # 本接口（UpdateBucketAccelerateOpt）用于开启cos全球加速。
 
@@ -1730,6 +1862,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
+
         # 本接口（UpdateBucketCORSOpt）用于设置cos跨域访问。
 
         # @param request: Request instance for UpdateBucketCORSOpt.
@@ -1753,6 +1887,8 @@ module TencentCloud
         rescue StandardError => e
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
+
+        # 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
 
         # 本接口（UpdateFleetAttributes）用于更新服务器舰队属性。
 
@@ -1778,6 +1914,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
+
         # 本接口（UpdateFleetCapacity）用于更新服务器舰队容量配置。
 
         # @param request: Request instance for UpdateFleetCapacity.
@@ -1801,6 +1939,8 @@ module TencentCloud
         rescue StandardError => e
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
+
+        # 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
 
         # 本接口（UpdateFleetName）用于更新服务器舰队名称。
 
@@ -1826,6 +1966,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
+
         # 本接口（UpdateFleetPortSettings）用于更新服务器舰队安全组。
 
         # @param request: Request instance for UpdateFleetPortSettings.
@@ -1849,6 +1991,8 @@ module TencentCloud
         rescue StandardError => e
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
+
+        # 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
 
         # 本接口（UpdateGameServerSession）用于更新游戏服务器会话。
 
@@ -1874,6 +2018,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
+
         # 本接口（UpdateGameServerSessionQueue）用于修改游戏服务器会话队列。
 
         # @param request: Request instance for UpdateGameServerSessionQueue.
@@ -1897,6 +2043,8 @@ module TencentCloud
         rescue StandardError => e
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
+
+        # 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
 
         # 本接口（UpdateRuntimeConfiguration）用于更新服务器舰队配置。
 

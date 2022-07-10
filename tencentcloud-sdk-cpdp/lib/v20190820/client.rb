@@ -1069,7 +1069,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 云企付-创建支付订单
+        # 云企付-创建支付订单。支持B2B网关支付，B2C转账下单。
 
         # @param request: Request instance for CreateOpenBankPaymentOrder.
         # @type request: :class:`Tencentcloud::cpdp::V20190820::CreateOpenBankPaymentOrderRequest`
@@ -1151,6 +1151,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = CreateOpenBankUnifiedOrderResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 云企付-创建核销申请，适用于针对支付订单维度的确认收货，解冻等业务场景。目前支持的渠道有TENPAY下的EBANK_PAYMENT付款方式创建支付订单时，选择担保支付下单的订单进行解冻。
+
+        # @param request: Request instance for CreateOpenBankVerificationOrder.
+        # @type request: :class:`Tencentcloud::cpdp::V20190820::CreateOpenBankVerificationOrderRequest`
+        # @rtype: :class:`Tencentcloud::cpdp::V20190820::CreateOpenBankVerificationOrderResponse`
+        def CreateOpenBankVerificationOrder(request)
+          body = send_request('CreateOpenBankVerificationOrder', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateOpenBankVerificationOrderResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -3736,6 +3760,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 云企付-查询核销订单状态，客户可以使用该接口来查询核销申请的订单状态。目前仅支持TENPAY渠道EBANK_PAYMENT付款方式的担保支付订单查询。
+
+        # @param request: Request instance for QueryOpenBankVerificationOrder.
+        # @type request: :class:`Tencentcloud::cpdp::V20190820::QueryOpenBankVerificationOrderRequest`
+        # @rtype: :class:`Tencentcloud::cpdp::V20190820::QueryOpenBankVerificationOrderResponse`
+        def QueryOpenBankVerificationOrder(request)
+          body = send_request('QueryOpenBankVerificationOrder', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = QueryOpenBankVerificationOrderResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 根据订单号，或者用户Id，查询支付订单状态
 
         # @param request: Request instance for QueryOrder.
@@ -4826,6 +4874,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = UploadTaxPaymentResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 云企付-子商户银行卡打款验证，在接入TENPAY渠道EBANK_PAYMENT付款时，若客户期望接入担保支付，需在接入前先完成，收款商户绑定的银行卡进行打款验证。验证成功后，才可以调用CreateOpenBankPaymentOrder接口进行担保支付下单。
+
+        # @param request: Request instance for VerifyOpenBankAccount.
+        # @type request: :class:`Tencentcloud::cpdp::V20190820::VerifyOpenBankAccountRequest`
+        # @rtype: :class:`Tencentcloud::cpdp::V20190820::VerifyOpenBankAccountResponse`
+        def VerifyOpenBankAccount(request)
+          body = send_request('VerifyOpenBankAccount', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = VerifyOpenBankAccountResponse.new
             model.deserialize(response['Response'])
             model
           else

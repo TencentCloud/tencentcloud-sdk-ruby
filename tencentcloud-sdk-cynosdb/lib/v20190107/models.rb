@@ -324,17 +324,21 @@ module TencentCloud
         # @type ClusterId: String
         # @param InstanceIds: 实例ID列表
         # @type InstanceIds: Array
+        # @param DealName: 订单ID
+        # @type DealName: String
 
-        attr_accessor :ClusterId, :InstanceIds
+        attr_accessor :ClusterId, :InstanceIds, :DealName
         
-        def initialize(clusterid=nil, instanceids=nil)
+        def initialize(clusterid=nil, instanceids=nil, dealname=nil)
           @ClusterId = clusterid
           @InstanceIds = instanceids
+          @DealName = dealname
         end
 
         def deserialize(params)
           @ClusterId = params['ClusterId']
           @InstanceIds = params['InstanceIds']
+          @DealName = params['DealName']
         end
       end
 
@@ -3803,9 +3807,9 @@ module TencentCloud
 
       # 回滚数据库信息
       class RollbackDatabase < TencentCloud::Common::AbstractModel
-        # @param OldDatabase: 旧数据库
+        # @param OldDatabase: 旧数据库名称
         # @type OldDatabase: String
-        # @param NewDatabase: 新数据库
+        # @param NewDatabase: 新数据库名称
         # @type NewDatabase: String
 
         attr_accessor :OldDatabase, :NewDatabase
