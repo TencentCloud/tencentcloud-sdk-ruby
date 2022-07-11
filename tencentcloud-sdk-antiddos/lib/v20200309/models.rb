@@ -1877,6 +1877,64 @@ module TencentCloud
         end
       end
 
+      # CreateNewL7Rules请求参数结构体
+      class CreateNewL7RulesRequest < TencentCloud::Common::AbstractModel
+        # @param Rules: 规则列表
+        # @type Rules: Array
+        # @param Business: 大禹子产品代号（bgpip表示高防IP）
+        # @type Business: String
+        # @param IdList: 资源ID列表
+        # @type IdList: Array
+        # @param VipList: 资源IP列表
+        # @type VipList: Array
+
+        attr_accessor :Rules, :Business, :IdList, :VipList
+        
+        def initialize(rules=nil, business=nil, idlist=nil, viplist=nil)
+          @Rules = rules
+          @Business = business
+          @IdList = idlist
+          @VipList = viplist
+        end
+
+        def deserialize(params)
+          unless params['Rules'].nil?
+            @Rules = []
+            params['Rules'].each do |i|
+              l7ruleentry_tmp = L7RuleEntry.new
+              l7ruleentry_tmp.deserialize(i)
+              @Rules << l7ruleentry_tmp
+            end
+          end
+          @Business = params['Business']
+          @IdList = params['IdList']
+          @VipList = params['VipList']
+        end
+      end
+
+      # CreateNewL7Rules返回参数结构体
+      class CreateNewL7RulesResponse < TencentCloud::Common::AbstractModel
+        # @param Success: 成功码
+        # @type Success: :class:`Tencentcloud::Antiddos.v20200309.models.SuccessCode`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Success, :RequestId
+        
+        def initialize(success=nil, requestid=nil)
+          @Success = success
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Success'].nil?
+            @Success = SuccessCode.new
+            @Success.deserialize(params['Success'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreatePacketFilterConfig请求参数结构体
       class CreatePacketFilterConfigRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 资源实例ID

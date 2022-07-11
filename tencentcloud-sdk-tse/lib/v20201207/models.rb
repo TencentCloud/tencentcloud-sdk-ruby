@@ -390,19 +390,23 @@ module TencentCloud
         # @type VpcId: String
         # @param SubnetId: 子网ID
         # @type SubnetId: String
+        # @param Workload: 引擎其他组件名称（pushgateway）
+        # @type Workload: String
 
-        attr_accessor :InstanceId, :VpcId, :SubnetId
+        attr_accessor :InstanceId, :VpcId, :SubnetId, :Workload
         
-        def initialize(instanceid=nil, vpcid=nil, subnetid=nil)
+        def initialize(instanceid=nil, vpcid=nil, subnetid=nil, workload=nil)
           @InstanceId = instanceid
           @VpcId = vpcid
           @SubnetId = subnetid
+          @Workload = workload
         end
 
         def deserialize(params)
           @InstanceId = params['InstanceId']
           @VpcId = params['VpcId']
           @SubnetId = params['SubnetId']
+          @Workload = params['Workload']
         end
       end
 
@@ -674,19 +678,24 @@ module TencentCloud
         # @type EnableConfigInternet: Boolean
         # @param ConfigInternetServiceIp: config公网ip
         # @type ConfigInternetServiceIp: String
+        # @param ConfigIntranetAddress: config内网访问地址
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ConfigIntranetAddress: String
 
-        attr_accessor :EnvName, :EnableConfigInternet, :ConfigInternetServiceIp
+        attr_accessor :EnvName, :EnableConfigInternet, :ConfigInternetServiceIp, :ConfigIntranetAddress
         
-        def initialize(envname=nil, enableconfiginternet=nil, configinternetserviceip=nil)
+        def initialize(envname=nil, enableconfiginternet=nil, configinternetserviceip=nil, configintranetaddress=nil)
           @EnvName = envname
           @EnableConfigInternet = enableconfiginternet
           @ConfigInternetServiceIp = configinternetserviceip
+          @ConfigIntranetAddress = configintranetaddress
         end
 
         def deserialize(params)
           @EnvName = params['EnvName']
           @EnableConfigInternet = params['EnableConfigInternet']
           @ConfigInternetServiceIp = params['ConfigInternetServiceIp']
+          @ConfigIntranetAddress = params['ConfigIntranetAddress']
         end
       end
 
@@ -1064,16 +1073,19 @@ module TencentCloud
         # @type Features: Array
         # @param MainPassword: 主账户名默认为 polaris，该值为主账户的默认密码
         # @type MainPassword: String
+        # @param PgwVpcInfos: 服务治理pushgateway引擎绑定的网络信息
+        # @type PgwVpcInfos: Array
 
-        attr_accessor :EngineRegion, :BoundK8SInfos, :VpcInfos, :AuthOpen, :Features, :MainPassword
+        attr_accessor :EngineRegion, :BoundK8SInfos, :VpcInfos, :AuthOpen, :Features, :MainPassword, :PgwVpcInfos
         
-        def initialize(engineregion=nil, boundk8sinfos=nil, vpcinfos=nil, authopen=nil, features=nil, mainpassword=nil)
+        def initialize(engineregion=nil, boundk8sinfos=nil, vpcinfos=nil, authopen=nil, features=nil, mainpassword=nil, pgwvpcinfos=nil)
           @EngineRegion = engineregion
           @BoundK8SInfos = boundk8sinfos
           @VpcInfos = vpcinfos
           @AuthOpen = authopen
           @Features = features
           @MainPassword = mainpassword
+          @PgwVpcInfos = pgwvpcinfos
         end
 
         def deserialize(params)
@@ -1097,6 +1109,14 @@ module TencentCloud
           @AuthOpen = params['AuthOpen']
           @Features = params['Features']
           @MainPassword = params['MainPassword']
+          unless params['PgwVpcInfos'].nil?
+            @PgwVpcInfos = []
+            params['PgwVpcInfos'].each do |i|
+              vpcinfo_tmp = VpcInfo.new
+              vpcinfo_tmp.deserialize(i)
+              @PgwVpcInfos << vpcinfo_tmp
+            end
+          end
         end
       end
 

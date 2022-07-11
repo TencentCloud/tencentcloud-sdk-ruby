@@ -700,17 +700,28 @@ module TencentCloud
         # <li>通过项目列表查询项目ID。
         # <li>通过调用接口DescribeProject，取返回信息中的`projectId `获取项目ID。
         # @type ProjectId: Integer
+        # @param TagSpecification: 标签描述列表。通过指定该参数可以同时绑定标签到密钥对。
+        # @type TagSpecification: Array
 
-        attr_accessor :KeyName, :ProjectId
+        attr_accessor :KeyName, :ProjectId, :TagSpecification
         
-        def initialize(keyname=nil, projectid=nil)
+        def initialize(keyname=nil, projectid=nil, tagspecification=nil)
           @KeyName = keyname
           @ProjectId = projectid
+          @TagSpecification = tagspecification
         end
 
         def deserialize(params)
           @KeyName = params['KeyName']
           @ProjectId = params['ProjectId']
+          unless params['TagSpecification'].nil?
+            @TagSpecification = []
+            params['TagSpecification'].each do |i|
+              tagspecification_tmp = TagSpecification.new
+              tagspecification_tmp.deserialize(i)
+              @TagSpecification << tagspecification_tmp
+            end
+          end
         end
       end
 
@@ -3614,19 +3625,30 @@ module TencentCloud
         # @type ProjectId: Integer
         # @param PublicKey: 密钥对的公钥内容，`OpenSSH RSA` 格式。
         # @type PublicKey: String
+        # @param TagSpecification: 标签描述列表。通过指定该参数可以同时绑定标签到密钥对。
+        # @type TagSpecification: Array
 
-        attr_accessor :KeyName, :ProjectId, :PublicKey
+        attr_accessor :KeyName, :ProjectId, :PublicKey, :TagSpecification
         
-        def initialize(keyname=nil, projectid=nil, publickey=nil)
+        def initialize(keyname=nil, projectid=nil, publickey=nil, tagspecification=nil)
           @KeyName = keyname
           @ProjectId = projectid
           @PublicKey = publickey
+          @TagSpecification = tagspecification
         end
 
         def deserialize(params)
           @KeyName = params['KeyName']
           @ProjectId = params['ProjectId']
           @PublicKey = params['PublicKey']
+          unless params['TagSpecification'].nil?
+            @TagSpecification = []
+            params['TagSpecification'].each do |i|
+              tagspecification_tmp = TagSpecification.new
+              tagspecification_tmp.deserialize(i)
+              @TagSpecification << tagspecification_tmp
+            end
+          end
         end
       end
 

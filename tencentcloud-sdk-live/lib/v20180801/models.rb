@@ -5591,16 +5591,20 @@ module TencentCloud
         # Middle East 中东
         # Africa 非洲。
         # @type RegionNames: Array
+        # @param CountryNames: 国家，映射表参照如下文档：
+        # https://cloud.tencent.com/document/product/267/34019。
+        # @type CountryNames: Array
 
-        attr_accessor :StartTime, :EndTime, :PushDomains, :MainlandOrOversea, :Granularity, :RegionNames
+        attr_accessor :StartTime, :EndTime, :PushDomains, :MainlandOrOversea, :Granularity, :RegionNames, :CountryNames
         
-        def initialize(starttime=nil, endtime=nil, pushdomains=nil, mainlandoroversea=nil, granularity=nil, regionnames=nil)
+        def initialize(starttime=nil, endtime=nil, pushdomains=nil, mainlandoroversea=nil, granularity=nil, regionnames=nil, countrynames=nil)
           @StartTime = starttime
           @EndTime = endtime
           @PushDomains = pushdomains
           @MainlandOrOversea = mainlandoroversea
           @Granularity = granularity
           @RegionNames = regionnames
+          @CountryNames = countrynames
         end
 
         def deserialize(params)
@@ -5610,6 +5614,7 @@ module TencentCloud
           @MainlandOrOversea = params['MainlandOrOversea']
           @Granularity = params['Granularity']
           @RegionNames = params['RegionNames']
+          @CountryNames = params['CountryNames']
         end
       end
 

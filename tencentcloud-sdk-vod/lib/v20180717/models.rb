@@ -8518,6 +8518,8 @@ module TencentCloud
         # @type StartTime: String
         # @param EndTime: 结束日期，需大于等于起始日期。使用 [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#52)。
         # @type EndTime: String
+        # @param SubAppId: <b>点播 [子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。</b>
+        # @type SubAppId: Integer
         # @param Type: 查询视频处理任务类型，目前支持的任务类型包括：
         # <li> Transcoding: 普通转码</li>
         # <li> Transcoding-TESHD: 极速高清转码</li>
@@ -8525,26 +8527,26 @@ module TencentCloud
         # <li> Editing-TESHD: 极速高清视频编辑</li>
         # <li> AdaptiveBitrateStreaming: 自适应码流</li>
         # <li> ContentAudit: 内容审核</li>
+        # <li> ContentRecognition: 内容识别</li>
         # <li> RemoveWatermark: 去除水印</li>
+        # <li> ExtractTraceWatermark: 提取水印</li>
         # <li>Transcode: 转码，包含普通转码、极速高清和视频编辑（不推荐使用）</li>
         # @type Type: String
-        # @param SubAppId: 点播 [子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。
-        # @type SubAppId: Integer
 
-        attr_accessor :StartTime, :EndTime, :Type, :SubAppId
+        attr_accessor :StartTime, :EndTime, :SubAppId, :Type
         
-        def initialize(starttime=nil, endtime=nil, type=nil, subappid=nil)
+        def initialize(starttime=nil, endtime=nil, subappid=nil, type=nil)
           @StartTime = starttime
           @EndTime = endtime
-          @Type = type
           @SubAppId = subappid
+          @Type = type
         end
 
         def deserialize(params)
           @StartTime = params['StartTime']
           @EndTime = params['EndTime']
-          @Type = params['Type']
           @SubAppId = params['SubAppId']
+          @Type = params['Type']
         end
       end
 
@@ -11298,14 +11300,20 @@ module TencentCloud
         # <li>repeat_last_frame：水印播放完后，停留在最后一帧；</li>
         # <li>repeat：水印循环播放，直到视频结束（默认值）。</li>
         # @type RepeatType: String
+        # @param Transparency: 图片透明度，取值范围：[0, 100]
+        # <li>0：完全不透明</li>
+        # <li>100：完全透明</li>
+        # 默认值：0。
+        # @type Transparency: Integer
 
-        attr_accessor :ImageContent, :Width, :Height, :RepeatType
+        attr_accessor :ImageContent, :Width, :Height, :RepeatType, :Transparency
         
-        def initialize(imagecontent=nil, width=nil, height=nil, repeattype=nil)
+        def initialize(imagecontent=nil, width=nil, height=nil, repeattype=nil, transparency=nil)
           @ImageContent = imagecontent
           @Width = width
           @Height = height
           @RepeatType = repeattype
+          @Transparency = transparency
         end
 
         def deserialize(params)
@@ -11313,6 +11321,7 @@ module TencentCloud
           @Width = params['Width']
           @Height = params['Height']
           @RepeatType = params['RepeatType']
+          @Transparency = params['Transparency']
         end
       end
 
@@ -11333,14 +11342,19 @@ module TencentCloud
         # <li>repeat_last_frame：水印播放完后，停留在最后一帧；</li>
         # <li>repeat：水印循环播放，直到视频结束。</li>
         # @type RepeatType: String
+        # @param Transparency: 图片透明度，取值范围：[0, 100]
+        # <li>0：完全不透明</li>
+        # <li>100：完全透明。</li>
+        # @type Transparency: Integer
 
-        attr_accessor :ImageContent, :Width, :Height, :RepeatType
+        attr_accessor :ImageContent, :Width, :Height, :RepeatType, :Transparency
         
-        def initialize(imagecontent=nil, width=nil, height=nil, repeattype=nil)
+        def initialize(imagecontent=nil, width=nil, height=nil, repeattype=nil, transparency=nil)
           @ImageContent = imagecontent
           @Width = width
           @Height = height
           @RepeatType = repeattype
+          @Transparency = transparency
         end
 
         def deserialize(params)
@@ -11348,6 +11362,7 @@ module TencentCloud
           @Width = params['Width']
           @Height = params['Height']
           @RepeatType = params['RepeatType']
+          @Transparency = params['Transparency']
         end
       end
 
@@ -11369,14 +11384,19 @@ module TencentCloud
         # <li>repeat_last_frame：水印播放完后，停留在最后一帧；</li>
         # <li>repeat：水印循环播放，直到视频结束。</li>
         # @type RepeatType: String
+        # @param Transparency: 图片透明度，取值范围：[0, 100]
+        # <li>0：完全不透明</li>
+        # <li>100：完全透明。</li>
+        # @type Transparency: Integer
 
-        attr_accessor :ImageUrl, :Width, :Height, :RepeatType
+        attr_accessor :ImageUrl, :Width, :Height, :RepeatType, :Transparency
         
-        def initialize(imageurl=nil, width=nil, height=nil, repeattype=nil)
+        def initialize(imageurl=nil, width=nil, height=nil, repeattype=nil, transparency=nil)
           @ImageUrl = imageurl
           @Width = width
           @Height = height
           @RepeatType = repeattype
+          @Transparency = transparency
         end
 
         def deserialize(params)
@@ -11384,6 +11404,7 @@ module TencentCloud
           @Width = params['Width']
           @Height = params['Height']
           @RepeatType = params['RepeatType']
+          @Transparency = params['Transparency']
         end
       end
 

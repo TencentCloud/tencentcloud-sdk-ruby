@@ -413,6 +413,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 添加7层转发规则
+
+        # @param request: Request instance for CreateNewL7Rules.
+        # @type request: :class:`Tencentcloud::antiddos::V20200309::CreateNewL7RulesRequest`
+        # @rtype: :class:`Tencentcloud::antiddos::V20200309::CreateNewL7RulesResponse`
+        def CreateNewL7Rules(request)
+          body = send_request('CreateNewL7Rules', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateNewL7RulesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 添加DDoS防护的特征过滤规则
 
         # @param request: Request instance for CreatePacketFilterConfig.

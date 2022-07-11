@@ -1833,19 +1833,30 @@ module TencentCloud
         # @type Type: String
         # @param JumpStart: 是否跳过站点历史解析记录扫描
         # @type JumpStart: Boolean
+        # @param Tags: 资源标签
+        # @type Tags: Array
 
-        attr_accessor :Name, :Type, :JumpStart
+        attr_accessor :Name, :Type, :JumpStart, :Tags
         
-        def initialize(name=nil, type=nil, jumpstart=nil)
+        def initialize(name=nil, type=nil, jumpstart=nil, tags=nil)
           @Name = name
           @Type = type
           @JumpStart = jumpstart
+          @Tags = tags
         end
 
         def deserialize(params)
           @Name = params['Name']
           @Type = params['Type']
           @JumpStart = params['JumpStart']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
+            end
+          end
         end
       end
 
@@ -6307,12 +6318,15 @@ module TencentCloud
         # - pending 切换验证中
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CnameStatus: String
+        # @param Tags: 资源标签
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Tags: Array
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Id, :Name, :OriginalNameServers, :NameServers, :Status, :Type, :Paused, :CreatedOn, :ModifiedOn, :VanityNameServers, :VanityNameServersIps, :CnameSpeedUp, :CnameStatus, :RequestId
+        attr_accessor :Id, :Name, :OriginalNameServers, :NameServers, :Status, :Type, :Paused, :CreatedOn, :ModifiedOn, :VanityNameServers, :VanityNameServersIps, :CnameSpeedUp, :CnameStatus, :Tags, :RequestId
         
-        def initialize(id=nil, name=nil, originalnameservers=nil, nameservers=nil, status=nil, type=nil, paused=nil, createdon=nil, modifiedon=nil, vanitynameservers=nil, vanitynameserversips=nil, cnamespeedup=nil, cnamestatus=nil, requestid=nil)
+        def initialize(id=nil, name=nil, originalnameservers=nil, nameservers=nil, status=nil, type=nil, paused=nil, createdon=nil, modifiedon=nil, vanitynameservers=nil, vanitynameserversips=nil, cnamespeedup=nil, cnamestatus=nil, tags=nil, requestid=nil)
           @Id = id
           @Name = name
           @OriginalNameServers = originalnameservers
@@ -6326,6 +6340,7 @@ module TencentCloud
           @VanityNameServersIps = vanitynameserversips
           @CnameSpeedUp = cnamespeedup
           @CnameStatus = cnamestatus
+          @Tags = tags
           @RequestId = requestid
         end
 
@@ -6353,6 +6368,14 @@ module TencentCloud
           end
           @CnameSpeedUp = params['CnameSpeedUp']
           @CnameStatus = params['CnameStatus']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -9625,6 +9648,28 @@ module TencentCloud
         end
       end
 
+      # 标签配置
+      class Tag < TencentCloud::Common::AbstractModel
+        # @param TagKey: 标签键
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TagKey: String
+        # @param TagValue: 标签值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TagValue: String
+
+        attr_accessor :TagKey, :TagValue
+        
+        def initialize(tagkey=nil, tagvalue=nil)
+          @TagKey = tagkey
+          @TagValue = tagvalue
+        end
+
+        def deserialize(params)
+          @TagKey = params['TagKey']
+          @TagValue = params['TagValue']
+        end
+      end
+
       # 内容管理任务结果
       class Task < TencentCloud::Common::AbstractModel
         # @param JobId: 任务ID
@@ -10231,10 +10276,13 @@ module TencentCloud
         # - pending 站点验证中
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CnameStatus: String
+        # @param Tags: 资源标签
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Tags: Array
 
-        attr_accessor :Id, :Name, :OriginalNameServers, :NameServers, :Status, :Type, :Paused, :CreatedOn, :ModifiedOn, :CnameStatus
+        attr_accessor :Id, :Name, :OriginalNameServers, :NameServers, :Status, :Type, :Paused, :CreatedOn, :ModifiedOn, :CnameStatus, :Tags
         
-        def initialize(id=nil, name=nil, originalnameservers=nil, nameservers=nil, status=nil, type=nil, paused=nil, createdon=nil, modifiedon=nil, cnamestatus=nil)
+        def initialize(id=nil, name=nil, originalnameservers=nil, nameservers=nil, status=nil, type=nil, paused=nil, createdon=nil, modifiedon=nil, cnamestatus=nil, tags=nil)
           @Id = id
           @Name = name
           @OriginalNameServers = originalnameservers
@@ -10245,6 +10293,7 @@ module TencentCloud
           @CreatedOn = createdon
           @ModifiedOn = modifiedon
           @CnameStatus = cnamestatus
+          @Tags = tags
         end
 
         def deserialize(params)
@@ -10258,6 +10307,14 @@ module TencentCloud
           @CreatedOn = params['CreatedOn']
           @ModifiedOn = params['ModifiedOn']
           @CnameStatus = params['CnameStatus']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
+            end
+          end
         end
       end
 
@@ -10266,6 +10323,8 @@ module TencentCloud
         # @param Name: 过滤字段名，支持的列表如下：
         # - name: 站点名。
         # - status: 站点状态
+        # - tagKey: 标签键
+        # - tagValue: 标签值
         # @type Name: String
         # @param Values: 过滤字段值
         # @type Values: Array
