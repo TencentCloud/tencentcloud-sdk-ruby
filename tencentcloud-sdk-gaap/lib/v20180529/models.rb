@@ -1429,10 +1429,12 @@ module TencentCloud
         # @type ServerNameIndicationSwitch: String
         # @param ServerNameIndication: 服务器名称指示（ServerNameIndication，简称SNI），当SNI开关打开时，该字段必填。
         # @type ServerNameIndication: String
+        # @param ForcedRedirect: HTTP强制跳转HTTPS。输入当前规则对应的域名与地址。
+        # @type ForcedRedirect: String
 
-        attr_accessor :ListenerId, :Domain, :Path, :RealServerType, :Scheduler, :HealthCheck, :CheckParams, :ForwardProtocol, :ForwardHost, :ServerNameIndicationSwitch, :ServerNameIndication
+        attr_accessor :ListenerId, :Domain, :Path, :RealServerType, :Scheduler, :HealthCheck, :CheckParams, :ForwardProtocol, :ForwardHost, :ServerNameIndicationSwitch, :ServerNameIndication, :ForcedRedirect
         
-        def initialize(listenerid=nil, domain=nil, path=nil, realservertype=nil, scheduler=nil, healthcheck=nil, checkparams=nil, forwardprotocol=nil, forwardhost=nil, servernameindicationswitch=nil, servernameindication=nil)
+        def initialize(listenerid=nil, domain=nil, path=nil, realservertype=nil, scheduler=nil, healthcheck=nil, checkparams=nil, forwardprotocol=nil, forwardhost=nil, servernameindicationswitch=nil, servernameindication=nil, forcedredirect=nil)
           @ListenerId = listenerid
           @Domain = domain
           @Path = path
@@ -1444,6 +1446,7 @@ module TencentCloud
           @ForwardHost = forwardhost
           @ServerNameIndicationSwitch = servernameindicationswitch
           @ServerNameIndication = servernameindication
+          @ForcedRedirect = forcedredirect
         end
 
         def deserialize(params)
@@ -1461,6 +1464,7 @@ module TencentCloud
           @ForwardHost = params['ForwardHost']
           @ServerNameIndicationSwitch = params['ServerNameIndicationSwitch']
           @ServerNameIndication = params['ServerNameIndication']
+          @ForcedRedirect = params['ForcedRedirect']
         end
       end
 
@@ -5533,10 +5537,12 @@ module TencentCloud
         # @type ServerNameIndicationSwitch: String
         # @param ServerNameIndication: 服务器名称指示（ServerNameIndication，简称SNI），当SNI开关打开时，该字段必填。
         # @type ServerNameIndication: String
+        # @param ForcedRedirect: HTTP强制跳转HTTPS。输入当前规则对应的域名与地址。
+        # @type ForcedRedirect: String
 
-        attr_accessor :ListenerId, :RuleId, :Scheduler, :HealthCheck, :CheckParams, :Path, :ForwardProtocol, :ForwardHost, :ServerNameIndicationSwitch, :ServerNameIndication
+        attr_accessor :ListenerId, :RuleId, :Scheduler, :HealthCheck, :CheckParams, :Path, :ForwardProtocol, :ForwardHost, :ServerNameIndicationSwitch, :ServerNameIndication, :ForcedRedirect
         
-        def initialize(listenerid=nil, ruleid=nil, scheduler=nil, healthcheck=nil, checkparams=nil, path=nil, forwardprotocol=nil, forwardhost=nil, servernameindicationswitch=nil, servernameindication=nil)
+        def initialize(listenerid=nil, ruleid=nil, scheduler=nil, healthcheck=nil, checkparams=nil, path=nil, forwardprotocol=nil, forwardhost=nil, servernameindicationswitch=nil, servernameindication=nil, forcedredirect=nil)
           @ListenerId = listenerid
           @RuleId = ruleid
           @Scheduler = scheduler
@@ -5547,6 +5553,7 @@ module TencentCloud
           @ForwardHost = forwardhost
           @ServerNameIndicationSwitch = servernameindicationswitch
           @ServerNameIndication = servernameindication
+          @ForcedRedirect = forcedredirect
         end
 
         def deserialize(params)
@@ -5563,6 +5570,7 @@ module TencentCloud
           @ForwardHost = params['ForwardHost']
           @ServerNameIndicationSwitch = params['ServerNameIndicationSwitch']
           @ServerNameIndication = params['ServerNameIndication']
+          @ForcedRedirect = params['ForcedRedirect']
         end
       end
 
@@ -6666,10 +6674,13 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ServerNameIndication: String
+        # @param ForcedRedirect: 强转HTTPS指示，当传递值为https:时表示强转为https
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ForcedRedirect: String
 
-        attr_accessor :RuleId, :ListenerId, :Domain, :Path, :RealServerType, :Scheduler, :HealthCheck, :RuleStatus, :CheckParams, :RealServerSet, :BindStatus, :ForwardHost, :ServerNameIndicationSwitch, :ServerNameIndication
+        attr_accessor :RuleId, :ListenerId, :Domain, :Path, :RealServerType, :Scheduler, :HealthCheck, :RuleStatus, :CheckParams, :RealServerSet, :BindStatus, :ForwardHost, :ServerNameIndicationSwitch, :ServerNameIndication, :ForcedRedirect
         
-        def initialize(ruleid=nil, listenerid=nil, domain=nil, path=nil, realservertype=nil, scheduler=nil, healthcheck=nil, rulestatus=nil, checkparams=nil, realserverset=nil, bindstatus=nil, forwardhost=nil, servernameindicationswitch=nil, servernameindication=nil)
+        def initialize(ruleid=nil, listenerid=nil, domain=nil, path=nil, realservertype=nil, scheduler=nil, healthcheck=nil, rulestatus=nil, checkparams=nil, realserverset=nil, bindstatus=nil, forwardhost=nil, servernameindicationswitch=nil, servernameindication=nil, forcedredirect=nil)
           @RuleId = ruleid
           @ListenerId = listenerid
           @Domain = domain
@@ -6684,6 +6695,7 @@ module TencentCloud
           @ForwardHost = forwardhost
           @ServerNameIndicationSwitch = servernameindicationswitch
           @ServerNameIndication = servernameindication
+          @ForcedRedirect = forcedredirect
         end
 
         def deserialize(params)
@@ -6711,6 +6723,7 @@ module TencentCloud
           @ForwardHost = params['ForwardHost']
           @ServerNameIndicationSwitch = params['ServerNameIndicationSwitch']
           @ServerNameIndication = params['ServerNameIndication']
+          @ForcedRedirect = params['ForcedRedirect']
         end
       end
 

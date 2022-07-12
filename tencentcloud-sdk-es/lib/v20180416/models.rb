@@ -298,10 +298,12 @@ module TencentCloud
         # @type WebNodeTypeInfo: :class:`Tencentcloud::Es.v20180416.models.WebNodeTypeInfo`
         # @param Protocol: 创建https集群，默认是http
         # @type Protocol: String
+        # @param OperationDuration: 可维护时间段
+        # @type OperationDuration: :class:`Tencentcloud::Es.v20180416.models.OperationDuration`
 
-        attr_accessor :Zone, :EsVersion, :VpcId, :SubnetId, :Password, :InstanceName, :NodeNum, :ChargeType, :ChargePeriod, :RenewFlag, :NodeType, :DiskType, :DiskSize, :TimeUnit, :AutoVoucher, :VoucherIds, :EnableDedicatedMaster, :MasterNodeNum, :MasterNodeType, :MasterNodeDiskSize, :ClusterNameInConf, :DeployMode, :MultiZoneInfo, :LicenseType, :NodeInfoList, :TagList, :BasicSecurityType, :SceneType, :WebNodeTypeInfo, :Protocol
+        attr_accessor :Zone, :EsVersion, :VpcId, :SubnetId, :Password, :InstanceName, :NodeNum, :ChargeType, :ChargePeriod, :RenewFlag, :NodeType, :DiskType, :DiskSize, :TimeUnit, :AutoVoucher, :VoucherIds, :EnableDedicatedMaster, :MasterNodeNum, :MasterNodeType, :MasterNodeDiskSize, :ClusterNameInConf, :DeployMode, :MultiZoneInfo, :LicenseType, :NodeInfoList, :TagList, :BasicSecurityType, :SceneType, :WebNodeTypeInfo, :Protocol, :OperationDuration
         
-        def initialize(zone=nil, esversion=nil, vpcid=nil, subnetid=nil, password=nil, instancename=nil, nodenum=nil, chargetype=nil, chargeperiod=nil, renewflag=nil, nodetype=nil, disktype=nil, disksize=nil, timeunit=nil, autovoucher=nil, voucherids=nil, enablededicatedmaster=nil, masternodenum=nil, masternodetype=nil, masternodedisksize=nil, clusternameinconf=nil, deploymode=nil, multizoneinfo=nil, licensetype=nil, nodeinfolist=nil, taglist=nil, basicsecuritytype=nil, scenetype=nil, webnodetypeinfo=nil, protocol=nil)
+        def initialize(zone=nil, esversion=nil, vpcid=nil, subnetid=nil, password=nil, instancename=nil, nodenum=nil, chargetype=nil, chargeperiod=nil, renewflag=nil, nodetype=nil, disktype=nil, disksize=nil, timeunit=nil, autovoucher=nil, voucherids=nil, enablededicatedmaster=nil, masternodenum=nil, masternodetype=nil, masternodedisksize=nil, clusternameinconf=nil, deploymode=nil, multizoneinfo=nil, licensetype=nil, nodeinfolist=nil, taglist=nil, basicsecuritytype=nil, scenetype=nil, webnodetypeinfo=nil, protocol=nil, operationduration=nil)
           @Zone = zone
           @EsVersion = esversion
           @VpcId = vpcid
@@ -332,6 +334,7 @@ module TencentCloud
           @SceneType = scenetype
           @WebNodeTypeInfo = webnodetypeinfo
           @Protocol = protocol
+          @OperationDuration = operationduration
         end
 
         def deserialize(params)
@@ -389,6 +392,10 @@ module TencentCloud
             @WebNodeTypeInfo.deserialize(params['WebNodeTypeInfo'])
           end
           @Protocol = params['Protocol']
+          unless params['OperationDuration'].nil?
+            @OperationDuration = OperationDuration.new
+            @OperationDuration.deserialize(params['OperationDuration'])
+          end
         end
       end
 
@@ -810,10 +817,12 @@ module TencentCloud
         # @type ZoneList: Array
         # @param HealthStatus: 健康状态筛列表
         # @type HealthStatus: Array
+        # @param VpcIds: Vpc列表 筛选项
+        # @type VpcIds: Array
 
-        attr_accessor :Zone, :InstanceIds, :InstanceNames, :Offset, :Limit, :OrderByKey, :OrderByType, :TagList, :IpList, :ZoneList, :HealthStatus
+        attr_accessor :Zone, :InstanceIds, :InstanceNames, :Offset, :Limit, :OrderByKey, :OrderByType, :TagList, :IpList, :ZoneList, :HealthStatus, :VpcIds
         
-        def initialize(zone=nil, instanceids=nil, instancenames=nil, offset=nil, limit=nil, orderbykey=nil, orderbytype=nil, taglist=nil, iplist=nil, zonelist=nil, healthstatus=nil)
+        def initialize(zone=nil, instanceids=nil, instancenames=nil, offset=nil, limit=nil, orderbykey=nil, orderbytype=nil, taglist=nil, iplist=nil, zonelist=nil, healthstatus=nil, vpcids=nil)
           @Zone = zone
           @InstanceIds = instanceids
           @InstanceNames = instancenames
@@ -825,6 +834,7 @@ module TencentCloud
           @IpList = iplist
           @ZoneList = zonelist
           @HealthStatus = healthstatus
+          @VpcIds = vpcids
         end
 
         def deserialize(params)
@@ -846,6 +856,7 @@ module TencentCloud
           @IpList = params['IpList']
           @ZoneList = params['ZoneList']
           @HealthStatus = params['HealthStatus']
+          @VpcIds = params['VpcIds']
         end
       end
 
@@ -1569,10 +1580,13 @@ module TencentCloud
         # @param EsConfigSets: 集群的配置组信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EsConfigSets: Array
+        # @param OperationDuration: 集群可维护时间段
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OperationDuration: :class:`Tencentcloud::Es.v20180416.models.OperationDuration`
 
-        attr_accessor :InstanceId, :InstanceName, :Region, :Zone, :AppId, :Uin, :VpcUid, :SubnetUid, :Status, :RenewFlag, :ChargeType, :ChargePeriod, :NodeType, :NodeNum, :CpuNum, :MemSize, :DiskType, :DiskSize, :EsDomain, :EsVip, :EsPort, :KibanaUrl, :EsVersion, :EsConfig, :EsAcl, :CreateTime, :UpdateTime, :Deadline, :InstanceType, :IkConfig, :MasterNodeInfo, :CosBackup, :AllowCosBackup, :TagList, :LicenseType, :EnableHotWarmMode, :WarmNodeType, :WarmNodeNum, :WarmCpuNum, :WarmMemSize, :WarmDiskType, :WarmDiskSize, :NodeInfoList, :EsPublicUrl, :MultiZoneInfo, :DeployMode, :PublicAccess, :EsPublicAcl, :KibanaPrivateUrl, :KibanaPublicAccess, :KibanaPrivateAccess, :SecurityType, :SceneType, :KibanaConfig, :KibanaNodeInfo, :WebNodeTypeInfo, :Jdk, :Protocol, :SecurityGroups, :ColdNodeType, :ColdNodeNum, :ColdCpuNum, :ColdMemSize, :ColdDiskType, :ColdDiskSize, :FrozenNodeType, :FrozenNodeNum, :FrozenCpuNum, :FrozenMemSize, :FrozenDiskType, :FrozenDiskSize, :HealthStatus, :EsPrivateUrl, :EsPrivateDomain, :EsConfigSets
+        attr_accessor :InstanceId, :InstanceName, :Region, :Zone, :AppId, :Uin, :VpcUid, :SubnetUid, :Status, :RenewFlag, :ChargeType, :ChargePeriod, :NodeType, :NodeNum, :CpuNum, :MemSize, :DiskType, :DiskSize, :EsDomain, :EsVip, :EsPort, :KibanaUrl, :EsVersion, :EsConfig, :EsAcl, :CreateTime, :UpdateTime, :Deadline, :InstanceType, :IkConfig, :MasterNodeInfo, :CosBackup, :AllowCosBackup, :TagList, :LicenseType, :EnableHotWarmMode, :WarmNodeType, :WarmNodeNum, :WarmCpuNum, :WarmMemSize, :WarmDiskType, :WarmDiskSize, :NodeInfoList, :EsPublicUrl, :MultiZoneInfo, :DeployMode, :PublicAccess, :EsPublicAcl, :KibanaPrivateUrl, :KibanaPublicAccess, :KibanaPrivateAccess, :SecurityType, :SceneType, :KibanaConfig, :KibanaNodeInfo, :WebNodeTypeInfo, :Jdk, :Protocol, :SecurityGroups, :ColdNodeType, :ColdNodeNum, :ColdCpuNum, :ColdMemSize, :ColdDiskType, :ColdDiskSize, :FrozenNodeType, :FrozenNodeNum, :FrozenCpuNum, :FrozenMemSize, :FrozenDiskType, :FrozenDiskSize, :HealthStatus, :EsPrivateUrl, :EsPrivateDomain, :EsConfigSets, :OperationDuration
         
-        def initialize(instanceid=nil, instancename=nil, region=nil, zone=nil, appid=nil, uin=nil, vpcuid=nil, subnetuid=nil, status=nil, renewflag=nil, chargetype=nil, chargeperiod=nil, nodetype=nil, nodenum=nil, cpunum=nil, memsize=nil, disktype=nil, disksize=nil, esdomain=nil, esvip=nil, esport=nil, kibanaurl=nil, esversion=nil, esconfig=nil, esacl=nil, createtime=nil, updatetime=nil, deadline=nil, instancetype=nil, ikconfig=nil, masternodeinfo=nil, cosbackup=nil, allowcosbackup=nil, taglist=nil, licensetype=nil, enablehotwarmmode=nil, warmnodetype=nil, warmnodenum=nil, warmcpunum=nil, warmmemsize=nil, warmdisktype=nil, warmdisksize=nil, nodeinfolist=nil, espublicurl=nil, multizoneinfo=nil, deploymode=nil, publicaccess=nil, espublicacl=nil, kibanaprivateurl=nil, kibanapublicaccess=nil, kibanaprivateaccess=nil, securitytype=nil, scenetype=nil, kibanaconfig=nil, kibananodeinfo=nil, webnodetypeinfo=nil, jdk=nil, protocol=nil, securitygroups=nil, coldnodetype=nil, coldnodenum=nil, coldcpunum=nil, coldmemsize=nil, colddisktype=nil, colddisksize=nil, frozennodetype=nil, frozennodenum=nil, frozencpunum=nil, frozenmemsize=nil, frozendisktype=nil, frozendisksize=nil, healthstatus=nil, esprivateurl=nil, esprivatedomain=nil, esconfigsets=nil)
+        def initialize(instanceid=nil, instancename=nil, region=nil, zone=nil, appid=nil, uin=nil, vpcuid=nil, subnetuid=nil, status=nil, renewflag=nil, chargetype=nil, chargeperiod=nil, nodetype=nil, nodenum=nil, cpunum=nil, memsize=nil, disktype=nil, disksize=nil, esdomain=nil, esvip=nil, esport=nil, kibanaurl=nil, esversion=nil, esconfig=nil, esacl=nil, createtime=nil, updatetime=nil, deadline=nil, instancetype=nil, ikconfig=nil, masternodeinfo=nil, cosbackup=nil, allowcosbackup=nil, taglist=nil, licensetype=nil, enablehotwarmmode=nil, warmnodetype=nil, warmnodenum=nil, warmcpunum=nil, warmmemsize=nil, warmdisktype=nil, warmdisksize=nil, nodeinfolist=nil, espublicurl=nil, multizoneinfo=nil, deploymode=nil, publicaccess=nil, espublicacl=nil, kibanaprivateurl=nil, kibanapublicaccess=nil, kibanaprivateaccess=nil, securitytype=nil, scenetype=nil, kibanaconfig=nil, kibananodeinfo=nil, webnodetypeinfo=nil, jdk=nil, protocol=nil, securitygroups=nil, coldnodetype=nil, coldnodenum=nil, coldcpunum=nil, coldmemsize=nil, colddisktype=nil, colddisksize=nil, frozennodetype=nil, frozennodenum=nil, frozencpunum=nil, frozenmemsize=nil, frozendisktype=nil, frozendisksize=nil, healthstatus=nil, esprivateurl=nil, esprivatedomain=nil, esconfigsets=nil, operationduration=nil)
           @InstanceId = instanceid
           @InstanceName = instancename
           @Region = region
@@ -1648,6 +1662,7 @@ module TencentCloud
           @EsPrivateUrl = esprivateurl
           @EsPrivateDomain = esprivatedomain
           @EsConfigSets = esconfigsets
+          @OperationDuration = operationduration
         end
 
         def deserialize(params)
@@ -1774,6 +1789,10 @@ module TencentCloud
               esconfigsetinfo_tmp.deserialize(i)
               @EsConfigSets << esconfigsetinfo_tmp
             end
+          end
+          unless params['OperationDuration'].nil?
+            @OperationDuration = OperationDuration.new
+            @OperationDuration.deserialize(params['OperationDuration'])
           end
         end
       end
@@ -2192,6 +2211,67 @@ module TencentCloud
               @NewInfo << keyvalue_tmp
             end
           end
+        end
+      end
+
+      # 集群可运维时间
+      class OperationDuration < TencentCloud::Common::AbstractModel
+        # @param Periods: 维护周期，表示周一到周日，可取值[0, 6]
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Periods: Array
+        # @param TimeStart: 维护开始时间
+        # @type TimeStart: String
+        # @param TimeEnd: 维护结束时间
+        # @type TimeEnd: String
+        # @param TimeZone: 时区，以UTC形式表示
+        # @type TimeZone: String
+
+        attr_accessor :Periods, :TimeStart, :TimeEnd, :TimeZone
+        
+        def initialize(periods=nil, timestart=nil, timeend=nil, timezone=nil)
+          @Periods = periods
+          @TimeStart = timestart
+          @TimeEnd = timeend
+          @TimeZone = timezone
+        end
+
+        def deserialize(params)
+          @Periods = params['Periods']
+          @TimeStart = params['TimeStart']
+          @TimeEnd = params['TimeEnd']
+          @TimeZone = params['TimeZone']
+        end
+      end
+
+      # 集群可运维时间
+      class OperationDurationUpdated < TencentCloud::Common::AbstractModel
+        # @param Periods: 维护周期，表示周一到周日，可取值[0, 6]
+        # @type Periods: Array
+        # @param TimeStart: 维护开始时间
+        # @type TimeStart: String
+        # @param TimeEnd: 维护结束时间
+        # @type TimeEnd: String
+        # @param TimeZone: 时区，以UTC形式表示
+        # @type TimeZone: String
+        # @param MoreInstances: ES集群ID数组
+        # @type MoreInstances: Array
+
+        attr_accessor :Periods, :TimeStart, :TimeEnd, :TimeZone, :MoreInstances
+        
+        def initialize(periods=nil, timestart=nil, timeend=nil, timezone=nil, moreinstances=nil)
+          @Periods = periods
+          @TimeStart = timestart
+          @TimeEnd = timeend
+          @TimeZone = timezone
+          @MoreInstances = moreinstances
+        end
+
+        def deserialize(params)
+          @Periods = params['Periods']
+          @TimeStart = params['TimeStart']
+          @TimeEnd = params['TimeEnd']
+          @TimeZone = params['TimeZone']
+          @MoreInstances = params['MoreInstances']
         end
       end
 
@@ -2622,10 +2702,12 @@ module TencentCloud
         # @type CerebroPrivateAccess: String
         # @param EsConfigSet: 新增或修改的配置组信息
         # @type EsConfigSet: :class:`Tencentcloud::Es.v20180416.models.EsConfigSetInfo`
+        # @param OperationDuration: 可维护时间段
+        # @type OperationDuration: :class:`Tencentcloud::Es.v20180416.models.OperationDurationUpdated`
 
-        attr_accessor :InstanceId, :InstanceName, :NodeNum, :EsConfig, :Password, :EsAcl, :DiskSize, :NodeType, :MasterNodeNum, :MasterNodeType, :MasterNodeDiskSize, :ForceRestart, :CosBackup, :NodeInfoList, :PublicAccess, :EsPublicAcl, :KibanaPublicAccess, :KibanaPrivateAccess, :BasicSecurityType, :KibanaPrivatePort, :ScaleType, :MultiZoneInfo, :SceneType, :KibanaConfig, :WebNodeTypeInfo, :SwitchPrivateLink, :EnableCerebro, :CerebroPublicAccess, :CerebroPrivateAccess, :EsConfigSet
+        attr_accessor :InstanceId, :InstanceName, :NodeNum, :EsConfig, :Password, :EsAcl, :DiskSize, :NodeType, :MasterNodeNum, :MasterNodeType, :MasterNodeDiskSize, :ForceRestart, :CosBackup, :NodeInfoList, :PublicAccess, :EsPublicAcl, :KibanaPublicAccess, :KibanaPrivateAccess, :BasicSecurityType, :KibanaPrivatePort, :ScaleType, :MultiZoneInfo, :SceneType, :KibanaConfig, :WebNodeTypeInfo, :SwitchPrivateLink, :EnableCerebro, :CerebroPublicAccess, :CerebroPrivateAccess, :EsConfigSet, :OperationDuration
         
-        def initialize(instanceid=nil, instancename=nil, nodenum=nil, esconfig=nil, password=nil, esacl=nil, disksize=nil, nodetype=nil, masternodenum=nil, masternodetype=nil, masternodedisksize=nil, forcerestart=nil, cosbackup=nil, nodeinfolist=nil, publicaccess=nil, espublicacl=nil, kibanapublicaccess=nil, kibanaprivateaccess=nil, basicsecuritytype=nil, kibanaprivateport=nil, scaletype=nil, multizoneinfo=nil, scenetype=nil, kibanaconfig=nil, webnodetypeinfo=nil, switchprivatelink=nil, enablecerebro=nil, cerebropublicaccess=nil, cerebroprivateaccess=nil, esconfigset=nil)
+        def initialize(instanceid=nil, instancename=nil, nodenum=nil, esconfig=nil, password=nil, esacl=nil, disksize=nil, nodetype=nil, masternodenum=nil, masternodetype=nil, masternodedisksize=nil, forcerestart=nil, cosbackup=nil, nodeinfolist=nil, publicaccess=nil, espublicacl=nil, kibanapublicaccess=nil, kibanaprivateaccess=nil, basicsecuritytype=nil, kibanaprivateport=nil, scaletype=nil, multizoneinfo=nil, scenetype=nil, kibanaconfig=nil, webnodetypeinfo=nil, switchprivatelink=nil, enablecerebro=nil, cerebropublicaccess=nil, cerebroprivateaccess=nil, esconfigset=nil, operationduration=nil)
           @InstanceId = instanceid
           @InstanceName = instancename
           @NodeNum = nodenum
@@ -2656,6 +2738,7 @@ module TencentCloud
           @CerebroPublicAccess = cerebropublicaccess
           @CerebroPrivateAccess = cerebroprivateaccess
           @EsConfigSet = esconfigset
+          @OperationDuration = operationduration
         end
 
         def deserialize(params)
@@ -2717,6 +2800,10 @@ module TencentCloud
           unless params['EsConfigSet'].nil?
             @EsConfigSet = EsConfigSetInfo.new
             @EsConfigSet.deserialize(params['EsConfigSet'])
+          end
+          unless params['OperationDuration'].nil?
+            @OperationDuration = OperationDurationUpdated.new
+            @OperationDuration.deserialize(params['OperationDuration'])
           end
         end
       end

@@ -79,7 +79,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 批量解绑四七层后端服务。批量解绑的资源数量上限为500。
+        # 批量解绑四七层后端服务。批量解绑的资源数量上限为500。只支持VPC网络负载均衡。
 
         # @param request: Request instance for BatchDeregisterTargets.
         # @type request: :class:`Tencentcloud::clb::V20180317::BatchDeregisterTargetsRequest`
@@ -127,7 +127,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 批量绑定虚拟主机或弹性网卡，支持跨域绑定，支持四层、七层（TCP、UDP、HTTP、HTTPS）协议绑定。批量绑定的资源数量上限为500。
+        # 批量绑定虚拟主机或弹性网卡，支持跨域绑定，支持四层、七层（TCP、UDP、HTTP、HTTPS）协议绑定。批量绑定的资源数量上限为500。只支持VPC网络负载均衡。
 
         # @param request: Request instance for BatchRegisterTargets.
         # @type request: :class:`Tencentcloud::clb::V20180317::BatchRegisterTargetsRequest`

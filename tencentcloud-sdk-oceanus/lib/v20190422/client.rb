@@ -149,6 +149,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 批量删除作业接口，批量操作数量上限20
+
+        # @param request: Request instance for DeleteJobs.
+        # @type request: :class:`Tencentcloud::oceanus::V20190422::DeleteJobsRequest`
+        # @rtype: :class:`Tencentcloud::oceanus::V20190422::DeleteJobsResponse`
+        def DeleteJobs(request)
+          body = send_request('DeleteJobs', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteJobsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 删除资源版本
 
         # @param request: Request instance for DeleteResourceConfigs.
@@ -207,6 +231,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteTableConfigResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询集群
+
+        # @param request: Request instance for DescribeClusters.
+        # @type request: :class:`Tencentcloud::oceanus::V20190422::DescribeClustersRequest`
+        # @rtype: :class:`Tencentcloud::oceanus::V20190422::DescribeClustersResponse`
+        def DescribeClusters(request)
+          body = send_request('DescribeClusters', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeClustersResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -375,6 +423,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeSystemResourcesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 生成树状作业显示结构
+
+        # @param request: Request instance for DescribeTreeJobs.
+        # @type request: :class:`Tencentcloud::oceanus::V20190422::DescribeTreeJobsRequest`
+        # @rtype: :class:`Tencentcloud::oceanus::V20190422::DescribeTreeJobsResponse`
+        def DescribeTreeJobs(request)
+          body = send_request('DescribeTreeJobs', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeTreeJobsResponse.new
             model.deserialize(response['Response'])
             model
           else

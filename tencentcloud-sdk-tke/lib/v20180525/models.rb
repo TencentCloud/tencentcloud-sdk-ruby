@@ -8770,10 +8770,14 @@ module TencentCloud
         # @param InstanceChargeType: 实例计费模式。取值范围： PREPAID：表示预付费，即包年包月 POSTPAID_BY_HOUR：表示后付费，即按量计费 CDHPAID：CDH付费，即只对CDH计费，不对CDH上的实例计费。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceChargeType: String
+        # @param IPv6Addresses: 实例的IPv6地址。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IPv6Addresses: Array
 
-        attr_accessor :Usable, :UnusableReason, :AlreadyInCluster, :InstanceId, :InstanceName, :PrivateIpAddresses, :PublicIpAddresses, :CreatedTime, :CPU, :Memory, :OsName, :InstanceType, :AutoscalingGroupId, :InstanceChargeType
+        attr_accessor :Usable, :UnusableReason, :AlreadyInCluster, :InstanceId, :InstanceName, :PrivateIpAddresses, :PublicIpAddresses, :CreatedTime, :CPU, :Memory, :OsName, :InstanceType, :AutoscalingGroupId, :InstanceChargeType, :IPv6Addresses
         
-        def initialize(usable=nil, unusablereason=nil, alreadyincluster=nil, instanceid=nil, instancename=nil, privateipaddresses=nil, publicipaddresses=nil, createdtime=nil, cpu=nil, memory=nil, osname=nil, instancetype=nil, autoscalinggroupid=nil, instancechargetype=nil)
+        def initialize(usable=nil, unusablereason=nil, alreadyincluster=nil, instanceid=nil, instancename=nil, privateipaddresses=nil, publicipaddresses=nil, createdtime=nil, cpu=nil, memory=nil, osname=nil, instancetype=nil, autoscalinggroupid=nil, instancechargetype=nil, ipv6addresses=nil)
           @Usable = usable
           @UnusableReason = unusablereason
           @AlreadyInCluster = alreadyincluster
@@ -8788,6 +8792,7 @@ module TencentCloud
           @InstanceType = instancetype
           @AutoscalingGroupId = autoscalinggroupid
           @InstanceChargeType = instancechargetype
+          @IPv6Addresses = ipv6addresses
         end
 
         def deserialize(params)
@@ -8805,6 +8810,7 @@ module TencentCloud
           @InstanceType = params['InstanceType']
           @AutoscalingGroupId = params['AutoscalingGroupId']
           @InstanceChargeType = params['InstanceChargeType']
+          @IPv6Addresses = params['IPv6Addresses']
         end
       end
 

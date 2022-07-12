@@ -12631,10 +12631,13 @@ module TencentCloud
         # @param InPayBalance: 提现中余额
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InPayBalance: String
+        # @param SumSettlementAmount: 累计结算金额
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SumSettlementAmount: String
 
-        attr_accessor :AccountId, :IncomeType, :Balance, :SystemFreezeBalance, :ManualFreezeBalance, :PayableBalance, :PaidBalance, :InPayBalance
+        attr_accessor :AccountId, :IncomeType, :Balance, :SystemFreezeBalance, :ManualFreezeBalance, :PayableBalance, :PaidBalance, :InPayBalance, :SumSettlementAmount
         
-        def initialize(accountid=nil, incometype=nil, balance=nil, systemfreezebalance=nil, manualfreezebalance=nil, payablebalance=nil, paidbalance=nil, inpaybalance=nil)
+        def initialize(accountid=nil, incometype=nil, balance=nil, systemfreezebalance=nil, manualfreezebalance=nil, payablebalance=nil, paidbalance=nil, inpaybalance=nil, sumsettlementamount=nil)
           @AccountId = accountid
           @IncomeType = incometype
           @Balance = balance
@@ -12643,6 +12646,7 @@ module TencentCloud
           @PayableBalance = payablebalance
           @PaidBalance = paidbalance
           @InPayBalance = inpaybalance
+          @SumSettlementAmount = sumsettlementamount
         end
 
         def deserialize(params)
@@ -12654,6 +12658,7 @@ module TencentCloud
           @PayableBalance = params['PayableBalance']
           @PaidBalance = params['PaidBalance']
           @InPayBalance = params['InPayBalance']
+          @SumSettlementAmount = params['SumSettlementAmount']
         end
       end
 

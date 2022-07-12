@@ -1167,10 +1167,14 @@ module TencentCloud
         # @type IsLocalPythonFiles: String
         # @param AppPythonFiles: pyspark：python依赖, 除py文件外，还支持zip/egg等归档格式，多文件以逗号分隔
         # @type AppPythonFiles: String
+        # @param IsLocalArchives: archives：依赖上传方式，1、cos；2、lakefs（控制台使用，该方式不支持直接接口调用）
+        # @type IsLocalArchives: String
+        # @param AppArchives: archives：依赖资源
+        # @type AppArchives: String
 
-        attr_accessor :AppName, :AppType, :DataEngine, :AppFile, :RoleArn, :AppDriverSize, :AppExecutorSize, :AppExecutorNums, :Eni, :IsLocal, :MainClass, :AppConf, :IsLocalJars, :AppJars, :IsLocalFiles, :AppFiles, :CmdArgs, :MaxRetries, :DataSource, :IsLocalPythonFiles, :AppPythonFiles
+        attr_accessor :AppName, :AppType, :DataEngine, :AppFile, :RoleArn, :AppDriverSize, :AppExecutorSize, :AppExecutorNums, :Eni, :IsLocal, :MainClass, :AppConf, :IsLocalJars, :AppJars, :IsLocalFiles, :AppFiles, :CmdArgs, :MaxRetries, :DataSource, :IsLocalPythonFiles, :AppPythonFiles, :IsLocalArchives, :AppArchives
         
-        def initialize(appname=nil, apptype=nil, dataengine=nil, appfile=nil, rolearn=nil, appdriversize=nil, appexecutorsize=nil, appexecutornums=nil, eni=nil, islocal=nil, mainclass=nil, appconf=nil, islocaljars=nil, appjars=nil, islocalfiles=nil, appfiles=nil, cmdargs=nil, maxretries=nil, datasource=nil, islocalpythonfiles=nil, apppythonfiles=nil)
+        def initialize(appname=nil, apptype=nil, dataengine=nil, appfile=nil, rolearn=nil, appdriversize=nil, appexecutorsize=nil, appexecutornums=nil, eni=nil, islocal=nil, mainclass=nil, appconf=nil, islocaljars=nil, appjars=nil, islocalfiles=nil, appfiles=nil, cmdargs=nil, maxretries=nil, datasource=nil, islocalpythonfiles=nil, apppythonfiles=nil, islocalarchives=nil, apparchives=nil)
           @AppName = appname
           @AppType = apptype
           @DataEngine = dataengine
@@ -1192,6 +1196,8 @@ module TencentCloud
           @DataSource = datasource
           @IsLocalPythonFiles = islocalpythonfiles
           @AppPythonFiles = apppythonfiles
+          @IsLocalArchives = islocalarchives
+          @AppArchives = apparchives
         end
 
         def deserialize(params)
@@ -1216,6 +1222,8 @@ module TencentCloud
           @DataSource = params['DataSource']
           @IsLocalPythonFiles = params['IsLocalPythonFiles']
           @AppPythonFiles = params['AppPythonFiles']
+          @IsLocalArchives = params['IsLocalArchives']
+          @AppArchives = params['AppArchives']
         end
       end
 
@@ -2970,7 +2978,7 @@ module TencentCloud
         # @type SortBy: String
         # @param Sorting: 正序或者倒序，例如：desc
         # @type Sorting: String
-        # @param Filters: 按照该参数过滤
+        # @param Filters: 按照该参数过滤,支持spark-job-name
         # @type Filters: Array
         # @param StartTime: 更新时间起始点
         # @type StartTime: String
@@ -4198,10 +4206,14 @@ module TencentCloud
         # @type MaxRetries: Integer
         # @param DataSource: 数据源名
         # @type DataSource: String
+        # @param IsLocalArchives: archives：依赖上传方式，1、cos；2、lakefs（控制台使用，该方式不支持直接接口调用）
+        # @type IsLocalArchives: String
+        # @param AppArchives: archives：依赖资源
+        # @type AppArchives: String
 
-        attr_accessor :AppName, :AppType, :DataEngine, :AppFile, :RoleArn, :AppDriverSize, :AppExecutorSize, :AppExecutorNums, :SparkAppId, :Eni, :IsLocal, :MainClass, :AppConf, :IsLocalJars, :AppJars, :IsLocalFiles, :AppFiles, :IsLocalPythonFiles, :AppPythonFiles, :CmdArgs, :MaxRetries, :DataSource
+        attr_accessor :AppName, :AppType, :DataEngine, :AppFile, :RoleArn, :AppDriverSize, :AppExecutorSize, :AppExecutorNums, :SparkAppId, :Eni, :IsLocal, :MainClass, :AppConf, :IsLocalJars, :AppJars, :IsLocalFiles, :AppFiles, :IsLocalPythonFiles, :AppPythonFiles, :CmdArgs, :MaxRetries, :DataSource, :IsLocalArchives, :AppArchives
         
-        def initialize(appname=nil, apptype=nil, dataengine=nil, appfile=nil, rolearn=nil, appdriversize=nil, appexecutorsize=nil, appexecutornums=nil, sparkappid=nil, eni=nil, islocal=nil, mainclass=nil, appconf=nil, islocaljars=nil, appjars=nil, islocalfiles=nil, appfiles=nil, islocalpythonfiles=nil, apppythonfiles=nil, cmdargs=nil, maxretries=nil, datasource=nil)
+        def initialize(appname=nil, apptype=nil, dataengine=nil, appfile=nil, rolearn=nil, appdriversize=nil, appexecutorsize=nil, appexecutornums=nil, sparkappid=nil, eni=nil, islocal=nil, mainclass=nil, appconf=nil, islocaljars=nil, appjars=nil, islocalfiles=nil, appfiles=nil, islocalpythonfiles=nil, apppythonfiles=nil, cmdargs=nil, maxretries=nil, datasource=nil, islocalarchives=nil, apparchives=nil)
           @AppName = appname
           @AppType = apptype
           @DataEngine = dataengine
@@ -4224,6 +4236,8 @@ module TencentCloud
           @CmdArgs = cmdargs
           @MaxRetries = maxretries
           @DataSource = datasource
+          @IsLocalArchives = islocalarchives
+          @AppArchives = apparchives
         end
 
         def deserialize(params)
@@ -4249,6 +4263,8 @@ module TencentCloud
           @CmdArgs = params['CmdArgs']
           @MaxRetries = params['MaxRetries']
           @DataSource = params['DataSource']
+          @IsLocalArchives = params['IsLocalArchives']
+          @AppArchives = params['AppArchives']
         end
       end
 
@@ -4670,13 +4686,25 @@ module TencentCloud
         # @param IsLocalPythonFiles: pyspark：依赖上传方式，1、cos；2、lakefs（控制台使用，该方式不支持直接接口调用）
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsLocalPythonFiles: String
-        # @param AppPythonFiles: pyspark：python依赖, 除py文件外，还支持zip/egg等归档格式，多文件以逗号分隔
+        # @param AppPythonFiles: 注：该返回值已废弃
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AppPythonFiles: String
+        # @param IsLocalArchives: archives：依赖上传方式，1、cos；2、lakefs（控制台使用，该方式不支持直接接口调用）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsLocalArchives: String
+        # @param JobArchives: archives：依赖资源
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type JobArchives: String
+        # @param JobPythonFiles: pyspark：python依赖, 除py文件外，还支持zip/egg等归档格式，多文件以逗号分隔
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type JobPythonFiles: String
+        # @param TaskNum: 当前job正在运行或准备运行的任务个数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TaskNum: Integer
 
-        attr_accessor :JobId, :JobName, :JobType, :DataEngine, :Eni, :IsLocal, :JobFile, :RoleArn, :MainClass, :CmdArgs, :JobConf, :IsLocalJars, :JobJars, :IsLocalFiles, :JobFiles, :JobDriverSize, :JobExecutorSize, :JobExecutorNums, :JobMaxAttempts, :JobCreator, :JobCreateTime, :JobUpdateTime, :CurrentTaskId, :JobStatus, :StreamingStat, :DataSource, :IsLocalPythonFiles, :AppPythonFiles
+        attr_accessor :JobId, :JobName, :JobType, :DataEngine, :Eni, :IsLocal, :JobFile, :RoleArn, :MainClass, :CmdArgs, :JobConf, :IsLocalJars, :JobJars, :IsLocalFiles, :JobFiles, :JobDriverSize, :JobExecutorSize, :JobExecutorNums, :JobMaxAttempts, :JobCreator, :JobCreateTime, :JobUpdateTime, :CurrentTaskId, :JobStatus, :StreamingStat, :DataSource, :IsLocalPythonFiles, :AppPythonFiles, :IsLocalArchives, :JobArchives, :JobPythonFiles, :TaskNum
         
-        def initialize(jobid=nil, jobname=nil, jobtype=nil, dataengine=nil, eni=nil, islocal=nil, jobfile=nil, rolearn=nil, mainclass=nil, cmdargs=nil, jobconf=nil, islocaljars=nil, jobjars=nil, islocalfiles=nil, jobfiles=nil, jobdriversize=nil, jobexecutorsize=nil, jobexecutornums=nil, jobmaxattempts=nil, jobcreator=nil, jobcreatetime=nil, jobupdatetime=nil, currenttaskid=nil, jobstatus=nil, streamingstat=nil, datasource=nil, islocalpythonfiles=nil, apppythonfiles=nil)
+        def initialize(jobid=nil, jobname=nil, jobtype=nil, dataengine=nil, eni=nil, islocal=nil, jobfile=nil, rolearn=nil, mainclass=nil, cmdargs=nil, jobconf=nil, islocaljars=nil, jobjars=nil, islocalfiles=nil, jobfiles=nil, jobdriversize=nil, jobexecutorsize=nil, jobexecutornums=nil, jobmaxattempts=nil, jobcreator=nil, jobcreatetime=nil, jobupdatetime=nil, currenttaskid=nil, jobstatus=nil, streamingstat=nil, datasource=nil, islocalpythonfiles=nil, apppythonfiles=nil, islocalarchives=nil, jobarchives=nil, jobpythonfiles=nil, tasknum=nil)
           @JobId = jobid
           @JobName = jobname
           @JobType = jobtype
@@ -4705,6 +4733,10 @@ module TencentCloud
           @DataSource = datasource
           @IsLocalPythonFiles = islocalpythonfiles
           @AppPythonFiles = apppythonfiles
+          @IsLocalArchives = islocalarchives
+          @JobArchives = jobarchives
+          @JobPythonFiles = jobpythonfiles
+          @TaskNum = tasknum
         end
 
         def deserialize(params)
@@ -4739,6 +4771,10 @@ module TencentCloud
           @DataSource = params['DataSource']
           @IsLocalPythonFiles = params['IsLocalPythonFiles']
           @AppPythonFiles = params['AppPythonFiles']
+          @IsLocalArchives = params['IsLocalArchives']
+          @JobArchives = params['JobArchives']
+          @JobPythonFiles = params['JobPythonFiles']
+          @TaskNum = params['TaskNum']
         end
       end
 

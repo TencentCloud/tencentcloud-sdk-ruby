@@ -17,6 +17,30 @@
 module TencentCloud
   module Oceanus
     module V20190422
+      # 云联网描述信息
+      class CCN < TencentCloud::Common::AbstractModel
+        # @param VpcId: 私有网络 ID
+        # @type VpcId: String
+        # @param SubnetId: 子网 ID
+        # @type SubnetId: String
+        # @param CcnId: 云联网 ID，如 ccn-rahigzjd
+        # @type CcnId: String
+
+        attr_accessor :VpcId, :SubnetId, :CcnId
+        
+        def initialize(vpcid=nil, subnetid=nil, ccnid=nil)
+          @VpcId = vpcid
+          @SubnetId = subnetid
+          @CcnId = ccnid
+        end
+
+        def deserialize(params)
+          @VpcId = params['VpcId']
+          @SubnetId = params['SubnetId']
+          @CcnId = params['CcnId']
+        end
+      end
+
       # CheckSavepoint请求参数结构体
       class CheckSavepointRequest < TencentCloud::Common::AbstractModel
         # @param JobId: 作业 id
@@ -70,6 +94,217 @@ module TencentCloud
           @SerialId = params['SerialId']
           @SavepointStatus = params['SavepointStatus']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 描述用户创建的集群信息
+      class Cluster < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群 ID
+        # @type ClusterId: String
+        # @param Name: 集群名称
+        # @type Name: String
+        # @param Region: 地域
+        # @type Region: String
+        # @param AppId: 用户 AppID
+        # @type AppId: Integer
+        # @param OwnerUin: 主账号 UIN
+        # @type OwnerUin: String
+        # @param CreatorUin: 创建者 UIN
+        # @type CreatorUin: String
+        # @param Status: 集群状态, 1 未初始化,，3 初始化中，2 运行中
+        # @type Status: Integer
+        # @param Remark: 描述
+        # @type Remark: String
+        # @param CreateTime: 集群创建时间
+        # @type CreateTime: String
+        # @param UpdateTime: 最后一次操作集群的时间
+        # @type UpdateTime: String
+        # @param CuNum: CU 数量
+        # @type CuNum: Integer
+        # @param CuMem: CU 内存规格
+        # @type CuMem: Integer
+        # @param Zone: 可用区
+        # @type Zone: String
+        # @param StatusDesc: 状态描述
+        # @type StatusDesc: String
+        # @param CCNs: 网络
+        # @type CCNs: Array
+        # @param NetEnvironmentType: 网络
+        # @type NetEnvironmentType: Integer
+        # @param FreeCuNum: 空闲 CU
+        # @type FreeCuNum: Integer
+        # @param Tags: 集群绑定的标签
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Tags: Array
+        # @param IsolatedTime: 集群隔离时间; 没隔离时间，则为 -
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsolatedTime: String
+        # @param ExpireTime: 集群过期时间; 没过期概念，则为 -
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExpireTime: String
+        # @param SecondsUntilExpiry: 距离过期还有多少秒; 没过期概念，则为 -
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SecondsUntilExpiry: String
+        # @param AutoRenewFlag: 自动续费标记，0 表示默认状态 (用户未设置，即初始状态，用户开通了预付费不停服特权会进行自动续费)， 1 表示自动续费，2表示明确不自动续费(用户设置)
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AutoRenewFlag: Integer
+        # @param DefaultCOSBucket: 集群的默认 COS 存储桶
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DefaultCOSBucket: String
+        # @param CLSLogSet: 集群的CLS 日志集 LogSet
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CLSLogSet: String
+        # @param CLSTopicId: 集群的CLS 日志主题 TopicId
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CLSTopicId: String
+        # @param CLSLogName: 集群的CLS 日志集  名字
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CLSLogName: String
+        # @param CLSTopicName: 集群的CLS 日志主题  名字
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CLSTopicName: String
+        # @param Version: 集群的版本信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Version: :class:`Tencentcloud::Oceanus.v20190422.models.ClusterVersion`
+        # @param FreeCu: 细粒度资源下的空闲CU
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FreeCu: Float
+        # @param DefaultLogCollectConf: 集群的默认日志采集配置
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DefaultLogCollectConf: String
+        # @param CustomizedDNSEnabled: 取值：0-没有设置，1-已设置，2-不允许设置
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CustomizedDNSEnabled: Integer
+        # @param Correlations: 空间信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Correlations: Array
+        # @param RunningCu: 运行CU
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RunningCu: Float
+        # @param PayMode: 0 后付费,1 预付费
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PayMode: Integer
+
+        attr_accessor :ClusterId, :Name, :Region, :AppId, :OwnerUin, :CreatorUin, :Status, :Remark, :CreateTime, :UpdateTime, :CuNum, :CuMem, :Zone, :StatusDesc, :CCNs, :NetEnvironmentType, :FreeCuNum, :Tags, :IsolatedTime, :ExpireTime, :SecondsUntilExpiry, :AutoRenewFlag, :DefaultCOSBucket, :CLSLogSet, :CLSTopicId, :CLSLogName, :CLSTopicName, :Version, :FreeCu, :DefaultLogCollectConf, :CustomizedDNSEnabled, :Correlations, :RunningCu, :PayMode
+        
+        def initialize(clusterid=nil, name=nil, region=nil, appid=nil, owneruin=nil, creatoruin=nil, status=nil, remark=nil, createtime=nil, updatetime=nil, cunum=nil, cumem=nil, zone=nil, statusdesc=nil, ccns=nil, netenvironmenttype=nil, freecunum=nil, tags=nil, isolatedtime=nil, expiretime=nil, secondsuntilexpiry=nil, autorenewflag=nil, defaultcosbucket=nil, clslogset=nil, clstopicid=nil, clslogname=nil, clstopicname=nil, version=nil, freecu=nil, defaultlogcollectconf=nil, customizeddnsenabled=nil, correlations=nil, runningcu=nil, paymode=nil)
+          @ClusterId = clusterid
+          @Name = name
+          @Region = region
+          @AppId = appid
+          @OwnerUin = owneruin
+          @CreatorUin = creatoruin
+          @Status = status
+          @Remark = remark
+          @CreateTime = createtime
+          @UpdateTime = updatetime
+          @CuNum = cunum
+          @CuMem = cumem
+          @Zone = zone
+          @StatusDesc = statusdesc
+          @CCNs = ccns
+          @NetEnvironmentType = netenvironmenttype
+          @FreeCuNum = freecunum
+          @Tags = tags
+          @IsolatedTime = isolatedtime
+          @ExpireTime = expiretime
+          @SecondsUntilExpiry = secondsuntilexpiry
+          @AutoRenewFlag = autorenewflag
+          @DefaultCOSBucket = defaultcosbucket
+          @CLSLogSet = clslogset
+          @CLSTopicId = clstopicid
+          @CLSLogName = clslogname
+          @CLSTopicName = clstopicname
+          @Version = version
+          @FreeCu = freecu
+          @DefaultLogCollectConf = defaultlogcollectconf
+          @CustomizedDNSEnabled = customizeddnsenabled
+          @Correlations = correlations
+          @RunningCu = runningcu
+          @PayMode = paymode
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @Name = params['Name']
+          @Region = params['Region']
+          @AppId = params['AppId']
+          @OwnerUin = params['OwnerUin']
+          @CreatorUin = params['CreatorUin']
+          @Status = params['Status']
+          @Remark = params['Remark']
+          @CreateTime = params['CreateTime']
+          @UpdateTime = params['UpdateTime']
+          @CuNum = params['CuNum']
+          @CuMem = params['CuMem']
+          @Zone = params['Zone']
+          @StatusDesc = params['StatusDesc']
+          unless params['CCNs'].nil?
+            @CCNs = []
+            params['CCNs'].each do |i|
+              ccn_tmp = CCN.new
+              ccn_tmp.deserialize(i)
+              @CCNs << ccn_tmp
+            end
+          end
+          @NetEnvironmentType = params['NetEnvironmentType']
+          @FreeCuNum = params['FreeCuNum']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
+            end
+          end
+          @IsolatedTime = params['IsolatedTime']
+          @ExpireTime = params['ExpireTime']
+          @SecondsUntilExpiry = params['SecondsUntilExpiry']
+          @AutoRenewFlag = params['AutoRenewFlag']
+          @DefaultCOSBucket = params['DefaultCOSBucket']
+          @CLSLogSet = params['CLSLogSet']
+          @CLSTopicId = params['CLSTopicId']
+          @CLSLogName = params['CLSLogName']
+          @CLSTopicName = params['CLSTopicName']
+          unless params['Version'].nil?
+            @Version = ClusterVersion.new
+            @Version.deserialize(params['Version'])
+          end
+          @FreeCu = params['FreeCu']
+          @DefaultLogCollectConf = params['DefaultLogCollectConf']
+          @CustomizedDNSEnabled = params['CustomizedDNSEnabled']
+          unless params['Correlations'].nil?
+            @Correlations = []
+            params['Correlations'].each do |i|
+              workspaceclusteritem_tmp = WorkSpaceClusterItem.new
+              workspaceclusteritem_tmp.deserialize(i)
+              @Correlations << workspaceclusteritem_tmp
+            end
+          end
+          @RunningCu = params['RunningCu']
+          @PayMode = params['PayMode']
+        end
+      end
+
+      # 集群的版本相关信息
+      class ClusterVersion < TencentCloud::Common::AbstractModel
+        # @param Flink: 集群的Flink版本
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Flink: String
+        # @param SupportedFlink: 集群支持的Flink版本
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SupportedFlink: Array
+
+        attr_accessor :Flink, :SupportedFlink
+        
+        def initialize(flink=nil, supportedflink=nil)
+          @Flink = flink
+          @SupportedFlink = supportedflink
+        end
+
+        def deserialize(params)
+          @Flink = params['Flink']
+          @SupportedFlink = params['SupportedFlink']
         end
       end
 
@@ -381,6 +616,42 @@ module TencentCloud
         end
       end
 
+      # DeleteJobs请求参数结构体
+      class DeleteJobsRequest < TencentCloud::Common::AbstractModel
+        # @param JobIds: 作业Id列表
+        # @type JobIds: Array
+        # @param WorkSpaceId: 工作空间Id
+        # @type WorkSpaceId: String
+
+        attr_accessor :JobIds, :WorkSpaceId
+        
+        def initialize(jobids=nil, workspaceid=nil)
+          @JobIds = jobids
+          @WorkSpaceId = workspaceid
+        end
+
+        def deserialize(params)
+          @JobIds = params['JobIds']
+          @WorkSpaceId = params['WorkSpaceId']
+        end
+      end
+
+      # DeleteJobs返回参数结构体
+      class DeleteJobsResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DeleteResourceConfigs请求参数结构体
       class DeleteResourceConfigsRequest < TencentCloud::Common::AbstractModel
         # @param ResourceId: 资源ID
@@ -497,6 +768,80 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeClusters请求参数结构体
+      class DescribeClustersRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterIds: 按照一个或者多个集群 ID 查询，每次请求的集群上限为 100
+        # @type ClusterIds: Array
+        # @param Offset: 偏移量，默认 0
+        # @type Offset: Integer
+        # @param Limit: 请求的集群数量，默认 20，最大值 100
+        # @type Limit: Integer
+        # @param OrderType: 集群信息结果排序规则，1 按时间降序，2 按照时间升序，3  按照状态排序
+        # @type OrderType: Integer
+        # @param Filters: 过滤规则
+        # @type Filters: Array
+        # @param WorkSpaceId: 工作空间 SerialId
+        # @type WorkSpaceId: String
+
+        attr_accessor :ClusterIds, :Offset, :Limit, :OrderType, :Filters, :WorkSpaceId
+        
+        def initialize(clusterids=nil, offset=nil, limit=nil, ordertype=nil, filters=nil, workspaceid=nil)
+          @ClusterIds = clusterids
+          @Offset = offset
+          @Limit = limit
+          @OrderType = ordertype
+          @Filters = filters
+          @WorkSpaceId = workspaceid
+        end
+
+        def deserialize(params)
+          @ClusterIds = params['ClusterIds']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @OrderType = params['OrderType']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+          @WorkSpaceId = params['WorkSpaceId']
+        end
+      end
+
+      # DescribeClusters返回参数结构体
+      class DescribeClustersResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 集群总数
+        # @type TotalCount: Integer
+        # @param ClusterSet: 集群列表
+        # @type ClusterSet: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :ClusterSet, :RequestId
+        
+        def initialize(totalcount=nil, clusterset=nil, requestid=nil)
+          @TotalCount = totalcount
+          @ClusterSet = clusterset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['ClusterSet'].nil?
+            @ClusterSet = []
+            params['ClusterSet'].each do |i|
+              cluster_tmp = Cluster.new
+              cluster_tmp.deserialize(i)
+              @ClusterSet << cluster_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -1006,6 +1351,38 @@ module TencentCloud
             end
           end
           @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeTreeJobs请求参数结构体
+      class DescribeTreeJobsRequest < TencentCloud::Common::AbstractModel
+        # @param WorkSpaceId: 工作空间 Serialid
+        # @type WorkSpaceId: String
+
+        attr_accessor :WorkSpaceId
+        
+        def initialize(workspaceid=nil)
+          @WorkSpaceId = workspaceid
+        end
+
+        def deserialize(params)
+          @WorkSpaceId = params['WorkSpaceId']
+        end
+      end
+
+      # DescribeTreeJobs返回参数结构体
+      class DescribeTreeJobsResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
           @RequestId = params['RequestId']
         end
       end
@@ -1900,6 +2277,28 @@ module TencentCloud
         end
       end
 
+      # 标签
+      class Tag < TencentCloud::Common::AbstractModel
+        # @param TagKey: 标签键
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TagKey: String
+        # @param TagValue: 标签值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TagValue: String
+
+        attr_accessor :TagKey, :TagValue
+        
+        def initialize(tagkey=nil, tagvalue=nil)
+          @TagKey = tagkey
+          @TagValue = tagvalue
+        end
+
+        def deserialize(params)
+          @TagKey = params['TagKey']
+          @TagValue = params['TagValue']
+        end
+      end
+
       # TriggerJobSavepoint请求参数结构体
       class TriggerJobSavepointRequest < TencentCloud::Common::AbstractModel
         # @param JobId: 作业 SerialId
@@ -1956,6 +2355,42 @@ module TencentCloud
           @FinalSavepointPath = params['FinalSavepointPath']
           @SavepointId = params['SavepointId']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 空间和集群绑定关系
+      class WorkSpaceClusterItem < TencentCloud::Common::AbstractModel
+        # @param ClusterGroupId: 集群 ID
+        # @type ClusterGroupId: Integer
+        # @param ClusterGroupSerialId: 集群 SerialId
+        # @type ClusterGroupSerialId: String
+        # @param ClusterName: 集群名称
+        # @type ClusterName: String
+        # @param WorkSpaceId: 工作空间 SerialId
+        # @type WorkSpaceId: String
+        # @param WorkSpaceName: 工作空间名称
+        # @type WorkSpaceName: String
+        # @param Status: 绑定状态  2 绑定 1  解除绑定
+        # @type Status: Integer
+
+        attr_accessor :ClusterGroupId, :ClusterGroupSerialId, :ClusterName, :WorkSpaceId, :WorkSpaceName, :Status
+        
+        def initialize(clustergroupid=nil, clustergroupserialid=nil, clustername=nil, workspaceid=nil, workspacename=nil, status=nil)
+          @ClusterGroupId = clustergroupid
+          @ClusterGroupSerialId = clustergroupserialid
+          @ClusterName = clustername
+          @WorkSpaceId = workspaceid
+          @WorkSpaceName = workspacename
+          @Status = status
+        end
+
+        def deserialize(params)
+          @ClusterGroupId = params['ClusterGroupId']
+          @ClusterGroupSerialId = params['ClusterGroupSerialId']
+          @ClusterName = params['ClusterName']
+          @WorkSpaceId = params['WorkSpaceId']
+          @WorkSpaceName = params['WorkSpaceName']
+          @Status = params['Status']
         end
       end
 

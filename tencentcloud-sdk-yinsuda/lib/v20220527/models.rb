@@ -317,15 +317,21 @@ module TencentCloud
         # @type MidiUrl: String
         # @param ChorusClipSet: 副歌片段信息。
         # @type ChorusClipSet: Array
+        # @param PreludeInterval: 前奏间隔。
+        # @type PreludeInterval: Integer
+        # @param GenreSet: 歌曲流派列表。
+        # @type GenreSet: Array
 
-        attr_accessor :KTVMusicBaseInfo, :PlayToken, :LyricsUrl, :MidiUrl, :ChorusClipSet
+        attr_accessor :KTVMusicBaseInfo, :PlayToken, :LyricsUrl, :MidiUrl, :ChorusClipSet, :PreludeInterval, :GenreSet
         
-        def initialize(ktvmusicbaseinfo=nil, playtoken=nil, lyricsurl=nil, midiurl=nil, chorusclipset=nil)
+        def initialize(ktvmusicbaseinfo=nil, playtoken=nil, lyricsurl=nil, midiurl=nil, chorusclipset=nil, preludeinterval=nil, genreset=nil)
           @KTVMusicBaseInfo = ktvmusicbaseinfo
           @PlayToken = playtoken
           @LyricsUrl = lyricsurl
           @MidiUrl = midiurl
           @ChorusClipSet = chorusclipset
+          @PreludeInterval = preludeinterval
+          @GenreSet = genreset
         end
 
         def deserialize(params)
@@ -344,6 +350,8 @@ module TencentCloud
               @ChorusClipSet << chorusclip_tmp
             end
           end
+          @PreludeInterval = params['PreludeInterval']
+          @GenreSet = params['GenreSet']
         end
       end
 
