@@ -77,6 +77,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 用于创建Logstash实例
+
+        # @param request: Request instance for CreateLogstashInstance.
+        # @type request: :class:`Tencentcloud::es::V20180416::CreateLogstashInstanceRequest`
+        # @rtype: :class:`Tencentcloud::es::V20180416::CreateLogstashInstanceResponse`
+        def CreateLogstashInstance(request)
+          body = send_request('CreateLogstashInstance', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateLogstashInstanceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 删除索引
 
         # @param request: Request instance for DeleteIndex.
@@ -111,6 +135,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteInstanceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 用于删除Logstash实例
+
+        # @param request: Request instance for DeleteLogstashInstance.
+        # @type request: :class:`Tencentcloud::es::V20180416::DeleteLogstashInstanceRequest`
+        # @rtype: :class:`Tencentcloud::es::V20180416::DeleteLogstashInstanceResponse`
+        def DeleteLogstashInstance(request)
+          body = send_request('DeleteLogstashInstance', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteLogstashInstanceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 用于批量删除Logstash管道
+
+        # @param request: Request instance for DeleteLogstashPipelines.
+        # @type request: :class:`Tencentcloud::es::V20180416::DeleteLogstashPipelinesRequest`
+        # @rtype: :class:`Tencentcloud::es::V20180416::DeleteLogstashPipelinesResponse`
+        def DeleteLogstashPipelines(request)
+          body = send_request('DeleteLogstashPipelines', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteLogstashPipelinesResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -245,6 +317,102 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询用户该地域下符合条件的Logstash实例的日志
+
+        # @param request: Request instance for DescribeLogstashInstanceLogs.
+        # @type request: :class:`Tencentcloud::es::V20180416::DescribeLogstashInstanceLogsRequest`
+        # @rtype: :class:`Tencentcloud::es::V20180416::DescribeLogstashInstanceLogsResponse`
+        def DescribeLogstashInstanceLogs(request)
+          body = send_request('DescribeLogstashInstanceLogs', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeLogstashInstanceLogsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询实例指定条件下的操作记录
+
+        # @param request: Request instance for DescribeLogstashInstanceOperations.
+        # @type request: :class:`Tencentcloud::es::V20180416::DescribeLogstashInstanceOperationsRequest`
+        # @rtype: :class:`Tencentcloud::es::V20180416::DescribeLogstashInstanceOperationsResponse`
+        def DescribeLogstashInstanceOperations(request)
+          body = send_request('DescribeLogstashInstanceOperations', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeLogstashInstanceOperationsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询用户该地域下符合条件的所有Logstash实例
+
+        # @param request: Request instance for DescribeLogstashInstances.
+        # @type request: :class:`Tencentcloud::es::V20180416::DescribeLogstashInstancesRequest`
+        # @rtype: :class:`Tencentcloud::es::V20180416::DescribeLogstashInstancesResponse`
+        def DescribeLogstashInstances(request)
+          body = send_request('DescribeLogstashInstances', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeLogstashInstancesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 用于获取Logstash实例管道列表
+
+        # @param request: Request instance for DescribeLogstashPipelines.
+        # @type request: :class:`Tencentcloud::es::V20180416::DescribeLogstashPipelinesRequest`
+        # @rtype: :class:`Tencentcloud::es::V20180416::DescribeLogstashPipelinesResponse`
+        def DescribeLogstashPipelines(request)
+          body = send_request('DescribeLogstashPipelines', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeLogstashPipelinesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询集群各视图数据，包括集群维度、节点维度、Kibana维度
 
         # @param request: Request instance for DescribeViews.
@@ -365,6 +533,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 用于重启Logstash实例
+
+        # @param request: Request instance for RestartLogstashInstance.
+        # @type request: :class:`Tencentcloud::es::V20180416::RestartLogstashInstanceRequest`
+        # @rtype: :class:`Tencentcloud::es::V20180416::RestartLogstashInstanceResponse`
+        def RestartLogstashInstance(request)
+          body = send_request('RestartLogstashInstance', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = RestartLogstashInstanceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 用于重启集群节点
 
         # @param request: Request instance for RestartNodes.
@@ -375,6 +567,78 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = RestartNodesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 用于下发并且部署管道
+
+        # @param request: Request instance for SaveAndDeployLogstashPipeline.
+        # @type request: :class:`Tencentcloud::es::V20180416::SaveAndDeployLogstashPipelineRequest`
+        # @rtype: :class:`Tencentcloud::es::V20180416::SaveAndDeployLogstashPipelineResponse`
+        def SaveAndDeployLogstashPipeline(request)
+          body = send_request('SaveAndDeployLogstashPipeline', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = SaveAndDeployLogstashPipelineResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 用于启动Logstash管道
+
+        # @param request: Request instance for StartLogstashPipelines.
+        # @type request: :class:`Tencentcloud::es::V20180416::StartLogstashPipelinesRequest`
+        # @rtype: :class:`Tencentcloud::es::V20180416::StartLogstashPipelinesResponse`
+        def StartLogstashPipelines(request)
+          body = send_request('StartLogstashPipelines', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = StartLogstashPipelinesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 用于批量停止Logstash管道
+
+        # @param request: Request instance for StopLogstashPipelines.
+        # @type request: :class:`Tencentcloud::es::V20180416::StopLogstashPipelinesRequest`
+        # @rtype: :class:`Tencentcloud::es::V20180416::StopLogstashPipelinesResponse`
+        def StopLogstashPipelines(request)
+          body = send_request('StopLogstashPipelines', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = StopLogstashPipelinesResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -502,6 +766,59 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = UpdateJdkResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 对集群进行节点规格变更，修改实例名称，修改配置，等操作。参数中InstanceId为必传参数，参数传递组合及含义如下：
+        # - InstanceName：修改实例名称(仅用于标识实例)
+        # - NodeNum: 修改实例节点数量（节点横向扩缩容，纵向扩缩容等）
+        # - YMLConfig: 修改实例YML配置
+        # - BindedES：修改绑定的ES集群配置
+        # 以上参数组合只能传递一种，多传或少传均会导致请求失败
+
+        # @param request: Request instance for UpdateLogstashInstance.
+        # @type request: :class:`Tencentcloud::es::V20180416::UpdateLogstashInstanceRequest`
+        # @rtype: :class:`Tencentcloud::es::V20180416::UpdateLogstashInstanceResponse`
+        def UpdateLogstashInstance(request)
+          body = send_request('UpdateLogstashInstance', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = UpdateLogstashInstanceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 用于更新管道描述信息
+
+        # @param request: Request instance for UpdateLogstashPipelineDesc.
+        # @type request: :class:`Tencentcloud::es::V20180416::UpdateLogstashPipelineDescRequest`
+        # @rtype: :class:`Tencentcloud::es::V20180416::UpdateLogstashPipelineDescResponse`
+        def UpdateLogstashPipelineDesc(request)
+          body = send_request('UpdateLogstashPipelineDesc', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = UpdateLogstashPipelineDescResponse.new
             model.deserialize(response['Response'])
             model
           else

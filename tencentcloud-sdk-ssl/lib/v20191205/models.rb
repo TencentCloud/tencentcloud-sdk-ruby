@@ -296,10 +296,13 @@ module TencentCloud
         # @param IsIgnore: 是否已忽略到期通知
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsIgnore: Boolean
+        # @param IsSM: 是否国密证书
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsSM: Boolean
 
-        attr_accessor :OwnerUin, :ProjectId, :From, :PackageType, :CertificateType, :ProductZhName, :Domain, :Alias, :Status, :CertificateExtra, :VulnerabilityStatus, :StatusMsg, :VerifyType, :CertBeginTime, :CertEndTime, :ValidityPeriod, :InsertTime, :CertificateId, :SubjectAltName, :PackageTypeName, :StatusName, :IsVip, :IsDv, :IsWildcard, :IsVulnerability, :RenewAble, :ProjectInfo, :BoundResource, :Deployable, :Tags, :IsIgnore
+        attr_accessor :OwnerUin, :ProjectId, :From, :PackageType, :CertificateType, :ProductZhName, :Domain, :Alias, :Status, :CertificateExtra, :VulnerabilityStatus, :StatusMsg, :VerifyType, :CertBeginTime, :CertEndTime, :ValidityPeriod, :InsertTime, :CertificateId, :SubjectAltName, :PackageTypeName, :StatusName, :IsVip, :IsDv, :IsWildcard, :IsVulnerability, :RenewAble, :ProjectInfo, :BoundResource, :Deployable, :Tags, :IsIgnore, :IsSM
         
-        def initialize(owneruin=nil, projectid=nil, from=nil, packagetype=nil, certificatetype=nil, productzhname=nil, domain=nil, _alias=nil, status=nil, certificateextra=nil, vulnerabilitystatus=nil, statusmsg=nil, verifytype=nil, certbegintime=nil, certendtime=nil, validityperiod=nil, inserttime=nil, certificateid=nil, subjectaltname=nil, packagetypename=nil, statusname=nil, isvip=nil, isdv=nil, iswildcard=nil, isvulnerability=nil, renewable=nil, projectinfo=nil, boundresource=nil, deployable=nil, tags=nil, isignore=nil)
+        def initialize(owneruin=nil, projectid=nil, from=nil, packagetype=nil, certificatetype=nil, productzhname=nil, domain=nil, _alias=nil, status=nil, certificateextra=nil, vulnerabilitystatus=nil, statusmsg=nil, verifytype=nil, certbegintime=nil, certendtime=nil, validityperiod=nil, inserttime=nil, certificateid=nil, subjectaltname=nil, packagetypename=nil, statusname=nil, isvip=nil, isdv=nil, iswildcard=nil, isvulnerability=nil, renewable=nil, projectinfo=nil, boundresource=nil, deployable=nil, tags=nil, isignore=nil, issm=nil)
           @OwnerUin = owneruin
           @ProjectId = projectid
           @From = from
@@ -331,6 +334,7 @@ module TencentCloud
           @Deployable = deployable
           @Tags = tags
           @IsIgnore = isignore
+          @IsSM = issm
         end
 
         def deserialize(params)
@@ -378,6 +382,7 @@ module TencentCloud
             end
           end
           @IsIgnore = params['IsIgnore']
+          @IsSM = params['IsSM']
         end
       end
 
@@ -1212,7 +1217,7 @@ module TencentCloud
         # @type ProjectId: Integer
         # @param ExpirationSort: 按到期时间排序：DESC = 降序， ASC = 升序。
         # @type ExpirationSort: String
-        # @param CertificateStatus: 证书状态。
+        # @param CertificateStatus: 证书状态：0 = 审核中，1 = 已通过，2 = 审核失败，3 = 已过期，4 = 已添加DNS记录，5 = 企业证书，待提交，6 = 订单取消中，7 = 已取消，8 = 已提交资料， 待上传确认函，9 = 证书吊销中，10 = 已吊销，11 = 重颁发中，12 = 待上传吊销确认函，13 = 免费证书待提交资料。
         # @type CertificateStatus: Array
         # @param Deployable: 是否可部署，可选值：1 = 可部署，0 =  不可部署。
         # @type Deployable: Integer
@@ -1222,10 +1227,12 @@ module TencentCloud
         # @type Renew: Integer
         # @param FilterSource: 筛选来源， upload：上传证书， buy：腾讯云证书， 不传默认全部
         # @type FilterSource: String
+        # @param IsSM: 是否筛选国密证书。1:筛选  0:不筛选
+        # @type IsSM: Integer
 
-        attr_accessor :Offset, :Limit, :SearchKey, :CertificateType, :ProjectId, :ExpirationSort, :CertificateStatus, :Deployable, :Upload, :Renew, :FilterSource
+        attr_accessor :Offset, :Limit, :SearchKey, :CertificateType, :ProjectId, :ExpirationSort, :CertificateStatus, :Deployable, :Upload, :Renew, :FilterSource, :IsSM
         
-        def initialize(offset=nil, limit=nil, searchkey=nil, certificatetype=nil, projectid=nil, expirationsort=nil, certificatestatus=nil, deployable=nil, upload=nil, renew=nil, filtersource=nil)
+        def initialize(offset=nil, limit=nil, searchkey=nil, certificatetype=nil, projectid=nil, expirationsort=nil, certificatestatus=nil, deployable=nil, upload=nil, renew=nil, filtersource=nil, issm=nil)
           @Offset = offset
           @Limit = limit
           @SearchKey = searchkey
@@ -1237,6 +1244,7 @@ module TencentCloud
           @Upload = upload
           @Renew = renew
           @FilterSource = filtersource
+          @IsSM = issm
         end
 
         def deserialize(params)
@@ -1251,6 +1259,7 @@ module TencentCloud
           @Upload = params['Upload']
           @Renew = params['Renew']
           @FilterSource = params['FilterSource']
+          @IsSM = params['IsSM']
         end
       end
 

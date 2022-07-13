@@ -98,7 +98,7 @@ module TencentCloud
         # @param TaskErrMsg: 错误信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskErrMsg: String
-        # @param Source: 任务来源,0:默认值(私域), 1:灵犀, 2:灵鲲
+        # @param Source: 任务来源,0:小程序诊断, 1:预留字段(暂未使用), 2:app诊断(android)
         # @type Source: Integer
         # @param AppInfo: 应用信息
         # @type AppInfo: :class:`Tencentcloud::Acp.v20220105.models.AppInfoItem`
@@ -142,7 +142,7 @@ module TencentCloud
 
       # CreateAppScanTaskRepeat请求参数结构体
       class CreateAppScanTaskRepeatRequest < TencentCloud::Common::AbstractModel
-        # @param Source: 任务来源, 0:默认值(私域), 1:灵犀, 2:灵鲲;
+        # @param Source: 任务来源, 0:小程序诊断, 1:预留字段(暂未使用), 2:app诊断(android);
         # @type Source: Integer
         # @param Platform: 应用平台, 0:android, 1:ios, 2:小程序
         # @type Platform: Integer
@@ -152,11 +152,11 @@ module TencentCloud
         # @type OrgTaskID: String
         # @param AppPackage: App包名
         # @type AppPackage: String
-        # @param FileID: 上传的文件ID(灵犀诊断必填)
+        # @param FileID: 上传的文件ID(任务来源为1时必填)
         # @type FileID: String
-        # @param AppDownloadUrl: 软件下载链接地址(灵鲲诊断必填)
+        # @param AppDownloadUrl: 软件下载链接地址(任务来源为2时必填)
         # @type AppDownloadUrl: String
-        # @param PrivacyTextUrl: 隐私文本下载地址(灵鲲诊断必填)
+        # @param PrivacyTextUrl: 隐私文本下载地址(任务来源为2时必填)
         # @type PrivacyTextUrl: String
         # @param AppName: 应用名称
         # @type AppName: String
@@ -220,7 +220,7 @@ module TencentCloud
       class CreateAppScanTaskRequest < TencentCloud::Common::AbstractModel
         # @param TaskType: 任务类型, 0:基础版, 1:专家版, 2:本地化
         # @type TaskType: Integer
-        # @param Source: 任务来源, 0:默认值(私域), 1:灵犀, 2:灵鲲;
+        # @param Source: 任务来源, 0:小程序诊断, 1:预留字段(暂未使用), 2:app诊断(android);
         # @type Source: Integer
         # @param Platform: 应用平台, 0:android, 1:ios, 2:小程序
         # @type Platform: Integer
@@ -230,11 +230,11 @@ module TencentCloud
         # @type AppName: String
         # @param AppVersion: App版本
         # @type AppVersion: String
-        # @param FileID: 上传的软件文件ID(灵犀诊断必填)
+        # @param FileID: 上传的软件文件ID(任务来源为1时必填)
         # @type FileID: String
-        # @param AppDownloadUrl: 软件下载链接地址(灵鲲诊断必填)
+        # @param AppDownloadUrl: 软件下载链接地址(任务来源为2时必填)
         # @type AppDownloadUrl: String
-        # @param PrivacyTextUrl: 隐私文本下载地址(灵鲲诊断必填)
+        # @param PrivacyTextUrl: 隐私文本下载地址(任务来源为2时必填)
         # @type PrivacyTextUrl: String
         # @param ContactName: 联系人信息
         # @type ContactName: String
@@ -323,7 +323,7 @@ module TencentCloud
 
       # DescribeFileTicket请求参数结构体
       class DescribeFileTicketRequest < TencentCloud::Common::AbstractModel
-        # @param Source: 任务来源, 0:默认值(私域), 1:灵犀, 2:灵鲲;
+        # @param Source: 任务来源, 0:小程序诊断, 1:预留字段(暂未使用), 2:app诊断(android);
         # @type Source: Integer
         # @param Platform: 应用平台, 0:android, 1:ios, 2:小程序
         # @type Platform: Integer
@@ -345,12 +345,12 @@ module TencentCloud
       class DescribeFileTicketResponse < TencentCloud::Common::AbstractModel
         # @param Result: 返回值, 0:成功, 其他值请查看“返回值”定义
         # @type Result: Integer
-        # @param UploadUrl: 上传url(灵鲲:Post方法（100:apk,101:txt）, 灵犀:put方法)
+        # @param UploadUrl: 上传url(任务来源为2时:Post方法（100:apk,101:txt）, 任务来源为1时:put方法)
         # @type UploadUrl: String
-        # @param UploadSign: 上传url鉴权信息(灵犀上传需要, Authorization参数值)
+        # @param UploadSign: 上传url鉴权信息(任务来源为1时上传需要, Authorization参数值)
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UploadSign: String
-        # @param FildID: 上传文件ID(灵犀提交诊断任务需要)
+        # @param FildID: 上传文件ID(任务来源为1时提交诊断任务需要)
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FildID: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
@@ -420,7 +420,7 @@ module TencentCloud
 
       # DescribeScanTaskList请求参数结构体
       class DescribeScanTaskListRequest < TencentCloud::Common::AbstractModel
-        # @param Source: 任务来源, -1:所有, 0:默认值(私域), 1:灵犀, 2:灵鲲;
+        # @param Source: 任务来源, -1:所有, 0:小程序诊断, 1:预留字段(暂未使用), 2:app诊断(android);
         # @type Source: Integer
         # @param Platform: 应用平台, 0:android, 1:ios, 2:小程序
         # @type Platform: Integer
@@ -504,7 +504,7 @@ module TencentCloud
 
       # DescribeScanTaskReportUrl请求参数结构体
       class DescribeScanTaskReportUrlRequest < TencentCloud::Common::AbstractModel
-        # @param Source: 任务来源, 0:默认值(私域), 1:灵犀, 2:灵鲲;
+        # @param Source: 任务来源, 0:小程序诊断, 1:预留字段(暂未使用), 2:app诊断(android);
         # @type Source: Integer
         # @param Platform: 应用平台, 0:android, 1:ios, 2:小程序
         # @type Platform: Integer
@@ -566,7 +566,7 @@ module TencentCloud
 
       # DescribeScanTaskStatus请求参数结构体
       class DescribeScanTaskStatusRequest < TencentCloud::Common::AbstractModel
-        # @param Source: 任务来源, 0:默认值(私域), 1:灵犀, 2:灵鲲;
+        # @param Source: 任务来源, 0:小程序诊断, 1:预留字段(暂未使用), 2:app诊断(android);
         # @type Source: Integer
         # @param Platform: 应用平台, 0:android, 1:ios, 2:小程序
         # @type Platform: Integer

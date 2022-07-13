@@ -53,6 +53,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口（BanAndRecoverProxy）用于联通封禁解封GAAP跨境通道实例，支持按照客户UIN维度下发请求。被封禁的实例带宽上限将会被限制到0Mbps，无法正常处理客户端和源站之间的请求。
+
+        # @param request: Request instance for BanAndRecoverProxy.
+        # @type request: :class:`Tencentcloud::gaap::V20180529::BanAndRecoverProxyRequest`
+        # @rtype: :class:`Tencentcloud::gaap::V20180529::BanAndRecoverProxyResponse`
+        def BanAndRecoverProxy(request)
+          body = send_request('BanAndRecoverProxy', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = BanAndRecoverProxyResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（BindListenerRealServers）用于TCP/UDP监听器绑定解绑源站。
         # 注意：本接口会解绑之前绑定的源站，绑定本次调用所选择的源站。例如：原来绑定的源站为A，B，C，本次调用的选择绑定的源站为C，D，E，那么调用后所绑定的源站为C，D，E。
 
@@ -905,6 +929,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeCountryAreaMappingResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口（DescribeCrossBorderProxies）用于查询跨境通道实例列表。
+
+        # @param request: Request instance for DescribeCrossBorderProxies.
+        # @type request: :class:`Tencentcloud::gaap::V20180529::DescribeCrossBorderProxiesRequest`
+        # @rtype: :class:`Tencentcloud::gaap::V20180529::DescribeCrossBorderProxiesResponse`
+        def DescribeCrossBorderProxies(request)
+          body = send_request('DescribeCrossBorderProxies', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeCrossBorderProxiesResponse.new
             model.deserialize(response['Response'])
             model
           else

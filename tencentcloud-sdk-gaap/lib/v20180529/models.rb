@@ -182,6 +182,33 @@ module TencentCloud
         end
       end
 
+      # BanAndRecoverProxy请求参数结构体
+      class BanAndRecoverProxyRequest < TencentCloud::Common::AbstractModel
+
+        
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # BanAndRecoverProxy返回参数结构体
+      class BanAndRecoverProxyResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 带宽梯度价格
       class BandwidthPriceGradient < TencentCloud::Common::AbstractModel
         # @param BandwidthRange: 带宽范围。
@@ -2331,6 +2358,33 @@ module TencentCloud
               @CountryAreaMappingList << countryareamap_tmp
             end
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeCrossBorderProxies请求参数结构体
+      class DescribeCrossBorderProxiesRequest < TencentCloud::Common::AbstractModel
+
+        
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeCrossBorderProxies返回参数结构体
+      class DescribeCrossBorderProxiesResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
           @RequestId = params['RequestId']
         end
       end

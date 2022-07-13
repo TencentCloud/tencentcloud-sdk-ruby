@@ -130,6 +130,81 @@ module TencentCloud
         end
       end
 
+      # CreateProduct请求参数结构体
+      class CreateProductRequest < TencentCloud::Common::AbstractModel
+        # @param ProductName: 产品名称
+        # @type ProductName: String
+        # @param DeviceType: 产品设备类型 1.普通设备 2.NVR设备
+        # @type DeviceType: Integer
+        # @param ProductVaildYears: 产品有效期
+        # @type ProductVaildYears: Integer
+        # @param Features: 设备功能码 ypsxth音频双向通话 spdxth视频单向通话 sxysp双向音视频
+        # @type Features: Array
+        # @param ChipOs: 设备操作系统，通用设备填default
+        # @type ChipOs: String
+        # @param ChipManufactureId: 芯片厂商id，通用设备填default
+        # @type ChipManufactureId: String
+        # @param ChipId: 芯片id，通用设备填default
+        # @type ChipId: String
+        # @param ProductDescription: 产品描述信息
+        # @type ProductDescription: String
+        # @param EncryptionType: 认证方式 只支持取值为2 psk认证
+        # @type EncryptionType: Integer
+        # @param NetType: 连接类型，wifi表示WIFI连接，cellular表示4G连接
+        # @type NetType: String
+
+        attr_accessor :ProductName, :DeviceType, :ProductVaildYears, :Features, :ChipOs, :ChipManufactureId, :ChipId, :ProductDescription, :EncryptionType, :NetType
+        
+        def initialize(productname=nil, devicetype=nil, productvaildyears=nil, features=nil, chipos=nil, chipmanufactureid=nil, chipid=nil, productdescription=nil, encryptiontype=nil, nettype=nil)
+          @ProductName = productname
+          @DeviceType = devicetype
+          @ProductVaildYears = productvaildyears
+          @Features = features
+          @ChipOs = chipos
+          @ChipManufactureId = chipmanufactureid
+          @ChipId = chipid
+          @ProductDescription = productdescription
+          @EncryptionType = encryptiontype
+          @NetType = nettype
+        end
+
+        def deserialize(params)
+          @ProductName = params['ProductName']
+          @DeviceType = params['DeviceType']
+          @ProductVaildYears = params['ProductVaildYears']
+          @Features = params['Features']
+          @ChipOs = params['ChipOs']
+          @ChipManufactureId = params['ChipManufactureId']
+          @ChipId = params['ChipId']
+          @ProductDescription = params['ProductDescription']
+          @EncryptionType = params['EncryptionType']
+          @NetType = params['NetType']
+        end
+      end
+
+      # CreateProduct返回参数结构体
+      class CreateProductResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 产品详情
+        # @type Data: :class:`Tencentcloud::Iotvideo.v20211125.models.VideoProduct`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+        
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = VideoProduct.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeDeviceDataStats请求参数结构体
       class DescribeDeviceDataStatsRequest < TencentCloud::Common::AbstractModel
         # @param StartDate: 开始日期
@@ -280,6 +355,73 @@ module TencentCloud
         end
       end
 
+      # 设备签名信息
+      class DeviceSignatureInfo < TencentCloud::Common::AbstractModel
+        # @param DeviceName: 设备名称
+        # @type DeviceName: String
+        # @param DeviceSignature: 设备签名
+        # @type DeviceSignature: String
+
+        attr_accessor :DeviceName, :DeviceSignature
+        
+        def initialize(devicename=nil, devicesignature=nil)
+          @DeviceName = devicename
+          @DeviceSignature = devicesignature
+        end
+
+        def deserialize(params)
+          @DeviceName = params['DeviceName']
+          @DeviceSignature = params['DeviceSignature']
+        end
+      end
+
+      # GenSingleDeviceSignatureOfPublic请求参数结构体
+      class GenSingleDeviceSignatureOfPublicRequest < TencentCloud::Common::AbstractModel
+        # @param ProductId: 设备所属的产品ID
+        # @type ProductId: String
+        # @param DeviceName: 需要绑定的设备
+        # @type DeviceName: String
+        # @param Expire: 设备绑定签名的有效时间,以秒为单位。取值范围：0 < Expire <= 86400，Expire == -1（十年）
+        # @type Expire: Integer
+
+        attr_accessor :ProductId, :DeviceName, :Expire
+        
+        def initialize(productid=nil, devicename=nil, expire=nil)
+          @ProductId = productid
+          @DeviceName = devicename
+          @Expire = expire
+        end
+
+        def deserialize(params)
+          @ProductId = params['ProductId']
+          @DeviceName = params['DeviceName']
+          @Expire = params['Expire']
+        end
+      end
+
+      # GenSingleDeviceSignatureOfPublic返回参数结构体
+      class GenSingleDeviceSignatureOfPublicResponse < TencentCloud::Common::AbstractModel
+        # @param DeviceSignature: 设备签名信息
+        # @type DeviceSignature: :class:`Tencentcloud::Iotvideo.v20211125.models.DeviceSignatureInfo`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :DeviceSignature, :RequestId
+        
+        def initialize(devicesignature=nil, requestid=nil)
+          @DeviceSignature = devicesignature
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['DeviceSignature'].nil?
+            @DeviceSignature = DeviceSignatureInfo.new
+            @DeviceSignature.deserialize(params['DeviceSignature'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 消息数量统计
       class MessageCntStats < TencentCloud::Common::AbstractModel
         # @param Date: 统计日期
@@ -308,6 +450,67 @@ module TencentCloud
           @UpMsgCnt = params['UpMsgCnt']
           @DownMsgCnt = params['DownMsgCnt']
           @NtpMsgCnt = params['NtpMsgCnt']
+        end
+      end
+
+      # video产品元数据
+      class VideoProduct < TencentCloud::Common::AbstractModel
+        # @param ProductId: 产品ID
+        # @type ProductId: String
+        # @param ProductName: 产品名称
+        # @type ProductName: String
+        # @param DeviceType: 产品设备类型（普通设备)	1.普通设备
+        # @type DeviceType: Integer
+        # @param EncryptionType: 认证方式：2：PSK
+        # @type EncryptionType: Integer
+        # @param Features: 设备功能码
+        # @type Features: Array
+        # @param ChipOs: 操作系统
+        # @type ChipOs: String
+        # @param ChipManufactureId: 芯片厂商id
+        # @type ChipManufactureId: String
+        # @param ChipId: 芯片id
+        # @type ChipId: String
+        # @param ProductDescription: 产品描述信息
+        # @type ProductDescription: String
+        # @param CreateTime: 创建时间unix时间戳
+        # @type CreateTime: Integer
+        # @param UpdateTime: 修改时间unix时间戳
+        # @type UpdateTime: Integer
+        # @param NetType: 连接类型，wifi表示WIFI连接，cellular表示4G连接
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NetType: String
+
+        attr_accessor :ProductId, :ProductName, :DeviceType, :EncryptionType, :Features, :ChipOs, :ChipManufactureId, :ChipId, :ProductDescription, :CreateTime, :UpdateTime, :NetType
+        
+        def initialize(productid=nil, productname=nil, devicetype=nil, encryptiontype=nil, features=nil, chipos=nil, chipmanufactureid=nil, chipid=nil, productdescription=nil, createtime=nil, updatetime=nil, nettype=nil)
+          @ProductId = productid
+          @ProductName = productname
+          @DeviceType = devicetype
+          @EncryptionType = encryptiontype
+          @Features = features
+          @ChipOs = chipos
+          @ChipManufactureId = chipmanufactureid
+          @ChipId = chipid
+          @ProductDescription = productdescription
+          @CreateTime = createtime
+          @UpdateTime = updatetime
+          @NetType = nettype
+        end
+
+        def deserialize(params)
+          @ProductId = params['ProductId']
+          @ProductName = params['ProductName']
+          @DeviceType = params['DeviceType']
+          @EncryptionType = params['EncryptionType']
+          @Features = params['Features']
+          @ChipOs = params['ChipOs']
+          @ChipManufactureId = params['ChipManufactureId']
+          @ChipId = params['ChipId']
+          @ProductDescription = params['ProductDescription']
+          @CreateTime = params['CreateTime']
+          @UpdateTime = params['UpdateTime']
+          @NetType = params['NetType']
         end
       end
 

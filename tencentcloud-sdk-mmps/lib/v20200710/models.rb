@@ -83,7 +83,7 @@ module TencentCloud
         # @param TaskErrMsg: 错误信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskErrMsg: String
-        # @param Source: 来源,0:默认值(私域), 1:灵犀, 2:灵鲲
+        # @param Source: 任务来源,0:小程序诊断, 1:预留字段(暂未使用), 2:app诊断(android);
         # @type Source: Integer
         # @param AppInfo: 应用信息
         # @type AppInfo: :class:`Tencentcloud::Mmps.v20200710.models.AppInfoItem`
@@ -124,7 +124,7 @@ module TencentCloud
       class CreateAppScanTaskRepeatRequest < TencentCloud::Common::AbstractModel
         # @param TaskType: 任务类型, 0:基础版, 1:专家版, 2:本地化
         # @type TaskType: Integer
-        # @param Source: 任务来源, 0:默认值(私域), 1:灵犀, 2:灵鲲;
+        # @param Source: 任务来源, 0:小程序诊断, 1:预留字段(暂未使用), 2:app诊断(android);
         # @type Source: Integer
         # @param AppPackage: 小程序AppID
         # @type AppPackage: String
@@ -180,7 +180,7 @@ module TencentCloud
       class CreateAppScanTaskRequest < TencentCloud::Common::AbstractModel
         # @param TaskType: 任务类型, 0:基础版, 1:专家版, 2:本地化
         # @type TaskType: Integer
-        # @param Source: 任务来源, 0:默认值(私域), 1:灵犀, 2:灵鲲;
+        # @param Source: 任务来源, 0:小程序诊断, 1:预留字段(暂未使用), 2:app诊断(android);
         # @type Source: Integer
         # @param AppPackage: 小程序AppID
         # @type AppPackage: String
@@ -789,7 +789,7 @@ module TencentCloud
 
       # DescribeScanTaskList请求参数结构体
       class DescribeScanTaskListRequest < TencentCloud::Common::AbstractModel
-        # @param Source: 任务来源, -1:所有, 0:默认值(私域), 1:灵犀, 2:灵鲲;
+        # @param Source: 任务来源, -1:所有, 0:小程序诊断, 1:预留字段(暂未使用), 2:app诊断(android);
         # @type Source: Integer
         # @param Platform: 应用平台, 0:android, 1:ios, 2:小程序
         # @type Platform: Integer
@@ -874,7 +874,7 @@ module TencentCloud
 
       # DescribeScanTaskReportUrl请求参数结构体
       class DescribeScanTaskReportUrlRequest < TencentCloud::Common::AbstractModel
-        # @param Source: 任务来源, 0:默认值(私域), 1:灵犀, 2:灵鲲;
+        # @param Source: 任务来源, 0:小程序诊断, 1:预留字段(暂未使用), 2:app诊断(android);
         # @type Source: Integer
         # @param TaskID: 任务id
         # @type TaskID: String
@@ -937,7 +937,7 @@ module TencentCloud
       class DescribeScanTaskStatusRequest < TencentCloud::Common::AbstractModel
         # @param TaskType: 任务类型, 0:基础版, 1:专家版, 2:本地化
         # @type TaskType: Integer
-        # @param Source: 任务来源, 0:默认值(私域), 1:灵犀, 2:灵鲲;
+        # @param Source: 任务来源, 0:小程序诊断, 1:预留字段(暂未使用), 2:app诊断(android);
         # @type Source: Integer
         # @param TaskID: 任务id
         # @type TaskID: String

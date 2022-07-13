@@ -424,6 +424,113 @@ module TencentCloud
         end
       end
 
+      # CreateLogstashInstance请求参数结构体
+      class CreateLogstashInstanceRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceName: 实例名称（1-50 个英文、汉字、数字、连接线-或下划线_）
+        # @type InstanceName: String
+        # @param Zone: 可用区
+        # @type Zone: String
+        # @param LogstashVersion: 实例版本（支持"6.8.13"、"7.10.1"）
+        # @type LogstashVersion: String
+        # @param VpcId: 私有网络ID
+        # @type VpcId: String
+        # @param SubnetId: 子网ID
+        # @type SubnetId: String
+        # @param NodeNum: 节点数量（2-50个）
+        # @type NodeNum: Integer
+        # @param ChargeType: 计费类型<li>PREPAID：预付费，即包年包月</li><li>POSTPAID_BY_HOUR：按小时后付费</li>默认值POSTPAID_BY_HOUR
+        # @type ChargeType: String
+        # @param ChargePeriod: 包年包月购买时长（单位由参数TimeUnit决定）
+        # @type ChargePeriod: Integer
+        # @param TimeUnit: 计费时长单位（ChargeType为PREPAID时需要设置，默认值为“m”，表示月，当前只支持“m”）
+        # @type TimeUnit: String
+        # @param AutoVoucher: 是否自动使用代金券<li>0：不自动使用</li><li>1：自动使用</li>默认值0
+        # @type AutoVoucher: Integer
+        # @param VoucherIds: 代金券ID列表（目前仅支持指定一张代金券）
+        # @type VoucherIds: Array
+        # @param RenewFlag: 自动续费标识<li>RENEW_FLAG_AUTO：自动续费</li><li>RENEW_FLAG_MANUAL：不自动续费，用户手动续费</li>ChargeType为PREPAID时需要设置，如不传递该参数，普通用户默认不自动续费，SVIP用户自动续费
+        # @type RenewFlag: String
+        # @param NodeType: 节点规格<li>LOGSTASH.S1.SMALL2：1核2G</li><li>LOGSTASH.S1.MEDIUM4：2核4G</li><li>LOGSTASH.S1.MEDIUM8：2核8G</li><li>LOGSTASH.S1.LARGE16：4核16G</li><li>LOGSTASH.S1.2XLARGE32：8核32G</li><li>LOGSTASH.S1.4XLARGE32：16核32G</li><li>LOGSTASH.S1.4XLARGE64：16核64G</li>
+        # @type NodeType: String
+        # @param DiskType: 节点磁盘类型<li>CLOUD_SSD：SSD云硬盘</li><li>CLOUD_PREMIUM：高硬能云硬盘</li>默认值CLOUD_SSD
+        # @type DiskType: String
+        # @param DiskSize: 节点磁盘容量（单位GB）
+        # @type DiskSize: Integer
+        # @param LicenseType: License类型<li>oss：开源版</li><li>xpack：xpack版</li>默认值xpack
+        # @type LicenseType: String
+        # @param TagList: 标签信息列表
+        # @type TagList: Array
+
+        attr_accessor :InstanceName, :Zone, :LogstashVersion, :VpcId, :SubnetId, :NodeNum, :ChargeType, :ChargePeriod, :TimeUnit, :AutoVoucher, :VoucherIds, :RenewFlag, :NodeType, :DiskType, :DiskSize, :LicenseType, :TagList
+        
+        def initialize(instancename=nil, zone=nil, logstashversion=nil, vpcid=nil, subnetid=nil, nodenum=nil, chargetype=nil, chargeperiod=nil, timeunit=nil, autovoucher=nil, voucherids=nil, renewflag=nil, nodetype=nil, disktype=nil, disksize=nil, licensetype=nil, taglist=nil)
+          @InstanceName = instancename
+          @Zone = zone
+          @LogstashVersion = logstashversion
+          @VpcId = vpcid
+          @SubnetId = subnetid
+          @NodeNum = nodenum
+          @ChargeType = chargetype
+          @ChargePeriod = chargeperiod
+          @TimeUnit = timeunit
+          @AutoVoucher = autovoucher
+          @VoucherIds = voucherids
+          @RenewFlag = renewflag
+          @NodeType = nodetype
+          @DiskType = disktype
+          @DiskSize = disksize
+          @LicenseType = licensetype
+          @TagList = taglist
+        end
+
+        def deserialize(params)
+          @InstanceName = params['InstanceName']
+          @Zone = params['Zone']
+          @LogstashVersion = params['LogstashVersion']
+          @VpcId = params['VpcId']
+          @SubnetId = params['SubnetId']
+          @NodeNum = params['NodeNum']
+          @ChargeType = params['ChargeType']
+          @ChargePeriod = params['ChargePeriod']
+          @TimeUnit = params['TimeUnit']
+          @AutoVoucher = params['AutoVoucher']
+          @VoucherIds = params['VoucherIds']
+          @RenewFlag = params['RenewFlag']
+          @NodeType = params['NodeType']
+          @DiskType = params['DiskType']
+          @DiskSize = params['DiskSize']
+          @LicenseType = params['LicenseType']
+          unless params['TagList'].nil?
+            @TagList = []
+            params['TagList'].each do |i|
+              taginfo_tmp = TagInfo.new
+              taginfo_tmp.deserialize(i)
+              @TagList << taginfo_tmp
+            end
+          end
+        end
+      end
+
+      # CreateLogstashInstance返回参数结构体
+      class CreateLogstashInstanceResponse < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :InstanceId, :RequestId
+        
+        def initialize(instanceid=nil, requestid=nil)
+          @InstanceId = instanceid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DeleteIndex请求参数结构体
       class DeleteIndexRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: ES集群ID
@@ -494,6 +601,74 @@ module TencentCloud
 
       # DeleteInstance返回参数结构体
       class DeleteInstanceResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteLogstashInstance请求参数结构体
+      class DeleteLogstashInstanceRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+
+        attr_accessor :InstanceId
+        
+        def initialize(instanceid=nil)
+          @InstanceId = instanceid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+        end
+      end
+
+      # DeleteLogstashInstance返回参数结构体
+      class DeleteLogstashInstanceResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteLogstashPipelines请求参数结构体
+      class DeleteLogstashPipelinesRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+        # @param PipelineIds: 管道ID列表
+        # @type PipelineIds: Array
+
+        attr_accessor :InstanceId, :PipelineIds
+        
+        def initialize(instanceid=nil, pipelineids=nil)
+          @InstanceId = instanceid
+          @PipelineIds = pipelineids
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @PipelineIds = params['PipelineIds']
+        end
+      end
+
+      # DeleteLogstashPipelines返回参数结构体
+      class DeleteLogstashPipelinesResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -885,6 +1060,267 @@ module TencentCloud
               instanceinfo_tmp = InstanceInfo.new
               instanceinfo_tmp.deserialize(i)
               @InstanceList << instanceinfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeLogstashInstanceLogs请求参数结构体
+      class DescribeLogstashInstanceLogsRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+        # @param LogType: 日志类型，默认值为1
+        # <li>1, 主日志</li>
+        # <li>2, 慢日志</li>
+        # <li>3, GC日志</li>
+        # @type LogType: Integer
+        # @param SearchKey: 搜索词，支持LUCENE语法，如 level:WARN、ip:1.1.1.1、message:test-index等
+        # @type SearchKey: String
+        # @param StartTime: 日志开始时间，格式为YYYY-MM-DD HH:MM:SS, 如2019-01-22 20:15:53
+        # @type StartTime: String
+        # @param EndTime: 日志结束时间，格式为YYYY-MM-DD HH:MM:SS, 如2019-01-22 20:15:53
+        # @type EndTime: String
+        # @param Offset: 分页起始值, 默认值为0
+        # @type Offset: Integer
+        # @param Limit: 分页大小，默认值为100，最大值100
+        # @type Limit: Integer
+        # @param OrderByType: 时间排序方式，默认值为0
+        # <li>0, 降序</li>
+        # <li>1, 升序</li>
+        # @type OrderByType: Integer
+
+        attr_accessor :InstanceId, :LogType, :SearchKey, :StartTime, :EndTime, :Offset, :Limit, :OrderByType
+        
+        def initialize(instanceid=nil, logtype=nil, searchkey=nil, starttime=nil, endtime=nil, offset=nil, limit=nil, orderbytype=nil)
+          @InstanceId = instanceid
+          @LogType = logtype
+          @SearchKey = searchkey
+          @StartTime = starttime
+          @EndTime = endtime
+          @Offset = offset
+          @Limit = limit
+          @OrderByType = orderbytype
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @LogType = params['LogType']
+          @SearchKey = params['SearchKey']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @OrderByType = params['OrderByType']
+        end
+      end
+
+      # DescribeLogstashInstanceLogs返回参数结构体
+      class DescribeLogstashInstanceLogsResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 返回的日志条数
+        # @type TotalCount: Integer
+        # @param InstanceLogList: 日志详细信息列表
+        # @type InstanceLogList: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :InstanceLogList, :RequestId
+        
+        def initialize(totalcount=nil, instanceloglist=nil, requestid=nil)
+          @TotalCount = totalcount
+          @InstanceLogList = instanceloglist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['InstanceLogList'].nil?
+            @InstanceLogList = []
+            params['InstanceLogList'].each do |i|
+              instancelog_tmp = InstanceLog.new
+              instancelog_tmp.deserialize(i)
+              @InstanceLogList << instancelog_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeLogstashInstanceOperations请求参数结构体
+      class DescribeLogstashInstanceOperationsRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+        # @param StartTime: 起始时间, e.g. "2019-03-07 16:30:39"
+        # @type StartTime: String
+        # @param EndTime: 结束时间, e.g. "2019-03-30 20:18:03"
+        # @type EndTime: String
+        # @param Offset: 分页起始值
+        # @type Offset: Integer
+        # @param Limit: 分页大小
+        # @type Limit: Integer
+
+        attr_accessor :InstanceId, :StartTime, :EndTime, :Offset, :Limit
+        
+        def initialize(instanceid=nil, starttime=nil, endtime=nil, offset=nil, limit=nil)
+          @InstanceId = instanceid
+          @StartTime = starttime
+          @EndTime = endtime
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeLogstashInstanceOperations返回参数结构体
+      class DescribeLogstashInstanceOperationsResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 操作记录总数
+        # @type TotalCount: Integer
+        # @param Operations: 操作记录
+        # @type Operations: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :Operations, :RequestId
+        
+        def initialize(totalcount=nil, operations=nil, requestid=nil)
+          @TotalCount = totalcount
+          @Operations = operations
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['Operations'].nil?
+            @Operations = []
+            params['Operations'].each do |i|
+              operation_tmp = Operation.new
+              operation_tmp.deserialize(i)
+              @Operations << operation_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeLogstashInstances请求参数结构体
+      class DescribeLogstashInstancesRequest < TencentCloud::Common::AbstractModel
+        # @param Zone: 实例所属可用区，不传则默认所有可用区
+        # @type Zone: String
+        # @param InstanceIds: 实例ID列表
+        # @type InstanceIds: Array
+        # @param InstanceNames: 实例名称列表
+        # @type InstanceNames: Array
+        # @param Offset: 分页起始值, 默认值0
+        # @type Offset: Integer
+        # @param Limit: 分页大小，默认值20
+        # @type Limit: Integer
+        # @param OrderByKey: 排序字段<li>1：实例ID</li><li>2：实例名称</li><li>3：可用区</li><li>4：创建时间</li>若orderKey未传递则按创建时间降序排序
+        # @type OrderByKey: Integer
+        # @param OrderByType: 排序方式<li>0：升序</li><li>1：降序</li>若传递了orderByKey未传递orderByType, 则默认升序
+        # @type OrderByType: Integer
+
+        attr_accessor :Zone, :InstanceIds, :InstanceNames, :Offset, :Limit, :OrderByKey, :OrderByType
+        
+        def initialize(zone=nil, instanceids=nil, instancenames=nil, offset=nil, limit=nil, orderbykey=nil, orderbytype=nil)
+          @Zone = zone
+          @InstanceIds = instanceids
+          @InstanceNames = instancenames
+          @Offset = offset
+          @Limit = limit
+          @OrderByKey = orderbykey
+          @OrderByType = orderbytype
+        end
+
+        def deserialize(params)
+          @Zone = params['Zone']
+          @InstanceIds = params['InstanceIds']
+          @InstanceNames = params['InstanceNames']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @OrderByKey = params['OrderByKey']
+          @OrderByType = params['OrderByType']
+        end
+      end
+
+      # DescribeLogstashInstances返回参数结构体
+      class DescribeLogstashInstancesResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 返回的实例个数
+        # @type TotalCount: Integer
+        # @param InstanceList: 实例详细信息列表
+        # @type InstanceList: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :InstanceList, :RequestId
+        
+        def initialize(totalcount=nil, instancelist=nil, requestid=nil)
+          @TotalCount = totalcount
+          @InstanceList = instancelist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['InstanceList'].nil?
+            @InstanceList = []
+            params['InstanceList'].each do |i|
+              logstashinstanceinfo_tmp = LogstashInstanceInfo.new
+              logstashinstanceinfo_tmp.deserialize(i)
+              @InstanceList << logstashinstanceinfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeLogstashPipelines请求参数结构体
+      class DescribeLogstashPipelinesRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+
+        attr_accessor :InstanceId
+        
+        def initialize(instanceid=nil)
+          @InstanceId = instanceid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+        end
+      end
+
+      # DescribeLogstashPipelines返回参数结构体
+      class DescribeLogstashPipelinesResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 管道总数
+        # @type TotalCount: Integer
+        # @param LogstashPipelineList: 管道列表
+        # @type LogstashPipelineList: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :LogstashPipelineList, :RequestId
+        
+        def initialize(totalcount=nil, logstashpipelinelist=nil, requestid=nil)
+          @TotalCount = totalcount
+          @LogstashPipelineList = logstashpipelinelist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['LogstashPipelineList'].nil?
+            @LogstashPipelineList = []
+            params['LogstashPipelineList'].each do |i|
+              logstashpipelineinfo_tmp = LogstashPipelineInfo.new
+              logstashpipelineinfo_tmp.deserialize(i)
+              @LogstashPipelineList << logstashpipelineinfo_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -1949,6 +2385,317 @@ module TencentCloud
         end
       end
 
+      # Logstash绑定的ES集群信息
+      class LogstashBindedES < TencentCloud::Common::AbstractModel
+        # @param ESInstanceId: ES集群ID
+        # @type ESInstanceId: String
+        # @param ESUserName: ES集群用户名
+        # @type ESUserName: String
+        # @param ESPassword: ES集群密码
+        # @type ESPassword: String
+
+        attr_accessor :ESInstanceId, :ESUserName, :ESPassword
+        
+        def initialize(esinstanceid=nil, esusername=nil, espassword=nil)
+          @ESInstanceId = esinstanceid
+          @ESUserName = esusername
+          @ESPassword = espassword
+        end
+
+        def deserialize(params)
+          @ESInstanceId = params['ESInstanceId']
+          @ESUserName = params['ESUserName']
+          @ESPassword = params['ESPassword']
+        end
+      end
+
+      # Logstash扩展文件信息
+      class LogstashExtendedFile < TencentCloud::Common::AbstractModel
+        # @param Name: 扩展文件名称
+        # @type Name: String
+        # @param Size: 扩展文件大小，单位B
+        # @type Size: Integer
+
+        attr_accessor :Name, :Size
+        
+        def initialize(name=nil, size=nil)
+          @Name = name
+          @Size = size
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Size = params['Size']
+        end
+      end
+
+      # Logstash实例详细信息
+      class LogstashInstanceInfo < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+        # @param InstanceName: 实例名称
+        # @type InstanceName: String
+        # @param Region: 地域
+        # @type Region: String
+        # @param Zone: 可用区
+        # @type Zone: String
+        # @param AppId: 用户ID
+        # @type AppId: Integer
+        # @param Uin: 用户UIN
+        # @type Uin: String
+        # @param VpcId: 实例所属VPC的ID
+        # @type VpcId: String
+        # @param SubnetId: 实例所属子网的ID
+        # @type SubnetId: String
+        # @param Status: 实例状态，0:处理中,1:正常,-1停止,-2:销毁中,-3:已销毁
+        # @type Status: Integer
+        # @param ChargeType: 实例计费模式。取值范围：  PREPAID：表示预付费，即包年包月  POSTPAID_BY_HOUR：表示后付费，即按量计费  CDHPAID：CDH付费，即只对CDH计费，不对CDH上的实例计费。
+        # @type ChargeType: String
+        # @param ChargePeriod: 包年包月购买时长,单位:月
+        # @type ChargePeriod: Integer
+        # @param RenewFlag: 自动续费标识。取值范围：  NOTIFY_AND_AUTO_RENEW：通知过期且自动续费  NOTIFY_AND_MANUAL_RENEW：通知过期不自动续费  DISABLE_NOTIFY_AND_MANUAL_RENEW：不通知过期不自动续费  默认取值：NOTIFY_AND_AUTO_RENEW。若该参数指定为NOTIFY_AND_AUTO_RENEW，在账户余额充足的情况下，实例到期后将按月自动续费。
+        # @type RenewFlag: String
+        # @param NodeType: 节点规格<li>LOGSTASH.S1.SMALL2：1核2G</li><li>LOGSTASH.S1.MEDIUM4：2核4G</li><li>LOGSTASH.S1.MEDIUM8：2核8G</li><li>LOGSTASH.S1.LARGE16：4核16G</li><li>LOGSTASH.S1.2XLARGE32：8核32G</li><li>LOGSTASH.S1.4XLARGE32：16核32G</li><li>LOGSTASH.S1.4XLARGE64：16核64G</li>
+        # @type NodeType: String
+        # @param NodeNum: 节点个数
+        # @type NodeNum: Integer
+        # @param DiskType: 节点磁盘类型
+        # @type DiskType: String
+        # @param DiskSize: 节点磁盘大小，单位GB
+        # @type DiskSize: Integer
+        # @param LogstashVersion: Logstash版本号
+        # @type LogstashVersion: String
+        # @param LicenseType: License类型<li>oss：开源版</li><li>xpack：基础版</li>默认值xpack
+        # @type LicenseType: String
+        # @param CreateTime: 实例创建时间
+        # @type CreateTime: String
+        # @param UpdateTime: 实例最后修改操作时间
+        # @type UpdateTime: String
+        # @param Deadline: 实例到期时间
+        # @type Deadline: String
+        # @param Nodes: 实例节点类型
+        # @type Nodes: Array
+        # @param BindedESInstanceId: 实例绑定的ES集群ID
+        # @type BindedESInstanceId: String
+        # @param YMLConfig: 实例的YML配置
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type YMLConfig: String
+        # @param ExtendedFiles: 扩展文件列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExtendedFiles: Array
+
+        attr_accessor :InstanceId, :InstanceName, :Region, :Zone, :AppId, :Uin, :VpcId, :SubnetId, :Status, :ChargeType, :ChargePeriod, :RenewFlag, :NodeType, :NodeNum, :DiskType, :DiskSize, :LogstashVersion, :LicenseType, :CreateTime, :UpdateTime, :Deadline, :Nodes, :BindedESInstanceId, :YMLConfig, :ExtendedFiles
+        
+        def initialize(instanceid=nil, instancename=nil, region=nil, zone=nil, appid=nil, uin=nil, vpcid=nil, subnetid=nil, status=nil, chargetype=nil, chargeperiod=nil, renewflag=nil, nodetype=nil, nodenum=nil, disktype=nil, disksize=nil, logstashversion=nil, licensetype=nil, createtime=nil, updatetime=nil, deadline=nil, nodes=nil, bindedesinstanceid=nil, ymlconfig=nil, extendedfiles=nil)
+          @InstanceId = instanceid
+          @InstanceName = instancename
+          @Region = region
+          @Zone = zone
+          @AppId = appid
+          @Uin = uin
+          @VpcId = vpcid
+          @SubnetId = subnetid
+          @Status = status
+          @ChargeType = chargetype
+          @ChargePeriod = chargeperiod
+          @RenewFlag = renewflag
+          @NodeType = nodetype
+          @NodeNum = nodenum
+          @DiskType = disktype
+          @DiskSize = disksize
+          @LogstashVersion = logstashversion
+          @LicenseType = licensetype
+          @CreateTime = createtime
+          @UpdateTime = updatetime
+          @Deadline = deadline
+          @Nodes = nodes
+          @BindedESInstanceId = bindedesinstanceid
+          @YMLConfig = ymlconfig
+          @ExtendedFiles = extendedfiles
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @InstanceName = params['InstanceName']
+          @Region = params['Region']
+          @Zone = params['Zone']
+          @AppId = params['AppId']
+          @Uin = params['Uin']
+          @VpcId = params['VpcId']
+          @SubnetId = params['SubnetId']
+          @Status = params['Status']
+          @ChargeType = params['ChargeType']
+          @ChargePeriod = params['ChargePeriod']
+          @RenewFlag = params['RenewFlag']
+          @NodeType = params['NodeType']
+          @NodeNum = params['NodeNum']
+          @DiskType = params['DiskType']
+          @DiskSize = params['DiskSize']
+          @LogstashVersion = params['LogstashVersion']
+          @LicenseType = params['LicenseType']
+          @CreateTime = params['CreateTime']
+          @UpdateTime = params['UpdateTime']
+          @Deadline = params['Deadline']
+          unless params['Nodes'].nil?
+            @Nodes = []
+            params['Nodes'].each do |i|
+              logstashnodeinfo_tmp = LogstashNodeInfo.new
+              logstashnodeinfo_tmp.deserialize(i)
+              @Nodes << logstashnodeinfo_tmp
+            end
+          end
+          @BindedESInstanceId = params['BindedESInstanceId']
+          @YMLConfig = params['YMLConfig']
+          unless params['ExtendedFiles'].nil?
+            @ExtendedFiles = []
+            params['ExtendedFiles'].each do |i|
+              logstashextendedfile_tmp = LogstashExtendedFile.new
+              logstashextendedfile_tmp.deserialize(i)
+              @ExtendedFiles << logstashextendedfile_tmp
+            end
+          end
+        end
+      end
+
+      # Logstash节点信息
+      class LogstashNodeInfo < TencentCloud::Common::AbstractModel
+        # @param NodeId: 节点ID
+        # @type NodeId: String
+        # @param Ip: 节点IP
+        # @type Ip: String
+        # @param Port: 节点端口
+        # @type Port: Integer
+
+        attr_accessor :NodeId, :Ip, :Port
+        
+        def initialize(nodeid=nil, ip=nil, port=nil)
+          @NodeId = nodeid
+          @Ip = ip
+          @Port = port
+        end
+
+        def deserialize(params)
+          @NodeId = params['NodeId']
+          @Ip = params['Ip']
+          @Port = params['Port']
+        end
+      end
+
+      # Logstash管道信息
+      class LogstashPipeline < TencentCloud::Common::AbstractModel
+        # @param PipelineId: 管道ID
+        # @type PipelineId: String
+        # @param PipelineDesc: 管道描述信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PipelineDesc: String
+        # @param Config: 管道配置内容
+        # @type Config: String
+        # @param Workers: 管道的Worker数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Workers: Integer
+        # @param BatchSize: 管道批处理大小
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BatchSize: Integer
+        # @param BatchDelay: 管道批处理延迟
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BatchDelay: Integer
+        # @param QueueType: 管道缓冲队列类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type QueueType: String
+        # @param QueueMaxBytes: 管道缓冲队列大小
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type QueueMaxBytes: String
+        # @param QueueCheckPointWrites: 管道缓冲队列检查点写入数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type QueueCheckPointWrites: Integer
+
+        attr_accessor :PipelineId, :PipelineDesc, :Config, :Workers, :BatchSize, :BatchDelay, :QueueType, :QueueMaxBytes, :QueueCheckPointWrites
+        
+        def initialize(pipelineid=nil, pipelinedesc=nil, config=nil, workers=nil, batchsize=nil, batchdelay=nil, queuetype=nil, queuemaxbytes=nil, queuecheckpointwrites=nil)
+          @PipelineId = pipelineid
+          @PipelineDesc = pipelinedesc
+          @Config = config
+          @Workers = workers
+          @BatchSize = batchsize
+          @BatchDelay = batchdelay
+          @QueueType = queuetype
+          @QueueMaxBytes = queuemaxbytes
+          @QueueCheckPointWrites = queuecheckpointwrites
+        end
+
+        def deserialize(params)
+          @PipelineId = params['PipelineId']
+          @PipelineDesc = params['PipelineDesc']
+          @Config = params['Config']
+          @Workers = params['Workers']
+          @BatchSize = params['BatchSize']
+          @BatchDelay = params['BatchDelay']
+          @QueueType = params['QueueType']
+          @QueueMaxBytes = params['QueueMaxBytes']
+          @QueueCheckPointWrites = params['QueueCheckPointWrites']
+        end
+      end
+
+      # Logstash管道信息
+      class LogstashPipelineInfo < TencentCloud::Common::AbstractModel
+        # @param PipelineId: 管道ID
+        # @type PipelineId: String
+        # @param PipelineDesc: 管道描述信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PipelineDesc: String
+        # @param Config: 管道配置内容
+        # @type Config: String
+        # @param Status: 管道状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: Integer
+        # @param Workers: 管道的Worker数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Workers: Integer
+        # @param BatchSize: 管道批处理大小
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BatchSize: Integer
+        # @param BatchDelay: 管道批处理延迟
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BatchDelay: Integer
+        # @param QueueType: 管道缓冲队列类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type QueueType: String
+        # @param QueueMaxBytes: 管道缓冲队列大小
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type QueueMaxBytes: String
+        # @param QueueCheckPointWrites: 管道缓冲队列检查点写入数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type QueueCheckPointWrites: Integer
+
+        attr_accessor :PipelineId, :PipelineDesc, :Config, :Status, :Workers, :BatchSize, :BatchDelay, :QueueType, :QueueMaxBytes, :QueueCheckPointWrites
+        
+        def initialize(pipelineid=nil, pipelinedesc=nil, config=nil, status=nil, workers=nil, batchsize=nil, batchdelay=nil, queuetype=nil, queuemaxbytes=nil, queuecheckpointwrites=nil)
+          @PipelineId = pipelineid
+          @PipelineDesc = pipelinedesc
+          @Config = config
+          @Status = status
+          @Workers = workers
+          @BatchSize = batchsize
+          @BatchDelay = batchdelay
+          @QueueType = queuetype
+          @QueueMaxBytes = queuemaxbytes
+          @QueueCheckPointWrites = queuecheckpointwrites
+        end
+
+        def deserialize(params)
+          @PipelineId = params['PipelineId']
+          @PipelineDesc = params['PipelineDesc']
+          @Config = params['Config']
+          @Status = params['Status']
+          @Workers = params['Workers']
+          @BatchSize = params['BatchSize']
+          @BatchDelay = params['BatchDelay']
+          @QueueType = params['QueueType']
+          @QueueMaxBytes = params['QueueMaxBytes']
+          @QueueCheckPointWrites = params['QueueCheckPointWrites']
+        end
+      end
+
       # 实例专用主节点相关信息
       class MasterNodeInfo < TencentCloud::Common::AbstractModel
         # @param EnableDedicatedMaster: 是否启用了专用主节点
@@ -2347,6 +3094,42 @@ module TencentCloud
         end
       end
 
+      # RestartLogstashInstance请求参数结构体
+      class RestartLogstashInstanceRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+        # @param Type: 重启类型，0全量重启，1滚动重启
+        # @type Type: Integer
+
+        attr_accessor :InstanceId, :Type
+        
+        def initialize(instanceid=nil, type=nil)
+          @InstanceId = instanceid
+          @Type = type
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @Type = params['Type']
+        end
+      end
+
+      # RestartLogstashInstance返回参数结构体
+      class RestartLogstashInstanceResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # RestartNodes请求参数结构体
       class RestartNodesRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 集群实例ID
@@ -2373,6 +3156,121 @@ module TencentCloud
 
       # RestartNodes返回参数结构体
       class RestartNodesResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # SaveAndDeployLogstashPipeline请求参数结构体
+      class SaveAndDeployLogstashPipelineRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+        # @param Pipeline: 实例管道信息
+        # @type Pipeline: :class:`Tencentcloud::Es.v20180416.models.LogstashPipeline`
+        # @param OpType: 操作类型<li>1：只保存</li><li>2：保存并部署</li>
+        # @type OpType: Integer
+
+        attr_accessor :InstanceId, :Pipeline, :OpType
+        
+        def initialize(instanceid=nil, pipeline=nil, optype=nil)
+          @InstanceId = instanceid
+          @Pipeline = pipeline
+          @OpType = optype
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          unless params['Pipeline'].nil?
+            @Pipeline = LogstashPipeline.new
+            @Pipeline.deserialize(params['Pipeline'])
+          end
+          @OpType = params['OpType']
+        end
+      end
+
+      # SaveAndDeployLogstashPipeline返回参数结构体
+      class SaveAndDeployLogstashPipelineResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # StartLogstashPipelines请求参数结构体
+      class StartLogstashPipelinesRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+        # @param PipelineIds: 管道ID列表
+        # @type PipelineIds: Array
+
+        attr_accessor :InstanceId, :PipelineIds
+        
+        def initialize(instanceid=nil, pipelineids=nil)
+          @InstanceId = instanceid
+          @PipelineIds = pipelineids
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @PipelineIds = params['PipelineIds']
+        end
+      end
+
+      # StartLogstashPipelines返回参数结构体
+      class StartLogstashPipelinesResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # StopLogstashPipelines请求参数结构体
+      class StopLogstashPipelinesRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+        # @param PipelineIds: 管道ID列表
+        # @type PipelineIds: Array
+
+        attr_accessor :InstanceId, :PipelineIds
+        
+        def initialize(instanceid=nil, pipelineids=nil)
+          @InstanceId = instanceid
+          @PipelineIds = pipelineids
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @PipelineIds = params['PipelineIds']
+        end
+      end
+
+      # StopLogstashPipelines返回参数结构体
+      class StopLogstashPipelinesResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -2859,6 +3757,116 @@ module TencentCloud
 
       # UpdateJdk返回参数结构体
       class UpdateJdkResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # UpdateLogstashInstance请求参数结构体
+      class UpdateLogstashInstanceRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+        # @param NodeNum: 实例节点数量
+        # @type NodeNum: Integer
+        # @param YMLConfig: 实例YML配置
+        # @type YMLConfig: String
+        # @param BindedES: 实例绑定的ES集群信息
+        # @type BindedES: :class:`Tencentcloud::Es.v20180416.models.LogstashBindedES`
+        # @param InstanceName: 实例名称
+        # @type InstanceName: String
+        # @param ExtendedFiles: 扩展文件列表
+        # @type ExtendedFiles: Array
+        # @param NodeType: 实例规格
+        # @type NodeType: String
+        # @param DiskSize: 节点磁盘容量
+        # @type DiskSize: Integer
+
+        attr_accessor :InstanceId, :NodeNum, :YMLConfig, :BindedES, :InstanceName, :ExtendedFiles, :NodeType, :DiskSize
+        
+        def initialize(instanceid=nil, nodenum=nil, ymlconfig=nil, bindedes=nil, instancename=nil, extendedfiles=nil, nodetype=nil, disksize=nil)
+          @InstanceId = instanceid
+          @NodeNum = nodenum
+          @YMLConfig = ymlconfig
+          @BindedES = bindedes
+          @InstanceName = instancename
+          @ExtendedFiles = extendedfiles
+          @NodeType = nodetype
+          @DiskSize = disksize
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @NodeNum = params['NodeNum']
+          @YMLConfig = params['YMLConfig']
+          unless params['BindedES'].nil?
+            @BindedES = LogstashBindedES.new
+            @BindedES.deserialize(params['BindedES'])
+          end
+          @InstanceName = params['InstanceName']
+          unless params['ExtendedFiles'].nil?
+            @ExtendedFiles = []
+            params['ExtendedFiles'].each do |i|
+              logstashextendedfile_tmp = LogstashExtendedFile.new
+              logstashextendedfile_tmp.deserialize(i)
+              @ExtendedFiles << logstashextendedfile_tmp
+            end
+          end
+          @NodeType = params['NodeType']
+          @DiskSize = params['DiskSize']
+        end
+      end
+
+      # UpdateLogstashInstance返回参数结构体
+      class UpdateLogstashInstanceResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # UpdateLogstashPipelineDesc请求参数结构体
+      class UpdateLogstashPipelineDescRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+        # @param PipelineId: 实例管道ID
+        # @type PipelineId: String
+        # @param PipelineDesc: 管道描述信息
+        # @type PipelineDesc: String
+
+        attr_accessor :InstanceId, :PipelineId, :PipelineDesc
+        
+        def initialize(instanceid=nil, pipelineid=nil, pipelinedesc=nil)
+          @InstanceId = instanceid
+          @PipelineId = pipelineid
+          @PipelineDesc = pipelinedesc
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @PipelineId = params['PipelineId']
+          @PipelineDesc = params['PipelineDesc']
+        end
+      end
+
+      # UpdateLogstashPipelineDesc返回参数结构体
+      class UpdateLogstashPipelineDescResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 

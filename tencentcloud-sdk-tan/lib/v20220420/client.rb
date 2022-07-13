@@ -29,7 +29,7 @@ module TencentCloud
         end
 
 
-        # 创建节点记录
+        # 推送节点数据
 
         # @param request: Request instance for CreateBlockNodeRecords.
         # @type request: :class:`Tencentcloud::tan::V20220420::CreateBlockNodeRecordsRequest`
