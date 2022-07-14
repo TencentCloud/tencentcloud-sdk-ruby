@@ -5725,10 +5725,12 @@ module TencentCloud
         # @type SSLId: String
         # @param Id: 同ruleId
         # @type Id: String
+        # @param CCAIEnable: 智能cc开关，取值[0(关闭), 1(开启)]
+        # @type CCAIEnable: Integer
 
-        attr_accessor :KeepTime, :Domain, :Protocol, :SourceType, :LbType, :SourceList, :KeepEnable, :Status, :RuleId, :CCThreshold, :PrivateKey, :CCEnable, :HttpsToHttpEnable, :CertType, :Cert, :CCLevel, :RuleName, :CCStatus, :VirtualPort, :SSLId, :Id
+        attr_accessor :KeepTime, :Domain, :Protocol, :SourceType, :LbType, :SourceList, :KeepEnable, :Status, :RuleId, :CCThreshold, :PrivateKey, :CCEnable, :HttpsToHttpEnable, :CertType, :Cert, :CCLevel, :RuleName, :CCStatus, :VirtualPort, :SSLId, :Id, :CCAIEnable
         
-        def initialize(keeptime=nil, domain=nil, protocol=nil, sourcetype=nil, lbtype=nil, sourcelist=nil, keepenable=nil, status=nil, ruleid=nil, ccthreshold=nil, privatekey=nil, ccenable=nil, httpstohttpenable=nil, certtype=nil, cert=nil, cclevel=nil, rulename=nil, ccstatus=nil, virtualport=nil, sslid=nil, id=nil)
+        def initialize(keeptime=nil, domain=nil, protocol=nil, sourcetype=nil, lbtype=nil, sourcelist=nil, keepenable=nil, status=nil, ruleid=nil, ccthreshold=nil, privatekey=nil, ccenable=nil, httpstohttpenable=nil, certtype=nil, cert=nil, cclevel=nil, rulename=nil, ccstatus=nil, virtualport=nil, sslid=nil, id=nil, ccaienable=nil)
           @KeepTime = keeptime
           @Domain = domain
           @Protocol = protocol
@@ -5750,6 +5752,7 @@ module TencentCloud
           @VirtualPort = virtualport
           @SSLId = sslid
           @Id = id
+          @CCAIEnable = ccaienable
         end
 
         def deserialize(params)
@@ -5781,6 +5784,7 @@ module TencentCloud
           @VirtualPort = params['VirtualPort']
           @SSLId = params['SSLId']
           @Id = params['Id']
+          @CCAIEnable = params['CCAIEnable']
         end
       end
 

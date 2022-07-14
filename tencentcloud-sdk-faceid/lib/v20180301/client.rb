@@ -245,31 +245,6 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 使用活体比对（光线）SDK生成的数据包检测活体，并和传入的图片进行比对。
-        # 图片和SDK生成的数据内容必须存储在腾讯云COS，COS Bucket所在的Region需要和本接口请求的Region保持一致，推荐使用生成上传链接接口来完成资源传递。
-
-        # @param request: Request instance for DetectReflectLivenessAndCompare.
-        # @type request: :class:`Tencentcloud::faceid::V20180301::DetectReflectLivenessAndCompareRequest`
-        # @rtype: :class:`Tencentcloud::faceid::V20180301::DetectReflectLivenessAndCompareResponse`
-        def DetectReflectLivenessAndCompare(request)
-          body = send_request('DetectReflectLivenessAndCompare', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = DetectReflectLivenessAndCompareResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
         # 本接口用于校验手机号、姓名和身份证号的真实性和一致性，入参支持明文、MD5和SHA256加密传输。
 
         # @param request: Request instance for EncryptedPhoneVerification.

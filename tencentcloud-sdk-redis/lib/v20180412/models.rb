@@ -560,10 +560,14 @@ module TencentCloud
         # @type TemplateId: String
         # @param DryRun: false ：默认值,发送正常请求，通过检查后直接创建实例 true：发送检查请求，不会创建实例。
         # @type DryRun: Boolean
+        # @param ProductVersion: "local"本地盘版，"cloud"云盘版，"cdc"独享集群版，如果不传默认发货为本地盘版本
+        # @type ProductVersion: String
+        # @param RedisClusterId: 独享集群id，ProductVersion="cdc"时必传
+        # @type RedisClusterId: String
 
-        attr_accessor :TypeId, :MemSize, :GoodsNum, :Period, :BillingMode, :ZoneId, :Password, :VpcId, :SubnetId, :ProjectId, :AutoRenew, :SecurityGroupIdList, :VPort, :RedisShardNum, :RedisReplicasNum, :ReplicasReadonly, :InstanceName, :NoAuth, :NodeSet, :ResourceTags, :ZoneName, :TemplateId, :DryRun
+        attr_accessor :TypeId, :MemSize, :GoodsNum, :Period, :BillingMode, :ZoneId, :Password, :VpcId, :SubnetId, :ProjectId, :AutoRenew, :SecurityGroupIdList, :VPort, :RedisShardNum, :RedisReplicasNum, :ReplicasReadonly, :InstanceName, :NoAuth, :NodeSet, :ResourceTags, :ZoneName, :TemplateId, :DryRun, :ProductVersion, :RedisClusterId
         
-        def initialize(typeid=nil, memsize=nil, goodsnum=nil, period=nil, billingmode=nil, zoneid=nil, password=nil, vpcid=nil, subnetid=nil, projectid=nil, autorenew=nil, securitygroupidlist=nil, vport=nil, redisshardnum=nil, redisreplicasnum=nil, replicasreadonly=nil, instancename=nil, noauth=nil, nodeset=nil, resourcetags=nil, zonename=nil, templateid=nil, dryrun=nil)
+        def initialize(typeid=nil, memsize=nil, goodsnum=nil, period=nil, billingmode=nil, zoneid=nil, password=nil, vpcid=nil, subnetid=nil, projectid=nil, autorenew=nil, securitygroupidlist=nil, vport=nil, redisshardnum=nil, redisreplicasnum=nil, replicasreadonly=nil, instancename=nil, noauth=nil, nodeset=nil, resourcetags=nil, zonename=nil, templateid=nil, dryrun=nil, productversion=nil, redisclusterid=nil)
           @TypeId = typeid
           @MemSize = memsize
           @GoodsNum = goodsnum
@@ -587,6 +591,8 @@ module TencentCloud
           @ZoneName = zonename
           @TemplateId = templateid
           @DryRun = dryrun
+          @ProductVersion = productversion
+          @RedisClusterId = redisclusterid
         end
 
         def deserialize(params)
@@ -627,6 +633,8 @@ module TencentCloud
           @ZoneName = params['ZoneName']
           @TemplateId = params['TemplateId']
           @DryRun = params['DryRun']
+          @ProductVersion = params['ProductVersion']
+          @RedisClusterId = params['RedisClusterId']
         end
       end
 
@@ -3406,10 +3414,12 @@ module TencentCloud
         # @type ReplicasReadonly: Boolean
         # @param ZoneName: 实例所属的可用区名称，可参考[地域和可用区](https://cloud.tencent.com/document/product/239/4106)  。
         # @type ZoneName: String
+        # @param ProductVersion: "local"本地盘版，"cloud"云盘版，"cdc"独享集群版，如果不传默认询价为本地盘版本
+        # @type ProductVersion: String
 
-        attr_accessor :TypeId, :MemSize, :GoodsNum, :Period, :BillingMode, :ZoneId, :RedisShardNum, :RedisReplicasNum, :ReplicasReadonly, :ZoneName
+        attr_accessor :TypeId, :MemSize, :GoodsNum, :Period, :BillingMode, :ZoneId, :RedisShardNum, :RedisReplicasNum, :ReplicasReadonly, :ZoneName, :ProductVersion
         
-        def initialize(typeid=nil, memsize=nil, goodsnum=nil, period=nil, billingmode=nil, zoneid=nil, redisshardnum=nil, redisreplicasnum=nil, replicasreadonly=nil, zonename=nil)
+        def initialize(typeid=nil, memsize=nil, goodsnum=nil, period=nil, billingmode=nil, zoneid=nil, redisshardnum=nil, redisreplicasnum=nil, replicasreadonly=nil, zonename=nil, productversion=nil)
           @TypeId = typeid
           @MemSize = memsize
           @GoodsNum = goodsnum
@@ -3420,6 +3430,7 @@ module TencentCloud
           @RedisReplicasNum = redisreplicasnum
           @ReplicasReadonly = replicasreadonly
           @ZoneName = zonename
+          @ProductVersion = productversion
         end
 
         def deserialize(params)
@@ -3433,6 +3444,7 @@ module TencentCloud
           @RedisReplicasNum = params['RedisReplicasNum']
           @ReplicasReadonly = params['ReplicasReadonly']
           @ZoneName = params['ZoneName']
+          @ProductVersion = params['ProductVersion']
         end
       end
 

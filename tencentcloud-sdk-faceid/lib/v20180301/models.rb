@@ -1033,70 +1033,6 @@ module TencentCloud
         end
       end
 
-      # DetectReflectLivenessAndCompare请求参数结构体
-      class DetectReflectLivenessAndCompareRequest < TencentCloud::Common::AbstractModel
-        # @param LiveDataUrl: SDK生成的活体检测数据包的资源地址。
-        # @type LiveDataUrl: String
-        # @param LiveDataMd5: SDK生成的活体检测数据包的资源内容MD5（32位，用于校验LiveData的一致性）。
-        # @type LiveDataMd5: String
-        # @param ImageUrl: 用于比对的目标图片的资源地址。
-        # @type ImageUrl: String
-        # @param ImageMd5: 用于比对的目标图片的资源MD5（32位，用于校验Image的一致性）。
-        # @type ImageMd5: String
-
-        attr_accessor :LiveDataUrl, :LiveDataMd5, :ImageUrl, :ImageMd5
-        
-        def initialize(livedataurl=nil, livedatamd5=nil, imageurl=nil, imagemd5=nil)
-          @LiveDataUrl = livedataurl
-          @LiveDataMd5 = livedatamd5
-          @ImageUrl = imageurl
-          @ImageMd5 = imagemd5
-        end
-
-        def deserialize(params)
-          @LiveDataUrl = params['LiveDataUrl']
-          @LiveDataMd5 = params['LiveDataMd5']
-          @ImageUrl = params['ImageUrl']
-          @ImageMd5 = params['ImageMd5']
-        end
-      end
-
-      # DetectReflectLivenessAndCompare返回参数结构体
-      class DetectReflectLivenessAndCompareResponse < TencentCloud::Common::AbstractModel
-        # @param BestFrameUrl: 验证通过后的视频最佳截图资源临时地址，jpg格式，资源和链接有效期2小时，务必在有效期内下载。
-        # @type BestFrameUrl: String
-        # @param BestFrameMd5: 验证通过后的视频最佳截图资源MD5（32位，用于校验BestFrame的一致性）。
-        # @type BestFrameMd5: String
-        # @param Result: 业务错误码，成功情况返回Success，错误情况请参考下方错误码 列表中FailedOperation部分。
-        # @type Result: String
-        # @param Description: 业务结果描述。
-        # @type Description: String
-        # @param Sim: 相似度，取值范围 [0.00, 100.00]。推荐相似度大于等于70时可判断为同一人，可根据具体场景自行调整阈值（阈值70的误通过率为千分之一，阈值80的误通过率是万分之一）。
-        # @type Sim: Float
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :BestFrameUrl, :BestFrameMd5, :Result, :Description, :Sim, :RequestId
-        
-        def initialize(bestframeurl=nil, bestframemd5=nil, result=nil, description=nil, sim=nil, requestid=nil)
-          @BestFrameUrl = bestframeurl
-          @BestFrameMd5 = bestframemd5
-          @Result = result
-          @Description = description
-          @Sim = sim
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          @BestFrameUrl = params['BestFrameUrl']
-          @BestFrameMd5 = params['BestFrameMd5']
-          @Result = params['Result']
-          @Description = params['Description']
-          @Sim = params['Sim']
-          @RequestId = params['RequestId']
-        end
-      end
-
       # Eid出参，包括商户方用户的标识和加密的用户姓名身份证信息。
       class EidInfo < TencentCloud::Common::AbstractModel
         # @param EidCode: 商户方 appeIDcode 的数字证书
@@ -1196,7 +1132,7 @@ module TencentCloud
         # @type CiphertextBlob: String
         # @param EncryptList: 在使用加密服务时，填入要被加密的字段。本接口中可填入加密后的一个或多个字段
         # @type EncryptList: Array
-        # @param Iv: 有加密需求的用户，传入CBC加密的初始向量
+        # @param Iv: 有加密需求的用户，传入CBC加密的初始向量（客户自定义字符串，长度16字符）。
         # @type Iv: String
 
         attr_accessor :CiphertextBlob, :EncryptList, :Iv
@@ -1454,7 +1390,7 @@ module TencentCloud
       class GetEidResultRequest < TencentCloud::Common::AbstractModel
         # @param EidToken: E证通流程的唯一标识，调用GetEidToken接口时生成。
         # @type EidToken: String
-        # @param InfoType: 指定拉取的结果信息，取值（0：全部；1：文本类；2：身份证信息；3：最佳截图信息）。
+        # @param InfoType: 指定拉取的结果信息，取值（0：全部；1：文本类；2：身份证信息；3：最佳截图信息；5：意愿核身相关结果；）。
         # 如 13表示拉取文本类、最佳截图信息。
         # 默认值：0
         # @type InfoType: String
@@ -1490,16 +1426,20 @@ module TencentCloud
         # @param EidInfo: Eid信息。（包括商户下用户唯一标识以及加密后的姓名、身份证号信息。解密方式详见[E证通获取实名信息指引](https://cloud.tencent.com/document/product/1007/63370)）
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EidInfo: :class:`Tencentcloud::Faceid.v20180301.models.EidInfo`
+        # @param IntentionVerifyData: 意愿核身相关信息。若未使用意愿核身功能，该字段返回值可以不处理。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IntentionVerifyData: :class:`Tencentcloud::Faceid.v20180301.models.IntentionVerifyData`
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Text, :IdCardData, :BestFrame, :EidInfo, :RequestId
+        attr_accessor :Text, :IdCardData, :BestFrame, :EidInfo, :IntentionVerifyData, :RequestId
         
-        def initialize(text=nil, idcarddata=nil, bestframe=nil, eidinfo=nil, requestid=nil)
+        def initialize(text=nil, idcarddata=nil, bestframe=nil, eidinfo=nil, intentionverifydata=nil, requestid=nil)
           @Text = text
           @IdCardData = idcarddata
           @BestFrame = bestframe
           @EidInfo = eidinfo
+          @IntentionVerifyData = intentionverifydata
           @RequestId = requestid
         end
 
@@ -1520,6 +1460,10 @@ module TencentCloud
             @EidInfo = EidInfo.new
             @EidInfo.deserialize(params['EidInfo'])
           end
+          unless params['IntentionVerifyData'].nil?
+            @IntentionVerifyData = IntentionVerifyData.new
+            @IntentionVerifyData.deserialize(params['IntentionVerifyData'])
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -1534,15 +1478,23 @@ module TencentCloud
         # 默认1
         # 注：使用OCR时仅支持用户修改结果中的姓名
         # @type InputType: String
+        # @param UseIntentionVerify: 是否使用意愿核身，默认不使用。注意：如开启使用，则计费标签按【意愿核身】计费标签计价；如不开启，则计费标签按【E证通】计费标签计价，价格详见：[价格说明](https://cloud.tencent.com/document/product/1007/56804)。
+        # @type UseIntentionVerify: Boolean
+        # @param IntentionVerifyText: 意愿核身使用的文案，若未使用意愿核身功能，该字段无需传入。默认为空，最长可接受120的字符串长度。
+        # @type IntentionVerifyText: String
 
-        attr_accessor :InputType
+        attr_accessor :InputType, :UseIntentionVerify, :IntentionVerifyText
         
-        def initialize(inputtype=nil)
+        def initialize(inputtype=nil, useintentionverify=nil, intentionverifytext=nil)
           @InputType = inputtype
+          @UseIntentionVerify = useintentionverify
+          @IntentionVerifyText = intentionverifytext
         end
 
         def deserialize(params)
           @InputType = params['InputType']
+          @UseIntentionVerify = params['UseIntentionVerify']
+          @IntentionVerifyText = params['IntentionVerifyText']
         end
       end
 
@@ -1557,7 +1509,7 @@ module TencentCloud
         # @type Name: String
         # @param Extra: 透传字段，在获取验证结果时返回。最长长度1024位。
         # @type Extra: String
-        # @param Config: 小程序模式配置，包括如何传入姓名身份证的配置。
+        # @param Config: 小程序模式配置，包括如何传入姓名身份证的配置，以及是否使用意愿核身。
         # @type Config: :class:`Tencentcloud::Faceid.v20180301.models.GetEidTokenConfig`
         # @param RedirectUrl: 最长长度1024位。用户从Url中进入核身认证结束后重定向的回调链接地址。EidToken会在该链接的query参数中。
         # @type RedirectUrl: String

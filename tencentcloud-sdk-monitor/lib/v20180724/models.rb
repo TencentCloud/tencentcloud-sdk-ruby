@@ -1322,6 +1322,10 @@ module TencentCloud
       class CreateExporterIntegrationRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例 ID
         # @type InstanceId: String
+        # @param Kind: 类型
+        # @type Kind: String
+        # @param Content: 集成配置
+        # @type Content: String
         # @param KubeType: Kubernetes 集群类型，取值如下：
         # <li> 1= 容器集群(TKE) </li>
         # <li> 2=弹性集群<EKS> </li>
@@ -1329,42 +1333,42 @@ module TencentCloud
         # @type KubeType: Integer
         # @param ClusterId: 集群 ID
         # @type ClusterId: String
-        # @param Kind: 类型
-        # @type Kind: String
-        # @param Content: 集成配置
-        # @type Content: String
 
-        attr_accessor :InstanceId, :KubeType, :ClusterId, :Kind, :Content
+        attr_accessor :InstanceId, :Kind, :Content, :KubeType, :ClusterId
         
-        def initialize(instanceid=nil, kubetype=nil, clusterid=nil, kind=nil, content=nil)
+        def initialize(instanceid=nil, kind=nil, content=nil, kubetype=nil, clusterid=nil)
           @InstanceId = instanceid
-          @KubeType = kubetype
-          @ClusterId = clusterid
           @Kind = kind
           @Content = content
+          @KubeType = kubetype
+          @ClusterId = clusterid
         end
 
         def deserialize(params)
           @InstanceId = params['InstanceId']
-          @KubeType = params['KubeType']
-          @ClusterId = params['ClusterId']
           @Kind = params['Kind']
           @Content = params['Content']
+          @KubeType = params['KubeType']
+          @ClusterId = params['ClusterId']
         end
       end
 
       # CreateExporterIntegration返回参数结构体
       class CreateExporterIntegrationResponse < TencentCloud::Common::AbstractModel
+        # @param Names: 返回创建成功的集成名称列表
+        # @type Names: Array
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RequestId
+        attr_accessor :Names, :RequestId
         
-        def initialize(requestid=nil)
+        def initialize(names=nil, requestid=nil)
+          @Names = names
           @RequestId = requestid
         end
 
         def deserialize(params)
+          @Names = params['Names']
           @RequestId = params['RequestId']
         end
       end
@@ -1557,16 +1561,20 @@ module TencentCloud
 
       # CreatePrometheusAgent返回参数结构体
       class CreatePrometheusAgentResponse < TencentCloud::Common::AbstractModel
+        # @param AgentId: 创建成功的 Agent Id
+        # @type AgentId: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RequestId
+        attr_accessor :AgentId, :RequestId
         
-        def initialize(requestid=nil)
+        def initialize(agentid=nil, requestid=nil)
+          @AgentId = agentid
           @RequestId = requestid
         end
 
         def deserialize(params)
+          @AgentId = params['AgentId']
           @RequestId = params['RequestId']
         end
       end
@@ -1664,16 +1672,20 @@ module TencentCloud
 
       # CreatePrometheusScrapeJob返回参数结构体
       class CreatePrometheusScrapeJobResponse < TencentCloud::Common::AbstractModel
+        # @param JobId: 成功创建抓取任务 Id
+        # @type JobId: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RequestId
+        attr_accessor :JobId, :RequestId
         
-        def initialize(requestid=nil)
+        def initialize(jobid=nil, requestid=nil)
+          @JobId = jobid
           @RequestId = requestid
         end
 
         def deserialize(params)
+          @JobId = params['JobId']
           @RequestId = params['RequestId']
         end
       end

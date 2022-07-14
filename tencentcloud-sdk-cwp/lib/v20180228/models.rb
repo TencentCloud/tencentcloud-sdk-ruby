@@ -14971,10 +14971,16 @@ module TencentCloud
         # @param Uuid: 主机uuid
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Uuid: String
+        # @param ModifyTime: 最近修改时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ModifyTime: String
+        # @param StrFileAccessTime: 最近访问时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StrFileAccessTime: String
 
-        attr_accessor :VirusName, :FileSize, :MD5, :FilePath, :FileCreateTime, :FileModifierTime, :HarmDescribe, :SuggestScheme, :ServersName, :HostIp, :ProcessName, :ProcessID, :Tags, :Breadth, :Heat, :Id, :FileName, :CreateTime, :LatestScanTime, :Reference, :MachineWanIp, :PsTree, :MachineStatus, :Status, :Level, :CheckPlatform, :Uuid
+        attr_accessor :VirusName, :FileSize, :MD5, :FilePath, :FileCreateTime, :FileModifierTime, :HarmDescribe, :SuggestScheme, :ServersName, :HostIp, :ProcessName, :ProcessID, :Tags, :Breadth, :Heat, :Id, :FileName, :CreateTime, :LatestScanTime, :Reference, :MachineWanIp, :PsTree, :MachineStatus, :Status, :Level, :CheckPlatform, :Uuid, :ModifyTime, :StrFileAccessTime
         
-        def initialize(virusname=nil, filesize=nil, md5=nil, filepath=nil, filecreatetime=nil, filemodifiertime=nil, harmdescribe=nil, suggestscheme=nil, serversname=nil, hostip=nil, processname=nil, processid=nil, tags=nil, breadth=nil, heat=nil, id=nil, filename=nil, createtime=nil, latestscantime=nil, reference=nil, machinewanip=nil, pstree=nil, machinestatus=nil, status=nil, level=nil, checkplatform=nil, uuid=nil)
+        def initialize(virusname=nil, filesize=nil, md5=nil, filepath=nil, filecreatetime=nil, filemodifiertime=nil, harmdescribe=nil, suggestscheme=nil, serversname=nil, hostip=nil, processname=nil, processid=nil, tags=nil, breadth=nil, heat=nil, id=nil, filename=nil, createtime=nil, latestscantime=nil, reference=nil, machinewanip=nil, pstree=nil, machinestatus=nil, status=nil, level=nil, checkplatform=nil, uuid=nil, modifytime=nil, strfileaccesstime=nil)
           @VirusName = virusname
           @FileSize = filesize
           @MD5 = md5
@@ -15002,6 +15008,8 @@ module TencentCloud
           @Level = level
           @CheckPlatform = checkplatform
           @Uuid = uuid
+          @ModifyTime = modifytime
+          @StrFileAccessTime = strfileaccesstime
         end
 
         def deserialize(params)
@@ -15032,6 +15040,8 @@ module TencentCloud
           @Level = params['Level']
           @CheckPlatform = params['CheckPlatform']
           @Uuid = params['Uuid']
+          @ModifyTime = params['ModifyTime']
+          @StrFileAccessTime = params['StrFileAccessTime']
         end
       end
 
