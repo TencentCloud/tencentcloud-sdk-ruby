@@ -280,10 +280,16 @@ module TencentCloud
         # @type GroupId: String
         # @param BackupFormat: 备份文件形式（pkg-打包备份文件，single-单库备份文件）
         # @type BackupFormat: String
+        # @param Region: 实例当前地域Code
+        # @type Region: String
+        # @param CrossBackupAddr: 跨地域备份的目的地域下载链接
+        # @type CrossBackupAddr: Array
+        # @param CrossBackupStatus: 跨地域备份的目标地域和备份状态
+        # @type CrossBackupStatus: Array
 
-        attr_accessor :FileName, :Size, :StartTime, :EndTime, :InternalAddr, :ExternalAddr, :Id, :Status, :DBs, :Strategy, :BackupWay, :BackupName, :GroupId, :BackupFormat
+        attr_accessor :FileName, :Size, :StartTime, :EndTime, :InternalAddr, :ExternalAddr, :Id, :Status, :DBs, :Strategy, :BackupWay, :BackupName, :GroupId, :BackupFormat, :Region, :CrossBackupAddr, :CrossBackupStatus
         
-        def initialize(filename=nil, size=nil, starttime=nil, endtime=nil, internaladdr=nil, externaladdr=nil, id=nil, status=nil, dbs=nil, strategy=nil, backupway=nil, backupname=nil, groupid=nil, backupformat=nil)
+        def initialize(filename=nil, size=nil, starttime=nil, endtime=nil, internaladdr=nil, externaladdr=nil, id=nil, status=nil, dbs=nil, strategy=nil, backupway=nil, backupname=nil, groupid=nil, backupformat=nil, region=nil, crossbackupaddr=nil, crossbackupstatus=nil)
           @FileName = filename
           @Size = size
           @StartTime = starttime
@@ -298,6 +304,9 @@ module TencentCloud
           @BackupName = backupname
           @GroupId = groupid
           @BackupFormat = backupformat
+          @Region = region
+          @CrossBackupAddr = crossbackupaddr
+          @CrossBackupStatus = crossbackupstatus
         end
 
         def deserialize(params)
@@ -315,6 +324,23 @@ module TencentCloud
           @BackupName = params['BackupName']
           @GroupId = params['GroupId']
           @BackupFormat = params['BackupFormat']
+          @Region = params['Region']
+          unless params['CrossBackupAddr'].nil?
+            @CrossBackupAddr = []
+            params['CrossBackupAddr'].each do |i|
+              crossbackupaddr_tmp = CrossBackupAddr.new
+              crossbackupaddr_tmp.deserialize(i)
+              @CrossBackupAddr << crossbackupaddr_tmp
+            end
+          end
+          unless params['CrossBackupStatus'].nil?
+            @CrossBackupStatus = []
+            params['CrossBackupStatus'].each do |i|
+              crossregionstatus_tmp = CrossRegionStatus.new
+              crossregionstatus_tmp.deserialize(i)
+              @CrossBackupStatus << crossregionstatus_tmp
+            end
+          end
         end
       end
 
@@ -330,15 +356,21 @@ module TencentCloud
         # @type DBs: Array
         # @param DownloadLink: 下载地址
         # @type DownloadLink: String
+        # @param Region: 当前实例地域码
+        # @type Region: String
+        # @param CrossBackupAddr: 备份的跨地域region和所对应的下载地址
+        # @type CrossBackupAddr: Array
 
-        attr_accessor :Id, :FileName, :Size, :DBs, :DownloadLink
+        attr_accessor :Id, :FileName, :Size, :DBs, :DownloadLink, :Region, :CrossBackupAddr
         
-        def initialize(id=nil, filename=nil, size=nil, dbs=nil, downloadlink=nil)
+        def initialize(id=nil, filename=nil, size=nil, dbs=nil, downloadlink=nil, region=nil, crossbackupaddr=nil)
           @Id = id
           @FileName = filename
           @Size = size
           @DBs = dbs
           @DownloadLink = downloadlink
+          @Region = region
+          @CrossBackupAddr = crossbackupaddr
         end
 
         def deserialize(params)
@@ -347,6 +379,15 @@ module TencentCloud
           @Size = params['Size']
           @DBs = params['DBs']
           @DownloadLink = params['DownloadLink']
+          @Region = params['Region']
+          unless params['CrossBackupAddr'].nil?
+            @CrossBackupAddr = []
+            params['CrossBackupAddr'].each do |i|
+              crossbackupaddr_tmp = CrossBackupAddr.new
+              crossbackupaddr_tmp.deserialize(i)
+              @CrossBackupAddr << crossbackupaddr_tmp
+            end
+          end
         end
       end
 
@@ -1227,6 +1268,50 @@ module TencentCloud
         end
       end
 
+      # 跨地域备份下载地址集合
+      class CrossBackupAddr < TencentCloud::Common::AbstractModel
+        # @param CrossRegion: 跨地域备份目标地域
+        # @type CrossRegion: String
+        # @param CrossInternalAddr: 跨地域备份内网下载地址
+        # @type CrossInternalAddr: String
+        # @param CrossExternalAddr: 跨地域备份外网下载地址
+        # @type CrossExternalAddr: String
+
+        attr_accessor :CrossRegion, :CrossInternalAddr, :CrossExternalAddr
+        
+        def initialize(crossregion=nil, crossinternaladdr=nil, crossexternaladdr=nil)
+          @CrossRegion = crossregion
+          @CrossInternalAddr = crossinternaladdr
+          @CrossExternalAddr = crossexternaladdr
+        end
+
+        def deserialize(params)
+          @CrossRegion = params['CrossRegion']
+          @CrossInternalAddr = params['CrossInternalAddr']
+          @CrossExternalAddr = params['CrossExternalAddr']
+        end
+      end
+
+      # 跨地域备份的目标地域和备份状态
+      class CrossRegionStatus < TencentCloud::Common::AbstractModel
+        # @param CrossRegion: 跨地域备份目标地域
+        # @type CrossRegion: String
+        # @param CrossStatus: 备份跨地域的同步状态 0-创建中；1-成功；2-失败；4-同步中
+        # @type CrossStatus: Integer
+
+        attr_accessor :CrossRegion, :CrossStatus
+        
+        def initialize(crossregion=nil, crossstatus=nil)
+          @CrossRegion = crossregion
+          @CrossStatus = crossstatus
+        end
+
+        def deserialize(params)
+          @CrossRegion = params['CrossRegion']
+          @CrossStatus = params['CrossStatus']
+        end
+      end
+
       # 数据库创建信息
       class DBCreateInfo < TencentCloud::Common::AbstractModel
         # @param DBName: 数据库名
@@ -1404,10 +1489,16 @@ module TencentCloud
         # @type BackupSaveDays: Integer
         # @param InstanceType: 实例类型 HA-高可用 RO-只读实例 SI-基础版 BI-商业智能服务
         # @type InstanceType: String
+        # @param CrossRegions: 跨地域备份目的地域，如果为空，则表示未开启跨地域备份
+        # @type CrossRegions: Array
+        # @param CrossBackupEnabled: 跨地域备份状态 enable-开启，disable-关闭
+        # @type CrossBackupEnabled: String
+        # @param CrossBackupSaveDays: 跨地域备份保留天数，则默认7天
+        # @type CrossBackupSaveDays: Integer
 
-        attr_accessor :InstanceId, :Name, :ProjectId, :RegionId, :ZoneId, :VpcId, :SubnetId, :Status, :Vip, :Vport, :CreateTime, :UpdateTime, :StartTime, :EndTime, :IsolateTime, :Memory, :UsedStorage, :Storage, :VersionName, :RenewFlag, :Model, :Region, :Zone, :BackupTime, :PayMode, :Uid, :Cpu, :Version, :Type, :Pid, :UniqVpcId, :UniqSubnetId, :IsolateOperator, :SubFlag, :ROFlag, :HAFlag, :ResourceTags, :BackupModel, :InstanceNote, :BackupCycle, :BackupCycleType, :BackupSaveDays, :InstanceType
+        attr_accessor :InstanceId, :Name, :ProjectId, :RegionId, :ZoneId, :VpcId, :SubnetId, :Status, :Vip, :Vport, :CreateTime, :UpdateTime, :StartTime, :EndTime, :IsolateTime, :Memory, :UsedStorage, :Storage, :VersionName, :RenewFlag, :Model, :Region, :Zone, :BackupTime, :PayMode, :Uid, :Cpu, :Version, :Type, :Pid, :UniqVpcId, :UniqSubnetId, :IsolateOperator, :SubFlag, :ROFlag, :HAFlag, :ResourceTags, :BackupModel, :InstanceNote, :BackupCycle, :BackupCycleType, :BackupSaveDays, :InstanceType, :CrossRegions, :CrossBackupEnabled, :CrossBackupSaveDays
         
-        def initialize(instanceid=nil, name=nil, projectid=nil, regionid=nil, zoneid=nil, vpcid=nil, subnetid=nil, status=nil, vip=nil, vport=nil, createtime=nil, updatetime=nil, starttime=nil, endtime=nil, isolatetime=nil, memory=nil, usedstorage=nil, storage=nil, versionname=nil, renewflag=nil, model=nil, region=nil, zone=nil, backuptime=nil, paymode=nil, uid=nil, cpu=nil, version=nil, type=nil, pid=nil, uniqvpcid=nil, uniqsubnetid=nil, isolateoperator=nil, subflag=nil, roflag=nil, haflag=nil, resourcetags=nil, backupmodel=nil, instancenote=nil, backupcycle=nil, backupcycletype=nil, backupsavedays=nil, instancetype=nil)
+        def initialize(instanceid=nil, name=nil, projectid=nil, regionid=nil, zoneid=nil, vpcid=nil, subnetid=nil, status=nil, vip=nil, vport=nil, createtime=nil, updatetime=nil, starttime=nil, endtime=nil, isolatetime=nil, memory=nil, usedstorage=nil, storage=nil, versionname=nil, renewflag=nil, model=nil, region=nil, zone=nil, backuptime=nil, paymode=nil, uid=nil, cpu=nil, version=nil, type=nil, pid=nil, uniqvpcid=nil, uniqsubnetid=nil, isolateoperator=nil, subflag=nil, roflag=nil, haflag=nil, resourcetags=nil, backupmodel=nil, instancenote=nil, backupcycle=nil, backupcycletype=nil, backupsavedays=nil, instancetype=nil, crossregions=nil, crossbackupenabled=nil, crossbackupsavedays=nil)
           @InstanceId = instanceid
           @Name = name
           @ProjectId = projectid
@@ -1451,6 +1542,9 @@ module TencentCloud
           @BackupCycleType = backupcycletype
           @BackupSaveDays = backupsavedays
           @InstanceType = instancetype
+          @CrossRegions = crossregions
+          @CrossBackupEnabled = crossbackupenabled
+          @CrossBackupSaveDays = crossbackupsavedays
         end
 
         def deserialize(params)
@@ -1504,6 +1598,9 @@ module TencentCloud
           @BackupCycleType = params['BackupCycleType']
           @BackupSaveDays = params['BackupSaveDays']
           @InstanceType = params['InstanceType']
+          @CrossRegions = params['CrossRegions']
+          @CrossBackupEnabled = params['CrossBackupEnabled']
+          @CrossBackupSaveDays = params['CrossBackupSaveDays']
         end
       end
 

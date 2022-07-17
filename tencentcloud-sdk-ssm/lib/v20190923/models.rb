@@ -152,15 +152,18 @@ module TencentCloud
         # @type KmsKeyId: String
         # @param Tags: 标签列表。
         # @type Tags: Array
+        # @param SSHKeyName: 用户自定义输入的SSH密钥对的名称，可由数字，字母和下划线组成，只能以数字和字母开头，长度不超过25个字符。
+        # @type SSHKeyName: String
 
-        attr_accessor :SecretName, :ProjectId, :Description, :KmsKeyId, :Tags
+        attr_accessor :SecretName, :ProjectId, :Description, :KmsKeyId, :Tags, :SSHKeyName
         
-        def initialize(secretname=nil, projectid=nil, description=nil, kmskeyid=nil, tags=nil)
+        def initialize(secretname=nil, projectid=nil, description=nil, kmskeyid=nil, tags=nil, sshkeyname=nil)
           @SecretName = secretname
           @ProjectId = projectid
           @Description = description
           @KmsKeyId = kmskeyid
           @Tags = tags
+          @SSHKeyName = sshkeyname
         end
 
         def deserialize(params)
@@ -176,6 +179,7 @@ module TencentCloud
               @Tags << tag_tmp
             end
           end
+          @SSHKeyName = params['SSHKeyName']
         end
       end
 

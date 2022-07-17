@@ -2838,6 +2838,37 @@ module TencentCloud
         end
       end
 
+      # 全部车牌信息
+      class LicensePlateInfo < TencentCloud::Common::AbstractModel
+        # @param Number: 识别出的车牌号码。
+        # @type Number: String
+        # @param Confidence: 置信度，0 - 100 之间。
+        # @type Confidence: Integer
+        # @param Rect: 文本行在原图片中的像素坐标框。
+        # @type Rect: :class:`Tencentcloud::Ocr.v20181119.models.Rect`
+        # @param Color: 识别出的车牌颜色，目前支持颜色包括 “白”、“黑”、“蓝”、“绿“、“黄”、“黄绿”、“临牌”。
+        # @type Color: String
+
+        attr_accessor :Number, :Confidence, :Rect, :Color
+        
+        def initialize(number=nil, confidence=nil, rect=nil, color=nil)
+          @Number = number
+          @Confidence = confidence
+          @Rect = rect
+          @Color = color
+        end
+
+        def deserialize(params)
+          @Number = params['Number']
+          @Confidence = params['Confidence']
+          unless params['Rect'].nil?
+            @Rect = Rect.new
+            @Rect.deserialize(params['Rect'])
+          end
+          @Color = params['Color']
+        end
+      end
+
       # LicensePlateOCR请求参数结构体
       class LicensePlateOCRRequest < TencentCloud::Common::AbstractModel
         # @param ImageBase64: 图片的 Base64 值。
@@ -2875,16 +2906,19 @@ module TencentCloud
         # @type Rect: :class:`Tencentcloud::Ocr.v20181119.models.Rect`
         # @param Color: 识别出的车牌颜色，目前支持颜色包括 “白”、“黑”、“蓝”、“绿“、“黄”、“黄绿”、“临牌”。
         # @type Color: String
+        # @param LicensePlateInfos: 全部车牌信息。
+        # @type LicensePlateInfos: Array
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Number, :Confidence, :Rect, :Color, :RequestId
+        attr_accessor :Number, :Confidence, :Rect, :Color, :LicensePlateInfos, :RequestId
         
-        def initialize(number=nil, confidence=nil, rect=nil, color=nil, requestid=nil)
+        def initialize(number=nil, confidence=nil, rect=nil, color=nil, licenseplateinfos=nil, requestid=nil)
           @Number = number
           @Confidence = confidence
           @Rect = rect
           @Color = color
+          @LicensePlateInfos = licenseplateinfos
           @RequestId = requestid
         end
 
@@ -2896,6 +2930,14 @@ module TencentCloud
             @Rect.deserialize(params['Rect'])
           end
           @Color = params['Color']
+          unless params['LicensePlateInfos'].nil?
+            @LicensePlateInfos = []
+            params['LicensePlateInfos'].each do |i|
+              licenseplateinfo_tmp = LicensePlateInfo.new
+              licenseplateinfo_tmp.deserialize(i)
+              @LicensePlateInfos << licenseplateinfo_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end

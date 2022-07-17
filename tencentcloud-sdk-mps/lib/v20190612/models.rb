@@ -180,6 +180,122 @@ module TencentCloud
         end
       end
 
+      # 编排子任务输出
+      class ActivityResItem < TencentCloud::Common::AbstractModel
+        # @param TranscodeTask: 转码任务输出
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TranscodeTask: :class:`Tencentcloud::Mps.v20190612.models.MediaProcessTaskTranscodeResult`
+        # @param AnimatedGraphicTask: 转动图任务输出
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AnimatedGraphicTask: :class:`Tencentcloud::Mps.v20190612.models.MediaProcessTaskAnimatedGraphicResult`
+        # @param SnapshotByTimeOffsetTask: 时间点截图任务输出
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SnapshotByTimeOffsetTask: :class:`Tencentcloud::Mps.v20190612.models.MediaProcessTaskSampleSnapshotResult`
+        # @param SampleSnapshotTask: 采样截图任务输出
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SampleSnapshotTask: :class:`Tencentcloud::Mps.v20190612.models.MediaProcessTaskSampleSnapshotResult`
+        # @param ImageSpriteTask: 雪碧图任务输出
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ImageSpriteTask: :class:`Tencentcloud::Mps.v20190612.models.MediaProcessTaskImageSpriteResult`
+        # @param AdaptiveDynamicStreamingTask: 自适应码流任务输出
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AdaptiveDynamicStreamingTask: :class:`Tencentcloud::Mps.v20190612.models.MediaProcessTaskAdaptiveDynamicStreamingResult`
+        # @param RecognitionTask: 识别任务输出
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RecognitionTask: :class:`Tencentcloud::Mps.v20190612.models.ScheduleRecognitionTaskResult`
+        # @param ReviewTask: 审核任务输出
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ReviewTask: :class:`Tencentcloud::Mps.v20190612.models.ScheduleReviewTaskResult`
+        # @param AnalysisTask: 分析任务输出
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AnalysisTask: :class:`Tencentcloud::Mps.v20190612.models.ScheduleAnalysisTaskResult`
+
+        attr_accessor :TranscodeTask, :AnimatedGraphicTask, :SnapshotByTimeOffsetTask, :SampleSnapshotTask, :ImageSpriteTask, :AdaptiveDynamicStreamingTask, :RecognitionTask, :ReviewTask, :AnalysisTask
+        
+        def initialize(transcodetask=nil, animatedgraphictask=nil, snapshotbytimeoffsettask=nil, samplesnapshottask=nil, imagespritetask=nil, adaptivedynamicstreamingtask=nil, recognitiontask=nil, reviewtask=nil, analysistask=nil)
+          @TranscodeTask = transcodetask
+          @AnimatedGraphicTask = animatedgraphictask
+          @SnapshotByTimeOffsetTask = snapshotbytimeoffsettask
+          @SampleSnapshotTask = samplesnapshottask
+          @ImageSpriteTask = imagespritetask
+          @AdaptiveDynamicStreamingTask = adaptivedynamicstreamingtask
+          @RecognitionTask = recognitiontask
+          @ReviewTask = reviewtask
+          @AnalysisTask = analysistask
+        end
+
+        def deserialize(params)
+          unless params['TranscodeTask'].nil?
+            @TranscodeTask = MediaProcessTaskTranscodeResult.new
+            @TranscodeTask.deserialize(params['TranscodeTask'])
+          end
+          unless params['AnimatedGraphicTask'].nil?
+            @AnimatedGraphicTask = MediaProcessTaskAnimatedGraphicResult.new
+            @AnimatedGraphicTask.deserialize(params['AnimatedGraphicTask'])
+          end
+          unless params['SnapshotByTimeOffsetTask'].nil?
+            @SnapshotByTimeOffsetTask = MediaProcessTaskSampleSnapshotResult.new
+            @SnapshotByTimeOffsetTask.deserialize(params['SnapshotByTimeOffsetTask'])
+          end
+          unless params['SampleSnapshotTask'].nil?
+            @SampleSnapshotTask = MediaProcessTaskSampleSnapshotResult.new
+            @SampleSnapshotTask.deserialize(params['SampleSnapshotTask'])
+          end
+          unless params['ImageSpriteTask'].nil?
+            @ImageSpriteTask = MediaProcessTaskImageSpriteResult.new
+            @ImageSpriteTask.deserialize(params['ImageSpriteTask'])
+          end
+          unless params['AdaptiveDynamicStreamingTask'].nil?
+            @AdaptiveDynamicStreamingTask = MediaProcessTaskAdaptiveDynamicStreamingResult.new
+            @AdaptiveDynamicStreamingTask.deserialize(params['AdaptiveDynamicStreamingTask'])
+          end
+          unless params['RecognitionTask'].nil?
+            @RecognitionTask = ScheduleRecognitionTaskResult.new
+            @RecognitionTask.deserialize(params['RecognitionTask'])
+          end
+          unless params['ReviewTask'].nil?
+            @ReviewTask = ScheduleReviewTaskResult.new
+            @ReviewTask.deserialize(params['ReviewTask'])
+          end
+          unless params['AnalysisTask'].nil?
+            @AnalysisTask = ScheduleAnalysisTaskResult.new
+            @AnalysisTask.deserialize(params['AnalysisTask'])
+          end
+        end
+      end
+
+      # 编排任务输出
+      class ActivityResult < TencentCloud::Common::AbstractModel
+        # @param ActivityType: 原子任务类型。
+        # <li>Transcode：转码。</li>
+        # <li>SampleSnapshot：采样截图。</li>
+        # <li>AnimatedGraphics：转动图。</li>
+        # <li>SnapshotByTimeOffset：时间点截图。</li>
+        # <li>ImageSprites：雪碧图。</li>
+        # <li>AdaptiveDynamicStreaming：自适应码流。</li>
+        # <li>AiContentReview：内容审核。</li>
+        # <li>AIRecognition：智能识别。</li>
+        # <li>AIAnalysis：智能分析。</li>
+        # @type ActivityType: String
+        # @param ActivityResItem: 原子任务输出。
+        # @type ActivityResItem: :class:`Tencentcloud::Mps.v20190612.models.ActivityResItem`
+
+        attr_accessor :ActivityType, :ActivityResItem
+        
+        def initialize(activitytype=nil, activityresitem=nil)
+          @ActivityType = activitytype
+          @ActivityResItem = activityresitem
+        end
+
+        def deserialize(params)
+          @ActivityType = params['ActivityType']
+          unless params['ActivityResItem'].nil?
+            @ActivityResItem = ActivityResItem.new
+            @ActivityResItem.deserialize(params['ActivityResItem'])
+          end
+        end
+      end
+
       # 转自适应码流信息
       class AdaptiveDynamicStreamingInfoItem < TencentCloud::Common::AbstractModel
         # @param Definition: 转自适应码流规格。
@@ -2973,6 +3089,33 @@ module TencentCloud
         end
       end
 
+      # 去伪影（毛刺）配置
+      class ArtifactRepairConfig < TencentCloud::Common::AbstractModel
+        # @param Switch: 能力配置开关，可选值：
+        # <li>ON：开启；</li>
+        # <li>OFF：关闭。</li>
+        # 默认值：ON。
+        # @type Switch: String
+        # @param Type: 类型，可选值：
+        # <li>weak</li>
+        # <li>strong</li>
+        # 默认值：weak。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Type: String
+
+        attr_accessor :Switch, :Type
+        
+        def initialize(switch=nil, type=nil)
+          @Switch = switch
+          @Type = type
+        end
+
+        def deserialize(params)
+          @Switch = params['Switch']
+          @Type = params['Type']
+        end
+      end
+
       # 语音全文识别任务控制参数
       class AsrFullTextConfigureInfo < TencentCloud::Common::AbstractModel
         # @param Switch: 语音全文识别任务开关，可选值：
@@ -3201,6 +3344,34 @@ module TencentCloud
 
         def deserialize(params)
           @Switch = params['Switch']
+        end
+      end
+
+      # 色彩增强配置
+      class ColorEnhanceConfig < TencentCloud::Common::AbstractModel
+        # @param Switch: 能力配置开关，可选值：
+        # <li>ON：开启；</li>
+        # <li>OFF：关闭。</li>
+        # 默认值：ON。
+        # @type Switch: String
+        # @param Type: 类型，可选值：
+        # <li>weak</li>
+        # <li>normal</li>
+        # <li>strong</li>
+        # 默认值：weak。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Type: String
+
+        attr_accessor :Switch, :Type
+        
+        def initialize(switch=nil, type=nil)
+          @Switch = switch
+          @Type = type
+        end
+
+        def deserialize(params)
+          @Switch = params['Switch']
+          @Type = params['Type']
         end
       end
 
@@ -4119,10 +4290,12 @@ module TencentCloud
         # @type AudioTemplate: :class:`Tencentcloud::Mps.v20190612.models.AudioTemplateInfo`
         # @param TEHDConfig: 极速高清转码参数。
         # @type TEHDConfig: :class:`Tencentcloud::Mps.v20190612.models.TEHDConfig`
+        # @param EnhanceConfig: 音视频增强配置。
+        # @type EnhanceConfig: :class:`Tencentcloud::Mps.v20190612.models.EnhanceConfig`
 
-        attr_accessor :Container, :Name, :Comment, :RemoveVideo, :RemoveAudio, :VideoTemplate, :AudioTemplate, :TEHDConfig
+        attr_accessor :Container, :Name, :Comment, :RemoveVideo, :RemoveAudio, :VideoTemplate, :AudioTemplate, :TEHDConfig, :EnhanceConfig
         
-        def initialize(container=nil, name=nil, comment=nil, removevideo=nil, removeaudio=nil, videotemplate=nil, audiotemplate=nil, tehdconfig=nil)
+        def initialize(container=nil, name=nil, comment=nil, removevideo=nil, removeaudio=nil, videotemplate=nil, audiotemplate=nil, tehdconfig=nil, enhanceconfig=nil)
           @Container = container
           @Name = name
           @Comment = comment
@@ -4131,6 +4304,7 @@ module TencentCloud
           @VideoTemplate = videotemplate
           @AudioTemplate = audiotemplate
           @TEHDConfig = tehdconfig
+          @EnhanceConfig = enhanceconfig
         end
 
         def deserialize(params)
@@ -4150,6 +4324,10 @@ module TencentCloud
           unless params['TEHDConfig'].nil?
             @TEHDConfig = TEHDConfig.new
             @TEHDConfig.deserialize(params['TEHDConfig'])
+          end
+          unless params['EnhanceConfig'].nil?
+            @EnhanceConfig = EnhanceConfig.new
+            @EnhanceConfig.deserialize(params['EnhanceConfig'])
           end
         end
       end
@@ -5453,6 +5631,7 @@ module TencentCloud
         # <li>WorkflowTask：视频工作流处理任务。</li>
         # <li>EditMediaTask：视频编辑任务。</li>
         # <li>LiveStreamProcessTask：直播流处理任务。</li>
+        # <li>ScheduleTask：编排处理任务。</li>
         # @type TaskType: String
         # @param Status: 任务状态，取值：
         # <li>WAITING：等待中；</li>
@@ -5465,12 +5644,12 @@ module TencentCloud
         # @type BeginProcessTime: String
         # @param FinishTime: 任务执行完毕的时间，采用 [ISO 日期格式](https://cloud.tencent.com/document/product/862/37710#52)。
         # @type FinishTime: String
-        # @param WorkflowTask: 视频处理任务信息，仅当 TaskType 为 WorkflowTask，该字段有值。
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type WorkflowTask: :class:`Tencentcloud::Mps.v20190612.models.WorkflowTask`
         # @param EditMediaTask: 视频编辑任务信息，仅当 TaskType 为 EditMediaTask，该字段有值。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EditMediaTask: :class:`Tencentcloud::Mps.v20190612.models.EditMediaTask`
+        # @param WorkflowTask: 视频处理任务信息，仅当 TaskType 为 WorkflowTask，该字段有值。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type WorkflowTask: :class:`Tencentcloud::Mps.v20190612.models.WorkflowTask`
         # @param LiveStreamProcessTask: 直播流处理任务信息，仅当 TaskType 为 LiveStreamProcessTask，该字段有值。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LiveStreamProcessTask: :class:`Tencentcloud::Mps.v20190612.models.LiveStreamProcessTask`
@@ -5485,25 +5664,29 @@ module TencentCloud
         # @type SessionContext: String
         # @param ExtInfo: 扩展信息字段，仅用于特定场景。
         # @type ExtInfo: String
+        # @param ScheduleTask: 编排处理任务信息，仅当 TaskType 为 ScheduleTask，该字段有值。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ScheduleTask: :class:`Tencentcloud::Mps.v20190612.models.ScheduleTask`
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :TaskType, :Status, :CreateTime, :BeginProcessTime, :FinishTime, :WorkflowTask, :EditMediaTask, :LiveStreamProcessTask, :TaskNotifyConfig, :TasksPriority, :SessionId, :SessionContext, :ExtInfo, :RequestId
+        attr_accessor :TaskType, :Status, :CreateTime, :BeginProcessTime, :FinishTime, :EditMediaTask, :WorkflowTask, :LiveStreamProcessTask, :TaskNotifyConfig, :TasksPriority, :SessionId, :SessionContext, :ExtInfo, :ScheduleTask, :RequestId
         
-        def initialize(tasktype=nil, status=nil, createtime=nil, beginprocesstime=nil, finishtime=nil, workflowtask=nil, editmediatask=nil, livestreamprocesstask=nil, tasknotifyconfig=nil, taskspriority=nil, sessionid=nil, sessioncontext=nil, extinfo=nil, requestid=nil)
+        def initialize(tasktype=nil, status=nil, createtime=nil, beginprocesstime=nil, finishtime=nil, editmediatask=nil, workflowtask=nil, livestreamprocesstask=nil, tasknotifyconfig=nil, taskspriority=nil, sessionid=nil, sessioncontext=nil, extinfo=nil, scheduletask=nil, requestid=nil)
           @TaskType = tasktype
           @Status = status
           @CreateTime = createtime
           @BeginProcessTime = beginprocesstime
           @FinishTime = finishtime
-          @WorkflowTask = workflowtask
           @EditMediaTask = editmediatask
+          @WorkflowTask = workflowtask
           @LiveStreamProcessTask = livestreamprocesstask
           @TaskNotifyConfig = tasknotifyconfig
           @TasksPriority = taskspriority
           @SessionId = sessionid
           @SessionContext = sessioncontext
           @ExtInfo = extinfo
+          @ScheduleTask = scheduletask
           @RequestId = requestid
         end
 
@@ -5513,13 +5696,13 @@ module TencentCloud
           @CreateTime = params['CreateTime']
           @BeginProcessTime = params['BeginProcessTime']
           @FinishTime = params['FinishTime']
-          unless params['WorkflowTask'].nil?
-            @WorkflowTask = WorkflowTask.new
-            @WorkflowTask.deserialize(params['WorkflowTask'])
-          end
           unless params['EditMediaTask'].nil?
             @EditMediaTask = EditMediaTask.new
             @EditMediaTask.deserialize(params['EditMediaTask'])
+          end
+          unless params['WorkflowTask'].nil?
+            @WorkflowTask = WorkflowTask.new
+            @WorkflowTask.deserialize(params['WorkflowTask'])
           end
           unless params['LiveStreamProcessTask'].nil?
             @LiveStreamProcessTask = LiveStreamProcessTask.new
@@ -5533,6 +5716,10 @@ module TencentCloud
           @SessionId = params['SessionId']
           @SessionContext = params['SessionContext']
           @ExtInfo = params['ExtInfo']
+          unless params['ScheduleTask'].nil?
+            @ScheduleTask = ScheduleTask.new
+            @ScheduleTask.deserialize(params['ScheduleTask'])
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -5567,14 +5754,17 @@ module TencentCloud
         # @type TaskSet: Array
         # @param ScrollToken: 翻页标识，当请求未返回所有数据，该字段表示下一条记录的 ID。当该字段为空字符串，说明已无更多数据。
         # @type ScrollToken: String
+        # @param TotalCount: 符合过滤条件的记录总数。
+        # @type TotalCount: Integer
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :TaskSet, :ScrollToken, :RequestId
+        attr_accessor :TaskSet, :ScrollToken, :TotalCount, :RequestId
         
-        def initialize(taskset=nil, scrolltoken=nil, requestid=nil)
+        def initialize(taskset=nil, scrolltoken=nil, totalcount=nil, requestid=nil)
           @TaskSet = taskset
           @ScrollToken = scrolltoken
+          @TotalCount = totalcount
           @RequestId = requestid
         end
 
@@ -5588,6 +5778,7 @@ module TencentCloud
             end
           end
           @ScrollToken = params['ScrollToken']
+          @TotalCount = params['TotalCount']
           @RequestId = params['RequestId']
         end
       end
@@ -5612,16 +5803,23 @@ module TencentCloud
         # @type Offset: Integer
         # @param Limit: 返回记录条数，默认值：10，最大值：100。
         # @type Limit: Integer
+        # @param TranscodeType: 模板类型（替换旧版本 TEHDType），可选值：
+        # <li>Common：普通转码模板；</li>
+        # <li>TEHD：极速高清模板。</li>
+        # <li>Enhance：音视频增强模板。</li>
+        # 默认空，不限制类型。
+        # @type TranscodeType: String
 
-        attr_accessor :Definitions, :Type, :ContainerType, :TEHDType, :Offset, :Limit
+        attr_accessor :Definitions, :Type, :ContainerType, :TEHDType, :Offset, :Limit, :TranscodeType
         
-        def initialize(definitions=nil, type=nil, containertype=nil, tehdtype=nil, offset=nil, limit=nil)
+        def initialize(definitions=nil, type=nil, containertype=nil, tehdtype=nil, offset=nil, limit=nil, transcodetype=nil)
           @Definitions = definitions
           @Type = type
           @ContainerType = containertype
           @TEHDType = tehdtype
           @Offset = offset
           @Limit = limit
+          @TranscodeType = transcodetype
         end
 
         def deserialize(params)
@@ -5631,6 +5829,7 @@ module TencentCloud
           @TEHDType = params['TEHDType']
           @Offset = params['Offset']
           @Limit = params['Limit']
+          @TranscodeType = params['TranscodeType']
         end
       end
 
@@ -6143,6 +6342,26 @@ module TencentCloud
         end
       end
 
+      # 音视频增强配置
+      class EnhanceConfig < TencentCloud::Common::AbstractModel
+        # @param VideoEnhance: 视频增强配置。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VideoEnhance: :class:`Tencentcloud::Mps.v20190612.models.VideoEnhanceConfig`
+
+        attr_accessor :VideoEnhance
+        
+        def initialize(videoenhance=nil)
+          @VideoEnhance = videoenhance
+        end
+
+        def deserialize(params)
+          unless params['VideoEnhance'].nil?
+            @VideoEnhance = VideoEnhanceConfig.new
+            @VideoEnhance.deserialize(params['VideoEnhance'])
+          end
+        end
+      end
+
       # ExecuteFunction请求参数结构体
       class ExecuteFunctionRequest < TencentCloud::Common::AbstractModel
         # @param FunctionName: 调用后端接口名称。
@@ -6284,6 +6503,57 @@ module TencentCloud
         end
       end
 
+      # 人脸增强配置
+      class FaceEnhanceConfig < TencentCloud::Common::AbstractModel
+        # @param Switch: 能力配置开关，可选值：
+        # <li>ON：开启；</li>
+        # <li>OFF：关闭。</li>
+        # 默认值：ON。
+        # @type Switch: String
+        # @param Intensity: 强度，取值范围：0.0~1.0。
+        # 默认：0.0。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Intensity: Float
+
+        attr_accessor :Switch, :Intensity
+        
+        def initialize(switch=nil, intensity=nil)
+          @Switch = switch
+          @Intensity = intensity
+        end
+
+        def deserialize(params)
+          @Switch = params['Switch']
+          @Intensity = params['Intensity']
+        end
+      end
+
+      # 插帧帧率配置
+      class FrameRateConfig < TencentCloud::Common::AbstractModel
+        # @param Switch: 能力配置开关，可选值：
+        # <li>ON：开启；</li>
+        # <li>OFF：关闭。</li>
+        # 默认值：ON。
+        # @type Switch: String
+        # @param Fps: 帧率，取值范围：[0, 100]，单位：Hz。
+        # 默认值 0。
+        # 注意：对于转码，该参数会覆盖 VideoTemplate 内部的 Fps。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Fps: Integer
+
+        attr_accessor :Switch, :Fps
+        
+        def initialize(switch=nil, fps=nil)
+          @Switch = switch
+          @Fps = fps
+        end
+
+        def deserialize(params)
+          @Switch = params['Switch']
+          @Fps = params['Fps']
+        end
+      end
+
       # 智能按帧标签任务控制参数
       class FrameTagConfigureInfo < TencentCloud::Common::AbstractModel
         # @param Switch: 智能按帧标签任务开关，可选值：
@@ -6320,6 +6590,35 @@ module TencentCloud
         end
       end
 
+      # HDR配置
+      class HdrConfig < TencentCloud::Common::AbstractModel
+        # @param Switch: 能力配置开关，可选值：
+        # <li>ON：开启；</li>
+        # <li>OFF：关闭。</li>
+        # 默认值：ON。
+        # @type Switch: String
+        # @param Type: 类型，可选值：
+        # <li>HDR10</li>
+        # <li>HLG</li>
+        # 默认值：HDR10。
+        # 注意：video的编码方式需要为libx265；
+        # 注意：视频编码位深为10。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Type: String
+
+        attr_accessor :Switch, :Type
+        
+        def initialize(switch=nil, type=nil)
+          @Switch = switch
+          @Type = type
+        end
+
+        def deserialize(params)
+          @Switch = params['Switch']
+          @Type = params['Type']
+        end
+      end
+
       # 片头片尾参数
       class HeadTailParameter < TencentCloud::Common::AbstractModel
         # @param HeadSet: 片头列表。
@@ -6351,6 +6650,34 @@ module TencentCloud
               @TailSet << mediainputinfo_tmp
             end
           end
+        end
+      end
+
+      # 综合增强配置
+      class ImageQualityEnhanceConfig < TencentCloud::Common::AbstractModel
+        # @param Switch: 能力配置开关，可选值：
+        # <li>ON：开启；</li>
+        # <li>OFF：关闭。</li>
+        # 默认值：ON。
+        # @type Switch: String
+        # @param Type: 类型，可选值：
+        # <li>weak</li>
+        # <li>normal</li>
+        # <li>strong</li>
+        # 默认值：weak。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Type: String
+
+        attr_accessor :Switch, :Type
+        
+        def initialize(switch=nil, type=nil)
+          @Switch = switch
+          @Type = type
+        end
+
+        def deserialize(params)
+          @Switch = params['Switch']
+          @Type = params['Type']
         end
       end
 
@@ -7220,6 +7547,32 @@ module TencentCloud
           @TopicName = params['TopicName']
           @NotifyType = params['NotifyType']
           @NotifyUrl = params['NotifyUrl']
+        end
+      end
+
+      # 低光照增强配置
+      class LowLightEnhanceConfig < TencentCloud::Common::AbstractModel
+        # @param Switch: 能力配置开关，可选值：
+        # <li>ON：开启；</li>
+        # <li>OFF：关闭。</li>
+        # 默认值：ON。
+        # @type Switch: String
+        # @param Type: 类型，可选值：
+        # <li>normal</li>
+        # 默认值：normal。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Type: String
+
+        attr_accessor :Switch, :Type
+        
+        def initialize(switch=nil, type=nil)
+          @Switch = switch
+          @Type = type
+        end
+
+        def deserialize(params)
+          @Switch = params['Switch']
+          @Type = params['Type']
         end
       end
 
@@ -9188,10 +9541,12 @@ module TencentCloud
         # @type AudioTemplate: :class:`Tencentcloud::Mps.v20190612.models.AudioTemplateInfoForUpdate`
         # @param TEHDConfig: 极速高清转码参数。
         # @type TEHDConfig: :class:`Tencentcloud::Mps.v20190612.models.TEHDConfigForUpdate`
+        # @param EnhanceConfig: 音视频增强参数。
+        # @type EnhanceConfig: :class:`Tencentcloud::Mps.v20190612.models.EnhanceConfig`
 
-        attr_accessor :Definition, :Container, :Name, :Comment, :RemoveVideo, :RemoveAudio, :VideoTemplate, :AudioTemplate, :TEHDConfig
+        attr_accessor :Definition, :Container, :Name, :Comment, :RemoveVideo, :RemoveAudio, :VideoTemplate, :AudioTemplate, :TEHDConfig, :EnhanceConfig
         
-        def initialize(definition=nil, container=nil, name=nil, comment=nil, removevideo=nil, removeaudio=nil, videotemplate=nil, audiotemplate=nil, tehdconfig=nil)
+        def initialize(definition=nil, container=nil, name=nil, comment=nil, removevideo=nil, removeaudio=nil, videotemplate=nil, audiotemplate=nil, tehdconfig=nil, enhanceconfig=nil)
           @Definition = definition
           @Container = container
           @Name = name
@@ -9201,6 +9556,7 @@ module TencentCloud
           @VideoTemplate = videotemplate
           @AudioTemplate = audiotemplate
           @TEHDConfig = tehdconfig
+          @EnhanceConfig = enhanceconfig
         end
 
         def deserialize(params)
@@ -9221,6 +9577,10 @@ module TencentCloud
           unless params['TEHDConfig'].nil?
             @TEHDConfig = TEHDConfigForUpdate.new
             @TEHDConfig.deserialize(params['TEHDConfig'])
+          end
+          unless params['EnhanceConfig'].nil?
+            @EnhanceConfig = EnhanceConfig.new
+            @EnhanceConfig.deserialize(params['EnhanceConfig'])
           end
         end
       end
@@ -9692,6 +10052,7 @@ module TencentCloud
         # @param EventType: 支持事件类型，目前取值有：
         # <li>WorkflowTask：视频工作流处理任务。</li>
         # <li>EditMediaTask：视频编辑任务。</li>
+        # <li>ScheduleTask：编排任务。</li>
         # @type EventType: String
         # @param WorkflowTaskEvent: 视频处理任务信息，仅当 TaskType 为 WorkflowTask，该字段有值。
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -9703,17 +10064,21 @@ module TencentCloud
         # @type SessionId: String
         # @param SessionContext: 来源上下文，用于透传用户请求信息，任务流状态变更回调将返回该字段值，最长1000个字符。
         # @type SessionContext: String
+        # @param ScheduleTaskEvent: 编排任务信息，仅当 TaskType 为 ScheduleTask，该字段有值。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ScheduleTaskEvent: :class:`Tencentcloud::Mps.v20190612.models.ScheduleTask`
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :EventType, :WorkflowTaskEvent, :EditMediaTaskEvent, :SessionId, :SessionContext, :RequestId
+        attr_accessor :EventType, :WorkflowTaskEvent, :EditMediaTaskEvent, :SessionId, :SessionContext, :ScheduleTaskEvent, :RequestId
         
-        def initialize(eventtype=nil, workflowtaskevent=nil, editmediataskevent=nil, sessionid=nil, sessioncontext=nil, requestid=nil)
+        def initialize(eventtype=nil, workflowtaskevent=nil, editmediataskevent=nil, sessionid=nil, sessioncontext=nil, scheduletaskevent=nil, requestid=nil)
           @EventType = eventtype
           @WorkflowTaskEvent = workflowtaskevent
           @EditMediaTaskEvent = editmediataskevent
           @SessionId = sessionid
           @SessionContext = sessioncontext
+          @ScheduleTaskEvent = scheduletaskevent
           @RequestId = requestid
         end
 
@@ -9729,6 +10094,10 @@ module TencentCloud
           end
           @SessionId = params['SessionId']
           @SessionContext = params['SessionContext']
+          unless params['ScheduleTaskEvent'].nil?
+            @ScheduleTaskEvent = ScheduleTask.new
+            @ScheduleTaskEvent.deserialize(params['ScheduleTaskEvent'])
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -10317,10 +10686,15 @@ module TencentCloud
         # @type SessionId: String
         # @param SessionContext: 来源上下文，用于透传用户请求信息，任务流状态变更回调将返回该字段值，最长 1000 个字符。
         # @type SessionContext: String
+        # @param ScheduleId: 编排ID。
+        # 注意1：对于OutputStorage、OutputDir，如果编排任务里没有配置，将采用请求里对应参数。
+        # 注意2：对于TaskNotifyConfig，如果编排任务里没有配置，将采用请求里对应的参数。
+        # 注意3：编排的 Trigger 只是用来自动化触发场景，在手动发起的请求中已经配置的 Trigger 无意义。
+        # @type ScheduleId: Integer
 
-        attr_accessor :InputInfo, :OutputStorage, :OutputDir, :MediaProcessTask, :AiContentReviewTask, :AiAnalysisTask, :AiRecognitionTask, :TaskNotifyConfig, :TasksPriority, :SessionId, :SessionContext
+        attr_accessor :InputInfo, :OutputStorage, :OutputDir, :MediaProcessTask, :AiContentReviewTask, :AiAnalysisTask, :AiRecognitionTask, :TaskNotifyConfig, :TasksPriority, :SessionId, :SessionContext, :ScheduleId
         
-        def initialize(inputinfo=nil, outputstorage=nil, outputdir=nil, mediaprocesstask=nil, aicontentreviewtask=nil, aianalysistask=nil, airecognitiontask=nil, tasknotifyconfig=nil, taskspriority=nil, sessionid=nil, sessioncontext=nil)
+        def initialize(inputinfo=nil, outputstorage=nil, outputdir=nil, mediaprocesstask=nil, aicontentreviewtask=nil, aianalysistask=nil, airecognitiontask=nil, tasknotifyconfig=nil, taskspriority=nil, sessionid=nil, sessioncontext=nil, scheduleid=nil)
           @InputInfo = inputinfo
           @OutputStorage = outputstorage
           @OutputDir = outputdir
@@ -10332,6 +10706,7 @@ module TencentCloud
           @TasksPriority = taskspriority
           @SessionId = sessionid
           @SessionContext = sessioncontext
+          @ScheduleId = scheduleid
         end
 
         def deserialize(params)
@@ -10367,6 +10742,7 @@ module TencentCloud
           @TasksPriority = params['TasksPriority']
           @SessionId = params['SessionId']
           @SessionContext = params['SessionContext']
+          @ScheduleId = params['ScheduleId']
         end
       end
 
@@ -10960,6 +11336,247 @@ module TencentCloud
         end
       end
 
+      # 编排视频分析任务结果类型
+      class ScheduleAnalysisTaskResult < TencentCloud::Common::AbstractModel
+        # @param Status: 任务状态，有 PROCESSING，SUCCESS 和 FAIL 三种。
+        # @type Status: String
+        # @param ErrCodeExt: 错误码，空字符串表示成功，其他值表示失败，取值请参考 [媒体处理类错误码](https://cloud.tencent.com/document/product/862/50369#.E8.A7.86.E9.A2.91.E5.A4.84.E7.90.86.E7.B1.BB.E9.94.99.E8.AF.AF.E7.A0.81) 列表。
+        # @type ErrCodeExt: String
+        # @param ErrCode: 错误码，0 表示成功，其他值表示失败（该字段已不推荐使用，建议使用新的错误码字段 ErrCodeExt）。
+        # @type ErrCode: Integer
+        # @param Message: 错误信息。
+        # @type Message: String
+        # @param Input: 分析任务的输入。
+        # @type Input: :class:`Tencentcloud::Mps.v20190612.models.AiAnalysisTaskInput`
+        # @param Output: 分析任务的输出。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Output: Array
+
+        attr_accessor :Status, :ErrCodeExt, :ErrCode, :Message, :Input, :Output
+        
+        def initialize(status=nil, errcodeext=nil, errcode=nil, message=nil, input=nil, output=nil)
+          @Status = status
+          @ErrCodeExt = errcodeext
+          @ErrCode = errcode
+          @Message = message
+          @Input = input
+          @Output = output
+        end
+
+        def deserialize(params)
+          @Status = params['Status']
+          @ErrCodeExt = params['ErrCodeExt']
+          @ErrCode = params['ErrCode']
+          @Message = params['Message']
+          unless params['Input'].nil?
+            @Input = AiAnalysisTaskInput.new
+            @Input.deserialize(params['Input'])
+          end
+          unless params['Output'].nil?
+            @Output = []
+            params['Output'].each do |i|
+              aianalysisresult_tmp = AiAnalysisResult.new
+              aianalysisresult_tmp.deserialize(i)
+              @Output << aianalysisresult_tmp
+            end
+          end
+        end
+      end
+
+      # 编排视频识别任务结果类型
+      class ScheduleRecognitionTaskResult < TencentCloud::Common::AbstractModel
+        # @param Status: 任务状态，有 PROCESSING，SUCCESS 和 FAIL 三种。
+        # @type Status: String
+        # @param ErrCodeExt: 错误码，空字符串表示成功，其他值表示失败，取值请参考 [媒体处理类错误码](https://cloud.tencent.com/document/product/862/50369#.E8.A7.86.E9.A2.91.E5.A4.84.E7.90.86.E7.B1.BB.E9.94.99.E8.AF.AF.E7.A0.81) 列表。
+        # @type ErrCodeExt: String
+        # @param ErrCode: 错误码，0 表示成功，其他值表示失败（该字段已不推荐使用，建议使用新的错误码字段 ErrCodeExt）。
+        # @type ErrCode: Integer
+        # @param Message: 错误信息。
+        # @type Message: String
+        # @param Input: 识别任务的输入。
+        # @type Input: :class:`Tencentcloud::Mps.v20190612.models.AiRecognitionTaskInput`
+        # @param Output: 识别任务的输出。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Output: Array
+
+        attr_accessor :Status, :ErrCodeExt, :ErrCode, :Message, :Input, :Output
+        
+        def initialize(status=nil, errcodeext=nil, errcode=nil, message=nil, input=nil, output=nil)
+          @Status = status
+          @ErrCodeExt = errcodeext
+          @ErrCode = errcode
+          @Message = message
+          @Input = input
+          @Output = output
+        end
+
+        def deserialize(params)
+          @Status = params['Status']
+          @ErrCodeExt = params['ErrCodeExt']
+          @ErrCode = params['ErrCode']
+          @Message = params['Message']
+          unless params['Input'].nil?
+            @Input = AiRecognitionTaskInput.new
+            @Input.deserialize(params['Input'])
+          end
+          unless params['Output'].nil?
+            @Output = []
+            params['Output'].each do |i|
+              airecognitionresult_tmp = AiRecognitionResult.new
+              airecognitionresult_tmp.deserialize(i)
+              @Output << airecognitionresult_tmp
+            end
+          end
+        end
+      end
+
+      # 编排视频审核任务结果类型
+      class ScheduleReviewTaskResult < TencentCloud::Common::AbstractModel
+        # @param Status: 任务状态，有 PROCESSING，SUCCESS 和 FAIL 三种。
+        # @type Status: String
+        # @param ErrCodeExt: 错误码，空字符串表示成功，其他值表示失败，取值请参考 [媒体处理类错误码](https://cloud.tencent.com/document/product/862/50369#.E8.A7.86.E9.A2.91.E5.A4.84.E7.90.86.E7.B1.BB.E9.94.99.E8.AF.AF.E7.A0.81) 列表。
+        # @type ErrCodeExt: String
+        # @param ErrCode: 错误码，0 表示成功，其他值表示失败（该字段已不推荐使用，建议使用新的错误码字段 ErrCodeExt）。
+        # @type ErrCode: Integer
+        # @param Message: 错误信息。
+        # @type Message: String
+        # @param Input: 审核任务的输入。
+        # @type Input: :class:`Tencentcloud::Mps.v20190612.models.AiContentReviewTaskInput`
+        # @param Output: 审核任务的输出。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Output: Array
+
+        attr_accessor :Status, :ErrCodeExt, :ErrCode, :Message, :Input, :Output
+        
+        def initialize(status=nil, errcodeext=nil, errcode=nil, message=nil, input=nil, output=nil)
+          @Status = status
+          @ErrCodeExt = errcodeext
+          @ErrCode = errcode
+          @Message = message
+          @Input = input
+          @Output = output
+        end
+
+        def deserialize(params)
+          @Status = params['Status']
+          @ErrCodeExt = params['ErrCodeExt']
+          @ErrCode = params['ErrCode']
+          @Message = params['Message']
+          unless params['Input'].nil?
+            @Input = AiContentReviewTaskInput.new
+            @Input.deserialize(params['Input'])
+          end
+          unless params['Output'].nil?
+            @Output = []
+            params['Output'].each do |i|
+              aicontentreviewresult_tmp = AiContentReviewResult.new
+              aicontentreviewresult_tmp.deserialize(i)
+              @Output << aicontentreviewresult_tmp
+            end
+          end
+        end
+      end
+
+      # 编排任务信息
+      class ScheduleTask < TencentCloud::Common::AbstractModel
+        # @param TaskId: 编排任务 ID。
+        # @type TaskId: String
+        # @param Status: 任务流状态，取值：
+        # <li>PROCESSING：处理中；</li>
+        # <li>FINISH：已完成。</li>
+        # @type Status: String
+        # @param InputInfo: 媒体处理的目标文件信息。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InputInfo: :class:`Tencentcloud::Mps.v20190612.models.MediaInputInfo`
+        # @param MetaData: 原始视频的元信息。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MetaData: :class:`Tencentcloud::Mps.v20190612.models.MediaMetaData`
+        # @param ActivityResultSet: 编排任务输出。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ActivityResultSet: Array
+
+        attr_accessor :TaskId, :Status, :InputInfo, :MetaData, :ActivityResultSet
+        
+        def initialize(taskid=nil, status=nil, inputinfo=nil, metadata=nil, activityresultset=nil)
+          @TaskId = taskid
+          @Status = status
+          @InputInfo = inputinfo
+          @MetaData = metadata
+          @ActivityResultSet = activityresultset
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @Status = params['Status']
+          unless params['InputInfo'].nil?
+            @InputInfo = MediaInputInfo.new
+            @InputInfo.deserialize(params['InputInfo'])
+          end
+          unless params['MetaData'].nil?
+            @MetaData = MediaMetaData.new
+            @MetaData.deserialize(params['MetaData'])
+          end
+          unless params['ActivityResultSet'].nil?
+            @ActivityResultSet = []
+            params['ActivityResultSet'].each do |i|
+              activityresult_tmp = ActivityResult.new
+              activityresult_tmp.deserialize(i)
+              @ActivityResultSet << activityresult_tmp
+            end
+          end
+        end
+      end
+
+      # 去划痕配置
+      class ScratchRepairConfig < TencentCloud::Common::AbstractModel
+        # @param Switch: 能力配置开关，可选值：
+        # <li>ON：开启；</li>
+        # <li>OFF：关闭。</li>
+        # 默认值：ON。
+        # @type Switch: String
+        # @param Intensity: 强度，取值范围：0.0~1.0。
+        # 默认：0.0。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Intensity: Float
+
+        attr_accessor :Switch, :Intensity
+        
+        def initialize(switch=nil, intensity=nil)
+          @Switch = switch
+          @Intensity = intensity
+        end
+
+        def deserialize(params)
+          @Switch = params['Switch']
+          @Intensity = params['Intensity']
+        end
+      end
+
+      # 细节增强配置
+      class SharpEnhanceConfig < TencentCloud::Common::AbstractModel
+        # @param Switch: 能力配置开关，可选值：
+        # <li>ON：开启；</li>
+        # <li>OFF：关闭。</li>
+        # 默认值：ON。
+        # @type Switch: String
+        # @param Intensity: 强度，取值范围：0.0~1.0。
+        # 默认：0.0。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Intensity: Float
+
+        attr_accessor :Switch, :Intensity
+        
+        def initialize(switch=nil, intensity=nil)
+          @Switch = switch
+          @Intensity = intensity
+        end
+
+        def deserialize(params)
+          @Switch = params['Switch']
+          @Intensity = params['Intensity']
+        end
+      end
+
       # 对视频按指定时间点截图任务输入参数类型
       class SnapshotByTimeOffsetTaskInput < TencentCloud::Common::AbstractModel
         # @param Definition: 指定时间点截图模板 ID。
@@ -11090,6 +11707,40 @@ module TencentCloud
           @CreateTime = params['CreateTime']
           @UpdateTime = params['UpdateTime']
           @FillType = params['FillType']
+        end
+      end
+
+      # 超分配置
+      class SuperResolutionConfig < TencentCloud::Common::AbstractModel
+        # @param Switch: 能力配置开关，可选值：
+        # <li>ON：开启；</li>
+        # <li>OFF：关闭。</li>
+        # 默认值：ON。
+        # @type Switch: String
+        # @param Type: 类型，可选值：
+        # <li>lq：针对低清晰度有较多噪声视频的超分；</li>
+        # <li>hq：针对高清晰度视频超分。</li>
+        # 默认值：lq。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Type: String
+        # @param Size: 超分倍数，可选值：
+        # <li>2：目前只支持 2 倍超分。</li>
+        # 默认值：2。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Size: Integer
+
+        attr_accessor :Switch, :Type, :Size
+        
+        def initialize(switch=nil, type=nil, size=nil)
+          @Switch = switch
+          @Type = type
+          @Size = size
+        end
+
+        def deserialize(params)
+          @Switch = params['Switch']
+          @Type = params['Type']
+          @Size = params['Size']
         end
       end
 
@@ -11262,6 +11913,7 @@ module TencentCloud
         # <li>CMQ：已下线，建议切换到TDMQ-CMQ</li>
         # <li>TDMQ-CMQ：消息队列</li>
         # <li>URL：指定URL时HTTP回调推送到 NotifyUrl 指定的地址，回调协议http+json，包体内容同解析事件通知接口的输出参数 </li>
+        # <li>SCF：不推荐使用，需要在控制台额外配置SCF</li>
         # 目前 默认CMQ。
         # @type NotifyType: String
         # @param NotifyUrl: HTTP回调地址，NotifyType为URL时必填。
@@ -11737,10 +12389,13 @@ module TencentCloud
         # @type CreateTime: String
         # @param UpdateTime: 模板最后修改时间，使用 [ISO 日期格式](https://cloud.tencent.com/document/product/862/37710#52)。
         # @type UpdateTime: String
+        # @param EnhanceConfig: 音视频增强配置。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EnhanceConfig: :class:`Tencentcloud::Mps.v20190612.models.EnhanceConfig`
 
-        attr_accessor :Definition, :Container, :Name, :Comment, :Type, :RemoveVideo, :RemoveAudio, :VideoTemplate, :AudioTemplate, :TEHDConfig, :ContainerType, :CreateTime, :UpdateTime
+        attr_accessor :Definition, :Container, :Name, :Comment, :Type, :RemoveVideo, :RemoveAudio, :VideoTemplate, :AudioTemplate, :TEHDConfig, :ContainerType, :CreateTime, :UpdateTime, :EnhanceConfig
         
-        def initialize(definition=nil, container=nil, name=nil, comment=nil, type=nil, removevideo=nil, removeaudio=nil, videotemplate=nil, audiotemplate=nil, tehdconfig=nil, containertype=nil, createtime=nil, updatetime=nil)
+        def initialize(definition=nil, container=nil, name=nil, comment=nil, type=nil, removevideo=nil, removeaudio=nil, videotemplate=nil, audiotemplate=nil, tehdconfig=nil, containertype=nil, createtime=nil, updatetime=nil, enhanceconfig=nil)
           @Definition = definition
           @Container = container
           @Name = name
@@ -11754,6 +12409,7 @@ module TencentCloud
           @ContainerType = containertype
           @CreateTime = createtime
           @UpdateTime = updatetime
+          @EnhanceConfig = enhanceconfig
         end
 
         def deserialize(params)
@@ -11779,6 +12435,10 @@ module TencentCloud
           @ContainerType = params['ContainerType']
           @CreateTime = params['CreateTime']
           @UpdateTime = params['UpdateTime']
+          unless params['EnhanceConfig'].nil?
+            @EnhanceConfig = EnhanceConfig.new
+            @EnhanceConfig.deserialize(params['EnhanceConfig'])
+          end
         end
       end
 
@@ -12050,23 +12710,154 @@ module TencentCloud
         end
       end
 
+      # 视频降噪配置
+      class VideoDenoiseConfig < TencentCloud::Common::AbstractModel
+        # @param Switch: 能力配置开关，可选值：
+        # <li>ON：开启；</li>
+        # <li>OFF：关闭。</li>
+        # 默认值：ON。
+        # @type Switch: String
+        # @param Type: 类型，可选值：
+        # <li>weak</li>
+        # <li>strong</li>
+        # 默认值：weak。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Type: String
+
+        attr_accessor :Switch, :Type
+        
+        def initialize(switch=nil, type=nil)
+          @Switch = switch
+          @Type = type
+        end
+
+        def deserialize(params)
+          @Switch = params['Switch']
+          @Type = params['Type']
+        end
+      end
+
+      # 视频增强配置
+      class VideoEnhanceConfig < TencentCloud::Common::AbstractModel
+        # @param FrameRate: 插帧帧率配置。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FrameRate: :class:`Tencentcloud::Mps.v20190612.models.FrameRateConfig`
+        # @param SuperResolution: 超分配置。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SuperResolution: :class:`Tencentcloud::Mps.v20190612.models.SuperResolutionConfig`
+        # @param Hdr: HDR配置。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Hdr: :class:`Tencentcloud::Mps.v20190612.models.HdrConfig`
+        # @param Denoise: 视频降噪配置。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Denoise: :class:`Tencentcloud::Mps.v20190612.models.VideoDenoiseConfig`
+        # @param ImageQualityEnhance: 综合增强配置。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ImageQualityEnhance: :class:`Tencentcloud::Mps.v20190612.models.ImageQualityEnhanceConfig`
+        # @param ColorEnhance: 色彩增强配置。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ColorEnhance: :class:`Tencentcloud::Mps.v20190612.models.ColorEnhanceConfig`
+        # @param SharpEnhance: 细节增强配置。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SharpEnhance: :class:`Tencentcloud::Mps.v20190612.models.SharpEnhanceConfig`
+        # @param FaceEnhance: 人脸增强配置。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FaceEnhance: :class:`Tencentcloud::Mps.v20190612.models.FaceEnhanceConfig`
+        # @param LowLightEnhance: 低光照增强配置。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LowLightEnhance: :class:`Tencentcloud::Mps.v20190612.models.LowLightEnhanceConfig`
+        # @param ScratchRepair: 去划痕配置。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ScratchRepair: :class:`Tencentcloud::Mps.v20190612.models.ScratchRepairConfig`
+        # @param ArtifactRepair: 去伪影（毛刺）配置。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ArtifactRepair: :class:`Tencentcloud::Mps.v20190612.models.ArtifactRepairConfig`
+
+        attr_accessor :FrameRate, :SuperResolution, :Hdr, :Denoise, :ImageQualityEnhance, :ColorEnhance, :SharpEnhance, :FaceEnhance, :LowLightEnhance, :ScratchRepair, :ArtifactRepair
+        
+        def initialize(framerate=nil, superresolution=nil, hdr=nil, denoise=nil, imagequalityenhance=nil, colorenhance=nil, sharpenhance=nil, faceenhance=nil, lowlightenhance=nil, scratchrepair=nil, artifactrepair=nil)
+          @FrameRate = framerate
+          @SuperResolution = superresolution
+          @Hdr = hdr
+          @Denoise = denoise
+          @ImageQualityEnhance = imagequalityenhance
+          @ColorEnhance = colorenhance
+          @SharpEnhance = sharpenhance
+          @FaceEnhance = faceenhance
+          @LowLightEnhance = lowlightenhance
+          @ScratchRepair = scratchrepair
+          @ArtifactRepair = artifactrepair
+        end
+
+        def deserialize(params)
+          unless params['FrameRate'].nil?
+            @FrameRate = FrameRateConfig.new
+            @FrameRate.deserialize(params['FrameRate'])
+          end
+          unless params['SuperResolution'].nil?
+            @SuperResolution = SuperResolutionConfig.new
+            @SuperResolution.deserialize(params['SuperResolution'])
+          end
+          unless params['Hdr'].nil?
+            @Hdr = HdrConfig.new
+            @Hdr.deserialize(params['Hdr'])
+          end
+          unless params['Denoise'].nil?
+            @Denoise = VideoDenoiseConfig.new
+            @Denoise.deserialize(params['Denoise'])
+          end
+          unless params['ImageQualityEnhance'].nil?
+            @ImageQualityEnhance = ImageQualityEnhanceConfig.new
+            @ImageQualityEnhance.deserialize(params['ImageQualityEnhance'])
+          end
+          unless params['ColorEnhance'].nil?
+            @ColorEnhance = ColorEnhanceConfig.new
+            @ColorEnhance.deserialize(params['ColorEnhance'])
+          end
+          unless params['SharpEnhance'].nil?
+            @SharpEnhance = SharpEnhanceConfig.new
+            @SharpEnhance.deserialize(params['SharpEnhance'])
+          end
+          unless params['FaceEnhance'].nil?
+            @FaceEnhance = FaceEnhanceConfig.new
+            @FaceEnhance.deserialize(params['FaceEnhance'])
+          end
+          unless params['LowLightEnhance'].nil?
+            @LowLightEnhance = LowLightEnhanceConfig.new
+            @LowLightEnhance.deserialize(params['LowLightEnhance'])
+          end
+          unless params['ScratchRepair'].nil?
+            @ScratchRepair = ScratchRepairConfig.new
+            @ScratchRepair.deserialize(params['ScratchRepair'])
+          end
+          unless params['ArtifactRepair'].nil?
+            @ArtifactRepair = ArtifactRepairConfig.new
+            @ArtifactRepair.deserialize(params['ArtifactRepair'])
+          end
+        end
+      end
+
       # 视频流配置参数
       class VideoTemplateInfo < TencentCloud::Common::AbstractModel
         # @param Codec: 视频流的编码格式，可选值：
         # <li>libx264：H.264 编码</li>
         # <li>libx265：H.265 编码</li>
         # <li>av1：AOMedia Video 1 编码</li>
+        # 注意：目前 H.265 编码必须指定分辨率，并且需要在 640*480 以内。
+        # 注意：av1 编码容器目前只支持 mp4 。
         # @type Codec: String
         # @param Fps: 视频帧率，取值范围：[0, 100]，单位：Hz。
         # 当取值为 0，表示帧率和原始视频保持一致。
+        # 注意：自适应码率时取值范围是 [0, 60]
         # @type Fps: Integer
-        # @param Bitrate: 视频流的码率，取值范围：0 和 [75, 35000]，单位：kbps。
+        # @param Bitrate: 视频流的码率，取值范围：0 和 [128, 35000]，单位：kbps。
         # 当取值为 0，表示视频码率和原始视频保持一致。
         # @type Bitrate: Integer
         # @param ResolutionAdaptive: 分辨率自适应，可选值：
         # <li>open：开启，此时，Width 代表视频的长边，Height 表示视频的短边；</li>
         # <li>close：关闭，此时，Width 代表视频的宽度，Height 表示视频的高度。</li>
         # 默认值：open。
+        # 注意：自适应模式时，Width不能小于Height。
         # @type ResolutionAdaptive: String
         # @param Width: 视频流宽度（或长边）的最大值，取值范围：0 和 [128, 4096]，单位：px。
         # <li>当 Width、Height 均为 0，则分辨率同源；</li>
@@ -12091,6 +12882,7 @@ module TencentCloud
         # <li>white：留白，保持视频宽高比不变，边缘剩余部分使用白色填充。</li>
         # <li>gauss：高斯模糊，保持视频宽高比不变，边缘剩余部分使用高斯模糊填充。</li>
         # 默认值：black 。
+        # 注意：自适应码流只支持 stretch、black。
         # @type FillType: String
         # @param Vcrf: 视频恒定码率控制因子，取值范围为[1, 51]。
         # 如果指定该参数，将使用 CRF 的码率控制方式做转码（视频码率将不再生效）。
@@ -12130,7 +12922,8 @@ module TencentCloud
         # <li>libx264：H.264 编码</li>
         # <li>libx265：H.265 编码</li>
         # <li>av1：AOMedia Video 1 编码</li>
-        # 目前 H.265 编码必须指定分辨率，并且需要在 640*480 以内。av1 编码容器目前只支持 mp4 。
+        # 注意：目前 H.265 编码必须指定分辨率，并且需要在 640*480 以内。
+        # 注意：av1 编码容器目前只支持 mp4 。
         # @type Codec: String
         # @param Fps: 视频帧率，取值范围：[0, 100]，单位：Hz。
         # 当取值为 0，表示帧率和原始视频保持一致。
@@ -12141,6 +12934,7 @@ module TencentCloud
         # @param ResolutionAdaptive: 分辨率自适应，可选值：
         # <li>open：开启，此时，Width 代表视频的长边，Height 表示视频的短边；</li>
         # <li>close：关闭，此时，Width 代表视频的宽度，Height 表示视频的高度。</li>
+        # 注意：自适应模式时，Width不能小于Height。
         # @type ResolutionAdaptive: String
         # @param Width: 视频流宽度（或长边）的最大值，取值范围：0 和 [128, 4096]，单位：px。
         # <li>当 Width、Height 均为 0，则分辨率同源；</li>

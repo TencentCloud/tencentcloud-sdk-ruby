@@ -949,15 +949,19 @@ module TencentCloud
       class DeleteTrainingModelRequest < TencentCloud::Common::AbstractModel
         # @param TrainingModelId: 模型ID
         # @type TrainingModelId: String
+        # @param EnableDeleteCos: 是否同步清理cos
+        # @type EnableDeleteCos: Boolean
 
-        attr_accessor :TrainingModelId
+        attr_accessor :TrainingModelId, :EnableDeleteCos
         
-        def initialize(trainingmodelid=nil)
+        def initialize(trainingmodelid=nil, enabledeletecos=nil)
           @TrainingModelId = trainingmodelid
+          @EnableDeleteCos = enabledeletecos
         end
 
         def deserialize(params)
           @TrainingModelId = params['TrainingModelId']
+          @EnableDeleteCos = params['EnableDeleteCos']
         end
       end
 
@@ -981,15 +985,19 @@ module TencentCloud
       class DeleteTrainingModelVersionRequest < TencentCloud::Common::AbstractModel
         # @param TrainingModelVersionId: 模型版本ID
         # @type TrainingModelVersionId: String
+        # @param EnableDeleteCos: 是否同步清理cos
+        # @type EnableDeleteCos: Boolean
 
-        attr_accessor :TrainingModelVersionId
+        attr_accessor :TrainingModelVersionId, :EnableDeleteCos
         
-        def initialize(trainingmodelversionid=nil)
+        def initialize(trainingmodelversionid=nil, enabledeletecos=nil)
           @TrainingModelVersionId = trainingmodelversionid
+          @EnableDeleteCos = enabledeletecos
         end
 
         def deserialize(params)
           @TrainingModelVersionId = params['TrainingModelVersionId']
+          @EnableDeleteCos = params['EnableDeleteCos']
         end
       end
 

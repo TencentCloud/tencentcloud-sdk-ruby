@@ -2006,6 +2006,33 @@ module TencentCloud
         end
       end
 
+      # GetAttackDownloadRecords请求参数结构体
+      class GetAttackDownloadRecordsRequest < TencentCloud::Common::AbstractModel
+
+        
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # GetAttackDownloadRecords返回参数结构体
+      class GetAttackDownloadRecordsResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 一个实例的详细信息
       class InstanceInfo < TencentCloud::Common::AbstractModel
         # @param InstanceId: id

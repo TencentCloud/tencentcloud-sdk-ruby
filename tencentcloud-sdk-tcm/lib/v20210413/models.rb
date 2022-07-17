@@ -194,10 +194,12 @@ module TencentCloud
         # - TKE
         # - EKS
         # @type Type: String
+        # @param HostedNamespaces: 集群关联的 Namespace 列表
+        # @type HostedNamespaces: Array
 
-        attr_accessor :ClusterId, :Region, :Role, :VpcId, :SubnetId, :DisplayName, :State, :LinkedTime, :Config, :Status, :Type
+        attr_accessor :ClusterId, :Region, :Role, :VpcId, :SubnetId, :DisplayName, :State, :LinkedTime, :Config, :Status, :Type, :HostedNamespaces
         
-        def initialize(clusterid=nil, region=nil, role=nil, vpcid=nil, subnetid=nil, displayname=nil, state=nil, linkedtime=nil, config=nil, status=nil, type=nil)
+        def initialize(clusterid=nil, region=nil, role=nil, vpcid=nil, subnetid=nil, displayname=nil, state=nil, linkedtime=nil, config=nil, status=nil, type=nil, hostednamespaces=nil)
           @ClusterId = clusterid
           @Region = region
           @Role = role
@@ -209,6 +211,7 @@ module TencentCloud
           @Config = config
           @Status = status
           @Type = type
+          @HostedNamespaces = hostednamespaces
         end
 
         def deserialize(params)
@@ -229,6 +232,7 @@ module TencentCloud
             @Status.deserialize(params['Status'])
           end
           @Type = params['Type']
+          @HostedNamespaces = params['HostedNamespaces']
         end
       end
 
@@ -509,6 +513,64 @@ module TencentCloud
         end
       end
 
+      # 内网独占集群配置
+      class ExtensiveCluster < TencentCloud::Common::AbstractModel
+        # @param ClusterId: Cluster ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClusterId: String
+        # @param Zone: 可用区
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Zone: String
+
+        attr_accessor :ClusterId, :Zone
+        
+        def initialize(clusterid=nil, zone=nil)
+          @ClusterId = clusterid
+          @Zone = zone
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @Zone = params['Zone']
+        end
+      end
+
+      # 内网独占集群配置列表
+      class ExtensiveClusters < TencentCloud::Common::AbstractModel
+        # @param L4Clusters: 4层集群配置
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type L4Clusters: Array
+        # @param L7Clusters: 7层集群配置
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type L7Clusters: Array
+
+        attr_accessor :L4Clusters, :L7Clusters
+        
+        def initialize(l4clusters=nil, l7clusters=nil)
+          @L4Clusters = l4clusters
+          @L7Clusters = l7clusters
+        end
+
+        def deserialize(params)
+          unless params['L4Clusters'].nil?
+            @L4Clusters = []
+            params['L4Clusters'].each do |i|
+              extensivecluster_tmp = ExtensiveCluster.new
+              extensivecluster_tmp.deserialize(i)
+              @L4Clusters << extensivecluster_tmp
+            end
+          end
+          unless params['L7Clusters'].nil?
+            @L7Clusters = []
+            params['L7Clusters'].each do |i|
+              extensivecluster_tmp = ExtensiveCluster.new
+              extensivecluster_tmp.deserialize(i)
+              @L7Clusters << extensivecluster_tmp
+            end
+          end
+        end
+      end
+
       # 键值对过滤器，用于条件过滤查询。例如过滤ID、名称等
       class Filter < TencentCloud::Common::AbstractModel
         # @param Name: 需要过滤的字段。
@@ -755,16 +817,40 @@ module TencentCloud
         # @type SubnetId: String
         # @param InternetChargeType: TRAFFIC_POSTPAID_BY_HOUR 按流量按小时后计费 ; BANDWIDTH_POSTPAID_BY_HOUR 按带宽按小时后计费;只读。
         # @type InternetChargeType: String
-        # @param InternetMaxBandwidthOut: 最大出带宽，单位Mbps，范围支持0到2048，仅对公网属性的LB生效，默认值 10
+        # @param InternetMaxBandwidthOut: 最大出带宽，单位Mbps，仅对公网属性的LB生效，默认值 10
         # @type InternetMaxBandwidthOut: Integer
+        # @param ZoneID: 可用区 ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ZoneID: String
+        # @param VipIsp: 运营商类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VipIsp: String
+        # @param TgwGroupName: TGW Group 名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TgwGroupName: String
+        # @param AddressIPVersion: IP 类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AddressIPVersion: String
+        # @param Tags: 标签列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Tags: Array
+        # @param ExtensiveClusters: 内网独占集群配置列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExtensiveClusters: :class:`Tencentcloud::Tcm.v20210413.models.ExtensiveClusters`
 
-        attr_accessor :LoadBalancerType, :SubnetId, :InternetChargeType, :InternetMaxBandwidthOut
+        attr_accessor :LoadBalancerType, :SubnetId, :InternetChargeType, :InternetMaxBandwidthOut, :ZoneID, :VipIsp, :TgwGroupName, :AddressIPVersion, :Tags, :ExtensiveClusters
         
-        def initialize(loadbalancertype=nil, subnetid=nil, internetchargetype=nil, internetmaxbandwidthout=nil)
+        def initialize(loadbalancertype=nil, subnetid=nil, internetchargetype=nil, internetmaxbandwidthout=nil, zoneid=nil, vipisp=nil, tgwgroupname=nil, addressipversion=nil, tags=nil, extensiveclusters=nil)
           @LoadBalancerType = loadbalancertype
           @SubnetId = subnetid
           @InternetChargeType = internetchargetype
           @InternetMaxBandwidthOut = internetmaxbandwidthout
+          @ZoneID = zoneid
+          @VipIsp = vipisp
+          @TgwGroupName = tgwgroupname
+          @AddressIPVersion = addressipversion
+          @Tags = tags
+          @ExtensiveClusters = extensiveclusters
         end
 
         def deserialize(params)
@@ -772,6 +858,22 @@ module TencentCloud
           @SubnetId = params['SubnetId']
           @InternetChargeType = params['InternetChargeType']
           @InternetMaxBandwidthOut = params['InternetMaxBandwidthOut']
+          @ZoneID = params['ZoneID']
+          @VipIsp = params['VipIsp']
+          @TgwGroupName = params['TgwGroupName']
+          @AddressIPVersion = params['AddressIPVersion']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
+            end
+          end
+          unless params['ExtensiveClusters'].nil?
+            @ExtensiveClusters = ExtensiveClusters.new
+            @ExtensiveClusters.deserialize(params['ExtensiveClusters'])
+          end
         end
       end
 
@@ -1290,6 +1392,30 @@ module TencentCloud
         end
       end
 
+      # 标签
+      class Tag < TencentCloud::Common::AbstractModel
+        # @param Key: 标签键
+        # @type Key: String
+        # @param Value: 标签值
+        # @type Value: String
+        # @param Passthrough: 是否透传给其他关联产品
+        # @type Passthrough: Boolean
+
+        attr_accessor :Key, :Value, :Passthrough
+        
+        def initialize(key=nil, value=nil, passthrough=nil)
+          @Key = key
+          @Value = value
+          @Passthrough = passthrough
+        end
+
+        def deserialize(params)
+          @Key = params['Key']
+          @Value = params['Value']
+          @Passthrough = params['Passthrough']
+        end
+      end
+
       # 调用链配置
       class TracingConfig < TencentCloud::Common::AbstractModel
         # @param Sampling: 调用链采样率，百分比
@@ -1350,14 +1476,21 @@ module TencentCloud
         # @type HorizontalPodAutoscaler: :class:`Tencentcloud::Tcm.v20210413.models.HorizontalPodAutoscalerSpec`
         # @param SelectedNodeList: 部署到指定节点
         # @type SelectedNodeList: Array
+        # @param DeployMode: 组件的部署模式，取值说明：
+        # IN_GENERAL_NODE：常规节点
+        # IN_EKLET：eklet 节点
+        # IN_SHARED_NODE_POOL：共享节电池
+        # IN_EXCLUSIVE_NODE_POOL：独占节点池
+        # @type DeployMode: String
 
-        attr_accessor :Replicas, :Resources, :HorizontalPodAutoscaler, :SelectedNodeList
+        attr_accessor :Replicas, :Resources, :HorizontalPodAutoscaler, :SelectedNodeList, :DeployMode
         
-        def initialize(replicas=nil, resources=nil, horizontalpodautoscaler=nil, selectednodelist=nil)
+        def initialize(replicas=nil, resources=nil, horizontalpodautoscaler=nil, selectednodelist=nil, deploymode=nil)
           @Replicas = replicas
           @Resources = resources
           @HorizontalPodAutoscaler = horizontalpodautoscaler
           @SelectedNodeList = selectednodelist
+          @DeployMode = deploymode
         end
 
         def deserialize(params)
@@ -1371,6 +1504,7 @@ module TencentCloud
             @HorizontalPodAutoscaler.deserialize(params['HorizontalPodAutoscaler'])
           end
           @SelectedNodeList = params['SelectedNodeList']
+          @DeployMode = params['DeployMode']
         end
       end
 

@@ -3313,7 +3313,7 @@ module TencentCloud
         # @type Format: String
         # @param Count: 日志导出数量
         # @type Count: Integer
-        # @param Status: 日志下载状态。Processing:导出正在进行中，Complete:导出完成，Failed:导出失败，Expired:日志导出已过期（三天有效期）。
+        # @param Status: 日志下载状态。Processing:导出正在进行中，Completed:导出完成，Failed:导出失败，Expired:日志导出已过期(三天有效期), Queuing 排队中
         # @type Status: String
         # @param From: 日志导出起始时间
         # @type From: Integer
@@ -3391,10 +3391,16 @@ module TencentCloud
         # @param Backtracking: 增量采集模式下的回溯数据量，默认-1（全量采集）
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Backtracking: Integer
+        # @param IsGBK: 是否为Gbk编码.   0: 否, 1: 是
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsGBK: Integer
+        # @param JsonStandard: 是否为标准json.   0: 否, 1: 是
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type JsonStandard: Integer
 
-        attr_accessor :TimeKey, :TimeFormat, :Delimiter, :LogRegex, :BeginRegex, :Keys, :FilterKeyRegex, :UnMatchUpLoadSwitch, :UnMatchLogKey, :Backtracking
+        attr_accessor :TimeKey, :TimeFormat, :Delimiter, :LogRegex, :BeginRegex, :Keys, :FilterKeyRegex, :UnMatchUpLoadSwitch, :UnMatchLogKey, :Backtracking, :IsGBK, :JsonStandard
         
-        def initialize(timekey=nil, timeformat=nil, delimiter=nil, logregex=nil, beginregex=nil, keys=nil, filterkeyregex=nil, unmatchuploadswitch=nil, unmatchlogkey=nil, backtracking=nil)
+        def initialize(timekey=nil, timeformat=nil, delimiter=nil, logregex=nil, beginregex=nil, keys=nil, filterkeyregex=nil, unmatchuploadswitch=nil, unmatchlogkey=nil, backtracking=nil, isgbk=nil, jsonstandard=nil)
           @TimeKey = timekey
           @TimeFormat = timeformat
           @Delimiter = delimiter
@@ -3405,6 +3411,8 @@ module TencentCloud
           @UnMatchUpLoadSwitch = unmatchuploadswitch
           @UnMatchLogKey = unmatchlogkey
           @Backtracking = backtracking
+          @IsGBK = isgbk
+          @JsonStandard = jsonstandard
         end
 
         def deserialize(params)
@@ -3425,6 +3433,8 @@ module TencentCloud
           @UnMatchUpLoadSwitch = params['UnMatchUpLoadSwitch']
           @UnMatchLogKey = params['UnMatchLogKey']
           @Backtracking = params['Backtracking']
+          @IsGBK = params['IsGBK']
+          @JsonStandard = params['JsonStandard']
         end
       end
 

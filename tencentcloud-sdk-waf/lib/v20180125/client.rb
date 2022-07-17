@@ -631,6 +631,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询下载攻击日志任务记录列表
+
+        # @param request: Request instance for GetAttackDownloadRecords.
+        # @type request: :class:`Tencentcloud::waf::V20180125::GetAttackDownloadRecordsRequest`
+        # @rtype: :class:`Tencentcloud::waf::V20180125::GetAttackDownloadRecordsResponse`
+        def GetAttackDownloadRecords(request)
+          body = send_request('GetAttackDownloadRecords', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = GetAttackDownloadRecordsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口用于修改访问日志保存期限
 
         # @param request: Request instance for ModifyAccessPeriod.
