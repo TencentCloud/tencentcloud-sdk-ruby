@@ -1566,7 +1566,7 @@ module TencentCloud
       class CreateLoadBalancingRequest < TencentCloud::Common::AbstractModel
         # @param ZoneId: 站点ID
         # @type ZoneId: String
-        # @param Host: 子域名，填写@表示根域
+        # @param Host: 子域名
         # @type Host: String
         # @param Type: 代理模式：
         # dns_only: 仅DNS

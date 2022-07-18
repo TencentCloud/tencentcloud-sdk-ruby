@@ -7514,10 +7514,14 @@ module TencentCloud
         # @type MotorBankName: String
         # @param MotorBankAccount: 账号
         # @type MotorBankAccount: String
+        # @param SellerAddress: 销售地址
+        # @type SellerAddress: String
+        # @param SellerTel: 销售电话
+        # @type SellerTel: String
 
-        attr_accessor :CarType, :PlateModel, :ProduceAddress, :CertificateNo, :ImportNo, :VinNo, :PayTaxesNo, :Tonnage, :LimitCount, :EngineNo, :BizCheckFormNo, :TaxtationOrgCode, :TaxtationOrgName, :MotorTaxRate, :MotorBankName, :MotorBankAccount
+        attr_accessor :CarType, :PlateModel, :ProduceAddress, :CertificateNo, :ImportNo, :VinNo, :PayTaxesNo, :Tonnage, :LimitCount, :EngineNo, :BizCheckFormNo, :TaxtationOrgCode, :TaxtationOrgName, :MotorTaxRate, :MotorBankName, :MotorBankAccount, :SellerAddress, :SellerTel
         
-        def initialize(cartype=nil, platemodel=nil, produceaddress=nil, certificateno=nil, importno=nil, vinno=nil, paytaxesno=nil, tonnage=nil, limitcount=nil, engineno=nil, bizcheckformno=nil, taxtationorgcode=nil, taxtationorgname=nil, motortaxrate=nil, motorbankname=nil, motorbankaccount=nil)
+        def initialize(cartype=nil, platemodel=nil, produceaddress=nil, certificateno=nil, importno=nil, vinno=nil, paytaxesno=nil, tonnage=nil, limitcount=nil, engineno=nil, bizcheckformno=nil, taxtationorgcode=nil, taxtationorgname=nil, motortaxrate=nil, motorbankname=nil, motorbankaccount=nil, selleraddress=nil, sellertel=nil)
           @CarType = cartype
           @PlateModel = platemodel
           @ProduceAddress = produceaddress
@@ -7534,6 +7538,8 @@ module TencentCloud
           @MotorTaxRate = motortaxrate
           @MotorBankName = motorbankname
           @MotorBankAccount = motorbankaccount
+          @SellerAddress = selleraddress
+          @SellerTel = sellertel
         end
 
         def deserialize(params)
@@ -7553,6 +7559,8 @@ module TencentCloud
           @MotorTaxRate = params['MotorTaxRate']
           @MotorBankName = params['MotorBankName']
           @MotorBankAccount = params['MotorBankAccount']
+          @SellerAddress = params['SellerAddress']
+          @SellerTel = params['SellerTel']
         end
       end
 

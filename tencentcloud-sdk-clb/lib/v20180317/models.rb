@@ -5220,6 +5220,8 @@ module TencentCloud
         # @type Scheduler: String
         # @param SniSwitch: 是否开启SNI特性，此参数仅适用于HTTPS监听器。注意：未开启SNI的监听器可以开启SNI；已开启SNI的监听器不能关闭SNI。
         # @type SniSwitch: Integer
+        # @param TargetType: 后端目标类型，NODE表示绑定普通节点，TARGETGROUP表示绑定目标组。
+        # @type TargetType: String
         # @param KeepaliveEnable: 是否开启长连接，此参数仅适用于HTTP/HTTPS监听器。
         # @type KeepaliveEnable: Integer
         # @param DeregisterTargetRst: 解绑后端目标时，是否发RST给客户端，此参数仅适用于TCP监听器。
@@ -5227,9 +5229,9 @@ module TencentCloud
         # @param SessionType: 会话保持类型。NORMAL表示默认会话保持类型。QUIC_CID表示根据Quic Connection ID做会话保持。QUIC_CID只支持UDP协议。
         # @type SessionType: String
 
-        attr_accessor :LoadBalancerId, :ListenerId, :ListenerName, :SessionExpireTime, :HealthCheck, :Certificate, :Scheduler, :SniSwitch, :KeepaliveEnable, :DeregisterTargetRst, :SessionType
+        attr_accessor :LoadBalancerId, :ListenerId, :ListenerName, :SessionExpireTime, :HealthCheck, :Certificate, :Scheduler, :SniSwitch, :TargetType, :KeepaliveEnable, :DeregisterTargetRst, :SessionType
         
-        def initialize(loadbalancerid=nil, listenerid=nil, listenername=nil, sessionexpiretime=nil, healthcheck=nil, certificate=nil, scheduler=nil, sniswitch=nil, keepaliveenable=nil, deregistertargetrst=nil, sessiontype=nil)
+        def initialize(loadbalancerid=nil, listenerid=nil, listenername=nil, sessionexpiretime=nil, healthcheck=nil, certificate=nil, scheduler=nil, sniswitch=nil, targettype=nil, keepaliveenable=nil, deregistertargetrst=nil, sessiontype=nil)
           @LoadBalancerId = loadbalancerid
           @ListenerId = listenerid
           @ListenerName = listenername
@@ -5238,6 +5240,7 @@ module TencentCloud
           @Certificate = certificate
           @Scheduler = scheduler
           @SniSwitch = sniswitch
+          @TargetType = targettype
           @KeepaliveEnable = keepaliveenable
           @DeregisterTargetRst = deregistertargetrst
           @SessionType = sessiontype
@@ -5258,6 +5261,7 @@ module TencentCloud
           end
           @Scheduler = params['Scheduler']
           @SniSwitch = params['SniSwitch']
+          @TargetType = params['TargetType']
           @KeepaliveEnable = params['KeepaliveEnable']
           @DeregisterTargetRst = params['DeregisterTargetRst']
           @SessionType = params['SessionType']

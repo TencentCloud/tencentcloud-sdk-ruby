@@ -19,11 +19,11 @@ module TencentCloud
     module V20220420
       # CreateBlockNodeRecords请求参数结构体
       class CreateBlockNodeRecordsRequest < TencentCloud::Common::AbstractModel
-        # @param GroupId: 盘查实例id
+        # @param GroupId: 盘查组id，可在“盘查组概览”功能中获取。
         # @type GroupId: String
-        # @param NodeId: 节点id
+        # @param NodeId: 节点id，可在“数据接入管理”中获取。
         # @type NodeId: String
-        # @param Records: 节点记录-json
+        # @param Records: 节点数据json，具体demo请参考输入示例，其中key为数据接入管理中节点内创建的属性变量名，value为期望的推送值。
         # @type Records: String
 
         attr_accessor :GroupId, :NodeId, :Records

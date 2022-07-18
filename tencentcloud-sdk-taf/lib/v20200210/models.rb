@@ -170,12 +170,12 @@ module TencentCloud
 
       # 流量反欺诈-验准入参
       class InputRecognizeTargetAudience < TencentCloud::Common::AbstractModel
+        # @param ModelIdList: 模型ID列表
+        # @type ModelIdList: Array
         # @param Uid: 设备ID，AccountType指定的类型
         # @type Uid: String
         # @param AccountType: 设备号类型，1.imei 2.imeiMd5（小写后转MD5转小写）3.idfa， 4.idfaMd5（大写后转MD5转小写），5.手机号,256.其它
         # @type AccountType: Integer
-        # @param ModelIdList: 模型ID列表
-        # @type ModelIdList: Array
         # @param Ip: 用户IP
         # @type Ip: String
         # @param Os: 操作系统类型(unknown，android，ios，windows)
@@ -251,12 +251,12 @@ module TencentCloud
         # @param DeviceList: 设备信息
         # @type DeviceList: Array
 
-        attr_accessor :Uid, :AccountType, :ModelIdList, :Ip, :Os, :Osv, :Lat, :Lon, :DeviceModel, :BidFloor, :Age, :Gender, :Location, :DeliveryMode, :AdvertisingType, :Mac, :Phone, :Ua, :App, :Package, :Maker, :DeviceType, :AccessMode, :Sp, :DeviceW, :DeviceH, :FullScreen, :ImpBannerW, :ImpBannerH, :Url, :Context, :Channel, :ReqId, :ReqMd5, :AdType, :AppName, :AppVer, :ReqType, :IsAuthorized, :DeviceList
+        attr_accessor :ModelIdList, :Uid, :AccountType, :Ip, :Os, :Osv, :Lat, :Lon, :DeviceModel, :BidFloor, :Age, :Gender, :Location, :DeliveryMode, :AdvertisingType, :Mac, :Phone, :Ua, :App, :Package, :Maker, :DeviceType, :AccessMode, :Sp, :DeviceW, :DeviceH, :FullScreen, :ImpBannerW, :ImpBannerH, :Url, :Context, :Channel, :ReqId, :ReqMd5, :AdType, :AppName, :AppVer, :ReqType, :IsAuthorized, :DeviceList
         
-        def initialize(uid=nil, accounttype=nil, modelidlist=nil, ip=nil, os=nil, osv=nil, lat=nil, lon=nil, devicemodel=nil, bidfloor=nil, age=nil, gender=nil, location=nil, deliverymode=nil, advertisingtype=nil, mac=nil, phone=nil, ua=nil, app=nil, package=nil, maker=nil, devicetype=nil, accessmode=nil, sp=nil, devicew=nil, deviceh=nil, fullscreen=nil, impbannerw=nil, impbannerh=nil, url=nil, context=nil, channel=nil, reqid=nil, reqmd5=nil, adtype=nil, appname=nil, appver=nil, reqtype=nil, isauthorized=nil, devicelist=nil)
+        def initialize(modelidlist=nil, uid=nil, accounttype=nil, ip=nil, os=nil, osv=nil, lat=nil, lon=nil, devicemodel=nil, bidfloor=nil, age=nil, gender=nil, location=nil, deliverymode=nil, advertisingtype=nil, mac=nil, phone=nil, ua=nil, app=nil, package=nil, maker=nil, devicetype=nil, accessmode=nil, sp=nil, devicew=nil, deviceh=nil, fullscreen=nil, impbannerw=nil, impbannerh=nil, url=nil, context=nil, channel=nil, reqid=nil, reqmd5=nil, adtype=nil, appname=nil, appver=nil, reqtype=nil, isauthorized=nil, devicelist=nil)
+          @ModelIdList = modelidlist
           @Uid = uid
           @AccountType = accounttype
-          @ModelIdList = modelidlist
           @Ip = ip
           @Os = os
           @Osv = osv
@@ -297,9 +297,9 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @ModelIdList = params['ModelIdList']
           @Uid = params['Uid']
           @AccountType = params['AccountType']
-          @ModelIdList = params['ModelIdList']
           @Ip = params['Ip']
           @Os = params['Os']
           @Osv = params['Osv']

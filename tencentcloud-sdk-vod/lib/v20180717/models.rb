@@ -11964,33 +11964,37 @@ module TencentCloud
 
       # 分类信息描述
       class MediaClassInfo < TencentCloud::Common::AbstractModel
-        # @param ClassId: 分类 ID
+        # @param ClassId: 分类 ID。
         # @type ClassId: Integer
         # @param ParentId: 父类 ID，一级分类的父类 ID 为 -1。
         # @type ParentId: Integer
-        # @param ClassName: 分类名称
-        # @type ClassName: String
+        # @param Name: 分类名称。
+        # @type Name: String
         # @param Level: 分类级别，一级分类为 0，最大值为 3，即最多允许 4 级分类层次。
         # @type Level: Integer
-        # @param SubClassIdSet: 当前分类的第一级子类 ID 集合
+        # @param SubClassIdSet: 当前分类的第一级子类 ID 集合。
         # @type SubClassIdSet: Array
+        # @param ClassName: 分类名称（该字段已不推荐使用，建议使用新的分类名称字段 Name）。
+        # @type ClassName: String
 
-        attr_accessor :ClassId, :ParentId, :ClassName, :Level, :SubClassIdSet
+        attr_accessor :ClassId, :ParentId, :Name, :Level, :SubClassIdSet, :ClassName
         
-        def initialize(classid=nil, parentid=nil, classname=nil, level=nil, subclassidset=nil)
+        def initialize(classid=nil, parentid=nil, name=nil, level=nil, subclassidset=nil, classname=nil)
           @ClassId = classid
           @ParentId = parentid
-          @ClassName = classname
+          @Name = name
           @Level = level
           @SubClassIdSet = subclassidset
+          @ClassName = classname
         end
 
         def deserialize(params)
           @ClassId = params['ClassId']
           @ParentId = params['ParentId']
-          @ClassName = params['ClassName']
+          @Name = params['Name']
           @Level = params['Level']
           @SubClassIdSet = params['SubClassIdSet']
+          @ClassName = params['ClassName']
         end
       end
 
@@ -18651,8 +18655,8 @@ module TencentCloud
       class SubAppIdInfo < TencentCloud::Common::AbstractModel
         # @param SubAppId: 子应用 ID。
         # @type SubAppId: Integer
-        # @param Name: 子应用名称。
-        # @type Name: String
+        # @param SubAppIdName: 子应用名称。
+        # @type SubAppIdName: String
         # @param Description: 子应用简介。
         # @type Description: String
         # @param CreateTime: 子应用创建时间，采用 [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#I)。
@@ -18663,23 +18667,27 @@ module TencentCloud
         # <li>Destroying：销毁中。</li>
         # <li>Destroyed：销毁完成。</li>
         # @type Status: String
+        # @param Name: 子应用名称（该字段已不推荐使用，建议使用新的子应用名称字段 SubAppIdName）。
+        # @type Name: String
 
-        attr_accessor :SubAppId, :Name, :Description, :CreateTime, :Status
+        attr_accessor :SubAppId, :SubAppIdName, :Description, :CreateTime, :Status, :Name
         
-        def initialize(subappid=nil, name=nil, description=nil, createtime=nil, status=nil)
+        def initialize(subappid=nil, subappidname=nil, description=nil, createtime=nil, status=nil, name=nil)
           @SubAppId = subappid
-          @Name = name
+          @SubAppIdName = subappidname
           @Description = description
           @CreateTime = createtime
           @Status = status
+          @Name = name
         end
 
         def deserialize(params)
           @SubAppId = params['SubAppId']
-          @Name = params['Name']
+          @SubAppIdName = params['SubAppIdName']
           @Description = params['Description']
           @CreateTime = params['CreateTime']
           @Status = params['Status']
+          @Name = params['Name']
         end
       end
 

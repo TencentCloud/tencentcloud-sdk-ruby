@@ -149,6 +149,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 用于查询cdc-ckafka任务状态
+
+        # @param request: Request instance for CheckCdcCluster.
+        # @type request: :class:`Tencentcloud::ckafka::V20190819::CheckCdcClusterRequest`
+        # @rtype: :class:`Tencentcloud::ckafka::V20190819::CheckCdcClusterResponse`
+        def CheckCdcCluster(request)
+          body = send_request('CheckCdcCluster', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CheckCdcClusterResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 添加 ACL 策略
 
         # @param request: Request instance for CreateAcl.
@@ -159,6 +183,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = CreateAclResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 用于cdc的专用ckafka集群
+
+        # @param request: Request instance for CreateCdcCluster.
+        # @type request: :class:`Tencentcloud::ckafka::V20190819::CreateCdcClusterRequest`
+        # @rtype: :class:`Tencentcloud::ckafka::V20190819::CreateCdcClusterResponse`
+        def CreateCdcCluster(request)
+          body = send_request('CreateCdcCluster', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateCdcClusterResponse.new
             model.deserialize(response['Response'])
             model
           else

@@ -725,10 +725,14 @@ module TencentCloud
         # @type RunningCount: Integer
         # @param AliasEnvName: 环境别名
         # @type AliasEnvName: String
+        # @param EnvDesc: 环境描述
+        # @type EnvDesc: String
+        # @param ClientBandWidth: 客户端带宽
+        # @type ClientBandWidth: Integer
 
-        attr_accessor :EnvName, :VpcInfos, :StorageCapacity, :Status, :AdminServiceIp, :ConfigServiceIp, :EnableConfigInternet, :ConfigInternetServiceIp, :SpecId, :EnvReplica, :RunningCount, :AliasEnvName
+        attr_accessor :EnvName, :VpcInfos, :StorageCapacity, :Status, :AdminServiceIp, :ConfigServiceIp, :EnableConfigInternet, :ConfigInternetServiceIp, :SpecId, :EnvReplica, :RunningCount, :AliasEnvName, :EnvDesc, :ClientBandWidth
         
-        def initialize(envname=nil, vpcinfos=nil, storagecapacity=nil, status=nil, adminserviceip=nil, configserviceip=nil, enableconfiginternet=nil, configinternetserviceip=nil, specid=nil, envreplica=nil, runningcount=nil, aliasenvname=nil)
+        def initialize(envname=nil, vpcinfos=nil, storagecapacity=nil, status=nil, adminserviceip=nil, configserviceip=nil, enableconfiginternet=nil, configinternetserviceip=nil, specid=nil, envreplica=nil, runningcount=nil, aliasenvname=nil, envdesc=nil, clientbandwidth=nil)
           @EnvName = envname
           @VpcInfos = vpcinfos
           @StorageCapacity = storagecapacity
@@ -741,6 +745,8 @@ module TencentCloud
           @EnvReplica = envreplica
           @RunningCount = runningcount
           @AliasEnvName = aliasenvname
+          @EnvDesc = envdesc
+          @ClientBandWidth = clientbandwidth
         end
 
         def deserialize(params)
@@ -763,6 +769,8 @@ module TencentCloud
           @EnvReplica = params['EnvReplica']
           @RunningCount = params['RunningCount']
           @AliasEnvName = params['AliasEnvName']
+          @EnvDesc = params['EnvDesc']
+          @ClientBandWidth = params['ClientBandWidth']
         end
       end
 

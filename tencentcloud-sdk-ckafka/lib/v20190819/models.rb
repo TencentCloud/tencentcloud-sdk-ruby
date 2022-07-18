@@ -601,6 +601,60 @@ module TencentCloud
         end
       end
 
+      # 创建CDC 标准版共享集群出参
+      class CdcClusterResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: 任务ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TaskId: Integer
+
+        attr_accessor :TaskId
+        
+        def initialize(taskid=nil)
+          @TaskId = taskid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+        end
+      end
+
+      # CheckCdcCluster请求参数结构体
+      class CheckCdcClusterRequest < TencentCloud::Common::AbstractModel
+        # @param TaskId: 任务ID
+        # @type TaskId: Integer
+
+        attr_accessor :TaskId
+        
+        def initialize(taskid=nil)
+          @TaskId = taskid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+        end
+      end
+
+      # CheckCdcCluster返回参数结构体
+      class CheckCdcClusterResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 返回结果状态Success
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Result: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+        
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Result = params['Result']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 集群信息实体
       class ClusterInfo < TencentCloud::Common::AbstractModel
         # @param ClusterId: 集群Id
@@ -937,6 +991,73 @@ module TencentCloud
         def deserialize(params)
           unless params['Result'].nil?
             @Result = JgwOperateResponse.new
+            @Result.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateCdcCluster请求参数结构体
+      class CreateCdcClusterRequest < TencentCloud::Common::AbstractModel
+        # @param CdcId: cdc的id
+        # @type CdcId: String
+        # @param CdcVpcId: vpcId,一个地域只有唯一一个vpcid用于CDC
+        # @type CdcVpcId: String
+        # @param CdcSubnetId: 每个CDC集群有唯一一个子网ID
+        # @type CdcSubnetId: String
+        # @param ZoneId: 所在可用区ID
+        # @type ZoneId: Integer
+        # @param Bandwidth: cdc集群的总带宽
+        # @type Bandwidth: Integer
+        # @param DiskSize: cdc集群的总磁盘
+        # @type DiskSize: Integer
+        # @param DiskType: 数据盘类型
+        # @type DiskType: String
+        # @param SystemDiskType: 系统盘类型
+        # @type SystemDiskType: String
+
+        attr_accessor :CdcId, :CdcVpcId, :CdcSubnetId, :ZoneId, :Bandwidth, :DiskSize, :DiskType, :SystemDiskType
+        
+        def initialize(cdcid=nil, cdcvpcid=nil, cdcsubnetid=nil, zoneid=nil, bandwidth=nil, disksize=nil, disktype=nil, systemdisktype=nil)
+          @CdcId = cdcid
+          @CdcVpcId = cdcvpcid
+          @CdcSubnetId = cdcsubnetid
+          @ZoneId = zoneid
+          @Bandwidth = bandwidth
+          @DiskSize = disksize
+          @DiskType = disktype
+          @SystemDiskType = systemdisktype
+        end
+
+        def deserialize(params)
+          @CdcId = params['CdcId']
+          @CdcVpcId = params['CdcVpcId']
+          @CdcSubnetId = params['CdcSubnetId']
+          @ZoneId = params['ZoneId']
+          @Bandwidth = params['Bandwidth']
+          @DiskSize = params['DiskSize']
+          @DiskType = params['DiskType']
+          @SystemDiskType = params['SystemDiskType']
+        end
+      end
+
+      # CreateCdcCluster返回参数结构体
+      class CreateCdcClusterResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 无
+        # @type Result: :class:`Tencentcloud::Ckafka.v20190819.models.CdcClusterResponse`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+        
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Result'].nil?
+            @Result = CdcClusterResponse.new
             @Result.deserialize(params['Result'])
           end
           @RequestId = params['RequestId']
