@@ -264,17 +264,24 @@ module TencentCloud
         # @type UserStoreId: String
         # @param UserId: 用户ID
         # @type UserId: String
+        # @param Original: 返回信息是否为原文
 
-        attr_accessor :UserStoreId, :UserId
+        # <li> **false** </li>	默认，返回信息为脱敏信息
+        # <li> **true** </li>	返回用户信息原文
+        # @type Original: Boolean
+
+        attr_accessor :UserStoreId, :UserId, :Original
         
-        def initialize(userstoreid=nil, userid=nil)
+        def initialize(userstoreid=nil, userid=nil, original=nil)
           @UserStoreId = userstoreid
           @UserId = userid
+          @Original = original
         end
 
         def deserialize(params)
           @UserStoreId = params['UserStoreId']
           @UserId = params['UserId']
+          @Original = params['Original']
         end
       end
 
@@ -297,6 +304,85 @@ module TencentCloud
           unless params['User'].nil?
             @User = User.new
             @User.deserialize(params['User'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeUser请求参数结构体
+      class DescribeUserRequest < TencentCloud::Common::AbstractModel
+        # @param UserStoreId: 用户目录ID
+        # @type UserStoreId: String
+        # @param Pageable: 分页数据
+        # @type Pageable: :class:`Tencentcloud::Ciam.v20220331.models.Pageable`
+        # @param Filters: 查询条件，根据propertycode和propertykey
+        # @type Filters: Array
+        # @param Original: 是否返回明文
+        # @type Original: Boolean
+
+        attr_accessor :UserStoreId, :Pageable, :Filters, :Original
+        
+        def initialize(userstoreid=nil, pageable=nil, filters=nil, original=nil)
+          @UserStoreId = userstoreid
+          @Pageable = pageable
+          @Filters = filters
+          @Original = original
+        end
+
+        def deserialize(params)
+          @UserStoreId = params['UserStoreId']
+          unless params['Pageable'].nil?
+            @Pageable = Pageable.new
+            @Pageable.deserialize(params['Pageable'])
+          end
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              queryuserfilter_tmp = QueryUserFilter.new
+              queryuserfilter_tmp.deserialize(i)
+              @Filters << queryuserfilter_tmp
+            end
+          end
+          @Original = params['Original']
+        end
+      end
+
+      # DescribeUser返回参数结构体
+      class DescribeUserResponse < TencentCloud::Common::AbstractModel
+        # @param Total: 总条数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Total: Integer
+        # @param Pageable: 分页对象
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Pageable: :class:`Tencentcloud::Ciam.v20220331.models.Pageable`
+        # @param Content: 用户列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Content: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Total, :Pageable, :Content, :RequestId
+        
+        def initialize(total=nil, pageable=nil, content=nil, requestid=nil)
+          @Total = total
+          @Pageable = pageable
+          @Content = content
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Total = params['Total']
+          unless params['Pageable'].nil?
+            @Pageable = Pageable.new
+            @Pageable.deserialize(params['Pageable'])
+          end
+          unless params['Content'].nil?
+            @Content = []
+            params['Content'].each do |i|
+              user_tmp = User.new
+              user_tmp.deserialize(i)
+              @Content << user_tmp
+            end
           end
           @RequestId = params['RequestId']
         end
@@ -780,19 +866,23 @@ module TencentCloud
         # @type PropertyCode: String
         # @param PropertyValue: 属性值
         # @type PropertyValue: String
+        # @param Original: 返回信息是否为原文
+        # @type Original: Boolean
 
-        attr_accessor :UserStoreId, :PropertyCode, :PropertyValue
+        attr_accessor :UserStoreId, :PropertyCode, :PropertyValue, :Original
         
-        def initialize(userstoreid=nil, propertycode=nil, propertyvalue=nil)
+        def initialize(userstoreid=nil, propertycode=nil, propertyvalue=nil, original=nil)
           @UserStoreId = userstoreid
           @PropertyCode = propertycode
           @PropertyValue = propertyvalue
+          @Original = original
         end
 
         def deserialize(params)
           @UserStoreId = params['UserStoreId']
           @PropertyCode = params['PropertyCode']
           @PropertyValue = params['PropertyValue']
+          @Original = params['Original']
         end
       end
 
@@ -835,13 +925,16 @@ module TencentCloud
         # <li> **condition** </li>	Values = 查询条件，用户ID，用户名称，手机或邮箱
         # <li> **userGroupId** </li>	Values = 用户组ID
         # @type Filters: Array
+        # @param Original: 返回信息是否为原文
+        # @type Original: Boolean
 
-        attr_accessor :UserStoreId, :Pageable, :Filters
+        attr_accessor :UserStoreId, :Pageable, :Filters, :Original
         
-        def initialize(userstoreid=nil, pageable=nil, filters=nil)
+        def initialize(userstoreid=nil, pageable=nil, filters=nil, original=nil)
           @UserStoreId = userstoreid
           @Pageable = pageable
           @Filters = filters
+          @Original = original
         end
 
         def deserialize(params)
@@ -858,6 +951,7 @@ module TencentCloud
               @Filters << filter_tmp
             end
           end
+          @Original = params['Original']
         end
       end
 
@@ -1043,6 +1137,30 @@ module TencentCloud
         def deserialize(params)
           @PageSize = params['PageSize']
           @PageNumber = params['PageNumber']
+        end
+      end
+
+      # 查询用户信息条件
+      class QueryUserFilter < TencentCloud::Common::AbstractModel
+        # @param PropertyKey: 属性key
+        # @type PropertyKey: String
+        # @param PropertyValue: 属性value
+        # @type PropertyValue: String
+        # @param Logic: 逻辑值，等于true，不等于false
+        # @type Logic: Boolean
+
+        attr_accessor :PropertyKey, :PropertyValue, :Logic
+        
+        def initialize(propertykey=nil, propertyvalue=nil, logic=nil)
+          @PropertyKey = propertykey
+          @PropertyValue = propertyvalue
+          @Logic = logic
+        end
+
+        def deserialize(params)
+          @PropertyKey = params['PropertyKey']
+          @PropertyValue = params['PropertyValue']
+          @Logic = params['Logic']
         end
       end
 

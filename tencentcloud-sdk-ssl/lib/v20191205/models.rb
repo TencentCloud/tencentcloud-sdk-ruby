@@ -824,12 +824,18 @@ module TencentCloud
         # @param EncryptPrivateKey: 国密加密私钥
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EncryptPrivateKey: String
+        # @param CertFingerprint: 签名证书 SHA1指纹
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CertFingerprint: String
+        # @param EncryptCertFingerprint: 加密证书 SHA1指纹 （国密证书特有）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EncryptCertFingerprint: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :OwnerUin, :ProjectId, :From, :CertificateType, :PackageType, :ProductZhName, :Domain, :Alias, :Status, :StatusMsg, :VerifyType, :VulnerabilityStatus, :CertBeginTime, :CertEndTime, :ValidityPeriod, :InsertTime, :OrderId, :CertificateExtra, :CertificatePrivateKey, :CertificatePublicKey, :DvAuthDetail, :VulnerabilityReport, :CertificateId, :TypeName, :StatusName, :SubjectAltName, :IsVip, :IsWildcard, :IsDv, :IsVulnerability, :SubmittedData, :RenewAble, :Deployable, :Tags, :RootCert, :EncryptCert, :EncryptPrivateKey, :RequestId
+        attr_accessor :OwnerUin, :ProjectId, :From, :CertificateType, :PackageType, :ProductZhName, :Domain, :Alias, :Status, :StatusMsg, :VerifyType, :VulnerabilityStatus, :CertBeginTime, :CertEndTime, :ValidityPeriod, :InsertTime, :OrderId, :CertificateExtra, :CertificatePrivateKey, :CertificatePublicKey, :DvAuthDetail, :VulnerabilityReport, :CertificateId, :TypeName, :StatusName, :SubjectAltName, :IsVip, :IsWildcard, :IsDv, :IsVulnerability, :SubmittedData, :RenewAble, :Deployable, :Tags, :RootCert, :EncryptCert, :EncryptPrivateKey, :CertFingerprint, :EncryptCertFingerprint, :RequestId
         
-        def initialize(owneruin=nil, projectid=nil, from=nil, certificatetype=nil, packagetype=nil, productzhname=nil, domain=nil, _alias=nil, status=nil, statusmsg=nil, verifytype=nil, vulnerabilitystatus=nil, certbegintime=nil, certendtime=nil, validityperiod=nil, inserttime=nil, orderid=nil, certificateextra=nil, certificateprivatekey=nil, certificatepublickey=nil, dvauthdetail=nil, vulnerabilityreport=nil, certificateid=nil, typename=nil, statusname=nil, subjectaltname=nil, isvip=nil, iswildcard=nil, isdv=nil, isvulnerability=nil, submitteddata=nil, renewable=nil, deployable=nil, tags=nil, rootcert=nil, encryptcert=nil, encryptprivatekey=nil, requestid=nil)
+        def initialize(owneruin=nil, projectid=nil, from=nil, certificatetype=nil, packagetype=nil, productzhname=nil, domain=nil, _alias=nil, status=nil, statusmsg=nil, verifytype=nil, vulnerabilitystatus=nil, certbegintime=nil, certendtime=nil, validityperiod=nil, inserttime=nil, orderid=nil, certificateextra=nil, certificateprivatekey=nil, certificatepublickey=nil, dvauthdetail=nil, vulnerabilityreport=nil, certificateid=nil, typename=nil, statusname=nil, subjectaltname=nil, isvip=nil, iswildcard=nil, isdv=nil, isvulnerability=nil, submitteddata=nil, renewable=nil, deployable=nil, tags=nil, rootcert=nil, encryptcert=nil, encryptprivatekey=nil, certfingerprint=nil, encryptcertfingerprint=nil, requestid=nil)
           @OwnerUin = owneruin
           @ProjectId = projectid
           @From = from
@@ -867,6 +873,8 @@ module TencentCloud
           @RootCert = rootcert
           @EncryptCert = encryptcert
           @EncryptPrivateKey = encryptprivatekey
+          @CertFingerprint = certfingerprint
+          @EncryptCertFingerprint = encryptcertfingerprint
           @RequestId = requestid
         end
 
@@ -927,6 +935,8 @@ module TencentCloud
           end
           @EncryptCert = params['EncryptCert']
           @EncryptPrivateKey = params['EncryptPrivateKey']
+          @CertFingerprint = params['CertFingerprint']
+          @EncryptCertFingerprint = params['EncryptCertFingerprint']
           @RequestId = params['RequestId']
         end
       end

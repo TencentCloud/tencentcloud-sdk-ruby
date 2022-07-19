@@ -1869,6 +1869,62 @@ module TencentCloud
         end
       end
 
+      # 下载攻击日志记录数据项
+      class DownloadAttackRecordInfo < TencentCloud::Common::AbstractModel
+        # @param Id: 记录ID
+        # @type Id: Integer
+        # @param TaskName: 下载任务名
+        # @type TaskName: String
+        # @param TaskId: 任务ID
+        # @type TaskId: String
+        # @param Host: 域名
+        # @type Host: String
+        # @param Count: 当前下载任务的日志条数
+        # @type Count: Integer
+        # @param Status: 下载任务运行状态：-1-下载超时，0-下载等待，1-下载完成，2-下载失败，4-正在下载
+        # @type Status: Integer
+        # @param Url: 下载文件URL
+        # @type Url: String
+        # @param CreateTime: 创建时间
+        # @type CreateTime: String
+        # @param ModifyTime: 最后更新修改时间
+        # @type ModifyTime: String
+        # @param ExpireTime: 过期时间
+        # @type ExpireTime: String
+        # @param TotalCount: 下载任务需下载的日志总条数
+        # @type TotalCount: Integer
+
+        attr_accessor :Id, :TaskName, :TaskId, :Host, :Count, :Status, :Url, :CreateTime, :ModifyTime, :ExpireTime, :TotalCount
+        
+        def initialize(id=nil, taskname=nil, taskid=nil, host=nil, count=nil, status=nil, url=nil, createtime=nil, modifytime=nil, expiretime=nil, totalcount=nil)
+          @Id = id
+          @TaskName = taskname
+          @TaskId = taskid
+          @Host = host
+          @Count = count
+          @Status = status
+          @Url = url
+          @CreateTime = createtime
+          @ModifyTime = modifytime
+          @ExpireTime = expiretime
+          @TotalCount = totalcount
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @TaskName = params['TaskName']
+          @TaskId = params['TaskId']
+          @Host = params['Host']
+          @Count = params['Count']
+          @Status = params['Status']
+          @Url = params['Url']
+          @CreateTime = params['CreateTime']
+          @ModifyTime = params['ModifyTime']
+          @ExpireTime = params['ExpireTime']
+          @TotalCount = params['TotalCount']
+        end
+      end
+
       # DescribeAccessExports接口
       class ExportAccessInfo < TencentCloud::Common::AbstractModel
         # @param ExportId: 日志导出任务ID
@@ -2019,16 +2075,27 @@ module TencentCloud
 
       # GetAttackDownloadRecords返回参数结构体
       class GetAttackDownloadRecordsResponse < TencentCloud::Common::AbstractModel
+        # @param Records: 下载攻击日志记录数组
+        # @type Records: Array
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RequestId
+        attr_accessor :Records, :RequestId
         
-        def initialize(requestid=nil)
+        def initialize(records=nil, requestid=nil)
+          @Records = records
           @RequestId = requestid
         end
 
         def deserialize(params)
+          unless params['Records'].nil?
+            @Records = []
+            params['Records'].each do |i|
+              downloadattackrecordinfo_tmp = DownloadAttackRecordInfo.new
+              downloadattackrecordinfo_tmp.deserialize(i)
+              @Records << downloadattackrecordinfo_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -2578,6 +2645,62 @@ module TencentCloud
           @UpstreamPort = params['UpstreamPort']
           @UpstreamProtocol = params['UpstreamProtocol']
           @NginxServerId = params['NginxServerId']
+        end
+      end
+
+      # PostAttackDownloadTask请求参数结构体
+      class PostAttackDownloadTaskRequest < TencentCloud::Common::AbstractModel
+        # @param Domain: 查询的域名，所有域名使用all
+        # @type Domain: String
+        # @param StartTime: 查询起始时间
+        # @type StartTime: String
+        # @param EndTime: 查询结束时间
+        # @type EndTime: String
+        # @param QueryString: Lucene语法
+        # @type QueryString: String
+        # @param TaskName: 任务名称
+        # @type TaskName: String
+        # @param Sort: 默认为desc，可以取值desc和asc
+        # @type Sort: String
+
+        attr_accessor :Domain, :StartTime, :EndTime, :QueryString, :TaskName, :Sort
+        
+        def initialize(domain=nil, starttime=nil, endtime=nil, querystring=nil, taskname=nil, sort=nil)
+          @Domain = domain
+          @StartTime = starttime
+          @EndTime = endtime
+          @QueryString = querystring
+          @TaskName = taskname
+          @Sort = sort
+        end
+
+        def deserialize(params)
+          @Domain = params['Domain']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @QueryString = params['QueryString']
+          @TaskName = params['TaskName']
+          @Sort = params['Sort']
+        end
+      end
+
+      # PostAttackDownloadTask返回参数结构体
+      class PostAttackDownloadTaskResponse < TencentCloud::Common::AbstractModel
+        # @param Flow: 任务task id
+        # @type Flow: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Flow, :RequestId
+        
+        def initialize(flow=nil, requestid=nil)
+          @Flow = flow
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Flow = params['Flow']
+          @RequestId = params['RequestId']
         end
       end
 

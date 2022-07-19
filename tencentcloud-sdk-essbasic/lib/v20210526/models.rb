@@ -638,12 +638,14 @@ module TencentCloud
         # "CHANNEL"：渠道合作企业；
         # "NOT_CHANNEL"：非渠道合作企业；
         # "PERSON"：个人；
+        # "FOLLOWER"：关注方，目前是合同抄送方；
         # @type GenerateType: String
         # @param OrganizationName: 非渠道合作企业参与方的企业名称，GenerateType为"NOT_CHANNEL"时必填
         # @type OrganizationName: String
         # @param Name: 参与人姓名，GenerateType为"PERSON"时必填
         # @type Name: String
-        # @param Mobile: 参与人手机号，GenerateType为"PERSON"时必填
+        # @param Mobile: 参与人手机号；
+        # GenerateType为"PERSON"或"FOLLOWER"时必填
         # @type Mobile: String
         # @param OrganizationOpenId: 渠道合作企业的企业Id，GenerateType为"CHANNEL"时必填
         # @type OrganizationOpenId: String

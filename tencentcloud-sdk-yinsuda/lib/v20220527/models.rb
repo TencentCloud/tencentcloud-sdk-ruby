@@ -278,10 +278,14 @@ module TencentCloud
         # <li>Play：可播；</li>
         # <li>Sing：可唱。</li>
         # @type RightSet: Array
+        # @param RecommendType: 推荐类型，取值有：
+        # <li>Featured：精选；</li>
+        # <li>Other：其他。</li>
+        # @type RecommendType: String
 
-        attr_accessor :MusicId, :Name, :SingerSet, :Duration, :SingerImageUrl, :AlbumInfo, :RightSet
+        attr_accessor :MusicId, :Name, :SingerSet, :Duration, :SingerImageUrl, :AlbumInfo, :RightSet, :RecommendType
         
-        def initialize(musicid=nil, name=nil, singerset=nil, duration=nil, singerimageurl=nil, albuminfo=nil, rightset=nil)
+        def initialize(musicid=nil, name=nil, singerset=nil, duration=nil, singerimageurl=nil, albuminfo=nil, rightset=nil, recommendtype=nil)
           @MusicId = musicid
           @Name = name
           @SingerSet = singerset
@@ -289,6 +293,7 @@ module TencentCloud
           @SingerImageUrl = singerimageurl
           @AlbumInfo = albuminfo
           @RightSet = rightset
+          @RecommendType = recommendtype
         end
 
         def deserialize(params)
@@ -302,6 +307,7 @@ module TencentCloud
             @AlbumInfo.deserialize(params['AlbumInfo'])
           end
           @RightSet = params['RightSet']
+          @RecommendType = params['RecommendType']
         end
       end
 

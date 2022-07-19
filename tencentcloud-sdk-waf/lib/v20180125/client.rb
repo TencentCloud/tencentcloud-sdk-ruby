@@ -799,6 +799,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 创建搜索下载攻击日志任务，使用CLS新版本的搜索下载getlog接口
+
+        # @param request: Request instance for PostAttackDownloadTask.
+        # @type request: :class:`Tencentcloud::waf::V20180125::PostAttackDownloadTaskRequest`
+        # @rtype: :class:`Tencentcloud::waf::V20180125::PostAttackDownloadTaskResponse`
+        def PostAttackDownloadTask(request)
+          body = send_request('PostAttackDownloadTask', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = PostAttackDownloadTaskResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口用于搜索WAF访问日志
 
         # @param request: Request instance for SearchAccessLog.

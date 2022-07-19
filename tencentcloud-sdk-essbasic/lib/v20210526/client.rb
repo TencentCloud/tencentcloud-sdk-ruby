@@ -174,7 +174,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 创建跳转小程序查看或签署的链接
+        # 创建跳转小程序查看或签署的链接；自动签署的签署方不创建签署链接；
 
         # @param request: Request instance for CreateSignUrls.
         # @type request: :class:`Tencentcloud::essbasic::V20210526::CreateSignUrlsRequest`

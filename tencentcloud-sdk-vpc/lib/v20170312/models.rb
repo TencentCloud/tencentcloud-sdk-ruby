@@ -15320,10 +15320,14 @@ module TencentCloud
         # @type IngressEntries: Array
         # @param EgressEntries: 网络ACL出站规则。
         # @type EgressEntries: Array
+        # @param NetworkAclType: 网络ACL类型。三元组：'TRIPLE'   五元组：'QUINTUPLE'
+        # @type NetworkAclType: String
+        # @param TagSet: 标签键值对
+        # @type TagSet: Array
 
-        attr_accessor :VpcId, :NetworkAclId, :NetworkAclName, :CreatedTime, :SubnetSet, :IngressEntries, :EgressEntries
+        attr_accessor :VpcId, :NetworkAclId, :NetworkAclName, :CreatedTime, :SubnetSet, :IngressEntries, :EgressEntries, :NetworkAclType, :TagSet
         
-        def initialize(vpcid=nil, networkaclid=nil, networkaclname=nil, createdtime=nil, subnetset=nil, ingressentries=nil, egressentries=nil)
+        def initialize(vpcid=nil, networkaclid=nil, networkaclname=nil, createdtime=nil, subnetset=nil, ingressentries=nil, egressentries=nil, networkacltype=nil, tagset=nil)
           @VpcId = vpcid
           @NetworkAclId = networkaclid
           @NetworkAclName = networkaclname
@@ -15331,6 +15335,8 @@ module TencentCloud
           @SubnetSet = subnetset
           @IngressEntries = ingressentries
           @EgressEntries = egressentries
+          @NetworkAclType = networkacltype
+          @TagSet = tagset
         end
 
         def deserialize(params)
@@ -15360,6 +15366,15 @@ module TencentCloud
               networkaclentry_tmp = NetworkAclEntry.new
               networkaclentry_tmp.deserialize(i)
               @EgressEntries << networkaclentry_tmp
+            end
+          end
+          @NetworkAclType = params['NetworkAclType']
+          unless params['TagSet'].nil?
+            @TagSet = []
+            params['TagSet'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @TagSet << tag_tmp
             end
           end
         end

@@ -4223,10 +4223,12 @@ module TencentCloud
         # @type QuotaProducerByteRate: Integer
         # @param QuotaConsumerByteRate: 消费限流，单位 MB/s
         # @type QuotaConsumerByteRate: Integer
+        # @param ReplicaNum: 调整topic副本数
+        # @type ReplicaNum: Integer
 
-        attr_accessor :InstanceId, :TopicName, :Note, :EnableWhiteList, :MinInsyncReplicas, :UncleanLeaderElectionEnable, :RetentionMs, :SegmentMs, :MaxMessageBytes, :CleanUpPolicy, :IpWhiteList, :EnableAclRule, :AclRuleName, :RetentionBytes, :Tags, :QuotaProducerByteRate, :QuotaConsumerByteRate
+        attr_accessor :InstanceId, :TopicName, :Note, :EnableWhiteList, :MinInsyncReplicas, :UncleanLeaderElectionEnable, :RetentionMs, :SegmentMs, :MaxMessageBytes, :CleanUpPolicy, :IpWhiteList, :EnableAclRule, :AclRuleName, :RetentionBytes, :Tags, :QuotaProducerByteRate, :QuotaConsumerByteRate, :ReplicaNum
         
-        def initialize(instanceid=nil, topicname=nil, note=nil, enablewhitelist=nil, mininsyncreplicas=nil, uncleanleaderelectionenable=nil, retentionms=nil, segmentms=nil, maxmessagebytes=nil, cleanuppolicy=nil, ipwhitelist=nil, enableaclrule=nil, aclrulename=nil, retentionbytes=nil, tags=nil, quotaproducerbyterate=nil, quotaconsumerbyterate=nil)
+        def initialize(instanceid=nil, topicname=nil, note=nil, enablewhitelist=nil, mininsyncreplicas=nil, uncleanleaderelectionenable=nil, retentionms=nil, segmentms=nil, maxmessagebytes=nil, cleanuppolicy=nil, ipwhitelist=nil, enableaclrule=nil, aclrulename=nil, retentionbytes=nil, tags=nil, quotaproducerbyterate=nil, quotaconsumerbyterate=nil, replicanum=nil)
           @InstanceId = instanceid
           @TopicName = topicname
           @Note = note
@@ -4244,6 +4246,7 @@ module TencentCloud
           @Tags = tags
           @QuotaProducerByteRate = quotaproducerbyterate
           @QuotaConsumerByteRate = quotaconsumerbyterate
+          @ReplicaNum = replicanum
         end
 
         def deserialize(params)
@@ -4271,6 +4274,7 @@ module TencentCloud
           end
           @QuotaProducerByteRate = params['QuotaProducerByteRate']
           @QuotaConsumerByteRate = params['QuotaConsumerByteRate']
+          @ReplicaNum = params['ReplicaNum']
         end
       end
 

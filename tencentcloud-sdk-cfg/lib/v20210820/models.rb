@@ -851,10 +851,16 @@ module TencentCloud
         # @param ActionType: 动作类型：平台、自定义
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ActionType: String
+        # @param IsExecuteRedo: 是否可重试
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsExecuteRedo: Boolean
+        # @param ActionRisk: 动作风险级别
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ActionRisk: String
 
-        attr_accessor :TaskGroupActionId, :TaskGroupInstances, :ActionId, :TaskGroupActionOrder, :TaskGroupActionGeneralConfiguration, :TaskGroupActionCustomConfiguration, :TaskGroupActionStatus, :TaskGroupActionCreateTime, :TaskGroupActionUpdateTime, :ActionTitle, :TaskGroupActionStatusType, :TaskGroupActionRandomId, :TaskGroupActionRecoverId, :TaskGroupActionExecuteId, :ActionApiType, :ActionAttribute, :ActionType
+        attr_accessor :TaskGroupActionId, :TaskGroupInstances, :ActionId, :TaskGroupActionOrder, :TaskGroupActionGeneralConfiguration, :TaskGroupActionCustomConfiguration, :TaskGroupActionStatus, :TaskGroupActionCreateTime, :TaskGroupActionUpdateTime, :ActionTitle, :TaskGroupActionStatusType, :TaskGroupActionRandomId, :TaskGroupActionRecoverId, :TaskGroupActionExecuteId, :ActionApiType, :ActionAttribute, :ActionType, :IsExecuteRedo, :ActionRisk
         
-        def initialize(taskgroupactionid=nil, taskgroupinstances=nil, actionid=nil, taskgroupactionorder=nil, taskgroupactiongeneralconfiguration=nil, taskgroupactioncustomconfiguration=nil, taskgroupactionstatus=nil, taskgroupactioncreatetime=nil, taskgroupactionupdatetime=nil, actiontitle=nil, taskgroupactionstatustype=nil, taskgroupactionrandomid=nil, taskgroupactionrecoverid=nil, taskgroupactionexecuteid=nil, actionapitype=nil, actionattribute=nil, actiontype=nil)
+        def initialize(taskgroupactionid=nil, taskgroupinstances=nil, actionid=nil, taskgroupactionorder=nil, taskgroupactiongeneralconfiguration=nil, taskgroupactioncustomconfiguration=nil, taskgroupactionstatus=nil, taskgroupactioncreatetime=nil, taskgroupactionupdatetime=nil, actiontitle=nil, taskgroupactionstatustype=nil, taskgroupactionrandomid=nil, taskgroupactionrecoverid=nil, taskgroupactionexecuteid=nil, actionapitype=nil, actionattribute=nil, actiontype=nil, isexecuteredo=nil, actionrisk=nil)
           @TaskGroupActionId = taskgroupactionid
           @TaskGroupInstances = taskgroupinstances
           @ActionId = actionid
@@ -872,6 +878,8 @@ module TencentCloud
           @ActionApiType = actionapitype
           @ActionAttribute = actionattribute
           @ActionType = actiontype
+          @IsExecuteRedo = isexecuteredo
+          @ActionRisk = actionrisk
         end
 
         def deserialize(params)
@@ -899,6 +907,8 @@ module TencentCloud
           @ActionApiType = params['ActionApiType']
           @ActionAttribute = params['ActionAttribute']
           @ActionType = params['ActionType']
+          @IsExecuteRedo = params['IsExecuteRedo']
+          @ActionRisk = params['ActionRisk']
         end
       end
 
@@ -989,10 +999,13 @@ module TencentCloud
         # @param TaskGroupInstanceEndTime: 执行结束时间
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskGroupInstanceEndTime: String
+        # @param TaskGroupInstanceIsRedo: 实例是否可重试
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TaskGroupInstanceIsRedo: Boolean
 
-        attr_accessor :TaskGroupInstanceId, :TaskGroupInstanceObjectId, :TaskGroupInstanceStatus, :TaskGroupInstanceExecuteLog, :TaskGroupInstanceCreateTime, :TaskGroupInstanceUpdateTime, :TaskGroupInstanceStatusType, :TaskGroupInstanceStartTime, :TaskGroupInstanceEndTime
+        attr_accessor :TaskGroupInstanceId, :TaskGroupInstanceObjectId, :TaskGroupInstanceStatus, :TaskGroupInstanceExecuteLog, :TaskGroupInstanceCreateTime, :TaskGroupInstanceUpdateTime, :TaskGroupInstanceStatusType, :TaskGroupInstanceStartTime, :TaskGroupInstanceEndTime, :TaskGroupInstanceIsRedo
         
-        def initialize(taskgroupinstanceid=nil, taskgroupinstanceobjectid=nil, taskgroupinstancestatus=nil, taskgroupinstanceexecutelog=nil, taskgroupinstancecreatetime=nil, taskgroupinstanceupdatetime=nil, taskgroupinstancestatustype=nil, taskgroupinstancestarttime=nil, taskgroupinstanceendtime=nil)
+        def initialize(taskgroupinstanceid=nil, taskgroupinstanceobjectid=nil, taskgroupinstancestatus=nil, taskgroupinstanceexecutelog=nil, taskgroupinstancecreatetime=nil, taskgroupinstanceupdatetime=nil, taskgroupinstancestatustype=nil, taskgroupinstancestarttime=nil, taskgroupinstanceendtime=nil, taskgroupinstanceisredo=nil)
           @TaskGroupInstanceId = taskgroupinstanceid
           @TaskGroupInstanceObjectId = taskgroupinstanceobjectid
           @TaskGroupInstanceStatus = taskgroupinstancestatus
@@ -1002,6 +1015,7 @@ module TencentCloud
           @TaskGroupInstanceStatusType = taskgroupinstancestatustype
           @TaskGroupInstanceStartTime = taskgroupinstancestarttime
           @TaskGroupInstanceEndTime = taskgroupinstanceendtime
+          @TaskGroupInstanceIsRedo = taskgroupinstanceisredo
         end
 
         def deserialize(params)
@@ -1014,6 +1028,7 @@ module TencentCloud
           @TaskGroupInstanceStatusType = params['TaskGroupInstanceStatusType']
           @TaskGroupInstanceStartTime = params['TaskGroupInstanceStartTime']
           @TaskGroupInstanceEndTime = params['TaskGroupInstanceEndTime']
+          @TaskGroupInstanceIsRedo = params['TaskGroupInstanceIsRedo']
         end
       end
 
