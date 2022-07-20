@@ -181,19 +181,28 @@ module TencentCloud
         # @type Type: String
         # @param Color: 车辆颜色
         # @type Color: String
-        # @param Confidence: 置信度，0-100
+        # @param Confidence: 车系置信度，0-100
         # @type Confidence: Integer
         # @param Year: 年份，没识别出年份的时候返回0
         # @type Year: Integer
         # @param CarLocation: 车辆在图片中的坐标信息
         # @type CarLocation: Array
-        # @param PlateContent: 车牌信息
+        # @param PlateContent: 车牌信息，仅车辆识别（增强版）支持
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PlateContent: :class:`Tencentcloud::Tiia.v20190529.models.CarPlateContent`
+        # @param PlateConfidence: 车牌信息置信度，0-100，仅车辆识别（增强版）支持
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PlateConfidence: Integer
+        # @param TypeConfidence: 车辆类型置信度，0-100，仅车辆识别（增强版）支持
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TypeConfidence: Integer
+        # @param ColorConfidence: 车辆颜色置信度，0-100，仅车辆识别（增强版）支持
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ColorConfidence: Integer
 
-        attr_accessor :Serial, :Brand, :Type, :Color, :Confidence, :Year, :CarLocation, :PlateContent
+        attr_accessor :Serial, :Brand, :Type, :Color, :Confidence, :Year, :CarLocation, :PlateContent, :PlateConfidence, :TypeConfidence, :ColorConfidence
         
-        def initialize(serial=nil, brand=nil, type=nil, color=nil, confidence=nil, year=nil, carlocation=nil, platecontent=nil)
+        def initialize(serial=nil, brand=nil, type=nil, color=nil, confidence=nil, year=nil, carlocation=nil, platecontent=nil, plateconfidence=nil, typeconfidence=nil, colorconfidence=nil)
           @Serial = serial
           @Brand = brand
           @Type = type
@@ -202,6 +211,9 @@ module TencentCloud
           @Year = year
           @CarLocation = carlocation
           @PlateContent = platecontent
+          @PlateConfidence = plateconfidence
+          @TypeConfidence = typeconfidence
+          @ColorConfidence = colorconfidence
         end
 
         def deserialize(params)
@@ -223,6 +235,9 @@ module TencentCloud
             @PlateContent = CarPlateContent.new
             @PlateContent.deserialize(params['PlateContent'])
           end
+          @PlateConfidence = params['PlateConfidence']
+          @TypeConfidence = params['TypeConfidence']
+          @ColorConfidence = params['ColorConfidence']
         end
       end
 

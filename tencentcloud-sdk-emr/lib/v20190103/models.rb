@@ -70,6 +70,50 @@ module TencentCloud
         end
       end
 
+      # yarn application 统计信息
+      class ApplicationStatics < TencentCloud::Common::AbstractModel
+        # @param Queue: 队列名
+        # @type Queue: String
+        # @param User: 用户名
+        # @type User: String
+        # @param ApplicationType: 作业类型
+        # @type ApplicationType: String
+        # @param SumMemorySeconds: SumMemorySeconds含义
+        # @type SumMemorySeconds: Integer
+        # @param SumVCoreSeconds: SumVCoreSeconds含义
+        # @type SumVCoreSeconds: Integer
+        # @param SumHDFSBytesWritten: SumHDFSBytesWritten（带单位）
+        # @type SumHDFSBytesWritten: String
+        # @param SumHDFSBytesRead: SumHDFSBytesRead（待单位）
+        # @type SumHDFSBytesRead: String
+        # @param CountApps: 作业数
+        # @type CountApps: Integer
+
+        attr_accessor :Queue, :User, :ApplicationType, :SumMemorySeconds, :SumVCoreSeconds, :SumHDFSBytesWritten, :SumHDFSBytesRead, :CountApps
+        
+        def initialize(queue=nil, user=nil, applicationtype=nil, summemoryseconds=nil, sumvcoreseconds=nil, sumhdfsbyteswritten=nil, sumhdfsbytesread=nil, countapps=nil)
+          @Queue = queue
+          @User = user
+          @ApplicationType = applicationtype
+          @SumMemorySeconds = summemoryseconds
+          @SumVCoreSeconds = sumvcoreseconds
+          @SumHDFSBytesWritten = sumhdfsbyteswritten
+          @SumHDFSBytesRead = sumhdfsbytesread
+          @CountApps = countapps
+        end
+
+        def deserialize(params)
+          @Queue = params['Queue']
+          @User = params['User']
+          @ApplicationType = params['ApplicationType']
+          @SumMemorySeconds = params['SumMemorySeconds']
+          @SumVCoreSeconds = params['SumVCoreSeconds']
+          @SumHDFSBytesWritten = params['SumHDFSBytesWritten']
+          @SumHDFSBytesRead = params['SumHDFSBytesRead']
+          @CountApps = params['CountApps']
+        end
+      end
+
       # 引导脚本
       class BootstrapAction < TencentCloud::Common::AbstractModel
         # @param Path: 脚本位置，支持cos上的文件，且只支持https协议。
@@ -1075,6 +1119,105 @@ module TencentCloud
               @EksQuotaSet << podsalespec_tmp
             end
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeEmrApplicationStatics请求参数结构体
+      class DescribeEmrApplicationStaticsRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 集群id
+        # @type InstanceId: String
+        # @param StartTime: 起始时间
+        # @type StartTime: Integer
+        # @param EndTime: 结束时间
+        # @type EndTime: Integer
+        # @param Queues: 过滤的队列名
+        # @type Queues: Array
+        # @param Users: 过滤的用户名
+        # @type Users: Array
+        # @param ApplicationTypes: 过滤的作业类型
+        # @type ApplicationTypes: Array
+        # @param GroupBy: 分组字段，可选：queue, user, applicationType
+        # @type GroupBy: Array
+        # @param OrderBy: 排序字段，可选：sumMemorySeconds, sumVCoreSeconds, sumHDFSBytesWritten, sumHDFSBytesRead
+        # @type OrderBy: String
+        # @param IsAsc: 是否顺序排序，0-逆序，1-正序
+        # @type IsAsc: Integer
+        # @param Offset: 页号
+        # @type Offset: Integer
+        # @param Limit: 页容量
+        # @type Limit: Integer
+
+        attr_accessor :InstanceId, :StartTime, :EndTime, :Queues, :Users, :ApplicationTypes, :GroupBy, :OrderBy, :IsAsc, :Offset, :Limit
+        
+        def initialize(instanceid=nil, starttime=nil, endtime=nil, queues=nil, users=nil, applicationtypes=nil, groupby=nil, orderby=nil, isasc=nil, offset=nil, limit=nil)
+          @InstanceId = instanceid
+          @StartTime = starttime
+          @EndTime = endtime
+          @Queues = queues
+          @Users = users
+          @ApplicationTypes = applicationtypes
+          @GroupBy = groupby
+          @OrderBy = orderby
+          @IsAsc = isasc
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @Queues = params['Queues']
+          @Users = params['Users']
+          @ApplicationTypes = params['ApplicationTypes']
+          @GroupBy = params['GroupBy']
+          @OrderBy = params['OrderBy']
+          @IsAsc = params['IsAsc']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeEmrApplicationStatics返回参数结构体
+      class DescribeEmrApplicationStaticsResponse < TencentCloud::Common::AbstractModel
+        # @param Statics: 作业统计信息
+        # @type Statics: Array
+        # @param TotalCount: 总数
+        # @type TotalCount: Integer
+        # @param Queues: 可选择的队列名
+        # @type Queues: Array
+        # @param Users: 可选择的用户名
+        # @type Users: Array
+        # @param ApplicationTypes: 可选择的作业类型
+        # @type ApplicationTypes: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Statics, :TotalCount, :Queues, :Users, :ApplicationTypes, :RequestId
+        
+        def initialize(statics=nil, totalcount=nil, queues=nil, users=nil, applicationtypes=nil, requestid=nil)
+          @Statics = statics
+          @TotalCount = totalcount
+          @Queues = queues
+          @Users = users
+          @ApplicationTypes = applicationtypes
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Statics'].nil?
+            @Statics = []
+            params['Statics'].each do |i|
+              applicationstatics_tmp = ApplicationStatics.new
+              applicationstatics_tmp.deserialize(i)
+              @Statics << applicationstatics_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+          @Queues = params['Queues']
+          @Users = params['Users']
+          @ApplicationTypes = params['ApplicationTypes']
           @RequestId = params['RequestId']
         end
       end

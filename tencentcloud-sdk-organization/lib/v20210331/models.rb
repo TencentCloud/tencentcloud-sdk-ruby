@@ -432,10 +432,13 @@ module TencentCloud
         # @param BindStatus: 安全信息绑定状态  未绑定：Unbound，待激活：Valid，绑定成功：Success，绑定失败：Failed
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BindStatus: String
+        # @param PermissionStatus: 成员权限状态 已确认：Confirmed ，待确认：UnConfirmed
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PermissionStatus: String
 
-        attr_accessor :MemberUin, :Name, :MemberType, :OrgPolicyType, :OrgPolicyName, :OrgPermission, :NodeId, :NodeName, :Remark, :CreateTime, :UpdateTime, :IsAllowQuit, :PayUin, :PayName, :OrgIdentity, :BindStatus
+        attr_accessor :MemberUin, :Name, :MemberType, :OrgPolicyType, :OrgPolicyName, :OrgPermission, :NodeId, :NodeName, :Remark, :CreateTime, :UpdateTime, :IsAllowQuit, :PayUin, :PayName, :OrgIdentity, :BindStatus, :PermissionStatus
         
-        def initialize(memberuin=nil, name=nil, membertype=nil, orgpolicytype=nil, orgpolicyname=nil, orgpermission=nil, nodeid=nil, nodename=nil, remark=nil, createtime=nil, updatetime=nil, isallowquit=nil, payuin=nil, payname=nil, orgidentity=nil, bindstatus=nil)
+        def initialize(memberuin=nil, name=nil, membertype=nil, orgpolicytype=nil, orgpolicyname=nil, orgpermission=nil, nodeid=nil, nodename=nil, remark=nil, createtime=nil, updatetime=nil, isallowquit=nil, payuin=nil, payname=nil, orgidentity=nil, bindstatus=nil, permissionstatus=nil)
           @MemberUin = memberuin
           @Name = name
           @MemberType = membertype
@@ -452,6 +455,7 @@ module TencentCloud
           @PayName = payname
           @OrgIdentity = orgidentity
           @BindStatus = bindstatus
+          @PermissionStatus = permissionstatus
         end
 
         def deserialize(params)
@@ -485,6 +489,7 @@ module TencentCloud
             end
           end
           @BindStatus = params['BindStatus']
+          @PermissionStatus = params['PermissionStatus']
         end
       end
 

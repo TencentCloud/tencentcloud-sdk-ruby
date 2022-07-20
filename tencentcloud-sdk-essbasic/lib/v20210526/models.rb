@@ -439,18 +439,21 @@ module TencentCloud
         # @type ModuleId: String
         # @param UniformSocialCreditCode: 渠道侧合作企业统一社会信用代码，最大长度200个字符
         # @type UniformSocialCreditCode: String
+        # @param MenuStatus: 是否展示左侧菜单栏 是：ENABLE（默认） 否：DISABLE
+        # @type MenuStatus: String
         # @param Operator: 操作者的信息
         # @type Operator: :class:`Tencentcloud::Essbasic.v20210526.models.UserInfo`
 
-        attr_accessor :Agent, :ProxyOrganizationName, :ProxyOperatorName, :Module, :ModuleId, :UniformSocialCreditCode, :Operator
+        attr_accessor :Agent, :ProxyOrganizationName, :ProxyOperatorName, :Module, :ModuleId, :UniformSocialCreditCode, :MenuStatus, :Operator
         
-        def initialize(agent=nil, proxyorganizationname=nil, proxyoperatorname=nil, _module=nil, moduleid=nil, uniformsocialcreditcode=nil, operator=nil)
+        def initialize(agent=nil, proxyorganizationname=nil, proxyoperatorname=nil, _module=nil, moduleid=nil, uniformsocialcreditcode=nil, menustatus=nil, operator=nil)
           @Agent = agent
           @ProxyOrganizationName = proxyorganizationname
           @ProxyOperatorName = proxyoperatorname
           @Module = _module
           @ModuleId = moduleid
           @UniformSocialCreditCode = uniformsocialcreditcode
+          @MenuStatus = menustatus
           @Operator = operator
         end
 
@@ -464,6 +467,7 @@ module TencentCloud
           @Module = params['Module']
           @ModuleId = params['ModuleId']
           @UniformSocialCreditCode = params['UniformSocialCreditCode']
+          @MenuStatus = params['MenuStatus']
           unless params['Operator'].nil?
             @Operator = UserInfo.new
             @Operator.deserialize(params['Operator'])

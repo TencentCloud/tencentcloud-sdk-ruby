@@ -740,13 +740,16 @@ module TencentCloud
       class GetEmailTemplateResponse < TencentCloud::Common::AbstractModel
         # @param TemplateContent: 模板内容数据
         # @type TemplateContent: :class:`Tencentcloud::Ses.v20201002.models.TemplateContent`
+        # @param TemplateStatus: 模板状态 0-审核通过 1-待审核 2-审核拒绝
+        # @type TemplateStatus: Integer
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :TemplateContent, :RequestId
+        attr_accessor :TemplateContent, :TemplateStatus, :RequestId
         
-        def initialize(templatecontent=nil, requestid=nil)
+        def initialize(templatecontent=nil, templatestatus=nil, requestid=nil)
           @TemplateContent = templatecontent
+          @TemplateStatus = templatestatus
           @RequestId = requestid
         end
 
@@ -755,6 +758,7 @@ module TencentCloud
             @TemplateContent = TemplateContent.new
             @TemplateContent.deserialize(params['TemplateContent'])
           end
+          @TemplateStatus = params['TemplateStatus']
           @RequestId = params['RequestId']
         end
       end

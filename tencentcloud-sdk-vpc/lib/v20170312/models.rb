@@ -3305,17 +3305,32 @@ module TencentCloud
         # @type VpcId: String
         # @param NetworkAclName: 网络ACL名称，最大长度不能超过60个字节。
         # @type NetworkAclName: String
+        # @param NetworkAclType: 网络ACL类型，三元组(TRIPLE)或五元组(QUINTUPLE)
+        # @type NetworkAclType: String
+        # @param Tags: 指定绑定的标签列表，例如：[{"Key": "city", "Value": "shanghai"}]。
+        # @type Tags: Array
 
-        attr_accessor :VpcId, :NetworkAclName
+        attr_accessor :VpcId, :NetworkAclName, :NetworkAclType, :Tags
         
-        def initialize(vpcid=nil, networkaclname=nil)
+        def initialize(vpcid=nil, networkaclname=nil, networkacltype=nil, tags=nil)
           @VpcId = vpcid
           @NetworkAclName = networkaclname
+          @NetworkAclType = networkacltype
+          @Tags = tags
         end
 
         def deserialize(params)
           @VpcId = params['VpcId']
           @NetworkAclName = params['NetworkAclName']
+          @NetworkAclType = params['NetworkAclType']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
+            end
+          end
         end
       end
 
@@ -14066,12 +14081,15 @@ module TencentCloud
         # @type NetworkAclId: String
         # @param NetworkAclEntrySet: 网络ACL规则集。NetworkAclEntrySet和NetworkAclQuintupleSet只能输入一个。
         # @type NetworkAclEntrySet: :class:`Tencentcloud::Vpc.v20170312.models.NetworkAclEntrySet`
+        # @param NetworkAclQuintupleSet: 网络ACL五元组规则集。NetworkAclEntrySet和NetworkAclQuintupleSet只能输入一个。
+        # @type NetworkAclQuintupleSet: :class:`Tencentcloud::Vpc.v20170312.models.NetworkAclQuintupleEntries`
 
-        attr_accessor :NetworkAclId, :NetworkAclEntrySet
+        attr_accessor :NetworkAclId, :NetworkAclEntrySet, :NetworkAclQuintupleSet
         
-        def initialize(networkaclid=nil, networkaclentryset=nil)
+        def initialize(networkaclid=nil, networkaclentryset=nil, networkaclquintupleset=nil)
           @NetworkAclId = networkaclid
           @NetworkAclEntrySet = networkaclentryset
+          @NetworkAclQuintupleSet = networkaclquintupleset
         end
 
         def deserialize(params)
@@ -14079,6 +14097,10 @@ module TencentCloud
           unless params['NetworkAclEntrySet'].nil?
             @NetworkAclEntrySet = NetworkAclEntrySet.new
             @NetworkAclEntrySet.deserialize(params['NetworkAclEntrySet'])
+          end
+          unless params['NetworkAclQuintupleSet'].nil?
+            @NetworkAclQuintupleSet = NetworkAclQuintupleEntries.new
+            @NetworkAclQuintupleSet.deserialize(params['NetworkAclQuintupleSet'])
           end
         end
       end
@@ -15451,6 +15473,96 @@ module TencentCloud
               @Egress << networkaclentry_tmp
             end
           end
+        end
+      end
+
+      # 网络ACL五元组
+      class NetworkAclQuintupleEntries < TencentCloud::Common::AbstractModel
+        # @param Ingress: 网络ACL五元组入站规则。
+        # @type Ingress: Array
+        # @param Egress: 网络ACL五元组出站规则
+        # @type Egress: Array
+
+        attr_accessor :Ingress, :Egress
+        
+        def initialize(ingress=nil, egress=nil)
+          @Ingress = ingress
+          @Egress = egress
+        end
+
+        def deserialize(params)
+          unless params['Ingress'].nil?
+            @Ingress = []
+            params['Ingress'].each do |i|
+              networkaclquintupleentry_tmp = NetworkAclQuintupleEntry.new
+              networkaclquintupleentry_tmp.deserialize(i)
+              @Ingress << networkaclquintupleentry_tmp
+            end
+          end
+          unless params['Egress'].nil?
+            @Egress = []
+            params['Egress'].each do |i|
+              networkaclquintupleentry_tmp = NetworkAclQuintupleEntry.new
+              networkaclquintupleentry_tmp.deserialize(i)
+              @Egress << networkaclquintupleentry_tmp
+            end
+          end
+        end
+      end
+
+      # 网络ACL五元组Entry
+      class NetworkAclQuintupleEntry < TencentCloud::Common::AbstractModel
+        # @param Protocol: 协议, 取值: TCP,UDP, ICMP, ALL。
+        # @type Protocol: String
+        # @param Description: 描述。
+        # @type Description: String
+        # @param SourcePort: 源端口(all, 单个port,  range)。当Protocol为ALL或ICMP时，不能指定Port。
+        # @type SourcePort: String
+        # @param SourceCidr: 源CIDR。
+        # @type SourceCidr: String
+        # @param DestinationPort: 目的端口(all, 单个port,  range)。当Protocol为ALL或ICMP时，不能指定Port。
+        # @type DestinationPort: String
+        # @param DestinationCidr: 目的CIDR。
+        # @type DestinationCidr: String
+        # @param Action: 动作，ACCEPT 或 DROP。
+        # @type Action: String
+        # @param NetworkAclQuintupleEntryId: 网络ACL条目唯一ID。
+        # @type NetworkAclQuintupleEntryId: String
+        # @param Priority: 优先级，从1开始。
+        # @type Priority: Integer
+        # @param CreateTime: 创建时间，用于DescribeNetworkAclQuintupleEntries的出参。
+        # @type CreateTime: String
+        # @param NetworkAclDirection: 方向，INGRESS或EGRESS，用于DescribeNetworkAclQuintupleEntries的出参。
+        # @type NetworkAclDirection: String
+
+        attr_accessor :Protocol, :Description, :SourcePort, :SourceCidr, :DestinationPort, :DestinationCidr, :Action, :NetworkAclQuintupleEntryId, :Priority, :CreateTime, :NetworkAclDirection
+        
+        def initialize(protocol=nil, description=nil, sourceport=nil, sourcecidr=nil, destinationport=nil, destinationcidr=nil, action=nil, networkaclquintupleentryid=nil, priority=nil, createtime=nil, networkacldirection=nil)
+          @Protocol = protocol
+          @Description = description
+          @SourcePort = sourceport
+          @SourceCidr = sourcecidr
+          @DestinationPort = destinationport
+          @DestinationCidr = destinationcidr
+          @Action = action
+          @NetworkAclQuintupleEntryId = networkaclquintupleentryid
+          @Priority = priority
+          @CreateTime = createtime
+          @NetworkAclDirection = networkacldirection
+        end
+
+        def deserialize(params)
+          @Protocol = params['Protocol']
+          @Description = params['Description']
+          @SourcePort = params['SourcePort']
+          @SourceCidr = params['SourceCidr']
+          @DestinationPort = params['DestinationPort']
+          @DestinationCidr = params['DestinationCidr']
+          @Action = params['Action']
+          @NetworkAclQuintupleEntryId = params['NetworkAclQuintupleEntryId']
+          @Priority = params['Priority']
+          @CreateTime = params['CreateTime']
+          @NetworkAclDirection = params['NetworkAclDirection']
         end
       end
 

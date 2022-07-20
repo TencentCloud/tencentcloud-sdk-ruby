@@ -2166,15 +2166,27 @@ module TencentCloud
         # @param ModifiedTime: 数据库更新时间戳，单位：s。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ModifiedTime: String
+        # @param Location: cos存储路径
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Location: String
+        # @param UserAlias: 建库用户昵称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UserAlias: String
+        # @param UserSubUin: 建库用户ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UserSubUin: String
 
-        attr_accessor :DatabaseName, :Comment, :Properties, :CreateTime, :ModifiedTime
+        attr_accessor :DatabaseName, :Comment, :Properties, :CreateTime, :ModifiedTime, :Location, :UserAlias, :UserSubUin
         
-        def initialize(databasename=nil, comment=nil, properties=nil, createtime=nil, modifiedtime=nil)
+        def initialize(databasename=nil, comment=nil, properties=nil, createtime=nil, modifiedtime=nil, location=nil, useralias=nil, usersubuin=nil)
           @DatabaseName = databasename
           @Comment = comment
           @Properties = properties
           @CreateTime = createtime
           @ModifiedTime = modifiedtime
+          @Location = location
+          @UserAlias = useralias
+          @UserSubUin = usersubuin
         end
 
         def deserialize(params)
@@ -2190,6 +2202,9 @@ module TencentCloud
           end
           @CreateTime = params['CreateTime']
           @ModifiedTime = params['ModifiedTime']
+          @Location = params['Location']
+          @UserAlias = params['UserAlias']
+          @UserSubUin = params['UserSubUin']
         end
       end
 
@@ -3060,14 +3075,23 @@ module TencentCloud
         # @type Limit: Integer
         # @param TaskId: 执行实例id
         # @type TaskId: String
+        # @param StartTime: 更新时间起始点
+        # @type StartTime: String
+        # @param EndTime: 更新时间截止点
+        # @type EndTime: String
+        # @param Filters: 按照该参数过滤,支持task-state
+        # @type Filters: Array
 
-        attr_accessor :JobId, :Offset, :Limit, :TaskId
+        attr_accessor :JobId, :Offset, :Limit, :TaskId, :StartTime, :EndTime, :Filters
         
-        def initialize(jobid=nil, offset=nil, limit=nil, taskid=nil)
+        def initialize(jobid=nil, offset=nil, limit=nil, taskid=nil, starttime=nil, endtime=nil, filters=nil)
           @JobId = jobid
           @Offset = offset
           @Limit = limit
           @TaskId = taskid
+          @StartTime = starttime
+          @EndTime = endtime
+          @Filters = filters
         end
 
         def deserialize(params)
@@ -3075,6 +3099,16 @@ module TencentCloud
           @Offset = params['Offset']
           @Limit = params['Limit']
           @TaskId = params['TaskId']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
         end
       end
 
@@ -3215,7 +3249,7 @@ module TencentCloud
         # @type StartTime: String
         # @param EndTime: 终止时间：用于对更新时间的筛选
         # @type EndTime: String
-        # @param Sort: 排序字段，支持：ModifiedTime（默认）；CreateTime
+        # @param Sort: 排序字段，支持：CreateTime、UpdateTime、StorageSize、RecordCount、Name（不传则默认按name升序）
         # @type Sort: String
         # @param Asc: 排序字段，false：降序（默认）；true：升序
         # @type Asc: Boolean
@@ -4852,16 +4886,24 @@ module TencentCloud
         # @param TableFormat: 数据格式类型，hive，iceberg等
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TableFormat: String
+        # @param UserAlias: 建表用户昵称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UserAlias: String
+        # @param UserSubUin: 建表用户ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UserSubUin: String
 
-        attr_accessor :DatabaseName, :TableName, :DatasourceConnectionName, :TableComment, :Type, :TableFormat
+        attr_accessor :DatabaseName, :TableName, :DatasourceConnectionName, :TableComment, :Type, :TableFormat, :UserAlias, :UserSubUin
         
-        def initialize(databasename=nil, tablename=nil, datasourceconnectionname=nil, tablecomment=nil, type=nil, tableformat=nil)
+        def initialize(databasename=nil, tablename=nil, datasourceconnectionname=nil, tablecomment=nil, type=nil, tableformat=nil, useralias=nil, usersubuin=nil)
           @DatabaseName = databasename
           @TableName = tablename
           @DatasourceConnectionName = datasourceconnectionname
           @TableComment = tablecomment
           @Type = type
           @TableFormat = tableformat
+          @UserAlias = useralias
+          @UserSubUin = usersubuin
         end
 
         def deserialize(params)
@@ -4871,6 +4913,8 @@ module TencentCloud
           @TableComment = params['TableComment']
           @Type = params['Type']
           @TableFormat = params['TableFormat']
+          @UserAlias = params['UserAlias']
+          @UserSubUin = params['UserSubUin']
         end
       end
 
@@ -5544,17 +5588,25 @@ module TencentCloud
         # @type DatabaseName: String
         # @param ViewName: 视图名称
         # @type ViewName: String
+        # @param UserAlias: 视图创建人昵称
+        # @type UserAlias: String
+        # @param UserSubUin: 视图创建人ID
+        # @type UserSubUin: String
 
-        attr_accessor :DatabaseName, :ViewName
+        attr_accessor :DatabaseName, :ViewName, :UserAlias, :UserSubUin
         
-        def initialize(databasename=nil, viewname=nil)
+        def initialize(databasename=nil, viewname=nil, useralias=nil, usersubuin=nil)
           @DatabaseName = databasename
           @ViewName = viewname
+          @UserAlias = useralias
+          @UserSubUin = usersubuin
         end
 
         def deserialize(params)
           @DatabaseName = params['DatabaseName']
           @ViewName = params['ViewName']
+          @UserAlias = params['UserAlias']
+          @UserSubUin = params['UserSubUin']
         end
       end
 
