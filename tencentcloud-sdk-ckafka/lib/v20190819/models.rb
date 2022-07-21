@@ -3726,10 +3726,13 @@ module TencentCloud
         # @param ClusterType: 实例类型
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ClusterType: String
+        # @param Features: 实例功能列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Features: Array
 
-        attr_accessor :InstanceId, :InstanceName, :Vip, :Vport, :VipList, :Status, :Bandwidth, :DiskSize, :ZoneId, :VpcId, :SubnetId, :RenewFlag, :Healthy, :HealthyMessage, :CreateTime, :ExpireTime, :IsInternal, :TopicNum, :Tags, :Version, :ZoneIds, :Cvm, :InstanceType, :DiskType, :MaxTopicNumber, :MaxPartitionNumber, :RebalanceTime, :PartitionNumber, :PublicNetworkChargeType, :PublicNetwork, :ClusterType
+        attr_accessor :InstanceId, :InstanceName, :Vip, :Vport, :VipList, :Status, :Bandwidth, :DiskSize, :ZoneId, :VpcId, :SubnetId, :RenewFlag, :Healthy, :HealthyMessage, :CreateTime, :ExpireTime, :IsInternal, :TopicNum, :Tags, :Version, :ZoneIds, :Cvm, :InstanceType, :DiskType, :MaxTopicNumber, :MaxPartitionNumber, :RebalanceTime, :PartitionNumber, :PublicNetworkChargeType, :PublicNetwork, :ClusterType, :Features
         
-        def initialize(instanceid=nil, instancename=nil, vip=nil, vport=nil, viplist=nil, status=nil, bandwidth=nil, disksize=nil, zoneid=nil, vpcid=nil, subnetid=nil, renewflag=nil, healthy=nil, healthymessage=nil, createtime=nil, expiretime=nil, isinternal=nil, topicnum=nil, tags=nil, version=nil, zoneids=nil, cvm=nil, instancetype=nil, disktype=nil, maxtopicnumber=nil, maxpartitionnumber=nil, rebalancetime=nil, partitionnumber=nil, publicnetworkchargetype=nil, publicnetwork=nil, clustertype=nil)
+        def initialize(instanceid=nil, instancename=nil, vip=nil, vport=nil, viplist=nil, status=nil, bandwidth=nil, disksize=nil, zoneid=nil, vpcid=nil, subnetid=nil, renewflag=nil, healthy=nil, healthymessage=nil, createtime=nil, expiretime=nil, isinternal=nil, topicnum=nil, tags=nil, version=nil, zoneids=nil, cvm=nil, instancetype=nil, disktype=nil, maxtopicnumber=nil, maxpartitionnumber=nil, rebalancetime=nil, partitionnumber=nil, publicnetworkchargetype=nil, publicnetwork=nil, clustertype=nil, features=nil)
           @InstanceId = instanceid
           @InstanceName = instancename
           @Vip = vip
@@ -3761,6 +3764,7 @@ module TencentCloud
           @PublicNetworkChargeType = publicnetworkchargetype
           @PublicNetwork = publicnetwork
           @ClusterType = clustertype
+          @Features = features
         end
 
         def deserialize(params)
@@ -3809,6 +3813,7 @@ module TencentCloud
           @PublicNetworkChargeType = params['PublicNetworkChargeType']
           @PublicNetwork = params['PublicNetwork']
           @ClusterType = params['ClusterType']
+          @Features = params['Features']
         end
       end
 

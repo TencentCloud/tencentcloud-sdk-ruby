@@ -819,20 +819,25 @@ module TencentCloud
         # @param InstanceIds: 订单对应的实例 ID 列表，如果此处没有返回实例 ID，可以通过订单查询接口获取。还可通过实例查询接口查询实例是否创建完成。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceIds: Array
+        # @param FlowId: 异步任务的请求 ID，可使用此 ID [查询异步任务的执行结果](https://cloud.tencent.com/document/product/237/16177)。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FlowId: Integer
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :DealName, :InstanceIds, :RequestId
+        attr_accessor :DealName, :InstanceIds, :FlowId, :RequestId
         
-        def initialize(dealname=nil, instanceids=nil, requestid=nil)
+        def initialize(dealname=nil, instanceids=nil, flowid=nil, requestid=nil)
           @DealName = dealname
           @InstanceIds = instanceids
+          @FlowId = flowid
           @RequestId = requestid
         end
 
         def deserialize(params)
           @DealName = params['DealName']
           @InstanceIds = params['InstanceIds']
+          @FlowId = params['FlowId']
           @RequestId = params['RequestId']
         end
       end
@@ -1065,10 +1070,13 @@ module TencentCloud
         # @param ResourceTags: 实例标签信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResourceTags: Array
+        # @param DbVersionId: 数据库版本
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DbVersionId: String
 
-        attr_accessor :InstanceId, :InstanceName, :AppId, :ProjectId, :Region, :Zone, :VpcId, :SubnetId, :Status, :Vip, :Vport, :WanDomain, :WanVip, :WanPort, :CreateTime, :UpdateTime, :AutoRenewFlag, :PeriodEndTime, :Uin, :TdsqlVersion, :Memory, :Storage, :UniqueVpcId, :UniqueSubnetId, :OriginSerialId, :NodeCount, :IsTmp, :ExclusterId, :Id, :Pid, :Qps, :Paymode, :Locker, :StatusDesc, :WanStatus, :IsAuditSupported, :Machine, :IsEncryptSupported, :Cpu, :Ipv6Flag, :Vipv6, :WanVipv6, :WanPortIpv6, :WanStatusIpv6, :DbEngine, :DbVersion, :DcnFlag, :DcnStatus, :DcnDstNum, :InstanceType, :ResourceTags
+        attr_accessor :InstanceId, :InstanceName, :AppId, :ProjectId, :Region, :Zone, :VpcId, :SubnetId, :Status, :Vip, :Vport, :WanDomain, :WanVip, :WanPort, :CreateTime, :UpdateTime, :AutoRenewFlag, :PeriodEndTime, :Uin, :TdsqlVersion, :Memory, :Storage, :UniqueVpcId, :UniqueSubnetId, :OriginSerialId, :NodeCount, :IsTmp, :ExclusterId, :Id, :Pid, :Qps, :Paymode, :Locker, :StatusDesc, :WanStatus, :IsAuditSupported, :Machine, :IsEncryptSupported, :Cpu, :Ipv6Flag, :Vipv6, :WanVipv6, :WanPortIpv6, :WanStatusIpv6, :DbEngine, :DbVersion, :DcnFlag, :DcnStatus, :DcnDstNum, :InstanceType, :ResourceTags, :DbVersionId
         
-        def initialize(instanceid=nil, instancename=nil, appid=nil, projectid=nil, region=nil, zone=nil, vpcid=nil, subnetid=nil, status=nil, vip=nil, vport=nil, wandomain=nil, wanvip=nil, wanport=nil, createtime=nil, updatetime=nil, autorenewflag=nil, periodendtime=nil, uin=nil, tdsqlversion=nil, memory=nil, storage=nil, uniquevpcid=nil, uniquesubnetid=nil, originserialid=nil, nodecount=nil, istmp=nil, exclusterid=nil, id=nil, pid=nil, qps=nil, paymode=nil, locker=nil, statusdesc=nil, wanstatus=nil, isauditsupported=nil, machine=nil, isencryptsupported=nil, cpu=nil, ipv6flag=nil, vipv6=nil, wanvipv6=nil, wanportipv6=nil, wanstatusipv6=nil, dbengine=nil, dbversion=nil, dcnflag=nil, dcnstatus=nil, dcndstnum=nil, instancetype=nil, resourcetags=nil)
+        def initialize(instanceid=nil, instancename=nil, appid=nil, projectid=nil, region=nil, zone=nil, vpcid=nil, subnetid=nil, status=nil, vip=nil, vport=nil, wandomain=nil, wanvip=nil, wanport=nil, createtime=nil, updatetime=nil, autorenewflag=nil, periodendtime=nil, uin=nil, tdsqlversion=nil, memory=nil, storage=nil, uniquevpcid=nil, uniquesubnetid=nil, originserialid=nil, nodecount=nil, istmp=nil, exclusterid=nil, id=nil, pid=nil, qps=nil, paymode=nil, locker=nil, statusdesc=nil, wanstatus=nil, isauditsupported=nil, machine=nil, isencryptsupported=nil, cpu=nil, ipv6flag=nil, vipv6=nil, wanvipv6=nil, wanportipv6=nil, wanstatusipv6=nil, dbengine=nil, dbversion=nil, dcnflag=nil, dcnstatus=nil, dcndstnum=nil, instancetype=nil, resourcetags=nil, dbversionid=nil)
           @InstanceId = instanceid
           @InstanceName = instancename
           @AppId = appid
@@ -1120,6 +1128,7 @@ module TencentCloud
           @DcnDstNum = dcndstnum
           @InstanceType = instancetype
           @ResourceTags = resourcetags
+          @DbVersionId = dbversionid
         end
 
         def deserialize(params)
@@ -1181,6 +1190,7 @@ module TencentCloud
               @ResourceTags << resourcetag_tmp
             end
           end
+          @DbVersionId = params['DbVersionId']
         end
       end
 

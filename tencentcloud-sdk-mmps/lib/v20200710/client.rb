@@ -77,6 +77,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 创建小程序安全深度诊断任务
+
+        # @param request: Request instance for CreateFlySecMiniAppProfessionalScanTask.
+        # @type request: :class:`Tencentcloud::mmps::V20200710::CreateFlySecMiniAppProfessionalScanTaskRequest`
+        # @rtype: :class:`Tencentcloud::mmps::V20200710::CreateFlySecMiniAppProfessionalScanTaskResponse`
+        def CreateFlySecMiniAppProfessionalScanTask(request)
+          body = send_request('CreateFlySecMiniAppProfessionalScanTask', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateFlySecMiniAppProfessionalScanTaskResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 创建小程序翼扬安全的基础或深度诊断任务
 
         # @param request: Request instance for CreateFlySecMiniAppScanTask.

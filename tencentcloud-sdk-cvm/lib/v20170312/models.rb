@@ -3564,10 +3564,15 @@ module TencentCloud
         # @type Force: Boolean
         # @param TagSpecification: 标签描述列表。通过指定该参数可以同时绑定标签到自定义镜像。
         # @type TagSpecification: Array
+        # @param LicenseType: 导入镜像后，激活操作系统采用的许可证类型。
+        # 可选项：
+        # TencentCloud: 腾讯云官方许可
+        # BYOL: 自带许可（Bring Your Own License）
+        # @type LicenseType: String
 
-        attr_accessor :Architecture, :OsType, :OsVersion, :ImageUrl, :ImageName, :ImageDescription, :DryRun, :Force, :TagSpecification
+        attr_accessor :Architecture, :OsType, :OsVersion, :ImageUrl, :ImageName, :ImageDescription, :DryRun, :Force, :TagSpecification, :LicenseType
         
-        def initialize(architecture=nil, ostype=nil, osversion=nil, imageurl=nil, imagename=nil, imagedescription=nil, dryrun=nil, force=nil, tagspecification=nil)
+        def initialize(architecture=nil, ostype=nil, osversion=nil, imageurl=nil, imagename=nil, imagedescription=nil, dryrun=nil, force=nil, tagspecification=nil, licensetype=nil)
           @Architecture = architecture
           @OsType = ostype
           @OsVersion = osversion
@@ -3577,6 +3582,7 @@ module TencentCloud
           @DryRun = dryrun
           @Force = force
           @TagSpecification = tagspecification
+          @LicenseType = licensetype
         end
 
         def deserialize(params)
@@ -3596,6 +3602,7 @@ module TencentCloud
               @TagSpecification << tagspecification_tmp
             end
           end
+          @LicenseType = params['LicenseType']
         end
       end
 

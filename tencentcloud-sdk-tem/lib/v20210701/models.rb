@@ -1330,6 +1330,46 @@ module TencentCloud
         end
       end
 
+      # DestroyEnvironment请求参数结构体
+      class DestroyEnvironmentRequest < TencentCloud::Common::AbstractModel
+        # @param EnvironmentId: 命名空间ID
+        # @type EnvironmentId: String
+        # @param SourceChannel: Namespace
+        # @type SourceChannel: Integer
+
+        attr_accessor :EnvironmentId, :SourceChannel
+        
+        def initialize(environmentid=nil, sourcechannel=nil)
+          @EnvironmentId = environmentid
+          @SourceChannel = sourcechannel
+        end
+
+        def deserialize(params)
+          @EnvironmentId = params['EnvironmentId']
+          @SourceChannel = params['SourceChannel']
+        end
+      end
+
+      # DestroyEnvironment返回参数结构体
+      class DestroyEnvironmentResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 返回结果
+        # @type Result: Boolean
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+        
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Result = params['Result']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # eks service info
       class EksService < TencentCloud::Common::AbstractModel
         # @param Name: service name

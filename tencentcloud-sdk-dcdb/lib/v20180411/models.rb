@@ -1047,10 +1047,13 @@ module TencentCloud
         # @param ResourceTags: 实例标签信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResourceTags: Array
+        # @param DbVersionId: 数据库引擎版本
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DbVersionId: String
 
-        attr_accessor :InstanceId, :InstanceName, :AppId, :ProjectId, :Region, :Zone, :VpcId, :SubnetId, :StatusDesc, :Status, :Vip, :Vport, :CreateTime, :AutoRenewFlag, :Memory, :Storage, :ShardCount, :PeriodEndTime, :IsolatedTimestamp, :Uin, :ShardDetail, :NodeCount, :IsTmp, :ExclusterId, :UniqueVpcId, :UniqueSubnetId, :Id, :WanDomain, :WanVip, :WanPort, :Pid, :UpdateTime, :DbEngine, :DbVersion, :Paymode, :Locker, :WanStatus, :IsAuditSupported, :Cpu, :Ipv6Flag, :Vipv6, :WanVipv6, :WanPortIpv6, :WanStatusIpv6, :DcnFlag, :DcnStatus, :DcnDstNum, :InstanceType, :ResourceTags
+        attr_accessor :InstanceId, :InstanceName, :AppId, :ProjectId, :Region, :Zone, :VpcId, :SubnetId, :StatusDesc, :Status, :Vip, :Vport, :CreateTime, :AutoRenewFlag, :Memory, :Storage, :ShardCount, :PeriodEndTime, :IsolatedTimestamp, :Uin, :ShardDetail, :NodeCount, :IsTmp, :ExclusterId, :UniqueVpcId, :UniqueSubnetId, :Id, :WanDomain, :WanVip, :WanPort, :Pid, :UpdateTime, :DbEngine, :DbVersion, :Paymode, :Locker, :WanStatus, :IsAuditSupported, :Cpu, :Ipv6Flag, :Vipv6, :WanVipv6, :WanPortIpv6, :WanStatusIpv6, :DcnFlag, :DcnStatus, :DcnDstNum, :InstanceType, :ResourceTags, :DbVersionId
         
-        def initialize(instanceid=nil, instancename=nil, appid=nil, projectid=nil, region=nil, zone=nil, vpcid=nil, subnetid=nil, statusdesc=nil, status=nil, vip=nil, vport=nil, createtime=nil, autorenewflag=nil, memory=nil, storage=nil, shardcount=nil, periodendtime=nil, isolatedtimestamp=nil, uin=nil, sharddetail=nil, nodecount=nil, istmp=nil, exclusterid=nil, uniquevpcid=nil, uniquesubnetid=nil, id=nil, wandomain=nil, wanvip=nil, wanport=nil, pid=nil, updatetime=nil, dbengine=nil, dbversion=nil, paymode=nil, locker=nil, wanstatus=nil, isauditsupported=nil, cpu=nil, ipv6flag=nil, vipv6=nil, wanvipv6=nil, wanportipv6=nil, wanstatusipv6=nil, dcnflag=nil, dcnstatus=nil, dcndstnum=nil, instancetype=nil, resourcetags=nil)
+        def initialize(instanceid=nil, instancename=nil, appid=nil, projectid=nil, region=nil, zone=nil, vpcid=nil, subnetid=nil, statusdesc=nil, status=nil, vip=nil, vport=nil, createtime=nil, autorenewflag=nil, memory=nil, storage=nil, shardcount=nil, periodendtime=nil, isolatedtimestamp=nil, uin=nil, sharddetail=nil, nodecount=nil, istmp=nil, exclusterid=nil, uniquevpcid=nil, uniquesubnetid=nil, id=nil, wandomain=nil, wanvip=nil, wanport=nil, pid=nil, updatetime=nil, dbengine=nil, dbversion=nil, paymode=nil, locker=nil, wanstatus=nil, isauditsupported=nil, cpu=nil, ipv6flag=nil, vipv6=nil, wanvipv6=nil, wanportipv6=nil, wanstatusipv6=nil, dcnflag=nil, dcnstatus=nil, dcndstnum=nil, instancetype=nil, resourcetags=nil, dbversionid=nil)
           @InstanceId = instanceid
           @InstanceName = instancename
           @AppId = appid
@@ -1100,6 +1103,7 @@ module TencentCloud
           @DcnDstNum = dcndstnum
           @InstanceType = instancetype
           @ResourceTags = resourcetags
+          @DbVersionId = dbversionid
         end
 
         def deserialize(params)
@@ -1166,6 +1170,7 @@ module TencentCloud
               @ResourceTags << resourcetag_tmp
             end
           end
+          @DbVersionId = params['DbVersionId']
         end
       end
 

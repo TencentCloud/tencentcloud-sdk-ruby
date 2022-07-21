@@ -627,19 +627,27 @@ module TencentCloud
         # @type IdentityType: String
         # @param SendingEnabled: 是否已通过验证
         # @type SendingEnabled: Boolean
+        # @param CurrentReputationLevel: 当前信誉等级
+        # @type CurrentReputationLevel: Integer
+        # @param DailyQuota: 当日最高发信量
+        # @type DailyQuota: Integer
 
-        attr_accessor :IdentityName, :IdentityType, :SendingEnabled
+        attr_accessor :IdentityName, :IdentityType, :SendingEnabled, :CurrentReputationLevel, :DailyQuota
         
-        def initialize(identityname=nil, identitytype=nil, sendingenabled=nil)
+        def initialize(identityname=nil, identitytype=nil, sendingenabled=nil, currentreputationlevel=nil, dailyquota=nil)
           @IdentityName = identityname
           @IdentityType = identitytype
           @SendingEnabled = sendingenabled
+          @CurrentReputationLevel = currentreputationlevel
+          @DailyQuota = dailyquota
         end
 
         def deserialize(params)
           @IdentityName = params['IdentityName']
           @IdentityType = params['IdentityType']
           @SendingEnabled = params['SendingEnabled']
+          @CurrentReputationLevel = params['CurrentReputationLevel']
+          @DailyQuota = params['DailyQuota']
         end
       end
 
@@ -1005,13 +1013,19 @@ module TencentCloud
       class ListEmailIdentitiesResponse < TencentCloud::Common::AbstractModel
         # @param EmailIdentities: 发信域名列表
         # @type EmailIdentities: Array
+        # @param MaxReputationLevel: 最大信誉等级
+        # @type MaxReputationLevel: Integer
+        # @param MaxDailyQuota: 单域名最高日发送量
+        # @type MaxDailyQuota: Integer
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :EmailIdentities, :RequestId
+        attr_accessor :EmailIdentities, :MaxReputationLevel, :MaxDailyQuota, :RequestId
         
-        def initialize(emailidentities=nil, requestid=nil)
+        def initialize(emailidentities=nil, maxreputationlevel=nil, maxdailyquota=nil, requestid=nil)
           @EmailIdentities = emailidentities
+          @MaxReputationLevel = maxreputationlevel
+          @MaxDailyQuota = maxdailyquota
           @RequestId = requestid
         end
 
@@ -1024,6 +1038,8 @@ module TencentCloud
               @EmailIdentities << emailidentity_tmp
             end
           end
+          @MaxReputationLevel = params['MaxReputationLevel']
+          @MaxDailyQuota = params['MaxDailyQuota']
           @RequestId = params['RequestId']
         end
       end

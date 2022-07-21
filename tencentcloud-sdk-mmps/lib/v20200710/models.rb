@@ -256,11 +256,71 @@ module TencentCloud
         end
       end
 
+      # CreateFlySecMiniAppProfessionalScanTask请求参数结构体
+      class CreateFlySecMiniAppProfessionalScanTaskRequest < TencentCloud::Common::AbstractModel
+        # @param MiniAppID: 小程序AppID
+        # @type MiniAppID: String
+        # @param MiniAppName: 小程序名称
+        # @type MiniAppName: String
+        # @param Mode: 诊断模式 2:深度诊断
+        # @type Mode: Integer
+        # @param CorpName: 公司名称
+        # @type CorpName: String
+        # @param Mobile: 手机号码
+        # @type Mobile: String
+        # @param Email: 电子邮箱
+        # @type Email: String
+        # @param Remark: 备注信息
+        # @type Remark: String
+
+        attr_accessor :MiniAppID, :MiniAppName, :Mode, :CorpName, :Mobile, :Email, :Remark
+        
+        def initialize(miniappid=nil, miniappname=nil, mode=nil, corpname=nil, mobile=nil, email=nil, remark=nil)
+          @MiniAppID = miniappid
+          @MiniAppName = miniappname
+          @Mode = mode
+          @CorpName = corpname
+          @Mobile = mobile
+          @Email = email
+          @Remark = remark
+        end
+
+        def deserialize(params)
+          @MiniAppID = params['MiniAppID']
+          @MiniAppName = params['MiniAppName']
+          @Mode = params['Mode']
+          @CorpName = params['CorpName']
+          @Mobile = params['Mobile']
+          @Email = params['Email']
+          @Remark = params['Remark']
+        end
+      end
+
+      # CreateFlySecMiniAppProfessionalScanTask返回参数结构体
+      class CreateFlySecMiniAppProfessionalScanTaskResponse < TencentCloud::Common::AbstractModel
+        # @param Ret: 返回值, 0:成功, 其他值请查看“返回值”定义
+        # @type Ret: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Ret, :RequestId
+        
+        def initialize(ret=nil, requestid=nil)
+          @Ret = ret
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Ret = params['Ret']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateFlySecMiniAppScanTaskRepeat请求参数结构体
       class CreateFlySecMiniAppScanTaskRepeatRequest < TencentCloud::Common::AbstractModel
         # @param MiniAppID: 小程序AppID
         # @type MiniAppID: String
-        # @param Mode: 诊断模式 1:基础诊断，2:深度诊断
+        # @param Mode: 诊断模式 1:基础诊断
         # @type Mode: Integer
         # @param OrgTaskID: 原任务id
         # @type OrgTaskID: String
@@ -320,7 +380,7 @@ module TencentCloud
       class CreateFlySecMiniAppScanTaskRequest < TencentCloud::Common::AbstractModel
         # @param MiniAppID: 小程序AppID
         # @type MiniAppID: String
-        # @param Mode: 诊断模式 1:基础诊断，2:深度诊断
+        # @param Mode: 诊断模式 1:基础诊断
         # @type Mode: Integer
         # @param MiniAppTestAccount: 小程序测试账号(自有账号体系需提供,其他情况不需要)
         # @type MiniAppTestAccount: String

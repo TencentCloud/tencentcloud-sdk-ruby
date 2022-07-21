@@ -1200,6 +1200,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口（CreateNetworkAclQuintupleEntries）用于增量网络ACL五元组的入站规则和出站规则。
+
+        # @param request: Request instance for CreateNetworkAclQuintupleEntries.
+        # @type request: :class:`Tencentcloud::vpc::V20170312::CreateNetworkAclQuintupleEntriesRequest`
+        # @rtype: :class:`Tencentcloud::vpc::V20170312::CreateNetworkAclQuintupleEntriesResponse`
+        def CreateNetworkAclQuintupleEntries(request)
+          body = send_request('CreateNetworkAclQuintupleEntries', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateNetworkAclQuintupleEntriesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（CreateNetworkInterface）用于创建弹性网卡。
         # * 创建弹性网卡时可以指定内网IP，并且可以指定一个主IP，指定的内网IP必须在弹性网卡所在子网内，而且不能被占用。
         # * 创建弹性网卡时可以指定需要申请的内网IP数量，系统会随机生成内网IP地址。
@@ -2141,6 +2165,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteNetworkAclResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口（DeleteNetworkAclQuintupleEntries）用于删除网络ACL五元组指定的入站规则和出站规则（但不是全量删除该ACL下的所有条目）。在NetworkAclQuintupleEntrySet参数中：NetworkAclQuintupleEntry需要提供NetworkAclQuintupleEntryId。
+
+        # @param request: Request instance for DeleteNetworkAclQuintupleEntries.
+        # @type request: :class:`Tencentcloud::vpc::V20170312::DeleteNetworkAclQuintupleEntriesRequest`
+        # @rtype: :class:`Tencentcloud::vpc::V20170312::DeleteNetworkAclQuintupleEntriesResponse`
+        def DeleteNetworkAclQuintupleEntries(request)
+          body = send_request('DeleteNetworkAclQuintupleEntries', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteNetworkAclQuintupleEntriesResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -3529,6 +3577,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeNetDetectsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口（DescribeNetworkAclQuintupleEntries）查询入方向或出方向网络ACL五元组条目列表。
+
+        # @param request: Request instance for DescribeNetworkAclQuintupleEntries.
+        # @type request: :class:`Tencentcloud::vpc::V20170312::DescribeNetworkAclQuintupleEntriesRequest`
+        # @rtype: :class:`Tencentcloud::vpc::V20170312::DescribeNetworkAclQuintupleEntriesResponse`
+        def DescribeNetworkAclQuintupleEntries(request)
+          body = send_request('DescribeNetworkAclQuintupleEntries', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeNetworkAclQuintupleEntriesResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -5848,6 +5920,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyNetworkAclEntriesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口（ModifyNetworkAclQuintupleEntries）用于修改网络ACL五元组的入站规则和出站规则。在NetworkAclQuintupleEntrySet参数中：NetworkAclQuintupleEntry需要提供NetworkAclQuintupleEntryId。
+
+        # @param request: Request instance for ModifyNetworkAclQuintupleEntries.
+        # @type request: :class:`Tencentcloud::vpc::V20170312::ModifyNetworkAclQuintupleEntriesRequest`
+        # @rtype: :class:`Tencentcloud::vpc::V20170312::ModifyNetworkAclQuintupleEntriesResponse`
+        def ModifyNetworkAclQuintupleEntries(request)
+          body = send_request('ModifyNetworkAclQuintupleEntries', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyNetworkAclQuintupleEntriesResponse.new
             model.deserialize(response['Response'])
             model
           else

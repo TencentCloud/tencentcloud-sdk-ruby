@@ -1127,9 +1127,9 @@ module TencentCloud
       class DescribeEmrApplicationStaticsRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 集群id
         # @type InstanceId: String
-        # @param StartTime: 起始时间
+        # @param StartTime: 起始时间，时间戳（秒）
         # @type StartTime: Integer
-        # @param EndTime: 结束时间
+        # @param EndTime: 结束时间，时间戳（秒）
         # @type EndTime: Integer
         # @param Queues: 过滤的队列名
         # @type Queues: Array
