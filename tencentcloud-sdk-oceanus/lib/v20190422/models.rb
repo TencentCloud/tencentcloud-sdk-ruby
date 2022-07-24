@@ -308,6 +308,69 @@ module TencentCloud
         end
       end
 
+      # CopyJobs请求参数结构体
+      class CopyJobsRequest < TencentCloud::Common::AbstractModel
+
+        
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # CopyJobs返回参数结构体
+      class CopyJobsResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateFolder请求参数结构体
+      class CreateFolderRequest < TencentCloud::Common::AbstractModel
+        # @param FolderType: 文件夹类型，0是任务文件夹，1是依赖文件夹
+        # @type FolderType: Integer
+        # @param WorkSpaceId: 工作空间 SerialId
+        # @type WorkSpaceId: String
+
+        attr_accessor :FolderType, :WorkSpaceId
+        
+        def initialize(foldertype=nil, workspaceid=nil)
+          @FolderType = foldertype
+          @WorkSpaceId = workspaceid
+        end
+
+        def deserialize(params)
+          @FolderType = params['FolderType']
+          @WorkSpaceId = params['WorkSpaceId']
+        end
+      end
+
+      # CreateFolder返回参数结构体
+      class CreateFolderResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateJobConfig请求参数结构体
       class CreateJobConfigRequest < TencentCloud::Common::AbstractModel
         # @param JobId: 作业Id

@@ -2863,6 +2863,88 @@ module TencentCloud
         end
       end
 
+      # InquirePriceCreate请求参数结构体
+      class InquirePriceCreateRequest < TencentCloud::Common::AbstractModel
+        # @param Zone: 可用区,每个地域提供最佳实践
+        # @type Zone: String
+        # @param GoodsNum: 购买商品数量
+        # @type GoodsNum: Integer
+        # @param InstancePayMode: 实例购买类型，可选值为：PREPAID, POSTPAID, SERVERLESS
+        # @type InstancePayMode: String
+        # @param StoragePayMode: 存储购买类型，可选值为：PREPAID, POSTPAID
+        # @type StoragePayMode: String
+        # @param Cpu: CPU核数，PREPAID与POSTPAID实例类型必传
+        # @type Cpu: Integer
+        # @param Memory: 内存大小，单位G，PREPAID与POSTPAID实例类型必传
+        # @type Memory: Integer
+        # @param Ccu: Ccu大小，serverless类型必传
+        # @type Ccu: Float
+        # @param StorageLimit: 存储大小，PREPAID存储类型必传
+        # @type StorageLimit: Integer
+        # @param TimeSpan: 购买时长，PREPAID购买类型必传
+        # @type TimeSpan: Integer
+        # @param TimeUnit: 时长单位，可选值为：m,d。PREPAID购买类型必传
+        # @type TimeUnit: String
+
+        attr_accessor :Zone, :GoodsNum, :InstancePayMode, :StoragePayMode, :Cpu, :Memory, :Ccu, :StorageLimit, :TimeSpan, :TimeUnit
+        
+        def initialize(zone=nil, goodsnum=nil, instancepaymode=nil, storagepaymode=nil, cpu=nil, memory=nil, ccu=nil, storagelimit=nil, timespan=nil, timeunit=nil)
+          @Zone = zone
+          @GoodsNum = goodsnum
+          @InstancePayMode = instancepaymode
+          @StoragePayMode = storagepaymode
+          @Cpu = cpu
+          @Memory = memory
+          @Ccu = ccu
+          @StorageLimit = storagelimit
+          @TimeSpan = timespan
+          @TimeUnit = timeunit
+        end
+
+        def deserialize(params)
+          @Zone = params['Zone']
+          @GoodsNum = params['GoodsNum']
+          @InstancePayMode = params['InstancePayMode']
+          @StoragePayMode = params['StoragePayMode']
+          @Cpu = params['Cpu']
+          @Memory = params['Memory']
+          @Ccu = params['Ccu']
+          @StorageLimit = params['StorageLimit']
+          @TimeSpan = params['TimeSpan']
+          @TimeUnit = params['TimeUnit']
+        end
+      end
+
+      # InquirePriceCreate返回参数结构体
+      class InquirePriceCreateResponse < TencentCloud::Common::AbstractModel
+        # @param InstancePrice: 实例价格
+        # @type InstancePrice: :class:`Tencentcloud::Cynosdb.v20190107.models.TradePrice`
+        # @param StoragePrice: 存储价格
+        # @type StoragePrice: :class:`Tencentcloud::Cynosdb.v20190107.models.TradePrice`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :InstancePrice, :StoragePrice, :RequestId
+        
+        def initialize(instanceprice=nil, storageprice=nil, requestid=nil)
+          @InstancePrice = instanceprice
+          @StoragePrice = storageprice
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['InstancePrice'].nil?
+            @InstancePrice = TradePrice.new
+            @InstancePrice.deserialize(params['InstancePrice'])
+          end
+          unless params['StoragePrice'].nil?
+            @StoragePrice = TradePrice.new
+            @StoragePrice.deserialize(params['StoragePrice'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 实例可售卖规格详细信息，创建实例时Cpu/Memory确定实例规格，存储可选大小为[MinStorageSize,MaxStorageSize]
       class InstanceSpec < TencentCloud::Common::AbstractModel
         # @param Cpu: 实例CPU，单位：核
@@ -4071,6 +4153,46 @@ module TencentCloud
         def deserialize(params)
           @TagKey = params['TagKey']
           @TagValue = params['TagValue']
+        end
+      end
+
+      # 计费询价结果
+      class TradePrice < TencentCloud::Common::AbstractModel
+        # @param TotalPrice: 预付费模式下资源总价，不包含优惠，单位:分
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalPrice: Integer
+        # @param Discount: 总的折扣，100表示100%不打折
+        # @type Discount: Float
+        # @param TotalPriceDiscount: 预付费模式下的优惠后总价, 单位: 分,例如用户享有折扣 =TotalPrice × Discount
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalPriceDiscount: Integer
+        # @param UnitPrice: 后付费模式下的单位资源价格，不包含优惠，单位:分
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UnitPrice: Integer
+        # @param UnitPriceDiscount: 优惠后后付费模式下的单位资源价格, 单位: 分,例如用户享有折扣=UnitPricet × Discount
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UnitPriceDiscount: Integer
+        # @param ChargeUnit: 计费价格单位
+        # @type ChargeUnit: String
+
+        attr_accessor :TotalPrice, :Discount, :TotalPriceDiscount, :UnitPrice, :UnitPriceDiscount, :ChargeUnit
+        
+        def initialize(totalprice=nil, discount=nil, totalpricediscount=nil, unitprice=nil, unitpricediscount=nil, chargeunit=nil)
+          @TotalPrice = totalprice
+          @Discount = discount
+          @TotalPriceDiscount = totalpricediscount
+          @UnitPrice = unitprice
+          @UnitPriceDiscount = unitpricediscount
+          @ChargeUnit = chargeunit
+        end
+
+        def deserialize(params)
+          @TotalPrice = params['TotalPrice']
+          @Discount = params['Discount']
+          @TotalPriceDiscount = params['TotalPriceDiscount']
+          @UnitPrice = params['UnitPrice']
+          @UnitPriceDiscount = params['UnitPriceDiscount']
+          @ChargeUnit = params['ChargeUnit']
         end
       end
 

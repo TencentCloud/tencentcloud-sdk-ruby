@@ -644,6 +644,8 @@ module TencentCloud
         #       </tbody>
         #     </table>
 
+        # 默认接口请求频率限制：20次/秒。
+
         # @param request: Request instance for GeneralBasicOCR.
         # @type request: :class:`Tencentcloud::ocr::V20181119::GeneralBasicOCRRequest`
         # @rtype: :class:`Tencentcloud::ocr::V20181119::GeneralBasicOCRResponse`

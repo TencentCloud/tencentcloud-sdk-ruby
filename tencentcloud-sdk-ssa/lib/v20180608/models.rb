@@ -2888,27 +2888,27 @@ module TencentCloud
         end
       end
 
-      # 查询参数
+      # 过滤条件
       class QueryFilter < TencentCloud::Common::AbstractModel
-        # @param FilterKey: 查询的字段
+        # @param FilterKey: 过滤key
         # @type FilterKey: String
-        # @param FilterValue: 查询的值
-        # @type FilterValue: String
-        # @param FilterOperatorType: 匹配类型，1等于；2大于；3小于；4大于等于；5小于等于；6不等于；7in；8not in；9模糊匹配
+        # @param FilterOperatorType: 操作符(只支持32位)
         # @type FilterOperatorType: Integer
+        # @param FilterValue: 过滤value
+        # @type FilterValue: String
 
-        attr_accessor :FilterKey, :FilterValue, :FilterOperatorType
+        attr_accessor :FilterKey, :FilterOperatorType, :FilterValue
         
-        def initialize(filterkey=nil, filtervalue=nil, filteroperatortype=nil)
+        def initialize(filterkey=nil, filteroperatortype=nil, filtervalue=nil)
           @FilterKey = filterkey
-          @FilterValue = filtervalue
           @FilterOperatorType = filteroperatortype
+          @FilterValue = filtervalue
         end
 
         def deserialize(params)
           @FilterKey = params['FilterKey']
-          @FilterValue = params['FilterValue']
           @FilterOperatorType = params['FilterOperatorType']
+          @FilterValue = params['FilterValue']
         end
       end
 

@@ -53,6 +53,55 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 单条和批量复制作业
+        # https://iwiki.woa.com/pages/viewpage.action?pageId=1288112774
+
+        # @param request: Request instance for CopyJobs.
+        # @type request: :class:`Tencentcloud::oceanus::V20190422::CopyJobsRequest`
+        # @rtype: :class:`Tencentcloud::oceanus::V20190422::CopyJobsResponse`
+        def CopyJobs(request)
+          body = send_request('CopyJobs', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CopyJobsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 作业列表页面新建文件夹请求
+
+        # @param request: Request instance for CreateFolder.
+        # @type request: :class:`Tencentcloud::oceanus::V20190422::CreateFolderRequest`
+        # @rtype: :class:`Tencentcloud::oceanus::V20190422::CreateFolderResponse`
+        def CreateFolder(request)
+          body = send_request('CreateFolder', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateFolderResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 新建作业接口，一个 AppId 最多允许创建1000个作业
 
         # @param request: Request instance for CreateJob.

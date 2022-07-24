@@ -4506,14 +4506,17 @@ module TencentCloud
         # @type Area: String
         # @param Segment: 是否以IP段的格式返回。
         # @type Segment: Boolean
+        # @param ShowIpv6: 是否查询节点 IPV6 信息。
+        # @type ShowIpv6: Boolean
 
-        attr_accessor :Domain, :Layer, :Area, :Segment
+        attr_accessor :Domain, :Layer, :Area, :Segment, :ShowIpv6
         
-        def initialize(domain=nil, layer=nil, area=nil, segment=nil)
+        def initialize(domain=nil, layer=nil, area=nil, segment=nil, showipv6=nil)
           @Domain = domain
           @Layer = layer
           @Area = area
           @Segment = segment
+          @ShowIpv6 = showipv6
         end
 
         def deserialize(params)
@@ -4521,6 +4524,7 @@ module TencentCloud
           @Layer = params['Layer']
           @Area = params['Area']
           @Segment = params['Segment']
+          @ShowIpv6 = params['ShowIpv6']
         end
       end
 
@@ -7839,15 +7843,19 @@ module TencentCloud
         # online：上线状态，正常调度服务中
         # offline：下线状态
         # @type Status: String
+        # @param Ipv6: 节点 IPV6
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Ipv6: String
 
-        attr_accessor :Ip, :District, :Isp, :City, :Status
+        attr_accessor :Ip, :District, :Isp, :City, :Status, :Ipv6
         
-        def initialize(ip=nil, district=nil, isp=nil, city=nil, status=nil)
+        def initialize(ip=nil, district=nil, isp=nil, city=nil, status=nil, ipv6=nil)
           @Ip = ip
           @District = district
           @Isp = isp
           @City = city
           @Status = status
+          @Ipv6 = ipv6
         end
 
         def deserialize(params)
@@ -7856,6 +7864,7 @@ module TencentCloud
           @Isp = params['Isp']
           @City = params['City']
           @Status = params['Status']
+          @Ipv6 = params['Ipv6']
         end
       end
 

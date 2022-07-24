@@ -127,6 +127,31 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询指定时间内的用户列表及用户通话质量数据，可查询14天内数据。DataType 不为null，查询起止时间不超过1个小时，查询用户不超过6个，支持跨天查询。DataType为null时，查询起止时间不超过4个小时， 默认查询6个用户，同时支持每页查询100以内用户个数（PageSize不超过100）。接口用于查询质量问题，不推荐作为计费使用。（同老接口DescribeCallDetail）
+        # **注意**：该接口只用于历史数据统计或核对数据使用，实时类关键业务逻辑不能使用。
+
+        # @param request: Request instance for DescribeCallDetailInfo.
+        # @type request: :class:`Tencentcloud::trtc::V20190722::DescribeCallDetailInfoRequest`
+        # @rtype: :class:`Tencentcloud::trtc::V20190722::DescribeCallDetailInfoResponse`
+        def DescribeCallDetailInfo(request)
+          body = send_request('DescribeCallDetailInfo', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeCallDetailInfoResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询用户某次通话内的进退房，视频开关等详细事件。可查询14天内数据。
 
         # @param request: Request instance for DescribeDetailEvent.
@@ -252,6 +277,31 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询SdkAppId下的房间列表。默认返回10条通话，一次最多返回100条通话。可查询14天内的数据。（同老接口DescribeRoomInformation）
+        # **注意**：该接口只用于历史数据统计或核对数据使用，实时类关键业务逻辑不能使用。
+
+        # @param request: Request instance for DescribeRoomInfo.
+        # @type request: :class:`Tencentcloud::trtc::V20190722::DescribeRoomInfoRequest`
+        # @rtype: :class:`Tencentcloud::trtc::V20190722::DescribeRoomInfoResponse`
+        def DescribeRoomInfo(request)
+          body = send_request('DescribeRoomInfo', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeRoomInfoResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询SdkAppId下的房间列表。默认返回10条通话，一次最多返回100条通话。可查询14天内的数据。
         # **注意**：该接口只用于历史数据统计或核对数据使用，实时类关键业务逻辑不能使用。
 
@@ -263,6 +313,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeRoomInformationResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 可查询SdkAppId每天的房间数和用户数，按天统计，可查询最近14天的数据。当天未结束，数据未统计完成，无法查到当天的房间数与用户数。（同老接口DescribeHistoryScale）
+
+        # @param request: Request instance for DescribeScaleInfo.
+        # @type request: :class:`Tencentcloud::trtc::V20190722::DescribeScaleInfoRequest`
+        # @rtype: :class:`Tencentcloud::trtc::V20190722::DescribeScaleInfoResponse`
+        def DescribeScaleInfo(request)
+          body = send_request('DescribeScaleInfo', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeScaleInfoResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -291,6 +365,80 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeTrtcMcuTranscodeTimeResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询SdkAppId下任意20条异常体验事件，返回异常体验ID与可能产生异常体验的原因。可查询14天内数据，查询起止时间不超过1个小时。支持跨天查询。（同老接口DescribeAbnormalEvent）
+        # 异常体验ID映射见：https://cloud.tencent.com/document/product/647/44916
+
+        # @param request: Request instance for DescribeUnusualEvent.
+        # @type request: :class:`Tencentcloud::trtc::V20190722::DescribeUnusualEventRequest`
+        # @rtype: :class:`Tencentcloud::trtc::V20190722::DescribeUnusualEventResponse`
+        def DescribeUnusualEvent(request)
+          body = send_request('DescribeUnusualEvent', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeUnusualEventResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询用户某次通话内的进退房，视频开关等详细事件。可查询14天内数据。（同接口DescribeDetailEvent）
+
+        # @param request: Request instance for DescribeUserEvent.
+        # @type request: :class:`Tencentcloud::trtc::V20190722::DescribeUserEventRequest`
+        # @rtype: :class:`Tencentcloud::trtc::V20190722::DescribeUserEventResponse`
+        def DescribeUserEvent(request)
+          body = send_request('DescribeUserEvent', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeUserEventResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询指定时间内的用户列表，可查询14天内数据，查询起止时间不超过4小时。默认每页查询6个用户，支持每页最大查询100个用户PageSize不超过100）。（同老接口DescribeUserInformation）
+        # **注意**：该接口只用于历史数据统计或核对数据使用，实时类关键业务逻辑不能使用。
+
+        # @param request: Request instance for DescribeUserInfo.
+        # @type request: :class:`Tencentcloud::trtc::V20190722::DescribeUserInfoRequest`
+        # @rtype: :class:`Tencentcloud::trtc::V20190722::DescribeUserInfoResponse`
+        def DescribeUserInfo(request)
+          body = send_request('DescribeUserInfo', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeUserInfoResponse.new
             model.deserialize(response['Response'])
             model
           else

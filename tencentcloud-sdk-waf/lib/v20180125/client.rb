@@ -125,30 +125,6 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 创建攻击日志下载任务
-
-        # @param request: Request instance for CreateAttackDownloadTask.
-        # @type request: :class:`Tencentcloud::waf::V20180125::CreateAttackDownloadTaskRequest`
-        # @rtype: :class:`Tencentcloud::waf::V20180125::CreateAttackDownloadTaskResponse`
-        def CreateAttackDownloadTask(request)
-          body = send_request('CreateAttackDownloadTask', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = CreateAttackDownloadTaskResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
         # 本接口用于删除访问日志导出
 
         # @param request: Request instance for DeleteAccessExport.

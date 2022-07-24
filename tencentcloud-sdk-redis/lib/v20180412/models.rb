@@ -2267,10 +2267,12 @@ module TencentCloud
         # @type TagKeys: Array
         # @param ProductVersions: 需要过滤的产品版本支持多个，"local"本地盘版，"cloud"云盘版，"cdc"独享集群版，如果不传则默认不过滤
         # @type ProductVersions: Array
+        # @param InstanceIds: 批量查询指定的实例
+        # @type InstanceIds: Array
 
-        attr_accessor :Limit, :Offset, :InstanceId, :OrderBy, :OrderType, :VpcIds, :SubnetIds, :ProjectIds, :SearchKey, :InstanceName, :UniqVpcIds, :UniqSubnetIds, :RegionIds, :Status, :TypeVersion, :EngineName, :AutoRenew, :BillingMode, :Type, :SearchKeys, :TypeList, :MonitorVersion, :InstanceTags, :TagKeys, :ProductVersions
+        attr_accessor :Limit, :Offset, :InstanceId, :OrderBy, :OrderType, :VpcIds, :SubnetIds, :ProjectIds, :SearchKey, :InstanceName, :UniqVpcIds, :UniqSubnetIds, :RegionIds, :Status, :TypeVersion, :EngineName, :AutoRenew, :BillingMode, :Type, :SearchKeys, :TypeList, :MonitorVersion, :InstanceTags, :TagKeys, :ProductVersions, :InstanceIds
         
-        def initialize(limit=nil, offset=nil, instanceid=nil, orderby=nil, ordertype=nil, vpcids=nil, subnetids=nil, projectids=nil, searchkey=nil, instancename=nil, uniqvpcids=nil, uniqsubnetids=nil, regionids=nil, status=nil, typeversion=nil, enginename=nil, autorenew=nil, billingmode=nil, type=nil, searchkeys=nil, typelist=nil, monitorversion=nil, instancetags=nil, tagkeys=nil, productversions=nil)
+        def initialize(limit=nil, offset=nil, instanceid=nil, orderby=nil, ordertype=nil, vpcids=nil, subnetids=nil, projectids=nil, searchkey=nil, instancename=nil, uniqvpcids=nil, uniqsubnetids=nil, regionids=nil, status=nil, typeversion=nil, enginename=nil, autorenew=nil, billingmode=nil, type=nil, searchkeys=nil, typelist=nil, monitorversion=nil, instancetags=nil, tagkeys=nil, productversions=nil, instanceids=nil)
           @Limit = limit
           @Offset = offset
           @InstanceId = instanceid
@@ -2296,6 +2298,7 @@ module TencentCloud
           @InstanceTags = instancetags
           @TagKeys = tagkeys
           @ProductVersions = productversions
+          @InstanceIds = instanceids
         end
 
         def deserialize(params)
@@ -2331,6 +2334,7 @@ module TencentCloud
           end
           @TagKeys = params['TagKeys']
           @ProductVersions = params['ProductVersions']
+          @InstanceIds = params['InstanceIds']
         end
       end
 

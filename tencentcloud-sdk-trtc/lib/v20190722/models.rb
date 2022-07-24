@@ -233,6 +233,113 @@ module TencentCloud
         end
       end
 
+      # DescribeCallDetailInfo请求参数结构体
+      class DescribeCallDetailInfoRequest < TencentCloud::Common::AbstractModel
+        # @param CommId: 通话 ID（唯一标识一次通话）： SdkAppId_RoomId（房间号）_ CreateTime（房间创建时间，unix时间戳，单位为s）例：1400xxxxxx_218695_1590065777。通过 DescribeRoomInfo（查询历史房间列表）接口获取（[查询历史房间列表](https://cloud.tencent.com/document/product/647/44050)）。
+        # @type CommId: String
+        # @param StartTime: 查询开始时间，本地unix时间戳，单位为秒（如：1590065777），
+        # 注意：支持查询14天内的数据。
+        # @type StartTime: Integer
+        # @param EndTime: 查询结束时间，本地unix时间戳，单位为秒（如：1590065877）
+        # 注意：DataType 不为null ，与StartTime间隔时间不超过1小时；DataType 为null，与StartTime间隔时间不超过4小时。
+        # @type EndTime: Integer
+        # @param SdkAppId: 用户SdkAppId（如：1400xxxxxx）。
+        # @type SdkAppId: Integer
+        # @param UserIds: 需查询的用户数组，默认不填返回6个用户。
+        # @type UserIds: Array
+        # @param DataType: 需查询的指标，不填则只返回用户列表，填all则返回所有指标。
+        # appCpu：APP CPU使用率；
+        # sysCpu：系统 CPU使用率；
+        # aBit：上/下行音频码率；单位：bps
+        # aBlock：音频卡顿时长；单位：ms
+        # bigvBit：上/下行视频码率；单位：bps
+        # bigvCapFps：视频采集帧率；
+        # bigvEncFps：视频发送帧率；
+        # bigvDecFps：渲染帧率；
+        # bigvBlock：视频卡顿时长；单位：ms
+        # aLoss：上/下行音频丢包率；
+        # bigvLoss：上/下行视频丢包率；
+        # bigvWidth：上/下行分辨率宽；
+        # bigvHeight：上/下行分辨率高
+        # @type DataType: Array
+        # @param PageNumber: 当前页数，默认为0，
+        # 注意：PageNumber和PageSize 其中一个不填均默认返回6条数据。
+        # @type PageNumber: Integer
+        # @param PageSize: 每页个数，默认为6，
+        # 范围：[1，100]
+        # 注意：DataType不为null，UserIds长度不能超过6，PageSize最大值不超过6；
+        # DataType 为null，UserIds长度不超过100，PageSize最大不超过100。
+        # @type PageSize: Integer
+
+        attr_accessor :CommId, :StartTime, :EndTime, :SdkAppId, :UserIds, :DataType, :PageNumber, :PageSize
+        
+        def initialize(commid=nil, starttime=nil, endtime=nil, sdkappid=nil, userids=nil, datatype=nil, pagenumber=nil, pagesize=nil)
+          @CommId = commid
+          @StartTime = starttime
+          @EndTime = endtime
+          @SdkAppId = sdkappid
+          @UserIds = userids
+          @DataType = datatype
+          @PageNumber = pagenumber
+          @PageSize = pagesize
+        end
+
+        def deserialize(params)
+          @CommId = params['CommId']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @SdkAppId = params['SdkAppId']
+          @UserIds = params['UserIds']
+          @DataType = params['DataType']
+          @PageNumber = params['PageNumber']
+          @PageSize = params['PageSize']
+        end
+      end
+
+      # DescribeCallDetailInfo返回参数结构体
+      class DescribeCallDetailInfoResponse < TencentCloud::Common::AbstractModel
+        # @param Total: 返回的用户总条数
+        # @type Total: Integer
+        # @param UserList: 用户信息列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UserList: Array
+        # @param Data: 质量数据
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Data: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Total, :UserList, :Data, :RequestId
+        
+        def initialize(total=nil, userlist=nil, data=nil, requestid=nil)
+          @Total = total
+          @UserList = userlist
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Total = params['Total']
+          unless params['UserList'].nil?
+            @UserList = []
+            params['UserList'].each do |i|
+              userinformation_tmp = UserInformation.new
+              userinformation_tmp.deserialize(i)
+              @UserList << userinformation_tmp
+            end
+          end
+          unless params['Data'].nil?
+            @Data = []
+            params['Data'].each do |i|
+              qualitydata_tmp = QualityData.new
+              qualitydata_tmp.deserialize(i)
+              @Data << qualitydata_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeCallDetail请求参数结构体
       class DescribeCallDetailRequest < TencentCloud::Common::AbstractModel
         # @param CommId: 通话 ID（唯一标识一次通话）： SdkAppId_RoomId（房间号）_ CreateTime（房间创建时间，unix时间戳，单位为s）例：1400xxxxxx_218695_1590065777。通过 DescribeRoomInfo（查询历史房间列表）接口获取（[查询历史房间列表](https://cloud.tencent.com/document/product/647/44050)）。
@@ -629,6 +736,77 @@ module TencentCloud
         end
       end
 
+      # DescribeRoomInfo请求参数结构体
+      class DescribeRoomInfoRequest < TencentCloud::Common::AbstractModel
+        # @param SdkAppId: 用户SdkAppId（如：1400xxxxxx）
+        # @type SdkAppId: Integer
+        # @param StartTime: 查询开始时间，本地unix时间戳，单位为秒（如：1590065777）
+        # 注意：支持查询14天内的数据
+        # @type StartTime: Integer
+        # @param EndTime: 查询结束时间，本地unix时间戳，单位为秒（如：1590065877）
+        # 注意：与StartTime间隔时间不超过24小时。
+        # @type EndTime: Integer
+        # @param RoomId: 房间号（如：223)
+        # @type RoomId: String
+        # @param PageNumber: 当前页数，默认为0，
+        # 注意：PageNumber和PageSize 其中一个不填均默认返回10条数据。
+        # @type PageNumber: Integer
+        # @param PageSize: 每页个数，默认为10，
+        # 范围：[1，100]
+        # @type PageSize: Integer
+
+        attr_accessor :SdkAppId, :StartTime, :EndTime, :RoomId, :PageNumber, :PageSize
+        
+        def initialize(sdkappid=nil, starttime=nil, endtime=nil, roomid=nil, pagenumber=nil, pagesize=nil)
+          @SdkAppId = sdkappid
+          @StartTime = starttime
+          @EndTime = endtime
+          @RoomId = roomid
+          @PageNumber = pagenumber
+          @PageSize = pagesize
+        end
+
+        def deserialize(params)
+          @SdkAppId = params['SdkAppId']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @RoomId = params['RoomId']
+          @PageNumber = params['PageNumber']
+          @PageSize = params['PageSize']
+        end
+      end
+
+      # DescribeRoomInfo返回参数结构体
+      class DescribeRoomInfoResponse < TencentCloud::Common::AbstractModel
+        # @param Total: 返回当页数据总数
+        # @type Total: Integer
+        # @param RoomList: 房间信息列表
+        # @type RoomList: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Total, :RoomList, :RequestId
+        
+        def initialize(total=nil, roomlist=nil, requestid=nil)
+          @Total = total
+          @RoomList = roomlist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Total = params['Total']
+          unless params['RoomList'].nil?
+            @RoomList = []
+            params['RoomList'].each do |i|
+              roomstate_tmp = RoomState.new
+              roomstate_tmp.deserialize(i)
+              @RoomList << roomstate_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeRoomInformation请求参数结构体
       class DescribeRoomInformationRequest < TencentCloud::Common::AbstractModel
         # @param SdkAppId: 用户SdkAppId（如：1400xxxxxx）
@@ -700,6 +878,64 @@ module TencentCloud
         end
       end
 
+      # DescribeScaleInfo请求参数结构体
+      class DescribeScaleInfoRequest < TencentCloud::Common::AbstractModel
+        # @param SdkAppId: 用户SdkAppId（如：1400xxxxxx）
+        # @type SdkAppId: Integer
+        # @param StartTime: 查询开始时间，本地unix时间戳，单位为秒（如：1590065777）
+        # 注意：支持查询14天内的数据。
+        # @type StartTime: Integer
+        # @param EndTime: 查询结束时间，本地unix时间戳，单位为秒（如：1590065877），建议与StartTime间隔时间超过24小时。
+        # 注意：按天统计，结束时间小于前一天，否则查询数据为空（如：需查询20号数据，结束时间需小于20号0点）。
+        # @type EndTime: Integer
+
+        attr_accessor :SdkAppId, :StartTime, :EndTime
+        
+        def initialize(sdkappid=nil, starttime=nil, endtime=nil)
+          @SdkAppId = sdkappid
+          @StartTime = starttime
+          @EndTime = endtime
+        end
+
+        def deserialize(params)
+          @SdkAppId = params['SdkAppId']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+        end
+      end
+
+      # DescribeScaleInfo返回参数结构体
+      class DescribeScaleInfoResponse < TencentCloud::Common::AbstractModel
+        # @param Total: 返回的数据条数
+        # @type Total: Integer
+        # @param ScaleList: 返回的数据
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ScaleList: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Total, :ScaleList, :RequestId
+        
+        def initialize(total=nil, scalelist=nil, requestid=nil)
+          @Total = total
+          @ScaleList = scalelist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Total = params['Total']
+          unless params['ScaleList'].nil?
+            @ScaleList = []
+            params['ScaleList'].each do |i|
+              scaleinfomation_tmp = ScaleInfomation.new
+              scaleinfomation_tmp.deserialize(i)
+              @ScaleList << scaleinfomation_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeTrtcMcuTranscodeTime请求参数结构体
       class DescribeTrtcMcuTranscodeTimeRequest < TencentCloud::Common::AbstractModel
         # @param StartTime: 查询开始时间，格式为YYYY-MM-DD。
@@ -746,6 +982,209 @@ module TencentCloud
               onesdkappidtranscodetimeusagesinfo_tmp = OneSdkAppIdTranscodeTimeUsagesInfo.new
               onesdkappidtranscodetimeusagesinfo_tmp.deserialize(i)
               @Usages << onesdkappidtranscodetimeusagesinfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeUnusualEvent请求参数结构体
+      class DescribeUnusualEventRequest < TencentCloud::Common::AbstractModel
+        # @param SdkAppId: 用户SdkAppId（如：1400xxxxxx）
+        # @type SdkAppId: Integer
+        # @param StartTime: 查询开始时间，本地unix时间戳，单位为秒（如：1590065777）
+        # 注意：支持查询14天内的数据
+        # @type StartTime: Integer
+        # @param EndTime: 查询结束时间，本地unix时间戳，单位为秒（如：1590065877）注意：与StartTime间隔时间不超过1小时。
+        # @type EndTime: Integer
+        # @param RoomId: 房间号，查询房间内任意20条以内异常体验事件
+        # @type RoomId: String
+
+        attr_accessor :SdkAppId, :StartTime, :EndTime, :RoomId
+        
+        def initialize(sdkappid=nil, starttime=nil, endtime=nil, roomid=nil)
+          @SdkAppId = sdkappid
+          @StartTime = starttime
+          @EndTime = endtime
+          @RoomId = roomid
+        end
+
+        def deserialize(params)
+          @SdkAppId = params['SdkAppId']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @RoomId = params['RoomId']
+        end
+      end
+
+      # DescribeUnusualEvent返回参数结构体
+      class DescribeUnusualEventResponse < TencentCloud::Common::AbstractModel
+        # @param Total: 返回的数据总条数
+        # 范围：[0，20]
+        # @type Total: Integer
+        # @param AbnormalExperienceList: 异常体验列表
+        # @type AbnormalExperienceList: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Total, :AbnormalExperienceList, :RequestId
+        
+        def initialize(total=nil, abnormalexperiencelist=nil, requestid=nil)
+          @Total = total
+          @AbnormalExperienceList = abnormalexperiencelist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Total = params['Total']
+          unless params['AbnormalExperienceList'].nil?
+            @AbnormalExperienceList = []
+            params['AbnormalExperienceList'].each do |i|
+              abnormalexperience_tmp = AbnormalExperience.new
+              abnormalexperience_tmp.deserialize(i)
+              @AbnormalExperienceList << abnormalexperience_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeUserEvent请求参数结构体
+      class DescribeUserEventRequest < TencentCloud::Common::AbstractModel
+        # @param CommId: 通话 ID（唯一标识一次通话）： SdkAppId_RoomId（房间号）_ CreateTime（房间创建时间，unix时间戳，单位为s）例：1400xxxxxx_218695_1590065777。通过 DescribeRoomInfo（查询历史房间列表）接口获取（[查询历史房间列表](https://cloud.tencent.com/document/product/647/44050)）。
+        # @type CommId: String
+        # @param StartTime: 查询开始时间，本地unix时间戳，单位为秒（如：1590065777）
+        # 注意：支持查询14天内的数据
+        # @type StartTime: Integer
+        # @param EndTime: 查询结束时间，本地unix时间戳，单位为秒（如：1590065877）
+        # 注意：查询时间大于房间结束时间，以房间结束时间为准。
+        # @type EndTime: Integer
+        # @param UserId: 用户UserId
+        # @type UserId: String
+        # @param RoomId: 房间号（如：223）
+        # @type RoomId: String
+        # @param SdkAppId: 用户SdkAppId（如：1400xxxxxx）
+        # @type SdkAppId: Integer
+
+        attr_accessor :CommId, :StartTime, :EndTime, :UserId, :RoomId, :SdkAppId
+        
+        def initialize(commid=nil, starttime=nil, endtime=nil, userid=nil, roomid=nil, sdkappid=nil)
+          @CommId = commid
+          @StartTime = starttime
+          @EndTime = endtime
+          @UserId = userid
+          @RoomId = roomid
+          @SdkAppId = sdkappid
+        end
+
+        def deserialize(params)
+          @CommId = params['CommId']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @UserId = params['UserId']
+          @RoomId = params['RoomId']
+          @SdkAppId = params['SdkAppId']
+        end
+      end
+
+      # DescribeUserEvent返回参数结构体
+      class DescribeUserEventResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 返回的事件列表，若没有数据，会返回空数组。
+        # @type Data: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+        
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = []
+            params['Data'].each do |i|
+              eventlist_tmp = EventList.new
+              eventlist_tmp.deserialize(i)
+              @Data << eventlist_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeUserInfo请求参数结构体
+      class DescribeUserInfoRequest < TencentCloud::Common::AbstractModel
+        # @param CommId: 通话 ID（唯一标识一次通话）： SdkAppId_RoomId（房间号）_ CreateTime（房间创建时间，unix时间戳，单位为s）例：1400xxxxxx_218695_1590065777。通过 DescribeRoomInfo（查询历史房间列表）接口获取（[查询历史房间列表](https://cloud.tencent.com/document/product/647/44050)）。
+        # @type CommId: String
+        # @param StartTime: 查询开始时间，本地unix时间戳，单位为秒（如：1590065777）
+        # 注意：支持查询14天内的数据
+        # @type StartTime: Integer
+        # @param EndTime: 查询结束时间，本地unix时间戳，单位为秒（如：1590065877）
+        # 注意：与StartTime间隔时间不超过4小时。
+        # @type EndTime: Integer
+        # @param SdkAppId: 用户SdkAppId（如：1400xxxxxx）
+        # @type SdkAppId: Integer
+        # @param UserIds: 需查询的用户数组，不填默认返回6个用户
+        # 范围：[1，100]。
+        # @type UserIds: Array
+        # @param PageNumber: 当前页数，默认为0，
+        # 注意：PageNumber和PageSize 其中一个不填均默认返回6条数据。
+        # @type PageNumber: Integer
+        # @param PageSize: 每页个数，默认为6，
+        # 范围：[1，100]。
+        # @type PageSize: Integer
+
+        attr_accessor :CommId, :StartTime, :EndTime, :SdkAppId, :UserIds, :PageNumber, :PageSize
+        
+        def initialize(commid=nil, starttime=nil, endtime=nil, sdkappid=nil, userids=nil, pagenumber=nil, pagesize=nil)
+          @CommId = commid
+          @StartTime = starttime
+          @EndTime = endtime
+          @SdkAppId = sdkappid
+          @UserIds = userids
+          @PageNumber = pagenumber
+          @PageSize = pagesize
+        end
+
+        def deserialize(params)
+          @CommId = params['CommId']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @SdkAppId = params['SdkAppId']
+          @UserIds = params['UserIds']
+          @PageNumber = params['PageNumber']
+          @PageSize = params['PageSize']
+        end
+      end
+
+      # DescribeUserInfo返回参数结构体
+      class DescribeUserInfoResponse < TencentCloud::Common::AbstractModel
+        # @param Total: 返回的用户总条数
+        # @type Total: Integer
+        # @param UserList: 用户信息列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UserList: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Total, :UserList, :RequestId
+        
+        def initialize(total=nil, userlist=nil, requestid=nil)
+          @Total = total
+          @UserList = userlist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Total = params['Total']
+          unless params['UserList'].nil?
+            @UserList = []
+            params['UserList'].each do |i|
+              userinformation_tmp = UserInformation.new
+              userinformation_tmp.deserialize(i)
+              @UserList << userinformation_tmp
             end
           end
           @RequestId = params['RequestId']
