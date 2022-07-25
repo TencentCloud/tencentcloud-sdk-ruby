@@ -54,7 +54,6 @@ module TencentCloud
         end
 
         # 单条和批量复制作业
-        # https://iwiki.woa.com/pages/viewpage.action?pageId=1288112774
 
         # @param request: Request instance for CopyJobs.
         # @type request: :class:`Tencentcloud::oceanus::V20190422::CopyJobsRequest`

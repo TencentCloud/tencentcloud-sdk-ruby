@@ -27,6 +27,7 @@ module TencentCloud
         # <li>SCALE_OUT：扩容活动<li>SCALE_IN：缩容活动<li>ATTACH_INSTANCES：添加实例<li>REMOVE_INSTANCES：销毁实例<li>DETACH_INSTANCES：移出实例<li>TERMINATE_INSTANCES_UNEXPECTEDLY：实例在CVM控制台被销毁<li>REPLACE_UNHEALTHY_INSTANCE：替换不健康实例
         # <li>START_INSTANCES：开启实例
         # <li>STOP_INSTANCES：关闭实例
+        # <li>INVOKE_COMMAND：执行命令
         # @type ActivityType: String
         # @param StatusCode: 伸缩活动状态。取值如下：<br>
         # <li>INIT：初始化中
@@ -56,10 +57,12 @@ module TencentCloud
         # @type LifecycleActionResultSet: Array
         # @param DetailedStatusMessageSet: 伸缩活动状态详细描述。
         # @type DetailedStatusMessageSet: Array
+        # @param InvocationResultSet: 执行命令结果。
+        # @type InvocationResultSet: Array
 
-        attr_accessor :AutoScalingGroupId, :ActivityId, :ActivityType, :StatusCode, :StatusMessage, :Cause, :Description, :StartTime, :EndTime, :CreatedTime, :ActivityRelatedInstanceSet, :StatusMessageSimplified, :LifecycleActionResultSet, :DetailedStatusMessageSet
+        attr_accessor :AutoScalingGroupId, :ActivityId, :ActivityType, :StatusCode, :StatusMessage, :Cause, :Description, :StartTime, :EndTime, :CreatedTime, :ActivityRelatedInstanceSet, :StatusMessageSimplified, :LifecycleActionResultSet, :DetailedStatusMessageSet, :InvocationResultSet
         
-        def initialize(autoscalinggroupid=nil, activityid=nil, activitytype=nil, statuscode=nil, statusmessage=nil, cause=nil, description=nil, starttime=nil, endtime=nil, createdtime=nil, activityrelatedinstanceset=nil, statusmessagesimplified=nil, lifecycleactionresultset=nil, detailedstatusmessageset=nil)
+        def initialize(autoscalinggroupid=nil, activityid=nil, activitytype=nil, statuscode=nil, statusmessage=nil, cause=nil, description=nil, starttime=nil, endtime=nil, createdtime=nil, activityrelatedinstanceset=nil, statusmessagesimplified=nil, lifecycleactionresultset=nil, detailedstatusmessageset=nil, invocationresultset=nil)
           @AutoScalingGroupId = autoscalinggroupid
           @ActivityId = activityid
           @ActivityType = activitytype
@@ -74,6 +77,7 @@ module TencentCloud
           @StatusMessageSimplified = statusmessagesimplified
           @LifecycleActionResultSet = lifecycleactionresultset
           @DetailedStatusMessageSet = detailedstatusmessageset
+          @InvocationResultSet = invocationresultset
         end
 
         def deserialize(params)
@@ -110,6 +114,14 @@ module TencentCloud
               detailedstatusmessage_tmp = DetailedStatusMessage.new
               detailedstatusmessage_tmp.deserialize(i)
               @DetailedStatusMessageSet << detailedstatusmessage_tmp
+            end
+          end
+          unless params['InvocationResultSet'].nil?
+            @InvocationResultSet = []
+            params['InvocationResultSet'].each do |i|
+              invocationresult_tmp = InvocationResult.new
+              invocationresult_tmp.deserialize(i)
+              @InvocationResultSet << invocationresult_tmp
             end
           end
         end
@@ -876,6 +888,8 @@ module TencentCloud
         # @param InstanceTypes: 实例机型列表，不同实例机型指定了不同的资源规格，最多支持10种实例机型。
         # `InstanceType`和`InstanceTypes`参数互斥，二者必填一个且只能填写一个。
         # @type InstanceTypes: Array
+        # @param CamRoleName: CAM角色名称。可通过DescribeRoleList接口返回值中的roleName获取。
+        # @type CamRoleName: String
         # @param InstanceTypesCheckPolicy: 实例类型校验策略，取值包括 ALL 和 ANY，默认取值为ANY。
         # <br><li> ALL，所有实例类型（InstanceType）都可用则通过校验，否则校验报错。
         # <br><li> ANY，存在任何一个实例类型（InstanceType）可用则通过校验，否则校验报错。
@@ -885,8 +899,8 @@ module TencentCloud
         # @type InstanceTypesCheckPolicy: String
         # @param InstanceTags: 标签列表。通过指定该参数，可以为扩容的实例绑定标签。最多支持指定10个标签。
         # @type InstanceTags: Array
-        # @param CamRoleName: CAM角色名称。可通过DescribeRoleList接口返回值中的roleName获取。
-        # @type CamRoleName: String
+        # @param Tags: 标签描述列表。通过指定该参数可以支持绑定标签到启动配置。每个启动配置最多支持30个标签。
+        # @type Tags: Array
         # @param HostNameSettings: 云服务器主机名（HostName）的相关设置。
         # @type HostNameSettings: :class:`Tencentcloud::As.v20180419.models.HostNameSettings`
         # @param InstanceNameSettings: 云服务器实例名（InstanceName）的相关设置。
@@ -899,9 +913,9 @@ module TencentCloud
         # <br><li>AUTOMATIC：自动选择当前可用的云盘类型
         # @type DiskTypePolicy: String
 
-        attr_accessor :LaunchConfigurationName, :ImageId, :ProjectId, :InstanceType, :SystemDisk, :DataDisks, :InternetAccessible, :LoginSettings, :SecurityGroupIds, :EnhancedService, :UserData, :InstanceChargeType, :InstanceMarketOptions, :InstanceTypes, :InstanceTypesCheckPolicy, :InstanceTags, :CamRoleName, :HostNameSettings, :InstanceNameSettings, :InstanceChargePrepaid, :DiskTypePolicy
+        attr_accessor :LaunchConfigurationName, :ImageId, :ProjectId, :InstanceType, :SystemDisk, :DataDisks, :InternetAccessible, :LoginSettings, :SecurityGroupIds, :EnhancedService, :UserData, :InstanceChargeType, :InstanceMarketOptions, :InstanceTypes, :CamRoleName, :InstanceTypesCheckPolicy, :InstanceTags, :Tags, :HostNameSettings, :InstanceNameSettings, :InstanceChargePrepaid, :DiskTypePolicy
         
-        def initialize(launchconfigurationname=nil, imageid=nil, projectid=nil, instancetype=nil, systemdisk=nil, datadisks=nil, internetaccessible=nil, loginsettings=nil, securitygroupids=nil, enhancedservice=nil, userdata=nil, instancechargetype=nil, instancemarketoptions=nil, instancetypes=nil, instancetypescheckpolicy=nil, instancetags=nil, camrolename=nil, hostnamesettings=nil, instancenamesettings=nil, instancechargeprepaid=nil, disktypepolicy=nil)
+        def initialize(launchconfigurationname=nil, imageid=nil, projectid=nil, instancetype=nil, systemdisk=nil, datadisks=nil, internetaccessible=nil, loginsettings=nil, securitygroupids=nil, enhancedservice=nil, userdata=nil, instancechargetype=nil, instancemarketoptions=nil, instancetypes=nil, camrolename=nil, instancetypescheckpolicy=nil, instancetags=nil, tags=nil, hostnamesettings=nil, instancenamesettings=nil, instancechargeprepaid=nil, disktypepolicy=nil)
           @LaunchConfigurationName = launchconfigurationname
           @ImageId = imageid
           @ProjectId = projectid
@@ -916,9 +930,10 @@ module TencentCloud
           @InstanceChargeType = instancechargetype
           @InstanceMarketOptions = instancemarketoptions
           @InstanceTypes = instancetypes
+          @CamRoleName = camrolename
           @InstanceTypesCheckPolicy = instancetypescheckpolicy
           @InstanceTags = instancetags
-          @CamRoleName = camrolename
+          @Tags = tags
           @HostNameSettings = hostnamesettings
           @InstanceNameSettings = instancenamesettings
           @InstanceChargePrepaid = instancechargeprepaid
@@ -962,6 +977,7 @@ module TencentCloud
             @InstanceMarketOptions.deserialize(params['InstanceMarketOptions'])
           end
           @InstanceTypes = params['InstanceTypes']
+          @CamRoleName = params['CamRoleName']
           @InstanceTypesCheckPolicy = params['InstanceTypesCheckPolicy']
           unless params['InstanceTags'].nil?
             @InstanceTags = []
@@ -971,7 +987,14 @@ module TencentCloud
               @InstanceTags << instancetag_tmp
             end
           end
-          @CamRoleName = params['CamRoleName']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
+            end
+          end
           unless params['HostNameSettings'].nil?
             @HostNameSettings = HostNameSettings.new
             @HostNameSettings.deserialize(params['HostNameSettings'])
@@ -1866,6 +1889,10 @@ module TencentCloud
         # <li> launch-configuration-id - String - 是否必填：否 -（过滤条件）按照启动配置ID过滤。</li>
         # <li> launch-configuration-name - String - 是否必填：否 -（过滤条件）按照启动配置名称过滤。</li>
         # <li> vague-launch-configuration-name - String - 是否必填：否 -（过滤条件）按照启动配置名称模糊搜索。</li>
+        # <li> tag-key - String - 是否必填：否 -（过滤条件）按照标签键进行过滤。</li>
+        # <li> tag-value - String - 是否必填：否 -（过滤条件）按照标签值进行过滤。</li>
+        # <li> tag:tag-key - String - 是否必填：否 -（过滤条件）按照标签键值对进行过滤。 tag-key使用具体的标签键进行替换。使用请参考示例3
+        # </li>
         # 每次请求的`Filters`的上限为10，`Filter.Values`的上限为5。参数不支持同时指定`LaunchConfigurationIds`和`Filters`。
         # @type Filters: Array
         # @param Limit: 返回数量，默认为20，最大值为100。关于`Limit`的更进一步介绍请参考 API [简介](https://cloud.tencent.com/document/api/213/15688)中的相关小节。
@@ -2792,6 +2819,48 @@ module TencentCloud
         end
       end
 
+      # 执行命令结果。
+      class InvocationResult < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceId: String
+        # @param InvocationId: 执行活动ID。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InvocationId: String
+        # @param InvocationTaskId: 执行任务ID。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InvocationTaskId: String
+        # @param CommandId: 命令ID。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CommandId: String
+        # @param TaskStatus: 执行任务状态。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TaskStatus: String
+        # @param ErrorMessage: 执行异常信息。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ErrorMessage: String
+
+        attr_accessor :InstanceId, :InvocationId, :InvocationTaskId, :CommandId, :TaskStatus, :ErrorMessage
+        
+        def initialize(instanceid=nil, invocationid=nil, invocationtaskid=nil, commandid=nil, taskstatus=nil, errormessage=nil)
+          @InstanceId = instanceid
+          @InvocationId = invocationid
+          @InvocationTaskId = invocationtaskid
+          @CommandId = commandid
+          @TaskStatus = taskstatus
+          @ErrorMessage = errormessage
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @InvocationId = params['InvocationId']
+          @InvocationTaskId = params['InvocationTaskId']
+          @CommandId = params['CommandId']
+          @TaskStatus = params['TaskStatus']
+          @ErrorMessage = params['ErrorMessage']
+        end
+      end
+
       # 符合条件的启动配置信息的集合。
       class LaunchConfiguration < TencentCloud::Common::AbstractModel
         # @param ProjectId: 实例所属项目ID。
@@ -2834,8 +2903,11 @@ module TencentCloud
         # @type InstanceMarketOptions: :class:`Tencentcloud::As.v20180419.models.InstanceMarketOptionsRequest`
         # @param InstanceTypes: 实例机型列表。
         # @type InstanceTypes: Array
-        # @param InstanceTags: 标签列表。
+        # @param InstanceTags: 实例标签列表。扩容出来的实例会自动带上标签，最多支持10个标签。
         # @type InstanceTags: Array
+        # @param Tags: 标签列表。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Tags: Array
         # @param VersionNumber: 版本号。
         # @type VersionNumber: Integer
         # @param UpdatedTime: 更新时间。
@@ -2855,9 +2927,9 @@ module TencentCloud
         # <br><li>AUTOMATIC：自动选择当前可用区下可用的云盘类型
         # @type DiskTypePolicy: String
 
-        attr_accessor :ProjectId, :LaunchConfigurationId, :LaunchConfigurationName, :InstanceType, :SystemDisk, :DataDisks, :LoginSettings, :InternetAccessible, :SecurityGroupIds, :AutoScalingGroupAbstractSet, :UserData, :CreatedTime, :EnhancedService, :ImageId, :LaunchConfigurationStatus, :InstanceChargeType, :InstanceMarketOptions, :InstanceTypes, :InstanceTags, :VersionNumber, :UpdatedTime, :CamRoleName, :LastOperationInstanceTypesCheckPolicy, :HostNameSettings, :InstanceNameSettings, :InstanceChargePrepaid, :DiskTypePolicy
+        attr_accessor :ProjectId, :LaunchConfigurationId, :LaunchConfigurationName, :InstanceType, :SystemDisk, :DataDisks, :LoginSettings, :InternetAccessible, :SecurityGroupIds, :AutoScalingGroupAbstractSet, :UserData, :CreatedTime, :EnhancedService, :ImageId, :LaunchConfigurationStatus, :InstanceChargeType, :InstanceMarketOptions, :InstanceTypes, :InstanceTags, :Tags, :VersionNumber, :UpdatedTime, :CamRoleName, :LastOperationInstanceTypesCheckPolicy, :HostNameSettings, :InstanceNameSettings, :InstanceChargePrepaid, :DiskTypePolicy
         
-        def initialize(projectid=nil, launchconfigurationid=nil, launchconfigurationname=nil, instancetype=nil, systemdisk=nil, datadisks=nil, loginsettings=nil, internetaccessible=nil, securitygroupids=nil, autoscalinggroupabstractset=nil, userdata=nil, createdtime=nil, enhancedservice=nil, imageid=nil, launchconfigurationstatus=nil, instancechargetype=nil, instancemarketoptions=nil, instancetypes=nil, instancetags=nil, versionnumber=nil, updatedtime=nil, camrolename=nil, lastoperationinstancetypescheckpolicy=nil, hostnamesettings=nil, instancenamesettings=nil, instancechargeprepaid=nil, disktypepolicy=nil)
+        def initialize(projectid=nil, launchconfigurationid=nil, launchconfigurationname=nil, instancetype=nil, systemdisk=nil, datadisks=nil, loginsettings=nil, internetaccessible=nil, securitygroupids=nil, autoscalinggroupabstractset=nil, userdata=nil, createdtime=nil, enhancedservice=nil, imageid=nil, launchconfigurationstatus=nil, instancechargetype=nil, instancemarketoptions=nil, instancetypes=nil, instancetags=nil, tags=nil, versionnumber=nil, updatedtime=nil, camrolename=nil, lastoperationinstancetypescheckpolicy=nil, hostnamesettings=nil, instancenamesettings=nil, instancechargeprepaid=nil, disktypepolicy=nil)
           @ProjectId = projectid
           @LaunchConfigurationId = launchconfigurationid
           @LaunchConfigurationName = launchconfigurationname
@@ -2877,6 +2949,7 @@ module TencentCloud
           @InstanceMarketOptions = instancemarketoptions
           @InstanceTypes = instancetypes
           @InstanceTags = instancetags
+          @Tags = tags
           @VersionNumber = versionnumber
           @UpdatedTime = updatedtime
           @CamRoleName = camrolename
@@ -2941,6 +3014,14 @@ module TencentCloud
               instancetag_tmp = InstanceTag.new
               instancetag_tmp.deserialize(i)
               @InstanceTags << instancetag_tmp
+            end
+          end
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
             end
           end
           @VersionNumber = params['VersionNumber']

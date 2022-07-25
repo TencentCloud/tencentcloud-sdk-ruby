@@ -461,6 +461,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 创建边缘集群日志采集配置
+
+        # @param request: Request instance for CreateEdgeLogConfig.
+        # @type request: :class:`Tencentcloud::tke::V20180525::CreateEdgeLogConfigRequest`
+        # @rtype: :class:`Tencentcloud::tke::V20180525::CreateEdgeLogConfigResponse`
+        def CreateEdgeLogConfig(request)
+          body = send_request('CreateEdgeLogConfig', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateEdgeLogConfigResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 创建镜像缓存的接口。创建过程中，请勿删除EKSCI实例和云盘，否则镜像缓存将创建失败。
 
         # @param request: Request instance for CreateImageCache.
@@ -1503,6 +1527,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeClusterEndpointVipStatusResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取集群的访问地址，包括内网地址，外网地址，外网域名，外网访问安全策略
+
+        # @param request: Request instance for DescribeClusterEndpoints.
+        # @type request: :class:`Tencentcloud::tke::V20180525::DescribeClusterEndpointsRequest`
+        # @rtype: :class:`Tencentcloud::tke::V20180525::DescribeClusterEndpointsResponse`
+        def DescribeClusterEndpoints(request)
+          body = send_request('DescribeClusterEndpoints', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeClusterEndpointsResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -3197,6 +3245,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 在tke@edge集群的边缘节点上安装日志采集组件
+
+        # @param request: Request instance for InstallEdgeLogAgent.
+        # @type request: :class:`Tencentcloud::tke::V20180525::InstallEdgeLogAgentRequest`
+        # @rtype: :class:`Tencentcloud::tke::V20180525::InstallEdgeLogAgentResponse`
+        def InstallEdgeLogAgent(request)
+          body = send_request('InstallEdgeLogAgent', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = InstallEdgeLogAgentResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 在TKE集群中安装CLS日志采集组件
 
         # @param request: Request instance for InstallLogAgent.
@@ -3783,6 +3855,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = SyncPrometheusTemplateResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 从tke@edge集群边缘节点上卸载日志采集组件
+
+        # @param request: Request instance for UninstallEdgeLogAgent.
+        # @type request: :class:`Tencentcloud::tke::V20180525::UninstallEdgeLogAgentRequest`
+        # @rtype: :class:`Tencentcloud::tke::V20180525::UninstallEdgeLogAgentResponse`
+        def UninstallEdgeLogAgent(request)
+          body = send_request('UninstallEdgeLogAgent', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = UninstallEdgeLogAgentResponse.new
             model.deserialize(response['Response'])
             model
           else

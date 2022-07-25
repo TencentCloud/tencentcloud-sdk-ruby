@@ -509,6 +509,78 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 删除Datahub连接源
+
+        # @param request: Request instance for DeleteConnectResource.
+        # @type request: :class:`Tencentcloud::ckafka::V20190819::DeleteConnectResourceRequest`
+        # @rtype: :class:`Tencentcloud::ckafka::V20190819::DeleteConnectResourceResponse`
+        def DeleteConnectResource(request)
+          body = send_request('DeleteConnectResource', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteConnectResourceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除Datahub任务
+
+        # @param request: Request instance for DeleteDatahubTask.
+        # @type request: :class:`Tencentcloud::ckafka::V20190819::DeleteDatahubTaskRequest`
+        # @rtype: :class:`Tencentcloud::ckafka::V20190819::DeleteDatahubTaskResponse`
+        def DeleteDatahubTask(request)
+          body = send_request('DeleteDatahubTask', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteDatahubTaskResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除Datahub主题
+
+        # @param request: Request instance for DeleteDatahubTopic.
+        # @type request: :class:`Tencentcloud::ckafka::V20190819::DeleteDatahubTopicRequest`
+        # @rtype: :class:`Tencentcloud::ckafka::V20190819::DeleteDatahubTopicResponse`
+        def DeleteDatahubTopic(request)
+          body = send_request('DeleteDatahubTopic', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteDatahubTopicResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 删除消费组
 
         # @param request: Request instance for DeleteGroup.
@@ -749,6 +821,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询Datahub连接源
+
+        # @param request: Request instance for DescribeConnectResource.
+        # @type request: :class:`Tencentcloud::ckafka::V20190819::DescribeConnectResourceRequest`
+        # @rtype: :class:`Tencentcloud::ckafka::V20190819::DescribeConnectResourceResponse`
+        def DescribeConnectResource(request)
+          body = send_request('DescribeConnectResource', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeConnectResourceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询Datahub连接源列表
+
+        # @param request: Request instance for DescribeConnectResources.
+        # @type request: :class:`Tencentcloud::ckafka::V20190819::DescribeConnectResourcesRequest`
+        # @rtype: :class:`Tencentcloud::ckafka::V20190819::DescribeConnectResourcesResponse`
+        def DescribeConnectResources(request)
+          body = send_request('DescribeConnectResources', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeConnectResourcesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询消费分组信息
 
         # @param request: Request instance for DescribeConsumerGroup.
@@ -759,6 +879,78 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeConsumerGroupResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取Datahub消费分组offset
+
+        # @param request: Request instance for DescribeDatahubGroupOffsets.
+        # @type request: :class:`Tencentcloud::ckafka::V20190819::DescribeDatahubGroupOffsetsRequest`
+        # @rtype: :class:`Tencentcloud::ckafka::V20190819::DescribeDatahubGroupOffsetsResponse`
+        def DescribeDatahubGroupOffsets(request)
+          body = send_request('DescribeDatahubGroupOffsets', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeDatahubGroupOffsetsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询Datahub任务信息
+
+        # @param request: Request instance for DescribeDatahubTask.
+        # @type request: :class:`Tencentcloud::ckafka::V20190819::DescribeDatahubTaskRequest`
+        # @rtype: :class:`Tencentcloud::ckafka::V20190819::DescribeDatahubTaskResponse`
+        def DescribeDatahubTask(request)
+          body = send_request('DescribeDatahubTask', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeDatahubTaskResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询Datahub任务列表
+
+        # @param request: Request instance for DescribeDatahubTasks.
+        # @type request: :class:`Tencentcloud::ckafka::V20190819::DescribeDatahubTasksRequest`
+        # @rtype: :class:`Tencentcloud::ckafka::V20190819::DescribeDatahubTasksResponse`
+        def DescribeDatahubTasks(request)
+          body = send_request('DescribeDatahubTasks', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeDatahubTasksResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1112,6 +1304,54 @@ module TencentCloud
 
         # 根据指定offset位置的消息
 
+        # @param request: Request instance for FetchDatahubMessageByOffset.
+        # @type request: :class:`Tencentcloud::ckafka::V20190819::FetchDatahubMessageByOffsetRequest`
+        # @rtype: :class:`Tencentcloud::ckafka::V20190819::FetchDatahubMessageByOffsetResponse`
+        def FetchDatahubMessageByOffset(request)
+          body = send_request('FetchDatahubMessageByOffset', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = FetchDatahubMessageByOffsetResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询最新消息列表
+
+        # @param request: Request instance for FetchLatestDatahubMessageList.
+        # @type request: :class:`Tencentcloud::ckafka::V20190819::FetchLatestDatahubMessageListRequest`
+        # @rtype: :class:`Tencentcloud::ckafka::V20190819::FetchLatestDatahubMessageListResponse`
+        def FetchLatestDatahubMessageList(request)
+          body = send_request('FetchLatestDatahubMessageList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = FetchLatestDatahubMessageListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 根据指定offset位置的消息
+
         # @param request: Request instance for FetchMessageByOffset.
         # @type request: :class:`Tencentcloud::ckafka::V20190819::FetchMessageByOffsetRequest`
         # @rtype: :class:`Tencentcloud::ckafka::V20190819::FetchMessageByOffsetResponse`
@@ -1120,6 +1360,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = FetchMessageByOffsetResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 编辑Datahub连接源
+
+        # @param request: Request instance for ModifyConnectResource.
+        # @type request: :class:`Tencentcloud::ckafka::V20190819::ModifyConnectResourceRequest`
+        # @rtype: :class:`Tencentcloud::ckafka::V20190819::ModifyConnectResourceResponse`
+        def ModifyConnectResource(request)
+          body = send_request('ModifyConnectResource', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyConnectResourceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改Datahub任务
+
+        # @param request: Request instance for ModifyDatahubTask.
+        # @type request: :class:`Tencentcloud::ckafka::V20190819::ModifyDatahubTaskRequest`
+        # @rtype: :class:`Tencentcloud::ckafka::V20190819::ModifyDatahubTaskResponse`
+        def ModifyDatahubTask(request)
+          body = send_request('ModifyDatahubTask', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyDatahubTaskResponse.new
             model.deserialize(response['Response'])
             model
           else

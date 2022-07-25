@@ -2495,6 +2495,48 @@ module TencentCloud
         end
       end
 
+      # DescribeParamTemplates请求参数结构体
+      class DescribeParamTemplatesRequest < TencentCloud::Common::AbstractModel
+
+        
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeParamTemplates返回参数结构体
+      class DescribeParamTemplatesResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 参数模板数量
+        # @type TotalCount: Integer
+        # @param Items: 参数模板信息
+        # @type Items: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :Items, :RequestId
+        
+        def initialize(totalcount=nil, items=nil, requestid=nil)
+          @TotalCount = totalcount
+          @Items = items
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['Items'].nil?
+            @Items = []
+            params['Items'].each do |i|
+              paramtemplatelistinfo_tmp = ParamTemplateListInfo.new
+              paramtemplatelistinfo_tmp.deserialize(i)
+              @Items << paramtemplatelistinfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeProjectSecurityGroups请求参数结构体
       class DescribeProjectSecurityGroupsRequest < TencentCloud::Common::AbstractModel
         # @param ProjectId: 项目ID
@@ -2941,6 +2983,73 @@ module TencentCloud
             @StoragePrice = TradePrice.new
             @StoragePrice.deserialize(params['StoragePrice'])
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # InquirePriceRenew请求参数结构体
+      class InquirePriceRenewRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群ID
+        # @type ClusterId: String
+        # @param TimeSpan: 购买时长,与TimeUnit组合才能生效
+        # @type TimeSpan: Integer
+        # @param TimeUnit: 购买时长单位, 与TimeSpan组合生效，可选:日:d,月:m
+        # @type TimeUnit: String
+
+        attr_accessor :ClusterId, :TimeSpan, :TimeUnit
+        
+        def initialize(clusterid=nil, timespan=nil, timeunit=nil)
+          @ClusterId = clusterid
+          @TimeSpan = timespan
+          @TimeUnit = timeunit
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @TimeSpan = params['TimeSpan']
+          @TimeUnit = params['TimeUnit']
+        end
+      end
+
+      # InquirePriceRenew返回参数结构体
+      class InquirePriceRenewResponse < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群ID
+        # @type ClusterId: String
+        # @param InstanceIds: 实例ID列表
+        # @type InstanceIds: Array
+        # @param Prices: 对应的询价结果数组
+        # @type Prices: Array
+        # @param InstanceRealTotalPrice: 续费计算节点的总价格
+        # @type InstanceRealTotalPrice: Integer
+        # @param StorageRealTotalPrice: 续费存储节点的总价格
+        # @type StorageRealTotalPrice: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ClusterId, :InstanceIds, :Prices, :InstanceRealTotalPrice, :StorageRealTotalPrice, :RequestId
+        
+        def initialize(clusterid=nil, instanceids=nil, prices=nil, instancerealtotalprice=nil, storagerealtotalprice=nil, requestid=nil)
+          @ClusterId = clusterid
+          @InstanceIds = instanceids
+          @Prices = prices
+          @InstanceRealTotalPrice = instancerealtotalprice
+          @StorageRealTotalPrice = storagerealtotalprice
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @InstanceIds = params['InstanceIds']
+          unless params['Prices'].nil?
+            @Prices = []
+            params['Prices'].each do |i|
+              tradeprice_tmp = TradePrice.new
+              tradeprice_tmp.deserialize(i)
+              @Prices << tradeprice_tmp
+            end
+          end
+          @InstanceRealTotalPrice = params['InstanceRealTotalPrice']
+          @StorageRealTotalPrice = params['StorageRealTotalPrice']
           @RequestId = params['RequestId']
         end
       end
@@ -3616,6 +3725,34 @@ module TencentCloud
           @ParamName = params['ParamName']
           @CurrentValue = params['CurrentValue']
           @OldValue = params['OldValue']
+        end
+      end
+
+      # 参数模板信息
+      class ParamTemplateListInfo < TencentCloud::Common::AbstractModel
+        # @param Id: 参数模板ID
+        # @type Id: Integer
+        # @param TemplateName: 参数模板名称
+        # @type TemplateName: String
+        # @param TemplateDescription: 参数模板描述
+        # @type TemplateDescription: String
+        # @param EngineVersion: 引擎版本
+        # @type EngineVersion: String
+
+        attr_accessor :Id, :TemplateName, :TemplateDescription, :EngineVersion
+        
+        def initialize(id=nil, templatename=nil, templatedescription=nil, engineversion=nil)
+          @Id = id
+          @TemplateName = templatename
+          @TemplateDescription = templatedescription
+          @EngineVersion = engineversion
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @TemplateName = params['TemplateName']
+          @TemplateDescription = params['TemplateDescription']
+          @EngineVersion = params['EngineVersion']
         end
       end
 

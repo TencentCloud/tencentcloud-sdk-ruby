@@ -581,6 +581,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询用户指定产品下的所有参数模板信息
+
+        # @param request: Request instance for DescribeParamTemplates.
+        # @type request: :class:`Tencentcloud::cynosdb::V20190107::DescribeParamTemplatesRequest`
+        # @rtype: :class:`Tencentcloud::cynosdb::V20190107::DescribeParamTemplatesResponse`
+        def DescribeParamTemplates(request)
+          body = send_request('DescribeParamTemplates', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeParamTemplatesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询项目安全组信息
 
         # @param request: Request instance for DescribeProjectSecurityGroups.
@@ -759,6 +783,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = InquirePriceCreateResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询续费集群价格
+
+        # @param request: Request instance for InquirePriceRenew.
+        # @type request: :class:`Tencentcloud::cynosdb::V20190107::InquirePriceRenewRequest`
+        # @rtype: :class:`Tencentcloud::cynosdb::V20190107::InquirePriceRenewResponse`
+        def InquirePriceRenew(request)
+          body = send_request('InquirePriceRenew', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = InquirePriceRenewResponse.new
             model.deserialize(response['Response'])
             model
           else

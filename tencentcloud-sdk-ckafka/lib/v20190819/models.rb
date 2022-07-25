@@ -738,6 +738,58 @@ module TencentCloud
         end
       end
 
+      # ClickHouse修改连接源参数
+      class ClickHouseModifyConnectParam < TencentCloud::Common::AbstractModel
+        # @param Resource: ClickHouse连接源的实例资源【不支持修改】
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Resource: String
+        # @param Port: ClickHouse的连接port【不支持修改】
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Port: Integer
+        # @param ServiceVip: ClickHouse连接源的实例vip【不支持修改】
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ServiceVip: String
+        # @param UniqVpcId: ClickHouse连接源的vpcId【不支持修改】
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UniqVpcId: String
+        # @param UserName: ClickHouse连接源的用户名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UserName: String
+        # @param Password: ClickHouse连接源的密码
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Password: String
+        # @param SelfBuilt: ClickHouse连接源是否为自建集群【不支持修改】
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SelfBuilt: Boolean
+        # @param IsUpdate: 是否更新到关联的Datahub任务，默认为true
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsUpdate: Boolean
+
+        attr_accessor :Resource, :Port, :ServiceVip, :UniqVpcId, :UserName, :Password, :SelfBuilt, :IsUpdate
+        
+        def initialize(resource=nil, port=nil, servicevip=nil, uniqvpcid=nil, username=nil, password=nil, selfbuilt=nil, isupdate=nil)
+          @Resource = resource
+          @Port = port
+          @ServiceVip = servicevip
+          @UniqVpcId = uniqvpcid
+          @UserName = username
+          @Password = password
+          @SelfBuilt = selfbuilt
+          @IsUpdate = isupdate
+        end
+
+        def deserialize(params)
+          @Resource = params['Resource']
+          @Port = params['Port']
+          @ServiceVip = params['ServiceVip']
+          @UniqVpcId = params['UniqVpcId']
+          @UserName = params['UserName']
+          @Password = params['Password']
+          @SelfBuilt = params['SelfBuilt']
+          @IsUpdate = params['IsUpdate']
+        end
+      end
+
       # ClickHouse类型入参
       class ClickHouseParam < TencentCloud::Common::AbstractModel
         # @param Cluster: ClickHouse的集群
@@ -996,6 +1048,30 @@ module TencentCloud
 
         def deserialize(params)
           @ResourceId = params['ResourceId']
+        end
+      end
+
+      # Connection信息
+      class Connection < TencentCloud::Common::AbstractModel
+        # @param TopicName: Topic名称
+        # @type TopicName: String
+        # @param GroupId: 消费组ID
+        # @type GroupId: String
+        # @param TopicId: Topic的Id
+        # @type TopicId: String
+
+        attr_accessor :TopicName, :GroupId, :TopicId
+        
+        def initialize(topicname=nil, groupid=nil, topicid=nil)
+          @TopicName = topicname
+          @GroupId = groupid
+          @TopicId = topicid
+        end
+
+        def deserialize(params)
+          @TopicName = params['TopicName']
+          @GroupId = params['GroupId']
+          @TopicId = params['TopicId']
         end
       end
 
@@ -2292,6 +2368,97 @@ module TencentCloud
         end
       end
 
+      # Datahub请求的taskid
+      class DatahubTaskIdRes < TencentCloud::Common::AbstractModel
+        # @param TaskId: 任务id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TaskId: String
+
+        attr_accessor :TaskId
+        
+        def initialize(taskid=nil)
+          @TaskId = taskid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+        end
+      end
+
+      # Datahub任务信息
+      class DatahubTaskInfo < TencentCloud::Common::AbstractModel
+        # @param TaskId: 任务ID
+        # @type TaskId: String
+        # @param TaskName: 任务名称
+        # @type TaskName: String
+        # @param TaskType: 任务类型，SOURCE数据接入，SINK数据流出
+        # @type TaskType: String
+        # @param Status: 状态，-1创建失败，0创建中，1运行中，2删除中，3已删除，4删除失败，5暂停中，6已暂停，7暂停失败，8恢复中，9恢复失败
+        # @type Status: Integer
+        # @param SourceResource: 数据源
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SourceResource: :class:`Tencentcloud::Ckafka.v20190819.models.DatahubResource`
+        # @param TargetResource: 数据目标
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TargetResource: :class:`Tencentcloud::Ckafka.v20190819.models.DatahubResource`
+        # @param CreateTime: 任务创建时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateTime: String
+        # @param ErrorMessage: 异常信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ErrorMessage: String
+        # @param TaskProgress: 创建进度百分比
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TaskProgress: Float
+        # @param TaskCurrentStep: 任务当前处于的步骤
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TaskCurrentStep: String
+        # @param DatahubId: Datahub转储Id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DatahubId: String
+        # @param StepList: 步骤列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StepList: Array
+
+        attr_accessor :TaskId, :TaskName, :TaskType, :Status, :SourceResource, :TargetResource, :CreateTime, :ErrorMessage, :TaskProgress, :TaskCurrentStep, :DatahubId, :StepList
+        
+        def initialize(taskid=nil, taskname=nil, tasktype=nil, status=nil, sourceresource=nil, targetresource=nil, createtime=nil, errormessage=nil, taskprogress=nil, taskcurrentstep=nil, datahubid=nil, steplist=nil)
+          @TaskId = taskid
+          @TaskName = taskname
+          @TaskType = tasktype
+          @Status = status
+          @SourceResource = sourceresource
+          @TargetResource = targetresource
+          @CreateTime = createtime
+          @ErrorMessage = errormessage
+          @TaskProgress = taskprogress
+          @TaskCurrentStep = taskcurrentstep
+          @DatahubId = datahubid
+          @StepList = steplist
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @TaskName = params['TaskName']
+          @TaskType = params['TaskType']
+          @Status = params['Status']
+          unless params['SourceResource'].nil?
+            @SourceResource = DatahubResource.new
+            @SourceResource.deserialize(params['SourceResource'])
+          end
+          unless params['TargetResource'].nil?
+            @TargetResource = DatahubResource.new
+            @TargetResource.deserialize(params['TargetResource'])
+          end
+          @CreateTime = params['CreateTime']
+          @ErrorMessage = params['ErrorMessage']
+          @TaskProgress = params['TaskProgress']
+          @TaskCurrentStep = params['TaskCurrentStep']
+          @DatahubId = params['DatahubId']
+          @StepList = params['StepList']
+        end
+      end
+
       # 数据处理——Value处理参数——转换时间格式参数
       class DateParam < TencentCloud::Common::AbstractModel
         # @param Format: 时间格式
@@ -2417,6 +2584,124 @@ module TencentCloud
 
         def deserialize(params)
           @Result = params['Result']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteConnectResource请求参数结构体
+      class DeleteConnectResourceRequest < TencentCloud::Common::AbstractModel
+        # @param ResourceId: 连接源的Id
+        # @type ResourceId: String
+
+        attr_accessor :ResourceId
+        
+        def initialize(resourceid=nil)
+          @ResourceId = resourceid
+        end
+
+        def deserialize(params)
+          @ResourceId = params['ResourceId']
+        end
+      end
+
+      # DeleteConnectResource返回参数结构体
+      class DeleteConnectResourceResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 连接源的Id
+        # @type Result: :class:`Tencentcloud::Ckafka.v20190819.models.ConnectResourceResourceIdResp`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+        
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Result'].nil?
+            @Result = ConnectResourceResourceIdResp.new
+            @Result.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteDatahubTask请求参数结构体
+      class DeleteDatahubTaskRequest < TencentCloud::Common::AbstractModel
+        # @param TaskId: 任务id
+        # @type TaskId: String
+
+        attr_accessor :TaskId
+        
+        def initialize(taskid=nil)
+          @TaskId = taskid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+        end
+      end
+
+      # DeleteDatahubTask返回参数结构体
+      class DeleteDatahubTaskResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 任务id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Result: :class:`Tencentcloud::Ckafka.v20190819.models.DatahubTaskIdRes`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+        
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Result'].nil?
+            @Result = DatahubTaskIdRes.new
+            @Result.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteDatahubTopic请求参数结构体
+      class DeleteDatahubTopicRequest < TencentCloud::Common::AbstractModel
+        # @param Name: Topic名称
+        # @type Name: String
+
+        attr_accessor :Name
+        
+        def initialize(name=nil)
+          @Name = name
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+        end
+      end
+
+      # DeleteDatahubTopic返回参数结构体
+      class DeleteDatahubTopicResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 返回的结果集
+        # @type Result: :class:`Tencentcloud::Ckafka.v20190819.models.JgwOperateResponse`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+        
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Result'].nil?
+            @Result = JgwOperateResponse.new
+            @Result.deserialize(params['Result'])
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -2860,6 +3145,335 @@ module TencentCloud
         end
       end
 
+      # 查询连接源具体数据的返参
+      class DescribeConnectResource < TencentCloud::Common::AbstractModel
+        # @param ResourceId: 连接源的Id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResourceId: String
+        # @param ResourceName: 连接源名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResourceName: String
+        # @param Description: 连接源描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Description: String
+        # @param Type: 连接源类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Type: String
+        # @param Status: 连接源的状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: Integer
+        # @param CreateTime: 连接源的创建时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateTime: String
+        # @param ErrorMessage: 连接源的异常信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ErrorMessage: String
+        # @param CurrentStep: 连接源的当前所处步骤
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CurrentStep: String
+        # @param DatahubTaskCount: 该连接源关联的Datahub任务数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DatahubTaskCount: Integer
+        # @param DtsConnectParam: Dts配置，Type为DTS时返回
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DtsConnectParam: :class:`Tencentcloud::Ckafka.v20190819.models.DtsConnectParam`
+        # @param MongoDBConnectParam: MongoDB配置，Type为MONGODB时返回
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MongoDBConnectParam: :class:`Tencentcloud::Ckafka.v20190819.models.MongoDBConnectParam`
+        # @param EsConnectParam: Es配置，Type为ES时返回
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EsConnectParam: :class:`Tencentcloud::Ckafka.v20190819.models.EsConnectParam`
+        # @param ClickHouseConnectParam: ClickHouse配置，Type为CLICKHOUSE时返回
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClickHouseConnectParam: :class:`Tencentcloud::Ckafka.v20190819.models.ClickHouseConnectParam`
+        # @param MySQLConnectParam: MySQL配置，Type为MYSQL时必填
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MySQLConnectParam: :class:`Tencentcloud::Ckafka.v20190819.models.MySQLConnectParam`
+        # @param PostgreSQLConnectParam: PostgreSQL配置，Type为POSTGRESQL或TDSQL_C_POSTGRESQL时必填
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PostgreSQLConnectParam: :class:`Tencentcloud::Ckafka.v20190819.models.PostgreSQLConnectParam`
+
+        attr_accessor :ResourceId, :ResourceName, :Description, :Type, :Status, :CreateTime, :ErrorMessage, :CurrentStep, :DatahubTaskCount, :DtsConnectParam, :MongoDBConnectParam, :EsConnectParam, :ClickHouseConnectParam, :MySQLConnectParam, :PostgreSQLConnectParam
+        
+        def initialize(resourceid=nil, resourcename=nil, description=nil, type=nil, status=nil, createtime=nil, errormessage=nil, currentstep=nil, datahubtaskcount=nil, dtsconnectparam=nil, mongodbconnectparam=nil, esconnectparam=nil, clickhouseconnectparam=nil, mysqlconnectparam=nil, postgresqlconnectparam=nil)
+          @ResourceId = resourceid
+          @ResourceName = resourcename
+          @Description = description
+          @Type = type
+          @Status = status
+          @CreateTime = createtime
+          @ErrorMessage = errormessage
+          @CurrentStep = currentstep
+          @DatahubTaskCount = datahubtaskcount
+          @DtsConnectParam = dtsconnectparam
+          @MongoDBConnectParam = mongodbconnectparam
+          @EsConnectParam = esconnectparam
+          @ClickHouseConnectParam = clickhouseconnectparam
+          @MySQLConnectParam = mysqlconnectparam
+          @PostgreSQLConnectParam = postgresqlconnectparam
+        end
+
+        def deserialize(params)
+          @ResourceId = params['ResourceId']
+          @ResourceName = params['ResourceName']
+          @Description = params['Description']
+          @Type = params['Type']
+          @Status = params['Status']
+          @CreateTime = params['CreateTime']
+          @ErrorMessage = params['ErrorMessage']
+          @CurrentStep = params['CurrentStep']
+          @DatahubTaskCount = params['DatahubTaskCount']
+          unless params['DtsConnectParam'].nil?
+            @DtsConnectParam = DtsConnectParam.new
+            @DtsConnectParam.deserialize(params['DtsConnectParam'])
+          end
+          unless params['MongoDBConnectParam'].nil?
+            @MongoDBConnectParam = MongoDBConnectParam.new
+            @MongoDBConnectParam.deserialize(params['MongoDBConnectParam'])
+          end
+          unless params['EsConnectParam'].nil?
+            @EsConnectParam = EsConnectParam.new
+            @EsConnectParam.deserialize(params['EsConnectParam'])
+          end
+          unless params['ClickHouseConnectParam'].nil?
+            @ClickHouseConnectParam = ClickHouseConnectParam.new
+            @ClickHouseConnectParam.deserialize(params['ClickHouseConnectParam'])
+          end
+          unless params['MySQLConnectParam'].nil?
+            @MySQLConnectParam = MySQLConnectParam.new
+            @MySQLConnectParam.deserialize(params['MySQLConnectParam'])
+          end
+          unless params['PostgreSQLConnectParam'].nil?
+            @PostgreSQLConnectParam = PostgreSQLConnectParam.new
+            @PostgreSQLConnectParam.deserialize(params['PostgreSQLConnectParam'])
+          end
+        end
+      end
+
+      # DescribeConnectResource请求参数结构体
+      class DescribeConnectResourceRequest < TencentCloud::Common::AbstractModel
+        # @param ResourceId: 连接源的Id
+        # @type ResourceId: String
+
+        attr_accessor :ResourceId
+        
+        def initialize(resourceid=nil)
+          @ResourceId = resourceid
+        end
+
+        def deserialize(params)
+          @ResourceId = params['ResourceId']
+        end
+      end
+
+      # 查询连接源具体数据的返参
+      class DescribeConnectResourceResp < TencentCloud::Common::AbstractModel
+        # @param ResourceId: 连接源的Id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResourceId: String
+        # @param ResourceName: 连接源名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResourceName: String
+        # @param Description: 连接源描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Description: String
+        # @param Type: 连接源类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Type: String
+        # @param Status: 连接源的状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: Integer
+        # @param CreateTime: 连接源的创建时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateTime: String
+        # @param ErrorMessage: 连接源的异常信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ErrorMessage: String
+        # @param CurrentStep: 连接源的当前所处步骤
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CurrentStep: String
+        # @param StepList: 步骤列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StepList: Array
+        # @param MySQLConnectParam: MySQL配置，Type为MYSQL时返回
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MySQLConnectParam: :class:`Tencentcloud::Ckafka.v20190819.models.MySQLConnectParam`
+        # @param PostgreSQLConnectParam: PostgreSQL配置，Type为POSTGRESQL或TDSQL_C_POSTGRESQL时返回
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PostgreSQLConnectParam: :class:`Tencentcloud::Ckafka.v20190819.models.PostgreSQLConnectParam`
+        # @param DtsConnectParam: Dts配置，Type为DTS时返回
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DtsConnectParam: :class:`Tencentcloud::Ckafka.v20190819.models.DtsConnectParam`
+        # @param MongoDBConnectParam: MongoDB配置，Type为MONGODB时返回
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MongoDBConnectParam: :class:`Tencentcloud::Ckafka.v20190819.models.MongoDBConnectParam`
+        # @param EsConnectParam: Es配置，Type为ES时返回
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EsConnectParam: :class:`Tencentcloud::Ckafka.v20190819.models.EsConnectParam`
+        # @param ClickHouseConnectParam: ClickHouse配置，Type为CLICKHOUSE时返回
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClickHouseConnectParam: :class:`Tencentcloud::Ckafka.v20190819.models.ClickHouseConnectParam`
+
+        attr_accessor :ResourceId, :ResourceName, :Description, :Type, :Status, :CreateTime, :ErrorMessage, :CurrentStep, :StepList, :MySQLConnectParam, :PostgreSQLConnectParam, :DtsConnectParam, :MongoDBConnectParam, :EsConnectParam, :ClickHouseConnectParam
+        
+        def initialize(resourceid=nil, resourcename=nil, description=nil, type=nil, status=nil, createtime=nil, errormessage=nil, currentstep=nil, steplist=nil, mysqlconnectparam=nil, postgresqlconnectparam=nil, dtsconnectparam=nil, mongodbconnectparam=nil, esconnectparam=nil, clickhouseconnectparam=nil)
+          @ResourceId = resourceid
+          @ResourceName = resourcename
+          @Description = description
+          @Type = type
+          @Status = status
+          @CreateTime = createtime
+          @ErrorMessage = errormessage
+          @CurrentStep = currentstep
+          @StepList = steplist
+          @MySQLConnectParam = mysqlconnectparam
+          @PostgreSQLConnectParam = postgresqlconnectparam
+          @DtsConnectParam = dtsconnectparam
+          @MongoDBConnectParam = mongodbconnectparam
+          @EsConnectParam = esconnectparam
+          @ClickHouseConnectParam = clickhouseconnectparam
+        end
+
+        def deserialize(params)
+          @ResourceId = params['ResourceId']
+          @ResourceName = params['ResourceName']
+          @Description = params['Description']
+          @Type = params['Type']
+          @Status = params['Status']
+          @CreateTime = params['CreateTime']
+          @ErrorMessage = params['ErrorMessage']
+          @CurrentStep = params['CurrentStep']
+          @StepList = params['StepList']
+          unless params['MySQLConnectParam'].nil?
+            @MySQLConnectParam = MySQLConnectParam.new
+            @MySQLConnectParam.deserialize(params['MySQLConnectParam'])
+          end
+          unless params['PostgreSQLConnectParam'].nil?
+            @PostgreSQLConnectParam = PostgreSQLConnectParam.new
+            @PostgreSQLConnectParam.deserialize(params['PostgreSQLConnectParam'])
+          end
+          unless params['DtsConnectParam'].nil?
+            @DtsConnectParam = DtsConnectParam.new
+            @DtsConnectParam.deserialize(params['DtsConnectParam'])
+          end
+          unless params['MongoDBConnectParam'].nil?
+            @MongoDBConnectParam = MongoDBConnectParam.new
+            @MongoDBConnectParam.deserialize(params['MongoDBConnectParam'])
+          end
+          unless params['EsConnectParam'].nil?
+            @EsConnectParam = EsConnectParam.new
+            @EsConnectParam.deserialize(params['EsConnectParam'])
+          end
+          unless params['ClickHouseConnectParam'].nil?
+            @ClickHouseConnectParam = ClickHouseConnectParam.new
+            @ClickHouseConnectParam.deserialize(params['ClickHouseConnectParam'])
+          end
+        end
+      end
+
+      # DescribeConnectResource返回参数结构体
+      class DescribeConnectResourceResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 连接源的Id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Result: :class:`Tencentcloud::Ckafka.v20190819.models.DescribeConnectResourceResp`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+        
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Result'].nil?
+            @Result = DescribeConnectResourceResp.new
+            @Result.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeConnectResources请求参数结构体
+      class DescribeConnectResourcesRequest < TencentCloud::Common::AbstractModel
+        # @param Type: 连接源类型
+        # @type Type: String
+        # @param SearchWord: 连接源名称的关键字查询
+        # @type SearchWord: String
+        # @param Offset: 分页偏移量，默认为0
+        # @type Offset: Integer
+        # @param Limit: 返回数量，默认为20，最大值为100
+        # @type Limit: Integer
+
+        attr_accessor :Type, :SearchWord, :Offset, :Limit
+        
+        def initialize(type=nil, searchword=nil, offset=nil, limit=nil)
+          @Type = type
+          @SearchWord = searchword
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @Type = params['Type']
+          @SearchWord = params['SearchWord']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # 查询连接源列表的返参
+      class DescribeConnectResourcesResp < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 连接源个数
+        # @type TotalCount: Integer
+        # @param ConnectResourceList: 连接源数据
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ConnectResourceList: Array
+
+        attr_accessor :TotalCount, :ConnectResourceList
+        
+        def initialize(totalcount=nil, connectresourcelist=nil)
+          @TotalCount = totalcount
+          @ConnectResourceList = connectresourcelist
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['ConnectResourceList'].nil?
+            @ConnectResourceList = []
+            params['ConnectResourceList'].each do |i|
+              describeconnectresource_tmp = DescribeConnectResource.new
+              describeconnectresource_tmp.deserialize(i)
+              @ConnectResourceList << describeconnectresource_tmp
+            end
+          end
+        end
+      end
+
+      # DescribeConnectResources返回参数结构体
+      class DescribeConnectResourcesResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 连接源列表
+        # @type Result: :class:`Tencentcloud::Ckafka.v20190819.models.DescribeConnectResourcesResp`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+        
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Result'].nil?
+            @Result = DescribeConnectResourcesResp.new
+            @Result.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeConsumerGroup请求参数结构体
       class DescribeConsumerGroupRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: ckafka实例id。
@@ -2909,6 +3523,288 @@ module TencentCloud
         def deserialize(params)
           unless params['Result'].nil?
             @Result = ConsumerGroupResponse.new
+            @Result.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeDatahubGroupOffsets请求参数结构体
+      class DescribeDatahubGroupOffsetsRequest < TencentCloud::Common::AbstractModel
+        # @param Name: （过滤条件）按照实例 ID 过滤
+        # @type Name: String
+        # @param Group: Kafka 消费分组
+        # @type Group: String
+        # @param SearchWord: 模糊匹配 topicName
+        # @type SearchWord: String
+        # @param Offset: 本次查询的偏移位置，默认为0
+        # @type Offset: Integer
+        # @param Limit: 本次返回结果的最大个数，默认为50，最大值为50
+        # @type Limit: Integer
+
+        attr_accessor :Name, :Group, :SearchWord, :Offset, :Limit
+        
+        def initialize(name=nil, group=nil, searchword=nil, offset=nil, limit=nil)
+          @Name = name
+          @Group = group
+          @SearchWord = searchword
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Group = params['Group']
+          @SearchWord = params['SearchWord']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeDatahubGroupOffsets返回参数结构体
+      class DescribeDatahubGroupOffsetsResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 返回的结果对象
+        # @type Result: :class:`Tencentcloud::Ckafka.v20190819.models.GroupOffsetResponse`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+        
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Result'].nil?
+            @Result = GroupOffsetResponse.new
+            @Result.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeDatahubTask请求参数结构体
+      class DescribeDatahubTaskRequest < TencentCloud::Common::AbstractModel
+        # @param TaskId: 任务id
+        # @type TaskId: String
+
+        attr_accessor :TaskId
+        
+        def initialize(taskid=nil)
+          @TaskId = taskid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+        end
+      end
+
+      # 查询Datahub任务信息
+      class DescribeDatahubTaskRes < TencentCloud::Common::AbstractModel
+        # @param TaskId: 任务ID
+        # @type TaskId: String
+        # @param TaskName: 任务名称
+        # @type TaskName: String
+        # @param TaskType: 任务类型，SOURCE数据接入，SINK数据流出
+        # @type TaskType: String
+        # @param Status: 状态，-1创建失败，0创建中，1运行中，2删除中，3已删除，4删除失败，5暂停中，6已暂停，7暂停失败，8恢复中，9恢复失败
+        # @type Status: Integer
+        # @param SourceResource: 数据源
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SourceResource: :class:`Tencentcloud::Ckafka.v20190819.models.DatahubResource`
+        # @param TargetResource: 数据目标
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TargetResource: :class:`Tencentcloud::Ckafka.v20190819.models.DatahubResource`
+        # @param Connections: Connection列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Connections: Array
+        # @param CreateTime: 任务创建时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateTime: String
+        # @param TransformParam: 消息处理规则
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TransformParam: :class:`Tencentcloud::Ckafka.v20190819.models.TransformParam`
+        # @param DatahubId: 数据接入ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DatahubId: String
+        # @param SchemaId: 绑定的SchemaId
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SchemaId: String
+        # @param SchemaName: 绑定的Schema名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SchemaName: String
+        # @param TransformsParam: 数据处理规则
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TransformsParam: :class:`Tencentcloud::Ckafka.v20190819.models.TransformsParam`
+        # @param ErrorMessage: 异常信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ErrorMessage: String
+
+        attr_accessor :TaskId, :TaskName, :TaskType, :Status, :SourceResource, :TargetResource, :Connections, :CreateTime, :TransformParam, :DatahubId, :SchemaId, :SchemaName, :TransformsParam, :ErrorMessage
+        
+        def initialize(taskid=nil, taskname=nil, tasktype=nil, status=nil, sourceresource=nil, targetresource=nil, connections=nil, createtime=nil, transformparam=nil, datahubid=nil, schemaid=nil, schemaname=nil, transformsparam=nil, errormessage=nil)
+          @TaskId = taskid
+          @TaskName = taskname
+          @TaskType = tasktype
+          @Status = status
+          @SourceResource = sourceresource
+          @TargetResource = targetresource
+          @Connections = connections
+          @CreateTime = createtime
+          @TransformParam = transformparam
+          @DatahubId = datahubid
+          @SchemaId = schemaid
+          @SchemaName = schemaname
+          @TransformsParam = transformsparam
+          @ErrorMessage = errormessage
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @TaskName = params['TaskName']
+          @TaskType = params['TaskType']
+          @Status = params['Status']
+          unless params['SourceResource'].nil?
+            @SourceResource = DatahubResource.new
+            @SourceResource.deserialize(params['SourceResource'])
+          end
+          unless params['TargetResource'].nil?
+            @TargetResource = DatahubResource.new
+            @TargetResource.deserialize(params['TargetResource'])
+          end
+          unless params['Connections'].nil?
+            @Connections = []
+            params['Connections'].each do |i|
+              connection_tmp = Connection.new
+              connection_tmp.deserialize(i)
+              @Connections << connection_tmp
+            end
+          end
+          @CreateTime = params['CreateTime']
+          unless params['TransformParam'].nil?
+            @TransformParam = TransformParam.new
+            @TransformParam.deserialize(params['TransformParam'])
+          end
+          @DatahubId = params['DatahubId']
+          @SchemaId = params['SchemaId']
+          @SchemaName = params['SchemaName']
+          unless params['TransformsParam'].nil?
+            @TransformsParam = TransformsParam.new
+            @TransformsParam.deserialize(params['TransformsParam'])
+          end
+          @ErrorMessage = params['ErrorMessage']
+        end
+      end
+
+      # DescribeDatahubTask返回参数结构体
+      class DescribeDatahubTaskResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 返回结果
+        # @type Result: :class:`Tencentcloud::Ckafka.v20190819.models.DescribeDatahubTaskRes`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+        
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Result'].nil?
+            @Result = DescribeDatahubTaskRes.new
+            @Result.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeDatahubTasks请求参数结构体
+      class DescribeDatahubTasksRequest < TencentCloud::Common::AbstractModel
+        # @param Limit: 返回数量，默认为20，最大值为100
+        # @type Limit: Integer
+        # @param Offset: 分页偏移量，默认为0
+        # @type Offset: Integer
+        # @param SearchWord: 过滤条件，按照 TaskName 过滤，支持模糊查询
+        # @type SearchWord: String
+        # @param TargetType: 转储的目标类型
+        # @type TargetType: String
+        # @param TaskType: 任务类型，SOURCE数据接入，SINK数据流出
+        # @type TaskType: String
+        # @param SourceType: 转储的源类型
+        # @type SourceType: String
+        # @param Resource: 转储的资源
+        # @type Resource: String
+
+        attr_accessor :Limit, :Offset, :SearchWord, :TargetType, :TaskType, :SourceType, :Resource
+        
+        def initialize(limit=nil, offset=nil, searchword=nil, targettype=nil, tasktype=nil, sourcetype=nil, resource=nil)
+          @Limit = limit
+          @Offset = offset
+          @SearchWord = searchword
+          @TargetType = targettype
+          @TaskType = tasktype
+          @SourceType = sourcetype
+          @Resource = resource
+        end
+
+        def deserialize(params)
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          @SearchWord = params['SearchWord']
+          @TargetType = params['TargetType']
+          @TaskType = params['TaskType']
+          @SourceType = params['SourceType']
+          @Resource = params['Resource']
+        end
+      end
+
+      # 查询Datahub任务列表
+      class DescribeDatahubTasksRes < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 任务总数
+        # @type TotalCount: Integer
+        # @param TaskList: Datahub任务信息列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TaskList: Array
+
+        attr_accessor :TotalCount, :TaskList
+        
+        def initialize(totalcount=nil, tasklist=nil)
+          @TotalCount = totalcount
+          @TaskList = tasklist
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['TaskList'].nil?
+            @TaskList = []
+            params['TaskList'].each do |i|
+              datahubtaskinfo_tmp = DatahubTaskInfo.new
+              datahubtaskinfo_tmp.deserialize(i)
+              @TaskList << datahubtaskinfo_tmp
+            end
+          end
+        end
+      end
+
+      # DescribeDatahubTasks返回参数结构体
+      class DescribeDatahubTasksResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 返回任务查询结果
+        # @type Result: :class:`Tencentcloud::Ckafka.v20190819.models.DescribeDatahubTasksRes`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+        
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Result'].nil?
+            @Result = DescribeDatahubTasksRes.new
             @Result.deserialize(params['Result'])
           end
           @RequestId = params['RequestId']
@@ -3763,6 +4659,53 @@ module TencentCloud
         end
       end
 
+      # Dts修改连接源参数
+      class DtsModifyConnectParam < TencentCloud::Common::AbstractModel
+        # @param Resource: Dts实例Id【不支持修改】
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Resource: String
+        # @param Port: Dts的连接port【不支持修改】
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Port: Integer
+        # @param GroupId: Dts消费分组的Id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GroupId: String
+        # @param UserName: Dts消费分组的账号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UserName: String
+        # @param Password: Dts消费分组的密码
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Password: String
+        # @param IsUpdate: 是否更新到关联的Datahub任务，默认为true
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsUpdate: Boolean
+        # @param Topic: Dts订阅的topic【不支持修改】
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Topic: String
+
+        attr_accessor :Resource, :Port, :GroupId, :UserName, :Password, :IsUpdate, :Topic
+        
+        def initialize(resource=nil, port=nil, groupid=nil, username=nil, password=nil, isupdate=nil, topic=nil)
+          @Resource = resource
+          @Port = port
+          @GroupId = groupid
+          @UserName = username
+          @Password = password
+          @IsUpdate = isupdate
+          @Topic = topic
+        end
+
+        def deserialize(params)
+          @Resource = params['Resource']
+          @Port = params['Port']
+          @GroupId = params['GroupId']
+          @UserName = params['UserName']
+          @Password = params['Password']
+          @IsUpdate = params['IsUpdate']
+          @Topic = params['Topic']
+        end
+      end
+
       # Dts类型入参
       class DtsParam < TencentCloud::Common::AbstractModel
         # @param Resource: Dts实例Id
@@ -3923,6 +4866,58 @@ module TencentCloud
         end
       end
 
+      # Es修改连接源参数
+      class EsModifyConnectParam < TencentCloud::Common::AbstractModel
+        # @param Resource: Es连接源的实例资源【不支持修改】
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Resource: String
+        # @param Port: Es的连接port【不支持修改】
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Port: Integer
+        # @param ServiceVip: Es连接源的实例vip【不支持修改】
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ServiceVip: String
+        # @param UniqVpcId: Es连接源的vpcId【不支持修改】
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UniqVpcId: String
+        # @param UserName: Es连接源的用户名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UserName: String
+        # @param Password: Es连接源的密码
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Password: String
+        # @param SelfBuilt: Es连接源是否为自建集群【不支持修改】
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SelfBuilt: Boolean
+        # @param IsUpdate: 是否更新到关联的Datahub任务
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsUpdate: Boolean
+
+        attr_accessor :Resource, :Port, :ServiceVip, :UniqVpcId, :UserName, :Password, :SelfBuilt, :IsUpdate
+        
+        def initialize(resource=nil, port=nil, servicevip=nil, uniqvpcid=nil, username=nil, password=nil, selfbuilt=nil, isupdate=nil)
+          @Resource = resource
+          @Port = port
+          @ServiceVip = servicevip
+          @UniqVpcId = uniqvpcid
+          @UserName = username
+          @Password = password
+          @SelfBuilt = selfbuilt
+          @IsUpdate = isupdate
+        end
+
+        def deserialize(params)
+          @Resource = params['Resource']
+          @Port = params['Port']
+          @ServiceVip = params['ServiceVip']
+          @UniqVpcId = params['UniqVpcId']
+          @UserName = params['UserName']
+          @Password = params['Password']
+          @SelfBuilt = params['SelfBuilt']
+          @IsUpdate = params['IsUpdate']
+        end
+      end
+
       # Es类型入参
       class EsParam < TencentCloud::Common::AbstractModel
         # @param Resource: 实例资源
@@ -4079,6 +5074,108 @@ module TencentCloud
             @TopicParam.deserialize(params['TopicParam'])
           end
           @DlqType = params['DlqType']
+        end
+      end
+
+      # FetchDatahubMessageByOffset请求参数结构体
+      class FetchDatahubMessageByOffsetRequest < TencentCloud::Common::AbstractModel
+        # @param Name: 主题名
+        # @type Name: String
+        # @param Partition: 分区id
+        # @type Partition: Integer
+        # @param Offset: 位点信息，必填
+        # @type Offset: Integer
+
+        attr_accessor :Name, :Partition, :Offset
+        
+        def initialize(name=nil, partition=nil, offset=nil)
+          @Name = name
+          @Partition = partition
+          @Offset = offset
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Partition = params['Partition']
+          @Offset = params['Offset']
+        end
+      end
+
+      # FetchDatahubMessageByOffset返回参数结构体
+      class FetchDatahubMessageByOffsetResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 返回结果
+        # @type Result: :class:`Tencentcloud::Ckafka.v20190819.models.ConsumerRecord`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+        
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Result'].nil?
+            @Result = ConsumerRecord.new
+            @Result.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # FetchLatestDatahubMessageList请求参数结构体
+      class FetchLatestDatahubMessageListRequest < TencentCloud::Common::AbstractModel
+        # @param Name: 主题名
+        # @type Name: String
+        # @param Partition: 分区id
+        # @type Partition: Integer
+        # @param Offset: 位点信息
+        # @type Offset: Integer
+        # @param MessageCount: 最大查询条数，最小1，最大100
+        # @type MessageCount: Integer
+
+        attr_accessor :Name, :Partition, :Offset, :MessageCount
+        
+        def initialize(name=nil, partition=nil, offset=nil, messagecount=nil)
+          @Name = name
+          @Partition = partition
+          @Offset = offset
+          @MessageCount = messagecount
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Partition = params['Partition']
+          @Offset = params['Offset']
+          @MessageCount = params['MessageCount']
+        end
+      end
+
+      # FetchLatestDatahubMessageList返回参数结构体
+      class FetchLatestDatahubMessageListResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 返回结果。
+        # @type Result: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+        
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Result'].nil?
+            @Result = []
+            params['Result'].each do |i|
+              consumerrecord_tmp = ConsumerRecord.new
+              consumerrecord_tmp.deserialize(i)
+              @Result << consumerrecord_tmp
+            end
+          end
+          @RequestId = params['RequestId']
         end
       end
 
@@ -5152,6 +6249,53 @@ module TencentCloud
         end
       end
 
+      # MariaDB连接源参数
+      class MariaDBModifyConnectParam < TencentCloud::Common::AbstractModel
+        # @param Resource: MariaDB连接源的实例资源【不支持修改】
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Resource: String
+        # @param Port: MariaDB的连接port【不支持修改】
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Port: Integer
+        # @param ServiceVip: MariaDB连接源的实例vip【不支持修改】
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ServiceVip: String
+        # @param UniqVpcId: MariaDB连接源的vpcId【不支持修改】
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UniqVpcId: String
+        # @param UserName: MariaDB连接源的用户名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UserName: String
+        # @param Password: MariaDB连接源的密码
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Password: String
+        # @param IsUpdate: 是否更新到关联的Datahub任务
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsUpdate: Boolean
+
+        attr_accessor :Resource, :Port, :ServiceVip, :UniqVpcId, :UserName, :Password, :IsUpdate
+        
+        def initialize(resource=nil, port=nil, servicevip=nil, uniqvpcid=nil, username=nil, password=nil, isupdate=nil)
+          @Resource = resource
+          @Port = port
+          @ServiceVip = servicevip
+          @UniqVpcId = uniqvpcid
+          @UserName = username
+          @Password = password
+          @IsUpdate = isupdate
+        end
+
+        def deserialize(params)
+          @Resource = params['Resource']
+          @Port = params['Port']
+          @ServiceVip = params['ServiceVip']
+          @UniqVpcId = params['UniqVpcId']
+          @UserName = params['UserName']
+          @Password = params['Password']
+          @IsUpdate = params['IsUpdate']
+        end
+      end
+
       # MariaDB类型入参
       class MariaDBParam < TencentCloud::Common::AbstractModel
         # @param Database: MariaDB的数据库名称，"*"为全数据库
@@ -5177,6 +6321,157 @@ module TencentCloud
           @Table = params['Table']
           @Resource = params['Resource']
           @SnapshotMode = params['SnapshotMode']
+        end
+      end
+
+      # ModifyConnectResource请求参数结构体
+      class ModifyConnectResourceRequest < TencentCloud::Common::AbstractModel
+        # @param ResourceId: 连接源的Id
+        # @type ResourceId: String
+        # @param ResourceName: 连接源名称，为空时不修改
+        # @type ResourceName: String
+        # @param Description: 连接源描述，为空时不修改
+        # @type Description: String
+        # @param Type: 连接源类型，修改数据源参数时，需要与原Type相同，否则编辑数据源无效
+        # @type Type: String
+        # @param DtsConnectParam: Dts配置，Type为DTS时必填
+        # @type DtsConnectParam: :class:`Tencentcloud::Ckafka.v20190819.models.DtsModifyConnectParam`
+        # @param MongoDBConnectParam: MongoDB配置，Type为MONGODB时必填
+        # @type MongoDBConnectParam: :class:`Tencentcloud::Ckafka.v20190819.models.MongoDBModifyConnectParam`
+        # @param EsConnectParam: Es配置，Type为ES时必填
+        # @type EsConnectParam: :class:`Tencentcloud::Ckafka.v20190819.models.EsModifyConnectParam`
+        # @param ClickHouseConnectParam: ClickHouse配置，Type为CLICKHOUSE时必填
+        # @type ClickHouseConnectParam: :class:`Tencentcloud::Ckafka.v20190819.models.ClickHouseModifyConnectParam`
+        # @param MySQLConnectParam: MySQL配置，Type为MYSQL或TDSQL_C_MYSQL时必填
+        # @type MySQLConnectParam: :class:`Tencentcloud::Ckafka.v20190819.models.MySQLModifyConnectParam`
+        # @param PostgreSQLConnectParam: PostgreSQL配置，Type为POSTGRESQL或TDSQL_C_POSTGRESQL时必填
+        # @type PostgreSQLConnectParam: :class:`Tencentcloud::Ckafka.v20190819.models.PostgreSQLModifyConnectParam`
+        # @param MariaDBConnectParam: MariaDB配置，Type为MARIADB时必填
+        # @type MariaDBConnectParam: :class:`Tencentcloud::Ckafka.v20190819.models.MariaDBModifyConnectParam`
+        # @param SQLServerConnectParam: SQLServer配置，Type为SQLSERVER时必填
+        # @type SQLServerConnectParam: :class:`Tencentcloud::Ckafka.v20190819.models.SQLServerModifyConnectParam`
+
+        attr_accessor :ResourceId, :ResourceName, :Description, :Type, :DtsConnectParam, :MongoDBConnectParam, :EsConnectParam, :ClickHouseConnectParam, :MySQLConnectParam, :PostgreSQLConnectParam, :MariaDBConnectParam, :SQLServerConnectParam
+        
+        def initialize(resourceid=nil, resourcename=nil, description=nil, type=nil, dtsconnectparam=nil, mongodbconnectparam=nil, esconnectparam=nil, clickhouseconnectparam=nil, mysqlconnectparam=nil, postgresqlconnectparam=nil, mariadbconnectparam=nil, sqlserverconnectparam=nil)
+          @ResourceId = resourceid
+          @ResourceName = resourcename
+          @Description = description
+          @Type = type
+          @DtsConnectParam = dtsconnectparam
+          @MongoDBConnectParam = mongodbconnectparam
+          @EsConnectParam = esconnectparam
+          @ClickHouseConnectParam = clickhouseconnectparam
+          @MySQLConnectParam = mysqlconnectparam
+          @PostgreSQLConnectParam = postgresqlconnectparam
+          @MariaDBConnectParam = mariadbconnectparam
+          @SQLServerConnectParam = sqlserverconnectparam
+        end
+
+        def deserialize(params)
+          @ResourceId = params['ResourceId']
+          @ResourceName = params['ResourceName']
+          @Description = params['Description']
+          @Type = params['Type']
+          unless params['DtsConnectParam'].nil?
+            @DtsConnectParam = DtsModifyConnectParam.new
+            @DtsConnectParam.deserialize(params['DtsConnectParam'])
+          end
+          unless params['MongoDBConnectParam'].nil?
+            @MongoDBConnectParam = MongoDBModifyConnectParam.new
+            @MongoDBConnectParam.deserialize(params['MongoDBConnectParam'])
+          end
+          unless params['EsConnectParam'].nil?
+            @EsConnectParam = EsModifyConnectParam.new
+            @EsConnectParam.deserialize(params['EsConnectParam'])
+          end
+          unless params['ClickHouseConnectParam'].nil?
+            @ClickHouseConnectParam = ClickHouseModifyConnectParam.new
+            @ClickHouseConnectParam.deserialize(params['ClickHouseConnectParam'])
+          end
+          unless params['MySQLConnectParam'].nil?
+            @MySQLConnectParam = MySQLModifyConnectParam.new
+            @MySQLConnectParam.deserialize(params['MySQLConnectParam'])
+          end
+          unless params['PostgreSQLConnectParam'].nil?
+            @PostgreSQLConnectParam = PostgreSQLModifyConnectParam.new
+            @PostgreSQLConnectParam.deserialize(params['PostgreSQLConnectParam'])
+          end
+          unless params['MariaDBConnectParam'].nil?
+            @MariaDBConnectParam = MariaDBModifyConnectParam.new
+            @MariaDBConnectParam.deserialize(params['MariaDBConnectParam'])
+          end
+          unless params['SQLServerConnectParam'].nil?
+            @SQLServerConnectParam = SQLServerModifyConnectParam.new
+            @SQLServerConnectParam.deserialize(params['SQLServerConnectParam'])
+          end
+        end
+      end
+
+      # ModifyConnectResource返回参数结构体
+      class ModifyConnectResourceResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 连接源的Id
+        # @type Result: :class:`Tencentcloud::Ckafka.v20190819.models.ConnectResourceResourceIdResp`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+        
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Result'].nil?
+            @Result = ConnectResourceResourceIdResp.new
+            @Result.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyDatahubTask请求参数结构体
+      class ModifyDatahubTaskRequest < TencentCloud::Common::AbstractModel
+        # @param TaskId: 任务id
+        # @type TaskId: String
+        # @param TaskName: 任务名称
+        # @type TaskName: String
+
+        attr_accessor :TaskId, :TaskName
+        
+        def initialize(taskid=nil, taskname=nil)
+          @TaskId = taskid
+          @TaskName = taskname
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @TaskName = params['TaskName']
+        end
+      end
+
+      # ModifyDatahubTask返回参数结构体
+      class ModifyDatahubTaskResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 任务id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Result: :class:`Tencentcloud::Ckafka.v20190819.models.DatahubTaskIdRes`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+        
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Result'].nil?
+            @Result = DatahubTaskIdRes.new
+            @Result.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
         end
       end
 
@@ -5615,6 +6910,58 @@ module TencentCloud
         end
       end
 
+      # MongoDB修改连接源参数
+      class MongoDBModifyConnectParam < TencentCloud::Common::AbstractModel
+        # @param Resource: MongoDB连接源的实例资源【不支持修改】
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Resource: String
+        # @param Port: MongoDB的连接port【不支持修改】
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Port: Integer
+        # @param ServiceVip: MongoDB连接源的实例vip【不支持修改】
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ServiceVip: String
+        # @param UniqVpcId: MongoDB连接源的vpcId【不支持修改】
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UniqVpcId: String
+        # @param UserName: MongoDB连接源的用户名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UserName: String
+        # @param Password: MongoDB连接源的密码
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Password: String
+        # @param SelfBuilt: MongoDB连接源是否为自建集群【不支持修改】
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SelfBuilt: Boolean
+        # @param IsUpdate: 是否更新到关联的Datahub任务
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsUpdate: Boolean
+
+        attr_accessor :Resource, :Port, :ServiceVip, :UniqVpcId, :UserName, :Password, :SelfBuilt, :IsUpdate
+        
+        def initialize(resource=nil, port=nil, servicevip=nil, uniqvpcid=nil, username=nil, password=nil, selfbuilt=nil, isupdate=nil)
+          @Resource = resource
+          @Port = port
+          @ServiceVip = servicevip
+          @UniqVpcId = uniqvpcid
+          @UserName = username
+          @Password = password
+          @SelfBuilt = selfbuilt
+          @IsUpdate = isupdate
+        end
+
+        def deserialize(params)
+          @Resource = params['Resource']
+          @Port = params['Port']
+          @ServiceVip = params['ServiceVip']
+          @UniqVpcId = params['UniqVpcId']
+          @UserName = params['UserName']
+          @Password = params['Password']
+          @SelfBuilt = params['SelfBuilt']
+          @IsUpdate = params['IsUpdate']
+        end
+      end
+
       # MongoDB类型入参
       class MongoDBParam < TencentCloud::Common::AbstractModel
         # @param Database: MongoDB的数据库名称
@@ -5722,6 +7069,58 @@ module TencentCloud
           @Resource = params['Resource']
           @ServiceVip = params['ServiceVip']
           @UniqVpcId = params['UniqVpcId']
+          @IsUpdate = params['IsUpdate']
+          @ClusterId = params['ClusterId']
+        end
+      end
+
+      # MySQL修改连接源参数
+      class MySQLModifyConnectParam < TencentCloud::Common::AbstractModel
+        # @param Resource: MySQL连接源的实例资源【不支持修改】
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Resource: String
+        # @param Port: MySQL的连接port【不支持修改】
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Port: Integer
+        # @param ServiceVip: MySQL连接源的实例vip【不支持修改】
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ServiceVip: String
+        # @param UniqVpcId: MySQL连接源的vpcId【不支持修改】
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UniqVpcId: String
+        # @param UserName: MySQL连接源的用户名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UserName: String
+        # @param Password: MySQL连接源的密码
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Password: String
+        # @param IsUpdate: 是否更新到关联的Datahub任务
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsUpdate: Boolean
+        # @param ClusterId: 当type为TDSQL_C_MYSQL时
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClusterId: String
+
+        attr_accessor :Resource, :Port, :ServiceVip, :UniqVpcId, :UserName, :Password, :IsUpdate, :ClusterId
+        
+        def initialize(resource=nil, port=nil, servicevip=nil, uniqvpcid=nil, username=nil, password=nil, isupdate=nil, clusterid=nil)
+          @Resource = resource
+          @Port = port
+          @ServiceVip = servicevip
+          @UniqVpcId = uniqvpcid
+          @UserName = username
+          @Password = password
+          @IsUpdate = isupdate
+          @ClusterId = clusterid
+        end
+
+        def deserialize(params)
+          @Resource = params['Resource']
+          @Port = params['Port']
+          @ServiceVip = params['ServiceVip']
+          @UniqVpcId = params['UniqVpcId']
+          @UserName = params['UserName']
+          @Password = params['Password']
           @IsUpdate = params['IsUpdate']
           @ClusterId = params['ClusterId']
         end
@@ -5920,6 +7319,58 @@ module TencentCloud
           @Resource = params['Resource']
           @ServiceVip = params['ServiceVip']
           @UniqVpcId = params['UniqVpcId']
+          @ClusterId = params['ClusterId']
+          @IsUpdate = params['IsUpdate']
+        end
+      end
+
+      # PostgreSQL修改连接源参数
+      class PostgreSQLModifyConnectParam < TencentCloud::Common::AbstractModel
+        # @param Resource: PostgreSQL连接源的实例资源【不支持修改】
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Resource: String
+        # @param Port: PostgreSQL的连接port【不支持修改】
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Port: Integer
+        # @param ServiceVip: PostgreSQL连接源的实例vip【不支持修改】
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ServiceVip: String
+        # @param UniqVpcId: PostgreSQL连接源的vpcId【不支持修改】
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UniqVpcId: String
+        # @param UserName: PostgreSQL连接源的用户名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UserName: String
+        # @param Password: PostgreSQL连接源的密码
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Password: String
+        # @param ClusterId: 当type为TDSQL_C_POSTGRESQL时，该参数才有值【不支持修改】
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClusterId: String
+        # @param IsUpdate: 是否更新到关联的Datahub任务
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsUpdate: Boolean
+
+        attr_accessor :Resource, :Port, :ServiceVip, :UniqVpcId, :UserName, :Password, :ClusterId, :IsUpdate
+        
+        def initialize(resource=nil, port=nil, servicevip=nil, uniqvpcid=nil, username=nil, password=nil, clusterid=nil, isupdate=nil)
+          @Resource = resource
+          @Port = port
+          @ServiceVip = servicevip
+          @UniqVpcId = uniqvpcid
+          @UserName = username
+          @Password = password
+          @ClusterId = clusterid
+          @IsUpdate = isupdate
+        end
+
+        def deserialize(params)
+          @Resource = params['Resource']
+          @Port = params['Port']
+          @ServiceVip = params['ServiceVip']
+          @UniqVpcId = params['UniqVpcId']
+          @UserName = params['UserName']
+          @Password = params['Password']
           @ClusterId = params['ClusterId']
           @IsUpdate = params['IsUpdate']
         end
@@ -6313,6 +7764,53 @@ module TencentCloud
         end
       end
 
+      # SQLServer修改连接源参数
+      class SQLServerModifyConnectParam < TencentCloud::Common::AbstractModel
+        # @param Resource: SQLServer连接源的实例资源【不支持修改】
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Resource: String
+        # @param Port: SQLServer的连接port【不支持修改】
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Port: Integer
+        # @param ServiceVip: SQLServer连接源的实例vip【不支持修改】
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ServiceVip: String
+        # @param UniqVpcId: SQLServer连接源的vpcId【不支持修改】
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UniqVpcId: String
+        # @param UserName: SQLServer连接源的用户名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UserName: String
+        # @param Password: SQLServer连接源的密码
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Password: String
+        # @param IsUpdate: 是否更新到关联的Dip任务
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsUpdate: Boolean
+
+        attr_accessor :Resource, :Port, :ServiceVip, :UniqVpcId, :UserName, :Password, :IsUpdate
+        
+        def initialize(resource=nil, port=nil, servicevip=nil, uniqvpcid=nil, username=nil, password=nil, isupdate=nil)
+          @Resource = resource
+          @Port = port
+          @ServiceVip = servicevip
+          @UniqVpcId = uniqvpcid
+          @UserName = username
+          @Password = password
+          @IsUpdate = isupdate
+        end
+
+        def deserialize(params)
+          @Resource = params['Resource']
+          @Port = params['Port']
+          @ServiceVip = params['ServiceVip']
+          @UniqVpcId = params['UniqVpcId']
+          @UserName = params['UserName']
+          @Password = params['Password']
+          @IsUpdate = params['IsUpdate']
+        end
+      end
+
       # SQLServer类型入参
       class SQLServerParam < TencentCloud::Common::AbstractModel
         # @param Database: SQLServer的数据库名称
@@ -6520,17 +8018,21 @@ module TencentCloud
         # @type Bid: String
         # @param Tid: Tdw的tid
         # @type Tid: String
+        # @param IsDomestic: 是否为国内站，默认true
+        # @type IsDomestic: Boolean
 
-        attr_accessor :Bid, :Tid
+        attr_accessor :Bid, :Tid, :IsDomestic
         
-        def initialize(bid=nil, tid=nil)
+        def initialize(bid=nil, tid=nil, isdomestic=nil)
           @Bid = bid
           @Tid = tid
+          @IsDomestic = isdomestic
         end
 
         def deserialize(params)
           @Bid = params['Bid']
           @Tid = params['Tid']
+          @IsDomestic = params['IsDomestic']
         end
       end
 

@@ -308,8 +308,8 @@ module TencentCloud
         end
       end
 
-      # CopyJobs请求参数结构体
-      class CopyJobsRequest < TencentCloud::Common::AbstractModel
+      # 复制作业单条明细
+      class CopyJobItem < TencentCloud::Common::AbstractModel
 
         
         def initialize()
@@ -319,37 +319,105 @@ module TencentCloud
         end
       end
 
+      # 复制作业单条明细结果
+      class CopyJobResult < TencentCloud::Common::AbstractModel
+
+        
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # CopyJobs请求参数结构体
+      class CopyJobsRequest < TencentCloud::Common::AbstractModel
+        # @param JobItems: 复制明细列表
+        # @type JobItems: Array
+        # @param WorkSpaceId: 工作空间 SerialId
+        # @type WorkSpaceId: String
+
+        attr_accessor :JobItems, :WorkSpaceId
+        
+        def initialize(jobitems=nil, workspaceid=nil)
+          @JobItems = jobitems
+          @WorkSpaceId = workspaceid
+        end
+
+        def deserialize(params)
+          unless params['JobItems'].nil?
+            @JobItems = []
+            params['JobItems'].each do |i|
+              copyjobitem_tmp = CopyJobItem.new
+              copyjobitem_tmp.deserialize(i)
+              @JobItems << copyjobitem_tmp
+            end
+          end
+          @WorkSpaceId = params['WorkSpaceId']
+        end
+      end
+
       # CopyJobs返回参数结构体
       class CopyJobsResponse < TencentCloud::Common::AbstractModel
+        # @param SuccessCount: 成功条数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SuccessCount: Integer
+        # @param FailCount: 失败条数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FailCount: Integer
+        # @param CopyJobsResults: 结果列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CopyJobsResults: Array
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RequestId
+        attr_accessor :SuccessCount, :FailCount, :CopyJobsResults, :RequestId
         
-        def initialize(requestid=nil)
+        def initialize(successcount=nil, failcount=nil, copyjobsresults=nil, requestid=nil)
+          @SuccessCount = successcount
+          @FailCount = failcount
+          @CopyJobsResults = copyjobsresults
           @RequestId = requestid
         end
 
         def deserialize(params)
+          @SuccessCount = params['SuccessCount']
+          @FailCount = params['FailCount']
+          unless params['CopyJobsResults'].nil?
+            @CopyJobsResults = []
+            params['CopyJobsResults'].each do |i|
+              copyjobresult_tmp = CopyJobResult.new
+              copyjobresult_tmp.deserialize(i)
+              @CopyJobsResults << copyjobresult_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
 
       # CreateFolder请求参数结构体
       class CreateFolderRequest < TencentCloud::Common::AbstractModel
+        # @param FolderName: 新建文件夹名
+        # @type FolderName: String
+        # @param ParentId: 新建文件夹的父目录ID
+        # @type ParentId: String
         # @param FolderType: 文件夹类型，0是任务文件夹，1是依赖文件夹
         # @type FolderType: Integer
         # @param WorkSpaceId: 工作空间 SerialId
         # @type WorkSpaceId: String
 
-        attr_accessor :FolderType, :WorkSpaceId
+        attr_accessor :FolderName, :ParentId, :FolderType, :WorkSpaceId
         
-        def initialize(foldertype=nil, workspaceid=nil)
+        def initialize(foldername=nil, parentid=nil, foldertype=nil, workspaceid=nil)
+          @FolderName = foldername
+          @ParentId = parentid
           @FolderType = foldertype
           @WorkSpaceId = workspaceid
         end
 
         def deserialize(params)
+          @FolderName = params['FolderName']
+          @ParentId = params['ParentId']
           @FolderType = params['FolderType']
           @WorkSpaceId = params['WorkSpaceId']
         end
@@ -357,16 +425,20 @@ module TencentCloud
 
       # CreateFolder返回参数结构体
       class CreateFolderResponse < TencentCloud::Common::AbstractModel
+        # @param FolderId: 新建文件夹的唯一ID
+        # @type FolderId: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RequestId
+        attr_accessor :FolderId, :RequestId
         
-        def initialize(requestid=nil)
+        def initialize(folderid=nil, requestid=nil)
+          @FolderId = folderid
           @RequestId = requestid
         end
 
         def deserialize(params)
+          @FolderId = params['FolderId']
           @RequestId = params['RequestId']
         end
       end

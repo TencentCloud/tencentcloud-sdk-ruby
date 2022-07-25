@@ -2433,6 +2433,46 @@ module TencentCloud
         end
       end
 
+      # CreateEdgeLogConfig请求参数结构体
+      class CreateEdgeLogConfigRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群ID
+        # @type ClusterId: String
+        # @param LogConfig: 日志采集配置的json表达
+        # @type LogConfig: String
+        # @param LogsetId: CLS日志集ID
+        # @type LogsetId: String
+
+        attr_accessor :ClusterId, :LogConfig, :LogsetId
+        
+        def initialize(clusterid=nil, logconfig=nil, logsetid=nil)
+          @ClusterId = clusterid
+          @LogConfig = logconfig
+          @LogsetId = logsetid
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @LogConfig = params['LogConfig']
+          @LogsetId = params['LogsetId']
+        end
+      end
+
+      # CreateEdgeLogConfig返回参数结构体
+      class CreateEdgeLogConfigResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateImageCache请求参数结构体
       class CreateImageCacheRequest < TencentCloud::Common::AbstractModel
         # @param Images: 用于制作镜像缓存的容器镜像列表
@@ -4405,6 +4445,60 @@ module TencentCloud
         def deserialize(params)
           @Status = params['Status']
           @ErrorMsg = params['ErrorMsg']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeClusterEndpoints请求参数结构体
+      class DescribeClusterEndpointsRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群ID
+        # @type ClusterId: String
+
+        attr_accessor :ClusterId
+        
+        def initialize(clusterid=nil)
+          @ClusterId = clusterid
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+        end
+      end
+
+      # DescribeClusterEndpoints返回参数结构体
+      class DescribeClusterEndpointsResponse < TencentCloud::Common::AbstractModel
+        # @param CertificationAuthority: 集群APIServer的CA证书
+        # @type CertificationAuthority: String
+        # @param ClusterExternalEndpoint: 集群APIServer的外网访问地址
+        # @type ClusterExternalEndpoint: String
+        # @param ClusterIntranetEndpoint: 集群APIServer的内网访问地址
+        # @type ClusterIntranetEndpoint: String
+        # @param ClusterDomain: 集群APIServer的域名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClusterDomain: String
+        # @param ClusterExternalACL: 集群APIServer的外网访问ACL列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClusterExternalACL: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :CertificationAuthority, :ClusterExternalEndpoint, :ClusterIntranetEndpoint, :ClusterDomain, :ClusterExternalACL, :RequestId
+        
+        def initialize(certificationauthority=nil, clusterexternalendpoint=nil, clusterintranetendpoint=nil, clusterdomain=nil, clusterexternalacl=nil, requestid=nil)
+          @CertificationAuthority = certificationauthority
+          @ClusterExternalEndpoint = clusterexternalendpoint
+          @ClusterIntranetEndpoint = clusterintranetendpoint
+          @ClusterDomain = clusterdomain
+          @ClusterExternalACL = clusterexternalacl
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @CertificationAuthority = params['CertificationAuthority']
+          @ClusterExternalEndpoint = params['ClusterExternalEndpoint']
+          @ClusterIntranetEndpoint = params['ClusterIntranetEndpoint']
+          @ClusterDomain = params['ClusterDomain']
+          @ClusterExternalACL = params['ClusterExternalACL']
           @RequestId = params['RequestId']
         end
       end
@@ -9477,6 +9571,38 @@ module TencentCloud
         end
       end
 
+      # InstallEdgeLogAgent请求参数结构体
+      class InstallEdgeLogAgentRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群ID
+        # @type ClusterId: String
+
+        attr_accessor :ClusterId
+        
+        def initialize(clusterid=nil)
+          @ClusterId = clusterid
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+        end
+      end
+
+      # InstallEdgeLogAgent返回参数结构体
+      class InstallEdgeLogAgentResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # InstallLogAgent请求参数结构体
       class InstallLogAgentRequest < TencentCloud::Common::AbstractModel
         # @param ClusterId: TKE集群ID
@@ -13248,6 +13374,38 @@ module TencentCloud
           @Key = params['Key']
           @Operator = params['Operator']
           @Effect = params['Effect']
+        end
+      end
+
+      # UninstallEdgeLogAgent请求参数结构体
+      class UninstallEdgeLogAgentRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群ID
+        # @type ClusterId: String
+
+        attr_accessor :ClusterId
+        
+        def initialize(clusterid=nil)
+          @ClusterId = clusterid
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+        end
+      end
+
+      # UninstallEdgeLogAgent返回参数结构体
+      class UninstallEdgeLogAgentResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
         end
       end
 
