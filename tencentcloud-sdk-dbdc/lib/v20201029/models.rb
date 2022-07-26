@@ -49,6 +49,8 @@ module TencentCloud
         # @type Disk: Integer
         # @param ShardNum: 分布式类型的实例的分片数
         # @type ShardNum: Integer
+        # @param Region: 地域
+        # @type Region: String
         # @param Zone: 可用区
         # @type Zone: String
         # @param DbHosts: Db所在主机列表, 格式: m1,s1|m2,s2
@@ -57,10 +59,12 @@ module TencentCloud
         # @type HostRole: Integer
         # @param DbEngine: DB引擎，MySQL,Percona,MariaDB
         # @type DbEngine: String
+        # @param CreateTime: 创建时间
+        # @type CreateTime: String
 
-        attr_accessor :InstanceId, :InstanceName, :Status, :StatusDesc, :DbVersion, :Vip, :Vport, :UniqueVpcId, :UniqueSubnetId, :Shard, :NodeNum, :Cpu, :Memory, :Disk, :ShardNum, :Zone, :DbHosts, :HostRole, :DbEngine
+        attr_accessor :InstanceId, :InstanceName, :Status, :StatusDesc, :DbVersion, :Vip, :Vport, :UniqueVpcId, :UniqueSubnetId, :Shard, :NodeNum, :Cpu, :Memory, :Disk, :ShardNum, :Region, :Zone, :DbHosts, :HostRole, :DbEngine, :CreateTime
         
-        def initialize(instanceid=nil, instancename=nil, status=nil, statusdesc=nil, dbversion=nil, vip=nil, vport=nil, uniquevpcid=nil, uniquesubnetid=nil, shard=nil, nodenum=nil, cpu=nil, memory=nil, disk=nil, shardnum=nil, zone=nil, dbhosts=nil, hostrole=nil, dbengine=nil)
+        def initialize(instanceid=nil, instancename=nil, status=nil, statusdesc=nil, dbversion=nil, vip=nil, vport=nil, uniquevpcid=nil, uniquesubnetid=nil, shard=nil, nodenum=nil, cpu=nil, memory=nil, disk=nil, shardnum=nil, region=nil, zone=nil, dbhosts=nil, hostrole=nil, dbengine=nil, createtime=nil)
           @InstanceId = instanceid
           @InstanceName = instancename
           @Status = status
@@ -76,10 +80,12 @@ module TencentCloud
           @Memory = memory
           @Disk = disk
           @ShardNum = shardnum
+          @Region = region
           @Zone = zone
           @DbHosts = dbhosts
           @HostRole = hostrole
           @DbEngine = dbengine
+          @CreateTime = createtime
         end
 
         def deserialize(params)
@@ -98,10 +104,12 @@ module TencentCloud
           @Memory = params['Memory']
           @Disk = params['Disk']
           @ShardNum = params['ShardNum']
+          @Region = params['Region']
           @Zone = params['Zone']
           @DbHosts = params['DbHosts']
           @HostRole = params['HostRole']
           @DbEngine = params['DbEngine']
+          @CreateTime = params['CreateTime']
         end
       end
 
@@ -237,9 +245,9 @@ module TencentCloud
         # @type Region: String
         # @param ProductId: 产品ID, 0:CDB, 1:TDSQL
         # @type ProductId: Integer
-        # @param Type: 集群类型, 0:公有云, 1:金融围笼
+        # @param Type: 集群类型, 0:公有云, 1:金融围笼, 2:CDC集群
         # @type Type: Integer
-        # @param HostType: 主机类型, 0:物理机, 1:cvm本地盘, 2:cvm云盘
+        # @param HostType: 主机类型, 0:物理机, 1:CVM机型, 2:CDC机型
         # @type HostType: Integer
         # @param AutoRenewFlag: 自动续费标志, 0:未设置, 1:自动续费, 2:到期不续费
         # @type AutoRenewFlag: Integer
@@ -277,13 +285,16 @@ module TencentCloud
         # @type DiskAssignable: Integer
         # @param Zone: 可用区
         # @type Zone: String
-        # @param FenceId: 围笼ID
+        # @param FenceId: 金融围笼ID
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FenceId: String
+        # @param ClusterId: 所属集群ID(默认集群为空)
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClusterId: String
 
-        attr_accessor :InstanceId, :InstanceName, :Region, :ProductId, :Type, :HostType, :AutoRenewFlag, :Status, :StatusDesc, :CreateTime, :PeriodEndTime, :HostNum, :DbNum, :AssignStrategy, :CpuSpec, :CpuAssigned, :CpuAssignable, :MemorySpec, :MemoryAssigned, :MemoryAssignable, :DiskSpec, :DiskAssigned, :DiskAssignable, :Zone, :FenceId
+        attr_accessor :InstanceId, :InstanceName, :Region, :ProductId, :Type, :HostType, :AutoRenewFlag, :Status, :StatusDesc, :CreateTime, :PeriodEndTime, :HostNum, :DbNum, :AssignStrategy, :CpuSpec, :CpuAssigned, :CpuAssignable, :MemorySpec, :MemoryAssigned, :MemoryAssignable, :DiskSpec, :DiskAssigned, :DiskAssignable, :Zone, :FenceId, :ClusterId
         
-        def initialize(instanceid=nil, instancename=nil, region=nil, productid=nil, type=nil, hosttype=nil, autorenewflag=nil, status=nil, statusdesc=nil, createtime=nil, periodendtime=nil, hostnum=nil, dbnum=nil, assignstrategy=nil, cpuspec=nil, cpuassigned=nil, cpuassignable=nil, memoryspec=nil, memoryassigned=nil, memoryassignable=nil, diskspec=nil, diskassigned=nil, diskassignable=nil, zone=nil, fenceid=nil)
+        def initialize(instanceid=nil, instancename=nil, region=nil, productid=nil, type=nil, hosttype=nil, autorenewflag=nil, status=nil, statusdesc=nil, createtime=nil, periodendtime=nil, hostnum=nil, dbnum=nil, assignstrategy=nil, cpuspec=nil, cpuassigned=nil, cpuassignable=nil, memoryspec=nil, memoryassigned=nil, memoryassignable=nil, diskspec=nil, diskassigned=nil, diskassignable=nil, zone=nil, fenceid=nil, clusterid=nil)
           @InstanceId = instanceid
           @InstanceName = instancename
           @Region = region
@@ -309,6 +320,7 @@ module TencentCloud
           @DiskAssignable = diskassignable
           @Zone = zone
           @FenceId = fenceid
+          @ClusterId = clusterid
         end
 
         def deserialize(params)
@@ -337,6 +349,7 @@ module TencentCloud
           @DiskAssignable = params['DiskAssignable']
           @Zone = params['Zone']
           @FenceId = params['FenceId']
+          @ClusterId = params['ClusterId']
         end
       end
 
@@ -406,15 +419,18 @@ module TencentCloud
         # @type DiskAssignable: Integer
         # @param Zone: 可用区
         # @type Zone: String
-        # @param FenceId: 围笼ID
+        # @param FenceId: 金融围笼ID
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FenceId: String
+        # @param ClusterId: 所属集群ID(默认集群为空)
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClusterId: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :InstanceId, :InstanceName, :Region, :ProductId, :Type, :HostType, :AutoRenewFlag, :Status, :StatusDesc, :CreateTime, :PeriodEndTime, :HostNum, :DbNum, :AssignStrategy, :CpuSpec, :CpuAssigned, :CpuAssignable, :MemorySpec, :MemoryAssigned, :MemoryAssignable, :DiskSpec, :DiskAssigned, :DiskAssignable, :Zone, :FenceId, :RequestId
+        attr_accessor :InstanceId, :InstanceName, :Region, :ProductId, :Type, :HostType, :AutoRenewFlag, :Status, :StatusDesc, :CreateTime, :PeriodEndTime, :HostNum, :DbNum, :AssignStrategy, :CpuSpec, :CpuAssigned, :CpuAssignable, :MemorySpec, :MemoryAssigned, :MemoryAssignable, :DiskSpec, :DiskAssigned, :DiskAssignable, :Zone, :FenceId, :ClusterId, :RequestId
         
-        def initialize(instanceid=nil, instancename=nil, region=nil, productid=nil, type=nil, hosttype=nil, autorenewflag=nil, status=nil, statusdesc=nil, createtime=nil, periodendtime=nil, hostnum=nil, dbnum=nil, assignstrategy=nil, cpuspec=nil, cpuassigned=nil, cpuassignable=nil, memoryspec=nil, memoryassigned=nil, memoryassignable=nil, diskspec=nil, diskassigned=nil, diskassignable=nil, zone=nil, fenceid=nil, requestid=nil)
+        def initialize(instanceid=nil, instancename=nil, region=nil, productid=nil, type=nil, hosttype=nil, autorenewflag=nil, status=nil, statusdesc=nil, createtime=nil, periodendtime=nil, hostnum=nil, dbnum=nil, assignstrategy=nil, cpuspec=nil, cpuassigned=nil, cpuassignable=nil, memoryspec=nil, memoryassigned=nil, memoryassignable=nil, diskspec=nil, diskassigned=nil, diskassignable=nil, zone=nil, fenceid=nil, clusterid=nil, requestid=nil)
           @InstanceId = instanceid
           @InstanceName = instancename
           @Region = region
@@ -440,6 +456,7 @@ module TencentCloud
           @DiskAssignable = diskassignable
           @Zone = zone
           @FenceId = fenceid
+          @ClusterId = clusterid
           @RequestId = requestid
         end
 
@@ -469,6 +486,7 @@ module TencentCloud
           @DiskAssignable = params['DiskAssignable']
           @Zone = params['Zone']
           @FenceId = params['FenceId']
+          @ClusterId = params['ClusterId']
           @RequestId = params['RequestId']
         end
       end
@@ -493,10 +511,12 @@ module TencentCloud
         # @type FenceId: Array
         # @param Status: 按实例状态过滤, -1:已隔离, 0:创建中, 1:运行中, 2:扩容中, 3:删除中
         # @type Status: Array
+        # @param ClusterId: 按所属集群ID过滤
+        # @type ClusterId: Array
 
-        attr_accessor :Limit, :Offset, :OrderBy, :SortBy, :ProductId, :InstanceId, :InstanceName, :FenceId, :Status
+        attr_accessor :Limit, :Offset, :OrderBy, :SortBy, :ProductId, :InstanceId, :InstanceName, :FenceId, :Status, :ClusterId
         
-        def initialize(limit=nil, offset=nil, orderby=nil, sortby=nil, productid=nil, instanceid=nil, instancename=nil, fenceid=nil, status=nil)
+        def initialize(limit=nil, offset=nil, orderby=nil, sortby=nil, productid=nil, instanceid=nil, instancename=nil, fenceid=nil, status=nil, clusterid=nil)
           @Limit = limit
           @Offset = offset
           @OrderBy = orderby
@@ -506,6 +526,7 @@ module TencentCloud
           @InstanceName = instancename
           @FenceId = fenceid
           @Status = status
+          @ClusterId = clusterid
         end
 
         def deserialize(params)
@@ -518,6 +539,7 @@ module TencentCloud
           @InstanceName = params['InstanceName']
           @FenceId = params['FenceId']
           @Status = params['Status']
+          @ClusterId = params['ClusterId']
         end
       end
 

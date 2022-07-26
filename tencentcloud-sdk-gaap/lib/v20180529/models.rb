@@ -295,16 +295,19 @@ module TencentCloud
         # @type RealServerPort: Integer
         # @param DownIPList: 当源站为域名时，域名被解析成一个或者多个IP，该字段表示其中异常的IP列表。状态异常，但该字段为空时，表示域名解析异常。
         # @type DownIPList: Array
+        # @param RealServerFailoverRole: 源站主备角色：master表示主，slave表示备，该参数必须在监听器打开了源站主备模式。
+        # @type RealServerFailoverRole: String
 
-        attr_accessor :RealServerId, :RealServerIP, :RealServerWeight, :RealServerStatus, :RealServerPort, :DownIPList
+        attr_accessor :RealServerId, :RealServerIP, :RealServerWeight, :RealServerStatus, :RealServerPort, :DownIPList, :RealServerFailoverRole
         
-        def initialize(realserverid=nil, realserverip=nil, realserverweight=nil, realserverstatus=nil, realserverport=nil, downiplist=nil)
+        def initialize(realserverid=nil, realserverip=nil, realserverweight=nil, realserverstatus=nil, realserverport=nil, downiplist=nil, realserverfailoverrole=nil)
           @RealServerId = realserverid
           @RealServerIP = realserverip
           @RealServerWeight = realserverweight
           @RealServerStatus = realserverstatus
           @RealServerPort = realserverport
           @DownIPList = downiplist
+          @RealServerFailoverRole = realserverfailoverrole
         end
 
         def deserialize(params)
@@ -314,6 +317,7 @@ module TencentCloud
           @RealServerStatus = params['RealServerStatus']
           @RealServerPort = params['RealServerPort']
           @DownIPList = params['DownIPList']
+          @RealServerFailoverRole = params['RealServerFailoverRole']
         end
       end
 
@@ -1441,7 +1445,7 @@ module TencentCloud
         # @type Path: String
         # @param RealServerType: 转发规则对应源站的类型，支持IP和DOMAIN类型。
         # @type RealServerType: String
-        # @param Scheduler: 规则转发源站调度策略，支持轮询（rr），加权轮询（wrr），最小连接数（lc）。
+        # @param Scheduler: 监听器源站访问策略，其中：rr表示轮询；wrr表示加权轮询；lc表示最小连接数；lrtt表示最小时延。
         # @type Scheduler: String
         # @param HealthCheck: 规则是否开启健康检查，1开启，0关闭。
         # @type HealthCheck: Integer
@@ -1612,11 +1616,11 @@ module TencentCloud
         # @type ListenerName: String
         # @param Ports: 监听器端口列表。
         # @type Ports: Array
-        # @param Scheduler: 监听器源站调度策略，支持轮询（rr），加权轮询（wrr），最小连接数（lc）。
+        # @param Scheduler: 监听器源站访问策略，其中：rr表示轮询；wrr表示加权轮询；lc表示最小连接数；lrtt表示最小时延。
         # @type Scheduler: String
         # @param HealthCheck: 源站是否开启健康检查：1开启，0关闭，UDP监听器不支持健康检查
         # @type HealthCheck: Integer
-        # @param RealServerType: 监听器对应源站类型，支持IP或者DOMAIN类型。DOMAIN源站类型不支持wrr的源站调度策略。
+        # @param RealServerType: 监听器绑定源站类型。IP表示IP地址，DOMAIN表示域名。
         # @type RealServerType: String
         # @param ProxyId: 通道ID，ProxyId和GroupId必须设置一个，但不能同时设置。
         # @type ProxyId: String
@@ -1700,9 +1704,9 @@ module TencentCloud
         # @type ListenerName: String
         # @param Ports: 监听器端口列表
         # @type Ports: Array
-        # @param Scheduler: 监听器源站调度策略，支持轮询（rr），加权轮询（wrr），最小连接数（lc）
+        # @param Scheduler: 监听器源站访问策略，其中：rr表示轮询；wrr表示加权轮询；lc表示最小连接数；lrtt表示最小时延。
         # @type Scheduler: String
-        # @param RealServerType: 监听器对应源站类型，支持IP或者DOMAIN类型
+        # @param RealServerType: 监听器绑定源站类型。IP表示IP地址，DOMAIN表示域名。
         # @type RealServerType: String
         # @param ProxyId: 通道ID，ProxyId和GroupId必须设置一个，但不能同时设置。
         # @type ProxyId: String
@@ -1710,10 +1714,32 @@ module TencentCloud
         # @type GroupId: String
         # @param RealServerPorts: 源站端口列表，该参数仅支持v1版本监听器和通道组监听器
         # @type RealServerPorts: Array
+        # @param DelayLoop: 源站健康检查时间间隔，单位：秒。时间间隔取值在[5，300]之间。
+        # @type DelayLoop: Integer
+        # @param ConnectTimeout: 源站健康检查响应超时时间，单位：秒。超时时间取值在[2，60]之间。超时时间应小于健康检查时间间隔DelayLoop。
+        # @type ConnectTimeout: Integer
+        # @param HealthyThreshold: 健康阈值，表示连续检查成功多少次后认定源站健康。范围为1到10
+        # @type HealthyThreshold: Integer
+        # @param UnhealthyThreshold: 不健康阈值，表示连续检查失败多少次数后认为源站不健康。范围为1到10
+        # @type UnhealthyThreshold: Integer
+        # @param FailoverSwitch: 源站是否开启主备模式：1开启，0关闭，DOMAIN类型源站不支持开启
+        # @type FailoverSwitch: Integer
+        # @param HealthCheck: 源站是否开启健康检查：1开启，0关闭。
+        # @type HealthCheck: Integer
+        # @param CheckType: UDP源站健康类型。PORT表示检查端口，PING表示PING。
+        # @type CheckType: String
+        # @param CheckPort: UDP源站健康检查探测端口。
+        # @type CheckPort: Integer
+        # @param ContextType: UDP源站健康检查端口探测报文类型：TEXT表示文本。仅在健康检查类型为PORT时使用。
+        # @type ContextType: String
+        # @param SendContext: UDP源站健康检查端口探测发送报文。仅在健康检查类型为PORT时使用。
+        # @type SendContext: String
+        # @param RecvContext: UDP源站健康检查端口探测接收报文。仅在健康检查类型为PORT时使用。
+        # @type RecvContext: String
 
-        attr_accessor :ListenerName, :Ports, :Scheduler, :RealServerType, :ProxyId, :GroupId, :RealServerPorts
+        attr_accessor :ListenerName, :Ports, :Scheduler, :RealServerType, :ProxyId, :GroupId, :RealServerPorts, :DelayLoop, :ConnectTimeout, :HealthyThreshold, :UnhealthyThreshold, :FailoverSwitch, :HealthCheck, :CheckType, :CheckPort, :ContextType, :SendContext, :RecvContext
         
-        def initialize(listenername=nil, ports=nil, scheduler=nil, realservertype=nil, proxyid=nil, groupid=nil, realserverports=nil)
+        def initialize(listenername=nil, ports=nil, scheduler=nil, realservertype=nil, proxyid=nil, groupid=nil, realserverports=nil, delayloop=nil, connecttimeout=nil, healthythreshold=nil, unhealthythreshold=nil, failoverswitch=nil, healthcheck=nil, checktype=nil, checkport=nil, contexttype=nil, sendcontext=nil, recvcontext=nil)
           @ListenerName = listenername
           @Ports = ports
           @Scheduler = scheduler
@@ -1721,6 +1747,17 @@ module TencentCloud
           @ProxyId = proxyid
           @GroupId = groupid
           @RealServerPorts = realserverports
+          @DelayLoop = delayloop
+          @ConnectTimeout = connecttimeout
+          @HealthyThreshold = healthythreshold
+          @UnhealthyThreshold = unhealthythreshold
+          @FailoverSwitch = failoverswitch
+          @HealthCheck = healthcheck
+          @CheckType = checktype
+          @CheckPort = checkport
+          @ContextType = contexttype
+          @SendContext = sendcontext
+          @RecvContext = recvcontext
         end
 
         def deserialize(params)
@@ -1731,6 +1768,17 @@ module TencentCloud
           @ProxyId = params['ProxyId']
           @GroupId = params['GroupId']
           @RealServerPorts = params['RealServerPorts']
+          @DelayLoop = params['DelayLoop']
+          @ConnectTimeout = params['ConnectTimeout']
+          @HealthyThreshold = params['HealthyThreshold']
+          @UnhealthyThreshold = params['UnhealthyThreshold']
+          @FailoverSwitch = params['FailoverSwitch']
+          @HealthCheck = params['HealthCheck']
+          @CheckType = params['CheckType']
+          @CheckPort = params['CheckPort']
+          @ContextType = params['ContextType']
+          @SendContext = params['SendContext']
+          @RecvContext = params['RecvContext']
         end
       end
 
@@ -5568,10 +5616,7 @@ module TencentCloud
         # @type ListenerId: String
         # @param RuleId: 转发规则ID
         # @type RuleId: String
-        # @param Scheduler: 调度策略，其中：
-        # rr，轮询；
-        # wrr，加权轮询；
-        # lc，最小连接数。
+        # @param Scheduler: 监听器源站访问策略，其中：rr表示轮询；wrr表示加权轮询；lc表示最小连接数；lrtt表示最小时延。
         # @type Scheduler: String
         # @param HealthCheck: 源站健康检查开关，其中：
         # 1，开启；
@@ -5714,7 +5759,7 @@ module TencentCloud
         # @type ProxyId: String
         # @param ListenerName: 监听器名称
         # @type ListenerName: String
-        # @param Scheduler: 监听器源站调度策略，支持轮询（rr），加权轮询（wrr），最小连接数（lc）。
+        # @param Scheduler: 监听器源站访问策略，其中：rr表示轮询；wrr表示加权轮询；lc表示最小连接数；lrtt表示最小时延。
         # @type Scheduler: String
         # @param DelayLoop: 源站健康检查时间间隔，单位：秒。时间间隔取值在[5，300]之间。
         # @type DelayLoop: Integer
@@ -5786,17 +5831,50 @@ module TencentCloud
         # @type ProxyId: String
         # @param ListenerName: 监听器名称
         # @type ListenerName: String
-        # @param Scheduler: 监听器源站调度策略
+        # @param Scheduler: 监听器源站访问策略，其中：rr表示轮询；wrr表示加权轮询；lc表示最小连接数；lrtt表示最小时延。
         # @type Scheduler: String
+        # @param DelayLoop: 源站健康检查时间间隔，单位：秒。时间间隔取值在[5，300]之间。
+        # @type DelayLoop: Integer
+        # @param ConnectTimeout: 源站健康检查响应超时时间，单位：秒。超时时间取值在[2，60]之间。超时时间应小于健康检查时间间隔DelayLoop。
+        # @type ConnectTimeout: Integer
+        # @param HealthyThreshold: 健康阈值，表示连续检查成功多少次后认定源站健康。范围为1到10
+        # @type HealthyThreshold: Integer
+        # @param UnhealthyThreshold: 不健康阈值，表示连续检查失败多少次数后认为源站不健康。范围为1到10
+        # @type UnhealthyThreshold: Integer
+        # @param FailoverSwitch: 源站是否开启主备模式：1开启，0关闭，DOMAIN类型源站不支持开启
+        # @type FailoverSwitch: Integer
+        # @param HealthCheck: 源站是否开启健康检查：1开启，0关闭。
+        # @type HealthCheck: Integer
+        # @param CheckType: UDP源站健康类型。PORT表示检查端口，PING表示PING。
+        # @type CheckType: String
+        # @param CheckPort: UDP源站健康检查探测端口。
+        # @type CheckPort: Integer
+        # @param ContextType: UDP源站健康检查端口探测报文类型：TEXT表示文本。仅在健康检查类型为PORT时使用。
+        # @type ContextType: String
+        # @param SendContext: UDP源站健康检查端口探测发送报文。仅在健康检查类型为PORT时使用。
+        # @type SendContext: String
+        # @param RecvContext: UDP源站健康检查端口探测接收报文。仅在健康检查类型为PORT时使用。
+        # @type RecvContext: String
 
-        attr_accessor :ListenerId, :GroupId, :ProxyId, :ListenerName, :Scheduler
+        attr_accessor :ListenerId, :GroupId, :ProxyId, :ListenerName, :Scheduler, :DelayLoop, :ConnectTimeout, :HealthyThreshold, :UnhealthyThreshold, :FailoverSwitch, :HealthCheck, :CheckType, :CheckPort, :ContextType, :SendContext, :RecvContext
         
-        def initialize(listenerid=nil, groupid=nil, proxyid=nil, listenername=nil, scheduler=nil)
+        def initialize(listenerid=nil, groupid=nil, proxyid=nil, listenername=nil, scheduler=nil, delayloop=nil, connecttimeout=nil, healthythreshold=nil, unhealthythreshold=nil, failoverswitch=nil, healthcheck=nil, checktype=nil, checkport=nil, contexttype=nil, sendcontext=nil, recvcontext=nil)
           @ListenerId = listenerid
           @GroupId = groupid
           @ProxyId = proxyid
           @ListenerName = listenername
           @Scheduler = scheduler
+          @DelayLoop = delayloop
+          @ConnectTimeout = connecttimeout
+          @HealthyThreshold = healthythreshold
+          @UnhealthyThreshold = unhealthythreshold
+          @FailoverSwitch = failoverswitch
+          @HealthCheck = healthcheck
+          @CheckType = checktype
+          @CheckPort = checkport
+          @ContextType = contexttype
+          @SendContext = sendcontext
+          @RecvContext = recvcontext
         end
 
         def deserialize(params)
@@ -5805,6 +5883,17 @@ module TencentCloud
           @ProxyId = params['ProxyId']
           @ListenerName = params['ListenerName']
           @Scheduler = params['Scheduler']
+          @DelayLoop = params['DelayLoop']
+          @ConnectTimeout = params['ConnectTimeout']
+          @HealthyThreshold = params['HealthyThreshold']
+          @UnhealthyThreshold = params['UnhealthyThreshold']
+          @FailoverSwitch = params['FailoverSwitch']
+          @HealthCheck = params['HealthCheck']
+          @CheckType = params['CheckType']
+          @CheckPort = params['CheckPort']
+          @ContextType = params['ContextType']
+          @SendContext = params['SendContext']
+          @RecvContext = params['RecvContext']
         end
       end
 
@@ -6509,7 +6598,7 @@ module TencentCloud
         # @type RealServerIP: String
         # @param RealServerWeight: 源站权重
         # @type RealServerWeight: Integer
-        # @param RealServerFailoverRole: 源站主备角色：master主，slave备，该参数必须在监听器打开了源站主备模式，且监听器类型为TCP监听器
+        # @param RealServerFailoverRole: 源站主备角色：master表示主，slave表示备，该参数必须在监听器打开了源站主备模式。
         # @type RealServerFailoverRole: String
 
         attr_accessor :RealServerId, :RealServerPort, :RealServerIP, :RealServerWeight, :RealServerFailoverRole
@@ -6703,7 +6792,7 @@ module TencentCloud
         # @type Path: String
         # @param RealServerType: 源站类型
         # @type RealServerType: String
-        # @param Scheduler: 转发源站策略
+        # @param Scheduler: 监听器源站访问策略，其中：rr表示轮询；wrr表示加权轮询；lc表示最小连接数；lrtt表示最小时延。
         # @type Scheduler: String
         # @param HealthCheck: 是否开启健康检查标志，1表示开启，0表示关闭
         # @type HealthCheck: Integer
@@ -7000,10 +7089,7 @@ module TencentCloud
         # 3表示源站调整中；
         # 4表示配置变更中。
         # @type ListenerStatus: Integer
-        # @param Scheduler: 监听器源站访问策略，其中：
-        # rr表示轮询；
-        # wrr表示加权轮询；
-        # lc表示最小连接数。
+        # @param Scheduler: 监听器源站访问策略，其中：rr表示轮询；wrr表示加权轮询；lc表示最小连接数；lrtt表示最小时延。
         # @type Scheduler: String
         # @param ConnectTimeout: 源站健康检查响应超时时间，单位：秒
         # @type ConnectTimeout: Integer
@@ -7157,7 +7243,7 @@ module TencentCloud
         # 3表示源站调整中；
         # 4表示配置变更中。
         # @type ListenerStatus: Integer
-        # @param Scheduler: 监听器源站访问策略
+        # @param Scheduler: 监听器源站访问策略，其中：rr表示轮询；wrr表示加权轮询；lc表示最小连接数；lrtt表示最小时延。
         # @type Scheduler: String
         # @param BindStatus: 监听器绑定源站状态， 0表示正常，1表示IP异常，2表示域名解析异常
         # @type BindStatus: Integer
@@ -7168,10 +7254,43 @@ module TencentCloud
         # @param SessionPersist: 是否开启会话保持选项：0关闭， 非0开启，非0值为会话保持时间
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SessionPersist: Integer
+        # @param DelayLoop: 源站健康检查时间间隔，单位：秒。时间间隔取值在[5，300]之间。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DelayLoop: Integer
+        # @param ConnectTimeout: 源站健康检查响应超时时间，单位：秒。超时时间取值在[2，60]之间。超时时间应小于健康检查时间间隔DelayLoop。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ConnectTimeout: Integer
+        # @param HealthyThreshold: 健康阈值，表示连续检查成功多少次后认定源站健康。范围为1到10
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HealthyThreshold: Integer
+        # @param UnhealthyThreshold: 不健康阈值，表示连续检查失败多少次数后认为源站不健康。范围为1到10
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UnhealthyThreshold: Integer
+        # @param FailoverSwitch: 源站是否开启主备模式：1开启，0关闭，DOMAIN类型源站不支持开启
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FailoverSwitch: Integer
+        # @param HealthCheck: 源站是否开启健康检查：1开启，0关闭。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HealthCheck: Integer
+        # @param CheckType: UDP源站健康类型。PORT表示检查端口，PING表示PING。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CheckType: String
+        # @param CheckPort: UDP源站健康检查探测端口。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CheckPort: Integer
+        # @param ContextType: UDP源站健康检查端口探测报文类型：TEXT表示文本。仅在健康检查类型为PORT时使用。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ContextType: String
+        # @param SendContext: UDP源站健康检查端口探测发送报文。仅在健康检查类型为PORT时使用。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SendContext: String
+        # @param RecvContext: UDP源站健康检查端口探测接收报文。仅在健康检查类型为PORT时使用。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RecvContext: String
 
-        attr_accessor :ListenerId, :ListenerName, :Port, :RealServerPort, :RealServerType, :Protocol, :ListenerStatus, :Scheduler, :BindStatus, :RealServerSet, :CreateTime, :SessionPersist
+        attr_accessor :ListenerId, :ListenerName, :Port, :RealServerPort, :RealServerType, :Protocol, :ListenerStatus, :Scheduler, :BindStatus, :RealServerSet, :CreateTime, :SessionPersist, :DelayLoop, :ConnectTimeout, :HealthyThreshold, :UnhealthyThreshold, :FailoverSwitch, :HealthCheck, :CheckType, :CheckPort, :ContextType, :SendContext, :RecvContext
         
-        def initialize(listenerid=nil, listenername=nil, port=nil, realserverport=nil, realservertype=nil, protocol=nil, listenerstatus=nil, scheduler=nil, bindstatus=nil, realserverset=nil, createtime=nil, sessionpersist=nil)
+        def initialize(listenerid=nil, listenername=nil, port=nil, realserverport=nil, realservertype=nil, protocol=nil, listenerstatus=nil, scheduler=nil, bindstatus=nil, realserverset=nil, createtime=nil, sessionpersist=nil, delayloop=nil, connecttimeout=nil, healthythreshold=nil, unhealthythreshold=nil, failoverswitch=nil, healthcheck=nil, checktype=nil, checkport=nil, contexttype=nil, sendcontext=nil, recvcontext=nil)
           @ListenerId = listenerid
           @ListenerName = listenername
           @Port = port
@@ -7184,6 +7303,17 @@ module TencentCloud
           @RealServerSet = realserverset
           @CreateTime = createtime
           @SessionPersist = sessionpersist
+          @DelayLoop = delayloop
+          @ConnectTimeout = connecttimeout
+          @HealthyThreshold = healthythreshold
+          @UnhealthyThreshold = unhealthythreshold
+          @FailoverSwitch = failoverswitch
+          @HealthCheck = healthcheck
+          @CheckType = checktype
+          @CheckPort = checkport
+          @ContextType = contexttype
+          @SendContext = sendcontext
+          @RecvContext = recvcontext
         end
 
         def deserialize(params)
@@ -7206,6 +7336,17 @@ module TencentCloud
           end
           @CreateTime = params['CreateTime']
           @SessionPersist = params['SessionPersist']
+          @DelayLoop = params['DelayLoop']
+          @ConnectTimeout = params['ConnectTimeout']
+          @HealthyThreshold = params['HealthyThreshold']
+          @UnhealthyThreshold = params['UnhealthyThreshold']
+          @FailoverSwitch = params['FailoverSwitch']
+          @HealthCheck = params['HealthCheck']
+          @CheckType = params['CheckType']
+          @CheckPort = params['CheckPort']
+          @ContextType = params['ContextType']
+          @SendContext = params['SendContext']
+          @RecvContext = params['RecvContext']
         end
       end
 

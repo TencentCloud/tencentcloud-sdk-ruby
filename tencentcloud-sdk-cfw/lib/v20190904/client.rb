@@ -149,7 +149,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 创建防火墙实例
+        # 创建NAT防火墙实例（Region参数必填）
 
         # @param request: Request instance for CreateNatFwInstance.
         # @type request: :class:`Tencentcloud::cfw::V20190904::CreateNatFwInstanceRequest`

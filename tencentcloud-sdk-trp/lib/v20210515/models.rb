@@ -88,7 +88,7 @@ module TencentCloud
         # @param ProductName: 产品名称
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProductName: String
-        # @param Ext: 0
+        # @param Ext: 未使用
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Ext: :class:`Tencentcloud::Trp.v20210515.models.Ext`
         # @param TplName: 模板名称
@@ -169,16 +169,19 @@ module TencentCloud
         # @type BatchId: String
         # @param Remark: 备注
         # @type Remark: String
+        # @param MpTpl: 活动ID
+        # @type MpTpl: String
 
-        attr_accessor :CorpId, :MerchantId, :ProductId, :BatchType, :BatchId, :Remark
+        attr_accessor :CorpId, :MerchantId, :ProductId, :BatchType, :BatchId, :Remark, :MpTpl
         
-        def initialize(corpid=nil, merchantid=nil, productid=nil, batchtype=nil, batchid=nil, remark=nil)
+        def initialize(corpid=nil, merchantid=nil, productid=nil, batchtype=nil, batchid=nil, remark=nil, mptpl=nil)
           @CorpId = corpid
           @MerchantId = merchantid
           @ProductId = productid
           @BatchType = batchtype
           @BatchId = batchid
           @Remark = remark
+          @MpTpl = mptpl
         end
 
         def deserialize(params)
@@ -188,6 +191,7 @@ module TencentCloud
           @BatchType = params['BatchType']
           @BatchId = params['BatchId']
           @Remark = params['Remark']
+          @MpTpl = params['MpTpl']
         end
       end
 
@@ -1395,14 +1399,23 @@ module TencentCloud
         # @type Status: Integer
         # @param MpTpl: 模板ID
         # @type MpTpl: String
+        # @param MerchantId: 商户ID
+        # @type MerchantId: String
+        # @param ProductId: 商品ID
+        # @type ProductId: String
+        # @param Remark: 备注
+        # @type Remark: String
 
-        attr_accessor :BatchId, :CorpId, :Status, :MpTpl
+        attr_accessor :BatchId, :CorpId, :Status, :MpTpl, :MerchantId, :ProductId, :Remark
         
-        def initialize(batchid=nil, corpid=nil, status=nil, mptpl=nil)
+        def initialize(batchid=nil, corpid=nil, status=nil, mptpl=nil, merchantid=nil, productid=nil, remark=nil)
           @BatchId = batchid
           @CorpId = corpid
           @Status = status
           @MpTpl = mptpl
+          @MerchantId = merchantid
+          @ProductId = productid
+          @Remark = remark
         end
 
         def deserialize(params)
@@ -1410,6 +1423,9 @@ module TencentCloud
           @CorpId = params['CorpId']
           @Status = params['Status']
           @MpTpl = params['MpTpl']
+          @MerchantId = params['MerchantId']
+          @ProductId = params['ProductId']
+          @Remark = params['Remark']
         end
       end
 

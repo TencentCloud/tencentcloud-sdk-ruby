@@ -125,6 +125,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 复制组实例更换角色
+
+        # @param request: Request instance for ChangeInstanceRole.
+        # @type request: :class:`Tencentcloud::redis::V20180412::ChangeInstanceRoleRequest`
+        # @rtype: :class:`Tencentcloud::redis::V20180412::ChangeInstanceRoleResponse`
+        def ChangeInstanceRole(request)
+          body = send_request('ChangeInstanceRole', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ChangeInstanceRoleResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 复制组实例切主
+
+        # @param request: Request instance for ChangeMasterInstance.
+        # @type request: :class:`Tencentcloud::redis::V20180412::ChangeMasterInstanceRequest`
+        # @rtype: :class:`Tencentcloud::redis::V20180412::ChangeMasterInstanceResponse`
+        def ChangeMasterInstance(request)
+          body = send_request('ChangeMasterInstance', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ChangeMasterInstanceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 该接口仅支持多AZ实例副本组提主和单AZ副本提主
 
         # @param request: Request instance for ChangeReplicaToMaster.

@@ -282,10 +282,13 @@ module TencentCloud
         # 注意：当资产实例不是全力防护套餐包的实例时，此字段为null
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AnycastOutPackRelation: :class:`Tencentcloud::Antiddos.v20200309.models.AnycastOutPackRelation`
+        # @param InstanceVersion: 资源实例版本
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceVersion: Integer
 
-        attr_accessor :InstanceDetail, :SpecificationLimit, :Usage, :Region, :Status, :ExpiredTime, :CreatedTime, :Name, :PackInfo, :StaticPackRelation, :ZoneId, :Tgw, :EipAddressStatus, :EipFlag, :EipAddressPackRelation, :EipAddressInfo, :Domain, :DamDDoSStatus, :V6Flag, :BGPIPChannelFlag, :TagInfoList, :AnycastOutPackRelation
+        attr_accessor :InstanceDetail, :SpecificationLimit, :Usage, :Region, :Status, :ExpiredTime, :CreatedTime, :Name, :PackInfo, :StaticPackRelation, :ZoneId, :Tgw, :EipAddressStatus, :EipFlag, :EipAddressPackRelation, :EipAddressInfo, :Domain, :DamDDoSStatus, :V6Flag, :BGPIPChannelFlag, :TagInfoList, :AnycastOutPackRelation, :InstanceVersion
         
-        def initialize(instancedetail=nil, specificationlimit=nil, usage=nil, region=nil, status=nil, expiredtime=nil, createdtime=nil, name=nil, packinfo=nil, staticpackrelation=nil, zoneid=nil, tgw=nil, eipaddressstatus=nil, eipflag=nil, eipaddresspackrelation=nil, eipaddressinfo=nil, domain=nil, damddosstatus=nil, v6flag=nil, bgpipchannelflag=nil, taginfolist=nil, anycastoutpackrelation=nil)
+        def initialize(instancedetail=nil, specificationlimit=nil, usage=nil, region=nil, status=nil, expiredtime=nil, createdtime=nil, name=nil, packinfo=nil, staticpackrelation=nil, zoneid=nil, tgw=nil, eipaddressstatus=nil, eipflag=nil, eipaddresspackrelation=nil, eipaddressinfo=nil, domain=nil, damddosstatus=nil, v6flag=nil, bgpipchannelflag=nil, taginfolist=nil, anycastoutpackrelation=nil, instanceversion=nil)
           @InstanceDetail = instancedetail
           @SpecificationLimit = specificationlimit
           @Usage = usage
@@ -308,6 +311,7 @@ module TencentCloud
           @BGPIPChannelFlag = bgpipchannelflag
           @TagInfoList = taginfolist
           @AnycastOutPackRelation = anycastoutpackrelation
+          @InstanceVersion = instanceversion
         end
 
         def deserialize(params)
@@ -367,6 +371,7 @@ module TencentCloud
             @AnycastOutPackRelation = AnycastOutPackRelation.new
             @AnycastOutPackRelation.deserialize(params['AnycastOutPackRelation'])
           end
+          @InstanceVersion = params['InstanceVersion']
         end
       end
 
@@ -5663,19 +5668,24 @@ module TencentCloud
         # @param Port: 8000
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Port: Integer
+        # @param Backup: 备份源站，1: 备份源站，0: 普通源站
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Backup: Integer
 
-        attr_accessor :Source, :Weight, :Port
+        attr_accessor :Source, :Weight, :Port, :Backup
         
-        def initialize(source=nil, weight=nil, port=nil)
+        def initialize(source=nil, weight=nil, port=nil, backup=nil)
           @Source = source
           @Weight = weight
           @Port = port
+          @Backup = backup
         end
 
         def deserialize(params)
           @Source = params['Source']
           @Weight = params['Weight']
           @Port = params['Port']
+          @Backup = params['Backup']
         end
       end
 
@@ -5808,10 +5818,22 @@ module TencentCloud
         # @type Method: String
         # @param StatusCode: 健康检查判定正常状态码，1xx =1, 2xx=2, 3xx=4, 4xx=8,5xx=16，多个状态码值加和
         # @type StatusCode: Integer
+        # @param ProtocolFlag: 是否同时下发http和https规则健康检查配置
+        # @type ProtocolFlag: Integer
+        # @param PassiveEnable: 被动探测开关，=1表示开启；=0表示关闭
+        # @type PassiveEnable: Integer
+        # @param BlockInter: 被动探测不健康屏蔽时间
+        # @type BlockInter: Integer
+        # @param FailedCountInter: 被动探测不健康统计间隔
+        # @type FailedCountInter: Integer
+        # @param FailedThreshold: 被动探测不健康阈值
+        # @type FailedThreshold: Integer
+        # @param PassiveStatusCode: 被动探测判定正常状态码，1xx =1, 2xx=2, 3xx=4, 4xx=8,5xx=16，多个状态码值加和
+        # @type PassiveStatusCode: Integer
 
-        attr_accessor :Status, :Enable, :RuleId, :Url, :Interval, :AliveNum, :KickNum, :Method, :StatusCode
+        attr_accessor :Status, :Enable, :RuleId, :Url, :Interval, :AliveNum, :KickNum, :Method, :StatusCode, :ProtocolFlag, :PassiveEnable, :BlockInter, :FailedCountInter, :FailedThreshold, :PassiveStatusCode
         
-        def initialize(status=nil, enable=nil, ruleid=nil, url=nil, interval=nil, alivenum=nil, kicknum=nil, method=nil, statuscode=nil)
+        def initialize(status=nil, enable=nil, ruleid=nil, url=nil, interval=nil, alivenum=nil, kicknum=nil, method=nil, statuscode=nil, protocolflag=nil, passiveenable=nil, blockinter=nil, failedcountinter=nil, failedthreshold=nil, passivestatuscode=nil)
           @Status = status
           @Enable = enable
           @RuleId = ruleid
@@ -5821,6 +5843,12 @@ module TencentCloud
           @KickNum = kicknum
           @Method = method
           @StatusCode = statuscode
+          @ProtocolFlag = protocolflag
+          @PassiveEnable = passiveenable
+          @BlockInter = blockinter
+          @FailedCountInter = failedcountinter
+          @FailedThreshold = failedthreshold
+          @PassiveStatusCode = passivestatuscode
         end
 
         def deserialize(params)
@@ -5833,6 +5861,12 @@ module TencentCloud
           @KickNum = params['KickNum']
           @Method = params['Method']
           @StatusCode = params['StatusCode']
+          @ProtocolFlag = params['ProtocolFlag']
+          @PassiveEnable = params['PassiveEnable']
+          @BlockInter = params['BlockInter']
+          @FailedCountInter = params['FailedCountInter']
+          @FailedThreshold = params['FailedThreshold']
+          @PassiveStatusCode = params['PassiveStatusCode']
         end
       end
 

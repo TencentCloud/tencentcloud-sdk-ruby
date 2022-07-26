@@ -311,6 +311,90 @@ module TencentCloud
         end
       end
 
+      # ChangeInstanceRole请求参数结构体
+      class ChangeInstanceRoleRequest < TencentCloud::Common::AbstractModel
+        # @param GroupId: 复制组ID
+        # @type GroupId: String
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+        # @param InstanceRole: 实例角色，rw可读写，r只读
+        # @type InstanceRole: String
+
+        attr_accessor :GroupId, :InstanceId, :InstanceRole
+        
+        def initialize(groupid=nil, instanceid=nil, instancerole=nil)
+          @GroupId = groupid
+          @InstanceId = instanceid
+          @InstanceRole = instancerole
+        end
+
+        def deserialize(params)
+          @GroupId = params['GroupId']
+          @InstanceId = params['InstanceId']
+          @InstanceRole = params['InstanceRole']
+        end
+      end
+
+      # ChangeInstanceRole返回参数结构体
+      class ChangeInstanceRoleResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: 异步流程ID
+        # @type TaskId: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :RequestId
+        
+        def initialize(taskid=nil, requestid=nil)
+          @TaskId = taskid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ChangeMasterInstance请求参数结构体
+      class ChangeMasterInstanceRequest < TencentCloud::Common::AbstractModel
+        # @param GroupId: 复制组ID
+        # @type GroupId: String
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+
+        attr_accessor :GroupId, :InstanceId
+        
+        def initialize(groupid=nil, instanceid=nil)
+          @GroupId = groupid
+          @InstanceId = instanceid
+        end
+
+        def deserialize(params)
+          @GroupId = params['GroupId']
+          @InstanceId = params['InstanceId']
+        end
+      end
+
+      # ChangeMasterInstance返回参数结构体
+      class ChangeMasterInstanceResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: 异步流程ID
+        # @type TaskId: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :RequestId
+        
+        def initialize(taskid=nil, requestid=nil)
+          @TaskId = taskid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ChangeReplicaToMaster请求参数结构体
       class ChangeReplicaToMasterRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例Id

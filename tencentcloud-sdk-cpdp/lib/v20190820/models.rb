@@ -931,15 +931,20 @@ module TencentCloud
         # @param AmountBeforeTax: 税前金额
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AmountBeforeTax: String
+        # @param AmountBeforeTaxWithTwoDigitPrecision: 两位精度税前金额
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AmountBeforeTaxWithTwoDigitPrecision: String
 
-        attr_accessor :AmountBeforeTax
+        attr_accessor :AmountBeforeTax, :AmountBeforeTaxWithTwoDigitPrecision
         
-        def initialize(amountbeforetax=nil)
+        def initialize(amountbeforetax=nil, amountbeforetaxwithtwodigitprecision=nil)
           @AmountBeforeTax = amountbeforetax
+          @AmountBeforeTaxWithTwoDigitPrecision = amountbeforetaxwithtwodigitprecision
         end
 
         def deserialize(params)
           @AmountBeforeTax = params['AmountBeforeTax']
+          @AmountBeforeTaxWithTwoDigitPrecision = params['AmountBeforeTaxWithTwoDigitPrecision']
         end
       end
 
