@@ -5741,6 +5741,43 @@ module TencentCloud
         end
       end
 
+      # DescribeEdgeLogSwitches请求参数结构体
+      class DescribeEdgeLogSwitchesRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterIds: 集群ID列表
+        # @type ClusterIds: Array
+
+        attr_accessor :ClusterIds
+        
+        def initialize(clusterids=nil)
+          @ClusterIds = clusterids
+        end
+
+        def deserialize(params)
+          @ClusterIds = params['ClusterIds']
+        end
+      end
+
+      # DescribeEdgeLogSwitches返回参数结构体
+      class DescribeEdgeLogSwitchesResponse < TencentCloud::Common::AbstractModel
+        # @param SwitchSet: 集群日志开关集合
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SwitchSet: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :SwitchSet, :RequestId
+        
+        def initialize(switchset=nil, requestid=nil)
+          @SwitchSet = switchset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @SwitchSet = params['SwitchSet']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeEksContainerInstanceLog请求参数结构体
       class DescribeEksContainerInstanceLogRequest < TencentCloud::Common::AbstractModel
         # @param EksCiId: Eks Container Instance Id，即容器实例Id

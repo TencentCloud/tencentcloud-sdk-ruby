@@ -689,72 +689,6 @@ module TencentCloud
         end
       end
 
-      # DetectCelebrity请求参数结构体
-      class DetectCelebrityRequest < TencentCloud::Common::AbstractModel
-        # @param ImageUrl: 图片URL地址。
-        # 图片限制：
-        # • 图片格式：PNG、JPG、JPEG。
-        # • 图片大小：所下载图片经Base64编码后不超过4M。图片下载时间不超过3秒。
-        # 建议：
-        # • 图片像素：大于50*50像素，否则影响识别效果；
-        # • 长宽比：长边：短边<5；
-        # 接口响应时间会受到图片下载时间的影响，建议使用更可靠的存储服务，推荐将图片存储在腾讯云COS。
-        # @type ImageUrl: String
-        # @param ImageBase64: 图片经过base64编码的内容。最大不超过4M。与ImageUrl同时存在时优先使用ImageUrl字段。
-        # **注意：图片需要base64编码，并且要去掉编码头部。**
-        # @type ImageBase64: String
-
-        attr_accessor :ImageUrl, :ImageBase64
-        
-        def initialize(imageurl=nil, imagebase64=nil)
-          @ImageUrl = imageurl
-          @ImageBase64 = imagebase64
-        end
-
-        def deserialize(params)
-          @ImageUrl = params['ImageUrl']
-          @ImageBase64 = params['ImageBase64']
-        end
-      end
-
-      # DetectCelebrity返回参数结构体
-      class DetectCelebrityResponse < TencentCloud::Common::AbstractModel
-        # @param Faces: 公众人物识别结果数组。如果检测不到人脸，返回为空；最多可以返回10个人脸识别结果。
-        # @type Faces: Array
-        # @param Threshold: 本服务在不同误识率水平下（将图片中的人物识别错误的比例）的推荐阈值，可以用于控制识别结果的精度。
-        # FalseRate1Percent, FalseRate5Permil, FalseRate1Permil分别代表误识率在百分之一、千分之五、千分之一情况下的推荐阈值。
-        # 因为阈值会存在变动，请勿将此处输出的固定值处理，而是每次取值与confidence对比，来判断本次的识别结果是否可信。
-        #  例如，如果您业务中可以接受的误识率是1%，则可以将所有confidence>=FalseRate1Percent的结论认为是正确的。
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Threshold: :class:`Tencentcloud::Tiia.v20190529.models.Threshold`
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :Faces, :Threshold, :RequestId
-        
-        def initialize(faces=nil, threshold=nil, requestid=nil)
-          @Faces = faces
-          @Threshold = threshold
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          unless params['Faces'].nil?
-            @Faces = []
-            params['Faces'].each do |i|
-              face_tmp = Face.new
-              face_tmp.deserialize(i)
-              @Faces << face_tmp
-            end
-          end
-          unless params['Threshold'].nil?
-            @Threshold = Threshold.new
-            @Threshold.deserialize(params['Threshold'])
-          end
-          @RequestId = params['RequestId']
-        end
-      end
-
       # DetectDisgust请求参数结构体
       class DetectDisgustRequest < TencentCloud::Common::AbstractModel
         # @param ImageUrl: 图片URL地址。
@@ -1419,62 +1353,6 @@ module TencentCloud
         end
       end
 
-      # 公众人物识别人脸信息
-      class Face < TencentCloud::Common::AbstractModel
-        # @param Name: 与图片中人脸最相似的公众人物的名字。
-        # @type Name: String
-        # @param Labels: 公众人物身份标签的数组，一个公众人物可能有多个身份标签。
-        # @type Labels: Array
-        # @param BasicInfo: 对人物的简介。
-        # @type BasicInfo: String
-        # @param Confidence: 算法对于Name的置信度（图像中人脸与公众人物的相似度），0-100之间，值越高，表示对于Name越确定。
-        # @type Confidence: Integer
-        # @param X: 人脸区域左上角横坐标。
-        # @type X: Integer
-        # @param Y: 人脸区域左上角纵坐标。
-        # @type Y: Integer
-        # @param Width: 人脸区域宽度。
-        # @type Width: Integer
-        # @param Height: 人脸区域高度。
-        # @type Height: Integer
-        # @param ID: 公众人物的唯一编号，可以用于区分同名人物、一个人物不同称呼等情况。唯一编号为8个字符构成的字符串。
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type ID: String
-
-        attr_accessor :Name, :Labels, :BasicInfo, :Confidence, :X, :Y, :Width, :Height, :ID
-        
-        def initialize(name=nil, labels=nil, basicinfo=nil, confidence=nil, x=nil, y=nil, width=nil, height=nil, id=nil)
-          @Name = name
-          @Labels = labels
-          @BasicInfo = basicinfo
-          @Confidence = confidence
-          @X = x
-          @Y = y
-          @Width = width
-          @Height = height
-          @ID = id
-        end
-
-        def deserialize(params)
-          @Name = params['Name']
-          unless params['Labels'].nil?
-            @Labels = []
-            params['Labels'].each do |i|
-              labels_tmp = Labels.new
-              labels_tmp.deserialize(i)
-              @Labels << labels_tmp
-            end
-          end
-          @BasicInfo = params['BasicInfo']
-          @Confidence = params['Confidence']
-          @X = params['X']
-          @Y = params['Y']
-          @Width = params['Width']
-          @Height = params['Height']
-          @ID = params['ID']
-        end
-      end
-
       # 图库信息。
       class GroupInfo < TencentCloud::Common::AbstractModel
         # @param GroupId: 图库Id。
@@ -1604,28 +1482,6 @@ module TencentCloud
         def deserialize(params)
           @Name = params['Name']
           @Confidence = params['Confidence']
-        end
-      end
-
-      # 名人识别的标签
-      class Labels < TencentCloud::Common::AbstractModel
-        # @param FirstLabel: 公众人物身份标签的一级分类，例如体育明星、娱乐明星等；
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type FirstLabel: String
-        # @param SecondLabel: 公众人物身份标签的二级分类，例如歌手（对应一级标签为“娱乐明星”）；
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type SecondLabel: String
-
-        attr_accessor :FirstLabel, :SecondLabel
-        
-        def initialize(firstlabel=nil, secondlabel=nil)
-          @FirstLabel = firstlabel
-          @SecondLabel = secondlabel
-        end
-
-        def deserialize(params)
-          @FirstLabel = params['FirstLabel']
-          @SecondLabel = params['SecondLabel']
         end
       end
 
@@ -2154,33 +2010,6 @@ module TencentCloud
             @Object.deserialize(params['Object'])
           end
           @RequestId = params['RequestId']
-        end
-      end
-
-      # 本服务在不同误识率水平下（将图片中的人物识别错误的比例）的推荐阈值，可以用于控制识别结果的精度。
-      # {FalseRate1Percent, FalseRate5Permil, FalseRate1Permil}分别代表误识率在百分之一、千分之五、千分之一情况下的推荐阈值。
-      # 因为阈值会存在变动，请勿将此处输出的固定值处理，而是每次取值与confidence对比，来判断本次的识别结果是否可信。
-      # 例如，如果您业务中可以接受的误识率是1%，则可以将所有confidence>=FalseRate1Percent的结论认为是正确的。
-      class Threshold < TencentCloud::Common::AbstractModel
-        # @param FalseRate1Percent: 误识率在百分之一时的推荐阈值。
-        # @type FalseRate1Percent: Integer
-        # @param FalseRate5Permil: 误识率在千分之五时的推荐阈值。
-        # @type FalseRate5Permil: Integer
-        # @param FalseRate1Permil: 误识率在千分之一时的推荐阈值。
-        # @type FalseRate1Permil: Integer
-
-        attr_accessor :FalseRate1Percent, :FalseRate5Permil, :FalseRate1Permil
-        
-        def initialize(falserate1percent=nil, falserate5permil=nil, falserate1permil=nil)
-          @FalseRate1Percent = falserate1percent
-          @FalseRate5Permil = falserate5permil
-          @FalseRate1Permil = falserate1permil
-        end
-
-        def deserialize(params)
-          @FalseRate1Percent = params['FalseRate1Percent']
-          @FalseRate5Permil = params['FalseRate5Permil']
-          @FalseRate1Permil = params['FalseRate1Permil']
         end
       end
 

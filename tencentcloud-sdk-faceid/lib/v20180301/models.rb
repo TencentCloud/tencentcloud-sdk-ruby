@@ -679,10 +679,12 @@ module TencentCloud
         # @type Encryption: :class:`Tencentcloud::Faceid.v20180301.models.Encryption`
         # @param IntentionVerifyText: 意愿核身使用的文案，若未使用意愿核身功能，该字段无需传入。默认为空，最长可接受120的字符串长度。
         # @type IntentionVerifyText: String
+        # @param IntentionQuestions: 意愿核身过程中播报文本/问题、用户朗读/回答的文本，当前支持一个播报文本+回答文本。
+        # @type IntentionQuestions: Array
 
-        attr_accessor :RuleId, :TerminalType, :IdCard, :Name, :RedirectUrl, :Extra, :ImageBase64, :Encryption, :IntentionVerifyText
+        attr_accessor :RuleId, :TerminalType, :IdCard, :Name, :RedirectUrl, :Extra, :ImageBase64, :Encryption, :IntentionVerifyText, :IntentionQuestions
         
-        def initialize(ruleid=nil, terminaltype=nil, idcard=nil, name=nil, redirecturl=nil, extra=nil, imagebase64=nil, encryption=nil, intentionverifytext=nil)
+        def initialize(ruleid=nil, terminaltype=nil, idcard=nil, name=nil, redirecturl=nil, extra=nil, imagebase64=nil, encryption=nil, intentionverifytext=nil, intentionquestions=nil)
           @RuleId = ruleid
           @TerminalType = terminaltype
           @IdCard = idcard
@@ -692,6 +694,7 @@ module TencentCloud
           @ImageBase64 = imagebase64
           @Encryption = encryption
           @IntentionVerifyText = intentionverifytext
+          @IntentionQuestions = intentionquestions
         end
 
         def deserialize(params)
@@ -707,6 +710,14 @@ module TencentCloud
             @Encryption.deserialize(params['Encryption'])
           end
           @IntentionVerifyText = params['IntentionVerifyText']
+          unless params['IntentionQuestions'].nil?
+            @IntentionQuestions = []
+            params['IntentionQuestions'].each do |i|
+              intentionquestion_tmp = IntentionQuestion.new
+              intentionquestion_tmp.deserialize(i)
+              @IntentionQuestions << intentionquestion_tmp
+            end
+          end
         end
       end
 
@@ -855,22 +866,39 @@ module TencentCloud
         # @param Avatar: 身份证正面人像图base64编码。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Avatar: String
-        # @param WarnInfos: 开启身份证防翻拍告警功能后才会返回，返回数组中可能出现的告警码如下：
-        # -9102 身份证复印件告警。
-        # -9103 身份证翻拍告警。
-        # -9106 身份证 PS 告警。
+        # @param WarnInfos: 身份证人像面告警码，开启身份证告警功能后才会返回，返回数组中可能出现的告警码如下：
+        # -9100 身份证有效日期不合法告警，
+        # -9101 身份证边框不完整告警，
+        # -9102 身份证复印件告警，
+        # -9103 身份证翻拍告警，
+        # -9105 身份证框内遮挡告警，
+        # -9104 临时身份证告警，
+        # -9106 身份证 PS 告警，
+        # -9107 身份证反光告警。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type WarnInfos: Array
+        # @param BackWarnInfos: 身份证国徽面告警码，开启身份证告警功能后才会返回，返回数组中可能出现的告警码如下：
+        # -9100 身份证有效日期不合法告警，
+        # -9101 身份证边框不完整告警，
+        # -9102 身份证复印件告警，
+        # -9103 身份证翻拍告警，
+        # -9105 身份证框内遮挡告警，
+        # -9104 临时身份证告警，
+        # -9106 身份证 PS 告警，
+        # -9107 身份证反光告警。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BackWarnInfos: Array
 
-        attr_accessor :OcrFront, :OcrBack, :ProcessedFrontImage, :ProcessedBackImage, :Avatar, :WarnInfos
+        attr_accessor :OcrFront, :OcrBack, :ProcessedFrontImage, :ProcessedBackImage, :Avatar, :WarnInfos, :BackWarnInfos
         
-        def initialize(ocrfront=nil, ocrback=nil, processedfrontimage=nil, processedbackimage=nil, avatar=nil, warninfos=nil)
+        def initialize(ocrfront=nil, ocrback=nil, processedfrontimage=nil, processedbackimage=nil, avatar=nil, warninfos=nil, backwarninfos=nil)
           @OcrFront = ocrfront
           @OcrBack = ocrback
           @ProcessedFrontImage = processedfrontimage
           @ProcessedBackImage = processedbackimage
           @Avatar = avatar
           @WarnInfos = warninfos
+          @BackWarnInfos = backwarninfos
         end
 
         def deserialize(params)
@@ -880,6 +908,7 @@ module TencentCloud
           @ProcessedBackImage = params['ProcessedBackImage']
           @Avatar = params['Avatar']
           @WarnInfos = params['WarnInfos']
+          @BackWarnInfos = params['BackWarnInfos']
         end
       end
 
@@ -1248,18 +1277,22 @@ module TencentCloud
         # @param IntentionVerifyData: 意愿核身相关信息。若未使用意愿核身功能，该字段返回值可以不处理。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IntentionVerifyData: :class:`Tencentcloud::Faceid.v20180301.models.IntentionVerifyData`
+        # @param IntentionQuestionResult: 意愿核身问答模式结果。若未使用该意愿核身功能，该字段返回值可以不处理。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IntentionQuestionResult: :class:`Tencentcloud::Faceid.v20180301.models.IntentionQuestionResult`
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Text, :IdCardData, :BestFrame, :VideoData, :Encryption, :IntentionVerifyData, :RequestId
+        attr_accessor :Text, :IdCardData, :BestFrame, :VideoData, :Encryption, :IntentionVerifyData, :IntentionQuestionResult, :RequestId
         
-        def initialize(text=nil, idcarddata=nil, bestframe=nil, videodata=nil, encryption=nil, intentionverifydata=nil, requestid=nil)
+        def initialize(text=nil, idcarddata=nil, bestframe=nil, videodata=nil, encryption=nil, intentionverifydata=nil, intentionquestionresult=nil, requestid=nil)
           @Text = text
           @IdCardData = idcarddata
           @BestFrame = bestframe
           @VideoData = videodata
           @Encryption = encryption
           @IntentionVerifyData = intentionverifydata
+          @IntentionQuestionResult = intentionquestionresult
           @RequestId = requestid
         end
 
@@ -1287,6 +1320,10 @@ module TencentCloud
           unless params['IntentionVerifyData'].nil?
             @IntentionVerifyData = IntentionVerifyData.new
             @IntentionVerifyData.deserialize(params['IntentionVerifyData'])
+          end
+          unless params['IntentionQuestionResult'].nil?
+            @IntentionQuestionResult = IntentionQuestionResult.new
+            @IntentionQuestionResult.deserialize(params['IntentionQuestionResult'])
           end
           @RequestId = params['RequestId']
         end
@@ -2133,6 +2170,70 @@ module TencentCloud
           @Result = params['Result']
           @Description = params['Description']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 意愿核身过程中播报的问题文本、用户回答的标准文本。
+      class IntentionQuestion < TencentCloud::Common::AbstractModel
+        # @param Question: 系统播报的问题文本，问题最大长度为150个字符。
+        # @type Question: String
+        # @param Answers: 用户答案的标准文本列表，用于识别用户回答的语音与标准文本是否一致。列表长度最大为50，单个答案长度限制10个字符。
+        # @type Answers: Array
+
+        attr_accessor :Question, :Answers
+        
+        def initialize(question=nil, answers=nil)
+          @Question = question
+          @Answers = answers
+        end
+
+        def deserialize(params)
+          @Question = params['Question']
+          @Answers = params['Answers']
+        end
+      end
+
+      # 意愿核身问答模式结果
+      class IntentionQuestionResult < TencentCloud::Common::AbstractModel
+        # @param FinalResultCode: 意愿核身最终结果：
+        # 0：通过，-1：未通过
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FinalResultCode: String
+        # @param Video: 视频base64（其中包含全程问题和回答音频，mp4格式）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Video: String
+        # @param ScreenShot: 屏幕截图base64列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ScreenShot: Array
+        # @param ResultCode: 和答案匹配结果列表
+        # 0：成功，-1：不匹配
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResultCode: Array
+        # @param AsrResult: 回答问题语音识别结果列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AsrResult: Array
+        # @param Audios: 答案录音音频
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Audios: Array
+
+        attr_accessor :FinalResultCode, :Video, :ScreenShot, :ResultCode, :AsrResult, :Audios
+        
+        def initialize(finalresultcode=nil, video=nil, screenshot=nil, resultcode=nil, asrresult=nil, audios=nil)
+          @FinalResultCode = finalresultcode
+          @Video = video
+          @ScreenShot = screenshot
+          @ResultCode = resultcode
+          @AsrResult = asrresult
+          @Audios = audios
+        end
+
+        def deserialize(params)
+          @FinalResultCode = params['FinalResultCode']
+          @Video = params['Video']
+          @ScreenShot = params['ScreenShot']
+          @ResultCode = params['ResultCode']
+          @AsrResult = params['AsrResult']
+          @Audios = params['Audios']
         end
       end
 

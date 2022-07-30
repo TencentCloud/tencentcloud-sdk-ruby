@@ -209,34 +209,6 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 传入一张图片，可以识别图片中包含的人物是否为公众人物，如果是，输出人物的姓名、基本信息、脸部坐标。
-
-        # 支持识别一张图片中存在的多个人脸，针对每个人脸，会给出与之最相似的公众人物。
-        # >
-        # - 公共参数中的签名方式必须指定为V3版本，即配置SignatureMethod参数为TC3-HMAC-SHA256。
-
-        # @param request: Request instance for DetectCelebrity.
-        # @type request: :class:`Tencentcloud::tiia::V20190529::DetectCelebrityRequest`
-        # @rtype: :class:`Tencentcloud::tiia::V20190529::DetectCelebrityResponse`
-        def DetectCelebrity(request)
-          body = send_request('DetectCelebrity', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = DetectCelebrityResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
         # 输入一张图片，返回AI针对一张图片是否是恶心的一系列判断值。
 
         # 通过恶心图片识别, 可以判断一张图片是否令人恶心, 同时给出它属于的潜在类别, 让您能够过滤掉使人不愉快的图片。

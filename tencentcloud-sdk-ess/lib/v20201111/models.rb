@@ -40,7 +40,7 @@ module TencentCloud
         # @type ApproverName: String
         # @param ApproverMobile: 本环节需要操作人的手机号
         # @type ApproverMobile: String
-        # @param SignComponents: 本环节操作人签署控件配置，为企业静默签署时，只允许类型为SIGN_SEAL（印章）和SIGN_DATE（日期）控件，并且传入印章编号。
+        # @param SignComponents: 本环节操作人签署控件配置
         # @type SignComponents: Array
         # @param OrganizationName: 如果是企业,则为企业的名字
         # @type OrganizationName: String
@@ -241,13 +241,15 @@ module TencentCloud
       # 模板控件信息
       class Component < TencentCloud::Common::AbstractModel
         # @param ComponentType: 如果是 Component 控件类型，则可选类型为：
-        # TEXT - 内容文本控件
-        # DATE - 内容日期控件
-        # CHECK_BOX - 勾选框控件
+        # TEXT - 单行文本
+        # MULTI_LINE_TEXT - 多行文本
+        # CHECK_BOX - 勾选框
+        # ATTACHMENT - 附件
+        # SELECTOR - 选择器
         # 如果是 SignComponent 控件类型，则可选类型为：
-        # SIGN_SEAL - 签署印章控件
+        # SIGN_SEAL - 签署印章控件，静默签署时需要传入印章id作为ComponentValue
         # SIGN_DATE - 签署日期控件
-        # SIGN_SIGNATURE - 手写签名控件
+        # SIGN_SIGNATURE - 手写签名控件，静默签署时不能使用
         # @type ComponentType: String
         # @param ComponentWidth: 参数控件宽度，单位pt
         # @type ComponentWidth: Float
@@ -279,7 +281,12 @@ module TencentCloud
         # @type ComponentExtra: String
         # @param ComponentRecipientId: 控件关联的签署人ID
         # @type ComponentRecipientId: String
-        # @param ComponentValue: 控件所填写的内容
+        # @param ComponentValue: 控件填充vaule，ComponentType和传入值类型对应关系：
+        # TEXT - 文本内容
+        # MULTI_LINE_TEXT - 文本内容
+        # CHECK_BOX - true/false
+        # ATTACHMENT - 附件的FileId，需要通过UploadFiles接口上传获取
+        # SELECTOR - 选项值
         # @type ComponentValue: String
         # @param IsFormType: 是否是表单域类型，默认不存在
         # @type IsFormType: Boolean
@@ -336,6 +343,71 @@ module TencentCloud
           @ComponentDateFontSize = params['ComponentDateFontSize']
           @OffsetX = params['OffsetX']
           @OffsetY = params['OffsetY']
+        end
+      end
+
+      # CreateConvertTaskApi请求参数结构体
+      class CreateConvertTaskApiRequest < TencentCloud::Common::AbstractModel
+        # @param ResourceId: 资源Id
+        # @type ResourceId: String
+        # @param ResourceType: 资源类型 2-doc 3-docx
+        # @type ResourceType: String
+        # @param ResourceName: 资源名称
+        # @type ResourceName: String
+        # @param Organization: 无
+        # @type Organization: :class:`Tencentcloud::Ess.v20201111.models.OrganizationInfo`
+        # @param Operator: 无
+        # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
+        # @param Agent: 无
+        # @type Agent: :class:`Tencentcloud::Ess.v20201111.models.Agent`
+
+        attr_accessor :ResourceId, :ResourceType, :ResourceName, :Organization, :Operator, :Agent
+        
+        def initialize(resourceid=nil, resourcetype=nil, resourcename=nil, organization=nil, operator=nil, agent=nil)
+          @ResourceId = resourceid
+          @ResourceType = resourcetype
+          @ResourceName = resourcename
+          @Organization = organization
+          @Operator = operator
+          @Agent = agent
+        end
+
+        def deserialize(params)
+          @ResourceId = params['ResourceId']
+          @ResourceType = params['ResourceType']
+          @ResourceName = params['ResourceName']
+          unless params['Organization'].nil?
+            @Organization = OrganizationInfo.new
+            @Organization.deserialize(params['Organization'])
+          end
+          unless params['Operator'].nil?
+            @Operator = UserInfo.new
+            @Operator.deserialize(params['Operator'])
+          end
+          unless params['Agent'].nil?
+            @Agent = Agent.new
+            @Agent.deserialize(params['Agent'])
+          end
+        end
+      end
+
+      # CreateConvertTaskApi返回参数结构体
+      class CreateConvertTaskApiResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: 转换任务Id
+        # @type TaskId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :RequestId
+        
+        def initialize(taskid=nil, requestid=nil)
+          @TaskId = taskid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @RequestId = params['RequestId']
         end
       end
 
@@ -434,12 +506,7 @@ module TencentCloud
         # @type FileIds: Array
         # @param FlowType: 签署流程的类型(如销售合同/入职合同等)，最大长度200个字符
         # @type FlowType: String
-        # @param Components: 经办人内容控件配置。可选类型为：
-        # TEXT - 内容文本控件
-        # MULTI_LINE_TEXT - 多行文本控件
-        # CHECK_BOX - 勾选框控件
-        # ATTACHMENT - 附件
-        # 注：默认字体大小为 字号12
+        # @param Components: 经办人内容控件配置
         # @type Components: Array
         # @param CcInfos: 被抄送人的信息列表。
         # 注:此功能为白名单功能，若有需要，请联系电子签客服开白使用
@@ -1269,11 +1336,16 @@ module TencentCloud
 
       # 电子文档的控件填充信息
       class FormField < TencentCloud::Common::AbstractModel
-        # @param ComponentValue: 控件填充value
+        # @param ComponentValue: 控件填充value，ComponentType和传入值类型对应关系：
+        # TEXT - 文本内容
+        # MULTI_LINE_TEXT - 文本内容
+        # CHECK_BOX - true/false
+        # ATTACHMENT - 附件的FileId，需要通过UploadFiles接口上传获取
+        # SELECTOR - 模板中配置的选项值
         # @type ComponentValue: String
-        # @param ComponentId: 控件id
+        # @param ComponentId: 控件id，和ComponentName选择一项传入即可
         # @type ComponentId: String
-        # @param ComponentName: 控件名字，最大长度不超过30字符
+        # @param ComponentName: 控件名字，最大长度不超过30字符，和ComponentId选择一项传入即可
         # @type ComponentName: String
 
         attr_accessor :ComponentValue, :ComponentId, :ComponentName
@@ -1288,6 +1360,107 @@ module TencentCloud
           @ComponentValue = params['ComponentValue']
           @ComponentId = params['ComponentId']
           @ComponentName = params['ComponentName']
+        end
+      end
+
+      # GetTaskResultApi请求参数结构体
+      class GetTaskResultApiRequest < TencentCloud::Common::AbstractModel
+        # @param TaskId: 任务Id
+        # @type TaskId: String
+        # @param Organization: 企业信息
+        # @type Organization: :class:`Tencentcloud::Ess.v20201111.models.OrganizationInfo`
+        # @param Operator: 操作人信息
+        # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
+        # @param Agent: 渠道信息
+        # @type Agent: :class:`Tencentcloud::Ess.v20201111.models.Agent`
+
+        attr_accessor :TaskId, :Organization, :Operator, :Agent
+        
+        def initialize(taskid=nil, organization=nil, operator=nil, agent=nil)
+          @TaskId = taskid
+          @Organization = organization
+          @Operator = operator
+          @Agent = agent
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          unless params['Organization'].nil?
+            @Organization = OrganizationInfo.new
+            @Organization.deserialize(params['Organization'])
+          end
+          unless params['Operator'].nil?
+            @Operator = UserInfo.new
+            @Operator.deserialize(params['Operator'])
+          end
+          unless params['Agent'].nil?
+            @Agent = Agent.new
+            @Agent.deserialize(params['Agent'])
+          end
+        end
+      end
+
+      # GetTaskResultApi返回参数结构体
+      class GetTaskResultApiResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: 任务Id
+        # @type TaskId: String
+        # @param TaskStatus: 任务状态
+        # @type TaskStatus: Integer
+        # @param TaskMessage: 状态描述
+        # @type TaskMessage: String
+        # @param ResourceId: 资源Id
+        # @type ResourceId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :TaskStatus, :TaskMessage, :ResourceId, :RequestId
+        
+        def initialize(taskid=nil, taskstatus=nil, taskmessage=nil, resourceid=nil, requestid=nil)
+          @TaskId = taskid
+          @TaskStatus = taskstatus
+          @TaskMessage = taskmessage
+          @ResourceId = resourceid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @TaskStatus = params['TaskStatus']
+          @TaskMessage = params['TaskMessage']
+          @ResourceId = params['ResourceId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 机构信息
+      class OrganizationInfo < TencentCloud::Common::AbstractModel
+        # @param OrganizationId: 机构在平台的编号
+        # @type OrganizationId: String
+        # @param Channel: 用户渠道
+        # @type Channel: String
+        # @param OrganizationOpenId: 用户在渠道的机构编号
+        # @type OrganizationOpenId: String
+        # @param ClientIp: 用户真实的IP
+        # @type ClientIp: String
+        # @param ProxyIp: 机构的代理IP
+        # @type ProxyIp: String
+
+        attr_accessor :OrganizationId, :Channel, :OrganizationOpenId, :ClientIp, :ProxyIp
+        
+        def initialize(organizationid=nil, channel=nil, organizationopenid=nil, clientip=nil, proxyip=nil)
+          @OrganizationId = organizationid
+          @Channel = channel
+          @OrganizationOpenId = organizationopenid
+          @ClientIp = clientip
+          @ProxyIp = proxyip
+        end
+
+        def deserialize(params)
+          @OrganizationId = params['OrganizationId']
+          @Channel = params['Channel']
+          @OrganizationOpenId = params['OrganizationOpenId']
+          @ClientIp = params['ClientIp']
+          @ProxyIp = params['ProxyIp']
         end
       end
 

@@ -6321,12 +6321,15 @@ module TencentCloud
         # @param Tags: 资源标签
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Tags: Array
+        # @param Resources: 计费资源
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Resources: Array
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Id, :Name, :OriginalNameServers, :NameServers, :Status, :Type, :Paused, :CreatedOn, :ModifiedOn, :VanityNameServers, :VanityNameServersIps, :CnameSpeedUp, :CnameStatus, :Tags, :RequestId
+        attr_accessor :Id, :Name, :OriginalNameServers, :NameServers, :Status, :Type, :Paused, :CreatedOn, :ModifiedOn, :VanityNameServers, :VanityNameServersIps, :CnameSpeedUp, :CnameStatus, :Tags, :Resources, :RequestId
         
-        def initialize(id=nil, name=nil, originalnameservers=nil, nameservers=nil, status=nil, type=nil, paused=nil, createdon=nil, modifiedon=nil, vanitynameservers=nil, vanitynameserversips=nil, cnamespeedup=nil, cnamestatus=nil, tags=nil, requestid=nil)
+        def initialize(id=nil, name=nil, originalnameservers=nil, nameservers=nil, status=nil, type=nil, paused=nil, createdon=nil, modifiedon=nil, vanitynameservers=nil, vanitynameserversips=nil, cnamespeedup=nil, cnamestatus=nil, tags=nil, resources=nil, requestid=nil)
           @Id = id
           @Name = name
           @OriginalNameServers = originalnameservers
@@ -6341,6 +6344,7 @@ module TencentCloud
           @CnameSpeedUp = cnamespeedup
           @CnameStatus = cnamestatus
           @Tags = tags
+          @Resources = resources
           @RequestId = requestid
         end
 
@@ -6374,6 +6378,14 @@ module TencentCloud
               tag_tmp = Tag.new
               tag_tmp.deserialize(i)
               @Tags << tag_tmp
+            end
+          end
+          unless params['Resources'].nil?
+            @Resources = []
+            params['Resources'].each do |i|
+              resource_tmp = Resource.new
+              resource_tmp.deserialize(i)
+              @Resources << resource_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -9295,6 +9307,66 @@ module TencentCloud
         end
       end
 
+      # 计费资源
+      class Resource < TencentCloud::Common::AbstractModel
+        # @param Id: 资源 ID
+        # @type Id: String
+        # @param PayMode: 付费模式
+        # 0 为后付费
+        # 1 为预付费
+        # @type PayMode: Integer
+        # @param CreateTime: 创建时间
+        # @type CreateTime: String
+        # @param EnableTime: 生效时间
+        # @type EnableTime: String
+        # @param ExpireTime: 失效时间
+        # @type ExpireTime: String
+        # @param Status: 套餐状态
+        # @type Status: String
+        # @param Sv: 询价参数
+        # @type Sv: Array
+        # @param AutoRenewFlag: 是否自动续费
+        # 0 表示默认状态
+        # 1 表示自动续费
+        # 2 表示不自动续费
+        # @type AutoRenewFlag: Integer
+        # @param PlanId: 套餐关联资源ID
+        # @type PlanId: String
+
+        attr_accessor :Id, :PayMode, :CreateTime, :EnableTime, :ExpireTime, :Status, :Sv, :AutoRenewFlag, :PlanId
+        
+        def initialize(id=nil, paymode=nil, createtime=nil, enabletime=nil, expiretime=nil, status=nil, sv=nil, autorenewflag=nil, planid=nil)
+          @Id = id
+          @PayMode = paymode
+          @CreateTime = createtime
+          @EnableTime = enabletime
+          @ExpireTime = expiretime
+          @Status = status
+          @Sv = sv
+          @AutoRenewFlag = autorenewflag
+          @PlanId = planid
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @PayMode = params['PayMode']
+          @CreateTime = params['CreateTime']
+          @EnableTime = params['EnableTime']
+          @ExpireTime = params['ExpireTime']
+          @Status = params['Status']
+          unless params['Sv'].nil?
+            @Sv = []
+            params['Sv'].each do |i|
+              sv_tmp = Sv.new
+              sv_tmp.deserialize(i)
+              @Sv << sv_tmp
+            end
+          end
+          @AutoRenewFlag = params['AutoRenewFlag']
+          @PlanId = params['PlanId']
+        end
+      end
+
       # ScanDnsRecords请求参数结构体
       class ScanDnsRecordsRequest < TencentCloud::Common::AbstractModel
         # @param ZoneId: 站点 ID
@@ -9629,6 +9701,26 @@ module TencentCloud
 
         def deserialize(params)
           @Switch = params['Switch']
+        end
+      end
+
+      # 询价参数
+      class Sv < TencentCloud::Common::AbstractModel
+        # @param Key: 询价参数 key
+        # @type Key: String
+        # @param Value: 询价参数 value
+        # @type Value: String
+
+        attr_accessor :Key, :Value
+        
+        def initialize(key=nil, value=nil)
+          @Key = key
+          @Value = value
+        end
+
+        def deserialize(params)
+          @Key = params['Key']
+          @Value = params['Value']
         end
       end
 
@@ -10279,10 +10371,18 @@ module TencentCloud
         # @param Tags: 资源标签
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Tags: Array
+        # @param Resources: 计费资源
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Resources: Array
+        # @param CnameSpeedUp: 是否开启cname加速
+        # - enabled 开启
+        # - disabled 关闭
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CnameSpeedUp: String
 
-        attr_accessor :Id, :Name, :OriginalNameServers, :NameServers, :Status, :Type, :Paused, :CreatedOn, :ModifiedOn, :CnameStatus, :Tags
+        attr_accessor :Id, :Name, :OriginalNameServers, :NameServers, :Status, :Type, :Paused, :CreatedOn, :ModifiedOn, :CnameStatus, :Tags, :Resources, :CnameSpeedUp
         
-        def initialize(id=nil, name=nil, originalnameservers=nil, nameservers=nil, status=nil, type=nil, paused=nil, createdon=nil, modifiedon=nil, cnamestatus=nil, tags=nil)
+        def initialize(id=nil, name=nil, originalnameservers=nil, nameservers=nil, status=nil, type=nil, paused=nil, createdon=nil, modifiedon=nil, cnamestatus=nil, tags=nil, resources=nil, cnamespeedup=nil)
           @Id = id
           @Name = name
           @OriginalNameServers = originalnameservers
@@ -10294,6 +10394,8 @@ module TencentCloud
           @ModifiedOn = modifiedon
           @CnameStatus = cnamestatus
           @Tags = tags
+          @Resources = resources
+          @CnameSpeedUp = cnamespeedup
         end
 
         def deserialize(params)
@@ -10315,6 +10417,15 @@ module TencentCloud
               @Tags << tag_tmp
             end
           end
+          unless params['Resources'].nil?
+            @Resources = []
+            params['Resources'].each do |i|
+              resource_tmp = Resource.new
+              resource_tmp.deserialize(i)
+              @Resources << resource_tmp
+            end
+          end
+          @CnameSpeedUp = params['CnameSpeedUp']
         end
       end
 

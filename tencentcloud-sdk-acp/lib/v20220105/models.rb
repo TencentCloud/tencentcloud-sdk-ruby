@@ -377,17 +377,25 @@ module TencentCloud
 
       # DescribeResourceUsageInfo请求参数结构体
       class DescribeResourceUsageInfoRequest < TencentCloud::Common::AbstractModel
-        # @param PriceName: 资源计费项名称
+        # @param PriceName: 资源计费项名称(为空时，则根据TaskType和Platform进行查询)
         # @type PriceName: String
+        # @param TaskType: 任务类型, 0:基础版, 1:专家版
+        # @type TaskType: Integer
+        # @param Platform: 应用平台, 0:android
+        # @type Platform: Integer
 
-        attr_accessor :PriceName
+        attr_accessor :PriceName, :TaskType, :Platform
         
-        def initialize(pricename=nil)
+        def initialize(pricename=nil, tasktype=nil, platform=nil)
           @PriceName = pricename
+          @TaskType = tasktype
+          @Platform = platform
         end
 
         def deserialize(params)
           @PriceName = params['PriceName']
+          @TaskType = params['TaskType']
+          @Platform = params['Platform']
         end
       end
 
@@ -512,7 +520,7 @@ module TencentCloud
         # @type TaskID: String
         # @param TaskType: 任务类型, 0:基础版, 1:专家版, 2:本地化
         # @type TaskType: Integer
-        # @param ReportType: 报告类型, 0:诊断报告, 1:堆栈报告
+        # @param ReportType: 报告类型, 0:诊断报告, 1:堆栈报告, 2:视频证据(预留), 3:报告json结果
         # @type ReportType: Integer
 
         attr_accessor :Source, :Platform, :TaskID, :TaskType, :ReportType
@@ -538,10 +546,10 @@ module TencentCloud
       class DescribeScanTaskReportUrlResponse < TencentCloud::Common::AbstractModel
         # @param Result: 返回值, 0:成功, 其他值请查看“返回值”定义
         # @type Result: Integer
-        # @param ReportUrl: 诊断报告/堆栈信息下载链接
+        # @param ReportUrl: 诊断报告/堆栈信息/报告json结果下载链接
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ReportUrl: String
-        # @param ReportTitle: 诊断报告/堆栈名称
+        # @param ReportTitle: 诊断报告/堆栈/报告json结果的名称
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ReportTitle: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。

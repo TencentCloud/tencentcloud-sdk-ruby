@@ -5463,10 +5463,13 @@ module TencentCloud
         # @param IsDauPackage: 是否是dau新套餐
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsDauPackage: Boolean
+        # @param PackageType: 套餐类型:空\baas\tcbr
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PackageType: String
 
-        attr_accessor :EnvId, :Source, :Alias, :CreateTime, :UpdateTime, :Status, :Databases, :Storages, :Functions, :PackageId, :PackageName, :LogServices, :StaticStorages, :IsAutoDegrade, :EnvChannel, :PayMode, :IsDefault, :Region, :Tags, :CustomLogServices, :EnvType, :IsDauPackage
+        attr_accessor :EnvId, :Source, :Alias, :CreateTime, :UpdateTime, :Status, :Databases, :Storages, :Functions, :PackageId, :PackageName, :LogServices, :StaticStorages, :IsAutoDegrade, :EnvChannel, :PayMode, :IsDefault, :Region, :Tags, :CustomLogServices, :EnvType, :IsDauPackage, :PackageType
         
-        def initialize(envid=nil, source=nil, _alias=nil, createtime=nil, updatetime=nil, status=nil, databases=nil, storages=nil, functions=nil, packageid=nil, packagename=nil, logservices=nil, staticstorages=nil, isautodegrade=nil, envchannel=nil, paymode=nil, isdefault=nil, region=nil, tags=nil, customlogservices=nil, envtype=nil, isdaupackage=nil)
+        def initialize(envid=nil, source=nil, _alias=nil, createtime=nil, updatetime=nil, status=nil, databases=nil, storages=nil, functions=nil, packageid=nil, packagename=nil, logservices=nil, staticstorages=nil, isautodegrade=nil, envchannel=nil, paymode=nil, isdefault=nil, region=nil, tags=nil, customlogservices=nil, envtype=nil, isdaupackage=nil, packagetype=nil)
           @EnvId = envid
           @Source = source
           @Alias = _alias
@@ -5489,6 +5492,7 @@ module TencentCloud
           @CustomLogServices = customlogservices
           @EnvType = envtype
           @IsDauPackage = isdaupackage
+          @PackageType = packagetype
         end
 
         def deserialize(params)
@@ -5563,6 +5567,7 @@ module TencentCloud
           end
           @EnvType = params['EnvType']
           @IsDauPackage = params['IsDauPackage']
+          @PackageType = params['PackageType']
         end
       end
 
@@ -5994,15 +5999,19 @@ module TencentCloud
         # @type TopicId: String
         # @param Region: cls日志所属地域
         # @type Region: String
+        # @param Period: topic保存时长 默认7天
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Period: Integer
 
-        attr_accessor :LogsetName, :LogsetId, :TopicName, :TopicId, :Region
+        attr_accessor :LogsetName, :LogsetId, :TopicName, :TopicId, :Region, :Period
         
-        def initialize(logsetname=nil, logsetid=nil, topicname=nil, topicid=nil, region=nil)
+        def initialize(logsetname=nil, logsetid=nil, topicname=nil, topicid=nil, region=nil, period=nil)
           @LogsetName = logsetname
           @LogsetId = logsetid
           @TopicName = topicname
           @TopicId = topicid
           @Region = region
+          @Period = period
         end
 
         def deserialize(params)
@@ -6011,6 +6020,7 @@ module TencentCloud
           @TopicName = params['TopicName']
           @TopicId = params['TopicId']
           @Region = params['Region']
+          @Period = params['Period']
         end
       end
 

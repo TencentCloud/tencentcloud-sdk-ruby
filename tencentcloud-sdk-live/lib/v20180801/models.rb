@@ -6692,19 +6692,29 @@ module TencentCloud
         # @type CreateTime: String
         # @param ExpireTime: 禁推过期时间。
         # @type ExpireTime: String
+        # @param AppName: 推流路径。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AppName: String
+        # @param DomainName: 推流域名。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DomainName: String
 
-        attr_accessor :StreamName, :CreateTime, :ExpireTime
+        attr_accessor :StreamName, :CreateTime, :ExpireTime, :AppName, :DomainName
         
-        def initialize(streamname=nil, createtime=nil, expiretime=nil)
+        def initialize(streamname=nil, createtime=nil, expiretime=nil, appname=nil, domainname=nil)
           @StreamName = streamname
           @CreateTime = createtime
           @ExpireTime = expiretime
+          @AppName = appname
+          @DomainName = domainname
         end
 
         def deserialize(params)
           @StreamName = params['StreamName']
           @CreateTime = params['CreateTime']
           @ExpireTime = params['ExpireTime']
+          @AppName = params['AppName']
+          @DomainName = params['DomainName']
         end
       end
 

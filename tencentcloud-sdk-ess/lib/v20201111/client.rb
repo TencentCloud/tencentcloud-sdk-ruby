@@ -79,6 +79,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 创建文件转换任务
+
+        # @param request: Request instance for CreateConvertTaskApi.
+        # @type request: :class:`Tencentcloud::ess::V20201111::CreateConvertTaskApiRequest`
+        # @rtype: :class:`Tencentcloud::ess::V20201111::CreateConvertTaskApiResponse`
+        def CreateConvertTaskApi(request)
+          body = send_request('CreateConvertTaskApi', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateConvertTaskApiResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 创建签署流程电子文档
         # 适用场景：见创建签署流程接口。
 
@@ -304,6 +328,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeThirdPartyAuthCodeResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询转换任务状态
+
+        # @param request: Request instance for GetTaskResultApi.
+        # @type request: :class:`Tencentcloud::ess::V20201111::GetTaskResultApiRequest`
+        # @rtype: :class:`Tencentcloud::ess::V20201111::GetTaskResultApiResponse`
+        def GetTaskResultApi(request)
+          body = send_request('GetTaskResultApi', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = GetTaskResultApiResponse.new
             model.deserialize(response['Response'])
             model
           else

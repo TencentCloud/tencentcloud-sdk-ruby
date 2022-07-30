@@ -20005,14 +20005,14 @@ module TencentCloud
         # <li>close：关闭，此时，Width 代表视频的宽度，Height 表示视频的高度。</li>
         # 默认值：open。
         # @type ResolutionAdaptive: String
-        # @param Width: 视频流宽度（或长边）的最大值，取值范围：0 和 [128, 4096]，单位：px。
+        # @param Width: 视频流宽度（或长边）的最大值，取值范围：0 和 [128, 8192]，单位：px。
         # <li>当 Width、Height 均为 0，则分辨率同源；</li>
         # <li>当 Width 为 0，Height 非 0，则 Width 按比例缩放；</li>
         # <li>当 Width 非 0，Height 为 0，则 Height 按比例缩放；</li>
         # <li>当 Width、Height 均非 0，则分辨率按用户指定。</li>
         # 默认值：0。
         # @type Width: Integer
-        # @param Height: 视频流高度（或短边）的最大值，取值范围：0 和 [128, 4096]，单位：px。
+        # @param Height: 视频流高度（或短边）的最大值，取值范围：0 和 [128, 8192]，单位：px。
         # <li>当 Width、Height 均为 0，则分辨率同源；</li>
         # <li>当 Width 为 0，Height 非 0，则 Width 按比例缩放；</li>
         # <li>当 Width 非 0，Height 为 0，则 Height 按比例缩放；</li>
@@ -20036,10 +20036,15 @@ module TencentCloud
         # @param Gop: 关键帧 I 帧之间的间隔，取值范围：0 和 [1, 100000]，单位：帧数。
         # 当填 0 或不填时，系统将自动设置 gop 长度。
         # @type Gop: Integer
+        # @param PreserveHDRSwitch: 当原始视频为 HDR（High Dynamic Range）时，转码输出是否依然保持 HDR。取值范围：
+        # <li>ON: 如果原始文件是 HDR，则转码输出保持 HDR；否则转码输出为 SDR （Standard Dynamic Range）。</li>
+        # <li>OFF: 无论原始文件是 HDR 还是 SDR，转码输出均为 SDR。</li>
+        # 默认值：OFF。
+        # @type PreserveHDRSwitch: String
 
-        attr_accessor :Codec, :Fps, :Bitrate, :ResolutionAdaptive, :Width, :Height, :FillType, :Vcrf, :Gop
+        attr_accessor :Codec, :Fps, :Bitrate, :ResolutionAdaptive, :Width, :Height, :FillType, :Vcrf, :Gop, :PreserveHDRSwitch
         
-        def initialize(codec=nil, fps=nil, bitrate=nil, resolutionadaptive=nil, width=nil, height=nil, filltype=nil, vcrf=nil, gop=nil)
+        def initialize(codec=nil, fps=nil, bitrate=nil, resolutionadaptive=nil, width=nil, height=nil, filltype=nil, vcrf=nil, gop=nil, preservehdrswitch=nil)
           @Codec = codec
           @Fps = fps
           @Bitrate = bitrate
@@ -20049,6 +20054,7 @@ module TencentCloud
           @FillType = filltype
           @Vcrf = vcrf
           @Gop = gop
+          @PreserveHDRSwitch = preservehdrswitch
         end
 
         def deserialize(params)
@@ -20061,6 +20067,7 @@ module TencentCloud
           @FillType = params['FillType']
           @Vcrf = params['Vcrf']
           @Gop = params['Gop']
+          @PreserveHDRSwitch = params['PreserveHDRSwitch']
         end
       end
 
@@ -20085,13 +20092,13 @@ module TencentCloud
         # <li>open：开启，此时，Width 代表视频的长边，Height 表示视频的短边；</li>
         # <li>close：关闭，此时，Width 代表视频的宽度，Height 表示视频的高度。</li>
         # @type ResolutionAdaptive: String
-        # @param Width: 视频流宽度（或长边）的最大值，取值范围：0 和 [128, 4096]，单位：px。
+        # @param Width: 视频流宽度（或长边）的最大值，取值范围：0 和 [128, 8192]，单位：px。
         # <li>当 Width、Height 均为 0，则分辨率同源；</li>
         # <li>当 Width 为 0，Height 非 0，则 Width 按比例缩放；</li>
         # <li>当 Width 非 0，Height 为 0，则 Height 按比例缩放；</li>
         # <li>当 Width、Height 均非 0，则分辨率按用户指定。</li>
         # @type Width: Integer
-        # @param Height: 视频流高度（或短边）的最大值，取值范围：0 和 [128, 4096]，单位：px。
+        # @param Height: 视频流高度（或短边）的最大值，取值范围：0 和 [128, 8192]，单位：px。
         # @type Height: Integer
         # @param FillType: 填充方式，当视频流配置宽高参数与原始视频的宽高比不一致时，对转码的处理方式，即为“填充”。可选填充方式：
         # <li> stretch：拉伸，对每一帧进行拉伸，填满整个画面，可能导致转码后的视频被“压扁“或者“拉长“；</li>
@@ -20109,10 +20116,14 @@ module TencentCloud
         # @param Gop: 关键帧 I 帧之间的间隔，取值范围：0 和 [1, 100000]，单位：帧数。
         # 当填 0 或不填时，系统将自动设置 gop 长度。
         # @type Gop: Integer
+        # @param PreserveHDRSwitch: 当原始视频为 HDR（High Dynamic Range）时，转码输出是否依然保持 HDR。取值范围：
+        # <li>ON: 如果原始文件是 HDR，则转码输出保持 HDR；否则转码输出为 SDR （Standard Dynamic Range）。</li>
+        # <li>OFF: 无论原始文件是 HDR 还是 SDR，转码输出均为 SDR。</li>
+        # @type PreserveHDRSwitch: String
 
-        attr_accessor :Codec, :Fps, :Bitrate, :ResolutionAdaptive, :Width, :Height, :FillType, :Vcrf, :Gop
+        attr_accessor :Codec, :Fps, :Bitrate, :ResolutionAdaptive, :Width, :Height, :FillType, :Vcrf, :Gop, :PreserveHDRSwitch
         
-        def initialize(codec=nil, fps=nil, bitrate=nil, resolutionadaptive=nil, width=nil, height=nil, filltype=nil, vcrf=nil, gop=nil)
+        def initialize(codec=nil, fps=nil, bitrate=nil, resolutionadaptive=nil, width=nil, height=nil, filltype=nil, vcrf=nil, gop=nil, preservehdrswitch=nil)
           @Codec = codec
           @Fps = fps
           @Bitrate = bitrate
@@ -20122,6 +20133,7 @@ module TencentCloud
           @FillType = filltype
           @Vcrf = vcrf
           @Gop = gop
+          @PreserveHDRSwitch = preservehdrswitch
         end
 
         def deserialize(params)
@@ -20134,6 +20146,7 @@ module TencentCloud
           @FillType = params['FillType']
           @Vcrf = params['Vcrf']
           @Gop = params['Gop']
+          @PreserveHDRSwitch = params['PreserveHDRSwitch']
         end
       end
 

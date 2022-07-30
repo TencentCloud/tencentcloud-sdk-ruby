@@ -676,6 +676,55 @@ module TencentCloud
         end
       end
 
+      # CDC场景下负载均衡WAF的集群信息
+      class CdcCluster < TencentCloud::Common::AbstractModel
+        # @param Id: cdc的集群id
+        # @type Id: String
+        # @param Name: cdc的集群名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
+
+        attr_accessor :Id, :Name
+        
+        def initialize(id=nil, name=nil)
+          @Id = id
+          @Name = name
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @Name = params['Name']
+        end
+      end
+
+      # CDC场景下负载均衡WAF的地域信息
+      class CdcRegion < TencentCloud::Common::AbstractModel
+        # @param Region: 地域
+        # @type Region: String
+        # @param Clusters: 该地域对应的集群信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Clusters: Array
+
+        attr_accessor :Region, :Clusters
+        
+        def initialize(region=nil, clusters=nil)
+          @Region = region
+          @Clusters = clusters
+        end
+
+        def deserialize(params)
+          @Region = params['Region']
+          unless params['Clusters'].nil?
+            @Clusters = []
+            params['Clusters'].each do |i|
+              cdccluster_tmp = CdcCluster.new
+              cdccluster_tmp.deserialize(i)
+              @Clusters << cdccluster_tmp
+            end
+          end
+        end
+      end
+
       # CreateAccessExport请求参数结构体
       class CreateAccessExportRequest < TencentCloud::Common::AbstractModel
         # @param TopicId: 客户要查询的日志主题ID，每个客户都有对应的一个主题
@@ -1605,6 +1654,45 @@ module TencentCloud
           unless params['Data'].nil?
             @Data = IpHitItemsData.new
             @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeUserCdcClbWafRegions请求参数结构体
+      class DescribeUserCdcClbWafRegionsRequest < TencentCloud::Common::AbstractModel
+
+        
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeUserCdcClbWafRegions返回参数结构体
+      class DescribeUserCdcClbWafRegionsResponse < TencentCloud::Common::AbstractModel
+        # @param Data: CdcRegion的类型描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Data: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+        
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = []
+            params['Data'].each do |i|
+              cdcregion_tmp = CdcRegion.new
+              cdcregion_tmp.deserialize(i)
+              @Data << cdcregion_tmp
+            end
           end
           @RequestId = params['RequestId']
         end

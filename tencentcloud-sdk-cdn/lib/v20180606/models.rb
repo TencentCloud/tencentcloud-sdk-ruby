@@ -10241,16 +10241,19 @@ module TencentCloud
         # 注意事项：
         # 此功能灰度发布中，敬请期待
         # @type DisableRange: Boolean
+        # @param UrlEncode: 是否对URL进行编码
+        # @type UrlEncode: Boolean
 
-        attr_accessor :Urls, :UserAgent, :Area, :Layer, :ParseM3U8, :DisableRange
+        attr_accessor :Urls, :UserAgent, :Area, :Layer, :ParseM3U8, :DisableRange, :UrlEncode
         
-        def initialize(urls=nil, useragent=nil, area=nil, layer=nil, parsem3u8=nil, disablerange=nil)
+        def initialize(urls=nil, useragent=nil, area=nil, layer=nil, parsem3u8=nil, disablerange=nil, urlencode=nil)
           @Urls = urls
           @UserAgent = useragent
           @Area = area
           @Layer = layer
           @ParseM3U8 = parsem3u8
           @DisableRange = disablerange
+          @UrlEncode = urlencode
         end
 
         def deserialize(params)
@@ -10260,6 +10263,7 @@ module TencentCloud
           @Layer = params['Layer']
           @ParseM3U8 = params['ParseM3U8']
           @DisableRange = params['DisableRange']
+          @UrlEncode = params['UrlEncode']
         end
       end
 

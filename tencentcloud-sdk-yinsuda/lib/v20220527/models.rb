@@ -167,17 +167,23 @@ module TencentCloud
         # @type AppName: String
         # @param UserId: 用户标识。
         # @type UserId: String
+        # @param Types: 类型列表，取值有：
+        # <li>OfficialRec：官方推荐；</li>
+        # <li>Customize：自定义。</li>
+        # @type Types: Array
 
-        attr_accessor :AppName, :UserId
+        attr_accessor :AppName, :UserId, :Types
         
-        def initialize(appname=nil, userid=nil)
+        def initialize(appname=nil, userid=nil, types=nil)
           @AppName = appname
           @UserId = userid
+          @Types = types
         end
 
         def deserialize(params)
           @AppName = params['AppName']
           @UserId = params['UserId']
+          @Types = params['Types']
         end
       end
 

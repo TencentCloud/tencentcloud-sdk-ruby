@@ -483,10 +483,19 @@ module TencentCloud
         # @param PayStatus: 0代表未支付，1代表已支付
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PayStatus: Integer
+        # @param PayType: 支付方式，一次性、按月、按年
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PayType: String
+        # @param TimeUnit: 购买时长的单位
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TimeUnit: String
+        # @param TimeSpan: 购买时长
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TimeSpan: Integer
 
-        attr_accessor :DedicatedClusterId, :DedicatedClusterTypeId, :SupportedStorageType, :SupportedUplinkSpeed, :SupportedInstanceFamily, :Weight, :PowerDraw, :OrderStatus, :CreateTime, :DedicatedClusterOrderId, :Action, :DedicatedClusterOrderItems, :Cpu, :Mem, :Gpu, :PayStatus
+        attr_accessor :DedicatedClusterId, :DedicatedClusterTypeId, :SupportedStorageType, :SupportedUplinkSpeed, :SupportedInstanceFamily, :Weight, :PowerDraw, :OrderStatus, :CreateTime, :DedicatedClusterOrderId, :Action, :DedicatedClusterOrderItems, :Cpu, :Mem, :Gpu, :PayStatus, :PayType, :TimeUnit, :TimeSpan
         
-        def initialize(dedicatedclusterid=nil, dedicatedclustertypeid=nil, supportedstoragetype=nil, supporteduplinkspeed=nil, supportedinstancefamily=nil, weight=nil, powerdraw=nil, orderstatus=nil, createtime=nil, dedicatedclusterorderid=nil, action=nil, dedicatedclusterorderitems=nil, cpu=nil, mem=nil, gpu=nil, paystatus=nil)
+        def initialize(dedicatedclusterid=nil, dedicatedclustertypeid=nil, supportedstoragetype=nil, supporteduplinkspeed=nil, supportedinstancefamily=nil, weight=nil, powerdraw=nil, orderstatus=nil, createtime=nil, dedicatedclusterorderid=nil, action=nil, dedicatedclusterorderitems=nil, cpu=nil, mem=nil, gpu=nil, paystatus=nil, paytype=nil, timeunit=nil, timespan=nil)
           @DedicatedClusterId = dedicatedclusterid
           @DedicatedClusterTypeId = dedicatedclustertypeid
           @SupportedStorageType = supportedstoragetype
@@ -503,6 +512,9 @@ module TencentCloud
           @Mem = mem
           @Gpu = gpu
           @PayStatus = paystatus
+          @PayType = paytype
+          @TimeUnit = timeunit
+          @TimeSpan = timespan
         end
 
         def deserialize(params)
@@ -529,6 +541,9 @@ module TencentCloud
           @Mem = params['Mem']
           @Gpu = params['Gpu']
           @PayStatus = params['PayStatus']
+          @PayType = params['PayType']
+          @TimeUnit = params['TimeUnit']
+          @TimeSpan = params['TimeSpan']
         end
       end
 
@@ -569,10 +584,16 @@ module TencentCloud
         # @param ComputeFormat: 规格展示
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ComputeFormat: String
+        # @param TypeFamily: 规格类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TypeFamily: String
+        # @param SubOrderPayStatus: 0未支付，1已支付
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SubOrderPayStatus: Integer
 
-        attr_accessor :DedicatedClusterTypeId, :SupportedStorageType, :SupportedUplinkSpeed, :SupportedInstanceFamily, :Weight, :PowerDraw, :SubOrderStatus, :CreateTime, :SubOrderId, :Count, :Name, :Description, :TotalCpu, :TotalMem, :TotalGpu, :TypeName, :ComputeFormat
+        attr_accessor :DedicatedClusterTypeId, :SupportedStorageType, :SupportedUplinkSpeed, :SupportedInstanceFamily, :Weight, :PowerDraw, :SubOrderStatus, :CreateTime, :SubOrderId, :Count, :Name, :Description, :TotalCpu, :TotalMem, :TotalGpu, :TypeName, :ComputeFormat, :TypeFamily, :SubOrderPayStatus
         
-        def initialize(dedicatedclustertypeid=nil, supportedstoragetype=nil, supporteduplinkspeed=nil, supportedinstancefamily=nil, weight=nil, powerdraw=nil, suborderstatus=nil, createtime=nil, suborderid=nil, count=nil, name=nil, description=nil, totalcpu=nil, totalmem=nil, totalgpu=nil, typename=nil, computeformat=nil)
+        def initialize(dedicatedclustertypeid=nil, supportedstoragetype=nil, supporteduplinkspeed=nil, supportedinstancefamily=nil, weight=nil, powerdraw=nil, suborderstatus=nil, createtime=nil, suborderid=nil, count=nil, name=nil, description=nil, totalcpu=nil, totalmem=nil, totalgpu=nil, typename=nil, computeformat=nil, typefamily=nil, suborderpaystatus=nil)
           @DedicatedClusterTypeId = dedicatedclustertypeid
           @SupportedStorageType = supportedstoragetype
           @SupportedUplinkSpeed = supporteduplinkspeed
@@ -590,6 +611,8 @@ module TencentCloud
           @TotalGpu = totalgpu
           @TypeName = typename
           @ComputeFormat = computeformat
+          @TypeFamily = typefamily
+          @SubOrderPayStatus = suborderpaystatus
         end
 
         def deserialize(params)
@@ -610,6 +633,8 @@ module TencentCloud
           @TotalGpu = params['TotalGpu']
           @TypeName = params['TypeName']
           @ComputeFormat = params['ComputeFormat']
+          @TypeFamily = params['TypeFamily']
+          @SubOrderPayStatus = params['SubOrderPayStatus']
         end
       end
 

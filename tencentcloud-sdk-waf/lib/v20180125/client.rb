@@ -511,6 +511,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 在CDC场景下，负载均衡型WAF的添加、编辑域名配置的时候，需要展示CDC负载均衡型WAF（cdc-clb-waf)支持的地域列表，通过DescribeUserCdcClbWafRegions既可以获得当前对客户已经开放的地域列表
+
+        # @param request: Request instance for DescribeUserCdcClbWafRegions.
+        # @type request: :class:`Tencentcloud::waf::V20180125::DescribeUserCdcClbWafRegionsRequest`
+        # @rtype: :class:`Tencentcloud::waf::V20180125::DescribeUserCdcClbWafRegionsResponse`
+        def DescribeUserCdcClbWafRegions(request)
+          body = send_request('DescribeUserCdcClbWafRegions', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeUserCdcClbWafRegionsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 在负载均衡型WAF的添加、编辑域名配置的时候，需要展示负载均衡型WAF（clb-waf)支持的地域列表，通过DescribeUserClbWafRegions既可以获得当前对客户已经开放的地域列表
 
         # @param request: Request instance for DescribeUserClbWafRegions.

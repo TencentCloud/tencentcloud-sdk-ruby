@@ -101,6 +101,78 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 版权保护-添加作品接口
+
+        # @param request: Request instance for CreateCRWork.
+        # @type request: :class:`Tencentcloud::bma::V20210624::CreateCRWorkRequest`
+        # @rtype: :class:`Tencentcloud::bma::V20210624::CreateCRWorkResponse`
+        def CreateCRWork(request)
+          body = send_request('CreateCRWork', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateCRWorkResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 版权保护-查询作品监测详情接口
+
+        # @param request: Request instance for DescribeCRMonitorDetail.
+        # @type request: :class:`Tencentcloud::bma::V20210624::DescribeCRMonitorDetailRequest`
+        # @rtype: :class:`Tencentcloud::bma::V20210624::DescribeCRMonitorDetailResponse`
+        def DescribeCRMonitorDetail(request)
+          body = send_request('DescribeCRMonitorDetail', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeCRMonitorDetailResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 版权保护-查询监测列表接口
+
+        # @param request: Request instance for DescribeCRMonitors.
+        # @type request: :class:`Tencentcloud::bma::V20210624::DescribeCRMonitorsRequest`
+        # @rtype: :class:`Tencentcloud::bma::V20210624::DescribeCRMonitorsResponse`
+        def DescribeCRMonitors(request)
+          body = send_request('DescribeCRMonitors', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeCRMonitorsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询作品基本信息
 
         # @param request: Request instance for DescribeCRWorkInfo.
@@ -111,6 +183,126 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeCRWorkInfoResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 版权保护-拦截申请接口
+
+        # @param request: Request instance for ModifyCRBlockStatus.
+        # @type request: :class:`Tencentcloud::bma::V20210624::ModifyCRBlockStatusRequest`
+        # @rtype: :class:`Tencentcloud::bma::V20210624::ModifyCRBlockStatusResponse`
+        def ModifyCRBlockStatus(request)
+          body = send_request('ModifyCRBlockStatus', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyCRBlockStatusResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 版权保护-修改监测状态接口
+
+        # @param request: Request instance for ModifyCRMonitor.
+        # @type request: :class:`Tencentcloud::bma::V20210624::ModifyCRMonitorRequest`
+        # @rtype: :class:`Tencentcloud::bma::V20210624::ModifyCRMonitorResponse`
+        def ModifyCRMonitor(request)
+          body = send_request('ModifyCRMonitor', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyCRMonitorResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 申请取证
+
+        # @param request: Request instance for ModifyCRObtainStatus.
+        # @type request: :class:`Tencentcloud::bma::V20210624::ModifyCRObtainStatusRequest`
+        # @rtype: :class:`Tencentcloud::bma::V20210624::ModifyCRObtainStatusResponse`
+        def ModifyCRObtainStatus(request)
+          body = send_request('ModifyCRObtainStatus', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyCRObtainStatusResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 版权保护-维权申请接口
+
+        # @param request: Request instance for ModifyCRRightStatus.
+        # @type request: :class:`Tencentcloud::bma::V20210624::ModifyCRRightStatusRequest`
+        # @rtype: :class:`Tencentcloud::bma::V20210624::ModifyCRRightStatusResponse`
+        def ModifyCRRightStatus(request)
+          body = send_request('ModifyCRRightStatus', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyCRRightStatusResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 更新作品
+
+        # @param request: Request instance for UpdateCRWork.
+        # @type request: :class:`Tencentcloud::bma::V20210624::UpdateCRWorkRequest`
+        # @rtype: :class:`Tencentcloud::bma::V20210624::UpdateCRWorkResponse`
+        def UpdateCRWork(request)
+          body = send_request('UpdateCRWork', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = UpdateCRWorkResponse.new
             model.deserialize(response['Response'])
             model
           else

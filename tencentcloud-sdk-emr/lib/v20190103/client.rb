@@ -126,7 +126,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        #  yarn applciation 统计接口查询
+        #  yarn application 统计接口查询
 
         # @param request: Request instance for DescribeEmrApplicationStatics.
         # @type request: :class:`Tencentcloud::emr::V20190103::DescribeEmrApplicationStaticsRequest`

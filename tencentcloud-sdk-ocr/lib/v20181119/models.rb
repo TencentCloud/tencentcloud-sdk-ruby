@@ -6950,7 +6950,7 @@ module TencentCloud
         # @param CheckCode: 检验码
         # @type CheckCode: String
         # @param IsAbandoned: 是否作废（红冲）是否作废（红冲）
-        # Y: 已作废 N：未作废 H：红冲
+        # Y：已作废，N：未作废，H：红冲，HP：部分红冲，HF：全额红冲
         # @type IsAbandoned: String
         # @param HasSellerList: 是否有销货清单
         # Y: 有清单 N：无清单
@@ -7573,7 +7573,8 @@ module TencentCloud
         # 建议图片存储于腾讯云，可保障更高的下载速度和稳定性。
         # @type ImageUrl: String
         # @param CardSide: FRONT 为行驶证主页正面（有红色印章的一面），
-        # BACK 为行驶证副页正面（有号码号牌的一面）。
+        # BACK 为行驶证副页正面（有号码号牌的一面），
+        # DOUBLE 为行驶证主页正面和副页正面。
         # 默认值为：FRONT。
         # @type CardSide: String
 

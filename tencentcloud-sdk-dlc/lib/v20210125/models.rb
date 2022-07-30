@@ -4025,19 +4025,25 @@ module TencentCloud
         # @type StartTime: Integer
         # @param EndTime: 结束运行时间，unix时间戳（毫秒）
         # @type EndTime: Integer
-        # @param Limit: 分页大小，最大100，配合Context一起使用
+        # @param Limit: 分页大小，最大1000，配合Context一起使用
         # @type Limit: Integer
         # @param Context: 下一次分页参数，第一次传空
         # @type Context: String
+        # @param Asc: 最近1000条日志是否升序排列，true:升序排序，false:倒序，默认false，倒序排列
+        # @type Asc: Boolean
+        # @param Filters: 预览日志的通用过滤条件
+        # @type Filters: Array
 
-        attr_accessor :TaskId, :StartTime, :EndTime, :Limit, :Context
+        attr_accessor :TaskId, :StartTime, :EndTime, :Limit, :Context, :Asc, :Filters
         
-        def initialize(taskid=nil, starttime=nil, endtime=nil, limit=nil, context=nil)
+        def initialize(taskid=nil, starttime=nil, endtime=nil, limit=nil, context=nil, asc=nil, filters=nil)
           @TaskId = taskid
           @StartTime = starttime
           @EndTime = endtime
           @Limit = limit
           @Context = context
+          @Asc = asc
+          @Filters = filters
         end
 
         def deserialize(params)
@@ -4046,6 +4052,15 @@ module TencentCloud
           @EndTime = params['EndTime']
           @Limit = params['Limit']
           @Context = params['Context']
+          @Asc = params['Asc']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
         end
       end
 
@@ -4735,10 +4750,13 @@ module TencentCloud
         # @param TaskNum: 当前job正在运行或准备运行的任务个数
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskNum: Integer
+        # @param DataEngineStatus: 引擎状态：-100（默认：未知状态），-2~11：引擎正常状态；
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DataEngineStatus: Integer
 
-        attr_accessor :JobId, :JobName, :JobType, :DataEngine, :Eni, :IsLocal, :JobFile, :RoleArn, :MainClass, :CmdArgs, :JobConf, :IsLocalJars, :JobJars, :IsLocalFiles, :JobFiles, :JobDriverSize, :JobExecutorSize, :JobExecutorNums, :JobMaxAttempts, :JobCreator, :JobCreateTime, :JobUpdateTime, :CurrentTaskId, :JobStatus, :StreamingStat, :DataSource, :IsLocalPythonFiles, :AppPythonFiles, :IsLocalArchives, :JobArchives, :JobPythonFiles, :TaskNum
+        attr_accessor :JobId, :JobName, :JobType, :DataEngine, :Eni, :IsLocal, :JobFile, :RoleArn, :MainClass, :CmdArgs, :JobConf, :IsLocalJars, :JobJars, :IsLocalFiles, :JobFiles, :JobDriverSize, :JobExecutorSize, :JobExecutorNums, :JobMaxAttempts, :JobCreator, :JobCreateTime, :JobUpdateTime, :CurrentTaskId, :JobStatus, :StreamingStat, :DataSource, :IsLocalPythonFiles, :AppPythonFiles, :IsLocalArchives, :JobArchives, :JobPythonFiles, :TaskNum, :DataEngineStatus
         
-        def initialize(jobid=nil, jobname=nil, jobtype=nil, dataengine=nil, eni=nil, islocal=nil, jobfile=nil, rolearn=nil, mainclass=nil, cmdargs=nil, jobconf=nil, islocaljars=nil, jobjars=nil, islocalfiles=nil, jobfiles=nil, jobdriversize=nil, jobexecutorsize=nil, jobexecutornums=nil, jobmaxattempts=nil, jobcreator=nil, jobcreatetime=nil, jobupdatetime=nil, currenttaskid=nil, jobstatus=nil, streamingstat=nil, datasource=nil, islocalpythonfiles=nil, apppythonfiles=nil, islocalarchives=nil, jobarchives=nil, jobpythonfiles=nil, tasknum=nil)
+        def initialize(jobid=nil, jobname=nil, jobtype=nil, dataengine=nil, eni=nil, islocal=nil, jobfile=nil, rolearn=nil, mainclass=nil, cmdargs=nil, jobconf=nil, islocaljars=nil, jobjars=nil, islocalfiles=nil, jobfiles=nil, jobdriversize=nil, jobexecutorsize=nil, jobexecutornums=nil, jobmaxattempts=nil, jobcreator=nil, jobcreatetime=nil, jobupdatetime=nil, currenttaskid=nil, jobstatus=nil, streamingstat=nil, datasource=nil, islocalpythonfiles=nil, apppythonfiles=nil, islocalarchives=nil, jobarchives=nil, jobpythonfiles=nil, tasknum=nil, dataenginestatus=nil)
           @JobId = jobid
           @JobName = jobname
           @JobType = jobtype
@@ -4771,6 +4789,7 @@ module TencentCloud
           @JobArchives = jobarchives
           @JobPythonFiles = jobpythonfiles
           @TaskNum = tasknum
+          @DataEngineStatus = dataenginestatus
         end
 
         def deserialize(params)
@@ -4809,6 +4828,7 @@ module TencentCloud
           @JobArchives = params['JobArchives']
           @JobPythonFiles = params['JobPythonFiles']
           @TaskNum = params['TaskNum']
+          @DataEngineStatus = params['DataEngineStatus']
         end
       end
 

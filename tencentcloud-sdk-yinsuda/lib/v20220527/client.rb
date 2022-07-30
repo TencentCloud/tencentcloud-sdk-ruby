@@ -77,7 +77,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 获取推荐歌单列表。
+        # 获取歌单列表。
 
         # @param request: Request instance for DescribeKTVPlaylists.
         # @type request: :class:`Tencentcloud::yinsuda::V20220527::DescribeKTVPlaylistsRequest`

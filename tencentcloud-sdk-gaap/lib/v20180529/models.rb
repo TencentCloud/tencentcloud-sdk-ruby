@@ -577,7 +577,7 @@ module TencentCloud
         # @type NetworkType: String
         # @param PackageType: 通道套餐类型。Thunder表示标准通道组，Accelerator表示游戏加速器通道，CrossBorder表示跨境通道。
         # @type PackageType: String
-        # @param Http3Supported: 支持Http3的开关，其中：0，表示不需要支持Http3接入；1，表示需要支持Http3接入。注意：如果开启了Http3的功能，那么该通道就不再支持TCP/UDP接入的功能。该功能的启停无法在通道创建完毕后再修改。
+        # @param Http3Supported: 该字段已废弃，当IPAddressVersion为IPv4时，所创建的通道默认支持Http3.0；当为IPv6，默认不支持Http3.0。
         # @type Http3Supported: Integer
 
         attr_accessor :AccessRegion, :RealServerRegion, :Bandwidth, :Concurrent, :GroupId, :IPAddressVersion, :NetworkType, :PackageType, :Http3Supported
@@ -1268,11 +1268,7 @@ module TencentCloud
         # @type IPAddressVersion: String
         # @param PackageType: 通道组套餐类型，可取值：Thunder、Accelerator，默认值Thunder
         # @type PackageType: String
-        # @param Http3Supported: 支持Http3的开关，其中：
-        # 0，表示不需要支持Http3接入；
-        # 1，表示需要支持Http3接入。
-        # 注意：如果开启了Http3的功能，那么该通道组就不再支持TCP/UDP接入的功能。
-        # 该功能的启停无法在通道组创建完毕后再修改。
+        # @param Http3Supported: 该字段已废弃，当IPAddressVersion为IPv4时，所创建的通道组默认支持Http3.0；当为IPv6，默认不支持Http3.0。
         # @type Http3Supported: Integer
 
         attr_accessor :ProjectId, :GroupName, :RealServerRegion, :TagSet, :AccessRegionSet, :IPAddressVersion, :PackageType, :Http3Supported
@@ -1366,7 +1362,7 @@ module TencentCloud
         # @type NetworkType: String
         # @param PackageType: 通道套餐类型，Thunder表示标准通道组，Accelerator表示游戏加速器通道，CrossBorder表示跨境通道。
         # @type PackageType: String
-        # @param Http3Supported: 支持Http3的开关，其中：0，表示不需要支持Http3接入；1，表示需要支持Http3接入。注意：如果开启了Http3的功能，那么该通道就不再支持TCP/UDP接入的功能。该功能的启停无法在通道创建完毕后再修改。
+        # @param Http3Supported: 该字段已废弃，当IPAddressVersion为IPv4时，所创建的通道默认支持Http3.0；当为IPv6，默认不支持Http3.0。
         # @type Http3Supported: Integer
 
         attr_accessor :ProjectId, :ProxyName, :AccessRegion, :Bandwidth, :Concurrent, :RealServerRegion, :ClientToken, :GroupId, :TagSet, :ClonedProxyId, :BillingType, :IPAddressVersion, :NetworkType, :PackageType, :Http3Supported
@@ -4948,7 +4944,7 @@ module TencentCloud
         # @type NetworkType: String
         # @param PackageType: 通道套餐类型，Thunder表示标准通道组，Accelerator表示游戏加速器通道，CrossBorder表示跨境通道。
         # @type PackageType: String
-        # @param Http3Supported: 支持Http3的开关，其中：0，表示不需要支持Http3接入；1，表示需要支持Http3接入。注意：如果开启了Http3的功能，那么该通道就不再支持TCP/UDP接入的功能。该功能的启停无法在通道创建完毕后再修改。
+        # @param Http3Supported: 该字段已废弃，当IPAddressVersion为IPv4时，所创建的通道默认支持Http3.0；当为IPv6，默认不支持Http3.0。
         # @type Http3Supported: Integer
 
         attr_accessor :AccessRegion, :Bandwidth, :DestRegion, :Concurrency, :RealServerRegion, :Concurrent, :BillingType, :IPAddressVersion, :NetworkType, :PackageType, :Http3Supported
@@ -6137,10 +6133,24 @@ module TencentCloud
         # 1表示启用。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Http3Supported: Integer
+        # @param FeatureBitmap: 特性位图，每个bit位代表一种特性，其中：
+        # 0，表示不支持该特性；
+        # 1，表示支持该特性。
+        # 特性位图含义如下（从右往左）：
+        # 第1个bit，支持4层加速；
+        # 第2个bit，支持7层加速；
+        # 第3个bit，支持Http3接入；
+        # 第4个bit，支持IPv6；
+        # 第5个bit，支持精品BGP接入；
+        # 第6个bit，支持三网接入；
+        # 第7个bit，支持接入段Qos加速。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FeatureBitmap: Integer
 
-        attr_accessor :CreateTime, :ProjectId, :ProxyNum, :Status, :OwnerUin, :CreateUin, :GroupName, :DnsDefaultIp, :Domain, :RealServerRegionInfo, :IsOldGroup, :GroupId, :TagSet, :PolicyId, :Version, :ClientIPMethod, :IPAddressVersion, :PackageType, :Http3Supported
+        attr_accessor :CreateTime, :ProjectId, :ProxyNum, :Status, :OwnerUin, :CreateUin, :GroupName, :DnsDefaultIp, :Domain, :RealServerRegionInfo, :IsOldGroup, :GroupId, :TagSet, :PolicyId, :Version, :ClientIPMethod, :IPAddressVersion, :PackageType, :Http3Supported, :FeatureBitmap
         
-        def initialize(createtime=nil, projectid=nil, proxynum=nil, status=nil, owneruin=nil, createuin=nil, groupname=nil, dnsdefaultip=nil, domain=nil, realserverregioninfo=nil, isoldgroup=nil, groupid=nil, tagset=nil, policyid=nil, version=nil, clientipmethod=nil, ipaddressversion=nil, packagetype=nil, http3supported=nil)
+        def initialize(createtime=nil, projectid=nil, proxynum=nil, status=nil, owneruin=nil, createuin=nil, groupname=nil, dnsdefaultip=nil, domain=nil, realserverregioninfo=nil, isoldgroup=nil, groupid=nil, tagset=nil, policyid=nil, version=nil, clientipmethod=nil, ipaddressversion=nil, packagetype=nil, http3supported=nil, featurebitmap=nil)
           @CreateTime = createtime
           @ProjectId = projectid
           @ProxyNum = proxynum
@@ -6160,6 +6170,7 @@ module TencentCloud
           @IPAddressVersion = ipaddressversion
           @PackageType = packagetype
           @Http3Supported = http3supported
+          @FeatureBitmap = featurebitmap
         end
 
         def deserialize(params)
@@ -6192,6 +6203,7 @@ module TencentCloud
           @IPAddressVersion = params['IPAddressVersion']
           @PackageType = params['PackageType']
           @Http3Supported = params['Http3Supported']
+          @FeatureBitmap = params['FeatureBitmap']
         end
       end
 
@@ -6233,10 +6245,24 @@ module TencentCloud
         # 1表示启用。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Http3Supported: Integer
+        # @param FeatureBitmap: 特性位图，每个bit位代表一种特性，其中：
+        # 0，表示不支持该特性；
+        # 1，表示支持该特性。
+        # 特性位图含义如下（从右往左）：
+        # 第1个bit，支持4层加速；
+        # 第2个bit，支持7层加速；
+        # 第3个bit，支持Http3接入；
+        # 第4个bit，支持IPv6；
+        # 第5个bit，支持精品BGP接入；
+        # 第6个bit，支持三网接入；
+        # 第7个bit，支持接入段Qos加速。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FeatureBitmap: Integer
 
-        attr_accessor :GroupId, :Domain, :GroupName, :ProjectId, :RealServerRegionInfo, :Status, :TagSet, :Version, :CreateTime, :ProxyType, :Http3Supported
+        attr_accessor :GroupId, :Domain, :GroupName, :ProjectId, :RealServerRegionInfo, :Status, :TagSet, :Version, :CreateTime, :ProxyType, :Http3Supported, :FeatureBitmap
         
-        def initialize(groupid=nil, domain=nil, groupname=nil, projectid=nil, realserverregioninfo=nil, status=nil, tagset=nil, version=nil, createtime=nil, proxytype=nil, http3supported=nil)
+        def initialize(groupid=nil, domain=nil, groupname=nil, projectid=nil, realserverregioninfo=nil, status=nil, tagset=nil, version=nil, createtime=nil, proxytype=nil, http3supported=nil, featurebitmap=nil)
           @GroupId = groupid
           @Domain = domain
           @GroupName = groupname
@@ -6248,6 +6274,7 @@ module TencentCloud
           @CreateTime = createtime
           @ProxyType = proxytype
           @Http3Supported = http3supported
+          @FeatureBitmap = featurebitmap
         end
 
         def deserialize(params)
@@ -6272,6 +6299,7 @@ module TencentCloud
           @CreateTime = params['CreateTime']
           @ProxyType = params['ProxyType']
           @Http3Supported = params['Http3Supported']
+          @FeatureBitmap = params['FeatureBitmap']
         end
       end
 
@@ -6396,10 +6424,24 @@ module TencentCloud
         # @param InBanBlacklist: 是否在封禁黑名单中，其中：0表示不在黑名单中，1表示在黑名单中。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InBanBlacklist: Integer
+        # @param FeatureBitmap: 特性位图，每个bit位代表一种特性，其中：
+        # 0，表示不支持该特性；
+        # 1，表示支持该特性。
+        # 特性位图含义如下（从右往左）：
+        # 第1个bit，支持4层加速；
+        # 第2个bit，支持7层加速；
+        # 第3个bit，支持Http3接入；
+        # 第4个bit，支持IPv6；
+        # 第5个bit，支持精品BGP接入；
+        # 第6个bit，支持三网接入；
+        # 第7个bit，支持接入段Qos加速。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FeatureBitmap: Integer
 
-        attr_accessor :InstanceId, :CreateTime, :ProjectId, :ProxyName, :AccessRegion, :RealServerRegion, :Bandwidth, :Concurrent, :Status, :Domain, :IP, :Version, :ProxyId, :Scalarable, :SupportProtocols, :GroupId, :PolicyId, :AccessRegionInfo, :RealServerRegionInfo, :ForwardIP, :TagSet, :SupportSecurity, :BillingType, :RelatedGlobalDomains, :ModifyConfigTime, :ProxyType, :ClientIPMethod, :IPAddressVersion, :NetworkType, :PackageType, :BanStatus, :IPList, :Http3Supported, :InBanBlacklist
+        attr_accessor :InstanceId, :CreateTime, :ProjectId, :ProxyName, :AccessRegion, :RealServerRegion, :Bandwidth, :Concurrent, :Status, :Domain, :IP, :Version, :ProxyId, :Scalarable, :SupportProtocols, :GroupId, :PolicyId, :AccessRegionInfo, :RealServerRegionInfo, :ForwardIP, :TagSet, :SupportSecurity, :BillingType, :RelatedGlobalDomains, :ModifyConfigTime, :ProxyType, :ClientIPMethod, :IPAddressVersion, :NetworkType, :PackageType, :BanStatus, :IPList, :Http3Supported, :InBanBlacklist, :FeatureBitmap
         
-        def initialize(instanceid=nil, createtime=nil, projectid=nil, proxyname=nil, accessregion=nil, realserverregion=nil, bandwidth=nil, concurrent=nil, status=nil, domain=nil, ip=nil, version=nil, proxyid=nil, scalarable=nil, supportprotocols=nil, groupid=nil, policyid=nil, accessregioninfo=nil, realserverregioninfo=nil, forwardip=nil, tagset=nil, supportsecurity=nil, billingtype=nil, relatedglobaldomains=nil, modifyconfigtime=nil, proxytype=nil, clientipmethod=nil, ipaddressversion=nil, networktype=nil, packagetype=nil, banstatus=nil, iplist=nil, http3supported=nil, inbanblacklist=nil)
+        def initialize(instanceid=nil, createtime=nil, projectid=nil, proxyname=nil, accessregion=nil, realserverregion=nil, bandwidth=nil, concurrent=nil, status=nil, domain=nil, ip=nil, version=nil, proxyid=nil, scalarable=nil, supportprotocols=nil, groupid=nil, policyid=nil, accessregioninfo=nil, realserverregioninfo=nil, forwardip=nil, tagset=nil, supportsecurity=nil, billingtype=nil, relatedglobaldomains=nil, modifyconfigtime=nil, proxytype=nil, clientipmethod=nil, ipaddressversion=nil, networktype=nil, packagetype=nil, banstatus=nil, iplist=nil, http3supported=nil, inbanblacklist=nil, featurebitmap=nil)
           @InstanceId = instanceid
           @CreateTime = createtime
           @ProjectId = projectid
@@ -6434,6 +6476,7 @@ module TencentCloud
           @IPList = iplist
           @Http3Supported = http3supported
           @InBanBlacklist = inbanblacklist
+          @FeatureBitmap = featurebitmap
         end
 
         def deserialize(params)
@@ -6491,6 +6534,7 @@ module TencentCloud
           end
           @Http3Supported = params['Http3Supported']
           @InBanBlacklist = params['InBanBlacklist']
+          @FeatureBitmap = params['FeatureBitmap']
         end
       end
 

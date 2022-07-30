@@ -508,7 +508,7 @@ module TencentCloud
         # @type MiniAppID: String
         # @param Mode: 诊断方式 1:基础诊断，2:深度诊断
         # @type Mode: Integer
-        # @param ReportType: 诊断报告类型 0:基础诊断报告, 1:总裁版诊断报告
+        # @param ReportType: 诊断报告类型 0:基础诊断报告，1:总裁版诊断报告，2:诊断报告json结果
         # @type ReportType: Integer
 
         attr_accessor :TaskID, :MiniAppID, :Mode, :ReportType
@@ -940,7 +940,7 @@ module TencentCloud
         # @type TaskID: String
         # @param Platform: 应用平台, 0:android, 1:ios, 2:小程序
         # @type Platform: Integer
-        # @param ReportType: 报告类型, 0:诊断报告, 1:堆栈报告
+        # @param ReportType: 报告类型, 0:诊断报告, 1:堆栈报告(预留), 2:视频证据(预留), 3:报告json结果
         # @type ReportType: Integer
         # @param TaskType: 任务类型, 0:基础版, 1:专家版, 2:本地化
         # @type TaskType: Integer

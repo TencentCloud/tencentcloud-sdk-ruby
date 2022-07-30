@@ -7154,10 +7154,16 @@ module TencentCloud
         # @type DataTargetPrimaryKeyField: String
         # @param DataTargetRecordMapping: 表与消息间的映射关系
         # @type DataTargetRecordMapping: Array
+        # @param TopicRegex: 事件路由到特定主题的正则表达式，默认为(.*)
+        # @type TopicRegex: String
+        # @param TopicReplacement: TopicRegex的引用组，指定$1、$2等
+        # @type TopicReplacement: String
+        # @param KeyColumns: 格式：库1.表1:字段1,字段2;库2.表2:字段2，表之间;（分号）隔开，字段之间,（逗号）隔开。不指定的表默认取表的主键
+        # @type KeyColumns: String
 
-        attr_accessor :Database, :Table, :Resource, :SnapshotMode, :DdlTopic, :DataSourceMonitorMode, :DataSourceMonitorResource, :DataSourceIncrementMode, :DataSourceIncrementColumn, :DataSourceStartFrom, :DataTargetInsertMode, :DataTargetPrimaryKeyField, :DataTargetRecordMapping
+        attr_accessor :Database, :Table, :Resource, :SnapshotMode, :DdlTopic, :DataSourceMonitorMode, :DataSourceMonitorResource, :DataSourceIncrementMode, :DataSourceIncrementColumn, :DataSourceStartFrom, :DataTargetInsertMode, :DataTargetPrimaryKeyField, :DataTargetRecordMapping, :TopicRegex, :TopicReplacement, :KeyColumns
         
-        def initialize(database=nil, table=nil, resource=nil, snapshotmode=nil, ddltopic=nil, datasourcemonitormode=nil, datasourcemonitorresource=nil, datasourceincrementmode=nil, datasourceincrementcolumn=nil, datasourcestartfrom=nil, datatargetinsertmode=nil, datatargetprimarykeyfield=nil, datatargetrecordmapping=nil)
+        def initialize(database=nil, table=nil, resource=nil, snapshotmode=nil, ddltopic=nil, datasourcemonitormode=nil, datasourcemonitorresource=nil, datasourceincrementmode=nil, datasourceincrementcolumn=nil, datasourcestartfrom=nil, datatargetinsertmode=nil, datatargetprimarykeyfield=nil, datatargetrecordmapping=nil, topicregex=nil, topicreplacement=nil, keycolumns=nil)
           @Database = database
           @Table = table
           @Resource = resource
@@ -7171,6 +7177,9 @@ module TencentCloud
           @DataTargetInsertMode = datatargetinsertmode
           @DataTargetPrimaryKeyField = datatargetprimarykeyfield
           @DataTargetRecordMapping = datatargetrecordmapping
+          @TopicRegex = topicregex
+          @TopicReplacement = topicreplacement
+          @KeyColumns = keycolumns
         end
 
         def deserialize(params)
@@ -7194,6 +7203,9 @@ module TencentCloud
               @DataTargetRecordMapping << recordmapping_tmp
             end
           end
+          @TopicRegex = params['TopicRegex']
+          @TopicReplacement = params['TopicReplacement']
+          @KeyColumns = params['KeyColumns']
         end
       end
 
@@ -8018,21 +8030,29 @@ module TencentCloud
         # @type Bid: String
         # @param Tid: Tdw的tid
         # @type Tid: String
-        # @param IsDomestic: 是否为国内站，默认true
+        # @param IsDomestic: 默认true
         # @type IsDomestic: Boolean
+        # @param TdwHost: TDW地址，默认tl-tdbank-tdmanager.tencent-distribute.com
+        # @type TdwHost: String
+        # @param TdwPort: TDW端口，默认8099
+        # @type TdwPort: Integer
 
-        attr_accessor :Bid, :Tid, :IsDomestic
+        attr_accessor :Bid, :Tid, :IsDomestic, :TdwHost, :TdwPort
         
-        def initialize(bid=nil, tid=nil, isdomestic=nil)
+        def initialize(bid=nil, tid=nil, isdomestic=nil, tdwhost=nil, tdwport=nil)
           @Bid = bid
           @Tid = tid
           @IsDomestic = isdomestic
+          @TdwHost = tdwhost
+          @TdwPort = tdwport
         end
 
         def deserialize(params)
           @Bid = params['Bid']
           @Tid = params['Tid']
           @IsDomestic = params['IsDomestic']
+          @TdwHost = params['TdwHost']
+          @TdwPort = params['TdwPort']
         end
       end
 
