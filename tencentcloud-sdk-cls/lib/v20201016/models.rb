@@ -5279,10 +5279,13 @@ module TencentCloud
         # @type Content: :class:`Tencentcloud::Cls.v20201016.models.ContentInfo`
         # @param CreateTime: 投递日志的创建时间
         # @type CreateTime: String
+        # @param FilenameMode: 投递文件命名配置，0：随机数命名，1：投递时间命名，默认0（随机数命名）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FilenameMode: Integer
 
-        attr_accessor :ShipperId, :TopicId, :Bucket, :Prefix, :ShipperName, :Interval, :MaxSize, :Status, :FilterRules, :Partition, :Compress, :Content, :CreateTime
+        attr_accessor :ShipperId, :TopicId, :Bucket, :Prefix, :ShipperName, :Interval, :MaxSize, :Status, :FilterRules, :Partition, :Compress, :Content, :CreateTime, :FilenameMode
         
-        def initialize(shipperid=nil, topicid=nil, bucket=nil, prefix=nil, shippername=nil, interval=nil, maxsize=nil, status=nil, filterrules=nil, partition=nil, compress=nil, content=nil, createtime=nil)
+        def initialize(shipperid=nil, topicid=nil, bucket=nil, prefix=nil, shippername=nil, interval=nil, maxsize=nil, status=nil, filterrules=nil, partition=nil, compress=nil, content=nil, createtime=nil, filenamemode=nil)
           @ShipperId = shipperid
           @TopicId = topicid
           @Bucket = bucket
@@ -5296,6 +5299,7 @@ module TencentCloud
           @Compress = compress
           @Content = content
           @CreateTime = createtime
+          @FilenameMode = filenamemode
         end
 
         def deserialize(params)
@@ -5325,6 +5329,7 @@ module TencentCloud
             @Content.deserialize(params['Content'])
           end
           @CreateTime = params['CreateTime']
+          @FilenameMode = params['FilenameMode']
         end
       end
 

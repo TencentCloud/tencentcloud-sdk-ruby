@@ -7749,6 +7749,53 @@ module TencentCloud
         end
       end
 
+      # ModifyInstancePasswordComplexity请求参数结构体
+      class ModifyInstancePasswordComplexityRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceIds: 实例短 ID 列表。
+        # @type InstanceIds: Array
+        # @param ParamList: 要修改的参数列表。每一个元素是 Name 和 CurrentValue 的组合。Name 是参数名，CurrentValue 是要修改成的值。
+        # @type ParamList: Array
+
+        attr_accessor :InstanceIds, :ParamList
+        
+        def initialize(instanceids=nil, paramlist=nil)
+          @InstanceIds = instanceids
+          @ParamList = paramlist
+        end
+
+        def deserialize(params)
+          @InstanceIds = params['InstanceIds']
+          unless params['ParamList'].nil?
+            @ParamList = []
+            params['ParamList'].each do |i|
+              parameter_tmp = Parameter.new
+              parameter_tmp.deserialize(i)
+              @ParamList << parameter_tmp
+            end
+          end
+        end
+      end
+
+      # ModifyInstancePasswordComplexity返回参数结构体
+      class ModifyInstancePasswordComplexityResponse < TencentCloud::Common::AbstractModel
+        # @param AsyncRequestId: 异步任务 ID，可用于查询任务进度。
+        # @type AsyncRequestId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :AsyncRequestId, :RequestId
+        
+        def initialize(asyncrequestid=nil, requestid=nil)
+          @AsyncRequestId = asyncrequestid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @AsyncRequestId = params['AsyncRequestId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyInstanceTag请求参数结构体
       class ModifyInstanceTagRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例 ID。

@@ -350,7 +350,7 @@ module TencentCloud
       class CreateConvertTaskApiRequest < TencentCloud::Common::AbstractModel
         # @param ResourceId: 资源Id
         # @type ResourceId: String
-        # @param ResourceType: 资源类型 2-doc 3-docx
+        # @param ResourceType: 资源类型 取值范围doc,docx,html之一
         # @type ResourceType: String
         # @param ResourceName: 资源名称
         # @type ResourceName: String

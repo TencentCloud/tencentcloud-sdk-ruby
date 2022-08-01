@@ -1411,10 +1411,13 @@ module TencentCloud
         # @param Extra: 附加信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Extra: String
+        # @param Enabled: 0暂停，1启用
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Enabled: Integer
 
-        attr_accessor :RecordId, :ZoneId, :SubDomain, :RecordType, :RecordValue, :TTL, :MX, :Status, :Weight, :CreatedOn, :UpdatedOn, :Extra
+        attr_accessor :RecordId, :ZoneId, :SubDomain, :RecordType, :RecordValue, :TTL, :MX, :Status, :Weight, :CreatedOn, :UpdatedOn, :Extra, :Enabled
         
-        def initialize(recordid=nil, zoneid=nil, subdomain=nil, recordtype=nil, recordvalue=nil, ttl=nil, mx=nil, status=nil, weight=nil, createdon=nil, updatedon=nil, extra=nil)
+        def initialize(recordid=nil, zoneid=nil, subdomain=nil, recordtype=nil, recordvalue=nil, ttl=nil, mx=nil, status=nil, weight=nil, createdon=nil, updatedon=nil, extra=nil, enabled=nil)
           @RecordId = recordid
           @ZoneId = zoneid
           @SubDomain = subdomain
@@ -1427,6 +1430,7 @@ module TencentCloud
           @CreatedOn = createdon
           @UpdatedOn = updatedon
           @Extra = extra
+          @Enabled = enabled
         end
 
         def deserialize(params)
@@ -1442,6 +1446,7 @@ module TencentCloud
           @CreatedOn = params['CreatedOn']
           @UpdatedOn = params['UpdatedOn']
           @Extra = params['Extra']
+          @Enabled = params['Enabled']
         end
       end
 

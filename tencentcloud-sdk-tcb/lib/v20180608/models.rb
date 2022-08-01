@@ -135,6 +135,66 @@ module TencentCloud
         end
       end
 
+      # 新套餐套餐详情
+      class BaasPackageInfo < TencentCloud::Common::AbstractModel
+        # @param PackageName: DAU产品套餐ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PackageName: String
+        # @param PackageTitle: DAU套餐中文名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PackageTitle: String
+        # @param GroupName: 套餐分组
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GroupName: String
+        # @param GroupTitle: 套餐分组中文名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GroupTitle: String
+        # @param BillTags: json格式化计费标签，例如：
+        # {"pid":2, "cids":{"create": 2, "renew": 2, "modify": 2}, "productCode":"p_tcb_mp", "subProductCode":"sp_tcb_mp_cloudbase_dau"}
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BillTags: String
+        # @param ResourceLimit: json格式化用户资源限制，例如：
+        # {"Qps":1000,"InvokeNum":{"TimeUnit":"m", "Unit":"万次", "MaxSize": 100},"Capacity":{"TimeUnit":"m", "Unit":"GB", "MaxSize": 100}, "Cdn":{"Flux":{"TimeUnit":"m", "Unit":"GB", "MaxSize": 100}, "BackFlux":{"TimeUnit":"m", "Unit":"GB", "MaxSize": 100}},"Scf":{"Concurrency":1000,"OutFlux":{"TimeUnit":"m", "Unit":"GB", "MaxSize": 100},"MemoryUse":{"TimeUnit":"m", "Unit":"WGBS", "MaxSize": 100000}}}
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResourceLimit: String
+        # @param AdvanceLimit: json格式化高级限制，例如：
+        # {"CMSEnable":false,"ProvisionedConcurrencyMem":512000, "PictureProcessing":false, "SecurityAudit":false, "RealTimePush":false, "TemplateMessageBatchPush":false, "Payment":false}
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AdvanceLimit: String
+        # @param PackageDescription: 套餐描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PackageDescription: String
+        # @param IsExternal: 是否对外展示
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsExternal: Boolean
+
+        attr_accessor :PackageName, :PackageTitle, :GroupName, :GroupTitle, :BillTags, :ResourceLimit, :AdvanceLimit, :PackageDescription, :IsExternal
+        
+        def initialize(packagename=nil, packagetitle=nil, groupname=nil, grouptitle=nil, billtags=nil, resourcelimit=nil, advancelimit=nil, packagedescription=nil, isexternal=nil)
+          @PackageName = packagename
+          @PackageTitle = packagetitle
+          @GroupName = groupname
+          @GroupTitle = grouptitle
+          @BillTags = billtags
+          @ResourceLimit = resourcelimit
+          @AdvanceLimit = advancelimit
+          @PackageDescription = packagedescription
+          @IsExternal = isexternal
+        end
+
+        def deserialize(params)
+          @PackageName = params['PackageName']
+          @PackageTitle = params['PackageTitle']
+          @GroupName = params['GroupName']
+          @GroupTitle = params['GroupTitle']
+          @BillTags = params['BillTags']
+          @ResourceLimit = params['ResourceLimit']
+          @AdvanceLimit = params['AdvanceLimit']
+          @PackageDescription = params['PackageDescription']
+          @IsExternal = params['IsExternal']
+        end
+      end
+
       # 网关服务信息
       class BackendServiceInfo < TencentCloud::Common::AbstractModel
         # @param ServiceName: 服务名称
@@ -2521,6 +2581,83 @@ module TencentCloud
               authdomain_tmp = AuthDomain.new
               authdomain_tmp.deserialize(i)
               @Domains << authdomain_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeBaasPackageList请求参数结构体
+      class DescribeBaasPackageListRequest < TencentCloud::Common::AbstractModel
+        # @param PackageName: tcb产品套餐ID，不填拉取全量package信息。
+        # @type PackageName: String
+        # @param EnvId: 环境ID
+        # @type EnvId: String
+        # @param Source: 套餐归属方，填写后只返回对应的套餐 包含miniapp与qcloud两种 默认为miniapp
+        # @type Source: String
+        # @param EnvChannel: 套餐归属环境渠道
+        # @type EnvChannel: String
+        # @param TargetAction: 拉取套餐用途：
+        # 1）new 新购
+        # 2）modify变配
+        # 3）renew续费
+        # @type TargetAction: String
+        # @param GroupName: 预留字段，同一商品会对应多个类型套餐，对指标有不同侧重。
+        # 计算型calculation
+        # 流量型flux
+        # 容量型capactiy
+        # @type GroupName: String
+        # @param PackageTypeList: 类型分组过滤。默认为["default"]
+        # @type PackageTypeList: Array
+        # @param PaymentChannel: 付费渠道，与回包billTags中的计费参数相关，不填返回默认值。
+        # @type PaymentChannel: String
+
+        attr_accessor :PackageName, :EnvId, :Source, :EnvChannel, :TargetAction, :GroupName, :PackageTypeList, :PaymentChannel
+        
+        def initialize(packagename=nil, envid=nil, source=nil, envchannel=nil, targetaction=nil, groupname=nil, packagetypelist=nil, paymentchannel=nil)
+          @PackageName = packagename
+          @EnvId = envid
+          @Source = source
+          @EnvChannel = envchannel
+          @TargetAction = targetaction
+          @GroupName = groupname
+          @PackageTypeList = packagetypelist
+          @PaymentChannel = paymentchannel
+        end
+
+        def deserialize(params)
+          @PackageName = params['PackageName']
+          @EnvId = params['EnvId']
+          @Source = params['Source']
+          @EnvChannel = params['EnvChannel']
+          @TargetAction = params['TargetAction']
+          @GroupName = params['GroupName']
+          @PackageTypeList = params['PackageTypeList']
+          @PaymentChannel = params['PaymentChannel']
+        end
+      end
+
+      # DescribeBaasPackageList返回参数结构体
+      class DescribeBaasPackageListResponse < TencentCloud::Common::AbstractModel
+        # @param PackageList: 套餐列表
+        # @type PackageList: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :PackageList, :RequestId
+        
+        def initialize(packagelist=nil, requestid=nil)
+          @PackageList = packagelist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['PackageList'].nil?
+            @PackageList = []
+            params['PackageList'].each do |i|
+              baaspackageinfo_tmp = BaasPackageInfo.new
+              baaspackageinfo_tmp.deserialize(i)
+              @PackageList << baaspackageinfo_tmp
             end
           end
           @RequestId = params['RequestId']

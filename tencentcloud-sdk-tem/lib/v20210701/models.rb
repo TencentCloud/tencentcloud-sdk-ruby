@@ -987,6 +987,65 @@ module TencentCloud
         end
       end
 
+      # DescribeApplications请求参数结构体
+      class DescribeApplicationsRequest < TencentCloud::Common::AbstractModel
+        # @param EnvironmentId: 命名空间ID
+        # @type EnvironmentId: String
+        # @param Limit: 分页Limit
+        # @type Limit: Integer
+        # @param Offset: 分页offset
+        # @type Offset: Integer
+        # @param SourceChannel: 来源渠道
+        # @type SourceChannel: Integer
+        # @param ApplicationId: 服务id
+        # @type ApplicationId: String
+        # @param Keyword: 搜索关键字
+        # @type Keyword: String
+
+        attr_accessor :EnvironmentId, :Limit, :Offset, :SourceChannel, :ApplicationId, :Keyword
+        
+        def initialize(environmentid=nil, limit=nil, offset=nil, sourcechannel=nil, applicationid=nil, keyword=nil)
+          @EnvironmentId = environmentid
+          @Limit = limit
+          @Offset = offset
+          @SourceChannel = sourcechannel
+          @ApplicationId = applicationid
+          @Keyword = keyword
+        end
+
+        def deserialize(params)
+          @EnvironmentId = params['EnvironmentId']
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          @SourceChannel = params['SourceChannel']
+          @ApplicationId = params['ApplicationId']
+          @Keyword = params['Keyword']
+        end
+      end
+
+      # DescribeApplications返回参数结构体
+      class DescribeApplicationsResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 返回结果
+        # @type Result: :class:`Tencentcloud::Tem.v20210701.models.ServicePage`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+        
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Result'].nil?
+            @Result = ServicePage.new
+            @Result.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeApplicationsStatus请求参数结构体
       class DescribeApplicationsStatusRequest < TencentCloud::Common::AbstractModel
         # @param SourceChannel: 来源渠道
@@ -1076,6 +1135,53 @@ module TencentCloud
           unless params['Result'].nil?
             @Result = TemDeployApplicationDetailInfo.new
             @Result.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeEnvironmentStatus请求参数结构体
+      class DescribeEnvironmentStatusRequest < TencentCloud::Common::AbstractModel
+        # @param EnvironmentIds: 命名空间id
+        # @type EnvironmentIds: Array
+        # @param SourceChannel: 来源Channel
+        # @type SourceChannel: Integer
+
+        attr_accessor :EnvironmentIds, :SourceChannel
+        
+        def initialize(environmentids=nil, sourcechannel=nil)
+          @EnvironmentIds = environmentids
+          @SourceChannel = sourcechannel
+        end
+
+        def deserialize(params)
+          @EnvironmentIds = params['EnvironmentIds']
+          @SourceChannel = params['SourceChannel']
+        end
+      end
+
+      # DescribeEnvironmentStatus返回参数结构体
+      class DescribeEnvironmentStatusResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 返回状态列表
+        # @type Result: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+        
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Result'].nil?
+            @Result = []
+            params['Result'].each do |i|
+              namespacestatusinfo_tmp = NamespaceStatusInfo.new
+              namespacestatusinfo_tmp.deserialize(i)
+              @Result << namespacestatusinfo_tmp
+            end
           end
           @RequestId = params['RequestId']
         end
@@ -2118,6 +2224,50 @@ module TencentCloud
         end
       end
 
+      # 命名空间状态
+      class NamespaceStatusInfo < TencentCloud::Common::AbstractModel
+        # @param EnvironmentId: 命名空间id
+        # @type EnvironmentId: String
+        # @param EnvironmentName: 命名空间名称
+        # @type EnvironmentName: String
+        # @param ClusterId: TCB envId | EKS clusterId
+        # @type ClusterId: String
+        # @param ClusterStatus: 环境状态
+        # @type ClusterStatus: String
+        # @param EnvironmentStartingStatus: 环境启动状态（不在启动中为null）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EnvironmentStartingStatus: :class:`Tencentcloud::Tem.v20210701.models.TemEnvironmentStartingStatus`
+        # @param EnvironmentStoppingStatus: 环境停止状态（不在停止中为null）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EnvironmentStoppingStatus: :class:`Tencentcloud::Tem.v20210701.models.TemEnvironmentStoppingStatus`
+
+        attr_accessor :EnvironmentId, :EnvironmentName, :ClusterId, :ClusterStatus, :EnvironmentStartingStatus, :EnvironmentStoppingStatus
+        
+        def initialize(environmentid=nil, environmentname=nil, clusterid=nil, clusterstatus=nil, environmentstartingstatus=nil, environmentstoppingstatus=nil)
+          @EnvironmentId = environmentid
+          @EnvironmentName = environmentname
+          @ClusterId = clusterid
+          @ClusterStatus = clusterstatus
+          @EnvironmentStartingStatus = environmentstartingstatus
+          @EnvironmentStoppingStatus = environmentstoppingstatus
+        end
+
+        def deserialize(params)
+          @EnvironmentId = params['EnvironmentId']
+          @EnvironmentName = params['EnvironmentName']
+          @ClusterId = params['ClusterId']
+          @ClusterStatus = params['ClusterStatus']
+          unless params['EnvironmentStartingStatus'].nil?
+            @EnvironmentStartingStatus = TemEnvironmentStartingStatus.new
+            @EnvironmentStartingStatus.deserialize(params['EnvironmentStartingStatus'])
+          end
+          unless params['EnvironmentStoppingStatus'].nil?
+            @EnvironmentStoppingStatus = TemEnvironmentStoppingStatus.new
+            @EnvironmentStoppingStatus.deserialize(params['EnvironmentStoppingStatus'])
+          end
+        end
+      end
+
       # 键值对
       class Pair < TencentCloud::Common::AbstractModel
         # @param Key: 键
@@ -2495,6 +2645,41 @@ module TencentCloud
         end
       end
 
+      # 服务分页
+      class ServicePage < TencentCloud::Common::AbstractModel
+        # @param Records: 条目
+        # @type Records: Array
+        # @param Total: 总数
+        # @type Total: Integer
+        # @param Size: 条目
+        # @type Size: Integer
+        # @param Pages: 页数
+        # @type Pages: Integer
+
+        attr_accessor :Records, :Total, :Size, :Pages
+        
+        def initialize(records=nil, total=nil, size=nil, pages=nil)
+          @Records = records
+          @Total = total
+          @Size = size
+          @Pages = pages
+        end
+
+        def deserialize(params)
+          unless params['Records'].nil?
+            @Records = []
+            params['Records'].each do |i|
+              temservice_tmp = TemService.new
+              temservice_tmp.deserialize(i)
+              @Records << temservice_tmp
+            end
+          end
+          @Total = params['Total']
+          @Size = params['Size']
+          @Pages = params['Pages']
+        end
+      end
+
       # 服务版本信息列表
       class ServiceVersionBrief < TencentCloud::Common::AbstractModel
         # @param VersionName: 版本名称
@@ -2762,6 +2947,50 @@ module TencentCloud
         end
       end
 
+      # 环境启动进程（只统计由环境启动操作触发的应用数量）
+      class TemEnvironmentStartingStatus < TencentCloud::Common::AbstractModel
+        # @param ApplicationNumNeedToStart: 需要启动的应用数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ApplicationNumNeedToStart: Integer
+        # @param StartedApplicationNum: 已经启动的应用数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StartedApplicationNum: Integer
+
+        attr_accessor :ApplicationNumNeedToStart, :StartedApplicationNum
+        
+        def initialize(applicationnumneedtostart=nil, startedapplicationnum=nil)
+          @ApplicationNumNeedToStart = applicationnumneedtostart
+          @StartedApplicationNum = startedapplicationnum
+        end
+
+        def deserialize(params)
+          @ApplicationNumNeedToStart = params['ApplicationNumNeedToStart']
+          @StartedApplicationNum = params['StartedApplicationNum']
+        end
+      end
+
+      # 环境停止进程（只统计由环境停止操作触发的应用数量）
+      class TemEnvironmentStoppingStatus < TencentCloud::Common::AbstractModel
+        # @param ApplicationNumNeedToStop: 需要停止的应用数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ApplicationNumNeedToStop: Integer
+        # @param StoppedApplicationNum: 已经停止的应用数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StoppedApplicationNum: Integer
+
+        attr_accessor :ApplicationNumNeedToStop, :StoppedApplicationNum
+        
+        def initialize(applicationnumneedtostop=nil, stoppedapplicationnum=nil)
+          @ApplicationNumNeedToStop = applicationnumneedtostop
+          @StoppedApplicationNum = stoppedapplicationnum
+        end
+
+        def deserialize(params)
+          @ApplicationNumNeedToStop = params['ApplicationNumNeedToStop']
+          @StoppedApplicationNum = params['StoppedApplicationNum']
+        end
+      end
+
       # 命名空间对象
       class TemNamespaceInfo < TencentCloud::Common::AbstractModel
         # @param EnvironmentId: 环境id
@@ -2840,6 +3069,105 @@ module TencentCloud
           @ClusterStatus = params['ClusterStatus']
           @EnableTswTraceService = params['EnableTswTraceService']
           @Locked = params['Locked']
+        end
+      end
+
+      # 服务
+      class TemService < TencentCloud::Common::AbstractModel
+        # @param ApplicationId: 主键
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ApplicationId: String
+        # @param ApplicationName: 服务名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ApplicationName: String
+        # @param Description: 描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Description: String
+        # @param EnvironmentId: 命名空间id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EnvironmentId: String
+        # @param CreateDate: 创建时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateDate: String
+        # @param ModifyDate: 修改时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ModifyDate: String
+        # @param Modifier: 修改人
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Modifier: String
+        # @param Creator: 创建者
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Creator: String
+        # @param RepoType: tcr个人版or企业版
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RepoType: Integer
+        # @param InstanceId: 企业版实例id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceId: String
+        # @param RepoName: 镜像仓库名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RepoName: String
+        # @param CodingLanguage: 编程语言
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CodingLanguage: String
+        # @param DeployMode: 部署方式
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DeployMode: String
+        # @param EnvironmentName: 环境名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EnvironmentName: String
+        # @param ActiveVersions: 服务当前运行环境的实例信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ActiveVersions: Array
+        # @param EnableTracing: 是否启用链路追踪
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EnableTracing: Integer
+
+        attr_accessor :ApplicationId, :ApplicationName, :Description, :EnvironmentId, :CreateDate, :ModifyDate, :Modifier, :Creator, :RepoType, :InstanceId, :RepoName, :CodingLanguage, :DeployMode, :EnvironmentName, :ActiveVersions, :EnableTracing
+        
+        def initialize(applicationid=nil, applicationname=nil, description=nil, environmentid=nil, createdate=nil, modifydate=nil, modifier=nil, creator=nil, repotype=nil, instanceid=nil, reponame=nil, codinglanguage=nil, deploymode=nil, environmentname=nil, activeversions=nil, enabletracing=nil)
+          @ApplicationId = applicationid
+          @ApplicationName = applicationname
+          @Description = description
+          @EnvironmentId = environmentid
+          @CreateDate = createdate
+          @ModifyDate = modifydate
+          @Modifier = modifier
+          @Creator = creator
+          @RepoType = repotype
+          @InstanceId = instanceid
+          @RepoName = reponame
+          @CodingLanguage = codinglanguage
+          @DeployMode = deploymode
+          @EnvironmentName = environmentname
+          @ActiveVersions = activeversions
+          @EnableTracing = enabletracing
+        end
+
+        def deserialize(params)
+          @ApplicationId = params['ApplicationId']
+          @ApplicationName = params['ApplicationName']
+          @Description = params['Description']
+          @EnvironmentId = params['EnvironmentId']
+          @CreateDate = params['CreateDate']
+          @ModifyDate = params['ModifyDate']
+          @Modifier = params['Modifier']
+          @Creator = params['Creator']
+          @RepoType = params['RepoType']
+          @InstanceId = params['InstanceId']
+          @RepoName = params['RepoName']
+          @CodingLanguage = params['CodingLanguage']
+          @DeployMode = params['DeployMode']
+          @EnvironmentName = params['EnvironmentName']
+          unless params['ActiveVersions'].nil?
+            @ActiveVersions = []
+            params['ActiveVersions'].each do |i|
+              serviceversionbrief_tmp = ServiceVersionBrief.new
+              serviceversionbrief_tmp.deserialize(i)
+              @ActiveVersions << serviceversionbrief_tmp
+            end
+          end
+          @EnableTracing = params['EnableTracing']
         end
       end
 

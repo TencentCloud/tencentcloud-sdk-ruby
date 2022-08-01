@@ -224,6 +224,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 获取运行服务列表
+
+        # @param request: Request instance for DescribeApplications.
+        # @type request: :class:`Tencentcloud::tem::V20210701::DescribeApplicationsRequest`
+        # @rtype: :class:`Tencentcloud::tem::V20210701::DescribeApplicationsResponse`
+        def DescribeApplications(request)
+          body = send_request('DescribeApplications', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeApplicationsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 单环境下所有应用状态查看
 
         # @param request: Request instance for DescribeApplicationsStatus.
@@ -258,6 +282,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeDeployApplicationDetailResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取环境状态
+
+        # @param request: Request instance for DescribeEnvironmentStatus.
+        # @type request: :class:`Tencentcloud::tem::V20210701::DescribeEnvironmentStatusRequest`
+        # @rtype: :class:`Tencentcloud::tem::V20210701::DescribeEnvironmentStatusResponse`
+        def DescribeEnvironmentStatus(request)
+          body = send_request('DescribeEnvironmentStatus', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeEnvironmentStatusResponse.new
             model.deserialize(response['Response'])
             model
           else
