@@ -29,6 +29,41 @@ module TencentCloud
         end
 
 
+        # ###接口说明：
+        # 启动云端录制功能，完成房间内的音视频录制，并上传到指定的云存储。您可以通过此 API 接口把TRTC 房间中的每一路音视频流做单独的录制有或者多路视频画面混流一路。
+
+        # ###您可以通过此接口实现如下目标：
+        # * 指定订阅流参数（RecordParams）来指定需要录制的主播的黑名单或者白名单。
+        # * 指定第三方存储的参数（StorageParams）来指定上传到您希望的云存储
+        # * 指定混流模式下的音视频转码详细参数（MixTranscodeParams），包括视频分辨率、视频码率、视频帧率、以及声音质量等
+        # * 指定混流模式各路画面的位置和布局或者也可以指定自动模板的方式来配置。
+
+        # ###关键名词：
+        # * 单流录制：分别录制房间的订阅UserId的音频和视频。录制服务会实时将录制文件（M3U8/TS）上传至云存储。
+        # * 混流录制：将房间内订阅UserId的音视频混录成一个音视频文件，并将录制文件（M3U8/TS）上传至云存储。
+
+        # @param request: Request instance for CreateCloudRecording.
+        # @type request: :class:`Tencentcloud::trtc::V20190722::CreateCloudRecordingRequest`
+        # @rtype: :class:`Tencentcloud::trtc::V20190722::CreateCloudRecordingResponse`
+        def CreateCloudRecording(request)
+          body = send_request('CreateCloudRecording', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateCloudRecordingResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 如果您需要在 [云端混流转码](https://cloud.tencent.com/document/product/647/16827) 时频繁新增自定义背景图或水印，可通过此接口上传新的图片素材。无需频繁新增图片的场景，建议直接在 [控制台 > 应用管理 > 素材管理](https://cloud.tencent.com/document/product/647/50769) 中操作。
 
         # @param request: Request instance for CreatePicture.
@@ -39,6 +74,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = CreatePictureResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 成功开启录制后，可以使用此接口来停止录制任务。仅在录制任务进行时有效，录制退出后更新将会返回错误。停止录制成功后不代表文件全部传输完成，如果未完成后台将会继续上传文件，成功后通过事件回调通知客户文件全部传输完成状态。
+
+        # @param request: Request instance for DeleteCloudRecording.
+        # @type request: :class:`Tencentcloud::trtc::V20190722::DeleteCloudRecordingRequest`
+        # @rtype: :class:`Tencentcloud::trtc::V20190722::DeleteCloudRecordingResponse`
+        def DeleteCloudRecording(request)
+          body = send_request('DeleteCloudRecording', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteCloudRecordingResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -138,6 +197,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeCallDetailInfoResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 成功开启录制后，可以使用此接口来查询录制状态。仅在录制任务进行时有效，录制退出后查询将会返回错误。
+
+        # @param request: Request instance for DescribeCloudRecording.
+        # @type request: :class:`Tencentcloud::trtc::V20190722::DescribeCloudRecordingRequest`
+        # @rtype: :class:`Tencentcloud::trtc::V20190722::DescribeCloudRecordingResponse`
+        def DescribeCloudRecording(request)
+          body = send_request('DescribeCloudRecording', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeCloudRecordingResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -512,6 +595,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DismissRoomByStrRoomIdResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 成功开启录制后，可以使用此接口来更新录制任务。仅在录制任务进行时有效，录制退出后更新将会返回错误。更新操作是全量覆盖，并不是增量更新的模式，也就是说每次更新都需要携带全量的信息。
+
+        # @param request: Request instance for ModifyCloudRecording.
+        # @type request: :class:`Tencentcloud::trtc::V20190722::ModifyCloudRecordingRequest`
+        # @rtype: :class:`Tencentcloud::trtc::V20190722::ModifyCloudRecordingResponse`
+        def ModifyCloudRecording(request)
+          body = send_request('ModifyCloudRecording', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyCloudRecordingResponse.new
             model.deserialize(response['Response'])
             model
           else

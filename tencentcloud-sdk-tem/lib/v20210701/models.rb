@@ -921,6 +921,53 @@ module TencentCloud
         end
       end
 
+      # DescribeApplicationInfo请求参数结构体
+      class DescribeApplicationInfoRequest < TencentCloud::Common::AbstractModel
+        # @param ApplicationId: 服务版本ID
+        # @type ApplicationId: String
+        # @param SourceChannel: 来源渠道
+        # @type SourceChannel: Integer
+        # @param EnvironmentId: 环境ID
+        # @type EnvironmentId: String
+
+        attr_accessor :ApplicationId, :SourceChannel, :EnvironmentId
+        
+        def initialize(applicationid=nil, sourcechannel=nil, environmentid=nil)
+          @ApplicationId = applicationid
+          @SourceChannel = sourcechannel
+          @EnvironmentId = environmentid
+        end
+
+        def deserialize(params)
+          @ApplicationId = params['ApplicationId']
+          @SourceChannel = params['SourceChannel']
+          @EnvironmentId = params['EnvironmentId']
+        end
+      end
+
+      # DescribeApplicationInfo返回参数结构体
+      class DescribeApplicationInfoResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 返回结果
+        # @type Result: :class:`Tencentcloud::Tem.v20210701.models.TemServiceVersionInfo`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+        
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Result'].nil?
+            @Result = TemServiceVersionInfo.new
+            @Result.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeApplicationPods请求参数结构体
       class DescribeApplicationPodsRequest < TencentCloud::Common::AbstractModel
         # @param EnvironmentId: 环境id
@@ -2268,6 +2315,42 @@ module TencentCloud
         end
       end
 
+      # node信息
+      class NodeInfo < TencentCloud::Common::AbstractModel
+        # @param Name: node名字
+        # @type Name: String
+        # @param Zone: node可用区
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Zone: String
+        # @param SubnetId: node子网ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SubnetId: String
+        # @param AvailableIpCount: 可用IP数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AvailableIpCount: String
+        # @param Cidr: cidr块
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Cidr: String
+
+        attr_accessor :Name, :Zone, :SubnetId, :AvailableIpCount, :Cidr
+        
+        def initialize(name=nil, zone=nil, subnetid=nil, availableipcount=nil, cidr=nil)
+          @Name = name
+          @Zone = zone
+          @SubnetId = subnetid
+          @AvailableIpCount = availableipcount
+          @Cidr = cidr
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Zone = params['Zone']
+          @SubnetId = params['SubnetId']
+          @AvailableIpCount = params['AvailableIpCount']
+          @Cidr = params['Cidr']
+        end
+      end
+
       # 键值对
       class Pair < TencentCloud::Common::AbstractModel
         # @param Key: 键
@@ -3171,6 +3254,431 @@ module TencentCloud
         end
       end
 
+      # 版本信息
+      class TemServiceVersionInfo < TencentCloud::Common::AbstractModel
+        # @param VersionId: 主键
+        # @type VersionId: String
+        # @param ApplicationId: 服务id
+        # @type ApplicationId: Boolean
+        # @param DeployMode: 部署方式
+        # @type DeployMode: String
+        # @param JdkVersion: jdk版本
+        # @type JdkVersion: String
+        # @param Description: 描述
+        # @type Description: String
+        # @param DeployVersion: 部署版本
+        # @type DeployVersion: String
+        # @param PublishMode: 发布方式
+        # @type PublishMode: String
+        # @param JvmOpts: 启动参数
+        # @type JvmOpts: String
+        # @param InitPodNum: 初始实例
+        # @type InitPodNum: Integer
+        # @param CpuSpec: cpu规格
+        # @type CpuSpec: Float
+        # @param MemorySpec: 内存规格
+        # @type MemorySpec: Float
+        # @param ImgRepo: 镜像路径
+        # @type ImgRepo: String
+        # @param ImgName: 镜像名称
+        # @type ImgName: String
+        # @param ImgVersion: 镜像版本
+        # @type ImgVersion: String
+        # @param EsInfo: 弹性配置
+        # @type EsInfo: :class:`Tencentcloud::Tem.v20210701.models.EsInfo`
+        # @param EnvConf: 环境配置
+        # @type EnvConf: Array
+        # @param StorageConfs: 存储配置
+        # @type StorageConfs: Array
+        # @param Status: 运行状态
+        # @type Status: String
+        # @param Vpc: 私有网络
+        # @type Vpc: String
+        # @param SubnetId: 子网网络
+        # @type SubnetId: String
+        # @param CreateDate: 创建时间
+        # @type CreateDate: String
+        # @param ModifyDate: 修改时间
+        # @type ModifyDate: String
+        # @param StorageMountConfs: 挂载配置
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StorageMountConfs: Array
+        # @param VersionName: 版本名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VersionName: String
+        # @param LogOutputConf: 日志输出配置
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LogOutputConf: :class:`Tencentcloud::Tem.v20210701.models.LogOutputConf`
+        # @param ApplicationName: 服务名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ApplicationName: String
+        # @param ApplicationDescription: 服务描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ApplicationDescription: String
+        # @param EnvironmentName: 环境名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EnvironmentName: String
+        # @param EnvironmentId: 环境ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EnvironmentId: String
+        # @param PublicDomain: 公网地址
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PublicDomain: String
+        # @param EnablePublicAccess: 是否开通公网访问
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EnablePublicAccess: Boolean
+        # @param CurrentInstances: 现有的实例
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CurrentInstances: Integer
+        # @param ExpectedInstances: 期望的实例
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExpectedInstances: Integer
+        # @param CodingLanguage: 编程语言
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CodingLanguage: String
+        # @param PkgName: 程序包名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PkgName: String
+        # @param EsEnable: 是否启用弹性伸缩
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EsEnable: Integer
+        # @param EsStrategy: 弹性策略
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EsStrategy: Integer
+        # @param ImageTag: 镜像tag
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ImageTag: String
+        # @param LogEnable: 是否启用log
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LogEnable: Integer
+        # @param MinAliveInstances: 最小实例数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MinAliveInstances: Integer
+        # @param SecurityGroupIds: 安全组
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SecurityGroupIds: Array
+        # @param ImageCommand: 镜像命令
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ImageCommand: String
+        # @param ImageArgs: 镜像命令参数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ImageArgs: Array
+        # @param UseRegistryDefaultConfig: 是否使用默认注册中心配置
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UseRegistryDefaultConfig: Boolean
+        # @param Service: eks 访问设置
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Service: :class:`Tencentcloud::Tem.v20210701.models.EksService`
+        # @param SettingConfs: 挂载配置信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SettingConfs: Array
+        # @param LogConfs: log path数组信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LogConfs: Array
+        # @param PostStart: 启动后立即执行的脚本
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PostStart: String
+        # @param PreStop: 停止前执行的脚本
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PreStop: String
+        # @param Liveness: 存活探针配置
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Liveness: :class:`Tencentcloud::Tem.v20210701.models.HealthCheckConfig`
+        # @param Readiness: 就绪探针配置
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Readiness: :class:`Tencentcloud::Tem.v20210701.models.HealthCheckConfig`
+        # @param HorizontalAutoscaler: 弹性策略
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HorizontalAutoscaler: Array
+        # @param CronHorizontalAutoscaler: 定时弹性策略
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CronHorizontalAutoscaler: Array
+        # @param Zones: 应用实际可用区
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Zones: Array
+        # @param LastDeployDate: 最新部署时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LastDeployDate: String
+        # @param LastDeploySuccessDate: 最新部署成功时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LastDeploySuccessDate: String
+        # @param NodeInfos: 应用所在node信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NodeInfos: Array
+        # @param ImageType: image类型 -0 为demo -1为正常image
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ImageType: Integer
+        # @param EnableTracing: 是否启用调用链组件
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EnableTracing: Integer
+        # @param EnableTracingReport: 是否开启调用链上报，只有 EnableTracing=1 时生效
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EnableTracingReport: Integer
+        # @param RepoType: 镜像类型：0-个人镜像、1-企业镜像、2-公有镜像
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RepoType: Integer
+        # @param BatchDeployStatus: 分批发布子状态：batch_updating、batch_updating_waiting_confirm
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BatchDeployStatus: String
+        # @param ApmInstanceId: APM 资源 ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ApmInstanceId: String
+        # @param WorkloadInfo: 工作负载信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type WorkloadInfo: :class:`Tencentcloud::Tem.v20210701.models.WorkloadInfo`
+        # @param SpeedUp: 是否启用应用加速
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SpeedUp: Boolean
+        # @param StartupProbe: 启动检测探针配置
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StartupProbe: :class:`Tencentcloud::Tem.v20210701.models.HealthCheckConfig`
+        # @param OsFlavour: 操作系统版本，可选参数：
+        # - ALPINE
+        # - CENTOS
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OsFlavour: String
+        # @param RepoServer: 镜像仓库server
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RepoServer: String
+        # @param UnderDeploying: 是否正在发布中
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UnderDeploying: Boolean
+        # @param EnablePrometheusConf: 是否开启prometheus业务指标监控
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EnablePrometheusConf: :class:`Tencentcloud::Tem.v20210701.models.EnablePrometheusConf`
+        # @param StoppedManually: 是否为手动停止
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StoppedManually: Boolean
+        # @param TcrInstanceId: tcr实例ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TcrInstanceId: String
+
+        attr_accessor :VersionId, :ApplicationId, :DeployMode, :JdkVersion, :Description, :DeployVersion, :PublishMode, :JvmOpts, :InitPodNum, :CpuSpec, :MemorySpec, :ImgRepo, :ImgName, :ImgVersion, :EsInfo, :EnvConf, :StorageConfs, :Status, :Vpc, :SubnetId, :CreateDate, :ModifyDate, :StorageMountConfs, :VersionName, :LogOutputConf, :ApplicationName, :ApplicationDescription, :EnvironmentName, :EnvironmentId, :PublicDomain, :EnablePublicAccess, :CurrentInstances, :ExpectedInstances, :CodingLanguage, :PkgName, :EsEnable, :EsStrategy, :ImageTag, :LogEnable, :MinAliveInstances, :SecurityGroupIds, :ImageCommand, :ImageArgs, :UseRegistryDefaultConfig, :Service, :SettingConfs, :LogConfs, :PostStart, :PreStop, :Liveness, :Readiness, :HorizontalAutoscaler, :CronHorizontalAutoscaler, :Zones, :LastDeployDate, :LastDeploySuccessDate, :NodeInfos, :ImageType, :EnableTracing, :EnableTracingReport, :RepoType, :BatchDeployStatus, :ApmInstanceId, :WorkloadInfo, :SpeedUp, :StartupProbe, :OsFlavour, :RepoServer, :UnderDeploying, :EnablePrometheusConf, :StoppedManually, :TcrInstanceId
+        
+        def initialize(versionid=nil, applicationid=nil, deploymode=nil, jdkversion=nil, description=nil, deployversion=nil, publishmode=nil, jvmopts=nil, initpodnum=nil, cpuspec=nil, memoryspec=nil, imgrepo=nil, imgname=nil, imgversion=nil, esinfo=nil, envconf=nil, storageconfs=nil, status=nil, vpc=nil, subnetid=nil, createdate=nil, modifydate=nil, storagemountconfs=nil, versionname=nil, logoutputconf=nil, applicationname=nil, applicationdescription=nil, environmentname=nil, environmentid=nil, publicdomain=nil, enablepublicaccess=nil, currentinstances=nil, expectedinstances=nil, codinglanguage=nil, pkgname=nil, esenable=nil, esstrategy=nil, imagetag=nil, logenable=nil, minaliveinstances=nil, securitygroupids=nil, imagecommand=nil, imageargs=nil, useregistrydefaultconfig=nil, service=nil, settingconfs=nil, logconfs=nil, poststart=nil, prestop=nil, liveness=nil, readiness=nil, horizontalautoscaler=nil, cronhorizontalautoscaler=nil, zones=nil, lastdeploydate=nil, lastdeploysuccessdate=nil, nodeinfos=nil, imagetype=nil, enabletracing=nil, enabletracingreport=nil, repotype=nil, batchdeploystatus=nil, apminstanceid=nil, workloadinfo=nil, speedup=nil, startupprobe=nil, osflavour=nil, reposerver=nil, underdeploying=nil, enableprometheusconf=nil, stoppedmanually=nil, tcrinstanceid=nil)
+          @VersionId = versionid
+          @ApplicationId = applicationid
+          @DeployMode = deploymode
+          @JdkVersion = jdkversion
+          @Description = description
+          @DeployVersion = deployversion
+          @PublishMode = publishmode
+          @JvmOpts = jvmopts
+          @InitPodNum = initpodnum
+          @CpuSpec = cpuspec
+          @MemorySpec = memoryspec
+          @ImgRepo = imgrepo
+          @ImgName = imgname
+          @ImgVersion = imgversion
+          @EsInfo = esinfo
+          @EnvConf = envconf
+          @StorageConfs = storageconfs
+          @Status = status
+          @Vpc = vpc
+          @SubnetId = subnetid
+          @CreateDate = createdate
+          @ModifyDate = modifydate
+          @StorageMountConfs = storagemountconfs
+          @VersionName = versionname
+          @LogOutputConf = logoutputconf
+          @ApplicationName = applicationname
+          @ApplicationDescription = applicationdescription
+          @EnvironmentName = environmentname
+          @EnvironmentId = environmentid
+          @PublicDomain = publicdomain
+          @EnablePublicAccess = enablepublicaccess
+          @CurrentInstances = currentinstances
+          @ExpectedInstances = expectedinstances
+          @CodingLanguage = codinglanguage
+          @PkgName = pkgname
+          @EsEnable = esenable
+          @EsStrategy = esstrategy
+          @ImageTag = imagetag
+          @LogEnable = logenable
+          @MinAliveInstances = minaliveinstances
+          @SecurityGroupIds = securitygroupids
+          @ImageCommand = imagecommand
+          @ImageArgs = imageargs
+          @UseRegistryDefaultConfig = useregistrydefaultconfig
+          @Service = service
+          @SettingConfs = settingconfs
+          @LogConfs = logconfs
+          @PostStart = poststart
+          @PreStop = prestop
+          @Liveness = liveness
+          @Readiness = readiness
+          @HorizontalAutoscaler = horizontalautoscaler
+          @CronHorizontalAutoscaler = cronhorizontalautoscaler
+          @Zones = zones
+          @LastDeployDate = lastdeploydate
+          @LastDeploySuccessDate = lastdeploysuccessdate
+          @NodeInfos = nodeinfos
+          @ImageType = imagetype
+          @EnableTracing = enabletracing
+          @EnableTracingReport = enabletracingreport
+          @RepoType = repotype
+          @BatchDeployStatus = batchdeploystatus
+          @ApmInstanceId = apminstanceid
+          @WorkloadInfo = workloadinfo
+          @SpeedUp = speedup
+          @StartupProbe = startupprobe
+          @OsFlavour = osflavour
+          @RepoServer = reposerver
+          @UnderDeploying = underdeploying
+          @EnablePrometheusConf = enableprometheusconf
+          @StoppedManually = stoppedmanually
+          @TcrInstanceId = tcrinstanceid
+        end
+
+        def deserialize(params)
+          @VersionId = params['VersionId']
+          @ApplicationId = params['ApplicationId']
+          @DeployMode = params['DeployMode']
+          @JdkVersion = params['JdkVersion']
+          @Description = params['Description']
+          @DeployVersion = params['DeployVersion']
+          @PublishMode = params['PublishMode']
+          @JvmOpts = params['JvmOpts']
+          @InitPodNum = params['InitPodNum']
+          @CpuSpec = params['CpuSpec']
+          @MemorySpec = params['MemorySpec']
+          @ImgRepo = params['ImgRepo']
+          @ImgName = params['ImgName']
+          @ImgVersion = params['ImgVersion']
+          unless params['EsInfo'].nil?
+            @EsInfo = EsInfo.new
+            @EsInfo.deserialize(params['EsInfo'])
+          end
+          unless params['EnvConf'].nil?
+            @EnvConf = []
+            params['EnvConf'].each do |i|
+              pair_tmp = Pair.new
+              pair_tmp.deserialize(i)
+              @EnvConf << pair_tmp
+            end
+          end
+          unless params['StorageConfs'].nil?
+            @StorageConfs = []
+            params['StorageConfs'].each do |i|
+              storageconf_tmp = StorageConf.new
+              storageconf_tmp.deserialize(i)
+              @StorageConfs << storageconf_tmp
+            end
+          end
+          @Status = params['Status']
+          @Vpc = params['Vpc']
+          @SubnetId = params['SubnetId']
+          @CreateDate = params['CreateDate']
+          @ModifyDate = params['ModifyDate']
+          unless params['StorageMountConfs'].nil?
+            @StorageMountConfs = []
+            params['StorageMountConfs'].each do |i|
+              storagemountconf_tmp = StorageMountConf.new
+              storagemountconf_tmp.deserialize(i)
+              @StorageMountConfs << storagemountconf_tmp
+            end
+          end
+          @VersionName = params['VersionName']
+          unless params['LogOutputConf'].nil?
+            @LogOutputConf = LogOutputConf.new
+            @LogOutputConf.deserialize(params['LogOutputConf'])
+          end
+          @ApplicationName = params['ApplicationName']
+          @ApplicationDescription = params['ApplicationDescription']
+          @EnvironmentName = params['EnvironmentName']
+          @EnvironmentId = params['EnvironmentId']
+          @PublicDomain = params['PublicDomain']
+          @EnablePublicAccess = params['EnablePublicAccess']
+          @CurrentInstances = params['CurrentInstances']
+          @ExpectedInstances = params['ExpectedInstances']
+          @CodingLanguage = params['CodingLanguage']
+          @PkgName = params['PkgName']
+          @EsEnable = params['EsEnable']
+          @EsStrategy = params['EsStrategy']
+          @ImageTag = params['ImageTag']
+          @LogEnable = params['LogEnable']
+          @MinAliveInstances = params['MinAliveInstances']
+          @SecurityGroupIds = params['SecurityGroupIds']
+          @ImageCommand = params['ImageCommand']
+          @ImageArgs = params['ImageArgs']
+          @UseRegistryDefaultConfig = params['UseRegistryDefaultConfig']
+          unless params['Service'].nil?
+            @Service = EksService.new
+            @Service.deserialize(params['Service'])
+          end
+          unless params['SettingConfs'].nil?
+            @SettingConfs = []
+            params['SettingConfs'].each do |i|
+              mountedsettingconf_tmp = MountedSettingConf.new
+              mountedsettingconf_tmp.deserialize(i)
+              @SettingConfs << mountedsettingconf_tmp
+            end
+          end
+          @LogConfs = params['LogConfs']
+          @PostStart = params['PostStart']
+          @PreStop = params['PreStop']
+          unless params['Liveness'].nil?
+            @Liveness = HealthCheckConfig.new
+            @Liveness.deserialize(params['Liveness'])
+          end
+          unless params['Readiness'].nil?
+            @Readiness = HealthCheckConfig.new
+            @Readiness.deserialize(params['Readiness'])
+          end
+          unless params['HorizontalAutoscaler'].nil?
+            @HorizontalAutoscaler = []
+            params['HorizontalAutoscaler'].each do |i|
+              horizontalautoscaler_tmp = HorizontalAutoscaler.new
+              horizontalautoscaler_tmp.deserialize(i)
+              @HorizontalAutoscaler << horizontalautoscaler_tmp
+            end
+          end
+          unless params['CronHorizontalAutoscaler'].nil?
+            @CronHorizontalAutoscaler = []
+            params['CronHorizontalAutoscaler'].each do |i|
+              cronhorizontalautoscaler_tmp = CronHorizontalAutoscaler.new
+              cronhorizontalautoscaler_tmp.deserialize(i)
+              @CronHorizontalAutoscaler << cronhorizontalautoscaler_tmp
+            end
+          end
+          @Zones = params['Zones']
+          @LastDeployDate = params['LastDeployDate']
+          @LastDeploySuccessDate = params['LastDeploySuccessDate']
+          unless params['NodeInfos'].nil?
+            @NodeInfos = []
+            params['NodeInfos'].each do |i|
+              nodeinfo_tmp = NodeInfo.new
+              nodeinfo_tmp.deserialize(i)
+              @NodeInfos << nodeinfo_tmp
+            end
+          end
+          @ImageType = params['ImageType']
+          @EnableTracing = params['EnableTracing']
+          @EnableTracingReport = params['EnableTracingReport']
+          @RepoType = params['RepoType']
+          @BatchDeployStatus = params['BatchDeployStatus']
+          @ApmInstanceId = params['ApmInstanceId']
+          unless params['WorkloadInfo'].nil?
+            @WorkloadInfo = WorkloadInfo.new
+            @WorkloadInfo.deserialize(params['WorkloadInfo'])
+          end
+          @SpeedUp = params['SpeedUp']
+          unless params['StartupProbe'].nil?
+            @StartupProbe = HealthCheckConfig.new
+            @StartupProbe.deserialize(params['StartupProbe'])
+          end
+          @OsFlavour = params['OsFlavour']
+          @RepoServer = params['RepoServer']
+          @UnderDeploying = params['UnderDeploying']
+          unless params['EnablePrometheusConf'].nil?
+            @EnablePrometheusConf = EnablePrometheusConf.new
+            @EnablePrometheusConf.deserialize(params['EnablePrometheusConf'])
+          end
+          @StoppedManually = params['StoppedManually']
+          @TcrInstanceId = params['TcrInstanceId']
+        end
+      end
+
       # 创建应用，创建仓库参数
       class UseDefaultRepoParameters < TencentCloud::Common::AbstractModel
         # @param EnterpriseInstanceName: 企业版实例名
@@ -3195,6 +3703,28 @@ module TencentCloud
           @EnterpriseInstanceName = params['EnterpriseInstanceName']
           @EnterpriseInstanceChargeType = params['EnterpriseInstanceChargeType']
           @EnterpriseInstanceType = params['EnterpriseInstanceType']
+        end
+      end
+
+      # 工作负载详情
+      class WorkloadInfo < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 资源 ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClusterId: String
+        # @param ApplicationName: 应用名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ApplicationName: String
+
+        attr_accessor :ClusterId, :ApplicationName
+        
+        def initialize(clusterid=nil, applicationname=nil)
+          @ClusterId = clusterid
+          @ApplicationName = applicationname
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @ApplicationName = params['ApplicationName']
         end
       end
 

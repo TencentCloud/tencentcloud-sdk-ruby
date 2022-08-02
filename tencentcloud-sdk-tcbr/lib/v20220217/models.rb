@@ -565,10 +565,12 @@ module TencentCloud
         # @type Region: String
         # @param EnvType: 环境类型 tcbr ｜ run
         # @type EnvType: String
+        # @param SubnetIds: 子网id
+        # @type SubnetIds: String
 
-        attr_accessor :EnvId, :PackageType, :VpcId, :CreateTime, :Alias, :Status, :Region, :EnvType
+        attr_accessor :EnvId, :PackageType, :VpcId, :CreateTime, :Alias, :Status, :Region, :EnvType, :SubnetIds
         
-        def initialize(envid=nil, packagetype=nil, vpcid=nil, createtime=nil, _alias=nil, status=nil, region=nil, envtype=nil)
+        def initialize(envid=nil, packagetype=nil, vpcid=nil, createtime=nil, _alias=nil, status=nil, region=nil, envtype=nil, subnetids=nil)
           @EnvId = envid
           @PackageType = packagetype
           @VpcId = vpcid
@@ -577,6 +579,7 @@ module TencentCloud
           @Status = status
           @Region = region
           @EnvType = envtype
+          @SubnetIds = subnetids
         end
 
         def deserialize(params)
@@ -588,6 +591,7 @@ module TencentCloud
           @Status = params['Status']
           @Region = params['Region']
           @EnvType = params['EnvType']
+          @SubnetIds = params['SubnetIds']
         end
       end
 

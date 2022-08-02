@@ -17,6 +17,246 @@
 module TencentCloud
   module Bma
     module V20210624
+      # 商标信息
+      class BrandData < TencentCloud::Common::AbstractModel
+        # @param BrandName: xxx
+        # @type BrandName: String
+        # @param BrandCertificateName: xxx
+        # @type BrandCertificateName: String
+        # @param BrandStatus: xxx
+        # @type BrandStatus: Integer
+        # @param BrandNote: xxx
+        # @type BrandNote: String
+        # @param TransferName: xxx
+        # @type TransferName: String
+        # @param TransferStatus: xxx
+        # @type TransferStatus: Integer
+        # @param TransferNote: xxx
+        # @type TransferNote: String
+
+        attr_accessor :BrandName, :BrandCertificateName, :BrandStatus, :BrandNote, :TransferName, :TransferStatus, :TransferNote
+        
+        def initialize(brandname=nil, brandcertificatename=nil, brandstatus=nil, brandnote=nil, transfername=nil, transferstatus=nil, transfernote=nil)
+          @BrandName = brandname
+          @BrandCertificateName = brandcertificatename
+          @BrandStatus = brandstatus
+          @BrandNote = brandnote
+          @TransferName = transfername
+          @TransferStatus = transferstatus
+          @TransferNote = transfernote
+        end
+
+        def deserialize(params)
+          @BrandName = params['BrandName']
+          @BrandCertificateName = params['BrandCertificateName']
+          @BrandStatus = params['BrandStatus']
+          @BrandNote = params['BrandNote']
+          @TransferName = params['TransferName']
+          @TransferStatus = params['TransferStatus']
+          @TransferNote = params['TransferNote']
+        end
+      end
+
+      # CreateBPFakeURL请求参数结构体
+      class CreateBPFakeURLRequest < TencentCloud::Common::AbstractModel
+        # @param ProtectURLId: xxx
+        # @type ProtectURLId: Integer
+        # @param FakeURL: xxx
+        # @type FakeURL: String
+        # @param SnapshotNames: xxx
+        # @type SnapshotNames: Array
+        # @param Note: xxx
+        # @type Note: String
+
+        attr_accessor :ProtectURLId, :FakeURL, :SnapshotNames, :Note
+        
+        def initialize(protecturlid=nil, fakeurl=nil, snapshotnames=nil, note=nil)
+          @ProtectURLId = protecturlid
+          @FakeURL = fakeurl
+          @SnapshotNames = snapshotnames
+          @Note = note
+        end
+
+        def deserialize(params)
+          @ProtectURLId = params['ProtectURLId']
+          @FakeURL = params['FakeURL']
+          @SnapshotNames = params['SnapshotNames']
+          @Note = params['Note']
+        end
+      end
+
+      # CreateBPFakeURL返回参数结构体
+      class CreateBPFakeURLResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateBPFalseTicket请求参数结构体
+      class CreateBPFalseTicketRequest < TencentCloud::Common::AbstractModel
+        # @param FakeURL: xxx
+        # @type FakeURL: String
+
+        attr_accessor :FakeURL
+        
+        def initialize(fakeurl=nil)
+          @FakeURL = fakeurl
+        end
+
+        def deserialize(params)
+          @FakeURL = params['FakeURL']
+        end
+      end
+
+      # CreateBPFalseTicket返回参数结构体
+      class CreateBPFalseTicketResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateBPOfflineAttachment请求参数结构体
+      class CreateBPOfflineAttachmentRequest < TencentCloud::Common::AbstractModel
+        # @param BrandName: xxx
+        # @type BrandName: String
+        # @param BrandCertificateName: xx
+        # @type BrandCertificateName: String
+        # @param TransferName: xx
+        # @type TransferName: String
+        # @param AuthorizationName: xx
+        # @type AuthorizationName: String
+
+        attr_accessor :BrandName, :BrandCertificateName, :TransferName, :AuthorizationName
+        
+        def initialize(brandname=nil, brandcertificatename=nil, transfername=nil, authorizationname=nil)
+          @BrandName = brandname
+          @BrandCertificateName = brandcertificatename
+          @TransferName = transfername
+          @AuthorizationName = authorizationname
+        end
+
+        def deserialize(params)
+          @BrandName = params['BrandName']
+          @BrandCertificateName = params['BrandCertificateName']
+          @TransferName = params['TransferName']
+          @AuthorizationName = params['AuthorizationName']
+        end
+      end
+
+      # CreateBPOfflineAttachment返回参数结构体
+      class CreateBPOfflineAttachmentResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateBPOfflineTicket请求参数结构体
+      class CreateBPOfflineTicketRequest < TencentCloud::Common::AbstractModel
+        # @param FakeURLId: xxx
+        # @type FakeURLId: Integer
+
+        attr_accessor :FakeURLId
+        
+        def initialize(fakeurlid=nil)
+          @FakeURLId = fakeurlid
+        end
+
+        def deserialize(params)
+          @FakeURLId = params['FakeURLId']
+        end
+      end
+
+      # CreateBPOfflineTicket返回参数结构体
+      class CreateBPOfflineTicketResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateBPProtectURLs请求参数结构体
+      class CreateBPProtectURLsRequest < TencentCloud::Common::AbstractModel
+        # @param CompanyName: xxx
+        # @type CompanyName: String
+        # @param Phone: xxx
+        # @type Phone: String
+        # @param LicenseName: xxx
+        # @type LicenseName: String
+        # @param ProtectURLs: xxx
+        # @type ProtectURLs: Array
+        # @param ProtectWebs: xxx
+        # @type ProtectWebs: Array
+
+        attr_accessor :CompanyName, :Phone, :LicenseName, :ProtectURLs, :ProtectWebs
+        
+        def initialize(companyname=nil, phone=nil, licensename=nil, protecturls=nil, protectwebs=nil)
+          @CompanyName = companyname
+          @Phone = phone
+          @LicenseName = licensename
+          @ProtectURLs = protecturls
+          @ProtectWebs = protectwebs
+        end
+
+        def deserialize(params)
+          @CompanyName = params['CompanyName']
+          @Phone = params['Phone']
+          @LicenseName = params['LicenseName']
+          @ProtectURLs = params['ProtectURLs']
+          @ProtectWebs = params['ProtectWebs']
+        end
+      end
+
+      # CreateBPProtectURLs返回参数结构体
+      class CreateBPProtectURLsResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateCRBlock请求参数结构体
       class CreateCRBlockRequest < TencentCloud::Common::AbstractModel
         # @param WorkId: 已存证的作品ID
@@ -417,6 +657,259 @@ module TencentCloud
         end
       end
 
+      # DescribeBPCompanyInfo请求参数结构体
+      class DescribeBPCompanyInfoRequest < TencentCloud::Common::AbstractModel
+
+        
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeBPCompanyInfo返回参数结构体
+      class DescribeBPCompanyInfoResponse < TencentCloud::Common::AbstractModel
+        # @param CompanyName: xx
+        # @type CompanyName: String
+        # @param Phone: xx
+        # @type Phone: String
+        # @param LicenseName: xx
+        # @type LicenseName: String
+        # @param LicenseStatus: xx
+        # @type LicenseStatus: Integer
+        # @param LicenseNote: xx
+        # @type LicenseNote: String
+        # @param AuthorizationName: xx
+        # @type AuthorizationName: String
+        # @param AuthorizationStatus: xx
+        # @type AuthorizationStatus: Integer
+        # @param AuthorizationNote: xx
+        # @type AuthorizationNote: String
+        # @param BrandDatas: xx
+        # @type BrandDatas: Array
+        # @param CompanyId: xx
+        # @type CompanyId: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :CompanyName, :Phone, :LicenseName, :LicenseStatus, :LicenseNote, :AuthorizationName, :AuthorizationStatus, :AuthorizationNote, :BrandDatas, :CompanyId, :RequestId
+        
+        def initialize(companyname=nil, phone=nil, licensename=nil, licensestatus=nil, licensenote=nil, authorizationname=nil, authorizationstatus=nil, authorizationnote=nil, branddatas=nil, companyid=nil, requestid=nil)
+          @CompanyName = companyname
+          @Phone = phone
+          @LicenseName = licensename
+          @LicenseStatus = licensestatus
+          @LicenseNote = licensenote
+          @AuthorizationName = authorizationname
+          @AuthorizationStatus = authorizationstatus
+          @AuthorizationNote = authorizationnote
+          @BrandDatas = branddatas
+          @CompanyId = companyid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @CompanyName = params['CompanyName']
+          @Phone = params['Phone']
+          @LicenseName = params['LicenseName']
+          @LicenseStatus = params['LicenseStatus']
+          @LicenseNote = params['LicenseNote']
+          @AuthorizationName = params['AuthorizationName']
+          @AuthorizationStatus = params['AuthorizationStatus']
+          @AuthorizationNote = params['AuthorizationNote']
+          unless params['BrandDatas'].nil?
+            @BrandDatas = []
+            params['BrandDatas'].each do |i|
+              branddata_tmp = BrandData.new
+              branddata_tmp.deserialize(i)
+              @BrandDatas << branddata_tmp
+            end
+          end
+          @CompanyId = params['CompanyId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeBPFakeURLs请求参数结构体
+      class DescribeBPFakeURLsRequest < TencentCloud::Common::AbstractModel
+        # @param Filters: xxx
+        # @type Filters: Array
+        # @param PageSize: xxx
+        # @type PageSize: Integer
+        # @param PageNumber: xxx
+        # @type PageNumber: Integer
+
+        attr_accessor :Filters, :PageSize, :PageNumber
+        
+        def initialize(filters=nil, pagesize=nil, pagenumber=nil)
+          @Filters = filters
+          @PageSize = pagesize
+          @PageNumber = pagenumber
+        end
+
+        def deserialize(params)
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+          @PageSize = params['PageSize']
+          @PageNumber = params['PageNumber']
+        end
+      end
+
+      # DescribeBPFakeURLs返回参数结构体
+      class DescribeBPFakeURLsResponse < TencentCloud::Common::AbstractModel
+        # @param FakeURLInfos: xxx
+        # @type FakeURLInfos: Array
+        # @param TotalCount: xxx
+        # @type TotalCount: Integer
+        # @param ExportURL: xxx
+        # @type ExportURL: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :FakeURLInfos, :TotalCount, :ExportURL, :RequestId
+        
+        def initialize(fakeurlinfos=nil, totalcount=nil, exporturl=nil, requestid=nil)
+          @FakeURLInfos = fakeurlinfos
+          @TotalCount = totalcount
+          @ExportURL = exporturl
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['FakeURLInfos'].nil?
+            @FakeURLInfos = []
+            params['FakeURLInfos'].each do |i|
+              fakeurlinfo_tmp = FakeURLInfo.new
+              fakeurlinfo_tmp.deserialize(i)
+              @FakeURLInfos << fakeurlinfo_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+          @ExportURL = params['ExportURL']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeBPProtectURLs请求参数结构体
+      class DescribeBPProtectURLsRequest < TencentCloud::Common::AbstractModel
+        # @param PageSize: xxx
+        # @type PageSize: Integer
+        # @param PageNumber: xxx
+        # @type PageNumber: Integer
+
+        attr_accessor :PageSize, :PageNumber
+        
+        def initialize(pagesize=nil, pagenumber=nil)
+          @PageSize = pagesize
+          @PageNumber = pagenumber
+        end
+
+        def deserialize(params)
+          @PageSize = params['PageSize']
+          @PageNumber = params['PageNumber']
+        end
+      end
+
+      # DescribeBPProtectURLs返回参数结构体
+      class DescribeBPProtectURLsResponse < TencentCloud::Common::AbstractModel
+        # @param ProtectURLInfos: xxx
+        # @type ProtectURLInfos: Array
+        # @param TotalCount: xxx
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ProtectURLInfos, :TotalCount, :RequestId
+        
+        def initialize(protecturlinfos=nil, totalcount=nil, requestid=nil)
+          @ProtectURLInfos = protecturlinfos
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['ProtectURLInfos'].nil?
+            @ProtectURLInfos = []
+            params['ProtectURLInfos'].each do |i|
+              protecturlinfo_tmp = ProtectURLInfo.new
+              protecturlinfo_tmp.deserialize(i)
+              @ProtectURLInfos << protecturlinfo_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeBPReportFakeURLs请求参数结构体
+      class DescribeBPReportFakeURLsRequest < TencentCloud::Common::AbstractModel
+        # @param Filters: xxx
+        # @type Filters: Array
+        # @param PageSize: xxx
+        # @type PageSize: Integer
+        # @param PageNumber: xxx
+        # @type PageNumber: Integer
+
+        attr_accessor :Filters, :PageSize, :PageNumber
+        
+        def initialize(filters=nil, pagesize=nil, pagenumber=nil)
+          @Filters = filters
+          @PageSize = pagesize
+          @PageNumber = pagenumber
+        end
+
+        def deserialize(params)
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+          @PageSize = params['PageSize']
+          @PageNumber = params['PageNumber']
+        end
+      end
+
+      # DescribeBPReportFakeURLs返回参数结构体
+      class DescribeBPReportFakeURLsResponse < TencentCloud::Common::AbstractModel
+        # @param ReportFakeURLInfos: xxx
+        # @type ReportFakeURLInfos: Array
+        # @param TotalCount: xxx
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ReportFakeURLInfos, :TotalCount, :RequestId
+        
+        def initialize(reportfakeurlinfos=nil, totalcount=nil, requestid=nil)
+          @ReportFakeURLInfos = reportfakeurlinfos
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['ReportFakeURLInfos'].nil?
+            @ReportFakeURLInfos = []
+            params['ReportFakeURLInfos'].each do |i|
+              reportfakeurlinfo_tmp = ReportFakeURLInfo.new
+              reportfakeurlinfo_tmp.deserialize(i)
+              @ReportFakeURLInfos << reportfakeurlinfo_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeCRMonitorDetail请求参数结构体
       class DescribeCRMonitorDetailRequest < TencentCloud::Common::AbstractModel
         # @param WorkId: 作品ID
@@ -601,6 +1094,82 @@ module TencentCloud
         end
       end
 
+      # 仿冒网站信息
+      class FakeURLInfo < TencentCloud::Common::AbstractModel
+        # @param FakeURLId: xxx
+        # @type FakeURLId: Integer
+        # @param ProtectWeb: xxx
+        # @type ProtectWeb: String
+        # @param DetectTime: xxx
+        # @type DetectTime: String
+        # @param FakeURL: xxx
+        # @type FakeURL: String
+        # @param Snapshot: xxx
+        # @type Snapshot: String
+        # @param IP: xxx
+        # @type IP: String
+        # @param IPLoc: xxx
+        # @type IPLoc: String
+        # @param Heat: xxx
+        # @type Heat: Integer
+        # @param Status: xxx
+        # @type Status: Integer
+        # @param Note: xxx
+        # @type Note: String
+        # @param FakeURLCompany: xxx
+        # @type FakeURLCompany: String
+        # @param FakeURLAttr: xxx
+        # @type FakeURLAttr: String
+        # @param FakeURLName: xxx
+        # @type FakeURLName: String
+        # @param FakeURLICP: xxx
+        # @type FakeURLICP: String
+        # @param FakeURLCreateTime: xxx
+        # @type FakeURLCreateTime: String
+        # @param FakeURLExpireTime: xxx
+        # @type FakeURLExpireTime: String
+
+        attr_accessor :FakeURLId, :ProtectWeb, :DetectTime, :FakeURL, :Snapshot, :IP, :IPLoc, :Heat, :Status, :Note, :FakeURLCompany, :FakeURLAttr, :FakeURLName, :FakeURLICP, :FakeURLCreateTime, :FakeURLExpireTime
+        
+        def initialize(fakeurlid=nil, protectweb=nil, detecttime=nil, fakeurl=nil, snapshot=nil, ip=nil, iploc=nil, heat=nil, status=nil, note=nil, fakeurlcompany=nil, fakeurlattr=nil, fakeurlname=nil, fakeurlicp=nil, fakeurlcreatetime=nil, fakeurlexpiretime=nil)
+          @FakeURLId = fakeurlid
+          @ProtectWeb = protectweb
+          @DetectTime = detecttime
+          @FakeURL = fakeurl
+          @Snapshot = snapshot
+          @IP = ip
+          @IPLoc = iploc
+          @Heat = heat
+          @Status = status
+          @Note = note
+          @FakeURLCompany = fakeurlcompany
+          @FakeURLAttr = fakeurlattr
+          @FakeURLName = fakeurlname
+          @FakeURLICP = fakeurlicp
+          @FakeURLCreateTime = fakeurlcreatetime
+          @FakeURLExpireTime = fakeurlexpiretime
+        end
+
+        def deserialize(params)
+          @FakeURLId = params['FakeURLId']
+          @ProtectWeb = params['ProtectWeb']
+          @DetectTime = params['DetectTime']
+          @FakeURL = params['FakeURL']
+          @Snapshot = params['Snapshot']
+          @IP = params['IP']
+          @IPLoc = params['IPLoc']
+          @Heat = params['Heat']
+          @Status = params['Status']
+          @Note = params['Note']
+          @FakeURLCompany = params['FakeURLCompany']
+          @FakeURLAttr = params['FakeURLAttr']
+          @FakeURLName = params['FakeURLName']
+          @FakeURLICP = params['FakeURLICP']
+          @FakeURLCreateTime = params['FakeURLCreateTime']
+          @FakeURLExpireTime = params['FakeURLExpireTime']
+        end
+      end
+
       # 过滤参数
       class Filter < TencentCloud::Common::AbstractModel
 
@@ -609,6 +1178,54 @@ module TencentCloud
         end
 
         def deserialize(params)
+        end
+      end
+
+      # ModifyBPOfflineAttachment请求参数结构体
+      class ModifyBPOfflineAttachmentRequest < TencentCloud::Common::AbstractModel
+        # @param LicenseName: xx
+        # @type LicenseName: String
+        # @param AuthorizationName: xx
+        # @type AuthorizationName: String
+        # @param BrandName: xx
+        # @type BrandName: String
+        # @param BrandCertificateName: xx
+        # @type BrandCertificateName: String
+        # @param TransferName: xx
+        # @type TransferName: String
+
+        attr_accessor :LicenseName, :AuthorizationName, :BrandName, :BrandCertificateName, :TransferName
+        
+        def initialize(licensename=nil, authorizationname=nil, brandname=nil, brandcertificatename=nil, transfername=nil)
+          @LicenseName = licensename
+          @AuthorizationName = authorizationname
+          @BrandName = brandname
+          @BrandCertificateName = brandcertificatename
+          @TransferName = transfername
+        end
+
+        def deserialize(params)
+          @LicenseName = params['LicenseName']
+          @AuthorizationName = params['AuthorizationName']
+          @BrandName = params['BrandName']
+          @BrandCertificateName = params['BrandCertificateName']
+          @TransferName = params['TransferName']
+        end
+      end
+
+      # ModifyBPOfflineAttachment返回参数结构体
+      class ModifyBPOfflineAttachmentResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
         end
       end
 
@@ -877,6 +1494,126 @@ module TencentCloud
           @TortNum = params['TortNum']
           @ObtainNote = params['ObtainNote']
           @WorkTitle = params['WorkTitle']
+        end
+      end
+
+      # 保护网站信息
+      class ProtectURLInfo < TencentCloud::Common::AbstractModel
+        # @param ProtectURLId: xxx
+        # @type ProtectURLId: Integer
+        # @param ProtectURL: xxx
+        # @type ProtectURL: String
+        # @param ProtectWeb: xxx
+        # @type ProtectWeb: String
+        # @param ProtectURLStatus: xxx
+        # @type ProtectURLStatus: Integer
+        # @param ProtectURLNote: xxx
+        # @type ProtectURLNote: String
+        # @param CreateTime: xxx
+        # @type CreateTime: String
+
+        attr_accessor :ProtectURLId, :ProtectURL, :ProtectWeb, :ProtectURLStatus, :ProtectURLNote, :CreateTime
+        
+        def initialize(protecturlid=nil, protecturl=nil, protectweb=nil, protecturlstatus=nil, protecturlnote=nil, createtime=nil)
+          @ProtectURLId = protecturlid
+          @ProtectURL = protecturl
+          @ProtectWeb = protectweb
+          @ProtectURLStatus = protecturlstatus
+          @ProtectURLNote = protecturlnote
+          @CreateTime = createtime
+        end
+
+        def deserialize(params)
+          @ProtectURLId = params['ProtectURLId']
+          @ProtectURL = params['ProtectURL']
+          @ProtectWeb = params['ProtectWeb']
+          @ProtectURLStatus = params['ProtectURLStatus']
+          @ProtectURLNote = params['ProtectURLNote']
+          @CreateTime = params['CreateTime']
+        end
+      end
+
+      # 举报网址信息
+      class ReportFakeURLInfo < TencentCloud::Common::AbstractModel
+        # @param FakeURLId: xxx
+        # @type FakeURLId: Integer
+        # @param DetectTime: xxx
+        # @type DetectTime: String
+        # @param ProtectURL: xxx
+        # @type ProtectURL: String
+        # @param ProtectWeb: xxx
+        # @type ProtectWeb: String
+        # @param FakeURL: xxx
+        # @type FakeURL: String
+        # @param Snapshot: xxx
+        # @type Snapshot: String
+        # @param IP: xxx
+        # @type IP: String
+        # @param IPLoc: xxx
+        # @type IPLoc: String
+        # @param Heat: xxx
+        # @type Heat: Integer
+        # @param Status: xxx
+        # @type Status: Integer
+        # @param Note: xxx
+        # @type Note: String
+        # @param FakeURLCompany: xxx
+        # @type FakeURLCompany: String
+        # @param FakeURLAttr: xxx
+        # @type FakeURLAttr: String
+        # @param FakeURLName: xxx
+        # @type FakeURLName: String
+        # @param FakeURLICP: xxx
+        # @type FakeURLICP: String
+        # @param FakeURLCreateTime: xxx
+        # @type FakeURLCreateTime: String
+        # @param FakeURLExpireTime: xxx
+        # @type FakeURLExpireTime: String
+        # @param BlockTime: xxx
+        # @type BlockTime: String
+
+        attr_accessor :FakeURLId, :DetectTime, :ProtectURL, :ProtectWeb, :FakeURL, :Snapshot, :IP, :IPLoc, :Heat, :Status, :Note, :FakeURLCompany, :FakeURLAttr, :FakeURLName, :FakeURLICP, :FakeURLCreateTime, :FakeURLExpireTime, :BlockTime
+        
+        def initialize(fakeurlid=nil, detecttime=nil, protecturl=nil, protectweb=nil, fakeurl=nil, snapshot=nil, ip=nil, iploc=nil, heat=nil, status=nil, note=nil, fakeurlcompany=nil, fakeurlattr=nil, fakeurlname=nil, fakeurlicp=nil, fakeurlcreatetime=nil, fakeurlexpiretime=nil, blocktime=nil)
+          @FakeURLId = fakeurlid
+          @DetectTime = detecttime
+          @ProtectURL = protecturl
+          @ProtectWeb = protectweb
+          @FakeURL = fakeurl
+          @Snapshot = snapshot
+          @IP = ip
+          @IPLoc = iploc
+          @Heat = heat
+          @Status = status
+          @Note = note
+          @FakeURLCompany = fakeurlcompany
+          @FakeURLAttr = fakeurlattr
+          @FakeURLName = fakeurlname
+          @FakeURLICP = fakeurlicp
+          @FakeURLCreateTime = fakeurlcreatetime
+          @FakeURLExpireTime = fakeurlexpiretime
+          @BlockTime = blocktime
+        end
+
+        def deserialize(params)
+          @FakeURLId = params['FakeURLId']
+          @DetectTime = params['DetectTime']
+          @ProtectURL = params['ProtectURL']
+          @ProtectWeb = params['ProtectWeb']
+          @FakeURL = params['FakeURL']
+          @Snapshot = params['Snapshot']
+          @IP = params['IP']
+          @IPLoc = params['IPLoc']
+          @Heat = params['Heat']
+          @Status = params['Status']
+          @Note = params['Note']
+          @FakeURLCompany = params['FakeURLCompany']
+          @FakeURLAttr = params['FakeURLAttr']
+          @FakeURLName = params['FakeURLName']
+          @FakeURLICP = params['FakeURLICP']
+          @FakeURLCreateTime = params['FakeURLCreateTime']
+          @FakeURLExpireTime = params['FakeURLExpireTime']
+          @BlockTime = params['BlockTime']
         end
       end
 

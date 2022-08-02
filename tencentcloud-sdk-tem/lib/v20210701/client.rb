@@ -200,6 +200,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 服务基本信息查看
+
+        # @param request: Request instance for DescribeApplicationInfo.
+        # @type request: :class:`Tencentcloud::tem::V20210701::DescribeApplicationInfoRequest`
+        # @rtype: :class:`Tencentcloud::tem::V20210701::DescribeApplicationInfoResponse`
+        def DescribeApplicationInfo(request)
+          body = send_request('DescribeApplicationInfo', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeApplicationInfoResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 获取应用实例列表
 
         # @param request: Request instance for DescribeApplicationPods.

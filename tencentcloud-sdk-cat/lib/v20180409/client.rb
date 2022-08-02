@@ -101,6 +101,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 获取拨测节点
+
+        # @param request: Request instance for DescribeNodes.
+        # @type request: :class:`Tencentcloud::cat::V20180409::DescribeNodesRequest`
+        # @rtype: :class:`Tencentcloud::cat::V20180409::DescribeNodesResponse`
+        def DescribeNodes(request)
+          body = send_request('DescribeNodes', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeNodesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询云拨测指标数据，指标支持使用sum,avg,max,min聚合函数进行指标数据查询
 
         # @param request: Request instance for DescribeProbeMetricData.

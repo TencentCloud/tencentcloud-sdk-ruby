@@ -7644,14 +7644,17 @@ module TencentCloud
         # @type NodeName: String
         # @param Config: json格式的节点配置
         # @type Config: String
+        # @param ScriptVersion: 可以下载某个历史版本的edgectl脚本，默认下载最新版本，edgectl版本信息可以在脚本里查看
+        # @type ScriptVersion: String
 
-        attr_accessor :ClusterId, :Interface, :NodeName, :Config
+        attr_accessor :ClusterId, :Interface, :NodeName, :Config, :ScriptVersion
         
-        def initialize(clusterid=nil, interface=nil, nodename=nil, config=nil)
+        def initialize(clusterid=nil, interface=nil, nodename=nil, config=nil, scriptversion=nil)
           @ClusterId = clusterid
           @Interface = interface
           @NodeName = nodename
           @Config = config
+          @ScriptVersion = scriptversion
         end
 
         def deserialize(params)
@@ -7659,6 +7662,7 @@ module TencentCloud
           @Interface = params['Interface']
           @NodeName = params['NodeName']
           @Config = params['Config']
+          @ScriptVersion = params['ScriptVersion']
         end
       end
 
@@ -7670,15 +7674,19 @@ module TencentCloud
         # @type Token: String
         # @param Command: 下载命令
         # @type Command: String
+        # @param ScriptVersion: edgectl脚本版本，默认拉取最新版本
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ScriptVersion: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Link, :Token, :Command, :RequestId
+        attr_accessor :Link, :Token, :Command, :ScriptVersion, :RequestId
         
-        def initialize(link=nil, token=nil, command=nil, requestid=nil)
+        def initialize(link=nil, token=nil, command=nil, scriptversion=nil, requestid=nil)
           @Link = link
           @Token = token
           @Command = command
+          @ScriptVersion = scriptversion
           @RequestId = requestid
         end
 
@@ -7686,6 +7694,7 @@ module TencentCloud
           @Link = params['Link']
           @Token = params['Token']
           @Command = params['Command']
+          @ScriptVersion = params['ScriptVersion']
           @RequestId = params['RequestId']
         end
       end
@@ -8184,11 +8193,19 @@ module TencentCloud
         # @param ExtraArgs: 集群自定义参数
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExtraArgs: :class:`Tencentcloud::Tke.v20180525.models.EdgeClusterExtraArgs`
+        # @param Runtime: 运行时类型，支持"docker"和"containerd"，默认为docker
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Runtime: String
+        # @param ProxyMode: 集群kube-proxy转发模式，支持"iptables"和"ipvs"，默认为iptables
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProxyMode: String
 
-        attr_accessor :ExtraArgs
+        attr_accessor :ExtraArgs, :Runtime, :ProxyMode
         
-        def initialize(extraargs=nil)
+        def initialize(extraargs=nil, runtime=nil, proxymode=nil)
           @ExtraArgs = extraargs
+          @Runtime = runtime
+          @ProxyMode = proxymode
         end
 
         def deserialize(params)
@@ -8196,6 +8213,8 @@ module TencentCloud
             @ExtraArgs = EdgeClusterExtraArgs.new
             @ExtraArgs.deserialize(params['ExtraArgs'])
           end
+          @Runtime = params['Runtime']
+          @ProxyMode = params['ProxyMode']
         end
       end
 

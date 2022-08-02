@@ -173,7 +173,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 创建防火墙实例和接入域名
+        # 创建防火墙实例和接入域名（Region参数必填）
 
         # @param request: Request instance for CreateNatFwInstanceWithDomain.
         # @type request: :class:`Tencentcloud::cfw::V20190904::CreateNatFwInstanceWithDomainRequest`

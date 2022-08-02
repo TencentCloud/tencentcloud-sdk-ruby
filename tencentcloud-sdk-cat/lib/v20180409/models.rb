@@ -284,6 +284,84 @@ module TencentCloud
         end
       end
 
+      # DescribeNodes请求参数结构体
+      class DescribeNodesRequest < TencentCloud::Common::AbstractModel
+        # @param NodeType: 节点类型
+        # <li> 1 = IDC </li>
+        # <li> 2 = LastMile </li>
+        # <li> 3 = Mobile </li>
+        # @type NodeType: Integer
+        # @param Location: 节点区域
+        # <li> 1 = 中国大陆 </li>
+        # <li> 2 = 港澳台 </li>
+        # <li> 3 = 海外 </li>
+        # @type Location: Integer
+        # @param IsIPv6: 是否IPv6
+        # @type IsIPv6: Boolean
+        # @param NodeName: 名字模糊搜索
+        # @type NodeName: String
+        # @param PayMode: 付费模式
+        # <li>1 = 试用版本</li>
+        # <li> 2 = 付费版本 </li>
+        # @type PayMode: Integer
+        # @param TaskType: 任务类型
+        # <li>1 = 页面性能</li>
+        # <li>2 = 文件上传</li>
+        # <li>3 = 文件下载</li>
+        # <li>4 = 端口性能</li>
+        # <li>5 = 网络质量</li>
+        # <li>6 = 音视频体验</li>
+        # @type TaskType: Integer
+
+        attr_accessor :NodeType, :Location, :IsIPv6, :NodeName, :PayMode, :TaskType
+        
+        def initialize(nodetype=nil, location=nil, isipv6=nil, nodename=nil, paymode=nil, tasktype=nil)
+          @NodeType = nodetype
+          @Location = location
+          @IsIPv6 = isipv6
+          @NodeName = nodename
+          @PayMode = paymode
+          @TaskType = tasktype
+        end
+
+        def deserialize(params)
+          @NodeType = params['NodeType']
+          @Location = params['Location']
+          @IsIPv6 = params['IsIPv6']
+          @NodeName = params['NodeName']
+          @PayMode = params['PayMode']
+          @TaskType = params['TaskType']
+        end
+      end
+
+      # DescribeNodes返回参数结构体
+      class DescribeNodesResponse < TencentCloud::Common::AbstractModel
+        # @param NodeSet: 节点列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NodeSet: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :NodeSet, :RequestId
+        
+        def initialize(nodeset=nil, requestid=nil)
+          @NodeSet = nodeset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['NodeSet'].nil?
+            @NodeSet = []
+            params['NodeSet'].each do |i|
+              nodedefineext_tmp = NodeDefineExt.new
+              nodedefineext_tmp.deserialize(i)
+              @NodeSet << nodedefineext_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeProbeMetricData请求参数结构体
       class DescribeProbeMetricDataRequest < TencentCloud::Common::AbstractModel
         # @param AnalyzeTaskType: 分析任务类型，支持以下几种类型：
@@ -707,6 +785,70 @@ module TencentCloud
           @Location = params['Location']
           @CodeType = params['CodeType']
           @NodeDefineStatus = params['NodeDefineStatus']
+        end
+      end
+
+      # 探测节点
+      class NodeDefineExt < TencentCloud::Common::AbstractModel
+        # @param Name: 节点名称
+        # @type Name: String
+        # @param Code: 节点代码
+        # @type Code: String
+        # @param Type: 节点类型
+        # <li> 1 = IDC </li>
+        # <li> 2 = LastMile </li>
+        # <li> 3 = Mobile </li>
+        # @type Type: Integer
+        # @param NetService: 网络服务商
+        # @type NetService: String
+        # @param District: 区域
+        # @type District: String
+        # @param City: 城市
+        # @type City: String
+        # @param IPType: IP 类型
+        # <li> 1 = IPv4 </li>
+        # <li> 2 = IPv6 </li>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IPType: Integer
+        # @param Location: 区域
+        # <li> 1 = 中国大陆 </li>
+        # <li> 2 = 港澳台 </li>
+        # <li> 3 = 国外 </li>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Location: Integer
+        # @param CodeType: 节点类型  如果为base 则为可用性拨测点，为空则为高级拨测点
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CodeType: String
+        # @param TaskTypes: 节点支持的任务类型。1: 页面性能 2: 文件上传 3: 文件下载 4: 端口性能 5: 网络质量 6: 音视频体验
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TaskTypes: Array
+
+        attr_accessor :Name, :Code, :Type, :NetService, :District, :City, :IPType, :Location, :CodeType, :TaskTypes
+        
+        def initialize(name=nil, code=nil, type=nil, netservice=nil, district=nil, city=nil, iptype=nil, location=nil, codetype=nil, tasktypes=nil)
+          @Name = name
+          @Code = code
+          @Type = type
+          @NetService = netservice
+          @District = district
+          @City = city
+          @IPType = iptype
+          @Location = location
+          @CodeType = codetype
+          @TaskTypes = tasktypes
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Code = params['Code']
+          @Type = params['Type']
+          @NetService = params['NetService']
+          @District = params['District']
+          @City = params['City']
+          @IPType = params['IPType']
+          @Location = params['Location']
+          @CodeType = params['CodeType']
+          @TaskTypes = params['TaskTypes']
         end
       end
 
