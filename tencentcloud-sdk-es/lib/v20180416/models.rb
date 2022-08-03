@@ -1225,10 +1225,12 @@ module TencentCloud
         # @type OrderByKey: Integer
         # @param OrderByType: 排序方式<li>0：升序</li><li>1：降序</li>若传递了orderByKey未传递orderByType, 则默认升序
         # @type OrderByType: Integer
+        # @param VpcIds: VpcId 筛选项
+        # @type VpcIds: Array
 
-        attr_accessor :Zone, :InstanceIds, :InstanceNames, :Offset, :Limit, :OrderByKey, :OrderByType
+        attr_accessor :Zone, :InstanceIds, :InstanceNames, :Offset, :Limit, :OrderByKey, :OrderByType, :VpcIds
         
-        def initialize(zone=nil, instanceids=nil, instancenames=nil, offset=nil, limit=nil, orderbykey=nil, orderbytype=nil)
+        def initialize(zone=nil, instanceids=nil, instancenames=nil, offset=nil, limit=nil, orderbykey=nil, orderbytype=nil, vpcids=nil)
           @Zone = zone
           @InstanceIds = instanceids
           @InstanceNames = instancenames
@@ -1236,6 +1238,7 @@ module TencentCloud
           @Limit = limit
           @OrderByKey = orderbykey
           @OrderByType = orderbytype
+          @VpcIds = vpcids
         end
 
         def deserialize(params)
@@ -1246,6 +1249,7 @@ module TencentCloud
           @Limit = params['Limit']
           @OrderByKey = params['OrderByKey']
           @OrderByType = params['OrderByType']
+          @VpcIds = params['VpcIds']
         end
       end
 

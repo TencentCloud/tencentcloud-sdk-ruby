@@ -8874,7 +8874,10 @@ module TencentCloud
         # @type Area: Array
         # @param Weight: 当源站配置类型Type=weight时，表示权重
         # 取值范围为[1-100]
-        # 源站组内多个源站权重总和应为100
+        # 源站组内多个源站权重总和应为100。
+        # 当源站配置类型Type=proto，表示权重
+        # 取值范围为[1-100]
+        # 源站组内Proto相同的多个源站权重总和应为100。
         # @type Weight: Integer
         # @param Port: 端口
         # @type Port: Integer
@@ -8888,10 +8891,13 @@ module TencentCloud
         # 当源站类型Private=true时有效
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PrivateParameter: Array
+        # @param Proto: 当源站配置类型Type=proto时，表示客户端请求协议，取值：http/https
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Proto: String
 
-        attr_accessor :Record, :Area, :Weight, :Port, :RecordId, :Private, :PrivateParameter
+        attr_accessor :Record, :Area, :Weight, :Port, :RecordId, :Private, :PrivateParameter, :Proto
         
-        def initialize(record=nil, area=nil, weight=nil, port=nil, recordid=nil, private=nil, privateparameter=nil)
+        def initialize(record=nil, area=nil, weight=nil, port=nil, recordid=nil, private=nil, privateparameter=nil, proto=nil)
           @Record = record
           @Area = area
           @Weight = weight
@@ -8899,6 +8905,7 @@ module TencentCloud
           @RecordId = recordid
           @Private = private
           @PrivateParameter = privateparameter
+          @Proto = proto
         end
 
         def deserialize(params)
@@ -8916,6 +8923,7 @@ module TencentCloud
               @PrivateParameter << originrecordprivateparameter_tmp
             end
           end
+          @Proto = params['Proto']
         end
       end
 
@@ -10092,11 +10100,11 @@ module TencentCloud
 
       # Waf规则
       class WafRule < TencentCloud::Common::AbstractModel
-        # @param BlockRuleIDs: 黑名单
+        # @param BlockRuleIDs: 黑名单，ID参考接口 DescribeSecurityPolicyManagedRules
         # @type BlockRuleIDs: Array
-        # @param Switch: id的开关
+        # @param Switch: 托管规则 开关
         # @type Switch: String
-        # @param ObserveRuleIDs: 观察模式
+        # @param ObserveRuleIDs: 观察模式，ID参考接口 DescribeSecurityPolicyManagedRules
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ObserveRuleIDs: Array
 

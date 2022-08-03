@@ -624,10 +624,14 @@ module TencentCloud
         # @type EndTime: Integer
         # @param BusinessName: 业务名称（默认值：taw）
         # @type BusinessName: String
+        # @param PageIndex: 页码
+        # @type PageIndex: Integer
+        # @param PageSize: 页长
+        # @type PageSize: Integer
 
-        attr_accessor :Filters, :Metrics, :GroupBy, :OrderBy, :InstanceId, :Limit, :StartTime, :Offset, :EndTime, :BusinessName
+        attr_accessor :Filters, :Metrics, :GroupBy, :OrderBy, :InstanceId, :Limit, :StartTime, :Offset, :EndTime, :BusinessName, :PageIndex, :PageSize
         
-        def initialize(filters=nil, metrics=nil, groupby=nil, orderby=nil, instanceid=nil, limit=nil, starttime=nil, offset=nil, endtime=nil, businessname=nil)
+        def initialize(filters=nil, metrics=nil, groupby=nil, orderby=nil, instanceid=nil, limit=nil, starttime=nil, offset=nil, endtime=nil, businessname=nil, pageindex=nil, pagesize=nil)
           @Filters = filters
           @Metrics = metrics
           @GroupBy = groupby
@@ -638,6 +642,8 @@ module TencentCloud
           @Offset = offset
           @EndTime = endtime
           @BusinessName = businessname
+          @PageIndex = pageindex
+          @PageSize = pagesize
         end
 
         def deserialize(params)
@@ -668,6 +674,8 @@ module TencentCloud
           @Offset = params['Offset']
           @EndTime = params['EndTime']
           @BusinessName = params['BusinessName']
+          @PageIndex = params['PageIndex']
+          @PageSize = params['PageSize']
         end
       end
 
@@ -676,13 +684,17 @@ module TencentCloud
         # @param Records: 指标结果集
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Records: Array
+        # @param TotalCount: 查询指标结果集条数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalCount: Integer
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Records, :RequestId
+        attr_accessor :Records, :TotalCount, :RequestId
         
-        def initialize(records=nil, requestid=nil)
+        def initialize(records=nil, totalcount=nil, requestid=nil)
           @Records = records
+          @TotalCount = totalcount
           @RequestId = requestid
         end
 
@@ -695,6 +707,7 @@ module TencentCloud
               @Records << apmmetricrecord_tmp
             end
           end
+          @TotalCount = params['TotalCount']
           @RequestId = params['RequestId']
         end
       end

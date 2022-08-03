@@ -452,7 +452,7 @@ module TencentCloud
 
       # 投递日志的压缩配置
       class CompressInfo < TencentCloud::Common::AbstractModel
-        # @param Format: 压缩格式，支持gzip、lzop和none不压缩
+        # @param Format: 压缩格式，支持gzip、lzop、snappy和none不压缩
         # @type Format: String
 
         attr_accessor :Format

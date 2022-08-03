@@ -69,19 +69,25 @@ module TencentCloud
         # @type UserIp: String
         # @param ClientSession: 客户端session信息，从SDK请求中获得
         # @type ClientSession: String
+        # @param RunMode: 云端运行模式。
+        # RunWithoutClient：允许无客户端连接的情况下仍保持云端 App 运行
+        # 默认值（空）：要求必须有客户端连接才会保持云端 App 运行。
+        # @type RunMode: String
 
-        attr_accessor :UserId, :UserIp, :ClientSession
+        attr_accessor :UserId, :UserIp, :ClientSession, :RunMode
         
-        def initialize(userid=nil, userip=nil, clientsession=nil)
+        def initialize(userid=nil, userip=nil, clientsession=nil, runmode=nil)
           @UserId = userid
           @UserIp = userip
           @ClientSession = clientsession
+          @RunMode = runmode
         end
 
         def deserialize(params)
           @UserId = params['UserId']
           @UserIp = params['UserIp']
           @ClientSession = params['ClientSession']
+          @RunMode = params['RunMode']
         end
       end
 

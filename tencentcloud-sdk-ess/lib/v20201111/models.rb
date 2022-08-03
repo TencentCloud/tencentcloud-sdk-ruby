@@ -98,6 +98,34 @@ module TencentCloud
         end
       end
 
+      # 指定签署人限制项
+      class ApproverRestriction < TencentCloud::Common::AbstractModel
+        # @param Name: 指定签署人名字
+        # @type Name: String
+        # @param Mobile: 指定签署人手机号
+        # @type Mobile: String
+        # @param IdCardType: 指定签署人证件类型
+        # @type IdCardType: String
+        # @param IdCardNumber: 指定签署人证件号码
+        # @type IdCardNumber: String
+
+        attr_accessor :Name, :Mobile, :IdCardType, :IdCardNumber
+        
+        def initialize(name=nil, mobile=nil, idcardtype=nil, idcardnumber=nil)
+          @Name = name
+          @Mobile = mobile
+          @IdCardType = idcardtype
+          @IdCardNumber = idcardnumber
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Mobile = params['Mobile']
+          @IdCardType = params['IdCardType']
+          @IdCardNumber = params['IdCardNumber']
+        end
+      end
+
       # 此结构体 (Caller) 用于描述调用方属性。
       class Caller < TencentCloud::Common::AbstractModel
         # @param ApplicationId: 应用号
@@ -343,6 +371,57 @@ module TencentCloud
           @ComponentDateFontSize = params['ComponentDateFontSize']
           @OffsetX = params['OffsetX']
           @OffsetY = params['OffsetY']
+        end
+      end
+
+      # CreateBatchCancelFlowUrl请求参数结构体
+      class CreateBatchCancelFlowUrlRequest < TencentCloud::Common::AbstractModel
+        # @param Operator: 调用方用户信息，userId 必填
+        # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
+        # @param FlowIds: 需要执行撤回的签署流程id数组，最多100个
+        # @type FlowIds: Array
+
+        attr_accessor :Operator, :FlowIds
+        
+        def initialize(operator=nil, flowids=nil)
+          @Operator = operator
+          @FlowIds = flowids
+        end
+
+        def deserialize(params)
+          unless params['Operator'].nil?
+            @Operator = UserInfo.new
+            @Operator.deserialize(params['Operator'])
+          end
+          @FlowIds = params['FlowIds']
+        end
+      end
+
+      # CreateBatchCancelFlowUrl返回参数结构体
+      class CreateBatchCancelFlowUrlResponse < TencentCloud::Common::AbstractModel
+        # @param BatchCancelFlowUrl: 批量撤回签署流程链接
+        # @type BatchCancelFlowUrl: String
+        # @param FailMessages: 签署流程撤回失败信息
+        # @type FailMessages: Array
+        # @param UrlExpireOn: 签署连接过期时间字符串：年月日-时分秒
+        # @type UrlExpireOn: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :BatchCancelFlowUrl, :FailMessages, :UrlExpireOn, :RequestId
+        
+        def initialize(batchcancelflowurl=nil, failmessages=nil, urlexpireon=nil, requestid=nil)
+          @BatchCancelFlowUrl = batchcancelflowurl
+          @FailMessages = failmessages
+          @UrlExpireOn = urlexpireon
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @BatchCancelFlowUrl = params['BatchCancelFlowUrl']
+          @FailMessages = params['FailMessages']
+          @UrlExpireOn = params['UrlExpireOn']
+          @RequestId = params['RequestId']
         end
       end
 
@@ -738,10 +817,12 @@ module TencentCloud
         # @type FlowEffectiveDay: Integer
         # @param QrEffectiveDay: 二维码有效天数 默认7天 最高设置不超过90天
         # @type QrEffectiveDay: Integer
+        # @param ApproverRestrictions: 限制二维码用户条件
+        # @type ApproverRestrictions: :class:`Tencentcloud::Ess.v20201111.models.ApproverRestriction`
 
-        attr_accessor :TemplateId, :FlowName, :Operator, :Agent, :CallbackUrl, :MaxFlowNum, :FlowEffectiveDay, :QrEffectiveDay
+        attr_accessor :TemplateId, :FlowName, :Operator, :Agent, :CallbackUrl, :MaxFlowNum, :FlowEffectiveDay, :QrEffectiveDay, :ApproverRestrictions
         
-        def initialize(templateid=nil, flowname=nil, operator=nil, agent=nil, callbackurl=nil, maxflownum=nil, floweffectiveday=nil, qreffectiveday=nil)
+        def initialize(templateid=nil, flowname=nil, operator=nil, agent=nil, callbackurl=nil, maxflownum=nil, floweffectiveday=nil, qreffectiveday=nil, approverrestrictions=nil)
           @TemplateId = templateid
           @FlowName = flowname
           @Operator = operator
@@ -750,6 +831,7 @@ module TencentCloud
           @MaxFlowNum = maxflownum
           @FlowEffectiveDay = floweffectiveday
           @QrEffectiveDay = qreffectiveday
+          @ApproverRestrictions = approverrestrictions
         end
 
         def deserialize(params)
@@ -767,6 +849,10 @@ module TencentCloud
           @MaxFlowNum = params['MaxFlowNum']
           @FlowEffectiveDay = params['FlowEffectiveDay']
           @QrEffectiveDay = params['QrEffectiveDay']
+          unless params['ApproverRestrictions'].nil?
+            @ApproverRestrictions = ApproverRestriction.new
+            @ApproverRestrictions.deserialize(params['ApproverRestrictions'])
+          end
         end
       end
 
@@ -774,13 +860,16 @@ module TencentCloud
       class CreateMultiFlowSignQRCodeResponse < TencentCloud::Common::AbstractModel
         # @param QrCode: 签署二维码对象
         # @type QrCode: :class:`Tencentcloud::Ess.v20201111.models.SignQrCode`
+        # @param SignUrls: 签署链接对象
+        # @type SignUrls: :class:`Tencentcloud::Ess.v20201111.models.SignUrl`
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :QrCode, :RequestId
+        attr_accessor :QrCode, :SignUrls, :RequestId
         
-        def initialize(qrcode=nil, requestid=nil)
+        def initialize(qrcode=nil, signurls=nil, requestid=nil)
           @QrCode = qrcode
+          @SignUrls = signurls
           @RequestId = requestid
         end
 
@@ -788,6 +877,10 @@ module TencentCloud
           unless params['QrCode'].nil?
             @QrCode = SignQrCode.new
             @QrCode.deserialize(params['QrCode'])
+          end
+          unless params['SignUrls'].nil?
+            @SignUrls = SignUrl.new
+            @SignUrls.deserialize(params['SignUrls'])
           end
           @RequestId = params['RequestId']
         end
@@ -1549,6 +1642,30 @@ module TencentCloud
           @QrCodeId = params['QrCodeId']
           @QrCodeUrl = params['QrCodeUrl']
           @ExpiredTime = params['ExpiredTime']
+        end
+      end
+
+      # 一码多扫签署二维码签署信息
+      class SignUrl < TencentCloud::Common::AbstractModel
+        # @param AppSignUrl: 小程序签署链接
+        # @type AppSignUrl: String
+        # @param EffectiveTime: 签署链接有效时间
+        # @type EffectiveTime: String
+        # @param HttpSignUrl: 移动端签署链接
+        # @type HttpSignUrl: String
+
+        attr_accessor :AppSignUrl, :EffectiveTime, :HttpSignUrl
+        
+        def initialize(appsignurl=nil, effectivetime=nil, httpsignurl=nil)
+          @AppSignUrl = appsignurl
+          @EffectiveTime = effectivetime
+          @HttpSignUrl = httpsignurl
+        end
+
+        def deserialize(params)
+          @AppSignUrl = params['AppSignUrl']
+          @EffectiveTime = params['EffectiveTime']
+          @HttpSignUrl = params['HttpSignUrl']
         end
       end
 

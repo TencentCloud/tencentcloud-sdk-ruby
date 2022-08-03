@@ -53,6 +53,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 创建弹性伸缩策略组合
+
+        # @param request: Request instance for CreateApplicationAutoscaler.
+        # @type request: :class:`Tencentcloud::tem::V20210701::CreateApplicationAutoscalerRequest`
+        # @rtype: :class:`Tencentcloud::tem::V20210701::CreateApplicationAutoscalerResponse`
+        def CreateApplicationAutoscaler(request)
+          body = send_request('CreateApplicationAutoscaler', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateApplicationAutoscalerResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 创建配置
+
+        # @param request: Request instance for CreateConfigData.
+        # @type request: :class:`Tencentcloud::tem::V20210701::CreateConfigDataRequest`
+        # @rtype: :class:`Tencentcloud::tem::V20210701::CreateConfigDataResponse`
+        def CreateConfigData(request)
+          body = send_request('CreateConfigData', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateConfigDataResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 生成Cos临时秘钥
 
         # @param request: Request instance for CreateCosToken.
@@ -152,6 +200,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 删除应用弹性策略组合
+
+        # @param request: Request instance for DeleteApplicationAutoscaler.
+        # @type request: :class:`Tencentcloud::tem::V20210701::DeleteApplicationAutoscalerRequest`
+        # @rtype: :class:`Tencentcloud::tem::V20210701::DeleteApplicationAutoscalerResponse`
+        def DeleteApplicationAutoscaler(request)
+          body = send_request('DeleteApplicationAutoscaler', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteApplicationAutoscalerResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 删除 Ingress 规则
 
         # @param request: Request instance for DeleteIngress.
@@ -186,6 +258,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeployApplicationResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取应用弹性策略组合
+
+        # @param request: Request instance for DescribeApplicationAutoscalerList.
+        # @type request: :class:`Tencentcloud::tem::V20210701::DescribeApplicationAutoscalerListRequest`
+        # @rtype: :class:`Tencentcloud::tem::V20210701::DescribeApplicationAutoscalerListResponse`
+        def DescribeApplicationAutoscalerList(request)
+          body = send_request('DescribeApplicationAutoscalerList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeApplicationAutoscalerListResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -282,6 +378,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeApplicationsStatusResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询配置详情
+
+        # @param request: Request instance for DescribeConfigData.
+        # @type request: :class:`Tencentcloud::tem::V20210701::DescribeConfigDataRequest`
+        # @rtype: :class:`Tencentcloud::tem::V20210701::DescribeConfigDataResponse`
+        def DescribeConfigData(request)
+          body = send_request('DescribeConfigData', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeConfigDataResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询配置列表
+
+        # @param request: Request instance for DescribeConfigDataList.
+        # @type request: :class:`Tencentcloud::tem::V20210701::DescribeConfigDataListRequest`
+        # @rtype: :class:`Tencentcloud::tem::V20210701::DescribeConfigDataListResponse`
+        def DescribeConfigDataList(request)
+          body = send_request('DescribeConfigDataList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeConfigDataListResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -440,6 +584,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 销毁配置
+
+        # @param request: Request instance for DestroyConfigData.
+        # @type request: :class:`Tencentcloud::tem::V20210701::DestroyConfigDataRequest`
+        # @rtype: :class:`Tencentcloud::tem::V20210701::DestroyConfigDataResponse`
+        def DestroyConfigData(request)
+          body = send_request('DestroyConfigData', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DestroyConfigDataResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 销毁命名空间
 
         # @param request: Request instance for DestroyEnvironment.
@@ -488,6 +656,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 修改弹性伸缩策略组合
+
+        # @param request: Request instance for ModifyApplicationAutoscaler.
+        # @type request: :class:`Tencentcloud::tem::V20210701::ModifyApplicationAutoscalerRequest`
+        # @rtype: :class:`Tencentcloud::tem::V20210701::ModifyApplicationAutoscalerResponse`
+        def ModifyApplicationAutoscaler(request)
+          body = send_request('ModifyApplicationAutoscaler', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyApplicationAutoscalerResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 修改应用基本信息
 
         # @param request: Request instance for ModifyApplicationInfo.
@@ -522,6 +714,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyApplicationReplicasResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 编辑配置
+
+        # @param request: Request instance for ModifyConfigData.
+        # @type request: :class:`Tencentcloud::tem::V20210701::ModifyConfigDataRequest`
+        # @rtype: :class:`Tencentcloud::tem::V20210701::ModifyConfigDataResponse`
+        def ModifyConfigData(request)
+          body = send_request('ModifyConfigData', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyConfigDataResponse.new
             model.deserialize(response['Response'])
             model
           else

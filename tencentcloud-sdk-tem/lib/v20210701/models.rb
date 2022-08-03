@@ -17,6 +17,127 @@
 module TencentCloud
   module Tem
     module V20210701
+      # 弹性伸缩策略组合
+      class Autoscaler < TencentCloud::Common::AbstractModel
+        # @param MinReplicas: 弹性伸缩最小实例数
+        # @type MinReplicas: Integer
+        # @param MaxReplicas: 弹性伸缩最大实例数
+        # @type MaxReplicas: Integer
+        # @param HorizontalAutoscaler: 指标弹性伸缩策略
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HorizontalAutoscaler: Array
+        # @param CronHorizontalAutoscaler: 定时弹性伸缩策略
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CronHorizontalAutoscaler: Array
+        # @param AutoscalerId: 弹性伸缩ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AutoscalerId: String
+        # @param AutoscalerName: 弹性伸缩名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AutoscalerName: String
+        # @param Description: 弹性伸缩描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Description: String
+        # @param CreateDate: 创建日期
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateDate: String
+        # @param ModifyDate: 修改时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ModifyDate: String
+        # @param EnableDate: 启用时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EnableDate: String
+        # @param Enabled: 是否启用
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Enabled: Boolean
+
+        attr_accessor :MinReplicas, :MaxReplicas, :HorizontalAutoscaler, :CronHorizontalAutoscaler, :AutoscalerId, :AutoscalerName, :Description, :CreateDate, :ModifyDate, :EnableDate, :Enabled
+        
+        def initialize(minreplicas=nil, maxreplicas=nil, horizontalautoscaler=nil, cronhorizontalautoscaler=nil, autoscalerid=nil, autoscalername=nil, description=nil, createdate=nil, modifydate=nil, enabledate=nil, enabled=nil)
+          @MinReplicas = minreplicas
+          @MaxReplicas = maxreplicas
+          @HorizontalAutoscaler = horizontalautoscaler
+          @CronHorizontalAutoscaler = cronhorizontalautoscaler
+          @AutoscalerId = autoscalerid
+          @AutoscalerName = autoscalername
+          @Description = description
+          @CreateDate = createdate
+          @ModifyDate = modifydate
+          @EnableDate = enabledate
+          @Enabled = enabled
+        end
+
+        def deserialize(params)
+          @MinReplicas = params['MinReplicas']
+          @MaxReplicas = params['MaxReplicas']
+          unless params['HorizontalAutoscaler'].nil?
+            @HorizontalAutoscaler = []
+            params['HorizontalAutoscaler'].each do |i|
+              horizontalautoscaler_tmp = HorizontalAutoscaler.new
+              horizontalautoscaler_tmp.deserialize(i)
+              @HorizontalAutoscaler << horizontalautoscaler_tmp
+            end
+          end
+          unless params['CronHorizontalAutoscaler'].nil?
+            @CronHorizontalAutoscaler = []
+            params['CronHorizontalAutoscaler'].each do |i|
+              cronhorizontalautoscaler_tmp = CronHorizontalAutoscaler.new
+              cronhorizontalautoscaler_tmp.deserialize(i)
+              @CronHorizontalAutoscaler << cronhorizontalautoscaler_tmp
+            end
+          end
+          @AutoscalerId = params['AutoscalerId']
+          @AutoscalerName = params['AutoscalerName']
+          @Description = params['Description']
+          @CreateDate = params['CreateDate']
+          @ModifyDate = params['ModifyDate']
+          @EnableDate = params['EnableDate']
+          @Enabled = params['Enabled']
+        end
+      end
+
+      # 配置
+      class ConfigData < TencentCloud::Common::AbstractModel
+        # @param Name: 配置名称
+        # @type Name: String
+        # @param CreateTime: 创建时间
+        # @type CreateTime: String
+        # @param RelatedApplications: 关联的服务列表
+        # @type RelatedApplications: Array
+        # @param Data: 配置条目
+        # @type Data: Array
+
+        attr_accessor :Name, :CreateTime, :RelatedApplications, :Data
+        
+        def initialize(name=nil, createtime=nil, relatedapplications=nil, data=nil)
+          @Name = name
+          @CreateTime = createtime
+          @RelatedApplications = relatedapplications
+          @Data = data
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @CreateTime = params['CreateTime']
+          unless params['RelatedApplications'].nil?
+            @RelatedApplications = []
+            params['RelatedApplications'].each do |i|
+              temservice_tmp = TemService.new
+              temservice_tmp.deserialize(i)
+              @RelatedApplications << temservice_tmp
+            end
+          end
+          unless params['Data'].nil?
+            @Data = []
+            params['Data'].each do |i|
+              pair_tmp = Pair.new
+              pair_tmp.deserialize(i)
+              @Data << pair_tmp
+            end
+          end
+        end
+      end
+
       # Cos token
       class CosToken < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID
@@ -62,6 +183,58 @@ module TencentCloud
           @StartTime = params['StartTime']
           @ExpiredTime = params['ExpiredTime']
           @FullPath = params['FullPath']
+        end
+      end
+
+      # CreateApplicationAutoscaler请求参数结构体
+      class CreateApplicationAutoscalerRequest < TencentCloud::Common::AbstractModel
+        # @param ApplicationId: 服务id
+        # @type ApplicationId: String
+        # @param EnvironmentId: 环境ID
+        # @type EnvironmentId: String
+        # @param SourceChannel: 来源渠道
+        # @type SourceChannel: Integer
+        # @param Autoscaler: 弹性伸缩策略
+        # @type Autoscaler: :class:`Tencentcloud::Tem.v20210701.models.Autoscaler`
+
+        attr_accessor :ApplicationId, :EnvironmentId, :SourceChannel, :Autoscaler
+        
+        def initialize(applicationid=nil, environmentid=nil, sourcechannel=nil, autoscaler=nil)
+          @ApplicationId = applicationid
+          @EnvironmentId = environmentid
+          @SourceChannel = sourcechannel
+          @Autoscaler = autoscaler
+        end
+
+        def deserialize(params)
+          @ApplicationId = params['ApplicationId']
+          @EnvironmentId = params['EnvironmentId']
+          @SourceChannel = params['SourceChannel']
+          unless params['Autoscaler'].nil?
+            @Autoscaler = Autoscaler.new
+            @Autoscaler.deserialize(params['Autoscaler'])
+          end
+        end
+      end
+
+      # CreateApplicationAutoscaler返回参数结构体
+      class CreateApplicationAutoscalerResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 弹性伸缩策略组合ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Result: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+        
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Result = params['Result']
+          @RequestId = params['RequestId']
         end
       end
 
@@ -141,6 +314,61 @@ module TencentCloud
       class CreateApplicationResponse < TencentCloud::Common::AbstractModel
         # @param Result: 服务code
         # @type Result: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+        
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Result = params['Result']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateConfigData请求参数结构体
+      class CreateConfigDataRequest < TencentCloud::Common::AbstractModel
+        # @param EnvironmentId: 环境 ID
+        # @type EnvironmentId: String
+        # @param Name: 配置名
+        # @type Name: String
+        # @param SourceChannel: 来源渠道
+        # @type SourceChannel: Integer
+        # @param Data: 配置信息
+        # @type Data: Array
+
+        attr_accessor :EnvironmentId, :Name, :SourceChannel, :Data
+        
+        def initialize(environmentid=nil, name=nil, sourcechannel=nil, data=nil)
+          @EnvironmentId = environmentid
+          @Name = name
+          @SourceChannel = sourcechannel
+          @Data = data
+        end
+
+        def deserialize(params)
+          @EnvironmentId = params['EnvironmentId']
+          @Name = params['Name']
+          @SourceChannel = params['SourceChannel']
+          unless params['Data'].nil?
+            @Data = []
+            params['Data'].each do |i|
+              pair_tmp = Pair.new
+              pair_tmp.deserialize(i)
+              @Data << pair_tmp
+            end
+          end
+        end
+      end
+
+      # CreateConfigData返回参数结构体
+      class CreateConfigDataResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 创建是否成功
+        # @type Result: Boolean
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -395,6 +623,55 @@ module TencentCloud
         def deserialize(params)
           @StartAt = params['StartAt']
           @TargetReplicas = params['TargetReplicas']
+        end
+      end
+
+      # DeleteApplicationAutoscaler请求参数结构体
+      class DeleteApplicationAutoscalerRequest < TencentCloud::Common::AbstractModel
+        # @param ApplicationId: 服务id
+        # @type ApplicationId: String
+        # @param EnvironmentId: 环境ID
+        # @type EnvironmentId: String
+        # @param SourceChannel: 来源渠道
+        # @type SourceChannel: Integer
+        # @param AutoscalerId: 弹性伸缩策略ID
+        # @type AutoscalerId: String
+
+        attr_accessor :ApplicationId, :EnvironmentId, :SourceChannel, :AutoscalerId
+        
+        def initialize(applicationid=nil, environmentid=nil, sourcechannel=nil, autoscalerid=nil)
+          @ApplicationId = applicationid
+          @EnvironmentId = environmentid
+          @SourceChannel = sourcechannel
+          @AutoscalerId = autoscalerid
+        end
+
+        def deserialize(params)
+          @ApplicationId = params['ApplicationId']
+          @EnvironmentId = params['EnvironmentId']
+          @SourceChannel = params['SourceChannel']
+          @AutoscalerId = params['AutoscalerId']
+        end
+      end
+
+      # DeleteApplicationAutoscaler返回参数结构体
+      class DeleteApplicationAutoscalerResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 是否成功
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Result: Boolean
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+        
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Result = params['Result']
+          @RequestId = params['RequestId']
         end
       end
 
@@ -921,6 +1198,58 @@ module TencentCloud
         end
       end
 
+      # DescribeApplicationAutoscalerList请求参数结构体
+      class DescribeApplicationAutoscalerListRequest < TencentCloud::Common::AbstractModel
+        # @param ApplicationId: 服务id
+        # @type ApplicationId: String
+        # @param EnvironmentId: 环境ID
+        # @type EnvironmentId: String
+        # @param SourceChannel: 来源渠道
+        # @type SourceChannel: Integer
+
+        attr_accessor :ApplicationId, :EnvironmentId, :SourceChannel
+        
+        def initialize(applicationid=nil, environmentid=nil, sourcechannel=nil)
+          @ApplicationId = applicationid
+          @EnvironmentId = environmentid
+          @SourceChannel = sourcechannel
+        end
+
+        def deserialize(params)
+          @ApplicationId = params['ApplicationId']
+          @EnvironmentId = params['EnvironmentId']
+          @SourceChannel = params['SourceChannel']
+        end
+      end
+
+      # DescribeApplicationAutoscalerList返回参数结构体
+      class DescribeApplicationAutoscalerListResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 弹性伸缩策略组合
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Result: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+        
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Result'].nil?
+            @Result = []
+            params['Result'].each do |i|
+              autoscaler_tmp = Autoscaler.new
+              autoscaler_tmp.deserialize(i)
+              @Result << autoscaler_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeApplicationInfo请求参数结构体
       class DescribeApplicationInfoRequest < TencentCloud::Common::AbstractModel
         # @param ApplicationId: 服务版本ID
@@ -1135,6 +1464,137 @@ module TencentCloud
               serviceversionbrief_tmp.deserialize(i)
               @Result << serviceversionbrief_tmp
             end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 配置信息的分页列表
+      class DescribeConfigDataListPage < TencentCloud::Common::AbstractModel
+        # @param Records: 记录
+        # @type Records: Array
+        # @param ContinueToken: 分页游标，用以查询下一页
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ContinueToken: String
+        # @param RemainingCount: 剩余数目
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RemainingCount: Integer
+
+        attr_accessor :Records, :ContinueToken, :RemainingCount
+        
+        def initialize(records=nil, continuetoken=nil, remainingcount=nil)
+          @Records = records
+          @ContinueToken = continuetoken
+          @RemainingCount = remainingcount
+        end
+
+        def deserialize(params)
+          unless params['Records'].nil?
+            @Records = []
+            params['Records'].each do |i|
+              configdata_tmp = ConfigData.new
+              configdata_tmp.deserialize(i)
+              @Records << configdata_tmp
+            end
+          end
+          @ContinueToken = params['ContinueToken']
+          @RemainingCount = params['RemainingCount']
+        end
+      end
+
+      # DescribeConfigDataList请求参数结构体
+      class DescribeConfigDataListRequest < TencentCloud::Common::AbstractModel
+        # @param EnvironmentId: 环境 ID
+        # @type EnvironmentId: String
+        # @param SourceChannel: 来源渠道
+        # @type SourceChannel: Integer
+        # @param ContinueToken: 查询游标
+        # @type ContinueToken: String
+        # @param Limit: 分页 limit
+        # @type Limit: Integer
+
+        attr_accessor :EnvironmentId, :SourceChannel, :ContinueToken, :Limit
+        
+        def initialize(environmentid=nil, sourcechannel=nil, continuetoken=nil, limit=nil)
+          @EnvironmentId = environmentid
+          @SourceChannel = sourcechannel
+          @ContinueToken = continuetoken
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @EnvironmentId = params['EnvironmentId']
+          @SourceChannel = params['SourceChannel']
+          @ContinueToken = params['ContinueToken']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeConfigDataList返回参数结构体
+      class DescribeConfigDataListResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 配置列表
+        # @type Result: :class:`Tencentcloud::Tem.v20210701.models.DescribeConfigDataListPage`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+        
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Result'].nil?
+            @Result = DescribeConfigDataListPage.new
+            @Result.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeConfigData请求参数结构体
+      class DescribeConfigDataRequest < TencentCloud::Common::AbstractModel
+        # @param EnvironmentId: 环境 ID
+        # @type EnvironmentId: String
+        # @param Name: 配置名
+        # @type Name: String
+        # @param SourceChannel: 来源渠道
+        # @type SourceChannel: Integer
+
+        attr_accessor :EnvironmentId, :Name, :SourceChannel
+        
+        def initialize(environmentid=nil, name=nil, sourcechannel=nil)
+          @EnvironmentId = environmentid
+          @Name = name
+          @SourceChannel = sourcechannel
+        end
+
+        def deserialize(params)
+          @EnvironmentId = params['EnvironmentId']
+          @Name = params['Name']
+          @SourceChannel = params['SourceChannel']
+        end
+      end
+
+      # DescribeConfigData返回参数结构体
+      class DescribeConfigDataResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 配置
+        # @type Result: :class:`Tencentcloud::Tem.v20210701.models.ConfigData`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+        
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Result'].nil?
+            @Result = ConfigData.new
+            @Result.deserialize(params['Result'])
           end
           @RequestId = params['RequestId']
         end
@@ -1480,6 +1940,50 @@ module TencentCloud
               @PodList << runversionpod_tmp
             end
           end
+        end
+      end
+
+      # DestroyConfigData请求参数结构体
+      class DestroyConfigDataRequest < TencentCloud::Common::AbstractModel
+        # @param EnvironmentId: 环境 ID
+        # @type EnvironmentId: String
+        # @param Name: 配置名
+        # @type Name: String
+        # @param SourceChannel: 来源渠道
+        # @type SourceChannel: Integer
+
+        attr_accessor :EnvironmentId, :Name, :SourceChannel
+        
+        def initialize(environmentid=nil, name=nil, sourcechannel=nil)
+          @EnvironmentId = environmentid
+          @Name = name
+          @SourceChannel = sourcechannel
+        end
+
+        def deserialize(params)
+          @EnvironmentId = params['EnvironmentId']
+          @Name = params['Name']
+          @SourceChannel = params['SourceChannel']
+        end
+      end
+
+      # DestroyConfigData返回参数结构体
+      class DestroyConfigDataResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 返回结果
+        # @type Result: Boolean
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+        
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Result = params['Result']
+          @RequestId = params['RequestId']
         end
       end
 
@@ -2007,6 +2511,62 @@ module TencentCloud
         end
       end
 
+      # ModifyApplicationAutoscaler请求参数结构体
+      class ModifyApplicationAutoscalerRequest < TencentCloud::Common::AbstractModel
+        # @param ApplicationId: 服务id
+        # @type ApplicationId: String
+        # @param EnvironmentId: 环境ID
+        # @type EnvironmentId: String
+        # @param SourceChannel: 来源渠道
+        # @type SourceChannel: Integer
+        # @param AutoscalerId: 弹性伸缩策略ID
+        # @type AutoscalerId: String
+        # @param Autoscaler: 弹性伸缩策略
+        # @type Autoscaler: :class:`Tencentcloud::Tem.v20210701.models.Autoscaler`
+
+        attr_accessor :ApplicationId, :EnvironmentId, :SourceChannel, :AutoscalerId, :Autoscaler
+        
+        def initialize(applicationid=nil, environmentid=nil, sourcechannel=nil, autoscalerid=nil, autoscaler=nil)
+          @ApplicationId = applicationid
+          @EnvironmentId = environmentid
+          @SourceChannel = sourcechannel
+          @AutoscalerId = autoscalerid
+          @Autoscaler = autoscaler
+        end
+
+        def deserialize(params)
+          @ApplicationId = params['ApplicationId']
+          @EnvironmentId = params['EnvironmentId']
+          @SourceChannel = params['SourceChannel']
+          @AutoscalerId = params['AutoscalerId']
+          unless params['Autoscaler'].nil?
+            @Autoscaler = Autoscaler.new
+            @Autoscaler.deserialize(params['Autoscaler'])
+          end
+        end
+      end
+
+      # ModifyApplicationAutoscaler返回参数结构体
+      class ModifyApplicationAutoscalerResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 是否成功
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Result: Boolean
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+        
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Result = params['Result']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyApplicationInfo请求参数结构体
       class ModifyApplicationInfoRequest < TencentCloud::Common::AbstractModel
         # @param ApplicationId: 应用ID
@@ -2096,6 +2656,61 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyConfigData请求参数结构体
+      class ModifyConfigDataRequest < TencentCloud::Common::AbstractModel
+        # @param EnvironmentId: 环境 ID
+        # @type EnvironmentId: String
+        # @param Name: 配置名
+        # @type Name: String
+        # @param SourceChannel: 来源渠道
+        # @type SourceChannel: Integer
+        # @param Data: 配置信息
+        # @type Data: Array
+
+        attr_accessor :EnvironmentId, :Name, :SourceChannel, :Data
+        
+        def initialize(environmentid=nil, name=nil, sourcechannel=nil, data=nil)
+          @EnvironmentId = environmentid
+          @Name = name
+          @SourceChannel = sourcechannel
+          @Data = data
+        end
+
+        def deserialize(params)
+          @EnvironmentId = params['EnvironmentId']
+          @Name = params['Name']
+          @SourceChannel = params['SourceChannel']
+          unless params['Data'].nil?
+            @Data = []
+            params['Data'].each do |i|
+              pair_tmp = Pair.new
+              pair_tmp.deserialize(i)
+              @Data << pair_tmp
+            end
+          end
+        end
+      end
+
+      # ModifyConfigData返回参数结构体
+      class ModifyConfigDataResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 编辑是否成功
+        # @type Result: Boolean
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+        
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Result = params['Result']
           @RequestId = params['RequestId']
         end
       end
