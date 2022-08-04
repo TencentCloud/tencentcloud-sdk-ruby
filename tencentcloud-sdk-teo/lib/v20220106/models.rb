@@ -534,7 +534,7 @@ module TencentCloud
         end
       end
 
-      # Bot 规则
+      # Bot 规则，下列规则ID可参考接口 DescribeBotManagedRules返回的ID信息
       class BotManagedRule < TencentCloud::Common::AbstractModel
         # @param ManagedIds: 想开启的规则id
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -1168,15 +1168,20 @@ module TencentCloud
         # on：开启
         # off：关闭
         # @type Switch: String
+        # @param Algorithms: 支持的压缩算法列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Algorithms: Array
 
-        attr_accessor :Switch
+        attr_accessor :Switch, :Algorithms
         
-        def initialize(switch=nil)
+        def initialize(switch=nil, algorithms=nil)
           @Switch = switch
+          @Algorithms = algorithms
         end
 
         def deserialize(params)
           @Switch = params['Switch']
+          @Algorithms = params['Algorithms']
         end
       end
 
@@ -2170,7 +2175,7 @@ module TencentCloud
 
       # DDoS地域封禁
       class DDoSGeoIp < TencentCloud::Common::AbstractModel
-        # @param RegionId: 地域信息
+        # @param RegionId: 地域信息，ID参考接口DescribeSecurityPolicyRegions
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RegionId: Array
         # @param Switch: 区域封禁清空标识
@@ -10067,7 +10072,7 @@ module TencentCloud
         # @type Level: String
         # @param Mode: 模式 block-阻断；observe-观察模式；close-关闭
         # @type Mode: String
-        # @param WafRules: 门神黑白名单
+        # @param WafRules: 托管规则黑白名单
         # @type WafRules: :class:`Tencentcloud::Teo.v20220106.models.WafRule`
         # @param AiRule: AI规则引擎防护
         # 注意：此字段可能返回 null，表示取不到有效值。

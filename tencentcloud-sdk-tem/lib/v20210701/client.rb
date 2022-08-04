@@ -149,6 +149,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 创建日志收集配置
+
+        # @param request: Request instance for CreateLogConfig.
+        # @type request: :class:`Tencentcloud::tem::V20210701::CreateLogConfigRequest`
+        # @rtype: :class:`Tencentcloud::tem::V20210701::CreateLogConfigResponse`
+        def CreateLogConfig(request)
+          body = send_request('CreateLogConfig', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateLogConfigResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 绑定云资源
 
         # @param request: Request instance for CreateResource.
@@ -488,7 +512,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 获取租户环境列表
+        # 获取环境列表
 
         # @param request: Request instance for DescribeEnvironments.
         # @type request: :class:`Tencentcloud::tem::V20210701::DescribeEnvironmentsRequest`
@@ -560,6 +584,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询日志收集配置详情
+
+        # @param request: Request instance for DescribeLogConfig.
+        # @type request: :class:`Tencentcloud::tem::V20210701::DescribeLogConfigRequest`
+        # @rtype: :class:`Tencentcloud::tem::V20210701::DescribeLogConfigResponse`
+        def DescribeLogConfig(request)
+          body = send_request('DescribeLogConfig', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeLogConfigResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询分页的日志收集配置列表
+
+        # @param request: Request instance for DescribePagedLogConfigList.
+        # @type request: :class:`Tencentcloud::tem::V20210701::DescribePagedLogConfigListRequest`
+        # @rtype: :class:`Tencentcloud::tem::V20210701::DescribePagedLogConfigListResponse`
+        def DescribePagedLogConfigList(request)
+          body = send_request('DescribePagedLogConfigList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribePagedLogConfigListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询应用关联的 Ingress 规则列表
 
         # @param request: Request instance for DescribeRelatedIngresses.
@@ -608,7 +680,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 销毁命名空间
+        # 销毁环境
 
         # @param request: Request instance for DestroyEnvironment.
         # @type request: :class:`Tencentcloud::tem::V20210701::DestroyEnvironmentRequest`
@@ -618,6 +690,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DestroyEnvironmentResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 销毁日志收集配置
+
+        # @param request: Request instance for DestroyLogConfig.
+        # @type request: :class:`Tencentcloud::tem::V20210701::DestroyLogConfigRequest`
+        # @rtype: :class:`Tencentcloud::tem::V20210701::DestroyLogConfigResponse`
+        def DestroyLogConfig(request)
+          body = send_request('DestroyLogConfig', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DestroyLogConfigResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -786,6 +882,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyIngressResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 编辑日志收集配置
+
+        # @param request: Request instance for ModifyLogConfig.
+        # @type request: :class:`Tencentcloud::tem::V20210701::ModifyLogConfigRequest`
+        # @rtype: :class:`Tencentcloud::tem::V20210701::ModifyLogConfigResponse`
+        def ModifyLogConfig(request)
+          body = send_request('ModifyLogConfig', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyLogConfigResponse.new
             model.deserialize(response['Response'])
             model
           else

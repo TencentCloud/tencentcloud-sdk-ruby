@@ -1357,30 +1357,6 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 银企直连-单笔支付接口
-
-        # @param request: Request instance for CreateSinglePay.
-        # @type request: :class:`Tencentcloud::cpdp::V20190820::CreateSinglePayRequest`
-        # @rtype: :class:`Tencentcloud::cpdp::V20190820::CreateSinglePayResponse`
-        def CreateSinglePay(request)
-          body = send_request('CreateSinglePay', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = CreateSinglePayResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
         # 灵云-单笔主播转账接口
 
         # @param request: Request instance for CreateSinglePayment.
@@ -3962,30 +3938,6 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = QueryShopOpenIdResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # 银企直连-单笔支付状态查询接口
-
-        # @param request: Request instance for QuerySinglePay.
-        # @type request: :class:`Tencentcloud::cpdp::V20190820::QuerySinglePayRequest`
-        # @rtype: :class:`Tencentcloud::cpdp::V20190820::QuerySinglePayResponse`
-        def QuerySinglePay(request)
-          body = send_request('QuerySinglePay', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = QuerySinglePayResponse.new
             model.deserialize(response['Response'])
             model
           else

@@ -3317,10 +3317,12 @@ module TencentCloud
         # @type WechatBinded: String
         # @param Uin: 用户UIN
         # @type Uin: Integer
+        # @param FreeNs: 所属 DNS 服务器
+        # @type FreeNs: Array
 
-        attr_accessor :Nick, :Id, :Email, :Status, :Telephone, :EmailVerified, :TelephoneVerified, :UserGrade, :RealName, :WechatBinded, :Uin
+        attr_accessor :Nick, :Id, :Email, :Status, :Telephone, :EmailVerified, :TelephoneVerified, :UserGrade, :RealName, :WechatBinded, :Uin, :FreeNs
         
-        def initialize(nick=nil, id=nil, email=nil, status=nil, telephone=nil, emailverified=nil, telephoneverified=nil, usergrade=nil, realname=nil, wechatbinded=nil, uin=nil)
+        def initialize(nick=nil, id=nil, email=nil, status=nil, telephone=nil, emailverified=nil, telephoneverified=nil, usergrade=nil, realname=nil, wechatbinded=nil, uin=nil, freens=nil)
           @Nick = nick
           @Id = id
           @Email = email
@@ -3332,6 +3334,7 @@ module TencentCloud
           @RealName = realname
           @WechatBinded = wechatbinded
           @Uin = uin
+          @FreeNs = freens
         end
 
         def deserialize(params)
@@ -3346,6 +3349,7 @@ module TencentCloud
           @RealName = params['RealName']
           @WechatBinded = params['WechatBinded']
           @Uin = params['Uin']
+          @FreeNs = params['FreeNs']
         end
       end
 

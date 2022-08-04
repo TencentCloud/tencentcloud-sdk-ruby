@@ -502,6 +502,78 @@ module TencentCloud
         end
       end
 
+      # CreateLogConfig请求参数结构体
+      class CreateLogConfigRequest < TencentCloud::Common::AbstractModel
+        # @param EnvironmentId: 环境 ID
+        # @type EnvironmentId: String
+        # @param Name: 配置名
+        # @type Name: String
+        # @param InputType: 收集类型，container_stdout 为标准输出；container_file 为文件；
+        # @type InputType: String
+        # @param ApplicationId: 应用 ID
+        # @type ApplicationId: String
+        # @param LogsetId: 日志集 ID
+        # @type LogsetId: String
+        # @param TopicId: 日志主题 ID
+        # @type TopicId: String
+        # @param LogType: 日志提取模式，minimalist_log 为单行全文；multiline_log 为多行全文；
+        # @type LogType: String
+        # @param BeginningRegex: 首行正则表达式，当LogType=multiline_log 时生效
+        # @type BeginningRegex: String
+        # @param LogPath: 收集文件目录，当 InputType=container_file 时生效
+        # @type LogPath: String
+        # @param FilePattern: 收集文件名模式，当 InputType=container_file 时生效
+        # @type FilePattern: String
+
+        attr_accessor :EnvironmentId, :Name, :InputType, :ApplicationId, :LogsetId, :TopicId, :LogType, :BeginningRegex, :LogPath, :FilePattern
+        
+        def initialize(environmentid=nil, name=nil, inputtype=nil, applicationid=nil, logsetid=nil, topicid=nil, logtype=nil, beginningregex=nil, logpath=nil, filepattern=nil)
+          @EnvironmentId = environmentid
+          @Name = name
+          @InputType = inputtype
+          @ApplicationId = applicationid
+          @LogsetId = logsetid
+          @TopicId = topicid
+          @LogType = logtype
+          @BeginningRegex = beginningregex
+          @LogPath = logpath
+          @FilePattern = filepattern
+        end
+
+        def deserialize(params)
+          @EnvironmentId = params['EnvironmentId']
+          @Name = params['Name']
+          @InputType = params['InputType']
+          @ApplicationId = params['ApplicationId']
+          @LogsetId = params['LogsetId']
+          @TopicId = params['TopicId']
+          @LogType = params['LogType']
+          @BeginningRegex = params['BeginningRegex']
+          @LogPath = params['LogPath']
+          @FilePattern = params['FilePattern']
+        end
+      end
+
+      # CreateLogConfig返回参数结构体
+      class CreateLogConfigResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 创建是否成功
+        # @type Result: Boolean
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+        
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Result = params['Result']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateResource请求参数结构体
       class CreateResourceRequest < TencentCloud::Common::AbstractModel
         # @param EnvironmentId: 环境 Id
@@ -1848,6 +1920,112 @@ module TencentCloud
         end
       end
 
+      # DescribeLogConfig请求参数结构体
+      class DescribeLogConfigRequest < TencentCloud::Common::AbstractModel
+        # @param EnvironmentId: 环境 ID
+        # @type EnvironmentId: String
+        # @param Name: 配置名
+        # @type Name: String
+        # @param ApplicationId: 应用 ID
+        # @type ApplicationId: String
+
+        attr_accessor :EnvironmentId, :Name, :ApplicationId
+        
+        def initialize(environmentid=nil, name=nil, applicationid=nil)
+          @EnvironmentId = environmentid
+          @Name = name
+          @ApplicationId = applicationid
+        end
+
+        def deserialize(params)
+          @EnvironmentId = params['EnvironmentId']
+          @Name = params['Name']
+          @ApplicationId = params['ApplicationId']
+        end
+      end
+
+      # DescribeLogConfig返回参数结构体
+      class DescribeLogConfigResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 配置
+        # @type Result: :class:`Tencentcloud::Tem.v20210701.models.LogConfig`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+        
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Result'].nil?
+            @Result = LogConfig.new
+            @Result.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribePagedLogConfigList请求参数结构体
+      class DescribePagedLogConfigListRequest < TencentCloud::Common::AbstractModel
+        # @param EnvironmentId: 环境 ID
+        # @type EnvironmentId: String
+        # @param ApplicationId: 应用 ID
+        # @type ApplicationId: String
+        # @param ApplicationName: 应用名
+        # @type ApplicationName: String
+        # @param Name: 规则名
+        # @type Name: String
+        # @param Limit: 分页大小，默认 20
+        # @type Limit: Integer
+        # @param ContinueToken: 翻页游标
+        # @type ContinueToken: String
+
+        attr_accessor :EnvironmentId, :ApplicationId, :ApplicationName, :Name, :Limit, :ContinueToken
+        
+        def initialize(environmentid=nil, applicationid=nil, applicationname=nil, name=nil, limit=nil, continuetoken=nil)
+          @EnvironmentId = environmentid
+          @ApplicationId = applicationid
+          @ApplicationName = applicationname
+          @Name = name
+          @Limit = limit
+          @ContinueToken = continuetoken
+        end
+
+        def deserialize(params)
+          @EnvironmentId = params['EnvironmentId']
+          @ApplicationId = params['ApplicationId']
+          @ApplicationName = params['ApplicationName']
+          @Name = params['Name']
+          @Limit = params['Limit']
+          @ContinueToken = params['ContinueToken']
+        end
+      end
+
+      # DescribePagedLogConfigList返回参数结构体
+      class DescribePagedLogConfigListResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 日志收集配置列表
+        # @type Result: :class:`Tencentcloud::Tem.v20210701.models.LogConfigListPage`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+        
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Result'].nil?
+            @Result = LogConfigListPage.new
+            @Result.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeRelatedIngresses请求参数结构体
       class DescribeRelatedIngressesRequest < TencentCloud::Common::AbstractModel
         # @param EnvironmentId: 环境 id
@@ -2027,6 +2205,50 @@ module TencentCloud
         end
       end
 
+      # DestroyLogConfig请求参数结构体
+      class DestroyLogConfigRequest < TencentCloud::Common::AbstractModel
+        # @param EnvironmentId: 环境 ID
+        # @type EnvironmentId: String
+        # @param Name: 配置名
+        # @type Name: String
+        # @param ApplicationId: 应用 ID
+        # @type ApplicationId: String
+
+        attr_accessor :EnvironmentId, :Name, :ApplicationId
+        
+        def initialize(environmentid=nil, name=nil, applicationid=nil)
+          @EnvironmentId = environmentid
+          @Name = name
+          @ApplicationId = applicationid
+        end
+
+        def deserialize(params)
+          @EnvironmentId = params['EnvironmentId']
+          @Name = params['Name']
+          @ApplicationId = params['ApplicationId']
+        end
+      end
+
+      # DestroyLogConfig返回参数结构体
+      class DestroyLogConfigResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 返回结果
+        # @type Result: Boolean
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+        
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Result = params['Result']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # eks service info
       class EksService < TencentCloud::Common::AbstractModel
         # @param Name: service name
@@ -2062,10 +2284,25 @@ module TencentCloud
         # @param PortMappings: 端口映射
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PortMappings: Array
+        # @param ServicePortMappingList: 每种类型访问配置详情
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ServicePortMappingList: Array
+        # @param FlushAll: 刷新复写所有类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FlushAll: Boolean
+        # @param EnableRegistryNextDeploy: 1: 下次部署自动注入注册中心信息；0：不注入
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EnableRegistryNextDeploy: Integer
+        # @param ApplicationId: 返回应用id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ApplicationId: String
+        # @param AllIpDone: 所有服务IP是否已经ready
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AllIpDone: Boolean
 
-        attr_accessor :Name, :Ports, :Yaml, :ApplicationName, :VersionName, :ClusterIp, :ExternalIp, :Type, :SubnetId, :LoadBalanceId, :PortMappings
+        attr_accessor :Name, :Ports, :Yaml, :ApplicationName, :VersionName, :ClusterIp, :ExternalIp, :Type, :SubnetId, :LoadBalanceId, :PortMappings, :ServicePortMappingList, :FlushAll, :EnableRegistryNextDeploy, :ApplicationId, :AllIpDone
         
-        def initialize(name=nil, ports=nil, yaml=nil, applicationname=nil, versionname=nil, clusterip=nil, externalip=nil, type=nil, subnetid=nil, loadbalanceid=nil, portmappings=nil)
+        def initialize(name=nil, ports=nil, yaml=nil, applicationname=nil, versionname=nil, clusterip=nil, externalip=nil, type=nil, subnetid=nil, loadbalanceid=nil, portmappings=nil, serviceportmappinglist=nil, flushall=nil, enableregistrynextdeploy=nil, applicationid=nil, allipdone=nil)
           @Name = name
           @Ports = ports
           @Yaml = yaml
@@ -2077,6 +2314,11 @@ module TencentCloud
           @SubnetId = subnetid
           @LoadBalanceId = loadbalanceid
           @PortMappings = portmappings
+          @ServicePortMappingList = serviceportmappinglist
+          @FlushAll = flushall
+          @EnableRegistryNextDeploy = enableregistrynextdeploy
+          @ApplicationId = applicationid
+          @AllIpDone = allipdone
         end
 
         def deserialize(params)
@@ -2098,6 +2340,18 @@ module TencentCloud
               @PortMappings << portmapping_tmp
             end
           end
+          unless params['ServicePortMappingList'].nil?
+            @ServicePortMappingList = []
+            params['ServicePortMappingList'].each do |i|
+              serviceportmapping_tmp = ServicePortMapping.new
+              serviceportmapping_tmp.deserialize(i)
+              @ServicePortMappingList << serviceportmapping_tmp
+            end
+          end
+          @FlushAll = params['FlushAll']
+          @EnableRegistryNextDeploy = params['EnableRegistryNextDeploy']
+          @ApplicationId = params['ApplicationId']
+          @AllIpDone = params['AllIpDone']
         end
       end
 
@@ -2479,6 +2733,104 @@ module TencentCloud
         end
       end
 
+      # 日志收集配置
+      class LogConfig < TencentCloud::Common::AbstractModel
+        # @param Name: 名称
+        # @type Name: String
+        # @param InputType: 收集类型，container_stdout 为标准输出；container_file 为文件；
+        # @type InputType: String
+        # @param LogsetId: 日志集 ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LogsetId: String
+        # @param TopicId: 日志主题 ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TopicId: String
+        # @param LogType: 日志提取模式，minimalist_log 为单行全文；multiline_log 为多行全文；
+        # @type LogType: String
+        # @param BeginningRegex: 首行正则表达式，当LogType=multiline_log 时生效
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BeginningRegex: String
+        # @param LogPath: 收集文件目录，当 InputType=container_file 时生效
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LogPath: String
+        # @param FilePattern: 收集文件名模式，当 InputType=container_file 时生效
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FilePattern: String
+        # @param CreateDate: 创建时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateDate: String
+        # @param ModifyDate: 更新时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ModifyDate: String
+        # @param ApplicationId: 应用 ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ApplicationId: String
+        # @param ApplicationName: 应用名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ApplicationName: String
+
+        attr_accessor :Name, :InputType, :LogsetId, :TopicId, :LogType, :BeginningRegex, :LogPath, :FilePattern, :CreateDate, :ModifyDate, :ApplicationId, :ApplicationName
+        
+        def initialize(name=nil, inputtype=nil, logsetid=nil, topicid=nil, logtype=nil, beginningregex=nil, logpath=nil, filepattern=nil, createdate=nil, modifydate=nil, applicationid=nil, applicationname=nil)
+          @Name = name
+          @InputType = inputtype
+          @LogsetId = logsetid
+          @TopicId = topicid
+          @LogType = logtype
+          @BeginningRegex = beginningregex
+          @LogPath = logpath
+          @FilePattern = filepattern
+          @CreateDate = createdate
+          @ModifyDate = modifydate
+          @ApplicationId = applicationid
+          @ApplicationName = applicationname
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @InputType = params['InputType']
+          @LogsetId = params['LogsetId']
+          @TopicId = params['TopicId']
+          @LogType = params['LogType']
+          @BeginningRegex = params['BeginningRegex']
+          @LogPath = params['LogPath']
+          @FilePattern = params['FilePattern']
+          @CreateDate = params['CreateDate']
+          @ModifyDate = params['ModifyDate']
+          @ApplicationId = params['ApplicationId']
+          @ApplicationName = params['ApplicationName']
+        end
+      end
+
+      # LogConfig 列表结果
+      class LogConfigListPage < TencentCloud::Common::AbstractModel
+        # @param Records: 记录
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Records: Array
+        # @param ContinueToken: 翻页游标
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ContinueToken: String
+
+        attr_accessor :Records, :ContinueToken
+        
+        def initialize(records=nil, continuetoken=nil)
+          @Records = records
+          @ContinueToken = continuetoken
+        end
+
+        def deserialize(params)
+          unless params['Records'].nil?
+            @Records = []
+            params['Records'].each do |i|
+              logconfig_tmp = LogConfig.new
+              logconfig_tmp.deserialize(i)
+              @Records << logconfig_tmp
+            end
+          end
+          @ContinueToken = params['ContinueToken']
+        end
+      end
+
       # 日志输出配置
       class LogOutputConf < TencentCloud::Common::AbstractModel
         # @param OutputType: 日志消费端类型
@@ -2799,6 +3151,57 @@ module TencentCloud
       class ModifyIngressResponse < TencentCloud::Common::AbstractModel
         # @param Result: 创建成功
         # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Result: Boolean
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+        
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Result = params['Result']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyLogConfig请求参数结构体
+      class ModifyLogConfigRequest < TencentCloud::Common::AbstractModel
+        # @param EnvironmentId: 环境 ID
+        # @type EnvironmentId: String
+        # @param Name: 配置名
+        # @type Name: String
+        # @param Data: 日志收集配置信息
+        # @type Data: :class:`Tencentcloud::Tem.v20210701.models.LogConfig`
+        # @param ApplicationId: 应用 ID
+        # @type ApplicationId: String
+
+        attr_accessor :EnvironmentId, :Name, :Data, :ApplicationId
+        
+        def initialize(environmentid=nil, name=nil, data=nil, applicationid=nil)
+          @EnvironmentId = environmentid
+          @Name = name
+          @Data = data
+          @ApplicationId = applicationid
+        end
+
+        def deserialize(params)
+          @EnvironmentId = params['EnvironmentId']
+          @Name = params['Name']
+          unless params['Data'].nil?
+            @Data = LogConfig.new
+            @Data.deserialize(params['Data'])
+          end
+          @ApplicationId = params['ApplicationId']
+        end
+      end
+
+      # ModifyLogConfig返回参数结构体
+      class ModifyLogConfigResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 编辑是否成功
         # @type Result: Boolean
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -3375,6 +3778,102 @@ module TencentCloud
           @Total = params['Total']
           @Size = params['Size']
           @Pages = params['Pages']
+        end
+      end
+
+      # 端口映射详细信息结构体
+      class ServicePortMapping < TencentCloud::Common::AbstractModel
+        # @param Type: 服务类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Type: String
+        # @param ServiceName: 服务名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ServiceName: String
+        # @param ClusterIp: 集群内访问vip
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClusterIp: String
+        # @param ExternalIp: 集群外方位vip
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExternalIp: String
+        # @param SubnetId: 子网id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SubnetId: String
+        # @param VpcId: vpc id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VpcId: String
+        # @param LoadBalanceId: LoadBalance Id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LoadBalanceId: String
+        # @param Yaml: yaml 内容
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Yaml: String
+        # @param Ports: 暴露端口列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Ports: Array
+        # @param PortMappingItemList: 端口映射数组
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PortMappingItemList: Array
+
+        attr_accessor :Type, :ServiceName, :ClusterIp, :ExternalIp, :SubnetId, :VpcId, :LoadBalanceId, :Yaml, :Ports, :PortMappingItemList
+        
+        def initialize(type=nil, servicename=nil, clusterip=nil, externalip=nil, subnetid=nil, vpcid=nil, loadbalanceid=nil, yaml=nil, ports=nil, portmappingitemlist=nil)
+          @Type = type
+          @ServiceName = servicename
+          @ClusterIp = clusterip
+          @ExternalIp = externalip
+          @SubnetId = subnetid
+          @VpcId = vpcid
+          @LoadBalanceId = loadbalanceid
+          @Yaml = yaml
+          @Ports = ports
+          @PortMappingItemList = portmappingitemlist
+        end
+
+        def deserialize(params)
+          @Type = params['Type']
+          @ServiceName = params['ServiceName']
+          @ClusterIp = params['ClusterIp']
+          @ExternalIp = params['ExternalIp']
+          @SubnetId = params['SubnetId']
+          @VpcId = params['VpcId']
+          @LoadBalanceId = params['LoadBalanceId']
+          @Yaml = params['Yaml']
+          @Ports = params['Ports']
+          unless params['PortMappingItemList'].nil?
+            @PortMappingItemList = []
+            params['PortMappingItemList'].each do |i|
+              serviceportmappingitem_tmp = ServicePortMappingItem.new
+              serviceportmappingitem_tmp.deserialize(i)
+              @PortMappingItemList << serviceportmappingitem_tmp
+            end
+          end
+        end
+      end
+
+      # 服务端口映射条目
+      class ServicePortMappingItem < TencentCloud::Common::AbstractModel
+        # @param Port: 应用访问端口
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Port: Integer
+        # @param TargetPort: 应用监听端口
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TargetPort: Integer
+        # @param Protocol: 协议类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Protocol: String
+
+        attr_accessor :Port, :TargetPort, :Protocol
+        
+        def initialize(port=nil, targetport=nil, protocol=nil)
+          @Port = port
+          @TargetPort = targetport
+          @Protocol = protocol
+        end
+
+        def deserialize(params)
+          @Port = params['Port']
+          @TargetPort = params['TargetPort']
+          @Protocol = params['Protocol']
         end
       end
 

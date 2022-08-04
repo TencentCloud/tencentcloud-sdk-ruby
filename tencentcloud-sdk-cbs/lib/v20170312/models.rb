@@ -1557,49 +1557,59 @@ module TencentCloud
       class DiskConfig < TencentCloud::Common::AbstractModel
         # @param Available: 配置是否可用。
         # @type Available: Boolean
-        # @param DiskType: 云盘介质类型。取值范围：<br><li>CLOUD_BASIC：表示普通云硬盘<br><li>CLOUD_PREMIUM：表示高性能云硬盘<br><li>CLOUD_SSD：SSD表示SSD云硬盘。
-        # @type DiskType: String
-        # @param DiskUsage: 云盘类型。取值范围：<br><li>SYSTEM_DISK：表示系统盘<br><li>DATA_DISK：表示数据盘。
-        # @type DiskUsage: String
         # @param DiskChargeType: 付费模式。取值范围：<br><li>PREPAID：表示预付费，即包年包月<br><li>POSTPAID_BY_HOUR：表示后付费，即按量计费。
         # @type DiskChargeType: String
-        # @param MaxDiskSize: 最大可配置云盘大小，单位GB。
-        # @type MaxDiskSize: Integer
-        # @param MinDiskSize: 最小可配置云盘大小，单位GB。
-        # @type MinDiskSize: Integer
         # @param Zone: 云硬盘所属的[可用区](/document/product/213/15753#ZoneInfo)。
         # @type Zone: String
-        # @param DeviceClass: 实例机型。
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type DeviceClass: String
         # @param InstanceFamily: 实例机型系列。详见[实例类型](https://cloud.tencent.com/document/product/213/11518)
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceFamily: String
+        # @param DiskType: 云盘介质类型。取值范围：<br><li>CLOUD_BASIC：表示普通云硬盘<br><li>CLOUD_PREMIUM：表示高性能云硬盘<br><li>CLOUD_SSD：SSD表示SSD云硬盘。
+        # @type DiskType: String
+        # @param StepSize: 云盘大小变化的最小步长，单位GB。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StepSize: Integer
+        # @param ExtraPerformanceRange: 额外的性能区间。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExtraPerformanceRange: Array
+        # @param DeviceClass: 实例机型。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DeviceClass: String
+        # @param DiskUsage: 云盘类型。取值范围：<br><li>SYSTEM_DISK：表示系统盘<br><li>DATA_DISK：表示数据盘。
+        # @type DiskUsage: String
+        # @param MinDiskSize: 最小可配置云盘大小，单位GB。
+        # @type MinDiskSize: Integer
+        # @param MaxDiskSize: 最大可配置云盘大小，单位GB。
+        # @type MaxDiskSize: Integer
 
-        attr_accessor :Available, :DiskType, :DiskUsage, :DiskChargeType, :MaxDiskSize, :MinDiskSize, :Zone, :DeviceClass, :InstanceFamily
+        attr_accessor :Available, :DiskChargeType, :Zone, :InstanceFamily, :DiskType, :StepSize, :ExtraPerformanceRange, :DeviceClass, :DiskUsage, :MinDiskSize, :MaxDiskSize
         
-        def initialize(available=nil, disktype=nil, diskusage=nil, diskchargetype=nil, maxdisksize=nil, mindisksize=nil, zone=nil, deviceclass=nil, instancefamily=nil)
+        def initialize(available=nil, diskchargetype=nil, zone=nil, instancefamily=nil, disktype=nil, stepsize=nil, extraperformancerange=nil, deviceclass=nil, diskusage=nil, mindisksize=nil, maxdisksize=nil)
           @Available = available
-          @DiskType = disktype
-          @DiskUsage = diskusage
           @DiskChargeType = diskchargetype
-          @MaxDiskSize = maxdisksize
-          @MinDiskSize = mindisksize
           @Zone = zone
-          @DeviceClass = deviceclass
           @InstanceFamily = instancefamily
+          @DiskType = disktype
+          @StepSize = stepsize
+          @ExtraPerformanceRange = extraperformancerange
+          @DeviceClass = deviceclass
+          @DiskUsage = diskusage
+          @MinDiskSize = mindisksize
+          @MaxDiskSize = maxdisksize
         end
 
         def deserialize(params)
           @Available = params['Available']
-          @DiskType = params['DiskType']
-          @DiskUsage = params['DiskUsage']
           @DiskChargeType = params['DiskChargeType']
-          @MaxDiskSize = params['MaxDiskSize']
-          @MinDiskSize = params['MinDiskSize']
           @Zone = params['Zone']
-          @DeviceClass = params['DeviceClass']
           @InstanceFamily = params['InstanceFamily']
+          @DiskType = params['DiskType']
+          @StepSize = params['StepSize']
+          @ExtraPerformanceRange = params['ExtraPerformanceRange']
+          @DeviceClass = params['DeviceClass']
+          @DiskUsage = params['DiskUsage']
+          @MinDiskSize = params['MinDiskSize']
+          @MaxDiskSize = params['MaxDiskSize']
         end
       end
 

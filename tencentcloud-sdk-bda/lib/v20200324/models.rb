@@ -673,17 +673,23 @@ module TencentCloud
         # 非腾讯云存储的Url速度和稳定性可能受一定影响。
         # 支持PNG、JPG、JPEG、BMP，不支持 GIF 图片。
         # @type Url: String
+        # @param LocalBodySwitch: 人体局部关键点识别，开启后对人体局部图（例如部分身体部位）进行关键点识别，输出人体关键点坐标，默认不开启
 
-        attr_accessor :Image, :Url
+        # 注意：若开启人体局部图片关键点识别，则BoundBox、Confidence返回为空。
+        # @type LocalBodySwitch: Boolean
+
+        attr_accessor :Image, :Url, :LocalBodySwitch
         
-        def initialize(image=nil, url=nil)
+        def initialize(image=nil, url=nil, localbodyswitch=nil)
           @Image = image
           @Url = url
+          @LocalBodySwitch = localbodyswitch
         end
 
         def deserialize(params)
           @Image = params['Image']
           @Url = params['Url']
+          @LocalBodySwitch = params['LocalBodySwitch']
         end
       end
 
@@ -1033,19 +1039,23 @@ module TencentCloud
         # @type X: Float
         # @param Y: 人体关键点纵坐标
         # @type Y: Float
+        # @param BodyScore: 关键点坐标置信度，分数取值在0-1之间，阈值建议为0.25，小于0.25认为在图中无人体关键点。
+        # @type BodyScore: Float
 
-        attr_accessor :KeyPointType, :X, :Y
+        attr_accessor :KeyPointType, :X, :Y, :BodyScore
         
-        def initialize(keypointtype=nil, x=nil, y=nil)
+        def initialize(keypointtype=nil, x=nil, y=nil, bodyscore=nil)
           @KeyPointType = keypointtype
           @X = x
           @Y = y
+          @BodyScore = bodyscore
         end
 
         def deserialize(params)
           @KeyPointType = params['KeyPointType']
           @X = params['X']
           @Y = params['Y']
+          @BodyScore = params['BodyScore']
         end
       end
 

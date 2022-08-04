@@ -876,10 +876,13 @@ module TencentCloud
         # @param Configure: 七层限频具体配置
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Configure: Array
+        # @param Switch: 是否开启改规则 on 开启，off关闭
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Switch: String
 
-        attr_accessor :RuleName, :DetectionTime, :FrequencyLimit, :PunishmentSwitch, :PunishmentTime, :Action, :RedirectUrl, :Configure
+        attr_accessor :RuleName, :DetectionTime, :FrequencyLimit, :PunishmentSwitch, :PunishmentTime, :Action, :RedirectUrl, :Configure, :Switch
         
-        def initialize(rulename=nil, detectiontime=nil, frequencylimit=nil, punishmentswitch=nil, punishmenttime=nil, action=nil, redirecturl=nil, configure=nil)
+        def initialize(rulename=nil, detectiontime=nil, frequencylimit=nil, punishmentswitch=nil, punishmenttime=nil, action=nil, redirecturl=nil, configure=nil, switch=nil)
           @RuleName = rulename
           @DetectionTime = detectiontime
           @FrequencyLimit = frequencylimit
@@ -888,6 +891,7 @@ module TencentCloud
           @Action = action
           @RedirectUrl = redirecturl
           @Configure = configure
+          @Switch = switch
         end
 
         def deserialize(params)
@@ -906,6 +910,7 @@ module TencentCloud
               @Configure << scdnsevenlayerrules_tmp
             end
           end
+          @Switch = params['Switch']
         end
       end
 
@@ -11242,13 +11247,17 @@ module TencentCloud
         # @param AdvancedRules: 增强自定义 cc 防护规则
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AdvancedRules: Array
+        # @param GlobalAdvancedRules: 增强自定义 cc 防护规则， 全局
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GlobalAdvancedRules: Array
 
-        attr_accessor :Switch, :Rules, :AdvancedRules
+        attr_accessor :Switch, :Rules, :AdvancedRules, :GlobalAdvancedRules
         
-        def initialize(switch=nil, rules=nil, advancedrules=nil)
+        def initialize(switch=nil, rules=nil, advancedrules=nil, globaladvancedrules=nil)
           @Switch = switch
           @Rules = rules
           @AdvancedRules = advancedrules
+          @GlobalAdvancedRules = globaladvancedrules
         end
 
         def deserialize(params)
@@ -11267,6 +11276,14 @@ module TencentCloud
               advancedccrules_tmp = AdvancedCCRules.new
               advancedccrules_tmp.deserialize(i)
               @AdvancedRules << advancedccrules_tmp
+            end
+          end
+          unless params['GlobalAdvancedRules'].nil?
+            @GlobalAdvancedRules = []
+            params['GlobalAdvancedRules'].each do |i|
+              advancedccrules_tmp = AdvancedCCRules.new
+              advancedccrules_tmp.deserialize(i)
+              @GlobalAdvancedRules << advancedccrules_tmp
             end
           end
         end

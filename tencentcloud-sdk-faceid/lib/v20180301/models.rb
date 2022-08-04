@@ -1427,7 +1427,7 @@ module TencentCloud
       class GetEidResultRequest < TencentCloud::Common::AbstractModel
         # @param EidToken: E证通流程的唯一标识，调用GetEidToken接口时生成。
         # @type EidToken: String
-        # @param InfoType: 指定拉取的结果信息，取值（0：全部；1：文本类；2：身份证信息；3：最佳截图信息；5：意愿核身相关结果；）。
+        # @param InfoType: 指定拉取的结果信息，取值（0：全部；1：文本类；2：身份证信息；3：最佳截图信息；5：意愿核身朗读模式相关结果；6：意愿核身问答模式相关结果）。
         # 如 13表示拉取文本类、最佳截图信息。
         # 默认值：0
         # @type InfoType: String
@@ -1463,20 +1463,24 @@ module TencentCloud
         # @param EidInfo: Eid信息。（包括商户下用户唯一标识以及加密后的姓名、身份证号信息。解密方式详见[E证通获取实名信息指引](https://cloud.tencent.com/document/product/1007/63370)）
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EidInfo: :class:`Tencentcloud::Faceid.v20180301.models.EidInfo`
-        # @param IntentionVerifyData: 意愿核身相关信息。若未使用意愿核身功能，该字段返回值可以不处理。
+        # @param IntentionVerifyData: 意愿核身朗读模式相关信息。若未使用意愿核身朗读功能，该字段返回值可以不处理。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IntentionVerifyData: :class:`Tencentcloud::Faceid.v20180301.models.IntentionVerifyData`
+        # @param IntentionQuestionResult: 意愿核身问答模式相关信息。若未使用意愿核身问答模式功能，该字段返回值可以不处理。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IntentionQuestionResult: :class:`Tencentcloud::Faceid.v20180301.models.IntentionQuestionResult`
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Text, :IdCardData, :BestFrame, :EidInfo, :IntentionVerifyData, :RequestId
+        attr_accessor :Text, :IdCardData, :BestFrame, :EidInfo, :IntentionVerifyData, :IntentionQuestionResult, :RequestId
         
-        def initialize(text=nil, idcarddata=nil, bestframe=nil, eidinfo=nil, intentionverifydata=nil, requestid=nil)
+        def initialize(text=nil, idcarddata=nil, bestframe=nil, eidinfo=nil, intentionverifydata=nil, intentionquestionresult=nil, requestid=nil)
           @Text = text
           @IdCardData = idcarddata
           @BestFrame = bestframe
           @EidInfo = eidinfo
           @IntentionVerifyData = intentionverifydata
+          @IntentionQuestionResult = intentionquestionresult
           @RequestId = requestid
         end
 
@@ -1501,6 +1505,10 @@ module TencentCloud
             @IntentionVerifyData = IntentionVerifyData.new
             @IntentionVerifyData.deserialize(params['IntentionVerifyData'])
           end
+          unless params['IntentionQuestionResult'].nil?
+            @IntentionQuestionResult = IntentionQuestionResult.new
+            @IntentionQuestionResult.deserialize(params['IntentionQuestionResult'])
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -1517,21 +1525,36 @@ module TencentCloud
         # @type InputType: String
         # @param UseIntentionVerify: 是否使用意愿核身，默认不使用。注意：如开启使用，则计费标签按【意愿核身】计费标签计价；如不开启，则计费标签按【E证通】计费标签计价，价格详见：[价格说明](https://cloud.tencent.com/document/product/1007/56804)。
         # @type UseIntentionVerify: Boolean
-        # @param IntentionVerifyText: 意愿核身使用的文案，若未使用意愿核身功能，该字段无需传入。默认为空，最长可接受120的字符串长度。
+        # @param IntentionMode: 意愿核身模式。枚举值：1( 朗读模式)，2（问答模式） 。默认值1
+        # @type IntentionMode: String
+        # @param IntentionVerifyText: 意愿核身朗读模式使用的文案，若未使用意愿核身朗读功能，该字段无需传入。默认为空，最长可接受120的字符串长度。
         # @type IntentionVerifyText: String
+        # @param IntentionQuestions: 意愿核身问答模式的配置列表。当前仅支持一个问答。
+        # @type IntentionQuestions: Array
 
-        attr_accessor :InputType, :UseIntentionVerify, :IntentionVerifyText
+        attr_accessor :InputType, :UseIntentionVerify, :IntentionMode, :IntentionVerifyText, :IntentionQuestions
         
-        def initialize(inputtype=nil, useintentionverify=nil, intentionverifytext=nil)
+        def initialize(inputtype=nil, useintentionverify=nil, intentionmode=nil, intentionverifytext=nil, intentionquestions=nil)
           @InputType = inputtype
           @UseIntentionVerify = useintentionverify
+          @IntentionMode = intentionmode
           @IntentionVerifyText = intentionverifytext
+          @IntentionQuestions = intentionquestions
         end
 
         def deserialize(params)
           @InputType = params['InputType']
           @UseIntentionVerify = params['UseIntentionVerify']
+          @IntentionMode = params['IntentionMode']
           @IntentionVerifyText = params['IntentionVerifyText']
+          unless params['IntentionQuestions'].nil?
+            @IntentionQuestions = []
+            params['IntentionQuestions'].each do |i|
+              intentionquestion_tmp = IntentionQuestion.new
+              intentionquestion_tmp.deserialize(i)
+              @IntentionQuestions << intentionquestion_tmp
+            end
+          end
         end
       end
 
