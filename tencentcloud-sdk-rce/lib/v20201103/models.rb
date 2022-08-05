@@ -81,48 +81,6 @@ module TencentCloud
         end
       end
 
-      # DescribeRiskModel请求参数结构体
-      class DescribeRiskModelRequest < TencentCloud::Common::AbstractModel
-        # @param BusinessSecurityData: 业务入参
-        # @type BusinessSecurityData: :class:`Tencentcloud::Rce.v20201103.models.InputDescribeRiskModelData`
-
-        attr_accessor :BusinessSecurityData
-        
-        def initialize(businesssecuritydata=nil)
-          @BusinessSecurityData = businesssecuritydata
-        end
-
-        def deserialize(params)
-          unless params['BusinessSecurityData'].nil?
-            @BusinessSecurityData = InputDescribeRiskModelData.new
-            @BusinessSecurityData.deserialize(params['BusinessSecurityData'])
-          end
-        end
-      end
-
-      # DescribeRiskModel返回参数结构体
-      class DescribeRiskModelResponse < TencentCloud::Common::AbstractModel
-        # @param Data: 业务出参
-        # @type Data: :class:`Tencentcloud::Rce.v20201103.models.OutputDescribeRiskModel`
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :Data, :RequestId
-        
-        def initialize(data=nil, requestid=nil)
-          @Data = data
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          unless params['Data'].nil?
-            @Data = OutputDescribeRiskModel.new
-            @Data.deserialize(params['Data'])
-          end
-          @RequestId = params['RequestId']
-        end
-      end
-
       # DescribeRiskTrends请求参数结构体
       class DescribeRiskTrendsRequest < TencentCloud::Common::AbstractModel
         # @param BusinessSecurityData: 业务入参
@@ -186,34 +144,6 @@ module TencentCloud
           @IsAuthorized = params['IsAuthorized']
           @CryptoType = params['CryptoType']
           @CryptoContent = params['CryptoContent']
-        end
-      end
-
-      # 客户请求入参
-      class InputDescribeRiskModelData < TencentCloud::Common::AbstractModel
-        # @param UserData: 业务参数加密后的签名值
-        # @type UserData: String
-        # @param ApplyDate: 调用时间戳，精确到秒
-        # @type ApplyDate: Integer
-        # @param UserId: 客户业务侧标识用户的唯一ID
-        # @type UserId: String
-        # @param IsTest: 是否为测试流量
-        # @type IsTest: Integer
-
-        attr_accessor :UserData, :ApplyDate, :UserId, :IsTest
-        
-        def initialize(userdata=nil, applydate=nil, userid=nil, istest=nil)
-          @UserData = userdata
-          @ApplyDate = applydate
-          @UserId = userid
-          @IsTest = istest
-        end
-
-        def deserialize(params)
-          @UserData = params['UserData']
-          @ApplyDate = params['ApplyDate']
-          @UserId = params['UserId']
-          @IsTest = params['IsTest']
         end
       end
 
@@ -501,50 +431,6 @@ module TencentCloud
           @AccountId = params['AccountId']
           @MobilePhone = params['MobilePhone']
           @DeviceId = params['DeviceId']
-        end
-      end
-
-      # 业务出参
-      class OutputDescribeRiskModel < TencentCloud::Common::AbstractModel
-        # @param Code: 请求返回状态值，0为成功，别的结合Message查看
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Code: Integer
-        # @param Message: 请求返回信息
-        # @type Message: String
-        # @param Value: 请求返回结果
-        # @type Value: :class:`Tencentcloud::Rce.v20201103.models.OutputDescribeRiskModelValue`
-
-        attr_accessor :Code, :Message, :Value
-        
-        def initialize(code=nil, message=nil, value=nil)
-          @Code = code
-          @Message = message
-          @Value = value
-        end
-
-        def deserialize(params)
-          @Code = params['Code']
-          @Message = params['Message']
-          unless params['Value'].nil?
-            @Value = OutputDescribeRiskModelValue.new
-            @Value.deserialize(params['Value'])
-          end
-        end
-      end
-
-      # 风控建模服务出参对应值
-      class OutputDescribeRiskModelValue < TencentCloud::Common::AbstractModel
-        # @param ApplyScore: 模型分数值
-        # @type ApplyScore: Float
-
-        attr_accessor :ApplyScore
-        
-        def initialize(applyscore=nil)
-          @ApplyScore = applyscore
-        end
-
-        def deserialize(params)
-          @ApplyScore = params['ApplyScore']
         end
       end
 

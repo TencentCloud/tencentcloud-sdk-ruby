@@ -1460,7 +1460,7 @@ module TencentCloud
         # @type StartTime: String
         # @param EndTime: 结束时间
         # @type EndTime: String
-        # @param QueryType: 类型
+        # @param QueryType: 列表类型，只能是下面三种之一：port、address、ip
         # @type QueryType: String
         # @param Top: top数
         # @type Top: Integer

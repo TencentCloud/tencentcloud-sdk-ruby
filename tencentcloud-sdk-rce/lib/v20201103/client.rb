@@ -53,30 +53,6 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 依托人工智能技术和腾讯丰富的风控实战经验，根据用户提供的数据和业务场景，给客户提供定制化模型服务
-
-        # @param request: Request instance for DescribeRiskModel.
-        # @type request: :class:`Tencentcloud::rce::V20201103::DescribeRiskModelRequest`
-        # @rtype: :class:`Tencentcloud::rce::V20201103::DescribeRiskModelResponse`
-        def DescribeRiskModel(request)
-          body = send_request('DescribeRiskModel', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = DescribeRiskModelResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
         # 以图表形式展示三种请求状态的趋势变化
 
         # @param request: Request instance for DescribeRiskTrends.

@@ -101,6 +101,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询短信列表
+
+        # @param request: Request instance for DescribeSms.
+        # @type request: :class:`Tencentcloud::ic::V20190307::DescribeSmsRequest`
+        # @rtype: :class:`Tencentcloud::ic::V20190307::DescribeSmsResponse`
+        def DescribeSms(request)
+          body = send_request('DescribeSms', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeSmsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 编辑卡片备注
 
         # @param request: Request instance for ModifyUserCardRemark.

@@ -364,6 +364,83 @@ module TencentCloud
         end
       end
 
+      # DescribeSms请求参数结构体
+      class DescribeSmsRequest < TencentCloud::Common::AbstractModel
+        # @param Sdkappid: 应用ID
+        # @type Sdkappid: Integer
+        # @param Iccid: 卡片ID
+        # @type Iccid: String
+        # @param Msisdn: 卡片号码
+        # @type Msisdn: String
+        # @param SmsType: 短信类型
+        # @type SmsType: Integer
+        # @param BeginTime: 开始时间  YYYY-MM-DD HH:mm:ss
+        # @type BeginTime: String
+        # @param EndTime: 结束时间  YYYY-MM-DD HH:mm:ss
+        # @type EndTime: String
+        # @param Offset: 偏移量
+        # @type Offset: Integer
+        # @param Limit: 小于200
+        # @type Limit: Integer
+
+        attr_accessor :Sdkappid, :Iccid, :Msisdn, :SmsType, :BeginTime, :EndTime, :Offset, :Limit
+        
+        def initialize(sdkappid=nil, iccid=nil, msisdn=nil, smstype=nil, begintime=nil, endtime=nil, offset=nil, limit=nil)
+          @Sdkappid = sdkappid
+          @Iccid = iccid
+          @Msisdn = msisdn
+          @SmsType = smstype
+          @BeginTime = begintime
+          @EndTime = endtime
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @Sdkappid = params['Sdkappid']
+          @Iccid = params['Iccid']
+          @Msisdn = params['Msisdn']
+          @SmsType = params['SmsType']
+          @BeginTime = params['BeginTime']
+          @EndTime = params['EndTime']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeSms返回参数结构体
+      class DescribeSmsResponse < TencentCloud::Common::AbstractModel
+        # @param Total: 总数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Total: Integer
+        # @param List: 短信列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type List: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Total, :List, :RequestId
+        
+        def initialize(total=nil, list=nil, requestid=nil)
+          @Total = total
+          @List = list
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Total = params['Total']
+          unless params['List'].nil?
+            @List = []
+            params['List'].each do |i|
+              ressms_tmp = ResSms.new
+              ressms_tmp.deserialize(i)
+              @List << ressms_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyUserCardRemark请求参数结构体
       class ModifyUserCardRemarkRequest < TencentCloud::Common::AbstractModel
         # @param Sdkappid: 应用ID
@@ -466,6 +543,63 @@ module TencentCloud
 
         def deserialize(params)
           @OrderIds = params['OrderIds']
+        end
+      end
+
+      # 查询短信列表
+      class ResSms < TencentCloud::Common::AbstractModel
+        # @param Iccid: 卡片ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Iccid: String
+        # @param Msisdn: 卡片号码
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Msisdn: String
+        # @param SdkAppid: 应用ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SdkAppid: Integer
+        # @param Content: 短信内容
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Content: String
+        # @param SmsType: 短信类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SmsType: Integer
+        # @param SendTime: 发送时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SendTime: String
+        # @param ReportTime: 推送时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ReportTime: String
+        # @param Remark: SUCC：成功  FAIL 失败
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Remark: String
+        # @param Status: 回执状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: Integer
+
+        attr_accessor :Iccid, :Msisdn, :SdkAppid, :Content, :SmsType, :SendTime, :ReportTime, :Remark, :Status
+        
+        def initialize(iccid=nil, msisdn=nil, sdkappid=nil, content=nil, smstype=nil, sendtime=nil, reporttime=nil, remark=nil, status=nil)
+          @Iccid = iccid
+          @Msisdn = msisdn
+          @SdkAppid = sdkappid
+          @Content = content
+          @SmsType = smstype
+          @SendTime = sendtime
+          @ReportTime = reporttime
+          @Remark = remark
+          @Status = status
+        end
+
+        def deserialize(params)
+          @Iccid = params['Iccid']
+          @Msisdn = params['Msisdn']
+          @SdkAppid = params['SdkAppid']
+          @Content = params['Content']
+          @SmsType = params['SmsType']
+          @SendTime = params['SendTime']
+          @ReportTime = params['ReportTime']
+          @Remark = params['Remark']
+          @Status = params['Status']
         end
       end
 

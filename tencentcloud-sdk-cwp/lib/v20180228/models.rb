@@ -17563,7 +17563,7 @@ module TencentCloud
         # @type LastTime: String
         # @param HostCount: 影响主机数
         # @type HostCount: Integer
-        # @param Level: 漏洞等级 1:低 2:中 3:高 4:提示
+        # @param Level: 漏洞等级 1:低 2:中 3:高 4:严重
         # @type Level: Integer
         # @param From: 废弃字段
         # 注意：此字段可能返回 null，表示取不到有效值。

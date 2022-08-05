@@ -6336,7 +6336,7 @@ module TencentCloud
         # @type RealServerRegion: String
         # @param Bandwidth: 带宽，单位：Mbps。
         # @type Bandwidth: Integer
-        # @param Concurrent: 并发，单位：个/秒。
+        # @param Concurrent: 并发，单位：万个/秒。
         # @type Concurrent: Integer
         # @param Status: 通道状态。其中：
         # RUNNING表示运行中；

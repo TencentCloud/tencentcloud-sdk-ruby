@@ -1314,6 +1314,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询绑定证书的域名列表。
+
+        # @param request: Request instance for DescribeLiveDomainCertBindings.
+        # @type request: :class:`Tencentcloud::live::V20180801::DescribeLiveDomainCertBindingsRequest`
+        # @rtype: :class:`Tencentcloud::live::V20180801::DescribeLiveDomainCertBindingsResponse`
+        def DescribeLiveDomainCertBindings(request)
+          body = send_request('DescribeLiveDomainCertBindings', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeLiveDomainCertBindingsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询实时的域名维度下行播放数据，由于数据处理有耗时，接口默认查询4分钟前的准实时数据。
 
         # @param request: Request instance for DescribeLiveDomainPlayInfoList.
@@ -2511,6 +2535,31 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyLiveCallbackTemplateResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 批量绑定证书对应的播放域名，并更新启用状态。
+        # 新建自有证书将自动上传至腾讯云ssl。
+
+        # @param request: Request instance for ModifyLiveDomainCertBindings.
+        # @type request: :class:`Tencentcloud::live::V20180801::ModifyLiveDomainCertBindingsRequest`
+        # @rtype: :class:`Tencentcloud::live::V20180801::ModifyLiveDomainCertBindingsResponse`
+        def ModifyLiveDomainCertBindings(request)
+          body = send_request('ModifyLiveDomainCertBindings', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyLiveDomainCertBindingsResponse.new
             model.deserialize(response['Response'])
             model
           else

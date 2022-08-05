@@ -3382,6 +3382,57 @@ module TencentCloud
         end
       end
 
+      # DescribeLiveDomainCertBindings请求参数结构体
+      class DescribeLiveDomainCertBindingsRequest < TencentCloud::Common::AbstractModel
+        # @param DomainSearch: 要搜索的域名字符串。
+        # @type DomainSearch: String
+        # @param Offset: 记录行的位置，从0开始。默认0。
+        # @type Offset: Integer
+        # @param Length: 记录行的最大数目。默认50。
+        # 若不传，则最多返回50条数据。
+        # @type Length: Integer
+        # @param DomainName: 要查询的单个域名。
+        # @type DomainName: String
+        # @param OrderBy: 可取值：
+        # ExpireTimeAsc：证书过期时间降序。
+        # ExpireTimeDesc：证书过期时间升序。
+        # @type OrderBy: String
+
+        attr_accessor :DomainSearch, :Offset, :Length, :DomainName, :OrderBy
+        
+        def initialize(domainsearch=nil, offset=nil, length=nil, domainname=nil, orderby=nil)
+          @DomainSearch = domainsearch
+          @Offset = offset
+          @Length = length
+          @DomainName = domainname
+          @OrderBy = orderby
+        end
+
+        def deserialize(params)
+          @DomainSearch = params['DomainSearch']
+          @Offset = params['Offset']
+          @Length = params['Length']
+          @DomainName = params['DomainName']
+          @OrderBy = params['OrderBy']
+        end
+      end
+
+      # DescribeLiveDomainCertBindings返回参数结构体
+      class DescribeLiveDomainCertBindingsResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeLiveDomainCert请求参数结构体
       class DescribeLiveDomainCertRequest < TencentCloud::Common::AbstractModel
         # @param DomainName: 播放域名。
@@ -6866,6 +6917,29 @@ module TencentCloud
         end
       end
 
+      # 用作批量绑定域名和证书。
+      class LiveCertDomainInfo < TencentCloud::Common::AbstractModel
+        # @param DomainName: 域名。
+        # @type DomainName: String
+        # @param Status: 是否启用域名的https规则。
+        # 1：启用
+        # 0：禁用
+        # -1：保持不变
+        # @type Status: Integer
+
+        attr_accessor :DomainName, :Status
+        
+        def initialize(domainname=nil, status=nil)
+          @DomainName = domainname
+          @Status = status
+        end
+
+        def deserialize(params)
+          @DomainName = params['DomainName']
+          @Status = params['Status']
+        end
+      end
+
       # 直播包信息。
       class LivePackageInfo < TencentCloud::Common::AbstractModel
         # @param Id: 包 ID。
@@ -7017,6 +7091,69 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyLiveDomainCertBindings请求参数结构体
+      class ModifyLiveDomainCertBindingsRequest < TencentCloud::Common::AbstractModel
+        # @param DomainInfos: 要绑定证书的播放域名/状态 信息列表。
+        # 如果CloudCertId和证书公钥私钥对均不传，且域名列表已有绑定规则，只批量更新域名https规则的启用状态，并把未上传至腾讯云ssl的已有自有证书上传。
+        # @type DomainInfos: Array
+        # @param CloudCertId: 腾讯云ssl的证书Id。
+        # 见 https://cloud.tencent.com/document/api/400/41665
+        # @type CloudCertId: String
+        # @param CertificatePublicKey: 证书公钥。
+        # CloudCertId和公钥私钥对二选一，若CloudCertId将会舍弃公钥和私钥参数，否则将自动先把公钥私钥对上传至ssl新建证书，并使用上传成功后返回的CloudCertId。
+        # @type CertificatePublicKey: String
+        # @param CertificatePrivateKey: 证书私钥。
+        # CloudCertId和公钥私钥对二选一，若传CloudCertId将会舍弃公钥和私钥参数，否则将自动先把公钥私钥对上传至ssl新建证书，并使用上传成功后返回的CloudCertId。
+        # @type CertificatePrivateKey: String
+        # @param CertificateAlias: 上传至ssl证书中心的备注信息，只有新建证书时有效。传CloudCertId时会忽略。
+        # @type CertificateAlias: String
+
+        attr_accessor :DomainInfos, :CloudCertId, :CertificatePublicKey, :CertificatePrivateKey, :CertificateAlias
+        
+        def initialize(domaininfos=nil, cloudcertid=nil, certificatepublickey=nil, certificateprivatekey=nil, certificatealias=nil)
+          @DomainInfos = domaininfos
+          @CloudCertId = cloudcertid
+          @CertificatePublicKey = certificatepublickey
+          @CertificatePrivateKey = certificateprivatekey
+          @CertificateAlias = certificatealias
+        end
+
+        def deserialize(params)
+          unless params['DomainInfos'].nil?
+            @DomainInfos = []
+            params['DomainInfos'].each do |i|
+              livecertdomaininfo_tmp = LiveCertDomainInfo.new
+              livecertdomaininfo_tmp.deserialize(i)
+              @DomainInfos << livecertdomaininfo_tmp
+            end
+          end
+          @CloudCertId = params['CloudCertId']
+          @CertificatePublicKey = params['CertificatePublicKey']
+          @CertificatePrivateKey = params['CertificatePrivateKey']
+          @CertificateAlias = params['CertificateAlias']
+        end
+      end
+
+      # ModifyLiveDomainCertBindings返回参数结构体
+      class ModifyLiveDomainCertBindingsResponse < TencentCloud::Common::AbstractModel
+        # @param MismatchedDomainNames: DomainNames 入参中，与证书不匹配的域名列表，将会跳过处理。
+        # @type MismatchedDomainNames: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :MismatchedDomainNames, :RequestId
+        
+        def initialize(mismatcheddomainnames=nil, requestid=nil)
+          @MismatchedDomainNames = mismatcheddomainnames
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @MismatchedDomainNames = params['MismatchedDomainNames']
           @RequestId = params['RequestId']
         end
       end
