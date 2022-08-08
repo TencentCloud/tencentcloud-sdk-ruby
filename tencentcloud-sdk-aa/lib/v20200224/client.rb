@@ -29,30 +29,6 @@ module TencentCloud
         end
 
 
-        # 活动防刷、注册保护、登录保护等营销产品的高级版本
-
-        # @param request: Request instance for ManageMarketingRisk.
-        # @type request: :class:`Tencentcloud::aa::V20200224::ManageMarketingRiskRequest`
-        # @rtype: :class:`Tencentcloud::aa::V20200224::ManageMarketingRiskResponse`
-        def ManageMarketingRisk(request)
-          body = send_request('ManageMarketingRisk', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = ManageMarketingRiskResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
         # 腾讯云活动防刷（ActivityAntiRush，AA）是针对电商、O2O、P2P、游戏、支付等行业在促销活动中遇到“羊毛党”恶意刷取优惠福利的行为时，通过防刷引擎，精准识别出“薅羊毛”恶意行为的活动防刷服务，避免了企业被刷带来的巨大经济损失。
 
         # @param request: Request instance for QueryActivityAntiRush.
@@ -63,30 +39,6 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = QueryActivityAntiRushResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # 活动防刷高级版，支持对网赚众包、网赚防刷、引流反诈骗场景的检测识别
-
-        # @param request: Request instance for QueryActivityAntiRushAdvanced.
-        # @type request: :class:`Tencentcloud::aa::V20200224::QueryActivityAntiRushAdvancedRequest`
-        # @rtype: :class:`Tencentcloud::aa::V20200224::QueryActivityAntiRushAdvancedResponse`
-        def QueryActivityAntiRushAdvanced(request)
-          body = send_request('QueryActivityAntiRushAdvanced', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = QueryActivityAntiRushAdvancedResponse.new
             model.deserialize(response['Response'])
             model
           else

@@ -5230,6 +5230,65 @@ module TencentCloud
         end
       end
 
+      # FetchMessageListByOffset请求参数结构体
+      class FetchMessageListByOffsetRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例Id
+        # @type InstanceId: String
+        # @param Topic: 主题名
+        # @type Topic: String
+        # @param Partition: 分区id
+        # @type Partition: Integer
+        # @param Offset: 位点信息
+        # @type Offset: Integer
+        # @param SinglePartitionRecordNumber: 最大查询条数，默认20，最大20
+        # @type SinglePartitionRecordNumber: Integer
+
+        attr_accessor :InstanceId, :Topic, :Partition, :Offset, :SinglePartitionRecordNumber
+        
+        def initialize(instanceid=nil, topic=nil, partition=nil, offset=nil, singlepartitionrecordnumber=nil)
+          @InstanceId = instanceid
+          @Topic = topic
+          @Partition = partition
+          @Offset = offset
+          @SinglePartitionRecordNumber = singlepartitionrecordnumber
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @Topic = params['Topic']
+          @Partition = params['Partition']
+          @Offset = params['Offset']
+          @SinglePartitionRecordNumber = params['SinglePartitionRecordNumber']
+        end
+      end
+
+      # FetchMessageListByOffset返回参数结构体
+      class FetchMessageListByOffsetResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 返回结果。注意，列表中不返回具体的消息内容（key、value），如果需要查询具体消息内容，请使用FetchMessageByOffset接口
+        # @type Result: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+        
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Result'].nil?
+            @Result = []
+            params['Result'].each do |i|
+              consumerrecord_tmp = ConsumerRecord.new
+              consumerrecord_tmp.deserialize(i)
+              @Result << consumerrecord_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 数据处理——处理链
       class FieldParam < TencentCloud::Common::AbstractModel
         # @param Analyse: 解析

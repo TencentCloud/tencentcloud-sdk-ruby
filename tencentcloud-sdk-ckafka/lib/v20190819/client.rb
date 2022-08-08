@@ -1374,6 +1374,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 根据位点查询消息列表
+
+        # @param request: Request instance for FetchMessageListByOffset.
+        # @type request: :class:`Tencentcloud::ckafka::V20190819::FetchMessageListByOffsetRequest`
+        # @rtype: :class:`Tencentcloud::ckafka::V20190819::FetchMessageListByOffsetResponse`
+        def FetchMessageListByOffset(request)
+          body = send_request('FetchMessageListByOffset', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = FetchMessageListByOffsetResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 编辑Datahub连接源
 
         # @param request: Request instance for ModifyConnectResource.

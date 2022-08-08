@@ -220,6 +220,71 @@ module TencentCloud
         end
       end
 
+      # ChannelCreateConvertTaskApi请求参数结构体
+      class ChannelCreateConvertTaskApiRequest < TencentCloud::Common::AbstractModel
+        # @param Agent: 无
+        # @type Agent: :class:`Tencentcloud::Essbasic.v20210526.models.Agent`
+        # @param ResourceId: 资源Id
+        # @type ResourceId: String
+        # @param ResourceType: 资源类型 取值范围doc,docx,html之一
+        # @type ResourceType: String
+        # @param ResourceName: 资源名称
+        # @type ResourceName: String
+        # @param Organization: 无
+        # @type Organization: :class:`Tencentcloud::Essbasic.v20210526.models.OrganizationInfo`
+        # @param Operator: 无
+        # @type Operator: :class:`Tencentcloud::Essbasic.v20210526.models.UserInfo`
+
+        attr_accessor :Agent, :ResourceId, :ResourceType, :ResourceName, :Organization, :Operator
+        
+        def initialize(agent=nil, resourceid=nil, resourcetype=nil, resourcename=nil, organization=nil, operator=nil)
+          @Agent = agent
+          @ResourceId = resourceid
+          @ResourceType = resourcetype
+          @ResourceName = resourcename
+          @Organization = organization
+          @Operator = operator
+        end
+
+        def deserialize(params)
+          unless params['Agent'].nil?
+            @Agent = Agent.new
+            @Agent.deserialize(params['Agent'])
+          end
+          @ResourceId = params['ResourceId']
+          @ResourceType = params['ResourceType']
+          @ResourceName = params['ResourceName']
+          unless params['Organization'].nil?
+            @Organization = OrganizationInfo.new
+            @Organization.deserialize(params['Organization'])
+          end
+          unless params['Operator'].nil?
+            @Operator = UserInfo.new
+            @Operator.deserialize(params['Operator'])
+          end
+        end
+      end
+
+      # ChannelCreateConvertTaskApi返回参数结构体
+      class ChannelCreateConvertTaskApiResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: 任务id
+        # @type TaskId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :RequestId
+        
+        def initialize(taskid=nil, requestid=nil)
+          @TaskId = taskid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ChannelCreateFlowByFiles请求参数结构体
       class ChannelCreateFlowByFilesRequest < TencentCloud::Common::AbstractModel
         # @param Agent: 渠道应用相关信息
@@ -415,6 +480,75 @@ module TencentCloud
         end
       end
 
+      # ChannelGetTaskResultApi请求参数结构体
+      class ChannelGetTaskResultApiRequest < TencentCloud::Common::AbstractModel
+        # @param Agent: 渠道信息
+        # @type Agent: :class:`Tencentcloud::Essbasic.v20210526.models.Agent`
+        # @param TaskId: 任务Id
+        # @type TaskId: String
+        # @param Organization: 企业信息
+        # @type Organization: :class:`Tencentcloud::Essbasic.v20210526.models.OrganizationInfo`
+        # @param Operator: 操作人信息
+        # @type Operator: :class:`Tencentcloud::Essbasic.v20210526.models.UserInfo`
+
+        attr_accessor :Agent, :TaskId, :Organization, :Operator
+        
+        def initialize(agent=nil, taskid=nil, organization=nil, operator=nil)
+          @Agent = agent
+          @TaskId = taskid
+          @Organization = organization
+          @Operator = operator
+        end
+
+        def deserialize(params)
+          unless params['Agent'].nil?
+            @Agent = Agent.new
+            @Agent.deserialize(params['Agent'])
+          end
+          @TaskId = params['TaskId']
+          unless params['Organization'].nil?
+            @Organization = OrganizationInfo.new
+            @Organization.deserialize(params['Organization'])
+          end
+          unless params['Operator'].nil?
+            @Operator = UserInfo.new
+            @Operator.deserialize(params['Operator'])
+          end
+        end
+      end
+
+      # ChannelGetTaskResultApi返回参数结构体
+      class ChannelGetTaskResultApiResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: 任务Id
+        # @type TaskId: String
+        # @param TaskStatus: 任务状态
+        # @type TaskStatus: Integer
+        # @param TaskMessage: 状态描述
+        # @type TaskMessage: String
+        # @param ResourceId: 资源Id
+        # @type ResourceId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :TaskStatus, :TaskMessage, :ResourceId, :RequestId
+        
+        def initialize(taskid=nil, taskstatus=nil, taskmessage=nil, resourceid=nil, requestid=nil)
+          @TaskId = taskid
+          @TaskStatus = taskstatus
+          @TaskMessage = taskmessage
+          @ResourceId = resourceid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @TaskStatus = params['TaskStatus']
+          @TaskMessage = params['TaskMessage']
+          @ResourceId = params['ResourceId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 此结构体 (Component) 用于描述控件属性。
       class Component < TencentCloud::Common::AbstractModel
         # @param ComponentId: 控件编号
@@ -430,13 +564,18 @@ module TencentCloud
         # @type ComponentId: String
         # @param ComponentType: 如果是Component控件类型，则可选的字段为：
         # TEXT - 普通文本控件；
-        # DATE - 普通日期控件；跟TEXT相比会有校验逻辑
-        # DYNAMIC_TABLE-动态表格控件；
+        # MULTI_LINE_TEXT - 多行文本控件；
+        # CHECK_BOX - 勾选框控件；
+        # FILL_IMAGE - 图片控件；
+        # DYNAMIC_TABLE - 动态表格控件；
+        # ATTACHMENT - 附件控件；
+        # SELECTOR - 选择器控件；
+
         # 如果是SignComponent控件类型，则可选的字段为
         # SIGN_SEAL - 签署印章控件；
         # SIGN_DATE - 签署日期控件；
         # SIGN_SIGNATURE - 用户签名控件；
-        # SIGN_PERSONAL_SEAL - 个人签署印章控件；
+        # SIGN_PERSONAL_SEAL - 个人签署印章控件（使用文件发起暂不支持此类型）；
 
         # 表单域的控件不能作为印章和签名控件
         # @type ComponentType: String
@@ -468,8 +607,13 @@ module TencentCloud
         # TEXT控件可以指定字体
         # 例如：{"FontSize":12}
         # @type ComponentExtra: String
-        # @param ComponentValue: 印章 ID，传参 DEFAULT_COMPANY_SEAL 表示使用默认印章。
-        # 控件填入内容，印章控件里面，如果是手写签名内容为PNG图片格式的base64编码
+        # @param ComponentValue: 控件填充vaule，ComponentType和传入值类型对应关系：
+        # TEXT - 文本内容
+        # MULTI_LINE_TEXT - 文本内容
+        # CHECK_BOX - true/false
+        # FILL_IMAGE、ATTACHMENT - 附件的FileId，需要通过UploadFiles接口上传获取
+        # SELECTOR - 选项值
+        # DYNAMIC_TABLE - 传入json格式的表格内容，具体见数据结构FlowInfo：https://cloud.tencent.com/document/api/1420/61525#FlowInfo
         # @type ComponentValue: String
         # @param ComponentDateFontSize: 日期签署控件的字号，默认为 12
 
@@ -1522,7 +1666,13 @@ module TencentCloud
 
       # 此结构 (FormField) 用于描述内容控件填充结构。
       class FormField < TencentCloud::Common::AbstractModel
-        # @param ComponentValue: 表单域或控件的Value
+        # @param ComponentValue: 控件填充vaule，ComponentType和传入值类型对应关系：
+        # TEXT - 文本内容
+        # MULTI_LINE_TEXT - 文本内容
+        # CHECK_BOX - true/false
+        # FILL_IMAGE、ATTACHMENT - 附件的FileId，需要通过UploadFiles接口上传获取
+        # SELECTOR - 选项值
+        # DYNAMIC_TABLE - 传入json格式的表格内容，具体见数据结构FlowInfo：https://cloud.tencent.com/document/api/1420/61525#FlowInfo
         # @type ComponentValue: String
         # @param ComponentId: 表单域或控件的ID，跟ComponentName二选一，不能全为空
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -1695,6 +1845,38 @@ module TencentCloud
             end
           end
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 机构信息
+      class OrganizationInfo < TencentCloud::Common::AbstractModel
+        # @param OrganizationOpenId: 用户在渠道的机构编号
+        # @type OrganizationOpenId: String
+        # @param ClientIp: 用户真实的IP
+        # @type ClientIp: String
+        # @param ProxyIp: 机构的代理IP
+        # @type ProxyIp: String
+        # @param OrganizationId: 机构在平台的编号
+        # @type OrganizationId: String
+        # @param Channel: 用户渠道
+        # @type Channel: String
+
+        attr_accessor :OrganizationOpenId, :ClientIp, :ProxyIp, :OrganizationId, :Channel
+        
+        def initialize(organizationopenid=nil, clientip=nil, proxyip=nil, organizationid=nil, channel=nil)
+          @OrganizationOpenId = organizationopenid
+          @ClientIp = clientip
+          @ProxyIp = proxyip
+          @OrganizationId = organizationid
+          @Channel = channel
+        end
+
+        def deserialize(params)
+          @OrganizationOpenId = params['OrganizationOpenId']
+          @ClientIp = params['ClientIp']
+          @ProxyIp = params['ProxyIp']
+          @OrganizationId = params['OrganizationId']
+          @Channel = params['Channel']
         end
       end
 

@@ -78,6 +78,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 渠道创建文件转换任务
+
+        # @param request: Request instance for ChannelCreateConvertTaskApi.
+        # @type request: :class:`Tencentcloud::essbasic::V20210526::ChannelCreateConvertTaskApiRequest`
+        # @rtype: :class:`Tencentcloud::essbasic::V20210526::ChannelCreateConvertTaskApiResponse`
+        def ChannelCreateConvertTaskApi(request)
+          body = send_request('ChannelCreateConvertTaskApi', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ChannelCreateConvertTaskApiResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 接口（ChannelCreateFlowByFiles）用于渠道版通过文件创建签署流程。此接口不可直接使用，需要运营申请
 
         # @param request: Request instance for ChannelCreateFlowByFiles.
@@ -113,6 +137,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ChannelCreateMultiFlowSignQRCodeResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 渠道版查询转换任务状态
+
+        # @param request: Request instance for ChannelGetTaskResultApi.
+        # @type request: :class:`Tencentcloud::essbasic::V20210526::ChannelGetTaskResultApiRequest`
+        # @rtype: :class:`Tencentcloud::essbasic::V20210526::ChannelGetTaskResultApiResponse`
+        def ChannelGetTaskResultApi(request)
+          body = send_request('ChannelGetTaskResultApi', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ChannelGetTaskResultApiResponse.new
             model.deserialize(response['Response'])
             model
           else

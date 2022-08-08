@@ -815,43 +815,43 @@ module TencentCloud
       class DescribeDiskConfigQuotaRequest < TencentCloud::Common::AbstractModel
         # @param InquiryType: 查询类别，取值范围。<br><li>INQUIRY_CBS_CONFIG：查询云盘配置列表<br><li>INQUIRY_CVM_CONFIG：查询云盘与实例搭配的配置列表。
         # @type InquiryType: String
-        # @param Zones: 查询一个或多个[可用区](/document/product/213/15753#ZoneInfo)下的配置。
-        # @type Zones: Array
         # @param DiskChargeType: 付费模式。取值范围：<br><li>PREPAID：预付费<br><li>POSTPAID_BY_HOUR：后付费。
         # @type DiskChargeType: String
-        # @param DiskTypes: 硬盘介质类型。取值范围：<br><li>CLOUD_BASIC：表示普通云硬盘<br><li>CLOUD_PREMIUM：表示高性能云硬盘<br><li>CLOUD_SSD：表示SSD云硬盘<br><li>CLOUD_HSSD：表示增强型SSD云硬盘。
-        # @type DiskTypes: Array
-        # @param DiskUsage: 系统盘或数据盘。取值范围：<br><li>SYSTEM_DISK：表示系统盘<br><li>DATA_DISK：表示数据盘。
-        # @type DiskUsage: String
         # @param InstanceFamilies: 按照实例机型系列过滤。实例机型系列形如：S1、I1、M1等。详见[实例类型](https://cloud.tencent.com/document/product/213/11518)
         # @type InstanceFamilies: Array
-        # @param CPU: 实例CPU核数。
-        # @type CPU: Integer
+        # @param DiskTypes: 硬盘介质类型。取值范围：<br><li>CLOUD_BASIC：表示普通云硬盘<br><li>CLOUD_PREMIUM：表示高性能云硬盘<br><li>CLOUD_SSD：表示SSD云硬盘<br><li>CLOUD_HSSD：表示增强型SSD云硬盘。
+        # @type DiskTypes: Array
+        # @param Zones: 查询一个或多个[可用区](/document/product/213/15753#ZoneInfo)下的配置。
+        # @type Zones: Array
         # @param Memory: 实例内存大小。
         # @type Memory: Integer
+        # @param DiskUsage: 系统盘或数据盘。取值范围：<br><li>SYSTEM_DISK：表示系统盘<br><li>DATA_DISK：表示数据盘。
+        # @type DiskUsage: String
+        # @param CPU: 实例CPU核数。
+        # @type CPU: Integer
 
-        attr_accessor :InquiryType, :Zones, :DiskChargeType, :DiskTypes, :DiskUsage, :InstanceFamilies, :CPU, :Memory
+        attr_accessor :InquiryType, :DiskChargeType, :InstanceFamilies, :DiskTypes, :Zones, :Memory, :DiskUsage, :CPU
         
-        def initialize(inquirytype=nil, zones=nil, diskchargetype=nil, disktypes=nil, diskusage=nil, instancefamilies=nil, cpu=nil, memory=nil)
+        def initialize(inquirytype=nil, diskchargetype=nil, instancefamilies=nil, disktypes=nil, zones=nil, memory=nil, diskusage=nil, cpu=nil)
           @InquiryType = inquirytype
-          @Zones = zones
           @DiskChargeType = diskchargetype
-          @DiskTypes = disktypes
-          @DiskUsage = diskusage
           @InstanceFamilies = instancefamilies
-          @CPU = cpu
+          @DiskTypes = disktypes
+          @Zones = zones
           @Memory = memory
+          @DiskUsage = diskusage
+          @CPU = cpu
         end
 
         def deserialize(params)
           @InquiryType = params['InquiryType']
-          @Zones = params['Zones']
           @DiskChargeType = params['DiskChargeType']
-          @DiskTypes = params['DiskTypes']
-          @DiskUsage = params['DiskUsage']
           @InstanceFamilies = params['InstanceFamilies']
-          @CPU = params['CPU']
+          @DiskTypes = params['DiskTypes']
+          @Zones = params['Zones']
           @Memory = params['Memory']
+          @DiskUsage = params['DiskUsage']
+          @CPU = params['CPU']
         end
       end
 

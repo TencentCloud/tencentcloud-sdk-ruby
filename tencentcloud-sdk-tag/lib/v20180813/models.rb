@@ -297,6 +297,61 @@ module TencentCloud
         end
       end
 
+      # DescribeProjects请求参数结构体
+      class DescribeProjectsRequest < TencentCloud::Common::AbstractModel
+        # @param AllList: 传1拉取所有项目（包括隐藏项目），不传或传0拉取显示项目
+        # @type AllList: Integer
+        # @param Limit: 分页条数，固定值1000。
+        # @type Limit: Integer
+        # @param Offset: 分页偏移量。
+        # @type Offset: Integer
+
+        attr_accessor :AllList, :Limit, :Offset
+        
+        def initialize(alllist=nil, limit=nil, offset=nil)
+          @AllList = alllist
+          @Limit = limit
+          @Offset = offset
+        end
+
+        def deserialize(params)
+          @AllList = params['AllList']
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+        end
+      end
+
+      # DescribeProjects返回参数结构体
+      class DescribeProjectsResponse < TencentCloud::Common::AbstractModel
+        # @param Total: 数据总条数
+        # @type Total: Integer
+        # @param Projects: 项目列表
+        # @type Projects: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Total, :Projects, :RequestId
+        
+        def initialize(total=nil, projects=nil, requestid=nil)
+          @Total = total
+          @Projects = projects
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Total = params['Total']
+          unless params['Projects'].nil?
+            @Projects = []
+            params['Projects'].each do |i|
+              project_tmp = Project.new
+              project_tmp.deserialize(i)
+              @Projects << project_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeResourceTagsByResourceIds请求参数结构体
       class DescribeResourceTagsByResourceIdsRequest < TencentCloud::Common::AbstractModel
         # @param ServiceType: 业务类型
@@ -1557,6 +1612,38 @@ module TencentCloud
 
         def deserialize(params)
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 项目信息
+      class Project < TencentCloud::Common::AbstractModel
+        # @param ProjectId: 项目ID
+        # @type ProjectId: Integer
+        # @param ProjectName: 项目名称
+        # @type ProjectName: String
+        # @param CreatorUin: 创建人uin
+        # @type CreatorUin: Integer
+        # @param ProjectInfo: 项目描述
+        # @type ProjectInfo: String
+        # @param CreateTime: 创建时间
+        # @type CreateTime: String
+
+        attr_accessor :ProjectId, :ProjectName, :CreatorUin, :ProjectInfo, :CreateTime
+        
+        def initialize(projectid=nil, projectname=nil, creatoruin=nil, projectinfo=nil, createtime=nil)
+          @ProjectId = projectid
+          @ProjectName = projectname
+          @CreatorUin = creatoruin
+          @ProjectInfo = projectinfo
+          @CreateTime = createtime
+        end
+
+        def deserialize(params)
+          @ProjectId = params['ProjectId']
+          @ProjectName = params['ProjectName']
+          @CreatorUin = params['CreatorUin']
+          @ProjectInfo = params['ProjectInfo']
+          @CreateTime = params['CreateTime']
         end
       end
 

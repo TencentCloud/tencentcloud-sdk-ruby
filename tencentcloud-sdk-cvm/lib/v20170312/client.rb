@@ -436,6 +436,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询CHC物理服务器禁止做的操作，返回给用户
+
+        # @param request: Request instance for DescribeChcDeniedActions.
+        # @type request: :class:`Tencentcloud::cvm::V20170312::DescribeChcDeniedActionsRequest`
+        # @rtype: :class:`Tencentcloud::cvm::V20170312::DescribeChcDeniedActionsResponse`
+        def DescribeChcDeniedActions(request)
+          body = send_request('DescribeChcDeniedActions', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeChcDeniedActionsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口 (DescribeChcHosts) 用于查询一个或多个CHC物理服务器详细信息。
 
         # * 可以根据实例`ID`、实例名称或者设备类型等信息来查询实例的详细信息。过滤信息详细请见过滤器`Filter`。

@@ -209,6 +209,30 @@ module TencentCloud
         end
       end
 
+      # 批量操作域名相关接口，若其中个别域名操作失败将会跳过，相应的域名错误信息将统一汇总在此类型中
+      class BatchDomainOperateErrors < TencentCloud::Common::AbstractModel
+        # @param DomainName: 操作失败的域名。
+        # @type DomainName: String
+        # @param Code: API3.0错误码。
+        # @type Code: String
+        # @param Message: API3.0错误信息。
+        # @type Message: String
+
+        attr_accessor :DomainName, :Code, :Message
+        
+        def initialize(domainname=nil, code=nil, message=nil)
+          @DomainName = domainname
+          @Code = code
+          @Message = message
+        end
+
+        def deserialize(params)
+          @DomainName = params['DomainName']
+          @Code = params['Code']
+          @Message = params['Message']
+        end
+      end
+
       # 海外分区直播带宽出参，分区信息
       class BillAreaInfo < TencentCloud::Common::AbstractModel
         # @param Name: 大区名称
@@ -3394,8 +3418,8 @@ module TencentCloud
         # @param DomainName: 要查询的单个域名。
         # @type DomainName: String
         # @param OrderBy: 可取值：
-        # ExpireTimeAsc：证书过期时间降序。
-        # ExpireTimeDesc：证书过期时间升序。
+        # ExpireTimeAsc：证书过期时间升序。
+        # ExpireTimeDesc：证书过期时间降序。
         # @type OrderBy: String
 
         attr_accessor :DomainSearch, :Offset, :Length, :DomainName, :OrderBy
@@ -3419,16 +3443,31 @@ module TencentCloud
 
       # DescribeLiveDomainCertBindings返回参数结构体
       class DescribeLiveDomainCertBindingsResponse < TencentCloud::Common::AbstractModel
+        # @param LiveDomainCertBindings: 有绑定证书的域名信息数组。
+        # @type LiveDomainCertBindings: Array
+        # @param TotalNum: 总的记录行数，便于分页。
+        # @type TotalNum: Integer
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RequestId
+        attr_accessor :LiveDomainCertBindings, :TotalNum, :RequestId
         
-        def initialize(requestid=nil)
+        def initialize(livedomaincertbindings=nil, totalnum=nil, requestid=nil)
+          @LiveDomainCertBindings = livedomaincertbindings
+          @TotalNum = totalnum
           @RequestId = requestid
         end
 
         def deserialize(params)
+          unless params['LiveDomainCertBindings'].nil?
+            @LiveDomainCertBindings = []
+            params['LiveDomainCertBindings'].each do |i|
+              livedomaincertbindings_tmp = LiveDomainCertBindings.new
+              livedomaincertbindings_tmp.deserialize(i)
+              @LiveDomainCertBindings << livedomaincertbindings_tmp
+            end
+          end
+          @TotalNum = params['TotalNum']
           @RequestId = params['RequestId']
         end
       end
@@ -6940,6 +6979,55 @@ module TencentCloud
         end
       end
 
+      # DescribeLiveDomainCertBindings, DescribeLiveDomainCertBindingsGray接口返回的域名证书信息
+      class LiveDomainCertBindings < TencentCloud::Common::AbstractModel
+        # @param DomainName: 域名。
+        # @type DomainName: String
+        # @param CertificateAlias: 证书备注。与CertName同义。
+        # @type CertificateAlias: String
+        # @param CertType: 证书类型。
+        # 0：自有证书
+        # 1：腾讯云ssl托管证书
+        # @type CertType: Integer
+        # @param Status: https状态。
+        # 1：已开启。
+        # 0：已关闭。
+        # @type Status: Integer
+        # @param CertExpireTime: 证书过期时间。
+        # @type CertExpireTime: String
+        # @param CertId: 证书Id。
+        # @type CertId: Integer
+        # @param CloudCertId: 腾讯云ssl的证书Id。
+        # @type CloudCertId: String
+        # @param UpdateTime: 规则最后更新时间。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UpdateTime: String
+
+        attr_accessor :DomainName, :CertificateAlias, :CertType, :Status, :CertExpireTime, :CertId, :CloudCertId, :UpdateTime
+        
+        def initialize(domainname=nil, certificatealias=nil, certtype=nil, status=nil, certexpiretime=nil, certid=nil, cloudcertid=nil, updatetime=nil)
+          @DomainName = domainname
+          @CertificateAlias = certificatealias
+          @CertType = certtype
+          @Status = status
+          @CertExpireTime = certexpiretime
+          @CertId = certid
+          @CloudCertId = cloudcertid
+          @UpdateTime = updatetime
+        end
+
+        def deserialize(params)
+          @DomainName = params['DomainName']
+          @CertificateAlias = params['CertificateAlias']
+          @CertType = params['CertType']
+          @Status = params['Status']
+          @CertExpireTime = params['CertExpireTime']
+          @CertId = params['CertId']
+          @CloudCertId = params['CloudCertId']
+          @UpdateTime = params['UpdateTime']
+        end
+      end
+
       # 直播包信息。
       class LivePackageInfo < TencentCloud::Common::AbstractModel
         # @param Id: 包 ID。
@@ -7142,18 +7230,30 @@ module TencentCloud
       class ModifyLiveDomainCertBindingsResponse < TencentCloud::Common::AbstractModel
         # @param MismatchedDomainNames: DomainNames 入参中，与证书不匹配的域名列表，将会跳过处理。
         # @type MismatchedDomainNames: Array
+        # @param Errors: 操作失败的域名及错误码，错误信息，包括MismatchedDomainNames中的域名。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Errors: Array
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :MismatchedDomainNames, :RequestId
+        attr_accessor :MismatchedDomainNames, :Errors, :RequestId
         
-        def initialize(mismatcheddomainnames=nil, requestid=nil)
+        def initialize(mismatcheddomainnames=nil, errors=nil, requestid=nil)
           @MismatchedDomainNames = mismatcheddomainnames
+          @Errors = errors
           @RequestId = requestid
         end
 
         def deserialize(params)
           @MismatchedDomainNames = params['MismatchedDomainNames']
+          unless params['Errors'].nil?
+            @Errors = []
+            params['Errors'].each do |i|
+              batchdomainoperateerrors_tmp = BatchDomainOperateErrors.new
+              batchdomainoperateerrors_tmp.deserialize(i)
+              @Errors << batchdomainoperateerrors_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
