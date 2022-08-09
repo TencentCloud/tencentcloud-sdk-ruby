@@ -605,30 +605,6 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 删除DDoS防护的IP黑白名单
-
-        # @param request: Request instance for DeleteBlackWhiteIpList.
-        # @type request: :class:`Tencentcloud::antiddos::V20200309::DeleteBlackWhiteIpListRequest`
-        # @rtype: :class:`Tencentcloud::antiddos::V20200309::DeleteBlackWhiteIpListResponse`
-        def DeleteBlackWhiteIpList(request)
-          body = send_request('DeleteBlackWhiteIpList', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = DeleteBlackWhiteIpListResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
         # 删除CC分级策略
 
         # @param request: Request instance for DeleteCCLevelPolicy.
@@ -951,6 +927,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeBasicDeviceStatusResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取高防包流量折线图
+
+        # @param request: Request instance for DescribeBgpBizTrend.
+        # @type request: :class:`Tencentcloud::antiddos::V20200309::DescribeBgpBizTrendRequest`
+        # @rtype: :class:`Tencentcloud::antiddos::V20200309::DescribeBgpBizTrendResponse`
+        def DescribeBgpBizTrend(request)
+          body = send_request('DescribeBgpBizTrend', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeBgpBizTrendResponse.new
             model.deserialize(response['Response'])
             model
           else

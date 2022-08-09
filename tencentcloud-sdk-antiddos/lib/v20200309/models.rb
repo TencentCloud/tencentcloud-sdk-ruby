@@ -2413,46 +2413,6 @@ module TencentCloud
         end
       end
 
-      # DeleteBlackWhiteIpList请求参数结构体
-      class DeleteBlackWhiteIpListRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 资源实例ID
-        # @type InstanceId: String
-        # @param IpList: IP列表
-        # @type IpList: Array
-        # @param Type: IP类型，取值[black(黑名单IP), white(白名单IP)]
-        # @type Type: String
-
-        attr_accessor :InstanceId, :IpList, :Type
-        
-        def initialize(instanceid=nil, iplist=nil, type=nil)
-          @InstanceId = instanceid
-          @IpList = iplist
-          @Type = type
-        end
-
-        def deserialize(params)
-          @InstanceId = params['InstanceId']
-          @IpList = params['IpList']
-          @Type = params['Type']
-        end
-      end
-
-      # DeleteBlackWhiteIpList返回参数结构体
-      class DeleteBlackWhiteIpListResponse < TencentCloud::Common::AbstractModel
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :RequestId
-        
-        def initialize(requestid=nil)
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          @RequestId = params['RequestId']
-        end
-      end
-
       # DeleteCCLevelPolicy请求参数结构体
       class DeleteCCLevelPolicyRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例Id
@@ -3001,6 +2961,74 @@ module TencentCloud
               @Data << keyvalue_tmp
             end
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeBgpBizTrend请求参数结构体
+      class DescribeBgpBizTrendRequest < TencentCloud::Common::AbstractModel
+        # @param Business: 大禹子产品代号（bgp-multip表示高防包）
+        # @type Business: String
+        # @param StartTime: 统计开始时间。 例：“2020-09-22 00:00:00”
+        # @type StartTime: String
+        # @param EndTime: 统计结束时间。 例：“2020-09-22 00:00:00”
+        # @type EndTime: String
+        # @param MetricName: 统计纬度，可取值intraffic, outtraffic, inpkg, outpkg
+        # @type MetricName: String
+        # @param InstanceId: 资源实例ID
+        # @type InstanceId: String
+        # @param Flag: 0表示固定时间，1表示自定义时间
+        # @type Flag: Integer
+
+        attr_accessor :Business, :StartTime, :EndTime, :MetricName, :InstanceId, :Flag
+        
+        def initialize(business=nil, starttime=nil, endtime=nil, metricname=nil, instanceid=nil, flag=nil)
+          @Business = business
+          @StartTime = starttime
+          @EndTime = endtime
+          @MetricName = metricname
+          @InstanceId = instanceid
+          @Flag = flag
+        end
+
+        def deserialize(params)
+          @Business = params['Business']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @MetricName = params['MetricName']
+          @InstanceId = params['InstanceId']
+          @Flag = params['Flag']
+        end
+      end
+
+      # DescribeBgpBizTrend返回参数结构体
+      class DescribeBgpBizTrendResponse < TencentCloud::Common::AbstractModel
+        # @param DataList: 曲线图各个时间点的值
+        # @type DataList: Array
+        # @param Total: 曲线图取值个数
+        # @type Total: Integer
+        # @param MetricName: 统计纬度
+        # @type MetricName: String
+        # @param MaxData: 返回数组最大值
+        # @type MaxData: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :DataList, :Total, :MetricName, :MaxData, :RequestId
+        
+        def initialize(datalist=nil, total=nil, metricname=nil, maxdata=nil, requestid=nil)
+          @DataList = datalist
+          @Total = total
+          @MetricName = metricname
+          @MaxData = maxdata
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @DataList = params['DataList']
+          @Total = params['Total']
+          @MetricName = params['MetricName']
+          @MaxData = params['MaxData']
           @RequestId = params['RequestId']
         end
       end
