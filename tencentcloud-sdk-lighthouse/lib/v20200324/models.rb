@@ -2556,6 +2556,40 @@ module TencentCloud
         end
       end
 
+      # 计费项目明细。
+      class DetailPrice < TencentCloud::Common::AbstractModel
+        # @param PriceName: 描述计费项目名称，目前取值
+        # <li>"DiskSpace"代表云硬盘空间收费项。</li>
+        # <li>"DiskBackupQuota"代表云硬盘备份点配额收费项。</li>
+        # @type PriceName: String
+        # @param OriginUnitPrice: 云硬盘计费项维度单价。
+        # @type OriginUnitPrice: Float
+        # @param OriginalPrice: 云硬盘计费项维度总价。
+        # @type OriginalPrice: Float
+        # @param Discount: 云硬盘在计费项维度折扣。
+        # @type Discount: Float
+        # @param DiscountPrice: 云硬盘在计费项维度折后总价。
+        # @type DiscountPrice: Float
+
+        attr_accessor :PriceName, :OriginUnitPrice, :OriginalPrice, :Discount, :DiscountPrice
+        
+        def initialize(pricename=nil, originunitprice=nil, originalprice=nil, discount=nil, discountprice=nil)
+          @PriceName = pricename
+          @OriginUnitPrice = originunitprice
+          @OriginalPrice = originalprice
+          @Discount = discount
+          @DiscountPrice = discountprice
+        end
+
+        def deserialize(params)
+          @PriceName = params['PriceName']
+          @OriginUnitPrice = params['OriginUnitPrice']
+          @OriginalPrice = params['OriginalPrice']
+          @Discount = params['Discount']
+          @DiscountPrice = params['DiscountPrice']
+        end
+      end
+
       # DisassociateInstancesKeyPairs请求参数结构体
       class DisassociateInstancesKeyPairsRequest < TencentCloud::Common::AbstractModel
         # @param KeyIds: 密钥对 ID 列表。每次请求批量密钥对的上限为 100。
@@ -2663,18 +2697,25 @@ module TencentCloud
         # @type LatestOperationState: String
         # @param LatestOperationRequestId: 上一次请求ID
         # @type LatestOperationRequestId: String
-        # @param CreatedTime: 创建时间
+        # @param CreatedTime: 创建时间。按照 ISO8601 标准表示，并且使用 UTC 时间。
+        # 格式为： YYYY-MM-DDThh:mm:ssZ。
         # @type CreatedTime: String
-        # @param ExpiredTime: 到期时间
+        # @param ExpiredTime: 到期时间。按照 ISO8601 标准表示，并且使用 UTC 时间。
+        # 格式为： YYYY-MM-DDThh:mm:ssZ。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExpiredTime: String
-        # @param IsolatedTime: 隔离时间
+        # @param IsolatedTime: 隔离时间。按照 ISO8601 标准表示，并且使用 UTC 时间。
+        # 格式为： YYYY-MM-DDThh:mm:ssZ。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsolatedTime: String
+        # @param DiskBackupCount: 云硬盘的已有备份点数量。
+        # @type DiskBackupCount: Integer
+        # @param DiskBackupQuota: 云硬盘的备份点配额数量。
+        # @type DiskBackupQuota: Integer
 
-        attr_accessor :DiskId, :InstanceId, :Zone, :DiskName, :DiskUsage, :DiskType, :DiskChargeType, :DiskSize, :RenewFlag, :DiskState, :Attached, :DeleteWithInstance, :LatestOperation, :LatestOperationState, :LatestOperationRequestId, :CreatedTime, :ExpiredTime, :IsolatedTime
+        attr_accessor :DiskId, :InstanceId, :Zone, :DiskName, :DiskUsage, :DiskType, :DiskChargeType, :DiskSize, :RenewFlag, :DiskState, :Attached, :DeleteWithInstance, :LatestOperation, :LatestOperationState, :LatestOperationRequestId, :CreatedTime, :ExpiredTime, :IsolatedTime, :DiskBackupCount, :DiskBackupQuota
         
-        def initialize(diskid=nil, instanceid=nil, zone=nil, diskname=nil, diskusage=nil, disktype=nil, diskchargetype=nil, disksize=nil, renewflag=nil, diskstate=nil, attached=nil, deletewithinstance=nil, latestoperation=nil, latestoperationstate=nil, latestoperationrequestid=nil, createdtime=nil, expiredtime=nil, isolatedtime=nil)
+        def initialize(diskid=nil, instanceid=nil, zone=nil, diskname=nil, diskusage=nil, disktype=nil, diskchargetype=nil, disksize=nil, renewflag=nil, diskstate=nil, attached=nil, deletewithinstance=nil, latestoperation=nil, latestoperationstate=nil, latestoperationrequestid=nil, createdtime=nil, expiredtime=nil, isolatedtime=nil, diskbackupcount=nil, diskbackupquota=nil)
           @DiskId = diskid
           @InstanceId = instanceid
           @Zone = zone
@@ -2693,6 +2734,8 @@ module TencentCloud
           @CreatedTime = createdtime
           @ExpiredTime = expiredtime
           @IsolatedTime = isolatedtime
+          @DiskBackupCount = diskbackupcount
+          @DiskBackupQuota = diskbackupquota
         end
 
         def deserialize(params)
@@ -2714,6 +2757,8 @@ module TencentCloud
           @CreatedTime = params['CreatedTime']
           @ExpiredTime = params['ExpiredTime']
           @IsolatedTime = params['IsolatedTime']
+          @DiskBackupCount = params['DiskBackupCount']
+          @DiskBackupQuota = params['DiskBackupQuota']
         end
       end
 
@@ -2814,14 +2859,17 @@ module TencentCloud
         # @type Discount: Float
         # @param DiscountPrice: 折后总价。
         # @type DiscountPrice: Float
+        # @param DetailPrices: 计费项目明细列表。
+        # @type DetailPrices: Array
 
-        attr_accessor :OriginalDiskPrice, :OriginalPrice, :Discount, :DiscountPrice
+        attr_accessor :OriginalDiskPrice, :OriginalPrice, :Discount, :DiscountPrice, :DetailPrices
         
-        def initialize(originaldiskprice=nil, originalprice=nil, discount=nil, discountprice=nil)
+        def initialize(originaldiskprice=nil, originalprice=nil, discount=nil, discountprice=nil, detailprices=nil)
           @OriginalDiskPrice = originaldiskprice
           @OriginalPrice = originalprice
           @Discount = discount
           @DiscountPrice = discountprice
+          @DetailPrices = detailprices
         end
 
         def deserialize(params)
@@ -2829,6 +2877,14 @@ module TencentCloud
           @OriginalPrice = params['OriginalPrice']
           @Discount = params['Discount']
           @DiscountPrice = params['DiscountPrice']
+          unless params['DetailPrices'].nil?
+            @DetailPrices = []
+            params['DetailPrices'].each do |i|
+              detailprice_tmp = DetailPrice.new
+              detailprice_tmp.deserialize(i)
+              @DetailPrices << detailprice_tmp
+            end
+          end
         end
       end
 

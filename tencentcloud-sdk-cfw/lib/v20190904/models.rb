@@ -3327,9 +3327,9 @@ module TencentCloud
         # @type IOC: Array
         # @param IocAction: 可选值：delete（删除）、edit（编辑）、add（添加）  其他值无效
         # @type IocAction: String
-        # @param StartTime: 时间格式：yyyy-MM-dd HH:mm:ss
+        # @param StartTime: 时间格式：yyyy-MM-dd HH:mm:ss，IocAction 为edit或add时必填
         # @type StartTime: String
-        # @param EndTime: 时间格式：yyyy-MM-dd HH:mm:ss
+        # @param EndTime: 时间格式：yyyy-MM-dd HH:mm:ss，IocAction 为edit或add时必填
         # @type EndTime: String
 
         attr_accessor :RuleType, :IOC, :IocAction, :StartTime, :EndTime

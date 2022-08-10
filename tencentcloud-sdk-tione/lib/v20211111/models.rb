@@ -203,7 +203,7 @@ module TencentCloud
         # @type TrainingModelId: String
         # @param ModelOutputPath: 模型存储cos目录
         # @type ModelOutputPath: :class:`Tencentcloud::Tione.v20211111.models.CosPathInfo`
-        # @param TrainingModelSource: 模型来源 （JOB/COS/AUTO_ML）
+        # @param TrainingModelSource: 模型来源 （JOB/COS）
         # @type TrainingModelSource: String
         # @param TrainingPreference: 模型偏好
         # @type TrainingPreference: String
@@ -217,10 +217,12 @@ module TencentCloud
         # @type ModelVersionType: String
         # @param ModelFormat: 模型格式 （PYTORCH/TORCH_SCRIPT/DETECTRON2/SAVED_MODEL/FROZEN_GRAPH/PMML）
         # @type ModelFormat: String
+        # @param ReasoningEnvironmentId: 推理镜像ID
+        # @type ReasoningEnvironmentId: String
 
-        attr_accessor :ImportMethod, :TrainingModelCosPath, :ReasoningEnvironmentSource, :TrainingModelName, :Tags, :TrainingJobName, :AlgorithmFramework, :ReasoningEnvironment, :TrainingModelIndex, :TrainingModelVersion, :ReasoningImageInfo, :ModelMoveMode, :TrainingJobId, :TrainingModelId, :ModelOutputPath, :TrainingModelSource, :TrainingPreference, :AutoMLTaskId, :TrainingJobVersion, :ModelVersionType, :ModelFormat
+        attr_accessor :ImportMethod, :TrainingModelCosPath, :ReasoningEnvironmentSource, :TrainingModelName, :Tags, :TrainingJobName, :AlgorithmFramework, :ReasoningEnvironment, :TrainingModelIndex, :TrainingModelVersion, :ReasoningImageInfo, :ModelMoveMode, :TrainingJobId, :TrainingModelId, :ModelOutputPath, :TrainingModelSource, :TrainingPreference, :AutoMLTaskId, :TrainingJobVersion, :ModelVersionType, :ModelFormat, :ReasoningEnvironmentId
         
-        def initialize(importmethod=nil, trainingmodelcospath=nil, reasoningenvironmentsource=nil, trainingmodelname=nil, tags=nil, trainingjobname=nil, algorithmframework=nil, reasoningenvironment=nil, trainingmodelindex=nil, trainingmodelversion=nil, reasoningimageinfo=nil, modelmovemode=nil, trainingjobid=nil, trainingmodelid=nil, modeloutputpath=nil, trainingmodelsource=nil, trainingpreference=nil, automltaskid=nil, trainingjobversion=nil, modelversiontype=nil, modelformat=nil)
+        def initialize(importmethod=nil, trainingmodelcospath=nil, reasoningenvironmentsource=nil, trainingmodelname=nil, tags=nil, trainingjobname=nil, algorithmframework=nil, reasoningenvironment=nil, trainingmodelindex=nil, trainingmodelversion=nil, reasoningimageinfo=nil, modelmovemode=nil, trainingjobid=nil, trainingmodelid=nil, modeloutputpath=nil, trainingmodelsource=nil, trainingpreference=nil, automltaskid=nil, trainingjobversion=nil, modelversiontype=nil, modelformat=nil, reasoningenvironmentid=nil)
           @ImportMethod = importmethod
           @TrainingModelCosPath = trainingmodelcospath
           @ReasoningEnvironmentSource = reasoningenvironmentsource
@@ -242,6 +244,7 @@ module TencentCloud
           @TrainingJobVersion = trainingjobversion
           @ModelVersionType = modelversiontype
           @ModelFormat = modelformat
+          @ReasoningEnvironmentId = reasoningenvironmentid
         end
 
         def deserialize(params)
@@ -282,6 +285,7 @@ module TencentCloud
           @TrainingJobVersion = params['TrainingJobVersion']
           @ModelVersionType = params['ModelVersionType']
           @ModelFormat = params['ModelFormat']
+          @ReasoningEnvironmentId = params['ReasoningEnvironmentId']
         end
       end
 
@@ -951,17 +955,21 @@ module TencentCloud
         # @type TrainingModelId: String
         # @param EnableDeleteCos: 是否同步清理cos
         # @type EnableDeleteCos: Boolean
+        # @param ModelVersionType: 删除模型类型，枚举值：NORMAL 普通，ACCELERATE 加速，不传则删除所有
+        # @type ModelVersionType: String
 
-        attr_accessor :TrainingModelId, :EnableDeleteCos
+        attr_accessor :TrainingModelId, :EnableDeleteCos, :ModelVersionType
         
-        def initialize(trainingmodelid=nil, enabledeletecos=nil)
+        def initialize(trainingmodelid=nil, enabledeletecos=nil, modelversiontype=nil)
           @TrainingModelId = trainingmodelid
           @EnableDeleteCos = enabledeletecos
+          @ModelVersionType = modelversiontype
         end
 
         def deserialize(params)
           @TrainingModelId = params['TrainingModelId']
           @EnableDeleteCos = params['EnableDeleteCos']
+          @ModelVersionType = params['ModelVersionType']
         end
       end
 
@@ -3517,10 +3525,13 @@ module TencentCloud
         # @param ResourceGroupName: 预付费专用资源组名称
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResourceGroupName: String
+        # @param Message: 任务信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Message: String
 
-        attr_accessor :Id, :Name, :Uin, :SubUin, :Region, :FrameworkName, :FrameworkVersion, :TrainingMode, :ChargeType, :ResourceGroupId, :ResourceConfigInfos, :Tags, :ImageInfo, :CodePackagePath, :StartCmdInfo, :DataSource, :DataConfigs, :TuningParameters, :Output, :LogEnable, :LogConfig, :VpcId, :SubnetId, :Status, :RuntimeInSeconds, :CreateTime, :StartTime, :ChargeStatus, :LatestInstanceId, :TensorBoardId, :Remark, :FailureReason, :UpdateTime, :EndTime, :BillingInfo, :ResourceGroupName
+        attr_accessor :Id, :Name, :Uin, :SubUin, :Region, :FrameworkName, :FrameworkVersion, :TrainingMode, :ChargeType, :ResourceGroupId, :ResourceConfigInfos, :Tags, :ImageInfo, :CodePackagePath, :StartCmdInfo, :DataSource, :DataConfigs, :TuningParameters, :Output, :LogEnable, :LogConfig, :VpcId, :SubnetId, :Status, :RuntimeInSeconds, :CreateTime, :StartTime, :ChargeStatus, :LatestInstanceId, :TensorBoardId, :Remark, :FailureReason, :UpdateTime, :EndTime, :BillingInfo, :ResourceGroupName, :Message
         
-        def initialize(id=nil, name=nil, uin=nil, subuin=nil, region=nil, frameworkname=nil, frameworkversion=nil, trainingmode=nil, chargetype=nil, resourcegroupid=nil, resourceconfiginfos=nil, tags=nil, imageinfo=nil, codepackagepath=nil, startcmdinfo=nil, datasource=nil, dataconfigs=nil, tuningparameters=nil, output=nil, logenable=nil, logconfig=nil, vpcid=nil, subnetid=nil, status=nil, runtimeinseconds=nil, createtime=nil, starttime=nil, chargestatus=nil, latestinstanceid=nil, tensorboardid=nil, remark=nil, failurereason=nil, updatetime=nil, endtime=nil, billinginfo=nil, resourcegroupname=nil)
+        def initialize(id=nil, name=nil, uin=nil, subuin=nil, region=nil, frameworkname=nil, frameworkversion=nil, trainingmode=nil, chargetype=nil, resourcegroupid=nil, resourceconfiginfos=nil, tags=nil, imageinfo=nil, codepackagepath=nil, startcmdinfo=nil, datasource=nil, dataconfigs=nil, tuningparameters=nil, output=nil, logenable=nil, logconfig=nil, vpcid=nil, subnetid=nil, status=nil, runtimeinseconds=nil, createtime=nil, starttime=nil, chargestatus=nil, latestinstanceid=nil, tensorboardid=nil, remark=nil, failurereason=nil, updatetime=nil, endtime=nil, billinginfo=nil, resourcegroupname=nil, message=nil)
           @Id = id
           @Name = name
           @Uin = uin
@@ -3557,6 +3568,7 @@ module TencentCloud
           @EndTime = endtime
           @BillingInfo = billinginfo
           @ResourceGroupName = resourcegroupname
+          @Message = message
         end
 
         def deserialize(params)
@@ -3632,6 +3644,7 @@ module TencentCloud
           @EndTime = params['EndTime']
           @BillingInfo = params['BillingInfo']
           @ResourceGroupName = params['ResourceGroupName']
+          @Message = params['Message']
         end
       end
 
@@ -3689,10 +3702,13 @@ module TencentCloud
         # @param ImageInfo: 自定义镜像信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ImageInfo: :class:`Tencentcloud::Tione.v20211111.models.ImageInfo`
+        # @param Message: 任务信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Message: String
 
-        attr_accessor :Id, :Name, :FrameworkName, :FrameworkVersion, :TrainingMode, :ChargeType, :ChargeStatus, :ResourceGroupId, :ResourceConfigInfos, :Tags, :Status, :RuntimeInSeconds, :CreateTime, :StartTime, :EndTime, :Output, :FailureReason, :UpdateTime, :BillingInfo, :ResourceGroupName, :ImageInfo
+        attr_accessor :Id, :Name, :FrameworkName, :FrameworkVersion, :TrainingMode, :ChargeType, :ChargeStatus, :ResourceGroupId, :ResourceConfigInfos, :Tags, :Status, :RuntimeInSeconds, :CreateTime, :StartTime, :EndTime, :Output, :FailureReason, :UpdateTime, :BillingInfo, :ResourceGroupName, :ImageInfo, :Message
         
-        def initialize(id=nil, name=nil, frameworkname=nil, frameworkversion=nil, trainingmode=nil, chargetype=nil, chargestatus=nil, resourcegroupid=nil, resourceconfiginfos=nil, tags=nil, status=nil, runtimeinseconds=nil, createtime=nil, starttime=nil, endtime=nil, output=nil, failurereason=nil, updatetime=nil, billinginfo=nil, resourcegroupname=nil, imageinfo=nil)
+        def initialize(id=nil, name=nil, frameworkname=nil, frameworkversion=nil, trainingmode=nil, chargetype=nil, chargestatus=nil, resourcegroupid=nil, resourceconfiginfos=nil, tags=nil, status=nil, runtimeinseconds=nil, createtime=nil, starttime=nil, endtime=nil, output=nil, failurereason=nil, updatetime=nil, billinginfo=nil, resourcegroupname=nil, imageinfo=nil, message=nil)
           @Id = id
           @Name = name
           @FrameworkName = frameworkname
@@ -3714,6 +3730,7 @@ module TencentCloud
           @BillingInfo = billinginfo
           @ResourceGroupName = resourcegroupname
           @ImageInfo = imageinfo
+          @Message = message
         end
 
         def deserialize(params)
@@ -3758,6 +3775,7 @@ module TencentCloud
             @ImageInfo = ImageInfo.new
             @ImageInfo.deserialize(params['ImageInfo'])
           end
+          @Message = params['Message']
         end
       end
 

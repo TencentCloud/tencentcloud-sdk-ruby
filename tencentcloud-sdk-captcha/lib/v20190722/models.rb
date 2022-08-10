@@ -1034,7 +1034,10 @@ module TencentCloud
         # @param CaptchaMsg: 状态描述及验证错误信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CaptchaMsg: String
-        # @param EvilLevel: [0,100]，恶意等级
+        # @param EvilLevel: 无感验证模式下，该参数返回验证结果：
+
+        # EvilLevel=0 请求无恶意
+        # EvilLevel=100 请求有恶意
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EvilLevel: Integer
         # @param GetCaptchaTime: 前端获取验证码时间，时间戳格式

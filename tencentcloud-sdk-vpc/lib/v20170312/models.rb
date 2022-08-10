@@ -18523,10 +18523,24 @@ module TencentCloud
         # @type HealthCheckRemoteIp: String
         # @param HealthCheckStatus: 通道健康检查状态，AVAILABLE：正常，UNAVAILABLE：不正常。 未配置健康检查不返回该对象
         # @type HealthCheckStatus: String
+        # @param DpdEnable: DPD探测开关。默认为0，表示关闭DPD探测。可选值：0（关闭），1（开启）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DpdEnable: Integer
+        # @param DpdTimeout: DPD超时时间。即探测确认对端不存在需要的时间。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DpdTimeout: String
+        # @param DpdAction: DPD超时后的动作。默认为clear。dpdEnable为1（开启）时有效。可取值为clear（断开）和restart（重试）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DpdAction: String
+        # @param TagSet: 标签键值对数组
+        # @type TagSet: Array
+        # @param NegotiationType: 协商类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NegotiationType: String
 
-        attr_accessor :VpnConnectionId, :VpnConnectionName, :VpcId, :VpnGatewayId, :CustomerGatewayId, :PreShareKey, :VpnProto, :EncryptProto, :RouteType, :CreatedTime, :State, :NetStatus, :SecurityPolicyDatabaseSet, :IKEOptionsSpecification, :IPSECOptionsSpecification, :EnableHealthCheck, :HealthCheckLocalIp, :HealthCheckRemoteIp, :HealthCheckStatus
+        attr_accessor :VpnConnectionId, :VpnConnectionName, :VpcId, :VpnGatewayId, :CustomerGatewayId, :PreShareKey, :VpnProto, :EncryptProto, :RouteType, :CreatedTime, :State, :NetStatus, :SecurityPolicyDatabaseSet, :IKEOptionsSpecification, :IPSECOptionsSpecification, :EnableHealthCheck, :HealthCheckLocalIp, :HealthCheckRemoteIp, :HealthCheckStatus, :DpdEnable, :DpdTimeout, :DpdAction, :TagSet, :NegotiationType
         
-        def initialize(vpnconnectionid=nil, vpnconnectionname=nil, vpcid=nil, vpngatewayid=nil, customergatewayid=nil, presharekey=nil, vpnproto=nil, encryptproto=nil, routetype=nil, createdtime=nil, state=nil, netstatus=nil, securitypolicydatabaseset=nil, ikeoptionsspecification=nil, ipsecoptionsspecification=nil, enablehealthcheck=nil, healthchecklocalip=nil, healthcheckremoteip=nil, healthcheckstatus=nil)
+        def initialize(vpnconnectionid=nil, vpnconnectionname=nil, vpcid=nil, vpngatewayid=nil, customergatewayid=nil, presharekey=nil, vpnproto=nil, encryptproto=nil, routetype=nil, createdtime=nil, state=nil, netstatus=nil, securitypolicydatabaseset=nil, ikeoptionsspecification=nil, ipsecoptionsspecification=nil, enablehealthcheck=nil, healthchecklocalip=nil, healthcheckremoteip=nil, healthcheckstatus=nil, dpdenable=nil, dpdtimeout=nil, dpdaction=nil, tagset=nil, negotiationtype=nil)
           @VpnConnectionId = vpnconnectionid
           @VpnConnectionName = vpnconnectionname
           @VpcId = vpcid
@@ -18546,6 +18560,11 @@ module TencentCloud
           @HealthCheckLocalIp = healthchecklocalip
           @HealthCheckRemoteIp = healthcheckremoteip
           @HealthCheckStatus = healthcheckstatus
+          @DpdEnable = dpdenable
+          @DpdTimeout = dpdtimeout
+          @DpdAction = dpdaction
+          @TagSet = tagset
+          @NegotiationType = negotiationtype
         end
 
         def deserialize(params)
@@ -18581,6 +18600,18 @@ module TencentCloud
           @HealthCheckLocalIp = params['HealthCheckLocalIp']
           @HealthCheckRemoteIp = params['HealthCheckRemoteIp']
           @HealthCheckStatus = params['HealthCheckStatus']
+          @DpdEnable = params['DpdEnable']
+          @DpdTimeout = params['DpdTimeout']
+          @DpdAction = params['DpdAction']
+          unless params['TagSet'].nil?
+            @TagSet = []
+            params['TagSet'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @TagSet << tag_tmp
+            end
+          end
+          @NegotiationType = params['NegotiationType']
         end
       end
 

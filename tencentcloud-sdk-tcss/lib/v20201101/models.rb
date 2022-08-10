@@ -7136,12 +7136,14 @@ module TencentCloud
         # @type LatestImageScanTime: String
         # @param ImageUnsafeCnt: 风险镜像个数
         # @type ImageUnsafeCnt: Integer
+        # @param HostUnInstallCnt: 主机未安装agent数量
+        # @type HostUnInstallCnt: Integer
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :AppCnt, :ContainerCnt, :ContainerPause, :ContainerRunning, :ContainerStop, :CreateTime, :DbCnt, :ImageCnt, :HostOnline, :HostCnt, :ImageHasRiskInfoCnt, :ImageHasVirusCnt, :ImageHasVulsCnt, :ImageUntrustCnt, :ListenPortCnt, :ProcessCnt, :WebServiceCnt, :LatestImageScanTime, :ImageUnsafeCnt, :RequestId
+        attr_accessor :AppCnt, :ContainerCnt, :ContainerPause, :ContainerRunning, :ContainerStop, :CreateTime, :DbCnt, :ImageCnt, :HostOnline, :HostCnt, :ImageHasRiskInfoCnt, :ImageHasVirusCnt, :ImageHasVulsCnt, :ImageUntrustCnt, :ListenPortCnt, :ProcessCnt, :WebServiceCnt, :LatestImageScanTime, :ImageUnsafeCnt, :HostUnInstallCnt, :RequestId
         
-        def initialize(appcnt=nil, containercnt=nil, containerpause=nil, containerrunning=nil, containerstop=nil, createtime=nil, dbcnt=nil, imagecnt=nil, hostonline=nil, hostcnt=nil, imagehasriskinfocnt=nil, imagehasviruscnt=nil, imagehasvulscnt=nil, imageuntrustcnt=nil, listenportcnt=nil, processcnt=nil, webservicecnt=nil, latestimagescantime=nil, imageunsafecnt=nil, requestid=nil)
+        def initialize(appcnt=nil, containercnt=nil, containerpause=nil, containerrunning=nil, containerstop=nil, createtime=nil, dbcnt=nil, imagecnt=nil, hostonline=nil, hostcnt=nil, imagehasriskinfocnt=nil, imagehasviruscnt=nil, imagehasvulscnt=nil, imageuntrustcnt=nil, listenportcnt=nil, processcnt=nil, webservicecnt=nil, latestimagescantime=nil, imageunsafecnt=nil, hostuninstallcnt=nil, requestid=nil)
           @AppCnt = appcnt
           @ContainerCnt = containercnt
           @ContainerPause = containerpause
@@ -7161,6 +7163,7 @@ module TencentCloud
           @WebServiceCnt = webservicecnt
           @LatestImageScanTime = latestimagescantime
           @ImageUnsafeCnt = imageunsafecnt
+          @HostUnInstallCnt = hostuninstallcnt
           @RequestId = requestid
         end
 
@@ -7184,6 +7187,7 @@ module TencentCloud
           @WebServiceCnt = params['WebServiceCnt']
           @LatestImageScanTime = params['LatestImageScanTime']
           @ImageUnsafeCnt = params['ImageUnsafeCnt']
+          @HostUnInstallCnt = params['HostUnInstallCnt']
           @RequestId = params['RequestId']
         end
       end
@@ -8183,12 +8187,14 @@ module TencentCloud
         # @type ImageRegistryCnt: Integer
         # @param ImageTotalCnt: 镜像总数
         # @type ImageTotalCnt: Integer
+        # @param HostUnInstallCnt: 主机未安装agent数量
+        # @type HostUnInstallCnt: Integer
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :ContainerTotalCnt, :ContainerRunningCnt, :ContainerPauseCnt, :ContainerStopped, :ImageCnt, :HostCnt, :HostRunningCnt, :HostOfflineCnt, :ImageRegistryCnt, :ImageTotalCnt, :RequestId
+        attr_accessor :ContainerTotalCnt, :ContainerRunningCnt, :ContainerPauseCnt, :ContainerStopped, :ImageCnt, :HostCnt, :HostRunningCnt, :HostOfflineCnt, :ImageRegistryCnt, :ImageTotalCnt, :HostUnInstallCnt, :RequestId
         
-        def initialize(containertotalcnt=nil, containerrunningcnt=nil, containerpausecnt=nil, containerstopped=nil, imagecnt=nil, hostcnt=nil, hostrunningcnt=nil, hostofflinecnt=nil, imageregistrycnt=nil, imagetotalcnt=nil, requestid=nil)
+        def initialize(containertotalcnt=nil, containerrunningcnt=nil, containerpausecnt=nil, containerstopped=nil, imagecnt=nil, hostcnt=nil, hostrunningcnt=nil, hostofflinecnt=nil, imageregistrycnt=nil, imagetotalcnt=nil, hostuninstallcnt=nil, requestid=nil)
           @ContainerTotalCnt = containertotalcnt
           @ContainerRunningCnt = containerrunningcnt
           @ContainerPauseCnt = containerpausecnt
@@ -8199,6 +8205,7 @@ module TencentCloud
           @HostOfflineCnt = hostofflinecnt
           @ImageRegistryCnt = imageregistrycnt
           @ImageTotalCnt = imagetotalcnt
+          @HostUnInstallCnt = hostuninstallcnt
           @RequestId = requestid
         end
 
@@ -8213,6 +8220,7 @@ module TencentCloud
           @HostOfflineCnt = params['HostOfflineCnt']
           @ImageRegistryCnt = params['ImageRegistryCnt']
           @ImageTotalCnt = params['ImageTotalCnt']
+          @HostUnInstallCnt = params['HostUnInstallCnt']
           @RequestId = params['RequestId']
         end
       end

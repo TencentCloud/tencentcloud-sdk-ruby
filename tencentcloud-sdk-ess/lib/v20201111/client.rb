@@ -295,6 +295,7 @@ module TencentCloud
 
         # 查询流程摘要
         # 适用场景：可用于主动查询某个合同流程的签署状态信息。可以配合回调通知使用。
+        # 日调用量默认10W
 
         # @param request: Request instance for DescribeFlowBriefs.
         # @type request: :class:`Tencentcloud::ess::V20201111::DescribeFlowBriefsRequest`

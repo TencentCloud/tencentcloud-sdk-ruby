@@ -400,6 +400,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 修改用户麦克风状态。
+
+        # @param request: Request instance for ModifyUserMicStatus.
+        # @type request: :class:`Tencentcloud::gme::V20180711::ModifyUserMicStatusRequest`
+        # @rtype: :class:`Tencentcloud::gme::V20180711::ModifyUserMicStatusResponse`
+        def ModifyUserMicStatus(request)
+          body = send_request('ModifyUserMicStatus', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyUserMicStatusResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口(ScanVoice)用于提交语音检测任务，检测任务列表最多支持100个。使用前请您登录[控制台 - 服务配置](https://console.cloud.tencent.com/gamegme/conf)开启语音分析服务。
         # </br></br>
 

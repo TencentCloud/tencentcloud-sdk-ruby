@@ -1163,10 +1163,12 @@ module TencentCloud
         # __test__:测试环境
         # 缺省默认为生产环境
         # @type Environment: String
+        # @param NotifyUrl: 支付结果通知回调地址
+        # @type NotifyUrl: String
 
-        attr_accessor :PayeeId, :IncomeType, :AmountBeforeTax, :OutOrderId, :FundingAccountInfo, :Remark, :Environment
+        attr_accessor :PayeeId, :IncomeType, :AmountBeforeTax, :OutOrderId, :FundingAccountInfo, :Remark, :Environment, :NotifyUrl
         
-        def initialize(payeeid=nil, incometype=nil, amountbeforetax=nil, outorderid=nil, fundingaccountinfo=nil, remark=nil, environment=nil)
+        def initialize(payeeid=nil, incometype=nil, amountbeforetax=nil, outorderid=nil, fundingaccountinfo=nil, remark=nil, environment=nil, notifyurl=nil)
           @PayeeId = payeeid
           @IncomeType = incometype
           @AmountBeforeTax = amountbeforetax
@@ -1174,6 +1176,7 @@ module TencentCloud
           @FundingAccountInfo = fundingaccountinfo
           @Remark = remark
           @Environment = environment
+          @NotifyUrl = notifyurl
         end
 
         def deserialize(params)
@@ -1187,6 +1190,7 @@ module TencentCloud
           end
           @Remark = params['Remark']
           @Environment = params['Environment']
+          @NotifyUrl = params['NotifyUrl']
         end
       end
 

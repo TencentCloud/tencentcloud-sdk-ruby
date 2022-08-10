@@ -434,38 +434,34 @@ module TencentCloud
 
       # CreateConvertTaskApi请求参数结构体
       class CreateConvertTaskApiRequest < TencentCloud::Common::AbstractModel
-        # @param ResourceId: 资源Id
-        # @type ResourceId: String
         # @param ResourceType: 资源类型 取值范围doc,docx,html之一
         # @type ResourceType: String
-        # @param ResourceName: 资源名称
+        # @param ResourceName: 资源名称，长度限制为256字符
         # @type ResourceName: String
-        # @param Organization: 无
-        # @type Organization: :class:`Tencentcloud::Ess.v20201111.models.OrganizationInfo`
-        # @param Operator: 无
+        # @param ResourceId: 资源Id，通过UploadFiles获取
+        # @type ResourceId: String
+        # @param Operator: 操作者信息
         # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
-        # @param Agent: 无
+        # @param Agent: 应用号信息
         # @type Agent: :class:`Tencentcloud::Ess.v20201111.models.Agent`
+        # @param Organization: 暂未开放
+        # @type Organization: :class:`Tencentcloud::Ess.v20201111.models.OrganizationInfo`
 
-        attr_accessor :ResourceId, :ResourceType, :ResourceName, :Organization, :Operator, :Agent
+        attr_accessor :ResourceType, :ResourceName, :ResourceId, :Operator, :Agent, :Organization
         
-        def initialize(resourceid=nil, resourcetype=nil, resourcename=nil, organization=nil, operator=nil, agent=nil)
-          @ResourceId = resourceid
+        def initialize(resourcetype=nil, resourcename=nil, resourceid=nil, operator=nil, agent=nil, organization=nil)
           @ResourceType = resourcetype
           @ResourceName = resourcename
-          @Organization = organization
+          @ResourceId = resourceid
           @Operator = operator
           @Agent = agent
+          @Organization = organization
         end
 
         def deserialize(params)
-          @ResourceId = params['ResourceId']
           @ResourceType = params['ResourceType']
           @ResourceName = params['ResourceName']
-          unless params['Organization'].nil?
-            @Organization = OrganizationInfo.new
-            @Organization.deserialize(params['Organization'])
-          end
+          @ResourceId = params['ResourceId']
           unless params['Operator'].nil?
             @Operator = UserInfo.new
             @Operator.deserialize(params['Operator'])
@@ -473,6 +469,10 @@ module TencentCloud
           unless params['Agent'].nil?
             @Agent = Agent.new
             @Agent.deserialize(params['Agent'])
+          end
+          unless params['Organization'].nil?
+            @Organization = OrganizationInfo.new
+            @Organization.deserialize(params['Organization'])
           end
         end
       end
@@ -1072,7 +1072,7 @@ module TencentCloud
       class DescribeFlowBriefsRequest < TencentCloud::Common::AbstractModel
         # @param Operator: 调用方用户信息，userId 必填
         # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
-        # @param FlowIds: 需要查询的流程ID列表
+        # @param FlowIds: 需要查询的流程ID列表，限制最大20个
         # @type FlowIds: Array
         # @param Agent: 应用相关信息
         # @type Agent: :class:`Tencentcloud::Ess.v20201111.models.Agent`
@@ -1131,7 +1131,7 @@ module TencentCloud
         # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
         # @param Filters: 搜索条件，具体参考Filter结构体。本接口取值：template-id：按照【 **模板唯一标识** 】进行过滤
         # @type Filters: Array
-        # @param Limit: 查询个数，默认20，最大100
+        # @param Limit: 查询个数，默认20，最大200
         # @type Limit: Integer
         # @param Offset: 查询偏移位置，默认0
         # @type Offset: Integer
@@ -1471,30 +1471,26 @@ module TencentCloud
 
       # GetTaskResultApi请求参数结构体
       class GetTaskResultApiRequest < TencentCloud::Common::AbstractModel
-        # @param TaskId: 任务Id
+        # @param TaskId: 任务Id，通过CreateConvertTaskApi得到
         # @type TaskId: String
-        # @param Organization: 企业信息
-        # @type Organization: :class:`Tencentcloud::Ess.v20201111.models.OrganizationInfo`
         # @param Operator: 操作人信息
         # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
-        # @param Agent: 渠道信息
+        # @param Agent: 应用号信息
         # @type Agent: :class:`Tencentcloud::Ess.v20201111.models.Agent`
+        # @param Organization: 暂未开放
+        # @type Organization: :class:`Tencentcloud::Ess.v20201111.models.OrganizationInfo`
 
-        attr_accessor :TaskId, :Organization, :Operator, :Agent
+        attr_accessor :TaskId, :Operator, :Agent, :Organization
         
-        def initialize(taskid=nil, organization=nil, operator=nil, agent=nil)
+        def initialize(taskid=nil, operator=nil, agent=nil, organization=nil)
           @TaskId = taskid
-          @Organization = organization
           @Operator = operator
           @Agent = agent
+          @Organization = organization
         end
 
         def deserialize(params)
           @TaskId = params['TaskId']
-          unless params['Organization'].nil?
-            @Organization = OrganizationInfo.new
-            @Organization.deserialize(params['Organization'])
-          end
           unless params['Operator'].nil?
             @Operator = UserInfo.new
             @Operator.deserialize(params['Operator'])
@@ -1503,6 +1499,10 @@ module TencentCloud
             @Agent = Agent.new
             @Agent.deserialize(params['Agent'])
           end
+          unless params['Organization'].nil?
+            @Organization = OrganizationInfo.new
+            @Organization.deserialize(params['Organization'])
+          end
         end
       end
 
@@ -1510,11 +1510,23 @@ module TencentCloud
       class GetTaskResultApiResponse < TencentCloud::Common::AbstractModel
         # @param TaskId: 任务Id
         # @type TaskId: String
-        # @param TaskStatus: 任务状态
+        # @param TaskStatus: 任务状态，需要关注的状态
+        # 0  :NeedTranform   - 任务已提交
+        # 4  :Processing     - 文档转换中
+        # 8  :TaskEnd        - 任务处理完成
+        # -2 :DownloadFailed - 下载失败
+        # -6 :ProcessFailed  - 转换失败
+        # -13:ProcessTimeout - 转换文件超时
         # @type TaskStatus: Integer
-        # @param TaskMessage: 状态描述
+        # @param TaskMessage: 状态描述，需要关注的状态
+        # NeedTranform   - 任务已提交
+        # Processing     - 文档转换中
+        # TaskEnd        - 任务处理完成
+        # DownloadFailed - 下载失败
+        # ProcessFailed  - 转换失败
+        # ProcessTimeout - 转换文件超时
         # @type TaskMessage: String
-        # @param ResourceId: 资源Id
+        # @param ResourceId: 资源Id，也是FileId，用于文件发起使用
         # @type ResourceId: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1858,8 +1870,8 @@ module TencentCloud
       # UploadFiles请求参数结构体
       class UploadFilesRequest < TencentCloud::Common::AbstractModel
         # @param BusinessType: 文件对应业务类型，用于区分文件存储路径：
-        # 1. TEMPLATE - 模板； 文件类型：.pdf/.html
-        # 2. DOCUMENT - 签署过程及签署后的合同文档 文件类型：.pdf/.html
+        # 1. TEMPLATE - 模板； 文件类型：.pdf .doc .docx .html
+        # 2. DOCUMENT - 签署过程及签署后的合同文档/图片控件 文件类型：.pdf/.jpg/.png
         # 3. SEAL - 印章； 文件类型：.jpg/.jpeg/.png
         # @type BusinessType: String
         # @param Caller: 调用方信息

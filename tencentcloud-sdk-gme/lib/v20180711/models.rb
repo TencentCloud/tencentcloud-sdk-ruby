@@ -1221,6 +1221,61 @@ module TencentCloud
         end
       end
 
+      # ModifyUserMicStatus请求参数结构体
+      class ModifyUserMicStatusRequest < TencentCloud::Common::AbstractModel
+        # @param BizId: 应用ID
+        # @type BizId: Integer
+        # @param RoomId: 房间ID
+        # @type RoomId: String
+        # @param Users: 用户麦克风状态，数组长度不超过20
+        # @type Users: Array
+
+        attr_accessor :BizId, :RoomId, :Users
+        
+        def initialize(bizid=nil, roomid=nil, users=nil)
+          @BizId = bizid
+          @RoomId = roomid
+          @Users = users
+        end
+
+        def deserialize(params)
+          @BizId = params['BizId']
+          @RoomId = params['RoomId']
+          unless params['Users'].nil?
+            @Users = []
+            params['Users'].each do |i|
+              usermicstatus_tmp = UserMicStatus.new
+              usermicstatus_tmp.deserialize(i)
+              @Users << usermicstatus_tmp
+            end
+          end
+        end
+      end
+
+      # ModifyUserMicStatus返回参数结构体
+      class ModifyUserMicStatusResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 返回结果：0为成功，非0为失败
+        # @type Result: Integer
+        # @param ErrMsg: 错误信息
+        # @type ErrMsg: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :ErrMsg, :RequestId
+        
+        def initialize(result=nil, errmsg=nil, requestid=nil)
+          @Result = result
+          @ErrMsg = errmsg
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Result = params['Result']
+          @ErrMsg = params['ErrMsg']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 实时语音用量统计数据
       class RealTimeSpeechStatisticsItem < TencentCloud::Common::AbstractModel
         # @param MainLandDau: 大陆地区DAU
@@ -1651,6 +1706,26 @@ module TencentCloud
         def deserialize(params)
           @ErrorCode = params['ErrorCode']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 用户麦克风状态
+      class UserMicStatus < TencentCloud::Common::AbstractModel
+        # @param Uid: 用户ID
+        # @type Uid: Integer
+        # @param EnableMic: 是否开麦 。1闭麦  2开麦
+        # @type EnableMic: Integer
+
+        attr_accessor :Uid, :EnableMic
+        
+        def initialize(uid=nil, enablemic=nil)
+          @Uid = uid
+          @EnableMic = enablemic
+        end
+
+        def deserialize(params)
+          @Uid = params['Uid']
+          @EnableMic = params['EnableMic']
         end
       end
 

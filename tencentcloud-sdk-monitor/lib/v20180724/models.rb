@@ -3651,18 +3651,29 @@ module TencentCloud
       class DescribeMonitorTypesResponse < TencentCloud::Common::AbstractModel
         # @param MonitorTypes: 监控类型，云产品监控为 MT_QCE
         # @type MonitorTypes: Array
+        # @param MonitorTypeInfos: 监控类型详情
+        # @type MonitorTypeInfos: Array
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :MonitorTypes, :RequestId
+        attr_accessor :MonitorTypes, :MonitorTypeInfos, :RequestId
         
-        def initialize(monitortypes=nil, requestid=nil)
+        def initialize(monitortypes=nil, monitortypeinfos=nil, requestid=nil)
           @MonitorTypes = monitortypes
+          @MonitorTypeInfos = monitortypeinfos
           @RequestId = requestid
         end
 
         def deserialize(params)
           @MonitorTypes = params['MonitorTypes']
+          unless params['MonitorTypeInfos'].nil?
+            @MonitorTypeInfos = []
+            params['MonitorTypeInfos'].each do |i|
+              monitortypeinfo_tmp = MonitorTypeInfo.new
+              monitortypeinfo_tmp.deserialize(i)
+              @MonitorTypeInfos << monitortypeinfo_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -6797,6 +6808,30 @@ module TencentCloud
 
         def deserialize(params)
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 监控类型详细信息
+      class MonitorTypeInfo < TencentCloud::Common::AbstractModel
+        # @param Id: 监控类型ID
+        # @type Id: String
+        # @param Name: 监控类型
+        # @type Name: String
+        # @param SortId: 排列顺序
+        # @type SortId: Integer
+
+        attr_accessor :Id, :Name, :SortId
+        
+        def initialize(id=nil, name=nil, sortid=nil)
+          @Id = id
+          @Name = name
+          @SortId = sortid
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @Name = params['Name']
+          @SortId = params['SortId']
         end
       end
 

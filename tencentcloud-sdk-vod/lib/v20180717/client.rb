@@ -529,7 +529,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 创建超级播放器配置，数量上限：100。
+        # 创建播放器配置，数量上限：100。
 
         # @param request: Request instance for CreateSuperPlayerConfig.
         # @type request: :class:`Tencentcloud::vod::V20180717::CreateSuperPlayerConfigRequest`
@@ -991,7 +991,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 删除超级播放器配置。
+        # 删除播放器配置。
         # *注：系统预置播放器配置不允许删除。*
 
         # @param request: Request instance for DeleteSuperPlayerConfig.
@@ -1968,7 +1968,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 查询超级播放器配置，支持根据条件，分页查询。
+        # 查询播放器配置，支持根据条件，分页查询。
 
         # @param request: Request instance for DescribeSuperPlayerConfigs.
         # @type request: :class:`Tencentcloud::vod::V20180717::DescribeSuperPlayerConfigsRequest`
@@ -2723,7 +2723,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 修改超级播放器配置。
+        # 修改播放器配置。
 
         # @param request: Request instance for ModifySuperPlayerConfig.
         # @type request: :class:`Tencentcloud::vod::V20180717::ModifySuperPlayerConfigRequest`

@@ -8156,10 +8156,13 @@ module TencentCloud
         # @param MaxNodePodNum: 节点最大Pod数
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MaxNodePodNum: Integer
+        # @param ClusterAdvancedSettings: 集群高级设置
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClusterAdvancedSettings: :class:`Tencentcloud::Tke.v20180525.models.EdgeClusterAdvancedSettings`
 
-        attr_accessor :ClusterId, :ClusterName, :VpcId, :PodCIDR, :ServiceCIDR, :K8SVersion, :Status, :ClusterDesc, :CreatedTime, :EdgeClusterVersion, :MaxNodePodNum
+        attr_accessor :ClusterId, :ClusterName, :VpcId, :PodCIDR, :ServiceCIDR, :K8SVersion, :Status, :ClusterDesc, :CreatedTime, :EdgeClusterVersion, :MaxNodePodNum, :ClusterAdvancedSettings
         
-        def initialize(clusterid=nil, clustername=nil, vpcid=nil, podcidr=nil, servicecidr=nil, k8sversion=nil, status=nil, clusterdesc=nil, createdtime=nil, edgeclusterversion=nil, maxnodepodnum=nil)
+        def initialize(clusterid=nil, clustername=nil, vpcid=nil, podcidr=nil, servicecidr=nil, k8sversion=nil, status=nil, clusterdesc=nil, createdtime=nil, edgeclusterversion=nil, maxnodepodnum=nil, clusteradvancedsettings=nil)
           @ClusterId = clusterid
           @ClusterName = clustername
           @VpcId = vpcid
@@ -8171,6 +8174,7 @@ module TencentCloud
           @CreatedTime = createdtime
           @EdgeClusterVersion = edgeclusterversion
           @MaxNodePodNum = maxnodepodnum
+          @ClusterAdvancedSettings = clusteradvancedsettings
         end
 
         def deserialize(params)
@@ -8185,6 +8189,10 @@ module TencentCloud
           @CreatedTime = params['CreatedTime']
           @EdgeClusterVersion = params['EdgeClusterVersion']
           @MaxNodePodNum = params['MaxNodePodNum']
+          unless params['ClusterAdvancedSettings'].nil?
+            @ClusterAdvancedSettings = EdgeClusterAdvancedSettings.new
+            @ClusterAdvancedSettings.deserialize(params['ClusterAdvancedSettings'])
+          end
         end
       end
 

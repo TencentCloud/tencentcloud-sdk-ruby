@@ -79,6 +79,26 @@ module TencentCloud
         end
       end
 
+      # 云原生API网关节点信息。
+      class CloudNativeAPIGatewayNode < TencentCloud::Common::AbstractModel
+        # @param NodeId: 云原生网关节点 id
+        # @type NodeId: String
+        # @param NodeIp: 节点 ip
+        # @type NodeIp: String
+
+        attr_accessor :NodeId, :NodeIp
+        
+        def initialize(nodeid=nil, nodeip=nil)
+          @NodeId = nodeid
+          @NodeIp = nodeip
+        end
+
+        def deserialize(params)
+          @NodeId = params['NodeId']
+          @NodeIp = params['NodeIp']
+        end
+      end
+
       # CreateEngine请求参数结构体
       class CreateEngineRequest < TencentCloud::Common::AbstractModel
         # @param EngineType: 引擎类型。参考值：
@@ -271,6 +291,80 @@ module TencentCloud
         end
       end
 
+      # DescribeCloudNativeAPIGatewayNodes请求参数结构体
+      class DescribeCloudNativeAPIGatewayNodesRequest < TencentCloud::Common::AbstractModel
+        # @param GatewayId: 云原生API网关实例ID。
+        # @type GatewayId: String
+        # @param Offset: 翻页从第几个开始获取
+        # @type Offset: Integer
+        # @param Limit: 翻页获取多少个
+        # @type Limit: Integer
+
+        attr_accessor :GatewayId, :Offset, :Limit
+        
+        def initialize(gatewayid=nil, offset=nil, limit=nil)
+          @GatewayId = gatewayid
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @GatewayId = params['GatewayId']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeCloudNativeAPIGatewayNodes返回参数结构体
+      class DescribeCloudNativeAPIGatewayNodesResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 获取云原生网关节点列表结果。
+        # @type Result: :class:`Tencentcloud::Tse.v20201207.models.DescribeCloudNativeAPIGatewayNodesResult`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+        
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Result'].nil?
+            @Result = DescribeCloudNativeAPIGatewayNodesResult.new
+            @Result.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 获取网关节点信息
+      class DescribeCloudNativeAPIGatewayNodesResult < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 获取云原生API网关节点列表响应结果。
+        # @type TotalCount: Integer
+        # @param NodeList: 云原生API网关节点列表。
+        # @type NodeList: Array
+
+        attr_accessor :TotalCount, :NodeList
+        
+        def initialize(totalcount=nil, nodelist=nil)
+          @TotalCount = totalcount
+          @NodeList = nodelist
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['NodeList'].nil?
+            @NodeList = []
+            params['NodeList'].each do |i|
+              cloudnativeapigatewaynode_tmp = CloudNativeAPIGatewayNode.new
+              cloudnativeapigatewaynode_tmp.deserialize(i)
+              @NodeList << cloudnativeapigatewaynode_tmp
+            end
+          end
+        end
+      end
+
       # DescribeNacosReplicas请求参数结构体
       class DescribeNacosReplicasRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 引擎实例ID
@@ -392,14 +486,17 @@ module TencentCloud
         # @type SubnetId: String
         # @param Workload: 引擎其他组件名称（pushgateway）
         # @type Workload: String
+        # @param EngineRegion: 部署地域
+        # @type EngineRegion: String
 
-        attr_accessor :InstanceId, :VpcId, :SubnetId, :Workload
+        attr_accessor :InstanceId, :VpcId, :SubnetId, :Workload, :EngineRegion
         
-        def initialize(instanceid=nil, vpcid=nil, subnetid=nil, workload=nil)
+        def initialize(instanceid=nil, vpcid=nil, subnetid=nil, workload=nil, engineregion=nil)
           @InstanceId = instanceid
           @VpcId = vpcid
           @SubnetId = subnetid
           @Workload = workload
+          @EngineRegion = engineregion
         end
 
         def deserialize(params)
@@ -407,6 +504,7 @@ module TencentCloud
           @VpcId = params['VpcId']
           @SubnetId = params['SubnetId']
           @Workload = params['Workload']
+          @EngineRegion = params['EngineRegion']
         end
       end
 
@@ -1170,16 +1268,20 @@ module TencentCloud
         # @param ZoneId: 可用区ID
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ZoneId: String
+        # @param AliasName: 别名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AliasName: String
 
-        attr_accessor :Name, :Role, :Status, :SubnetId, :Zone, :ZoneId
+        attr_accessor :Name, :Role, :Status, :SubnetId, :Zone, :ZoneId, :AliasName
         
-        def initialize(name=nil, role=nil, status=nil, subnetid=nil, zone=nil, zoneid=nil)
+        def initialize(name=nil, role=nil, status=nil, subnetid=nil, zone=nil, zoneid=nil, aliasname=nil)
           @Name = name
           @Role = role
           @Status = status
           @SubnetId = subnetid
           @Zone = zone
           @ZoneId = zoneid
+          @AliasName = aliasname
         end
 
         def deserialize(params)
@@ -1189,6 +1291,7 @@ module TencentCloud
           @SubnetId = params['SubnetId']
           @Zone = params['Zone']
           @ZoneId = params['ZoneId']
+          @AliasName = params['AliasName']
         end
       end
 
