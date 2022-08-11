@@ -3593,6 +3593,26 @@ module TencentCloud
         end
       end
 
+      # 渠道方用户信息
+      class CloudExternalUserInfo < TencentCloud::Common::AbstractModel
+        # @param ExternalUserType: 渠道方用户类型
+        # @type ExternalUserType: String
+        # @param ExternalUserId: 渠道方用户ID
+        # @type ExternalUserId: String
+
+        attr_accessor :ExternalUserType, :ExternalUserId
+        
+        def initialize(externalusertype=nil, externaluserid=nil)
+          @ExternalUserType = externalusertype
+          @ExternalUserId = externaluserid
+        end
+
+        def deserialize(params)
+          @ExternalUserType = params['ExternalUserType']
+          @ExternalUserId = params['ExternalUserId']
+        end
+      end
+
       # 全局支付时间信息
       class CloudGlobalPayTimeInfo < TencentCloud::Common::AbstractModel
         # @param StartTimestamp: 订单开始时间。
@@ -24453,10 +24473,12 @@ module TencentCloud
         # ORDER_RECEIVE_MODE_V_COMBINE - 虚拟合单支付
         # 若不传入该字段，则会根据是否传入子单来判断是 普通支付 还是 合单支付
         # @type OrderReceiveMode: String
+        # @param ExternalUserInfoList: 渠道方用户信息列表
+        # @type ExternalUserInfoList: Array
 
-        attr_accessor :MidasAppId, :UserId, :OutTradeNo, :CurrencyType, :ProductId, :ProductName, :ProductDetail, :OriginalAmt, :TotalAmt, :MidasEnvironment, :SubAppId, :RealChannel, :Channel, :Metadata, :Quantity, :CallbackUrl, :CancelUrl, :WxAppId, :WxSubAppId, :WxOpenId, :WxSubOpenId, :TotalPlatformIncome, :TotalMchIncome, :SubOrderList, :SettleInfo, :AttachmentInfoList, :PaymentNotifyUrl, :PayScene, :LocaleCode, :RegionCode, :UserClientIp, :ChannelOrderIdMode, :GlobalPayTimeInfo, :ChannelAppIdPolicy, :StoreInfo, :ClientInfo, :ExternalPromptGroupList, :OrderReceiveMode
+        attr_accessor :MidasAppId, :UserId, :OutTradeNo, :CurrencyType, :ProductId, :ProductName, :ProductDetail, :OriginalAmt, :TotalAmt, :MidasEnvironment, :SubAppId, :RealChannel, :Channel, :Metadata, :Quantity, :CallbackUrl, :CancelUrl, :WxAppId, :WxSubAppId, :WxOpenId, :WxSubOpenId, :TotalPlatformIncome, :TotalMchIncome, :SubOrderList, :SettleInfo, :AttachmentInfoList, :PaymentNotifyUrl, :PayScene, :LocaleCode, :RegionCode, :UserClientIp, :ChannelOrderIdMode, :GlobalPayTimeInfo, :ChannelAppIdPolicy, :StoreInfo, :ClientInfo, :ExternalPromptGroupList, :OrderReceiveMode, :ExternalUserInfoList
         
-        def initialize(midasappid=nil, userid=nil, outtradeno=nil, currencytype=nil, productid=nil, productname=nil, productdetail=nil, originalamt=nil, totalamt=nil, midasenvironment=nil, subappid=nil, realchannel=nil, channel=nil, metadata=nil, quantity=nil, callbackurl=nil, cancelurl=nil, wxappid=nil, wxsubappid=nil, wxopenid=nil, wxsubopenid=nil, totalplatformincome=nil, totalmchincome=nil, suborderlist=nil, settleinfo=nil, attachmentinfolist=nil, paymentnotifyurl=nil, payscene=nil, localecode=nil, regioncode=nil, userclientip=nil, channelorderidmode=nil, globalpaytimeinfo=nil, channelappidpolicy=nil, storeinfo=nil, clientinfo=nil, externalpromptgrouplist=nil, orderreceivemode=nil)
+        def initialize(midasappid=nil, userid=nil, outtradeno=nil, currencytype=nil, productid=nil, productname=nil, productdetail=nil, originalamt=nil, totalamt=nil, midasenvironment=nil, subappid=nil, realchannel=nil, channel=nil, metadata=nil, quantity=nil, callbackurl=nil, cancelurl=nil, wxappid=nil, wxsubappid=nil, wxopenid=nil, wxsubopenid=nil, totalplatformincome=nil, totalmchincome=nil, suborderlist=nil, settleinfo=nil, attachmentinfolist=nil, paymentnotifyurl=nil, payscene=nil, localecode=nil, regioncode=nil, userclientip=nil, channelorderidmode=nil, globalpaytimeinfo=nil, channelappidpolicy=nil, storeinfo=nil, clientinfo=nil, externalpromptgrouplist=nil, orderreceivemode=nil, externaluserinfolist=nil)
           @MidasAppId = midasappid
           @UserId = userid
           @OutTradeNo = outtradeno
@@ -24495,6 +24517,7 @@ module TencentCloud
           @ClientInfo = clientinfo
           @ExternalPromptGroupList = externalpromptgrouplist
           @OrderReceiveMode = orderreceivemode
+          @ExternalUserInfoList = externaluserinfolist
         end
 
         def deserialize(params)
@@ -24569,6 +24592,14 @@ module TencentCloud
             end
           end
           @OrderReceiveMode = params['OrderReceiveMode']
+          unless params['ExternalUserInfoList'].nil?
+            @ExternalUserInfoList = []
+            params['ExternalUserInfoList'].each do |i|
+              cloudexternaluserinfo_tmp = CloudExternalUserInfo.new
+              cloudexternaluserinfo_tmp.deserialize(i)
+              @ExternalUserInfoList << cloudexternaluserinfo_tmp
+            end
+          end
         end
       end
 

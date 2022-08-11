@@ -6080,6 +6080,42 @@ module TencentCloud
         end
       end
 
+      # SwitchProxy请求参数结构体
+      class SwitchProxyRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+        # @param ProxyID: 实例ProxyID
+        # @type ProxyID: String
+
+        attr_accessor :InstanceId, :ProxyID
+        
+        def initialize(instanceid=nil, proxyid=nil)
+          @InstanceId = instanceid
+          @ProxyID = proxyid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @ProxyID = params['ProxyID']
+        end
+      end
+
+      # SwitchProxy返回参数结构体
+      class SwitchProxyResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 任务信息详情
       class TaskInfoDetail < TencentCloud::Common::AbstractModel
         # @param TaskId: 任务Id

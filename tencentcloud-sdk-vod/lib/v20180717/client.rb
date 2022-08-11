@@ -1315,6 +1315,33 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 该接口返回查询时间范围内客户端上传加速统计信息。
+        #    1. 可以查询最近365天内的客户端上传加速统计数据。
+        #    2. 查询时间跨度不超过90天。
+        #    3. 查询时间跨度超过1天的，返回以天为粒度的数据，否则，返回以5分钟为粒度的数据。
+
+        # @param request: Request instance for DescribeClientUploadAccelerationUsageData.
+        # @type request: :class:`Tencentcloud::vod::V20180717::DescribeClientUploadAccelerationUsageDataRequest`
+        # @rtype: :class:`Tencentcloud::vod::V20180717::DescribeClientUploadAccelerationUsageDataResponse`
+        def DescribeClientUploadAccelerationUsageData(request)
+          body = send_request('DescribeClientUploadAccelerationUsageData', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeClientUploadAccelerationUsageDataResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 根据音视频内容审核模板唯一标识，获取音视频内容审核模板详情列表。返回结果包含符合条件的所有用户自定义模板及[系统预置内容审核模板](https://cloud.tencent.com/document/product/266/33476#.E9.A2.84.E7.BD.AE.E8.A7.86.E9.A2.91.E5.86.85.E5.AE.B9.E5.AE.A1.E6.A0.B8.E6.A8.A1.E6.9D.BF)。
 
         # @param request: Request instance for DescribeContentReviewTemplates.

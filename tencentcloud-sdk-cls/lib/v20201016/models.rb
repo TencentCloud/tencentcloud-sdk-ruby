@@ -659,7 +659,7 @@ module TencentCloud
         # @param EnableTag: 是否投递 TAG 信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EnableTag: Boolean
-        # @param MetaFields: 需要投递的元数据列表，目前仅支持：\_\_SOURCE\_\_，\_\_FILENAME\_\_和\_\_TIMESTAMP\_\_
+        # @param MetaFields: 需要投递的元数据列表，目前仅支持：\_\_SOURCE\_\_，\_\_FILENAME\_\_，\_\_TIMESTAMP\_\_，\_\_HOSTNAME\_\_和\_\_PKGID\_\_
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MetaFields: Array
         # @param TagJsonNotTiled: 当EnableTag为true时，必须填写TagJsonNotTiled字段，TagJsonNotTiled用于标识tag信息是否json平铺，TagJsonNotTiled为true时不平铺，false时平铺
@@ -1220,14 +1220,17 @@ module TencentCloud
         # @type Content: :class:`Tencentcloud::Cls.v20201016.models.ConsumerContent`
         # @param Ckafka: CKafka的描述
         # @type Ckafka: :class:`Tencentcloud::Cls.v20201016.models.Ckafka`
+        # @param Compression: 投递时压缩方式，取值0，2，3。[0:NONE；2:SNAPPY；3:LZ4]
+        # @type Compression: Integer
 
-        attr_accessor :TopicId, :NeedContent, :Content, :Ckafka
+        attr_accessor :TopicId, :NeedContent, :Content, :Ckafka, :Compression
         
-        def initialize(topicid=nil, needcontent=nil, content=nil, ckafka=nil)
+        def initialize(topicid=nil, needcontent=nil, content=nil, ckafka=nil, compression=nil)
           @TopicId = topicid
           @NeedContent = needcontent
           @Content = content
           @Ckafka = ckafka
+          @Compression = compression
         end
 
         def deserialize(params)
@@ -1241,6 +1244,7 @@ module TencentCloud
             @Ckafka = Ckafka.new
             @Ckafka.deserialize(params['Ckafka'])
           end
+          @Compression = params['Compression']
         end
       end
 
@@ -2458,16 +2462,20 @@ module TencentCloud
         # @type Content: :class:`Tencentcloud::Cls.v20201016.models.ConsumerContent`
         # @param Ckafka: CKafka的描述
         # @type Ckafka: :class:`Tencentcloud::Cls.v20201016.models.Ckafka`
+        # @param Compression: 压缩方式[0:NONE；2:SNAPPY；3:LZ4]
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Compression: Integer
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Effective, :NeedContent, :Content, :Ckafka, :RequestId
+        attr_accessor :Effective, :NeedContent, :Content, :Ckafka, :Compression, :RequestId
         
-        def initialize(effective=nil, needcontent=nil, content=nil, ckafka=nil, requestid=nil)
+        def initialize(effective=nil, needcontent=nil, content=nil, ckafka=nil, compression=nil, requestid=nil)
           @Effective = effective
           @NeedContent = needcontent
           @Content = content
           @Ckafka = ckafka
+          @Compression = compression
           @RequestId = requestid
         end
 
@@ -2482,6 +2490,7 @@ module TencentCloud
             @Ckafka = Ckafka.new
             @Ckafka.deserialize(params['Ckafka'])
           end
+          @Compression = params['Compression']
           @RequestId = params['RequestId']
         end
       end
@@ -4442,15 +4451,18 @@ module TencentCloud
         # @type Content: :class:`Tencentcloud::Cls.v20201016.models.ConsumerContent`
         # @param Ckafka: CKafka的描述
         # @type Ckafka: :class:`Tencentcloud::Cls.v20201016.models.Ckafka`
+        # @param Compression: 投递时压缩方式，取值0，2，3。[0:NONE；2:SNAPPY；3:LZ4]
+        # @type Compression: Integer
 
-        attr_accessor :TopicId, :Effective, :NeedContent, :Content, :Ckafka
+        attr_accessor :TopicId, :Effective, :NeedContent, :Content, :Ckafka, :Compression
         
-        def initialize(topicid=nil, effective=nil, needcontent=nil, content=nil, ckafka=nil)
+        def initialize(topicid=nil, effective=nil, needcontent=nil, content=nil, ckafka=nil, compression=nil)
           @TopicId = topicid
           @Effective = effective
           @NeedContent = needcontent
           @Content = content
           @Ckafka = ckafka
+          @Compression = compression
         end
 
         def deserialize(params)
@@ -4465,6 +4477,7 @@ module TencentCloud
             @Ckafka = Ckafka.new
             @Ckafka.deserialize(params['Ckafka'])
           end
+          @Compression = params['Compression']
         end
       end
 

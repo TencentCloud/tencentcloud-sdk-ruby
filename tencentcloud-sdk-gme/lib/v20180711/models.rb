@@ -421,6 +421,46 @@ module TencentCloud
         end
       end
 
+      # CreateCustomization请求参数结构体
+      class CreateCustomizationRequest < TencentCloud::Common::AbstractModel
+        # @param BizId: 应用 ID，登录控制台创建应用得到的AppID
+        # @type BizId: Integer
+        # @param TextUrl: 文本文件的下载地址，服务会从该地址下载文件，目前仅支持腾讯云cos
+        # @type TextUrl: String
+
+        attr_accessor :BizId, :TextUrl
+        
+        def initialize(bizid=nil, texturl=nil)
+          @BizId = bizid
+          @TextUrl = texturl
+        end
+
+        def deserialize(params)
+          @BizId = params['BizId']
+          @TextUrl = params['TextUrl']
+        end
+      end
+
+      # CreateCustomization返回参数结构体
+      class CreateCustomizationResponse < TencentCloud::Common::AbstractModel
+        # @param ModelId: 模型ID
+        # @type ModelId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ModelId, :RequestId
+        
+        def initialize(modelid=nil, requestid=nil)
+          @ModelId = modelid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ModelId = params['ModelId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateScanUser请求参数结构体
       class CreateScanUserRequest < TencentCloud::Common::AbstractModel
         # @param BizId: 应用ID，登录控制台 - 服务管理创建应用得到的AppID
@@ -444,6 +484,70 @@ module TencentCloud
       # CreateScanUser返回参数结构体
       class CreateScanUserResponse < TencentCloud::Common::AbstractModel
         # @param ErrorCode: 返回结果码
+        # @type ErrorCode: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ErrorCode, :RequestId
+        
+        def initialize(errorcode=nil, requestid=nil)
+          @ErrorCode = errorcode
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ErrorCode = params['ErrorCode']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 语音消息转文本自学习模型配置
+      class CustomizationConfigs < TencentCloud::Common::AbstractModel
+        # @param BizId: 应用 ID，登录控制台创建应用得到的AppID
+        # @type BizId: Integer
+        # @param ModelId: 模型ID
+        # @type ModelId: String
+        # @param ModelState: 模型状态，-1下线状态，1上线状态, 0训练中, -2训练失败
+        # @type ModelState: Integer
+
+        attr_accessor :BizId, :ModelId, :ModelState
+        
+        def initialize(bizid=nil, modelid=nil, modelstate=nil)
+          @BizId = bizid
+          @ModelId = modelid
+          @ModelState = modelstate
+        end
+
+        def deserialize(params)
+          @BizId = params['BizId']
+          @ModelId = params['ModelId']
+          @ModelState = params['ModelState']
+        end
+      end
+
+      # DeleteCustomization请求参数结构体
+      class DeleteCustomizationRequest < TencentCloud::Common::AbstractModel
+        # @param ModelId: 要删除的模型ID
+        # @type ModelId: String
+        # @param BizId: 应用 ID，登录控制台创建应用得到的AppID
+        # @type BizId: Integer
+
+        attr_accessor :ModelId, :BizId
+        
+        def initialize(modelid=nil, bizid=nil)
+          @ModelId = modelid
+          @BizId = bizid
+        end
+
+        def deserialize(params)
+          @ModelId = params['ModelId']
+          @BizId = params['BizId']
+        end
+      end
+
+      # DeleteCustomization返回参数结构体
+      class DeleteCustomizationResponse < TencentCloud::Common::AbstractModel
+        # @param ErrorCode: 返回值。0为成功，非0为失败。
         # @type ErrorCode: Integer
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1086,6 +1190,50 @@ module TencentCloud
         end
       end
 
+      # GetCustomizationList请求参数结构体
+      class GetCustomizationListRequest < TencentCloud::Common::AbstractModel
+        # @param BizId: 应用 ID，登录控制台创建应用得到的AppID
+        # @type BizId: Integer
+
+        attr_accessor :BizId
+        
+        def initialize(bizid=nil)
+          @BizId = bizid
+        end
+
+        def deserialize(params)
+          @BizId = params['BizId']
+        end
+      end
+
+      # GetCustomizationList返回参数结构体
+      class GetCustomizationListResponse < TencentCloud::Common::AbstractModel
+        # @param CustomizationConfigs: 语音消息转文本自学习模型配置
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CustomizationConfigs: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :CustomizationConfigs, :RequestId
+        
+        def initialize(customizationconfigs=nil, requestid=nil)
+          @CustomizationConfigs = customizationconfigs
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['CustomizationConfigs'].nil?
+            @CustomizationConfigs = []
+            params['CustomizationConfigs'].each do |i|
+              customizationconfigs_tmp = CustomizationConfigs.new
+              customizationconfigs_tmp.deserialize(i)
+              @CustomizationConfigs << customizationconfigs_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 用户进出房间信息
       class InOutTimeInfo < TencentCloud::Common::AbstractModel
         # @param StartTime: 进入房间时间
@@ -1165,6 +1313,102 @@ module TencentCloud
             @Data = ModifyAppStatusResp.new
             @Data.deserialize(params['Data'])
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyCustomization请求参数结构体
+      class ModifyCustomizationRequest < TencentCloud::Common::AbstractModel
+        # @param BizId: 应用 ID，登录控制台创建应用得到的AppID
+        # @type BizId: Integer
+        # @param TextUrl: 文本文件
+        # @type TextUrl: String
+        # @param ModelId: 要修改的模型ID
+        # @type ModelId: String
+
+        attr_accessor :BizId, :TextUrl, :ModelId
+        
+        def initialize(bizid=nil, texturl=nil, modelid=nil)
+          @BizId = bizid
+          @TextUrl = texturl
+          @ModelId = modelid
+        end
+
+        def deserialize(params)
+          @BizId = params['BizId']
+          @TextUrl = params['TextUrl']
+          @ModelId = params['ModelId']
+        end
+      end
+
+      # ModifyCustomization返回参数结构体
+      class ModifyCustomizationResponse < TencentCloud::Common::AbstractModel
+        # @param ErrorCode: 返回值。0为成功，非0为失败。
+        # @type ErrorCode: Integer
+        # @param ModelId: 自学习模型ID
+        # @type ModelId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ErrorCode, :ModelId, :RequestId
+        
+        def initialize(errorcode=nil, modelid=nil, requestid=nil)
+          @ErrorCode = errorcode
+          @ModelId = modelid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ErrorCode = params['ErrorCode']
+          @ModelId = params['ModelId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyCustomizationState请求参数结构体
+      class ModifyCustomizationStateRequest < TencentCloud::Common::AbstractModel
+        # @param ModelId: 自学习模型ID
+        # @type ModelId: String
+        # @param ToState: 想要变换的模型状态，-1代表下线，1代表上线
+        # @type ToState: Integer
+        # @param BizId: 应用 ID，登录控制台创建应用得到的AppID
+        # @type BizId: Integer
+
+        attr_accessor :ModelId, :ToState, :BizId
+        
+        def initialize(modelid=nil, tostate=nil, bizid=nil)
+          @ModelId = modelid
+          @ToState = tostate
+          @BizId = bizid
+        end
+
+        def deserialize(params)
+          @ModelId = params['ModelId']
+          @ToState = params['ToState']
+          @BizId = params['BizId']
+        end
+      end
+
+      # ModifyCustomizationState返回参数结构体
+      class ModifyCustomizationStateResponse < TencentCloud::Common::AbstractModel
+        # @param ModelId: 自学习模型ID
+        # @type ModelId: String
+        # @param ErrorCode: 返回值。0为成功，非0为失败。
+        # @type ErrorCode: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ModelId, :ErrorCode, :RequestId
+        
+        def initialize(modelid=nil, errorcode=nil, requestid=nil)
+          @ModelId = modelid
+          @ErrorCode = errorcode
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ModelId = params['ModelId']
+          @ErrorCode = params['ErrorCode']
           @RequestId = params['RequestId']
         end
       end

@@ -2219,7 +2219,7 @@ module TencentCloud
       # 意愿核身问答模式结果
       class IntentionQuestionResult < TencentCloud::Common::AbstractModel
         # @param FinalResultCode: 意愿核身最终结果：
-        # 0：通过，-1：未通过
+        # 0：认证通过，-1：认证未通过，-2：浏览器内核不兼容，无法进行意愿校验
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FinalResultCode: String
         # @param Video: 视频base64（其中包含全程问题和回答音频，mp4格式）

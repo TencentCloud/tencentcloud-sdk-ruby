@@ -87,6 +87,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 用户使用该接口可以创建语音消息转文本自学习模型，以供识别调用
+
+        # @param request: Request instance for CreateCustomization.
+        # @type request: :class:`Tencentcloud::gme::V20180711::CreateCustomizationRequest`
+        # @rtype: :class:`Tencentcloud::gme::V20180711::CreateCustomizationResponse`
+        def CreateCustomization(request)
+          body = send_request('CreateCustomization', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateCustomizationResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 新增自定义送检用户
 
         # @param request: Request instance for CreateScanUser.
@@ -97,6 +121,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = CreateScanUserResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 用户通过该接口可以删除语音消息转文本自学习模型
+
+        # @param request: Request instance for DeleteCustomization.
+        # @type request: :class:`Tencentcloud::gme::V20180711::DeleteCustomizationRequest`
+        # @rtype: :class:`Tencentcloud::gme::V20180711::DeleteCustomizationResponse`
+        def DeleteCustomization(request)
+          body = send_request('DeleteCustomization', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteCustomizationResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -352,6 +400,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询语音消息转文本自学习模型列表
+
+        # @param request: Request instance for GetCustomizationList.
+        # @type request: :class:`Tencentcloud::gme::V20180711::GetCustomizationListRequest`
+        # @rtype: :class:`Tencentcloud::gme::V20180711::GetCustomizationListResponse`
+        def GetCustomizationList(request)
+          body = send_request('GetCustomizationList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = GetCustomizationListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口(ModifyAppStatus)用于修改应用总开关状态。
 
         # @param request: Request instance for ModifyAppStatus.
@@ -362,6 +434,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyAppStatusResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 用户通过该接口可以更新语音消息转文本自学习模型。
+
+        # @param request: Request instance for ModifyCustomization.
+        # @type request: :class:`Tencentcloud::gme::V20180711::ModifyCustomizationRequest`
+        # @rtype: :class:`Tencentcloud::gme::V20180711::ModifyCustomizationResponse`
+        def ModifyCustomization(request)
+          body = send_request('ModifyCustomization', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyCustomizationResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 通过该接口，用户可以修改语音消息转文本自学习模型状态，上下线自学习模型
+
+        # @param request: Request instance for ModifyCustomizationState.
+        # @type request: :class:`Tencentcloud::gme::V20180711::ModifyCustomizationStateRequest`
+        # @rtype: :class:`Tencentcloud::gme::V20180711::ModifyCustomizationStateResponse`
+        def ModifyCustomizationState(request)
+          body = send_request('ModifyCustomizationState', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyCustomizationStateResponse.new
             model.deserialize(response['Response'])
             model
           else

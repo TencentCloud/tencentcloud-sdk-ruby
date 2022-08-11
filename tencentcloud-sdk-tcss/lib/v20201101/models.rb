@@ -6711,18 +6711,22 @@ module TencentCloud
       class DescribeAssetImageVirusListExportResponse < TencentCloud::Common::AbstractModel
         # @param DownloadUrl: excel文件下载地址
         # @type DownloadUrl: String
+        # @param JobId: 任务ID
+        # @type JobId: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :DownloadUrl, :RequestId
+        attr_accessor :DownloadUrl, :JobId, :RequestId
         
-        def initialize(downloadurl=nil, requestid=nil)
+        def initialize(downloadurl=nil, jobid=nil, requestid=nil)
           @DownloadUrl = downloadurl
+          @JobId = jobid
           @RequestId = requestid
         end
 
         def deserialize(params)
           @DownloadUrl = params['DownloadUrl']
+          @JobId = params['JobId']
           @RequestId = params['RequestId']
         end
       end
@@ -10262,12 +10266,20 @@ module TencentCloud
         # @param ContainerIsolateOperationSrc: 容器隔离操作来源
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ContainerIsolateOperationSrc: String
+        # @param CheckPlatform: 检测平台
+        # 1: 云查杀引擎
+        # 2: tav
+        # 3: binaryAi
+        # 4: 异常行为
+        # 5: 威胁情报
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CheckPlatform: Array
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :ImageId, :ImageName, :CreateTime, :Size, :FilePath, :ModifyTime, :VirusName, :RiskLevel, :ContainerName, :ContainerId, :HostName, :HostId, :ProcessName, :ProcessPath, :ProcessMd5, :ProcessId, :ProcessArgv, :ProcessChan, :ProcessAccountGroup, :ProcessStartAccount, :ProcessFileAuthority, :SourceType, :PodName, :Tags, :HarmDescribe, :SuggestScheme, :Mark, :FileName, :FileMd5, :EventType, :Status, :SubStatus, :HostIP, :ClientIP, :PProcessStartUser, :PProcessUserGroup, :PProcessPath, :PProcessParam, :AncestorProcessStartUser, :AncestorProcessUserGroup, :AncestorProcessPath, :AncestorProcessParam, :OperationTime, :ContainerNetStatus, :ContainerNetSubStatus, :ContainerIsolateOperationSrc, :RequestId
+        attr_accessor :ImageId, :ImageName, :CreateTime, :Size, :FilePath, :ModifyTime, :VirusName, :RiskLevel, :ContainerName, :ContainerId, :HostName, :HostId, :ProcessName, :ProcessPath, :ProcessMd5, :ProcessId, :ProcessArgv, :ProcessChan, :ProcessAccountGroup, :ProcessStartAccount, :ProcessFileAuthority, :SourceType, :PodName, :Tags, :HarmDescribe, :SuggestScheme, :Mark, :FileName, :FileMd5, :EventType, :Status, :SubStatus, :HostIP, :ClientIP, :PProcessStartUser, :PProcessUserGroup, :PProcessPath, :PProcessParam, :AncestorProcessStartUser, :AncestorProcessUserGroup, :AncestorProcessPath, :AncestorProcessParam, :OperationTime, :ContainerNetStatus, :ContainerNetSubStatus, :ContainerIsolateOperationSrc, :CheckPlatform, :RequestId
         
-        def initialize(imageid=nil, imagename=nil, createtime=nil, size=nil, filepath=nil, modifytime=nil, virusname=nil, risklevel=nil, containername=nil, containerid=nil, hostname=nil, hostid=nil, processname=nil, processpath=nil, processmd5=nil, processid=nil, processargv=nil, processchan=nil, processaccountgroup=nil, processstartaccount=nil, processfileauthority=nil, sourcetype=nil, podname=nil, tags=nil, harmdescribe=nil, suggestscheme=nil, mark=nil, filename=nil, filemd5=nil, eventtype=nil, status=nil, substatus=nil, hostip=nil, clientip=nil, pprocessstartuser=nil, pprocessusergroup=nil, pprocesspath=nil, pprocessparam=nil, ancestorprocessstartuser=nil, ancestorprocessusergroup=nil, ancestorprocesspath=nil, ancestorprocessparam=nil, operationtime=nil, containernetstatus=nil, containernetsubstatus=nil, containerisolateoperationsrc=nil, requestid=nil)
+        def initialize(imageid=nil, imagename=nil, createtime=nil, size=nil, filepath=nil, modifytime=nil, virusname=nil, risklevel=nil, containername=nil, containerid=nil, hostname=nil, hostid=nil, processname=nil, processpath=nil, processmd5=nil, processid=nil, processargv=nil, processchan=nil, processaccountgroup=nil, processstartaccount=nil, processfileauthority=nil, sourcetype=nil, podname=nil, tags=nil, harmdescribe=nil, suggestscheme=nil, mark=nil, filename=nil, filemd5=nil, eventtype=nil, status=nil, substatus=nil, hostip=nil, clientip=nil, pprocessstartuser=nil, pprocessusergroup=nil, pprocesspath=nil, pprocessparam=nil, ancestorprocessstartuser=nil, ancestorprocessusergroup=nil, ancestorprocesspath=nil, ancestorprocessparam=nil, operationtime=nil, containernetstatus=nil, containernetsubstatus=nil, containerisolateoperationsrc=nil, checkplatform=nil, requestid=nil)
           @ImageId = imageid
           @ImageName = imagename
           @CreateTime = createtime
@@ -10314,6 +10326,7 @@ module TencentCloud
           @ContainerNetStatus = containernetstatus
           @ContainerNetSubStatus = containernetsubstatus
           @ContainerIsolateOperationSrc = containerisolateoperationsrc
+          @CheckPlatform = checkplatform
           @RequestId = requestid
         end
 
@@ -10364,6 +10377,7 @@ module TencentCloud
           @ContainerNetStatus = params['ContainerNetStatus']
           @ContainerNetSubStatus = params['ContainerNetSubStatus']
           @ContainerIsolateOperationSrc = params['ContainerIsolateOperationSrc']
+          @CheckPlatform = params['CheckPlatform']
           @RequestId = params['RequestId']
         end
       end
@@ -11821,10 +11835,18 @@ module TencentCloud
         # @param FileName: 文件名称
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FileName: String
+        # @param CheckPlatform: 检测平台
+        # 1: 云查杀引擎
+        # 2: tav
+        # 3: binaryAi
+        # 4: 异常行为
+        # 5: 威胁情报
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CheckPlatform: Array
 
-        attr_accessor :Path, :RiskLevel, :VirusName, :Tags, :Desc, :Solution, :Size, :FirstScanTime, :LatestScanTime, :Md5, :FileName
+        attr_accessor :Path, :RiskLevel, :VirusName, :Tags, :Desc, :Solution, :Size, :FirstScanTime, :LatestScanTime, :Md5, :FileName, :CheckPlatform
         
-        def initialize(path=nil, risklevel=nil, virusname=nil, tags=nil, desc=nil, solution=nil, size=nil, firstscantime=nil, latestscantime=nil, md5=nil, filename=nil)
+        def initialize(path=nil, risklevel=nil, virusname=nil, tags=nil, desc=nil, solution=nil, size=nil, firstscantime=nil, latestscantime=nil, md5=nil, filename=nil, checkplatform=nil)
           @Path = path
           @RiskLevel = risklevel
           @VirusName = virusname
@@ -11836,6 +11858,7 @@ module TencentCloud
           @LatestScanTime = latestscantime
           @Md5 = md5
           @FileName = filename
+          @CheckPlatform = checkplatform
         end
 
         def deserialize(params)
@@ -11850,6 +11873,7 @@ module TencentCloud
           @LatestScanTime = params['LatestScanTime']
           @Md5 = params['Md5']
           @FileName = params['FileName']
+          @CheckPlatform = params['CheckPlatform']
         end
       end
 
@@ -14629,10 +14653,21 @@ module TencentCloud
         # @param MD5: md5值
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MD5: String
+        # @param RiskLevel: 风险等级 RISK_CRITICAL, RISK_HIGH, RISK_MEDIUM, RISK_LOW, RISK_NOTICE。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RiskLevel: String
+        # @param CheckPlatform: 检测平台
+        # 1: 云查杀引擎
+        # 2: tav
+        # 3: binaryAi
+        # 4: 异常行为
+        # 5: 威胁情报
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CheckPlatform: Array
 
-        attr_accessor :FileName, :FilePath, :VirusName, :CreateTime, :ModifyTime, :ContainerName, :ContainerId, :ContainerStatus, :ImageName, :ImageId, :Status, :Id, :HarmDescribe, :SuggestScheme, :SubStatus, :ContainerNetStatus, :ContainerNetSubStatus, :ContainerIsolateOperationSrc, :MD5
+        attr_accessor :FileName, :FilePath, :VirusName, :CreateTime, :ModifyTime, :ContainerName, :ContainerId, :ContainerStatus, :ImageName, :ImageId, :Status, :Id, :HarmDescribe, :SuggestScheme, :SubStatus, :ContainerNetStatus, :ContainerNetSubStatus, :ContainerIsolateOperationSrc, :MD5, :RiskLevel, :CheckPlatform
         
-        def initialize(filename=nil, filepath=nil, virusname=nil, createtime=nil, modifytime=nil, containername=nil, containerid=nil, containerstatus=nil, imagename=nil, imageid=nil, status=nil, id=nil, harmdescribe=nil, suggestscheme=nil, substatus=nil, containernetstatus=nil, containernetsubstatus=nil, containerisolateoperationsrc=nil, md5=nil)
+        def initialize(filename=nil, filepath=nil, virusname=nil, createtime=nil, modifytime=nil, containername=nil, containerid=nil, containerstatus=nil, imagename=nil, imageid=nil, status=nil, id=nil, harmdescribe=nil, suggestscheme=nil, substatus=nil, containernetstatus=nil, containernetsubstatus=nil, containerisolateoperationsrc=nil, md5=nil, risklevel=nil, checkplatform=nil)
           @FileName = filename
           @FilePath = filepath
           @VirusName = virusname
@@ -14652,6 +14687,8 @@ module TencentCloud
           @ContainerNetSubStatus = containernetsubstatus
           @ContainerIsolateOperationSrc = containerisolateoperationsrc
           @MD5 = md5
+          @RiskLevel = risklevel
+          @CheckPlatform = checkplatform
         end
 
         def deserialize(params)
@@ -14674,6 +14711,8 @@ module TencentCloud
           @ContainerNetSubStatus = params['ContainerNetSubStatus']
           @ContainerIsolateOperationSrc = params['ContainerIsolateOperationSrc']
           @MD5 = params['MD5']
+          @RiskLevel = params['RiskLevel']
+          @CheckPlatform = params['CheckPlatform']
         end
       end
 

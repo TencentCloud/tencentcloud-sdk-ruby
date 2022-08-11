@@ -581,7 +581,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 查询DDos攻击数据
+        # 查询DDos攻击时序数据
 
         # @param request: Request instance for DescribeDDosAttackData.
         # @type request: :class:`Tencentcloud::teo::V20220106::DescribeDDosAttackDataRequest`
@@ -653,7 +653,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 查询DDos攻击源
+        # 查询DDos攻击源信息
 
         # @param request: Request instance for DescribeDDosAttackSourceEvent.
         # @type request: :class:`Tencentcloud::teo::V20220106::DescribeDDosAttackSourceEventRequest`
@@ -1349,7 +1349,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 查询Web托管规则数据
+        # 查询waf攻击时序数据
 
         # @param request: Request instance for DescribeWebManagedRulesData.
         # @type request: :class:`Tencentcloud::teo::V20220106::DescribeWebManagedRulesDataRequest`
@@ -1373,7 +1373,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 查询Web托管日志
+        # 查询waf攻击日志
 
         # @param request: Request instance for DescribeWebManagedRulesLog.
         # @type request: :class:`Tencentcloud::teo::V20220106::DescribeWebManagedRulesLogRequest`
@@ -1397,7 +1397,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 查询Web托管规则Top数据
+        # 查询waf攻击top数据
 
         # @param request: Request instance for DescribeWebManagedRulesTopData.
         # @type request: :class:`Tencentcloud::teo::V20220106::DescribeWebManagedRulesTopDataRequest`
@@ -1445,7 +1445,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 查询web防护数据
+        # 查询CC防护时序数据
 
         # @param request: Request instance for DescribeWebProtectionData.
         # @type request: :class:`Tencentcloud::teo::V20220106::DescribeWebProtectionDataRequest`
@@ -1469,7 +1469,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 查询web防护日志
+        # 查询CC防护日志
 
         # @param request: Request instance for DescribeWebProtectionLog.
         # @type request: :class:`Tencentcloud::teo::V20220106::DescribeWebProtectionLogRequest`

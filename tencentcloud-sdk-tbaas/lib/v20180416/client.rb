@@ -53,32 +53,6 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 版本升级
-
-        # Bcos根据块高查询区块信息
-
-        # @param request: Request instance for BlockByNumberHandler.
-        # @type request: :class:`Tencentcloud::tbaas::V20180416::BlockByNumberHandlerRequest`
-        # @rtype: :class:`Tencentcloud::tbaas::V20180416::BlockByNumberHandlerResponse`
-        def BlockByNumberHandler(request)
-          body = send_request('BlockByNumberHandler', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = BlockByNumberHandlerResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
         # 创建并安装合约
 
         # @param request: Request instance for CreateChaincodeAndInstallForUser.
@@ -113,32 +87,6 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeployDynamicBcosContractResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # 版本升级
-
-        # 动态部署合约
-
-        # @param request: Request instance for DeployDynamicContractHandler.
-        # @type request: :class:`Tencentcloud::tbaas::V20180416::DeployDynamicContractHandlerRequest`
-        # @rtype: :class:`Tencentcloud::tbaas::V20180416::DeployDynamicContractHandlerResponse`
-        def DeployDynamicContractHandler(request)
-          body = send_request('DeployDynamicContractHandler', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = DeployDynamicContractHandlerResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -283,32 +231,6 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = GetBlockListResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # 版本升级
-
-        # Bcos分页查询当前群组下的区块列表
-
-        # @param request: Request instance for GetBlockListHandler.
-        # @type request: :class:`Tencentcloud::tbaas::V20180416::GetBlockListHandlerRequest`
-        # @rtype: :class:`Tencentcloud::tbaas::V20180416::GetBlockListHandlerResponse`
-        def GetBlockListHandler(request)
-          body = send_request('GetBlockListHandler', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = GetBlockListHandlerResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -549,58 +471,6 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = GetPeerLogForUserResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # 版本升级
-
-        # Bcos根据交易哈希查看交易详细信息
-
-        # @param request: Request instance for GetTransByHashHandler.
-        # @type request: :class:`Tencentcloud::tbaas::V20180416::GetTransByHashHandlerRequest`
-        # @rtype: :class:`Tencentcloud::tbaas::V20180416::GetTransByHashHandlerResponse`
-        def GetTransByHashHandler(request)
-          body = send_request('GetTransByHashHandler', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = GetTransByHashHandlerResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # 版本升级
-
-        # Bcos分页查询当前群组的交易信息列表
-
-        # @param request: Request instance for GetTransListHandler.
-        # @type request: :class:`Tencentcloud::tbaas::V20180416::GetTransListHandlerRequest`
-        # @rtype: :class:`Tencentcloud::tbaas::V20180416::GetTransListHandlerResponse`
-        def GetTransListHandler(request)
-          body = send_request('GetTransListHandler', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = GetTransListHandlerResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -927,32 +797,6 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 版本升级
-
-        # Bcos发送交易
-
-        # @param request: Request instance for SendTransactionHandler.
-        # @type request: :class:`Tencentcloud::tbaas::V20180416::SendTransactionHandlerRequest`
-        # @rtype: :class:`Tencentcloud::tbaas::V20180416::SendTransactionHandlerResponse`
-        def SendTransactionHandler(request)
-          body = send_request('SendTransactionHandler', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = SendTransactionHandlerResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
         # trustsql服务统一接口
 
         # @param request: Request instance for SrvInvoke.
@@ -963,32 +807,6 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = SrvInvokeResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # 版本升级
-
-        # 根据动态部署的合约发送交易
-
-        # @param request: Request instance for TransByDynamicContractHandler.
-        # @type request: :class:`Tencentcloud::tbaas::V20180416::TransByDynamicContractHandlerRequest`
-        # @rtype: :class:`Tencentcloud::tbaas::V20180416::TransByDynamicContractHandlerResponse`
-        def TransByDynamicContractHandler(request)
-          body = send_request('TransByDynamicContractHandler', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = TransByDynamicContractHandlerResponse.new
             model.deserialize(response['Response'])
             model
           else

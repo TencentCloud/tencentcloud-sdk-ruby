@@ -912,10 +912,13 @@ module TencentCloud
         # <br><li>ORIGINAL：使用设置的云盘类型
         # <br><li>AUTOMATIC：自动选择当前可用的云盘类型
         # @type DiskTypePolicy: String
+        # @param HpcClusterId: 高性能计算集群ID。<br>
+        # 注意：此字段默认为空。
+        # @type HpcClusterId: String
 
-        attr_accessor :LaunchConfigurationName, :ImageId, :ProjectId, :InstanceType, :SystemDisk, :DataDisks, :InternetAccessible, :LoginSettings, :SecurityGroupIds, :EnhancedService, :UserData, :InstanceChargeType, :InstanceMarketOptions, :InstanceTypes, :CamRoleName, :InstanceTypesCheckPolicy, :InstanceTags, :Tags, :HostNameSettings, :InstanceNameSettings, :InstanceChargePrepaid, :DiskTypePolicy
+        attr_accessor :LaunchConfigurationName, :ImageId, :ProjectId, :InstanceType, :SystemDisk, :DataDisks, :InternetAccessible, :LoginSettings, :SecurityGroupIds, :EnhancedService, :UserData, :InstanceChargeType, :InstanceMarketOptions, :InstanceTypes, :CamRoleName, :InstanceTypesCheckPolicy, :InstanceTags, :Tags, :HostNameSettings, :InstanceNameSettings, :InstanceChargePrepaid, :DiskTypePolicy, :HpcClusterId
         
-        def initialize(launchconfigurationname=nil, imageid=nil, projectid=nil, instancetype=nil, systemdisk=nil, datadisks=nil, internetaccessible=nil, loginsettings=nil, securitygroupids=nil, enhancedservice=nil, userdata=nil, instancechargetype=nil, instancemarketoptions=nil, instancetypes=nil, camrolename=nil, instancetypescheckpolicy=nil, instancetags=nil, tags=nil, hostnamesettings=nil, instancenamesettings=nil, instancechargeprepaid=nil, disktypepolicy=nil)
+        def initialize(launchconfigurationname=nil, imageid=nil, projectid=nil, instancetype=nil, systemdisk=nil, datadisks=nil, internetaccessible=nil, loginsettings=nil, securitygroupids=nil, enhancedservice=nil, userdata=nil, instancechargetype=nil, instancemarketoptions=nil, instancetypes=nil, camrolename=nil, instancetypescheckpolicy=nil, instancetags=nil, tags=nil, hostnamesettings=nil, instancenamesettings=nil, instancechargeprepaid=nil, disktypepolicy=nil, hpcclusterid=nil)
           @LaunchConfigurationName = launchconfigurationname
           @ImageId = imageid
           @ProjectId = projectid
@@ -938,6 +941,7 @@ module TencentCloud
           @InstanceNameSettings = instancenamesettings
           @InstanceChargePrepaid = instancechargeprepaid
           @DiskTypePolicy = disktypepolicy
+          @HpcClusterId = hpcclusterid
         end
 
         def deserialize(params)
@@ -1008,6 +1012,7 @@ module TencentCloud
             @InstanceChargePrepaid.deserialize(params['InstanceChargePrepaid'])
           end
           @DiskTypePolicy = params['DiskTypePolicy']
+          @HpcClusterId = params['HpcClusterId']
         end
       end
 
@@ -2926,10 +2931,13 @@ module TencentCloud
         # <br><li>ORIGINAL：使用设置的云盘类型
         # <br><li>AUTOMATIC：自动选择当前可用区下可用的云盘类型
         # @type DiskTypePolicy: String
+        # @param HpcClusterId: 高性能计算集群ID。<br>
+        # 注意：此字段默认为空。
+        # @type HpcClusterId: String
 
-        attr_accessor :ProjectId, :LaunchConfigurationId, :LaunchConfigurationName, :InstanceType, :SystemDisk, :DataDisks, :LoginSettings, :InternetAccessible, :SecurityGroupIds, :AutoScalingGroupAbstractSet, :UserData, :CreatedTime, :EnhancedService, :ImageId, :LaunchConfigurationStatus, :InstanceChargeType, :InstanceMarketOptions, :InstanceTypes, :InstanceTags, :Tags, :VersionNumber, :UpdatedTime, :CamRoleName, :LastOperationInstanceTypesCheckPolicy, :HostNameSettings, :InstanceNameSettings, :InstanceChargePrepaid, :DiskTypePolicy
+        attr_accessor :ProjectId, :LaunchConfigurationId, :LaunchConfigurationName, :InstanceType, :SystemDisk, :DataDisks, :LoginSettings, :InternetAccessible, :SecurityGroupIds, :AutoScalingGroupAbstractSet, :UserData, :CreatedTime, :EnhancedService, :ImageId, :LaunchConfigurationStatus, :InstanceChargeType, :InstanceMarketOptions, :InstanceTypes, :InstanceTags, :Tags, :VersionNumber, :UpdatedTime, :CamRoleName, :LastOperationInstanceTypesCheckPolicy, :HostNameSettings, :InstanceNameSettings, :InstanceChargePrepaid, :DiskTypePolicy, :HpcClusterId
         
-        def initialize(projectid=nil, launchconfigurationid=nil, launchconfigurationname=nil, instancetype=nil, systemdisk=nil, datadisks=nil, loginsettings=nil, internetaccessible=nil, securitygroupids=nil, autoscalinggroupabstractset=nil, userdata=nil, createdtime=nil, enhancedservice=nil, imageid=nil, launchconfigurationstatus=nil, instancechargetype=nil, instancemarketoptions=nil, instancetypes=nil, instancetags=nil, tags=nil, versionnumber=nil, updatedtime=nil, camrolename=nil, lastoperationinstancetypescheckpolicy=nil, hostnamesettings=nil, instancenamesettings=nil, instancechargeprepaid=nil, disktypepolicy=nil)
+        def initialize(projectid=nil, launchconfigurationid=nil, launchconfigurationname=nil, instancetype=nil, systemdisk=nil, datadisks=nil, loginsettings=nil, internetaccessible=nil, securitygroupids=nil, autoscalinggroupabstractset=nil, userdata=nil, createdtime=nil, enhancedservice=nil, imageid=nil, launchconfigurationstatus=nil, instancechargetype=nil, instancemarketoptions=nil, instancetypes=nil, instancetags=nil, tags=nil, versionnumber=nil, updatedtime=nil, camrolename=nil, lastoperationinstancetypescheckpolicy=nil, hostnamesettings=nil, instancenamesettings=nil, instancechargeprepaid=nil, disktypepolicy=nil, hpcclusterid=nil)
           @ProjectId = projectid
           @LaunchConfigurationId = launchconfigurationid
           @LaunchConfigurationName = launchconfigurationname
@@ -2958,6 +2966,7 @@ module TencentCloud
           @InstanceNameSettings = instancenamesettings
           @InstanceChargePrepaid = instancechargeprepaid
           @DiskTypePolicy = disktypepolicy
+          @HpcClusterId = hpcclusterid
         end
 
         def deserialize(params)
@@ -3041,6 +3050,7 @@ module TencentCloud
             @InstanceChargePrepaid.deserialize(params['InstanceChargePrepaid'])
           end
           @DiskTypePolicy = params['DiskTypePolicy']
+          @HpcClusterId = params['HpcClusterId']
         end
       end
 
@@ -3460,10 +3470,13 @@ module TencentCloud
         # @type EnhancedService: :class:`Tencentcloud::As.v20180419.models.EnhancedService`
         # @param CamRoleName: CAM角色名称。可通过DescribeRoleList接口返回值中的roleName获取。
         # @type CamRoleName: String
+        # @param HpcClusterId: 高性能计算集群ID。<br>
+        # 注意：此字段默认为空。
+        # @type HpcClusterId: String
 
-        attr_accessor :LaunchConfigurationId, :ImageId, :InstanceTypes, :InstanceTypesCheckPolicy, :LaunchConfigurationName, :UserData, :SecurityGroupIds, :InternetAccessible, :InstanceChargeType, :InstanceChargePrepaid, :InstanceMarketOptions, :DiskTypePolicy, :SystemDisk, :DataDisks, :HostNameSettings, :InstanceNameSettings, :EnhancedService, :CamRoleName
+        attr_accessor :LaunchConfigurationId, :ImageId, :InstanceTypes, :InstanceTypesCheckPolicy, :LaunchConfigurationName, :UserData, :SecurityGroupIds, :InternetAccessible, :InstanceChargeType, :InstanceChargePrepaid, :InstanceMarketOptions, :DiskTypePolicy, :SystemDisk, :DataDisks, :HostNameSettings, :InstanceNameSettings, :EnhancedService, :CamRoleName, :HpcClusterId
         
-        def initialize(launchconfigurationid=nil, imageid=nil, instancetypes=nil, instancetypescheckpolicy=nil, launchconfigurationname=nil, userdata=nil, securitygroupids=nil, internetaccessible=nil, instancechargetype=nil, instancechargeprepaid=nil, instancemarketoptions=nil, disktypepolicy=nil, systemdisk=nil, datadisks=nil, hostnamesettings=nil, instancenamesettings=nil, enhancedservice=nil, camrolename=nil)
+        def initialize(launchconfigurationid=nil, imageid=nil, instancetypes=nil, instancetypescheckpolicy=nil, launchconfigurationname=nil, userdata=nil, securitygroupids=nil, internetaccessible=nil, instancechargetype=nil, instancechargeprepaid=nil, instancemarketoptions=nil, disktypepolicy=nil, systemdisk=nil, datadisks=nil, hostnamesettings=nil, instancenamesettings=nil, enhancedservice=nil, camrolename=nil, hpcclusterid=nil)
           @LaunchConfigurationId = launchconfigurationid
           @ImageId = imageid
           @InstanceTypes = instancetypes
@@ -3482,6 +3495,7 @@ module TencentCloud
           @InstanceNameSettings = instancenamesettings
           @EnhancedService = enhancedservice
           @CamRoleName = camrolename
+          @HpcClusterId = hpcclusterid
         end
 
         def deserialize(params)
@@ -3531,6 +3545,7 @@ module TencentCloud
             @EnhancedService.deserialize(params['EnhancedService'])
           end
           @CamRoleName = params['CamRoleName']
+          @HpcClusterId = params['HpcClusterId']
         end
       end
 

@@ -150,26 +150,6 @@ module TencentCloud
         end
       end
 
-      # 备份文件存储信息
-      class BackupFile < TencentCloud::Common::AbstractModel
-        # @param ReplicateSetId: 备份文件所属的副本集/分片ID
-        # @type ReplicateSetId: String
-        # @param File: 备份文件保存路径
-        # @type File: String
-
-        attr_accessor :ReplicateSetId, :File
-        
-        def initialize(replicatesetid=nil, file=nil)
-          @ReplicateSetId = replicatesetid
-          @File = file
-        end
-
-        def deserialize(params)
-          @ReplicateSetId = params['ReplicateSetId']
-          @File = params['File']
-        end
-      end
-
       # 备份信息
       class BackupInfo < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例ID
@@ -764,61 +744,6 @@ module TencentCloud
 
         def deserialize(params)
           @Status = params['Status']
-          @RequestId = params['RequestId']
-        end
-      end
-
-      # DescribeBackupAccess请求参数结构体
-      class DescribeBackupAccessRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例ID，格式如：cmgo-p8vnipr5。与云数据库控制台页面中显示的实例ID相同
-        # @type InstanceId: String
-        # @param BackupName: 需要获取下载授权的备份文件名
-        # @type BackupName: String
-
-        attr_accessor :InstanceId, :BackupName
-        
-        def initialize(instanceid=nil, backupname=nil)
-          @InstanceId = instanceid
-          @BackupName = backupname
-        end
-
-        def deserialize(params)
-          @InstanceId = params['InstanceId']
-          @BackupName = params['BackupName']
-        end
-      end
-
-      # DescribeBackupAccess返回参数结构体
-      class DescribeBackupAccessResponse < TencentCloud::Common::AbstractModel
-        # @param Region: 实例所属地域
-        # @type Region: String
-        # @param Bucket: 备份文件所在存储桶
-        # @type Bucket: String
-        # @param Files: 备份文件的存储信息
-        # @type Files: Array
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :Region, :Bucket, :Files, :RequestId
-        
-        def initialize(region=nil, bucket=nil, files=nil, requestid=nil)
-          @Region = region
-          @Bucket = bucket
-          @Files = files
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          @Region = params['Region']
-          @Bucket = params['Bucket']
-          unless params['Files'].nil?
-            @Files = []
-            params['Files'].each do |i|
-              backupfile_tmp = BackupFile.new
-              backupfile_tmp.deserialize(i)
-              @Files << backupfile_tmp
-            end
-          end
           @RequestId = params['RequestId']
         end
       end

@@ -1129,61 +1129,6 @@ module TencentCloud
         end
       end
 
-      # DescribeSeatUserList请求参数结构体
-      class DescribeSeatUserListRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例ID
-        # @type InstanceId: Integer
-        # @param Offset: 偏移量
-        # @type Offset: Integer
-        # @param Limit: 返回数量
-        # @type Limit: Integer
-
-        attr_accessor :InstanceId, :Offset, :Limit
-        
-        def initialize(instanceid=nil, offset=nil, limit=nil)
-          @InstanceId = instanceid
-          @Offset = offset
-          @Limit = limit
-        end
-
-        def deserialize(params)
-          @InstanceId = params['InstanceId']
-          @Offset = params['Offset']
-          @Limit = params['Limit']
-        end
-      end
-
-      # DescribeSeatUserList返回参数结构体
-      class DescribeSeatUserListResponse < TencentCloud::Common::AbstractModel
-        # @param TotalCount: 此实例的坐席用户总数
-        # @type TotalCount: Integer
-        # @param SeatUsers: 坐席用户信息列表
-        # @type SeatUsers: Array
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :TotalCount, :SeatUsers, :RequestId
-        
-        def initialize(totalcount=nil, seatusers=nil, requestid=nil)
-          @TotalCount = totalcount
-          @SeatUsers = seatusers
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          @TotalCount = params['TotalCount']
-          unless params['SeatUsers'].nil?
-            @SeatUsers = []
-            params['SeatUsers'].each do |i|
-              seatuserinfo_tmp = SeatUserInfo.new
-              seatuserinfo_tmp.deserialize(i)
-              @SeatUsers << seatuserinfo_tmp
-            end
-          end
-          @RequestId = params['RequestId']
-        end
-      end
-
       # DescribeSkillGroupInfoList请求参数结构体
       class DescribeSkillGroupInfoListRequest < TencentCloud::Common::AbstractModel
         # @param SdkAppId: 应用 ID（必填），可以查看 https://console.cloud.tencent.com/ccc
@@ -1196,15 +1141,18 @@ module TencentCloud
         # @type SkillGroupId: Integer
         # @param ModifiedTime: 查询修改时间大于等于ModifiedTime的技能组时使用
         # @type ModifiedTime: Integer
+        # @param SkillGroupName: 技能组名称
+        # @type SkillGroupName: String
 
-        attr_accessor :SdkAppId, :PageSize, :PageNumber, :SkillGroupId, :ModifiedTime
+        attr_accessor :SdkAppId, :PageSize, :PageNumber, :SkillGroupId, :ModifiedTime, :SkillGroupName
         
-        def initialize(sdkappid=nil, pagesize=nil, pagenumber=nil, skillgroupid=nil, modifiedtime=nil)
+        def initialize(sdkappid=nil, pagesize=nil, pagenumber=nil, skillgroupid=nil, modifiedtime=nil, skillgroupname=nil)
           @SdkAppId = sdkappid
           @PageSize = pagesize
           @PageNumber = pagenumber
           @SkillGroupId = skillgroupid
           @ModifiedTime = modifiedtime
+          @SkillGroupName = skillgroupname
         end
 
         def deserialize(params)
@@ -1213,6 +1161,7 @@ module TencentCloud
           @PageNumber = params['PageNumber']
           @SkillGroupId = params['SkillGroupId']
           @ModifiedTime = params['ModifiedTime']
+          @SkillGroupName = params['SkillGroupName']
         end
       end
 
@@ -1709,16 +1658,22 @@ module TencentCloud
         # @type Nick: String
         # @param SkillGroupIds: 绑定技能组ID列表
         # @type SkillGroupIds: Array
+        # @param UseMobileCallOut: 是否开启手机外呼开关
+        # @type UseMobileCallOut: Boolean
+        # @param UseMobileAccept: 手机接听模式 0 - 关闭 | 1 - 仅离线 | 2 - 始终
+        # @type UseMobileAccept: Integer
 
-        attr_accessor :SdkAppId, :Email, :Name, :Phone, :Nick, :SkillGroupIds
+        attr_accessor :SdkAppId, :Email, :Name, :Phone, :Nick, :SkillGroupIds, :UseMobileCallOut, :UseMobileAccept
         
-        def initialize(sdkappid=nil, email=nil, name=nil, phone=nil, nick=nil, skillgroupids=nil)
+        def initialize(sdkappid=nil, email=nil, name=nil, phone=nil, nick=nil, skillgroupids=nil, usemobilecallout=nil, usemobileaccept=nil)
           @SdkAppId = sdkappid
           @Email = email
           @Name = name
           @Phone = phone
           @Nick = nick
           @SkillGroupIds = skillgroupids
+          @UseMobileCallOut = usemobilecallout
+          @UseMobileAccept = usemobileaccept
         end
 
         def deserialize(params)
@@ -1728,6 +1683,8 @@ module TencentCloud
           @Phone = params['Phone']
           @Nick = params['Nick']
           @SkillGroupIds = params['SkillGroupIds']
+          @UseMobileCallOut = params['UseMobileCallOut']
+          @UseMobileAccept = params['UseMobileAccept']
         end
       end
 
@@ -2339,10 +2296,14 @@ module TencentCloud
         # @type ReserveRest: Boolean
         # @param ReserveNotReady: 是否预约示忙
         # @type ReserveNotReady: Boolean
+        # @param UseMobileAccept: 手机接听模式： 0 - 关闭 | 1 - 仅离线 | 2- 始终
+        # @type UseMobileAccept: Integer
+        # @param UseMobileCallOut: 手机外呼开关
+        # @type UseMobileCallOut: Boolean
 
-        attr_accessor :Email, :Status, :StatusExtra, :OnlineDuration, :FreeDuration, :BusyDuration, :NotReadyDuration, :RestDuration, :AfterCallWorkDuration, :Reason, :ReserveRest, :ReserveNotReady
+        attr_accessor :Email, :Status, :StatusExtra, :OnlineDuration, :FreeDuration, :BusyDuration, :NotReadyDuration, :RestDuration, :AfterCallWorkDuration, :Reason, :ReserveRest, :ReserveNotReady, :UseMobileAccept, :UseMobileCallOut
         
-        def initialize(email=nil, status=nil, statusextra=nil, onlineduration=nil, freeduration=nil, busyduration=nil, notreadyduration=nil, restduration=nil, aftercallworkduration=nil, reason=nil, reserverest=nil, reservenotready=nil)
+        def initialize(email=nil, status=nil, statusextra=nil, onlineduration=nil, freeduration=nil, busyduration=nil, notreadyduration=nil, restduration=nil, aftercallworkduration=nil, reason=nil, reserverest=nil, reservenotready=nil, usemobileaccept=nil, usemobilecallout=nil)
           @Email = email
           @Status = status
           @StatusExtra = statusextra
@@ -2355,6 +2316,8 @@ module TencentCloud
           @Reason = reason
           @ReserveRest = reserverest
           @ReserveNotReady = reservenotready
+          @UseMobileAccept = usemobileaccept
+          @UseMobileCallOut = usemobilecallout
         end
 
         def deserialize(params)
@@ -2373,6 +2336,8 @@ module TencentCloud
           @Reason = params['Reason']
           @ReserveRest = params['ReserveRest']
           @ReserveNotReady = params['ReserveNotReady']
+          @UseMobileAccept = params['UseMobileAccept']
+          @UseMobileCallOut = params['UseMobileCallOut']
         end
       end
 

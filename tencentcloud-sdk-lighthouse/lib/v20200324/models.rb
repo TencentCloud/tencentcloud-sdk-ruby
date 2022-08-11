@@ -1287,17 +1287,21 @@ module TencentCloud
         # @type DiskType: String
         # @param DiskSize: 云硬盘大小。
         # @type DiskSize: Integer
+        # @param DiskBackupQuota: 指定云硬盘备份点配额，不传时默认为不带备份点配额。目前只支持不带或设置1个云硬盘备份点配额。
+        # @type DiskBackupQuota: Integer
 
-        attr_accessor :DiskType, :DiskSize
+        attr_accessor :DiskType, :DiskSize, :DiskBackupQuota
         
-        def initialize(disktype=nil, disksize=nil)
+        def initialize(disktype=nil, disksize=nil, diskbackupquota=nil)
           @DiskType = disktype
           @DiskSize = disksize
+          @DiskBackupQuota = diskbackupquota
         end
 
         def deserialize(params)
           @DiskType = params['DiskType']
           @DiskSize = params['DiskSize']
+          @DiskBackupQuota = params['DiskBackupQuota']
         end
       end
 
@@ -1400,11 +1404,13 @@ module TencentCloud
         # 按照【云硬盘类型】进行过滤。
         # 类型：String
         # 必选：否
+        # 取值：SYSTEM_DISK或DATA_DISK
         # disk-state
         # 按照【云硬盘状态】进行过滤。
         # 类型：String
         # 必选：否
-        # 每次请求的 Filters 的上限为 10，Filter.Values 的上限为 5。参数不支持同时指定 DiskIds 和 Filters。
+        # 取值：参考数据结构[Disk](https://cloud.tencent.com/document/api/1207/47576#Disk)中DiskState取值。
+        # 每次请求的 Filters 的上限为 10，Filter.Values 的上限为 100。参数不支持同时指定 DiskIds 和 Filters。
         # @type Filters: Array
         # @param Limit: 返回数量，默认为20，最大值为100。
         # @type Limit: Integer
@@ -2685,7 +2691,17 @@ module TencentCloud
         # @type DiskSize: Integer
         # @param RenewFlag: 续费标识
         # @type RenewFlag: String
-        # @param DiskState: 磁盘状态
+        # @param DiskState: 磁盘状态，取值范围：
+        # <li>PENDING：创建中。 </li>
+        # <li>UNATTACHED：未挂载。</li>
+        # <li>ATTACHING：挂载中。</li>
+        # <li>ATTACHED：已挂载。</li>
+        # <li>DETACHING：卸载中。 </li>
+        # <li> SHUTDOWN：已隔离。</li>
+        # <li> CREATED_FAILED：创建失败。</li>
+        # <li>TERMINATING：销毁中。</li>
+        # <li> DELETING：删除中。</li>
+        # <li> FREEZING：冻结中。</li>
         # @type DiskState: String
         # @param Attached: 磁盘挂载状态
         # @type Attached: Boolean
@@ -3235,14 +3251,17 @@ module TencentCloud
         # @type DiskChargePrepaid: :class:`Tencentcloud::Lighthouse.v20200324.models.DiskChargePrepaid`
         # @param DiskCount: 云硬盘个数, 默认值: 1。
         # @type DiskCount: Integer
+        # @param DiskBackupQuota: 指定云硬盘备份点配额，不传时默认为不带备份点配额。目前只支持不带或设置1个云硬盘备份点配额。
+        # @type DiskBackupQuota: Integer
 
-        attr_accessor :DiskSize, :DiskType, :DiskChargePrepaid, :DiskCount
+        attr_accessor :DiskSize, :DiskType, :DiskChargePrepaid, :DiskCount, :DiskBackupQuota
         
-        def initialize(disksize=nil, disktype=nil, diskchargeprepaid=nil, diskcount=nil)
+        def initialize(disksize=nil, disktype=nil, diskchargeprepaid=nil, diskcount=nil, diskbackupquota=nil)
           @DiskSize = disksize
           @DiskType = disktype
           @DiskChargePrepaid = diskchargeprepaid
           @DiskCount = diskcount
+          @DiskBackupQuota = diskbackupquota
         end
 
         def deserialize(params)
@@ -3253,6 +3272,7 @@ module TencentCloud
             @DiskChargePrepaid.deserialize(params['DiskChargePrepaid'])
           end
           @DiskCount = params['DiskCount']
+          @DiskBackupQuota = params['DiskBackupQuota']
         end
       end
 

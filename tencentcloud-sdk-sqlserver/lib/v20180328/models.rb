@@ -719,10 +719,14 @@ module TencentCloud
         # @type Span: Integer
         # @param ResourceTags: 新建实例绑定的标签集合
         # @type ResourceTags: Array
+        # @param Collation: 系统字符集排序规则，默认：Chinese_PRC_CI_AS
+        # @type Collation: String
+        # @param TimeZone: 系统时区，默认：China Standard Time
+        # @type TimeZone: String
 
-        attr_accessor :Zone, :Cpu, :Memory, :Storage, :SubnetId, :VpcId, :MachineType, :InstanceChargeType, :ProjectId, :GoodsNum, :DBVersion, :Period, :SecurityGroupList, :AutoRenewFlag, :AutoVoucher, :VoucherIds, :Weekly, :StartTime, :Span, :ResourceTags
+        attr_accessor :Zone, :Cpu, :Memory, :Storage, :SubnetId, :VpcId, :MachineType, :InstanceChargeType, :ProjectId, :GoodsNum, :DBVersion, :Period, :SecurityGroupList, :AutoRenewFlag, :AutoVoucher, :VoucherIds, :Weekly, :StartTime, :Span, :ResourceTags, :Collation, :TimeZone
         
-        def initialize(zone=nil, cpu=nil, memory=nil, storage=nil, subnetid=nil, vpcid=nil, machinetype=nil, instancechargetype=nil, projectid=nil, goodsnum=nil, dbversion=nil, period=nil, securitygrouplist=nil, autorenewflag=nil, autovoucher=nil, voucherids=nil, weekly=nil, starttime=nil, span=nil, resourcetags=nil)
+        def initialize(zone=nil, cpu=nil, memory=nil, storage=nil, subnetid=nil, vpcid=nil, machinetype=nil, instancechargetype=nil, projectid=nil, goodsnum=nil, dbversion=nil, period=nil, securitygrouplist=nil, autorenewflag=nil, autovoucher=nil, voucherids=nil, weekly=nil, starttime=nil, span=nil, resourcetags=nil, collation=nil, timezone=nil)
           @Zone = zone
           @Cpu = cpu
           @Memory = memory
@@ -743,6 +747,8 @@ module TencentCloud
           @StartTime = starttime
           @Span = span
           @ResourceTags = resourcetags
+          @Collation = collation
+          @TimeZone = timezone
         end
 
         def deserialize(params)
@@ -773,6 +779,8 @@ module TencentCloud
               @ResourceTags << resourcetag_tmp
             end
           end
+          @Collation = params['Collation']
+          @TimeZone = params['TimeZone']
         end
       end
 
@@ -838,10 +846,14 @@ module TencentCloud
         # @type MultiZones: Boolean
         # @param ResourceTags: 新建实例绑定的标签集合
         # @type ResourceTags: Array
+        # @param Collation: 系统字符集排序规则，默认：Chinese_PRC_CI_AS
+        # @type Collation: String
+        # @param TimeZone: 系统时区，默认：China Standard Time
+        # @type TimeZone: String
 
-        attr_accessor :Zone, :Memory, :Storage, :InstanceChargeType, :ProjectId, :GoodsNum, :SubnetId, :VpcId, :Period, :AutoVoucher, :VoucherIds, :DBVersion, :AutoRenewFlag, :SecurityGroupList, :Weekly, :StartTime, :Span, :HAType, :MultiZones, :ResourceTags
+        attr_accessor :Zone, :Memory, :Storage, :InstanceChargeType, :ProjectId, :GoodsNum, :SubnetId, :VpcId, :Period, :AutoVoucher, :VoucherIds, :DBVersion, :AutoRenewFlag, :SecurityGroupList, :Weekly, :StartTime, :Span, :HAType, :MultiZones, :ResourceTags, :Collation, :TimeZone
         
-        def initialize(zone=nil, memory=nil, storage=nil, instancechargetype=nil, projectid=nil, goodsnum=nil, subnetid=nil, vpcid=nil, period=nil, autovoucher=nil, voucherids=nil, dbversion=nil, autorenewflag=nil, securitygrouplist=nil, weekly=nil, starttime=nil, span=nil, hatype=nil, multizones=nil, resourcetags=nil)
+        def initialize(zone=nil, memory=nil, storage=nil, instancechargetype=nil, projectid=nil, goodsnum=nil, subnetid=nil, vpcid=nil, period=nil, autovoucher=nil, voucherids=nil, dbversion=nil, autorenewflag=nil, securitygrouplist=nil, weekly=nil, starttime=nil, span=nil, hatype=nil, multizones=nil, resourcetags=nil, collation=nil, timezone=nil)
           @Zone = zone
           @Memory = memory
           @Storage = storage
@@ -862,6 +874,8 @@ module TencentCloud
           @HAType = hatype
           @MultiZones = multizones
           @ResourceTags = resourcetags
+          @Collation = collation
+          @TimeZone = timezone
         end
 
         def deserialize(params)
@@ -892,6 +906,8 @@ module TencentCloud
               @ResourceTags << resourcetag_tmp
             end
           end
+          @Collation = params['Collation']
+          @TimeZone = params['TimeZone']
         end
       end
 
@@ -1191,10 +1207,14 @@ module TencentCloud
         # @type VoucherIds: Array
         # @param ResourceTags: 新建实例绑定的标签集合
         # @type ResourceTags: Array
+        # @param Collation: 系统字符集排序规则，默认：Chinese_PRC_CI_AS
+        # @type Collation: String
+        # @param TimeZone: 系统时区，默认：China Standard Time
+        # @type TimeZone: String
 
-        attr_accessor :InstanceId, :Zone, :ReadOnlyGroupType, :Memory, :Storage, :ReadOnlyGroupForcedUpgrade, :ReadOnlyGroupId, :ReadOnlyGroupName, :ReadOnlyGroupIsOfflineDelay, :ReadOnlyGroupMaxDelayTime, :ReadOnlyGroupMinInGroup, :InstanceChargeType, :GoodsNum, :SubnetId, :VpcId, :Period, :SecurityGroupList, :AutoVoucher, :VoucherIds, :ResourceTags
+        attr_accessor :InstanceId, :Zone, :ReadOnlyGroupType, :Memory, :Storage, :ReadOnlyGroupForcedUpgrade, :ReadOnlyGroupId, :ReadOnlyGroupName, :ReadOnlyGroupIsOfflineDelay, :ReadOnlyGroupMaxDelayTime, :ReadOnlyGroupMinInGroup, :InstanceChargeType, :GoodsNum, :SubnetId, :VpcId, :Period, :SecurityGroupList, :AutoVoucher, :VoucherIds, :ResourceTags, :Collation, :TimeZone
         
-        def initialize(instanceid=nil, zone=nil, readonlygrouptype=nil, memory=nil, storage=nil, readonlygroupforcedupgrade=nil, readonlygroupid=nil, readonlygroupname=nil, readonlygroupisofflinedelay=nil, readonlygroupmaxdelaytime=nil, readonlygroupminingroup=nil, instancechargetype=nil, goodsnum=nil, subnetid=nil, vpcid=nil, period=nil, securitygrouplist=nil, autovoucher=nil, voucherids=nil, resourcetags=nil)
+        def initialize(instanceid=nil, zone=nil, readonlygrouptype=nil, memory=nil, storage=nil, readonlygroupforcedupgrade=nil, readonlygroupid=nil, readonlygroupname=nil, readonlygroupisofflinedelay=nil, readonlygroupmaxdelaytime=nil, readonlygroupminingroup=nil, instancechargetype=nil, goodsnum=nil, subnetid=nil, vpcid=nil, period=nil, securitygrouplist=nil, autovoucher=nil, voucherids=nil, resourcetags=nil, collation=nil, timezone=nil)
           @InstanceId = instanceid
           @Zone = zone
           @ReadOnlyGroupType = readonlygrouptype
@@ -1215,6 +1235,8 @@ module TencentCloud
           @AutoVoucher = autovoucher
           @VoucherIds = voucherids
           @ResourceTags = resourcetags
+          @Collation = collation
+          @TimeZone = timezone
         end
 
         def deserialize(params)
@@ -1245,6 +1267,8 @@ module TencentCloud
               @ResourceTags << resourcetag_tmp
             end
           end
+          @Collation = params['Collation']
+          @TimeZone = params['TimeZone']
         end
       end
 
@@ -1499,10 +1523,14 @@ module TencentCloud
         # @type DnsPodDomain: String
         # @param TgwWanVPort: 外网端口号
         # @type TgwWanVPort: Integer
+        # @param Collation: 系统字符集排序规则，默认：Chinese_PRC_CI_AS
+        # @type Collation: String
+        # @param TimeZone: 系统时区，默认：China Standard Time
+        # @type TimeZone: String
 
-        attr_accessor :InstanceId, :Name, :ProjectId, :RegionId, :ZoneId, :VpcId, :SubnetId, :Status, :Vip, :Vport, :CreateTime, :UpdateTime, :StartTime, :EndTime, :IsolateTime, :Memory, :UsedStorage, :Storage, :VersionName, :RenewFlag, :Model, :Region, :Zone, :BackupTime, :PayMode, :Uid, :Cpu, :Version, :Type, :Pid, :UniqVpcId, :UniqSubnetId, :IsolateOperator, :SubFlag, :ROFlag, :HAFlag, :ResourceTags, :BackupModel, :InstanceNote, :BackupCycle, :BackupCycleType, :BackupSaveDays, :InstanceType, :CrossRegions, :CrossBackupEnabled, :CrossBackupSaveDays, :DnsPodDomain, :TgwWanVPort
+        attr_accessor :InstanceId, :Name, :ProjectId, :RegionId, :ZoneId, :VpcId, :SubnetId, :Status, :Vip, :Vport, :CreateTime, :UpdateTime, :StartTime, :EndTime, :IsolateTime, :Memory, :UsedStorage, :Storage, :VersionName, :RenewFlag, :Model, :Region, :Zone, :BackupTime, :PayMode, :Uid, :Cpu, :Version, :Type, :Pid, :UniqVpcId, :UniqSubnetId, :IsolateOperator, :SubFlag, :ROFlag, :HAFlag, :ResourceTags, :BackupModel, :InstanceNote, :BackupCycle, :BackupCycleType, :BackupSaveDays, :InstanceType, :CrossRegions, :CrossBackupEnabled, :CrossBackupSaveDays, :DnsPodDomain, :TgwWanVPort, :Collation, :TimeZone
         
-        def initialize(instanceid=nil, name=nil, projectid=nil, regionid=nil, zoneid=nil, vpcid=nil, subnetid=nil, status=nil, vip=nil, vport=nil, createtime=nil, updatetime=nil, starttime=nil, endtime=nil, isolatetime=nil, memory=nil, usedstorage=nil, storage=nil, versionname=nil, renewflag=nil, model=nil, region=nil, zone=nil, backuptime=nil, paymode=nil, uid=nil, cpu=nil, version=nil, type=nil, pid=nil, uniqvpcid=nil, uniqsubnetid=nil, isolateoperator=nil, subflag=nil, roflag=nil, haflag=nil, resourcetags=nil, backupmodel=nil, instancenote=nil, backupcycle=nil, backupcycletype=nil, backupsavedays=nil, instancetype=nil, crossregions=nil, crossbackupenabled=nil, crossbackupsavedays=nil, dnspoddomain=nil, tgwwanvport=nil)
+        def initialize(instanceid=nil, name=nil, projectid=nil, regionid=nil, zoneid=nil, vpcid=nil, subnetid=nil, status=nil, vip=nil, vport=nil, createtime=nil, updatetime=nil, starttime=nil, endtime=nil, isolatetime=nil, memory=nil, usedstorage=nil, storage=nil, versionname=nil, renewflag=nil, model=nil, region=nil, zone=nil, backuptime=nil, paymode=nil, uid=nil, cpu=nil, version=nil, type=nil, pid=nil, uniqvpcid=nil, uniqsubnetid=nil, isolateoperator=nil, subflag=nil, roflag=nil, haflag=nil, resourcetags=nil, backupmodel=nil, instancenote=nil, backupcycle=nil, backupcycletype=nil, backupsavedays=nil, instancetype=nil, crossregions=nil, crossbackupenabled=nil, crossbackupsavedays=nil, dnspoddomain=nil, tgwwanvport=nil, collation=nil, timezone=nil)
           @InstanceId = instanceid
           @Name = name
           @ProjectId = projectid
@@ -1551,6 +1579,8 @@ module TencentCloud
           @CrossBackupSaveDays = crossbackupsavedays
           @DnsPodDomain = dnspoddomain
           @TgwWanVPort = tgwwanvport
+          @Collation = collation
+          @TimeZone = timezone
         end
 
         def deserialize(params)
@@ -1609,6 +1639,8 @@ module TencentCloud
           @CrossBackupSaveDays = params['CrossBackupSaveDays']
           @DnsPodDomain = params['DnsPodDomain']
           @TgwWanVPort = params['TgwWanVPort']
+          @Collation = params['Collation']
+          @TimeZone = params['TimeZone']
         end
       end
 

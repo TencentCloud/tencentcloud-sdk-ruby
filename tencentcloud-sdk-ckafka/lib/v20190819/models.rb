@@ -7219,10 +7219,14 @@ module TencentCloud
         # @type TopicReplacement: String
         # @param KeyColumns: 格式：库1.表1:字段1,字段2;库2.表2:字段2，表之间;（分号）隔开，字段之间,（逗号）隔开。不指定的表默认取表的主键
         # @type KeyColumns: String
+        # @param DropInvalidMessage: Mysql 是否抛弃解析失败的消息，默认为true
+        # @type DropInvalidMessage: Boolean
+        # @param DropCls: 当设置成员参数DropInvalidMessageToCls设置为true时,DropInvalidMessage参数失效
+        # @type DropCls: :class:`Tencentcloud::Ckafka.v20190819.models.DropCls`
 
-        attr_accessor :Database, :Table, :Resource, :SnapshotMode, :DdlTopic, :DataSourceMonitorMode, :DataSourceMonitorResource, :DataSourceIncrementMode, :DataSourceIncrementColumn, :DataSourceStartFrom, :DataTargetInsertMode, :DataTargetPrimaryKeyField, :DataTargetRecordMapping, :TopicRegex, :TopicReplacement, :KeyColumns
+        attr_accessor :Database, :Table, :Resource, :SnapshotMode, :DdlTopic, :DataSourceMonitorMode, :DataSourceMonitorResource, :DataSourceIncrementMode, :DataSourceIncrementColumn, :DataSourceStartFrom, :DataTargetInsertMode, :DataTargetPrimaryKeyField, :DataTargetRecordMapping, :TopicRegex, :TopicReplacement, :KeyColumns, :DropInvalidMessage, :DropCls
         
-        def initialize(database=nil, table=nil, resource=nil, snapshotmode=nil, ddltopic=nil, datasourcemonitormode=nil, datasourcemonitorresource=nil, datasourceincrementmode=nil, datasourceincrementcolumn=nil, datasourcestartfrom=nil, datatargetinsertmode=nil, datatargetprimarykeyfield=nil, datatargetrecordmapping=nil, topicregex=nil, topicreplacement=nil, keycolumns=nil)
+        def initialize(database=nil, table=nil, resource=nil, snapshotmode=nil, ddltopic=nil, datasourcemonitormode=nil, datasourcemonitorresource=nil, datasourceincrementmode=nil, datasourceincrementcolumn=nil, datasourcestartfrom=nil, datatargetinsertmode=nil, datatargetprimarykeyfield=nil, datatargetrecordmapping=nil, topicregex=nil, topicreplacement=nil, keycolumns=nil, dropinvalidmessage=nil, dropcls=nil)
           @Database = database
           @Table = table
           @Resource = resource
@@ -7239,6 +7243,8 @@ module TencentCloud
           @TopicRegex = topicregex
           @TopicReplacement = topicreplacement
           @KeyColumns = keycolumns
+          @DropInvalidMessage = dropinvalidmessage
+          @DropCls = dropcls
         end
 
         def deserialize(params)
@@ -7265,6 +7271,11 @@ module TencentCloud
           @TopicRegex = params['TopicRegex']
           @TopicReplacement = params['TopicReplacement']
           @KeyColumns = params['KeyColumns']
+          @DropInvalidMessage = params['DropInvalidMessage']
+          unless params['DropCls'].nil?
+            @DropCls = DropCls.new
+            @DropCls.deserialize(params['DropCls'])
+          end
         end
       end
 

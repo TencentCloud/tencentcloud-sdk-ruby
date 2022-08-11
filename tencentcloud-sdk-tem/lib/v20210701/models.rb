@@ -1719,6 +1719,49 @@ module TencentCloud
         end
       end
 
+      # DescribeEnvironment请求参数结构体
+      class DescribeEnvironmentRequest < TencentCloud::Common::AbstractModel
+        # @param EnvironmentId: 命名空间id
+        # @type EnvironmentId: String
+        # @param SourceChannel: 来源Channel
+        # @type SourceChannel: Integer
+
+        attr_accessor :EnvironmentId, :SourceChannel
+        
+        def initialize(environmentid=nil, sourcechannel=nil)
+          @EnvironmentId = environmentid
+          @SourceChannel = sourcechannel
+        end
+
+        def deserialize(params)
+          @EnvironmentId = params['EnvironmentId']
+          @SourceChannel = params['SourceChannel']
+        end
+      end
+
+      # DescribeEnvironment返回参数结构体
+      class DescribeEnvironmentResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 环境信息
+        # @type Result: :class:`Tencentcloud::Tem.v20210701.models.NamespaceInfo`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+        
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Result'].nil?
+            @Result = NamespaceInfo.new
+            @Result.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeEnvironmentStatus请求参数结构体
       class DescribeEnvironmentStatusRequest < TencentCloud::Common::AbstractModel
         # @param EnvironmentIds: 命名空间id
@@ -3254,6 +3297,61 @@ module TencentCloud
         end
       end
 
+      # Namespace 基础信息
+      class NamespaceInfo < TencentCloud::Common::AbstractModel
+        # @param EnvironmentId: ID 信息
+        # @type EnvironmentId: String
+        # @param NamespaceName: 名字（已弃用）
+        # @type NamespaceName: String
+        # @param Region: 地域
+        # @type Region: String
+        # @param VpcId: vpc id
+        # @type VpcId: String
+        # @param SubnetIds: subnet id 数组
+        # @type SubnetIds: Array
+        # @param Description: 描述
+        # @type Description: String
+        # @param CreatedDate: 创建时间
+        # @type CreatedDate: String
+        # @param EnvironmentName: 环境名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EnvironmentName: String
+        # @param ApmInstanceId: APM 资源 ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ApmInstanceId: String
+        # @param Locked: 环境是否上锁，1为上锁，0则未上锁
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Locked: Integer
+
+        attr_accessor :EnvironmentId, :NamespaceName, :Region, :VpcId, :SubnetIds, :Description, :CreatedDate, :EnvironmentName, :ApmInstanceId, :Locked
+        
+        def initialize(environmentid=nil, namespacename=nil, region=nil, vpcid=nil, subnetids=nil, description=nil, createddate=nil, environmentname=nil, apminstanceid=nil, locked=nil)
+          @EnvironmentId = environmentid
+          @NamespaceName = namespacename
+          @Region = region
+          @VpcId = vpcid
+          @SubnetIds = subnetids
+          @Description = description
+          @CreatedDate = createddate
+          @EnvironmentName = environmentname
+          @ApmInstanceId = apminstanceid
+          @Locked = locked
+        end
+
+        def deserialize(params)
+          @EnvironmentId = params['EnvironmentId']
+          @NamespaceName = params['NamespaceName']
+          @Region = params['Region']
+          @VpcId = params['VpcId']
+          @SubnetIds = params['SubnetIds']
+          @Description = params['Description']
+          @CreatedDate = params['CreatedDate']
+          @EnvironmentName = params['EnvironmentName']
+          @ApmInstanceId = params['ApmInstanceId']
+          @Locked = params['Locked']
+        end
+      end
+
       # 命名空间分页
       class NamespacePage < TencentCloud::Common::AbstractModel
         # @param Records: 分页内容
@@ -4373,7 +4471,7 @@ module TencentCloud
         # @param VersionId: 主键
         # @type VersionId: String
         # @param ApplicationId: 服务id
-        # @type ApplicationId: Boolean
+        # @type ApplicationId: String
         # @param DeployMode: 部署方式
         # @type DeployMode: String
         # @param JdkVersion: jdk版本
@@ -4399,6 +4497,7 @@ module TencentCloud
         # @param ImgVersion: 镜像版本
         # @type ImgVersion: String
         # @param EsInfo: 弹性配置
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EsInfo: :class:`Tencentcloud::Tem.v20210701.models.EsInfo`
         # @param EnvConf: 环境配置
         # @type EnvConf: Array
@@ -4467,7 +4566,7 @@ module TencentCloud
         # @type LogEnable: Integer
         # @param MinAliveInstances: 最小实例数
         # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type MinAliveInstances: Integer
+        # @type MinAliveInstances: String
         # @param SecurityGroupIds: 安全组
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SecurityGroupIds: Array
@@ -4525,7 +4624,7 @@ module TencentCloud
         # @param EnableTracing: 是否启用调用链组件
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EnableTracing: Integer
-        # @param EnableTracingReport: 是否开启调用链上报，只有 EnableTracing=1 时生效
+        # @param EnableTracingReport: 是否开启调用链上报，只有 EnableTracing=1 时生效（参数已弃用）
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EnableTracingReport: Integer
         # @param RepoType: 镜像类型：0-个人镜像、1-企业镜像、2-公有镜像
@@ -4557,7 +4656,7 @@ module TencentCloud
         # @param UnderDeploying: 是否正在发布中
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UnderDeploying: Boolean
-        # @param EnablePrometheusConf: 是否开启prometheus业务指标监控
+        # @param EnablePrometheusConf: 监控业务指标监控
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EnablePrometheusConf: :class:`Tencentcloud::Tem.v20210701.models.EnablePrometheusConf`
         # @param StoppedManually: 是否为手动停止
@@ -4566,10 +4665,14 @@ module TencentCloud
         # @param TcrInstanceId: tcr实例ID
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TcrInstanceId: String
+        # @param EnableMetrics: 1：开始自动metrics采集（open-telemetry）；
+        # 0：关闭metrics采集；
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EnableMetrics: Integer
 
-        attr_accessor :VersionId, :ApplicationId, :DeployMode, :JdkVersion, :Description, :DeployVersion, :PublishMode, :JvmOpts, :InitPodNum, :CpuSpec, :MemorySpec, :ImgRepo, :ImgName, :ImgVersion, :EsInfo, :EnvConf, :StorageConfs, :Status, :Vpc, :SubnetId, :CreateDate, :ModifyDate, :StorageMountConfs, :VersionName, :LogOutputConf, :ApplicationName, :ApplicationDescription, :EnvironmentName, :EnvironmentId, :PublicDomain, :EnablePublicAccess, :CurrentInstances, :ExpectedInstances, :CodingLanguage, :PkgName, :EsEnable, :EsStrategy, :ImageTag, :LogEnable, :MinAliveInstances, :SecurityGroupIds, :ImageCommand, :ImageArgs, :UseRegistryDefaultConfig, :Service, :SettingConfs, :LogConfs, :PostStart, :PreStop, :Liveness, :Readiness, :HorizontalAutoscaler, :CronHorizontalAutoscaler, :Zones, :LastDeployDate, :LastDeploySuccessDate, :NodeInfos, :ImageType, :EnableTracing, :EnableTracingReport, :RepoType, :BatchDeployStatus, :ApmInstanceId, :WorkloadInfo, :SpeedUp, :StartupProbe, :OsFlavour, :RepoServer, :UnderDeploying, :EnablePrometheusConf, :StoppedManually, :TcrInstanceId
+        attr_accessor :VersionId, :ApplicationId, :DeployMode, :JdkVersion, :Description, :DeployVersion, :PublishMode, :JvmOpts, :InitPodNum, :CpuSpec, :MemorySpec, :ImgRepo, :ImgName, :ImgVersion, :EsInfo, :EnvConf, :StorageConfs, :Status, :Vpc, :SubnetId, :CreateDate, :ModifyDate, :StorageMountConfs, :VersionName, :LogOutputConf, :ApplicationName, :ApplicationDescription, :EnvironmentName, :EnvironmentId, :PublicDomain, :EnablePublicAccess, :CurrentInstances, :ExpectedInstances, :CodingLanguage, :PkgName, :EsEnable, :EsStrategy, :ImageTag, :LogEnable, :MinAliveInstances, :SecurityGroupIds, :ImageCommand, :ImageArgs, :UseRegistryDefaultConfig, :Service, :SettingConfs, :LogConfs, :PostStart, :PreStop, :Liveness, :Readiness, :HorizontalAutoscaler, :CronHorizontalAutoscaler, :Zones, :LastDeployDate, :LastDeploySuccessDate, :NodeInfos, :ImageType, :EnableTracing, :EnableTracingReport, :RepoType, :BatchDeployStatus, :ApmInstanceId, :WorkloadInfo, :SpeedUp, :StartupProbe, :OsFlavour, :RepoServer, :UnderDeploying, :EnablePrometheusConf, :StoppedManually, :TcrInstanceId, :EnableMetrics
         
-        def initialize(versionid=nil, applicationid=nil, deploymode=nil, jdkversion=nil, description=nil, deployversion=nil, publishmode=nil, jvmopts=nil, initpodnum=nil, cpuspec=nil, memoryspec=nil, imgrepo=nil, imgname=nil, imgversion=nil, esinfo=nil, envconf=nil, storageconfs=nil, status=nil, vpc=nil, subnetid=nil, createdate=nil, modifydate=nil, storagemountconfs=nil, versionname=nil, logoutputconf=nil, applicationname=nil, applicationdescription=nil, environmentname=nil, environmentid=nil, publicdomain=nil, enablepublicaccess=nil, currentinstances=nil, expectedinstances=nil, codinglanguage=nil, pkgname=nil, esenable=nil, esstrategy=nil, imagetag=nil, logenable=nil, minaliveinstances=nil, securitygroupids=nil, imagecommand=nil, imageargs=nil, useregistrydefaultconfig=nil, service=nil, settingconfs=nil, logconfs=nil, poststart=nil, prestop=nil, liveness=nil, readiness=nil, horizontalautoscaler=nil, cronhorizontalautoscaler=nil, zones=nil, lastdeploydate=nil, lastdeploysuccessdate=nil, nodeinfos=nil, imagetype=nil, enabletracing=nil, enabletracingreport=nil, repotype=nil, batchdeploystatus=nil, apminstanceid=nil, workloadinfo=nil, speedup=nil, startupprobe=nil, osflavour=nil, reposerver=nil, underdeploying=nil, enableprometheusconf=nil, stoppedmanually=nil, tcrinstanceid=nil)
+        def initialize(versionid=nil, applicationid=nil, deploymode=nil, jdkversion=nil, description=nil, deployversion=nil, publishmode=nil, jvmopts=nil, initpodnum=nil, cpuspec=nil, memoryspec=nil, imgrepo=nil, imgname=nil, imgversion=nil, esinfo=nil, envconf=nil, storageconfs=nil, status=nil, vpc=nil, subnetid=nil, createdate=nil, modifydate=nil, storagemountconfs=nil, versionname=nil, logoutputconf=nil, applicationname=nil, applicationdescription=nil, environmentname=nil, environmentid=nil, publicdomain=nil, enablepublicaccess=nil, currentinstances=nil, expectedinstances=nil, codinglanguage=nil, pkgname=nil, esenable=nil, esstrategy=nil, imagetag=nil, logenable=nil, minaliveinstances=nil, securitygroupids=nil, imagecommand=nil, imageargs=nil, useregistrydefaultconfig=nil, service=nil, settingconfs=nil, logconfs=nil, poststart=nil, prestop=nil, liveness=nil, readiness=nil, horizontalautoscaler=nil, cronhorizontalautoscaler=nil, zones=nil, lastdeploydate=nil, lastdeploysuccessdate=nil, nodeinfos=nil, imagetype=nil, enabletracing=nil, enabletracingreport=nil, repotype=nil, batchdeploystatus=nil, apminstanceid=nil, workloadinfo=nil, speedup=nil, startupprobe=nil, osflavour=nil, reposerver=nil, underdeploying=nil, enableprometheusconf=nil, stoppedmanually=nil, tcrinstanceid=nil, enablemetrics=nil)
           @VersionId = versionid
           @ApplicationId = applicationid
           @DeployMode = deploymode
@@ -4642,6 +4745,7 @@ module TencentCloud
           @EnablePrometheusConf = enableprometheusconf
           @StoppedManually = stoppedmanually
           @TcrInstanceId = tcrinstanceid
+          @EnableMetrics = enablemetrics
         end
 
         def deserialize(params)
@@ -4790,6 +4894,7 @@ module TencentCloud
           end
           @StoppedManually = params['StoppedManually']
           @TcrInstanceId = params['TcrInstanceId']
+          @EnableMetrics = params['EnableMetrics']
         end
       end
 

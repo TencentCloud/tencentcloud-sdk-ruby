@@ -395,61 +395,58 @@ module TencentCloud
 
       # Bot攻击日志
       class BotLog < TencentCloud::Common::AbstractModel
-        # @param AttackTime: 攻击时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @param AttackTime: 攻击时间，采用unix秒级时间戳。
         # @type AttackTime: Integer
-        # @param AttackIp: 攻击ip
-        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @param AttackIp: 攻击源（客户端）ip。
         # @type AttackIp: String
-        # @param Domain: 域名
-        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @param Domain: 受攻击域名。
         # @type Domain: String
-        # @param RequestUri: 请求uri
-        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @param RequestUri: URI。
         # @type RequestUri: String
-        # @param AttackType: 攻击类型
+        # @param AttackType: 当前该字段无效。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AttackType: String
-        # @param RequestMethod: 请求方法
-        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @param RequestMethod: 请求方法。
         # @type RequestMethod: String
-        # @param AttackContent: 攻击内容
-        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @param AttackContent: 攻击内容。
         # @type AttackContent: String
-        # @param RiskLevel: 风险等级
+        # @param RiskLevel: 当前该字段无效 。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RiskLevel: String
-        # @param RuleId: 规则编号
+        # @param RuleId: 当前该字段无效 。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RuleId: Integer
-        # @param SipCountryCode: IP所在国家
-        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @param SipCountryCode: IP所在国家iso-3166中alpha-2编码，编码信息请参考[ISO-3166](https://git.woa.com/edgeone/iso-3166/blob/master/all/all.json)。
         # @type SipCountryCode: String
-        # @param EventId: 事件id
-        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @param EventId: 请求（事件）ID。
         # @type EventId: String
-        # @param DisposalMethod: 处置方式
+        # @param DisposalMethod: 该字段当前无效。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DisposalMethod: String
-        # @param HttpLog: http_log
+        # @param HttpLog: 该字段当前无效。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HttpLog: String
-        # @param Ua: user agent
-        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @param Ua: user agent。
         # @type Ua: String
-        # @param DetectionMethod: 检出方法
+        # @param DetectionMethod: 该字段当前无效。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DetectionMethod: String
-        # @param Confidence: 置信度
+        # @param Confidence: 该字段当前无效。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Confidence: String
-        # @param Maliciousness: 恶意度
+        # @param Maliciousness: 该字段当前无效。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Maliciousness: String
+        # @param RuleDetailList: 规则相关信息列表。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RuleDetailList: Array
+        # @param Label: Bot标签。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Label: String
 
-        attr_accessor :AttackTime, :AttackIp, :Domain, :RequestUri, :AttackType, :RequestMethod, :AttackContent, :RiskLevel, :RuleId, :SipCountryCode, :EventId, :DisposalMethod, :HttpLog, :Ua, :DetectionMethod, :Confidence, :Maliciousness
+        attr_accessor :AttackTime, :AttackIp, :Domain, :RequestUri, :AttackType, :RequestMethod, :AttackContent, :RiskLevel, :RuleId, :SipCountryCode, :EventId, :DisposalMethod, :HttpLog, :Ua, :DetectionMethod, :Confidence, :Maliciousness, :RuleDetailList, :Label
         
-        def initialize(attacktime=nil, attackip=nil, domain=nil, requesturi=nil, attacktype=nil, requestmethod=nil, attackcontent=nil, risklevel=nil, ruleid=nil, sipcountrycode=nil, eventid=nil, disposalmethod=nil, httplog=nil, ua=nil, detectionmethod=nil, confidence=nil, maliciousness=nil)
+        def initialize(attacktime=nil, attackip=nil, domain=nil, requesturi=nil, attacktype=nil, requestmethod=nil, attackcontent=nil, risklevel=nil, ruleid=nil, sipcountrycode=nil, eventid=nil, disposalmethod=nil, httplog=nil, ua=nil, detectionmethod=nil, confidence=nil, maliciousness=nil, ruledetaillist=nil, label=nil)
           @AttackTime = attacktime
           @AttackIp = attackip
           @Domain = domain
@@ -467,6 +464,8 @@ module TencentCloud
           @DetectionMethod = detectionmethod
           @Confidence = confidence
           @Maliciousness = maliciousness
+          @RuleDetailList = ruledetaillist
+          @Label = label
         end
 
         def deserialize(params)
@@ -487,24 +486,33 @@ module TencentCloud
           @DetectionMethod = params['DetectionMethod']
           @Confidence = params['Confidence']
           @Maliciousness = params['Maliciousness']
+          unless params['RuleDetailList'].nil?
+            @RuleDetailList = []
+            params['RuleDetailList'].each do |i|
+              secrulerelatedinfo_tmp = SecRuleRelatedInfo.new
+              secrulerelatedinfo_tmp.deserialize(i)
+              @RuleDetailList << secrulerelatedinfo_tmp
+            end
+          end
+          @Label = params['Label']
         end
       end
 
       # 限速拦截日志
       class BotLogData < TencentCloud::Common::AbstractModel
-        # @param List: Bot攻击日志数据集合
+        # @param List: Bot攻击日志数据集合。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type List: Array
-        # @param PageNo: 当前页
+        # @param PageNo: 分页拉取的起始页号。最小值：1。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PageNo: Integer
-        # @param PageSize: 每页展示条数
+        # @param PageSize: 分页拉取的最大返回结果数。最大值：1000。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PageSize: Integer
-        # @param Pages: 总页数
+        # @param Pages: 总页数。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Pages: Integer
-        # @param TotalSize: 总条数
+        # @param TotalSize: 总条数。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TotalSize: Integer
 
@@ -754,45 +762,47 @@ module TencentCloud
         end
       end
 
-      # 限速拦截日志
+      # CC日志
       class CCLog < TencentCloud::Common::AbstractModel
-        # @param AttackTime: 攻击时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @param AttackTime: 攻击请求时间，采用unix秒级时间戳。
         # @type AttackTime: Integer
-        # @param AttackSip: 攻击源ip
-        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @param AttackSip: 客户端ip。
         # @type AttackSip: String
-        # @param AttackDomain: 攻击域名
-        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @param AttackDomain: 受攻击域名。
         # @type AttackDomain: String
-        # @param RequestUri: 请求uri
-        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @param RequestUri: URI。
         # @type RequestUri: String
-        # @param HitCount: 命中次数
-        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @param HitCount: 命中次数。
         # @type HitCount: Integer
-        # @param SipCountryCode: IP所在国家
-        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @param SipCountryCode: IP所在国家iso-3166中alpha-2编码，编码信息请参考[ISO-3166](https://git.woa.com/edgeone/iso-3166/blob/master/all/all.json)。
         # @type SipCountryCode: String
-        # @param EventId: 事件id
-        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @param EventId: 请求（事件）ID。
         # @type EventId: String
-        # @param DisposalMethod: 处置方式
+        # @param DisposalMethod: 当前该字段已废弃。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DisposalMethod: String
-        # @param HttpLog: http_log
+        # @param HttpLog: 当前该字段已废弃。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HttpLog: String
-        # @param RuleId: 规则编号
+        # @param RuleId: 当前该字段已废弃。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RuleId: Integer
-        # @param RiskLevel: 风险等级
+        # @param RiskLevel: 当前该字段已废弃。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RiskLevel: String
+        # @param Ua: User Agent，仅自定义规则日志中存在。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Ua: String
+        # @param RequestMethod: 请求方法，仅自定义规则日志中存在。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RequestMethod: String
+        # @param RuleDetailList: 规则信息列表。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RuleDetailList: Array
 
-        attr_accessor :AttackTime, :AttackSip, :AttackDomain, :RequestUri, :HitCount, :SipCountryCode, :EventId, :DisposalMethod, :HttpLog, :RuleId, :RiskLevel
+        attr_accessor :AttackTime, :AttackSip, :AttackDomain, :RequestUri, :HitCount, :SipCountryCode, :EventId, :DisposalMethod, :HttpLog, :RuleId, :RiskLevel, :Ua, :RequestMethod, :RuleDetailList
         
-        def initialize(attacktime=nil, attacksip=nil, attackdomain=nil, requesturi=nil, hitcount=nil, sipcountrycode=nil, eventid=nil, disposalmethod=nil, httplog=nil, ruleid=nil, risklevel=nil)
+        def initialize(attacktime=nil, attacksip=nil, attackdomain=nil, requesturi=nil, hitcount=nil, sipcountrycode=nil, eventid=nil, disposalmethod=nil, httplog=nil, ruleid=nil, risklevel=nil, ua=nil, requestmethod=nil, ruledetaillist=nil)
           @AttackTime = attacktime
           @AttackSip = attacksip
           @AttackDomain = attackdomain
@@ -804,6 +814,9 @@ module TencentCloud
           @HttpLog = httplog
           @RuleId = ruleid
           @RiskLevel = risklevel
+          @Ua = ua
+          @RequestMethod = requestmethod
+          @RuleDetailList = ruledetaillist
         end
 
         def deserialize(params)
@@ -818,25 +831,31 @@ module TencentCloud
           @HttpLog = params['HttpLog']
           @RuleId = params['RuleId']
           @RiskLevel = params['RiskLevel']
+          @Ua = params['Ua']
+          @RequestMethod = params['RequestMethod']
+          unless params['RuleDetailList'].nil?
+            @RuleDetailList = []
+            params['RuleDetailList'].each do |i|
+              secrulerelatedinfo_tmp = SecRuleRelatedInfo.new
+              secrulerelatedinfo_tmp.deserialize(i)
+              @RuleDetailList << secrulerelatedinfo_tmp
+            end
+          end
         end
       end
 
       # 限速拦截日志
       class CCLogData < TencentCloud::Common::AbstractModel
-        # @param List: CC拦截日志数据集合
+        # @param List: CC拦截日志数据集合。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type List: Array
-        # @param PageNo: 当前页
-        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @param PageNo: 分页拉取的起始页号。最小值：1。
         # @type PageNo: Integer
-        # @param PageSize: 每页展示条数
-        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @param PageSize: 分页拉取的最大返回结果数。最大值：1000。
         # @type PageSize: Integer
-        # @param Pages: 总页数
-        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @param Pages: 总页数。
         # @type Pages: Integer
-        # @param TotalSize: 总条数
-        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @param TotalSize: 总条数。
         # @type TotalSize: Integer
 
         attr_accessor :List, :PageNo, :PageSize, :Pages, :TotalSize
@@ -2320,19 +2339,19 @@ module TencentCloud
 
       # DDos攻击事件数据
       class DDosAttackEventData < TencentCloud::Common::AbstractModel
-        # @param List: 攻击事件数据集合
+        # @param List: 攻击事件数据集合。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type List: Array
-        # @param PageNo: 当前页
+        # @param PageNo: 分页拉取的起始页号。最小值：1。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PageNo: Integer
-        # @param PageSize: 每页展示条数
+        # @param PageSize: 分页拉取的最大返回结果数。最大值：1000。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PageSize: Integer
-        # @param Pages: 总页数
+        # @param Pages: 总页数。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Pages: Integer
-        # @param TotalSize: 总条数
+        # @param TotalSize: 总条数。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TotalSize: Integer
 
@@ -2364,21 +2383,24 @@ module TencentCloud
 
       # ddos 攻击事件的详情
       class DDosAttackEventDetailData < TencentCloud::Common::AbstractModel
-        # @param AttackStatus: 攻击状态
+        # @param AttackStatus: 攻击状态，取值有：
+        # <li>1 ：观察中 ；</li>
+        # <li>2 ：攻击开始 ；</li>
+        # <li>3 ：攻击结束 。</li>
         # @type AttackStatus: Integer
-        # @param AttackType: 攻击类型
+        # @param AttackType: 攻击类型。
         # @type AttackType: String
-        # @param EndTime: 结束时间
+        # @param EndTime: 结束时间。
         # @type EndTime: Integer
-        # @param StartTime: 开始时间
+        # @param StartTime: 开始时间。
         # @type StartTime: Integer
-        # @param MaxBandWidth: 最大带宽
+        # @param MaxBandWidth: 最大带宽。
         # @type MaxBandWidth: Integer
-        # @param PacketMaxRate: 最大包速率
+        # @param PacketMaxRate: 最大包速率。
         # @type PacketMaxRate: Integer
-        # @param EventId: 事件Id
+        # @param EventId: 事件Id。
         # @type EventId: String
-        # @param PolicyId: ddos 策略组id
+        # @param PolicyId: ddos 策略组id。
         # @type PolicyId: Integer
 
         attr_accessor :AttackStatus, :AttackType, :EndTime, :StartTime, :MaxBandWidth, :PacketMaxRate, :EventId, :PolicyId
@@ -2408,16 +2430,16 @@ module TencentCloud
 
       # DDos攻击事件对象
       class DDosAttackSourceEvent < TencentCloud::Common::AbstractModel
-        # @param AttackSourceIp: 攻击源ip
+        # @param AttackSourceIp: 攻击源ip。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AttackSourceIp: String
-        # @param AttackRegion: 地区(国家)
+        # @param AttackRegion: 地区（国家）。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AttackRegion: String
-        # @param AttackFlow: 累计攻击流量
+        # @param AttackFlow: 累计攻击流量。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AttackFlow: Integer
-        # @param AttackPacketNum: 累计攻击包量
+        # @param AttackPacketNum: 累计攻击包量。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AttackPacketNum: Integer
 
@@ -2440,19 +2462,19 @@ module TencentCloud
 
       # DDos攻击源数据
       class DDosAttackSourceEventData < TencentCloud::Common::AbstractModel
-        # @param List: DDos攻击源数据集合
+        # @param List: DDos攻击源数据集合。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type List: Array
-        # @param PageNo: 当前页
+        # @param PageNo: 分页拉取的起始页号。最小值：1。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PageNo: Integer
-        # @param PageSize: 每页展示条数
+        # @param PageSize: 分页拉取的最大返回结果数。最大值：1000。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PageSize: Integer
-        # @param Pages: 总页数
+        # @param Pages: 总页数。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Pages: Integer
-        # @param TotalSize: 总条数
+        # @param TotalSize: 总条数。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TotalSize: Integer
 
@@ -2484,11 +2506,11 @@ module TencentCloud
 
       # DDos主攻击事件
       class DDosMajorAttackEvent < TencentCloud::Common::AbstractModel
-        # @param PolicyId: ddos 策略组id
+        # @param PolicyId: ddos 策略组id。
         # @type PolicyId: Integer
-        # @param AttackMaxBandWidth: 攻击最大带宽
+        # @param AttackMaxBandWidth: 攻击最大带宽。
         # @type AttackMaxBandWidth: Integer
-        # @param AttackTime: 攻击时间 单位为s
+        # @param AttackTime: 攻击请求时间，采用unix秒级时间戳。
         # @type AttackTime: Integer
 
         attr_accessor :PolicyId, :AttackMaxBandWidth, :AttackTime
@@ -2508,19 +2530,19 @@ module TencentCloud
 
       # 主攻击对象Data
       class DDosMajorAttackEventData < TencentCloud::Common::AbstractModel
-        # @param List: DDosMajorAttackEvent ddos 攻击事件
+        # @param List: DDosMajorAttackEvent ddos 攻击事件。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type List: Array
-        # @param PageNo: 当前页
+        # @param PageNo: 分页拉取的起始页号。最小值：1。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PageNo: Integer
-        # @param PageSize: 每页展示条数
+        # @param PageSize: 分页拉取的最大返回结果数。最大值：1000。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PageSize: Integer
-        # @param Pages: 总页数
+        # @param Pages: 总页数。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Pages: Integer
-        # @param TotalSize: 总条数
+        # @param TotalSize: 总条数。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TotalSize: Integer
 
@@ -3219,19 +3241,27 @@ module TencentCloud
 
       # DescribeBotLog请求参数结构体
       class DescribeBotLogRequest < TencentCloud::Common::AbstractModel
-        # @param StartTime: 起始时间
+        # @param StartTime: 起始时间。
         # @type StartTime: String
-        # @param EndTime: 结束时间
+        # @param EndTime: 结束时间。
         # @type EndTime: String
-        # @param PageSize: 每页条数
+        # @param PageSize: 分页拉取的最大返回结果数。最大值：1000。
         # @type PageSize: Integer
-        # @param PageNo: 当前页
+        # @param PageNo: 分页拉取的起始页号。最小值：1。
         # @type PageNo: Integer
-        # @param ZoneIds: 站点集合
+        # @param ZoneIds: 站点集合，不填默认查询所有站点。
         # @type ZoneIds: Array
-        # @param Domains: 域名集合
+        # @param Domains: 域名集合，不填默认查询所有子域名。
         # @type Domains: Array
-        # @param QueryCondition: 查询条件
+        # @param QueryCondition: 筛选条件，取值有：
+        # <li>action ：执行动作（处置方式）；</li>
+        # <li>sipCountryCode ：ip所在国家 ；</li>
+        # <li>attackIp ：攻击ip ；</li>
+        # <li>ruleId ：规则id ；</li>
+        # <li>eventId ：事件id ；</li>
+        # <li>ua ：用户代理 ；</li>
+        # <li>requestMethod ：请求方法 ；</li>
+        # <li>uri ：统一资源标识符 。</li>
         # @type QueryCondition: Array
 
         attr_accessor :StartTime, :EndTime, :PageSize, :PageNo, :ZoneIds, :Domains, :QueryCondition
@@ -3266,11 +3296,13 @@ module TencentCloud
 
       # DescribeBotLog返回参数结构体
       class DescribeBotLogResponse < TencentCloud::Common::AbstractModel
-        # @param Data: Bot攻击Data
+        # @param Data: Bot攻击数据内容。
         # @type Data: :class:`Tencentcloud::Teo.v20220106.models.BotLogData`
-        # @param Status: 状态，1：失败，0:成功
+        # @param Status: 请求响应状态，取值有：
+        # <li>1 ：失败 ；</li>
+        # <li>0 ：成功 。</li>
         # @type Status: Integer
-        # @param Msg: 返回信息
+        # @param Msg: 请求响应信息。
         # @type Msg: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -3447,23 +3479,37 @@ module TencentCloud
 
       # DescribeDDosAttackData请求参数结构体
       class DescribeDDosAttackDataRequest < TencentCloud::Common::AbstractModel
-        # @param StartTime: 开始时间
+        # @param StartTime: 开始时间。
         # @type StartTime: String
-        # @param EndTime: 结束时间
+        # @param EndTime: 结束时间。
         # @type EndTime: String
-        # @param MetricNames: 统计指标列表
+        # @param MetricNames: 统计指标列表，取值有：
+        # <li>ddos_attackMaxBandwidth ：攻击带宽峰值 ；</li>
+        # <li>ddos_attackMaxPackageRate：攻击包速率峰值  ；</li>
+        # <li>ddos_attackBandwidth ：攻击带宽曲线 ；</li>
+        # <li>ddos_attackPackageRate ：攻击包速率曲线 。</li>
         # @type MetricNames: Array
-        # @param ZoneIds: 站点id列表
+        # @param ZoneIds: 站点id列表，不填默认选择全部站点。
         # @type ZoneIds: Array
-        # @param PolicyIds: ddos策略组id列表
+        # @param PolicyIds: ddos策略组id列表，不填默认选择全部策略id。
         # @type PolicyIds: Array
-        # @param Port: 端口号
+        # @param Port: 端口号。
         # @type Port: Integer
-        # @param ProtocolType: 协议类型,tcp,udp,all
+        # @param ProtocolType: 协议类型，取值有：
+        # <li>tcp ；</li>
+        # <li>udp ；</li>
+        # <li>all 。</li>
         # @type ProtocolType: String
-        # @param AttackType: 攻击类型,flood,icmpFlood......,all
+        # @param AttackType: 攻击类型，取值有：
+        # <li>flood ；</li>
+        # <li>icmpFlood ；</li>
+        # <li>all 。</li>
         # @type AttackType: String
-        # @param Interval: 查询时间粒度，可选{min,5min,hour,day}
+        # @param Interval: 查询时间粒度，取值有：
+        # <li>min ：1分钟 ；</li>
+        # <li>5min ：5分钟 ；</li>
+        # <li>hour ：1小时 ；</li>
+        # <li>day ：1天 。</li>
         # @type Interval: String
 
         attr_accessor :StartTime, :EndTime, :MetricNames, :ZoneIds, :PolicyIds, :Port, :ProtocolType, :AttackType, :Interval
@@ -3495,14 +3541,20 @@ module TencentCloud
 
       # DescribeDDosAttackData返回参数结构体
       class DescribeDDosAttackDataResponse < TencentCloud::Common::AbstractModel
-        # @param Data: DDos攻击数据
+        # @param Data: DDos攻击数据内容。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Data: Array
-        # @param Status: 状态，1:失败，0:成功
+        # @param Status: 请求响应状态，取值有：
+        # <li>1 ：失败 ；</li>
+        # <li>0 ：成功 。</li>
         # @type Status: Integer
-        # @param Msg: 返回数据
+        # @param Msg: 请求响应信息。
         # @type Msg: String
-        # @param Interval: 查询时间粒度，可选{min,5min,hour,day}
+        # @param Interval: 查询时间粒度，取值有：
+        # <li>min ：1分钟 ；</li>
+        # <li>5min ：5分钟 ；</li>
+        # <li>hour ：1小时 ；</li>
+        # <li>day ：1天 。</li>
         # @type Interval: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -3535,7 +3587,7 @@ module TencentCloud
 
       # DescribeDDosAttackEventDetail请求参数结构体
       class DescribeDDosAttackEventDetailRequest < TencentCloud::Common::AbstractModel
-        # @param EventId: 事件id
+        # @param EventId: 事件id。
         # @type EventId: String
 
         attr_accessor :EventId
@@ -3551,11 +3603,13 @@ module TencentCloud
 
       # DescribeDDosAttackEventDetail返回参数结构体
       class DescribeDDosAttackEventDetailResponse < TencentCloud::Common::AbstractModel
-        # @param Data: DDos攻击事件详情
+        # @param Data: DDos攻击事件详情。
         # @type Data: :class:`Tencentcloud::Teo.v20220106.models.DDosAttackEventDetailData`
-        # @param Status: 状态，1:失败，0:成功
+        # @param Status: 请求响应状态，取值有：
+        # <li>1 ：失败 ；</li>
+        # <li>0 ：成功 。</li>
         # @type Status: Integer
-        # @param Msg: 返回信息
+        # @param Msg: 请求响应信息。
         # @type Msg: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -3582,21 +3636,26 @@ module TencentCloud
 
       # DescribeDDosAttackEvent请求参数结构体
       class DescribeDDosAttackEventRequest < TencentCloud::Common::AbstractModel
-        # @param StartTime: 开始时间
+        # @param StartTime: 开始时间。
         # @type StartTime: String
-        # @param EndTime: 结束时间
+        # @param EndTime: 结束时间。
         # @type EndTime: String
-        # @param PageSize: 条数
+        # @param PageSize: 分页拉取的最大返回结果数。最大值：1000。
         # @type PageSize: Integer
-        # @param PageNo: 当前页
+        # @param PageNo: 分页拉取的起始页号。最小值：1。
         # @type PageNo: Integer
-        # @param PolicyIds: ddos策略组id 集合
+        # @param PolicyIds: ddos策略组id列表，不填默认选择全部策略Id。
         # @type PolicyIds: Array
-        # @param ZoneIds: 站点集合
+        # @param ZoneIds: 站点id列表，不填默认选择全部站点。
         # @type ZoneIds: Array
-        # @param ProtocolType: 协议类型,{tcp,udp,all}
+        # @param ProtocolType: 协议类型，取值有：
+        # <li>tcp ；</li>
+        # <li>udp ；</li>
+        # <li>all 。</li>
         # @type ProtocolType: String
-        # @param IsShowDetail: 选填{Y、N},默认为Y；Y：展示，N：不展示
+        # @param IsShowDetail: 是否展示详情，取值有：
+        # <li>Y ：展示 ；</li>
+        # <li>N ：不展示 。</li>默认为Y。
         # @type IsShowDetail: String
 
         attr_accessor :StartTime, :EndTime, :PageSize, :PageNo, :PolicyIds, :ZoneIds, :ProtocolType, :IsShowDetail
@@ -3626,11 +3685,13 @@ module TencentCloud
 
       # DescribeDDosAttackEvent返回参数结构体
       class DescribeDDosAttackEventResponse < TencentCloud::Common::AbstractModel
-        # @param Data: DDos攻击事件数据
+        # @param Data: DDos攻击事件数据。
         # @type Data: :class:`Tencentcloud::Teo.v20220106.models.DDosAttackEventData`
-        # @param Status: 状态，1:失败，0:成功
+        # @param Status: 请求响应状态，取值有：
+        # <li>1 ：失败 ；</li>
+        # <li>0 ：成功 。</li>
         # @type Status: Integer
-        # @param Msg: 返回信息
+        # @param Msg: 请求响应信息。
         # @type Msg: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -3657,19 +3718,22 @@ module TencentCloud
 
       # DescribeDDosAttackSourceEvent请求参数结构体
       class DescribeDDosAttackSourceEventRequest < TencentCloud::Common::AbstractModel
-        # @param StartTime: 开始时间
+        # @param StartTime: 开始时间。
         # @type StartTime: String
-        # @param EndTime: 结束时间
+        # @param EndTime: 结束时间。
         # @type EndTime: String
-        # @param PageSize: 条数
+        # @param PageSize: 分页拉取的最大返回结果数。最大值：1000。
         # @type PageSize: Integer
-        # @param PageNo: 当前页
+        # @param PageNo: 分页拉取的起始页号。最小值：1。
         # @type PageNo: Integer
-        # @param PolicyIds: ddos策略组id 集合
+        # @param PolicyIds: ddos策略组id 集合，不填默认选择全部策略id。
         # @type PolicyIds: Array
-        # @param ZoneIds: 站点集合
+        # @param ZoneIds: 站点集合，不填默认选择全部站点。
         # @type ZoneIds: Array
-        # @param ProtocolType: 协议类型,{tcp,udp,all}
+        # @param ProtocolType: 协议类型，取值有：
+        # <li>tcp ；</li>
+        # <li>udp ；</li>
+        # <li>all 。</li>
         # @type ProtocolType: String
 
         attr_accessor :StartTime, :EndTime, :PageSize, :PageNo, :PolicyIds, :ZoneIds, :ProtocolType
@@ -3697,11 +3761,13 @@ module TencentCloud
 
       # DescribeDDosAttackSourceEvent返回参数结构体
       class DescribeDDosAttackSourceEventResponse < TencentCloud::Common::AbstractModel
-        # @param Data: DDos攻击源数据
+        # @param Data: DDos攻击源数据。
         # @type Data: :class:`Tencentcloud::Teo.v20220106.models.DDosAttackSourceEventData`
-        # @param Status: 状态，1:失败，0:成功
+        # @param Status: 请求响应状态，取值有：
+        # <li>1 ：失败 ；</li>
+        # <li>0 ：成功 。</li>
         # @type Status: Integer
-        # @param Msg: 返回信息
+        # @param Msg: 请求响应信息。
         # @type Msg: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -3728,23 +3794,35 @@ module TencentCloud
 
       # DescribeDDosAttackTopData请求参数结构体
       class DescribeDDosAttackTopDataRequest < TencentCloud::Common::AbstractModel
-        # @param StartTime: 开始时间
+        # @param StartTime: 开始时间。
         # @type StartTime: String
-        # @param EndTime: 结束时间
+        # @param EndTime: 结束时间。
         # @type EndTime: String
-        # @param MetricName: 过滤指标
+        # @param MetricName: 统计指标列表，取值有：
+        # <li>ddos_attackFlux_protocol ：攻击总流量协议类型分布排行 ；</li>
+        # <li>ddos_attackPackageNum_protocol ：攻击总包量协议类型分布排行 ；</li>
+        # <li>ddos_attackNum_attackType ：攻击总次数攻击类型分布排行 ；</li>
+        # <li>ddos_attackNum_sregion ：攻击总次数攻击源地区分布排行 ；</li>
+        # <li>ddos_attackFlux_sip ：攻击总流量攻击源ip分布排行 ；</li>
+        # <li>ddos_attackFlux_sregion ：攻击总流量攻击源地区分布排行 。</li>
         # @type MetricName: String
-        # @param Limit: 查询前多少名,传值为0 全量
+        # @param Limit: 查询前多少个，传值为0返回全量。
         # @type Limit: Integer
-        # @param ZoneIds: 站点集合
+        # @param ZoneIds: 站点id集合，不填默认选择全部站点。
         # @type ZoneIds: Array
-        # @param PolicyIds: ddos策略组id 集合
+        # @param PolicyIds: ddos策略组id 集合，不填默认选择全部策略id。
         # @type PolicyIds: Array
-        # @param Port: 端口号
+        # @param Port: 端口号。
         # @type Port: Integer
-        # @param ProtocolType: 协议类型,tcp,udp,all
+        # @param ProtocolType: 协议类型，取值有：
+        # <li>tcp ；</li>
+        # <li>udp ；</li>
+        # <li>all 。</li>
         # @type ProtocolType: String
-        # @param AttackType: 攻击类型,flood,icmpFlood......,all
+        # @param AttackType: 攻击类型，取值有：
+        # <li>flood ；</li>
+        # <li>icmpFlood ；</li>
+        # <li>all 。</li>
         # @type AttackType: String
 
         attr_accessor :StartTime, :EndTime, :MetricName, :Limit, :ZoneIds, :PolicyIds, :Port, :ProtocolType, :AttackType
@@ -3776,11 +3854,13 @@ module TencentCloud
 
       # DescribeDDosAttackTopData返回参数结构体
       class DescribeDDosAttackTopDataResponse < TencentCloud::Common::AbstractModel
-        # @param Data: topn数据
+        # @param Data: top数据内容
         # @type Data: Array
-        # @param Status: 状态，1:失败，0:成功
+        # @param Status: 请求响应状态，取值有：
+        # <li>1 ：失败 ；</li>
+        # <li>0 ：成功 。</li>
         # @type Status: Integer
-        # @param Msg: 返回消息
+        # @param Msg: 请求响应消息。
         # @type Msg: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -3811,19 +3891,22 @@ module TencentCloud
 
       # DescribeDDosMajorAttackEvent请求参数结构体
       class DescribeDDosMajorAttackEventRequest < TencentCloud::Common::AbstractModel
-        # @param StartTime: 开始时间
+        # @param StartTime: 开始时间。
         # @type StartTime: String
-        # @param EndTime: 结束时间
+        # @param EndTime: 结束时间。
         # @type EndTime: String
-        # @param PageSize: 条数
+        # @param PageSize: 分页拉取的最大返回结果数。最大值：1000。
         # @type PageSize: Integer
-        # @param PageNo: 当前页
+        # @param PageNo: 分页拉取的起始页号。最小值：1。
         # @type PageNo: Integer
-        # @param PolicyIds: ddos 策略组id集合
+        # @param PolicyIds: ddos 策略组id集合，不填默认选择全部策略id。
         # @type PolicyIds: Array
-        # @param ProtocolType: 协议类型，{tcp,udp,all}
+        # @param ProtocolType: 协议类型，取值有：
+        # <li>tcp ；</li>
+        # <li>udp ；</li>
+        # <li>all 。</li>
         # @type ProtocolType: String
-        # @param ZoneIds: 站点集合
+        # @param ZoneIds: 站点id列表，不填默认选择全部站点。
         # @type ZoneIds: Array
 
         attr_accessor :StartTime, :EndTime, :PageSize, :PageNo, :PolicyIds, :ProtocolType, :ZoneIds
@@ -3851,11 +3934,13 @@ module TencentCloud
 
       # DescribeDDosMajorAttackEvent返回参数结构体
       class DescribeDDosMajorAttackEventResponse < TencentCloud::Common::AbstractModel
-        # @param Data: DDos查询主攻击事件
+        # @param Data: DDos查询主攻击事件。
         # @type Data: :class:`Tencentcloud::Teo.v20220106.models.DDosMajorAttackEventData`
-        # @param Status: 状态，1:失败，0:成功
+        # @param Status: 请求响应状态，取值有：
+        # <li>1 ：失败 ；</li>
+        # <li>0 ：成功 。</li>
         # @type Status: Integer
-        # @param Msg: 返回消息
+        # @param Msg: 请求响应消息。
         # @type Msg: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -5701,40 +5786,34 @@ module TencentCloud
 
       # DescribeWebManagedRulesData请求参数结构体
       class DescribeWebManagedRulesDataRequest < TencentCloud::Common::AbstractModel
-        # @param StartTime: 开始时间
+        # @param StartTime: 开始时间，RFC3339格式。
         # @type StartTime: String
-        # @param EndTime: 结束时间
+        # @param EndTime: 结束时间，RFC3339格式。
         # @type EndTime: String
-        # @param MetricNames: 统计指标列表
+        # @param MetricNames: 统计指标列表，取值有：
+        # <li>waf_interceptNum ：waf拦截次数 。</li>
         # @type MetricNames: Array
-        # @param ZoneIds: 站点id列表
+        # @param ZoneIds: 站点id列表，不填默认选择全部站点。
         # @type ZoneIds: Array
-        # @param Domains: 子域名列表
+        # @param Domains: 子域名列表，不填默认选择子域名。
         # @type Domains: Array
-        # @param ProtocolType: 协议类型
+        # @param ProtocolType: 该字段已废弃，请勿传。
         # @type ProtocolType: String
-        # @param AttackType: "webshell" : Webshell检测防护
-        # "oa" : 常见OA漏洞防护
-        # "xss" : XSS跨站脚本攻击防护
-        # "xxe" : XXE攻击防护
-        # "webscan" : 扫描器攻击漏洞防护
-        # "cms" : 常见CMS漏洞防护
-        # "upload" : 恶意文件上传攻击防护
-        # "sql" : SQL注入攻击防护
-        # "cmd_inject": 命令/代码注入攻击防护
-        # "osc" : 开源组件漏洞防护
-        # "file_read" : 任意文件读取
-        # "ldap" : LDAP注入攻击防护
-        # "other" : 其它漏洞防护
-
-        # "all":"所有"
+        # @param AttackType: 该字段已废弃，请勿传。
         # @type AttackType: String
-        # @param Interval: 查询时间粒度，可选{min,5min,hour,day}
+        # @param Interval: 查询时间粒度，取值有：
+        # <li>min ：1分钟 ；</li>
+        # <li>5min ：5分钟 ；</li>
+        # <li>hour ：1小时 ；</li>
+        # <li>day ：1天 。</li>
         # @type Interval: String
+        # @param QueryCondition: 筛选条件，取值有：
+        # <li>action ：执行动作 。</li>
+        # @type QueryCondition: Array
 
-        attr_accessor :StartTime, :EndTime, :MetricNames, :ZoneIds, :Domains, :ProtocolType, :AttackType, :Interval
+        attr_accessor :StartTime, :EndTime, :MetricNames, :ZoneIds, :Domains, :ProtocolType, :AttackType, :Interval, :QueryCondition
         
-        def initialize(starttime=nil, endtime=nil, metricnames=nil, zoneids=nil, domains=nil, protocoltype=nil, attacktype=nil, interval=nil)
+        def initialize(starttime=nil, endtime=nil, metricnames=nil, zoneids=nil, domains=nil, protocoltype=nil, attacktype=nil, interval=nil, querycondition=nil)
           @StartTime = starttime
           @EndTime = endtime
           @MetricNames = metricnames
@@ -5743,6 +5822,7 @@ module TencentCloud
           @ProtocolType = protocoltype
           @AttackType = attacktype
           @Interval = interval
+          @QueryCondition = querycondition
         end
 
         def deserialize(params)
@@ -5754,19 +5834,33 @@ module TencentCloud
           @ProtocolType = params['ProtocolType']
           @AttackType = params['AttackType']
           @Interval = params['Interval']
+          unless params['QueryCondition'].nil?
+            @QueryCondition = []
+            params['QueryCondition'].each do |i|
+              querycondition_tmp = QueryCondition.new
+              querycondition_tmp.deserialize(i)
+              @QueryCondition << querycondition_tmp
+            end
+          end
         end
       end
 
       # DescribeWebManagedRulesData返回参数结构体
       class DescribeWebManagedRulesDataResponse < TencentCloud::Common::AbstractModel
-        # @param Data: Web攻击日志实体
+        # @param Data: Web攻击日志实体。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Data: Array
-        # @param Status: 状态，1:失败，0:成功
+        # @param Status: 请求响应状态，取值有：
+        # <li>1 ：失败 ；</li>
+        # <li>0 ：成功 。</li>
         # @type Status: Integer
-        # @param Msg: 返回消息
+        # @param Msg: 请求响应消息。
         # @type Msg: String
-        # @param Interval: 查询时间粒度，可选{min,5min,hour,day}
+        # @param Interval: 查询时间粒度，取值有：
+        # <li>min ：1分钟 ；</li>
+        # <li>5min ：5分钟 ；</li>
+        # <li>hour ：1小时 ；</li>
+        # <li>day ：1天 。</li>
         # @type Interval: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -5799,19 +5893,30 @@ module TencentCloud
 
       # DescribeWebManagedRulesLog请求参数结构体
       class DescribeWebManagedRulesLogRequest < TencentCloud::Common::AbstractModel
-        # @param StartTime: 起始时间
+        # @param StartTime: 起始时间。
         # @type StartTime: String
-        # @param EndTime: 结束时间
+        # @param EndTime: 结束时间。
         # @type EndTime: String
-        # @param PageSize: 每页条数
+        # @param PageSize: 分页拉取的最大返回结果数。最大值：1000。
         # @type PageSize: Integer
-        # @param PageNo: 当前页
+        # @param PageNo: 分页拉取的起始页号。最小值：1。
         # @type PageNo: Integer
-        # @param ZoneIds: 站点集合
+        # @param ZoneIds: 站点集合，不填默认选择全部站点。
         # @type ZoneIds: Array
-        # @param Domains: 域名集合
+        # @param Domains: 域名集合，不填默认选择全部子域名。
         # @type Domains: Array
-        # @param QueryCondition: 查询条件
+        # @param QueryCondition: 筛选条件，取值有：
+        # <li>attackType ：攻击类型 ；</li>
+        # <li>riskLevel ：风险等级 ；</li>
+        # <li>action ：执行动作（处置方式） ；</li>
+        # <li>ruleId ：规则id ；</li>
+        # <li>sipCountryCode ：ip所在国家 ；</li>
+        # <li>attackIp ：攻击ip ；</li>
+        # <li>oriDomain ：被攻击的子域名 ；</li>
+        # <li>eventId ：事件id ；</li>
+        # <li>ua ：用户代理 ；</li>
+        # <li>requestMethod ：请求方法 ；</li>
+        # <li>uri ：统一资源标识符 。</li>
         # @type QueryCondition: Array
 
         attr_accessor :StartTime, :EndTime, :PageSize, :PageNo, :ZoneIds, :Domains, :QueryCondition
@@ -5846,11 +5951,13 @@ module TencentCloud
 
       # DescribeWebManagedRulesLog返回参数结构体
       class DescribeWebManagedRulesLogResponse < TencentCloud::Common::AbstractModel
-        # @param Data: web攻击日志data
+        # @param Data: web攻击日志数据内容。
         # @type Data: :class:`Tencentcloud::Teo.v20220106.models.WebLogData`
-        # @param Status: 状态，1:失败，0:失败
+        # @param Status: 请求响应状态，取值有：
+        # <li>1 ：失败 ；</li>
+        # <li>0 ：成功 。</li>
         # @type Status: Integer
-        # @param Msg: 返回信息
+        # @param Msg: 请求响应信息。
         # @type Msg: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -5877,30 +5984,42 @@ module TencentCloud
 
       # DescribeWebManagedRulesTopData请求参数结构体
       class DescribeWebManagedRulesTopDataRequest < TencentCloud::Common::AbstractModel
-        # @param StartTime: 开始时间
+        # @param StartTime: 开始时间。
         # @type StartTime: String
-        # @param EndTime: 结束时间
+        # @param EndTime: 结束时间。
         # @type EndTime: String
-        # @param MetricName: 过滤指标
+        # @param MetricName: 统计指标列表，取值有：
+        # <li>waf_requestNum_url ：url请求数排行 ；</li>
+        # <li>waf_requestNum_cip：客户端ip请求数排行 ；</li>
+        # <li>waf_cipRequestNum_region ：客户端区域请求数排行 。</li>
         # @type MetricName: String
-        # @param Limit: 查询前多少名,传值为0 全量
+        # @param Limit: 查询前多少个，传值为0返回全量。
         # @type Limit: Integer
-        # @param ZoneIds: 站点集合
+        # @param ZoneIds: 站点id列表，不填默认选择全部站点。
         # @type ZoneIds: Array
-        # @param PolicyIds: ddos策略组id 集合
+        # @param PolicyIds: 该字段已废弃，请勿传。
         # @type PolicyIds: Array
-        # @param Port: 端口号
+        # @param Port: 该字段已废弃，请勿传。
         # @type Port: Integer
-        # @param ProtocolType: 协议类型,tcp,udp,all
+        # @param ProtocolType: 该字段已废弃，请勿传。
         # @type ProtocolType: String
-        # @param AttackType: 攻击类型,flood,icmpFlood......,all
+        # @param AttackType: 该字段已废弃，请勿传。
         # @type AttackType: String
-        # @param Domains: 域名集合
+        # @param Domains: 域名列表，不填默认选择全部子域名。
         # @type Domains: Array
+        # @param Interval: 查询时间粒度，取值有：
+        # <li>min ：1分钟 ；</li>
+        # <li>5min ：5分钟 ；</li>
+        # <li>hour ：1小时 ；</li>
+        # <li>day ：1天 。</li>
+        # @type Interval: String
+        # @param QueryCondition: 筛选条件，取值有：
+        # <li>action ：执行动作 。</li>
+        # @type QueryCondition: Array
 
-        attr_accessor :StartTime, :EndTime, :MetricName, :Limit, :ZoneIds, :PolicyIds, :Port, :ProtocolType, :AttackType, :Domains
+        attr_accessor :StartTime, :EndTime, :MetricName, :Limit, :ZoneIds, :PolicyIds, :Port, :ProtocolType, :AttackType, :Domains, :Interval, :QueryCondition
         
-        def initialize(starttime=nil, endtime=nil, metricname=nil, limit=nil, zoneids=nil, policyids=nil, port=nil, protocoltype=nil, attacktype=nil, domains=nil)
+        def initialize(starttime=nil, endtime=nil, metricname=nil, limit=nil, zoneids=nil, policyids=nil, port=nil, protocoltype=nil, attacktype=nil, domains=nil, interval=nil, querycondition=nil)
           @StartTime = starttime
           @EndTime = endtime
           @MetricName = metricname
@@ -5911,6 +6030,8 @@ module TencentCloud
           @ProtocolType = protocoltype
           @AttackType = attacktype
           @Domains = domains
+          @Interval = interval
+          @QueryCondition = querycondition
         end
 
         def deserialize(params)
@@ -5924,16 +6045,27 @@ module TencentCloud
           @ProtocolType = params['ProtocolType']
           @AttackType = params['AttackType']
           @Domains = params['Domains']
+          @Interval = params['Interval']
+          unless params['QueryCondition'].nil?
+            @QueryCondition = []
+            params['QueryCondition'].each do |i|
+              querycondition_tmp = QueryCondition.new
+              querycondition_tmp.deserialize(i)
+              @QueryCondition << querycondition_tmp
+            end
+          end
         end
       end
 
       # DescribeWebManagedRulesTopData返回参数结构体
       class DescribeWebManagedRulesTopDataResponse < TencentCloud::Common::AbstractModel
-        # @param Data: topn数据
+        # @param Data: top数据内容。
         # @type Data: Array
-        # @param Status: 状态，1:失败，0:成功
+        # @param Status: 请求响应状态，取值有：
+        # <li>1 ：失败 ；</li>
+        # <li>0 ：成功 。</li>
         # @type Status: Integer
-        # @param Msg: 返回消息
+        # @param Msg: 请求响应消息。
         # @type Msg: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -6031,40 +6163,35 @@ module TencentCloud
 
       # DescribeWebProtectionData请求参数结构体
       class DescribeWebProtectionDataRequest < TencentCloud::Common::AbstractModel
-        # @param StartTime: 开始时间
+        # @param StartTime: 开始时间，RFC3339格式。
         # @type StartTime: String
-        # @param EndTime: 结束时间
+        # @param EndTime: 结束时间，RFC3339格式。
         # @type EndTime: String
-        # @param MetricNames: 统计指标列表
+        # @param MetricNames: 统计指标列表，取值有：
+        # <li>ccRate_interceptNum ：速率限制规则限制次数 ；</li>
+        # <li>ccAcl_interceptNum ：自定义规则拦截次数 。</li>
         # @type MetricNames: Array
-        # @param ZoneIds: 站点id列表
+        # @param ZoneIds: 站点id列表，不填默认选择全部站点。
         # @type ZoneIds: Array
-        # @param Domains: 子域名列表
+        # @param Domains: 子域名列表，不填默认选择全部子域名。
         # @type Domains: Array
-        # @param ProtocolType: 协议类型
+        # @param ProtocolType: 该字段已废弃，请勿传。
         # @type ProtocolType: String
-        # @param AttackType: "webshell" : Webshell检测防护
-        # "oa" : 常见OA漏洞防护
-        # "xss" : XSS跨站脚本攻击防护
-        # "xxe" : XXE攻击防护
-        # "webscan" : 扫描器攻击漏洞防护
-        # "cms" : 常见CMS漏洞防护
-        # "upload" : 恶意文件上传攻击防护
-        # "sql" : SQL注入攻击防护
-        # "cmd_inject": 命令/代码注入攻击防护
-        # "osc" : 开源组件漏洞防护
-        # "file_read" : 任意文件读取
-        # "ldap" : LDAP注入攻击防护
-        # "other" : 其它漏洞防护
-
-        # "all":"所有"
+        # @param AttackType: 该字段已废弃，请勿传。
         # @type AttackType: String
-        # @param Interval: 查询时间粒度，可选{min,5min,hour,day}
+        # @param Interval: 查询时间粒度，取值有：
+        # <li>min ：1分钟 ；</li>
+        # <li>5min ：5分钟 ；</li>
+        # <li>hour ：1小时 ；</li>
+        # <li>day ：1天 。</li>
         # @type Interval: String
+        # @param QueryCondition: 筛选条件，取值有：
+        # <li>action ：执行动作 。</li>
+        # @type QueryCondition: Array
 
-        attr_accessor :StartTime, :EndTime, :MetricNames, :ZoneIds, :Domains, :ProtocolType, :AttackType, :Interval
+        attr_accessor :StartTime, :EndTime, :MetricNames, :ZoneIds, :Domains, :ProtocolType, :AttackType, :Interval, :QueryCondition
         
-        def initialize(starttime=nil, endtime=nil, metricnames=nil, zoneids=nil, domains=nil, protocoltype=nil, attacktype=nil, interval=nil)
+        def initialize(starttime=nil, endtime=nil, metricnames=nil, zoneids=nil, domains=nil, protocoltype=nil, attacktype=nil, interval=nil, querycondition=nil)
           @StartTime = starttime
           @EndTime = endtime
           @MetricNames = metricnames
@@ -6073,6 +6200,7 @@ module TencentCloud
           @ProtocolType = protocoltype
           @AttackType = attacktype
           @Interval = interval
+          @QueryCondition = querycondition
         end
 
         def deserialize(params)
@@ -6084,19 +6212,33 @@ module TencentCloud
           @ProtocolType = params['ProtocolType']
           @AttackType = params['AttackType']
           @Interval = params['Interval']
+          unless params['QueryCondition'].nil?
+            @QueryCondition = []
+            params['QueryCondition'].each do |i|
+              querycondition_tmp = QueryCondition.new
+              querycondition_tmp.deserialize(i)
+              @QueryCondition << querycondition_tmp
+            end
+          end
         end
       end
 
       # DescribeWebProtectionData返回参数结构体
       class DescribeWebProtectionDataResponse < TencentCloud::Common::AbstractModel
-        # @param Data: 数据详情
+        # @param Data: 数据详情。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Data: Array
-        # @param Status: 状态，1:失败，0:成功
+        # @param Status: 请求响应状态，取值有：
+        # <li>1 ：失败 ；</li>
+        # <li>0 ：成功 。</li>
         # @type Status: Integer
-        # @param Msg: 消息
+        # @param Msg: 请求响应消息。
         # @type Msg: String
-        # @param Interval: 查询时间粒度，可选{min,5min,hour,day}
+        # @param Interval: 查询时间粒度，取值有：
+        # <li>min ：1分钟 ；</li>
+        # <li>5min ：5分钟 ；</li>
+        # <li>hour ：1小时 ；</li>
+        # <li>day ：1天 。</li>
         # @type Interval: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -6129,24 +6271,42 @@ module TencentCloud
 
       # DescribeWebProtectionLog请求参数结构体
       class DescribeWebProtectionLogRequest < TencentCloud::Common::AbstractModel
-        # @param StartTime: 起始时间
+        # @param StartTime: 起始时间。
         # @type StartTime: String
-        # @param EndTime: 结束时间
+        # @param EndTime: 结束时间。
         # @type EndTime: String
-        # @param PageSize: 每页条数
+        # @param PageSize: 分页拉取的最大返回结果数。最大值：1000。
         # @type PageSize: Integer
-        # @param PageNo: 当前页
+        # @param PageNo: 分页拉取的起始页号。最小值：1。
         # @type PageNo: Integer
-        # @param ZoneIds: 站点集合
+        # @param ZoneIds: 站点集合，不填默认查询所有站点。
         # @type ZoneIds: Array
-        # @param Domains: 域名集合
+        # @param Domains: 域名集合，不填默认查询所有域名。
         # @type Domains: Array
-        # @param QueryCondition: 查询条件
+        # @param QueryCondition: 筛选条件。
+        # 限速规则日志中取值有：
+        # <li>action ：执行动作（处置方式）；</li>
+        # <li>ruleId ：规则id ；</li>
+        # <li>oriDomain ：被攻击的子域名 ；</li>
+        # <li>attackIp ：攻击ip 。</li>
+        # 自定义规则日志中取值有：
+        # <li>action ：执行动作（处置方式）；</li>
+        # <li>ruleId ：规则id ；</li>
+        # <li>oriDomain ：被攻击的子域名 ；</li>
+        # <li>attackIp ：攻击ip ；</li>
+        # <li>eventId ：事件id ；</li>
+        # <li>ua ：用户代理 ；</li>
+        # <li>requestMethod ：请求方法 ；</li>
+        # <li>uri ：统一资源标识符 。</li>
         # @type QueryCondition: Array
+        # @param EntityType: 日志类型，取值有：
+        # <li>rate ：限速日志 ；</li>
+        # <li>acl ：自定义规则日志 。</li>不填默认为rate。
+        # @type EntityType: String
 
-        attr_accessor :StartTime, :EndTime, :PageSize, :PageNo, :ZoneIds, :Domains, :QueryCondition
+        attr_accessor :StartTime, :EndTime, :PageSize, :PageNo, :ZoneIds, :Domains, :QueryCondition, :EntityType
         
-        def initialize(starttime=nil, endtime=nil, pagesize=nil, pageno=nil, zoneids=nil, domains=nil, querycondition=nil)
+        def initialize(starttime=nil, endtime=nil, pagesize=nil, pageno=nil, zoneids=nil, domains=nil, querycondition=nil, entitytype=nil)
           @StartTime = starttime
           @EndTime = endtime
           @PageSize = pagesize
@@ -6154,6 +6314,7 @@ module TencentCloud
           @ZoneIds = zoneids
           @Domains = domains
           @QueryCondition = querycondition
+          @EntityType = entitytype
         end
 
         def deserialize(params)
@@ -6171,16 +6332,19 @@ module TencentCloud
               @QueryCondition << querycondition_tmp
             end
           end
+          @EntityType = params['EntityType']
         end
       end
 
       # DescribeWebProtectionLog返回参数结构体
       class DescribeWebProtectionLogResponse < TencentCloud::Common::AbstractModel
-        # @param Data: 限速拦截Data
+        # @param Data: 限速拦截数据内容。
         # @type Data: :class:`Tencentcloud::Teo.v20220106.models.CCLogData`
-        # @param Status: 状态，1：失败，0:成功
+        # @param Status: 请求响应状态，取值有：
+        # <li>1 ：失败 ；</li>
+        # <li>0 ：成功 。</li>
         # @type Status: Integer
-        # @param Msg: 返回信息
+        # @param Msg: 请求响应信息。
         # @type Msg: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -9424,10 +9588,10 @@ module TencentCloud
 
       # 安全数据Entry返回值
       class SecEntry < TencentCloud::Common::AbstractModel
-        # @param Key: Entry的Key
+        # @param Key: 查询维度值。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Key: String
-        # @param Value: Entry的Value
+        # @param Value: 查询维度下详细数据。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Value: Array
 
@@ -9453,19 +9617,19 @@ module TencentCloud
 
       # 安全数据Entry对应的值
       class SecEntryValue < TencentCloud::Common::AbstractModel
-        # @param Metric: 指标名称
+        # @param Metric: 指标名称。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Metric: String
-        # @param Detail: 指标数据明细
+        # @param Detail: 时序数据详情。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Detail: Array
-        # @param Max: 最大值
+        # @param Max: 最大值。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Max: Integer
-        # @param Avg: 平均值
+        # @param Avg: 平均值。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Avg: Float
-        # @param Sum: 数据总和
+        # @param Sum: 数据总和。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Sum: Float
 
@@ -9492,6 +9656,54 @@ module TencentCloud
           @Max = params['Max']
           @Avg = params['Avg']
           @Sum = params['Sum']
+        end
+      end
+
+      # 安全规则（cc/waf/bot）相关信息
+      class SecRuleRelatedInfo < TencentCloud::Common::AbstractModel
+        # @param RuleId: 规则ID列表（99999为无效id）。
+        # @type RuleId: Integer
+        # @param Action: 执行动作（处置方式），取值有：
+        # <li>trans ：通过 ；</li>
+        # <li>alg ：算法挑战 ；</li>
+        # <li>drop ：丢弃 ；</li>
+        # <li>ban ：封禁源ip ；</li>
+        # <li>redirect ：重定向 ；</li>
+        # <li>page ：返回指定页面 ；</li>
+        # <li>monitor ：观察 。</li>
+        # @type Action: String
+        # @param RiskLevel: 风险等级（waf日志中独有），取值有：
+        # <li>high risk ：高危 ；</li>
+        # <li>middle risk ：中危 ；</li>
+        # <li>low risk ：低危 ；</li>
+        # <li>unkonw ：未知 。</li>
+        # @type RiskLevel: String
+        # @param RuleLevel: 规则等级，取值有：
+        # <li>normal  ：正常 。</li>
+        # @type RuleLevel: String
+        # @param Description: 规则描述。
+        # @type Description: String
+        # @param RuleTypeName: 规则类型名称。
+        # @type RuleTypeName: String
+
+        attr_accessor :RuleId, :Action, :RiskLevel, :RuleLevel, :Description, :RuleTypeName
+        
+        def initialize(ruleid=nil, action=nil, risklevel=nil, rulelevel=nil, description=nil, ruletypename=nil)
+          @RuleId = ruleid
+          @Action = action
+          @RiskLevel = risklevel
+          @RuleLevel = rulelevel
+          @Description = description
+          @RuleTypeName = ruletypename
+        end
+
+        def deserialize(params)
+          @RuleId = params['RuleId']
+          @Action = params['Action']
+          @RiskLevel = params['RiskLevel']
+          @RuleLevel = params['RuleLevel']
+          @Description = params['Description']
+          @RuleTypeName = params['RuleTypeName']
         end
       end
 
@@ -9813,10 +10025,10 @@ module TencentCloud
 
       # 统计曲线数据项
       class TimingDataItem < TencentCloud::Common::AbstractModel
-        # @param Timestamp: 秒级时间戳
+        # @param Timestamp: 返回数据对应时间点，采用unix秒级时间戳
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Timestamp: Integer
-        # @param Value: 数值
+        # @param Value: 具体数值
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Value: Integer
 
@@ -9959,9 +10171,9 @@ module TencentCloud
 
       # TopN entry
       class TopNEntry < TencentCloud::Common::AbstractModel
-        # @param Key: Entry key
+        # @param Key: top查询维度值。
         # @type Key: String
-        # @param Value: TopN数据
+        # @param Value: 查询具体数据。
         # @type Value: Array
 
         attr_accessor :Key, :Value
@@ -9986,9 +10198,9 @@ module TencentCloud
 
       # TopN数据Entry
       class TopNEntryValue < TencentCloud::Common::AbstractModel
-        # @param Name: Entry的name
+        # @param Name: 排序实体名。
         # @type Name: String
-        # @param Count: 数量
+        # @param Count: 排序实体数量。
         # @type Count: Integer
 
         attr_accessor :Name, :Count
@@ -10201,20 +10413,16 @@ module TencentCloud
 
       # web攻击日志Data
       class WebLogData < TencentCloud::Common::AbstractModel
-        # @param List: 数据
+        # @param List: 分组数据。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type List: Array
-        # @param PageNo: 当前页
-        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @param PageNo: 分页拉取的起始页号。最小值：1。
         # @type PageNo: Integer
-        # @param PageSize: 每页展示条数
-        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @param PageSize: 分页拉取的最大返回结果数。最大值：1000。
         # @type PageSize: Integer
-        # @param Pages: 总页数
-        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @param Pages: 总页数。
         # @type Pages: Integer
-        # @param TotalSize: 总条数
-        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @param TotalSize: 总条数。
         # @type TotalSize: Integer
 
         attr_accessor :List, :PageNo, :PageSize, :Pages, :TotalSize
@@ -10245,55 +10453,51 @@ module TencentCloud
 
       # web攻击日志
       class WebLogs < TencentCloud::Common::AbstractModel
-        # @param AttackContent: 攻击内容
+        # @param AttackContent: 该字段已废弃。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AttackContent: String
-        # @param AttackIp: 攻击IP
-        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @param AttackIp: 攻击源（客户端）Ip。
         # @type AttackIp: String
-        # @param AttackType: 攻击类型
+        # @param AttackType: 该字段已废弃。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AttackType: String
-        # @param Domain: 域名
-        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @param Domain: 受攻击子域名。
         # @type Domain: String
-        # @param Msuuid: uuid
+        # @param Msuuid: 该字段已废弃。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Msuuid: String
-        # @param RequestMethod: 请求方法
+        # @param RequestMethod: 该字段已废弃。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RequestMethod: String
-        # @param RequestUri: 请求URI
-        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @param RequestUri: URI
         # @type RequestUri: String
-        # @param RiskLevel: 风险等级
+        # @param RiskLevel: 该字段已废弃。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RiskLevel: String
-        # @param RuleId: 规则ID
+        # @param RuleId: 该字段已废弃。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RuleId: Integer
-        # @param SipCountryCode: IP所在国家
-        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @param SipCountryCode: IP所在国家iso-3166中alpha-2编码，编码信息请参考[ISO-3166](https://git.woa.com/edgeone/iso-3166/blob/master/all/all.json)
         # @type SipCountryCode: String
-        # @param EventId: 事件id
-        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @param EventId: 请求（事件）ID。
         # @type EventId: String
-        # @param DisposalMethod: 处置方式
+        # @param DisposalMethod: 该字段已废弃。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DisposalMethod: String
-        # @param HttpLog: http_log
-        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @param HttpLog: http log。
         # @type HttpLog: String
-        # @param Ua: user agent
+        # @param Ua: 该字段已废弃。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Ua: String
-        # @param AttackTime: 攻击时间，为保持统一，原参数time更名为AttackTime
-        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @param AttackTime: 攻击时间，采用unix秒级时间戳。
         # @type AttackTime: Integer
+        # @param RuleDetailList: 规则相关信息列表。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RuleDetailList: Array
 
-        attr_accessor :AttackContent, :AttackIp, :AttackType, :Domain, :Msuuid, :RequestMethod, :RequestUri, :RiskLevel, :RuleId, :SipCountryCode, :EventId, :DisposalMethod, :HttpLog, :Ua, :AttackTime
+        attr_accessor :AttackContent, :AttackIp, :AttackType, :Domain, :Msuuid, :RequestMethod, :RequestUri, :RiskLevel, :RuleId, :SipCountryCode, :EventId, :DisposalMethod, :HttpLog, :Ua, :AttackTime, :RuleDetailList
         
-        def initialize(attackcontent=nil, attackip=nil, attacktype=nil, domain=nil, msuuid=nil, requestmethod=nil, requesturi=nil, risklevel=nil, ruleid=nil, sipcountrycode=nil, eventid=nil, disposalmethod=nil, httplog=nil, ua=nil, attacktime=nil)
+        def initialize(attackcontent=nil, attackip=nil, attacktype=nil, domain=nil, msuuid=nil, requestmethod=nil, requesturi=nil, risklevel=nil, ruleid=nil, sipcountrycode=nil, eventid=nil, disposalmethod=nil, httplog=nil, ua=nil, attacktime=nil, ruledetaillist=nil)
           @AttackContent = attackcontent
           @AttackIp = attackip
           @AttackType = attacktype
@@ -10309,6 +10513,7 @@ module TencentCloud
           @HttpLog = httplog
           @Ua = ua
           @AttackTime = attacktime
+          @RuleDetailList = ruledetaillist
         end
 
         def deserialize(params)
@@ -10327,6 +10532,14 @@ module TencentCloud
           @HttpLog = params['HttpLog']
           @Ua = params['Ua']
           @AttackTime = params['AttackTime']
+          unless params['RuleDetailList'].nil?
+            @RuleDetailList = []
+            params['RuleDetailList'].each do |i|
+              secrulerelatedinfo_tmp = SecRuleRelatedInfo.new
+              secrulerelatedinfo_tmp.deserialize(i)
+              @RuleDetailList << secrulerelatedinfo_tmp
+            end
+          end
         end
       end
 

@@ -7740,6 +7740,64 @@ module TencentCloud
         end
       end
 
+      # DescribeClientUploadAccelerationUsageData请求参数结构体
+      class DescribeClientUploadAccelerationUsageDataRequest < TencentCloud::Common::AbstractModel
+        # @param StartTime: 起始日期。使用 [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#52)。
+        # @type StartTime: String
+        # @param EndTime: 结束日期，需大于等于起始日期。使用 [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#52)。
+        # @type EndTime: String
+        # @param SubAppId: <b>点播 [子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。</b>
+        # @type SubAppId: Integer
+        # @param Type: 客户端上传加速类型，取值有：
+        # <li> AccelerationWithHTTP：HTTP 传输方式的上传加速。</li>
+        # <li> AccelerationWithQUIC：QUIC 传输方式的上传加速。</li>
+        # 默认查询所有加速类型的用量 。
+        # @type Type: String
+
+        attr_accessor :StartTime, :EndTime, :SubAppId, :Type
+        
+        def initialize(starttime=nil, endtime=nil, subappid=nil, type=nil)
+          @StartTime = starttime
+          @EndTime = endtime
+          @SubAppId = subappid
+          @Type = type
+        end
+
+        def deserialize(params)
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @SubAppId = params['SubAppId']
+          @Type = params['Type']
+        end
+      end
+
+      # DescribeClientUploadAccelerationUsageData返回参数结构体
+      class DescribeClientUploadAccelerationUsageDataResponse < TencentCloud::Common::AbstractModel
+        # @param ClientUploadAccelerationUsageDataSet: 客户端上传加速统计数据。
+        # @type ClientUploadAccelerationUsageDataSet: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ClientUploadAccelerationUsageDataSet, :RequestId
+        
+        def initialize(clientuploadaccelerationusagedataset=nil, requestid=nil)
+          @ClientUploadAccelerationUsageDataSet = clientuploadaccelerationusagedataset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['ClientUploadAccelerationUsageDataSet'].nil?
+            @ClientUploadAccelerationUsageDataSet = []
+            params['ClientUploadAccelerationUsageDataSet'].each do |i|
+              statdataitem_tmp = StatDataItem.new
+              statdataitem_tmp.deserialize(i)
+              @ClientUploadAccelerationUsageDataSet << statdataitem_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeContentReviewTemplates请求参数结构体
       class DescribeContentReviewTemplatesRequest < TencentCloud::Common::AbstractModel
         # @param SubAppId: <b>点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。</b>
@@ -10357,6 +10415,7 @@ module TencentCloud
         # <li>WechatPublishComplete：微信发布完成；</li>
         # <li>ComposeMediaComplete：制作媒体文件完成；</li>
         # <li>WechatMiniProgramPublishComplete：微信小程序发布完成。</li>
+        # <li>FastClipMediaComplete：快速剪辑完成。</li>
         # <b>兼容 2017 版的事件类型：</b>
         # <li>TranscodeComplete：视频转码完成；</li>
         # <li>ConcatComplete：视频拼接完成；</li>
@@ -19508,31 +19567,31 @@ module TencentCloud
         # @type WatermarkSet: Array
         # @param TraceWatermark: 溯源水印。
         # @type TraceWatermark: :class:`Tencentcloud::Vod.v20180717.models.TraceWatermarkInput`
-        # @param HeadTailSet: 片头片尾列表，支持多片头片尾，最大可支持 10 个。
-        # @type HeadTailSet: Array
         # @param MosaicSet: 马赛克列表，最大可支持 10 张。
         # @type MosaicSet: Array
-        # @param EndTimeOffset: 转码后视频的终止时间偏移，单位：秒。
-        # <li>不填或填0，表示转码后的视频持续到原始视频的末尾终止；</li>
-        # <li>当数值大于0时（假设为 n），表示转码后的视频持续到原始视频第 n 秒时终止；</li>
-        # <li>当数值小于0时（假设为 -n），表示转码后的视频持续到原始视频结束 n 秒前终止。</li>
-        # @type EndTimeOffset: Float
+        # @param HeadTailSet: 片头片尾列表，支持多片头片尾，最大可支持 10 个。
+        # @type HeadTailSet: Array
         # @param StartTimeOffset: 转码后的视频的起始时间偏移，单位：秒。
         # <li>不填或填0，表示转码后的视频从原始视频的起始位置开始；</li>
         # <li>当数值大于0时（假设为 n），表示转码后的视频从原始视频的第 n 秒位置开始；</li>
         # <li>当数值小于0时（假设为 -n），表示转码后的视频从原始视频结束 n 秒前的位置开始。</li>
         # @type StartTimeOffset: Float
+        # @param EndTimeOffset: 转码后视频的终止时间偏移，单位：秒。
+        # <li>不填或填0，表示转码后的视频持续到原始视频的末尾终止；</li>
+        # <li>当数值大于0时（假设为 n），表示转码后的视频持续到原始视频第 n 秒时终止；</li>
+        # <li>当数值小于0时（假设为 -n），表示转码后的视频持续到原始视频结束 n 秒前终止。</li>
+        # @type EndTimeOffset: Float
 
-        attr_accessor :Definition, :WatermarkSet, :TraceWatermark, :HeadTailSet, :MosaicSet, :EndTimeOffset, :StartTimeOffset
+        attr_accessor :Definition, :WatermarkSet, :TraceWatermark, :MosaicSet, :HeadTailSet, :StartTimeOffset, :EndTimeOffset
         
-        def initialize(definition=nil, watermarkset=nil, tracewatermark=nil, headtailset=nil, mosaicset=nil, endtimeoffset=nil, starttimeoffset=nil)
+        def initialize(definition=nil, watermarkset=nil, tracewatermark=nil, mosaicset=nil, headtailset=nil, starttimeoffset=nil, endtimeoffset=nil)
           @Definition = definition
           @WatermarkSet = watermarkset
           @TraceWatermark = tracewatermark
-          @HeadTailSet = headtailset
           @MosaicSet = mosaicset
-          @EndTimeOffset = endtimeoffset
+          @HeadTailSet = headtailset
           @StartTimeOffset = starttimeoffset
+          @EndTimeOffset = endtimeoffset
         end
 
         def deserialize(params)
@@ -19549,14 +19608,6 @@ module TencentCloud
             @TraceWatermark = TraceWatermarkInput.new
             @TraceWatermark.deserialize(params['TraceWatermark'])
           end
-          unless params['HeadTailSet'].nil?
-            @HeadTailSet = []
-            params['HeadTailSet'].each do |i|
-              headtailtaskinput_tmp = HeadTailTaskInput.new
-              headtailtaskinput_tmp.deserialize(i)
-              @HeadTailSet << headtailtaskinput_tmp
-            end
-          end
           unless params['MosaicSet'].nil?
             @MosaicSet = []
             params['MosaicSet'].each do |i|
@@ -19565,8 +19616,16 @@ module TencentCloud
               @MosaicSet << mosaicinput_tmp
             end
           end
-          @EndTimeOffset = params['EndTimeOffset']
+          unless params['HeadTailSet'].nil?
+            @HeadTailSet = []
+            params['HeadTailSet'].each do |i|
+              headtailtaskinput_tmp = HeadTailTaskInput.new
+              headtailtaskinput_tmp.deserialize(i)
+              @HeadTailSet << headtailtaskinput_tmp
+            end
+          end
           @StartTimeOffset = params['StartTimeOffset']
+          @EndTimeOffset = params['EndTimeOffset']
         end
       end
 

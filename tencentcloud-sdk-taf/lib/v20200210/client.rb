@@ -77,32 +77,6 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 该服务已不再对外提供能力
-
-        # 筛选敏感易骚扰人群
-
-        # @param request: Request instance for RecognizeEffectiveFlow.
-        # @type request: :class:`Tencentcloud::taf::V20200210::RecognizeEffectiveFlowRequest`
-        # @rtype: :class:`Tencentcloud::taf::V20200210::RecognizeEffectiveFlowResponse`
-        def RecognizeEffectiveFlow(request)
-          body = send_request('RecognizeEffectiveFlow', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = RecognizeEffectiveFlowResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
         # 流量反欺诈-流量验准高级版
 
         # @param request: Request instance for RecognizePreciseTargetAudience.

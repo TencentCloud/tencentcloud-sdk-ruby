@@ -586,7 +586,7 @@ module TencentCloud
         # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
         # @param FlowName: 签署流程名称,最大长度200个字符
         # @type FlowName: String
-        # @param Approvers: 签署参与者信息
+        # @param Approvers: 签署参与者信息，最大限制50方
         # @type Approvers: Array
         # @param FileIds: 签署pdf文件的资源编号列表，通过UploadFiles接口获取
         # @type FileIds: Array
@@ -612,12 +612,17 @@ module TencentCloud
         # @type Unordered: Boolean
         # @param CustomShowMap: 合同显示的页卡模板，说明：只支持{合同名称}, {发起方企业}, {发起方姓名}, {签署方N企业}, {签署方N姓名}，且N不能超过签署人的数量，N从1开始
         # @type CustomShowMap: String
+        # @param NeedSignReview: 发起方企业的签署人进行签署操作是否需要企业内部审批。
+        # 若设置为true,审核结果需通过接口 CreateFlowSignReview 通知电子签，审核通过后，发起方企业签署人方可进行签署操作，否则会阻塞其签署操作。
+
+        # 注：企业可以通过此功能与企业内部的审批流程进行关联，支持手动、静默签署合同。
+        # @type NeedSignReview: Boolean
         # @param Agent: 应用号信息
         # @type Agent: :class:`Tencentcloud::Ess.v20201111.models.Agent`
 
-        attr_accessor :Operator, :FlowName, :Approvers, :FileIds, :FlowType, :Components, :CcInfos, :NeedPreview, :FlowDescription, :Deadline, :Unordered, :CustomShowMap, :Agent
+        attr_accessor :Operator, :FlowName, :Approvers, :FileIds, :FlowType, :Components, :CcInfos, :NeedPreview, :FlowDescription, :Deadline, :Unordered, :CustomShowMap, :NeedSignReview, :Agent
         
-        def initialize(operator=nil, flowname=nil, approvers=nil, fileids=nil, flowtype=nil, components=nil, ccinfos=nil, needpreview=nil, flowdescription=nil, deadline=nil, unordered=nil, customshowmap=nil, agent=nil)
+        def initialize(operator=nil, flowname=nil, approvers=nil, fileids=nil, flowtype=nil, components=nil, ccinfos=nil, needpreview=nil, flowdescription=nil, deadline=nil, unordered=nil, customshowmap=nil, needsignreview=nil, agent=nil)
           @Operator = operator
           @FlowName = flowname
           @Approvers = approvers
@@ -630,6 +635,7 @@ module TencentCloud
           @Deadline = deadline
           @Unordered = unordered
           @CustomShowMap = customshowmap
+          @NeedSignReview = needsignreview
           @Agent = agent
         end
 
@@ -670,6 +676,7 @@ module TencentCloud
           @Deadline = params['Deadline']
           @Unordered = params['Unordered']
           @CustomShowMap = params['CustomShowMap']
+          @NeedSignReview = params['NeedSignReview']
           unless params['Agent'].nil?
             @Agent = Agent.new
             @Agent.deserialize(params['Agent'])
@@ -708,7 +715,7 @@ module TencentCloud
         # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
         # @param FlowName: 签署流程名称,最大长度200个字符
         # @type FlowName: String
-        # @param Approvers: 签署流程参与者信息
+        # @param Approvers: 签署流程参与者信息，最大限制50方
         # @type Approvers: Array
         # @param FlowType: 签署流程的类型(如销售合同/入职合同等)，最大长度200个字符
         # @type FlowType: String
@@ -730,14 +737,19 @@ module TencentCloud
         # @type Unordered: Boolean
         # @param CustomShowMap: 合同显示的页卡模板，说明：只支持{合同名称}, {发起方企业}, {发起方姓名}, {签署方N企业}, {签署方N姓名}，且N不能超过签署人的数量，N从1开始
         # @type CustomShowMap: String
+        # @param NeedSignReview: 发起方企业的签署人进行签署操作是否需要企业内部审批。
+        # 若设置为true,审核结果需通过接口 CreateFlowSignReview 通知电子签，审核通过后，发起方企业签署人方可进行签署操作，否则会阻塞其签署操作。
+
+        # 注：企业可以通过此功能与企业内部的审批流程进行关联，支持手动、静默签署合同。
+        # @type NeedSignReview: Boolean
         # @param RelatedFlowId: 暂未开放
         # @type RelatedFlowId: String
         # @param Agent: 应用相关信息
         # @type Agent: :class:`Tencentcloud::Ess.v20201111.models.Agent`
 
-        attr_accessor :Operator, :FlowName, :Approvers, :FlowType, :ClientToken, :CallbackUrl, :DeadLine, :UserData, :FlowDescription, :Unordered, :CustomShowMap, :RelatedFlowId, :Agent
+        attr_accessor :Operator, :FlowName, :Approvers, :FlowType, :ClientToken, :CallbackUrl, :DeadLine, :UserData, :FlowDescription, :Unordered, :CustomShowMap, :NeedSignReview, :RelatedFlowId, :Agent
         
-        def initialize(operator=nil, flowname=nil, approvers=nil, flowtype=nil, clienttoken=nil, callbackurl=nil, deadline=nil, userdata=nil, flowdescription=nil, unordered=nil, customshowmap=nil, relatedflowid=nil, agent=nil)
+        def initialize(operator=nil, flowname=nil, approvers=nil, flowtype=nil, clienttoken=nil, callbackurl=nil, deadline=nil, userdata=nil, flowdescription=nil, unordered=nil, customshowmap=nil, needsignreview=nil, relatedflowid=nil, agent=nil)
           @Operator = operator
           @FlowName = flowname
           @Approvers = approvers
@@ -749,6 +761,7 @@ module TencentCloud
           @FlowDescription = flowdescription
           @Unordered = unordered
           @CustomShowMap = customshowmap
+          @NeedSignReview = needsignreview
           @RelatedFlowId = relatedflowid
           @Agent = agent
         end
@@ -775,6 +788,7 @@ module TencentCloud
           @FlowDescription = params['FlowDescription']
           @Unordered = params['Unordered']
           @CustomShowMap = params['CustomShowMap']
+          @NeedSignReview = params['NeedSignReview']
           @RelatedFlowId = params['RelatedFlowId']
           unless params['Agent'].nil?
             @Agent = Agent.new

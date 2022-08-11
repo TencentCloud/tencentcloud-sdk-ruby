@@ -287,7 +287,7 @@ module TencentCloud
 
       # ChannelCreateFlowByFiles请求参数结构体
       class ChannelCreateFlowByFilesRequest < TencentCloud::Common::AbstractModel
-        # @param Agent: 渠道应用相关信息
+        # @param Agent: 渠道应用相关信息。 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 和 Agent.ProxyAppId 均必填。
         # @type Agent: :class:`Tencentcloud::Essbasic.v20210526.models.Agent`
         # @param FlowName: 签署流程名称，长度不超过200个字符
         # @type FlowName: String
@@ -311,12 +311,14 @@ module TencentCloud
         # @type CustomShowMap: String
         # @param CustomerData: 渠道的业务信息，最大长度1000个字符。发起自动签署时，需设置对应自动签署场景，目前仅支持场景：处方单-E_PRESCRIPTION_AUTO_SIGN
         # @type CustomerData: String
+        # @param NeedSignReview: 发起方企业的签署人进行签署操作是否需要企业内部审批。 若设置为true,审核结果需通过接口 ChannelCreateFlowSignReview 通知电子签，审核通过后，发起方企业签署人方可进行签署操作，否则会阻塞其签署操作。  注：企业可以通过此功能与企业内部的审批流程进行关联，支持手动、静默签署合同。
+        # @type NeedSignReview: Boolean
         # @param Operator: 操作者的信息
         # @type Operator: :class:`Tencentcloud::Essbasic.v20210526.models.UserInfo`
 
-        attr_accessor :Agent, :FlowName, :FlowApprovers, :FileIds, :Components, :Deadline, :CallbackUrl, :Unordered, :FlowType, :FlowDescription, :CustomShowMap, :CustomerData, :Operator
+        attr_accessor :Agent, :FlowName, :FlowApprovers, :FileIds, :Components, :Deadline, :CallbackUrl, :Unordered, :FlowType, :FlowDescription, :CustomShowMap, :CustomerData, :NeedSignReview, :Operator
         
-        def initialize(agent=nil, flowname=nil, flowapprovers=nil, fileids=nil, components=nil, deadline=nil, callbackurl=nil, unordered=nil, flowtype=nil, flowdescription=nil, customshowmap=nil, customerdata=nil, operator=nil)
+        def initialize(agent=nil, flowname=nil, flowapprovers=nil, fileids=nil, components=nil, deadline=nil, callbackurl=nil, unordered=nil, flowtype=nil, flowdescription=nil, customshowmap=nil, customerdata=nil, needsignreview=nil, operator=nil)
           @Agent = agent
           @FlowName = flowname
           @FlowApprovers = flowapprovers
@@ -329,6 +331,7 @@ module TencentCloud
           @FlowDescription = flowdescription
           @CustomShowMap = customshowmap
           @CustomerData = customerdata
+          @NeedSignReview = needsignreview
           @Operator = operator
         end
 
@@ -362,6 +365,7 @@ module TencentCloud
           @FlowDescription = params['FlowDescription']
           @CustomShowMap = params['CustomShowMap']
           @CustomerData = params['CustomerData']
+          @NeedSignReview = params['NeedSignReview']
           unless params['Operator'].nil?
             @Operator = UserInfo.new
             @Operator.deserialize(params['Operator'])
@@ -1594,10 +1598,15 @@ module TencentCloud
         # @type CustomShowMap: String
         # @param CcInfos: 被抄送人的信息列表，抄送功能暂不开放
         # @type CcInfos: Array
+        # @param NeedSignReview: 发起方企业的签署人进行签署操作是否需要企业内部审批。
+        # 若设置为true,审核结果需通过接口 ChannelCreateFlowSignReview 通知电子签，审核通过后，发起方企业签署人方可进行签署操作，否则会阻塞其签署操作。
 
-        attr_accessor :FlowName, :Deadline, :TemplateId, :FlowApprovers, :FormFields, :CallbackUrl, :FlowType, :FlowDescription, :CustomerData, :CustomShowMap, :CcInfos
+        # 注：企业可以通过此功能与企业内部的审批流程进行关联，支持手动、静默签署合同。
+        # @type NeedSignReview: Boolean
+
+        attr_accessor :FlowName, :Deadline, :TemplateId, :FlowApprovers, :FormFields, :CallbackUrl, :FlowType, :FlowDescription, :CustomerData, :CustomShowMap, :CcInfos, :NeedSignReview
         
-        def initialize(flowname=nil, deadline=nil, templateid=nil, flowapprovers=nil, formfields=nil, callbackurl=nil, flowtype=nil, flowdescription=nil, customerdata=nil, customshowmap=nil, ccinfos=nil)
+        def initialize(flowname=nil, deadline=nil, templateid=nil, flowapprovers=nil, formfields=nil, callbackurl=nil, flowtype=nil, flowdescription=nil, customerdata=nil, customshowmap=nil, ccinfos=nil, needsignreview=nil)
           @FlowName = flowname
           @Deadline = deadline
           @TemplateId = templateid
@@ -1609,6 +1618,7 @@ module TencentCloud
           @CustomerData = customerdata
           @CustomShowMap = customshowmap
           @CcInfos = ccinfos
+          @NeedSignReview = needsignreview
         end
 
         def deserialize(params)
@@ -1644,6 +1654,7 @@ module TencentCloud
               @CcInfos << ccinfo_tmp
             end
           end
+          @NeedSignReview = params['NeedSignReview']
         end
       end
 
