@@ -752,6 +752,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 关闭应用弹性策略组合
+
+        # @param request: Request instance for DisableApplicationAutoscaler.
+        # @type request: :class:`Tencentcloud::tem::V20210701::DisableApplicationAutoscalerRequest`
+        # @rtype: :class:`Tencentcloud::tem::V20210701::DisableApplicationAutoscalerResponse`
+        def DisableApplicationAutoscaler(request)
+          body = send_request('DisableApplicationAutoscaler', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DisableApplicationAutoscalerResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 启用应用弹性策略组合
+
+        # @param request: Request instance for EnableApplicationAutoscaler.
+        # @type request: :class:`Tencentcloud::tem::V20210701::EnableApplicationAutoscalerRequest`
+        # @rtype: :class:`Tencentcloud::tem::V20210701::EnableApplicationAutoscalerResponse`
+        def EnableApplicationAutoscaler(request)
+          body = send_request('EnableApplicationAutoscaler', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = EnableApplicationAutoscalerResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 生成应用程序包预签名下载链接
 
         # @param request: Request instance for GenerateApplicationPackageDownloadUrl.

@@ -937,15 +937,18 @@ module TencentCloud
         # - ALPINE
         # - TENCENTOS
         # @type OsFlavour: String
-        # @param EnablePrometheusConf: 是否开启prometheus 业务指标监控
+        # @param EnablePrometheusConf: metrics业务指标监控配置
         # @type EnablePrometheusConf: :class:`Tencentcloud::Tem.v20210701.models.EnablePrometheusConf`
-        # @param EnableTracing: 1：开始apm采集（skywalking）；
+        # @param EnableTracing: 1：开始自动apm采集（skywalking）；
         # 0：关闭apm采集；
         # @type EnableTracing: Integer
+        # @param EnableMetrics: 1：开始自动metrics采集（open-telemetry）；
+        # 0：关闭metrics采集；
+        # @type EnableMetrics: Integer
 
-        attr_accessor :ApplicationId, :InitPodNum, :CpuSpec, :MemorySpec, :EnvironmentId, :ImgRepo, :VersionDesc, :JvmOpts, :EsInfo, :EnvConf, :LogConfs, :StorageConfs, :StorageMountConfs, :DeployMode, :DeployVersion, :PkgName, :JdkVersion, :SecurityGroupIds, :LogOutputConf, :SourceChannel, :Description, :ImageCommand, :ImageArgs, :UseRegistryDefaultConfig, :SettingConfs, :Service, :VersionId, :PostStart, :PreStop, :Liveness, :Readiness, :DeployStrategyConf, :HorizontalAutoscaler, :CronHorizontalAutoscaler, :LogEnable, :ConfEdited, :SpeedUp, :StartupProbe, :OsFlavour, :EnablePrometheusConf, :EnableTracing
+        attr_accessor :ApplicationId, :InitPodNum, :CpuSpec, :MemorySpec, :EnvironmentId, :ImgRepo, :VersionDesc, :JvmOpts, :EsInfo, :EnvConf, :LogConfs, :StorageConfs, :StorageMountConfs, :DeployMode, :DeployVersion, :PkgName, :JdkVersion, :SecurityGroupIds, :LogOutputConf, :SourceChannel, :Description, :ImageCommand, :ImageArgs, :UseRegistryDefaultConfig, :SettingConfs, :Service, :VersionId, :PostStart, :PreStop, :Liveness, :Readiness, :DeployStrategyConf, :HorizontalAutoscaler, :CronHorizontalAutoscaler, :LogEnable, :ConfEdited, :SpeedUp, :StartupProbe, :OsFlavour, :EnablePrometheusConf, :EnableTracing, :EnableMetrics
         
-        def initialize(applicationid=nil, initpodnum=nil, cpuspec=nil, memoryspec=nil, environmentid=nil, imgrepo=nil, versiondesc=nil, jvmopts=nil, esinfo=nil, envconf=nil, logconfs=nil, storageconfs=nil, storagemountconfs=nil, deploymode=nil, deployversion=nil, pkgname=nil, jdkversion=nil, securitygroupids=nil, logoutputconf=nil, sourcechannel=nil, description=nil, imagecommand=nil, imageargs=nil, useregistrydefaultconfig=nil, settingconfs=nil, service=nil, versionid=nil, poststart=nil, prestop=nil, liveness=nil, readiness=nil, deploystrategyconf=nil, horizontalautoscaler=nil, cronhorizontalautoscaler=nil, logenable=nil, confedited=nil, speedup=nil, startupprobe=nil, osflavour=nil, enableprometheusconf=nil, enabletracing=nil)
+        def initialize(applicationid=nil, initpodnum=nil, cpuspec=nil, memoryspec=nil, environmentid=nil, imgrepo=nil, versiondesc=nil, jvmopts=nil, esinfo=nil, envconf=nil, logconfs=nil, storageconfs=nil, storagemountconfs=nil, deploymode=nil, deployversion=nil, pkgname=nil, jdkversion=nil, securitygroupids=nil, logoutputconf=nil, sourcechannel=nil, description=nil, imagecommand=nil, imageargs=nil, useregistrydefaultconfig=nil, settingconfs=nil, service=nil, versionid=nil, poststart=nil, prestop=nil, liveness=nil, readiness=nil, deploystrategyconf=nil, horizontalautoscaler=nil, cronhorizontalautoscaler=nil, logenable=nil, confedited=nil, speedup=nil, startupprobe=nil, osflavour=nil, enableprometheusconf=nil, enabletracing=nil, enablemetrics=nil)
           @ApplicationId = applicationid
           @InitPodNum = initpodnum
           @CpuSpec = cpuspec
@@ -987,6 +990,7 @@ module TencentCloud
           @OsFlavour = osflavour
           @EnablePrometheusConf = enableprometheusconf
           @EnableTracing = enabletracing
+          @EnableMetrics = enablemetrics
         end
 
         def deserialize(params)
@@ -1097,6 +1101,7 @@ module TencentCloud
             @EnablePrometheusConf.deserialize(params['EnablePrometheusConf'])
           end
           @EnableTracing = params['EnableTracing']
+          @EnableMetrics = params['EnableMetrics']
         end
       end
 
@@ -2292,6 +2297,55 @@ module TencentCloud
         end
       end
 
+      # DisableApplicationAutoscaler请求参数结构体
+      class DisableApplicationAutoscalerRequest < TencentCloud::Common::AbstractModel
+        # @param ApplicationId: 服务id
+        # @type ApplicationId: String
+        # @param EnvironmentId: 环境ID
+        # @type EnvironmentId: String
+        # @param SourceChannel: 来源渠道
+        # @type SourceChannel: Integer
+        # @param AutoscalerId: 弹性伸缩策略ID
+        # @type AutoscalerId: String
+
+        attr_accessor :ApplicationId, :EnvironmentId, :SourceChannel, :AutoscalerId
+        
+        def initialize(applicationid=nil, environmentid=nil, sourcechannel=nil, autoscalerid=nil)
+          @ApplicationId = applicationid
+          @EnvironmentId = environmentid
+          @SourceChannel = sourcechannel
+          @AutoscalerId = autoscalerid
+        end
+
+        def deserialize(params)
+          @ApplicationId = params['ApplicationId']
+          @EnvironmentId = params['EnvironmentId']
+          @SourceChannel = params['SourceChannel']
+          @AutoscalerId = params['AutoscalerId']
+        end
+      end
+
+      # DisableApplicationAutoscaler返回参数结构体
+      class DisableApplicationAutoscalerResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 是否成功
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Result: Boolean
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+        
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Result = params['Result']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # eks service info
       class EksService < TencentCloud::Common::AbstractModel
         # @param Name: service name
@@ -2395,6 +2449,55 @@ module TencentCloud
           @EnableRegistryNextDeploy = params['EnableRegistryNextDeploy']
           @ApplicationId = params['ApplicationId']
           @AllIpDone = params['AllIpDone']
+        end
+      end
+
+      # EnableApplicationAutoscaler请求参数结构体
+      class EnableApplicationAutoscalerRequest < TencentCloud::Common::AbstractModel
+        # @param ApplicationId: 服务id
+        # @type ApplicationId: String
+        # @param EnvironmentId: 环境ID
+        # @type EnvironmentId: String
+        # @param SourceChannel: 来源渠道
+        # @type SourceChannel: Integer
+        # @param AutoscalerId: 弹性伸缩策略ID
+        # @type AutoscalerId: String
+
+        attr_accessor :ApplicationId, :EnvironmentId, :SourceChannel, :AutoscalerId
+        
+        def initialize(applicationid=nil, environmentid=nil, sourcechannel=nil, autoscalerid=nil)
+          @ApplicationId = applicationid
+          @EnvironmentId = environmentid
+          @SourceChannel = sourcechannel
+          @AutoscalerId = autoscalerid
+        end
+
+        def deserialize(params)
+          @ApplicationId = params['ApplicationId']
+          @EnvironmentId = params['EnvironmentId']
+          @SourceChannel = params['SourceChannel']
+          @AutoscalerId = params['AutoscalerId']
+        end
+      end
+
+      # EnableApplicationAutoscaler返回参数结构体
+      class EnableApplicationAutoscalerResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 是否成功
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Result: Boolean
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+        
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Result = params['Result']
+          @RequestId = params['RequestId']
         end
       end
 

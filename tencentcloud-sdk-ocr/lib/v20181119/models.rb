@@ -5538,17 +5538,21 @@ module TencentCloud
         # @type Name: String
         # @param Value: 识别出的字段名称对应的值，也就是字段name对应的字符串结果。
         # @type Value: String
+        # @param Row: 字段属于第几行，用于相同字段的排版，如发票明细表格项目，普通字段使用默认值为-1，表示无列排版。
+        # @type Row: Integer
 
-        attr_accessor :Name, :Value
+        attr_accessor :Name, :Value, :Row
         
-        def initialize(name=nil, value=nil)
+        def initialize(name=nil, value=nil, row=nil)
           @Name = name
           @Value = value
+          @Row = row
         end
 
         def deserialize(params)
           @Name = params['Name']
           @Value = params['Value']
+          @Row = params['Row']
         end
       end
 

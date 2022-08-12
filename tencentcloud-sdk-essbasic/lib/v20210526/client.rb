@@ -126,6 +126,33 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 提交企业签署流程审批结果
+
+        # 在通过接口(CreateFlowsByTemplates 或者ChannelCreateFlowByFiles)创建签署流程时，若指定了参数 NeedSignReview 为true,则可以调用此接口提交企业内部签署审批结果。
+        # 若签署流程状态正常，且本企业存在签署方未签署，同一签署流程可以多次提交签署审批结果，签署时的最后一个“审批结果”有效。
+
+        # @param request: Request instance for ChannelCreateFlowSignReview.
+        # @type request: :class:`Tencentcloud::essbasic::V20210526::ChannelCreateFlowSignReviewRequest`
+        # @rtype: :class:`Tencentcloud::essbasic::V20210526::ChannelCreateFlowSignReviewResponse`
+        def ChannelCreateFlowSignReview(request)
+          body = send_request('ChannelCreateFlowSignReview', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ChannelCreateFlowSignReviewResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 此接口（ChannelCreateMultiFlowSignQRCode）用于创建一码多扫签署流程二维码。
         # 适用的模版仅限于B2C（1、无序签署，2、顺序签署时B静默签署，3、顺序签署时B非首位签署）、单C的模版，且模版中发起方没有填写控件。
 

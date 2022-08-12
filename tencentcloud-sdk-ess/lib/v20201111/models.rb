@@ -817,6 +817,63 @@ module TencentCloud
         end
       end
 
+      # CreateFlowSignReview请求参数结构体
+      class CreateFlowSignReviewRequest < TencentCloud::Common::AbstractModel
+        # @param Operator: 调用方用户信息，userId 必填
+        # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
+        # @param FlowId: 签署流程编号
+        # @type FlowId: String
+        # @param ReviewType: 企业内部审核结果
+        # PASS: 通过
+        # REJECT: 拒绝
+        # @type ReviewType: String
+        # @param ReviewMessage: 审核原因
+        # 当ReviewType 是REJECT 时此字段必填,字符串长度不超过200
+        # @type ReviewMessage: String
+        # @param Agent: 应用相关信息
+        # @type Agent: :class:`Tencentcloud::Ess.v20201111.models.Agent`
+
+        attr_accessor :Operator, :FlowId, :ReviewType, :ReviewMessage, :Agent
+        
+        def initialize(operator=nil, flowid=nil, reviewtype=nil, reviewmessage=nil, agent=nil)
+          @Operator = operator
+          @FlowId = flowid
+          @ReviewType = reviewtype
+          @ReviewMessage = reviewmessage
+          @Agent = agent
+        end
+
+        def deserialize(params)
+          unless params['Operator'].nil?
+            @Operator = UserInfo.new
+            @Operator.deserialize(params['Operator'])
+          end
+          @FlowId = params['FlowId']
+          @ReviewType = params['ReviewType']
+          @ReviewMessage = params['ReviewMessage']
+          unless params['Agent'].nil?
+            @Agent = Agent.new
+            @Agent.deserialize(params['Agent'])
+          end
+        end
+      end
+
+      # CreateFlowSignReview返回参数结构体
+      class CreateFlowSignReviewResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateMultiFlowSignQRCode请求参数结构体
       class CreateMultiFlowSignQRCodeRequest < TencentCloud::Common::AbstractModel
         # @param TemplateId: 模板ID

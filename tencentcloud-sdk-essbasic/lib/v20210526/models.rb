@@ -394,6 +394,56 @@ module TencentCloud
         end
       end
 
+      # ChannelCreateFlowSignReview请求参数结构体
+      class ChannelCreateFlowSignReviewRequest < TencentCloud::Common::AbstractModel
+        # @param Agent: 渠道应用相关信息。 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 和 Agent.ProxyAppId 均必填。
+        # @type Agent: :class:`Tencentcloud::Essbasic.v20210526.models.Agent`
+        # @param FlowId: 签署流程编号
+        # @type FlowId: String
+        # @param ReviewType: 企业内部审核结果
+        # PASS: 通过
+        # REJECT: 拒绝
+        # @type ReviewType: String
+        # @param ReviewMessage: 审核原因
+        # 当ReviewType 是REJECT 时此字段必填,字符串长度不超过200
+        # @type ReviewMessage: String
+
+        attr_accessor :Agent, :FlowId, :ReviewType, :ReviewMessage
+        
+        def initialize(agent=nil, flowid=nil, reviewtype=nil, reviewmessage=nil)
+          @Agent = agent
+          @FlowId = flowid
+          @ReviewType = reviewtype
+          @ReviewMessage = reviewmessage
+        end
+
+        def deserialize(params)
+          unless params['Agent'].nil?
+            @Agent = Agent.new
+            @Agent.deserialize(params['Agent'])
+          end
+          @FlowId = params['FlowId']
+          @ReviewType = params['ReviewType']
+          @ReviewMessage = params['ReviewMessage']
+        end
+      end
+
+      # ChannelCreateFlowSignReview返回参数结构体
+      class ChannelCreateFlowSignReviewResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ChannelCreateMultiFlowSignQRCode请求参数结构体
       class ChannelCreateMultiFlowSignQRCodeRequest < TencentCloud::Common::AbstractModel
         # @param Agent: 渠道应用相关信息。
