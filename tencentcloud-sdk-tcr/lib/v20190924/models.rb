@@ -2219,16 +2219,19 @@ module TencentCloud
         # @type Limit: Integer
         # @param Offset: 页数，默认值为1
         # @type Offset: Integer
+        # @param Digest: 指定镜像 Digest 进行查找
+        # @type Digest: String
 
-        attr_accessor :RegistryId, :NamespaceName, :RepositoryName, :ImageVersion, :Limit, :Offset
+        attr_accessor :RegistryId, :NamespaceName, :RepositoryName, :ImageVersion, :Limit, :Offset, :Digest
         
-        def initialize(registryid=nil, namespacename=nil, repositoryname=nil, imageversion=nil, limit=nil, offset=nil)
+        def initialize(registryid=nil, namespacename=nil, repositoryname=nil, imageversion=nil, limit=nil, offset=nil, digest=nil)
           @RegistryId = registryid
           @NamespaceName = namespacename
           @RepositoryName = repositoryname
           @ImageVersion = imageversion
           @Limit = limit
           @Offset = offset
+          @Digest = digest
         end
 
         def deserialize(params)
@@ -2238,6 +2241,7 @@ module TencentCloud
           @ImageVersion = params['ImageVersion']
           @Limit = params['Limit']
           @Offset = params['Offset']
+          @Digest = params['Digest']
         end
       end
 
@@ -2656,16 +2660,19 @@ module TencentCloud
         # @type All: Boolean
         # @param Filters: 过滤条件
         # @type Filters: Array
+        # @param KmsSignPolicy: 仅查询启用了 KMS 镜像签名的空间
+        # @type KmsSignPolicy: Boolean
 
-        attr_accessor :RegistryId, :NamespaceName, :Limit, :Offset, :All, :Filters
+        attr_accessor :RegistryId, :NamespaceName, :Limit, :Offset, :All, :Filters, :KmsSignPolicy
         
-        def initialize(registryid=nil, namespacename=nil, limit=nil, offset=nil, all=nil, filters=nil)
+        def initialize(registryid=nil, namespacename=nil, limit=nil, offset=nil, all=nil, filters=nil, kmssignpolicy=nil)
           @RegistryId = registryid
           @NamespaceName = namespacename
           @Limit = limit
           @Offset = offset
           @All = all
           @Filters = filters
+          @KmsSignPolicy = kmssignpolicy
         end
 
         def deserialize(params)
@@ -2682,6 +2689,7 @@ module TencentCloud
               @Filters << filter_tmp
             end
           end
+          @KmsSignPolicy = params['KmsSignPolicy']
         end
       end
 
@@ -3778,6 +3786,26 @@ module TencentCloud
           @Disabled = params['Disabled']
           @RuleId = params['RuleId']
           @NsName = params['NsName']
+        end
+      end
+
+      # 通用参数字符串键值对
+      class KeyValueString < TencentCloud::Common::AbstractModel
+        # @param Key: 键
+        # @type Key: String
+        # @param Value: 值
+        # @type Value: String
+
+        attr_accessor :Key, :Value
+        
+        def initialize(key=nil, value=nil)
+          @Key = key
+          @Value = value
+        end
+
+        def deserialize(params)
+          @Key = params['Key']
+          @Value = params['Value']
         end
       end
 
@@ -5560,20 +5588,28 @@ module TencentCloud
       class TcrImageInfo < TencentCloud::Common::AbstractModel
         # @param Digest: 哈希值
         # @type Digest: String
-        # @param Size: 镜像大小
+        # @param Size: 镜像体积（单位：字节）
         # @type Size: Integer
         # @param ImageVersion: Tag名称
         # @type ImageVersion: String
         # @param UpdateTime: 更新时间
         # @type UpdateTime: String
+        # @param Kind: 制品类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Kind: String
+        # @param KmsSignature: KMS 签名信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type KmsSignature: String
 
-        attr_accessor :Digest, :Size, :ImageVersion, :UpdateTime
+        attr_accessor :Digest, :Size, :ImageVersion, :UpdateTime, :Kind, :KmsSignature
         
-        def initialize(digest=nil, size=nil, imageversion=nil, updatetime=nil)
+        def initialize(digest=nil, size=nil, imageversion=nil, updatetime=nil, kind=nil, kmssignature=nil)
           @Digest = digest
           @Size = size
           @ImageVersion = imageversion
           @UpdateTime = updatetime
+          @Kind = kind
+          @KmsSignature = kmssignature
         end
 
         def deserialize(params)
@@ -5581,6 +5617,8 @@ module TencentCloud
           @Size = params['Size']
           @ImageVersion = params['ImageVersion']
           @UpdateTime = params['UpdateTime']
+          @Kind = params['Kind']
+          @KmsSignature = params['KmsSignature']
         end
       end
 
@@ -5633,15 +5671,19 @@ module TencentCloud
         # @param TagSpecification: 实例云标签
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TagSpecification: :class:`Tencentcloud::Tcr.v20190924.models.TagSpecification`
+        # @param Metadata: 命名空间元数据
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Metadata: Array
 
-        attr_accessor :Name, :CreationTime, :Public, :NamespaceId, :TagSpecification
+        attr_accessor :Name, :CreationTime, :Public, :NamespaceId, :TagSpecification, :Metadata
         
-        def initialize(name=nil, creationtime=nil, public=nil, namespaceid=nil, tagspecification=nil)
+        def initialize(name=nil, creationtime=nil, public=nil, namespaceid=nil, tagspecification=nil, metadata=nil)
           @Name = name
           @CreationTime = creationtime
           @Public = public
           @NamespaceId = namespaceid
           @TagSpecification = tagspecification
+          @Metadata = metadata
         end
 
         def deserialize(params)
@@ -5652,6 +5694,14 @@ module TencentCloud
           unless params['TagSpecification'].nil?
             @TagSpecification = TagSpecification.new
             @TagSpecification.deserialize(params['TagSpecification'])
+          end
+          unless params['Metadata'].nil?
+            @Metadata = []
+            params['Metadata'].each do |i|
+              keyvaluestring_tmp = KeyValueString.new
+              keyvaluestring_tmp.deserialize(i)
+              @Metadata << keyvaluestring_tmp
+            end
           end
         end
       end

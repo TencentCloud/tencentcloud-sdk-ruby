@@ -2915,6 +2915,38 @@ module TencentCloud
         end
       end
 
+      # TerminateDBInstances请求参数结构体
+      class TerminateDBInstancesRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例Id列表
+        # @type InstanceId: String
+
+        attr_accessor :InstanceId
+        
+        def initialize(instanceid=nil)
+          @InstanceId = instanceid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+        end
+      end
+
+      # TerminateDBInstances返回参数结构体
+      class TerminateDBInstancesResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
     end
   end
 end

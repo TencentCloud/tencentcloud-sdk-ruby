@@ -183,6 +183,38 @@ module TencentCloud
         end
       end
 
+      # 时间戳信息。
+      class Subtitle < TencentCloud::Common::AbstractModel
+        # @param Text: ⽂本信息。
+        # @type Text: String
+        # @param BeginTime: ⽂本对应tts语⾳开始时间戳，单位ms。
+        # @type BeginTime: Integer
+        # @param EndTime: ⽂本对应tts语⾳结束时间戳，单位ms。
+        # @type EndTime: Integer
+        # @param BeginIndex: 该字在整句中的开始位置，从0开始。
+        # @type BeginIndex: Integer
+        # @param EndIndex: 该字在整句中的结束位置，从0开始。
+        # @type EndIndex: Integer
+
+        attr_accessor :Text, :BeginTime, :EndTime, :BeginIndex, :EndIndex
+        
+        def initialize(text=nil, begintime=nil, endtime=nil, beginindex=nil, endindex=nil)
+          @Text = text
+          @BeginTime = begintime
+          @EndTime = endtime
+          @BeginIndex = beginindex
+          @EndIndex = endindex
+        end
+
+        def deserialize(params)
+          @Text = params['Text']
+          @BeginTime = params['BeginTime']
+          @EndTime = params['EndTime']
+          @BeginIndex = params['BeginIndex']
+          @EndIndex = params['EndIndex']
+        end
+      end
+
       # TextToVoice请求参数结构体
       class TextToVoiceRequest < TencentCloud::Common::AbstractModel
         # @param Text: 合成语音的源文本，按UTF-8编码统一计算。
@@ -206,10 +238,12 @@ module TencentCloud
         # @type SampleRate: Integer
         # @param Codec: 返回音频格式，可取值：wav（默认），mp3，pcm
         # @type Codec: String
+        # @param EnableSubtitle: 是否开启时间戳功能，默认为false。
+        # @type EnableSubtitle: Boolean
 
-        attr_accessor :Text, :SessionId, :Volume, :Speed, :ProjectId, :ModelType, :VoiceType, :PrimaryLanguage, :SampleRate, :Codec
+        attr_accessor :Text, :SessionId, :Volume, :Speed, :ProjectId, :ModelType, :VoiceType, :PrimaryLanguage, :SampleRate, :Codec, :EnableSubtitle
         
-        def initialize(text=nil, sessionid=nil, volume=nil, speed=nil, projectid=nil, modeltype=nil, voicetype=nil, primarylanguage=nil, samplerate=nil, codec=nil)
+        def initialize(text=nil, sessionid=nil, volume=nil, speed=nil, projectid=nil, modeltype=nil, voicetype=nil, primarylanguage=nil, samplerate=nil, codec=nil, enablesubtitle=nil)
           @Text = text
           @SessionId = sessionid
           @Volume = volume
@@ -220,6 +254,7 @@ module TencentCloud
           @PrimaryLanguage = primarylanguage
           @SampleRate = samplerate
           @Codec = codec
+          @EnableSubtitle = enablesubtitle
         end
 
         def deserialize(params)
@@ -233,6 +268,7 @@ module TencentCloud
           @PrimaryLanguage = params['PrimaryLanguage']
           @SampleRate = params['SampleRate']
           @Codec = params['Codec']
+          @EnableSubtitle = params['EnableSubtitle']
         end
       end
 
@@ -242,20 +278,31 @@ module TencentCloud
         # @type Audio: String
         # @param SessionId: 一次请求对应一个SessionId
         # @type SessionId: String
+        # @param Subtitles: 时间戳信息，若未开启时间戳，则返回空数组。
+        # @type Subtitles: Array
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Audio, :SessionId, :RequestId
+        attr_accessor :Audio, :SessionId, :Subtitles, :RequestId
         
-        def initialize(audio=nil, sessionid=nil, requestid=nil)
+        def initialize(audio=nil, sessionid=nil, subtitles=nil, requestid=nil)
           @Audio = audio
           @SessionId = sessionid
+          @Subtitles = subtitles
           @RequestId = requestid
         end
 
         def deserialize(params)
           @Audio = params['Audio']
           @SessionId = params['SessionId']
+          unless params['Subtitles'].nil?
+            @Subtitles = []
+            params['Subtitles'].each do |i|
+              subtitle_tmp = Subtitle.new
+              subtitle_tmp.deserialize(i)
+              @Subtitles << subtitle_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end

@@ -178,7 +178,7 @@ module TencentCloud
         # @type StorageParams: :class:`Tencentcloud::Trtc.v20190722.models.StorageParams`
         # @param RoomIdType: TRTC房间号的类型，必须和录制的房间所对应的RoomId类型相同:
         # 0: 字符串类型的RoomId
-        # 1: 32位整型的RoomId（默认）
+        # 1: 32位整型的RoomId
         # @type RoomIdType: Integer
         # @param MixTranscodeParams: 混流的转码参数，录制模式为混流的时候可以设置。
         # @type MixTranscodeParams: :class:`Tencentcloud::Trtc.v20190722.models.MixTranscodeParams`

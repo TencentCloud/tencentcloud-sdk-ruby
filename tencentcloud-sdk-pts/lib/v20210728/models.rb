@@ -2499,10 +2499,12 @@ module TencentCloud
         # @type ScenarioRelatedJobsParams: :class:`Tencentcloud::Pts.v20210728.models.ScenarioRelatedJobsParams`
         # @param IgnoreScript: 是否需要返回场景的脚本内容
         # @type IgnoreScript: Boolean
+        # @param IgnoreDataset: 是否需要返回测试数据文件信息
+        # @type IgnoreDataset: Boolean
 
-        attr_accessor :Offset, :Limit, :ProjectIds, :ScenarioIds, :ScenarioName, :ScenarioStatus, :OrderBy, :Ascend, :ScenarioRelatedJobsParams, :IgnoreScript
+        attr_accessor :Offset, :Limit, :ProjectIds, :ScenarioIds, :ScenarioName, :ScenarioStatus, :OrderBy, :Ascend, :ScenarioRelatedJobsParams, :IgnoreScript, :IgnoreDataset
         
-        def initialize(offset=nil, limit=nil, projectids=nil, scenarioids=nil, scenarioname=nil, scenariostatus=nil, orderby=nil, ascend=nil, scenariorelatedjobsparams=nil, ignorescript=nil)
+        def initialize(offset=nil, limit=nil, projectids=nil, scenarioids=nil, scenarioname=nil, scenariostatus=nil, orderby=nil, ascend=nil, scenariorelatedjobsparams=nil, ignorescript=nil, ignoredataset=nil)
           @Offset = offset
           @Limit = limit
           @ProjectIds = projectids
@@ -2513,6 +2515,7 @@ module TencentCloud
           @Ascend = ascend
           @ScenarioRelatedJobsParams = scenariorelatedjobsparams
           @IgnoreScript = ignorescript
+          @IgnoreDataset = ignoredataset
         end
 
         def deserialize(params)
@@ -2529,6 +2532,7 @@ module TencentCloud
             @ScenarioRelatedJobsParams.deserialize(params['ScenarioRelatedJobsParams'])
           end
           @IgnoreScript = params['IgnoreScript']
+          @IgnoreDataset = params['IgnoreDataset']
         end
       end
 

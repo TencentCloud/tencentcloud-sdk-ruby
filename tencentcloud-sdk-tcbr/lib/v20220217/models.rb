@@ -1124,15 +1124,18 @@ module TencentCloud
         # @type Status: String
         # @param UpdateTime: 更新时间
         # @type UpdateTime: String
+        # @param AccessTypes: 公网访问类型
+        # @type AccessTypes: Array
 
-        attr_accessor :ServerName, :DefaultDomainName, :CustomDomainName, :Status, :UpdateTime
+        attr_accessor :ServerName, :DefaultDomainName, :CustomDomainName, :Status, :UpdateTime, :AccessTypes
         
-        def initialize(servername=nil, defaultdomainname=nil, customdomainname=nil, status=nil, updatetime=nil)
+        def initialize(servername=nil, defaultdomainname=nil, customdomainname=nil, status=nil, updatetime=nil, accesstypes=nil)
           @ServerName = servername
           @DefaultDomainName = defaultdomainname
           @CustomDomainName = customdomainname
           @Status = status
           @UpdateTime = updatetime
+          @AccessTypes = accesstypes
         end
 
         def deserialize(params)
@@ -1141,6 +1144,7 @@ module TencentCloud
           @CustomDomainName = params['CustomDomainName']
           @Status = params['Status']
           @UpdateTime = params['UpdateTime']
+          @AccessTypes = params['AccessTypes']
         end
       end
 

@@ -264,16 +264,18 @@ module TencentCloud
         # @type VpcSet: Array
         # @param Remark: 备注
         # @type Remark: String
-        # @param DnsForwardStatus: 是否开启子域名递归, ENABLED， DISABLED。默认值为DISABLED
+        # @param DnsForwardStatus: 是否开启子域名递归, ENABLED， DISABLED。默认值为ENABLED
         # @type DnsForwardStatus: String
         # @param Vpcs: 创建私有域的同时，将其关联至VPC
         # @type Vpcs: Array
         # @param AccountVpcSet: 创建私有域同时绑定关联账号的VPC
         # @type AccountVpcSet: Array
+        # @param CnameSpeedupStatus: 是否CNAME加速：ENABLED，DISABLED，默认值为ENABLED
+        # @type CnameSpeedupStatus: String
 
-        attr_accessor :Domain, :TagSet, :VpcSet, :Remark, :DnsForwardStatus, :Vpcs, :AccountVpcSet
+        attr_accessor :Domain, :TagSet, :VpcSet, :Remark, :DnsForwardStatus, :Vpcs, :AccountVpcSet, :CnameSpeedupStatus
         
-        def initialize(domain=nil, tagset=nil, vpcset=nil, remark=nil, dnsforwardstatus=nil, vpcs=nil, accountvpcset=nil)
+        def initialize(domain=nil, tagset=nil, vpcset=nil, remark=nil, dnsforwardstatus=nil, vpcs=nil, accountvpcset=nil, cnamespeedupstatus=nil)
           @Domain = domain
           @TagSet = tagset
           @VpcSet = vpcset
@@ -281,6 +283,7 @@ module TencentCloud
           @DnsForwardStatus = dnsforwardstatus
           @Vpcs = vpcs
           @AccountVpcSet = accountvpcset
+          @CnameSpeedupStatus = cnamespeedupstatus
         end
 
         def deserialize(params)
@@ -319,6 +322,7 @@ module TencentCloud
               @AccountVpcSet << accountvpcinfo_tmp
             end
           end
+          @CnameSpeedupStatus = params['CnameSpeedupStatus']
         end
       end
 
@@ -1158,19 +1162,23 @@ module TencentCloud
         # @type Remark: String
         # @param DnsForwardStatus: 是否开启子域名递归, ENABLED， DISABLED
         # @type DnsForwardStatus: String
+        # @param CnameSpeedupStatus: 是否开启CNAME加速：ENABLED， DISABLED
+        # @type CnameSpeedupStatus: String
 
-        attr_accessor :ZoneId, :Remark, :DnsForwardStatus
+        attr_accessor :ZoneId, :Remark, :DnsForwardStatus, :CnameSpeedupStatus
         
-        def initialize(zoneid=nil, remark=nil, dnsforwardstatus=nil)
+        def initialize(zoneid=nil, remark=nil, dnsforwardstatus=nil, cnamespeedupstatus=nil)
           @ZoneId = zoneid
           @Remark = remark
           @DnsForwardStatus = dnsforwardstatus
+          @CnameSpeedupStatus = cnamespeedupstatus
         end
 
         def deserialize(params)
           @ZoneId = params['ZoneId']
           @Remark = params['Remark']
           @DnsForwardStatus = params['DnsForwardStatus']
+          @CnameSpeedupStatus = params['CnameSpeedupStatus']
         end
       end
 
@@ -1325,10 +1333,12 @@ module TencentCloud
         # @param IsCustomTld: 是否自定义TLD
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsCustomTld: Boolean
+        # @param CnameSpeedupStatus: CNAME加速状态：开通：ENABLED, 关闭，DISABLED
+        # @type CnameSpeedupStatus: String
 
-        attr_accessor :ZoneId, :OwnerUin, :Domain, :CreatedOn, :UpdatedOn, :RecordCount, :Remark, :VpcSet, :Status, :DnsForwardStatus, :Tags, :AccountVpcSet, :IsCustomTld
+        attr_accessor :ZoneId, :OwnerUin, :Domain, :CreatedOn, :UpdatedOn, :RecordCount, :Remark, :VpcSet, :Status, :DnsForwardStatus, :Tags, :AccountVpcSet, :IsCustomTld, :CnameSpeedupStatus
         
-        def initialize(zoneid=nil, owneruin=nil, domain=nil, createdon=nil, updatedon=nil, recordcount=nil, remark=nil, vpcset=nil, status=nil, dnsforwardstatus=nil, tags=nil, accountvpcset=nil, iscustomtld=nil)
+        def initialize(zoneid=nil, owneruin=nil, domain=nil, createdon=nil, updatedon=nil, recordcount=nil, remark=nil, vpcset=nil, status=nil, dnsforwardstatus=nil, tags=nil, accountvpcset=nil, iscustomtld=nil, cnamespeedupstatus=nil)
           @ZoneId = zoneid
           @OwnerUin = owneruin
           @Domain = domain
@@ -1342,6 +1352,7 @@ module TencentCloud
           @Tags = tags
           @AccountVpcSet = accountvpcset
           @IsCustomTld = iscustomtld
+          @CnameSpeedupStatus = cnamespeedupstatus
         end
 
         def deserialize(params)
@@ -1379,6 +1390,7 @@ module TencentCloud
             end
           end
           @IsCustomTld = params['IsCustomTld']
+          @CnameSpeedupStatus = params['CnameSpeedupStatus']
         end
       end
 

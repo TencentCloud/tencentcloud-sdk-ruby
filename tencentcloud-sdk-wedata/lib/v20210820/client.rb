@@ -29,7 +29,8 @@ module TencentCloud
         end
 
 
-        # 批量删除任务，仅对任务状态为”已停止“有效；（Beta版本）
+        # <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
+        # 批量删除任务，仅对任务状态为”已停止“有效；
 
         # @param request: Request instance for BatchDeleteTasksNew.
         # @type request: :class:`Tencentcloud::wedata::V20210820::BatchDeleteTasksNewRequest`
@@ -53,7 +54,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 批量修改任务责任人（Beta版本）
+        # <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
+        # 批量修改任务责任人
 
         # @param request: Request instance for BatchModifyOwnersNew.
         # @type request: :class:`Tencentcloud::wedata::V20210820::BatchModifyOwnersNewRequest`
@@ -77,7 +79,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 仅对任务状态为”调度中“和”已暂停“有效，对所选任务的任务实例进行终止，并停止调度（Beta版本）
+        # <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
+        # 仅对任务状态为”调度中“和”已暂停“有效，对所选任务的任务实例进行终止，并停止调度
 
         # @param request: Request instance for BatchStopTasksNew.
         # @type request: :class:`Tencentcloud::wedata::V20210820::BatchStopTasksNewRequest`
@@ -101,7 +104,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 创建文件夹（Beta版本）
+        # <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
+        # 创建文件夹
 
         # @param request: Request instance for CreateFolder.
         # @type request: :class:`Tencentcloud::wedata::V20210820::CreateFolderRequest`
@@ -125,7 +129,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 创建任务（Beta版本）
+        # <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
+        # 创建任务
 
         # @param request: Request instance for CreateTask.
         # @type request: :class:`Tencentcloud::wedata::V20210820::CreateTaskRequest`
@@ -149,7 +154,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 创建工作流（Beta版本）
+        # <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
+        # 创建工作流
 
         # @param request: Request instance for CreateWorkflow.
         # @type request: :class:`Tencentcloud::wedata::V20210820::CreateWorkflowRequest`
@@ -173,7 +179,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 删除文件夹（Beta版本）
+        # <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
+        # 删除文件夹
 
         # @param request: Request instance for DeleteFolder.
         # @type request: :class:`Tencentcloud::wedata::V20210820::DeleteFolderRequest`
@@ -197,7 +204,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 删除工作流（Beta版本）
+        # <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
+        # 删除工作流
 
         # @param request: Request instance for DeleteWorkflowNew.
         # @type request: :class:`Tencentcloud::wedata::V20210820::DeleteWorkflowNewRequest`
@@ -221,7 +229,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 根据层级查找上/下游任务节点（Beta版本）
+        # <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
+        # 根据层级查找上/下游任务节点
 
         # @param request: Request instance for DescribeDependTasksNew.
         # @type request: :class:`Tencentcloud::wedata::V20210820::DescribeDependTasksNewRequest`
@@ -245,7 +254,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 拉取文件夹目录（Beta版本）
+        # <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
+        # 拉取文件夹目录
 
         # @param request: Request instance for DescribeFolderList.
         # @type request: :class:`Tencentcloud::wedata::V20210820::DescribeFolderListRequest`
@@ -269,7 +279,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 拉取文件夹下的工作流（Beta版本）
+        # <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
+        # 拉取文件夹下的工作流
 
         # @param request: Request instance for DescribeFolderWorkflowList.
         # @type request: :class:`Tencentcloud::wedata::V20210820::DescribeFolderWorkflowListRequest`
@@ -293,7 +304,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 获取实例日志列表（Beta版本）
+        # <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
+        # 获取实例日志列表
 
         # @param request: Request instance for DescribeInstanceLogs.
         # @type request: :class:`Tencentcloud::wedata::V20210820::DescribeInstanceLogsRequest`
@@ -365,7 +377,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 查询任务具体详情（Beta版本）
+        # <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
+        # 查询任务具体详情
 
         # @param request: Request instance for DescribeTaskDetail.
         # @type request: :class:`Tencentcloud::wedata::V20210820::DescribeTaskDetailRequest`
@@ -413,7 +426,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 查询任务脚本（Beta版本）
+        # <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
+        # 查询任务脚本
 
         # @param request: Request instance for DescribeTaskScript.
         # @type request: :class:`Tencentcloud::wedata::V20210820::DescribeTaskScriptRequest`
@@ -437,7 +451,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 根据工作流分页查询任务（Beta版本）
+        # <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
+        # 根据工作流分页查询任务
 
         # @param request: Request instance for DescribeTasksByPage.
         # @type request: :class:`Tencentcloud::wedata::V20210820::DescribeTasksByPageRequest`
@@ -461,7 +476,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 实例批量置成功（Beta版本）
+        # <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
+        # 实例批量置成功
 
         # @param request: Request instance for ForceSucInstances.
         # @type request: :class:`Tencentcloud::wedata::V20210820::ForceSucInstancesRequest`
@@ -485,7 +501,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 批量冻结任务（Beta版本）
+        # <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
+        # 批量冻结任务
 
         # @param request: Request instance for FreezeTasks.
         # @type request: :class:`Tencentcloud::wedata::V20210820::FreezeTasksRequest`
@@ -509,7 +526,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 基于多个工作流进行批量冻结任务操作（Beta版本）
+        # <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
+        # 基于多个工作流进行批量冻结任务操作
 
         # @param request: Request instance for FreezeTasksByMultiWorkflow.
         # @type request: :class:`Tencentcloud::wedata::V20210820::FreezeTasksByMultiWorkflowRequest`
@@ -533,7 +551,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 实例批量终止操作（Beta版本）
+        # <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
+        # 实例批量终止操作
 
         # @param request: Request instance for KillInstances.
         # @type request: :class:`Tencentcloud::wedata::V20210820::KillInstancesRequest`
@@ -557,7 +576,10 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 任务批量补录，调度状态任务才可以补录；（Beta版本）
+        # <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
+        # 任务批量补录，调度状态任务才可以补录；
+
+
 
         # @param request: Request instance for MakeUpTasksNew.
         # @type request: :class:`Tencentcloud::wedata::V20210820::MakeUpTasksNewRequest`
@@ -581,7 +603,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 工作流下所有任务的补录（Beta版本）
+        # <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
+        # 工作流下所有任务的补录
 
         # @param request: Request instance for MakeUpWorkflowNew.
         # @type request: :class:`Tencentcloud::wedata::V20210820::MakeUpWorkflowNewRequest`
@@ -605,7 +628,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 文件夹更新（Beta版本）
+        # <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
+        # 文件夹更新
 
         # @param request: Request instance for ModifyFolder.
         # @type request: :class:`Tencentcloud::wedata::V20210820::ModifyFolderRequest`
@@ -629,7 +653,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 更新任务（Beta版本）
+        # <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
+        # 更新任务
 
         # @param request: Request instance for ModifyTaskInfo.
         # @type request: :class:`Tencentcloud::wedata::V20210820::ModifyTaskInfoRequest`
@@ -653,7 +678,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 添加父任务依赖（Beta版本）
+        # <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
+        # 添加父任务依赖
 
         # @param request: Request instance for ModifyTaskLinks.
         # @type request: :class:`Tencentcloud::wedata::V20210820::ModifyTaskLinksRequest`
@@ -677,7 +703,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 修改任务脚本（Beta版本）
+        # <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
+        # 修改任务脚本
 
         # @param request: Request instance for ModifyTaskScript.
         # @type request: :class:`Tencentcloud::wedata::V20210820::ModifyTaskScriptRequest`
@@ -701,7 +728,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 更新工作流（Beta版本）
+        # <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
+        # 更新工作流
 
         # @param request: Request instance for ModifyWorkflowInfo.
         # @type request: :class:`Tencentcloud::wedata::V20210820::ModifyWorkflowInfoRequest`
@@ -725,7 +753,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 更新工作流调度（Beta版本）
+        # <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
+        # 更新工作流调度
 
         # @param request: Request instance for ModifyWorkflowSchedule.
         # @type request: :class:`Tencentcloud::wedata::V20210820::ModifyWorkflowScheduleRequest`
@@ -749,7 +778,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 注册事件（Beta版本）
+        # <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
+        # 注册事件
 
         # @param request: Request instance for RegisterEvent.
         # @type request: :class:`Tencentcloud::wedata::V20210820::RegisterEventRequest`
@@ -773,7 +803,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 注册事件监听器（Beta版本）
+        # <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
+        # 注册事件监听器
 
         # @param request: Request instance for RegisterEventListener.
         # @type request: :class:`Tencentcloud::wedata::V20210820::RegisterEventListenerRequest`
@@ -797,7 +828,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 实例批量重跑（Beta版本）
+        # <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
+        # 实例批量重跑
 
         # @param request: Request instance for RerunInstances.
         # @type request: :class:`Tencentcloud::wedata::V20210820::RerunInstancesRequest`
@@ -821,7 +853,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 运行任务（Beta版本）
+        # <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
+        # 运行任务
 
         # @param request: Request instance for RunTask.
         # @type request: :class:`Tencentcloud::wedata::V20210820::RunTaskRequest`
@@ -845,7 +878,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 设置任务告警，新建/更新告警信息（最新）（Beta版本）
+        # <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
+        # 设置任务告警，新建/更新告警信息（最新）
 
         # @param request: Request instance for SetTaskAlarmNew.
         # @type request: :class:`Tencentcloud::wedata::V20210820::SetTaskAlarmNewRequest`
@@ -869,7 +903,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 提交任务（Beta版本）
+        # <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
+        # 提交任务
 
         # @param request: Request instance for SubmitTask.
         # @type request: :class:`Tencentcloud::wedata::V20210820::SubmitTaskRequest`
@@ -893,7 +928,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 提交工作流（Beta版本）
+        # <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
+        # 提交工作流
 
         # @param request: Request instance for SubmitWorkflow.
         # @type request: :class:`Tencentcloud::wedata::V20210820::SubmitWorkflowRequest`
@@ -917,7 +953,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 触发事件（Beta版本）
+        # <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
+        # 触发事件
 
         # @param request: Request instance for TriggerEvent.
         # @type request: :class:`Tencentcloud::wedata::V20210820::TriggerEventRequest`

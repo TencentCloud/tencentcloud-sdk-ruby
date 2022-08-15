@@ -7479,18 +7479,30 @@ module TencentCloud
         # @type IndependentClusterCount: Integer
         # @param NoRiskClusterCount: 无风险的集群数量
         # @type NoRiskClusterCount: Integer
+        # @param CheckedClusterCount: 已经检查集群数
+        # @type CheckedClusterCount: Integer
+        # @param AutoCheckClusterCount: 自动检查集群数
+        # @type AutoCheckClusterCount: Integer
+        # @param ManualCheckClusterCount: 手动检查集群数
+        # @type ManualCheckClusterCount: Integer
+        # @param FailedClusterCount: 检查失败集群数
+        # @type FailedClusterCount: Integer
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :TotalCount, :RiskClusterCount, :UncheckClusterCount, :ManagedClusterCount, :IndependentClusterCount, :NoRiskClusterCount, :RequestId
+        attr_accessor :TotalCount, :RiskClusterCount, :UncheckClusterCount, :ManagedClusterCount, :IndependentClusterCount, :NoRiskClusterCount, :CheckedClusterCount, :AutoCheckClusterCount, :ManualCheckClusterCount, :FailedClusterCount, :RequestId
         
-        def initialize(totalcount=nil, riskclustercount=nil, uncheckclustercount=nil, managedclustercount=nil, independentclustercount=nil, noriskclustercount=nil, requestid=nil)
+        def initialize(totalcount=nil, riskclustercount=nil, uncheckclustercount=nil, managedclustercount=nil, independentclustercount=nil, noriskclustercount=nil, checkedclustercount=nil, autocheckclustercount=nil, manualcheckclustercount=nil, failedclustercount=nil, requestid=nil)
           @TotalCount = totalcount
           @RiskClusterCount = riskclustercount
           @UncheckClusterCount = uncheckclustercount
           @ManagedClusterCount = managedclustercount
           @IndependentClusterCount = independentclustercount
           @NoRiskClusterCount = noriskclustercount
+          @CheckedClusterCount = checkedclustercount
+          @AutoCheckClusterCount = autocheckclustercount
+          @ManualCheckClusterCount = manualcheckclustercount
+          @FailedClusterCount = failedclustercount
           @RequestId = requestid
         end
 
@@ -7501,6 +7513,10 @@ module TencentCloud
           @ManagedClusterCount = params['ManagedClusterCount']
           @IndependentClusterCount = params['IndependentClusterCount']
           @NoRiskClusterCount = params['NoRiskClusterCount']
+          @CheckedClusterCount = params['CheckedClusterCount']
+          @AutoCheckClusterCount = params['AutoCheckClusterCount']
+          @ManualCheckClusterCount = params['ManualCheckClusterCount']
+          @FailedClusterCount = params['FailedClusterCount']
           @RequestId = params['RequestId']
         end
       end
