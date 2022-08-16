@@ -4764,7 +4764,7 @@ module TencentCloud
         # @type AutoSplit: Boolean
         # @param MaxSplitPartitions: 若开启最大分裂，该主题能够能够允许的最大分区数
         # @type MaxSplitPartitions: Integer
-        # @param Period: 生命周期，单位天，可取值范围1~3600。取值为3640时代表永久保存
+        # @param Period: 生命周期，单位天，标准存储取值范围1~3600，低频存储取值范围7~3600。取值为3640时代表永久保存
         # @type Period: Integer
 
         attr_accessor :TopicId, :TopicName, :Tags, :Status, :AutoSplit, :MaxSplitPartitions, :Period

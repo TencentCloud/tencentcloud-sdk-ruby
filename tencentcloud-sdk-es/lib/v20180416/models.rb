@@ -2023,10 +2023,16 @@ module TencentCloud
         # @param OperationDuration: 集群可维护时间段
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OperationDuration: :class:`Tencentcloud::Es.v20180416.models.OperationDuration`
+        # @param OptionalWebServiceInfos: web节点列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OptionalWebServiceInfos: Array
+        # @param AutoIndexEnabled: 自治索引开关
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AutoIndexEnabled: Boolean
 
-        attr_accessor :InstanceId, :InstanceName, :Region, :Zone, :AppId, :Uin, :VpcUid, :SubnetUid, :Status, :RenewFlag, :ChargeType, :ChargePeriod, :NodeType, :NodeNum, :CpuNum, :MemSize, :DiskType, :DiskSize, :EsDomain, :EsVip, :EsPort, :KibanaUrl, :EsVersion, :EsConfig, :EsAcl, :CreateTime, :UpdateTime, :Deadline, :InstanceType, :IkConfig, :MasterNodeInfo, :CosBackup, :AllowCosBackup, :TagList, :LicenseType, :EnableHotWarmMode, :WarmNodeType, :WarmNodeNum, :WarmCpuNum, :WarmMemSize, :WarmDiskType, :WarmDiskSize, :NodeInfoList, :EsPublicUrl, :MultiZoneInfo, :DeployMode, :PublicAccess, :EsPublicAcl, :KibanaPrivateUrl, :KibanaPublicAccess, :KibanaPrivateAccess, :SecurityType, :SceneType, :KibanaConfig, :KibanaNodeInfo, :WebNodeTypeInfo, :Jdk, :Protocol, :SecurityGroups, :ColdNodeType, :ColdNodeNum, :ColdCpuNum, :ColdMemSize, :ColdDiskType, :ColdDiskSize, :FrozenNodeType, :FrozenNodeNum, :FrozenCpuNum, :FrozenMemSize, :FrozenDiskType, :FrozenDiskSize, :HealthStatus, :EsPrivateUrl, :EsPrivateDomain, :EsConfigSets, :OperationDuration
+        attr_accessor :InstanceId, :InstanceName, :Region, :Zone, :AppId, :Uin, :VpcUid, :SubnetUid, :Status, :RenewFlag, :ChargeType, :ChargePeriod, :NodeType, :NodeNum, :CpuNum, :MemSize, :DiskType, :DiskSize, :EsDomain, :EsVip, :EsPort, :KibanaUrl, :EsVersion, :EsConfig, :EsAcl, :CreateTime, :UpdateTime, :Deadline, :InstanceType, :IkConfig, :MasterNodeInfo, :CosBackup, :AllowCosBackup, :TagList, :LicenseType, :EnableHotWarmMode, :WarmNodeType, :WarmNodeNum, :WarmCpuNum, :WarmMemSize, :WarmDiskType, :WarmDiskSize, :NodeInfoList, :EsPublicUrl, :MultiZoneInfo, :DeployMode, :PublicAccess, :EsPublicAcl, :KibanaPrivateUrl, :KibanaPublicAccess, :KibanaPrivateAccess, :SecurityType, :SceneType, :KibanaConfig, :KibanaNodeInfo, :WebNodeTypeInfo, :Jdk, :Protocol, :SecurityGroups, :ColdNodeType, :ColdNodeNum, :ColdCpuNum, :ColdMemSize, :ColdDiskType, :ColdDiskSize, :FrozenNodeType, :FrozenNodeNum, :FrozenCpuNum, :FrozenMemSize, :FrozenDiskType, :FrozenDiskSize, :HealthStatus, :EsPrivateUrl, :EsPrivateDomain, :EsConfigSets, :OperationDuration, :OptionalWebServiceInfos, :AutoIndexEnabled
         
-        def initialize(instanceid=nil, instancename=nil, region=nil, zone=nil, appid=nil, uin=nil, vpcuid=nil, subnetuid=nil, status=nil, renewflag=nil, chargetype=nil, chargeperiod=nil, nodetype=nil, nodenum=nil, cpunum=nil, memsize=nil, disktype=nil, disksize=nil, esdomain=nil, esvip=nil, esport=nil, kibanaurl=nil, esversion=nil, esconfig=nil, esacl=nil, createtime=nil, updatetime=nil, deadline=nil, instancetype=nil, ikconfig=nil, masternodeinfo=nil, cosbackup=nil, allowcosbackup=nil, taglist=nil, licensetype=nil, enablehotwarmmode=nil, warmnodetype=nil, warmnodenum=nil, warmcpunum=nil, warmmemsize=nil, warmdisktype=nil, warmdisksize=nil, nodeinfolist=nil, espublicurl=nil, multizoneinfo=nil, deploymode=nil, publicaccess=nil, espublicacl=nil, kibanaprivateurl=nil, kibanapublicaccess=nil, kibanaprivateaccess=nil, securitytype=nil, scenetype=nil, kibanaconfig=nil, kibananodeinfo=nil, webnodetypeinfo=nil, jdk=nil, protocol=nil, securitygroups=nil, coldnodetype=nil, coldnodenum=nil, coldcpunum=nil, coldmemsize=nil, colddisktype=nil, colddisksize=nil, frozennodetype=nil, frozennodenum=nil, frozencpunum=nil, frozenmemsize=nil, frozendisktype=nil, frozendisksize=nil, healthstatus=nil, esprivateurl=nil, esprivatedomain=nil, esconfigsets=nil, operationduration=nil)
+        def initialize(instanceid=nil, instancename=nil, region=nil, zone=nil, appid=nil, uin=nil, vpcuid=nil, subnetuid=nil, status=nil, renewflag=nil, chargetype=nil, chargeperiod=nil, nodetype=nil, nodenum=nil, cpunum=nil, memsize=nil, disktype=nil, disksize=nil, esdomain=nil, esvip=nil, esport=nil, kibanaurl=nil, esversion=nil, esconfig=nil, esacl=nil, createtime=nil, updatetime=nil, deadline=nil, instancetype=nil, ikconfig=nil, masternodeinfo=nil, cosbackup=nil, allowcosbackup=nil, taglist=nil, licensetype=nil, enablehotwarmmode=nil, warmnodetype=nil, warmnodenum=nil, warmcpunum=nil, warmmemsize=nil, warmdisktype=nil, warmdisksize=nil, nodeinfolist=nil, espublicurl=nil, multizoneinfo=nil, deploymode=nil, publicaccess=nil, espublicacl=nil, kibanaprivateurl=nil, kibanapublicaccess=nil, kibanaprivateaccess=nil, securitytype=nil, scenetype=nil, kibanaconfig=nil, kibananodeinfo=nil, webnodetypeinfo=nil, jdk=nil, protocol=nil, securitygroups=nil, coldnodetype=nil, coldnodenum=nil, coldcpunum=nil, coldmemsize=nil, colddisktype=nil, colddisksize=nil, frozennodetype=nil, frozennodenum=nil, frozencpunum=nil, frozenmemsize=nil, frozendisktype=nil, frozendisksize=nil, healthstatus=nil, esprivateurl=nil, esprivatedomain=nil, esconfigsets=nil, operationduration=nil, optionalwebserviceinfos=nil, autoindexenabled=nil)
           @InstanceId = instanceid
           @InstanceName = instancename
           @Region = region
@@ -2103,6 +2109,8 @@ module TencentCloud
           @EsPrivateDomain = esprivatedomain
           @EsConfigSets = esconfigsets
           @OperationDuration = operationduration
+          @OptionalWebServiceInfos = optionalwebserviceinfos
+          @AutoIndexEnabled = autoindexenabled
         end
 
         def deserialize(params)
@@ -2234,6 +2242,15 @@ module TencentCloud
             @OperationDuration = OperationDuration.new
             @OperationDuration.deserialize(params['OperationDuration'])
           end
+          unless params['OptionalWebServiceInfos'].nil?
+            @OptionalWebServiceInfos = []
+            params['OptionalWebServiceInfos'].each do |i|
+              optionalwebserviceinfo_tmp = OptionalWebServiceInfo.new
+              optionalwebserviceinfo_tmp.deserialize(i)
+              @OptionalWebServiceInfos << optionalwebserviceinfo_tmp
+            end
+          end
+          @AutoIndexEnabled = params['AutoIndexEnabled']
         end
       end
 
@@ -3026,6 +3043,53 @@ module TencentCloud
         end
       end
 
+      # 可选web组件信息
+      class OptionalWebServiceInfo < TencentCloud::Common::AbstractModel
+        # @param Type: 类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Type: String
+        # @param Status: 状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: Integer
+        # @param PublicUrl: 公网url
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PublicUrl: String
+        # @param PrivateUrl: 内网url
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PrivateUrl: String
+        # @param PublicAccess: 公网访问权限
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PublicAccess: String
+        # @param PrivateAccess: 内网访问权限
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PrivateAccess: String
+        # @param Version: 版本号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Version: String
+
+        attr_accessor :Type, :Status, :PublicUrl, :PrivateUrl, :PublicAccess, :PrivateAccess, :Version
+        
+        def initialize(type=nil, status=nil, publicurl=nil, privateurl=nil, publicaccess=nil, privateaccess=nil, version=nil)
+          @Type = type
+          @Status = status
+          @PublicUrl = publicurl
+          @PrivateUrl = privateurl
+          @PublicAccess = publicaccess
+          @PrivateAccess = privateaccess
+          @Version = version
+        end
+
+        def deserialize(params)
+          @Type = params['Type']
+          @Status = params['Status']
+          @PublicUrl = params['PublicUrl']
+          @PrivateUrl = params['PrivateUrl']
+          @PublicAccess = params['PublicAccess']
+          @PrivateAccess = params['PrivateAccess']
+          @Version = params['Version']
+        end
+      end
+
       # RestartInstance请求参数结构体
       class RestartInstanceRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例ID
@@ -3498,16 +3562,19 @@ module TencentCloud
         # @type Username: String
         # @param Password: 集群访问密码
         # @type Password: String
+        # @param RolloverBackingIndex: 是否滚动后备索引
+        # @type RolloverBackingIndex: Boolean
 
-        attr_accessor :InstanceId, :IndexType, :IndexName, :UpdateMetaJson, :Username, :Password
+        attr_accessor :InstanceId, :IndexType, :IndexName, :UpdateMetaJson, :Username, :Password, :RolloverBackingIndex
         
-        def initialize(instanceid=nil, indextype=nil, indexname=nil, updatemetajson=nil, username=nil, password=nil)
+        def initialize(instanceid=nil, indextype=nil, indexname=nil, updatemetajson=nil, username=nil, password=nil, rolloverbackingindex=nil)
           @InstanceId = instanceid
           @IndexType = indextype
           @IndexName = indexname
           @UpdateMetaJson = updatemetajson
           @Username = username
           @Password = password
+          @RolloverBackingIndex = rolloverbackingindex
         end
 
         def deserialize(params)
@@ -3517,6 +3584,7 @@ module TencentCloud
           @UpdateMetaJson = params['UpdateMetaJson']
           @Username = params['Username']
           @Password = params['Password']
+          @RolloverBackingIndex = params['RolloverBackingIndex']
         end
       end
 

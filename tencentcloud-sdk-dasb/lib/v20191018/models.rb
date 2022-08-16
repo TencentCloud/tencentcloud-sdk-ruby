@@ -73,10 +73,13 @@ module TencentCloud
         # @type ValidateTo: String
         # @param Status: 访问权限状态，1 - 已生效，2 - 未生效，3 - 已过期
         # @type Status: Integer
+        # @param Department: 所属部门的信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Department: :class:`Tencentcloud::Dasb.v20191018.models.Department`
 
-        attr_accessor :Id, :Name, :AllowDiskRedirect, :AllowClipFileUp, :AllowClipFileDown, :AllowClipTextUp, :AllowClipTextDown, :AllowFileUp, :MaxFileUpSize, :AllowFileDown, :MaxFileDownSize, :AllowAnyAccount, :UserSet, :UserGroupSet, :DeviceSet, :DeviceGroupSet, :AccountSet, :CmdTemplateSet, :AllowDiskFileUp, :AllowDiskFileDown, :AllowShellFileUp, :AllowShellFileDown, :AllowFileDel, :ValidateFrom, :ValidateTo, :Status
+        attr_accessor :Id, :Name, :AllowDiskRedirect, :AllowClipFileUp, :AllowClipFileDown, :AllowClipTextUp, :AllowClipTextDown, :AllowFileUp, :MaxFileUpSize, :AllowFileDown, :MaxFileDownSize, :AllowAnyAccount, :UserSet, :UserGroupSet, :DeviceSet, :DeviceGroupSet, :AccountSet, :CmdTemplateSet, :AllowDiskFileUp, :AllowDiskFileDown, :AllowShellFileUp, :AllowShellFileDown, :AllowFileDel, :ValidateFrom, :ValidateTo, :Status, :Department
         
-        def initialize(id=nil, name=nil, allowdiskredirect=nil, allowclipfileup=nil, allowclipfiledown=nil, allowcliptextup=nil, allowcliptextdown=nil, allowfileup=nil, maxfileupsize=nil, allowfiledown=nil, maxfiledownsize=nil, allowanyaccount=nil, userset=nil, usergroupset=nil, deviceset=nil, devicegroupset=nil, accountset=nil, cmdtemplateset=nil, allowdiskfileup=nil, allowdiskfiledown=nil, allowshellfileup=nil, allowshellfiledown=nil, allowfiledel=nil, validatefrom=nil, validateto=nil, status=nil)
+        def initialize(id=nil, name=nil, allowdiskredirect=nil, allowclipfileup=nil, allowclipfiledown=nil, allowcliptextup=nil, allowcliptextdown=nil, allowfileup=nil, maxfileupsize=nil, allowfiledown=nil, maxfiledownsize=nil, allowanyaccount=nil, userset=nil, usergroupset=nil, deviceset=nil, devicegroupset=nil, accountset=nil, cmdtemplateset=nil, allowdiskfileup=nil, allowdiskfiledown=nil, allowshellfileup=nil, allowshellfiledown=nil, allowfiledel=nil, validatefrom=nil, validateto=nil, status=nil, department=nil)
           @Id = id
           @Name = name
           @AllowDiskRedirect = allowdiskredirect
@@ -103,6 +106,7 @@ module TencentCloud
           @ValidateFrom = validatefrom
           @ValidateTo = validateto
           @Status = status
+          @Department = department
         end
 
         def deserialize(params)
@@ -167,6 +171,10 @@ module TencentCloud
           @ValidateFrom = params['ValidateFrom']
           @ValidateTo = params['ValidateTo']
           @Status = params['Status']
+          unless params['Department'].nil?
+            @Department = Department.new
+            @Department.deserialize(params['Department'])
+          end
         end
       end
 
@@ -354,10 +362,12 @@ module TencentCloud
         # @param ValidateTo: 访问权限失效时间，如:"2021-09-23T00:00:00+00:00"
         # 生效、失效时间不填则访问权限长期有效
         # @type ValidateTo: String
+        # @param DepartmentId: 访问权限所属部门的ID
+        # @type DepartmentId: String
 
-        attr_accessor :Name, :AllowDiskRedirect, :AllowAnyAccount, :AllowClipFileUp, :AllowClipFileDown, :AllowClipTextUp, :AllowClipTextDown, :AllowFileUp, :MaxFileUpSize, :AllowFileDown, :MaxFileDownSize, :UserIdSet, :UserGroupIdSet, :DeviceIdSet, :DeviceGroupIdSet, :AccountSet, :CmdTemplateIdSet, :AllowDiskFileUp, :AllowDiskFileDown, :AllowShellFileUp, :AllowShellFileDown, :AllowFileDel, :ValidateFrom, :ValidateTo
+        attr_accessor :Name, :AllowDiskRedirect, :AllowAnyAccount, :AllowClipFileUp, :AllowClipFileDown, :AllowClipTextUp, :AllowClipTextDown, :AllowFileUp, :MaxFileUpSize, :AllowFileDown, :MaxFileDownSize, :UserIdSet, :UserGroupIdSet, :DeviceIdSet, :DeviceGroupIdSet, :AccountSet, :CmdTemplateIdSet, :AllowDiskFileUp, :AllowDiskFileDown, :AllowShellFileUp, :AllowShellFileDown, :AllowFileDel, :ValidateFrom, :ValidateTo, :DepartmentId
         
-        def initialize(name=nil, allowdiskredirect=nil, allowanyaccount=nil, allowclipfileup=nil, allowclipfiledown=nil, allowcliptextup=nil, allowcliptextdown=nil, allowfileup=nil, maxfileupsize=nil, allowfiledown=nil, maxfiledownsize=nil, useridset=nil, usergroupidset=nil, deviceidset=nil, devicegroupidset=nil, accountset=nil, cmdtemplateidset=nil, allowdiskfileup=nil, allowdiskfiledown=nil, allowshellfileup=nil, allowshellfiledown=nil, allowfiledel=nil, validatefrom=nil, validateto=nil)
+        def initialize(name=nil, allowdiskredirect=nil, allowanyaccount=nil, allowclipfileup=nil, allowclipfiledown=nil, allowcliptextup=nil, allowcliptextdown=nil, allowfileup=nil, maxfileupsize=nil, allowfiledown=nil, maxfiledownsize=nil, useridset=nil, usergroupidset=nil, deviceidset=nil, devicegroupidset=nil, accountset=nil, cmdtemplateidset=nil, allowdiskfileup=nil, allowdiskfiledown=nil, allowshellfileup=nil, allowshellfiledown=nil, allowfiledel=nil, validatefrom=nil, validateto=nil, departmentid=nil)
           @Name = name
           @AllowDiskRedirect = allowdiskredirect
           @AllowAnyAccount = allowanyaccount
@@ -382,6 +392,7 @@ module TencentCloud
           @AllowFileDel = allowfiledel
           @ValidateFrom = validatefrom
           @ValidateTo = validateto
+          @DepartmentId = departmentid
         end
 
         def deserialize(params)
@@ -409,6 +420,7 @@ module TencentCloud
           @AllowFileDel = params['AllowFileDel']
           @ValidateFrom = params['ValidateFrom']
           @ValidateTo = params['ValidateTo']
+          @DepartmentId = params['DepartmentId']
         end
       end
 
@@ -436,15 +448,19 @@ module TencentCloud
       class CreateDeviceGroupRequest < TencentCloud::Common::AbstractModel
         # @param Name: 资产组名，最大长度32字符
         # @type Name: String
+        # @param DepartmentId: 资产组所属部门ID，如：1.2.3
+        # @type DepartmentId: String
 
-        attr_accessor :Name
+        attr_accessor :Name, :DepartmentId
         
-        def initialize(name=nil)
+        def initialize(name=nil, departmentid=nil)
           @Name = name
+          @DepartmentId = departmentid
         end
 
         def deserialize(params)
           @Name = params['Name']
+          @DepartmentId = params['DepartmentId']
         end
       end
 
@@ -472,15 +488,19 @@ module TencentCloud
       class CreateUserGroupRequest < TencentCloud::Common::AbstractModel
         # @param Name: 用户组名，最大长度32字符
         # @type Name: String
+        # @param DepartmentId: 用户组所属部门的ID，如：1.2.3
+        # @type DepartmentId: String
 
-        attr_accessor :Name
+        attr_accessor :Name, :DepartmentId
         
-        def initialize(name=nil)
+        def initialize(name=nil, departmentid=nil)
           @Name = name
+          @DepartmentId = departmentid
         end
 
         def deserialize(params)
           @Name = params['Name']
+          @DepartmentId = params['DepartmentId']
         end
       end
 
@@ -526,10 +546,12 @@ module TencentCloud
         # @type AuthType: Integer
         # @param ValidateTime: 访问时间段限制， 由0、1组成的字符串，长度168(7 × 24)，代表该用户在一周中允许访问的时间段。字符串中第N个字符代表在一周中的第N个小时， 0 - 代表不允许访问，1 - 代表允许访问
         # @type ValidateTime: String
+        # @param DepartmentId: 所属部门ID，如：“1.2.3”
+        # @type DepartmentId: String
 
-        attr_accessor :UserName, :RealName, :Phone, :Email, :ValidateFrom, :ValidateTo, :GroupIdSet, :AuthType, :ValidateTime
+        attr_accessor :UserName, :RealName, :Phone, :Email, :ValidateFrom, :ValidateTo, :GroupIdSet, :AuthType, :ValidateTime, :DepartmentId
         
-        def initialize(username=nil, realname=nil, phone=nil, email=nil, validatefrom=nil, validateto=nil, groupidset=nil, authtype=nil, validatetime=nil)
+        def initialize(username=nil, realname=nil, phone=nil, email=nil, validatefrom=nil, validateto=nil, groupidset=nil, authtype=nil, validatetime=nil, departmentid=nil)
           @UserName = username
           @RealName = realname
           @Phone = phone
@@ -539,6 +561,7 @@ module TencentCloud
           @GroupIdSet = groupidset
           @AuthType = authtype
           @ValidateTime = validatetime
+          @DepartmentId = departmentid
         end
 
         def deserialize(params)
@@ -551,6 +574,7 @@ module TencentCloud
           @GroupIdSet = params['GroupIdSet']
           @AuthType = params['AuthType']
           @ValidateTime = params['ValidateTime']
+          @DepartmentId = params['DepartmentId']
         end
       end
 
@@ -774,6 +798,31 @@ module TencentCloud
         end
       end
 
+      # 部门信息
+      class Department < TencentCloud::Common::AbstractModel
+        # @param Id: 部门ID
+        # @type Id: String
+        # @param Name: 部门名称，1 - 256个字符
+        # @type Name: String
+        # @param Managers: 部门管理员账号ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Managers: Array
+
+        attr_accessor :Id, :Name, :Managers
+        
+        def initialize(id=nil, name=nil, managers=nil)
+          @Id = id
+          @Name = name
+          @Managers = managers
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @Name = params['Name']
+          @Managers = params['Managers']
+        end
+      end
+
       # DescribeAcls请求参数结构体
       class DescribeAclsRequest < TencentCloud::Common::AbstractModel
         # @param IdSet: 访问权限ID集合
@@ -792,10 +841,12 @@ module TencentCloud
         # @type AuthorizedDeviceIdSet: Array
         # @param Status: 访问权限状态，1 - 已生效，2 - 未生效，3 - 已过期
         # @type Status: Integer
+        # @param DepartmentId: 部门ID，用于过滤属于某个部门的访问权限
+        # @type DepartmentId: String
 
-        attr_accessor :IdSet, :Name, :Offset, :Limit, :Exact, :AuthorizedUserIdSet, :AuthorizedDeviceIdSet, :Status
+        attr_accessor :IdSet, :Name, :Offset, :Limit, :Exact, :AuthorizedUserIdSet, :AuthorizedDeviceIdSet, :Status, :DepartmentId
         
-        def initialize(idset=nil, name=nil, offset=nil, limit=nil, exact=nil, authorizeduseridset=nil, authorizeddeviceidset=nil, status=nil)
+        def initialize(idset=nil, name=nil, offset=nil, limit=nil, exact=nil, authorizeduseridset=nil, authorizeddeviceidset=nil, status=nil, departmentid=nil)
           @IdSet = idset
           @Name = name
           @Offset = offset
@@ -804,6 +855,7 @@ module TencentCloud
           @AuthorizedUserIdSet = authorizeduseridset
           @AuthorizedDeviceIdSet = authorizeddeviceidset
           @Status = status
+          @DepartmentId = departmentid
         end
 
         def deserialize(params)
@@ -815,6 +867,7 @@ module TencentCloud
           @AuthorizedUserIdSet = params['AuthorizedUserIdSet']
           @AuthorizedDeviceIdSet = params['AuthorizedDeviceIdSet']
           @Status = params['Status']
+          @DepartmentId = params['DepartmentId']
         end
       end
 
@@ -898,16 +951,19 @@ module TencentCloud
         # @type Limit: Integer
         # @param Kind: 资产类型，1 - Linux，2 - Windows，3 - MySQL，4 - SQLServer
         # @type Kind: Integer
+        # @param DepartmentId: 所属部门ID
+        # @type DepartmentId: String
 
-        attr_accessor :Id, :Bound, :Name, :Offset, :Limit, :Kind
+        attr_accessor :Id, :Bound, :Name, :Offset, :Limit, :Kind, :DepartmentId
         
-        def initialize(id=nil, bound=nil, name=nil, offset=nil, limit=nil, kind=nil)
+        def initialize(id=nil, bound=nil, name=nil, offset=nil, limit=nil, kind=nil, departmentid=nil)
           @Id = id
           @Bound = bound
           @Name = name
           @Offset = offset
           @Limit = limit
           @Kind = kind
+          @DepartmentId = departmentid
         end
 
         def deserialize(params)
@@ -917,6 +973,7 @@ module TencentCloud
           @Offset = params['Offset']
           @Limit = params['Limit']
           @Kind = params['Kind']
+          @DepartmentId = params['DepartmentId']
         end
       end
 
@@ -961,14 +1018,17 @@ module TencentCloud
         # @type Offset: Integer
         # @param Limit: 每页条目数量，缺省20，最大500
         # @type Limit: Integer
+        # @param DepartmentId: 部门ID，用于过滤属于某个部门的资产组
+        # @type DepartmentId: String
 
-        attr_accessor :IdSet, :Name, :Offset, :Limit
+        attr_accessor :IdSet, :Name, :Offset, :Limit, :DepartmentId
         
-        def initialize(idset=nil, name=nil, offset=nil, limit=nil)
+        def initialize(idset=nil, name=nil, offset=nil, limit=nil, departmentid=nil)
           @IdSet = idset
           @Name = name
           @Offset = offset
           @Limit = limit
+          @DepartmentId = departmentid
         end
 
         def deserialize(params)
@@ -976,6 +1036,7 @@ module TencentCloud
           @Name = params['Name']
           @Offset = params['Offset']
           @Limit = params['Limit']
+          @DepartmentId = params['DepartmentId']
         end
       end
 
@@ -1032,10 +1093,12 @@ module TencentCloud
         # @type ResourceIdSet: Array
         # @param KindSet: 可提供按照多种类型过滤, 1 - Linux, 2 - Windows, 3 - MySQL, 4 - SQLServer
         # @type KindSet: Array
+        # @param DepartmentId: 过滤条件，可按照部门ID进行过滤
+        # @type DepartmentId: String
 
-        attr_accessor :IdSet, :Name, :Ip, :ApCodeSet, :Kind, :Offset, :Limit, :AuthorizedUserIdSet, :ResourceIdSet, :KindSet
+        attr_accessor :IdSet, :Name, :Ip, :ApCodeSet, :Kind, :Offset, :Limit, :AuthorizedUserIdSet, :ResourceIdSet, :KindSet, :DepartmentId
         
-        def initialize(idset=nil, name=nil, ip=nil, apcodeset=nil, kind=nil, offset=nil, limit=nil, authorizeduseridset=nil, resourceidset=nil, kindset=nil)
+        def initialize(idset=nil, name=nil, ip=nil, apcodeset=nil, kind=nil, offset=nil, limit=nil, authorizeduseridset=nil, resourceidset=nil, kindset=nil, departmentid=nil)
           @IdSet = idset
           @Name = name
           @Ip = ip
@@ -1046,6 +1109,7 @@ module TencentCloud
           @AuthorizedUserIdSet = authorizeduseridset
           @ResourceIdSet = resourceidset
           @KindSet = kindset
+          @DepartmentId = departmentid
         end
 
         def deserialize(params)
@@ -1059,6 +1123,7 @@ module TencentCloud
           @AuthorizedUserIdSet = params['AuthorizedUserIdSet']
           @ResourceIdSet = params['ResourceIdSet']
           @KindSet = params['KindSet']
+          @DepartmentId = params['DepartmentId']
         end
       end
 
@@ -1156,15 +1221,18 @@ module TencentCloud
         # @type Offset: Integer
         # @param Limit: 每页条目数量，默认20, 最大500
         # @type Limit: Integer
+        # @param DepartmentId: 所属部门ID
+        # @type DepartmentId: String
 
-        attr_accessor :Id, :Bound, :Name, :Offset, :Limit
+        attr_accessor :Id, :Bound, :Name, :Offset, :Limit, :DepartmentId
         
-        def initialize(id=nil, bound=nil, name=nil, offset=nil, limit=nil)
+        def initialize(id=nil, bound=nil, name=nil, offset=nil, limit=nil, departmentid=nil)
           @Id = id
           @Bound = bound
           @Name = name
           @Offset = offset
           @Limit = limit
+          @DepartmentId = departmentid
         end
 
         def deserialize(params)
@@ -1173,6 +1241,7 @@ module TencentCloud
           @Name = params['Name']
           @Offset = params['Offset']
           @Limit = params['Limit']
+          @DepartmentId = params['DepartmentId']
         end
       end
 
@@ -1217,14 +1286,17 @@ module TencentCloud
         # @type Offset: Integer
         # @param Limit: 每页条目数量，缺省20，最大500
         # @type Limit: Integer
+        # @param DepartmentId: 部门ID，用于过滤属于某个部门的用户组
+        # @type DepartmentId: String
 
-        attr_accessor :IdSet, :Name, :Offset, :Limit
+        attr_accessor :IdSet, :Name, :Offset, :Limit, :DepartmentId
         
-        def initialize(idset=nil, name=nil, offset=nil, limit=nil)
+        def initialize(idset=nil, name=nil, offset=nil, limit=nil, departmentid=nil)
           @IdSet = idset
           @Name = name
           @Offset = offset
           @Limit = limit
+          @DepartmentId = departmentid
         end
 
         def deserialize(params)
@@ -1232,6 +1304,7 @@ module TencentCloud
           @Name = params['Name']
           @Offset = params['Offset']
           @Limit = params['Limit']
+          @DepartmentId = params['DepartmentId']
         end
       end
 
@@ -1285,10 +1358,12 @@ module TencentCloud
         # @type AuthorizedDeviceIdSet: Array
         # @param AuthTypeSet: 认证方式，0 - 本地, 1 - LDAP, 2 - OAuth, 不传为全部
         # @type AuthTypeSet: Array
+        # @param DepartmentId: 部门ID，用于过滤属于某个部门的用户
+        # @type DepartmentId: String
 
-        attr_accessor :IdSet, :Name, :Offset, :Limit, :UserName, :Phone, :AuthorizedDeviceIdSet, :AuthTypeSet
+        attr_accessor :IdSet, :Name, :Offset, :Limit, :UserName, :Phone, :AuthorizedDeviceIdSet, :AuthTypeSet, :DepartmentId
         
-        def initialize(idset=nil, name=nil, offset=nil, limit=nil, username=nil, phone=nil, authorizeddeviceidset=nil, authtypeset=nil)
+        def initialize(idset=nil, name=nil, offset=nil, limit=nil, username=nil, phone=nil, authorizeddeviceidset=nil, authtypeset=nil, departmentid=nil)
           @IdSet = idset
           @Name = name
           @Offset = offset
@@ -1297,6 +1372,7 @@ module TencentCloud
           @Phone = phone
           @AuthorizedDeviceIdSet = authorizeddeviceidset
           @AuthTypeSet = authtypeset
+          @DepartmentId = departmentid
         end
 
         def deserialize(params)
@@ -1308,6 +1384,7 @@ module TencentCloud
           @Phone = params['Phone']
           @AuthorizedDeviceIdSet = params['AuthorizedDeviceIdSet']
           @AuthTypeSet = params['AuthTypeSet']
+          @DepartmentId = params['DepartmentId']
         end
       end
 
@@ -1373,10 +1450,13 @@ module TencentCloud
         # @param Resource: 堡垒机服务信息，注意没有绑定服务时为null
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Resource: :class:`Tencentcloud::Dasb.v20191018.models.Resource`
+        # @param Department: 资产所属部门
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Department: :class:`Tencentcloud::Dasb.v20191018.models.Department`
 
-        attr_accessor :Id, :InstanceId, :Name, :PublicIp, :PrivateIp, :ApCode, :OsName, :Kind, :Port, :GroupSet, :AccountCount, :VpcId, :SubnetId, :Resource
+        attr_accessor :Id, :InstanceId, :Name, :PublicIp, :PrivateIp, :ApCode, :OsName, :Kind, :Port, :GroupSet, :AccountCount, :VpcId, :SubnetId, :Resource, :Department
         
-        def initialize(id=nil, instanceid=nil, name=nil, publicip=nil, privateip=nil, apcode=nil, osname=nil, kind=nil, port=nil, groupset=nil, accountcount=nil, vpcid=nil, subnetid=nil, resource=nil)
+        def initialize(id=nil, instanceid=nil, name=nil, publicip=nil, privateip=nil, apcode=nil, osname=nil, kind=nil, port=nil, groupset=nil, accountcount=nil, vpcid=nil, subnetid=nil, resource=nil, department=nil)
           @Id = id
           @InstanceId = instanceid
           @Name = name
@@ -1391,6 +1471,7 @@ module TencentCloud
           @VpcId = vpcid
           @SubnetId = subnetid
           @Resource = resource
+          @Department = department
         end
 
         def deserialize(params)
@@ -1418,6 +1499,10 @@ module TencentCloud
             @Resource = Resource.new
             @Resource.deserialize(params['Resource'])
           end
+          unless params['Department'].nil?
+            @Department = Department.new
+            @Department.deserialize(params['Department'])
+          end
         end
       end
 
@@ -1427,17 +1512,25 @@ module TencentCloud
         # @type Id: Integer
         # @param Name: 组名称
         # @type Name: String
+        # @param Department: 所属部门信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Department: :class:`Tencentcloud::Dasb.v20191018.models.Department`
 
-        attr_accessor :Id, :Name
+        attr_accessor :Id, :Name, :Department
         
-        def initialize(id=nil, name=nil)
+        def initialize(id=nil, name=nil, department=nil)
           @Id = id
           @Name = name
+          @Department = department
         end
 
         def deserialize(params)
           @Id = params['Id']
           @Name = params['Name']
+          unless params['Department'].nil?
+            @Department = Department.new
+            @Department.deserialize(params['Department'])
+          end
         end
       end
 
@@ -1495,10 +1588,12 @@ module TencentCloud
         # @param ValidateTo: 访问权限失效时间，如:"2021-09-23T00:00:00+00:00"
         # 生效、失效时间不填则访问权限长期有效
         # @type ValidateTo: String
+        # @param DepartmentId: 权限所属部门的ID，如：1.2.3
+        # @type DepartmentId: String
 
-        attr_accessor :Name, :AllowDiskRedirect, :AllowAnyAccount, :Id, :AllowClipFileUp, :AllowClipFileDown, :AllowClipTextUp, :AllowClipTextDown, :AllowFileUp, :MaxFileUpSize, :AllowFileDown, :MaxFileDownSize, :UserIdSet, :UserGroupIdSet, :DeviceIdSet, :DeviceGroupIdSet, :AccountSet, :CmdTemplateIdSet, :AllowDiskFileUp, :AllowDiskFileDown, :AllowShellFileUp, :AllowShellFileDown, :AllowFileDel, :ValidateFrom, :ValidateTo
+        attr_accessor :Name, :AllowDiskRedirect, :AllowAnyAccount, :Id, :AllowClipFileUp, :AllowClipFileDown, :AllowClipTextUp, :AllowClipTextDown, :AllowFileUp, :MaxFileUpSize, :AllowFileDown, :MaxFileDownSize, :UserIdSet, :UserGroupIdSet, :DeviceIdSet, :DeviceGroupIdSet, :AccountSet, :CmdTemplateIdSet, :AllowDiskFileUp, :AllowDiskFileDown, :AllowShellFileUp, :AllowShellFileDown, :AllowFileDel, :ValidateFrom, :ValidateTo, :DepartmentId
         
-        def initialize(name=nil, allowdiskredirect=nil, allowanyaccount=nil, id=nil, allowclipfileup=nil, allowclipfiledown=nil, allowcliptextup=nil, allowcliptextdown=nil, allowfileup=nil, maxfileupsize=nil, allowfiledown=nil, maxfiledownsize=nil, useridset=nil, usergroupidset=nil, deviceidset=nil, devicegroupidset=nil, accountset=nil, cmdtemplateidset=nil, allowdiskfileup=nil, allowdiskfiledown=nil, allowshellfileup=nil, allowshellfiledown=nil, allowfiledel=nil, validatefrom=nil, validateto=nil)
+        def initialize(name=nil, allowdiskredirect=nil, allowanyaccount=nil, id=nil, allowclipfileup=nil, allowclipfiledown=nil, allowcliptextup=nil, allowcliptextdown=nil, allowfileup=nil, maxfileupsize=nil, allowfiledown=nil, maxfiledownsize=nil, useridset=nil, usergroupidset=nil, deviceidset=nil, devicegroupidset=nil, accountset=nil, cmdtemplateidset=nil, allowdiskfileup=nil, allowdiskfiledown=nil, allowshellfileup=nil, allowshellfiledown=nil, allowfiledel=nil, validatefrom=nil, validateto=nil, departmentid=nil)
           @Name = name
           @AllowDiskRedirect = allowdiskredirect
           @AllowAnyAccount = allowanyaccount
@@ -1524,6 +1619,7 @@ module TencentCloud
           @AllowFileDel = allowfiledel
           @ValidateFrom = validatefrom
           @ValidateTo = validateto
+          @DepartmentId = departmentid
         end
 
         def deserialize(params)
@@ -1552,6 +1648,7 @@ module TencentCloud
           @AllowFileDel = params['AllowFileDel']
           @ValidateFrom = params['ValidateFrom']
           @ValidateTo = params['ValidateTo']
+          @DepartmentId = params['DepartmentId']
         end
       end
 
@@ -1593,10 +1690,12 @@ module TencentCloud
         # @type AuthType: Integer
         # @param ValidateTime: 访问时间段限制， 由0、1组成的字符串，长度168(7 × 24)，代表该用户在一周中允许访问的时间段。字符串中第N个字符代表在一周中的第N个小时， 0 - 代表不允许访问，1 - 代表允许访问
         # @type ValidateTime: String
+        # @param DepartmentId: 用户所属部门的ID，如1.2.3
+        # @type DepartmentId: String
 
-        attr_accessor :Id, :RealName, :Phone, :Email, :ValidateFrom, :ValidateTo, :GroupIdSet, :AuthType, :ValidateTime
+        attr_accessor :Id, :RealName, :Phone, :Email, :ValidateFrom, :ValidateTo, :GroupIdSet, :AuthType, :ValidateTime, :DepartmentId
         
-        def initialize(id=nil, realname=nil, phone=nil, email=nil, validatefrom=nil, validateto=nil, groupidset=nil, authtype=nil, validatetime=nil)
+        def initialize(id=nil, realname=nil, phone=nil, email=nil, validatefrom=nil, validateto=nil, groupidset=nil, authtype=nil, validatetime=nil, departmentid=nil)
           @Id = id
           @RealName = realname
           @Phone = phone
@@ -1606,6 +1705,7 @@ module TencentCloud
           @GroupIdSet = groupidset
           @AuthType = authtype
           @ValidateTime = validatetime
+          @DepartmentId = departmentid
         end
 
         def deserialize(params)
@@ -1618,6 +1718,7 @@ module TencentCloud
           @GroupIdSet = params['GroupIdSet']
           @AuthType = params['AuthType']
           @ValidateTime = params['ValidateTime']
+          @DepartmentId = params['DepartmentId']
         end
       end
 
@@ -1785,10 +1886,16 @@ module TencentCloud
         # @type AuthType: Integer
         # @param ValidateTime: 访问时间段限制， 由0、1组成的字符串，长度168(7 × 24)，代表该用户在一周中允许访问的时间段。字符串中第N个字符代表在一周中的第N个小时， 0 - 代表不允许访问，1 - 代表允许访问
         # @type ValidateTime: String
+        # @param Department: 用户所属部门（用于出参）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Department: :class:`Tencentcloud::Dasb.v20191018.models.Department`
+        # @param DepartmentId: 用户所属部门（用于入参）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DepartmentId: String
 
-        attr_accessor :UserName, :RealName, :Phone, :Id, :Email, :ValidateFrom, :ValidateTo, :GroupSet, :AuthType, :ValidateTime
+        attr_accessor :UserName, :RealName, :Phone, :Id, :Email, :ValidateFrom, :ValidateTo, :GroupSet, :AuthType, :ValidateTime, :Department, :DepartmentId
         
-        def initialize(username=nil, realname=nil, phone=nil, id=nil, email=nil, validatefrom=nil, validateto=nil, groupset=nil, authtype=nil, validatetime=nil)
+        def initialize(username=nil, realname=nil, phone=nil, id=nil, email=nil, validatefrom=nil, validateto=nil, groupset=nil, authtype=nil, validatetime=nil, department=nil, departmentid=nil)
           @UserName = username
           @RealName = realname
           @Phone = phone
@@ -1799,6 +1906,8 @@ module TencentCloud
           @GroupSet = groupset
           @AuthType = authtype
           @ValidateTime = validatetime
+          @Department = department
+          @DepartmentId = departmentid
         end
 
         def deserialize(params)
@@ -1819,6 +1928,11 @@ module TencentCloud
           end
           @AuthType = params['AuthType']
           @ValidateTime = params['ValidateTime']
+          unless params['Department'].nil?
+            @Department = Department.new
+            @Department.deserialize(params['Department'])
+          end
+          @DepartmentId = params['DepartmentId']
         end
       end
 

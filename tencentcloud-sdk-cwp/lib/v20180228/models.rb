@@ -5469,9 +5469,9 @@ module TencentCloud
 
       # DescribeAssetUserInfo请求参数结构体
       class DescribeAssetUserInfoRequest < TencentCloud::Common::AbstractModel
-        # @param Quuid: 服务器Quuid
+        # @param Quuid: 云服务器UUID
         # @type Quuid: String
-        # @param Uuid: 服务器Uuid
+        # @param Uuid: 主机安全UUID
         # @type Uuid: String
         # @param Name: 账户名
         # @type Name: String

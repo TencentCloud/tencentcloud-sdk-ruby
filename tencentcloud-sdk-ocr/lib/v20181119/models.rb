@@ -5577,15 +5577,18 @@ module TencentCloud
         # @type IsPdf: Boolean
         # @param PdfPageNumber: 需要识别的PDF页面的对应页码，仅支持PDF单页识别，当上传文件为PDF且IsPdf参数值为true时有效，默认值为1。
         # @type PdfPageNumber: Integer
+        # @param ReturnFullText: 是否开启全文字段识别，默认值为false，开启后可返回全文字段识别结果。
+        # @type ReturnFullText: Boolean
 
-        attr_accessor :ImageUrl, :ImageBase64, :ItemNames, :IsPdf, :PdfPageNumber
+        attr_accessor :ImageUrl, :ImageBase64, :ItemNames, :IsPdf, :PdfPageNumber, :ReturnFullText
         
-        def initialize(imageurl=nil, imagebase64=nil, itemnames=nil, ispdf=nil, pdfpagenumber=nil)
+        def initialize(imageurl=nil, imagebase64=nil, itemnames=nil, ispdf=nil, pdfpagenumber=nil, returnfulltext=nil)
           @ImageUrl = imageurl
           @ImageBase64 = imagebase64
           @ItemNames = itemnames
           @IsPdf = ispdf
           @PdfPageNumber = pdfpagenumber
+          @ReturnFullText = returnfulltext
         end
 
         def deserialize(params)
@@ -5594,6 +5597,7 @@ module TencentCloud
           @ItemNames = params['ItemNames']
           @IsPdf = params['IsPdf']
           @PdfPageNumber = params['PdfPageNumber']
+          @ReturnFullText = params['ReturnFullText']
         end
       end
 

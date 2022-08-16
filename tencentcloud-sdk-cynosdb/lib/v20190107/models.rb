@@ -3543,15 +3543,27 @@ module TencentCloud
         # @param NetType: 网络类型（ro-只读,rw/ha-读写）
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NetType: String
+        # @param UniqSubnetId: 子网ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UniqSubnetId: String
+        # @param UniqVpcId: 私有网络ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UniqVpcId: String
+        # @param Description: 描述信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Description: String
 
-        attr_accessor :Vip, :Vport, :WanDomain, :WanPort, :NetType
+        attr_accessor :Vip, :Vport, :WanDomain, :WanPort, :NetType, :UniqSubnetId, :UniqVpcId, :Description
         
-        def initialize(vip=nil, vport=nil, wandomain=nil, wanport=nil, nettype=nil)
+        def initialize(vip=nil, vport=nil, wandomain=nil, wanport=nil, nettype=nil, uniqsubnetid=nil, uniqvpcid=nil, description=nil)
           @Vip = vip
           @Vport = vport
           @WanDomain = wandomain
           @WanPort = wanport
           @NetType = nettype
+          @UniqSubnetId = uniqsubnetid
+          @UniqVpcId = uniqvpcid
+          @Description = description
         end
 
         def deserialize(params)
@@ -3560,6 +3572,9 @@ module TencentCloud
           @WanDomain = params['WanDomain']
           @WanPort = params['WanPort']
           @NetType = params['NetType']
+          @UniqSubnetId = params['UniqSubnetId']
+          @UniqVpcId = params['UniqVpcId']
+          @Description = params['Description']
         end
       end
 

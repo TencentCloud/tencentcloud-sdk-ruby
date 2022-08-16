@@ -6205,10 +6205,16 @@ module TencentCloud
         # @param QpsLimit: Qps 限制
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type QpsLimit: Integer
+        # @param TableMappings: Table到Topic的路由，「分发到多个topic」开关打开时必传
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TableMappings: Array
+        # @param UseTableMapping: 「分发到多个topic」开关，默认为false
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UseTableMapping: Boolean
 
-        attr_accessor :SelfBuilt, :Resource, :Topic, :OffsetType, :StartTime, :ResourceName, :ZoneId, :TopicId, :PartitionNum, :EnableToleration, :QpsLimit
+        attr_accessor :SelfBuilt, :Resource, :Topic, :OffsetType, :StartTime, :ResourceName, :ZoneId, :TopicId, :PartitionNum, :EnableToleration, :QpsLimit, :TableMappings, :UseTableMapping
         
-        def initialize(selfbuilt=nil, resource=nil, topic=nil, offsettype=nil, starttime=nil, resourcename=nil, zoneid=nil, topicid=nil, partitionnum=nil, enabletoleration=nil, qpslimit=nil)
+        def initialize(selfbuilt=nil, resource=nil, topic=nil, offsettype=nil, starttime=nil, resourcename=nil, zoneid=nil, topicid=nil, partitionnum=nil, enabletoleration=nil, qpslimit=nil, tablemappings=nil, usetablemapping=nil)
           @SelfBuilt = selfbuilt
           @Resource = resource
           @Topic = topic
@@ -6220,6 +6226,8 @@ module TencentCloud
           @PartitionNum = partitionnum
           @EnableToleration = enabletoleration
           @QpsLimit = qpslimit
+          @TableMappings = tablemappings
+          @UseTableMapping = usetablemapping
         end
 
         def deserialize(params)
@@ -6234,6 +6242,15 @@ module TencentCloud
           @PartitionNum = params['PartitionNum']
           @EnableToleration = params['EnableToleration']
           @QpsLimit = params['QpsLimit']
+          unless params['TableMappings'].nil?
+            @TableMappings = []
+            params['TableMappings'].each do |i|
+              tablemapping_tmp = TableMapping.new
+              tablemapping_tmp.deserialize(i)
+              @TableMappings << tablemapping_tmp
+            end
+          end
+          @UseTableMapping = params['UseTableMapping']
         end
       end
 
@@ -7107,10 +7124,13 @@ module TencentCloud
         # @param ClusterId: 当type为TDSQL_C_MYSQL时，必填
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ClusterId: String
+        # @param SelfBuilt: Mysql 连接源是否为自建集群
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SelfBuilt: Boolean
 
-        attr_accessor :Port, :UserName, :Password, :Resource, :ServiceVip, :UniqVpcId, :IsUpdate, :ClusterId
+        attr_accessor :Port, :UserName, :Password, :Resource, :ServiceVip, :UniqVpcId, :IsUpdate, :ClusterId, :SelfBuilt
         
-        def initialize(port=nil, username=nil, password=nil, resource=nil, servicevip=nil, uniqvpcid=nil, isupdate=nil, clusterid=nil)
+        def initialize(port=nil, username=nil, password=nil, resource=nil, servicevip=nil, uniqvpcid=nil, isupdate=nil, clusterid=nil, selfbuilt=nil)
           @Port = port
           @UserName = username
           @Password = password
@@ -7119,6 +7139,7 @@ module TencentCloud
           @UniqVpcId = uniqvpcid
           @IsUpdate = isupdate
           @ClusterId = clusterid
+          @SelfBuilt = selfbuilt
         end
 
         def deserialize(params)
@@ -7130,6 +7151,7 @@ module TencentCloud
           @UniqVpcId = params['UniqVpcId']
           @IsUpdate = params['IsUpdate']
           @ClusterId = params['ClusterId']
+          @SelfBuilt = params['SelfBuilt']
         end
       end
 
@@ -7223,10 +7245,18 @@ module TencentCloud
         # @type DropInvalidMessage: Boolean
         # @param DropCls: 当设置成员参数DropInvalidMessageToCls设置为true时,DropInvalidMessage参数失效
         # @type DropCls: :class:`Tencentcloud::Ckafka.v20190819.models.DropCls`
+        # @param OutputFormat: 输出格式，DEFAULT、CANAL_1、CANAL_2
+        # @type OutputFormat: String
+        # @param IsTablePrefix: 当Table输入的是前缀时，该项值为true，否则为false
+        # @type IsTablePrefix: Boolean
+        # @param IncludeContentChanges: 如果该值为all，则DDL数据以及DML数据也会写入到选中的topic；若该值为dml，则只有DML数据写入到选中的topic
+        # @type IncludeContentChanges: String
+        # @param IncludeQuery: 如果该值为true，且MySQL中"binlog_rows_query_log_events"配置项的值为"ON"，则流入到topic的数据包含原SQL语句；若该值为false，流入到topic的数据不包含原SQL语句
+        # @type IncludeQuery: Boolean
 
-        attr_accessor :Database, :Table, :Resource, :SnapshotMode, :DdlTopic, :DataSourceMonitorMode, :DataSourceMonitorResource, :DataSourceIncrementMode, :DataSourceIncrementColumn, :DataSourceStartFrom, :DataTargetInsertMode, :DataTargetPrimaryKeyField, :DataTargetRecordMapping, :TopicRegex, :TopicReplacement, :KeyColumns, :DropInvalidMessage, :DropCls
+        attr_accessor :Database, :Table, :Resource, :SnapshotMode, :DdlTopic, :DataSourceMonitorMode, :DataSourceMonitorResource, :DataSourceIncrementMode, :DataSourceIncrementColumn, :DataSourceStartFrom, :DataTargetInsertMode, :DataTargetPrimaryKeyField, :DataTargetRecordMapping, :TopicRegex, :TopicReplacement, :KeyColumns, :DropInvalidMessage, :DropCls, :OutputFormat, :IsTablePrefix, :IncludeContentChanges, :IncludeQuery
         
-        def initialize(database=nil, table=nil, resource=nil, snapshotmode=nil, ddltopic=nil, datasourcemonitormode=nil, datasourcemonitorresource=nil, datasourceincrementmode=nil, datasourceincrementcolumn=nil, datasourcestartfrom=nil, datatargetinsertmode=nil, datatargetprimarykeyfield=nil, datatargetrecordmapping=nil, topicregex=nil, topicreplacement=nil, keycolumns=nil, dropinvalidmessage=nil, dropcls=nil)
+        def initialize(database=nil, table=nil, resource=nil, snapshotmode=nil, ddltopic=nil, datasourcemonitormode=nil, datasourcemonitorresource=nil, datasourceincrementmode=nil, datasourceincrementcolumn=nil, datasourcestartfrom=nil, datatargetinsertmode=nil, datatargetprimarykeyfield=nil, datatargetrecordmapping=nil, topicregex=nil, topicreplacement=nil, keycolumns=nil, dropinvalidmessage=nil, dropcls=nil, outputformat=nil, istableprefix=nil, includecontentchanges=nil, includequery=nil)
           @Database = database
           @Table = table
           @Resource = resource
@@ -7245,6 +7275,10 @@ module TencentCloud
           @KeyColumns = keycolumns
           @DropInvalidMessage = dropinvalidmessage
           @DropCls = dropcls
+          @OutputFormat = outputformat
+          @IsTablePrefix = istableprefix
+          @IncludeContentChanges = includecontentchanges
+          @IncludeQuery = includequery
         end
 
         def deserialize(params)
@@ -7276,6 +7310,10 @@ module TencentCloud
             @DropCls = DropCls.new
             @DropCls.deserialize(params['DropCls'])
           end
+          @OutputFormat = params['OutputFormat']
+          @IsTablePrefix = params['IsTablePrefix']
+          @IncludeContentChanges = params['IncludeContentChanges']
+          @IncludeQuery = params['IncludeQuery']
         end
       end
 
@@ -7380,10 +7418,13 @@ module TencentCloud
         # @param IsUpdate: 是否更新到关联的Datahub任务
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsUpdate: Boolean
+        # @param SelfBuilt: PostgreSQL连接源是否为自建集群
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SelfBuilt: Boolean
 
-        attr_accessor :Port, :UserName, :Password, :Resource, :ServiceVip, :UniqVpcId, :ClusterId, :IsUpdate
+        attr_accessor :Port, :UserName, :Password, :Resource, :ServiceVip, :UniqVpcId, :ClusterId, :IsUpdate, :SelfBuilt
         
-        def initialize(port=nil, username=nil, password=nil, resource=nil, servicevip=nil, uniqvpcid=nil, clusterid=nil, isupdate=nil)
+        def initialize(port=nil, username=nil, password=nil, resource=nil, servicevip=nil, uniqvpcid=nil, clusterid=nil, isupdate=nil, selfbuilt=nil)
           @Port = port
           @UserName = username
           @Password = password
@@ -7392,6 +7433,7 @@ module TencentCloud
           @UniqVpcId = uniqvpcid
           @ClusterId = clusterid
           @IsUpdate = isupdate
+          @SelfBuilt = selfbuilt
         end
 
         def deserialize(params)
@@ -7403,6 +7445,7 @@ module TencentCloud
           @UniqVpcId = params['UniqVpcId']
           @ClusterId = params['ClusterId']
           @IsUpdate = params['IsUpdate']
+          @SelfBuilt = params['SelfBuilt']
         end
       end
 
@@ -8071,6 +8114,34 @@ module TencentCloud
         def deserialize(params)
           @Start = params['Start']
           @End = params['End']
+        end
+      end
+
+      # Table、Topic路由
+      class TableMapping < TencentCloud::Common::AbstractModel
+        # @param Database: 库名
+        # @type Database: String
+        # @param Table: 表名，多个表,（逗号）隔开
+        # @type Table: String
+        # @param Topic: Topic名称
+        # @type Topic: String
+        # @param TopicId: Topic ID
+        # @type TopicId: String
+
+        attr_accessor :Database, :Table, :Topic, :TopicId
+        
+        def initialize(database=nil, table=nil, topic=nil, topicid=nil)
+          @Database = database
+          @Table = table
+          @Topic = topic
+          @TopicId = topicid
+        end
+
+        def deserialize(params)
+          @Database = params['Database']
+          @Table = params['Table']
+          @Topic = params['Topic']
+          @TopicId = params['TopicId']
         end
       end
 

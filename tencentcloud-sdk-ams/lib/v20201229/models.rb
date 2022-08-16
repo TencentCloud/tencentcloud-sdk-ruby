@@ -171,16 +171,19 @@ module TencentCloud
         # @param SubLabel: 该字段用于返回当前标签（Lable）下的二级标签。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SubLabel: String
+        # @param Suggestion: 该字段用于返回基于恶意标签的后续操作建议。当您获取到判定结果后，返回值表示系统推荐的后续操作；建议您按照业务所需，对不同违规类型与建议值进行处理。<br>返回值：**Block**：建议屏蔽，**Review** ：建议人工复审，**Pass**：建议通过
+        # @type Suggestion: String
 
-        attr_accessor :Label, :Score, :StartTime, :EndTime, :SubLabelCode, :SubLabel
+        attr_accessor :Label, :Score, :StartTime, :EndTime, :SubLabelCode, :SubLabel, :Suggestion
         
-        def initialize(label=nil, score=nil, starttime=nil, endtime=nil, sublabelcode=nil, sublabel=nil)
+        def initialize(label=nil, score=nil, starttime=nil, endtime=nil, sublabelcode=nil, sublabel=nil, suggestion=nil)
           @Label = label
           @Score = score
           @StartTime = starttime
           @EndTime = endtime
           @SubLabelCode = sublabelcode
           @SubLabel = sublabel
+          @Suggestion = suggestion
         end
 
         def deserialize(params)
@@ -190,6 +193,7 @@ module TencentCloud
           @EndTime = params['EndTime']
           @SubLabelCode = params['SubLabelCode']
           @SubLabel = params['SubLabel']
+          @Suggestion = params['Suggestion']
         end
       end
 

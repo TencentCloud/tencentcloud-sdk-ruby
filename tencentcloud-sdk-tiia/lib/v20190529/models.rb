@@ -115,12 +115,15 @@ module TencentCloud
         # @type Rect: :class:`Tencentcloud::Tiia.v20190529.models.ImageRect`
         # @param Score: 置信度。
         # @type Score: Float
+        # @param CategoryId: 主体区域类目ID
+        # @type CategoryId: Integer
 
-        attr_accessor :Rect, :Score
+        attr_accessor :Rect, :Score, :CategoryId
         
-        def initialize(rect=nil, score=nil)
+        def initialize(rect=nil, score=nil, categoryid=nil)
           @Rect = rect
           @Score = score
+          @CategoryId = categoryid
         end
 
         def deserialize(params)
@@ -129,6 +132,7 @@ module TencentCloud
             @Rect.deserialize(params['Rect'])
           end
           @Score = params['Score']
+          @CategoryId = params['CategoryId']
         end
       end
 
@@ -1558,7 +1562,7 @@ module TencentCloud
         # @type Colors: Array
         # @param Attributes: 属性信息。
         # @type Attributes: Array
-        # @param AllBox: 图像的所有主体区域。
+        # @param AllBox: 图像的所有主体区域，置信度，以及主体区域类别ID。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AllBox: Array
 

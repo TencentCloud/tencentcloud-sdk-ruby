@@ -225,10 +225,17 @@ module TencentCloud
         # @type Zone: String
         # @param ApiVersion: 1:3.0版本新控制台传1；否则传0
         # @type ApiVersion: Integer
+        # @param GroupId: -1:不按项目筛选，获取所有
+        # >=0: 按项目id筛选
+        # @type GroupId: Integer
+        # @param Status: -2: 不按状态筛选，获取所有
+        # 0: 运行中
+        # 2: 已停止
+        # @type Status: Integer
 
-        attr_accessor :RuntimeId, :Limit, :Offset, :SortType, :Sort, :Zone, :ApiVersion
+        attr_accessor :RuntimeId, :Limit, :Offset, :SortType, :Sort, :Zone, :ApiVersion, :GroupId, :Status
         
-        def initialize(runtimeid=nil, limit=nil, offset=nil, sorttype=nil, sort=nil, zone=nil, apiversion=nil)
+        def initialize(runtimeid=nil, limit=nil, offset=nil, sorttype=nil, sort=nil, zone=nil, apiversion=nil, groupid=nil, status=nil)
           @RuntimeId = runtimeid
           @Limit = limit
           @Offset = offset
@@ -236,6 +243,8 @@ module TencentCloud
           @Sort = sort
           @Zone = zone
           @ApiVersion = apiversion
+          @GroupId = groupid
+          @Status = status
         end
 
         def deserialize(params)
@@ -246,6 +255,8 @@ module TencentCloud
           @Sort = params['Sort']
           @Zone = params['Zone']
           @ApiVersion = params['ApiVersion']
+          @GroupId = params['GroupId']
+          @Status = params['Status']
         end
       end
 

@@ -2256,7 +2256,7 @@ module TencentCloud
         # @type PageSize: Integer
         # @param PageIndex: 页码
         # @type PageIndex: Integer
-        # @param Scenes: 业务场景 参考ScenesType
+        # @param Scenes: 1:急需关注 2.重保监控 3.全量告警
         # @type Scenes: Integer
         # @param Filter: 查询参数
         # @type Filter: Array

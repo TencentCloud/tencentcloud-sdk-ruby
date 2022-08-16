@@ -317,6 +317,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口（DeleteDeviceShadow）用于删除设备影子
+
+        # @param request: Request instance for DeleteDeviceShadow.
+        # @type request: :class:`Tencentcloud::iotcloud::V20210408::DeleteDeviceShadowRequest`
+        # @rtype: :class:`Tencentcloud::iotcloud::V20210408::DeleteDeviceShadowResponse`
+        def DeleteDeviceShadow(request)
+          body = send_request('DeleteDeviceShadow', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteDeviceShadowResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 删除私有CA证书
 
         # @param request: Request instance for DeletePrivateCA.
