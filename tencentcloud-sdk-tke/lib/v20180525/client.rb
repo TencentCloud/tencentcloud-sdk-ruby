@@ -461,6 +461,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 创建边缘容器CVM机器
+
+        # @param request: Request instance for CreateEdgeCVMInstances.
+        # @type request: :class:`Tencentcloud::tke::V20180525::CreateEdgeCVMInstancesRequest`
+        # @rtype: :class:`Tencentcloud::tke::V20180525::CreateEdgeCVMInstancesResponse`
+        def CreateEdgeCVMInstances(request)
+          body = send_request('CreateEdgeCVMInstances', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateEdgeCVMInstancesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 创建边缘集群日志采集配置
 
         # @param request: Request instance for CreateEdgeLogConfig.

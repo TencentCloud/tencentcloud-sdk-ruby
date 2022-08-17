@@ -509,6 +509,62 @@ module TencentCloud
         end
       end
 
+      # CreateCRUserVerify请求参数结构体
+      class CreateCRUserVerifyRequest < TencentCloud::Common::AbstractModel
+        # @param UserName: 用户真实姓名
+        # @type UserName: String
+        # @param UserID: 用户身份证ID
+        # @type UserID: String
+        # @param UserPhone: 用户手机号码
+        # @type UserPhone: String
+        # @param VerificationCode: 短信验证码
+        # @type VerificationCode: String
+        # @param Type: xxx
+        # @type Type: String
+
+        attr_accessor :UserName, :UserID, :UserPhone, :VerificationCode, :Type
+        
+        def initialize(username=nil, userid=nil, userphone=nil, verificationcode=nil, type=nil)
+          @UserName = username
+          @UserID = userid
+          @UserPhone = userphone
+          @VerificationCode = verificationcode
+          @Type = type
+        end
+
+        def deserialize(params)
+          @UserName = params['UserName']
+          @UserID = params['UserID']
+          @UserPhone = params['UserPhone']
+          @VerificationCode = params['VerificationCode']
+          @Type = params['Type']
+        end
+      end
+
+      # CreateCRUserVerify返回参数结构体
+      class CreateCRUserVerifyResponse < TencentCloud::Common::AbstractModel
+        # @param Status: 认证状态 0-认证成功 1-认证失败
+        # @type Status: Integer
+        # @param Note: 认证结果返回
+        # @type Note: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Status, :Note, :RequestId
+        
+        def initialize(status=nil, note=nil, requestid=nil)
+          @Status = status
+          @Note = note
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Status = params['Status']
+          @Note = params['Note']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateCRWork请求参数结构体
       class CreateCRWorkRequest < TencentCloud::Common::AbstractModel
         # @param WorkName: 作品名称

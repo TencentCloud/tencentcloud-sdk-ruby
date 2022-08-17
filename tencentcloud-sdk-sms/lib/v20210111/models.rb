@@ -1189,6 +1189,73 @@ module TencentCloud
         end
       end
 
+      # ReportConversion请求参数结构体
+      class ReportConversionRequest < TencentCloud::Common::AbstractModel
+        # @param SmsSdkAppId: 短信应用ID。在 [短信控制台](https://console.cloud.tencent.com/smsv2/app-manage)  添加应用后生成的实际 SdkAppId，示例如1400006666。
+        # @type SmsSdkAppId: String
+        # @param SerialNo: 发送短信返回的流水号。
+        # @type SerialNo: String
+        # @param ConversionTime: 用户回填时间，UNIX 时间戳（单位：秒）。
+        # @type ConversionTime: Integer
+
+        attr_accessor :SmsSdkAppId, :SerialNo, :ConversionTime
+        
+        def initialize(smssdkappid=nil, serialno=nil, conversiontime=nil)
+          @SmsSdkAppId = smssdkappid
+          @SerialNo = serialno
+          @ConversionTime = conversiontime
+        end
+
+        def deserialize(params)
+          @SmsSdkAppId = params['SmsSdkAppId']
+          @SerialNo = params['SerialNo']
+          @ConversionTime = params['ConversionTime']
+        end
+      end
+
+      # ReportConversion返回参数结构体
+      class ReportConversionResponse < TencentCloud::Common::AbstractModel
+        # @param ReportConversionStatus: 转化率上报响应包体。
+        # @type ReportConversionStatus: :class:`Tencentcloud::Sms.v20210111.models.ReportConversionStatus`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ReportConversionStatus, :RequestId
+        
+        def initialize(reportconversionstatus=nil, requestid=nil)
+          @ReportConversionStatus = reportconversionstatus
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['ReportConversionStatus'].nil?
+            @ReportConversionStatus = ReportConversionStatus.new
+            @ReportConversionStatus.deserialize(params['ReportConversionStatus'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 转化率上报响应。
+      class ReportConversionStatus < TencentCloud::Common::AbstractModel
+        # @param Code: 错误码。上报成功返回 ok。
+        # @type Code: String
+        # @param Message: 错误码描述。
+        # @type Message: String
+
+        attr_accessor :Code, :Message
+        
+        def initialize(code=nil, message=nil)
+          @Code = code
+          @Message = message
+        end
+
+        def deserialize(params)
+          @Code = params['Code']
+          @Message = params['Message']
+        end
+      end
+
       # SendSms请求参数结构体
       class SendSmsRequest < TencentCloud::Common::AbstractModel
         # @param PhoneNumberSet: 下发手机号码，采用 E.164 标准，格式为+[国家或地区码][手机号]，单次请求最多支持200个手机号且要求全为境内手机号或全为境外手机号。

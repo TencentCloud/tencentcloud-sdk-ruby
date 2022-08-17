@@ -221,6 +221,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 品牌经营管家-版权保护个人认证接口
+
+        # @param request: Request instance for CreateCRUserVerify.
+        # @type request: :class:`Tencentcloud::bma::V20210624::CreateCRUserVerifyRequest`
+        # @rtype: :class:`Tencentcloud::bma::V20210624::CreateCRUserVerifyResponse`
+        def CreateCRUserVerify(request)
+          body = send_request('CreateCRUserVerify', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateCRUserVerifyResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 版权保护-添加作品接口
 
         # @param request: Request instance for CreateCRWork.

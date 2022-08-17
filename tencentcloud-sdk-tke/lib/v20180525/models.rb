@@ -2433,6 +2433,66 @@ module TencentCloud
         end
       end
 
+      # CreateEdgeCVMInstances请求参数结构体
+      class CreateEdgeCVMInstancesRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterID: 集群id
+        # @type ClusterID: String
+        # @param RunInstancePara: CVM创建透传参数，json化字符串格式，如需要保证扩展集群节点请求幂等性需要在此参数添加ClientToken字段，详见[CVM创建实例](https://cloud.tencent.com/document/product/213/15730)接口。
+        # @type RunInstancePara: String
+        # @param CvmRegion: CVM所属Region
+        # @type CvmRegion: String
+        # @param CvmCount: CVM数量
+        # @type CvmCount: Integer
+        # @param External: 实例扩展信息
+        # @type External: String
+        # @param UserScript: 用户自定义脚本
+        # @type UserScript: String
+        # @param EnableEni: 是否开启弹性网卡功能
+        # @type EnableEni: Boolean
+
+        attr_accessor :ClusterID, :RunInstancePara, :CvmRegion, :CvmCount, :External, :UserScript, :EnableEni
+        
+        def initialize(clusterid=nil, runinstancepara=nil, cvmregion=nil, cvmcount=nil, external=nil, userscript=nil, enableeni=nil)
+          @ClusterID = clusterid
+          @RunInstancePara = runinstancepara
+          @CvmRegion = cvmregion
+          @CvmCount = cvmcount
+          @External = external
+          @UserScript = userscript
+          @EnableEni = enableeni
+        end
+
+        def deserialize(params)
+          @ClusterID = params['ClusterID']
+          @RunInstancePara = params['RunInstancePara']
+          @CvmRegion = params['CvmRegion']
+          @CvmCount = params['CvmCount']
+          @External = params['External']
+          @UserScript = params['UserScript']
+          @EnableEni = params['EnableEni']
+        end
+      end
+
+      # CreateEdgeCVMInstances返回参数结构体
+      class CreateEdgeCVMInstancesResponse < TencentCloud::Common::AbstractModel
+        # @param CvmIdSet: cvm id 列表
+        # @type CvmIdSet: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :CvmIdSet, :RequestId
+        
+        def initialize(cvmidset=nil, requestid=nil)
+          @CvmIdSet = cvmidset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @CvmIdSet = params['CvmIdSet']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateEdgeLogConfig请求参数结构体
       class CreateEdgeLogConfigRequest < TencentCloud::Common::AbstractModel
         # @param ClusterId: 集群ID

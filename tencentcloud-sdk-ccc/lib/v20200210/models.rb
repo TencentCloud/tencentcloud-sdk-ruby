@@ -1200,7 +1200,7 @@ module TencentCloud
       class DescribeStaffInfoListRequest < TencentCloud::Common::AbstractModel
         # @param SdkAppId: 应用 ID（必填），可以查看 https://console.cloud.tencent.com/ccc
         # @type SdkAppId: Integer
-        # @param PageSize: 分页尺寸，上限 100
+        # @param PageSize: 分页尺寸，上限 9999
         # @type PageSize: Integer
         # @param PageNumber: 分页页码，从 0 开始
         # @type PageNumber: Integer
@@ -1208,15 +1208,18 @@ module TencentCloud
         # @type StaffMail: String
         # @param ModifiedTime: 查询修改时间大于等于ModifiedTime的坐席时使用
         # @type ModifiedTime: Integer
+        # @param SkillGroupId: 技能组ID
+        # @type SkillGroupId: Integer
 
-        attr_accessor :SdkAppId, :PageSize, :PageNumber, :StaffMail, :ModifiedTime
+        attr_accessor :SdkAppId, :PageSize, :PageNumber, :StaffMail, :ModifiedTime, :SkillGroupId
         
-        def initialize(sdkappid=nil, pagesize=nil, pagenumber=nil, staffmail=nil, modifiedtime=nil)
+        def initialize(sdkappid=nil, pagesize=nil, pagenumber=nil, staffmail=nil, modifiedtime=nil, skillgroupid=nil)
           @SdkAppId = sdkappid
           @PageSize = pagesize
           @PageNumber = pagenumber
           @StaffMail = staffmail
           @ModifiedTime = modifiedtime
+          @SkillGroupId = skillgroupid
         end
 
         def deserialize(params)
@@ -1225,6 +1228,7 @@ module TencentCloud
           @PageNumber = params['PageNumber']
           @StaffMail = params['StaffMail']
           @ModifiedTime = params['ModifiedTime']
+          @SkillGroupId = params['SkillGroupId']
         end
       end
 

@@ -1099,7 +1099,7 @@ module TencentCloud
         # @param Comment: 任务描述，限制 512 字节。
         # @type Comment: String
         # @param ToUrl: 完整目标 URL 地址。
-        # 用法注意：如果使用该参数来传完整目标地址，则 DomainName, AppName, StreamName 需要传入空值，任务将会使用该 ToUrl 参数指定的目标地址。
+        # 用法注意：如果使用该参数来传完整目标地址，则 DomainName, AppName, StreamName 需要传入空字符串，任务将会使用该 ToUrl 参数指定的目标地址。
 
         # 注意：签名时间需要超过任务结束时间，避免因签名过期造成任务失败。
         # @type ToUrl: String
@@ -1114,10 +1114,16 @@ module TencentCloud
         # @param BackupSourceUrl: 备源 URL。
         # 只允许填一个备源 URL
         # @type BackupSourceUrl: String
+        # @param WatermarkList: 水印信息列表。
+        # 注意：
+        # 1. 最多支持4个不同位置的水印。
+        # 2. 水印图片 URL 请使用合法外网可访问地址。
+        # 3. 支持的水印图片格式：png，jpg，gif 等。
+        # @type WatermarkList: Array
 
-        attr_accessor :SourceType, :SourceUrls, :DomainName, :AppName, :StreamName, :StartTime, :EndTime, :Operator, :PushArgs, :CallbackEvents, :VodLoopTimes, :VodRefreshType, :CallbackUrl, :ExtraCmd, :Comment, :ToUrl, :BackupSourceType, :BackupSourceUrl
+        attr_accessor :SourceType, :SourceUrls, :DomainName, :AppName, :StreamName, :StartTime, :EndTime, :Operator, :PushArgs, :CallbackEvents, :VodLoopTimes, :VodRefreshType, :CallbackUrl, :ExtraCmd, :Comment, :ToUrl, :BackupSourceType, :BackupSourceUrl, :WatermarkList
         
-        def initialize(sourcetype=nil, sourceurls=nil, domainname=nil, appname=nil, streamname=nil, starttime=nil, endtime=nil, operator=nil, pushargs=nil, callbackevents=nil, vodlooptimes=nil, vodrefreshtype=nil, callbackurl=nil, extracmd=nil, comment=nil, tourl=nil, backupsourcetype=nil, backupsourceurl=nil)
+        def initialize(sourcetype=nil, sourceurls=nil, domainname=nil, appname=nil, streamname=nil, starttime=nil, endtime=nil, operator=nil, pushargs=nil, callbackevents=nil, vodlooptimes=nil, vodrefreshtype=nil, callbackurl=nil, extracmd=nil, comment=nil, tourl=nil, backupsourcetype=nil, backupsourceurl=nil, watermarklist=nil)
           @SourceType = sourcetype
           @SourceUrls = sourceurls
           @DomainName = domainname
@@ -1136,6 +1142,7 @@ module TencentCloud
           @ToUrl = tourl
           @BackupSourceType = backupsourcetype
           @BackupSourceUrl = backupsourceurl
+          @WatermarkList = watermarklist
         end
 
         def deserialize(params)
@@ -1157,6 +1164,14 @@ module TencentCloud
           @ToUrl = params['ToUrl']
           @BackupSourceType = params['BackupSourceType']
           @BackupSourceUrl = params['BackupSourceUrl']
+          unless params['WatermarkList'].nil?
+            @WatermarkList = []
+            params['WatermarkList'].each do |i|
+              pullpushwatermarkinfo_tmp = PullPushWatermarkInfo.new
+              pullpushwatermarkinfo_tmp.deserialize(i)
+              @WatermarkList << pullpushwatermarkinfo_tmp
+            end
+          end
         end
       end
 
@@ -7467,10 +7482,20 @@ module TencentCloud
         # @param BackupSourceUrl: 备源 URL。
         # 只允许填一个备源 URL
         # @type BackupSourceUrl: String
+        # @param WatermarkList: 水印信息列表。
+        # 注意：
+        # 1. 最多支持4个不同位置的水印。
+        # 2. 水印图片 URL 请使用合法外网可访问地址。
+        # 3. 支持的水印图片格式：png，jpg等。
+        # 4. 轮播任务修改水印后，轮播到下一个文件时新水印生效。
+        # 5. 直播源任务修改水印后，水印立即生效。
+        # 6. 清除水印时，需携带该水印列表参数，内容为空数组。
+        # 7. 暂不支持动图水印。
+        # @type WatermarkList: Array
 
-        attr_accessor :TaskId, :Operator, :SourceUrls, :StartTime, :EndTime, :VodLoopTimes, :VodRefreshType, :Status, :CallbackEvents, :CallbackUrl, :FileIndex, :OffsetTime, :Comment, :BackupSourceType, :BackupSourceUrl
+        attr_accessor :TaskId, :Operator, :SourceUrls, :StartTime, :EndTime, :VodLoopTimes, :VodRefreshType, :Status, :CallbackEvents, :CallbackUrl, :FileIndex, :OffsetTime, :Comment, :BackupSourceType, :BackupSourceUrl, :WatermarkList
         
-        def initialize(taskid=nil, operator=nil, sourceurls=nil, starttime=nil, endtime=nil, vodlooptimes=nil, vodrefreshtype=nil, status=nil, callbackevents=nil, callbackurl=nil, fileindex=nil, offsettime=nil, comment=nil, backupsourcetype=nil, backupsourceurl=nil)
+        def initialize(taskid=nil, operator=nil, sourceurls=nil, starttime=nil, endtime=nil, vodlooptimes=nil, vodrefreshtype=nil, status=nil, callbackevents=nil, callbackurl=nil, fileindex=nil, offsettime=nil, comment=nil, backupsourcetype=nil, backupsourceurl=nil, watermarklist=nil)
           @TaskId = taskid
           @Operator = operator
           @SourceUrls = sourceurls
@@ -7486,6 +7511,7 @@ module TencentCloud
           @Comment = comment
           @BackupSourceType = backupsourcetype
           @BackupSourceUrl = backupsourceurl
+          @WatermarkList = watermarklist
         end
 
         def deserialize(params)
@@ -7504,6 +7530,14 @@ module TencentCloud
           @Comment = params['Comment']
           @BackupSourceType = params['BackupSourceType']
           @BackupSourceUrl = params['BackupSourceUrl']
+          unless params['WatermarkList'].nil?
+            @WatermarkList = []
+            params['WatermarkList'].each do |i|
+              pullpushwatermarkinfo_tmp = PullPushWatermarkInfo.new
+              pullpushwatermarkinfo_tmp.deserialize(i)
+              @WatermarkList << pullpushwatermarkinfo_tmp
+            end
+          end
         end
       end
 
@@ -8257,6 +8291,48 @@ module TencentCloud
         end
       end
 
+      # 云转推水印信息。
+      class PullPushWatermarkInfo < TencentCloud::Common::AbstractModel
+        # @param PictureUrl: 水印图片 URL。
+        # URL中禁止包含的字符：
+        # ;(){}$>`#"'|
+        # @type PictureUrl: String
+        # @param XPosition: 显示位置，X轴偏移，单位是百分比，默认 0。
+        # @type XPosition: Integer
+        # @param YPosition: 显示位置，Y轴偏移，单位是百分比，默认 0。
+        # @type YPosition: Integer
+        # @param Width: 水印宽度，占直播原始画面宽度百分比，建议高宽只设置一项，另外一项会自适应缩放，避免变形。默认原始宽度。
+        # @type Width: Integer
+        # @param Height: 水印高度，占直播原始画面高度百分比，建议高宽只设置一项，另外一项会自适应缩放，避免变形。默认原始高度。
+        # @type Height: Integer
+        # @param Location: 水印位置，默认 0。
+        # 0：左上角。
+        # 1：右上角。
+        # 2：右下角。
+        # 3：左下角。
+        # @type Location: Integer
+
+        attr_accessor :PictureUrl, :XPosition, :YPosition, :Width, :Height, :Location
+        
+        def initialize(pictureurl=nil, xposition=nil, yposition=nil, width=nil, height=nil, location=nil)
+          @PictureUrl = pictureurl
+          @XPosition = xposition
+          @YPosition = yposition
+          @Width = width
+          @Height = height
+          @Location = location
+        end
+
+        def deserialize(params)
+          @PictureUrl = params['PictureUrl']
+          @XPosition = params['XPosition']
+          @YPosition = params['YPosition']
+          @Width = params['Width']
+          @Height = params['Height']
+          @Location = params['Location']
+        end
+      end
+
       # 拉流配置。
       class PullStreamConfig < TencentCloud::Common::AbstractModel
         # @param ConfigId: 拉流配置 ID。
@@ -8405,10 +8481,21 @@ module TencentCloud
         # @type RecentPullInfo: :class:`Tencentcloud::Live.v20180801.models.RecentPullInfo`
         # @param Comment: 任务备注信息。
         # @type Comment: String
+        # @param BackupSourceType: 备源类型：
+        # PullLivePushLive -直播，
+        # PullVodPushLive -点播。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BackupSourceType: String
+        # @param BackupSourceUrl: 备源URL。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BackupSourceUrl: String
+        # @param WatermarkList: 水印信息列表。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type WatermarkList: Array
 
-        attr_accessor :TaskId, :SourceType, :SourceUrls, :DomainName, :AppName, :StreamName, :PushArgs, :StartTime, :EndTime, :Region, :VodLoopTimes, :VodRefreshType, :CreateTime, :UpdateTime, :CreateBy, :UpdateBy, :CallbackUrl, :CallbackEvents, :CallbackInfo, :ErrorInfo, :Status, :RecentPullInfo, :Comment
+        attr_accessor :TaskId, :SourceType, :SourceUrls, :DomainName, :AppName, :StreamName, :PushArgs, :StartTime, :EndTime, :Region, :VodLoopTimes, :VodRefreshType, :CreateTime, :UpdateTime, :CreateBy, :UpdateBy, :CallbackUrl, :CallbackEvents, :CallbackInfo, :ErrorInfo, :Status, :RecentPullInfo, :Comment, :BackupSourceType, :BackupSourceUrl, :WatermarkList
         
-        def initialize(taskid=nil, sourcetype=nil, sourceurls=nil, domainname=nil, appname=nil, streamname=nil, pushargs=nil, starttime=nil, endtime=nil, region=nil, vodlooptimes=nil, vodrefreshtype=nil, createtime=nil, updatetime=nil, createby=nil, updateby=nil, callbackurl=nil, callbackevents=nil, callbackinfo=nil, errorinfo=nil, status=nil, recentpullinfo=nil, comment=nil)
+        def initialize(taskid=nil, sourcetype=nil, sourceurls=nil, domainname=nil, appname=nil, streamname=nil, pushargs=nil, starttime=nil, endtime=nil, region=nil, vodlooptimes=nil, vodrefreshtype=nil, createtime=nil, updatetime=nil, createby=nil, updateby=nil, callbackurl=nil, callbackevents=nil, callbackinfo=nil, errorinfo=nil, status=nil, recentpullinfo=nil, comment=nil, backupsourcetype=nil, backupsourceurl=nil, watermarklist=nil)
           @TaskId = taskid
           @SourceType = sourcetype
           @SourceUrls = sourceurls
@@ -8432,6 +8519,9 @@ module TencentCloud
           @Status = status
           @RecentPullInfo = recentpullinfo
           @Comment = comment
+          @BackupSourceType = backupsourcetype
+          @BackupSourceUrl = backupsourceurl
+          @WatermarkList = watermarklist
         end
 
         def deserialize(params)
@@ -8461,6 +8551,16 @@ module TencentCloud
             @RecentPullInfo.deserialize(params['RecentPullInfo'])
           end
           @Comment = params['Comment']
+          @BackupSourceType = params['BackupSourceType']
+          @BackupSourceUrl = params['BackupSourceUrl']
+          unless params['WatermarkList'].nil?
+            @WatermarkList = []
+            params['WatermarkList'].each do |i|
+              pullpushwatermarkinfo_tmp = PullPushWatermarkInfo.new
+              pullpushwatermarkinfo_tmp.deserialize(i)
+              @WatermarkList << pullpushwatermarkinfo_tmp
+            end
+          end
         end
       end
 

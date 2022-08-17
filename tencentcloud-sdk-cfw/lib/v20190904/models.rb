@@ -1515,11 +1515,11 @@ module TencentCloud
 
       # DescribeCfwEips请求参数结构体
       class DescribeCfwEipsRequest < TencentCloud::Common::AbstractModel
-        # @param Mode: 0：cfw新增模式，1：cfw接入模式
+        # @param Mode: 1：cfw接入模式，目前仅支持接入模式实例
         # @type Mode: Integer
         # @param NatGatewayId: ALL：查询所有弹性公网ip; nat-xxxxx：接入模式场景指定网关的弹性公网ip
         # @type NatGatewayId: String
-        # @param CfwInstance: 防火墙实例id
+        # @param CfwInstance: 防火墙实例id，当前仅支持接入模式的实例
         # @type CfwInstance: String
 
         attr_accessor :Mode, :NatGatewayId, :CfwInstance

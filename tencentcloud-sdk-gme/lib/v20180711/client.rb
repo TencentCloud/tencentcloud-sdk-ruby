@@ -255,54 +255,6 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 根据应用ID和文件ID查询识别结果
-
-        # @param request: Request instance for DescribeFilterResult.
-        # @type request: :class:`Tencentcloud::gme::V20180711::DescribeFilterResultRequest`
-        # @rtype: :class:`Tencentcloud::gme::V20180711::DescribeFilterResultResponse`
-        def DescribeFilterResult(request)
-          body = send_request('DescribeFilterResult', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = DescribeFilterResultResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # 根据日期查询识别结果列表
-
-        # @param request: Request instance for DescribeFilterResultList.
-        # @type request: :class:`Tencentcloud::gme::V20180711::DescribeFilterResultListRequest`
-        # @rtype: :class:`Tencentcloud::gme::V20180711::DescribeFilterResultListResponse`
-        def DescribeFilterResultList(request)
-          body = send_request('DescribeFilterResultList', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = DescribeFilterResultListResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
         # 获取用户自定义送检信息
 
         # @param request: Request instance for DescribeRealtimeScanConfig.
@@ -736,32 +688,6 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = UpdateScanUsersResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # 本接口用于识别涉黄等违规音频，成功会回调配置在应用的回调地址。回调示例如下：
-        # {"BizId":0,"FileId":"test_file_id","FileName":"test_file_name","FileUrl":"test_file_url","OpenId":"test_open_id","TimeStamp":"0000-00-00 00:00:00","Data":[{"Type":1,"Word":"xx"}]}
-        # Type表示过滤类型，1：色情，2：谩骂
-
-        # @param request: Request instance for VoiceFilter.
-        # @type request: :class:`Tencentcloud::gme::V20180711::VoiceFilterRequest`
-        # @rtype: :class:`Tencentcloud::gme::V20180711::VoiceFilterResponse`
-        def VoiceFilter(request)
-          body = send_request('VoiceFilter', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = VoiceFilterResponse.new
             model.deserialize(response['Response'])
             model
           else

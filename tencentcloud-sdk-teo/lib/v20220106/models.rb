@@ -1959,19 +1959,27 @@ module TencentCloud
 
       # DDoS配置端口过滤
       class DDoSAcl < TencentCloud::Common::AbstractModel
-        # @param DportEnd: 目的端口end
+        # @param DportEnd: 目的端口结束，取值范围0-65535。
         # @type DportEnd: Integer
-        # @param DportStart: 目的端口start
+        # @param DportStart: 目的端口开始，取值范围0-65535。
         # @type DportStart: Integer
-        # @param SportEnd: 源端口end
+        # @param SportEnd: 源端口结束，取值范围0-65535。
         # @type SportEnd: Integer
-        # @param SportStart: 源端口start
+        # @param SportStart: 源端口开始，取值范围0-65535。
         # @type SportStart: Integer
-        # @param Protocol: 协议 'tcp', 'udp', 'all'
+        # @param Protocol: 协议，取值有：
+        # <li>tcp ：tcp协议 ；</li>
+        # <li>udp ：udp协议 ；</li>
+        # <li>all ：全部协议 。</li>
         # @type Protocol: String
-        # @param Action: 动作  drop-丢弃,；transmit-放行； forward-继续防护
+        # @param Action: 执行动作，取值为：
+        # <li>drop ：丢弃 ；</li>
+        # <li>transmit ：放行 ；</li>
+        # <li>forward ：继续防护 。</li>
         # @type Action: String
-        # @param Default: 是否为系统配置 0-人工配置；1-系统配置
+        # @param Default: 是否为系统配置，取值为：
+        # <li>0 ：修改配置 ；</li>
+        # <li>1 ：系统默认配置 。</li>
         # @type Default: Integer
 
         attr_accessor :DportEnd, :DportStart, :SportEnd, :SportStart, :Protocol, :Action, :Default
@@ -1999,34 +2007,45 @@ module TencentCloud
 
       # DDoS协议防护+连接防护
       class DDoSAntiPly < TencentCloud::Common::AbstractModel
-        # @param DropTcp: tcp协议封禁 on-开；off-关
+        # @param DropTcp: tcp协议封禁，取值有：
+        # <li>off ：关闭 ；</li>
+        # <li>on ：开启 。</li>
         # @type DropTcp: String
-        # @param DropUdp: udp协议封禁 on-开；off-关
+        # @param DropUdp: udp协议封禁，取值有：
+        # <li>off ：关闭 ；</li>
+        # <li>on ：开启 。</li>
         # @type DropUdp: String
-        # @param DropIcmp: icmp协议封禁 on-开；off-关
+        # @param DropIcmp: icmp协议封禁，取值有：
+        # <li>off ：关闭 ；</li>
+        # <li>on ：开启 。</li>
         # @type DropIcmp: String
-        # @param DropOther: 其他协议封禁 on-开；off-关
+        # @param DropOther: 其他协议封禁，取值有：
+        # <li>off ：关闭 ；</li>
+        # <li>on ：开启 。</li>
         # @type DropOther: String
-        # @param SourceCreateLimit: 源每秒新建数限制  0-4294967295
+        # @param SourceCreateLimit: 源站每秒新连接限速，取值范围0-4294967295。
         # @type SourceCreateLimit: Integer
-        # @param SourceConnectLimit: 源并发连接控制 0-4294967295
+        # @param SourceConnectLimit: 源站并发连接控制，取值范围0-4294967295。
         # @type SourceConnectLimit: Integer
-        # @param DestinationCreateLimit: 目的每秒新建数限制 0-4294967295
+        # @param DestinationCreateLimit: 目的端口每秒新连接限速，取值范围0-4294967295。
         # @type DestinationCreateLimit: Integer
-        # @param DestinationConnectLimit: 目的端口的并发连接控制 0-4294967295
+        # @param DestinationConnectLimit: 目的端口并发连接控制，取值范围0-4294967295。
         # @type DestinationConnectLimit: Integer
-        # @param AbnormalConnectNum: 异常连接数阈值  0-4294967295
+        # @param AbnormalConnectNum: 每秒异常连接数阈值，取值范围0-4294967295。
         # @type AbnormalConnectNum: Integer
-        # @param AbnormalSynRatio: syn占比异常阈值 0-100
+        # @param AbnormalSynRatio: 异常syn报文百分比阈值，取值范围0-100。
         # @type AbnormalSynRatio: Integer
-        # @param AbnormalSynNum: syn个数异常阈值 0-65535
+        # @param AbnormalSynNum: 异常syn报文阈值，取值范围0-65535。
         # @type AbnormalSynNum: Integer
-        # @param ConnectTimeout: 连接超时检测 0-65535
+        # @param ConnectTimeout: 每秒连接超时检测，取值范围0-65535。
         # @type ConnectTimeout: Integer
-        # @param EmptyConnectProtect: 空连接防护开启 0-1
+        # @param EmptyConnectProtect: 空连接防护开启，取值有：
+        # <li>off ：关闭 ；</li>
+        # <li>on ：开启 。</li>
         # @type EmptyConnectProtect: String
-        # @param UdpShard: UDP分片开关；off-关闭，on-开启
-        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @param UdpShard: UDP分片开关，取值有：
+        # <li>off ：关闭 ；</li>
+        # <li>on ：开启 。</li>
         # @type UdpShard: String
 
         attr_accessor :DropTcp, :DropUdp, :DropIcmp, :DropOther, :SourceCreateLimit, :SourceConnectLimit, :DestinationCreateLimit, :DestinationConnectLimit, :AbnormalConnectNum, :AbnormalSynRatio, :AbnormalSynNum, :ConnectTimeout, :EmptyConnectProtect, :UdpShard
@@ -2120,129 +2139,154 @@ module TencentCloud
 
       # DDoS特征过滤
       class DDoSFeaturesFilter < TencentCloud::Common::AbstractModel
-        # @param Action: 动作 drop-丢弃；transmit-放行；drop_block-丢弃并拉黑；forward-继续防护
+        # @param Action: 执行动作，取值有：
+        # <li>drop ：丢弃 ；</li>
+        # <li>transmit ：放行 ；</li>
+        # <li>drop_block ：丢弃并拉黑 ；</li>
+        # <li>forward ：继续防护 。</li>
         # @type Action: String
-        # @param Depth: 深度值1
-        # @type Depth: Integer
-        # @param Depth2: 深度值2
-        # @type Depth2: Integer
-        # @param DportEnd: 目标端口结束
-        # @type DportEnd: Integer
-        # @param DportStart: 目标端口开始
-        # @type DportStart: Integer
-        # @param IsNot: 取非判断1
-        # @type IsNot: Integer
-        # @param IsNot2: 取非判断2
-        # @type IsNot2: Integer
-        # @param MatchLogic: 多特征关系（单特征时(none)，第二特征相关配置可不填） none；and；or
-        # @type MatchLogic: String
-        # @param MatchType: 匹配方式1 pcre-正则匹配, sunday-字符串匹配
-        # @type MatchType: String
-        # @param MatchType2: 匹配方式2 pcre-正则匹配, sunday-字符串匹配
-        # @type MatchType2: String
-        # @param Offset: 偏移量1
-        # @type Offset: Integer
-        # @param Offset2: 偏移量2
-        # @type Offset2: Integer
-        # @param PacketMax: 最大包长
-        # @type PacketMax: Integer
-        # @param PacketMin: 最小包长
-        # @type PacketMin: Integer
-        # @param Protocol: 协议 tcp；udp；icmp；all
+        # @param Protocol: 协议，取值有：
+        # <li>tcp ：tcp协议 ；</li>
+        # <li>udp ：udp协议 ；</li>
+        # <li>icmp ：icmp协议 ；</li>
+        # <li>all ：全部协议 。</li>
         # @type Protocol: String
-        # @param SportEnd: 源端口结束
-        # @type SportEnd: Integer
-        # @param SportStart: 源端口开始
+        # @param DportStart: 目标端口开始，取值范围0-65535。
+        # @type DportStart: Integer
+        # @param DportEnd: 目标端口结束，取值范围0-65535。
+        # @type DportEnd: Integer
+        # @param PacketMin: 最小包长，取值范围0-1500。
+        # @type PacketMin: Integer
+        # @param PacketMax: 最大包长，取值范围0-1500。
+        # @type PacketMax: Integer
+        # @param SportStart: 源端口开始，取值范围0-65535。
         # @type SportStart: Integer
-        # @param Str: 匹配字符串1
-        # @type Str: String
-        # @param Str2: 匹配字符串2
-        # @type Str2: String
-        # @param MatchBegin: 匹配开始层级，层级参考计算机网络结构 begin_l5, no_match, begin_l3, begin_l4
+        # @param SportEnd: 源端口结束，取值范围0-65535。
+        # @type SportEnd: Integer
+        # @param MatchType: 匹配方式1，【特征1】，取值有：
+        # <li>pcre ：正则匹配 ；</li>
+        # <li>sunday ：字符串匹配 。</li>默认为空字符串。
+        # @type MatchType: String
+        # @param IsNot: 取非判断，该参数对MatchType配合使用，【特征1】，取值有：
+        # <li>0 ：匹配 ；</li>
+        # <li>1 ：不匹配 。</li>
+        # @type IsNot: Integer
+        # @param Offset: 偏移量1，【特征1】，取值范围0-1500。
+        # @type Offset: Integer
+        # @param Depth: 检测包字符深度，【特征1】，取值范围1-1500。
+        # @type Depth: Integer
+        # @param MatchBegin: 匹配开始层级，层级参考计算机网络结构，取值有：
+        # <li>begin_l5 ：载荷开始检测 ；</li>
+        # <li>begin_l4 ：tcp/udp首部开始检测 ；</li>
+        # <li>begin_l3 ：ip首部开始检测 。</li>
         # @type MatchBegin: String
-        # @param MatchBegin2: 匹配开始层级，层级参考计算机网络结构 begin_l5, no_match, begin_l3, begin_l4
+        # @param Str: 正则或字符串匹配的内容，【特征1】。
+        # @type Str: String
+        # @param MatchType2: 匹配方式2，【特征2】，取值有：
+        # <li>pcre ：正则匹配 ；</li>
+        # <li>sunday ：字符串匹配 。</li>默认为空字符串。
+        # @type MatchType2: String
+        # @param IsNot2: 取非判断2，该参数对MatchType2配合使用，【特征2】，取值有：
+        # <li>0 ：匹配 ；</li>
+        # <li>1 ：不匹配 。</li>
+        # @type IsNot2: Integer
+        # @param Offset2: 偏移量2，【特征2】，取值范围0-1500。
+        # @type Offset2: Integer
+        # @param Depth2: 检测包字符深度，【特征2】，取值范围1-1500。
+        # @type Depth2: Integer
+        # @param MatchBegin2: 匹配开始层级，层级参考计算机网络结构，取值有：
+        # <li>begin_l5 ：载荷开始检测 ；</li>
+        # <li>begin_l4 ：tcp/udp首部开始检测；</li>
+        # <li>begin_l3 ：ip首部开始检测 。</li>
         # @type MatchBegin2: String
+        # @param Str2: 正则或字符串匹配的内容，【特征2】。
+        # @type Str2: String
+        # @param MatchLogic: 多特征关系，仅配置【特征1】时填 none，存在【特征2】配置可不填。
+        # @type MatchLogic: String
 
-        attr_accessor :Action, :Depth, :Depth2, :DportEnd, :DportStart, :IsNot, :IsNot2, :MatchLogic, :MatchType, :MatchType2, :Offset, :Offset2, :PacketMax, :PacketMin, :Protocol, :SportEnd, :SportStart, :Str, :Str2, :MatchBegin, :MatchBegin2
+        attr_accessor :Action, :Protocol, :DportStart, :DportEnd, :PacketMin, :PacketMax, :SportStart, :SportEnd, :MatchType, :IsNot, :Offset, :Depth, :MatchBegin, :Str, :MatchType2, :IsNot2, :Offset2, :Depth2, :MatchBegin2, :Str2, :MatchLogic
         
-        def initialize(action=nil, depth=nil, depth2=nil, dportend=nil, dportstart=nil, isnot=nil, isnot2=nil, matchlogic=nil, matchtype=nil, matchtype2=nil, offset=nil, offset2=nil, packetmax=nil, packetmin=nil, protocol=nil, sportend=nil, sportstart=nil, str=nil, str2=nil, matchbegin=nil, matchbegin2=nil)
+        def initialize(action=nil, protocol=nil, dportstart=nil, dportend=nil, packetmin=nil, packetmax=nil, sportstart=nil, sportend=nil, matchtype=nil, isnot=nil, offset=nil, depth=nil, matchbegin=nil, str=nil, matchtype2=nil, isnot2=nil, offset2=nil, depth2=nil, matchbegin2=nil, str2=nil, matchlogic=nil)
           @Action = action
-          @Depth = depth
-          @Depth2 = depth2
-          @DportEnd = dportend
-          @DportStart = dportstart
-          @IsNot = isnot
-          @IsNot2 = isnot2
-          @MatchLogic = matchlogic
-          @MatchType = matchtype
-          @MatchType2 = matchtype2
-          @Offset = offset
-          @Offset2 = offset2
-          @PacketMax = packetmax
-          @PacketMin = packetmin
           @Protocol = protocol
-          @SportEnd = sportend
+          @DportStart = dportstart
+          @DportEnd = dportend
+          @PacketMin = packetmin
+          @PacketMax = packetmax
           @SportStart = sportstart
-          @Str = str
-          @Str2 = str2
+          @SportEnd = sportend
+          @MatchType = matchtype
+          @IsNot = isnot
+          @Offset = offset
+          @Depth = depth
           @MatchBegin = matchbegin
+          @Str = str
+          @MatchType2 = matchtype2
+          @IsNot2 = isnot2
+          @Offset2 = offset2
+          @Depth2 = depth2
           @MatchBegin2 = matchbegin2
+          @Str2 = str2
+          @MatchLogic = matchlogic
         end
 
         def deserialize(params)
           @Action = params['Action']
-          @Depth = params['Depth']
-          @Depth2 = params['Depth2']
-          @DportEnd = params['DportEnd']
-          @DportStart = params['DportStart']
-          @IsNot = params['IsNot']
-          @IsNot2 = params['IsNot2']
-          @MatchLogic = params['MatchLogic']
-          @MatchType = params['MatchType']
-          @MatchType2 = params['MatchType2']
-          @Offset = params['Offset']
-          @Offset2 = params['Offset2']
-          @PacketMax = params['PacketMax']
-          @PacketMin = params['PacketMin']
           @Protocol = params['Protocol']
-          @SportEnd = params['SportEnd']
+          @DportStart = params['DportStart']
+          @DportEnd = params['DportEnd']
+          @PacketMin = params['PacketMin']
+          @PacketMax = params['PacketMax']
           @SportStart = params['SportStart']
-          @Str = params['Str']
-          @Str2 = params['Str2']
+          @SportEnd = params['SportEnd']
+          @MatchType = params['MatchType']
+          @IsNot = params['IsNot']
+          @Offset = params['Offset']
+          @Depth = params['Depth']
           @MatchBegin = params['MatchBegin']
+          @Str = params['Str']
+          @MatchType2 = params['MatchType2']
+          @IsNot2 = params['IsNot2']
+          @Offset2 = params['Offset2']
+          @Depth2 = params['Depth2']
           @MatchBegin2 = params['MatchBegin2']
+          @Str2 = params['Str2']
+          @MatchLogic = params['MatchLogic']
         end
       end
 
       # DDoS地域封禁
       class DDoSGeoIp < TencentCloud::Common::AbstractModel
-        # @param RegionId: 地域信息，ID参考接口DescribeSecurityPolicyRegions
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type RegionId: Array
-        # @param Switch: 区域封禁清空标识
-        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @param Switch: 区域封禁清空标识，取值有：
+        # <li>off ：清空地域封禁列表 ；</li>
+        # <li>on ：不做处理 。</li>
         # @type Switch: String
+        # @param RegionId: 地域信息，ID参考[DescribeSecurityPolicyRegions](https://tcloud4api.woa.com/document/product/1657/76031?!preview&!document=1)。
+        # @type RegionId: Array
 
-        attr_accessor :RegionId, :Switch
+        attr_accessor :Switch, :RegionId
         
-        def initialize(regionid=nil, switch=nil)
-          @RegionId = regionid
+        def initialize(switch=nil, regionid=nil)
           @Switch = switch
+          @RegionId = regionid
         end
 
         def deserialize(params)
-          @RegionId = params['RegionId']
           @Switch = params['Switch']
+          @RegionId = params['RegionId']
         end
       end
 
       # DDoS封禁等级
       class DDoSStatusInfo < TencentCloud::Common::AbstractModel
-        # @param AiStatus: 不支持，填off
+        # @param AiStatus: 暂不支持，默认值off。
         # @type AiStatus: String
-        # @param Appid: 用户appid
+        # @param Appid: 废弃字段。
         # @type Appid: String
-        # @param PlyLevel: 策略等级 low, middle, high
+        # @param PlyLevel: 策略等级，取值有:
+        # <li>low ：宽松 ；</li>
+        # <li>middle ：适中 ；</li>
+        # <li>high : 严格。 </li>
         # @type PlyLevel: String
 
         attr_accessor :AiStatus, :Appid, :PlyLevel
@@ -2262,23 +2306,19 @@ module TencentCloud
 
       # DDoS黑白名单
       class DDoSUserAllowBlockIP < TencentCloud::Common::AbstractModel
-        # @param Ip: 用户ip
-        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @param Ip: 客户端IP。
         # @type Ip: String
-        # @param Mask: 掩码
-        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @param Mask: 掩码。
         # @type Mask: Integer
-        # @param Type: 类型 block-丢弃；allow-允许
-        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @param Type: 类型，取值有：
+        # <li>block ：丢弃 ；</li>
+        # <li>allow ：允许。</li>
         # @type Type: String
-        # @param UpdateTime: 时间戳
-        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @param UpdateTime: 10位时间戳，例如1199116800。
         # @type UpdateTime: Integer
-        # @param Ip2: 用户ip范围截止
-        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @param Ip2: 客户端IP2，设置IP范围时使用，例如 1.1.1.1-1.1.1.2。
         # @type Ip2: String
-        # @param Mask2: 掩码截止范围
-        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @param Mask2: 掩码2，设置IP网段范围时使用，例如 1.1.1.0/24-1.1.2.0/24。
         # @type Mask2: Integer
 
         attr_accessor :Ip, :Mask, :Type, :UpdateTime, :Ip2, :Mask2
@@ -2617,20 +2657,21 @@ module TencentCloud
 
       # ddos端口过滤
       class DdosAcls < TencentCloud::Common::AbstractModel
-        # @param Switch: 开关 off清空规则标识
-        # @type Switch: String
-        # @param Acl: 端口过了详细参数
+        # @param Acl: 端口过滤规则数组。
         # @type Acl: Array
+        # @param Switch: 清空规则标识，取值有：
+        # <li>off ：清空端口过滤规则列表，Acl无需填写。 ；</li>
+        # <li>on ：配置端口过滤规则，需填写Acl参数。</li>默认值为on。
+        # @type Switch: String
 
-        attr_accessor :Switch, :Acl
+        attr_accessor :Acl, :Switch
         
-        def initialize(switch=nil, acl=nil)
-          @Switch = switch
+        def initialize(acl=nil, switch=nil)
           @Acl = acl
+          @Switch = switch
         end
 
         def deserialize(params)
-          @Switch = params['Switch']
           unless params['Acl'].nil?
             @Acl = []
             params['Acl'].each do |i|
@@ -2639,25 +2680,27 @@ module TencentCloud
               @Acl << ddosacl_tmp
             end
           end
+          @Switch = params['Switch']
         end
       end
 
       # ddos黑白名单
       class DdosAllowBlock < TencentCloud::Common::AbstractModel
-        # @param Switch: 开关标识防护是否清空
-        # @type Switch: String
-        # @param UserAllowBlockIp: 黑白名单数组
+        # @param UserAllowBlockIp: 黑白名单数组。
         # @type UserAllowBlockIp: Array
+        # @param Switch: 开关标识防护是否清空，取值有：
+        # <li>off ：清空黑白名单列表，UserAllowBlockIp无需填写。 ；</li>
+        # <li>on ：配置黑白名单，需填写UserAllowBlockIp参数。</li>默认值为on。
+        # @type Switch: String
 
-        attr_accessor :Switch, :UserAllowBlockIp
+        attr_accessor :UserAllowBlockIp, :Switch
         
-        def initialize(switch=nil, userallowblockip=nil)
-          @Switch = switch
+        def initialize(userallowblockip=nil, switch=nil)
           @UserAllowBlockIp = userallowblockip
+          @Switch = switch
         end
 
         def deserialize(params)
-          @Switch = params['Switch']
           unless params['UserAllowBlockIp'].nil?
             @UserAllowBlockIp = []
             params['UserAllowBlockIp'].each do |i|
@@ -2666,25 +2709,27 @@ module TencentCloud
               @UserAllowBlockIp << ddosuserallowblockip_tmp
             end
           end
+          @Switch = params['Switch']
         end
       end
 
       # ddos特征过滤
       class DdosPacketFilter < TencentCloud::Common::AbstractModel
-        # @param Switch: 特征过滤清空标识，off清空处理
-        # @type Switch: String
-        # @param PacketFilter: 特征过滤数组
+        # @param PacketFilter: 特征过滤规则数组。
         # @type PacketFilter: Array
+        # @param Switch: 特征过滤清空标识，取值有：
+        # <li>off ：清空特征过滤规则，无需填写 PacketFilter 参数 ；</li>
+        # <li>on ：配置特征过滤规则，需填写 PacketFilter 参数。</li>默认值为on。
+        # @type Switch: String
 
-        attr_accessor :Switch, :PacketFilter
+        attr_accessor :PacketFilter, :Switch
         
-        def initialize(switch=nil, packetfilter=nil)
-          @Switch = switch
+        def initialize(packetfilter=nil, switch=nil)
           @PacketFilter = packetfilter
+          @Switch = switch
         end
 
         def deserialize(params)
-          @Switch = params['Switch']
           unless params['PacketFilter'].nil?
             @PacketFilter = []
             params['PacketFilter'].each do |i|
@@ -2693,39 +2738,45 @@ module TencentCloud
               @PacketFilter << ddosfeaturesfilter_tmp
             end
           end
+          @Switch = params['Switch']
         end
       end
 
       # Ddos防护配置
       class DdosRule < TencentCloud::Common::AbstractModel
-        # @param DdosStatusInfo: DDoS防护等级
+        # @param DdosStatusInfo: DDoS防护等级。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DdosStatusInfo: :class:`Tencentcloud::Teo.v20220106.models.DDoSStatusInfo`
-        # @param DdosGeoIp: DDoS地域封禁
+        # @param DdosGeoIp: DDoS地域封禁。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DdosGeoIp: :class:`Tencentcloud::Teo.v20220106.models.DDoSGeoIp`
-        # @param DdosAllowBlock: DDoS黑白名单
+        # @param DdosAllowBlock: DDoS黑白名单。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DdosAllowBlock: :class:`Tencentcloud::Teo.v20220106.models.DdosAllowBlock`
-        # @param DdosAntiPly: DDoS 协议封禁+连接防护
+        # @param DdosAntiPly: DDoS 协议封禁+连接防护。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DdosAntiPly: :class:`Tencentcloud::Teo.v20220106.models.DDoSAntiPly`
-        # @param DdosPacketFilter: DDoS特征过滤
+        # @param DdosPacketFilter: DDoS特征过滤。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DdosPacketFilter: :class:`Tencentcloud::Teo.v20220106.models.DdosPacketFilter`
-        # @param DdosAcl: DDoS端口过滤
+        # @param DdosAcl: DDoS端口过滤。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DdosAcl: :class:`Tencentcloud::Teo.v20220106.models.DdosAcls`
-        # @param Switch: DDoS开关 on-开启；off-关闭
-        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @param Switch: DDoS开关，取值有:
+        # <li>on ：开启 ；</li>
+        # <li>off ：关闭 。</li>
         # @type Switch: String
-        # @param UdpShardOpen: UDP分片功能是否支持，off-不支持，on-支持
-        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @param UdpShardOpen: UDP分片功能是否支持，取值有:
+        # <li>on ：支持 ；</li>
+        # <li>off ：不支持 。</li>
         # @type UdpShardOpen: String
+        # @param DdosSpeedLimit: DDoS源站访问速率限制。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DdosSpeedLimit: :class:`Tencentcloud::Teo.v20220106.models.DdosSpeedLimit`
 
-        attr_accessor :DdosStatusInfo, :DdosGeoIp, :DdosAllowBlock, :DdosAntiPly, :DdosPacketFilter, :DdosAcl, :Switch, :UdpShardOpen
+        attr_accessor :DdosStatusInfo, :DdosGeoIp, :DdosAllowBlock, :DdosAntiPly, :DdosPacketFilter, :DdosAcl, :Switch, :UdpShardOpen, :DdosSpeedLimit
         
-        def initialize(ddosstatusinfo=nil, ddosgeoip=nil, ddosallowblock=nil, ddosantiply=nil, ddospacketfilter=nil, ddosacl=nil, switch=nil, udpshardopen=nil)
+        def initialize(ddosstatusinfo=nil, ddosgeoip=nil, ddosallowblock=nil, ddosantiply=nil, ddospacketfilter=nil, ddosacl=nil, switch=nil, udpshardopen=nil, ddosspeedlimit=nil)
           @DdosStatusInfo = ddosstatusinfo
           @DdosGeoIp = ddosgeoip
           @DdosAllowBlock = ddosallowblock
@@ -2734,6 +2785,7 @@ module TencentCloud
           @DdosAcl = ddosacl
           @Switch = switch
           @UdpShardOpen = udpshardopen
+          @DdosSpeedLimit = ddosspeedlimit
         end
 
         def deserialize(params)
@@ -2763,6 +2815,30 @@ module TencentCloud
           end
           @Switch = params['Switch']
           @UdpShardOpen = params['UdpShardOpen']
+          unless params['DdosSpeedLimit'].nil?
+            @DdosSpeedLimit = DdosSpeedLimit.new
+            @DdosSpeedLimit.deserialize(params['DdosSpeedLimit'])
+          end
+        end
+      end
+
+      # DDoS端口限速
+      class DdosSpeedLimit < TencentCloud::Common::AbstractModel
+        # @param PackageLimit: 源站包量限制，支持单位有pps、Kpps、Mpps、Gpps。支持范围1 pps-10000 Gpps。"0 pps"或其他单位数值为0，即不限包。""为不更新。
+        # @type PackageLimit: String
+        # @param FluxLimit: 源站流量限制，支持单位有bps、Kbps、Mbps、Gbps，支持范围1 bps-10000 Gbps。"0 bps"或其他单位数值为0，即不限流。""为不更新。
+        # @type FluxLimit: String
+
+        attr_accessor :PackageLimit, :FluxLimit
+        
+        def initialize(packagelimit=nil, fluxlimit=nil)
+          @PackageLimit = packagelimit
+          @FluxLimit = fluxlimit
+        end
+
+        def deserialize(params)
+          @PackageLimit = params['PackageLimit']
+          @FluxLimit = params['FluxLimit']
         end
       end
 
@@ -8077,11 +8153,11 @@ module TencentCloud
 
       # ModifyDDoSPolicy请求参数结构体
       class ModifyDDoSPolicyRequest < TencentCloud::Common::AbstractModel
-        # @param PolicyId: 策略组ID
+        # @param PolicyId: 策略id。
         # @type PolicyId: Integer
-        # @param ZoneId: 一级域名
+        # @param ZoneId: 站点id。
         # @type ZoneId: String
-        # @param DdosRule: DDoS具体防护配置
+        # @param DdosRule: DDoS防护配置详情。
         # @type DdosRule: :class:`Tencentcloud::Teo.v20220106.models.DdosRule`
 
         attr_accessor :PolicyId, :ZoneId, :DdosRule
@@ -8104,7 +8180,7 @@ module TencentCloud
 
       # ModifyDDoSPolicy返回参数结构体
       class ModifyDDoSPolicyResponse < TencentCloud::Common::AbstractModel
-        # @param PolicyId: 策略组ID
+        # @param PolicyId: 策略id。
         # @type PolicyId: Integer
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
