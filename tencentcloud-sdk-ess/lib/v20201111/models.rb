@@ -505,7 +505,7 @@ module TencentCloud
         # @type FlowId: String
         # @param TemplateId: 用户上传的模板ID
         # @type TemplateId: String
-        # @param FileNames: 文件名列表,单个文件名最大长度200个字符
+        # @param FileNames: 文件名列表，单个文件名最大长度200个字符，暂时仅支持单文件发起
         # @type FileNames: Array
         # @param FormFields: 内容控件信息数组
         # @type FormFields: Array
@@ -588,7 +588,7 @@ module TencentCloud
         # @type FlowName: String
         # @param Approvers: 签署参与者信息，最大限制50方
         # @type Approvers: Array
-        # @param FileIds: 签署pdf文件的资源编号列表，通过UploadFiles接口获取
+        # @param FileIds: 签署pdf文件的资源编号列表，通过UploadFiles接口获取，暂时仅支持单文件发起
         # @type FileIds: Array
         # @param FlowType: 签署流程的类型(如销售合同/入职合同等)，最大长度200个字符
         # @type FlowType: String

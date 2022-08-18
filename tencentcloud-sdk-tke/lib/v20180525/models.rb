@@ -3041,10 +3041,16 @@ module TencentCloud
         # @type MaxNodePodNum: Integer
         # @param PublicLB: 边缘计算集群公网访问LB信息
         # @type PublicLB: :class:`Tencentcloud::Tke.v20180525.models.EdgeClusterPublicLB`
+        # @param ClusterLevel: 集群的级别
+        # @type ClusterLevel: String
+        # @param AutoUpgradeClusterLevel: 集群是否支持自动升配
+        # @type AutoUpgradeClusterLevel: Boolean
+        # @param ChargeType: 集群计费方式
+        # @type ChargeType: String
 
-        attr_accessor :K8SVersion, :VpcId, :ClusterName, :PodCIDR, :ServiceCIDR, :ClusterDesc, :ClusterAdvancedSettings, :MaxNodePodNum, :PublicLB
+        attr_accessor :K8SVersion, :VpcId, :ClusterName, :PodCIDR, :ServiceCIDR, :ClusterDesc, :ClusterAdvancedSettings, :MaxNodePodNum, :PublicLB, :ClusterLevel, :AutoUpgradeClusterLevel, :ChargeType
         
-        def initialize(k8sversion=nil, vpcid=nil, clustername=nil, podcidr=nil, servicecidr=nil, clusterdesc=nil, clusteradvancedsettings=nil, maxnodepodnum=nil, publiclb=nil)
+        def initialize(k8sversion=nil, vpcid=nil, clustername=nil, podcidr=nil, servicecidr=nil, clusterdesc=nil, clusteradvancedsettings=nil, maxnodepodnum=nil, publiclb=nil, clusterlevel=nil, autoupgradeclusterlevel=nil, chargetype=nil)
           @K8SVersion = k8sversion
           @VpcId = vpcid
           @ClusterName = clustername
@@ -3054,6 +3060,9 @@ module TencentCloud
           @ClusterAdvancedSettings = clusteradvancedsettings
           @MaxNodePodNum = maxnodepodnum
           @PublicLB = publiclb
+          @ClusterLevel = clusterlevel
+          @AutoUpgradeClusterLevel = autoupgradeclusterlevel
+          @ChargeType = chargetype
         end
 
         def deserialize(params)
@@ -3072,6 +3081,9 @@ module TencentCloud
             @PublicLB = EdgeClusterPublicLB.new
             @PublicLB.deserialize(params['PublicLB'])
           end
+          @ClusterLevel = params['ClusterLevel']
+          @AutoUpgradeClusterLevel = params['AutoUpgradeClusterLevel']
+          @ChargeType = params['ChargeType']
         end
       end
 

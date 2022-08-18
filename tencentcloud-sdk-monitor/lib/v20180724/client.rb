@@ -101,6 +101,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 强制销毁 Grafana 实例
+
+        # @param request: Request instance for CleanGrafanaInstance.
+        # @type request: :class:`Tencentcloud::monitor::V20180724::CleanGrafanaInstanceRequest`
+        # @rtype: :class:`Tencentcloud::monitor::V20180724::CleanGrafanaInstanceResponse`
+        def CleanGrafanaInstance(request)
+          body = send_request('CleanGrafanaInstance', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CleanGrafanaInstanceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 创建通知模板
 
         # @param request: Request instance for CreateAlarmNotice.
@@ -185,6 +209,78 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = CreateExporterIntegrationResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 创建 Grafana 实例
+
+        # @param request: Request instance for CreateGrafanaInstance.
+        # @type request: :class:`Tencentcloud::monitor::V20180724::CreateGrafanaInstanceRequest`
+        # @rtype: :class:`Tencentcloud::monitor::V20180724::CreateGrafanaInstanceResponse`
+        def CreateGrafanaInstance(request)
+          body = send_request('CreateGrafanaInstance', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateGrafanaInstanceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 创建 Grafana 集成配置
+
+        # @param request: Request instance for CreateGrafanaIntegration.
+        # @type request: :class:`Tencentcloud::monitor::V20180724::CreateGrafanaIntegrationRequest`
+        # @rtype: :class:`Tencentcloud::monitor::V20180724::CreateGrafanaIntegrationResponse`
+        def CreateGrafanaIntegration(request)
+          body = send_request('CreateGrafanaIntegration', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateGrafanaIntegrationResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 创建 Grafana 告警通道
+
+        # @param request: Request instance for CreateGrafanaNotificationChannel.
+        # @type request: :class:`Tencentcloud::monitor::V20180724::CreateGrafanaNotificationChannelRequest`
+        # @rtype: :class:`Tencentcloud::monitor::V20180724::CreateGrafanaNotificationChannelResponse`
+        def CreateGrafanaNotificationChannel(request)
+          body = send_request('CreateGrafanaNotificationChannel', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateGrafanaNotificationChannelResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -305,6 +401,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = CreateRecordingRuleResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # Grafana实例授权其他腾讯云用户
+
+        # @param request: Request instance for CreateSSOAccount.
+        # @type request: :class:`Tencentcloud::monitor::V20180724::CreateSSOAccountRequest`
+        # @rtype: :class:`Tencentcloud::monitor::V20180724::CreateSSOAccountResponse`
+        def CreateSSOAccount(request)
+          body = send_request('CreateSSOAccount', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateSSOAccountResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -441,6 +561,78 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 删除 Grafana 实例
+
+        # @param request: Request instance for DeleteGrafanaInstance.
+        # @type request: :class:`Tencentcloud::monitor::V20180724::DeleteGrafanaInstanceRequest`
+        # @rtype: :class:`Tencentcloud::monitor::V20180724::DeleteGrafanaInstanceResponse`
+        def DeleteGrafanaInstance(request)
+          body = send_request('DeleteGrafanaInstance', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteGrafanaInstanceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除 Grafana 集成配置
+
+        # @param request: Request instance for DeleteGrafanaIntegration.
+        # @type request: :class:`Tencentcloud::monitor::V20180724::DeleteGrafanaIntegrationRequest`
+        # @rtype: :class:`Tencentcloud::monitor::V20180724::DeleteGrafanaIntegrationResponse`
+        def DeleteGrafanaIntegration(request)
+          body = send_request('DeleteGrafanaIntegration', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteGrafanaIntegrationResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除 Grafana 告警通道
+
+        # @param request: Request instance for DeleteGrafanaNotificationChannel.
+        # @type request: :class:`Tencentcloud::monitor::V20180724::DeleteGrafanaNotificationChannelRequest`
+        # @rtype: :class:`Tencentcloud::monitor::V20180724::DeleteGrafanaNotificationChannelResponse`
+        def DeleteGrafanaNotificationChannel(request)
+          body = send_request('DeleteGrafanaNotificationChannel', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteGrafanaNotificationChannelResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 删除告警策略组
 
         # @param request: Request instance for DeletePolicyGroup.
@@ -499,6 +691,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteRecordingRulesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # Grafana可视化服务 删除授权用户
+
+        # @param request: Request instance for DeleteSSOAccount.
+        # @type request: :class:`Tencentcloud::monitor::V20180724::DeleteSSOAccountRequest`
+        # @rtype: :class:`Tencentcloud::monitor::V20180724::DeleteSSOAccountResponse`
+        def DeleteSSOAccount(request)
+          body = send_request('DeleteSSOAccount', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteSSOAccountResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -901,6 +1117,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 列出 Grafana DNS 配置
+
+        # @param request: Request instance for DescribeDNSConfig.
+        # @type request: :class:`Tencentcloud::monitor::V20180724::DescribeDNSConfigRequest`
+        # @rtype: :class:`Tencentcloud::monitor::V20180724::DescribeDNSConfigResponse`
+        def DescribeDNSConfig(request)
+          body = send_request('DescribeDNSConfig', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeDNSConfigResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询 exporter 集成列表
 
         # @param request: Request instance for DescribeExporterIntegrations.
@@ -925,6 +1165,174 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 列出 Grafana 的设置，即 grafana.ini 文件内容
+
+        # @param request: Request instance for DescribeGrafanaConfig.
+        # @type request: :class:`Tencentcloud::monitor::V20180724::DescribeGrafanaConfigRequest`
+        # @rtype: :class:`Tencentcloud::monitor::V20180724::DescribeGrafanaConfigResponse`
+        def DescribeGrafanaConfig(request)
+          body = send_request('DescribeGrafanaConfig', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeGrafanaConfigResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 列出 Grafana 环境变量
+
+        # @param request: Request instance for DescribeGrafanaEnvironments.
+        # @type request: :class:`Tencentcloud::monitor::V20180724::DescribeGrafanaEnvironmentsRequest`
+        # @rtype: :class:`Tencentcloud::monitor::V20180724::DescribeGrafanaEnvironmentsResponse`
+        def DescribeGrafanaEnvironments(request)
+          body = send_request('DescribeGrafanaEnvironments', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeGrafanaEnvironmentsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 列出用户所有的 Grafana 服务
+
+        # @param request: Request instance for DescribeGrafanaInstances.
+        # @type request: :class:`Tencentcloud::monitor::V20180724::DescribeGrafanaInstancesRequest`
+        # @rtype: :class:`Tencentcloud::monitor::V20180724::DescribeGrafanaInstancesResponse`
+        def DescribeGrafanaInstances(request)
+          body = send_request('DescribeGrafanaInstances', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeGrafanaInstancesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 列出 Grafana 已安装的集成
+
+        # @param request: Request instance for DescribeGrafanaIntegrations.
+        # @type request: :class:`Tencentcloud::monitor::V20180724::DescribeGrafanaIntegrationsRequest`
+        # @rtype: :class:`Tencentcloud::monitor::V20180724::DescribeGrafanaIntegrationsResponse`
+        def DescribeGrafanaIntegrations(request)
+          body = send_request('DescribeGrafanaIntegrations', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeGrafanaIntegrationsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 列出 Grafana 告警通道
+
+        # @param request: Request instance for DescribeGrafanaNotificationChannels.
+        # @type request: :class:`Tencentcloud::monitor::V20180724::DescribeGrafanaNotificationChannelsRequest`
+        # @rtype: :class:`Tencentcloud::monitor::V20180724::DescribeGrafanaNotificationChannelsResponse`
+        def DescribeGrafanaNotificationChannels(request)
+          body = send_request('DescribeGrafanaNotificationChannels', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeGrafanaNotificationChannelsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 列出 Grafana 白名单
+
+        # @param request: Request instance for DescribeGrafanaWhiteList.
+        # @type request: :class:`Tencentcloud::monitor::V20180724::DescribeGrafanaWhiteListRequest`
+        # @rtype: :class:`Tencentcloud::monitor::V20180724::DescribeGrafanaWhiteListResponse`
+        def DescribeGrafanaWhiteList(request)
+          body = send_request('DescribeGrafanaWhiteList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeGrafanaWhiteListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 列出实例已安装的插件
+
+        # @param request: Request instance for DescribeInstalledPlugins.
+        # @type request: :class:`Tencentcloud::monitor::V20180724::DescribeInstalledPluginsRequest`
+        # @rtype: :class:`Tencentcloud::monitor::V20180724::DescribeInstalledPluginsResponse`
+        def DescribeInstalledPlugins(request)
+          body = send_request('DescribeInstalledPlugins', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeInstalledPluginsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 云监控支持多种类型的监控，此接口列出支持的所有类型
 
         # @param request: Request instance for DescribeMonitorTypes.
@@ -935,6 +1343,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeMonitorTypesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 列出可安装的所有 Grafana 插件
+
+        # @param request: Request instance for DescribePluginOverviews.
+        # @type request: :class:`Tencentcloud::monitor::V20180724::DescribePluginOverviewsRequest`
+        # @rtype: :class:`Tencentcloud::monitor::V20180724::DescribePluginOverviewsResponse`
+        def DescribePluginOverviews(request)
+          body = send_request('DescribePluginOverviews', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribePluginOverviewsResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1169,6 +1601,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 列出当前grafana实例的所有授权账号
+
+        # @param request: Request instance for DescribeSSOAccount.
+        # @type request: :class:`Tencentcloud::monitor::V20180724::DescribeSSOAccountRequest`
+        # @rtype: :class:`Tencentcloud::monitor::V20180724::DescribeSSOAccountResponse`
+        def DescribeSSOAccount(request)
+          body = send_request('DescribeSSOAccount', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeSSOAccountResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 列出在腾讯云容器服务下创建的 Prometheus 服务发现。
         # <p>注意：前提条件，已经通过 Prometheus 控制台集成了对应的腾讯云容器服务，具体请参考
         # <a href="https://cloud.tencent.com/document/product/248/48859" target="_blank">Agent 安装</a>。</p>
@@ -1243,6 +1699,78 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 设置 Grafana 公网访问
+
+        # @param request: Request instance for EnableGrafanaInternet.
+        # @type request: :class:`Tencentcloud::monitor::V20180724::EnableGrafanaInternetRequest`
+        # @rtype: :class:`Tencentcloud::monitor::V20180724::EnableGrafanaInternetResponse`
+        def EnableGrafanaInternet(request)
+          body = send_request('EnableGrafanaInternet', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = EnableGrafanaInternetResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 设置 Grafana 单点登录，使用腾讯云账号
+
+        # @param request: Request instance for EnableGrafanaSSO.
+        # @type request: :class:`Tencentcloud::monitor::V20180724::EnableGrafanaSSORequest`
+        # @rtype: :class:`Tencentcloud::monitor::V20180724::EnableGrafanaSSOResponse`
+        def EnableGrafanaSSO(request)
+          body = send_request('EnableGrafanaSSO', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = EnableGrafanaSSOResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # SSO单点登录时，设置是否cam鉴权
+
+        # @param request: Request instance for EnableSSOCamCheck.
+        # @type request: :class:`Tencentcloud::monitor::V20180724::EnableSSOCamCheckRequest`
+        # @rtype: :class:`Tencentcloud::monitor::V20180724::EnableSSOCamCheckResponse`
+        def EnableSSOCamCheck(request)
+          body = send_request('EnableSSOCamCheck', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = EnableSSOCamCheckResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 获取云产品的监控数据。此接口不适用于拉取容器服务监控数据，如需拉取容器服务监控数据，请使用[根据维度条件查询监控数据](https://cloud.tencent.com/document/product/248/51845)接口。
         # 传入产品的命名空间、对象维度描述和监控指标即可获得相应的监控数据。
         # 接口调用频率限制为：20次/秒，1200次/分钟。单请求最多可支持批量拉取10个实例的监控数据，单请求的数据点数限制为1440个。
@@ -1280,6 +1808,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = GetPrometheusAgentManagementCommandResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 安装 Grafana Plugin
+
+        # @param request: Request instance for InstallPlugins.
+        # @type request: :class:`Tencentcloud::monitor::V20180724::InstallPluginsRequest`
+        # @rtype: :class:`Tencentcloud::monitor::V20180724::InstallPluginsResponse`
+        def InstallPlugins(request)
+          body = send_request('InstallPlugins', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = InstallPluginsResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1462,6 +2014,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 修改 Grafana 实例属性
+
+        # @param request: Request instance for ModifyGrafanaInstance.
+        # @type request: :class:`Tencentcloud::monitor::V20180724::ModifyGrafanaInstanceRequest`
+        # @rtype: :class:`Tencentcloud::monitor::V20180724::ModifyGrafanaInstanceResponse`
+        def ModifyGrafanaInstance(request)
+          body = send_request('ModifyGrafanaInstance', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyGrafanaInstanceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 更新策略组
 
         # @param request: Request instance for ModifyPolicyGroup.
@@ -1526,6 +2102,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = PutMonitorDataResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 恢复 Grafana 实例
+
+        # @param request: Request instance for ResumeGrafanaInstance.
+        # @type request: :class:`Tencentcloud::monitor::V20180724::ResumeGrafanaInstanceRequest`
+        # @rtype: :class:`Tencentcloud::monitor::V20180724::ResumeGrafanaInstanceResponse`
+        def ResumeGrafanaInstance(request)
+          body = send_request('ResumeGrafanaInstance', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ResumeGrafanaInstanceResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1709,6 +2309,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 删除已安装的插件
+
+        # @param request: Request instance for UninstallGrafanaPlugins.
+        # @type request: :class:`Tencentcloud::monitor::V20180724::UninstallGrafanaPluginsRequest`
+        # @rtype: :class:`Tencentcloud::monitor::V20180724::UninstallGrafanaPluginsResponse`
+        def UninstallGrafanaPlugins(request)
+          body = send_request('UninstallGrafanaPlugins', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = UninstallGrafanaPluginsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 更新 Prometheus 的报警规则。
 
         # 请注意，**告警对象和告警消息是 Prometheus Rule Annotations 的特殊字段，需要通过 annotations 来传递，对应的 Key 分别为summary/description**，，请参考 [Prometheus Rule更多配置请参考](https://prometheus.io/docs/prometheus/latest/configuration/alerting_rules/)。
@@ -1759,6 +2383,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 更新 Grafana 的 DNS 配置
+
+        # @param request: Request instance for UpdateDNSConfig.
+        # @type request: :class:`Tencentcloud::monitor::V20180724::UpdateDNSConfigRequest`
+        # @rtype: :class:`Tencentcloud::monitor::V20180724::UpdateDNSConfigResponse`
+        def UpdateDNSConfig(request)
+          body = send_request('UpdateDNSConfig', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = UpdateDNSConfigResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 更新 exporter 集成配置
 
         # @param request: Request instance for UpdateExporterIntegration.
@@ -1769,6 +2417,126 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = UpdateExporterIntegrationResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 更新 Grafana 配置
+
+        # @param request: Request instance for UpdateGrafanaConfig.
+        # @type request: :class:`Tencentcloud::monitor::V20180724::UpdateGrafanaConfigRequest`
+        # @rtype: :class:`Tencentcloud::monitor::V20180724::UpdateGrafanaConfigResponse`
+        def UpdateGrafanaConfig(request)
+          body = send_request('UpdateGrafanaConfig', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = UpdateGrafanaConfigResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 更新 Grafana 环境变量
+
+        # @param request: Request instance for UpdateGrafanaEnvironments.
+        # @type request: :class:`Tencentcloud::monitor::V20180724::UpdateGrafanaEnvironmentsRequest`
+        # @rtype: :class:`Tencentcloud::monitor::V20180724::UpdateGrafanaEnvironmentsResponse`
+        def UpdateGrafanaEnvironments(request)
+          body = send_request('UpdateGrafanaEnvironments', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = UpdateGrafanaEnvironmentsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 更新 Grafana 集成配置
+
+        # @param request: Request instance for UpdateGrafanaIntegration.
+        # @type request: :class:`Tencentcloud::monitor::V20180724::UpdateGrafanaIntegrationRequest`
+        # @rtype: :class:`Tencentcloud::monitor::V20180724::UpdateGrafanaIntegrationResponse`
+        def UpdateGrafanaIntegration(request)
+          body = send_request('UpdateGrafanaIntegration', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = UpdateGrafanaIntegrationResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 更新 Grafana 告警通道
+
+        # @param request: Request instance for UpdateGrafanaNotificationChannel.
+        # @type request: :class:`Tencentcloud::monitor::V20180724::UpdateGrafanaNotificationChannelRequest`
+        # @rtype: :class:`Tencentcloud::monitor::V20180724::UpdateGrafanaNotificationChannelResponse`
+        def UpdateGrafanaNotificationChannel(request)
+          body = send_request('UpdateGrafanaNotificationChannel', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = UpdateGrafanaNotificationChannelResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 更新 Grafana 白名单
+
+        # @param request: Request instance for UpdateGrafanaWhiteList.
+        # @type request: :class:`Tencentcloud::monitor::V20180724::UpdateGrafanaWhiteListRequest`
+        # @rtype: :class:`Tencentcloud::monitor::V20180724::UpdateGrafanaWhiteListResponse`
+        def UpdateGrafanaWhiteList(request)
+          body = send_request('UpdateGrafanaWhiteList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = UpdateGrafanaWhiteListResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1855,6 +2623,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 更新已授权账号的备注、权限信息，会直接覆盖原有的信息，不传则不会更新。
+
+        # @param request: Request instance for UpdateSSOAccount.
+        # @type request: :class:`Tencentcloud::monitor::V20180724::UpdateSSOAccountRequest`
+        # @rtype: :class:`Tencentcloud::monitor::V20180724::UpdateSSOAccountResponse`
+        def UpdateSSOAccount(request)
+          body = send_request('UpdateSSOAccount', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = UpdateSSOAccountResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 在腾讯云容器服务下更新 Prometheus 服务发现。
         # <p>注意：前提条件，已经通过 Prometheus 控制台集成了对应的腾讯云容器服务，具体请参考
         # <a href="https://cloud.tencent.com/document/product/248/48859" target="_blank">Agent 安装</a>。</p>
@@ -1891,6 +2683,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = UpgradeGrafanaDashboardResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 升级 Grafana 实例
+
+        # @param request: Request instance for UpgradeGrafanaInstance.
+        # @type request: :class:`Tencentcloud::monitor::V20180724::UpgradeGrafanaInstanceRequest`
+        # @rtype: :class:`Tencentcloud::monitor::V20180724::UpgradeGrafanaInstanceResponse`
+        def UpgradeGrafanaInstance(request)
+          body = send_request('UpgradeGrafanaInstance', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = UpgradeGrafanaInstanceResponse.new
             model.deserialize(response['Response'])
             model
           else

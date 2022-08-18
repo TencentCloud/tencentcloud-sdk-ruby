@@ -4882,15 +4882,19 @@ module TencentCloud
       class OpenKafkaConsumerRequest < TencentCloud::Common::AbstractModel
         # @param FromTopicId: CLS控制台创建的TopicId
         # @type FromTopicId: String
+        # @param Compression: 压缩方式[0:NONE；2:SNAPPY；3:LZ4]
+        # @type Compression: Integer
 
-        attr_accessor :FromTopicId
+        attr_accessor :FromTopicId, :Compression
         
-        def initialize(fromtopicid=nil)
+        def initialize(fromtopicid=nil, compression=nil)
           @FromTopicId = fromtopicid
+          @Compression = compression
         end
 
         def deserialize(params)
           @FromTopicId = params['FromTopicId']
+          @Compression = params['Compression']
         end
       end
 

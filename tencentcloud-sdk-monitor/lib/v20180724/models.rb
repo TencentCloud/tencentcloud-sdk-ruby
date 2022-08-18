@@ -910,6 +910,38 @@ module TencentCloud
         end
       end
 
+      # CleanGrafanaInstance请求参数结构体
+      class CleanGrafanaInstanceRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例名
+        # @type InstanceId: String
+
+        attr_accessor :InstanceId
+        
+        def initialize(instanceid=nil)
+          @InstanceId = instanceid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+        end
+      end
+
+      # CleanGrafanaInstance返回参数结构体
+      class CleanGrafanaInstanceResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 统一的命名空间信息
       class CommonNamespace < TencentCloud::Common::AbstractModel
         # @param Id: 命名空间标示
@@ -1373,6 +1405,157 @@ module TencentCloud
         end
       end
 
+      # CreateGrafanaInstance请求参数结构体
+      class CreateGrafanaInstanceRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceName: 实例名
+        # @type InstanceName: String
+        # @param VpcId: VPC ID
+        # @type VpcId: String
+        # @param SubnetIds: 子网 ID 数组
+        # @type SubnetIds: Array
+        # @param GrafanaInitPassword: Grafana 初始密码
+        # @type GrafanaInitPassword: String
+        # @param EnableInternet: 是否启用外网
+        # @type EnableInternet: Boolean
+        # @param TagSpecification: 标签
+        # @type TagSpecification: Array
+
+        attr_accessor :InstanceName, :VpcId, :SubnetIds, :GrafanaInitPassword, :EnableInternet, :TagSpecification
+        
+        def initialize(instancename=nil, vpcid=nil, subnetids=nil, grafanainitpassword=nil, enableinternet=nil, tagspecification=nil)
+          @InstanceName = instancename
+          @VpcId = vpcid
+          @SubnetIds = subnetids
+          @GrafanaInitPassword = grafanainitpassword
+          @EnableInternet = enableinternet
+          @TagSpecification = tagspecification
+        end
+
+        def deserialize(params)
+          @InstanceName = params['InstanceName']
+          @VpcId = params['VpcId']
+          @SubnetIds = params['SubnetIds']
+          @GrafanaInitPassword = params['GrafanaInitPassword']
+          @EnableInternet = params['EnableInternet']
+          unless params['TagSpecification'].nil?
+            @TagSpecification = []
+            params['TagSpecification'].each do |i|
+              prometheustag_tmp = PrometheusTag.new
+              prometheustag_tmp.deserialize(i)
+              @TagSpecification << prometheustag_tmp
+            end
+          end
+        end
+      end
+
+      # CreateGrafanaInstance返回参数结构体
+      class CreateGrafanaInstanceResponse < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例名
+        # @type InstanceId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :InstanceId, :RequestId
+        
+        def initialize(instanceid=nil, requestid=nil)
+          @InstanceId = instanceid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateGrafanaIntegration请求参数结构体
+      class CreateGrafanaIntegrationRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例名
+        # @type InstanceId: String
+        # @param Kind: 类型
+        # @type Kind: String
+        # @param Content: 配置
+        # @type Content: String
+
+        attr_accessor :InstanceId, :Kind, :Content
+        
+        def initialize(instanceid=nil, kind=nil, content=nil)
+          @InstanceId = instanceid
+          @Kind = kind
+          @Content = content
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @Kind = params['Kind']
+          @Content = params['Content']
+        end
+      end
+
+      # CreateGrafanaIntegration返回参数结构体
+      class CreateGrafanaIntegrationResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateGrafanaNotificationChannel请求参数结构体
+      class CreateGrafanaNotificationChannelRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例名
+        # @type InstanceId: String
+        # @param ChannelName: 渠道名
+        # @type ChannelName: String
+        # @param OrgId: 组织 ID
+        # @type OrgId: Integer
+        # @param Receivers: 接受告警通道 ID 数组
+        # @type Receivers: Array
+        # @param ExtraOrgIds: 额外组织 ID 数组
+        # @type ExtraOrgIds: Array
+
+        attr_accessor :InstanceId, :ChannelName, :OrgId, :Receivers, :ExtraOrgIds
+        
+        def initialize(instanceid=nil, channelname=nil, orgid=nil, receivers=nil, extraorgids=nil)
+          @InstanceId = instanceid
+          @ChannelName = channelname
+          @OrgId = orgid
+          @Receivers = receivers
+          @ExtraOrgIds = extraorgids
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @ChannelName = params['ChannelName']
+          @OrgId = params['OrgId']
+          @Receivers = params['Receivers']
+          @ExtraOrgIds = params['ExtraOrgIds']
+        end
+      end
+
+      # CreateGrafanaNotificationChannel返回参数结构体
+      class CreateGrafanaNotificationChannelResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 创建策略传入的阈值告警条件
       class CreatePolicyGroupCondition < TencentCloud::Common::AbstractModel
         # @param MetricId: 指标Id
@@ -1743,6 +1926,57 @@ module TencentCloud
         end
       end
 
+      # CreateSSOAccount请求参数结构体
+      class CreateSSOAccountRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+        # @param UserId: 用户账号ID
+        # @type UserId: String
+        # @param Role: 权限
+        # @type Role: Array
+        # @param Notes: 备注
+        # @type Notes: String
+
+        attr_accessor :InstanceId, :UserId, :Role, :Notes
+        
+        def initialize(instanceid=nil, userid=nil, role=nil, notes=nil)
+          @InstanceId = instanceid
+          @UserId = userid
+          @Role = role
+          @Notes = notes
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @UserId = params['UserId']
+          unless params['Role'].nil?
+            @Role = []
+            params['Role'].each do |i|
+              grafanaaccountrole_tmp = GrafanaAccountRole.new
+              grafanaaccountrole_tmp.deserialize(i)
+              @Role << grafanaaccountrole_tmp
+            end
+          end
+          @Notes = params['Notes']
+        end
+      end
+
+      # CreateSSOAccount返回参数结构体
+      class CreateSSOAccountResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateServiceDiscovery请求参数结构体
       class CreateServiceDiscoveryRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: Prometheus 实例 ID
@@ -1945,6 +2179,10 @@ module TencentCloud
       class DeleteExporterIntegrationRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例 ID
         # @type InstanceId: String
+        # @param Kind: 类型
+        # @type Kind: String
+        # @param Name: 名字
+        # @type Name: String
         # @param KubeType: Kubernetes 集群类型，取值如下：
         # <li> 1= 容器集群(TKE) </li>
         # <li> 2=弹性集群<EKS> </li>
@@ -1952,32 +2190,132 @@ module TencentCloud
         # @type KubeType: Integer
         # @param ClusterId: 集群 ID
         # @type ClusterId: String
-        # @param Kind: 类型
-        # @type Kind: String
-        # @param Name: 名字
-        # @type Name: String
 
-        attr_accessor :InstanceId, :KubeType, :ClusterId, :Kind, :Name
+        attr_accessor :InstanceId, :Kind, :Name, :KubeType, :ClusterId
         
-        def initialize(instanceid=nil, kubetype=nil, clusterid=nil, kind=nil, name=nil)
+        def initialize(instanceid=nil, kind=nil, name=nil, kubetype=nil, clusterid=nil)
           @InstanceId = instanceid
-          @KubeType = kubetype
-          @ClusterId = clusterid
           @Kind = kind
           @Name = name
+          @KubeType = kubetype
+          @ClusterId = clusterid
         end
 
         def deserialize(params)
           @InstanceId = params['InstanceId']
-          @KubeType = params['KubeType']
-          @ClusterId = params['ClusterId']
           @Kind = params['Kind']
           @Name = params['Name']
+          @KubeType = params['KubeType']
+          @ClusterId = params['ClusterId']
         end
       end
 
       # DeleteExporterIntegration返回参数结构体
       class DeleteExporterIntegrationResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteGrafanaInstance请求参数结构体
+      class DeleteGrafanaInstanceRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceIDs: 实例名数组
+        # @type InstanceIDs: Array
+
+        attr_accessor :InstanceIDs
+        
+        def initialize(instanceids=nil)
+          @InstanceIDs = instanceids
+        end
+
+        def deserialize(params)
+          @InstanceIDs = params['InstanceIDs']
+        end
+      end
+
+      # DeleteGrafanaInstance返回参数结构体
+      class DeleteGrafanaInstanceResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteGrafanaIntegration请求参数结构体
+      class DeleteGrafanaIntegrationRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例 ID
+        # @type InstanceId: String
+        # @param IntegrationId: 集成 ID
+        # @type IntegrationId: String
+
+        attr_accessor :InstanceId, :IntegrationId
+        
+        def initialize(instanceid=nil, integrationid=nil)
+          @InstanceId = instanceid
+          @IntegrationId = integrationid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @IntegrationId = params['IntegrationId']
+        end
+      end
+
+      # DeleteGrafanaIntegration返回参数结构体
+      class DeleteGrafanaIntegrationResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteGrafanaNotificationChannel请求参数结构体
+      class DeleteGrafanaNotificationChannelRequest < TencentCloud::Common::AbstractModel
+        # @param ChannelIDs: 通道 ID 数组
+        # @type ChannelIDs: Array
+        # @param InstanceId: 实例名
+        # @type InstanceId: String
+
+        attr_accessor :ChannelIDs, :InstanceId
+        
+        def initialize(channelids=nil, instanceid=nil)
+          @ChannelIDs = channelids
+          @InstanceId = instanceid
+        end
+
+        def deserialize(params)
+          @ChannelIDs = params['ChannelIDs']
+          @InstanceId = params['InstanceId']
+        end
+      end
+
+      # DeleteGrafanaNotificationChannel返回参数结构体
+      class DeleteGrafanaNotificationChannelResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -2090,6 +2428,42 @@ module TencentCloud
 
       # DeleteRecordingRules返回参数结构体
       class DeleteRecordingRulesResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteSSOAccount请求参数结构体
+      class DeleteSSOAccountRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+        # @param UserId: 用户账号ID
+        # @type UserId: String
+
+        attr_accessor :InstanceId, :UserId
+        
+        def initialize(instanceid=nil, userid=nil)
+          @InstanceId = instanceid
+          @UserId = userid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @UserId = params['UserId']
+        end
+      end
+
+      # DeleteSSOAccount返回参数结构体
+      class DeleteSSOAccountResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -3569,6 +3943,42 @@ module TencentCloud
         end
       end
 
+      # DescribeDNSConfig请求参数结构体
+      class DescribeDNSConfigRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例名
+        # @type InstanceId: String
+
+        attr_accessor :InstanceId
+        
+        def initialize(instanceid=nil)
+          @InstanceId = instanceid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+        end
+      end
+
+      # DescribeDNSConfig返回参数结构体
+      class DescribeDNSConfigResponse < TencentCloud::Common::AbstractModel
+        # @param NameServers: DNS 服务器数组
+        # @type NameServers: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :NameServers, :RequestId
+        
+        def initialize(nameservers=nil, requestid=nil)
+          @NameServers = nameservers
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @NameServers = params['NameServers']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeExporterIntegrations请求参数结构体
       class DescribeExporterIntegrationsRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例 ID
@@ -3631,6 +4041,356 @@ module TencentCloud
         end
       end
 
+      # DescribeGrafanaConfig请求参数结构体
+      class DescribeGrafanaConfigRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 无
+        # @type InstanceId: String
+
+        attr_accessor :InstanceId
+        
+        def initialize(instanceid=nil)
+          @InstanceId = instanceid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+        end
+      end
+
+      # DescribeGrafanaConfig返回参数结构体
+      class DescribeGrafanaConfigResponse < TencentCloud::Common::AbstractModel
+        # @param Config: JSON 编码后的字符串
+        # @type Config: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Config, :RequestId
+        
+        def initialize(config=nil, requestid=nil)
+          @Config = config
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Config = params['Config']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeGrafanaEnvironments请求参数结构体
+      class DescribeGrafanaEnvironmentsRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例名
+        # @type InstanceId: String
+
+        attr_accessor :InstanceId
+        
+        def initialize(instanceid=nil)
+          @InstanceId = instanceid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+        end
+      end
+
+      # DescribeGrafanaEnvironments返回参数结构体
+      class DescribeGrafanaEnvironmentsResponse < TencentCloud::Common::AbstractModel
+        # @param Envs: 环境变量字符串
+        # @type Envs: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Envs, :RequestId
+        
+        def initialize(envs=nil, requestid=nil)
+          @Envs = envs
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Envs = params['Envs']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeGrafanaInstances请求参数结构体
+      class DescribeGrafanaInstancesRequest < TencentCloud::Common::AbstractModel
+        # @param Offset: 查询偏移量
+        # @type Offset: Integer
+        # @param Limit: 查询数量
+        # @type Limit: Integer
+        # @param InstanceIds: 实例 ID 数组
+        # @type InstanceIds: Array
+        # @param InstanceName: 实例名，支持前缀模糊搜索
+        # @type InstanceName: String
+        # @param InstanceStatus: 查询状态
+        # @type InstanceStatus: Array
+        # @param TagFilters: 标签过滤数组
+        # @type TagFilters: Array
+
+        attr_accessor :Offset, :Limit, :InstanceIds, :InstanceName, :InstanceStatus, :TagFilters
+        
+        def initialize(offset=nil, limit=nil, instanceids=nil, instancename=nil, instancestatus=nil, tagfilters=nil)
+          @Offset = offset
+          @Limit = limit
+          @InstanceIds = instanceids
+          @InstanceName = instancename
+          @InstanceStatus = instancestatus
+          @TagFilters = tagfilters
+        end
+
+        def deserialize(params)
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @InstanceIds = params['InstanceIds']
+          @InstanceName = params['InstanceName']
+          @InstanceStatus = params['InstanceStatus']
+          unless params['TagFilters'].nil?
+            @TagFilters = []
+            params['TagFilters'].each do |i|
+              prometheustag_tmp = PrometheusTag.new
+              prometheustag_tmp.deserialize(i)
+              @TagFilters << prometheustag_tmp
+            end
+          end
+        end
+      end
+
+      # DescribeGrafanaInstances返回参数结构体
+      class DescribeGrafanaInstancesResponse < TencentCloud::Common::AbstractModel
+        # @param InstanceSet: 已废弃，请使用 Instances
+        # @type InstanceSet: Array
+        # @param TotalCount: 符合查询条件的实例总数
+        # @type TotalCount: Integer
+        # @param Instances: 实例列表
+        # @type Instances: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :InstanceSet, :TotalCount, :Instances, :RequestId
+        
+        def initialize(instanceset=nil, totalcount=nil, instances=nil, requestid=nil)
+          @InstanceSet = instanceset
+          @TotalCount = totalcount
+          @Instances = instances
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['InstanceSet'].nil?
+            @InstanceSet = []
+            params['InstanceSet'].each do |i|
+              grafanainstanceinfo_tmp = GrafanaInstanceInfo.new
+              grafanainstanceinfo_tmp.deserialize(i)
+              @InstanceSet << grafanainstanceinfo_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+          unless params['Instances'].nil?
+            @Instances = []
+            params['Instances'].each do |i|
+              grafanainstanceinfo_tmp = GrafanaInstanceInfo.new
+              grafanainstanceinfo_tmp.deserialize(i)
+              @Instances << grafanainstanceinfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeGrafanaIntegrations请求参数结构体
+      class DescribeGrafanaIntegrationsRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例名
+        # @type InstanceId: String
+        # @param IntegrationId: 集成 ID
+        # @type IntegrationId: String
+        # @param Kind: 类型
+        # @type Kind: String
+
+        attr_accessor :InstanceId, :IntegrationId, :Kind
+        
+        def initialize(instanceid=nil, integrationid=nil, kind=nil)
+          @InstanceId = instanceid
+          @IntegrationId = integrationid
+          @Kind = kind
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @IntegrationId = params['IntegrationId']
+          @Kind = params['Kind']
+        end
+      end
+
+      # DescribeGrafanaIntegrations返回参数结构体
+      class DescribeGrafanaIntegrationsResponse < TencentCloud::Common::AbstractModel
+        # @param IntegrationSet: 集成数组
+        # @type IntegrationSet: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :IntegrationSet, :RequestId
+        
+        def initialize(integrationset=nil, requestid=nil)
+          @IntegrationSet = integrationset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['IntegrationSet'].nil?
+            @IntegrationSet = []
+            params['IntegrationSet'].each do |i|
+              grafanaintegrationconfig_tmp = GrafanaIntegrationConfig.new
+              grafanaintegrationconfig_tmp.deserialize(i)
+              @IntegrationSet << grafanaintegrationconfig_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeGrafanaNotificationChannels请求参数结构体
+      class DescribeGrafanaNotificationChannelsRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例名
+        # @type InstanceId: String
+        # @param Offset: 偏移量
+        # @type Offset: Integer
+        # @param Limit: 查询数量
+        # @type Limit: Integer
+        # @param ChannelName: 渠道名
+        # @type ChannelName: String
+        # @param ChannelIDs: 渠道 ID
+        # @type ChannelIDs: Array
+        # @param ChannelState: 状态
+        # @type ChannelState: Integer
+
+        attr_accessor :InstanceId, :Offset, :Limit, :ChannelName, :ChannelIDs, :ChannelState
+        
+        def initialize(instanceid=nil, offset=nil, limit=nil, channelname=nil, channelids=nil, channelstate=nil)
+          @InstanceId = instanceid
+          @Offset = offset
+          @Limit = limit
+          @ChannelName = channelname
+          @ChannelIDs = channelids
+          @ChannelState = channelstate
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @ChannelName = params['ChannelName']
+          @ChannelIDs = params['ChannelIDs']
+          @ChannelState = params['ChannelState']
+        end
+      end
+
+      # DescribeGrafanaNotificationChannels返回参数结构体
+      class DescribeGrafanaNotificationChannelsResponse < TencentCloud::Common::AbstractModel
+        # @param NotificationChannelSet: 告警通道数组
+        # @type NotificationChannelSet: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :NotificationChannelSet, :RequestId
+        
+        def initialize(notificationchannelset=nil, requestid=nil)
+          @NotificationChannelSet = notificationchannelset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['NotificationChannelSet'].nil?
+            @NotificationChannelSet = []
+            params['NotificationChannelSet'].each do |i|
+              grafananotificationchannel_tmp = GrafanaNotificationChannel.new
+              grafananotificationchannel_tmp.deserialize(i)
+              @NotificationChannelSet << grafananotificationchannel_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeGrafanaWhiteList请求参数结构体
+      class DescribeGrafanaWhiteListRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例名
+        # @type InstanceId: String
+
+        attr_accessor :InstanceId
+        
+        def initialize(instanceid=nil)
+          @InstanceId = instanceid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+        end
+      end
+
+      # DescribeGrafanaWhiteList返回参数结构体
+      class DescribeGrafanaWhiteListResponse < TencentCloud::Common::AbstractModel
+        # @param WhiteList: 数组
+        # @type WhiteList: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :WhiteList, :RequestId
+        
+        def initialize(whitelist=nil, requestid=nil)
+          @WhiteList = whitelist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @WhiteList = params['WhiteList']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeInstalledPlugins请求参数结构体
+      class DescribeInstalledPluginsRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例 ID
+        # @type InstanceId: String
+
+        attr_accessor :InstanceId
+        
+        def initialize(instanceid=nil)
+          @InstanceId = instanceid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+        end
+      end
+
+      # DescribeInstalledPlugins返回参数结构体
+      class DescribeInstalledPluginsResponse < TencentCloud::Common::AbstractModel
+        # @param PluginSet: 插件列表
+        # @type PluginSet: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :PluginSet, :RequestId
+        
+        def initialize(pluginset=nil, requestid=nil)
+          @PluginSet = pluginset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['PluginSet'].nil?
+            @PluginSet = []
+            params['PluginSet'].each do |i|
+              grafanaplugin_tmp = GrafanaPlugin.new
+              grafanaplugin_tmp.deserialize(i)
+              @PluginSet << grafanaplugin_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeMonitorTypes请求参数结构体
       class DescribeMonitorTypesRequest < TencentCloud::Common::AbstractModel
         # @param Module: 模块名，固定值 monitor
@@ -3672,6 +4432,44 @@ module TencentCloud
               monitortypeinfo_tmp = MonitorTypeInfo.new
               monitortypeinfo_tmp.deserialize(i)
               @MonitorTypeInfos << monitortypeinfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribePluginOverviews请求参数结构体
+      class DescribePluginOverviewsRequest < TencentCloud::Common::AbstractModel
+
+        
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribePluginOverviews返回参数结构体
+      class DescribePluginOverviewsResponse < TencentCloud::Common::AbstractModel
+        # @param PluginSet: 插件列表
+        # @type PluginSet: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :PluginSet, :RequestId
+        
+        def initialize(pluginset=nil, requestid=nil)
+          @PluginSet = pluginset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['PluginSet'].nil?
+            @PluginSet = []
+            params['PluginSet'].each do |i|
+              grafanaplugin_tmp = GrafanaPlugin.new
+              grafanaplugin_tmp.deserialize(i)
+              @PluginSet << grafanaplugin_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -5449,6 +6247,50 @@ module TencentCloud
         end
       end
 
+      # DescribeSSOAccount请求参数结构体
+      class DescribeSSOAccountRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+
+        attr_accessor :InstanceId
+        
+        def initialize(instanceid=nil)
+          @InstanceId = instanceid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+        end
+      end
+
+      # DescribeSSOAccount返回参数结构体
+      class DescribeSSOAccountResponse < TencentCloud::Common::AbstractModel
+        # @param AccountSet: 授权账号列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AccountSet: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :AccountSet, :RequestId
+        
+        def initialize(accountset=nil, requestid=nil)
+          @AccountSet = accountset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['AccountSet'].nil?
+            @AccountSet = []
+            params['AccountSet'].each do |i|
+              grafanaaccountinfo_tmp = GrafanaAccountInfo.new
+              grafanaaccountinfo_tmp.deserialize(i)
+              @AccountSet << grafanaaccountinfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeServiceDiscovery请求参数结构体
       class DescribeServiceDiscoveryRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: Prometheus 实例 ID
@@ -5665,6 +6507,114 @@ module TencentCloud
         end
       end
 
+      # EnableGrafanaInternet请求参数结构体
+      class EnableGrafanaInternetRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceID: 实例 ID
+        # @type InstanceID: String
+        # @param EnableInternet: 开启或关闭
+        # @type EnableInternet: Boolean
+
+        attr_accessor :InstanceID, :EnableInternet
+        
+        def initialize(instanceid=nil, enableinternet=nil)
+          @InstanceID = instanceid
+          @EnableInternet = enableinternet
+        end
+
+        def deserialize(params)
+          @InstanceID = params['InstanceID']
+          @EnableInternet = params['EnableInternet']
+        end
+      end
+
+      # EnableGrafanaInternet返回参数结构体
+      class EnableGrafanaInternetResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # EnableGrafanaSSO请求参数结构体
+      class EnableGrafanaSSORequest < TencentCloud::Common::AbstractModel
+        # @param EnableSSO: 是否开启 SSO
+        # @type EnableSSO: Boolean
+        # @param InstanceId: 实例 ID
+        # @type InstanceId: String
+
+        attr_accessor :EnableSSO, :InstanceId
+        
+        def initialize(enablesso=nil, instanceid=nil)
+          @EnableSSO = enablesso
+          @InstanceId = instanceid
+        end
+
+        def deserialize(params)
+          @EnableSSO = params['EnableSSO']
+          @InstanceId = params['InstanceId']
+        end
+      end
+
+      # EnableGrafanaSSO返回参数结构体
+      class EnableGrafanaSSOResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # EnableSSOCamCheck请求参数结构体
+      class EnableSSOCamCheckRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+        # @param EnableSSOCamCheck: 是否开启cam鉴权
+        # @type EnableSSOCamCheck: Boolean
+
+        attr_accessor :InstanceId, :EnableSSOCamCheck
+        
+        def initialize(instanceid=nil, enablessocamcheck=nil)
+          @InstanceId = instanceid
+          @EnableSSOCamCheck = enablessocamcheck
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @EnableSSOCamCheck = params['EnableSSOCamCheck']
+        end
+      end
+
+      # EnableSSOCamCheck返回参数结构体
+      class EnableSSOCamCheckResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 事件告警条件
       class EventCondition < TencentCloud::Common::AbstractModel
         # @param AlarmNotifyPeriod: 告警通知频率
@@ -5824,6 +6774,281 @@ module TencentCloud
             @Command = ManagementCommand.new
             @Command.deserialize(params['Command'])
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # Grafana可视化服务 授权账户信息
+      class GrafanaAccountInfo < TencentCloud::Common::AbstractModel
+        # @param UserId: 用户账号ID
+        # @type UserId: String
+        # @param Role: 用户权限
+        # @type Role: Array
+        # @param Notes: 备注
+        # @type Notes: String
+        # @param CreateAt: 创建时间
+        # @type CreateAt: String
+
+        attr_accessor :UserId, :Role, :Notes, :CreateAt
+        
+        def initialize(userid=nil, role=nil, notes=nil, createat=nil)
+          @UserId = userid
+          @Role = role
+          @Notes = notes
+          @CreateAt = createat
+        end
+
+        def deserialize(params)
+          @UserId = params['UserId']
+          unless params['Role'].nil?
+            @Role = []
+            params['Role'].each do |i|
+              grafanaaccountrole_tmp = GrafanaAccountRole.new
+              grafanaaccountrole_tmp.deserialize(i)
+              @Role << grafanaaccountrole_tmp
+            end
+          end
+          @Notes = params['Notes']
+          @CreateAt = params['CreateAt']
+        end
+      end
+
+      # Grafana可视化服务 账号权限
+      class GrafanaAccountRole < TencentCloud::Common::AbstractModel
+        # @param Organization: 组织
+        # @type Organization: String
+        # @param Role: 权限
+        # @type Role: String
+
+        attr_accessor :Organization, :Role
+        
+        def initialize(organization=nil, role=nil)
+          @Organization = organization
+          @Role = role
+        end
+
+        def deserialize(params)
+          @Organization = params['Organization']
+          @Role = params['Role']
+        end
+      end
+
+      # 查询 Grafana 实例时的实例类型
+      class GrafanaInstanceInfo < TencentCloud::Common::AbstractModel
+        # @param InstanceName: 实例名
+        # @type InstanceName: String
+        # @param InstanceId: 实例 ID
+        # @type InstanceId: String
+        # @param Region: 地域
+        # @type Region: String
+        # @param VpcId: VPC ID
+        # @type VpcId: String
+        # @param SubnetIds: 子网 ID 数组
+        # @type SubnetIds: Array
+        # @param InternetUrl: Grafana 内网地址
+        # @type InternetUrl: String
+        # @param InternalUrl: Grafana 公网地址
+        # @type InternalUrl: String
+        # @param CreatedAt: 创建时间
+        # @type CreatedAt: String
+        # @param InstanceStatus: 运行状态（1:正在创建；2:运行中；3:异常；4:重启中；5:停机中； 6:已停机； 7: 已删除）
+        # @type InstanceStatus: Integer
+        # @param TagSpecification: 实例的标签
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TagSpecification: Array
+        # @param Zone: 实例的可用区
+        # @type Zone: String
+        # @param InstanceChargeType: 计费模式（1:包年包月）
+        # @type InstanceChargeType: Integer
+        # @param VpcName: VPC 名称
+        # @type VpcName: String
+        # @param SubnetName: 子网名称
+        # @type SubnetName: String
+        # @param RegionId: 地域 ID
+        # @type RegionId: Integer
+        # @param RootUrl: 可访问此实例的完整 URL
+        # @type RootUrl: String
+        # @param EnableSSO: 是否开启 SSO
+        # @type EnableSSO: Boolean
+        # @param Version: 版本号
+        # @type Version: String
+        # @param EnableSSOCamCheck: SSO登录时是否开启cam鉴权
+        # @type EnableSSOCamCheck: Boolean
+
+        attr_accessor :InstanceName, :InstanceId, :Region, :VpcId, :SubnetIds, :InternetUrl, :InternalUrl, :CreatedAt, :InstanceStatus, :TagSpecification, :Zone, :InstanceChargeType, :VpcName, :SubnetName, :RegionId, :RootUrl, :EnableSSO, :Version, :EnableSSOCamCheck
+        
+        def initialize(instancename=nil, instanceid=nil, region=nil, vpcid=nil, subnetids=nil, interneturl=nil, internalurl=nil, createdat=nil, instancestatus=nil, tagspecification=nil, zone=nil, instancechargetype=nil, vpcname=nil, subnetname=nil, regionid=nil, rooturl=nil, enablesso=nil, version=nil, enablessocamcheck=nil)
+          @InstanceName = instancename
+          @InstanceId = instanceid
+          @Region = region
+          @VpcId = vpcid
+          @SubnetIds = subnetids
+          @InternetUrl = interneturl
+          @InternalUrl = internalurl
+          @CreatedAt = createdat
+          @InstanceStatus = instancestatus
+          @TagSpecification = tagspecification
+          @Zone = zone
+          @InstanceChargeType = instancechargetype
+          @VpcName = vpcname
+          @SubnetName = subnetname
+          @RegionId = regionid
+          @RootUrl = rooturl
+          @EnableSSO = enablesso
+          @Version = version
+          @EnableSSOCamCheck = enablessocamcheck
+        end
+
+        def deserialize(params)
+          @InstanceName = params['InstanceName']
+          @InstanceId = params['InstanceId']
+          @Region = params['Region']
+          @VpcId = params['VpcId']
+          @SubnetIds = params['SubnetIds']
+          @InternetUrl = params['InternetUrl']
+          @InternalUrl = params['InternalUrl']
+          @CreatedAt = params['CreatedAt']
+          @InstanceStatus = params['InstanceStatus']
+          unless params['TagSpecification'].nil?
+            @TagSpecification = []
+            params['TagSpecification'].each do |i|
+              prometheustag_tmp = PrometheusTag.new
+              prometheustag_tmp.deserialize(i)
+              @TagSpecification << prometheustag_tmp
+            end
+          end
+          @Zone = params['Zone']
+          @InstanceChargeType = params['InstanceChargeType']
+          @VpcName = params['VpcName']
+          @SubnetName = params['SubnetName']
+          @RegionId = params['RegionId']
+          @RootUrl = params['RootUrl']
+          @EnableSSO = params['EnableSSO']
+          @Version = params['Version']
+          @EnableSSOCamCheck = params['EnableSSOCamCheck']
+        end
+      end
+
+      # Grafana 集成实例配置
+      class GrafanaIntegrationConfig < TencentCloud::Common::AbstractModel
+        # @param IntegrationId: 集成 ID
+        # @type IntegrationId: String
+        # @param Kind: 集成类型
+        # @type Kind: String
+        # @param Content: 集成内容
+        # @type Content: String
+        # @param Description: 集成描述
+        # @type Description: String
+
+        attr_accessor :IntegrationId, :Kind, :Content, :Description
+        
+        def initialize(integrationid=nil, kind=nil, content=nil, description=nil)
+          @IntegrationId = integrationid
+          @Kind = kind
+          @Content = content
+          @Description = description
+        end
+
+        def deserialize(params)
+          @IntegrationId = params['IntegrationId']
+          @Kind = params['Kind']
+          @Content = params['Content']
+          @Description = params['Description']
+        end
+      end
+
+      # Grafana 告警渠道
+      class GrafanaNotificationChannel < TencentCloud::Common::AbstractModel
+        # @param ChannelId: 渠道 ID
+        # @type ChannelId: String
+        # @param ChannelName: 渠道名
+        # @type ChannelName: String
+        # @param Receivers: 告警通道模板 ID 数组
+        # @type Receivers: Array
+        # @param CreatedAt: 创建时间
+        # @type CreatedAt: String
+        # @param UpdatedAt: 更新时间
+        # @type UpdatedAt: String
+
+        attr_accessor :ChannelId, :ChannelName, :Receivers, :CreatedAt, :UpdatedAt
+        
+        def initialize(channelid=nil, channelname=nil, receivers=nil, createdat=nil, updatedat=nil)
+          @ChannelId = channelid
+          @ChannelName = channelname
+          @Receivers = receivers
+          @CreatedAt = createdat
+          @UpdatedAt = updatedat
+        end
+
+        def deserialize(params)
+          @ChannelId = params['ChannelId']
+          @ChannelName = params['ChannelName']
+          @Receivers = params['Receivers']
+          @CreatedAt = params['CreatedAt']
+          @UpdatedAt = params['UpdatedAt']
+        end
+      end
+
+      # Grafana 插件
+      class GrafanaPlugin < TencentCloud::Common::AbstractModel
+        # @param PluginId: Grafana 插件 ID
+        # @type PluginId: String
+        # @param Version: Grafana 插件版本
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Version: String
+
+        attr_accessor :PluginId, :Version
+        
+        def initialize(pluginid=nil, version=nil)
+          @PluginId = pluginid
+          @Version = version
+        end
+
+        def deserialize(params)
+          @PluginId = params['PluginId']
+          @Version = params['Version']
+        end
+      end
+
+      # InstallPlugins请求参数结构体
+      class InstallPluginsRequest < TencentCloud::Common::AbstractModel
+        # @param Plugins: 插件信息
+        # @type Plugins: Array
+        # @param InstanceId: 实例 ID
+        # @type InstanceId: String
+
+        attr_accessor :Plugins, :InstanceId
+        
+        def initialize(plugins=nil, instanceid=nil)
+          @Plugins = plugins
+          @InstanceId = instanceid
+        end
+
+        def deserialize(params)
+          unless params['Plugins'].nil?
+            @Plugins = []
+            params['Plugins'].each do |i|
+              grafanaplugin_tmp = GrafanaPlugin.new
+              grafanaplugin_tmp.deserialize(i)
+              @Plugins << grafanaplugin_tmp
+            end
+          end
+          @InstanceId = params['InstanceId']
+        end
+      end
+
+      # InstallPlugins返回参数结构体
+      class InstallPluginsResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
           @RequestId = params['RequestId']
         end
       end
@@ -6607,6 +7832,42 @@ module TencentCloud
 
       # ModifyAlarmReceivers返回参数结构体
       class ModifyAlarmReceiversResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyGrafanaInstance请求参数结构体
+      class ModifyGrafanaInstanceRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例 ID
+        # @type InstanceId: String
+        # @param InstanceName: 实例名称
+        # @type InstanceName: String
+
+        attr_accessor :InstanceId, :InstanceName
+        
+        def initialize(instanceid=nil, instancename=nil)
+          @InstanceId = instanceid
+          @InstanceName = instancename
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @InstanceName = params['InstanceName']
+        end
+      end
+
+      # ModifyGrafanaInstance返回参数结构体
+      class ModifyGrafanaInstanceResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -7689,6 +8950,38 @@ module TencentCloud
         end
       end
 
+      # ResumeGrafanaInstance请求参数结构体
+      class ResumeGrafanaInstanceRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例 ID
+        # @type InstanceId: String
+
+        attr_accessor :InstanceId
+        
+        def initialize(instanceid=nil)
+          @InstanceId = instanceid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+        end
+      end
+
+      # ResumeGrafanaInstance返回参数结构体
+      class ResumeGrafanaInstanceResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # SendCustomAlarmMsg请求参数结构体
       class SendCustomAlarmMsgRequest < TencentCloud::Common::AbstractModel
         # @param Module: 接口模块名，当前取值monitor
@@ -8186,6 +9479,42 @@ module TencentCloud
         end
       end
 
+      # UninstallGrafanaPlugins请求参数结构体
+      class UninstallGrafanaPluginsRequest < TencentCloud::Common::AbstractModel
+        # @param PluginIds: 插件 ID 数组
+        # @type PluginIds: Array
+        # @param InstanceId: 实例 ID
+        # @type InstanceId: String
+
+        attr_accessor :PluginIds, :InstanceId
+        
+        def initialize(pluginids=nil, instanceid=nil)
+          @PluginIds = pluginids
+          @InstanceId = instanceid
+        end
+
+        def deserialize(params)
+          @PluginIds = params['PluginIds']
+          @InstanceId = params['InstanceId']
+        end
+      end
+
+      # UninstallGrafanaPlugins返回参数结构体
+      class UninstallGrafanaPluginsResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # UpdateAlertRule请求参数结构体
       class UpdateAlertRuleRequest < TencentCloud::Common::AbstractModel
         # @param RuleId: Prometheus 报警规则 ID
@@ -8321,6 +9650,42 @@ module TencentCloud
         end
       end
 
+      # UpdateDNSConfig请求参数结构体
+      class UpdateDNSConfigRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例名
+        # @type InstanceId: String
+        # @param NameServers: DNS 数组
+        # @type NameServers: Array
+
+        attr_accessor :InstanceId, :NameServers
+        
+        def initialize(instanceid=nil, nameservers=nil)
+          @InstanceId = instanceid
+          @NameServers = nameservers
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @NameServers = params['NameServers']
+        end
+      end
+
+      # UpdateDNSConfig返回参数结构体
+      class UpdateDNSConfigResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # UpdateExporterIntegration请求参数结构体
       class UpdateExporterIntegrationRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例 ID
@@ -8358,6 +9723,206 @@ module TencentCloud
 
       # UpdateExporterIntegration返回参数结构体
       class UpdateExporterIntegrationResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # UpdateGrafanaConfig请求参数结构体
+      class UpdateGrafanaConfigRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 无
+        # @type InstanceId: String
+        # @param Config: JSON 编码后的字符串
+        # @type Config: String
+
+        attr_accessor :InstanceId, :Config
+        
+        def initialize(instanceid=nil, config=nil)
+          @InstanceId = instanceid
+          @Config = config
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @Config = params['Config']
+        end
+      end
+
+      # UpdateGrafanaConfig返回参数结构体
+      class UpdateGrafanaConfigResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # UpdateGrafanaEnvironments请求参数结构体
+      class UpdateGrafanaEnvironmentsRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例名
+        # @type InstanceId: String
+        # @param Envs: 环境变量字符串
+        # @type Envs: String
+
+        attr_accessor :InstanceId, :Envs
+        
+        def initialize(instanceid=nil, envs=nil)
+          @InstanceId = instanceid
+          @Envs = envs
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @Envs = params['Envs']
+        end
+      end
+
+      # UpdateGrafanaEnvironments返回参数结构体
+      class UpdateGrafanaEnvironmentsResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # UpdateGrafanaIntegration请求参数结构体
+      class UpdateGrafanaIntegrationRequest < TencentCloud::Common::AbstractModel
+        # @param IntegrationId: 集成 ID
+        # @type IntegrationId: String
+        # @param InstanceId: 实例 ID
+        # @type InstanceId: String
+        # @param Kind: 集成类型
+        # @type Kind: String
+        # @param Content: 集成内容
+        # @type Content: String
+
+        attr_accessor :IntegrationId, :InstanceId, :Kind, :Content
+        
+        def initialize(integrationid=nil, instanceid=nil, kind=nil, content=nil)
+          @IntegrationId = integrationid
+          @InstanceId = instanceid
+          @Kind = kind
+          @Content = content
+        end
+
+        def deserialize(params)
+          @IntegrationId = params['IntegrationId']
+          @InstanceId = params['InstanceId']
+          @Kind = params['Kind']
+          @Content = params['Content']
+        end
+      end
+
+      # UpdateGrafanaIntegration返回参数结构体
+      class UpdateGrafanaIntegrationResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # UpdateGrafanaNotificationChannel请求参数结构体
+      class UpdateGrafanaNotificationChannelRequest < TencentCloud::Common::AbstractModel
+        # @param ChannelId: 通道 ID
+        # @type ChannelId: String
+        # @param InstanceId: 实例名
+        # @type InstanceId: String
+        # @param ChannelName: 渠道名
+        # @type ChannelName: String
+        # @param Receivers: 接受告警通道 ID 数组
+        # @type Receivers: Array
+        # @param ExtraOrgIds: 额外组织 ID 数组
+        # @type ExtraOrgIds: Array
+
+        attr_accessor :ChannelId, :InstanceId, :ChannelName, :Receivers, :ExtraOrgIds
+        
+        def initialize(channelid=nil, instanceid=nil, channelname=nil, receivers=nil, extraorgids=nil)
+          @ChannelId = channelid
+          @InstanceId = instanceid
+          @ChannelName = channelname
+          @Receivers = receivers
+          @ExtraOrgIds = extraorgids
+        end
+
+        def deserialize(params)
+          @ChannelId = params['ChannelId']
+          @InstanceId = params['InstanceId']
+          @ChannelName = params['ChannelName']
+          @Receivers = params['Receivers']
+          @ExtraOrgIds = params['ExtraOrgIds']
+        end
+      end
+
+      # UpdateGrafanaNotificationChannel返回参数结构体
+      class UpdateGrafanaNotificationChannelResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # UpdateGrafanaWhiteList请求参数结构体
+      class UpdateGrafanaWhiteListRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例名
+        # @type InstanceId: String
+        # @param Whitelist: 白名单数组
+        # @type Whitelist: Array
+
+        attr_accessor :InstanceId, :Whitelist
+        
+        def initialize(instanceid=nil, whitelist=nil)
+          @InstanceId = instanceid
+          @Whitelist = whitelist
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @Whitelist = params['Whitelist']
+        end
+      end
+
+      # UpdateGrafanaWhiteList返回参数结构体
+      class UpdateGrafanaWhiteListResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -8515,6 +10080,57 @@ module TencentCloud
         end
       end
 
+      # UpdateSSOAccount请求参数结构体
+      class UpdateSSOAccountRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 示例ID
+        # @type InstanceId: String
+        # @param UserId: 用户账号ID
+        # @type UserId: String
+        # @param Role: 权限
+        # @type Role: Array
+        # @param Notes: 备注
+        # @type Notes: String
+
+        attr_accessor :InstanceId, :UserId, :Role, :Notes
+        
+        def initialize(instanceid=nil, userid=nil, role=nil, notes=nil)
+          @InstanceId = instanceid
+          @UserId = userid
+          @Role = role
+          @Notes = notes
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @UserId = params['UserId']
+          unless params['Role'].nil?
+            @Role = []
+            params['Role'].each do |i|
+              grafanaaccountrole_tmp = GrafanaAccountRole.new
+              grafanaaccountrole_tmp.deserialize(i)
+              @Role << grafanaaccountrole_tmp
+            end
+          end
+          @Notes = params['Notes']
+        end
+      end
+
+      # UpdateSSOAccount返回参数结构体
+      class UpdateSSOAccountResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # UpdateServiceDiscovery请求参数结构体
       class UpdateServiceDiscoveryRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: Prometheus 实例 ID
@@ -8613,6 +10229,42 @@ module TencentCloud
 
       # UpgradeGrafanaDashboard返回参数结构体
       class UpgradeGrafanaDashboardResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # UpgradeGrafanaInstance请求参数结构体
+      class UpgradeGrafanaInstanceRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例名
+        # @type InstanceId: String
+        # @param Alias: 版本别名
+        # @type Alias: String
+
+        attr_accessor :InstanceId, :Alias
+        
+        def initialize(instanceid=nil, _alias=nil)
+          @InstanceId = instanceid
+          @Alias = _alias
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @Alias = params['Alias']
+        end
+      end
+
+      # UpgradeGrafanaInstance返回参数结构体
+      class UpgradeGrafanaInstanceResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 

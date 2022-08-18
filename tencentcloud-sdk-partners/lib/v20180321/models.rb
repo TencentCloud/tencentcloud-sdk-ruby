@@ -31,7 +31,7 @@ module TencentCloud
         # @type ClientRemark: String
         # @param ClientName: 代客名称（首选实名认证名称）
         # @type ClientName: String
-        # @param AuthType: 认证类型, 0：个人，1：企业；其他：未认证
+        # @param AuthType: 认证类型, 0：个人，1：企业；其他：未认证或无效值
         # @type AuthType: String
         # @param AppId: 代客APPID
         # @type AppId: String
@@ -675,6 +675,7 @@ module TencentCloud
         # @param AuditResult: 审核结果，包括accept/reject/qcloudaudit（腾讯云审核）
         # @type AuditResult: String
         # @param AgentTime: 关联时间对应的时间戳
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AgentTime: Integer
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1587,7 +1588,7 @@ module TencentCloud
 
       # DescribeClientBalance返回参数结构体
       class DescribeClientBalanceResponse < TencentCloud::Common::AbstractModel
-        # @param Balance: 账户可用余额，单位分 （可用余额 = 现金余额 - 冻结金额）
+        # @param Balance: 账户可用余额，单位分 （可用余额 = 现金余额 - 冻结金额）  【注：该数据准确性存疑，请切换至DescribeClientBalanceNew取值】
         # @type Balance: Integer
         # @param Cash: 账户现金余额，单位分
         # @type Cash: Integer
