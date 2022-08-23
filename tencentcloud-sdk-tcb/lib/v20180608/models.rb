@@ -5496,10 +5496,16 @@ module TencentCloud
         # @param FreeQuota: 免费配额信息。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FreeQuota: String
+        # @param EnableOverrun: 是否开启 `超过套餐额度部分转按量付费`
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EnableOverrun: Boolean
+        # @param ExtPackageType: 环境套餐类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExtPackageType: String
 
-        attr_accessor :EnvId, :PackageId, :IsAutoRenew, :Status, :PayMode, :IsolatedTime, :ExpireTime, :CreateTime, :UpdateTime, :IsAlwaysFree, :PaymentChannel, :OrderInfo, :FreeQuota
+        attr_accessor :EnvId, :PackageId, :IsAutoRenew, :Status, :PayMode, :IsolatedTime, :ExpireTime, :CreateTime, :UpdateTime, :IsAlwaysFree, :PaymentChannel, :OrderInfo, :FreeQuota, :EnableOverrun, :ExtPackageType
         
-        def initialize(envid=nil, packageid=nil, isautorenew=nil, status=nil, paymode=nil, isolatedtime=nil, expiretime=nil, createtime=nil, updatetime=nil, isalwaysfree=nil, paymentchannel=nil, orderinfo=nil, freequota=nil)
+        def initialize(envid=nil, packageid=nil, isautorenew=nil, status=nil, paymode=nil, isolatedtime=nil, expiretime=nil, createtime=nil, updatetime=nil, isalwaysfree=nil, paymentchannel=nil, orderinfo=nil, freequota=nil, enableoverrun=nil, extpackagetype=nil)
           @EnvId = envid
           @PackageId = packageid
           @IsAutoRenew = isautorenew
@@ -5513,6 +5519,8 @@ module TencentCloud
           @PaymentChannel = paymentchannel
           @OrderInfo = orderinfo
           @FreeQuota = freequota
+          @EnableOverrun = enableoverrun
+          @ExtPackageType = extpackagetype
         end
 
         def deserialize(params)
@@ -5532,6 +5540,8 @@ module TencentCloud
             @OrderInfo.deserialize(params['OrderInfo'])
           end
           @FreeQuota = params['FreeQuota']
+          @EnableOverrun = params['EnableOverrun']
+          @ExtPackageType = params['ExtPackageType']
         end
       end
 

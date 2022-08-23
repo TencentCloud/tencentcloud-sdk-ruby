@@ -1157,7 +1157,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 解除2.0实例的集群关联
+        # 解除TMP实例的集群关联
 
         # @param request: Request instance for DeletePrometheusClusterAgent.
         # @type request: :class:`Tencentcloud::tke::V20180525::DeletePrometheusClusterAgentRequest`

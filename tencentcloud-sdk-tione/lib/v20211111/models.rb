@@ -185,7 +185,7 @@ module TencentCloud
         # @type Tags: Array
         # @param TrainingJobName: 训练任务名称
         # @type TrainingJobName: String
-        # @param AlgorithmFramework: 算法框架 （PYTORCH/TENSORFLOW/DETECTRON2/PMML)
+        # @param AlgorithmFramework: 算法框架 （PYTORCH/TENSORFLOW/DETECTRON2/PMML/MMDETECTION)
         # @type AlgorithmFramework: String
         # @param ReasoningEnvironment: 推理环境
         # @type ReasoningEnvironment: String
@@ -207,7 +207,7 @@ module TencentCloud
         # @type TrainingModelSource: String
         # @param TrainingPreference: 模型偏好
         # @type TrainingPreference: String
-        # @param AutoMLTaskId: 自动学习任务ID
+        # @param AutoMLTaskId: 自动学习任务ID（已废弃）
         # @type AutoMLTaskId: String
         # @param TrainingJobVersion: 任务版本
         # @type TrainingJobVersion: String

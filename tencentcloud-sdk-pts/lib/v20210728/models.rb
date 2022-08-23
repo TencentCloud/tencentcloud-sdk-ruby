@@ -3436,6 +3436,26 @@ module TencentCloud
         end
       end
 
+      # 测试启动前后的消息通知
+      class Notification < TencentCloud::Common::AbstractModel
+        # @param Events: 发生事件
+        # @type Events: Array
+        # @param URL: webhook的网址
+        # @type URL: String
+
+        attr_accessor :Events, :URL
+        
+        def initialize(events=nil, url=nil)
+          @Events = events
+          @URL = url
+        end
+
+        def deserialize(params)
+          @Events = params['Events']
+          @URL = params['URL']
+        end
+      end
+
       # 项目
       class Project < TencentCloud::Common::AbstractModel
         # @param ProjectId: 项目ID
@@ -4639,10 +4659,12 @@ module TencentCloud
         # @type Plugins: Array
         # @param DomainNameConfig: 域名解析配置
         # @type DomainNameConfig: :class:`Tencentcloud::Pts.v20210728.models.DomainNameConfig`
+        # @param NotificationHooks: WebHook请求配置
+        # @type NotificationHooks: Array
 
-        attr_accessor :ScenarioId, :Name, :Description, :Type, :Load, :EncodedScripts, :Configs, :Datasets, :Extensions, :SLAId, :CronId, :Status, :ProjectId, :TestScripts, :Protocols, :RequestFiles, :SLAPolicy, :Plugins, :DomainNameConfig
+        attr_accessor :ScenarioId, :Name, :Description, :Type, :Load, :EncodedScripts, :Configs, :Datasets, :Extensions, :SLAId, :CronId, :Status, :ProjectId, :TestScripts, :Protocols, :RequestFiles, :SLAPolicy, :Plugins, :DomainNameConfig, :NotificationHooks
         
-        def initialize(scenarioid=nil, name=nil, description=nil, type=nil, load=nil, encodedscripts=nil, configs=nil, datasets=nil, extensions=nil, slaid=nil, cronid=nil, status=nil, projectid=nil, testscripts=nil, protocols=nil, requestfiles=nil, slapolicy=nil, plugins=nil, domainnameconfig=nil)
+        def initialize(scenarioid=nil, name=nil, description=nil, type=nil, load=nil, encodedscripts=nil, configs=nil, datasets=nil, extensions=nil, slaid=nil, cronid=nil, status=nil, projectid=nil, testscripts=nil, protocols=nil, requestfiles=nil, slapolicy=nil, plugins=nil, domainnameconfig=nil, notificationhooks=nil)
           @ScenarioId = scenarioid
           @Name = name
           @Description = description
@@ -4662,6 +4684,7 @@ module TencentCloud
           @SLAPolicy = slapolicy
           @Plugins = plugins
           @DomainNameConfig = domainnameconfig
+          @NotificationHooks = notificationhooks
         end
 
         def deserialize(params)
@@ -4727,6 +4750,14 @@ module TencentCloud
           unless params['DomainNameConfig'].nil?
             @DomainNameConfig = DomainNameConfig.new
             @DomainNameConfig.deserialize(params['DomainNameConfig'])
+          end
+          unless params['NotificationHooks'].nil?
+            @NotificationHooks = []
+            params['NotificationHooks'].each do |i|
+              notification_tmp = Notification.new
+              notification_tmp.deserialize(i)
+              @NotificationHooks << notification_tmp
+            end
           end
         end
       end

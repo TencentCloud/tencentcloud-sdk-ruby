@@ -53,7 +53,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 获取实例总数和运行数
+        # 获取并发总数和运行数
 
         # @param request: Request instance for DescribeInstancesCount.
         # @type request: :class:`Tencentcloud::gs::V20191118::DescribeInstancesCountRequest`

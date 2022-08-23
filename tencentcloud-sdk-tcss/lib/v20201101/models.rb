@@ -12678,23 +12678,43 @@ module TencentCloud
       class ModifyEscapeEventStatusRequest < TencentCloud::Common::AbstractModel
         # @param EventIdSet: 处理事件ids
         # @type EventIdSet: Array
-        # @param Status: 标记事件的状态：EVENT_UNDEAL:未处理（取消忽略），EVENT_DEALED:已处理，EVENT_IGNORE:忽略，EVENT_DELETE：已删除
+        # @param Status: 标记事件的状态：
+        # EVENT_UNDEAL:未处理（取消忽略），
+        # EVENT_DEALED:已处理，
+        # EVENT_IGNORE:忽略，
+        # EVENT_DELETE：已删除
+        # EVENT_ADD_WHITE：加白
         # @type Status: String
         # @param Remark: 备注
         # @type Remark: String
+        # @param ImageIDs: 加白镜像ID数组
+        # @type ImageIDs: Array
+        # @param EventType: 加白事件类型
+        #    ESCAPE_CGROUPS：利用cgroup机制逃逸
+        #    ESCAPE_TAMPER_SENSITIVE_FILE：篡改敏感文件逃逸
+        #    ESCAPE_DOCKER_API：访问Docker API接口逃逸
+        #    ESCAPE_VUL_OCCURRED：逃逸漏洞利用
+        #    MOUNT_SENSITIVE_PTAH：敏感路径挂载
+        #    PRIVILEGE_CONTAINER_START：特权容器
+        #    PRIVILEGE：程序提权逃逸
+        # @type EventType: Array
 
-        attr_accessor :EventIdSet, :Status, :Remark
+        attr_accessor :EventIdSet, :Status, :Remark, :ImageIDs, :EventType
         
-        def initialize(eventidset=nil, status=nil, remark=nil)
+        def initialize(eventidset=nil, status=nil, remark=nil, imageids=nil, eventtype=nil)
           @EventIdSet = eventidset
           @Status = status
           @Remark = remark
+          @ImageIDs = imageids
+          @EventType = eventtype
         end
 
         def deserialize(params)
           @EventIdSet = params['EventIdSet']
           @Status = params['Status']
           @Remark = params['Remark']
+          @ImageIDs = params['ImageIDs']
+          @EventType = params['EventType']
         end
       end
 

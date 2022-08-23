@@ -92,6 +92,75 @@ module TencentCloud
         end
       end
 
+      # DescribeKTVMatchMusics请求参数结构体
+      class DescribeKTVMatchMusicsRequest < TencentCloud::Common::AbstractModel
+        # @param AppName: 应用名称。
+        # @type AppName: String
+        # @param UserId: 用户标识。
+        # @type UserId: String
+        # @param Rules: 匹配规则列表。
+        # @type Rules: Array
+
+        attr_accessor :AppName, :UserId, :Rules
+        
+        def initialize(appname=nil, userid=nil, rules=nil)
+          @AppName = appname
+          @UserId = userid
+          @Rules = rules
+        end
+
+        def deserialize(params)
+          @AppName = params['AppName']
+          @UserId = params['UserId']
+          unless params['Rules'].nil?
+            @Rules = []
+            params['Rules'].each do |i|
+              ktvmatchrule_tmp = KTVMatchRule.new
+              ktvmatchrule_tmp.deserialize(i)
+              @Rules << ktvmatchrule_tmp
+            end
+          end
+        end
+      end
+
+      # DescribeKTVMatchMusics返回参数结构体
+      class DescribeKTVMatchMusicsResponse < TencentCloud::Common::AbstractModel
+        # @param MatchMusicSet: 匹配到的歌曲列表。
+        # @type MatchMusicSet: Array
+        # @param NotMatchRuleSet: 未匹配的规则列表。
+        # @type NotMatchRuleSet: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :MatchMusicSet, :NotMatchRuleSet, :RequestId
+        
+        def initialize(matchmusicset=nil, notmatchruleset=nil, requestid=nil)
+          @MatchMusicSet = matchmusicset
+          @NotMatchRuleSet = notmatchruleset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['MatchMusicSet'].nil?
+            @MatchMusicSet = []
+            params['MatchMusicSet'].each do |i|
+              ktvmatchmusic_tmp = KTVMatchMusic.new
+              ktvmatchmusic_tmp.deserialize(i)
+              @MatchMusicSet << ktvmatchmusic_tmp
+            end
+          end
+          unless params['NotMatchRuleSet'].nil?
+            @NotMatchRuleSet = []
+            params['NotMatchRuleSet'].each do |i|
+              ktvmatchrule_tmp = KTVMatchRule.new
+              ktvmatchrule_tmp.deserialize(i)
+              @NotMatchRuleSet << ktvmatchrule_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeKTVPlaylistDetail请求参数结构体
       class DescribeKTVPlaylistDetailRequest < TencentCloud::Common::AbstractModel
         # @param AppName: 应用名称。
@@ -262,6 +331,76 @@ module TencentCloud
             end
           end
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 匹配歌曲信息。
+      class KTVMatchMusic < TencentCloud::Common::AbstractModel
+        # @param KTVMusicBaseInfo: 匹配到的歌曲基础信息。
+        # @type KTVMusicBaseInfo: :class:`Tencentcloud::Yinsuda.v20220527.models.KTVMusicBaseInfo`
+        # @param MatchRule: 命中规则。
+        # @type MatchRule: :class:`Tencentcloud::Yinsuda.v20220527.models.KTVMatchRule`
+
+        attr_accessor :KTVMusicBaseInfo, :MatchRule
+        
+        def initialize(ktvmusicbaseinfo=nil, matchrule=nil)
+          @KTVMusicBaseInfo = ktvmusicbaseinfo
+          @MatchRule = matchrule
+        end
+
+        def deserialize(params)
+          unless params['KTVMusicBaseInfo'].nil?
+            @KTVMusicBaseInfo = KTVMusicBaseInfo.new
+            @KTVMusicBaseInfo.deserialize(params['KTVMusicBaseInfo'])
+          end
+          unless params['MatchRule'].nil?
+            @MatchRule = KTVMatchRule.new
+            @MatchRule.deserialize(params['MatchRule'])
+          end
+        end
+      end
+
+      # 歌曲匹配规则。
+      class KTVMatchRule < TencentCloud::Common::AbstractModel
+        # @param AMEMusicId: AME 曲库 Id。
+        # @type AMEMusicId: String
+        # @param MusicInfo: 歌曲匹配信息。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MusicInfo: :class:`Tencentcloud::Yinsuda.v20220527.models.KTVMatchRuleMusicInfo`
+
+        attr_accessor :AMEMusicId, :MusicInfo
+        
+        def initialize(amemusicid=nil, musicinfo=nil)
+          @AMEMusicId = amemusicid
+          @MusicInfo = musicinfo
+        end
+
+        def deserialize(params)
+          @AMEMusicId = params['AMEMusicId']
+          unless params['MusicInfo'].nil?
+            @MusicInfo = KTVMatchRuleMusicInfo.new
+            @MusicInfo.deserialize(params['MusicInfo'])
+          end
+        end
+      end
+
+      # 歌曲信息匹配。
+      class KTVMatchRuleMusicInfo < TencentCloud::Common::AbstractModel
+        # @param MusicName: 歌曲名称。
+        # @type MusicName: String
+        # @param SingerSet: 歌手列表。
+        # @type SingerSet: Array
+
+        attr_accessor :MusicName, :SingerSet
+        
+        def initialize(musicname=nil, singerset=nil)
+          @MusicName = musicname
+          @SingerSet = singerset
+        end
+
+        def deserialize(params)
+          @MusicName = params['MusicName']
+          @SingerSet = params['SingerSet']
         end
       end
 

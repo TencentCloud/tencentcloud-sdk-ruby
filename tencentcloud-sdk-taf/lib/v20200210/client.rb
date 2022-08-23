@@ -29,30 +29,6 @@ module TencentCloud
         end
 
 
-        # 流量反欺诈-KOL欺诈识别
-
-        # @param request: Request instance for DetectFraudKOL.
-        # @type request: :class:`Tencentcloud::taf::V20200210::DetectFraudKOLRequest`
-        # @rtype: :class:`Tencentcloud::taf::V20200210::DetectFraudKOLResponse`
-        def DetectFraudKOL(request)
-          body = send_request('DetectFraudKOL', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = DetectFraudKOLResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
         # 流量反欺诈-流量验准定制版
 
         # @param request: Request instance for RecognizeCustomizedAudience.

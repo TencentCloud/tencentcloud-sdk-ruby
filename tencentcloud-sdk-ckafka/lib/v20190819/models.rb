@@ -6660,10 +6660,12 @@ module TencentCloud
         # @type PublicNetwork: Integer
         # @param DynamicDiskConfig: 动态硬盘扩容策略配置
         # @type DynamicDiskConfig: :class:`Tencentcloud::Ckafka.v20190819.models.DynamicDiskConfig`
+        # @param MaxMessageByte: 实例级别单条消息大小（单位byte)
+        # @type MaxMessageByte: Integer
 
-        attr_accessor :InstanceId, :MsgRetentionTime, :InstanceName, :Config, :DynamicRetentionConfig, :RebalanceTime, :PublicNetwork, :DynamicDiskConfig
+        attr_accessor :InstanceId, :MsgRetentionTime, :InstanceName, :Config, :DynamicRetentionConfig, :RebalanceTime, :PublicNetwork, :DynamicDiskConfig, :MaxMessageByte
         
-        def initialize(instanceid=nil, msgretentiontime=nil, instancename=nil, config=nil, dynamicretentionconfig=nil, rebalancetime=nil, publicnetwork=nil, dynamicdiskconfig=nil)
+        def initialize(instanceid=nil, msgretentiontime=nil, instancename=nil, config=nil, dynamicretentionconfig=nil, rebalancetime=nil, publicnetwork=nil, dynamicdiskconfig=nil, maxmessagebyte=nil)
           @InstanceId = instanceid
           @MsgRetentionTime = msgretentiontime
           @InstanceName = instancename
@@ -6672,6 +6674,7 @@ module TencentCloud
           @RebalanceTime = rebalancetime
           @PublicNetwork = publicnetwork
           @DynamicDiskConfig = dynamicdiskconfig
+          @MaxMessageByte = maxmessagebyte
         end
 
         def deserialize(params)
@@ -6692,6 +6695,7 @@ module TencentCloud
             @DynamicDiskConfig = DynamicDiskConfig.new
             @DynamicDiskConfig.deserialize(params['DynamicDiskConfig'])
           end
+          @MaxMessageByte = params['MaxMessageByte']
         end
       end
 
@@ -7181,10 +7185,13 @@ module TencentCloud
         # @param ClusterId: 当type为TDSQL_C_MYSQL时
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ClusterId: String
+        # @param SelfBuilt: 是否是自建的集群
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SelfBuilt: Boolean
 
-        attr_accessor :Resource, :Port, :ServiceVip, :UniqVpcId, :UserName, :Password, :IsUpdate, :ClusterId
+        attr_accessor :Resource, :Port, :ServiceVip, :UniqVpcId, :UserName, :Password, :IsUpdate, :ClusterId, :SelfBuilt
         
-        def initialize(resource=nil, port=nil, servicevip=nil, uniqvpcid=nil, username=nil, password=nil, isupdate=nil, clusterid=nil)
+        def initialize(resource=nil, port=nil, servicevip=nil, uniqvpcid=nil, username=nil, password=nil, isupdate=nil, clusterid=nil, selfbuilt=nil)
           @Resource = resource
           @Port = port
           @ServiceVip = servicevip
@@ -7193,6 +7200,7 @@ module TencentCloud
           @Password = password
           @IsUpdate = isupdate
           @ClusterId = clusterid
+          @SelfBuilt = selfbuilt
         end
 
         def deserialize(params)
@@ -7204,6 +7212,7 @@ module TencentCloud
           @Password = params['Password']
           @IsUpdate = params['IsUpdate']
           @ClusterId = params['ClusterId']
+          @SelfBuilt = params['SelfBuilt']
         end
       end
 
@@ -7475,10 +7484,13 @@ module TencentCloud
         # @param IsUpdate: 是否更新到关联的Datahub任务
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsUpdate: Boolean
+        # @param SelfBuilt: 是否为自建集群
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SelfBuilt: Boolean
 
-        attr_accessor :Resource, :Port, :ServiceVip, :UniqVpcId, :UserName, :Password, :ClusterId, :IsUpdate
+        attr_accessor :Resource, :Port, :ServiceVip, :UniqVpcId, :UserName, :Password, :ClusterId, :IsUpdate, :SelfBuilt
         
-        def initialize(resource=nil, port=nil, servicevip=nil, uniqvpcid=nil, username=nil, password=nil, clusterid=nil, isupdate=nil)
+        def initialize(resource=nil, port=nil, servicevip=nil, uniqvpcid=nil, username=nil, password=nil, clusterid=nil, isupdate=nil, selfbuilt=nil)
           @Resource = resource
           @Port = port
           @ServiceVip = servicevip
@@ -7487,6 +7499,7 @@ module TencentCloud
           @Password = password
           @ClusterId = clusterid
           @IsUpdate = isupdate
+          @SelfBuilt = selfbuilt
         end
 
         def deserialize(params)
@@ -7498,6 +7511,7 @@ module TencentCloud
           @Password = params['Password']
           @ClusterId = params['ClusterId']
           @IsUpdate = params['IsUpdate']
+          @SelfBuilt = params['SelfBuilt']
         end
       end
 
@@ -7785,6 +7799,32 @@ module TencentCloud
               @Routers << route_tmp
             end
           end
+        end
+      end
+
+      # 数据处理ROW输出格式配置
+      class RowParam < TencentCloud::Common::AbstractModel
+        # @param RowContent: 行内容，KEY_VALUE，VALUE
+        # @type RowContent: String
+        # @param KeyValueDelimiter: key和value间的分隔符
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type KeyValueDelimiter: String
+        # @param EntryDelimiter: 元素建的分隔符
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EntryDelimiter: String
+
+        attr_accessor :RowContent, :KeyValueDelimiter, :EntryDelimiter
+        
+        def initialize(rowcontent=nil, keyvaluedelimiter=nil, entrydelimiter=nil)
+          @RowContent = rowcontent
+          @KeyValueDelimiter = keyvaluedelimiter
+          @EntryDelimiter = entrydelimiter
+        end
+
+        def deserialize(params)
+          @RowContent = params['RowContent']
+          @KeyValueDelimiter = params['KeyValueDelimiter']
+          @EntryDelimiter = params['EntryDelimiter']
         end
       end
 
@@ -8737,13 +8777,16 @@ module TencentCloud
         # @param SourceType: 数据来源
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SourceType: String
-        # @param OutputFormat: 输出格式
+        # @param OutputFormat: 输出格式，JSON，ROW，默认为JSON
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OutputFormat: String
+        # @param RowParam: 输出格式为ROW必填
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RowParam: :class:`Tencentcloud::Ckafka.v20190819.models.RowParam`
 
-        attr_accessor :Content, :FieldChain, :FilterParam, :FailureParam, :Result, :SourceType, :OutputFormat
+        attr_accessor :Content, :FieldChain, :FilterParam, :FailureParam, :Result, :SourceType, :OutputFormat, :RowParam
         
-        def initialize(content=nil, fieldchain=nil, filterparam=nil, failureparam=nil, result=nil, sourcetype=nil, outputformat=nil)
+        def initialize(content=nil, fieldchain=nil, filterparam=nil, failureparam=nil, result=nil, sourcetype=nil, outputformat=nil, rowparam=nil)
           @Content = content
           @FieldChain = fieldchain
           @FilterParam = filterparam
@@ -8751,6 +8794,7 @@ module TencentCloud
           @Result = result
           @SourceType = sourcetype
           @OutputFormat = outputformat
+          @RowParam = rowparam
         end
 
         def deserialize(params)
@@ -8778,6 +8822,10 @@ module TencentCloud
           @Result = params['Result']
           @SourceType = params['SourceType']
           @OutputFormat = params['OutputFormat']
+          unless params['RowParam'].nil?
+            @RowParam = RowParam.new
+            @RowParam.deserialize(params['RowParam'])
+          end
         end
       end
 

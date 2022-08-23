@@ -235,9 +235,9 @@ module TencentCloud
 
       # 海外分区直播带宽出参，分区信息
       class BillAreaInfo < TencentCloud::Common::AbstractModel
-        # @param Name: 大区名称
+        # @param Name: 大区名称。
         # @type Name: String
-        # @param Countrys: 国家明细数据
+        # @param Countrys: 国家或地区明细数据。
         # @type Countrys: Array
 
         attr_accessor :Name, :Countrys
@@ -6056,7 +6056,7 @@ module TencentCloud
         # @param StartTime: 开始时间，北京时间，格式为yyyy-mm-dd HH:MM:SS
         # @type StartTime: String
         # @param EndTime: 结束时间，北京时间，格式为yyyy-mm-dd HH:MM:SS，
-        # 结束时间 和 开始时间跨度不支持超过24小时，支持距当前时间15天内的数据查询。
+        # 结束时间 和 开始时间跨度不支持超过24小时，支持距当前时间一个月内的数据查询。
         # @type EndTime: String
         # @param PlayDomain: 播放域名，
         # 若不填，则为查询所有播放域名的在线流数据。

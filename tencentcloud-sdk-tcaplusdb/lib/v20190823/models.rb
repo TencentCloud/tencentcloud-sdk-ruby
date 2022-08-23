@@ -4032,6 +4032,96 @@ module TencentCloud
         end
       end
 
+      # 缓写表字段名称的映射
+      class SyncTableField < TencentCloud::Common::AbstractModel
+        # @param SourceName: TcaplusDB表字段名称
+        # @type SourceName: String
+        # @param TargetName: 目标缓写表的字段名称
+        # @type TargetName: String
+
+        attr_accessor :SourceName, :TargetName
+        
+        def initialize(sourcename=nil, targetname=nil)
+          @SourceName = sourcename
+          @TargetName = targetname
+        end
+
+        def deserialize(params)
+          @SourceName = params['SourceName']
+          @TargetName = params['TargetName']
+        end
+      end
+
+      # TcaplusDB的缓写表信息
+      class SyncTableInfo < TencentCloud::Common::AbstractModel
+        # @param TargetTableSplitNum: 目标缓写表的分表数目
+        # @type TargetTableSplitNum: Integer
+        # @param TargetTableNamePrefix: 目标缓写表名前缀
+        # @type TargetTableNamePrefix: Array
+        # @param TargetSyncDBInstanceId: 缓写数据库实例ID
+        # @type TargetSyncDBInstanceId: String
+        # @param TargetDatabaseName: 缓写表所在数据库名称
+        # @type TargetDatabaseName: String
+        # @param Status: 缓写状态，0：创建中，1：进行中，2：关闭，-1：被删除
+        # @type Status: Integer
+        # @param ClusterId: 表格所在集群ID
+        # @type ClusterId: String
+        # @param TableGroupId: 表格所在表格组ID
+        # @type TableGroupId: Integer
+        # @param TableName: 表格名称
+        # @type TableName: String
+        # @param TableId: 表格ID
+        # @type TableId: String
+        # @param KeyFieldMapping: TcaplusDB表主键字段到目标缓写表字段的映射
+        # @type KeyFieldMapping: Array
+        # @param ValueFieldMapping: TcaplusDB表字段到目标缓写表字段的映射
+        # @type ValueFieldMapping: Array
+
+        attr_accessor :TargetTableSplitNum, :TargetTableNamePrefix, :TargetSyncDBInstanceId, :TargetDatabaseName, :Status, :ClusterId, :TableGroupId, :TableName, :TableId, :KeyFieldMapping, :ValueFieldMapping
+        
+        def initialize(targettablesplitnum=nil, targettablenameprefix=nil, targetsyncdbinstanceid=nil, targetdatabasename=nil, status=nil, clusterid=nil, tablegroupid=nil, tablename=nil, tableid=nil, keyfieldmapping=nil, valuefieldmapping=nil)
+          @TargetTableSplitNum = targettablesplitnum
+          @TargetTableNamePrefix = targettablenameprefix
+          @TargetSyncDBInstanceId = targetsyncdbinstanceid
+          @TargetDatabaseName = targetdatabasename
+          @Status = status
+          @ClusterId = clusterid
+          @TableGroupId = tablegroupid
+          @TableName = tablename
+          @TableId = tableid
+          @KeyFieldMapping = keyfieldmapping
+          @ValueFieldMapping = valuefieldmapping
+        end
+
+        def deserialize(params)
+          @TargetTableSplitNum = params['TargetTableSplitNum']
+          @TargetTableNamePrefix = params['TargetTableNamePrefix']
+          @TargetSyncDBInstanceId = params['TargetSyncDBInstanceId']
+          @TargetDatabaseName = params['TargetDatabaseName']
+          @Status = params['Status']
+          @ClusterId = params['ClusterId']
+          @TableGroupId = params['TableGroupId']
+          @TableName = params['TableName']
+          @TableId = params['TableId']
+          unless params['KeyFieldMapping'].nil?
+            @KeyFieldMapping = []
+            params['KeyFieldMapping'].each do |i|
+              synctablefield_tmp = SyncTableField.new
+              synctablefield_tmp.deserialize(i)
+              @KeyFieldMapping << synctablefield_tmp
+            end
+          end
+          unless params['ValueFieldMapping'].nil?
+            @ValueFieldMapping = []
+            params['ValueFieldMapping'].each do |i|
+              synctablefield_tmp = SyncTableField.new
+              synctablefield_tmp.deserialize(i)
+              @ValueFieldMapping << synctablefield_tmp
+            end
+          end
+        end
+      end
+
       # 表格组详细信息
       class TableGroupInfo < TencentCloud::Common::AbstractModel
         # @param TableGroupId: 表格组ID
@@ -4150,10 +4240,13 @@ module TencentCloud
         # @param TxhBackupExpireDay: 表格Txh备份文件多少天后过期删除
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TxhBackupExpireDay: Integer
+        # @param SyncTableInfo: 表格的缓写信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SyncTableInfo: :class:`Tencentcloud::Tcaplusdb.v20190823.models.SyncTableInfo`
 
-        attr_accessor :TableName, :TableInstanceId, :TableType, :TableIdlType, :ClusterId, :ClusterName, :TableGroupId, :TableGroupName, :KeyStruct, :ValueStruct, :ShardingKeySet, :IndexStruct, :ListElementNum, :IdlFiles, :ReservedVolume, :ReservedReadQps, :ReservedWriteQps, :TableSize, :Status, :CreatedTime, :UpdatedTime, :Memo, :Error, :ApiAccessId, :SortFieldNum, :SortRule, :DbClusterInfoStruct, :TxhBackupExpireDay
+        attr_accessor :TableName, :TableInstanceId, :TableType, :TableIdlType, :ClusterId, :ClusterName, :TableGroupId, :TableGroupName, :KeyStruct, :ValueStruct, :ShardingKeySet, :IndexStruct, :ListElementNum, :IdlFiles, :ReservedVolume, :ReservedReadQps, :ReservedWriteQps, :TableSize, :Status, :CreatedTime, :UpdatedTime, :Memo, :Error, :ApiAccessId, :SortFieldNum, :SortRule, :DbClusterInfoStruct, :TxhBackupExpireDay, :SyncTableInfo
         
-        def initialize(tablename=nil, tableinstanceid=nil, tabletype=nil, tableidltype=nil, clusterid=nil, clustername=nil, tablegroupid=nil, tablegroupname=nil, keystruct=nil, valuestruct=nil, shardingkeyset=nil, indexstruct=nil, listelementnum=nil, idlfiles=nil, reservedvolume=nil, reservedreadqps=nil, reservedwriteqps=nil, tablesize=nil, status=nil, createdtime=nil, updatedtime=nil, memo=nil, error=nil, apiaccessid=nil, sortfieldnum=nil, sortrule=nil, dbclusterinfostruct=nil, txhbackupexpireday=nil)
+        def initialize(tablename=nil, tableinstanceid=nil, tabletype=nil, tableidltype=nil, clusterid=nil, clustername=nil, tablegroupid=nil, tablegroupname=nil, keystruct=nil, valuestruct=nil, shardingkeyset=nil, indexstruct=nil, listelementnum=nil, idlfiles=nil, reservedvolume=nil, reservedreadqps=nil, reservedwriteqps=nil, tablesize=nil, status=nil, createdtime=nil, updatedtime=nil, memo=nil, error=nil, apiaccessid=nil, sortfieldnum=nil, sortrule=nil, dbclusterinfostruct=nil, txhbackupexpireday=nil, synctableinfo=nil)
           @TableName = tablename
           @TableInstanceId = tableinstanceid
           @TableType = tabletype
@@ -4182,6 +4275,7 @@ module TencentCloud
           @SortRule = sortrule
           @DbClusterInfoStruct = dbclusterinfostruct
           @TxhBackupExpireDay = txhbackupexpireday
+          @SyncTableInfo = synctableinfo
         end
 
         def deserialize(params)
@@ -4223,6 +4317,10 @@ module TencentCloud
           @SortRule = params['SortRule']
           @DbClusterInfoStruct = params['DbClusterInfoStruct']
           @TxhBackupExpireDay = params['TxhBackupExpireDay']
+          unless params['SyncTableInfo'].nil?
+            @SyncTableInfo = SyncTableInfo.new
+            @SyncTableInfo.deserialize(params['SyncTableInfo'])
+          end
         end
       end
 

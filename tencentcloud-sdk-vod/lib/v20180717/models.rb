@@ -11517,16 +11517,28 @@ module TencentCloud
         # @type ExpireTime: String
         # @param Procedure: 剪辑固化后的视频点播任务流处理，详见[上传指定任务流](https://cloud.tencent.com/document/product/266/9759)。仅 IsPersistence 为 1 时有效。
         # @type Procedure: String
+        # @param ClassId: 分类ID，用于对媒体进行分类管理，可通过 [创建分类](/document/product/266/7812) 接口，创建分类，获得分类 ID。
+        # <li>默认值：0，表示其他分类。</li>
+        # 仅 IsPersistence 为 1 时有效。
+        # @type ClassId: Integer
+        # @param SourceContext: 来源上下文，用于透传用户请求信息，[上传完成回调](/document/product/266/7830) 将返回该字段值，最长 250 个字符。仅 IsPersistence 为 1 时有效。
+        # @type SourceContext: String
+        # @param SessionContext: 会话上下文，用于透传用户请求信息，当指定 Procedure 参数后，[任务流状态变更回调](/document/product/266/9636) 将返回该字段值，最长 1000 个字符。仅 IsPersistence 为 1 时有效。
+        # @type SessionContext: String
         # @param MetaDataRequired: 是否需要返回剪辑后的视频元信息。0 不需要，1 需要。默认不需要。
         # @type MetaDataRequired: Integer
         # @param Host: 云点播中添加的用于时移播放的域名，必须在云直播已经[关联录制模板和开通时移服务](https://cloud.tencent.com/document/product/266/52220#.E6.AD.A5.E9.AA.A43.EF.BC.9A.E5.85.B3.E8.81.94.E5.BD.95.E5.88.B6.E6.A8.A1.E6.9D.BF.3Ca-id.3D.22step3.22.3E.3C.2Fa.3E)。**如果本接口的首次调用时间在 2021-01-01T00:00:00Z 之后，则此字段为必选字段。**
         # @type Host: String
+        # @param StreamInfo: 剪辑的直播流信息：
+        # <li>默认剪辑直播原始流。</li>
+        # <li>当StreamInfo中指定的Type为Transcoding，则剪辑TemplateId对应的直播转码流。</li>
+        # @type StreamInfo: :class:`Tencentcloud::Vod.v20180717.models.LiveRealTimeClipStreamInfo`
         # @param ExtInfo: 系统保留字段，请勿填写。
         # @type ExtInfo: String
 
-        attr_accessor :StreamId, :StartTime, :EndTime, :SubAppId, :IsPersistence, :ExpireTime, :Procedure, :MetaDataRequired, :Host, :ExtInfo
+        attr_accessor :StreamId, :StartTime, :EndTime, :SubAppId, :IsPersistence, :ExpireTime, :Procedure, :ClassId, :SourceContext, :SessionContext, :MetaDataRequired, :Host, :StreamInfo, :ExtInfo
         
-        def initialize(streamid=nil, starttime=nil, endtime=nil, subappid=nil, ispersistence=nil, expiretime=nil, procedure=nil, metadatarequired=nil, host=nil, extinfo=nil)
+        def initialize(streamid=nil, starttime=nil, endtime=nil, subappid=nil, ispersistence=nil, expiretime=nil, procedure=nil, classid=nil, sourcecontext=nil, sessioncontext=nil, metadatarequired=nil, host=nil, streaminfo=nil, extinfo=nil)
           @StreamId = streamid
           @StartTime = starttime
           @EndTime = endtime
@@ -11534,8 +11546,12 @@ module TencentCloud
           @IsPersistence = ispersistence
           @ExpireTime = expiretime
           @Procedure = procedure
+          @ClassId = classid
+          @SourceContext = sourcecontext
+          @SessionContext = sessioncontext
           @MetaDataRequired = metadatarequired
           @Host = host
+          @StreamInfo = streaminfo
           @ExtInfo = extinfo
         end
 
@@ -11547,8 +11563,15 @@ module TencentCloud
           @IsPersistence = params['IsPersistence']
           @ExpireTime = params['ExpireTime']
           @Procedure = params['Procedure']
+          @ClassId = params['ClassId']
+          @SourceContext = params['SourceContext']
+          @SessionContext = params['SessionContext']
           @MetaDataRequired = params['MetaDataRequired']
           @Host = params['Host']
+          unless params['StreamInfo'].nil?
+            @StreamInfo = LiveRealTimeClipStreamInfo.new
+            @StreamInfo.deserialize(params['StreamInfo'])
+          end
           @ExtInfo = params['ExtInfo']
         end
       end
@@ -11597,6 +11620,29 @@ module TencentCloud
             end
           end
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 直播即时剪辑流信息
+      class LiveRealTimeClipStreamInfo < TencentCloud::Common::AbstractModel
+        # @param Type: 直播流类型，可选值：
+        # <li>Original（原始流，<b>默认值</b>）。</li>
+        # <li>Transcoding（转码流）。</li>
+        # @type Type: String
+        # @param TemplateId: 直播转码模板ID。
+        # <b>当Type值为"Transcoding"时，必须填写。</b>
+        # @type TemplateId: Integer
+
+        attr_accessor :Type, :TemplateId
+        
+        def initialize(type=nil, templateid=nil)
+          @Type = type
+          @TemplateId = templateid
+        end
+
+        def deserialize(params)
+          @Type = params['Type']
+          @TemplateId = params['TemplateId']
         end
       end
 
@@ -17385,6 +17431,62 @@ module TencentCloud
         end
       end
 
+      # RemoveWatermark请求参数结构体
+      class RemoveWatermarkRequest < TencentCloud::Common::AbstractModel
+        # @param FileId: 媒体文件 ID 。
+        # @type FileId: String
+        # @param SubAppId: <b>点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。</b>
+        # @type SubAppId: Integer
+        # @param SessionId: 用于去重的识别码，如果七天内曾有过相同的识别码的请求，则本次的请求会返回错误。最长 50 个字符，不带或者带空字符串表示不做去重。
+        # @type SessionId: String
+        # @param SessionContext: 来源上下文，用于透传用户请求信息，任务流状态变更回调将返回该字段值，最长 1000 个字符。
+        # @type SessionContext: String
+        # @param TasksPriority: 任务流的优先级，数值越大优先级越高，取值范围是 -10 到 10，不填代表 0。
+        # @type TasksPriority: Integer
+        # @param TasksNotifyMode: 该字段已无效。
+        # @type TasksNotifyMode: String
+
+        attr_accessor :FileId, :SubAppId, :SessionId, :SessionContext, :TasksPriority, :TasksNotifyMode
+        
+        def initialize(fileid=nil, subappid=nil, sessionid=nil, sessioncontext=nil, taskspriority=nil, tasksnotifymode=nil)
+          @FileId = fileid
+          @SubAppId = subappid
+          @SessionId = sessionid
+          @SessionContext = sessioncontext
+          @TasksPriority = taskspriority
+          @TasksNotifyMode = tasksnotifymode
+        end
+
+        def deserialize(params)
+          @FileId = params['FileId']
+          @SubAppId = params['SubAppId']
+          @SessionId = params['SessionId']
+          @SessionContext = params['SessionContext']
+          @TasksPriority = params['TasksPriority']
+          @TasksNotifyMode = params['TasksNotifyMode']
+        end
+      end
+
+      # RemoveWatermark返回参数结构体
+      class RemoveWatermarkResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: 任务 ID 。
+        # @type TaskId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :RequestId
+        
+        def initialize(taskid=nil, requestid=nil)
+          @TaskId = taskid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ResetProcedureTemplate请求参数结构体
       class ResetProcedureTemplateRequest < TencentCloud::Common::AbstractModel
         # @param Name: 任务流名字
@@ -18020,15 +18122,32 @@ module TencentCloud
         # @type EndTimeOffset: Float
         # @param IsPersistence: 是否固化。0 不固化，1 固化。默认不固化。
         # @type IsPersistence: Integer
+        # @param ExpireTime: 剪辑固化后的视频存储过期时间。格式参照 [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#I)。填“9999-12-31T23:59:59Z”表示永不过期。过期后该媒体文件及其相关资源（转码结果、雪碧图等）将被永久删除。仅 IsPersistence 为 1 时有效，默认剪辑固化的视频永不过期。
+        # @type ExpireTime: String
+        # @param Procedure: 剪辑固化后的视频点播任务流处理，详见[上传指定任务流](https://cloud.tencent.com/document/product/266/9759)。仅 IsPersistence 为 1 时有效。
+        # @type Procedure: String
+        # @param ClassId: 分类ID，用于对媒体进行分类管理，可通过 [创建分类](/document/product/266/7812) 接口，创建分类，获得分类 ID。
+        # <li>默认值：0，表示其他分类。</li>
+        # 仅 IsPersistence 为 1 时有效。
+        # @type ClassId: Integer
+        # @param SourceContext: 来源上下文，用于透传用户请求信息，[上传完成回调](/document/product/266/7830) 将返回该字段值，最长 250 个字符。仅 IsPersistence 为 1 时有效。
+        # @type SourceContext: String
+        # @param SessionContext: 会话上下文，用于透传用户请求信息，当指定 Procedure 参数后，[任务流状态变更回调](/document/product/266/9636) 将返回该字段值，最长 1000 个字符。仅 IsPersistence 为 1 时有效。
+        # @type SessionContext: String
 
-        attr_accessor :Url, :SubAppId, :StartTimeOffset, :EndTimeOffset, :IsPersistence
+        attr_accessor :Url, :SubAppId, :StartTimeOffset, :EndTimeOffset, :IsPersistence, :ExpireTime, :Procedure, :ClassId, :SourceContext, :SessionContext
         
-        def initialize(url=nil, subappid=nil, starttimeoffset=nil, endtimeoffset=nil, ispersistence=nil)
+        def initialize(url=nil, subappid=nil, starttimeoffset=nil, endtimeoffset=nil, ispersistence=nil, expiretime=nil, procedure=nil, classid=nil, sourcecontext=nil, sessioncontext=nil)
           @Url = url
           @SubAppId = subappid
           @StartTimeOffset = starttimeoffset
           @EndTimeOffset = endtimeoffset
           @IsPersistence = ispersistence
+          @ExpireTime = expiretime
+          @Procedure = procedure
+          @ClassId = classid
+          @SourceContext = sourcecontext
+          @SessionContext = sessioncontext
         end
 
         def deserialize(params)
@@ -18037,6 +18156,11 @@ module TencentCloud
           @StartTimeOffset = params['StartTimeOffset']
           @EndTimeOffset = params['EndTimeOffset']
           @IsPersistence = params['IsPersistence']
+          @ExpireTime = params['ExpireTime']
+          @Procedure = params['Procedure']
+          @ClassId = params['ClassId']
+          @SourceContext = params['SourceContext']
+          @SessionContext = params['SessionContext']
         end
       end
 
@@ -18048,15 +18172,18 @@ module TencentCloud
         # @type MetaData: :class:`Tencentcloud::Vod.v20180717.models.MediaMetaData`
         # @param FileId: 剪辑固化后的视频的媒体文件的唯一标识。
         # @type FileId: String
+        # @param TaskId: 剪辑固化后的视频任务流 ID。
+        # @type TaskId: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Url, :MetaData, :FileId, :RequestId
+        attr_accessor :Url, :MetaData, :FileId, :TaskId, :RequestId
         
-        def initialize(url=nil, metadata=nil, fileid=nil, requestid=nil)
+        def initialize(url=nil, metadata=nil, fileid=nil, taskid=nil, requestid=nil)
           @Url = url
           @MetaData = metadata
           @FileId = fileid
+          @TaskId = taskid
           @RequestId = requestid
         end
 
@@ -18067,6 +18194,7 @@ module TencentCloud
             @MetaData.deserialize(params['MetaData'])
           end
           @FileId = params['FileId']
+          @TaskId = params['TaskId']
           @RequestId = params['RequestId']
         end
       end

@@ -17,56 +17,6 @@
 module TencentCloud
   module Taf
     module V20200210
-      # DetectFraudKOL请求参数结构体
-      class DetectFraudKOLRequest < TencentCloud::Common::AbstractModel
-        # @param BspData: 业务数据
-        # @type BspData: :class:`Tencentcloud::Taf.v20200210.models.InputKolBspData`
-        # @param BusinessEncryptData: 业务加密数据
-        # @type BusinessEncryptData: :class:`Tencentcloud::Taf.v20200210.models.InputBusinessEncryptData`
-
-        attr_accessor :BspData, :BusinessEncryptData
-        
-        def initialize(bspdata=nil, businessencryptdata=nil)
-          @BspData = bspdata
-          @BusinessEncryptData = businessencryptdata
-        end
-
-        def deserialize(params)
-          unless params['BspData'].nil?
-            @BspData = InputKolBspData.new
-            @BspData.deserialize(params['BspData'])
-          end
-          unless params['BusinessEncryptData'].nil?
-            @BusinessEncryptData = InputBusinessEncryptData.new
-            @BusinessEncryptData.deserialize(params['BusinessEncryptData'])
-          end
-        end
-      end
-
-      # DetectFraudKOL返回参数结构体
-      class DetectFraudKOLResponse < TencentCloud::Common::AbstractModel
-        # @param Data: 回包数据
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Data: :class:`Tencentcloud::Taf.v20200210.models.OutputKolData`
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :Data, :RequestId
-        
-        def initialize(data=nil, requestid=nil)
-          @Data = data
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          unless params['Data'].nil?
-            @Data = OutputKolData.new
-            @Data.deserialize(params['Data'])
-          end
-          @RequestId = params['RequestId']
-        end
-      end
-
       # 业务入参
       class Device < TencentCloud::Common::AbstractModel
         # @param DeviceId: 业务入参id
@@ -95,65 +45,6 @@ module TencentCloud
         end
 
         def deserialize(params)
-        end
-      end
-
-      # CheckKol
-      class InputKolBspData < TencentCloud::Common::AbstractModel
-        # @param DataList: BspData
-        # @type DataList: Array
-
-        attr_accessor :DataList
-        
-        def initialize(datalist=nil)
-          @DataList = datalist
-        end
-
-        def deserialize(params)
-          unless params['DataList'].nil?
-            @DataList = []
-            params['DataList'].each do |i|
-              inputkoldatalist_tmp = InputKolDataList.new
-              inputkoldatalist_tmp.deserialize(i)
-              @DataList << inputkoldatalist_tmp
-            end
-          end
-        end
-      end
-
-      # CheckKOL
-      class InputKolDataList < TencentCloud::Common::AbstractModel
-        # @param Type: 账号类型[1：微信；2：qq；3：微博]
-        # @type Type: Integer
-        # @param Id: KOL账号ID[比如微信公众号ID]
-        # @type Id: String
-        # @param Name: KOL名称
-        # @type Name: String
-        # @param Phone: 手机号
-        # @type Phone: String
-        # @param AgentInfo: 代理商名称
-        # @type AgentInfo: String
-        # @param IsAuthorized: 是否授权
-        # @type IsAuthorized: Integer
-
-        attr_accessor :Type, :Id, :Name, :Phone, :AgentInfo, :IsAuthorized
-        
-        def initialize(type=nil, id=nil, name=nil, phone=nil, agentinfo=nil, isauthorized=nil)
-          @Type = type
-          @Id = id
-          @Name = name
-          @Phone = phone
-          @AgentInfo = agentinfo
-          @IsAuthorized = isauthorized
-        end
-
-        def deserialize(params)
-          @Type = params['Type']
-          @Id = params['Id']
-          @Name = params['Name']
-          @Phone = params['Phone']
-          @AgentInfo = params['AgentInfo']
-          @IsAuthorized = params['IsAuthorized']
         end
       end
 
@@ -373,72 +264,6 @@ module TencentCloud
           @EncryptMode = params['EncryptMode']
           @PaddingType = params['PaddingType']
           @EncryptData = params['EncryptData']
-        end
-      end
-
-      # CheckKol
-      class OutputKolData < TencentCloud::Common::AbstractModel
-        # @param Code: 错误码[0:成功；非0：失败的错误码]
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Code: Integer
-        # @param Message: 错误信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Message: String
-        # @param Value: 业务返回数据
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Value: Array
-
-        attr_accessor :Code, :Message, :Value
-        
-        def initialize(code=nil, message=nil, value=nil)
-          @Code = code
-          @Message = message
-          @Value = value
-        end
-
-        def deserialize(params)
-          @Code = params['Code']
-          @Message = params['Message']
-          unless params['Value'].nil?
-            @Value = []
-            params['Value'].each do |i|
-              outputkolvalue_tmp = OutputKolValue.new
-              outputkolvalue_tmp.deserialize(i)
-              @Value << outputkolvalue_tmp
-            end
-          end
-        end
-      end
-
-      # CheckKol
-      class OutputKolValue < TencentCloud::Common::AbstractModel
-        # @param Id: KOL账号ID[比如微信公众号ID]
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Id: String
-        # @param IsCheck: 是否查得[0：未查得；1：查得]
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type IsCheck: Integer
-        # @param FraudPScore: 作弊的可能性[0～100]
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type FraudPScore: Integer
-        # @param EvilPScore: 作弊的严重性[0～100]
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type EvilPScore: Integer
-
-        attr_accessor :Id, :IsCheck, :FraudPScore, :EvilPScore
-        
-        def initialize(id=nil, ischeck=nil, fraudpscore=nil, evilpscore=nil)
-          @Id = id
-          @IsCheck = ischeck
-          @FraudPScore = fraudpscore
-          @EvilPScore = evilpscore
-        end
-
-        def deserialize(params)
-          @Id = params['Id']
-          @IsCheck = params['IsCheck']
-          @FraudPScore = params['FraudPScore']
-          @EvilPScore = params['EvilPScore']
         end
       end
 

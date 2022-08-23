@@ -3817,12 +3817,28 @@ module TencentCloud
 
       # DeletePrometheusClusterAgent请求参数结构体
       class DeletePrometheusClusterAgentRequest < TencentCloud::Common::AbstractModel
+        # @param Agents: agent列表
+        # @type Agents: Array
+        # @param InstanceId: 实例id
+        # @type InstanceId: String
 
+        attr_accessor :Agents, :InstanceId
         
-        def initialize()
+        def initialize(agents=nil, instanceid=nil)
+          @Agents = agents
+          @InstanceId = instanceid
         end
 
         def deserialize(params)
+          unless params['Agents'].nil?
+            @Agents = []
+            params['Agents'].each do |i|
+              prometheusagentinfo_tmp = PrometheusAgentInfo.new
+              prometheusagentinfo_tmp.deserialize(i)
+              @Agents << prometheusagentinfo_tmp
+            end
+          end
+          @InstanceId = params['InstanceId']
         end
       end
 
@@ -11322,6 +11338,30 @@ module TencentCloud
           @PeriodSeconds = params['PeriodSeconds']
           @SuccessThreshold = params['SuccessThreshold']
           @FailureThreshold = params['FailureThreshold']
+        end
+      end
+
+      # 托管Prometheus agent信息
+      class PrometheusAgentInfo < TencentCloud::Common::AbstractModel
+        # @param ClusterType: 集群类型
+        # @type ClusterType: String
+        # @param ClusterId: 集群id
+        # @type ClusterId: String
+        # @param Describe: 备注
+        # @type Describe: String
+
+        attr_accessor :ClusterType, :ClusterId, :Describe
+        
+        def initialize(clustertype=nil, clusterid=nil, describe=nil)
+          @ClusterType = clustertype
+          @ClusterId = clusterid
+          @Describe = describe
+        end
+
+        def deserialize(params)
+          @ClusterType = params['ClusterType']
+          @ClusterId = params['ClusterId']
+          @Describe = params['Describe']
         end
       end
 

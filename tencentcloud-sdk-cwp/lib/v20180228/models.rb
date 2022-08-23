@@ -11932,17 +11932,23 @@ module TencentCloud
         # @type IfFirstScan: Boolean
         # @param TaskId: 运行中的任务号, 没有任务则为0
         # @type TaskId: Integer
+        # @param LastFixTime: 最后一次修复漏洞的时间
+        # @type LastFixTime: String
+        # @param hadAutoFixVul: 是否有支持自动修复的漏洞事件
+        # @type hadAutoFixVul: Boolean
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :TotalVulCount, :VulHostCount, :ScanTime, :IfFirstScan, :TaskId, :RequestId
+        attr_accessor :TotalVulCount, :VulHostCount, :ScanTime, :IfFirstScan, :TaskId, :LastFixTime, :hadAutoFixVul, :RequestId
         
-        def initialize(totalvulcount=nil, vulhostcount=nil, scantime=nil, iffirstscan=nil, taskid=nil, requestid=nil)
+        def initialize(totalvulcount=nil, vulhostcount=nil, scantime=nil, iffirstscan=nil, taskid=nil, lastfixtime=nil, hadautofixvul=nil, requestid=nil)
           @TotalVulCount = totalvulcount
           @VulHostCount = vulhostcount
           @ScanTime = scantime
           @IfFirstScan = iffirstscan
           @TaskId = taskid
+          @LastFixTime = lastfixtime
+          @hadAutoFixVul = hadautofixvul
           @RequestId = requestid
         end
 
@@ -11952,6 +11958,8 @@ module TencentCloud
           @ScanTime = params['ScanTime']
           @IfFirstScan = params['IfFirstScan']
           @TaskId = params['TaskId']
+          @LastFixTime = params['LastFixTime']
+          @hadAutoFixVul = params['hadAutoFixVul']
           @RequestId = params['RequestId']
         end
       end
@@ -12071,12 +12079,18 @@ module TencentCloud
         # @param DefenseAttackCount: 已防御的攻击次数
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DefenseAttackCount: Integer
+        # @param SuccessFixCount: 全网修复成功次数, 不支持自动修复的漏洞默认返回0
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SuccessFixCount: Integer
+        # @param FixSwitch: 修复是否支持：0-windows/linux均不支持修复 ;1-windows/linux 均支持修复 ;2-仅linux支持修复;3-仅windows支持修复
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FixSwitch: Integer
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :VulId, :VulName, :VulLevel, :VulType, :Description, :RepairPlan, :CveId, :Reference, :CVSS, :PublicDate, :CvssScore, :CveInfo, :CvssScoreFloat, :Labels, :DefenseAttackCount, :RequestId
+        attr_accessor :VulId, :VulName, :VulLevel, :VulType, :Description, :RepairPlan, :CveId, :Reference, :CVSS, :PublicDate, :CvssScore, :CveInfo, :CvssScoreFloat, :Labels, :DefenseAttackCount, :SuccessFixCount, :FixSwitch, :RequestId
         
-        def initialize(vulid=nil, vulname=nil, vullevel=nil, vultype=nil, description=nil, repairplan=nil, cveid=nil, reference=nil, cvss=nil, publicdate=nil, cvssscore=nil, cveinfo=nil, cvssscorefloat=nil, labels=nil, defenseattackcount=nil, requestid=nil)
+        def initialize(vulid=nil, vulname=nil, vullevel=nil, vultype=nil, description=nil, repairplan=nil, cveid=nil, reference=nil, cvss=nil, publicdate=nil, cvssscore=nil, cveinfo=nil, cvssscorefloat=nil, labels=nil, defenseattackcount=nil, successfixcount=nil, fixswitch=nil, requestid=nil)
           @VulId = vulid
           @VulName = vulname
           @VulLevel = vullevel
@@ -12092,6 +12106,8 @@ module TencentCloud
           @CvssScoreFloat = cvssscorefloat
           @Labels = labels
           @DefenseAttackCount = defenseattackcount
+          @SuccessFixCount = successfixcount
+          @FixSwitch = fixswitch
           @RequestId = requestid
         end
 
@@ -12111,6 +12127,8 @@ module TencentCloud
           @CvssScoreFloat = params['CvssScoreFloat']
           @Labels = params['Labels']
           @DefenseAttackCount = params['DefenseAttackCount']
+          @SuccessFixCount = params['SuccessFixCount']
+          @FixSwitch = params['FixSwitch']
           @RequestId = params['RequestId']
         end
       end
@@ -14700,12 +14718,15 @@ module TencentCloud
         # @type MachineType: String
         # @param KernelVersion: 内核版本
         # @type KernelVersion: String
-        # @param ProtectType: 防护版本 BASIC_VERSION 基础版, PRO_VERSION 专业版 Flagship 旗舰版.
+        # @param ProtectType: 防护版本：BASIC_VERSION 基础版， PRO_VERSION 专业版，Flagship 旗舰版，GENERAL_DISCOUNT 普惠版
         # @type ProtectType: String
+        # @param CloudTags: 云标签信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CloudTags: Array
 
-        attr_accessor :MachineName, :MachineOs, :MachineStatus, :Uuid, :Quuid, :VulNum, :MachineIp, :IsProVersion, :MachineWanIp, :PayMode, :MalwareNum, :Tag, :BaselineNum, :CyberAttackNum, :SecurityStatus, :InvasionNum, :RegionInfo, :InstanceState, :LicenseStatus, :ProjectId, :HasAssetScan, :MachineType, :KernelVersion, :ProtectType
+        attr_accessor :MachineName, :MachineOs, :MachineStatus, :Uuid, :Quuid, :VulNum, :MachineIp, :IsProVersion, :MachineWanIp, :PayMode, :MalwareNum, :Tag, :BaselineNum, :CyberAttackNum, :SecurityStatus, :InvasionNum, :RegionInfo, :InstanceState, :LicenseStatus, :ProjectId, :HasAssetScan, :MachineType, :KernelVersion, :ProtectType, :CloudTags
         
-        def initialize(machinename=nil, machineos=nil, machinestatus=nil, uuid=nil, quuid=nil, vulnum=nil, machineip=nil, isproversion=nil, machinewanip=nil, paymode=nil, malwarenum=nil, tag=nil, baselinenum=nil, cyberattacknum=nil, securitystatus=nil, invasionnum=nil, regioninfo=nil, instancestate=nil, licensestatus=nil, projectid=nil, hasassetscan=nil, machinetype=nil, kernelversion=nil, protecttype=nil)
+        def initialize(machinename=nil, machineos=nil, machinestatus=nil, uuid=nil, quuid=nil, vulnum=nil, machineip=nil, isproversion=nil, machinewanip=nil, paymode=nil, malwarenum=nil, tag=nil, baselinenum=nil, cyberattacknum=nil, securitystatus=nil, invasionnum=nil, regioninfo=nil, instancestate=nil, licensestatus=nil, projectid=nil, hasassetscan=nil, machinetype=nil, kernelversion=nil, protecttype=nil, cloudtags=nil)
           @MachineName = machinename
           @MachineOs = machineos
           @MachineStatus = machinestatus
@@ -14730,6 +14751,7 @@ module TencentCloud
           @MachineType = machinetype
           @KernelVersion = kernelversion
           @ProtectType = protecttype
+          @CloudTags = cloudtags
         end
 
         def deserialize(params)
@@ -14767,6 +14789,14 @@ module TencentCloud
           @MachineType = params['MachineType']
           @KernelVersion = params['KernelVersion']
           @ProtectType = params['ProtectType']
+          unless params['CloudTags'].nil?
+            @CloudTags = []
+            params['CloudTags'].each do |i|
+              tags_tmp = Tags.new
+              tags_tmp.deserialize(i)
+              @CloudTags << tags_tmp
+            end
+          end
         end
       end
 
@@ -17119,6 +17149,26 @@ module TencentCloud
           @MachineWanIp = params['MachineWanIp']
           @MachineRegion = params['MachineRegion']
           @MachineType = params['MachineType']
+        end
+      end
+
+      # 平台标签
+      class Tags < TencentCloud::Common::AbstractModel
+        # @param TagKey: 标签键
+        # @type TagKey: String
+        # @param TagValue: 标签值
+        # @type TagValue: String
+
+        attr_accessor :TagKey, :TagValue
+        
+        def initialize(tagkey=nil, tagvalue=nil)
+          @TagKey = tagkey
+          @TagValue = tagvalue
+        end
+
+        def deserialize(params)
+          @TagKey = params['TagKey']
+          @TagValue = params['TagValue']
         end
       end
 

@@ -1847,16 +1847,19 @@ module TencentCloud
         # @type Enable: Boolean
         # @param Description: 规则描述，不限字符类型，200字符描述以内。
         # @type Description: String
+        # @param EventPattern: 参考：[事件模式](https://cloud.tencent.com/document/product/1359/56084)
+        # @type EventPattern: String
         # @param RuleName: 事件规则名称，只能包含字母、数字、下划线、连字符，以字母开头，以数字或字母结尾，2~60个字符
         # @type RuleName: String
 
-        attr_accessor :RuleId, :EventBusId, :Enable, :Description, :RuleName
+        attr_accessor :RuleId, :EventBusId, :Enable, :Description, :EventPattern, :RuleName
         
-        def initialize(ruleid=nil, eventbusid=nil, enable=nil, description=nil, rulename=nil)
+        def initialize(ruleid=nil, eventbusid=nil, enable=nil, description=nil, eventpattern=nil, rulename=nil)
           @RuleId = ruleid
           @EventBusId = eventbusid
           @Enable = enable
           @Description = description
+          @EventPattern = eventpattern
           @RuleName = rulename
         end
 
@@ -1865,6 +1868,7 @@ module TencentCloud
           @EventBusId = params['EventBusId']
           @Enable = params['Enable']
           @Description = params['Description']
+          @EventPattern = params['EventPattern']
           @RuleName = params['RuleName']
         end
       end

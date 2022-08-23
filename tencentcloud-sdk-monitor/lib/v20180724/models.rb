@@ -986,6 +986,41 @@ module TencentCloud
         end
       end
 
+      # 策略类型信息
+      class CommonNamespaceNew < TencentCloud::Common::AbstractModel
+        # @param Id: 命名空间标示
+        # @type Id: String
+        # @param Name: 命名空间名称
+        # @type Name: String
+        # @param MonitorType: 监控类型
+        # @type MonitorType: String
+        # @param Dimensions: 维度信息
+        # @type Dimensions: Array
+
+        attr_accessor :Id, :Name, :MonitorType, :Dimensions
+        
+        def initialize(id=nil, name=nil, monitortype=nil, dimensions=nil)
+          @Id = id
+          @Name = name
+          @MonitorType = monitortype
+          @Dimensions = dimensions
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @Name = params['Name']
+          @MonitorType = params['MonitorType']
+          unless params['Dimensions'].nil?
+            @Dimensions = []
+            params['Dimensions'].each do |i|
+              dimensionnew_tmp = DimensionNew.new
+              dimensionnew_tmp.deserialize(i)
+              @Dimensions << dimensionnew_tmp
+            end
+          end
+        end
+      end
+
       # 告警条件
       class Condition < TencentCloud::Common::AbstractModel
         # @param AlarmNotifyPeriod: 告警通知频率
@@ -3369,16 +3404,20 @@ module TencentCloud
         # @type QceNamespacesNew: Array
         # @param CustomNamespacesNew: 其他告警策略类型，暂不支持
         # @type CustomNamespacesNew: Array
+        # @param CommonNamespaces: 通用告警策略类型(包括：应用性能监控，前端性能监控，云拨测)
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CommonNamespaces: Array
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :QceNamespaces, :CustomNamespaces, :QceNamespacesNew, :CustomNamespacesNew, :RequestId
+        attr_accessor :QceNamespaces, :CustomNamespaces, :QceNamespacesNew, :CustomNamespacesNew, :CommonNamespaces, :RequestId
         
-        def initialize(qcenamespaces=nil, customnamespaces=nil, qcenamespacesnew=nil, customnamespacesnew=nil, requestid=nil)
+        def initialize(qcenamespaces=nil, customnamespaces=nil, qcenamespacesnew=nil, customnamespacesnew=nil, commonnamespaces=nil, requestid=nil)
           @QceNamespaces = qcenamespaces
           @CustomNamespaces = customnamespaces
           @QceNamespacesNew = qcenamespacesnew
           @CustomNamespacesNew = customnamespacesnew
+          @CommonNamespaces = commonnamespaces
           @RequestId = requestid
         end
 
@@ -3405,6 +3444,14 @@ module TencentCloud
               commonnamespace_tmp = CommonNamespace.new
               commonnamespace_tmp.deserialize(i)
               @CustomNamespacesNew << commonnamespace_tmp
+            end
+          end
+          unless params['CommonNamespaces'].nil?
+            @CommonNamespaces = []
+            params['CommonNamespaces'].each do |i|
+              commonnamespacenew_tmp = CommonNamespaceNew.new
+              commonnamespacenew_tmp.deserialize(i)
+              @CommonNamespaces << commonnamespacenew_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -3658,14 +3705,18 @@ module TencentCloud
         # @param Total: 总数
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Total: Integer
+        # @param Warning: 备注信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Warning: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Alarms, :Total, :RequestId
+        attr_accessor :Alarms, :Total, :Warning, :RequestId
         
-        def initialize(alarms=nil, total=nil, requestid=nil)
+        def initialize(alarms=nil, total=nil, warning=nil, requestid=nil)
           @Alarms = alarms
           @Total = total
+          @Warning = warning
           @RequestId = requestid
         end
 
@@ -3679,6 +3730,7 @@ module TencentCloud
             end
           end
           @Total = params['Total']
+          @Warning = params['Warning']
           @RequestId = params['RequestId']
         end
       end
@@ -5501,14 +5553,18 @@ module TencentCloud
         # @type GroupList: Array
         # @param Total: 策略组总数
         # @type Total: Integer
+        # @param Warning: 备注信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Warning: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :GroupList, :Total, :RequestId
+        attr_accessor :GroupList, :Total, :Warning, :RequestId
         
-        def initialize(grouplist=nil, total=nil, requestid=nil)
+        def initialize(grouplist=nil, total=nil, warning=nil, requestid=nil)
           @GroupList = grouplist
           @Total = total
+          @Warning = warning
           @RequestId = requestid
         end
 
@@ -5522,6 +5578,7 @@ module TencentCloud
             end
           end
           @Total = params['Total']
+          @Warning = params['Warning']
           @RequestId = params['RequestId']
         end
       end
@@ -6488,6 +6545,74 @@ module TencentCloud
         def deserialize(params)
           @Name = params['Name']
           @Value = params['Value']
+        end
+      end
+
+      # 策略类型的维度信息
+      class DimensionNew < TencentCloud::Common::AbstractModel
+        # @param Key: 维度 key 标示，后台英文名
+        # @type Key: String
+        # @param Name: 维度 key 名称，中英文前台展示名
+        # @type Name: String
+        # @param IsRequired: 是否必选
+        # @type IsRequired: Boolean
+        # @param Operators: 支持的操作符列表
+        # @type Operators: Array
+        # @param IsMultiple: 是否支持多选
+        # @type IsMultiple: Boolean
+        # @param IsMutable: 创建后是否可以修改
+        # @type IsMutable: Boolean
+        # @param IsVisible: 是否展示给用户
+        # @type IsVisible: Boolean
+        # @param CanFilterPolicy: 能否用来过滤策略列表
+        # @type CanFilterPolicy: Boolean
+        # @param CanFilterHistory: 能否用来过滤告警历史
+        # @type CanFilterHistory: Boolean
+        # @param CanGroupBy: 能否作为聚合维度
+        # @type CanGroupBy: Boolean
+        # @param MustGroupBy: 是否必须作为聚合维度
+        # @type MustGroupBy: Boolean
+        # @param ShowValueReplace: 前端翻译要替换的 key
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ShowValueReplace: String
+
+        attr_accessor :Key, :Name, :IsRequired, :Operators, :IsMultiple, :IsMutable, :IsVisible, :CanFilterPolicy, :CanFilterHistory, :CanGroupBy, :MustGroupBy, :ShowValueReplace
+        
+        def initialize(key=nil, name=nil, isrequired=nil, operators=nil, ismultiple=nil, ismutable=nil, isvisible=nil, canfilterpolicy=nil, canfilterhistory=nil, cangroupby=nil, mustgroupby=nil, showvaluereplace=nil)
+          @Key = key
+          @Name = name
+          @IsRequired = isrequired
+          @Operators = operators
+          @IsMultiple = ismultiple
+          @IsMutable = ismutable
+          @IsVisible = isvisible
+          @CanFilterPolicy = canfilterpolicy
+          @CanFilterHistory = canfilterhistory
+          @CanGroupBy = cangroupby
+          @MustGroupBy = mustgroupby
+          @ShowValueReplace = showvaluereplace
+        end
+
+        def deserialize(params)
+          @Key = params['Key']
+          @Name = params['Name']
+          @IsRequired = params['IsRequired']
+          unless params['Operators'].nil?
+            @Operators = []
+            params['Operators'].each do |i|
+              operator_tmp = Operator.new
+              operator_tmp.deserialize(i)
+              @Operators << operator_tmp
+            end
+          end
+          @IsMultiple = params['IsMultiple']
+          @IsMutable = params['IsMutable']
+          @IsVisible = params['IsVisible']
+          @CanFilterPolicy = params['CanFilterPolicy']
+          @CanFilterHistory = params['CanFilterHistory']
+          @CanGroupBy = params['CanGroupBy']
+          @MustGroupBy = params['MustGroupBy']
+          @ShowValueReplace = params['ShowValueReplace']
         end
       end
 
@@ -8113,6 +8238,26 @@ module TencentCloud
         def deserialize(params)
           @MonitorType = params['MonitorType']
           @Namespace = params['Namespace']
+        end
+      end
+
+      # 维度支持的操作符信息
+      class Operator < TencentCloud::Common::AbstractModel
+        # @param Id: 运算符标识
+        # @type Id: String
+        # @param Name: 运算符展示名
+        # @type Name: String
+
+        attr_accessor :Id, :Name
+        
+        def initialize(id=nil, name=nil)
+          @Id = id
+          @Name = name
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @Name = params['Name']
         end
       end
 
