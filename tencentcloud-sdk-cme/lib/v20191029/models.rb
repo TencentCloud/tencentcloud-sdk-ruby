@@ -2135,7 +2135,8 @@ module TencentCloud
         # <li>Class.Created：分类新增事件；</li>
         # <li>Class.Moved：分类移动事件；</li>
         # <li>Class.Deleted：分类删除事件；</li>
-        # <li>Task.VideoExportCompleted：视频导出完成事件。 </li>
+        # <li>Task.VideoExportCompleted：视频导出完成事件； </li>
+        # <li>Project.MediaCast.StatusChanged：点播转直播项目状态变更事件。 </li>
         # @type EventType: String
         # @param Operator: 操作者，表示触发事件的操作者。如果是 `cmeid_system` 表示平台管理员操作。
         # @type Operator: String
@@ -2173,10 +2174,13 @@ module TencentCloud
         # @param VideoExportCompletedEvent: 视频导出完成事件。仅当 EventType 为 Task.VideoExportCompleted 时有效。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VideoExportCompletedEvent: :class:`Tencentcloud::Cme.v20191029.models.VideoExportCompletedEvent`
+        # @param ProjectMediaCastStatusChangedEvent: 点播转直播项目状态变更事件。仅当 EventType 为 Project.MediaCast.StatusChanged 时有效。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProjectMediaCastStatusChangedEvent: :class:`Tencentcloud::Cme.v20191029.models.ProjectMediaCastStatusChangedEvent`
 
-        attr_accessor :EventType, :Operator, :StorageNewFileCreatedEvent, :ProjectStreamConnectStatusChangedEvent, :ProjectSwitcherStatusChangedEvent, :MaterialImportedEvent, :MaterialAddedEvent, :MaterialMovedEvent, :MaterialModifiedEvent, :MaterialDeletedEvent, :ClassCreatedEvent, :ClassMovedEvent, :ClassDeletedEvent, :VideoExportCompletedEvent
+        attr_accessor :EventType, :Operator, :StorageNewFileCreatedEvent, :ProjectStreamConnectStatusChangedEvent, :ProjectSwitcherStatusChangedEvent, :MaterialImportedEvent, :MaterialAddedEvent, :MaterialMovedEvent, :MaterialModifiedEvent, :MaterialDeletedEvent, :ClassCreatedEvent, :ClassMovedEvent, :ClassDeletedEvent, :VideoExportCompletedEvent, :ProjectMediaCastStatusChangedEvent
         
-        def initialize(eventtype=nil, operator=nil, storagenewfilecreatedevent=nil, projectstreamconnectstatuschangedevent=nil, projectswitcherstatuschangedevent=nil, materialimportedevent=nil, materialaddedevent=nil, materialmovedevent=nil, materialmodifiedevent=nil, materialdeletedevent=nil, classcreatedevent=nil, classmovedevent=nil, classdeletedevent=nil, videoexportcompletedevent=nil)
+        def initialize(eventtype=nil, operator=nil, storagenewfilecreatedevent=nil, projectstreamconnectstatuschangedevent=nil, projectswitcherstatuschangedevent=nil, materialimportedevent=nil, materialaddedevent=nil, materialmovedevent=nil, materialmodifiedevent=nil, materialdeletedevent=nil, classcreatedevent=nil, classmovedevent=nil, classdeletedevent=nil, videoexportcompletedevent=nil, projectmediacaststatuschangedevent=nil)
           @EventType = eventtype
           @Operator = operator
           @StorageNewFileCreatedEvent = storagenewfilecreatedevent
@@ -2191,6 +2195,7 @@ module TencentCloud
           @ClassMovedEvent = classmovedevent
           @ClassDeletedEvent = classdeletedevent
           @VideoExportCompletedEvent = videoexportcompletedevent
+          @ProjectMediaCastStatusChangedEvent = projectmediacaststatuschangedevent
         end
 
         def deserialize(params)
@@ -2243,6 +2248,10 @@ module TencentCloud
           unless params['VideoExportCompletedEvent'].nil?
             @VideoExportCompletedEvent = VideoExportCompletedEvent.new
             @VideoExportCompletedEvent.deserialize(params['VideoExportCompletedEvent'])
+          end
+          unless params['ProjectMediaCastStatusChangedEvent'].nil?
+            @ProjectMediaCastStatusChangedEvent = ProjectMediaCastStatusChangedEvent.new
+            @ProjectMediaCastStatusChangedEvent.deserialize(params['ProjectMediaCastStatusChangedEvent'])
           end
         end
       end
@@ -3702,6 +3711,239 @@ module TencentCloud
         end
       end
 
+      # 点播转直播输出信息。
+      class MediaCastDestinationInfo < TencentCloud::Common::AbstractModel
+        # @param Index: 输出源序号。由系统进行分配。
+        # @type Index: Integer
+        # @param Name: 输出源的名称。
+        # @type Name: String
+        # @param PushUrl: 输出直播流地址。支持的直播流类型为 RTMP 和 SRT。
+        # @type PushUrl: String
+
+        attr_accessor :Index, :Name, :PushUrl
+        
+        def initialize(index=nil, name=nil, pushurl=nil)
+          @Index = index
+          @Name = name
+          @PushUrl = pushurl
+        end
+
+        def deserialize(params)
+          @Index = params['Index']
+          @Name = params['Name']
+          @PushUrl = params['PushUrl']
+        end
+      end
+
+      # 点播转直播输出断流信息。
+      class MediaCastDestinationInterruptInfo < TencentCloud::Common::AbstractModel
+        # @param DestinationInfo: 发生断流的输出源信息。
+        # @type DestinationInfo: :class:`Tencentcloud::Cme.v20191029.models.MediaCastDestinationInfo`
+        # @param Reason: 输出源断流原因，取值有：
+        # <li>SystemError：系统错误；</li>
+        # <li>Unknown：未知错误。</li>
+        # @type Reason: String
+
+        attr_accessor :DestinationInfo, :Reason
+        
+        def initialize(destinationinfo=nil, reason=nil)
+          @DestinationInfo = destinationinfo
+          @Reason = reason
+        end
+
+        def deserialize(params)
+          unless params['DestinationInfo'].nil?
+            @DestinationInfo = MediaCastDestinationInfo.new
+            @DestinationInfo.deserialize(params['DestinationInfo'])
+          end
+          @Reason = params['Reason']
+        end
+      end
+
+      # 点播转直播输出媒体配置。
+      class MediaCastOutputMediaSetting < TencentCloud::Common::AbstractModel
+        # @param VideoSetting: 视频配置。
+        # @type VideoSetting: :class:`Tencentcloud::Cme.v20191029.models.MediaCastVideoSetting`
+
+        attr_accessor :VideoSetting
+        
+        def initialize(videosetting=nil)
+          @VideoSetting = videosetting
+        end
+
+        def deserialize(params)
+          unless params['VideoSetting'].nil?
+            @VideoSetting = MediaCastVideoSetting.new
+            @VideoSetting.deserialize(params['VideoSetting'])
+          end
+        end
+      end
+
+      # 播放控制参数。
+      class MediaCastPlaySetting < TencentCloud::Common::AbstractModel
+        # @param LoopCount: 循环播放次数。LoopCount 和 EndTime 同时只能有一个生效。默认循环播放次数为一次。如果同时设置了 LoopCount 和 EndTime 参数，优先使用 LoopCount 参数。
+        # @type LoopCount: Integer
+        # @param EndTime: 结束时间，采用 [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#I)。
+        # @type EndTime: String
+
+        attr_accessor :LoopCount, :EndTime
+        
+        def initialize(loopcount=nil, endtime=nil)
+          @LoopCount = loopcount
+          @EndTime = endtime
+        end
+
+        def deserialize(params)
+          @LoopCount = params['LoopCount']
+          @EndTime = params['EndTime']
+        end
+      end
+
+      # 点播转直播项目信息。
+      class MediaCastProjectInfo < TencentCloud::Common::AbstractModel
+        # @param Status: 点播转直播项目状态，取值有：
+        # <li>Working ：运行中；</li>
+        # <li>Idle ：空闲。</li>
+        # @type Status: String
+        # @param SourceInfos: 输入源列表。
+        # @type SourceInfos: Array
+        # @param DestinationInfos: 输出源列表。
+        # @type DestinationInfos: Array
+        # @param OutputMediaSetting: 输出媒体配置。
+        # @type OutputMediaSetting: :class:`Tencentcloud::Cme.v20191029.models.MediaCastOutputMediaSetting`
+        # @param PlaySetting: 播放参数。
+        # @type PlaySetting: :class:`Tencentcloud::Cme.v20191029.models.MediaCastPlaySetting`
+        # @param StartTime: 项目启动时间。采用 [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#I)。
+        # @type StartTime: String
+        # @param StopTime: 项目结束时间。采用 [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#I)。如果项目还在运行中，改字段为空。
+        # @type StopTime: String
+
+        attr_accessor :Status, :SourceInfos, :DestinationInfos, :OutputMediaSetting, :PlaySetting, :StartTime, :StopTime
+        
+        def initialize(status=nil, sourceinfos=nil, destinationinfos=nil, outputmediasetting=nil, playsetting=nil, starttime=nil, stoptime=nil)
+          @Status = status
+          @SourceInfos = sourceinfos
+          @DestinationInfos = destinationinfos
+          @OutputMediaSetting = outputmediasetting
+          @PlaySetting = playsetting
+          @StartTime = starttime
+          @StopTime = stoptime
+        end
+
+        def deserialize(params)
+          @Status = params['Status']
+          unless params['SourceInfos'].nil?
+            @SourceInfos = []
+            params['SourceInfos'].each do |i|
+              mediacastsourceinfo_tmp = MediaCastSourceInfo.new
+              mediacastsourceinfo_tmp.deserialize(i)
+              @SourceInfos << mediacastsourceinfo_tmp
+            end
+          end
+          unless params['DestinationInfos'].nil?
+            @DestinationInfos = []
+            params['DestinationInfos'].each do |i|
+              mediacastdestinationinfo_tmp = MediaCastDestinationInfo.new
+              mediacastdestinationinfo_tmp.deserialize(i)
+              @DestinationInfos << mediacastdestinationinfo_tmp
+            end
+          end
+          unless params['OutputMediaSetting'].nil?
+            @OutputMediaSetting = MediaCastOutputMediaSetting.new
+            @OutputMediaSetting.deserialize(params['OutputMediaSetting'])
+          end
+          unless params['PlaySetting'].nil?
+            @PlaySetting = MediaCastPlaySetting.new
+            @PlaySetting.deserialize(params['PlaySetting'])
+          end
+          @StartTime = params['StartTime']
+          @StopTime = params['StopTime']
+        end
+      end
+
+      # 点播转直播输入源信息。
+      class MediaCastSourceInfo < TencentCloud::Common::AbstractModel
+        # @param Type: 输入源的媒体类型，取值有：
+        # <li>CME：多媒体创作引擎的媒体文件；</li>
+        # <li>VOD：云点播的媒资文件。</li>
+        # @type Type: String
+        # @param MaterialId: 多媒体创作引擎的媒体 ID。当 Type = CME  时必填。
+        # @type MaterialId: String
+        # @param FileId: 云点播媒体文件 ID。当 Type = VOD 时必填。
+        # @type FileId: String
+        # @param Index: 序号，位于输入源列表中的序号，由系统分配。
+        # @type Index: Integer
+
+        attr_accessor :Type, :MaterialId, :FileId, :Index
+        
+        def initialize(type=nil, materialid=nil, fileid=nil, index=nil)
+          @Type = type
+          @MaterialId = materialid
+          @FileId = fileid
+          @Index = index
+        end
+
+        def deserialize(params)
+          @Type = params['Type']
+          @MaterialId = params['MaterialId']
+          @FileId = params['FileId']
+          @Index = params['Index']
+        end
+      end
+
+      # 点播转直播输入断流信息。
+      class MediaCastSourceInterruptInfo < TencentCloud::Common::AbstractModel
+        # @param SourceInfo: 发生断流的输入源信息。
+        # @type SourceInfo: :class:`Tencentcloud::Cme.v20191029.models.MediaCastSourceInfo`
+        # @param Reason: 输入源断开原因。取值有：
+        # <li>SystemError：系统错误；</li>
+        # <li>Unknown：未知错误。</li>
+        # @type Reason: String
+
+        attr_accessor :SourceInfo, :Reason
+        
+        def initialize(sourceinfo=nil, reason=nil)
+          @SourceInfo = sourceinfo
+          @Reason = reason
+        end
+
+        def deserialize(params)
+          unless params['SourceInfo'].nil?
+            @SourceInfo = MediaCastSourceInfo.new
+            @SourceInfo.deserialize(params['SourceInfo'])
+          end
+          @Reason = params['Reason']
+        end
+      end
+
+      # 点播转直播视频配置
+      class MediaCastVideoSetting < TencentCloud::Common::AbstractModel
+        # @param Width: 视频宽度，单位：px，默认值为1280。
+        # @type Width: Integer
+        # @param Height: 视频高度，单位：px，默认值为720。支持的视频分辨率最大为1920*1080。
+        # @type Height: Integer
+        # @param Bitrate: 视频码率，单位：kbps，默认值为2500。最大值为10000 kbps。
+        # @type Bitrate: Integer
+        # @param FrameRate: 视频帧率，单位：Hz，默认值为25。最大值为60。
+        # @type FrameRate: Float
+
+        attr_accessor :Width, :Height, :Bitrate, :FrameRate
+        
+        def initialize(width=nil, height=nil, bitrate=nil, framerate=nil)
+          @Width = width
+          @Height = height
+          @Bitrate = bitrate
+          @FrameRate = framerate
+        end
+
+        def deserialize(params)
+          @Width = params['Width']
+          @Height = params['Height']
+          @Bitrate = params['Bitrate']
+          @FrameRate = params['FrameRate']
+        end
+      end
+
       # 雪碧图
       class MediaImageSpriteInfo < TencentCloud::Common::AbstractModel
         # @param Height: 雪碧图小图的高度。
@@ -4521,14 +4763,17 @@ module TencentCloud
         # @param StreamConnectProjectInfo: 云转推项目信息，仅当项目类别取值 STREAM_CONNECT 时有效。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StreamConnectProjectInfo: :class:`Tencentcloud::Cme.v20191029.models.StreamConnectProjectInfo`
-        # @param CreateTime: 项目创建时间，格式按照 ISO 8601 标准表示。
-        # @type CreateTime: String
+        # @param MediaCastProjectInfo: 点播转直播项目信息，仅当项目类别取值为 MEDIA_CAST 时有效。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MediaCastProjectInfo: :class:`Tencentcloud::Cme.v20191029.models.MediaCastProjectInfo`
         # @param UpdateTime: 项目更新时间，格式按照 ISO 8601 标准表示。
         # @type UpdateTime: String
+        # @param CreateTime: 项目创建时间，格式按照 ISO 8601 标准表示。
+        # @type CreateTime: String
 
-        attr_accessor :ProjectId, :Name, :AspectRatio, :Category, :Owner, :CoverUrl, :StreamConnectProjectInfo, :CreateTime, :UpdateTime
+        attr_accessor :ProjectId, :Name, :AspectRatio, :Category, :Owner, :CoverUrl, :StreamConnectProjectInfo, :MediaCastProjectInfo, :UpdateTime, :CreateTime
         
-        def initialize(projectid=nil, name=nil, aspectratio=nil, category=nil, owner=nil, coverurl=nil, streamconnectprojectinfo=nil, createtime=nil, updatetime=nil)
+        def initialize(projectid=nil, name=nil, aspectratio=nil, category=nil, owner=nil, coverurl=nil, streamconnectprojectinfo=nil, mediacastprojectinfo=nil, updatetime=nil, createtime=nil)
           @ProjectId = projectid
           @Name = name
           @AspectRatio = aspectratio
@@ -4536,8 +4781,9 @@ module TencentCloud
           @Owner = owner
           @CoverUrl = coverurl
           @StreamConnectProjectInfo = streamconnectprojectinfo
-          @CreateTime = createtime
+          @MediaCastProjectInfo = mediacastprojectinfo
           @UpdateTime = updatetime
+          @CreateTime = createtime
         end
 
         def deserialize(params)
@@ -4554,8 +4800,50 @@ module TencentCloud
             @StreamConnectProjectInfo = StreamConnectProjectInfo.new
             @StreamConnectProjectInfo.deserialize(params['StreamConnectProjectInfo'])
           end
-          @CreateTime = params['CreateTime']
+          unless params['MediaCastProjectInfo'].nil?
+            @MediaCastProjectInfo = MediaCastProjectInfo.new
+            @MediaCastProjectInfo.deserialize(params['MediaCastProjectInfo'])
+          end
           @UpdateTime = params['UpdateTime']
+          @CreateTime = params['CreateTime']
+        end
+      end
+
+      #  点播转直播项目状态变更事件。
+      class ProjectMediaCastStatusChangedEvent < TencentCloud::Common::AbstractModel
+        # @param ProjectId: 项目 Id。
+        # @type ProjectId: String
+        # @param Status: 项目状态，取值有：
+        # <li>Started：点播转直播开始；</li>
+        # <li>Stopped：点播转直播结束；</li>
+        # <li>SourceInterrupted：点播转直播输入断流；</li>
+        # <li>DestinationInterrupted：点播转直播输出断流。</li>
+        # @type Status: String
+        # @param SourceInterruptInfo: 点播转直播输入断流信息，仅当 Status 取值 SourceInterrupted 时有效。
+        # @type SourceInterruptInfo: :class:`Tencentcloud::Cme.v20191029.models.MediaCastSourceInterruptInfo`
+        # @param DestinationInterruptInfo: 点播转直播输出断流信息，仅当 Status 取值 DestinationInterrupted 时有效。
+        # @type DestinationInterruptInfo: :class:`Tencentcloud::Cme.v20191029.models.MediaCastDestinationInterruptInfo`
+
+        attr_accessor :ProjectId, :Status, :SourceInterruptInfo, :DestinationInterruptInfo
+        
+        def initialize(projectid=nil, status=nil, sourceinterruptinfo=nil, destinationinterruptinfo=nil)
+          @ProjectId = projectid
+          @Status = status
+          @SourceInterruptInfo = sourceinterruptinfo
+          @DestinationInterruptInfo = destinationinterruptinfo
+        end
+
+        def deserialize(params)
+          @ProjectId = params['ProjectId']
+          @Status = params['Status']
+          unless params['SourceInterruptInfo'].nil?
+            @SourceInterruptInfo = MediaCastSourceInterruptInfo.new
+            @SourceInterruptInfo.deserialize(params['SourceInterruptInfo'])
+          end
+          unless params['DestinationInterruptInfo'].nil?
+            @DestinationInterruptInfo = MediaCastDestinationInterruptInfo.new
+            @DestinationInterruptInfo.deserialize(params['DestinationInterruptInfo'])
+          end
         end
       end
 

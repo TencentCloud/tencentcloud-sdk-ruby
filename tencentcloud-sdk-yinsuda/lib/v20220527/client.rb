@@ -53,6 +53,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 创建机器人，支持进入 RTC 房间，播放曲库歌曲。
+
+        # @param request: Request instance for CreateKTVRobot.
+        # @type request: :class:`Tencentcloud::yinsuda::V20220527::CreateKTVRobotRequest`
+        # @rtype: :class:`Tencentcloud::yinsuda::V20220527::CreateKTVRobotResponse`
+        def CreateKTVRobot(request)
+          body = send_request('CreateKTVRobot', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateKTVRobotResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 根据输入的规则匹配曲库中的歌曲。
 
         # @param request: Request instance for DescribeKTVMatchMusics.
@@ -125,6 +149,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 获取机器人列表，支持 Id、状态等过滤条件。
+
+        # @param request: Request instance for DescribeKTVRobots.
+        # @type request: :class:`Tencentcloud::yinsuda::V20220527::DescribeKTVRobotsRequest`
+        # @rtype: :class:`Tencentcloud::yinsuda::V20220527::DescribeKTVRobotsResponse`
+        def DescribeKTVRobots(request)
+          body = send_request('DescribeKTVRobots', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeKTVRobotsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 根据关键词获取联想词列表。
 
         # @param request: Request instance for DescribeKTVSuggestions.
@@ -149,6 +197,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 销毁机器人，机器人退出 RTC 房间。
+
+        # @param request: Request instance for DestroyKTVRobot.
+        # @type request: :class:`Tencentcloud::yinsuda::V20220527::DestroyKTVRobotRequest`
+        # @rtype: :class:`Tencentcloud::yinsuda::V20220527::DestroyKTVRobotResponse`
+        def DestroyKTVRobot(request)
+          body = send_request('DestroyKTVRobot', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DestroyKTVRobotResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 根据关键词搜索歌曲，返回相关歌曲列表。
 
         # @param request: Request instance for SearchKTVMusics.
@@ -159,6 +231,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = SearchKTVMusicsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 下发操作机器人指令，支持播放、暂停、恢复、歌单设置等操作指令，实现对机器人行为的控制。
+
+        # @param request: Request instance for SyncKTVRobotCommand.
+        # @type request: :class:`Tencentcloud::yinsuda::V20220527::SyncKTVRobotCommandRequest`
+        # @rtype: :class:`Tencentcloud::yinsuda::V20220527::SyncKTVRobotCommandResponse`
+        def SyncKTVRobotCommand(request)
+          body = send_request('SyncKTVRobotCommand', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = SyncKTVRobotCommandResponse.new
             model.deserialize(response['Response'])
             model
           else

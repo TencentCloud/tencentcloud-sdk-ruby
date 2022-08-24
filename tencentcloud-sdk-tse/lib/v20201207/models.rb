@@ -365,6 +365,50 @@ module TencentCloud
         end
       end
 
+      # 实例地域信息描述
+      class DescribeInstanceRegionInfo < TencentCloud::Common::AbstractModel
+        # @param EngineRegion: 引擎部署地域信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EngineRegion: String
+        # @param Replica: 引擎在该地域的副本数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Replica: Integer
+        # @param SpecId: 引擎在该地域的规格id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SpecId: String
+        # @param IntranetVpcInfos: 内网的网络信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IntranetVpcInfos: Array
+        # @param EnableClientInternet: 是否开公网
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EnableClientInternet: Boolean
+
+        attr_accessor :EngineRegion, :Replica, :SpecId, :IntranetVpcInfos, :EnableClientInternet
+        
+        def initialize(engineregion=nil, replica=nil, specid=nil, intranetvpcinfos=nil, enableclientinternet=nil)
+          @EngineRegion = engineregion
+          @Replica = replica
+          @SpecId = specid
+          @IntranetVpcInfos = intranetvpcinfos
+          @EnableClientInternet = enableclientinternet
+        end
+
+        def deserialize(params)
+          @EngineRegion = params['EngineRegion']
+          @Replica = params['Replica']
+          @SpecId = params['SpecId']
+          unless params['IntranetVpcInfos'].nil?
+            @IntranetVpcInfos = []
+            params['IntranetVpcInfos'].each do |i|
+              vpcinfo_tmp = VpcInfo.new
+              vpcinfo_tmp.deserialize(i)
+              @IntranetVpcInfos << vpcinfo_tmp
+            end
+          end
+          @EnableClientInternet = params['EnableClientInternet']
+        end
+      end
+
       # DescribeNacosReplicas请求参数结构体
       class DescribeNacosReplicasRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 引擎实例ID
@@ -1069,10 +1113,13 @@ module TencentCloud
         # @param IsolateTime: 隔离开始时间
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsolateTime: String
+        # @param RegionInfos: 实例地域相关的描述信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RegionInfos: Array
 
-        attr_accessor :InstanceId, :Name, :Edition, :Status, :SpecId, :Replica, :Type, :VpcId, :SubnetIds, :EnableStorage, :StorageType, :StorageCapacity, :Paymode, :EKSClusterID, :CreateTime, :EnvInfos, :EngineRegion, :EnableInternet, :VpcInfos, :ServiceGovernanceInfos, :Tags, :EnableConsoleInternet, :EnableConsoleIntranet, :ConfigInfoVisible, :ConsoleDefaultPwd, :TradeType, :AutoRenewFlag, :CurDeadline, :IsolateTime
+        attr_accessor :InstanceId, :Name, :Edition, :Status, :SpecId, :Replica, :Type, :VpcId, :SubnetIds, :EnableStorage, :StorageType, :StorageCapacity, :Paymode, :EKSClusterID, :CreateTime, :EnvInfos, :EngineRegion, :EnableInternet, :VpcInfos, :ServiceGovernanceInfos, :Tags, :EnableConsoleInternet, :EnableConsoleIntranet, :ConfigInfoVisible, :ConsoleDefaultPwd, :TradeType, :AutoRenewFlag, :CurDeadline, :IsolateTime, :RegionInfos
         
-        def initialize(instanceid=nil, name=nil, edition=nil, status=nil, specid=nil, replica=nil, type=nil, vpcid=nil, subnetids=nil, enablestorage=nil, storagetype=nil, storagecapacity=nil, paymode=nil, eksclusterid=nil, createtime=nil, envinfos=nil, engineregion=nil, enableinternet=nil, vpcinfos=nil, servicegovernanceinfos=nil, tags=nil, enableconsoleinternet=nil, enableconsoleintranet=nil, configinfovisible=nil, consoledefaultpwd=nil, tradetype=nil, autorenewflag=nil, curdeadline=nil, isolatetime=nil)
+        def initialize(instanceid=nil, name=nil, edition=nil, status=nil, specid=nil, replica=nil, type=nil, vpcid=nil, subnetids=nil, enablestorage=nil, storagetype=nil, storagecapacity=nil, paymode=nil, eksclusterid=nil, createtime=nil, envinfos=nil, engineregion=nil, enableinternet=nil, vpcinfos=nil, servicegovernanceinfos=nil, tags=nil, enableconsoleinternet=nil, enableconsoleintranet=nil, configinfovisible=nil, consoledefaultpwd=nil, tradetype=nil, autorenewflag=nil, curdeadline=nil, isolatetime=nil, regioninfos=nil)
           @InstanceId = instanceid
           @Name = name
           @Edition = edition
@@ -1102,6 +1149,7 @@ module TencentCloud
           @AutoRenewFlag = autorenewflag
           @CurDeadline = curdeadline
           @IsolateTime = isolatetime
+          @RegionInfos = regioninfos
         end
 
         def deserialize(params)
@@ -1162,6 +1210,14 @@ module TencentCloud
           @AutoRenewFlag = params['AutoRenewFlag']
           @CurDeadline = params['CurDeadline']
           @IsolateTime = params['IsolateTime']
+          unless params['RegionInfos'].nil?
+            @RegionInfos = []
+            params['RegionInfos'].each do |i|
+              describeinstanceregioninfo_tmp = DescribeInstanceRegionInfo.new
+              describeinstanceregioninfo_tmp.deserialize(i)
+              @RegionInfos << describeinstanceregioninfo_tmp
+            end
+          end
         end
       end
 

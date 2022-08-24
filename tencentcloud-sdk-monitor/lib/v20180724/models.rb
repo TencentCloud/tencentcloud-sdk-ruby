@@ -912,7 +912,7 @@ module TencentCloud
 
       # CleanGrafanaInstance请求参数结构体
       class CleanGrafanaInstanceRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例名
+        # @param InstanceId: 实例 ID
         # @type InstanceId: String
 
         attr_accessor :InstanceId
@@ -1505,7 +1505,7 @@ module TencentCloud
 
       # CreateGrafanaIntegration请求参数结构体
       class CreateGrafanaIntegrationRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例名
+        # @param InstanceId: 实例 ID
         # @type InstanceId: String
         # @param Kind: 类型
         # @type Kind: String
@@ -1545,7 +1545,7 @@ module TencentCloud
 
       # CreateGrafanaNotificationChannel请求参数结构体
       class CreateGrafanaNotificationChannelRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例名
+        # @param InstanceId: 实例 ID
         # @type InstanceId: String
         # @param ChannelName: 渠道名
         # @type ChannelName: String
@@ -3997,7 +3997,7 @@ module TencentCloud
 
       # DescribeDNSConfig请求参数结构体
       class DescribeDNSConfigRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例名
+        # @param InstanceId: 实例 ID
         # @type InstanceId: String
 
         attr_accessor :InstanceId
@@ -4095,7 +4095,7 @@ module TencentCloud
 
       # DescribeGrafanaConfig请求参数结构体
       class DescribeGrafanaConfigRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 无
+        # @param InstanceId: 实例 ID
         # @type InstanceId: String
 
         attr_accessor :InstanceId
@@ -4131,7 +4131,7 @@ module TencentCloud
 
       # DescribeGrafanaEnvironments请求参数结构体
       class DescribeGrafanaEnvironmentsRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例名
+        # @param InstanceId: 实例 ID
         # @type InstanceId: String
 
         attr_accessor :InstanceId
@@ -4252,7 +4252,7 @@ module TencentCloud
 
       # DescribeGrafanaIntegrations请求参数结构体
       class DescribeGrafanaIntegrationsRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例名
+        # @param InstanceId: 实例 ID
         # @type InstanceId: String
         # @param IntegrationId: 集成 ID
         # @type IntegrationId: String
@@ -4303,7 +4303,7 @@ module TencentCloud
 
       # DescribeGrafanaNotificationChannels请求参数结构体
       class DescribeGrafanaNotificationChannelsRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例名
+        # @param InstanceId: 实例 ID
         # @type InstanceId: String
         # @param Offset: 偏移量
         # @type Offset: Integer
@@ -4366,7 +4366,7 @@ module TencentCloud
 
       # DescribeGrafanaWhiteList请求参数结构体
       class DescribeGrafanaWhiteListRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例名
+        # @param InstanceId: 实例 ID
         # @type InstanceId: String
 
         attr_accessor :InstanceId
@@ -9797,7 +9797,7 @@ module TencentCloud
 
       # UpdateDNSConfig请求参数结构体
       class UpdateDNSConfigRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例名
+        # @param InstanceId: 实例 ID
         # @type InstanceId: String
         # @param NameServers: DNS 数组
         # @type NameServers: Array
@@ -9884,7 +9884,7 @@ module TencentCloud
 
       # UpdateGrafanaConfig请求参数结构体
       class UpdateGrafanaConfigRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 无
+        # @param InstanceId: 实例 ID
         # @type InstanceId: String
         # @param Config: JSON 编码后的字符串
         # @type Config: String
@@ -9920,7 +9920,7 @@ module TencentCloud
 
       # UpdateGrafanaEnvironments请求参数结构体
       class UpdateGrafanaEnvironmentsRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例名
+        # @param InstanceId: 实例 ID
         # @type InstanceId: String
         # @param Envs: 环境变量字符串
         # @type Envs: String
@@ -10002,7 +10002,7 @@ module TencentCloud
       class UpdateGrafanaNotificationChannelRequest < TencentCloud::Common::AbstractModel
         # @param ChannelId: 通道 ID
         # @type ChannelId: String
-        # @param InstanceId: 实例名
+        # @param InstanceId: 实例 ID
         # @type InstanceId: String
         # @param ChannelName: 渠道名
         # @type ChannelName: String
@@ -10390,7 +10390,7 @@ module TencentCloud
 
       # UpgradeGrafanaInstance请求参数结构体
       class UpgradeGrafanaInstanceRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例名
+        # @param InstanceId: 实例 ID
         # @type InstanceId: String
         # @param Alias: 版本别名
         # @type Alias: String

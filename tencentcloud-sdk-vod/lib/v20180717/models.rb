@@ -310,6 +310,11 @@ module TencentCloud
         # <li>FairPlay</li>
         # 如果取值为空字符串，代表不对视频做 DRM 保护。
         # @type DrmType: String
+        # @param DrmKeyProvider: DRM 的密钥提供商，取值范围：
+        # <li>SDMC：华曦达；</li>
+        # <li>VOD：云点播。</li>
+        # 默认值为 VOD 。
+        # @type DrmKeyProvider: String
         # @param StreamInfos: 自适应转码输入流参数信息，最多输入10路流。
         # @type StreamInfos: Array
         # @param DisableHigherVideoBitrate: 是否禁止视频低码率转高码率，取值范围：
@@ -325,15 +330,16 @@ module TencentCloud
         # @param UpdateTime: 模板最后修改时间，使用 [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#I)。
         # @type UpdateTime: String
 
-        attr_accessor :Definition, :Type, :Name, :Comment, :Format, :DrmType, :StreamInfos, :DisableHigherVideoBitrate, :DisableHigherVideoResolution, :CreateTime, :UpdateTime
+        attr_accessor :Definition, :Type, :Name, :Comment, :Format, :DrmType, :DrmKeyProvider, :StreamInfos, :DisableHigherVideoBitrate, :DisableHigherVideoResolution, :CreateTime, :UpdateTime
         
-        def initialize(definition=nil, type=nil, name=nil, comment=nil, format=nil, drmtype=nil, streaminfos=nil, disablehighervideobitrate=nil, disablehighervideoresolution=nil, createtime=nil, updatetime=nil)
+        def initialize(definition=nil, type=nil, name=nil, comment=nil, format=nil, drmtype=nil, drmkeyprovider=nil, streaminfos=nil, disablehighervideobitrate=nil, disablehighervideoresolution=nil, createtime=nil, updatetime=nil)
           @Definition = definition
           @Type = type
           @Name = name
           @Comment = comment
           @Format = format
           @DrmType = drmtype
+          @DrmKeyProvider = drmkeyprovider
           @StreamInfos = streaminfos
           @DisableHigherVideoBitrate = disablehighervideobitrate
           @DisableHigherVideoResolution = disablehighervideoresolution
@@ -348,6 +354,7 @@ module TencentCloud
           @Comment = params['Comment']
           @Format = params['Format']
           @DrmType = params['DrmType']
+          @DrmKeyProvider = params['DrmKeyProvider']
           unless params['StreamInfos'].nil?
             @StreamInfos = []
             params['StreamInfos'].each do |i|
@@ -1228,17 +1235,20 @@ module TencentCloud
         # @type SegmentSet: Array
         # @param SegmentSetFileUrl: 语音全文识别片段列表文件 URL。文件的内容为 JSON，数据结构与 SegmentSet 字段一致。 （文件不会永久存储，到达SegmentSetFileUrlExpireTime 时间点后文件将被删除）。
         # @type SegmentSetFileUrl: String
-        # @param SegmentSetFileUrlExpireTime: 语音全文识别片段列表文件 URL 失效时间，使用 [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#I)。。
+        # @param SegmentSetFileUrlExpireTime: 语音全文识别片段列表文件 URL 失效时间，使用 [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#I)。
         # @type SegmentSetFileUrlExpireTime: String
-        # @param SubtitleUrl: 字幕文件 Url。
+        # @param SubtitleSet: 生成的字幕列表，对应 [语音全文识别任务控制参数](https://cloud.tencent.com/document/api/266/31773#AsrFullTextConfigureInfo) SubtitleFormats。
+        # @type SubtitleSet: Array
+        # @param SubtitleUrl: 生成的字幕文件 Url，对应 [语音全文识别任务控制参数](https://cloud.tencent.com/document/api/266/31773#AsrFullTextConfigureInfo) SubtitleFormat。
         # @type SubtitleUrl: String
 
-        attr_accessor :SegmentSet, :SegmentSetFileUrl, :SegmentSetFileUrlExpireTime, :SubtitleUrl
+        attr_accessor :SegmentSet, :SegmentSetFileUrl, :SegmentSetFileUrlExpireTime, :SubtitleSet, :SubtitleUrl
         
-        def initialize(segmentset=nil, segmentsetfileurl=nil, segmentsetfileurlexpiretime=nil, subtitleurl=nil)
+        def initialize(segmentset=nil, segmentsetfileurl=nil, segmentsetfileurlexpiretime=nil, subtitleset=nil, subtitleurl=nil)
           @SegmentSet = segmentset
           @SegmentSetFileUrl = segmentsetfileurl
           @SegmentSetFileUrlExpireTime = segmentsetfileurlexpiretime
+          @SubtitleSet = subtitleset
           @SubtitleUrl = subtitleurl
         end
 
@@ -1253,7 +1263,37 @@ module TencentCloud
           end
           @SegmentSetFileUrl = params['SegmentSetFileUrl']
           @SegmentSetFileUrlExpireTime = params['SegmentSetFileUrlExpireTime']
+          unless params['SubtitleSet'].nil?
+            @SubtitleSet = []
+            params['SubtitleSet'].each do |i|
+              airecognitiontaskasrfulltextresultoutputsubtitleitem_tmp = AiRecognitionTaskAsrFullTextResultOutputSubtitleItem.new
+              airecognitiontaskasrfulltextresultoutputsubtitleitem_tmp.deserialize(i)
+              @SubtitleSet << airecognitiontaskasrfulltextresultoutputsubtitleitem_tmp
+            end
+          end
           @SubtitleUrl = params['SubtitleUrl']
+        end
+      end
+
+      # 字幕信息。
+      class AiRecognitionTaskAsrFullTextResultOutputSubtitleItem < TencentCloud::Common::AbstractModel
+        # @param Format: 字幕文件格式，取值范围：
+        # <li>vtt：WebVTT 字幕文件；</li>
+        # <li>srt：SRT 字幕文件。</li>
+        # @type Format: String
+        # @param Url: 字幕文件 Url。
+        # @type Url: String
+
+        attr_accessor :Format, :Url
+        
+        def initialize(format=nil, url=nil)
+          @Format = format
+          @Url = url
+        end
+
+        def deserialize(params)
+          @Format = params['Format']
+          @Url = params['Url']
         end
       end
 
@@ -3713,19 +3753,27 @@ module TencentCloud
         # <li>ON：开启智能语音全文识别任务；</li>
         # <li>OFF：关闭智能语音全文识别任务。</li>
         # @type Switch: String
+        # @param SubtitleFormats: 生成的字幕文件格式列表，不填或者填空数组表示不生成字幕文件，可选值：
+        # <li>vtt：生成 WebVTT 字幕文件；</li>
+        # <li>srt：生成 SRT 字幕文件。</li>
+        # @type SubtitleFormats: Array
         # @param SubtitleFormat: 生成的字幕文件格式，不填或者填空字符串表示不生成字幕文件，可选值：
-        # <li>vtt：生成 WebVTT 字幕文件。</li>
+        # <li>vtt：生成 WebVTT 字幕文件；</li>
+        # <li>srt：生成 SRT 字幕文件。</li>
+        # <font color='red'>注意：此字段已废弃，建议使用 SubtitleFormats。</font>
         # @type SubtitleFormat: String
 
-        attr_accessor :Switch, :SubtitleFormat
+        attr_accessor :Switch, :SubtitleFormats, :SubtitleFormat
         
-        def initialize(switch=nil, subtitleformat=nil)
+        def initialize(switch=nil, subtitleformats=nil, subtitleformat=nil)
           @Switch = switch
+          @SubtitleFormats = subtitleformats
           @SubtitleFormat = subtitleformat
         end
 
         def deserialize(params)
           @Switch = params['Switch']
+          @SubtitleFormats = params['SubtitleFormats']
           @SubtitleFormat = params['SubtitleFormat']
         end
       end
@@ -3736,19 +3784,28 @@ module TencentCloud
         # <li>ON：开启智能语音全文识别任务；</li>
         # <li>OFF：关闭智能语音全文识别任务。</li>
         # @type Switch: String
-        # @param SubtitleFormat: 生成的字幕文件格式，填空字符串表示不生成字幕文件，可选值：
-        # <li>vtt：生成 WebVTT 字幕文件。</li>
+        # @param SubtitleFormatsOperation: 字幕格式列表操作信息。
+        # @type SubtitleFormatsOperation: :class:`Tencentcloud::Vod.v20180717.models.SubtitleFormatsOperation`
+        # @param SubtitleFormat: 生成的字幕文件格式，<font color='red'>填空字符串</font>表示不生成字幕文件，可选值：
+        # <li>vtt：生成 WebVTT 字幕文件；</li>
+        # <li>srt：生成 SRT 字幕文件。</li>
+        # <font color='red'>注意：此字段已废弃，建议使用 SubtitleFormatsOperation。</font>
         # @type SubtitleFormat: String
 
-        attr_accessor :Switch, :SubtitleFormat
+        attr_accessor :Switch, :SubtitleFormatsOperation, :SubtitleFormat
         
-        def initialize(switch=nil, subtitleformat=nil)
+        def initialize(switch=nil, subtitleformatsoperation=nil, subtitleformat=nil)
           @Switch = switch
+          @SubtitleFormatsOperation = subtitleformatsoperation
           @SubtitleFormat = subtitleformat
         end
 
         def deserialize(params)
           @Switch = params['Switch']
+          unless params['SubtitleFormatsOperation'].nil?
+            @SubtitleFormatsOperation = SubtitleFormatsOperation.new
+            @SubtitleFormatsOperation.deserialize(params['SubtitleFormatsOperation'])
+          end
           @SubtitleFormat = params['SubtitleFormat']
         end
       end
@@ -5107,6 +5164,11 @@ module TencentCloud
         # <li>FairPlay</li>
         # 如果取值为空字符串，代表不对视频做 DRM 保护。
         # @type DrmType: String
+        # @param DrmKeyProvider: DRM 的密钥提供商，取值范围：
+        # <li>SDMC：华曦达；</li>
+        # <li>VOD：云点播。</li>
+        # 默认为 VOD 。
+        # @type DrmKeyProvider: String
         # @param DisableHigherVideoBitrate: 是否禁止视频低码率转高码率，取值范围：
         # <li>0：否，</li>
         # <li>1：是。</li>
@@ -5120,14 +5182,15 @@ module TencentCloud
         # @param Comment: 模板描述信息，长度限制：256 个字符。
         # @type Comment: String
 
-        attr_accessor :Format, :StreamInfos, :SubAppId, :Name, :DrmType, :DisableHigherVideoBitrate, :DisableHigherVideoResolution, :Comment
+        attr_accessor :Format, :StreamInfos, :SubAppId, :Name, :DrmType, :DrmKeyProvider, :DisableHigherVideoBitrate, :DisableHigherVideoResolution, :Comment
         
-        def initialize(format=nil, streaminfos=nil, subappid=nil, name=nil, drmtype=nil, disablehighervideobitrate=nil, disablehighervideoresolution=nil, comment=nil)
+        def initialize(format=nil, streaminfos=nil, subappid=nil, name=nil, drmtype=nil, drmkeyprovider=nil, disablehighervideobitrate=nil, disablehighervideoresolution=nil, comment=nil)
           @Format = format
           @StreamInfos = streaminfos
           @SubAppId = subappid
           @Name = name
           @DrmType = drmtype
+          @DrmKeyProvider = drmkeyprovider
           @DisableHigherVideoBitrate = disablehighervideobitrate
           @DisableHigherVideoResolution = disablehighervideoresolution
           @Comment = comment
@@ -5146,6 +5209,7 @@ module TencentCloud
           @SubAppId = params['SubAppId']
           @Name = params['Name']
           @DrmType = params['DrmType']
+          @DrmKeyProvider = params['DrmKeyProvider']
           @DisableHigherVideoBitrate = params['DisableHigherVideoBitrate']
           @DisableHigherVideoResolution = params['DisableHigherVideoResolution']
           @Comment = params['Comment']
@@ -9359,7 +9423,7 @@ module TencentCloud
         # <li>WechatMiniProgramPublish：微信小程序视频发布任务；</li>
         # <li>PullUpload：拉取上传媒体文件任务；</li>
         # <li>FastClipMedia：快速剪辑任务；</li>
-        # <li>ReduceMediaBitrate：降码率任务。</li>
+        # <li>RemoveWatermarkTask：智能去除水印任务。</li>
         # @type TaskType: String
         # @param Status: 任务状态，取值：
         # <li>WAITING：等待中；</li>
@@ -9408,12 +9472,15 @@ module TencentCloud
         # @param SnapshotByTimeOffsetTask: 视频指定时间点截图任务信息，仅当 TaskType 为 SnapshotByTimeOffset，该字段有值。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SnapshotByTimeOffsetTask: :class:`Tencentcloud::Vod.v20180717.models.SnapshotByTimeOffsetTask2017`
+        # @param RemoveWatermarkTask: 智能去除水印任务信息，仅当 TaskType 为 RemoveWatermark，该字段有值。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RemoveWatermarkTask: :class:`Tencentcloud::Vod.v20180717.models.RemoveWatermarkTask`
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :TaskType, :Status, :CreateTime, :BeginProcessTime, :FinishTime, :ProcedureTask, :EditMediaTask, :WechatPublishTask, :ComposeMediaTask, :SplitMediaTask, :WechatMiniProgramPublishTask, :PullUploadTask, :TranscodeTask, :ConcatTask, :ClipTask, :CreateImageSpriteTask, :SnapshotByTimeOffsetTask, :RequestId
+        attr_accessor :TaskType, :Status, :CreateTime, :BeginProcessTime, :FinishTime, :ProcedureTask, :EditMediaTask, :WechatPublishTask, :ComposeMediaTask, :SplitMediaTask, :WechatMiniProgramPublishTask, :PullUploadTask, :TranscodeTask, :ConcatTask, :ClipTask, :CreateImageSpriteTask, :SnapshotByTimeOffsetTask, :RemoveWatermarkTask, :RequestId
         
-        def initialize(tasktype=nil, status=nil, createtime=nil, beginprocesstime=nil, finishtime=nil, proceduretask=nil, editmediatask=nil, wechatpublishtask=nil, composemediatask=nil, splitmediatask=nil, wechatminiprogrampublishtask=nil, pulluploadtask=nil, transcodetask=nil, concattask=nil, cliptask=nil, createimagespritetask=nil, snapshotbytimeoffsettask=nil, requestid=nil)
+        def initialize(tasktype=nil, status=nil, createtime=nil, beginprocesstime=nil, finishtime=nil, proceduretask=nil, editmediatask=nil, wechatpublishtask=nil, composemediatask=nil, splitmediatask=nil, wechatminiprogrampublishtask=nil, pulluploadtask=nil, transcodetask=nil, concattask=nil, cliptask=nil, createimagespritetask=nil, snapshotbytimeoffsettask=nil, removewatermarktask=nil, requestid=nil)
           @TaskType = tasktype
           @Status = status
           @CreateTime = createtime
@@ -9431,6 +9498,7 @@ module TencentCloud
           @ClipTask = cliptask
           @CreateImageSpriteTask = createimagespritetask
           @SnapshotByTimeOffsetTask = snapshotbytimeoffsettask
+          @RemoveWatermarkTask = removewatermarktask
           @RequestId = requestid
         end
 
@@ -9487,6 +9555,10 @@ module TencentCloud
           unless params['SnapshotByTimeOffsetTask'].nil?
             @SnapshotByTimeOffsetTask = SnapshotByTimeOffsetTask2017.new
             @SnapshotByTimeOffsetTask.deserialize(params['SnapshotByTimeOffsetTask'])
+          end
+          unless params['RemoveWatermarkTask'].nil?
+            @RemoveWatermarkTask = RemoveWatermarkTask.new
+            @RemoveWatermarkTask.deserialize(params['RemoveWatermarkTask'])
           end
           @RequestId = params['RequestId']
         end
@@ -10459,13 +10531,16 @@ module TencentCloud
         # @param WechatMiniProgramPublishCompleteEvent: 微信小程序发布任务完成事件，当事件类型为 WechatMiniProgramPublishComplete 时有效。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type WechatMiniProgramPublishCompleteEvent: :class:`Tencentcloud::Vod.v20180717.models.WechatMiniProgramPublishTask`
+        # @param RemoveWatermarkCompleteEvent: 智能去除水印任务完成事件，当事件类型为 RemoveWatermark 有效。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RemoveWatermarkCompleteEvent: :class:`Tencentcloud::Vod.v20180717.models.RemoveWatermarkTask`
         # @param RestoreMediaCompleteEvent: 视频取回完成事件，当事件类型为RestoreMediaComplete 时有效。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RestoreMediaCompleteEvent: :class:`Tencentcloud::Vod.v20180717.models.RestoreMediaTask`
 
-        attr_accessor :EventHandle, :EventType, :FileUploadEvent, :ProcedureStateChangeEvent, :FileDeleteEvent, :PullCompleteEvent, :EditMediaCompleteEvent, :SplitMediaCompleteEvent, :ComposeMediaCompleteEvent, :ClipCompleteEvent, :TranscodeCompleteEvent, :CreateImageSpriteCompleteEvent, :ConcatCompleteEvent, :SnapshotByTimeOffsetCompleteEvent, :WechatPublishCompleteEvent, :WechatMiniProgramPublishCompleteEvent, :RestoreMediaCompleteEvent
+        attr_accessor :EventHandle, :EventType, :FileUploadEvent, :ProcedureStateChangeEvent, :FileDeleteEvent, :PullCompleteEvent, :EditMediaCompleteEvent, :SplitMediaCompleteEvent, :ComposeMediaCompleteEvent, :ClipCompleteEvent, :TranscodeCompleteEvent, :CreateImageSpriteCompleteEvent, :ConcatCompleteEvent, :SnapshotByTimeOffsetCompleteEvent, :WechatPublishCompleteEvent, :WechatMiniProgramPublishCompleteEvent, :RemoveWatermarkCompleteEvent, :RestoreMediaCompleteEvent
         
-        def initialize(eventhandle=nil, eventtype=nil, fileuploadevent=nil, procedurestatechangeevent=nil, filedeleteevent=nil, pullcompleteevent=nil, editmediacompleteevent=nil, splitmediacompleteevent=nil, composemediacompleteevent=nil, clipcompleteevent=nil, transcodecompleteevent=nil, createimagespritecompleteevent=nil, concatcompleteevent=nil, snapshotbytimeoffsetcompleteevent=nil, wechatpublishcompleteevent=nil, wechatminiprogrampublishcompleteevent=nil, restoremediacompleteevent=nil)
+        def initialize(eventhandle=nil, eventtype=nil, fileuploadevent=nil, procedurestatechangeevent=nil, filedeleteevent=nil, pullcompleteevent=nil, editmediacompleteevent=nil, splitmediacompleteevent=nil, composemediacompleteevent=nil, clipcompleteevent=nil, transcodecompleteevent=nil, createimagespritecompleteevent=nil, concatcompleteevent=nil, snapshotbytimeoffsetcompleteevent=nil, wechatpublishcompleteevent=nil, wechatminiprogrampublishcompleteevent=nil, removewatermarkcompleteevent=nil, restoremediacompleteevent=nil)
           @EventHandle = eventhandle
           @EventType = eventtype
           @FileUploadEvent = fileuploadevent
@@ -10482,6 +10557,7 @@ module TencentCloud
           @SnapshotByTimeOffsetCompleteEvent = snapshotbytimeoffsetcompleteevent
           @WechatPublishCompleteEvent = wechatpublishcompleteevent
           @WechatMiniProgramPublishCompleteEvent = wechatminiprogrampublishcompleteevent
+          @RemoveWatermarkCompleteEvent = removewatermarkcompleteevent
           @RestoreMediaCompleteEvent = restoremediacompleteevent
         end
 
@@ -10543,6 +10619,10 @@ module TencentCloud
           unless params['WechatMiniProgramPublishCompleteEvent'].nil?
             @WechatMiniProgramPublishCompleteEvent = WechatMiniProgramPublishTask.new
             @WechatMiniProgramPublishCompleteEvent.deserialize(params['WechatMiniProgramPublishCompleteEvent'])
+          end
+          unless params['RemoveWatermarkCompleteEvent'].nil?
+            @RemoveWatermarkCompleteEvent = RemoveWatermarkTask.new
+            @RemoveWatermarkCompleteEvent.deserialize(params['RemoveWatermarkCompleteEvent'])
           end
           unless params['RestoreMediaCompleteEvent'].nil?
             @RestoreMediaCompleteEvent = RestoreMediaTask.new
@@ -13379,17 +13459,25 @@ module TencentCloud
         # @type SourceType: String
         # @param SourceContext: 用户创建文件时透传的字段
         # @type SourceContext: String
+        # @param TrtcRecordInfo: TRTC 伴生录制信息。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TrtcRecordInfo: :class:`Tencentcloud::Vod.v20180717.models.TrtcRecordInfo`
 
-        attr_accessor :SourceType, :SourceContext
+        attr_accessor :SourceType, :SourceContext, :TrtcRecordInfo
         
-        def initialize(sourcetype=nil, sourcecontext=nil)
+        def initialize(sourcetype=nil, sourcecontext=nil, trtcrecordinfo=nil)
           @SourceType = sourcetype
           @SourceContext = sourcecontext
+          @TrtcRecordInfo = trtcrecordinfo
         end
 
         def deserialize(params)
           @SourceType = params['SourceType']
           @SourceContext = params['SourceContext']
+          unless params['TrtcRecordInfo'].nil?
+            @TrtcRecordInfo = TrtcRecordInfo.new
+            @TrtcRecordInfo.deserialize(params['TrtcRecordInfo'])
+          end
         end
       end
 
@@ -17431,6 +17519,45 @@ module TencentCloud
         end
       end
 
+      # 智能去除水印任务的输入。
+      class RemoveWaterMarkTaskInput < TencentCloud::Common::AbstractModel
+        # @param FileId: 媒体文件 ID。
+        # @type FileId: String
+
+        attr_accessor :FileId
+        
+        def initialize(fileid=nil)
+          @FileId = fileid
+        end
+
+        def deserialize(params)
+          @FileId = params['FileId']
+        end
+      end
+
+      # 智能去除水印任务的输出。
+      class RemoveWaterMarkTaskOutput < TencentCloud::Common::AbstractModel
+        # @param FileId: 视频 ID。
+        # @type FileId: String
+        # @param MetaData: 元信息。包括大小、时长、视频流信息、音频流信息等。
+        # @type MetaData: :class:`Tencentcloud::Vod.v20180717.models.MediaMetaData`
+
+        attr_accessor :FileId, :MetaData
+        
+        def initialize(fileid=nil, metadata=nil)
+          @FileId = fileid
+          @MetaData = metadata
+        end
+
+        def deserialize(params)
+          @FileId = params['FileId']
+          unless params['MetaData'].nil?
+            @MetaData = MediaMetaData.new
+            @MetaData.deserialize(params['MetaData'])
+          end
+        end
+      end
+
       # RemoveWatermark请求参数结构体
       class RemoveWatermarkRequest < TencentCloud::Common::AbstractModel
         # @param FileId: 媒体文件 ID 。
@@ -17484,6 +17611,67 @@ module TencentCloud
         def deserialize(params)
           @TaskId = params['TaskId']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 智能去除水印任务信息，仅当 TaskType 为 RemoveWatermark，该字段有值。
+      class RemoveWatermarkTask < TencentCloud::Common::AbstractModel
+        # @param TaskId: 任务 ID 。
+        # @type TaskId: String
+        # @param Status: 任务流状态，取值：
+        # <li>PROCESSING：处理中；</li>
+        # <li>FINISH：已完成。</li>
+        # @type Status: String
+        # @param ErrCodeExt: 错误码，空字符串表示成功，其他值表示失败，取值请参考 [视频处理类错误码](https://cloud.tencent.com/document/product/266/50368#.E8.A7.86.E9.A2.91.E5.A4.84.E7.90.86.E7.B1.BB.E9.94.99.E8.AF.AF.E7.A0.81) 列表。
+        # @type ErrCodeExt: String
+        # @param ErrCode: 错误码，0 表示成功，其他值表示失败：
+        # <li>40000：输入参数不合法，请检查输入参数；</li>
+        # <li>60000：源文件错误（如视频数据损坏），请确认源文件是否正常；</li>
+        # <li>70000：内部服务错误，建议重试。</li>
+        # @type ErrCode: Integer
+        # @param Message: 错误信息。
+        # @type Message: String
+        # @param Input: 智能去除水印任务的输入。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Input: :class:`Tencentcloud::Vod.v20180717.models.RemoveWaterMarkTaskInput`
+        # @param Output: 智能去除水印任务的输出。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Output: :class:`Tencentcloud::Vod.v20180717.models.RemoveWaterMarkTaskOutput`
+        # @param SessionId: 用于去重的识别码，如果七天内曾有过相同的识别码的请求，则本次的请求会返回错误。最长 50 个字符，不带或者带空字符串表示不做去重。
+        # @type SessionId: String
+        # @param SessionContext: 来源上下文，用于透传用户请求信息，任务流状态变更回调将返回该字段值，最长 1000 个字符。
+        # @type SessionContext: String
+
+        attr_accessor :TaskId, :Status, :ErrCodeExt, :ErrCode, :Message, :Input, :Output, :SessionId, :SessionContext
+        
+        def initialize(taskid=nil, status=nil, errcodeext=nil, errcode=nil, message=nil, input=nil, output=nil, sessionid=nil, sessioncontext=nil)
+          @TaskId = taskid
+          @Status = status
+          @ErrCodeExt = errcodeext
+          @ErrCode = errcode
+          @Message = message
+          @Input = input
+          @Output = output
+          @SessionId = sessionid
+          @SessionContext = sessioncontext
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @Status = params['Status']
+          @ErrCodeExt = params['ErrCodeExt']
+          @ErrCode = params['ErrCode']
+          @Message = params['Message']
+          unless params['Input'].nil?
+            @Input = RemoveWaterMarkTaskInput.new
+            @Input.deserialize(params['Input'])
+          end
+          unless params['Output'].nil?
+            @Output = RemoveWaterMarkTaskOutput.new
+            @Output.deserialize(params['Output'])
+          end
+          @SessionId = params['SessionId']
+          @SessionContext = params['SessionContext']
         end
       end
 
@@ -18883,6 +19071,31 @@ module TencentCloud
         end
       end
 
+      # 字幕格式列表操作。
+      class SubtitleFormatsOperation < TencentCloud::Common::AbstractModel
+        # @param Type: 操作类型，取值范围：
+        # <li>add：添加 Formats 指定的格式列表；</li>
+        # <li>delete：删除 Formats 指定的格式列表；<l/i>
+        # <li>reset：将已配置的格式列表重置为  Formats 指定的格式列表。</li>
+        # @type Type: String
+        # @param Formats: 字幕格式列表，取值范围：
+        # <li>vtt：生成 WebVTT 字幕文件；</li>
+        # <li>srt：生成 SRT 字幕文件。</li>
+        # @type Formats: Array
+
+        attr_accessor :Type, :Formats
+        
+        def initialize(type=nil, formats=nil)
+          @Type = type
+          @Formats = formats
+        end
+
+        def deserialize(params)
+          @Type = params['Type']
+          @Formats = params['Formats']
+        end
+      end
+
       # SVG水印模板输入参数
       class SvgWatermarkInput < TencentCloud::Common::AbstractModel
         # @param Width: 水印的宽度，支持 px，%，W%，H%，S%，L% 六种格式：
@@ -19894,6 +20107,34 @@ module TencentCloud
 
         def deserialize(params)
           @Type = params['Type']
+        end
+      end
+
+      # TRTC伴生录制信息。
+      class TrtcRecordInfo < TencentCloud::Common::AbstractModel
+        # @param SdkAppId: TRTC 应用 ID。
+        # @type SdkAppId: Integer
+        # @param RoomId: TRTC 房间 ID。
+        # @type RoomId: String
+        # @param TaskId: 录制任务 ID。
+        # @type TaskId: String
+        # @param UserIds: 参与录制的用户 ID 列表。
+        # @type UserIds: Array
+
+        attr_accessor :SdkAppId, :RoomId, :TaskId, :UserIds
+        
+        def initialize(sdkappid=nil, roomid=nil, taskid=nil, userids=nil)
+          @SdkAppId = sdkappid
+          @RoomId = roomid
+          @TaskId = taskid
+          @UserIds = userids
+        end
+
+        def deserialize(params)
+          @SdkAppId = params['SdkAppId']
+          @RoomId = params['RoomId']
+          @TaskId = params['TaskId']
+          @UserIds = params['UserIds']
         end
       end
 

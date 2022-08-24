@@ -142,7 +142,7 @@ module TencentCloud
 
       # CreateAppScanTaskRepeat请求参数结构体
       class CreateAppScanTaskRepeatRequest < TencentCloud::Common::AbstractModel
-        # @param Source: 任务来源, 0:小程序诊断, 1:预留字段(暂未使用), 2:app诊断(android);
+        # @param Source: 任务来源, 0:小程序诊断, 1:预留字段(暂未使用), 2:app诊断(android), 3:app漏洞扫描;
         # @type Source: Integer
         # @param Platform: 应用平台, 0:android, 1:ios, 2:小程序
         # @type Platform: Integer
@@ -220,7 +220,7 @@ module TencentCloud
       class CreateAppScanTaskRequest < TencentCloud::Common::AbstractModel
         # @param TaskType: 任务类型, 0:基础版, 1:专家版, 2:本地化
         # @type TaskType: Integer
-        # @param Source: 任务来源, 0:小程序诊断, 1:预留字段(暂未使用), 2:app诊断(android);
+        # @param Source: 任务来源, 0:小程序诊断, 1:预留字段(暂未使用), 2:app诊断(android), 3:app漏洞扫描;
         # @type Source: Integer
         # @param Platform: 应用平台, 0:android, 1:ios, 2:小程序
         # @type Platform: Integer
@@ -323,7 +323,7 @@ module TencentCloud
 
       # DescribeFileTicket请求参数结构体
       class DescribeFileTicketRequest < TencentCloud::Common::AbstractModel
-        # @param Source: 任务来源, 0:小程序诊断, 1:预留字段(暂未使用), 2:app诊断(android);
+        # @param Source: 任务来源, 0:小程序诊断, 1:预留字段(暂未使用), 2:app诊断(android), 3:app漏洞扫描;
         # @type Source: Integer
         # @param Platform: 应用平台, 0:android, 1:ios, 2:小程序
         # @type Platform: Integer
@@ -377,25 +377,29 @@ module TencentCloud
 
       # DescribeResourceUsageInfo请求参数结构体
       class DescribeResourceUsageInfoRequest < TencentCloud::Common::AbstractModel
-        # @param PriceName: 资源计费项名称(为空时，则根据TaskType和Platform进行查询)
+        # @param PriceName: 资源计费项名称(为空时，则根据Source，TaskType和Platform进行查询)
         # @type PriceName: String
         # @param TaskType: 任务类型, 0:基础版, 1:专家版
         # @type TaskType: Integer
         # @param Platform: 应用平台, 0:android
         # @type Platform: Integer
+        # @param Source: 任务来源, 0:小程序诊断, 1:预留字段(暂未使用), 2:app诊断(android), 3:app漏洞扫描;
+        # @type Source: Integer
 
-        attr_accessor :PriceName, :TaskType, :Platform
+        attr_accessor :PriceName, :TaskType, :Platform, :Source
         
-        def initialize(pricename=nil, tasktype=nil, platform=nil)
+        def initialize(pricename=nil, tasktype=nil, platform=nil, source=nil)
           @PriceName = pricename
           @TaskType = tasktype
           @Platform = platform
+          @Source = source
         end
 
         def deserialize(params)
           @PriceName = params['PriceName']
           @TaskType = params['TaskType']
           @Platform = params['Platform']
+          @Source = params['Source']
         end
       end
 
@@ -428,7 +432,7 @@ module TencentCloud
 
       # DescribeScanTaskList请求参数结构体
       class DescribeScanTaskListRequest < TencentCloud::Common::AbstractModel
-        # @param Source: 任务来源, -1:所有, 0:小程序诊断, 1:预留字段(暂未使用), 2:app诊断(android);
+        # @param Source: 任务来源, -1:所有, 0:小程序诊断, 1:预留字段(暂未使用), 2:app诊断(android), 3:app漏洞扫描;
         # @type Source: Integer
         # @param Platform: 应用平台, 0:android, 1:ios, 2:小程序
         # @type Platform: Integer
@@ -512,7 +516,7 @@ module TencentCloud
 
       # DescribeScanTaskReportUrl请求参数结构体
       class DescribeScanTaskReportUrlRequest < TencentCloud::Common::AbstractModel
-        # @param Source: 任务来源, 0:小程序诊断, 1:预留字段(暂未使用), 2:app诊断(android);
+        # @param Source: 任务来源, 0:小程序诊断, 1:预留字段(暂未使用), 2:app诊断(android), 3:app漏洞扫描;
         # @type Source: Integer
         # @param Platform: 应用平台, 0:android, 1:ios, 2:小程序
         # @type Platform: Integer
@@ -552,15 +556,19 @@ module TencentCloud
         # @param ReportTitle: 诊断报告/堆栈/报告json结果的名称
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ReportTitle: String
+        # @param ReportResult: 诊断json结果内容
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ReportResult: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Result, :ReportUrl, :ReportTitle, :RequestId
+        attr_accessor :Result, :ReportUrl, :ReportTitle, :ReportResult, :RequestId
         
-        def initialize(result=nil, reporturl=nil, reporttitle=nil, requestid=nil)
+        def initialize(result=nil, reporturl=nil, reporttitle=nil, reportresult=nil, requestid=nil)
           @Result = result
           @ReportUrl = reporturl
           @ReportTitle = reporttitle
+          @ReportResult = reportresult
           @RequestId = requestid
         end
 
@@ -568,13 +576,14 @@ module TencentCloud
           @Result = params['Result']
           @ReportUrl = params['ReportUrl']
           @ReportTitle = params['ReportTitle']
+          @ReportResult = params['ReportResult']
           @RequestId = params['RequestId']
         end
       end
 
       # DescribeScanTaskStatus请求参数结构体
       class DescribeScanTaskStatusRequest < TencentCloud::Common::AbstractModel
-        # @param Source: 任务来源, 0:小程序诊断, 1:预留字段(暂未使用), 2:app诊断(android);
+        # @param Source: 任务来源, 0:小程序诊断, 1:预留字段(暂未使用), 2:app诊断(android), 3:app漏洞扫描;
         # @type Source: Integer
         # @param Platform: 应用平台, 0:android, 1:ios, 2:小程序
         # @type Platform: Integer

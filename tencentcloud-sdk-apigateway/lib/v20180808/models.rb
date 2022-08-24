@@ -2144,6 +2144,33 @@ module TencentCloud
         end
       end
 
+      # CreateApiRsp  返回加TotalCount
+      class CreateApiRspSet < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 个数
+        # @type TotalCount: Integer
+        # @param ApiSet: 返回的数组
+        # @type ApiSet: Array
+
+        attr_accessor :TotalCount, :ApiSet
+        
+        def initialize(totalcount=nil, apiset=nil)
+          @TotalCount = totalcount
+          @ApiSet = apiset
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['ApiSet'].nil?
+            @ApiSet = []
+            params['ApiSet'].each do |i|
+              createapirsp_tmp = CreateApiRsp.new
+              createapirsp_tmp.deserialize(i)
+              @ApiSet << createapirsp_tmp
+            end
+          end
+        end
+      end
+
       # CreateIPStrategy请求参数结构体
       class CreateIPStrategyRequest < TencentCloud::Common::AbstractModel
         # @param ServiceId: 服务的唯一ID。
@@ -6021,6 +6048,57 @@ module TencentCloud
               @StrategySet << ipstrategy_tmp
             end
           end
+        end
+      end
+
+      # ImportOpenApi请求参数结构体
+      class ImportOpenApiRequest < TencentCloud::Common::AbstractModel
+        # @param ServiceId: API所在的服务唯一ID。
+        # @type ServiceId: String
+        # @param Content: openAPI正文内容。
+        # @type Content: String
+        # @param EncodeType: Content格式，只能是YAML或者JSON，默认是YAML。
+        # @type EncodeType: String
+        # @param ContentVersion: Content版本，默认是openAPI，目前只支持openAPI。
+        # @type ContentVersion: String
+
+        attr_accessor :ServiceId, :Content, :EncodeType, :ContentVersion
+        
+        def initialize(serviceid=nil, content=nil, encodetype=nil, contentversion=nil)
+          @ServiceId = serviceid
+          @Content = content
+          @EncodeType = encodetype
+          @ContentVersion = contentversion
+        end
+
+        def deserialize(params)
+          @ServiceId = params['ServiceId']
+          @Content = params['Content']
+          @EncodeType = params['EncodeType']
+          @ContentVersion = params['ContentVersion']
+        end
+      end
+
+      # ImportOpenApi返回参数结构体
+      class ImportOpenApiResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 导入OpenApi返回参数。
+        # @type Result: :class:`Tencentcloud::Apigateway.v20180808.models.CreateApiRspSet`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+        
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Result'].nil?
+            @Result = CreateApiRspSet.new
+            @Result.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
         end
       end
 

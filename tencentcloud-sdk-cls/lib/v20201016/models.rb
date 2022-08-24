@@ -1514,10 +1514,12 @@ module TencentCloud
         # @type Compress: :class:`Tencentcloud::Cls.v20201016.models.CompressInfo`
         # @param Content: 投递日志的内容格式配置
         # @type Content: :class:`Tencentcloud::Cls.v20201016.models.ContentInfo`
+        # @param FilenameMode: 投递文件命名配置，0：随机数命名，1：投递时间命名，默认0（随机数命名）
+        # @type FilenameMode: Integer
 
-        attr_accessor :TopicId, :Bucket, :Prefix, :ShipperName, :Interval, :MaxSize, :FilterRules, :Partition, :Compress, :Content
+        attr_accessor :TopicId, :Bucket, :Prefix, :ShipperName, :Interval, :MaxSize, :FilterRules, :Partition, :Compress, :Content, :FilenameMode
         
-        def initialize(topicid=nil, bucket=nil, prefix=nil, shippername=nil, interval=nil, maxsize=nil, filterrules=nil, partition=nil, compress=nil, content=nil)
+        def initialize(topicid=nil, bucket=nil, prefix=nil, shippername=nil, interval=nil, maxsize=nil, filterrules=nil, partition=nil, compress=nil, content=nil, filenamemode=nil)
           @TopicId = topicid
           @Bucket = bucket
           @Prefix = prefix
@@ -1528,6 +1530,7 @@ module TencentCloud
           @Partition = partition
           @Compress = compress
           @Content = content
+          @FilenameMode = filenamemode
         end
 
         def deserialize(params)
@@ -1554,6 +1557,7 @@ module TencentCloud
             @Content = ContentInfo.new
             @Content.deserialize(params['Content'])
           end
+          @FilenameMode = params['FilenameMode']
         end
       end
 
@@ -3681,7 +3685,7 @@ module TencentCloud
       class JsonInfo < TencentCloud::Common::AbstractModel
         # @param EnableTag: 启用标志
         # @type EnableTag: Boolean
-        # @param MetaFields: 元数据信息列表, 可选值为 __SOURCE__、__FILENAME__、__TIMESTAMP__。
+        # @param MetaFields: 元数据信息列表, 可选值为 __SOURCE__、__FILENAME__、__TIMESTAMP__、__HOSTNAME__。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MetaFields: Array
 
@@ -4689,10 +4693,12 @@ module TencentCloud
         # @type Compress: :class:`Tencentcloud::Cls.v20201016.models.CompressInfo`
         # @param Content: 投递日志的内容格式配置
         # @type Content: :class:`Tencentcloud::Cls.v20201016.models.ContentInfo`
+        # @param FilenameMode: 投递文件命名配置，0：随机数命名，1：投递时间命名，默认0（随机数命名）
+        # @type FilenameMode: Integer
 
-        attr_accessor :ShipperId, :Bucket, :Prefix, :Status, :ShipperName, :Interval, :MaxSize, :FilterRules, :Partition, :Compress, :Content
+        attr_accessor :ShipperId, :Bucket, :Prefix, :Status, :ShipperName, :Interval, :MaxSize, :FilterRules, :Partition, :Compress, :Content, :FilenameMode
         
-        def initialize(shipperid=nil, bucket=nil, prefix=nil, status=nil, shippername=nil, interval=nil, maxsize=nil, filterrules=nil, partition=nil, compress=nil, content=nil)
+        def initialize(shipperid=nil, bucket=nil, prefix=nil, status=nil, shippername=nil, interval=nil, maxsize=nil, filterrules=nil, partition=nil, compress=nil, content=nil, filenamemode=nil)
           @ShipperId = shipperid
           @Bucket = bucket
           @Prefix = prefix
@@ -4704,6 +4710,7 @@ module TencentCloud
           @Partition = partition
           @Compress = compress
           @Content = content
+          @FilenameMode = filenamemode
         end
 
         def deserialize(params)
@@ -4731,6 +4738,7 @@ module TencentCloud
             @Content = ContentInfo.new
             @Content.deserialize(params['Content'])
           end
+          @FilenameMode = params['FilenameMode']
         end
       end
 
