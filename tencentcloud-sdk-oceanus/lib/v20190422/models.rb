@@ -1522,6 +1522,38 @@ module TencentCloud
         end
       end
 
+      # DescribeTreeResources请求参数结构体
+      class DescribeTreeResourcesRequest < TencentCloud::Common::AbstractModel
+        # @param WorkSpaceId: 工作空间 SerialId
+        # @type WorkSpaceId: String
+
+        attr_accessor :WorkSpaceId
+        
+        def initialize(workspaceid=nil)
+          @WorkSpaceId = workspaceid
+        end
+
+        def deserialize(params)
+          @WorkSpaceId = params['WorkSpaceId']
+        end
+      end
+
+      # DescribeTreeResources返回参数结构体
+      class DescribeTreeResourcesResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 查询作业列表时的过滤器
       class Filter < TencentCloud::Common::AbstractModel
         # @param Name: 要过滤的字段

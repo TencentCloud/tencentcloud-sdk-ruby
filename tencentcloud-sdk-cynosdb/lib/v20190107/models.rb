@@ -109,6 +109,46 @@ module TencentCloud
         end
       end
 
+      # AddClusterSlaveZone请求参数结构体
+      class AddClusterSlaveZoneRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群ID
+        # @type ClusterId: String
+        # @param SlaveZone: 从可用区
+        # @type SlaveZone: String
+
+        attr_accessor :ClusterId, :SlaveZone
+        
+        def initialize(clusterid=nil, slavezone=nil)
+          @ClusterId = clusterid
+          @SlaveZone = slavezone
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @SlaveZone = params['SlaveZone']
+        end
+      end
+
+      # AddClusterSlaveZone返回参数结构体
+      class AddClusterSlaveZoneResponse < TencentCloud::Common::AbstractModel
+        # @param FlowId: 异步FlowId
+        # @type FlowId: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :FlowId, :RequestId
+        
+        def initialize(flowid=nil, requestid=nil)
+          @FlowId = flowid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @FlowId = params['FlowId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # AddInstances请求参数结构体
       class AddInstancesRequest < TencentCloud::Common::AbstractModel
         # @param ClusterId: 集群ID
@@ -2071,6 +2111,53 @@ module TencentCloud
         end
       end
 
+      # DescribeClusterParams请求参数结构体
+      class DescribeClusterParamsRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群ID
+        # @type ClusterId: String
+
+        attr_accessor :ClusterId
+        
+        def initialize(clusterid=nil)
+          @ClusterId = clusterid
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+        end
+      end
+
+      # DescribeClusterParams返回参数结构体
+      class DescribeClusterParamsResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 参数个数
+        # @type TotalCount: Integer
+        # @param Items: 实例参数列表
+        # @type Items: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :Items, :RequestId
+        
+        def initialize(totalcount=nil, items=nil, requestid=nil)
+          @TotalCount = totalcount
+          @Items = items
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['Items'].nil?
+            @Items = []
+            params['Items'].each do |i|
+              paraminfo_tmp = ParamInfo.new
+              paraminfo_tmp.deserialize(i)
+              @Items << paraminfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeClusters请求参数结构体
       class DescribeClustersRequest < TencentCloud::Common::AbstractModel
         # @param DbType: 引擎类型：目前支持“MYSQL”， “POSTGRESQL”
@@ -2645,24 +2732,35 @@ module TencentCloud
 
       # DescribeRollbackTimeRange返回参数结构体
       class DescribeRollbackTimeRangeResponse < TencentCloud::Common::AbstractModel
-        # @param TimeRangeStart: 有效回归时间范围开始时间点
+        # @param TimeRangeStart: 有效回归时间范围开始时间点（已废弃）
         # @type TimeRangeStart: String
-        # @param TimeRangeEnd: 有效回归时间范围结束时间点
+        # @param TimeRangeEnd: 有效回归时间范围结束时间点（已废弃）
         # @type TimeRangeEnd: String
+        # @param RollbackTimeRanges: 可回档时间范围
+        # @type RollbackTimeRanges: Array
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :TimeRangeStart, :TimeRangeEnd, :RequestId
+        attr_accessor :TimeRangeStart, :TimeRangeEnd, :RollbackTimeRanges, :RequestId
         
-        def initialize(timerangestart=nil, timerangeend=nil, requestid=nil)
+        def initialize(timerangestart=nil, timerangeend=nil, rollbacktimeranges=nil, requestid=nil)
           @TimeRangeStart = timerangestart
           @TimeRangeEnd = timerangeend
+          @RollbackTimeRanges = rollbacktimeranges
           @RequestId = requestid
         end
 
         def deserialize(params)
           @TimeRangeStart = params['TimeRangeStart']
           @TimeRangeEnd = params['TimeRangeEnd']
+          unless params['RollbackTimeRanges'].nil?
+            @RollbackTimeRanges = []
+            params['RollbackTimeRanges'].each do |i|
+              rollbacktimerange_tmp = RollbackTimeRange.new
+              rollbacktimerange_tmp.deserialize(i)
+              @RollbackTimeRanges << rollbacktimerange_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -3406,6 +3504,50 @@ module TencentCloud
         end
       end
 
+      # ModifyClusterSlaveZone请求参数结构体
+      class ModifyClusterSlaveZoneRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群Id
+        # @type ClusterId: String
+        # @param OldSlaveZone: 旧从可用区
+        # @type OldSlaveZone: String
+        # @param NewSlaveZone: 新从可用区
+        # @type NewSlaveZone: String
+
+        attr_accessor :ClusterId, :OldSlaveZone, :NewSlaveZone
+        
+        def initialize(clusterid=nil, oldslavezone=nil, newslavezone=nil)
+          @ClusterId = clusterid
+          @OldSlaveZone = oldslavezone
+          @NewSlaveZone = newslavezone
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @OldSlaveZone = params['OldSlaveZone']
+          @NewSlaveZone = params['NewSlaveZone']
+        end
+      end
+
+      # ModifyClusterSlaveZone返回参数结构体
+      class ModifyClusterSlaveZoneResponse < TencentCloud::Common::AbstractModel
+        # @param FlowId: 异步FlowId
+        # @type FlowId: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :FlowId, :RequestId
+        
+        def initialize(flowid=nil, requestid=nil)
+          @FlowId = flowid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @FlowId = params['FlowId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyDBInstanceSecurityGroups请求参数结构体
       class ModifyDBInstanceSecurityGroupsRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例组ID
@@ -3719,6 +3861,63 @@ module TencentCloud
         end
       end
 
+      # 参数信息
+      class ParamInfo < TencentCloud::Common::AbstractModel
+        # @param CurrentValue: 当前值
+        # @type CurrentValue: String
+        # @param Default: 默认值
+        # @type Default: String
+        # @param EnumValue: 参数为enum/string/bool时，可选值列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EnumValue: Array
+        # @param Max: 参数类型为float/integer时的最大值
+        # @type Max: String
+        # @param Min: 参数类型为float/integer时的最小值
+        # @type Min: String
+        # @param ParamName: 参数名称
+        # @type ParamName: String
+        # @param NeedReboot: 是否需要重启生效
+        # @type NeedReboot: Integer
+        # @param ParamType: 参数类型：integer/float/string/enum/bool
+        # @type ParamType: String
+        # @param MatchType: 匹配类型，multiVal, regex在参数类型是string时使用
+        # @type MatchType: String
+        # @param MatchValue: 匹配目标值，当multiVal时，各个key用;分割
+        # @type MatchValue: String
+        # @param Description: 参数描述
+        # @type Description: String
+
+        attr_accessor :CurrentValue, :Default, :EnumValue, :Max, :Min, :ParamName, :NeedReboot, :ParamType, :MatchType, :MatchValue, :Description
+        
+        def initialize(currentvalue=nil, default=nil, enumvalue=nil, max=nil, min=nil, paramname=nil, needreboot=nil, paramtype=nil, matchtype=nil, matchvalue=nil, description=nil)
+          @CurrentValue = currentvalue
+          @Default = default
+          @EnumValue = enumvalue
+          @Max = max
+          @Min = min
+          @ParamName = paramname
+          @NeedReboot = needreboot
+          @ParamType = paramtype
+          @MatchType = matchtype
+          @MatchValue = matchvalue
+          @Description = description
+        end
+
+        def deserialize(params)
+          @CurrentValue = params['CurrentValue']
+          @Default = params['Default']
+          @EnumValue = params['EnumValue']
+          @Max = params['Max']
+          @Min = params['Min']
+          @ParamName = params['ParamName']
+          @NeedReboot = params['NeedReboot']
+          @ParamType = params['ParamType']
+          @MatchType = params['MatchType']
+          @MatchValue = params['MatchValue']
+          @Description = params['Description']
+        end
+      end
+
       # 修改参数时，传入参数描述
       class ParamItem < TencentCloud::Common::AbstractModel
         # @param ParamName: 参数名称
@@ -3880,6 +4079,46 @@ module TencentCloud
           @Values = params['Values']
           @ExactMatch = params['ExactMatch']
           @Name = params['Name']
+        end
+      end
+
+      # RemoveClusterSlaveZone请求参数结构体
+      class RemoveClusterSlaveZoneRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群ID
+        # @type ClusterId: String
+        # @param SlaveZone: 从可用区
+        # @type SlaveZone: String
+
+        attr_accessor :ClusterId, :SlaveZone
+        
+        def initialize(clusterid=nil, slavezone=nil)
+          @ClusterId = clusterid
+          @SlaveZone = slavezone
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @SlaveZone = params['SlaveZone']
+        end
+      end
+
+      # RemoveClusterSlaveZone返回参数结构体
+      class RemoveClusterSlaveZoneResponse < TencentCloud::Common::AbstractModel
+        # @param FlowId: 异步FlowId
+        # @type FlowId: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :FlowId, :RequestId
+        
+        def initialize(flowid=nil, requestid=nil)
+          @FlowId = flowid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @FlowId = params['FlowId']
+          @RequestId = params['RequestId']
         end
       end
 
@@ -4114,6 +4353,26 @@ module TencentCloud
         end
       end
 
+      # 可回档的时间范围
+      class RollbackTimeRange < TencentCloud::Common::AbstractModel
+        # @param TimeRangeStart: 开始时间
+        # @type TimeRangeStart: String
+        # @param TimeRangeEnd: 结束时间
+        # @type TimeRangeEnd: String
+
+        attr_accessor :TimeRangeStart, :TimeRangeEnd
+        
+        def initialize(timerangestart=nil, timerangeend=nil)
+          @TimeRangeStart = timerangestart
+          @TimeRangeEnd = timerangeend
+        end
+
+        def deserialize(params)
+          @TimeRangeStart = params['TimeRangeStart']
+          @TimeRangeEnd = params['TimeRangeEnd']
+        end
+      end
+
       # 安全组详情
       class SecurityGroup < TencentCloud::Common::AbstractModel
         # @param ProjectId: 项目ID
@@ -4261,6 +4520,54 @@ module TencentCloud
           @RowsSent = params['RowsSent']
           @SqlTemplate = params['SqlTemplate']
           @SqlMd5 = params['SqlMd5']
+        end
+      end
+
+      # SwitchClusterZone请求参数结构体
+      class SwitchClusterZoneRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群Id
+        # @type ClusterId: String
+        # @param OldZone: 当前可用区
+        # @type OldZone: String
+        # @param NewZone: 要切换到的可用区
+        # @type NewZone: String
+        # @param IsInMaintainPeriod: 维护期间执行-yes,立即执行-no
+        # @type IsInMaintainPeriod: String
+
+        attr_accessor :ClusterId, :OldZone, :NewZone, :IsInMaintainPeriod
+        
+        def initialize(clusterid=nil, oldzone=nil, newzone=nil, isinmaintainperiod=nil)
+          @ClusterId = clusterid
+          @OldZone = oldzone
+          @NewZone = newzone
+          @IsInMaintainPeriod = isinmaintainperiod
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @OldZone = params['OldZone']
+          @NewZone = params['NewZone']
+          @IsInMaintainPeriod = params['IsInMaintainPeriod']
+        end
+      end
+
+      # SwitchClusterZone返回参数结构体
+      class SwitchClusterZoneResponse < TencentCloud::Common::AbstractModel
+        # @param FlowId: 异步FlowId
+        # @type FlowId: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :FlowId, :RequestId
+        
+        def initialize(flowid=nil, requestid=nil)
+          @FlowId = flowid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @FlowId = params['FlowId']
+          @RequestId = params['RequestId']
         end
       end
 

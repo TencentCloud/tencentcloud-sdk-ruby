@@ -2043,14 +2043,20 @@ module TencentCloud
         # @type Image: String
         # @param Server: Docker Hub 可以不填，但确保具有公网访问能力。或者是 Tencent Registry 服务地址“ccr.ccs.tencentyun.com”
         # @type Server: String
+        # @param MaxRetryCount: 拉取Docker镜像重试次数。默认值：0。
+        # @type MaxRetryCount: Integer
+        # @param DelayOnRetry: 拉取Docker镜像失败时延迟时间。单位：秒。
+        # @type DelayOnRetry: Integer
 
-        attr_accessor :User, :Password, :Image, :Server
+        attr_accessor :User, :Password, :Image, :Server, :MaxRetryCount, :DelayOnRetry
         
-        def initialize(user=nil, password=nil, image=nil, server=nil)
+        def initialize(user=nil, password=nil, image=nil, server=nil, maxretrycount=nil, delayonretry=nil)
           @User = user
           @Password = password
           @Image = image
           @Server = server
+          @MaxRetryCount = maxretrycount
+          @DelayOnRetry = delayonretry
         end
 
         def deserialize(params)
@@ -2058,6 +2064,8 @@ module TencentCloud
           @Password = params['Password']
           @Image = params['Image']
           @Server = params['Server']
+          @MaxRetryCount = params['MaxRetryCount']
+          @DelayOnRetry = params['DelayOnRetry']
         end
       end
 

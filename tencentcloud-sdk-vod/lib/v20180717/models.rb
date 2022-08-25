@@ -8127,6 +8127,46 @@ module TencentCloud
         end
       end
 
+      # DescribeDrmKeyProviderInfo请求参数结构体
+      class DescribeDrmKeyProviderInfoRequest < TencentCloud::Common::AbstractModel
+        # @param SubAppId: 点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。
+        # @type SubAppId: Integer
+
+        attr_accessor :SubAppId
+        
+        def initialize(subappid=nil)
+          @SubAppId = subappid
+        end
+
+        def deserialize(params)
+          @SubAppId = params['SubAppId']
+        end
+      end
+
+      # DescribeDrmKeyProviderInfo返回参数结构体
+      class DescribeDrmKeyProviderInfoResponse < TencentCloud::Common::AbstractModel
+        # @param SDMCInfo: 华曦达（SDMC）相关的 DRM 密钥提供商信息。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SDMCInfo: :class:`Tencentcloud::Vod.v20180717.models.SDMCDrmKeyProviderInfo`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :SDMCInfo, :RequestId
+        
+        def initialize(sdmcinfo=nil, requestid=nil)
+          @SDMCInfo = sdmcinfo
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['SDMCInfo'].nil?
+            @SDMCInfo = SDMCDrmKeyProviderInfo.new
+            @SDMCInfo.deserialize(params['SDMCInfo'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeEventConfig请求参数结构体
       class DescribeEventConfigRequest < TencentCloud::Common::AbstractModel
         # @param SubAppId: 点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。
@@ -17927,6 +17967,34 @@ module TencentCloud
         end
       end
 
+      # 华曦达（SDMC）相关的 DRM 密钥提供商信息。
+      class SDMCDrmKeyProviderInfo < TencentCloud::Common::AbstractModel
+        # @param Uid: 华曦达分配的用户 ID。最大长度为128个字符。
+        # @type Uid: String
+        # @param SecretId: 华曦达分配的用户密钥 ID。最大长度为128个字符。
+        # @type SecretId: String
+        # @param SecretKey: 华曦达分配的用户密钥内容。最大长度为128个字符。
+        # @type SecretKey: String
+        # @param FairPlayCertificateUrl: 华曦达分配的 FairPlay 证书地址。该地址需使用 HTTPS 协议，最大长度为1024个字符。
+        # @type FairPlayCertificateUrl: String
+
+        attr_accessor :Uid, :SecretId, :SecretKey, :FairPlayCertificateUrl
+        
+        def initialize(uid=nil, secretid=nil, secretkey=nil, fairplaycertificateurl=nil)
+          @Uid = uid
+          @SecretId = secretid
+          @SecretKey = secretkey
+          @FairPlayCertificateUrl = fairplaycertificateurl
+        end
+
+        def deserialize(params)
+          @Uid = params['Uid']
+          @SecretId = params['SecretId']
+          @SecretKey = params['SecretKey']
+          @FairPlayCertificateUrl = params['FairPlayCertificateUrl']
+        end
+      end
+
       # 对视频做采样截图任务输入参数类型
       class SampleSnapshotTaskInput < TencentCloud::Common::AbstractModel
         # @param Definition: 采样截图模板 ID。
@@ -18117,6 +18185,13 @@ module TencentCloud
         # <li> ARCHIVE：归档存储。</li>
         # <li> DEEP_ARCHIVE：深度归档存储。</li>
         # @type StorageClasses: Array
+        # @param TrtcSdkAppIds: TRTC 应用 ID 集合。匹配集合中的任意元素。
+        # <li>数组长度限制：10。</li>
+        # @type TrtcSdkAppIds: Array
+        # @param TrtcRoomIds: TRTC 房间 ID 集合。匹配集合中的任意元素。
+        # <li>单个房间 ID 长度限制：64个字符；</li>
+        # <li>数组长度限制：10。</li>
+        # @type TrtcRoomIds: Array
         # @param Text: （不推荐：应使用 Names、NamePrefixes 或 Descriptions 替代）
         # 搜索文本，模糊匹配媒体文件名称或描述信息，匹配项越多，匹配度越高，排序越优先。长度限制：64个字符。
         # @type Text: String
@@ -18142,9 +18217,9 @@ module TencentCloud
         # <li>格式按照 ISO 8601标准表示，详见 [ISO 日期格式说明](https://cloud.tencent.com/document/product/266/11732#I)。</li>
         # @type EndTime: String
 
-        attr_accessor :SubAppId, :FileIds, :Names, :NamePrefixes, :Descriptions, :ClassIds, :Tags, :Categories, :SourceTypes, :StreamIds, :Vids, :CreateTime, :ExpireTime, :Sort, :Offset, :Limit, :Filters, :StorageRegions, :StorageClasses, :Text, :SourceType, :StreamId, :Vid, :StartTime, :EndTime
+        attr_accessor :SubAppId, :FileIds, :Names, :NamePrefixes, :Descriptions, :ClassIds, :Tags, :Categories, :SourceTypes, :StreamIds, :Vids, :CreateTime, :ExpireTime, :Sort, :Offset, :Limit, :Filters, :StorageRegions, :StorageClasses, :TrtcSdkAppIds, :TrtcRoomIds, :Text, :SourceType, :StreamId, :Vid, :StartTime, :EndTime
         
-        def initialize(subappid=nil, fileids=nil, names=nil, nameprefixes=nil, descriptions=nil, classids=nil, tags=nil, categories=nil, sourcetypes=nil, streamids=nil, vids=nil, createtime=nil, expiretime=nil, sort=nil, offset=nil, limit=nil, filters=nil, storageregions=nil, storageclasses=nil, text=nil, sourcetype=nil, streamid=nil, vid=nil, starttime=nil, endtime=nil)
+        def initialize(subappid=nil, fileids=nil, names=nil, nameprefixes=nil, descriptions=nil, classids=nil, tags=nil, categories=nil, sourcetypes=nil, streamids=nil, vids=nil, createtime=nil, expiretime=nil, sort=nil, offset=nil, limit=nil, filters=nil, storageregions=nil, storageclasses=nil, trtcsdkappids=nil, trtcroomids=nil, text=nil, sourcetype=nil, streamid=nil, vid=nil, starttime=nil, endtime=nil)
           @SubAppId = subappid
           @FileIds = fileids
           @Names = names
@@ -18164,6 +18239,8 @@ module TencentCloud
           @Filters = filters
           @StorageRegions = storageregions
           @StorageClasses = storageclasses
+          @TrtcSdkAppIds = trtcsdkappids
+          @TrtcRoomIds = trtcroomids
           @Text = text
           @SourceType = sourcetype
           @StreamId = streamid
@@ -18201,6 +18278,8 @@ module TencentCloud
           @Filters = params['Filters']
           @StorageRegions = params['StorageRegions']
           @StorageClasses = params['StorageClasses']
+          @TrtcSdkAppIds = params['TrtcSdkAppIds']
+          @TrtcRoomIds = params['TrtcRoomIds']
           @Text = params['Text']
           @SourceType = params['SourceType']
           @StreamId = params['StreamId']
@@ -18275,6 +18354,45 @@ module TencentCloud
 
         def deserialize(params)
           @Switch = params['Switch']
+        end
+      end
+
+      # SetDrmKeyProviderInfo请求参数结构体
+      class SetDrmKeyProviderInfoRequest < TencentCloud::Common::AbstractModel
+        # @param SDMCInfo: 华曦达（SDMC）相关的 DRM 密钥提供商信息。
+        # @type SDMCInfo: :class:`Tencentcloud::Vod.v20180717.models.SDMCDrmKeyProviderInfo`
+        # @param SubAppId: <b>点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。</b>
+        # @type SubAppId: Integer
+
+        attr_accessor :SDMCInfo, :SubAppId
+        
+        def initialize(sdmcinfo=nil, subappid=nil)
+          @SDMCInfo = sdmcinfo
+          @SubAppId = subappid
+        end
+
+        def deserialize(params)
+          unless params['SDMCInfo'].nil?
+            @SDMCInfo = SDMCDrmKeyProviderInfo.new
+            @SDMCInfo.deserialize(params['SDMCInfo'])
+          end
+          @SubAppId = params['SubAppId']
+        end
+      end
+
+      # SetDrmKeyProviderInfo返回参数结构体
+      class SetDrmKeyProviderInfoResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
         end
       end
 

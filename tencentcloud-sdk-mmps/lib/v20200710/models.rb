@@ -973,15 +973,19 @@ module TencentCloud
         # @param ReportTitle: 诊断报告/堆栈名称
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ReportTitle: String
+        # @param ReportResult: 诊断json结果内容
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ReportResult: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Result, :ReportUrl, :ReportTitle, :RequestId
+        attr_accessor :Result, :ReportUrl, :ReportTitle, :ReportResult, :RequestId
         
-        def initialize(result=nil, reporturl=nil, reporttitle=nil, requestid=nil)
+        def initialize(result=nil, reporturl=nil, reporttitle=nil, reportresult=nil, requestid=nil)
           @Result = result
           @ReportUrl = reporturl
           @ReportTitle = reporttitle
+          @ReportResult = reportresult
           @RequestId = requestid
         end
 
@@ -989,6 +993,7 @@ module TencentCloud
           @Result = params['Result']
           @ReportUrl = params['ReportUrl']
           @ReportTitle = params['ReportTitle']
+          @ReportResult = params['ReportResult']
           @RequestId = params['RequestId']
         end
       end

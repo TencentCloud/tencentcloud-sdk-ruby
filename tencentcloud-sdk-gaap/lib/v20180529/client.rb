@@ -343,6 +343,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 用来创建统一域名
+
+        # @param request: Request instance for CreateGlobalDomain.
+        # @type request: :class:`Tencentcloud::gaap::V20180529::CreateGlobalDomainRequest`
+        # @rtype: :class:`Tencentcloud::gaap::V20180529::CreateGlobalDomainResponse`
+        def CreateGlobalDomain(request)
+          body = send_request('CreateGlobalDomain', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateGlobalDomainResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 创建域名解析记录
+
+        # @param request: Request instance for CreateGlobalDomainDns.
+        # @type request: :class:`Tencentcloud::gaap::V20180529::CreateGlobalDomainDnsRequest`
+        # @rtype: :class:`Tencentcloud::gaap::V20180529::CreateGlobalDomainDnsResponse`
+        def CreateGlobalDomainDns(request)
+          body = send_request('CreateGlobalDomainDns', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateGlobalDomainDnsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 该接口（CreateHTTPListener）用于在通道实例下创建HTTP协议类型的监听器。
 
         # @param request: Request instance for CreateHTTPListener.
@@ -665,6 +713,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteFirstLinkSessionResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除统一域名
+
+        # @param request: Request instance for DeleteGlobalDomain.
+        # @type request: :class:`Tencentcloud::gaap::V20180529::DeleteGlobalDomainRequest`
+        # @rtype: :class:`Tencentcloud::gaap::V20180529::DeleteGlobalDomainResponse`
+        def DeleteGlobalDomain(request)
+          body = send_request('DeleteGlobalDomain', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteGlobalDomainResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除域名的某条解析记录
+
+        # @param request: Request instance for DeleteGlobalDomainDns.
+        # @type request: :class:`Tencentcloud::gaap::V20180529::DeleteGlobalDomainDnsRequest`
+        # @rtype: :class:`Tencentcloud::gaap::V20180529::DeleteGlobalDomainDnsResponse`
+        def DeleteGlobalDomainDns(request)
+          body = send_request('DeleteGlobalDomainDns', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteGlobalDomainDnsResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1073,6 +1169,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeFirstLinkSessionResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询域名解析列表
+
+        # @param request: Request instance for DescribeGlobalDomainDns.
+        # @type request: :class:`Tencentcloud::gaap::V20180529::DescribeGlobalDomainDnsRequest`
+        # @rtype: :class:`Tencentcloud::gaap::V20180529::DescribeGlobalDomainDnsResponse`
+        def DescribeGlobalDomainDns(request)
+          body = send_request('DescribeGlobalDomainDns', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeGlobalDomainDnsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询域名列表
+
+        # @param request: Request instance for DescribeGlobalDomains.
+        # @type request: :class:`Tencentcloud::gaap::V20180529::DescribeGlobalDomainsRequest`
+        # @rtype: :class:`Tencentcloud::gaap::V20180529::DescribeGlobalDomainsResponse`
+        def DescribeGlobalDomains(request)
+          body = send_request('DescribeGlobalDomains', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeGlobalDomainsResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1735,6 +1879,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 暂停域名解析
+
+        # @param request: Request instance for DisableGlobalDomain.
+        # @type request: :class:`Tencentcloud::gaap::V20180529::DisableGlobalDomainRequest`
+        # @rtype: :class:`Tencentcloud::gaap::V20180529::DisableGlobalDomainResponse`
+        def DisableGlobalDomain(request)
+          body = send_request('DisableGlobalDomain', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DisableGlobalDomainResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 开启域名解析
+
+        # @param request: Request instance for EnableGlobalDomain.
+        # @type request: :class:`Tencentcloud::gaap::V20180529::EnableGlobalDomainRequest`
+        # @rtype: :class:`Tencentcloud::gaap::V20180529::EnableGlobalDomainResponse`
+        def EnableGlobalDomain(request)
+          body = send_request('EnableGlobalDomain', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = EnableGlobalDomainResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（InquiryPriceCreateProxy）用于创建加速通道询价。
 
         # @param request: Request instance for InquiryPriceCreateProxy.
@@ -1817,6 +2009,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyDomainResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改域名属性
+
+        # @param request: Request instance for ModifyGlobalDomainAttribute.
+        # @type request: :class:`Tencentcloud::gaap::V20180529::ModifyGlobalDomainAttributeRequest`
+        # @rtype: :class:`Tencentcloud::gaap::V20180529::ModifyGlobalDomainAttributeResponse`
+        def ModifyGlobalDomainAttribute(request)
+          body = send_request('ModifyGlobalDomainAttribute', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyGlobalDomainAttributeResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改域名解析记录
+
+        # @param request: Request instance for ModifyGlobalDomainDns.
+        # @type request: :class:`Tencentcloud::gaap::V20180529::ModifyGlobalDomainDnsRequest`
+        # @rtype: :class:`Tencentcloud::gaap::V20180529::ModifyGlobalDomainDnsResponse`
+        def ModifyGlobalDomainDns(request)
+          body = send_request('ModifyGlobalDomainDns', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyGlobalDomainDnsResponse.new
             model.deserialize(response['Response'])
             model
           else

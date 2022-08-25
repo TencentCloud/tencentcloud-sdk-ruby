@@ -53,6 +53,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 增加从可用区
+
+        # @param request: Request instance for AddClusterSlaveZone.
+        # @type request: :class:`Tencentcloud::cynosdb::V20190107::AddClusterSlaveZoneRequest`
+        # @rtype: :class:`Tencentcloud::cynosdb::V20190107::AddClusterSlaveZoneResponse`
+        def AddClusterSlaveZone(request)
+          body = send_request('AddClusterSlaveZone', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = AddClusterSlaveZoneResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（AddInstances）用于集群添加实例
 
         # @param request: Request instance for AddInstances.
@@ -399,6 +423,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeClusterParamLogsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口（DescribeClusterParams）用于查询集群参数
+
+        # @param request: Request instance for DescribeClusterParams.
+        # @type request: :class:`Tencentcloud::cynosdb::V20190107::DescribeClusterParamsRequest`
+        # @rtype: :class:`Tencentcloud::cynosdb::V20190107::DescribeClusterParamsResponse`
+        def DescribeClusterParams(request)
+          body = send_request('DescribeClusterParams', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeClusterParamsResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -989,6 +1037,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 修改从可用区
+
+        # @param request: Request instance for ModifyClusterSlaveZone.
+        # @type request: :class:`Tencentcloud::cynosdb::V20190107::ModifyClusterSlaveZoneRequest`
+        # @rtype: :class:`Tencentcloud::cynosdb::V20190107::ModifyClusterSlaveZoneResponse`
+        def ModifyClusterSlaveZone(request)
+          body = send_request('ModifyClusterSlaveZone', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyClusterSlaveZoneResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口(ModifyDBInstanceSecurityGroups)用于修改实例绑定的安全组。
 
         # @param request: Request instance for ModifyDBInstanceSecurityGroups.
@@ -1133,6 +1205,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 删除从可用区
+
+        # @param request: Request instance for RemoveClusterSlaveZone.
+        # @type request: :class:`Tencentcloud::cynosdb::V20190107::RemoveClusterSlaveZoneRequest`
+        # @rtype: :class:`Tencentcloud::cynosdb::V20190107::RemoveClusterSlaveZoneResponse`
+        def RemoveClusterSlaveZone(request)
+          body = send_request('RemoveClusterSlaveZone', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = RemoveClusterSlaveZoneResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 恢复serverless集群
 
         # @param request: Request instance for ResumeServerless.
@@ -1215,6 +1311,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = SetRenewFlagResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 切换到从可用区
+
+        # @param request: Request instance for SwitchClusterZone.
+        # @type request: :class:`Tencentcloud::cynosdb::V20190107::SwitchClusterZoneRequest`
+        # @rtype: :class:`Tencentcloud::cynosdb::V20190107::SwitchClusterZoneResponse`
+        def SwitchClusterZone(request)
+          body = send_request('SwitchClusterZone', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = SwitchClusterZoneResponse.new
             model.deserialize(response['Response'])
             model
           else

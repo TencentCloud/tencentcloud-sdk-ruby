@@ -636,10 +636,14 @@ module TencentCloud
         # @type MasterHostId: String
         # @param SlaveHostIds: 指定从节点uuid，不填随机分配
         # @type SlaveHostIds: Array
+        # @param RollbackInstanceId: 需要回档的源实例ID
+        # @type RollbackInstanceId: String
+        # @param RollbackTime: 回档时间
+        # @type RollbackTime: String
 
-        attr_accessor :GoodsNum, :ShardNum, :ShardMemory, :ShardStorage, :ClusterId, :Zone, :ProjectId, :Cpu, :VpcId, :SubnetId, :ShardMachine, :ShardNodeNum, :ShardNodeCpu, :ShardNodeMemory, :ShardNodeStorage, :DbVersionId, :SecurityGroupId, :DcnInstanceId, :DcnRegion, :InstanceName, :ResourceTags, :Ipv6Flag, :Pid, :InitParams, :MasterHostId, :SlaveHostIds
+        attr_accessor :GoodsNum, :ShardNum, :ShardMemory, :ShardStorage, :ClusterId, :Zone, :ProjectId, :Cpu, :VpcId, :SubnetId, :ShardMachine, :ShardNodeNum, :ShardNodeCpu, :ShardNodeMemory, :ShardNodeStorage, :DbVersionId, :SecurityGroupId, :DcnInstanceId, :DcnRegion, :InstanceName, :ResourceTags, :Ipv6Flag, :Pid, :InitParams, :MasterHostId, :SlaveHostIds, :RollbackInstanceId, :RollbackTime
         
-        def initialize(goodsnum=nil, shardnum=nil, shardmemory=nil, shardstorage=nil, clusterid=nil, zone=nil, projectid=nil, cpu=nil, vpcid=nil, subnetid=nil, shardmachine=nil, shardnodenum=nil, shardnodecpu=nil, shardnodememory=nil, shardnodestorage=nil, dbversionid=nil, securitygroupid=nil, dcninstanceid=nil, dcnregion=nil, instancename=nil, resourcetags=nil, ipv6flag=nil, pid=nil, initparams=nil, masterhostid=nil, slavehostids=nil)
+        def initialize(goodsnum=nil, shardnum=nil, shardmemory=nil, shardstorage=nil, clusterid=nil, zone=nil, projectid=nil, cpu=nil, vpcid=nil, subnetid=nil, shardmachine=nil, shardnodenum=nil, shardnodecpu=nil, shardnodememory=nil, shardnodestorage=nil, dbversionid=nil, securitygroupid=nil, dcninstanceid=nil, dcnregion=nil, instancename=nil, resourcetags=nil, ipv6flag=nil, pid=nil, initparams=nil, masterhostid=nil, slavehostids=nil, rollbackinstanceid=nil, rollbacktime=nil)
           @GoodsNum = goodsnum
           @ShardNum = shardnum
           @ShardMemory = shardmemory
@@ -666,6 +670,8 @@ module TencentCloud
           @InitParams = initparams
           @MasterHostId = masterhostid
           @SlaveHostIds = slavehostids
+          @RollbackInstanceId = rollbackinstanceid
+          @RollbackTime = rollbacktime
         end
 
         def deserialize(params)
@@ -705,6 +711,8 @@ module TencentCloud
           end
           @MasterHostId = params['MasterHostId']
           @SlaveHostIds = params['SlaveHostIds']
+          @RollbackInstanceId = params['RollbackInstanceId']
+          @RollbackTime = params['RollbackTime']
         end
       end
 

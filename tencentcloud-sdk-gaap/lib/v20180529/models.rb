@@ -1089,6 +1089,101 @@ module TencentCloud
         end
       end
 
+      # CreateGlobalDomainDns请求参数结构体
+      class CreateGlobalDomainDnsRequest < TencentCloud::Common::AbstractModel
+        # @param DomainId: 域名ID
+        # @type DomainId: String
+        # @param ProxyIdList: 通道ID列表
+        # @type ProxyIdList: Array
+        # @param NationCountryInnerCodes: 国家ID列表
+        # @type NationCountryInnerCodes: Array
+
+        attr_accessor :DomainId, :ProxyIdList, :NationCountryInnerCodes
+        
+        def initialize(domainid=nil, proxyidlist=nil, nationcountryinnercodes=nil)
+          @DomainId = domainid
+          @ProxyIdList = proxyidlist
+          @NationCountryInnerCodes = nationcountryinnercodes
+        end
+
+        def deserialize(params)
+          @DomainId = params['DomainId']
+          @ProxyIdList = params['ProxyIdList']
+          @NationCountryInnerCodes = params['NationCountryInnerCodes']
+        end
+      end
+
+      # CreateGlobalDomainDns返回参数结构体
+      class CreateGlobalDomainDnsResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateGlobalDomain请求参数结构体
+      class CreateGlobalDomainRequest < TencentCloud::Common::AbstractModel
+        # @param ProjectId: 域名所属项目ID
+        # @type ProjectId: Integer
+        # @param DefaultValue: 域名默认入口
+        # @type DefaultValue: String
+        # @param Alias: 别名
+        # @type Alias: String
+        # @param TagSet: 标签列表
+        # @type TagSet: Array
+
+        attr_accessor :ProjectId, :DefaultValue, :Alias, :TagSet
+        
+        def initialize(projectid=nil, defaultvalue=nil, _alias=nil, tagset=nil)
+          @ProjectId = projectid
+          @DefaultValue = defaultvalue
+          @Alias = _alias
+          @TagSet = tagset
+        end
+
+        def deserialize(params)
+          @ProjectId = params['ProjectId']
+          @DefaultValue = params['DefaultValue']
+          @Alias = params['Alias']
+          unless params['TagSet'].nil?
+            @TagSet = []
+            params['TagSet'].each do |i|
+              tagpair_tmp = TagPair.new
+              tagpair_tmp.deserialize(i)
+              @TagSet << tagpair_tmp
+            end
+          end
+        end
+      end
+
+      # CreateGlobalDomain返回参数结构体
+      class CreateGlobalDomainResponse < TencentCloud::Common::AbstractModel
+        # @param DomainId: 域名ID
+        # @type DomainId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :DomainId, :RequestId
+        
+        def initialize(domainid=nil, requestid=nil)
+          @DomainId = domainid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @DomainId = params['DomainId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateHTTPListener请求参数结构体
       class CreateHTTPListenerRequest < TencentCloud::Common::AbstractModel
         # @param ListenerName: 监听器名称
@@ -1935,6 +2030,70 @@ module TencentCloud
         end
       end
 
+      # DeleteGlobalDomainDns请求参数结构体
+      class DeleteGlobalDomainDnsRequest < TencentCloud::Common::AbstractModel
+        # @param DnsRecordId: 解析记录的ID
+        # @type DnsRecordId: Integer
+
+        attr_accessor :DnsRecordId
+        
+        def initialize(dnsrecordid=nil)
+          @DnsRecordId = dnsrecordid
+        end
+
+        def deserialize(params)
+          @DnsRecordId = params['DnsRecordId']
+        end
+      end
+
+      # DeleteGlobalDomainDns返回参数结构体
+      class DeleteGlobalDomainDnsResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteGlobalDomain请求参数结构体
+      class DeleteGlobalDomainRequest < TencentCloud::Common::AbstractModel
+        # @param DomainId: 域名ID
+        # @type DomainId: String
+
+        attr_accessor :DomainId
+        
+        def initialize(domainid=nil)
+          @DomainId = domainid
+        end
+
+        def deserialize(params)
+          @DomainId = params['DomainId']
+        end
+      end
+
+      # DeleteGlobalDomain返回参数结构体
+      class DeleteGlobalDomainResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DeleteListeners请求参数结构体
       class DeleteListenersRequest < TencentCloud::Common::AbstractModel
         # @param ListenerIds: 待删除的监听器ID列表
@@ -2670,6 +2829,127 @@ module TencentCloud
           @SuiteType = params['SuiteType']
           @SrcPublicIpv4 = params['SrcPublicIpv4']
           @DestIpv4 = params['DestIpv4']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeGlobalDomainDns请求参数结构体
+      class DescribeGlobalDomainDnsRequest < TencentCloud::Common::AbstractModel
+        # @param DomainId: 域名ID
+        # @type DomainId: String
+
+        attr_accessor :DomainId
+        
+        def initialize(domainid=nil)
+          @DomainId = domainid
+        end
+
+        def deserialize(params)
+          @DomainId = params['DomainId']
+        end
+      end
+
+      # DescribeGlobalDomainDns返回参数结构体
+      class DescribeGlobalDomainDnsResponse < TencentCloud::Common::AbstractModel
+        # @param GlobalDnsList: DNS解析记录详细信息列表
+        # @type GlobalDnsList: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :GlobalDnsList, :RequestId
+        
+        def initialize(globaldnslist=nil, requestid=nil)
+          @GlobalDnsList = globaldnslist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['GlobalDnsList'].nil?
+            @GlobalDnsList = []
+            params['GlobalDnsList'].each do |i|
+              globaldns_tmp = GlobalDns.new
+              globaldns_tmp.deserialize(i)
+              @GlobalDnsList << globaldns_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeGlobalDomains请求参数结构体
+      class DescribeGlobalDomainsRequest < TencentCloud::Common::AbstractModel
+        # @param ProjectId: 项目ID
+        # @type ProjectId: Integer
+        # @param Offset: 分页偏移量
+        # @type Offset: Integer
+        # @param Limit: 分页数量限制
+        # @type Limit: Integer
+        # @param Filters: 过滤条件
+        # @type Filters: Array
+        # @param TagSet: 标签列表，当存在该字段时，拉取对应标签下的资源列表。
+        # 最多支持5个标签，当存在两个或两个以上的标签时，满足其中任意一个标签时，域名会被拉取出来。
+        # @type TagSet: Array
+
+        attr_accessor :ProjectId, :Offset, :Limit, :Filters, :TagSet
+        
+        def initialize(projectid=nil, offset=nil, limit=nil, filters=nil, tagset=nil)
+          @ProjectId = projectid
+          @Offset = offset
+          @Limit = limit
+          @Filters = filters
+          @TagSet = tagset
+        end
+
+        def deserialize(params)
+          @ProjectId = params['ProjectId']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+          unless params['TagSet'].nil?
+            @TagSet = []
+            params['TagSet'].each do |i|
+              tagpair_tmp = TagPair.new
+              tagpair_tmp.deserialize(i)
+              @TagSet << tagpair_tmp
+            end
+          end
+        end
+      end
+
+      # DescribeGlobalDomains返回参数结构体
+      class DescribeGlobalDomainsResponse < TencentCloud::Common::AbstractModel
+        # @param Domains: 域名信息列表
+        # @type Domains: Array
+        # @param TotalCount: 总记录数
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Domains, :TotalCount, :RequestId
+        
+        def initialize(domains=nil, totalcount=nil, requestid=nil)
+          @Domains = domains
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Domains'].nil?
+            @Domains = []
+            params['Domains'].each do |i|
+              domain_tmp = Domain.new
+              domain_tmp.deserialize(i)
+              @Domains << domain_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
           @RequestId = params['RequestId']
         end
       end
@@ -4446,6 +4726,109 @@ module TencentCloud
         end
       end
 
+      # DisableGlobalDomain请求参数结构体
+      class DisableGlobalDomainRequest < TencentCloud::Common::AbstractModel
+        # @param DomainId: 域名ID
+        # @type DomainId: String
+
+        attr_accessor :DomainId
+        
+        def initialize(domainid=nil)
+          @DomainId = domainid
+        end
+
+        def deserialize(params)
+          @DomainId = params['DomainId']
+        end
+      end
+
+      # DisableGlobalDomain返回参数结构体
+      class DisableGlobalDomainResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 统一域名信息
+      class Domain < TencentCloud::Common::AbstractModel
+        # @param DomainId: 域名ID
+        # @type DomainId: String
+        # @param FullDomain: 完整域名记录
+        # @type FullDomain: String
+        # @param Alias: 别名
+        # @type Alias: String
+        # @param Type: 类型
+        # @type Type: String
+        # @param Status: 状态，1表示关闭，0表示开启，2表示关闭中，3表示开启中
+        # @type Status: Integer
+        # @param ProjectId: 所属项目
+        # @type ProjectId: Integer
+        # @param DefaultValue: 默认入口
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DefaultValue: String
+        # @param ProxyCount: 通道数量
+        # @type ProxyCount: Integer
+        # @param CreateTime: 创建时间，使用UNIX时间戳
+        # @type CreateTime: Integer
+        # @param UpdateTime: 更新时间，使用UNIX时间戳
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UpdateTime: Integer
+        # @param TagSet: 标签列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TagSet: Array
+        # @param BanStatus: 封禁解封状态：BANNED表示已封禁，RECOVER表示已解封或未封禁，BANNING表示封禁中，RECOVERING表示解封中，BAN_FAILED表示封禁失败，RECOVER_FAILED表示解封失败。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BanStatus: String
+
+        attr_accessor :DomainId, :FullDomain, :Alias, :Type, :Status, :ProjectId, :DefaultValue, :ProxyCount, :CreateTime, :UpdateTime, :TagSet, :BanStatus
+        
+        def initialize(domainid=nil, fulldomain=nil, _alias=nil, type=nil, status=nil, projectid=nil, defaultvalue=nil, proxycount=nil, createtime=nil, updatetime=nil, tagset=nil, banstatus=nil)
+          @DomainId = domainid
+          @FullDomain = fulldomain
+          @Alias = _alias
+          @Type = type
+          @Status = status
+          @ProjectId = projectid
+          @DefaultValue = defaultvalue
+          @ProxyCount = proxycount
+          @CreateTime = createtime
+          @UpdateTime = updatetime
+          @TagSet = tagset
+          @BanStatus = banstatus
+        end
+
+        def deserialize(params)
+          @DomainId = params['DomainId']
+          @FullDomain = params['FullDomain']
+          @Alias = params['Alias']
+          @Type = params['Type']
+          @Status = params['Status']
+          @ProjectId = params['ProjectId']
+          @DefaultValue = params['DefaultValue']
+          @ProxyCount = params['ProxyCount']
+          @CreateTime = params['CreateTime']
+          @UpdateTime = params['UpdateTime']
+          unless params['TagSet'].nil?
+            @TagSet = []
+            params['TagSet'].each do |i|
+              tagpair_tmp = TagPair.new
+              tagpair_tmp.deserialize(i)
+              @TagSet << tagpair_tmp
+            end
+          end
+          @BanStatus = params['BanStatus']
+        end
+      end
+
       # 域名解析就近访问配置详情
       class DomainAccessRegionDict < TencentCloud::Common::AbstractModel
         # @param NationCountryInnerList: 就近接入区域
@@ -4703,6 +5086,38 @@ module TencentCloud
         end
       end
 
+      # EnableGlobalDomain请求参数结构体
+      class EnableGlobalDomainRequest < TencentCloud::Common::AbstractModel
+        # @param DomainId: 域名ID
+        # @type DomainId: String
+
+        attr_accessor :DomainId
+        
+        def initialize(domainid=nil)
+          @DomainId = domainid
+        end
+
+        def deserialize(params)
+          @DomainId = params['DomainId']
+        end
+      end
+
+      # EnableGlobalDomain返回参数结构体
+      class EnableGlobalDomainResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 过滤条件
       class Filter < TencentCloud::Common::AbstractModel
         # @param Name: 过滤条件
@@ -4720,6 +5135,48 @@ module TencentCloud
         def deserialize(params)
           @Name = params['Name']
           @Values = params['Values']
+        end
+      end
+
+      # 统一域名解析的DNS记录
+      class GlobalDns < TencentCloud::Common::AbstractModel
+        # @param DnsRecordId: 解析记录ID
+        # @type DnsRecordId: Integer
+        # @param CountryAreaList: 域名就近接入地域信息列表
+        # @type CountryAreaList: Array
+        # @param AccessList: 域名解析对应的通道接入点信息列表
+        # @type AccessList: Array
+        # @param Status: 解析状态：1表示运行中，2表示创建中，3表示修改中，4表示删除中
+        # @type Status: Integer
+
+        attr_accessor :DnsRecordId, :CountryAreaList, :AccessList, :Status
+        
+        def initialize(dnsrecordid=nil, countryarealist=nil, accesslist=nil, status=nil)
+          @DnsRecordId = dnsrecordid
+          @CountryAreaList = countryarealist
+          @AccessList = accesslist
+          @Status = status
+        end
+
+        def deserialize(params)
+          @DnsRecordId = params['DnsRecordId']
+          unless params['CountryAreaList'].nil?
+            @CountryAreaList = []
+            params['CountryAreaList'].each do |i|
+              countryareamap_tmp = CountryAreaMap.new
+              countryareamap_tmp.deserialize(i)
+              @CountryAreaList << countryareamap_tmp
+            end
+          end
+          unless params['AccessList'].nil?
+            @AccessList = []
+            params['AccessList'].each do |i|
+              proxyaccessinfo_tmp = ProxyAccessInfo.new
+              proxyaccessinfo_tmp.deserialize(i)
+              @AccessList << proxyaccessinfo_tmp
+            end
+          end
+          @Status = params['Status']
         end
       end
 
@@ -5228,6 +5685,94 @@ module TencentCloud
 
       # ModifyDomain返回参数结构体
       class ModifyDomainResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyGlobalDomainAttribute请求参数结构体
+      class ModifyGlobalDomainAttributeRequest < TencentCloud::Common::AbstractModel
+        # @param DomainId: 域名ID
+        # @type DomainId: String
+        # @param ProjectId: 项目ID
+        # @type ProjectId: Integer
+        # @param Alias: 别名
+        # @type Alias: String
+        # @param DefaultValue: 默认入口
+        # @type DefaultValue: String
+
+        attr_accessor :DomainId, :ProjectId, :Alias, :DefaultValue
+        
+        def initialize(domainid=nil, projectid=nil, _alias=nil, defaultvalue=nil)
+          @DomainId = domainid
+          @ProjectId = projectid
+          @Alias = _alias
+          @DefaultValue = defaultvalue
+        end
+
+        def deserialize(params)
+          @DomainId = params['DomainId']
+          @ProjectId = params['ProjectId']
+          @Alias = params['Alias']
+          @DefaultValue = params['DefaultValue']
+        end
+      end
+
+      # ModifyGlobalDomainAttribute返回参数结构体
+      class ModifyGlobalDomainAttributeResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyGlobalDomainDns请求参数结构体
+      class ModifyGlobalDomainDnsRequest < TencentCloud::Common::AbstractModel
+        # @param DnsRecordId: 解析记录ID
+        # @type DnsRecordId: Integer
+        # @param DomainId: 域名ID
+        # @type DomainId: String
+        # @param NationCountryInnerCodes: 国家ID列表
+        # @type NationCountryInnerCodes: Array
+        # @param ProxyIdList: 通道ID列表
+        # @type ProxyIdList: Array
+
+        attr_accessor :DnsRecordId, :DomainId, :NationCountryInnerCodes, :ProxyIdList
+        
+        def initialize(dnsrecordid=nil, domainid=nil, nationcountryinnercodes=nil, proxyidlist=nil)
+          @DnsRecordId = dnsrecordid
+          @DomainId = domainid
+          @NationCountryInnerCodes = nationcountryinnercodes
+          @ProxyIdList = proxyidlist
+        end
+
+        def deserialize(params)
+          @DnsRecordId = params['DnsRecordId']
+          @DomainId = params['DomainId']
+          @NationCountryInnerCodes = params['NationCountryInnerCodes']
+          @ProxyIdList = params['ProxyIdList']
+        end
+      end
+
+      # ModifyGlobalDomainDns返回参数结构体
+      class ModifyGlobalDomainDnsResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -6075,6 +6620,55 @@ module TencentCloud
         def deserialize(params)
           @TaskId = params['TaskId']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 加速通道接入点详细信息(包含id、地域、ip等）
+      class ProxyAccessInfo < TencentCloud::Common::AbstractModel
+        # @param RegionId: 地域ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RegionId: String
+        # @param RegionName: 地域名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RegionName: String
+        # @param ProxyId: 通道ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProxyId: String
+        # @param Vip: 通道接入ip
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Vip: String
+        # @param VipList: 三网通道VIP列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VipList: Array
+        # @param SourceRegionIdcType: 接入点IDC类型。ec或dc
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SourceRegionIdcType: String
+
+        attr_accessor :RegionId, :RegionName, :ProxyId, :Vip, :VipList, :SourceRegionIdcType
+        
+        def initialize(regionid=nil, regionname=nil, proxyid=nil, vip=nil, viplist=nil, sourceregionidctype=nil)
+          @RegionId = regionid
+          @RegionName = regionname
+          @ProxyId = proxyid
+          @Vip = vip
+          @VipList = viplist
+          @SourceRegionIdcType = sourceregionidctype
+        end
+
+        def deserialize(params)
+          @RegionId = params['RegionId']
+          @RegionName = params['RegionName']
+          @ProxyId = params['ProxyId']
+          @Vip = params['Vip']
+          unless params['VipList'].nil?
+            @VipList = []
+            params['VipList'].each do |i|
+              ipdetail_tmp = IPDetail.new
+              ipdetail_tmp.deserialize(i)
+              @VipList << ipdetail_tmp
+            end
+          end
+          @SourceRegionIdcType = params['SourceRegionIdcType']
         end
       end
 
