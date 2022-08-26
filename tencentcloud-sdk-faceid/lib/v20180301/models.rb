@@ -1157,25 +1157,33 @@ module TencentCloud
 
       # 敏感数据加密
       class Encryption < TencentCloud::Common::AbstractModel
-        # @param CiphertextBlob: 有加密需求的用户，接入传入kms的CiphertextBlob，关于数据加密可查阅<a href="https://cloud.tencent.com/document/product/1007/47180">数据加密</a> 文档。
-        # @type CiphertextBlob: String
         # @param EncryptList: 在使用加密服务时，填入要被加密的字段。本接口中可填入加密后的一个或多个字段
         # @type EncryptList: Array
+        # @param CiphertextBlob: 有加密需求的用户，接入传入kms的CiphertextBlob，关于数据加密可查阅<a href="https://cloud.tencent.com/document/product/1007/47180">数据加密</a> 文档。
+        # @type CiphertextBlob: String
         # @param Iv: 有加密需求的用户，传入CBC加密的初始向量（客户自定义字符串，长度16字符）。
         # @type Iv: String
+        # @param Algorithm: 加密使用的算法（支持'AES-256-CBC'、'SM4-GCM'），不传默认为'AES-256-CBC'
+        # @type Algorithm: String
+        # @param TagList: SM4-GCM算法生成的消息摘要（校验消息完整性时使用）
+        # @type TagList: Array
 
-        attr_accessor :CiphertextBlob, :EncryptList, :Iv
+        attr_accessor :EncryptList, :CiphertextBlob, :Iv, :Algorithm, :TagList
         
-        def initialize(ciphertextblob=nil, encryptlist=nil, iv=nil)
-          @CiphertextBlob = ciphertextblob
+        def initialize(encryptlist=nil, ciphertextblob=nil, iv=nil, algorithm=nil, taglist=nil)
           @EncryptList = encryptlist
+          @CiphertextBlob = ciphertextblob
           @Iv = iv
+          @Algorithm = algorithm
+          @TagList = taglist
         end
 
         def deserialize(params)
-          @CiphertextBlob = params['CiphertextBlob']
           @EncryptList = params['EncryptList']
+          @CiphertextBlob = params['CiphertextBlob']
           @Iv = params['Iv']
+          @Algorithm = params['Algorithm']
+          @TagList = params['TagList']
         end
       end
 
@@ -1231,12 +1239,14 @@ module TencentCloud
         # @type IsCutIdCardImage: Boolean
         # @param IsNeedIdCardAvatar: 是否需要从身份证中抠出头像。默认为false。（InfoType需要包含2）
         # @type IsNeedIdCardAvatar: Boolean
-        # @param IsEncrypt: 是否需要对返回中的敏感信息进行加密。其中敏感信息包括：Response.Text.IdCard、Response.Text.Name、Response.Text.OcrIdCard、Response.Text.OcrName
+        # @param IsEncrypt: 已弃用。
         # @type IsEncrypt: Boolean
+        # @param Encryption: 是否需要对返回中的敏感信息进行加密。仅指定加密算法Algorithm即可，其余字段传入默认值。其中敏感信息包括：Response.Text.IdCard、Response.Text.Name、Response.Text.OcrIdCard、Response.Text.OcrName
+        # @type Encryption: :class:`Tencentcloud::Faceid.v20180301.models.Encryption`
 
-        attr_accessor :BizToken, :RuleId, :InfoType, :BestFramesCount, :IsCutIdCardImage, :IsNeedIdCardAvatar, :IsEncrypt
+        attr_accessor :BizToken, :RuleId, :InfoType, :BestFramesCount, :IsCutIdCardImage, :IsNeedIdCardAvatar, :IsEncrypt, :Encryption
         
-        def initialize(biztoken=nil, ruleid=nil, infotype=nil, bestframescount=nil, iscutidcardimage=nil, isneedidcardavatar=nil, isencrypt=nil)
+        def initialize(biztoken=nil, ruleid=nil, infotype=nil, bestframescount=nil, iscutidcardimage=nil, isneedidcardavatar=nil, isencrypt=nil, encryption=nil)
           @BizToken = biztoken
           @RuleId = ruleid
           @InfoType = infotype
@@ -1244,6 +1254,7 @@ module TencentCloud
           @IsCutIdCardImage = iscutidcardimage
           @IsNeedIdCardAvatar = isneedidcardavatar
           @IsEncrypt = isencrypt
+          @Encryption = encryption
         end
 
         def deserialize(params)
@@ -1254,6 +1265,10 @@ module TencentCloud
           @IsCutIdCardImage = params['IsCutIdCardImage']
           @IsNeedIdCardAvatar = params['IsNeedIdCardAvatar']
           @IsEncrypt = params['IsEncrypt']
+          unless params['Encryption'].nil?
+            @Encryption = Encryption.new
+            @Encryption.deserialize(params['Encryption'])
+          end
         end
       end
 

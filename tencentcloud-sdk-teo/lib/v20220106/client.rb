@@ -221,6 +221,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 为未购买套餐的站点购买套餐
+
+        # @param request: Request instance for CreatePlanForZone.
+        # @type request: :class:`Tencentcloud::teo::V20220106::CreatePlanForZoneRequest`
+        # @rtype: :class:`Tencentcloud::teo::V20220106::CreatePlanForZoneResponse`
+        def CreatePlanForZone(request)
+          body = send_request('CreatePlanForZone', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreatePlanForZoneResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 创建预热任务
 
         # @param request: Request instance for CreatePrefetchTask.
@@ -255,6 +279,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = CreatePurgeTaskResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 规则引擎创建规则。
+
+        # @param request: Request instance for CreateRule.
+        # @type request: :class:`Tencentcloud::teo::V20220106::CreateRuleRequest`
+        # @rtype: :class:`Tencentcloud::teo::V20220106::CreateRuleResponse`
+        def CreateRule(request)
+          body = send_request('CreateRule', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateRuleResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -413,6 +461,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 批量删除规则引擎规则。
+
+        # @param request: Request instance for DeleteRules.
+        # @type request: :class:`Tencentcloud::teo::V20220106::DeleteRulesRequest`
+        # @rtype: :class:`Tencentcloud::teo::V20220106::DeleteRulesResponse`
+        def DeleteRules(request)
+          body = send_request('DeleteRules', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteRulesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 删除站点
 
         # @param request: Request instance for DeleteZone.
@@ -471,6 +543,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeApplicationProxyDetailResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询当前账户可用套餐信息列表
+
+        # @param request: Request instance for DescribeAvailablePlans.
+        # @type request: :class:`Tencentcloud::teo::V20220106::DescribeAvailablePlansRequest`
+        # @rtype: :class:`Tencentcloud::teo::V20220106::DescribeAvailablePlansResponse`
+        def DescribeAvailablePlans(request)
+          body = send_request('DescribeAvailablePlans', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeAvailablePlansResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1047,6 +1143,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribePurgeTasksResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询规则引擎规则。
+
+        # @param request: Request instance for DescribeRules.
+        # @type request: :class:`Tencentcloud::teo::V20220106::DescribeRulesRequest`
+        # @rtype: :class:`Tencentcloud::teo::V20220106::DescribeRulesResponse`
+        def DescribeRules(request)
+          body = send_request('DescribeRules', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeRulesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 返回规则引擎可应用匹配请求的设置列表及其详细建议配置信息
+
+        # @param request: Request instance for DescribeRulesSetting.
+        # @type request: :class:`Tencentcloud::teo::V20220106::DescribeRulesSettingRequest`
+        # @rtype: :class:`Tencentcloud::teo::V20220106::DescribeRulesSettingResponse`
+        def DescribeRulesSetting(request)
+          body = send_request('DescribeRulesSetting', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeRulesSettingResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1959,6 +2103,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyOriginGroupResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改规则引擎规则。
+
+        # @param request: Request instance for ModifyRule.
+        # @type request: :class:`Tencentcloud::teo::V20220106::ModifyRuleRequest`
+        # @rtype: :class:`Tencentcloud::teo::V20220106::ModifyRuleResponse`
+        def ModifyRule(request)
+          body = send_request('ModifyRule', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyRuleResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改规则引擎规则优先级
+
+        # @param request: Request instance for ModifyRulePriority.
+        # @type request: :class:`Tencentcloud::teo::V20220106::ModifyRulePriorityRequest`
+        # @rtype: :class:`Tencentcloud::teo::V20220106::ModifyRulePriorityResponse`
+        def ModifyRulePriority(request)
+          body = send_request('ModifyRulePriority', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyRulePriorityResponse.new
             model.deserialize(response['Response'])
             model
           else

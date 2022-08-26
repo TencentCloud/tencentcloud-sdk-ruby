@@ -1737,6 +1737,58 @@ module TencentCloud
         end
       end
 
+      # CreatePlanForZone请求参数结构体
+      class CreatePlanForZoneRequest < TencentCloud::Common::AbstractModel
+        # @param ZoneId: 站点ID。
+        # @type ZoneId: String
+        # @param PlanType: 所要购买套餐的类型，取值有：
+        # <li> sta: 全球内容分发网络（不包括中国大陆）标准版套餐； </li>
+        # <li> sta_with_bot: 全球内容分发网络（不包括中国大陆）标准版套餐附带bot管理；</li>
+        # <li> sta_cm: 中国大陆内容分发网络标准版套餐； </li>
+        # <li> sta_cm_with_bot: 中国大陆内容分发网络标准版套餐附带bot管理；</li>
+        # <li> ent: 全球内容分发网络（不包括中国大陆）企业版套餐； </li>
+        # <li> ent_with_bot: 全球内容分发网络（不包括中国大陆）企业版套餐附带bot管理；</li>
+        # <li> ent_cm: 中国大陆内容分发网络企业版套餐； </li>
+        # <li> ent_cm_with_bot: 中国大陆内容分发网络企业版套餐附带bot管理。</li>当前账户可购买套餐类型请以<a href="https://tcloud4api.woa.com/document/product/1657/80124?!preview&!document=1">DescribeAvailablePlans</a>返回为准。
+        # @type PlanType: String
+
+        attr_accessor :ZoneId, :PlanType
+        
+        def initialize(zoneid=nil, plantype=nil)
+          @ZoneId = zoneid
+          @PlanType = plantype
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+          @PlanType = params['PlanType']
+        end
+      end
+
+      # CreatePlanForZone返回参数结构体
+      class CreatePlanForZoneResponse < TencentCloud::Common::AbstractModel
+        # @param ResourceNames: 购买的资源名字列表。
+        # @type ResourceNames: Array
+        # @param DealNames: 购买的订单号列表。
+        # @type DealNames: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ResourceNames, :DealNames, :RequestId
+        
+        def initialize(resourcenames=nil, dealnames=nil, requestid=nil)
+          @ResourceNames = resourcenames
+          @DealNames = dealnames
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ResourceNames = params['ResourceNames']
+          @DealNames = params['DealNames']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreatePrefetchTask请求参数结构体
       class CreatePrefetchTaskRequest < TencentCloud::Common::AbstractModel
         # @param ZoneId: Zone ID
@@ -1875,6 +1927,63 @@ module TencentCloud
               @FailedList << failreason_tmp
             end
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateRule请求参数结构体
+      class CreateRuleRequest < TencentCloud::Common::AbstractModel
+        # @param ZoneId: 站点 ID。
+        # @type ZoneId: String
+        # @param RuleName: 规则名称，名称字符串长度 1～255。
+        # @type RuleName: String
+        # @param Status: 规则状态，取值有：
+        # <li> enable: 启用； </li>
+        # <li> disable: 未启用。</li>
+        # @type Status: String
+        # @param Rules: 规则内容。
+        # @type Rules: Array
+
+        attr_accessor :ZoneId, :RuleName, :Status, :Rules
+        
+        def initialize(zoneid=nil, rulename=nil, status=nil, rules=nil)
+          @ZoneId = zoneid
+          @RuleName = rulename
+          @Status = status
+          @Rules = rules
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+          @RuleName = params['RuleName']
+          @Status = params['Status']
+          unless params['Rules'].nil?
+            @Rules = []
+            params['Rules'].each do |i|
+              ruleitem_tmp = RuleItem.new
+              ruleitem_tmp.deserialize(i)
+              @Rules << ruleitem_tmp
+            end
+          end
+        end
+      end
+
+      # CreateRule返回参数结构体
+      class CreateRuleResponse < TencentCloud::Common::AbstractModel
+        # @param RuleId: 规则 ID。
+        # @type RuleId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RuleId, :RequestId
+        
+        def initialize(ruleid=nil, requestid=nil)
+          @RuleId = ruleid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RuleId = params['RuleId']
           @RequestId = params['RequestId']
         end
       end
@@ -3121,6 +3230,42 @@ module TencentCloud
         end
       end
 
+      # DeleteRules请求参数结构体
+      class DeleteRulesRequest < TencentCloud::Common::AbstractModel
+        # @param ZoneId: 站点 ID。
+        # @type ZoneId: String
+        # @param RuleIds: 指定删除的规则 ID 列表。
+        # @type RuleIds: Array
+
+        attr_accessor :ZoneId, :RuleIds
+        
+        def initialize(zoneid=nil, ruleids=nil)
+          @ZoneId = zoneid
+          @RuleIds = ruleids
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+          @RuleIds = params['RuleIds']
+        end
+      end
+
+      # DeleteRules返回参数结构体
+      class DeleteRulesResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DeleteZone请求参数结构体
       class DeleteZoneRequest < TencentCloud::Common::AbstractModel
         # @param Id: 站点 ID
@@ -3358,6 +3503,45 @@ module TencentCloud
           @Quota = params['Quota']
           @IpCount = params['IpCount']
           @DomainCount = params['DomainCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeAvailablePlans请求参数结构体
+      class DescribeAvailablePlansRequest < TencentCloud::Common::AbstractModel
+
+        
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeAvailablePlans返回参数结构体
+      class DescribeAvailablePlansResponse < TencentCloud::Common::AbstractModel
+        # @param PlanInfoList: 当前账户可购买套餐类型及相关信息。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PlanInfoList: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :PlanInfoList, :RequestId
+        
+        def initialize(planinfolist=nil, requestid=nil)
+          @PlanInfoList = planinfolist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['PlanInfoList'].nil?
+            @PlanInfoList = []
+            params['PlanInfoList'].each do |i|
+              planinfo_tmp = PlanInfo.new
+              planinfo_tmp.deserialize(i)
+              @PlanInfoList << planinfo_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -5135,6 +5319,102 @@ module TencentCloud
               task_tmp = Task.new
               task_tmp.deserialize(i)
               @Tasks << task_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeRules请求参数结构体
+      class DescribeRulesRequest < TencentCloud::Common::AbstractModel
+        # @param ZoneId: 站点 ID。
+        # @type ZoneId: String
+        # @param Filters: 过滤参数，不填默认不过滤。
+        # @type Filters: Array
+
+        attr_accessor :ZoneId, :Filters
+        
+        def initialize(zoneid=nil, filters=nil)
+          @ZoneId = zoneid
+          @Filters = filters
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              rulefilter_tmp = RuleFilter.new
+              rulefilter_tmp.deserialize(i)
+              @Filters << rulefilter_tmp
+            end
+          end
+        end
+      end
+
+      # DescribeRules返回参数结构体
+      class DescribeRulesResponse < TencentCloud::Common::AbstractModel
+        # @param ZoneId: 站点 ID。
+        # @type ZoneId: String
+        # @param RuleList: 规则列表，按规则执行顺序从先往后排序。
+        # @type RuleList: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ZoneId, :RuleList, :RequestId
+        
+        def initialize(zoneid=nil, rulelist=nil, requestid=nil)
+          @ZoneId = zoneid
+          @RuleList = rulelist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+          unless params['RuleList'].nil?
+            @RuleList = []
+            params['RuleList'].each do |i|
+              rulesettingdetail_tmp = RuleSettingDetail.new
+              rulesettingdetail_tmp.deserialize(i)
+              @RuleList << rulesettingdetail_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeRulesSetting请求参数结构体
+      class DescribeRulesSettingRequest < TencentCloud::Common::AbstractModel
+
+        
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeRulesSetting返回参数结构体
+      class DescribeRulesSettingResponse < TencentCloud::Common::AbstractModel
+        # @param Actions: 规则引擎可应用匹配请求的设置列表及其详细建议配置信息。
+        # @type Actions: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Actions, :RequestId
+        
+        def initialize(actions=nil, requestid=nil)
+          @Actions = actions
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Actions'].nil?
+            @Actions = []
+            params['Actions'].each do |i|
+              rulessettingaction_tmp = RulesSettingAction.new
+              rulessettingaction_tmp.deserialize(i)
+              @Actions << rulessettingaction_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -8778,6 +9058,103 @@ module TencentCloud
         end
       end
 
+      # ModifyRulePriority请求参数结构体
+      class ModifyRulePriorityRequest < TencentCloud::Common::AbstractModel
+        # @param ZoneId: 站点 ID。
+        # @type ZoneId: String
+        # @param RuleIds: 规则 ID 的顺序，多条规则执行顺序依次往下。
+        # @type RuleIds: Array
+
+        attr_accessor :ZoneId, :RuleIds
+        
+        def initialize(zoneid=nil, ruleids=nil)
+          @ZoneId = zoneid
+          @RuleIds = ruleids
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+          @RuleIds = params['RuleIds']
+        end
+      end
+
+      # ModifyRulePriority返回参数结构体
+      class ModifyRulePriorityResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyRule请求参数结构体
+      class ModifyRuleRequest < TencentCloud::Common::AbstractModel
+        # @param ZoneId: 站点 ID。
+        # @type ZoneId: String
+        # @param RuleName: 规则名称，字符串名称长度 1~255。
+        # @type RuleName: String
+        # @param Rules: 规则内容。
+        # @type Rules: Array
+        # @param RuleId: 规则 ID。
+        # @type RuleId: String
+        # @param Status: 规则状态，取值有：
+        # <li> enable: 启用； </li>
+        # <li> disable: 未启用。</li>
+        # @type Status: String
+
+        attr_accessor :ZoneId, :RuleName, :Rules, :RuleId, :Status
+        
+        def initialize(zoneid=nil, rulename=nil, rules=nil, ruleid=nil, status=nil)
+          @ZoneId = zoneid
+          @RuleName = rulename
+          @Rules = rules
+          @RuleId = ruleid
+          @Status = status
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+          @RuleName = params['RuleName']
+          unless params['Rules'].nil?
+            @Rules = []
+            params['Rules'].each do |i|
+              ruleitem_tmp = RuleItem.new
+              ruleitem_tmp.deserialize(i)
+              @Rules << ruleitem_tmp
+            end
+          end
+          @RuleId = params['RuleId']
+          @Status = params['Status']
+        end
+      end
+
+      # ModifyRule返回参数结构体
+      class ModifyRuleResponse < TencentCloud::Common::AbstractModel
+        # @param RuleId: 规则 ID。
+        # @type RuleId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RuleId, :RequestId
+        
+        def initialize(ruleid=nil, requestid=nil)
+          @RuleId = ruleid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RuleId = params['RuleId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifySecurityPolicy请求参数结构体
       class ModifySecurityPolicyRequest < TencentCloud::Common::AbstractModel
         # @param ZoneId: 一级域名
@@ -9445,6 +9822,61 @@ module TencentCloud
         end
       end
 
+      # edgeone套餐信息
+      class PlanInfo < TencentCloud::Common::AbstractModel
+        # @param Currency: 结算货币类型，取值有：
+        # <li> CNY ：人民币结算； </li>
+        # <li> USD ：美元结算。</li>
+        # @type Currency: String
+        # @param Flux: 套餐所含流量（单位：字节）
+        # @type Flux: Integer
+        # @param Frequency: 结算周期，取值有：
+        # <li> y ：按年结算； </li>
+        # <li> m ：按月结算；</li>
+        # <li> h ：按小时结算； </li>
+        # <li> M ：按分钟结算；</li>
+        # <li> s ：按秒结算。 </li>
+        # @type Frequency: String
+        # @param PlanType: 套餐类型，取值有：
+        # <li> sta ：全球内容分发网络（不包括中国大陆）标准版套餐； </li>
+        # <li> sta_with_bot ：全球内容分发网络（不包括中国大陆）标准版套餐附带bot管理；</li>
+        # <li> sta_cm ：中国大陆内容分发网络标准版套餐； </li>
+        # <li> sta_cm_with_bot ：中国大陆内容分发网络标准版套餐附带bot管理；</li>
+        # <li> ent ：全球内容分发网络（不包括中国大陆）企业版套餐； </li>
+        # <li> ent_with_bot ： 全球内容分发网络（不包括中国大陆）企业版套餐附带bot管理；</li>
+        # <li> ent_cm ：中国大陆内容分发网络企业版套餐； </li>
+        # <li> ent_cm_with_bot ：中国大陆内容分发网络企业版套餐附带bot管理。</li>
+        # @type PlanType: String
+        # @param Price: 套餐价格（单位：分）
+        # @type Price: Float
+        # @param Request: 套餐所含请求次数（单位：字节）
+        # @type Request: Integer
+        # @param SiteNumber: 套餐所能绑定的站点个数。
+        # @type SiteNumber: Integer
+
+        attr_accessor :Currency, :Flux, :Frequency, :PlanType, :Price, :Request, :SiteNumber
+        
+        def initialize(currency=nil, flux=nil, frequency=nil, plantype=nil, price=nil, request=nil, sitenumber=nil)
+          @Currency = currency
+          @Flux = flux
+          @Frequency = frequency
+          @PlanType = plantype
+          @Price = price
+          @Request = request
+          @SiteNumber = sitenumber
+        end
+
+        def deserialize(params)
+          @Currency = params['Currency']
+          @Flux = params['Flux']
+          @Frequency = params['Frequency']
+          @PlanType = params['PlanType']
+          @Price = params['Price']
+          @Request = params['Request']
+          @SiteNumber = params['SiteNumber']
+        end
+      end
+
       # 用户画像规则详情
       class PortraitManagedRuleDetail < TencentCloud::Common::AbstractModel
         # @param RuleId: 规则唯一id
@@ -9880,6 +10312,583 @@ module TencentCloud
           @AutoRenewFlag = params['AutoRenewFlag']
           @PlanId = params['PlanId']
           @Area = params['Area']
+        end
+      end
+
+      # 规则引擎功能项操作，对于一种功能只对应下面三种类型的其中一种，RuleAction 数组中的每一项只能是其中一个类型，更多功能项的填写规范可调用接口 [查询规则引擎的设置参数](https://tcloud4api.woa.com/document/product/1657/79433?!preview&!document=1) 查看。
+      class RuleAction < TencentCloud::Common::AbstractModel
+        # @param NormalAction: 常规功能操作，选择该类型的功能项有：
+        # <li> 访问URL 重写（AccessUrlRedirect）；</li>
+        # <li> 回源 URL 重写 （UpstreamUrlRedirect）；</li>
+        # <li> QUIC（QUIC）；</li>
+        # <li> WebSocket （WebSocket）；</li>
+        # <li> 视频拖拽（VideoSeek）；</li>
+        # <li> Token 鉴权（Authentication）；</li>
+        # <li> 自定义CacheKey（CacheKey）；</li>
+        # <li> 节点缓存 TTL （Cache）；</li>
+        # <li> 浏览器缓存 TTL（MaxAge）；</li>
+        # <li> 离线缓存（OfflineCache）；</li>
+        # <li> 智能加速（SmartRouting）；</li>
+        # <li> 分片回源（RangeOriginPull）；</li>
+        # <li> HTTP/2 回源（UpstreamHttp2）；</li>
+        # <li> Host Header 重写（HostHeader）；</li>
+        # <li> 强制 HTTPS（ForceRedirect）；</li>
+        # <li> 回源 HTTPS（OriginPullProtocol）；</li>
+        # <li> 缓存预刷新（CachePrefresh）；</li>
+        # <li> 智能压缩（Compression）；</li>
+        # <li> Hsts；</li>
+        # <li> ClientIpHeader；</li>
+        # <li> TlsVersion；</li>
+        # <li> OcspStapling。</li>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NormalAction: :class:`Tencentcloud::Teo.v20220106.models.RuleNormalAction`
+        # @param RewriteAction: 带有请求头/响应头的功能操作，选择该类型的功能项有：
+        # <li> 修改 HTTP 请求头（RequestHeader）；</li>
+        # <li> 修改HTTP响应头（ResponseHeader）。</li>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RewriteAction: :class:`Tencentcloud::Teo.v20220106.models.RuleRewriteAction`
+        # @param CodeAction: 带有状态码的功能操作，选择该类型的功能项有：
+        # <li> 自定义错误页面（ErrorPage）；</li>
+        # <li> 状态码缓存 TTL（StatusCodeCache）。</li>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CodeAction: :class:`Tencentcloud::Teo.v20220106.models.RuleCodeAction`
+
+        attr_accessor :NormalAction, :RewriteAction, :CodeAction
+        
+        def initialize(normalaction=nil, rewriteaction=nil, codeaction=nil)
+          @NormalAction = normalaction
+          @RewriteAction = rewriteaction
+          @CodeAction = codeaction
+        end
+
+        def deserialize(params)
+          unless params['NormalAction'].nil?
+            @NormalAction = RuleNormalAction.new
+            @NormalAction.deserialize(params['NormalAction'])
+          end
+          unless params['RewriteAction'].nil?
+            @RewriteAction = RuleRewriteAction.new
+            @RewriteAction.deserialize(params['RewriteAction'])
+          end
+          unless params['CodeAction'].nil?
+            @CodeAction = RuleCodeAction.new
+            @CodeAction.deserialize(params['CodeAction'])
+          end
+        end
+      end
+
+      # 规则引擎条件且关系条件列表
+      class RuleAndConditions < TencentCloud::Common::AbstractModel
+        # @param Conditions: 规则引擎条件，该数组内所有项全部满足即判断该条件满足。
+        # @type Conditions: Array
+
+        attr_accessor :Conditions
+        
+        def initialize(conditions=nil)
+          @Conditions = conditions
+        end
+
+        def deserialize(params)
+          unless params['Conditions'].nil?
+            @Conditions = []
+            params['Conditions'].each do |i|
+              rulecondition_tmp = RuleCondition.new
+              rulecondition_tmp.deserialize(i)
+              @Conditions << rulecondition_tmp
+            end
+          end
+        end
+      end
+
+      # 规则引擎可应用于匹配请求的设置详细信息，可选参数配置项
+      class RuleChoicePropertiesItem < TencentCloud::Common::AbstractModel
+        # @param Name: 参数名称。
+        # @type Name: String
+        # @param Type: 参数值类型。
+        # <li> CHOICE：参数值只能在 ChoicesValue 中选择； </li>
+        # <li> TOGGLE：参数值为开关类型，可在 ChoicesValue 中选择；</li>
+        # <li> CUSTOM_NUM：参数值用户自定义，整型类型；</li>
+        # <li> CUSTOM_STRING：参数值用户自定义，字符串类型。</li>
+        # @type Type: String
+        # @param ChoicesValue: 参数值的可选值。
+        # 注意：若参数值为用户自定义则该数组为空数组。
+        # @type ChoicesValue: Array
+        # @param Min: 数值参数的最小值，非数值参数或 Min 和 Max 值都为 0 则此项无意义。
+        # @type Min: Integer
+        # @param Max: 数值参数的最大值，非数值参数或 Min 和 Max 值都为 0 则此项无意义。
+        # @type Max: Integer
+        # @param IsMultiple: 参数值是否支持多选或者填写多个。
+        # @type IsMultiple: Boolean
+        # @param IsAllowEmpty: 是否允许为空。
+        # @type IsAllowEmpty: Boolean
+        # @param ExtraParameter: 特殊参数。
+        # <li> 为 NULL：RuleAction 选择 NormalAction；</li>
+        # <li> 成员参数 Id 为 Action：RuleAction 选择 RewirteAction；</li>
+        # <li> 成员参数 Id 为 StatusCode：RuleAction 选择 CodeAction。</li>
+        # @type ExtraParameter: :class:`Tencentcloud::Teo.v20220106.models.RuleExtraParameter`
+
+        attr_accessor :Name, :Type, :ChoicesValue, :Min, :Max, :IsMultiple, :IsAllowEmpty, :ExtraParameter
+        
+        def initialize(name=nil, type=nil, choicesvalue=nil, min=nil, max=nil, ismultiple=nil, isallowempty=nil, extraparameter=nil)
+          @Name = name
+          @Type = type
+          @ChoicesValue = choicesvalue
+          @Min = min
+          @Max = max
+          @IsMultiple = ismultiple
+          @IsAllowEmpty = isallowempty
+          @ExtraParameter = extraparameter
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Type = params['Type']
+          @ChoicesValue = params['ChoicesValue']
+          @Min = params['Min']
+          @Max = params['Max']
+          @IsMultiple = params['IsMultiple']
+          @IsAllowEmpty = params['IsAllowEmpty']
+          unless params['ExtraParameter'].nil?
+            @ExtraParameter = RuleExtraParameter.new
+            @ExtraParameter.deserialize(params['ExtraParameter'])
+          end
+        end
+      end
+
+      # 规则引擎带有状态码的动作
+      class RuleCodeAction < TencentCloud::Common::AbstractModel
+        # @param Action: 功能名称，功能名称填写规范可调用接口 [查询规则引擎的设置参数](https://tcloud4api.woa.com/document/product/1657/79433?!preview&!document=1) 查看。
+        # @type Action: String
+        # @param Parameters: 操作参数。
+        # @type Parameters: Array
+
+        attr_accessor :Action, :Parameters
+        
+        def initialize(action=nil, parameters=nil)
+          @Action = action
+          @Parameters = parameters
+        end
+
+        def deserialize(params)
+          @Action = params['Action']
+          unless params['Parameters'].nil?
+            @Parameters = []
+            params['Parameters'].each do |i|
+              rulecodeactionparams_tmp = RuleCodeActionParams.new
+              rulecodeactionparams_tmp.deserialize(i)
+              @Parameters << rulecodeactionparams_tmp
+            end
+          end
+        end
+      end
+
+      # 规则引擎条件使用StatusCode字段动作参数
+      class RuleCodeActionParams < TencentCloud::Common::AbstractModel
+        # @param StatusCode: 状态 Code。
+        # @type StatusCode: Integer
+        # @param Name: 参数名称，参数填写规范可调用接口 [查询规则引擎的设置参数](https://tcloud4api.woa.com/document/product/1657/79433?!preview&!document=1) 查看。
+        # @type Name: String
+        # @param Values: 参数值。
+        # @type Values: Array
+
+        attr_accessor :StatusCode, :Name, :Values
+        
+        def initialize(statuscode=nil, name=nil, values=nil)
+          @StatusCode = statuscode
+          @Name = name
+          @Values = values
+        end
+
+        def deserialize(params)
+          @StatusCode = params['StatusCode']
+          @Name = params['Name']
+          @Values = params['Values']
+        end
+      end
+
+      # 规则引擎条件参数
+      class RuleCondition < TencentCloud::Common::AbstractModel
+        # @param Operator: 运算符，取值有：
+        # <li> equal: 等于； </li>
+        # <li> notequal: 不等于。</li>
+        # @type Operator: String
+        # @param Target: 匹配类型，取值有：
+        # <li> 全部（站点任意请求）: host。 </li>
+        # <li> 文件名: filename； </li>
+        # <li> 文件后缀: extension； </li>
+        # <li> HOST: host； </li>
+        # <li> URL Full: full_url，当前站点下完整 URL 路径，必须包含 HTTP 协议，Host 和 路径； </li>
+        # <li> URL Path: url，当前站点下 URL 路径的请求。 </li>
+        # @type Target: String
+        # @param Values: 对应匹配类型的参数值，对应匹配类型的取值有：
+        # <li> 文件后缀：jpg、txt等文件后缀；</li>
+        # <li> 文件名称：例如 foo.jpg 中的 foo；</li>
+        # <li> 全部（站点任意请求）： all； </li>
+        # <li> HOST：当前站点下的 host ，例如www.maxx55.com；</li>
+        # <li> URL Path：当前站点下 URL 路径的请求，例如：/example；</li>
+        # <li> URL Full：当前站点下完整 URL 请求，必须包含 HTTP 协议，Host 和 路径，例如：https://www.maxx55.cn/example。</li>
+        # @type Values: Array
+
+        attr_accessor :Operator, :Target, :Values
+        
+        def initialize(operator=nil, target=nil, values=nil)
+          @Operator = operator
+          @Target = target
+          @Values = values
+        end
+
+        def deserialize(params)
+          @Operator = params['Operator']
+          @Target = params['Target']
+          @Values = params['Values']
+        end
+      end
+
+      # 规则引擎参数详情信息，特殊参数类型。
+      class RuleExtraParameter < TencentCloud::Common::AbstractModel
+        # @param Id: 参数名，取值有：
+        # <li> Action：修改 HTTP 头部所需参数，RuleAction 选择 RewirteAction；</li>
+        # <li> StatusCode：状态码相关功能所需参数，RuleAction 选择 CodeAction。</li>
+        # @type Id: String
+        # @param Type: 参数值类型。
+        # <li> CHOICE：参数值只能在 Values 中选择； </li>
+        # <li> CUSTOM_NUM：参数值用户自定义，整型类型；</li>
+        # <li> CUSTOM_STRING：参数值用户自定义，字符串类型。</li>
+        # @type Type: String
+        # @param Choices: 可选参数值。
+        # 注意：当 Id 的值为 StatusCode 时数组中的值为整型，填写参数值时请填写字符串的整型数值。
+        # @type Choices: String
+
+        attr_accessor :Id, :Type, :Choices
+        
+        def initialize(id=nil, type=nil, choices=nil)
+          @Id = id
+          @Type = type
+          @Choices = choices
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @Type = params['Type']
+          @Choices = params['Choices']
+        end
+      end
+
+      # 规则查询 Filter
+      class RuleFilter < TencentCloud::Common::AbstractModel
+        # @param Name: 过滤参数，取值有：
+        # <li> RULE_ID：规则 ID。 </li>
+        # @type Name: String
+        # @param Values: 参数值。
+        # @type Values: Array
+
+        attr_accessor :Name, :Values
+        
+        def initialize(name=nil, values=nil)
+          @Name = name
+          @Values = values
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Values = params['Values']
+        end
+      end
+
+      # 规则引擎规则项，Conditions 数组内多个项的关系为 或，内层 Conditions 列表内多个项的关系为 且。
+      class RuleItem < TencentCloud::Common::AbstractModel
+        # @param Conditions: 执行功能判断条件。
+        # 注意：满足该数组内任意一项条件，功能即可执行。
+        # @type Conditions: Array
+        # @param Actions: 执行的功能。
+        # @type Actions: Array
+
+        attr_accessor :Conditions, :Actions
+        
+        def initialize(conditions=nil, actions=nil)
+          @Conditions = conditions
+          @Actions = actions
+        end
+
+        def deserialize(params)
+          unless params['Conditions'].nil?
+            @Conditions = []
+            params['Conditions'].each do |i|
+              ruleandconditions_tmp = RuleAndConditions.new
+              ruleandconditions_tmp.deserialize(i)
+              @Conditions << ruleandconditions_tmp
+            end
+          end
+          unless params['Actions'].nil?
+            @Actions = []
+            params['Actions'].each do |i|
+              ruleaction_tmp = RuleAction.new
+              ruleaction_tmp.deserialize(i)
+              @Actions << ruleaction_tmp
+            end
+          end
+        end
+      end
+
+      # 规则引擎常规类型的动作
+      class RuleNormalAction < TencentCloud::Common::AbstractModel
+        # @param Action: 功能名称，功能名称填写规范可调用接口 [查询规则引擎的设置参数](https://tcloud4api.woa.com/document/product/1657/79433?!preview&!document=1) 查看。
+        # @type Action: String
+        # @param Parameters: 参数。
+        # @type Parameters: Array
+
+        attr_accessor :Action, :Parameters
+        
+        def initialize(action=nil, parameters=nil)
+          @Action = action
+          @Parameters = parameters
+        end
+
+        def deserialize(params)
+          @Action = params['Action']
+          unless params['Parameters'].nil?
+            @Parameters = []
+            params['Parameters'].each do |i|
+              rulenormalactionparams_tmp = RuleNormalActionParams.new
+              rulenormalactionparams_tmp.deserialize(i)
+              @Parameters << rulenormalactionparams_tmp
+            end
+          end
+        end
+      end
+
+      # 规则引擎条件常规动作参数
+      class RuleNormalActionParams < TencentCloud::Common::AbstractModel
+        # @param Name: 参数名称，参数填写规范可调用接口 [查询规则引擎的设置参数](https://tcloud4api.woa.com/document/product/1657/79433?!preview&!document=1) 查看。
+        # @type Name: String
+        # @param Values: 参数值。
+        # @type Values: Array
+
+        attr_accessor :Name, :Values
+        
+        def initialize(name=nil, values=nil)
+          @Name = name
+          @Values = values
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Values = params['Values']
+        end
+      end
+
+      # 规则引擎HTTP请求头/响应头类型的动作
+      class RuleRewriteAction < TencentCloud::Common::AbstractModel
+        # @param Action: 功能名称，功能名称填写规范可调用接口 [查询规则引擎的设置参数](https://tcloud4api.woa.com/document/product/1657/79433?!preview&!document=1) 查看。
+        # @type Action: String
+        # @param Parameters: 参数。
+        # @type Parameters: Array
+
+        attr_accessor :Action, :Parameters
+        
+        def initialize(action=nil, parameters=nil)
+          @Action = action
+          @Parameters = parameters
+        end
+
+        def deserialize(params)
+          @Action = params['Action']
+          unless params['Parameters'].nil?
+            @Parameters = []
+            params['Parameters'].each do |i|
+              rulerewriteactionparams_tmp = RuleRewriteActionParams.new
+              rulerewriteactionparams_tmp.deserialize(i)
+              @Parameters << rulerewriteactionparams_tmp
+            end
+          end
+        end
+      end
+
+      # 规则引擎条件 HTTP 请求/响应头操作动作参数。
+      class RuleRewriteActionParams < TencentCloud::Common::AbstractModel
+        # @param Action: 功能参数名称，参数填写规范可调用接口 [查询规则引擎的设置参数](https://tcloud4api.woa.com/document/product/1657/79433?!preview&!document=1) 查看。现在只有三种取值：
+        # <li> add：添加 HTTP 头部；</li>
+        # <li> set：重写 HTTP 头部；</li>
+        # <li> del：删除 HTTP 头部。</li>
+        # @type Action: String
+        # @param Name: 参数名称。
+        # @type Name: String
+        # @param Values: 参数值。
+        # @type Values: Array
+
+        attr_accessor :Action, :Name, :Values
+        
+        def initialize(action=nil, name=nil, values=nil)
+          @Action = action
+          @Name = name
+          @Values = values
+        end
+
+        def deserialize(params)
+          @Action = params['Action']
+          @Name = params['Name']
+          @Values = params['Values']
+        end
+      end
+
+      # 规则引擎规则详情
+      class RuleSettingDetail < TencentCloud::Common::AbstractModel
+        # @param RuleId: 规则ID。
+        # @type RuleId: String
+        # @param RuleName: 规则名称，名称字符串长度 1~255。
+        # @type RuleName: String
+        # @param Status: 规则状态，取值有:
+        # <li> enable: 启用； </li>
+        # <li> disable: 未启用。 </li>
+        # @type Status: String
+        # @param Rules: 规则内容。
+        # @type Rules: Array
+        # @param RulePriority: 规则优先级, 值越大优先级越高，最小为 1。
+        # @type RulePriority: Integer
+
+        attr_accessor :RuleId, :RuleName, :Status, :Rules, :RulePriority
+        
+        def initialize(ruleid=nil, rulename=nil, status=nil, rules=nil, rulepriority=nil)
+          @RuleId = ruleid
+          @RuleName = rulename
+          @Status = status
+          @Rules = rules
+          @RulePriority = rulepriority
+        end
+
+        def deserialize(params)
+          @RuleId = params['RuleId']
+          @RuleName = params['RuleName']
+          @Status = params['Status']
+          unless params['Rules'].nil?
+            @Rules = []
+            params['Rules'].each do |i|
+              ruleitem_tmp = RuleItem.new
+              ruleitem_tmp.deserialize(i)
+              @Rules << ruleitem_tmp
+            end
+          end
+          @RulePriority = params['RulePriority']
+        end
+      end
+
+      # 规则引擎可应用于匹配请求的设置详细信息。
+      class RulesProperties < TencentCloud::Common::AbstractModel
+        # @param Name: 值为参数名称。
+        # @type Name: String
+        # @param Min: 数值参数的最小值，非数值参数或 Min 和 Max 值都为 0 则此项无意义。
+        # @type Min: Integer
+        # @param ChoicesValue: 参数值的可选值。
+        # 注意：若参数值为用户自定义则该数组为空数组。
+        # @type ChoicesValue: Array
+        # @param Type: 参数值类型。
+        # <li> CHOICE：参数值只能在 ChoicesValue 中选择； </li>
+        # <li> TOGGLE：参数值为开关类型，可在 ChoicesValue 中选择；</li>
+        # <li> OBJECT：参数值为对象类型，ChoiceProperties 为改对象类型关联的属性；</li>
+        # <li> CUSTOM_NUM：参数值用户自定义，整型类型；</li>
+        # <li> CUSTOM_STRING：参数值用户自定义，字符串类型。</li>注意：当参数类型为 OBJECT 类型时，请注意参考 [示例2 参数为 OBJECT 类型的创建](https://tcloud4api.woa.com/document/product/1657/79382?!preview&!document=1)
+        # @type Type: String
+        # @param Max: 数值参数的最大值，非数值参数或 Min 和 Max 值都为 0 则此项无意义。
+        # @type Max: Integer
+        # @param IsMultiple: 参数值是否支持多选或者填写多个。
+        # @type IsMultiple: Boolean
+        # @param IsAllowEmpty: 是否允许为空。
+        # @type IsAllowEmpty: Boolean
+        # @param ChoiceProperties: 该参数对应的关联配置参数，属于调用接口的必填参数。
+        # 注意：如果可选参数无特殊新增参数则该数组为空数组。
+        # @type ChoiceProperties: Array
+        # @param ExtraParameter: <li> 为 NULL：无特殊参数，RuleAction 选择 NormalAction；</li>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExtraParameter: :class:`Tencentcloud::Teo.v20220106.models.RuleExtraParameter`
+
+        attr_accessor :Name, :Min, :ChoicesValue, :Type, :Max, :IsMultiple, :IsAllowEmpty, :ChoiceProperties, :ExtraParameter
+        
+        def initialize(name=nil, min=nil, choicesvalue=nil, type=nil, max=nil, ismultiple=nil, isallowempty=nil, choiceproperties=nil, extraparameter=nil)
+          @Name = name
+          @Min = min
+          @ChoicesValue = choicesvalue
+          @Type = type
+          @Max = max
+          @IsMultiple = ismultiple
+          @IsAllowEmpty = isallowempty
+          @ChoiceProperties = choiceproperties
+          @ExtraParameter = extraparameter
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Min = params['Min']
+          @ChoicesValue = params['ChoicesValue']
+          @Type = params['Type']
+          @Max = params['Max']
+          @IsMultiple = params['IsMultiple']
+          @IsAllowEmpty = params['IsAllowEmpty']
+          unless params['ChoiceProperties'].nil?
+            @ChoiceProperties = []
+            params['ChoiceProperties'].each do |i|
+              rulechoicepropertiesitem_tmp = RuleChoicePropertiesItem.new
+              rulechoicepropertiesitem_tmp.deserialize(i)
+              @ChoiceProperties << rulechoicepropertiesitem_tmp
+            end
+          end
+          unless params['ExtraParameter'].nil?
+            @ExtraParameter = RuleExtraParameter.new
+            @ExtraParameter.deserialize(params['ExtraParameter'])
+          end
+        end
+      end
+
+      # 规则引擎可应用于匹配请求的设置列表及其详细信息
+      class RulesSettingAction < TencentCloud::Common::AbstractModel
+        # @param Action: 功能名称，取值有：
+        # <li> 访问URL 重写（AccessUrlRedirect）；</li>
+        # <li> 回源 URL 重写 （UpstreamUrlRedirect）；</li>
+        # <li> 自定义错误页面
+        # (ErrorPage)；</li>
+        # <li> QUIC（QUIC）；</li>
+        # <li> WebSocket （WebSocket）；</li>
+        # <li> 视频拖拽（VideoSeek）；</li>
+        # <li> Token 鉴权（Authentication）；</li>
+        # <li> 自定义CacheKey（CacheKey）；</li>
+        # <li> 节点缓存 TTL （Cache）；</li>
+        # <li> 浏览器缓存 TTL（MaxAge）；</li>
+        # <li> 离线缓存（OfflineCache）；</li>
+        # <li> 智能加速（SmartRouting）；</li>
+        # <li> 分片回源（RangeOriginPull）；</li>
+        # <li> HTTP/2 回源（UpstreamHttp2）；</li>
+        # <li> Host Header 重写（HostHeader）；</li>
+        # <li> 强制 HTTPS（ForceRedirect）；</li>
+        # <li> 回源 HTTPS（OriginPullProtocol）；</li>
+        # <li> 缓存预刷新（CachePrefresh）；</li>
+        # <li> 智能压缩（Compression）；</li>
+        # <li> 修改 HTTP 请求头（RequestHeader）；</li>
+        # <li> 修改HTTP响应头（ResponseHeader）;</li>
+        # <li> 状态码缓存 TTL（StatusCodeCache）;</li>
+        # <li> Hsts；</li>
+        # <li> ClientIpHeader；</li>
+        # <li> TlsVersion；</li>
+        # <li> OcspStapling。</li>
+        # @type Action: String
+        # @param Properties: 参数信息。
+        # @type Properties: Array
+
+        attr_accessor :Action, :Properties
+        
+        def initialize(action=nil, properties=nil)
+          @Action = action
+          @Properties = properties
+        end
+
+        def deserialize(params)
+          @Action = params['Action']
+          unless params['Properties'].nil?
+            @Properties = []
+            params['Properties'].each do |i|
+              rulesproperties_tmp = RulesProperties.new
+              rulesproperties_tmp.deserialize(i)
+              @Properties << rulesproperties_tmp
+            end
+          end
         end
       end
 

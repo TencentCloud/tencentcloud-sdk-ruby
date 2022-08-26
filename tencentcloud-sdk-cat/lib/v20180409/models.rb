@@ -1125,15 +1125,19 @@ module TencentCloud
         # @type Parameters: String
         # @param Cron: 定时任务cron表达式
         # @type Cron: String
+        # @param ResourceIDs: 预付费套餐id
+        # 需要与taskId对应
+        # @type ResourceIDs: Array
 
-        attr_accessor :TaskIds, :Nodes, :Interval, :Parameters, :Cron
+        attr_accessor :TaskIds, :Nodes, :Interval, :Parameters, :Cron, :ResourceIDs
         
-        def initialize(taskids=nil, nodes=nil, interval=nil, parameters=nil, cron=nil)
+        def initialize(taskids=nil, nodes=nil, interval=nil, parameters=nil, cron=nil, resourceids=nil)
           @TaskIds = taskids
           @Nodes = nodes
           @Interval = interval
           @Parameters = parameters
           @Cron = cron
+          @ResourceIDs = resourceids
         end
 
         def deserialize(params)
@@ -1142,6 +1146,7 @@ module TencentCloud
           @Interval = params['Interval']
           @Parameters = params['Parameters']
           @Cron = params['Cron']
+          @ResourceIDs = params['ResourceIDs']
         end
       end
 

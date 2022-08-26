@@ -1747,7 +1747,8 @@ module TencentCloud
         # SELECTOR - 选项值
         # DYNAMIC_TABLE - 传入json格式的表格内容，具体见数据结构FlowInfo：https://cloud.tencent.com/document/api/1420/61525#FlowInfo
         # @type ComponentValue: String
-        # @param ComponentId: 表单域或控件的ID，跟ComponentName二选一，不能全为空
+        # @param ComponentId: 表单域或控件的ID，跟ComponentName二选一，不能全为空；
+        # CreateFlowsByTemplates 接口不使用此字段。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ComponentId: String
         # @param ComponentName: 控件的名字，跟ComponentId二选一，不能全为空
