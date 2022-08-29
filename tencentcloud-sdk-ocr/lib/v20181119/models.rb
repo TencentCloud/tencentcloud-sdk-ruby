@@ -6976,10 +6976,14 @@ module TencentCloud
         # @type AmountWithTax: String
         # @param Items: 项目明细
         # @type Items: Array
+        # @param TaxBureau: 所属税局
+        # @type TaxBureau: String
+        # @param TrafficFreeFlag: 通行费标志:Y、是;N、否
+        # @type TrafficFreeFlag: String
 
-        attr_accessor :Code, :Number, :Date, :BuyerName, :BuyerTaxCode, :BuyerAddressPhone, :BuyerBankAccount, :SellerName, :SellerTaxCode, :SellerAddressPhone, :SellerBankAccount, :Remark, :MachineNo, :Type, :CheckCode, :IsAbandoned, :HasSellerList, :SellerListTitle, :SellerListTax, :AmountWithoutTax, :TaxAmount, :AmountWithTax, :Items
+        attr_accessor :Code, :Number, :Date, :BuyerName, :BuyerTaxCode, :BuyerAddressPhone, :BuyerBankAccount, :SellerName, :SellerTaxCode, :SellerAddressPhone, :SellerBankAccount, :Remark, :MachineNo, :Type, :CheckCode, :IsAbandoned, :HasSellerList, :SellerListTitle, :SellerListTax, :AmountWithoutTax, :TaxAmount, :AmountWithTax, :Items, :TaxBureau, :TrafficFreeFlag
         
-        def initialize(code=nil, number=nil, date=nil, buyername=nil, buyertaxcode=nil, buyeraddressphone=nil, buyerbankaccount=nil, sellername=nil, sellertaxcode=nil, selleraddressphone=nil, sellerbankaccount=nil, remark=nil, machineno=nil, type=nil, checkcode=nil, isabandoned=nil, hassellerlist=nil, sellerlisttitle=nil, sellerlisttax=nil, amountwithouttax=nil, taxamount=nil, amountwithtax=nil, items=nil)
+        def initialize(code=nil, number=nil, date=nil, buyername=nil, buyertaxcode=nil, buyeraddressphone=nil, buyerbankaccount=nil, sellername=nil, sellertaxcode=nil, selleraddressphone=nil, sellerbankaccount=nil, remark=nil, machineno=nil, type=nil, checkcode=nil, isabandoned=nil, hassellerlist=nil, sellerlisttitle=nil, sellerlisttax=nil, amountwithouttax=nil, taxamount=nil, amountwithtax=nil, items=nil, taxbureau=nil, trafficfreeflag=nil)
           @Code = code
           @Number = number
           @Date = date
@@ -7003,6 +7007,8 @@ module TencentCloud
           @TaxAmount = taxamount
           @AmountWithTax = amountwithtax
           @Items = items
+          @TaxBureau = taxbureau
+          @TrafficFreeFlag = trafficfreeflag
         end
 
         def deserialize(params)
@@ -7036,6 +7042,8 @@ module TencentCloud
               @Items << vatinvoiceitem_tmp
             end
           end
+          @TaxBureau = params['TaxBureau']
+          @TrafficFreeFlag = params['TrafficFreeFlag']
         end
       end
 
@@ -7103,10 +7111,12 @@ module TencentCloud
         # @type TaxRate: String
         # @param TaxAmount: 税额
         # @type TaxAmount: String
+        # @param TaxClassifyCode: 税收分类编码
+        # @type TaxClassifyCode: String
 
-        attr_accessor :LineNo, :Name, :Spec, :Unit, :Quantity, :UnitPrice, :AmountWithoutTax, :TaxRate, :TaxAmount
+        attr_accessor :LineNo, :Name, :Spec, :Unit, :Quantity, :UnitPrice, :AmountWithoutTax, :TaxRate, :TaxAmount, :TaxClassifyCode
         
-        def initialize(lineno=nil, name=nil, spec=nil, unit=nil, quantity=nil, unitprice=nil, amountwithouttax=nil, taxrate=nil, taxamount=nil)
+        def initialize(lineno=nil, name=nil, spec=nil, unit=nil, quantity=nil, unitprice=nil, amountwithouttax=nil, taxrate=nil, taxamount=nil, taxclassifycode=nil)
           @LineNo = lineno
           @Name = name
           @Spec = spec
@@ -7116,6 +7126,7 @@ module TencentCloud
           @AmountWithoutTax = amountwithouttax
           @TaxRate = taxrate
           @TaxAmount = taxamount
+          @TaxClassifyCode = taxclassifycode
         end
 
         def deserialize(params)
@@ -7128,6 +7139,7 @@ module TencentCloud
           @AmountWithoutTax = params['AmountWithoutTax']
           @TaxRate = params['TaxRate']
           @TaxAmount = params['TaxAmount']
+          @TaxClassifyCode = params['TaxClassifyCode']
         end
       end
 
@@ -7526,10 +7538,12 @@ module TencentCloud
         # @type SellerAddress: String
         # @param SellerTel: 销售电话
         # @type SellerTel: String
+        # @param BuyerNo: 购方身份证
+        # @type BuyerNo: String
 
-        attr_accessor :CarType, :PlateModel, :ProduceAddress, :CertificateNo, :ImportNo, :VinNo, :PayTaxesNo, :Tonnage, :LimitCount, :EngineNo, :BizCheckFormNo, :TaxtationOrgCode, :TaxtationOrgName, :MotorTaxRate, :MotorBankName, :MotorBankAccount, :SellerAddress, :SellerTel
+        attr_accessor :CarType, :PlateModel, :ProduceAddress, :CertificateNo, :ImportNo, :VinNo, :PayTaxesNo, :Tonnage, :LimitCount, :EngineNo, :BizCheckFormNo, :TaxtationOrgCode, :TaxtationOrgName, :MotorTaxRate, :MotorBankName, :MotorBankAccount, :SellerAddress, :SellerTel, :BuyerNo
         
-        def initialize(cartype=nil, platemodel=nil, produceaddress=nil, certificateno=nil, importno=nil, vinno=nil, paytaxesno=nil, tonnage=nil, limitcount=nil, engineno=nil, bizcheckformno=nil, taxtationorgcode=nil, taxtationorgname=nil, motortaxrate=nil, motorbankname=nil, motorbankaccount=nil, selleraddress=nil, sellertel=nil)
+        def initialize(cartype=nil, platemodel=nil, produceaddress=nil, certificateno=nil, importno=nil, vinno=nil, paytaxesno=nil, tonnage=nil, limitcount=nil, engineno=nil, bizcheckformno=nil, taxtationorgcode=nil, taxtationorgname=nil, motortaxrate=nil, motorbankname=nil, motorbankaccount=nil, selleraddress=nil, sellertel=nil, buyerno=nil)
           @CarType = cartype
           @PlateModel = platemodel
           @ProduceAddress = produceaddress
@@ -7548,6 +7562,7 @@ module TencentCloud
           @MotorBankAccount = motorbankaccount
           @SellerAddress = selleraddress
           @SellerTel = sellertel
+          @BuyerNo = buyerno
         end
 
         def deserialize(params)
@@ -7569,6 +7584,7 @@ module TencentCloud
           @MotorBankAccount = params['MotorBankAccount']
           @SellerAddress = params['SellerAddress']
           @SellerTel = params['SellerTel']
+          @BuyerNo = params['BuyerNo']
         end
       end
 

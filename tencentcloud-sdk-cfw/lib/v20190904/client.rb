@@ -341,30 +341,6 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 删除全部规则
-
-        # @param request: Request instance for DeleteSecurityGroupAllRule.
-        # @type request: :class:`Tencentcloud::cfw::V20190904::DeleteSecurityGroupAllRuleRequest`
-        # @rtype: :class:`Tencentcloud::cfw::V20190904::DeleteSecurityGroupAllRuleResponse`
-        def DeleteSecurityGroupAllRule(request)
-          body = send_request('DeleteSecurityGroupAllRule', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = DeleteSecurityGroupAllRuleResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
         # 删除规则
 
         # @param request: Request instance for DeleteSecurityGroupRule.
@@ -735,30 +711,6 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeNatFwVpcDnsLstResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # nat规则列表概况
-
-        # @param request: Request instance for DescribeNatRuleOverview.
-        # @type request: :class:`Tencentcloud::cfw::V20190904::DescribeNatRuleOverviewRequest`
-        # @rtype: :class:`Tencentcloud::cfw::V20190904::DescribeNatRuleOverviewResponse`
-        def DescribeNatRuleOverview(request)
-          body = send_request('DescribeNatRuleOverview', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = DescribeNatRuleOverviewResponse.new
             model.deserialize(response['Response'])
             model
           else

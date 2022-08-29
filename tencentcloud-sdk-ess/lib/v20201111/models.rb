@@ -709,6 +709,49 @@ module TencentCloud
         end
       end
 
+      # CreateFlowEvidenceReport请求参数结构体
+      class CreateFlowEvidenceReportRequest < TencentCloud::Common::AbstractModel
+        # @param Operator: 调用方用户信息，userId 必填
+        # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
+        # @param FlowId: 签署流程编号
+        # @type FlowId: String
+
+        attr_accessor :Operator, :FlowId
+        
+        def initialize(operator=nil, flowid=nil)
+          @Operator = operator
+          @FlowId = flowid
+        end
+
+        def deserialize(params)
+          unless params['Operator'].nil?
+            @Operator = UserInfo.new
+            @Operator.deserialize(params['Operator'])
+          end
+          @FlowId = params['FlowId']
+        end
+      end
+
+      # CreateFlowEvidenceReport返回参数结构体
+      class CreateFlowEvidenceReportResponse < TencentCloud::Common::AbstractModel
+        # @param ReportUrl: 出证报告 URL（有效期5分钟）
+        # @type ReportUrl: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ReportUrl, :RequestId
+        
+        def initialize(reporturl=nil, requestid=nil)
+          @ReportUrl = reporturl
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ReportUrl = params['ReportUrl']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateFlow请求参数结构体
       class CreateFlowRequest < TencentCloud::Common::AbstractModel
         # @param Operator: 调用方用户信息，userId 必填

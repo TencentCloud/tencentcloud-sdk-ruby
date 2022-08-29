@@ -202,6 +202,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 创建出证报告，返回报告 URL
+
+        # @param request: Request instance for CreateChannelFlowEvidenceReport.
+        # @type request: :class:`Tencentcloud::essbasic::V20210526::CreateChannelFlowEvidenceReportRequest`
+        # @rtype: :class:`Tencentcloud::essbasic::V20210526::CreateChannelFlowEvidenceReportResponse`
+        def CreateChannelFlowEvidenceReport(request)
+          body = send_request('CreateChannelFlowEvidenceReport', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateChannelFlowEvidenceReportResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 此接口（CreateConsoleLoginUrl）用于创建电子签控制台登录链接。若企业未激活，调用同步企业信息、同步经办人信息
 
         # @param request: Request instance for CreateConsoleLoginUrl.

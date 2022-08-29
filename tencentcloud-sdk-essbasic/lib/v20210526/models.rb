@@ -593,16 +593,20 @@ module TencentCloud
         # @type TaskMessage: String
         # @param ResourceId: 资源Id，也是FileId，用于文件发起使用
         # @type ResourceId: String
+        # @param PreviewUrl: 预览文件Url，有效期30分钟
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PreviewUrl: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :TaskId, :TaskStatus, :TaskMessage, :ResourceId, :RequestId
+        attr_accessor :TaskId, :TaskStatus, :TaskMessage, :ResourceId, :PreviewUrl, :RequestId
         
-        def initialize(taskid=nil, taskstatus=nil, taskmessage=nil, resourceid=nil, requestid=nil)
+        def initialize(taskid=nil, taskstatus=nil, taskmessage=nil, resourceid=nil, previewurl=nil, requestid=nil)
           @TaskId = taskid
           @TaskStatus = taskstatus
           @TaskMessage = taskmessage
           @ResourceId = resourceid
+          @PreviewUrl = previewurl
           @RequestId = requestid
         end
 
@@ -611,6 +615,7 @@ module TencentCloud
           @TaskStatus = params['TaskStatus']
           @TaskMessage = params['TaskMessage']
           @ResourceId = params['ResourceId']
+          @PreviewUrl = params['PreviewUrl']
           @RequestId = params['RequestId']
         end
       end
@@ -736,6 +741,56 @@ module TencentCloud
           @ComponentDescription = params['ComponentDescription']
           @OffsetX = params['OffsetX']
           @OffsetY = params['OffsetY']
+        end
+      end
+
+      # CreateChannelFlowEvidenceReport请求参数结构体
+      class CreateChannelFlowEvidenceReportRequest < TencentCloud::Common::AbstractModel
+        # @param FlowId: 签署流程编号
+        # @type FlowId: String
+        # @param Agent: 渠道应用相关信息。 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 和 Agent.ProxyAppId 均必填
+        # @type Agent: :class:`Tencentcloud::Essbasic.v20210526.models.Agent`
+        # @param Operator: 操作者的信息
+        # @type Operator: :class:`Tencentcloud::Essbasic.v20210526.models.UserInfo`
+
+        attr_accessor :FlowId, :Agent, :Operator
+        
+        def initialize(flowid=nil, agent=nil, operator=nil)
+          @FlowId = flowid
+          @Agent = agent
+          @Operator = operator
+        end
+
+        def deserialize(params)
+          @FlowId = params['FlowId']
+          unless params['Agent'].nil?
+            @Agent = Agent.new
+            @Agent.deserialize(params['Agent'])
+          end
+          unless params['Operator'].nil?
+            @Operator = UserInfo.new
+            @Operator.deserialize(params['Operator'])
+          end
+        end
+      end
+
+      # CreateChannelFlowEvidenceReport返回参数结构体
+      class CreateChannelFlowEvidenceReportResponse < TencentCloud::Common::AbstractModel
+        # @param ReportUrl: 出证报告 URL（有效五分钟）
+        # @type ReportUrl: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ReportUrl, :RequestId
+        
+        def initialize(reporturl=nil, requestid=nil)
+          @ReportUrl = reporturl
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ReportUrl = params['ReportUrl']
+          @RequestId = params['RequestId']
         end
       end
 
@@ -868,16 +923,19 @@ module TencentCloud
         # @type ErrorMessages: Array
         # @param PreviewUrls: 预览模式下返回的预览文件url数组
         # @type PreviewUrls: Array
+        # @param TaskInfos: 复杂文档合成任务的任务信息数组
+        # @type TaskInfos: Array
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :FlowIds, :CustomerData, :ErrorMessages, :PreviewUrls, :RequestId
+        attr_accessor :FlowIds, :CustomerData, :ErrorMessages, :PreviewUrls, :TaskInfos, :RequestId
         
-        def initialize(flowids=nil, customerdata=nil, errormessages=nil, previewurls=nil, requestid=nil)
+        def initialize(flowids=nil, customerdata=nil, errormessages=nil, previewurls=nil, taskinfos=nil, requestid=nil)
           @FlowIds = flowids
           @CustomerData = customerdata
           @ErrorMessages = errormessages
           @PreviewUrls = previewurls
+          @TaskInfos = taskinfos
           @RequestId = requestid
         end
 
@@ -886,6 +944,14 @@ module TencentCloud
           @CustomerData = params['CustomerData']
           @ErrorMessages = params['ErrorMessages']
           @PreviewUrls = params['PreviewUrls']
+          unless params['TaskInfos'].nil?
+            @TaskInfos = []
+            params['TaskInfos'].each do |i|
+              taskinfo_tmp = TaskInfo.new
+              taskinfo_tmp.deserialize(i)
+              @TaskInfos << taskinfo_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -2397,6 +2463,28 @@ module TencentCloud
 
         def deserialize(params)
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 复杂文档合成任务的任务信息
+      class TaskInfo < TencentCloud::Common::AbstractModel
+        # @param TaskId: 合成任务Id，可以通过 ChannelGetTaskResultApi 接口获取任务信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TaskId: String
+        # @param TaskStatus: 任务状态：READY - 任务已完成；NOTREADY - 任务未完成；
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TaskStatus: String
+
+        attr_accessor :TaskId, :TaskStatus
+        
+        def initialize(taskid=nil, taskstatus=nil)
+          @TaskId = taskid
+          @TaskStatus = taskstatus
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @TaskStatus = params['TaskStatus']
         end
       end
 

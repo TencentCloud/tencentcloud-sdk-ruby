@@ -1139,7 +1139,7 @@ module TencentCloud
 
       # SignUpCfsService返回参数结构体
       class SignUpCfsServiceResponse < TencentCloud::Common::AbstractModel
-        # @param CfsServiceStatus: 该用户当前 CFS 服务的状态，none 是未开通，creating 是开通中，created 是已开通
+        # @param CfsServiceStatus: 该用户当前 CFS 服务的状态，creating 是开通中，created 是已开通
         # @type CfsServiceStatus: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
