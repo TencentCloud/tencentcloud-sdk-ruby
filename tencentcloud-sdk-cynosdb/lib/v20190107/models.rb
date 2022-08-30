@@ -2406,15 +2406,19 @@ module TencentCloud
         # @param DbType: 数据库类型，取值范围:
         # <li> MYSQL </li>
         # @type DbType: String
+        # @param IncludeZoneStocks: 是否需要返回可用区信息
+        # @type IncludeZoneStocks: Boolean
 
-        attr_accessor :DbType
+        attr_accessor :DbType, :IncludeZoneStocks
         
-        def initialize(dbtype=nil)
+        def initialize(dbtype=nil, includezonestocks=nil)
           @DbType = dbtype
+          @IncludeZoneStocks = includezonestocks
         end
 
         def deserialize(params)
           @DbType = params['DbType']
+          @IncludeZoneStocks = params['IncludeZoneStocks']
         end
       end
 
@@ -3162,14 +3166,30 @@ module TencentCloud
         # @type MaxStorageSize: Integer
         # @param MinStorageSize: 实例最小可用存储，单位：GB
         # @type MinStorageSize: Integer
+        # @param HasStock: 是否有库存
+        # @type HasStock: Boolean
+        # @param MachineType: 机器类型
+        # @type MachineType: String
+        # @param MaxIops: 最大IOPS
+        # @type MaxIops: Integer
+        # @param MaxIoBandWidth: 最大IO带宽
+        # @type MaxIoBandWidth: Integer
+        # @param ZoneStockInfos: 地域库存信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ZoneStockInfos: Array
 
-        attr_accessor :Cpu, :Memory, :MaxStorageSize, :MinStorageSize
+        attr_accessor :Cpu, :Memory, :MaxStorageSize, :MinStorageSize, :HasStock, :MachineType, :MaxIops, :MaxIoBandWidth, :ZoneStockInfos
         
-        def initialize(cpu=nil, memory=nil, maxstoragesize=nil, minstoragesize=nil)
+        def initialize(cpu=nil, memory=nil, maxstoragesize=nil, minstoragesize=nil, hasstock=nil, machinetype=nil, maxiops=nil, maxiobandwidth=nil, zonestockinfos=nil)
           @Cpu = cpu
           @Memory = memory
           @MaxStorageSize = maxstoragesize
           @MinStorageSize = minstoragesize
+          @HasStock = hasstock
+          @MachineType = machinetype
+          @MaxIops = maxiops
+          @MaxIoBandWidth = maxiobandwidth
+          @ZoneStockInfos = zonestockinfos
         end
 
         def deserialize(params)
@@ -3177,6 +3197,18 @@ module TencentCloud
           @Memory = params['Memory']
           @MaxStorageSize = params['MaxStorageSize']
           @MinStorageSize = params['MinStorageSize']
+          @HasStock = params['HasStock']
+          @MachineType = params['MachineType']
+          @MaxIops = params['MaxIops']
+          @MaxIoBandWidth = params['MaxIoBandWidth']
+          unless params['ZoneStockInfos'].nil?
+            @ZoneStockInfos = []
+            params['ZoneStockInfos'].each do |i|
+              zonestockinfo_tmp = ZoneStockInfo.new
+              zonestockinfo_tmp.deserialize(i)
+              @ZoneStockInfos << zonestockinfo_tmp
+            end
+          end
         end
       end
 
@@ -4726,6 +4758,26 @@ module TencentCloud
           @BigDealIds = params['BigDealIds']
           @DealNames = params['DealNames']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 可用区库存信息
+      class ZoneStockInfo < TencentCloud::Common::AbstractModel
+        # @param Zone: 可用区
+        # @type Zone: String
+        # @param HasStock: 是否有库存
+        # @type HasStock: Boolean
+
+        attr_accessor :Zone, :HasStock
+        
+        def initialize(zone=nil, hasstock=nil)
+          @Zone = zone
+          @HasStock = hasstock
+        end
+
+        def deserialize(params)
+          @Zone = params['Zone']
+          @HasStock = params['HasStock']
         end
       end
 

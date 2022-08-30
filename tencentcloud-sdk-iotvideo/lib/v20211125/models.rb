@@ -2307,6 +2307,54 @@ module TencentCloud
         end
       end
 
+      # DescribeCloudStorageStreamData请求参数结构体
+      class DescribeCloudStorageStreamDataRequest < TencentCloud::Common::AbstractModel
+        # @param ProductId: 产品ID
+        # @type ProductId: String
+        # @param DeviceName: 设备名称
+        # @type DeviceName: String
+        # @param StartTime: 图片流事件开始时间
+        # @type StartTime: Integer
+
+        attr_accessor :ProductId, :DeviceName, :StartTime
+        
+        def initialize(productid=nil, devicename=nil, starttime=nil)
+          @ProductId = productid
+          @DeviceName = devicename
+          @StartTime = starttime
+        end
+
+        def deserialize(params)
+          @ProductId = params['ProductId']
+          @DeviceName = params['DeviceName']
+          @StartTime = params['StartTime']
+        end
+      end
+
+      # DescribeCloudStorageStreamData返回参数结构体
+      class DescribeCloudStorageStreamDataResponse < TencentCloud::Common::AbstractModel
+        # @param VideoStream: 图片流视频地址
+        # @type VideoStream: String
+        # @param AudioStream: 图片流音频地址
+        # @type AudioStream: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :VideoStream, :AudioStream, :RequestId
+        
+        def initialize(videostream=nil, audiostream=nil, requestid=nil)
+          @VideoStream = videostream
+          @AudioStream = audiostream
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @VideoStream = params['VideoStream']
+          @AudioStream = params['AudioStream']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeCloudStorageThumbnail请求参数结构体
       class DescribeCloudStorageThumbnailRequest < TencentCloud::Common::AbstractModel
         # @param ProductId: 产品ID

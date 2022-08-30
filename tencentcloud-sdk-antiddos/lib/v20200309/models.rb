@@ -4932,6 +4932,57 @@ module TencentCloud
         end
       end
 
+      # DescribeNewL7RulesErrHealth请求参数结构体
+      class DescribeNewL7RulesErrHealthRequest < TencentCloud::Common::AbstractModel
+        # @param Business: 大禹子产品代号（bgpip表示高防IP)
+        # @type Business: String
+        # @param RuleIdList: 规则Id列表
+        # @type RuleIdList: Array
+
+        attr_accessor :Business, :RuleIdList
+        
+        def initialize(business=nil, ruleidlist=nil)
+          @Business = business
+          @RuleIdList = ruleidlist
+        end
+
+        def deserialize(params)
+          @Business = params['Business']
+          @RuleIdList = params['RuleIdList']
+        end
+      end
+
+      # DescribeNewL7RulesErrHealth返回参数结构体
+      class DescribeNewL7RulesErrHealthResponse < TencentCloud::Common::AbstractModel
+        # @param ErrHealths: 异常规则列表，返回值说明: Key值为规则ID，Value值为异常IP及错误信息，多个IP用","分割
+        # @type ErrHealths: Array
+        # @param Total: 异常规则的总数
+        # @type Total: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ErrHealths, :Total, :RequestId
+        
+        def initialize(errhealths=nil, total=nil, requestid=nil)
+          @ErrHealths = errhealths
+          @Total = total
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['ErrHealths'].nil?
+            @ErrHealths = []
+            params['ErrHealths'].each do |i|
+              keyvalue_tmp = KeyValue.new
+              keyvalue_tmp.deserialize(i)
+              @ErrHealths << keyvalue_tmp
+            end
+          end
+          @Total = params['Total']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeNewL7Rules请求参数结构体
       class DescribeNewL7RulesRequest < TencentCloud::Common::AbstractModel
         # @param Business: 大禹子产品代号（bgpip表示高防IP）

@@ -6836,6 +6836,10 @@ module TencentCloud
         # @type ProfitShareFlag: String
         # @param ProfitShareInfoList: 分润信息，配合ProfitShareFlag使用。
         # @type ProfitShareInfoList: Array
+        # @param SettlementRulesInfo: 商企付-担保支付（PaymentMode为 FREEZE ）时需设置该参数
+        # @type SettlementRulesInfo: :class:`Tencentcloud::Cpdp.v20190820.models.OpenBankSettlementRulesInfo`
+        # @param ExternalPaymentData: 底层支付渠道特殊字段，若无特殊说明时，可以为空
+        # @type ExternalPaymentData: String
         # @param Remark: 备注信息。
         # @type Remark: String
         # @param Environment: 环境类型
@@ -6844,9 +6848,9 @@ module TencentCloud
         # 缺省默认为生产环境
         # @type Environment: String
 
-        attr_accessor :ChannelMerchantId, :ChannelName, :PaymentMethod, :PaymentMode, :OutOrderId, :TotalAmount, :Currency, :PayerInfo, :PayeeInfo, :NotifyUrl, :ExpireTime, :FrontUrl, :RefreshUrl, :SceneInfo, :GoodsInfo, :Attachment, :ProfitShareFlag, :ProfitShareInfoList, :Remark, :Environment
+        attr_accessor :ChannelMerchantId, :ChannelName, :PaymentMethod, :PaymentMode, :OutOrderId, :TotalAmount, :Currency, :PayerInfo, :PayeeInfo, :NotifyUrl, :ExpireTime, :FrontUrl, :RefreshUrl, :SceneInfo, :GoodsInfo, :Attachment, :ProfitShareFlag, :ProfitShareInfoList, :SettlementRulesInfo, :ExternalPaymentData, :Remark, :Environment
         
-        def initialize(channelmerchantid=nil, channelname=nil, paymentmethod=nil, paymentmode=nil, outorderid=nil, totalamount=nil, currency=nil, payerinfo=nil, payeeinfo=nil, notifyurl=nil, expiretime=nil, fronturl=nil, refreshurl=nil, sceneinfo=nil, goodsinfo=nil, attachment=nil, profitshareflag=nil, profitshareinfolist=nil, remark=nil, environment=nil)
+        def initialize(channelmerchantid=nil, channelname=nil, paymentmethod=nil, paymentmode=nil, outorderid=nil, totalamount=nil, currency=nil, payerinfo=nil, payeeinfo=nil, notifyurl=nil, expiretime=nil, fronturl=nil, refreshurl=nil, sceneinfo=nil, goodsinfo=nil, attachment=nil, profitshareflag=nil, profitshareinfolist=nil, settlementrulesinfo=nil, externalpaymentdata=nil, remark=nil, environment=nil)
           @ChannelMerchantId = channelmerchantid
           @ChannelName = channelname
           @PaymentMethod = paymentmethod
@@ -6865,6 +6869,8 @@ module TencentCloud
           @Attachment = attachment
           @ProfitShareFlag = profitshareflag
           @ProfitShareInfoList = profitshareinfolist
+          @SettlementRulesInfo = settlementrulesinfo
+          @ExternalPaymentData = externalpaymentdata
           @Remark = remark
           @Environment = environment
         end
@@ -6907,6 +6913,11 @@ module TencentCloud
               @ProfitShareInfoList << openbankprofitshareinfo_tmp
             end
           end
+          unless params['SettlementRulesInfo'].nil?
+            @SettlementRulesInfo = OpenBankSettlementRulesInfo.new
+            @SettlementRulesInfo.deserialize(params['SettlementRulesInfo'])
+          end
+          @ExternalPaymentData = params['ExternalPaymentData']
           @Remark = params['Remark']
           @Environment = params['Environment']
         end
@@ -11854,6 +11865,30 @@ module TencentCloud
           @OrderTime = params['OrderTime']
           @DeviceId = params['DeviceId']
           @DeviceType = params['DeviceType']
+        end
+      end
+
+      # 云企付-结算规则信息
+      class OpenBankSettlementRulesInfo < TencentCloud::Common::AbstractModel
+        # @param UnfreezeRule: ONCE：仅单次解冻（默认）
+        # MULTI：多次解冻
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UnfreezeRule: String
+        # @param RefundRule: ONCE：仅单次退款（默认）
+        # MULTI：多次退款
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RefundRule: String
+
+        attr_accessor :UnfreezeRule, :RefundRule
+        
+        def initialize(unfreezerule=nil, refundrule=nil)
+          @UnfreezeRule = unfreezerule
+          @RefundRule = refundrule
+        end
+
+        def deserialize(params)
+          @UnfreezeRule = params['UnfreezeRule']
+          @RefundRule = params['RefundRule']
         end
       end
 

@@ -3331,7 +3331,7 @@ module TencentCloud
       class DescribeTaskResultRequest < TencentCloud::Common::AbstractModel
         # @param TaskId: 任务唯一ID
         # @type TaskId: String
-        # @param NextToken: 上一次请求响应返回的分页信息。第一次可以不带，从头开始返回数据，每次返回1000行数据。
+        # @param NextToken: 上一次请求响应返回的分页信息。第一次可以不带，从头开始返回数据，每次返回MaxResults字段设置的数据量。
         # @type NextToken: String
         # @param MaxResults: 返回结果的最大行数，范围0~1000，默认为1000.
         # @type MaxResults: Integer
@@ -3437,14 +3437,18 @@ module TencentCloud
         # @type TaskList: Array
         # @param TotalCount: 实例总数。
         # @type TotalCount: Integer
+        # @param TasksOverview: 任务概览信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TasksOverview: :class:`Tencentcloud::Dlc.v20210125.models.TasksOverview`
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :TaskList, :TotalCount, :RequestId
+        attr_accessor :TaskList, :TotalCount, :TasksOverview, :RequestId
         
-        def initialize(tasklist=nil, totalcount=nil, requestid=nil)
+        def initialize(tasklist=nil, totalcount=nil, tasksoverview=nil, requestid=nil)
           @TaskList = tasklist
           @TotalCount = totalcount
+          @TasksOverview = tasksoverview
           @RequestId = requestid
         end
 
@@ -3458,6 +3462,10 @@ module TencentCloud
             end
           end
           @TotalCount = params['TotalCount']
+          unless params['TasksOverview'].nil?
+            @TasksOverview = TasksOverview.new
+            @TasksOverview.deserialize(params['TasksOverview'])
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -5101,7 +5109,7 @@ module TencentCloud
         end
       end
 
-      # 任务实例
+      # 任务实例。
       class TaskResponseInfo < TencentCloud::Common::AbstractModel
         # @param DatabaseName: 任务所属Database的名称。
         # @type DatabaseName: String
@@ -5109,7 +5117,7 @@ module TencentCloud
         # @type DataAmount: Integer
         # @param Id: 任务Id。
         # @type Id: String
-        # @param UsedTime: 计算时长，单位： ms。
+        # @param UsedTime: 计算耗时，单位： ms
         # @type UsedTime: Integer
         # @param OutputPath: 任务输出路径。
         # @type OutputPath: String
@@ -5178,10 +5186,13 @@ module TencentCloud
         # @param UiUrl: spark ui url
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UiUrl: String
+        # @param TotalTime: 任务耗时，单位： ms
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalTime: Integer
 
-        attr_accessor :DatabaseName, :DataAmount, :Id, :UsedTime, :OutputPath, :CreateTime, :State, :SQLType, :SQL, :ResultExpired, :RowAffectInfo, :DataSet, :Error, :Percentage, :OutputMessage, :TaskType, :ProgressDetail, :UpdateTime, :DataEngineId, :OperateUin, :DataEngineName, :InputType, :InputConf, :DataNumber, :CanDownload, :UserAlias, :SparkJobName, :SparkJobId, :SparkJobFile, :UiUrl
+        attr_accessor :DatabaseName, :DataAmount, :Id, :UsedTime, :OutputPath, :CreateTime, :State, :SQLType, :SQL, :ResultExpired, :RowAffectInfo, :DataSet, :Error, :Percentage, :OutputMessage, :TaskType, :ProgressDetail, :UpdateTime, :DataEngineId, :OperateUin, :DataEngineName, :InputType, :InputConf, :DataNumber, :CanDownload, :UserAlias, :SparkJobName, :SparkJobId, :SparkJobFile, :UiUrl, :TotalTime
         
-        def initialize(databasename=nil, dataamount=nil, id=nil, usedtime=nil, outputpath=nil, createtime=nil, state=nil, sqltype=nil, sql=nil, resultexpired=nil, rowaffectinfo=nil, dataset=nil, error=nil, percentage=nil, outputmessage=nil, tasktype=nil, progressdetail=nil, updatetime=nil, dataengineid=nil, operateuin=nil, dataenginename=nil, inputtype=nil, inputconf=nil, datanumber=nil, candownload=nil, useralias=nil, sparkjobname=nil, sparkjobid=nil, sparkjobfile=nil, uiurl=nil)
+        def initialize(databasename=nil, dataamount=nil, id=nil, usedtime=nil, outputpath=nil, createtime=nil, state=nil, sqltype=nil, sql=nil, resultexpired=nil, rowaffectinfo=nil, dataset=nil, error=nil, percentage=nil, outputmessage=nil, tasktype=nil, progressdetail=nil, updatetime=nil, dataengineid=nil, operateuin=nil, dataenginename=nil, inputtype=nil, inputconf=nil, datanumber=nil, candownload=nil, useralias=nil, sparkjobname=nil, sparkjobid=nil, sparkjobfile=nil, uiurl=nil, totaltime=nil)
           @DatabaseName = databasename
           @DataAmount = dataamount
           @Id = id
@@ -5212,6 +5223,7 @@ module TencentCloud
           @SparkJobId = sparkjobid
           @SparkJobFile = sparkjobfile
           @UiUrl = uiurl
+          @TotalTime = totaltime
         end
 
         def deserialize(params)
@@ -5245,10 +5257,11 @@ module TencentCloud
           @SparkJobId = params['SparkJobId']
           @SparkJobFile = params['SparkJobFile']
           @UiUrl = params['UiUrl']
+          @TotalTime = params['TotalTime']
         end
       end
 
-      # 任务结果信息
+      # 任务结果信息。
       class TaskResultInfo < TencentCloud::Common::AbstractModel
         # @param TaskId: 任务唯一ID
         # @type TaskId: String
@@ -5266,7 +5279,7 @@ module TencentCloud
         # @type State: Integer
         # @param DataAmount: 扫描的数据量，单位byte
         # @type DataAmount: Integer
-        # @param UsedTime: 任务执行耗时，单位秒
+        # @param UsedTime: 计算耗时，单位： ms
         # @type UsedTime: Integer
         # @param OutputPath: 任务结果输出的COS桶地址
         # @type OutputPath: String
@@ -5290,10 +5303,12 @@ module TencentCloud
         # @type ProgressDetail: String
         # @param DisplayFormat: 控制台展示格式。table：表格展示 text：文本展示
         # @type DisplayFormat: String
+        # @param TotalTime: 任务耗时，单位： ms
+        # @type TotalTime: Integer
 
-        attr_accessor :TaskId, :DatasourceConnectionName, :DatabaseName, :SQL, :SQLType, :State, :DataAmount, :UsedTime, :OutputPath, :CreateTime, :OutputMessage, :RowAffectInfo, :ResultSchema, :ResultSet, :NextToken, :Percentage, :ProgressDetail, :DisplayFormat
+        attr_accessor :TaskId, :DatasourceConnectionName, :DatabaseName, :SQL, :SQLType, :State, :DataAmount, :UsedTime, :OutputPath, :CreateTime, :OutputMessage, :RowAffectInfo, :ResultSchema, :ResultSet, :NextToken, :Percentage, :ProgressDetail, :DisplayFormat, :TotalTime
         
-        def initialize(taskid=nil, datasourceconnectionname=nil, databasename=nil, sql=nil, sqltype=nil, state=nil, dataamount=nil, usedtime=nil, outputpath=nil, createtime=nil, outputmessage=nil, rowaffectinfo=nil, resultschema=nil, resultset=nil, nexttoken=nil, percentage=nil, progressdetail=nil, displayformat=nil)
+        def initialize(taskid=nil, datasourceconnectionname=nil, databasename=nil, sql=nil, sqltype=nil, state=nil, dataamount=nil, usedtime=nil, outputpath=nil, createtime=nil, outputmessage=nil, rowaffectinfo=nil, resultschema=nil, resultset=nil, nexttoken=nil, percentage=nil, progressdetail=nil, displayformat=nil, totaltime=nil)
           @TaskId = taskid
           @DatasourceConnectionName = datasourceconnectionname
           @DatabaseName = databasename
@@ -5312,6 +5327,7 @@ module TencentCloud
           @Percentage = percentage
           @ProgressDetail = progressdetail
           @DisplayFormat = displayformat
+          @TotalTime = totaltime
         end
 
         def deserialize(params)
@@ -5340,6 +5356,7 @@ module TencentCloud
           @Percentage = params['Percentage']
           @ProgressDetail = params['ProgressDetail']
           @DisplayFormat = params['DisplayFormat']
+          @TotalTime = params['TotalTime']
         end
       end
 
@@ -5386,6 +5403,34 @@ module TencentCloud
               @Params << kvpair_tmp
             end
           end
+        end
+      end
+
+      # 任务概览
+      class TasksOverview < TencentCloud::Common::AbstractModel
+        # @param TaskQueuedCount: 正在排队的任务个数
+        # @type TaskQueuedCount: Integer
+        # @param TaskInitCount: 初始化的任务个数
+        # @type TaskInitCount: Integer
+        # @param TaskRunningCount: 正在执行的任务个数
+        # @type TaskRunningCount: Integer
+        # @param TotalTaskCount: 当前时间范围的总任务个数
+        # @type TotalTaskCount: Integer
+
+        attr_accessor :TaskQueuedCount, :TaskInitCount, :TaskRunningCount, :TotalTaskCount
+        
+        def initialize(taskqueuedcount=nil, taskinitcount=nil, taskrunningcount=nil, totaltaskcount=nil)
+          @TaskQueuedCount = taskqueuedcount
+          @TaskInitCount = taskinitcount
+          @TaskRunningCount = taskrunningcount
+          @TotalTaskCount = totaltaskcount
+        end
+
+        def deserialize(params)
+          @TaskQueuedCount = params['TaskQueuedCount']
+          @TaskInitCount = params['TaskInitCount']
+          @TaskRunningCount = params['TaskRunningCount']
+          @TotalTaskCount = params['TotalTaskCount']
         end
       end
 

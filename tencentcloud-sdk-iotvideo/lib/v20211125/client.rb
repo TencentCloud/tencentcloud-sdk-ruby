@@ -917,6 +917,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 获取设备图片流数据
+
+        # @param request: Request instance for DescribeCloudStorageStreamData.
+        # @type request: :class:`Tencentcloud::iotvideo::V20211125::DescribeCloudStorageStreamDataRequest`
+        # @rtype: :class:`Tencentcloud::iotvideo::V20211125::DescribeCloudStorageStreamDataResponse`
+        def DescribeCloudStorageStreamData(request)
+          body = send_request('DescribeCloudStorageStreamData', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeCloudStorageStreamDataResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 拉取云存事件缩略图
 
         # @param request: Request instance for DescribeCloudStorageThumbnail.

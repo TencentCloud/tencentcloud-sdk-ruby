@@ -481,6 +481,53 @@ module TencentCloud
         end
       end
 
+      # PayForExtendData请求参数结构体
+      class PayForExtendDataRequest < TencentCloud::Common::AbstractModel
+        # @param Iccid: 卡片ICCID
+        # @type Iccid: String
+        # @param ExtentData: 套外流量,单位MB
+        # @type ExtentData: Integer
+        # @param Sdkappid: 应用ID
+        # @type Sdkappid: Integer
+
+        attr_accessor :Iccid, :ExtentData, :Sdkappid
+        
+        def initialize(iccid=nil, extentdata=nil, sdkappid=nil)
+          @Iccid = iccid
+          @ExtentData = extentdata
+          @Sdkappid = sdkappid
+        end
+
+        def deserialize(params)
+          @Iccid = params['Iccid']
+          @ExtentData = params['ExtentData']
+          @Sdkappid = params['Sdkappid']
+        end
+      end
+
+      # PayForExtendData返回参数结构体
+      class PayForExtendDataResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 订单号
+        # @type Data: :class:`Tencentcloud::Ic.v20190307.models.ResOrderIds`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+        
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = ResOrderIds.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # RenewCards请求参数结构体
       class RenewCardsRequest < TencentCloud::Common::AbstractModel
         # @param Sdkappid: 应用ID
@@ -526,6 +573,23 @@ module TencentCloud
             @Data.deserialize(params['Data'])
           end
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 订单ID集合
+      class ResOrderIds < TencentCloud::Common::AbstractModel
+        # @param OrderIds: 每一张续费卡片的订单ID数组
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OrderIds: Array
+
+        attr_accessor :OrderIds
+        
+        def initialize(orderids=nil)
+          @OrderIds = orderids
+        end
+
+        def deserialize(params)
+          @OrderIds = params['OrderIds']
         end
       end
 

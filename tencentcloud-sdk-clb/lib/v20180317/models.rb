@@ -2778,6 +2778,62 @@ module TencentCloud
         end
       end
 
+      # DescribeIdleLoadBalancers请求参数结构体
+      class DescribeIdleLoadBalancersRequest < TencentCloud::Common::AbstractModel
+        # @param Offset: 数据偏移量，默认为0。
+        # @type Offset: Integer
+        # @param Limit: 返回负载均衡实例的数量，默认为20，最大值为100。
+        # @type Limit: Integer
+        # @param LoadBalancerRegion: 负载均衡所在地域。
+        # @type LoadBalancerRegion: String
+
+        attr_accessor :Offset, :Limit, :LoadBalancerRegion
+        
+        def initialize(offset=nil, limit=nil, loadbalancerregion=nil)
+          @Offset = offset
+          @Limit = limit
+          @LoadBalancerRegion = loadbalancerregion
+        end
+
+        def deserialize(params)
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @LoadBalancerRegion = params['LoadBalancerRegion']
+        end
+      end
+
+      # DescribeIdleLoadBalancers返回参数结构体
+      class DescribeIdleLoadBalancersResponse < TencentCloud::Common::AbstractModel
+        # @param IdleLoadBalancers: 闲置实例列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IdleLoadBalancers: Array
+        # @param TotalCount: 所有闲置实例数目
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :IdleLoadBalancers, :TotalCount, :RequestId
+        
+        def initialize(idleloadbalancers=nil, totalcount=nil, requestid=nil)
+          @IdleLoadBalancers = idleloadbalancers
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['IdleLoadBalancers'].nil?
+            @IdleLoadBalancers = []
+            params['IdleLoadBalancers'].each do |i|
+              idleloadbalancer_tmp = IdleLoadBalancer.new
+              idleloadbalancer_tmp.deserialize(i)
+              @IdleLoadBalancers << idleloadbalancer_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeLBListeners请求参数结构体
       class DescribeLBListenersRequest < TencentCloud::Common::AbstractModel
         # @param Backends: 需要查询的内网ip列表
@@ -3953,6 +4009,47 @@ module TencentCloud
           @HttpVersion = params['HttpVersion']
           @SourceIpType = params['SourceIpType']
           @ExtendedCode = params['ExtendedCode']
+        end
+      end
+
+      # 闲置实例。
+      class IdleLoadBalancer < TencentCloud::Common::AbstractModel
+        # @param LoadBalancerId: 负载均衡ID
+        # @type LoadBalancerId: String
+        # @param LoadBalancerName: 负载均衡名字
+        # @type LoadBalancerName: String
+        # @param Region: 负载均衡所在地域
+        # @type Region: String
+        # @param Vip: 负载均衡的vip
+        # @type Vip: String
+        # @param IdleReason: 闲置原因。NO_RULES：没有规则，NO_RS：有规则没有绑定子机。
+        # @type IdleReason: String
+        # @param Status: 负载均衡实例的状态，包括
+        # 0：创建中，1：正常运行。
+        # @type Status: Integer
+        # @param Forward: 负载均衡类型标识，1：负载均衡，0：传统型负载均衡。
+        # @type Forward: Integer
+
+        attr_accessor :LoadBalancerId, :LoadBalancerName, :Region, :Vip, :IdleReason, :Status, :Forward
+        
+        def initialize(loadbalancerid=nil, loadbalancername=nil, region=nil, vip=nil, idlereason=nil, status=nil, forward=nil)
+          @LoadBalancerId = loadbalancerid
+          @LoadBalancerName = loadbalancername
+          @Region = region
+          @Vip = vip
+          @IdleReason = idlereason
+          @Status = status
+          @Forward = forward
+        end
+
+        def deserialize(params)
+          @LoadBalancerId = params['LoadBalancerId']
+          @LoadBalancerName = params['LoadBalancerName']
+          @Region = params['Region']
+          @Vip = params['Vip']
+          @IdleReason = params['IdleReason']
+          @Status = params['Status']
+          @Forward = params['Forward']
         end
       end
 

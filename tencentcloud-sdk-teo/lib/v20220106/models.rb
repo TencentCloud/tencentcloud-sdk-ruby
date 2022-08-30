@@ -3776,16 +3776,23 @@ module TencentCloud
 
       # DescribeDDoSPolicy返回参数结构体
       class DescribeDDoSPolicyResponse < TencentCloud::Common::AbstractModel
+        # @param DdosRule: DDoS防护配置
+        # @type DdosRule: :class:`Tencentcloud::Teo.v20220106.models.DdosRule`
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RequestId
+        attr_accessor :DdosRule, :RequestId
         
-        def initialize(requestid=nil)
+        def initialize(ddosrule=nil, requestid=nil)
+          @DdosRule = ddosrule
           @RequestId = requestid
         end
 
         def deserialize(params)
+          unless params['DdosRule'].nil?
+            @DdosRule = DdosRule.new
+            @DdosRule.deserialize(params['DdosRule'])
+          end
           @RequestId = params['RequestId']
         end
       end

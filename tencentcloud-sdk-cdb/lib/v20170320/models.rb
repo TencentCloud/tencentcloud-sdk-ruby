@@ -4929,15 +4929,27 @@ module TencentCloud
       class DescribeParamTemplatesRequest < TencentCloud::Common::AbstractModel
         # @param EngineVersions: 引擎版本，缺省则查询所有
         # @type EngineVersions: Array
+        # @param EngineTypes: 引擎类型，缺省则查询所有
+        # @type EngineTypes: Array
+        # @param TemplateNames: 模板名称，缺省则查询所有
+        # @type TemplateNames: Array
+        # @param TemplateIds: 模板id，缺省则查询所有
+        # @type TemplateIds: Array
 
-        attr_accessor :EngineVersions
+        attr_accessor :EngineVersions, :EngineTypes, :TemplateNames, :TemplateIds
         
-        def initialize(engineversions=nil)
+        def initialize(engineversions=nil, enginetypes=nil, templatenames=nil, templateids=nil)
           @EngineVersions = engineversions
+          @EngineTypes = enginetypes
+          @TemplateNames = templatenames
+          @TemplateIds = templateids
         end
 
         def deserialize(params)
           @EngineVersions = params['EngineVersions']
+          @EngineTypes = params['EngineTypes']
+          @TemplateNames = params['TemplateNames']
+          @TemplateIds = params['TemplateIds']
         end
       end
 

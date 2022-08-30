@@ -371,6 +371,34 @@ module TencentCloud
         end
       end
 
+      # cuDNN的版本信息
+      class CUDNN < TencentCloud::Common::AbstractModel
+        # @param Version: cuDNN的版本
+        # @type Version: String
+        # @param Name: cuDNN的名字
+        # @type Name: String
+        # @param DocName: cuDNN的Doc名字
+        # @type DocName: String
+        # @param DevName: cuDNN的Dev名字
+        # @type DevName: String
+
+        attr_accessor :Version, :Name, :DocName, :DevName
+        
+        def initialize(version=nil, name=nil, docname=nil, devname=nil)
+          @Version = version
+          @Name = name
+          @DocName = docname
+          @DevName = devname
+        end
+
+        def deserialize(params)
+          @Version = params['Version']
+          @Name = params['Name']
+          @DocName = params['DocName']
+          @DevName = params['DevName']
+        end
+      end
+
       # cloudrun安全特性能力
       class Capabilities < TencentCloud::Common::AbstractModel
         # @param Add: 启用安全能力项列表
@@ -3107,6 +3135,23 @@ module TencentCloud
         end
       end
 
+      # 自定义驱动信息
+      class CustomDriver < TencentCloud::Common::AbstractModel
+        # @param Address: 自定义GPU驱动地址链接
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Address: String
+
+        attr_accessor :Address
+        
+        def initialize(address=nil)
+          @Address = address
+        end
+
+        def deserialize(params)
+          @Address = params['Address']
+        end
+      end
+
       # 自定义DNS配置
       class DNSConfig < TencentCloud::Common::AbstractModel
         # @param Nameservers: DNS 服务器IP地址列表
@@ -4567,17 +4612,29 @@ module TencentCloud
         # @param ClusterExternalACL: 集群APIServer的外网访问ACL列表
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ClusterExternalACL: Array
+        # @param ClusterExternalDomain: 外网域名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClusterExternalDomain: String
+        # @param ClusterIntranetDomain: 内网域名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClusterIntranetDomain: String
+        # @param SecurityGroup: 外网安全组
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SecurityGroup: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :CertificationAuthority, :ClusterExternalEndpoint, :ClusterIntranetEndpoint, :ClusterDomain, :ClusterExternalACL, :RequestId
+        attr_accessor :CertificationAuthority, :ClusterExternalEndpoint, :ClusterIntranetEndpoint, :ClusterDomain, :ClusterExternalACL, :ClusterExternalDomain, :ClusterIntranetDomain, :SecurityGroup, :RequestId
         
-        def initialize(certificationauthority=nil, clusterexternalendpoint=nil, clusterintranetendpoint=nil, clusterdomain=nil, clusterexternalacl=nil, requestid=nil)
+        def initialize(certificationauthority=nil, clusterexternalendpoint=nil, clusterintranetendpoint=nil, clusterdomain=nil, clusterexternalacl=nil, clusterexternaldomain=nil, clusterintranetdomain=nil, securitygroup=nil, requestid=nil)
           @CertificationAuthority = certificationauthority
           @ClusterExternalEndpoint = clusterexternalendpoint
           @ClusterIntranetEndpoint = clusterintranetendpoint
           @ClusterDomain = clusterdomain
           @ClusterExternalACL = clusterexternalacl
+          @ClusterExternalDomain = clusterexternaldomain
+          @ClusterIntranetDomain = clusterintranetdomain
+          @SecurityGroup = securitygroup
           @RequestId = requestid
         end
 
@@ -4587,6 +4644,9 @@ module TencentCloud
           @ClusterIntranetEndpoint = params['ClusterIntranetEndpoint']
           @ClusterDomain = params['ClusterDomain']
           @ClusterExternalACL = params['ClusterExternalACL']
+          @ClusterExternalDomain = params['ClusterExternalDomain']
+          @ClusterIntranetDomain = params['ClusterIntranetDomain']
+          @SecurityGroup = params['SecurityGroup']
           @RequestId = params['RequestId']
         end
       end
@@ -8036,6 +8096,26 @@ module TencentCloud
         end
       end
 
+      # GPU驱动和CUDA的版本信息
+      class DriverVersion < TencentCloud::Common::AbstractModel
+        # @param Version: GPU驱动或者CUDA的版本
+        # @type Version: String
+        # @param Name: GPU驱动或者CUDA的名字
+        # @type Name: String
+
+        attr_accessor :Version, :Name
+        
+        def initialize(version=nil, name=nil)
+          @Version = version
+          @Name = name
+        end
+
+        def deserialize(params)
+          @Version = params['Version']
+          @Name = params['Name']
+        end
+      end
+
       # ECM增强服务
       class ECMEnhancedService < TencentCloud::Common::AbstractModel
         # @param SecurityService: 是否开启云监控服务
@@ -9299,6 +9379,54 @@ module TencentCloud
         end
       end
 
+      # GPU相关的参数，包括驱动版本，CUDA版本，cuDNN版本以及是否开启MIG
+      class GPUArgs < TencentCloud::Common::AbstractModel
+        # @param MIGEnable: 是否启用MIG特性
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MIGEnable: Boolean
+        # @param Driver: GPU驱动版本信息
+        # @type Driver: :class:`Tencentcloud::Tke.v20180525.models.DriverVersion`
+        # @param CUDA: CUDA版本信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CUDA: :class:`Tencentcloud::Tke.v20180525.models.DriverVersion`
+        # @param CUDNN: cuDNN版本信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CUDNN: :class:`Tencentcloud::Tke.v20180525.models.CUDNN`
+        # @param CustomDriver: 自定义GPU驱动信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CustomDriver: :class:`Tencentcloud::Tke.v20180525.models.CustomDriver`
+
+        attr_accessor :MIGEnable, :Driver, :CUDA, :CUDNN, :CustomDriver
+        
+        def initialize(migenable=nil, driver=nil, cuda=nil, cudnn=nil, customdriver=nil)
+          @MIGEnable = migenable
+          @Driver = driver
+          @CUDA = cuda
+          @CUDNN = cudnn
+          @CustomDriver = customdriver
+        end
+
+        def deserialize(params)
+          @MIGEnable = params['MIGEnable']
+          unless params['Driver'].nil?
+            @Driver = DriverVersion.new
+            @Driver.deserialize(params['Driver'])
+          end
+          unless params['CUDA'].nil?
+            @CUDA = DriverVersion.new
+            @CUDA.deserialize(params['CUDA'])
+          end
+          unless params['CUDNN'].nil?
+            @CUDNN = CUDNN.new
+            @CUDNN.deserialize(params['CUDNN'])
+          end
+          unless params['CustomDriver'].nil?
+            @CustomDriver = CustomDriver.new
+            @CustomDriver.deserialize(params['CustomDriver'])
+          end
+        end
+      end
+
       # GetClusterLevelPrice请求参数结构体
       class GetClusterLevelPriceRequest < TencentCloud::Common::AbstractModel
         # @param ClusterLevel: 集群规格，托管集群询价
@@ -9877,6 +10005,9 @@ module TencentCloud
         # @param DesiredPodNumber: 该节点属于podCIDR大小自定义模式时，可指定节点上运行的pod数量上限
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DesiredPodNumber: Integer
+        # @param GPUArgs: GPU驱动相关参数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GPUArgs: :class:`Tencentcloud::Tke.v20180525.models.GPUArgs`
         # @param PreStartUserScript: base64 编码的用户脚本，在初始化节点之前执行，目前只对添加已有节点生效
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PreStartUserScript: String
@@ -9884,9 +10015,9 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Taints: Array
 
-        attr_accessor :MountTarget, :DockerGraphPath, :UserScript, :Unschedulable, :Labels, :DataDisks, :ExtraArgs, :DesiredPodNumber, :PreStartUserScript, :Taints
+        attr_accessor :MountTarget, :DockerGraphPath, :UserScript, :Unschedulable, :Labels, :DataDisks, :ExtraArgs, :DesiredPodNumber, :GPUArgs, :PreStartUserScript, :Taints
         
-        def initialize(mounttarget=nil, dockergraphpath=nil, userscript=nil, unschedulable=nil, labels=nil, datadisks=nil, extraargs=nil, desiredpodnumber=nil, prestartuserscript=nil, taints=nil)
+        def initialize(mounttarget=nil, dockergraphpath=nil, userscript=nil, unschedulable=nil, labels=nil, datadisks=nil, extraargs=nil, desiredpodnumber=nil, gpuargs=nil, prestartuserscript=nil, taints=nil)
           @MountTarget = mounttarget
           @DockerGraphPath = dockergraphpath
           @UserScript = userscript
@@ -9895,6 +10026,7 @@ module TencentCloud
           @DataDisks = datadisks
           @ExtraArgs = extraargs
           @DesiredPodNumber = desiredpodnumber
+          @GPUArgs = gpuargs
           @PreStartUserScript = prestartuserscript
           @Taints = taints
         end
@@ -9925,6 +10057,10 @@ module TencentCloud
             @ExtraArgs.deserialize(params['ExtraArgs'])
           end
           @DesiredPodNumber = params['DesiredPodNumber']
+          unless params['GPUArgs'].nil?
+            @GPUArgs = GPUArgs.new
+            @GPUArgs.deserialize(params['GPUArgs'])
+          end
           @PreStartUserScript = params['PreStartUserScript']
           unless params['Taints'].nil?
             @Taints = []
@@ -10461,17 +10597,21 @@ module TencentCloud
         # @type ClusterId: String
         # @param SecurityPolicies: 安全策略放通单个IP或CIDR(例如: "192.168.1.0/24",默认为拒绝所有)
         # @type SecurityPolicies: Array
+        # @param SecurityGroup: 修改外网访问安全组
+        # @type SecurityGroup: String
 
-        attr_accessor :ClusterId, :SecurityPolicies
+        attr_accessor :ClusterId, :SecurityPolicies, :SecurityGroup
         
-        def initialize(clusterid=nil, securitypolicies=nil)
+        def initialize(clusterid=nil, securitypolicies=nil, securitygroup=nil)
           @ClusterId = clusterid
           @SecurityPolicies = securitypolicies
+          @SecurityGroup = securitygroup
         end
 
         def deserialize(params)
           @ClusterId = params['ClusterId']
           @SecurityPolicies = params['SecurityPolicies']
+          @SecurityGroup = params['SecurityGroup']
         end
       end
 
@@ -13300,17 +13440,21 @@ module TencentCloud
         # @type SubnetId: String
         # @param Name: 子网节点名称
         # @type Name: String
+        # @param SecurityGroups: 安全组id
+        # @type SecurityGroups: Array
 
-        attr_accessor :SubnetId, :Name
+        attr_accessor :SubnetId, :Name, :SecurityGroups
         
-        def initialize(subnetid=nil, name=nil)
+        def initialize(subnetid=nil, name=nil, securitygroups=nil)
           @SubnetId = subnetid
           @Name = name
+          @SecurityGroups = securitygroups
         end
 
         def deserialize(params)
           @SubnetId = params['SubnetId']
           @Name = params['Name']
+          @SecurityGroups = params['SecurityGroups']
         end
       end
 

@@ -1322,7 +1322,7 @@ module TencentCloud
         # @type SmallVideoLayoutParams: :class:`Tencentcloud::Trtc.v20190722.models.SmallVideoLayoutParams`
         # @param MainVideoRightAlign: 屏幕分享模板有效。设置为1时代表大画面居右，小画面居左布局。默认为0。
         # @type MainVideoRightAlign: Integer
-        # @param MixVideoUids: 悬浮模板、九宫格、屏幕分享模板有效。设置此参数后，输出流混合此参数中包含用户的音视频，以及其他用户的纯音频。最多可设置16个用户。
+        # @param MixVideoUids: 指定混视频的用户ID列表。设置此参数后，输出流混合此参数中包含用户的音视频，以及其他用户的纯音频。悬浮模板、九宫格、屏幕分享模板有效，最多可设置16个用户。
         # @type MixVideoUids: Array
         # @param PresetLayoutConfig: 自定义模板中有效，指定用户视频在混合画面中的位置。
         # @type PresetLayoutConfig: Array

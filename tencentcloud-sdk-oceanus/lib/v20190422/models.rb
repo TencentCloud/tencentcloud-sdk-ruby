@@ -481,10 +481,12 @@ module TencentCloud
         # @type WorkSpaceId: String
         # @param LogLevel: 日志级别
         # @type LogLevel: String
+        # @param AutoRecover: Oceanus 平台恢复作业开关 1:开启 -1: 关闭
+        # @type AutoRecover: Integer
 
-        attr_accessor :JobId, :EntrypointClass, :ProgramArgs, :Remark, :ResourceRefs, :DefaultParallelism, :Properties, :AutoDelete, :COSBucket, :LogCollect, :JobManagerSpec, :TaskManagerSpec, :ClsLogsetId, :ClsTopicId, :LogCollectType, :PythonVersion, :WorkSpaceId, :LogLevel
+        attr_accessor :JobId, :EntrypointClass, :ProgramArgs, :Remark, :ResourceRefs, :DefaultParallelism, :Properties, :AutoDelete, :COSBucket, :LogCollect, :JobManagerSpec, :TaskManagerSpec, :ClsLogsetId, :ClsTopicId, :LogCollectType, :PythonVersion, :WorkSpaceId, :LogLevel, :AutoRecover
         
-        def initialize(jobid=nil, entrypointclass=nil, programargs=nil, remark=nil, resourcerefs=nil, defaultparallelism=nil, properties=nil, autodelete=nil, cosbucket=nil, logcollect=nil, jobmanagerspec=nil, taskmanagerspec=nil, clslogsetid=nil, clstopicid=nil, logcollecttype=nil, pythonversion=nil, workspaceid=nil, loglevel=nil)
+        def initialize(jobid=nil, entrypointclass=nil, programargs=nil, remark=nil, resourcerefs=nil, defaultparallelism=nil, properties=nil, autodelete=nil, cosbucket=nil, logcollect=nil, jobmanagerspec=nil, taskmanagerspec=nil, clslogsetid=nil, clstopicid=nil, logcollecttype=nil, pythonversion=nil, workspaceid=nil, loglevel=nil, autorecover=nil)
           @JobId = jobid
           @EntrypointClass = entrypointclass
           @ProgramArgs = programargs
@@ -503,6 +505,7 @@ module TencentCloud
           @PythonVersion = pythonversion
           @WorkSpaceId = workspaceid
           @LogLevel = loglevel
+          @AutoRecover = autorecover
         end
 
         def deserialize(params)
@@ -538,6 +541,7 @@ module TencentCloud
           @PythonVersion = params['PythonVersion']
           @WorkSpaceId = params['WorkSpaceId']
           @LogLevel = params['LogLevel']
+          @AutoRecover = params['AutoRecover']
         end
       end
 
@@ -1630,10 +1634,16 @@ module TencentCloud
         # @param PythonVersion: pyflink作业运行的python版本
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PythonVersion: String
+        # @param AutoRecover: Oceanus 平台恢复作业开关 1:开启 -1: 关闭
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AutoRecover: Integer
+        # @param LogLevel: 日志级别
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LogLevel: String
 
-        attr_accessor :JobId, :EntrypointClass, :ProgramArgs, :Remark, :CreateTime, :Version, :DefaultParallelism, :Properties, :ResourceRefDetails, :CreatorUin, :UpdateTime, :COSBucket, :LogCollect, :MaxParallelism, :JobManagerSpec, :TaskManagerSpec, :ClsLogsetId, :ClsTopicId, :PythonVersion
+        attr_accessor :JobId, :EntrypointClass, :ProgramArgs, :Remark, :CreateTime, :Version, :DefaultParallelism, :Properties, :ResourceRefDetails, :CreatorUin, :UpdateTime, :COSBucket, :LogCollect, :MaxParallelism, :JobManagerSpec, :TaskManagerSpec, :ClsLogsetId, :ClsTopicId, :PythonVersion, :AutoRecover, :LogLevel
         
-        def initialize(jobid=nil, entrypointclass=nil, programargs=nil, remark=nil, createtime=nil, version=nil, defaultparallelism=nil, properties=nil, resourcerefdetails=nil, creatoruin=nil, updatetime=nil, cosbucket=nil, logcollect=nil, maxparallelism=nil, jobmanagerspec=nil, taskmanagerspec=nil, clslogsetid=nil, clstopicid=nil, pythonversion=nil)
+        def initialize(jobid=nil, entrypointclass=nil, programargs=nil, remark=nil, createtime=nil, version=nil, defaultparallelism=nil, properties=nil, resourcerefdetails=nil, creatoruin=nil, updatetime=nil, cosbucket=nil, logcollect=nil, maxparallelism=nil, jobmanagerspec=nil, taskmanagerspec=nil, clslogsetid=nil, clstopicid=nil, pythonversion=nil, autorecover=nil, loglevel=nil)
           @JobId = jobid
           @EntrypointClass = entrypointclass
           @ProgramArgs = programargs
@@ -1653,6 +1663,8 @@ module TencentCloud
           @ClsLogsetId = clslogsetid
           @ClsTopicId = clstopicid
           @PythonVersion = pythonversion
+          @AutoRecover = autorecover
+          @LogLevel = loglevel
         end
 
         def deserialize(params)
@@ -1689,6 +1701,8 @@ module TencentCloud
           @ClsLogsetId = params['ClsLogsetId']
           @ClsTopicId = params['ClsTopicId']
           @PythonVersion = params['PythonVersion']
+          @AutoRecover = params['AutoRecover']
+          @LogLevel = params['LogLevel']
         end
       end
 
