@@ -1685,7 +1685,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 获取L7转发规则健康检查异常结果
+        # 获取L7转发规则健康检查异常结果列表
 
         # @param request: Request instance for DescribeNewL7RulesErrHealth.
         # @type request: :class:`Tencentcloud::antiddos::V20200309::DescribeNewL7RulesErrHealthRequest`

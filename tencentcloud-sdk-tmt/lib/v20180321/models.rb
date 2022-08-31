@@ -128,14 +128,18 @@ module TencentCloud
         # @param Message: 错误提示
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Message: String
+        # @param Progress: 翻译进度
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Progress: Integer
 
-        attr_accessor :TaskId, :Status, :FileData, :Message
+        attr_accessor :TaskId, :Status, :FileData, :Message, :Progress
         
-        def initialize(taskid=nil, status=nil, filedata=nil, message=nil)
+        def initialize(taskid=nil, status=nil, filedata=nil, message=nil, progress=nil)
           @TaskId = taskid
           @Status = status
           @FileData = filedata
           @Message = message
+          @Progress = progress
         end
 
         def deserialize(params)
@@ -143,6 +147,7 @@ module TencentCloud
           @Status = params['Status']
           @FileData = params['FileData']
           @Message = params['Message']
+          @Progress = params['Progress']
         end
       end
 

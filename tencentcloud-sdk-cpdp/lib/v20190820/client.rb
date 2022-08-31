@@ -245,6 +245,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 云企付结算申请接口
+
+        # @param request: Request instance for ApplyOpenBankSettleOrder.
+        # @type request: :class:`Tencentcloud::cpdp::V20190820::ApplyOpenBankSettleOrderRequest`
+        # @rtype: :class:`Tencentcloud::cpdp::V20190820::ApplyOpenBankSettleOrderResponse`
+        def ApplyOpenBankSettleOrder(request)
+          body = send_request('ApplyOpenBankSettleOrder', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ApplyOpenBankSettleOrderResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 子商户在线签约
+
+        # @param request: Request instance for ApplyOpenBankSubMerchantSignOnline.
+        # @type request: :class:`Tencentcloud::cpdp::V20190820::ApplyOpenBankSubMerchantSignOnlineRequest`
+        # @rtype: :class:`Tencentcloud::cpdp::V20190820::ApplyOpenBankSubMerchantSignOnlineResponse`
+        def ApplyOpenBankSubMerchantSignOnline(request)
+          body = send_request('ApplyOpenBankSubMerchantSignOnline', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ApplyOpenBankSubMerchantSignOnlineResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 跨境-汇出指令申请。通过该接口可将对接方账户中的人民币余额汇兑成外币，再汇出至指定银行账户。
 
         # @param request: Request instance for ApplyOutwardOrder.
@@ -3640,6 +3688,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 云企付结算单查询结果
+
+        # @param request: Request instance for QueryOpenBankSettleOrder.
+        # @type request: :class:`Tencentcloud::cpdp::V20190820::QueryOpenBankSettleOrderRequest`
+        # @rtype: :class:`Tencentcloud::cpdp::V20190820::QueryOpenBankSettleOrderResponse`
+        def QueryOpenBankSettleOrder(request)
+          body = send_request('QueryOpenBankSettleOrder', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = QueryOpenBankSettleOrderResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 云企付-子商户资质文件查询
 
         # @param request: Request instance for QueryOpenBankSubMerchantCredential.
@@ -3674,6 +3746,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = QueryOpenBankSubMerchantRateConfigureResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 子商户在线签约查询
+
+        # @param request: Request instance for QueryOpenBankSubMerchantSignOnline.
+        # @type request: :class:`Tencentcloud::cpdp::V20190820::QueryOpenBankSubMerchantSignOnlineRequest`
+        # @rtype: :class:`Tencentcloud::cpdp::V20190820::QueryOpenBankSubMerchantSignOnlineResponse`
+        def QueryOpenBankSubMerchantSignOnline(request)
+          body = send_request('QueryOpenBankSubMerchantSignOnline', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = QueryOpenBankSubMerchantSignOnlineResponse.new
             model.deserialize(response['Response'])
             model
           else

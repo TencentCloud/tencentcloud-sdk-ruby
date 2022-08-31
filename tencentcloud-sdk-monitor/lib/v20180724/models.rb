@@ -229,13 +229,16 @@ module TencentCloud
         # @param PolicyIds: 告警通知模板绑定的告警策略ID列表
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PolicyIds: Array
+        # @param AMPConsumerId: 后台 amp consumer id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AMPConsumerId: String
         # @param CLSNotices: 推送cls渠道
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CLSNotices: Array
 
-        attr_accessor :Id, :Name, :UpdatedAt, :UpdatedBy, :NoticeType, :UserNotices, :URLNotices, :IsPreset, :NoticeLanguage, :PolicyIds, :CLSNotices
+        attr_accessor :Id, :Name, :UpdatedAt, :UpdatedBy, :NoticeType, :UserNotices, :URLNotices, :IsPreset, :NoticeLanguage, :PolicyIds, :AMPConsumerId, :CLSNotices
         
-        def initialize(id=nil, name=nil, updatedat=nil, updatedby=nil, noticetype=nil, usernotices=nil, urlnotices=nil, ispreset=nil, noticelanguage=nil, policyids=nil, clsnotices=nil)
+        def initialize(id=nil, name=nil, updatedat=nil, updatedby=nil, noticetype=nil, usernotices=nil, urlnotices=nil, ispreset=nil, noticelanguage=nil, policyids=nil, ampconsumerid=nil, clsnotices=nil)
           @Id = id
           @Name = name
           @UpdatedAt = updatedat
@@ -246,6 +249,7 @@ module TencentCloud
           @IsPreset = ispreset
           @NoticeLanguage = noticelanguage
           @PolicyIds = policyids
+          @AMPConsumerId = ampconsumerid
           @CLSNotices = clsnotices
         end
 
@@ -274,6 +278,7 @@ module TencentCloud
           @IsPreset = params['IsPreset']
           @NoticeLanguage = params['NoticeLanguage']
           @PolicyIds = params['PolicyIds']
+          @AMPConsumerId = params['AMPConsumerId']
           unless params['CLSNotices'].nil?
             @CLSNotices = []
             params['CLSNotices'].each do |i|

@@ -2439,7 +2439,7 @@ module TencentCloud
 
       # 第三方存储参数。
       class StorageParams < TencentCloud::Common::AbstractModel
-        # @param CloudStorage: 第三方云存储的账号信息。
+        # @param CloudStorage: 第三方云存储的账号信息（暂不支持）。
         # @type CloudStorage: :class:`Tencentcloud::Trtc.v20190722.models.CloudStorage`
         # @param CloudVod: 第三方云点播的账号信息。
         # @type CloudVod: :class:`Tencentcloud::Trtc.v20190722.models.CloudVod`
@@ -2558,21 +2558,21 @@ module TencentCloud
         # @type TimeKey: String
         # @param VoiceUserNum: 通话人数。仅供参考。在线人数以仪表盘查询结果为准。
         # @type VoiceUserNum: Integer
-        # @param VideoTime: 音视频通话时长。单位：秒。
+        # @param VideoTime: 音视频通话收费时长。单位：秒。
         # @type VideoTime: Integer
-        # @param Class1VideoTime: 标清视频通话时长。单位：秒。
+        # @param Class1VideoTime: 标清视频通话收费时长。单位：秒。
         # @type Class1VideoTime: Integer
-        # @param Class2VideoTime: 高清视频通话时长。单位：秒。
+        # @param Class2VideoTime: 高清视频通话收费时长。单位：秒。
         # @type Class2VideoTime: Integer
-        # @param Class3VideoTime: 超高清视频通话时长。单位：秒。
+        # @param Class3VideoTime: 超高清视频通话收费时长。单位：秒。
         # @type Class3VideoTime: Integer
-        # @param AudioTime: 音频通话时长。单位：秒。
+        # @param AudioTime: 音频通话收费时长。单位：秒。
         # @type AudioTime: Integer
         # @param Bandwidth: 带宽。单位：Mbps。
         # @type Bandwidth: Float
-        # @param Video2KTime: 2k视频通话时长。单位：秒。
+        # @param Video2KTime: 2k视频通话收费时长。单位：秒。
         # @type Video2KTime: Integer
-        # @param Video4KTime: 4k视频通话时长。单位：秒。
+        # @param Video4KTime: 4k视频通话收费时长。单位：秒。
         # @type Video4KTime: Integer
 
         attr_accessor :TimeKey, :VoiceUserNum, :VideoTime, :Class1VideoTime, :Class2VideoTime, :Class3VideoTime, :AudioTime, :Bandwidth, :Video2KTime, :Video4KTime

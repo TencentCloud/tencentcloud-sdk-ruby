@@ -150,14 +150,26 @@ module TencentCloud
         # @param PlateLocation: 车牌在图片中的坐标信息。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PlateLocation: Array
+        # @param PlateStatus: 判断车牌是否遮挡。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PlateStatus: String
+        # @param PlateStatusConfidence: 车牌遮挡的置信度，0-100。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PlateStatusConfidence: Integer
+        # @param PlateAngle: 车牌角度。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PlateAngle: Float
 
-        attr_accessor :Plate, :Color, :Type, :PlateLocation
+        attr_accessor :Plate, :Color, :Type, :PlateLocation, :PlateStatus, :PlateStatusConfidence, :PlateAngle
         
-        def initialize(plate=nil, color=nil, type=nil, platelocation=nil)
+        def initialize(plate=nil, color=nil, type=nil, platelocation=nil, platestatus=nil, platestatusconfidence=nil, plateangle=nil)
           @Plate = plate
           @Color = color
           @Type = type
           @PlateLocation = platelocation
+          @PlateStatus = platestatus
+          @PlateStatusConfidence = platestatusconfidence
+          @PlateAngle = plateangle
         end
 
         def deserialize(params)
@@ -172,6 +184,9 @@ module TencentCloud
               @PlateLocation << coord_tmp
             end
           end
+          @PlateStatus = params['PlateStatus']
+          @PlateStatusConfidence = params['PlateStatusConfidence']
+          @PlateAngle = params['PlateAngle']
         end
       end
 
@@ -203,10 +218,16 @@ module TencentCloud
         # @param ColorConfidence: 车辆颜色置信度，0-100，仅车辆识别（增强版）支持
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ColorConfidence: Integer
+        # @param Orientation: 车辆朝向，仅车辆识别（增强版）支持
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Orientation: String
+        # @param OrientationConfidence: 车辆朝向置信度，0-100，仅车辆识别（增强版）支持
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OrientationConfidence: Integer
 
-        attr_accessor :Serial, :Brand, :Type, :Color, :Confidence, :Year, :CarLocation, :PlateContent, :PlateConfidence, :TypeConfidence, :ColorConfidence
+        attr_accessor :Serial, :Brand, :Type, :Color, :Confidence, :Year, :CarLocation, :PlateContent, :PlateConfidence, :TypeConfidence, :ColorConfidence, :Orientation, :OrientationConfidence
         
-        def initialize(serial=nil, brand=nil, type=nil, color=nil, confidence=nil, year=nil, carlocation=nil, platecontent=nil, plateconfidence=nil, typeconfidence=nil, colorconfidence=nil)
+        def initialize(serial=nil, brand=nil, type=nil, color=nil, confidence=nil, year=nil, carlocation=nil, platecontent=nil, plateconfidence=nil, typeconfidence=nil, colorconfidence=nil, orientation=nil, orientationconfidence=nil)
           @Serial = serial
           @Brand = brand
           @Type = type
@@ -218,6 +239,8 @@ module TencentCloud
           @PlateConfidence = plateconfidence
           @TypeConfidence = typeconfidence
           @ColorConfidence = colorconfidence
+          @Orientation = orientation
+          @OrientationConfidence = orientationconfidence
         end
 
         def deserialize(params)
@@ -242,6 +265,8 @@ module TencentCloud
           @PlateConfidence = params['PlateConfidence']
           @TypeConfidence = params['TypeConfidence']
           @ColorConfidence = params['ColorConfidence']
+          @Orientation = params['Orientation']
+          @OrientationConfidence = params['OrientationConfidence']
         end
       end
 

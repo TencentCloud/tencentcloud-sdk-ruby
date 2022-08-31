@@ -10347,6 +10347,7 @@ module TencentCloud
         # <li> ClientIpHeader；</li>
         # <li> TlsVersion；</li>
         # <li> OcspStapling。</li>
+        # <li> HTTP/2 访问（Http2）。</li>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NormalAction: :class:`Tencentcloud::Teo.v20220106.models.RuleNormalAction`
         # @param RewriteAction: 带有请求头/响应头的功能操作，选择该类型的功能项有：

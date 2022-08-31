@@ -3075,7 +3075,7 @@ module TencentCloud
         # @type DateOfExpiration: String
         # @param IssuingCountry: 发行国
         # @type IssuingCountry: String
-        # @param Nationality: 国籍
+        # @param Nationality: 国家地区代码
         # @type Nationality: String
         # @param Warn: 告警码
         # -9103	证照翻拍告警
