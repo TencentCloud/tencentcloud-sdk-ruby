@@ -3115,7 +3115,7 @@ module TencentCloud
         end
       end
 
-      # 远程命令执行对象。NotificationTarget和CommandInfo参数互斥，二者不可同时指定。
+      # 远程命令执行对象。
       class LifecycleCommand < TencentCloud::Common::AbstractModel
         # @param CommandId: 远程命令ID。若选择执行命令，则此项必填。
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -3125,7 +3125,7 @@ module TencentCloud
         # 如果未提供该参数取值，将使用 Command 的 DefaultParameters 进行替换。
         # 自定义参数最多20个。自定义参数名称需符合以下规范：字符数目上限64，可选范围【a-zA-Z0-9-_】。
         # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Parameters: Array
+        # @type Parameters: String
 
         attr_accessor :CommandId, :Parameters
         

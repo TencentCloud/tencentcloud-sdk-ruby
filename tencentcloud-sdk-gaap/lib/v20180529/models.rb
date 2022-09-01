@@ -5292,10 +5292,16 @@ module TencentCloud
         # @param PolyClientCertificateAliasInfo: 多客户端CA证书别名信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PolyClientCertificateAliasInfo: Array
+        # @param Http3Supported: 是否支持Http3，其中：
+        # 0，不支持Http3接入；
+        # 1，持Http3接入。
+        # 注意：如果支持了Http3的功能，那么该监听器会占用对应的UDP接入端口，不可再创建相同端口的UDP监听器。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Http3Supported: Integer
 
-        attr_accessor :ListenerId, :ListenerName, :Port, :Protocol, :ListenerStatus, :CertificateId, :ForwardProtocol, :CreateTime, :CertificateAlias, :ClientCertificateId, :AuthType, :ClientCertificateAlias, :PolyClientCertificateAliasInfo
+        attr_accessor :ListenerId, :ListenerName, :Port, :Protocol, :ListenerStatus, :CertificateId, :ForwardProtocol, :CreateTime, :CertificateAlias, :ClientCertificateId, :AuthType, :ClientCertificateAlias, :PolyClientCertificateAliasInfo, :Http3Supported
         
-        def initialize(listenerid=nil, listenername=nil, port=nil, protocol=nil, listenerstatus=nil, certificateid=nil, forwardprotocol=nil, createtime=nil, certificatealias=nil, clientcertificateid=nil, authtype=nil, clientcertificatealias=nil, polyclientcertificatealiasinfo=nil)
+        def initialize(listenerid=nil, listenername=nil, port=nil, protocol=nil, listenerstatus=nil, certificateid=nil, forwardprotocol=nil, createtime=nil, certificatealias=nil, clientcertificateid=nil, authtype=nil, clientcertificatealias=nil, polyclientcertificatealiasinfo=nil, http3supported=nil)
           @ListenerId = listenerid
           @ListenerName = listenername
           @Port = port
@@ -5309,6 +5315,7 @@ module TencentCloud
           @AuthType = authtype
           @ClientCertificateAlias = clientcertificatealias
           @PolyClientCertificateAliasInfo = polyclientcertificatealiasinfo
+          @Http3Supported = http3supported
         end
 
         def deserialize(params)
@@ -5332,6 +5339,7 @@ module TencentCloud
               @PolyClientCertificateAliasInfo << certificatealiasinfo_tmp
             end
           end
+          @Http3Supported = params['Http3Supported']
         end
       end
 

@@ -518,10 +518,14 @@ module TencentCloud
         # @type TraceId: String
         # @param TraceItems: 溯源信息
         # @type TraceItems: Array
+        # @param Status: 溯源状态 0: 无效, 1: 有效
+        # @type Status: Integer
+        # @param PhaseData: 环节数据
+        # @type PhaseData: :class:`Tencentcloud::Trp.v20210515.models.PhaseData`
 
-        attr_accessor :CorpId, :BatchId, :TaskId, :Phase, :PhaseName, :ChainStatus, :Type, :TraceId, :TraceItems
+        attr_accessor :CorpId, :BatchId, :TaskId, :Phase, :PhaseName, :ChainStatus, :Type, :TraceId, :TraceItems, :Status, :PhaseData
         
-        def initialize(corpid=nil, batchid=nil, taskid=nil, phase=nil, phasename=nil, chainstatus=nil, type=nil, traceid=nil, traceitems=nil)
+        def initialize(corpid=nil, batchid=nil, taskid=nil, phase=nil, phasename=nil, chainstatus=nil, type=nil, traceid=nil, traceitems=nil, status=nil, phasedata=nil)
           @CorpId = corpid
           @BatchId = batchid
           @TaskId = taskid
@@ -531,6 +535,8 @@ module TencentCloud
           @Type = type
           @TraceId = traceid
           @TraceItems = traceitems
+          @Status = status
+          @PhaseData = phasedata
         end
 
         def deserialize(params)
@@ -549,6 +555,11 @@ module TencentCloud
               traceitem_tmp.deserialize(i)
               @TraceItems << traceitem_tmp
             end
+          end
+          @Status = params['Status']
+          unless params['PhaseData'].nil?
+            @PhaseData = PhaseData.new
+            @PhaseData.deserialize(params['PhaseData'])
           end
         end
       end
@@ -1683,12 +1694,14 @@ module TencentCloud
         # @type ChainData: :class:`Tencentcloud::Trp.v20210515.models.ChainData`
         # @param CorpId: 企业ID
         # @type CorpId: Integer
-        # @param Status: [无效] 溯源状态
+        # @param Status: 溯源状态 0: 无效, 1: 有效
         # @type Status: Integer
+        # @param PhaseData: 环节数据
+        # @type PhaseData: :class:`Tencentcloud::Trp.v20210515.models.PhaseData`
 
-        attr_accessor :TraceId, :BatchId, :TaskId, :TraceItems, :PhaseName, :Type, :Code, :Rank, :Phase, :TraceTime, :CreateTime, :ChainStatus, :ChainTime, :ChainData, :CorpId, :Status
+        attr_accessor :TraceId, :BatchId, :TaskId, :TraceItems, :PhaseName, :Type, :Code, :Rank, :Phase, :TraceTime, :CreateTime, :ChainStatus, :ChainTime, :ChainData, :CorpId, :Status, :PhaseData
         
-        def initialize(traceid=nil, batchid=nil, taskid=nil, traceitems=nil, phasename=nil, type=nil, code=nil, rank=nil, phase=nil, tracetime=nil, createtime=nil, chainstatus=nil, chaintime=nil, chaindata=nil, corpid=nil, status=nil)
+        def initialize(traceid=nil, batchid=nil, taskid=nil, traceitems=nil, phasename=nil, type=nil, code=nil, rank=nil, phase=nil, tracetime=nil, createtime=nil, chainstatus=nil, chaintime=nil, chaindata=nil, corpid=nil, status=nil, phasedata=nil)
           @TraceId = traceid
           @BatchId = batchid
           @TaskId = taskid
@@ -1705,6 +1718,7 @@ module TencentCloud
           @ChainData = chaindata
           @CorpId = corpid
           @Status = status
+          @PhaseData = phasedata
         end
 
         def deserialize(params)
@@ -1734,6 +1748,10 @@ module TencentCloud
           end
           @CorpId = params['CorpId']
           @Status = params['Status']
+          unless params['PhaseData'].nil?
+            @PhaseData = PhaseData.new
+            @PhaseData.deserialize(params['PhaseData'])
+          end
         end
       end
 
@@ -1778,6 +1796,42 @@ module TencentCloud
           @Level = params['Level']
           @Rate = params['Rate']
           @Amount = params['Amount']
+        end
+      end
+
+      # 环节数据
+      class PhaseData < TencentCloud::Common::AbstractModel
+        # @param HeadEnabled: 启用头
+        # @type HeadEnabled: Boolean
+        # @param HeadTitle: 标题
+        # @type HeadTitle: String
+        # @param Key: 标识符
+        # @type Key: String
+        # @param AppId: 小程序AppId
+        # @type AppId: String
+        # @param AppPath: 小程序AppPath
+        # @type AppPath: String
+        # @param AppName: 小程序名称AppName
+        # @type AppName: String
+
+        attr_accessor :HeadEnabled, :HeadTitle, :Key, :AppId, :AppPath, :AppName
+        
+        def initialize(headenabled=nil, headtitle=nil, key=nil, appid=nil, apppath=nil, appname=nil)
+          @HeadEnabled = headenabled
+          @HeadTitle = headtitle
+          @Key = key
+          @AppId = appid
+          @AppPath = apppath
+          @AppName = appname
+        end
+
+        def deserialize(params)
+          @HeadEnabled = params['HeadEnabled']
+          @HeadTitle = params['HeadTitle']
+          @Key = params['Key']
+          @AppId = params['AppId']
+          @AppPath = params['AppPath']
+          @AppName = params['AppName']
         end
       end
 
@@ -2011,16 +2065,20 @@ module TencentCloud
         # @param Values: 多个值
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Values: Array
+        # @param Key: 类型标识
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Key: String
 
-        attr_accessor :Name, :Value, :Type, :ReadOnly, :Hidden, :Values
+        attr_accessor :Name, :Value, :Type, :ReadOnly, :Hidden, :Values, :Key
         
-        def initialize(name=nil, value=nil, type=nil, readonly=nil, hidden=nil, values=nil)
+        def initialize(name=nil, value=nil, type=nil, readonly=nil, hidden=nil, values=nil, key=nil)
           @Name = name
           @Value = value
           @Type = type
           @ReadOnly = readonly
           @Hidden = hidden
           @Values = values
+          @Key = key
         end
 
         def deserialize(params)
@@ -2030,6 +2088,7 @@ module TencentCloud
           @ReadOnly = params['ReadOnly']
           @Hidden = params['Hidden']
           @Values = params['Values']
+          @Key = params['Key']
         end
       end
 

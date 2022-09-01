@@ -635,10 +635,13 @@ module TencentCloud
         # @param QGPUShareEnable: 是否开启QGPU共享
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type QGPUShareEnable: Boolean
+        # @param RuntimeVersion: 运行时版本
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RuntimeVersion: String
 
-        attr_accessor :ClusterId, :ClusterName, :ClusterDescription, :ClusterVersion, :ClusterOs, :ClusterType, :ClusterNetworkSettings, :ClusterNodeNum, :ProjectId, :TagSpecification, :ClusterStatus, :Property, :ClusterMaterNodeNum, :ImageId, :OsCustomizeType, :ContainerRuntime, :CreatedTime, :DeletionProtection, :EnableExternalNode, :ClusterLevel, :AutoUpgradeClusterLevel, :QGPUShareEnable
+        attr_accessor :ClusterId, :ClusterName, :ClusterDescription, :ClusterVersion, :ClusterOs, :ClusterType, :ClusterNetworkSettings, :ClusterNodeNum, :ProjectId, :TagSpecification, :ClusterStatus, :Property, :ClusterMaterNodeNum, :ImageId, :OsCustomizeType, :ContainerRuntime, :CreatedTime, :DeletionProtection, :EnableExternalNode, :ClusterLevel, :AutoUpgradeClusterLevel, :QGPUShareEnable, :RuntimeVersion
         
-        def initialize(clusterid=nil, clustername=nil, clusterdescription=nil, clusterversion=nil, clusteros=nil, clustertype=nil, clusternetworksettings=nil, clusternodenum=nil, projectid=nil, tagspecification=nil, clusterstatus=nil, property=nil, clustermaternodenum=nil, imageid=nil, oscustomizetype=nil, containerruntime=nil, createdtime=nil, deletionprotection=nil, enableexternalnode=nil, clusterlevel=nil, autoupgradeclusterlevel=nil, qgpushareenable=nil)
+        def initialize(clusterid=nil, clustername=nil, clusterdescription=nil, clusterversion=nil, clusteros=nil, clustertype=nil, clusternetworksettings=nil, clusternodenum=nil, projectid=nil, tagspecification=nil, clusterstatus=nil, property=nil, clustermaternodenum=nil, imageid=nil, oscustomizetype=nil, containerruntime=nil, createdtime=nil, deletionprotection=nil, enableexternalnode=nil, clusterlevel=nil, autoupgradeclusterlevel=nil, qgpushareenable=nil, runtimeversion=nil)
           @ClusterId = clusterid
           @ClusterName = clustername
           @ClusterDescription = clusterdescription
@@ -661,6 +664,7 @@ module TencentCloud
           @ClusterLevel = clusterlevel
           @AutoUpgradeClusterLevel = autoupgradeclusterlevel
           @QGPUShareEnable = qgpushareenable
+          @RuntimeVersion = runtimeversion
         end
 
         def deserialize(params)
@@ -696,6 +700,7 @@ module TencentCloud
           @ClusterLevel = params['ClusterLevel']
           @AutoUpgradeClusterLevel = params['AutoUpgradeClusterLevel']
           @QGPUShareEnable = params['QGPUShareEnable']
+          @RuntimeVersion = params['RuntimeVersion']
         end
       end
 
