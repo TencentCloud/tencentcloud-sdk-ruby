@@ -1546,15 +1546,18 @@ module TencentCloud
         # @type IntentionVerifyText: String
         # @param IntentionQuestions: 意愿核身问答模式的配置列表。当前仅支持一个问答。
         # @type IntentionQuestions: Array
+        # @param IntentionRecognition: 意愿核身过程中识别用户的回答意图，开启后除了IntentionQuestions的Answers列表中的标准回答会通过，近似意图的回答也会通过，默认不开启。
+        # @type IntentionRecognition: Boolean
 
-        attr_accessor :InputType, :UseIntentionVerify, :IntentionMode, :IntentionVerifyText, :IntentionQuestions
+        attr_accessor :InputType, :UseIntentionVerify, :IntentionMode, :IntentionVerifyText, :IntentionQuestions, :IntentionRecognition
         
-        def initialize(inputtype=nil, useintentionverify=nil, intentionmode=nil, intentionverifytext=nil, intentionquestions=nil)
+        def initialize(inputtype=nil, useintentionverify=nil, intentionmode=nil, intentionverifytext=nil, intentionquestions=nil, intentionrecognition=nil)
           @InputType = inputtype
           @UseIntentionVerify = useintentionverify
           @IntentionMode = intentionmode
           @IntentionVerifyText = intentionverifytext
           @IntentionQuestions = intentionquestions
+          @IntentionRecognition = intentionrecognition
         end
 
         def deserialize(params)
@@ -1570,6 +1573,7 @@ module TencentCloud
               @IntentionQuestions << intentionquestion_tmp
             end
           end
+          @IntentionRecognition = params['IntentionRecognition']
         end
       end
 

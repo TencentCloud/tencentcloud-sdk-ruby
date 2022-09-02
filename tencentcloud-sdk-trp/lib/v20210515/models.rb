@@ -171,10 +171,12 @@ module TencentCloud
         # @type Remark: String
         # @param MpTpl: 活动ID
         # @type MpTpl: String
+        # @param CloneId: 克隆批次ID
+        # @type CloneId: String
 
-        attr_accessor :CorpId, :MerchantId, :ProductId, :BatchType, :BatchId, :Remark, :MpTpl
+        attr_accessor :CorpId, :MerchantId, :ProductId, :BatchType, :BatchId, :Remark, :MpTpl, :CloneId
         
-        def initialize(corpid=nil, merchantid=nil, productid=nil, batchtype=nil, batchid=nil, remark=nil, mptpl=nil)
+        def initialize(corpid=nil, merchantid=nil, productid=nil, batchtype=nil, batchid=nil, remark=nil, mptpl=nil, cloneid=nil)
           @CorpId = corpid
           @MerchantId = merchantid
           @ProductId = productid
@@ -182,6 +184,7 @@ module TencentCloud
           @BatchId = batchid
           @Remark = remark
           @MpTpl = mptpl
+          @CloneId = cloneid
         end
 
         def deserialize(params)
@@ -192,6 +195,7 @@ module TencentCloud
           @BatchId = params['BatchId']
           @Remark = params['Remark']
           @MpTpl = params['MpTpl']
+          @CloneId = params['CloneId']
         end
       end
 

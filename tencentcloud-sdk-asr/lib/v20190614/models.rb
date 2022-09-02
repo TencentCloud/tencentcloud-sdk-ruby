@@ -296,7 +296,6 @@ module TencentCloud
         # • 16k_en_edu 英文教育；
         # • 16k_zh_medical  医疗；
         # • 16k_th 泰语；
-        # • 16k_zh_dialect：多方言，支持23种方言。
         # @type EngineModelType: String
         # @param ChannelNum: 识别声道数。1：单声道（非电话场景，直接选择单声道即可，忽略音频声道数）；2：双声道（仅支持8k_zh电话场景，双声道应分别对应通话双方）。注意：双声道的电话音频已物理分离说话人，无需再开启说话人分离功能。
         # @type ChannelNum: Integer
@@ -1002,7 +1001,7 @@ module TencentCloud
 
       # SentenceRecognition请求参数结构体
       class SentenceRecognitionRequest < TencentCloud::Common::AbstractModel
-        # @param ProjectId: 腾讯云项目 ID，可填 0，总长度不超过 1024 字节。
+        # @param ProjectId: 腾讯云项目 ID，废弃参数，默认填写0即可。
         # @type ProjectId: Integer
         # @param SubServiceType: 子服务类型。2： 一句话识别。
         # @type SubServiceType: Integer
@@ -1016,13 +1015,12 @@ module TencentCloud
         # • 16k_ca：16k 粤语；
         # • 16k_ja：16k 日语；
         # • 16k_zh_medical：16k 医疗；
-        # • 16k_zh_dialect：多方言，支持23种方言。
         # @type EngSerViceType: String
         # @param SourceType: 语音数据来源。0：语音 URL；1：语音数据（post body）。
         # @type SourceType: Integer
         # @param VoiceFormat: 识别音频的音频格式，支持wav、pcm、ogg-opus、speex、silk、mp3、m4a、aac。
         # @type VoiceFormat: String
-        # @param UsrAudioKey: 用户端对此任务的唯一标识，用户自助生成，用于用户查找识别结果。
+        # @param UsrAudioKey: 用户端对此任务的唯一标识。废弃参数，忽略即可。
         # @type UsrAudioKey: String
         # @param Url: 语音 URL，公网可下载。当 SourceType 值为 0（语音 URL上传） 时须填写该字段，为 1 时不填；URL 的长度大于 0，小于 2048，需进行urlencode编码。音频时长不能超过60s，音频文件大小不能超过3MB。
         # @type Url: String
@@ -1030,8 +1028,8 @@ module TencentCloud
         # @type Data: String
         # @param DataLen: 数据长度，单位为字节。当 SourceType 值为1（本地语音数据上传）时必须填写，当 SourceType 值为0（语音 URL上传）可不写（此数据长度为数据未进行base64编码时的数据长度）。
         # @type DataLen: Integer
-        # @param HotwordId: 热词id。用于调用对应的热词表，如果在调用语音识别服务时，不进行单独的热词id设置，自动生效默认热词；如果进行了单独的热词id设置，那么将生效单独设置的热词id。
-        # @type HotwordId: String
+        # @param WordInfo: 是否显示词级别时间戳。0：不显示；1：显示，不包含标点时间戳，2：显示，包含标点时间戳。默认值为 0。
+        # @type WordInfo: Integer
         # @param FilterDirty: 是否过滤脏词（目前支持中文普通话引擎）。0：不过滤脏词；1：过滤脏词；2：将脏词替换为 * 。默认值为 0。
         # @type FilterDirty: Integer
         # @param FilterModal: 是否过语气词（目前支持中文普通话引擎）。0：不过滤语气词；1：部分过滤；2：严格过滤 。默认值为 0。
@@ -1040,12 +1038,14 @@ module TencentCloud
         # @type FilterPunc: Integer
         # @param ConvertNumMode: 是否进行阿拉伯数字智能转换。0：不转换，直接输出中文数字，1：根据场景智能转换为阿拉伯数字。默认值为1。
         # @type ConvertNumMode: Integer
-        # @param WordInfo: 是否显示词级别时间戳。0：不显示；1：显示，不包含标点时间戳，2：显示，包含标点时间戳。默认值为 0。
-        # @type WordInfo: Integer
+        # @param HotwordId: 热词id。用于调用对应的热词表，如果在调用语音识别服务时，不进行单独的热词id设置，自动生效默认热词；如果进行了单独的热词id设置，那么将生效单独设置的热词id。
+        # @type HotwordId: String
+        # @param CustomizationId: 自学习模型 id。如设置了该参数，将生效对应的自学习模型。
+        # @type CustomizationId: String
 
-        attr_accessor :ProjectId, :SubServiceType, :EngSerViceType, :SourceType, :VoiceFormat, :UsrAudioKey, :Url, :Data, :DataLen, :HotwordId, :FilterDirty, :FilterModal, :FilterPunc, :ConvertNumMode, :WordInfo
+        attr_accessor :ProjectId, :SubServiceType, :EngSerViceType, :SourceType, :VoiceFormat, :UsrAudioKey, :Url, :Data, :DataLen, :WordInfo, :FilterDirty, :FilterModal, :FilterPunc, :ConvertNumMode, :HotwordId, :CustomizationId
         
-        def initialize(projectid=nil, subservicetype=nil, engservicetype=nil, sourcetype=nil, voiceformat=nil, usraudiokey=nil, url=nil, data=nil, datalen=nil, hotwordid=nil, filterdirty=nil, filtermodal=nil, filterpunc=nil, convertnummode=nil, wordinfo=nil)
+        def initialize(projectid=nil, subservicetype=nil, engservicetype=nil, sourcetype=nil, voiceformat=nil, usraudiokey=nil, url=nil, data=nil, datalen=nil, wordinfo=nil, filterdirty=nil, filtermodal=nil, filterpunc=nil, convertnummode=nil, hotwordid=nil, customizationid=nil)
           @ProjectId = projectid
           @SubServiceType = subservicetype
           @EngSerViceType = engservicetype
@@ -1055,12 +1055,13 @@ module TencentCloud
           @Url = url
           @Data = data
           @DataLen = datalen
-          @HotwordId = hotwordid
+          @WordInfo = wordinfo
           @FilterDirty = filterdirty
           @FilterModal = filtermodal
           @FilterPunc = filterpunc
           @ConvertNumMode = convertnummode
-          @WordInfo = wordinfo
+          @HotwordId = hotwordid
+          @CustomizationId = customizationid
         end
 
         def deserialize(params)
@@ -1073,12 +1074,13 @@ module TencentCloud
           @Url = params['Url']
           @Data = params['Data']
           @DataLen = params['DataLen']
-          @HotwordId = params['HotwordId']
+          @WordInfo = params['WordInfo']
           @FilterDirty = params['FilterDirty']
           @FilterModal = params['FilterModal']
           @FilterPunc = params['FilterPunc']
           @ConvertNumMode = params['ConvertNumMode']
-          @WordInfo = params['WordInfo']
+          @HotwordId = params['HotwordId']
+          @CustomizationId = params['CustomizationId']
         end
       end
 

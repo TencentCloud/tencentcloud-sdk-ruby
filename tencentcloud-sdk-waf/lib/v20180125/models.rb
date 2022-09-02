@@ -624,10 +624,13 @@ module TencentCloud
         # @param UsedNum: 使用数量
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UsedNum: Integer
+        # @param Type: 子产品code
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Type: String
 
-        attr_accessor :ResourceIds, :Status, :Region, :BeginTime, :EndTime, :InquireNum, :UsedNum
+        attr_accessor :ResourceIds, :Status, :Region, :BeginTime, :EndTime, :InquireNum, :UsedNum, :Type
         
-        def initialize(resourceids=nil, status=nil, region=nil, begintime=nil, endtime=nil, inquirenum=nil, usednum=nil)
+        def initialize(resourceids=nil, status=nil, region=nil, begintime=nil, endtime=nil, inquirenum=nil, usednum=nil, type=nil)
           @ResourceIds = resourceids
           @Status = status
           @Region = region
@@ -635,6 +638,7 @@ module TencentCloud
           @EndTime = endtime
           @InquireNum = inquirenum
           @UsedNum = usednum
+          @Type = type
         end
 
         def deserialize(params)
@@ -645,6 +649,39 @@ module TencentCloud
           @EndTime = params['EndTime']
           @InquireNum = params['InquireNum']
           @UsedNum = params['UsedNum']
+          @Type = params['Type']
+        end
+      end
+
+      # bot的qps详情
+      class BotQPS < TencentCloud::Common::AbstractModel
+        # @param ResourceIds: 资源id
+        # @type ResourceIds: String
+        # @param ValidTime: 有效时间
+        # @type ValidTime: String
+        # @param Count: 资源数量
+        # @type Count: Integer
+        # @param Region: 资源所在地区
+        # @type Region: String
+        # @param MaxBotQPS: 使用qps的最大值
+        # @type MaxBotQPS: Integer
+
+        attr_accessor :ResourceIds, :ValidTime, :Count, :Region, :MaxBotQPS
+        
+        def initialize(resourceids=nil, validtime=nil, count=nil, region=nil, maxbotqps=nil)
+          @ResourceIds = resourceids
+          @ValidTime = validtime
+          @Count = count
+          @Region = region
+          @MaxBotQPS = maxbotqps
+        end
+
+        def deserialize(params)
+          @ResourceIds = params['ResourceIds']
+          @ValidTime = params['ValidTime']
+          @Count = params['Count']
+          @Region = params['Region']
+          @MaxBotQPS = params['MaxBotQPS']
         end
       end
 
@@ -2166,10 +2203,13 @@ module TencentCloud
         # @param BotPkg: Bot资源包
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BotPkg: :class:`Tencentcloud::Waf.v20180125.models.BotPkg`
+        # @param BotQPS: bot的qps详情
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BotQPS: :class:`Tencentcloud::Waf.v20180125.models.BotQPS`
 
-        attr_accessor :InstanceId, :InstanceName, :ResourceIds, :Region, :PayMode, :RenewFlag, :Mode, :Level, :ValidTime, :BeginTime, :DomainCount, :SubDomainLimit, :MainDomainCount, :MainDomainLimit, :MaxQPS, :QPS, :DomainPkg, :AppId, :Edition, :FraudPkg, :BotPkg
+        attr_accessor :InstanceId, :InstanceName, :ResourceIds, :Region, :PayMode, :RenewFlag, :Mode, :Level, :ValidTime, :BeginTime, :DomainCount, :SubDomainLimit, :MainDomainCount, :MainDomainLimit, :MaxQPS, :QPS, :DomainPkg, :AppId, :Edition, :FraudPkg, :BotPkg, :BotQPS
         
-        def initialize(instanceid=nil, instancename=nil, resourceids=nil, region=nil, paymode=nil, renewflag=nil, mode=nil, level=nil, validtime=nil, begintime=nil, domaincount=nil, subdomainlimit=nil, maindomaincount=nil, maindomainlimit=nil, maxqps=nil, qps=nil, domainpkg=nil, appid=nil, edition=nil, fraudpkg=nil, botpkg=nil)
+        def initialize(instanceid=nil, instancename=nil, resourceids=nil, region=nil, paymode=nil, renewflag=nil, mode=nil, level=nil, validtime=nil, begintime=nil, domaincount=nil, subdomainlimit=nil, maindomaincount=nil, maindomainlimit=nil, maxqps=nil, qps=nil, domainpkg=nil, appid=nil, edition=nil, fraudpkg=nil, botpkg=nil, botqps=nil)
           @InstanceId = instanceid
           @InstanceName = instancename
           @ResourceIds = resourceids
@@ -2191,6 +2231,7 @@ module TencentCloud
           @Edition = edition
           @FraudPkg = fraudpkg
           @BotPkg = botpkg
+          @BotQPS = botqps
         end
 
         def deserialize(params)
@@ -2226,6 +2267,10 @@ module TencentCloud
           unless params['BotPkg'].nil?
             @BotPkg = BotPkg.new
             @BotPkg.deserialize(params['BotPkg'])
+          end
+          unless params['BotQPS'].nil?
+            @BotQPS = BotQPS.new
+            @BotQPS.deserialize(params['BotQPS'])
           end
         end
       end

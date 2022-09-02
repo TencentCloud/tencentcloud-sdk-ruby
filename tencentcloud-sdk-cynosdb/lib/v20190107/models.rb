@@ -3011,7 +3011,7 @@ module TencentCloud
       class InquirePriceCreateRequest < TencentCloud::Common::AbstractModel
         # @param Zone: 可用区,每个地域提供最佳实践
         # @type Zone: String
-        # @param GoodsNum: 购买商品数量
+        # @param GoodsNum: 购买计算节点个数
         # @type GoodsNum: Integer
         # @param InstancePayMode: 实例购买类型，可选值为：PREPAID, POSTPAID, SERVERLESS
         # @type InstancePayMode: String

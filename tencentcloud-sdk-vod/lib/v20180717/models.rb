@@ -17038,10 +17038,16 @@ module TencentCloud
         # <li>FullRefund：可全额退款。</li>
         # <li>Denied：不可退款。</li>
         # @type RefundStatus: String
+        # @param RenewStatus: 自动续费状态，取值有：
+        # <li>Never：不自动续费。</li>
+        # <li>Expire：到期自动续费。</li>
+        # <li>ExpireOrUseOut：到期或用完自动续费。</li>
+        # <li>NotSupport：不支持。</li>
+        # @type RenewStatus: String
 
-        attr_accessor :ProductType, :StartTime, :ExpireTime, :ProductInstanceId, :LastConsumeDate, :BindStatus, :ProductInstanceResourceSet, :ProductInstanceStatus, :RefundStatus
+        attr_accessor :ProductType, :StartTime, :ExpireTime, :ProductInstanceId, :LastConsumeDate, :BindStatus, :ProductInstanceResourceSet, :ProductInstanceStatus, :RefundStatus, :RenewStatus
         
-        def initialize(producttype=nil, starttime=nil, expiretime=nil, productinstanceid=nil, lastconsumedate=nil, bindstatus=nil, productinstanceresourceset=nil, productinstancestatus=nil, refundstatus=nil)
+        def initialize(producttype=nil, starttime=nil, expiretime=nil, productinstanceid=nil, lastconsumedate=nil, bindstatus=nil, productinstanceresourceset=nil, productinstancestatus=nil, refundstatus=nil, renewstatus=nil)
           @ProductType = producttype
           @StartTime = starttime
           @ExpireTime = expiretime
@@ -17051,6 +17057,7 @@ module TencentCloud
           @ProductInstanceResourceSet = productinstanceresourceset
           @ProductInstanceStatus = productinstancestatus
           @RefundStatus = refundstatus
+          @RenewStatus = renewstatus
         end
 
         def deserialize(params)
@@ -17070,6 +17077,7 @@ module TencentCloud
           end
           @ProductInstanceStatus = params['ProductInstanceStatus']
           @RefundStatus = params['RefundStatus']
+          @RenewStatus = params['RenewStatus']
         end
       end
 

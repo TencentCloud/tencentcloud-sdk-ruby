@@ -1048,13 +1048,13 @@ module TencentCloud
         # @type DefaultResult: String
         # @param HeartbeatTimeout: 生命周期挂钩超时之前可以经过的最长时间（以秒为单位），范围从30到7200秒，默认值为300秒
         # @type HeartbeatTimeout: Integer
-        # @param NotificationMetadata: 弹性伸缩向通知目标发送的附加信息，默认值为空字符串""。最大长度不能超过1024个字节。
+        # @param NotificationMetadata: 弹性伸缩向通知目标发送的附加信息，配置通知时使用,默认值为空字符串""。最大长度不能超过1024个字节。
         # @type NotificationMetadata: String
-        # @param NotificationTarget: 通知目标
+        # @param NotificationTarget: 通知目标。NotificationTarget和LifecycleCommand参数互斥，二者不可同时指定。
         # @type NotificationTarget: :class:`Tencentcloud::As.v20180419.models.NotificationTarget`
         # @param LifecycleTransitionType: 进行生命周期挂钩的场景类型，取值范围包括NORMAL 和 EXTENSION。说明：设置为EXTENSION值，在AttachInstances、DetachInstances、RemoveInstaces接口时会触发生命周期挂钩操作，值为NORMAL则不会在这些接口中触发生命周期挂钩。
         # @type LifecycleTransitionType: String
-        # @param LifecycleCommand: 远程命令执行对象。NotificationTarget和CommandInfo参数互斥，二者不可同时指定。
+        # @param LifecycleCommand: 远程命令执行对象。NotificationTarget和LifecycleCommand参数互斥，二者不可同时指定。
         # @type LifecycleCommand: :class:`Tencentcloud::As.v20180419.models.LifecycleCommand`
 
         attr_accessor :AutoScalingGroupId, :LifecycleHookName, :LifecycleTransition, :DefaultResult, :HeartbeatTimeout, :NotificationMetadata, :NotificationTarget, :LifecycleTransitionType, :LifecycleCommand
@@ -3074,7 +3074,7 @@ module TencentCloud
         # <li>FAILED 命令调用失败</li>
         # <li>NONE</li>
         # @type InvokeCommandResult: String
-        # @param NotificationResult: 通知的结果，表示通知CMQ/TCMQ是否成功。<br>
+        # @param NotificationResult: 通知的结果，表示通知CMQ/TDMQ是否成功。<br>
         # <li>SUCCESSFUL 通知成功</li>
         # <li>FAILED 通知失败</li>
         # <li>NONE</li>
@@ -3649,10 +3649,12 @@ module TencentCloud
         # @type LifecycleTransitionType: String
         # @param NotificationTarget: 通知目标信息。
         # @type NotificationTarget: :class:`Tencentcloud::As.v20180419.models.NotificationTarget`
+        # @param LifecycleCommand: 远程命令执行对象。
+        # @type LifecycleCommand: :class:`Tencentcloud::As.v20180419.models.LifecycleCommand`
 
-        attr_accessor :LifecycleHookId, :LifecycleHookName, :LifecycleTransition, :DefaultResult, :HeartbeatTimeout, :NotificationMetadata, :LifecycleTransitionType, :NotificationTarget
+        attr_accessor :LifecycleHookId, :LifecycleHookName, :LifecycleTransition, :DefaultResult, :HeartbeatTimeout, :NotificationMetadata, :LifecycleTransitionType, :NotificationTarget, :LifecycleCommand
         
-        def initialize(lifecyclehookid=nil, lifecyclehookname=nil, lifecycletransition=nil, defaultresult=nil, heartbeattimeout=nil, notificationmetadata=nil, lifecycletransitiontype=nil, notificationtarget=nil)
+        def initialize(lifecyclehookid=nil, lifecyclehookname=nil, lifecycletransition=nil, defaultresult=nil, heartbeattimeout=nil, notificationmetadata=nil, lifecycletransitiontype=nil, notificationtarget=nil, lifecyclecommand=nil)
           @LifecycleHookId = lifecyclehookid
           @LifecycleHookName = lifecyclehookname
           @LifecycleTransition = lifecycletransition
@@ -3661,6 +3663,7 @@ module TencentCloud
           @NotificationMetadata = notificationmetadata
           @LifecycleTransitionType = lifecycletransitiontype
           @NotificationTarget = notificationtarget
+          @LifecycleCommand = lifecyclecommand
         end
 
         def deserialize(params)
@@ -3674,6 +3677,10 @@ module TencentCloud
           unless params['NotificationTarget'].nil?
             @NotificationTarget = NotificationTarget.new
             @NotificationTarget.deserialize(params['NotificationTarget'])
+          end
+          unless params['LifecycleCommand'].nil?
+            @LifecycleCommand = LifecycleCommand.new
+            @LifecycleCommand.deserialize(params['LifecycleCommand'])
           end
         end
       end
@@ -4710,16 +4717,18 @@ module TencentCloud
         # @type DefaultResult: String
         # @param HeartbeatTimeout: 生命周期挂钩超时之前可以经过的最长时间（以秒为单位），范围从30到7200秒，默认值为300秒
         # @type HeartbeatTimeout: Integer
-        # @param NotificationMetadata: 弹性伸缩向通知目标发送的附加信息，默认值为空字符串""
+        # @param NotificationMetadata: 弹性伸缩向通知目标发送的附加信息，配置通知时使用，默认值为空字符串""
         # @type NotificationMetadata: String
-        # @param NotificationTarget: 通知目标
+        # @param NotificationTarget: 通知目标。NotificationTarget和LifecycleCommand参数互斥，二者不可同时指定。
         # @type NotificationTarget: :class:`Tencentcloud::As.v20180419.models.NotificationTarget`
         # @param LifecycleTransitionType: 进行生命周期挂钩的场景类型，取值范围包括NORMAL 和 EXTENSION。说明：设置为EXTENSION值，在AttachInstances、DetachInstances、RemoveInstaces接口时会触发生命周期挂钩操作，值为NORMAL则不会在这些接口中触发生命周期挂钩。
         # @type LifecycleTransitionType: String
+        # @param LifecycleCommand: 远程命令执行对象。NotificationTarget和LifecycleCommand参数互斥，二者不可同时指定。
+        # @type LifecycleCommand: :class:`Tencentcloud::As.v20180419.models.LifecycleCommand`
 
-        attr_accessor :LifecycleHookId, :LifecycleHookName, :LifecycleTransition, :DefaultResult, :HeartbeatTimeout, :NotificationMetadata, :NotificationTarget, :LifecycleTransitionType
+        attr_accessor :LifecycleHookId, :LifecycleHookName, :LifecycleTransition, :DefaultResult, :HeartbeatTimeout, :NotificationMetadata, :NotificationTarget, :LifecycleTransitionType, :LifecycleCommand
         
-        def initialize(lifecyclehookid=nil, lifecyclehookname=nil, lifecycletransition=nil, defaultresult=nil, heartbeattimeout=nil, notificationmetadata=nil, notificationtarget=nil, lifecycletransitiontype=nil)
+        def initialize(lifecyclehookid=nil, lifecyclehookname=nil, lifecycletransition=nil, defaultresult=nil, heartbeattimeout=nil, notificationmetadata=nil, notificationtarget=nil, lifecycletransitiontype=nil, lifecyclecommand=nil)
           @LifecycleHookId = lifecyclehookid
           @LifecycleHookName = lifecyclehookname
           @LifecycleTransition = lifecycletransition
@@ -4728,6 +4737,7 @@ module TencentCloud
           @NotificationMetadata = notificationmetadata
           @NotificationTarget = notificationtarget
           @LifecycleTransitionType = lifecycletransitiontype
+          @LifecycleCommand = lifecyclecommand
         end
 
         def deserialize(params)
@@ -4742,6 +4752,10 @@ module TencentCloud
             @NotificationTarget.deserialize(params['NotificationTarget'])
           end
           @LifecycleTransitionType = params['LifecycleTransitionType']
+          unless params['LifecycleCommand'].nil?
+            @LifecycleCommand = LifecycleCommand.new
+            @LifecycleCommand.deserialize(params['LifecycleCommand'])
+          end
         end
       end
 

@@ -59,10 +59,16 @@ module TencentCloud
         # @type VerifyChannel: Array
         # @param PreReadTime: 合同的强制预览时间：3~300s，未指定则按合同页数计算
         # @type PreReadTime: Integer
+        # @param UserId: 签署人userId，非企微场景不使用此字段
+        # @type UserId: String
+        # @param ApproverSource: 签署人用户来源,企微侧用户请传入：WEWORKAPP
+        # @type ApproverSource: String
+        # @param CustomApproverTag: 客户自定义签署人标识，64位长度，保证唯一，非企微场景不使用此字段
+        # @type CustomApproverTag: String
 
-        attr_accessor :ApproverType, :ApproverName, :ApproverMobile, :SignComponents, :OrganizationName, :ApproverIdCardNumber, :ApproverIdCardType, :NotifyType, :ApproverRole, :VerifyChannel, :PreReadTime
+        attr_accessor :ApproverType, :ApproverName, :ApproverMobile, :SignComponents, :OrganizationName, :ApproverIdCardNumber, :ApproverIdCardType, :NotifyType, :ApproverRole, :VerifyChannel, :PreReadTime, :UserId, :ApproverSource, :CustomApproverTag
         
-        def initialize(approvertype=nil, approvername=nil, approvermobile=nil, signcomponents=nil, organizationname=nil, approveridcardnumber=nil, approveridcardtype=nil, notifytype=nil, approverrole=nil, verifychannel=nil, prereadtime=nil)
+        def initialize(approvertype=nil, approvername=nil, approvermobile=nil, signcomponents=nil, organizationname=nil, approveridcardnumber=nil, approveridcardtype=nil, notifytype=nil, approverrole=nil, verifychannel=nil, prereadtime=nil, userid=nil, approversource=nil, customapprovertag=nil)
           @ApproverType = approvertype
           @ApproverName = approvername
           @ApproverMobile = approvermobile
@@ -74,6 +80,9 @@ module TencentCloud
           @ApproverRole = approverrole
           @VerifyChannel = verifychannel
           @PreReadTime = prereadtime
+          @UserId = userid
+          @ApproverSource = approversource
+          @CustomApproverTag = customapprovertag
         end
 
         def deserialize(params)
@@ -95,6 +104,9 @@ module TencentCloud
           @ApproverRole = params['ApproverRole']
           @VerifyChannel = params['VerifyChannel']
           @PreReadTime = params['PreReadTime']
+          @UserId = params['UserId']
+          @ApproverSource = params['ApproverSource']
+          @CustomApproverTag = params['CustomApproverTag']
         end
       end
 
@@ -576,6 +588,56 @@ module TencentCloud
         def deserialize(params)
           @DocumentId = params['DocumentId']
           @PreviewFileUrl = params['PreviewFileUrl']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateFlowApprovers请求参数结构体
+      class CreateFlowApproversRequest < TencentCloud::Common::AbstractModel
+        # @param Operator: 调用方用户信息，userId 必填
+        # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
+        # @param FlowId: 签署流程编号
+        # @type FlowId: String
+        # @param Approvers: 补充签署人信息
+        # @type Approvers: Array
+
+        attr_accessor :Operator, :FlowId, :Approvers
+        
+        def initialize(operator=nil, flowid=nil, approvers=nil)
+          @Operator = operator
+          @FlowId = flowid
+          @Approvers = approvers
+        end
+
+        def deserialize(params)
+          unless params['Operator'].nil?
+            @Operator = UserInfo.new
+            @Operator.deserialize(params['Operator'])
+          end
+          @FlowId = params['FlowId']
+          unless params['Approvers'].nil?
+            @Approvers = []
+            params['Approvers'].each do |i|
+              fillapproverinfo_tmp = FillApproverInfo.new
+              fillapproverinfo_tmp.deserialize(i)
+              @Approvers << fillapproverinfo_tmp
+            end
+          end
+        end
+      end
+
+      # CreateFlowApprovers返回参数结构体
+      class CreateFlowApproversResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
           @RequestId = params['RequestId']
         end
       end
@@ -1239,6 +1301,56 @@ module TencentCloud
         end
       end
 
+      # DescribeFlowInfo请求参数结构体
+      class DescribeFlowInfoRequest < TencentCloud::Common::AbstractModel
+        # @param FlowIds: 需要查询的流程ID列表，限制最大100个
+        # @type FlowIds: Array
+        # @param Operator: 调用方用户信息
+        # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
+
+        attr_accessor :FlowIds, :Operator
+        
+        def initialize(flowids=nil, operator=nil)
+          @FlowIds = flowids
+          @Operator = operator
+        end
+
+        def deserialize(params)
+          @FlowIds = params['FlowIds']
+          unless params['Operator'].nil?
+            @Operator = UserInfo.new
+            @Operator.deserialize(params['Operator'])
+          end
+        end
+      end
+
+      # DescribeFlowInfo返回参数结构体
+      class DescribeFlowInfoResponse < TencentCloud::Common::AbstractModel
+        # @param FlowDetailInfos: 签署流程信息
+        # @type FlowDetailInfos: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :FlowDetailInfos, :RequestId
+        
+        def initialize(flowdetailinfos=nil, requestid=nil)
+          @FlowDetailInfos = flowdetailinfos
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['FlowDetailInfos'].nil?
+            @FlowDetailInfos = []
+            params['FlowDetailInfos'].each do |i|
+              flowdetailinfo_tmp = FlowDetailInfo.new
+              flowdetailinfo_tmp.deserialize(i)
+              @FlowDetailInfos << flowdetailinfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeFlowTemplates请求参数结构体
       class DescribeFlowTemplatesRequest < TencentCloud::Common::AbstractModel
         # @param Operator: 调用方用户信息，userId 必填
@@ -1408,6 +1520,32 @@ module TencentCloud
         end
       end
 
+      # 补充签署人信息
+      class FillApproverInfo < TencentCloud::Common::AbstractModel
+        # @param RecipientId: 签署人签署Id
+        # @type RecipientId: String
+        # @param ApproverSource: 签署人来源
+        # WEWORKAPP: 企业微信
+        # @type ApproverSource: String
+        # @param CustomUserId: 企业自定义账号Id
+        # WEWORKAPP场景下指企业自有应用获取企微明文的userid
+        # @type CustomUserId: String
+
+        attr_accessor :RecipientId, :ApproverSource, :CustomUserId
+        
+        def initialize(recipientid=nil, approversource=nil, customuserid=nil)
+          @RecipientId = recipientid
+          @ApproverSource = approversource
+          @CustomUserId = customuserid
+        end
+
+        def deserialize(params)
+          @RecipientId = params['RecipientId']
+          @ApproverSource = params['ApproverSource']
+          @CustomUserId = params['CustomUserId']
+        end
+      end
+
       # 查询过滤条件
       class Filter < TencentCloud::Common::AbstractModel
         # @param Key: 查询过滤条件的Key
@@ -1425,6 +1563,77 @@ module TencentCloud
         def deserialize(params)
           @Key = params['Key']
           @Values = params['Values']
+        end
+      end
+
+      # 签署人详情信息
+      class FlowApproverDetail < TencentCloud::Common::AbstractModel
+        # @param ApproveMessage: 签署人信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ApproveMessage: String
+        # @param ApproveName: 签署人名字
+        # @type ApproveName: String
+        # @param ApproveStatus: 签署人的状态
+        # @type ApproveStatus: Integer
+        # @param ReceiptId: 模板配置时候的签署人id,与控件绑定
+        # @type ReceiptId: String
+        # @param CustomUserId: 客户自定义userId
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CustomUserId: String
+        # @param Mobile: 签署人手机号
+        # @type Mobile: String
+        # @param SignOrder: 签署顺序
+        # @type SignOrder: Integer
+        # @param ApproveTime: 签署人签署时间
+        # @type ApproveTime: Integer
+        # @param ApproveType: 参与者类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ApproveType: String
+        # @param ApproverSource: 签署人侧用户来源
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ApproverSource: String
+        # @param CustomApproverTag: 客户自定义签署人标识
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CustomApproverTag: String
+        # @param OrganizationId: 签署人企业Id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OrganizationId: String
+        # @param OrganizationName: 签署人企业名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OrganizationName: String
+
+        attr_accessor :ApproveMessage, :ApproveName, :ApproveStatus, :ReceiptId, :CustomUserId, :Mobile, :SignOrder, :ApproveTime, :ApproveType, :ApproverSource, :CustomApproverTag, :OrganizationId, :OrganizationName
+        
+        def initialize(approvemessage=nil, approvename=nil, approvestatus=nil, receiptid=nil, customuserid=nil, mobile=nil, signorder=nil, approvetime=nil, approvetype=nil, approversource=nil, customapprovertag=nil, organizationid=nil, organizationname=nil)
+          @ApproveMessage = approvemessage
+          @ApproveName = approvename
+          @ApproveStatus = approvestatus
+          @ReceiptId = receiptid
+          @CustomUserId = customuserid
+          @Mobile = mobile
+          @SignOrder = signorder
+          @ApproveTime = approvetime
+          @ApproveType = approvetype
+          @ApproverSource = approversource
+          @CustomApproverTag = customapprovertag
+          @OrganizationId = organizationid
+          @OrganizationName = organizationname
+        end
+
+        def deserialize(params)
+          @ApproveMessage = params['ApproveMessage']
+          @ApproveName = params['ApproveName']
+          @ApproveStatus = params['ApproveStatus']
+          @ReceiptId = params['ReceiptId']
+          @CustomUserId = params['CustomUserId']
+          @Mobile = params['Mobile']
+          @SignOrder = params['SignOrder']
+          @ApproveTime = params['ApproveTime']
+          @ApproveType = params['ApproveType']
+          @ApproverSource = params['ApproverSource']
+          @CustomApproverTag = params['CustomApproverTag']
+          @OrganizationId = params['OrganizationId']
+          @OrganizationName = params['OrganizationName']
         end
       end
 
@@ -1513,14 +1722,18 @@ module TencentCloud
         # @type IsFullText: Boolean
         # @param PreReadTime: 签署前置条件：阅读时长限制，默认为不需要
         # @type PreReadTime: Integer
-        # @param UserId: 签署方经办人的用户ID,和签署方经办人姓名+手机号+证件必须有一个
+        # @param UserId: 签署方经办人的用户ID,和签署方经办人姓名+手机号+证件必须有一个。非企微场景不使用此字段
         # @type UserId: String
         # @param Required: 当前只支持true，默认为true
         # @type Required: Boolean
+        # @param ApproverSource: 签署人用户来源,企微侧用户请传入：WEWORKAPP
+        # @type ApproverSource: String
+        # @param CustomApproverTag: 客户自定义签署人标识，64位长度，保证唯一。非企微场景不使用此字段
+        # @type CustomApproverTag: String
 
-        attr_accessor :ApproverType, :OrganizationName, :ApproverName, :ApproverMobile, :ApproverIdCardType, :ApproverIdCardNumber, :RecipientId, :VerifyChannel, :NotifyType, :IsFullText, :PreReadTime, :UserId, :Required
+        attr_accessor :ApproverType, :OrganizationName, :ApproverName, :ApproverMobile, :ApproverIdCardType, :ApproverIdCardNumber, :RecipientId, :VerifyChannel, :NotifyType, :IsFullText, :PreReadTime, :UserId, :Required, :ApproverSource, :CustomApproverTag
         
-        def initialize(approvertype=nil, organizationname=nil, approvername=nil, approvermobile=nil, approveridcardtype=nil, approveridcardnumber=nil, recipientid=nil, verifychannel=nil, notifytype=nil, isfulltext=nil, prereadtime=nil, userid=nil, required=nil)
+        def initialize(approvertype=nil, organizationname=nil, approvername=nil, approvermobile=nil, approveridcardtype=nil, approveridcardnumber=nil, recipientid=nil, verifychannel=nil, notifytype=nil, isfulltext=nil, prereadtime=nil, userid=nil, required=nil, approversource=nil, customapprovertag=nil)
           @ApproverType = approvertype
           @OrganizationName = organizationname
           @ApproverName = approvername
@@ -1534,6 +1747,8 @@ module TencentCloud
           @PreReadTime = prereadtime
           @UserId = userid
           @Required = required
+          @ApproverSource = approversource
+          @CustomApproverTag = customapprovertag
         end
 
         def deserialize(params)
@@ -1550,6 +1765,62 @@ module TencentCloud
           @PreReadTime = params['PreReadTime']
           @UserId = params['UserId']
           @Required = params['Required']
+          @ApproverSource = params['ApproverSource']
+          @CustomApproverTag = params['CustomApproverTag']
+        end
+      end
+
+      # 此结构体(FlowDetailInfo)描述的是合同(流程)的详细信息
+      class FlowDetailInfo < TencentCloud::Common::AbstractModel
+        # @param FlowId: 合同(流程)的Id
+        # @type FlowId: String
+        # @param FlowName: 合同(流程)的名字
+        # @type FlowName: String
+        # @param FlowType: 合同(流程)的类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FlowType: String
+        # @param FlowStatus: 合同(流程)的状态
+        # @type FlowStatus: Integer
+        # @param FlowMessage: 合同(流程)的信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FlowMessage: String
+        # @param FlowDescription: 流程的描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FlowDescription: String
+        # @param CreatedOn: 合同(流程)的创建时间戳
+        # @type CreatedOn: Integer
+        # @param FlowApproverInfos: 合同(流程)的签署人数组
+        # @type FlowApproverInfos: Array
+
+        attr_accessor :FlowId, :FlowName, :FlowType, :FlowStatus, :FlowMessage, :FlowDescription, :CreatedOn, :FlowApproverInfos
+        
+        def initialize(flowid=nil, flowname=nil, flowtype=nil, flowstatus=nil, flowmessage=nil, flowdescription=nil, createdon=nil, flowapproverinfos=nil)
+          @FlowId = flowid
+          @FlowName = flowname
+          @FlowType = flowtype
+          @FlowStatus = flowstatus
+          @FlowMessage = flowmessage
+          @FlowDescription = flowdescription
+          @CreatedOn = createdon
+          @FlowApproverInfos = flowapproverinfos
+        end
+
+        def deserialize(params)
+          @FlowId = params['FlowId']
+          @FlowName = params['FlowName']
+          @FlowType = params['FlowType']
+          @FlowStatus = params['FlowStatus']
+          @FlowMessage = params['FlowMessage']
+          @FlowDescription = params['FlowDescription']
+          @CreatedOn = params['CreatedOn']
+          unless params['FlowApproverInfos'].nil?
+            @FlowApproverInfos = []
+            params['FlowApproverInfos'].each do |i|
+              flowapproverdetail_tmp = FlowApproverDetail.new
+              flowapproverdetail_tmp.deserialize(i)
+              @FlowApproverInfos << flowapproverdetail_tmp
+            end
+          end
         end
       end
 
