@@ -221,6 +221,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 新增权属文件
+
+        # @param request: Request instance for CreateCRRightFile.
+        # @type request: :class:`Tencentcloud::bma::V20210624::CreateCRRightFileRequest`
+        # @rtype: :class:`Tencentcloud::bma::V20210624::CreateCRRightFileResponse`
+        def CreateCRRightFile(request)
+          body = send_request('CreateCRRightFile', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateCRRightFileResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 举报侵权链接
+
+        # @param request: Request instance for CreateCRTort.
+        # @type request: :class:`Tencentcloud::bma::V20210624::CreateCRTortRequest`
+        # @rtype: :class:`Tencentcloud::bma::V20210624::CreateCRTortResponse`
+        def CreateCRTort(request)
+          body = send_request('CreateCRTort', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateCRTortResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 品牌经营管家-版权保护个人认证接口
 
         # @param request: Request instance for CreateCRUserVerify.
@@ -543,6 +591,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyCRRightStatusResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 版权保护-白名单修改接口
+
+        # @param request: Request instance for ModifyCRWhiteList.
+        # @type request: :class:`Tencentcloud::bma::V20210624::ModifyCRWhiteListRequest`
+        # @rtype: :class:`Tencentcloud::bma::V20210624::ModifyCRWhiteListResponse`
+        def ModifyCRWhiteList(request)
+          body = send_request('ModifyCRWhiteList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyCRWhiteListResponse.new
             model.deserialize(response['Response'])
             model
           else

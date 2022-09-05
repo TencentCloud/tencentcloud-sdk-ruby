@@ -4876,10 +4876,23 @@ module TencentCloud
         # @type SubMerchantStoreName: String
         # @param OrganizationInfo: 公司信息
         # @type OrganizationInfo: :class:`Tencentcloud::Cpdp.v20190820.models.OrganizationInfo`
+        # @param SubMerchantIdType: 子商户证件类型
+        # 1 - 身份证
+        # 3 - 回乡证
+        # 4 - 中国护照
+        # 5 - 台胞证
+        # 19 - 外国护照
+        # 52 - 组织机构代码证
+        # 68 - 营业执照
+        # 73 - 统一社会信用代码
+        # @type SubMerchantIdType: String
+        # @param SubMerchantIdCode: 子商户证件号码
+        # <敏感信息>加密详见<a href="https://cloud.tencent.com/document/product/1122/48979" target="_blank">《商户端接口敏感信息加密说明》</a>
+        # @type SubMerchantIdCode: String
 
-        attr_accessor :MidasAppId, :SubMchId, :SubMchName, :Address, :Contact, :Mobile, :Email, :MidasSecretId, :MidasSignature, :SubMchType, :ShortName, :SubMerchantMemberType, :SubMerchantKey, :SubMerchantPrivateKey, :EncryptType, :SubAcctNo, :MidasEnvironment, :SubMerchantStoreName, :OrganizationInfo
+        attr_accessor :MidasAppId, :SubMchId, :SubMchName, :Address, :Contact, :Mobile, :Email, :MidasSecretId, :MidasSignature, :SubMchType, :ShortName, :SubMerchantMemberType, :SubMerchantKey, :SubMerchantPrivateKey, :EncryptType, :SubAcctNo, :MidasEnvironment, :SubMerchantStoreName, :OrganizationInfo, :SubMerchantIdType, :SubMerchantIdCode
         
-        def initialize(midasappid=nil, submchid=nil, submchname=nil, address=nil, contact=nil, mobile=nil, email=nil, midassecretid=nil, midassignature=nil, submchtype=nil, shortname=nil, submerchantmembertype=nil, submerchantkey=nil, submerchantprivatekey=nil, encrypttype=nil, subacctno=nil, midasenvironment=nil, submerchantstorename=nil, organizationinfo=nil)
+        def initialize(midasappid=nil, submchid=nil, submchname=nil, address=nil, contact=nil, mobile=nil, email=nil, midassecretid=nil, midassignature=nil, submchtype=nil, shortname=nil, submerchantmembertype=nil, submerchantkey=nil, submerchantprivatekey=nil, encrypttype=nil, subacctno=nil, midasenvironment=nil, submerchantstorename=nil, organizationinfo=nil, submerchantidtype=nil, submerchantidcode=nil)
           @MidasAppId = midasappid
           @SubMchId = submchid
           @SubMchName = submchname
@@ -4899,6 +4912,8 @@ module TencentCloud
           @MidasEnvironment = midasenvironment
           @SubMerchantStoreName = submerchantstorename
           @OrganizationInfo = organizationinfo
+          @SubMerchantIdType = submerchantidtype
+          @SubMerchantIdCode = submerchantidcode
         end
 
         def deserialize(params)
@@ -4924,6 +4939,8 @@ module TencentCloud
             @OrganizationInfo = OrganizationInfo.new
             @OrganizationInfo.deserialize(params['OrganizationInfo'])
           end
+          @SubMerchantIdType = params['SubMerchantIdType']
+          @SubMerchantIdCode = params['SubMerchantIdCode']
         end
       end
 
@@ -19040,6 +19057,8 @@ module TencentCloud
         # CLOSED：关单
         # PAY_FAIL：支付失败
         # REVOKE：退票
+        # PART_REFUND：部分退款
+        # FULL_REFUND：全部退款
         # @type OrderStatus: String
         # @param ChannelName: 支付渠道名称，如TENPAY
         # @type ChannelName: String

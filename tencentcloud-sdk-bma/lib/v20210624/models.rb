@@ -413,6 +413,53 @@ module TencentCloud
         end
       end
 
+      # CreateCRRightFile请求参数结构体
+      class CreateCRRightFileRequest < TencentCloud::Common::AbstractModel
+        # @param WorkId: xxx
+        # @type WorkId: Integer
+        # @param FileList: xxx
+        # @type FileList: Array
+
+        attr_accessor :WorkId, :FileList
+        
+        def initialize(workid=nil, filelist=nil)
+          @WorkId = workid
+          @FileList = filelist
+        end
+
+        def deserialize(params)
+          @WorkId = params['WorkId']
+          unless params['FileList'].nil?
+            @FileList = []
+            params['FileList'].each do |i|
+              file_tmp = File.new
+              file_tmp.deserialize(i)
+              @FileList << file_tmp
+            end
+          end
+        end
+      end
+
+      # CreateCRRightFile返回参数结构体
+      class CreateCRRightFileResponse < TencentCloud::Common::AbstractModel
+        # @param FileIds: xxx
+        # @type FileIds: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :FileIds, :RequestId
+        
+        def initialize(fileids=nil, requestid=nil)
+          @FileIds = fileids
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @FileIds = params['FileIds']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateCRRight请求参数结构体
       class CreateCRRightRequest < TencentCloud::Common::AbstractModel
         # @param WorkId: 已存证的作品ID
@@ -505,6 +552,78 @@ module TencentCloud
         def deserialize(params)
           @TortId = params['TortId']
           @TortNum = params['TortNum']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateCRTort请求参数结构体
+      class CreateCRTortRequest < TencentCloud::Common::AbstractModel
+        # @param WorkId: xx
+        # @type WorkId: Integer
+        # @param TortURL: xx
+        # @type TortURL: String
+        # @param TortPlat: xx
+        # @type TortPlat: String
+        # @param TortTitle: xx
+        # @type TortTitle: String
+
+        attr_accessor :WorkId, :TortURL, :TortPlat, :TortTitle
+        
+        def initialize(workid=nil, torturl=nil, tortplat=nil, torttitle=nil)
+          @WorkId = workid
+          @TortURL = torturl
+          @TortPlat = tortplat
+          @TortTitle = torttitle
+        end
+
+        def deserialize(params)
+          @WorkId = params['WorkId']
+          @TortURL = params['TortURL']
+          @TortPlat = params['TortPlat']
+          @TortTitle = params['TortTitle']
+        end
+      end
+
+      # CreateCRTort返回参数结构体
+      class CreateCRTortResponse < TencentCloud::Common::AbstractModel
+        # @param WorkId: xx
+        # @type WorkId: Integer
+        # @param TortId: xx
+        # @type TortId: Integer
+        # @param TortTitle: xx
+        # @type TortTitle: String
+        # @param TortPlat: xx
+        # @type TortPlat: String
+        # @param TortURL: xx
+        # @type TortURL: String
+        # @param TortDomain: xx
+        # @type TortDomain: String
+        # @param TortBodyName: xx
+        # @type TortBodyName: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :WorkId, :TortId, :TortTitle, :TortPlat, :TortURL, :TortDomain, :TortBodyName, :RequestId
+        
+        def initialize(workid=nil, tortid=nil, torttitle=nil, tortplat=nil, torturl=nil, tortdomain=nil, tortbodyname=nil, requestid=nil)
+          @WorkId = workid
+          @TortId = tortid
+          @TortTitle = torttitle
+          @TortPlat = tortplat
+          @TortURL = torturl
+          @TortDomain = tortdomain
+          @TortBodyName = tortbodyname
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @WorkId = params['WorkId']
+          @TortId = params['TortId']
+          @TortTitle = params['TortTitle']
+          @TortPlat = params['TortPlat']
+          @TortURL = params['TortURL']
+          @TortDomain = params['TortDomain']
+          @TortBodyName = params['TortBodyName']
           @RequestId = params['RequestId']
         end
       end
@@ -1226,6 +1345,34 @@ module TencentCloud
         end
       end
 
+      # 权属文件列表
+      class File < TencentCloud::Common::AbstractModel
+        # @param FileUrl: xxx
+        # @type FileUrl: String
+        # @param FileType: xxx
+        # @type FileType: Integer
+        # @param ValidStartDate: xxx
+        # @type ValidStartDate: String
+        # @param ValidEndDate: xxx
+        # @type ValidEndDate: String
+
+        attr_accessor :FileUrl, :FileType, :ValidStartDate, :ValidEndDate
+        
+        def initialize(fileurl=nil, filetype=nil, validstartdate=nil, validenddate=nil)
+          @FileUrl = fileurl
+          @FileType = filetype
+          @ValidStartDate = validstartdate
+          @ValidEndDate = validenddate
+        end
+
+        def deserialize(params)
+          @FileUrl = params['FileUrl']
+          @FileType = params['FileType']
+          @ValidStartDate = params['ValidStartDate']
+          @ValidEndDate = params['ValidEndDate']
+        end
+      end
+
       # 过滤参数
       class Filter < TencentCloud::Common::AbstractModel
 
@@ -1325,19 +1472,23 @@ module TencentCloud
       class ModifyCRMonitorRequest < TencentCloud::Common::AbstractModel
         # @param WorkId: 作品ID
         # @type WorkId: Integer
-        # @param MonitorStatus: 监测状态 1-开启监测 2-关闭监测 默认为1
+        # @param MonitorStatus: 监测状态 1-开启监测 2-关闭监测
         # @type MonitorStatus: String
+        # @param MonitorEnd: 默认不停止，支持续期
+        # @type MonitorEnd: String
 
-        attr_accessor :WorkId, :MonitorStatus
+        attr_accessor :WorkId, :MonitorStatus, :MonitorEnd
         
-        def initialize(workid=nil, monitorstatus=nil)
+        def initialize(workid=nil, monitorstatus=nil, monitorend=nil)
           @WorkId = workid
           @MonitorStatus = monitorstatus
+          @MonitorEnd = monitorend
         end
 
         def deserialize(params)
           @WorkId = params['WorkId']
           @MonitorStatus = params['MonitorStatus']
+          @MonitorEnd = params['MonitorEnd']
         end
       end
 
@@ -1423,6 +1574,62 @@ module TencentCloud
 
       # ModifyCRRightStatus返回参数结构体
       class ModifyCRRightStatusResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyCRWhiteList请求参数结构体
+      class ModifyCRWhiteListRequest < TencentCloud::Common::AbstractModel
+        # @param WhiteListId: 白名单ID
+        # @type WhiteListId: Integer
+        # @param PlatForm: 平台名称
+        # @type PlatForm: String
+        # @param PlatUrl: 平台站点链接
+        # @type PlatUrl: String
+        # @param AuthorId: 作者ID
+        # @type AuthorId: String
+        # @param WorksId: 作品ID
+        # @type WorksId: Integer
+        # @param WorkId: xxx
+        # @type WorkId: Integer
+        # @param WhiteSites: xxx
+        # @type WhiteSites: String
+
+        attr_accessor :WhiteListId, :PlatForm, :PlatUrl, :AuthorId, :WorksId, :WorkId, :WhiteSites
+        
+        def initialize(whitelistid=nil, platform=nil, platurl=nil, authorid=nil, worksid=nil, workid=nil, whitesites=nil)
+          @WhiteListId = whitelistid
+          @PlatForm = platform
+          @PlatUrl = platurl
+          @AuthorId = authorid
+          @WorksId = worksid
+          @WorkId = workid
+          @WhiteSites = whitesites
+        end
+
+        def deserialize(params)
+          @WhiteListId = params['WhiteListId']
+          @PlatForm = params['PlatForm']
+          @PlatUrl = params['PlatUrl']
+          @AuthorId = params['AuthorId']
+          @WorksId = params['WorksId']
+          @WorkId = params['WorkId']
+          @WhiteSites = params['WhiteSites']
+        end
+      end
+
+      # ModifyCRWhiteList返回参数结构体
+      class ModifyCRWhiteListResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 

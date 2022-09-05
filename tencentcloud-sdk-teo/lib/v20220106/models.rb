@@ -47,44 +47,56 @@ module TencentCloud
 
       # ACL用户规则
       class ACLUserRule < TencentCloud::Common::AbstractModel
-        # @param RuleName: 规则名
+        # @param RuleName: 规则名。
         # @type RuleName: String
-        # @param Action: 动作
+        # @param Action: 处罚动作。
+        # 1. trans 放行
+        # 2. drop 拦截
+        # 3. monitor 观察
+        # 4. ban IP封禁
+        # 5. redirect 重定向
+        # 6. page 指定页面
+        # 7. alg Javascript挑战
         # @type Action: String
-        # @param RuleStatus: 状态
+        # @param RuleStatus: 规则状态。
+        # 1. on 规则生效
+        # 2. off 规则失效
         # @type RuleStatus: String
-        # @param Conditions: ACL规则
+        # @param Conditions: ACL规则。
         # @type Conditions: Array
-        # @param RulePriority: 规则优先级
+        # @param RulePriority: 规则优先级，0-100。
         # @type RulePriority: Integer
-        # @param RuleID: 规则id
+        # @param RuleID: 规则id。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RuleID: Integer
-        # @param UpdateTime: 更新时间
+        # @param UpdateTime: 更新时间。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UpdateTime: String
-        # @param PunishTime: ip封禁的惩罚时间
+        # @param PunishTime: ip封禁的惩罚时间，0-2天
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PunishTime: Integer
-        # @param PunishTimeUnit: ip封禁的惩罚时间单位
+        # @param PunishTimeUnit: ip封禁的惩罚时间单位。
+        # 1. second 秒
+        # 2. 分钟 minutes
+        # 3. hour 小时
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PunishTimeUnit: String
-        # @param Name: 自定义返回页面的名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Name: String
-        # @param PageId: 自定义返回页面的实例id
+        # @param PageId: 自定义返回页面的实例id。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PageId: Integer
-        # @param RedirectUrl: 重定向时候的地址，必须为本用户接入的站点子域名
+        # @param Name: 自定义返回页面的名称。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
+        # @param RedirectUrl: 重定向时候的地址，必须为本用户接入的站点子域名。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RedirectUrl: String
-        # @param ResponseCode: 重定向时候的返回码
+        # @param ResponseCode: 重定向时候的返回码。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResponseCode: Integer
 
-        attr_accessor :RuleName, :Action, :RuleStatus, :Conditions, :RulePriority, :RuleID, :UpdateTime, :PunishTime, :PunishTimeUnit, :Name, :PageId, :RedirectUrl, :ResponseCode
+        attr_accessor :RuleName, :Action, :RuleStatus, :Conditions, :RulePriority, :RuleID, :UpdateTime, :PunishTime, :PunishTimeUnit, :PageId, :Name, :RedirectUrl, :ResponseCode
         
-        def initialize(rulename=nil, action=nil, rulestatus=nil, conditions=nil, rulepriority=nil, ruleid=nil, updatetime=nil, punishtime=nil, punishtimeunit=nil, name=nil, pageid=nil, redirecturl=nil, responsecode=nil)
+        def initialize(rulename=nil, action=nil, rulestatus=nil, conditions=nil, rulepriority=nil, ruleid=nil, updatetime=nil, punishtime=nil, punishtimeunit=nil, pageid=nil, name=nil, redirecturl=nil, responsecode=nil)
           @RuleName = rulename
           @Action = action
           @RuleStatus = rulestatus
@@ -94,8 +106,8 @@ module TencentCloud
           @UpdateTime = updatetime
           @PunishTime = punishtime
           @PunishTimeUnit = punishtimeunit
-          @Name = name
           @PageId = pageid
+          @Name = name
           @RedirectUrl = redirecturl
           @ResponseCode = responsecode
         end
@@ -117,8 +129,8 @@ module TencentCloud
           @UpdateTime = params['UpdateTime']
           @PunishTime = params['PunishTime']
           @PunishTimeUnit = params['PunishTimeUnit']
-          @Name = params['Name']
           @PageId = params['PageId']
+          @Name = params['Name']
           @RedirectUrl = params['RedirectUrl']
           @ResponseCode = params['ResponseCode']
         end
@@ -126,9 +138,11 @@ module TencentCloud
 
       # ACL配置
       class AclConfig < TencentCloud::Common::AbstractModel
-        # @param Switch: 开关
+        # @param Switch: 开关。
+        # 1. on 开启
+        # 2. off 关闭
         # @type Switch: String
-        # @param UserRules: ACL用户规则
+        # @param UserRules: 自定义-用户规则。
         # @type UserRules: Array
 
         attr_accessor :Switch, :UserRules
@@ -153,8 +167,10 @@ module TencentCloud
 
       # AI规则引擎防护
       class AiRule < TencentCloud::Common::AbstractModel
-        # @param Mode: smart_status_close-关闭；smart_status_open-拦截处置；
-        # smart_status_observe-观察处置
+        # @param Mode: AI规则引擎状态，取值有：
+        # <li> smart_status_close：关闭；</li>
+        # <li> smart_status_open：拦截处置；</li>
+        # <li> smart_status_observe：观察处置。</li>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Mode: String
 
@@ -358,17 +374,19 @@ module TencentCloud
 
       # 安全Bot配置
       class BotConfig < TencentCloud::Common::AbstractModel
-        # @param Switch: bot开关
+        # @param Switch: 开关。
+        # 1. on 开启
+        # 2. off 关闭
         # @type Switch: String
-        # @param ManagedRule: 预置规则
+        # @param ManagedRule: 通用详细基础规则。
         # @type ManagedRule: :class:`Tencentcloud::Teo.v20220106.models.BotManagedRule`
-        # @param UaBotRule: 保留
+        # @param UaBotRule: ua基础规则。
         # @type UaBotRule: :class:`Tencentcloud::Teo.v20220106.models.BotManagedRule`
-        # @param IspBotRule: 保留
+        # @param IspBotRule: isp基础规则。
         # @type IspBotRule: :class:`Tencentcloud::Teo.v20220106.models.BotManagedRule`
-        # @param PortraitRule: 用户画像规则
+        # @param PortraitRule: 用户画像规则。
         # @type PortraitRule: :class:`Tencentcloud::Teo.v20220106.models.BotPortraitRule`
-        # @param IntelligenceRule: Bot智能分析
+        # @param IntelligenceRule: Bot智能分析。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IntelligenceRule: :class:`Tencentcloud::Teo.v20220106.models.IntelligenceRule`
 
@@ -559,81 +577,85 @@ module TencentCloud
 
       # Bot 规则，下列规则ID可参考接口 DescribeBotManagedRules返回的ID信息
       class BotManagedRule < TencentCloud::Common::AbstractModel
-        # @param ManagedIds: 想开启的规则id
+        # @param RuleID: 本规则的ID。
+        # @type RuleID: Integer
+        # @param ManagedIds: 老版本的通用规则ID。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ManagedIds: Array
-        # @param RuleID: 本规则的id
-        # @type RuleID: Integer
-        # @param Action: drop/trans/monitor/alg
+        # @param Action: 触发规则后的处置方式。
+        # 1. drop 拦截
+        # 2. trans 放行
+        # 3. monitor 观察
+        # 4. alg Javascript挑战
         # @type Action: String
-        # @param PunishTime: ip封禁的惩罚时间
+        # @param PunishTime: 封禁的惩罚时间。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PunishTime: Integer
-        # @param PunishTimeUnit: 单位
+        # @param PunishTimeUnit: 封禁的惩罚时间单位。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PunishTimeUnit: String
-        # @param Name: 自定义返回页面的名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Name: String
-        # @param PageId: 自定义返回页面的实例id
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type PageId: Integer
-        # @param RedirectUrl: 重定向时候的地址，必须为本用户接入的站点子域名，使用URLENCODE
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type RedirectUrl: String
-        # @param ResponseCode: 重定向时候的返回码
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type ResponseCode: Integer
-        # @param TransManagedIds: 放行的规则ID
+        # @param TransManagedIds: 放行的规则ID。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TransManagedIds: Array
-        # @param AlgManagedIds: JS挑战的规则ID
+        # @param AlgManagedIds: JS挑战的规则ID。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AlgManagedIds: Array
-        # @param CapManagedIds: 数字验证码的规则ID
+        # @param CapManagedIds: 数字验证码的规则ID。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CapManagedIds: Array
-        # @param MonManagedIds: 观察的规则ID
+        # @param MonManagedIds: 观察的规则ID。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MonManagedIds: Array
-        # @param DropManagedIds: 拦截的规则ID
+        # @param DropManagedIds: 拦截的规则ID。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DropManagedIds: Array
+        # @param PageId: 自定义返回页面的实例id。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PageId: Integer
+        # @param Name: 自定义返回页面的名称。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
+        # @param RedirectUrl: 重定向时候的地址，必须为本用户接入的站点子域名，使用URLENCODE。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RedirectUrl: String
+        # @param ResponseCode: 重定向时候的返回码。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResponseCode: Integer
 
-        attr_accessor :ManagedIds, :RuleID, :Action, :PunishTime, :PunishTimeUnit, :Name, :PageId, :RedirectUrl, :ResponseCode, :TransManagedIds, :AlgManagedIds, :CapManagedIds, :MonManagedIds, :DropManagedIds
+        attr_accessor :RuleID, :ManagedIds, :Action, :PunishTime, :PunishTimeUnit, :TransManagedIds, :AlgManagedIds, :CapManagedIds, :MonManagedIds, :DropManagedIds, :PageId, :Name, :RedirectUrl, :ResponseCode
         
-        def initialize(managedids=nil, ruleid=nil, action=nil, punishtime=nil, punishtimeunit=nil, name=nil, pageid=nil, redirecturl=nil, responsecode=nil, transmanagedids=nil, algmanagedids=nil, capmanagedids=nil, monmanagedids=nil, dropmanagedids=nil)
-          @ManagedIds = managedids
+        def initialize(ruleid=nil, managedids=nil, action=nil, punishtime=nil, punishtimeunit=nil, transmanagedids=nil, algmanagedids=nil, capmanagedids=nil, monmanagedids=nil, dropmanagedids=nil, pageid=nil, name=nil, redirecturl=nil, responsecode=nil)
           @RuleID = ruleid
+          @ManagedIds = managedids
           @Action = action
           @PunishTime = punishtime
           @PunishTimeUnit = punishtimeunit
-          @Name = name
-          @PageId = pageid
-          @RedirectUrl = redirecturl
-          @ResponseCode = responsecode
           @TransManagedIds = transmanagedids
           @AlgManagedIds = algmanagedids
           @CapManagedIds = capmanagedids
           @MonManagedIds = monmanagedids
           @DropManagedIds = dropmanagedids
+          @PageId = pageid
+          @Name = name
+          @RedirectUrl = redirecturl
+          @ResponseCode = responsecode
         end
 
         def deserialize(params)
-          @ManagedIds = params['ManagedIds']
           @RuleID = params['RuleID']
+          @ManagedIds = params['ManagedIds']
           @Action = params['Action']
           @PunishTime = params['PunishTime']
           @PunishTimeUnit = params['PunishTimeUnit']
-          @Name = params['Name']
-          @PageId = params['PageId']
-          @RedirectUrl = params['RedirectUrl']
-          @ResponseCode = params['ResponseCode']
           @TransManagedIds = params['TransManagedIds']
           @AlgManagedIds = params['AlgManagedIds']
           @CapManagedIds = params['CapManagedIds']
           @MonManagedIds = params['MonManagedIds']
           @DropManagedIds = params['DropManagedIds']
+          @PageId = params['PageId']
+          @Name = params['Name']
+          @RedirectUrl = params['RedirectUrl']
+          @ResponseCode = params['ResponseCode']
         end
       end
 
@@ -667,43 +689,55 @@ module TencentCloud
 
       # bot 用户画像规则
       class BotPortraitRule < TencentCloud::Common::AbstractModel
-        # @param RuleID: 本规则的id
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type RuleID: Integer
-        # @param AlgManagedIds: JS挑战的规则ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type AlgManagedIds: Array
-        # @param CapManagedIds: 数字验证码的规则ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type CapManagedIds: Array
-        # @param MonManagedIds: 观察的规则ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type MonManagedIds: Array
-        # @param DropManagedIds: 拦截的规则ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type DropManagedIds: Array
-        # @param Switch: 本功能的开关
+        # @param Switch: 本功能的开关。
+        # 1. on 开启
+        # 2. off 关闭
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Switch: String
+        # @param RuleID: 本规则的ID。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RuleID: Integer
+        # @param AlgManagedIds: JS挑战的规则ID。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AlgManagedIds: Array
+        # @param CapManagedIds: 数字验证码的规则ID。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CapManagedIds: Array
+        # @param MonManagedIds: 观察的规则ID。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MonManagedIds: Array
+        # @param DropManagedIds: 拦截的规则ID。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DropManagedIds: Array
+        # @param ManagedIds: 保留。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ManagedIds: Array
+        # @param TransManagedIds: 保留。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TransManagedIds: Array
 
-        attr_accessor :RuleID, :AlgManagedIds, :CapManagedIds, :MonManagedIds, :DropManagedIds, :Switch
+        attr_accessor :Switch, :RuleID, :AlgManagedIds, :CapManagedIds, :MonManagedIds, :DropManagedIds, :ManagedIds, :TransManagedIds
         
-        def initialize(ruleid=nil, algmanagedids=nil, capmanagedids=nil, monmanagedids=nil, dropmanagedids=nil, switch=nil)
+        def initialize(switch=nil, ruleid=nil, algmanagedids=nil, capmanagedids=nil, monmanagedids=nil, dropmanagedids=nil, managedids=nil, transmanagedids=nil)
+          @Switch = switch
           @RuleID = ruleid
           @AlgManagedIds = algmanagedids
           @CapManagedIds = capmanagedids
           @MonManagedIds = monmanagedids
           @DropManagedIds = dropmanagedids
-          @Switch = switch
+          @ManagedIds = managedids
+          @TransManagedIds = transmanagedids
         end
 
         def deserialize(params)
+          @Switch = params['Switch']
           @RuleID = params['RuleID']
           @AlgManagedIds = params['AlgManagedIds']
           @CapManagedIds = params['CapManagedIds']
           @MonManagedIds = params['MonManagedIds']
           @DropManagedIds = params['DropManagedIds']
-          @Switch = params['Switch']
+          @ManagedIds = params['ManagedIds']
+          @TransManagedIds = params['TransManagedIds']
         end
       end
 
@@ -7642,6 +7676,216 @@ module TencentCloud
         end
       end
 
+      # 拦截页面的总体配置，用于配置各个模块的拦截后行为。
+      class DropPageConfig < TencentCloud::Common::AbstractModel
+        # @param Switch: 配置开关。
+        # 1. on 开启
+        # 2. off 关闭
+        # @type Switch: String
+        # @param Waf: Waf(托管规则)模块的拦截页面配置。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Waf: :class:`Tencentcloud::Teo.v20220106.models.DropPageDetail`
+        # @param Acl: 自定义页面的拦截页面配置。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Acl: :class:`Tencentcloud::Teo.v20220106.models.DropPageDetail`
+
+        attr_accessor :Switch, :Waf, :Acl
+        
+        def initialize(switch=nil, waf=nil, acl=nil)
+          @Switch = switch
+          @Waf = waf
+          @Acl = acl
+        end
+
+        def deserialize(params)
+          @Switch = params['Switch']
+          unless params['Waf'].nil?
+            @Waf = DropPageDetail.new
+            @Waf.deserialize(params['Waf'])
+          end
+          unless params['Acl'].nil?
+            @Acl = DropPageDetail.new
+            @Acl.deserialize(params['Acl'])
+          end
+        end
+      end
+
+      # 拦截页面的配置信息
+      class DropPageDetail < TencentCloud::Common::AbstractModel
+        # @param PageId: 拦截页面的唯一Id。系统默认包含一个自带拦截页面，Id值为0。
+        # 该Id可通过创建拦截页面接口进行上传获取。如传入0，代表使用系统默认拦截页面
+        # @type PageId: Integer
+        # @param StatusCode: 拦截页面的HTTP状态码。状态码范围是 100 - 600。
+        # @type StatusCode: Integer
+        # @param Name: 页面的元信息，文件名或url。
+        # @type Name: String
+        # @param Type: 页面的类型。
+        # @type Type: String
+
+        attr_accessor :PageId, :StatusCode, :Name, :Type
+        
+        def initialize(pageid=nil, statuscode=nil, name=nil, type=nil)
+          @PageId = pageid
+          @StatusCode = statuscode
+          @Name = name
+          @Type = type
+        end
+
+        def deserialize(params)
+          @PageId = params['PageId']
+          @StatusCode = params['StatusCode']
+          @Name = params['Name']
+          @Type = params['Type']
+        end
+      end
+
+      # 例外规则，用于配置需要跳过特定场景的规则
+      class ExceptConfig < TencentCloud::Common::AbstractModel
+        # @param Switch: 开关。
+        # 1. on 开启
+        # 2. off 关闭
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Switch: String
+        # @param UserRules: 例外规则详情。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UserRules: Array
+
+        attr_accessor :Switch, :UserRules
+        
+        def initialize(switch=nil, userrules=nil)
+          @Switch = switch
+          @UserRules = userrules
+        end
+
+        def deserialize(params)
+          @Switch = params['Switch']
+          unless params['UserRules'].nil?
+            @UserRules = []
+            params['UserRules'].each do |i|
+              exceptuserrule_tmp = ExceptUserRule.new
+              exceptuserrule_tmp.deserialize(i)
+              @UserRules << exceptuserrule_tmp
+            end
+          end
+        end
+      end
+
+      # 例外规则的配置，包含生效的条件，生效的范围
+      class ExceptUserRule < TencentCloud::Common::AbstractModel
+        # @param RuleID: 规则ID。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RuleID: Integer
+        # @param RuleName: 规则名称。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RuleName: String
+        # @param Action: 规则的处置方式。
+        # 1. skip 跳过
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Action: String
+        # @param RuleStatus: 规则生效状态。
+        # 1. on 生效
+        # 2. off 失效
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RuleStatus: String
+        # @param UpdateTime: 更新时间。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UpdateTime: String
+        # @param Conditions: 匹配条件。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Conditions: Array
+        # @param Scope: 规则生效的范围。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Scope: :class:`Tencentcloud::Teo.v20220106.models.ExceptUserRuleScope`
+        # @param RulePriority: 优先级。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RulePriority: Integer
+
+        attr_accessor :RuleID, :RuleName, :Action, :RuleStatus, :UpdateTime, :Conditions, :Scope, :RulePriority
+        
+        def initialize(ruleid=nil, rulename=nil, action=nil, rulestatus=nil, updatetime=nil, conditions=nil, scope=nil, rulepriority=nil)
+          @RuleID = ruleid
+          @RuleName = rulename
+          @Action = action
+          @RuleStatus = rulestatus
+          @UpdateTime = updatetime
+          @Conditions = conditions
+          @Scope = scope
+          @RulePriority = rulepriority
+        end
+
+        def deserialize(params)
+          @RuleID = params['RuleID']
+          @RuleName = params['RuleName']
+          @Action = params['Action']
+          @RuleStatus = params['RuleStatus']
+          @UpdateTime = params['UpdateTime']
+          unless params['Conditions'].nil?
+            @Conditions = []
+            params['Conditions'].each do |i|
+              exceptuserrulecondition_tmp = ExceptUserRuleCondition.new
+              exceptuserrulecondition_tmp.deserialize(i)
+              @Conditions << exceptuserrulecondition_tmp
+            end
+          end
+          unless params['Scope'].nil?
+            @Scope = ExceptUserRuleScope.new
+            @Scope.deserialize(params['Scope'])
+          end
+          @RulePriority = params['RulePriority']
+        end
+      end
+
+      # 例外规则生效的具体条件
+      class ExceptUserRuleCondition < TencentCloud::Common::AbstractModel
+        # @param MatchFrom: 匹配项。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MatchFrom: String
+        # @param MatchParam: 匹配项的参数。当 MatchFrom 为 header 时，可以填入 header 的 key 作为参数。
+        # @type MatchParam: String
+        # @param Operator: 匹配操作符。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Operator: String
+        # @param MatchContent: 匹配值。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MatchContent: String
+
+        attr_accessor :MatchFrom, :MatchParam, :Operator, :MatchContent
+        
+        def initialize(matchfrom=nil, matchparam=nil, operator=nil, matchcontent=nil)
+          @MatchFrom = matchfrom
+          @MatchParam = matchparam
+          @Operator = operator
+          @MatchContent = matchcontent
+        end
+
+        def deserialize(params)
+          @MatchFrom = params['MatchFrom']
+          @MatchParam = params['MatchParam']
+          @Operator = params['Operator']
+          @MatchContent = params['MatchContent']
+        end
+      end
+
+      # 例外规则的生效范围
+      class ExceptUserRuleScope < TencentCloud::Common::AbstractModel
+        # @param Modules: 生效的模块
+
+        # 1. waf Waf防护
+        # 2. bot Bot防护
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Modules: Array
+
+        attr_accessor :Modules
+        
+        def initialize(modules=nil)
+          @Modules = modules
+        end
+
+        def deserialize(params)
+          @Modules = params['Modules']
+        end
+      end
+
       # 失败原因
       class FailReason < TencentCloud::Common::AbstractModel
         # @param Reason: 失败原因
@@ -7963,10 +8207,12 @@ module TencentCloud
 
       # 智能分析规则
       class IntelligenceRule < TencentCloud::Common::AbstractModel
-        # @param Switch: 开关
+        # @param Switch: 开关。
+        # 1. on 开启
+        # 2. off 关闭
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Switch: String
-        # @param Items: 规则详情
+        # @param Items: 规则详情。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Items: Array
 
@@ -7992,10 +8238,19 @@ module TencentCloud
 
       # Bot智能分析规则详情
       class IntelligenceRuleItem < TencentCloud::Common::AbstractModel
-        # @param Label: 恶意BOT
+        # @param Label: 智能分析标签。
+        # 1. evil_bot 恶意
+        # 2. suspect_bot 疑似恶意
+        # 3. good_bot 好的
+        # 4. normal 正常
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Label: String
-        # @param Action: 动作
+        # @param Action: 触发智能分析标签对应的处置方式。
+        # 1. drop 拦截
+        # 2. trans 放行
+        # 3. monitor 监控
+        # 4. alg Javascript挑战
+        # 5. captcha 数字验证码
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Action: String
 
@@ -8012,12 +8267,14 @@ module TencentCloud
         end
       end
 
-      # IP黑白名单及IP区域控制配置
+      # 基础管控规则配置。
       class IpTableConfig < TencentCloud::Common::AbstractModel
-        # @param Switch: 开关
+        # @param Switch: 开关。
+        # 1. on 开启
+        # 2. off 关闭
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Switch: String
-        # @param Rules: []
+        # @param Rules: 基础管控规则。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Rules: Array
 
@@ -8041,39 +8298,46 @@ module TencentCloud
         end
       end
 
-      # IP黑白名单详细规则
+      # 详细规则。
       class IpTableRule < TencentCloud::Common::AbstractModel
-        # @param Action: 动作: drop拦截，trans放行，monitor观察
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Action: String
-        # @param MatchFrom: 根据类型匹配：ip(根据ip), area(根据区域)
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type MatchFrom: String
-        # @param MatchContent: 匹配内容
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type MatchContent: String
-        # @param RuleID: 规则id
+        # @param RuleID: 规则ID。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RuleID: Integer
-        # @param UpdateTime: 更新时间
+        # @param Action: 处置动作。
+        # 1. drop 拦截
+        # 2. trans放行
+        # 3. monitor观察
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Action: String
+        # @param MatchFrom: 类型匹配。
+        # 1. ip 根据ip
+        # 2. area 根据区域
+        # 3. ua 根据User-Agent
+        # 4. referer 根据Referer
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MatchFrom: String
+        # @param MatchContent: 匹配内容。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MatchContent: String
+        # @param UpdateTime: 更新时间。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UpdateTime: String
 
-        attr_accessor :Action, :MatchFrom, :MatchContent, :RuleID, :UpdateTime
+        attr_accessor :RuleID, :Action, :MatchFrom, :MatchContent, :UpdateTime
         
-        def initialize(action=nil, matchfrom=nil, matchcontent=nil, ruleid=nil, updatetime=nil)
+        def initialize(ruleid=nil, action=nil, matchfrom=nil, matchcontent=nil, updatetime=nil)
+          @RuleID = ruleid
           @Action = action
           @MatchFrom = matchfrom
           @MatchContent = matchcontent
-          @RuleID = ruleid
           @UpdateTime = updatetime
         end
 
         def deserialize(params)
+          @RuleID = params['RuleID']
           @Action = params['Action']
           @MatchFrom = params['MatchFrom']
           @MatchContent = params['MatchContent']
-          @RuleID = params['RuleID']
           @UpdateTime = params['UpdateTime']
         end
       end
@@ -10018,14 +10282,16 @@ module TencentCloud
 
       # RateLimit配置
       class RateLimitConfig < TencentCloud::Common::AbstractModel
-        # @param Switch: 开关
+        # @param Switch: 开关。
+        # 1. on 开启RateLimit；
+        # 2. off 关闭RateLimit
         # @type Switch: String
-        # @param UserRules: 用户规则
+        # @param UserRules: 速率限制-用户规则列表。
         # @type UserRules: Array
-        # @param Template: 默认模板
+        # @param Template: 速率限制模板功能。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Template: :class:`Tencentcloud::Teo.v20220106.models.RateLimitTemplate`
-        # @param Intelligence: 智能客户端过滤
+        # @param Intelligence: 智能客户端过滤。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Intelligence: :class:`Tencentcloud::Teo.v20220106.models.RateLimitIntelligence`
 
@@ -10061,10 +10327,14 @@ module TencentCloud
 
       # 智能客户端过滤
       class RateLimitIntelligence < TencentCloud::Common::AbstractModel
-        # @param Switch: 功能开关
+        # @param Switch: 功能开关。
+        # 1. on 开启
+        # 2. off 关闭
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Switch: String
-        # @param Action: 执行动作 monitor(观察), alg(挑战)
+        # @param Action: 执行动作
+        # 1. monitor(观察)
+        # 2. alg(挑战)
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Action: String
 
@@ -10083,10 +10353,16 @@ module TencentCloud
 
       # 速率限制模板
       class RateLimitTemplate < TencentCloud::Common::AbstractModel
-        # @param Mode: 模板名称
+        # @param Mode: 模板等级名称。
+        # 1. sup_loose 自适应 - 超级宽松
+        # 2. loose     自适应 - 宽松
+        # 3. emergency 自适应 - 紧急
+        # 4. normal    自适应 - 适中
+        # 5. strict    固定阈值 - 严格
+        # 6. close     关闭 - 仅精准速率限制生效
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Mode: String
-        # @param Detail: 模板值详情
+        # @param Detail: 模板值详情。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Detail: :class:`Tencentcloud::Teo.v20220106.models.RateLimitTemplateDetail`
 
@@ -10106,24 +10382,30 @@ module TencentCloud
         end
       end
 
-      # 模板当前详细配置
+      # 模板当前详细配置。
       class RateLimitTemplateDetail < TencentCloud::Common::AbstractModel
-        # @param Mode: 模板名称
+        # @param Mode: 模板等级名称。
+        # 1. sup_loose 自适应 - 超级宽松
+        # 2. loose     自适应 - 宽松
+        # 3. emergency 自适应 - 紧急
+        # 4. normal    自适应 - 适中
+        # 5. strict    固定阈值 - 严格
+        # 6. close     关闭 - 仅精准速率限制生效
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Mode: String
-        # @param ID: 唯一id
+        # @param ID: 唯一id。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ID: Integer
-        # @param Action: 处置动作
+        # @param Action: 处置动作。模板阀值触发后的处罚行为。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Action: String
-        # @param PunishTime: 惩罚时间，秒
+        # @param PunishTime: 惩罚时间，单位是秒。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PunishTime: Integer
-        # @param Threshold: 阈值
+        # @param Threshold: 阈值。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Threshold: Integer
-        # @param Period: 统计周期
+        # @param Period: 统计周期。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Period: Integer
 
@@ -10150,31 +10432,39 @@ module TencentCloud
 
       # RateLimit规则
       class RateLimitUserRule < TencentCloud::Common::AbstractModel
-        # @param Threshold: RateLimit统计阈值
+        # @param Threshold: RateLimit统计阈值，单位是次，取值范围0-4294967294。
         # @type Threshold: Integer
-        # @param Period: RateLimit统计时间
+        # @param Period: RateLimit统计时间，取值范围 10/20/30/40/50/60 单位是秒。
         # @type Period: Integer
-        # @param RuleName: 规则名
+        # @param RuleName: 规则名，只能以英文字符，数字，下划线组合，且不能以下划线开头。
         # @type RuleName: String
-        # @param Action: 动作：monitor(观察), drop(拦截)
+        # @param Action: 处置动作。
+        # 1. monitor(观察)；
+        # 2. drop(拦截)；
+        # 3. alg(Javascript挑战)
         # @type Action: String
-        # @param PunishTime: 惩罚时长
+        # @param PunishTime: 惩罚时长，0-100。
         # @type PunishTime: Integer
-        # @param PunishTimeUnit: 处罚时长单位，second
+        # @param PunishTimeUnit: 处罚时长单位。
+        # 1. second 秒;
+        # 2. minutes 分钟
+        # 3. hour 小时
         # @type PunishTimeUnit: String
-        # @param RuleStatus: 规则状态
+        # @param RuleStatus: 规则状态。
+        # 1. on 生效
+        # 2. off 不生效
         # @type RuleStatus: String
-        # @param Conditions: 规则
+        # @param Conditions: 规则。
         # @type Conditions: Array
-        # @param RulePriority: 规则权重
+        # @param RulePriority: 规则权重，取值范围0-100。
         # @type RulePriority: Integer
-        # @param RuleID: 规则id
+        # @param RuleID: 规则id。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RuleID: Integer
-        # @param FreqFields: 过滤词
+        # @param FreqFields: 过滤词。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FreqFields: Array
-        # @param UpdateTime: 更新时间
+        # @param UpdateTime: 更新时间.
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UpdateTime: String
 
@@ -11063,33 +11353,39 @@ module TencentCloud
         end
       end
 
-      # 安全配置
+      # 安全配置。
       class SecurityConfig < TencentCloud::Common::AbstractModel
-        # @param WafConfig: 门神配置
+        # @param WafConfig: 托管规则。如果为null，默认使用历史配置。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type WafConfig: :class:`Tencentcloud::Teo.v20220106.models.WafConfig`
-        # @param RateLimitConfig: RateLimit配置
+        # @param RateLimitConfig: 速率限制。如果为null，默认使用历史配置。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RateLimitConfig: :class:`Tencentcloud::Teo.v20220106.models.RateLimitConfig`
-        # @param DdosConfig: DDoS配置
+        # @param DdosConfig: DDoS配置。如果为null，默认使用历史配置。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DdosConfig: :class:`Tencentcloud::Teo.v20220106.models.DDoSConfig`
-        # @param AclConfig: ACL配置
+        # @param AclConfig: 自定义规则。如果为null，默认使用历史配置。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AclConfig: :class:`Tencentcloud::Teo.v20220106.models.AclConfig`
-        # @param BotConfig: Bot配置
+        # @param BotConfig: Bot配置。如果为null，默认使用历史配置。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BotConfig: :class:`Tencentcloud::Teo.v20220106.models.BotConfig`
-        # @param SwitchConfig: 总开关
+        # @param SwitchConfig: 七层防护总开关。如果为null，默认使用历史配置。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SwitchConfig: :class:`Tencentcloud::Teo.v20220106.models.SwitchConfig`
-        # @param IpTableConfig: IP黑白名单
+        # @param IpTableConfig: 基础访问管控。如果为null，默认使用历史配置。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IpTableConfig: :class:`Tencentcloud::Teo.v20220106.models.IpTableConfig`
+        # @param ExceptConfig: 例外规则配置。如果为null，默认使用历史配置。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExceptConfig: :class:`Tencentcloud::Teo.v20220106.models.ExceptConfig`
+        # @param DropPageConfig: 自定义拦截页面配置。如果为null，默认使用历史配置。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DropPageConfig: :class:`Tencentcloud::Teo.v20220106.models.DropPageConfig`
 
-        attr_accessor :WafConfig, :RateLimitConfig, :DdosConfig, :AclConfig, :BotConfig, :SwitchConfig, :IpTableConfig
+        attr_accessor :WafConfig, :RateLimitConfig, :DdosConfig, :AclConfig, :BotConfig, :SwitchConfig, :IpTableConfig, :ExceptConfig, :DropPageConfig
         
-        def initialize(wafconfig=nil, ratelimitconfig=nil, ddosconfig=nil, aclconfig=nil, botconfig=nil, switchconfig=nil, iptableconfig=nil)
+        def initialize(wafconfig=nil, ratelimitconfig=nil, ddosconfig=nil, aclconfig=nil, botconfig=nil, switchconfig=nil, iptableconfig=nil, exceptconfig=nil, droppageconfig=nil)
           @WafConfig = wafconfig
           @RateLimitConfig = ratelimitconfig
           @DdosConfig = ddosconfig
@@ -11097,6 +11393,8 @@ module TencentCloud
           @BotConfig = botconfig
           @SwitchConfig = switchconfig
           @IpTableConfig = iptableconfig
+          @ExceptConfig = exceptconfig
+          @DropPageConfig = droppageconfig
         end
 
         def deserialize(params)
@@ -11127,6 +11425,14 @@ module TencentCloud
           unless params['IpTableConfig'].nil?
             @IpTableConfig = IpTableConfig.new
             @IpTableConfig.deserialize(params['IpTableConfig'])
+          end
+          unless params['ExceptConfig'].nil?
+            @ExceptConfig = ExceptConfig.new
+            @ExceptConfig.deserialize(params['ExceptConfig'])
+          end
+          unless params['DropPageConfig'].nil?
+            @DropPageConfig = DropPageConfig.new
+            @DropPageConfig.deserialize(params['DropPageConfig'])
           end
         end
       end
@@ -11307,7 +11613,9 @@ module TencentCloud
 
       # 功能总开关
       class SwitchConfig < TencentCloud::Common::AbstractModel
-        # @param WebSwitch: Web类型的安全总开关：Web基础防护，自定义规则，速率限制
+        # @param WebSwitch: Web类型的安全总开关生效范围，Waf，自定义规则，速率限制。
+        # 1. on 开启
+        # 2. off 关闭
         # @type WebSwitch: String
 
         attr_accessor :WebSwitch
@@ -11632,17 +11940,26 @@ module TencentCloud
         end
       end
 
-      # 门神配置
+      # Waf配置。
       class WafConfig < TencentCloud::Common::AbstractModel
-        # @param Switch: 开关
+        # @param Switch: WafConfig开关，取值有：
+        # <li> on：开启；</li>
+        # <li> off：关闭。</li>开关仅与配置是否生效有关，即使为off（关闭），也可以正常修改配置的内容。
         # @type Switch: String
-        # @param Level: 防护级别，loose/normal/strict/stricter/custom
+        # @param Level: 防护级别，取值有：
+        # <li> loose：宽松；</li>
+        # <li> normal：正常；</li>
+        # <li> strict：严格；</li>
+        # <li> stricter：超严格；</li>
+        # <li> custom：自定义。</li>
         # @type Level: String
-        # @param Mode: 模式 block-阻断；observe-观察模式；close-关闭
+        # @param Mode: 全局WAF模式，取值有：
+        # <li> block：阻断（全局阻断，但可对详细规则配置观察）；</li>
+        # <li> observe：观察（无论详细规则配置什么，都为观察）。</li>
         # @type Mode: String
-        # @param WafRules: 托管规则黑白名单
+        # @param WafRules: 托管规则详细配置。
         # @type WafRules: :class:`Tencentcloud::Teo.v20220106.models.WafRule`
-        # @param AiRule: AI规则引擎防护
+        # @param AiRule: AI规则引擎防护配置。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AiRule: :class:`Tencentcloud::Teo.v20220106.models.AiRule`
 
@@ -11673,25 +11990,25 @@ module TencentCloud
 
       # Waf规则
       class WafRule < TencentCloud::Common::AbstractModel
-        # @param BlockRuleIDs: 黑名单，ID参考接口 DescribeSecurityPolicyManagedRules
-        # @type BlockRuleIDs: Array
-        # @param Switch: 托管规则 开关
+        # @param Switch: 托管规则开关。 on为开启
         # @type Switch: String
-        # @param ObserveRuleIDs: 观察模式，ID参考接口 DescribeSecurityPolicyManagedRules
+        # @param BlockRuleIDs: 黑名单ID列表，将规则ID加入本参数列表中代表该ID关闭，即该规则ID不再生效。ID参考接口 [DescribeSecurityPolicyManagedRules](https://tcloud4api.woa.com/document/product/1657/76030?!preview&!document=1)。
+        # @type BlockRuleIDs: Array
+        # @param ObserveRuleIDs: 观察模式ID列表，将规则ID加入本参数列表中代表该ID使用观察模式生效，即该规则ID进入观察模式。ID参考接口 [DescribeSecurityPolicyManagedRules](https://tcloud4api.woa.com/document/product/1657/76030?!preview&!document=1)。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ObserveRuleIDs: Array
 
-        attr_accessor :BlockRuleIDs, :Switch, :ObserveRuleIDs
+        attr_accessor :Switch, :BlockRuleIDs, :ObserveRuleIDs
         
-        def initialize(blockruleids=nil, switch=nil, observeruleids=nil)
-          @BlockRuleIDs = blockruleids
+        def initialize(switch=nil, blockruleids=nil, observeruleids=nil)
           @Switch = switch
+          @BlockRuleIDs = blockruleids
           @ObserveRuleIDs = observeruleids
         end
 
         def deserialize(params)
-          @BlockRuleIDs = params['BlockRuleIDs']
           @Switch = params['Switch']
+          @BlockRuleIDs = params['BlockRuleIDs']
           @ObserveRuleIDs = params['ObserveRuleIDs']
         end
       end

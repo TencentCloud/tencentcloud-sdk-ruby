@@ -9606,6 +9606,75 @@ module TencentCloud
         end
       end
 
+      # DescribeTrafficPackages请求参数结构体
+      class DescribeTrafficPackagesRequest < TencentCloud::Common::AbstractModel
+        # @param TrafficPackageIds: 共享流量包ID，支持批量
+        # @type TrafficPackageIds: Array
+        # @param Filters: 每次请求的`Filters`的上限为10。参数不支持同时指定`TrafficPackageIds`和`Filters`。详细的过滤条件如下：
+        # <li> traffic-package_id - String - 是否必填：否 - （过滤条件）按照共享流量包的唯一标识ID过滤。</li>
+        # <li> traffic-package-name - String - 是否必填：否 - （过滤条件）按照共享流量包名称过滤。不支持模糊过滤。</li>
+        # <li> status - String - 是否必填：否 - （过滤条件）按照共享流量包状态过滤。可选状态：[AVAILABLE|EXPIRED|EXHAUSTED]</li>
+        # @type Filters: Array
+        # @param Offset: 分页参数
+        # @type Offset: Integer
+        # @param Limit: 分页参数
+        # @type Limit: Integer
+
+        attr_accessor :TrafficPackageIds, :Filters, :Offset, :Limit
+        
+        def initialize(trafficpackageids=nil, filters=nil, offset=nil, limit=nil)
+          @TrafficPackageIds = trafficpackageids
+          @Filters = filters
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @TrafficPackageIds = params['TrafficPackageIds']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeTrafficPackages返回参数结构体
+      class DescribeTrafficPackagesResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 按照条件查询出来的流量包数量
+        # @type TotalCount: Integer
+        # @param TrafficPackageSet: 流量包信息
+        # @type TrafficPackageSet: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :TrafficPackageSet, :RequestId
+        
+        def initialize(totalcount=nil, trafficpackageset=nil, requestid=nil)
+          @TotalCount = totalcount
+          @TrafficPackageSet = trafficpackageset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['TrafficPackageSet'].nil?
+            @TrafficPackageSet = []
+            params['TrafficPackageSet'].each do |i|
+              trafficpackage_tmp = TrafficPackage.new
+              trafficpackage_tmp.deserialize(i)
+              @TrafficPackageSet << trafficpackage_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeVpcEndPoint请求参数结构体
       class DescribeVpcEndPointRequest < TencentCloud::Common::AbstractModel
         # @param Filters: 过滤条件。
@@ -18040,6 +18109,67 @@ module TencentCloud
           @AddressTemplateGroupMemberLimit = params['AddressTemplateGroupMemberLimit']
           @ServiceTemplateMemberLimit = params['ServiceTemplateMemberLimit']
           @ServiceTemplateGroupMemberLimit = params['ServiceTemplateGroupMemberLimit']
+        end
+      end
+
+      # 流量包信息描述类型
+      class TrafficPackage < TencentCloud::Common::AbstractModel
+        # @param TrafficPackageId: 流量包唯一ID
+        # @type TrafficPackageId: String
+        # @param TrafficPackageName: 流量包名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TrafficPackageName: String
+        # @param TotalAmount: 流量包总量，单位GB
+        # @type TotalAmount: Float
+        # @param RemainingAmount: 流量包剩余量，单位GB
+        # @type RemainingAmount: Float
+        # @param Status: 流量包状态，可能的值有: AVAILABLE-可用状态， EXPIRED-已过期， EXHAUSTED-已用完， REFUNDED-已退还， DELETED-已删除
+        # @type Status: String
+        # @param CreatedTime: 流量包创建时间
+        # @type CreatedTime: String
+        # @param Deadline: 流量包截止时间
+        # @type Deadline: String
+        # @param UsedAmount: 已使用的流量，单位GB
+        # @type UsedAmount: Float
+        # @param TagSet: 流量包标签
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TagSet: Array
+        # @param DeductType: 区分闲时流量包与全时流量包
+        # @type DeductType: String
+
+        attr_accessor :TrafficPackageId, :TrafficPackageName, :TotalAmount, :RemainingAmount, :Status, :CreatedTime, :Deadline, :UsedAmount, :TagSet, :DeductType
+        
+        def initialize(trafficpackageid=nil, trafficpackagename=nil, totalamount=nil, remainingamount=nil, status=nil, createdtime=nil, deadline=nil, usedamount=nil, tagset=nil, deducttype=nil)
+          @TrafficPackageId = trafficpackageid
+          @TrafficPackageName = trafficpackagename
+          @TotalAmount = totalamount
+          @RemainingAmount = remainingamount
+          @Status = status
+          @CreatedTime = createdtime
+          @Deadline = deadline
+          @UsedAmount = usedamount
+          @TagSet = tagset
+          @DeductType = deducttype
+        end
+
+        def deserialize(params)
+          @TrafficPackageId = params['TrafficPackageId']
+          @TrafficPackageName = params['TrafficPackageName']
+          @TotalAmount = params['TotalAmount']
+          @RemainingAmount = params['RemainingAmount']
+          @Status = params['Status']
+          @CreatedTime = params['CreatedTime']
+          @Deadline = params['Deadline']
+          @UsedAmount = params['UsedAmount']
+          unless params['TagSet'].nil?
+            @TagSet = []
+            params['TagSet'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @TagSet << tag_tmp
+            end
+          end
+          @DeductType = params['DeductType']
         end
       end
 

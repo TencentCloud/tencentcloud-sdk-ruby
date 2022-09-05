@@ -4025,6 +4025,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口 (DescribeTrafficPackages)  用于查询共享流量包详细信息，包括共享流量包唯一标识ID，名称，流量使用信息等
+
+        # @param request: Request instance for DescribeTrafficPackages.
+        # @type request: :class:`Tencentcloud::vpc::V20170312::DescribeTrafficPackagesRequest`
+        # @rtype: :class:`Tencentcloud::vpc::V20170312::DescribeTrafficPackagesResponse`
+        def DescribeTrafficPackages(request)
+          body = send_request('DescribeTrafficPackages', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeTrafficPackagesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询终端节点列表。
 
         # @param request: Request instance for DescribeVpcEndPoint.
