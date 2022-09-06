@@ -1582,16 +1582,21 @@ module TencentCloud
 
       # CreateGrafanaNotificationChannel返回参数结构体
       class CreateGrafanaNotificationChannelResponse < TencentCloud::Common::AbstractModel
+        # @param ChannelId: 通道 ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ChannelId: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RequestId
+        attr_accessor :ChannelId, :RequestId
         
-        def initialize(requestid=nil)
+        def initialize(channelid=nil, requestid=nil)
+          @ChannelId = channelid
           @RequestId = requestid
         end
 
         def deserialize(params)
+          @ChannelId = params['ChannelId']
           @RequestId = params['RequestId']
         end
       end
@@ -2003,16 +2008,20 @@ module TencentCloud
 
       # CreateSSOAccount返回参数结构体
       class CreateSSOAccountResponse < TencentCloud::Common::AbstractModel
+        # @param UserId: 已添加的用户 UIN
+        # @type UserId: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RequestId
+        attr_accessor :UserId, :RequestId
         
-        def initialize(requestid=nil)
+        def initialize(userid=nil, requestid=nil)
+          @UserId = userid
           @RequestId = requestid
         end
 
         def deserialize(params)
+          @UserId = params['UserId']
           @RequestId = params['RequestId']
         end
       end
@@ -4409,15 +4418,19 @@ module TencentCloud
       class DescribeInstalledPluginsRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例 ID
         # @type InstanceId: String
+        # @param PluginId: 按插件 ID 过滤
+        # @type PluginId: String
 
-        attr_accessor :InstanceId
+        attr_accessor :InstanceId, :PluginId
         
-        def initialize(instanceid=nil)
+        def initialize(instanceid=nil, pluginid=nil)
           @InstanceId = instanceid
+          @PluginId = pluginid
         end
 
         def deserialize(params)
           @InstanceId = params['InstanceId']
+          @PluginId = params['PluginId']
         end
       end
 
@@ -6313,15 +6326,19 @@ module TencentCloud
       class DescribeSSOAccountRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例ID
         # @type InstanceId: String
+        # @param UserId: 按账号 UIN 进行过滤
+        # @type UserId: String
 
-        attr_accessor :InstanceId
+        attr_accessor :InstanceId, :UserId
         
-        def initialize(instanceid=nil)
+        def initialize(instanceid=nil, userid=nil)
           @InstanceId = instanceid
+          @UserId = userid
         end
 
         def deserialize(params)
           @InstanceId = params['InstanceId']
+          @UserId = params['UserId']
         end
       end
 
@@ -7099,15 +7116,26 @@ module TencentCloud
         # @type CreatedAt: String
         # @param UpdatedAt: 更新时间
         # @type UpdatedAt: String
+        # @param OrgId: 默认生效组织
+        # @type OrgId: String
+        # @param ExtraOrgIds: 额外生效组织
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExtraOrgIds: Array
+        # @param OrgIds: 生效组织
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OrgIds: String
 
-        attr_accessor :ChannelId, :ChannelName, :Receivers, :CreatedAt, :UpdatedAt
+        attr_accessor :ChannelId, :ChannelName, :Receivers, :CreatedAt, :UpdatedAt, :OrgId, :ExtraOrgIds, :OrgIds
         
-        def initialize(channelid=nil, channelname=nil, receivers=nil, createdat=nil, updatedat=nil)
+        def initialize(channelid=nil, channelname=nil, receivers=nil, createdat=nil, updatedat=nil, orgid=nil, extraorgids=nil, orgids=nil)
           @ChannelId = channelid
           @ChannelName = channelname
           @Receivers = receivers
           @CreatedAt = createdat
           @UpdatedAt = updatedat
+          @OrgId = orgid
+          @ExtraOrgIds = extraorgids
+          @OrgIds = orgids
         end
 
         def deserialize(params)
@@ -7116,6 +7144,9 @@ module TencentCloud
           @Receivers = params['Receivers']
           @CreatedAt = params['CreatedAt']
           @UpdatedAt = params['UpdatedAt']
+          @OrgId = params['OrgId']
+          @ExtraOrgIds = params['ExtraOrgIds']
+          @OrgIds = params['OrgIds']
         end
       end
 
@@ -7169,16 +7200,21 @@ module TencentCloud
 
       # InstallPlugins返回参数结构体
       class InstallPluginsResponse < TencentCloud::Common::AbstractModel
+        # @param PluginIds: 已安装插件 ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PluginIds: Array
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RequestId
+        attr_accessor :PluginIds, :RequestId
         
-        def initialize(requestid=nil)
+        def initialize(pluginids=nil, requestid=nil)
+          @PluginIds = pluginids
           @RequestId = requestid
         end
 
         def deserialize(params)
+          @PluginIds = params['PluginIds']
           @RequestId = params['RequestId']
         end
       end

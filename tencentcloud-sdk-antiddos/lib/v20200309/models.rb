@@ -6606,56 +6606,6 @@ module TencentCloud
         end
       end
 
-      # ModifyL7RulesEdge请求参数结构体
-      class ModifyL7RulesEdgeRequest < TencentCloud::Common::AbstractModel
-        # @param Business: 大禹子产品代号（edge表示边界防护产品）
-        # @type Business: String
-        # @param Id: 资源ID
-        # @type Id: String
-        # @param Rule: 规则
-        # @type Rule: :class:`Tencentcloud::Antiddos.v20200309.models.L7RuleEntry`
-
-        attr_accessor :Business, :Id, :Rule
-        
-        def initialize(business=nil, id=nil, rule=nil)
-          @Business = business
-          @Id = id
-          @Rule = rule
-        end
-
-        def deserialize(params)
-          @Business = params['Business']
-          @Id = params['Id']
-          unless params['Rule'].nil?
-            @Rule = L7RuleEntry.new
-            @Rule.deserialize(params['Rule'])
-          end
-        end
-      end
-
-      # ModifyL7RulesEdge返回参数结构体
-      class ModifyL7RulesEdgeResponse < TencentCloud::Common::AbstractModel
-        # @param Success: 成功码
-        # @type Success: :class:`Tencentcloud::Antiddos.v20200309.models.SuccessCode`
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :Success, :RequestId
-        
-        def initialize(success=nil, requestid=nil)
-          @Success = success
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          unless params['Success'].nil?
-            @Success = SuccessCode.new
-            @Success.deserialize(params['Success'])
-          end
-          @RequestId = params['RequestId']
-        end
-      end
-
       # ModifyNewDomainRules请求参数结构体
       class ModifyNewDomainRulesRequest < TencentCloud::Common::AbstractModel
         # @param Business: 大禹子产品代号（bgpip表示高防IP）

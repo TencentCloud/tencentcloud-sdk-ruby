@@ -1574,6 +1574,16 @@ module TencentCloud
         # @param ApproveName: 签署人名字
         # @type ApproveName: String
         # @param ApproveStatus: 签署人的状态
+        # 0：还没有发起
+        # 1：流程中 没有开始处理
+        # 2：待处理
+        # 3：签署态
+        # 4：拒绝态
+        # 5：过期没人处理
+        # 6：取消态
+        # 7：还没有预发起
+        # 8：待填写
+        # 9：因为各种原因而终止
         # @type ApproveStatus: Integer
         # @param ReceiptId: 模板配置时候的签署人id,与控件绑定
         # @type ReceiptId: String
@@ -1780,6 +1790,12 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FlowType: String
         # @param FlowStatus: 合同(流程)的状态
+        # 1：未签署
+        # 2：部分签署
+        # 3：已退回
+        # 4：完成签署
+        # 5：已过期
+        # 6：已取消
         # @type FlowStatus: Integer
         # @param FlowMessage: 合同(流程)的信息
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -2263,7 +2279,7 @@ module TencentCloud
         # @type Caller: :class:`Tencentcloud::Ess.v20201111.models.Caller`
         # @param FileInfos: 上传文件内容数组，最多支持20个文件
         # @type FileInfos: Array
-        # @param FileUrls: 上传文件链接数组，最多支持20个URL
+        # @param FileUrls: 不再使用，上传文件链接数组，最多支持20个URL
         # @type FileUrls: String
         # @param CoverRect: 此参数只对 PDF 文件有效。是否将pdf灰色矩阵置白
         # true--是，处理置白

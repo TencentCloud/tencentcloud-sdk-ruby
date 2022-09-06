@@ -23,17 +23,21 @@ module TencentCloud
         # @type Callee: String
         # @param State: 呼叫状态 0初始 1已接听 2未接听 3呼叫中 4待重试
         # @type State: Integer
+        # @param Sessions: 会话ID列表
+        # @type Sessions: Array
 
-        attr_accessor :Callee, :State
+        attr_accessor :Callee, :State, :Sessions
         
-        def initialize(callee=nil, state=nil)
+        def initialize(callee=nil, state=nil, sessions=nil)
           @Callee = callee
           @State = state
+          @Sessions = sessions
         end
 
         def deserialize(params)
           @Callee = params['Callee']
           @State = params['State']
+          @Sessions = params['Sessions']
         end
       end
 

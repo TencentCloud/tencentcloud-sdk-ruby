@@ -1034,19 +1034,27 @@ module TencentCloud
         # @type RoomId: Integer
         # @param UserId: 用户ID
         # @type UserId: Integer
+        # @param UserIdStr: 字符串类型用户ID
+        # @type UserIdStr: String
+        # @param RoomIdStr: 字符串类型房间ID
+        # @type RoomIdStr: String
 
-        attr_accessor :BizId, :RoomId, :UserId
+        attr_accessor :BizId, :RoomId, :UserId, :UserIdStr, :RoomIdStr
         
-        def initialize(bizid=nil, roomid=nil, userid=nil)
+        def initialize(bizid=nil, roomid=nil, userid=nil, useridstr=nil, roomidstr=nil)
           @BizId = bizid
           @RoomId = roomid
           @UserId = userid
+          @UserIdStr = useridstr
+          @RoomIdStr = roomidstr
         end
 
         def deserialize(params)
           @BizId = params['BizId']
           @RoomId = params['RoomId']
           @UserId = params['UserId']
+          @UserIdStr = params['UserIdStr']
+          @RoomIdStr = params['RoomIdStr']
         end
       end
 

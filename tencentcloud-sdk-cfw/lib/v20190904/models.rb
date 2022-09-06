@@ -102,7 +102,7 @@ module TencentCloud
         # 当SourceType为net时，SourceContent为源IP地址或者CIDR地址。
         # 例如：1.1.1.0/24
 
-        # 当SourceType为template时，SourceContent为源地址模板名称。
+        # 当SourceType为template时，SourceContent为源地址模板id。
 
         # 当SourceType为location时，SourceContent为源区域。
         # 例如["BJ11", "ZB"]
@@ -125,7 +125,7 @@ module TencentCloud
         # 当DestType为net时，DestContent为源IP地址或者CIDR地址。
         # 例如：1.1.1.0/24
 
-        # 当DestType为template时，DestContent为源地址模板名称。
+        # 当DestType为template时，DestContent为源地址模板id。
 
         # 当DestType为location时，DestContent为源区域。
         # 例如["BJ11", "ZB"]
@@ -3891,51 +3891,6 @@ module TencentCloud
 
         def deserialize(params)
           @Status = params['Status']
-          @RequestId = params['RequestId']
-        end
-      end
-
-      # ModifyVPCSwitchStatus请求参数结构体
-      class ModifyVPCSwitchStatusRequest < TencentCloud::Common::AbstractModel
-        # @param FirewallVpcId: 公网IP
-        # @type FirewallVpcId: String
-        # @param Status: 状态值，0: 关闭 ,1:开启
-        # @type Status: Integer
-
-        attr_accessor :FirewallVpcId, :Status
-        
-        def initialize(firewallvpcid=nil, status=nil)
-          @FirewallVpcId = firewallvpcid
-          @Status = status
-        end
-
-        def deserialize(params)
-          @FirewallVpcId = params['FirewallVpcId']
-          @Status = params['Status']
-        end
-      end
-
-      # ModifyVPCSwitchStatus返回参数结构体
-      class ModifyVPCSwitchStatusResponse < TencentCloud::Common::AbstractModel
-        # @param ReturnMsg: 接口返回信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type ReturnMsg: String
-        # @param ReturnCode: 接口返回错误码，0请求成功  非0失败
-        # @type ReturnCode: Integer
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :ReturnMsg, :ReturnCode, :RequestId
-        
-        def initialize(returnmsg=nil, returncode=nil, requestid=nil)
-          @ReturnMsg = returnmsg
-          @ReturnCode = returncode
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          @ReturnMsg = params['ReturnMsg']
-          @ReturnCode = params['ReturnCode']
           @RequestId = params['RequestId']
         end
       end

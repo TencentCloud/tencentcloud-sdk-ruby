@@ -568,7 +568,7 @@ module TencentCloud
         # @type VPCSettings: :class:`Tencentcloud::Emr.v20190103.models.VPCSettings`
         # @param LoginSettings: 实例登录配置。
         # @type LoginSettings: :class:`Tencentcloud::Emr.v20190103.models.LoginSettings`
-        # @param TagSpecification: 实例标签。
+        # @param TagSpecification: 实例标签，示例：["{\"TagKey\":\"test-tag1\",\"TagValue\":\"001\"}","{\"TagKey\":\"test-tag2\",\"TagValue\":\"002\"}"]。
         # @type TagSpecification: Array
         # @param MetaDB: 元数据库配置。
         # @type MetaDB: :class:`Tencentcloud::Emr.v20190103.models.MetaDbInfo`
@@ -980,16 +980,22 @@ module TencentCloud
         # @type HardwareResourceType: String
         # @param SearchFields: 支持搜索的字段
         # @type SearchFields: Array
+        # @param OrderField: 无
+        # @type OrderField: String
+        # @param Asc: 无
+        # @type Asc: Integer
 
-        attr_accessor :InstanceId, :NodeFlag, :Offset, :Limit, :HardwareResourceType, :SearchFields
+        attr_accessor :InstanceId, :NodeFlag, :Offset, :Limit, :HardwareResourceType, :SearchFields, :OrderField, :Asc
         
-        def initialize(instanceid=nil, nodeflag=nil, offset=nil, limit=nil, hardwareresourcetype=nil, searchfields=nil)
+        def initialize(instanceid=nil, nodeflag=nil, offset=nil, limit=nil, hardwareresourcetype=nil, searchfields=nil, orderfield=nil, asc=nil)
           @InstanceId = instanceid
           @NodeFlag = nodeflag
           @Offset = offset
           @Limit = limit
           @HardwareResourceType = hardwareresourcetype
           @SearchFields = searchfields
+          @OrderField = orderfield
+          @Asc = asc
         end
 
         def deserialize(params)
@@ -1006,6 +1012,8 @@ module TencentCloud
               @SearchFields << searchitem_tmp
             end
           end
+          @OrderField = params['OrderField']
+          @Asc = params['Asc']
         end
       end
 
@@ -2692,19 +2700,24 @@ module TencentCloud
         # “JobFlowStepStatusSucceed”，任务步骤执行成功。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type JobState: String
+        # @param ApplicationId: YARN任务ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ApplicationId: String
 
-        attr_accessor :Name, :ActionOnFailure, :JobState
+        attr_accessor :Name, :ActionOnFailure, :JobState, :ApplicationId
         
-        def initialize(name=nil, actiononfailure=nil, jobstate=nil)
+        def initialize(name=nil, actiononfailure=nil, jobstate=nil, applicationid=nil)
           @Name = name
           @ActionOnFailure = actiononfailure
           @JobState = jobstate
+          @ApplicationId = applicationid
         end
 
         def deserialize(params)
           @Name = params['Name']
           @ActionOnFailure = params['ActionOnFailure']
           @JobState = params['JobState']
+          @ApplicationId = params['ApplicationId']
         end
       end
 
@@ -3172,10 +3185,22 @@ module TencentCloud
         # @param Clients: 客户端
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Clients: String
+        # @param CurrentTime: 系统当前时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CurrentTime: String
+        # @param IsFederation: 是否用于联邦
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsFederation: Integer
+        # @param DeviceName: 设备名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DeviceName: String
+        # @param ServiceClient: 服务
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ServiceClient: String
 
-        attr_accessor :AppId, :SerialNo, :OrderNo, :WanIp, :Flag, :Spec, :CpuNum, :MemSize, :MemDesc, :RegionId, :ZoneId, :ApplyTime, :FreeTime, :DiskSize, :NameTag, :Services, :StorageType, :RootSize, :ChargeType, :CdbIp, :CdbPort, :HwDiskSize, :HwDiskSizeDesc, :HwMemSize, :HwMemSizeDesc, :ExpireTime, :EmrResourceId, :IsAutoRenew, :DeviceClass, :Mutable, :MCMultiDisk, :CdbNodeInfo, :Ip, :Destroyable, :Tags, :AutoFlag, :HardwareResourceType, :IsDynamicSpec, :DynamicPodSpec, :SupportModifyPayMode, :RootStorageType, :Zone, :SubnetInfo, :Clients
+        attr_accessor :AppId, :SerialNo, :OrderNo, :WanIp, :Flag, :Spec, :CpuNum, :MemSize, :MemDesc, :RegionId, :ZoneId, :ApplyTime, :FreeTime, :DiskSize, :NameTag, :Services, :StorageType, :RootSize, :ChargeType, :CdbIp, :CdbPort, :HwDiskSize, :HwDiskSizeDesc, :HwMemSize, :HwMemSizeDesc, :ExpireTime, :EmrResourceId, :IsAutoRenew, :DeviceClass, :Mutable, :MCMultiDisk, :CdbNodeInfo, :Ip, :Destroyable, :Tags, :AutoFlag, :HardwareResourceType, :IsDynamicSpec, :DynamicPodSpec, :SupportModifyPayMode, :RootStorageType, :Zone, :SubnetInfo, :Clients, :CurrentTime, :IsFederation, :DeviceName, :ServiceClient
         
-        def initialize(appid=nil, serialno=nil, orderno=nil, wanip=nil, flag=nil, spec=nil, cpunum=nil, memsize=nil, memdesc=nil, regionid=nil, zoneid=nil, applytime=nil, freetime=nil, disksize=nil, nametag=nil, services=nil, storagetype=nil, rootsize=nil, chargetype=nil, cdbip=nil, cdbport=nil, hwdisksize=nil, hwdisksizedesc=nil, hwmemsize=nil, hwmemsizedesc=nil, expiretime=nil, emrresourceid=nil, isautorenew=nil, deviceclass=nil, mutable=nil, mcmultidisk=nil, cdbnodeinfo=nil, ip=nil, destroyable=nil, tags=nil, autoflag=nil, hardwareresourcetype=nil, isdynamicspec=nil, dynamicpodspec=nil, supportmodifypaymode=nil, rootstoragetype=nil, zone=nil, subnetinfo=nil, clients=nil)
+        def initialize(appid=nil, serialno=nil, orderno=nil, wanip=nil, flag=nil, spec=nil, cpunum=nil, memsize=nil, memdesc=nil, regionid=nil, zoneid=nil, applytime=nil, freetime=nil, disksize=nil, nametag=nil, services=nil, storagetype=nil, rootsize=nil, chargetype=nil, cdbip=nil, cdbport=nil, hwdisksize=nil, hwdisksizedesc=nil, hwmemsize=nil, hwmemsizedesc=nil, expiretime=nil, emrresourceid=nil, isautorenew=nil, deviceclass=nil, mutable=nil, mcmultidisk=nil, cdbnodeinfo=nil, ip=nil, destroyable=nil, tags=nil, autoflag=nil, hardwareresourcetype=nil, isdynamicspec=nil, dynamicpodspec=nil, supportmodifypaymode=nil, rootstoragetype=nil, zone=nil, subnetinfo=nil, clients=nil, currenttime=nil, isfederation=nil, devicename=nil, serviceclient=nil)
           @AppId = appid
           @SerialNo = serialno
           @OrderNo = orderno
@@ -3220,6 +3245,10 @@ module TencentCloud
           @Zone = zone
           @SubnetInfo = subnetinfo
           @Clients = clients
+          @CurrentTime = currenttime
+          @IsFederation = isfederation
+          @DeviceName = devicename
+          @ServiceClient = serviceclient
         end
 
         def deserialize(params)
@@ -3287,6 +3316,10 @@ module TencentCloud
             @SubnetInfo.deserialize(params['SubnetInfo'])
           end
           @Clients = params['Clients']
+          @CurrentTime = params['CurrentTime']
+          @IsFederation = params['IsFederation']
+          @DeviceName = params['DeviceName']
+          @ServiceClient = params['ServiceClient']
         end
       end
 
@@ -4380,8 +4413,7 @@ module TencentCloud
         # @type ExecutionStep: :class:`Tencentcloud::Emr.v20190103.models.Execution`
         # @param ActionOnFailure: 执行失败策略。
         # 1. TERMINATE_CLUSTER 执行失败时退出并销毁集群。
-        # 2. CANCEL_AND_WAIT 执行失败时阻塞等待。
-        # 3. CONTINUE 执行失败时跳过并执行后续步骤。
+        # 2. CONTINUE 执行失败时跳过并执行后续步骤。
         # @type ActionOnFailure: String
         # @param User: 指定执行Step时的用户名，非必须，默认为hadoop。
         # @type User: String
