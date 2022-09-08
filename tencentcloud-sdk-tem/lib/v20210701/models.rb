@@ -945,10 +945,16 @@ module TencentCloud
         # @param EnableMetrics: 1：开始自动metrics采集（open-telemetry）；
         # 0：关闭metrics采集；
         # @type EnableMetrics: Integer
+        # @param TcrInstanceId: 镜像部署时，选择的tcr实例id
+        # @type TcrInstanceId: String
+        # @param RepoServer: 镜像部署时，选择的镜像服务器地址
+        # @type RepoServer: String
+        # @param RepoType: 镜像部署时，仓库类型：0：个人仓库；1：企业版；2：公共仓库；3：tem托管仓库；4：demo仓库
+        # @type RepoType: Integer
 
-        attr_accessor :ApplicationId, :InitPodNum, :CpuSpec, :MemorySpec, :EnvironmentId, :ImgRepo, :VersionDesc, :JvmOpts, :EsInfo, :EnvConf, :LogConfs, :StorageConfs, :StorageMountConfs, :DeployMode, :DeployVersion, :PkgName, :JdkVersion, :SecurityGroupIds, :LogOutputConf, :SourceChannel, :Description, :ImageCommand, :ImageArgs, :UseRegistryDefaultConfig, :SettingConfs, :Service, :VersionId, :PostStart, :PreStop, :Liveness, :Readiness, :DeployStrategyConf, :HorizontalAutoscaler, :CronHorizontalAutoscaler, :LogEnable, :ConfEdited, :SpeedUp, :StartupProbe, :OsFlavour, :EnablePrometheusConf, :EnableTracing, :EnableMetrics
+        attr_accessor :ApplicationId, :InitPodNum, :CpuSpec, :MemorySpec, :EnvironmentId, :ImgRepo, :VersionDesc, :JvmOpts, :EsInfo, :EnvConf, :LogConfs, :StorageConfs, :StorageMountConfs, :DeployMode, :DeployVersion, :PkgName, :JdkVersion, :SecurityGroupIds, :LogOutputConf, :SourceChannel, :Description, :ImageCommand, :ImageArgs, :UseRegistryDefaultConfig, :SettingConfs, :Service, :VersionId, :PostStart, :PreStop, :Liveness, :Readiness, :DeployStrategyConf, :HorizontalAutoscaler, :CronHorizontalAutoscaler, :LogEnable, :ConfEdited, :SpeedUp, :StartupProbe, :OsFlavour, :EnablePrometheusConf, :EnableTracing, :EnableMetrics, :TcrInstanceId, :RepoServer, :RepoType
         
-        def initialize(applicationid=nil, initpodnum=nil, cpuspec=nil, memoryspec=nil, environmentid=nil, imgrepo=nil, versiondesc=nil, jvmopts=nil, esinfo=nil, envconf=nil, logconfs=nil, storageconfs=nil, storagemountconfs=nil, deploymode=nil, deployversion=nil, pkgname=nil, jdkversion=nil, securitygroupids=nil, logoutputconf=nil, sourcechannel=nil, description=nil, imagecommand=nil, imageargs=nil, useregistrydefaultconfig=nil, settingconfs=nil, service=nil, versionid=nil, poststart=nil, prestop=nil, liveness=nil, readiness=nil, deploystrategyconf=nil, horizontalautoscaler=nil, cronhorizontalautoscaler=nil, logenable=nil, confedited=nil, speedup=nil, startupprobe=nil, osflavour=nil, enableprometheusconf=nil, enabletracing=nil, enablemetrics=nil)
+        def initialize(applicationid=nil, initpodnum=nil, cpuspec=nil, memoryspec=nil, environmentid=nil, imgrepo=nil, versiondesc=nil, jvmopts=nil, esinfo=nil, envconf=nil, logconfs=nil, storageconfs=nil, storagemountconfs=nil, deploymode=nil, deployversion=nil, pkgname=nil, jdkversion=nil, securitygroupids=nil, logoutputconf=nil, sourcechannel=nil, description=nil, imagecommand=nil, imageargs=nil, useregistrydefaultconfig=nil, settingconfs=nil, service=nil, versionid=nil, poststart=nil, prestop=nil, liveness=nil, readiness=nil, deploystrategyconf=nil, horizontalautoscaler=nil, cronhorizontalautoscaler=nil, logenable=nil, confedited=nil, speedup=nil, startupprobe=nil, osflavour=nil, enableprometheusconf=nil, enabletracing=nil, enablemetrics=nil, tcrinstanceid=nil, reposerver=nil, repotype=nil)
           @ApplicationId = applicationid
           @InitPodNum = initpodnum
           @CpuSpec = cpuspec
@@ -991,6 +997,9 @@ module TencentCloud
           @EnablePrometheusConf = enableprometheusconf
           @EnableTracing = enabletracing
           @EnableMetrics = enablemetrics
+          @TcrInstanceId = tcrinstanceid
+          @RepoServer = reposerver
+          @RepoType = repotype
         end
 
         def deserialize(params)
@@ -1102,6 +1111,9 @@ module TencentCloud
           end
           @EnableTracing = params['EnableTracing']
           @EnableMetrics = params['EnableMetrics']
+          @TcrInstanceId = params['TcrInstanceId']
+          @RepoServer = params['RepoServer']
+          @RepoType = params['RepoType']
         end
       end
 

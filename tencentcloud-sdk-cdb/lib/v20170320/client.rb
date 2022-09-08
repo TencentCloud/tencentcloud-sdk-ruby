@@ -1084,6 +1084,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口(DescribeCdbZoneConfig)用于查询云数据库各地域可售卖的规格配置。
+
+        # @param request: Request instance for DescribeCdbZoneConfig.
+        # @type request: :class:`Tencentcloud::cdb::V20170320::DescribeCdbZoneConfigRequest`
+        # @rtype: :class:`Tencentcloud::cdb::V20170320::DescribeCdbZoneConfigResponse`
+        def DescribeCdbZoneConfig(request)
+          body = send_request('DescribeCdbZoneConfig', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeCdbZoneConfigResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口(DescribeCloneList) 用于查询用户实例的克隆任务列表。
 
         # @param request: Request instance for DescribeCloneList.

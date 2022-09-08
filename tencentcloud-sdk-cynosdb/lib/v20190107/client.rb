@@ -149,6 +149,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 为集群创建手动备份
+
+        # @param request: Request instance for CreateBackup.
+        # @type request: :class:`Tencentcloud::cynosdb::V20190107::CreateBackupRequest`
+        # @rtype: :class:`Tencentcloud::cynosdb::V20190107::CreateBackupResponse`
+        def CreateBackup(request)
+          body = send_request('CreateBackup', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateBackupResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 创建集群
 
         # @param request: Request instance for CreateClusters.
@@ -1047,6 +1071,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyClusterSlaveZoneResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 升级预付费存储
+
+        # @param request: Request instance for ModifyClusterStorage.
+        # @type request: :class:`Tencentcloud::cynosdb::V20190107::ModifyClusterStorageRequest`
+        # @rtype: :class:`Tencentcloud::cynosdb::V20190107::ModifyClusterStorageResponse`
+        def ModifyClusterStorage(request)
+          body = send_request('ModifyClusterStorage', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyClusterStorageResponse.new
             model.deserialize(response['Response'])
             model
           else

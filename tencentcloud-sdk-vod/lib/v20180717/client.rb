@@ -3250,6 +3250,32 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 对点播中的音视频媒体发起审核任务，智能检测视频画面、画面中的文字、语音中的文字出现的违规内容。
+
+        # 如使用事件通知，事件通知的类型为 [任务流状态变更](https://cloud.tencent.com/document/product/266/9636)。
+
+        # @param request: Request instance for ReviewAudioVideo.
+        # @type request: :class:`Tencentcloud::vod::V20180717::ReviewAudioVideoRequest`
+        # @rtype: :class:`Tencentcloud::vod::V20180717::ReviewAudioVideoResponse`
+        def ReviewAudioVideo(request)
+          body = send_request('ReviewAudioVideo', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ReviewAudioVideoResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 对点播中的图片文件发起审核（令人反感的信息、不安全的信息、不适宜的信息）任务。
 
         # ><li>图片文件大小支持：文件 < 5M；</li>

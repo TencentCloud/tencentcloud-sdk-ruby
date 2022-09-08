@@ -29,6 +29,54 @@ module TencentCloud
         end
 
 
+        # 文件系统绑定快照策略，可以同时绑定多个fs，一个fs 只能跟一个策略绑定
+
+        # @param request: Request instance for BindAutoSnapshotPolicy.
+        # @type request: :class:`Tencentcloud::cfs::V20190719::BindAutoSnapshotPolicyRequest`
+        # @rtype: :class:`Tencentcloud::cfs::V20190719::BindAutoSnapshotPolicyResponse`
+        def BindAutoSnapshotPolicy(request)
+          body = send_request('BindAutoSnapshotPolicy', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = BindAutoSnapshotPolicyResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 创建定期快照策略
+
+        # @param request: Request instance for CreateAutoSnapshotPolicy.
+        # @type request: :class:`Tencentcloud::cfs::V20190719::CreateAutoSnapshotPolicyRequest`
+        # @rtype: :class:`Tencentcloud::cfs::V20190719::CreateAutoSnapshotPolicyResponse`
+        def CreateAutoSnapshotPolicy(request)
+          body = send_request('CreateAutoSnapshotPolicy', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateAutoSnapshotPolicyResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 用于添加新文件系统
 
         # @param request: Request instance for CreateCfsFileSystem.
@@ -87,6 +135,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = CreateCfsRuleResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 创建文件系统快照
+
+        # @param request: Request instance for CreateCfsSnapshot.
+        # @type request: :class:`Tencentcloud::cfs::V20190719::CreateCfsSnapshotRequest`
+        # @rtype: :class:`Tencentcloud::cfs::V20190719::CreateCfsSnapshotResponse`
+        def CreateCfsSnapshot(request)
+          body = send_request('CreateCfsSnapshot', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateCfsSnapshotResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除快照定期策略
+
+        # @param request: Request instance for DeleteAutoSnapshotPolicy.
+        # @type request: :class:`Tencentcloud::cfs::V20190719::DeleteAutoSnapshotPolicyRequest`
+        # @rtype: :class:`Tencentcloud::cfs::V20190719::DeleteAutoSnapshotPolicyResponse`
+        def DeleteAutoSnapshotPolicy(request)
+          body = send_request('DeleteAutoSnapshotPolicy', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteAutoSnapshotPolicyResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -173,6 +269,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 删除文件系统快照
+
+        # @param request: Request instance for DeleteCfsSnapshot.
+        # @type request: :class:`Tencentcloud::cfs::V20190719::DeleteCfsSnapshotRequest`
+        # @rtype: :class:`Tencentcloud::cfs::V20190719::DeleteCfsSnapshotResponse`
+        def DeleteCfsSnapshot(request)
+          body = send_request('DeleteCfsSnapshot', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteCfsSnapshotResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（DeleteMountTarget）用于删除挂载点
 
         # @param request: Request instance for DeleteMountTarget.
@@ -183,6 +303,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteMountTargetResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询文件系统快照d定期策略列表信息
+
+        # @param request: Request instance for DescribeAutoSnapshotPolicies.
+        # @type request: :class:`Tencentcloud::cfs::V20190719::DescribeAutoSnapshotPoliciesRequest`
+        # @rtype: :class:`Tencentcloud::cfs::V20190719::DescribeAutoSnapshotPoliciesResponse`
+        def DescribeAutoSnapshotPolicies(request)
+          body = send_request('DescribeAutoSnapshotPolicies', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeAutoSnapshotPoliciesResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -341,6 +485,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 文件系统快照概览
+
+        # @param request: Request instance for DescribeCfsSnapshotOverview.
+        # @type request: :class:`Tencentcloud::cfs::V20190719::DescribeCfsSnapshotOverviewRequest`
+        # @rtype: :class:`Tencentcloud::cfs::V20190719::DescribeCfsSnapshotOverviewResponse`
+        def DescribeCfsSnapshotOverview(request)
+          body = send_request('DescribeCfsSnapshotOverview', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeCfsSnapshotOverviewResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询文件系统快照列表
+
+        # @param request: Request instance for DescribeCfsSnapshots.
+        # @type request: :class:`Tencentcloud::cfs::V20190719::DescribeCfsSnapshotsRequest`
+        # @rtype: :class:`Tencentcloud::cfs::V20190719::DescribeCfsSnapshotsResponse`
+        def DescribeCfsSnapshots(request)
+          body = send_request('DescribeCfsSnapshots', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeCfsSnapshotsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（DescribeMountTargets）用于查询文件系统挂载点信息
 
         # @param request: Request instance for DescribeMountTargets.
@@ -365,6 +557,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询快照操作日志
+
+        # @param request: Request instance for DescribeSnapshotOperationLogs.
+        # @type request: :class:`Tencentcloud::cfs::V20190719::DescribeSnapshotOperationLogsRequest`
+        # @rtype: :class:`Tencentcloud::cfs::V20190719::DescribeSnapshotOperationLogsResponse`
+        def DescribeSnapshotOperationLogs(request)
+          body = send_request('DescribeSnapshotOperationLogs', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeSnapshotOperationLogsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（SignUpCfsService）用于开通CFS服务。
 
         # @param request: Request instance for SignUpCfsService.
@@ -375,6 +591,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = SignUpCfsServiceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 解除文件系统绑定的快照策略
+
+        # @param request: Request instance for UnbindAutoSnapshotPolicy.
+        # @type request: :class:`Tencentcloud::cfs::V20190719::UnbindAutoSnapshotPolicyRequest`
+        # @rtype: :class:`Tencentcloud::cfs::V20190719::UnbindAutoSnapshotPolicyResponse`
+        def UnbindAutoSnapshotPolicy(request)
+          body = send_request('UnbindAutoSnapshotPolicy', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = UnbindAutoSnapshotPolicyResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 更新定期自动快照策略
+
+        # @param request: Request instance for UpdateAutoSnapshotPolicy.
+        # @type request: :class:`Tencentcloud::cfs::V20190719::UpdateAutoSnapshotPolicyRequest`
+        # @rtype: :class:`Tencentcloud::cfs::V20190719::UpdateAutoSnapshotPolicyResponse`
+        def UpdateAutoSnapshotPolicy(request)
+          body = send_request('UpdateAutoSnapshotPolicy', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = UpdateAutoSnapshotPolicyResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -495,6 +759,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = UpdateCfsRuleResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 更新文件系统快照名称及保留时长
+
+        # @param request: Request instance for UpdateCfsSnapshotAttribute.
+        # @type request: :class:`Tencentcloud::cfs::V20190719::UpdateCfsSnapshotAttributeRequest`
+        # @rtype: :class:`Tencentcloud::cfs::V20190719::UpdateCfsSnapshotAttributeResponse`
+        def UpdateCfsSnapshotAttribute(request)
+          body = send_request('UpdateCfsSnapshotAttribute', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = UpdateCfsSnapshotAttributeResponse.new
             model.deserialize(response['Response'])
             model
           else

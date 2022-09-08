@@ -17,6 +17,350 @@
 module TencentCloud
   module Tione
     module V20211111
+      # 跑批任务详情
+      class BatchTaskDetail < TencentCloud::Common::AbstractModel
+        # @param BatchTaskId: 跑批任务ID
+        # @type BatchTaskId: String
+        # @param BatchTaskName: 跑批任务名称
+        # @type BatchTaskName: String
+        # @param Uin: 主账号uin
+        # @type Uin: String
+        # @param SubUin: 子账号uin
+        # @type SubUin: String
+        # @param Region: 地域
+        # @type Region: String
+        # @param ChargeType: 计费模式
+        # @type ChargeType: String
+        # @param ResourceGroupId: 预付费专用资源组id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResourceGroupId: String
+        # @param ResourceGroupName: 预付费专用资源组名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResourceGroupName: String
+        # @param ResourceConfigInfo: 资源配置
+        # @type ResourceConfigInfo: :class:`Tencentcloud::Tione.v20211111.models.ResourceConfigInfo`
+        # @param Tags: 标签
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Tags: Array
+        # @param ModelInfo: 服务对应的模型信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ModelInfo: :class:`Tencentcloud::Tione.v20211111.models.ModelInfo`
+        # @param ImageInfo: 自定义镜像信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ImageInfo: :class:`Tencentcloud::Tione.v20211111.models.ImageInfo`
+        # @param CodePackagePath: 代码包
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CodePackagePath: :class:`Tencentcloud::Tione.v20211111.models.CosPathInfo`
+        # @param StartCmd: 启动命令
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StartCmd: String
+        # @param DataConfigs: 输入数据配置
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DataConfigs: Array
+        # @param Outputs: 输出数据配置
+        # @type Outputs: Array
+        # @param LogEnable: 是否上报日志
+        # @type LogEnable: Boolean
+        # @param LogConfig: 日志配置
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LogConfig: :class:`Tencentcloud::Tione.v20211111.models.LogConfig`
+        # @param VpcId: vpc id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VpcId: String
+        # @param SubnetId: 子网id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SubnetId: String
+        # @param Status: 任务状态
+        # @type Status: String
+        # @param RuntimeInSeconds: 运行时长
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RuntimeInSeconds: Integer
+        # @param CreateTime: 创建时间
+        # @type CreateTime: String
+        # @param UpdateTime: 更新时间
+        # @type UpdateTime: String
+        # @param StartTime: 任务开始时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StartTime: String
+        # @param EndTime: 任务结束时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EndTime: String
+        # @param ChargeStatus: 计费状态，eg：BILLING计费中，ARREARS_STOP欠费停止，NOT_BILLING不在计费中
+        # @type ChargeStatus: String
+        # @param LatestInstanceId: 最近一次实例ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LatestInstanceId: String
+        # @param Remark: 备注
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Remark: String
+        # @param FailureReason: 失败原因
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FailureReason: String
+        # @param BillingInfo: 计费金额信息，eg：2.00元/小时 (for后付费)
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BillingInfo: String
+
+        attr_accessor :BatchTaskId, :BatchTaskName, :Uin, :SubUin, :Region, :ChargeType, :ResourceGroupId, :ResourceGroupName, :ResourceConfigInfo, :Tags, :ModelInfo, :ImageInfo, :CodePackagePath, :StartCmd, :DataConfigs, :Outputs, :LogEnable, :LogConfig, :VpcId, :SubnetId, :Status, :RuntimeInSeconds, :CreateTime, :UpdateTime, :StartTime, :EndTime, :ChargeStatus, :LatestInstanceId, :Remark, :FailureReason, :BillingInfo
+        
+        def initialize(batchtaskid=nil, batchtaskname=nil, uin=nil, subuin=nil, region=nil, chargetype=nil, resourcegroupid=nil, resourcegroupname=nil, resourceconfiginfo=nil, tags=nil, modelinfo=nil, imageinfo=nil, codepackagepath=nil, startcmd=nil, dataconfigs=nil, outputs=nil, logenable=nil, logconfig=nil, vpcid=nil, subnetid=nil, status=nil, runtimeinseconds=nil, createtime=nil, updatetime=nil, starttime=nil, endtime=nil, chargestatus=nil, latestinstanceid=nil, remark=nil, failurereason=nil, billinginfo=nil)
+          @BatchTaskId = batchtaskid
+          @BatchTaskName = batchtaskname
+          @Uin = uin
+          @SubUin = subuin
+          @Region = region
+          @ChargeType = chargetype
+          @ResourceGroupId = resourcegroupid
+          @ResourceGroupName = resourcegroupname
+          @ResourceConfigInfo = resourceconfiginfo
+          @Tags = tags
+          @ModelInfo = modelinfo
+          @ImageInfo = imageinfo
+          @CodePackagePath = codepackagepath
+          @StartCmd = startcmd
+          @DataConfigs = dataconfigs
+          @Outputs = outputs
+          @LogEnable = logenable
+          @LogConfig = logconfig
+          @VpcId = vpcid
+          @SubnetId = subnetid
+          @Status = status
+          @RuntimeInSeconds = runtimeinseconds
+          @CreateTime = createtime
+          @UpdateTime = updatetime
+          @StartTime = starttime
+          @EndTime = endtime
+          @ChargeStatus = chargestatus
+          @LatestInstanceId = latestinstanceid
+          @Remark = remark
+          @FailureReason = failurereason
+          @BillingInfo = billinginfo
+        end
+
+        def deserialize(params)
+          @BatchTaskId = params['BatchTaskId']
+          @BatchTaskName = params['BatchTaskName']
+          @Uin = params['Uin']
+          @SubUin = params['SubUin']
+          @Region = params['Region']
+          @ChargeType = params['ChargeType']
+          @ResourceGroupId = params['ResourceGroupId']
+          @ResourceGroupName = params['ResourceGroupName']
+          unless params['ResourceConfigInfo'].nil?
+            @ResourceConfigInfo = ResourceConfigInfo.new
+            @ResourceConfigInfo.deserialize(params['ResourceConfigInfo'])
+          end
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
+            end
+          end
+          unless params['ModelInfo'].nil?
+            @ModelInfo = ModelInfo.new
+            @ModelInfo.deserialize(params['ModelInfo'])
+          end
+          unless params['ImageInfo'].nil?
+            @ImageInfo = ImageInfo.new
+            @ImageInfo.deserialize(params['ImageInfo'])
+          end
+          unless params['CodePackagePath'].nil?
+            @CodePackagePath = CosPathInfo.new
+            @CodePackagePath.deserialize(params['CodePackagePath'])
+          end
+          @StartCmd = params['StartCmd']
+          unless params['DataConfigs'].nil?
+            @DataConfigs = []
+            params['DataConfigs'].each do |i|
+              dataconfig_tmp = DataConfig.new
+              dataconfig_tmp.deserialize(i)
+              @DataConfigs << dataconfig_tmp
+            end
+          end
+          unless params['Outputs'].nil?
+            @Outputs = []
+            params['Outputs'].each do |i|
+              dataconfig_tmp = DataConfig.new
+              dataconfig_tmp.deserialize(i)
+              @Outputs << dataconfig_tmp
+            end
+          end
+          @LogEnable = params['LogEnable']
+          unless params['LogConfig'].nil?
+            @LogConfig = LogConfig.new
+            @LogConfig.deserialize(params['LogConfig'])
+          end
+          @VpcId = params['VpcId']
+          @SubnetId = params['SubnetId']
+          @Status = params['Status']
+          @RuntimeInSeconds = params['RuntimeInSeconds']
+          @CreateTime = params['CreateTime']
+          @UpdateTime = params['UpdateTime']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @ChargeStatus = params['ChargeStatus']
+          @LatestInstanceId = params['LatestInstanceId']
+          @Remark = params['Remark']
+          @FailureReason = params['FailureReason']
+          @BillingInfo = params['BillingInfo']
+        end
+      end
+
+      # 批处理任务实例
+      class BatchTaskInstance < TencentCloud::Common::AbstractModel
+        # @param BatchTaskInstanceId: 任务实例id
+        # @type BatchTaskInstanceId: String
+        # @param StartTime: 开始时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StartTime: String
+        # @param EndTime: 结束时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EndTime: String
+        # @param Status: 任务状态
+        # @type Status: String
+        # @param RuntimeInSeconds: 运行时长
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RuntimeInSeconds: Integer
+
+        attr_accessor :BatchTaskInstanceId, :StartTime, :EndTime, :Status, :RuntimeInSeconds
+        
+        def initialize(batchtaskinstanceid=nil, starttime=nil, endtime=nil, status=nil, runtimeinseconds=nil)
+          @BatchTaskInstanceId = batchtaskinstanceid
+          @StartTime = starttime
+          @EndTime = endtime
+          @Status = status
+          @RuntimeInSeconds = runtimeinseconds
+        end
+
+        def deserialize(params)
+          @BatchTaskInstanceId = params['BatchTaskInstanceId']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @Status = params['Status']
+          @RuntimeInSeconds = params['RuntimeInSeconds']
+        end
+      end
+
+      # 出参类型
+      class BatchTaskSetItem < TencentCloud::Common::AbstractModel
+        # @param BatchTaskId: 跑批任务ID
+        # @type BatchTaskId: String
+        # @param BatchTaskName: 跑批任务名称
+        # @type BatchTaskName: String
+        # @param ModelInfo: 模型信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ModelInfo: :class:`Tencentcloud::Tione.v20211111.models.ModelInfo`
+        # @param ImageInfo: 镜像信息
+        # @type ImageInfo: :class:`Tencentcloud::Tione.v20211111.models.ImageInfo`
+        # @param ChargeType: 计费模式
+        # @type ChargeType: String
+        # @param ChargeStatus: 计费状态，eg：BILLING计费中，ARREARS_STOP欠费停止，NOT_BILLING不在计费中
+        # @type ChargeStatus: String
+        # @param ResourceGroupId: 预付费专用资源组
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResourceGroupId: String
+        # @param ResourceConfigInfo: 资源配置
+        # @type ResourceConfigInfo: :class:`Tencentcloud::Tione.v20211111.models.ResourceConfigInfo`
+        # @param Tags: 标签配置
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Tags: Array
+        # @param Status: 任务状态
+        # @type Status: String
+        # @param RuntimeInSeconds: 运行时长
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RuntimeInSeconds: Integer
+        # @param CreateTime: 创建时间
+        # @type CreateTime: String
+        # @param StartTime: 开始时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StartTime: String
+        # @param EndTime: 结束时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EndTime: String
+        # @param UpdateTime: 更新时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UpdateTime: String
+        # @param Outputs: 输出
+        # @type Outputs: Array
+        # @param ResourceGroupName: 预付费专用资源组名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResourceGroupName: String
+        # @param FailureReason: 失败原因
+        # @type FailureReason: String
+        # @param BillingInfo: 计费金额信息，eg：2.00元/小时 (for后付费)
+        # @type BillingInfo: String
+
+        attr_accessor :BatchTaskId, :BatchTaskName, :ModelInfo, :ImageInfo, :ChargeType, :ChargeStatus, :ResourceGroupId, :ResourceConfigInfo, :Tags, :Status, :RuntimeInSeconds, :CreateTime, :StartTime, :EndTime, :UpdateTime, :Outputs, :ResourceGroupName, :FailureReason, :BillingInfo
+        
+        def initialize(batchtaskid=nil, batchtaskname=nil, modelinfo=nil, imageinfo=nil, chargetype=nil, chargestatus=nil, resourcegroupid=nil, resourceconfiginfo=nil, tags=nil, status=nil, runtimeinseconds=nil, createtime=nil, starttime=nil, endtime=nil, updatetime=nil, outputs=nil, resourcegroupname=nil, failurereason=nil, billinginfo=nil)
+          @BatchTaskId = batchtaskid
+          @BatchTaskName = batchtaskname
+          @ModelInfo = modelinfo
+          @ImageInfo = imageinfo
+          @ChargeType = chargetype
+          @ChargeStatus = chargestatus
+          @ResourceGroupId = resourcegroupid
+          @ResourceConfigInfo = resourceconfiginfo
+          @Tags = tags
+          @Status = status
+          @RuntimeInSeconds = runtimeinseconds
+          @CreateTime = createtime
+          @StartTime = starttime
+          @EndTime = endtime
+          @UpdateTime = updatetime
+          @Outputs = outputs
+          @ResourceGroupName = resourcegroupname
+          @FailureReason = failurereason
+          @BillingInfo = billinginfo
+        end
+
+        def deserialize(params)
+          @BatchTaskId = params['BatchTaskId']
+          @BatchTaskName = params['BatchTaskName']
+          unless params['ModelInfo'].nil?
+            @ModelInfo = ModelInfo.new
+            @ModelInfo.deserialize(params['ModelInfo'])
+          end
+          unless params['ImageInfo'].nil?
+            @ImageInfo = ImageInfo.new
+            @ImageInfo.deserialize(params['ImageInfo'])
+          end
+          @ChargeType = params['ChargeType']
+          @ChargeStatus = params['ChargeStatus']
+          @ResourceGroupId = params['ResourceGroupId']
+          unless params['ResourceConfigInfo'].nil?
+            @ResourceConfigInfo = ResourceConfigInfo.new
+            @ResourceConfigInfo.deserialize(params['ResourceConfigInfo'])
+          end
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
+            end
+          end
+          @Status = params['Status']
+          @RuntimeInSeconds = params['RuntimeInSeconds']
+          @CreateTime = params['CreateTime']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @UpdateTime = params['UpdateTime']
+          unless params['Outputs'].nil?
+            @Outputs = []
+            params['Outputs'].each do |i|
+              dataconfig_tmp = DataConfig.new
+              dataconfig_tmp.deserialize(i)
+              @Outputs << dataconfig_tmp
+            end
+          end
+          @ResourceGroupName = params['ResourceGroupName']
+          @FailureReason = params['FailureReason']
+          @BillingInfo = params['BillingInfo']
+        end
+      end
+
       # CFS存储的配置
       class CFSConfig < TencentCloud::Common::AbstractModel
         # @param Id: cfs的实例的ID
@@ -61,6 +405,149 @@ module TencentCloud
           @Bucket = params['Bucket']
           @Region = params['Region']
           @Paths = params['Paths']
+        end
+      end
+
+      # CreateBatchTask请求参数结构体
+      class CreateBatchTaskRequest < TencentCloud::Common::AbstractModel
+        # @param BatchTaskName: 跑批任务名称，不超过60个字符，仅支持中英文、数字、下划线"_"、短横"-"，只能以中英文、数字开头
+        # @type BatchTaskName: String
+        # @param ChargeType: 计费模式，eg：PREPAID预付费，即包年包月；POSTPAID_BY_HOUR按小时后付费
+        # @type ChargeType: String
+        # @param ResourceConfigInfo: 资源配置
+        # @type ResourceConfigInfo: :class:`Tencentcloud::Tione.v20211111.models.ResourceConfigInfo`
+        # @param Outputs: 结果输出
+        # @type Outputs: Array
+        # @param LogEnable: 是否上报日志
+        # @type LogEnable: Boolean
+        # @param JobType: 工作类型 1:单次 2:周期
+        # @type JobType: Integer
+        # @param CronInfo: 任务周期描述
+        # @type CronInfo: :class:`Tencentcloud::Tione.v20211111.models.CronInfo`
+        # @param ResourceGroupId: 预付费专用资源组
+        # @type ResourceGroupId: String
+        # @param Tags: 标签配置
+        # @type Tags: Array
+        # @param ModelInfo: 服务对应的模型信息，有模型文件时需要填写
+        # @type ModelInfo: :class:`Tencentcloud::Tione.v20211111.models.ModelInfo`
+        # @param ImageInfo: 自定义镜像信息
+        # @type ImageInfo: :class:`Tencentcloud::Tione.v20211111.models.ImageInfo`
+        # @param CodePackage: 代码包
+        # @type CodePackage: :class:`Tencentcloud::Tione.v20211111.models.CosPathInfo`
+        # @param StartCmd: 启动命令
+        # @type StartCmd: String
+        # @param DataConfigs: 数据配置
+        # @type DataConfigs: Array
+        # @param LogConfig: 日志配置
+        # @type LogConfig: :class:`Tencentcloud::Tione.v20211111.models.LogConfig`
+        # @param VpcId: VPC Id
+        # @type VpcId: String
+        # @param SubnetId: 子网Id
+        # @type SubnetId: String
+        # @param Remark: 备注
+        # @type Remark: String
+
+        attr_accessor :BatchTaskName, :ChargeType, :ResourceConfigInfo, :Outputs, :LogEnable, :JobType, :CronInfo, :ResourceGroupId, :Tags, :ModelInfo, :ImageInfo, :CodePackage, :StartCmd, :DataConfigs, :LogConfig, :VpcId, :SubnetId, :Remark
+        
+        def initialize(batchtaskname=nil, chargetype=nil, resourceconfiginfo=nil, outputs=nil, logenable=nil, jobtype=nil, croninfo=nil, resourcegroupid=nil, tags=nil, modelinfo=nil, imageinfo=nil, codepackage=nil, startcmd=nil, dataconfigs=nil, logconfig=nil, vpcid=nil, subnetid=nil, remark=nil)
+          @BatchTaskName = batchtaskname
+          @ChargeType = chargetype
+          @ResourceConfigInfo = resourceconfiginfo
+          @Outputs = outputs
+          @LogEnable = logenable
+          @JobType = jobtype
+          @CronInfo = croninfo
+          @ResourceGroupId = resourcegroupid
+          @Tags = tags
+          @ModelInfo = modelinfo
+          @ImageInfo = imageinfo
+          @CodePackage = codepackage
+          @StartCmd = startcmd
+          @DataConfigs = dataconfigs
+          @LogConfig = logconfig
+          @VpcId = vpcid
+          @SubnetId = subnetid
+          @Remark = remark
+        end
+
+        def deserialize(params)
+          @BatchTaskName = params['BatchTaskName']
+          @ChargeType = params['ChargeType']
+          unless params['ResourceConfigInfo'].nil?
+            @ResourceConfigInfo = ResourceConfigInfo.new
+            @ResourceConfigInfo.deserialize(params['ResourceConfigInfo'])
+          end
+          unless params['Outputs'].nil?
+            @Outputs = []
+            params['Outputs'].each do |i|
+              dataconfig_tmp = DataConfig.new
+              dataconfig_tmp.deserialize(i)
+              @Outputs << dataconfig_tmp
+            end
+          end
+          @LogEnable = params['LogEnable']
+          @JobType = params['JobType']
+          unless params['CronInfo'].nil?
+            @CronInfo = CronInfo.new
+            @CronInfo.deserialize(params['CronInfo'])
+          end
+          @ResourceGroupId = params['ResourceGroupId']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
+            end
+          end
+          unless params['ModelInfo'].nil?
+            @ModelInfo = ModelInfo.new
+            @ModelInfo.deserialize(params['ModelInfo'])
+          end
+          unless params['ImageInfo'].nil?
+            @ImageInfo = ImageInfo.new
+            @ImageInfo.deserialize(params['ImageInfo'])
+          end
+          unless params['CodePackage'].nil?
+            @CodePackage = CosPathInfo.new
+            @CodePackage.deserialize(params['CodePackage'])
+          end
+          @StartCmd = params['StartCmd']
+          unless params['DataConfigs'].nil?
+            @DataConfigs = []
+            params['DataConfigs'].each do |i|
+              dataconfig_tmp = DataConfig.new
+              dataconfig_tmp.deserialize(i)
+              @DataConfigs << dataconfig_tmp
+            end
+          end
+          unless params['LogConfig'].nil?
+            @LogConfig = LogConfig.new
+            @LogConfig.deserialize(params['LogConfig'])
+          end
+          @VpcId = params['VpcId']
+          @SubnetId = params['SubnetId']
+          @Remark = params['Remark']
+        end
+      end
+
+      # CreateBatchTask返回参数结构体
+      class CreateBatchTaskResponse < TencentCloud::Common::AbstractModel
+        # @param BatchTaskId: 跑批任务ID
+        # @type BatchTaskId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :BatchTaskId, :RequestId
+        
+        def initialize(batchtaskid=nil, requestid=nil)
+          @BatchTaskId = batchtaskid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @BatchTaskId = params['BatchTaskId']
+          @RequestId = params['RequestId']
         end
       end
 
@@ -173,7 +660,10 @@ module TencentCloud
 
       # CreateTrainingModel请求参数结构体
       class CreateTrainingModelRequest < TencentCloud::Common::AbstractModel
-        # @param ImportMethod: 导入方式（MODEL/VERSION）
+        # @param ImportMethod: 导入方式
+        # MODEL：导入新模型
+        # VERSION：导入新版本
+        # EXIST：导入现有版本
         # @type ImportMethod: String
         # @param TrainingModelCosPath: 模型来源cos目录，以/结尾
         # @type TrainingModelCosPath: :class:`Tencentcloud::Tione.v20211111.models.CosPathInfo`
@@ -219,10 +709,16 @@ module TencentCloud
         # @type ModelFormat: String
         # @param ReasoningEnvironmentId: 推理镜像ID
         # @type ReasoningEnvironmentId: String
+        # @param AutoClean: 模型自动清理开关(true/false)，当前版本仅支持SAVED_MODEL格式模型
+        # @type AutoClean: String
+        # @param MaxReservedModels: 模型数量保留上限(默认值为24个，上限为24，下限为1，步长为1)
+        # @type MaxReservedModels: Integer
+        # @param ModelCleanPeriod: 模型清理周期(默认值为1分钟，上限为1440，下限为1分钟，步长为1)
+        # @type ModelCleanPeriod: Integer
 
-        attr_accessor :ImportMethod, :TrainingModelCosPath, :ReasoningEnvironmentSource, :TrainingModelName, :Tags, :TrainingJobName, :AlgorithmFramework, :ReasoningEnvironment, :TrainingModelIndex, :TrainingModelVersion, :ReasoningImageInfo, :ModelMoveMode, :TrainingJobId, :TrainingModelId, :ModelOutputPath, :TrainingModelSource, :TrainingPreference, :AutoMLTaskId, :TrainingJobVersion, :ModelVersionType, :ModelFormat, :ReasoningEnvironmentId
+        attr_accessor :ImportMethod, :TrainingModelCosPath, :ReasoningEnvironmentSource, :TrainingModelName, :Tags, :TrainingJobName, :AlgorithmFramework, :ReasoningEnvironment, :TrainingModelIndex, :TrainingModelVersion, :ReasoningImageInfo, :ModelMoveMode, :TrainingJobId, :TrainingModelId, :ModelOutputPath, :TrainingModelSource, :TrainingPreference, :AutoMLTaskId, :TrainingJobVersion, :ModelVersionType, :ModelFormat, :ReasoningEnvironmentId, :AutoClean, :MaxReservedModels, :ModelCleanPeriod
         
-        def initialize(importmethod=nil, trainingmodelcospath=nil, reasoningenvironmentsource=nil, trainingmodelname=nil, tags=nil, trainingjobname=nil, algorithmframework=nil, reasoningenvironment=nil, trainingmodelindex=nil, trainingmodelversion=nil, reasoningimageinfo=nil, modelmovemode=nil, trainingjobid=nil, trainingmodelid=nil, modeloutputpath=nil, trainingmodelsource=nil, trainingpreference=nil, automltaskid=nil, trainingjobversion=nil, modelversiontype=nil, modelformat=nil, reasoningenvironmentid=nil)
+        def initialize(importmethod=nil, trainingmodelcospath=nil, reasoningenvironmentsource=nil, trainingmodelname=nil, tags=nil, trainingjobname=nil, algorithmframework=nil, reasoningenvironment=nil, trainingmodelindex=nil, trainingmodelversion=nil, reasoningimageinfo=nil, modelmovemode=nil, trainingjobid=nil, trainingmodelid=nil, modeloutputpath=nil, trainingmodelsource=nil, trainingpreference=nil, automltaskid=nil, trainingjobversion=nil, modelversiontype=nil, modelformat=nil, reasoningenvironmentid=nil, autoclean=nil, maxreservedmodels=nil, modelcleanperiod=nil)
           @ImportMethod = importmethod
           @TrainingModelCosPath = trainingmodelcospath
           @ReasoningEnvironmentSource = reasoningenvironmentsource
@@ -245,6 +741,9 @@ module TencentCloud
           @ModelVersionType = modelversiontype
           @ModelFormat = modelformat
           @ReasoningEnvironmentId = reasoningenvironmentid
+          @AutoClean = autoclean
+          @MaxReservedModels = maxreservedmodels
+          @ModelCleanPeriod = modelcleanperiod
         end
 
         def deserialize(params)
@@ -286,6 +785,9 @@ module TencentCloud
           @ModelVersionType = params['ModelVersionType']
           @ModelFormat = params['ModelFormat']
           @ReasoningEnvironmentId = params['ReasoningEnvironmentId']
+          @AutoClean = params['AutoClean']
+          @MaxReservedModels = params['MaxReservedModels']
+          @ModelCleanPeriod = params['ModelCleanPeriod']
         end
       end
 
@@ -461,6 +963,32 @@ module TencentCloud
         end
       end
 
+      # 跑批任务周期描述
+      class CronInfo < TencentCloud::Common::AbstractModel
+        # @param CronConfig: cron配置
+        # @type CronConfig: String
+        # @param StartTime: 周期开始时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StartTime: String
+        # @param EndTime: 周期结束时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EndTime: String
+
+        attr_accessor :CronConfig, :StartTime, :EndTime
+        
+        def initialize(cronconfig=nil, starttime=nil, endtime=nil)
+          @CronConfig = cronconfig
+          @StartTime = starttime
+          @EndTime = endtime
+        end
+
+        def deserialize(params)
+          @CronConfig = params['CronConfig']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+        end
+      end
+
       # 自定义指标
       class CustomTrainingData < TencentCloud::Common::AbstractModel
         # @param MetricName: 指标名
@@ -542,7 +1070,7 @@ module TencentCloud
       class DataConfig < TencentCloud::Common::AbstractModel
         # @param MappingPath: 映射路径
         # @type MappingPath: String
-        # @param DataSourceType: DATASET、COS、CFS、HDFS
+        # @param DataSourceType: DATASET、COS、CFS、HDFS、WEDATA_HDFS
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DataSourceType: String
         # @param DataSetSource: 来自数据集的数据
@@ -909,6 +1437,38 @@ module TencentCloud
         end
       end
 
+      # DeleteBatchTask请求参数结构体
+      class DeleteBatchTaskRequest < TencentCloud::Common::AbstractModel
+        # @param BatchTaskId: 跑批任务ID
+        # @type BatchTaskId: String
+
+        attr_accessor :BatchTaskId
+        
+        def initialize(batchtaskid=nil)
+          @BatchTaskId = batchtaskid
+        end
+
+        def deserialize(params)
+          @BatchTaskId = params['BatchTaskId']
+        end
+      end
+
+      # DeleteBatchTask返回参数结构体
+      class DeleteBatchTaskResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DeleteDataset请求参数结构体
       class DeleteDatasetRequest < TencentCloud::Common::AbstractModel
         # @param DatasetId: 数据集id
@@ -1057,6 +1617,179 @@ module TencentCloud
         end
       end
 
+      # DescribeBatchTaskInstances请求参数结构体
+      class DescribeBatchTaskInstancesRequest < TencentCloud::Common::AbstractModel
+        # @param BatchTaskId: 跑批任务id
+        # @type BatchTaskId: String
+
+        attr_accessor :BatchTaskId
+        
+        def initialize(batchtaskid=nil)
+          @BatchTaskId = batchtaskid
+        end
+
+        def deserialize(params)
+          @BatchTaskId = params['BatchTaskId']
+        end
+      end
+
+      # DescribeBatchTaskInstances返回参数结构体
+      class DescribeBatchTaskInstancesResponse < TencentCloud::Common::AbstractModel
+        # @param BatchInstances: 实例集
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BatchInstances: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :BatchInstances, :RequestId
+        
+        def initialize(batchinstances=nil, requestid=nil)
+          @BatchInstances = batchinstances
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['BatchInstances'].nil?
+            @BatchInstances = []
+            params['BatchInstances'].each do |i|
+              batchtaskinstance_tmp = BatchTaskInstance.new
+              batchtaskinstance_tmp.deserialize(i)
+              @BatchInstances << batchtaskinstance_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeBatchTask请求参数结构体
+      class DescribeBatchTaskRequest < TencentCloud::Common::AbstractModel
+        # @param BatchTaskId: 跑批任务ID
+        # @type BatchTaskId: String
+
+        attr_accessor :BatchTaskId
+        
+        def initialize(batchtaskid=nil)
+          @BatchTaskId = batchtaskid
+        end
+
+        def deserialize(params)
+          @BatchTaskId = params['BatchTaskId']
+        end
+      end
+
+      # DescribeBatchTask返回参数结构体
+      class DescribeBatchTaskResponse < TencentCloud::Common::AbstractModel
+        # @param BatchTaskDetail: 跑批任务详情
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BatchTaskDetail: :class:`Tencentcloud::Tione.v20211111.models.BatchTaskDetail`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :BatchTaskDetail, :RequestId
+        
+        def initialize(batchtaskdetail=nil, requestid=nil)
+          @BatchTaskDetail = batchtaskdetail
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['BatchTaskDetail'].nil?
+            @BatchTaskDetail = BatchTaskDetail.new
+            @BatchTaskDetail.deserialize(params['BatchTaskDetail'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeBatchTasks请求参数结构体
+      class DescribeBatchTasksRequest < TencentCloud::Common::AbstractModel
+        # @param Filters: 过滤器，eg：[{ "Name": "Id", "Values": ["train-23091792777383936"] }]
+
+        # 取值范围：
+        # Name（名称）：task1
+        # Id（task ID）：train-23091792777383936
+        # Status（状态）：STARTING / RUNNING / STOPPING / STOPPED / FAILED / SUCCEED / SUBMIT_FAILED
+        # ChargeType（计费类型）：PREPAID（预付费）/ POSTPAID_BY_HOUR（后付费）
+        # CHARGE_STATUS（计费状态）：NOT_BILLING（未开始计费）/ BILLING（计费中）/ ARREARS_STOP（欠费停止）
+        # @type Filters: Array
+        # @param TagFilters: 标签过滤器，eg：[{ "TagKey": "TagKeyA", "TagValue": ["TagValueA"] }]
+        # @type TagFilters: Array
+        # @param Offset: 偏移量，默认为0
+        # @type Offset: Integer
+        # @param Limit: 返回数量，默认为10，最大为50
+        # @type Limit: Integer
+        # @param Order: 输出列表的排列顺序。取值范围：ASC（升序排列）/ DESC（降序排列），默认为DESC
+        # @type Order: String
+        # @param OrderField: 排序的依据字段， 取值范围 "CreateTime" "UpdateTime"
+        # @type OrderField: String
+
+        attr_accessor :Filters, :TagFilters, :Offset, :Limit, :Order, :OrderField
+        
+        def initialize(filters=nil, tagfilters=nil, offset=nil, limit=nil, order=nil, orderfield=nil)
+          @Filters = filters
+          @TagFilters = tagfilters
+          @Offset = offset
+          @Limit = limit
+          @Order = order
+          @OrderField = orderfield
+        end
+
+        def deserialize(params)
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+          unless params['TagFilters'].nil?
+            @TagFilters = []
+            params['TagFilters'].each do |i|
+              tagfilter_tmp = TagFilter.new
+              tagfilter_tmp.deserialize(i)
+              @TagFilters << tagfilter_tmp
+            end
+          end
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @Order = params['Order']
+          @OrderField = params['OrderField']
+        end
+      end
+
+      # DescribeBatchTasks返回参数结构体
+      class DescribeBatchTasksResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 数量
+        # @type TotalCount: Integer
+        # @param BatchTaskSet: 任务集
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BatchTaskSet: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :BatchTaskSet, :RequestId
+        
+        def initialize(totalcount=nil, batchtaskset=nil, requestid=nil)
+          @TotalCount = totalcount
+          @BatchTaskSet = batchtaskset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['BatchTaskSet'].nil?
+            @BatchTaskSet = []
+            params['BatchTaskSet'].each do |i|
+              batchtasksetitem_tmp = BatchTaskSetItem.new
+              batchtasksetitem_tmp.deserialize(i)
+              @BatchTaskSet << batchtasksetitem_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeBillingResourceGroups请求参数结构体
       class DescribeBillingResourceGroupsRequest < TencentCloud::Common::AbstractModel
         # @param Type: 资源组类型; 枚举值 TRAIN:训练 INFERENCE:推理
@@ -1193,6 +1926,57 @@ module TencentCloud
               specprice_tmp = SpecPrice.new
               specprice_tmp.deserialize(i)
               @SpecsPrice << specprice_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeBillingSpecs请求参数结构体
+      class DescribeBillingSpecsRequest < TencentCloud::Common::AbstractModel
+        # @param TaskType: 枚举值：TRAIN、NOTEBOOK、INFERENCE
+        # @type TaskType: String
+        # @param ChargeType: 付费模式：POSTPAID_BY_HOUR后付费、PREPAID预付费
+        # @type ChargeType: String
+        # @param ResourceType: 资源类型：CALC 计算资源、CPU CPU资源、GPU GPU资源、CBS云硬盘
+        # @type ResourceType: String
+
+        attr_accessor :TaskType, :ChargeType, :ResourceType
+        
+        def initialize(tasktype=nil, chargetype=nil, resourcetype=nil)
+          @TaskType = tasktype
+          @ChargeType = chargetype
+          @ResourceType = resourcetype
+        end
+
+        def deserialize(params)
+          @TaskType = params['TaskType']
+          @ChargeType = params['ChargeType']
+          @ResourceType = params['ResourceType']
+        end
+      end
+
+      # DescribeBillingSpecs返回参数结构体
+      class DescribeBillingSpecsResponse < TencentCloud::Common::AbstractModel
+        # @param Specs: 计费项列表
+        # @type Specs: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Specs, :RequestId
+        
+        def initialize(specs=nil, requestid=nil)
+          @Specs = specs
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Specs'].nil?
+            @Specs = []
+            params['Specs'].each do |i|
+              spec_tmp = Spec.new
+              spec_tmp.deserialize(i)
+              @Specs << spec_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -2630,6 +3414,56 @@ module TencentCloud
         end
       end
 
+      # 模型描述信息
+      class ModelInfo < TencentCloud::Common::AbstractModel
+        # @param ModelVersionId: 模型版本id, DescribeTrainingModelVersion查询模型接口时的id
+        # 自动学习类型的模型填写自动学习的任务id
+        # @type ModelVersionId: String
+        # @param ModelId: 模型id
+        # @type ModelId: String
+        # @param ModelName: 模型名
+        # @type ModelName: String
+        # @param ModelVersion: 模型版本
+        # @type ModelVersion: String
+        # @param ModelSource: 模型来源
+        # @type ModelSource: String
+        # @param CosPathInfo: cos路径信息
+        # @type CosPathInfo: :class:`Tencentcloud::Tione.v20211111.models.CosPathInfo`
+        # @param AlgorithmFramework: 模型对应的算法框架，预留
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AlgorithmFramework: String
+        # @param ModelType: 默认为 NORMAL, 已加速模型: ACCELERATE, 自动学习模型 AUTO_ML
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ModelType: String
+
+        attr_accessor :ModelVersionId, :ModelId, :ModelName, :ModelVersion, :ModelSource, :CosPathInfo, :AlgorithmFramework, :ModelType
+        
+        def initialize(modelversionid=nil, modelid=nil, modelname=nil, modelversion=nil, modelsource=nil, cospathinfo=nil, algorithmframework=nil, modeltype=nil)
+          @ModelVersionId = modelversionid
+          @ModelId = modelid
+          @ModelName = modelname
+          @ModelVersion = modelversion
+          @ModelSource = modelsource
+          @CosPathInfo = cospathinfo
+          @AlgorithmFramework = algorithmframework
+          @ModelType = modeltype
+        end
+
+        def deserialize(params)
+          @ModelVersionId = params['ModelVersionId']
+          @ModelId = params['ModelId']
+          @ModelName = params['ModelName']
+          @ModelVersion = params['ModelVersion']
+          @ModelSource = params['ModelSource']
+          unless params['CosPathInfo'].nil?
+            @CosPathInfo = CosPathInfo.new
+            @CosPathInfo.deserialize(params['CosPathInfo'])
+          end
+          @AlgorithmFramework = params['AlgorithmFramework']
+          @ModelType = params['ModelType']
+        end
+      end
+
       # OCR场景标签列表
       class OcrLabelInfo < TencentCloud::Common::AbstractModel
         # @param Points: 坐标点围起来的框
@@ -3042,6 +3876,30 @@ module TencentCloud
         end
       end
 
+      # 计费项内容
+      class Spec < TencentCloud::Common::AbstractModel
+        # @param SpecId: 计费项标签
+        # @type SpecId: String
+        # @param SpecName: 计费项名称
+        # @type SpecName: String
+        # @param SpecAlias: 计费项显示名称
+        # @type SpecAlias: String
+
+        attr_accessor :SpecId, :SpecName, :SpecAlias
+        
+        def initialize(specid=nil, specname=nil, specalias=nil)
+          @SpecId = specid
+          @SpecName = specname
+          @SpecAlias = specalias
+        end
+
+        def deserialize(params)
+          @SpecId = params['SpecId']
+          @SpecName = params['SpecName']
+          @SpecAlias = params['SpecAlias']
+        end
+      end
+
       # 计费项询价结果
       class SpecPrice < TencentCloud::Common::AbstractModel
         # @param SpecName: 计费项名称
@@ -3128,6 +3986,38 @@ module TencentCloud
 
       # StartTrainingTask返回参数结构体
       class StartTrainingTaskResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # StopBatchTask请求参数结构体
+      class StopBatchTaskRequest < TencentCloud::Common::AbstractModel
+        # @param BatchTaskId: 跑批任务ID
+        # @type BatchTaskId: String
+
+        attr_accessor :BatchTaskId
+        
+        def initialize(batchtaskid=nil)
+          @BatchTaskId = batchtaskid
+        end
+
+        def deserialize(params)
+          @BatchTaskId = params['BatchTaskId']
+        end
+      end
+
+      # StopBatchTask返回参数结构体
+      class StopBatchTaskResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -3374,10 +4264,28 @@ module TencentCloud
         # @param TrainingModelFormat: 模型格式
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TrainingModelFormat: String
+        # @param VersionType: 模型版本类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VersionType: String
+        # @param GPUType: GPU类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GPUType: String
+        # @param AutoClean: 模型自动清理开关
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AutoClean: String
+        # @param ModelCleanPeriod: 模型清理周期
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ModelCleanPeriod: Integer
+        # @param MaxReservedModels: 模型数量保留上限
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MaxReservedModels: Integer
+        # @param ModelHotUpdatePath: 模型热更新目录
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ModelHotUpdatePath: :class:`Tencentcloud::Tione.v20211111.models.CosPathInfo`
 
-        attr_accessor :TrainingModelId, :TrainingModelVersionId, :TrainingModelVersion, :TrainingModelSource, :TrainingModelCreateTime, :TrainingModelCreator, :AlgorithmFramework, :ReasoningEnvironment, :ReasoningEnvironmentSource, :TrainingModelIndex, :TrainingJobName, :TrainingModelCosPath, :TrainingModelName, :TrainingJobId, :ReasoningImageInfo, :CreateTime, :TrainingModelStatus, :TrainingModelProgress, :TrainingModelErrorMsg, :TrainingModelFormat
+        attr_accessor :TrainingModelId, :TrainingModelVersionId, :TrainingModelVersion, :TrainingModelSource, :TrainingModelCreateTime, :TrainingModelCreator, :AlgorithmFramework, :ReasoningEnvironment, :ReasoningEnvironmentSource, :TrainingModelIndex, :TrainingJobName, :TrainingModelCosPath, :TrainingModelName, :TrainingJobId, :ReasoningImageInfo, :CreateTime, :TrainingModelStatus, :TrainingModelProgress, :TrainingModelErrorMsg, :TrainingModelFormat, :VersionType, :GPUType, :AutoClean, :ModelCleanPeriod, :MaxReservedModels, :ModelHotUpdatePath
         
-        def initialize(trainingmodelid=nil, trainingmodelversionid=nil, trainingmodelversion=nil, trainingmodelsource=nil, trainingmodelcreatetime=nil, trainingmodelcreator=nil, algorithmframework=nil, reasoningenvironment=nil, reasoningenvironmentsource=nil, trainingmodelindex=nil, trainingjobname=nil, trainingmodelcospath=nil, trainingmodelname=nil, trainingjobid=nil, reasoningimageinfo=nil, createtime=nil, trainingmodelstatus=nil, trainingmodelprogress=nil, trainingmodelerrormsg=nil, trainingmodelformat=nil)
+        def initialize(trainingmodelid=nil, trainingmodelversionid=nil, trainingmodelversion=nil, trainingmodelsource=nil, trainingmodelcreatetime=nil, trainingmodelcreator=nil, algorithmframework=nil, reasoningenvironment=nil, reasoningenvironmentsource=nil, trainingmodelindex=nil, trainingjobname=nil, trainingmodelcospath=nil, trainingmodelname=nil, trainingjobid=nil, reasoningimageinfo=nil, createtime=nil, trainingmodelstatus=nil, trainingmodelprogress=nil, trainingmodelerrormsg=nil, trainingmodelformat=nil, versiontype=nil, gputype=nil, autoclean=nil, modelcleanperiod=nil, maxreservedmodels=nil, modelhotupdatepath=nil)
           @TrainingModelId = trainingmodelid
           @TrainingModelVersionId = trainingmodelversionid
           @TrainingModelVersion = trainingmodelversion
@@ -3398,6 +4306,12 @@ module TencentCloud
           @TrainingModelProgress = trainingmodelprogress
           @TrainingModelErrorMsg = trainingmodelerrormsg
           @TrainingModelFormat = trainingmodelformat
+          @VersionType = versiontype
+          @GPUType = gputype
+          @AutoClean = autoclean
+          @ModelCleanPeriod = modelcleanperiod
+          @MaxReservedModels = maxreservedmodels
+          @ModelHotUpdatePath = modelhotupdatepath
         end
 
         def deserialize(params)
@@ -3427,6 +4341,15 @@ module TencentCloud
           @TrainingModelProgress = params['TrainingModelProgress']
           @TrainingModelErrorMsg = params['TrainingModelErrorMsg']
           @TrainingModelFormat = params['TrainingModelFormat']
+          @VersionType = params['VersionType']
+          @GPUType = params['GPUType']
+          @AutoClean = params['AutoClean']
+          @ModelCleanPeriod = params['ModelCleanPeriod']
+          @MaxReservedModels = params['MaxReservedModels']
+          unless params['ModelHotUpdatePath'].nil?
+            @ModelHotUpdatePath = CosPathInfo.new
+            @ModelHotUpdatePath.deserialize(params['ModelHotUpdatePath'])
+          end
         end
       end
 

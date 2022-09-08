@@ -1553,6 +1553,65 @@ module TencentCloud
         end
       end
 
+      # DescribeRedisTopKeyPrefixList请求参数结构体
+      class DescribeRedisTopKeyPrefixListRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID。
+        # @type InstanceId: String
+        # @param Date: 查询日期，如2021-05-27，最早可为前30天的日期。
+        # @type Date: String
+        # @param Product: 服务产品类型，支持值包括 "redis" - 云数据库 Redis。
+        # @type Product: String
+        # @param Limit: 查询数目，默认为20，最大值为100。
+        # @type Limit: Integer
+
+        attr_accessor :InstanceId, :Date, :Product, :Limit
+        
+        def initialize(instanceid=nil, date=nil, product=nil, limit=nil)
+          @InstanceId = instanceid
+          @Date = date
+          @Product = product
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @Date = params['Date']
+          @Product = params['Product']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeRedisTopKeyPrefixList返回参数结构体
+      class DescribeRedisTopKeyPrefixListResponse < TencentCloud::Common::AbstractModel
+        # @param Items: top key前缀列表。
+        # @type Items: Array
+        # @param Timestamp: 采集时间戳（秒）。
+        # @type Timestamp: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Items, :Timestamp, :RequestId
+        
+        def initialize(items=nil, timestamp=nil, requestid=nil)
+          @Items = items
+          @Timestamp = timestamp
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Items'].nil?
+            @Items = []
+            params['Items'].each do |i|
+              redisprekeyspacedata_tmp = RedisPreKeySpaceData.new
+              redisprekeyspacedata_tmp.deserialize(i)
+              @Items << redisprekeyspacedata_tmp
+            end
+          end
+          @Timestamp = params['Timestamp']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeSecurityAuditLogDownloadUrls请求参数结构体
       class DescribeSecurityAuditLogDownloadUrlsRequest < TencentCloud::Common::AbstractModel
         # @param SecAuditGroupId: 安全审计组Id。
@@ -3169,6 +3228,42 @@ module TencentCloud
           @ExpireTime = params['ExpireTime']
           @Length = params['Length']
           @ItemCount = params['ItemCount']
+          @MaxElementSize = params['MaxElementSize']
+        end
+      end
+
+      # redis key前缀空间信息
+      class RedisPreKeySpaceData < TencentCloud::Common::AbstractModel
+        # @param AveElementSize: 平均元素长度。
+        # @type AveElementSize: Integer
+        # @param Length: 总占用内存（Byte）。
+        # @type Length: Integer
+        # @param KeyPreIndex: key前缀。
+        # @type KeyPreIndex: String
+        # @param ItemCount: 元素数量。
+        # @type ItemCount: Integer
+        # @param Count: key个数。
+        # @type Count: Integer
+        # @param MaxElementSize: 最大元素长度。
+        # @type MaxElementSize: Integer
+
+        attr_accessor :AveElementSize, :Length, :KeyPreIndex, :ItemCount, :Count, :MaxElementSize
+        
+        def initialize(aveelementsize=nil, length=nil, keypreindex=nil, itemcount=nil, count=nil, maxelementsize=nil)
+          @AveElementSize = aveelementsize
+          @Length = length
+          @KeyPreIndex = keypreindex
+          @ItemCount = itemcount
+          @Count = count
+          @MaxElementSize = maxelementsize
+        end
+
+        def deserialize(params)
+          @AveElementSize = params['AveElementSize']
+          @Length = params['Length']
+          @KeyPreIndex = params['KeyPreIndex']
+          @ItemCount = params['ItemCount']
+          @Count = params['Count']
           @MaxElementSize = params['MaxElementSize']
         end
       end

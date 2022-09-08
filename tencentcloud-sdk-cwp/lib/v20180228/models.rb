@@ -8053,12 +8053,15 @@ module TencentCloud
         # @param ProtectDays: 保护天数
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProtectDays: Integer
+        # @param AddedOnTheFifteen: 15天内新增的主机数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AddedOnTheFifteen: Integer
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :MachinesAll, :MachinesUninstalled, :AgentsAll, :AgentsOnline, :AgentsOffline, :AgentsPro, :AgentsBasic, :AgentsProExpireWithInSevenDays, :RiskMachine, :Shutdown, :Offline, :FlagshipMachineCnt, :ProtectDays, :RequestId
+        attr_accessor :MachinesAll, :MachinesUninstalled, :AgentsAll, :AgentsOnline, :AgentsOffline, :AgentsPro, :AgentsBasic, :AgentsProExpireWithInSevenDays, :RiskMachine, :Shutdown, :Offline, :FlagshipMachineCnt, :ProtectDays, :AddedOnTheFifteen, :RequestId
         
-        def initialize(machinesall=nil, machinesuninstalled=nil, agentsall=nil, agentsonline=nil, agentsoffline=nil, agentspro=nil, agentsbasic=nil, agentsproexpirewithinsevendays=nil, riskmachine=nil, shutdown=nil, offline=nil, flagshipmachinecnt=nil, protectdays=nil, requestid=nil)
+        def initialize(machinesall=nil, machinesuninstalled=nil, agentsall=nil, agentsonline=nil, agentsoffline=nil, agentspro=nil, agentsbasic=nil, agentsproexpirewithinsevendays=nil, riskmachine=nil, shutdown=nil, offline=nil, flagshipmachinecnt=nil, protectdays=nil, addedonthefifteen=nil, requestid=nil)
           @MachinesAll = machinesall
           @MachinesUninstalled = machinesuninstalled
           @AgentsAll = agentsall
@@ -8072,6 +8075,7 @@ module TencentCloud
           @Offline = offline
           @FlagshipMachineCnt = flagshipmachinecnt
           @ProtectDays = protectdays
+          @AddedOnTheFifteen = addedonthefifteen
           @RequestId = requestid
         end
 
@@ -8089,6 +8093,7 @@ module TencentCloud
           @Offline = params['Offline']
           @FlagshipMachineCnt = params['FlagshipMachineCnt']
           @ProtectDays = params['ProtectDays']
+          @AddedOnTheFifteen = params['AddedOnTheFifteen']
           @RequestId = params['RequestId']
         end
       end
@@ -9052,6 +9057,7 @@ module TencentCloud
         # <li>Os -String 是否必填: 否 - 操作系统( DescribeMachineOsList 接口 值 )
         # 每个过滤条件只支持一个值，暂不支持多个值“或”关系查询
         # <li>Quuid - String - 是否必填: 否 - 云服务器uuid  最大100条.</li>
+        # <li>AddedOnTheFifteen- String 是否必填: 否 - 是否只查询15天内新增的主机( 1：是) </li>
         # @type Filters: Array
         # @param ProjectIds: 机器所属业务ID列表
         # @type ProjectIds: Array
@@ -14723,10 +14729,13 @@ module TencentCloud
         # @param CloudTags: 云标签信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CloudTags: Array
+        # @param IsAddedOnTheFifteen: 是否15天内新增的主机 0：非15天内新增的主机，1：15天内增加的主机
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsAddedOnTheFifteen: Integer
 
-        attr_accessor :MachineName, :MachineOs, :MachineStatus, :Uuid, :Quuid, :VulNum, :MachineIp, :IsProVersion, :MachineWanIp, :PayMode, :MalwareNum, :Tag, :BaselineNum, :CyberAttackNum, :SecurityStatus, :InvasionNum, :RegionInfo, :InstanceState, :LicenseStatus, :ProjectId, :HasAssetScan, :MachineType, :KernelVersion, :ProtectType, :CloudTags
+        attr_accessor :MachineName, :MachineOs, :MachineStatus, :Uuid, :Quuid, :VulNum, :MachineIp, :IsProVersion, :MachineWanIp, :PayMode, :MalwareNum, :Tag, :BaselineNum, :CyberAttackNum, :SecurityStatus, :InvasionNum, :RegionInfo, :InstanceState, :LicenseStatus, :ProjectId, :HasAssetScan, :MachineType, :KernelVersion, :ProtectType, :CloudTags, :IsAddedOnTheFifteen
         
-        def initialize(machinename=nil, machineos=nil, machinestatus=nil, uuid=nil, quuid=nil, vulnum=nil, machineip=nil, isproversion=nil, machinewanip=nil, paymode=nil, malwarenum=nil, tag=nil, baselinenum=nil, cyberattacknum=nil, securitystatus=nil, invasionnum=nil, regioninfo=nil, instancestate=nil, licensestatus=nil, projectid=nil, hasassetscan=nil, machinetype=nil, kernelversion=nil, protecttype=nil, cloudtags=nil)
+        def initialize(machinename=nil, machineos=nil, machinestatus=nil, uuid=nil, quuid=nil, vulnum=nil, machineip=nil, isproversion=nil, machinewanip=nil, paymode=nil, malwarenum=nil, tag=nil, baselinenum=nil, cyberattacknum=nil, securitystatus=nil, invasionnum=nil, regioninfo=nil, instancestate=nil, licensestatus=nil, projectid=nil, hasassetscan=nil, machinetype=nil, kernelversion=nil, protecttype=nil, cloudtags=nil, isaddedonthefifteen=nil)
           @MachineName = machinename
           @MachineOs = machineos
           @MachineStatus = machinestatus
@@ -14752,6 +14761,7 @@ module TencentCloud
           @KernelVersion = kernelversion
           @ProtectType = protecttype
           @CloudTags = cloudtags
+          @IsAddedOnTheFifteen = isaddedonthefifteen
         end
 
         def deserialize(params)
@@ -14797,6 +14807,7 @@ module TencentCloud
               @CloudTags << tags_tmp
             end
           end
+          @IsAddedOnTheFifteen = params['IsAddedOnTheFifteen']
         end
       end
 
@@ -14862,10 +14873,14 @@ module TencentCloud
         # @type ProcessExists: Integer
         # @param FileExists: 木马文件是否存在 0:不存在，1:存在
         # @type FileExists: Integer
+        # @param Quuid: cvm quuid
+        # @type Quuid: String
+        # @param MD5: 木马样本md5
+        # @type MD5: String
 
-        attr_accessor :HostIp, :Uuid, :FilePath, :VirusName, :Status, :Id, :Alias, :Tags, :FileCreateTime, :FileModifierTime, :CreateTime, :LatestScanTime, :Level, :CheckPlatform, :ProcessExists, :FileExists
+        attr_accessor :HostIp, :Uuid, :FilePath, :VirusName, :Status, :Id, :Alias, :Tags, :FileCreateTime, :FileModifierTime, :CreateTime, :LatestScanTime, :Level, :CheckPlatform, :ProcessExists, :FileExists, :Quuid, :MD5
         
-        def initialize(hostip=nil, uuid=nil, filepath=nil, virusname=nil, status=nil, id=nil, _alias=nil, tags=nil, filecreatetime=nil, filemodifiertime=nil, createtime=nil, latestscantime=nil, level=nil, checkplatform=nil, processexists=nil, fileexists=nil)
+        def initialize(hostip=nil, uuid=nil, filepath=nil, virusname=nil, status=nil, id=nil, _alias=nil, tags=nil, filecreatetime=nil, filemodifiertime=nil, createtime=nil, latestscantime=nil, level=nil, checkplatform=nil, processexists=nil, fileexists=nil, quuid=nil, md5=nil)
           @HostIp = hostip
           @Uuid = uuid
           @FilePath = filepath
@@ -14882,6 +14897,8 @@ module TencentCloud
           @CheckPlatform = checkplatform
           @ProcessExists = processexists
           @FileExists = fileexists
+          @Quuid = quuid
+          @MD5 = md5
         end
 
         def deserialize(params)
@@ -14901,6 +14918,8 @@ module TencentCloud
           @CheckPlatform = params['CheckPlatform']
           @ProcessExists = params['ProcessExists']
           @FileExists = params['FileExists']
+          @Quuid = params['Quuid']
+          @MD5 = params['MD5']
         end
       end
 

@@ -537,6 +537,65 @@ module TencentCloud
         end
       end
 
+      # CreateBackup请求参数结构体
+      class CreateBackupRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群ID
+        # @type ClusterId: String
+        # @param BackupType: 备份类型, 可选值：logic，逻辑备份；snapshot，物理备份
+        # @type BackupType: String
+        # @param BackupDatabases: 备份的库, 只在 BackupType 为 logic 时有效
+        # @type BackupDatabases: Array
+        # @param BackupTables: 备份的表, 只在 BackupType 为 logic 时有效
+        # @type BackupTables: Array
+        # @param BackupName: 备注名
+        # @type BackupName: String
+
+        attr_accessor :ClusterId, :BackupType, :BackupDatabases, :BackupTables, :BackupName
+        
+        def initialize(clusterid=nil, backuptype=nil, backupdatabases=nil, backuptables=nil, backupname=nil)
+          @ClusterId = clusterid
+          @BackupType = backuptype
+          @BackupDatabases = backupdatabases
+          @BackupTables = backuptables
+          @BackupName = backupname
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @BackupType = params['BackupType']
+          @BackupDatabases = params['BackupDatabases']
+          unless params['BackupTables'].nil?
+            @BackupTables = []
+            params['BackupTables'].each do |i|
+              databasetables_tmp = DatabaseTables.new
+              databasetables_tmp.deserialize(i)
+              @BackupTables << databasetables_tmp
+            end
+          end
+          @BackupName = params['BackupName']
+        end
+      end
+
+      # CreateBackup返回参数结构体
+      class CreateBackupResponse < TencentCloud::Common::AbstractModel
+        # @param FlowId: 异步任务流ID
+        # @type FlowId: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :FlowId, :RequestId
+        
+        def initialize(flowid=nil, requestid=nil)
+          @FlowId = flowid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @FlowId = params['FlowId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateClusters请求参数结构体
       class CreateClustersRequest < TencentCloud::Common::AbstractModel
         # @param Zone: 可用区
@@ -1527,6 +1586,28 @@ module TencentCloud
         def deserialize(params)
           @Db = params['Db']
           @Privileges = params['Privileges']
+        end
+      end
+
+      # 数据库表信息
+      class DatabaseTables < TencentCloud::Common::AbstractModel
+        # @param Database: 数据库名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Database: String
+        # @param Tables: 表名称列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Tables: Array
+
+        attr_accessor :Database, :Tables
+        
+        def initialize(database=nil, tables=nil)
+          @Database = database
+          @Tables = tables
+        end
+
+        def deserialize(params)
+          @Database = params['Database']
+          @Tables = params['Tables']
         end
       end
 
@@ -3576,6 +3657,65 @@ module TencentCloud
 
         def deserialize(params)
           @FlowId = params['FlowId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyClusterStorage请求参数结构体
+      class ModifyClusterStorageRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群ID
+        # @type ClusterId: String
+        # @param NewStorageLimit: 集群新存储大小（单位G）
+        # @type NewStorageLimit: Integer
+        # @param OldStorageLimit: 集群原存储大小（单位G）
+        # @type OldStorageLimit: Integer
+        # @param DealMode: 交易模式 0-下单并支付 1-下单
+        # @type DealMode: Integer
+
+        attr_accessor :ClusterId, :NewStorageLimit, :OldStorageLimit, :DealMode
+        
+        def initialize(clusterid=nil, newstoragelimit=nil, oldstoragelimit=nil, dealmode=nil)
+          @ClusterId = clusterid
+          @NewStorageLimit = newstoragelimit
+          @OldStorageLimit = oldstoragelimit
+          @DealMode = dealmode
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @NewStorageLimit = params['NewStorageLimit']
+          @OldStorageLimit = params['OldStorageLimit']
+          @DealMode = params['DealMode']
+        end
+      end
+
+      # ModifyClusterStorage返回参数结构体
+      class ModifyClusterStorageResponse < TencentCloud::Common::AbstractModel
+        # @param TranId: 冻结流水ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TranId: String
+        # @param BigDealIds: 大订单号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BigDealIds: Array
+        # @param DealNames: 订单号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DealNames: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TranId, :BigDealIds, :DealNames, :RequestId
+        
+        def initialize(tranid=nil, bigdealids=nil, dealnames=nil, requestid=nil)
+          @TranId = tranid
+          @BigDealIds = bigdealids
+          @DealNames = dealnames
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TranId = params['TranId']
+          @BigDealIds = params['BigDealIds']
+          @DealNames = params['DealNames']
           @RequestId = params['RequestId']
         end
       end

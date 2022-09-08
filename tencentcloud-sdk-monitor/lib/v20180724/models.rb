@@ -1534,16 +1534,21 @@ module TencentCloud
 
       # CreateGrafanaIntegration返回参数结构体
       class CreateGrafanaIntegrationResponse < TencentCloud::Common::AbstractModel
+        # @param IntegrationId: 集成 ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IntegrationId: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RequestId
+        attr_accessor :IntegrationId, :RequestId
         
-        def initialize(requestid=nil)
+        def initialize(integrationid=nil, requestid=nil)
+          @IntegrationId = integrationid
           @RequestId = requestid
         end
 
         def deserialize(params)
+          @IntegrationId = params['IntegrationId']
           @RequestId = params['RequestId']
         end
       end
@@ -1554,21 +1559,24 @@ module TencentCloud
         # @type InstanceId: String
         # @param ChannelName: 渠道名
         # @type ChannelName: String
-        # @param OrgId: 组织 ID
+        # @param OrgId: 默认为1，已废弃，请使用 OrganizationIds
         # @type OrgId: Integer
         # @param Receivers: 接受告警通道 ID 数组
         # @type Receivers: Array
-        # @param ExtraOrgIds: 额外组织 ID 数组
+        # @param ExtraOrgIds: 额外组织 ID 数组，已废弃，请使用 OrganizationIds
         # @type ExtraOrgIds: Array
+        # @param OrganizationIds: 生效的所有组织 ID 数组，默认为 ["1"]
+        # @type OrganizationIds: Array
 
-        attr_accessor :InstanceId, :ChannelName, :OrgId, :Receivers, :ExtraOrgIds
+        attr_accessor :InstanceId, :ChannelName, :OrgId, :Receivers, :ExtraOrgIds, :OrganizationIds
         
-        def initialize(instanceid=nil, channelname=nil, orgid=nil, receivers=nil, extraorgids=nil)
+        def initialize(instanceid=nil, channelname=nil, orgid=nil, receivers=nil, extraorgids=nil, organizationids=nil)
           @InstanceId = instanceid
           @ChannelName = channelname
           @OrgId = orgid
           @Receivers = receivers
           @ExtraOrgIds = extraorgids
+          @OrganizationIds = organizationids
         end
 
         def deserialize(params)
@@ -1577,6 +1585,7 @@ module TencentCloud
           @OrgId = params['OrgId']
           @Receivers = params['Receivers']
           @ExtraOrgIds = params['ExtraOrgIds']
+          @OrganizationIds = params['OrganizationIds']
         end
       end
 
@@ -7116,18 +7125,21 @@ module TencentCloud
         # @type CreatedAt: String
         # @param UpdatedAt: 更新时间
         # @type UpdatedAt: String
-        # @param OrgId: 默认生效组织
+        # @param OrgId: 默认生效组织，已废弃，请使用 OrganizationIds
         # @type OrgId: String
-        # @param ExtraOrgIds: 额外生效组织
+        # @param ExtraOrgIds: 额外生效组织，已废弃，请使用 OrganizationIds
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExtraOrgIds: Array
-        # @param OrgIds: 生效组织
+        # @param OrgIds: 生效组织，已废弃，请使用 OrganizationIds
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OrgIds: String
+        # @param OrganizationIds: 告警渠道的所有生效组织
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OrganizationIds: String
 
-        attr_accessor :ChannelId, :ChannelName, :Receivers, :CreatedAt, :UpdatedAt, :OrgId, :ExtraOrgIds, :OrgIds
+        attr_accessor :ChannelId, :ChannelName, :Receivers, :CreatedAt, :UpdatedAt, :OrgId, :ExtraOrgIds, :OrgIds, :OrganizationIds
         
-        def initialize(channelid=nil, channelname=nil, receivers=nil, createdat=nil, updatedat=nil, orgid=nil, extraorgids=nil, orgids=nil)
+        def initialize(channelid=nil, channelname=nil, receivers=nil, createdat=nil, updatedat=nil, orgid=nil, extraorgids=nil, orgids=nil, organizationids=nil)
           @ChannelId = channelid
           @ChannelName = channelname
           @Receivers = receivers
@@ -7136,6 +7148,7 @@ module TencentCloud
           @OrgId = orgid
           @ExtraOrgIds = extraorgids
           @OrgIds = orgids
+          @OrganizationIds = organizationids
         end
 
         def deserialize(params)
@@ -7147,6 +7160,7 @@ module TencentCloud
           @OrgId = params['OrgId']
           @ExtraOrgIds = params['ExtraOrgIds']
           @OrgIds = params['OrgIds']
+          @OrganizationIds = params['OrganizationIds']
         end
       end
 
@@ -10059,17 +10073,20 @@ module TencentCloud
         # @type ChannelName: String
         # @param Receivers: 接受告警通道 ID 数组
         # @type Receivers: Array
-        # @param ExtraOrgIds: 额外组织 ID 数组
+        # @param ExtraOrgIds: 已废弃，请使用 OrganizationIds
         # @type ExtraOrgIds: Array
+        # @param OrganizationIds: 生效的组织 ID 数组
+        # @type OrganizationIds: Array
 
-        attr_accessor :ChannelId, :InstanceId, :ChannelName, :Receivers, :ExtraOrgIds
+        attr_accessor :ChannelId, :InstanceId, :ChannelName, :Receivers, :ExtraOrgIds, :OrganizationIds
         
-        def initialize(channelid=nil, instanceid=nil, channelname=nil, receivers=nil, extraorgids=nil)
+        def initialize(channelid=nil, instanceid=nil, channelname=nil, receivers=nil, extraorgids=nil, organizationids=nil)
           @ChannelId = channelid
           @InstanceId = instanceid
           @ChannelName = channelname
           @Receivers = receivers
           @ExtraOrgIds = extraorgids
+          @OrganizationIds = organizationids
         end
 
         def deserialize(params)
@@ -10078,6 +10095,7 @@ module TencentCloud
           @ChannelName = params['ChannelName']
           @Receivers = params['Receivers']
           @ExtraOrgIds = params['ExtraOrgIds']
+          @OrganizationIds = params['OrganizationIds']
         end
       end
 

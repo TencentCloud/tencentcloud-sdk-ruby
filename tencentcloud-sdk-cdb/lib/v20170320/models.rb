@@ -836,6 +836,273 @@ module TencentCloud
         end
       end
 
+      # 地域售卖配置
+      class CdbRegionSellConf < TencentCloud::Common::AbstractModel
+        # @param RegionName: 地域中文名称
+        # @type RegionName: String
+        # @param Area: 所属大区
+        # @type Area: String
+        # @param IsDefaultRegion: 是否为默认地域
+        # @type IsDefaultRegion: Integer
+        # @param Region: 地域名称
+        # @type Region: String
+        # @param RegionConfig: 地域的可用区售卖配置
+        # @type RegionConfig: Array
+
+        attr_accessor :RegionName, :Area, :IsDefaultRegion, :Region, :RegionConfig
+        
+        def initialize(regionname=nil, area=nil, isdefaultregion=nil, region=nil, regionconfig=nil)
+          @RegionName = regionname
+          @Area = area
+          @IsDefaultRegion = isdefaultregion
+          @Region = region
+          @RegionConfig = regionconfig
+        end
+
+        def deserialize(params)
+          @RegionName = params['RegionName']
+          @Area = params['Area']
+          @IsDefaultRegion = params['IsDefaultRegion']
+          @Region = params['Region']
+          unless params['RegionConfig'].nil?
+            @RegionConfig = []
+            params['RegionConfig'].each do |i|
+              cdbzonesellconf_tmp = CdbZoneSellConf.new
+              cdbzonesellconf_tmp.deserialize(i)
+              @RegionConfig << cdbzonesellconf_tmp
+            end
+          end
+        end
+      end
+
+      # 售卖配置详情
+      class CdbSellConfig < TencentCloud::Common::AbstractModel
+        # @param Memory: 内存大小，单位为MB
+        # @type Memory: Integer
+        # @param Cpu: CPU核心数
+        # @type Cpu: Integer
+        # @param VolumeMin: 磁盘最小规格，单位为GB
+        # @type VolumeMin: Integer
+        # @param VolumeMax: 磁盘最大规格，单位为GB
+        # @type VolumeMax: Integer
+        # @param VolumeStep: 磁盘步长，单位为GB
+        # @type VolumeStep: Integer
+        # @param Iops: 每秒IO数量
+        # @type Iops: Integer
+        # @param Info: 应用场景描述
+        # @type Info: String
+        # @param Status: 状态值，0 表示该规格对外售卖
+        # @type Status: Integer
+        # @param DeviceType: 实例类型，可能的取值范围有：UNIVERSAL (通用型), EXCLUSIVE (独享型), BASIC (基础型)
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DeviceType: String
+        # @param EngineType: 引擎类型描述，可能的取值范围有：Innodb，RocksDB
+        # @type EngineType: String
+        # @param Id: 售卖规格Id
+        # @type Id: Integer
+
+        attr_accessor :Memory, :Cpu, :VolumeMin, :VolumeMax, :VolumeStep, :Iops, :Info, :Status, :DeviceType, :EngineType, :Id
+        
+        def initialize(memory=nil, cpu=nil, volumemin=nil, volumemax=nil, volumestep=nil, iops=nil, info=nil, status=nil, devicetype=nil, enginetype=nil, id=nil)
+          @Memory = memory
+          @Cpu = cpu
+          @VolumeMin = volumemin
+          @VolumeMax = volumemax
+          @VolumeStep = volumestep
+          @Iops = iops
+          @Info = info
+          @Status = status
+          @DeviceType = devicetype
+          @EngineType = enginetype
+          @Id = id
+        end
+
+        def deserialize(params)
+          @Memory = params['Memory']
+          @Cpu = params['Cpu']
+          @VolumeMin = params['VolumeMin']
+          @VolumeMax = params['VolumeMax']
+          @VolumeStep = params['VolumeStep']
+          @Iops = params['Iops']
+          @Info = params['Info']
+          @Status = params['Status']
+          @DeviceType = params['DeviceType']
+          @EngineType = params['EngineType']
+          @Id = params['Id']
+        end
+      end
+
+      # 售卖实例类型
+      class CdbSellType < TencentCloud::Common::AbstractModel
+        # @param TypeName: 售卖实例名称
+        # @type TypeName: String
+        # @param EngineVersion: 引擎版本号
+        # @type EngineVersion: Array
+        # @param ConfigIds: 售卖规格Id
+        # @type ConfigIds: Array
+
+        attr_accessor :TypeName, :EngineVersion, :ConfigIds
+        
+        def initialize(typename=nil, engineversion=nil, configids=nil)
+          @TypeName = typename
+          @EngineVersion = engineversion
+          @ConfigIds = configids
+        end
+
+        def deserialize(params)
+          @TypeName = params['TypeName']
+          @EngineVersion = params['EngineVersion']
+          @ConfigIds = params['ConfigIds']
+        end
+      end
+
+      # 各地域可售卖的规格配置
+      class CdbZoneDataResult < TencentCloud::Common::AbstractModel
+        # @param Configs: 售卖规格所有集合
+        # @type Configs: Array
+        # @param Regions: 售卖地域可用区集合
+        # @type Regions: Array
+
+        attr_accessor :Configs, :Regions
+        
+        def initialize(configs=nil, regions=nil)
+          @Configs = configs
+          @Regions = regions
+        end
+
+        def deserialize(params)
+          unless params['Configs'].nil?
+            @Configs = []
+            params['Configs'].each do |i|
+              cdbsellconfig_tmp = CdbSellConfig.new
+              cdbsellconfig_tmp.deserialize(i)
+              @Configs << cdbsellconfig_tmp
+            end
+          end
+          unless params['Regions'].nil?
+            @Regions = []
+            params['Regions'].each do |i|
+              cdbregionsellconf_tmp = CdbRegionSellConf.new
+              cdbregionsellconf_tmp.deserialize(i)
+              @Regions << cdbregionsellconf_tmp
+            end
+          end
+        end
+      end
+
+      # 可用区售卖配置
+      class CdbZoneSellConf < TencentCloud::Common::AbstractModel
+        # @param Status: 可用区状态。可能的返回值为：1-上线；3-停售；4-不展示
+        # @type Status: Integer
+        # @param ZoneName: 可用区中文名称
+        # @type ZoneName: String
+        # @param IsCustom: 实例类型是否为自定义类型
+        # @type IsCustom: Boolean
+        # @param IsSupportDr: 是否支持灾备
+        # @type IsSupportDr: Boolean
+        # @param IsSupportVpc: 是否支持私有网络
+        # @type IsSupportVpc: Boolean
+        # @param HourInstanceSaleMaxNum: 小时计费实例最大售卖数量
+        # @type HourInstanceSaleMaxNum: Integer
+        # @param IsDefaultZone: 是否为默认可用区
+        # @type IsDefaultZone: Boolean
+        # @param IsBm: 是否为黑石区
+        # @type IsBm: Boolean
+        # @param PayType: 支持的付费类型。可能的返回值为：0-包年包月；1-小时计费；2-后付费
+        # @type PayType: Array
+        # @param ProtectMode: 数据复制类型。0-异步复制；1-半同步复制；2-强同步复制
+        # @type ProtectMode: Array
+        # @param Zone: 可用区名称
+        # @type Zone: String
+        # @param ZoneConf: 多可用区信息
+        # @type ZoneConf: :class:`Tencentcloud::Cdb.v20170320.models.ZoneConf`
+        # @param DrZone: 可支持的灾备可用区信息
+        # @type DrZone: Array
+        # @param IsSupportRemoteRo: 是否支持跨可用区只读
+        # @type IsSupportRemoteRo: Boolean
+        # @param RemoteRoZone: 可支持的跨可用区只读区信息
+        # @type RemoteRoZone: Array
+        # @param ExClusterStatus: 独享型可用区状态。可能的返回值为：1-上线；3-停售；4-不展示
+        # @type ExClusterStatus: Integer
+        # @param ExClusterRemoteRoZone: 独享型可支持的跨可用区只读区信息
+        # @type ExClusterRemoteRoZone: Array
+        # @param ExClusterZoneConf: 独享型多可用区信息
+        # @type ExClusterZoneConf: :class:`Tencentcloud::Cdb.v20170320.models.ZoneConf`
+        # @param SellType: 售卖实例类型数组，其中configIds的值与configs结构体中的id一一对应。
+        # @type SellType: Array
+        # @param ZoneId: 可用区id
+        # @type ZoneId: Integer
+        # @param IsSupportIpv6: 是否支持ipv6
+        # @type IsSupportIpv6: Boolean
+        # @param EngineType: 可支持的售卖数据库引擎类型
+        # @type EngineType: Array
+
+        attr_accessor :Status, :ZoneName, :IsCustom, :IsSupportDr, :IsSupportVpc, :HourInstanceSaleMaxNum, :IsDefaultZone, :IsBm, :PayType, :ProtectMode, :Zone, :ZoneConf, :DrZone, :IsSupportRemoteRo, :RemoteRoZone, :ExClusterStatus, :ExClusterRemoteRoZone, :ExClusterZoneConf, :SellType, :ZoneId, :IsSupportIpv6, :EngineType
+        
+        def initialize(status=nil, zonename=nil, iscustom=nil, issupportdr=nil, issupportvpc=nil, hourinstancesalemaxnum=nil, isdefaultzone=nil, isbm=nil, paytype=nil, protectmode=nil, zone=nil, zoneconf=nil, drzone=nil, issupportremotero=nil, remoterozone=nil, exclusterstatus=nil, exclusterremoterozone=nil, exclusterzoneconf=nil, selltype=nil, zoneid=nil, issupportipv6=nil, enginetype=nil)
+          @Status = status
+          @ZoneName = zonename
+          @IsCustom = iscustom
+          @IsSupportDr = issupportdr
+          @IsSupportVpc = issupportvpc
+          @HourInstanceSaleMaxNum = hourinstancesalemaxnum
+          @IsDefaultZone = isdefaultzone
+          @IsBm = isbm
+          @PayType = paytype
+          @ProtectMode = protectmode
+          @Zone = zone
+          @ZoneConf = zoneconf
+          @DrZone = drzone
+          @IsSupportRemoteRo = issupportremotero
+          @RemoteRoZone = remoterozone
+          @ExClusterStatus = exclusterstatus
+          @ExClusterRemoteRoZone = exclusterremoterozone
+          @ExClusterZoneConf = exclusterzoneconf
+          @SellType = selltype
+          @ZoneId = zoneid
+          @IsSupportIpv6 = issupportipv6
+          @EngineType = enginetype
+        end
+
+        def deserialize(params)
+          @Status = params['Status']
+          @ZoneName = params['ZoneName']
+          @IsCustom = params['IsCustom']
+          @IsSupportDr = params['IsSupportDr']
+          @IsSupportVpc = params['IsSupportVpc']
+          @HourInstanceSaleMaxNum = params['HourInstanceSaleMaxNum']
+          @IsDefaultZone = params['IsDefaultZone']
+          @IsBm = params['IsBm']
+          @PayType = params['PayType']
+          @ProtectMode = params['ProtectMode']
+          @Zone = params['Zone']
+          unless params['ZoneConf'].nil?
+            @ZoneConf = ZoneConf.new
+            @ZoneConf.deserialize(params['ZoneConf'])
+          end
+          @DrZone = params['DrZone']
+          @IsSupportRemoteRo = params['IsSupportRemoteRo']
+          @RemoteRoZone = params['RemoteRoZone']
+          @ExClusterStatus = params['ExClusterStatus']
+          @ExClusterRemoteRoZone = params['ExClusterRemoteRoZone']
+          unless params['ExClusterZoneConf'].nil?
+            @ExClusterZoneConf = ZoneConf.new
+            @ExClusterZoneConf.deserialize(params['ExClusterZoneConf'])
+          end
+          unless params['SellType'].nil?
+            @SellType = []
+            params['SellType'].each do |i|
+              cdbselltype_tmp = CdbSellType.new
+              cdbselltype_tmp.deserialize(i)
+              @SellType << cdbselltype_tmp
+            end
+          end
+          @ZoneId = params['ZoneId']
+          @IsSupportIpv6 = params['IsSupportIpv6']
+          @EngineType = params['EngineType']
+        end
+      end
+
       # 克隆任务记录。
       class CloneItem < TencentCloud::Common::AbstractModel
         # @param SrcInstanceId: 克隆任务的源实例Id。
@@ -3578,6 +3845,40 @@ module TencentCloud
         end
       end
 
+      # DescribeCdbZoneConfig请求参数结构体
+      class DescribeCdbZoneConfigRequest < TencentCloud::Common::AbstractModel
+
+        
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeCdbZoneConfig返回参数结构体
+      class DescribeCdbZoneConfigResponse < TencentCloud::Common::AbstractModel
+        # @param DataResult: 售卖规格和地域信息集合
+        # @type DataResult: :class:`Tencentcloud::Cdb.v20170320.models.CdbZoneDataResult`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :DataResult, :RequestId
+        
+        def initialize(dataresult=nil, requestid=nil)
+          @DataResult = dataresult
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['DataResult'].nil?
+            @DataResult = CdbZoneDataResult.new
+            @DataResult.deserialize(params['DataResult'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeCloneList请求参数结构体
       class DescribeCloneListRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 查询指定源实例的克隆任务列表。
@@ -4142,10 +4443,12 @@ module TencentCloud
         # @type Cpu: Integer
         # @param InstanceId: 续费询价实例ID。如需查询实例续费价格，填写InstanceId和Period即可。
         # @type InstanceId: String
+        # @param Ladder: 按量计费阶梯。仅PayType=HOUR_PAID有效，支持值包括：1，2，3。阶梯时长见https://cloud.tencent.com/document/product/236/18335。
+        # @type Ladder: Integer
 
-        attr_accessor :Period, :Zone, :GoodsNum, :Memory, :Volume, :InstanceRole, :PayType, :ProtectMode, :DeviceType, :InstanceNodes, :Cpu, :InstanceId
+        attr_accessor :Period, :Zone, :GoodsNum, :Memory, :Volume, :InstanceRole, :PayType, :ProtectMode, :DeviceType, :InstanceNodes, :Cpu, :InstanceId, :Ladder
         
-        def initialize(period=nil, zone=nil, goodsnum=nil, memory=nil, volume=nil, instancerole=nil, paytype=nil, protectmode=nil, devicetype=nil, instancenodes=nil, cpu=nil, instanceid=nil)
+        def initialize(period=nil, zone=nil, goodsnum=nil, memory=nil, volume=nil, instancerole=nil, paytype=nil, protectmode=nil, devicetype=nil, instancenodes=nil, cpu=nil, instanceid=nil, ladder=nil)
           @Period = period
           @Zone = zone
           @GoodsNum = goodsnum
@@ -4158,6 +4461,7 @@ module TencentCloud
           @InstanceNodes = instancenodes
           @Cpu = cpu
           @InstanceId = instanceid
+          @Ladder = ladder
         end
 
         def deserialize(params)
@@ -4173,29 +4477,34 @@ module TencentCloud
           @InstanceNodes = params['InstanceNodes']
           @Cpu = params['Cpu']
           @InstanceId = params['InstanceId']
+          @Ladder = params['Ladder']
         end
       end
 
       # DescribeDBPrice返回参数结构体
       class DescribeDBPriceResponse < TencentCloud::Common::AbstractModel
-        # @param Price: 实例价格，单位：分（人民币）。
+        # @param Price: 实例价格，单位：分。
         # @type Price: Integer
-        # @param OriginalPrice: 实例原价，单位：分（人民币）。
+        # @param OriginalPrice: 实例原价，单位：分。
         # @type OriginalPrice: Integer
+        # @param Currency: 货币单位。CNY-人民币，USD-美元。
+        # @type Currency: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Price, :OriginalPrice, :RequestId
+        attr_accessor :Price, :OriginalPrice, :Currency, :RequestId
         
-        def initialize(price=nil, originalprice=nil, requestid=nil)
+        def initialize(price=nil, originalprice=nil, currency=nil, requestid=nil)
           @Price = price
           @OriginalPrice = originalprice
+          @Currency = currency
           @RequestId = requestid
         end
 
         def deserialize(params)
           @Price = params['Price']
           @OriginalPrice = params['OriginalPrice']
+          @Currency = params['Currency']
           @RequestId = params['RequestId']
         end
       end
@@ -6413,10 +6722,16 @@ module TencentCloud
         # @param TagList: 标签列表
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TagList: Array
+        # @param EngineType: 引擎类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EngineType: String
+        # @param MaxDelayTime: 最大延迟阈值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MaxDelayTime: Integer
 
-        attr_accessor :WanStatus, :Zone, :InitFlag, :RoVipInfo, :Memory, :Status, :VpcId, :SlaveInfo, :InstanceId, :Volume, :AutoRenew, :ProtectMode, :RoGroups, :SubnetId, :InstanceType, :ProjectId, :Region, :DeadlineTime, :DeployMode, :TaskStatus, :MasterInfo, :DeviceType, :EngineVersion, :InstanceName, :DrInfo, :WanDomain, :WanPort, :PayType, :CreateTime, :Vip, :Vport, :CdbError, :UniqVpcId, :UniqSubnetId, :PhysicalId, :Cpu, :Qps, :ZoneName, :DeviceClass, :DeployGroupId, :ZoneId, :InstanceNodes, :TagList
+        attr_accessor :WanStatus, :Zone, :InitFlag, :RoVipInfo, :Memory, :Status, :VpcId, :SlaveInfo, :InstanceId, :Volume, :AutoRenew, :ProtectMode, :RoGroups, :SubnetId, :InstanceType, :ProjectId, :Region, :DeadlineTime, :DeployMode, :TaskStatus, :MasterInfo, :DeviceType, :EngineVersion, :InstanceName, :DrInfo, :WanDomain, :WanPort, :PayType, :CreateTime, :Vip, :Vport, :CdbError, :UniqVpcId, :UniqSubnetId, :PhysicalId, :Cpu, :Qps, :ZoneName, :DeviceClass, :DeployGroupId, :ZoneId, :InstanceNodes, :TagList, :EngineType, :MaxDelayTime
         
-        def initialize(wanstatus=nil, zone=nil, initflag=nil, rovipinfo=nil, memory=nil, status=nil, vpcid=nil, slaveinfo=nil, instanceid=nil, volume=nil, autorenew=nil, protectmode=nil, rogroups=nil, subnetid=nil, instancetype=nil, projectid=nil, region=nil, deadlinetime=nil, deploymode=nil, taskstatus=nil, masterinfo=nil, devicetype=nil, engineversion=nil, instancename=nil, drinfo=nil, wandomain=nil, wanport=nil, paytype=nil, createtime=nil, vip=nil, vport=nil, cdberror=nil, uniqvpcid=nil, uniqsubnetid=nil, physicalid=nil, cpu=nil, qps=nil, zonename=nil, deviceclass=nil, deploygroupid=nil, zoneid=nil, instancenodes=nil, taglist=nil)
+        def initialize(wanstatus=nil, zone=nil, initflag=nil, rovipinfo=nil, memory=nil, status=nil, vpcid=nil, slaveinfo=nil, instanceid=nil, volume=nil, autorenew=nil, protectmode=nil, rogroups=nil, subnetid=nil, instancetype=nil, projectid=nil, region=nil, deadlinetime=nil, deploymode=nil, taskstatus=nil, masterinfo=nil, devicetype=nil, engineversion=nil, instancename=nil, drinfo=nil, wandomain=nil, wanport=nil, paytype=nil, createtime=nil, vip=nil, vport=nil, cdberror=nil, uniqvpcid=nil, uniqsubnetid=nil, physicalid=nil, cpu=nil, qps=nil, zonename=nil, deviceclass=nil, deploygroupid=nil, zoneid=nil, instancenodes=nil, taglist=nil, enginetype=nil, maxdelaytime=nil)
           @WanStatus = wanstatus
           @Zone = zone
           @InitFlag = initflag
@@ -6460,6 +6775,8 @@ module TencentCloud
           @ZoneId = zoneid
           @InstanceNodes = instancenodes
           @TagList = taglist
+          @EngineType = enginetype
+          @MaxDelayTime = maxdelaytime
         end
 
         def deserialize(params)
@@ -6536,6 +6853,8 @@ module TencentCloud
               @TagList << taginfoitem_tmp
             end
           end
+          @EngineType = params['EngineType']
+          @MaxDelayTime = params['MaxDelayTime']
         end
       end
 

@@ -742,10 +742,12 @@ module TencentCloud
         # @type ContentType: String
         # @param Content: x
         # @type Content: String
+        # @param MonitorEndTime: x
+        # @type MonitorEndTime: String
 
-        attr_accessor :WorkName, :WorkCategory, :WorkType, :WorkSign, :WorkPic, :WorkDesc, :IsOriginal, :IsRelease, :ProducerID, :ProduceTime, :SampleContentURL, :SampleDownloadURL, :GrantType, :SamplePublicURL, :IsMonitor, :IsCert, :CertUrl, :MonitorUrl, :ProduceType, :WhiteLists, :WorkId, :ProducerName, :Nickname, :Authorization, :AuthorizationStartTime, :AuthorizationEndTime, :ContentType, :Content
+        attr_accessor :WorkName, :WorkCategory, :WorkType, :WorkSign, :WorkPic, :WorkDesc, :IsOriginal, :IsRelease, :ProducerID, :ProduceTime, :SampleContentURL, :SampleDownloadURL, :GrantType, :SamplePublicURL, :IsMonitor, :IsCert, :CertUrl, :MonitorUrl, :ProduceType, :WhiteLists, :WorkId, :ProducerName, :Nickname, :Authorization, :AuthorizationStartTime, :AuthorizationEndTime, :ContentType, :Content, :MonitorEndTime
         
-        def initialize(workname=nil, workcategory=nil, worktype=nil, worksign=nil, workpic=nil, workdesc=nil, isoriginal=nil, isrelease=nil, producerid=nil, producetime=nil, samplecontenturl=nil, sampledownloadurl=nil, granttype=nil, samplepublicurl=nil, ismonitor=nil, iscert=nil, certurl=nil, monitorurl=nil, producetype=nil, whitelists=nil, workid=nil, producername=nil, nickname=nil, authorization=nil, authorizationstarttime=nil, authorizationendtime=nil, contenttype=nil, content=nil)
+        def initialize(workname=nil, workcategory=nil, worktype=nil, worksign=nil, workpic=nil, workdesc=nil, isoriginal=nil, isrelease=nil, producerid=nil, producetime=nil, samplecontenturl=nil, sampledownloadurl=nil, granttype=nil, samplepublicurl=nil, ismonitor=nil, iscert=nil, certurl=nil, monitorurl=nil, producetype=nil, whitelists=nil, workid=nil, producername=nil, nickname=nil, authorization=nil, authorizationstarttime=nil, authorizationendtime=nil, contenttype=nil, content=nil, monitorendtime=nil)
           @WorkName = workname
           @WorkCategory = workcategory
           @WorkType = worktype
@@ -774,6 +776,7 @@ module TencentCloud
           @AuthorizationEndTime = authorizationendtime
           @ContentType = contenttype
           @Content = content
+          @MonitorEndTime = monitorendtime
         end
 
         def deserialize(params)
@@ -805,6 +808,7 @@ module TencentCloud
           @AuthorizationEndTime = params['AuthorizationEndTime']
           @ContentType = params['ContentType']
           @Content = params['Content']
+          @MonitorEndTime = params['MonitorEndTime']
         end
       end
 

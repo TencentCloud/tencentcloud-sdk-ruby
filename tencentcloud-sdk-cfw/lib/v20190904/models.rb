@@ -4011,10 +4011,19 @@ module TencentCloud
         # @param Status: 0 :正常 1：正在初始化
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: Integer
+        # @param RegionDetail: 地域区域信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RegionDetail: String
+        # @param ZoneZh: 实例所在可用区
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ZoneZh: String
+        # @param ZoneZhBak: 实例所在可用区
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ZoneZhBak: String
 
-        attr_accessor :NatinsId, :NatinsName, :Region, :FwMode, :BandWidth, :InFlowMax, :OutFlowMax, :RegionZh, :EipAddress, :VpcIp, :Subnets, :Status
+        attr_accessor :NatinsId, :NatinsName, :Region, :FwMode, :BandWidth, :InFlowMax, :OutFlowMax, :RegionZh, :EipAddress, :VpcIp, :Subnets, :Status, :RegionDetail, :ZoneZh, :ZoneZhBak
         
-        def initialize(natinsid=nil, natinsname=nil, region=nil, fwmode=nil, bandwidth=nil, inflowmax=nil, outflowmax=nil, regionzh=nil, eipaddress=nil, vpcip=nil, subnets=nil, status=nil)
+        def initialize(natinsid=nil, natinsname=nil, region=nil, fwmode=nil, bandwidth=nil, inflowmax=nil, outflowmax=nil, regionzh=nil, eipaddress=nil, vpcip=nil, subnets=nil, status=nil, regiondetail=nil, zonezh=nil, zonezhbak=nil)
           @NatinsId = natinsid
           @NatinsName = natinsname
           @Region = region
@@ -4027,6 +4036,9 @@ module TencentCloud
           @VpcIp = vpcip
           @Subnets = subnets
           @Status = status
+          @RegionDetail = regiondetail
+          @ZoneZh = zonezh
+          @ZoneZhBak = zonezhbak
         end
 
         def deserialize(params)
@@ -4042,6 +4054,9 @@ module TencentCloud
           @VpcIp = params['VpcIp']
           @Subnets = params['Subnets']
           @Status = params['Status']
+          @RegionDetail = params['RegionDetail']
+          @ZoneZh = params['ZoneZh']
+          @ZoneZhBak = params['ZoneZhBak']
         end
       end
 

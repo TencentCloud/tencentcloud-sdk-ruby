@@ -1256,16 +1256,22 @@ module TencentCloud
         # @type Offset: Integer
         # @param Operator: 操作者的信息
         # @type Operator: :class:`Tencentcloud::Essbasic.v20210526.models.UserInfo`
+        # @param QueryAllComponents: 是否返回所有组件信息
+        # @type QueryAllComponents: Boolean
+        # @param TemplateName: 模糊搜索模版名称
+        # @type TemplateName: String
 
-        attr_accessor :Agent, :TemplateId, :ContentType, :Limit, :Offset, :Operator
+        attr_accessor :Agent, :TemplateId, :ContentType, :Limit, :Offset, :Operator, :QueryAllComponents, :TemplateName
         
-        def initialize(agent=nil, templateid=nil, contenttype=nil, limit=nil, offset=nil, operator=nil)
+        def initialize(agent=nil, templateid=nil, contenttype=nil, limit=nil, offset=nil, operator=nil, queryallcomponents=nil, templatename=nil)
           @Agent = agent
           @TemplateId = templateid
           @ContentType = contenttype
           @Limit = limit
           @Offset = offset
           @Operator = operator
+          @QueryAllComponents = queryallcomponents
+          @TemplateName = templatename
         end
 
         def deserialize(params)
@@ -1281,6 +1287,8 @@ module TencentCloud
             @Operator = UserInfo.new
             @Operator.deserialize(params['Operator'])
           end
+          @QueryAllComponents = params['QueryAllComponents']
+          @TemplateName = params['TemplateName']
         end
       end
 

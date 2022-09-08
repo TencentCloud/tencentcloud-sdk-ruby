@@ -1464,10 +1464,13 @@ module TencentCloud
         # @param ImageTag: 镜像的tag
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ImageTag: String
+        # @param VerifyInfo: 检查项验证信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VerifyInfo: String
 
-        attr_accessor :CustomerAssetId, :AssetName, :AssetType, :CheckStatus, :NodeName, :LastCheckTime, :CheckResult, :HostIP, :ImageTag
+        attr_accessor :CustomerAssetId, :AssetName, :AssetType, :CheckStatus, :NodeName, :LastCheckTime, :CheckResult, :HostIP, :ImageTag, :VerifyInfo
         
-        def initialize(customerassetid=nil, assetname=nil, assettype=nil, checkstatus=nil, nodename=nil, lastchecktime=nil, checkresult=nil, hostip=nil, imagetag=nil)
+        def initialize(customerassetid=nil, assetname=nil, assettype=nil, checkstatus=nil, nodename=nil, lastchecktime=nil, checkresult=nil, hostip=nil, imagetag=nil, verifyinfo=nil)
           @CustomerAssetId = customerassetid
           @AssetName = assetname
           @AssetType = assettype
@@ -1477,6 +1480,7 @@ module TencentCloud
           @CheckResult = checkresult
           @HostIP = hostip
           @ImageTag = imagetag
+          @VerifyInfo = verifyinfo
         end
 
         def deserialize(params)
@@ -1489,6 +1493,7 @@ module TencentCloud
           @CheckResult = params['CheckResult']
           @HostIP = params['HostIP']
           @ImageTag = params['ImageTag']
+          @VerifyInfo = params['VerifyInfo']
         end
       end
 
@@ -1674,10 +1679,13 @@ module TencentCloud
         # @param LastCheckTime: 最近检测的时间。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LastCheckTime: String
+        # @param VerifyInfo: 验证信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VerifyInfo: String
 
-        attr_accessor :CustomerPolicyItemId, :BasePolicyItemId, :Name, :Category, :BenchmarkStandardId, :BenchmarkStandardName, :RiskLevel, :CheckStatus, :CheckResult, :WhitelistId, :FixSuggestion, :LastCheckTime
+        attr_accessor :CustomerPolicyItemId, :BasePolicyItemId, :Name, :Category, :BenchmarkStandardId, :BenchmarkStandardName, :RiskLevel, :CheckStatus, :CheckResult, :WhitelistId, :FixSuggestion, :LastCheckTime, :VerifyInfo
         
-        def initialize(customerpolicyitemid=nil, basepolicyitemid=nil, name=nil, category=nil, benchmarkstandardid=nil, benchmarkstandardname=nil, risklevel=nil, checkstatus=nil, checkresult=nil, whitelistid=nil, fixsuggestion=nil, lastchecktime=nil)
+        def initialize(customerpolicyitemid=nil, basepolicyitemid=nil, name=nil, category=nil, benchmarkstandardid=nil, benchmarkstandardname=nil, risklevel=nil, checkstatus=nil, checkresult=nil, whitelistid=nil, fixsuggestion=nil, lastchecktime=nil, verifyinfo=nil)
           @CustomerPolicyItemId = customerpolicyitemid
           @BasePolicyItemId = basepolicyitemid
           @Name = name
@@ -1690,6 +1698,7 @@ module TencentCloud
           @WhitelistId = whitelistid
           @FixSuggestion = fixsuggestion
           @LastCheckTime = lastchecktime
+          @VerifyInfo = verifyinfo
         end
 
         def deserialize(params)
@@ -1705,6 +1714,7 @@ module TencentCloud
           @WhitelistId = params['WhitelistId']
           @FixSuggestion = params['FixSuggestion']
           @LastCheckTime = params['LastCheckTime']
+          @VerifyInfo = params['VerifyInfo']
         end
       end
 

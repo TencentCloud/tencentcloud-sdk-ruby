@@ -29,6 +29,34 @@ module TencentCloud
         end
 
 
+        # 本接口（ApplyDiskBackup）用于回滚备份点到原云硬盘。
+
+        # * 仅支持回滚到原云硬盘上。对于数据盘备份点，如果您需要复制备份点数据到其它云硬盘上，请先使用 CreateSnapshot 将备份点转换为快照，然后使用 CreateDisks 接口创建新的弹性云硬盘，将快照数据复制到新购云硬盘上。
+        # * 用于回滚的备份点必须处于NORMAL状态。备份点状态可以通过DescribeDiskBackups接口查询，见输出参数中BackupState字段解释。
+        # * 如果是弹性云硬盘，则云硬盘必须处于未挂载状态，云硬盘挂载状态可以通过DescribeDisks接口查询，见Attached字段解释；如果是随实例一起购买的非弹性云硬盘，则实例必须处于关机状态，实例状态可以通过DescribeInstancesStatus接口查询。
+
+        # @param request: Request instance for ApplyDiskBackup.
+        # @type request: :class:`Tencentcloud::cbs::V20170312::ApplyDiskBackupRequest`
+        # @rtype: :class:`Tencentcloud::cbs::V20170312::ApplyDiskBackupResponse`
+        def ApplyDiskBackup(request)
+          body = send_request('ApplyDiskBackup', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ApplyDiskBackupResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（ApplySnapshot）用于回滚快照到原云硬盘。
 
         # * 仅支持回滚到原云硬盘上。对于数据盘快照，如果您需要复制快照数据到其它云硬盘上，请使用[CreateDisks](/document/product/362/16312)接口创建新的弹性云盘，将快照数据复制到新购云盘上。
@@ -247,6 +275,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 批量删除指定的云硬盘备份点。
+
+        # @param request: Request instance for DeleteDiskBackups.
+        # @type request: :class:`Tencentcloud::cbs::V20170312::DeleteDiskBackupsRequest`
+        # @rtype: :class:`Tencentcloud::cbs::V20170312::DeleteDiskBackupsResponse`
+        def DeleteDiskBackups(request)
+          body = send_request('DeleteDiskBackups', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteDiskBackupsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（DeleteSnapshots）用于删除快照。
 
         # * 快照必须处于NORMAL状态，快照状态可以通过[DescribeSnapshots](/document/product/362/15647)接口查询，见输出参数中SnapshotState字段解释。
@@ -311,6 +363,33 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeDiskAssociatedAutoSnapshotPolicyResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口（DescribeDiskBackups）用于查询备份点的详细信息。
+
+        # 根据备份点ID、创建备份点的云硬盘ID、创建备份点的云硬盘类型等对结果进行过滤，不同条件之间为与(AND)的关系，过滤信息详细请见过滤器Filter。
+        # 如果参数为空，返回当前用户一定数量（Limit所指定的数量，默认为20）的备份点列表。
+
+        # @param request: Request instance for DescribeDiskBackups.
+        # @type request: :class:`Tencentcloud::cbs::V20170312::DescribeDiskBackupsRequest`
+        # @rtype: :class:`Tencentcloud::cbs::V20170312::DescribeDiskBackupsResponse`
+        def DescribeDiskBackups(request)
+          body = send_request('DescribeDiskBackups', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeDiskBackupsResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -609,6 +688,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口（InquirePricePriceModifyDiskBackupQuota）用于修改云硬盘备份点配额询价。
+
+        # @param request: Request instance for InquirePriceModifyDiskBackupQuota.
+        # @type request: :class:`Tencentcloud::cbs::V20170312::InquirePriceModifyDiskBackupQuotaRequest`
+        # @rtype: :class:`Tencentcloud::cbs::V20170312::InquirePriceModifyDiskBackupQuotaResponse`
+        def InquirePriceModifyDiskBackupQuota(request)
+          body = send_request('InquirePriceModifyDiskBackupQuota', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = InquirePriceModifyDiskBackupQuotaResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（InquirePriceModifyDiskExtraPerformance）用于调整云硬盘额外性能询价。
 
         # @param request: Request instance for InquirePriceModifyDiskExtraPerformance.
@@ -752,6 +855,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyDiskAttributesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 此接口 (ModifyDiskBackupQuota) 用于修改云硬盘备份点配额。
+
+        # @param request: Request instance for ModifyDiskBackupQuota.
+        # @type request: :class:`Tencentcloud::cbs::V20170312::ModifyDiskBackupQuotaRequest`
+        # @rtype: :class:`Tencentcloud::cbs::V20170312::ModifyDiskBackupQuotaResponse`
+        def ModifyDiskBackupQuota(request)
+          body = send_request('ModifyDiskBackupQuota', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyDiskBackupQuotaResponse.new
             model.deserialize(response['Response'])
             model
           else

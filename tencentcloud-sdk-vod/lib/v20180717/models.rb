@@ -17942,6 +17942,62 @@ module TencentCloud
         end
       end
 
+      # ReviewAudioVideo请求参数结构体
+      class ReviewAudioVideoRequest < TencentCloud::Common::AbstractModel
+        # @param FileId: 媒体文件 ID，即该文件在云点播上的全局唯一标识符，在上传成功后由云点播后台分配。可以在 [视频上传完成事件通知](/document/product/266/7830) 或 [云点播控制台](https://console.cloud.tencent.com/vod/media) 获取该字段。
+        # @type FileId: String
+        # @param SubAppId: <b>点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。</b>
+        # @type SubAppId: Integer
+        # @param TasksPriority: 任务流的优先级，数值越大优先级越高，取值范围是 -10 到 10，不填代表 0。
+        # @type TasksPriority: Integer
+        # @param SessionContext: 来源上下文，用于透传用户请求信息，任务流状态变更回调将返回该字段值，最长 1000 个字符。
+        # @type SessionContext: String
+        # @param SessionId: 用于去重的识别码，如果三天内曾有过相同的识别码的请求，则本次的请求会返回错误。最长 50 个字符，不带或者带空字符串表示不做去重。
+        # @type SessionId: String
+        # @param ExtInfo: 保留字段，特殊用途时使用。
+        # @type ExtInfo: String
+
+        attr_accessor :FileId, :SubAppId, :TasksPriority, :SessionContext, :SessionId, :ExtInfo
+        
+        def initialize(fileid=nil, subappid=nil, taskspriority=nil, sessioncontext=nil, sessionid=nil, extinfo=nil)
+          @FileId = fileid
+          @SubAppId = subappid
+          @TasksPriority = taskspriority
+          @SessionContext = sessioncontext
+          @SessionId = sessionid
+          @ExtInfo = extinfo
+        end
+
+        def deserialize(params)
+          @FileId = params['FileId']
+          @SubAppId = params['SubAppId']
+          @TasksPriority = params['TasksPriority']
+          @SessionContext = params['SessionContext']
+          @SessionId = params['SessionId']
+          @ExtInfo = params['ExtInfo']
+        end
+      end
+
+      # ReviewAudioVideo返回参数结构体
+      class ReviewAudioVideoResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: 任务 ID
+        # @type TaskId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :RequestId
+        
+        def initialize(taskid=nil, requestid=nil)
+          @TaskId = taskid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 音视频审核片段。
       class ReviewAudioVideoSegmentItem < TencentCloud::Common::AbstractModel
         # @param StartTimeOffset: 嫌疑片段起始的偏移时间，单位：秒。
@@ -18038,6 +18094,9 @@ module TencentCloud
         # @type ErrCodeExt: String
         # @param Message: 错误信息。
         # @type Message: String
+        # @param Input: 音视频审核任务的输入。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Input: :class:`Tencentcloud::Vod.v20180717.models.ReviewAudioVideoTaskInput`
         # @param Output: 音视频审核任务的输出。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Output: :class:`Tencentcloud::Vod.v20180717.models.ReviewAudioVideoTaskOutput`
@@ -18046,13 +18105,14 @@ module TencentCloud
         # @param SessionContext: 来源上下文，用于透传用户请求信息，任务流状态变更回调将返回该字段值，最长 1000 个字符。
         # @type SessionContext: String
 
-        attr_accessor :TaskId, :Status, :ErrCodeExt, :Message, :Output, :SessionId, :SessionContext
+        attr_accessor :TaskId, :Status, :ErrCodeExt, :Message, :Input, :Output, :SessionId, :SessionContext
         
-        def initialize(taskid=nil, status=nil, errcodeext=nil, message=nil, output=nil, sessionid=nil, sessioncontext=nil)
+        def initialize(taskid=nil, status=nil, errcodeext=nil, message=nil, input=nil, output=nil, sessionid=nil, sessioncontext=nil)
           @TaskId = taskid
           @Status = status
           @ErrCodeExt = errcodeext
           @Message = message
+          @Input = input
           @Output = output
           @SessionId = sessionid
           @SessionContext = sessioncontext
@@ -18063,12 +18123,32 @@ module TencentCloud
           @Status = params['Status']
           @ErrCodeExt = params['ErrCodeExt']
           @Message = params['Message']
+          unless params['Input'].nil?
+            @Input = ReviewAudioVideoTaskInput.new
+            @Input.deserialize(params['Input'])
+          end
           unless params['Output'].nil?
             @Output = ReviewAudioVideoTaskOutput.new
             @Output.deserialize(params['Output'])
           end
           @SessionId = params['SessionId']
           @SessionContext = params['SessionContext']
+        end
+      end
+
+      # 音视频审核任务的输入。
+      class ReviewAudioVideoTaskInput < TencentCloud::Common::AbstractModel
+        # @param FileId: 媒体文件 ID。
+        # @type FileId: String
+
+        attr_accessor :FileId
+        
+        def initialize(fileid=nil)
+          @FileId = fileid
+        end
+
+        def deserialize(params)
+          @FileId = params['FileId']
         end
       end
 
