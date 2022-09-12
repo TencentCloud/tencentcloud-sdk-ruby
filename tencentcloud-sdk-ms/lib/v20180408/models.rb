@@ -742,6 +742,61 @@ module TencentCloud
         end
       end
 
+      # DescribeApkDetectionResult请求参数结构体
+      class DescribeApkDetectionResultRequest < TencentCloud::Common::AbstractModel
+        # @param ApkUrl: 软件包的下载链接
+        # @type ApkUrl: String
+        # @param ApkMd5: 软件包的md5值，具有唯一性。腾讯APK云检测服务会根据md5值来判断该包是否为库中已收集的样本，已存在，则返回检测结果，反之，需要一定时间检测该样本。
+        # @type ApkMd5: String
+
+        attr_accessor :ApkUrl, :ApkMd5
+        
+        def initialize(apkurl=nil, apkmd5=nil)
+          @ApkUrl = apkurl
+          @ApkMd5 = apkmd5
+        end
+
+        def deserialize(params)
+          @ApkUrl = params['ApkUrl']
+          @ApkMd5 = params['ApkMd5']
+        end
+      end
+
+      # DescribeApkDetectionResult返回参数结构体
+      class DescribeApkDetectionResultResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 响应结果，ok表示正常，error表示错误
+        # @type Result: String
+        # @param Reason: Result为error错误时的原因说明
+        # @type Reason: String
+        # @param ResultList: APK检测结果数组
+        # @type ResultList: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :Reason, :ResultList, :RequestId
+        
+        def initialize(result=nil, reason=nil, resultlist=nil, requestid=nil)
+          @Result = result
+          @Reason = reason
+          @ResultList = resultlist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Result = params['Result']
+          @Reason = params['Reason']
+          unless params['ResultList'].nil?
+            @ResultList = []
+            params['ResultList'].each do |i|
+              resultlistitem_tmp = ResultListItem.new
+              resultlistitem_tmp.deserialize(i)
+              @ResultList << resultlistitem_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeResourceInstances请求参数结构体
       class DescribeResourceInstancesRequest < TencentCloud::Common::AbstractModel
         # @param Filters: 支持CreateTime、ExpireTime、AppName、AppPkgName、BindValue、IsBind过滤
@@ -1273,6 +1328,30 @@ module TencentCloud
         end
       end
 
+      # APK检测服务：非广告插件结果列表(SDK、风险插件等)
+      class OptPluginListItem < TencentCloud::Common::AbstractModel
+        # @param PluginType: 非广告类型
+        # @type PluginType: String
+        # @param PluginName: 非广告插件名称
+        # @type PluginName: String
+        # @param PluginDesc: 非广告插件描述
+        # @type PluginDesc: String
+
+        attr_accessor :PluginType, :PluginName, :PluginDesc
+        
+        def initialize(plugintype=nil, pluginname=nil, plugindesc=nil)
+          @PluginType = plugintype
+          @PluginName = pluginname
+          @PluginDesc = plugindesc
+        end
+
+        def deserialize(params)
+          @PluginType = params['PluginType']
+          @PluginName = params['PluginName']
+          @PluginDesc = params['PluginDesc']
+        end
+      end
+
       # 加固策略具体信息
       class PlanDetailInfo < TencentCloud::Common::AbstractModel
         # @param IsDefault: 默认策略，1为默认，0为非默认
@@ -1407,6 +1486,30 @@ module TencentCloud
         end
       end
 
+      # APK检测服务：广告插件结果结构体
+      class PluginListItem < TencentCloud::Common::AbstractModel
+        # @param PluginType: 数字类型，分别为 1-通知栏广告，2-积分墙广告，3-banner广告，4- 悬浮窗图标广告，5-精品推荐列表广告, 6-插播广告
+        # @type PluginType: String
+        # @param PluginName: 广告插件名称
+        # @type PluginName: String
+        # @param PluginDesc: 广告插件描述
+        # @type PluginDesc: String
+
+        attr_accessor :PluginType, :PluginName, :PluginDesc
+        
+        def initialize(plugintype=nil, pluginname=nil, plugindesc=nil)
+          @PluginType = plugintype
+          @PluginName = pluginname
+          @PluginDesc = plugindesc
+        end
+
+        def deserialize(params)
+          @PluginType = params['PluginType']
+          @PluginName = params['PluginName']
+          @PluginDesc = params['PluginDesc']
+        end
+      end
+
       # 拉取某个用户的所有资源信息
       class ResourceInfo < TencentCloud::Common::AbstractModel
         # @param ResourceId: 用户购买的资源id，全局唯一
@@ -1471,6 +1574,126 @@ module TencentCloud
           @CreateTime = params['CreateTime']
           @ExpireTime = params['ExpireTime']
           @ResourceName = params['ResourceName']
+        end
+      end
+
+      # APK检测服务参数返回具体信息
+      class ResultListItem < TencentCloud::Common::AbstractModel
+        # @param Banner: banner广告软件标记，分别为-1-不确定，0-否，1-是
+        # @type Banner: String
+        # @param BoutiqueRecommand: 精品推荐列表广告标记，分别为-1-不确定，0-否，1-是
+        # @type BoutiqueRecommand: String
+        # @param FloatWindows: 悬浮窗图标广告标记,分别为-1-不确定，0-否，1-是
+        # @type FloatWindows: String
+        # @param IntegralWall: 积分墙广告软件标记，分别为 -1 -不确定，0-否，1-是
+        # @type IntegralWall: String
+        # @param Md5: 安装包的md5
+        # @type Md5: String
+        # @param NotifyBar: 通知栏广告软件标记，分别为-1-不确定，0-否，1-是
+        # @type NotifyBar: String
+        # @param Official: 1表示官方，0表示非官方
+        # @type Official: String
+        # @param PluginList: 广告插件结果列表
+        # @type PluginList: Array
+        # @param OptPluginList: 非广告插件结果列表(SDK、风险插件等)
+        # @type OptPluginList: Array
+        # @param SafeType: 数字类型，分别为0-未知， 1-安全软件，2-风险软件，3-病毒软件
+        # @type SafeType: String
+        # @param Sid: Session id，合作方可以用来区分回调数据，需要唯一。
+        # @type Sid: String
+        # @param SoftName: 安装包名称
+        # @type SoftName: String
+        # @param Spot: 插播广告软件标记，取值：-1 不确定，0否， 1 是
+        # @type Spot: String
+        # @param VirusName: 病毒名称，utf8编码
+        # @type VirusName: String
+        # @param VirusDesc: 病毒描述，utf8编码
+        # @type VirusDesc: String
+        # @param RepackageStatus: 二次打包状态：0-表示默认；1-表示二次
+        # @type RepackageStatus: String
+        # @param Errno: 应用错误码：0、1-表示正常；
+
+        # 2表示System Error(engine analysis error).
+
+        # 3表示App analysis error, please confirm it.
+
+        # 4表示App have not cert, please confirm it.
+
+        # 5表示App size is zero, please confirm it.
+
+        # 6表示App have not package name, please confirm it.
+
+        # 7表示App build time is empty, please confirm it.
+
+        # 8表示App have not valid cert, please confirm it.
+
+        # 99表示Other error.
+
+        # 1000表示App downloadlink download fail, please confirm it.
+
+        # 1001表示APP md5 different between real md5, please confirm it.
+
+        # 1002表示App md5 uncollect, please offer downloadlink.
+        # @type Errno: String
+        # @param ErrMsg: 对应errno的错误信息描述
+        # @type ErrMsg: String
+
+        attr_accessor :Banner, :BoutiqueRecommand, :FloatWindows, :IntegralWall, :Md5, :NotifyBar, :Official, :PluginList, :OptPluginList, :SafeType, :Sid, :SoftName, :Spot, :VirusName, :VirusDesc, :RepackageStatus, :Errno, :ErrMsg
+        
+        def initialize(banner=nil, boutiquerecommand=nil, floatwindows=nil, integralwall=nil, md5=nil, notifybar=nil, official=nil, pluginlist=nil, optpluginlist=nil, safetype=nil, sid=nil, softname=nil, spot=nil, virusname=nil, virusdesc=nil, repackagestatus=nil, errno=nil, errmsg=nil)
+          @Banner = banner
+          @BoutiqueRecommand = boutiquerecommand
+          @FloatWindows = floatwindows
+          @IntegralWall = integralwall
+          @Md5 = md5
+          @NotifyBar = notifybar
+          @Official = official
+          @PluginList = pluginlist
+          @OptPluginList = optpluginlist
+          @SafeType = safetype
+          @Sid = sid
+          @SoftName = softname
+          @Spot = spot
+          @VirusName = virusname
+          @VirusDesc = virusdesc
+          @RepackageStatus = repackagestatus
+          @Errno = errno
+          @ErrMsg = errmsg
+        end
+
+        def deserialize(params)
+          @Banner = params['Banner']
+          @BoutiqueRecommand = params['BoutiqueRecommand']
+          @FloatWindows = params['FloatWindows']
+          @IntegralWall = params['IntegralWall']
+          @Md5 = params['Md5']
+          @NotifyBar = params['NotifyBar']
+          @Official = params['Official']
+          unless params['PluginList'].nil?
+            @PluginList = []
+            params['PluginList'].each do |i|
+              pluginlistitem_tmp = PluginListItem.new
+              pluginlistitem_tmp.deserialize(i)
+              @PluginList << pluginlistitem_tmp
+            end
+          end
+          unless params['OptPluginList'].nil?
+            @OptPluginList = []
+            params['OptPluginList'].each do |i|
+              optpluginlistitem_tmp = OptPluginListItem.new
+              optpluginlistitem_tmp.deserialize(i)
+              @OptPluginList << optpluginlistitem_tmp
+            end
+          end
+          @SafeType = params['SafeType']
+          @Sid = params['Sid']
+          @SoftName = params['SoftName']
+          @Spot = params['Spot']
+          @VirusName = params['VirusName']
+          @VirusDesc = params['VirusDesc']
+          @RepackageStatus = params['RepackageStatus']
+          @Errno = params['Errno']
+          @ErrMsg = params['ErrMsg']
         end
       end
 

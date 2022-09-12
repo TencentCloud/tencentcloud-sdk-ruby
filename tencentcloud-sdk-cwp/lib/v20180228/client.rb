@@ -149,6 +149,33 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # CreateLicenseOrder 该接口可以创建专业版/旗舰版订单
+        # 支持预付费后付费创建
+        # 后付费订单直接闯将成功
+        # 预付费订单仅下单不支付,需要调用计费支付接口进行支付
+
+        # @param request: Request instance for CreateLicenseOrder.
+        # @type request: :class:`Tencentcloud::cwp::V20180228::CreateLicenseOrderRequest`
+        # @rtype: :class:`Tencentcloud::cwp::V20180228::CreateLicenseOrderResponse`
+        def CreateLicenseOrder(request)
+          body = send_request('CreateLicenseOrder', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateLicenseOrderResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 添加网站防护服务器
 
         # @param request: Request instance for CreateProtectServer.
@@ -351,6 +378,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteBruteAttacksResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 对授权管理-订单列表内已过期的订单进行删除.(删除后的订单不在统计范畴内)
+
+        # @param request: Request instance for DeleteLicenseRecord.
+        # @type request: :class:`Tencentcloud::cwp::V20180228::DeleteLicenseRecordRequest`
+        # @rtype: :class:`Tencentcloud::cwp::V20180228::DeleteLicenseRecordResponse`
+        def DeleteLicenseRecord(request)
+          body = send_request('DeleteLicenseRecord', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteLicenseRecordResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -2333,6 +2384,102 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 该接口可以获取设置中心-授权管理,某个授权下已绑定的授权机器列表
+
+        # @param request: Request instance for DescribeLicenseBindList.
+        # @type request: :class:`Tencentcloud::cwp::V20180228::DescribeLicenseBindListRequest`
+        # @rtype: :class:`Tencentcloud::cwp::V20180228::DescribeLicenseBindListResponse`
+        def DescribeLicenseBindList(request)
+          body = send_request('DescribeLicenseBindList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeLicenseBindListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询授权绑定任务的进度
+
+        # @param request: Request instance for DescribeLicenseBindSchedule.
+        # @type request: :class:`Tencentcloud::cwp::V20180228::DescribeLicenseBindScheduleRequest`
+        # @rtype: :class:`Tencentcloud::cwp::V20180228::DescribeLicenseBindScheduleResponse`
+        def DescribeLicenseBindSchedule(request)
+          body = send_request('DescribeLicenseBindSchedule', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeLicenseBindScheduleResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 授权管理-授权概览信息
+
+        # @param request: Request instance for DescribeLicenseGeneral.
+        # @type request: :class:`Tencentcloud::cwp::V20180228::DescribeLicenseGeneralRequest`
+        # @rtype: :class:`Tencentcloud::cwp::V20180228::DescribeLicenseGeneralResponse`
+        def DescribeLicenseGeneral(request)
+          body = send_request('DescribeLicenseGeneral', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeLicenseGeneralResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取用户所有授权订单信息
+
+        # @param request: Request instance for DescribeLicenseList.
+        # @type request: :class:`Tencentcloud::cwp::V20180228::DescribeLicenseListRequest`
+        # @rtype: :class:`Tencentcloud::cwp::V20180228::DescribeLicenseListResponse`
+        def DescribeLicenseList(request)
+          body = send_request('DescribeLicenseList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeLicenseListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 获取日志检索容量使用统计
 
         # @param request: Request instance for DescribeLogStorageStatistic.
@@ -3845,6 +3992,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # DestroyOrder  该接口可以对资源销毁.
+
+        # @param request: Request instance for DestroyOrder.
+        # @type request: :class:`Tencentcloud::cwp::V20180228::DestroyOrderRequest`
+        # @rtype: :class:`Tencentcloud::cwp::V20180228::DestroyOrderResponse`
+        def DestroyOrder(request)
+          body = send_request('DestroyOrder', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DestroyOrderResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 新增或修改高危命令规则
 
         # @param request: Request instance for EditBashRules.
@@ -4095,6 +4266,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ExportIgnoreRuleEffectHostListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 导出授权列表对应的绑定信息
+
+        # @param request: Request instance for ExportLicenseDetail.
+        # @type request: :class:`Tencentcloud::cwp::V20180228::ExportLicenseDetailRequest`
+        # @rtype: :class:`Tencentcloud::cwp::V20180228::ExportLicenseDetailResponse`
+        def ExportLicenseDetail(request)
+          body = send_request('ExportLicenseDetail', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ExportLicenseDetailResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -4565,6 +4760,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 设置中心-授权管理 对某个授权批量绑定机器
+
+        # @param request: Request instance for ModifyLicenseBinds.
+        # @type request: :class:`Tencentcloud::cwp::V20180228::ModifyLicenseBindsRequest`
+        # @rtype: :class:`Tencentcloud::cwp::V20180228::ModifyLicenseBindsResponse`
+        def ModifyLicenseBinds(request)
+          body = send_request('ModifyLicenseBinds', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyLicenseBindsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 设置中心-授权管理 对某个授权批量解绑机器
+
+        # @param request: Request instance for ModifyLicenseUnBinds.
+        # @type request: :class:`Tencentcloud::cwp::V20180228::ModifyLicenseUnBindsRequest`
+        # @rtype: :class:`Tencentcloud::cwp::V20180228::ModifyLicenseUnBindsResponse`
+        def ModifyLicenseUnBinds(request)
+          body = send_request('ModifyLicenseUnBinds', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyLicenseUnBindsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 定时扫描设置
 
         # @param request: Request instance for ModifyMalwareTimingScanSettings.
@@ -4575,6 +4818,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyMalwareTimingScanSettingsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 对订单属性编辑
+
+        # @param request: Request instance for ModifyOrderAttribute.
+        # @type request: :class:`Tencentcloud::cwp::V20180228::ModifyOrderAttributeRequest`
+        # @rtype: :class:`Tencentcloud::cwp::V20180228::ModifyOrderAttributeResponse`
+        def ModifyOrderAttribute(request)
+          body = send_request('ModifyOrderAttribute', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyOrderAttributeResponse.new
             model.deserialize(response['Response'])
             model
           else

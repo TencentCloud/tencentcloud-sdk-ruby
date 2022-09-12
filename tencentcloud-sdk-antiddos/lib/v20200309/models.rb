@@ -492,10 +492,12 @@ module TencentCloud
         # @type TagInfoList: Array
         # @param IpCountNewFlag: 新版本1ip高防包
         # @type IpCountNewFlag: Integer
+        # @param VitalityVersion: 攻击封堵套餐标记
+        # @type VitalityVersion: Integer
 
-        attr_accessor :InstanceDetail, :SpecificationLimit, :Usage, :Region, :Status, :CreatedTime, :ExpiredTime, :Name, :PackInfo, :EipProductInfos, :BoundStatus, :DDoSLevel, :CCEnable, :TagInfoList, :IpCountNewFlag
+        attr_accessor :InstanceDetail, :SpecificationLimit, :Usage, :Region, :Status, :CreatedTime, :ExpiredTime, :Name, :PackInfo, :EipProductInfos, :BoundStatus, :DDoSLevel, :CCEnable, :TagInfoList, :IpCountNewFlag, :VitalityVersion
         
-        def initialize(instancedetail=nil, specificationlimit=nil, usage=nil, region=nil, status=nil, createdtime=nil, expiredtime=nil, name=nil, packinfo=nil, eipproductinfos=nil, boundstatus=nil, ddoslevel=nil, ccenable=nil, taginfolist=nil, ipcountnewflag=nil)
+        def initialize(instancedetail=nil, specificationlimit=nil, usage=nil, region=nil, status=nil, createdtime=nil, expiredtime=nil, name=nil, packinfo=nil, eipproductinfos=nil, boundstatus=nil, ddoslevel=nil, ccenable=nil, taginfolist=nil, ipcountnewflag=nil, vitalityversion=nil)
           @InstanceDetail = instancedetail
           @SpecificationLimit = specificationlimit
           @Usage = usage
@@ -511,6 +513,7 @@ module TencentCloud
           @CCEnable = ccenable
           @TagInfoList = taginfolist
           @IpCountNewFlag = ipcountnewflag
+          @VitalityVersion = vitalityversion
         end
 
         def deserialize(params)
@@ -558,6 +561,7 @@ module TencentCloud
             end
           end
           @IpCountNewFlag = params['IpCountNewFlag']
+          @VitalityVersion = params['VitalityVersion']
         end
       end
 

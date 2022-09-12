@@ -101,30 +101,6 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 流量安选产品，短信发送接口
-
-        # @param request: Request instance for SendTrafficSecuritySmsMessage.
-        # @type request: :class:`Tencentcloud::taf::V20200210::SendTrafficSecuritySmsMessageRequest`
-        # @rtype: :class:`Tencentcloud::taf::V20200210::SendTrafficSecuritySmsMessageResponse`
-        def SendTrafficSecuritySmsMessage(request)
-          body = send_request('SendTrafficSecuritySmsMessage', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = SendTrafficSecuritySmsMessageResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
 
       end
     end

@@ -41,14 +41,14 @@ module TencentCloud
       class AssetAppBaseInfo < TencentCloud::Common::AbstractModel
         # @param MachineIp: 主机内网IP
         # @type MachineIp: String
+        # @param MachineName: 主机名称
+        # @type MachineName: String
         # @param MachineWanIp: 主机外网IP
         # @type MachineWanIp: String
-        # @param Quuid: 主机Quuid
-        # @type Quuid: String
         # @param Uuid: 主机Uuid
         # @type Uuid: String
-        # @param OsInfo: 操作系统信息
-        # @type OsInfo: String
+        # @param Quuid: 主机Quuid
+        # @type Quuid: String
         # @param ProjectId: 主机业务组ID
         # @type ProjectId: Integer
         # @param Tag: 主机标签
@@ -68,44 +68,54 @@ module TencentCloud
         # @type Type: Integer
         # @param BinPath: 二进制路径
         # @type BinPath: String
-        # @param ConfigPath: 配置文件路径
-        # @type ConfigPath: String
+        # @param OsInfo: 操作系统信息
+        # @type OsInfo: String
         # @param ProcessCount: 关联进程数
         # @type ProcessCount: Integer
         # @param Desc: 应用描述
         # @type Desc: String
         # @param Version: 版本号
         # @type Version: String
+        # @param ConfigPath: 配置文件路径
+        # @type ConfigPath: String
+        # @param FirstTime: 首次采集时间
+        # @type FirstTime: String
         # @param UpdateTime: 数据更新时间
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UpdateTime: String
+        # @param IsNew: 是否新增[0:否|1:是]
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsNew: Integer
 
-        attr_accessor :MachineIp, :MachineWanIp, :Quuid, :Uuid, :OsInfo, :ProjectId, :Tag, :Name, :Type, :BinPath, :ConfigPath, :ProcessCount, :Desc, :Version, :UpdateTime
+        attr_accessor :MachineIp, :MachineName, :MachineWanIp, :Uuid, :Quuid, :ProjectId, :Tag, :Name, :Type, :BinPath, :OsInfo, :ProcessCount, :Desc, :Version, :ConfigPath, :FirstTime, :UpdateTime, :IsNew
         
-        def initialize(machineip=nil, machinewanip=nil, quuid=nil, uuid=nil, osinfo=nil, projectid=nil, tag=nil, name=nil, type=nil, binpath=nil, configpath=nil, processcount=nil, desc=nil, version=nil, updatetime=nil)
+        def initialize(machineip=nil, machinename=nil, machinewanip=nil, uuid=nil, quuid=nil, projectid=nil, tag=nil, name=nil, type=nil, binpath=nil, osinfo=nil, processcount=nil, desc=nil, version=nil, configpath=nil, firsttime=nil, updatetime=nil, isnew=nil)
           @MachineIp = machineip
+          @MachineName = machinename
           @MachineWanIp = machinewanip
-          @Quuid = quuid
           @Uuid = uuid
-          @OsInfo = osinfo
+          @Quuid = quuid
           @ProjectId = projectid
           @Tag = tag
           @Name = name
           @Type = type
           @BinPath = binpath
-          @ConfigPath = configpath
+          @OsInfo = osinfo
           @ProcessCount = processcount
           @Desc = desc
           @Version = version
+          @ConfigPath = configpath
+          @FirstTime = firsttime
           @UpdateTime = updatetime
+          @IsNew = isnew
         end
 
         def deserialize(params)
           @MachineIp = params['MachineIp']
+          @MachineName = params['MachineName']
           @MachineWanIp = params['MachineWanIp']
-          @Quuid = params['Quuid']
           @Uuid = params['Uuid']
-          @OsInfo = params['OsInfo']
+          @Quuid = params['Quuid']
           @ProjectId = params['ProjectId']
           unless params['Tag'].nil?
             @Tag = []
@@ -118,11 +128,14 @@ module TencentCloud
           @Name = params['Name']
           @Type = params['Type']
           @BinPath = params['BinPath']
-          @ConfigPath = params['ConfigPath']
+          @OsInfo = params['OsInfo']
           @ProcessCount = params['ProcessCount']
           @Desc = params['Desc']
           @Version = params['Version']
+          @ConfigPath = params['ConfigPath']
+          @FirstTime = params['FirstTime']
           @UpdateTime = params['UpdateTime']
+          @IsNew = params['IsNew']
         end
       end
 
@@ -193,10 +206,16 @@ module TencentCloud
         # @param UpdateTime: 数据更新时间
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UpdateTime: String
+        # @param FirstTime: 首次采集时间
+        # @type FirstTime: String
+        # @param IsNew: 是否新增[0:否|1:是]
+        # @type IsNew: Integer
+        # @param MachineWanIp: 服务器外网IP
+        # @type MachineWanIp: String
 
-        attr_accessor :Name, :Desc, :Path, :Version, :MachineIp, :MachineName, :OsInfo, :Size, :ProcessCount, :ModuleCount, :Id, :Quuid, :Uuid, :UpdateTime
+        attr_accessor :Name, :Desc, :Path, :Version, :MachineIp, :MachineName, :OsInfo, :Size, :ProcessCount, :ModuleCount, :Id, :Quuid, :Uuid, :UpdateTime, :FirstTime, :IsNew, :MachineWanIp
         
-        def initialize(name=nil, desc=nil, path=nil, version=nil, machineip=nil, machinename=nil, osinfo=nil, size=nil, processcount=nil, modulecount=nil, id=nil, quuid=nil, uuid=nil, updatetime=nil)
+        def initialize(name=nil, desc=nil, path=nil, version=nil, machineip=nil, machinename=nil, osinfo=nil, size=nil, processcount=nil, modulecount=nil, id=nil, quuid=nil, uuid=nil, updatetime=nil, firsttime=nil, isnew=nil, machinewanip=nil)
           @Name = name
           @Desc = desc
           @Path = path
@@ -211,6 +230,9 @@ module TencentCloud
           @Quuid = quuid
           @Uuid = uuid
           @UpdateTime = updatetime
+          @FirstTime = firsttime
+          @IsNew = isnew
+          @MachineWanIp = machinewanip
         end
 
         def deserialize(params)
@@ -228,6 +250,9 @@ module TencentCloud
           @Quuid = params['Quuid']
           @Uuid = params['Uuid']
           @UpdateTime = params['UpdateTime']
+          @FirstTime = params['FirstTime']
+          @IsNew = params['IsNew']
+          @MachineWanIp = params['MachineWanIp']
         end
       end
 
@@ -358,10 +383,16 @@ module TencentCloud
         # @param UpdateTime: 数据更新时间
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UpdateTime: String
+        # @param FirstTime: 首次采集时间
+        # @type FirstTime: String
+        # @param IsNew: 是否新增[0:否|1:是]
+        # @type IsNew: Integer
+        # @param MachineName: 主机名称
+        # @type MachineName: String
 
-        attr_accessor :MachineIp, :MachineWanIp, :Quuid, :Uuid, :OsInfo, :ProjectId, :Tag, :Name, :Version, :Port, :Proto, :User, :Ip, :ConfigPath, :LogPath, :DataPath, :Permission, :ErrorLogPath, :PlugInPath, :BinPath, :Param, :Id, :UpdateTime
+        attr_accessor :MachineIp, :MachineWanIp, :Quuid, :Uuid, :OsInfo, :ProjectId, :Tag, :Name, :Version, :Port, :Proto, :User, :Ip, :ConfigPath, :LogPath, :DataPath, :Permission, :ErrorLogPath, :PlugInPath, :BinPath, :Param, :Id, :UpdateTime, :FirstTime, :IsNew, :MachineName
         
-        def initialize(machineip=nil, machinewanip=nil, quuid=nil, uuid=nil, osinfo=nil, projectid=nil, tag=nil, name=nil, version=nil, port=nil, proto=nil, user=nil, ip=nil, configpath=nil, logpath=nil, datapath=nil, permission=nil, errorlogpath=nil, pluginpath=nil, binpath=nil, param=nil, id=nil, updatetime=nil)
+        def initialize(machineip=nil, machinewanip=nil, quuid=nil, uuid=nil, osinfo=nil, projectid=nil, tag=nil, name=nil, version=nil, port=nil, proto=nil, user=nil, ip=nil, configpath=nil, logpath=nil, datapath=nil, permission=nil, errorlogpath=nil, pluginpath=nil, binpath=nil, param=nil, id=nil, updatetime=nil, firsttime=nil, isnew=nil, machinename=nil)
           @MachineIp = machineip
           @MachineWanIp = machinewanip
           @Quuid = quuid
@@ -385,6 +416,9 @@ module TencentCloud
           @Param = param
           @Id = id
           @UpdateTime = updatetime
+          @FirstTime = firsttime
+          @IsNew = isnew
+          @MachineName = machinename
         end
 
         def deserialize(params)
@@ -418,6 +452,9 @@ module TencentCloud
           @Param = params['Param']
           @Id = params['Id']
           @UpdateTime = params['UpdateTime']
+          @FirstTime = params['FirstTime']
+          @IsNew = params['IsNew']
+          @MachineName = params['MachineName']
         end
       end
 
@@ -575,10 +612,16 @@ module TencentCloud
         # @param UpdateTime: 数据更新时间
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UpdateTime: String
+        # @param FirstTime: 首次采集时间
+        # @type FirstTime: String
+        # @param IsNew: 是否新增[0:否|1:是]
+        # @type IsNew: Integer
+        # @param MachineWanIp: 服务器外网IP
+        # @type MachineWanIp: String
 
-        attr_accessor :Name, :Type, :User, :Value, :MachineIp, :MachineName, :OsInfo, :Quuid, :Uuid, :UpdateTime
+        attr_accessor :Name, :Type, :User, :Value, :MachineIp, :MachineName, :OsInfo, :Quuid, :Uuid, :UpdateTime, :FirstTime, :IsNew, :MachineWanIp
         
-        def initialize(name=nil, type=nil, user=nil, value=nil, machineip=nil, machinename=nil, osinfo=nil, quuid=nil, uuid=nil, updatetime=nil)
+        def initialize(name=nil, type=nil, user=nil, value=nil, machineip=nil, machinename=nil, osinfo=nil, quuid=nil, uuid=nil, updatetime=nil, firsttime=nil, isnew=nil, machinewanip=nil)
           @Name = name
           @Type = type
           @User = user
@@ -589,6 +632,9 @@ module TencentCloud
           @Quuid = quuid
           @Uuid = uuid
           @UpdateTime = updatetime
+          @FirstTime = firsttime
+          @IsNew = isnew
+          @MachineWanIp = machinewanip
         end
 
         def deserialize(params)
@@ -602,6 +648,9 @@ module TencentCloud
           @Quuid = params['Quuid']
           @Uuid = params['Uuid']
           @UpdateTime = params['UpdateTime']
+          @FirstTime = params['FirstTime']
+          @IsNew = params['IsNew']
+          @MachineWanIp = params['MachineWanIp']
         end
       end
 
@@ -670,10 +719,16 @@ module TencentCloud
         # @type Uuid: String
         # @param UpdateTime: 数据更新时间
         # @type UpdateTime: String
+        # @param FirstTime: 首次采集时间
+        # @type FirstTime: String
+        # @param IsNew: 是否新增[0:否|1:是]
+        # @type IsNew: Integer
+        # @param MachineWanIp: 服务器外网IP
+        # @type MachineWanIp: String
 
-        attr_accessor :Name, :Type, :Status, :User, :Path, :MachineIp, :MachineName, :OsInfo, :Quuid, :Uuid, :UpdateTime
+        attr_accessor :Name, :Type, :Status, :User, :Path, :MachineIp, :MachineName, :OsInfo, :Quuid, :Uuid, :UpdateTime, :FirstTime, :IsNew, :MachineWanIp
         
-        def initialize(name=nil, type=nil, status=nil, user=nil, path=nil, machineip=nil, machinename=nil, osinfo=nil, quuid=nil, uuid=nil, updatetime=nil)
+        def initialize(name=nil, type=nil, status=nil, user=nil, path=nil, machineip=nil, machinename=nil, osinfo=nil, quuid=nil, uuid=nil, updatetime=nil, firsttime=nil, isnew=nil, machinewanip=nil)
           @Name = name
           @Type = type
           @Status = status
@@ -685,6 +740,9 @@ module TencentCloud
           @Quuid = quuid
           @Uuid = uuid
           @UpdateTime = updatetime
+          @FirstTime = firsttime
+          @IsNew = isnew
+          @MachineWanIp = machinewanip
         end
 
         def deserialize(params)
@@ -699,6 +757,9 @@ module TencentCloud
           @Quuid = params['Quuid']
           @Uuid = params['Uuid']
           @UpdateTime = params['UpdateTime']
+          @FirstTime = params['FirstTime']
+          @IsNew = params['IsNew']
+          @MachineWanIp = params['MachineWanIp']
         end
       end
 
@@ -731,10 +792,16 @@ module TencentCloud
         # @param UpdateTime: 数据更新时间
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UpdateTime: String
+        # @param FirstTime: 首次采集时间
+        # @type FirstTime: String
+        # @param IsNew: 是否新增[0:否|1:是]
+        # @type IsNew: Integer
+        # @param MachineWanIp: 服务器外网IP
+        # @type MachineWanIp: String
 
-        attr_accessor :Name, :Type, :Status, :Version, :Path, :MachineIp, :MachineName, :OsInfo, :Id, :Md5, :Quuid, :Uuid, :UpdateTime
+        attr_accessor :Name, :Type, :Status, :Version, :Path, :MachineIp, :MachineName, :OsInfo, :Id, :Md5, :Quuid, :Uuid, :UpdateTime, :FirstTime, :IsNew, :MachineWanIp
         
-        def initialize(name=nil, type=nil, status=nil, version=nil, path=nil, machineip=nil, machinename=nil, osinfo=nil, id=nil, md5=nil, quuid=nil, uuid=nil, updatetime=nil)
+        def initialize(name=nil, type=nil, status=nil, version=nil, path=nil, machineip=nil, machinename=nil, osinfo=nil, id=nil, md5=nil, quuid=nil, uuid=nil, updatetime=nil, firsttime=nil, isnew=nil, machinewanip=nil)
           @Name = name
           @Type = type
           @Status = status
@@ -748,6 +815,9 @@ module TencentCloud
           @Quuid = quuid
           @Uuid = uuid
           @UpdateTime = updatetime
+          @FirstTime = firsttime
+          @IsNew = isnew
+          @MachineWanIp = machinewanip
         end
 
         def deserialize(params)
@@ -764,6 +834,9 @@ module TencentCloud
           @Quuid = params['Quuid']
           @Uuid = params['Uuid']
           @UpdateTime = params['UpdateTime']
+          @FirstTime = params['FirstTime']
+          @IsNew = params['IsNew']
+          @MachineWanIp = params['MachineWanIp']
         end
       end
 
@@ -842,19 +915,24 @@ module TencentCloud
         # @param Desc: 描述信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Desc: String
+        # @param NewCount: 今日新增数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NewCount: Integer
 
-        attr_accessor :Key, :Value, :Desc
+        attr_accessor :Key, :Value, :Desc, :NewCount
         
-        def initialize(key=nil, value=nil, desc=nil)
+        def initialize(key=nil, value=nil, desc=nil, newcount=nil)
           @Key = key
           @Value = value
           @Desc = desc
+          @NewCount = newcount
         end
 
         def deserialize(params)
           @Key = params['Key']
           @Value = params['Value']
           @Desc = params['Desc']
+          @NewCount = params['NewCount']
         end
       end
 
@@ -896,10 +974,14 @@ module TencentCloud
         # @param UpdateTime: 数据更新时间
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UpdateTime: String
+        # @param IsNew: 是否新增[0:否|1:是]
+        # @type IsNew: Integer
+        # @param FirstTime: 首次采集时间
+        # @type FirstTime: String
 
-        attr_accessor :Quuid, :Uuid, :MachineIp, :MachineName, :OsInfo, :Cpu, :MemSize, :MemLoad, :DiskSize, :DiskLoad, :PartitionCount, :MachineWanIp, :ProjectId, :CpuSize, :CpuLoad, :Tag, :UpdateTime
+        attr_accessor :Quuid, :Uuid, :MachineIp, :MachineName, :OsInfo, :Cpu, :MemSize, :MemLoad, :DiskSize, :DiskLoad, :PartitionCount, :MachineWanIp, :ProjectId, :CpuSize, :CpuLoad, :Tag, :UpdateTime, :IsNew, :FirstTime
         
-        def initialize(quuid=nil, uuid=nil, machineip=nil, machinename=nil, osinfo=nil, cpu=nil, memsize=nil, memload=nil, disksize=nil, diskload=nil, partitioncount=nil, machinewanip=nil, projectid=nil, cpusize=nil, cpuload=nil, tag=nil, updatetime=nil)
+        def initialize(quuid=nil, uuid=nil, machineip=nil, machinename=nil, osinfo=nil, cpu=nil, memsize=nil, memload=nil, disksize=nil, diskload=nil, partitioncount=nil, machinewanip=nil, projectid=nil, cpusize=nil, cpuload=nil, tag=nil, updatetime=nil, isnew=nil, firsttime=nil)
           @Quuid = quuid
           @Uuid = uuid
           @MachineIp = machineip
@@ -917,6 +999,8 @@ module TencentCloud
           @CpuLoad = cpuload
           @Tag = tag
           @UpdateTime = updatetime
+          @IsNew = isnew
+          @FirstTime = firsttime
         end
 
         def deserialize(params)
@@ -944,6 +1028,8 @@ module TencentCloud
             end
           end
           @UpdateTime = params['UpdateTime']
+          @IsNew = params['IsNew']
+          @FirstTime = params['FirstTime']
         end
       end
 
@@ -1177,10 +1263,16 @@ module TencentCloud
         # @param UpdateTime: 数据更新时间
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UpdateTime: String
+        # @param FirstTime: 首次采集时间
+        # @type FirstTime: String
+        # @param IsNew: 是否新增[0:否|1:是]
+        # @type IsNew: Integer
+        # @param MachineWanIp: 服务器外网IP
+        # @type MachineWanIp: String
 
-        attr_accessor :Status, :Cycle, :Command, :User, :ConfigPath, :MachineIp, :MachineName, :OsInfo, :Quuid, :Uuid, :UpdateTime
+        attr_accessor :Status, :Cycle, :Command, :User, :ConfigPath, :MachineIp, :MachineName, :OsInfo, :Quuid, :Uuid, :UpdateTime, :FirstTime, :IsNew, :MachineWanIp
         
-        def initialize(status=nil, cycle=nil, command=nil, user=nil, configpath=nil, machineip=nil, machinename=nil, osinfo=nil, quuid=nil, uuid=nil, updatetime=nil)
+        def initialize(status=nil, cycle=nil, command=nil, user=nil, configpath=nil, machineip=nil, machinename=nil, osinfo=nil, quuid=nil, uuid=nil, updatetime=nil, firsttime=nil, isnew=nil, machinewanip=nil)
           @Status = status
           @Cycle = cycle
           @Command = command
@@ -1192,6 +1284,9 @@ module TencentCloud
           @Quuid = quuid
           @Uuid = uuid
           @UpdateTime = updatetime
+          @FirstTime = firsttime
+          @IsNew = isnew
+          @MachineWanIp = machinewanip
         end
 
         def deserialize(params)
@@ -1206,6 +1301,9 @@ module TencentCloud
           @Quuid = params['Quuid']
           @Uuid = params['Uuid']
           @UpdateTime = params['UpdateTime']
+          @FirstTime = params['FirstTime']
+          @IsNew = params['IsNew']
+          @MachineWanIp = params['MachineWanIp']
         end
       end
 
@@ -1261,10 +1359,14 @@ module TencentCloud
         # @param UpdateTime: 数据更新时间
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UpdateTime: String
+        # @param FirstTime: 首次采集时间
+        # @type FirstTime: String
+        # @param IsNew: 是否新增[0:否|1:是]
+        # @type IsNew: Integer
 
-        attr_accessor :MachineIp, :MachineWanIp, :Quuid, :Uuid, :OsInfo, :ProjectId, :Tag, :ProcessName, :ProcessVersion, :ProcessPath, :Pid, :User, :StartTime, :Param, :Teletype, :Port, :GroupName, :Md5, :Ppid, :ParentProcessName, :Proto, :BindIp, :MachineName, :UpdateTime
+        attr_accessor :MachineIp, :MachineWanIp, :Quuid, :Uuid, :OsInfo, :ProjectId, :Tag, :ProcessName, :ProcessVersion, :ProcessPath, :Pid, :User, :StartTime, :Param, :Teletype, :Port, :GroupName, :Md5, :Ppid, :ParentProcessName, :Proto, :BindIp, :MachineName, :UpdateTime, :FirstTime, :IsNew
         
-        def initialize(machineip=nil, machinewanip=nil, quuid=nil, uuid=nil, osinfo=nil, projectid=nil, tag=nil, processname=nil, processversion=nil, processpath=nil, pid=nil, user=nil, starttime=nil, param=nil, teletype=nil, port=nil, groupname=nil, md5=nil, ppid=nil, parentprocessname=nil, proto=nil, bindip=nil, machinename=nil, updatetime=nil)
+        def initialize(machineip=nil, machinewanip=nil, quuid=nil, uuid=nil, osinfo=nil, projectid=nil, tag=nil, processname=nil, processversion=nil, processpath=nil, pid=nil, user=nil, starttime=nil, param=nil, teletype=nil, port=nil, groupname=nil, md5=nil, ppid=nil, parentprocessname=nil, proto=nil, bindip=nil, machinename=nil, updatetime=nil, firsttime=nil, isnew=nil)
           @MachineIp = machineip
           @MachineWanIp = machinewanip
           @Quuid = quuid
@@ -1289,6 +1391,8 @@ module TencentCloud
           @BindIp = bindip
           @MachineName = machinename
           @UpdateTime = updatetime
+          @FirstTime = firsttime
+          @IsNew = isnew
         end
 
         def deserialize(params)
@@ -1323,6 +1427,8 @@ module TencentCloud
           @BindIp = params['BindIp']
           @MachineName = params['MachineName']
           @UpdateTime = params['UpdateTime']
+          @FirstTime = params['FirstTime']
+          @IsNew = params['IsNew']
         end
       end
 
@@ -1382,10 +1488,14 @@ module TencentCloud
         # @param UpdateTime: 数据更新时间
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UpdateTime: String
+        # @param FirstTime: 首次采集时间
+        # @type FirstTime: String
+        # @param IsNew: 是否新增[0:否|1:是]
+        # @type IsNew: Integer
 
-        attr_accessor :MachineIp, :MachineWanIp, :Quuid, :Uuid, :OsInfo, :ProjectId, :Tag, :Name, :Desc, :Path, :Pid, :User, :StartTime, :Param, :Tty, :Version, :GroupName, :Md5, :Ppid, :ParentProcessName, :Status, :HasSign, :InstallByPackage, :PackageName, :MachineName, :UpdateTime
+        attr_accessor :MachineIp, :MachineWanIp, :Quuid, :Uuid, :OsInfo, :ProjectId, :Tag, :Name, :Desc, :Path, :Pid, :User, :StartTime, :Param, :Tty, :Version, :GroupName, :Md5, :Ppid, :ParentProcessName, :Status, :HasSign, :InstallByPackage, :PackageName, :MachineName, :UpdateTime, :FirstTime, :IsNew
         
-        def initialize(machineip=nil, machinewanip=nil, quuid=nil, uuid=nil, osinfo=nil, projectid=nil, tag=nil, name=nil, desc=nil, path=nil, pid=nil, user=nil, starttime=nil, param=nil, tty=nil, version=nil, groupname=nil, md5=nil, ppid=nil, parentprocessname=nil, status=nil, hassign=nil, installbypackage=nil, packagename=nil, machinename=nil, updatetime=nil)
+        def initialize(machineip=nil, machinewanip=nil, quuid=nil, uuid=nil, osinfo=nil, projectid=nil, tag=nil, name=nil, desc=nil, path=nil, pid=nil, user=nil, starttime=nil, param=nil, tty=nil, version=nil, groupname=nil, md5=nil, ppid=nil, parentprocessname=nil, status=nil, hassign=nil, installbypackage=nil, packagename=nil, machinename=nil, updatetime=nil, firsttime=nil, isnew=nil)
           @MachineIp = machineip
           @MachineWanIp = machinewanip
           @Quuid = quuid
@@ -1412,6 +1522,8 @@ module TencentCloud
           @PackageName = packagename
           @MachineName = machinename
           @UpdateTime = updatetime
+          @FirstTime = firsttime
+          @IsNew = isnew
         end
 
         def deserialize(params)
@@ -1448,6 +1560,8 @@ module TencentCloud
           @PackageName = params['PackageName']
           @MachineName = params['MachineName']
           @UpdateTime = params['UpdateTime']
+          @FirstTime = params['FirstTime']
+          @IsNew = params['IsNew']
         end
       end
 
@@ -1472,10 +1586,14 @@ module TencentCloud
         # @param UpdateTime: 数据更新时间
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UpdateTime: String
+        # @param FirstTime: 首次采集时间
+        # @type FirstTime: String
+        # @param IsNew: 是否新增[0:否|1:是]
+        # @type IsNew: Integer
 
-        attr_accessor :Name, :Desc, :Version, :InstallTime, :Type, :MachineName, :MachineIp, :OsInfo, :UpdateTime
+        attr_accessor :Name, :Desc, :Version, :InstallTime, :Type, :MachineName, :MachineIp, :OsInfo, :UpdateTime, :FirstTime, :IsNew
         
-        def initialize(name=nil, desc=nil, version=nil, installtime=nil, type=nil, machinename=nil, machineip=nil, osinfo=nil, updatetime=nil)
+        def initialize(name=nil, desc=nil, version=nil, installtime=nil, type=nil, machinename=nil, machineip=nil, osinfo=nil, updatetime=nil, firsttime=nil, isnew=nil)
           @Name = name
           @Desc = desc
           @Version = version
@@ -1485,6 +1603,8 @@ module TencentCloud
           @MachineIp = machineip
           @OsInfo = osinfo
           @UpdateTime = updatetime
+          @FirstTime = firsttime
+          @IsNew = isnew
         end
 
         def deserialize(params)
@@ -1497,6 +1617,8 @@ module TencentCloud
           @MachineIp = params['MachineIp']
           @OsInfo = params['OsInfo']
           @UpdateTime = params['UpdateTime']
+          @FirstTime = params['FirstTime']
+          @IsNew = params['IsNew']
         end
       end
 
@@ -1555,10 +1677,14 @@ module TencentCloud
         # @param UpdateTime: 更新时间
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UpdateTime: String
+        # @param FirstTime: 首次采集时间
+        # @type FirstTime: String
+        # @param IsNew: 是否新增[0:否|1:是]
+        # @type IsNew: Integer
 
-        attr_accessor :MachineIp, :MachineWanIp, :MachineName, :OsInfo, :Uuid, :Quuid, :Uid, :Gid, :Status, :IsRoot, :LoginType, :LastLoginTime, :Name, :ProjectId, :UserType, :IsDomain, :IsSudo, :IsSshLogin, :HomePath, :Shell, :ShellLoginStatus, :PasswordChangeTime, :PasswordDueTime, :PasswordLockDays, :PasswordStatus, :UpdateTime
+        attr_accessor :MachineIp, :MachineWanIp, :MachineName, :OsInfo, :Uuid, :Quuid, :Uid, :Gid, :Status, :IsRoot, :LoginType, :LastLoginTime, :Name, :ProjectId, :UserType, :IsDomain, :IsSudo, :IsSshLogin, :HomePath, :Shell, :ShellLoginStatus, :PasswordChangeTime, :PasswordDueTime, :PasswordLockDays, :PasswordStatus, :UpdateTime, :FirstTime, :IsNew
         
-        def initialize(machineip=nil, machinewanip=nil, machinename=nil, osinfo=nil, uuid=nil, quuid=nil, uid=nil, gid=nil, status=nil, isroot=nil, logintype=nil, lastlogintime=nil, name=nil, projectid=nil, usertype=nil, isdomain=nil, issudo=nil, issshlogin=nil, homepath=nil, shell=nil, shellloginstatus=nil, passwordchangetime=nil, passwordduetime=nil, passwordlockdays=nil, passwordstatus=nil, updatetime=nil)
+        def initialize(machineip=nil, machinewanip=nil, machinename=nil, osinfo=nil, uuid=nil, quuid=nil, uid=nil, gid=nil, status=nil, isroot=nil, logintype=nil, lastlogintime=nil, name=nil, projectid=nil, usertype=nil, isdomain=nil, issudo=nil, issshlogin=nil, homepath=nil, shell=nil, shellloginstatus=nil, passwordchangetime=nil, passwordduetime=nil, passwordlockdays=nil, passwordstatus=nil, updatetime=nil, firsttime=nil, isnew=nil)
           @MachineIp = machineip
           @MachineWanIp = machinewanip
           @MachineName = machinename
@@ -1585,6 +1711,8 @@ module TencentCloud
           @PasswordLockDays = passwordlockdays
           @PasswordStatus = passwordstatus
           @UpdateTime = updatetime
+          @FirstTime = firsttime
+          @IsNew = isnew
         end
 
         def deserialize(params)
@@ -1614,6 +1742,8 @@ module TencentCloud
           @PasswordLockDays = params['PasswordLockDays']
           @PasswordStatus = params['PasswordStatus']
           @UpdateTime = params['UpdateTime']
+          @FirstTime = params['FirstTime']
+          @IsNew = params['IsNew']
         end
       end
 
@@ -1818,10 +1948,14 @@ module TencentCloud
         # @param UpdateTime: 数据更新时间
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UpdateTime: String
+        # @param FirstTime: 首次采集时间
+        # @type FirstTime: String
+        # @param IsNew: 是否新增[0:否|1:是]
+        # @type IsNew: Integer
 
-        attr_accessor :MachineIp, :MachineWanIp, :Quuid, :Uuid, :OsInfo, :ProjectId, :Tag, :Name, :Version, :RootPath, :ServiceType, :Domain, :VirtualPath, :PluginCount, :Id, :Desc, :MachineName, :UpdateTime
+        attr_accessor :MachineIp, :MachineWanIp, :Quuid, :Uuid, :OsInfo, :ProjectId, :Tag, :Name, :Version, :RootPath, :ServiceType, :Domain, :VirtualPath, :PluginCount, :Id, :Desc, :MachineName, :UpdateTime, :FirstTime, :IsNew
         
-        def initialize(machineip=nil, machinewanip=nil, quuid=nil, uuid=nil, osinfo=nil, projectid=nil, tag=nil, name=nil, version=nil, rootpath=nil, servicetype=nil, domain=nil, virtualpath=nil, plugincount=nil, id=nil, desc=nil, machinename=nil, updatetime=nil)
+        def initialize(machineip=nil, machinewanip=nil, quuid=nil, uuid=nil, osinfo=nil, projectid=nil, tag=nil, name=nil, version=nil, rootpath=nil, servicetype=nil, domain=nil, virtualpath=nil, plugincount=nil, id=nil, desc=nil, machinename=nil, updatetime=nil, firsttime=nil, isnew=nil)
           @MachineIp = machineip
           @MachineWanIp = machinewanip
           @Quuid = quuid
@@ -1840,6 +1974,8 @@ module TencentCloud
           @Desc = desc
           @MachineName = machinename
           @UpdateTime = updatetime
+          @FirstTime = firsttime
+          @IsNew = isnew
         end
 
         def deserialize(params)
@@ -1868,6 +2004,8 @@ module TencentCloud
           @Desc = params['Desc']
           @MachineName = params['MachineName']
           @UpdateTime = params['UpdateTime']
+          @FirstTime = params['FirstTime']
+          @IsNew = params['IsNew']
         end
       end
 
@@ -1929,10 +2067,14 @@ module TencentCloud
         # @param UpdateTime: 数据更新时间
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UpdateTime: String
+        # @param FirstTime: 首次采集时间
+        # @type FirstTime: String
+        # @param IsNew: 是否新增[0:否|1:是]
+        # @type IsNew: Integer
 
-        attr_accessor :MachineIp, :MachineWanIp, :Quuid, :Uuid, :OsInfo, :ProjectId, :Tag, :Name, :Version, :Lang, :ServiceType, :MachineName, :UpdateTime
+        attr_accessor :MachineIp, :MachineWanIp, :Quuid, :Uuid, :OsInfo, :ProjectId, :Tag, :Name, :Version, :Lang, :ServiceType, :MachineName, :UpdateTime, :FirstTime, :IsNew
         
-        def initialize(machineip=nil, machinewanip=nil, quuid=nil, uuid=nil, osinfo=nil, projectid=nil, tag=nil, name=nil, version=nil, lang=nil, servicetype=nil, machinename=nil, updatetime=nil)
+        def initialize(machineip=nil, machinewanip=nil, quuid=nil, uuid=nil, osinfo=nil, projectid=nil, tag=nil, name=nil, version=nil, lang=nil, servicetype=nil, machinename=nil, updatetime=nil, firsttime=nil, isnew=nil)
           @MachineIp = machineip
           @MachineWanIp = machinewanip
           @Quuid = quuid
@@ -1946,6 +2088,8 @@ module TencentCloud
           @ServiceType = servicetype
           @MachineName = machinename
           @UpdateTime = updatetime
+          @FirstTime = firsttime
+          @IsNew = isnew
         end
 
         def deserialize(params)
@@ -1969,6 +2113,8 @@ module TencentCloud
           @ServiceType = params['ServiceType']
           @MachineName = params['MachineName']
           @UpdateTime = params['UpdateTime']
+          @FirstTime = params['FirstTime']
+          @IsNew = params['IsNew']
         end
       end
 
@@ -2013,10 +2159,15 @@ module TencentCloud
         # @param UpdateTime: 数据更新时间
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UpdateTime: String
+        # @param FirstTime: 首次采集时间
+        # @type FirstTime: String
+        # @param IsNew: 是否新增[0:否|1:是]
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsNew: Integer
 
-        attr_accessor :Uuid, :Quuid, :MachineIp, :MachineWanIp, :MachineName, :OsInfo, :Name, :Port, :Proto, :ServiceType, :PathCount, :User, :MainPath, :MainPathOwner, :Permission, :ProjectId, :Tag, :Id, :UpdateTime
+        attr_accessor :Uuid, :Quuid, :MachineIp, :MachineWanIp, :MachineName, :OsInfo, :Name, :Port, :Proto, :ServiceType, :PathCount, :User, :MainPath, :MainPathOwner, :Permission, :ProjectId, :Tag, :Id, :UpdateTime, :FirstTime, :IsNew
         
-        def initialize(uuid=nil, quuid=nil, machineip=nil, machinewanip=nil, machinename=nil, osinfo=nil, name=nil, port=nil, proto=nil, servicetype=nil, pathcount=nil, user=nil, mainpath=nil, mainpathowner=nil, permission=nil, projectid=nil, tag=nil, id=nil, updatetime=nil)
+        def initialize(uuid=nil, quuid=nil, machineip=nil, machinewanip=nil, machinename=nil, osinfo=nil, name=nil, port=nil, proto=nil, servicetype=nil, pathcount=nil, user=nil, mainpath=nil, mainpathowner=nil, permission=nil, projectid=nil, tag=nil, id=nil, updatetime=nil, firsttime=nil, isnew=nil)
           @Uuid = uuid
           @Quuid = quuid
           @MachineIp = machineip
@@ -2036,6 +2187,8 @@ module TencentCloud
           @Tag = tag
           @Id = id
           @UpdateTime = updatetime
+          @FirstTime = firsttime
+          @IsNew = isnew
         end
 
         def deserialize(params)
@@ -2065,6 +2218,8 @@ module TencentCloud
           end
           @Id = params['Id']
           @UpdateTime = params['UpdateTime']
+          @FirstTime = params['FirstTime']
+          @IsNew = params['IsNew']
         end
       end
 
@@ -2161,10 +2316,14 @@ module TencentCloud
         # @param UpdateTime: 数据更新时间
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UpdateTime: String
+        # @param FirstTime: 首次采集时间
+        # @type FirstTime: String
+        # @param IsNew: 是否新增[0:否|1:是]
+        # @type IsNew: Integer
 
-        attr_accessor :MachineIp, :MachineWanIp, :Quuid, :Uuid, :OsInfo, :ProjectId, :Tag, :Name, :Version, :BinPath, :User, :InstallPath, :ConfigPath, :ProcessCount, :Id, :MachineName, :Desc, :UpdateTime
+        attr_accessor :MachineIp, :MachineWanIp, :Quuid, :Uuid, :OsInfo, :ProjectId, :Tag, :Name, :Version, :BinPath, :User, :InstallPath, :ConfigPath, :ProcessCount, :Id, :MachineName, :Desc, :UpdateTime, :FirstTime, :IsNew
         
-        def initialize(machineip=nil, machinewanip=nil, quuid=nil, uuid=nil, osinfo=nil, projectid=nil, tag=nil, name=nil, version=nil, binpath=nil, user=nil, installpath=nil, configpath=nil, processcount=nil, id=nil, machinename=nil, desc=nil, updatetime=nil)
+        def initialize(machineip=nil, machinewanip=nil, quuid=nil, uuid=nil, osinfo=nil, projectid=nil, tag=nil, name=nil, version=nil, binpath=nil, user=nil, installpath=nil, configpath=nil, processcount=nil, id=nil, machinename=nil, desc=nil, updatetime=nil, firsttime=nil, isnew=nil)
           @MachineIp = machineip
           @MachineWanIp = machinewanip
           @Quuid = quuid
@@ -2183,6 +2342,8 @@ module TencentCloud
           @MachineName = machinename
           @Desc = desc
           @UpdateTime = updatetime
+          @FirstTime = firsttime
+          @IsNew = isnew
         end
 
         def deserialize(params)
@@ -2211,6 +2372,8 @@ module TencentCloud
           @MachineName = params['MachineName']
           @Desc = params['Desc']
           @UpdateTime = params['UpdateTime']
+          @FirstTime = params['FirstTime']
+          @IsNew = params['IsNew']
         end
       end
 
@@ -3194,6 +3357,91 @@ module TencentCloud
         end
       end
 
+      # CreateLicenseOrder请求参数结构体
+      class CreateLicenseOrderRequest < TencentCloud::Common::AbstractModel
+        # @param Tags: 标签数组, 空则表示不需要绑定标签
+        # @type Tags: Array
+        # @param LicenseType: 授权类型, 0 专业版-按量计费, 1专业版-包年包月 , 2 旗舰版-包年包月
+        # 默认为0
+        # @type LicenseType: Integer
+        # @param LicenseNum: 授权数量 , 需要购买的数量.
+        # 默认为1
+        # @type LicenseNum: Integer
+        # @param RegionId: 购买订单地域,这里仅支持 1 广州,9 新加坡. 推荐选择广州. 新加坡地域为白名单用户购买.
+        # 默认为1
+        # @type RegionId: Integer
+        # @param ProjectId: 项目ID .
+        # 默认为0
+        # @type ProjectId: Integer
+        # @param TimeSpan: 购买时间长度,默认1 , 可选值为1,2,3,4,5,6,7,8,9,10,11,12,24,36
+        # 该参数仅包年包月生效
+        # @type TimeSpan: Integer
+        # @param AutoRenewFlag: 是否自动续费, 默认不自动续费.
+        # 该参数仅包年包月生效
+        # @type AutoRenewFlag: Boolean
+        # @param AutoProtectOpenConfig: 自动防护授权配置值, 不空则表示开启
+        # @type AutoProtectOpenConfig: String
+
+        attr_accessor :Tags, :LicenseType, :LicenseNum, :RegionId, :ProjectId, :TimeSpan, :AutoRenewFlag, :AutoProtectOpenConfig
+        
+        def initialize(tags=nil, licensetype=nil, licensenum=nil, regionid=nil, projectid=nil, timespan=nil, autorenewflag=nil, autoprotectopenconfig=nil)
+          @Tags = tags
+          @LicenseType = licensetype
+          @LicenseNum = licensenum
+          @RegionId = regionid
+          @ProjectId = projectid
+          @TimeSpan = timespan
+          @AutoRenewFlag = autorenewflag
+          @AutoProtectOpenConfig = autoprotectopenconfig
+        end
+
+        def deserialize(params)
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tags_tmp = Tags.new
+              tags_tmp.deserialize(i)
+              @Tags << tags_tmp
+            end
+          end
+          @LicenseType = params['LicenseType']
+          @LicenseNum = params['LicenseNum']
+          @RegionId = params['RegionId']
+          @ProjectId = params['ProjectId']
+          @TimeSpan = params['TimeSpan']
+          @AutoRenewFlag = params['AutoRenewFlag']
+          @AutoProtectOpenConfig = params['AutoProtectOpenConfig']
+        end
+      end
+
+      # CreateLicenseOrder返回参数结构体
+      class CreateLicenseOrderResponse < TencentCloud::Common::AbstractModel
+        # @param DealNames: 订单号列表
+        # @type DealNames: Array
+        # @param ResourceIds: 资源ID列表,预付费订单该字段空值
+        # @type ResourceIds: Array
+        # @param BigDealId: 大订单号 , 后付费该字段空值
+        # @type BigDealId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :DealNames, :ResourceIds, :BigDealId, :RequestId
+        
+        def initialize(dealnames=nil, resourceids=nil, bigdealid=nil, requestid=nil)
+          @DealNames = dealnames
+          @ResourceIds = resourceids
+          @BigDealId = bigdealid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @DealNames = params['DealNames']
+          @ResourceIds = params['ResourceIds']
+          @BigDealId = params['BigDealId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateProtectServer请求参数结构体
       class CreateProtectServerRequest < TencentCloud::Common::AbstractModel
         # @param ProtectDir: 防护目录地址
@@ -3574,6 +3822,46 @@ module TencentCloud
 
       # DeleteBruteAttacks返回参数结构体
       class DeleteBruteAttacksResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteLicenseRecord请求参数结构体
+      class DeleteLicenseRecordRequest < TencentCloud::Common::AbstractModel
+        # @param LicenseId: 授权ID ,可以用授权订单列表获取.
+        # @type LicenseId: Integer
+        # @param LicenseType: 授权类型
+        # @type LicenseType: Integer
+        # @param ResourceId: 资源ID
+        # @type ResourceId: String
+
+        attr_accessor :LicenseId, :LicenseType, :ResourceId
+        
+        def initialize(licenseid=nil, licensetype=nil, resourceid=nil)
+          @LicenseId = licenseid
+          @LicenseType = licensetype
+          @ResourceId = resourceid
+        end
+
+        def deserialize(params)
+          @LicenseId = params['LicenseId']
+          @LicenseType = params['LicenseType']
+          @ResourceId = params['ResourceId']
+        end
+      end
+
+      # DeleteLicenseRecord返回参数结构体
+      class DeleteLicenseRecordResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -4139,10 +4427,8 @@ module TencentCloud
 
       # DescribeAssetAppList请求参数结构体
       class DescribeAssetAppListRequest < TencentCloud::Common::AbstractModel
-        # @param Limit: 需要返回的数量，默认为10，最大值为100
-        # @type Limit: Integer
-        # @param Offset: 偏移量，默认为0。
-        # @type Offset: Integer
+        # @param Quuid: 查询指定Quuid主机的信息
+        # @type Quuid: String
         # @param Filters: 过滤条件。
         # <li>AppName- string - 是否必填：否 - 应用名搜索</li>
         # <li>IpOrAlias - String - 是否必填：否 - 主机ip或别名筛选</li>
@@ -4159,27 +4445,28 @@ module TencentCloud
         # <li>OsType - uint64 - 是否必填：否 - windows/linux</li>
         # <li>Os -String 是否必填: 否 - 操作系统( DescribeMachineOsList 接口 值 )</li>
         # @type Filters: Array
-        # @param By: 排序方式：ProcessCount
-        # @type By: String
+        # @param Limit: 需要返回的数量，默认为10，最大值为100
+        # @type Limit: Integer
+        # @param Offset: 偏移量，默认为0。
+        # @type Offset: Integer
         # @param Order: 排序方式，asc升序 或 desc降序
         # @type Order: String
-        # @param Quuid: 查询指定Quuid主机的信息
-        # @type Quuid: String
+        # @param By: 排序方式：[FirstTime|ProcessCount]
+        # @type By: String
 
-        attr_accessor :Limit, :Offset, :Filters, :By, :Order, :Quuid
+        attr_accessor :Quuid, :Filters, :Limit, :Offset, :Order, :By
         
-        def initialize(limit=nil, offset=nil, filters=nil, by=nil, order=nil, quuid=nil)
+        def initialize(quuid=nil, filters=nil, limit=nil, offset=nil, order=nil, by=nil)
+          @Quuid = quuid
+          @Filters = filters
           @Limit = limit
           @Offset = offset
-          @Filters = filters
-          @By = by
           @Order = order
-          @Quuid = quuid
+          @By = by
         end
 
         def deserialize(params)
-          @Limit = params['Limit']
-          @Offset = params['Offset']
+          @Quuid = params['Quuid']
           unless params['Filters'].nil?
             @Filters = []
             params['Filters'].each do |i|
@@ -4188,9 +4475,10 @@ module TencentCloud
               @Filters << assetfilters_tmp
             end
           end
-          @By = params['By']
+          @Limit = params['Limit']
+          @Offset = params['Offset']
           @Order = params['Order']
-          @Quuid = params['Quuid']
+          @By = params['By']
         end
       end
 
@@ -4339,39 +4627,39 @@ module TencentCloud
 
       # DescribeAssetCoreModuleList请求参数结构体
       class DescribeAssetCoreModuleListRequest < TencentCloud::Common::AbstractModel
-        # @param Limit: 需要返回的数量，默认为10，最大值为100
-        # @type Limit: Integer
-        # @param Offset: 偏移量，默认为0。
-        # @type Offset: Integer
+        # @param Uuid: 服务器Uuid
+        # @type Uuid: String
+        # @param Quuid: 服务器Quuid
+        # @type Quuid: String
         # @param Filters: 过滤条件。
         # <li>IpOrAlias - String - 是否必填：否 - 主机ip或别名筛选</li>
         # <li>Name- string - 是否必填：否 - 包名</li>
         # <li>User- string - 是否必填：否 - 用户</li>
         # @type Filters: Array
+        # @param Offset: 偏移量，默认为0。
+        # @type Offset: Integer
+        # @param Limit: 需要返回的数量，默认为10，最大值为100
+        # @type Limit: Integer
         # @param Order: 排序方式，asc升序 或 desc降序
         # @type Order: String
-        # @param By: 排序依据:Size,ProcessCount,ModuleCount
+        # @param By: 排序依据[Size|FirstTime|ProcessCount|ModuleCount]
         # @type By: String
-        # @param Uuid: 服务器Uuid
-        # @type Uuid: String
-        # @param Quuid: 服务器Quuid
-        # @type Quuid: String
 
-        attr_accessor :Limit, :Offset, :Filters, :Order, :By, :Uuid, :Quuid
+        attr_accessor :Uuid, :Quuid, :Filters, :Offset, :Limit, :Order, :By
         
-        def initialize(limit=nil, offset=nil, filters=nil, order=nil, by=nil, uuid=nil, quuid=nil)
-          @Limit = limit
-          @Offset = offset
-          @Filters = filters
-          @Order = order
-          @By = by
+        def initialize(uuid=nil, quuid=nil, filters=nil, offset=nil, limit=nil, order=nil, by=nil)
           @Uuid = uuid
           @Quuid = quuid
+          @Filters = filters
+          @Offset = offset
+          @Limit = limit
+          @Order = order
+          @By = by
         end
 
         def deserialize(params)
-          @Limit = params['Limit']
-          @Offset = params['Offset']
+          @Uuid = params['Uuid']
+          @Quuid = params['Quuid']
           unless params['Filters'].nil?
             @Filters = []
             params['Filters'].each do |i|
@@ -4380,10 +4668,10 @@ module TencentCloud
               @Filters << assetfilters_tmp
             end
           end
+          @Offset = params['Offset']
+          @Limit = params['Limit']
           @Order = params['Order']
           @By = params['By']
-          @Uuid = params['Uuid']
-          @Quuid = params['Quuid']
         end
       end
 
@@ -4468,10 +4756,8 @@ module TencentCloud
 
       # DescribeAssetDatabaseList请求参数结构体
       class DescribeAssetDatabaseListRequest < TencentCloud::Common::AbstractModel
-        # @param Limit: 需要返回的数量，默认为10，最大值为100
-        # @type Limit: Integer
-        # @param Offset: 偏移量，默认为0。
-        # @type Offset: Integer
+        # @param Quuid: 查询指定Quuid主机的信息
+        # @type Quuid: String
         # @param Filters: 过滤条件。
         # <li>IpOrAlias - String - 是否必填：否 - 主机ip或别名筛选</li>
         # <li>User- string - 是否必填：否 - 运行用户</li>
@@ -4493,21 +4779,28 @@ module TencentCloud
         # <li>OsType - String - 是否必填：否 - 操作系统: linux/windows</li>
         # <li>Os -String 是否必填: 否 - 操作系统( DescribeMachineOsList 接口 值 )</li>
         # @type Filters: Array
-        # @param Quuid: 查询指定Quuid主机的信息
-        # @type Quuid: String
+        # @param Offset: 偏移量，默认为0。
+        # @type Offset: Integer
+        # @param Limit: 需要返回的数量，默认为10，最大值为100
+        # @type Limit: Integer
+        # @param Order: 排序方式，asc升序 或 desc降序
+        # @type Order: String
+        # @param By: 排序方式：[FirstTime]
+        # @type By: String
 
-        attr_accessor :Limit, :Offset, :Filters, :Quuid
+        attr_accessor :Quuid, :Filters, :Offset, :Limit, :Order, :By
         
-        def initialize(limit=nil, offset=nil, filters=nil, quuid=nil)
-          @Limit = limit
-          @Offset = offset
-          @Filters = filters
+        def initialize(quuid=nil, filters=nil, offset=nil, limit=nil, order=nil, by=nil)
           @Quuid = quuid
+          @Filters = filters
+          @Offset = offset
+          @Limit = limit
+          @Order = order
+          @By = by
         end
 
         def deserialize(params)
-          @Limit = params['Limit']
-          @Offset = params['Offset']
+          @Quuid = params['Quuid']
           unless params['Filters'].nil?
             @Filters = []
             params['Filters'].each do |i|
@@ -4516,7 +4809,10 @@ module TencentCloud
               @Filters << assetfilters_tmp
             end
           end
-          @Quuid = params['Quuid']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @Order = params['Order']
+          @By = params['By']
         end
       end
 
@@ -4554,10 +4850,10 @@ module TencentCloud
 
       # DescribeAssetEnvList请求参数结构体
       class DescribeAssetEnvListRequest < TencentCloud::Common::AbstractModel
-        # @param Limit: 需要返回的数量，默认为10，最大值为100
-        # @type Limit: Integer
-        # @param Offset: 偏移量，默认为0。
-        # @type Offset: Integer
+        # @param Uuid: 服务器Uuid
+        # @type Uuid: String
+        # @param Quuid: 服务器Quuid
+        # @type Quuid: String
         # @param Type: 该字段已废弃，由Filters代替
         # @type Type: Integer
         # @param Filters: 过滤条件。
@@ -4565,25 +4861,31 @@ module TencentCloud
         # <li>Name- string - 是否必填：否 - 环境变量名</li>
         # <li>Type- int - 是否必填：否 - 类型：0用户变量，1系统变量</li>
         # @type Filters: Array
-        # @param Uuid: 服务器Uuid
-        # @type Uuid: String
-        # @param Quuid: 服务器Quuid
-        # @type Quuid: String
+        # @param Offset: 偏移量，默认为0。
+        # @type Offset: Integer
+        # @param Limit: 需要返回的数量，默认为10，最大值为100
+        # @type Limit: Integer
+        # @param Order: 排序方式，asc升序 或 desc降序
+        # @type Order: String
+        # @param By: 排序方式：[FirstTime]
+        # @type By: String
 
-        attr_accessor :Limit, :Offset, :Type, :Filters, :Uuid, :Quuid
+        attr_accessor :Uuid, :Quuid, :Type, :Filters, :Offset, :Limit, :Order, :By
         
-        def initialize(limit=nil, offset=nil, type=nil, filters=nil, uuid=nil, quuid=nil)
-          @Limit = limit
-          @Offset = offset
-          @Type = type
-          @Filters = filters
+        def initialize(uuid=nil, quuid=nil, type=nil, filters=nil, offset=nil, limit=nil, order=nil, by=nil)
           @Uuid = uuid
           @Quuid = quuid
+          @Type = type
+          @Filters = filters
+          @Offset = offset
+          @Limit = limit
+          @Order = order
+          @By = by
         end
 
         def deserialize(params)
-          @Limit = params['Limit']
-          @Offset = params['Offset']
+          @Uuid = params['Uuid']
+          @Quuid = params['Quuid']
           @Type = params['Type']
           unless params['Filters'].nil?
             @Filters = []
@@ -4593,8 +4895,10 @@ module TencentCloud
               @Filters << assetfilters_tmp
             end
           end
-          @Uuid = params['Uuid']
-          @Quuid = params['Quuid']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @Order = params['Order']
+          @By = params['By']
         end
       end
 
@@ -4663,12 +4967,32 @@ module TencentCloud
         # @type WebServiceCount: Integer
         # @param WebLocationCount: Web站点数
         # @type WebLocationCount: Integer
+        # @param AccountNewCount: 账号今日新增
+        # @type AccountNewCount: Integer
+        # @param PortNewCount: 端口今日新增
+        # @type PortNewCount: Integer
+        # @param ProcessNewCount: 进程今日新增
+        # @type ProcessNewCount: Integer
+        # @param SoftwareNewCount: 软件今日新增
+        # @type SoftwareNewCount: Integer
+        # @param DatabaseNewCount: 数据库今日新增
+        # @type DatabaseNewCount: Integer
+        # @param WebAppNewCount: Web应用今日新增
+        # @type WebAppNewCount: Integer
+        # @param WebFrameNewCount: Web框架今日新增
+        # @type WebFrameNewCount: Integer
+        # @param WebServiceNewCount: Web服务今日新增
+        # @type WebServiceNewCount: Integer
+        # @param WebLocationNewCount: Web站点今日新增
+        # @type WebLocationNewCount: Integer
+        # @param MachineNewCount: 主机今日新增
+        # @type MachineNewCount: Integer
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :MachineCount, :AccountCount, :PortCount, :ProcessCount, :SoftwareCount, :DatabaseCount, :WebAppCount, :WebFrameCount, :WebServiceCount, :WebLocationCount, :RequestId
+        attr_accessor :MachineCount, :AccountCount, :PortCount, :ProcessCount, :SoftwareCount, :DatabaseCount, :WebAppCount, :WebFrameCount, :WebServiceCount, :WebLocationCount, :AccountNewCount, :PortNewCount, :ProcessNewCount, :SoftwareNewCount, :DatabaseNewCount, :WebAppNewCount, :WebFrameNewCount, :WebServiceNewCount, :WebLocationNewCount, :MachineNewCount, :RequestId
         
-        def initialize(machinecount=nil, accountcount=nil, portcount=nil, processcount=nil, softwarecount=nil, databasecount=nil, webappcount=nil, webframecount=nil, webservicecount=nil, weblocationcount=nil, requestid=nil)
+        def initialize(machinecount=nil, accountcount=nil, portcount=nil, processcount=nil, softwarecount=nil, databasecount=nil, webappcount=nil, webframecount=nil, webservicecount=nil, weblocationcount=nil, accountnewcount=nil, portnewcount=nil, processnewcount=nil, softwarenewcount=nil, databasenewcount=nil, webappnewcount=nil, webframenewcount=nil, webservicenewcount=nil, weblocationnewcount=nil, machinenewcount=nil, requestid=nil)
           @MachineCount = machinecount
           @AccountCount = accountcount
           @PortCount = portcount
@@ -4679,6 +5003,16 @@ module TencentCloud
           @WebFrameCount = webframecount
           @WebServiceCount = webservicecount
           @WebLocationCount = weblocationcount
+          @AccountNewCount = accountnewcount
+          @PortNewCount = portnewcount
+          @ProcessNewCount = processnewcount
+          @SoftwareNewCount = softwarenewcount
+          @DatabaseNewCount = databasenewcount
+          @WebAppNewCount = webappnewcount
+          @WebFrameNewCount = webframenewcount
+          @WebServiceNewCount = webservicenewcount
+          @WebLocationNewCount = weblocationnewcount
+          @MachineNewCount = machinenewcount
           @RequestId = requestid
         end
 
@@ -4693,16 +5027,26 @@ module TencentCloud
           @WebFrameCount = params['WebFrameCount']
           @WebServiceCount = params['WebServiceCount']
           @WebLocationCount = params['WebLocationCount']
+          @AccountNewCount = params['AccountNewCount']
+          @PortNewCount = params['PortNewCount']
+          @ProcessNewCount = params['ProcessNewCount']
+          @SoftwareNewCount = params['SoftwareNewCount']
+          @DatabaseNewCount = params['DatabaseNewCount']
+          @WebAppNewCount = params['WebAppNewCount']
+          @WebFrameNewCount = params['WebFrameNewCount']
+          @WebServiceNewCount = params['WebServiceNewCount']
+          @WebLocationNewCount = params['WebLocationNewCount']
+          @MachineNewCount = params['MachineNewCount']
           @RequestId = params['RequestId']
         end
       end
 
       # DescribeAssetInitServiceList请求参数结构体
       class DescribeAssetInitServiceListRequest < TencentCloud::Common::AbstractModel
-        # @param Limit: 需要返回的数量，默认为10，最大值为100
-        # @type Limit: Integer
-        # @param Offset: 偏移量，默认为0。
-        # @type Offset: Integer
+        # @param Uuid: 服务器Uuid
+        # @type Uuid: String
+        # @param Quuid: 服务器Quuid
+        # @type Quuid: String
         # @param Filters: 过滤条件。
         # <li>IpOrAlias - String - 是否必填：否 - 主机ip或别名筛选</li>
         # <li>Name- string - 是否必填：否 - 包名</li>
@@ -4724,24 +5068,30 @@ module TencentCloud
         # 13:驱动服务
         # 14:登录</li>
         # @type Filters: Array
-        # @param Uuid: 服务器Uuid
-        # @type Uuid: String
-        # @param Quuid: 服务器Quuid
-        # @type Quuid: String
+        # @param Offset: 偏移量，默认为0。
+        # @type Offset: Integer
+        # @param Limit: 需要返回的数量，默认为10，最大值为100
+        # @type Limit: Integer
+        # @param Order: 排序方式，asc升序 或 desc降序
+        # @type Order: String
+        # @param By: 排序方式：[FirstTime]
+        # @type By: String
 
-        attr_accessor :Limit, :Offset, :Filters, :Uuid, :Quuid
+        attr_accessor :Uuid, :Quuid, :Filters, :Offset, :Limit, :Order, :By
         
-        def initialize(limit=nil, offset=nil, filters=nil, uuid=nil, quuid=nil)
-          @Limit = limit
-          @Offset = offset
-          @Filters = filters
+        def initialize(uuid=nil, quuid=nil, filters=nil, offset=nil, limit=nil, order=nil, by=nil)
           @Uuid = uuid
           @Quuid = quuid
+          @Filters = filters
+          @Offset = offset
+          @Limit = limit
+          @Order = order
+          @By = by
         end
 
         def deserialize(params)
-          @Limit = params['Limit']
-          @Offset = params['Offset']
+          @Uuid = params['Uuid']
+          @Quuid = params['Quuid']
           unless params['Filters'].nil?
             @Filters = []
             params['Filters'].each do |i|
@@ -4750,8 +5100,10 @@ module TencentCloud
               @Filters << assetfilters_tmp
             end
           end
-          @Uuid = params['Uuid']
-          @Quuid = params['Quuid']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @Order = params['Order']
+          @By = params['By']
         end
       end
 
@@ -4836,10 +5188,10 @@ module TencentCloud
 
       # DescribeAssetJarList请求参数结构体
       class DescribeAssetJarListRequest < TencentCloud::Common::AbstractModel
-        # @param Limit: 需要返回的数量，默认为10，最大值为100
-        # @type Limit: Integer
-        # @param Offset: 偏移量，默认为0。
-        # @type Offset: Integer
+        # @param Uuid: 服务器Uuid
+        # @type Uuid: String
+        # @param Quuid: 服务器Quuid
+        # @type Quuid: String
         # @param Filters: 过滤条件。
         # <li>IpOrAlias - String - 是否必填：否 - 主机ip或别名筛选</li>
         # <li>Name- string - 是否必填：否 - 包名</li>
@@ -4850,24 +5202,30 @@ module TencentCloud
         # 4 : 其他依赖包</li>
         # <li>Status- string - 是否必填：否 - 是否可执行：0否，1是</li>
         # @type Filters: Array
-        # @param Uuid: 服务器Uuid
-        # @type Uuid: String
-        # @param Quuid: 服务器Quuid
-        # @type Quuid: String
+        # @param Offset: 偏移量，默认为0。
+        # @type Offset: Integer
+        # @param Limit: 需要返回的数量，默认为10，最大值为100
+        # @type Limit: Integer
+        # @param Order: 排序方式，asc升序 或 desc降序
+        # @type Order: String
+        # @param By: 排序方式：[FirstTime]
+        # @type By: String
 
-        attr_accessor :Limit, :Offset, :Filters, :Uuid, :Quuid
+        attr_accessor :Uuid, :Quuid, :Filters, :Offset, :Limit, :Order, :By
         
-        def initialize(limit=nil, offset=nil, filters=nil, uuid=nil, quuid=nil)
-          @Limit = limit
-          @Offset = offset
-          @Filters = filters
+        def initialize(uuid=nil, quuid=nil, filters=nil, offset=nil, limit=nil, order=nil, by=nil)
           @Uuid = uuid
           @Quuid = quuid
+          @Filters = filters
+          @Offset = offset
+          @Limit = limit
+          @Order = order
+          @By = by
         end
 
         def deserialize(params)
-          @Limit = params['Limit']
-          @Offset = params['Offset']
+          @Uuid = params['Uuid']
+          @Quuid = params['Quuid']
           unless params['Filters'].nil?
             @Filters = []
             params['Filters'].each do |i|
@@ -4876,8 +5234,10 @@ module TencentCloud
               @Filters << assetfilters_tmp
             end
           end
-          @Uuid = params['Uuid']
-          @Quuid = params['Quuid']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @Order = params['Order']
+          @By = params['By']
         end
       end
 
@@ -4958,10 +5318,6 @@ module TencentCloud
 
       # DescribeAssetMachineList请求参数结构体
       class DescribeAssetMachineListRequest < TencentCloud::Common::AbstractModel
-        # @param Limit: 需要返回的数量，默认为10，最大值为100
-        # @type Limit: Integer
-        # @param Offset: 偏移量，默认为0。
-        # @type Offset: Integer
         # @param Filters: 过滤条件。
         # <li>IpOrAlias - String - 是否必填：否 - 主机ip或别名筛选</li>
         # <li>OsType - String - 是否必填：否 - windows或linux</li>
@@ -4979,24 +5335,26 @@ module TencentCloud
         # <li>Quuid：主机Quuid</li>
         # <li>Os -String 是否必填: 否 - 操作系统( DescribeMachineOsList 接口 值 )</li>
         # @type Filters: Array
-        # @param By: 可选排序：PartitionCount
-        # @type By: String
+        # @param Limit: 需要返回的数量，默认为10，最大值为100
+        # @type Limit: Integer
+        # @param Offset: 偏移量，默认为0。
+        # @type Offset: Integer
         # @param Order: 排序方式，asc升序 或 desc降序
         # @type Order: String
+        # @param By: 可选排序[FirstTime|PartitionCount]
+        # @type By: String
 
-        attr_accessor :Limit, :Offset, :Filters, :By, :Order
+        attr_accessor :Filters, :Limit, :Offset, :Order, :By
         
-        def initialize(limit=nil, offset=nil, filters=nil, by=nil, order=nil)
+        def initialize(filters=nil, limit=nil, offset=nil, order=nil, by=nil)
+          @Filters = filters
           @Limit = limit
           @Offset = offset
-          @Filters = filters
-          @By = by
           @Order = order
+          @By = by
         end
 
         def deserialize(params)
-          @Limit = params['Limit']
-          @Offset = params['Offset']
           unless params['Filters'].nil?
             @Filters = []
             params['Filters'].each do |i|
@@ -5005,8 +5363,10 @@ module TencentCloud
               @Filters << filter_tmp
             end
           end
-          @By = params['By']
+          @Limit = params['Limit']
+          @Offset = params['Offset']
           @Order = params['Order']
+          @By = params['By']
         end
       end
 
@@ -5044,33 +5404,39 @@ module TencentCloud
 
       # DescribeAssetPlanTaskList请求参数结构体
       class DescribeAssetPlanTaskListRequest < TencentCloud::Common::AbstractModel
-        # @param Limit: 需要返回的数量，默认为10，最大值为100
-        # @type Limit: Integer
-        # @param Offset: 偏移量，默认为0。
-        # @type Offset: Integer
+        # @param Uuid: 服务器Uuid
+        # @type Uuid: String
+        # @param Quuid: 服务器Quuid
+        # @type Quuid: String
         # @param Filters: 过滤条件。
         # <li>IpOrAlias - String - 是否必填：否 - 主机ip或别名筛选</li>
         # <li>User- string - 是否必填：否 - 用户</li>
         # <li>Status- int - 是否必填：否 - 默认启用状态：0未启用， 1启用 </li>
         # @type Filters: Array
-        # @param Uuid: 服务器Uuid
-        # @type Uuid: String
-        # @param Quuid: 服务器Quuid
-        # @type Quuid: String
+        # @param Offset: 偏移量，默认为0。
+        # @type Offset: Integer
+        # @param Limit: 需要返回的数量，默认为10，最大值为100
+        # @type Limit: Integer
+        # @param Order: 排序方式，asc升序 或 desc降序
+        # @type Order: String
+        # @param By: 排序方式：[FirstTime]
+        # @type By: String
 
-        attr_accessor :Limit, :Offset, :Filters, :Uuid, :Quuid
+        attr_accessor :Uuid, :Quuid, :Filters, :Offset, :Limit, :Order, :By
         
-        def initialize(limit=nil, offset=nil, filters=nil, uuid=nil, quuid=nil)
-          @Limit = limit
-          @Offset = offset
-          @Filters = filters
+        def initialize(uuid=nil, quuid=nil, filters=nil, offset=nil, limit=nil, order=nil, by=nil)
           @Uuid = uuid
           @Quuid = quuid
+          @Filters = filters
+          @Offset = offset
+          @Limit = limit
+          @Order = order
+          @By = by
         end
 
         def deserialize(params)
-          @Limit = params['Limit']
-          @Offset = params['Offset']
+          @Uuid = params['Uuid']
+          @Quuid = params['Quuid']
           unless params['Filters'].nil?
             @Filters = []
             params['Filters'].each do |i|
@@ -5079,8 +5445,10 @@ module TencentCloud
               @Filters << assetfilters_tmp
             end
           end
-          @Uuid = params['Uuid']
-          @Quuid = params['Quuid']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @Order = params['Order']
+          @By = params['By']
         end
       end
 
@@ -5118,10 +5486,8 @@ module TencentCloud
 
       # DescribeAssetPortInfoList请求参数结构体
       class DescribeAssetPortInfoListRequest < TencentCloud::Common::AbstractModel
-        # @param Limit: 需要返回的数量，默认为10，最大值为100
-        # @type Limit: Integer
-        # @param Offset: 偏移量，默认为0。
-        # @type Offset: Integer
+        # @param Quuid: 查询指定Quuid主机的信息
+        # @type Quuid: String
         # @param Filters: 过滤条件。
         # <li>Port - uint64 - 是否必填：否 - 端口</li>
         # <li>Ip - String - 是否必填：否 - 绑定IP</li>
@@ -5136,27 +5502,28 @@ module TencentCloud
         # <li>RunTimeEnd - String - 是否必填：否 - 运行结束时间</li>
         # <li>Os -String 是否必填: 否 - 操作系统( DescribeMachineOsList 接口 值 )</li>
         # @type Filters: Array
+        # @param Limit: 需要返回的数量，默认为10，最大值为100
+        # @type Limit: Integer
+        # @param Offset: 偏移量，默认为0。
+        # @type Offset: Integer
         # @param Order: 排序方式，asc升序 或 desc降序
         # @type Order: String
-        # @param By: 排序方式：StartTime
+        # @param By: 排序方式：[FirstTime|StartTime]
         # @type By: String
-        # @param Quuid: 查询指定Quuid主机的信息
-        # @type Quuid: String
 
-        attr_accessor :Limit, :Offset, :Filters, :Order, :By, :Quuid
+        attr_accessor :Quuid, :Filters, :Limit, :Offset, :Order, :By
         
-        def initialize(limit=nil, offset=nil, filters=nil, order=nil, by=nil, quuid=nil)
+        def initialize(quuid=nil, filters=nil, limit=nil, offset=nil, order=nil, by=nil)
+          @Quuid = quuid
+          @Filters = filters
           @Limit = limit
           @Offset = offset
-          @Filters = filters
           @Order = order
           @By = by
-          @Quuid = quuid
         end
 
         def deserialize(params)
-          @Limit = params['Limit']
-          @Offset = params['Offset']
+          @Quuid = params['Quuid']
           unless params['Filters'].nil?
             @Filters = []
             params['Filters'].each do |i|
@@ -5165,9 +5532,10 @@ module TencentCloud
               @Filters << filter_tmp
             end
           end
+          @Limit = params['Limit']
+          @Offset = params['Offset']
           @Order = params['Order']
           @By = params['By']
-          @Quuid = params['Quuid']
         end
       end
 
@@ -5205,10 +5573,8 @@ module TencentCloud
 
       # DescribeAssetProcessInfoList请求参数结构体
       class DescribeAssetProcessInfoListRequest < TencentCloud::Common::AbstractModel
-        # @param Limit: 需要返回的数量，默认为10，最大值为100
-        # @type Limit: Integer
-        # @param Offset: 偏移量，默认为0。
-        # @type Offset: Integer
+        # @param Quuid: 查询指定Quuid主机的信息
+        # @type Quuid: String
         # @param Filters: 过滤条件。
         # <li>IpOrAlias - String - 是否必填：否 - 主机ip或别名筛选</li>
         # <li>Name - String - 是否必填：否 - 进程名</li>
@@ -5229,27 +5595,28 @@ module TencentCloud
         # <li>InstallByPackage - uint64 - 是否必填：否 - 是否包安装：0否，1是</li>
         # <li>Os -String 是否必填: 否 - 操作系统( DescribeMachineOsList 接口 值 )</li>
         # @type Filters: Array
-        # @param Quuid: 查询指定Quuid主机的信息
-        # @type Quuid: String
+        # @param Limit: 需要返回的数量，默认为10，最大值为100
+        # @type Limit: Integer
+        # @param Offset: 偏移量，默认为0。
+        # @type Offset: Integer
         # @param Order: 排序方式，asc升序 或 desc降序
         # @type Order: String
-        # @param By: 排序方式：StartTime
+        # @param By: 排序方式：[FirstTime|StartTime]
         # @type By: String
 
-        attr_accessor :Limit, :Offset, :Filters, :Quuid, :Order, :By
+        attr_accessor :Quuid, :Filters, :Limit, :Offset, :Order, :By
         
-        def initialize(limit=nil, offset=nil, filters=nil, quuid=nil, order=nil, by=nil)
+        def initialize(quuid=nil, filters=nil, limit=nil, offset=nil, order=nil, by=nil)
+          @Quuid = quuid
+          @Filters = filters
           @Limit = limit
           @Offset = offset
-          @Filters = filters
-          @Quuid = quuid
           @Order = order
           @By = by
         end
 
         def deserialize(params)
-          @Limit = params['Limit']
-          @Offset = params['Offset']
+          @Quuid = params['Quuid']
           unless params['Filters'].nil?
             @Filters = []
             params['Filters'].each do |i|
@@ -5258,7 +5625,8 @@ module TencentCloud
               @Filters << filter_tmp
             end
           end
-          @Quuid = params['Quuid']
+          @Limit = params['Limit']
+          @Offset = params['Offset']
           @Order = params['Order']
           @By = params['By']
         end
@@ -5386,10 +5754,6 @@ module TencentCloud
         # @type Uuid: String
         # @param Quuid: 主机Quuid
         # @type Quuid: String
-        # @param Limit: 需要返回的数量，默认为10，最大值为100
-        # @type Limit: Integer
-        # @param Offset: 偏移量，默认为0。
-        # @type Offset: Integer
         # @param Filters: 过滤条件。
         # <li>Name - String - 是否必填：否 - 包 名</li>
         # <li>StartTime - String - 是否必填：否 - 安装开始时间</li>
@@ -5400,19 +5764,23 @@ module TencentCloud
         # 3:java
         # 4:system</li>
         # @type Filters: Array
+        # @param Offset: 偏移量，默认为0。
+        # @type Offset: Integer
+        # @param Limit: 需要返回的数量，默认为10，最大值为100
+        # @type Limit: Integer
         # @param Order: 排序方式，asc-升序 或 desc-降序。默认：desc-降序
         # @type Order: String
-        # @param By: 排序方式可选：InstallTime 安装时间
+        # @param By: 排序方式可选：[FistTime|InstallTime:安装时间]
         # @type By: String
 
-        attr_accessor :Uuid, :Quuid, :Limit, :Offset, :Filters, :Order, :By
+        attr_accessor :Uuid, :Quuid, :Filters, :Offset, :Limit, :Order, :By
         
-        def initialize(uuid=nil, quuid=nil, limit=nil, offset=nil, filters=nil, order=nil, by=nil)
+        def initialize(uuid=nil, quuid=nil, filters=nil, offset=nil, limit=nil, order=nil, by=nil)
           @Uuid = uuid
           @Quuid = quuid
-          @Limit = limit
-          @Offset = offset
           @Filters = filters
+          @Offset = offset
+          @Limit = limit
           @Order = order
           @By = by
         end
@@ -5420,8 +5788,6 @@ module TencentCloud
         def deserialize(params)
           @Uuid = params['Uuid']
           @Quuid = params['Quuid']
-          @Limit = params['Limit']
-          @Offset = params['Offset']
           unless params['Filters'].nil?
             @Filters = []
             params['Filters'].each do |i|
@@ -5430,6 +5796,8 @@ module TencentCloud
               @Filters << filter_tmp
             end
           end
+          @Offset = params['Offset']
+          @Limit = params['Limit']
           @Order = params['Order']
           @By = params['By']
         end
@@ -5516,10 +5884,8 @@ module TencentCloud
 
       # DescribeAssetUserList请求参数结构体
       class DescribeAssetUserListRequest < TencentCloud::Common::AbstractModel
-        # @param Limit: 需要返回的数量，默认为10，最大值为100
-        # @type Limit: Integer
-        # @param Offset: 偏移量，默认为0。
-        # @type Offset: Integer
+        # @param Quuid: 查询指定Quuid主机的信息
+        # @type Quuid: String
         # @param Filters: 过滤条件。
         # <li>IpOrAlias - String - 是否必填：否 - 主机ip或别名筛选</li>
         # <li>Name - String - 是否必填：否 - 账户名（模糊匹配）</li>
@@ -5540,31 +5906,29 @@ module TencentCloud
         # <li>PasswordStatus - uint64 - 是否必填：否 - 密码状态：1正常 2即将过期 3已过期 4已锁定 仅linux</li>
         # <li>Os -String 是否必填: 否 - 操作系统( DescribeMachineOsList 接口 值 )</li>
         # @type Filters: Array
+        # @param Limit: 需要返回的数量，默认为10，最大值为100
+        # @type Limit: Integer
+        # @param Offset: 偏移量，默认为0。
+        # @type Offset: Integer
         # @param Order: 排序方式，asc升序 或 desc降序
         # @type Order: String
-        # @param By: 可选排序：
-        # LoginTime
-        # PasswordChangeTime
-        # PasswordDuaTime
+        # @param By: 可选排序：[FirstTime|LoginTime|PasswordChangeTime|PasswordDuaTime]
         # PasswordLockDays
         # @type By: String
-        # @param Quuid: 查询指定Quuid主机的信息
-        # @type Quuid: String
 
-        attr_accessor :Limit, :Offset, :Filters, :Order, :By, :Quuid
+        attr_accessor :Quuid, :Filters, :Limit, :Offset, :Order, :By
         
-        def initialize(limit=nil, offset=nil, filters=nil, order=nil, by=nil, quuid=nil)
+        def initialize(quuid=nil, filters=nil, limit=nil, offset=nil, order=nil, by=nil)
+          @Quuid = quuid
+          @Filters = filters
           @Limit = limit
           @Offset = offset
-          @Filters = filters
           @Order = order
           @By = by
-          @Quuid = quuid
         end
 
         def deserialize(params)
-          @Limit = params['Limit']
-          @Offset = params['Offset']
+          @Quuid = params['Quuid']
           unless params['Filters'].nil?
             @Filters = []
             params['Filters'].each do |i|
@@ -5573,9 +5937,10 @@ module TencentCloud
               @Filters << filter_tmp
             end
           end
+          @Limit = params['Limit']
+          @Offset = params['Offset']
           @Order = params['Order']
           @By = params['By']
-          @Quuid = params['Quuid']
         end
       end
 
@@ -5613,10 +5978,8 @@ module TencentCloud
 
       # DescribeAssetWebAppList请求参数结构体
       class DescribeAssetWebAppListRequest < TencentCloud::Common::AbstractModel
-        # @param Limit: 需要返回的数量，默认为10，最大值为100
-        # @type Limit: Integer
-        # @param Offset: 偏移量，默认为0。
-        # @type Offset: Integer
+        # @param Quuid: 查询指定Quuid主机的信息
+        # @type Quuid: String
         # @param Filters: 过滤条件。
         # <li>IpOrAlias - String - 是否必填：否 - 主机ip或别名筛选</li>
         # <li>Name - String - 是否必填：否 - 应用名</li>
@@ -5635,27 +5998,28 @@ module TencentCloud
         # <li>OsType - String - 是否必填：否 - windows/linux</li>
         # <li>Os -String 是否必填: 否 - 操作系统( DescribeMachineOsList 接口 值 )</li>
         # @type Filters: Array
+        # @param Offset: 偏移量，默认为0。
+        # @type Offset: Integer
+        # @param Limit: 需要返回的数量，默认为10，最大值为100
+        # @type Limit: Integer
         # @param Order: 排序方式，asc升序 或 desc降序
         # @type Order: String
-        # @param By: 可选排序：PluginCount
+        # @param By: 可选排序：[FirstTime|PluginCount]
         # @type By: String
-        # @param Quuid: 查询指定Quuid主机的信息
-        # @type Quuid: String
 
-        attr_accessor :Limit, :Offset, :Filters, :Order, :By, :Quuid
+        attr_accessor :Quuid, :Filters, :Offset, :Limit, :Order, :By
         
-        def initialize(limit=nil, offset=nil, filters=nil, order=nil, by=nil, quuid=nil)
-          @Limit = limit
-          @Offset = offset
+        def initialize(quuid=nil, filters=nil, offset=nil, limit=nil, order=nil, by=nil)
+          @Quuid = quuid
           @Filters = filters
+          @Offset = offset
+          @Limit = limit
           @Order = order
           @By = by
-          @Quuid = quuid
         end
 
         def deserialize(params)
-          @Limit = params['Limit']
-          @Offset = params['Offset']
+          @Quuid = params['Quuid']
           unless params['Filters'].nil?
             @Filters = []
             params['Filters'].each do |i|
@@ -5664,9 +6028,10 @@ module TencentCloud
               @Filters << filter_tmp
             end
           end
+          @Offset = params['Offset']
+          @Limit = params['Limit']
           @Order = params['Order']
           @By = params['By']
-          @Quuid = params['Quuid']
         end
       end
 
@@ -5768,10 +6133,8 @@ module TencentCloud
 
       # DescribeAssetWebFrameList请求参数结构体
       class DescribeAssetWebFrameListRequest < TencentCloud::Common::AbstractModel
-        # @param Limit: 需要返回的数量，默认为10，最大值为100
-        # @type Limit: Integer
-        # @param Offset: 偏移量，默认为0。
-        # @type Offset: Integer
+        # @param Quuid: 查询指定Quuid主机的信息
+        # @type Quuid: String
         # @param Filters: 过滤条件。
         # <li>IpOrAlias - String - 是否必填：否 - 主机ip或别名筛选</li>
         # <li>Name - String - 是否必填：否 - 框架名</li>
@@ -5792,27 +6155,28 @@ module TencentCloud
         # <li>OsType - String - 是否必填：否 - windows/linux</li>
         # <li>Os -String 是否必填: 否 - 操作系统( DescribeMachineOsList 接口 值 )</li>
         # @type Filters: Array
+        # @param Offset: 偏移量，默认为0。
+        # @type Offset: Integer
+        # @param Limit: 需要返回的数量，默认为10，最大值为100
+        # @type Limit: Integer
         # @param Order: 排序方式，asc升序 或 desc降序
         # @type Order: String
-        # @param By: 可选排序：JarCount
+        # @param By: 可选排序：[FirstTime|JarCount]
         # @type By: String
-        # @param Quuid: 查询指定Quuid主机的信息
-        # @type Quuid: String
 
-        attr_accessor :Limit, :Offset, :Filters, :Order, :By, :Quuid
+        attr_accessor :Quuid, :Filters, :Offset, :Limit, :Order, :By
         
-        def initialize(limit=nil, offset=nil, filters=nil, order=nil, by=nil, quuid=nil)
-          @Limit = limit
-          @Offset = offset
+        def initialize(quuid=nil, filters=nil, offset=nil, limit=nil, order=nil, by=nil)
+          @Quuid = quuid
           @Filters = filters
+          @Offset = offset
+          @Limit = limit
           @Order = order
           @By = by
-          @Quuid = quuid
         end
 
         def deserialize(params)
-          @Limit = params['Limit']
-          @Offset = params['Offset']
+          @Quuid = params['Quuid']
           unless params['Filters'].nil?
             @Filters = []
             params['Filters'].each do |i|
@@ -5821,9 +6185,10 @@ module TencentCloud
               @Filters << filter_tmp
             end
           end
+          @Offset = params['Offset']
+          @Limit = params['Limit']
           @Order = params['Order']
           @By = params['By']
-          @Quuid = params['Quuid']
         end
       end
 
@@ -5909,10 +6274,8 @@ module TencentCloud
 
       # DescribeAssetWebLocationList请求参数结构体
       class DescribeAssetWebLocationListRequest < TencentCloud::Common::AbstractModel
-        # @param Limit: 需要返回的数量，默认为10，最大值为100
-        # @type Limit: Integer
-        # @param Offset: 偏移量，默认为0。
-        # @type Offset: Integer
+        # @param Quuid: 查询指定Quuid主机的信息
+        # @type Quuid: String
         # @param Filters: 过滤条件。
         # <li>IpOrAlias - String - 是否必填：否 - 主机ip或别名筛选</li>
         # <li>Name - String - 是否必填：否 - 域名</li>
@@ -5933,27 +6296,28 @@ module TencentCloud
         # <li>OsType - String - 是否必填：否 - windows/linux</li>
         # <li>Os -String 是否必填: 否 - 操作系统( DescribeMachineOsList 接口 值 )</li>
         # @type Filters: Array
+        # @param Offset: 偏移量，默认为0。
+        # @type Offset: Integer
+        # @param Limit: 需要返回的数量，默认为10，最大值为100
+        # @type Limit: Integer
         # @param Order: 排序方式，asc升序 或 desc降序
         # @type Order: String
-        # @param By: 可选排序：PathCount
+        # @param By: 可选排序：[FirstTime|PathCount]
         # @type By: String
-        # @param Quuid: 查询指定Quuid主机的信息
-        # @type Quuid: String
 
-        attr_accessor :Limit, :Offset, :Filters, :Order, :By, :Quuid
+        attr_accessor :Quuid, :Filters, :Offset, :Limit, :Order, :By
         
-        def initialize(limit=nil, offset=nil, filters=nil, order=nil, by=nil, quuid=nil)
-          @Limit = limit
-          @Offset = offset
+        def initialize(quuid=nil, filters=nil, offset=nil, limit=nil, order=nil, by=nil)
+          @Quuid = quuid
           @Filters = filters
+          @Offset = offset
+          @Limit = limit
           @Order = order
           @By = by
-          @Quuid = quuid
         end
 
         def deserialize(params)
-          @Limit = params['Limit']
-          @Offset = params['Offset']
+          @Quuid = params['Quuid']
           unless params['Filters'].nil?
             @Filters = []
             params['Filters'].each do |i|
@@ -5962,9 +6326,10 @@ module TencentCloud
               @Filters << filter_tmp
             end
           end
+          @Offset = params['Offset']
+          @Limit = params['Limit']
           @Order = params['Order']
           @By = params['By']
-          @Quuid = params['Quuid']
         end
       end
 
@@ -6002,11 +6367,8 @@ module TencentCloud
 
       # DescribeAssetWebServiceInfoList请求参数结构体
       class DescribeAssetWebServiceInfoListRequest < TencentCloud::Common::AbstractModel
-        # @param Limit: 需要返回的数量，默认为10，最大值为100
-        # @type Limit: Integer
-        # @param Offset: 偏移量，默认为0。
-        # <li>IpOrAlias - String - 是否必填：否 - 主机ip或别名筛选</li>
-        # @type Offset: Integer
+        # @param Quuid: 查询指定Quuid主机的信息
+        # @type Quuid: String
         # @param Filters: 过滤条件。
         # <li>User- string - 是否必填：否 - 运行用户</li>
         # <li>Name- string - 是否必填：否 - Web服务名：
@@ -6023,27 +6385,29 @@ module TencentCloud
         # <li>OsType- string - 是否必填：否 - Windows/linux</li>
         # <li>Os -String 是否必填: 否 - 操作系统( DescribeMachineOsList 接口 值 )</li>
         # @type Filters: Array
+        # @param Offset: 偏移量，默认为0。
+        # <li>IpOrAlias - String - 是否必填：否 - 主机ip或别名筛选</li>
+        # @type Offset: Integer
+        # @param Limit: 需要返回的数量，默认为10，最大值为100
+        # @type Limit: Integer
         # @param Order: 排序方式，asc升序 或 desc降序
         # @type Order: String
-        # @param By: 可选排序：ProcessCount
+        # @param By: 可选排序：[FirstTime|ProcessCount]
         # @type By: String
-        # @param Quuid: 查询指定Quuid主机的信息
-        # @type Quuid: String
 
-        attr_accessor :Limit, :Offset, :Filters, :Order, :By, :Quuid
+        attr_accessor :Quuid, :Filters, :Offset, :Limit, :Order, :By
         
-        def initialize(limit=nil, offset=nil, filters=nil, order=nil, by=nil, quuid=nil)
-          @Limit = limit
-          @Offset = offset
+        def initialize(quuid=nil, filters=nil, offset=nil, limit=nil, order=nil, by=nil)
+          @Quuid = quuid
           @Filters = filters
+          @Offset = offset
+          @Limit = limit
           @Order = order
           @By = by
-          @Quuid = quuid
         end
 
         def deserialize(params)
-          @Limit = params['Limit']
-          @Offset = params['Offset']
+          @Quuid = params['Quuid']
           unless params['Filters'].nil?
             @Filters = []
             params['Filters'].each do |i|
@@ -6052,9 +6416,10 @@ module TencentCloud
               @Filters << assetfilters_tmp
             end
           end
+          @Offset = params['Offset']
+          @Limit = params['Limit']
           @Order = params['Order']
           @By = params['By']
-          @Quuid = params['Quuid']
         end
       end
 
@@ -8525,6 +8890,319 @@ module TencentCloud
 
         def deserialize(params)
           @Data = params['Data']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeLicenseBindList请求参数结构体
+      class DescribeLicenseBindListRequest < TencentCloud::Common::AbstractModel
+        # @param LicenseId: 授权ID
+        # @type LicenseId: Integer
+        # @param LicenseType: 授权类型
+        # @type LicenseType: Integer
+        # @param ResourceId: 资源ID
+        # @type ResourceId: String
+        # @param Filters: <li>Keywords 机器别名/公私IP 模糊查询</li>
+        # @type Filters: Array
+        # @param Limit: 限制条数,默认10.
+        # @type Limit: Integer
+        # @param Offset: 偏移量,默认0.
+        # @type Offset: Integer
+
+        attr_accessor :LicenseId, :LicenseType, :ResourceId, :Filters, :Limit, :Offset
+        
+        def initialize(licenseid=nil, licensetype=nil, resourceid=nil, filters=nil, limit=nil, offset=nil)
+          @LicenseId = licenseid
+          @LicenseType = licensetype
+          @ResourceId = resourceid
+          @Filters = filters
+          @Limit = limit
+          @Offset = offset
+        end
+
+        def deserialize(params)
+          @LicenseId = params['LicenseId']
+          @LicenseType = params['LicenseType']
+          @ResourceId = params['ResourceId']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filters_tmp = Filters.new
+              filters_tmp.deserialize(i)
+              @Filters << filters_tmp
+            end
+          end
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+        end
+      end
+
+      # DescribeLicenseBindList返回参数结构体
+      class DescribeLicenseBindListResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 总条数
+        # @type TotalCount: Integer
+        # @param List: 绑定机器列表信息
+        # @type List: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :List, :RequestId
+        
+        def initialize(totalcount=nil, list=nil, requestid=nil)
+          @TotalCount = totalcount
+          @List = list
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['List'].nil?
+            @List = []
+            params['List'].each do |i|
+              licensebinddetail_tmp = LicenseBindDetail.new
+              licensebinddetail_tmp.deserialize(i)
+              @List << licensebinddetail_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeLicenseBindSchedule请求参数结构体
+      class DescribeLicenseBindScheduleRequest < TencentCloud::Common::AbstractModel
+        # @param TaskId: 任务ID
+        # @type TaskId: Integer
+        # @param Limit: 限制条数,默认10.
+        # @type Limit: Integer
+        # @param Offset: 偏移量,默认0
+        # @type Offset: Integer
+        # @param Filters: 过滤参数
+        # Status 绑定进度状态 0 进行中 1 已完成 2 失败
+        # @type Filters: Array
+
+        attr_accessor :TaskId, :Limit, :Offset, :Filters
+        
+        def initialize(taskid=nil, limit=nil, offset=nil, filters=nil)
+          @TaskId = taskid
+          @Limit = limit
+          @Offset = offset
+          @Filters = filters
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+        end
+      end
+
+      # DescribeLicenseBindSchedule返回参数结构体
+      class DescribeLicenseBindScheduleResponse < TencentCloud::Common::AbstractModel
+        # @param Schedule: 进度
+        # @type Schedule: Integer
+        # @param List: 绑定任务详情
+        # @type List: Array
+        # @param TotalCount: 总条数
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Schedule, :List, :TotalCount, :RequestId
+        
+        def initialize(schedule=nil, list=nil, totalcount=nil, requestid=nil)
+          @Schedule = schedule
+          @List = list
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Schedule = params['Schedule']
+          unless params['List'].nil?
+            @List = []
+            params['List'].each do |i|
+              licensebindtaskdetail_tmp = LicenseBindTaskDetail.new
+              licensebindtaskdetail_tmp.deserialize(i)
+              @List << licensebindtaskdetail_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeLicenseGeneral请求参数结构体
+      class DescribeLicenseGeneralRequest < TencentCloud::Common::AbstractModel
+
+        
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeLicenseGeneral返回参数结构体
+      class DescribeLicenseGeneralResponse < TencentCloud::Common::AbstractModel
+        # @param LicenseCnt: 总授权数 (包含隔离,过期等不可用状态)
+        # @type LicenseCnt: Integer
+        # @param AvailableLicenseCnt: 可用授权数
+        # @type AvailableLicenseCnt: Integer
+        # @param AvailableProVersionLicenseCnt: 可用专业版授权数(包含后付费).
+        # @type AvailableProVersionLicenseCnt: Integer
+        # @param AvailableFlagshipVersionLicenseCnt: 可用旗舰版授权数
+        # @type AvailableFlagshipVersionLicenseCnt: Integer
+        # @param NearExpiryLicenseCnt: 即将到期授权数 (15天内到期的)
+        # @type NearExpiryLicenseCnt: Integer
+        # @param ExpireLicenseCnt: 已到期授权数(不包含已删除的记录)
+        # @type ExpireLicenseCnt: Integer
+        # @param AutoOpenStatus: 自动升级开关状态,默认 false,  ture 开启, false 关闭
+        # @type AutoOpenStatus: Boolean
+        # @param ProtectType: PROVERSION_POSTPAY 专业版-后付费, PROVERSION_PREPAY 专业版-预付费, FLAGSHIP_PREPAY 旗舰版-预付费
+        # @type ProtectType: String
+        # @param IsOpenStatusHistory: 历史是否开通过自动升级开关
+        # @type IsOpenStatusHistory: Boolean
+        # @param UsedLicenseCnt: 已使用授权数
+        # @type UsedLicenseCnt: Integer
+        # @param NotExpiredLicenseCnt: 未到期授权数
+        # @type NotExpiredLicenseCnt: Integer
+        # @param FlagshipVersionLicenseCnt: 旗舰版总授权数(有效订单)
+        # @type FlagshipVersionLicenseCnt: Integer
+        # @param ProVersionLicenseCnt: 专业版总授权数(有效订单)
+        # @type ProVersionLicenseCnt: Integer
+        # @param CwpVersionLicenseCnt: 普惠版总授权数(有效订单的授权数)
+        # @type CwpVersionLicenseCnt: Integer
+        # @param AvailableLHLicenseCnt: 可用惠普版授权数
+        # @type AvailableLHLicenseCnt: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :LicenseCnt, :AvailableLicenseCnt, :AvailableProVersionLicenseCnt, :AvailableFlagshipVersionLicenseCnt, :NearExpiryLicenseCnt, :ExpireLicenseCnt, :AutoOpenStatus, :ProtectType, :IsOpenStatusHistory, :UsedLicenseCnt, :NotExpiredLicenseCnt, :FlagshipVersionLicenseCnt, :ProVersionLicenseCnt, :CwpVersionLicenseCnt, :AvailableLHLicenseCnt, :RequestId
+        
+        def initialize(licensecnt=nil, availablelicensecnt=nil, availableproversionlicensecnt=nil, availableflagshipversionlicensecnt=nil, nearexpirylicensecnt=nil, expirelicensecnt=nil, autoopenstatus=nil, protecttype=nil, isopenstatushistory=nil, usedlicensecnt=nil, notexpiredlicensecnt=nil, flagshipversionlicensecnt=nil, proversionlicensecnt=nil, cwpversionlicensecnt=nil, availablelhlicensecnt=nil, requestid=nil)
+          @LicenseCnt = licensecnt
+          @AvailableLicenseCnt = availablelicensecnt
+          @AvailableProVersionLicenseCnt = availableproversionlicensecnt
+          @AvailableFlagshipVersionLicenseCnt = availableflagshipversionlicensecnt
+          @NearExpiryLicenseCnt = nearexpirylicensecnt
+          @ExpireLicenseCnt = expirelicensecnt
+          @AutoOpenStatus = autoopenstatus
+          @ProtectType = protecttype
+          @IsOpenStatusHistory = isopenstatushistory
+          @UsedLicenseCnt = usedlicensecnt
+          @NotExpiredLicenseCnt = notexpiredlicensecnt
+          @FlagshipVersionLicenseCnt = flagshipversionlicensecnt
+          @ProVersionLicenseCnt = proversionlicensecnt
+          @CwpVersionLicenseCnt = cwpversionlicensecnt
+          @AvailableLHLicenseCnt = availablelhlicensecnt
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @LicenseCnt = params['LicenseCnt']
+          @AvailableLicenseCnt = params['AvailableLicenseCnt']
+          @AvailableProVersionLicenseCnt = params['AvailableProVersionLicenseCnt']
+          @AvailableFlagshipVersionLicenseCnt = params['AvailableFlagshipVersionLicenseCnt']
+          @NearExpiryLicenseCnt = params['NearExpiryLicenseCnt']
+          @ExpireLicenseCnt = params['ExpireLicenseCnt']
+          @AutoOpenStatus = params['AutoOpenStatus']
+          @ProtectType = params['ProtectType']
+          @IsOpenStatusHistory = params['IsOpenStatusHistory']
+          @UsedLicenseCnt = params['UsedLicenseCnt']
+          @NotExpiredLicenseCnt = params['NotExpiredLicenseCnt']
+          @FlagshipVersionLicenseCnt = params['FlagshipVersionLicenseCnt']
+          @ProVersionLicenseCnt = params['ProVersionLicenseCnt']
+          @CwpVersionLicenseCnt = params['CwpVersionLicenseCnt']
+          @AvailableLHLicenseCnt = params['AvailableLHLicenseCnt']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeLicenseList请求参数结构体
+      class DescribeLicenseListRequest < TencentCloud::Common::AbstractModel
+        # @param Filters: 多个条件筛选时 LicenseStatus,DeadlineStatus,ResourceId,Keywords 取交集
+        # <li> LicenseStatus 授权状态信息,0 未使用,1 部分使用, 2 已用完, 3 不可用  4 可使用</li>
+        # <li> BuyTime 购买时间</li>
+        # <li> LicenseType  授权类型, 0 专业版-按量计费, 1专业版-包年包月 , 2 旗舰版-包年包月</li>
+        # <li>DeadlineStatus 到期状态 NotExpired 未过期, Expire 已过期(包含已销毁) NearExpiry 即将到期</li>
+        # <li>ResourceId 资源ID</li>
+        # <li>Keywords IP筛选</li>
+        # <li>PayMode 付费模式 0 按量计费 , 1 包年包月</li>
+        # <li>OrderStatus 订单状态 1 正常 2 隔离 3 销毁</li>
+        # @type Filters: Array
+        # @param Limit: 限制条数,默认10.
+        # @type Limit: Integer
+        # @param Offset: 偏移量,默认0.
+        # @type Offset: Integer
+        # @param Tags: 标签筛选,平台标签能力,这里传入 标签键,标签值作为一个对象
+        # @type Tags: Array
+
+        attr_accessor :Filters, :Limit, :Offset, :Tags
+        
+        def initialize(filters=nil, limit=nil, offset=nil, tags=nil)
+          @Filters = filters
+          @Limit = limit
+          @Offset = offset
+          @Tags = tags
+        end
+
+        def deserialize(params)
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filters_tmp = Filters.new
+              filters_tmp.deserialize(i)
+              @Filters << filters_tmp
+            end
+          end
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tags_tmp = Tags.new
+              tags_tmp.deserialize(i)
+              @Tags << tags_tmp
+            end
+          end
+        end
+      end
+
+      # DescribeLicenseList返回参数结构体
+      class DescribeLicenseListResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 总条数
+        # @type TotalCount: Integer
+        # @param List: 授权数列表信息
+        # @type List: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :List, :RequestId
+        
+        def initialize(totalcount=nil, list=nil, requestid=nil)
+          @TotalCount = totalcount
+          @List = list
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['List'].nil?
+            @List = []
+            params['List'].each do |i|
+              licensedetail_tmp = LicenseDetail.new
+              licensedetail_tmp.deserialize(i)
+              @List << licensedetail_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -12615,6 +13293,42 @@ module TencentCloud
         end
       end
 
+      # DestroyOrder请求参数结构体
+      class DestroyOrderRequest < TencentCloud::Common::AbstractModel
+        # @param ResourceId: 资源ID
+        # @type ResourceId: String
+        # @param LicenseType: 授权类型 0 专业版-按量计费, 1专业版-包年包月 , 2 旗舰版-包年包月
+        # @type LicenseType: Integer
+
+        attr_accessor :ResourceId, :LicenseType
+        
+        def initialize(resourceid=nil, licensetype=nil)
+          @ResourceId = resourceid
+          @LicenseType = licensetype
+        end
+
+        def deserialize(params)
+          @ResourceId = params['ResourceId']
+          @LicenseType = params['LicenseType']
+        end
+      end
+
+      # DestroyOrder返回参数结构体
+      class DestroyOrderResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # EditBashRules请求参数结构体
       class EditBashRulesRequest < TencentCloud::Common::AbstractModel
         # @param Id: 规则ID（新增时不填）
@@ -12967,30 +13681,32 @@ module TencentCloud
 
       # ExportAssetCoreModuleList请求参数结构体
       class ExportAssetCoreModuleListRequest < TencentCloud::Common::AbstractModel
+        # @param Uuid: 服务器Uuid
+        # @type Uuid: String
+        # @param Quuid: 服务器Quuid
+        # @type Quuid: String
         # @param Filters: 过滤条件。
         # <li>Name- string - 是否必填：否 - 包名</li>
         # <li>User- string - 是否必填：否 - 用户</li>
         # @type Filters: Array
         # @param Order: 排序方式，asc升序 或 desc降序
         # @type Order: String
-        # @param By: 排序依据:Size,ProcessCount,ModuleCount
+        # @param By: 排序依据[FirstTime|Size|ProcessCount|ModuleCount]
         # @type By: String
-        # @param Uuid: 服务器Uuid
-        # @type Uuid: String
-        # @param Quuid: 服务器Quuid
-        # @type Quuid: String
 
-        attr_accessor :Filters, :Order, :By, :Uuid, :Quuid
+        attr_accessor :Uuid, :Quuid, :Filters, :Order, :By
         
-        def initialize(filters=nil, order=nil, by=nil, uuid=nil, quuid=nil)
+        def initialize(uuid=nil, quuid=nil, filters=nil, order=nil, by=nil)
+          @Uuid = uuid
+          @Quuid = quuid
           @Filters = filters
           @Order = order
           @By = by
-          @Uuid = uuid
-          @Quuid = quuid
         end
 
         def deserialize(params)
+          @Uuid = params['Uuid']
+          @Quuid = params['Quuid']
           unless params['Filters'].nil?
             @Filters = []
             params['Filters'].each do |i|
@@ -13001,8 +13717,6 @@ module TencentCloud
           end
           @Order = params['Order']
           @By = params['By']
-          @Uuid = params['Uuid']
-          @Quuid = params['Quuid']
         end
       end
 
@@ -13028,6 +13742,8 @@ module TencentCloud
 
       # ExportAssetWebServiceInfoList请求参数结构体
       class ExportAssetWebServiceInfoListRequest < TencentCloud::Common::AbstractModel
+        # @param Quuid: 查询指定Quuid主机的信息
+        # @type Quuid: String
         # @param Filters: 过滤条件。
         # <li>User- string - 是否必填：否 - 运行用户</li>
         # <li>Name- string - 是否必填：否 - Web服务名：
@@ -13045,21 +13761,20 @@ module TencentCloud
         # @type Filters: Array
         # @param Order: 排序方式，asc升序 或 desc降序
         # @type Order: String
-        # @param By: 可选排序：ProcessCount
+        # @param By: 可选排序：[FirstTime|ProcessCount]
         # @type By: String
-        # @param Quuid: 查询指定Quuid主机的信息
-        # @type Quuid: String
 
-        attr_accessor :Filters, :Order, :By, :Quuid
+        attr_accessor :Quuid, :Filters, :Order, :By
         
-        def initialize(filters=nil, order=nil, by=nil, quuid=nil)
+        def initialize(quuid=nil, filters=nil, order=nil, by=nil)
+          @Quuid = quuid
           @Filters = filters
           @Order = order
           @By = by
-          @Quuid = quuid
         end
 
         def deserialize(params)
+          @Quuid = params['Quuid']
           unless params['Filters'].nil?
             @Filters = []
             params['Filters'].each do |i|
@@ -13070,7 +13785,6 @@ module TencentCloud
           end
           @Order = params['Order']
           @By = params['By']
-          @Quuid = params['Quuid']
         end
       end
 
@@ -13446,6 +14160,74 @@ module TencentCloud
         # @type DownloadUrl: String
         # @param TaskId: 导出任务Id , 可通过ExportTasks 接口下载
         # @type TaskId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :DownloadUrl, :TaskId, :RequestId
+        
+        def initialize(downloadurl=nil, taskid=nil, requestid=nil)
+          @DownloadUrl = downloadurl
+          @TaskId = taskid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @DownloadUrl = params['DownloadUrl']
+          @TaskId = params['TaskId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ExportLicenseDetail请求参数结构体
+      class ExportLicenseDetailRequest < TencentCloud::Common::AbstractModel
+        # @param Filters: 多个条件筛选时 LicenseStatus,DeadlineStatus,ResourceId,Keywords 取交集
+        # <li> LicenseType  授权类型, 0 专业版-按量计费, 1专业版-包年包月 , 2 旗舰版-包年包月</li>
+        # <li>ResourceId 资源ID</li>
+        # @type Filters: Array
+        # @param IsHistory: 是否导出全部授权详情
+        # @type IsHistory: Boolean
+        # @param Tags: 标签筛选,平台标签能力,这里传入 标签键,标签值作为一个对象
+        # @type Tags: Array
+        # @param ExportMonth: 导出月份, 该参数仅在IsHistory 时可选.
+        # @type ExportMonth: String
+
+        attr_accessor :Filters, :IsHistory, :Tags, :ExportMonth
+        
+        def initialize(filters=nil, ishistory=nil, tags=nil, exportmonth=nil)
+          @Filters = filters
+          @IsHistory = ishistory
+          @Tags = tags
+          @ExportMonth = exportmonth
+        end
+
+        def deserialize(params)
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filters_tmp = Filters.new
+              filters_tmp.deserialize(i)
+              @Filters << filters_tmp
+            end
+          end
+          @IsHistory = params['IsHistory']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tags_tmp = Tags.new
+              tags_tmp.deserialize(i)
+              @Tags << tags_tmp
+            end
+          end
+          @ExportMonth = params['ExportMonth']
+        end
+      end
+
+      # ExportLicenseDetail返回参数结构体
+      class ExportLicenseDetailResponse < TencentCloud::Common::AbstractModel
+        # @param DownloadUrl: 下载地址,该字段废弃
+        # @type DownloadUrl: String
+        # @param TaskId: 任务ID,可通过任务ID去查下载任务
+        # @type TaskId: Integer
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -14490,6 +15272,159 @@ module TencentCloud
         end
       end
 
+      # 授权绑定详情信息
+      class LicenseBindDetail < TencentCloud::Common::AbstractModel
+        # @param MachineName: 机器别名
+        # @type MachineName: String
+        # @param MachineWanIp: 机器公网IP
+        # @type MachineWanIp: String
+        # @param MachineIp: 机器内网IP
+        # @type MachineIp: String
+        # @param Quuid: 云服务器UUID
+        # @type Quuid: String
+        # @param Uuid: 云镜客户端UUID
+        # @type Uuid: String
+        # @param Tags: 标签信息
+        # @type Tags: Array
+        # @param AgentStatus: 云镜客户端状态,OFFLINE 离线,ONLINE 在线,UNINSTALL 未安装
+        # @type AgentStatus: String
+        # @param IsUnBind: 是否允许解绑,false 不允许解绑
+        # @type IsUnBind: Boolean
+        # @param IsSwitchBind: 是否允许换绑,false 不允许换绑
+        # @type IsSwitchBind: Boolean
+
+        attr_accessor :MachineName, :MachineWanIp, :MachineIp, :Quuid, :Uuid, :Tags, :AgentStatus, :IsUnBind, :IsSwitchBind
+        
+        def initialize(machinename=nil, machinewanip=nil, machineip=nil, quuid=nil, uuid=nil, tags=nil, agentstatus=nil, isunbind=nil, isswitchbind=nil)
+          @MachineName = machinename
+          @MachineWanIp = machinewanip
+          @MachineIp = machineip
+          @Quuid = quuid
+          @Uuid = uuid
+          @Tags = tags
+          @AgentStatus = agentstatus
+          @IsUnBind = isunbind
+          @IsSwitchBind = isswitchbind
+        end
+
+        def deserialize(params)
+          @MachineName = params['MachineName']
+          @MachineWanIp = params['MachineWanIp']
+          @MachineIp = params['MachineIp']
+          @Quuid = params['Quuid']
+          @Uuid = params['Uuid']
+          @Tags = params['Tags']
+          @AgentStatus = params['AgentStatus']
+          @IsUnBind = params['IsUnBind']
+          @IsSwitchBind = params['IsSwitchBind']
+        end
+      end
+
+      # 授权绑定任务详情
+      class LicenseBindTaskDetail < TencentCloud::Common::AbstractModel
+        # @param Quuid: 云服务器UUID
+        # @type Quuid: String
+        # @param ErrMsg: 错误信息
+        # @type ErrMsg: String
+        # @param Status: 0 执行中, 1 成功,2失败
+        # @type Status: Integer
+
+        attr_accessor :Quuid, :ErrMsg, :Status
+        
+        def initialize(quuid=nil, errmsg=nil, status=nil)
+          @Quuid = quuid
+          @ErrMsg = errmsg
+          @Status = status
+        end
+
+        def deserialize(params)
+          @Quuid = params['Quuid']
+          @ErrMsg = params['ErrMsg']
+          @Status = params['Status']
+        end
+      end
+
+      # 授权订单列表对象
+      class LicenseDetail < TencentCloud::Common::AbstractModel
+        # @param LicenseId: 授权ID
+        # @type LicenseId: Integer
+        # @param LicenseType: 授权类型,0 专业版-按量计费, 1专业版-包年包月 , 2 旗舰版-包年包月
+        # @type LicenseType: Integer
+        # @param LicenseStatus: 授权状态 0 未使用,1 部分使用, 2 已用完, 3 不可用
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LicenseStatus: Integer
+        # @param LicenseCnt: 总授权数
+        # @type LicenseCnt: Integer
+        # @param UsedLicenseCnt: 已使用授权数
+        # @type UsedLicenseCnt: Integer
+        # @param OrderStatus: 订单状态 1 正常 2隔离, 3销毁
+        # @type OrderStatus: Integer
+        # @param Deadline: 截止日期
+        # @type Deadline: String
+        # @param ResourceId: 订单资源ID
+        # @type ResourceId: String
+        # @param AutoRenewFlag: 0 初始化,1 自动续费,2 不自动续费
+        # @type AutoRenewFlag: Integer
+        # @param ProjectId: 项目ID
+        # @type ProjectId: Integer
+        # @param TaskId: 任务ID ,默认0 ,查询绑定进度用
+        # @type TaskId: Integer
+        # @param BuyTime: 购买时间
+        # @type BuyTime: String
+        # @param SourceType: 是否试用订单.
+        # @type SourceType: Integer
+        # @param Alias: 资源别名
+        # @type Alias: String
+        # @param Tags: 平台标签
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Tags: Array
+
+        attr_accessor :LicenseId, :LicenseType, :LicenseStatus, :LicenseCnt, :UsedLicenseCnt, :OrderStatus, :Deadline, :ResourceId, :AutoRenewFlag, :ProjectId, :TaskId, :BuyTime, :SourceType, :Alias, :Tags
+        
+        def initialize(licenseid=nil, licensetype=nil, licensestatus=nil, licensecnt=nil, usedlicensecnt=nil, orderstatus=nil, deadline=nil, resourceid=nil, autorenewflag=nil, projectid=nil, taskid=nil, buytime=nil, sourcetype=nil, _alias=nil, tags=nil)
+          @LicenseId = licenseid
+          @LicenseType = licensetype
+          @LicenseStatus = licensestatus
+          @LicenseCnt = licensecnt
+          @UsedLicenseCnt = usedlicensecnt
+          @OrderStatus = orderstatus
+          @Deadline = deadline
+          @ResourceId = resourceid
+          @AutoRenewFlag = autorenewflag
+          @ProjectId = projectid
+          @TaskId = taskid
+          @BuyTime = buytime
+          @SourceType = sourcetype
+          @Alias = _alias
+          @Tags = tags
+        end
+
+        def deserialize(params)
+          @LicenseId = params['LicenseId']
+          @LicenseType = params['LicenseType']
+          @LicenseStatus = params['LicenseStatus']
+          @LicenseCnt = params['LicenseCnt']
+          @UsedLicenseCnt = params['UsedLicenseCnt']
+          @OrderStatus = params['OrderStatus']
+          @Deadline = params['Deadline']
+          @ResourceId = params['ResourceId']
+          @AutoRenewFlag = params['AutoRenewFlag']
+          @ProjectId = params['ProjectId']
+          @TaskId = params['TaskId']
+          @BuyTime = params['BuyTime']
+          @SourceType = params['SourceType']
+          @Alias = params['Alias']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tags_tmp = Tags.new
+              tags_tmp.deserialize(i)
+              @Tags << tags_tmp
+            end
+          end
+        end
+      end
+
       # 授权订单对象内容
       class LicenseOrder < TencentCloud::Common::AbstractModel
         # @param LicenseId: 授权ID
@@ -14519,6 +15454,26 @@ module TencentCloud
           @Status = params['Status']
           @SourceType = params['SourceType']
           @ResourceId = params['ResourceId']
+        end
+      end
+
+      # 授权解绑信息
+      class LicenseUnBindRsp < TencentCloud::Common::AbstractModel
+        # @param Quuid: QUUID 云服务器uuid,轻量服务器uuid,边缘计算 uuid
+        # @type Quuid: String
+        # @param ErrMsg: 失败原因
+        # @type ErrMsg: String
+
+        attr_accessor :Quuid, :ErrMsg
+        
+        def initialize(quuid=nil, errmsg=nil)
+          @Quuid = quuid
+          @ErrMsg = errmsg
+        end
+
+        def deserialize(params)
+          @Quuid = params['Quuid']
+          @ErrMsg = params['ErrMsg']
         end
       end
 
@@ -15263,6 +16218,111 @@ module TencentCloud
         end
       end
 
+      # ModifyLicenseBinds请求参数结构体
+      class ModifyLicenseBindsRequest < TencentCloud::Common::AbstractModel
+        # @param ResourceId: 资源ID
+        # @type ResourceId: String
+        # @param LicenseType: 授权类型
+        # @type LicenseType: Integer
+        # @param IsAll: 是否全部机器(当全部机器数大于当前订单可用授权数时,多余机器会被跳过)
+        # @type IsAll: Boolean
+        # @param QuuidList: 需要绑定的机器quuid列表, 当IsAll = false 时必填,反之忽略该参数. 最大长度=2000
+        # @type QuuidList: Array
+
+        attr_accessor :ResourceId, :LicenseType, :IsAll, :QuuidList
+        
+        def initialize(resourceid=nil, licensetype=nil, isall=nil, quuidlist=nil)
+          @ResourceId = resourceid
+          @LicenseType = licensetype
+          @IsAll = isall
+          @QuuidList = quuidlist
+        end
+
+        def deserialize(params)
+          @ResourceId = params['ResourceId']
+          @LicenseType = params['LicenseType']
+          @IsAll = params['IsAll']
+          @QuuidList = params['QuuidList']
+        end
+      end
+
+      # ModifyLicenseBinds返回参数结构体
+      class ModifyLicenseBindsResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: 任务ID
+        # @type TaskId: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :RequestId
+        
+        def initialize(taskid=nil, requestid=nil)
+          @TaskId = taskid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyLicenseUnBinds请求参数结构体
+      class ModifyLicenseUnBindsRequest < TencentCloud::Common::AbstractModel
+        # @param ResourceId: 资源ID
+        # @type ResourceId: String
+        # @param LicenseType: 授权类型
+        # @type LicenseType: Integer
+        # @param IsAll: 是否全部机器(当全部机器数大于当前订单可用授权数时,多余机器会被跳过)
+        # @type IsAll: Boolean
+        # @param QuuidList: 需要绑定的机器quuid列表, 当IsAll = false 时必填,反之忽略该参数.
+        # 最大长度=100
+        # @type QuuidList: Array
+
+        attr_accessor :ResourceId, :LicenseType, :IsAll, :QuuidList
+        
+        def initialize(resourceid=nil, licensetype=nil, isall=nil, quuidlist=nil)
+          @ResourceId = resourceid
+          @LicenseType = licensetype
+          @IsAll = isall
+          @QuuidList = quuidlist
+        end
+
+        def deserialize(params)
+          @ResourceId = params['ResourceId']
+          @LicenseType = params['LicenseType']
+          @IsAll = params['IsAll']
+          @QuuidList = params['QuuidList']
+        end
+      end
+
+      # ModifyLicenseUnBinds返回参数结构体
+      class ModifyLicenseUnBindsResponse < TencentCloud::Common::AbstractModel
+        # @param ErrMsg: 只有解绑失败的才有该值.
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ErrMsg: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ErrMsg, :RequestId
+        
+        def initialize(errmsg=nil, requestid=nil)
+          @ErrMsg = errmsg
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['ErrMsg'].nil?
+            @ErrMsg = []
+            params['ErrMsg'].each do |i|
+              licenseunbindrsp_tmp = LicenseUnBindRsp.new
+              licenseunbindrsp_tmp.deserialize(i)
+              @ErrMsg << licenseunbindrsp_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyMalwareTimingScanSettings请求参数结构体
       class ModifyMalwareTimingScanSettingsRequest < TencentCloud::Common::AbstractModel
         # @param CheckPattern: 检测模式 0 全盘检测  1快速检测
@@ -15325,6 +16385,50 @@ module TencentCloud
 
       # ModifyMalwareTimingScanSettings返回参数结构体
       class ModifyMalwareTimingScanSettingsResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyOrderAttribute请求参数结构体
+      class ModifyOrderAttributeRequest < TencentCloud::Common::AbstractModel
+        # @param LicenseType: 授权类型 0 专业版-按量计费, 1专业版-包年包月 , 2 旗舰版-包年包月
+        # @type LicenseType: Integer
+        # @param ResourceId: 资源ID
+        # @type ResourceId: String
+        # @param AttrName: 可编辑的属性名称 ,当前支持的有: alias 资源别名
+        # @type AttrName: String
+        # @param AttrValue: 属性值
+        # @type AttrValue: String
+
+        attr_accessor :LicenseType, :ResourceId, :AttrName, :AttrValue
+        
+        def initialize(licensetype=nil, resourceid=nil, attrname=nil, attrvalue=nil)
+          @LicenseType = licensetype
+          @ResourceId = resourceid
+          @AttrName = attrname
+          @AttrValue = attrvalue
+        end
+
+        def deserialize(params)
+          @LicenseType = params['LicenseType']
+          @ResourceId = params['ResourceId']
+          @AttrName = params['AttrName']
+          @AttrValue = params['AttrValue']
+        end
+      end
+
+      # ModifyOrderAttribute返回参数结构体
+      class ModifyOrderAttributeResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 

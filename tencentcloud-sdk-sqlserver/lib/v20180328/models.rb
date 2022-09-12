@@ -391,6 +391,77 @@ module TencentCloud
         end
       end
 
+      # 商业智能服务文件类型
+      class BusinessIntelligenceFile < TencentCloud::Common::AbstractModel
+        # @param FileName: 文件名称
+        # @type FileName: String
+        # @param FileType: 文件类型
+        # @type FileType: String
+        # @param FileURL: 文件的COS_URL
+        # @type FileURL: String
+        # @param FilePath: 文件在服务器上的路径
+        # @type FilePath: String
+        # @param FileSize: 文件大小，单位时Byte
+        # @type FileSize: Integer
+        # @param FileMd5: 文件md5值
+        # @type FileMd5: String
+        # @param Status: 部署文件状态 1-初始化待部署 2-部署中 3-部署成功 4-部署失败
+        # @type Status: Integer
+        # @param Remark: 备注信息
+        # @type Remark: String
+        # @param CreateTime: 文件创建时间
+        # @type CreateTime: String
+        # @param StartTime: 文件部署开始时间
+        # @type StartTime: String
+        # @param EndTime: 文件部署结束时间
+        # @type EndTime: String
+        # @param Message: 报错信息返回
+        # @type Message: String
+        # @param InstanceId: 商业智能实例ID
+        # @type InstanceId: String
+        # @param Action: 动作相关信息
+        # @type Action: :class:`Tencentcloud::Sqlserver.v20180328.models.FileAction`
+
+        attr_accessor :FileName, :FileType, :FileURL, :FilePath, :FileSize, :FileMd5, :Status, :Remark, :CreateTime, :StartTime, :EndTime, :Message, :InstanceId, :Action
+        
+        def initialize(filename=nil, filetype=nil, fileurl=nil, filepath=nil, filesize=nil, filemd5=nil, status=nil, remark=nil, createtime=nil, starttime=nil, endtime=nil, message=nil, instanceid=nil, action=nil)
+          @FileName = filename
+          @FileType = filetype
+          @FileURL = fileurl
+          @FilePath = filepath
+          @FileSize = filesize
+          @FileMd5 = filemd5
+          @Status = status
+          @Remark = remark
+          @CreateTime = createtime
+          @StartTime = starttime
+          @EndTime = endtime
+          @Message = message
+          @InstanceId = instanceid
+          @Action = action
+        end
+
+        def deserialize(params)
+          @FileName = params['FileName']
+          @FileType = params['FileType']
+          @FileURL = params['FileURL']
+          @FilePath = params['FilePath']
+          @FileSize = params['FileSize']
+          @FileMd5 = params['FileMd5']
+          @Status = params['Status']
+          @Remark = params['Remark']
+          @CreateTime = params['CreateTime']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @Message = params['Message']
+          @InstanceId = params['InstanceId']
+          unless params['Action'].nil?
+            @Action = FileAction.new
+            @Action.deserialize(params['Action'])
+          end
+        end
+      end
+
       # CloneDB请求参数结构体
       class CloneDBRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例ID，形如mssql-j8kv137v
@@ -434,6 +505,49 @@ module TencentCloud
 
         def deserialize(params)
           @FlowId = params['FlowId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CloseInterCommunication请求参数结构体
+      class CloseInterCommunicationRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceIdSet: 关闭互通的实例ID集合
+        # @type InstanceIdSet: Array
+
+        attr_accessor :InstanceIdSet
+        
+        def initialize(instanceidset=nil)
+          @InstanceIdSet = instanceidset
+        end
+
+        def deserialize(params)
+          @InstanceIdSet = params['InstanceIdSet']
+        end
+      end
+
+      # CloseInterCommunication返回参数结构体
+      class CloseInterCommunicationResponse < TencentCloud::Common::AbstractModel
+        # @param InterInstanceFlowSet: 实例和异步流程ID
+        # @type InterInstanceFlowSet: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :InterInstanceFlowSet, :RequestId
+        
+        def initialize(interinstanceflowset=nil, requestid=nil)
+          @InterInstanceFlowSet = interinstanceflowset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['InterInstanceFlowSet'].nil?
+            @InterInstanceFlowSet = []
+            params['InterInstanceFlowSet'].each do |i|
+              interinstanceflow_tmp = InterInstanceFlow.new
+              interinstanceflow_tmp.deserialize(i)
+              @InterInstanceFlowSet << interinstanceflow_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -800,6 +914,153 @@ module TencentCloud
 
         def deserialize(params)
           @DealName = params['DealName']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateBusinessDBInstances请求参数结构体
+      class CreateBusinessDBInstancesRequest < TencentCloud::Common::AbstractModel
+        # @param Zone: 实例可用区，类似ap-guangzhou-1（广州一区）；实例可售卖区域可以通过接口DescribeZones获取
+        # @type Zone: String
+        # @param Memory: 实例内存大小，单位GB
+        # @type Memory: Integer
+        # @param Storage: 实例磁盘大小，单位GB
+        # @type Storage: Integer
+        # @param Cpu: 预购买实例的CPU核心数
+        # @type Cpu: Integer
+        # @param MachineType: 购买实例的宿主机类型，CLOUD_PREMIUM-虚拟机高性能云盘，CLOUD_SSD-虚拟机SSD云盘
+        # @type MachineType: String
+        # @param ProjectId: 项目ID
+        # @type ProjectId: Integer
+        # @param GoodsNum: 本次购买几个实例，默认值为1
+        # @type GoodsNum: Integer
+        # @param SubnetId: VPC子网ID，形如subnet-bdoe83fa；SubnetId和VpcId需同时设置或者同时不设置
+        # @type SubnetId: String
+        # @param VpcId: VPC网络ID，形如vpc-dsp338hz；SubnetId和VpcId需同时设置或者同时不设置
+        # @type VpcId: String
+        # @param DBVersion: 商业智能服务器版本，目前只支持：201603（SQL Server 2016 Integration Services），201703（SQL Server 2017 Integration Services），201903（SQL Server 2019 Integration Services）版本。每个地域支持售卖的版本不同，可通过DescribeProductConfig接口来拉取每个地域可售卖的版本信息。不填，默认为版本201903。
+        # @type DBVersion: String
+        # @param SecurityGroupList: 安全组列表，填写形如sg-xxx的安全组ID
+        # @type SecurityGroupList: Array
+        # @param Weekly: 可维护时间窗配置，以周为单位，表示周几允许维护，1-7分别代表周一到周末
+        # @type Weekly: Array
+        # @param StartTime: 可维护时间窗配置，每天可维护的开始时间
+        # @type StartTime: String
+        # @param Span: 可维护时间窗配置，持续时间，单位：小时
+        # @type Span: Integer
+        # @param ResourceTags: 新建实例绑定的标签集合
+        # @type ResourceTags: Array
+
+        attr_accessor :Zone, :Memory, :Storage, :Cpu, :MachineType, :ProjectId, :GoodsNum, :SubnetId, :VpcId, :DBVersion, :SecurityGroupList, :Weekly, :StartTime, :Span, :ResourceTags
+        
+        def initialize(zone=nil, memory=nil, storage=nil, cpu=nil, machinetype=nil, projectid=nil, goodsnum=nil, subnetid=nil, vpcid=nil, dbversion=nil, securitygrouplist=nil, weekly=nil, starttime=nil, span=nil, resourcetags=nil)
+          @Zone = zone
+          @Memory = memory
+          @Storage = storage
+          @Cpu = cpu
+          @MachineType = machinetype
+          @ProjectId = projectid
+          @GoodsNum = goodsnum
+          @SubnetId = subnetid
+          @VpcId = vpcid
+          @DBVersion = dbversion
+          @SecurityGroupList = securitygrouplist
+          @Weekly = weekly
+          @StartTime = starttime
+          @Span = span
+          @ResourceTags = resourcetags
+        end
+
+        def deserialize(params)
+          @Zone = params['Zone']
+          @Memory = params['Memory']
+          @Storage = params['Storage']
+          @Cpu = params['Cpu']
+          @MachineType = params['MachineType']
+          @ProjectId = params['ProjectId']
+          @GoodsNum = params['GoodsNum']
+          @SubnetId = params['SubnetId']
+          @VpcId = params['VpcId']
+          @DBVersion = params['DBVersion']
+          @SecurityGroupList = params['SecurityGroupList']
+          @Weekly = params['Weekly']
+          @StartTime = params['StartTime']
+          @Span = params['Span']
+          unless params['ResourceTags'].nil?
+            @ResourceTags = []
+            params['ResourceTags'].each do |i|
+              resourcetag_tmp = ResourceTag.new
+              resourcetag_tmp.deserialize(i)
+              @ResourceTags << resourcetag_tmp
+            end
+          end
+        end
+      end
+
+      # CreateBusinessDBInstances返回参数结构体
+      class CreateBusinessDBInstancesResponse < TencentCloud::Common::AbstractModel
+        # @param DealName: 订单名称
+        # @type DealName: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :DealName, :RequestId
+        
+        def initialize(dealname=nil, requestid=nil)
+          @DealName = dealname
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @DealName = params['DealName']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateBusinessIntelligenceFile请求参数结构体
+      class CreateBusinessIntelligenceFileRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+        # @param FileURL: COS_URL
+        # @type FileURL: String
+        # @param FileType: 文件类型 FLAT-作为数据源的平面文件， SSIS-ssis项目包
+        # @type FileType: String
+        # @param Remark: 备注
+        # @type Remark: String
+
+        attr_accessor :InstanceId, :FileURL, :FileType, :Remark
+        
+        def initialize(instanceid=nil, fileurl=nil, filetype=nil, remark=nil)
+          @InstanceId = instanceid
+          @FileURL = fileurl
+          @FileType = filetype
+          @Remark = remark
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @FileURL = params['FileURL']
+          @FileType = params['FileType']
+          @Remark = params['Remark']
+        end
+      end
+
+      # CreateBusinessIntelligenceFile返回参数结构体
+      class CreateBusinessIntelligenceFileResponse < TencentCloud::Common::AbstractModel
+        # @param FileTaskId: 文件名称
+        # @type FileTaskId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :FileTaskId, :RequestId
+        
+        def initialize(filetaskid=nil, requestid=nil)
+          @FileTaskId = filetaskid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @FileTaskId = params['FileTaskId']
           @RequestId = params['RequestId']
         end
       end
@@ -1972,6 +2233,42 @@ module TencentCloud
         end
       end
 
+      # DeleteBusinessIntelligenceFile请求参数结构体
+      class DeleteBusinessIntelligenceFileRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+        # @param FileNameSet: 文件名称集合
+        # @type FileNameSet: Array
+
+        attr_accessor :InstanceId, :FileNameSet
+        
+        def initialize(instanceid=nil, filenameset=nil)
+          @InstanceId = instanceid
+          @FileNameSet = filenameset
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @FileNameSet = params['FileNameSet']
+        end
+      end
+
+      # DeleteBusinessIntelligenceFile返回参数结构体
+      class DeleteBusinessIntelligenceFileResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DeleteDBInstance请求参数结构体
       class DeleteDBInstanceRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例ID，格式如：mssql-3l3fgqn7 或 mssqlro-3l3fgqn7
@@ -2654,6 +2951,81 @@ module TencentCloud
         end
       end
 
+      # DescribeBusinessIntelligenceFile请求参数结构体
+      class DescribeBusinessIntelligenceFileRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+        # @param FileName: 文件名称
+        # @type FileName: String
+        # @param StatusSet: 迁移任务状态集合,1-初始化待部署 2-部署中 3-部署成功 4-部署失败
+        # @type StatusSet: Array
+        # @param FileType: 文件类型 FLAT-平面文件，SSIS商业智能服务项目文件
+        # @type FileType: String
+        # @param Limit: 分页，页大小，范围1-100
+        # @type Limit: Integer
+        # @param Offset: 分页,页数，默认0
+        # @type Offset: Integer
+        # @param OrderBy: 排序字段，可选值file_name,create_time,start_time
+        # @type OrderBy: String
+        # @param OrderByType: 排序方式，desc,asc
+        # @type OrderByType: String
+
+        attr_accessor :InstanceId, :FileName, :StatusSet, :FileType, :Limit, :Offset, :OrderBy, :OrderByType
+        
+        def initialize(instanceid=nil, filename=nil, statusset=nil, filetype=nil, limit=nil, offset=nil, orderby=nil, orderbytype=nil)
+          @InstanceId = instanceid
+          @FileName = filename
+          @StatusSet = statusset
+          @FileType = filetype
+          @Limit = limit
+          @Offset = offset
+          @OrderBy = orderby
+          @OrderByType = orderbytype
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @FileName = params['FileName']
+          @StatusSet = params['StatusSet']
+          @FileType = params['FileType']
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          @OrderBy = params['OrderBy']
+          @OrderByType = params['OrderByType']
+        end
+      end
+
+      # DescribeBusinessIntelligenceFile返回参数结构体
+      class DescribeBusinessIntelligenceFileResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 文件部署任务总数
+        # @type TotalCount: Integer
+        # @param BackupMigrationSet: 文件部署任务集合
+        # @type BackupMigrationSet: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :BackupMigrationSet, :RequestId
+        
+        def initialize(totalcount=nil, backupmigrationset=nil, requestid=nil)
+          @TotalCount = totalcount
+          @BackupMigrationSet = backupmigrationset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['BackupMigrationSet'].nil?
+            @BackupMigrationSet = []
+            params['BackupMigrationSet'].each do |i|
+              businessintelligencefile_tmp = BusinessIntelligenceFile.new
+              businessintelligencefile_tmp.deserialize(i)
+              @BackupMigrationSet << businessintelligencefile_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeCrossRegionZone请求参数结构体
       class DescribeCrossRegionZoneRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例ID，格式如：mssql-3l3fgqn7
@@ -2726,6 +3098,73 @@ module TencentCloud
 
         def deserialize(params)
           @DatabaseCharsets = params['DatabaseCharsets']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeDBInstanceInter请求参数结构体
+      class DescribeDBInstanceInterRequest < TencentCloud::Common::AbstractModel
+        # @param Limit: 分页，页大小，范围是1-100
+        # @type Limit: Integer
+        # @param InstanceId: 按照实例ID筛选
+        # @type InstanceId: String
+        # @param Status: 按照状态筛选 1-互通ip prot打开中；2-互通ip prot已经打开；3-加入到互通组中；4-已加入到互通组；5-互通ip prot回收中；6-互通ip prot已回收；7-从互通组移除中；8-已从互通组中移除
+        # @type Status: Integer
+        # @param VersionSet: 实例版本代号列表
+        # @type VersionSet: Array
+        # @param Zone: 实例所在可用区，格式如：ap-guangzhou-2
+        # @type Zone: String
+        # @param Offset: 分页，页数，默认是0
+        # @type Offset: Integer
+
+        attr_accessor :Limit, :InstanceId, :Status, :VersionSet, :Zone, :Offset
+        
+        def initialize(limit=nil, instanceid=nil, status=nil, versionset=nil, zone=nil, offset=nil)
+          @Limit = limit
+          @InstanceId = instanceid
+          @Status = status
+          @VersionSet = versionset
+          @Zone = zone
+          @Offset = offset
+        end
+
+        def deserialize(params)
+          @Limit = params['Limit']
+          @InstanceId = params['InstanceId']
+          @Status = params['Status']
+          @VersionSet = params['VersionSet']
+          @Zone = params['Zone']
+          @Offset = params['Offset']
+        end
+      end
+
+      # DescribeDBInstanceInter返回参数结构体
+      class DescribeDBInstanceInterResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 互通组内总条数
+        # @type TotalCount: Integer
+        # @param InterInstanceSet: 互通组内实例信息详情
+        # @type InterInstanceSet: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :InterInstanceSet, :RequestId
+        
+        def initialize(totalcount=nil, interinstanceset=nil, requestid=nil)
+          @TotalCount = totalcount
+          @InterInstanceSet = interinstanceset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['InterInstanceSet'].nil?
+            @InterInstanceSet = []
+            params['InterInstanceSet'].each do |i|
+              interinstance_tmp = InterInstance.new
+              interinstance_tmp.deserialize(i)
+              @InterInstanceSet << interinstance_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -4288,6 +4727,26 @@ module TencentCloud
         end
       end
 
+      # 允许动作信息
+      class FileAction < TencentCloud::Common::AbstractModel
+        # @param AllAction: 支持的所有操作，值包括：view(查看列表) remark(修改备注)，deploy(部署)，delete(删除文件)
+        # @type AllAction: Array
+        # @param AllowedAction: 当前状态允许的操作，AllAction的子集,为空表示禁止所有操作
+        # @type AllowedAction: Array
+
+        attr_accessor :AllAction, :AllowedAction
+        
+        def initialize(allaction=nil, allowedaction=nil)
+          @AllAction = allaction
+          @AllowedAction = allowedaction
+        end
+
+        def deserialize(params)
+          @AllAction = params['AllAction']
+          @AllowedAction = params['AllowedAction']
+        end
+      end
+
       # InquiryPriceCreateDBInstances请求参数结构体
       class InquiryPriceCreateDBInstancesRequest < TencentCloud::Common::AbstractModel
         # @param Zone: 可用区ID。该参数可以通过调用 DescribeZones 接口的返回值中的Zone字段来获取。
@@ -4508,6 +4967,82 @@ module TencentCloud
         def deserialize(params)
           @InstanceId = params['InstanceId']
           @RenewFlag = params['RenewFlag']
+        end
+      end
+
+      # 互通组内实例信息详情
+      class InterInstance < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+        # @param InterVip: 实例互通IP，用于加入互通组后访问
+        # @type InterVip: String
+        # @param InterPort: 实例互通端口，用于加入互通组后访问
+        # @type InterPort: Integer
+        # @param Status: 实例互通状态，1 -互通ipprot打开中 2 -互通ipprot已经打开 3 -已经打开互通ip的实例加入到互通组中 4 -已经打开互通ip的实例已加入到互通组 5 -互通ipprot回收中 6 -互通ipprot已回收 7 -已回收的实例从互通组中移除中 8 -已回收的实例从互通组中已经移除
+        # @type Status: Integer
+        # @param Region: 实例所在地域名称，如 ap-guangzhou
+        # @type Region: String
+        # @param Zone: 实例所在可用区名称，如 ap-guangzhou-1
+        # @type Zone: String
+        # @param Version: 实例版本代号
+        # @type Version: String
+        # @param VersionName: 实例版本
+        # @type VersionName: String
+        # @param Name: 实例名称
+        # @type Name: String
+        # @param Vip: 实例访问IP
+        # @type Vip: String
+        # @param Vport: 实例访问端口
+        # @type Vport: Integer
+
+        attr_accessor :InstanceId, :InterVip, :InterPort, :Status, :Region, :Zone, :Version, :VersionName, :Name, :Vip, :Vport
+        
+        def initialize(instanceid=nil, intervip=nil, interport=nil, status=nil, region=nil, zone=nil, version=nil, versionname=nil, name=nil, vip=nil, vport=nil)
+          @InstanceId = instanceid
+          @InterVip = intervip
+          @InterPort = interport
+          @Status = status
+          @Region = region
+          @Zone = zone
+          @Version = version
+          @VersionName = versionname
+          @Name = name
+          @Vip = vip
+          @Vport = vport
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @InterVip = params['InterVip']
+          @InterPort = params['InterPort']
+          @Status = params['Status']
+          @Region = params['Region']
+          @Zone = params['Zone']
+          @Version = params['Version']
+          @VersionName = params['VersionName']
+          @Name = params['Name']
+          @Vip = params['Vip']
+          @Vport = params['Vport']
+        end
+      end
+
+      # 实例开通或者关闭互通组后的状态
+      class InterInstanceFlow < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID，例如：mssql-sdf32n1d
+        # @type InstanceId: String
+        # @param FlowId: 实例开通或者关闭互通组的流程ID，FlowId小于0-开通或者关闭失败，反之则成功。
+        # @type FlowId: Integer
+
+        attr_accessor :InstanceId, :FlowId
+        
+        def initialize(instanceid=nil, flowid=nil)
+          @InstanceId = instanceid
+          @FlowId = flowid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @FlowId = params['FlowId']
         end
       end
 
@@ -5858,6 +6393,49 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # OpenInterCommunication请求参数结构体
+      class OpenInterCommunicationRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceIdSet: 打开互通组的实例ID集合
+        # @type InstanceIdSet: Array
+
+        attr_accessor :InstanceIdSet
+        
+        def initialize(instanceidset=nil)
+          @InstanceIdSet = instanceidset
+        end
+
+        def deserialize(params)
+          @InstanceIdSet = params['InstanceIdSet']
+        end
+      end
+
+      # OpenInterCommunication返回参数结构体
+      class OpenInterCommunicationResponse < TencentCloud::Common::AbstractModel
+        # @param InterInstanceFlowSet: 实例和异步流程ID
+        # @type InterInstanceFlowSet: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :InterInstanceFlowSet, :RequestId
+        
+        def initialize(interinstanceflowset=nil, requestid=nil)
+          @InterInstanceFlowSet = interinstanceflowset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['InterInstanceFlowSet'].nil?
+            @InterInstanceFlowSet = []
+            params['InterInstanceFlowSet'].each do |i|
+              interinstanceflow_tmp = InterInstanceFlow.new
+              interinstanceflow_tmp.deserialize(i)
+              @InterInstanceFlowSet << interinstanceflow_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end

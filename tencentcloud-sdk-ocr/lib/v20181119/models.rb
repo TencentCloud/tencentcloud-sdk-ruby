@@ -3227,6 +3227,66 @@ module TencentCloud
         end
       end
 
+      # 医疗发票识别结果
+      class MedicalInvoiceInfo < TencentCloud::Common::AbstractModel
+        # @param MedicalInvoiceItems: 医疗发票识别结果条目
+        # @type MedicalInvoiceItems: Array
+
+        attr_accessor :MedicalInvoiceItems
+        
+        def initialize(medicalinvoiceitems=nil)
+          @MedicalInvoiceItems = medicalinvoiceitems
+        end
+
+        def deserialize(params)
+          unless params['MedicalInvoiceItems'].nil?
+            @MedicalInvoiceItems = []
+            params['MedicalInvoiceItems'].each do |i|
+              medicalinvoiceitem_tmp = MedicalInvoiceItem.new
+              medicalinvoiceitem_tmp.deserialize(i)
+              @MedicalInvoiceItems << medicalinvoiceitem_tmp
+            end
+          end
+        end
+      end
+
+      # 医疗发票识别结果
+      class MedicalInvoiceItem < TencentCloud::Common::AbstractModel
+        # @param Name: 识别出的字段名称
+        # <table><tr><td>分类</td><td>name</td></tr><tr><td>票据基本信息</td><td>发票名称</td></tr><tr><td></td><td>票据代码</td></tr><tr><td></td><td>票据号码</td></tr><tr><td></td><td>电子票据代码</td></tr><tr><td></td><td>电子票据号码</td></tr><tr><td></td><td>交款人统一社会信用代码</td></tr><tr><td></td><td>校验码</td></tr><tr><td></td><td>交款人</td></tr><tr><td></td><td>开票日期</td></tr><tr><td></td><td>收款单位</td></tr><tr><td></td><td>复核人</td></tr><tr><td></td><td>收款人</td></tr><tr><td></td><td>业务流水号</td></tr><tr><td></td><td>门诊号</td></tr><tr><td></td><td>就诊日期</td></tr><tr><td></td><td>医疗机构类型</td></tr><tr><td></td><td>医保类型</td></tr><tr><td></td><td>医保编号</td></tr><tr><td></td><td>性别</td></tr><tr><td></td><td>医保统筹基金支付</td></tr><tr><td></td><td>其他支付</td></tr><tr><td></td><td>个人账户支付</td></tr><tr><td></td><td>个人现金支付</td></tr><tr><td></td><td>个人自付</td></tr><tr><td></td><td>个人自费</td></tr><tr><td></td><td>病历号</td></tr><tr><td></td><td>住院号</td></tr><tr><td></td><td>住院科别</td></tr><tr><td></td><td>住院时间</td></tr><tr><td></td><td>预缴金额</td></tr><tr><td></td><td>补缴金额</td></tr><tr><td></td><td>退费金额</td></tr><tr><td></td><td>发票属地</td></tr><tr><td></td><td>发票类型</td></tr><tr><td>总金额</td><td>总金额大写</td></tr><tr><td></td><td>总金额小写</td></tr><tr><td>收费大项</td><td>大项名称</td></tr><tr><td></td><td>大项金额</td></tr><tr><td>收费细项</td><td>项目名称</td></tr><tr><td></td><td>数量</td></tr><tr><td></td><td>单位</td></tr><tr><td></td><td>金额</td></tr><tr><td></td><td>备注</td></tr><tr><td>票据其他信息</td><td>入院时间</td></tr><tr><td></td><td>出院时间</td></tr><tr><td></td><td>住院天数</td></tr><tr><td></td><td>自付二</td></tr><tr><td></td><td>自付一</td></tr><tr><td></td><td>起付金额</td></tr><tr><td></td><td>超封顶金额</td></tr><tr><td></td><td>自费</td></tr><tr><td></td><td>本次医保范围内金额</td></tr><tr><td></td><td>累计医保内范围金额</td></tr><tr><td></td><td>门诊大额支付</td></tr><tr><td></td><td>残军补助支付</td></tr><tr><td></td><td>年度门诊大额累计支付</td></tr><tr><td></td><td>单位补充险[原公疗]支付</td></tr><tr><td></td><td>社会保障卡号</td></tr><tr><td></td><td>姓名</td></tr><tr><td></td><td>交易流水号</td></tr><tr><td></td><td>本次支付后个人账户余额</td></tr><tr><td></td><td>基金支付</td></tr><tr><td></td><td>现金支付</td></tr><tr><td></td><td>复核</td></tr><tr><td></td><td>自负</td></tr><tr><td></td><td>结算方式</td></tr><tr><td></td><td>医保统筹/公医记账</td></tr><tr><td></td><td>其他</td></tr><tr><td></td><td>个人支付金额</td></tr><tr><td></td><td>欠费</td></tr><tr><td></td><td>退休补充支付</td></tr><tr><td></td><td>医院类型</td></tr><tr><td></td><td>退款</td></tr><tr><td></td><td>补收</td></tr><tr><td></td><td>附加支付</td></tr><tr><td></td><td>分类自负</td></tr><tr><td></td><td>其它</td></tr><tr><td></td><td>预交款</td></tr><tr><td></td><td>个人缴费</td></tr></table>
+        # @type Name: String
+        # @param Content: 识别出的字段名称对应的值，也就是字段name对应的字符串结果
+        # @type Content: String
+        # @param Vertex: 识别出的文本行四点坐标
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Vertex: :class:`Tencentcloud::Ocr.v20181119.models.Polygon`
+        # @param Coord: 识别出的文本行在旋转纠正之后的图像中的像素坐标
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Coord: :class:`Tencentcloud::Ocr.v20181119.models.Rect`
+
+        attr_accessor :Name, :Content, :Vertex, :Coord
+        
+        def initialize(name=nil, content=nil, vertex=nil, coord=nil)
+          @Name = name
+          @Content = content
+          @Vertex = vertex
+          @Coord = coord
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Content = params['Content']
+          unless params['Vertex'].nil?
+            @Vertex = Polygon.new
+            @Vertex.deserialize(params['Vertex'])
+          end
+          unless params['Coord'].nil?
+            @Coord = Rect.new
+            @Coord.deserialize(params['Coord'])
+          end
+        end
+      end
+
       # MixedInvoiceDetect请求参数结构体
       class MixedInvoiceDetectRequest < TencentCloud::Common::AbstractModel
         # @param ReturnImage: 是否需要返回裁剪后的图片。
@@ -4537,6 +4597,72 @@ module TencentCloud
           @BerlakuHingga = params['BerlakuHingga']
           @IssuedDate = params['IssuedDate']
           @Photo = params['Photo']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # RecognizeMedicalInvoiceOCR请求参数结构体
+      class RecognizeMedicalInvoiceOCRRequest < TencentCloud::Common::AbstractModel
+        # @param ImageBase64: 图片的Base64 值。
+        # 支持的文件格式：PNG、JPG、JPEG，暂不支持 GIF 格式。
+        # 支持的图片大小：所下载文件经Base64编码后不超过 7M。文件下载时间不超过 3 秒。
+        # 输入参数 ImageUrl、ImageBase64 必须提供一个，如果都提供，只使用 ImageUrl。
+        # @type ImageBase64: String
+        # @param ImageUrl: 图片的Url 地址。
+        # 支持的文件格式：PNG、JPG、JPEG，暂不支持 GIF 格式。
+        # 支持的图片大小：所下载文件经 Base64 编码后不超过 7M。文件下载时间不超过 3 秒。
+        # 图片存储于腾讯云的 Url 可保障更高的下载速度和稳定性，建议图片存储于腾讯云。
+        # 非腾讯云存储的 Url 速度和稳定性可能受一定影响。
+        # @type ImageUrl: String
+        # @param ReturnVertex: 是否需要返回识别出的文本行在原图上的四点坐标，默认不返回
+        # @type ReturnVertex: Boolean
+        # @param ReturnCoord: 是否需要返回识别出的文本行在旋转纠正之后的图像中的四点坐标，默认不返回
+        # @type ReturnCoord: Boolean
+
+        attr_accessor :ImageBase64, :ImageUrl, :ReturnVertex, :ReturnCoord
+        
+        def initialize(imagebase64=nil, imageurl=nil, returnvertex=nil, returncoord=nil)
+          @ImageBase64 = imagebase64
+          @ImageUrl = imageurl
+          @ReturnVertex = returnvertex
+          @ReturnCoord = returncoord
+        end
+
+        def deserialize(params)
+          @ImageBase64 = params['ImageBase64']
+          @ImageUrl = params['ImageUrl']
+          @ReturnVertex = params['ReturnVertex']
+          @ReturnCoord = params['ReturnCoord']
+        end
+      end
+
+      # RecognizeMedicalInvoiceOCR返回参数结构体
+      class RecognizeMedicalInvoiceOCRResponse < TencentCloud::Common::AbstractModel
+        # @param MedicalInvoiceInfos: 识别出的字段信息
+        # @type MedicalInvoiceInfos: Array
+        # @param Angle: 图片旋转角度（角度制），文本的水平方向为0°，顺时针为正，逆时针为负。
+        # @type Angle: Float
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :MedicalInvoiceInfos, :Angle, :RequestId
+        
+        def initialize(medicalinvoiceinfos=nil, angle=nil, requestid=nil)
+          @MedicalInvoiceInfos = medicalinvoiceinfos
+          @Angle = angle
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['MedicalInvoiceInfos'].nil?
+            @MedicalInvoiceInfos = []
+            params['MedicalInvoiceInfos'].each do |i|
+              medicalinvoiceinfo_tmp = MedicalInvoiceInfo.new
+              medicalinvoiceinfo_tmp.deserialize(i)
+              @MedicalInvoiceInfos << medicalinvoiceinfo_tmp
+            end
+          end
+          @Angle = params['Angle']
           @RequestId = params['RequestId']
         end
       end

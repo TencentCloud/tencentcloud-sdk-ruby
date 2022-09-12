@@ -17950,7 +17950,7 @@ module TencentCloud
         # @type SubAppId: Integer
         # @param TasksPriority: 任务流的优先级，数值越大优先级越高，取值范围是 -10 到 10，不填代表 0。
         # @type TasksPriority: Integer
-        # @param SessionContext: 来源上下文，用于透传用户请求信息，任务流状态变更回调将返回该字段值，最长 1000 个字符。
+        # @param SessionContext: 来源上下文，用于透传用户请求信息，音视频审核完成回调将返回该字段值，最长 1000 个字符。
         # @type SessionContext: String
         # @param SessionId: 用于去重的识别码，如果三天内曾有过相同的识别码的请求，则本次的请求会返回错误。最长 50 个字符，不带或者带空字符串表示不做去重。
         # @type SessionId: String
@@ -18102,7 +18102,7 @@ module TencentCloud
         # @type Output: :class:`Tencentcloud::Vod.v20180717.models.ReviewAudioVideoTaskOutput`
         # @param SessionId: 用于去重的识别码，如果七天内曾有过相同的识别码的请求，则本次的请求会返回错误。最长 50 个字符，不带或者带空字符串表示不做去重。
         # @type SessionId: String
-        # @param SessionContext: 来源上下文，用于透传用户请求信息，任务流状态变更回调将返回该字段值，最长 1000 个字符。
+        # @param SessionContext: 来源上下文，用于透传用户请求信息，音视频审核完成回调将返回该字段值，最长 1000 个字符。
         # @type SessionContext: String
 
         attr_accessor :TaskId, :Status, :ErrCodeExt, :Message, :Input, :Output, :SessionId, :SessionContext

@@ -3873,14 +3873,23 @@ module TencentCloud
         # @type AreaName: String
         # @param AreaKey: 片区Key
         # @type AreaKey: String
+        # @param AreaRegionID: 地域码表 id
+        # @type AreaRegionID: String
+        # @param AreaRegionCode: 地域码表 code 如 ap-xxx（xxx 为地域词）
+        # @type AreaRegionCode: String
+        # @param AreaAbbr: 地域缩写
+        # @type AreaAbbr: String
 
-        attr_accessor :AreaId, :AreaStatus, :AreaName, :AreaKey
+        attr_accessor :AreaId, :AreaStatus, :AreaName, :AreaKey, :AreaRegionID, :AreaRegionCode, :AreaAbbr
         
-        def initialize(areaid=nil, areastatus=nil, areaname=nil, areakey=nil)
+        def initialize(areaid=nil, areastatus=nil, areaname=nil, areakey=nil, arearegionid=nil, arearegioncode=nil, areaabbr=nil)
           @AreaId = areaid
           @AreaStatus = areastatus
           @AreaName = areaname
           @AreaKey = areakey
+          @AreaRegionID = arearegionid
+          @AreaRegionCode = arearegioncode
+          @AreaAbbr = areaabbr
         end
 
         def deserialize(params)
@@ -3888,6 +3897,9 @@ module TencentCloud
           @AreaStatus = params['AreaStatus']
           @AreaName = params['AreaName']
           @AreaKey = params['AreaKey']
+          @AreaRegionID = params['AreaRegionID']
+          @AreaRegionCode = params['AreaRegionCode']
+          @AreaAbbr = params['AreaAbbr']
         end
       end
 

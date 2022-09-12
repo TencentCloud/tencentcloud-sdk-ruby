@@ -77,6 +77,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口（CloseInterCommunication）用于关闭实例互通。
+
+        # @param request: Request instance for CloseInterCommunication.
+        # @type request: :class:`Tencentcloud::sqlserver::V20180328::CloseInterCommunicationRequest`
+        # @rtype: :class:`Tencentcloud::sqlserver::V20180328::CloseInterCommunicationResponse`
+        def CloseInterCommunication(request)
+          body = send_request('CloseInterCommunication', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CloseInterCommunicationResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（CompleteExpansion）在实例发起扩容后，实例状态处于“升级待切换”时，可立即完成实例升级切换操作，无需等待可维护时间窗。本接口需要在实例低峰时调用，在完全切换成功前，存在部分库不可访问的风险。
 
         # @param request: Request instance for CompleteExpansion.
@@ -207,6 +231,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = CreateBasicDBInstancesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口（CreateBusinessDBInstances）用于创建商业智能服务实例。
+
+        # @param request: Request instance for CreateBusinessDBInstances.
+        # @type request: :class:`Tencentcloud::sqlserver::V20180328::CreateBusinessDBInstancesRequest`
+        # @rtype: :class:`Tencentcloud::sqlserver::V20180328::CreateBusinessDBInstancesResponse`
+        def CreateBusinessDBInstances(request)
+          body = send_request('CreateBusinessDBInstances', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateBusinessDBInstancesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口（CreateBusinessIntelligenceFile）用于添加商业智能服务文件。
+
+        # @param request: Request instance for CreateBusinessIntelligenceFile.
+        # @type request: :class:`Tencentcloud::sqlserver::V20180328::CreateBusinessIntelligenceFileRequest`
+        # @rtype: :class:`Tencentcloud::sqlserver::V20180328::CreateBusinessIntelligenceFileResponse`
+        def CreateBusinessIntelligenceFile(request)
+          body = send_request('CreateBusinessIntelligenceFile', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateBusinessIntelligenceFileResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -399,6 +471,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteBackupMigrationResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口（DeleteBusinessIntelligenceFile）用于删除商业智能文件。
+
+        # @param request: Request instance for DeleteBusinessIntelligenceFile.
+        # @type request: :class:`Tencentcloud::sqlserver::V20180328::DeleteBusinessIntelligenceFileRequest`
+        # @rtype: :class:`Tencentcloud::sqlserver::V20180328::DeleteBusinessIntelligenceFileResponse`
+        def DeleteBusinessIntelligenceFile(request)
+          body = send_request('DeleteBusinessIntelligenceFile', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteBusinessIntelligenceFileResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -701,6 +797,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口（DescribeBusinessIntelligenceFile）用于查询商业智能服务需要的文件。
+
+        # @param request: Request instance for DescribeBusinessIntelligenceFile.
+        # @type request: :class:`Tencentcloud::sqlserver::V20180328::DescribeBusinessIntelligenceFileRequest`
+        # @rtype: :class:`Tencentcloud::sqlserver::V20180328::DescribeBusinessIntelligenceFileResponse`
+        def DescribeBusinessIntelligenceFile(request)
+          body = send_request('DescribeBusinessIntelligenceFile', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeBusinessIntelligenceFileResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口(DescribeCrossRegionZone)根据主实例查询备机的容灾地域和可用区。
 
         # @param request: Request instance for DescribeCrossRegionZone.
@@ -735,6 +855,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeDBCharsetsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口（DescribeDBInstanceInter）用于查询互通实例的信息。
+
+        # @param request: Request instance for DescribeDBInstanceInter.
+        # @type request: :class:`Tencentcloud::sqlserver::V20180328::DescribeDBInstanceInterRequest`
+        # @rtype: :class:`Tencentcloud::sqlserver::V20180328::DescribeDBInstanceInterResponse`
+        def DescribeDBInstanceInter(request)
+          body = send_request('DescribeDBInstanceInter', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeDBInstanceInterResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1937,6 +2081,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyReadOnlyGroupDetailsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口（OpenInterCommunication）用于打开实例的互通，实例互通可以实现商业智能服务相互联通。
+
+        # @param request: Request instance for OpenInterCommunication.
+        # @type request: :class:`Tencentcloud::sqlserver::V20180328::OpenInterCommunicationRequest`
+        # @rtype: :class:`Tencentcloud::sqlserver::V20180328::OpenInterCommunicationResponse`
+        def OpenInterCommunication(request)
+          body = send_request('OpenInterCommunication', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = OpenInterCommunicationResponse.new
             model.deserialize(response['Response'])
             model
           else

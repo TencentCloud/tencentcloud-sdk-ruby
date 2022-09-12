@@ -1618,14 +1618,17 @@ module TencentCloud
         # @type TopicType: String
         # @param Period: 日志集的保存周期，单位：天，默认30天。
         # @type Period: Integer
+        # @param StorageType: 日志主题的存储类型，可选值 HOT（标准存储），COLD（低频存储）；默认为HOT。
+        # @type StorageType: String
 
-        attr_accessor :TopicName, :PartitionCount, :TopicType, :Period
+        attr_accessor :TopicName, :PartitionCount, :TopicType, :Period, :StorageType
         
-        def initialize(topicname=nil, partitioncount=nil, topictype=nil, period=nil)
+        def initialize(topicname=nil, partitioncount=nil, topictype=nil, period=nil, storagetype=nil)
           @TopicName = topicname
           @PartitionCount = partitioncount
           @TopicType = topictype
           @Period = period
+          @StorageType = storagetype
         end
 
         def deserialize(params)
@@ -1633,6 +1636,7 @@ module TencentCloud
           @PartitionCount = params['PartitionCount']
           @TopicType = params['TopicType']
           @Period = params['Period']
+          @StorageType = params['StorageType']
         end
       end
 

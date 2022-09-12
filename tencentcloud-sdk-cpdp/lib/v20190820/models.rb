@@ -6946,14 +6946,22 @@ module TencentCloud
         # @type RedirectInfo: :class:`Tencentcloud::Cpdp.v20190820.models.OpenBankRedirectInfo`
         # @param OutOrderId: 外部商户订单号，只能是数字、大小写字母，且在同一个接入平台下唯一。
         # @type OutOrderId: String
+        # @param PayInfo: 渠道扩展支付信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PayInfo: String
+        # @param PayInfoType: 渠道扩展支付信息类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PayInfoType: String
 
-        attr_accessor :ChannelOrderId, :ThirdPayOrderId, :RedirectInfo, :OutOrderId
+        attr_accessor :ChannelOrderId, :ThirdPayOrderId, :RedirectInfo, :OutOrderId, :PayInfo, :PayInfoType
         
-        def initialize(channelorderid=nil, thirdpayorderid=nil, redirectinfo=nil, outorderid=nil)
+        def initialize(channelorderid=nil, thirdpayorderid=nil, redirectinfo=nil, outorderid=nil, payinfo=nil, payinfotype=nil)
           @ChannelOrderId = channelorderid
           @ThirdPayOrderId = thirdpayorderid
           @RedirectInfo = redirectinfo
           @OutOrderId = outorderid
+          @PayInfo = payinfo
+          @PayInfoType = payinfotype
         end
 
         def deserialize(params)
@@ -6964,6 +6972,8 @@ module TencentCloud
             @RedirectInfo.deserialize(params['RedirectInfo'])
           end
           @OutOrderId = params['OutOrderId']
+          @PayInfo = params['PayInfo']
+          @PayInfoType = params['PayInfoType']
         end
       end
 
@@ -19094,10 +19104,13 @@ module TencentCloud
         # @param ProfitShareRespInfoList: 分账信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProfitShareRespInfoList: Array
+        # @param TimeFinish: 支付完成时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TimeFinish: String
 
-        attr_accessor :ChannelMerchantId, :OutOrderId, :ChannelOrderId, :ThirdPayOrderId, :OrderStatus, :ChannelName, :PaymentMethod, :TotalAmount, :PayAmount, :FailReason, :Attachment, :RedirectInfo, :ExternalReturnData, :BankApprovalGuideInfo, :FeeAmount, :FeeRate, :ProfitShareRespInfoList
+        attr_accessor :ChannelMerchantId, :OutOrderId, :ChannelOrderId, :ThirdPayOrderId, :OrderStatus, :ChannelName, :PaymentMethod, :TotalAmount, :PayAmount, :FailReason, :Attachment, :RedirectInfo, :ExternalReturnData, :BankApprovalGuideInfo, :FeeAmount, :FeeRate, :ProfitShareRespInfoList, :TimeFinish
         
-        def initialize(channelmerchantid=nil, outorderid=nil, channelorderid=nil, thirdpayorderid=nil, orderstatus=nil, channelname=nil, paymentmethod=nil, totalamount=nil, payamount=nil, failreason=nil, attachment=nil, redirectinfo=nil, externalreturndata=nil, bankapprovalguideinfo=nil, feeamount=nil, feerate=nil, profitsharerespinfolist=nil)
+        def initialize(channelmerchantid=nil, outorderid=nil, channelorderid=nil, thirdpayorderid=nil, orderstatus=nil, channelname=nil, paymentmethod=nil, totalamount=nil, payamount=nil, failreason=nil, attachment=nil, redirectinfo=nil, externalreturndata=nil, bankapprovalguideinfo=nil, feeamount=nil, feerate=nil, profitsharerespinfolist=nil, timefinish=nil)
           @ChannelMerchantId = channelmerchantid
           @OutOrderId = outorderid
           @ChannelOrderId = channelorderid
@@ -19115,6 +19128,7 @@ module TencentCloud
           @FeeAmount = feeamount
           @FeeRate = feerate
           @ProfitShareRespInfoList = profitsharerespinfolist
+          @TimeFinish = timefinish
         end
 
         def deserialize(params)
@@ -19148,6 +19162,7 @@ module TencentCloud
               @ProfitShareRespInfoList << openbankprofitsharerespinfo_tmp
             end
           end
+          @TimeFinish = params['TimeFinish']
         end
       end
 

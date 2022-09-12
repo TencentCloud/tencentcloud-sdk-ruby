@@ -159,6 +159,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口(DeleteRoomMember)用户删除房间或者剔除房间内用户
+
+        # @param request: Request instance for DeleteRoomMember.
+        # @type request: :class:`Tencentcloud::gme::V20180711::DeleteRoomMemberRequest`
+        # @rtype: :class:`Tencentcloud::gme::V20180711::DeleteRoomMemberResponse`
+        def DeleteRoomMember(request)
+          body = send_request('DeleteRoomMember', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteRoomMemberResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 删除自定义送检用户
 
         # @param request: Request instance for DeleteScanUser.

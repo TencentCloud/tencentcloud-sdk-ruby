@@ -565,6 +565,77 @@ module TencentCloud
         end
       end
 
+      # 剔除房间操作结果
+      class DeleteResult < TencentCloud::Common::AbstractModel
+        # @param Code: 错误码，0-剔除成功 其他-剔除失败
+        # @type Code: Integer
+        # @param ErrorMsg: 错误描述
+        # @type ErrorMsg: String
+
+        attr_accessor :Code, :ErrorMsg
+        
+        def initialize(code=nil, errormsg=nil)
+          @Code = code
+          @ErrorMsg = errormsg
+        end
+
+        def deserialize(params)
+          @Code = params['Code']
+          @ErrorMsg = params['ErrorMsg']
+        end
+      end
+
+      # DeleteRoomMember请求参数结构体
+      class DeleteRoomMemberRequest < TencentCloud::Common::AbstractModel
+        # @param RoomId: 要操作的房间id
+        # @type RoomId: String
+        # @param Uids: 要剔除的用户列表
+        # @type Uids: Array
+        # @param DeleteType: 剔除类型 1-删除房间 2-剔除用户
+        # @type DeleteType: Integer
+        # @param BizId: 应用id
+        # @type BizId: Integer
+
+        attr_accessor :RoomId, :Uids, :DeleteType, :BizId
+        
+        def initialize(roomid=nil, uids=nil, deletetype=nil, bizid=nil)
+          @RoomId = roomid
+          @Uids = uids
+          @DeleteType = deletetype
+          @BizId = bizid
+        end
+
+        def deserialize(params)
+          @RoomId = params['RoomId']
+          @Uids = params['Uids']
+          @DeleteType = params['DeleteType']
+          @BizId = params['BizId']
+        end
+      end
+
+      # DeleteRoomMember返回参数结构体
+      class DeleteRoomMemberResponse < TencentCloud::Common::AbstractModel
+        # @param DeleteResult: 剔除房间或成员的操作结果
+        # @type DeleteResult: :class:`Tencentcloud::Gme.v20180711.models.DeleteResult`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :DeleteResult, :RequestId
+        
+        def initialize(deleteresult=nil, requestid=nil)
+          @DeleteResult = deleteresult
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['DeleteResult'].nil?
+            @DeleteResult = DeleteResult.new
+            @DeleteResult.deserialize(params['DeleteResult'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DeleteScanUser请求参数结构体
       class DeleteScanUserRequest < TencentCloud::Common::AbstractModel
         # @param BizId: 应用ID，登录控制台 - 服务管理创建应用得到的AppID

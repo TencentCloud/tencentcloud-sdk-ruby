@@ -4116,6 +4116,69 @@ module TencentCloud
         end
       end
 
+      # DescribeGrafanaChannels请求参数结构体
+      class DescribeGrafanaChannelsRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例 ID
+        # @type InstanceId: String
+        # @param Offset: 偏移量
+        # @type Offset: Integer
+        # @param Limit: 查询数量
+        # @type Limit: Integer
+        # @param ChannelName: 渠道名
+        # @type ChannelName: String
+        # @param ChannelIds: 渠道 ID
+        # @type ChannelIds: Array
+        # @param ChannelState: 状态
+        # @type ChannelState: Integer
+
+        attr_accessor :InstanceId, :Offset, :Limit, :ChannelName, :ChannelIds, :ChannelState
+        
+        def initialize(instanceid=nil, offset=nil, limit=nil, channelname=nil, channelids=nil, channelstate=nil)
+          @InstanceId = instanceid
+          @Offset = offset
+          @Limit = limit
+          @ChannelName = channelname
+          @ChannelIds = channelids
+          @ChannelState = channelstate
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @ChannelName = params['ChannelName']
+          @ChannelIds = params['ChannelIds']
+          @ChannelState = params['ChannelState']
+        end
+      end
+
+      # DescribeGrafanaChannels返回参数结构体
+      class DescribeGrafanaChannelsResponse < TencentCloud::Common::AbstractModel
+        # @param NotificationChannelSet: 告警通道数组
+        # @type NotificationChannelSet: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :NotificationChannelSet, :RequestId
+        
+        def initialize(notificationchannelset=nil, requestid=nil)
+          @NotificationChannelSet = notificationchannelset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['NotificationChannelSet'].nil?
+            @NotificationChannelSet = []
+            params['NotificationChannelSet'].each do |i|
+              grafanachannel_tmp = GrafanaChannel.new
+              grafanachannel_tmp.deserialize(i)
+              @NotificationChannelSet << grafanachannel_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeGrafanaConfig请求参数结构体
       class DescribeGrafanaConfigRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例 ID
@@ -6944,14 +7007,21 @@ module TencentCloud
         # @type Notes: String
         # @param CreateAt: 创建时间
         # @type CreateAt: String
+        # @param InstanceId: 实例 ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceId: String
+        # @param Uin: 用户主账号 UIN
+        # @type Uin: String
 
-        attr_accessor :UserId, :Role, :Notes, :CreateAt
+        attr_accessor :UserId, :Role, :Notes, :CreateAt, :InstanceId, :Uin
         
-        def initialize(userid=nil, role=nil, notes=nil, createat=nil)
+        def initialize(userid=nil, role=nil, notes=nil, createat=nil, instanceid=nil, uin=nil)
           @UserId = userid
           @Role = role
           @Notes = notes
           @CreateAt = createat
+          @InstanceId = instanceid
+          @Uin = uin
         end
 
         def deserialize(params)
@@ -6966,6 +7036,8 @@ module TencentCloud
           end
           @Notes = params['Notes']
           @CreateAt = params['CreateAt']
+          @InstanceId = params['InstanceId']
+          @Uin = params['Uin']
         end
       end
 
@@ -6986,6 +7058,43 @@ module TencentCloud
         def deserialize(params)
           @Organization = params['Organization']
           @Role = params['Role']
+        end
+      end
+
+      # Grafana 告警渠道
+      class GrafanaChannel < TencentCloud::Common::AbstractModel
+        # @param ChannelId: 渠道 ID
+        # @type ChannelId: String
+        # @param ChannelName: 渠道名
+        # @type ChannelName: String
+        # @param Receivers: 告警通道模板 ID 数组
+        # @type Receivers: Array
+        # @param CreatedAt: 创建时间
+        # @type CreatedAt: String
+        # @param UpdatedAt: 更新时间
+        # @type UpdatedAt: String
+        # @param OrganizationIds: 告警渠道的所有生效组织
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OrganizationIds: Array
+
+        attr_accessor :ChannelId, :ChannelName, :Receivers, :CreatedAt, :UpdatedAt, :OrganizationIds
+        
+        def initialize(channelid=nil, channelname=nil, receivers=nil, createdat=nil, updatedat=nil, organizationids=nil)
+          @ChannelId = channelid
+          @ChannelName = channelname
+          @Receivers = receivers
+          @CreatedAt = createdat
+          @UpdatedAt = updatedat
+          @OrganizationIds = organizationids
+        end
+
+        def deserialize(params)
+          @ChannelId = params['ChannelId']
+          @ChannelName = params['ChannelName']
+          @Receivers = params['Receivers']
+          @CreatedAt = params['CreatedAt']
+          @UpdatedAt = params['UpdatedAt']
+          @OrganizationIds = params['OrganizationIds']
         end
       end
 
@@ -7095,14 +7204,18 @@ module TencentCloud
         # @type Content: String
         # @param Description: 集成描述
         # @type Description: String
+        # @param GrafanaURL: Grafana 跳转地址
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GrafanaURL: String
 
-        attr_accessor :IntegrationId, :Kind, :Content, :Description
+        attr_accessor :IntegrationId, :Kind, :Content, :Description, :GrafanaURL
         
-        def initialize(integrationid=nil, kind=nil, content=nil, description=nil)
+        def initialize(integrationid=nil, kind=nil, content=nil, description=nil, grafanaurl=nil)
           @IntegrationId = integrationid
           @Kind = kind
           @Content = content
           @Description = description
+          @GrafanaURL = grafanaurl
         end
 
         def deserialize(params)
@@ -7110,6 +7223,7 @@ module TencentCloud
           @Kind = params['Kind']
           @Content = params['Content']
           @Description = params['Description']
+          @GrafanaURL = params['GrafanaURL']
         end
       end
 
@@ -9126,7 +9240,7 @@ module TencentCloud
         # @type RuleId: String
         # @param RuleState: 规则状态码
         # @type RuleState: Integer
-        # @param Name: 规则名称
+        # @param Name: 分组名称
         # @type Name: String
         # @param Group: 规则内容组
         # @type Group: String
@@ -9136,10 +9250,13 @@ module TencentCloud
         # @type CreatedAt: String
         # @param UpdatedAt: 规则最近更新时间
         # @type UpdatedAt: String
+        # @param RuleName: 规则名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RuleName: String
 
-        attr_accessor :RuleId, :RuleState, :Name, :Group, :Total, :CreatedAt, :UpdatedAt
+        attr_accessor :RuleId, :RuleState, :Name, :Group, :Total, :CreatedAt, :UpdatedAt, :RuleName
         
-        def initialize(ruleid=nil, rulestate=nil, name=nil, group=nil, total=nil, createdat=nil, updatedat=nil)
+        def initialize(ruleid=nil, rulestate=nil, name=nil, group=nil, total=nil, createdat=nil, updatedat=nil, rulename=nil)
           @RuleId = ruleid
           @RuleState = rulestate
           @Name = name
@@ -9147,6 +9264,7 @@ module TencentCloud
           @Total = total
           @CreatedAt = createdat
           @UpdatedAt = updatedat
+          @RuleName = rulename
         end
 
         def deserialize(params)
@@ -9157,6 +9275,7 @@ module TencentCloud
           @Total = params['Total']
           @CreatedAt = params['CreatedAt']
           @UpdatedAt = params['UpdatedAt']
+          @RuleName = params['RuleName']
         end
       end
 

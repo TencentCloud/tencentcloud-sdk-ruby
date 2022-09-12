@@ -11467,39 +11467,43 @@ module TencentCloud
 
       # https 服务端证书配置
       class ServerCertInfo < TencentCloud::Common::AbstractModel
-        # @param CertId: 服务器证书 ID, 默认证书ID, 或在 SSL 证书管理进行证书托管时自动生成
+        # @param CertId: 服务器证书 ID。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CertId: String
-        # @param Alias: 证书备注名
+        # @param Alias: 证书备注名。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Alias: String
-        # @param Type: 证书类型:
-        # default: 默认证书
-        # upload:用户上传
-        # managed:腾讯云托管
+        # @param Type: 证书类型，取值有：
+        # <li>default: 默认证书;</li>
+        # <li>upload:用户上传;</li>
+        # <li>managed:腾讯云托管。</li>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Type: String
-        # @param ExpireTime: 证书过期时间
+        # @param ExpireTime: 证书过期时间。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExpireTime: String
-        # @param DeployTime: 证书部署时间
+        # @param DeployTime: 证书部署时间。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DeployTime: String
-        # @param Status: 部署状态:
-        # processing: 部署中
-        # deployed: 已部署
+        # @param Status: 部署状态，取值有：
+        # <li>processing: 部署中;</li>
+        # <li>deployed: 已部署。</li>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: String
+        # @param SignAlgo: 证书算法。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SignAlgo: String
 
-        attr_accessor :CertId, :Alias, :Type, :ExpireTime, :DeployTime, :Status
+        attr_accessor :CertId, :Alias, :Type, :ExpireTime, :DeployTime, :Status, :SignAlgo
         
-        def initialize(certid=nil, _alias=nil, type=nil, expiretime=nil, deploytime=nil, status=nil)
+        def initialize(certid=nil, _alias=nil, type=nil, expiretime=nil, deploytime=nil, status=nil, signalgo=nil)
           @CertId = certid
           @Alias = _alias
           @Type = type
           @ExpireTime = expiretime
           @DeployTime = deploytime
           @Status = status
+          @SignAlgo = signalgo
         end
 
         def deserialize(params)
@@ -11509,6 +11513,7 @@ module TencentCloud
           @ExpireTime = params['ExpireTime']
           @DeployTime = params['DeployTime']
           @Status = params['Status']
+          @SignAlgo = params['SignAlgo']
         end
       end
 

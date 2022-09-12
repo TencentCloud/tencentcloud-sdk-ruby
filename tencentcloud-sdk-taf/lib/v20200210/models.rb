@@ -227,46 +227,6 @@ module TencentCloud
         end
       end
 
-      # 业务入参
-      class InputSendTrafficSecuritySmsMsg < TencentCloud::Common::AbstractModel
-        # @param TaskId: 投放任务ID
-        # @type TaskId: String
-        # @param Mobiles: 手机号码列表（号码量<=200）
-        # @type Mobiles: Array
-        # @param IsAuthorized: 是否授权，1：已授权
-        # @type IsAuthorized: Integer
-        # @param EncryptMethod: 加密方式，0：AES加密；1：DES加密
-        # @type EncryptMethod: Integer
-        # @param EncryptMode: 加密算法中的块处理模式，0：ECB模式；1：CBC模式；2：CTR模式；3：CFB模式；4：OFB模式；
-        # @type EncryptMode: Integer
-        # @param PaddingType: 填充模式，0：ZeroPadding；1：PKCS5Padding；2：PKCS7Padding；
-        # @type PaddingType: Integer
-        # @param EncryptData: 加密数据
-        # @type EncryptData: String
-
-        attr_accessor :TaskId, :Mobiles, :IsAuthorized, :EncryptMethod, :EncryptMode, :PaddingType, :EncryptData
-        
-        def initialize(taskid=nil, mobiles=nil, isauthorized=nil, encryptmethod=nil, encryptmode=nil, paddingtype=nil, encryptdata=nil)
-          @TaskId = taskid
-          @Mobiles = mobiles
-          @IsAuthorized = isauthorized
-          @EncryptMethod = encryptmethod
-          @EncryptMode = encryptmode
-          @PaddingType = paddingtype
-          @EncryptData = encryptdata
-        end
-
-        def deserialize(params)
-          @TaskId = params['TaskId']
-          @Mobiles = params['Mobiles']
-          @IsAuthorized = params['IsAuthorized']
-          @EncryptMethod = params['EncryptMethod']
-          @EncryptMode = params['EncryptMode']
-          @PaddingType = params['PaddingType']
-          @EncryptData = params['EncryptData']
-        end
-      end
-
       # 流量反欺诈-验准返回值
       class OutputRecognizeTargetAudience < TencentCloud::Common::AbstractModel
         # @param Code: 返回码（0，成功，其他失败）
@@ -324,32 +284,6 @@ module TencentCloud
           @ModelId = params['ModelId']
           @IsFound = params['IsFound']
           @Score = params['Score']
-        end
-      end
-
-      # 返回结果
-      class OutputSendTrafficSecuritySmsMsg < TencentCloud::Common::AbstractModel
-        # @param Code: 返回码（0：接口调用成功 非0：接口调用失败）
-        # @type Code: Integer
-        # @param Message: 返回码对应的信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Message: String
-        # @param Value: 发送失败的号码列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Value: Array
-
-        attr_accessor :Code, :Message, :Value
-        
-        def initialize(code=nil, message=nil, value=nil)
-          @Code = code
-          @Message = message
-          @Value = value
-        end
-
-        def deserialize(params)
-          @Code = params['Code']
-          @Message = params['Message']
-          @Value = params['Value']
         end
       end
 
@@ -483,49 +417,6 @@ module TencentCloud
         def deserialize(params)
           unless params['Data'].nil?
             @Data = OutputRecognizeTargetAudience.new
-            @Data.deserialize(params['Data'])
-          end
-          @RequestId = params['RequestId']
-        end
-      end
-
-      # SendTrafficSecuritySmsMessage请求参数结构体
-      class SendTrafficSecuritySmsMessageRequest < TencentCloud::Common::AbstractModel
-        # @param BspData: 业务入参
-        # @type BspData: :class:`Tencentcloud::Taf.v20200210.models.InputSendTrafficSecuritySmsMsg`
-
-        attr_accessor :BspData
-        
-        def initialize(bspdata=nil)
-          @BspData = bspdata
-        end
-
-        def deserialize(params)
-          unless params['BspData'].nil?
-            @BspData = InputSendTrafficSecuritySmsMsg.new
-            @BspData.deserialize(params['BspData'])
-          end
-        end
-      end
-
-      # SendTrafficSecuritySmsMessage返回参数结构体
-      class SendTrafficSecuritySmsMessageResponse < TencentCloud::Common::AbstractModel
-        # @param Data: 返回结果
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Data: :class:`Tencentcloud::Taf.v20200210.models.OutputSendTrafficSecuritySmsMsg`
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :Data, :RequestId
-        
-        def initialize(data=nil, requestid=nil)
-          @Data = data
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          unless params['Data'].nil?
-            @Data = OutputSendTrafficSecuritySmsMsg.new
             @Data.deserialize(params['Data'])
           end
           @RequestId = params['RequestId']

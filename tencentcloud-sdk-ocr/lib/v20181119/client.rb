@@ -1403,6 +1403,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 医疗发票识别目前支持全国统一门诊发票、全国统一住院发票、以及部分地方的门诊和住院发票的识别。
+
+        # @param request: Request instance for RecognizeMedicalInvoiceOCR.
+        # @type request: :class:`Tencentcloud::ocr::V20181119::RecognizeMedicalInvoiceOCRRequest`
+        # @rtype: :class:`Tencentcloud::ocr::V20181119::RecognizeMedicalInvoiceOCRResponse`
+        def RecognizeMedicalInvoiceOCR(request)
+          body = send_request('RecognizeMedicalInvoiceOCR', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = RecognizeMedicalInvoiceOCRResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口支持网约车行程单关键字段的识别，包括行程起止日期、上车时间、起点、终点、里程、金额等字段。
 
         # @param request: Request instance for RecognizeOnlineTaxiItineraryOCR.

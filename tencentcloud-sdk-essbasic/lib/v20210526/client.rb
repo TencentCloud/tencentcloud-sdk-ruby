@@ -29,6 +29,31 @@ module TencentCloud
         end
 
 
+        # 指定需要批量撤销的签署流程Id，批量撤销合同
+        # 客户指定需要撤销的签署流程Id，最多100个，超过100不处理；接口失败后返回错误信息
+
+        # @param request: Request instance for ChannelBatchCancelFlows.
+        # @type request: :class:`Tencentcloud::essbasic::V20210526::ChannelBatchCancelFlowsRequest`
+        # @rtype: :class:`Tencentcloud::essbasic::V20210526::ChannelBatchCancelFlowsResponse`
+        def ChannelBatchCancelFlows(request)
+          body = send_request('ChannelBatchCancelFlows', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ChannelBatchCancelFlowsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 此接口（ChannelCancelMultiFlowSignQRCode）用于取消一码多扫二维码。该接口对传入的二维码ID，若还在有效期内，可以提前失效。
 
         # @param request: Request instance for ChannelCancelMultiFlowSignQRCode.
@@ -126,6 +151,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 接口（ChannelCreateFlowGroupByFiles）用于通过多文件创建合同组签署流程。
+
+        # @param request: Request instance for ChannelCreateFlowGroupByFiles.
+        # @type request: :class:`Tencentcloud::essbasic::V20210526::ChannelCreateFlowGroupByFilesRequest`
+        # @rtype: :class:`Tencentcloud::essbasic::V20210526::ChannelCreateFlowGroupByFilesResponse`
+        def ChannelCreateFlowGroupByFiles(request)
+          body = send_request('ChannelCreateFlowGroupByFiles', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ChannelCreateFlowGroupByFilesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 提交企业签署流程审批结果
 
         # 在通过接口(CreateFlowsByTemplates 或者ChannelCreateFlowByFiles)创建签署流程时，若指定了参数 NeedSignReview 为true,则可以调用此接口提交企业内部签署审批结果。
@@ -202,7 +251,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 创建出证报告，返回报告 URL
+        # 【描述】：创建出证报告，返回报告 URL
+        # 【注意】：此接口需要通过添加白名单获取调用权限，请联系运营人员加白
 
         # @param request: Request instance for CreateChannelFlowEvidenceReport.
         # @type request: :class:`Tencentcloud::essbasic::V20210526::CreateChannelFlowEvidenceReportRequest`

@@ -1519,6 +1519,61 @@ module TencentCloud
         end
       end
 
+      # DescribeDefenseSwitch请求参数结构体
+      class DescribeDefenseSwitchRequest < TencentCloud::Common::AbstractModel
+
+        
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeDefenseSwitch返回参数结构体
+      class DescribeDefenseSwitchResponse < TencentCloud::Common::AbstractModel
+        # @param BasicRuleSwitch: 基础防御开关
+        # @type BasicRuleSwitch: Integer
+        # @param BaselineAllSwitch: 安全基线开关
+        # @type BaselineAllSwitch: Integer
+        # @param TiSwitch: 威胁情报开关
+        # @type TiSwitch: Integer
+        # @param VirtualPatchSwitch: 虚拟补丁开关
+        # @type VirtualPatchSwitch: Integer
+        # @param HistoryOpen: 是否历史开启
+        # @type HistoryOpen: Integer
+        # @param ReturnCode: 状态值，0：查询成功，非0：查询失败
+        # @type ReturnCode: Integer
+        # @param ReturnMsg: 状态信息，success：查询成功，fail：查询失败
+        # @type ReturnMsg: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :BasicRuleSwitch, :BaselineAllSwitch, :TiSwitch, :VirtualPatchSwitch, :HistoryOpen, :ReturnCode, :ReturnMsg, :RequestId
+        
+        def initialize(basicruleswitch=nil, baselineallswitch=nil, tiswitch=nil, virtualpatchswitch=nil, historyopen=nil, returncode=nil, returnmsg=nil, requestid=nil)
+          @BasicRuleSwitch = basicruleswitch
+          @BaselineAllSwitch = baselineallswitch
+          @TiSwitch = tiswitch
+          @VirtualPatchSwitch = virtualpatchswitch
+          @HistoryOpen = historyopen
+          @ReturnCode = returncode
+          @ReturnMsg = returnmsg
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @BasicRuleSwitch = params['BasicRuleSwitch']
+          @BaselineAllSwitch = params['BaselineAllSwitch']
+          @TiSwitch = params['TiSwitch']
+          @VirtualPatchSwitch = params['VirtualPatchSwitch']
+          @HistoryOpen = params['HistoryOpen']
+          @ReturnCode = params['ReturnCode']
+          @ReturnMsg = params['ReturnMsg']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeEnterpriseSecurityGroupRule请求参数结构体
       class DescribeEnterpriseSecurityGroupRuleRequest < TencentCloud::Common::AbstractModel
         # @param PageNo: 分页查询时，显示的当前页的页码。
@@ -4297,11 +4352,11 @@ module TencentCloud
       # 	IdpStatus bool
       # 	BanStatus bool
       class ScanResultInfo < TencentCloud::Common::AbstractModel
-        # @param LeakNum: 暴漏漏洞数量
+        # @param LeakNum: 暴露漏洞数量
         # @type LeakNum: Integer
         # @param IPNum: 防护ip数量
         # @type IPNum: Integer
-        # @param PortNum: 暴漏端口数量
+        # @param PortNum: 暴露端口数量
         # @type PortNum: Integer
         # @param IPStatus: 是否开启防护
         # @type IPStatus: Boolean
