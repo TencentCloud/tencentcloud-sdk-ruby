@@ -6270,6 +6270,57 @@ module TencentCloud
         end
       end
 
+      # DescribeTranscodeTaskNum请求参数结构体
+      class DescribeTranscodeTaskNumRequest < TencentCloud::Common::AbstractModel
+        # @param StartTime: 起始时间，格式：yyyy-mm-dd HH:MM:SS。
+        # @type StartTime: String
+        # @param EndTime: 结束时间，格式：yyyy-mm-dd HH:MM:SS。
+        # @type EndTime: String
+        # @param PushDomains: 推流域名列表，不填表示总体数据。
+        # @type PushDomains: Array
+
+        attr_accessor :StartTime, :EndTime, :PushDomains
+        
+        def initialize(starttime=nil, endtime=nil, pushdomains=nil)
+          @StartTime = starttime
+          @EndTime = endtime
+          @PushDomains = pushdomains
+        end
+
+        def deserialize(params)
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @PushDomains = params['PushDomains']
+        end
+      end
+
+      # DescribeTranscodeTaskNum返回参数结构体
+      class DescribeTranscodeTaskNumResponse < TencentCloud::Common::AbstractModel
+        # @param DataInfoList: 任务数列表。
+        # @type DataInfoList: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :DataInfoList, :RequestId
+        
+        def initialize(datainfolist=nil, requestid=nil)
+          @DataInfoList = datainfolist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['DataInfoList'].nil?
+            @DataInfoList = []
+            params['DataInfoList'].each do |i|
+              transcodetasknum_tmp = TranscodeTaskNum.new
+              transcodetasknum_tmp.deserialize(i)
+              @DataInfoList << transcodetasknum_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeUploadStreamNums请求参数结构体
       class DescribeUploadStreamNumsRequest < TencentCloud::Common::AbstractModel
         # @param StartTime: 起始时间点，格式为yyyy-mm-dd HH:MM:SS。
@@ -9733,6 +9784,30 @@ module TencentCloud
           @Type = params['Type']
           @PushDomain = params['PushDomain']
           @Resolution = params['Resolution']
+        end
+      end
+
+      # 转码任务数。
+      class TranscodeTaskNum < TencentCloud::Common::AbstractModel
+        # @param Time: 时间点。
+        # @type Time: String
+        # @param CodeRate: 码率。
+        # @type CodeRate: Integer
+        # @param Num: 任务数。
+        # @type Num: Integer
+
+        attr_accessor :Time, :CodeRate, :Num
+        
+        def initialize(time=nil, coderate=nil, num=nil)
+          @Time = time
+          @CodeRate = coderate
+          @Num = num
+        end
+
+        def deserialize(params)
+          @Time = params['Time']
+          @CodeRate = params['CodeRate']
+          @Num = params['Num']
         end
       end
 

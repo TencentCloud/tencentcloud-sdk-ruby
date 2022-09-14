@@ -1374,30 +1374,6 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口(DescribeDBZoneConfig)用于查询可创建的云数据库各地域可售卖的规格配置。
-
-        # @param request: Request instance for DescribeDBZoneConfig.
-        # @type request: :class:`Tencentcloud::cdb::V20170320::DescribeDBZoneConfigRequest`
-        # @rtype: :class:`Tencentcloud::cdb::V20170320::DescribeDBZoneConfigResponse`
-        def DescribeDBZoneConfig(request)
-          body = send_request('DescribeDBZoneConfig', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = DescribeDBZoneConfigResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
         # 本接口(DescribeDataBackupOverview)用于查询用户在当前地域总的数据备份概览。
 
         # @param request: Request instance for DescribeDataBackupOverview.

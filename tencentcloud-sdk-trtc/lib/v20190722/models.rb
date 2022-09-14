@@ -1866,17 +1866,20 @@ module TencentCloud
         # @type StreamType: Integer
         # @param SubscribeStreamUserIds: 指定订阅流白名单或者黑名单。
         # @type SubscribeStreamUserIds: :class:`Tencentcloud::Trtc.v20190722.models.SubscribeStreamUserIds`
-        # @param OutputFormat: 输出文件的格式，上传到云点播时此参数无效。0：(默认)输出文件为hls格式。1：输出文件格式为hls+mp4（hls录制完成后转mp4文件）
+        # @param OutputFormat: 输出文件的格式，上传到云点播时此参数无效，存储到云点播时请关注TencentVod内的MediaType参数。0：(默认)输出文件为hls格式。1：输出文件格式为hls+mp4（hls录制完成后转mp4文件）。
         # @type OutputFormat: Integer
+        # @param AvMerge: 单流录制模式下，用户的音视频是否合并，0：单流音视频不合并（默认）。1：单流音视频合并成一个ts。混流录制此参数无需设置，默认音视频合并。
+        # @type AvMerge: Integer
 
-        attr_accessor :RecordMode, :MaxIdleTime, :StreamType, :SubscribeStreamUserIds, :OutputFormat
+        attr_accessor :RecordMode, :MaxIdleTime, :StreamType, :SubscribeStreamUserIds, :OutputFormat, :AvMerge
         
-        def initialize(recordmode=nil, maxidletime=nil, streamtype=nil, subscribestreamuserids=nil, outputformat=nil)
+        def initialize(recordmode=nil, maxidletime=nil, streamtype=nil, subscribestreamuserids=nil, outputformat=nil, avmerge=nil)
           @RecordMode = recordmode
           @MaxIdleTime = maxidletime
           @StreamType = streamtype
           @SubscribeStreamUserIds = subscribestreamuserids
           @OutputFormat = outputformat
+          @AvMerge = avmerge
         end
 
         def deserialize(params)
@@ -1888,6 +1891,7 @@ module TencentCloud
             @SubscribeStreamUserIds.deserialize(params['SubscribeStreamUserIds'])
           end
           @OutputFormat = params['OutputFormat']
+          @AvMerge = params['AvMerge']
         end
       end
 
@@ -2508,10 +2512,12 @@ module TencentCloud
         # @type SessionContext: String
         # @param SourceContext: 上传上下文，上传完成回调时透传。
         # @type SourceContext: String
+        # @param MediaType: 上传到vod平台的录制文件格式类型，0：mp4(默认), 1: hls。
+        # @type MediaType: Integer
 
-        attr_accessor :Procedure, :ExpireTime, :StorageRegion, :ClassId, :SubAppId, :SessionContext, :SourceContext
+        attr_accessor :Procedure, :ExpireTime, :StorageRegion, :ClassId, :SubAppId, :SessionContext, :SourceContext, :MediaType
         
-        def initialize(procedure=nil, expiretime=nil, storageregion=nil, classid=nil, subappid=nil, sessioncontext=nil, sourcecontext=nil)
+        def initialize(procedure=nil, expiretime=nil, storageregion=nil, classid=nil, subappid=nil, sessioncontext=nil, sourcecontext=nil, mediatype=nil)
           @Procedure = procedure
           @ExpireTime = expiretime
           @StorageRegion = storageregion
@@ -2519,6 +2525,7 @@ module TencentCloud
           @SubAppId = subappid
           @SessionContext = sessioncontext
           @SourceContext = sourcecontext
+          @MediaType = mediatype
         end
 
         def deserialize(params)
@@ -2529,6 +2536,7 @@ module TencentCloud
           @SubAppId = params['SubAppId']
           @SessionContext = params['SessionContext']
           @SourceContext = params['SourceContext']
+          @MediaType = params['MediaType']
         end
       end
 

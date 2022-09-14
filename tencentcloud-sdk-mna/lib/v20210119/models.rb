@@ -17,6 +17,54 @@
 module TencentCloud
   module Mna
     module V20210119
+      # AddDevice请求参数结构体
+      class AddDeviceRequest < TencentCloud::Common::AbstractModel
+        # @param DeviceName: 新建设备的名称
+        # @type DeviceName: String
+        # @param Remark: 新建设备的备注
+        # @type Remark: String
+        # @param DataKey: 新建设备的base64密钥字符串，非必选，如果不填写则由系统自动生成
+        # @type DataKey: String
+
+        attr_accessor :DeviceName, :Remark, :DataKey
+        
+        def initialize(devicename=nil, remark=nil, datakey=nil)
+          @DeviceName = devicename
+          @Remark = remark
+          @DataKey = datakey
+        end
+
+        def deserialize(params)
+          @DeviceName = params['DeviceName']
+          @Remark = params['Remark']
+          @DataKey = params['DataKey']
+        end
+      end
+
+      # AddDevice返回参数结构体
+      class AddDeviceResponse < TencentCloud::Common::AbstractModel
+        # @param DataKey: 后台生成的base64字符串密钥
+        # @type DataKey: String
+        # @param DeviceId: 设备ID
+        # @type DeviceId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :DataKey, :DeviceId, :RequestId
+        
+        def initialize(datakey=nil, deviceid=nil, requestid=nil)
+          @DataKey = datakey
+          @DeviceId = deviceid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @DataKey = params['DataKey']
+          @DeviceId = params['DeviceId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 接口能力扩展，用于填充电信的加速Token，并为未来参数提供兼容空间
       class Capacity < TencentCloud::Common::AbstractModel
         # @param CTCCToken: 电信鉴权的Token。要加速的电信手机终端访问 http://qos.189.cn/qos-api/getToken?appid=TencentCloud 页面，获取返回结果中result的值
@@ -173,6 +221,38 @@ module TencentCloud
         end
       end
 
+      # DeleteDevice请求参数结构体
+      class DeleteDeviceRequest < TencentCloud::Common::AbstractModel
+        # @param DeviceId: 删除设备的唯一ID
+        # @type DeviceId: String
+
+        attr_accessor :DeviceId
+        
+        def initialize(deviceid=nil)
+          @DeviceId = deviceid
+        end
+
+        def deserialize(params)
+          @DeviceId = params['DeviceId']
+        end
+      end
+
+      # DeleteDevice返回参数结构体
+      class DeleteDeviceResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DeleteQos请求参数结构体
       class DeleteQosRequest < TencentCloud::Common::AbstractModel
         # @param SessionId: 单次加速唯一 Id
@@ -286,6 +366,69 @@ module TencentCloud
         end
       end
 
+      # 设备的基本信息
+      class DeviceBaseInfo < TencentCloud::Common::AbstractModel
+        # @param DeviceId: 设备唯一ID
+        # @type DeviceId: String
+        # @param DeviceName: 设备名称
+        # @type DeviceName: String
+        # @param CreateTime: 设备创建的时间，单位：ms
+        # @type CreateTime: String
+        # @param LastTime: 设备最后在线时间，单位：ms
+        # @type LastTime: String
+        # @param Remark: 设备的备注
+        # @type Remark: String
+
+        attr_accessor :DeviceId, :DeviceName, :CreateTime, :LastTime, :Remark
+        
+        def initialize(deviceid=nil, devicename=nil, createtime=nil, lasttime=nil, remark=nil)
+          @DeviceId = deviceid
+          @DeviceName = devicename
+          @CreateTime = createtime
+          @LastTime = lasttime
+          @Remark = remark
+        end
+
+        def deserialize(params)
+          @DeviceId = params['DeviceId']
+          @DeviceName = params['DeviceName']
+          @CreateTime = params['CreateTime']
+          @LastTime = params['LastTime']
+          @Remark = params['Remark']
+        end
+      end
+
+      # 设备详细信息
+      class DeviceDetails < TencentCloud::Common::AbstractModel
+        # @param DeviceBaseInfo: 设备基本信息
+        # @type DeviceBaseInfo: :class:`Tencentcloud::Mna.v20210119.models.DeviceBaseInfo`
+        # @param DeviceNetInfo: 设备网络信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DeviceNetInfo: Array
+
+        attr_accessor :DeviceBaseInfo, :DeviceNetInfo
+        
+        def initialize(devicebaseinfo=nil, devicenetinfo=nil)
+          @DeviceBaseInfo = devicebaseinfo
+          @DeviceNetInfo = devicenetinfo
+        end
+
+        def deserialize(params)
+          unless params['DeviceBaseInfo'].nil?
+            @DeviceBaseInfo = DeviceBaseInfo.new
+            @DeviceBaseInfo.deserialize(params['DeviceBaseInfo'])
+          end
+          unless params['DeviceNetInfo'].nil?
+            @DeviceNetInfo = []
+            params['DeviceNetInfo'].each do |i|
+              devicenetinfo_tmp = DeviceNetInfo.new
+              devicenetinfo_tmp.deserialize(i)
+              @DeviceNetInfo << devicenetinfo_tmp
+            end
+          end
+        end
+      end
+
       # 设备信息结构体
       class DeviceInfo < TencentCloud::Common::AbstractModel
         # @param Vendor: 运营商
@@ -332,6 +475,92 @@ module TencentCloud
         end
       end
 
+      # 设备网络状态信息
+      class DeviceNetInfo < TencentCloud::Common::AbstractModel
+        # @param Type: 网络类型：
+        # 0:数据
+        # 1:Wi-Fi
+        # 2:有线
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Type: Integer
+        # @param DataEnable: 启用/禁用
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DataEnable: Boolean
+        # @param UploadLimit: 上行限速
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UploadLimit: String
+        # @param DownloadLimit: 下行限速
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DownloadLimit: String
+        # @param DataRx: 接收实时速率
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DataRx: Integer
+        # @param DataTx: 发送实时速率
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DataTx: Integer
+        # @param Vendor: 运营商类型：
+        # 1: 中国移动；
+        # 2: 中国电信;
+        # 3: 中国联通
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Vendor: Integer
+        # @param State: 连接状态：
+        # 0:无连接
+        # 1:连接中
+        # 2:已连接
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type State: Integer
+        # @param PublicIp: 公网IP
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PublicIp: String
+        # @param SignalStrength: 信号强度/单位：dbm
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SignalStrength: Integer
+        # @param Rat: 数据网络类型：
+        # -1 ：无效值
+        # 2：2G
+        # 3：3G
+        # 4：4G
+        # 5：5G
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Rat: Integer
+        # @param NetInfoName: 网卡名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NetInfoName: String
+
+        attr_accessor :Type, :DataEnable, :UploadLimit, :DownloadLimit, :DataRx, :DataTx, :Vendor, :State, :PublicIp, :SignalStrength, :Rat, :NetInfoName
+        
+        def initialize(type=nil, dataenable=nil, uploadlimit=nil, downloadlimit=nil, datarx=nil, datatx=nil, vendor=nil, state=nil, publicip=nil, signalstrength=nil, rat=nil, netinfoname=nil)
+          @Type = type
+          @DataEnable = dataenable
+          @UploadLimit = uploadlimit
+          @DownloadLimit = downloadlimit
+          @DataRx = datarx
+          @DataTx = datatx
+          @Vendor = vendor
+          @State = state
+          @PublicIp = publicip
+          @SignalStrength = signalstrength
+          @Rat = rat
+          @NetInfoName = netinfoname
+        end
+
+        def deserialize(params)
+          @Type = params['Type']
+          @DataEnable = params['DataEnable']
+          @UploadLimit = params['UploadLimit']
+          @DownloadLimit = params['DownloadLimit']
+          @DataRx = params['DataRx']
+          @DataTx = params['DataTx']
+          @Vendor = params['Vendor']
+          @State = params['State']
+          @PublicIp = params['PublicIp']
+          @SignalStrength = params['SignalStrength']
+          @Rat = params['Rat']
+          @NetInfoName = params['NetInfoName']
+        end
+      end
+
       # 用户期望门限
       class ExpectedThreshold < TencentCloud::Common::AbstractModel
         # @param RTT: 期望发起加速的时延阈值
@@ -353,6 +582,154 @@ module TencentCloud
           @RTT = params['RTT']
           @Loss = params['Loss']
           @Jitter = params['Jitter']
+        end
+      end
+
+      # GetDevice请求参数结构体
+      class GetDeviceRequest < TencentCloud::Common::AbstractModel
+        # @param DeviceId: 搜索指定设备的id
+        # @type DeviceId: String
+
+        attr_accessor :DeviceId
+        
+        def initialize(deviceid=nil)
+          @DeviceId = deviceid
+        end
+
+        def deserialize(params)
+          @DeviceId = params['DeviceId']
+        end
+      end
+
+      # GetDevice返回参数结构体
+      class GetDeviceResponse < TencentCloud::Common::AbstractModel
+        # @param DeviceDetails: 设备详细信息
+        # @type DeviceDetails: :class:`Tencentcloud::Mna.v20210119.models.DeviceDetails`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :DeviceDetails, :RequestId
+        
+        def initialize(devicedetails=nil, requestid=nil)
+          @DeviceDetails = devicedetails
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['DeviceDetails'].nil?
+            @DeviceDetails = DeviceDetails.new
+            @DeviceDetails.deserialize(params['DeviceDetails'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # GetDevices请求参数结构体
+      class GetDevicesRequest < TencentCloud::Common::AbstractModel
+        # @param PageSize: 每页显示记录数，PageSize、PageNumber值均为-1 时，按照1页无限制条数匹配所有设备
+        # @type PageSize: Integer
+        # @param PageNumber: 当前查看页码，PageSize、PageNumber值均为-1 时，按照1页无限制条数匹配所有设备
+        # @type PageNumber: Integer
+        # @param Keyword: 搜索设备的关键字（ID或者设备名），为空时匹配所有设备
+        # @type Keyword: String
+
+        attr_accessor :PageSize, :PageNumber, :Keyword
+        
+        def initialize(pagesize=nil, pagenumber=nil, keyword=nil)
+          @PageSize = pagesize
+          @PageNumber = pagenumber
+          @Keyword = keyword
+        end
+
+        def deserialize(params)
+          @PageSize = params['PageSize']
+          @PageNumber = params['PageNumber']
+          @Keyword = params['Keyword']
+        end
+      end
+
+      # GetDevices返回参数结构体
+      class GetDevicesResponse < TencentCloud::Common::AbstractModel
+        # @param DeviceInfos: 设备信息列表
+        # @type DeviceInfos: Array
+        # @param Length: 设备总记录条数
+        # @type Length: Integer
+        # @param TotalPage: 总页数
+        # @type TotalPage: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :DeviceInfos, :Length, :TotalPage, :RequestId
+        
+        def initialize(deviceinfos=nil, length=nil, totalpage=nil, requestid=nil)
+          @DeviceInfos = deviceinfos
+          @Length = length
+          @TotalPage = totalpage
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['DeviceInfos'].nil?
+            @DeviceInfos = []
+            params['DeviceInfos'].each do |i|
+              devicebaseinfo_tmp = DeviceBaseInfo.new
+              devicebaseinfo_tmp.deserialize(i)
+              @DeviceInfos << devicebaseinfo_tmp
+            end
+          end
+          @Length = params['Length']
+          @TotalPage = params['TotalPage']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # GetStatisticData请求参数结构体
+      class GetStatisticDataRequest < TencentCloud::Common::AbstractModel
+        # @param DeviceId: 设备ID，设备ID="-1"获取所有设备流量统计
+        # @type DeviceId: String
+        # @param BeginTime: 统计开始时间，单位：s
+        # @type BeginTime: Integer
+        # @param EndTime: 统计结束时间，单位：s
+        # @type EndTime: Integer
+        # @param TimeGranularity: 聚合粒度：
+        # 1:按小时统计
+        # 2:按天统计
+        # @type TimeGranularity: Integer
+
+        attr_accessor :DeviceId, :BeginTime, :EndTime, :TimeGranularity
+        
+        def initialize(deviceid=nil, begintime=nil, endtime=nil, timegranularity=nil)
+          @DeviceId = deviceid
+          @BeginTime = begintime
+          @EndTime = endtime
+          @TimeGranularity = timegranularity
+        end
+
+        def deserialize(params)
+          @DeviceId = params['DeviceId']
+          @BeginTime = params['BeginTime']
+          @EndTime = params['EndTime']
+          @TimeGranularity = params['TimeGranularity']
+        end
+      end
+
+      # GetStatisticData返回参数结构体
+      class GetStatisticDataResponse < TencentCloud::Common::AbstractModel
+        # @param FilePath: 文件地址url
+        # @type FilePath: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :FilePath, :RequestId
+        
+        def initialize(filepath=nil, requestid=nil)
+          @FilePath = filepath
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @FilePath = params['FilePath']
+          @RequestId = params['RequestId']
         end
       end
 
@@ -405,6 +782,91 @@ module TencentCloud
           @SrcIpv4 = params['SrcIpv4']
           @SrcPublicIpv4 = params['SrcPublicIpv4']
           @SrcIpv6 = params['SrcIpv6']
+        end
+      end
+
+      # UpdateDevice请求参数结构体
+      class UpdateDeviceRequest < TencentCloud::Common::AbstractModel
+        # @param DeviceId: 设备id
+        # @type DeviceId: String
+        # @param DeviceName: 设备名称
+        # @type DeviceName: String
+        # @param Remark: 设备备注
+        # @type Remark: String
+        # @param UpdateNetInfo: 更新设备网络信息
+        # @type UpdateNetInfo: Array
+
+        attr_accessor :DeviceId, :DeviceName, :Remark, :UpdateNetInfo
+        
+        def initialize(deviceid=nil, devicename=nil, remark=nil, updatenetinfo=nil)
+          @DeviceId = deviceid
+          @DeviceName = devicename
+          @Remark = remark
+          @UpdateNetInfo = updatenetinfo
+        end
+
+        def deserialize(params)
+          @DeviceId = params['DeviceId']
+          @DeviceName = params['DeviceName']
+          @Remark = params['Remark']
+          unless params['UpdateNetInfo'].nil?
+            @UpdateNetInfo = []
+            params['UpdateNetInfo'].each do |i|
+              updatenetinfo_tmp = UpdateNetInfo.new
+              updatenetinfo_tmp.deserialize(i)
+              @UpdateNetInfo << updatenetinfo_tmp
+            end
+          end
+        end
+      end
+
+      # UpdateDevice返回参数结构体
+      class UpdateDeviceResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 更新设备网络状态信息
+      class UpdateNetInfo < TencentCloud::Common::AbstractModel
+        # @param Type: 网络类型：
+        # 0:数据
+        # 1:Wi-Fi
+        # @type Type: Integer
+        # @param DataEnable: 启用/禁用
+        # @type DataEnable: Boolean
+        # @param UploadLimit: 上行限速：bit
+        # @type UploadLimit: Integer
+        # @param DownloadLimit: 下行限速：bit
+        # @type DownloadLimit: Integer
+        # @param NetInfoName: 网卡名
+        # @type NetInfoName: String
+
+        attr_accessor :Type, :DataEnable, :UploadLimit, :DownloadLimit, :NetInfoName
+        
+        def initialize(type=nil, dataenable=nil, uploadlimit=nil, downloadlimit=nil, netinfoname=nil)
+          @Type = type
+          @DataEnable = dataenable
+          @UploadLimit = uploadlimit
+          @DownloadLimit = downloadlimit
+          @NetInfoName = netinfoname
+        end
+
+        def deserialize(params)
+          @Type = params['Type']
+          @DataEnable = params['DataEnable']
+          @UploadLimit = params['UploadLimit']
+          @DownloadLimit = params['DownloadLimit']
+          @NetInfoName = params['NetInfoName']
         end
       end
 

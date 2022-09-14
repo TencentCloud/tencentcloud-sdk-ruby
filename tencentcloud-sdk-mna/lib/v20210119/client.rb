@@ -29,6 +29,30 @@ module TencentCloud
         end
 
 
+        # 新建设备记录
+
+        # @param request: Request instance for AddDevice.
+        # @type request: :class:`Tencentcloud::mna::V20210119::AddDeviceRequest`
+        # @rtype: :class:`Tencentcloud::mna::V20210119::AddDeviceResponse`
+        def AddDevice(request)
+          body = send_request('AddDevice', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = AddDeviceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 移动网络发起Qos加速过程
 
         # @param request: Request instance for CreateQos.
@@ -39,6 +63,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = CreateQosResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除设备信息
+
+        # @param request: Request instance for DeleteDevice.
+        # @type request: :class:`Tencentcloud::mna::V20210119::DeleteDeviceRequest`
+        # @rtype: :class:`Tencentcloud::mna::V20210119::DeleteDeviceResponse`
+        def DeleteDevice(request)
+          body = send_request('DeleteDevice', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteDeviceResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -87,6 +135,102 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeQosResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 通过指定设备的ID查找设备详细信息
+
+        # @param request: Request instance for GetDevice.
+        # @type request: :class:`Tencentcloud::mna::V20210119::GetDeviceRequest`
+        # @rtype: :class:`Tencentcloud::mna::V20210119::GetDeviceResponse`
+        def GetDevice(request)
+          body = send_request('GetDevice', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = GetDeviceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取设备信息列表
+
+        # @param request: Request instance for GetDevices.
+        # @type request: :class:`Tencentcloud::mna::V20210119::GetDevicesRequest`
+        # @rtype: :class:`Tencentcloud::mna::V20210119::GetDevicesResponse`
+        def GetDevices(request)
+          body = send_request('GetDevices', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = GetDevicesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 在用量统计页面下载流量数据
+
+        # @param request: Request instance for GetStatisticData.
+        # @type request: :class:`Tencentcloud::mna::V20210119::GetStatisticDataRequest`
+        # @rtype: :class:`Tencentcloud::mna::V20210119::GetStatisticDataResponse`
+        def GetStatisticData(request)
+          body = send_request('GetStatisticData', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = GetStatisticDataResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 更新设备信息
+
+        # @param request: Request instance for UpdateDevice.
+        # @type request: :class:`Tencentcloud::mna::V20210119::UpdateDeviceRequest`
+        # @rtype: :class:`Tencentcloud::mna::V20210119::UpdateDeviceResponse`
+        def UpdateDevice(request)
+          body = send_request('UpdateDevice', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = UpdateDeviceResponse.new
             model.deserialize(response['Response'])
             model
           else

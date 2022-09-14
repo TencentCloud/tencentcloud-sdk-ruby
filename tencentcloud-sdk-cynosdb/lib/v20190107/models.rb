@@ -312,17 +312,17 @@ module TencentCloud
 
       # 备份文件信息
       class BackupFileInfo < TencentCloud::Common::AbstractModel
-        # @param SnapshotId: 快照文件ID，用于回滚
+        # @param SnapshotId: 快照文件ID，已废弃，请使用BackupId
         # @type SnapshotId: Integer
-        # @param FileName: 快照文件名
+        # @param FileName: 备份文件名
         # @type FileName: String
-        # @param FileSize: 快照文件大小
+        # @param FileSize: 备份文件大小
         # @type FileSize: Integer
-        # @param StartTime: 快照备份开始时间
+        # @param StartTime: 备份开始时间
         # @type StartTime: String
-        # @param FinishTime: 快照备份完成时间
+        # @param FinishTime: 备份完成时间
         # @type FinishTime: String
-        # @param BackupType: 备份类型：snapshot，快照备份；timepoint，时间点备份
+        # @param BackupType: 备份类型：snapshot，快照备份；logic，逻辑备份
         # @type BackupType: String
         # @param BackupMethod: 备份方式：auto，自动备份；manual，手动备份
         # @type BackupMethod: String
@@ -330,10 +330,19 @@ module TencentCloud
         # @type BackupStatus: String
         # @param SnapshotTime: 备份文件时间
         # @type SnapshotTime: String
+        # @param BackupId: 备份ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BackupId: Integer
+        # @param SnapShotType: 快照类型，可选值：full，全量；increment，增量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SnapShotType: String
+        # @param BackupName: 备份文件备注
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BackupName: String
 
-        attr_accessor :SnapshotId, :FileName, :FileSize, :StartTime, :FinishTime, :BackupType, :BackupMethod, :BackupStatus, :SnapshotTime
+        attr_accessor :SnapshotId, :FileName, :FileSize, :StartTime, :FinishTime, :BackupType, :BackupMethod, :BackupStatus, :SnapshotTime, :BackupId, :SnapShotType, :BackupName
         
-        def initialize(snapshotid=nil, filename=nil, filesize=nil, starttime=nil, finishtime=nil, backuptype=nil, backupmethod=nil, backupstatus=nil, snapshottime=nil)
+        def initialize(snapshotid=nil, filename=nil, filesize=nil, starttime=nil, finishtime=nil, backuptype=nil, backupmethod=nil, backupstatus=nil, snapshottime=nil, backupid=nil, snapshottype=nil, backupname=nil)
           @SnapshotId = snapshotid
           @FileName = filename
           @FileSize = filesize
@@ -343,6 +352,9 @@ module TencentCloud
           @BackupMethod = backupmethod
           @BackupStatus = backupstatus
           @SnapshotTime = snapshottime
+          @BackupId = backupid
+          @SnapShotType = snapshottype
+          @BackupName = backupname
         end
 
         def deserialize(params)
@@ -355,6 +367,9 @@ module TencentCloud
           @BackupMethod = params['BackupMethod']
           @BackupStatus = params['BackupStatus']
           @SnapshotTime = params['SnapshotTime']
+          @BackupId = params['BackupId']
+          @SnapShotType = params['SnapShotType']
+          @BackupName = params['BackupName']
         end
       end
 
@@ -1854,21 +1869,45 @@ module TencentCloud
       class DescribeBackupListRequest < TencentCloud::Common::AbstractModel
         # @param ClusterId: 集群ID
         # @type ClusterId: String
-        # @param Limit: 备份文件列表偏移
+        # @param Limit: 备份文件列表大小，取值范围(0,100]
         # @type Limit: Integer
-        # @param Offset: 备份文件列表起始
+        # @param Offset: 备份文件列表偏移，取值范围[0,INF)
         # @type Offset: Integer
         # @param DbType: 数据库类型，取值范围:
         # <li> MYSQL </li>
         # @type DbType: String
+        # @param BackupIds: 备份ID
+        # @type BackupIds: Array
+        # @param BackupType: 备份类型，可选值：snapshot，快照备份； logic，逻辑备份
+        # @type BackupType: String
+        # @param BackupMethod: 备份方式，可选值：auto，自动备份；manual，手动备
+        # @type BackupMethod: String
+        # @param SnapShotType: 快照类型，可选值：full，全量；increment，增量
+        # @type SnapShotType: String
+        # @param StartTime: 备份开始时间
+        # @type StartTime: String
+        # @param EndTime: 备份结束时间
+        # @type EndTime: String
+        # @param FileNames: 备份文件名，模糊查询
+        # @type FileNames: Array
+        # @param BackupNames: 备份备注名，模糊查询
+        # @type BackupNames: Array
 
-        attr_accessor :ClusterId, :Limit, :Offset, :DbType
+        attr_accessor :ClusterId, :Limit, :Offset, :DbType, :BackupIds, :BackupType, :BackupMethod, :SnapShotType, :StartTime, :EndTime, :FileNames, :BackupNames
         
-        def initialize(clusterid=nil, limit=nil, offset=nil, dbtype=nil)
+        def initialize(clusterid=nil, limit=nil, offset=nil, dbtype=nil, backupids=nil, backuptype=nil, backupmethod=nil, snapshottype=nil, starttime=nil, endtime=nil, filenames=nil, backupnames=nil)
           @ClusterId = clusterid
           @Limit = limit
           @Offset = offset
           @DbType = dbtype
+          @BackupIds = backupids
+          @BackupType = backuptype
+          @BackupMethod = backupmethod
+          @SnapShotType = snapshottype
+          @StartTime = starttime
+          @EndTime = endtime
+          @FileNames = filenames
+          @BackupNames = backupnames
         end
 
         def deserialize(params)
@@ -1876,6 +1915,14 @@ module TencentCloud
           @Limit = params['Limit']
           @Offset = params['Offset']
           @DbType = params['DbType']
+          @BackupIds = params['BackupIds']
+          @BackupType = params['BackupType']
+          @BackupMethod = params['BackupMethod']
+          @SnapShotType = params['SnapShotType']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @FileNames = params['FileNames']
+          @BackupNames = params['BackupNames']
         end
       end
 

@@ -2380,6 +2380,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询转码任务数。
+
+        # @param request: Request instance for DescribeTranscodeTaskNum.
+        # @type request: :class:`Tencentcloud::live::V20180801::DescribeTranscodeTaskNumRequest`
+        # @rtype: :class:`Tencentcloud::live::V20180801::DescribeTranscodeTaskNumResponse`
+        def DescribeTranscodeTaskNum(request)
+          body = send_request('DescribeTranscodeTaskNum', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeTranscodeTaskNumResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 直播上行路数查询
 
         # @param request: Request instance for DescribeUploadStreamNums.

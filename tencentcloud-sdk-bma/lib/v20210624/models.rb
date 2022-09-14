@@ -1249,17 +1249,68 @@ module TencentCloud
         # @type CommStatus: Integer
         # @param IsProducer: x
         # @type IsProducer: Integer
+        # @param EvidenceStatus: xxx
+        # @type EvidenceStatus: Integer
+        # @param WorkCategory: xxx
+        # @type WorkCategory: String
+        # @param IsOriginal: xxx
+        # @type IsOriginal: String
+        # @param IsRelease: xxx
+        # @type IsRelease: String
+        # @param ProducerName: xxx
+        # @type ProducerName: String
+        # @param ProduceTime: xxx
+        # @type ProduceTime: String
+        # @param WhiteLists: xxx
+        # @type WhiteLists: Array
+        # @param WorkDesc: xxx
+        # @type WorkDesc: String
+        # @param Authorization: xxx
+        # @type Authorization: String
+        # @param AuthorizationStartTime: xxx
+        # @type AuthorizationStartTime: String
+        # @param AuthorizationEndTime: xxx
+        # @type AuthorizationEndTime: String
+        # @param Commission: xxx
+        # @type Commission: String
+        # @param CommissionStartTime: xxx
+        # @type CommissionStartTime: String
+        # @param CommissionEndTime: xxx
+        # @type CommissionEndTime: String
+        # @param EvidenceUrl: xxx
+        # @type EvidenceUrl: String
+        # @param EvidenceStartTime: xxx
+        # @type EvidenceStartTime: String
+        # @param EvidenceEndTime: xxx
+        # @type EvidenceEndTime: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :WorkName, :MonitorStatus, :AuthStatus, :CommStatus, :IsProducer, :RequestId
+        attr_accessor :WorkName, :MonitorStatus, :AuthStatus, :CommStatus, :IsProducer, :EvidenceStatus, :WorkCategory, :IsOriginal, :IsRelease, :ProducerName, :ProduceTime, :WhiteLists, :WorkDesc, :Authorization, :AuthorizationStartTime, :AuthorizationEndTime, :Commission, :CommissionStartTime, :CommissionEndTime, :EvidenceUrl, :EvidenceStartTime, :EvidenceEndTime, :RequestId
         
-        def initialize(workname=nil, monitorstatus=nil, authstatus=nil, commstatus=nil, isproducer=nil, requestid=nil)
+        def initialize(workname=nil, monitorstatus=nil, authstatus=nil, commstatus=nil, isproducer=nil, evidencestatus=nil, workcategory=nil, isoriginal=nil, isrelease=nil, producername=nil, producetime=nil, whitelists=nil, workdesc=nil, authorization=nil, authorizationstarttime=nil, authorizationendtime=nil, commission=nil, commissionstarttime=nil, commissionendtime=nil, evidenceurl=nil, evidencestarttime=nil, evidenceendtime=nil, requestid=nil)
           @WorkName = workname
           @MonitorStatus = monitorstatus
           @AuthStatus = authstatus
           @CommStatus = commstatus
           @IsProducer = isproducer
+          @EvidenceStatus = evidencestatus
+          @WorkCategory = workcategory
+          @IsOriginal = isoriginal
+          @IsRelease = isrelease
+          @ProducerName = producername
+          @ProduceTime = producetime
+          @WhiteLists = whitelists
+          @WorkDesc = workdesc
+          @Authorization = authorization
+          @AuthorizationStartTime = authorizationstarttime
+          @AuthorizationEndTime = authorizationendtime
+          @Commission = commission
+          @CommissionStartTime = commissionstarttime
+          @CommissionEndTime = commissionendtime
+          @EvidenceUrl = evidenceurl
+          @EvidenceStartTime = evidencestarttime
+          @EvidenceEndTime = evidenceendtime
           @RequestId = requestid
         end
 
@@ -1269,6 +1320,23 @@ module TencentCloud
           @AuthStatus = params['AuthStatus']
           @CommStatus = params['CommStatus']
           @IsProducer = params['IsProducer']
+          @EvidenceStatus = params['EvidenceStatus']
+          @WorkCategory = params['WorkCategory']
+          @IsOriginal = params['IsOriginal']
+          @IsRelease = params['IsRelease']
+          @ProducerName = params['ProducerName']
+          @ProduceTime = params['ProduceTime']
+          @WhiteLists = params['WhiteLists']
+          @WorkDesc = params['WorkDesc']
+          @Authorization = params['Authorization']
+          @AuthorizationStartTime = params['AuthorizationStartTime']
+          @AuthorizationEndTime = params['AuthorizationEndTime']
+          @Commission = params['Commission']
+          @CommissionStartTime = params['CommissionStartTime']
+          @CommissionEndTime = params['CommissionEndTime']
+          @EvidenceUrl = params['EvidenceUrl']
+          @EvidenceStartTime = params['EvidenceStartTime']
+          @EvidenceEndTime = params['EvidenceEndTime']
           @RequestId = params['RequestId']
         end
       end

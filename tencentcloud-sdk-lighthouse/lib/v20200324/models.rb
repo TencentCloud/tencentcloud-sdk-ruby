@@ -222,10 +222,17 @@ module TencentCloud
         # @param ImageId: CVM镜像共享到轻量应用服务器轻量应用服务器后的CVM镜像ID。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ImageId: String
+        # @param CommunityUrl: 官方网站Url。
+        # @type CommunityUrl: String
+        # @param GuideUrl: 指导文章Url。
+        # @type GuideUrl: String
+        # @param SceneIdSet: 镜像关联使用场景Id列表。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SceneIdSet: Array
 
-        attr_accessor :BlueprintId, :DisplayTitle, :DisplayVersion, :Description, :OsName, :Platform, :PlatformType, :BlueprintType, :ImageUrl, :RequiredSystemDiskSize, :BlueprintState, :CreatedTime, :BlueprintName, :SupportAutomationTools, :RequiredMemorySize, :ImageId
+        attr_accessor :BlueprintId, :DisplayTitle, :DisplayVersion, :Description, :OsName, :Platform, :PlatformType, :BlueprintType, :ImageUrl, :RequiredSystemDiskSize, :BlueprintState, :CreatedTime, :BlueprintName, :SupportAutomationTools, :RequiredMemorySize, :ImageId, :CommunityUrl, :GuideUrl, :SceneIdSet
         
-        def initialize(blueprintid=nil, displaytitle=nil, displayversion=nil, description=nil, osname=nil, platform=nil, platformtype=nil, blueprinttype=nil, imageurl=nil, requiredsystemdisksize=nil, blueprintstate=nil, createdtime=nil, blueprintname=nil, supportautomationtools=nil, requiredmemorysize=nil, imageid=nil)
+        def initialize(blueprintid=nil, displaytitle=nil, displayversion=nil, description=nil, osname=nil, platform=nil, platformtype=nil, blueprinttype=nil, imageurl=nil, requiredsystemdisksize=nil, blueprintstate=nil, createdtime=nil, blueprintname=nil, supportautomationtools=nil, requiredmemorysize=nil, imageid=nil, communityurl=nil, guideurl=nil, sceneidset=nil)
           @BlueprintId = blueprintid
           @DisplayTitle = displaytitle
           @DisplayVersion = displayversion
@@ -242,6 +249,9 @@ module TencentCloud
           @SupportAutomationTools = supportautomationtools
           @RequiredMemorySize = requiredmemorysize
           @ImageId = imageid
+          @CommunityUrl = communityurl
+          @GuideUrl = guideurl
+          @SceneIdSet = sceneidset
         end
 
         def deserialize(params)
@@ -261,6 +271,9 @@ module TencentCloud
           @SupportAutomationTools = params['SupportAutomationTools']
           @RequiredMemorySize = params['RequiredMemorySize']
           @ImageId = params['ImageId']
+          @CommunityUrl = params['CommunityUrl']
+          @GuideUrl = params['GuideUrl']
+          @SceneIdSet = params['SceneIdSet']
         end
       end
 
@@ -1003,6 +1016,9 @@ module TencentCloud
         # 类型：String
         # 必选：否
         # <li>blueprint-state</li>按照【镜像状态】进行过滤。
+        # 类型：String
+        # 必选：否
+        # <li>scene-id</li>按照【使用场景Id】进行过滤。
         # 类型：String
         # 必选：否
 

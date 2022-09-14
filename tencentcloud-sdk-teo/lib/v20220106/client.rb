@@ -1085,7 +1085,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 查询七层监控类时序流量数据
+        # 本接口（DescribeOverviewL7Data）用于查询七层监控类时序流量数据。
 
         # @param request: Request instance for DescribeOverviewL7Data.
         # @type request: :class:`Tencentcloud::teo::V20220106::DescribeOverviewL7DataRequest`

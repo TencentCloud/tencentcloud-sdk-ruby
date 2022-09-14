@@ -5119,32 +5119,44 @@ module TencentCloud
 
       # DescribeOverviewL7Data请求参数结构体
       class DescribeOverviewL7DataRequest < TencentCloud::Common::AbstractModel
-        # @param StartTime: RFC3339格式，客户端时间
+        # @param StartTime: 开始时间。
         # @type StartTime: String
-        # @param EndTime: RFC3339格式，客户端时间
+        # @param EndTime: 结束时间。
         # @type EndTime: String
-        # @param MetricNames: 指标列表，支持的指标
-        # l7Flow_outFlux: 访问流量
-        # l7Flow_request: 访问请求数
-        # l7Flow_outBandwidth: 访问带宽
-        #  l7Flow_hit_outFlux: 缓存命中流量
+        # @param MetricNames: 查询的指标，取值有：
+        # <li>l7Flow_outFlux: 访问流量；</li>
+        # <li>l7Flow_request: 访问请求数；</li>
+        # <li>l7Flow_outBandwidth: 访问带宽；</li>
+        # <li>l7Flow_hit_outFlux: 缓存命中流量。</li>
         # @type MetricNames: Array
-        # @param Interval: 时间间隔，选填{min, 5min, hour, day, week}
+        # @param Interval: 查询时间粒度，取值有：
+        # <li>min ：1分钟 ；</li>
+        # <li>5min ：5分钟 ；</li>
+        # <li>hour ：1小时 ；</li>
+        # <li>day ：1天 。</li>
         # @type Interval: String
-        # @param ZoneIds: ZoneId列表，仅在zone/domain维度下查询时该参数有效
+        # @param ZoneIds: 查询的站点集合，不填默认查询所有站点。
         # @type ZoneIds: Array
-        # @param Domains: Domain列表，仅在domain维度下查询时该参数有效
+        # @param Domains: 查询的域名集合，不填默认查询所有子域名。
         # @type Domains: Array
-        # @param Protocol: 协议类型， 选填{http,http2,https,all}
+        # @param Protocol: 查询的协议类型，取值有：
+        # <li>http: http协议；</li>
+        # <li>https: https协议；</li>
+        # <li>http2: http2协议；</li>
+        # <li>all:  所有协议。</li>不填默认为: all，表示查询所有协议。
         # @type Protocol: String
         # @param Area: 加速区域，取值有：
         # <li>mainland：中国大陆境内;</li>
         # <li>overseas：全球（不含中国大陆）。</li>
         # @type Area: String
+        # @param Filters: 过滤条件，Filters.Values的上限为20。详细的过滤条件如下：
+        # <li>tagKey<br>   按照【<strong>标签Key</strong>】进行过滤。<br>   类型：String<br>   必选：否
+        # <li>tagValue<br>   按照【<strong>标签Value</strong>】进行过滤。<br>   类型：String<br>   必选：否
+        # @type Filters: Array
 
-        attr_accessor :StartTime, :EndTime, :MetricNames, :Interval, :ZoneIds, :Domains, :Protocol, :Area
+        attr_accessor :StartTime, :EndTime, :MetricNames, :Interval, :ZoneIds, :Domains, :Protocol, :Area, :Filters
         
-        def initialize(starttime=nil, endtime=nil, metricnames=nil, interval=nil, zoneids=nil, domains=nil, protocol=nil, area=nil)
+        def initialize(starttime=nil, endtime=nil, metricnames=nil, interval=nil, zoneids=nil, domains=nil, protocol=nil, area=nil, filters=nil)
           @StartTime = starttime
           @EndTime = endtime
           @MetricNames = metricnames
@@ -5153,6 +5165,7 @@ module TencentCloud
           @Domains = domains
           @Protocol = protocol
           @Area = area
+          @Filters = filters
         end
 
         def deserialize(params)
@@ -5164,16 +5177,24 @@ module TencentCloud
           @Domains = params['Domains']
           @Protocol = params['Protocol']
           @Area = params['Area']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              querycondition_tmp = QueryCondition.new
+              querycondition_tmp.deserialize(i)
+              @Filters << querycondition_tmp
+            end
+          end
         end
       end
 
       # DescribeOverviewL7Data返回参数结构体
       class DescribeOverviewL7DataResponse < TencentCloud::Common::AbstractModel
-        # @param Type: 查询维度
+        # @param Type: 查询维度。
         # @type Type: String
-        # @param Interval: 时间间隔
+        # @param Interval: 查询时间间隔。
         # @type Interval: String
-        # @param Data: 详细数据
+        # @param Data: 七层监控类时序流量数据列表。
         # @type Data: Array
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -10210,11 +10231,19 @@ module TencentCloud
 
       # 查询条件
       class QueryCondition < TencentCloud::Common::AbstractModel
-        # @param Key: 维度
+        # @param Key: 筛选条件的key。
         # @type Key: String
-        # @param Operator: 操作符
+        # @param Operator: 查询条件操作符，操作类型有：
+        # <li>equals: 等于；</li>
+        # <li>notEquals: 不等于；</li>
+        # <li>include: 包含；</li>
+        # <li>notInclude: 不包含; </li>
+        # <li>startWith: 开始于；</li>
+        # <li>notStartWith: 不开始于；</li>
+        # <li>endWith: 结尾是；</li>
+        # <li>notEndWith: 不结尾是。</li>
         # @type Operator: String
-        # @param Value: 维度值
+        # @param Value: 筛选条件的值。
         # @type Value: Array
 
         attr_accessor :Key, :Operator, :Value

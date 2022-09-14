@@ -15299,10 +15299,13 @@ module TencentCloud
         # @param ExclusiveGatewayBandwidth: 独享型NAT所在的网关集群的带宽(单位:Mbps)，当IsExclusive为false时无此字段。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExclusiveGatewayBandwidth: Integer
+        # @param RestrictState: NAT网关是否被封禁。“NORMAL”：未被封禁，“RESTRICTED”：已被封禁。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RestrictState: String
 
-        attr_accessor :NatGatewayId, :NatGatewayName, :CreatedTime, :State, :InternetMaxBandwidthOut, :MaxConcurrentConnection, :PublicIpAddressSet, :NetworkState, :DestinationIpPortTranslationNatRuleSet, :VpcId, :Zone, :DirectConnectGatewayIds, :SubnetId, :TagSet, :SecurityGroupSet, :SourceIpTranslationNatRuleSet, :IsExclusive, :ExclusiveGatewayBandwidth
+        attr_accessor :NatGatewayId, :NatGatewayName, :CreatedTime, :State, :InternetMaxBandwidthOut, :MaxConcurrentConnection, :PublicIpAddressSet, :NetworkState, :DestinationIpPortTranslationNatRuleSet, :VpcId, :Zone, :DirectConnectGatewayIds, :SubnetId, :TagSet, :SecurityGroupSet, :SourceIpTranslationNatRuleSet, :IsExclusive, :ExclusiveGatewayBandwidth, :RestrictState
         
-        def initialize(natgatewayid=nil, natgatewayname=nil, createdtime=nil, state=nil, internetmaxbandwidthout=nil, maxconcurrentconnection=nil, publicipaddressset=nil, networkstate=nil, destinationipporttranslationnatruleset=nil, vpcid=nil, zone=nil, directconnectgatewayids=nil, subnetid=nil, tagset=nil, securitygroupset=nil, sourceiptranslationnatruleset=nil, isexclusive=nil, exclusivegatewaybandwidth=nil)
+        def initialize(natgatewayid=nil, natgatewayname=nil, createdtime=nil, state=nil, internetmaxbandwidthout=nil, maxconcurrentconnection=nil, publicipaddressset=nil, networkstate=nil, destinationipporttranslationnatruleset=nil, vpcid=nil, zone=nil, directconnectgatewayids=nil, subnetid=nil, tagset=nil, securitygroupset=nil, sourceiptranslationnatruleset=nil, isexclusive=nil, exclusivegatewaybandwidth=nil, restrictstate=nil)
           @NatGatewayId = natgatewayid
           @NatGatewayName = natgatewayname
           @CreatedTime = createdtime
@@ -15321,6 +15324,7 @@ module TencentCloud
           @SourceIpTranslationNatRuleSet = sourceiptranslationnatruleset
           @IsExclusive = isexclusive
           @ExclusiveGatewayBandwidth = exclusivegatewaybandwidth
+          @RestrictState = restrictstate
         end
 
         def deserialize(params)
@@ -15370,6 +15374,7 @@ module TencentCloud
           end
           @IsExclusive = params['IsExclusive']
           @ExclusiveGatewayBandwidth = params['ExclusiveGatewayBandwidth']
+          @RestrictState = params['RestrictState']
         end
       end
 
@@ -17094,7 +17099,6 @@ module TencentCloud
         # LOCAL_GATEWAY：本地网关。
         # @type GatewayType: String
         # @param GatewayId: 下一跳地址，这里只需要指定不同下一跳类型的网关ID，系统会自动匹配到下一跳地址。
-        # 特别注意：当 GatewayType 为 EIP 时，GatewayId 固定值 '0'
         # @type GatewayId: String
         # @param RouteId: 路由策略ID。IPv4路由策略ID是有意义的值，IPv6路由策略是无意义的值0。后续建议完全使用字符串唯一ID `RouteItemId`操作路由策略。
         # 该字段在删除时必填，其他字段无需填写。

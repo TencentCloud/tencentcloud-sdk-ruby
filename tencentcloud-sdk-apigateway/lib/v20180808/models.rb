@@ -3745,7 +3745,7 @@ module TencentCloud
         # @type Offset: Integer
         # @param Limit: 返回数量，默认为 20，最大值为 100
         # @type Limit: Integer
-        # @param Filters: API过滤条件。支持ApiId、ApiName、ApiPath、ApiType、AuthRelationApiId、AuthType、ApiBuniessType、NotUsagePlanId、Environment、Tags (values为 $tag_key:tag_value的列表)、TagKeys （values 为 tag key的列表）。
+        # @param Filters: API过滤条件。支持ApiId、ApiName、ApiPath、ApiType、AuthRelationApiId、AuthType、ApiBuniessType、NotUsagePlanId、 Environment、Tags (values为 $tag_key:tag_value的列表)、TagKeys （values 为 tag key的列表），其中NotUsagePlanId和Environment必须同时使用，不能单独使用一个。
         # @type Filters: Array
 
         attr_accessor :ServiceId, :Offset, :Limit, :Filters
