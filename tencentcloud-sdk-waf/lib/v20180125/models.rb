@@ -484,10 +484,18 @@ module TencentCloud
         # @type Anycast: Integer
         # @param Weights: src权重
         # @type Weights: Array
+        # @param ActiveCheck: 是否开启主动健康检测，1表示开启，0表示不开启
+        # @type ActiveCheck: Integer
+        # @param TLSVersion: TLS版本信息
+        # @type TLSVersion: Integer
+        # @param Ciphers: 加密套件信息
+        # @type Ciphers: Array
+        # @param CipherTemplate: 0:不支持选择：默认模版  1:通用型模版 2:安全型模版 3:自定义模版
+        # @type CipherTemplate: Integer
 
-        attr_accessor :Domain, :CertType, :IsCdn, :UpstreamType, :IsWebsocket, :LoadBalance, :Cert, :PrivateKey, :SSLId, :ResourceId, :UpstreamScheme, :HttpsUpstreamPort, :IsGray, :GrayAreas, :UpstreamDomain, :SrcList, :IsHttp2, :HttpsRewrite, :Ports, :Edition, :IsKeepAlive, :InstanceID, :Anycast, :Weights
+        attr_accessor :Domain, :CertType, :IsCdn, :UpstreamType, :IsWebsocket, :LoadBalance, :Cert, :PrivateKey, :SSLId, :ResourceId, :UpstreamScheme, :HttpsUpstreamPort, :IsGray, :GrayAreas, :UpstreamDomain, :SrcList, :IsHttp2, :HttpsRewrite, :Ports, :Edition, :IsKeepAlive, :InstanceID, :Anycast, :Weights, :ActiveCheck, :TLSVersion, :Ciphers, :CipherTemplate
         
-        def initialize(domain=nil, certtype=nil, iscdn=nil, upstreamtype=nil, iswebsocket=nil, loadbalance=nil, cert=nil, privatekey=nil, sslid=nil, resourceid=nil, upstreamscheme=nil, httpsupstreamport=nil, isgray=nil, grayareas=nil, upstreamdomain=nil, srclist=nil, ishttp2=nil, httpsrewrite=nil, ports=nil, edition=nil, iskeepalive=nil, instanceid=nil, anycast=nil, weights=nil)
+        def initialize(domain=nil, certtype=nil, iscdn=nil, upstreamtype=nil, iswebsocket=nil, loadbalance=nil, cert=nil, privatekey=nil, sslid=nil, resourceid=nil, upstreamscheme=nil, httpsupstreamport=nil, isgray=nil, grayareas=nil, upstreamdomain=nil, srclist=nil, ishttp2=nil, httpsrewrite=nil, ports=nil, edition=nil, iskeepalive=nil, instanceid=nil, anycast=nil, weights=nil, activecheck=nil, tlsversion=nil, ciphers=nil, ciphertemplate=nil)
           @Domain = domain
           @CertType = certtype
           @IsCdn = iscdn
@@ -512,6 +520,10 @@ module TencentCloud
           @InstanceID = instanceid
           @Anycast = anycast
           @Weights = weights
+          @ActiveCheck = activecheck
+          @TLSVersion = tlsversion
+          @Ciphers = ciphers
+          @CipherTemplate = ciphertemplate
         end
 
         def deserialize(params)
@@ -546,6 +558,10 @@ module TencentCloud
           @InstanceID = params['InstanceID']
           @Anycast = params['Anycast']
           @Weights = params['Weights']
+          @ActiveCheck = params['ActiveCheck']
+          @TLSVersion = params['TLSVersion']
+          @Ciphers = params['Ciphers']
+          @CipherTemplate = params['CipherTemplate']
         end
       end
 
@@ -971,19 +987,23 @@ module TencentCloud
         # @type Items: Array
         # @param DeleteAll: 删除对应的域名下的所有黑/白IP名额单
         # @type DeleteAll: Boolean
+        # @param SourceType: 是否为多域名黑白名单
+        # @type SourceType: String
 
-        attr_accessor :Domain, :Items, :DeleteAll
+        attr_accessor :Domain, :Items, :DeleteAll, :SourceType
         
-        def initialize(domain=nil, items=nil, deleteall=nil)
+        def initialize(domain=nil, items=nil, deleteall=nil, sourcetype=nil)
           @Domain = domain
           @Items = items
           @DeleteAll = deleteall
+          @SourceType = sourcetype
         end
 
         def deserialize(params)
           @Domain = params['Domain']
           @Items = params['Items']
           @DeleteAll = params['DeleteAll']
+          @SourceType = params['SourceType']
         end
       end
 
@@ -2206,10 +2226,13 @@ module TencentCloud
         # @param BotQPS: bot的qps详情
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BotQPS: :class:`Tencentcloud::Waf.v20180125.models.BotQPS`
+        # @param ElasticBilling: qps弹性计费上限
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ElasticBilling: Integer
 
-        attr_accessor :InstanceId, :InstanceName, :ResourceIds, :Region, :PayMode, :RenewFlag, :Mode, :Level, :ValidTime, :BeginTime, :DomainCount, :SubDomainLimit, :MainDomainCount, :MainDomainLimit, :MaxQPS, :QPS, :DomainPkg, :AppId, :Edition, :FraudPkg, :BotPkg, :BotQPS
+        attr_accessor :InstanceId, :InstanceName, :ResourceIds, :Region, :PayMode, :RenewFlag, :Mode, :Level, :ValidTime, :BeginTime, :DomainCount, :SubDomainLimit, :MainDomainCount, :MainDomainLimit, :MaxQPS, :QPS, :DomainPkg, :AppId, :Edition, :FraudPkg, :BotPkg, :BotQPS, :ElasticBilling
         
-        def initialize(instanceid=nil, instancename=nil, resourceids=nil, region=nil, paymode=nil, renewflag=nil, mode=nil, level=nil, validtime=nil, begintime=nil, domaincount=nil, subdomainlimit=nil, maindomaincount=nil, maindomainlimit=nil, maxqps=nil, qps=nil, domainpkg=nil, appid=nil, edition=nil, fraudpkg=nil, botpkg=nil, botqps=nil)
+        def initialize(instanceid=nil, instancename=nil, resourceids=nil, region=nil, paymode=nil, renewflag=nil, mode=nil, level=nil, validtime=nil, begintime=nil, domaincount=nil, subdomainlimit=nil, maindomaincount=nil, maindomainlimit=nil, maxqps=nil, qps=nil, domainpkg=nil, appid=nil, edition=nil, fraudpkg=nil, botpkg=nil, botqps=nil, elasticbilling=nil)
           @InstanceId = instanceid
           @InstanceName = instancename
           @ResourceIds = resourceids
@@ -2232,6 +2255,7 @@ module TencentCloud
           @FraudPkg = fraudpkg
           @BotPkg = botpkg
           @BotQPS = botqps
+          @ElasticBilling = elasticbilling
         end
 
         def deserialize(params)
@@ -2272,6 +2296,7 @@ module TencentCloud
             @BotQPS = BotQPS.new
             @BotQPS.deserialize(params['BotQPS'])
           end
+          @ElasticBilling = params['ElasticBilling']
         end
       end
 
@@ -2993,19 +3018,23 @@ module TencentCloud
         # @type Items: Array
         # @param Edition: clb-waf或者sparta-waf
         # @type Edition: String
+        # @param SourceType: 是否为多域名黑白名单
+        # @type SourceType: String
 
-        attr_accessor :Domain, :Items, :Edition
+        attr_accessor :Domain, :Items, :Edition, :SourceType
         
-        def initialize(domain=nil, items=nil, edition=nil)
+        def initialize(domain=nil, items=nil, edition=nil, sourcetype=nil)
           @Domain = domain
           @Items = items
           @Edition = edition
+          @SourceType = sourcetype
         end
 
         def deserialize(params)
           @Domain = params['Domain']
           @Items = params['Items']
           @Edition = params['Edition']
+          @SourceType = params['SourceType']
         end
       end
 

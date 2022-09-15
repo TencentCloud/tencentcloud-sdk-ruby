@@ -197,30 +197,6 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 创建安全组API规则
-
-        # @param request: Request instance for CreateSecurityGroupApiRules.
-        # @type request: :class:`Tencentcloud::cfw::V20190904::CreateSecurityGroupApiRulesRequest`
-        # @rtype: :class:`Tencentcloud::cfw::V20190904::CreateSecurityGroupApiRulesResponse`
-        def CreateSecurityGroupApiRules(request)
-          body = send_request('CreateSecurityGroupApiRules', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = CreateSecurityGroupApiRulesResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
         # 创建企业安全组规则
 
         # @param request: Request instance for CreateSecurityGroupRules.
@@ -399,30 +375,6 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeAcListsResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # 获取地址模板列表
-
-        # @param request: Request instance for DescribeAddrTemplateList.
-        # @type request: :class:`Tencentcloud::cfw::V20190904::DescribeAddrTemplateListRequest`
-        # @rtype: :class:`Tencentcloud::cfw::V20190904::DescribeAddrTemplateListResponse`
-        def DescribeAddrTemplateList(request)
-          body = send_request('DescribeAddrTemplateList', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = DescribeAddrTemplateListResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -893,30 +845,6 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 同步资产状态查询-互联网&VPC
-
-        # @param request: Request instance for DescribeSyncAssetStatus.
-        # @type request: :class:`Tencentcloud::cfw::V20190904::DescribeSyncAssetStatusRequest`
-        # @rtype: :class:`Tencentcloud::cfw::V20190904::DescribeSyncAssetStatusResponse`
-        def DescribeSyncAssetStatus(request)
-          body = send_request('DescribeSyncAssetStatus', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = DescribeSyncAssetStatusResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
         # DescribeTLogInfo告警中心概况
 
         # @param request: Request instance for DescribeTLogInfo.
@@ -1133,30 +1061,6 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 一键开启和关闭
-
-        # @param request: Request instance for ModifyAllSwitchStatus.
-        # @type request: :class:`Tencentcloud::cfw::V20190904::ModifyAllSwitchStatusRequest`
-        # @rtype: :class:`Tencentcloud::cfw::V20190904::ModifyAllSwitchStatusResponse`
-        def ModifyAllSwitchStatus(request)
-          body = send_request('ModifyAllSwitchStatus', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = ModifyAllSwitchStatusResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
         # VPC防火墙一键开关
 
         # @param request: Request instance for ModifyAllVPCSwitchStatus.
@@ -1242,30 +1146,6 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyBlockTopResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # 修改单个防火墙开关
-
-        # @param request: Request instance for ModifyItemSwitchStatus.
-        # @type request: :class:`Tencentcloud::cfw::V20190904::ModifyItemSwitchStatusRequest`
-        # @rtype: :class:`Tencentcloud::cfw::V20190904::ModifyItemSwitchStatusResponse`
-        def ModifyItemSwitchStatus(request)
-          body = send_request('ModifyItemSwitchStatus', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = ModifyItemSwitchStatusResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1411,30 +1291,6 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyRunSyncAssetResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # 启用停用全部规则
-
-        # @param request: Request instance for ModifySecurityGroupAllRuleStatus.
-        # @type request: :class:`Tencentcloud::cfw::V20190904::ModifySecurityGroupAllRuleStatusRequest`
-        # @rtype: :class:`Tencentcloud::cfw::V20190904::ModifySecurityGroupAllRuleStatusResponse`
-        def ModifySecurityGroupAllRuleStatus(request)
-          body = send_request('ModifySecurityGroupAllRuleStatus', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = ModifySecurityGroupAllRuleStatusResponse.new
             model.deserialize(response['Response'])
             model
           else

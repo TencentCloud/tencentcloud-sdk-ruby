@@ -6125,15 +6125,19 @@ module TencentCloud
       class EditMediaOutputConfig < TencentCloud::Common::AbstractModel
         # @param Container: 封装格式，可选值：mp4、hls、mov、flv、avi。默认是 mp4。
         # @type Container: String
+        # @param Type: 剪辑模式，可选值 normal、fast。默认是精确剪辑 normal
+        # @type Type: String
 
-        attr_accessor :Container
+        attr_accessor :Container, :Type
         
-        def initialize(container=nil)
+        def initialize(container=nil, type=nil)
           @Container = container
+          @Type = type
         end
 
         def deserialize(params)
           @Container = params['Container']
+          @Type = params['Type']
         end
       end
 

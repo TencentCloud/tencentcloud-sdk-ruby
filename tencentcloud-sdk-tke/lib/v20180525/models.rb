@@ -14053,10 +14053,12 @@ module TencentCloud
         # @type GridDaemon: String
         # @param AutoUpgradeClusterLevel: 边缘集群开启自动升配
         # @type AutoUpgradeClusterLevel: Boolean
+        # @param ClusterLevel: 边缘集群的集群规模
+        # @type ClusterLevel: String
 
-        attr_accessor :ClusterId, :ClusterName, :ClusterDesc, :PodCIDR, :ServiceCIDR, :PublicLB, :InternalLB, :CoreDns, :HealthRegion, :Health, :GridDaemon, :AutoUpgradeClusterLevel
+        attr_accessor :ClusterId, :ClusterName, :ClusterDesc, :PodCIDR, :ServiceCIDR, :PublicLB, :InternalLB, :CoreDns, :HealthRegion, :Health, :GridDaemon, :AutoUpgradeClusterLevel, :ClusterLevel
         
-        def initialize(clusterid=nil, clustername=nil, clusterdesc=nil, podcidr=nil, servicecidr=nil, publiclb=nil, internallb=nil, coredns=nil, healthregion=nil, health=nil, griddaemon=nil, autoupgradeclusterlevel=nil)
+        def initialize(clusterid=nil, clustername=nil, clusterdesc=nil, podcidr=nil, servicecidr=nil, publiclb=nil, internallb=nil, coredns=nil, healthregion=nil, health=nil, griddaemon=nil, autoupgradeclusterlevel=nil, clusterlevel=nil)
           @ClusterId = clusterid
           @ClusterName = clustername
           @ClusterDesc = clusterdesc
@@ -14069,6 +14071,7 @@ module TencentCloud
           @Health = health
           @GridDaemon = griddaemon
           @AutoUpgradeClusterLevel = autoupgradeclusterlevel
+          @ClusterLevel = clusterlevel
         end
 
         def deserialize(params)
@@ -14090,6 +14093,7 @@ module TencentCloud
           @Health = params['Health']
           @GridDaemon = params['GridDaemon']
           @AutoUpgradeClusterLevel = params['AutoUpgradeClusterLevel']
+          @ClusterLevel = params['ClusterLevel']
         end
       end
 

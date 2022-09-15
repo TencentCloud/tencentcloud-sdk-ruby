@@ -1038,7 +1038,7 @@ module TencentCloud
         # @param CalcValue: 检测值
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CalcValue: String
-        # @param ContinueTime: 持续时间
+        # @param ContinueTime: 持续时间，单位秒
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ContinueTime: String
         # @param MetricID: 指标ID
@@ -1051,10 +1051,17 @@ module TencentCloud
         # @type RuleID: Integer
         # @param Unit: 指标单位
         # @type Unit: String
+        # @param IsAdvanced: 是否为高级指标，0：否；1：是
+        # @type IsAdvanced: Integer
+        # @param IsOpen: 是否开通高级指标，0：否；1：是
+        # @type IsOpen: Integer
+        # @param ProductId: 产品ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProductId: String
 
-        attr_accessor :AlarmNotifyPeriod, :AlarmNotifyType, :CalcType, :CalcValue, :ContinueTime, :MetricID, :MetricDisplayName, :Period, :RuleID, :Unit
+        attr_accessor :AlarmNotifyPeriod, :AlarmNotifyType, :CalcType, :CalcValue, :ContinueTime, :MetricID, :MetricDisplayName, :Period, :RuleID, :Unit, :IsAdvanced, :IsOpen, :ProductId
         
-        def initialize(alarmnotifyperiod=nil, alarmnotifytype=nil, calctype=nil, calcvalue=nil, continuetime=nil, metricid=nil, metricdisplayname=nil, period=nil, ruleid=nil, unit=nil)
+        def initialize(alarmnotifyperiod=nil, alarmnotifytype=nil, calctype=nil, calcvalue=nil, continuetime=nil, metricid=nil, metricdisplayname=nil, period=nil, ruleid=nil, unit=nil, isadvanced=nil, isopen=nil, productid=nil)
           @AlarmNotifyPeriod = alarmnotifyperiod
           @AlarmNotifyType = alarmnotifytype
           @CalcType = calctype
@@ -1065,6 +1072,9 @@ module TencentCloud
           @Period = period
           @RuleID = ruleid
           @Unit = unit
+          @IsAdvanced = isadvanced
+          @IsOpen = isopen
+          @ProductId = productid
         end
 
         def deserialize(params)
@@ -1078,6 +1088,9 @@ module TencentCloud
           @Period = params['Period']
           @RuleID = params['RuleID']
           @Unit = params['Unit']
+          @IsAdvanced = params['IsAdvanced']
+          @IsOpen = params['IsOpen']
+          @ProductId = params['ProductId']
         end
       end
 
@@ -3962,10 +3975,12 @@ module TencentCloud
         # @type Offset: Integer
         # @param UpdateTimeOrder: 指定按更新时间的排序方式，asc=升序, desc=降序
         # @type UpdateTimeOrder: String
+        # @param PolicyCountOrder: 指定按绑定策略数目的排序方式，asc=升序, desc=降序
+        # @type PolicyCountOrder: String
 
-        attr_accessor :Module, :ViewName, :GroupName, :GroupID, :Limit, :Offset, :UpdateTimeOrder
+        attr_accessor :Module, :ViewName, :GroupName, :GroupID, :Limit, :Offset, :UpdateTimeOrder, :PolicyCountOrder
         
-        def initialize(_module=nil, viewname=nil, groupname=nil, groupid=nil, limit=nil, offset=nil, updatetimeorder=nil)
+        def initialize(_module=nil, viewname=nil, groupname=nil, groupid=nil, limit=nil, offset=nil, updatetimeorder=nil, policycountorder=nil)
           @Module = _module
           @ViewName = viewname
           @GroupName = groupname
@@ -3973,6 +3988,7 @@ module TencentCloud
           @Limit = limit
           @Offset = offset
           @UpdateTimeOrder = updatetimeorder
+          @PolicyCountOrder = policycountorder
         end
 
         def deserialize(params)
@@ -3983,6 +3999,7 @@ module TencentCloud
           @Limit = params['Limit']
           @Offset = params['Offset']
           @UpdateTimeOrder = params['UpdateTimeOrder']
+          @PolicyCountOrder = params['PolicyCountOrder']
         end
       end
 

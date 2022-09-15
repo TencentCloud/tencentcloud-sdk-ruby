@@ -683,6 +683,77 @@ module TencentCloud
         end
       end
 
+      # GetFlowStatistic请求参数结构体
+      class GetFlowStatisticRequest < TencentCloud::Common::AbstractModel
+        # @param DeviceId: 设备ID，ID="-1"时默认查找所有设备
+        # @type DeviceId: String
+        # @param BeginTime: 开始查找时间
+        # @type BeginTime: Integer
+        # @param EndTime: 截止时间
+        # @type EndTime: Integer
+        # @param Type: 流量种类（1：上行流量，2：下行流量）
+        # @type Type: Integer
+        # @param TimeGranularity: 时间粒度（1：按小时统计，2：按天统计）
+        # @type TimeGranularity: Integer
+
+        attr_accessor :DeviceId, :BeginTime, :EndTime, :Type, :TimeGranularity
+        
+        def initialize(deviceid=nil, begintime=nil, endtime=nil, type=nil, timegranularity=nil)
+          @DeviceId = deviceid
+          @BeginTime = begintime
+          @EndTime = endtime
+          @Type = type
+          @TimeGranularity = timegranularity
+        end
+
+        def deserialize(params)
+          @DeviceId = params['DeviceId']
+          @BeginTime = params['BeginTime']
+          @EndTime = params['EndTime']
+          @Type = params['Type']
+          @TimeGranularity = params['TimeGranularity']
+        end
+      end
+
+      # GetFlowStatistic返回参数结构体
+      class GetFlowStatisticResponse < TencentCloud::Common::AbstractModel
+        # @param NetDetails: 流量详细信息
+        # @type NetDetails: Array
+        # @param MaxValue: 查找时间段流量使用最大值（单位：bit）
+        # @type MaxValue: Float
+        # @param AvgValue: 查找时间段流量使用平均值（单位：bit）
+        # @type AvgValue: Float
+        # @param TotalValue: 查找时间段流量使用总量（单位：bit）
+        # @type TotalValue: Float
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :NetDetails, :MaxValue, :AvgValue, :TotalValue, :RequestId
+        
+        def initialize(netdetails=nil, maxvalue=nil, avgvalue=nil, totalvalue=nil, requestid=nil)
+          @NetDetails = netdetails
+          @MaxValue = maxvalue
+          @AvgValue = avgvalue
+          @TotalValue = totalvalue
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['NetDetails'].nil?
+            @NetDetails = []
+            params['NetDetails'].each do |i|
+              netdetails_tmp = NetDetails.new
+              netdetails_tmp.deserialize(i)
+              @NetDetails << netdetails_tmp
+            end
+          end
+          @MaxValue = params['MaxValue']
+          @AvgValue = params['AvgValue']
+          @TotalValue = params['TotalValue']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # GetStatisticData请求参数结构体
       class GetStatisticDataRequest < TencentCloud::Common::AbstractModel
         # @param DeviceId: 设备ID，设备ID="-1"获取所有设备流量统计
@@ -730,6 +801,26 @@ module TencentCloud
         def deserialize(params)
           @FilePath = params['FilePath']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 网络详细信息
+      class NetDetails < TencentCloud::Common::AbstractModel
+        # @param Time: 时间点，单位：s
+        # @type Time: String
+        # @param Current: 流量值（bit）
+        # @type Current: Float
+
+        attr_accessor :Time, :Current
+        
+        def initialize(time=nil, current=nil)
+          @Time = time
+          @Current = current
+        end
+
+        def deserialize(params)
+          @Time = params['Time']
+          @Current = params['Current']
         end
       end
 

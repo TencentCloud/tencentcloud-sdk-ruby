@@ -150,19 +150,23 @@ module TencentCloud
         # @type LogSet: String
         # @param Topic: 日志主题
         # @type Topic: String
+        # @param NeedDelete: 是否删除
+        # @type NeedDelete: Boolean
 
-        attr_accessor :Enable, :LogSet, :Topic
+        attr_accessor :Enable, :LogSet, :Topic, :NeedDelete
         
-        def initialize(enable=nil, logset=nil, topic=nil)
+        def initialize(enable=nil, logset=nil, topic=nil, needdelete=nil)
           @Enable = enable
           @LogSet = logset
           @Topic = topic
+          @NeedDelete = needdelete
         end
 
         def deserialize(params)
           @Enable = params['Enable']
           @LogSet = params['LogSet']
           @Topic = params['Topic']
+          @NeedDelete = params['NeedDelete']
         end
       end
 
@@ -769,13 +773,25 @@ module TencentCloud
         # @param DisablePolicyChecks: 禁用策略检查功能
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DisablePolicyChecks: Boolean
+        # @param EnablePilotHTTP: 支持HTTP1.0协议
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EnablePilotHTTP: Boolean
+        # @param DisableHTTPRetry: 禁用HTTP重试策略
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DisableHTTPRetry: Boolean
+        # @param SmartDNS: SmartDNS策略
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SmartDNS: :class:`Tencentcloud::Tcm.v20210413.models.SmartDNSConfig`
 
-        attr_accessor :OutboundTrafficPolicy, :Tracing, :DisablePolicyChecks
+        attr_accessor :OutboundTrafficPolicy, :Tracing, :DisablePolicyChecks, :EnablePilotHTTP, :DisableHTTPRetry, :SmartDNS
         
-        def initialize(outboundtrafficpolicy=nil, tracing=nil, disablepolicychecks=nil)
+        def initialize(outboundtrafficpolicy=nil, tracing=nil, disablepolicychecks=nil, enablepilothttp=nil, disablehttpretry=nil, smartdns=nil)
           @OutboundTrafficPolicy = outboundtrafficpolicy
           @Tracing = tracing
           @DisablePolicyChecks = disablepolicychecks
+          @EnablePilotHTTP = enablepilothttp
+          @DisableHTTPRetry = disablehttpretry
+          @SmartDNS = smartdns
         end
 
         def deserialize(params)
@@ -785,6 +801,12 @@ module TencentCloud
             @Tracing.deserialize(params['Tracing'])
           end
           @DisablePolicyChecks = params['DisablePolicyChecks']
+          @EnablePilotHTTP = params['EnablePilotHTTP']
+          @DisableHTTPRetry = params['DisableHTTPRetry']
+          unless params['SmartDNS'].nil?
+            @SmartDNS = SmartDNSConfig.new
+            @SmartDNS.deserialize(params['SmartDNS'])
+          end
         end
       end
 
@@ -1389,6 +1411,28 @@ module TencentCloud
           @Type = params['Type']
           @CLBDirectAccess = params['CLBDirectAccess']
           @ExternalTrafficPolicy = params['ExternalTrafficPolicy']
+        end
+      end
+
+      # 智能DNS配置
+      class SmartDNSConfig < TencentCloud::Common::AbstractModel
+        # @param IstioMetaDNSCapture: 开启DNS代理
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IstioMetaDNSCapture: Boolean
+        # @param IstioMetaDNSAutoAllocate: 开启自动地址分配
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IstioMetaDNSAutoAllocate: Boolean
+
+        attr_accessor :IstioMetaDNSCapture, :IstioMetaDNSAutoAllocate
+        
+        def initialize(istiometadnscapture=nil, istiometadnsautoallocate=nil)
+          @IstioMetaDNSCapture = istiometadnscapture
+          @IstioMetaDNSAutoAllocate = istiometadnsautoallocate
+        end
+
+        def deserialize(params)
+          @IstioMetaDNSCapture = params['IstioMetaDNSCapture']
+          @IstioMetaDNSAutoAllocate = params['IstioMetaDNSAutoAllocate']
         end
       end
 

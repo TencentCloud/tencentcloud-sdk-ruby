@@ -197,6 +197,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 获取指定设备Id，指定时间点数据流量使用情况
+
+        # @param request: Request instance for GetFlowStatistic.
+        # @type request: :class:`Tencentcloud::mna::V20210119::GetFlowStatisticRequest`
+        # @rtype: :class:`Tencentcloud::mna::V20210119::GetFlowStatisticResponse`
+        def GetFlowStatistic(request)
+          body = send_request('GetFlowStatistic', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = GetFlowStatisticResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 在用量统计页面下载流量数据
 
         # @param request: Request instance for GetStatisticData.
