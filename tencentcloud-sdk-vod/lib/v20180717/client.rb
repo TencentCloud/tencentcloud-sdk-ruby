@@ -2251,6 +2251,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 用于提取溯源水印。
+
+        # @param request: Request instance for ExtractTraceWatermark.
+        # @type request: :class:`Tencentcloud::vod::V20180717::ExtractTraceWatermarkRequest`
+        # @rtype: :class:`Tencentcloud::vod::V20180717::ExtractTraceWatermarkResponse`
+        def ExtractTraceWatermark(request)
+          body = send_request('ExtractTraceWatermark', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ExtractTraceWatermarkResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # * 对媒体禁播后，除了点播控制台预览，其他场景访问视频各种资源的 URL（原始文件、转码输出文件、截图等）均会返回 403。
         #   禁播/解禁操作全网生效时间约 5~10 分钟。
 

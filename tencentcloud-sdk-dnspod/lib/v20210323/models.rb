@@ -1191,6 +1191,44 @@ module TencentCloud
         end
       end
 
+      # DescribeDomainGroupList请求参数结构体
+      class DescribeDomainGroupListRequest < TencentCloud::Common::AbstractModel
+
+        
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeDomainGroupList返回参数结构体
+      class DescribeDomainGroupListResponse < TencentCloud::Common::AbstractModel
+        # @param GroupList: 分组列表
+        # @type GroupList: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :GroupList, :RequestId
+        
+        def initialize(grouplist=nil, requestid=nil)
+          @GroupList = grouplist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['GroupList'].nil?
+            @GroupList = []
+            params['GroupList'].each do |i|
+              groupinfo_tmp = GroupInfo.new
+              groupinfo_tmp.deserialize(i)
+              @GroupList << groupinfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeDomainList请求参数结构体
       class DescribeDomainListRequest < TencentCloud::Common::AbstractModel
         # @param Type: 域名分组类型，默认为ALL。可取值为ALL，MINE，SHARE，ISMARK，PAUSE，VIP，RECENT，SHARE_OUT。
@@ -2236,6 +2274,34 @@ module TencentCloud
           @ShareTo = params['ShareTo']
           @Mode = params['Mode']
           @Status = params['Status']
+        end
+      end
+
+      # 域名分组列表
+      class GroupInfo < TencentCloud::Common::AbstractModel
+        # @param GroupId: 分组ID
+        # @type GroupId: Integer
+        # @param GroupName: 分组名称
+        # @type GroupName: String
+        # @param GroupType: 分组类型
+        # @type GroupType: String
+        # @param Size: 该分组中域名个数
+        # @type Size: Integer
+
+        attr_accessor :GroupId, :GroupName, :GroupType, :Size
+        
+        def initialize(groupid=nil, groupname=nil, grouptype=nil, size=nil)
+          @GroupId = groupid
+          @GroupName = groupname
+          @GroupType = grouptype
+          @Size = size
+        end
+
+        def deserialize(params)
+          @GroupId = params['GroupId']
+          @GroupName = params['GroupName']
+          @GroupType = params['GroupType']
+          @Size = params['Size']
         end
       end
 

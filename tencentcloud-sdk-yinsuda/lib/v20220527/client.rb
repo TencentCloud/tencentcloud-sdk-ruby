@@ -101,6 +101,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 通过标签过滤歌曲列表。
+
+        # @param request: Request instance for DescribeKTVMusicsByTag.
+        # @type request: :class:`Tencentcloud::yinsuda::V20220527::DescribeKTVMusicsByTagRequest`
+        # @rtype: :class:`Tencentcloud::yinsuda::V20220527::DescribeKTVMusicsByTagResponse`
+        def DescribeKTVMusicsByTag(request)
+          body = send_request('DescribeKTVMusicsByTag', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeKTVMusicsByTagResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 根据歌单 Id 获取歌单详情。
 
         # @param request: Request instance for DescribeKTVPlaylistDetail.
@@ -183,6 +207,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeKTVSuggestionsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取标签分组及分组下的标签列表信息。
+
+        # @param request: Request instance for DescribeKTVTags.
+        # @type request: :class:`Tencentcloud::yinsuda::V20220527::DescribeKTVTagsRequest`
+        # @rtype: :class:`Tencentcloud::yinsuda::V20220527::DescribeKTVTagsResponse`
+        def DescribeKTVTags(request)
+          body = send_request('DescribeKTVTags', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeKTVTagsResponse.new
             model.deserialize(response['Response'])
             model
           else

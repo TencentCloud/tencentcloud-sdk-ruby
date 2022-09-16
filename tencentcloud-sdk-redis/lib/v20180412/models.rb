@@ -3929,9 +3929,9 @@ module TencentCloud
 
       # 实例参数
       class InstanceParam < TencentCloud::Common::AbstractModel
-        # @param Key: 设置参数的名字
+        # @param Key: 设置参数的名称。例如timeout。
         # @type Key: String
-        # @param Value: 设置参数的值
+        # @param Value: 设置参数名称对应的运行值。例如timeout对应运行值可设置为120， 单位为秒（s）。指当客户端连接闲置时间达到120 s时，将关闭连接。
         # @type Value: String
 
         attr_accessor :Key, :Value
@@ -4823,9 +4823,9 @@ module TencentCloud
 
       # ModifyInstanceParams请求参数结构体
       class ModifyInstanceParamsRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例ID
+        # @param InstanceId: 实例ID。
         # @type InstanceId: String
-        # @param InstanceParams: 实例修改的参数列表
+        # @param InstanceParams: 实例修改的参数列表。
         # @type InstanceParams: Array
 
         attr_accessor :InstanceId, :InstanceParams
@@ -4850,9 +4850,9 @@ module TencentCloud
 
       # ModifyInstanceParams返回参数结构体
       class ModifyInstanceParamsResponse < TencentCloud::Common::AbstractModel
-        # @param Changed: 修改是否成功。
+        # @param Changed: 修改是否成功。修改成功为true，失败为false。
         # @type Changed: Boolean
-        # @param TaskId: 任务ID
+        # @param TaskId: 任务ID。
         # @type TaskId: Integer
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

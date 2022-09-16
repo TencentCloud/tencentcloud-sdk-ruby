@@ -34,7 +34,7 @@ module TencentCloud
         # 0：企业
         # 1：个人
         # 3：企业静默签署
-        # 注：类型为3（企业静默签署）时，此接口会默认完成该签署方的签署。
+        # 注：类型为3（企业静默签署）时，此接口会默认完成该签署方的签署。静默签署仅进行盖章操作，不能自动签名。
         # @type ApproverType: Integer
         # @param ApproverName: 本环节需要操作人的名字
         # @type ApproverName: String
@@ -661,6 +661,8 @@ module TencentCloud
         # @type CcInfos: Array
         # @param NeedPreview: 是否需要预览，true：预览模式，false：非预览（默认）；
         # 预览链接有效期300秒；
+
+        # 注：如果使用“预览模式”，出参会返回合同预览链接 PreviewUrl，不会正式发起合同，且出参不会返回签署流程编号 FlowId；如果使用“非预览”，则会正常返回签署流程编号 FlowId，不会生成合同预览链接 PreviewUrl。
         # @type NeedPreview: Boolean
         # @param FlowDescription: 签署流程描述,最大长度1000个字符
         # @type FlowDescription: String
@@ -674,8 +676,8 @@ module TencentCloud
         # @type Unordered: Boolean
         # @param CustomShowMap: 合同显示的页卡模板，说明：只支持{合同名称}, {发起方企业}, {发起方姓名}, {签署方N企业}, {签署方N姓名}，且N不能超过签署人的数量，N从1开始
         # @type CustomShowMap: String
-        # @param NeedSignReview: 发起方企业的签署人进行签署操作是否需要企业内部审批。
-        # 若设置为true,审核结果需通过接口 CreateFlowSignReview 通知电子签，审核通过后，发起方企业签署人方可进行签署操作，否则会阻塞其签署操作。
+        # @param NeedSignReview: 发起方企业的签署人进行签署操作是否需要企业内部审批。使用此功能需要发起方企业有参与签署。
+        # 若设置为true，审核结果需通过接口 CreateFlowSignReview 通知电子签，审核通过后，发起方企业签署人方可进行签署操作，否则会阻塞其签署操作。
 
         # 注：企业可以通过此功能与企业内部的审批流程进行关联，支持手动、静默签署合同。
         # @type NeedSignReview: Boolean
@@ -748,9 +750,13 @@ module TencentCloud
 
       # CreateFlowByFiles返回参数结构体
       class CreateFlowByFilesResponse < TencentCloud::Common::AbstractModel
-        # @param FlowId: 签署流程编号
+        # @param FlowId: 签署流程编号。
+
+        # 注：如入参 是否需要预览 NeedPreview 设置为 true，不会正式发起合同，此处不会有值返回；如入参 是否需要预览 NeedPreview 设置为 false，此处会正常返回签署流程编号 FlowId。
         # @type FlowId: String
-        # @param PreviewUrl: 合同预览链接
+        # @param PreviewUrl: 合同预览链接。
+
+        # 注：如入参 是否需要预览 NeedPreview 设置为 true，会开启“预览模式”，此处会返回预览链接；如入参 是否需要预览 NeedPreview 设置为 false，此处不会有值返回。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PreviewUrl: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
@@ -1708,7 +1714,7 @@ module TencentCloud
         # 0：企业
         # 1：个人
         # 3：企业静默签署
-        # 注：类型为3（企业静默签署）时，此接口会默认完成该签署方的签署。
+        # 注：类型为3（企业静默签署）时，此接口会默认完成该签署方的签署。静默签署仅进行盖章操作，不能自动签名。
         # @type ApproverType: Integer
         # @param OrganizationName: 如果签署方为企业，需要填入企业全称
         # @type OrganizationName: String
@@ -1740,10 +1746,12 @@ module TencentCloud
         # @type ApproverSource: String
         # @param CustomApproverTag: 客户自定义签署人标识，64位长度，保证唯一。非企微场景不使用此字段
         # @type CustomApproverTag: String
+        # @param RegisterInfo: 快速注册相关信息，目前暂未开放！
+        # @type RegisterInfo: :class:`Tencentcloud::Ess.v20201111.models.RegisterInfo`
 
-        attr_accessor :ApproverType, :OrganizationName, :ApproverName, :ApproverMobile, :ApproverIdCardType, :ApproverIdCardNumber, :RecipientId, :VerifyChannel, :NotifyType, :IsFullText, :PreReadTime, :UserId, :Required, :ApproverSource, :CustomApproverTag
+        attr_accessor :ApproverType, :OrganizationName, :ApproverName, :ApproverMobile, :ApproverIdCardType, :ApproverIdCardNumber, :RecipientId, :VerifyChannel, :NotifyType, :IsFullText, :PreReadTime, :UserId, :Required, :ApproverSource, :CustomApproverTag, :RegisterInfo
         
-        def initialize(approvertype=nil, organizationname=nil, approvername=nil, approvermobile=nil, approveridcardtype=nil, approveridcardnumber=nil, recipientid=nil, verifychannel=nil, notifytype=nil, isfulltext=nil, prereadtime=nil, userid=nil, required=nil, approversource=nil, customapprovertag=nil)
+        def initialize(approvertype=nil, organizationname=nil, approvername=nil, approvermobile=nil, approveridcardtype=nil, approveridcardnumber=nil, recipientid=nil, verifychannel=nil, notifytype=nil, isfulltext=nil, prereadtime=nil, userid=nil, required=nil, approversource=nil, customapprovertag=nil, registerinfo=nil)
           @ApproverType = approvertype
           @OrganizationName = organizationname
           @ApproverName = approvername
@@ -1759,6 +1767,7 @@ module TencentCloud
           @Required = required
           @ApproverSource = approversource
           @CustomApproverTag = customapprovertag
+          @RegisterInfo = registerinfo
         end
 
         def deserialize(params)
@@ -1777,6 +1786,10 @@ module TencentCloud
           @Required = params['Required']
           @ApproverSource = params['ApproverSource']
           @CustomApproverTag = params['CustomApproverTag']
+          unless params['RegisterInfo'].nil?
+            @RegisterInfo = RegisterInfo.new
+            @RegisterInfo.deserialize(params['RegisterInfo'])
+          end
         end
       end
 
@@ -2044,6 +2057,26 @@ module TencentCloud
           @UserId = params['UserId']
           @DeliveryMethod = params['DeliveryMethod']
           @RecipientExtra = params['RecipientExtra']
+        end
+      end
+
+      # 发起流程快速注册相关信息
+      class RegisterInfo < TencentCloud::Common::AbstractModel
+        # @param LegalName: 法人姓名
+        # @type LegalName: String
+        # @param Uscc: 社会统一信用代码
+        # @type Uscc: String
+
+        attr_accessor :LegalName, :Uscc
+        
+        def initialize(legalname=nil, uscc=nil)
+          @LegalName = legalname
+          @Uscc = uscc
+        end
+
+        def deserialize(params)
+          @LegalName = params['LegalName']
+          @Uscc = params['Uscc']
         end
       end
 

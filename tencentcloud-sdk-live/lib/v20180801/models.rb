@@ -92,15 +92,23 @@ module TencentCloud
         # 1 ：小程序直播 。
         # 默认值： 0。
         # @type IsMiniProgramLive: Integer
+        # @param VerifyOwnerType: 域名归属校验类型。
+        # 可取值（与 AuthenticateDomainOwner 接口的 VerifyType 参数一致。）：
+        # dnsCheck ：立即验证配置 dns 的解析记录是否与待验证内容一致，成功则保存记录。
+        # fileCheck ：立即验证 web 文件是否与待验证内容一致，成功则保存记录。
+        # dbCheck :  检查是否已经验证成功过。
+        # 若不传默认为 dbCheck 。
+        # @type VerifyOwnerType: String
 
-        attr_accessor :DomainName, :DomainType, :PlayType, :IsDelayLive, :IsMiniProgramLive
+        attr_accessor :DomainName, :DomainType, :PlayType, :IsDelayLive, :IsMiniProgramLive, :VerifyOwnerType
         
-        def initialize(domainname=nil, domaintype=nil, playtype=nil, isdelaylive=nil, isminiprogramlive=nil)
+        def initialize(domainname=nil, domaintype=nil, playtype=nil, isdelaylive=nil, isminiprogramlive=nil, verifyownertype=nil)
           @DomainName = domainname
           @DomainType = domaintype
           @PlayType = playtype
           @IsDelayLive = isdelaylive
           @IsMiniProgramLive = isminiprogramlive
+          @VerifyOwnerType = verifyownertype
         end
 
         def deserialize(params)
@@ -109,6 +117,7 @@ module TencentCloud
           @PlayType = params['PlayType']
           @IsDelayLive = params['IsDelayLive']
           @IsMiniProgramLive = params['IsMiniProgramLive']
+          @VerifyOwnerType = params['VerifyOwnerType']
         end
       end
 
@@ -183,6 +192,62 @@ module TencentCloud
 
         def deserialize(params)
           @WatermarkId = params['WatermarkId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # AuthenticateDomainOwner请求参数结构体
+      class AuthenticateDomainOwnerRequest < TencentCloud::Common::AbstractModel
+        # @param DomainName: 要验证的域名。
+        # @type DomainName: String
+        # @param VerifyType: 验证类型。可取值：
+        # dnsCheck ：立即验证配置 dns 的解析记录是否与待验证内容一致，成功则保存记录。
+        # fileCheck ：立即验证 web 文件是否与待验证内容一致，成功则保存记录。
+        # dbCheck :  检查是否已经验证成功过。
+        # @type VerifyType: String
+
+        attr_accessor :DomainName, :VerifyType
+        
+        def initialize(domainname=nil, verifytype=nil)
+          @DomainName = domainname
+          @VerifyType = verifytype
+        end
+
+        def deserialize(params)
+          @DomainName = params['DomainName']
+          @VerifyType = params['VerifyType']
+        end
+      end
+
+      # AuthenticateDomainOwner返回参数结构体
+      class AuthenticateDomainOwnerResponse < TencentCloud::Common::AbstractModel
+        # @param Content: 验证内容。
+        # VerifyType 传 dnsCheck 时，为要配的 TXT 记录值。
+        # VerifyType 传 fileCheck 时，为文件内容。
+        # @type Content: String
+        # @param Status: 域名验证状态。
+        # >=0 为已验证归属。
+        # <0 未验证归属权。
+        # @type Status: Integer
+        # @param MainDomain: DomainName 对应的主域名。
+        # 同一主域名下的所有域名只需成功验证一次，后续均无需再验证。
+        # @type MainDomain: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Content, :Status, :MainDomain, :RequestId
+        
+        def initialize(content=nil, status=nil, maindomain=nil, requestid=nil)
+          @Content = content
+          @Status = status
+          @MainDomain = maindomain
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Content = params['Content']
+          @Status = params['Status']
+          @MainDomain = params['MainDomain']
           @RequestId = params['RequestId']
         end
       end

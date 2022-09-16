@@ -1637,7 +1637,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口(ModifyInstanceParams)用于修改实例参数。
+        # 本接口(ModifyInstanceParams)用于修改Redis实例的参数配置。
 
         # @param request: Request instance for ModifyInstanceParams.
         # @type request: :class:`Tencentcloud::redis::V20180412::ModifyInstanceParamsRequest`

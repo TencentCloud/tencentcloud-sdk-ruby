@@ -4687,6 +4687,34 @@ module TencentCloud
         end
       end
 
+      # 跨境带宽监控数据
+      class CrossBorderFlowMonitorData < TencentCloud::Common::AbstractModel
+        # @param InBandwidth: 入带宽
+        # @type InBandwidth: Array
+        # @param OutBandwidth: 出带宽
+        # @type OutBandwidth: Array
+        # @param InPkg: 入包
+        # @type InPkg: Array
+        # @param OutPkg: 出包
+        # @type OutPkg: Array
+
+        attr_accessor :InBandwidth, :OutBandwidth, :InPkg, :OutPkg
+        
+        def initialize(inbandwidth=nil, outbandwidth=nil, inpkg=nil, outpkg=nil)
+          @InBandwidth = inbandwidth
+          @OutBandwidth = outbandwidth
+          @InPkg = inpkg
+          @OutPkg = outpkg
+        end
+
+        def deserialize(params)
+          @InBandwidth = params['InBandwidth']
+          @OutBandwidth = params['OutBandwidth']
+          @InPkg = params['InPkg']
+          @OutPkg = params['OutPkg']
+        end
+      end
+
       # 对端网关
       class CustomerGateway < TencentCloud::Common::AbstractModel
         # @param CustomerGatewayId: 用户网关唯一ID
@@ -7162,6 +7190,74 @@ module TencentCloud
             end
           end
           @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeCrossBorderFlowMonitor请求参数结构体
+      class DescribeCrossBorderFlowMonitorRequest < TencentCloud::Common::AbstractModel
+        # @param SourceRegion: 源地域
+        # @type SourceRegion: String
+        # @param DestinationRegion: 目的地域
+        # @type DestinationRegion: String
+        # @param CcnId: 云联网Id
+        # @type CcnId: String
+        # @param CcnUin: 云联网所属账号
+        # @type CcnUin: String
+        # @param Period: 时间粒度
+        # @type Period: Integer
+        # @param StartTime: 开始时间
+        # @type StartTime: String
+        # @param EndTime: 结束时间
+        # @type EndTime: String
+
+        attr_accessor :SourceRegion, :DestinationRegion, :CcnId, :CcnUin, :Period, :StartTime, :EndTime
+        
+        def initialize(sourceregion=nil, destinationregion=nil, ccnid=nil, ccnuin=nil, period=nil, starttime=nil, endtime=nil)
+          @SourceRegion = sourceregion
+          @DestinationRegion = destinationregion
+          @CcnId = ccnid
+          @CcnUin = ccnuin
+          @Period = period
+          @StartTime = starttime
+          @EndTime = endtime
+        end
+
+        def deserialize(params)
+          @SourceRegion = params['SourceRegion']
+          @DestinationRegion = params['DestinationRegion']
+          @CcnId = params['CcnId']
+          @CcnUin = params['CcnUin']
+          @Period = params['Period']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+        end
+      end
+
+      # DescribeCrossBorderFlowMonitor返回参数结构体
+      class DescribeCrossBorderFlowMonitorResponse < TencentCloud::Common::AbstractModel
+        # @param CrossBorderFlowMonitorData: 云联网跨境带宽监控数据
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CrossBorderFlowMonitorData: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :CrossBorderFlowMonitorData, :RequestId
+        
+        def initialize(crossborderflowmonitordata=nil, requestid=nil)
+          @CrossBorderFlowMonitorData = crossborderflowmonitordata
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['CrossBorderFlowMonitorData'].nil?
+            @CrossBorderFlowMonitorData = []
+            params['CrossBorderFlowMonitorData'].each do |i|
+              crossborderflowmonitordata_tmp = CrossBorderFlowMonitorData.new
+              crossborderflowmonitordata_tmp.deserialize(i)
+              @CrossBorderFlowMonitorData << crossborderflowmonitordata_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end

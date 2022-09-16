@@ -41,7 +41,7 @@ module TencentCloud
         # @type ProbeType: Integer
         # @param PluginSource: 插件类型
         # @type PluginSource: String
-        # @param ClientNum: 客户度ID
+        # @param ClientNum: 客户端ID
         # @type ClientNum: String
 
         attr_accessor :BatchTasks, :TaskType, :Nodes, :Interval, :Parameters, :TaskCategory, :Cron, :Tag, :ProbeType, :PluginSource, :ClientNum

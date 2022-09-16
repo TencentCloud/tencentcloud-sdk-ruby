@@ -224,6 +224,75 @@ module TencentCloud
         end
       end
 
+      # DescribeKTVMusicsByTag请求参数结构体
+      class DescribeKTVMusicsByTagRequest < TencentCloud::Common::AbstractModel
+        # @param AppName: 应用名称。
+        # @type AppName: String
+        # @param UserId: 用户标识。
+        # @type UserId: String
+        # @param TagId: 标签 Id。
+        # @type TagId: String
+        # @param ScrollToken: 滚动标记。
+        # @type ScrollToken: String
+        # @param Limit: 返回条数限制，默认 20，最大 50。
+        # @type Limit: Integer
+        # @param RightFilters: 权益过滤，取值有：
+        # <li>Play：可播；</li>
+        # <li>Sing：可唱。</li>
+        # @type RightFilters: Array
+
+        attr_accessor :AppName, :UserId, :TagId, :ScrollToken, :Limit, :RightFilters
+        
+        def initialize(appname=nil, userid=nil, tagid=nil, scrolltoken=nil, limit=nil, rightfilters=nil)
+          @AppName = appname
+          @UserId = userid
+          @TagId = tagid
+          @ScrollToken = scrolltoken
+          @Limit = limit
+          @RightFilters = rightfilters
+        end
+
+        def deserialize(params)
+          @AppName = params['AppName']
+          @UserId = params['UserId']
+          @TagId = params['TagId']
+          @ScrollToken = params['ScrollToken']
+          @Limit = params['Limit']
+          @RightFilters = params['RightFilters']
+        end
+      end
+
+      # DescribeKTVMusicsByTag返回参数结构体
+      class DescribeKTVMusicsByTagResponse < TencentCloud::Common::AbstractModel
+        # @param KTVMusicInfoSet: 歌曲信息列表。
+        # @type KTVMusicInfoSet: Array
+        # @param ScrollToken: 滚动标记，用于设置下次请求的 ScrollToken 参数。
+        # @type ScrollToken: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :KTVMusicInfoSet, :ScrollToken, :RequestId
+        
+        def initialize(ktvmusicinfoset=nil, scrolltoken=nil, requestid=nil)
+          @KTVMusicInfoSet = ktvmusicinfoset
+          @ScrollToken = scrolltoken
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['KTVMusicInfoSet'].nil?
+            @KTVMusicInfoSet = []
+            params['KTVMusicInfoSet'].each do |i|
+              ktvmusicbaseinfo_tmp = KTVMusicBaseInfo.new
+              ktvmusicbaseinfo_tmp.deserialize(i)
+              @KTVMusicInfoSet << ktvmusicbaseinfo_tmp
+            end
+          end
+          @ScrollToken = params['ScrollToken']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeKTVPlaylistDetail请求参数结构体
       class DescribeKTVPlaylistDetailRequest < TencentCloud::Common::AbstractModel
         # @param AppName: 应用名称。
@@ -475,6 +544,53 @@ module TencentCloud
         end
       end
 
+      # DescribeKTVTags请求参数结构体
+      class DescribeKTVTagsRequest < TencentCloud::Common::AbstractModel
+        # @param AppName: 应用名称。
+        # @type AppName: String
+        # @param UserId: 用户标识。
+        # @type UserId: String
+
+        attr_accessor :AppName, :UserId
+        
+        def initialize(appname=nil, userid=nil)
+          @AppName = appname
+          @UserId = userid
+        end
+
+        def deserialize(params)
+          @AppName = params['AppName']
+          @UserId = params['UserId']
+        end
+      end
+
+      # DescribeKTVTags返回参数结构体
+      class DescribeKTVTagsResponse < TencentCloud::Common::AbstractModel
+        # @param TagGroupInfoSet: 标签分组列表。
+        # @type TagGroupInfoSet: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TagGroupInfoSet, :RequestId
+        
+        def initialize(taggroupinfoset=nil, requestid=nil)
+          @TagGroupInfoSet = taggroupinfoset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['TagGroupInfoSet'].nil?
+            @TagGroupInfoSet = []
+            params['TagGroupInfoSet'].each do |i|
+              ktvtaggroupinfo_tmp = KTVTagGroupInfo.new
+              ktvtaggroupinfo_tmp.deserialize(i)
+              @TagGroupInfoSet << ktvtaggroupinfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DestroyKTVRobot请求参数结构体
       class DestroyKTVRobotRequest < TencentCloud::Common::AbstractModel
         # @param AppName: 应用名称。
@@ -531,6 +647,30 @@ module TencentCloud
             @TRTCJoinRoomInput = TRTCJoinRoomInput.new
             @TRTCJoinRoomInput.deserialize(params['TRTCJoinRoomInput'])
           end
+        end
+      end
+
+      # 节拍信息。
+      class KTVBPMInfo < TencentCloud::Common::AbstractModel
+        # @param Type: 节拍类型，取值有：
+        # <li>Slow：慢；</li>
+        # <li>Middle：中等；</li>
+        # <li>Fast：快；</li>
+        # <li>Unknown：未知。</li>
+        # @type Type: String
+        # @param Value: BPM 值。
+        # @type Value: Integer
+
+        attr_accessor :Type, :Value
+        
+        def initialize(type=nil, value=nil)
+          @Type = type
+          @Value = value
+        end
+
+        def deserialize(params)
+          @Type = params['Type']
+          @Value = params['Value']
         end
       end
 
@@ -672,10 +812,13 @@ module TencentCloud
         # @type PreludeInterval: Integer
         # @param GenreSet: 歌曲流派列表。
         # @type GenreSet: Array
+        # @param BPMInfo: 节拍信息。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BPMInfo: :class:`Tencentcloud::Yinsuda.v20220527.models.KTVBPMInfo`
 
-        attr_accessor :KTVMusicBaseInfo, :PlayToken, :LyricsUrl, :MidiUrl, :ChorusClipSet, :PreludeInterval, :GenreSet
+        attr_accessor :KTVMusicBaseInfo, :PlayToken, :LyricsUrl, :MidiUrl, :ChorusClipSet, :PreludeInterval, :GenreSet, :BPMInfo
         
-        def initialize(ktvmusicbaseinfo=nil, playtoken=nil, lyricsurl=nil, midiurl=nil, chorusclipset=nil, preludeinterval=nil, genreset=nil)
+        def initialize(ktvmusicbaseinfo=nil, playtoken=nil, lyricsurl=nil, midiurl=nil, chorusclipset=nil, preludeinterval=nil, genreset=nil, bpminfo=nil)
           @KTVMusicBaseInfo = ktvmusicbaseinfo
           @PlayToken = playtoken
           @LyricsUrl = lyricsurl
@@ -683,6 +826,7 @@ module TencentCloud
           @ChorusClipSet = chorusclipset
           @PreludeInterval = preludeinterval
           @GenreSet = genreset
+          @BPMInfo = bpminfo
         end
 
         def deserialize(params)
@@ -703,6 +847,10 @@ module TencentCloud
           end
           @PreludeInterval = params['PreludeInterval']
           @GenreSet = params['GenreSet']
+          unless params['BPMInfo'].nil?
+            @BPMInfo = KTVBPMInfo.new
+            @BPMInfo.deserialize(params['BPMInfo'])
+          end
         end
       end
 
@@ -804,6 +952,57 @@ module TencentCloud
 
         def deserialize(params)
           @Suggestion = params['Suggestion']
+        end
+      end
+
+      # 标签分组信息。
+      class KTVTagGroupInfo < TencentCloud::Common::AbstractModel
+        # @param GroupId: 分组 Id。
+        # @type GroupId: String
+        # @param Name: 分组名。
+        # @type Name: String
+        # @param TagInfoSet: 标签列表。
+        # @type TagInfoSet: Array
+
+        attr_accessor :GroupId, :Name, :TagInfoSet
+        
+        def initialize(groupid=nil, name=nil, taginfoset=nil)
+          @GroupId = groupid
+          @Name = name
+          @TagInfoSet = taginfoset
+        end
+
+        def deserialize(params)
+          @GroupId = params['GroupId']
+          @Name = params['Name']
+          unless params['TagInfoSet'].nil?
+            @TagInfoSet = []
+            params['TagInfoSet'].each do |i|
+              ktvtaginfo_tmp = KTVTagInfo.new
+              ktvtaginfo_tmp.deserialize(i)
+              @TagInfoSet << ktvtaginfo_tmp
+            end
+          end
+        end
+      end
+
+      # 标签信息。
+      class KTVTagInfo < TencentCloud::Common::AbstractModel
+        # @param TagId: 标签 Id。
+        # @type TagId: String
+        # @param Name: 标签名称。
+        # @type Name: String
+
+        attr_accessor :TagId, :Name
+        
+        def initialize(tagid=nil, name=nil)
+          @TagId = tagid
+          @Name = name
+        end
+
+        def deserialize(params)
+          @TagId = params['TagId']
+          @Name = params['Name']
         end
       end
 

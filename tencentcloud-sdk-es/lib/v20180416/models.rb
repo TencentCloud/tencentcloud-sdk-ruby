@@ -464,10 +464,12 @@ module TencentCloud
         # @type LicenseType: String
         # @param TagList: 标签信息列表
         # @type TagList: Array
+        # @param OperationDuration: 可维护时间段
+        # @type OperationDuration: :class:`Tencentcloud::Es.v20180416.models.OperationDuration`
 
-        attr_accessor :InstanceName, :Zone, :LogstashVersion, :VpcId, :SubnetId, :NodeNum, :ChargeType, :ChargePeriod, :TimeUnit, :AutoVoucher, :VoucherIds, :RenewFlag, :NodeType, :DiskType, :DiskSize, :LicenseType, :TagList
+        attr_accessor :InstanceName, :Zone, :LogstashVersion, :VpcId, :SubnetId, :NodeNum, :ChargeType, :ChargePeriod, :TimeUnit, :AutoVoucher, :VoucherIds, :RenewFlag, :NodeType, :DiskType, :DiskSize, :LicenseType, :TagList, :OperationDuration
         
-        def initialize(instancename=nil, zone=nil, logstashversion=nil, vpcid=nil, subnetid=nil, nodenum=nil, chargetype=nil, chargeperiod=nil, timeunit=nil, autovoucher=nil, voucherids=nil, renewflag=nil, nodetype=nil, disktype=nil, disksize=nil, licensetype=nil, taglist=nil)
+        def initialize(instancename=nil, zone=nil, logstashversion=nil, vpcid=nil, subnetid=nil, nodenum=nil, chargetype=nil, chargeperiod=nil, timeunit=nil, autovoucher=nil, voucherids=nil, renewflag=nil, nodetype=nil, disktype=nil, disksize=nil, licensetype=nil, taglist=nil, operationduration=nil)
           @InstanceName = instancename
           @Zone = zone
           @LogstashVersion = logstashversion
@@ -485,6 +487,7 @@ module TencentCloud
           @DiskSize = disksize
           @LicenseType = licensetype
           @TagList = taglist
+          @OperationDuration = operationduration
         end
 
         def deserialize(params)
@@ -511,6 +514,10 @@ module TencentCloud
               taginfo_tmp.deserialize(i)
               @TagList << taginfo_tmp
             end
+          end
+          unless params['OperationDuration'].nil?
+            @OperationDuration = OperationDuration.new
+            @OperationDuration.deserialize(params['OperationDuration'])
           end
         end
       end
@@ -2513,10 +2520,13 @@ module TencentCloud
         # @param ExtendedFiles: 扩展文件列表
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExtendedFiles: Array
+        # @param OperationDuration: 可维护时间段
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OperationDuration: :class:`Tencentcloud::Es.v20180416.models.OperationDuration`
 
-        attr_accessor :InstanceId, :InstanceName, :Region, :Zone, :AppId, :Uin, :VpcId, :SubnetId, :Status, :ChargeType, :ChargePeriod, :RenewFlag, :NodeType, :NodeNum, :DiskType, :DiskSize, :LogstashVersion, :LicenseType, :CreateTime, :UpdateTime, :Deadline, :Nodes, :BindedESInstanceId, :YMLConfig, :ExtendedFiles
+        attr_accessor :InstanceId, :InstanceName, :Region, :Zone, :AppId, :Uin, :VpcId, :SubnetId, :Status, :ChargeType, :ChargePeriod, :RenewFlag, :NodeType, :NodeNum, :DiskType, :DiskSize, :LogstashVersion, :LicenseType, :CreateTime, :UpdateTime, :Deadline, :Nodes, :BindedESInstanceId, :YMLConfig, :ExtendedFiles, :OperationDuration
         
-        def initialize(instanceid=nil, instancename=nil, region=nil, zone=nil, appid=nil, uin=nil, vpcid=nil, subnetid=nil, status=nil, chargetype=nil, chargeperiod=nil, renewflag=nil, nodetype=nil, nodenum=nil, disktype=nil, disksize=nil, logstashversion=nil, licensetype=nil, createtime=nil, updatetime=nil, deadline=nil, nodes=nil, bindedesinstanceid=nil, ymlconfig=nil, extendedfiles=nil)
+        def initialize(instanceid=nil, instancename=nil, region=nil, zone=nil, appid=nil, uin=nil, vpcid=nil, subnetid=nil, status=nil, chargetype=nil, chargeperiod=nil, renewflag=nil, nodetype=nil, nodenum=nil, disktype=nil, disksize=nil, logstashversion=nil, licensetype=nil, createtime=nil, updatetime=nil, deadline=nil, nodes=nil, bindedesinstanceid=nil, ymlconfig=nil, extendedfiles=nil, operationduration=nil)
           @InstanceId = instanceid
           @InstanceName = instancename
           @Region = region
@@ -2542,6 +2552,7 @@ module TencentCloud
           @BindedESInstanceId = bindedesinstanceid
           @YMLConfig = ymlconfig
           @ExtendedFiles = extendedfiles
+          @OperationDuration = operationduration
         end
 
         def deserialize(params)
@@ -2583,6 +2594,10 @@ module TencentCloud
               logstashextendedfile_tmp.deserialize(i)
               @ExtendedFiles << logstashextendedfile_tmp
             end
+          end
+          unless params['OperationDuration'].nil?
+            @OperationDuration = OperationDuration.new
+            @OperationDuration.deserialize(params['OperationDuration'])
           end
         end
       end
@@ -3870,10 +3885,12 @@ module TencentCloud
         # @type NodeType: String
         # @param DiskSize: 节点磁盘容量
         # @type DiskSize: Integer
+        # @param OperationDuration: 可维护时间段
+        # @type OperationDuration: :class:`Tencentcloud::Es.v20180416.models.OperationDurationUpdated`
 
-        attr_accessor :InstanceId, :NodeNum, :YMLConfig, :BindedES, :InstanceName, :ExtendedFiles, :NodeType, :DiskSize
+        attr_accessor :InstanceId, :NodeNum, :YMLConfig, :BindedES, :InstanceName, :ExtendedFiles, :NodeType, :DiskSize, :OperationDuration
         
-        def initialize(instanceid=nil, nodenum=nil, ymlconfig=nil, bindedes=nil, instancename=nil, extendedfiles=nil, nodetype=nil, disksize=nil)
+        def initialize(instanceid=nil, nodenum=nil, ymlconfig=nil, bindedes=nil, instancename=nil, extendedfiles=nil, nodetype=nil, disksize=nil, operationduration=nil)
           @InstanceId = instanceid
           @NodeNum = nodenum
           @YMLConfig = ymlconfig
@@ -3882,6 +3899,7 @@ module TencentCloud
           @ExtendedFiles = extendedfiles
           @NodeType = nodetype
           @DiskSize = disksize
+          @OperationDuration = operationduration
         end
 
         def deserialize(params)
@@ -3903,6 +3921,10 @@ module TencentCloud
           end
           @NodeType = params['NodeType']
           @DiskSize = params['DiskSize']
+          unless params['OperationDuration'].nil?
+            @OperationDuration = OperationDurationUpdated.new
+            @OperationDuration.deserialize(params['OperationDuration'])
+          end
         end
       end
 

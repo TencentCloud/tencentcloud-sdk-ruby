@@ -5664,6 +5664,8 @@ module TencentCloud
         # @type SecurityGroups: Array
         # @param CamRoleName: 给实例绑定用户角色，传空值为解绑操作
         # @type CamRoleName: String
+        # @param HostName: 实例的主机名。<br><li>点号（.）和短横线（-）不能作为 HostName 的首尾字符，不能连续使用。<br><li>Windows 实例：名字符长度为[2, 15]，允许字母（不限制大小写）、数字和短横线（-）组成，不支持点号（.），不能全是数字。<br><li>其他类型（Linux 等）实例：字符长度为[2, 60]，允许支持多个点号，点之间为一段，每段允许字母（不限制大小写）、数字和短横线（-）组成。
+        # @type HostName: String
         # @param DisableApiTermination: 实例销毁保护标志，表示是否允许通过api接口删除实例。取值范围：<br><li>TRUE：表示开启实例保护，不允许通过api接口删除实例<br><li>FALSE：表示关闭实例保护，允许通过api接口删除实例<br><br>默认取值：FALSE。
         # @type DisableApiTermination: Boolean
         # @param CamRoleType: 角色类别，与CamRoleName搭配使用，该值可从CAM DescribeRoleList, GetRole接口返回RoleType字段获取，当前只接受user、system和service_linked三种类别。
@@ -5671,13 +5673,14 @@ module TencentCloud
         # 该参数默认值为user，若CameRoleName为非service_linked类型，本参数可不传递。
         # @type CamRoleType: String
 
-        attr_accessor :InstanceIds, :InstanceName, :SecurityGroups, :CamRoleName, :DisableApiTermination, :CamRoleType
+        attr_accessor :InstanceIds, :InstanceName, :SecurityGroups, :CamRoleName, :HostName, :DisableApiTermination, :CamRoleType
         
-        def initialize(instanceids=nil, instancename=nil, securitygroups=nil, camrolename=nil, disableapitermination=nil, camroletype=nil)
+        def initialize(instanceids=nil, instancename=nil, securitygroups=nil, camrolename=nil, hostname=nil, disableapitermination=nil, camroletype=nil)
           @InstanceIds = instanceids
           @InstanceName = instancename
           @SecurityGroups = securitygroups
           @CamRoleName = camrolename
+          @HostName = hostname
           @DisableApiTermination = disableapitermination
           @CamRoleType = camroletype
         end
@@ -5687,6 +5690,7 @@ module TencentCloud
           @InstanceName = params['InstanceName']
           @SecurityGroups = params['SecurityGroups']
           @CamRoleName = params['CamRoleName']
+          @HostName = params['HostName']
           @DisableApiTermination = params['DisableApiTermination']
           @CamRoleType = params['CamRoleType']
         end
