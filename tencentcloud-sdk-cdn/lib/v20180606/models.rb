@@ -7413,6 +7413,26 @@ module TencentCloud
         end
       end
 
+      # HTTP 请求头
+      class HTTPHeader < TencentCloud::Common::AbstractModel
+        # @param Name: 请求头名称
+        # @type Name: String
+        # @param Value: 请求头值
+        # @type Value: String
+
+        attr_accessor :Name, :Value
+        
+        def initialize(name=nil, value=nil)
+          @Name = name
+          @Value = value
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Value = params['Value']
+        end
+      end
+
       # 组成CacheKey
       class HeaderKey < TencentCloud::Common::AbstractModel
         # @param Switch: 是否组成Cachekey
@@ -10244,18 +10264,21 @@ module TencentCloud
         # 注意事项：
         # 此功能灰度发布中，敬请期待
         # @type DisableRange: Boolean
+        # @param Headers: 自定义 HTTP 请求头。最多定义 20 个，Name 长度不超过 128 字节，Value 长度不超过 1024 字节
+        # @type Headers: Array
         # @param UrlEncode: 是否对URL进行编码
         # @type UrlEncode: Boolean
 
-        attr_accessor :Urls, :UserAgent, :Area, :Layer, :ParseM3U8, :DisableRange, :UrlEncode
+        attr_accessor :Urls, :UserAgent, :Area, :Layer, :ParseM3U8, :DisableRange, :Headers, :UrlEncode
         
-        def initialize(urls=nil, useragent=nil, area=nil, layer=nil, parsem3u8=nil, disablerange=nil, urlencode=nil)
+        def initialize(urls=nil, useragent=nil, area=nil, layer=nil, parsem3u8=nil, disablerange=nil, headers=nil, urlencode=nil)
           @Urls = urls
           @UserAgent = useragent
           @Area = area
           @Layer = layer
           @ParseM3U8 = parsem3u8
           @DisableRange = disablerange
+          @Headers = headers
           @UrlEncode = urlencode
         end
 
@@ -10266,6 +10289,14 @@ module TencentCloud
           @Layer = params['Layer']
           @ParseM3U8 = params['ParseM3U8']
           @DisableRange = params['DisableRange']
+          unless params['Headers'].nil?
+            @Headers = []
+            params['Headers'].each do |i|
+              httpheader_tmp = HTTPHeader.new
+              httpheader_tmp.deserialize(i)
+              @Headers << httpheader_tmp
+            end
+          end
           @UrlEncode = params['UrlEncode']
         end
       end

@@ -199,16 +199,28 @@ module TencentCloud
         # @param UpdatedAt: 更新时间
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UpdatedAt: String
+        # @param AppId: App ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AppId: Integer
+        # @param Uin: 主账号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Uin: String
+        # @param SubAccountUin: 子账号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SubAccountUin: String
 
-        attr_accessor :NoticeId, :AMPConsumerId, :ProjectId, :Status, :CreatedAt, :UpdatedAt
+        attr_accessor :NoticeId, :AMPConsumerId, :ProjectId, :Status, :CreatedAt, :UpdatedAt, :AppId, :Uin, :SubAccountUin
         
-        def initialize(noticeid=nil, ampconsumerid=nil, projectid=nil, status=nil, createdat=nil, updatedat=nil)
+        def initialize(noticeid=nil, ampconsumerid=nil, projectid=nil, status=nil, createdat=nil, updatedat=nil, appid=nil, uin=nil, subaccountuin=nil)
           @NoticeId = noticeid
           @AMPConsumerId = ampconsumerid
           @ProjectId = projectid
           @Status = status
           @CreatedAt = createdat
           @UpdatedAt = updatedat
+          @AppId = appid
+          @Uin = uin
+          @SubAccountUin = subaccountuin
         end
 
         def deserialize(params)
@@ -218,6 +230,9 @@ module TencentCloud
           @Status = params['Status']
           @CreatedAt = params['CreatedAt']
           @UpdatedAt = params['UpdatedAt']
+          @AppId = params['AppId']
+          @Uin = params['Uin']
+          @SubAccountUin = params['SubAccountUin']
         end
       end
 
@@ -244,10 +259,31 @@ module TencentCloud
         # @param JobId: 任务 ID
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type JobId: String
+        # @param AppId: App ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AppId: Integer
+        # @param Uin: 主账号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Uin: String
+        # @param SubAccountUin: 子账号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SubAccountUin: String
+        # @param ScenarioName: 场景名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ScenarioName: String
+        # @param Target: 告警对象
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Target: String
+        # @param JobSLAId: 告警规则 ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type JobSLAId: String
+        # @param JobSLADescription: 告警规则描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type JobSLADescription: String
 
-        attr_accessor :AlertRecordId, :ProjectId, :ScenarioId, :Status, :CreatedAt, :UpdatedAt, :JobId
+        attr_accessor :AlertRecordId, :ProjectId, :ScenarioId, :Status, :CreatedAt, :UpdatedAt, :JobId, :AppId, :Uin, :SubAccountUin, :ScenarioName, :Target, :JobSLAId, :JobSLADescription
         
-        def initialize(alertrecordid=nil, projectid=nil, scenarioid=nil, status=nil, createdat=nil, updatedat=nil, jobid=nil)
+        def initialize(alertrecordid=nil, projectid=nil, scenarioid=nil, status=nil, createdat=nil, updatedat=nil, jobid=nil, appid=nil, uin=nil, subaccountuin=nil, scenarioname=nil, target=nil, jobslaid=nil, jobsladescription=nil)
           @AlertRecordId = alertrecordid
           @ProjectId = projectid
           @ScenarioId = scenarioid
@@ -255,6 +291,13 @@ module TencentCloud
           @CreatedAt = createdat
           @UpdatedAt = updatedat
           @JobId = jobid
+          @AppId = appid
+          @Uin = uin
+          @SubAccountUin = subaccountuin
+          @ScenarioName = scenarioname
+          @Target = target
+          @JobSLAId = jobslaid
+          @JobSLADescription = jobsladescription
         end
 
         def deserialize(params)
@@ -268,6 +311,13 @@ module TencentCloud
           @CreatedAt = params['CreatedAt']
           @UpdatedAt = params['UpdatedAt']
           @JobId = params['JobId']
+          @AppId = params['AppId']
+          @Uin = params['Uin']
+          @SubAccountUin = params['SubAccountUin']
+          @ScenarioName = params['ScenarioName']
+          @Target = params['Target']
+          @JobSLAId = params['JobSLAId']
+          @JobSLADescription = params['JobSLADescription']
         end
       end
 
@@ -897,10 +947,19 @@ module TencentCloud
         # @param JobOwner: tom
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type JobOwner: String
+        # @param AppId: App ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AppId: Integer
+        # @param Uin: 主账号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Uin: String
+        # @param SubAccountUin: 子账号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SubAccountUin: String
 
-        attr_accessor :CronJobId, :Name, :ProjectId, :ScenarioId, :ScenarioName, :CronExpression, :EndTime, :AbortReason, :Status, :NoticeId, :CreatedAt, :UpdatedAt, :FrequencyType, :Note, :JobOwner
+        attr_accessor :CronJobId, :Name, :ProjectId, :ScenarioId, :ScenarioName, :CronExpression, :EndTime, :AbortReason, :Status, :NoticeId, :CreatedAt, :UpdatedAt, :FrequencyType, :Note, :JobOwner, :AppId, :Uin, :SubAccountUin
         
-        def initialize(cronjobid=nil, name=nil, projectid=nil, scenarioid=nil, scenarioname=nil, cronexpression=nil, endtime=nil, abortreason=nil, status=nil, noticeid=nil, createdat=nil, updatedat=nil, frequencytype=nil, note=nil, jobowner=nil)
+        def initialize(cronjobid=nil, name=nil, projectid=nil, scenarioid=nil, scenarioname=nil, cronexpression=nil, endtime=nil, abortreason=nil, status=nil, noticeid=nil, createdat=nil, updatedat=nil, frequencytype=nil, note=nil, jobowner=nil, appid=nil, uin=nil, subaccountuin=nil)
           @CronJobId = cronjobid
           @Name = name
           @ProjectId = projectid
@@ -916,6 +975,9 @@ module TencentCloud
           @FrequencyType = frequencytype
           @Note = note
           @JobOwner = jobowner
+          @AppId = appid
+          @Uin = uin
+          @SubAccountUin = subaccountuin
         end
 
         def deserialize(params)
@@ -934,6 +996,9 @@ module TencentCloud
           @FrequencyType = params['FrequencyType']
           @Note = params['Note']
           @JobOwner = params['JobOwner']
+          @AppId = params['AppId']
+          @Uin = params['Uin']
+          @SubAccountUin = params['SubAccountUin']
         end
       end
 
@@ -1814,6 +1879,7 @@ module TencentCloud
       # DescribeMetricLabelWithValues返回参数结构体
       class DescribeMetricLabelWithValuesResponse < TencentCloud::Common::AbstractModel
         # @param MetricLabelWithValuesSet: 指标所有的label和values数组
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MetricLabelWithValuesSet: Array
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -2718,10 +2784,16 @@ module TencentCloud
         # @param Status: 文件状态
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: Integer
+        # @param CreatedAt: 创建时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreatedAt: String
+        # @param ProjectId: 项目 ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProjectId: String
 
-        attr_accessor :FileId, :Kind, :Name, :Size, :Type, :UpdatedAt, :LineCount, :HeadLines, :TailLines, :HeaderInFile, :HeaderColumns, :FileInfos, :ScenarioSet, :Status
+        attr_accessor :FileId, :Kind, :Name, :Size, :Type, :UpdatedAt, :LineCount, :HeadLines, :TailLines, :HeaderInFile, :HeaderColumns, :FileInfos, :ScenarioSet, :Status, :CreatedAt, :ProjectId
         
-        def initialize(fileid=nil, kind=nil, name=nil, size=nil, type=nil, updatedat=nil, linecount=nil, headlines=nil, taillines=nil, headerinfile=nil, headercolumns=nil, fileinfos=nil, scenarioset=nil, status=nil)
+        def initialize(fileid=nil, kind=nil, name=nil, size=nil, type=nil, updatedat=nil, linecount=nil, headlines=nil, taillines=nil, headerinfile=nil, headercolumns=nil, fileinfos=nil, scenarioset=nil, status=nil, createdat=nil, projectid=nil)
           @FileId = fileid
           @Kind = kind
           @Name = name
@@ -2736,6 +2808,8 @@ module TencentCloud
           @FileInfos = fileinfos
           @ScenarioSet = scenarioset
           @Status = status
+          @CreatedAt = createdat
+          @ProjectId = projectid
         end
 
         def deserialize(params)
@@ -2767,6 +2841,8 @@ module TencentCloud
             end
           end
           @Status = params['Status']
+          @CreatedAt = params['CreatedAt']
+          @ProjectId = params['ProjectId']
         end
       end
 
@@ -3071,10 +3147,31 @@ module TencentCloud
         # @param CronId: 定时任务ID
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CronId: String
+        # @param Type: 场景类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Type: String
+        # @param DomainNameConfig: 域名绑定配置
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DomainNameConfig: :class:`Tencentcloud::Pts.v20210728.models.DomainNameConfig`
+        # @param Debug: false
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Debug: Boolean
+        # @param AbortReason: 中断原因
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AbortReason: Integer
+        # @param CreatedAt: 任务的创建时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreatedAt: String
+        # @param ProjectId: 项目ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProjectId: String
+        # @param NotificationHooks: 通知事件回调
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NotificationHooks: Array
 
-        attr_accessor :JobId, :ScenarioId, :Load, :Configs, :Datasets, :Extensions, :Status, :StartTime, :EndTime, :MaxVirtualUserCount, :Note, :ErrorRate, :JobOwner, :LoadSources, :Duration, :MaxRequestsPerSecond, :RequestTotal, :RequestsPerSecond, :ResponseTimeAverage, :ResponseTimeP99, :ResponseTimeP95, :ResponseTimeP90, :Scripts, :ResponseTimeMax, :ResponseTimeMin, :LoadSourceInfos, :TestScripts, :Protocols, :RequestFiles, :Plugins, :CronId
+        attr_accessor :JobId, :ScenarioId, :Load, :Configs, :Datasets, :Extensions, :Status, :StartTime, :EndTime, :MaxVirtualUserCount, :Note, :ErrorRate, :JobOwner, :LoadSources, :Duration, :MaxRequestsPerSecond, :RequestTotal, :RequestsPerSecond, :ResponseTimeAverage, :ResponseTimeP99, :ResponseTimeP95, :ResponseTimeP90, :Scripts, :ResponseTimeMax, :ResponseTimeMin, :LoadSourceInfos, :TestScripts, :Protocols, :RequestFiles, :Plugins, :CronId, :Type, :DomainNameConfig, :Debug, :AbortReason, :CreatedAt, :ProjectId, :NotificationHooks
         
-        def initialize(jobid=nil, scenarioid=nil, load=nil, configs=nil, datasets=nil, extensions=nil, status=nil, starttime=nil, endtime=nil, maxvirtualusercount=nil, note=nil, errorrate=nil, jobowner=nil, loadsources=nil, duration=nil, maxrequestspersecond=nil, requesttotal=nil, requestspersecond=nil, responsetimeaverage=nil, responsetimep99=nil, responsetimep95=nil, responsetimep90=nil, scripts=nil, responsetimemax=nil, responsetimemin=nil, loadsourceinfos=nil, testscripts=nil, protocols=nil, requestfiles=nil, plugins=nil, cronid=nil)
+        def initialize(jobid=nil, scenarioid=nil, load=nil, configs=nil, datasets=nil, extensions=nil, status=nil, starttime=nil, endtime=nil, maxvirtualusercount=nil, note=nil, errorrate=nil, jobowner=nil, loadsources=nil, duration=nil, maxrequestspersecond=nil, requesttotal=nil, requestspersecond=nil, responsetimeaverage=nil, responsetimep99=nil, responsetimep95=nil, responsetimep90=nil, scripts=nil, responsetimemax=nil, responsetimemin=nil, loadsourceinfos=nil, testscripts=nil, protocols=nil, requestfiles=nil, plugins=nil, cronid=nil, type=nil, domainnameconfig=nil, debug=nil, abortreason=nil, createdat=nil, projectid=nil, notificationhooks=nil)
           @JobId = jobid
           @ScenarioId = scenarioid
           @Load = load
@@ -3106,6 +3203,13 @@ module TencentCloud
           @RequestFiles = requestfiles
           @Plugins = plugins
           @CronId = cronid
+          @Type = type
+          @DomainNameConfig = domainnameconfig
+          @Debug = debug
+          @AbortReason = abortreason
+          @CreatedAt = createdat
+          @ProjectId = projectid
+          @NotificationHooks = notificationhooks
         end
 
         def deserialize(params)
@@ -3188,6 +3292,23 @@ module TencentCloud
             end
           end
           @CronId = params['CronId']
+          @Type = params['Type']
+          unless params['DomainNameConfig'].nil?
+            @DomainNameConfig = DomainNameConfig.new
+            @DomainNameConfig.deserialize(params['DomainNameConfig'])
+          end
+          @Debug = params['Debug']
+          @AbortReason = params['AbortReason']
+          @CreatedAt = params['CreatedAt']
+          @ProjectId = params['ProjectId']
+          unless params['NotificationHooks'].nil?
+            @NotificationHooks = []
+            params['NotificationHooks'].each do |i|
+              notificationhook_tmp = NotificationHook.new
+              notificationhook_tmp.deserialize(i)
+              @NotificationHooks << notificationhook_tmp
+            end
+          end
         end
       end
 
@@ -3456,6 +3577,28 @@ module TencentCloud
         end
       end
 
+      # 事件通知回调
+      class NotificationHook < TencentCloud::Common::AbstractModel
+        # @param Events: 通知事件
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Events: Array
+        # @param URL: 回调 URL
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type URL: String
+
+        attr_accessor :Events, :URL
+        
+        def initialize(events=nil, url=nil)
+          @Events = events
+          @URL = url
+        end
+
+        def deserialize(params)
+          @Events = params['Events']
+          @URL = params['URL']
+        end
+      end
+
       # 项目
       class Project < TencentCloud::Common::AbstractModel
         # @param ProjectId: 项目ID
@@ -3638,10 +3781,16 @@ module TencentCloud
         # @type Max: Float
         # @param ErrorPercentage: 请求错误率
         # @type ErrorPercentage: Float
+        # @param P99: 请求p99耗时，单位秒
+        # @type P99: Float
+        # @param Status: 响应状态码
+        # @type Status: String
+        # @param Result: 响应详情
+        # @type Result: String
 
-        attr_accessor :Service, :Method, :Count, :Average, :P90, :P95, :Min, :Max, :ErrorPercentage
+        attr_accessor :Service, :Method, :Count, :Average, :P90, :P95, :Min, :Max, :ErrorPercentage, :P99, :Status, :Result
         
-        def initialize(service=nil, method=nil, count=nil, average=nil, p90=nil, p95=nil, min=nil, max=nil, errorpercentage=nil)
+        def initialize(service=nil, method=nil, count=nil, average=nil, p90=nil, p95=nil, min=nil, max=nil, errorpercentage=nil, p99=nil, status=nil, result=nil)
           @Service = service
           @Method = method
           @Count = count
@@ -3651,6 +3800,9 @@ module TencentCloud
           @Min = min
           @Max = max
           @ErrorPercentage = errorpercentage
+          @P99 = p99
+          @Status = status
+          @Result = result
         end
 
         def deserialize(params)
@@ -3663,6 +3815,9 @@ module TencentCloud
           @Min = params['Min']
           @Max = params['Max']
           @ErrorPercentage = params['ErrorPercentage']
+          @P99 = params['P99']
+          @Status = params['Status']
+          @Result = params['Result']
         end
       end
 
@@ -4012,10 +4167,13 @@ module TencentCloud
         # @param DomainNameConfig: 域名解析配置
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DomainNameConfig: :class:`Tencentcloud::Pts.v20210728.models.DomainNameConfig`
+        # @param NotificationHooks: 通知事件回调
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NotificationHooks: Array
 
-        attr_accessor :ScenarioId, :Name, :Description, :Type, :Status, :Load, :EncodedScripts, :Configs, :Extensions, :Datasets, :SLAId, :CronId, :CreatedAt, :UpdatedAt, :ProjectId, :AppId, :Uin, :SubAccountUin, :TestScripts, :Protocols, :RequestFiles, :SLAPolicy, :Plugins, :DomainNameConfig
+        attr_accessor :ScenarioId, :Name, :Description, :Type, :Status, :Load, :EncodedScripts, :Configs, :Extensions, :Datasets, :SLAId, :CronId, :CreatedAt, :UpdatedAt, :ProjectId, :AppId, :Uin, :SubAccountUin, :TestScripts, :Protocols, :RequestFiles, :SLAPolicy, :Plugins, :DomainNameConfig, :NotificationHooks
         
-        def initialize(scenarioid=nil, name=nil, description=nil, type=nil, status=nil, load=nil, encodedscripts=nil, configs=nil, extensions=nil, datasets=nil, slaid=nil, cronid=nil, createdat=nil, updatedat=nil, projectid=nil, appid=nil, uin=nil, subaccountuin=nil, testscripts=nil, protocols=nil, requestfiles=nil, slapolicy=nil, plugins=nil, domainnameconfig=nil)
+        def initialize(scenarioid=nil, name=nil, description=nil, type=nil, status=nil, load=nil, encodedscripts=nil, configs=nil, extensions=nil, datasets=nil, slaid=nil, cronid=nil, createdat=nil, updatedat=nil, projectid=nil, appid=nil, uin=nil, subaccountuin=nil, testscripts=nil, protocols=nil, requestfiles=nil, slapolicy=nil, plugins=nil, domainnameconfig=nil, notificationhooks=nil)
           @ScenarioId = scenarioid
           @Name = name
           @Description = description
@@ -4040,6 +4198,7 @@ module TencentCloud
           @SLAPolicy = slapolicy
           @Plugins = plugins
           @DomainNameConfig = domainnameconfig
+          @NotificationHooks = notificationhooks
         end
 
         def deserialize(params)
@@ -4110,6 +4269,14 @@ module TencentCloud
           unless params['DomainNameConfig'].nil?
             @DomainNameConfig = DomainNameConfig.new
             @DomainNameConfig.deserialize(params['DomainNameConfig'])
+          end
+          unless params['NotificationHooks'].nil?
+            @NotificationHooks = []
+            params['NotificationHooks'].each do |i|
+              notificationhook_tmp = NotificationHook.new
+              notificationhook_tmp.deserialize(i)
+              @NotificationHooks << notificationhook_tmp
+            end
           end
         end
       end

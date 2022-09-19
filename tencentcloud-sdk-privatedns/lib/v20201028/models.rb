@@ -1071,13 +1071,17 @@ module TencentCloud
         # @type Metric: String
         # @param DataSet: 表数据
         # @type DataSet: Array
+        # @param MetricCount: 查询范围内的请求总量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MetricCount: Integer
 
-        attr_accessor :Resource, :Metric, :DataSet
+        attr_accessor :Resource, :Metric, :DataSet, :MetricCount
         
-        def initialize(resource=nil, metric=nil, dataset=nil)
+        def initialize(resource=nil, metric=nil, dataset=nil, metriccount=nil)
           @Resource = resource
           @Metric = metric
           @DataSet = dataset
+          @MetricCount = metriccount
         end
 
         def deserialize(params)
@@ -1091,6 +1095,7 @@ module TencentCloud
               @DataSet << datepoint_tmp
             end
           end
+          @MetricCount = params['MetricCount']
         end
       end
 

@@ -2245,6 +2245,110 @@ module TencentCloud
         end
       end
 
+      # Ctsdb连接源参数
+      class CtsdbConnectParam < TencentCloud::Common::AbstractModel
+        # @param Port: Ctsdb的连接port
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Port: Integer
+        # @param ServiceVip: Ctsdb连接源的实例vip
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ServiceVip: String
+        # @param UniqVpcId: Ctsdb连接源的vpcId
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UniqVpcId: String
+        # @param UserName: Ctsdb连接源的用户名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UserName: String
+        # @param Password: Ctsdb连接源的密码
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Password: String
+        # @param Resource: Ctsdb连接源的实例资源
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Resource: String
+
+        attr_accessor :Port, :ServiceVip, :UniqVpcId, :UserName, :Password, :Resource
+        
+        def initialize(port=nil, servicevip=nil, uniqvpcid=nil, username=nil, password=nil, resource=nil)
+          @Port = port
+          @ServiceVip = servicevip
+          @UniqVpcId = uniqvpcid
+          @UserName = username
+          @Password = password
+          @Resource = resource
+        end
+
+        def deserialize(params)
+          @Port = params['Port']
+          @ServiceVip = params['ServiceVip']
+          @UniqVpcId = params['UniqVpcId']
+          @UserName = params['UserName']
+          @Password = params['Password']
+          @Resource = params['Resource']
+        end
+      end
+
+      # Ctsdb连接源参数(更新)
+      class CtsdbModifyConnectParam < TencentCloud::Common::AbstractModel
+        # @param Port: Ctsdb的连接port
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Port: Integer
+        # @param ServiceVip: Ctsdb连接源的实例vip
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ServiceVip: String
+        # @param UniqVpcId: Ctsdb连接源的vpcId
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UniqVpcId: String
+        # @param UserName: Ctsdb连接源的用户名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UserName: String
+        # @param Password: Ctsdb连接源的密码
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Password: String
+        # @param Resource: Ctsdb连接源的实例资源
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Resource: String
+
+        attr_accessor :Port, :ServiceVip, :UniqVpcId, :UserName, :Password, :Resource
+        
+        def initialize(port=nil, servicevip=nil, uniqvpcid=nil, username=nil, password=nil, resource=nil)
+          @Port = port
+          @ServiceVip = servicevip
+          @UniqVpcId = uniqvpcid
+          @UserName = username
+          @Password = password
+          @Resource = resource
+        end
+
+        def deserialize(params)
+          @Port = params['Port']
+          @ServiceVip = params['ServiceVip']
+          @UniqVpcId = params['UniqVpcId']
+          @UserName = params['UserName']
+          @Password = params['Password']
+          @Resource = params['Resource']
+        end
+      end
+
+      # Ctsdb类型入参
+      class CtsdbParam < TencentCloud::Common::AbstractModel
+        # @param Resource: 连接管理实例资源
+        # @type Resource: String
+        # @param CtsdbMetric: Ctsdb的metric
+        # @type CtsdbMetric: String
+
+        attr_accessor :Resource, :CtsdbMetric
+        
+        def initialize(resource=nil, ctsdbmetric=nil)
+          @Resource = resource
+          @CtsdbMetric = ctsdbmetric
+        end
+
+        def deserialize(params)
+          @Resource = params['Resource']
+          @CtsdbMetric = params['CtsdbMetric']
+        end
+      end
+
       # Datahub资源配置
       class DatahubResource < TencentCloud::Common::AbstractModel
         # @param Type: 资源类型
@@ -2291,10 +2395,13 @@ module TencentCloud
         # @param SQLServerParam: SQLServer配置，Type为SQLSERVER时必填
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SQLServerParam: :class:`Tencentcloud::Ckafka.v20190819.models.SQLServerParam`
+        # @param CtsdbParam: Ctsdb配置，Type为CTSDB时必填
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CtsdbParam: :class:`Tencentcloud::Ckafka.v20190819.models.CtsdbParam`
 
-        attr_accessor :Type, :KafkaParam, :EventBusParam, :MongoDBParam, :EsParam, :TdwParam, :DtsParam, :ClickHouseParam, :ClsParam, :CosParam, :MySQLParam, :PostgreSQLParam, :TopicParam, :MariaDBParam, :SQLServerParam
+        attr_accessor :Type, :KafkaParam, :EventBusParam, :MongoDBParam, :EsParam, :TdwParam, :DtsParam, :ClickHouseParam, :ClsParam, :CosParam, :MySQLParam, :PostgreSQLParam, :TopicParam, :MariaDBParam, :SQLServerParam, :CtsdbParam
         
-        def initialize(type=nil, kafkaparam=nil, eventbusparam=nil, mongodbparam=nil, esparam=nil, tdwparam=nil, dtsparam=nil, clickhouseparam=nil, clsparam=nil, cosparam=nil, mysqlparam=nil, postgresqlparam=nil, topicparam=nil, mariadbparam=nil, sqlserverparam=nil)
+        def initialize(type=nil, kafkaparam=nil, eventbusparam=nil, mongodbparam=nil, esparam=nil, tdwparam=nil, dtsparam=nil, clickhouseparam=nil, clsparam=nil, cosparam=nil, mysqlparam=nil, postgresqlparam=nil, topicparam=nil, mariadbparam=nil, sqlserverparam=nil, ctsdbparam=nil)
           @Type = type
           @KafkaParam = kafkaparam
           @EventBusParam = eventbusparam
@@ -2310,6 +2417,7 @@ module TencentCloud
           @TopicParam = topicparam
           @MariaDBParam = mariadbparam
           @SQLServerParam = sqlserverparam
+          @CtsdbParam = ctsdbparam
         end
 
         def deserialize(params)
@@ -2369,6 +2477,10 @@ module TencentCloud
           unless params['SQLServerParam'].nil?
             @SQLServerParam = SQLServerParam.new
             @SQLServerParam.deserialize(params['SQLServerParam'])
+          end
+          unless params['CtsdbParam'].nil?
+            @CtsdbParam = CtsdbParam.new
+            @CtsdbParam.deserialize(params['CtsdbParam'])
           end
         end
       end
@@ -3191,16 +3303,25 @@ module TencentCloud
         # @param ClickHouseConnectParam: ClickHouse配置，Type为CLICKHOUSE时返回
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ClickHouseConnectParam: :class:`Tencentcloud::Ckafka.v20190819.models.ClickHouseConnectParam`
-        # @param MySQLConnectParam: MySQL配置，Type为MYSQL时必填
+        # @param MySQLConnectParam: MySQL配置，Type为MYSQL或TDSQL_C_MYSQL时返回
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MySQLConnectParam: :class:`Tencentcloud::Ckafka.v20190819.models.MySQLConnectParam`
-        # @param PostgreSQLConnectParam: PostgreSQL配置，Type为POSTGRESQL或TDSQL_C_POSTGRESQL时必填
+        # @param PostgreSQLConnectParam: PostgreSQL配置，Type为POSTGRESQL或TDSQL_C_POSTGRESQL时返回
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PostgreSQLConnectParam: :class:`Tencentcloud::Ckafka.v20190819.models.PostgreSQLConnectParam`
+        # @param MariaDBConnectParam: MariaDB配置，Type为MARIADB时返回
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MariaDBConnectParam: :class:`Tencentcloud::Ckafka.v20190819.models.MariaDBConnectParam`
+        # @param SQLServerConnectParam: SQLServer配置，Type为SQLSERVER时返回
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SQLServerConnectParam: :class:`Tencentcloud::Ckafka.v20190819.models.SQLServerConnectParam`
+        # @param CtsdbConnectParam: Ctsdb配置，Type为CTSDB时返回
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CtsdbConnectParam: :class:`Tencentcloud::Ckafka.v20190819.models.CtsdbConnectParam`
 
-        attr_accessor :ResourceId, :ResourceName, :Description, :Type, :Status, :CreateTime, :ErrorMessage, :CurrentStep, :DatahubTaskCount, :DtsConnectParam, :MongoDBConnectParam, :EsConnectParam, :ClickHouseConnectParam, :MySQLConnectParam, :PostgreSQLConnectParam
+        attr_accessor :ResourceId, :ResourceName, :Description, :Type, :Status, :CreateTime, :ErrorMessage, :CurrentStep, :DatahubTaskCount, :DtsConnectParam, :MongoDBConnectParam, :EsConnectParam, :ClickHouseConnectParam, :MySQLConnectParam, :PostgreSQLConnectParam, :MariaDBConnectParam, :SQLServerConnectParam, :CtsdbConnectParam
         
-        def initialize(resourceid=nil, resourcename=nil, description=nil, type=nil, status=nil, createtime=nil, errormessage=nil, currentstep=nil, datahubtaskcount=nil, dtsconnectparam=nil, mongodbconnectparam=nil, esconnectparam=nil, clickhouseconnectparam=nil, mysqlconnectparam=nil, postgresqlconnectparam=nil)
+        def initialize(resourceid=nil, resourcename=nil, description=nil, type=nil, status=nil, createtime=nil, errormessage=nil, currentstep=nil, datahubtaskcount=nil, dtsconnectparam=nil, mongodbconnectparam=nil, esconnectparam=nil, clickhouseconnectparam=nil, mysqlconnectparam=nil, postgresqlconnectparam=nil, mariadbconnectparam=nil, sqlserverconnectparam=nil, ctsdbconnectparam=nil)
           @ResourceId = resourceid
           @ResourceName = resourcename
           @Description = description
@@ -3216,6 +3337,9 @@ module TencentCloud
           @ClickHouseConnectParam = clickhouseconnectparam
           @MySQLConnectParam = mysqlconnectparam
           @PostgreSQLConnectParam = postgresqlconnectparam
+          @MariaDBConnectParam = mariadbconnectparam
+          @SQLServerConnectParam = sqlserverconnectparam
+          @CtsdbConnectParam = ctsdbconnectparam
         end
 
         def deserialize(params)
@@ -3251,6 +3375,18 @@ module TencentCloud
           unless params['PostgreSQLConnectParam'].nil?
             @PostgreSQLConnectParam = PostgreSQLConnectParam.new
             @PostgreSQLConnectParam.deserialize(params['PostgreSQLConnectParam'])
+          end
+          unless params['MariaDBConnectParam'].nil?
+            @MariaDBConnectParam = MariaDBConnectParam.new
+            @MariaDBConnectParam.deserialize(params['MariaDBConnectParam'])
+          end
+          unless params['SQLServerConnectParam'].nil?
+            @SQLServerConnectParam = SQLServerConnectParam.new
+            @SQLServerConnectParam.deserialize(params['SQLServerConnectParam'])
+          end
+          unless params['CtsdbConnectParam'].nil?
+            @CtsdbConnectParam = CtsdbConnectParam.new
+            @CtsdbConnectParam.deserialize(params['CtsdbConnectParam'])
           end
         end
       end
@@ -3300,7 +3436,7 @@ module TencentCloud
         # @param StepList: 步骤列表
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StepList: Array
-        # @param MySQLConnectParam: MySQL配置，Type为MYSQL时返回
+        # @param MySQLConnectParam: MySQL配置，Type为MYSQL或TDSQL_C_MYSQL时返回
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MySQLConnectParam: :class:`Tencentcloud::Ckafka.v20190819.models.MySQLConnectParam`
         # @param PostgreSQLConnectParam: PostgreSQL配置，Type为POSTGRESQL或TDSQL_C_POSTGRESQL时返回
@@ -3318,10 +3454,19 @@ module TencentCloud
         # @param ClickHouseConnectParam: ClickHouse配置，Type为CLICKHOUSE时返回
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ClickHouseConnectParam: :class:`Tencentcloud::Ckafka.v20190819.models.ClickHouseConnectParam`
+        # @param MariaDBConnectParam: MariaDB配置，Type为MARIADB时返回
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MariaDBConnectParam: :class:`Tencentcloud::Ckafka.v20190819.models.MariaDBConnectParam`
+        # @param SQLServerConnectParam: SQLServer配置，Type为SQLSERVER时返回
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SQLServerConnectParam: :class:`Tencentcloud::Ckafka.v20190819.models.SQLServerConnectParam`
+        # @param CtsdbConnectParam: Ctsdb配置，Type为CTSDB时返回
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CtsdbConnectParam: :class:`Tencentcloud::Ckafka.v20190819.models.CtsdbConnectParam`
 
-        attr_accessor :ResourceId, :ResourceName, :Description, :Type, :Status, :CreateTime, :ErrorMessage, :CurrentStep, :StepList, :MySQLConnectParam, :PostgreSQLConnectParam, :DtsConnectParam, :MongoDBConnectParam, :EsConnectParam, :ClickHouseConnectParam
+        attr_accessor :ResourceId, :ResourceName, :Description, :Type, :Status, :CreateTime, :ErrorMessage, :CurrentStep, :StepList, :MySQLConnectParam, :PostgreSQLConnectParam, :DtsConnectParam, :MongoDBConnectParam, :EsConnectParam, :ClickHouseConnectParam, :MariaDBConnectParam, :SQLServerConnectParam, :CtsdbConnectParam
         
-        def initialize(resourceid=nil, resourcename=nil, description=nil, type=nil, status=nil, createtime=nil, errormessage=nil, currentstep=nil, steplist=nil, mysqlconnectparam=nil, postgresqlconnectparam=nil, dtsconnectparam=nil, mongodbconnectparam=nil, esconnectparam=nil, clickhouseconnectparam=nil)
+        def initialize(resourceid=nil, resourcename=nil, description=nil, type=nil, status=nil, createtime=nil, errormessage=nil, currentstep=nil, steplist=nil, mysqlconnectparam=nil, postgresqlconnectparam=nil, dtsconnectparam=nil, mongodbconnectparam=nil, esconnectparam=nil, clickhouseconnectparam=nil, mariadbconnectparam=nil, sqlserverconnectparam=nil, ctsdbconnectparam=nil)
           @ResourceId = resourceid
           @ResourceName = resourcename
           @Description = description
@@ -3337,6 +3482,9 @@ module TencentCloud
           @MongoDBConnectParam = mongodbconnectparam
           @EsConnectParam = esconnectparam
           @ClickHouseConnectParam = clickhouseconnectparam
+          @MariaDBConnectParam = mariadbconnectparam
+          @SQLServerConnectParam = sqlserverconnectparam
+          @CtsdbConnectParam = ctsdbconnectparam
         end
 
         def deserialize(params)
@@ -3372,6 +3520,18 @@ module TencentCloud
           unless params['ClickHouseConnectParam'].nil?
             @ClickHouseConnectParam = ClickHouseConnectParam.new
             @ClickHouseConnectParam.deserialize(params['ClickHouseConnectParam'])
+          end
+          unless params['MariaDBConnectParam'].nil?
+            @MariaDBConnectParam = MariaDBConnectParam.new
+            @MariaDBConnectParam.deserialize(params['MariaDBConnectParam'])
+          end
+          unless params['SQLServerConnectParam'].nil?
+            @SQLServerConnectParam = SQLServerConnectParam.new
+            @SQLServerConnectParam.deserialize(params['SQLServerConnectParam'])
+          end
+          unless params['CtsdbConnectParam'].nil?
+            @CtsdbConnectParam = CtsdbConnectParam.new
+            @CtsdbConnectParam.deserialize(params['CtsdbConnectParam'])
           end
         end
       end
@@ -6178,6 +6338,31 @@ module TencentCloud
         end
       end
 
+      # key-value二次解析
+      class KVParam < TencentCloud::Common::AbstractModel
+        # @param Delimiter: 分隔符
+        # @type Delimiter: String
+        # @param Regex: key-value二次解析分隔符
+        # @type Regex: String
+        # @param KeepOriginalKey: 保留源Key，默认为false不保留
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type KeepOriginalKey: String
+
+        attr_accessor :Delimiter, :Regex, :KeepOriginalKey
+        
+        def initialize(delimiter=nil, regex=nil, keeporiginalkey=nil)
+          @Delimiter = delimiter
+          @Regex = regex
+          @KeepOriginalKey = keeporiginalkey
+        end
+
+        def deserialize(params)
+          @Delimiter = params['Delimiter']
+          @Regex = params['Regex']
+          @KeepOriginalKey = params['KeepOriginalKey']
+        end
+      end
+
       # Ckafka配置
       class KafkaParam < TencentCloud::Common::AbstractModel
         # @param SelfBuilt: 是否为自建集群
@@ -6387,14 +6572,32 @@ module TencentCloud
         # @type Resource: String
         # @param SnapshotMode: 复制存量信息(schema_only不复制, initial全量)，默认位initial
         # @type SnapshotMode: String
+        # @param KeyColumns: 格式：库1.表1:字段1,字段2;库2.表2:字段2，表之间;（分号）隔开，字段之间,（逗号）隔开。不指定的表默认取表的主键
+        # @type KeyColumns: String
+        # @param IsTablePrefix: 当Table输入的是前缀时，该项值为true，否则为false
+        # @type IsTablePrefix: Boolean
+        # @param OutputFormat: 输出格式，DEFAULT、CANAL_1、CANAL_2
+        # @type OutputFormat: String
+        # @param IncludeContentChanges: 如果该值为all，则DDL数据以及DML数据也会写入到选中的topic；若该值为dml，则只有DML数据写入到选中的topic
+        # @type IncludeContentChanges: String
+        # @param IncludeQuery: 如果该值为true，且MySQL中"binlog_rows_query_log_events"配置项的值为"ON"，则流入到topic的数据包含原SQL语句；若该值为false，流入到topic的数据不包含原SQL语句
+        # @type IncludeQuery: Boolean
+        # @param RecordWithSchema: 如果该值为 true，则消息中会携带消息结构体对应的schema，如果该值为false则不会携带
+        # @type RecordWithSchema: Boolean
 
-        attr_accessor :Database, :Table, :Resource, :SnapshotMode
+        attr_accessor :Database, :Table, :Resource, :SnapshotMode, :KeyColumns, :IsTablePrefix, :OutputFormat, :IncludeContentChanges, :IncludeQuery, :RecordWithSchema
         
-        def initialize(database=nil, table=nil, resource=nil, snapshotmode=nil)
+        def initialize(database=nil, table=nil, resource=nil, snapshotmode=nil, keycolumns=nil, istableprefix=nil, outputformat=nil, includecontentchanges=nil, includequery=nil, recordwithschema=nil)
           @Database = database
           @Table = table
           @Resource = resource
           @SnapshotMode = snapshotmode
+          @KeyColumns = keycolumns
+          @IsTablePrefix = istableprefix
+          @OutputFormat = outputformat
+          @IncludeContentChanges = includecontentchanges
+          @IncludeQuery = includequery
+          @RecordWithSchema = recordwithschema
         end
 
         def deserialize(params)
@@ -6402,6 +6605,12 @@ module TencentCloud
           @Table = params['Table']
           @Resource = params['Resource']
           @SnapshotMode = params['SnapshotMode']
+          @KeyColumns = params['KeyColumns']
+          @IsTablePrefix = params['IsTablePrefix']
+          @OutputFormat = params['OutputFormat']
+          @IncludeContentChanges = params['IncludeContentChanges']
+          @IncludeQuery = params['IncludeQuery']
+          @RecordWithSchema = params['RecordWithSchema']
         end
       end
 
@@ -6431,10 +6640,12 @@ module TencentCloud
         # @type MariaDBConnectParam: :class:`Tencentcloud::Ckafka.v20190819.models.MariaDBModifyConnectParam`
         # @param SQLServerConnectParam: SQLServer配置，Type为SQLSERVER时必填
         # @type SQLServerConnectParam: :class:`Tencentcloud::Ckafka.v20190819.models.SQLServerModifyConnectParam`
+        # @param CtsdbConnectParam: Ctsdb配置，Type为CTSDB
+        # @type CtsdbConnectParam: :class:`Tencentcloud::Ckafka.v20190819.models.CtsdbModifyConnectParam`
 
-        attr_accessor :ResourceId, :ResourceName, :Description, :Type, :DtsConnectParam, :MongoDBConnectParam, :EsConnectParam, :ClickHouseConnectParam, :MySQLConnectParam, :PostgreSQLConnectParam, :MariaDBConnectParam, :SQLServerConnectParam
+        attr_accessor :ResourceId, :ResourceName, :Description, :Type, :DtsConnectParam, :MongoDBConnectParam, :EsConnectParam, :ClickHouseConnectParam, :MySQLConnectParam, :PostgreSQLConnectParam, :MariaDBConnectParam, :SQLServerConnectParam, :CtsdbConnectParam
         
-        def initialize(resourceid=nil, resourcename=nil, description=nil, type=nil, dtsconnectparam=nil, mongodbconnectparam=nil, esconnectparam=nil, clickhouseconnectparam=nil, mysqlconnectparam=nil, postgresqlconnectparam=nil, mariadbconnectparam=nil, sqlserverconnectparam=nil)
+        def initialize(resourceid=nil, resourcename=nil, description=nil, type=nil, dtsconnectparam=nil, mongodbconnectparam=nil, esconnectparam=nil, clickhouseconnectparam=nil, mysqlconnectparam=nil, postgresqlconnectparam=nil, mariadbconnectparam=nil, sqlserverconnectparam=nil, ctsdbconnectparam=nil)
           @ResourceId = resourceid
           @ResourceName = resourcename
           @Description = description
@@ -6447,6 +6658,7 @@ module TencentCloud
           @PostgreSQLConnectParam = postgresqlconnectparam
           @MariaDBConnectParam = mariadbconnectparam
           @SQLServerConnectParam = sqlserverconnectparam
+          @CtsdbConnectParam = ctsdbconnectparam
         end
 
         def deserialize(params)
@@ -6485,6 +6697,10 @@ module TencentCloud
           unless params['SQLServerConnectParam'].nil?
             @SQLServerConnectParam = SQLServerModifyConnectParam.new
             @SQLServerConnectParam.deserialize(params['SQLServerConnectParam'])
+          end
+          unless params['CtsdbConnectParam'].nil?
+            @CtsdbConnectParam = CtsdbModifyConnectParam.new
+            @CtsdbConnectParam.deserialize(params['CtsdbConnectParam'])
           end
         end
       end
@@ -7546,10 +7762,16 @@ module TencentCloud
         # @type DataTargetRecordMapping: Array
         # @param DropInvalidMessage: 是否抛弃解析失败的消息，默认为true
         # @type DropInvalidMessage: Boolean
+        # @param IsTableRegular: 输入的table是否为正则表达式
+        # @type IsTableRegular: Boolean
+        # @param KeyColumns: 格式：库1.表1:字段1,字段2;库2.表2:字段2，表之间;（分号）隔开，字段之间,（逗号）隔开。不指定的表默认取表的主键
+        # @type KeyColumns: String
+        # @param RecordWithSchema: 如果该值为 true，则消息中会携带消息结构体对应的schema，如果该值为false则不会携带
+        # @type RecordWithSchema: Boolean
 
-        attr_accessor :Database, :Table, :Resource, :PluginName, :SnapshotMode, :DataFormat, :DataTargetInsertMode, :DataTargetPrimaryKeyField, :DataTargetRecordMapping, :DropInvalidMessage
+        attr_accessor :Database, :Table, :Resource, :PluginName, :SnapshotMode, :DataFormat, :DataTargetInsertMode, :DataTargetPrimaryKeyField, :DataTargetRecordMapping, :DropInvalidMessage, :IsTableRegular, :KeyColumns, :RecordWithSchema
         
-        def initialize(database=nil, table=nil, resource=nil, pluginname=nil, snapshotmode=nil, dataformat=nil, datatargetinsertmode=nil, datatargetprimarykeyfield=nil, datatargetrecordmapping=nil, dropinvalidmessage=nil)
+        def initialize(database=nil, table=nil, resource=nil, pluginname=nil, snapshotmode=nil, dataformat=nil, datatargetinsertmode=nil, datatargetprimarykeyfield=nil, datatargetrecordmapping=nil, dropinvalidmessage=nil, istableregular=nil, keycolumns=nil, recordwithschema=nil)
           @Database = database
           @Table = table
           @Resource = resource
@@ -7560,6 +7782,9 @@ module TencentCloud
           @DataTargetPrimaryKeyField = datatargetprimarykeyfield
           @DataTargetRecordMapping = datatargetrecordmapping
           @DropInvalidMessage = dropinvalidmessage
+          @IsTableRegular = istableregular
+          @KeyColumns = keycolumns
+          @RecordWithSchema = recordwithschema
         end
 
         def deserialize(params)
@@ -7580,6 +7805,9 @@ module TencentCloud
             end
           end
           @DropInvalidMessage = params['DropInvalidMessage']
+          @IsTableRegular = params['IsTableRegular']
+          @KeyColumns = params['KeyColumns']
+          @RecordWithSchema = params['RecordWithSchema']
         end
       end
 
@@ -8132,6 +8360,22 @@ module TencentCloud
         def deserialize(params)
           @MessageId = params['MessageId']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 值支持一拆多，即将一个值拆为一个数组
+      class SplitParam < TencentCloud::Common::AbstractModel
+        # @param Regex: 分隔符
+        # @type Regex: String
+
+        attr_accessor :Regex
+        
+        def initialize(regex=nil)
+          @Regex = regex
+        end
+
+        def deserialize(params)
+          @Regex = params['Regex']
         end
       end
 
@@ -8819,10 +9063,13 @@ module TencentCloud
         # @param RowParam: 输出格式为ROW必填
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RowParam: :class:`Tencentcloud::Ckafka.v20190819.models.RowParam`
+        # @param KeepMetadata: 是否保留数据源Topic元数据信息（源Topic、Partition、Offset），默认为false
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type KeepMetadata: Boolean
 
-        attr_accessor :Content, :FieldChain, :FilterParam, :FailureParam, :Result, :SourceType, :OutputFormat, :RowParam
+        attr_accessor :Content, :FieldChain, :FilterParam, :FailureParam, :Result, :SourceType, :OutputFormat, :RowParam, :KeepMetadata
         
-        def initialize(content=nil, fieldchain=nil, filterparam=nil, failureparam=nil, result=nil, sourcetype=nil, outputformat=nil, rowparam=nil)
+        def initialize(content=nil, fieldchain=nil, filterparam=nil, failureparam=nil, result=nil, sourcetype=nil, outputformat=nil, rowparam=nil, keepmetadata=nil)
           @Content = content
           @FieldChain = fieldchain
           @FilterParam = filterparam
@@ -8831,6 +9078,7 @@ module TencentCloud
           @SourceType = sourcetype
           @OutputFormat = outputformat
           @RowParam = rowparam
+          @KeepMetadata = keepmetadata
         end
 
         def deserialize(params)
@@ -8862,6 +9110,7 @@ module TencentCloud
             @RowParam = RowParam.new
             @RowParam.deserialize(params['RowParam'])
           end
+          @KeepMetadata = params['KeepMetadata']
         end
       end
 
@@ -8923,7 +9172,7 @@ module TencentCloud
 
       # 数据处理——Value处理参数
       class ValueParam < TencentCloud::Common::AbstractModel
-        # @param Type: 处理模式，REPLACE替换，SUBSTR截取，DATE日期转换，TRIM去除前后空格，REGEX_REPLACE正则替换
+        # @param Type: 处理模式，REPLACE替换，SUBSTR截取，DATE日期转换，TRIM去除前后空格，REGEX_REPLACE正则替换，URL_DECODE，LOWERCASE转换为小写
         # @type Type: String
         # @param Replace: 替换，TYPE=REPLACE时必传
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -8937,15 +9186,27 @@ module TencentCloud
         # @param RegexReplace: 正则替换，TYPE=REGEX_REPLACE时必传
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RegexReplace: :class:`Tencentcloud::Ckafka.v20190819.models.RegexReplaceParam`
+        # @param Split: 值支持一拆多，TYPE=SPLIT时必传
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Split: :class:`Tencentcloud::Ckafka.v20190819.models.SplitParam`
+        # @param KV: key-value二次解析，TYPE=KV时必传
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type KV: :class:`Tencentcloud::Ckafka.v20190819.models.KVParam`
+        # @param Result: 处理结果
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Result: String
 
-        attr_accessor :Type, :Replace, :Substr, :Date, :RegexReplace
+        attr_accessor :Type, :Replace, :Substr, :Date, :RegexReplace, :Split, :KV, :Result
         
-        def initialize(type=nil, replace=nil, substr=nil, date=nil, regexreplace=nil)
+        def initialize(type=nil, replace=nil, substr=nil, date=nil, regexreplace=nil, split=nil, kv=nil, result=nil)
           @Type = type
           @Replace = replace
           @Substr = substr
           @Date = date
           @RegexReplace = regexreplace
+          @Split = split
+          @KV = kv
+          @Result = result
         end
 
         def deserialize(params)
@@ -8966,6 +9227,15 @@ module TencentCloud
             @RegexReplace = RegexReplaceParam.new
             @RegexReplace.deserialize(params['RegexReplace'])
           end
+          unless params['Split'].nil?
+            @Split = SplitParam.new
+            @Split.deserialize(params['Split'])
+          end
+          unless params['KV'].nil?
+            @KV = KVParam.new
+            @KV.deserialize(params['KV'])
+          end
+          @Result = params['Result']
         end
       end
 

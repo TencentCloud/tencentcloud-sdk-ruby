@@ -716,7 +716,7 @@ module TencentCloud
         # @type SamplePublicURL: String
         # @param IsMonitor: 是否启用监测 0：不启用 1：启用 默认为0
         # @type IsMonitor: String
-        # @param IsCert: 是否启用存证0：不启用 1：启用 默认为1
+        # @param IsCert: 是否启用存证0：不存证  2：存证 默认为0
         # @type IsCert: String
         # @param CertUrl: 存证回调地址
         # @type CertUrl: String
@@ -724,25 +724,25 @@ module TencentCloud
         # @type MonitorUrl: String
         # @param ProduceType: 创作性质（原创,改编,翻译,汇编,注释,整理,其他)
         # @type ProduceType: String
-        # @param WhiteLists: xxx
+        # @param WhiteLists: 白名单
         # @type WhiteLists: Array
-        # @param WorkId: x
+        # @param WorkId: 作品ID
         # @type WorkId: Integer
-        # @param ProducerName: xx
+        # @param ProducerName: 著作权人姓名
         # @type ProducerName: String
-        # @param Nickname: xx
+        # @param Nickname: 作者
         # @type Nickname: String
-        # @param Authorization: x
+        # @param Authorization: 授权书
         # @type Authorization: String
-        # @param AuthorizationStartTime: x
+        # @param AuthorizationStartTime: 授权书开始时间
         # @type AuthorizationStartTime: String
-        # @param AuthorizationEndTime: x
+        # @param AuthorizationEndTime: 授权书结束时间
         # @type AuthorizationEndTime: String
-        # @param ContentType: x
+        # @param ContentType: 内容格式
         # @type ContentType: String
-        # @param Content: x
+        # @param Content: 文件内容
         # @type Content: String
-        # @param MonitorEndTime: x
+        # @param MonitorEndTime: 监测结束时间
         # @type MonitorEndTime: String
 
         attr_accessor :WorkName, :WorkCategory, :WorkType, :WorkSign, :WorkPic, :WorkDesc, :IsOriginal, :IsRelease, :ProducerID, :ProduceTime, :SampleContentURL, :SampleDownloadURL, :GrantType, :SamplePublicURL, :IsMonitor, :IsCert, :CertUrl, :MonitorUrl, :ProduceType, :WhiteLists, :WorkId, :ProducerName, :Nickname, :Authorization, :AuthorizationStartTime, :AuthorizationEndTime, :ContentType, :Content, :MonitorEndTime

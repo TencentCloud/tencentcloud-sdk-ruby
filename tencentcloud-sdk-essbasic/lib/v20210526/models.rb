@@ -1132,7 +1132,9 @@ module TencentCloud
         # @type Agent: :class:`Tencentcloud::Essbasic.v20210526.models.Agent`
         # @param FlowIds: 签署流程编号数组，最多支持100个。(备注：该参数和合同组编号必须二选一)
         # @type FlowIds: Array
-        # @param Endpoint: 签署链接类型：“WEIXINAPP”-直接跳小程序；“CHANNEL”-跳转H5页面；“APP”-第三方APP或小程序跳转电子签小程序；默认“WEIXINAPP”类型，即跳转至小程序；
+        # @param FlowGroupId: 合同组编号(备注：该参数和合同(流程)编号数组必须二选一)
+        # @type FlowGroupId: String
+        # @param Endpoint: 签署链接类型：“WEIXINAPP”-短链直接跳小程序；“CHANNEL”-跳转H5页面；“APP”-第三方APP或小程序跳转电子签小程序；"LONGURL2WEIXINAPP"-长链接跳转小程序；默认“WEIXINAPP”类型，即跳转至小程序；
         # @type Endpoint: String
         # @param GenerateType: 签署链接生成类型，默认是 "ALL"；
         # "ALL"：全部签署方签署链接；
@@ -1158,14 +1160,13 @@ module TencentCloud
         # @type JumpUrl: String
         # @param Operator: 操作者的信息
         # @type Operator: :class:`Tencentcloud::Essbasic.v20210526.models.UserInfo`
-        # @param FlowGroupId: 合同组编号(备注：该参数和合同(流程)编号数组必须二选一)
-        # @type FlowGroupId: String
 
-        attr_accessor :Agent, :FlowIds, :Endpoint, :GenerateType, :OrganizationName, :Name, :Mobile, :OrganizationOpenId, :OpenId, :AutoJumpBack, :JumpUrl, :Operator, :FlowGroupId
+        attr_accessor :Agent, :FlowIds, :FlowGroupId, :Endpoint, :GenerateType, :OrganizationName, :Name, :Mobile, :OrganizationOpenId, :OpenId, :AutoJumpBack, :JumpUrl, :Operator
         
-        def initialize(agent=nil, flowids=nil, endpoint=nil, generatetype=nil, organizationname=nil, name=nil, mobile=nil, organizationopenid=nil, openid=nil, autojumpback=nil, jumpurl=nil, operator=nil, flowgroupid=nil)
+        def initialize(agent=nil, flowids=nil, flowgroupid=nil, endpoint=nil, generatetype=nil, organizationname=nil, name=nil, mobile=nil, organizationopenid=nil, openid=nil, autojumpback=nil, jumpurl=nil, operator=nil)
           @Agent = agent
           @FlowIds = flowids
+          @FlowGroupId = flowgroupid
           @Endpoint = endpoint
           @GenerateType = generatetype
           @OrganizationName = organizationname
@@ -1176,7 +1177,6 @@ module TencentCloud
           @AutoJumpBack = autojumpback
           @JumpUrl = jumpurl
           @Operator = operator
-          @FlowGroupId = flowgroupid
         end
 
         def deserialize(params)
@@ -1185,6 +1185,7 @@ module TencentCloud
             @Agent.deserialize(params['Agent'])
           end
           @FlowIds = params['FlowIds']
+          @FlowGroupId = params['FlowGroupId']
           @Endpoint = params['Endpoint']
           @GenerateType = params['GenerateType']
           @OrganizationName = params['OrganizationName']
@@ -1198,7 +1199,6 @@ module TencentCloud
             @Operator = UserInfo.new
             @Operator.deserialize(params['Operator'])
           end
-          @FlowGroupId = params['FlowGroupId']
         end
       end
 
@@ -1385,15 +1385,15 @@ module TencentCloud
         # @type TemplateId: String
         # @param ContentType: 查询内容：0-模板列表及详情（默认），1-仅模板列表
         # @type ContentType: Integer
-        # @param Limit: 查询个数，默认20，最大100
+        # @param Limit: 查询个数，默认20，最大100；在查询列表的时候有效
         # @type Limit: Integer
-        # @param Offset: 查询偏移位置，默认0
+        # @param Offset: 查询偏移位置，默认0；在查询列表的时候有效
         # @type Offset: Integer
         # @param Operator: 操作者的信息
         # @type Operator: :class:`Tencentcloud::Essbasic.v20210526.models.UserInfo`
         # @param QueryAllComponents: 是否返回所有组件信息
         # @type QueryAllComponents: Boolean
-        # @param TemplateName: 模糊搜索模版名称
+        # @param TemplateName: 模糊搜索模板名称
         # @type TemplateName: String
 
         attr_accessor :Agent, :TemplateId, :ContentType, :Limit, :Offset, :Operator, :QueryAllComponents, :TemplateName

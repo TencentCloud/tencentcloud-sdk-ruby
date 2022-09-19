@@ -59,21 +59,22 @@ module TencentCloud
 
       # 用户权限
       class Auth < TencentCloud::Common::AbstractModel
-        # @param NameSpace: *表示所有数据库,db.name表示特定的name数据库。
-        # @type NameSpace: String
-        # @param Mask: 用于控制权限,0无权限，1只读，2只写，3读写。
+        # @param Mask: 当前账号具有的权限信息。<ul><li>0：无权限。</li><li>1：只读。</li><li>2：只写。</li><li>3：读写。</li></ul>
         # @type Mask: Integer
+        # @param NameSpace: 指具有当前账号权限的数据库名。
+        # <ul><li>* ：表示所有数据库。</li><li>db.name：表示特定name的数据库。</li></ul>
+        # @type NameSpace: String
 
-        attr_accessor :NameSpace, :Mask
+        attr_accessor :Mask, :NameSpace
         
-        def initialize(namespace=nil, mask=nil)
-          @NameSpace = namespace
+        def initialize(mask=nil, namespace=nil)
           @Mask = mask
+          @NameSpace = namespace
         end
 
         def deserialize(params)
-          @NameSpace = params['NameSpace']
           @Mask = params['Mask']
+          @NameSpace = params['NameSpace']
         end
       end
 
