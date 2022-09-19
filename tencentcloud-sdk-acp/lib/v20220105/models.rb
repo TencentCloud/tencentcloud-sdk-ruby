@@ -162,10 +162,14 @@ module TencentCloud
         # @type AppName: String
         # @param PrivacyTextName: 隐私申明文件名称
         # @type PrivacyTextName: String
+        # @param AppSha1: 软件Sha1值(PrivacyTextMD5不为空时必填)
+        # @type AppSha1: String
+        # @param PrivacyTextMD5: 隐私申明文本md5(AppSha1不为空时必填)
+        # @type PrivacyTextMD5: String
 
-        attr_accessor :Source, :Platform, :TaskType, :OrgTaskID, :AppPackage, :FileID, :AppDownloadUrl, :PrivacyTextUrl, :AppName, :PrivacyTextName
+        attr_accessor :Source, :Platform, :TaskType, :OrgTaskID, :AppPackage, :FileID, :AppDownloadUrl, :PrivacyTextUrl, :AppName, :PrivacyTextName, :AppSha1, :PrivacyTextMD5
         
-        def initialize(source=nil, platform=nil, tasktype=nil, orgtaskid=nil, apppackage=nil, fileid=nil, appdownloadurl=nil, privacytexturl=nil, appname=nil, privacytextname=nil)
+        def initialize(source=nil, platform=nil, tasktype=nil, orgtaskid=nil, apppackage=nil, fileid=nil, appdownloadurl=nil, privacytexturl=nil, appname=nil, privacytextname=nil, appsha1=nil, privacytextmd5=nil)
           @Source = source
           @Platform = platform
           @TaskType = tasktype
@@ -176,6 +180,8 @@ module TencentCloud
           @PrivacyTextUrl = privacytexturl
           @AppName = appname
           @PrivacyTextName = privacytextname
+          @AppSha1 = appsha1
+          @PrivacyTextMD5 = privacytextmd5
         end
 
         def deserialize(params)
@@ -189,6 +195,8 @@ module TencentCloud
           @PrivacyTextUrl = params['PrivacyTextUrl']
           @AppName = params['AppName']
           @PrivacyTextName = params['PrivacyTextName']
+          @AppSha1 = params['AppSha1']
+          @PrivacyTextMD5 = params['PrivacyTextMD5']
         end
       end
 
@@ -226,7 +234,7 @@ module TencentCloud
         # @type Platform: Integer
         # @param AppPackage: App包名
         # @type AppPackage: String
-        # @param AppName: App名称
+        # @param AppName: App名称(任务来源为2时必填)
         # @type AppName: String
         # @param AppVersion: App版本
         # @type AppVersion: String
@@ -252,10 +260,14 @@ module TencentCloud
         # @type IsAgreePrivacy: Integer
         # @param PrivacyTextName: 隐私申明文件名称
         # @type PrivacyTextName: String
+        # @param AppSha1: 软件Sha1值(PrivacyTextMD5不为空时必填)
+        # @type AppSha1: String
+        # @param PrivacyTextMD5: 隐私申明文本md5(AppSha1不为空时必填)
+        # @type PrivacyTextMD5: String
 
-        attr_accessor :TaskType, :Source, :Platform, :AppPackage, :AppName, :AppVersion, :FileID, :AppDownloadUrl, :PrivacyTextUrl, :ContactName, :TelNumber, :Email, :CorpName, :SalesPerson, :Remark, :IsAgreePrivacy, :PrivacyTextName
+        attr_accessor :TaskType, :Source, :Platform, :AppPackage, :AppName, :AppVersion, :FileID, :AppDownloadUrl, :PrivacyTextUrl, :ContactName, :TelNumber, :Email, :CorpName, :SalesPerson, :Remark, :IsAgreePrivacy, :PrivacyTextName, :AppSha1, :PrivacyTextMD5
         
-        def initialize(tasktype=nil, source=nil, platform=nil, apppackage=nil, appname=nil, appversion=nil, fileid=nil, appdownloadurl=nil, privacytexturl=nil, contactname=nil, telnumber=nil, email=nil, corpname=nil, salesperson=nil, remark=nil, isagreeprivacy=nil, privacytextname=nil)
+        def initialize(tasktype=nil, source=nil, platform=nil, apppackage=nil, appname=nil, appversion=nil, fileid=nil, appdownloadurl=nil, privacytexturl=nil, contactname=nil, telnumber=nil, email=nil, corpname=nil, salesperson=nil, remark=nil, isagreeprivacy=nil, privacytextname=nil, appsha1=nil, privacytextmd5=nil)
           @TaskType = tasktype
           @Source = source
           @Platform = platform
@@ -273,6 +285,8 @@ module TencentCloud
           @Remark = remark
           @IsAgreePrivacy = isagreeprivacy
           @PrivacyTextName = privacytextname
+          @AppSha1 = appsha1
+          @PrivacyTextMD5 = privacytextmd5
         end
 
         def deserialize(params)
@@ -293,6 +307,8 @@ module TencentCloud
           @Remark = params['Remark']
           @IsAgreePrivacy = params['IsAgreePrivacy']
           @PrivacyTextName = params['PrivacyTextName']
+          @AppSha1 = params['AppSha1']
+          @PrivacyTextMD5 = params['PrivacyTextMD5']
         end
       end
 
