@@ -941,30 +941,6 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # vpc规则列表概况
-
-        # @param request: Request instance for DescribeVpcRuleOverview.
-        # @type request: :class:`Tencentcloud::cfw::V20190904::DescribeVpcRuleOverviewRequest`
-        # @rtype: :class:`Tencentcloud::cfw::V20190904::DescribeVpcRuleOverviewResponse`
-        def DescribeVpcRuleOverview(request)
-          body = send_request('DescribeVpcRuleOverview', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = DescribeVpcRuleOverviewResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
         # 防火墙垂直扩容
 
         # @param request: Request instance for ExpandCfwVertical.

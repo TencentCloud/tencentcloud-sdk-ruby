@@ -127,7 +127,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 接口（ChannelCreateFlowByFiles）用于渠道版通过文件创建签署流程。此接口不可直接使用，需要运营申请
+        # 接口（ChannelCreateFlowByFiles）用于渠道版通过文件创建签署流程。此接口静默签能力不可直接使用，需要运营申请
 
         # @param request: Request instance for ChannelCreateFlowByFiles.
         # @type request: :class:`Tencentcloud::essbasic::V20210526::ChannelCreateFlowByFilesRequest`

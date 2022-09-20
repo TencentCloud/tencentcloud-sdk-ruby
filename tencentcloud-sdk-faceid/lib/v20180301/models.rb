@@ -791,10 +791,18 @@ module TencentCloud
         # 人工审核库；
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CompareLibType: String
+        # @param LivenessMode: 枚举活体检测类型：
+        # 0：未知
+        # 1：数字活体
+        # 2：动作活体
+        # 3：静默活体
+        # 4：一闪活体（动作+光线）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LivenessMode: Integer
 
-        attr_accessor :ReqTime, :Seq, :Idcard, :Name, :Sim, :IsNeedCharge, :Errcode, :Errmsg, :Livestatus, :Livemsg, :Comparestatus, :Comparemsg, :CompareLibType
+        attr_accessor :ReqTime, :Seq, :Idcard, :Name, :Sim, :IsNeedCharge, :Errcode, :Errmsg, :Livestatus, :Livemsg, :Comparestatus, :Comparemsg, :CompareLibType, :LivenessMode
         
-        def initialize(reqtime=nil, seq=nil, idcard=nil, name=nil, sim=nil, isneedcharge=nil, errcode=nil, errmsg=nil, livestatus=nil, livemsg=nil, comparestatus=nil, comparemsg=nil, comparelibtype=nil)
+        def initialize(reqtime=nil, seq=nil, idcard=nil, name=nil, sim=nil, isneedcharge=nil, errcode=nil, errmsg=nil, livestatus=nil, livemsg=nil, comparestatus=nil, comparemsg=nil, comparelibtype=nil, livenessmode=nil)
           @ReqTime = reqtime
           @Seq = seq
           @Idcard = idcard
@@ -808,6 +816,7 @@ module TencentCloud
           @Comparestatus = comparestatus
           @Comparemsg = comparemsg
           @CompareLibType = comparelibtype
+          @LivenessMode = livenessmode
         end
 
         def deserialize(params)
@@ -824,6 +833,7 @@ module TencentCloud
           @Comparestatus = params['Comparestatus']
           @Comparemsg = params['Comparemsg']
           @CompareLibType = params['CompareLibType']
+          @LivenessMode = params['LivenessMode']
         end
       end
 
@@ -984,10 +994,18 @@ module TencentCloud
         # 人工审核库；
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CompareLibType: String
+        # @param LivenessMode: 本次流程最终活体类型。包括：
+        # 0：未知
+        # 1：数字活体
+        # 2：动作活体
+        # 3：静默活体
+        # 4：一闪活体（动作+光线）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LivenessMode: Integer
 
-        attr_accessor :ErrCode, :ErrMsg, :IdCard, :Name, :OcrNation, :OcrAddress, :OcrBirth, :OcrAuthority, :OcrValidDate, :OcrName, :OcrIdCard, :OcrGender, :LiveStatus, :LiveMsg, :Comparestatus, :Comparemsg, :Sim, :Location, :Extra, :LivenessDetail, :Mobile, :CompareLibType
+        attr_accessor :ErrCode, :ErrMsg, :IdCard, :Name, :OcrNation, :OcrAddress, :OcrBirth, :OcrAuthority, :OcrValidDate, :OcrName, :OcrIdCard, :OcrGender, :LiveStatus, :LiveMsg, :Comparestatus, :Comparemsg, :Sim, :Location, :Extra, :LivenessDetail, :Mobile, :CompareLibType, :LivenessMode
         
-        def initialize(errcode=nil, errmsg=nil, idcard=nil, name=nil, ocrnation=nil, ocraddress=nil, ocrbirth=nil, ocrauthority=nil, ocrvaliddate=nil, ocrname=nil, ocridcard=nil, ocrgender=nil, livestatus=nil, livemsg=nil, comparestatus=nil, comparemsg=nil, sim=nil, location=nil, extra=nil, livenessdetail=nil, mobile=nil, comparelibtype=nil)
+        def initialize(errcode=nil, errmsg=nil, idcard=nil, name=nil, ocrnation=nil, ocraddress=nil, ocrbirth=nil, ocrauthority=nil, ocrvaliddate=nil, ocrname=nil, ocridcard=nil, ocrgender=nil, livestatus=nil, livemsg=nil, comparestatus=nil, comparemsg=nil, sim=nil, location=nil, extra=nil, livenessdetail=nil, mobile=nil, comparelibtype=nil, livenessmode=nil)
           @ErrCode = errcode
           @ErrMsg = errmsg
           @IdCard = idcard
@@ -1010,6 +1028,7 @@ module TencentCloud
           @LivenessDetail = livenessdetail
           @Mobile = mobile
           @CompareLibType = comparelibtype
+          @LivenessMode = livenessmode
         end
 
         def deserialize(params)
@@ -1042,6 +1061,7 @@ module TencentCloud
           end
           @Mobile = params['Mobile']
           @CompareLibType = params['CompareLibType']
+          @LivenessMode = params['LivenessMode']
         end
       end
 

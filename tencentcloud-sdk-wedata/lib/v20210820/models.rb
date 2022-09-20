@@ -358,6 +358,107 @@ module TencentCloud
         end
       end
 
+      # CreateDataSource请求参数结构体
+      class CreateDataSourceRequest < TencentCloud::Common::AbstractModel
+        # @param Name: 数据源名称，在相同SpaceName下，数据源名称不能为空
+        # @type Name: String
+        # @param Category: 数据源类别：绑定引擎、绑定数据库
+        # @type Category: String
+        # @param Type: 数据源类型:枚举值
+        # @type Type: String
+        # @param OwnerProjectId: 归属项目ID
+        # @type OwnerProjectId: String
+        # @param OwnerProjectName: 归属项目Name
+        # @type OwnerProjectName: String
+        # @param OwnerProjectIdent: 归属项目Name中文
+        # @type OwnerProjectIdent: String
+        # @param BizParams: 业务侧数据源的配置信息扩展
+        # @type BizParams: String
+        # @param Params: 数据源的配置信息，以JSON KV存储，根据每个数据源类型不同，而KV存储信息不同
+        # @type Params: String
+        # @param Description: 数据源描述信息
+        # @type Description: String
+        # @param Display: 数据源展示名，为了可视化查看
+        # @type Display: String
+        # @param DatabaseName: 若数据源列表为绑定数据库，则为db名称
+        # @type DatabaseName: String
+        # @param Instance: 数据源引擎的实例ID，如CDB实例ID
+        # @type Instance: String
+        # @param Status: 数据源数据源的可见性，1为可见、0为不可见。默认为1
+        # @type Status: Integer
+        # @param ClusterId: 数据源所属的业务空间名称
+        # @type ClusterId: String
+        # @param Collect: 是否采集
+        # @type Collect: String
+        # @param COSBucket: cos桶信息
+        # @type COSBucket: String
+        # @param COSRegion: cos region
+        # @type COSRegion: String
+
+        attr_accessor :Name, :Category, :Type, :OwnerProjectId, :OwnerProjectName, :OwnerProjectIdent, :BizParams, :Params, :Description, :Display, :DatabaseName, :Instance, :Status, :ClusterId, :Collect, :COSBucket, :COSRegion
+        
+        def initialize(name=nil, category=nil, type=nil, ownerprojectid=nil, ownerprojectname=nil, ownerprojectident=nil, bizparams=nil, params=nil, description=nil, display=nil, databasename=nil, instance=nil, status=nil, clusterid=nil, collect=nil, cosbucket=nil, cosregion=nil)
+          @Name = name
+          @Category = category
+          @Type = type
+          @OwnerProjectId = ownerprojectid
+          @OwnerProjectName = ownerprojectname
+          @OwnerProjectIdent = ownerprojectident
+          @BizParams = bizparams
+          @Params = params
+          @Description = description
+          @Display = display
+          @DatabaseName = databasename
+          @Instance = instance
+          @Status = status
+          @ClusterId = clusterid
+          @Collect = collect
+          @COSBucket = cosbucket
+          @COSRegion = cosregion
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Category = params['Category']
+          @Type = params['Type']
+          @OwnerProjectId = params['OwnerProjectId']
+          @OwnerProjectName = params['OwnerProjectName']
+          @OwnerProjectIdent = params['OwnerProjectIdent']
+          @BizParams = params['BizParams']
+          @Params = params['Params']
+          @Description = params['Description']
+          @Display = params['Display']
+          @DatabaseName = params['DatabaseName']
+          @Instance = params['Instance']
+          @Status = params['Status']
+          @ClusterId = params['ClusterId']
+          @Collect = params['Collect']
+          @COSBucket = params['COSBucket']
+          @COSRegion = params['COSRegion']
+        end
+      end
+
+      # CreateDataSource返回参数结构体
+      class CreateDataSourceResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 主键ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Data: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+        
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Data = params['Data']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateFolder请求参数结构体
       class CreateFolderRequest < TencentCloud::Common::AbstractModel
         # @param ProjectId: 项目Id
@@ -517,6 +618,200 @@ module TencentCloud
         end
       end
 
+      # 数据源对象
+      class DataSourceInfo < TencentCloud::Common::AbstractModel
+        # @param DatabaseName: 若数据源列表为绑定数据库，则为db名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DatabaseName: String
+        # @param Description: 数据源描述信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Description: String
+        # @param ID: 数据源ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ID: Integer
+        # @param Instance: 数据源引擎的实例ID，如CDB实例ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Instance: String
+        # @param Name: 数据源名称，在相同SpaceName下，数据源名称不能为空
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
+        # @param Region: 数据源引擎所属区域
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Region: String
+        # @param Type: 数据源类型:枚举值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Type: String
+        # @param ClusterId: 数据源所属的集群id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClusterId: String
+        # @param AppId: 应用ID AppId
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AppId: Integer
+        # @param BizParams: 业务侧数据源的配置信息扩展
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BizParams: String
+        # @param Category: 数据源类别：绑定引擎、绑定数据库
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Category: String
+        # @param Display: 数据源展示名，为了可视化查看
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Display: String
+        # @param OwnerAccount: 数据源责任人账号ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OwnerAccount: String
+        # @param Params: 数据源的配置信息，以JSON KV存储，根据每个数据源类型不同，而KV存储信息不同
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Params: String
+        # @param Status: 数据源数据源的可见性，1为可见、0为不可见。默认为1
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: Integer
+        # @param OwnerAccountName: 数据源责任人账号名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OwnerAccountName: String
+        # @param ClusterName: 集群名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClusterName: String
+        # @param OwnerProjectId: 归属项目ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OwnerProjectId: String
+        # @param OwnerProjectName: 归属项目Name
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OwnerProjectName: String
+        # @param OwnerProjectIdent: 归属项目标识
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OwnerProjectIdent: String
+        # @param AuthorityProjectName: 授权项目
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AuthorityProjectName: String
+        # @param AuthorityUserName: 授权用户
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AuthorityUserName: String
+        # @param Edit: 是否有编辑权限
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Edit: Boolean
+        # @param Author: 是否有授权权限
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Author: Boolean
+        # @param Deliver: 是否有转交权限
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Deliver: Boolean
+        # @param DataSourceStatus: 数据源状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DataSourceStatus: String
+        # @param CreateTime: 时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateTime: Integer
+        # @param ParamsString: Params json字符串
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ParamsString: String
+        # @param BizParamsString: BizParams json字符串
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BizParamsString: String
+
+        attr_accessor :DatabaseName, :Description, :ID, :Instance, :Name, :Region, :Type, :ClusterId, :AppId, :BizParams, :Category, :Display, :OwnerAccount, :Params, :Status, :OwnerAccountName, :ClusterName, :OwnerProjectId, :OwnerProjectName, :OwnerProjectIdent, :AuthorityProjectName, :AuthorityUserName, :Edit, :Author, :Deliver, :DataSourceStatus, :CreateTime, :ParamsString, :BizParamsString
+        
+        def initialize(databasename=nil, description=nil, id=nil, instance=nil, name=nil, region=nil, type=nil, clusterid=nil, appid=nil, bizparams=nil, category=nil, display=nil, owneraccount=nil, params=nil, status=nil, owneraccountname=nil, clustername=nil, ownerprojectid=nil, ownerprojectname=nil, ownerprojectident=nil, authorityprojectname=nil, authorityusername=nil, edit=nil, author=nil, deliver=nil, datasourcestatus=nil, createtime=nil, paramsstring=nil, bizparamsstring=nil)
+          @DatabaseName = databasename
+          @Description = description
+          @ID = id
+          @Instance = instance
+          @Name = name
+          @Region = region
+          @Type = type
+          @ClusterId = clusterid
+          @AppId = appid
+          @BizParams = bizparams
+          @Category = category
+          @Display = display
+          @OwnerAccount = owneraccount
+          @Params = params
+          @Status = status
+          @OwnerAccountName = owneraccountname
+          @ClusterName = clustername
+          @OwnerProjectId = ownerprojectid
+          @OwnerProjectName = ownerprojectname
+          @OwnerProjectIdent = ownerprojectident
+          @AuthorityProjectName = authorityprojectname
+          @AuthorityUserName = authorityusername
+          @Edit = edit
+          @Author = author
+          @Deliver = deliver
+          @DataSourceStatus = datasourcestatus
+          @CreateTime = createtime
+          @ParamsString = paramsstring
+          @BizParamsString = bizparamsstring
+        end
+
+        def deserialize(params)
+          @DatabaseName = params['DatabaseName']
+          @Description = params['Description']
+          @ID = params['ID']
+          @Instance = params['Instance']
+          @Name = params['Name']
+          @Region = params['Region']
+          @Type = params['Type']
+          @ClusterId = params['ClusterId']
+          @AppId = params['AppId']
+          @BizParams = params['BizParams']
+          @Category = params['Category']
+          @Display = params['Display']
+          @OwnerAccount = params['OwnerAccount']
+          @Params = params['Params']
+          @Status = params['Status']
+          @OwnerAccountName = params['OwnerAccountName']
+          @ClusterName = params['ClusterName']
+          @OwnerProjectId = params['OwnerProjectId']
+          @OwnerProjectName = params['OwnerProjectName']
+          @OwnerProjectIdent = params['OwnerProjectIdent']
+          @AuthorityProjectName = params['AuthorityProjectName']
+          @AuthorityUserName = params['AuthorityUserName']
+          @Edit = params['Edit']
+          @Author = params['Author']
+          @Deliver = params['Deliver']
+          @DataSourceStatus = params['DataSourceStatus']
+          @CreateTime = params['CreateTime']
+          @ParamsString = params['ParamsString']
+          @BizParamsString = params['BizParamsString']
+        end
+      end
+
+      # DeleteDataSources请求参数结构体
+      class DeleteDataSourcesRequest < TencentCloud::Common::AbstractModel
+        # @param Ids: id列表
+        # @type Ids: Array
+
+        attr_accessor :Ids
+        
+        def initialize(ids=nil)
+          @Ids = ids
+        end
+
+        def deserialize(params)
+          @Ids = params['Ids']
+        end
+      end
+
+      # DeleteDataSources返回参数结构体
+      class DeleteDataSourcesResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 是否删除成功
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Data: Boolean
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+        
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Data = params['Data']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DeleteFolder请求参数结构体
       class DeleteFolderRequest < TencentCloud::Common::AbstractModel
         # @param ProjectId: 项目Id
@@ -648,6 +943,46 @@ module TencentCloud
             @SonTask = TaskInnerInfo.new
             @SonTask.deserialize(params['SonTask'])
           end
+        end
+      end
+
+      # DescribeDatasource请求参数结构体
+      class DescribeDatasourceRequest < TencentCloud::Common::AbstractModel
+        # @param Id: 对象唯一ID
+        # @type Id: Integer
+
+        attr_accessor :Id
+        
+        def initialize(id=nil)
+          @Id = id
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+        end
+      end
+
+      # DescribeDatasource返回参数结构体
+      class DescribeDatasourceResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 数据源对象
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Data: :class:`Tencentcloud::Wedata.v20210820.models.DataSourceInfo`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+        
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = DataSourceInfo.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
         end
       end
 
@@ -1953,6 +2288,111 @@ module TencentCloud
             @Data = BatchOperateResult.new
             @Data.deserialize(params['Data'])
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyDataSource请求参数结构体
+      class ModifyDataSourceRequest < TencentCloud::Common::AbstractModel
+        # @param Name: 数据源名称，在相同SpaceName下，数据源名称不能为空
+        # @type Name: String
+        # @param Category: 数据源类别：绑定引擎、绑定数据库
+        # @type Category: String
+        # @param Type: 数据源类型:枚举值
+        # @type Type: String
+        # @param ID: 数据源ID
+        # @type ID: Integer
+        # @param BizParams: 业务侧数据源的配置信息扩展
+        # @type BizParams: String
+        # @param Params: 数据源的配置信息，以JSON KV存储，根据每个数据源类型不同，而KV存储信息不同
+        # @type Params: String
+        # @param Description: 数据源描述信息
+        # @type Description: String
+        # @param Display: 数据源展示名，为了可视化查看
+        # @type Display: String
+        # @param DatabaseName: 若数据源列表为绑定数据库，则为db名称
+        # @type DatabaseName: String
+        # @param Instance: 数据源引擎的实例ID，如CDB实例ID
+        # @type Instance: String
+        # @param Status: 数据源数据源的可见性，1为可见、0为不可见。默认为1
+        # @type Status: Integer
+        # @param ClusterId: 数据源所属的业务空间名称
+        # @type ClusterId: String
+        # @param Collect: 是否采集
+        # @type Collect: String
+        # @param OwnerProjectId: 项目id
+        # @type OwnerProjectId: String
+        # @param OwnerProjectName: 项目名称
+        # @type OwnerProjectName: String
+        # @param OwnerProjectIdent: 项目中文名
+        # @type OwnerProjectIdent: String
+        # @param COSBucket: cos bucket
+        # @type COSBucket: String
+        # @param COSRegion: cos region
+        # @type COSRegion: String
+
+        attr_accessor :Name, :Category, :Type, :ID, :BizParams, :Params, :Description, :Display, :DatabaseName, :Instance, :Status, :ClusterId, :Collect, :OwnerProjectId, :OwnerProjectName, :OwnerProjectIdent, :COSBucket, :COSRegion
+        
+        def initialize(name=nil, category=nil, type=nil, id=nil, bizparams=nil, params=nil, description=nil, display=nil, databasename=nil, instance=nil, status=nil, clusterid=nil, collect=nil, ownerprojectid=nil, ownerprojectname=nil, ownerprojectident=nil, cosbucket=nil, cosregion=nil)
+          @Name = name
+          @Category = category
+          @Type = type
+          @ID = id
+          @BizParams = bizparams
+          @Params = params
+          @Description = description
+          @Display = display
+          @DatabaseName = databasename
+          @Instance = instance
+          @Status = status
+          @ClusterId = clusterid
+          @Collect = collect
+          @OwnerProjectId = ownerprojectid
+          @OwnerProjectName = ownerprojectname
+          @OwnerProjectIdent = ownerprojectident
+          @COSBucket = cosbucket
+          @COSRegion = cosregion
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Category = params['Category']
+          @Type = params['Type']
+          @ID = params['ID']
+          @BizParams = params['BizParams']
+          @Params = params['Params']
+          @Description = params['Description']
+          @Display = params['Display']
+          @DatabaseName = params['DatabaseName']
+          @Instance = params['Instance']
+          @Status = params['Status']
+          @ClusterId = params['ClusterId']
+          @Collect = params['Collect']
+          @OwnerProjectId = params['OwnerProjectId']
+          @OwnerProjectName = params['OwnerProjectName']
+          @OwnerProjectIdent = params['OwnerProjectIdent']
+          @COSBucket = params['COSBucket']
+          @COSRegion = params['COSRegion']
+        end
+      end
+
+      # ModifyDataSource返回参数结构体
+      class ModifyDataSourceResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 是否成功
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Data: Boolean
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+        
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Data = params['Data']
           @RequestId = params['RequestId']
         end
       end

@@ -2520,53 +2520,6 @@ module TencentCloud
         end
       end
 
-      # DescribeVpcRuleOverview请求参数结构体
-      class DescribeVpcRuleOverviewRequest < TencentCloud::Common::AbstractModel
-        # @param EdgeId: EdgeId值两个vpc间的边id  不是必填项可以为空，就是所有vpc间的访问控制规则
-        # @type EdgeId: String
-
-        attr_accessor :EdgeId
-        
-        def initialize(edgeid=nil)
-          @EdgeId = edgeid
-        end
-
-        def deserialize(params)
-          @EdgeId = params['EdgeId']
-        end
-      end
-
-      # DescribeVpcRuleOverview返回参数结构体
-      class DescribeVpcRuleOverviewResponse < TencentCloud::Common::AbstractModel
-        # @param StrategyNum: 阻断策略规则数量
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type StrategyNum: Integer
-        # @param StartRuleNum: 启用规则数量
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type StartRuleNum: Integer
-        # @param Total: 规则总量
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Total: Integer
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :StrategyNum, :StartRuleNum, :Total, :RequestId
-        
-        def initialize(strategynum=nil, startrulenum=nil, total=nil, requestid=nil)
-          @StrategyNum = strategynum
-          @StartRuleNum = startrulenum
-          @Total = total
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          @StrategyNum = params['StrategyNum']
-          @StartRuleNum = params['StartRuleNum']
-          @Total = params['Total']
-          @RequestId = params['RequestId']
-        end
-      end
-
       # 设置nat防火墙的vpc dns 接入开关
       class DnsVpcSwitch < TencentCloud::Common::AbstractModel
         # @param VpcId: vpc id

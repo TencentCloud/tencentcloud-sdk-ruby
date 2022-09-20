@@ -11985,15 +11985,18 @@ module TencentCloud
         # @type BeginProcessTime: String
         # @param FinishTime: 任务结束时间，使用 [ISO 日期格式](https://cloud.tencent.com/document/product/862/37710#52)。若任务尚未完成，该字段为：0000-00-00T00:00:00Z。
         # @type FinishTime: String
+        # @param SubTaskTypes: 子任务类型。
+        # @type SubTaskTypes: Array
 
-        attr_accessor :TaskId, :TaskType, :CreateTime, :BeginProcessTime, :FinishTime
+        attr_accessor :TaskId, :TaskType, :CreateTime, :BeginProcessTime, :FinishTime, :SubTaskTypes
         
-        def initialize(taskid=nil, tasktype=nil, createtime=nil, beginprocesstime=nil, finishtime=nil)
+        def initialize(taskid=nil, tasktype=nil, createtime=nil, beginprocesstime=nil, finishtime=nil, subtasktypes=nil)
           @TaskId = taskid
           @TaskType = tasktype
           @CreateTime = createtime
           @BeginProcessTime = beginprocesstime
           @FinishTime = finishtime
+          @SubTaskTypes = subtasktypes
         end
 
         def deserialize(params)
@@ -12002,6 +12005,7 @@ module TencentCloud
           @CreateTime = params['CreateTime']
           @BeginProcessTime = params['BeginProcessTime']
           @FinishTime = params['FinishTime']
+          @SubTaskTypes = params['SubTaskTypes']
         end
       end
 

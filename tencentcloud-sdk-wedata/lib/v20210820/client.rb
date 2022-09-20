@@ -105,6 +105,31 @@ module TencentCloud
         end
 
         # <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
+        # 创建数据源
+
+        # @param request: Request instance for CreateDataSource.
+        # @type request: :class:`Tencentcloud::wedata::V20210820::CreateDataSourceRequest`
+        # @rtype: :class:`Tencentcloud::wedata::V20210820::CreateDataSourceResponse`
+        def CreateDataSource(request)
+          body = send_request('CreateDataSource', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateDataSourceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
         # 创建文件夹
 
         # @param request: Request instance for CreateFolder.
@@ -180,6 +205,31 @@ module TencentCloud
         end
 
         # <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
+        # 删除数据源
+
+        # @param request: Request instance for DeleteDataSources.
+        # @type request: :class:`Tencentcloud::wedata::V20210820::DeleteDataSourcesRequest`
+        # @rtype: :class:`Tencentcloud::wedata::V20210820::DeleteDataSourcesResponse`
+        def DeleteDataSources(request)
+          body = send_request('DeleteDataSources', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteDataSourcesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
         # 删除文件夹
 
         # @param request: Request instance for DeleteFolder.
@@ -215,6 +265,31 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteWorkflowNewResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
+        # 数据源详情
+
+        # @param request: Request instance for DescribeDatasource.
+        # @type request: :class:`Tencentcloud::wedata::V20210820::DescribeDatasourceRequest`
+        # @rtype: :class:`Tencentcloud::wedata::V20210820::DescribeDatasourceResponse`
+        def DescribeDatasource(request)
+          body = send_request('DescribeDatasource', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeDatasourceResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -614,6 +689,31 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = MakeUpWorkflowNewResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
+        # 修改数据源
+
+        # @param request: Request instance for ModifyDataSource.
+        # @type request: :class:`Tencentcloud::wedata::V20210820::ModifyDataSourceRequest`
+        # @rtype: :class:`Tencentcloud::wedata::V20210820::ModifyDataSourceResponse`
+        def ModifyDataSource(request)
+          body = send_request('ModifyDataSource', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyDataSourceResponse.new
             model.deserialize(response['Response'])
             model
           else
