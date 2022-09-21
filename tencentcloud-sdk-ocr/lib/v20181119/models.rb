@@ -2531,6 +2531,79 @@ module TencentCloud
         end
       end
 
+      # ImageEnhancement请求参数结构体
+      class ImageEnhancementRequest < TencentCloud::Common::AbstractModel
+        # @param ImageBase64: 图片的 Base64 值。
+        # 支持的图片格式：PNG、JPG、JPEG，暂不支持 GIF 格式。
+        # 支持的图片大小：所下载图片经Base64编码后不超过 7M。图片下载时间不超过 3 秒。
+        # 图片的 ImageUrl、ImageBase64 必须提供一个，如果都提供，只使用 ImageUrl。
+        # @type ImageBase64: String
+        # @param ImageUrl: 图片的 Url 地址。
+        # 支持的图片格式：PNG、JPG、JPEG，暂不支持 GIF 格式。
+        # 支持的图片大小：所下载图片经 Base64 编码后不超过 7M。图片下载时间不超过 3 秒。
+        # 图片存储于腾讯云的 Url 可保障更高的下载速度和稳定性，建议图片存储于腾讯云。
+        # 非腾讯云存储的 Url 速度和稳定性可能受一定影响。
+        # @type ImageUrl: String
+        # @param ReturnImage: 默认为空，ReturnImage的取值以及含义如下：
+        # “preprocess”: 返回预处理后的图片数据
+        # “origin”：返回原图片数据
+        # " ":不返回图片数据
+        # @type ReturnImage: String
+        # @param TaskType: 默认值为1，指定图像增强方法：
+        # 1：切边增强
+        # 2：弯曲矫正
+        # 202：黑白模式
+        # 204：提亮模式
+        # 205：灰度模式
+        # 207：省墨模式
+        # 208：文字锐化（适合非彩色图片）
+        # 301：去摩尔纹
+        # 302：去除阴影
+        # @type TaskType: Integer
+
+        attr_accessor :ImageBase64, :ImageUrl, :ReturnImage, :TaskType
+        
+        def initialize(imagebase64=nil, imageurl=nil, returnimage=nil, tasktype=nil)
+          @ImageBase64 = imagebase64
+          @ImageUrl = imageurl
+          @ReturnImage = returnimage
+          @TaskType = tasktype
+        end
+
+        def deserialize(params)
+          @ImageBase64 = params['ImageBase64']
+          @ImageUrl = params['ImageUrl']
+          @ReturnImage = params['ReturnImage']
+          @TaskType = params['TaskType']
+        end
+      end
+
+      # ImageEnhancement返回参数结构体
+      class ImageEnhancementResponse < TencentCloud::Common::AbstractModel
+        # @param ImageTag: 图片数据标识：
+        # “origin”：原图
+        # “preprocess”:预处理后的图
+        # @type ImageTag: String
+        # @param Image: 图片数据，返回预处理后图像或原图像base64字符
+        # @type Image: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ImageTag, :Image, :RequestId
+        
+        def initialize(imagetag=nil, image=nil, requestid=nil)
+          @ImageTag = imagetag
+          @Image = image
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ImageTag = params['ImageTag']
+          @Image = params['Image']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # InstitutionOCR请求参数结构体
       class InstitutionOCRRequest < TencentCloud::Common::AbstractModel
         # @param ImageBase64: 图片的 Base64 值。

@@ -935,6 +935,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 图像增强
+
+        # @param request: Request instance for ImageEnhancement.
+        # @type request: :class:`Tencentcloud::ocr::V20181119::ImageEnhancementRequest`
+        # @rtype: :class:`Tencentcloud::ocr::V20181119::ImageEnhancementResponse`
+        def ImageEnhancement(request)
+          body = send_request('ImageEnhancement', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ImageEnhancementResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口支持事业单位法人证书关键字段识别，包括注册号、有效期、住所、名称、法定代表人等。
 
         # @param request: Request instance for InstitutionOCR.

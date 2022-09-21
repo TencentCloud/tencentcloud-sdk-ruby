@@ -713,6 +713,49 @@ module TencentCloud
         end
       end
 
+      # DescribeAccountUsers请求参数结构体
+      class DescribeAccountUsersRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID。
+        # @type InstanceId: String
+
+        attr_accessor :InstanceId
+        
+        def initialize(instanceid=nil)
+          @InstanceId = instanceid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+        end
+      end
+
+      # DescribeAccountUsers返回参数结构体
+      class DescribeAccountUsersResponse < TencentCloud::Common::AbstractModel
+        # @param Users: 实例账号列表。
+        # @type Users: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Users, :RequestId
+        
+        def initialize(users=nil, requestid=nil)
+          @Users = users
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Users'].nil?
+            @Users = []
+            params['Users'].each do |i|
+              userinfo_tmp = UserInfo.new
+              userinfo_tmp.deserialize(i)
+              @Users << userinfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeAsyncRequestInfo请求参数结构体
       class DescribeAsyncRequestInfoRequest < TencentCloud::Common::AbstractModel
         # @param AsyncRequestId: 异步请求Id，涉及到异步流程的接口返回，如CreateBackupDBInstance
@@ -2945,6 +2988,45 @@ module TencentCloud
 
         def deserialize(params)
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 账户基本信息
+      class UserInfo < TencentCloud::Common::AbstractModel
+        # @param UserName: 账号名。
+        # @type UserName: String
+        # @param AuthRole: 账号权限详情。
+        # @type AuthRole: Array
+        # @param CreateTime: 账号创建时间。
+        # @type CreateTime: String
+        # @param UpdateTime: 账号更新时间。
+        # @type UpdateTime: String
+        # @param UserDesc: 备注信息。
+        # @type UserDesc: String
+
+        attr_accessor :UserName, :AuthRole, :CreateTime, :UpdateTime, :UserDesc
+        
+        def initialize(username=nil, authrole=nil, createtime=nil, updatetime=nil, userdesc=nil)
+          @UserName = username
+          @AuthRole = authrole
+          @CreateTime = createtime
+          @UpdateTime = updatetime
+          @UserDesc = userdesc
+        end
+
+        def deserialize(params)
+          @UserName = params['UserName']
+          unless params['AuthRole'].nil?
+            @AuthRole = []
+            params['AuthRole'].each do |i|
+              auth_tmp = Auth.new
+              auth_tmp.deserialize(i)
+              @AuthRole << auth_tmp
+            end
+          end
+          @CreateTime = params['CreateTime']
+          @UpdateTime = params['UpdateTime']
+          @UserDesc = params['UserDesc']
         end
       end
 

@@ -149,6 +149,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口(DescribeAccountUsers)用于获取当前实例的全部账号列表。
+
+        # @param request: Request instance for DescribeAccountUsers.
+        # @type request: :class:`Tencentcloud::mongodb::V20190725::DescribeAccountUsersRequest`
+        # @rtype: :class:`Tencentcloud::mongodb::V20190725::DescribeAccountUsersResponse`
+        def DescribeAccountUsers(request)
+          body = send_request('DescribeAccountUsers', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeAccountUsersResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询异步任务状态接口
 
         # @param request: Request instance for DescribeAsyncRequestInfo.

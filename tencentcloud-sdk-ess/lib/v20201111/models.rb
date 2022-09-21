@@ -832,8 +832,8 @@ module TencentCloud
         # @type FlowType: String
         # @param ClientToken: 客户端Token，保持接口幂等性,最大长度64个字符
         # @type ClientToken: String
-        # @param CallbackUrl: 暂未开放
-        # @type CallbackUrl: String
+        # @param RelatedFlowId: 暂未开放
+        # @type RelatedFlowId: String
         # @param DeadLine: 签署流程的签署截止时间。
         # 值为unix时间戳,精确到秒,不传默认为当前时间一年后
         # @type DeadLine: Integer
@@ -853,27 +853,27 @@ module TencentCloud
 
         # 注：企业可以通过此功能与企业内部的审批流程进行关联，支持手动、静默签署合同。
         # @type NeedSignReview: Boolean
-        # @param RelatedFlowId: 暂未开放
-        # @type RelatedFlowId: String
+        # @param CallbackUrl: 暂未开放
+        # @type CallbackUrl: String
         # @param Agent: 应用相关信息
         # @type Agent: :class:`Tencentcloud::Ess.v20201111.models.Agent`
 
-        attr_accessor :Operator, :FlowName, :Approvers, :FlowType, :ClientToken, :CallbackUrl, :DeadLine, :UserData, :FlowDescription, :Unordered, :CustomShowMap, :NeedSignReview, :RelatedFlowId, :Agent
+        attr_accessor :Operator, :FlowName, :Approvers, :FlowType, :ClientToken, :RelatedFlowId, :DeadLine, :UserData, :FlowDescription, :Unordered, :CustomShowMap, :NeedSignReview, :CallbackUrl, :Agent
         
-        def initialize(operator=nil, flowname=nil, approvers=nil, flowtype=nil, clienttoken=nil, callbackurl=nil, deadline=nil, userdata=nil, flowdescription=nil, unordered=nil, customshowmap=nil, needsignreview=nil, relatedflowid=nil, agent=nil)
+        def initialize(operator=nil, flowname=nil, approvers=nil, flowtype=nil, clienttoken=nil, relatedflowid=nil, deadline=nil, userdata=nil, flowdescription=nil, unordered=nil, customshowmap=nil, needsignreview=nil, callbackurl=nil, agent=nil)
           @Operator = operator
           @FlowName = flowname
           @Approvers = approvers
           @FlowType = flowtype
           @ClientToken = clienttoken
-          @CallbackUrl = callbackurl
+          @RelatedFlowId = relatedflowid
           @DeadLine = deadline
           @UserData = userdata
           @FlowDescription = flowdescription
           @Unordered = unordered
           @CustomShowMap = customshowmap
           @NeedSignReview = needsignreview
-          @RelatedFlowId = relatedflowid
+          @CallbackUrl = callbackurl
           @Agent = agent
         end
 
@@ -893,14 +893,14 @@ module TencentCloud
           end
           @FlowType = params['FlowType']
           @ClientToken = params['ClientToken']
-          @CallbackUrl = params['CallbackUrl']
+          @RelatedFlowId = params['RelatedFlowId']
           @DeadLine = params['DeadLine']
           @UserData = params['UserData']
           @FlowDescription = params['FlowDescription']
           @Unordered = params['Unordered']
           @CustomShowMap = params['CustomShowMap']
           @NeedSignReview = params['NeedSignReview']
-          @RelatedFlowId = params['RelatedFlowId']
+          @CallbackUrl = params['CallbackUrl']
           unless params['Agent'].nil?
             @Agent = Agent.new
             @Agent.deserialize(params['Agent'])
@@ -1996,6 +1996,70 @@ module TencentCloud
         end
       end
 
+      # 合同文件验签单个结果结构体
+      class PdfVerifyResult < TencentCloud::Common::AbstractModel
+        # @param VerifyResult: 验签结果
+        # @type VerifyResult: Integer
+        # @param SignPlatform: 签署平台
+        # @type SignPlatform: String
+        # @param SignerName: 签署人名称
+        # @type SignerName: String
+        # @param SignTime: 签署时间
+        # @type SignTime: Integer
+        # @param SignAlgorithm: 签名算法
+        # @type SignAlgorithm: String
+        # @param CertSn: 签名证书序列号
+        # @type CertSn: String
+        # @param CertNotBefore: 证书起始时间
+        # @type CertNotBefore: Integer
+        # @param CertNotAfter: 证书过期时间
+        # @type CertNotAfter: Integer
+        # @param ComponentPosX: 签名域横坐标
+        # @type ComponentPosX: Float
+        # @param ComponentPosY: 签名域纵坐标
+        # @type ComponentPosY: Float
+        # @param ComponentWidth: 签名域宽度
+        # @type ComponentWidth: Float
+        # @param ComponentHeight: 签名域高度
+        # @type ComponentHeight: Float
+        # @param ComponentPage: 签名域所在页码
+        # @type ComponentPage: Integer
+
+        attr_accessor :VerifyResult, :SignPlatform, :SignerName, :SignTime, :SignAlgorithm, :CertSn, :CertNotBefore, :CertNotAfter, :ComponentPosX, :ComponentPosY, :ComponentWidth, :ComponentHeight, :ComponentPage
+        
+        def initialize(verifyresult=nil, signplatform=nil, signername=nil, signtime=nil, signalgorithm=nil, certsn=nil, certnotbefore=nil, certnotafter=nil, componentposx=nil, componentposy=nil, componentwidth=nil, componentheight=nil, componentpage=nil)
+          @VerifyResult = verifyresult
+          @SignPlatform = signplatform
+          @SignerName = signername
+          @SignTime = signtime
+          @SignAlgorithm = signalgorithm
+          @CertSn = certsn
+          @CertNotBefore = certnotbefore
+          @CertNotAfter = certnotafter
+          @ComponentPosX = componentposx
+          @ComponentPosY = componentposy
+          @ComponentWidth = componentwidth
+          @ComponentHeight = componentheight
+          @ComponentPage = componentpage
+        end
+
+        def deserialize(params)
+          @VerifyResult = params['VerifyResult']
+          @SignPlatform = params['SignPlatform']
+          @SignerName = params['SignerName']
+          @SignTime = params['SignTime']
+          @SignAlgorithm = params['SignAlgorithm']
+          @CertSn = params['CertSn']
+          @CertNotBefore = params['CertNotBefore']
+          @CertNotAfter = params['CertNotAfter']
+          @ComponentPosX = params['ComponentPosX']
+          @ComponentPosY = params['ComponentPosY']
+          @ComponentWidth = params['ComponentWidth']
+          @ComponentHeight = params['ComponentHeight']
+          @ComponentPage = params['ComponentPage']
+        end
+      end
+
       # 签署参与者信息
       class Recipient < TencentCloud::Common::AbstractModel
         # @param RecipientId: 签署参与者ID
@@ -2410,6 +2474,61 @@ module TencentCloud
           @OpenId = params['OpenId']
           @ClientIp = params['ClientIp']
           @ProxyIp = params['ProxyIp']
+        end
+      end
+
+      # VerifyPdf请求参数结构体
+      class VerifyPdfRequest < TencentCloud::Common::AbstractModel
+        # @param FlowId: 合同Id，流程Id
+        # @type FlowId: String
+        # @param Operator: 调用方用户信息，userId 必填
+        # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
+
+        attr_accessor :FlowId, :Operator
+        
+        def initialize(flowid=nil, operator=nil)
+          @FlowId = flowid
+          @Operator = operator
+        end
+
+        def deserialize(params)
+          @FlowId = params['FlowId']
+          unless params['Operator'].nil?
+            @Operator = UserInfo.new
+            @Operator.deserialize(params['Operator'])
+          end
+        end
+      end
+
+      # VerifyPdf返回参数结构体
+      class VerifyPdfResponse < TencentCloud::Common::AbstractModel
+        # @param VerifyResult: 验签结果，1-文件未被篡改，全部签名在腾讯电子签完成； 2-文件未被篡改，部分签名在腾讯电子签完成；3-文件被篡改；4-异常：文件内没有签名域；5-异常：文件签名格式错误
+        # @type VerifyResult: Integer
+        # @param PdfVerifyResults: 验签结果详情,内部状态1-验签成功，在电子签签署；2-验签成功，在其他平台签署；3-验签失败；4-pdf文件没有签名域
+        # ；5-文件签名格式错误
+        # @type PdfVerifyResults: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :VerifyResult, :PdfVerifyResults, :RequestId
+        
+        def initialize(verifyresult=nil, pdfverifyresults=nil, requestid=nil)
+          @VerifyResult = verifyresult
+          @PdfVerifyResults = pdfverifyresults
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @VerifyResult = params['VerifyResult']
+          unless params['PdfVerifyResults'].nil?
+            @PdfVerifyResults = []
+            params['PdfVerifyResults'].each do |i|
+              pdfverifyresult_tmp = PdfVerifyResult.new
+              pdfverifyresult_tmp.deserialize(i)
+              @PdfVerifyResults << pdfverifyresult_tmp
+            end
+          end
+          @RequestId = params['RequestId']
         end
       end
 

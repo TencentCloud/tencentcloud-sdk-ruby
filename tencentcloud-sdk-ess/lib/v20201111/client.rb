@@ -549,6 +549,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 验证合同文件
+
+        # @param request: Request instance for VerifyPdf.
+        # @type request: :class:`Tencentcloud::ess::V20201111::VerifyPdfRequest`
+        # @rtype: :class:`Tencentcloud::ess::V20201111::VerifyPdfResponse`
+        def VerifyPdf(request)
+          body = send_request('VerifyPdf', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = VerifyPdfResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
 
       end
     end

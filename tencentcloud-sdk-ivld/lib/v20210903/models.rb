@@ -149,6 +149,37 @@ module TencentCloud
         end
       end
 
+      # 音频文件分析结果数据
+      class AudioData < TencentCloud::Common::AbstractModel
+        # @param AudioInfoSet: 音频识别文本结果
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AudioInfoSet: Array
+        # @param TextTagSet: 音频识别标签数据
+        # @type TextTagSet: :class:`Tencentcloud::Ivld.v20210903.models.MultiLevelTag`
+
+        attr_accessor :AudioInfoSet, :TextTagSet
+        
+        def initialize(audioinfoset=nil, texttagset=nil)
+          @AudioInfoSet = audioinfoset
+          @TextTagSet = texttagset
+        end
+
+        def deserialize(params)
+          unless params['AudioInfoSet'].nil?
+            @AudioInfoSet = []
+            params['AudioInfoSet'].each do |i|
+              audioinfo_tmp = AudioInfo.new
+              audioinfo_tmp.deserialize(i)
+              @AudioInfoSet << audioinfo_tmp
+            end
+          end
+          unless params['TextTagSet'].nil?
+            @TextTagSet = MultiLevelTag.new
+            @TextTagSet.deserialize(params['TextTagSet'])
+          end
+        end
+      end
+
       # 音频识别结果信息
       class AudioInfo < TencentCloud::Common::AbstractModel
         # @param Content: ASR提取的文字信息
@@ -174,6 +205,48 @@ module TencentCloud
           @StartTimeStamp = params['StartTimeStamp']
           @EndTimeStamp = params['EndTimeStamp']
           @Tag = params['Tag']
+        end
+      end
+
+      # 音频文件元信息
+      class AudioMetadata < TencentCloud::Common::AbstractModel
+        # @param FileSize: 媒资音频文件大小，单位为Byte
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FileSize: Integer
+        # @param MD5: 媒资音频文件MD5
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MD5: String
+        # @param Duration: 媒资音频时长，单位为秒
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Duration: Float
+        # @param SampleRate: 媒资音频采样率，单位为khz
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SampleRate: Float
+        # @param BitRate: 媒资音频码率，单位为kbps
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BitRate: Integer
+        # @param Format: 媒资音频文件格式
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Format: String
+
+        attr_accessor :FileSize, :MD5, :Duration, :SampleRate, :BitRate, :Format
+        
+        def initialize(filesize=nil, md5=nil, duration=nil, samplerate=nil, bitrate=nil, format=nil)
+          @FileSize = filesize
+          @MD5 = md5
+          @Duration = duration
+          @SampleRate = samplerate
+          @BitRate = bitrate
+          @Format = format
+        end
+
+        def deserialize(params)
+          @FileSize = params['FileSize']
+          @MD5 = params['MD5']
+          @Duration = params['Duration']
+          @SampleRate = params['SampleRate']
+          @BitRate = params['BitRate']
+          @Format = params['Format']
         end
       end
 
@@ -1031,16 +1104,29 @@ module TencentCloud
         # @param TaskInfo: 任务信息，不包含任务结果
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskInfo: :class:`Tencentcloud::Ivld.v20210903.models.TaskInfo`
-        # @param TaskData: 任务结果数据，只在任务结束时返回
+        # @param TaskData: 视频任务结果数据，只在视频任务结束时返回
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskData: :class:`Tencentcloud::Ivld.v20210903.models.Data`
+        # @param ImageTaskData: 图片任务结果数据，只在图片任务结束时返回
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ImageTaskData: :class:`Tencentcloud::Ivld.v20210903.models.ImageData`
+        # @param AudioTaskData: 音频任务结果数据，只在音频任务结束时返回
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AudioTaskData: :class:`Tencentcloud::Ivld.v20210903.models.AudioData`
+        # @param TextTaskData: 文本任务结果数据，只在文本任务结束时返回
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TextTaskData: :class:`Tencentcloud::Ivld.v20210903.models.TextData`
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :TaskInfo, :TaskData, :RequestId
+        attr_accessor :TaskInfo, :TaskData, :ImageTaskData, :AudioTaskData, :TextTaskData, :RequestId
         
-        def initialize(taskinfo=nil, taskdata=nil, requestid=nil)
+        def initialize(taskinfo=nil, taskdata=nil, imagetaskdata=nil, audiotaskdata=nil, texttaskdata=nil, requestid=nil)
           @TaskInfo = taskinfo
           @TaskData = taskdata
+          @ImageTaskData = imagetaskdata
+          @AudioTaskData = audiotaskdata
+          @TextTaskData = texttaskdata
           @RequestId = requestid
         end
 
@@ -1052,6 +1138,18 @@ module TencentCloud
           unless params['TaskData'].nil?
             @TaskData = Data.new
             @TaskData.deserialize(params['TaskData'])
+          end
+          unless params['ImageTaskData'].nil?
+            @ImageTaskData = ImageData.new
+            @ImageTaskData.deserialize(params['ImageTaskData'])
+          end
+          unless params['AudioTaskData'].nil?
+            @AudioTaskData = AudioData.new
+            @AudioTaskData.deserialize(params['AudioTaskData'])
+          end
+          unless params['TextTaskData'].nil?
+            @TextTaskData = TextData.new
+            @TextTaskData.deserialize(params['TextTaskData'])
           end
           @RequestId = params['RequestId']
         end
@@ -1163,13 +1261,160 @@ module TencentCloud
         end
       end
 
+      # 图片文件标签结果
+      class ImageData < TencentCloud::Common::AbstractModel
+        # @param OcrSet: 图片中出现的可视文本识别结果
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OcrSet: Array
+        # @param FrameTagSet: 图片中出现的帧标签识别结果
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FrameTagSet: :class:`Tencentcloud::Ivld.v20210903.models.MultiLevelTag`
+        # @param MultiLevelPersonInfoSet: 图片中出现的层级人物识别结果
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MultiLevelPersonInfoSet: Array
+        # @param TvLogo: 图片中出现的台标识别结果
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TvLogo: :class:`Tencentcloud::Ivld.v20210903.models.ImageLogo`
+        # @param SourceLogo: 图片中出现的来源信息识别结果
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SourceLogo: :class:`Tencentcloud::Ivld.v20210903.models.ImageLogo`
+
+        attr_accessor :OcrSet, :FrameTagSet, :MultiLevelPersonInfoSet, :TvLogo, :SourceLogo
+        
+        def initialize(ocrset=nil, frametagset=nil, multilevelpersoninfoset=nil, tvlogo=nil, sourcelogo=nil)
+          @OcrSet = ocrset
+          @FrameTagSet = frametagset
+          @MultiLevelPersonInfoSet = multilevelpersoninfoset
+          @TvLogo = tvlogo
+          @SourceLogo = sourcelogo
+        end
+
+        def deserialize(params)
+          unless params['OcrSet'].nil?
+            @OcrSet = []
+            params['OcrSet'].each do |i|
+              imageocr_tmp = ImageOcr.new
+              imageocr_tmp.deserialize(i)
+              @OcrSet << imageocr_tmp
+            end
+          end
+          unless params['FrameTagSet'].nil?
+            @FrameTagSet = MultiLevelTag.new
+            @FrameTagSet.deserialize(params['FrameTagSet'])
+          end
+          unless params['MultiLevelPersonInfoSet'].nil?
+            @MultiLevelPersonInfoSet = []
+            params['MultiLevelPersonInfoSet'].each do |i|
+              multilevelpersoninfo_tmp = MultiLevelPersonInfo.new
+              multilevelpersoninfo_tmp.deserialize(i)
+              @MultiLevelPersonInfoSet << multilevelpersoninfo_tmp
+            end
+          end
+          unless params['TvLogo'].nil?
+            @TvLogo = ImageLogo.new
+            @TvLogo.deserialize(params['TvLogo'])
+          end
+          unless params['SourceLogo'].nil?
+            @SourceLogo = ImageLogo.new
+            @SourceLogo.deserialize(params['SourceLogo'])
+          end
+        end
+      end
+
+      # 图片中出现的Logo信息
+      class ImageLogo < TencentCloud::Common::AbstractModel
+        # @param Logo: 图片中出现的Logo识别结果
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Logo: String
+        # @param AppearRect: Logo在图片中出现的位置
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AppearRect: :class:`Tencentcloud::Ivld.v20210903.models.Rectf`
+
+        attr_accessor :Logo, :AppearRect
+        
+        def initialize(logo=nil, appearrect=nil)
+          @Logo = logo
+          @AppearRect = appearrect
+        end
+
+        def deserialize(params)
+          @Logo = params['Logo']
+          unless params['AppearRect'].nil?
+            @AppearRect = Rectf.new
+            @AppearRect.deserialize(params['AppearRect'])
+          end
+        end
+      end
+
+      # 图片文件元信息
+      class ImageMetadata < TencentCloud::Common::AbstractModel
+        # @param FileSize: 媒资图片文件大小，单位为Byte
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FileSize: Integer
+        # @param MD5: 媒资图片文件MD5
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MD5: String
+        # @param Width: 媒资图片文件宽度
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Width: Integer
+        # @param Height: 媒资图片文件高度
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Height: Integer
+        # @param Format: 媒资图片文件格式
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Format: String
+
+        attr_accessor :FileSize, :MD5, :Width, :Height, :Format
+        
+        def initialize(filesize=nil, md5=nil, width=nil, height=nil, format=nil)
+          @FileSize = filesize
+          @MD5 = md5
+          @Width = width
+          @Height = height
+          @Format = format
+        end
+
+        def deserialize(params)
+          @FileSize = params['FileSize']
+          @MD5 = params['MD5']
+          @Width = params['Width']
+          @Height = params['Height']
+          @Format = params['Format']
+        end
+      end
+
+      # 图片OCR识别结果
+      class ImageOcr < TencentCloud::Common::AbstractModel
+        # @param Content: 图片中可视文本识别结果
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Content: String
+        # @param AppearRect: 可视文本在图片中的位置信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AppearRect: :class:`Tencentcloud::Ivld.v20210903.models.Rectf`
+
+        attr_accessor :Content, :AppearRect
+        
+        def initialize(content=nil, appearrect=nil)
+          @Content = content
+          @AppearRect = appearrect
+        end
+
+        def deserialize(params)
+          @Content = params['Content']
+          unless params['AppearRect'].nil?
+            @AppearRect = Rectf.new
+            @AppearRect.deserialize(params['AppearRect'])
+          end
+        end
+      end
+
       # ImportMedia请求参数结构体
       class ImportMediaRequest < TencentCloud::Common::AbstractModel
         # @param URL: 待分析视频的URL，目前只支持*不带签名的*COS地址，长度最长1KB
         # @type URL: String
         # @param MD5: 待分析视频的MD5，为空时不做校验，否则会做MD5校验，长度必须为32B
         # @type MD5: String
-        # @param Name: 待分析视频的名称，指定后可支持筛选，最多100个中文字符
+        # @param Name: 待分析视频的名称，指定后可支持筛选，最多64B
         # @type Name: String
         # @param WriteBackCosPath: 当非本人外部视频地址导入时，该字段为转存的cos桶地址且不可为空; 示例：https://${Bucket}-${AppId}.cos.${Region}.myqcloud.com/${PathPrefix}/  (注意，cos路径需要以/分隔符结尾)。
         # 推荐采用本主帐号COS桶，如果使用其他帐号COS桶，请确保COS桶可写，否则可导致分析失败
@@ -1178,16 +1423,20 @@ module TencentCloud
         # @type Label: String
         # @param CallbackURL: 媒资导入完成的回调地址，该设置优先级高于控制台全局的设置；
         # @type CallbackURL: String
+        # @param MediaType: 媒资文件类型，详细定义参见[MediaPreknownInfo.MediaType](https://cloud.tencent.com/document/product/1509/65063#MediaPreknownInfo)
+        # 默认为2(视频)
+        # @type MediaType: Integer
 
-        attr_accessor :URL, :MD5, :Name, :WriteBackCosPath, :Label, :CallbackURL
+        attr_accessor :URL, :MD5, :Name, :WriteBackCosPath, :Label, :CallbackURL, :MediaType
         
-        def initialize(url=nil, md5=nil, name=nil, writebackcospath=nil, label=nil, callbackurl=nil)
+        def initialize(url=nil, md5=nil, name=nil, writebackcospath=nil, label=nil, callbackurl=nil, mediatype=nil)
           @URL = url
           @MD5 = md5
           @Name = name
           @WriteBackCosPath = writebackcospath
           @Label = label
           @CallbackURL = callbackurl
+          @MediaType = mediatype
         end
 
         def deserialize(params)
@@ -1197,6 +1446,7 @@ module TencentCloud
           @WriteBackCosPath = params['WriteBackCosPath']
           @Label = params['Label']
           @CallbackURL = params['CallbackURL']
+          @MediaType = params['MediaType']
         end
       end
 
@@ -1364,14 +1614,18 @@ module TencentCloud
         # @param LabelSet: 媒资自定义标签数组
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LabelSet: Array
+        # @param MediaType: 媒资文件类型，定义参见[MediaPreknownInfo.MediaType](https://cloud.tencent.com/document/product/1509/65063#MediaPreknownInfo)
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MediaType: Integer
 
-        attr_accessor :MediaNameSet, :StatusSet, :MediaIdSet, :LabelSet
+        attr_accessor :MediaNameSet, :StatusSet, :MediaIdSet, :LabelSet, :MediaType
         
-        def initialize(medianameset=nil, statusset=nil, mediaidset=nil, labelset=nil)
+        def initialize(medianameset=nil, statusset=nil, mediaidset=nil, labelset=nil, mediatype=nil)
           @MediaNameSet = medianameset
           @StatusSet = statusset
           @MediaIdSet = mediaidset
           @LabelSet = labelset
+          @MediaType = mediatype
         end
 
         def deserialize(params)
@@ -1379,6 +1633,7 @@ module TencentCloud
           @StatusSet = params['StatusSet']
           @MediaIdSet = params['MediaIdSet']
           @LabelSet = params['LabelSet']
+          @MediaType = params['MediaType']
         end
       end
 
@@ -1413,7 +1668,7 @@ module TencentCloud
         # @param FailedReason: 若状态为失败，表示失败原因
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FailedReason: String
-        # @param Metadata: 媒资视频元信息
+        # @param Metadata: 媒资视频元信息，仅在MediaType=VIDEO时有效
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Metadata: :class:`Tencentcloud::Ivld.v20210903.models.MediaMetadata`
         # @param Progress: 导入视频进度，取值范围为[0,100]
@@ -1425,10 +1680,22 @@ module TencentCloud
         # @param CallbackURL: 媒资导入完成后的回调地址
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CallbackURL: String
+        # @param MediaType: 媒资文件类型，具体参看[MediaPreknownInfo](https://cloud.tencent.com/document/product/1509/65063#MediaPreknownInfo)
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MediaType: Integer
+        # @param AudioMetadata: 媒资音频元信息，仅在MediaType=Audio时有效
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AudioMetadata: :class:`Tencentcloud::Ivld.v20210903.models.AudioMetadata`
+        # @param ImageMetadata: 媒资图片文件元信息，仅在MediaType=Image时有效
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ImageMetadata: :class:`Tencentcloud::Ivld.v20210903.models.ImageMetadata`
+        # @param TextMetadata: 媒资文本文件元信息，仅在MediaType=Text时有效
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TextMetadata: :class:`Tencentcloud::Ivld.v20210903.models.TextMetadata`
 
-        attr_accessor :MediaId, :Name, :DownLoadURL, :Status, :FailedReason, :Metadata, :Progress, :Label, :CallbackURL
+        attr_accessor :MediaId, :Name, :DownLoadURL, :Status, :FailedReason, :Metadata, :Progress, :Label, :CallbackURL, :MediaType, :AudioMetadata, :ImageMetadata, :TextMetadata
         
-        def initialize(mediaid=nil, name=nil, downloadurl=nil, status=nil, failedreason=nil, metadata=nil, progress=nil, label=nil, callbackurl=nil)
+        def initialize(mediaid=nil, name=nil, downloadurl=nil, status=nil, failedreason=nil, metadata=nil, progress=nil, label=nil, callbackurl=nil, mediatype=nil, audiometadata=nil, imagemetadata=nil, textmetadata=nil)
           @MediaId = mediaid
           @Name = name
           @DownLoadURL = downloadurl
@@ -1438,6 +1705,10 @@ module TencentCloud
           @Progress = progress
           @Label = label
           @CallbackURL = callbackurl
+          @MediaType = mediatype
+          @AudioMetadata = audiometadata
+          @ImageMetadata = imagemetadata
+          @TextMetadata = textmetadata
         end
 
         def deserialize(params)
@@ -1453,12 +1724,25 @@ module TencentCloud
           @Progress = params['Progress']
           @Label = params['Label']
           @CallbackURL = params['CallbackURL']
+          @MediaType = params['MediaType']
+          unless params['AudioMetadata'].nil?
+            @AudioMetadata = AudioMetadata.new
+            @AudioMetadata.deserialize(params['AudioMetadata'])
+          end
+          unless params['ImageMetadata'].nil?
+            @ImageMetadata = ImageMetadata.new
+            @ImageMetadata.deserialize(params['ImageMetadata'])
+          end
+          unless params['TextMetadata'].nil?
+            @TextMetadata = TextMetadata.new
+            @TextMetadata.deserialize(params['TextMetadata'])
+          end
         end
       end
 
       # 媒资文件视频元信息，包括分辨率，帧率，码率等
       class MediaMetadata < TencentCloud::Common::AbstractModel
-        # @param FileSize: 媒资视频文件大小
+        # @param FileSize: 媒资视频文件大小，单位为字节
         # @type FileSize: Integer
         # @param MD5: 媒资视频文件MD5
         # @type MD5: String
@@ -1513,8 +1797,11 @@ module TencentCloud
       # | MediaType 名称|  MediaType取值 | MediaType描述 |
       # |---|---|---|
       # | MEDIA_TYPE_INVALID | 0 | 非法的媒资文件类型 |
-      # | MEDIA_TYPE_IMAGE | 1 | 图片，当前不支持 |
-      # | MEDIA_TYPE_VIDEO | 2 | 视频，当前只支持此类型媒资文件 |
+      # | MEDIA_TYPE_IMAGE | 1 | 图片 |
+      # | MEDIA_TYPE_VIDEO | 2 | 视频 |
+      # | MEDIA_TYPE_AUDIO | 3 | 音频 |
+      # | MEDIA_TYPE_VIDEO_STREAM | 4 | 视频流，暂不支持 |
+      # | MEDIA_TYPE_TEXT | 5 | 文本 |
 
       # MediaPreknownInfo.MediaLabel:
 
@@ -1607,6 +1894,40 @@ module TencentCloud
 
         def deserialize(params)
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 带类型树的已分类人物信息
+      class MultiLevelPersonInfo < TencentCloud::Common::AbstractModel
+        # @param L1ClassifyName: 一级分类名称(分类信息参见自定义人物类型)
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type L1ClassifyName: String
+        # @param L2ClassifiedPersonInfoSet: 已分类人物信息数组(所有分类类型为二级分类)
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type L2ClassifiedPersonInfoSet: Array
+        # @param Source: 检测结果来源
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Source: Integer
+
+        attr_accessor :L1ClassifyName, :L2ClassifiedPersonInfoSet, :Source
+        
+        def initialize(l1classifyname=nil, l2classifiedpersoninfoset=nil, source=nil)
+          @L1ClassifyName = l1classifyname
+          @L2ClassifiedPersonInfoSet = l2classifiedpersoninfoset
+          @Source = source
+        end
+
+        def deserialize(params)
+          @L1ClassifyName = params['L1ClassifyName']
+          unless params['L2ClassifiedPersonInfoSet'].nil?
+            @L2ClassifiedPersonInfoSet = []
+            params['L2ClassifiedPersonInfoSet'].each do |i|
+              classifiedpersoninfo_tmp = ClassifiedPersonInfo.new
+              classifiedpersoninfo_tmp.deserialize(i)
+              @L2ClassifiedPersonInfoSet << classifiedpersoninfo_tmp
+            end
+          end
+          @Source = params['Source']
         end
       end
 
@@ -1738,6 +2059,38 @@ module TencentCloud
         end
       end
 
+      # 矩形内容框
+      class Rectf < TencentCloud::Common::AbstractModel
+        # @param X: 矩形框左上角水平座标
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type X: Float
+        # @param Y: 矩形框左上角竖直座标
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Y: Float
+        # @param Width: 矩形框宽度
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Width: Float
+        # @param Height: 矩形框长度
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Height: Float
+
+        attr_accessor :X, :Y, :Width, :Height
+        
+        def initialize(x=nil, y=nil, width=nil, height=nil)
+          @X = x
+          @Y = y
+          @Width = width
+          @Height = height
+        end
+
+        def deserialize(params)
+          @X = params['X']
+          @Y = params['Y']
+          @Width = params['Width']
+          @Height = params['Height']
+        end
+      end
+
       # 视频结构化结果
       class ShowInfo < TencentCloud::Common::AbstractModel
         # @param Date: 节目日期(只在新闻有效)
@@ -1785,10 +2138,16 @@ module TencentCloud
         # @param SummaryTagSet: 概要标签信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SummaryTagSet: Array
+        # @param UnknownPersonSet: 未知人物信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UnknownPersonSet: Array
+        # @param MultiLevelPersonInfoSet: 树状已分类人物信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MultiLevelPersonInfoSet: Array
 
-        attr_accessor :Date, :Logo, :Column, :Source, :CoverImageURL, :SummarySet, :TitleSet, :AudioInfoSet, :TextInfoSet, :ClassifiedPersonInfoSet, :TextTagSet, :FrameTagSet, :WebMediaURL, :MediaClassifierSet, :SummaryTagSet
+        attr_accessor :Date, :Logo, :Column, :Source, :CoverImageURL, :SummarySet, :TitleSet, :AudioInfoSet, :TextInfoSet, :ClassifiedPersonInfoSet, :TextTagSet, :FrameTagSet, :WebMediaURL, :MediaClassifierSet, :SummaryTagSet, :UnknownPersonSet, :MultiLevelPersonInfoSet
         
-        def initialize(date=nil, logo=nil, column=nil, source=nil, coverimageurl=nil, summaryset=nil, titleset=nil, audioinfoset=nil, textinfoset=nil, classifiedpersoninfoset=nil, texttagset=nil, frametagset=nil, webmediaurl=nil, mediaclassifierset=nil, summarytagset=nil)
+        def initialize(date=nil, logo=nil, column=nil, source=nil, coverimageurl=nil, summaryset=nil, titleset=nil, audioinfoset=nil, textinfoset=nil, classifiedpersoninfoset=nil, texttagset=nil, frametagset=nil, webmediaurl=nil, mediaclassifierset=nil, summarytagset=nil, unknownpersonset=nil, multilevelpersoninfoset=nil)
           @Date = date
           @Logo = logo
           @Column = column
@@ -1804,6 +2163,8 @@ module TencentCloud
           @WebMediaURL = webmediaurl
           @MediaClassifierSet = mediaclassifierset
           @SummaryTagSet = summarytagset
+          @UnknownPersonSet = unknownpersonset
+          @MultiLevelPersonInfoSet = multilevelpersoninfoset
         end
 
         def deserialize(params)
@@ -1849,6 +2210,22 @@ module TencentCloud
           @WebMediaURL = params['WebMediaURL']
           @MediaClassifierSet = params['MediaClassifierSet']
           @SummaryTagSet = params['SummaryTagSet']
+          unless params['UnknownPersonSet'].nil?
+            @UnknownPersonSet = []
+            params['UnknownPersonSet'].each do |i|
+              unknownperson_tmp = UnknownPerson.new
+              unknownperson_tmp.deserialize(i)
+              @UnknownPersonSet << unknownperson_tmp
+            end
+          end
+          unless params['MultiLevelPersonInfoSet'].nil?
+            @MultiLevelPersonInfoSet = []
+            params['MultiLevelPersonInfoSet'].each do |i|
+              multilevelpersoninfo_tmp = MultiLevelPersonInfo.new
+              multilevelpersoninfo_tmp.deserialize(i)
+              @MultiLevelPersonInfoSet << multilevelpersoninfo_tmp
+            end
+          end
         end
       end
 
@@ -1967,10 +2344,22 @@ module TencentCloud
         # @param CallbackURL: 任务分析完成后的后调地址
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CallbackURL: String
+        # @param AudioMetadata: 任务对应的媒资文件元信息，仅在MediaType为Audio时有效
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AudioMetadata: :class:`Tencentcloud::Ivld.v20210903.models.AudioMetadata`
+        # @param ImageMetadata: 任务对应的媒资文件元信息，仅在MediaType为Audio时有效
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ImageMetadata: :class:`Tencentcloud::Ivld.v20210903.models.ImageMetadata`
+        # @param TextMetadata: 任务对应的媒资文件元信息，仅在MediaType为Text时有效
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TextMetadata: :class:`Tencentcloud::Ivld.v20210903.models.TextMetadata`
+        # @param Metadata: 任务对应的媒资文件元信息，仅在MediaType为Video时有效
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Metadata: :class:`Tencentcloud::Ivld.v20210903.models.MediaMetadata`
 
-        attr_accessor :TaskId, :TaskName, :MediaId, :TaskStatus, :TaskProgress, :TaskTimeCost, :TaskCreateTime, :TaskStartTime, :FailedReason, :MediaPreknownInfo, :MediaName, :Label, :CallbackURL
+        attr_accessor :TaskId, :TaskName, :MediaId, :TaskStatus, :TaskProgress, :TaskTimeCost, :TaskCreateTime, :TaskStartTime, :FailedReason, :MediaPreknownInfo, :MediaName, :Label, :CallbackURL, :AudioMetadata, :ImageMetadata, :TextMetadata, :Metadata
         
-        def initialize(taskid=nil, taskname=nil, mediaid=nil, taskstatus=nil, taskprogress=nil, tasktimecost=nil, taskcreatetime=nil, taskstarttime=nil, failedreason=nil, mediapreknowninfo=nil, medianame=nil, label=nil, callbackurl=nil)
+        def initialize(taskid=nil, taskname=nil, mediaid=nil, taskstatus=nil, taskprogress=nil, tasktimecost=nil, taskcreatetime=nil, taskstarttime=nil, failedreason=nil, mediapreknowninfo=nil, medianame=nil, label=nil, callbackurl=nil, audiometadata=nil, imagemetadata=nil, textmetadata=nil, metadata=nil)
           @TaskId = taskid
           @TaskName = taskname
           @MediaId = mediaid
@@ -1984,6 +2373,10 @@ module TencentCloud
           @MediaName = medianame
           @Label = label
           @CallbackURL = callbackurl
+          @AudioMetadata = audiometadata
+          @ImageMetadata = imagemetadata
+          @TextMetadata = textmetadata
+          @Metadata = metadata
         end
 
         def deserialize(params)
@@ -2003,6 +2396,22 @@ module TencentCloud
           @MediaName = params['MediaName']
           @Label = params['Label']
           @CallbackURL = params['CallbackURL']
+          unless params['AudioMetadata'].nil?
+            @AudioMetadata = AudioMetadata.new
+            @AudioMetadata.deserialize(params['AudioMetadata'])
+          end
+          unless params['ImageMetadata'].nil?
+            @ImageMetadata = ImageMetadata.new
+            @ImageMetadata.deserialize(params['ImageMetadata'])
+          end
+          unless params['TextMetadata'].nil?
+            @TextMetadata = TextMetadata.new
+            @TextMetadata.deserialize(params['TextMetadata'])
+          end
+          unless params['Metadata'].nil?
+            @Metadata = MediaMetadata.new
+            @Metadata.deserialize(params['Metadata'])
+          end
         end
       end
 
@@ -2032,6 +2441,36 @@ module TencentCloud
         end
       end
 
+      # 文本文件标签识别结果
+      class TextData < TencentCloud::Common::AbstractModel
+        # @param Content: 文本内容信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Content: String
+        # @param Summary: 文本概要信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Summary: String
+        # @param TextTagSet: 文本标签信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TextTagSet: :class:`Tencentcloud::Ivld.v20210903.models.MultiLevelTag`
+
+        attr_accessor :Content, :Summary, :TextTagSet
+        
+        def initialize(content=nil, summary=nil, texttagset=nil)
+          @Content = content
+          @Summary = summary
+          @TextTagSet = texttagset
+        end
+
+        def deserialize(params)
+          @Content = params['Content']
+          @Summary = params['Summary']
+          unless params['TextTagSet'].nil?
+            @TextTagSet = MultiLevelTag.new
+            @TextTagSet.deserialize(params['TextTagSet'])
+          end
+        end
+      end
+
       # 可视文本识别结果信息(OCR)
       class TextInfo < TencentCloud::Common::AbstractModel
         # @param Content: OCR提取的内容
@@ -2057,6 +2496,67 @@ module TencentCloud
           @StartTimeStamp = params['StartTimeStamp']
           @EndTimeStamp = params['EndTimeStamp']
           @Tag = params['Tag']
+        end
+      end
+
+      # 文本文件元信息
+      class TextMetadata < TencentCloud::Common::AbstractModel
+        # @param FileSize: 媒资文本文件大小，单位为字节
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FileSize: Integer
+        # @param MD5: 媒资文本文件MD5
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MD5: String
+        # @param Length: 媒资文本文件字符数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Length: Integer
+        # @param Format: 媒资文本文件格式
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Format: String
+
+        attr_accessor :FileSize, :MD5, :Length, :Format
+        
+        def initialize(filesize=nil, md5=nil, length=nil, format=nil)
+          @FileSize = filesize
+          @MD5 = md5
+          @Length = length
+          @Format = format
+        end
+
+        def deserialize(params)
+          @FileSize = params['FileSize']
+          @MD5 = params['MD5']
+          @Length = params['Length']
+          @Format = params['Format']
+        end
+      end
+
+      # 未知人物信息
+      class UnknownPerson < TencentCloud::Common::AbstractModel
+        # @param VideoAppearSet: 视觉出现信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VideoAppearSet: Array
+        # @param PutLibraryAllowed: 未知人物是否可以入库(只有当未知人物人脸小图质量分符合要求时才可入库)
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PutLibraryAllowed: Boolean
+
+        attr_accessor :VideoAppearSet, :PutLibraryAllowed
+        
+        def initialize(videoappearset=nil, putlibraryallowed=nil)
+          @VideoAppearSet = videoappearset
+          @PutLibraryAllowed = putlibraryallowed
+        end
+
+        def deserialize(params)
+          unless params['VideoAppearSet'].nil?
+            @VideoAppearSet = []
+            params['VideoAppearSet'].each do |i|
+              videoappearinfo_tmp = VideoAppearInfo.new
+              videoappearinfo_tmp.deserialize(i)
+              @VideoAppearSet << videoappearinfo_tmp
+            end
+          end
+          @PutLibraryAllowed = params['PutLibraryAllowed']
         end
       end
 

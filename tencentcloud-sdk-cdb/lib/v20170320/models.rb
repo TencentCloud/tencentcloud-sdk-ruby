@@ -2256,16 +2256,19 @@ module TencentCloud
         # @type ParamList: Array
         # @param TemplateType: 默认参数模板类型。支持值包括："HIGH_STABILITY" - 高稳定模板，"HIGH_PERFORMANCE" - 高性能模板。
         # @type TemplateType: String
+        # @param EngineType: 实例引擎类型，默认为"InnoDB"，支持值包括："InnoDB"，"RocksDB"。
+        # @type EngineType: String
 
-        attr_accessor :Name, :Description, :EngineVersion, :TemplateId, :ParamList, :TemplateType
+        attr_accessor :Name, :Description, :EngineVersion, :TemplateId, :ParamList, :TemplateType, :EngineType
         
-        def initialize(name=nil, description=nil, engineversion=nil, templateid=nil, paramlist=nil, templatetype=nil)
+        def initialize(name=nil, description=nil, engineversion=nil, templateid=nil, paramlist=nil, templatetype=nil, enginetype=nil)
           @Name = name
           @Description = description
           @EngineVersion = engineversion
           @TemplateId = templateid
           @ParamList = paramlist
           @TemplateType = templatetype
+          @EngineType = enginetype
         end
 
         def deserialize(params)
@@ -2282,6 +2285,7 @@ module TencentCloud
             end
           end
           @TemplateType = params['TemplateType']
+          @EngineType = params['EngineType']
         end
       end
 
@@ -4398,7 +4402,7 @@ module TencentCloud
       class DescribeDBInstancesResponse < TencentCloud::Common::AbstractModel
         # @param TotalCount: 符合查询条件的实例总数。
         # @type TotalCount: Integer
-        # @param Items: 实例详细信息。
+        # @param Items: 实例详细信息列表。
         # @type Items: Array
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

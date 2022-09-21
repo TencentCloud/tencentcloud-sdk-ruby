@@ -1152,32 +1152,37 @@ module TencentCloud
         # @param ProductVaildYears: 产品有效期
         # @type ProductVaildYears: Integer
         # @param Features: 设备功能码 ypsxth音频双向通话 spdxth视频单向通话 sxysp双向音视频
+        # 注意：此字段只支持创建'摄像头'和'儿童手表'，摄像头传["ypsxth","spdxth"]，儿童手表传["ypsxth","spdxth","sxysp"]，创建其它品类的产品需要传递CategoryId字段，通过云api调用此接口时，如果传了CategoryId字段，将忽略Features字段,但Features仍需传值(可传任意字符串数组)
         # @type Features: Array
-        # @param ChipOs: 设备操作系统，通用设备填default
-        # @type ChipOs: String
         # @param ChipManufactureId: 芯片厂商id，通用设备填default
         # @type ChipManufactureId: String
         # @param ChipId: 芯片id，通用设备填default
         # @type ChipId: String
         # @param ProductDescription: 产品描述信息
         # @type ProductDescription: String
+        # @param ChipOs: 设备操作系统，通用设备填default
+        # @type ChipOs: String
         # @param EncryptionType: 认证方式 只支持取值为2 psk认证
         # @type EncryptionType: Integer
+        # @param CategoryId: 产品品类id,113:摄像头,567:儿童手表,595:可视对讲门锁
+        # 注意：通过云api调用此接口时，如果传了CategoryId字段，将忽略Features字段,但Features仍需传值(可传任意字符串数组)
+        # @type CategoryId: Integer
         # @param NetType: 连接类型，wifi表示WIFI连接，cellular表示4G连接
         # @type NetType: String
 
-        attr_accessor :ProductName, :DeviceType, :ProductVaildYears, :Features, :ChipOs, :ChipManufactureId, :ChipId, :ProductDescription, :EncryptionType, :NetType
+        attr_accessor :ProductName, :DeviceType, :ProductVaildYears, :Features, :ChipManufactureId, :ChipId, :ProductDescription, :ChipOs, :EncryptionType, :CategoryId, :NetType
         
-        def initialize(productname=nil, devicetype=nil, productvaildyears=nil, features=nil, chipos=nil, chipmanufactureid=nil, chipid=nil, productdescription=nil, encryptiontype=nil, nettype=nil)
+        def initialize(productname=nil, devicetype=nil, productvaildyears=nil, features=nil, chipmanufactureid=nil, chipid=nil, productdescription=nil, chipos=nil, encryptiontype=nil, categoryid=nil, nettype=nil)
           @ProductName = productname
           @DeviceType = devicetype
           @ProductVaildYears = productvaildyears
           @Features = features
-          @ChipOs = chipos
           @ChipManufactureId = chipmanufactureid
           @ChipId = chipid
           @ProductDescription = productdescription
+          @ChipOs = chipos
           @EncryptionType = encryptiontype
+          @CategoryId = categoryid
           @NetType = nettype
         end
 
@@ -1186,11 +1191,12 @@ module TencentCloud
           @DeviceType = params['DeviceType']
           @ProductVaildYears = params['ProductVaildYears']
           @Features = params['Features']
-          @ChipOs = params['ChipOs']
           @ChipManufactureId = params['ChipManufactureId']
           @ChipId = params['ChipId']
           @ProductDescription = params['ProductDescription']
+          @ChipOs = params['ChipOs']
           @EncryptionType = params['EncryptionType']
+          @CategoryId = params['CategoryId']
           @NetType = params['NetType']
         end
       end
@@ -5976,10 +5982,13 @@ module TencentCloud
         # @param CategoryId: 产品品类,113:摄像头,567:儿童手表,595:可视对讲门锁
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CategoryId: Integer
+        # @param ProductVaildYears: 产品有效年限
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProductVaildYears: Integer
 
-        attr_accessor :ProductId, :ProductName, :DeviceType, :EncryptionType, :Features, :ChipOs, :ChipManufactureId, :ChipId, :ProductDescription, :CreateTime, :UpdateTime, :NetType, :CategoryId
+        attr_accessor :ProductId, :ProductName, :DeviceType, :EncryptionType, :Features, :ChipOs, :ChipManufactureId, :ChipId, :ProductDescription, :CreateTime, :UpdateTime, :NetType, :CategoryId, :ProductVaildYears
         
-        def initialize(productid=nil, productname=nil, devicetype=nil, encryptiontype=nil, features=nil, chipos=nil, chipmanufactureid=nil, chipid=nil, productdescription=nil, createtime=nil, updatetime=nil, nettype=nil, categoryid=nil)
+        def initialize(productid=nil, productname=nil, devicetype=nil, encryptiontype=nil, features=nil, chipos=nil, chipmanufactureid=nil, chipid=nil, productdescription=nil, createtime=nil, updatetime=nil, nettype=nil, categoryid=nil, productvaildyears=nil)
           @ProductId = productid
           @ProductName = productname
           @DeviceType = devicetype
@@ -5993,6 +6002,7 @@ module TencentCloud
           @UpdateTime = updatetime
           @NetType = nettype
           @CategoryId = categoryid
+          @ProductVaildYears = productvaildyears
         end
 
         def deserialize(params)
@@ -6009,6 +6019,7 @@ module TencentCloud
           @UpdateTime = params['UpdateTime']
           @NetType = params['NetType']
           @CategoryId = params['CategoryId']
+          @ProductVaildYears = params['ProductVaildYears']
         end
       end
 

@@ -737,6 +737,68 @@ module TencentCloud
         end
       end
 
+      # ChannelVerifyPdf请求参数结构体
+      class ChannelVerifyPdfRequest < TencentCloud::Common::AbstractModel
+        # @param FlowId: 合同Id，流程Id
+        # @type FlowId: String
+        # @param Agent: 渠道应用相关信息。 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 和 Agent.ProxyAppId 均必填。
+        # @type Agent: :class:`Tencentcloud::Essbasic.v20210526.models.Agent`
+        # @param Operator: 操作者的信息
+        # @type Operator: :class:`Tencentcloud::Essbasic.v20210526.models.UserInfo`
+
+        attr_accessor :FlowId, :Agent, :Operator
+        
+        def initialize(flowid=nil, agent=nil, operator=nil)
+          @FlowId = flowid
+          @Agent = agent
+          @Operator = operator
+        end
+
+        def deserialize(params)
+          @FlowId = params['FlowId']
+          unless params['Agent'].nil?
+            @Agent = Agent.new
+            @Agent.deserialize(params['Agent'])
+          end
+          unless params['Operator'].nil?
+            @Operator = UserInfo.new
+            @Operator.deserialize(params['Operator'])
+          end
+        end
+      end
+
+      # ChannelVerifyPdf返回参数结构体
+      class ChannelVerifyPdfResponse < TencentCloud::Common::AbstractModel
+        # @param VerifyResult: 验签结果，1-文件未被篡改，全部签名在腾讯电子签完成； 2-文件未被篡改，部分签名在腾讯电子签完成；3-文件被篡改；4-异常：文件内没有签名域；5-异常：文件签名格式错误
+        # @type VerifyResult: Integer
+        # @param PdfVerifyResults: 验签结果详情,内部状态1-验签成功，在电子签签署；2-验签成功，在其他平台签署；3-验签失败；4-pdf文件没有签名域
+        # ；5-文件签名格式错误
+        # @type PdfVerifyResults: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :VerifyResult, :PdfVerifyResults, :RequestId
+        
+        def initialize(verifyresult=nil, pdfverifyresults=nil, requestid=nil)
+          @VerifyResult = verifyresult
+          @PdfVerifyResults = pdfverifyresults
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @VerifyResult = params['VerifyResult']
+          unless params['PdfVerifyResults'].nil?
+            @PdfVerifyResults = []
+            params['PdfVerifyResults'].each do |i|
+              pdfverifyresult_tmp = PdfVerifyResult.new
+              pdfverifyresult_tmp.deserialize(i)
+              @PdfVerifyResults << pdfverifyresult_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 此结构体 (Component) 用于描述控件属性。
       class Component < TencentCloud::Common::AbstractModel
         # @param ComponentId: 控件编号
@@ -2223,6 +2285,74 @@ module TencentCloud
           @ProxyIp = params['ProxyIp']
           @OrganizationId = params['OrganizationId']
           @Channel = params['Channel']
+        end
+      end
+
+      # 合同文件验签单个结果结构体
+      class PdfVerifyResult < TencentCloud::Common::AbstractModel
+        # @param VerifyResult: 验签结果
+        # @type VerifyResult: Integer
+        # @param SignPlatform: 签署平台
+        # @type SignPlatform: String
+        # @param SignerName: 签署人名称
+        # @type SignerName: String
+        # @param SignTime: 签署时间
+        # @type SignTime: Integer
+        # @param SignAlgorithm: 签名算法
+        # @type SignAlgorithm: String
+        # @param CertSn: 签名证书序列号
+        # @type CertSn: String
+        # @param CertNotBefore: 证书起始时间
+        # @type CertNotBefore: Integer
+        # @param CertNotAfter: 证书过期时间
+        # @type CertNotAfter: Integer
+        # @param SignType: 签名类型
+        # @type SignType: Integer
+        # @param ComponentPosX: 签名域横坐标
+        # @type ComponentPosX: Float
+        # @param ComponentPosY: 签名域纵坐标
+        # @type ComponentPosY: Float
+        # @param ComponentWidth: 签名域宽度
+        # @type ComponentWidth: Float
+        # @param ComponentHeight: 签名域高度
+        # @type ComponentHeight: Float
+        # @param ComponentPage: 签名域所在页码
+        # @type ComponentPage: Integer
+
+        attr_accessor :VerifyResult, :SignPlatform, :SignerName, :SignTime, :SignAlgorithm, :CertSn, :CertNotBefore, :CertNotAfter, :SignType, :ComponentPosX, :ComponentPosY, :ComponentWidth, :ComponentHeight, :ComponentPage
+        
+        def initialize(verifyresult=nil, signplatform=nil, signername=nil, signtime=nil, signalgorithm=nil, certsn=nil, certnotbefore=nil, certnotafter=nil, signtype=nil, componentposx=nil, componentposy=nil, componentwidth=nil, componentheight=nil, componentpage=nil)
+          @VerifyResult = verifyresult
+          @SignPlatform = signplatform
+          @SignerName = signername
+          @SignTime = signtime
+          @SignAlgorithm = signalgorithm
+          @CertSn = certsn
+          @CertNotBefore = certnotbefore
+          @CertNotAfter = certnotafter
+          @SignType = signtype
+          @ComponentPosX = componentposx
+          @ComponentPosY = componentposy
+          @ComponentWidth = componentwidth
+          @ComponentHeight = componentheight
+          @ComponentPage = componentpage
+        end
+
+        def deserialize(params)
+          @VerifyResult = params['VerifyResult']
+          @SignPlatform = params['SignPlatform']
+          @SignerName = params['SignerName']
+          @SignTime = params['SignTime']
+          @SignAlgorithm = params['SignAlgorithm']
+          @CertSn = params['CertSn']
+          @CertNotBefore = params['CertNotBefore']
+          @CertNotAfter = params['CertNotAfter']
+          @SignType = params['SignType']
+          @ComponentPosX = params['ComponentPosX']
+          @ComponentPosY = params['ComponentPosY']
+          @ComponentWidth = params['ComponentWidth']
+          @ComponentHeight = params['ComponentHeight']
+          @ComponentPage = params['ComponentPage']
         end
       end
 
