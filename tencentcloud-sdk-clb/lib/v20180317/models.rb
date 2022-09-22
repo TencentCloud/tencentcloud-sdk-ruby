@@ -3161,7 +3161,7 @@ module TencentCloud
 
       # DescribeLoadBalancers请求参数结构体
       class DescribeLoadBalancersRequest < TencentCloud::Common::AbstractModel
-        # @param LoadBalancerIds: 负载均衡实例ID。
+        # @param LoadBalancerIds: 负载均衡实例ID。实例ID数量上限为20个。
         # @type LoadBalancerIds: Array
         # @param LoadBalancerType: 负载均衡实例的网络类型：
         # OPEN：公网属性， INTERNAL：内网属性。

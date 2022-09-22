@@ -2961,7 +2961,7 @@ module TencentCloud
 
       # TerminateDBInstances请求参数结构体
       class TerminateDBInstancesRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例Id列表
+        # @param InstanceId: 指定预隔离实例ID。格式如：cmgo-p8vnipr5。
         # @type InstanceId: String
 
         attr_accessor :InstanceId

@@ -282,6 +282,56 @@ module TencentCloud
         # <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
         # 数据源详情
 
+        # @param request: Request instance for DescribeDataSourceList.
+        # @type request: :class:`Tencentcloud::wedata::V20210820::DescribeDataSourceListRequest`
+        # @rtype: :class:`Tencentcloud::wedata::V20210820::DescribeDataSourceListResponse`
+        def DescribeDataSourceList(request)
+          body = send_request('DescribeDataSourceList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeDataSourceListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
+        # 数据源列表
+
+        # @param request: Request instance for DescribeDataSourceWithoutInfo.
+        # @type request: :class:`Tencentcloud::wedata::V20210820::DescribeDataSourceWithoutInfoRequest`
+        # @rtype: :class:`Tencentcloud::wedata::V20210820::DescribeDataSourceWithoutInfoResponse`
+        def DescribeDataSourceWithoutInfo(request)
+          body = send_request('DescribeDataSourceWithoutInfo', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeDataSourceWithoutInfoResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
+        # 数据源详情
+
         # @param request: Request instance for DescribeDatasource.
         # @type request: :class:`Tencentcloud::wedata::V20210820::DescribeDatasourceRequest`
         # @rtype: :class:`Tencentcloud::wedata::V20210820::DescribeDatasourceResponse`

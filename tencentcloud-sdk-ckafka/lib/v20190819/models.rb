@@ -1604,10 +1604,12 @@ module TencentCloud
         # @type TransformsParam: :class:`Tencentcloud::Ckafka.v20190819.models.TransformsParam`
         # @param TaskId: 任务ID
         # @type TaskId: String
+        # @param Tags: 标签列表
+        # @type Tags: Array
 
-        attr_accessor :TaskName, :TaskType, :SourceResource, :TargetResource, :TransformParam, :PrivateLinkParam, :SchemaId, :TransformsParam, :TaskId
+        attr_accessor :TaskName, :TaskType, :SourceResource, :TargetResource, :TransformParam, :PrivateLinkParam, :SchemaId, :TransformsParam, :TaskId, :Tags
         
-        def initialize(taskname=nil, tasktype=nil, sourceresource=nil, targetresource=nil, transformparam=nil, privatelinkparam=nil, schemaid=nil, transformsparam=nil, taskid=nil)
+        def initialize(taskname=nil, tasktype=nil, sourceresource=nil, targetresource=nil, transformparam=nil, privatelinkparam=nil, schemaid=nil, transformsparam=nil, taskid=nil, tags=nil)
           @TaskName = taskname
           @TaskType = tasktype
           @SourceResource = sourceresource
@@ -1617,6 +1619,7 @@ module TencentCloud
           @SchemaId = schemaid
           @TransformsParam = transformsparam
           @TaskId = taskid
+          @Tags = tags
         end
 
         def deserialize(params)
@@ -1644,6 +1647,14 @@ module TencentCloud
             @TransformsParam.deserialize(params['TransformsParam'])
           end
           @TaskId = params['TaskId']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
+            end
+          end
         end
       end
 
@@ -3805,10 +3816,13 @@ module TencentCloud
         # @param ErrorMessage: 异常信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ErrorMessage: String
+        # @param Tags: 任务标签列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Tags: Array
 
-        attr_accessor :TaskId, :TaskName, :TaskType, :Status, :SourceResource, :TargetResource, :Connections, :CreateTime, :TransformParam, :DatahubId, :SchemaId, :SchemaName, :TransformsParam, :ErrorMessage
+        attr_accessor :TaskId, :TaskName, :TaskType, :Status, :SourceResource, :TargetResource, :Connections, :CreateTime, :TransformParam, :DatahubId, :SchemaId, :SchemaName, :TransformsParam, :ErrorMessage, :Tags
         
-        def initialize(taskid=nil, taskname=nil, tasktype=nil, status=nil, sourceresource=nil, targetresource=nil, connections=nil, createtime=nil, transformparam=nil, datahubid=nil, schemaid=nil, schemaname=nil, transformsparam=nil, errormessage=nil)
+        def initialize(taskid=nil, taskname=nil, tasktype=nil, status=nil, sourceresource=nil, targetresource=nil, connections=nil, createtime=nil, transformparam=nil, datahubid=nil, schemaid=nil, schemaname=nil, transformsparam=nil, errormessage=nil, tags=nil)
           @TaskId = taskid
           @TaskName = taskname
           @TaskType = tasktype
@@ -3823,6 +3837,7 @@ module TencentCloud
           @SchemaName = schemaname
           @TransformsParam = transformsparam
           @ErrorMessage = errormessage
+          @Tags = tags
         end
 
         def deserialize(params)
@@ -3859,6 +3874,14 @@ module TencentCloud
             @TransformsParam.deserialize(params['TransformsParam'])
           end
           @ErrorMessage = params['ErrorMessage']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
+            end
+          end
         end
       end
 
@@ -6335,6 +6358,26 @@ module TencentCloud
             @Data = OperateResponseData.new
             @Data.deserialize(params['Data'])
           end
+        end
+      end
+
+      # 数据处理——Value处理参数——Jsonpath替换参数
+      class JsonPathReplaceParam < TencentCloud::Common::AbstractModel
+        # @param OldValue: 被替换值，Jsonpath表达式
+        # @type OldValue: String
+        # @param NewValue: 替换值，Jsonpath表达式或字符串
+        # @type NewValue: String
+
+        attr_accessor :OldValue, :NewValue
+        
+        def initialize(oldvalue=nil, newvalue=nil)
+          @OldValue = oldvalue
+          @NewValue = newvalue
+        end
+
+        def deserialize(params)
+          @OldValue = params['OldValue']
+          @NewValue = params['NewValue']
         end
       end
 
@@ -9195,10 +9238,13 @@ module TencentCloud
         # @param Result: 处理结果
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Result: String
+        # @param JsonPathReplace: JsonPath替换，TYPE=JSON_PATH_REPLACE时必传
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type JsonPathReplace: :class:`Tencentcloud::Ckafka.v20190819.models.JsonPathReplaceParam`
 
-        attr_accessor :Type, :Replace, :Substr, :Date, :RegexReplace, :Split, :KV, :Result
+        attr_accessor :Type, :Replace, :Substr, :Date, :RegexReplace, :Split, :KV, :Result, :JsonPathReplace
         
-        def initialize(type=nil, replace=nil, substr=nil, date=nil, regexreplace=nil, split=nil, kv=nil, result=nil)
+        def initialize(type=nil, replace=nil, substr=nil, date=nil, regexreplace=nil, split=nil, kv=nil, result=nil, jsonpathreplace=nil)
           @Type = type
           @Replace = replace
           @Substr = substr
@@ -9207,6 +9253,7 @@ module TencentCloud
           @Split = split
           @KV = kv
           @Result = result
+          @JsonPathReplace = jsonpathreplace
         end
 
         def deserialize(params)
@@ -9236,6 +9283,10 @@ module TencentCloud
             @KV.deserialize(params['KV'])
           end
           @Result = params['Result']
+          unless params['JsonPathReplace'].nil?
+            @JsonPathReplace = JsonPathReplaceParam.new
+            @JsonPathReplace.deserialize(params['JsonPathReplace'])
+          end
         end
       end
 

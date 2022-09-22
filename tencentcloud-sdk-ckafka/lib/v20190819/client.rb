@@ -269,7 +269,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 创建Datahub转储任务
+        # 创建DIP转储任务
 
         # @param request: Request instance for CreateDatahubTask.
         # @type request: :class:`Tencentcloud::ckafka::V20190819::CreateDatahubTaskRequest`

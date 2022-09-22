@@ -469,7 +469,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 获取DescribeDataFetchProject信息
+        # 获取DescribeDataFetchProject信息。已下线，请使用DescribeDataFetchUrl
 
         # @param request: Request instance for DescribeDataFetchProject.
         # @type request: :class:`Tencentcloud::rum::V20210622::DescribeDataFetchProjectRequest`

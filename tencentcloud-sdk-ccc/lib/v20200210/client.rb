@@ -557,6 +557,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 停用号码
+
+        # @param request: Request instance for DisableCCCPhoneNumber.
+        # @type request: :class:`Tencentcloud::ccc::V20200210::DisableCCCPhoneNumberRequest`
+        # @rtype: :class:`Tencentcloud::ccc::V20200210::DisableCCCPhoneNumberResponse`
+        def DisableCCCPhoneNumber(request)
+          body = send_request('DisableCCCPhoneNumber', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DisableCCCPhoneNumberResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 修改客服账号
 
         # @param request: Request instance for ModifyStaff.

@@ -1492,6 +1492,46 @@ module TencentCloud
         end
       end
 
+      # DisableCCCPhoneNumber请求参数结构体
+      class DisableCCCPhoneNumberRequest < TencentCloud::Common::AbstractModel
+        # @param SdkAppId: TCCC 实例应用 ID
+        # @type SdkAppId: Integer
+        # @param PhoneNumbers: 号码列表，0086开头
+        # @type PhoneNumbers: Array
+        # @param Disabled: 停用开关，0启用 1停用
+        # @type Disabled: Integer
+
+        attr_accessor :SdkAppId, :PhoneNumbers, :Disabled
+        
+        def initialize(sdkappid=nil, phonenumbers=nil, disabled=nil)
+          @SdkAppId = sdkappid
+          @PhoneNumbers = phonenumbers
+          @Disabled = disabled
+        end
+
+        def deserialize(params)
+          @SdkAppId = params['SdkAppId']
+          @PhoneNumbers = params['PhoneNumbers']
+          @Disabled = params['Disabled']
+        end
+      end
+
+      # DisableCCCPhoneNumber返回参数结构体
+      class DisableCCCPhoneNumberResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 批量添加客服时，返回出错客服的像个信息
       class ErrStaffItem < TencentCloud::Common::AbstractModel
         # @param StaffEmail: 坐席邮箱地址

@@ -3410,10 +3410,24 @@ module TencentCloud
         # @param JsonStandard: 是否为标准json.   0: 否, 1: 是
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type JsonStandard: Integer
+        # @param Protocol: syslog传输协议，取值为tcp或者udp。
+        # 该接口适用于：创建采集规则配置、修改采集规则配置
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Protocol: String
+        # @param Address: syslog系统日志采集指定采集器监听的地址和端口 ，形式：[ip]:[port]。举例：127.0.0.1:9000
+        # 该接口适用于：创建采集规则配置、修改采集规则配置
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Address: String
+        # @param ParseProtocol: rfc3164：指定系统日志采集使用RFC3164协议解析日志。
+        # rfc5424：指定系统日志采集使用RFC5424协议解析日志。
+        # auto：自动匹配rfc3164或者rfc5424其中一种协议
+        # 该接口适用于：创建采集规则配置、修改采集规则配置
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ParseProtocol: String
 
-        attr_accessor :TimeKey, :TimeFormat, :Delimiter, :LogRegex, :BeginRegex, :Keys, :FilterKeyRegex, :UnMatchUpLoadSwitch, :UnMatchLogKey, :Backtracking, :IsGBK, :JsonStandard
+        attr_accessor :TimeKey, :TimeFormat, :Delimiter, :LogRegex, :BeginRegex, :Keys, :FilterKeyRegex, :UnMatchUpLoadSwitch, :UnMatchLogKey, :Backtracking, :IsGBK, :JsonStandard, :Protocol, :Address, :ParseProtocol
         
-        def initialize(timekey=nil, timeformat=nil, delimiter=nil, logregex=nil, beginregex=nil, keys=nil, filterkeyregex=nil, unmatchuploadswitch=nil, unmatchlogkey=nil, backtracking=nil, isgbk=nil, jsonstandard=nil)
+        def initialize(timekey=nil, timeformat=nil, delimiter=nil, logregex=nil, beginregex=nil, keys=nil, filterkeyregex=nil, unmatchuploadswitch=nil, unmatchlogkey=nil, backtracking=nil, isgbk=nil, jsonstandard=nil, protocol=nil, address=nil, parseprotocol=nil)
           @TimeKey = timekey
           @TimeFormat = timeformat
           @Delimiter = delimiter
@@ -3426,6 +3440,9 @@ module TencentCloud
           @Backtracking = backtracking
           @IsGBK = isgbk
           @JsonStandard = jsonstandard
+          @Protocol = protocol
+          @Address = address
+          @ParseProtocol = parseprotocol
         end
 
         def deserialize(params)
@@ -3448,6 +3465,9 @@ module TencentCloud
           @Backtracking = params['Backtracking']
           @IsGBK = params['IsGBK']
           @JsonStandard = params['JsonStandard']
+          @Protocol = params['Protocol']
+          @Address = params['Address']
+          @ParseProtocol = params['ParseProtocol']
         end
       end
 

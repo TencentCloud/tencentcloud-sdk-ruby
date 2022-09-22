@@ -775,6 +775,50 @@ module TencentCloud
         end
       end
 
+      # 查询数据源分页列表
+      class DataSourceInfoPage < TencentCloud::Common::AbstractModel
+        # @param PageNumber: 分页页码
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PageNumber: Integer
+        # @param PageSize: 分页大小
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PageSize: Integer
+        # @param Rows: 数据源列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Rows: Array
+        # @param TotalCount: 总数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalCount: Integer
+        # @param TotalPageNumber: 总分页页码
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalPageNumber: Integer
+
+        attr_accessor :PageNumber, :PageSize, :Rows, :TotalCount, :TotalPageNumber
+        
+        def initialize(pagenumber=nil, pagesize=nil, rows=nil, totalcount=nil, totalpagenumber=nil)
+          @PageNumber = pagenumber
+          @PageSize = pagesize
+          @Rows = rows
+          @TotalCount = totalcount
+          @TotalPageNumber = totalpagenumber
+        end
+
+        def deserialize(params)
+          @PageNumber = params['PageNumber']
+          @PageSize = params['PageSize']
+          unless params['Rows'].nil?
+            @Rows = []
+            params['Rows'].each do |i|
+              datasourceinfo_tmp = DataSourceInfo.new
+              datasourceinfo_tmp.deserialize(i)
+              @Rows << datasourceinfo_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+          @TotalPageNumber = params['TotalPageNumber']
+        end
+      end
+
       # DeleteDataSources请求参数结构体
       class DeleteDataSourcesRequest < TencentCloud::Common::AbstractModel
         # @param Ids: id列表
@@ -943,6 +987,134 @@ module TencentCloud
             @SonTask = TaskInnerInfo.new
             @SonTask.deserialize(params['SonTask'])
           end
+        end
+      end
+
+      # DescribeDataSourceList请求参数结构体
+      class DescribeDataSourceListRequest < TencentCloud::Common::AbstractModel
+        # @param PageNumber: 页码
+        # @type PageNumber: Integer
+        # @param PageSize: 返回数量
+        # @type PageSize: Integer
+        # @param OrderFields: 排序配置
+        # @type OrderFields: Array
+        # @param Filters: 可选过滤条件，Filter可选配置(参考): "Name": { "type": "string", "description": "数据源名称" }, "Type": { "type": "string", "description": "类型" }, "ClusterId": { "type": "string", "description": "集群id" }, "CategoryId": { "type": "string", "description": "分类，项目或空间id" }
+        # @type Filters: Array
+
+        attr_accessor :PageNumber, :PageSize, :OrderFields, :Filters
+        
+        def initialize(pagenumber=nil, pagesize=nil, orderfields=nil, filters=nil)
+          @PageNumber = pagenumber
+          @PageSize = pagesize
+          @OrderFields = orderfields
+          @Filters = filters
+        end
+
+        def deserialize(params)
+          @PageNumber = params['PageNumber']
+          @PageSize = params['PageSize']
+          unless params['OrderFields'].nil?
+            @OrderFields = []
+            params['OrderFields'].each do |i|
+              orderfield_tmp = OrderField.new
+              orderfield_tmp.deserialize(i)
+              @OrderFields << orderfield_tmp
+            end
+          end
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+        end
+      end
+
+      # DescribeDataSourceList返回参数结构体
+      class DescribeDataSourceListResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 数据源列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Data: :class:`Tencentcloud::Wedata.v20210820.models.DataSourceInfoPage`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+        
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = DataSourceInfoPage.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeDataSourceWithoutInfo请求参数结构体
+      class DescribeDataSourceWithoutInfoRequest < TencentCloud::Common::AbstractModel
+        # @param OrderFields: 1
+        # @type OrderFields: Array
+        # @param Filters: 1
+        # @type Filters: Array
+
+        attr_accessor :OrderFields, :Filters
+        
+        def initialize(orderfields=nil, filters=nil)
+          @OrderFields = orderfields
+          @Filters = filters
+        end
+
+        def deserialize(params)
+          unless params['OrderFields'].nil?
+            @OrderFields = []
+            params['OrderFields'].each do |i|
+              orderfield_tmp = OrderField.new
+              orderfield_tmp.deserialize(i)
+              @OrderFields << orderfield_tmp
+            end
+          end
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+        end
+      end
+
+      # DescribeDataSourceWithoutInfo返回参数结构体
+      class DescribeDataSourceWithoutInfoResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 1
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Data: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+        
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = []
+            params['Data'].each do |i|
+              datasourceinfo_tmp = DataSourceInfo.new
+              datasourceinfo_tmp.deserialize(i)
+              @Data << datasourceinfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
         end
       end
 
@@ -1668,6 +1840,26 @@ module TencentCloud
             @Data.deserialize(params['Data'])
           end
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 通用过滤器
+      class Filter < TencentCloud::Common::AbstractModel
+        # @param Name: 过滤字段名称
+        # @type Name: String
+        # @param Values: 过滤值列表
+        # @type Values: Array
+
+        attr_accessor :Name, :Values
+        
+        def initialize(name=nil, values=nil)
+          @Name = name
+          @Values = values
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Values = params['Values']
         end
       end
 
