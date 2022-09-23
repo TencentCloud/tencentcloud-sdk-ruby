@@ -291,20 +291,25 @@ module TencentCloud
         # @param BillId: 订单流水号。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BillId: String
+        # @param DBInstanceId: 克隆出的新实例ID，当前只支持后付费返回该值。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DBInstanceId: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :DealName, :BillId, :RequestId
+        attr_accessor :DealName, :BillId, :DBInstanceId, :RequestId
         
-        def initialize(dealname=nil, billid=nil, requestid=nil)
+        def initialize(dealname=nil, billid=nil, dbinstanceid=nil, requestid=nil)
           @DealName = dealname
           @BillId = billid
+          @DBInstanceId = dbinstanceid
           @RequestId = requestid
         end
 
         def deserialize(params)
           @DealName = params['DealName']
           @BillId = params['BillId']
+          @DBInstanceId = params['DBInstanceId']
           @RequestId = params['RequestId']
         end
       end
@@ -621,10 +626,26 @@ module TencentCloud
         # @type KMSKeyId: String
         # @param KMSRegion: 使用KMS服务的地域，KMSRegion为空默认使用本地域的KMS，本地域不支持的情况下需自选其他KMS支持的地域。
         # @type KMSRegion: String
+        # @param DBEngine: 数据库引擎，支持：
+        # 1、postgresql（云数据库PostgreSQL）；
+        # 2、mssql_compatible（MSSQL兼容-云数据库PostgreSQL）；
+        # 如不指定默认使用postgresql。
+        # @type DBEngine: String
+        # @param DBEngineConfig: 数据库引擎的配置信息，配置格式如下：
+        # {"$key1":"$value1", "$key2":"$value2"}
 
-        attr_accessor :SpecCode, :Storage, :InstanceCount, :Period, :Zone, :Charset, :AdminName, :AdminPassword, :ProjectId, :DBVersion, :InstanceChargeType, :AutoVoucher, :VoucherIds, :VpcId, :SubnetId, :AutoRenewFlag, :ActivityId, :Name, :NeedSupportIpv6, :TagList, :SecurityGroupIds, :DBMajorVersion, :DBKernelVersion, :DBNodeSet, :NeedSupportTDE, :KMSKeyId, :KMSRegion
+        # 各引擎支持如下：
+        # 1、mssql_compatible引擎：
+        # migrationMode：数据库模式，可选参数，可取值：single-db（单数据库模式），multi-db（多数据库模式）。默认为single-db。
+        # defaultLocale：排序区域规则，可选参数，在初始化后不可修改，默认为en_US，可选值如下：
+        # "af_ZA", "sq_AL", "ar_DZ", "ar_BH", "ar_EG", "ar_IQ", "ar_JO", "ar_KW", "ar_LB", "ar_LY", "ar_MA", "ar_OM", "ar_QA", "ar_SA", "ar_SY", "ar_TN", "ar_AE", "ar_YE", "hy_AM", "az_Cyrl_AZ", "az_Latn_AZ", "eu_ES", "be_BY", "bg_BG", "ca_ES", "zh_HK", "zh_MO", "zh_CN", "zh_SG", "zh_TW", "hr_HR", "cs_CZ", "da_DK", "nl_BE", "nl_NL", "en_AU", "en_BZ", "en_CA", "en_IE", "en_JM", "en_NZ", "en_PH", "en_ZA", "en_TT", "en_GB", "en_US", "en_ZW", "et_EE", "fo_FO", "fa_IR", "fi_FI", "fr_BE", "fr_CA", "fr_FR", "fr_LU", "fr_MC", "fr_CH", "mk_MK", "ka_GE", "de_AT", "de_DE", "de_LI", "de_LU", "de_CH", "el_GR", "gu_IN", "he_IL", "hi_IN", "hu_HU", "is_IS", "id_ID", "it_IT", "it_CH", "ja_JP", "kn_IN", "kok_IN", "ko_KR", "ky_KG", "lv_LV", "lt_LT", "ms_BN", "ms_MY", "mr_IN", "mn_MN", "nb_NO", "nn_NO", "pl_PL", "pt_BR", "pt_PT", "pa_IN", "ro_RO", "ru_RU", "sa_IN", "sr_Cyrl_RS", "sr_Latn_RS", "sk_SK", "sl_SI", "es_AR", "es_BO", "es_CL", "es_CO", "es_CR", "es_DO", "es_EC", "es_SV", "es_GT", "es_HN", "es_MX", "es_NI", "es_PA", "es_PY","es_PE", "es_PR", "es_ES", "es_TRADITIONAL", "es_UY", "es_VE", "sw_KE", "sv_FI", "sv_SE", "tt_RU", "te_IN", "th_TH", "tr_TR", "uk_UA", "ur_IN", "ur_PK", "uz_Cyrl_UZ", "uz_Latn_UZ", "vi_VN"。
+        # serverCollationName：排序规则名称，可选参数，在初始化后不可修改，默认为sql_latin1_general_cp1_ci_as，可选值如下：
+        # "bbf_unicode_general_ci_as", "bbf_unicode_cp1_ci_as", "bbf_unicode_CP1250_ci_as", "bbf_unicode_CP1251_ci_as", "bbf_unicode_cp1253_ci_as", "bbf_unicode_cp1254_ci_as", "bbf_unicode_cp1255_ci_as", "bbf_unicode_cp1256_ci_as", "bbf_unicode_cp1257_ci_as", "bbf_unicode_cp1258_ci_as", "bbf_unicode_cp874_ci_as", "sql_latin1_general_cp1250_ci_as", "sql_latin1_general_cp1251_ci_as", "sql_latin1_general_cp1_ci_as", "sql_latin1_general_cp1253_ci_as", "sql_latin1_general_cp1254_ci_as", "sql_latin1_general_cp1255_ci_as","sql_latin1_general_cp1256_ci_as", "sql_latin1_general_cp1257_ci_as", "sql_latin1_general_cp1258_ci_as", "chinese_prc_ci_as", "cyrillic_general_ci_as", "finnish_swedish_ci_as", "french_ci_as", "japanese_ci_as", "korean_wansung_ci_as", "latin1_general_ci_as", "modern_spanish_ci_as", "polish_ci_as", "thai_ci_as", "traditional_spanish_ci_as", "turkish_ci_as", "ukrainian_ci_as", "vietnamese_ci_as"。
+        # @type DBEngineConfig: String
+
+        attr_accessor :SpecCode, :Storage, :InstanceCount, :Period, :Zone, :Charset, :AdminName, :AdminPassword, :ProjectId, :DBVersion, :InstanceChargeType, :AutoVoucher, :VoucherIds, :VpcId, :SubnetId, :AutoRenewFlag, :ActivityId, :Name, :NeedSupportIpv6, :TagList, :SecurityGroupIds, :DBMajorVersion, :DBKernelVersion, :DBNodeSet, :NeedSupportTDE, :KMSKeyId, :KMSRegion, :DBEngine, :DBEngineConfig
         
-        def initialize(speccode=nil, storage=nil, instancecount=nil, period=nil, zone=nil, charset=nil, adminname=nil, adminpassword=nil, projectid=nil, dbversion=nil, instancechargetype=nil, autovoucher=nil, voucherids=nil, vpcid=nil, subnetid=nil, autorenewflag=nil, activityid=nil, name=nil, needsupportipv6=nil, taglist=nil, securitygroupids=nil, dbmajorversion=nil, dbkernelversion=nil, dbnodeset=nil, needsupporttde=nil, kmskeyid=nil, kmsregion=nil)
+        def initialize(speccode=nil, storage=nil, instancecount=nil, period=nil, zone=nil, charset=nil, adminname=nil, adminpassword=nil, projectid=nil, dbversion=nil, instancechargetype=nil, autovoucher=nil, voucherids=nil, vpcid=nil, subnetid=nil, autorenewflag=nil, activityid=nil, name=nil, needsupportipv6=nil, taglist=nil, securitygroupids=nil, dbmajorversion=nil, dbkernelversion=nil, dbnodeset=nil, needsupporttde=nil, kmskeyid=nil, kmsregion=nil, dbengine=nil, dbengineconfig=nil)
           @SpecCode = speccode
           @Storage = storage
           @InstanceCount = instancecount
@@ -652,6 +673,8 @@ module TencentCloud
           @NeedSupportTDE = needsupporttde
           @KMSKeyId = kmskeyid
           @KMSRegion = kmsregion
+          @DBEngine = dbengine
+          @DBEngineConfig = dbengineconfig
         end
 
         def deserialize(params)
@@ -696,6 +719,8 @@ module TencentCloud
           @NeedSupportTDE = params['NeedSupportTDE']
           @KMSKeyId = params['KMSKeyId']
           @KMSRegion = params['KMSRegion']
+          @DBEngine = params['DBEngine']
+          @DBEngineConfig = params['DBEngineConfig']
         end
       end
 
@@ -731,8 +756,6 @@ module TencentCloud
       class CreateReadOnlyDBInstanceRequest < TencentCloud::Common::AbstractModel
         # @param SpecCode: 售卖规格ID。该参数可以通过调用DescribeProductConfig的返回值中的SpecCode字段来获取。
         # @type SpecCode: String
-        # @param DBVersion: PostgreSQL内核版本，目前强制和主实例保持一致
-        # @type DBVersion: String
         # @param Storage: 实例容量大小，单位：GB。
         # @type Storage: Integer
         # @param InstanceCount: 一次性购买的实例数量。取值1-100
@@ -745,7 +768,9 @@ module TencentCloud
         # @type Zone: String
         # @param ProjectId: 项目ID。
         # @type ProjectId: Integer
-        # @param InstanceChargeType: 实例计费类型。目前支持：PREPAID（预付费，即包年包月），POSTPAID_BY_HOUR（后付费，即按量计费）。
+        # @param DBVersion: 【废弃】不再需要指定，内核版本号与主实例保持一致
+        # @type DBVersion: String
+        # @param InstanceChargeType: 实例计费类型。目前支持：PREPAID（预付费，即包年包月），POSTPAID_BY_HOUR（后付费，即按量计费）。如果主实例为后付费，只读实例必须也为后付费。
         # @type InstanceChargeType: String
         # @param AutoVoucher: 是否自动使用代金券。1（是），0（否），默认不使用。
         # @type AutoVoucher: Integer
@@ -770,17 +795,17 @@ module TencentCloud
         # @param SecurityGroupIds: 安全组id
         # @type SecurityGroupIds: Array
 
-        attr_accessor :SpecCode, :DBVersion, :Storage, :InstanceCount, :Period, :MasterDBInstanceId, :Zone, :ProjectId, :InstanceChargeType, :AutoVoucher, :VoucherIds, :AutoRenewFlag, :VpcId, :SubnetId, :ActivityId, :Name, :NeedSupportIpv6, :ReadOnlyGroupId, :TagList, :SecurityGroupIds
+        attr_accessor :SpecCode, :Storage, :InstanceCount, :Period, :MasterDBInstanceId, :Zone, :ProjectId, :DBVersion, :InstanceChargeType, :AutoVoucher, :VoucherIds, :AutoRenewFlag, :VpcId, :SubnetId, :ActivityId, :Name, :NeedSupportIpv6, :ReadOnlyGroupId, :TagList, :SecurityGroupIds
         
-        def initialize(speccode=nil, dbversion=nil, storage=nil, instancecount=nil, period=nil, masterdbinstanceid=nil, zone=nil, projectid=nil, instancechargetype=nil, autovoucher=nil, voucherids=nil, autorenewflag=nil, vpcid=nil, subnetid=nil, activityid=nil, name=nil, needsupportipv6=nil, readonlygroupid=nil, taglist=nil, securitygroupids=nil)
+        def initialize(speccode=nil, storage=nil, instancecount=nil, period=nil, masterdbinstanceid=nil, zone=nil, projectid=nil, dbversion=nil, instancechargetype=nil, autovoucher=nil, voucherids=nil, autorenewflag=nil, vpcid=nil, subnetid=nil, activityid=nil, name=nil, needsupportipv6=nil, readonlygroupid=nil, taglist=nil, securitygroupids=nil)
           @SpecCode = speccode
-          @DBVersion = dbversion
           @Storage = storage
           @InstanceCount = instancecount
           @Period = period
           @MasterDBInstanceId = masterdbinstanceid
           @Zone = zone
           @ProjectId = projectid
+          @DBVersion = dbversion
           @InstanceChargeType = instancechargetype
           @AutoVoucher = autovoucher
           @VoucherIds = voucherids
@@ -797,13 +822,13 @@ module TencentCloud
 
         def deserialize(params)
           @SpecCode = params['SpecCode']
-          @DBVersion = params['DBVersion']
           @Storage = params['Storage']
           @InstanceCount = params['InstanceCount']
           @Period = params['Period']
           @MasterDBInstanceId = params['MasterDBInstanceId']
           @Zone = params['Zone']
           @ProjectId = params['ProjectId']
+          @DBVersion = params['DBVersion']
           @InstanceChargeType = params['InstanceChargeType']
           @AutoVoucher = params['AutoVoucher']
           @VoucherIds = params['VoucherIds']
@@ -1202,10 +1227,18 @@ module TencentCloud
         # @param IsSupportTDE: 实例是否支持TDE数据加密  0：不支持，1：支持
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsSupportTDE: Integer
+        # @param DBEngine: 数据库引擎，支持：
+        # 1、postgresql（云数据库PostgreSQL）；
+        # 2、mssql_compatible（MSSQL兼容-云数据库PostgreSQL）；
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DBEngine: String
+        # @param DBEngineConfig: 数据库引擎的配置信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DBEngineConfig: String
 
-        attr_accessor :Region, :Zone, :ProjectId, :VpcId, :SubnetId, :DBInstanceId, :DBInstanceName, :DBInstanceStatus, :DBInstanceMemory, :DBInstanceStorage, :DBInstanceCpu, :DBInstanceClass, :DBInstanceType, :DBInstanceVersion, :DBCharset, :DBVersion, :CreateTime, :UpdateTime, :ExpireTime, :IsolatedTime, :PayType, :AutoRenew, :DBInstanceNetInfo, :Type, :AppId, :Uid, :SupportIpv6, :TagList, :MasterDBInstanceId, :ReadOnlyInstanceNum, :StatusInReadonlyGroup, :OfflineTime, :DBKernelVersion, :NetworkAccessList, :DBMajorVersion, :DBNodeSet, :IsSupportTDE
+        attr_accessor :Region, :Zone, :ProjectId, :VpcId, :SubnetId, :DBInstanceId, :DBInstanceName, :DBInstanceStatus, :DBInstanceMemory, :DBInstanceStorage, :DBInstanceCpu, :DBInstanceClass, :DBInstanceType, :DBInstanceVersion, :DBCharset, :DBVersion, :CreateTime, :UpdateTime, :ExpireTime, :IsolatedTime, :PayType, :AutoRenew, :DBInstanceNetInfo, :Type, :AppId, :Uid, :SupportIpv6, :TagList, :MasterDBInstanceId, :ReadOnlyInstanceNum, :StatusInReadonlyGroup, :OfflineTime, :DBKernelVersion, :NetworkAccessList, :DBMajorVersion, :DBNodeSet, :IsSupportTDE, :DBEngine, :DBEngineConfig
         
-        def initialize(region=nil, zone=nil, projectid=nil, vpcid=nil, subnetid=nil, dbinstanceid=nil, dbinstancename=nil, dbinstancestatus=nil, dbinstancememory=nil, dbinstancestorage=nil, dbinstancecpu=nil, dbinstanceclass=nil, dbinstancetype=nil, dbinstanceversion=nil, dbcharset=nil, dbversion=nil, createtime=nil, updatetime=nil, expiretime=nil, isolatedtime=nil, paytype=nil, autorenew=nil, dbinstancenetinfo=nil, type=nil, appid=nil, uid=nil, supportipv6=nil, taglist=nil, masterdbinstanceid=nil, readonlyinstancenum=nil, statusinreadonlygroup=nil, offlinetime=nil, dbkernelversion=nil, networkaccesslist=nil, dbmajorversion=nil, dbnodeset=nil, issupporttde=nil)
+        def initialize(region=nil, zone=nil, projectid=nil, vpcid=nil, subnetid=nil, dbinstanceid=nil, dbinstancename=nil, dbinstancestatus=nil, dbinstancememory=nil, dbinstancestorage=nil, dbinstancecpu=nil, dbinstanceclass=nil, dbinstancetype=nil, dbinstanceversion=nil, dbcharset=nil, dbversion=nil, createtime=nil, updatetime=nil, expiretime=nil, isolatedtime=nil, paytype=nil, autorenew=nil, dbinstancenetinfo=nil, type=nil, appid=nil, uid=nil, supportipv6=nil, taglist=nil, masterdbinstanceid=nil, readonlyinstancenum=nil, statusinreadonlygroup=nil, offlinetime=nil, dbkernelversion=nil, networkaccesslist=nil, dbmajorversion=nil, dbnodeset=nil, issupporttde=nil, dbengine=nil, dbengineconfig=nil)
           @Region = region
           @Zone = zone
           @ProjectId = projectid
@@ -1243,6 +1276,8 @@ module TencentCloud
           @DBMajorVersion = dbmajorversion
           @DBNodeSet = dbnodeset
           @IsSupportTDE = issupporttde
+          @DBEngine = dbengine
+          @DBEngineConfig = dbengineconfig
         end
 
         def deserialize(params)
@@ -1311,6 +1346,8 @@ module TencentCloud
             end
           end
           @IsSupportTDE = params['IsSupportTDE']
+          @DBEngine = params['DBEngine']
+          @DBEngineConfig = params['DBEngineConfig']
         end
       end
 
@@ -2358,15 +2395,22 @@ module TencentCloud
       class DescribeProductConfigRequest < TencentCloud::Common::AbstractModel
         # @param Zone: 可用区名称
         # @type Zone: String
+        # @param DBEngine: 数据库引擎，支持：
+        # 1、postgresql（云数据库PostgreSQL）；
+        # 2、mssql_compatible（MSSQL兼容-云数据库PostgreSQL）；
+        # 如不指定默认使用postgresql。
+        # @type DBEngine: String
 
-        attr_accessor :Zone
+        attr_accessor :Zone, :DBEngine
         
-        def initialize(zone=nil)
+        def initialize(zone=nil, dbengine=nil)
           @Zone = zone
+          @DBEngine = dbengine
         end
 
         def deserialize(params)
           @Zone = params['Zone']
+          @DBEngine = params['DBEngine']
         end
       end
 
@@ -3143,14 +3187,22 @@ module TencentCloud
         # @type InstanceCount: Integer
         # @param Period: 购买时长，单位：月。目前只支持1,2,3,4,5,6,7,8,9,10,11,12,24,36这些值。
         # @type Period: Integer
-        # @param Pid: 计费ID。该参数可以通过调用DescribeProductConfig接口的返回值中的Pid字段来获取。
+        # @param Pid: 【弃字段，不再生效】，计费ID。该参数可以通过调用DescribeProductConfig接口的返回值中的Pid字段来获取。
         # @type Pid: Integer
         # @param InstanceChargeType: 实例计费类型。目前只支持：PREPAID（预付费，即包年包月）。
         # @type InstanceChargeType: String
+        # @param InstanceType: 实例类型，默认primary，支持如下：
+        # primary（双机高可用（一主一从））
+        # readonly（只读实例）
+        # @type InstanceType: String
+        # @param DBEngine: DB引擎，默认postgresql，支持如下：
+        # postgresql（云数据库PostgreSQL）
+        # mssql_compatible（MSSQL兼容-云数据库PostgreSQL）
+        # @type DBEngine: String
 
-        attr_accessor :Zone, :SpecCode, :Storage, :InstanceCount, :Period, :Pid, :InstanceChargeType
+        attr_accessor :Zone, :SpecCode, :Storage, :InstanceCount, :Period, :Pid, :InstanceChargeType, :InstanceType, :DBEngine
         
-        def initialize(zone=nil, speccode=nil, storage=nil, instancecount=nil, period=nil, pid=nil, instancechargetype=nil)
+        def initialize(zone=nil, speccode=nil, storage=nil, instancecount=nil, period=nil, pid=nil, instancechargetype=nil, instancetype=nil, dbengine=nil)
           @Zone = zone
           @SpecCode = speccode
           @Storage = storage
@@ -3158,6 +3210,8 @@ module TencentCloud
           @Period = period
           @Pid = pid
           @InstanceChargeType = instancechargetype
+          @InstanceType = instancetype
+          @DBEngine = dbengine
         end
 
         def deserialize(params)
@@ -3168,14 +3222,16 @@ module TencentCloud
           @Period = params['Period']
           @Pid = params['Pid']
           @InstanceChargeType = params['InstanceChargeType']
+          @InstanceType = params['InstanceType']
+          @DBEngine = params['DBEngine']
         end
       end
 
       # InquiryPriceCreateDBInstances返回参数结构体
       class InquiryPriceCreateDBInstancesResponse < TencentCloud::Common::AbstractModel
-        # @param OriginalPrice: 原始价格，单位：分
+        # @param OriginalPrice: 刊例价，单位：分
         # @type OriginalPrice: Integer
-        # @param Price: 折后价格，单位：分
+        # @param Price: 折后实际付款金额，单位：分
         # @type Price: Integer
         # @param Currency: 币种。例如，CNY：人民币。
         # @type Currency: String
@@ -3255,7 +3311,7 @@ module TencentCloud
         # @type Memory: Integer
         # @param DBInstanceId: 实例ID，形如postgres-hez4fh0v
         # @type DBInstanceId: String
-        # @param InstanceChargeType: 实例计费类型，预付费或者后付费。PREPAID-预付费。目前只支持预付费。
+        # @param InstanceChargeType: 【废弃参数，不再生效】，实例计费类型。
         # @type InstanceChargeType: String
 
         attr_accessor :Storage, :Memory, :DBInstanceId, :InstanceChargeType
@@ -4849,7 +4905,7 @@ module TencentCloud
         # @type MinStorage: Integer
         # @param Qps: 该规格的预估QPS
         # @type Qps: Integer
-        # @param Pid: 该规格对应的计费ID
+        # @param Pid: 【该字段废弃】
         # @type Pid: Integer
         # @param Type: 机器类型
         # @type Type: String

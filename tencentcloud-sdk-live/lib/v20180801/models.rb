@@ -7821,6 +7821,16 @@ module TencentCloud
       class ModifyLiveSnapshotTemplateRequest < TencentCloud::Common::AbstractModel
         # @param TemplateId: 模板 ID。
         # @type TemplateId: Integer
+        # @param CosAppId: Cos 应用 ID。
+        # **注：此参数现在须必选。**
+        # @type CosAppId: Integer
+        # @param CosBucket: Cos Bucket名称。
+        # 注：CosBucket参数值不能包含-[appid] 部分。
+        # **注：此参数现在须必选。**
+        # @type CosBucket: String
+        # @param CosRegion: Cos 地域。
+        # **注：此参数现在须必选。**
+        # @type CosRegion: String
         # @param TemplateName: 模板名称。
         # 长度上限：255字节。
         # @type TemplateName: String
@@ -7838,46 +7848,39 @@ module TencentCloud
         # 0：不开启。
         # 1：开启。
         # @type PornFlag: Integer
-        # @param CosAppId: Cos 应用 ID。
-        # @type CosAppId: Integer
-        # @param CosBucket: Cos Bucket名称。
-        # 注：CosBucket参数值不能包含-[appid] 部分。
-        # @type CosBucket: String
-        # @param CosRegion: Cos 地域。
-        # @type CosRegion: String
         # @param CosPrefix: Cos Bucket文件夹前缀。
         # @type CosPrefix: String
         # @param CosFileName: Cos 文件名称。
         # @type CosFileName: String
 
-        attr_accessor :TemplateId, :TemplateName, :Description, :SnapshotInterval, :Width, :Height, :PornFlag, :CosAppId, :CosBucket, :CosRegion, :CosPrefix, :CosFileName
+        attr_accessor :TemplateId, :CosAppId, :CosBucket, :CosRegion, :TemplateName, :Description, :SnapshotInterval, :Width, :Height, :PornFlag, :CosPrefix, :CosFileName
         
-        def initialize(templateid=nil, templatename=nil, description=nil, snapshotinterval=nil, width=nil, height=nil, pornflag=nil, cosappid=nil, cosbucket=nil, cosregion=nil, cosprefix=nil, cosfilename=nil)
+        def initialize(templateid=nil, cosappid=nil, cosbucket=nil, cosregion=nil, templatename=nil, description=nil, snapshotinterval=nil, width=nil, height=nil, pornflag=nil, cosprefix=nil, cosfilename=nil)
           @TemplateId = templateid
+          @CosAppId = cosappid
+          @CosBucket = cosbucket
+          @CosRegion = cosregion
           @TemplateName = templatename
           @Description = description
           @SnapshotInterval = snapshotinterval
           @Width = width
           @Height = height
           @PornFlag = pornflag
-          @CosAppId = cosappid
-          @CosBucket = cosbucket
-          @CosRegion = cosregion
           @CosPrefix = cosprefix
           @CosFileName = cosfilename
         end
 
         def deserialize(params)
           @TemplateId = params['TemplateId']
+          @CosAppId = params['CosAppId']
+          @CosBucket = params['CosBucket']
+          @CosRegion = params['CosRegion']
           @TemplateName = params['TemplateName']
           @Description = params['Description']
           @SnapshotInterval = params['SnapshotInterval']
           @Width = params['Width']
           @Height = params['Height']
           @PornFlag = params['PornFlag']
-          @CosAppId = params['CosAppId']
-          @CosBucket = params['CosBucket']
-          @CosRegion = params['CosRegion']
           @CosPrefix = params['CosPrefix']
           @CosFileName = params['CosFileName']
         end

@@ -1785,9 +1785,9 @@ module TencentCloud
       class DetachRolePolicyRequest < TencentCloud::Common::AbstractModel
         # @param PolicyId: 策略ID，入参PolicyId与PolicyName二选一
         # @type PolicyId: Integer
-        # @param DetachRoleId: 角色ID，用于指定角色，入参 AttachRoleId 与 AttachRoleName 二选一
+        # @param DetachRoleId: 角色ID，用于指定角色，入参 DetachRoleId 与 DetachRoleName 二选一
         # @type DetachRoleId: String
-        # @param DetachRoleName: 角色名称，用于指定角色，入参 AttachRoleId 与 AttachRoleName 二选一
+        # @param DetachRoleName: 角色名称，用于指定角色，入参 DetachRoleId 与 DetachRoleName 二选一
         # @type DetachRoleName: String
         # @param PolicyName: 策略名，入参PolicyId与PolicyName二选一
         # @type PolicyName: String

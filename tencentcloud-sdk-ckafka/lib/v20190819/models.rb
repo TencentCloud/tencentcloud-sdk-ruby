@@ -1454,10 +1454,12 @@ module TencentCloud
         # @type MariaDBConnectParam: :class:`Tencentcloud::Ckafka.v20190819.models.MariaDBConnectParam`
         # @param SQLServerConnectParam: SQLServer配置，Type为SQLSERVER时必填
         # @type SQLServerConnectParam: :class:`Tencentcloud::Ckafka.v20190819.models.SQLServerConnectParam`
+        # @param DorisConnectParam: Doris 配置，Type为 DORIS 时必填
+        # @type DorisConnectParam: :class:`Tencentcloud::Ckafka.v20190819.models.DorisConnectParam`
 
-        attr_accessor :ResourceName, :Type, :Description, :DtsConnectParam, :MongoDBConnectParam, :EsConnectParam, :ClickHouseConnectParam, :MySQLConnectParam, :PostgreSQLConnectParam, :MariaDBConnectParam, :SQLServerConnectParam
+        attr_accessor :ResourceName, :Type, :Description, :DtsConnectParam, :MongoDBConnectParam, :EsConnectParam, :ClickHouseConnectParam, :MySQLConnectParam, :PostgreSQLConnectParam, :MariaDBConnectParam, :SQLServerConnectParam, :DorisConnectParam
         
-        def initialize(resourcename=nil, type=nil, description=nil, dtsconnectparam=nil, mongodbconnectparam=nil, esconnectparam=nil, clickhouseconnectparam=nil, mysqlconnectparam=nil, postgresqlconnectparam=nil, mariadbconnectparam=nil, sqlserverconnectparam=nil)
+        def initialize(resourcename=nil, type=nil, description=nil, dtsconnectparam=nil, mongodbconnectparam=nil, esconnectparam=nil, clickhouseconnectparam=nil, mysqlconnectparam=nil, postgresqlconnectparam=nil, mariadbconnectparam=nil, sqlserverconnectparam=nil, dorisconnectparam=nil)
           @ResourceName = resourcename
           @Type = type
           @Description = description
@@ -1469,6 +1471,7 @@ module TencentCloud
           @PostgreSQLConnectParam = postgresqlconnectparam
           @MariaDBConnectParam = mariadbconnectparam
           @SQLServerConnectParam = sqlserverconnectparam
+          @DorisConnectParam = dorisconnectparam
         end
 
         def deserialize(params)
@@ -1506,6 +1509,10 @@ module TencentCloud
           unless params['SQLServerConnectParam'].nil?
             @SQLServerConnectParam = SQLServerConnectParam.new
             @SQLServerConnectParam.deserialize(params['SQLServerConnectParam'])
+          end
+          unless params['DorisConnectParam'].nil?
+            @DorisConnectParam = DorisConnectParam.new
+            @DorisConnectParam.deserialize(params['DorisConnectParam'])
           end
         end
       end
@@ -3329,10 +3336,13 @@ module TencentCloud
         # @param CtsdbConnectParam: Ctsdb配置，Type为CTSDB时返回
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CtsdbConnectParam: :class:`Tencentcloud::Ckafka.v20190819.models.CtsdbConnectParam`
+        # @param DorisConnectParam: Doris 配置，Type 为 DORIS 时返回
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DorisConnectParam: :class:`Tencentcloud::Ckafka.v20190819.models.DorisConnectParam`
 
-        attr_accessor :ResourceId, :ResourceName, :Description, :Type, :Status, :CreateTime, :ErrorMessage, :CurrentStep, :DatahubTaskCount, :DtsConnectParam, :MongoDBConnectParam, :EsConnectParam, :ClickHouseConnectParam, :MySQLConnectParam, :PostgreSQLConnectParam, :MariaDBConnectParam, :SQLServerConnectParam, :CtsdbConnectParam
+        attr_accessor :ResourceId, :ResourceName, :Description, :Type, :Status, :CreateTime, :ErrorMessage, :CurrentStep, :DatahubTaskCount, :DtsConnectParam, :MongoDBConnectParam, :EsConnectParam, :ClickHouseConnectParam, :MySQLConnectParam, :PostgreSQLConnectParam, :MariaDBConnectParam, :SQLServerConnectParam, :CtsdbConnectParam, :DorisConnectParam
         
-        def initialize(resourceid=nil, resourcename=nil, description=nil, type=nil, status=nil, createtime=nil, errormessage=nil, currentstep=nil, datahubtaskcount=nil, dtsconnectparam=nil, mongodbconnectparam=nil, esconnectparam=nil, clickhouseconnectparam=nil, mysqlconnectparam=nil, postgresqlconnectparam=nil, mariadbconnectparam=nil, sqlserverconnectparam=nil, ctsdbconnectparam=nil)
+        def initialize(resourceid=nil, resourcename=nil, description=nil, type=nil, status=nil, createtime=nil, errormessage=nil, currentstep=nil, datahubtaskcount=nil, dtsconnectparam=nil, mongodbconnectparam=nil, esconnectparam=nil, clickhouseconnectparam=nil, mysqlconnectparam=nil, postgresqlconnectparam=nil, mariadbconnectparam=nil, sqlserverconnectparam=nil, ctsdbconnectparam=nil, dorisconnectparam=nil)
           @ResourceId = resourceid
           @ResourceName = resourcename
           @Description = description
@@ -3351,6 +3361,7 @@ module TencentCloud
           @MariaDBConnectParam = mariadbconnectparam
           @SQLServerConnectParam = sqlserverconnectparam
           @CtsdbConnectParam = ctsdbconnectparam
+          @DorisConnectParam = dorisconnectparam
         end
 
         def deserialize(params)
@@ -3398,6 +3409,10 @@ module TencentCloud
           unless params['CtsdbConnectParam'].nil?
             @CtsdbConnectParam = CtsdbConnectParam.new
             @CtsdbConnectParam.deserialize(params['CtsdbConnectParam'])
+          end
+          unless params['DorisConnectParam'].nil?
+            @DorisConnectParam = DorisConnectParam.new
+            @DorisConnectParam.deserialize(params['DorisConnectParam'])
           end
         end
       end
@@ -3474,10 +3489,13 @@ module TencentCloud
         # @param CtsdbConnectParam: Ctsdb配置，Type为CTSDB时返回
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CtsdbConnectParam: :class:`Tencentcloud::Ckafka.v20190819.models.CtsdbConnectParam`
+        # @param DorisConnectParam: Doris 配置，Type 为 DORIS 时返回
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DorisConnectParam: :class:`Tencentcloud::Ckafka.v20190819.models.DorisConnectParam`
 
-        attr_accessor :ResourceId, :ResourceName, :Description, :Type, :Status, :CreateTime, :ErrorMessage, :CurrentStep, :StepList, :MySQLConnectParam, :PostgreSQLConnectParam, :DtsConnectParam, :MongoDBConnectParam, :EsConnectParam, :ClickHouseConnectParam, :MariaDBConnectParam, :SQLServerConnectParam, :CtsdbConnectParam
+        attr_accessor :ResourceId, :ResourceName, :Description, :Type, :Status, :CreateTime, :ErrorMessage, :CurrentStep, :StepList, :MySQLConnectParam, :PostgreSQLConnectParam, :DtsConnectParam, :MongoDBConnectParam, :EsConnectParam, :ClickHouseConnectParam, :MariaDBConnectParam, :SQLServerConnectParam, :CtsdbConnectParam, :DorisConnectParam
         
-        def initialize(resourceid=nil, resourcename=nil, description=nil, type=nil, status=nil, createtime=nil, errormessage=nil, currentstep=nil, steplist=nil, mysqlconnectparam=nil, postgresqlconnectparam=nil, dtsconnectparam=nil, mongodbconnectparam=nil, esconnectparam=nil, clickhouseconnectparam=nil, mariadbconnectparam=nil, sqlserverconnectparam=nil, ctsdbconnectparam=nil)
+        def initialize(resourceid=nil, resourcename=nil, description=nil, type=nil, status=nil, createtime=nil, errormessage=nil, currentstep=nil, steplist=nil, mysqlconnectparam=nil, postgresqlconnectparam=nil, dtsconnectparam=nil, mongodbconnectparam=nil, esconnectparam=nil, clickhouseconnectparam=nil, mariadbconnectparam=nil, sqlserverconnectparam=nil, ctsdbconnectparam=nil, dorisconnectparam=nil)
           @ResourceId = resourceid
           @ResourceName = resourcename
           @Description = description
@@ -3496,6 +3514,7 @@ module TencentCloud
           @MariaDBConnectParam = mariadbconnectparam
           @SQLServerConnectParam = sqlserverconnectparam
           @CtsdbConnectParam = ctsdbconnectparam
+          @DorisConnectParam = dorisconnectparam
         end
 
         def deserialize(params)
@@ -3543,6 +3562,10 @@ module TencentCloud
           unless params['CtsdbConnectParam'].nil?
             @CtsdbConnectParam = CtsdbConnectParam.new
             @CtsdbConnectParam.deserialize(params['CtsdbConnectParam'])
+          end
+          unless params['DorisConnectParam'].nil?
+            @DorisConnectParam = DorisConnectParam.new
+            @DorisConnectParam.deserialize(params['DorisConnectParam'])
           end
         end
       end
@@ -4760,6 +4783,63 @@ module TencentCloud
             @Result.deserialize(params['Result'])
           end
           @RequestId = params['RequestId']
+        end
+      end
+
+      # Doris 连接源参数
+      class DorisConnectParam < TencentCloud::Common::AbstractModel
+        # @param Port: Doris jdbc 负载均衡连接 port，通常映射到 fe 的 9030 端口
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Port: Integer
+        # @param UserName: Doris 连接源的用户名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UserName: String
+        # @param Password: Doris 连接源的密码
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Password: String
+        # @param Resource: Doris 连接源的实例资源
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Resource: String
+        # @param ServiceVip: Doris 连接源的实例vip，当为腾讯云实例时，必填
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ServiceVip: String
+        # @param UniqVpcId: Doris 连接源的vpcId，当为腾讯云实例时，必填
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UniqVpcId: String
+        # @param IsUpdate: 是否更新到关联的Datahub任务
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsUpdate: Boolean
+        # @param SelfBuilt: Doris 连接源是否为自建集群
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SelfBuilt: Boolean
+        # @param BePort: Doris 的 http 负载均衡连接 port，通常映射到 be 的 8040 端口
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BePort: Integer
+
+        attr_accessor :Port, :UserName, :Password, :Resource, :ServiceVip, :UniqVpcId, :IsUpdate, :SelfBuilt, :BePort
+        
+        def initialize(port=nil, username=nil, password=nil, resource=nil, servicevip=nil, uniqvpcid=nil, isupdate=nil, selfbuilt=nil, beport=nil)
+          @Port = port
+          @UserName = username
+          @Password = password
+          @Resource = resource
+          @ServiceVip = servicevip
+          @UniqVpcId = uniqvpcid
+          @IsUpdate = isupdate
+          @SelfBuilt = selfbuilt
+          @BePort = beport
+        end
+
+        def deserialize(params)
+          @Port = params['Port']
+          @UserName = params['UserName']
+          @Password = params['Password']
+          @Resource = params['Resource']
+          @ServiceVip = params['ServiceVip']
+          @UniqVpcId = params['UniqVpcId']
+          @IsUpdate = params['IsUpdate']
+          @SelfBuilt = params['SelfBuilt']
+          @BePort = params['BePort']
         end
       end
 

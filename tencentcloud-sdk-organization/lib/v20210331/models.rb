@@ -246,7 +246,7 @@ module TencentCloud
       class DescribeOrganizationRequest < TencentCloud::Common::AbstractModel
         # @param Lang: 国际站：en，国内站：zh
         # @type Lang: String
-        # @param Product: 产品简称（查询是否集团服务委派管理员必须）
+        # @param Product: 产品简称（查询是否集团服务委派管理员必填）
         # @type Product: String
 
         attr_accessor :Lang, :Product
@@ -309,12 +309,15 @@ module TencentCloud
         # @param IsAssignManager: 是否集团服务委派管理员 true-是、false-否
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsAssignManager: Boolean
+        # @param IsAuthManager: 是否主体管理员 true-是、false-否
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsAuthManager: Boolean
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :OrgId, :HostUin, :NickName, :OrgType, :IsManager, :OrgPolicyType, :OrgPolicyName, :OrgPermission, :RootNodeId, :CreateTime, :JoinTime, :IsAllowQuit, :PayUin, :PayName, :IsAssignManager, :RequestId
+        attr_accessor :OrgId, :HostUin, :NickName, :OrgType, :IsManager, :OrgPolicyType, :OrgPolicyName, :OrgPermission, :RootNodeId, :CreateTime, :JoinTime, :IsAllowQuit, :PayUin, :PayName, :IsAssignManager, :IsAuthManager, :RequestId
         
-        def initialize(orgid=nil, hostuin=nil, nickname=nil, orgtype=nil, ismanager=nil, orgpolicytype=nil, orgpolicyname=nil, orgpermission=nil, rootnodeid=nil, createtime=nil, jointime=nil, isallowquit=nil, payuin=nil, payname=nil, isassignmanager=nil, requestid=nil)
+        def initialize(orgid=nil, hostuin=nil, nickname=nil, orgtype=nil, ismanager=nil, orgpolicytype=nil, orgpolicyname=nil, orgpermission=nil, rootnodeid=nil, createtime=nil, jointime=nil, isallowquit=nil, payuin=nil, payname=nil, isassignmanager=nil, isauthmanager=nil, requestid=nil)
           @OrgId = orgid
           @HostUin = hostuin
           @NickName = nickname
@@ -330,6 +333,7 @@ module TencentCloud
           @PayUin = payuin
           @PayName = payname
           @IsAssignManager = isassignmanager
+          @IsAuthManager = isauthmanager
           @RequestId = requestid
         end
 
@@ -356,6 +360,7 @@ module TencentCloud
           @PayUin = params['PayUin']
           @PayName = params['PayName']
           @IsAssignManager = params['IsAssignManager']
+          @IsAuthManager = params['IsAuthManager']
           @RequestId = params['RequestId']
         end
       end
