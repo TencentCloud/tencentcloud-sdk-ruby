@@ -3451,14 +3451,18 @@ module TencentCloud
         # @type FinishTime: String
         # @param SubTasks: 子任务
         # @type SubTasks: Array
+        # @param ElapsedTime: 任务花费时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ElapsedTime: Integer
 
-        attr_accessor :Name, :Progress, :FinishTime, :SubTasks
+        attr_accessor :Name, :Progress, :FinishTime, :SubTasks, :ElapsedTime
         
-        def initialize(name=nil, progress=nil, finishtime=nil, subtasks=nil)
+        def initialize(name=nil, progress=nil, finishtime=nil, subtasks=nil, elapsedtime=nil)
           @Name = name
           @Progress = progress
           @FinishTime = finishtime
           @SubTasks = subtasks
+          @ElapsedTime = elapsedtime
         end
 
         def deserialize(params)
@@ -3473,6 +3477,7 @@ module TencentCloud
               @SubTasks << subtaskdetail_tmp
             end
           end
+          @ElapsedTime = params['ElapsedTime']
         end
       end
 

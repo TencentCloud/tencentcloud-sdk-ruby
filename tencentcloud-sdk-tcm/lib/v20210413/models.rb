@@ -330,6 +330,17 @@ module TencentCloud
         end
       end
 
+      # 负载均衡跨域设置
+      class CrossRegionConfig < TencentCloud::Common::AbstractModel
+
+        
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
       # 第三方 Prometheus 配置参数
       class CustomPromConfig < TencentCloud::Common::AbstractModel
         # @param Url: Prometheus 访问地址
@@ -859,10 +870,13 @@ module TencentCloud
         # @param ExtensiveClusters: 内网独占集群配置列表
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExtensiveClusters: :class:`Tencentcloud::Tcm.v20210413.models.ExtensiveClusters`
+        # @param CrossRegionConfig: 负载均衡跨地域配置
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CrossRegionConfig: :class:`Tencentcloud::Tcm.v20210413.models.CrossRegionConfig`
 
-        attr_accessor :LoadBalancerType, :SubnetId, :InternetChargeType, :InternetMaxBandwidthOut, :ZoneID, :VipIsp, :TgwGroupName, :AddressIPVersion, :Tags, :ExtensiveClusters
+        attr_accessor :LoadBalancerType, :SubnetId, :InternetChargeType, :InternetMaxBandwidthOut, :ZoneID, :VipIsp, :TgwGroupName, :AddressIPVersion, :Tags, :ExtensiveClusters, :CrossRegionConfig
         
-        def initialize(loadbalancertype=nil, subnetid=nil, internetchargetype=nil, internetmaxbandwidthout=nil, zoneid=nil, vipisp=nil, tgwgroupname=nil, addressipversion=nil, tags=nil, extensiveclusters=nil)
+        def initialize(loadbalancertype=nil, subnetid=nil, internetchargetype=nil, internetmaxbandwidthout=nil, zoneid=nil, vipisp=nil, tgwgroupname=nil, addressipversion=nil, tags=nil, extensiveclusters=nil, crossregionconfig=nil)
           @LoadBalancerType = loadbalancertype
           @SubnetId = subnetid
           @InternetChargeType = internetchargetype
@@ -873,6 +887,7 @@ module TencentCloud
           @AddressIPVersion = addressipversion
           @Tags = tags
           @ExtensiveClusters = extensiveclusters
+          @CrossRegionConfig = crossregionconfig
         end
 
         def deserialize(params)
@@ -895,6 +910,10 @@ module TencentCloud
           unless params['ExtensiveClusters'].nil?
             @ExtensiveClusters = ExtensiveClusters.new
             @ExtensiveClusters.deserialize(params['ExtensiveClusters'])
+          end
+          unless params['CrossRegionConfig'].nil?
+            @CrossRegionConfig = CrossRegionConfig.new
+            @CrossRegionConfig.deserialize(params['CrossRegionConfig'])
           end
         end
       end

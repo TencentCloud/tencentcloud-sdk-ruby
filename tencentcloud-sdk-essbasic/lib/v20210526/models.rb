@@ -1453,9 +1453,9 @@ module TencentCloud
         # @type Offset: Integer
         # @param Operator: 操作者的信息
         # @type Operator: :class:`Tencentcloud::Essbasic.v20210526.models.UserInfo`
-        # @param QueryAllComponents: 是否返回所有组件信息
+        # @param QueryAllComponents: 是否返回所有组件信息。默认false，只返回发起方控件；true，返回所有签署方控件
         # @type QueryAllComponents: Boolean
-        # @param TemplateName: 模糊搜索模板名称
+        # @param TemplateName: 模糊搜索模板名称，最大长度200
         # @type TemplateName: String
 
         attr_accessor :Agent, :TemplateId, :ContentType, :Limit, :Offset, :Operator, :QueryAllComponents, :TemplateName

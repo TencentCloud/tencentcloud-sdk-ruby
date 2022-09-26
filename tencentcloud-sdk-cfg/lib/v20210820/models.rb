@@ -1059,10 +1059,16 @@ module TencentCloud
         # @type TaskCreateTime: String
         # @param TaskUpdateTime: 任务更新时间
         # @type TaskUpdateTime: String
+        # @param TaskPreCheckStatus: 0--未开始，1--进行中，2--已完成
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TaskPreCheckStatus: Integer
+        # @param TaskPreCheckSuccess: 环境检查是否通过
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TaskPreCheckSuccess: Boolean
 
-        attr_accessor :TaskId, :TaskTitle, :TaskDescription, :TaskTag, :TaskStatus, :TaskCreateTime, :TaskUpdateTime
+        attr_accessor :TaskId, :TaskTitle, :TaskDescription, :TaskTag, :TaskStatus, :TaskCreateTime, :TaskUpdateTime, :TaskPreCheckStatus, :TaskPreCheckSuccess
         
-        def initialize(taskid=nil, tasktitle=nil, taskdescription=nil, tasktag=nil, taskstatus=nil, taskcreatetime=nil, taskupdatetime=nil)
+        def initialize(taskid=nil, tasktitle=nil, taskdescription=nil, tasktag=nil, taskstatus=nil, taskcreatetime=nil, taskupdatetime=nil, taskprecheckstatus=nil, taskprechecksuccess=nil)
           @TaskId = taskid
           @TaskTitle = tasktitle
           @TaskDescription = taskdescription
@@ -1070,6 +1076,8 @@ module TencentCloud
           @TaskStatus = taskstatus
           @TaskCreateTime = taskcreatetime
           @TaskUpdateTime = taskupdatetime
+          @TaskPreCheckStatus = taskprecheckstatus
+          @TaskPreCheckSuccess = taskprechecksuccess
         end
 
         def deserialize(params)
@@ -1080,6 +1088,8 @@ module TencentCloud
           @TaskStatus = params['TaskStatus']
           @TaskCreateTime = params['TaskCreateTime']
           @TaskUpdateTime = params['TaskUpdateTime']
+          @TaskPreCheckStatus = params['TaskPreCheckStatus']
+          @TaskPreCheckSuccess = params['TaskPreCheckSuccess']
         end
       end
 

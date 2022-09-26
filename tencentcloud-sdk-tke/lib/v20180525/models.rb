@@ -2218,7 +2218,7 @@ module TencentCloud
 
       # CreateEKSCluster请求参数结构体
       class CreateEKSClusterRequest < TencentCloud::Common::AbstractModel
-        # @param K8SVersion: k8s版本号。可为1.14.4, 1.12.8。
+        # @param K8SVersion: k8s版本号。可为1.18.4 1.20.6。
         # @type K8SVersion: String
         # @param VpcId: vpc 的Id
         # @type VpcId: String
@@ -2228,7 +2228,7 @@ module TencentCloud
         # @type SubnetIds: Array
         # @param ClusterDesc: 集群描述信息
         # @type ClusterDesc: String
-        # @param ServiceSubnetId: Serivce 所在子网Id
+        # @param ServiceSubnetId: Service CIDR 或 Serivce 所在子网Id
         # @type ServiceSubnetId: String
         # @param DnsServers: 集群自定义的Dns服务器信息
         # @type DnsServers: Array

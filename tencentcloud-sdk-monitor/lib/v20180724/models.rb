@@ -235,10 +235,13 @@ module TencentCloud
         # @param CLSNotices: 推送cls渠道
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CLSNotices: Array
+        # @param Tags: 通知模版绑定的标签
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Tags: Array
 
-        attr_accessor :Id, :Name, :UpdatedAt, :UpdatedBy, :NoticeType, :UserNotices, :URLNotices, :IsPreset, :NoticeLanguage, :PolicyIds, :AMPConsumerId, :CLSNotices
+        attr_accessor :Id, :Name, :UpdatedAt, :UpdatedBy, :NoticeType, :UserNotices, :URLNotices, :IsPreset, :NoticeLanguage, :PolicyIds, :AMPConsumerId, :CLSNotices, :Tags
         
-        def initialize(id=nil, name=nil, updatedat=nil, updatedby=nil, noticetype=nil, usernotices=nil, urlnotices=nil, ispreset=nil, noticelanguage=nil, policyids=nil, ampconsumerid=nil, clsnotices=nil)
+        def initialize(id=nil, name=nil, updatedat=nil, updatedby=nil, noticetype=nil, usernotices=nil, urlnotices=nil, ispreset=nil, noticelanguage=nil, policyids=nil, ampconsumerid=nil, clsnotices=nil, tags=nil)
           @Id = id
           @Name = name
           @UpdatedAt = updatedat
@@ -251,6 +254,7 @@ module TencentCloud
           @PolicyIds = policyids
           @AMPConsumerId = ampconsumerid
           @CLSNotices = clsnotices
+          @Tags = tags
         end
 
         def deserialize(params)
@@ -285,6 +289,14 @@ module TencentCloud
               clsnotice_tmp = CLSNotice.new
               clsnotice_tmp.deserialize(i)
               @CLSNotices << clsnotice_tmp
+            end
+          end
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
             end
           end
         end
@@ -394,10 +406,16 @@ module TencentCloud
         # @param AdvancedMetricNumber: 高级指标数量
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AdvancedMetricNumber: Integer
+        # @param IsBindAll: 策略是否是全部对象策略
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsBindAll: Integer
+        # @param Tags: 策略标签
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Tags: Array
 
-        attr_accessor :PolicyId, :PolicyName, :Remark, :MonitorType, :Enable, :UseSum, :ProjectId, :ProjectName, :Namespace, :ConditionTemplateId, :Condition, :EventCondition, :NoticeIds, :Notices, :TriggerTasks, :ConditionsTemp, :LastEditUin, :UpdateTime, :InsertTime, :Region, :NamespaceShowName, :IsDefault, :CanSetDefault, :InstanceGroupId, :InstanceSum, :InstanceGroupName, :RuleType, :OriginId, :TagInstances, :FilterDimensionsParam, :IsOneClick, :OneClickStatus, :AdvancedMetricNumber
+        attr_accessor :PolicyId, :PolicyName, :Remark, :MonitorType, :Enable, :UseSum, :ProjectId, :ProjectName, :Namespace, :ConditionTemplateId, :Condition, :EventCondition, :NoticeIds, :Notices, :TriggerTasks, :ConditionsTemp, :LastEditUin, :UpdateTime, :InsertTime, :Region, :NamespaceShowName, :IsDefault, :CanSetDefault, :InstanceGroupId, :InstanceSum, :InstanceGroupName, :RuleType, :OriginId, :TagInstances, :FilterDimensionsParam, :IsOneClick, :OneClickStatus, :AdvancedMetricNumber, :IsBindAll, :Tags
         
-        def initialize(policyid=nil, policyname=nil, remark=nil, monitortype=nil, enable=nil, usesum=nil, projectid=nil, projectname=nil, namespace=nil, conditiontemplateid=nil, condition=nil, eventcondition=nil, noticeids=nil, notices=nil, triggertasks=nil, conditionstemp=nil, lastedituin=nil, updatetime=nil, inserttime=nil, region=nil, namespaceshowname=nil, isdefault=nil, cansetdefault=nil, instancegroupid=nil, instancesum=nil, instancegroupname=nil, ruletype=nil, originid=nil, taginstances=nil, filterdimensionsparam=nil, isoneclick=nil, oneclickstatus=nil, advancedmetricnumber=nil)
+        def initialize(policyid=nil, policyname=nil, remark=nil, monitortype=nil, enable=nil, usesum=nil, projectid=nil, projectname=nil, namespace=nil, conditiontemplateid=nil, condition=nil, eventcondition=nil, noticeids=nil, notices=nil, triggertasks=nil, conditionstemp=nil, lastedituin=nil, updatetime=nil, inserttime=nil, region=nil, namespaceshowname=nil, isdefault=nil, cansetdefault=nil, instancegroupid=nil, instancesum=nil, instancegroupname=nil, ruletype=nil, originid=nil, taginstances=nil, filterdimensionsparam=nil, isoneclick=nil, oneclickstatus=nil, advancedmetricnumber=nil, isbindall=nil, tags=nil)
           @PolicyId = policyid
           @PolicyName = policyname
           @Remark = remark
@@ -431,6 +449,8 @@ module TencentCloud
           @IsOneClick = isoneclick
           @OneClickStatus = oneclickstatus
           @AdvancedMetricNumber = advancedmetricnumber
+          @IsBindAll = isbindall
+          @Tags = tags
         end
 
         def deserialize(params)
@@ -497,6 +517,15 @@ module TencentCloud
           @IsOneClick = params['IsOneClick']
           @OneClickStatus = params['OneClickStatus']
           @AdvancedMetricNumber = params['AdvancedMetricNumber']
+          @IsBindAll = params['IsBindAll']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
+            end
+          end
         end
       end
 
@@ -637,10 +666,16 @@ module TencentCloud
         # @param ProductId: 集成中心产品ID
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProductId: String
+        # @param ValueMax: 最大值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ValueMax: Float
+        # @param ValueMin: 最小值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ValueMin: Float
 
-        attr_accessor :MetricName, :Period, :Operator, :Value, :ContinuePeriod, :NoticeFrequency, :IsPowerNotice, :Filter, :Description, :Unit, :RuleType, :IsAdvanced, :IsOpen, :ProductId
+        attr_accessor :MetricName, :Period, :Operator, :Value, :ContinuePeriod, :NoticeFrequency, :IsPowerNotice, :Filter, :Description, :Unit, :RuleType, :IsAdvanced, :IsOpen, :ProductId, :ValueMax, :ValueMin
         
-        def initialize(metricname=nil, period=nil, operator=nil, value=nil, continueperiod=nil, noticefrequency=nil, ispowernotice=nil, filter=nil, description=nil, unit=nil, ruletype=nil, isadvanced=nil, isopen=nil, productid=nil)
+        def initialize(metricname=nil, period=nil, operator=nil, value=nil, continueperiod=nil, noticefrequency=nil, ispowernotice=nil, filter=nil, description=nil, unit=nil, ruletype=nil, isadvanced=nil, isopen=nil, productid=nil, valuemax=nil, valuemin=nil)
           @MetricName = metricname
           @Period = period
           @Operator = operator
@@ -655,6 +690,8 @@ module TencentCloud
           @IsAdvanced = isadvanced
           @IsOpen = isopen
           @ProductId = productid
+          @ValueMax = valuemax
+          @ValueMin = valuemin
         end
 
         def deserialize(params)
@@ -675,6 +712,8 @@ module TencentCloud
           @IsAdvanced = params['IsAdvanced']
           @IsOpen = params['IsOpen']
           @ProductId = params['ProductId']
+          @ValueMax = params['ValueMax']
+          @ValueMin = params['ValueMin']
         end
       end
 
@@ -1143,10 +1182,12 @@ module TencentCloud
         # @type URLNotices: Array
         # @param CLSNotices: 推送CLS日志服务的操作 最多1个
         # @type CLSNotices: Array
+        # @param Tags: 模版绑定的标签
+        # @type Tags: Array
 
-        attr_accessor :Module, :Name, :NoticeType, :NoticeLanguage, :UserNotices, :URLNotices, :CLSNotices
+        attr_accessor :Module, :Name, :NoticeType, :NoticeLanguage, :UserNotices, :URLNotices, :CLSNotices, :Tags
         
-        def initialize(_module=nil, name=nil, noticetype=nil, noticelanguage=nil, usernotices=nil, urlnotices=nil, clsnotices=nil)
+        def initialize(_module=nil, name=nil, noticetype=nil, noticelanguage=nil, usernotices=nil, urlnotices=nil, clsnotices=nil, tags=nil)
           @Module = _module
           @Name = name
           @NoticeType = noticetype
@@ -1154,6 +1195,7 @@ module TencentCloud
           @UserNotices = usernotices
           @URLNotices = urlnotices
           @CLSNotices = clsnotices
+          @Tags = tags
         end
 
         def deserialize(params)
@@ -1183,6 +1225,14 @@ module TencentCloud
               clsnotice_tmp = CLSNotice.new
               clsnotice_tmp.deserialize(i)
               @CLSNotices << clsnotice_tmp
+            end
+          end
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
             end
           end
         end
@@ -1238,10 +1288,14 @@ module TencentCloud
         # @type Filter: :class:`Tencentcloud::Monitor.v20180724.models.AlarmPolicyFilter`
         # @param GroupBy: 聚合维度列表，指定按哪些维度 key 来做 group by
         # @type GroupBy: Array
+        # @param Tags: 模版绑定的标签
+        # @type Tags: Array
+        # @param LogAlarmReqInfo: 日志告警信息
+        # @type LogAlarmReqInfo: :class:`Tencentcloud::Monitor.v20180724.models.LogAlarmReq`
 
-        attr_accessor :Module, :PolicyName, :MonitorType, :Namespace, :Remark, :Enable, :ProjectId, :ConditionTemplateId, :Condition, :EventCondition, :NoticeIds, :TriggerTasks, :Filter, :GroupBy
+        attr_accessor :Module, :PolicyName, :MonitorType, :Namespace, :Remark, :Enable, :ProjectId, :ConditionTemplateId, :Condition, :EventCondition, :NoticeIds, :TriggerTasks, :Filter, :GroupBy, :Tags, :LogAlarmReqInfo
         
-        def initialize(_module=nil, policyname=nil, monitortype=nil, namespace=nil, remark=nil, enable=nil, projectid=nil, conditiontemplateid=nil, condition=nil, eventcondition=nil, noticeids=nil, triggertasks=nil, filter=nil, groupby=nil)
+        def initialize(_module=nil, policyname=nil, monitortype=nil, namespace=nil, remark=nil, enable=nil, projectid=nil, conditiontemplateid=nil, condition=nil, eventcondition=nil, noticeids=nil, triggertasks=nil, filter=nil, groupby=nil, tags=nil, logalarmreqinfo=nil)
           @Module = _module
           @PolicyName = policyname
           @MonitorType = monitortype
@@ -1256,6 +1310,8 @@ module TencentCloud
           @TriggerTasks = triggertasks
           @Filter = filter
           @GroupBy = groupby
+          @Tags = tags
+          @LogAlarmReqInfo = logalarmreqinfo
         end
 
         def deserialize(params)
@@ -1289,6 +1345,18 @@ module TencentCloud
             @Filter.deserialize(params['Filter'])
           end
           @GroupBy = params['GroupBy']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
+            end
+          end
+          unless params['LogAlarmReqInfo'].nil?
+            @LogAlarmReqInfo = LogAlarmReq.new
+            @LogAlarmReqInfo.deserialize(params['LogAlarmReqInfo'])
+          end
         end
       end
 
@@ -3081,10 +3149,12 @@ module TencentCloud
         # @type GroupIds: Array
         # @param NoticeIds: 根据通知模板 id 过滤，空数组/不传则不过滤
         # @type NoticeIds: Array
+        # @param Tags: 模版根据标签过滤
+        # @type Tags: Array
 
-        attr_accessor :Module, :PageNumber, :PageSize, :Order, :OwnerUid, :Name, :ReceiverType, :UserIds, :GroupIds, :NoticeIds
+        attr_accessor :Module, :PageNumber, :PageSize, :Order, :OwnerUid, :Name, :ReceiverType, :UserIds, :GroupIds, :NoticeIds, :Tags
         
-        def initialize(_module=nil, pagenumber=nil, pagesize=nil, order=nil, owneruid=nil, name=nil, receivertype=nil, userids=nil, groupids=nil, noticeids=nil)
+        def initialize(_module=nil, pagenumber=nil, pagesize=nil, order=nil, owneruid=nil, name=nil, receivertype=nil, userids=nil, groupids=nil, noticeids=nil, tags=nil)
           @Module = _module
           @PageNumber = pagenumber
           @PageSize = pagesize
@@ -3095,6 +3165,7 @@ module TencentCloud
           @UserIds = userids
           @GroupIds = groupids
           @NoticeIds = noticeids
+          @Tags = tags
         end
 
         def deserialize(params)
@@ -3108,6 +3179,14 @@ module TencentCloud
           @UserIds = params['UserIds']
           @GroupIds = params['GroupIds']
           @NoticeIds = params['NoticeIds']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
+            end
+          end
         end
       end
 
@@ -3195,10 +3274,16 @@ module TencentCloud
         # @type TriggerTasks: Array
         # @param OneClickPolicyType: 根据一键告警策略筛选 不传展示全部策略 ONECLICK=展示一键告警策略 NOT_ONECLICK=展示非一键告警策略
         # @type OneClickPolicyType: Array
+        # @param NotBindAll: 根据全部对象过滤，1代表需要过滤掉全部对象，0则无需过滤
+        # @type NotBindAll: Integer
+        # @param NotInstanceGroup: 根据实例对象过滤，1代表需要过滤掉有实例对象，0则无需过滤
+        # @type NotInstanceGroup: Integer
+        # @param Tags: 策略根据标签过滤
+        # @type Tags: Array
 
-        attr_accessor :Module, :PageNumber, :PageSize, :PolicyName, :MonitorTypes, :Namespaces, :Dimensions, :ReceiverUids, :ReceiverGroups, :PolicyType, :Field, :Order, :ProjectIds, :NoticeIds, :RuleTypes, :Enable, :NotBindingNoticeRule, :InstanceGroupId, :NeedCorrespondence, :TriggerTasks, :OneClickPolicyType
+        attr_accessor :Module, :PageNumber, :PageSize, :PolicyName, :MonitorTypes, :Namespaces, :Dimensions, :ReceiverUids, :ReceiverGroups, :PolicyType, :Field, :Order, :ProjectIds, :NoticeIds, :RuleTypes, :Enable, :NotBindingNoticeRule, :InstanceGroupId, :NeedCorrespondence, :TriggerTasks, :OneClickPolicyType, :NotBindAll, :NotInstanceGroup, :Tags
         
-        def initialize(_module=nil, pagenumber=nil, pagesize=nil, policyname=nil, monitortypes=nil, namespaces=nil, dimensions=nil, receiveruids=nil, receivergroups=nil, policytype=nil, field=nil, order=nil, projectids=nil, noticeids=nil, ruletypes=nil, enable=nil, notbindingnoticerule=nil, instancegroupid=nil, needcorrespondence=nil, triggertasks=nil, oneclickpolicytype=nil)
+        def initialize(_module=nil, pagenumber=nil, pagesize=nil, policyname=nil, monitortypes=nil, namespaces=nil, dimensions=nil, receiveruids=nil, receivergroups=nil, policytype=nil, field=nil, order=nil, projectids=nil, noticeids=nil, ruletypes=nil, enable=nil, notbindingnoticerule=nil, instancegroupid=nil, needcorrespondence=nil, triggertasks=nil, oneclickpolicytype=nil, notbindall=nil, notinstancegroup=nil, tags=nil)
           @Module = _module
           @PageNumber = pagenumber
           @PageSize = pagesize
@@ -3220,6 +3305,9 @@ module TencentCloud
           @NeedCorrespondence = needcorrespondence
           @TriggerTasks = triggertasks
           @OneClickPolicyType = oneclickpolicytype
+          @NotBindAll = notbindall
+          @NotInstanceGroup = notinstancegroup
+          @Tags = tags
         end
 
         def deserialize(params)
@@ -3251,6 +3339,16 @@ module TencentCloud
             end
           end
           @OneClickPolicyType = params['OneClickPolicyType']
+          @NotBindAll = params['NotBindAll']
+          @NotInstanceGroup = params['NotInstanceGroup']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
+            end
+          end
         end
       end
 
@@ -7469,6 +7567,65 @@ module TencentCloud
         end
       end
 
+      # 日志告警请求信息
+      class LogAlarmReq < TencentCloud::Common::AbstractModel
+        # @param InstanceId: apm实例id
+        # @type InstanceId: String
+        # @param Filter: 检索条件信息
+        # @type Filter: Array
+        # @param AlarmMerge: 告警合并开启/暂停
+        # @type AlarmMerge: String
+        # @param AlarmMergeTime: 告警合并时间
+        # @type AlarmMergeTime: String
+
+        attr_accessor :InstanceId, :Filter, :AlarmMerge, :AlarmMergeTime
+        
+        def initialize(instanceid=nil, filter=nil, alarmmerge=nil, alarmmergetime=nil)
+          @InstanceId = instanceid
+          @Filter = filter
+          @AlarmMerge = alarmmerge
+          @AlarmMergeTime = alarmmergetime
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          unless params['Filter'].nil?
+            @Filter = []
+            params['Filter'].each do |i|
+              logfilterinfo_tmp = LogFilterInfo.new
+              logfilterinfo_tmp.deserialize(i)
+              @Filter << logfilterinfo_tmp
+            end
+          end
+          @AlarmMerge = params['AlarmMerge']
+          @AlarmMergeTime = params['AlarmMergeTime']
+        end
+      end
+
+      # 日志告警检索条件结构体
+      class LogFilterInfo < TencentCloud::Common::AbstractModel
+        # @param Key: 字段名
+        # @type Key: String
+        # @param Operator: 比较符号
+        # @type Operator: String
+        # @param Value: 字段值
+        # @type Value: String
+
+        attr_accessor :Key, :Operator, :Value
+        
+        def initialize(key=nil, operator=nil, value=nil)
+          @Key = key
+          @Operator = operator
+          @Value = value
+        end
+
+        def deserialize(params)
+          @Key = params['Key']
+          @Operator = params['Operator']
+          @Value = params['Value']
+        end
+      end
+
       # Prometheus Agent 管理命令行
       class ManagementCommand < TencentCloud::Common::AbstractModel
         # @param Install: Agent 安装命令
@@ -7886,10 +8043,12 @@ module TencentCloud
         # @type Filter: :class:`Tencentcloud::Monitor.v20180724.models.AlarmPolicyFilter`
         # @param GroupBy: 聚合维度列表，指定按哪些维度 key 来做 group by
         # @type GroupBy: Array
+        # @param LogAlarmReqInfo: 日志告警创建请求参数信息
+        # @type LogAlarmReqInfo: :class:`Tencentcloud::Monitor.v20180724.models.LogAlarmReq`
 
-        attr_accessor :Module, :PolicyId, :ConditionTemplateId, :Condition, :EventCondition, :Filter, :GroupBy
+        attr_accessor :Module, :PolicyId, :ConditionTemplateId, :Condition, :EventCondition, :Filter, :GroupBy, :LogAlarmReqInfo
         
-        def initialize(_module=nil, policyid=nil, conditiontemplateid=nil, condition=nil, eventcondition=nil, filter=nil, groupby=nil)
+        def initialize(_module=nil, policyid=nil, conditiontemplateid=nil, condition=nil, eventcondition=nil, filter=nil, groupby=nil, logalarmreqinfo=nil)
           @Module = _module
           @PolicyId = policyid
           @ConditionTemplateId = conditiontemplateid
@@ -7897,6 +8056,7 @@ module TencentCloud
           @EventCondition = eventcondition
           @Filter = filter
           @GroupBy = groupby
+          @LogAlarmReqInfo = logalarmreqinfo
         end
 
         def deserialize(params)
@@ -7916,6 +8076,10 @@ module TencentCloud
             @Filter.deserialize(params['Filter'])
           end
           @GroupBy = params['GroupBy']
+          unless params['LogAlarmReqInfo'].nil?
+            @LogAlarmReqInfo = LogAlarmReq.new
+            @LogAlarmReqInfo.deserialize(params['LogAlarmReqInfo'])
+          end
         end
       end
 
@@ -9444,6 +9608,26 @@ module TencentCloud
 
         def deserialize(params)
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 标签
+      class Tag < TencentCloud::Common::AbstractModel
+        # @param Key: 标签key
+        # @type Key: String
+        # @param Value: 标签value
+        # @type Value: String
+
+        attr_accessor :Key, :Value
+        
+        def initialize(key=nil, value=nil)
+          @Key = key
+          @Value = value
+        end
+
+        def deserialize(params)
+          @Key = params['Key']
+          @Value = params['Value']
         end
       end
 
