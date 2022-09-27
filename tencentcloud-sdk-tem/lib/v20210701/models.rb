@@ -330,6 +330,58 @@ module TencentCloud
         end
       end
 
+      # CreateApplicationService请求参数结构体
+      class CreateApplicationServiceRequest < TencentCloud::Common::AbstractModel
+        # @param ApplicationId: 服务id
+        # @type ApplicationId: String
+        # @param EnvironmentId: 环境ID
+        # @type EnvironmentId: String
+        # @param SourceChannel: 来源渠道
+        # @type SourceChannel: Integer
+        # @param Service: 访问方式详情
+        # @type Service: :class:`Tencentcloud::Tem.v20210701.models.ServicePortMapping`
+
+        attr_accessor :ApplicationId, :EnvironmentId, :SourceChannel, :Service
+        
+        def initialize(applicationid=nil, environmentid=nil, sourcechannel=nil, service=nil)
+          @ApplicationId = applicationid
+          @EnvironmentId = environmentid
+          @SourceChannel = sourcechannel
+          @Service = service
+        end
+
+        def deserialize(params)
+          @ApplicationId = params['ApplicationId']
+          @EnvironmentId = params['EnvironmentId']
+          @SourceChannel = params['SourceChannel']
+          unless params['Service'].nil?
+            @Service = ServicePortMapping.new
+            @Service.deserialize(params['Service'])
+          end
+        end
+      end
+
+      # CreateApplicationService返回参数结构体
+      class CreateApplicationServiceResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 是否成功
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Result: Boolean
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+        
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Result = params['Result']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateConfigData请求参数结构体
       class CreateConfigDataRequest < TencentCloud::Common::AbstractModel
         # @param EnvironmentId: 环境 ID
@@ -778,6 +830,55 @@ module TencentCloud
       # DeleteApplication返回参数结构体
       class DeleteApplicationResponse < TencentCloud::Common::AbstractModel
         # @param Result: 返回结果
+        # @type Result: Boolean
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+        
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Result = params['Result']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteApplicationService请求参数结构体
+      class DeleteApplicationServiceRequest < TencentCloud::Common::AbstractModel
+        # @param ApplicationId: 服务id
+        # @type ApplicationId: String
+        # @param SourceChannel: 来源渠道
+        # @type SourceChannel: Integer
+        # @param EnvironmentId: 环境ID
+        # @type EnvironmentId: String
+        # @param ServiceName: 访问方式服务名
+        # @type ServiceName: String
+
+        attr_accessor :ApplicationId, :SourceChannel, :EnvironmentId, :ServiceName
+        
+        def initialize(applicationid=nil, sourcechannel=nil, environmentid=nil, servicename=nil)
+          @ApplicationId = applicationid
+          @SourceChannel = sourcechannel
+          @EnvironmentId = environmentid
+          @ServiceName = servicename
+        end
+
+        def deserialize(params)
+          @ApplicationId = params['ApplicationId']
+          @SourceChannel = params['SourceChannel']
+          @EnvironmentId = params['EnvironmentId']
+          @ServiceName = params['ServiceName']
+        end
+      end
+
+      # DeleteApplicationService返回参数结构体
+      class DeleteApplicationServiceResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 是否成功
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Result: Boolean
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1446,6 +1547,53 @@ module TencentCloud
         def deserialize(params)
           unless params['Result'].nil?
             @Result = DescribeRunPodPage.new
+            @Result.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeApplicationServiceList请求参数结构体
+      class DescribeApplicationServiceListRequest < TencentCloud::Common::AbstractModel
+        # @param EnvironmentId: namespace id
+        # @type EnvironmentId: String
+        # @param ApplicationId: 服务ID
+        # @type ApplicationId: String
+        # @param SourceChannel: xx
+        # @type SourceChannel: Integer
+
+        attr_accessor :EnvironmentId, :ApplicationId, :SourceChannel
+        
+        def initialize(environmentid=nil, applicationid=nil, sourcechannel=nil)
+          @EnvironmentId = environmentid
+          @ApplicationId = applicationid
+          @SourceChannel = sourcechannel
+        end
+
+        def deserialize(params)
+          @EnvironmentId = params['EnvironmentId']
+          @ApplicationId = params['ApplicationId']
+          @SourceChannel = params['SourceChannel']
+        end
+      end
+
+      # DescribeApplicationServiceList返回参数结构体
+      class DescribeApplicationServiceListResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 应用 EKS Service 列表
+        # @type Result: :class:`Tencentcloud::Tem.v20210701.models.EksService`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+        
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Result'].nil?
+            @Result = EksService.new
             @Result.deserialize(params['Result'])
           end
           @RequestId = params['RequestId']
@@ -3166,6 +3314,65 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyApplicationService请求参数结构体
+      class ModifyApplicationServiceRequest < TencentCloud::Common::AbstractModel
+        # @param ApplicationId: 服务id
+        # @type ApplicationId: String
+        # @param EnvironmentId: 环境ID
+        # @type EnvironmentId: String
+        # @param SourceChannel: 来源渠道
+        # @type SourceChannel: Integer
+        # @param Service: 全量访问方式设置
+        # @type Service: :class:`Tencentcloud::Tem.v20210701.models.EksService`
+        # @param Data: 单条访问方式设置
+        # @type Data: :class:`Tencentcloud::Tem.v20210701.models.ServicePortMapping`
+
+        attr_accessor :ApplicationId, :EnvironmentId, :SourceChannel, :Service, :Data
+        
+        def initialize(applicationid=nil, environmentid=nil, sourcechannel=nil, service=nil, data=nil)
+          @ApplicationId = applicationid
+          @EnvironmentId = environmentid
+          @SourceChannel = sourcechannel
+          @Service = service
+          @Data = data
+        end
+
+        def deserialize(params)
+          @ApplicationId = params['ApplicationId']
+          @EnvironmentId = params['EnvironmentId']
+          @SourceChannel = params['SourceChannel']
+          unless params['Service'].nil?
+            @Service = EksService.new
+            @Service.deserialize(params['Service'])
+          end
+          unless params['Data'].nil?
+            @Data = ServicePortMapping.new
+            @Data.deserialize(params['Data'])
+          end
+        end
+      end
+
+      # ModifyApplicationService返回参数结构体
+      class ModifyApplicationServiceResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 是否成功
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Result: Boolean
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+        
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Result = params['Result']
           @RequestId = params['RequestId']
         end
       end

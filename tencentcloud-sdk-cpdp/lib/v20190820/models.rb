@@ -13134,10 +13134,13 @@ module TencentCloud
         # @type PayeeId: String
         # @param OutUserId: 外部用户ID
         # @type OutUserId: String
+        # @param ChannelOrderId: 渠道支付订单号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ChannelOrderId: String
 
-        attr_accessor :IncomeType, :AmountBeforeTax, :AmountAfterTax, :Tax, :OutOrderId, :OrderId, :InitiateTime, :FinishTime, :Status, :StatusDesc, :Remark, :PayeeId, :OutUserId
+        attr_accessor :IncomeType, :AmountBeforeTax, :AmountAfterTax, :Tax, :OutOrderId, :OrderId, :InitiateTime, :FinishTime, :Status, :StatusDesc, :Remark, :PayeeId, :OutUserId, :ChannelOrderId
         
-        def initialize(incometype=nil, amountbeforetax=nil, amountaftertax=nil, tax=nil, outorderid=nil, orderid=nil, initiatetime=nil, finishtime=nil, status=nil, statusdesc=nil, remark=nil, payeeid=nil, outuserid=nil)
+        def initialize(incometype=nil, amountbeforetax=nil, amountaftertax=nil, tax=nil, outorderid=nil, orderid=nil, initiatetime=nil, finishtime=nil, status=nil, statusdesc=nil, remark=nil, payeeid=nil, outuserid=nil, channelorderid=nil)
           @IncomeType = incometype
           @AmountBeforeTax = amountbeforetax
           @AmountAfterTax = amountaftertax
@@ -13151,6 +13154,7 @@ module TencentCloud
           @Remark = remark
           @PayeeId = payeeid
           @OutUserId = outuserid
+          @ChannelOrderId = channelorderid
         end
 
         def deserialize(params)
@@ -13167,6 +13171,7 @@ module TencentCloud
           @Remark = params['Remark']
           @PayeeId = params['PayeeId']
           @OutUserId = params['OutUserId']
+          @ChannelOrderId = params['ChannelOrderId']
         end
       end
 
@@ -15781,6 +15786,56 @@ module TencentCloud
           @ChannelAccountBookId = params['ChannelAccountBookId']
           @AvailableBalance = params['AvailableBalance']
           @CollectMoneyAccountInfo = params['CollectMoneyAccountInfo']
+        end
+      end
+
+      # QueryFinancialDataUrl请求参数结构体
+      class QueryFinancialDataUrlRequest < TencentCloud::Common::AbstractModel
+        # @param EndTime: 数据查询范围:结束时间
+        # @type EndTime: String
+        # @param StartTime: 数据查询范围:开始时间
+        # @type StartTime: String
+        # @param DataType: 数据类型：ADDED_INVOICE_REPORT  增值税开票数据，NATURAL_FINANCE_REPORT 自然人金融数据
+        # @type DataType: String
+
+        attr_accessor :EndTime, :StartTime, :DataType
+        
+        def initialize(endtime=nil, starttime=nil, datatype=nil)
+          @EndTime = endtime
+          @StartTime = starttime
+          @DataType = datatype
+        end
+
+        def deserialize(params)
+          @EndTime = params['EndTime']
+          @StartTime = params['StartTime']
+          @DataType = params['DataType']
+        end
+      end
+
+      # QueryFinancialDataUrl返回参数结构体
+      class QueryFinancialDataUrlResponse < TencentCloud::Common::AbstractModel
+        # @param CosUrl: 下载链接
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CosUrl: String
+        # @param ExpireTime: 过期时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExpireTime: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :CosUrl, :ExpireTime, :RequestId
+        
+        def initialize(cosurl=nil, expiretime=nil, requestid=nil)
+          @CosUrl = cosurl
+          @ExpireTime = expiretime
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @CosUrl = params['CosUrl']
+          @ExpireTime = params['ExpireTime']
+          @RequestId = params['RequestId']
         end
       end
 

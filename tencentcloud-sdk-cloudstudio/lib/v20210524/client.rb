@@ -53,7 +53,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 云主机方式创建工作空间
+        # 云服务器方式创建工作空间
 
         # @param request: Request instance for CreateWorkspaceByAgent.
         # @type request: :class:`Tencentcloud::cloudstudio::V20210524::CreateWorkspaceByAgentRequest`
@@ -77,7 +77,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 快速开始, 基于模版创建工作空间
+        # 快速开始, 基于模板创建工作空间
 
         # @param request: Request instance for CreateWorkspaceByTemplate.
         # @type request: :class:`Tencentcloud::cloudstudio::V20210524::CreateWorkspaceByTemplateRequest`
@@ -149,7 +149,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 获取所有模版列表
+        # 获取所有模板列表
 
         # @param request: Request instance for DescribeCustomizeTemplates.
         # @type request: :class:`Tencentcloud::cloudstudio::V20210524::DescribeCustomizeTemplatesRequest`
@@ -317,7 +317,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 修改模版默认代码仓库
+        # 修改模板默认代码仓库
 
         # @param request: Request instance for ModifyCustomizeTemplateVersionControl.
         # @type request: :class:`Tencentcloud::cloudstudio::V20210524::ModifyCustomizeTemplateVersionControlRequest`

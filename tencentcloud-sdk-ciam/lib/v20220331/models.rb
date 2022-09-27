@@ -73,7 +73,6 @@ module TencentCloud
         # @type UserStoreId: String
         # @param Format: 导出的数据类型
 
-        # <li> **JSON** </li>  JSON
         # <li> **NDJSON** </li>  New-line Delimited JSON
         # <li> **CSV** </li>  Comma-Separated Values
         # @type Format: String
@@ -161,10 +160,20 @@ module TencentCloud
         # @type Birthdate: Integer
         # @param CustomizationAttributes: 自定义属性
         # @type CustomizationAttributes: Array
+        # @param IndexedAttribute1: 索引字段1
+        # @type IndexedAttribute1: String
+        # @param IndexedAttribute2: 索引字段2
+        # @type IndexedAttribute2: String
+        # @param IndexedAttribute3: 索引字段3
+        # @type IndexedAttribute3: String
+        # @param IndexedAttribute4: 索引字段4
+        # @type IndexedAttribute4: String
+        # @param IndexedAttribute5: 索引字段5
+        # @type IndexedAttribute5: String
 
-        attr_accessor :UserStoreId, :PhoneNumber, :Email, :Password, :UserName, :Nickname, :Address, :UserGroup, :Birthdate, :CustomizationAttributes
+        attr_accessor :UserStoreId, :PhoneNumber, :Email, :Password, :UserName, :Nickname, :Address, :UserGroup, :Birthdate, :CustomizationAttributes, :IndexedAttribute1, :IndexedAttribute2, :IndexedAttribute3, :IndexedAttribute4, :IndexedAttribute5
         
-        def initialize(userstoreid=nil, phonenumber=nil, email=nil, password=nil, username=nil, nickname=nil, address=nil, usergroup=nil, birthdate=nil, customizationattributes=nil)
+        def initialize(userstoreid=nil, phonenumber=nil, email=nil, password=nil, username=nil, nickname=nil, address=nil, usergroup=nil, birthdate=nil, customizationattributes=nil, indexedattribute1=nil, indexedattribute2=nil, indexedattribute3=nil, indexedattribute4=nil, indexedattribute5=nil)
           @UserStoreId = userstoreid
           @PhoneNumber = phonenumber
           @Email = email
@@ -175,6 +184,11 @@ module TencentCloud
           @UserGroup = usergroup
           @Birthdate = birthdate
           @CustomizationAttributes = customizationattributes
+          @IndexedAttribute1 = indexedattribute1
+          @IndexedAttribute2 = indexedattribute2
+          @IndexedAttribute3 = indexedattribute3
+          @IndexedAttribute4 = indexedattribute4
+          @IndexedAttribute5 = indexedattribute5
         end
 
         def deserialize(params)
@@ -195,6 +209,11 @@ module TencentCloud
               @CustomizationAttributes << membermap_tmp
             end
           end
+          @IndexedAttribute1 = params['IndexedAttribute1']
+          @IndexedAttribute2 = params['IndexedAttribute2']
+          @IndexedAttribute3 = params['IndexedAttribute3']
+          @IndexedAttribute4 = params['IndexedAttribute4']
+          @IndexedAttribute5 = params['IndexedAttribute5']
         end
       end
 
@@ -319,14 +338,17 @@ module TencentCloud
         # @type Filters: Array
         # @param Original: 是否返回明文
         # @type Original: Boolean
+        # @param Sort: 排序设置
+        # @type Sort: :class:`Tencentcloud::Ciam.v20220331.models.Sort`
 
-        attr_accessor :UserStoreId, :Pageable, :Filters, :Original
+        attr_accessor :UserStoreId, :Pageable, :Filters, :Original, :Sort
         
-        def initialize(userstoreid=nil, pageable=nil, filters=nil, original=nil)
+        def initialize(userstoreid=nil, pageable=nil, filters=nil, original=nil, sort=nil)
           @UserStoreId = userstoreid
           @Pageable = pageable
           @Filters = filters
           @Original = original
+          @Sort = sort
         end
 
         def deserialize(params)
@@ -344,6 +366,10 @@ module TencentCloud
             end
           end
           @Original = params['Original']
+          unless params['Sort'].nil?
+            @Sort = Sort.new
+            @Sort.deserialize(params['Sort'])
+          end
         end
       end
 
@@ -535,10 +561,20 @@ module TencentCloud
         # @type Salt: :class:`Tencentcloud::Ciam.v20220331.models.Salt`
         # @param PasswordEncryptTypeEnum: 密码加密方式（SHA1;BCRYPT）
         # @type PasswordEncryptTypeEnum: String
+        # @param IndexedAttribute1: 索引字段1
+        # @type IndexedAttribute1: String
+        # @param IndexedAttribute2: 索引字段2
+        # @type IndexedAttribute2: String
+        # @param IndexedAttribute3: 索引字段3
+        # @type IndexedAttribute3: String
+        # @param IndexedAttribute4: 索引字段4
+        # @type IndexedAttribute4: String
+        # @param IndexedAttribute5: 索引字段5
+        # @type IndexedAttribute5: String
 
-        attr_accessor :UserName, :PhoneNumber, :Email, :ResidentIdentityCard, :Nickname, :Address, :UserGroup, :QqOpenId, :QqUnionId, :WechatOpenId, :WechatUnionId, :AlipayUserId, :Description, :Birthdate, :Name, :Locale, :Gender, :IdentityVerificationMethod, :IdentityVerified, :Job, :Nationality, :Zone, :Password, :CustomizationAttributes, :Salt, :PasswordEncryptTypeEnum
+        attr_accessor :UserName, :PhoneNumber, :Email, :ResidentIdentityCard, :Nickname, :Address, :UserGroup, :QqOpenId, :QqUnionId, :WechatOpenId, :WechatUnionId, :AlipayUserId, :Description, :Birthdate, :Name, :Locale, :Gender, :IdentityVerificationMethod, :IdentityVerified, :Job, :Nationality, :Zone, :Password, :CustomizationAttributes, :Salt, :PasswordEncryptTypeEnum, :IndexedAttribute1, :IndexedAttribute2, :IndexedAttribute3, :IndexedAttribute4, :IndexedAttribute5
         
-        def initialize(username=nil, phonenumber=nil, email=nil, residentidentitycard=nil, nickname=nil, address=nil, usergroup=nil, qqopenid=nil, qqunionid=nil, wechatopenid=nil, wechatunionid=nil, alipayuserid=nil, description=nil, birthdate=nil, name=nil, locale=nil, gender=nil, identityverificationmethod=nil, identityverified=nil, job=nil, nationality=nil, zone=nil, password=nil, customizationattributes=nil, salt=nil, passwordencrypttypeenum=nil)
+        def initialize(username=nil, phonenumber=nil, email=nil, residentidentitycard=nil, nickname=nil, address=nil, usergroup=nil, qqopenid=nil, qqunionid=nil, wechatopenid=nil, wechatunionid=nil, alipayuserid=nil, description=nil, birthdate=nil, name=nil, locale=nil, gender=nil, identityverificationmethod=nil, identityverified=nil, job=nil, nationality=nil, zone=nil, password=nil, customizationattributes=nil, salt=nil, passwordencrypttypeenum=nil, indexedattribute1=nil, indexedattribute2=nil, indexedattribute3=nil, indexedattribute4=nil, indexedattribute5=nil)
           @UserName = username
           @PhoneNumber = phonenumber
           @Email = email
@@ -565,6 +601,11 @@ module TencentCloud
           @CustomizationAttributes = customizationattributes
           @Salt = salt
           @PasswordEncryptTypeEnum = passwordencrypttypeenum
+          @IndexedAttribute1 = indexedattribute1
+          @IndexedAttribute2 = indexedattribute2
+          @IndexedAttribute3 = indexedattribute3
+          @IndexedAttribute4 = indexedattribute4
+          @IndexedAttribute5 = indexedattribute5
         end
 
         def deserialize(params)
@@ -604,6 +645,11 @@ module TencentCloud
             @Salt.deserialize(params['Salt'])
           end
           @PasswordEncryptTypeEnum = params['PasswordEncryptTypeEnum']
+          @IndexedAttribute1 = params['IndexedAttribute1']
+          @IndexedAttribute2 = params['IndexedAttribute2']
+          @IndexedAttribute3 = params['IndexedAttribute3']
+          @IndexedAttribute4 = params['IndexedAttribute4']
+          @IndexedAttribute5 = params['IndexedAttribute5']
         end
       end
 
@@ -627,7 +673,6 @@ module TencentCloud
         # @type CreatedDate: Integer
         # @param Format: 任务的数据类型
 
-        # <li> **JSON** </li>  JSON
         # <li> **NDJSON** </li>  New-line Delimited JSON
         # <li> **CSV** </li>  Comma-Separated Values
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -1148,19 +1193,23 @@ module TencentCloud
         # @type PropertyValue: String
         # @param Logic: 逻辑值，等于true，不等于false
         # @type Logic: Boolean
+        # @param OperateLogic: 操作逻辑符（支持> < = >= <=  != between）
+        # @type OperateLogic: String
 
-        attr_accessor :PropertyKey, :PropertyValue, :Logic
+        attr_accessor :PropertyKey, :PropertyValue, :Logic, :OperateLogic
         
-        def initialize(propertykey=nil, propertyvalue=nil, logic=nil)
+        def initialize(propertykey=nil, propertyvalue=nil, logic=nil, operatelogic=nil)
           @PropertyKey = propertykey
           @PropertyValue = propertyvalue
           @Logic = logic
+          @OperateLogic = operatelogic
         end
 
         def deserialize(params)
           @PropertyKey = params['PropertyKey']
           @PropertyValue = params['PropertyValue']
           @Logic = params['Logic']
+          @OperateLogic = params['OperateLogic']
         end
       end
 
@@ -1306,6 +1355,26 @@ module TencentCloud
         end
       end
 
+      # 查询用户排序
+      class Sort < TencentCloud::Common::AbstractModel
+        # @param PropertyKey: 排序字段的key，参考自定义属性
+        # @type PropertyKey: String
+        # @param Order: 升序或者降序，ASC/DESC
+        # @type Order: String
+
+        attr_accessor :PropertyKey, :Order
+        
+        def initialize(propertykey=nil, order=nil)
+          @PropertyKey = propertykey
+          @Order = order
+        end
+
+        def deserialize(params)
+          @PropertyKey = params['PropertyKey']
+          @Order = params['Order']
+        end
+      end
+
       # UpdateUser请求参数结构体
       class UpdateUserRequest < TencentCloud::Common::AbstractModel
         # @param UserId: 用户ID
@@ -1328,10 +1397,20 @@ module TencentCloud
         # @type Birthdate: Integer
         # @param CustomizationAttributes: 自定义属性
         # @type CustomizationAttributes: Array
+        # @param IndexedAttribute1: 索引字段1
+        # @type IndexedAttribute1: String
+        # @param IndexedAttribute2: 索引字段2
+        # @type IndexedAttribute2: String
+        # @param IndexedAttribute3: 索引字段3
+        # @type IndexedAttribute3: String
+        # @param IndexedAttribute4: 索引字段4
+        # @type IndexedAttribute4: String
+        # @param IndexedAttribute5: 索引字段5
+        # @type IndexedAttribute5: String
 
-        attr_accessor :UserId, :UserStoreId, :UserName, :PhoneNumber, :Email, :Nickname, :Address, :UserGroup, :Birthdate, :CustomizationAttributes
+        attr_accessor :UserId, :UserStoreId, :UserName, :PhoneNumber, :Email, :Nickname, :Address, :UserGroup, :Birthdate, :CustomizationAttributes, :IndexedAttribute1, :IndexedAttribute2, :IndexedAttribute3, :IndexedAttribute4, :IndexedAttribute5
         
-        def initialize(userid=nil, userstoreid=nil, username=nil, phonenumber=nil, email=nil, nickname=nil, address=nil, usergroup=nil, birthdate=nil, customizationattributes=nil)
+        def initialize(userid=nil, userstoreid=nil, username=nil, phonenumber=nil, email=nil, nickname=nil, address=nil, usergroup=nil, birthdate=nil, customizationattributes=nil, indexedattribute1=nil, indexedattribute2=nil, indexedattribute3=nil, indexedattribute4=nil, indexedattribute5=nil)
           @UserId = userid
           @UserStoreId = userstoreid
           @UserName = username
@@ -1342,6 +1421,11 @@ module TencentCloud
           @UserGroup = usergroup
           @Birthdate = birthdate
           @CustomizationAttributes = customizationattributes
+          @IndexedAttribute1 = indexedattribute1
+          @IndexedAttribute2 = indexedattribute2
+          @IndexedAttribute3 = indexedattribute3
+          @IndexedAttribute4 = indexedattribute4
+          @IndexedAttribute5 = indexedattribute5
         end
 
         def deserialize(params)
@@ -1362,6 +1446,11 @@ module TencentCloud
               @CustomizationAttributes << membermap_tmp
             end
           end
+          @IndexedAttribute1 = params['IndexedAttribute1']
+          @IndexedAttribute2 = params['IndexedAttribute2']
+          @IndexedAttribute3 = params['IndexedAttribute3']
+          @IndexedAttribute4 = params['IndexedAttribute4']
+          @IndexedAttribute5 = params['IndexedAttribute5']
         end
       end
 
@@ -1539,10 +1628,25 @@ module TencentCloud
         # @param LockTime: 锁定时间点
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LockTime: Integer
+        # @param IndexedAttribute1: 索引字段1
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IndexedAttribute1: String
+        # @param IndexedAttribute2: 索引字段2
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IndexedAttribute2: String
+        # @param IndexedAttribute3: 索引字段3
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IndexedAttribute3: String
+        # @param IndexedAttribute4: 索引字段4
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IndexedAttribute4: String
+        # @param IndexedAttribute5: 索引字段5
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IndexedAttribute5: String
 
-        attr_accessor :UserId, :UserName, :PhoneNumber, :Email, :LastSignOn, :CreatedDate, :Status, :UserDataSourceEnum, :Nickname, :Address, :Birthdate, :UserGroups, :LastModifiedDate, :CustomAttributes, :ResidentIdentityCard, :QqOpenId, :QqUnionId, :WechatOpenId, :WechatUnionId, :AlipayUserId, :Description, :Name, :Locale, :Gender, :IdentityVerificationMethod, :IdentityVerified, :Job, :Nationality, :Primary, :Zone, :AlreadyFirstLogin, :TenantId, :UserStoreId, :Version, :LockType, :LockTime
+        attr_accessor :UserId, :UserName, :PhoneNumber, :Email, :LastSignOn, :CreatedDate, :Status, :UserDataSourceEnum, :Nickname, :Address, :Birthdate, :UserGroups, :LastModifiedDate, :CustomAttributes, :ResidentIdentityCard, :QqOpenId, :QqUnionId, :WechatOpenId, :WechatUnionId, :AlipayUserId, :Description, :Name, :Locale, :Gender, :IdentityVerificationMethod, :IdentityVerified, :Job, :Nationality, :Primary, :Zone, :AlreadyFirstLogin, :TenantId, :UserStoreId, :Version, :LockType, :LockTime, :IndexedAttribute1, :IndexedAttribute2, :IndexedAttribute3, :IndexedAttribute4, :IndexedAttribute5
         
-        def initialize(userid=nil, username=nil, phonenumber=nil, email=nil, lastsignon=nil, createddate=nil, status=nil, userdatasourceenum=nil, nickname=nil, address=nil, birthdate=nil, usergroups=nil, lastmodifieddate=nil, customattributes=nil, residentidentitycard=nil, qqopenid=nil, qqunionid=nil, wechatopenid=nil, wechatunionid=nil, alipayuserid=nil, description=nil, name=nil, locale=nil, gender=nil, identityverificationmethod=nil, identityverified=nil, job=nil, nationality=nil, primary=nil, zone=nil, alreadyfirstlogin=nil, tenantid=nil, userstoreid=nil, version=nil, locktype=nil, locktime=nil)
+        def initialize(userid=nil, username=nil, phonenumber=nil, email=nil, lastsignon=nil, createddate=nil, status=nil, userdatasourceenum=nil, nickname=nil, address=nil, birthdate=nil, usergroups=nil, lastmodifieddate=nil, customattributes=nil, residentidentitycard=nil, qqopenid=nil, qqunionid=nil, wechatopenid=nil, wechatunionid=nil, alipayuserid=nil, description=nil, name=nil, locale=nil, gender=nil, identityverificationmethod=nil, identityverified=nil, job=nil, nationality=nil, primary=nil, zone=nil, alreadyfirstlogin=nil, tenantid=nil, userstoreid=nil, version=nil, locktype=nil, locktime=nil, indexedattribute1=nil, indexedattribute2=nil, indexedattribute3=nil, indexedattribute4=nil, indexedattribute5=nil)
           @UserId = userid
           @UserName = username
           @PhoneNumber = phonenumber
@@ -1579,6 +1683,11 @@ module TencentCloud
           @Version = version
           @LockType = locktype
           @LockTime = locktime
+          @IndexedAttribute1 = indexedattribute1
+          @IndexedAttribute2 = indexedattribute2
+          @IndexedAttribute3 = indexedattribute3
+          @IndexedAttribute4 = indexedattribute4
+          @IndexedAttribute5 = indexedattribute5
         end
 
         def deserialize(params)
@@ -1625,6 +1734,11 @@ module TencentCloud
           @Version = params['Version']
           @LockType = params['LockType']
           @LockTime = params['LockTime']
+          @IndexedAttribute1 = params['IndexedAttribute1']
+          @IndexedAttribute2 = params['IndexedAttribute2']
+          @IndexedAttribute3 = params['IndexedAttribute3']
+          @IndexedAttribute4 = params['IndexedAttribute4']
+          @IndexedAttribute5 = params['IndexedAttribute5']
         end
       end
 

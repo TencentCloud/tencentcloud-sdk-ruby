@@ -25,11 +25,11 @@ module TencentCloud
         # @type ImageId: Integer
         # @param ImageName: 镜像名称
         # @type ImageName: String
-        # @param RemoteUser: 云主机登录名称
+        # @param RemoteUser: 云服务器登录名称
         # @type RemoteUser: String
-        # @param RemoteHost: 云主机登录地址
+        # @param RemoteHost: 云服务器登录地址
         # @type RemoteHost: String
-        # @param RemotePort: 云主机登录端口
+        # @param RemotePort: 云服务器登录端口
         # @type RemotePort: String
         # @param WorkspaceType: 工作空间类型
         # @type WorkspaceType: String
@@ -170,7 +170,7 @@ module TencentCloud
       class CreateWorkspaceByTemplateRequest < TencentCloud::Common::AbstractModel
         # @param CloudStudioSessionTeam: 用户所属组
         # @type CloudStudioSessionTeam: String
-        # @param TemplateId: 模版ID
+        # @param TemplateId: 模板ID
         # @type TemplateId: Integer
 
         attr_accessor :CloudStudioSessionTeam, :TemplateId
@@ -682,7 +682,7 @@ module TencentCloud
       class ModifyCustomizeTemplateVersionControlRequest < TencentCloud::Common::AbstractModel
         # @param CloudStudioSessionTeam: 用户所属组
         # @type CloudStudioSessionTeam: String
-        # @param TemplateId: 模版ID
+        # @param TemplateId: 模板ID
         # @type TemplateId: Integer
         # @param Url: 仓库地址
         # @type Url: String

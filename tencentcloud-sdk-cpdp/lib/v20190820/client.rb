@@ -2823,6 +2823,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 财税-查询金融数据文件下载链接
+
+        # @param request: Request instance for QueryFinancialDataUrl.
+        # @type request: :class:`Tencentcloud::cpdp::V20190820::QueryFinancialDataUrlRequest`
+        # @rtype: :class:`Tencentcloud::cpdp::V20190820::QueryFinancialDataUrlResponse`
+        def QueryFinancialDataUrl(request)
+          body = send_request('QueryFinancialDataUrl', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = QueryFinancialDataUrlResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 灵云V2-查询税前金额
 
         # @param request: Request instance for QueryFlexAmountBeforeTax.

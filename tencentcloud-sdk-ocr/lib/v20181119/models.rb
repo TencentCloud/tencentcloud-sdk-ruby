@@ -2284,7 +2284,6 @@ module TencentCloud
         # -9102：证照复印件告警
         # -9103：证照翻拍告警
         # -9104：证照PS告警
-        # -9105：证照防伪告警
         # @type WarningCode: Array
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -3152,7 +3151,7 @@ module TencentCloud
         # @type Nationality: String
         # @param Warn: 告警码
         # -9103	证照翻拍告警
-        # -9102	证照复印件告警
+        # -9102	证照复印件告警（包括黑白复印件、彩色复印件）
         # -9106       证件遮挡告警
         # @type Warn: Array
         # @param Image: 证件图片

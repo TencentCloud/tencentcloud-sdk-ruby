@@ -295,23 +295,27 @@ module TencentCloud
       class DescribeCloudNativeAPIGatewayNodesRequest < TencentCloud::Common::AbstractModel
         # @param GatewayId: 云原生API网关实例ID。
         # @type GatewayId: String
-        # @param Offset: 翻页从第几个开始获取
-        # @type Offset: Integer
+        # @param GroupId: 实例分组id
+        # @type GroupId: String
         # @param Limit: 翻页获取多少个
         # @type Limit: Integer
+        # @param Offset: 翻页从第几个开始获取
+        # @type Offset: Integer
 
-        attr_accessor :GatewayId, :Offset, :Limit
+        attr_accessor :GatewayId, :GroupId, :Limit, :Offset
         
-        def initialize(gatewayid=nil, offset=nil, limit=nil)
+        def initialize(gatewayid=nil, groupid=nil, limit=nil, offset=nil)
           @GatewayId = gatewayid
-          @Offset = offset
+          @GroupId = groupid
           @Limit = limit
+          @Offset = offset
         end
 
         def deserialize(params)
           @GatewayId = params['GatewayId']
-          @Offset = params['Offset']
+          @GroupId = params['GroupId']
           @Limit = params['Limit']
+          @Offset = params['Offset']
         end
       end
 
