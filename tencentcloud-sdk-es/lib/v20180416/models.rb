@@ -3703,10 +3703,12 @@ module TencentCloud
         # @type EsConfigSet: :class:`Tencentcloud::Es.v20180416.models.EsConfigSetInfo`
         # @param OperationDuration: 可维护时间段
         # @type OperationDuration: :class:`Tencentcloud::Es.v20180416.models.OperationDurationUpdated`
+        # @param KibanaAlteringPublicAccess: 是否开启Altering 外网告警输出
+        # @type KibanaAlteringPublicAccess: String
 
-        attr_accessor :InstanceId, :InstanceName, :NodeNum, :EsConfig, :Password, :EsAcl, :DiskSize, :NodeType, :MasterNodeNum, :MasterNodeType, :MasterNodeDiskSize, :ForceRestart, :CosBackup, :NodeInfoList, :PublicAccess, :EsPublicAcl, :KibanaPublicAccess, :KibanaPrivateAccess, :BasicSecurityType, :KibanaPrivatePort, :ScaleType, :MultiZoneInfo, :SceneType, :KibanaConfig, :WebNodeTypeInfo, :SwitchPrivateLink, :EnableCerebro, :CerebroPublicAccess, :CerebroPrivateAccess, :EsConfigSet, :OperationDuration
+        attr_accessor :InstanceId, :InstanceName, :NodeNum, :EsConfig, :Password, :EsAcl, :DiskSize, :NodeType, :MasterNodeNum, :MasterNodeType, :MasterNodeDiskSize, :ForceRestart, :CosBackup, :NodeInfoList, :PublicAccess, :EsPublicAcl, :KibanaPublicAccess, :KibanaPrivateAccess, :BasicSecurityType, :KibanaPrivatePort, :ScaleType, :MultiZoneInfo, :SceneType, :KibanaConfig, :WebNodeTypeInfo, :SwitchPrivateLink, :EnableCerebro, :CerebroPublicAccess, :CerebroPrivateAccess, :EsConfigSet, :OperationDuration, :KibanaAlteringPublicAccess
         
-        def initialize(instanceid=nil, instancename=nil, nodenum=nil, esconfig=nil, password=nil, esacl=nil, disksize=nil, nodetype=nil, masternodenum=nil, masternodetype=nil, masternodedisksize=nil, forcerestart=nil, cosbackup=nil, nodeinfolist=nil, publicaccess=nil, espublicacl=nil, kibanapublicaccess=nil, kibanaprivateaccess=nil, basicsecuritytype=nil, kibanaprivateport=nil, scaletype=nil, multizoneinfo=nil, scenetype=nil, kibanaconfig=nil, webnodetypeinfo=nil, switchprivatelink=nil, enablecerebro=nil, cerebropublicaccess=nil, cerebroprivateaccess=nil, esconfigset=nil, operationduration=nil)
+        def initialize(instanceid=nil, instancename=nil, nodenum=nil, esconfig=nil, password=nil, esacl=nil, disksize=nil, nodetype=nil, masternodenum=nil, masternodetype=nil, masternodedisksize=nil, forcerestart=nil, cosbackup=nil, nodeinfolist=nil, publicaccess=nil, espublicacl=nil, kibanapublicaccess=nil, kibanaprivateaccess=nil, basicsecuritytype=nil, kibanaprivateport=nil, scaletype=nil, multizoneinfo=nil, scenetype=nil, kibanaconfig=nil, webnodetypeinfo=nil, switchprivatelink=nil, enablecerebro=nil, cerebropublicaccess=nil, cerebroprivateaccess=nil, esconfigset=nil, operationduration=nil, kibanaalteringpublicaccess=nil)
           @InstanceId = instanceid
           @InstanceName = instancename
           @NodeNum = nodenum
@@ -3738,6 +3740,7 @@ module TencentCloud
           @CerebroPrivateAccess = cerebroprivateaccess
           @EsConfigSet = esconfigset
           @OperationDuration = operationduration
+          @KibanaAlteringPublicAccess = kibanaalteringpublicaccess
         end
 
         def deserialize(params)
@@ -3804,6 +3807,7 @@ module TencentCloud
             @OperationDuration = OperationDurationUpdated.new
             @OperationDuration.deserialize(params['OperationDuration'])
           end
+          @KibanaAlteringPublicAccess = params['KibanaAlteringPublicAccess']
         end
       end
 
@@ -4093,10 +4097,12 @@ module TencentCloud
         # @type UpgradeMode: String
         # @param CosBackup: 升级版本前是否对集群进行备份，默认不备份
         # @type CosBackup: Boolean
+        # @param SkipCheckForceRestart: 滚动模式时，是否跳过检查，进行强制重启。默认值为false
+        # @type SkipCheckForceRestart: Boolean
 
-        attr_accessor :InstanceId, :EsVersion, :CheckOnly, :LicenseType, :BasicSecurityType, :UpgradeMode, :CosBackup
+        attr_accessor :InstanceId, :EsVersion, :CheckOnly, :LicenseType, :BasicSecurityType, :UpgradeMode, :CosBackup, :SkipCheckForceRestart
         
-        def initialize(instanceid=nil, esversion=nil, checkonly=nil, licensetype=nil, basicsecuritytype=nil, upgrademode=nil, cosbackup=nil)
+        def initialize(instanceid=nil, esversion=nil, checkonly=nil, licensetype=nil, basicsecuritytype=nil, upgrademode=nil, cosbackup=nil, skipcheckforcerestart=nil)
           @InstanceId = instanceid
           @EsVersion = esversion
           @CheckOnly = checkonly
@@ -4104,6 +4110,7 @@ module TencentCloud
           @BasicSecurityType = basicsecuritytype
           @UpgradeMode = upgrademode
           @CosBackup = cosbackup
+          @SkipCheckForceRestart = skipcheckforcerestart
         end
 
         def deserialize(params)
@@ -4114,6 +4121,7 @@ module TencentCloud
           @BasicSecurityType = params['BasicSecurityType']
           @UpgradeMode = params['UpgradeMode']
           @CosBackup = params['CosBackup']
+          @SkipCheckForceRestart = params['SkipCheckForceRestart']
         end
       end
 

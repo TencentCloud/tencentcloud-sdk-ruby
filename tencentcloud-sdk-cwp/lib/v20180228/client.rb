@@ -151,7 +151,7 @@ module TencentCloud
 
         # CreateLicenseOrder 该接口可以创建专业版/旗舰版订单
         # 支持预付费后付费创建
-        # 后付费订单直接闯将成功
+        # 后付费订单直接创建成功
         # 预付费订单仅下单不支付,需要调用计费支付接口进行支付
 
         # @param request: Request instance for CreateLicenseOrder.
@@ -2034,30 +2034,6 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeESAggregationsResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # 获取ES查询文档列表
-
-        # @param request: Request instance for DescribeESHits.
-        # @type request: :class:`Tencentcloud::cwp::V20180228::DescribeESHitsRequest`
-        # @rtype: :class:`Tencentcloud::cwp::V20180228::DescribeESHitsResponse`
-        def DescribeESHits(request)
-          body = send_request('DescribeESHits', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = DescribeESHitsResponse.new
             model.deserialize(response['Response'])
             model
           else

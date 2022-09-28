@@ -3684,14 +3684,18 @@ module TencentCloud
         # @type Size: Integer
         # @param Pages: 页数
         # @type Pages: Integer
+        # @param Current: 当前条目
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Current: Integer
 
-        attr_accessor :Records, :Total, :Size, :Pages
+        attr_accessor :Records, :Total, :Size, :Pages, :Current
         
-        def initialize(records=nil, total=nil, size=nil, pages=nil)
+        def initialize(records=nil, total=nil, size=nil, pages=nil, current=nil)
           @Records = records
           @Total = total
           @Size = size
           @Pages = pages
+          @Current = current
         end
 
         def deserialize(params)
@@ -3706,6 +3710,7 @@ module TencentCloud
           @Total = params['Total']
           @Size = params['Size']
           @Pages = params['Pages']
+          @Current = params['Current']
         end
       end
 
@@ -4466,6 +4471,28 @@ module TencentCloud
         end
       end
 
+      # 标签
+      class Tag < TencentCloud::Common::AbstractModel
+        # @param TagKey: 标签键
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TagKey: String
+        # @param TagValue: 标签值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TagValue: String
+
+        attr_accessor :TagKey, :TagValue
+        
+        def initialize(tagkey=nil, tagvalue=nil)
+          @TagKey = tagkey
+          @TagValue = tagvalue
+        end
+
+        def deserialize(params)
+          @TagKey = params['TagKey']
+          @TagValue = params['TagValue']
+        end
+      end
+
       # 分批发布详情
       class TemDeployApplicationDetailInfo < TencentCloud::Common::AbstractModel
         # @param DeployStrategyConf: 分批发布策略
@@ -4645,10 +4672,25 @@ module TencentCloud
         # @type EnableTswTraceService: Boolean
         # @param Locked: 环境锁，1为上锁，0则为上锁
         # @type Locked: Integer
+        # @param AppId: 用户AppId
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AppId: String
+        # @param Uin: 用户Uin
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Uin: String
+        # @param SubAccountUin: 用户SubAccountUin
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SubAccountUin: String
+        # @param ClusterId: 集群ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClusterId: String
+        # @param Tags: 标签
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Tags: Array
 
-        attr_accessor :EnvironmentId, :Channel, :EnvironmentName, :Region, :Description, :Status, :Vpc, :CreateDate, :ModifyDate, :Modifier, :Creator, :ApplicationNum, :RunInstancesNum, :SubnetId, :ClusterStatus, :EnableTswTraceService, :Locked
+        attr_accessor :EnvironmentId, :Channel, :EnvironmentName, :Region, :Description, :Status, :Vpc, :CreateDate, :ModifyDate, :Modifier, :Creator, :ApplicationNum, :RunInstancesNum, :SubnetId, :ClusterStatus, :EnableTswTraceService, :Locked, :AppId, :Uin, :SubAccountUin, :ClusterId, :Tags
         
-        def initialize(environmentid=nil, channel=nil, environmentname=nil, region=nil, description=nil, status=nil, vpc=nil, createdate=nil, modifydate=nil, modifier=nil, creator=nil, applicationnum=nil, runinstancesnum=nil, subnetid=nil, clusterstatus=nil, enabletswtraceservice=nil, locked=nil)
+        def initialize(environmentid=nil, channel=nil, environmentname=nil, region=nil, description=nil, status=nil, vpc=nil, createdate=nil, modifydate=nil, modifier=nil, creator=nil, applicationnum=nil, runinstancesnum=nil, subnetid=nil, clusterstatus=nil, enabletswtraceservice=nil, locked=nil, appid=nil, uin=nil, subaccountuin=nil, clusterid=nil, tags=nil)
           @EnvironmentId = environmentid
           @Channel = channel
           @EnvironmentName = environmentname
@@ -4666,6 +4708,11 @@ module TencentCloud
           @ClusterStatus = clusterstatus
           @EnableTswTraceService = enabletswtraceservice
           @Locked = locked
+          @AppId = appid
+          @Uin = uin
+          @SubAccountUin = subaccountuin
+          @ClusterId = clusterid
+          @Tags = tags
         end
 
         def deserialize(params)
@@ -4686,6 +4733,18 @@ module TencentCloud
           @ClusterStatus = params['ClusterStatus']
           @EnableTswTraceService = params['EnableTswTraceService']
           @Locked = params['Locked']
+          @AppId = params['AppId']
+          @Uin = params['Uin']
+          @SubAccountUin = params['SubAccountUin']
+          @ClusterId = params['ClusterId']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
+            end
+          end
         end
       end
 

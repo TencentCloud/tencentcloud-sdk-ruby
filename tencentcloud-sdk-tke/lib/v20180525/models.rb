@@ -3080,10 +3080,14 @@ module TencentCloud
         # @type AutoUpgradeClusterLevel: Boolean
         # @param ChargeType: 集群计费方式
         # @type ChargeType: String
+        # @param EdgeVersion: 边缘集群版本，此版本区别于k8s版本，是整个集群各组件版本集合
+        # @type EdgeVersion: String
+        # @param RegistryPrefix: 边缘组件镜像仓库前缀
+        # @type RegistryPrefix: String
 
-        attr_accessor :K8SVersion, :VpcId, :ClusterName, :PodCIDR, :ServiceCIDR, :ClusterDesc, :ClusterAdvancedSettings, :MaxNodePodNum, :PublicLB, :ClusterLevel, :AutoUpgradeClusterLevel, :ChargeType
+        attr_accessor :K8SVersion, :VpcId, :ClusterName, :PodCIDR, :ServiceCIDR, :ClusterDesc, :ClusterAdvancedSettings, :MaxNodePodNum, :PublicLB, :ClusterLevel, :AutoUpgradeClusterLevel, :ChargeType, :EdgeVersion, :RegistryPrefix
         
-        def initialize(k8sversion=nil, vpcid=nil, clustername=nil, podcidr=nil, servicecidr=nil, clusterdesc=nil, clusteradvancedsettings=nil, maxnodepodnum=nil, publiclb=nil, clusterlevel=nil, autoupgradeclusterlevel=nil, chargetype=nil)
+        def initialize(k8sversion=nil, vpcid=nil, clustername=nil, podcidr=nil, servicecidr=nil, clusterdesc=nil, clusteradvancedsettings=nil, maxnodepodnum=nil, publiclb=nil, clusterlevel=nil, autoupgradeclusterlevel=nil, chargetype=nil, edgeversion=nil, registryprefix=nil)
           @K8SVersion = k8sversion
           @VpcId = vpcid
           @ClusterName = clustername
@@ -3096,6 +3100,8 @@ module TencentCloud
           @ClusterLevel = clusterlevel
           @AutoUpgradeClusterLevel = autoupgradeclusterlevel
           @ChargeType = chargetype
+          @EdgeVersion = edgeversion
+          @RegistryPrefix = registryprefix
         end
 
         def deserialize(params)
@@ -3117,6 +3123,8 @@ module TencentCloud
           @ClusterLevel = params['ClusterLevel']
           @AutoUpgradeClusterLevel = params['AutoUpgradeClusterLevel']
           @ChargeType = params['ChargeType']
+          @EdgeVersion = params['EdgeVersion']
+          @RegistryPrefix = params['RegistryPrefix']
         end
       end
 
@@ -4233,12 +4241,17 @@ module TencentCloud
 
       # DescribeAvailableTKEEdgeVersion请求参数结构体
       class DescribeAvailableTKEEdgeVersionRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 填写ClusterId获取当前集群各个组件版本和最新版本
+        # @type ClusterId: String
 
+        attr_accessor :ClusterId
         
-        def initialize()
+        def initialize(clusterid=nil)
+          @ClusterId = clusterid
         end
 
         def deserialize(params)
+          @ClusterId = params['ClusterId']
         end
       end
 
@@ -4246,18 +4259,28 @@ module TencentCloud
       class DescribeAvailableTKEEdgeVersionResponse < TencentCloud::Common::AbstractModel
         # @param Versions: 版本列表
         # @type Versions: Array
+        # @param EdgeVersionLatest: 边缘集群最新版本
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EdgeVersionLatest: String
+        # @param EdgeVersionCurrent: 边缘集群当前版本
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EdgeVersionCurrent: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Versions, :RequestId
+        attr_accessor :Versions, :EdgeVersionLatest, :EdgeVersionCurrent, :RequestId
         
-        def initialize(versions=nil, requestid=nil)
+        def initialize(versions=nil, edgeversionlatest=nil, edgeversioncurrent=nil, requestid=nil)
           @Versions = versions
+          @EdgeVersionLatest = edgeversionlatest
+          @EdgeVersionCurrent = edgeversioncurrent
           @RequestId = requestid
         end
 
         def deserialize(params)
           @Versions = params['Versions']
+          @EdgeVersionLatest = params['EdgeVersionLatest']
+          @EdgeVersionCurrent = params['EdgeVersionCurrent']
           @RequestId = params['RequestId']
         end
       end

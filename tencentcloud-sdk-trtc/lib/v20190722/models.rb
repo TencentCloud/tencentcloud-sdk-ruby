@@ -2444,9 +2444,9 @@ module TencentCloud
 
       # 第三方存储参数。
       class StorageParams < TencentCloud::Common::AbstractModel
-        # @param CloudStorage: 第三方云存储的账号信息（暂不支持）。
+        # @param CloudStorage: 第三方云存储的账号信息（CloudStorage参数暂不可用，请使用CloudVod参数存储至云点播）。
         # @type CloudStorage: :class:`Tencentcloud::Trtc.v20190722.models.CloudStorage`
-        # @param CloudVod: 腾讯云云点播的账号信息（必填，目前仅支持存储至腾讯云云点播）。
+        # @param CloudVod: 【必填】腾讯云云点播的账号信息，目前仅支持存储至腾讯云点播VOD。
         # @type CloudVod: :class:`Tencentcloud::Trtc.v20190722.models.CloudVod`
 
         attr_accessor :CloudStorage, :CloudVod

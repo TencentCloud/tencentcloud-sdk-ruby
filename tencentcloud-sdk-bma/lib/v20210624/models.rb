@@ -285,10 +285,16 @@ module TencentCloud
         # @type CommValidEndDate: String
         # @param IsProducer: x
         # @type IsProducer: String
+        # @param EvidenceFileUrl: x
+        # @type EvidenceFileUrl: String
+        # @param EvidenceValidStartDate: x
+        # @type EvidenceValidStartDate: String
+        # @param EvidenceValidEndDate: x
+        # @type EvidenceValidEndDate: String
 
-        attr_accessor :WorkId, :TortUrl, :TortTitle, :TortPlat, :BlockUrl, :FileUrl, :ValidStartDate, :ValidEndDate, :TortPic, :CommFileUrl, :CommValidStartDate, :CommValidEndDate, :IsProducer
+        attr_accessor :WorkId, :TortUrl, :TortTitle, :TortPlat, :BlockUrl, :FileUrl, :ValidStartDate, :ValidEndDate, :TortPic, :CommFileUrl, :CommValidStartDate, :CommValidEndDate, :IsProducer, :EvidenceFileUrl, :EvidenceValidStartDate, :EvidenceValidEndDate
         
-        def initialize(workid=nil, torturl=nil, torttitle=nil, tortplat=nil, blockurl=nil, fileurl=nil, validstartdate=nil, validenddate=nil, tortpic=nil, commfileurl=nil, commvalidstartdate=nil, commvalidenddate=nil, isproducer=nil)
+        def initialize(workid=nil, torturl=nil, torttitle=nil, tortplat=nil, blockurl=nil, fileurl=nil, validstartdate=nil, validenddate=nil, tortpic=nil, commfileurl=nil, commvalidstartdate=nil, commvalidenddate=nil, isproducer=nil, evidencefileurl=nil, evidencevalidstartdate=nil, evidencevalidenddate=nil)
           @WorkId = workid
           @TortUrl = torturl
           @TortTitle = torttitle
@@ -302,6 +308,9 @@ module TencentCloud
           @CommValidStartDate = commvalidstartdate
           @CommValidEndDate = commvalidenddate
           @IsProducer = isproducer
+          @EvidenceFileUrl = evidencefileurl
+          @EvidenceValidStartDate = evidencevalidstartdate
+          @EvidenceValidEndDate = evidencevalidenddate
         end
 
         def deserialize(params)
@@ -318,6 +327,9 @@ module TencentCloud
           @CommValidStartDate = params['CommValidStartDate']
           @CommValidEndDate = params['CommValidEndDate']
           @IsProducer = params['IsProducer']
+          @EvidenceFileUrl = params['EvidenceFileUrl']
+          @EvidenceValidStartDate = params['EvidenceValidStartDate']
+          @EvidenceValidEndDate = params['EvidenceValidEndDate']
         end
       end
 
@@ -492,10 +504,16 @@ module TencentCloud
         # @type HomeValidEndDate: String
         # @param IsProducer: x
         # @type IsProducer: String
+        # @param EvidenceFileUrl: x
+        # @type EvidenceFileUrl: String
+        # @param EvidenceValidStartDate: x
+        # @type EvidenceValidStartDate: String
+        # @param EvidenceValidEndDate: x
+        # @type EvidenceValidEndDate: String
 
-        attr_accessor :WorkId, :TortUrl, :TortTitle, :TortPlat, :RightUrl, :FileUrl, :ValidStartDate, :ValidEndDate, :CommFileUrl, :CommValidStartDate, :CommValidEndDate, :HomeFileUrl, :HomeValidStartDate, :HomeValidEndDate, :IsProducer
+        attr_accessor :WorkId, :TortUrl, :TortTitle, :TortPlat, :RightUrl, :FileUrl, :ValidStartDate, :ValidEndDate, :CommFileUrl, :CommValidStartDate, :CommValidEndDate, :HomeFileUrl, :HomeValidStartDate, :HomeValidEndDate, :IsProducer, :EvidenceFileUrl, :EvidenceValidStartDate, :EvidenceValidEndDate
         
-        def initialize(workid=nil, torturl=nil, torttitle=nil, tortplat=nil, righturl=nil, fileurl=nil, validstartdate=nil, validenddate=nil, commfileurl=nil, commvalidstartdate=nil, commvalidenddate=nil, homefileurl=nil, homevalidstartdate=nil, homevalidenddate=nil, isproducer=nil)
+        def initialize(workid=nil, torturl=nil, torttitle=nil, tortplat=nil, righturl=nil, fileurl=nil, validstartdate=nil, validenddate=nil, commfileurl=nil, commvalidstartdate=nil, commvalidenddate=nil, homefileurl=nil, homevalidstartdate=nil, homevalidenddate=nil, isproducer=nil, evidencefileurl=nil, evidencevalidstartdate=nil, evidencevalidenddate=nil)
           @WorkId = workid
           @TortUrl = torturl
           @TortTitle = torttitle
@@ -511,6 +529,9 @@ module TencentCloud
           @HomeValidStartDate = homevalidstartdate
           @HomeValidEndDate = homevalidenddate
           @IsProducer = isproducer
+          @EvidenceFileUrl = evidencefileurl
+          @EvidenceValidStartDate = evidencevalidstartdate
+          @EvidenceValidEndDate = evidencevalidenddate
         end
 
         def deserialize(params)
@@ -529,6 +550,9 @@ module TencentCloud
           @HomeValidStartDate = params['HomeValidStartDate']
           @HomeValidEndDate = params['HomeValidEndDate']
           @IsProducer = params['IsProducer']
+          @EvidenceFileUrl = params['EvidenceFileUrl']
+          @EvidenceValidStartDate = params['EvidenceValidStartDate']
+          @EvidenceValidEndDate = params['EvidenceValidEndDate']
         end
       end
 
@@ -744,10 +768,14 @@ module TencentCloud
         # @type Content: String
         # @param MonitorEndTime: 监测结束时间
         # @type MonitorEndTime: String
+        # @param ApplierId: 申请人ID
+        # @type ApplierId: String
+        # @param ApplierName: 申请人姓名
+        # @type ApplierName: String
 
-        attr_accessor :WorkName, :WorkCategory, :WorkType, :WorkSign, :WorkPic, :WorkDesc, :IsOriginal, :IsRelease, :ProducerID, :ProduceTime, :SampleContentURL, :SampleDownloadURL, :GrantType, :SamplePublicURL, :IsMonitor, :IsCert, :CertUrl, :MonitorUrl, :ProduceType, :WhiteLists, :WorkId, :ProducerName, :Nickname, :Authorization, :AuthorizationStartTime, :AuthorizationEndTime, :ContentType, :Content, :MonitorEndTime
+        attr_accessor :WorkName, :WorkCategory, :WorkType, :WorkSign, :WorkPic, :WorkDesc, :IsOriginal, :IsRelease, :ProducerID, :ProduceTime, :SampleContentURL, :SampleDownloadURL, :GrantType, :SamplePublicURL, :IsMonitor, :IsCert, :CertUrl, :MonitorUrl, :ProduceType, :WhiteLists, :WorkId, :ProducerName, :Nickname, :Authorization, :AuthorizationStartTime, :AuthorizationEndTime, :ContentType, :Content, :MonitorEndTime, :ApplierId, :ApplierName
         
-        def initialize(workname=nil, workcategory=nil, worktype=nil, worksign=nil, workpic=nil, workdesc=nil, isoriginal=nil, isrelease=nil, producerid=nil, producetime=nil, samplecontenturl=nil, sampledownloadurl=nil, granttype=nil, samplepublicurl=nil, ismonitor=nil, iscert=nil, certurl=nil, monitorurl=nil, producetype=nil, whitelists=nil, workid=nil, producername=nil, nickname=nil, authorization=nil, authorizationstarttime=nil, authorizationendtime=nil, contenttype=nil, content=nil, monitorendtime=nil)
+        def initialize(workname=nil, workcategory=nil, worktype=nil, worksign=nil, workpic=nil, workdesc=nil, isoriginal=nil, isrelease=nil, producerid=nil, producetime=nil, samplecontenturl=nil, sampledownloadurl=nil, granttype=nil, samplepublicurl=nil, ismonitor=nil, iscert=nil, certurl=nil, monitorurl=nil, producetype=nil, whitelists=nil, workid=nil, producername=nil, nickname=nil, authorization=nil, authorizationstarttime=nil, authorizationendtime=nil, contenttype=nil, content=nil, monitorendtime=nil, applierid=nil, appliername=nil)
           @WorkName = workname
           @WorkCategory = workcategory
           @WorkType = worktype
@@ -777,6 +805,8 @@ module TencentCloud
           @ContentType = contenttype
           @Content = content
           @MonitorEndTime = monitorendtime
+          @ApplierId = applierid
+          @ApplierName = appliername
         end
 
         def deserialize(params)
@@ -809,6 +839,8 @@ module TencentCloud
           @ContentType = params['ContentType']
           @Content = params['Content']
           @MonitorEndTime = params['MonitorEndTime']
+          @ApplierId = params['ApplierId']
+          @ApplierName = params['ApplierName']
         end
       end
 
@@ -1796,10 +1828,34 @@ module TencentCloud
         # @type ObtainNote: String
         # @param WorkTitle: 1
         # @type WorkTitle: String
+        # @param TortSite: 1
+        # @type TortSite: String
+        # @param ICP: 1
+        # @type ICP: String
+        # @param RightNote: 1
+        # @type RightNote: String
+        # @param ObtainType: 1
+        # @type ObtainType: Integer
+        # @param BlockNote: 1
+        # @type BlockNote: String
+        # @param WorkId: 1
+        # @type WorkId: Integer
+        # @param WorkName: 1
+        # @type WorkName: String
+        # @param AuthStatus: 1
+        # @type AuthStatus: Integer
+        # @param CommStatus: 1
+        # @type CommStatus: Integer
+        # @param EvidenceStatus: 1
+        # @type EvidenceStatus: Integer
+        # @param IsProducer: 1
+        # @type IsProducer: Integer
+        # @param IsOverseas: 1
+        # @type IsOverseas: Integer
 
-        attr_accessor :TortId, :TortTitle, :TortPlat, :TortURL, :PubTime, :Author, :DetectTime, :ObtainStatus, :RightStatus, :BlockStatus, :TortNum, :ObtainNote, :WorkTitle
+        attr_accessor :TortId, :TortTitle, :TortPlat, :TortURL, :PubTime, :Author, :DetectTime, :ObtainStatus, :RightStatus, :BlockStatus, :TortNum, :ObtainNote, :WorkTitle, :TortSite, :ICP, :RightNote, :ObtainType, :BlockNote, :WorkId, :WorkName, :AuthStatus, :CommStatus, :EvidenceStatus, :IsProducer, :IsOverseas
         
-        def initialize(tortid=nil, torttitle=nil, tortplat=nil, torturl=nil, pubtime=nil, author=nil, detecttime=nil, obtainstatus=nil, rightstatus=nil, blockstatus=nil, tortnum=nil, obtainnote=nil, worktitle=nil)
+        def initialize(tortid=nil, torttitle=nil, tortplat=nil, torturl=nil, pubtime=nil, author=nil, detecttime=nil, obtainstatus=nil, rightstatus=nil, blockstatus=nil, tortnum=nil, obtainnote=nil, worktitle=nil, tortsite=nil, icp=nil, rightnote=nil, obtaintype=nil, blocknote=nil, workid=nil, workname=nil, authstatus=nil, commstatus=nil, evidencestatus=nil, isproducer=nil, isoverseas=nil)
           @TortId = tortid
           @TortTitle = torttitle
           @TortPlat = tortplat
@@ -1813,6 +1869,18 @@ module TencentCloud
           @TortNum = tortnum
           @ObtainNote = obtainnote
           @WorkTitle = worktitle
+          @TortSite = tortsite
+          @ICP = icp
+          @RightNote = rightnote
+          @ObtainType = obtaintype
+          @BlockNote = blocknote
+          @WorkId = workid
+          @WorkName = workname
+          @AuthStatus = authstatus
+          @CommStatus = commstatus
+          @EvidenceStatus = evidencestatus
+          @IsProducer = isproducer
+          @IsOverseas = isoverseas
         end
 
         def deserialize(params)
@@ -1829,6 +1897,18 @@ module TencentCloud
           @TortNum = params['TortNum']
           @ObtainNote = params['ObtainNote']
           @WorkTitle = params['WorkTitle']
+          @TortSite = params['TortSite']
+          @ICP = params['ICP']
+          @RightNote = params['RightNote']
+          @ObtainType = params['ObtainType']
+          @BlockNote = params['BlockNote']
+          @WorkId = params['WorkId']
+          @WorkName = params['WorkName']
+          @AuthStatus = params['AuthStatus']
+          @CommStatus = params['CommStatus']
+          @EvidenceStatus = params['EvidenceStatus']
+          @IsProducer = params['IsProducer']
+          @IsOverseas = params['IsOverseas']
         end
       end
 

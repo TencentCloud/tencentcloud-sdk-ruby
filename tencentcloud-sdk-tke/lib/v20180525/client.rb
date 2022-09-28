@@ -1373,7 +1373,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 边缘计算支持的k8s版本
+        # 边缘计算支持版本和k8s版本
 
         # @param request: Request instance for DescribeAvailableTKEEdgeVersion.
         # @type request: :class:`Tencentcloud::tke::V20180525::DescribeAvailableTKEEdgeVersionRequest`
