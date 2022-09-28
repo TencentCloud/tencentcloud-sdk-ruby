@@ -17,7 +17,7 @@
 module TencentCloud
   module Cloudstudio
     module V20210524
-      # 云主机创建工作空间DTO
+      # 云服务器创建工作空间 DTO
       class AgentSpaceDTO < TencentCloud::Common::AbstractModel
         # @param Name: 工作空间名称
         # @type Name: String

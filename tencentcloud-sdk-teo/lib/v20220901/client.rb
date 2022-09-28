@@ -1253,30 +1253,6 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 查询域名证书列表，支持搜索、分页、排序、过滤。
-
-        # @param request: Request instance for DescribeHostCertificates.
-        # @type request: :class:`Tencentcloud::teo::V20220901::DescribeHostCertificatesRequest`
-        # @rtype: :class:`Tencentcloud::teo::V20220901::DescribeHostCertificatesResponse`
-        def DescribeHostCertificates(request)
-          body = send_request('DescribeHostCertificates', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = DescribeHostCertificatesResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
         # 用于查询域名配置信息
 
         # @param request: Request instance for DescribeHostsSetting.

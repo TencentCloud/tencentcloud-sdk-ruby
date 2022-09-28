@@ -299,6 +299,37 @@ module TencentCloud
         end
       end
 
+      # 高级回源配置
+      class AdvancedOriginGroup < TencentCloud::Common::AbstractModel
+        # @param OriginGroupConditions: 高级回源配置的匹配条件。其中相同的Target只能出现一次。
+        # @type OriginGroupConditions: Array
+        # @param OriginGroupId: 主源站组ID。
+        # @type OriginGroupId: String
+        # @param BackupOriginGroupId: 备用源站组ID。
+        # @type BackupOriginGroupId: String
+
+        attr_accessor :OriginGroupConditions, :OriginGroupId, :BackupOriginGroupId
+        
+        def initialize(origingroupconditions=nil, origingroupid=nil, backuporigingroupid=nil)
+          @OriginGroupConditions = origingroupconditions
+          @OriginGroupId = origingroupid
+          @BackupOriginGroupId = backuporigingroupid
+        end
+
+        def deserialize(params)
+          unless params['OriginGroupConditions'].nil?
+            @OriginGroupConditions = []
+            params['OriginGroupConditions'].each do |i|
+              origingroupcondition_tmp = OriginGroupCondition.new
+              origingroupcondition_tmp.deserialize(i)
+              @OriginGroupConditions << origingroupcondition_tmp
+            end
+          end
+          @OriginGroupId = params['OriginGroupId']
+          @BackupOriginGroupId = params['BackupOriginGroupId']
+        end
+      end
+
       # AI规则引擎防护
       class AiRule < TencentCloud::Common::AbstractModel
         # @param Mode: AI规则引擎状态，取值有：
@@ -1015,6 +1046,29 @@ module TencentCloud
         end
       end
 
+      # 回源时携带客户端IP所属地域信息，值的格式为ISO-3166-1两位字母代码。
+      class ClientIpCountry < TencentCloud::Common::AbstractModel
+        # @param Switch: 配置开关，取值有：
+        # <li>on：开启；</li>
+        # <li>off：关闭。</li>
+        # @type Switch: String
+        # @param HeaderName: 存放客户端IP所属地域信息的请求头名称，当Switch=on时有效。
+        # 为空则使用默认值：EO-Client-IPCountry。
+        # @type HeaderName: String
+
+        attr_accessor :Switch, :HeaderName
+        
+        def initialize(switch=nil, headername=nil)
+          @Switch = switch
+          @HeaderName = headername
+        end
+
+        def deserialize(params)
+          @Switch = params['Switch']
+          @HeaderName = params['HeaderName']
+        end
+      end
+
       # 存储客户端请求IP的头部信息配置
       class ClientIpHeader < TencentCloud::Common::AbstractModel
         # @param Switch: 配置开关，取值有：
@@ -1117,10 +1171,14 @@ module TencentCloud
         # <li>mainland：中国大陆境内;</li>
         # <li>overseas：全球（不含中国大陆）。</li>
         # @type Area: String
+        # @param LogSetType: 推送任务类型，取值有：
+        # <li>cls：推送到cls；</li>
+        # <li>custom_endpoint：推送到自定义接口。</li>
+        # @type LogSetType: String
 
-        attr_accessor :TaskName, :ZoneName, :LogSetId, :TopicId, :EntityType, :Period, :Enabled, :Deleted, :CreateTime, :Target, :LogSetRegion, :ZoneId, :Area
+        attr_accessor :TaskName, :ZoneName, :LogSetId, :TopicId, :EntityType, :Period, :Enabled, :Deleted, :CreateTime, :Target, :LogSetRegion, :ZoneId, :Area, :LogSetType
         
-        def initialize(taskname=nil, zonename=nil, logsetid=nil, topicid=nil, entitytype=nil, period=nil, enabled=nil, deleted=nil, createtime=nil, target=nil, logsetregion=nil, zoneid=nil, area=nil)
+        def initialize(taskname=nil, zonename=nil, logsetid=nil, topicid=nil, entitytype=nil, period=nil, enabled=nil, deleted=nil, createtime=nil, target=nil, logsetregion=nil, zoneid=nil, area=nil, logsettype=nil)
           @TaskName = taskname
           @ZoneName = zonename
           @LogSetId = logsetid
@@ -1134,6 +1192,7 @@ module TencentCloud
           @LogSetRegion = logsetregion
           @ZoneId = zoneid
           @Area = area
+          @LogSetType = logsettype
         end
 
         def deserialize(params)
@@ -1150,6 +1209,7 @@ module TencentCloud
           @LogSetRegion = params['LogSetRegion']
           @ZoneId = params['ZoneId']
           @Area = params['Area']
+          @LogSetType = params['LogSetType']
         end
       end
 
@@ -1585,16 +1645,24 @@ module TencentCloud
         # @param TTL: 当Type=dns_only时，指解析记录在DNS服务器缓存的生存时间。
         # 取值范围60-86400，单位：秒，不填写使用默认值：600。
         # @type TTL: Integer
+        # @param OriginType: 回源类型，取值有：
+        # <li>normal：主备回源；</li>
+        # <li>advanced：高级回源配置（仅当Type=proxied时可以使用）。</li>为空表示使用主备回源。
+        # @type OriginType: String
+        # @param AdvancedOriginGroups: 高级回源配置，当OriginType=advanced时有效。
+        # @type AdvancedOriginGroups: Array
 
-        attr_accessor :ZoneId, :Host, :Type, :OriginGroupId, :BackupOriginGroupId, :TTL
+        attr_accessor :ZoneId, :Host, :Type, :OriginGroupId, :BackupOriginGroupId, :TTL, :OriginType, :AdvancedOriginGroups
         
-        def initialize(zoneid=nil, host=nil, type=nil, origingroupid=nil, backuporigingroupid=nil, ttl=nil)
+        def initialize(zoneid=nil, host=nil, type=nil, origingroupid=nil, backuporigingroupid=nil, ttl=nil, origintype=nil, advancedorigingroups=nil)
           @ZoneId = zoneid
           @Host = host
           @Type = type
           @OriginGroupId = origingroupid
           @BackupOriginGroupId = backuporigingroupid
           @TTL = ttl
+          @OriginType = origintype
+          @AdvancedOriginGroups = advancedorigingroups
         end
 
         def deserialize(params)
@@ -1604,6 +1672,15 @@ module TencentCloud
           @OriginGroupId = params['OriginGroupId']
           @BackupOriginGroupId = params['BackupOriginGroupId']
           @TTL = params['TTL']
+          @OriginType = params['OriginType']
+          unless params['AdvancedOriginGroups'].nil?
+            @AdvancedOriginGroups = []
+            params['AdvancedOriginGroups'].each do |i|
+              advancedorigingroup_tmp = AdvancedOriginGroup.new
+              advancedorigingroup_tmp.deserialize(i)
+              @AdvancedOriginGroups << advancedorigingroup_tmp
+            end
+          end
         end
       end
 
@@ -1765,15 +1842,18 @@ module TencentCloud
         # @type ConfigurationType: String
         # @param OriginRecords: 源站记录信息。
         # @type OriginRecords: Array
+        # @param HostHeader: 回源Host，仅当OriginType=self时可以设置。
+        # @type HostHeader: String
 
-        attr_accessor :ZoneId, :OriginType, :OriginGroupName, :ConfigurationType, :OriginRecords
+        attr_accessor :ZoneId, :OriginType, :OriginGroupName, :ConfigurationType, :OriginRecords, :HostHeader
         
-        def initialize(zoneid=nil, origintype=nil, origingroupname=nil, configurationtype=nil, originrecords=nil)
+        def initialize(zoneid=nil, origintype=nil, origingroupname=nil, configurationtype=nil, originrecords=nil, hostheader=nil)
           @ZoneId = zoneid
           @OriginType = origintype
           @OriginGroupName = origingroupname
           @ConfigurationType = configurationtype
           @OriginRecords = originrecords
+          @HostHeader = hostheader
         end
 
         def deserialize(params)
@@ -1789,6 +1869,7 @@ module TencentCloud
               @OriginRecords << originrecord_tmp
             end
           end
+          @HostHeader = params['HostHeader']
         end
       end
 
@@ -3005,17 +3086,21 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SubjectAltName: Array
         # @param Status: 部署状态，取值有：
-        # <li>processing: 部署中;</li>
-        # <li>deployed: 已部署。</li>
+        # <li>processing: 部署中；</li>
+        # <li>deployed: 已部署；</li>
+        # <li>failed: 部署失败。</li>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: String
         # @param Message: Status为失败时,此字段返回失败原因。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Message: String
+        # @param SignAlgo: 证书算法。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SignAlgo: String
 
-        attr_accessor :CertId, :Alias, :Type, :ExpireTime, :EffectiveTime, :CommonName, :SubjectAltName, :Status, :Message
+        attr_accessor :CertId, :Alias, :Type, :ExpireTime, :EffectiveTime, :CommonName, :SubjectAltName, :Status, :Message, :SignAlgo
         
-        def initialize(certid=nil, _alias=nil, type=nil, expiretime=nil, effectivetime=nil, commonname=nil, subjectaltname=nil, status=nil, message=nil)
+        def initialize(certid=nil, _alias=nil, type=nil, expiretime=nil, effectivetime=nil, commonname=nil, subjectaltname=nil, status=nil, message=nil, signalgo=nil)
           @CertId = certid
           @Alias = _alias
           @Type = type
@@ -3025,6 +3110,7 @@ module TencentCloud
           @SubjectAltName = subjectaltname
           @Status = status
           @Message = message
+          @SignAlgo = signalgo
         end
 
         def deserialize(params)
@@ -3037,6 +3123,7 @@ module TencentCloud
           @SubjectAltName = params['SubjectAltName']
           @Status = params['Status']
           @Message = params['Message']
+          @SignAlgo = params['SignAlgo']
         end
       end
 
@@ -3192,7 +3279,7 @@ module TencentCloud
       class DeleteLogTopicTaskRequest < TencentCloud::Common::AbstractModel
         # @param TopicId: 待删除的推送任务ID。
         # @type TopicId: String
-        # @param LogSetRegion: 推送任务所属日志集地域。
+        # @param LogSetRegion: 推送任务所属日志集地域，此字段仅用于CLS推送任务。
         # @type LogSetRegion: String
 
         attr_accessor :TopicId, :LogSetRegion
@@ -3385,7 +3472,7 @@ module TencentCloud
         # @type Offset: Integer
         # @param Limit: 分页查询限制数目。默认值：20，最大值：1000。
         # @type Limit: Integer
-        # @param Filters: 过滤条件，Filters.Values的上限为20。详细的过滤条件如下：<li>proxy-id<br>   按照【<strong>代理ID</strong>】进行过滤。代理ID形如：proxy-ev2sawbwfd。<br>   类型：String<br>   必选：否<li>zone-id<br>   按照【<strong>站点ID</strong>】进行过滤。站点ID形如：zone-vawer2vadg。<br>   类型：String<br>   必选：否
+        # @param Filters: 过滤条件，Filters.Values的上限为20。详细的过滤条件如下：<li>proxy-id<br>   按照【<strong>代理ID</strong>】进行过滤。代理ID形如：proxy-ev2sawbwfd。<br>   类型：String<br>   必选：否</li><li>zone-id<br>   按照【<strong>站点ID</strong>】进行过滤。站点ID形如：zone-vawer2vadg。<br>   类型：String<br>   必选：否</li>
         # @type Filters: Array
 
         attr_accessor :Offset, :Limit, :Filters
@@ -5135,80 +5222,6 @@ module TencentCloud
         end
       end
 
-      # DescribeHostCertificates请求参数结构体
-      class DescribeHostCertificatesRequest < TencentCloud::Common::AbstractModel
-        # @param Filters: 过滤条件，Filters.Values的上限为20。详细的过滤条件如下：
-        # <li>zone-id<br>   按照【<strong>站点ID</strong>】进行过滤。站点ID形如：zone-xxx。<br>   类型：String<br>   必选：是<li>host<br>   按照【<strong>域名名称</strong>】进行过滤。<br>   类型：String<br>   必选：否<li>cert-id<br>   按照【<strong>证书ID</strong>】进行过滤。<br>   类型：String<br>   必选：否<li>cert-alias<br>   按照【<strong>证书名称</strong>】进行过滤。<br>   类型：String<br>   必选：否<li>cert-type<br>   按照【<strong>证书类型</strong>】进行过滤。<br>   类型：String<br>   必选：否
-        # @type Filters: Array
-        # @param Offset: 分页查询偏移量，默认为 0。
-        # @type Offset: Integer
-        # @param Limit: 分页查询限制数目，默认为 100，最大可设置为 1000。
-        # @type Limit: Integer
-        # @param Sort: 排序方式。详细排序条件如下：
-        # <li>create-time：域名创建时间；</li>
-        # <li>cert-expire-time：证书过期时间；</li>
-        # <li>cert-deploy-time：证书部署时间。</li>
-        # @type Sort: :class:`Tencentcloud::Teo.v20220901.models.Sort`
-
-        attr_accessor :Filters, :Offset, :Limit, :Sort
-        
-        def initialize(filters=nil, offset=nil, limit=nil, sort=nil)
-          @Filters = filters
-          @Offset = offset
-          @Limit = limit
-          @Sort = sort
-        end
-
-        def deserialize(params)
-          unless params['Filters'].nil?
-            @Filters = []
-            params['Filters'].each do |i|
-              advancedfilter_tmp = AdvancedFilter.new
-              advancedfilter_tmp.deserialize(i)
-              @Filters << advancedfilter_tmp
-            end
-          end
-          @Offset = params['Offset']
-          @Limit = params['Limit']
-          unless params['Sort'].nil?
-            @Sort = Sort.new
-            @Sort.deserialize(params['Sort'])
-          end
-        end
-      end
-
-      # DescribeHostCertificates返回参数结构体
-      class DescribeHostCertificatesResponse < TencentCloud::Common::AbstractModel
-        # @param TotalCount: 总数，用于分页查询。
-        # @type TotalCount: Integer
-        # @param HostCertificates: 域名证书配置列表。
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type HostCertificates: Array
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :TotalCount, :HostCertificates, :RequestId
-        
-        def initialize(totalcount=nil, hostcertificates=nil, requestid=nil)
-          @TotalCount = totalcount
-          @HostCertificates = hostcertificates
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          @TotalCount = params['TotalCount']
-          unless params['HostCertificates'].nil?
-            @HostCertificates = []
-            params['HostCertificates'].each do |i|
-              hostscertificate_tmp = HostsCertificate.new
-              hostscertificate_tmp.deserialize(i)
-              @HostCertificates << hostscertificate_tmp
-            end
-          end
-          @RequestId = params['RequestId']
-        end
-      end
-
       # DescribeHostsSetting请求参数结构体
       class DescribeHostsSettingRequest < TencentCloud::Common::AbstractModel
         # @param ZoneId: 站点ID。
@@ -5218,7 +5231,7 @@ module TencentCloud
         # @param Limit: 分页查询限制数目。默认值： 100，最大值：1000。
         # @type Limit: Integer
         # @param Filters: 过滤条件，Filters.Values的上限为20。详细的过滤条件如下：
-        # <li>host<br>   按照【<strong>域名</strong>】进行过滤。<br>   类型：string<br>   必选：否
+        # <li>host<br>   按照【<strong>域名</strong>】进行过滤。<br>   类型：string<br>   必选：否</li>
         # @type Filters: Array
 
         attr_accessor :ZoneId, :Offset, :Limit, :Filters
@@ -5279,7 +5292,7 @@ module TencentCloud
       # DescribeIdentifications请求参数结构体
       class DescribeIdentificationsRequest < TencentCloud::Common::AbstractModel
         # @param Filters: 过滤条件，Filters.Values的上限为20。详细的过滤条件如下：
-        # <li>zone-name<br>   按照【<strong>站点名称</strong>】进行过滤。<br>   类型：String<br>   必选：是
+        # <li>zone-name<br>   按照【<strong>站点名称</strong>】进行过滤。<br>   类型：String<br>   必选：是</li>
         # @type Filters: Array
         # @param Offset: 分页查询偏移量。默认值：0。
         # @type Offset: Integer
@@ -5737,7 +5750,7 @@ module TencentCloud
         # @param Limit: 分页查询限制数目，默认值：20，上限：1000。
         # @type Limit: Integer
         # @param Filters: 过滤条件，Filters.Values的上限为20。详细的过滤条件如下：
-        # <li>zone-id<br>   按照【<strong>站点 ID</strong>】进行过滤。zone-id形如：zone-1379afjk91u32h，暂不支持多值。<br>   类型：String<br>   必选：否。<br>   模糊查询：不支持。<li>job-id<br>   按照【<strong>任务ID</strong>】进行过滤。job-id形如：1379afjk91u32h，暂不支持多值。<br>   类型：String<br>   必选：否。<br>   模糊查询：不支持。<li>target<br>   按照【<strong>目标资源信息</strong>】进行过滤。target形如：http://www.qq.com/1.txt，暂不支持多值。<br>   类型：String<br>   必选：否。<br>   模糊查询：不支持。<li>domains<br>   按照【<strong>域名</strong>】进行过滤。domains形如：www.qq.com。<br>   类型：String<br>   必选：否。<br>   模糊查询：不支持。<li>statuses<br>   按照【<strong>任务状态</strong>】进行过滤。<br>   必选：否<br>   模糊查询：不支持。<br>   可选项：<br>   processing：处理中<br>   success：成功<br>   failed：失败<br>   timeout：超时
+        # <li>zone-id<br>   按照【<strong>站点 ID</strong>】进行过滤。zone-id形如：zone-1379afjk91u32h，暂不支持多值。<br>   类型：String<br>   必选：否。<br>   模糊查询：不支持。</li><li>job-id<br>   按照【<strong>任务ID</strong>】进行过滤。job-id形如：1379afjk91u32h，暂不支持多值。<br>   类型：String<br>   必选：否。<br>   模糊查询：不支持。</li><li>target<br>   按照【<strong>目标资源信息</strong>】进行过滤。target形如：http://www.qq.com/1.txt，暂不支持多值。<br>   类型：String<br>   必选：否。<br>   模糊查询：不支持。</li><li>domains<br>   按照【<strong>域名</strong>】进行过滤。domains形如：www.qq.com。<br>   类型：String<br>   必选：否。<br>   模糊查询：不支持。</li><li>statuses<br>   按照【<strong>任务状态</strong>】进行过滤。<br>   必选：否<br>   模糊查询：不支持。<br>   可选项：<br>   processing：处理中<br>   success：成功<br>   failed：失败<br>   timeout：超时</li>
         # @type Filters: Array
 
         attr_accessor :StartTime, :EndTime, :Offset, :Limit, :Filters
@@ -5810,7 +5823,7 @@ module TencentCloud
         # @param Limit: 分页查限制数目，默认值：20，最大值：1000。
         # @type Limit: Integer
         # @param Filters: 过滤条件，Filters.Values的上限为20。详细的过滤条件如下：
-        # <li>job-id<br>   按照【<strong>任务ID</strong>】进行过滤。job-id形如：1379afjk91u32h，暂不支持多值。<br>   类型：String<br>   必选：否<br>   模糊查询：不支持。<li>target<br>   按照【<strong>目标资源信息</strong>】进行过滤。target形如：http://www.qq.com/1.txt，暂不支持多值。<br>   类型：String<br>   必选：否<br>   模糊查询：不支持。<li>domains<br>   按照【<strong>域名</strong>】进行过滤。domains形如：www.qq.com。<br>   类型：String<br>   必选：否<br>   模糊查询：不支持。<li>statuses<br>   按照【<strong>任务状态</strong>】进行过滤。<br>   必选：否<br>   模糊查询：不支持。<br>   可选项：<br>   processing：处理中<br>   success：成功<br>   failed：失败<br>   timeout：超时<li>type<br>   按照【<strong>清除缓存类型</strong>】进行过滤，暂不支持多值。<br>   类型：String<br>   必选：否<br>   模糊查询：不支持。<br>   可选项：<br>   purge_url：URL<br>   purge_prefix：前缀<br>   purge_all：全部缓存内容<br>   purge_host：Hostname
+        # <li>job-id<br>   按照【<strong>任务ID</strong>】进行过滤。job-id形如：1379afjk91u32h，暂不支持多值。<br>   类型：String<br>   必选：否<br>   模糊查询：不支持。</li><li>target<br>   按照【<strong>目标资源信息</strong>】进行过滤。target形如：http://www.qq.com/1.txt，暂不支持多值。<br>   类型：String<br>   必选：否<br>   模糊查询：不支持。</li><li>domains<br>   按照【<strong>域名</strong>】进行过滤。domains形如：www.qq.com。<br>   类型：String<br>   必选：否<br>   模糊查询：不支持。</li><li>statuses<br>   按照【<strong>任务状态</strong>】进行过滤。<br>   必选：否<br>   模糊查询：不支持。<br>   可选项：<br>   processing：处理中<br>   success：成功<br>   failed：失败<br>   timeout：超时</li><li>type<br>   按照【<strong>清除缓存类型</strong>】进行过滤，暂不支持多值。<br>   类型：String<br>   必选：否<br>   模糊查询：不支持。<br>   可选项：<br>   purge_url：URL<br>   purge_prefix：前缀<br>   purge_all：全部缓存内容<br>   purge_host：Hostname</li>
         # @type Filters: Array
 
         attr_accessor :ZoneId, :StartTime, :EndTime, :Offset, :Limit, :Filters
@@ -7871,7 +7884,7 @@ module TencentCloud
         # @param Limit: 分页查询限制数目。默认值：20，最大值：1000。
         # @type Limit: Integer
         # @param Filters: 过滤条件，Filters.Values的上限为20。详细的过滤条件如下：
-        # <li>zone-name<br>   按照【<strong>站点名称</strong>】进行过滤。<br>   类型：String<br>   必选：否<li>zone-id<br>   按照【<strong>站点ID</strong>】进行过滤。站点ID形如：zone-xxx。<br>   类型：String<br>   必选：否<li>status<br>   按照【<strong>站点状态</strong>】进行过滤。<br>   类型：String<br>   必选：否<li>tag-key<br>   按照【<strong>标签键</strong>】进行过滤。<br>   类型：String<br>   必选：否<li>tag-value<br>   按照【<strong>标签值</strong>】进行过滤。<br>   类型：String<br>   必选：否<li>Fuzzy<br>   按照【<strong>是否模糊查询</strong>】进行过滤。仅支持过滤字段名为zone-name。模糊查询时，Values长度最小为1。<br>   类型：Boolean<br>   必选：否<br>   默认值：false
+        # <li>zone-name<br>   按照【<strong>站点名称</strong>】进行过滤。<br>   类型：String<br>   必选：否</li><li>zone-id<br>   按照【<strong>站点ID</strong>】进行过滤。站点ID形如：zone-xxx。<br>   类型：String<br>   必选：否</li><li>status<br>   按照【<strong>站点状态</strong>】进行过滤。<br>   类型：String<br>   必选：否</li><li>tag-key<br>   按照【<strong>标签键</strong>】进行过滤。<br>   类型：String<br>   必选：否</li><li>tag-value<br>   按照【<strong>标签值</strong>】进行过滤。<br>   类型：String<br>   必选：否</li><li>Fuzzy<br>   按照【<strong>是否模糊查询</strong>】进行过滤。仅支持过滤字段名为zone-name。模糊查询时，Values长度最小为1。<br>   类型：Boolean<br>   必选：否<br>   默认值：false</li>
         # @type Filters: Array
 
         attr_accessor :Offset, :Limit, :Filters
@@ -7991,10 +8004,13 @@ module TencentCloud
         # @param Ipv6: Ipv6访问配置项。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Ipv6: :class:`Tencentcloud::Teo.v20220901.models.Ipv6`
+        # @param ClientIpCountry: 回源时是否携带客户端IP所属地域信息的配置。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClientIpCountry: :class:`Tencentcloud::Teo.v20220901.models.ClientIpCountry`
 
-        attr_accessor :ZoneId, :Status, :Host, :ZoneName, :Cname, :Id, :InstanceId, :Lock, :Mode, :Area, :AccelerateType, :Https, :CacheConfig, :Origin, :SecurityType, :CacheKey, :Compression, :Waf, :CC, :DDoS, :SmartRouting, :Ipv6
+        attr_accessor :ZoneId, :Status, :Host, :ZoneName, :Cname, :Id, :InstanceId, :Lock, :Mode, :Area, :AccelerateType, :Https, :CacheConfig, :Origin, :SecurityType, :CacheKey, :Compression, :Waf, :CC, :DDoS, :SmartRouting, :Ipv6, :ClientIpCountry
         
-        def initialize(zoneid=nil, status=nil, host=nil, zonename=nil, cname=nil, id=nil, instanceid=nil, lock=nil, mode=nil, area=nil, acceleratetype=nil, https=nil, cacheconfig=nil, origin=nil, securitytype=nil, cachekey=nil, compression=nil, waf=nil, cc=nil, ddos=nil, smartrouting=nil, ipv6=nil)
+        def initialize(zoneid=nil, status=nil, host=nil, zonename=nil, cname=nil, id=nil, instanceid=nil, lock=nil, mode=nil, area=nil, acceleratetype=nil, https=nil, cacheconfig=nil, origin=nil, securitytype=nil, cachekey=nil, compression=nil, waf=nil, cc=nil, ddos=nil, smartrouting=nil, ipv6=nil, clientipcountry=nil)
           @ZoneId = zoneid
           @Status = status
           @Host = host
@@ -8017,6 +8033,7 @@ module TencentCloud
           @DDoS = ddos
           @SmartRouting = smartrouting
           @Ipv6 = ipv6
+          @ClientIpCountry = clientipcountry
         end
 
         def deserialize(params)
@@ -8077,6 +8094,10 @@ module TencentCloud
           unless params['Ipv6'].nil?
             @Ipv6 = Ipv6.new
             @Ipv6.deserialize(params['Ipv6'])
+          end
+          unless params['ClientIpCountry'].nil?
+            @ClientIpCountry = ClientIpCountry.new
+            @ClientIpCountry.deserialize(params['ClientIpCountry'])
           end
         end
       end
@@ -8488,23 +8509,19 @@ module TencentCloud
         end
       end
 
-      # 例外规则的配置，包含生效的条件，生效的范围
+      # 例外规则的配置，包含生效的条件，生效的范围。
       class ExceptUserRule < TencentCloud::Common::AbstractModel
-        # @param RuleName: 规则名称。
-        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @param RuleName: 规则名称，不可使用中文。
         # @type RuleName: String
         # @param Action: 规则的处置方式，当前仅支持skip：跳过全部托管规则。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Action: String
         # @param RuleStatus: 规则生效状态，取值有：
         # <li>on：生效；</li>
         # <li>off：失效。</li>
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RuleStatus: String
-        # @param RuleID: 规则ID。仅出参使用。
-        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @param RuleID: 规则ID。仅出参使用。默认由底层生成。
         # @type RuleID: Integer
-        # @param UpdateTime: 更新时间。仅出参使用
+        # @param UpdateTime: 更新时间，如果为null，默认由底层按当前时间生成。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UpdateTime: String
         # @param ExceptUserRuleConditions: 匹配条件。
@@ -8513,8 +8530,7 @@ module TencentCloud
         # @param ExceptUserRuleScope: 规则生效的范围。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExceptUserRuleScope: :class:`Tencentcloud::Teo.v20220901.models.ExceptUserRuleScope`
-        # @param RulePriority: 优先级，取值范围0-100。
-        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @param RulePriority: 优先级，取值范围0-100。如果为null，默认由底层设置为0。
         # @type RulePriority: Integer
 
         attr_accessor :RuleName, :Action, :RuleStatus, :RuleID, :UpdateTime, :ExceptUserRuleConditions, :ExceptUserRuleScope, :RulePriority
@@ -8552,7 +8568,7 @@ module TencentCloud
         end
       end
 
-      # 例外规则生效的具体条件
+      # 例外规则生效的具体条件。
       class ExceptUserRuleCondition < TencentCloud::Common::AbstractModel
         # @param MatchFrom: 匹配项，取值有：
         # <li>host：请求域名；</li>
@@ -8566,9 +8582,8 @@ module TencentCloud
         # <li>method：请求方式；</li>
         # <li>header：请求头部；</li>
         # <li>sip_proto：网络层协议。</li>
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MatchFrom: String
-        # @param MatchParam: 匹配项的参数。当 MatchFrom 为 header 时，可以填入 header 的 key 作为参数。
+        # @param MatchParam: 匹配项的参数。仅当 MatchFrom 为 header 时，可以使用本参数，值可填入 header 的 key 作为参数。
         # @type MatchParam: String
         # @param Operator: 匹配操作符，取值有：
         # <li>equal：字符串等于；</li>
@@ -8587,10 +8602,8 @@ module TencentCloud
         # <li>match_prefix：前缀匹配；</li>
         # <li>match_suffix：后缀匹配；</li>
         # <li>wildcard：通配符。</li>
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Operator: String
         # @param MatchContent: 匹配值。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MatchContent: String
 
         attr_accessor :MatchFrom, :MatchParam, :Operator, :MatchContent
@@ -8610,20 +8623,53 @@ module TencentCloud
         end
       end
 
-      # 例外规则的生效范围
+      # 例外规则的生效范围。
       class ExceptUserRuleScope < TencentCloud::Common::AbstractModel
-        # @param Modules: 生效的模块。当前仅支持waf：托管规则。
+        # @param Type: 例外规则类型。其中complete模式代表全量数据进行例外，partial模式代表可选择指定模块指定字段进行例外，该字段取值有：
+        # <li>complete：完全跳过模式；</li>
+        # <li>partial：部分跳过模式。</li>
+        # @type Type: String
+        # @param Modules: 生效的模块，该字段取值有：
+        # <li>waf：托管规则；</li>
+        # <li>cc：速率限制规则；</li>
+        # <li>bot：Bot防护。</li>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Modules: Array
+        # @param PartialModules: 跳过部分规则ID的例外规则详情。如果为null，默认使用历史配置。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PartialModules: Array
+        # @param SkipConditions: 跳过具体字段不去扫描的例外规则详情。如果为null，默认使用历史配置。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SkipConditions: Array
 
-        attr_accessor :Modules
+        attr_accessor :Type, :Modules, :PartialModules, :SkipConditions
         
-        def initialize(modules=nil)
+        def initialize(type=nil, modules=nil, partialmodules=nil, skipconditions=nil)
+          @Type = type
           @Modules = modules
+          @PartialModules = partialmodules
+          @SkipConditions = skipconditions
         end
 
         def deserialize(params)
+          @Type = params['Type']
           @Modules = params['Modules']
+          unless params['PartialModules'].nil?
+            @PartialModules = []
+            params['PartialModules'].each do |i|
+              partialmodule_tmp = PartialModule.new
+              partialmodule_tmp.deserialize(i)
+              @PartialModules << partialmodule_tmp
+            end
+          end
+          unless params['SkipConditions'].nil?
+            @SkipConditions = []
+            params['SkipConditions'].each do |i|
+              skipcondition_tmp = SkipCondition.new
+              skipcondition_tmp.deserialize(i)
+              @SkipConditions << skipcondition_tmp
+            end
+          end
         end
       end
 
@@ -8644,6 +8690,26 @@ module TencentCloud
         def deserialize(params)
           @Reason = params['Reason']
           @Targets = params['Targets']
+        end
+      end
+
+      # 站点归属权校验——文件校验信息。
+      class FileAscriptionInfo < TencentCloud::Common::AbstractModel
+        # @param IdentifyPath: 文件校验目录。
+        # @type IdentifyPath: String
+        # @param IdentifyContent: 文件校验内容。
+        # @type IdentifyContent: String
+
+        attr_accessor :IdentifyPath, :IdentifyContent
+        
+        def initialize(identifypath=nil, identifycontent=nil)
+          @IdentifyPath = identifypath
+          @IdentifyContent = identifycontent
+        end
+
+        def deserialize(params)
+          @IdentifyPath = params['IdentifyPath']
+          @IdentifyContent = params['IdentifyContent']
         end
       end
 
@@ -8742,7 +8808,7 @@ module TencentCloud
 
       # 刷新预热附带的头部信息
       class Header < TencentCloud::Common::AbstractModel
-        # @param Name: HTTP头部。
+        # @param Name: HTTP头部名称。
         # @type Name: String
         # @param Value: HTTP头部值。
         # @type Value: String
@@ -8757,83 +8823,6 @@ module TencentCloud
         def deserialize(params)
           @Name = params['Name']
           @Value = params['Value']
-        end
-      end
-
-      # https 服务端证书配置
-      class HostCertInfo < TencentCloud::Common::AbstractModel
-        # @param CertId: 服务器证书 ID。
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type CertId: String
-        # @param Alias: 证书备注名。
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Alias: String
-        # @param Type: 证书类型，取值有：
-        # <li>default：默认证书；</lil>
-        # <li>upload：用户上传；</li>
-        # <li>managed:腾讯云托管。</li>
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Type: String
-        # @param ExpireTime: 证书过期时间。
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type ExpireTime: String
-        # @param DeployTime: 证书部署时间。
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type DeployTime: String
-        # @param SignAlgo: 签名算法。
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type SignAlgo: String
-        # @param Status: 证书状态，取值有：
-        # <li>deployed：已部署;</li>
-        # <li>process：部署中。</li>
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Status: String
-
-        attr_accessor :CertId, :Alias, :Type, :ExpireTime, :DeployTime, :SignAlgo, :Status
-        
-        def initialize(certid=nil, _alias=nil, type=nil, expiretime=nil, deploytime=nil, signalgo=nil, status=nil)
-          @CertId = certid
-          @Alias = _alias
-          @Type = type
-          @ExpireTime = expiretime
-          @DeployTime = deploytime
-          @SignAlgo = signalgo
-          @Status = status
-        end
-
-        def deserialize(params)
-          @CertId = params['CertId']
-          @Alias = params['Alias']
-          @Type = params['Type']
-          @ExpireTime = params['ExpireTime']
-          @DeployTime = params['DeployTime']
-          @SignAlgo = params['SignAlgo']
-          @Status = params['Status']
-        end
-      end
-
-      # 域名证书配置
-      class HostsCertificate < TencentCloud::Common::AbstractModel
-        # @param Host: 域名。
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Host: String
-        # @param HostCertInfo: 服务端证书配置。
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type HostCertInfo: :class:`Tencentcloud::Teo.v20220901.models.HostCertInfo`
-
-        attr_accessor :Host, :HostCertInfo
-        
-        def initialize(host=nil, hostcertinfo=nil)
-          @Host = host
-          @HostCertInfo = hostcertinfo
-        end
-
-        def deserialize(params)
-          @Host = params['Host']
-          unless params['HostCertInfo'].nil?
-            @HostCertInfo = HostCertInfo.new
-            @HostCertInfo.deserialize(params['HostCertInfo'])
-          end
         end
       end
 
@@ -8937,19 +8926,22 @@ module TencentCloud
         # <li> pending：验证中；</li>
         # <li> finished：验证完成。</li>
         # @type Status: String
-        # @param Ascription: 站点归属信息。
+        # @param Ascription: 站点归属权校验：Dns校验信息。
         # @type Ascription: :class:`Tencentcloud::Teo.v20220901.models.AscriptionInfo`
         # @param OriginalNameServers: 域名当前的 NS 记录。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OriginalNameServers: Array
+        # @param FileAscription: 站点归属权校验：文件校验信息。
+        # @type FileAscription: :class:`Tencentcloud::Teo.v20220901.models.FileAscriptionInfo`
 
-        attr_accessor :ZoneName, :Status, :Ascription, :OriginalNameServers
+        attr_accessor :ZoneName, :Status, :Ascription, :OriginalNameServers, :FileAscription
         
-        def initialize(zonename=nil, status=nil, ascription=nil, originalnameservers=nil)
+        def initialize(zonename=nil, status=nil, ascription=nil, originalnameservers=nil, fileascription=nil)
           @ZoneName = zonename
           @Status = status
           @Ascription = ascription
           @OriginalNameServers = originalnameservers
+          @FileAscription = fileascription
         end
 
         def deserialize(params)
@@ -8960,6 +8952,10 @@ module TencentCloud
             @Ascription.deserialize(params['Ascription'])
           end
           @OriginalNameServers = params['OriginalNameServers']
+          unless params['FileAscription'].nil?
+            @FileAscription = FileAscriptionInfo.new
+            @FileAscription.deserialize(params['FileAscription'])
+          end
         end
       end
 
@@ -8981,15 +8977,18 @@ module TencentCloud
 
       # IdentifyZone返回参数结构体
       class IdentifyZoneResponse < TencentCloud::Common::AbstractModel
-        # @param Ascription: 站点归属信息。
+        # @param Ascription: 站点归属校验：Dns校验信息。
         # @type Ascription: :class:`Tencentcloud::Teo.v20220901.models.AscriptionInfo`
+        # @param FileAscription: 站点归属权校验：文件校验信息。
+        # @type FileAscription: :class:`Tencentcloud::Teo.v20220901.models.FileAscriptionInfo`
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Ascription, :RequestId
+        attr_accessor :Ascription, :FileAscription, :RequestId
         
-        def initialize(ascription=nil, requestid=nil)
+        def initialize(ascription=nil, fileascription=nil, requestid=nil)
           @Ascription = ascription
+          @FileAscription = fileascription
           @RequestId = requestid
         end
 
@@ -8997,6 +8996,10 @@ module TencentCloud
           unless params['Ascription'].nil?
             @Ascription = AscriptionInfo.new
             @Ascription.deserialize(params['Ascription'])
+          end
+          unless params['FileAscription'].nil?
+            @FileAscription = FileAscriptionInfo.new
+            @FileAscription.deserialize(params['FileAscription'])
           end
           @RequestId = params['RequestId']
         end
@@ -9251,10 +9254,17 @@ module TencentCloud
         # @type BackupOriginGroupId: String
         # @param UpdateTime: 更新时间。
         # @type UpdateTime: String
+        # @param OriginType: 回源类型，取值有：
+        # <li>normal：主备回源；</li>
+        # <li>advanced：高级回源配置。</li>
+        # @type OriginType: String
+        # @param AdvancedOriginGroups: 高级回源配置，当OriginType=advanced时有效。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AdvancedOriginGroups: Array
 
-        attr_accessor :LoadBalancingId, :ZoneId, :Host, :Type, :TTL, :Status, :Cname, :OriginGroupId, :BackupOriginGroupId, :UpdateTime
+        attr_accessor :LoadBalancingId, :ZoneId, :Host, :Type, :TTL, :Status, :Cname, :OriginGroupId, :BackupOriginGroupId, :UpdateTime, :OriginType, :AdvancedOriginGroups
         
-        def initialize(loadbalancingid=nil, zoneid=nil, host=nil, type=nil, ttl=nil, status=nil, cname=nil, origingroupid=nil, backuporigingroupid=nil, updatetime=nil)
+        def initialize(loadbalancingid=nil, zoneid=nil, host=nil, type=nil, ttl=nil, status=nil, cname=nil, origingroupid=nil, backuporigingroupid=nil, updatetime=nil, origintype=nil, advancedorigingroups=nil)
           @LoadBalancingId = loadbalancingid
           @ZoneId = zoneid
           @Host = host
@@ -9265,6 +9275,8 @@ module TencentCloud
           @OriginGroupId = origingroupid
           @BackupOriginGroupId = backuporigingroupid
           @UpdateTime = updatetime
+          @OriginType = origintype
+          @AdvancedOriginGroups = advancedorigingroups
         end
 
         def deserialize(params)
@@ -9278,6 +9290,15 @@ module TencentCloud
           @OriginGroupId = params['OriginGroupId']
           @BackupOriginGroupId = params['BackupOriginGroupId']
           @UpdateTime = params['UpdateTime']
+          @OriginType = params['OriginType']
+          unless params['AdvancedOriginGroups'].nil?
+            @AdvancedOriginGroups = []
+            params['AdvancedOriginGroups'].each do |i|
+              advancedorigingroup_tmp = AdvancedOriginGroup.new
+              advancedorigingroup_tmp.deserialize(i)
+              @AdvancedOriginGroups << advancedorigingroup_tmp
+            end
+          end
         end
       end
 
@@ -10044,16 +10065,25 @@ module TencentCloud
         # @param TTL: 当Type=dns_only时，指解析记录在DNS服务器缓存的生存时间。
         # 取值范围60-86400，单位：秒，不填写使用默认值：600。
         # @type TTL: Integer
+        # @param OriginType: 回源类型，取值有：
+        # <li>normal：主备回源；</li>
+        # <li>advanced：高级回源配置（仅当Type=proxied时可以使用）。</li>不填写表示使用主备回源。
+        # @type OriginType: String
+        # @param AdvancedOriginGroups: 高级回源配置，当OriginType=advanced时有效。
+        # 不填写表示不使用高级回源配置。
+        # @type AdvancedOriginGroups: Array
 
-        attr_accessor :ZoneId, :LoadBalancingId, :Type, :OriginGroupId, :BackupOriginGroupId, :TTL
+        attr_accessor :ZoneId, :LoadBalancingId, :Type, :OriginGroupId, :BackupOriginGroupId, :TTL, :OriginType, :AdvancedOriginGroups
         
-        def initialize(zoneid=nil, loadbalancingid=nil, type=nil, origingroupid=nil, backuporigingroupid=nil, ttl=nil)
+        def initialize(zoneid=nil, loadbalancingid=nil, type=nil, origingroupid=nil, backuporigingroupid=nil, ttl=nil, origintype=nil, advancedorigingroups=nil)
           @ZoneId = zoneid
           @LoadBalancingId = loadbalancingid
           @Type = type
           @OriginGroupId = origingroupid
           @BackupOriginGroupId = backuporigingroupid
           @TTL = ttl
+          @OriginType = origintype
+          @AdvancedOriginGroups = advancedorigingroups
         end
 
         def deserialize(params)
@@ -10063,6 +10093,15 @@ module TencentCloud
           @OriginGroupId = params['OriginGroupId']
           @BackupOriginGroupId = params['BackupOriginGroupId']
           @TTL = params['TTL']
+          @OriginType = params['OriginType']
+          unless params['AdvancedOriginGroups'].nil?
+            @AdvancedOriginGroups = []
+            params['AdvancedOriginGroups'].each do |i|
+              advancedorigingroup_tmp = AdvancedOriginGroup.new
+              advancedorigingroup_tmp.deserialize(i)
+              @AdvancedOriginGroups << advancedorigingroup_tmp
+            end
+          end
         end
       end
 
@@ -10222,16 +10261,20 @@ module TencentCloud
         # @type ConfigurationType: String
         # @param OriginRecords: 源站记录信息。
         # @type OriginRecords: Array
+        # @param HostHeader: 回源Host，仅当OriginType=self时可以设置。
+        # 不填写，表示使用已有配置。
+        # @type HostHeader: String
 
-        attr_accessor :ZoneId, :OriginGroupId, :OriginType, :OriginGroupName, :ConfigurationType, :OriginRecords
+        attr_accessor :ZoneId, :OriginGroupId, :OriginType, :OriginGroupName, :ConfigurationType, :OriginRecords, :HostHeader
         
-        def initialize(zoneid=nil, origingroupid=nil, origintype=nil, origingroupname=nil, configurationtype=nil, originrecords=nil)
+        def initialize(zoneid=nil, origingroupid=nil, origintype=nil, origingroupname=nil, configurationtype=nil, originrecords=nil, hostheader=nil)
           @ZoneId = zoneid
           @OriginGroupId = origingroupid
           @OriginType = origintype
           @OriginGroupName = origingroupname
           @ConfigurationType = configurationtype
           @OriginRecords = originrecords
+          @HostHeader = hostheader
         end
 
         def deserialize(params)
@@ -10248,6 +10291,7 @@ module TencentCloud
               @OriginRecords << originrecord_tmp
             end
           end
+          @HostHeader = params['HostHeader']
         end
       end
 
@@ -10624,10 +10668,13 @@ module TencentCloud
         # @param Ipv6: Ipv6访问配置。
         # 不填写表示保持原有配置。
         # @type Ipv6: :class:`Tencentcloud::Teo.v20220901.models.Ipv6`
+        # @param ClientIpCountry: 回源时是否携带客户端IP所属地域信息的配置。
+        # 不填写表示保持原有配置。
+        # @type ClientIpCountry: :class:`Tencentcloud::Teo.v20220901.models.ClientIpCountry`
 
-        attr_accessor :ZoneId, :CacheConfig, :CacheKey, :MaxAge, :OfflineCache, :Quic, :PostMaxSize, :Compression, :UpstreamHttp2, :ForceRedirect, :Https, :Origin, :SmartRouting, :WebSocket, :ClientIpHeader, :CachePrefresh, :Ipv6
+        attr_accessor :ZoneId, :CacheConfig, :CacheKey, :MaxAge, :OfflineCache, :Quic, :PostMaxSize, :Compression, :UpstreamHttp2, :ForceRedirect, :Https, :Origin, :SmartRouting, :WebSocket, :ClientIpHeader, :CachePrefresh, :Ipv6, :ClientIpCountry
         
-        def initialize(zoneid=nil, cacheconfig=nil, cachekey=nil, maxage=nil, offlinecache=nil, quic=nil, postmaxsize=nil, compression=nil, upstreamhttp2=nil, forceredirect=nil, https=nil, origin=nil, smartrouting=nil, websocket=nil, clientipheader=nil, cacheprefresh=nil, ipv6=nil)
+        def initialize(zoneid=nil, cacheconfig=nil, cachekey=nil, maxage=nil, offlinecache=nil, quic=nil, postmaxsize=nil, compression=nil, upstreamhttp2=nil, forceredirect=nil, https=nil, origin=nil, smartrouting=nil, websocket=nil, clientipheader=nil, cacheprefresh=nil, ipv6=nil, clientipcountry=nil)
           @ZoneId = zoneid
           @CacheConfig = cacheconfig
           @CacheKey = cachekey
@@ -10645,6 +10692,7 @@ module TencentCloud
           @ClientIpHeader = clientipheader
           @CachePrefresh = cacheprefresh
           @Ipv6 = ipv6
+          @ClientIpCountry = clientipcountry
         end
 
         def deserialize(params)
@@ -10712,6 +10760,10 @@ module TencentCloud
           unless params['Ipv6'].nil?
             @Ipv6 = Ipv6.new
             @Ipv6.deserialize(params['Ipv6'])
+          end
+          unless params['ClientIpCountry'].nil?
+            @ClientIpCountry = ClientIpCountry.new
+            @ClientIpCountry.deserialize(params['ClientIpCountry'])
           end
         end
       end
@@ -10923,10 +10975,13 @@ module TencentCloud
         # @type OriginRecords: Array
         # @param UpdateTime: 源站组更新时间。
         # @type UpdateTime: String
+        # @param HostHeader: 当OriginType=self时，表示回源Host。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HostHeader: String
 
-        attr_accessor :ZoneId, :ZoneName, :OriginGroupId, :OriginType, :OriginGroupName, :ConfigurationType, :OriginRecords, :UpdateTime
+        attr_accessor :ZoneId, :ZoneName, :OriginGroupId, :OriginType, :OriginGroupName, :ConfigurationType, :OriginRecords, :UpdateTime, :HostHeader
         
-        def initialize(zoneid=nil, zonename=nil, origingroupid=nil, origintype=nil, origingroupname=nil, configurationtype=nil, originrecords=nil, updatetime=nil)
+        def initialize(zoneid=nil, zonename=nil, origingroupid=nil, origintype=nil, origingroupname=nil, configurationtype=nil, originrecords=nil, updatetime=nil, hostheader=nil)
           @ZoneId = zoneid
           @ZoneName = zonename
           @OriginGroupId = origingroupid
@@ -10935,6 +10990,7 @@ module TencentCloud
           @ConfigurationType = configurationtype
           @OriginRecords = originrecords
           @UpdateTime = updatetime
+          @HostHeader = hostheader
         end
 
         def deserialize(params)
@@ -10953,6 +11009,34 @@ module TencentCloud
             end
           end
           @UpdateTime = params['UpdateTime']
+          @HostHeader = params['HostHeader']
+        end
+      end
+
+      # 回源配置的条件参数
+      class OriginGroupCondition < TencentCloud::Common::AbstractModel
+        # @param Target: 匹配类型，取值有：
+        # <li>url：当前站点下匹配URL路径的请求，例如：/example 或 /example/foo.jpg。支持*表示通配符，支持?表示匹配一个字符。
+        # </li>
+        # @type Target: String
+        # @param Operator: 运算符，取值有：
+        # <li>equal：等于。</li>
+        # @type Operator: String
+        # @param Values: 对应匹配类型的取值。
+        # @type Values: Array
+
+        attr_accessor :Target, :Operator, :Values
+        
+        def initialize(target=nil, operator=nil, values=nil)
+          @Target = target
+          @Operator = operator
+          @Values = values
+        end
+
+        def deserialize(params)
+          @Target = params['Target']
+          @Operator = params['Operator']
+          @Values = params['Values']
         end
       end
 
@@ -11019,6 +11103,28 @@ module TencentCloud
               @PrivateParameters << privateparameter_tmp
             end
           end
+        end
+      end
+
+      # 例外规则的详细模块配置。
+      class PartialModule < TencentCloud::Common::AbstractModel
+        # @param Module: 模块名称，取值为：
+        # <li>waf：托管规则。</li>
+        # @type Module: String
+        # @param Include: 模块下的需要例外的具体规则ID列表。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Include: Array
+
+        attr_accessor :Module, :Include
+        
+        def initialize(_module=nil, include=nil)
+          @Module = _module
+          @Include = include
+        end
+
+        def deserialize(params)
+          @Module = params['Module']
+          @Include = params['Include']
         end
       end
 
@@ -11174,10 +11280,10 @@ module TencentCloud
         # <li>notEquals: 不等于；</li>
         # <li>include: 包含；</li>
         # <li>notInclude: 不包含; </li>
-        # <li>startWith: 开始于；</li>
-        # <li>notStartWith: 不开始于；</li>
-        # <li>endWith: 结尾是；</li>
-        # <li>notEndWith: 不结尾是。</li>
+        # <li>startWith: 开始的值是value；</li>
+        # <li>notStartWith: 不以value的值开始；</li>
+        # <li>endWith: 结尾是value值；</li>
+        # <li>notEndWith: 不以value的值结尾。</li>
         # @type Operator: String
         # @param Value: 筛选条件的值。
         # @type Value: Array
@@ -12528,6 +12634,61 @@ module TencentCloud
         end
       end
 
+      # 例外规则的跳过匹配条件，即在例外时根据本匹配条件，略过指定字段及内容。
+      class SkipCondition < TencentCloud::Common::AbstractModel
+        # @param Type: 例外跳过类型，取值为：
+        # <li>header_fields：HTTP请求Header；</li>
+        # <li>cookie：HTTP请求Cookie；</li>
+        # <li>query_string：HTTP请求URL中的Query参数；</li>
+        # <li>uri：HTTP请求URI；</li>
+        # <li>body_raw：HTTP请求Body；</li>
+        # <li>body_json： JSON格式的HTTP Body。</li>
+        # @type Type: String
+        # @param Selector: 选择跳过的字段，取值为：
+        # <li>args：uri 下选择 query 参数: ?name1=jack&age=12；</li>
+        # <li>path：uri 下选择部分路径：/path/to/resource.jpg；</li>
+        # <li>full：uri 下选择完整路径：example.com/path/to/resource.jpg?name1=jack&age=12；</li>
+        # <li>upload_filename：分段文件名，即分段传输文件时；</li>
+        # <li>keys：所有的Key；</li>
+        # <li>values：匹配Key对应的值；</li>
+        # <li>key_value：匹配Key及匹配Value。</li>
+        # @type Selector: String
+        # @param MatchFromType: 匹配Key所使用的匹配方式，取值为：
+        # <li>equal：精准匹配，等于；</li>
+        # <li>wildcard：通配符匹配，支持 * 通配。</li>
+        # @type MatchFromType: String
+        # @param MatchFrom: 匹配Key的值。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MatchFrom: Array
+        # @param MatchContentType: 匹配Content所使用的匹配方式，取值为：
+        # <li>equal：精准匹配，等于；</li>
+        # <li>wildcard：通配符匹配，支持 * 通配。</li>
+        # @type MatchContentType: String
+        # @param MatchContent: 匹配Value的值。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MatchContent: Array
+
+        attr_accessor :Type, :Selector, :MatchFromType, :MatchFrom, :MatchContentType, :MatchContent
+        
+        def initialize(type=nil, selector=nil, matchfromtype=nil, matchfrom=nil, matchcontenttype=nil, matchcontent=nil)
+          @Type = type
+          @Selector = selector
+          @MatchFromType = matchfromtype
+          @MatchFrom = matchfrom
+          @MatchContentType = matchcontenttype
+          @MatchContent = matchcontent
+        end
+
+        def deserialize(params)
+          @Type = params['Type']
+          @Selector = params['Selector']
+          @MatchFromType = params['MatchFromType']
+          @MatchFrom = params['MatchFrom']
+          @MatchContentType = params['MatchContentType']
+          @MatchContent = params['MatchContent']
+        end
+      end
+
       # 智能加速配置
       class SmartRouting < TencentCloud::Common::AbstractModel
         # @param Switch: 智能加速配置开关，取值有：
@@ -12543,29 +12704,6 @@ module TencentCloud
 
         def deserialize(params)
           @Switch = params['Switch']
-        end
-      end
-
-      # 查询结果排序条件。
-      class Sort < TencentCloud::Common::AbstractModel
-        # @param Key: 排序字段，当前支持：
-        # createTime，域名创建时间
-        # certExpireTime，证书过期时间
-        # certDeployTime,  证书部署时间
-        # @type Key: String
-        # @param Sequence: asc/desc，默认desc。
-        # @type Sequence: String
-
-        attr_accessor :Key, :Sequence
-        
-        def initialize(key=nil, sequence=nil)
-          @Key = key
-          @Sequence = sequence
-        end
-
-        def deserialize(params)
-          @Key = params['Key']
-          @Sequence = params['Sequence']
         end
       end
 
@@ -13627,11 +13765,11 @@ module TencentCloud
         # @type Type: String
         # @param Paused: 站点是否关闭。
         # @type Paused: Boolean
-        # @param CnameSpeedUp: 是否开启cname加速，取值有：
+        # @param CnameSpeedUp: 是否开启 CNAME 加速，取值有：
         # <li> enabled：开启；</li>
         # <li> disabled：关闭。</li>
         # @type CnameSpeedUp: String
-        # @param CnameStatus: cname 接入状态，取值有：
+        # @param CnameStatus: CNAME 接入状态，取值有：
         # <li> finished：站点已验证；</li>
         # <li> pending：站点验证中。</li>
         # @type CnameStatus: String
@@ -13776,10 +13914,13 @@ module TencentCloud
         # @param Https: Https 加速配置。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Https: :class:`Tencentcloud::Teo.v20220901.models.Https`
+        # @param ClientIpCountry: 回源时是否携带客户端IP所属地域信息的配置。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClientIpCountry: :class:`Tencentcloud::Teo.v20220901.models.ClientIpCountry`
 
-        attr_accessor :ZoneName, :Area, :CacheKey, :Quic, :PostMaxSize, :Compression, :UpstreamHttp2, :ForceRedirect, :CacheConfig, :Origin, :SmartRouting, :MaxAge, :OfflineCache, :WebSocket, :ClientIpHeader, :CachePrefresh, :Ipv6, :Https
+        attr_accessor :ZoneName, :Area, :CacheKey, :Quic, :PostMaxSize, :Compression, :UpstreamHttp2, :ForceRedirect, :CacheConfig, :Origin, :SmartRouting, :MaxAge, :OfflineCache, :WebSocket, :ClientIpHeader, :CachePrefresh, :Ipv6, :Https, :ClientIpCountry
         
-        def initialize(zonename=nil, area=nil, cachekey=nil, quic=nil, postmaxsize=nil, compression=nil, upstreamhttp2=nil, forceredirect=nil, cacheconfig=nil, origin=nil, smartrouting=nil, maxage=nil, offlinecache=nil, websocket=nil, clientipheader=nil, cacheprefresh=nil, ipv6=nil, https=nil)
+        def initialize(zonename=nil, area=nil, cachekey=nil, quic=nil, postmaxsize=nil, compression=nil, upstreamhttp2=nil, forceredirect=nil, cacheconfig=nil, origin=nil, smartrouting=nil, maxage=nil, offlinecache=nil, websocket=nil, clientipheader=nil, cacheprefresh=nil, ipv6=nil, https=nil, clientipcountry=nil)
           @ZoneName = zonename
           @Area = area
           @CacheKey = cachekey
@@ -13798,6 +13939,7 @@ module TencentCloud
           @CachePrefresh = cacheprefresh
           @Ipv6 = ipv6
           @Https = https
+          @ClientIpCountry = clientipcountry
         end
 
         def deserialize(params)
@@ -13866,6 +14008,10 @@ module TencentCloud
           unless params['Https'].nil?
             @Https = Https.new
             @Https.deserialize(params['Https'])
+          end
+          unless params['ClientIpCountry'].nil?
+            @ClientIpCountry = ClientIpCountry.new
+            @ClientIpCountry.deserialize(params['ClientIpCountry'])
           end
         end
       end
