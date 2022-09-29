@@ -245,7 +245,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 云企付结算申请接口
+        # 云企付-结算申请接口
 
         # @param request: Request instance for ApplyOpenBankSettleOrder.
         # @type request: :class:`Tencentcloud::cpdp::V20190820::ApplyOpenBankSettleOrderRequest`
@@ -3712,7 +3712,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 云企付结算单查询结果
+        # 云企付-结算单查询结果
 
         # @param request: Request instance for QueryOpenBankSettleOrder.
         # @type request: :class:`Tencentcloud::cpdp::V20190820::QueryOpenBankSettleOrderRequest`

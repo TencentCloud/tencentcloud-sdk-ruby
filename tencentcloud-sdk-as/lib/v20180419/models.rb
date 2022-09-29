@@ -221,7 +221,7 @@ module TencentCloud
         # @type AutoScalingGroupId: String
         # @param LoadBalancerIds: 传统型负载均衡器ID列表，每个伸缩组绑定传统型负载均衡器数量上限为20，LoadBalancerIds 和 ForwardLoadBalancers 二者同时最多只能指定一个
         # @type LoadBalancerIds: Array
-        # @param ForwardLoadBalancers: 应用型负载均衡器列表，每个伸缩组绑定应用型负载均衡器数量上限为50，LoadBalancerIds 和 ForwardLoadBalancers 二者同时最多只能指定一个
+        # @param ForwardLoadBalancers: 应用型负载均衡器列表，每个伸缩组绑定应用型负载均衡器数量上限为100，LoadBalancerIds 和 ForwardLoadBalancers 二者同时最多只能指定一个
         # @type ForwardLoadBalancers: Array
 
         attr_accessor :AutoScalingGroupId, :LoadBalancerIds, :ForwardLoadBalancers
@@ -700,7 +700,7 @@ module TencentCloud
         # @type LoadBalancerIds: Array
         # @param ProjectId: 伸缩组内实例所属项目ID。不填为默认项目。
         # @type ProjectId: Integer
-        # @param ForwardLoadBalancers: 应用型负载均衡器列表，目前长度上限为50，LoadBalancerIds 和 ForwardLoadBalancers 二者同时最多只能指定一个
+        # @param ForwardLoadBalancers: 应用型负载均衡器列表，目前长度上限为100，LoadBalancerIds 和 ForwardLoadBalancers 二者同时最多只能指定一个
         # @type ForwardLoadBalancers: Array
         # @param SubnetIds: 子网ID列表，VPC场景下必须指定子网。多个子网以填写顺序为优先级，依次进行尝试，直至可以成功创建实例。
         # @type SubnetIds: Array
@@ -2291,7 +2291,7 @@ module TencentCloud
         # @type AutoScalingGroupId: String
         # @param LoadBalancerIds: 传统负载均衡器ID列表，列表长度上限为20，LoadBalancerIds 和 ForwardLoadBalancerIdentifications 二者同时最多只能指定一个
         # @type LoadBalancerIds: Array
-        # @param ForwardLoadBalancerIdentifications: 应用型负载均衡器标识信息列表，列表长度上限为50，LoadBalancerIds 和 ForwardLoadBalancerIdentifications二者同时最多只能指定一个
+        # @param ForwardLoadBalancerIdentifications: 应用型负载均衡器标识信息列表，列表长度上限为100，LoadBalancerIds 和 ForwardLoadBalancerIdentifications二者同时最多只能指定一个
         # @type ForwardLoadBalancerIdentifications: Array
 
         attr_accessor :AutoScalingGroupId, :LoadBalancerIds, :ForwardLoadBalancerIdentifications
@@ -3705,7 +3705,7 @@ module TencentCloud
       class ModifyLoadBalancerTargetAttributesRequest < TencentCloud::Common::AbstractModel
         # @param AutoScalingGroupId: 伸缩组ID
         # @type AutoScalingGroupId: String
-        # @param ForwardLoadBalancers: 需修改目标规则属性的应用型负载均衡器列表，列表长度上限为50
+        # @param ForwardLoadBalancers: 需修改目标规则属性的应用型负载均衡器列表，列表长度上限为100
         # @type ForwardLoadBalancers: Array
 
         attr_accessor :AutoScalingGroupId, :ForwardLoadBalancers
@@ -3754,7 +3754,7 @@ module TencentCloud
         # @type AutoScalingGroupId: String
         # @param LoadBalancerIds: 传统负载均衡器ID列表，目前长度上限为20，LoadBalancerIds 和 ForwardLoadBalancers 二者同时最多只能指定一个
         # @type LoadBalancerIds: Array
-        # @param ForwardLoadBalancers: 应用型负载均衡器列表，目前长度上限为50，LoadBalancerIds 和 ForwardLoadBalancers 二者同时最多只能指定一个
+        # @param ForwardLoadBalancers: 应用型负载均衡器列表，目前长度上限为100，LoadBalancerIds 和 ForwardLoadBalancers 二者同时最多只能指定一个
         # @type ForwardLoadBalancers: Array
         # @param LoadBalancersCheckPolicy: 负载均衡器校验策略，取值包括 ALL 和 DIFF，默认取值为 ALL。
         # <br><li> ALL，所有负载均衡器都合法则通过校验，否则校验报错。

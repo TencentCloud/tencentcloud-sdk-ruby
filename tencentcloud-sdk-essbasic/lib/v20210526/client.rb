@@ -232,6 +232,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询企业员工
+
+        # @param request: Request instance for ChannelDescribeEmployees.
+        # @type request: :class:`Tencentcloud::essbasic::V20210526::ChannelDescribeEmployeesRequest`
+        # @rtype: :class:`Tencentcloud::essbasic::V20210526::ChannelDescribeEmployeesResponse`
+        def ChannelDescribeEmployees(request)
+          body = send_request('ChannelDescribeEmployees', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ChannelDescribeEmployeesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 渠道版查询转换任务状态
 
         # @param request: Request instance for ChannelGetTaskResultApi.
@@ -280,8 +304,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 【描述】：创建出证报告，返回报告 URL
-        # 【注意】：此接口需要通过添加白名单获取调用权限，请联系运营人员加白
+        # 创建出证报告，返回报告 URL。此接口暂为开放，有问题请联系运营人员。
 
         # @param request: Request instance for CreateChannelFlowEvidenceReport.
         # @type request: :class:`Tencentcloud::essbasic::V20210526::CreateChannelFlowEvidenceReportRequest`

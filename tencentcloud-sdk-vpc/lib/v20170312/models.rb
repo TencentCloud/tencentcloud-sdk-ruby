@@ -17804,6 +17804,47 @@ module TencentCloud
         end
       end
 
+      # SetVpnGatewaysRenewFlag请求参数结构体
+      class SetVpnGatewaysRenewFlagRequest < TencentCloud::Common::AbstractModel
+        # @param VpnGatewayIds: VPNGW字符型ID列表
+        # @type VpnGatewayIds: Array
+        # @param AutoRenewFlag: 自动续费标记[0, 1, 2]
+        # 0表示默认状态(初始状态)， 1表示自动续费，2表示明确不自动续费
+        # @type AutoRenewFlag: Integer
+        # @param Type: VPNGW类型['IPSEC', 'SSL']
+        # @type Type: String
+
+        attr_accessor :VpnGatewayIds, :AutoRenewFlag, :Type
+        
+        def initialize(vpngatewayids=nil, autorenewflag=nil, type=nil)
+          @VpnGatewayIds = vpngatewayids
+          @AutoRenewFlag = autorenewflag
+          @Type = type
+        end
+
+        def deserialize(params)
+          @VpnGatewayIds = params['VpnGatewayIds']
+          @AutoRenewFlag = params['AutoRenewFlag']
+          @Type = params['Type']
+        end
+      end
+
+      # SetVpnGatewaysRenewFlag返回参数结构体
+      class SetVpnGatewaysRenewFlagResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # NAT的SNAT规则
       class SourceIpTranslationNatRule < TencentCloud::Common::AbstractModel
         # @param ResourceId: 资源ID

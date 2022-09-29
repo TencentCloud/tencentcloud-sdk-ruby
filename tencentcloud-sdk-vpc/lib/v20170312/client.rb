@@ -6916,6 +6916,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 设置VPNGW续费标记
+
+        # @param request: Request instance for SetVpnGatewaysRenewFlag.
+        # @type request: :class:`Tencentcloud::vpc::V20170312::SetVpnGatewaysRenewFlagRequest`
+        # @rtype: :class:`Tencentcloud::vpc::V20170312::SetVpnGatewaysRenewFlagResponse`
+        def SetVpnGatewaysRenewFlag(request)
+          body = send_request('SetVpnGatewaysRenewFlag', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = SetVpnGatewaysRenewFlagResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口 (TransformAddress) 用于将实例的普通公网 IP 转换为[弹性公网IP](https://cloud.tencent.com/document/product/213/1941)（简称 EIP）。
         # * 平台对用户每地域每日解绑 EIP 重新分配普通公网 IP 次数有所限制（可参见 [EIP 产品简介](/document/product/213/1941)）。上述配额可通过 [DescribeAddressQuota](https://cloud.tencent.com/document/api/213/1378) 接口获取。
 

@@ -8013,14 +8013,20 @@ module TencentCloud
         # @type TemplateId: Integer
         # @param WaitSwitch: 执行参数调整任务的方式，默认为 0。支持值包括：0 - 立刻执行，1 - 时间窗执行；当该值为 1 时，每次只能传一个实例（InstanceIds数量为1）
         # @type WaitSwitch: Integer
+        # @param NotSyncRo: 参数是否同步到主实例下的只读实例。true 为不同步，false 为同步。默认为 false。
+        # @type NotSyncRo: Boolean
+        # @param NotSyncDr: 参数是否同步到主实例下的灾备实例。true 为不同步，false 为同步。默认为 false。
+        # @type NotSyncDr: Boolean
 
-        attr_accessor :InstanceIds, :ParamList, :TemplateId, :WaitSwitch
+        attr_accessor :InstanceIds, :ParamList, :TemplateId, :WaitSwitch, :NotSyncRo, :NotSyncDr
         
-        def initialize(instanceids=nil, paramlist=nil, templateid=nil, waitswitch=nil)
+        def initialize(instanceids=nil, paramlist=nil, templateid=nil, waitswitch=nil, notsyncro=nil, notsyncdr=nil)
           @InstanceIds = instanceids
           @ParamList = paramlist
           @TemplateId = templateid
           @WaitSwitch = waitswitch
+          @NotSyncRo = notsyncro
+          @NotSyncDr = notsyncdr
         end
 
         def deserialize(params)
@@ -8035,6 +8041,8 @@ module TencentCloud
           end
           @TemplateId = params['TemplateId']
           @WaitSwitch = params['WaitSwitch']
+          @NotSyncRo = params['NotSyncRo']
+          @NotSyncDr = params['NotSyncDr']
         end
       end
 

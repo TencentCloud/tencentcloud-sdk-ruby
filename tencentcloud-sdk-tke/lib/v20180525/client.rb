@@ -221,7 +221,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 创建集群访问端口(独立集群开启内网/外网访问，托管集群支持开启内网访问)
+        # 创建集群访问端口
 
         # @param request: Request instance for CreateClusterEndpoint.
         # @type request: :class:`Tencentcloud::tke::V20180525::CreateClusterEndpointRequest`
@@ -821,7 +821,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 删除集群访问端口(独立集群开启内网/外网访问，托管集群支持开启内网访问)
+        # 删除集群访问端口
 
         # @param request: Request instance for DeleteClusterEndpoint.
         # @type request: :class:`Tencentcloud::tke::V20180525::DeleteClusterEndpointRequest`

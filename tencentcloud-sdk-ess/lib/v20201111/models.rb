@@ -985,6 +985,59 @@ module TencentCloud
         end
       end
 
+      # CreateIntegrationEmployees请求参数结构体
+      class CreateIntegrationEmployeesRequest < TencentCloud::Common::AbstractModel
+        # @param Operator: 操作人信息，userId必填
+        # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
+        # @param Employees: 待创建员工的信息，Mobile和DisplayName必填
+        # @type Employees: Array
+
+        attr_accessor :Operator, :Employees
+        
+        def initialize(operator=nil, employees=nil)
+          @Operator = operator
+          @Employees = employees
+        end
+
+        def deserialize(params)
+          unless params['Operator'].nil?
+            @Operator = UserInfo.new
+            @Operator.deserialize(params['Operator'])
+          end
+          unless params['Employees'].nil?
+            @Employees = []
+            params['Employees'].each do |i|
+              staff_tmp = Staff.new
+              staff_tmp.deserialize(i)
+              @Employees << staff_tmp
+            end
+          end
+        end
+      end
+
+      # CreateIntegrationEmployees返回参数结构体
+      class CreateIntegrationEmployeesResponse < TencentCloud::Common::AbstractModel
+        # @param CreateEmployeeResult: 创建员工的结果
+        # @type CreateEmployeeResult: :class:`Tencentcloud::Ess.v20201111.models.CreateStaffResult`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :CreateEmployeeResult, :RequestId
+        
+        def initialize(createemployeeresult=nil, requestid=nil)
+          @CreateEmployeeResult = createemployeeresult
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['CreateEmployeeResult'].nil?
+            @CreateEmployeeResult = CreateStaffResult.new
+            @CreateEmployeeResult.deserialize(params['CreateEmployeeResult'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateMultiFlowSignQRCode请求参数结构体
       class CreateMultiFlowSignQRCodeRequest < TencentCloud::Common::AbstractModel
         # @param TemplateId: 模板ID
@@ -1149,6 +1202,151 @@ module TencentCloud
         def deserialize(params)
           @SchemeUrl = params['SchemeUrl']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 创建员工的结果
+      class CreateStaffResult < TencentCloud::Common::AbstractModel
+        # @param SuccessEmployeeData: 创建员工的成功列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SuccessEmployeeData: Array
+        # @param FailedEmployeeData: 创建员工的失败列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FailedEmployeeData: Array
+
+        attr_accessor :SuccessEmployeeData, :FailedEmployeeData
+        
+        def initialize(successemployeedata=nil, failedemployeedata=nil)
+          @SuccessEmployeeData = successemployeedata
+          @FailedEmployeeData = failedemployeedata
+        end
+
+        def deserialize(params)
+          unless params['SuccessEmployeeData'].nil?
+            @SuccessEmployeeData = []
+            params['SuccessEmployeeData'].each do |i|
+              successcreatestaffdata_tmp = SuccessCreateStaffData.new
+              successcreatestaffdata_tmp.deserialize(i)
+              @SuccessEmployeeData << successcreatestaffdata_tmp
+            end
+          end
+          unless params['FailedEmployeeData'].nil?
+            @FailedEmployeeData = []
+            params['FailedEmployeeData'].each do |i|
+              failedcreatestaffdata_tmp = FailedCreateStaffData.new
+              failedcreatestaffdata_tmp.deserialize(i)
+              @FailedEmployeeData << failedcreatestaffdata_tmp
+            end
+          end
+        end
+      end
+
+      # DeleteIntegrationEmployees请求参数结构体
+      class DeleteIntegrationEmployeesRequest < TencentCloud::Common::AbstractModel
+        # @param Operator: 操作人信息，userId必填
+        # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
+        # @param Employees: 待移除员工的信息，userId和openId二选一，必填一个
+        # @type Employees: Array
+
+        attr_accessor :Operator, :Employees
+        
+        def initialize(operator=nil, employees=nil)
+          @Operator = operator
+          @Employees = employees
+        end
+
+        def deserialize(params)
+          unless params['Operator'].nil?
+            @Operator = UserInfo.new
+            @Operator.deserialize(params['Operator'])
+          end
+          unless params['Employees'].nil?
+            @Employees = []
+            params['Employees'].each do |i|
+              staff_tmp = Staff.new
+              staff_tmp.deserialize(i)
+              @Employees << staff_tmp
+            end
+          end
+        end
+      end
+
+      # DeleteIntegrationEmployees返回参数结构体
+      class DeleteIntegrationEmployeesResponse < TencentCloud::Common::AbstractModel
+        # @param DeleteEmployeeResult: 员工删除数据
+        # @type DeleteEmployeeResult: :class:`Tencentcloud::Ess.v20201111.models.DeleteStaffsResult`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :DeleteEmployeeResult, :RequestId
+        
+        def initialize(deleteemployeeresult=nil, requestid=nil)
+          @DeleteEmployeeResult = deleteemployeeresult
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['DeleteEmployeeResult'].nil?
+            @DeleteEmployeeResult = DeleteStaffsResult.new
+            @DeleteEmployeeResult.deserialize(params['DeleteEmployeeResult'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 删除员工结果
+      class DeleteStaffsResult < TencentCloud::Common::AbstractModel
+        # @param SuccessEmployeeData: 删除员工的成功数据
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SuccessEmployeeData: Array
+        # @param FailedEmployeeData: 删除员工的失败数据
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FailedEmployeeData: Array
+
+        attr_accessor :SuccessEmployeeData, :FailedEmployeeData
+        
+        def initialize(successemployeedata=nil, failedemployeedata=nil)
+          @SuccessEmployeeData = successemployeedata
+          @FailedEmployeeData = failedemployeedata
+        end
+
+        def deserialize(params)
+          unless params['SuccessEmployeeData'].nil?
+            @SuccessEmployeeData = []
+            params['SuccessEmployeeData'].each do |i|
+              successdeletestaffdata_tmp = SuccessDeleteStaffData.new
+              successdeletestaffdata_tmp.deserialize(i)
+              @SuccessEmployeeData << successdeletestaffdata_tmp
+            end
+          end
+          unless params['FailedEmployeeData'].nil?
+            @FailedEmployeeData = []
+            params['FailedEmployeeData'].each do |i|
+              faileddeletestaffdata_tmp = FailedDeleteStaffData.new
+              faileddeletestaffdata_tmp.deserialize(i)
+              @FailedEmployeeData << faileddeletestaffdata_tmp
+            end
+          end
+        end
+      end
+
+      # 集成版员工部门信息
+      class Department < TencentCloud::Common::AbstractModel
+        # @param DepartmentId: 部门id
+        # @type DepartmentId: String
+        # @param DepartmentName: 部门名称
+        # @type DepartmentName: String
+
+        attr_accessor :DepartmentId, :DepartmentName
+        
+        def initialize(departmentid=nil, departmentname=nil)
+          @DepartmentId = departmentid
+          @DepartmentName = departmentname
+        end
+
+        def deserialize(params)
+          @DepartmentId = params['DepartmentId']
+          @DepartmentName = params['DepartmentName']
         end
       end
 
@@ -1441,6 +1639,85 @@ module TencentCloud
         end
       end
 
+      # DescribeIntegrationEmployees请求参数结构体
+      class DescribeIntegrationEmployeesRequest < TencentCloud::Common::AbstractModel
+        # @param Operator: 操作人信息，userId必填
+        # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
+        # @param Limit: 返回最大数量，最大为20
+        # @type Limit: Integer
+        # @param Filters: 查询过滤实名用户，key为Status，Values为["IsVerified"]
+        # @type Filters: Array
+        # @param Offset: 偏移量，默认为0，最大为20000
+        # @type Offset: Integer
+
+        attr_accessor :Operator, :Limit, :Filters, :Offset
+        
+        def initialize(operator=nil, limit=nil, filters=nil, offset=nil)
+          @Operator = operator
+          @Limit = limit
+          @Filters = filters
+          @Offset = offset
+        end
+
+        def deserialize(params)
+          unless params['Operator'].nil?
+            @Operator = UserInfo.new
+            @Operator.deserialize(params['Operator'])
+          end
+          @Limit = params['Limit']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+          @Offset = params['Offset']
+        end
+      end
+
+      # DescribeIntegrationEmployees返回参数结构体
+      class DescribeIntegrationEmployeesResponse < TencentCloud::Common::AbstractModel
+        # @param Employees: 员工数据列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Employees: Array
+        # @param Offset: 偏移量，默认为0，最大为20000
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Offset: Integer
+        # @param Limit: 返回最大数量，最大为20
+        # @type Limit: Integer
+        # @param TotalCount: 符合条件的员工数量
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Employees, :Offset, :Limit, :TotalCount, :RequestId
+        
+        def initialize(employees=nil, offset=nil, limit=nil, totalcount=nil, requestid=nil)
+          @Employees = employees
+          @Offset = offset
+          @Limit = limit
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Employees'].nil?
+            @Employees = []
+            params['Employees'].each do |i|
+              staff_tmp = Staff.new
+              staff_tmp.deserialize(i)
+              @Employees << staff_tmp
+            end
+          end
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeThirdPartyAuthCode请求参数结构体
       class DescribeThirdPartyAuthCodeRequest < TencentCloud::Common::AbstractModel
         # @param AuthCode: 电子签小程序跳转客户小程序时携带的授权查看码
@@ -1474,6 +1751,56 @@ module TencentCloud
         def deserialize(params)
           @VerifyStatus = params['VerifyStatus']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 创建员工的失败数据
+      class FailedCreateStaffData < TencentCloud::Common::AbstractModel
+        # @param DisplayName: 员工名
+        # @type DisplayName: String
+        # @param Mobile: 员工手机号
+        # @type Mobile: String
+        # @param Reason: 失败原因
+        # @type Reason: String
+
+        attr_accessor :DisplayName, :Mobile, :Reason
+        
+        def initialize(displayname=nil, mobile=nil, reason=nil)
+          @DisplayName = displayname
+          @Mobile = mobile
+          @Reason = reason
+        end
+
+        def deserialize(params)
+          @DisplayName = params['DisplayName']
+          @Mobile = params['Mobile']
+          @Reason = params['Reason']
+        end
+      end
+
+      # 删除员工失败数据
+      class FailedDeleteStaffData < TencentCloud::Common::AbstractModel
+        # @param UserId: 员工在电子签的userId
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UserId: String
+        # @param OpenId: 员工在第三方平台的openId
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OpenId: String
+        # @param Reason: 失败原因
+        # @type Reason: String
+
+        attr_accessor :UserId, :OpenId, :Reason
+        
+        def initialize(userid=nil, openid=nil, reason=nil)
+          @UserId = userid
+          @OpenId = openid
+          @Reason = reason
+        end
+
+        def deserialize(params)
+          @UserId = params['UserId']
+          @OpenId = params['OpenId']
+          @Reason = params['Reason']
         end
       end
 
@@ -2192,6 +2519,95 @@ module TencentCloud
         end
       end
 
+      # 企业员工信息
+      class Staff < TencentCloud::Common::AbstractModel
+        # @param UserId: 用户在电子签平台的id
+        # @type UserId: String
+        # @param DisplayName: 显示的用户名/昵称
+        # @type DisplayName: String
+        # @param Mobile: 用户手机号
+        # @type Mobile: String
+        # @param Email: 用户邮箱
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Email: String
+        # @param OpenId: 用户在第三方平台id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OpenId: String
+        # @param Roles: 员工角色
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Roles: Array
+        # @param Department: 员工部门
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Department: :class:`Tencentcloud::Ess.v20201111.models.Department`
+        # @param Verified: 员工是否实名
+        # @type Verified: Boolean
+        # @param CreatedOn: 员工创建时间戳
+        # @type CreatedOn: Integer
+        # @param VerifiedOn: 员工实名时间戳
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VerifiedOn: Integer
+
+        attr_accessor :UserId, :DisplayName, :Mobile, :Email, :OpenId, :Roles, :Department, :Verified, :CreatedOn, :VerifiedOn
+        
+        def initialize(userid=nil, displayname=nil, mobile=nil, email=nil, openid=nil, roles=nil, department=nil, verified=nil, createdon=nil, verifiedon=nil)
+          @UserId = userid
+          @DisplayName = displayname
+          @Mobile = mobile
+          @Email = email
+          @OpenId = openid
+          @Roles = roles
+          @Department = department
+          @Verified = verified
+          @CreatedOn = createdon
+          @VerifiedOn = verifiedon
+        end
+
+        def deserialize(params)
+          @UserId = params['UserId']
+          @DisplayName = params['DisplayName']
+          @Mobile = params['Mobile']
+          @Email = params['Email']
+          @OpenId = params['OpenId']
+          unless params['Roles'].nil?
+            @Roles = []
+            params['Roles'].each do |i|
+              staffrole_tmp = StaffRole.new
+              staffrole_tmp.deserialize(i)
+              @Roles << staffrole_tmp
+            end
+          end
+          unless params['Department'].nil?
+            @Department = Department.new
+            @Department.deserialize(params['Department'])
+          end
+          @Verified = params['Verified']
+          @CreatedOn = params['CreatedOn']
+          @VerifiedOn = params['VerifiedOn']
+        end
+      end
+
+      # 集成版企业角色信息
+      class StaffRole < TencentCloud::Common::AbstractModel
+        # @param RoleId: 角色id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RoleId: String
+        # @param RoleName: 角色名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RoleName: String
+
+        attr_accessor :RoleId, :RoleName
+        
+        def initialize(roleid=nil, rolename=nil)
+          @RoleId = roleid
+          @RoleName = rolename
+        end
+
+        def deserialize(params)
+          @RoleId = params['RoleId']
+          @RoleName = params['RoleName']
+        end
+      end
+
       # StartFlow请求参数结构体
       class StartFlowRequest < TencentCloud::Common::AbstractModel
         # @param Operator: 调用方用户信息，userId 必填
@@ -2243,6 +2659,54 @@ module TencentCloud
         def deserialize(params)
           @Status = params['Status']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 创建员工的成功数据
+      class SuccessCreateStaffData < TencentCloud::Common::AbstractModel
+        # @param DisplayName: 员工名
+        # @type DisplayName: String
+        # @param Mobile: 员工手机号
+        # @type Mobile: String
+        # @param UserId: 员工在电子签平台的id
+        # @type UserId: String
+
+        attr_accessor :DisplayName, :Mobile, :UserId
+        
+        def initialize(displayname=nil, mobile=nil, userid=nil)
+          @DisplayName = displayname
+          @Mobile = mobile
+          @UserId = userid
+        end
+
+        def deserialize(params)
+          @DisplayName = params['DisplayName']
+          @Mobile = params['Mobile']
+          @UserId = params['UserId']
+        end
+      end
+
+      # 删除员工的成功数据
+      class SuccessDeleteStaffData < TencentCloud::Common::AbstractModel
+        # @param DisplayName: 员工名
+        # @type DisplayName: String
+        # @param Mobile: 员工手机号
+        # @type Mobile: String
+        # @param UserId: 员工在电子签平台的id
+        # @type UserId: String
+
+        attr_accessor :DisplayName, :Mobile, :UserId
+        
+        def initialize(displayname=nil, mobile=nil, userid=nil)
+          @DisplayName = displayname
+          @Mobile = mobile
+          @UserId = userid
+        end
+
+        def deserialize(params)
+          @DisplayName = params['DisplayName']
+          @Mobile = params['Mobile']
+          @UserId = params['UserId']
         end
       end
 

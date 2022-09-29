@@ -610,13 +610,16 @@ module TencentCloud
       class MatchKBPURLListResponse < TencentCloud::Common::AbstractModel
         # @param PURLList: 组件列表。
         # @type PURLList: Array
+        # @param Hit: 是否命中数据库。
+        # @type Hit: Boolean
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :PURLList, :RequestId
+        attr_accessor :PURLList, :Hit, :RequestId
         
-        def initialize(purllist=nil, requestid=nil)
+        def initialize(purllist=nil, hit=nil, requestid=nil)
           @PURLList = purllist
+          @Hit = hit
           @RequestId = requestid
         end
 
@@ -629,6 +632,7 @@ module TencentCloud
               @PURLList << purl_tmp
             end
           end
+          @Hit = params['Hit']
           @RequestId = params['RequestId']
         end
       end

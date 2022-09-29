@@ -651,6 +651,92 @@ module TencentCloud
         end
       end
 
+      # ChannelDescribeEmployees请求参数结构体
+      class ChannelDescribeEmployeesRequest < TencentCloud::Common::AbstractModel
+        # @param Limit: 返回最大数量，最大为20
+        # @type Limit: Integer
+        # @param Agent: 渠道应用相关信息。 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 和 Agent.ProxyAppId 均必填。
+        # @type Agent: :class:`Tencentcloud::Essbasic.v20210526.models.Agent`
+        # @param Operator: 操作者的信息
+        # @type Operator: :class:`Tencentcloud::Essbasic.v20210526.models.UserInfo`
+        # @param Filters: 查询过滤实名用户，key为Status，Values为["IsVerified"]
+        # @type Filters: Array
+        # @param Offset: 偏移量，默认为0，最大为20000
+        # @type Offset: Integer
+
+        attr_accessor :Limit, :Agent, :Operator, :Filters, :Offset
+        
+        def initialize(limit=nil, agent=nil, operator=nil, filters=nil, offset=nil)
+          @Limit = limit
+          @Agent = agent
+          @Operator = operator
+          @Filters = filters
+          @Offset = offset
+        end
+
+        def deserialize(params)
+          @Limit = params['Limit']
+          unless params['Agent'].nil?
+            @Agent = Agent.new
+            @Agent.deserialize(params['Agent'])
+          end
+          unless params['Operator'].nil?
+            @Operator = UserInfo.new
+            @Operator.deserialize(params['Operator'])
+          end
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+          @Offset = params['Offset']
+        end
+      end
+
+      # ChannelDescribeEmployees返回参数结构体
+      class ChannelDescribeEmployeesResponse < TencentCloud::Common::AbstractModel
+        # @param Employees: 员工数据列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Employees: Array
+        # @param Offset: 偏移量，默认为0，最大为20000
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Offset: Integer
+        # @param Limit: 返回最大数量，最大为20
+        # @type Limit: Integer
+        # @param TotalCount: 符合条件的员工数量
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Employees, :Offset, :Limit, :TotalCount, :RequestId
+        
+        def initialize(employees=nil, offset=nil, limit=nil, totalcount=nil, requestid=nil)
+          @Employees = employees
+          @Offset = offset
+          @Limit = limit
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Employees'].nil?
+            @Employees = []
+            params['Employees'].each do |i|
+              staff_tmp = Staff.new
+              staff_tmp.deserialize(i)
+              @Employees << staff_tmp
+            end
+          end
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ChannelGetTaskResultApi请求参数结构体
       class ChannelGetTaskResultApiRequest < TencentCloud::Common::AbstractModel
         # @param Agent: 渠道应用相关信息。 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 和 Agent.ProxyAppId 均必填。
@@ -1295,6 +1381,28 @@ module TencentCloud
         end
       end
 
+      # 渠道版员工部门信息
+      class Department < TencentCloud::Common::AbstractModel
+        # @param DepartmentId: 部门id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DepartmentId: String
+        # @param DepartmentName: 部门名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DepartmentName: String
+
+        attr_accessor :DepartmentId, :DepartmentName
+        
+        def initialize(departmentid=nil, departmentname=nil)
+          @DepartmentId = departmentid
+          @DepartmentName = departmentname
+        end
+
+        def deserialize(params)
+          @DepartmentId = params['DepartmentId']
+          @DepartmentName = params['DepartmentName']
+        end
+      end
+
       # DescribeFlowDetailInfo请求参数结构体
       class DescribeFlowDetailInfoRequest < TencentCloud::Common::AbstractModel
         # @param Agent: 渠道应用相关信息。 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 和 Agent.ProxyAppId 均必填。
@@ -1626,6 +1734,26 @@ module TencentCloud
         def deserialize(params)
           @FileName = params['FileName']
           @FlowIdList = params['FlowIdList']
+        end
+      end
+
+      # 此结构体 (Filter) 用于描述查询过滤条件。
+      class Filter < TencentCloud::Common::AbstractModel
+        # @param Key: 查询过滤条件的Key
+        # @type Key: String
+        # @param Values: 查询过滤条件的Value列表
+        # @type Values: Array
+
+        attr_accessor :Key, :Values
+        
+        def initialize(key=nil, values=nil)
+          @Key = key
+          @Values = values
+        end
+
+        def deserialize(params)
+          @Key = params['Key']
+          @Values = params['Values']
         end
       end
 
@@ -2651,6 +2779,94 @@ module TencentCloud
           @FlowId = params['FlowId']
           @OpenId = params['OpenId']
           @FlowGroupId = params['FlowGroupId']
+        end
+      end
+
+      # 企业员工信息
+      class Staff < TencentCloud::Common::AbstractModel
+        # @param UserId: 员工在电子签平台的id
+        # @type UserId: String
+        # @param DisplayName: 显示的员工名
+        # @type DisplayName: String
+        # @param Mobile: 员工手机号
+        # @type Mobile: String
+        # @param Email: 员工邮箱
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Email: String
+        # @param OpenId: 员工在第三方平台id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OpenId: String
+        # @param Roles: 员工角色
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Roles: Array
+        # @param Department: 员工部门
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Department: :class:`Tencentcloud::Essbasic.v20210526.models.Department`
+        # @param Verified: 员工是否实名
+        # @type Verified: Boolean
+        # @param CreatedOn: 员工创建时间戳
+        # @type CreatedOn: Integer
+        # @param VerifiedOn: 员工实名时间戳
+        # @type VerifiedOn: Integer
+
+        attr_accessor :UserId, :DisplayName, :Mobile, :Email, :OpenId, :Roles, :Department, :Verified, :CreatedOn, :VerifiedOn
+        
+        def initialize(userid=nil, displayname=nil, mobile=nil, email=nil, openid=nil, roles=nil, department=nil, verified=nil, createdon=nil, verifiedon=nil)
+          @UserId = userid
+          @DisplayName = displayname
+          @Mobile = mobile
+          @Email = email
+          @OpenId = openid
+          @Roles = roles
+          @Department = department
+          @Verified = verified
+          @CreatedOn = createdon
+          @VerifiedOn = verifiedon
+        end
+
+        def deserialize(params)
+          @UserId = params['UserId']
+          @DisplayName = params['DisplayName']
+          @Mobile = params['Mobile']
+          @Email = params['Email']
+          @OpenId = params['OpenId']
+          unless params['Roles'].nil?
+            @Roles = []
+            params['Roles'].each do |i|
+              staffrole_tmp = StaffRole.new
+              staffrole_tmp.deserialize(i)
+              @Roles << staffrole_tmp
+            end
+          end
+          unless params['Department'].nil?
+            @Department = Department.new
+            @Department.deserialize(params['Department'])
+          end
+          @Verified = params['Verified']
+          @CreatedOn = params['CreatedOn']
+          @VerifiedOn = params['VerifiedOn']
+        end
+      end
+
+      # 渠道版员工角色信息
+      class StaffRole < TencentCloud::Common::AbstractModel
+        # @param RoleId: 角色id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RoleId: String
+        # @param RoleName: 角色名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RoleName: String
+
+        attr_accessor :RoleId, :RoleName
+        
+        def initialize(roleid=nil, rolename=nil)
+          @RoleId = roleid
+          @RoleName = rolename
+        end
+
+        def deserialize(params)
+          @RoleId = params['RoleId']
+          @RoleName = params['RoleName']
         end
       end
 

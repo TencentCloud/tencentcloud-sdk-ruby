@@ -845,7 +845,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口用于构建直方图
+        # 本接口用于构建日志数量直方图
 
         # @param request: Request instance for DescribeLogHistogram.
         # @type request: :class:`Tencentcloud::cls::V20201016::DescribeLogHistogramRequest`
