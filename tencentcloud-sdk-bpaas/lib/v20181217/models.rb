@@ -77,14 +77,18 @@ module TencentCloud
         # @param Nick: 用户昵称
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Nick: String
+        # @param Scf: 动态获取Scf
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Scf: :class:`Tencentcloud::Bpaas.v20181217.models.Scf`
 
-        attr_accessor :Uin, :Type, :Desc, :Nick
+        attr_accessor :Uin, :Type, :Desc, :Nick, :Scf
         
-        def initialize(uin=nil, type=nil, desc=nil, nick=nil)
+        def initialize(uin=nil, type=nil, desc=nil, nick=nil, scf=nil)
           @Uin = uin
           @Type = type
           @Desc = desc
           @Nick = nick
+          @Scf = scf
         end
 
         def deserialize(params)
@@ -92,6 +96,10 @@ module TencentCloud
           @Type = params['Type']
           @Desc = params['Desc']
           @Nick = params['Nick']
+          unless params['Scf'].nil?
+            @Scf = Scf.new
+            @Scf.deserialize(params['Scf'])
+          end
         end
       end
 
@@ -229,6 +237,72 @@ module TencentCloud
 
         def deserialize(params)
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 云函数SCF
+      class Scf < TencentCloud::Common::AbstractModel
+        # @param ScfRegion: Scf函数地域id
+        # @type ScfRegion: String
+        # @param ScfRegionName: Scf函数地域
+        # @type ScfRegionName: String
+        # @param ScfName: Scf函数名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ScfName: String
+        # @param Params: Scf函数入参
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Params: Array
+
+        attr_accessor :ScfRegion, :ScfRegionName, :ScfName, :Params
+        
+        def initialize(scfregion=nil, scfregionname=nil, scfname=nil, params=nil)
+          @ScfRegion = scfregion
+          @ScfRegionName = scfregionname
+          @ScfName = scfname
+          @Params = params
+        end
+
+        def deserialize(params)
+          @ScfRegion = params['ScfRegion']
+          @ScfRegionName = params['ScfRegionName']
+          @ScfName = params['ScfName']
+          unless params['Params'].nil?
+            @Params = []
+            params['Params'].each do |i|
+              scfparam_tmp = ScfParam.new
+              scfparam_tmp.deserialize(i)
+              @Params << scfparam_tmp
+            end
+          end
+        end
+      end
+
+      # Scf函数入参
+      class ScfParam < TencentCloud::Common::AbstractModel
+        # @param Key: 参数Key
+        # @type Key: String
+        # @param Type: 参数类型 1用户输入 2预设参数 3表单参数
+        # @type Type: Integer
+        # @param Values: 参数值
+        # @type Values: Array
+        # @param Name: 参数描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
+
+        attr_accessor :Key, :Type, :Values, :Name
+        
+        def initialize(key=nil, type=nil, values=nil, name=nil)
+          @Key = key
+          @Type = type
+          @Values = values
+          @Name = name
+        end
+
+        def deserialize(params)
+          @Key = params['Key']
+          @Type = params['Type']
+          @Values = params['Values']
+          @Name = params['Name']
         end
       end
 

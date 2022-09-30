@@ -587,10 +587,12 @@ module TencentCloud
         # @type SchemaInfos: Array
         # @param IsSchemaExisted: 数据是否存在表头
         # @type IsSchemaExisted: Boolean
+        # @param ContentType: 导入文件粒度，按行或者按文件
+        # @type ContentType: String
 
-        attr_accessor :DatasetName, :DatasetType, :StorageDataPath, :StorageLabelPath, :DatasetTags, :AnnotationStatus, :AnnotationType, :AnnotationFormat, :SchemaInfos, :IsSchemaExisted
+        attr_accessor :DatasetName, :DatasetType, :StorageDataPath, :StorageLabelPath, :DatasetTags, :AnnotationStatus, :AnnotationType, :AnnotationFormat, :SchemaInfos, :IsSchemaExisted, :ContentType
         
-        def initialize(datasetname=nil, datasettype=nil, storagedatapath=nil, storagelabelpath=nil, datasettags=nil, annotationstatus=nil, annotationtype=nil, annotationformat=nil, schemainfos=nil, isschemaexisted=nil)
+        def initialize(datasetname=nil, datasettype=nil, storagedatapath=nil, storagelabelpath=nil, datasettags=nil, annotationstatus=nil, annotationtype=nil, annotationformat=nil, schemainfos=nil, isschemaexisted=nil, contenttype=nil)
           @DatasetName = datasetname
           @DatasetType = datasettype
           @StorageDataPath = storagedatapath
@@ -601,6 +603,7 @@ module TencentCloud
           @AnnotationFormat = annotationformat
           @SchemaInfos = schemainfos
           @IsSchemaExisted = isschemaexisted
+          @ContentType = contenttype
         end
 
         def deserialize(params)
@@ -634,6 +637,7 @@ module TencentCloud
             end
           end
           @IsSchemaExisted = params['IsSchemaExisted']
+          @ContentType = params['ContentType']
         end
       end
 
@@ -2068,16 +2072,19 @@ module TencentCloud
         # @type AnnotationStatus: String
         # @param DatasetIds: 数据集ID列表
         # @type DatasetIds: Array
+        # @param TextClassificationLabels: 要筛选的文本分类场景标签信息
+        # @type TextClassificationLabels: Array
 
-        attr_accessor :DatasetId, :Offset, :Limit, :LabelList, :AnnotationStatus, :DatasetIds
+        attr_accessor :DatasetId, :Offset, :Limit, :LabelList, :AnnotationStatus, :DatasetIds, :TextClassificationLabels
         
-        def initialize(datasetid=nil, offset=nil, limit=nil, labellist=nil, annotationstatus=nil, datasetids=nil)
+        def initialize(datasetid=nil, offset=nil, limit=nil, labellist=nil, annotationstatus=nil, datasetids=nil, textclassificationlabels=nil)
           @DatasetId = datasetid
           @Offset = offset
           @Limit = limit
           @LabelList = labellist
           @AnnotationStatus = annotationstatus
           @DatasetIds = datasetids
+          @TextClassificationLabels = textclassificationlabels
         end
 
         def deserialize(params)
@@ -2087,6 +2094,14 @@ module TencentCloud
           @LabelList = params['LabelList']
           @AnnotationStatus = params['AnnotationStatus']
           @DatasetIds = params['DatasetIds']
+          unless params['TextClassificationLabels'].nil?
+            @TextClassificationLabels = []
+            params['TextClassificationLabels'].each do |i|
+              textlabeldistributioninfo_tmp = TextLabelDistributionInfo.new
+              textlabeldistributioninfo_tmp.deserialize(i)
+              @TextClassificationLabels << textlabeldistributioninfo_tmp
+            end
+          end
         end
       end
 
@@ -2104,16 +2119,20 @@ module TencentCloud
         # @param FilterLabelList: 过滤数据详情
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FilterLabelList: Array
+        # @param RowTexts: 数据文本行，默认返回前1000行
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RowTexts: Array
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :AnnotatedTotalCount, :NonAnnotatedTotalCount, :FilterTotalCount, :FilterLabelList, :RequestId
+        attr_accessor :AnnotatedTotalCount, :NonAnnotatedTotalCount, :FilterTotalCount, :FilterLabelList, :RowTexts, :RequestId
         
-        def initialize(annotatedtotalcount=nil, nonannotatedtotalcount=nil, filtertotalcount=nil, filterlabellist=nil, requestid=nil)
+        def initialize(annotatedtotalcount=nil, nonannotatedtotalcount=nil, filtertotalcount=nil, filterlabellist=nil, rowtexts=nil, requestid=nil)
           @AnnotatedTotalCount = annotatedtotalcount
           @NonAnnotatedTotalCount = nonannotatedtotalcount
           @FilterTotalCount = filtertotalcount
           @FilterLabelList = filterlabellist
+          @RowTexts = rowtexts
           @RequestId = requestid
         end
 
@@ -2129,6 +2148,7 @@ module TencentCloud
               @FilterLabelList << filterlabelinfo_tmp
             end
           end
+          @RowTexts = params['RowTexts']
           @RequestId = params['RequestId']
         end
       end
@@ -2956,10 +2976,22 @@ module TencentCloud
         # @param OcrLabels: OCR场景标签列表
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OcrLabels: Array
+        # @param OcrLabelInfo: OCR场景标签信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OcrLabelInfo: String
+        # @param TextClassificationLabelList: 文本分类场景标签结果，内容是json结构
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TextClassificationLabelList: String
+        # @param RowText: 文本内容，返回50字符
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RowText: String
+        # @param ContentOmit: 文本内容是否完全返回
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ContentOmit: Boolean
 
-        attr_accessor :DatasetId, :FileId, :FileName, :ClassificationLabels, :DetectionLabels, :SegmentationLabels, :RGBPath, :LabelTemplateType, :DownloadUrl, :DownloadThumbnailUrl, :DownloadRGBUrl, :OcrScene, :OcrLabels
+        attr_accessor :DatasetId, :FileId, :FileName, :ClassificationLabels, :DetectionLabels, :SegmentationLabels, :RGBPath, :LabelTemplateType, :DownloadUrl, :DownloadThumbnailUrl, :DownloadRGBUrl, :OcrScene, :OcrLabels, :OcrLabelInfo, :TextClassificationLabelList, :RowText, :ContentOmit
         
-        def initialize(datasetid=nil, fileid=nil, filename=nil, classificationlabels=nil, detectionlabels=nil, segmentationlabels=nil, rgbpath=nil, labeltemplatetype=nil, downloadurl=nil, downloadthumbnailurl=nil, downloadrgburl=nil, ocrscene=nil, ocrlabels=nil)
+        def initialize(datasetid=nil, fileid=nil, filename=nil, classificationlabels=nil, detectionlabels=nil, segmentationlabels=nil, rgbpath=nil, labeltemplatetype=nil, downloadurl=nil, downloadthumbnailurl=nil, downloadrgburl=nil, ocrscene=nil, ocrlabels=nil, ocrlabelinfo=nil, textclassificationlabellist=nil, rowtext=nil, contentomit=nil)
           @DatasetId = datasetid
           @FileId = fileid
           @FileName = filename
@@ -2973,6 +3005,10 @@ module TencentCloud
           @DownloadRGBUrl = downloadrgburl
           @OcrScene = ocrscene
           @OcrLabels = ocrlabels
+          @OcrLabelInfo = ocrlabelinfo
+          @TextClassificationLabelList = textclassificationlabellist
+          @RowText = rowtext
+          @ContentOmit = contentomit
         end
 
         def deserialize(params)
@@ -3010,6 +3046,10 @@ module TencentCloud
               @OcrLabels << ocrlabelinfo_tmp
             end
           end
+          @OcrLabelInfo = params['OcrLabelInfo']
+          @TextClassificationLabelList = params['TextClassificationLabelList']
+          @RowText = params['RowText']
+          @ContentOmit = params['ContentOmit']
         end
       end
 
@@ -4103,6 +4143,218 @@ module TencentCloud
         def deserialize(params)
           @TagKey = params['TagKey']
           @TagValues = params['TagValues']
+        end
+      end
+
+      # 五级标签
+      class TextLabelDistributionDetailInfoFifthClass < TencentCloud::Common::AbstractModel
+        # @param LabelValue: 标签名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LabelValue: String
+        # @param LabelCount: 标签个数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LabelCount: Integer
+        # @param LabelPercentage: 标签占比
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LabelPercentage: Float
+
+        attr_accessor :LabelValue, :LabelCount, :LabelPercentage
+        
+        def initialize(labelvalue=nil, labelcount=nil, labelpercentage=nil)
+          @LabelValue = labelvalue
+          @LabelCount = labelcount
+          @LabelPercentage = labelpercentage
+        end
+
+        def deserialize(params)
+          @LabelValue = params['LabelValue']
+          @LabelCount = params['LabelCount']
+          @LabelPercentage = params['LabelPercentage']
+        end
+      end
+
+      # 一级标签
+      class TextLabelDistributionDetailInfoFirstClass < TencentCloud::Common::AbstractModel
+        # @param LabelValue: 标签名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LabelValue: String
+        # @param LabelCount: 标签个数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LabelCount: Integer
+        # @param LabelPercentage: 标签占比
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LabelPercentage: Float
+        # @param ChildLabelList: 子标签分布
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ChildLabelList: Array
+
+        attr_accessor :LabelValue, :LabelCount, :LabelPercentage, :ChildLabelList
+        
+        def initialize(labelvalue=nil, labelcount=nil, labelpercentage=nil, childlabellist=nil)
+          @LabelValue = labelvalue
+          @LabelCount = labelcount
+          @LabelPercentage = labelpercentage
+          @ChildLabelList = childlabellist
+        end
+
+        def deserialize(params)
+          @LabelValue = params['LabelValue']
+          @LabelCount = params['LabelCount']
+          @LabelPercentage = params['LabelPercentage']
+          unless params['ChildLabelList'].nil?
+            @ChildLabelList = []
+            params['ChildLabelList'].each do |i|
+              textlabeldistributiondetailinfosecondclass_tmp = TextLabelDistributionDetailInfoSecondClass.new
+              textlabeldistributiondetailinfosecondclass_tmp.deserialize(i)
+              @ChildLabelList << textlabeldistributiondetailinfosecondclass_tmp
+            end
+          end
+        end
+      end
+
+      # 四级标签
+      class TextLabelDistributionDetailInfoFourthClass < TencentCloud::Common::AbstractModel
+        # @param LabelValue: 标签名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LabelValue: String
+        # @param LabelCount: 标签个数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LabelCount: Integer
+        # @param LabelPercentage: 标签占比
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LabelPercentage: Float
+        # @param ChildLabelList: 子标签分布
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ChildLabelList: Array
+
+        attr_accessor :LabelValue, :LabelCount, :LabelPercentage, :ChildLabelList
+        
+        def initialize(labelvalue=nil, labelcount=nil, labelpercentage=nil, childlabellist=nil)
+          @LabelValue = labelvalue
+          @LabelCount = labelcount
+          @LabelPercentage = labelpercentage
+          @ChildLabelList = childlabellist
+        end
+
+        def deserialize(params)
+          @LabelValue = params['LabelValue']
+          @LabelCount = params['LabelCount']
+          @LabelPercentage = params['LabelPercentage']
+          unless params['ChildLabelList'].nil?
+            @ChildLabelList = []
+            params['ChildLabelList'].each do |i|
+              textlabeldistributiondetailinfofifthclass_tmp = TextLabelDistributionDetailInfoFifthClass.new
+              textlabeldistributiondetailinfofifthclass_tmp.deserialize(i)
+              @ChildLabelList << textlabeldistributiondetailinfofifthclass_tmp
+            end
+          end
+        end
+      end
+
+      # 二级标签
+      class TextLabelDistributionDetailInfoSecondClass < TencentCloud::Common::AbstractModel
+        # @param LabelValue: 标签名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LabelValue: String
+        # @param LabelCount: 标签个数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LabelCount: Integer
+        # @param LabelPercentage: 标签占比
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LabelPercentage: Float
+        # @param ChildLabelList: 子标签分布
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ChildLabelList: Array
+
+        attr_accessor :LabelValue, :LabelCount, :LabelPercentage, :ChildLabelList
+        
+        def initialize(labelvalue=nil, labelcount=nil, labelpercentage=nil, childlabellist=nil)
+          @LabelValue = labelvalue
+          @LabelCount = labelcount
+          @LabelPercentage = labelpercentage
+          @ChildLabelList = childlabellist
+        end
+
+        def deserialize(params)
+          @LabelValue = params['LabelValue']
+          @LabelCount = params['LabelCount']
+          @LabelPercentage = params['LabelPercentage']
+          unless params['ChildLabelList'].nil?
+            @ChildLabelList = []
+            params['ChildLabelList'].each do |i|
+              textlabeldistributiondetailinfothirdclass_tmp = TextLabelDistributionDetailInfoThirdClass.new
+              textlabeldistributiondetailinfothirdclass_tmp.deserialize(i)
+              @ChildLabelList << textlabeldistributiondetailinfothirdclass_tmp
+            end
+          end
+        end
+      end
+
+      # 三级标签
+      class TextLabelDistributionDetailInfoThirdClass < TencentCloud::Common::AbstractModel
+        # @param LabelValue: 标签名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LabelValue: String
+        # @param LabelCount: 标签个数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LabelCount: Integer
+        # @param LabelPercentage: 标签占比
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LabelPercentage: Float
+        # @param ChildLabelList: 子标签分布
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ChildLabelList: Array
+
+        attr_accessor :LabelValue, :LabelCount, :LabelPercentage, :ChildLabelList
+        
+        def initialize(labelvalue=nil, labelcount=nil, labelpercentage=nil, childlabellist=nil)
+          @LabelValue = labelvalue
+          @LabelCount = labelcount
+          @LabelPercentage = labelpercentage
+          @ChildLabelList = childlabellist
+        end
+
+        def deserialize(params)
+          @LabelValue = params['LabelValue']
+          @LabelCount = params['LabelCount']
+          @LabelPercentage = params['LabelPercentage']
+          unless params['ChildLabelList'].nil?
+            @ChildLabelList = []
+            params['ChildLabelList'].each do |i|
+              textlabeldistributiondetailinfofourthclass_tmp = TextLabelDistributionDetailInfoFourthClass.new
+              textlabeldistributiondetailinfofourthclass_tmp.deserialize(i)
+              @ChildLabelList << textlabeldistributiondetailinfofourthclass_tmp
+            end
+          end
+        end
+      end
+
+      # 文本标签
+      class TextLabelDistributionInfo < TencentCloud::Common::AbstractModel
+        # @param Theme: 文本分类题目名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Theme: String
+        # @param ClassLabelList: 一级标签分布
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClassLabelList: Array
+
+        attr_accessor :Theme, :ClassLabelList
+        
+        def initialize(theme=nil, classlabellist=nil)
+          @Theme = theme
+          @ClassLabelList = classlabellist
+        end
+
+        def deserialize(params)
+          @Theme = params['Theme']
+          unless params['ClassLabelList'].nil?
+            @ClassLabelList = []
+            params['ClassLabelList'].each do |i|
+              textlabeldistributiondetailinfofirstclass_tmp = TextLabelDistributionDetailInfoFirstClass.new
+              textlabeldistributiondetailinfofirstclass_tmp.deserialize(i)
+              @ClassLabelList << textlabeldistributiondetailinfofirstclass_tmp
+            end
+          end
         end
       end
 

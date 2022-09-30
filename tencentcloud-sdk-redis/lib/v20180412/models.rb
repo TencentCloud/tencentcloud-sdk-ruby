@@ -2887,28 +2887,31 @@ module TencentCloud
 
       # DescribeSlowLog请求参数结构体
       class DescribeSlowLogRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例Id
+        # @param InstanceId: 实例Id。
         # @type InstanceId: String
-        # @param BeginTime: 开始时间
+        # @param BeginTime: 开始时间。
         # @type BeginTime: String
-        # @param EndTime: 结束时间
+        # @param EndTime: 结束时间。
         # @type EndTime: String
-        # @param MinQueryTime: 慢查询阈值（单位：微秒）
+        # @param MinQueryTime: 慢查询平均执行时间阈值（单位：微秒）。
         # @type MinQueryTime: Integer
-        # @param Limit: 页面大小
+        # @param Limit: 每个页面展示的慢查询条数，默认值为20。
         # @type Limit: Integer
-        # @param Offset: 偏移量，取Limit整数倍
+        # @param Offset: 慢查询条数的偏移量，取Limit整数倍。
         # @type Offset: Integer
+        # @param Role: 节点所属角色。<ul><li>master：主节点。</li><li>slave：从节点。</li></ul>
+        # @type Role: String
 
-        attr_accessor :InstanceId, :BeginTime, :EndTime, :MinQueryTime, :Limit, :Offset
+        attr_accessor :InstanceId, :BeginTime, :EndTime, :MinQueryTime, :Limit, :Offset, :Role
         
-        def initialize(instanceid=nil, begintime=nil, endtime=nil, minquerytime=nil, limit=nil, offset=nil)
+        def initialize(instanceid=nil, begintime=nil, endtime=nil, minquerytime=nil, limit=nil, offset=nil, role=nil)
           @InstanceId = instanceid
           @BeginTime = begintime
           @EndTime = endtime
           @MinQueryTime = minquerytime
           @Limit = limit
           @Offset = offset
+          @Role = role
         end
 
         def deserialize(params)
@@ -2918,14 +2921,15 @@ module TencentCloud
           @MinQueryTime = params['MinQueryTime']
           @Limit = params['Limit']
           @Offset = params['Offset']
+          @Role = params['Role']
         end
       end
 
       # DescribeSlowLog返回参数结构体
       class DescribeSlowLogResponse < TencentCloud::Common::AbstractModel
-        # @param TotalCount: 慢查询总数
+        # @param TotalCount: 慢查询总数。
         # @type TotalCount: Integer
-        # @param InstanceSlowlogDetail: 慢查询详情
+        # @param InstanceSlowlogDetail: 慢查询详情。
         # @type InstanceSlowlogDetail: Array
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

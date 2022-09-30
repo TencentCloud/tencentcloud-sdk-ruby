@@ -2298,14 +2298,19 @@ module TencentCloud
         # @type JumpStart: Boolean
         # @param Tags: 资源标签。
         # @type Tags: Array
+        # @param AllowDuplicates: 是否允许重复接入。
+        # <li> true：允许重复接入；</li>
+        # <li> false：不允许重复接入。</li>不填写使用默认值false。
+        # @type AllowDuplicates: Boolean
 
-        attr_accessor :ZoneName, :Type, :JumpStart, :Tags
+        attr_accessor :ZoneName, :Type, :JumpStart, :Tags, :AllowDuplicates
         
-        def initialize(zonename=nil, type=nil, jumpstart=nil, tags=nil)
+        def initialize(zonename=nil, type=nil, jumpstart=nil, tags=nil, allowduplicates=nil)
           @ZoneName = zonename
           @Type = type
           @JumpStart = jumpstart
           @Tags = tags
+          @AllowDuplicates = allowduplicates
         end
 
         def deserialize(params)
@@ -2320,6 +2325,7 @@ module TencentCloud
               @Tags << tag_tmp
             end
           end
+          @AllowDuplicates = params['AllowDuplicates']
         end
       end
 
@@ -4948,7 +4954,7 @@ module TencentCloud
       # DescribeDefaultCertificates请求参数结构体
       class DescribeDefaultCertificatesRequest < TencentCloud::Common::AbstractModel
         # @param Filters: 过滤条件，Filters.Values的上限为5。详细的过滤条件如下：
-        # <li>zone-id<br>   按照【<strong>站点ID</strong>】进行过滤。站点ID形如：zone-xxx。<br>   类型：String<br>   必选：是
+        # <li>zone-id<br>   按照【<strong>站点ID</strong>】进行过滤。站点ID形如：zone-xxx。<br>   类型：String<br>   必选：是 </li>
         # @type Filters: Array
         # @param Offset: 分页查询偏移量。默认值：0。
         # @type Offset: Integer
@@ -5360,8 +5366,8 @@ module TencentCloud
         # @type Limit: Integer
         # @param Filters: 过滤条件，Filters.Values的上限为20。详细的过滤条件如下：
         # <li>zone-id<br>   按照【<strong>站点ID</strong>】进行过滤。站点ID形如：zone-1a8df68z<br>   类型：String<br>   必选：否<br>   模糊查询：不支持
-        # <li>load-balancing-id<br>   按照【<strong>负载均衡ID</strong>】进行过滤。负载均衡ID形如：lb-d21bfaf7-8d72-11ec-841d-00ff977fb3c8<br>   类型：String<br>   必选：否<br>   模糊查询：不支持
-        # <li>host<br>   按照【<strong>负载均衡host</strong>】进行过滤。host形如：lb.tencent.com<br>   类型：String<br>   必选：否<br>   模糊查询：支持，模糊查询时仅支持一个host
+        # </li><li>load-balancing-id<br>   按照【<strong>负载均衡ID</strong>】进行过滤。负载均衡ID形如：lb-d21bfaf7-8d72-11ec-841d-00ff977fb3c8<br>   类型：String<br>   必选：否<br>   模糊查询：不支持
+        # </li><li>host<br>   按照【<strong>负载均衡host</strong>】进行过滤。host形如：lb.tencent.com<br>   类型：String<br>   必选：否<br>   模糊查询：支持，模糊查询时仅支持一个host</li>
         # @type Filters: Array
 
         attr_accessor :Offset, :Limit, :Filters
@@ -10009,13 +10015,18 @@ module TencentCloud
         # @type Hosts: Array
         # @param ServerCertInfo: 证书信息, 只需要传入 CertId 即可, 如果为空, 则使用默认证书。
         # @type ServerCertInfo: Array
+        # @param ApplyType: 托管类型，取值有：
+        # <li>apply：托管EO；</li>
+        # <li>none：不托管EO；</li>不填，默认取值为apply。
+        # @type ApplyType: String
 
-        attr_accessor :ZoneId, :Hosts, :ServerCertInfo
+        attr_accessor :ZoneId, :Hosts, :ServerCertInfo, :ApplyType
         
-        def initialize(zoneid=nil, hosts=nil, servercertinfo=nil)
+        def initialize(zoneid=nil, hosts=nil, servercertinfo=nil, applytype=nil)
           @ZoneId = zoneid
           @Hosts = hosts
           @ServerCertInfo = servercertinfo
+          @ApplyType = applytype
         end
 
         def deserialize(params)
@@ -10029,6 +10040,7 @@ module TencentCloud
               @ServerCertInfo << servercertinfo_tmp
             end
           end
+          @ApplyType = params['ApplyType']
         end
       end
 
@@ -10927,10 +10939,12 @@ module TencentCloud
         # @param OriginPullProtocol: 回源协议配置，取值有：
         # <li>http：强制 http 回源；</li>
         # <li>follow：协议跟随回源；</li>
-        # <li>https：强制 https 回源，https 回源时仅支持源站 443 端口。</li>
+        # <li>https：强制 https 回源。</li>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OriginPullProtocol: String
-        # @param CosPrivateAccess: OriginType 为对象存储（COS）时，可以指定是否允许访问私有 bucket。
+        # @param CosPrivateAccess: 源站为腾讯云COS时，是否为私有访问bucket，取值有：
+        # <li>on：私有访问；</li>
+        # <li>off：公共访问。</li>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CosPrivateAccess: String
 
@@ -11914,12 +11928,11 @@ module TencentCloud
         # <li> notequal: 不等于。</li>
         # @type Operator: String
         # @param Target: 匹配类型，取值有：
-        # <li> 全部（站点任意请求）: host。 </li>
         # <li> 文件名: filename； </li>
         # <li> 文件后缀: extension； </li>
         # <li> HOST: host； </li>
         # <li> URL Full: full_url，当前站点下完整 URL 路径，必须包含 HTTP 协议，Host 和 路径； </li>
-        # <li> URL Path: url，当前站点下 URL 路径的请求。 </li>
+        # <li> URL Path: url，当前站点下 URL 路径的请求； </li><li>客户端国际/地区：client_country。</li>
         # @type Target: String
         # @param Values: 对应匹配类型的参数值，对应匹配类型的取值有：
         # <li> 文件后缀：jpg、txt等文件后缀；</li>
@@ -11927,21 +11940,26 @@ module TencentCloud
         # <li> 全部（站点任意请求）： all； </li>
         # <li> HOST：当前站点下的 host ，例如www.maxx55.com；</li>
         # <li> URL Path：当前站点下 URL 路径的请求，例如：/example；</li>
-        # <li> URL Full：当前站点下完整 URL 请求，必须包含 HTTP 协议，Host 和 路径，例如：https://www.maxx55.cn/example。</li>
+        # <li> URL Full：当前站点下完整 URL 请求，必须包含 HTTP 协议，Host 和 路径，例如：https://www.maxx55.cn/example；</li>
+        # <li> 客户端国际/地区：符合ISO3166标准的国家/地区标识。</li>
         # @type Values: Array
+        # @param IgnoreCase: 是否忽略参数值的大小写，默认值为 false。
+        # @type IgnoreCase: Boolean
 
-        attr_accessor :Operator, :Target, :Values
+        attr_accessor :Operator, :Target, :Values, :IgnoreCase
         
-        def initialize(operator=nil, target=nil, values=nil)
+        def initialize(operator=nil, target=nil, values=nil, ignorecase=nil)
           @Operator = operator
           @Target = target
           @Values = values
+          @IgnoreCase = ignorecase
         end
 
         def deserialize(params)
           @Operator = params['Operator']
           @Target = params['Target']
           @Values = params['Values']
+          @IgnoreCase = params['IgnoreCase']
         end
       end
 
@@ -12499,7 +12517,7 @@ module TencentCloud
         # @param Type: 证书类型，取值有：
         # <li>default：默认证书；</lil>
         # <li>upload：用户上传；</li>
-        # <li>managed:腾讯云托管。</li>
+        # <li>managed：腾讯云托管。</li>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Type: String
         # @param ExpireTime: 证书过期时间。

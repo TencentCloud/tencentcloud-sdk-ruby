@@ -1157,7 +1157,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 查询实例慢查询记录
+        # 本接口（DescribeSlowLog）查询实例慢查询记录。
 
         # @param request: Request instance for DescribeSlowLog.
         # @type request: :class:`Tencentcloud::redis::V20180412::DescribeSlowLogRequest`
