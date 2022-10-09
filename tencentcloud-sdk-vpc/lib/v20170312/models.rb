@@ -6727,7 +6727,7 @@ module TencentCloud
         # @type CcnId: String
         # @param OrderField: 排序字段。支持：`CcnId` `InstanceType` `InstanceId` `InstanceName` `InstanceRegion` `AttachedTime` `State`。
         # @type OrderField: String
-        # @param OrderDirection: 排序方法。顺序：`ASC`，倒序：`DESC`。
+        # @param OrderDirection: 排序方法。升序：`ASC`，倒序：`DESC`。
         # @type OrderDirection: String
 
         attr_accessor :Offset, :Limit, :Filters, :CcnId, :OrderField, :OrderDirection
@@ -6926,7 +6926,7 @@ module TencentCloud
         # @type Limit: Integer
         # @param OrderField: 排序字段。支持：`CcnId` `CcnName` `CreateTime` `State` `QosLevel`
         # @type OrderField: String
-        # @param OrderDirection: 排序方法。顺序：`ASC`，倒序：`DESC`。
+        # @param OrderDirection: 排序方法。升序：`ASC`，倒序：`DESC`。
         # @type OrderDirection: String
 
         attr_accessor :CcnIds, :Filters, :Offset, :Limit, :OrderField, :OrderDirection

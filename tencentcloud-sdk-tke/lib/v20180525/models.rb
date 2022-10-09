@@ -5917,6 +5917,67 @@ module TencentCloud
         end
       end
 
+      # DescribeEdgeClusterUpgradeInfo请求参数结构体
+      class DescribeEdgeClusterUpgradeInfoRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群ID
+        # @type ClusterId: String
+        # @param EdgeVersion: 要升级到的TKEEdge版本
+        # @type EdgeVersion: String
+
+        attr_accessor :ClusterId, :EdgeVersion
+        
+        def initialize(clusterid=nil, edgeversion=nil)
+          @ClusterId = clusterid
+          @EdgeVersion = edgeversion
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @EdgeVersion = params['EdgeVersion']
+        end
+      end
+
+      # DescribeEdgeClusterUpgradeInfo返回参数结构体
+      class DescribeEdgeClusterUpgradeInfoResponse < TencentCloud::Common::AbstractModel
+        # @param ComponentVersion: 可升级的集群组件和
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ComponentVersion: String
+        # @param EdgeVersionCurrent: 边缘集群当前版本
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EdgeVersionCurrent: String
+        # @param RegistryPrefix: 边缘组件镜像仓库地址前缀，包含域名和命名空间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RegistryPrefix: String
+        # @param ClusterUpgradeStatus: 集群升级状态，可能值：running、updating、failed
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClusterUpgradeStatus: String
+        # @param ClusterUpgradeStatusReason: 集群升级中状态或者失败原因
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClusterUpgradeStatusReason: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ComponentVersion, :EdgeVersionCurrent, :RegistryPrefix, :ClusterUpgradeStatus, :ClusterUpgradeStatusReason, :RequestId
+        
+        def initialize(componentversion=nil, edgeversioncurrent=nil, registryprefix=nil, clusterupgradestatus=nil, clusterupgradestatusreason=nil, requestid=nil)
+          @ComponentVersion = componentversion
+          @EdgeVersionCurrent = edgeversioncurrent
+          @RegistryPrefix = registryprefix
+          @ClusterUpgradeStatus = clusterupgradestatus
+          @ClusterUpgradeStatusReason = clusterupgradestatusreason
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ComponentVersion = params['ComponentVersion']
+          @EdgeVersionCurrent = params['EdgeVersionCurrent']
+          @RegistryPrefix = params['RegistryPrefix']
+          @ClusterUpgradeStatus = params['ClusterUpgradeStatus']
+          @ClusterUpgradeStatusReason = params['ClusterUpgradeStatusReason']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeEdgeLogSwitches请求参数结构体
       class DescribeEdgeLogSwitchesRequest < TencentCloud::Common::AbstractModel
         # @param ClusterIds: 集群ID列表
@@ -14010,6 +14071,50 @@ module TencentCloud
 
         def deserialize(params)
           @EksCiId = params['EksCiId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # UpdateEdgeClusterVersion请求参数结构体
+      class UpdateEdgeClusterVersionRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群 Id
+        # @type ClusterId: String
+        # @param EdgeVersion: 需要升级到的版本
+        # @type EdgeVersion: String
+        # @param RegistryPrefix: 自定义边缘组件镜像仓库前缀
+        # @type RegistryPrefix: String
+        # @param SkipPreCheck: 是否跳过预检查阶段
+        # @type SkipPreCheck: Boolean
+
+        attr_accessor :ClusterId, :EdgeVersion, :RegistryPrefix, :SkipPreCheck
+        
+        def initialize(clusterid=nil, edgeversion=nil, registryprefix=nil, skipprecheck=nil)
+          @ClusterId = clusterid
+          @EdgeVersion = edgeversion
+          @RegistryPrefix = registryprefix
+          @SkipPreCheck = skipprecheck
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @EdgeVersion = params['EdgeVersion']
+          @RegistryPrefix = params['RegistryPrefix']
+          @SkipPreCheck = params['SkipPreCheck']
+        end
+      end
+
+      # UpdateEdgeClusterVersion返回参数结构体
+      class UpdateEdgeClusterVersionResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
           @RequestId = params['RequestId']
         end
       end

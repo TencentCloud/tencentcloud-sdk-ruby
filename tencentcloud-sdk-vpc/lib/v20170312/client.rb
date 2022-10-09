@@ -802,7 +802,7 @@ module TencentCloud
 
         # 本接口（CreateCcn）用于创建云联网（CCN）。<br />
         # * 创建云联网同时可以绑定标签, 应答里的标签列表代表添加成功的标签。
-        # 每个账号能创建的云联网实例个数是有限的，详请参考产品文档。如果需要扩充请联系在线客服。
+        # * 每个账号能创建的云联网实例个数是有限的，详请参考产品文档。如果需要扩充请联系在线客服。
 
         # @param request: Request instance for CreateCcn.
         # @type request: :class:`Tencentcloud::vpc::V20170312::CreateCcnRequest`

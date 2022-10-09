@@ -9057,10 +9057,13 @@ module TencentCloud
         # @param RecordingRuleLimit: 预聚合规则限制
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RecordingRuleLimit: Integer
+        # @param MigrationType: 迁移状态，0-不在迁移中，1-迁移中、原实例，2-迁移中、目标实例
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MigrationType: Integer
 
-        attr_accessor :InstanceId, :InstanceName, :InstanceChargeType, :RegionId, :Zone, :VpcId, :SubnetId, :DataRetentionTime, :InstanceStatus, :GrafanaURL, :CreatedAt, :EnableGrafana, :IPv4Address, :TagSpecification, :ExpireTime, :ChargeStatus, :SpecName, :AutoRenewFlag, :IsNearExpire, :AuthToken, :RemoteWrite, :ApiRootPath, :ProxyAddress, :GrafanaStatus, :GrafanaIpWhiteList, :Grant, :GrafanaInstanceId, :AlertRuleLimit, :RecordingRuleLimit
+        attr_accessor :InstanceId, :InstanceName, :InstanceChargeType, :RegionId, :Zone, :VpcId, :SubnetId, :DataRetentionTime, :InstanceStatus, :GrafanaURL, :CreatedAt, :EnableGrafana, :IPv4Address, :TagSpecification, :ExpireTime, :ChargeStatus, :SpecName, :AutoRenewFlag, :IsNearExpire, :AuthToken, :RemoteWrite, :ApiRootPath, :ProxyAddress, :GrafanaStatus, :GrafanaIpWhiteList, :Grant, :GrafanaInstanceId, :AlertRuleLimit, :RecordingRuleLimit, :MigrationType
         
-        def initialize(instanceid=nil, instancename=nil, instancechargetype=nil, regionid=nil, zone=nil, vpcid=nil, subnetid=nil, dataretentiontime=nil, instancestatus=nil, grafanaurl=nil, createdat=nil, enablegrafana=nil, ipv4address=nil, tagspecification=nil, expiretime=nil, chargestatus=nil, specname=nil, autorenewflag=nil, isnearexpire=nil, authtoken=nil, remotewrite=nil, apirootpath=nil, proxyaddress=nil, grafanastatus=nil, grafanaipwhitelist=nil, grant=nil, grafanainstanceid=nil, alertrulelimit=nil, recordingrulelimit=nil)
+        def initialize(instanceid=nil, instancename=nil, instancechargetype=nil, regionid=nil, zone=nil, vpcid=nil, subnetid=nil, dataretentiontime=nil, instancestatus=nil, grafanaurl=nil, createdat=nil, enablegrafana=nil, ipv4address=nil, tagspecification=nil, expiretime=nil, chargestatus=nil, specname=nil, autorenewflag=nil, isnearexpire=nil, authtoken=nil, remotewrite=nil, apirootpath=nil, proxyaddress=nil, grafanastatus=nil, grafanaipwhitelist=nil, grant=nil, grafanainstanceid=nil, alertrulelimit=nil, recordingrulelimit=nil, migrationtype=nil)
           @InstanceId = instanceid
           @InstanceName = instancename
           @InstanceChargeType = instancechargetype
@@ -9090,6 +9093,7 @@ module TencentCloud
           @GrafanaInstanceId = grafanainstanceid
           @AlertRuleLimit = alertrulelimit
           @RecordingRuleLimit = recordingrulelimit
+          @MigrationType = migrationtype
         end
 
         def deserialize(params)
@@ -9132,6 +9136,7 @@ module TencentCloud
           @GrafanaInstanceId = params['GrafanaInstanceId']
           @AlertRuleLimit = params['AlertRuleLimit']
           @RecordingRuleLimit = params['RecordingRuleLimit']
+          @MigrationType = params['MigrationType']
         end
       end
 

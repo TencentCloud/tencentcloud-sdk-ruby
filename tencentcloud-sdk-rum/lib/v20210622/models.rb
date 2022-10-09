@@ -1253,10 +1253,12 @@ module TencentCloud
         # @type Status: String
         # @param Ret: retcode
         # @type Ret: String
+        # @param NetStatus: 网络状态
+        # @type NetStatus: String
 
-        attr_accessor :StartTime, :Type, :EndTime, :ID, :ExtSecond, :Engine, :Isp, :From, :Level, :Brand, :Area, :VersionNum, :Platform, :ExtThird, :ExtFirst, :NetType, :Device, :IsAbroad, :Os, :Browser, :CostType, :Url, :Env, :Status, :Ret
+        attr_accessor :StartTime, :Type, :EndTime, :ID, :ExtSecond, :Engine, :Isp, :From, :Level, :Brand, :Area, :VersionNum, :Platform, :ExtThird, :ExtFirst, :NetType, :Device, :IsAbroad, :Os, :Browser, :CostType, :Url, :Env, :Status, :Ret, :NetStatus
         
-        def initialize(starttime=nil, type=nil, endtime=nil, id=nil, extsecond=nil, engine=nil, isp=nil, from=nil, level=nil, brand=nil, area=nil, versionnum=nil, platform=nil, extthird=nil, extfirst=nil, nettype=nil, device=nil, isabroad=nil, os=nil, browser=nil, costtype=nil, url=nil, env=nil, status=nil, ret=nil)
+        def initialize(starttime=nil, type=nil, endtime=nil, id=nil, extsecond=nil, engine=nil, isp=nil, from=nil, level=nil, brand=nil, area=nil, versionnum=nil, platform=nil, extthird=nil, extfirst=nil, nettype=nil, device=nil, isabroad=nil, os=nil, browser=nil, costtype=nil, url=nil, env=nil, status=nil, ret=nil, netstatus=nil)
           @StartTime = starttime
           @Type = type
           @EndTime = endtime
@@ -1282,6 +1284,7 @@ module TencentCloud
           @Env = env
           @Status = status
           @Ret = ret
+          @NetStatus = netstatus
         end
 
         def deserialize(params)
@@ -1310,6 +1313,7 @@ module TencentCloud
           @Env = params['Env']
           @Status = params['Status']
           @Ret = params['Ret']
+          @NetStatus = params['NetStatus']
         end
       end
 
@@ -1539,10 +1543,12 @@ module TencentCloud
         # @type CostType: String
         # @param Env: 环境变量
         # @type Env: String
+        # @param NetStatus: 网络状态
+        # @type NetStatus: String
 
-        attr_accessor :ID, :StartTime, :EndTime, :Type, :Level, :Isp, :Area, :NetType, :Platform, :Device, :VersionNum, :ExtFirst, :ExtSecond, :ExtThird, :IsAbroad, :Browser, :Os, :Engine, :Brand, :From, :CostType, :Env
+        attr_accessor :ID, :StartTime, :EndTime, :Type, :Level, :Isp, :Area, :NetType, :Platform, :Device, :VersionNum, :ExtFirst, :ExtSecond, :ExtThird, :IsAbroad, :Browser, :Os, :Engine, :Brand, :From, :CostType, :Env, :NetStatus
         
-        def initialize(id=nil, starttime=nil, endtime=nil, type=nil, level=nil, isp=nil, area=nil, nettype=nil, platform=nil, device=nil, versionnum=nil, extfirst=nil, extsecond=nil, extthird=nil, isabroad=nil, browser=nil, os=nil, engine=nil, brand=nil, from=nil, costtype=nil, env=nil)
+        def initialize(id=nil, starttime=nil, endtime=nil, type=nil, level=nil, isp=nil, area=nil, nettype=nil, platform=nil, device=nil, versionnum=nil, extfirst=nil, extsecond=nil, extthird=nil, isabroad=nil, browser=nil, os=nil, engine=nil, brand=nil, from=nil, costtype=nil, env=nil, netstatus=nil)
           @ID = id
           @StartTime = starttime
           @EndTime = endtime
@@ -1565,6 +1571,7 @@ module TencentCloud
           @From = from
           @CostType = costtype
           @Env = env
+          @NetStatus = netstatus
         end
 
         def deserialize(params)
@@ -1590,6 +1597,7 @@ module TencentCloud
           @From = params['From']
           @CostType = params['CostType']
           @Env = params['Env']
+          @NetStatus = params['NetStatus']
         end
       end
 
@@ -2766,21 +2774,21 @@ module TencentCloud
 
       # DescribeLogList请求参数结构体
       class DescribeLogListRequest < TencentCloud::Common::AbstractModel
-        # @param Sort: 排序方式  desc  asc
+        # @param Sort: 排序方式  desc  asc（必填）
         # @type Sort: String
-        # @param ActionType: searchlog  histogram
+        # @param ActionType: searchlog  histogram（必填）
         # @type ActionType: String
-        # @param ID: 项目ID
+        # @param ID: 项目ID（必填）
         # @type ID: Integer
-        # @param StartTime: 开始时间
+        # @param StartTime: 开始时间（必填）
         # @type StartTime: String
-        # @param Limit: 单次查询返回的原始日志条数，最大值为100
+        # @param Limit: 单次查询返回的原始日志条数，最大值为100（必填）
         # @type Limit: Integer
         # @param Context: 上下文，加载更多日志时使用，透传上次返回的 Context 值，获取后续的日志内容，总计最多可获取1万条原始日志。过期时间1小时
         # @type Context: String
-        # @param Query: 查询语句，参考控制台请求参数，语句长度最大为4096
+        # @param Query: 查询语句，参考控制台请求参数，语句长度最大为4096（必填）
         # @type Query: String
-        # @param EndTime: 结束时间
+        # @param EndTime: 结束时间（必填）
         # @type EndTime: String
 
         attr_accessor :Sort, :ActionType, :ID, :StartTime, :Limit, :Context, :Query, :EndTime

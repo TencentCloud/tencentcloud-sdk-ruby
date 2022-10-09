@@ -61,11 +61,11 @@ module TencentCloud
 
       # AddReplicationInstance请求参数结构体
       class AddReplicationInstanceRequest < TencentCloud::Common::AbstractModel
-        # @param GroupId: 复制组ID
+        # @param GroupId: 复制组ID。
         # @type GroupId: String
-        # @param InstanceId: 实例ID
+        # @param InstanceId: 实例ID。
         # @type InstanceId: String
-        # @param InstanceRole: 实例角色，rw可读写，r只读
+        # @param InstanceRole: 给复制组添加的实例分配角色。<ul><li>rw：可读写。</li><li>r：只读。</li></ul>
         # @type InstanceRole: String
 
         attr_accessor :GroupId, :InstanceId, :InstanceRole
@@ -85,7 +85,7 @@ module TencentCloud
 
       # AddReplicationInstance返回参数结构体
       class AddReplicationInstanceResponse < TencentCloud::Common::AbstractModel
-        # @param TaskId: 异步流程ID
+        # @param TaskId: 异步流程ID。
         # @type TaskId: Integer
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -511,6 +511,42 @@ module TencentCloud
         end
       end
 
+      # CloseSSL请求参数结构体
+      class CloseSSLRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID。
+        # @type InstanceId: String
+
+        attr_accessor :InstanceId
+        
+        def initialize(instanceid=nil)
+          @InstanceId = instanceid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+        end
+      end
+
+      # CloseSSL返回参数结构体
+      class CloseSSLResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: 任务ID。
+        # @type TaskId: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :RequestId
+        
+        def initialize(taskid=nil, requestid=nil)
+          @TaskId = taskid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 命令耗时
       class CommandTake < TencentCloud::Common::AbstractModel
         # @param Cmd: 命令
@@ -807,11 +843,11 @@ module TencentCloud
 
       # CreateReplicationGroup请求参数结构体
       class CreateReplicationGroupRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例ID
+        # @param InstanceId: 指定复制组中的主实例ID。
         # @type InstanceId: String
-        # @param GroupName: 复制组名称
+        # @param GroupName: 复制组名称。
         # @type GroupName: String
-        # @param Remark: 备注信息
+        # @param Remark: 备注信息。
         # @type Remark: String
 
         attr_accessor :InstanceId, :GroupName, :Remark
@@ -831,7 +867,7 @@ module TencentCloud
 
       # CreateReplicationGroup返回参数结构体
       class CreateReplicationGroupResponse < TencentCloud::Common::AbstractModel
-        # @param TaskId: 异步流程ID
+        # @param TaskId: 异步流程ID。
         # @type TaskId: Integer
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -5139,6 +5175,42 @@ module TencentCloud
         end
       end
 
+      # OpenSSL请求参数结构体
+      class OpenSSLRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID。
+        # @type InstanceId: String
+
+        attr_accessor :InstanceId
+        
+        def initialize(instanceid=nil)
+          @InstanceId = instanceid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+        end
+      end
+
+      # OpenSSL返回参数结构体
+      class OpenSSLResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: 任务ID。
+        # @type TaskId: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :RequestId
+        
+        def initialize(taskid=nil, requestid=nil)
+          @TaskId = taskid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 安全组出站规则
       class Outbound < TencentCloud::Common::AbstractModel
         # @param Action: 策略，ACCEPT或者DROP。
@@ -6490,9 +6562,10 @@ module TencentCloud
 
       # UpgradeVersionToMultiAvailabilityZones请求参数结构体
       class UpgradeVersionToMultiAvailabilityZonesRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例ID
+        # @param InstanceId: 实例ID。
         # @type InstanceId: String
-        # @param UpgradeProxyAndRedisServer: 是否升级proxy和redis内核版本，升级后可支持就近接入
+        # @param UpgradeProxyAndRedisServer: 升级多可用区之后是否支持就近访问功能。
+        # <ul><li>true：支持就近访问功能。升级过程，需同时升级 Proxy 版本和 Redis 内核小版本，涉及数据搬迁，可能会长达数小时。</li><li>false：无需支持就近访问功能。升级多可用区仅涉及管理元数据迁移，对服务没有影响，升级过程通常在3分钟内完成。</li></ul>
         # @type UpgradeProxyAndRedisServer: Boolean
 
         attr_accessor :InstanceId, :UpgradeProxyAndRedisServer

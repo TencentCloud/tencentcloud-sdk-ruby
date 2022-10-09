@@ -4934,6 +4934,68 @@ module TencentCloud
         end
       end
 
+      # DescribeAssetHostTotalCount请求参数结构体
+      class DescribeAssetHostTotalCountRequest < TencentCloud::Common::AbstractModel
+        # @param Uuid: 主机Uuid
+        # @type Uuid: String
+        # @param Quuid: 主机Quuid
+        # @type Quuid: String
+
+        attr_accessor :Uuid, :Quuid
+        
+        def initialize(uuid=nil, quuid=nil)
+          @Uuid = uuid
+          @Quuid = quuid
+        end
+
+        def deserialize(params)
+          @Uuid = params['Uuid']
+          @Quuid = params['Quuid']
+        end
+      end
+
+      # DescribeAssetHostTotalCount返回参数结构体
+      class DescribeAssetHostTotalCountResponse < TencentCloud::Common::AbstractModel
+        # @param Types: 各项资源数量
+        # system : 资源监控
+        # account: 账号
+        # port: 端口
+        # process: 进程
+        # app: 应用软件
+        # database:数据库
+        # webapp: Web应用
+        # webframe: Web框架
+        # webservice: Web服务
+        # weblocation: Web站点
+        # systempackage: 系统安装包
+        # jar: jar包
+        # initservice:启动服务
+        # env: 环境变量
+        # coremodule: 内核模块
+        # @type Types: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Types, :RequestId
+        
+        def initialize(types=nil, requestid=nil)
+          @Types = types
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Types'].nil?
+            @Types = []
+            params['Types'].each do |i|
+              assetkeyval_tmp = AssetKeyVal.new
+              assetkeyval_tmp.deserialize(i)
+              @Types << assetkeyval_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeAssetInfo请求参数结构体
       class DescribeAssetInfoRequest < TencentCloud::Common::AbstractModel
 

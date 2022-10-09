@@ -53,6 +53,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 创建别称域名。
+
+        # @param request: Request instance for CreateAliasDomain.
+        # @type request: :class:`Tencentcloud::teo::V20220901::CreateAliasDomainRequest`
+        # @rtype: :class:`Tencentcloud::teo::V20220901::CreateAliasDomainResponse`
+        def CreateAliasDomain(request)
+          body = send_request('CreateAliasDomain', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateAliasDomainResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 创建应用代理
 
         # @param request: Request instance for CreateApplicationProxy.
@@ -485,6 +509,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 删除别称域名。
+
+        # @param request: Request instance for DeleteAliasDomain.
+        # @type request: :class:`Tencentcloud::teo::V20220901::DeleteAliasDomainRequest`
+        # @rtype: :class:`Tencentcloud::teo::V20220901::DeleteAliasDomainResponse`
+        def DeleteAliasDomain(request)
+          body = send_request('DeleteAliasDomain', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteAliasDomainResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 删除应用代理
 
         # @param request: Request instance for DeleteApplicationProxy.
@@ -687,6 +735,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeAddableEntityListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询别称域名信息列表。
+
+        # @param request: Request instance for DescribeAliasDomains.
+        # @type request: :class:`Tencentcloud::teo::V20220901::DescribeAliasDomainsRequest`
+        # @rtype: :class:`Tencentcloud::teo::V20220901::DescribeAliasDomainsResponse`
+        def DescribeAliasDomains(request)
+          body = send_request('DescribeAliasDomains', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeAliasDomainsResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -2309,6 +2381,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 修改别称域名。
+
+        # @param request: Request instance for ModifyAliasDomain.
+        # @type request: :class:`Tencentcloud::teo::V20220901::ModifyAliasDomainRequest`
+        # @rtype: :class:`Tencentcloud::teo::V20220901::ModifyAliasDomainResponse`
+        def ModifyAliasDomain(request)
+          body = send_request('ModifyAliasDomain', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyAliasDomainResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改别称域名状态。
+
+        # @param request: Request instance for ModifyAliasDomainStatus.
+        # @type request: :class:`Tencentcloud::teo::V20220901::ModifyAliasDomainStatusRequest`
+        # @rtype: :class:`Tencentcloud::teo::V20220901::ModifyAliasDomainStatusResponse`
+        def ModifyAliasDomainStatus(request)
+          body = send_request('ModifyAliasDomainStatus', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyAliasDomainStatusResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 修改应用代理
 
         # @param request: Request instance for ModifyApplicationProxy.
@@ -2823,6 +2943,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyZoneStatusResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 当客户取回站定的同时会取回此站点下关联的别称域名，此时入参为ZoneId；当客户接入站点发现已被别称域名接入时通过验证之后可取回域名，此时入参为ZoneName。
+
+        # @param request: Request instance for ReclaimAliasDomain.
+        # @type request: :class:`Tencentcloud::teo::V20220901::ReclaimAliasDomainRequest`
+        # @rtype: :class:`Tencentcloud::teo::V20220901::ReclaimAliasDomainResponse`
+        def ReclaimAliasDomain(request)
+          body = send_request('ReclaimAliasDomain', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ReclaimAliasDomainResponse.new
             model.deserialize(response['Response'])
             model
           else

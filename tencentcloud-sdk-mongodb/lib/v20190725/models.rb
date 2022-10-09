@@ -1555,30 +1555,44 @@ module TencentCloud
 
       # InquirePriceCreateDBInstances请求参数结构体
       class InquirePriceCreateDBInstancesRequest < TencentCloud::Common::AbstractModel
-        # @param Zone: 实例所属区域名称，格式如：ap-guangzhou-2
+        # @param Zone: 实例所属区域及可用区信息。格式：ap-guangzhou-2。
         # @type Zone: String
-        # @param NodeNum: 每个副本集内节点个数，具体参照查询云数据库的售卖规格返回参数
+        # @param NodeNum: 每个分片的主从节点数量。<br>取值范围：请通过接口<a href="https://cloud.tencent.com/document/product/240/38567">DescribeSpecInfo</a>查询，其返回的数据结构SpecItems中的参数MinStorage与MaxStorage分别对应其最小磁盘规格与最大磁盘规格。</br>
         # @type NodeNum: Integer
-        # @param Memory: 实例内存大小，单位：GB
+        # @param Memory: 实例内存大小。<ul><li>单位：GB。</li><li>取值范围：请通过接口<a href="https://cloud.tencent.com/document/product/240/38567">DescribeSpecInfo</a>查询，其返回的数据结构SpecItems中的参数CPU与Memory分别对应CPU核数与内存规格。</li></ul>
         # @type Memory: Integer
-        # @param Volume: 实例硬盘大小，单位：GB
+        # @param Volume: 实例硬盘大小。<ul><li>单位：GB。</li><li>取值范围：请通过接口<a href="https://cloud.tencent.com/document/product/240/38567">DescribeSpecInfo</a>查询，其返回的数据结构SpecItems中的参数MinNodeNum与MaxNodeNum分别对应其最小值与最大值。</li></ul>
         # @type Volume: Integer
-        # @param MongoVersion: 版本号，具体支持的售卖版本请参照查询云数据库的售卖规格（DescribeSpecInfo）返回结果。参数与版本对应关系是MONGO_3_WT：MongoDB 3.2 WiredTiger存储引擎版本，MONGO_3_ROCKS：MongoDB 3.2 RocksDB存储引擎版本，MONGO_36_WT：MongoDB 3.6 WiredTiger存储引擎版本，MONGO_40_WT：MongoDB 4.0 WiredTiger存储引擎版本
+        # @param MongoVersion: 实例版本信息。<ul><li>具体支持的版本，请通过接口<a href="https://cloud.tencent.com/document/product/240/38567">DescribeSpecInfo</a>查询，其返回的数据结构SpecItems中的参数MongoVersionCode为实例所支持的版本信息。</li><li>版本信息与版本号对应关系如下：<ul><li>MONGO_3_WT：MongoDB 3.2 WiredTiger存储引擎版本。</li><li>MONGO_3_ROCKS：MongoDB 3.2 RocksDB存储引擎版本。</li><li>MONGO_36_WT：MongoDB 3.6 WiredTiger存储引擎版本。</li><li>MONGO_40_WT：MongoDB 4.0 WiredTiger存储引擎版本。</li></ul>
         # @type MongoVersion: String
-        # @param MachineCode: 机器类型，HIO：高IO型；HIO10G：高IO万兆型；
+        # @param MachineCode: 机器类型。<ul><li>HIO：高IO型。</li><li>HIO10G：高IO万兆型。</li></ul>
         # @type MachineCode: String
-        # @param GoodsNum: 实例数量, 最小值1，最大值为10
+        # @param GoodsNum: 实例数量，取值范围为[1,10]。
         # @type GoodsNum: Integer
-        # @param Period: 实例时长，单位：月，可选值包括[1,2,3,4,5,6,7,8,9,10,11,12,24,36]
-        # @type Period: Integer
-        # @param ClusterType: 实例类型，REPLSET-副本集，SHARD-分片集群，STANDALONE-单节点
+        # @param ClusterType: 实例类型。<ul><li>REPLSET：副本集。</li><li>SHARD：分片集群。</li><li>STANDALONE：单节点。</li></ul>
         # @type ClusterType: String
-        # @param ReplicateSetNum: 副本集个数，创建副本集实例时，该参数必须设置为1；创建分片实例时，具体参照查询云数据库的售卖规格返回参数；若为单节点实例，该参数设置为0
+        # @param ReplicateSetNum: 副本集个数。<ul><li>创建副本集实例时，该参数固定设置为1。</li><li>创建分片集群时，指分片数量，请通过接口<a href="https://cloud.tencent.com/document/product/240/38567">DescribeSpecInfo</a>查询，其返回的数据结构SpecItems中的参数MinReplicateSetNum与MaxReplicateSetNum分别对应其最小值与最大值。</li><li>若为单节点实例，该参数固定设置为0。</li></ul>
         # @type ReplicateSetNum: Integer
+        # @param Period: 选择包年包月计费模式时，您需要设定购买实例的时长。即<b>InstanceChargeType</b>设定为<b>PREPAID</b>时，该参数必须配置。<ul><li>单位：月。</li><li>可选值包括[1,2,3,4,5,6,7,8,9,10,11,12,24,36]。</li></ul>
+        # @type Period: Integer
+        # @param InstanceChargeType: 实例付费方式。<ul><li>PREPAID：包年包月计费。</li><li>POSTPAID_BY_HOUR：按量计费。</li></ul>
+        # @type InstanceChargeType: String
+        # @param MongosCpu: 分片实例询价必填参数，指 Mongos CPU核数，取值范围为[1,16]。
+        # @type MongosCpu: Integer
+        # @param MongosMemory: 分片实例询价必填参数，指 Mongos 内存，取值范围为[2,32]，单位：GB。
+        # @type MongosMemory: Integer
+        # @param MongosNum: 分片实例询价必填参数，指 Mongos 个数，取值范围为[3,32]。
+        # @type MongosNum: Integer
+        # @param ConfigServerCpu: 分片实例询价必填参数，指 ConfigServer CPU核数，取值为1，单位：GB。
+        # @type ConfigServerCpu: Integer
+        # @param ConfigServerMemory: 分片实例询价必填参数，指 ConfigServer 内存大小，取值为2，单位：GB。
+        # @type ConfigServerMemory: Integer
+        # @param ConfigServerVolume: 分片实例询价必填参数，指 ConfigServer 磁盘大小，取值为 20，单位：GB。
+        # @type ConfigServerVolume: Integer
 
-        attr_accessor :Zone, :NodeNum, :Memory, :Volume, :MongoVersion, :MachineCode, :GoodsNum, :Period, :ClusterType, :ReplicateSetNum
+        attr_accessor :Zone, :NodeNum, :Memory, :Volume, :MongoVersion, :MachineCode, :GoodsNum, :ClusterType, :ReplicateSetNum, :Period, :InstanceChargeType, :MongosCpu, :MongosMemory, :MongosNum, :ConfigServerCpu, :ConfigServerMemory, :ConfigServerVolume
         
-        def initialize(zone=nil, nodenum=nil, memory=nil, volume=nil, mongoversion=nil, machinecode=nil, goodsnum=nil, period=nil, clustertype=nil, replicatesetnum=nil)
+        def initialize(zone=nil, nodenum=nil, memory=nil, volume=nil, mongoversion=nil, machinecode=nil, goodsnum=nil, clustertype=nil, replicatesetnum=nil, period=nil, instancechargetype=nil, mongoscpu=nil, mongosmemory=nil, mongosnum=nil, configservercpu=nil, configservermemory=nil, configservervolume=nil)
           @Zone = zone
           @NodeNum = nodenum
           @Memory = memory
@@ -1586,9 +1600,16 @@ module TencentCloud
           @MongoVersion = mongoversion
           @MachineCode = machinecode
           @GoodsNum = goodsnum
-          @Period = period
           @ClusterType = clustertype
           @ReplicateSetNum = replicatesetnum
+          @Period = period
+          @InstanceChargeType = instancechargetype
+          @MongosCpu = mongoscpu
+          @MongosMemory = mongosmemory
+          @MongosNum = mongosnum
+          @ConfigServerCpu = configservercpu
+          @ConfigServerMemory = configservermemory
+          @ConfigServerVolume = configservervolume
         end
 
         def deserialize(params)
@@ -1599,9 +1620,16 @@ module TencentCloud
           @MongoVersion = params['MongoVersion']
           @MachineCode = params['MachineCode']
           @GoodsNum = params['GoodsNum']
-          @Period = params['Period']
           @ClusterType = params['ClusterType']
           @ReplicateSetNum = params['ReplicateSetNum']
+          @Period = params['Period']
+          @InstanceChargeType = params['InstanceChargeType']
+          @MongosCpu = params['MongosCpu']
+          @MongosMemory = params['MongosMemory']
+          @MongosNum = params['MongosNum']
+          @ConfigServerCpu = params['ConfigServerCpu']
+          @ConfigServerMemory = params['ConfigServerMemory']
+          @ConfigServerVolume = params['ConfigServerVolume']
         end
       end
 

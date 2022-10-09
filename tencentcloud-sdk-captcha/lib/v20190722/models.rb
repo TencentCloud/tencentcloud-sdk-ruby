@@ -464,14 +464,18 @@ module TencentCloud
         # @type CaptchaMsg: String
         # @param CaptchaCode: 成功返回0  其它失败
         # @type CaptchaCode: Integer
-        # @param CheckTicketSum: 票据校验量
+        # @param CheckTicketSum: 票据校验总量
         # @type CheckTicketSum: Integer
+        # @param TicketThroughputSum: 票据验证通过量
+        # @type TicketThroughputSum: Integer
+        # @param TicketInterceptSum: 票据验证拦截量
+        # @type TicketInterceptSum: Integer
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :GetSum, :VfySuccSum, :VfySum, :AttackSum, :CaptchaMsg, :CaptchaCode, :CheckTicketSum, :RequestId
+        attr_accessor :GetSum, :VfySuccSum, :VfySum, :AttackSum, :CaptchaMsg, :CaptchaCode, :CheckTicketSum, :TicketThroughputSum, :TicketInterceptSum, :RequestId
         
-        def initialize(getsum=nil, vfysuccsum=nil, vfysum=nil, attacksum=nil, captchamsg=nil, captchacode=nil, checkticketsum=nil, requestid=nil)
+        def initialize(getsum=nil, vfysuccsum=nil, vfysum=nil, attacksum=nil, captchamsg=nil, captchacode=nil, checkticketsum=nil, ticketthroughputsum=nil, ticketinterceptsum=nil, requestid=nil)
           @GetSum = getsum
           @VfySuccSum = vfysuccsum
           @VfySum = vfysum
@@ -479,6 +483,8 @@ module TencentCloud
           @CaptchaMsg = captchamsg
           @CaptchaCode = captchacode
           @CheckTicketSum = checkticketsum
+          @TicketThroughputSum = ticketthroughputsum
+          @TicketInterceptSum = ticketinterceptsum
           @RequestId = requestid
         end
 
@@ -490,6 +496,8 @@ module TencentCloud
           @CaptchaMsg = params['CaptchaMsg']
           @CaptchaCode = params['CaptchaCode']
           @CheckTicketSum = params['CheckTicketSum']
+          @TicketThroughputSum = params['TicketThroughputSum']
+          @TicketInterceptSum = params['TicketInterceptSum']
           @RequestId = params['RequestId']
         end
       end

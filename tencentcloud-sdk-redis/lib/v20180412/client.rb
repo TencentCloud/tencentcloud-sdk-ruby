@@ -245,6 +245,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 关闭SSL
+
+        # @param request: Request instance for CloseSSL.
+        # @type request: :class:`Tencentcloud::redis::V20180412::CloseSSLRequest`
+        # @rtype: :class:`Tencentcloud::redis::V20180412::CloseSSLResponse`
+        def CloseSSL(request)
+          body = send_request('CloseSSL', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CloseSSLResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 创建实例子账号
 
         # @param request: Request instance for CreateInstanceAccount.
@@ -1743,6 +1767,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyParamTemplateResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 开启SSL
+
+        # @param request: Request instance for OpenSSL.
+        # @type request: :class:`Tencentcloud::redis::V20180412::OpenSSLRequest`
+        # @rtype: :class:`Tencentcloud::redis::V20180412::OpenSSLResponse`
+        def OpenSSL(request)
+          body = send_request('OpenSSL', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = OpenSSLResponse.new
             model.deserialize(response['Response'])
             model
           else
