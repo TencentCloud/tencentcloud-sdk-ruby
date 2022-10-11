@@ -217,6 +217,26 @@ module TencentCloud
         end
       end
 
+      # 部署javaagent的类型、版本信息
+      class AgentProfile < TencentCloud::Common::AbstractModel
+        # @param AgentType: Agent类型
+        # @type AgentType: String
+        # @param AgentVersion: Agent版本号
+        # @type AgentVersion: String
+
+        attr_accessor :AgentType, :AgentVersion
+        
+        def initialize(agenttype=nil, agentversion=nil)
+          @AgentType = agenttype
+          @AgentVersion = agentversion
+        end
+
+        def deserialize(params)
+          @AgentType = params['AgentType']
+          @AgentVersion = params['AgentVersion']
+        end
+      end
+
       # API 对象类型描述
       class ApiDefinitionDescr < TencentCloud::Common::AbstractModel
         # @param Name: 对象名称
@@ -4674,10 +4694,14 @@ module TencentCloud
         # @type VolumeMountInfoList: Array
         # @param VolumeClean: 是否清除数据卷信息，默认false
         # @type VolumeClean: Boolean
+        # @param AgentProfileList: javaagent信息: SERVICE_AGENT/OT_AGENT
+        # @type AgentProfileList: Array
+        # @param WarmupSetting: 预热配置信息
+        # @type WarmupSetting: :class:`Tencentcloud::Tsf.v20180326.models.WarmupSetting`
 
-        attr_accessor :GroupId, :TagName, :InstanceNum, :Server, :Reponame, :CpuLimit, :MemLimit, :JvmOpts, :CpuRequest, :MemRequest, :DoNotStart, :RepoName, :UpdateType, :UpdateIvl, :AgentCpuRequest, :AgentCpuLimit, :AgentMemRequest, :AgentMemLimit, :IstioCpuRequest, :IstioCpuLimit, :IstioMemRequest, :IstioMemLimit, :MaxSurge, :MaxUnavailable, :HealthCheckSettings, :Envs, :ServiceSetting, :DeployAgent, :SchedulingStrategy, :IncrementalDeployment, :RepoType, :VolumeInfos, :VolumeMountInfos, :VolumeInfoList, :VolumeMountInfoList, :VolumeClean
+        attr_accessor :GroupId, :TagName, :InstanceNum, :Server, :Reponame, :CpuLimit, :MemLimit, :JvmOpts, :CpuRequest, :MemRequest, :DoNotStart, :RepoName, :UpdateType, :UpdateIvl, :AgentCpuRequest, :AgentCpuLimit, :AgentMemRequest, :AgentMemLimit, :IstioCpuRequest, :IstioCpuLimit, :IstioMemRequest, :IstioMemLimit, :MaxSurge, :MaxUnavailable, :HealthCheckSettings, :Envs, :ServiceSetting, :DeployAgent, :SchedulingStrategy, :IncrementalDeployment, :RepoType, :VolumeInfos, :VolumeMountInfos, :VolumeInfoList, :VolumeMountInfoList, :VolumeClean, :AgentProfileList, :WarmupSetting
         
-        def initialize(groupid=nil, tagname=nil, instancenum=nil, server=nil, reponame=nil, cpulimit=nil, memlimit=nil, jvmopts=nil, cpurequest=nil, memrequest=nil, donotstart=nil, reponame=nil, updatetype=nil, updateivl=nil, agentcpurequest=nil, agentcpulimit=nil, agentmemrequest=nil, agentmemlimit=nil, istiocpurequest=nil, istiocpulimit=nil, istiomemrequest=nil, istiomemlimit=nil, maxsurge=nil, maxunavailable=nil, healthchecksettings=nil, envs=nil, servicesetting=nil, deployagent=nil, schedulingstrategy=nil, incrementaldeployment=nil, repotype=nil, volumeinfos=nil, volumemountinfos=nil, volumeinfolist=nil, volumemountinfolist=nil, volumeclean=nil)
+        def initialize(groupid=nil, tagname=nil, instancenum=nil, server=nil, reponame=nil, cpulimit=nil, memlimit=nil, jvmopts=nil, cpurequest=nil, memrequest=nil, donotstart=nil, reponame=nil, updatetype=nil, updateivl=nil, agentcpurequest=nil, agentcpulimit=nil, agentmemrequest=nil, agentmemlimit=nil, istiocpurequest=nil, istiocpulimit=nil, istiomemrequest=nil, istiomemlimit=nil, maxsurge=nil, maxunavailable=nil, healthchecksettings=nil, envs=nil, servicesetting=nil, deployagent=nil, schedulingstrategy=nil, incrementaldeployment=nil, repotype=nil, volumeinfos=nil, volumemountinfos=nil, volumeinfolist=nil, volumemountinfolist=nil, volumeclean=nil, agentprofilelist=nil, warmupsetting=nil)
           @GroupId = groupid
           @TagName = tagname
           @InstanceNum = instancenum
@@ -4714,6 +4738,8 @@ module TencentCloud
           @VolumeInfoList = volumeinfolist
           @VolumeMountInfoList = volumemountinfolist
           @VolumeClean = volumeclean
+          @AgentProfileList = agentprofilelist
+          @WarmupSetting = warmupsetting
         end
 
         def deserialize(params)
@@ -4789,6 +4815,18 @@ module TencentCloud
             end
           end
           @VolumeClean = params['VolumeClean']
+          unless params['AgentProfileList'].nil?
+            @AgentProfileList = []
+            params['AgentProfileList'].each do |i|
+              agentprofile_tmp = AgentProfile.new
+              agentprofile_tmp.deserialize(i)
+              @AgentProfileList << agentprofile_tmp
+            end
+          end
+          unless params['WarmupSetting'].nil?
+            @WarmupSetting = WarmupSetting.new
+            @WarmupSetting.deserialize(params['WarmupSetting'])
+          end
         end
       end
 
@@ -4797,6 +4835,7 @@ module TencentCloud
         # @param Result: 部署容器应用是否成功。
         # true：成功。
         # false：失败。
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Result: Boolean
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -4850,10 +4889,14 @@ module TencentCloud
         # @type JdkName: String
         # @param JdkVersion: JDK版本: 8或11 (openJDK只支持8)
         # @type JdkVersion: String
+        # @param AgentProfileList: 部署agent的类型、版本
+        # @type AgentProfileList: Array
+        # @param WarmupSetting: 预热参数配置
+        # @type WarmupSetting: :class:`Tencentcloud::Tsf.v20180326.models.WarmupSetting`
 
-        attr_accessor :GroupId, :PkgId, :StartupParameters, :DeployDesc, :ForceStart, :EnableHealthCheck, :HealthCheckSettings, :UpdateType, :DeployBetaEnable, :DeployBatch, :DeployExeMode, :DeployWaitTime, :StartScript, :StopScript, :IncrementalDeployment, :JdkName, :JdkVersion
+        attr_accessor :GroupId, :PkgId, :StartupParameters, :DeployDesc, :ForceStart, :EnableHealthCheck, :HealthCheckSettings, :UpdateType, :DeployBetaEnable, :DeployBatch, :DeployExeMode, :DeployWaitTime, :StartScript, :StopScript, :IncrementalDeployment, :JdkName, :JdkVersion, :AgentProfileList, :WarmupSetting
         
-        def initialize(groupid=nil, pkgid=nil, startupparameters=nil, deploydesc=nil, forcestart=nil, enablehealthcheck=nil, healthchecksettings=nil, updatetype=nil, deploybetaenable=nil, deploybatch=nil, deployexemode=nil, deploywaittime=nil, startscript=nil, stopscript=nil, incrementaldeployment=nil, jdkname=nil, jdkversion=nil)
+        def initialize(groupid=nil, pkgid=nil, startupparameters=nil, deploydesc=nil, forcestart=nil, enablehealthcheck=nil, healthchecksettings=nil, updatetype=nil, deploybetaenable=nil, deploybatch=nil, deployexemode=nil, deploywaittime=nil, startscript=nil, stopscript=nil, incrementaldeployment=nil, jdkname=nil, jdkversion=nil, agentprofilelist=nil, warmupsetting=nil)
           @GroupId = groupid
           @PkgId = pkgid
           @StartupParameters = startupparameters
@@ -4871,6 +4914,8 @@ module TencentCloud
           @IncrementalDeployment = incrementaldeployment
           @JdkName = jdkname
           @JdkVersion = jdkversion
+          @AgentProfileList = agentprofilelist
+          @WarmupSetting = warmupsetting
         end
 
         def deserialize(params)
@@ -4894,6 +4939,18 @@ module TencentCloud
           @IncrementalDeployment = params['IncrementalDeployment']
           @JdkName = params['JdkName']
           @JdkVersion = params['JdkVersion']
+          unless params['AgentProfileList'].nil?
+            @AgentProfileList = []
+            params['AgentProfileList'].each do |i|
+              agentprofile_tmp = AgentProfile.new
+              agentprofile_tmp.deserialize(i)
+              @AgentProfileList << agentprofile_tmp
+            end
+          end
+          unless params['WarmupSetting'].nil?
+            @WarmupSetting = WarmupSetting.new
+            @WarmupSetting.deserialize(params['WarmupSetting'])
+          end
         end
       end
 
@@ -17900,10 +17957,16 @@ module TencentCloud
         # @param Alias: 部署组备注
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Alias: String
+        # @param AgentProfileList: javaagent信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AgentProfileList: Array
+        # @param WarmupSetting: 预热属性配置
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type WarmupSetting: :class:`Tencentcloud::Tsf.v20180326.models.WarmupSetting`
 
-        attr_accessor :GroupId, :GroupName, :GroupStatus, :PackageId, :PackageName, :PackageVersion, :ClusterId, :ClusterName, :NamespaceId, :NamespaceName, :ApplicationId, :ApplicationName, :InstanceCount, :RunInstanceCount, :StartupParameters, :CreateTime, :UpdateTime, :OffInstanceCount, :GroupDesc, :MicroserviceType, :ApplicationType, :GroupResourceType, :UpdatedTime, :DeployDesc, :UpdateType, :DeployBetaEnable, :DeployBatch, :DeployExeMode, :DeployWaitTime, :EnableHealthCheck, :HealthCheckSettings, :PackageType, :StartScript, :StopScript, :Alias
+        attr_accessor :GroupId, :GroupName, :GroupStatus, :PackageId, :PackageName, :PackageVersion, :ClusterId, :ClusterName, :NamespaceId, :NamespaceName, :ApplicationId, :ApplicationName, :InstanceCount, :RunInstanceCount, :StartupParameters, :CreateTime, :UpdateTime, :OffInstanceCount, :GroupDesc, :MicroserviceType, :ApplicationType, :GroupResourceType, :UpdatedTime, :DeployDesc, :UpdateType, :DeployBetaEnable, :DeployBatch, :DeployExeMode, :DeployWaitTime, :EnableHealthCheck, :HealthCheckSettings, :PackageType, :StartScript, :StopScript, :Alias, :AgentProfileList, :WarmupSetting
         
-        def initialize(groupid=nil, groupname=nil, groupstatus=nil, packageid=nil, packagename=nil, packageversion=nil, clusterid=nil, clustername=nil, namespaceid=nil, namespacename=nil, applicationid=nil, applicationname=nil, instancecount=nil, runinstancecount=nil, startupparameters=nil, createtime=nil, updatetime=nil, offinstancecount=nil, groupdesc=nil, microservicetype=nil, applicationtype=nil, groupresourcetype=nil, updatedtime=nil, deploydesc=nil, updatetype=nil, deploybetaenable=nil, deploybatch=nil, deployexemode=nil, deploywaittime=nil, enablehealthcheck=nil, healthchecksettings=nil, packagetype=nil, startscript=nil, stopscript=nil, _alias=nil)
+        def initialize(groupid=nil, groupname=nil, groupstatus=nil, packageid=nil, packagename=nil, packageversion=nil, clusterid=nil, clustername=nil, namespaceid=nil, namespacename=nil, applicationid=nil, applicationname=nil, instancecount=nil, runinstancecount=nil, startupparameters=nil, createtime=nil, updatetime=nil, offinstancecount=nil, groupdesc=nil, microservicetype=nil, applicationtype=nil, groupresourcetype=nil, updatedtime=nil, deploydesc=nil, updatetype=nil, deploybetaenable=nil, deploybatch=nil, deployexemode=nil, deploywaittime=nil, enablehealthcheck=nil, healthchecksettings=nil, packagetype=nil, startscript=nil, stopscript=nil, _alias=nil, agentprofilelist=nil, warmupsetting=nil)
           @GroupId = groupid
           @GroupName = groupname
           @GroupStatus = groupstatus
@@ -17939,6 +18002,8 @@ module TencentCloud
           @StartScript = startscript
           @StopScript = stopscript
           @Alias = _alias
+          @AgentProfileList = agentprofilelist
+          @WarmupSetting = warmupsetting
         end
 
         def deserialize(params)
@@ -17980,6 +18045,18 @@ module TencentCloud
           @StartScript = params['StartScript']
           @StopScript = params['StopScript']
           @Alias = params['Alias']
+          unless params['AgentProfileList'].nil?
+            @AgentProfileList = []
+            params['AgentProfileList'].each do |i|
+              agentprofile_tmp = AgentProfile.new
+              agentprofile_tmp.deserialize(i)
+              @AgentProfileList << agentprofile_tmp
+            end
+          end
+          unless params['WarmupSetting'].nil?
+            @WarmupSetting = WarmupSetting.new
+            @WarmupSetting.deserialize(params['WarmupSetting'])
+          end
         end
       end
 
@@ -18191,6 +18268,34 @@ module TencentCloud
           @VolumeMountPath = params['VolumeMountPath']
           @VolumeMountSubPath = params['VolumeMountSubPath']
           @ReadOrWrite = params['ReadOrWrite']
+        end
+      end
+
+      # 预热配置
+      class WarmupSetting < TencentCloud::Common::AbstractModel
+        # @param Enabled: 是否开启预热
+        # @type Enabled: Boolean
+        # @param WarmupTime: 预热时间
+        # @type WarmupTime: Integer
+        # @param Curvature: 预热曲率，取值 1~5
+        # @type Curvature: Integer
+        # @param EnabledProtection: 是否开启预热保护，在开启保护的情况下，超过 50% 的节点处于预热中，则会中止预热
+        # @type EnabledProtection: Boolean
+
+        attr_accessor :Enabled, :WarmupTime, :Curvature, :EnabledProtection
+        
+        def initialize(enabled=nil, warmuptime=nil, curvature=nil, enabledprotection=nil)
+          @Enabled = enabled
+          @WarmupTime = warmuptime
+          @Curvature = curvature
+          @EnabledProtection = enabledprotection
+        end
+
+        def deserialize(params)
+          @Enabled = params['Enabled']
+          @WarmupTime = params['WarmupTime']
+          @Curvature = params['Curvature']
+          @EnabledProtection = params['EnabledProtection']
         end
       end
 

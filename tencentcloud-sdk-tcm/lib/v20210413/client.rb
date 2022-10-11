@@ -29,6 +29,54 @@ module TencentCloud
         end
 
 
+        # 创建网格
+
+        # @param request: Request instance for CreateMesh.
+        # @type request: :class:`Tencentcloud::tcm::V20210413::CreateMeshRequest`
+        # @rtype: :class:`Tencentcloud::tcm::V20210413::CreateMeshResponse`
+        def CreateMesh(request)
+          body = send_request('CreateMesh', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateMeshResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除网格
+
+        # @param request: Request instance for DeleteMesh.
+        # @type request: :class:`Tencentcloud::tcm::V20210413::DeleteMeshRequest`
+        # @rtype: :class:`Tencentcloud::tcm::V20210413::DeleteMeshResponse`
+        def DeleteMesh(request)
+          body = send_request('DeleteMesh', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteMeshResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询网格详情
 
         # @param request: Request instance for DescribeMesh.
@@ -63,6 +111,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeMeshListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改网格
+
+        # @param request: Request instance for ModifyMesh.
+        # @type request: :class:`Tencentcloud::tcm::V20210413::ModifyMeshRequest`
+        # @rtype: :class:`Tencentcloud::tcm::V20210413::ModifyMeshResponse`
+        def ModifyMesh(request)
+          body = send_request('ModifyMesh', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyMeshResponse.new
             model.deserialize(response['Response'])
             model
           else

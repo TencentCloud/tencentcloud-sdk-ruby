@@ -7038,17 +7038,20 @@ module TencentCloud
         # @type StartTime: String
         # @param EndTime: 结束时间
         # @type EndTime: String
+        # @param Msg: 返回信息
+        # @type Msg: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Period, :MetricName, :DataPoints, :StartTime, :EndTime, :RequestId
+        attr_accessor :Period, :MetricName, :DataPoints, :StartTime, :EndTime, :Msg, :RequestId
         
-        def initialize(period=nil, metricname=nil, datapoints=nil, starttime=nil, endtime=nil, requestid=nil)
+        def initialize(period=nil, metricname=nil, datapoints=nil, starttime=nil, endtime=nil, msg=nil, requestid=nil)
           @Period = period
           @MetricName = metricname
           @DataPoints = datapoints
           @StartTime = starttime
           @EndTime = endtime
+          @Msg = msg
           @RequestId = requestid
         end
 
@@ -7065,6 +7068,7 @@ module TencentCloud
           end
           @StartTime = params['StartTime']
           @EndTime = params['EndTime']
+          @Msg = params['Msg']
           @RequestId = params['RequestId']
         end
       end

@@ -330,6 +330,80 @@ module TencentCloud
         end
       end
 
+      # CreateMesh请求参数结构体
+      class CreateMeshRequest < TencentCloud::Common::AbstractModel
+        # @param DisplayName: Mesh名称
+        # @type DisplayName: String
+        # @param MeshVersion: Mesh版本
+        # @type MeshVersion: String
+        # @param Type: Mesh类型，取值范围：
+        # - HOSTED：托管网格
+        # @type Type: String
+        # @param Config: Mesh配置
+        # @type Config: :class:`Tencentcloud::Tcm.v20210413.models.MeshConfig`
+        # @param ClusterList: 关联集群
+        # @type ClusterList: Array
+        # @param TagList: 标签列表
+        # @type TagList: Array
+
+        attr_accessor :DisplayName, :MeshVersion, :Type, :Config, :ClusterList, :TagList
+        
+        def initialize(displayname=nil, meshversion=nil, type=nil, config=nil, clusterlist=nil, taglist=nil)
+          @DisplayName = displayname
+          @MeshVersion = meshversion
+          @Type = type
+          @Config = config
+          @ClusterList = clusterlist
+          @TagList = taglist
+        end
+
+        def deserialize(params)
+          @DisplayName = params['DisplayName']
+          @MeshVersion = params['MeshVersion']
+          @Type = params['Type']
+          unless params['Config'].nil?
+            @Config = MeshConfig.new
+            @Config.deserialize(params['Config'])
+          end
+          unless params['ClusterList'].nil?
+            @ClusterList = []
+            params['ClusterList'].each do |i|
+              cluster_tmp = Cluster.new
+              cluster_tmp.deserialize(i)
+              @ClusterList << cluster_tmp
+            end
+          end
+          unless params['TagList'].nil?
+            @TagList = []
+            params['TagList'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @TagList << tag_tmp
+            end
+          end
+        end
+      end
+
+      # CreateMesh返回参数结构体
+      class CreateMeshResponse < TencentCloud::Common::AbstractModel
+        # @param MeshId: 创建的Mesh的Id
+        # @type MeshId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :MeshId, :RequestId
+        
+        def initialize(meshid=nil, requestid=nil)
+          @MeshId = meshid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @MeshId = params['MeshId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 负载均衡跨域设置
       class CrossRegionConfig < TencentCloud::Common::AbstractModel
 
@@ -374,6 +448,54 @@ module TencentCloud
           @VpcId = params['VpcId']
           @Username = params['Username']
           @Password = params['Password']
+        end
+      end
+
+      # DeleteMesh请求参数结构体
+      class DeleteMeshRequest < TencentCloud::Common::AbstractModel
+        # @param MeshId: 需要删除的MeshId
+        # @type MeshId: String
+        # @param NeedDeleteCLS: CLS组件是否被删除
+        # @type NeedDeleteCLS: Boolean
+        # @param NeedDeleteTMP: TMP组件是否被删除
+        # @type NeedDeleteTMP: Boolean
+        # @param NeedDeleteAPM: APM组件是否被删除
+        # @type NeedDeleteAPM: Boolean
+        # @param NeedDeleteGrafana: Grafana组件是否被删除
+        # @type NeedDeleteGrafana: Boolean
+
+        attr_accessor :MeshId, :NeedDeleteCLS, :NeedDeleteTMP, :NeedDeleteAPM, :NeedDeleteGrafana
+        
+        def initialize(meshid=nil, needdeletecls=nil, needdeletetmp=nil, needdeleteapm=nil, needdeletegrafana=nil)
+          @MeshId = meshid
+          @NeedDeleteCLS = needdeletecls
+          @NeedDeleteTMP = needdeletetmp
+          @NeedDeleteAPM = needdeleteapm
+          @NeedDeleteGrafana = needdeletegrafana
+        end
+
+        def deserialize(params)
+          @MeshId = params['MeshId']
+          @NeedDeleteCLS = params['NeedDeleteCLS']
+          @NeedDeleteTMP = params['NeedDeleteTMP']
+          @NeedDeleteAPM = params['NeedDeleteAPM']
+          @NeedDeleteGrafana = params['NeedDeleteGrafana']
+        end
+      end
+
+      # DeleteMesh返回参数结构体
+      class DeleteMeshResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
         end
       end
 
@@ -1168,6 +1290,60 @@ module TencentCloud
             @Resource = ResourceMetricSource.new
             @Resource.deserialize(params['Resource'])
           end
+        end
+      end
+
+      # ModifyMesh请求参数结构体
+      class ModifyMeshRequest < TencentCloud::Common::AbstractModel
+        # @param MeshId: 需要修改的网格Id
+        # @type MeshId: String
+        # @param DisplayName: 修改的网格名称
+        # @type DisplayName: String
+        # @param Config: 修改的网格配置
+        # @type Config: :class:`Tencentcloud::Tcm.v20210413.models.MeshConfig`
+        # @param ClusterList: 修改的集群配置
+        # @type ClusterList: Array
+
+        attr_accessor :MeshId, :DisplayName, :Config, :ClusterList
+        
+        def initialize(meshid=nil, displayname=nil, config=nil, clusterlist=nil)
+          @MeshId = meshid
+          @DisplayName = displayname
+          @Config = config
+          @ClusterList = clusterlist
+        end
+
+        def deserialize(params)
+          @MeshId = params['MeshId']
+          @DisplayName = params['DisplayName']
+          unless params['Config'].nil?
+            @Config = MeshConfig.new
+            @Config.deserialize(params['Config'])
+          end
+          unless params['ClusterList'].nil?
+            @ClusterList = []
+            params['ClusterList'].each do |i|
+              cluster_tmp = Cluster.new
+              cluster_tmp.deserialize(i)
+              @ClusterList << cluster_tmp
+            end
+          end
+        end
+      end
+
+      # ModifyMesh返回参数结构体
+      class ModifyMeshResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
         end
       end
 

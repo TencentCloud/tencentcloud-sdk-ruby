@@ -4297,6 +4297,48 @@ module TencentCloud
         end
       end
 
+      # 公司抬头结果
+      class CompanyTitleResult < TencentCloud::Common::AbstractModel
+        # @param CompanyBankAccount: 公司银行账号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CompanyBankAccount: String
+        # @param CompanyAddress: 公司地址
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CompanyAddress: String
+        # @param CompanyTaxpayerNum: 公司税号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CompanyTaxpayerNum: String
+        # @param CompanyName: 公司名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CompanyName: String
+        # @param CompanyBankName: 公司银行名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CompanyBankName: String
+        # @param CompanyPhone: 公司电话
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CompanyPhone: String
+
+        attr_accessor :CompanyBankAccount, :CompanyAddress, :CompanyTaxpayerNum, :CompanyName, :CompanyBankName, :CompanyPhone
+        
+        def initialize(companybankaccount=nil, companyaddress=nil, companytaxpayernum=nil, companyname=nil, companybankname=nil, companyphone=nil)
+          @CompanyBankAccount = companybankaccount
+          @CompanyAddress = companyaddress
+          @CompanyTaxpayerNum = companytaxpayernum
+          @CompanyName = companyname
+          @CompanyBankName = companybankname
+          @CompanyPhone = companyphone
+        end
+
+        def deserialize(params)
+          @CompanyBankAccount = params['CompanyBankAccount']
+          @CompanyAddress = params['CompanyAddress']
+          @CompanyTaxpayerNum = params['CompanyTaxpayerNum']
+          @CompanyName = params['CompanyName']
+          @CompanyBankName = params['CompanyBankName']
+          @CompanyPhone = params['CompanyPhone']
+        end
+      end
+
       # ConfirmOrder请求参数结构体
       class ConfirmOrderRequest < TencentCloud::Common::AbstractModel
         # @param MerchantAppId: 分配给商户的AppId
@@ -14887,6 +14929,70 @@ module TencentCloud
             end
           end
           @ReservedMsg = params['ReservedMsg']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # QueryCompanyTitle请求参数结构体
+      class QueryCompanyTitleRequest < TencentCloud::Common::AbstractModel
+        # @param CompanyTitleKeyword: 公司抬头关键字
+        # @type CompanyTitleKeyword: String
+        # @param InvoicePlatformId: 开票平台ID。0：高灯，1：票易通
+        # @type InvoicePlatformId: Integer
+        # @param SellerTaxpayerNum: 销方纳税人识别号
+        # @type SellerTaxpayerNum: String
+        # @param Profile: 接入环境。沙箱环境填sandbox。
+        # @type Profile: String
+
+        attr_accessor :CompanyTitleKeyword, :InvoicePlatformId, :SellerTaxpayerNum, :Profile
+        
+        def initialize(companytitlekeyword=nil, invoiceplatformid=nil, sellertaxpayernum=nil, profile=nil)
+          @CompanyTitleKeyword = companytitlekeyword
+          @InvoicePlatformId = invoiceplatformid
+          @SellerTaxpayerNum = sellertaxpayernum
+          @Profile = profile
+        end
+
+        def deserialize(params)
+          @CompanyTitleKeyword = params['CompanyTitleKeyword']
+          @InvoicePlatformId = params['InvoicePlatformId']
+          @SellerTaxpayerNum = params['SellerTaxpayerNum']
+          @Profile = params['Profile']
+        end
+      end
+
+      # QueryCompanyTitle返回参数结构体
+      class QueryCompanyTitleResponse < TencentCloud::Common::AbstractModel
+        # @param ErrCode: 错误码
+        # @type ErrCode: String
+        # @param ErrMessage: 错误消息
+        # @type ErrMessage: String
+        # @param Result: 公司抬头结果
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Result: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ErrCode, :ErrMessage, :Result, :RequestId
+        
+        def initialize(errcode=nil, errmessage=nil, result=nil, requestid=nil)
+          @ErrCode = errcode
+          @ErrMessage = errmessage
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ErrCode = params['ErrCode']
+          @ErrMessage = params['ErrMessage']
+          unless params['Result'].nil?
+            @Result = []
+            params['Result'].each do |i|
+              companytitleresult_tmp = CompanyTitleResult.new
+              companytitleresult_tmp.deserialize(i)
+              @Result << companytitleresult_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end

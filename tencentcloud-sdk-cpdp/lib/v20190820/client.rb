@@ -2631,6 +2631,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 智慧零售-查询公司抬头
+
+        # @param request: Request instance for QueryCompanyTitle.
+        # @type request: :class:`Tencentcloud::cpdp::V20190820::QueryCompanyTitleRequest`
+        # @rtype: :class:`Tencentcloud::cpdp::V20190820::QueryCompanyTitleResponse`
+        def QueryCompanyTitle(request)
+          body = send_request('QueryCompanyTitle', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = QueryCompanyTitleResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 通过此接口查询签约数据
 
         # @param request: Request instance for QueryContract.
