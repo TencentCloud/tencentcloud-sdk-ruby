@@ -369,10 +369,13 @@ module TencentCloud
         # @type Remark: String
         # @param TagList: 标签
         # @type TagList: Array
+        # @param UserName: 客户姓名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UserName: String
 
-        attr_accessor :ClueId, :DealerId, :EnquireTime, :UnionId, :Name, :Phone, :SeriesCode, :ModelCode, :ProvinceCode, :CityCode, :SalesName, :SalesPhone, :Remark, :TagList
+        attr_accessor :ClueId, :DealerId, :EnquireTime, :UnionId, :Name, :Phone, :SeriesCode, :ModelCode, :ProvinceCode, :CityCode, :SalesName, :SalesPhone, :Remark, :TagList, :UserName
         
-        def initialize(clueid=nil, dealerid=nil, enquiretime=nil, unionid=nil, name=nil, phone=nil, seriescode=nil, modelcode=nil, provincecode=nil, citycode=nil, salesname=nil, salesphone=nil, remark=nil, taglist=nil)
+        def initialize(clueid=nil, dealerid=nil, enquiretime=nil, unionid=nil, name=nil, phone=nil, seriescode=nil, modelcode=nil, provincecode=nil, citycode=nil, salesname=nil, salesphone=nil, remark=nil, taglist=nil, username=nil)
           @ClueId = clueid
           @DealerId = dealerid
           @EnquireTime = enquiretime
@@ -387,6 +390,7 @@ module TencentCloud
           @SalesPhone = salesphone
           @Remark = remark
           @TagList = taglist
+          @UserName = username
         end
 
         def deserialize(params)
@@ -404,6 +408,7 @@ module TencentCloud
           @SalesPhone = params['SalesPhone']
           @Remark = params['Remark']
           @TagList = params['TagList']
+          @UserName = params['UserName']
         end
       end
 

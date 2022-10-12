@@ -358,6 +358,68 @@ module TencentCloud
         end
       end
 
+      # CreateCustomFunction请求参数结构体
+      class CreateCustomFunctionRequest < TencentCloud::Common::AbstractModel
+        # @param Type: 类型：HIVE、SPARK
+        # @type Type: String
+        # @param Kind: 分类：窗口函数、聚合函数、日期函数......
+        # @type Kind: String
+        # @param Name: 函数名称
+        # @type Name: String
+        # @param ClusterIdentifier: 集群实例引擎 ID
+        # @type ClusterIdentifier: String
+        # @param DbName: 数据库名称
+        # @type DbName: String
+        # @param ProjectId: 项目ID
+        # @type ProjectId: String
+
+        attr_accessor :Type, :Kind, :Name, :ClusterIdentifier, :DbName, :ProjectId
+        
+        def initialize(type=nil, kind=nil, name=nil, clusteridentifier=nil, dbname=nil, projectid=nil)
+          @Type = type
+          @Kind = kind
+          @Name = name
+          @ClusterIdentifier = clusteridentifier
+          @DbName = dbname
+          @ProjectId = projectid
+        end
+
+        def deserialize(params)
+          @Type = params['Type']
+          @Kind = params['Kind']
+          @Name = params['Name']
+          @ClusterIdentifier = params['ClusterIdentifier']
+          @DbName = params['DbName']
+          @ProjectId = params['ProjectId']
+        end
+      end
+
+      # CreateCustomFunction返回参数结构体
+      class CreateCustomFunctionResponse < TencentCloud::Common::AbstractModel
+        # @param FunctionId: 函数唯一标识
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FunctionId: String
+        # @param ErrorMessage: 无
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ErrorMessage: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :FunctionId, :ErrorMessage, :RequestId
+        
+        def initialize(functionid=nil, errormessage=nil, requestid=nil)
+          @FunctionId = functionid
+          @ErrorMessage = errormessage
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @FunctionId = params['FunctionId']
+          @ErrorMessage = params['ErrorMessage']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateDataSource请求参数结构体
       class CreateDataSourceRequest < TencentCloud::Common::AbstractModel
         # @param Name: 数据源名称，在相同SpaceName下，数据源名称不能为空

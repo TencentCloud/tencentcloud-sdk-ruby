@@ -1286,6 +1286,46 @@ module TencentCloud
         end
       end
 
+      # UpdateEngineInternetAccess请求参数结构体
+      class UpdateEngineInternetAccessRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 引擎ID
+        # @type InstanceId: String
+        # @param EngineType: 引擎类型
+        # @type EngineType: String
+        # @param EnableClientInternetAccess: 是否开启客户端公网访问，true开 false关
+        # @type EnableClientInternetAccess: Boolean
+
+        attr_accessor :InstanceId, :EngineType, :EnableClientInternetAccess
+        
+        def initialize(instanceid=nil, enginetype=nil, enableclientinternetaccess=nil)
+          @InstanceId = instanceid
+          @EngineType = enginetype
+          @EnableClientInternetAccess = enableclientinternetaccess
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @EngineType = params['EngineType']
+          @EnableClientInternetAccess = params['EnableClientInternetAccess']
+        end
+      end
+
+      # UpdateEngineInternetAccess返回参数结构体
+      class UpdateEngineInternetAccessResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 私有网络信息
       class VpcInfo < TencentCloud::Common::AbstractModel
         # @param VpcId: Vpc Id

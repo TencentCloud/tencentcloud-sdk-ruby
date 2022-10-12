@@ -488,54 +488,6 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口(DescribeDBPerformance)用于查看数据库实例当前性能数据。
-
-        # @param request: Request instance for DescribeDBPerformance.
-        # @type request: :class:`Tencentcloud::mariadb::V20170312::DescribeDBPerformanceRequest`
-        # @rtype: :class:`Tencentcloud::mariadb::V20170312::DescribeDBPerformanceResponse`
-        def DescribeDBPerformance(request)
-          body = send_request('DescribeDBPerformance', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = DescribeDBPerformanceResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # 本接口(DescribeDBPerformanceDetails)用于查看实例性能数据详情。
-
-        # @param request: Request instance for DescribeDBPerformanceDetails.
-        # @type request: :class:`Tencentcloud::mariadb::V20170312::DescribeDBPerformanceDetailsRequest`
-        # @rtype: :class:`Tencentcloud::mariadb::V20170312::DescribeDBPerformanceDetailsResponse`
-        def DescribeDBPerformanceDetails(request)
-          body = send_request('DescribeDBPerformanceDetails', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = DescribeDBPerformanceDetailsResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
         # 本接口(DescribeDBResourceUsage)用于查看数据库实例资源的使用情况。
 
         # @param request: Request instance for DescribeDBResourceUsage.
@@ -930,30 +882,6 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeSaleInfoResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # 本接口（DescribeSqlLogs）用于获取实例SQL日志。
-
-        # @param request: Request instance for DescribeSqlLogs.
-        # @type request: :class:`Tencentcloud::mariadb::V20170312::DescribeSqlLogsRequest`
-        # @rtype: :class:`Tencentcloud::mariadb::V20170312::DescribeSqlLogsResponse`
-        def DescribeSqlLogs(request)
-          body = send_request('DescribeSqlLogs', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = DescribeSqlLogsResponse.new
             model.deserialize(response['Response'])
             model
           else

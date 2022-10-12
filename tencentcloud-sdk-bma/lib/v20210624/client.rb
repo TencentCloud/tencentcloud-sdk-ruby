@@ -149,7 +149,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 版权保护-新建拦截接口
+        # 新建拦截
 
         # @param request: Request instance for CreateCRBlock.
         # @type request: :class:`Tencentcloud::bma::V20210624::CreateCRBlockRequest`
@@ -173,7 +173,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 品牌经营管家-版权保护模块企业认证接口
+        # 本接口用于企业认证，新接入用户必须认证后才可以进行后续操作（个人认证和企业认证二选一），只需认证一次即可
 
         # @param request: Request instance for CreateCRCompanyVerify.
         # @type request: :class:`Tencentcloud::bma::V20210624::CreateCRCompanyVerifyRequest`
@@ -221,7 +221,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 新增权属文件
+        # 权属文件添加
 
         # @param request: Request instance for CreateCRRightFile.
         # @type request: :class:`Tencentcloud::bma::V20210624::CreateCRRightFileRequest`
@@ -269,7 +269,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 品牌经营管家-版权保护个人认证接口
+        # 本接口用于个人认证，新接入用户必须认证后才可以进行后续操作（个人认证和企业认证二选一），只需认证一次即可
 
         # @param request: Request instance for CreateCRUserVerify.
         # @type request: :class:`Tencentcloud::bma::V20210624::CreateCRUserVerifyRequest`
@@ -293,7 +293,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 版权保护-添加作品接口
+        # 新建作品
 
         # @param request: Request instance for CreateCRWork.
         # @type request: :class:`Tencentcloud::bma::V20210624::CreateCRWorkRequest`
@@ -509,7 +509,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 版权保护-拦截申请接口
+        # 拦截申请
 
         # @param request: Request instance for ModifyCRBlockStatus.
         # @type request: :class:`Tencentcloud::bma::V20210624::ModifyCRBlockStatusRequest`
@@ -533,7 +533,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 版权保护-修改监测状态接口
+        # 开启/关闭监测
 
         # @param request: Request instance for ModifyCRMonitor.
         # @type request: :class:`Tencentcloud::bma::V20210624::ModifyCRMonitorRequest`
@@ -557,7 +557,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 申请取证
+        # 取证申请
 
         # @param request: Request instance for ModifyCRObtainStatus.
         # @type request: :class:`Tencentcloud::bma::V20210624::ModifyCRObtainStatusRequest`
@@ -581,7 +581,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 版权保护-维权申请接口
+        # 发函申请
 
         # @param request: Request instance for ModifyCRRightStatus.
         # @type request: :class:`Tencentcloud::bma::V20210624::ModifyCRRightStatusRequest`
@@ -605,7 +605,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 版权保护-白名单修改接口
+        # 修改白名单列表
 
         # @param request: Request instance for ModifyCRWhiteList.
         # @type request: :class:`Tencentcloud::bma::V20210624::ModifyCRWhiteListRequest`

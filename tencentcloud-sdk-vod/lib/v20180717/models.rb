@@ -21282,10 +21282,15 @@ module TencentCloud
         # <li>OFF: 无论原始文件是 HDR 还是 SDR，转码输出均为 SDR。</li>
         # 默认值：OFF。
         # @type PreserveHDRSwitch: String
+        # @param CodecTag: 编码标签，仅当视频流的编码格式为 H.265 编码时有效，可选值：
+        # <li>hvc1 表示 hvc1 标签；</li>
+        # <li>hev1 表示 hev1 标签。 </li>
+        # 默认值：hvc1。
+        # @type CodecTag: String
 
-        attr_accessor :Codec, :Fps, :Bitrate, :ResolutionAdaptive, :Width, :Height, :FillType, :Vcrf, :Gop, :PreserveHDRSwitch
+        attr_accessor :Codec, :Fps, :Bitrate, :ResolutionAdaptive, :Width, :Height, :FillType, :Vcrf, :Gop, :PreserveHDRSwitch, :CodecTag
         
-        def initialize(codec=nil, fps=nil, bitrate=nil, resolutionadaptive=nil, width=nil, height=nil, filltype=nil, vcrf=nil, gop=nil, preservehdrswitch=nil)
+        def initialize(codec=nil, fps=nil, bitrate=nil, resolutionadaptive=nil, width=nil, height=nil, filltype=nil, vcrf=nil, gop=nil, preservehdrswitch=nil, codectag=nil)
           @Codec = codec
           @Fps = fps
           @Bitrate = bitrate
@@ -21296,6 +21301,7 @@ module TencentCloud
           @Vcrf = vcrf
           @Gop = gop
           @PreserveHDRSwitch = preservehdrswitch
+          @CodecTag = codectag
         end
 
         def deserialize(params)
@@ -21309,6 +21315,7 @@ module TencentCloud
           @Vcrf = params['Vcrf']
           @Gop = params['Gop']
           @PreserveHDRSwitch = params['PreserveHDRSwitch']
+          @CodecTag = params['CodecTag']
         end
       end
 
@@ -21361,10 +21368,15 @@ module TencentCloud
         # <li>ON: 如果原始文件是 HDR，则转码输出保持 HDR；否则转码输出为 SDR （Standard Dynamic Range）。</li>
         # <li>OFF: 无论原始文件是 HDR 还是 SDR，转码输出均为 SDR。</li>
         # @type PreserveHDRSwitch: String
+        # @param CodecTag: 编码标签，仅当视频流的编码格式为 H.265 编码时有效，可选值：
+        # <li>hvc1 表示 hvc1 标签；</li>
+        # <li>hev1 表示 hev1 标签。 </li>
+        # 默认值：hvc1。
+        # @type CodecTag: String
 
-        attr_accessor :Codec, :Fps, :Bitrate, :ResolutionAdaptive, :Width, :Height, :FillType, :Vcrf, :Gop, :PreserveHDRSwitch
+        attr_accessor :Codec, :Fps, :Bitrate, :ResolutionAdaptive, :Width, :Height, :FillType, :Vcrf, :Gop, :PreserveHDRSwitch, :CodecTag
         
-        def initialize(codec=nil, fps=nil, bitrate=nil, resolutionadaptive=nil, width=nil, height=nil, filltype=nil, vcrf=nil, gop=nil, preservehdrswitch=nil)
+        def initialize(codec=nil, fps=nil, bitrate=nil, resolutionadaptive=nil, width=nil, height=nil, filltype=nil, vcrf=nil, gop=nil, preservehdrswitch=nil, codectag=nil)
           @Codec = codec
           @Fps = fps
           @Bitrate = bitrate
@@ -21375,6 +21387,7 @@ module TencentCloud
           @Vcrf = vcrf
           @Gop = gop
           @PreserveHDRSwitch = preservehdrswitch
+          @CodecTag = codectag
         end
 
         def deserialize(params)
@@ -21388,6 +21401,7 @@ module TencentCloud
           @Vcrf = params['Vcrf']
           @Gop = params['Gop']
           @PreserveHDRSwitch = params['PreserveHDRSwitch']
+          @CodecTag = params['CodecTag']
         end
       end
 

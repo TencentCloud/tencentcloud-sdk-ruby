@@ -1784,6 +1784,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 获取基线检测项的列表
+
+        # @param request: Request instance for DescribeBaselineItemDetectList.
+        # @type request: :class:`Tencentcloud::cwp::V20180228::DescribeBaselineItemDetectListRequest`
+        # @rtype: :class:`Tencentcloud::cwp::V20180228::DescribeBaselineItemDetectListResponse`
+        def DescribeBaselineItemDetectList(request)
+          body = send_request('DescribeBaselineItemDetectList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeBaselineItemDetectListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取基线项检测结果列表
+
+        # @param request: Request instance for DescribeBaselineItemList.
+        # @type request: :class:`Tencentcloud::cwp::V20180228::DescribeBaselineItemListRequest`
+        # @rtype: :class:`Tencentcloud::cwp::V20180228::DescribeBaselineItemListResponse`
+        def DescribeBaselineItemList(request)
+          body = send_request('DescribeBaselineItemList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeBaselineItemListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询基线列表信息
 
         # @param request: Request instance for DescribeBaselineList.
@@ -5120,6 +5168,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 检测基线
+
+        # @param request: Request instance for StartBaselineDetect.
+        # @type request: :class:`Tencentcloud::cwp::V20180228::StartBaselineDetectRequest`
+        # @rtype: :class:`Tencentcloud::cwp::V20180228::StartBaselineDetectResponse`
+        def StartBaselineDetect(request)
+          body = send_request('StartBaselineDetect', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = StartBaselineDetectResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 不再提醒爆破阻断提示弹窗
 
         # @param request: Request instance for StopNoticeBanTips.
@@ -5178,6 +5250,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = SyncAssetScanResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 同步基线检测进度概要
+
+        # @param request: Request instance for SyncBaselineDetectSummary.
+        # @type request: :class:`Tencentcloud::cwp::V20180228::SyncBaselineDetectSummaryRequest`
+        # @rtype: :class:`Tencentcloud::cwp::V20180228::SyncBaselineDetectSummaryResponse`
+        def SyncBaselineDetectSummary(request)
+          body = send_request('SyncBaselineDetectSummary', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = SyncBaselineDetectSummaryResponse.new
             model.deserialize(response['Response'])
             model
           else

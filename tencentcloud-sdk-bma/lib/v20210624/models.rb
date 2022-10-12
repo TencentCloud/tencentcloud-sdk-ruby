@@ -259,7 +259,7 @@ module TencentCloud
 
       # CreateCRBlock请求参数结构体
       class CreateCRBlockRequest < TencentCloud::Common::AbstractModel
-        # @param WorkId: 已存证的作品ID
+        # @param WorkId: 作品ID
         # @type WorkId: Integer
         # @param TortUrl: 侵权链接
         # @type TortUrl: String
@@ -269,27 +269,27 @@ module TencentCloud
         # @type TortPlat: String
         # @param BlockUrl: 拦截结果回调地址
         # @type BlockUrl: String
-        # @param FileUrl: x
+        # @param FileUrl: 授权书下载地址
         # @type FileUrl: String
-        # @param ValidStartDate: x
+        # @param ValidStartDate: 授权书生效日期
         # @type ValidStartDate: String
-        # @param ValidEndDate: x
+        # @param ValidEndDate: 授权书截止日期
         # @type ValidEndDate: String
-        # @param TortPic: xx
+        # @param TortPic: 侵权截图
         # @type TortPic: String
-        # @param CommFileUrl: x
+        # @param CommFileUrl: 委托书下载地址
         # @type CommFileUrl: String
-        # @param CommValidStartDate: x
+        # @param CommValidStartDate: 委托书生效日期
         # @type CommValidStartDate: String
-        # @param CommValidEndDate: x
+        # @param CommValidEndDate: 委托书截止日期
         # @type CommValidEndDate: String
-        # @param IsProducer: x
+        # @param IsProducer: 是否著作权人：0-否 1-是
         # @type IsProducer: String
-        # @param EvidenceFileUrl: x
+        # @param EvidenceFileUrl: 存证证书下载地址
         # @type EvidenceFileUrl: String
-        # @param EvidenceValidStartDate: x
+        # @param EvidenceValidStartDate: 存证证书生效日期
         # @type EvidenceValidStartDate: String
-        # @param EvidenceValidEndDate: x
+        # @param EvidenceValidEndDate: 存证证书截止日期
         # @type EvidenceValidEndDate: String
 
         attr_accessor :WorkId, :TortUrl, :TortTitle, :TortPlat, :BlockUrl, :FileUrl, :ValidStartDate, :ValidEndDate, :TortPic, :CommFileUrl, :CommValidStartDate, :CommValidEndDate, :IsProducer, :EvidenceFileUrl, :EvidenceValidStartDate, :EvidenceValidEndDate
@@ -337,7 +337,7 @@ module TencentCloud
       class CreateCRBlockResponse < TencentCloud::Common::AbstractModel
         # @param TortId: 侵权ID
         # @type TortId: Integer
-        # @param TortNum: xxx
+        # @param TortNum: 该字段已废弃
         # @type TortNum: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -361,51 +361,51 @@ module TencentCloud
       class CreateCRCompanyVerifyRequest < TencentCloud::Common::AbstractModel
         # @param CompanyName: 企业名称
         # @type CompanyName: String
-        # @param CompanyIDType: 企业认证号码类型 1：社会信用代码 2：组织机构代码 3：企业工商注册码 4：其他 默认为1
-        # @type CompanyIDType: String
         # @param CompanyID: 企业证件号码
         # @type CompanyID: String
         # @param CompanyLegalName: 企业法人姓名
         # @type CompanyLegalName: String
-        # @param ManagerName: 管理员名称
+        # @param ManagerName: 联系人姓名
         # @type ManagerName: String
-        # @param ManagerPhone: 管理员手机号
+        # @param ManagerPhone: 联系人手机号
         # @type ManagerPhone: String
-        # @param VerificationCode: 手机验证码
+        # @param VerificationCode: 手机验证码，接口接入可以置空
         # @type VerificationCode: String
-        # @param Type: xxx
+        # @param CompanyIDType: 字段已废弃，企业认证号码类型 1：社会信用代码 2：组织机构代码 3：企业工商注册码 4：其他 默认为1
+        # @type CompanyIDType: String
+        # @param Type: 字段已废弃，认证类型
         # @type Type: String
 
-        attr_accessor :CompanyName, :CompanyIDType, :CompanyID, :CompanyLegalName, :ManagerName, :ManagerPhone, :VerificationCode, :Type
+        attr_accessor :CompanyName, :CompanyID, :CompanyLegalName, :ManagerName, :ManagerPhone, :VerificationCode, :CompanyIDType, :Type
         
-        def initialize(companyname=nil, companyidtype=nil, companyid=nil, companylegalname=nil, managername=nil, managerphone=nil, verificationcode=nil, type=nil)
+        def initialize(companyname=nil, companyid=nil, companylegalname=nil, managername=nil, managerphone=nil, verificationcode=nil, companyidtype=nil, type=nil)
           @CompanyName = companyname
-          @CompanyIDType = companyidtype
           @CompanyID = companyid
           @CompanyLegalName = companylegalname
           @ManagerName = managername
           @ManagerPhone = managerphone
           @VerificationCode = verificationcode
+          @CompanyIDType = companyidtype
           @Type = type
         end
 
         def deserialize(params)
           @CompanyName = params['CompanyName']
-          @CompanyIDType = params['CompanyIDType']
           @CompanyID = params['CompanyID']
           @CompanyLegalName = params['CompanyLegalName']
           @ManagerName = params['ManagerName']
           @ManagerPhone = params['ManagerPhone']
           @VerificationCode = params['VerificationCode']
+          @CompanyIDType = params['CompanyIDType']
           @Type = params['Type']
         end
       end
 
       # CreateCRCompanyVerify返回参数结构体
       class CreateCRCompanyVerifyResponse < TencentCloud::Common::AbstractModel
-        # @param Status: 认证状态 0-认证成功 1-认证失败
+        # @param Status: 认证状态：0-认证成功 1-认证失败
         # @type Status: Integer
-        # @param Note: 认证结果返回
+        # @param Note: 认证状态说明，包括认证失败的原因
         # @type Note: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -427,9 +427,9 @@ module TencentCloud
 
       # CreateCRRightFile请求参数结构体
       class CreateCRRightFileRequest < TencentCloud::Common::AbstractModel
-        # @param WorkId: xxx
+        # @param WorkId: 作品ID
         # @type WorkId: Integer
-        # @param FileList: xxx
+        # @param FileList: 权属文件列表
         # @type FileList: Array
 
         attr_accessor :WorkId, :FileList
@@ -454,7 +454,7 @@ module TencentCloud
 
       # CreateCRRightFile返回参数结构体
       class CreateCRRightFileResponse < TencentCloud::Common::AbstractModel
-        # @param FileIds: xxx
+        # @param FileIds: 权属文件Id，按提交顺序排序
         # @type FileIds: Array
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -474,7 +474,7 @@ module TencentCloud
 
       # CreateCRRight请求参数结构体
       class CreateCRRightRequest < TencentCloud::Common::AbstractModel
-        # @param WorkId: 已存证的作品ID
+        # @param WorkId: 作品ID
         # @type WorkId: Integer
         # @param TortUrl: 侵权链接
         # @type TortUrl: String
@@ -484,31 +484,31 @@ module TencentCloud
         # @type TortPlat: String
         # @param RightUrl: 发函结果回调地址
         # @type RightUrl: String
-        # @param FileUrl: x
+        # @param FileUrl: 授权书下载地址
         # @type FileUrl: String
-        # @param ValidStartDate: x
+        # @param ValidStartDate: 授权书生效日期
         # @type ValidStartDate: String
-        # @param ValidEndDate: x
+        # @param ValidEndDate: 授权书截止日期
         # @type ValidEndDate: String
-        # @param CommFileUrl: x
+        # @param CommFileUrl: 委托书下载地址
         # @type CommFileUrl: String
-        # @param CommValidStartDate: x
+        # @param CommValidStartDate: 委托书生效日期
         # @type CommValidStartDate: String
-        # @param CommValidEndDate: x
+        # @param CommValidEndDate: 委托书截止日期
         # @type CommValidEndDate: String
-        # @param HomeFileUrl: x
+        # @param HomeFileUrl: 主页下载地址
         # @type HomeFileUrl: String
-        # @param HomeValidStartDate: x
+        # @param HomeValidStartDate: 主页生效日期
         # @type HomeValidStartDate: String
-        # @param HomeValidEndDate: x
+        # @param HomeValidEndDate: 主页截止日期
         # @type HomeValidEndDate: String
-        # @param IsProducer: x
+        # @param IsProducer: 是否著作权人：0-否 1-是
         # @type IsProducer: String
-        # @param EvidenceFileUrl: x
+        # @param EvidenceFileUrl: 存证证书下载地址
         # @type EvidenceFileUrl: String
-        # @param EvidenceValidStartDate: x
+        # @param EvidenceValidStartDate: 存证证书生效日期
         # @type EvidenceValidStartDate: String
-        # @param EvidenceValidEndDate: x
+        # @param EvidenceValidEndDate: 存证证书截止日期
         # @type EvidenceValidEndDate: String
 
         attr_accessor :WorkId, :TortUrl, :TortTitle, :TortPlat, :RightUrl, :FileUrl, :ValidStartDate, :ValidEndDate, :CommFileUrl, :CommValidStartDate, :CommValidEndDate, :HomeFileUrl, :HomeValidStartDate, :HomeValidEndDate, :IsProducer, :EvidenceFileUrl, :EvidenceValidStartDate, :EvidenceValidEndDate
@@ -560,7 +560,7 @@ module TencentCloud
       class CreateCRRightResponse < TencentCloud::Common::AbstractModel
         # @param TortId: 侵权ID
         # @type TortId: Integer
-        # @param TortNum: xxx
+        # @param TortNum: 该字段已废弃
         # @type TortNum: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -582,13 +582,13 @@ module TencentCloud
 
       # CreateCRTort请求参数结构体
       class CreateCRTortRequest < TencentCloud::Common::AbstractModel
-        # @param WorkId: xx
+        # @param WorkId: 作品ID
         # @type WorkId: Integer
-        # @param TortURL: xx
+        # @param TortURL: 侵权网址
         # @type TortURL: String
-        # @param TortPlat: xx
+        # @param TortPlat: 侵权平台
         # @type TortPlat: String
-        # @param TortTitle: xx
+        # @param TortTitle: 侵权标题
         # @type TortTitle: String
 
         attr_accessor :WorkId, :TortURL, :TortPlat, :TortTitle
@@ -610,19 +610,19 @@ module TencentCloud
 
       # CreateCRTort返回参数结构体
       class CreateCRTortResponse < TencentCloud::Common::AbstractModel
-        # @param WorkId: xx
+        # @param WorkId: 作品ID
         # @type WorkId: Integer
-        # @param TortId: xx
+        # @param TortId: 侵权ID
         # @type TortId: Integer
-        # @param TortTitle: xx
+        # @param TortTitle: 侵权标题
         # @type TortTitle: String
-        # @param TortPlat: xx
+        # @param TortPlat: 侵权平台
         # @type TortPlat: String
-        # @param TortURL: xx
+        # @param TortURL: 侵权网址
         # @type TortURL: String
-        # @param TortDomain: xx
+        # @param TortDomain: 侵权域名
         # @type TortDomain: String
-        # @param TortBodyName: xx
+        # @param TortBodyName: 侵权主体
         # @type TortBodyName: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -656,13 +656,13 @@ module TencentCloud
       class CreateCRUserVerifyRequest < TencentCloud::Common::AbstractModel
         # @param UserName: 用户真实姓名
         # @type UserName: String
-        # @param UserID: 用户身份证ID
+        # @param UserID: 用户身份证号
         # @type UserID: String
         # @param UserPhone: 用户手机号码
         # @type UserPhone: String
-        # @param VerificationCode: 短信验证码
+        # @param VerificationCode: 短信验证码，接口接入可以置空
         # @type VerificationCode: String
-        # @param Type: xxx
+        # @param Type: 字段已废弃，认证类型
         # @type Type: String
 
         attr_accessor :UserName, :UserID, :UserPhone, :VerificationCode, :Type
@@ -686,9 +686,9 @@ module TencentCloud
 
       # CreateCRUserVerify返回参数结构体
       class CreateCRUserVerifyResponse < TencentCloud::Common::AbstractModel
-        # @param Status: 认证状态 0-认证成功 1-认证失败
+        # @param Status: 认证状态：0-认证成功 1-认证失败
         # @type Status: Integer
-        # @param Note: 认证结果返回
+        # @param Note: 认证状态说明，包括认证失败原因等
         # @type Note: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -718,64 +718,64 @@ module TencentCloud
         # @type WorkType: String
         # @param WorkSign: 作品标签
         # @type WorkSign: String
-        # @param WorkPic: 作品图片
+        # @param WorkPic: 字段已废弃，作品图片
         # @type WorkPic: String
-        # @param WorkDesc: 创作描述
+        # @param WorkDesc: 作品描述
         # @type WorkDesc: String
-        # @param IsOriginal: 是否原创 0:否 1:是
+        # @param IsOriginal: 是否原创：0-否 1-是
         # @type IsOriginal: String
-        # @param IsRelease: 是否发布 0：未发布 1：已发布
+        # @param IsRelease: 是否发布：0-未发布 1-已发布
         # @type IsRelease: String
-        # @param ProducerID: 著作权人ID
+        # @param ProducerID: 字段已废弃，著作权人ID
         # @type ProducerID: Integer
         # @param ProduceTime: 创作时间
         # @type ProduceTime: String
-        # @param SampleContentURL: 样品文件路径
+        # @param SampleContentURL: 字段已废弃
         # @type SampleContentURL: String
-        # @param SampleDownloadURL: 样本下载Url
+        # @param SampleDownloadURL: 作品下载地址
         # @type SampleDownloadURL: String
-        # @param GrantType: 授予类型
-        # @type GrantType: String
-        # @param SamplePublicURL: 作品发布Url
+        # @param SamplePublicURL: 作品在线地址
         # @type SamplePublicURL: String
-        # @param IsMonitor: 是否启用监测 0：不启用 1：启用 默认为0
+        # @param GrantType: 字段已废弃，授予类型
+        # @type GrantType: String
+        # @param IsMonitor: 是否监测：0-不监测 1-监测
         # @type IsMonitor: String
-        # @param IsCert: 是否启用存证0：不存证  2：存证 默认为0
+        # @param IsCert: 是否存证：0-不存证  2-存证 注意是2
         # @type IsCert: String
         # @param CertUrl: 存证回调地址
         # @type CertUrl: String
         # @param MonitorUrl: 监测回调地址
         # @type MonitorUrl: String
-        # @param ProduceType: 创作性质（原创,改编,翻译,汇编,注释,整理,其他)
+        # @param ProduceType: 字段已废弃，创作性质
         # @type ProduceType: String
-        # @param WhiteLists: 白名单
+        # @param WhiteLists: 白名单列表
         # @type WhiteLists: Array
-        # @param WorkId: 作品ID
+        # @param WorkId: 作品ID，忽略该字段
         # @type WorkId: Integer
         # @param ProducerName: 著作权人姓名
         # @type ProducerName: String
-        # @param Nickname: 作者
+        # @param Nickname: 作者，小说类型必填
         # @type Nickname: String
-        # @param Authorization: 授权书
+        # @param Authorization: 授权书下载地址
         # @type Authorization: String
         # @param AuthorizationStartTime: 授权书开始时间
         # @type AuthorizationStartTime: String
         # @param AuthorizationEndTime: 授权书结束时间
         # @type AuthorizationEndTime: String
-        # @param ContentType: 内容格式
+        # @param ContentType: 内容格式，支持txt、doc等，表示Content的具体格式
         # @type ContentType: String
-        # @param Content: 文件内容
+        # @param Content: 文件内容base64编码，该字段仅在无法提供下载链接时使用
         # @type Content: String
         # @param MonitorEndTime: 监测结束时间
         # @type MonitorEndTime: String
-        # @param ApplierId: 申请人ID
+        # @param ApplierId: 申请人ID，用于存证和取证
         # @type ApplierId: String
-        # @param ApplierName: 申请人姓名
+        # @param ApplierName: 申请人姓名，用于存证和取证
         # @type ApplierName: String
 
-        attr_accessor :WorkName, :WorkCategory, :WorkType, :WorkSign, :WorkPic, :WorkDesc, :IsOriginal, :IsRelease, :ProducerID, :ProduceTime, :SampleContentURL, :SampleDownloadURL, :GrantType, :SamplePublicURL, :IsMonitor, :IsCert, :CertUrl, :MonitorUrl, :ProduceType, :WhiteLists, :WorkId, :ProducerName, :Nickname, :Authorization, :AuthorizationStartTime, :AuthorizationEndTime, :ContentType, :Content, :MonitorEndTime, :ApplierId, :ApplierName
+        attr_accessor :WorkName, :WorkCategory, :WorkType, :WorkSign, :WorkPic, :WorkDesc, :IsOriginal, :IsRelease, :ProducerID, :ProduceTime, :SampleContentURL, :SampleDownloadURL, :SamplePublicURL, :GrantType, :IsMonitor, :IsCert, :CertUrl, :MonitorUrl, :ProduceType, :WhiteLists, :WorkId, :ProducerName, :Nickname, :Authorization, :AuthorizationStartTime, :AuthorizationEndTime, :ContentType, :Content, :MonitorEndTime, :ApplierId, :ApplierName
         
-        def initialize(workname=nil, workcategory=nil, worktype=nil, worksign=nil, workpic=nil, workdesc=nil, isoriginal=nil, isrelease=nil, producerid=nil, producetime=nil, samplecontenturl=nil, sampledownloadurl=nil, granttype=nil, samplepublicurl=nil, ismonitor=nil, iscert=nil, certurl=nil, monitorurl=nil, producetype=nil, whitelists=nil, workid=nil, producername=nil, nickname=nil, authorization=nil, authorizationstarttime=nil, authorizationendtime=nil, contenttype=nil, content=nil, monitorendtime=nil, applierid=nil, appliername=nil)
+        def initialize(workname=nil, workcategory=nil, worktype=nil, worksign=nil, workpic=nil, workdesc=nil, isoriginal=nil, isrelease=nil, producerid=nil, producetime=nil, samplecontenturl=nil, sampledownloadurl=nil, samplepublicurl=nil, granttype=nil, ismonitor=nil, iscert=nil, certurl=nil, monitorurl=nil, producetype=nil, whitelists=nil, workid=nil, producername=nil, nickname=nil, authorization=nil, authorizationstarttime=nil, authorizationendtime=nil, contenttype=nil, content=nil, monitorendtime=nil, applierid=nil, appliername=nil)
           @WorkName = workname
           @WorkCategory = workcategory
           @WorkType = worktype
@@ -788,8 +788,8 @@ module TencentCloud
           @ProduceTime = producetime
           @SampleContentURL = samplecontenturl
           @SampleDownloadURL = sampledownloadurl
-          @GrantType = granttype
           @SamplePublicURL = samplepublicurl
+          @GrantType = granttype
           @IsMonitor = ismonitor
           @IsCert = iscert
           @CertUrl = certurl
@@ -822,8 +822,8 @@ module TencentCloud
           @ProduceTime = params['ProduceTime']
           @SampleContentURL = params['SampleContentURL']
           @SampleDownloadURL = params['SampleDownloadURL']
-          @GrantType = params['GrantType']
           @SamplePublicURL = params['SamplePublicURL']
+          @GrantType = params['GrantType']
           @IsMonitor = params['IsMonitor']
           @IsCert = params['IsCert']
           @CertUrl = params['CertUrl']
@@ -846,9 +846,9 @@ module TencentCloud
 
       # CreateCRWork返回参数结构体
       class CreateCRWorkResponse < TencentCloud::Common::AbstractModel
-        # @param WorkId: 作品ID
+        # @param WorkId: 作品ID，一个作品对应唯一的workid
         # @type WorkId: Integer
-        # @param EvidenceId: x
+        # @param EvidenceId: 存证ID，忽略该字段
         # @type EvidenceId: Integer
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1129,7 +1129,7 @@ module TencentCloud
         # @type PageSize: Integer
         # @param PageNumber: 页码
         # @type PageNumber: Integer
-        # @param Filters: x
+        # @param Filters: 过滤参数
         # @type Filters: Array
 
         attr_accessor :WorkId, :PageSize, :PageNumber, :Filters
@@ -1158,11 +1158,11 @@ module TencentCloud
 
       # DescribeCRMonitorDetail返回参数结构体
       class DescribeCRMonitorDetailResponse < TencentCloud::Common::AbstractModel
-        # @param Torts: MonitorTort数组
+        # @param Torts: 侵权数组
         # @type Torts: Array
         # @param TotalCount: 总记录数
         # @type TotalCount: Integer
-        # @param MonitorStatus: x
+        # @param MonitorStatus: 监测状态
         # @type MonitorStatus: Integer
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1255,7 +1255,7 @@ module TencentCloud
 
       # DescribeCRWorkInfo请求参数结构体
       class DescribeCRWorkInfoRequest < TencentCloud::Common::AbstractModel
-        # @param WorkId: xxx
+        # @param WorkId: 作品ID
         # @type WorkId: Integer
 
         attr_accessor :WorkId
@@ -1271,49 +1271,49 @@ module TencentCloud
 
       # DescribeCRWorkInfo返回参数结构体
       class DescribeCRWorkInfoResponse < TencentCloud::Common::AbstractModel
-        # @param WorkName: x
+        # @param WorkName: 作品名称
         # @type WorkName: String
-        # @param MonitorStatus: x
+        # @param MonitorStatus: 监测状态
         # @type MonitorStatus: Integer
-        # @param AuthStatus: x
+        # @param AuthStatus: 授权文件状态
         # @type AuthStatus: Integer
-        # @param CommStatus: x
+        # @param CommStatus: 委托书状态
         # @type CommStatus: Integer
-        # @param IsProducer: x
+        # @param IsProducer: 是否著作权人
         # @type IsProducer: Integer
-        # @param EvidenceStatus: xxx
+        # @param EvidenceStatus: 存证证书状态
         # @type EvidenceStatus: Integer
-        # @param WorkCategory: xxx
+        # @param WorkCategory: 作品类型
         # @type WorkCategory: String
-        # @param IsOriginal: xxx
+        # @param IsOriginal: 是否原创
         # @type IsOriginal: String
-        # @param IsRelease: xxx
+        # @param IsRelease: 是否已发表
         # @type IsRelease: String
-        # @param ProducerName: xxx
+        # @param ProducerName: 著作权人姓名
         # @type ProducerName: String
-        # @param ProduceTime: xxx
+        # @param ProduceTime: 发表时间
         # @type ProduceTime: String
-        # @param WhiteLists: xxx
+        # @param WhiteLists: 白名单
         # @type WhiteLists: Array
-        # @param WorkDesc: xxx
+        # @param WorkDesc: 作品描述
         # @type WorkDesc: String
-        # @param Authorization: xxx
+        # @param Authorization: 授权书
         # @type Authorization: String
-        # @param AuthorizationStartTime: xxx
+        # @param AuthorizationStartTime: 授权书生效日期
         # @type AuthorizationStartTime: String
-        # @param AuthorizationEndTime: xxx
+        # @param AuthorizationEndTime: 授权书截止日期
         # @type AuthorizationEndTime: String
-        # @param Commission: xxx
+        # @param Commission: 委托书
         # @type Commission: String
-        # @param CommissionStartTime: xxx
+        # @param CommissionStartTime: 委托书生效日期
         # @type CommissionStartTime: String
-        # @param CommissionEndTime: xxx
+        # @param CommissionEndTime: 委托书截止日期
         # @type CommissionEndTime: String
-        # @param EvidenceUrl: xxx
+        # @param EvidenceUrl: 存证证书
         # @type EvidenceUrl: String
-        # @param EvidenceStartTime: xxx
+        # @param EvidenceStartTime: 存证证书生效日期
         # @type EvidenceStartTime: String
-        # @param EvidenceEndTime: xxx
+        # @param EvidenceEndTime: 存证证书截止日期
         # @type EvidenceEndTime: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1576,9 +1576,9 @@ module TencentCloud
       class ModifyCRMonitorRequest < TencentCloud::Common::AbstractModel
         # @param WorkId: 作品ID
         # @type WorkId: Integer
-        # @param MonitorStatus: 监测状态 1-开启监测 2-关闭监测
+        # @param MonitorStatus: 监测状态：1-开启监测 2-关闭监测
         # @type MonitorStatus: String
-        # @param MonitorEnd: 默认不停止，支持续期
+        # @param MonitorEnd: 监测截止时间
         # @type MonitorEnd: String
 
         attr_accessor :WorkId, :MonitorStatus, :MonitorEnd
@@ -1614,13 +1614,13 @@ module TencentCloud
 
       # ModifyCRObtainStatus请求参数结构体
       class ModifyCRObtainStatusRequest < TencentCloud::Common::AbstractModel
-        # @param TortId: xxx
+        # @param TortId: 侵权ID
         # @type TortId: Integer
-        # @param ObtainType: xxx
+        # @param ObtainType: 取证类型：1-网页取证 2-过程取证
         # @type ObtainType: Integer
-        # @param ObtainDuration: xxx
+        # @param ObtainDuration: 过程取证的取证时长，单位分钟，范围0-120
         # @type ObtainDuration: Integer
-        # @param ObtainUrl: xxx
+        # @param ObtainUrl: 结果回调地址
         # @type ObtainUrl: String
 
         attr_accessor :TortId, :ObtainType, :ObtainDuration, :ObtainUrl
@@ -1694,19 +1694,19 @@ module TencentCloud
 
       # ModifyCRWhiteList请求参数结构体
       class ModifyCRWhiteListRequest < TencentCloud::Common::AbstractModel
-        # @param WhiteListId: 白名单ID
+        # @param WhiteListId: 该字段已废弃，白名单ID
         # @type WhiteListId: Integer
-        # @param PlatForm: 平台名称
+        # @param PlatForm: 该字段已废弃，平台名称
         # @type PlatForm: String
-        # @param PlatUrl: 平台站点链接
+        # @param PlatUrl: 该字段已废弃，平台站点链接
         # @type PlatUrl: String
-        # @param AuthorId: 作者ID
+        # @param AuthorId: 该字段已废弃，作者ID
         # @type AuthorId: String
-        # @param WorksId: 作品ID
+        # @param WorksId: 该字段已废弃，作品ID
         # @type WorksId: Integer
-        # @param WorkId: xxx
+        # @param WorkId: 作品ID
         # @type WorkId: Integer
-        # @param WhiteSites: xxx
+        # @param WhiteSites: 白名单列表，以\n分割
         # @type WhiteSites: String
 
         attr_accessor :WhiteListId, :PlatForm, :PlatUrl, :AuthorId, :WorksId, :WorkId, :WhiteSites
@@ -1766,9 +1766,9 @@ module TencentCloud
         # @type MonitorStatus: Integer
         # @param WorkCategory: 作品类型
         # @type WorkCategory: String
-        # @param InsertTime: xx
+        # @param InsertTime: 新增时间
         # @type InsertTime: String
-        # @param MonitorNote: xx
+        # @param MonitorNote: 监测状态说明
         # @type MonitorNote: String
 
         attr_accessor :WorkId, :WorkName, :WorkType, :TortPlatNum, :TortURLNum, :MonitorTime, :MonitorStatus, :WorkCategory, :InsertTime, :MonitorNote
@@ -1814,43 +1814,43 @@ module TencentCloud
         # @type PubTime: String
         # @param Author: 作者
         # @type Author: String
-        # @param DetectTime: xxx
+        # @param DetectTime: 发现时间
         # @type DetectTime: String
-        # @param ObtainStatus: 1
+        # @param ObtainStatus: 取证状态
         # @type ObtainStatus: Integer
-        # @param RightStatus: 1
+        # @param RightStatus: 维权状态
         # @type RightStatus: Integer
-        # @param BlockStatus: 1
+        # @param BlockStatus: 拦截状态
         # @type BlockStatus: Integer
-        # @param TortNum: 1
+        # @param TortNum: 侵权编号
         # @type TortNum: String
-        # @param ObtainNote: 1
+        # @param ObtainNote: 取证状态说明
         # @type ObtainNote: String
-        # @param WorkTitle: 1
+        # @param WorkTitle: 作品标题
         # @type WorkTitle: String
-        # @param TortSite: 1
+        # @param TortSite: 侵权站点
         # @type TortSite: String
-        # @param ICP: 1
+        # @param ICP: ICP备案信息
         # @type ICP: String
-        # @param RightNote: 1
+        # @param RightNote: 维权状态说明
         # @type RightNote: String
-        # @param ObtainType: 1
+        # @param ObtainType: 取证类型
         # @type ObtainType: Integer
-        # @param BlockNote: 1
+        # @param BlockNote: 拦截状态说明
         # @type BlockNote: String
-        # @param WorkId: 1
+        # @param WorkId: 作品ID
         # @type WorkId: Integer
-        # @param WorkName: 1
+        # @param WorkName: 作品名称
         # @type WorkName: String
-        # @param AuthStatus: 1
+        # @param AuthStatus: 授权书状态
         # @type AuthStatus: Integer
-        # @param CommStatus: 1
+        # @param CommStatus: 委托书状态
         # @type CommStatus: Integer
-        # @param EvidenceStatus: 1
+        # @param EvidenceStatus: 存证证书状态
         # @type EvidenceStatus: Integer
-        # @param IsProducer: 1
+        # @param IsProducer: 是否著作权人
         # @type IsProducer: Integer
-        # @param IsOverseas: 1
+        # @param IsOverseas: 是否海外网址
         # @type IsOverseas: Integer
 
         attr_accessor :TortId, :TortTitle, :TortPlat, :TortURL, :PubTime, :Author, :DetectTime, :ObtainStatus, :RightStatus, :BlockStatus, :TortNum, :ObtainNote, :WorkTitle, :TortSite, :ICP, :RightNote, :ObtainType, :BlockNote, :WorkId, :WorkName, :AuthStatus, :CommStatus, :EvidenceStatus, :IsProducer, :IsOverseas
@@ -2034,13 +2034,13 @@ module TencentCloud
 
       # UpdateCRWork请求参数结构体
       class UpdateCRWorkRequest < TencentCloud::Common::AbstractModel
-        # @param WorkId: xx
+        # @param WorkId: 作品ID
         # @type WorkId: Integer
-        # @param ContentType: xx
+        # @param ContentType: 文件的扩展名，比如txt，docx
         # @type ContentType: String
-        # @param Content: xx
+        # @param Content: 内容的base64编码
         # @type Content: String
-        # @param CertType: xx
+        # @param CertType: 本次存证类型：0-不存证 1-存当前文件 2-存历史全量文件
         # @type CertType: String
 
         attr_accessor :WorkId, :ContentType, :Content, :CertType
@@ -2062,9 +2062,9 @@ module TencentCloud
 
       # UpdateCRWork返回参数结构体
       class UpdateCRWorkResponse < TencentCloud::Common::AbstractModel
-        # @param WorkId: xx
+        # @param WorkId: 作品ID
         # @type WorkId: Integer
-        # @param EvidenceId: xx
+        # @param EvidenceId: 存证ID
         # @type EvidenceId: Integer
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
