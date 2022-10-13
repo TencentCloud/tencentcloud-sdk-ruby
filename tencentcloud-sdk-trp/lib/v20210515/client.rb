@@ -53,7 +53,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 生成码包
+        # 生成普通码包
 
         # @param request: Request instance for CreateCodePack.
         # @type request: :class:`Tencentcloud::trp::V20210515::CreateCodePackRequest`

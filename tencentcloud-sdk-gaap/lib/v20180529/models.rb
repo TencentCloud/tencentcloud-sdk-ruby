@@ -5230,16 +5230,24 @@ module TencentCloud
         # 3表示源站调整中；
         # 4表示配置变更中。
         # @type ListenerStatus: Integer
+        # @param ProxyId: 监听器的通道ID，如果监听器属于通道组，则为null
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProxyId: String
+        # @param GroupId: 监听器的通道组ID，如果监听器属于通道，则为null
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GroupId: String
 
-        attr_accessor :ListenerId, :ListenerName, :Port, :CreateTime, :Protocol, :ListenerStatus
+        attr_accessor :ListenerId, :ListenerName, :Port, :CreateTime, :Protocol, :ListenerStatus, :ProxyId, :GroupId
         
-        def initialize(listenerid=nil, listenername=nil, port=nil, createtime=nil, protocol=nil, listenerstatus=nil)
+        def initialize(listenerid=nil, listenername=nil, port=nil, createtime=nil, protocol=nil, listenerstatus=nil, proxyid=nil, groupid=nil)
           @ListenerId = listenerid
           @ListenerName = listenername
           @Port = port
           @CreateTime = createtime
           @Protocol = protocol
           @ListenerStatus = listenerstatus
+          @ProxyId = proxyid
+          @GroupId = groupid
         end
 
         def deserialize(params)
@@ -5249,6 +5257,8 @@ module TencentCloud
           @CreateTime = params['CreateTime']
           @Protocol = params['Protocol']
           @ListenerStatus = params['ListenerStatus']
+          @ProxyId = params['ProxyId']
+          @GroupId = params['GroupId']
         end
       end
 
@@ -5298,10 +5308,16 @@ module TencentCloud
         # 注意：如果支持了Http3的功能，那么该监听器会占用对应的UDP接入端口，不可再创建相同端口的UDP监听器。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Http3Supported: Integer
+        # @param ProxyId: 监听器的通道ID，如果监听器属于通道组，则为null
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProxyId: String
+        # @param GroupId: 监听器的通道组ID，如果监听器属于通道，则为null
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GroupId: String
 
-        attr_accessor :ListenerId, :ListenerName, :Port, :Protocol, :ListenerStatus, :CertificateId, :ForwardProtocol, :CreateTime, :CertificateAlias, :ClientCertificateId, :AuthType, :ClientCertificateAlias, :PolyClientCertificateAliasInfo, :Http3Supported
+        attr_accessor :ListenerId, :ListenerName, :Port, :Protocol, :ListenerStatus, :CertificateId, :ForwardProtocol, :CreateTime, :CertificateAlias, :ClientCertificateId, :AuthType, :ClientCertificateAlias, :PolyClientCertificateAliasInfo, :Http3Supported, :ProxyId, :GroupId
         
-        def initialize(listenerid=nil, listenername=nil, port=nil, protocol=nil, listenerstatus=nil, certificateid=nil, forwardprotocol=nil, createtime=nil, certificatealias=nil, clientcertificateid=nil, authtype=nil, clientcertificatealias=nil, polyclientcertificatealiasinfo=nil, http3supported=nil)
+        def initialize(listenerid=nil, listenername=nil, port=nil, protocol=nil, listenerstatus=nil, certificateid=nil, forwardprotocol=nil, createtime=nil, certificatealias=nil, clientcertificateid=nil, authtype=nil, clientcertificatealias=nil, polyclientcertificatealiasinfo=nil, http3supported=nil, proxyid=nil, groupid=nil)
           @ListenerId = listenerid
           @ListenerName = listenername
           @Port = port
@@ -5316,6 +5332,8 @@ module TencentCloud
           @ClientCertificateAlias = clientcertificatealias
           @PolyClientCertificateAliasInfo = polyclientcertificatealiasinfo
           @Http3Supported = http3supported
+          @ProxyId = proxyid
+          @GroupId = groupid
         end
 
         def deserialize(params)
@@ -5340,6 +5358,8 @@ module TencentCloud
             end
           end
           @Http3Supported = params['Http3Supported']
+          @ProxyId = params['ProxyId']
+          @GroupId = params['GroupId']
         end
       end
 
@@ -7769,10 +7789,16 @@ module TencentCloud
         # @param SessionPersist: 是否开启会话保持选项：0关闭， 非0开启，非0值为会话保持时间
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SessionPersist: Integer
+        # @param ProxyId: 监听器的通道ID，如果监听器属于通道组，则为null
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProxyId: String
+        # @param GroupId: 监听器的通道组ID，如果监听器属于通道，则为null
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GroupId: String
 
-        attr_accessor :ListenerId, :ListenerName, :Port, :RealServerPort, :RealServerType, :Protocol, :ListenerStatus, :Scheduler, :ConnectTimeout, :DelayLoop, :HealthCheck, :BindStatus, :RealServerSet, :CreateTime, :ClientIPMethod, :HealthyThreshold, :UnhealthyThreshold, :FailoverSwitch, :SessionPersist
+        attr_accessor :ListenerId, :ListenerName, :Port, :RealServerPort, :RealServerType, :Protocol, :ListenerStatus, :Scheduler, :ConnectTimeout, :DelayLoop, :HealthCheck, :BindStatus, :RealServerSet, :CreateTime, :ClientIPMethod, :HealthyThreshold, :UnhealthyThreshold, :FailoverSwitch, :SessionPersist, :ProxyId, :GroupId
         
-        def initialize(listenerid=nil, listenername=nil, port=nil, realserverport=nil, realservertype=nil, protocol=nil, listenerstatus=nil, scheduler=nil, connecttimeout=nil, delayloop=nil, healthcheck=nil, bindstatus=nil, realserverset=nil, createtime=nil, clientipmethod=nil, healthythreshold=nil, unhealthythreshold=nil, failoverswitch=nil, sessionpersist=nil)
+        def initialize(listenerid=nil, listenername=nil, port=nil, realserverport=nil, realservertype=nil, protocol=nil, listenerstatus=nil, scheduler=nil, connecttimeout=nil, delayloop=nil, healthcheck=nil, bindstatus=nil, realserverset=nil, createtime=nil, clientipmethod=nil, healthythreshold=nil, unhealthythreshold=nil, failoverswitch=nil, sessionpersist=nil, proxyid=nil, groupid=nil)
           @ListenerId = listenerid
           @ListenerName = listenername
           @Port = port
@@ -7792,6 +7818,8 @@ module TencentCloud
           @UnhealthyThreshold = unhealthythreshold
           @FailoverSwitch = failoverswitch
           @SessionPersist = sessionpersist
+          @ProxyId = proxyid
+          @GroupId = groupid
         end
 
         def deserialize(params)
@@ -7821,6 +7849,8 @@ module TencentCloud
           @UnhealthyThreshold = params['UnhealthyThreshold']
           @FailoverSwitch = params['FailoverSwitch']
           @SessionPersist = params['SessionPersist']
+          @ProxyId = params['ProxyId']
+          @GroupId = params['GroupId']
         end
       end
 
@@ -7933,10 +7963,16 @@ module TencentCloud
         # @param RecvContext: UDP源站健康检查端口探测接收报文。仅在健康检查类型为PORT时使用。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RecvContext: String
+        # @param ProxyId: 监听器的通道ID，如果监听器属于通道组，则为null
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProxyId: String
+        # @param GroupId: 监听器的通道组ID，如果监听器属于通道，则为null
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GroupId: String
 
-        attr_accessor :ListenerId, :ListenerName, :Port, :RealServerPort, :RealServerType, :Protocol, :ListenerStatus, :Scheduler, :BindStatus, :RealServerSet, :CreateTime, :SessionPersist, :DelayLoop, :ConnectTimeout, :HealthyThreshold, :UnhealthyThreshold, :FailoverSwitch, :HealthCheck, :CheckType, :CheckPort, :ContextType, :SendContext, :RecvContext
+        attr_accessor :ListenerId, :ListenerName, :Port, :RealServerPort, :RealServerType, :Protocol, :ListenerStatus, :Scheduler, :BindStatus, :RealServerSet, :CreateTime, :SessionPersist, :DelayLoop, :ConnectTimeout, :HealthyThreshold, :UnhealthyThreshold, :FailoverSwitch, :HealthCheck, :CheckType, :CheckPort, :ContextType, :SendContext, :RecvContext, :ProxyId, :GroupId
         
-        def initialize(listenerid=nil, listenername=nil, port=nil, realserverport=nil, realservertype=nil, protocol=nil, listenerstatus=nil, scheduler=nil, bindstatus=nil, realserverset=nil, createtime=nil, sessionpersist=nil, delayloop=nil, connecttimeout=nil, healthythreshold=nil, unhealthythreshold=nil, failoverswitch=nil, healthcheck=nil, checktype=nil, checkport=nil, contexttype=nil, sendcontext=nil, recvcontext=nil)
+        def initialize(listenerid=nil, listenername=nil, port=nil, realserverport=nil, realservertype=nil, protocol=nil, listenerstatus=nil, scheduler=nil, bindstatus=nil, realserverset=nil, createtime=nil, sessionpersist=nil, delayloop=nil, connecttimeout=nil, healthythreshold=nil, unhealthythreshold=nil, failoverswitch=nil, healthcheck=nil, checktype=nil, checkport=nil, contexttype=nil, sendcontext=nil, recvcontext=nil, proxyid=nil, groupid=nil)
           @ListenerId = listenerid
           @ListenerName = listenername
           @Port = port
@@ -7960,6 +7996,8 @@ module TencentCloud
           @ContextType = contexttype
           @SendContext = sendcontext
           @RecvContext = recvcontext
+          @ProxyId = proxyid
+          @GroupId = groupid
         end
 
         def deserialize(params)
@@ -7993,6 +8031,8 @@ module TencentCloud
           @ContextType = params['ContextType']
           @SendContext = params['SendContext']
           @RecvContext = params['RecvContext']
+          @ProxyId = params['ProxyId']
+          @GroupId = params['GroupId']
         end
       end
 

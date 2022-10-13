@@ -1597,7 +1597,7 @@ module TencentCloud
         # @type MaxSplitPartitions: Integer
         # @param StorageType: 日志主题的存储类型，可选值 hot（标准存储），cold（低频存储）；默认为hot。
         # @type StorageType: String
-        # @param Period: 生命周期，单位天，标准存储取值范围1~3600，低频存储取值范围7~3600天。取值为3640时代表永久保存
+        # @param Period: 生命周期，单位天，标准存储取值范围1\~3600，低频存储取值范围7\~3600天。取值为3640时代表永久保存
         # @type Period: Integer
 
         attr_accessor :LogsetId, :TopicName, :PartitionCount, :Tags, :AutoSplit, :MaxSplitPartitions, :StorageType, :Period

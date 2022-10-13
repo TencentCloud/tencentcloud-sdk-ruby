@@ -14061,15 +14061,18 @@ module TencentCloud
         # @type Codec: String
         # @param Fps: 帧率，单位：hz。
         # @type Fps: Integer
+        # @param CodecTag: 编码标签，仅当 Codec 为 hevc 时有效。
+        # @type CodecTag: String
 
-        attr_accessor :Bitrate, :Height, :Width, :Codec, :Fps
+        attr_accessor :Bitrate, :Height, :Width, :Codec, :Fps, :CodecTag
         
-        def initialize(bitrate=nil, height=nil, width=nil, codec=nil, fps=nil)
+        def initialize(bitrate=nil, height=nil, width=nil, codec=nil, fps=nil, codectag=nil)
           @Bitrate = bitrate
           @Height = height
           @Width = width
           @Codec = codec
           @Fps = fps
+          @CodecTag = codectag
         end
 
         def deserialize(params)
@@ -14078,6 +14081,7 @@ module TencentCloud
           @Width = params['Width']
           @Codec = params['Codec']
           @Fps = params['Fps']
+          @CodecTag = params['CodecTag']
         end
       end
 

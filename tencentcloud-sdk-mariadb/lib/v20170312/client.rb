@@ -488,54 +488,6 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口(DescribeDBResourceUsage)用于查看数据库实例资源的使用情况。
-
-        # @param request: Request instance for DescribeDBResourceUsage.
-        # @type request: :class:`Tencentcloud::mariadb::V20170312::DescribeDBResourceUsageRequest`
-        # @rtype: :class:`Tencentcloud::mariadb::V20170312::DescribeDBResourceUsageResponse`
-        def DescribeDBResourceUsage(request)
-          body = send_request('DescribeDBResourceUsage', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = DescribeDBResourceUsageResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # 本接口(DescribeDBResourceUsageDetails)用于查看数据库实例当前性能数据。
-
-        # @param request: Request instance for DescribeDBResourceUsageDetails.
-        # @type request: :class:`Tencentcloud::mariadb::V20170312::DescribeDBResourceUsageDetailsRequest`
-        # @rtype: :class:`Tencentcloud::mariadb::V20170312::DescribeDBResourceUsageDetailsResponse`
-        def DescribeDBResourceUsageDetails(request)
-          body = send_request('DescribeDBResourceUsageDetails', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = DescribeDBResourceUsageDetailsResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
         # 本接口（DescribeDBSecurityGroups）用于查询实例安全组信息
 
         # @param request: Request instance for DescribeDBSecurityGroups.

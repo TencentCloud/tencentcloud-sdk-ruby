@@ -94,10 +94,13 @@ module TencentCloud
         # @param TplName: 模板名称
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TplName: String
+        # @param Job: 调度任务
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Job: :class:`Tencentcloud::Trp.v20210515.models.Job`
 
-        attr_accessor :BatchId, :CorpId, :BatchCode, :CodeCnt, :MerchantId, :ProductId, :BatchType, :Remark, :MpTpl, :Status, :CreateTime, :UpdateTime, :MerchantName, :ProductName, :Ext, :TplName
+        attr_accessor :BatchId, :CorpId, :BatchCode, :CodeCnt, :MerchantId, :ProductId, :BatchType, :Remark, :MpTpl, :Status, :CreateTime, :UpdateTime, :MerchantName, :ProductName, :Ext, :TplName, :Job
         
-        def initialize(batchid=nil, corpid=nil, batchcode=nil, codecnt=nil, merchantid=nil, productid=nil, batchtype=nil, remark=nil, mptpl=nil, status=nil, createtime=nil, updatetime=nil, merchantname=nil, productname=nil, ext=nil, tplname=nil)
+        def initialize(batchid=nil, corpid=nil, batchcode=nil, codecnt=nil, merchantid=nil, productid=nil, batchtype=nil, remark=nil, mptpl=nil, status=nil, createtime=nil, updatetime=nil, merchantname=nil, productname=nil, ext=nil, tplname=nil, job=nil)
           @BatchId = batchid
           @CorpId = corpid
           @BatchCode = batchcode
@@ -114,6 +117,7 @@ module TencentCloud
           @ProductName = productname
           @Ext = ext
           @TplName = tplname
+          @Job = job
         end
 
         def deserialize(params)
@@ -136,6 +140,10 @@ module TencentCloud
             @Ext.deserialize(params['Ext'])
           end
           @TplName = params['TplName']
+          unless params['Job'].nil?
+            @Job = Job.new
+            @Job.deserialize(params['Job'])
+          end
         end
       end
 
@@ -298,19 +306,27 @@ module TencentCloud
         # @type Remark: String
         # @param CorpId: 企业ID
         # @type CorpId: Integer
+        # @param CodeType: 码包来源 0:自建, 1:第三发
+        # @type CodeType: Integer
+        # @param CodeUrl: 码包前缀地址 第三方码包时必填
+        # @type CodeUrl: String
 
-        attr_accessor :Name, :Remark, :CorpId
+        attr_accessor :Name, :Remark, :CorpId, :CodeType, :CodeUrl
         
-        def initialize(name=nil, remark=nil, corpid=nil)
+        def initialize(name=nil, remark=nil, corpid=nil, codetype=nil, codeurl=nil)
           @Name = name
           @Remark = remark
           @CorpId = corpid
+          @CodeType = codetype
+          @CodeUrl = codeurl
         end
 
         def deserialize(params)
           @Name = params['Name']
           @Remark = params['Remark']
           @CorpId = params['CorpId']
+          @CodeType = params['CodeType']
+          @CodeUrl = params['CodeUrl']
         end
       end
 
@@ -1013,14 +1029,17 @@ module TencentCloud
         # @type PageNumber: Integer
         # @param CorpId: 企业ID
         # @type CorpId: Integer
+        # @param CodeType: 码来源类型 0:自建, 1:第三方
+        # @type CodeType: Integer
 
-        attr_accessor :Name, :PageSize, :PageNumber, :CorpId
+        attr_accessor :Name, :PageSize, :PageNumber, :CorpId, :CodeType
         
-        def initialize(name=nil, pagesize=nil, pagenumber=nil, corpid=nil)
+        def initialize(name=nil, pagesize=nil, pagenumber=nil, corpid=nil, codetype=nil)
           @Name = name
           @PageSize = pagesize
           @PageNumber = pagenumber
           @CorpId = corpid
+          @CodeType = codetype
         end
 
         def deserialize(params)
@@ -1028,6 +1047,7 @@ module TencentCloud
           @PageSize = params['PageSize']
           @PageNumber = params['PageNumber']
           @CorpId = params['CorpId']
+          @CodeType = params['CodeType']
         end
       end
 
@@ -1363,6 +1383,26 @@ module TencentCloud
         end
       end
 
+      # 通用调度任务
+      class Job < TencentCloud::Common::AbstractModel
+        # @param JobId: 调度ID
+        # @type JobId: Integer
+        # @param Status: 执行状态 init:初始化, pending: 执行中, done: 执行成功, error: 执行失败
+        # @type Status: String
+
+        attr_accessor :JobId, :Status
+        
+        def initialize(jobid=nil, status=nil)
+          @JobId = jobid
+          @Status = status
+        end
+
+        def deserialize(params)
+          @JobId = params['JobId']
+          @Status = params['Status']
+        end
+      end
+
       # 商户信息
       class Merchant < TencentCloud::Common::AbstractModel
         # @param MerchantId: 商户标识码
@@ -1380,10 +1420,15 @@ module TencentCloud
         # @type UpdateTime: String
         # @param CodeRule: 商户码规则
         # @type CodeRule: String
+        # @param CodeType: 码来源类型 0: 安心平台 1: 第三方码
+        # @type CodeType: Integer
+        # @param CodeUrl: 第三方码域名前缀
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CodeUrl: String
 
-        attr_accessor :MerchantId, :CorpId, :Name, :Remark, :CreateTime, :UpdateTime, :CodeRule
+        attr_accessor :MerchantId, :CorpId, :Name, :Remark, :CreateTime, :UpdateTime, :CodeRule, :CodeType, :CodeUrl
         
-        def initialize(merchantid=nil, corpid=nil, name=nil, remark=nil, createtime=nil, updatetime=nil, coderule=nil)
+        def initialize(merchantid=nil, corpid=nil, name=nil, remark=nil, createtime=nil, updatetime=nil, coderule=nil, codetype=nil, codeurl=nil)
           @MerchantId = merchantid
           @CorpId = corpid
           @Name = name
@@ -1391,6 +1436,8 @@ module TencentCloud
           @CreateTime = createtime
           @UpdateTime = updatetime
           @CodeRule = coderule
+          @CodeType = codetype
+          @CodeUrl = codeurl
         end
 
         def deserialize(params)
@@ -1401,6 +1448,8 @@ module TencentCloud
           @CreateTime = params['CreateTime']
           @UpdateTime = params['UpdateTime']
           @CodeRule = params['CodeRule']
+          @CodeType = params['CodeType']
+          @CodeUrl = params['CodeUrl']
         end
       end
 
@@ -1474,14 +1523,20 @@ module TencentCloud
         # @type Remark: String
         # @param CorpId: 企业ID
         # @type CorpId: Integer
+        # @param CodeType: 码包来源 0:自建, 1:第三码包，暂不支持修改
+        # @type CodeType: Integer
+        # @param CodeUrl: 码包前缀地址 第三方码包时必填
+        # @type CodeUrl: String
 
-        attr_accessor :Name, :MerchantId, :Remark, :CorpId
+        attr_accessor :Name, :MerchantId, :Remark, :CorpId, :CodeType, :CodeUrl
         
-        def initialize(name=nil, merchantid=nil, remark=nil, corpid=nil)
+        def initialize(name=nil, merchantid=nil, remark=nil, corpid=nil, codetype=nil, codeurl=nil)
           @Name = name
           @MerchantId = merchantid
           @Remark = remark
           @CorpId = corpid
+          @CodeType = codetype
+          @CodeUrl = codeurl
         end
 
         def deserialize(params)
@@ -1489,6 +1544,8 @@ module TencentCloud
           @MerchantId = params['MerchantId']
           @Remark = params['Remark']
           @CorpId = params['CorpId']
+          @CodeType = params['CodeType']
+          @CodeUrl = params['CodeUrl']
         end
       end
 
@@ -1779,7 +1836,7 @@ module TencentCloud
         end
       end
 
-      # 数组
+      # 层级码配置
       class PackSpec < TencentCloud::Common::AbstractModel
         # @param Level: 层级
         # @type Level: Integer
@@ -1787,19 +1844,24 @@ module TencentCloud
         # @type Rate: Integer
         # @param Amount: 数量
         # @type Amount: Integer
+        # @param CustomId: 码规则ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CustomId: String
 
-        attr_accessor :Level, :Rate, :Amount
+        attr_accessor :Level, :Rate, :Amount, :CustomId
         
-        def initialize(level=nil, rate=nil, amount=nil)
+        def initialize(level=nil, rate=nil, amount=nil, customid=nil)
           @Level = level
           @Rate = rate
           @Amount = amount
+          @CustomId = customid
         end
 
         def deserialize(params)
           @Level = params['Level']
           @Rate = params['Rate']
           @Amount = params['Amount']
+          @CustomId = params['CustomId']
         end
       end
 
@@ -2072,10 +2134,13 @@ module TencentCloud
         # @param Key: 类型标识
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Key: String
+        # @param Ext: 扩展字段
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Ext: String
 
-        attr_accessor :Name, :Value, :Type, :ReadOnly, :Hidden, :Values, :Key
+        attr_accessor :Name, :Value, :Type, :ReadOnly, :Hidden, :Values, :Key, :Ext
         
-        def initialize(name=nil, value=nil, type=nil, readonly=nil, hidden=nil, values=nil, key=nil)
+        def initialize(name=nil, value=nil, type=nil, readonly=nil, hidden=nil, values=nil, key=nil, ext=nil)
           @Name = name
           @Value = value
           @Type = type
@@ -2083,6 +2148,7 @@ module TencentCloud
           @Hidden = hidden
           @Values = values
           @Key = key
+          @Ext = ext
         end
 
         def deserialize(params)
@@ -2093,6 +2159,7 @@ module TencentCloud
           @Hidden = params['Hidden']
           @Values = params['Values']
           @Key = params['Key']
+          @Ext = params['Ext']
         end
       end
 
