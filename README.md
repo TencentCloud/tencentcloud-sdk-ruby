@@ -38,19 +38,19 @@ git 'git@github.com:TencentCloud/tencentcloud-sdk-ruby.git' do
 end
 
 # 国内用户加速
-git 'git@gitee.com:tencentcloud/tencentcloud-sdk-ruby' do
+git 'git@gitee.com:tencentcloud/tencentcloud-sdk-ruby.git' do
   gem 'tencentcloud-sdk-common'
   gem 'tencentcloud-sdk-cvm'
 end
 
 # 安装指定版本
-git 'git@gitee.com:tencentcloud/tencentcloud-sdk-ruby', tag: '3.0.428' do
+git 'git@gitee.com:tencentcloud/tencentcloud-sdk-ruby.git', tag: '3.0.428' do
   gem 'tencentcloud-sdk-common'
   gem 'tencentcloud-sdk-cvm'
 end
 
 # 安装全部
-git 'git@gitee.com:tencentcloud/tencentcloud-sdk-ruby' do
+git 'git@gitee.com:tencentcloud/tencentcloud-sdk-ruby.git' do
   gem 'tencentcloud-sdk-common'
   gem 'tencentcloud-sdk'
 end
