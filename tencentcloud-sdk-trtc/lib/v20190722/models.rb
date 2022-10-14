@@ -613,6 +613,62 @@ module TencentCloud
         end
       end
 
+      # DescribeMixTranscodingUsage请求参数结构体
+      class DescribeMixTranscodingUsageRequest < TencentCloud::Common::AbstractModel
+        # @param StartTime: 查询开始时间，格式为YYYY-MM-DD。
+        # @type StartTime: String
+        # @param EndTime: 查询结束时间，格式为YYYY-MM-DD。
+        # 单次查询统计区间最多不能超过31天。
+        # @type EndTime: String
+        # @param SdkAppId: TRTC的SdkAppId，和房间所对应的SdkAppId相同。如果没有这个参数，返回用户下全部实时音视频应用的汇总。
+        # @type SdkAppId: Integer
+
+        attr_accessor :StartTime, :EndTime, :SdkAppId
+        
+        def initialize(starttime=nil, endtime=nil, sdkappid=nil)
+          @StartTime = starttime
+          @EndTime = endtime
+          @SdkAppId = sdkappid
+        end
+
+        def deserialize(params)
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @SdkAppId = params['SdkAppId']
+        end
+      end
+
+      # DescribeMixTranscodingUsage返回参数结构体
+      class DescribeMixTranscodingUsageResponse < TencentCloud::Common::AbstractModel
+        # @param UsageKey: 用量类型，与UsageValue中各个位置的值对应。
+        # @type UsageKey: Array
+        # @param UsageList: 各个时间点用量明细。
+        # @type UsageList: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :UsageKey, :UsageList, :RequestId
+        
+        def initialize(usagekey=nil, usagelist=nil, requestid=nil)
+          @UsageKey = usagekey
+          @UsageList = usagelist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @UsageKey = params['UsageKey']
+          unless params['UsageList'].nil?
+            @UsageList = []
+            params['UsageList'].each do |i|
+              trtcusage_tmp = TrtcUsage.new
+              trtcusage_tmp.deserialize(i)
+              @UsageList << trtcusage_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribePicture请求参数结构体
       class DescribePictureRequest < TencentCloud::Common::AbstractModel
         # @param SdkAppId: 应用ID
@@ -718,6 +774,122 @@ module TencentCloud
               sdkappidrecordusage_tmp = SdkAppIdRecordUsage.new
               sdkappidrecordusage_tmp.deserialize(i)
               @SdkAppIdUsages << sdkappidrecordusage_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeRecordingUsage请求参数结构体
+      class DescribeRecordingUsageRequest < TencentCloud::Common::AbstractModel
+        # @param StartTime: 查询开始时间，格式为YYYY-MM-DD。
+        # @type StartTime: String
+        # @param EndTime: 查询结束时间，格式为YYYY-MM-DD。
+        # 单次查询统计区间最多不能超过31天。
+        # @type EndTime: String
+        # @param MixType: 查询单流录制或合流录制，值为"single"或"multi"。
+        # @type MixType: String
+        # @param SdkAppId: TRTC的SdkAppId，和房间所对应的SdkAppId相同。如果没有这个参数，返回用户下全部实时音视频应用的汇总。
+        # @type SdkAppId: Integer
+
+        attr_accessor :StartTime, :EndTime, :MixType, :SdkAppId
+        
+        def initialize(starttime=nil, endtime=nil, mixtype=nil, sdkappid=nil)
+          @StartTime = starttime
+          @EndTime = endtime
+          @MixType = mixtype
+          @SdkAppId = sdkappid
+        end
+
+        def deserialize(params)
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @MixType = params['MixType']
+          @SdkAppId = params['SdkAppId']
+        end
+      end
+
+      # DescribeRecordingUsage返回参数结构体
+      class DescribeRecordingUsageResponse < TencentCloud::Common::AbstractModel
+        # @param UsageKey: 用量类型，与UsageValue中各个位置的值对应。
+        # @type UsageKey: Array
+        # @param UsageList: 各个时间点用量明细。
+        # @type UsageList: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :UsageKey, :UsageList, :RequestId
+        
+        def initialize(usagekey=nil, usagelist=nil, requestid=nil)
+          @UsageKey = usagekey
+          @UsageList = usagelist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @UsageKey = params['UsageKey']
+          unless params['UsageList'].nil?
+            @UsageList = []
+            params['UsageList'].each do |i|
+              trtcusage_tmp = TrtcUsage.new
+              trtcusage_tmp.deserialize(i)
+              @UsageList << trtcusage_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeRelayUsage请求参数结构体
+      class DescribeRelayUsageRequest < TencentCloud::Common::AbstractModel
+        # @param StartTime: 查询开始时间，格式为YYYY-MM-DD。
+        # @type StartTime: String
+        # @param EndTime: 查询结束时间，格式为YYYY-MM-DD。
+        # 单次查询统计区间最多不能超过31天。
+        # @type EndTime: String
+        # @param SdkAppId: TRTC的SdkAppId，和房间所对应的SdkAppId相同。如果没有这个参数，返回用户下全部实时音视频应用的汇总。
+        # @type SdkAppId: Integer
+
+        attr_accessor :StartTime, :EndTime, :SdkAppId
+        
+        def initialize(starttime=nil, endtime=nil, sdkappid=nil)
+          @StartTime = starttime
+          @EndTime = endtime
+          @SdkAppId = sdkappid
+        end
+
+        def deserialize(params)
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @SdkAppId = params['SdkAppId']
+        end
+      end
+
+      # DescribeRelayUsage返回参数结构体
+      class DescribeRelayUsageResponse < TencentCloud::Common::AbstractModel
+        # @param UsageKey: 用量类型，与UsageValue中各个位置的值对应。
+        # @type UsageKey: Array
+        # @param UsageList: 各个时间点用量明细。
+        # @type UsageList: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :UsageKey, :UsageList, :RequestId
+        
+        def initialize(usagekey=nil, usagelist=nil, requestid=nil)
+          @UsageKey = usagekey
+          @UsageList = usagelist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @UsageKey = params['UsageKey']
+          unless params['UsageList'].nil?
+            @UsageList = []
+            params['UsageList'].each do |i|
+              trtcusage_tmp = TrtcUsage.new
+              trtcusage_tmp.deserialize(i)
+              @UsageList << trtcusage_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -899,6 +1071,62 @@ module TencentCloud
               onesdkappidtranscodetimeusagesinfo_tmp = OneSdkAppIdTranscodeTimeUsagesInfo.new
               onesdkappidtranscodetimeusagesinfo_tmp.deserialize(i)
               @Usages << onesdkappidtranscodetimeusagesinfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeTrtcUsage请求参数结构体
+      class DescribeTrtcUsageRequest < TencentCloud::Common::AbstractModel
+        # @param StartTime: 查询开始时间，格式为YYYY-MM-DD。
+        # @type StartTime: String
+        # @param EndTime: 查询结束时间，格式为YYYY-MM-DD。
+        # 单次查询统计区间最多不能超过31天。
+        # @type EndTime: String
+        # @param SdkAppId: TRTC的SdkAppId，和房间所对应的SdkAppId相同。如果没有这个参数，返回用户下全部实时音视频应用的汇总。
+        # @type SdkAppId: Integer
+
+        attr_accessor :StartTime, :EndTime, :SdkAppId
+        
+        def initialize(starttime=nil, endtime=nil, sdkappid=nil)
+          @StartTime = starttime
+          @EndTime = endtime
+          @SdkAppId = sdkappid
+        end
+
+        def deserialize(params)
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @SdkAppId = params['SdkAppId']
+        end
+      end
+
+      # DescribeTrtcUsage返回参数结构体
+      class DescribeTrtcUsageResponse < TencentCloud::Common::AbstractModel
+        # @param UsageKey: 用量类型，与UsageValue中各个位置的值对应。
+        # @type UsageKey: Array
+        # @param UsageList: 各个时间点用量明细。
+        # @type UsageList: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :UsageKey, :UsageList, :RequestId
+        
+        def initialize(usagekey=nil, usagelist=nil, requestid=nil)
+          @UsageKey = usagekey
+          @UsageList = usagelist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @UsageKey = params['UsageKey']
+          unless params['UsageList'].nil?
+            @UsageList = []
+            params['UsageList'].each do |i|
+              trtcusage_tmp = TrtcUsage.new
+              trtcusage_tmp.deserialize(i)
+              @UsageList << trtcusage_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -2153,15 +2381,18 @@ module TencentCloud
         # @type VideoTimeHd: Integer
         # @param VideoTimeFhd: 视频时长-全高清FHD，单位：秒。
         # @type VideoTimeFhd: Integer
+        # @param Flux: 带宽，单位：Mbps。
+        # @type Flux: Float
 
-        attr_accessor :TimeKey, :AudioTime, :VideoTimeSd, :VideoTimeHd, :VideoTimeFhd
+        attr_accessor :TimeKey, :AudioTime, :VideoTimeSd, :VideoTimeHd, :VideoTimeFhd, :Flux
         
-        def initialize(timekey=nil, audiotime=nil, videotimesd=nil, videotimehd=nil, videotimefhd=nil)
+        def initialize(timekey=nil, audiotime=nil, videotimesd=nil, videotimehd=nil, videotimefhd=nil, flux=nil)
           @TimeKey = timekey
           @AudioTime = audiotime
           @VideoTimeSd = videotimesd
           @VideoTimeHd = videotimehd
           @VideoTimeFhd = videotimefhd
+          @Flux = flux
         end
 
         def deserialize(params)
@@ -2170,6 +2401,7 @@ module TencentCloud
           @VideoTimeSd = params['VideoTimeSd']
           @VideoTimeHd = params['VideoTimeHd']
           @VideoTimeFhd = params['VideoTimeFhd']
+          @Flux = params['Flux']
         end
       end
 
@@ -2610,6 +2842,26 @@ module TencentCloud
           @Bandwidth = params['Bandwidth']
           @Video2KTime = params['Video2KTime']
           @Video4KTime = params['Video4KTime']
+        end
+      end
+
+      # 实时音视频用量在某一时间段的统计信息。
+      class TrtcUsage < TencentCloud::Common::AbstractModel
+        # @param TimeKey: 时间点，格式为YYYY-MM-DD HH:mm:ss。多天查询时，HH:mm:ss为00:00:00。
+        # @type TimeKey: String
+        # @param UsageValue: 用量数组。每个数值含义与UsageKey对应。单位：分钟。
+        # @type UsageValue: Array
+
+        attr_accessor :TimeKey, :UsageValue
+        
+        def initialize(timekey=nil, usagevalue=nil)
+          @TimeKey = timekey
+          @UsageValue = usagevalue
+        end
+
+        def deserialize(params)
+          @TimeKey = params['TimeKey']
+          @UsageValue = params['UsageValue']
         end
       end
 

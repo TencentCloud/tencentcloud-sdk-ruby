@@ -259,10 +259,15 @@ module TencentCloud
         # @type DBMajorVersion: String
         # @param DBKernelVersion: TDSQL-C PostgreSQL 内核版本号
         # @type DBKernelVersion: String
+        # @param StoragePayMode: 存储付费模式
+        #  - PREPAID：预付费，即包年包月
+        #  - POSTPAID_BY_HOUR：按小时后付费
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StoragePayMode: String
 
-        attr_accessor :ClusterId, :ClusterName, :Region, :Zone, :DBVersion, :ProjectId, :Status, :StatusDesc, :CreateTime, :StorageUsed, :StorageLimit, :PayMode, :PayPeriodEndTime, :AutoRenewFlag, :DBCharset, :InstanceCount, :EndpointSet, :DBMajorVersion, :DBKernelVersion
+        attr_accessor :ClusterId, :ClusterName, :Region, :Zone, :DBVersion, :ProjectId, :Status, :StatusDesc, :CreateTime, :StorageUsed, :StorageLimit, :PayMode, :PayPeriodEndTime, :AutoRenewFlag, :DBCharset, :InstanceCount, :EndpointSet, :DBMajorVersion, :DBKernelVersion, :StoragePayMode
         
-        def initialize(clusterid=nil, clustername=nil, region=nil, zone=nil, dbversion=nil, projectid=nil, status=nil, statusdesc=nil, createtime=nil, storageused=nil, storagelimit=nil, paymode=nil, payperiodendtime=nil, autorenewflag=nil, dbcharset=nil, instancecount=nil, endpointset=nil, dbmajorversion=nil, dbkernelversion=nil)
+        def initialize(clusterid=nil, clustername=nil, region=nil, zone=nil, dbversion=nil, projectid=nil, status=nil, statusdesc=nil, createtime=nil, storageused=nil, storagelimit=nil, paymode=nil, payperiodendtime=nil, autorenewflag=nil, dbcharset=nil, instancecount=nil, endpointset=nil, dbmajorversion=nil, dbkernelversion=nil, storagepaymode=nil)
           @ClusterId = clusterid
           @ClusterName = clustername
           @Region = region
@@ -282,6 +287,7 @@ module TencentCloud
           @EndpointSet = endpointset
           @DBMajorVersion = dbmajorversion
           @DBKernelVersion = dbkernelversion
+          @StoragePayMode = storagepaymode
         end
 
         def deserialize(params)
@@ -311,6 +317,7 @@ module TencentCloud
           end
           @DBMajorVersion = params['DBMajorVersion']
           @DBKernelVersion = params['DBKernelVersion']
+          @StoragePayMode = params['StoragePayMode']
         end
       end
 
@@ -380,7 +387,7 @@ module TencentCloud
         # @type VpcId: String
         # @param SubnetId: 已配置的私有网络中的子网ID
         # @type SubnetId: String
-        # @param PayMode: 集群付费模式
+        # @param PayMode: 实例付费模式
         #  - PREPAID：预付费，即包年包月
         #  - POSTPAID_BY_HOUR：按小时后付费
         # @type PayMode: String
@@ -409,10 +416,17 @@ module TencentCloud
         # 支持入参值为：v10.17_r1.4。当输入该参数时，会创建此版本号对应的数据库内核。
         # 注：该参数和DBVersion、DBMajorVersion只能传递一个，且需要传递一个。
         # @type DBKernelVersion: String
+        # @param StoragePayMode: 存储付费模式
+        #  - PREPAID：预付费，即包年包月
+        #  - POSTPAID_BY_HOUR：按小时后付费
+        # 默认为POSTPAID_BY_HOUR，实例付费模式为按小时付费时，存储付费模式不支持包年包月
+        # @type StoragePayMode: String
+        # @param Storage: 存储最大使用量，单位GB。取值参考文档【购买指南】。存储使用预付费模式时必须设置，存储使用按小时后付费时不可设置
+        # @type Storage: Integer
 
-        attr_accessor :Zone, :MasterUserPassword, :CPU, :Memory, :VpcId, :SubnetId, :PayMode, :ClusterName, :DBVersion, :ProjectId, :Port, :InstanceCount, :Period, :AutoRenewFlag, :DBMajorVersion, :DBKernelVersion
+        attr_accessor :Zone, :MasterUserPassword, :CPU, :Memory, :VpcId, :SubnetId, :PayMode, :ClusterName, :DBVersion, :ProjectId, :Port, :InstanceCount, :Period, :AutoRenewFlag, :DBMajorVersion, :DBKernelVersion, :StoragePayMode, :Storage
         
-        def initialize(zone=nil, masteruserpassword=nil, cpu=nil, memory=nil, vpcid=nil, subnetid=nil, paymode=nil, clustername=nil, dbversion=nil, projectid=nil, port=nil, instancecount=nil, period=nil, autorenewflag=nil, dbmajorversion=nil, dbkernelversion=nil)
+        def initialize(zone=nil, masteruserpassword=nil, cpu=nil, memory=nil, vpcid=nil, subnetid=nil, paymode=nil, clustername=nil, dbversion=nil, projectid=nil, port=nil, instancecount=nil, period=nil, autorenewflag=nil, dbmajorversion=nil, dbkernelversion=nil, storagepaymode=nil, storage=nil)
           @Zone = zone
           @MasterUserPassword = masteruserpassword
           @CPU = cpu
@@ -429,6 +443,8 @@ module TencentCloud
           @AutoRenewFlag = autorenewflag
           @DBMajorVersion = dbmajorversion
           @DBKernelVersion = dbkernelversion
+          @StoragePayMode = storagepaymode
+          @Storage = storage
         end
 
         def deserialize(params)
@@ -448,6 +464,8 @@ module TencentCloud
           @AutoRenewFlag = params['AutoRenewFlag']
           @DBMajorVersion = params['DBMajorVersion']
           @DBKernelVersion = params['DBKernelVersion']
+          @StoragePayMode = params['StoragePayMode']
+          @Storage = params['Storage']
         end
       end
 

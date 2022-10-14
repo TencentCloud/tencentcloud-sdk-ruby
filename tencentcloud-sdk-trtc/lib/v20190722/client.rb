@@ -212,6 +212,35 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 获取TRTC混流转码的用量明细。
+        # - 查询时间小于等于1天时，返回每5分钟粒度的数据；查询时间大于1天时，返回按天汇总的数据。
+        # - 单次查询统计区间最多不能超过31天。
+        # - 若查询当天用量，由于统计延迟等原因，返回数据可能不够准确。
+        # - 该接口只用于历史用量数据统计或核对数据使用，关键业务逻辑不能使用。
+        # - 默认接口请求频率限制：5次/秒。
+
+        # @param request: Request instance for DescribeMixTranscodingUsage.
+        # @type request: :class:`Tencentcloud::trtc::V20190722::DescribeMixTranscodingUsageRequest`
+        # @rtype: :class:`Tencentcloud::trtc::V20190722::DescribeMixTranscodingUsageResponse`
+        def DescribeMixTranscodingUsage(request)
+          body = send_request('DescribeMixTranscodingUsage', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeMixTranscodingUsageResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 如果您需要在 [云端混流转码](https://cloud.tencent.com/document/product/647/16827) 时频繁查找自定义背景图或水印信息，可通过此接口查找已上传的图片信息。无需频繁查找图片信息的场景，建议直接在 [控制台 > 应用管理 > 素材管理](https://cloud.tencent.com/document/product/647/50769) 中查看。
 
         # @param request: Request instance for DescribePicture.
@@ -251,6 +280,64 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeRecordStatisticResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取TRTC录制的用量明细。
+        # - 查询时间小于等于1天时，返回每5分钟粒度的数据；查询时间大于1天时，返回按天汇总的数据。
+        # - 单次查询统计区间最多不能超过31天。
+        # - 若查询当天用量，由于统计延迟等原因，返回数据可能不够准确。
+        # - 该接口只用于历史用量数据统计或核对数据使用，关键业务逻辑不能使用。
+        # - 默认接口请求频率限制：5次/秒。
+
+        # @param request: Request instance for DescribeRecordingUsage.
+        # @type request: :class:`Tencentcloud::trtc::V20190722::DescribeRecordingUsageRequest`
+        # @rtype: :class:`Tencentcloud::trtc::V20190722::DescribeRecordingUsageResponse`
+        def DescribeRecordingUsage(request)
+          body = send_request('DescribeRecordingUsage', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeRecordingUsageResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取TRTC旁路转推的用量明细。
+        # - 查询时间小于等于1天时，返回每5分钟粒度的数据；查询时间大于1天时，返回按天汇总的数据。
+        # - 单次查询统计区间最多不能超过31天。
+        # - 若查询当天用量，由于统计延迟等原因，返回数据可能不够准确。
+        # - 该接口只用于历史用量数据统计或核对数据使用，关键业务逻辑不能使用。
+        # - 默认接口请求频率限制：5次/秒。
+
+        # @param request: Request instance for DescribeRelayUsage.
+        # @type request: :class:`Tencentcloud::trtc::V20190722::DescribeRelayUsageRequest`
+        # @rtype: :class:`Tencentcloud::trtc::V20190722::DescribeRelayUsageResponse`
+        def DescribeRelayUsage(request)
+          body = send_request('DescribeRelayUsage', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeRelayUsageResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -330,6 +417,35 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeTrtcMcuTranscodeTimeResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取TRTC音视频互动的用量明细。
+        # - 查询时间小于等于1天时，返回每5分钟粒度的数据；查询时间大于1天时，返回按天汇总的数据。
+        # - 单次查询统计区间最多不能超过31天。
+        # - 若查询当天用量，由于统计延迟等原因，返回数据可能不够准确。
+        # - 该接口只用于历史用量数据统计或核对数据使用，关键业务逻辑不能使用。
+        # - 默认接口请求频率限制：5次/秒。
+
+        # @param request: Request instance for DescribeTrtcUsage.
+        # @type request: :class:`Tencentcloud::trtc::V20190722::DescribeTrtcUsageRequest`
+        # @rtype: :class:`Tencentcloud::trtc::V20190722::DescribeTrtcUsageResponse`
+        def DescribeTrtcUsage(request)
+          body = send_request('DescribeTrtcUsage', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeTrtcUsageResponse.new
             model.deserialize(response['Response'])
             model
           else

@@ -7031,14 +7031,26 @@ module TencentCloud
         # @type RedirectInfo: :class:`Tencentcloud::Cpdp.v20190820.models.OpenBankRechargeRedirectInfo`
         # @param OutOrderId: 外部商户订单号，只能是数字、大小写字母，且在同一个接入平台下唯一。
         # @type OutOrderId: String
+        # @param DealStatus: 充值状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DealStatus: String
+        # @param DealMessage: 充值返回描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DealMessage: String
+        # @param PcWebUrl: PC web端跳转链接
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PcWebUrl: String
 
-        attr_accessor :ChannelOrderId, :ThirdPayOrderId, :RedirectInfo, :OutOrderId
+        attr_accessor :ChannelOrderId, :ThirdPayOrderId, :RedirectInfo, :OutOrderId, :DealStatus, :DealMessage, :PcWebUrl
         
-        def initialize(channelorderid=nil, thirdpayorderid=nil, redirectinfo=nil, outorderid=nil)
+        def initialize(channelorderid=nil, thirdpayorderid=nil, redirectinfo=nil, outorderid=nil, dealstatus=nil, dealmessage=nil, pcweburl=nil)
           @ChannelOrderId = channelorderid
           @ThirdPayOrderId = thirdpayorderid
           @RedirectInfo = redirectinfo
           @OutOrderId = outorderid
+          @DealStatus = dealstatus
+          @DealMessage = dealmessage
+          @PcWebUrl = pcweburl
         end
 
         def deserialize(params)
@@ -7049,6 +7061,9 @@ module TencentCloud
             @RedirectInfo.deserialize(params['RedirectInfo'])
           end
           @OutOrderId = params['OutOrderId']
+          @DealStatus = params['DealStatus']
+          @DealMessage = params['DealMessage']
+          @PcWebUrl = params['PcWebUrl']
         end
       end
 
@@ -8385,15 +8400,25 @@ module TencentCloud
       class CreateSinglePaymentData < TencentCloud::Common::AbstractModel
         # @param TradeSerialNo: 平台交易流水号，唯一
         # @type TradeSerialNo: String
+        # @param AgentId: 代理商ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AgentId: String
+        # @param AgentName: 代理商名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AgentName: String
 
-        attr_accessor :TradeSerialNo
+        attr_accessor :TradeSerialNo, :AgentId, :AgentName
         
-        def initialize(tradeserialno=nil)
+        def initialize(tradeserialno=nil, agentid=nil, agentname=nil)
           @TradeSerialNo = tradeserialno
+          @AgentId = agentid
+          @AgentName = agentname
         end
 
         def deserialize(params)
           @TradeSerialNo = params['TradeSerialNo']
+          @AgentId = params['AgentId']
+          @AgentName = params['AgentName']
         end
       end
 

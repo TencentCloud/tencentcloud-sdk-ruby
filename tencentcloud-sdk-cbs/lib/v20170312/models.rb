@@ -2636,58 +2636,58 @@ module TencentCloud
 
       # 预付费订单的费用。
       class PrepayPrice < TencentCloud::Common::AbstractModel
-        # @param OriginalPrice: 预付费云盘或快照预支费用的原价，单位：元。
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type OriginalPrice: Float
         # @param DiscountPrice: 预付费云盘或快照预支费用的折扣价，单位：元。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DiscountPrice: Float
+        # @param ChargeUnit: 后付费云盘的计价单元，取值范围：<br><li>HOUR：表示后付费云盘的计价单元是按小时计算。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ChargeUnit: String
+        # @param UnitPriceHigh: 高精度后付费云盘原单价, 单位：元
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UnitPriceHigh: String
         # @param OriginalPriceHigh: 高精度预付费云盘或快照预支费用的原价，单位：元
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OriginalPriceHigh: String
+        # @param OriginalPrice: 预付费云盘或快照预支费用的原价，单位：元。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OriginalPrice: Float
+        # @param UnitPriceDiscount: 后付费云盘折扣单价，单位：元。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UnitPriceDiscount: Float
+        # @param UnitPriceDiscountHigh: 高精度后付费云盘折扣单价, 单位：元
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UnitPriceDiscountHigh: String
         # @param DiscountPriceHigh: 高精度预付费云盘或快照预支费用的折扣价，单位：元
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DiscountPriceHigh: String
         # @param UnitPrice: 后付费云盘原单价，单位：元。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UnitPrice: Float
-        # @param ChargeUnit: 后付费云盘的计价单元，取值范围：<br><li>HOUR：表示后付费云盘的计价单元是按小时计算。
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type ChargeUnit: String
-        # @param UnitPriceDiscount: 后付费云盘折扣单价，单位：元。
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type UnitPriceDiscount: Float
-        # @param UnitPriceHigh: 高精度后付费云盘原单价, 单位：元
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type UnitPriceHigh: String
-        # @param UnitPriceDiscountHigh: 高精度后付费云盘折扣单价, 单位：元
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type UnitPriceDiscountHigh: String
 
-        attr_accessor :OriginalPrice, :DiscountPrice, :OriginalPriceHigh, :DiscountPriceHigh, :UnitPrice, :ChargeUnit, :UnitPriceDiscount, :UnitPriceHigh, :UnitPriceDiscountHigh
+        attr_accessor :DiscountPrice, :ChargeUnit, :UnitPriceHigh, :OriginalPriceHigh, :OriginalPrice, :UnitPriceDiscount, :UnitPriceDiscountHigh, :DiscountPriceHigh, :UnitPrice
         
-        def initialize(originalprice=nil, discountprice=nil, originalpricehigh=nil, discountpricehigh=nil, unitprice=nil, chargeunit=nil, unitpricediscount=nil, unitpricehigh=nil, unitpricediscounthigh=nil)
-          @OriginalPrice = originalprice
+        def initialize(discountprice=nil, chargeunit=nil, unitpricehigh=nil, originalpricehigh=nil, originalprice=nil, unitpricediscount=nil, unitpricediscounthigh=nil, discountpricehigh=nil, unitprice=nil)
           @DiscountPrice = discountprice
+          @ChargeUnit = chargeunit
+          @UnitPriceHigh = unitpricehigh
           @OriginalPriceHigh = originalpricehigh
+          @OriginalPrice = originalprice
+          @UnitPriceDiscount = unitpricediscount
+          @UnitPriceDiscountHigh = unitpricediscounthigh
           @DiscountPriceHigh = discountpricehigh
           @UnitPrice = unitprice
-          @ChargeUnit = chargeunit
-          @UnitPriceDiscount = unitpricediscount
-          @UnitPriceHigh = unitpricehigh
-          @UnitPriceDiscountHigh = unitpricediscounthigh
         end
 
         def deserialize(params)
-          @OriginalPrice = params['OriginalPrice']
           @DiscountPrice = params['DiscountPrice']
+          @ChargeUnit = params['ChargeUnit']
+          @UnitPriceHigh = params['UnitPriceHigh']
           @OriginalPriceHigh = params['OriginalPriceHigh']
+          @OriginalPrice = params['OriginalPrice']
+          @UnitPriceDiscount = params['UnitPriceDiscount']
+          @UnitPriceDiscountHigh = params['UnitPriceDiscountHigh']
           @DiscountPriceHigh = params['DiscountPriceHigh']
           @UnitPrice = params['UnitPrice']
-          @ChargeUnit = params['ChargeUnit']
-          @UnitPriceDiscount = params['UnitPriceDiscount']
-          @UnitPriceHigh = params['UnitPriceHigh']
-          @UnitPriceDiscountHigh = params['UnitPriceDiscountHigh']
         end
       end
 

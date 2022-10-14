@@ -4283,14 +4283,17 @@ module TencentCloud
         # @type ExactMatch: Boolean
         # @param Name: 搜索字段
         # @type Name: String
+        # @param Operator: 操作符
+        # @type Operator: String
 
-        attr_accessor :Names, :Values, :ExactMatch, :Name
+        attr_accessor :Names, :Values, :ExactMatch, :Name, :Operator
         
-        def initialize(names=nil, values=nil, exactmatch=nil, name=nil)
+        def initialize(names=nil, values=nil, exactmatch=nil, name=nil, operator=nil)
           @Names = names
           @Values = values
           @ExactMatch = exactmatch
           @Name = name
+          @Operator = operator
         end
 
         def deserialize(params)
@@ -4298,6 +4301,7 @@ module TencentCloud
           @Values = params['Values']
           @ExactMatch = params['ExactMatch']
           @Name = params['Name']
+          @Operator = params['Operator']
         end
       end
 

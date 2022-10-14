@@ -19,19 +19,19 @@ module TencentCloud
     module V20210624
       # 商标信息
       class BrandData < TencentCloud::Common::AbstractModel
-        # @param BrandName: xxx
+        # @param BrandName: 商标名称
         # @type BrandName: String
-        # @param BrandCertificateName: xxx
+        # @param BrandCertificateName: 商标证明
         # @type BrandCertificateName: String
-        # @param BrandStatus: xxx
+        # @param BrandStatus: 商标审核状态 1-审核中 2-审核未通过 3-审核通过
         # @type BrandStatus: Integer
-        # @param BrandNote: xxx
+        # @param BrandNote: 审核说明
         # @type BrandNote: String
-        # @param TransferName: xxx
+        # @param TransferName: 商标转让证明
         # @type TransferName: String
-        # @param TransferStatus: xxx
+        # @param TransferStatus: 商标转让证明审核状态
         # @type TransferStatus: Integer
-        # @param TransferNote: xxx
+        # @param TransferNote: 审核说明 1-审核中 2-审核未通过 3-审核通过
         # @type TransferNote: String
 
         attr_accessor :BrandName, :BrandCertificateName, :BrandStatus, :BrandNote, :TransferName, :TransferStatus, :TransferNote
@@ -59,13 +59,13 @@ module TencentCloud
 
       # CreateBPFakeURL请求参数结构体
       class CreateBPFakeURLRequest < TencentCloud::Common::AbstractModel
-        # @param ProtectURLId: xxx
+        # @param ProtectURLId: 保护网址ID
         # @type ProtectURLId: Integer
-        # @param FakeURL: xxx
+        # @param FakeURL: 仿冒网址
         # @type FakeURL: String
-        # @param SnapshotNames: xxx
+        # @param SnapshotNames: 截图
         # @type SnapshotNames: Array
-        # @param Note: xxx
+        # @param Note: 举报说明
         # @type Note: String
 
         attr_accessor :ProtectURLId, :FakeURL, :SnapshotNames, :Note
@@ -103,7 +103,7 @@ module TencentCloud
 
       # CreateBPFalseTicket请求参数结构体
       class CreateBPFalseTicketRequest < TencentCloud::Common::AbstractModel
-        # @param FakeURL: xxx
+        # @param FakeURL: 仿冒网址
         # @type FakeURL: String
 
         attr_accessor :FakeURL
@@ -135,13 +135,13 @@ module TencentCloud
 
       # CreateBPOfflineAttachment请求参数结构体
       class CreateBPOfflineAttachmentRequest < TencentCloud::Common::AbstractModel
-        # @param BrandName: xxx
+        # @param BrandName: 品牌名字
         # @type BrandName: String
-        # @param BrandCertificateName: xx
+        # @param BrandCertificateName: 商标证明
         # @type BrandCertificateName: String
-        # @param TransferName: xx
+        # @param TransferName: 商标转让证明
         # @type TransferName: String
-        # @param AuthorizationName: xx
+        # @param AuthorizationName: 授权书
         # @type AuthorizationName: String
 
         attr_accessor :BrandName, :BrandCertificateName, :TransferName, :AuthorizationName
@@ -179,7 +179,7 @@ module TencentCloud
 
       # CreateBPOfflineTicket请求参数结构体
       class CreateBPOfflineTicketRequest < TencentCloud::Common::AbstractModel
-        # @param FakeURLId: xxx
+        # @param FakeURLId: 仿冒网址ID
         # @type FakeURLId: Integer
 
         attr_accessor :FakeURLId
@@ -211,15 +211,15 @@ module TencentCloud
 
       # CreateBPProtectURLs请求参数结构体
       class CreateBPProtectURLsRequest < TencentCloud::Common::AbstractModel
-        # @param CompanyName: xxx
+        # @param CompanyName: 企业名称
         # @type CompanyName: String
-        # @param Phone: xxx
+        # @param Phone: 电话号码
         # @type Phone: String
-        # @param LicenseName: xxx
+        # @param LicenseName: 营业执照
         # @type LicenseName: String
-        # @param ProtectURLs: xxx
+        # @param ProtectURLs: 保护网站
         # @type ProtectURLs: Array
-        # @param ProtectWebs: xxx
+        # @param ProtectWebs: 网站名称
         # @type ProtectWebs: Array
 
         attr_accessor :CompanyName, :Phone, :LicenseName, :ProtectURLs, :ProtectWebs
@@ -881,25 +881,25 @@ module TencentCloud
 
       # DescribeBPCompanyInfo返回参数结构体
       class DescribeBPCompanyInfoResponse < TencentCloud::Common::AbstractModel
-        # @param CompanyName: xx
+        # @param CompanyName: 企业名称
         # @type CompanyName: String
-        # @param Phone: xx
+        # @param Phone: 电话号码
         # @type Phone: String
-        # @param LicenseName: xx
+        # @param LicenseName: 营业执照
         # @type LicenseName: String
-        # @param LicenseStatus: xx
+        # @param LicenseStatus: 营业执照审核状态 1-审核中 2-审核未通过，3、审核通过
         # @type LicenseStatus: Integer
-        # @param LicenseNote: xx
+        # @param LicenseNote: 营业执照备注
         # @type LicenseNote: String
-        # @param AuthorizationName: xx
+        # @param AuthorizationName: 授权书
         # @type AuthorizationName: String
-        # @param AuthorizationStatus: xx
+        # @param AuthorizationStatus: 授权书审核状态
         # @type AuthorizationStatus: Integer
-        # @param AuthorizationNote: xx
+        # @param AuthorizationNote: 授权书备注
         # @type AuthorizationNote: String
-        # @param BrandDatas: xx
+        # @param BrandDatas: 品牌信息
         # @type BrandDatas: Array
-        # @param CompanyId: xx
+        # @param CompanyId: 企业ID
         # @type CompanyId: Integer
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -944,11 +944,11 @@ module TencentCloud
 
       # DescribeBPFakeURLs请求参数结构体
       class DescribeBPFakeURLsRequest < TencentCloud::Common::AbstractModel
-        # @param Filters: xxx
+        # @param Filters: 过滤条件
         # @type Filters: Array
-        # @param PageSize: xxx
+        # @param PageSize: 页数
         # @type PageSize: Integer
-        # @param PageNumber: xxx
+        # @param PageNumber: 页码
         # @type PageNumber: Integer
 
         attr_accessor :Filters, :PageSize, :PageNumber
@@ -1010,9 +1010,9 @@ module TencentCloud
 
       # DescribeBPProtectURLs请求参数结构体
       class DescribeBPProtectURLsRequest < TencentCloud::Common::AbstractModel
-        # @param PageSize: xxx
+        # @param PageSize: 页数
         # @type PageSize: Integer
-        # @param PageNumber: xxx
+        # @param PageNumber: 页码
         # @type PageNumber: Integer
 
         attr_accessor :PageSize, :PageNumber
@@ -1061,11 +1061,11 @@ module TencentCloud
 
       # DescribeBPReportFakeURLs请求参数结构体
       class DescribeBPReportFakeURLsRequest < TencentCloud::Common::AbstractModel
-        # @param Filters: xxx
+        # @param Filters: 过滤条件
         # @type Filters: Array
-        # @param PageSize: xxx
+        # @param PageSize: 页数
         # @type PageSize: Integer
-        # @param PageNumber: xxx
+        # @param PageNumber: 页码
         # @type PageNumber: Integer
 
         attr_accessor :Filters, :PageSize, :PageNumber
@@ -1375,37 +1375,37 @@ module TencentCloud
 
       # 仿冒网站信息
       class FakeURLInfo < TencentCloud::Common::AbstractModel
-        # @param FakeURLId: xxx
+        # @param FakeURLId: 仿冒网址ID
         # @type FakeURLId: Integer
-        # @param ProtectWeb: xxx
+        # @param ProtectWeb: 保护网站
         # @type ProtectWeb: String
-        # @param DetectTime: xxx
+        # @param DetectTime: 检测时间
         # @type DetectTime: String
-        # @param FakeURL: xxx
+        # @param FakeURL: 仿冒网址
         # @type FakeURL: String
-        # @param Snapshot: xxx
+        # @param Snapshot: 截图
         # @type Snapshot: String
-        # @param IP: xxx
+        # @param IP: IP地址
         # @type IP: String
-        # @param IPLoc: xxx
+        # @param IPLoc: IP地理位置
         # @type IPLoc: String
-        # @param Heat: xxx
+        # @param Heat: 热度
         # @type Heat: Integer
-        # @param Status: xxx
+        # @param Status: 网址状态
         # @type Status: Integer
-        # @param Note: xxx
+        # @param Note: 备注
         # @type Note: String
-        # @param FakeURLCompany: xxx
+        # @param FakeURLCompany: 仿冒网站所属单位
         # @type FakeURLCompany: String
-        # @param FakeURLAttr: xxx
+        # @param FakeURLAttr: 仿冒网站性质
         # @type FakeURLAttr: String
-        # @param FakeURLName: xxx
+        # @param FakeURLName: 仿冒网站名称
         # @type FakeURLName: String
-        # @param FakeURLICP: xxx
+        # @param FakeURLICP: 仿冒网站备案号
         # @type FakeURLICP: String
-        # @param FakeURLCreateTime: xxx
+        # @param FakeURLCreateTime: 仿冒网站创建时间
         # @type FakeURLCreateTime: String
-        # @param FakeURLExpireTime: xxx
+        # @param FakeURLExpireTime: 仿冒网站过期时间
         # @type FakeURLExpireTime: String
 
         attr_accessor :FakeURLId, :ProtectWeb, :DetectTime, :FakeURL, :Snapshot, :IP, :IPLoc, :Heat, :Status, :Note, :FakeURLCompany, :FakeURLAttr, :FakeURLName, :FakeURLICP, :FakeURLCreateTime, :FakeURLExpireTime
@@ -1451,13 +1451,13 @@ module TencentCloud
 
       # 权属文件列表
       class File < TencentCloud::Common::AbstractModel
-        # @param FileUrl: xxx
+        # @param FileUrl: 文件下载地址
         # @type FileUrl: String
-        # @param FileType: xxx
+        # @param FileType: 文件类型 1-委托书 2-授权书 5-存证证书 11-营业执照
         # @type FileType: Integer
-        # @param ValidStartDate: xxx
+        # @param ValidStartDate: 文件有效开始日期
         # @type ValidStartDate: String
-        # @param ValidEndDate: xxx
+        # @param ValidEndDate: 文件有效截止日期
         # @type ValidEndDate: String
 
         attr_accessor :FileUrl, :FileType, :ValidStartDate, :ValidEndDate
@@ -1490,15 +1490,15 @@ module TencentCloud
 
       # ModifyBPOfflineAttachment请求参数结构体
       class ModifyBPOfflineAttachmentRequest < TencentCloud::Common::AbstractModel
-        # @param LicenseName: xx
+        # @param LicenseName: 营业执照
         # @type LicenseName: String
-        # @param AuthorizationName: xx
+        # @param AuthorizationName: 授权书
         # @type AuthorizationName: String
-        # @param BrandName: xx
+        # @param BrandName: 商标名称
         # @type BrandName: String
-        # @param BrandCertificateName: xx
+        # @param BrandCertificateName: 商标证明
         # @type BrandCertificateName: String
-        # @param TransferName: xx
+        # @param TransferName: 商标转让证明
         # @type TransferName: String
 
         attr_accessor :LicenseName, :AuthorizationName, :BrandName, :BrandCertificateName, :TransferName
@@ -1620,7 +1620,7 @@ module TencentCloud
         # @type ObtainType: Integer
         # @param ObtainDuration: 过程取证的取证时长，单位分钟，范围0-120
         # @type ObtainDuration: Integer
-        # @param ObtainUrl: 结果回调地址
+        # @param ObtainUrl: 取证结果回调地址
         # @type ObtainUrl: String
 
         attr_accessor :TortId, :ObtainType, :ObtainDuration, :ObtainUrl
@@ -1850,7 +1850,7 @@ module TencentCloud
         # @type EvidenceStatus: Integer
         # @param IsProducer: 是否著作权人
         # @type IsProducer: Integer
-        # @param IsOverseas: 是否海外网址
+        # @param IsOverseas: 是否境外网址
         # @type IsOverseas: Integer
 
         attr_accessor :TortId, :TortTitle, :TortPlat, :TortURL, :PubTime, :Author, :DetectTime, :ObtainStatus, :RightStatus, :BlockStatus, :TortNum, :ObtainNote, :WorkTitle, :TortSite, :ICP, :RightNote, :ObtainType, :BlockNote, :WorkId, :WorkName, :AuthStatus, :CommStatus, :EvidenceStatus, :IsProducer, :IsOverseas
@@ -1914,17 +1914,17 @@ module TencentCloud
 
       # 保护网站信息
       class ProtectURLInfo < TencentCloud::Common::AbstractModel
-        # @param ProtectURLId: xxx
+        # @param ProtectURLId: 保护网站ID
         # @type ProtectURLId: Integer
-        # @param ProtectURL: xxx
+        # @param ProtectURL: 保护网站
         # @type ProtectURL: String
-        # @param ProtectWeb: xxx
+        # @param ProtectWeb: 保护网站名称
         # @type ProtectWeb: String
-        # @param ProtectURLStatus: xxx
+        # @param ProtectURLStatus: 保护网站审核状态 1-审核中 2-审核不通过 3-审核通过
         # @type ProtectURLStatus: Integer
-        # @param ProtectURLNote: xxx
+        # @param ProtectURLNote: 网站审核不通过原因
         # @type ProtectURLNote: String
-        # @param CreateTime: xxx
+        # @param CreateTime: 创建时间
         # @type CreateTime: String
 
         attr_accessor :ProtectURLId, :ProtectURL, :ProtectWeb, :ProtectURLStatus, :ProtectURLNote, :CreateTime
@@ -1950,41 +1950,41 @@ module TencentCloud
 
       # 举报网址信息
       class ReportFakeURLInfo < TencentCloud::Common::AbstractModel
-        # @param FakeURLId: xxx
+        # @param FakeURLId: 仿冒网址ID
         # @type FakeURLId: Integer
-        # @param DetectTime: xxx
+        # @param DetectTime: 检测时间
         # @type DetectTime: String
-        # @param ProtectURL: xxx
+        # @param ProtectURL: 保护网站
         # @type ProtectURL: String
-        # @param ProtectWeb: xxx
+        # @param ProtectWeb: 保护网站名称
         # @type ProtectWeb: String
-        # @param FakeURL: xxx
+        # @param FakeURL: 仿冒网址
         # @type FakeURL: String
-        # @param Snapshot: xxx
+        # @param Snapshot: 截图
         # @type Snapshot: String
-        # @param IP: xxx
+        # @param IP: IP地址
         # @type IP: String
-        # @param IPLoc: xxx
+        # @param IPLoc: IP地理位置
         # @type IPLoc: String
-        # @param Heat: xxx
+        # @param Heat: 热度
         # @type Heat: Integer
-        # @param Status: xxx
+        # @param Status: 网站状态
         # @type Status: Integer
-        # @param Note: xxx
+        # @param Note: 网站不处理原因
         # @type Note: String
-        # @param FakeURLCompany: xxx
+        # @param FakeURLCompany: 仿冒网站的企业名称
         # @type FakeURLCompany: String
-        # @param FakeURLAttr: xxx
+        # @param FakeURLAttr: 仿冒网站的网站性质
         # @type FakeURLAttr: String
-        # @param FakeURLName: xxx
+        # @param FakeURLName: 仿冒网站的网站名称
         # @type FakeURLName: String
-        # @param FakeURLICP: xxx
+        # @param FakeURLICP: 仿冒网站的备案
         # @type FakeURLICP: String
-        # @param FakeURLCreateTime: xxx
+        # @param FakeURLCreateTime: 仿冒网站创建时间
         # @type FakeURLCreateTime: String
-        # @param FakeURLExpireTime: xxx
+        # @param FakeURLExpireTime: 仿冒网站过期时间
         # @type FakeURLExpireTime: String
-        # @param BlockTime: xxx
+        # @param BlockTime: 协查处置时间
         # @type BlockTime: String
 
         attr_accessor :FakeURLId, :DetectTime, :ProtectURL, :ProtectWeb, :FakeURL, :Snapshot, :IP, :IPLoc, :Heat, :Status, :Note, :FakeURLCompany, :FakeURLAttr, :FakeURLName, :FakeURLICP, :FakeURLCreateTime, :FakeURLExpireTime, :BlockTime
@@ -2036,7 +2036,7 @@ module TencentCloud
       class UpdateCRWorkRequest < TencentCloud::Common::AbstractModel
         # @param WorkId: 作品ID
         # @type WorkId: Integer
-        # @param ContentType: 文件的扩展名，比如txt，docx
+        # @param ContentType: 文件的扩展名，例如txt，docx
         # @type ContentType: String
         # @param Content: 内容的base64编码
         # @type Content: String

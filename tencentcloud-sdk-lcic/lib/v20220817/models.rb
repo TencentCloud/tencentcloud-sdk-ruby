@@ -17,6 +17,108 @@
 module TencentCloud
   module Lcic
     module V20220817
+      # 应用自定义内容
+      class AppCustomContent < TencentCloud::Common::AbstractModel
+        # @param Scene: 场景参数，一个应用下可以设置多个不同场景。
+        # @type Scene: String
+        # @param LogoUrl: logo地址。
+        # @type LogoUrl: String
+        # @param HomeUrl: 主页地址，可设置用于跳转。
+        # @type HomeUrl: String
+        # @param JsUrl: 自定义的js。
+        # @type JsUrl: String
+        # @param CssUrl: 自定义的css。
+        # @type CssUrl: String
+
+        attr_accessor :Scene, :LogoUrl, :HomeUrl, :JsUrl, :CssUrl
+        
+        def initialize(scene=nil, logourl=nil, homeurl=nil, jsurl=nil, cssurl=nil)
+          @Scene = scene
+          @LogoUrl = logourl
+          @HomeUrl = homeurl
+          @JsUrl = jsurl
+          @CssUrl = cssurl
+        end
+
+        def deserialize(params)
+          @Scene = params['Scene']
+          @LogoUrl = params['LogoUrl']
+          @HomeUrl = params['HomeUrl']
+          @JsUrl = params['JsUrl']
+          @CssUrl = params['CssUrl']
+        end
+      end
+
+      # CreateDocument请求参数结构体
+      class CreateDocumentRequest < TencentCloud::Common::AbstractModel
+        # @param SdkAppId: 低代码互动课堂的SdkAppId。
+        # @type SdkAppId: Integer
+        # @param DocumentUrl: 文档地址。
+        # @type DocumentUrl: String
+        # @param DocumentName: 文档名称。
+        # @type DocumentName: String
+        # @param Owner: 文档所有者的Id
+        # @type Owner: String
+        # @param TranscodeType: 转码类型，可以有如下取值：
+        # 0 无需转码（默认）
+        # 1 需要转码的文档，ppt，pptx，pdf，doc，docx
+        # 2 需要转码的视频，mp4，3pg，mpeg，avi，flv，wmv，rm，h264等
+        # 2 需要转码的音频，mp3，wav，wma，aac，flac，opus
+        # @type TranscodeType: Integer
+        # @param Permission: 权限，可以有如下取值：
+        # 0 私有文档（默认）
+        # 1 公共文档
+        # @type Permission: Integer
+        # @param DocumentType: 文档后缀名。
+        # @type DocumentType: String
+        # @param DocumentSize: 文档大小，单位 字节
+        # @type DocumentSize: Integer
+
+        attr_accessor :SdkAppId, :DocumentUrl, :DocumentName, :Owner, :TranscodeType, :Permission, :DocumentType, :DocumentSize
+        
+        def initialize(sdkappid=nil, documenturl=nil, documentname=nil, owner=nil, transcodetype=nil, permission=nil, documenttype=nil, documentsize=nil)
+          @SdkAppId = sdkappid
+          @DocumentUrl = documenturl
+          @DocumentName = documentname
+          @Owner = owner
+          @TranscodeType = transcodetype
+          @Permission = permission
+          @DocumentType = documenttype
+          @DocumentSize = documentsize
+        end
+
+        def deserialize(params)
+          @SdkAppId = params['SdkAppId']
+          @DocumentUrl = params['DocumentUrl']
+          @DocumentName = params['DocumentName']
+          @Owner = params['Owner']
+          @TranscodeType = params['TranscodeType']
+          @Permission = params['Permission']
+          @DocumentType = params['DocumentType']
+          @DocumentSize = params['DocumentSize']
+        end
+      end
+
+      # CreateDocument返回参数结构体
+      class CreateDocumentResponse < TencentCloud::Common::AbstractModel
+        # @param DocumentId: 文档ID。
+        # @type DocumentId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :DocumentId, :RequestId
+        
+        def initialize(documentid=nil, requestid=nil)
+          @DocumentId = documentid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @DocumentId = params['DocumentId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateRoom请求参数结构体
       class CreateRoomRequest < TencentCloud::Common::AbstractModel
         # @param Name: 房间名称。
@@ -413,6 +515,49 @@ module TencentCloud
         def deserialize(params)
           @UserId = params['UserId']
           @Token = params['Token']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # SetAppCustomContent请求参数结构体
+      class SetAppCustomContentRequest < TencentCloud::Common::AbstractModel
+        # @param CustomContent: 自定义内容。
+        # @type CustomContent: Array
+        # @param SdkAppId: 应用ID。
+        # @type SdkAppId: Integer
+
+        attr_accessor :CustomContent, :SdkAppId
+        
+        def initialize(customcontent=nil, sdkappid=nil)
+          @CustomContent = customcontent
+          @SdkAppId = sdkappid
+        end
+
+        def deserialize(params)
+          unless params['CustomContent'].nil?
+            @CustomContent = []
+            params['CustomContent'].each do |i|
+              appcustomcontent_tmp = AppCustomContent.new
+              appcustomcontent_tmp.deserialize(i)
+              @CustomContent << appcustomcontent_tmp
+            end
+          end
+          @SdkAppId = params['SdkAppId']
+        end
+      end
+
+      # SetAppCustomContent返回参数结构体
+      class SetAppCustomContentResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
           @RequestId = params['RequestId']
         end
       end

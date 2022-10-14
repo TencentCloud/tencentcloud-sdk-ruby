@@ -1453,10 +1453,13 @@ module TencentCloud
         # @param JumboEnable: 专用通道是否支持巨帧。1 支持，0 不支持
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type JumboEnable: Integer
+        # @param HighPrecisionBFDEnable: 专用通道是否支持高精度BFD。1支持，0不支持
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HighPrecisionBFDEnable: Integer
 
-        attr_accessor :DirectConnectTunnelId, :DirectConnectId, :State, :DirectConnectOwnerAccount, :OwnerAccount, :NetworkType, :NetworkRegion, :VpcId, :DirectConnectGatewayId, :RouteType, :BgpPeer, :RouteFilterPrefixes, :PublicAddresses, :Vlan, :TencentAddress, :TencentBackupAddress, :CustomerAddress, :DirectConnectTunnelName, :CreatedTime, :Bandwidth, :NetDetectId, :EnableBGPCommunity, :NatType, :VpcRegion, :BfdEnable, :NqaEnable, :AccessPointType, :DirectConnectGatewayName, :VpcName, :SignLaw, :BfdInfo, :NqaInfo, :BgpStatus, :IPv6Enable, :TencentIPv6Address, :TencentBackupIPv6Address, :BgpIPv6Status, :CustomerIPv6Address, :JumboEnable
+        attr_accessor :DirectConnectTunnelId, :DirectConnectId, :State, :DirectConnectOwnerAccount, :OwnerAccount, :NetworkType, :NetworkRegion, :VpcId, :DirectConnectGatewayId, :RouteType, :BgpPeer, :RouteFilterPrefixes, :PublicAddresses, :Vlan, :TencentAddress, :TencentBackupAddress, :CustomerAddress, :DirectConnectTunnelName, :CreatedTime, :Bandwidth, :NetDetectId, :EnableBGPCommunity, :NatType, :VpcRegion, :BfdEnable, :NqaEnable, :AccessPointType, :DirectConnectGatewayName, :VpcName, :SignLaw, :BfdInfo, :NqaInfo, :BgpStatus, :IPv6Enable, :TencentIPv6Address, :TencentBackupIPv6Address, :BgpIPv6Status, :CustomerIPv6Address, :JumboEnable, :HighPrecisionBFDEnable
         
-        def initialize(directconnecttunnelid=nil, directconnectid=nil, state=nil, directconnectowneraccount=nil, owneraccount=nil, networktype=nil, networkregion=nil, vpcid=nil, directconnectgatewayid=nil, routetype=nil, bgppeer=nil, routefilterprefixes=nil, publicaddresses=nil, vlan=nil, tencentaddress=nil, tencentbackupaddress=nil, customeraddress=nil, directconnecttunnelname=nil, createdtime=nil, bandwidth=nil, netdetectid=nil, enablebgpcommunity=nil, nattype=nil, vpcregion=nil, bfdenable=nil, nqaenable=nil, accesspointtype=nil, directconnectgatewayname=nil, vpcname=nil, signlaw=nil, bfdinfo=nil, nqainfo=nil, bgpstatus=nil, ipv6enable=nil, tencentipv6address=nil, tencentbackupipv6address=nil, bgpipv6status=nil, customeripv6address=nil, jumboenable=nil)
+        def initialize(directconnecttunnelid=nil, directconnectid=nil, state=nil, directconnectowneraccount=nil, owneraccount=nil, networktype=nil, networkregion=nil, vpcid=nil, directconnectgatewayid=nil, routetype=nil, bgppeer=nil, routefilterprefixes=nil, publicaddresses=nil, vlan=nil, tencentaddress=nil, tencentbackupaddress=nil, customeraddress=nil, directconnecttunnelname=nil, createdtime=nil, bandwidth=nil, netdetectid=nil, enablebgpcommunity=nil, nattype=nil, vpcregion=nil, bfdenable=nil, nqaenable=nil, accesspointtype=nil, directconnectgatewayname=nil, vpcname=nil, signlaw=nil, bfdinfo=nil, nqainfo=nil, bgpstatus=nil, ipv6enable=nil, tencentipv6address=nil, tencentbackupipv6address=nil, bgpipv6status=nil, customeripv6address=nil, jumboenable=nil, highprecisionbfdenable=nil)
           @DirectConnectTunnelId = directconnecttunnelid
           @DirectConnectId = directconnectid
           @State = state
@@ -1496,6 +1499,7 @@ module TencentCloud
           @BgpIPv6Status = bgpipv6status
           @CustomerIPv6Address = customeripv6address
           @JumboEnable = jumboenable
+          @HighPrecisionBFDEnable = highprecisionbfdenable
         end
 
         def deserialize(params)
@@ -1567,6 +1571,7 @@ module TencentCloud
           end
           @CustomerIPv6Address = params['CustomerIPv6Address']
           @JumboEnable = params['JumboEnable']
+          @HighPrecisionBFDEnable = params['HighPrecisionBFDEnable']
         end
       end
 

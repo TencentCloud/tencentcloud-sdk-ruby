@@ -29,6 +29,30 @@ module TencentCloud
         end
 
 
+        # 创建房间内可以使用的文档。
+
+        # @param request: Request instance for CreateDocument.
+        # @type request: :class:`Tencentcloud::lcic::V20220817::CreateDocumentRequest`
+        # @rtype: :class:`Tencentcloud::lcic::V20220817::CreateDocumentResponse`
+        def CreateDocument(request)
+          body = send_request('CreateDocument', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateDocumentResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 创建房间
 
         # @param request: Request instance for CreateRoom.
@@ -183,6 +207,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = RegisterUserResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 设置应用的自定义内容，包括应用图标，自定义的代码等。如果已存在，则为更新。更新js、css内容后，要生效也需要调用该接口
+
+        # @param request: Request instance for SetAppCustomContent.
+        # @type request: :class:`Tencentcloud::lcic::V20220817::SetAppCustomContentRequest`
+        # @rtype: :class:`Tencentcloud::lcic::V20220817::SetAppCustomContentResponse`
+        def SetAppCustomContent(request)
+          body = send_request('SetAppCustomContent', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = SetAppCustomContentResponse.new
             model.deserialize(response['Response'])
             model
           else

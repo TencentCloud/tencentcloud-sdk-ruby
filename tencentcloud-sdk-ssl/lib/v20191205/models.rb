@@ -43,10 +43,12 @@ module TencentCloud
         # @type Alias: String
         # @param OldCertificateId: 原证书 ID，用于重新申请。
         # @type OldCertificateId: String
+        # @param PackageId: 权益包ID，用于免费证书扩容包使用
+        # @type PackageId: String
 
-        attr_accessor :DvAuthMethod, :DomainName, :ProjectId, :PackageType, :ContactEmail, :ContactPhone, :ValidityPeriod, :CsrEncryptAlgo, :CsrKeyParameter, :CsrKeyPassword, :Alias, :OldCertificateId
+        attr_accessor :DvAuthMethod, :DomainName, :ProjectId, :PackageType, :ContactEmail, :ContactPhone, :ValidityPeriod, :CsrEncryptAlgo, :CsrKeyParameter, :CsrKeyPassword, :Alias, :OldCertificateId, :PackageId
         
-        def initialize(dvauthmethod=nil, domainname=nil, projectid=nil, packagetype=nil, contactemail=nil, contactphone=nil, validityperiod=nil, csrencryptalgo=nil, csrkeyparameter=nil, csrkeypassword=nil, _alias=nil, oldcertificateid=nil)
+        def initialize(dvauthmethod=nil, domainname=nil, projectid=nil, packagetype=nil, contactemail=nil, contactphone=nil, validityperiod=nil, csrencryptalgo=nil, csrkeyparameter=nil, csrkeypassword=nil, _alias=nil, oldcertificateid=nil, packageid=nil)
           @DvAuthMethod = dvauthmethod
           @DomainName = domainname
           @ProjectId = projectid
@@ -59,6 +61,7 @@ module TencentCloud
           @CsrKeyPassword = csrkeypassword
           @Alias = _alias
           @OldCertificateId = oldcertificateid
+          @PackageId = packageid
         end
 
         def deserialize(params)
@@ -74,6 +77,7 @@ module TencentCloud
           @CsrKeyPassword = params['CsrKeyPassword']
           @Alias = params['Alias']
           @OldCertificateId = params['OldCertificateId']
+          @PackageId = params['PackageId']
         end
       end
 

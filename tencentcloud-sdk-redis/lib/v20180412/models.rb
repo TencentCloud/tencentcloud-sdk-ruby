@@ -4080,124 +4080,142 @@ module TencentCloud
 
       # 实例详细信息列表
       class InstanceSet < TencentCloud::Common::AbstractModel
-        # @param InstanceName: 实例名称
+        # @param InstanceName: 实例名称。
         # @type InstanceName: String
-        # @param InstanceId: 实例Id
+        # @param InstanceId: 实例Id。
         # @type InstanceId: String
-        # @param Appid: 用户的Appid
+        # @param Appid: 用户的Appid。
         # @type Appid: Integer
-        # @param ProjectId: 项目Id
+        # @param ProjectId: 项目Id。
         # @type ProjectId: Integer
-        # @param RegionId: 地域id 1--广州 4--上海 5-- 中国香港 6--多伦多 7--上海金融 8--北京 9-- 新加坡 11--深圳金融 15--美西（硅谷）16--成都 17--德国 18--韩国 19--重庆 21--印度 22--美东（弗吉尼亚）23--泰国 24--俄罗斯 25--日本
+        # @param RegionId: 地域id 。1--广州 4--上海 5-- 中国香港 6--多伦多 7--上海金融 8--北京 9-- 新加坡 11--深圳金融 15--美西（硅谷）16--成都 17--德国 18--韩国 19--重庆 21--印度 22--美东（弗吉尼亚）23--泰国 24--俄罗斯 25--日本
         # @type RegionId: Integer
-        # @param ZoneId: 区域id
+        # @param ZoneId: 区域id。
         # @type ZoneId: Integer
-        # @param VpcId: vpc网络id 如：75101
+        # @param VpcId: vpc网络id，例如75101。
         # @type VpcId: Integer
-        # @param SubnetId: vpc网络下子网id 如：46315
+        # @param SubnetId: vpc网络下子网id 如：46315。
         # @type SubnetId: Integer
-        # @param Status: 实例当前状态，0：待初始化；1：实例在流程中；2：实例运行中；-2：实例已隔离；-3：实例待删除
+        # @param Status: 实例当前状态。<ul><li>0：待初始化。</li><li>1：实例在流程中。</li><li>2：实例运行中。</li><li>-2：实例已隔离。</li><li>-3：实例待删除。</li></ul>
         # @type Status: Integer
-        # @param WanIp: 实例vip
+        # @param WanIp: 实例vip。
         # @type WanIp: String
-        # @param Port: 实例端口号
+        # @param Port: 实例端口号。
         # @type Port: Integer
-        # @param Createtime: 实例创建时间
+        # @param Createtime: 实例创建时间。
         # @type Createtime: String
-        # @param Size: 实例容量大小，单位：MB
+        # @param Size: 实例容量大小，单位：MB。
         # @type Size: Float
-        # @param SizeUsed: 该字段已废弃
+        # @param SizeUsed: 该字段已废弃。
         # @type SizeUsed: Float
-        # @param Type: 实例类型：1 – Redis2.8内存版（集群架构），2 – Redis2.8内存版（标准架构），3 – CKV 3.2内存版(标准架构)，4 – CKV 3.2内存版(集群架构)，5 – Redis2.8内存版（单机），6 – Redis4.0内存版（标准架构），7 – Redis4.0内存版（集群架构），8 – Redis5.0内存版（标准架构），9 – Redis5.0内存版（集群架构）
+        # @param Type: 实例类型：<ul><li>1：Redis2.8内存版（集群架构）。</li><li>2：Redis2.8内存版（标准架构）。</li><li>3：CKV 3.2内存版(标准架构)。</li><li>4：CKV 3.2内存版(集群架构)。</li><li>5：Redis2.8内存版（单机）。</li></li><li>6：Redis4.0内存版（标准架构）。</li></li><li>7：Redis4.0内存版（集群架构）。</li></li><li>8：Redis5.0内存版（标准架构）。</li></li><li>9：Redis5.0内存版（集群架构）。</li></ul>
         # @type Type: Integer
-        # @param AutoRenewFlag: 实例是否设置自动续费标识，1：设置自动续费；0：未设置自动续费
+        # @param AutoRenewFlag: 实例是否设置自动续费标识。<ul><li>1：设置自动续费。</li><li>0：未设置自动续费。</li></ul>
         # @type AutoRenewFlag: Integer
-        # @param DeadlineTime: 实例到期时间
+        # @param DeadlineTime: 实例到期时间。
         # @type DeadlineTime: String
-        # @param Engine: 引擎：社区版Redis、腾讯云CKV
+        # @param Engine: 引擎：社区版Redis、腾讯云CKV。
         # @type Engine: String
-        # @param ProductType: 产品类型：standalone – 标准版，cluster – 集群版
+        # @param ProductType: 产品类型。<ul><li>standalone：标准版。</li><li>cluster ：集群版。</li></ul>
         # @type ProductType: String
-        # @param UniqVpcId: vpc网络id 如：vpc-fk33jsf43kgv
+        # @param UniqVpcId: vpc网络id，例如vpc-fk33jsf43kgv。
         # @type UniqVpcId: String
-        # @param UniqSubnetId: vpc网络下子网id 如：subnet-fd3j6l35mm0
+        # @param UniqSubnetId: vpc网络下子网id，例如：subnet-fd3j6l35mm0。
         # @type UniqSubnetId: String
-        # @param BillingMode: 计费模式：0-按量计费，1-包年包月
+        # @param BillingMode: 计费模式。<ul><li>0：按量计费。</li><li>1：包年包月。</li></ul>
         # @type BillingMode: Integer
-        # @param InstanceTitle: 实例运行状态描述：如”实例运行中“
+        # @param InstanceTitle: 实例运行状态描述：如”实例运行中“。
         # @type InstanceTitle: String
-        # @param OfflineTime: 计划下线时间
+        # @param OfflineTime: 计划下线时间。
         # @type OfflineTime: String
-        # @param SubStatus: 流程中的实例，返回子状态
+        # @param SubStatus: 流程中的实例，返回子状态。
         # @type SubStatus: Integer
-        # @param Tags: 反亲和性标签
+        # @param Tags: 反亲和性标签。
         # @type Tags: Array
-        # @param InstanceNode: 实例节点信息
+        # @param InstanceNode: 实例节点信息。
         # @type InstanceNode: Array
-        # @param RedisShardSize: 分片大小
+        # @param RedisShardSize: 分片大小。
         # @type RedisShardSize: Integer
-        # @param RedisShardNum: 分片数量
+        # @param RedisShardNum: 分片数量。
         # @type RedisShardNum: Integer
-        # @param RedisReplicasNum: 副本数量
+        # @param RedisReplicasNum: 副本数量。
         # @type RedisReplicasNum: Integer
-        # @param PriceId: 计费Id
+        # @param PriceId: 计费Id。
         # @type PriceId: Integer
-        # @param CloseTime: 隔离时间
+        # @param CloseTime: 隔离时间。
         # @type CloseTime: String
-        # @param SlaveReadWeight: 从节点读取权重
+        # @param SlaveReadWeight: 从节点读取权重。
         # @type SlaveReadWeight: Integer
-        # @param InstanceTags: 实例关联的标签信息
+        # @param InstanceTags: 实例关联的标签信息。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceTags: Array
-        # @param ProjectName: 项目名称
+        # @param ProjectName: 项目名称。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProjectName: String
-        # @param NoAuth: 是否为免密实例，true-免密实例；false-非免密实例
+        # @param NoAuth: 是否为免密实例。<ul><li>true：免密实例。</li><li>false：非免密实例。</li></ul>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NoAuth: Boolean
-        # @param ClientLimit: 客户端连接数
+        # @param ClientLimit: 客户端连接数。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ClientLimit: Integer
-        # @param DtsStatus: DTS状态（内部参数，用户可忽略）
+        # @param DtsStatus: DTS状态（内部参数，用户可忽略）。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DtsStatus: Integer
-        # @param NetLimit: 分片带宽上限，单位MB
+        # @param NetLimit: 分片带宽上限，单位MB。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NetLimit: Integer
-        # @param PasswordFree: 免密实例标识（内部参数，用户可忽略）
+        # @param PasswordFree: 免密实例标识（内部参数，用户可忽略）。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PasswordFree: Integer
-        # @param ReadOnly: 实例只读标识（内部参数，用户可忽略）
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type ReadOnly: Integer
-        # @param Vip6: 内部参数，用户可忽略
+        # @param Vip6: 内部参数，用户可忽略。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Vip6: String
-        # @param RemainBandwidthDuration: 内部参数，用户可忽略
+        # @param ReadOnly: 实例只读标识（内部参数，用户可忽略）。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ReadOnly: Integer
+        # @param RemainBandwidthDuration: 内部参数，用户可忽略。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RemainBandwidthDuration: String
-        # @param DiskSize: Tendis实例的磁盘大小
+        # @param DiskSize: Redis实例请忽略该参数。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DiskSize: Integer
-        # @param MonitorVersion: 监控版本: 1m-分钟粒度监控，5s-5秒粒度监控
+        # @param MonitorVersion: 监控版本。<ul><li>1m：分钟粒度监控。</li><li>5s：5秒粒度监控。</li></ul>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MonitorVersion: String
-        # @param ClientLimitMin: 客户端最大连接数可设置的最小值
+        # @param ClientLimitMin: 客户端最大连接数可设置的最小值。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ClientLimitMin: Integer
-        # @param ClientLimitMax: 客户端最大连接数可设置的最大值
+        # @param ClientLimitMax: 客户端最大连接数可设置的最大值。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ClientLimitMax: Integer
-        # @param NodeSet: 实例的节点详细信息
+        # @param NodeSet: 实例的节点详细信息。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NodeSet: Array
-        # @param Region: 实例所在的地域信息，比如ap-guangzhou
+        # @param Region: 实例所在的地域信息，比如ap-guangzhou。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Region: String
+        # @param WanAddress: 外网地址。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type WanAddress: String
+        # @param PolarisServer: 北极星服务地址。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PolarisServer: String
+        # @param CurrentProxyVersion: 实例当前Proxy版本。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CurrentProxyVersion: String
+        # @param CurrentRedisVersion: 实例当前Cache小版本。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CurrentRedisVersion: String
+        # @param UpgradeProxyVersion: 实例可升级Proxy版本。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UpgradeProxyVersion: String
+        # @param UpgradeRedisVersion: 实例可升级Cache小版本。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UpgradeRedisVersion: String
 
-        attr_accessor :InstanceName, :InstanceId, :Appid, :ProjectId, :RegionId, :ZoneId, :VpcId, :SubnetId, :Status, :WanIp, :Port, :Createtime, :Size, :SizeUsed, :Type, :AutoRenewFlag, :DeadlineTime, :Engine, :ProductType, :UniqVpcId, :UniqSubnetId, :BillingMode, :InstanceTitle, :OfflineTime, :SubStatus, :Tags, :InstanceNode, :RedisShardSize, :RedisShardNum, :RedisReplicasNum, :PriceId, :CloseTime, :SlaveReadWeight, :InstanceTags, :ProjectName, :NoAuth, :ClientLimit, :DtsStatus, :NetLimit, :PasswordFree, :ReadOnly, :Vip6, :RemainBandwidthDuration, :DiskSize, :MonitorVersion, :ClientLimitMin, :ClientLimitMax, :NodeSet, :Region
+        attr_accessor :InstanceName, :InstanceId, :Appid, :ProjectId, :RegionId, :ZoneId, :VpcId, :SubnetId, :Status, :WanIp, :Port, :Createtime, :Size, :SizeUsed, :Type, :AutoRenewFlag, :DeadlineTime, :Engine, :ProductType, :UniqVpcId, :UniqSubnetId, :BillingMode, :InstanceTitle, :OfflineTime, :SubStatus, :Tags, :InstanceNode, :RedisShardSize, :RedisShardNum, :RedisReplicasNum, :PriceId, :CloseTime, :SlaveReadWeight, :InstanceTags, :ProjectName, :NoAuth, :ClientLimit, :DtsStatus, :NetLimit, :PasswordFree, :Vip6, :ReadOnly, :RemainBandwidthDuration, :DiskSize, :MonitorVersion, :ClientLimitMin, :ClientLimitMax, :NodeSet, :Region, :WanAddress, :PolarisServer, :CurrentProxyVersion, :CurrentRedisVersion, :UpgradeProxyVersion, :UpgradeRedisVersion
         
-        def initialize(instancename=nil, instanceid=nil, appid=nil, projectid=nil, regionid=nil, zoneid=nil, vpcid=nil, subnetid=nil, status=nil, wanip=nil, port=nil, createtime=nil, size=nil, sizeused=nil, type=nil, autorenewflag=nil, deadlinetime=nil, engine=nil, producttype=nil, uniqvpcid=nil, uniqsubnetid=nil, billingmode=nil, instancetitle=nil, offlinetime=nil, substatus=nil, tags=nil, instancenode=nil, redisshardsize=nil, redisshardnum=nil, redisreplicasnum=nil, priceid=nil, closetime=nil, slavereadweight=nil, instancetags=nil, projectname=nil, noauth=nil, clientlimit=nil, dtsstatus=nil, netlimit=nil, passwordfree=nil, readonly=nil, vip6=nil, remainbandwidthduration=nil, disksize=nil, monitorversion=nil, clientlimitmin=nil, clientlimitmax=nil, nodeset=nil, region=nil)
+        def initialize(instancename=nil, instanceid=nil, appid=nil, projectid=nil, regionid=nil, zoneid=nil, vpcid=nil, subnetid=nil, status=nil, wanip=nil, port=nil, createtime=nil, size=nil, sizeused=nil, type=nil, autorenewflag=nil, deadlinetime=nil, engine=nil, producttype=nil, uniqvpcid=nil, uniqsubnetid=nil, billingmode=nil, instancetitle=nil, offlinetime=nil, substatus=nil, tags=nil, instancenode=nil, redisshardsize=nil, redisshardnum=nil, redisreplicasnum=nil, priceid=nil, closetime=nil, slavereadweight=nil, instancetags=nil, projectname=nil, noauth=nil, clientlimit=nil, dtsstatus=nil, netlimit=nil, passwordfree=nil, vip6=nil, readonly=nil, remainbandwidthduration=nil, disksize=nil, monitorversion=nil, clientlimitmin=nil, clientlimitmax=nil, nodeset=nil, region=nil, wanaddress=nil, polarisserver=nil, currentproxyversion=nil, currentredisversion=nil, upgradeproxyversion=nil, upgraderedisversion=nil)
           @InstanceName = instancename
           @InstanceId = instanceid
           @Appid = appid
@@ -4238,8 +4256,8 @@ module TencentCloud
           @DtsStatus = dtsstatus
           @NetLimit = netlimit
           @PasswordFree = passwordfree
-          @ReadOnly = readonly
           @Vip6 = vip6
+          @ReadOnly = readonly
           @RemainBandwidthDuration = remainbandwidthduration
           @DiskSize = disksize
           @MonitorVersion = monitorversion
@@ -4247,6 +4265,12 @@ module TencentCloud
           @ClientLimitMax = clientlimitmax
           @NodeSet = nodeset
           @Region = region
+          @WanAddress = wanaddress
+          @PolarisServer = polarisserver
+          @CurrentProxyVersion = currentproxyversion
+          @CurrentRedisVersion = currentredisversion
+          @UpgradeProxyVersion = upgradeproxyversion
+          @UpgradeRedisVersion = upgraderedisversion
         end
 
         def deserialize(params)
@@ -4304,8 +4328,8 @@ module TencentCloud
           @DtsStatus = params['DtsStatus']
           @NetLimit = params['NetLimit']
           @PasswordFree = params['PasswordFree']
-          @ReadOnly = params['ReadOnly']
           @Vip6 = params['Vip6']
+          @ReadOnly = params['ReadOnly']
           @RemainBandwidthDuration = params['RemainBandwidthDuration']
           @DiskSize = params['DiskSize']
           @MonitorVersion = params['MonitorVersion']
@@ -4320,6 +4344,12 @@ module TencentCloud
             end
           end
           @Region = params['Region']
+          @WanAddress = params['WanAddress']
+          @PolarisServer = params['PolarisServer']
+          @CurrentProxyVersion = params['CurrentProxyVersion']
+          @CurrentRedisVersion = params['CurrentRedisVersion']
+          @UpgradeProxyVersion = params['UpgradeProxyVersion']
+          @UpgradeRedisVersion = params['UpgradeRedisVersion']
         end
       end
 

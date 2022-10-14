@@ -11811,7 +11811,7 @@ module TencentCloud
         end
       end
 
-      # 即时剪辑后媒资的片段信息。
+      # 即时剪辑后媒体的片段信息。
       class LiveRealTimeClipMediaSegmentInfo < TencentCloud::Common::AbstractModel
         # @param StartTime: 片段的起始时间。格式参照 [ISO 日期格式说明](https://cloud.tencent.com/document/product/266/11732#I)。
         # @type StartTime: String
@@ -13769,7 +13769,7 @@ module TencentCloud
         # @type Format: String
         # @param Content: 字幕内容，进行 [Base64](https://tools.ietf.org/html/rfc4648) 编码后的字符串。
         # @type Content: String
-        # @param Id: 字幕的唯一标识。长度不能超过16个字符，可以使用大小写字母、数字、下划线（_）或横杠（-）。不能与媒资文件中现有字幕的唯一标识重复。
+        # @param Id: 字幕的唯一标识。长度不能超过16个字符，可以使用大小写字母、数字、下划线（_）或横杠（-）。不能与媒体文件中现有字幕的唯一标识重复。
         # @type Id: String
 
         attr_accessor :Name, :Language, :Format, :Content, :Id
