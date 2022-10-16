@@ -77,6 +77,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 生成自定义码包
+
+        # @param request: Request instance for CreateCustomPack.
+        # @type request: :class:`Tencentcloud::trp::V20210515::CreateCustomPackRequest`
+        # @rtype: :class:`Tencentcloud::trp::V20210515::CreateCustomPackResponse`
+        def CreateCustomPack(request)
+          body = send_request('CreateCustomPack', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateCustomPackResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 新建自定义码规则
+
+        # @param request: Request instance for CreateCustomRule.
+        # @type request: :class:`Tencentcloud::trp::V20210515::CreateCustomRuleRequest`
+        # @rtype: :class:`Tencentcloud::trp::V20210515::CreateCustomRuleResponse`
+        def CreateCustomRule(request)
+          body = send_request('CreateCustomRule', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateCustomRuleResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 新建商户
 
         # @param request: Request instance for CreateMerchant.
@@ -159,6 +207,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = CreateTraceCodesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 异步导入激活码包，如果是第三方码包，需要域名跟配置的匹配
+
+        # @param request: Request instance for CreateTraceCodesAsync.
+        # @type request: :class:`Tencentcloud::trp::V20210515::CreateTraceCodesAsyncRequest`
+        # @rtype: :class:`Tencentcloud::trp::V20210515::CreateTraceCodesAsyncResponse`
+        def CreateTraceCodesAsync(request)
+          body = send_request('CreateTraceCodesAsync', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateTraceCodesAsyncResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -341,6 +413,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询码包状态
+
+        # @param request: Request instance for DescribeCodePackStatus.
+        # @type request: :class:`Tencentcloud::trp::V20210515::DescribeCodePackStatusRequest`
+        # @rtype: :class:`Tencentcloud::trp::V20210515::DescribeCodePackStatusResponse`
+        def DescribeCodePackStatus(request)
+          body = send_request('DescribeCodePackStatus', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeCodePackStatusResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询码包地址
+
+        # @param request: Request instance for DescribeCodePackUrl.
+        # @type request: :class:`Tencentcloud::trp::V20210515::DescribeCodePackUrlRequest`
+        # @rtype: :class:`Tencentcloud::trp::V20210515::DescribeCodePackUrlResponse`
+        def DescribeCodePackUrl(request)
+          body = send_request('DescribeCodePackUrl', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeCodePackUrlResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询码包列表
 
         # @param request: Request instance for DescribeCodePacks.
@@ -375,6 +495,78 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeCodesByPackResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查自定义码规则
+
+        # @param request: Request instance for DescribeCustomRuleById.
+        # @type request: :class:`Tencentcloud::trp::V20210515::DescribeCustomRuleByIdRequest`
+        # @rtype: :class:`Tencentcloud::trp::V20210515::DescribeCustomRuleByIdResponse`
+        def DescribeCustomRuleById(request)
+          body = send_request('DescribeCustomRuleById', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeCustomRuleByIdResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查自定义码规则列表
+
+        # @param request: Request instance for DescribeCustomRules.
+        # @type request: :class:`Tencentcloud::trp::V20210515::DescribeCustomRulesRequest`
+        # @rtype: :class:`Tencentcloud::trp::V20210515::DescribeCustomRulesResponse`
+        def DescribeCustomRules(request)
+          body = send_request('DescribeCustomRules', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeCustomRulesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取异步任务的输出地址
+
+        # @param request: Request instance for DescribeJobFileUrl.
+        # @type request: :class:`Tencentcloud::trp::V20210515::DescribeJobFileUrlRequest`
+        # @rtype: :class:`Tencentcloud::trp::V20210515::DescribeJobFileUrlResponse`
+        def DescribeJobFileUrl(request)
+          body = send_request('DescribeJobFileUrl', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeJobFileUrlResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -567,6 +759,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyCodeBatchResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改自定义码规则
+
+        # @param request: Request instance for ModifyCustomRule.
+        # @type request: :class:`Tencentcloud::trp::V20210515::ModifyCustomRuleRequest`
+        # @rtype: :class:`Tencentcloud::trp::V20210515::ModifyCustomRuleResponse`
+        def ModifyCustomRule(request)
+          body = send_request('ModifyCustomRule', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyCustomRuleResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 更新自定义码规则状态
+
+        # @param request: Request instance for ModifyCustomRuleStatus.
+        # @type request: :class:`Tencentcloud::trp::V20210515::ModifyCustomRuleStatusRequest`
+        # @rtype: :class:`Tencentcloud::trp::V20210515::ModifyCustomRuleStatusResponse`
+        def ModifyCustomRuleStatus(request)
+          body = send_request('ModifyCustomRuleStatus', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyCustomRuleStatusResponse.new
             model.deserialize(response['Response'])
             model
           else

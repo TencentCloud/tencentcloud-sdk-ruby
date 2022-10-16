@@ -881,6 +881,52 @@ module TencentCloud
         end
       end
 
+      # DeleteCustomFunction请求参数结构体
+      class DeleteCustomFunctionRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterIdentifier: 集群实例 ID
+        # @type ClusterIdentifier: String
+        # @param FunctionId: 函数 ID
+        # @type FunctionId: String
+
+        attr_accessor :ClusterIdentifier, :FunctionId
+        
+        def initialize(clusteridentifier=nil, functionid=nil)
+          @ClusterIdentifier = clusteridentifier
+          @FunctionId = functionid
+        end
+
+        def deserialize(params)
+          @ClusterIdentifier = params['ClusterIdentifier']
+          @FunctionId = params['FunctionId']
+        end
+      end
+
+      # DeleteCustomFunction返回参数结构体
+      class DeleteCustomFunctionResponse < TencentCloud::Common::AbstractModel
+        # @param FunctionId: 函数 ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FunctionId: String
+        # @param ErrorMessage: 无
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ErrorMessage: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :FunctionId, :ErrorMessage, :RequestId
+        
+        def initialize(functionid=nil, errormessage=nil, requestid=nil)
+          @FunctionId = functionid
+          @ErrorMessage = errormessage
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @FunctionId = params['FunctionId']
+          @ErrorMessage = params['ErrorMessage']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DeleteDataSources请求参数结构体
       class DeleteDataSourcesRequest < TencentCloud::Common::AbstractModel
         # @param Ids: id列表
@@ -1457,6 +1503,94 @@ module TencentCloud
         end
       end
 
+      # DescribeFunctionKinds请求参数结构体
+      class DescribeFunctionKindsRequest < TencentCloud::Common::AbstractModel
+
+        
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeFunctionKinds返回参数结构体
+      class DescribeFunctionKindsResponse < TencentCloud::Common::AbstractModel
+        # @param Kinds: 无
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Kinds: Array
+        # @param ErrorMessage: 无
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ErrorMessage: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Kinds, :ErrorMessage, :RequestId
+        
+        def initialize(kinds=nil, errormessage=nil, requestid=nil)
+          @Kinds = kinds
+          @ErrorMessage = errormessage
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Kinds'].nil?
+            @Kinds = []
+            params['Kinds'].each do |i|
+              functiontypeorkind_tmp = FunctionTypeOrKind.new
+              functiontypeorkind_tmp.deserialize(i)
+              @Kinds << functiontypeorkind_tmp
+            end
+          end
+          @ErrorMessage = params['ErrorMessage']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeFunctionTypes请求参数结构体
+      class DescribeFunctionTypesRequest < TencentCloud::Common::AbstractModel
+
+        
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeFunctionTypes返回参数结构体
+      class DescribeFunctionTypesResponse < TencentCloud::Common::AbstractModel
+        # @param Types: 无
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Types: Array
+        # @param ErrorMessage: 无
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ErrorMessage: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Types, :ErrorMessage, :RequestId
+        
+        def initialize(types=nil, errormessage=nil, requestid=nil)
+          @Types = types
+          @ErrorMessage = errormessage
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Types'].nil?
+            @Types = []
+            params['Types'].each do |i|
+              functiontypeorkind_tmp = FunctionTypeOrKind.new
+              functiontypeorkind_tmp.deserialize(i)
+              @Types << functiontypeorkind_tmp
+            end
+          end
+          @ErrorMessage = params['ErrorMessage']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeInstanceLogs请求参数结构体
       class DescribeInstanceLogsRequest < TencentCloud::Common::AbstractModel
         # @param ProjectId: 项目Id
@@ -1505,6 +1639,67 @@ module TencentCloud
               @Data << instancelog_tmp
             end
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeOrganizationalFunctions请求参数结构体
+      class DescribeOrganizationalFunctionsRequest < TencentCloud::Common::AbstractModel
+        # @param Type: 场景类型：开发、使用
+        # @type Type: String
+        # @param ProjectId: 项目 ID
+        # @type ProjectId: String
+        # @param Name: 函数名称
+        # @type Name: String
+        # @param DisplayName: 展示名称
+        # @type DisplayName: String
+
+        attr_accessor :Type, :ProjectId, :Name, :DisplayName
+        
+        def initialize(type=nil, projectid=nil, name=nil, displayname=nil)
+          @Type = type
+          @ProjectId = projectid
+          @Name = name
+          @DisplayName = displayname
+        end
+
+        def deserialize(params)
+          @Type = params['Type']
+          @ProjectId = params['ProjectId']
+          @Name = params['Name']
+          @DisplayName = params['DisplayName']
+        end
+      end
+
+      # DescribeOrganizationalFunctions返回参数结构体
+      class DescribeOrganizationalFunctionsResponse < TencentCloud::Common::AbstractModel
+        # @param Content: 无
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Content: Array
+        # @param ErrorMessage: 无
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ErrorMessage: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Content, :ErrorMessage, :RequestId
+        
+        def initialize(content=nil, errormessage=nil, requestid=nil)
+          @Content = content
+          @ErrorMessage = errormessage
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Content'].nil?
+            @Content = []
+            params['Content'].each do |i|
+              organizationalfunction_tmp = OrganizationalFunction.new
+              organizationalfunction_tmp.deserialize(i)
+              @Content << organizationalfunction_tmp
+            end
+          end
+          @ErrorMessage = params['ErrorMessage']
           @RequestId = params['RequestId']
         end
       end
@@ -2093,6 +2288,108 @@ module TencentCloud
             @Data.deserialize(params['Data'])
           end
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 函数资源信息
+      class FunctionResource < TencentCloud::Common::AbstractModel
+        # @param Path: 资源路径
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Path: String
+        # @param Name: 无
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
+        # @param Id: 资源唯一标识
+        # @type Id: String
+        # @param Md5: 资源 MD5 值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Md5: String
+        # @param Type: 默认是 hdfs
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Type: String
+
+        attr_accessor :Path, :Name, :Id, :Md5, :Type
+        
+        def initialize(path=nil, name=nil, id=nil, md5=nil, type=nil)
+          @Path = path
+          @Name = name
+          @Id = id
+          @Md5 = md5
+          @Type = type
+        end
+
+        def deserialize(params)
+          @Path = params['Path']
+          @Name = params['Name']
+          @Id = params['Id']
+          @Md5 = params['Md5']
+          @Type = params['Type']
+        end
+      end
+
+      # 函数类型或函数分类
+      class FunctionTypeOrKind < TencentCloud::Common::AbstractModel
+        # @param Name: 无
+        # @type Name: String
+        # @param ZhName: 无
+        # @type ZhName: String
+        # @param EnName: 无
+        # @type EnName: String
+
+        attr_accessor :Name, :ZhName, :EnName
+        
+        def initialize(name=nil, zhname=nil, enname=nil)
+          @Name = name
+          @ZhName = zhname
+          @EnName = enname
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @ZhName = params['ZhName']
+          @EnName = params['EnName']
+        end
+      end
+
+      # 函数提交版本信息
+      class FunctionVersion < TencentCloud::Common::AbstractModel
+        # @param Tag: 版本号：V0 V1 V2
+        # @type Tag: String
+        # @param UserId: 提交人 ID
+        # @type UserId: String
+        # @param Type: 变更类型：ADD、MODIFY
+        # @type Type: String
+        # @param Comment: 备注
+        # @type Comment: String
+        # @param Timestamp: 提交时间: UTC 秒数
+        # @type Timestamp: String
+        # @param UserName: 提交人名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UserName: String
+        # @param Content: 版本内容：json string 格式
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Content: String
+
+        attr_accessor :Tag, :UserId, :Type, :Comment, :Timestamp, :UserName, :Content
+        
+        def initialize(tag=nil, userid=nil, type=nil, comment=nil, timestamp=nil, username=nil, content=nil)
+          @Tag = tag
+          @UserId = userid
+          @Type = type
+          @Comment = comment
+          @Timestamp = timestamp
+          @UserName = username
+          @Content = content
+        end
+
+        def deserialize(params)
+          @Tag = params['Tag']
+          @UserId = params['UserId']
+          @Type = params['Type']
+          @Comment = params['Comment']
+          @Timestamp = params['Timestamp']
+          @UserName = params['UserName']
+          @Content = params['Content']
         end
       end
 
@@ -3211,6 +3508,126 @@ module TencentCloud
         end
       end
 
+      # 包含层级信息的函数
+      class OrganizationalFunction < TencentCloud::Common::AbstractModel
+        # @param Name: 名称
+        # @type Name: String
+        # @param DisplayName: 展示名称
+        # @type DisplayName: String
+        # @param LayerPath: 层级路径
+        # @type LayerPath: String
+        # @param ParentLayerPath: 上级层级路径
+        # @type ParentLayerPath: String
+        # @param Type: 函数类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Type: String
+        # @param Kind: 函数分类：窗口函数、聚合函数、日期函数......
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Kind: String
+        # @param Category: 函数种类：系统函数、自定义函数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Category: String
+        # @param Status: 函数状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: String
+        # @param Description: 函数说明
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Description: String
+        # @param Usage: 函数用法
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Usage: String
+        # @param ParamDesc: 函数参数说明
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ParamDesc: String
+        # @param ReturnDesc: 函数返回值说明
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ReturnDesc: String
+        # @param Example: 函数示例
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Example: String
+        # @param ClusterIdentifier: 集群实例引擎 ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClusterIdentifier: String
+        # @param FuncId: 函数 ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FuncId: String
+        # @param ClassName: 函数类名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClassName: String
+        # @param ResourceList: 函数资源列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResourceList: Array
+        # @param OperatorUserIds: 操作人 ID 列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OperatorUserIds: Array
+        # @param OwnerUserIds: 公有云 Owner ID 列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OwnerUserIds: Array
+        # @param DbName: 数据库名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DbName: String
+        # @param SubmitErrorMsg: 提交失败错误信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SubmitErrorMsg: String
+
+        attr_accessor :Name, :DisplayName, :LayerPath, :ParentLayerPath, :Type, :Kind, :Category, :Status, :Description, :Usage, :ParamDesc, :ReturnDesc, :Example, :ClusterIdentifier, :FuncId, :ClassName, :ResourceList, :OperatorUserIds, :OwnerUserIds, :DbName, :SubmitErrorMsg
+        
+        def initialize(name=nil, displayname=nil, layerpath=nil, parentlayerpath=nil, type=nil, kind=nil, category=nil, status=nil, description=nil, usage=nil, paramdesc=nil, returndesc=nil, example=nil, clusteridentifier=nil, funcid=nil, classname=nil, resourcelist=nil, operatoruserids=nil, owneruserids=nil, dbname=nil, submiterrormsg=nil)
+          @Name = name
+          @DisplayName = displayname
+          @LayerPath = layerpath
+          @ParentLayerPath = parentlayerpath
+          @Type = type
+          @Kind = kind
+          @Category = category
+          @Status = status
+          @Description = description
+          @Usage = usage
+          @ParamDesc = paramdesc
+          @ReturnDesc = returndesc
+          @Example = example
+          @ClusterIdentifier = clusteridentifier
+          @FuncId = funcid
+          @ClassName = classname
+          @ResourceList = resourcelist
+          @OperatorUserIds = operatoruserids
+          @OwnerUserIds = owneruserids
+          @DbName = dbname
+          @SubmitErrorMsg = submiterrormsg
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @DisplayName = params['DisplayName']
+          @LayerPath = params['LayerPath']
+          @ParentLayerPath = params['ParentLayerPath']
+          @Type = params['Type']
+          @Kind = params['Kind']
+          @Category = params['Category']
+          @Status = params['Status']
+          @Description = params['Description']
+          @Usage = params['Usage']
+          @ParamDesc = params['ParamDesc']
+          @ReturnDesc = params['ReturnDesc']
+          @Example = params['Example']
+          @ClusterIdentifier = params['ClusterIdentifier']
+          @FuncId = params['FuncId']
+          @ClassName = params['ClassName']
+          unless params['ResourceList'].nil?
+            @ResourceList = []
+            params['ResourceList'].each do |i|
+              functionversion_tmp = FunctionVersion.new
+              functionversion_tmp.deserialize(i)
+              @ResourceList << functionversion_tmp
+            end
+          end
+          @OperatorUserIds = params['OperatorUserIds']
+          @OwnerUserIds = params['OwnerUserIds']
+          @DbName = params['DbName']
+          @SubmitErrorMsg = params['SubmitErrorMsg']
+        end
+      end
+
       # 参数参数
       class ParamInfo < TencentCloud::Common::AbstractModel
         # @param ParamKey: 参数名
@@ -3493,6 +3910,91 @@ module TencentCloud
         end
       end
 
+      # SaveCustomFunction请求参数结构体
+      class SaveCustomFunctionRequest < TencentCloud::Common::AbstractModel
+        # @param FunctionId: 函数唯一标识
+        # @type FunctionId: String
+        # @param Kind: 分类：窗口函数、聚合函数、日期函数......
+        # @type Kind: String
+        # @param ClusterIdentifier: 集群引擎实例
+        # @type ClusterIdentifier: String
+        # @param ClassName: 类名
+        # @type ClassName: String
+        # @param ResourceList: 资源列表
+        # @type ResourceList: Array
+        # @param Description: 函数说明
+        # @type Description: String
+        # @param Usage: 用法
+        # @type Usage: String
+        # @param ParamDesc: 参数说明
+        # @type ParamDesc: String
+        # @param ReturnDesc: 返回值说明
+        # @type ReturnDesc: String
+        # @param Example: 示例
+        # @type Example: String
+
+        attr_accessor :FunctionId, :Kind, :ClusterIdentifier, :ClassName, :ResourceList, :Description, :Usage, :ParamDesc, :ReturnDesc, :Example
+        
+        def initialize(functionid=nil, kind=nil, clusteridentifier=nil, classname=nil, resourcelist=nil, description=nil, usage=nil, paramdesc=nil, returndesc=nil, example=nil)
+          @FunctionId = functionid
+          @Kind = kind
+          @ClusterIdentifier = clusteridentifier
+          @ClassName = classname
+          @ResourceList = resourcelist
+          @Description = description
+          @Usage = usage
+          @ParamDesc = paramdesc
+          @ReturnDesc = returndesc
+          @Example = example
+        end
+
+        def deserialize(params)
+          @FunctionId = params['FunctionId']
+          @Kind = params['Kind']
+          @ClusterIdentifier = params['ClusterIdentifier']
+          @ClassName = params['ClassName']
+          unless params['ResourceList'].nil?
+            @ResourceList = []
+            params['ResourceList'].each do |i|
+              functionresource_tmp = FunctionResource.new
+              functionresource_tmp.deserialize(i)
+              @ResourceList << functionresource_tmp
+            end
+          end
+          @Description = params['Description']
+          @Usage = params['Usage']
+          @ParamDesc = params['ParamDesc']
+          @ReturnDesc = params['ReturnDesc']
+          @Example = params['Example']
+        end
+      end
+
+      # SaveCustomFunction返回参数结构体
+      class SaveCustomFunctionResponse < TencentCloud::Common::AbstractModel
+        # @param FunctionId: 函数唯一标识
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FunctionId: String
+        # @param ErrorMessage: 无
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ErrorMessage: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :FunctionId, :ErrorMessage, :RequestId
+        
+        def initialize(functionid=nil, errormessage=nil, requestid=nil)
+          @FunctionId = functionid
+          @ErrorMessage = errormessage
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @FunctionId = params['FunctionId']
+          @ErrorMessage = params['ErrorMessage']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # SetTaskAlarmNew请求参数结构体
       class SetTaskAlarmNewRequest < TencentCloud::Common::AbstractModel
         # @param AlarmInfoList: 设置任务超时告警和失败告警信息
@@ -3560,6 +4062,56 @@ module TencentCloud
         def deserialize(params)
           @TaskId = params['TaskId']
           @TaskName = params['TaskName']
+        end
+      end
+
+      # SubmitCustomFunction请求参数结构体
+      class SubmitCustomFunctionRequest < TencentCloud::Common::AbstractModel
+        # @param FunctionId: 函数唯一标识
+        # @type FunctionId: String
+        # @param ClusterIdentifier: 集群实例 ID
+        # @type ClusterIdentifier: String
+        # @param Comment: 备注信息
+        # @type Comment: String
+
+        attr_accessor :FunctionId, :ClusterIdentifier, :Comment
+        
+        def initialize(functionid=nil, clusteridentifier=nil, comment=nil)
+          @FunctionId = functionid
+          @ClusterIdentifier = clusteridentifier
+          @Comment = comment
+        end
+
+        def deserialize(params)
+          @FunctionId = params['FunctionId']
+          @ClusterIdentifier = params['ClusterIdentifier']
+          @Comment = params['Comment']
+        end
+      end
+
+      # SubmitCustomFunction返回参数结构体
+      class SubmitCustomFunctionResponse < TencentCloud::Common::AbstractModel
+        # @param FunctionId: 函数唯一标识
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FunctionId: String
+        # @param ErrorMessage: 无
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ErrorMessage: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :FunctionId, :ErrorMessage, :RequestId
+        
+        def initialize(functionid=nil, errormessage=nil, requestid=nil)
+          @FunctionId = functionid
+          @ErrorMessage = errormessage
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @FunctionId = params['FunctionId']
+          @ErrorMessage = params['ErrorMessage']
+          @RequestId = params['RequestId']
         end
       end
 

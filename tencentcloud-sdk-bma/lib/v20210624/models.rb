@@ -425,6 +425,78 @@ module TencentCloud
         end
       end
 
+      # CreateCRObtain请求参数结构体
+      class CreateCRObtainRequest < TencentCloud::Common::AbstractModel
+        # @param WorkId: 已存证的作品ID
+        # @type WorkId: Integer
+        # @param TortUrl: 侵权链接
+        # @type TortUrl: String
+        # @param ObtainType: 取证类型 1-网页取证 2-过程取证
+        # @type ObtainType: Integer
+        # @param WorkTitle: 侵权标题
+        # @type WorkTitle: String
+        # @param TortPlat: 侵权平台
+        # @type TortPlat: String
+        # @param ObtainDuration: 过程取证的取证时长 6-300分钟
+        # @type ObtainDuration: Integer
+        # @param ObtainUrl: 取证回调地址
+        # @type ObtainUrl: String
+        # @param WorkCategory: xxx
+        # @type WorkCategory: String
+        # @param WorkType: xxx
+        # @type WorkType: String
+
+        attr_accessor :WorkId, :TortUrl, :ObtainType, :WorkTitle, :TortPlat, :ObtainDuration, :ObtainUrl, :WorkCategory, :WorkType
+        
+        def initialize(workid=nil, torturl=nil, obtaintype=nil, worktitle=nil, tortplat=nil, obtainduration=nil, obtainurl=nil, workcategory=nil, worktype=nil)
+          @WorkId = workid
+          @TortUrl = torturl
+          @ObtainType = obtaintype
+          @WorkTitle = worktitle
+          @TortPlat = tortplat
+          @ObtainDuration = obtainduration
+          @ObtainUrl = obtainurl
+          @WorkCategory = workcategory
+          @WorkType = worktype
+        end
+
+        def deserialize(params)
+          @WorkId = params['WorkId']
+          @TortUrl = params['TortUrl']
+          @ObtainType = params['ObtainType']
+          @WorkTitle = params['WorkTitle']
+          @TortPlat = params['TortPlat']
+          @ObtainDuration = params['ObtainDuration']
+          @ObtainUrl = params['ObtainUrl']
+          @WorkCategory = params['WorkCategory']
+          @WorkType = params['WorkType']
+        end
+      end
+
+      # CreateCRObtain返回参数结构体
+      class CreateCRObtainResponse < TencentCloud::Common::AbstractModel
+        # @param TortId: 侵权ID
+        # @type TortId: Integer
+        # @param TortNum: xxx
+        # @type TortNum: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TortId, :TortNum, :RequestId
+        
+        def initialize(tortid=nil, tortnum=nil, requestid=nil)
+          @TortId = tortid
+          @TortNum = tortnum
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TortId = params['TortId']
+          @TortNum = params['TortNum']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateCRRightFile请求参数结构体
       class CreateCRRightFileRequest < TencentCloud::Common::AbstractModel
         # @param WorkId: 作品ID
@@ -975,11 +1047,11 @@ module TencentCloud
 
       # DescribeBPFakeURLs返回参数结构体
       class DescribeBPFakeURLsResponse < TencentCloud::Common::AbstractModel
-        # @param FakeURLInfos: xxx
+        # @param FakeURLInfos: 仿冒网址列表
         # @type FakeURLInfos: Array
-        # @param TotalCount: xxx
+        # @param TotalCount: 总量
         # @type TotalCount: Integer
-        # @param ExportURL: xxx
+        # @param ExportURL: 导出量
         # @type ExportURL: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1030,9 +1102,9 @@ module TencentCloud
 
       # DescribeBPProtectURLs返回参数结构体
       class DescribeBPProtectURLsResponse < TencentCloud::Common::AbstractModel
-        # @param ProtectURLInfos: xxx
+        # @param ProtectURLInfos: 保护网址列表
         # @type ProtectURLInfos: Array
-        # @param TotalCount: xxx
+        # @param TotalCount: 总量
         # @type TotalCount: Integer
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1092,9 +1164,9 @@ module TencentCloud
 
       # DescribeBPReportFakeURLs返回参数结构体
       class DescribeBPReportFakeURLsResponse < TencentCloud::Common::AbstractModel
-        # @param ReportFakeURLInfos: xxx
+        # @param ReportFakeURLInfos: 举报网站列表
         # @type ReportFakeURLInfos: Array
-        # @param TotalCount: xxx
+        # @param TotalCount: 总量
         # @type TotalCount: Integer
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

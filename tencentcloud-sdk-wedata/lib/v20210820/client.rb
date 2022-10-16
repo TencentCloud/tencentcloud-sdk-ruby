@@ -228,6 +228,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 删除用户自定义函数
+
+        # @param request: Request instance for DeleteCustomFunction.
+        # @type request: :class:`Tencentcloud::wedata::V20210820::DeleteCustomFunctionRequest`
+        # @rtype: :class:`Tencentcloud::wedata::V20210820::DeleteCustomFunctionResponse`
+        def DeleteCustomFunction(request)
+          body = send_request('DeleteCustomFunction', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteCustomFunctionResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
         # 删除数据源
 
@@ -453,6 +477,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询函数分类
+
+        # @param request: Request instance for DescribeFunctionKinds.
+        # @type request: :class:`Tencentcloud::wedata::V20210820::DescribeFunctionKindsRequest`
+        # @rtype: :class:`Tencentcloud::wedata::V20210820::DescribeFunctionKindsResponse`
+        def DescribeFunctionKinds(request)
+          body = send_request('DescribeFunctionKinds', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeFunctionKindsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询函数类型
+
+        # @param request: Request instance for DescribeFunctionTypes.
+        # @type request: :class:`Tencentcloud::wedata::V20210820::DescribeFunctionTypesRequest`
+        # @rtype: :class:`Tencentcloud::wedata::V20210820::DescribeFunctionTypesResponse`
+        def DescribeFunctionTypes(request)
+          body = send_request('DescribeFunctionTypes', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeFunctionTypesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
         # 获取实例日志列表
 
@@ -464,6 +536,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeInstanceLogsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询全量函数
+
+        # @param request: Request instance for DescribeOrganizationalFunctions.
+        # @type request: :class:`Tencentcloud::wedata::V20210820::DescribeOrganizationalFunctionsRequest`
+        # @rtype: :class:`Tencentcloud::wedata::V20210820::DescribeOrganizationalFunctionsResponse`
+        def DescribeOrganizationalFunctions(request)
+          body = send_request('DescribeOrganizationalFunctions', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeOrganizationalFunctionsResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1052,6 +1148,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 保存用户自定义函数
+
+        # @param request: Request instance for SaveCustomFunction.
+        # @type request: :class:`Tencentcloud::wedata::V20210820::SaveCustomFunctionRequest`
+        # @rtype: :class:`Tencentcloud::wedata::V20210820::SaveCustomFunctionResponse`
+        def SaveCustomFunction(request)
+          body = send_request('SaveCustomFunction', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = SaveCustomFunctionResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
         # 设置任务告警，新建/更新告警信息（最新）
 
@@ -1063,6 +1183,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = SetTaskAlarmNewResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 提交自定义函数
+
+        # @param request: Request instance for SubmitCustomFunction.
+        # @type request: :class:`Tencentcloud::wedata::V20210820::SubmitCustomFunctionRequest`
+        # @rtype: :class:`Tencentcloud::wedata::V20210820::SubmitCustomFunctionResponse`
+        def SubmitCustomFunction(request)
+          body = send_request('SubmitCustomFunction', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = SubmitCustomFunctionResponse.new
             model.deserialize(response['Response'])
             model
           else

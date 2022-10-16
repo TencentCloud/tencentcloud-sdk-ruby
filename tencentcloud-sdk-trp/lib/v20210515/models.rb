@@ -163,6 +163,42 @@ module TencentCloud
         end
       end
 
+      # 码段配置
+      class CodePart < TencentCloud::Common::AbstractModel
+        # @param Name: 码段名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
+        # @param Type: 码段类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Type: String
+        # @param Value: 码段内容
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Value: String
+        # @param Length: 码段长度
+        # @type Length: Integer
+        # @param Ext: 扩展字段
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Ext: String
+
+        attr_accessor :Name, :Type, :Value, :Length, :Ext
+        
+        def initialize(name=nil, type=nil, value=nil, length=nil, ext=nil)
+          @Name = name
+          @Type = type
+          @Value = value
+          @Length = length
+          @Ext = ext
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Type = params['Type']
+          @Value = params['Value']
+          @Length = params['Length']
+          @Ext = params['Ext']
+        end
+      end
+
       # CreateCodeBatch请求参数结构体
       class CreateCodeBatchRequest < TencentCloud::Common::AbstractModel
         # @param CorpId: 企业ID
@@ -294,6 +330,133 @@ module TencentCloud
 
         def deserialize(params)
           @PackId = params['PackId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateCustomPack请求参数结构体
+      class CreateCustomPackRequest < TencentCloud::Common::AbstractModel
+        # @param MerchantId: 商户ID
+        # @type MerchantId: String
+        # @param Amount: 生码数量, 普通码包时必填
+        # @type Amount: Integer
+        # @param CorpId: 企业ID
+        # @type CorpId: Integer
+        # @param PackType: 码包类型 0: 普通码包 1: 层级码包
+        # @type PackType: Integer
+        # @param PackLevel: 码包层级
+        # @type PackLevel: Integer
+        # @param PackSpec: 层级码包规则 [{ Level, Rate, Amount, CustomId }]
+        # @type PackSpec: Array
+        # @param CustomId: 码规则ID,  普通码包时必填
+        # @type CustomId: String
+
+        attr_accessor :MerchantId, :Amount, :CorpId, :PackType, :PackLevel, :PackSpec, :CustomId
+        
+        def initialize(merchantid=nil, amount=nil, corpid=nil, packtype=nil, packlevel=nil, packspec=nil, customid=nil)
+          @MerchantId = merchantid
+          @Amount = amount
+          @CorpId = corpid
+          @PackType = packtype
+          @PackLevel = packlevel
+          @PackSpec = packspec
+          @CustomId = customid
+        end
+
+        def deserialize(params)
+          @MerchantId = params['MerchantId']
+          @Amount = params['Amount']
+          @CorpId = params['CorpId']
+          @PackType = params['PackType']
+          @PackLevel = params['PackLevel']
+          unless params['PackSpec'].nil?
+            @PackSpec = []
+            params['PackSpec'].each do |i|
+              packspec_tmp = PackSpec.new
+              packspec_tmp.deserialize(i)
+              @PackSpec << packspec_tmp
+            end
+          end
+          @CustomId = params['CustomId']
+        end
+      end
+
+      # CreateCustomPack返回参数结构体
+      class CreateCustomPackResponse < TencentCloud::Common::AbstractModel
+        # @param PackId: 码包ID
+        # @type PackId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :PackId, :RequestId
+        
+        def initialize(packid=nil, requestid=nil)
+          @PackId = packid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @PackId = params['PackId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateCustomRule请求参数结构体
+      class CreateCustomRuleRequest < TencentCloud::Common::AbstractModel
+        # @param Name: 规则名称
+        # @type Name: String
+        # @param MerchantId: 商户ID
+        # @type MerchantId: String
+        # @param CodeLength: 码长度
+        # @type CodeLength: Integer
+        # @param CodeParts: 码段配置
+        # @type CodeParts: Array
+        # @param CorpId: 企业ID
+        # @type CorpId: Integer
+
+        attr_accessor :Name, :MerchantId, :CodeLength, :CodeParts, :CorpId
+        
+        def initialize(name=nil, merchantid=nil, codelength=nil, codeparts=nil, corpid=nil)
+          @Name = name
+          @MerchantId = merchantid
+          @CodeLength = codelength
+          @CodeParts = codeparts
+          @CorpId = corpid
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @MerchantId = params['MerchantId']
+          @CodeLength = params['CodeLength']
+          unless params['CodeParts'].nil?
+            @CodeParts = []
+            params['CodeParts'].each do |i|
+              codepart_tmp = CodePart.new
+              codepart_tmp.deserialize(i)
+              @CodeParts << codepart_tmp
+            end
+          end
+          @CorpId = params['CorpId']
+        end
+      end
+
+      # CreateCustomRule返回参数结构体
+      class CreateCustomRuleResponse < TencentCloud::Common::AbstractModel
+        # @param CustomId: 码规则ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CustomId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :CustomId, :RequestId
+        
+        def initialize(customid=nil, requestid=nil)
+          @CustomId = customid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @CustomId = params['CustomId']
           @RequestId = params['RequestId']
         end
       end
@@ -459,6 +622,51 @@ module TencentCloud
         end
       end
 
+      # CreateTraceCodesAsync请求参数结构体
+      class CreateTraceCodesAsyncRequest < TencentCloud::Common::AbstractModel
+        # @param CorpId: 企业ID
+        # @type CorpId: Integer
+        # @param BatchId: 批次ID
+        # @type BatchId: String
+        # @param FileKey: 上传文件Key，仅支持 csv 或者 zip 类型
+        # @type FileKey: String
+
+        attr_accessor :CorpId, :BatchId, :FileKey
+        
+        def initialize(corpid=nil, batchid=nil, filekey=nil)
+          @CorpId = corpid
+          @BatchId = batchid
+          @FileKey = filekey
+        end
+
+        def deserialize(params)
+          @CorpId = params['CorpId']
+          @BatchId = params['BatchId']
+          @FileKey = params['FileKey']
+        end
+      end
+
+      # CreateTraceCodesAsync返回参数结构体
+      class CreateTraceCodesAsyncResponse < TencentCloud::Common::AbstractModel
+        # @param BatchId: 批次ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BatchId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :BatchId, :RequestId
+        
+        def initialize(batchid=nil, requestid=nil)
+          @BatchId = batchid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @BatchId = params['BatchId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateTraceCodes请求参数结构体
       class CreateTraceCodesRequest < TencentCloud::Common::AbstractModel
         # @param BatchId: 批次ID
@@ -601,6 +809,64 @@ module TencentCloud
         def deserialize(params)
           @TraceId = params['TraceId']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 码规则
+      class CustomRule < TencentCloud::Common::AbstractModel
+        # @param CustomId: 码规则ID
+        # @type CustomId: String
+        # @param Name: 码规则名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
+        # @param CorpId: 企业ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CorpId: Integer
+        # @param MerchantId: 商户ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MerchantId: String
+        # @param CodeLength: 码ID长度
+        # @type CodeLength: Integer
+        # @param Status: 规则状态
+        # @type Status: Integer
+        # @param CodeParts: 码段配置
+        # @type CodeParts: Array
+        # @param CreateTime: 创建时间
+        # @type CreateTime: String
+        # @param UpdateTime: 更新时间
+        # @type UpdateTime: String
+
+        attr_accessor :CustomId, :Name, :CorpId, :MerchantId, :CodeLength, :Status, :CodeParts, :CreateTime, :UpdateTime
+        
+        def initialize(customid=nil, name=nil, corpid=nil, merchantid=nil, codelength=nil, status=nil, codeparts=nil, createtime=nil, updatetime=nil)
+          @CustomId = customid
+          @Name = name
+          @CorpId = corpid
+          @MerchantId = merchantid
+          @CodeLength = codelength
+          @Status = status
+          @CodeParts = codeparts
+          @CreateTime = createtime
+          @UpdateTime = updatetime
+        end
+
+        def deserialize(params)
+          @CustomId = params['CustomId']
+          @Name = params['Name']
+          @CorpId = params['CorpId']
+          @MerchantId = params['MerchantId']
+          @CodeLength = params['CodeLength']
+          @Status = params['Status']
+          unless params['CodeParts'].nil?
+            @CodeParts = []
+            params['CodeParts'].each do |i|
+              codepart_tmp = CodePart.new
+              codepart_tmp.deserialize(i)
+              @CodeParts << codepart_tmp
+            end
+          end
+          @CreateTime = params['CreateTime']
+          @UpdateTime = params['UpdateTime']
         end
       end
 
@@ -883,6 +1149,83 @@ module TencentCloud
         end
       end
 
+      # DescribeCodePackStatus请求参数结构体
+      class DescribeCodePackStatusRequest < TencentCloud::Common::AbstractModel
+        # @param PackId: 码包ID
+        # @type PackId: String
+        # @param CorpId: 企业ID
+        # @type CorpId: Integer
+
+        attr_accessor :PackId, :CorpId
+        
+        def initialize(packid=nil, corpid=nil)
+          @PackId = packid
+          @CorpId = corpid
+        end
+
+        def deserialize(params)
+          @PackId = params['PackId']
+          @CorpId = params['CorpId']
+        end
+      end
+
+      # DescribeCodePackStatus返回参数结构体
+      class DescribeCodePackStatusResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeCodePackUrl请求参数结构体
+      class DescribeCodePackUrlRequest < TencentCloud::Common::AbstractModel
+        # @param PackId: 码包ID
+        # @type PackId: String
+        # @param CorpId: 企业ID
+        # @type CorpId: Integer
+
+        attr_accessor :PackId, :CorpId
+        
+        def initialize(packid=nil, corpid=nil)
+          @PackId = packid
+          @CorpId = corpid
+        end
+
+        def deserialize(params)
+          @PackId = params['PackId']
+          @CorpId = params['CorpId']
+        end
+      end
+
+      # DescribeCodePackUrl返回参数结构体
+      class DescribeCodePackUrlResponse < TencentCloud::Common::AbstractModel
+        # @param Url: 文字码包地址
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Url: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Url, :RequestId
+        
+        def initialize(url=nil, requestid=nil)
+          @Url = url
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Url = params['Url']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeCodePacks请求参数结构体
       class DescribeCodePacksRequest < TencentCloud::Common::AbstractModel
         # @param PageSize: 每页数量
@@ -971,6 +1314,155 @@ module TencentCloud
               @Codes << codeitem_tmp
             end
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeCustomRuleById请求参数结构体
+      class DescribeCustomRuleByIdRequest < TencentCloud::Common::AbstractModel
+        # @param CustomId: 码规则ID
+        # @type CustomId: String
+        # @param CorpId: 企业ID
+        # @type CorpId: Integer
+
+        attr_accessor :CustomId, :CorpId
+        
+        def initialize(customid=nil, corpid=nil)
+          @CustomId = customid
+          @CorpId = corpid
+        end
+
+        def deserialize(params)
+          @CustomId = params['CustomId']
+          @CorpId = params['CorpId']
+        end
+      end
+
+      # DescribeCustomRuleById返回参数结构体
+      class DescribeCustomRuleByIdResponse < TencentCloud::Common::AbstractModel
+        # @param CustomRule: 码规则信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CustomRule: :class:`Tencentcloud::Trp.v20210515.models.CustomRule`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :CustomRule, :RequestId
+        
+        def initialize(customrule=nil, requestid=nil)
+          @CustomRule = customrule
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['CustomRule'].nil?
+            @CustomRule = CustomRule.new
+            @CustomRule.deserialize(params['CustomRule'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeCustomRules请求参数结构体
+      class DescribeCustomRulesRequest < TencentCloud::Common::AbstractModel
+        # @param Keyword: 搜索关键字
+        # @type Keyword: String
+        # @param PageSize: 条数
+        # @type PageSize: Integer
+        # @param PageNumber: 页数
+        # @type PageNumber: Integer
+        # @param CorpId: 企业ID
+        # @type CorpId: Integer
+        # @param Status: 码规则状态 0:未生效 1:已生效 -1:已失效
+        # @type Status: Integer
+        # @param MerchantId: 商户ID
+        # @type MerchantId: String
+
+        attr_accessor :Keyword, :PageSize, :PageNumber, :CorpId, :Status, :MerchantId
+        
+        def initialize(keyword=nil, pagesize=nil, pagenumber=nil, corpid=nil, status=nil, merchantid=nil)
+          @Keyword = keyword
+          @PageSize = pagesize
+          @PageNumber = pagenumber
+          @CorpId = corpid
+          @Status = status
+          @MerchantId = merchantid
+        end
+
+        def deserialize(params)
+          @Keyword = params['Keyword']
+          @PageSize = params['PageSize']
+          @PageNumber = params['PageNumber']
+          @CorpId = params['CorpId']
+          @Status = params['Status']
+          @MerchantId = params['MerchantId']
+        end
+      end
+
+      # DescribeCustomRules返回参数结构体
+      class DescribeCustomRulesResponse < TencentCloud::Common::AbstractModel
+        # @param CustomRules: 码规则列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CustomRules: Array
+        # @param TotalCount: 总数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :CustomRules, :TotalCount, :RequestId
+        
+        def initialize(customrules=nil, totalcount=nil, requestid=nil)
+          @CustomRules = customrules
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['CustomRules'].nil?
+            @CustomRules = []
+            params['CustomRules'].each do |i|
+              customrule_tmp = CustomRule.new
+              customrule_tmp.deserialize(i)
+              @CustomRules << customrule_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeJobFileUrl请求参数结构体
+      class DescribeJobFileUrlRequest < TencentCloud::Common::AbstractModel
+        # @param JobId: 调度ID
+        # @type JobId: Integer
+        # @param CorpId: 企业ID
+        # @type CorpId: Integer
+
+        attr_accessor :JobId, :CorpId
+        
+        def initialize(jobid=nil, corpid=nil)
+          @JobId = jobid
+          @CorpId = corpid
+        end
+
+        def deserialize(params)
+          @JobId = params['JobId']
+          @CorpId = params['CorpId']
+        end
+      end
+
+      # DescribeJobFileUrl返回参数结构体
+      class DescribeJobFileUrlResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
           @RequestId = params['RequestId']
         end
       end
@@ -1509,6 +2001,107 @@ module TencentCloud
 
         def deserialize(params)
           @BatchId = params['BatchId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyCustomRule请求参数结构体
+      class ModifyCustomRuleRequest < TencentCloud::Common::AbstractModel
+        # @param CustomId: 码规则ID
+        # @type CustomId: String
+        # @param Name: 规则名称
+        # @type Name: String
+        # @param CodeLength: 码长度
+        # @type CodeLength: Integer
+        # @param CodeParts: 码段配置
+        # @type CodeParts: Array
+        # @param CorpId: 企业ID
+        # @type CorpId: Integer
+
+        attr_accessor :CustomId, :Name, :CodeLength, :CodeParts, :CorpId
+        
+        def initialize(customid=nil, name=nil, codelength=nil, codeparts=nil, corpid=nil)
+          @CustomId = customid
+          @Name = name
+          @CodeLength = codelength
+          @CodeParts = codeparts
+          @CorpId = corpid
+        end
+
+        def deserialize(params)
+          @CustomId = params['CustomId']
+          @Name = params['Name']
+          @CodeLength = params['CodeLength']
+          unless params['CodeParts'].nil?
+            @CodeParts = []
+            params['CodeParts'].each do |i|
+              codepart_tmp = CodePart.new
+              codepart_tmp.deserialize(i)
+              @CodeParts << codepart_tmp
+            end
+          end
+          @CorpId = params['CorpId']
+        end
+      end
+
+      # ModifyCustomRule返回参数结构体
+      class ModifyCustomRuleResponse < TencentCloud::Common::AbstractModel
+        # @param CustomId: 码规则ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CustomId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :CustomId, :RequestId
+        
+        def initialize(customid=nil, requestid=nil)
+          @CustomId = customid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @CustomId = params['CustomId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyCustomRuleStatus请求参数结构体
+      class ModifyCustomRuleStatusRequest < TencentCloud::Common::AbstractModel
+        # @param CustomId: 码规则ID
+        # @type CustomId: String
+        # @param Status: 码规则状态 0:未生效 1:已生效 -1:已失效
+        # @type Status: Integer
+
+        attr_accessor :CustomId, :Status
+        
+        def initialize(customid=nil, status=nil)
+          @CustomId = customid
+          @Status = status
+        end
+
+        def deserialize(params)
+          @CustomId = params['CustomId']
+          @Status = params['Status']
+        end
+      end
+
+      # ModifyCustomRuleStatus返回参数结构体
+      class ModifyCustomRuleStatusResponse < TencentCloud::Common::AbstractModel
+        # @param CustomId: 码规则ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CustomId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :CustomId, :RequestId
+        
+        def initialize(customid=nil, requestid=nil)
+          @CustomId = customid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @CustomId = params['CustomId']
           @RequestId = params['RequestId']
         end
       end

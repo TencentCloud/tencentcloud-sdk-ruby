@@ -1009,56 +1009,6 @@ module TencentCloud
         end
       end
 
-      # CreateChannelFlowEvidenceReport请求参数结构体
-      class CreateChannelFlowEvidenceReportRequest < TencentCloud::Common::AbstractModel
-        # @param FlowId: 签署流程编号
-        # @type FlowId: String
-        # @param Agent: 渠道应用相关信息。 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 和 Agent.ProxyAppId 均必填
-        # @type Agent: :class:`Tencentcloud::Essbasic.v20210526.models.Agent`
-        # @param Operator: 操作者的信息
-        # @type Operator: :class:`Tencentcloud::Essbasic.v20210526.models.UserInfo`
-
-        attr_accessor :FlowId, :Agent, :Operator
-        
-        def initialize(flowid=nil, agent=nil, operator=nil)
-          @FlowId = flowid
-          @Agent = agent
-          @Operator = operator
-        end
-
-        def deserialize(params)
-          @FlowId = params['FlowId']
-          unless params['Agent'].nil?
-            @Agent = Agent.new
-            @Agent.deserialize(params['Agent'])
-          end
-          unless params['Operator'].nil?
-            @Operator = UserInfo.new
-            @Operator.deserialize(params['Operator'])
-          end
-        end
-      end
-
-      # CreateChannelFlowEvidenceReport返回参数结构体
-      class CreateChannelFlowEvidenceReportResponse < TencentCloud::Common::AbstractModel
-        # @param ReportUrl: 出证报告 URL（有效五分钟）
-        # @type ReportUrl: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :ReportUrl, :RequestId
-        
-        def initialize(reporturl=nil, requestid=nil)
-          @ReportUrl = reporturl
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          @ReportUrl = params['ReportUrl']
-          @RequestId = params['RequestId']
-        end
-      end
-
       # CreateConsoleLoginUrl请求参数结构体
       class CreateConsoleLoginUrlRequest < TencentCloud::Common::AbstractModel
         # @param Agent: 应用信息

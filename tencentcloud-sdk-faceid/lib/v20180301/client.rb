@@ -29,6 +29,78 @@ module TencentCloud
         end
 
 
+        # 每次调用活体服务前，需要先调用本接口获取Token，需要保存此Token用来发起核验流程，并且在核验完成后获取结果信息。
+
+        # @param request: Request instance for ApplyLivenessToken.
+        # @type request: :class:`Tencentcloud::faceid::V20180301::ApplyLivenessTokenRequest`
+        # @rtype: :class:`Tencentcloud::faceid::V20180301::ApplyLivenessTokenResponse`
+        def ApplyLivenessToken(request)
+          body = send_request('ApplyLivenessToken', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ApplyLivenessTokenResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 每次调用Web核验服务前，需要先调用本接口获取Token，需要保存此Token用来发起核验流程，并且在核验完成后获取结果信息。
+
+        # @param request: Request instance for ApplySdkVerificationToken.
+        # @type request: :class:`Tencentcloud::faceid::V20180301::ApplySdkVerificationTokenRequest`
+        # @rtype: :class:`Tencentcloud::faceid::V20180301::ApplySdkVerificationTokenResponse`
+        def ApplySdkVerificationToken(request)
+          body = send_request('ApplySdkVerificationToken', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ApplySdkVerificationTokenResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 每次调用Web核验服务前，需要先调用本接口获取BizToken，需要保存此BizToken用来发起核验流程，并且在核验完成后获取结果信息。
+
+        # @param request: Request instance for ApplyWebVerificationToken.
+        # @type request: :class:`Tencentcloud::faceid::V20180301::ApplyWebVerificationTokenRequest`
+        # @rtype: :class:`Tencentcloud::faceid::V20180301::ApplyWebVerificationTokenResponse`
+        def ApplyWebVerificationToken(request)
+          body = send_request('ApplyWebVerificationToken', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ApplyWebVerificationTokenResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口用于校验姓名和银行卡号的真实性和一致性。
 
         # @param request: Request instance for BankCard2EVerification.
@@ -221,6 +293,31 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 生成一个临时的UploadUrl用于上传资源文件，客户需要使用HTTP PUT方法上传，上传完成后将ResourceUrl传给TargetAction对应接口完成资源传递（具体字段由使用场景确定）。
+        # 数据存储于Region参数对应地域的腾讯云COS Bucket，存储有效期2小时。
+
+        # @param request: Request instance for CreateUploadUrl.
+        # @type request: :class:`Tencentcloud::faceid::V20180301::CreateUploadUrlRequest`
+        # @rtype: :class:`Tencentcloud::faceid::V20180301::CreateUploadUrlResponse`
+        def CreateUploadUrl(request)
+          body = send_request('CreateUploadUrl', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateUploadUrlResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 每次调用人脸核身SaaS化服务前，需先调用本接口获取BizToken，用来串联核身流程，在验证完成后，用于获取验证结果信息。
 
         # @param request: Request instance for DetectAuth.
@@ -245,6 +342,31 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 使用活体比对（光线）SDK生成的数据包检测活体，并和传入的图片进行比对。
+        # 图片和SDK生成的数据内容必须存储在腾讯云COS，COS Bucket所在的Region需要和本接口请求的Region保持一致，推荐使用生成上传链接接口来完成资源传递。
+
+        # @param request: Request instance for DetectReflectLivenessAndCompare.
+        # @type request: :class:`Tencentcloud::faceid::V20180301::DetectReflectLivenessAndCompareRequest`
+        # @rtype: :class:`Tencentcloud::faceid::V20180301::DetectReflectLivenessAndCompareResponse`
+        def DetectReflectLivenessAndCompare(request)
+          body = send_request('DetectReflectLivenessAndCompare', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DetectReflectLivenessAndCompareResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口用于校验手机号、姓名和身份证号的真实性和一致性，入参支持明文、MD5和SHA256加密传输。
 
         # @param request: Request instance for EncryptedPhoneVerification.
@@ -255,6 +377,31 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = EncryptedPhoneVerificationResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 根据活体比对（光线）SDK采集的机器信息生成适合的光线序列，将光线序列传入SDK后开启核身。
+        # SDK生成的数据内容必须存储在腾讯云COS，COS Bucket所在的Region需要和本接口请求的Region保持一致，推荐使用生成上传链接接口来完成资源传递。
+
+        # @param request: Request instance for GenerateReflectSequence.
+        # @type request: :class:`Tencentcloud::faceid::V20180301::GenerateReflectSequenceRequest`
+        # @rtype: :class:`Tencentcloud::faceid::V20180301::GenerateReflectSequenceResponse`
+        def GenerateReflectSequence(request)
+          body = send_request('GenerateReflectSequence', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = GenerateReflectSequenceResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -461,6 +608,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 完成活体检测流程后，用核验令牌（SdkToken）调用本接口查询对应核验结果信息。Token申请后2小时内有效，可多次调用。
+
+        # @param request: Request instance for GetLivenessResult.
+        # @type request: :class:`Tencentcloud::faceid::V20180301::GetLivenessResultRequest`
+        # @rtype: :class:`Tencentcloud::faceid::V20180301::GetLivenessResultResponse`
+        def GetLivenessResult(request)
+          body = send_request('GetLivenessResult', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = GetLivenessResultResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 获取微信实名认证结果
 
         # @param request: Request instance for GetRealNameAuthResult.
@@ -509,6 +680,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 完成Sdk核验流程后，用核验令牌（Token）调用本接口查询对应核验结果信息。Token申请后三天内有效，可多次调用。
+
+        # @param request: Request instance for GetSdkVerificationResult.
+        # @type request: :class:`Tencentcloud::faceid::V20180301::GetSdkVerificationResultRequest`
+        # @rtype: :class:`Tencentcloud::faceid::V20180301::GetSdkVerificationResultResponse`
+        def GetSdkVerificationResult(request)
+          body = send_request('GetSdkVerificationResult', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = GetSdkVerificationResultResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询微信渠道服务（微信小程序、微信原生H5、微信普通H5）的账单明细及计费状态。
 
         # @param request: Request instance for GetWeChatBillDetails.
@@ -519,6 +714,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = GetWeChatBillDetailsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 完成Web核验流程后，用核验令牌（BizToken）调用本接口查询对应核验结果信息。BizToken申请后三天内（3\*24\*3,600秒）有效，可多次调用。
+
+        # @param request: Request instance for GetWebVerificationResult.
+        # @type request: :class:`Tencentcloud::faceid::V20180301::GetWebVerificationResultRequest`
+        # @rtype: :class:`Tencentcloud::faceid::V20180301::GetWebVerificationResultResponse`
+        def GetWebVerificationResult(request)
+          body = send_request('GetWebVerificationResult', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = GetWebVerificationResultResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -855,6 +1074,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = PhoneVerificationCUCCResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 传入视频和照片地址，先判断视频中是否为真人，判断为真人后，再判断该视频中的人与上传照片是否属于同一个人。
+
+        # @param request: Request instance for VideoLivenessCompare.
+        # @type request: :class:`Tencentcloud::faceid::V20180301::VideoLivenessCompareRequest`
+        # @rtype: :class:`Tencentcloud::faceid::V20180301::VideoLivenessCompareResponse`
+        def VideoLivenessCompare(request)
+          body = send_request('VideoLivenessCompare', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = VideoLivenessCompareResponse.new
             model.deserialize(response['Response'])
             model
           else

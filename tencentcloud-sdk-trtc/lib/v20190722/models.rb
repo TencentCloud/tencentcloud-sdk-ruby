@@ -77,6 +77,58 @@ module TencentCloud
         end
       end
 
+      # 转推服务加入TRTC房间的机器人参数。
+      class AgentParams < TencentCloud::Common::AbstractModel
+        # @param UserId: 转推服务在TRTC房间使用的[UserId](https://cloud.tencent.com/document/product/647/46351#userid)，注意这个userId不能与其他TRTC或者转推服务等已经使用的UserId重复，建议可以把房间ID作为userId的标识的一部分。
+        # @type UserId: String
+        # @param UserSig: 转推服务加入TRTC房间的用户签名，当前 UserId 对应的验证签名，相当于登录密码，具体计算方法请参考TRTC计算[UserSig](https://cloud.tencent.com/document/product/647/45910#UserSig)的方案。
+        # @type UserSig: String
+        # @param MaxIdleTime: 所有参与混流转推的主播持续离开TRTC房间超过MaxIdleTime的时长，自动停止转推，单位：秒。默认值为 30 秒，该值需大于等于 5秒，且小于等于 86400秒(24小时)。
+        # @type MaxIdleTime: Integer
+
+        attr_accessor :UserId, :UserSig, :MaxIdleTime
+        
+        def initialize(userid=nil, usersig=nil, maxidletime=nil)
+          @UserId = userid
+          @UserSig = usersig
+          @MaxIdleTime = maxidletime
+        end
+
+        def deserialize(params)
+          @UserId = params['UserId']
+          @UserSig = params['UserSig']
+          @MaxIdleTime = params['MaxIdleTime']
+        end
+      end
+
+      # 音频编码参数。
+      class AudioEncode < TencentCloud::Common::AbstractModel
+        # @param SampleRate: 输出流音频采样率。取值为[48000, 44100, 32000, 24000, 16000, 8000]，单位是Hz。
+        # @type SampleRate: Integer
+        # @param Channel: 输出流音频声道数，取值范围[1,2]，1表示混流输出音频为单声道，2表示混流输出音频为双声道。
+        # @type Channel: Integer
+        # @param BitRate: 输出流音频码率。取值范围[8,500]，单位为kbps。
+        # @type BitRate: Integer
+        # @param Codec: 输出流音频编码类型，取值范围[0, 1, 2]，0为LC-AAC，1为HE-AAC，2为HE-AACv2。默认值为0。当音频编码设置为HE-AACv2时，只支持输出流音频声道数为双声道。HE-AAC和HE-AACv2支持的输出流音频采样率范围为[48000, 44100, 32000, 24000, 16000]。
+        # @type Codec: Integer
+
+        attr_accessor :SampleRate, :Channel, :BitRate, :Codec
+        
+        def initialize(samplerate=nil, channel=nil, bitrate=nil, codec=nil)
+          @SampleRate = samplerate
+          @Channel = channel
+          @BitRate = bitrate
+          @Codec = codec
+        end
+
+        def deserialize(params)
+          @SampleRate = params['SampleRate']
+          @Channel = params['Channel']
+          @BitRate = params['BitRate']
+          @Codec = params['Codec']
+        end
+      end
+
       # 录制音频转码参数。
       class AudioParams < TencentCloud::Common::AbstractModel
         # @param SampleRate: 音频采样率:
@@ -1603,6 +1655,407 @@ module TencentCloud
         end
       end
 
+      # 指定动态布局中悬浮布局和屏幕分享布局的大画面信息，只在悬浮布局和屏幕分享布局有效。
+      class MaxVideoUser < TencentCloud::Common::AbstractModel
+        # @param UserMediaStream: 用户媒体流参数。
+        # @type UserMediaStream: :class:`Tencentcloud::Trtc.v20190722.models.UserMediaStream`
+
+        attr_accessor :UserMediaStream
+        
+        def initialize(usermediastream=nil)
+          @UserMediaStream = usermediastream
+        end
+
+        def deserialize(params)
+          unless params['UserMediaStream'].nil?
+            @UserMediaStream = UserMediaStream.new
+            @UserMediaStream.deserialize(params['UserMediaStream'])
+          end
+        end
+      end
+
+      # 混流转推的音频相关参数。
+      class McuAudioParams < TencentCloud::Common::AbstractModel
+        # @param AudioEncode: 音频编码参数。
+        # @type AudioEncode: :class:`Tencentcloud::Trtc.v20190722.models.AudioEncode`
+        # @param SubscribeAudioList: 音频用户白名单，start时，为空或不填表示混所有主播音频，填具体值表示混指定主播音频；update时，不填表示不更新，为空表示更新为混所有主播音频，填具体值表示更新为混指定主播音频。
+        # @type SubscribeAudioList: Array
+
+        attr_accessor :AudioEncode, :SubscribeAudioList
+        
+        def initialize(audioencode=nil, subscribeaudiolist=nil)
+          @AudioEncode = audioencode
+          @SubscribeAudioList = subscribeaudiolist
+        end
+
+        def deserialize(params)
+          unless params['AudioEncode'].nil?
+            @AudioEncode = AudioEncode.new
+            @AudioEncode.deserialize(params['AudioEncode'])
+          end
+          unless params['SubscribeAudioList'].nil?
+            @SubscribeAudioList = []
+            params['SubscribeAudioList'].each do |i|
+              mcuuserinfoparams_tmp = McuUserInfoParams.new
+              mcuuserinfoparams_tmp.deserialize(i)
+              @SubscribeAudioList << mcuuserinfoparams_tmp
+            end
+          end
+        end
+      end
+
+      # 混流自定义裁剪参数
+      class McuCustomCrop < TencentCloud::Common::AbstractModel
+        # @param LocationX: 自定义裁剪起始位置的X偏移，单位为像素值，大于等于0。
+        # @type LocationX: Integer
+        # @param LocationY: 自定义裁剪起始位置的Y偏移，单位为像素值，大于等于0。
+        # @type LocationY: Integer
+        # @param Width: 自定义裁剪画面的宽度，单位为像素值，大于0，且LocationX+Width不超过10000
+        # @type Width: Integer
+        # @param Height: 自定义裁剪画面的高度，单位为像素值，大于0，且LocationY+Height不超过10000
+        # @type Height: Integer
+
+        attr_accessor :LocationX, :LocationY, :Width, :Height
+        
+        def initialize(locationx=nil, locationy=nil, width=nil, height=nil)
+          @LocationX = locationx
+          @LocationY = locationy
+          @Width = width
+          @Height = height
+        end
+
+        def deserialize(params)
+          @LocationX = params['LocationX']
+          @LocationY = params['LocationY']
+          @Width = params['Width']
+          @Height = params['Height']
+        end
+      end
+
+      # 混流布局参数。
+      class McuLayout < TencentCloud::Common::AbstractModel
+        # @param UserMediaStream: 用户媒体流参数。不填时腾讯云后台按照上行主播的进房顺序自动填充。
+        # @type UserMediaStream: :class:`Tencentcloud::Trtc.v20190722.models.UserMediaStream`
+        # @param ImageWidth: 子画面在输出时的宽度，单位为像素值，不填默认为0。
+        # @type ImageWidth: Integer
+        # @param ImageHeight: 子画面在输出时的高度，单位为像素值，不填默认为0。
+        # @type ImageHeight: Integer
+        # @param LocationX: 子画面在输出时的X偏移，单位为像素值，LocationX与ImageWidth之和不能超过混流输出的总宽度，不填默认为0。
+        # @type LocationX: Integer
+        # @param LocationY: 子画面在输出时的Y偏移，单位为像素值，LocationY与ImageHeight之和不能超过混流输出的总高度，不填默认为0。
+        # @type LocationY: Integer
+        # @param ZOrder: 子画面在输出时的层级，不填默认为0。
+        # @type ZOrder: Integer
+        # @param RenderMode: 子画面在输出时的显示模式：0为裁剪，1为缩放，2为缩放并显示黑底。不填默认为0。
+        # @type RenderMode: Integer
+        # @param BackGroundColor: 子画面的背景颜色，常用的颜色有：
+        # 红色：0xcc0033。
+        # 黄色：0xcc9900。
+        # 绿色：0xcccc33。
+        # 蓝色：0x99CCFF。
+        # 黑色：0x000000。
+        # 白色：0xFFFFFF。
+        # 灰色：0x999999。
+        # @type BackGroundColor: String
+        # @param BackgroundImageUrl: 子画面的背景图url，填写该参数，当用户关闭摄像头或未进入TRTC房间时，会在布局位置填充为指定图片。若指定图片与布局位置尺寸比例不一致，则会对图片进行拉伸处理，优先级高于BackGroundColor。
+        # @type BackgroundImageUrl: String
+        # @param CustomCrop: 客户自定义裁剪，针对原始输入流裁剪
+        # @type CustomCrop: :class:`Tencentcloud::Trtc.v20190722.models.McuCustomCrop`
+
+        attr_accessor :UserMediaStream, :ImageWidth, :ImageHeight, :LocationX, :LocationY, :ZOrder, :RenderMode, :BackGroundColor, :BackgroundImageUrl, :CustomCrop
+        
+        def initialize(usermediastream=nil, imagewidth=nil, imageheight=nil, locationx=nil, locationy=nil, zorder=nil, rendermode=nil, backgroundcolor=nil, backgroundimageurl=nil, customcrop=nil)
+          @UserMediaStream = usermediastream
+          @ImageWidth = imagewidth
+          @ImageHeight = imageheight
+          @LocationX = locationx
+          @LocationY = locationy
+          @ZOrder = zorder
+          @RenderMode = rendermode
+          @BackGroundColor = backgroundcolor
+          @BackgroundImageUrl = backgroundimageurl
+          @CustomCrop = customcrop
+        end
+
+        def deserialize(params)
+          unless params['UserMediaStream'].nil?
+            @UserMediaStream = UserMediaStream.new
+            @UserMediaStream.deserialize(params['UserMediaStream'])
+          end
+          @ImageWidth = params['ImageWidth']
+          @ImageHeight = params['ImageHeight']
+          @LocationX = params['LocationX']
+          @LocationY = params['LocationY']
+          @ZOrder = params['ZOrder']
+          @RenderMode = params['RenderMode']
+          @BackGroundColor = params['BackGroundColor']
+          @BackgroundImageUrl = params['BackgroundImageUrl']
+          unless params['CustomCrop'].nil?
+            @CustomCrop = McuCustomCrop.new
+            @CustomCrop.deserialize(params['CustomCrop'])
+          end
+        end
+      end
+
+      # 混流布局参数。
+      class McuLayoutParams < TencentCloud::Common::AbstractModel
+        # @param MixLayoutMode: 布局模式：动态布局（1：悬浮布局（默认），2：屏幕分享布局，3：九宫格布局），静态布局（4：自定义布局）。
+        # @type MixLayoutMode: Integer
+        # @param PureAudioHoldPlaceMode: 纯音频上行是否占布局位置，只在动态布局中有效。0表示纯音频占布局位置，1表示纯音频不占布局位置，不填默认为0。
+        # @type PureAudioHoldPlaceMode: Integer
+        # @param MixLayoutList: 自定义模板中有效，指定用户视频在混合画面中的位置。
+        # @type MixLayoutList: Array
+        # @param MaxVideoUser: 指定动态布局中悬浮布局和屏幕分享布局的大画面信息，只在悬浮布局和屏幕分享布局有效。
+        # @type MaxVideoUser: :class:`Tencentcloud::Trtc.v20190722.models.MaxVideoUser`
+
+        attr_accessor :MixLayoutMode, :PureAudioHoldPlaceMode, :MixLayoutList, :MaxVideoUser
+        
+        def initialize(mixlayoutmode=nil, pureaudioholdplacemode=nil, mixlayoutlist=nil, maxvideouser=nil)
+          @MixLayoutMode = mixlayoutmode
+          @PureAudioHoldPlaceMode = pureaudioholdplacemode
+          @MixLayoutList = mixlayoutlist
+          @MaxVideoUser = maxvideouser
+        end
+
+        def deserialize(params)
+          @MixLayoutMode = params['MixLayoutMode']
+          @PureAudioHoldPlaceMode = params['PureAudioHoldPlaceMode']
+          unless params['MixLayoutList'].nil?
+            @MixLayoutList = []
+            params['MixLayoutList'].each do |i|
+              mculayout_tmp = McuLayout.new
+              mculayout_tmp.deserialize(i)
+              @MixLayoutList << mculayout_tmp
+            end
+          end
+          unless params['MaxVideoUser'].nil?
+            @MaxVideoUser = MaxVideoUser.new
+            @MaxVideoUser.deserialize(params['MaxVideoUser'])
+          end
+        end
+      end
+
+      # 音量布局SEI参数，可以自定义AppData和PayloadType类型。
+      # 该参数内容可以为空，表示携带默认的音量布局SEI。
+      class McuLayoutVolume < TencentCloud::Common::AbstractModel
+        # @param AppData: AppData的内容，会被写入自定义SEI中的app_data字段，长度需小于4096。
+        # @type AppData: String
+        # @param PayloadType: SEI消息的payload_type，默认值100，取值范围100-254（244除外，244为我们内部自定义的时间戳SEI）
+        # @type PayloadType: Integer
+
+        attr_accessor :AppData, :PayloadType
+        
+        def initialize(appdata=nil, payloadtype=nil)
+          @AppData = appdata
+          @PayloadType = payloadtype
+        end
+
+        def deserialize(params)
+          @AppData = params['AppData']
+          @PayloadType = params['PayloadType']
+        end
+      end
+
+      # 自定义透传SEI
+      class McuPassThrough < TencentCloud::Common::AbstractModel
+        # @param PayloadContent: 透传SEI的payload内容。
+        # @type PayloadContent: String
+        # @param PayloadType: SEI消息的payload_type，取值范围5、100-254（244除外，244为我们内部自定义的时间戳SEI）。
+        # @type PayloadType: Integer
+        # @param PayloadUuid: PayloadType为5，PayloadUuid必须填写。PayloadType不是5时，不需要填写，填写会被后台忽略。该值必须是32长度的十六进制。
+        # @type PayloadUuid: String
+
+        attr_accessor :PayloadContent, :PayloadType, :PayloadUuid
+        
+        def initialize(payloadcontent=nil, payloadtype=nil, payloaduuid=nil)
+          @PayloadContent = payloadcontent
+          @PayloadType = payloadtype
+          @PayloadUuid = payloaduuid
+        end
+
+        def deserialize(params)
+          @PayloadContent = params['PayloadContent']
+          @PayloadType = params['PayloadType']
+          @PayloadUuid = params['PayloadUuid']
+        end
+      end
+
+      # 转推参数。
+      class McuPublishCdnParam < TencentCloud::Common::AbstractModel
+        # @param PublishCdnUrl: CDN转推URL。
+        # @type PublishCdnUrl: String
+        # @param IsTencentCdn: 是否是腾讯云CDN，0为转推非腾讯云CDN，1为转推腾讯CDN。注意：为避免默认值误产生转推费用，该参数建议明确填写。转推非腾讯云CDN时会产生转推费用，详情参见接口文档说明。
+        # @type IsTencentCdn: Integer
+
+        attr_accessor :PublishCdnUrl, :IsTencentCdn
+        
+        def initialize(publishcdnurl=nil, istencentcdn=nil)
+          @PublishCdnUrl = publishcdnurl
+          @IsTencentCdn = istencentcdn
+        end
+
+        def deserialize(params)
+          @PublishCdnUrl = params['PublishCdnUrl']
+          @IsTencentCdn = params['IsTencentCdn']
+        end
+      end
+
+      # 混流SEI参数
+      class McuSeiParams < TencentCloud::Common::AbstractModel
+        # @param LayoutVolume: 音量布局SEI
+        # @type LayoutVolume: :class:`Tencentcloud::Trtc.v20190722.models.McuLayoutVolume`
+        # @param PassThrough: 透传SEI
+        # @type PassThrough: :class:`Tencentcloud::Trtc.v20190722.models.McuPassThrough`
+
+        attr_accessor :LayoutVolume, :PassThrough
+        
+        def initialize(layoutvolume=nil, passthrough=nil)
+          @LayoutVolume = layoutvolume
+          @PassThrough = passthrough
+        end
+
+        def deserialize(params)
+          unless params['LayoutVolume'].nil?
+            @LayoutVolume = McuLayoutVolume.new
+            @LayoutVolume.deserialize(params['LayoutVolume'])
+          end
+          unless params['PassThrough'].nil?
+            @PassThrough = McuPassThrough.new
+            @PassThrough.deserialize(params['PassThrough'])
+          end
+        end
+      end
+
+      # 混流用户参数
+      class McuUserInfoParams < TencentCloud::Common::AbstractModel
+        # @param UserInfo: 用户参数。
+        # @type UserInfo: :class:`Tencentcloud::Trtc.v20190722.models.MixUserInfo`
+
+        attr_accessor :UserInfo
+        
+        def initialize(userinfo=nil)
+          @UserInfo = userinfo
+        end
+
+        def deserialize(params)
+          unless params['UserInfo'].nil?
+            @UserInfo = MixUserInfo.new
+            @UserInfo.deserialize(params['UserInfo'])
+          end
+        end
+      end
+
+      # 混流转推的视频相关参数。
+      class McuVideoParams < TencentCloud::Common::AbstractModel
+        # @param VideoEncode: 输出流视频编码参数。
+        # @type VideoEncode: :class:`Tencentcloud::Trtc.v20190722.models.VideoEncode`
+        # @param LayoutParams: 混流布局参数。
+        # @type LayoutParams: :class:`Tencentcloud::Trtc.v20190722.models.McuLayoutParams`
+        # @param BackGroundColor: 整个画布背景颜色，常用的颜色有：
+        # 红色：0xcc0033。
+        # 黄色：0xcc9900。
+        # 绿色：0xcccc33。
+        # 蓝色：0x99CCFF。
+        # 黑色：0x000000。
+        # 白色：0xFFFFFF。
+        # 灰色：0x999999。
+        # @type BackGroundColor: String
+        # @param BackgroundImageUrl: 整个画布的背景图url，优先级高于BackGroundColor。
+        # @type BackgroundImageUrl: String
+        # @param WaterMarkList: 混流布局的水印参数。
+        # @type WaterMarkList: Array
+
+        attr_accessor :VideoEncode, :LayoutParams, :BackGroundColor, :BackgroundImageUrl, :WaterMarkList
+        
+        def initialize(videoencode=nil, layoutparams=nil, backgroundcolor=nil, backgroundimageurl=nil, watermarklist=nil)
+          @VideoEncode = videoencode
+          @LayoutParams = layoutparams
+          @BackGroundColor = backgroundcolor
+          @BackgroundImageUrl = backgroundimageurl
+          @WaterMarkList = watermarklist
+        end
+
+        def deserialize(params)
+          unless params['VideoEncode'].nil?
+            @VideoEncode = VideoEncode.new
+            @VideoEncode.deserialize(params['VideoEncode'])
+          end
+          unless params['LayoutParams'].nil?
+            @LayoutParams = McuLayoutParams.new
+            @LayoutParams.deserialize(params['LayoutParams'])
+          end
+          @BackGroundColor = params['BackGroundColor']
+          @BackgroundImageUrl = params['BackgroundImageUrl']
+          unless params['WaterMarkList'].nil?
+            @WaterMarkList = []
+            params['WaterMarkList'].each do |i|
+              mcuwatermarkparams_tmp = McuWaterMarkParams.new
+              mcuwatermarkparams_tmp.deserialize(i)
+              @WaterMarkList << mcuwatermarkparams_tmp
+            end
+          end
+        end
+      end
+
+      # 图片水印参数。
+      class McuWaterMarkImage < TencentCloud::Common::AbstractModel
+        # @param WaterMarkUrl: 水印图片URL地址，支持png、jpg、jpeg格式。图片大小限制不超过5MB。
+        # @type WaterMarkUrl: String
+        # @param WaterMarkWidth: 水印在输出时的宽。单位为像素值。
+        # @type WaterMarkWidth: Integer
+        # @param WaterMarkHeight: 水印在输出时的高。单位为像素值。
+        # @type WaterMarkHeight: Integer
+        # @param LocationX: 水印在输出时的X偏移。单位为像素值。
+        # @type LocationX: Integer
+        # @param LocationY: 水印在输出时的Y偏移。单位为像素值。
+        # @type LocationY: Integer
+        # @param ZOrder: 水印在输出时的层级，不填默认为0。
+        # @type ZOrder: Integer
+
+        attr_accessor :WaterMarkUrl, :WaterMarkWidth, :WaterMarkHeight, :LocationX, :LocationY, :ZOrder
+        
+        def initialize(watermarkurl=nil, watermarkwidth=nil, watermarkheight=nil, locationx=nil, locationy=nil, zorder=nil)
+          @WaterMarkUrl = watermarkurl
+          @WaterMarkWidth = watermarkwidth
+          @WaterMarkHeight = watermarkheight
+          @LocationX = locationx
+          @LocationY = locationy
+          @ZOrder = zorder
+        end
+
+        def deserialize(params)
+          @WaterMarkUrl = params['WaterMarkUrl']
+          @WaterMarkWidth = params['WaterMarkWidth']
+          @WaterMarkHeight = params['WaterMarkHeight']
+          @LocationX = params['LocationX']
+          @LocationY = params['LocationY']
+          @ZOrder = params['ZOrder']
+        end
+      end
+
+      # 水印参数。
+      class McuWaterMarkParams < TencentCloud::Common::AbstractModel
+        # @param WaterMarkType: 水印类型，0为图片（默认）。
+        # @type WaterMarkType: Integer
+        # @param WaterMarkImage: 图片水印参数。WaterMarkType为0指定。
+        # @type WaterMarkImage: :class:`Tencentcloud::Trtc.v20190722.models.McuWaterMarkImage`
+
+        attr_accessor :WaterMarkType, :WaterMarkImage
+        
+        def initialize(watermarktype=nil, watermarkimage=nil)
+          @WaterMarkType = watermarktype
+          @WaterMarkImage = watermarkimage
+        end
+
+        def deserialize(params)
+          @WaterMarkType = params['WaterMarkType']
+          unless params['WaterMarkImage'].nil?
+            @WaterMarkImage = McuWaterMarkImage.new
+            @WaterMarkImage.deserialize(params['WaterMarkImage'])
+          end
+        end
+      end
+
       # 用户自定义混流布局参数列表。
       class MixLayout < TencentCloud::Common::AbstractModel
         # @param Top: 画布上该画面左上角的 y 轴坐标，取值范围 [0, 1920]，不能超过画布的高。
@@ -1767,6 +2220,30 @@ module TencentCloud
             @AudioParams = AudioParams.new
             @AudioParams.deserialize(params['AudioParams'])
           end
+        end
+      end
+
+      # TRTC用户参数。
+      class MixUserInfo < TencentCloud::Common::AbstractModel
+        # @param UserId: 用户ID。
+        # @type UserId: String
+        # @param RoomId: 动态布局时房间信息必须和主房间信息保持一致，自定义布局时房间信息必须和MixLayoutList中对应用户的房间信息保持一致，不填时默认与主房间信息一致。
+        # @type RoomId: String
+        # @param RoomIdType: 房间号类型，0为整形房间号，1为字符串房间号。
+        # @type RoomIdType: Integer
+
+        attr_accessor :UserId, :RoomId, :RoomIdType
+        
+        def initialize(userid=nil, roomid=nil, roomidtype=nil)
+          @UserId = userid
+          @RoomId = roomid
+          @RoomIdType = roomidtype
+        end
+
+        def deserialize(params)
+          @UserId = params['UserId']
+          @RoomId = params['RoomId']
+          @RoomIdType = params['RoomIdType']
         end
       end
 
@@ -2405,6 +2882,25 @@ module TencentCloud
         end
       end
 
+      # 单流旁路转推的用户上行信息。
+      class SingleSubscribeParams < TencentCloud::Common::AbstractModel
+        # @param UserMediaStream: 用户媒体流参数。
+        # @type UserMediaStream: :class:`Tencentcloud::Trtc.v20190722.models.UserMediaStream`
+
+        attr_accessor :UserMediaStream
+        
+        def initialize(usermediastream=nil)
+          @UserMediaStream = usermediastream
+        end
+
+        def deserialize(params)
+          unless params['UserMediaStream'].nil?
+            @UserMediaStream = UserMediaStream.new
+            @UserMediaStream.deserialize(params['UserMediaStream'])
+          end
+        end
+      end
+
       # 画中画模板中有效，代表小画面的布局参数
       class SmallVideoLayoutParams < TencentCloud::Common::AbstractModel
         # @param UserId: 代表小画面对应的用户ID。
@@ -2569,6 +3065,100 @@ module TencentCloud
         end
       end
 
+      # StartPublishCdnStream请求参数结构体
+      class StartPublishCdnStreamRequest < TencentCloud::Common::AbstractModel
+        # @param SdkAppId: TRTC的[SdkAppId](https://cloud.tencent.com/document/product/647/46351#sdkappid)，和转推的房间所对应的SdkAppId相同。
+        # @type SdkAppId: Integer
+        # @param RoomId: 主房间信息RoomId，转推的TRTC房间所对应的RoomId。
+        # @type RoomId: String
+        # @param RoomIdType: 主房间信息RoomType，必须和转推的房间所对应的RoomId类型相同，0为整形房间号，1为字符串房间号。
+        # @type RoomIdType: Integer
+        # @param AgentParams: 转推服务加入TRTC房间的机器人参数。
+        # @type AgentParams: :class:`Tencentcloud::Trtc.v20190722.models.AgentParams`
+        # @param WithTranscoding: 是否转码，0表示无需转码，1表示需要转码。
+        # @type WithTranscoding: Integer
+        # @param AudioParams: 转推流的音频编码参数。
+        # @type AudioParams: :class:`Tencentcloud::Trtc.v20190722.models.McuAudioParams`
+        # @param VideoParams: 转推流的视频编码参数，不填表示纯音频转推。
+        # @type VideoParams: :class:`Tencentcloud::Trtc.v20190722.models.McuVideoParams`
+        # @param SingleSubscribeParams: 需要单流旁路转推的用户上行参数，单流旁路转推时，WithTranscoding需要设置为0。
+        # @type SingleSubscribeParams: :class:`Tencentcloud::Trtc.v20190722.models.SingleSubscribeParams`
+        # @param PublishCdnParams: 转推的CDN参数。
+        # @type PublishCdnParams: Array
+        # @param SeiParams: 混流SEI参数
+        # @type SeiParams: :class:`Tencentcloud::Trtc.v20190722.models.McuSeiParams`
+
+        attr_accessor :SdkAppId, :RoomId, :RoomIdType, :AgentParams, :WithTranscoding, :AudioParams, :VideoParams, :SingleSubscribeParams, :PublishCdnParams, :SeiParams
+        
+        def initialize(sdkappid=nil, roomid=nil, roomidtype=nil, agentparams=nil, withtranscoding=nil, audioparams=nil, videoparams=nil, singlesubscribeparams=nil, publishcdnparams=nil, seiparams=nil)
+          @SdkAppId = sdkappid
+          @RoomId = roomid
+          @RoomIdType = roomidtype
+          @AgentParams = agentparams
+          @WithTranscoding = withtranscoding
+          @AudioParams = audioparams
+          @VideoParams = videoparams
+          @SingleSubscribeParams = singlesubscribeparams
+          @PublishCdnParams = publishcdnparams
+          @SeiParams = seiparams
+        end
+
+        def deserialize(params)
+          @SdkAppId = params['SdkAppId']
+          @RoomId = params['RoomId']
+          @RoomIdType = params['RoomIdType']
+          unless params['AgentParams'].nil?
+            @AgentParams = AgentParams.new
+            @AgentParams.deserialize(params['AgentParams'])
+          end
+          @WithTranscoding = params['WithTranscoding']
+          unless params['AudioParams'].nil?
+            @AudioParams = McuAudioParams.new
+            @AudioParams.deserialize(params['AudioParams'])
+          end
+          unless params['VideoParams'].nil?
+            @VideoParams = McuVideoParams.new
+            @VideoParams.deserialize(params['VideoParams'])
+          end
+          unless params['SingleSubscribeParams'].nil?
+            @SingleSubscribeParams = SingleSubscribeParams.new
+            @SingleSubscribeParams.deserialize(params['SingleSubscribeParams'])
+          end
+          unless params['PublishCdnParams'].nil?
+            @PublishCdnParams = []
+            params['PublishCdnParams'].each do |i|
+              mcupublishcdnparam_tmp = McuPublishCdnParam.new
+              mcupublishcdnparam_tmp.deserialize(i)
+              @PublishCdnParams << mcupublishcdnparam_tmp
+            end
+          end
+          unless params['SeiParams'].nil?
+            @SeiParams = McuSeiParams.new
+            @SeiParams.deserialize(params['SeiParams'])
+          end
+        end
+      end
+
+      # StartPublishCdnStream返回参数结构体
+      class StartPublishCdnStreamResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: 用于唯一标识转推任务，由腾讯云服务端生成，后续更新和停止请求都需要携带TaskiD参数。
+        # @type TaskId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :RequestId
+        
+        def initialize(taskid=nil, requestid=nil)
+          @TaskId = taskid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # StopMCUMixTranscodeByStrRoomId请求参数结构体
       class StopMCUMixTranscodeByStrRoomIdRequest < TencentCloud::Common::AbstractModel
         # @param SdkAppId: TRTC的SDKAppId。
@@ -2637,6 +3227,46 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # StopPublishCdnStream请求参数结构体
+      class StopPublishCdnStreamRequest < TencentCloud::Common::AbstractModel
+        # @param SdkAppId: TRTC的[SdkAppId](https://cloud.tencent.com/document/product/647/46351#sdkappid)，和转推的房间所对应的SdkAppId相同。
+        # @type SdkAppId: Integer
+        # @param TaskId: 唯一标识转推任务。
+        # @type TaskId: String
+
+        attr_accessor :SdkAppId, :TaskId
+        
+        def initialize(sdkappid=nil, taskid=nil)
+          @SdkAppId = sdkappid
+          @TaskId = taskid
+        end
+
+        def deserialize(params)
+          @SdkAppId = params['SdkAppId']
+          @TaskId = params['TaskId']
+        end
+      end
+
+      # StopPublishCdnStream返回参数结构体
+      class StopPublishCdnStreamResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: 转推任务唯一的String Id
+        # @type TaskId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :RequestId
+        
+        def initialize(taskid=nil, requestid=nil)
+          @TaskId = taskid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
           @RequestId = params['RequestId']
         end
       end
@@ -2865,6 +3495,93 @@ module TencentCloud
         end
       end
 
+      # UpdatePublishCdnStream请求参数结构体
+      class UpdatePublishCdnStreamRequest < TencentCloud::Common::AbstractModel
+        # @param SdkAppId: TRTC的[SdkAppId](https://cloud.tencent.com/document/product/647/46351#sdkappid)，和转推的房间所对应的SdkAppId相同。
+        # @type SdkAppId: Integer
+        # @param TaskId: 唯一标识转推任务。
+        # @type TaskId: String
+        # @param SequenceNumber: 客户保证同一个任务，每次更新请求中的SequenceNumber递增，防止请求乱序。
+        # @type SequenceNumber: Integer
+        # @param WithTranscoding: 是否转码，0表示无需转码，1表示需要转码。
+        # @type WithTranscoding: Integer
+        # @param AudioParams: 更新相关参数，只支持更新参与混音的主播列表参数。不填表示不更新此参数。
+        # @type AudioParams: :class:`Tencentcloud::Trtc.v20190722.models.McuAudioParams`
+        # @param VideoParams: 更新视频相关参数，转码时支持更新除编码类型之外的编码参数，视频布局参数，背景图片和背景颜色参数，水印参数。不填表示不更新此参数。
+        # @type VideoParams: :class:`Tencentcloud::Trtc.v20190722.models.McuVideoParams`
+        # @param SingleSubscribeParams: 更新单流转推的用户上行参数，仅在非转码时有效。不填表示不更新此参数。
+        # @type SingleSubscribeParams: :class:`Tencentcloud::Trtc.v20190722.models.SingleSubscribeParams`
+        # @param PublishCdnParams: 更新转推的CDN参数。不填表示不更新此参数。
+        # @type PublishCdnParams: Array
+        # @param SeiParams: 混流SEI参数
+        # @type SeiParams: :class:`Tencentcloud::Trtc.v20190722.models.McuSeiParams`
+
+        attr_accessor :SdkAppId, :TaskId, :SequenceNumber, :WithTranscoding, :AudioParams, :VideoParams, :SingleSubscribeParams, :PublishCdnParams, :SeiParams
+        
+        def initialize(sdkappid=nil, taskid=nil, sequencenumber=nil, withtranscoding=nil, audioparams=nil, videoparams=nil, singlesubscribeparams=nil, publishcdnparams=nil, seiparams=nil)
+          @SdkAppId = sdkappid
+          @TaskId = taskid
+          @SequenceNumber = sequencenumber
+          @WithTranscoding = withtranscoding
+          @AudioParams = audioparams
+          @VideoParams = videoparams
+          @SingleSubscribeParams = singlesubscribeparams
+          @PublishCdnParams = publishcdnparams
+          @SeiParams = seiparams
+        end
+
+        def deserialize(params)
+          @SdkAppId = params['SdkAppId']
+          @TaskId = params['TaskId']
+          @SequenceNumber = params['SequenceNumber']
+          @WithTranscoding = params['WithTranscoding']
+          unless params['AudioParams'].nil?
+            @AudioParams = McuAudioParams.new
+            @AudioParams.deserialize(params['AudioParams'])
+          end
+          unless params['VideoParams'].nil?
+            @VideoParams = McuVideoParams.new
+            @VideoParams.deserialize(params['VideoParams'])
+          end
+          unless params['SingleSubscribeParams'].nil?
+            @SingleSubscribeParams = SingleSubscribeParams.new
+            @SingleSubscribeParams.deserialize(params['SingleSubscribeParams'])
+          end
+          unless params['PublishCdnParams'].nil?
+            @PublishCdnParams = []
+            params['PublishCdnParams'].each do |i|
+              mcupublishcdnparam_tmp = McuPublishCdnParam.new
+              mcupublishcdnparam_tmp.deserialize(i)
+              @PublishCdnParams << mcupublishcdnparam_tmp
+            end
+          end
+          unless params['SeiParams'].nil?
+            @SeiParams = McuSeiParams.new
+            @SeiParams.deserialize(params['SeiParams'])
+          end
+        end
+      end
+
+      # UpdatePublishCdnStream返回参数结构体
+      class UpdatePublishCdnStreamResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: 转推任务唯一的String Id
+        # @type TaskId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :RequestId
+        
+        def initialize(taskid=nil, requestid=nil)
+          @TaskId = taskid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 用户信息，包括用户进房时间，退房时间等
       class UserInformation < TencentCloud::Common::AbstractModel
         # @param RoomStr: 房间号
@@ -2906,6 +3623,61 @@ module TencentCloud
           @SdkVersion = params['SdkVersion']
           @ClientIp = params['ClientIp']
           @Finished = params['Finished']
+        end
+      end
+
+      # 用户媒体流参数。
+      class UserMediaStream < TencentCloud::Common::AbstractModel
+        # @param UserInfo: TRTC用户参数。
+        # @type UserInfo: :class:`Tencentcloud::Trtc.v20190722.models.MixUserInfo`
+        # @param StreamType: 主辅路流类型，0为摄像头，1为屏幕分享，不填默认为0。
+        # @type StreamType: Integer
+
+        attr_accessor :UserInfo, :StreamType
+        
+        def initialize(userinfo=nil, streamtype=nil)
+          @UserInfo = userinfo
+          @StreamType = streamtype
+        end
+
+        def deserialize(params)
+          unless params['UserInfo'].nil?
+            @UserInfo = MixUserInfo.new
+            @UserInfo.deserialize(params['UserInfo'])
+          end
+          @StreamType = params['StreamType']
+        end
+      end
+
+      # 视频编码参数。
+      class VideoEncode < TencentCloud::Common::AbstractModel
+        # @param Width: 输出流宽，音视频输出时必填。取值范围[0,1920]，单位为像素值。
+        # @type Width: Integer
+        # @param Height: 输出流高，音视频输出时必填。取值范围[0,1080]，单位为像素值。
+        # @type Height: Integer
+        # @param Fps: 输出流帧率，音视频输出时必填。取值范围[1,60]，表示混流的输出帧率可选范围为1到60fps。
+        # @type Fps: Integer
+        # @param BitRate: 输出流码率，音视频输出时必填。取值范围[1,10000]，单位为kbps。
+        # @type BitRate: Integer
+        # @param Gop: 输出流gop，音视频输出时必填。取值范围[1,5]，单位为秒。
+        # @type Gop: Integer
+
+        attr_accessor :Width, :Height, :Fps, :BitRate, :Gop
+        
+        def initialize(width=nil, height=nil, fps=nil, bitrate=nil, gop=nil)
+          @Width = width
+          @Height = height
+          @Fps = fps
+          @BitRate = bitrate
+          @Gop = gop
+        end
+
+        def deserialize(params)
+          @Width = params['Width']
+          @Height = params['Height']
+          @Fps = params['Fps']
+          @BitRate = params['BitRate']
+          @Gop = params['Gop']
         end
       end
 
