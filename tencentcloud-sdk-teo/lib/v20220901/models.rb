@@ -3686,7 +3686,7 @@ module TencentCloud
 
       # DescribeApplicationProxies请求参数结构体
       class DescribeApplicationProxiesRequest < TencentCloud::Common::AbstractModel
-        # @param Offset: 分页查询偏移量，默认为0。
+        # @param Offset: 分页查询偏移量。默认为0。
         # @type Offset: Integer
         # @param Limit: 分页查询限制数目。默认值：20，最大值：1000。
         # @type Limit: Integer

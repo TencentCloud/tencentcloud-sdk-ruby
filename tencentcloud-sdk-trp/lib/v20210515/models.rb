@@ -52,7 +52,7 @@ module TencentCloud
         # @param CorpId: 企业ID
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CorpId: Integer
-        # @param BatchCode: 码
+        # @param BatchCode: 批次编码(未使用)
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BatchCode: String
         # @param CodeCnt: 码数量
@@ -73,7 +73,7 @@ module TencentCloud
         # @param MpTpl: 微信模板
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MpTpl: String
-        # @param Status: 状态
+        # @param Status: 批次状态 0: 未激活 1: 已激活 -1: 已冻结
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: Integer
         # @param CreateTime: 创建时间
@@ -160,6 +160,125 @@ module TencentCloud
 
         def deserialize(params)
           @Code = params['Code']
+        end
+      end
+
+      # 码包类型
+      class CodePack < TencentCloud::Common::AbstractModel
+        # @param PackId: 码id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PackId: String
+        # @param CorpId: 企业id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CorpId: Integer
+        # @param MerchantId: 商户id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MerchantId: String
+        # @param CreateTime: 创建时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateTime: String
+        # @param UpdateTime: 更新时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UpdateTime: String
+        # @param Status: 状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: String
+        # @param Log: 记录
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Log: String
+        # @param CreateUser: 创建人
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateUser: String
+        # @param Amount: 码数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Amount: Integer
+        # @param CodeLength: 码长度
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CodeLength: Integer
+        # @param CodeType: 码类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CodeType: String
+        # @param Cipher: 是否暗码
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Cipher: Integer
+        # @param TextUrl: 文字码地址
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TextUrl: String
+        # @param PackUrl: 二维码地址
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PackUrl: String
+        # @param MerchantName: 商户名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MerchantName: String
+        # @param RuleType: 码规则类型 0: 默认, 1: 自定义
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RuleType: Integer
+        # @param CustomId: 自定义码规则ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CustomId: String
+        # @param PackType: 码包类型 0: 普通码包 1: 层级码包
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PackType: Integer
+        # @param PackLevel: 生码层级
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PackLevel: Integer
+        # @param PackSpec: 层级码配置
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PackSpec: Array
+
+        attr_accessor :PackId, :CorpId, :MerchantId, :CreateTime, :UpdateTime, :Status, :Log, :CreateUser, :Amount, :CodeLength, :CodeType, :Cipher, :TextUrl, :PackUrl, :MerchantName, :RuleType, :CustomId, :PackType, :PackLevel, :PackSpec
+        
+        def initialize(packid=nil, corpid=nil, merchantid=nil, createtime=nil, updatetime=nil, status=nil, log=nil, createuser=nil, amount=nil, codelength=nil, codetype=nil, cipher=nil, texturl=nil, packurl=nil, merchantname=nil, ruletype=nil, customid=nil, packtype=nil, packlevel=nil, packspec=nil)
+          @PackId = packid
+          @CorpId = corpid
+          @MerchantId = merchantid
+          @CreateTime = createtime
+          @UpdateTime = updatetime
+          @Status = status
+          @Log = log
+          @CreateUser = createuser
+          @Amount = amount
+          @CodeLength = codelength
+          @CodeType = codetype
+          @Cipher = cipher
+          @TextUrl = texturl
+          @PackUrl = packurl
+          @MerchantName = merchantname
+          @RuleType = ruletype
+          @CustomId = customid
+          @PackType = packtype
+          @PackLevel = packlevel
+          @PackSpec = packspec
+        end
+
+        def deserialize(params)
+          @PackId = params['PackId']
+          @CorpId = params['CorpId']
+          @MerchantId = params['MerchantId']
+          @CreateTime = params['CreateTime']
+          @UpdateTime = params['UpdateTime']
+          @Status = params['Status']
+          @Log = params['Log']
+          @CreateUser = params['CreateUser']
+          @Amount = params['Amount']
+          @CodeLength = params['CodeLength']
+          @CodeType = params['CodeType']
+          @Cipher = params['Cipher']
+          @TextUrl = params['TextUrl']
+          @PackUrl = params['PackUrl']
+          @MerchantName = params['MerchantName']
+          @RuleType = params['RuleType']
+          @CustomId = params['CustomId']
+          @PackType = params['PackType']
+          @PackLevel = params['PackLevel']
+          unless params['PackSpec'].nil?
+            @PackSpec = []
+            params['PackSpec'].each do |i|
+              packspec_tmp = PackSpec.new
+              packspec_tmp.deserialize(i)
+              @PackSpec << packspec_tmp
+            end
+          end
         end
       end
 
@@ -346,14 +465,16 @@ module TencentCloud
         # @type PackType: Integer
         # @param PackLevel: 码包层级
         # @type PackLevel: Integer
-        # @param PackSpec: 层级码包规则 [{ Level, Rate, Amount, CustomId }]
+        # @param PackSpec: 层级码包规则
         # @type PackSpec: Array
-        # @param CustomId: 码规则ID,  普通码包时必填
+        # @param CustomId: 码规则ID,  和CodeParts二选一必填
         # @type CustomId: String
+        # @param CodeParts: 码段配置，和CustomId二选一必填
+        # @type CodeParts: Array
 
-        attr_accessor :MerchantId, :Amount, :CorpId, :PackType, :PackLevel, :PackSpec, :CustomId
+        attr_accessor :MerchantId, :Amount, :CorpId, :PackType, :PackLevel, :PackSpec, :CustomId, :CodeParts
         
-        def initialize(merchantid=nil, amount=nil, corpid=nil, packtype=nil, packlevel=nil, packspec=nil, customid=nil)
+        def initialize(merchantid=nil, amount=nil, corpid=nil, packtype=nil, packlevel=nil, packspec=nil, customid=nil, codeparts=nil)
           @MerchantId = merchantid
           @Amount = amount
           @CorpId = corpid
@@ -361,6 +482,7 @@ module TencentCloud
           @PackLevel = packlevel
           @PackSpec = packspec
           @CustomId = customid
+          @CodeParts = codeparts
         end
 
         def deserialize(params)
@@ -378,6 +500,14 @@ module TencentCloud
             end
           end
           @CustomId = params['CustomId']
+          unless params['CodeParts'].nil?
+            @CodeParts = []
+            params['CodeParts'].each do |i|
+              codepart_tmp = CodePart.new
+              codepart_tmp.deserialize(i)
+              @CodeParts << codepart_tmp
+            end
+          end
         end
       end
 
@@ -1171,16 +1301,21 @@ module TencentCloud
 
       # DescribeCodePackStatus返回参数结构体
       class DescribeCodePackStatusResponse < TencentCloud::Common::AbstractModel
+        # @param Status: 码包状态 init: 初始化, pending: 执行中, done: 完成, error: 失败
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RequestId
+        attr_accessor :Status, :RequestId
         
-        def initialize(requestid=nil)
+        def initialize(status=nil, requestid=nil)
+          @Status = status
           @RequestId = requestid
         end
 
         def deserialize(params)
+          @Status = params['Status']
           @RequestId = params['RequestId']
         end
       end
@@ -1210,18 +1345,28 @@ module TencentCloud
         # @param Url: 文字码包地址
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Url: String
+        # @param ImgUrl: 图片码包地址，可能为空
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ImgUrl: String
+        # @param FileKey: 文字码包Key，用于上传导入
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FileKey: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Url, :RequestId
+        attr_accessor :Url, :ImgUrl, :FileKey, :RequestId
         
-        def initialize(url=nil, requestid=nil)
+        def initialize(url=nil, imgurl=nil, filekey=nil, requestid=nil)
           @Url = url
+          @ImgUrl = imgurl
+          @FileKey = filekey
           @RequestId = requestid
         end
 
         def deserialize(params)
           @Url = params['Url']
+          @ImgUrl = params['ImgUrl']
+          @FileKey = params['FileKey']
           @RequestId = params['RequestId']
         end
       end
@@ -1256,16 +1401,33 @@ module TencentCloud
 
       # DescribeCodePacks返回参数结构体
       class DescribeCodePacksResponse < TencentCloud::Common::AbstractModel
+        # @param CodePacks: 码列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CodePacks: Array
+        # @param TotalCount: 总数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalCount: Integer
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RequestId
+        attr_accessor :CodePacks, :TotalCount, :RequestId
         
-        def initialize(requestid=nil)
+        def initialize(codepacks=nil, totalcount=nil, requestid=nil)
+          @CodePacks = codepacks
+          @TotalCount = totalcount
           @RequestId = requestid
         end
 
         def deserialize(params)
+          unless params['CodePacks'].nil?
+            @CodePacks = []
+            params['CodePacks'].each do |i|
+              codepack_tmp = CodePack.new
+              codepack_tmp.deserialize(i)
+              @CodePacks << codepack_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
           @RequestId = params['RequestId']
         end
       end
@@ -1453,16 +1615,21 @@ module TencentCloud
 
       # DescribeJobFileUrl返回参数结构体
       class DescribeJobFileUrlResponse < TencentCloud::Common::AbstractModel
+        # @param Url: 码包地址
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Url: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RequestId
+        attr_accessor :Url, :RequestId
         
-        def initialize(requestid=nil)
+        def initialize(url=nil, requestid=nil)
+          @Url = url
           @RequestId = requestid
         end
 
         def deserialize(params)
+          @Url = params['Url']
           @RequestId = params['RequestId']
         end
       end
@@ -1681,6 +1848,43 @@ module TencentCloud
             end
           end
           @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeTmpToken请求参数结构体
+      class DescribeTmpTokenRequest < TencentCloud::Common::AbstractModel
+        # @param CorpId: 企业ID
+        # @type CorpId: Integer
+
+        attr_accessor :CorpId
+        
+        def initialize(corpid=nil)
+          @CorpId = corpid
+        end
+
+        def deserialize(params)
+          @CorpId = params['CorpId']
+        end
+      end
+
+      # DescribeTmpToken返回参数结构体
+      class DescribeTmpTokenResponse < TencentCloud::Common::AbstractModel
+        # @param Token: 临时token
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Token: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Token, :RequestId
+        
+        def initialize(token=nil, requestid=nil)
+          @Token = token
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Token = params['Token']
           @RequestId = params['RequestId']
         end
       end
@@ -2440,14 +2644,18 @@ module TencentCloud
         # @param CustomId: 码规则ID
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CustomId: String
+        # @param CodeParts: 码段配置
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CodeParts: Array
 
-        attr_accessor :Level, :Rate, :Amount, :CustomId
+        attr_accessor :Level, :Rate, :Amount, :CustomId, :CodeParts
         
-        def initialize(level=nil, rate=nil, amount=nil, customid=nil)
+        def initialize(level=nil, rate=nil, amount=nil, customid=nil, codeparts=nil)
           @Level = level
           @Rate = rate
           @Amount = amount
           @CustomId = customid
+          @CodeParts = codeparts
         end
 
         def deserialize(params)
@@ -2455,6 +2663,14 @@ module TencentCloud
           @Rate = params['Rate']
           @Amount = params['Amount']
           @CustomId = params['CustomId']
+          unless params['CodeParts'].nil?
+            @CodeParts = []
+            params['CodeParts'].each do |i|
+              codepart_tmp = CodePart.new
+              codepart_tmp.deserialize(i)
+              @CodeParts << codepart_tmp
+            end
+          end
         end
       end
 
@@ -2625,13 +2841,13 @@ module TencentCloud
         # @param CorpId: 企业ID
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CorpId: Integer
-        # @param Type: 0
+        # @param Type: 码类型 0: 批次, 1: 码, 2: 生产任务
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Type: Integer
-        # @param Code: 码
+        # @param Code: 码值，跟码类型一一对应
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Code: String
-        # @param Rank: 排序
+        # @param Rank: 排序，在Phase相同情况下，值越小排名靠前
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Rank: Integer
         # @param Phase: 溯源阶段 0:商品 1:通用 2:物流
@@ -2655,13 +2871,19 @@ module TencentCloud
         # @param ChainTime: 上链时间
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ChainTime: String
-        # @param ChainData: 无
+        # @param ChainData: 上链数据
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ChainData: :class:`Tencentcloud::Trp.v20210515.models.ChainData`
+        # @param PhaseData: 溯源阶段配置
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PhaseData: :class:`Tencentcloud::Trp.v20210515.models.PhaseData`
+        # @param Status: 溯源阶段状态 0: 无效, 1: 有效
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: Integer
 
-        attr_accessor :TraceId, :CorpId, :Type, :Code, :Rank, :Phase, :PhaseName, :TraceTime, :TraceItems, :CreateTime, :ChainStatus, :ChainTime, :ChainData
+        attr_accessor :TraceId, :CorpId, :Type, :Code, :Rank, :Phase, :PhaseName, :TraceTime, :TraceItems, :CreateTime, :ChainStatus, :ChainTime, :ChainData, :PhaseData, :Status
         
-        def initialize(traceid=nil, corpid=nil, type=nil, code=nil, rank=nil, phase=nil, phasename=nil, tracetime=nil, traceitems=nil, createtime=nil, chainstatus=nil, chaintime=nil, chaindata=nil)
+        def initialize(traceid=nil, corpid=nil, type=nil, code=nil, rank=nil, phase=nil, phasename=nil, tracetime=nil, traceitems=nil, createtime=nil, chainstatus=nil, chaintime=nil, chaindata=nil, phasedata=nil, status=nil)
           @TraceId = traceid
           @CorpId = corpid
           @Type = type
@@ -2675,6 +2897,8 @@ module TencentCloud
           @ChainStatus = chainstatus
           @ChainTime = chaintime
           @ChainData = chaindata
+          @PhaseData = phasedata
+          @Status = status
         end
 
         def deserialize(params)
@@ -2701,6 +2925,11 @@ module TencentCloud
             @ChainData = ChainData.new
             @ChainData.deserialize(params['ChainData'])
           end
+          unless params['PhaseData'].nil?
+            @PhaseData = PhaseData.new
+            @PhaseData.deserialize(params['PhaseData'])
+          end
+          @Status = params['Status']
         end
       end
 

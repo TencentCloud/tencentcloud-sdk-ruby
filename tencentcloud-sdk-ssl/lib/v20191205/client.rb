@@ -389,6 +389,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 获得权益包列表
+
+        # @param request: Request instance for DescribePackages.
+        # @type request: :class:`Tencentcloud::ssl::V20191205::DescribePackagesRequest`
+        # @rtype: :class:`Tencentcloud::ssl::V20191205::DescribePackagesResponse`
+        def DescribePackages(request)
+          body = send_request('DescribePackages', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribePackagesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（DownloadCertificate）用于下载证书。
 
         # @param request: Request instance for DownloadCertificate.

@@ -1562,6 +1562,81 @@ module TencentCloud
         end
       end
 
+      # DescribePackages请求参数结构体
+      class DescribePackagesRequest < TencentCloud::Common::AbstractModel
+        # @param Offset: 偏移量，默认0。
+        # @type Offset: Integer
+        # @param Limit: 限制数目，默认20。
+        # @type Limit: Integer
+        # @param Status: 按状态筛选。
+        # @type Status: String
+        # @param ExpireTime: 按过期时间升序或降序排列。
+        # @type ExpireTime: String
+        # @param PackageId: 按权益包ID搜索。
+        # @type PackageId: String
+        # @param Type: 按权益包类型搜索。
+        # @type Type: String
+        # @param Pid: 子产品编号
+        # @type Pid: Integer
+
+        attr_accessor :Offset, :Limit, :Status, :ExpireTime, :PackageId, :Type, :Pid
+        
+        def initialize(offset=nil, limit=nil, status=nil, expiretime=nil, packageid=nil, type=nil, pid=nil)
+          @Offset = offset
+          @Limit = limit
+          @Status = status
+          @ExpireTime = expiretime
+          @PackageId = packageid
+          @Type = type
+          @Pid = pid
+        end
+
+        def deserialize(params)
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @Status = params['Status']
+          @ExpireTime = params['ExpireTime']
+          @PackageId = params['PackageId']
+          @Type = params['Type']
+          @Pid = params['Pid']
+        end
+      end
+
+      # DescribePackages返回参数结构体
+      class DescribePackagesResponse < TencentCloud::Common::AbstractModel
+        # @param Packages: 权益包列表。
+        # @type Packages: Array
+        # @param TotalCount: 总条数。
+        # @type TotalCount: Integer
+        # @param TotalBalance: 权益点总余额。
+        # @type TotalBalance: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Packages, :TotalCount, :TotalBalance, :RequestId
+        
+        def initialize(packages=nil, totalcount=nil, totalbalance=nil, requestid=nil)
+          @Packages = packages
+          @TotalCount = totalcount
+          @TotalBalance = totalbalance
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Packages'].nil?
+            @Packages = []
+            params['Packages'].each do |i|
+              packageinfo_tmp = PackageInfo.new
+              packageinfo_tmp.deserialize(i)
+              @Packages << packageinfo_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+          @TotalBalance = params['TotalBalance']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DownloadCertificate请求参数结构体
       class DownloadCertificateRequest < TencentCloud::Common::AbstractModel
         # @param CertificateId: 证书 ID。
@@ -1936,6 +2011,126 @@ module TencentCloud
         def deserialize(params)
           @Action = params['Action']
           @CreatedOn = params['CreatedOn']
+        end
+      end
+
+      # 权益包基本信息
+      class PackageInfo < TencentCloud::Common::AbstractModel
+        # @param PackageId: 权益包ID。
+        # @type PackageId: String
+        # @param Total: 权益包内权益点总量。
+        # @type Total: Integer
+        # @param Balance: 权益包内权益点余量。
+        # @type Balance: Integer
+        # @param Type: 权益包名称。
+        # @type Type: String
+        # @param SourceUin: 权益点是转入时，来源信息。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SourceUin: Integer
+        # @param Status: 权益点状态。
+        # @type Status: String
+        # @param ExpireTime: 过期时间。
+        # @type ExpireTime: String
+        # @param UpdateTime: 更新时间。
+        # @type UpdateTime: String
+        # @param CreateTime: 生成时间。
+        # @type CreateTime: String
+        # @param SourceType: 来源类型。
+        # @type SourceType: String
+        # @param TransferOutInfos: 转移信息。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TransferOutInfos: Array
+
+        attr_accessor :PackageId, :Total, :Balance, :Type, :SourceUin, :Status, :ExpireTime, :UpdateTime, :CreateTime, :SourceType, :TransferOutInfos
+        
+        def initialize(packageid=nil, total=nil, balance=nil, type=nil, sourceuin=nil, status=nil, expiretime=nil, updatetime=nil, createtime=nil, sourcetype=nil, transferoutinfos=nil)
+          @PackageId = packageid
+          @Total = total
+          @Balance = balance
+          @Type = type
+          @SourceUin = sourceuin
+          @Status = status
+          @ExpireTime = expiretime
+          @UpdateTime = updatetime
+          @CreateTime = createtime
+          @SourceType = sourcetype
+          @TransferOutInfos = transferoutinfos
+        end
+
+        def deserialize(params)
+          @PackageId = params['PackageId']
+          @Total = params['Total']
+          @Balance = params['Balance']
+          @Type = params['Type']
+          @SourceUin = params['SourceUin']
+          @Status = params['Status']
+          @ExpireTime = params['ExpireTime']
+          @UpdateTime = params['UpdateTime']
+          @CreateTime = params['CreateTime']
+          @SourceType = params['SourceType']
+          unless params['TransferOutInfos'].nil?
+            @TransferOutInfos = []
+            params['TransferOutInfos'].each do |i|
+              packagetransferoutinfo_tmp = PackageTransferOutInfo.new
+              packagetransferoutinfo_tmp.deserialize(i)
+              @TransferOutInfos << packagetransferoutinfo_tmp
+            end
+          end
+        end
+      end
+
+      # 权益包转出详情
+      class PackageTransferOutInfo < TencentCloud::Common::AbstractModel
+        # @param PackageId: 权益包ID。
+        # @type PackageId: String
+        # @param TransferCode: 转移码。
+        # @type TransferCode: String
+        # @param TransferCount: 本次转移点数。
+        # @type TransferCount: Integer
+        # @param ReceivePackageId: 转入的PackageID。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ReceivePackageId: String
+        # @param ExpireTime: 本次转移过期时间。
+        # @type ExpireTime: String
+        # @param CreateTime: 本次转移生成时间。
+        # @type CreateTime: String
+        # @param UpdateTime: 本次转移更新时间。
+        # @type UpdateTime: String
+        # @param TransferStatus: 转移状态。
+        # @type TransferStatus: String
+        # @param ReceiverUin: 接收者uin。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ReceiverUin: Integer
+        # @param ReceiveTime: 接收时间。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ReceiveTime: String
+
+        attr_accessor :PackageId, :TransferCode, :TransferCount, :ReceivePackageId, :ExpireTime, :CreateTime, :UpdateTime, :TransferStatus, :ReceiverUin, :ReceiveTime
+        
+        def initialize(packageid=nil, transfercode=nil, transfercount=nil, receivepackageid=nil, expiretime=nil, createtime=nil, updatetime=nil, transferstatus=nil, receiveruin=nil, receivetime=nil)
+          @PackageId = packageid
+          @TransferCode = transfercode
+          @TransferCount = transfercount
+          @ReceivePackageId = receivepackageid
+          @ExpireTime = expiretime
+          @CreateTime = createtime
+          @UpdateTime = updatetime
+          @TransferStatus = transferstatus
+          @ReceiverUin = receiveruin
+          @ReceiveTime = receivetime
+        end
+
+        def deserialize(params)
+          @PackageId = params['PackageId']
+          @TransferCode = params['TransferCode']
+          @TransferCount = params['TransferCount']
+          @ReceivePackageId = params['ReceivePackageId']
+          @ExpireTime = params['ExpireTime']
+          @CreateTime = params['CreateTime']
+          @UpdateTime = params['UpdateTime']
+          @TransferStatus = params['TransferStatus']
+          @ReceiverUin = params['ReceiverUin']
+          @ReceiveTime = params['ReceiveTime']
         end
       end
 

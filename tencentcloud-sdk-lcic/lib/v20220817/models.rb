@@ -242,6 +242,38 @@ module TencentCloud
         end
       end
 
+      # DeleteRoom请求参数结构体
+      class DeleteRoomRequest < TencentCloud::Common::AbstractModel
+        # @param RoomId: 房间ID。
+        # @type RoomId: Integer
+
+        attr_accessor :RoomId
+        
+        def initialize(roomid=nil)
+          @RoomId = roomid
+        end
+
+        def deserialize(params)
+          @RoomId = params['RoomId']
+        end
+      end
+
+      # DeleteRoom返回参数结构体
+      class DeleteRoomResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeRoom请求参数结构体
       class DescribeRoomRequest < TencentCloud::Common::AbstractModel
         # @param RoomId: 房间Id。

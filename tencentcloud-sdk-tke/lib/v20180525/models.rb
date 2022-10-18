@@ -4408,14 +4408,18 @@ module TencentCloud
         # @param LatestOperationState: 最近一次修改操作结果，返回值可能为：Updating，Success，Failed，TimeOut
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LatestOperationState: String
+        # @param OIDCConfig: OIDC认证配置
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OIDCConfig: :class:`Tencentcloud::Tke.v20180525.models.OIDCConfigAuthenticationOptions`
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :ServiceAccounts, :LatestOperationState, :RequestId
+        attr_accessor :ServiceAccounts, :LatestOperationState, :OIDCConfig, :RequestId
         
-        def initialize(serviceaccounts=nil, latestoperationstate=nil, requestid=nil)
+        def initialize(serviceaccounts=nil, latestoperationstate=nil, oidcconfig=nil, requestid=nil)
           @ServiceAccounts = serviceaccounts
           @LatestOperationState = latestoperationstate
+          @OIDCConfig = oidcconfig
           @RequestId = requestid
         end
 
@@ -4425,6 +4429,10 @@ module TencentCloud
             @ServiceAccounts.deserialize(params['ServiceAccounts'])
           end
           @LatestOperationState = params['LatestOperationState']
+          unless params['OIDCConfig'].nil?
+            @OIDCConfig = OIDCConfigAuthenticationOptions.new
+            @OIDCConfig.deserialize(params['OIDCConfig'])
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -10647,12 +10655,15 @@ module TencentCloud
         # @type ClusterId: String
         # @param ServiceAccounts: ServiceAccount认证配置
         # @type ServiceAccounts: :class:`Tencentcloud::Tke.v20180525.models.ServiceAccountAuthenticationOptions`
+        # @param OIDCConfig: OIDC认证配置
+        # @type OIDCConfig: :class:`Tencentcloud::Tke.v20180525.models.OIDCConfigAuthenticationOptions`
 
-        attr_accessor :ClusterId, :ServiceAccounts
+        attr_accessor :ClusterId, :ServiceAccounts, :OIDCConfig
         
-        def initialize(clusterid=nil, serviceaccounts=nil)
+        def initialize(clusterid=nil, serviceaccounts=nil, oidcconfig=nil)
           @ClusterId = clusterid
           @ServiceAccounts = serviceaccounts
+          @OIDCConfig = oidcconfig
         end
 
         def deserialize(params)
@@ -10660,6 +10671,10 @@ module TencentCloud
           unless params['ServiceAccounts'].nil?
             @ServiceAccounts = ServiceAccountAuthenticationOptions.new
             @ServiceAccounts.deserialize(params['ServiceAccounts'])
+          end
+          unless params['OIDCConfig'].nil?
+            @OIDCConfig = OIDCConfigAuthenticationOptions.new
+            @OIDCConfig.deserialize(params['OIDCConfig'])
           end
         end
       end
@@ -11467,6 +11482,33 @@ module TencentCloud
           @AddToNodePool = params['AddToNodePool']
           @NodePoolId = params['NodePoolId']
           @InheritConfigurationFromNodePool = params['InheritConfigurationFromNodePool']
+        end
+      end
+
+      # OIDC认证相关配置
+      class OIDCConfigAuthenticationOptions < TencentCloud::Common::AbstractModel
+        # @param AutoCreateOIDCConfig: 创建身份提供商
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AutoCreateOIDCConfig: Boolean
+        # @param AutoCreateClientId: 创建身份提供商的ClientId
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AutoCreateClientId: Array
+        # @param AutoInstallPodIdentityWebhookAddon: 创建PodIdentityWebhook组件
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AutoInstallPodIdentityWebhookAddon: Boolean
+
+        attr_accessor :AutoCreateOIDCConfig, :AutoCreateClientId, :AutoInstallPodIdentityWebhookAddon
+        
+        def initialize(autocreateoidcconfig=nil, autocreateclientid=nil, autoinstallpodidentitywebhookaddon=nil)
+          @AutoCreateOIDCConfig = autocreateoidcconfig
+          @AutoCreateClientId = autocreateclientid
+          @AutoInstallPodIdentityWebhookAddon = autoinstallpodidentitywebhookaddon
+        end
+
+        def deserialize(params)
+          @AutoCreateOIDCConfig = params['AutoCreateOIDCConfig']
+          @AutoCreateClientId = params['AutoCreateClientId']
+          @AutoInstallPodIdentityWebhookAddon = params['AutoInstallPodIdentityWebhookAddon']
         end
       end
 

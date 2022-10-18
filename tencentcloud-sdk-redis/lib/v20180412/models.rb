@@ -2337,62 +2337,64 @@ module TencentCloud
 
       # DescribeInstances请求参数结构体
       class DescribeInstancesRequest < TencentCloud::Common::AbstractModel
-        # @param Limit: 返回数量，参数默认值20，最大值为1000
+        # @param Limit: 实例数量，参数默认值20，最大值为1000。
         # @type Limit: Integer
-        # @param Offset: 偏移量，取Limit整数倍
+        # @param Offset: 偏移量，取Limit整数倍。
         # @type Offset: Integer
-        # @param InstanceId: 实例Id，如：crs-6ubhgouj
+        # @param InstanceId: 实例 ID，如：crs-6ubhgouj。
         # @type InstanceId: String
-        # @param OrderBy: 枚举范围： projectId,createtime,instancename,type,curDeadline
+        # @param OrderBy: 实例排序依据，枚举值如下所示：<ul><li>projectId：项目ID。</li><li>createtime：实例创建时间。</li><li>instancename：实例名称。</li><li>type：实例类型。</li><li>curDeadline：实例到期时间。</li></ul>
         # @type OrderBy: String
-        # @param OrderType: 1倒序，0顺序，默认倒序
+        # @param OrderType: 实例排序方式，默认为倒序排序。<ul><li>1：倒序。</li><li>0：顺序。</li></ul>
         # @type OrderType: Integer
-        # @param VpcIds: 私有网络ID数组，数组下标从0开始，如果不传则默认选择基础网络，如：47525
+        # @param VpcIds: 私有网络 ID 数组。如果不配置该参数或设置数组为空则默认选择基础网络。例如47525。该参数暂时保留，可忽略。请根据 UniqVpcIds 参数格式设置私有网络ID数组。
         # @type VpcIds: Array
-        # @param SubnetIds: 子网ID数组，数组下标从0开始，如：56854
+        # @param SubnetIds: 私有网络所属子网 ID 数组，例如：56854。该参数暂时保留，可忽略。请根据 UniqSubnetIds 参数格式设置私有网络子网 ID 数组。
         # @type SubnetIds: Array
-        # @param ProjectIds: 项目ID 组成的数组，数组下标从0开始
-        # @type ProjectIds: Array
-        # @param SearchKey: 查找实例的ID。
+        # @param SearchKey: 设置模糊查询关键字，支持根据实例名称或实例ID模糊查询实例。
         # @type SearchKey: String
-        # @param InstanceName: 实例名称
+        # @param ProjectIds: 项目 ID 组成的数组。
+        # @type ProjectIds: Array
+        # @param InstanceName: 实例名称。
         # @type InstanceName: String
-        # @param UniqVpcIds: 私有网络ID数组，数组下标从0开始，如果不传则默认选择基础网络，如：vpc-sad23jfdfk
+        # @param UniqVpcIds: 私有网络 ID 数组。如果不配置该参数或者设置数组为空则默认选择基础网络，如：vpc-sad23jfdfk。
         # @type UniqVpcIds: Array
-        # @param UniqSubnetIds: 子网ID数组，数组下标从0开始，如：subnet-fdj24n34j2
+        # @param UniqSubnetIds: 私有网络所属子网 ID 数组，如：subnet-fdj24n34j2。
         # @type UniqSubnetIds: Array
-        # @param RegionIds: 地域ID，已经弃用，可通过公共参数Region查询对应地域
+        # @param RegionIds: 地域 ID 数组，该参数已经弃用，可通过公共参数Region查询对应地域。
         # @type RegionIds: Array
-        # @param Status: 实例状态：0-待初始化，1-流程中，2-运行中，-2-已隔离，-3-待删除
+        # @param Status: 实例状态。<ul><li>0：待初始化。</li><li>1：流程中。</li><li>2：运行中。</li><li>-2：已隔离。</li><li>-3：待删除。</li></ul>
         # @type Status: Array
-        # @param TypeVersion: 类型版本：1-单机版,2-主从版,3-集群版
+        # @param TypeVersion: 实例架构版本。<ul><li>1：单机版。</li><li>2：主从版。</li><li>3：集群版。</li></ul>
         # @type TypeVersion: Integer
-        # @param EngineName: 引擎信息：Redis-2.8，Redis-4.0，CKV
+        # @param EngineName: 存储引擎信息。可设置为Redis-2.8、Redis-4.0、Redis-5.0、Redis-6.0 或者 CKV。
         # @type EngineName: String
-        # @param AutoRenew: 续费模式：0 - 默认状态（手动续费）；1 - 自动续费；2 - 明确不自动续费
+        # @param AutoRenew: 续费模式。<ul><li>0：默认状态（手动续费）。</li><li>1：自动续费。</li><li>2：明确不自动续费。</ul>
         # @type AutoRenew: Array
-        # @param BillingMode: 计费模式：postpaid-按量计费；prepaid-包年包月
+        # @param BillingMode: 计费模式。<ul><li>postpaid：按量计费。</li><li>prepaid：包年包月。</li></ul>
         # @type BillingMode: String
-        # @param Type: 实例类型：1-Redis老集群版；2-Redis 2.8主从版；3-CKV主从版；4-CKV集群版；5-Redis 2.8单机版；6-Redis 4.0主从版；7-Redis 4.0集群版；8 – Redis5.0主从版，9 – Redis5.0集群版，
+        # @param Type: 实例类型。<ul><li>1：Redis 老集群版。</li><li>2：Redis 2.8 主从版。</li><li>3：CKV 主从版。</li><li>4：CKV 集群版。</li><li>5：Redis 2.8 单机版。</li><li>6：Redis 4.0主从版。</li><li>7：Redis 4.0 集群版。</li><li>8：Redis 5.0 主从版。</li><li>9：Redis 5.0 集群版。</li></ul>
         # @type Type: Integer
-        # @param SearchKeys: 搜索关键词：支持实例Id、实例名称、完整IP
+        # @param SearchKeys: 设置搜索关键字数组，可根据实例ID、实例名称、完整IP地址查询实例。
         # @type SearchKeys: Array
-        # @param TypeList: 内部参数，用户可忽略
+        # @param TypeList: 内部参数，用户可忽略。
         # @type TypeList: Array
-        # @param MonitorVersion: 内部参数，用户可忽略
+        # @param MonitorVersion: 内部参数，用户可忽略。
         # @type MonitorVersion: String
-        # @param InstanceTags: 根据标签的Key和Value筛选资源，不传或者传空数组则不进行过滤
+        # @param InstanceTags: 根据标签的 Key 和 Value 筛选资源。该参数不配置或者数组设置为空值，则不根据标签进行过滤。
         # @type InstanceTags: Array
-        # @param TagKeys: 根据标签的Key筛选资源，不传或者传空数组则不进行过滤
+        # @param TagKeys: 根据标签的 Key 筛选资源，该参数不配置或者数组设置为空值，则不根据标签Key进行过滤。
         # @type TagKeys: Array
-        # @param ProductVersions: 需要过滤的产品版本支持多个，"local"本地盘版，"cloud"云盘版，"cdc"独享集群版，如果不传则默认不过滤
+        # @param ProductVersions: 实例的产品版本。如果该参数不配置或者数组设置为空值，则默认不依据此参数过滤实例。<ul><li>local：本地盘版。</li><li>cloud：云盘版。</li><li>cdc：独享集群版。</li></ul>
         # @type ProductVersions: Array
-        # @param InstanceIds: 批量查询指定的实例
+        # @param InstanceIds: 批量查询指定的实例 ID，返回结果已 Limit 限制为主。
         # @type InstanceIds: Array
+        # @param AzMode: 可用区模式。<ul><li>singleaz：单可用区。</li><li>multiaz：多可用区。</li></ul>
+        # @type AzMode: String
 
-        attr_accessor :Limit, :Offset, :InstanceId, :OrderBy, :OrderType, :VpcIds, :SubnetIds, :ProjectIds, :SearchKey, :InstanceName, :UniqVpcIds, :UniqSubnetIds, :RegionIds, :Status, :TypeVersion, :EngineName, :AutoRenew, :BillingMode, :Type, :SearchKeys, :TypeList, :MonitorVersion, :InstanceTags, :TagKeys, :ProductVersions, :InstanceIds
+        attr_accessor :Limit, :Offset, :InstanceId, :OrderBy, :OrderType, :VpcIds, :SubnetIds, :SearchKey, :ProjectIds, :InstanceName, :UniqVpcIds, :UniqSubnetIds, :RegionIds, :Status, :TypeVersion, :EngineName, :AutoRenew, :BillingMode, :Type, :SearchKeys, :TypeList, :MonitorVersion, :InstanceTags, :TagKeys, :ProductVersions, :InstanceIds, :AzMode
         
-        def initialize(limit=nil, offset=nil, instanceid=nil, orderby=nil, ordertype=nil, vpcids=nil, subnetids=nil, projectids=nil, searchkey=nil, instancename=nil, uniqvpcids=nil, uniqsubnetids=nil, regionids=nil, status=nil, typeversion=nil, enginename=nil, autorenew=nil, billingmode=nil, type=nil, searchkeys=nil, typelist=nil, monitorversion=nil, instancetags=nil, tagkeys=nil, productversions=nil, instanceids=nil)
+        def initialize(limit=nil, offset=nil, instanceid=nil, orderby=nil, ordertype=nil, vpcids=nil, subnetids=nil, searchkey=nil, projectids=nil, instancename=nil, uniqvpcids=nil, uniqsubnetids=nil, regionids=nil, status=nil, typeversion=nil, enginename=nil, autorenew=nil, billingmode=nil, type=nil, searchkeys=nil, typelist=nil, monitorversion=nil, instancetags=nil, tagkeys=nil, productversions=nil, instanceids=nil, azmode=nil)
           @Limit = limit
           @Offset = offset
           @InstanceId = instanceid
@@ -2400,8 +2402,8 @@ module TencentCloud
           @OrderType = ordertype
           @VpcIds = vpcids
           @SubnetIds = subnetids
-          @ProjectIds = projectids
           @SearchKey = searchkey
+          @ProjectIds = projectids
           @InstanceName = instancename
           @UniqVpcIds = uniqvpcids
           @UniqSubnetIds = uniqsubnetids
@@ -2419,6 +2421,7 @@ module TencentCloud
           @TagKeys = tagkeys
           @ProductVersions = productversions
           @InstanceIds = instanceids
+          @AzMode = azmode
         end
 
         def deserialize(params)
@@ -2429,8 +2432,8 @@ module TencentCloud
           @OrderType = params['OrderType']
           @VpcIds = params['VpcIds']
           @SubnetIds = params['SubnetIds']
-          @ProjectIds = params['ProjectIds']
           @SearchKey = params['SearchKey']
+          @ProjectIds = params['ProjectIds']
           @InstanceName = params['InstanceName']
           @UniqVpcIds = params['UniqVpcIds']
           @UniqSubnetIds = params['UniqSubnetIds']
@@ -2455,14 +2458,15 @@ module TencentCloud
           @TagKeys = params['TagKeys']
           @ProductVersions = params['ProductVersions']
           @InstanceIds = params['InstanceIds']
+          @AzMode = params['AzMode']
         end
       end
 
       # DescribeInstances返回参数结构体
       class DescribeInstancesResponse < TencentCloud::Common::AbstractModel
-        # @param TotalCount: 实例数
+        # @param TotalCount: 实例总数量。
         # @type TotalCount: Integer
-        # @param InstanceSet: 实例详细信息列表
+        # @param InstanceSet: 实例详细信息列表。
         # @type InstanceSet: Array
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
