@@ -1325,6 +1325,98 @@ module TencentCloud
         end
       end
 
+      # DescribeCRObtainDetail请求参数结构体
+      class DescribeCRObtainDetailRequest < TencentCloud::Common::AbstractModel
+        # @param TortId: 侵权ID
+        # @type TortId: Integer
+
+        attr_accessor :TortId
+        
+        def initialize(tortid=nil)
+          @TortId = tortid
+        end
+
+        def deserialize(params)
+          @TortId = params['TortId']
+        end
+      end
+
+      # DescribeCRObtainDetail返回参数结构体
+      class DescribeCRObtainDetailResponse < TencentCloud::Common::AbstractModel
+        # @param WorkName: 作品名称
+        # @type WorkName: String
+        # @param TortURL: 侵权链接
+        # @type TortURL: String
+        # @param ObtainTime: 取证时间
+        # @type ObtainTime: String
+        # @param ObtainType: 取证类型
+        # @type ObtainType: String
+        # @param ObtainNum: 取证号
+        # @type ObtainNum: String
+        # @param DepositFile: 证据地址
+        # @type DepositFile: String
+        # @param DepositCert: 公证信息地址
+        # @type DepositCert: String
+        # @param WorkType: 内容类型
+        # @type WorkType: String
+        # @param WorkCategory: 作品类型
+        # @type WorkCategory: String
+        # @param TortId: 侵权ID
+        # @type TortId: Integer
+        # @param TortNum: 侵权编号
+        # @type TortNum: String
+        # @param ObtainStatus: 取证状态
+        # @type ObtainStatus: Integer
+        # @param ObtainNote: 取证状态说明
+        # @type ObtainNote: String
+        # @param ObtainDuration: 取证时长
+        # @type ObtainDuration: String
+        # @param ObtainName: 取证名称
+        # @type ObtainName: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :WorkName, :TortURL, :ObtainTime, :ObtainType, :ObtainNum, :DepositFile, :DepositCert, :WorkType, :WorkCategory, :TortId, :TortNum, :ObtainStatus, :ObtainNote, :ObtainDuration, :ObtainName, :RequestId
+        
+        def initialize(workname=nil, torturl=nil, obtaintime=nil, obtaintype=nil, obtainnum=nil, depositfile=nil, depositcert=nil, worktype=nil, workcategory=nil, tortid=nil, tortnum=nil, obtainstatus=nil, obtainnote=nil, obtainduration=nil, obtainname=nil, requestid=nil)
+          @WorkName = workname
+          @TortURL = torturl
+          @ObtainTime = obtaintime
+          @ObtainType = obtaintype
+          @ObtainNum = obtainnum
+          @DepositFile = depositfile
+          @DepositCert = depositcert
+          @WorkType = worktype
+          @WorkCategory = workcategory
+          @TortId = tortid
+          @TortNum = tortnum
+          @ObtainStatus = obtainstatus
+          @ObtainNote = obtainnote
+          @ObtainDuration = obtainduration
+          @ObtainName = obtainname
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @WorkName = params['WorkName']
+          @TortURL = params['TortURL']
+          @ObtainTime = params['ObtainTime']
+          @ObtainType = params['ObtainType']
+          @ObtainNum = params['ObtainNum']
+          @DepositFile = params['DepositFile']
+          @DepositCert = params['DepositCert']
+          @WorkType = params['WorkType']
+          @WorkCategory = params['WorkCategory']
+          @TortId = params['TortId']
+          @TortNum = params['TortNum']
+          @ObtainStatus = params['ObtainStatus']
+          @ObtainNote = params['ObtainNote']
+          @ObtainDuration = params['ObtainDuration']
+          @ObtainName = params['ObtainName']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeCRWorkInfo请求参数结构体
       class DescribeCRWorkInfoRequest < TencentCloud::Common::AbstractModel
         # @param WorkId: 作品ID
@@ -1688,7 +1780,7 @@ module TencentCloud
       class ModifyCRObtainStatusRequest < TencentCloud::Common::AbstractModel
         # @param TortId: 侵权ID
         # @type TortId: Integer
-        # @param ObtainType: 取证类型：1-网页取证 2-过程取证
+        # @param ObtainType: 取证类型：1-网页取证 2-过程取证(暂不提供)
         # @type ObtainType: Integer
         # @param ObtainDuration: 过程取证的取证时长，单位分钟，范围0-120
         # @type ObtainDuration: Integer

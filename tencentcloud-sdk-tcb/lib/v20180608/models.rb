@@ -6344,6 +6344,42 @@ module TencentCloud
         end
       end
 
+      # ModifyClsTopic请求参数结构体
+      class ModifyClsTopicRequest < TencentCloud::Common::AbstractModel
+        # @param EnvId: 环境ID
+        # @type EnvId: String
+        # @param Period: 日志生命周期，单位天，可取值范围1~3600，取值为3640时代表永久保存
+        # @type Period: Integer
+
+        attr_accessor :EnvId, :Period
+        
+        def initialize(envid=nil, period=nil)
+          @EnvId = envid
+          @Period = period
+        end
+
+        def deserialize(params)
+          @EnvId = params['EnvId']
+          @Period = params['Period']
+        end
+      end
+
+      # ModifyClsTopic返回参数结构体
+      class ModifyClsTopicResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyDatabaseACL请求参数结构体
       class ModifyDatabaseACLRequest < TencentCloud::Common::AbstractModel
         # @param EnvId: 环境ID

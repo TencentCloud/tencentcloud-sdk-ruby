@@ -657,21 +657,21 @@ module TencentCloud
         # @type Limit: Integer
         # @param Agent: 渠道应用相关信息。 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 和 Agent.ProxyAppId 均必填。
         # @type Agent: :class:`Tencentcloud::Essbasic.v20210526.models.Agent`
-        # @param Operator: 操作者的信息
-        # @type Operator: :class:`Tencentcloud::Essbasic.v20210526.models.UserInfo`
         # @param Filters: 查询过滤实名用户，key为Status，Values为["IsVerified"]
         # @type Filters: Array
         # @param Offset: 偏移量，默认为0，最大为20000
         # @type Offset: Integer
+        # @param Operator: 操作者的信息
+        # @type Operator: :class:`Tencentcloud::Essbasic.v20210526.models.UserInfo`
 
-        attr_accessor :Limit, :Agent, :Operator, :Filters, :Offset
+        attr_accessor :Limit, :Agent, :Filters, :Offset, :Operator
         
-        def initialize(limit=nil, agent=nil, operator=nil, filters=nil, offset=nil)
+        def initialize(limit=nil, agent=nil, filters=nil, offset=nil, operator=nil)
           @Limit = limit
           @Agent = agent
-          @Operator = operator
           @Filters = filters
           @Offset = offset
+          @Operator = operator
         end
 
         def deserialize(params)
@@ -679,10 +679,6 @@ module TencentCloud
           unless params['Agent'].nil?
             @Agent = Agent.new
             @Agent.deserialize(params['Agent'])
-          end
-          unless params['Operator'].nil?
-            @Operator = UserInfo.new
-            @Operator.deserialize(params['Operator'])
           end
           unless params['Filters'].nil?
             @Filters = []
@@ -693,6 +689,10 @@ module TencentCloud
             end
           end
           @Offset = params['Offset']
+          unless params['Operator'].nil?
+            @Operator = UserInfo.new
+            @Operator.deserialize(params['Operator'])
+          end
         end
       end
 
@@ -919,6 +919,8 @@ module TencentCloud
         # @type ComponentName: String
         # @param ComponentRequired: 定义控件是否为必填项，默认为false
         # @type ComponentRequired: Boolean
+        # @param ComponentRecipientId: 控件关联的签署方id
+        # @type ComponentRecipientId: String
         # @param FileIndex: 控件所属文件的序号 (文档中文件的排列序号，从0开始)
         # @type FileIndex: Integer
         # @param GenerateMode: 控件生成的方式：
@@ -964,13 +966,14 @@ module TencentCloud
         # @param OffsetY: 指定关键字时纵坐标偏移量，单位pt
         # @type OffsetY: Float
 
-        attr_accessor :ComponentId, :ComponentType, :ComponentName, :ComponentRequired, :FileIndex, :GenerateMode, :ComponentWidth, :ComponentHeight, :ComponentPage, :ComponentPosX, :ComponentPosY, :ComponentExtra, :ComponentValue, :ComponentDateFontSize, :DocumentId, :ComponentDescription, :OffsetX, :OffsetY
+        attr_accessor :ComponentId, :ComponentType, :ComponentName, :ComponentRequired, :ComponentRecipientId, :FileIndex, :GenerateMode, :ComponentWidth, :ComponentHeight, :ComponentPage, :ComponentPosX, :ComponentPosY, :ComponentExtra, :ComponentValue, :ComponentDateFontSize, :DocumentId, :ComponentDescription, :OffsetX, :OffsetY
         
-        def initialize(componentid=nil, componenttype=nil, componentname=nil, componentrequired=nil, fileindex=nil, generatemode=nil, componentwidth=nil, componentheight=nil, componentpage=nil, componentposx=nil, componentposy=nil, componentextra=nil, componentvalue=nil, componentdatefontsize=nil, documentid=nil, componentdescription=nil, offsetx=nil, offsety=nil)
+        def initialize(componentid=nil, componenttype=nil, componentname=nil, componentrequired=nil, componentrecipientid=nil, fileindex=nil, generatemode=nil, componentwidth=nil, componentheight=nil, componentpage=nil, componentposx=nil, componentposy=nil, componentextra=nil, componentvalue=nil, componentdatefontsize=nil, documentid=nil, componentdescription=nil, offsetx=nil, offsety=nil)
           @ComponentId = componentid
           @ComponentType = componenttype
           @ComponentName = componentname
           @ComponentRequired = componentrequired
+          @ComponentRecipientId = componentrecipientid
           @FileIndex = fileindex
           @GenerateMode = generatemode
           @ComponentWidth = componentwidth
@@ -992,6 +995,7 @@ module TencentCloud
           @ComponentType = params['ComponentType']
           @ComponentName = params['ComponentName']
           @ComponentRequired = params['ComponentRequired']
+          @ComponentRecipientId = params['ComponentRecipientId']
           @FileIndex = params['FileIndex']
           @GenerateMode = params['GenerateMode']
           @ComponentWidth = params['ComponentWidth']
@@ -1501,7 +1505,7 @@ module TencentCloud
       class DescribeTemplatesRequest < TencentCloud::Common::AbstractModel
         # @param Agent: 渠道应用相关信息。 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 和 Agent.ProxyAppId 均必填。
         # @type Agent: :class:`Tencentcloud::Essbasic.v20210526.models.Agent`
-        # @param TemplateId: 模板唯一标识
+        # @param TemplateId: 模板唯一标识，查询单个模版时使用
         # @type TemplateId: String
         # @param ContentType: 查询内容：0-模板列表及详情（默认），1-仅模板列表
         # @type ContentType: Integer
@@ -1509,24 +1513,24 @@ module TencentCloud
         # @type Limit: Integer
         # @param Offset: 查询偏移位置，默认0；在查询列表的时候有效
         # @type Offset: Integer
-        # @param Operator: 操作者的信息
-        # @type Operator: :class:`Tencentcloud::Essbasic.v20210526.models.UserInfo`
         # @param QueryAllComponents: 是否返回所有组件信息。默认false，只返回发起方控件；true，返回所有签署方控件
         # @type QueryAllComponents: Boolean
         # @param TemplateName: 模糊搜索模板名称，最大长度200
         # @type TemplateName: String
+        # @param Operator: 操作者的信息
+        # @type Operator: :class:`Tencentcloud::Essbasic.v20210526.models.UserInfo`
 
-        attr_accessor :Agent, :TemplateId, :ContentType, :Limit, :Offset, :Operator, :QueryAllComponents, :TemplateName
+        attr_accessor :Agent, :TemplateId, :ContentType, :Limit, :Offset, :QueryAllComponents, :TemplateName, :Operator
         
-        def initialize(agent=nil, templateid=nil, contenttype=nil, limit=nil, offset=nil, operator=nil, queryallcomponents=nil, templatename=nil)
+        def initialize(agent=nil, templateid=nil, contenttype=nil, limit=nil, offset=nil, queryallcomponents=nil, templatename=nil, operator=nil)
           @Agent = agent
           @TemplateId = templateid
           @ContentType = contenttype
           @Limit = limit
           @Offset = offset
-          @Operator = operator
           @QueryAllComponents = queryallcomponents
           @TemplateName = templatename
+          @Operator = operator
         end
 
         def deserialize(params)
@@ -1538,12 +1542,12 @@ module TencentCloud
           @ContentType = params['ContentType']
           @Limit = params['Limit']
           @Offset = params['Offset']
+          @QueryAllComponents = params['QueryAllComponents']
+          @TemplateName = params['TemplateName']
           unless params['Operator'].nil?
             @Operator = UserInfo.new
             @Operator.deserialize(params['Operator'])
           end
-          @QueryAllComponents = params['QueryAllComponents']
-          @TemplateName = params['TemplateName']
         end
       end
 
@@ -3011,7 +3015,7 @@ module TencentCloud
         # @type Recipients: Array
         # @param TemplateType: 模板类型：1-静默签；3-普通模板
         # @type TemplateType: Integer
-        # @param IsPromoter: 是否是发起人
+        # @param IsPromoter: 是否是发起人 ,已弃用
         # @type IsPromoter: Boolean
         # @param Creator: 模板的创建者信息
         # @type Creator: String
@@ -3133,7 +3137,7 @@ module TencentCloud
 
       # UploadFiles返回参数结构体
       class UploadFilesResponse < TencentCloud::Common::AbstractModel
-        # @param FileIds: 文件id数组，有效期一个小时
+        # @param FileIds: 文件id数组，有效期一个小时；有效期内此文件id可以反复使用
         # @type FileIds: Array
         # @param TotalCount: 上传成功文件数量
         # @type TotalCount: Integer

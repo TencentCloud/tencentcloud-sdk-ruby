@@ -149,7 +149,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 新建拦截
+        # 新建协查处置
 
         # @param request: Request instance for CreateCRBlock.
         # @type request: :class:`Tencentcloud::bma::V20210624::CreateCRBlockRequest`
@@ -485,6 +485,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询取证详情
+
+        # @param request: Request instance for DescribeCRObtainDetail.
+        # @type request: :class:`Tencentcloud::bma::V20210624::DescribeCRObtainDetailRequest`
+        # @rtype: :class:`Tencentcloud::bma::V20210624::DescribeCRObtainDetailResponse`
+        def DescribeCRObtainDetail(request)
+          body = send_request('DescribeCRObtainDetail', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeCRObtainDetailResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询作品基本信息
 
         # @param request: Request instance for DescribeCRWorkInfo.
@@ -533,7 +557,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 拦截申请
+        # 协查处置申请
 
         # @param request: Request instance for ModifyCRBlockStatus.
         # @type request: :class:`Tencentcloud::bma::V20210624::ModifyCRBlockStatusRequest`

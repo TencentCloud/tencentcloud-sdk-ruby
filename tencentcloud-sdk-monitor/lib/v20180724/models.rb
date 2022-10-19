@@ -41,6 +41,33 @@ module TencentCloud
         end
       end
 
+      # 告警分级阈值配置
+      class AlarmHierarchicalValue < TencentCloud::Common::AbstractModel
+        # @param Remind: 提醒等级阈值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Remind: String
+        # @param Warn: 警告等级阈值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Warn: String
+        # @param Serious: 严重等级阈值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Serious: String
+
+        attr_accessor :Remind, :Warn, :Serious
+        
+        def initialize(remind=nil, warn=nil, serious=nil)
+          @Remind = remind
+          @Warn = warn
+          @Serious = serious
+        end
+
+        def deserialize(params)
+          @Remind = params['Remind']
+          @Warn = params['Warn']
+          @Serious = params['Serious']
+        end
+      end
+
       # 告警历史数据
       class AlarmHistory < TencentCloud::Common::AbstractModel
         # @param AlarmId: 告警历史Id
@@ -672,10 +699,13 @@ module TencentCloud
         # @param ValueMin: 最小值
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ValueMin: Float
+        # @param HierarchicalValue: 告警分级阈值配置
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HierarchicalValue: :class:`Tencentcloud::Monitor.v20180724.models.AlarmHierarchicalValue`
 
-        attr_accessor :MetricName, :Period, :Operator, :Value, :ContinuePeriod, :NoticeFrequency, :IsPowerNotice, :Filter, :Description, :Unit, :RuleType, :IsAdvanced, :IsOpen, :ProductId, :ValueMax, :ValueMin
+        attr_accessor :MetricName, :Period, :Operator, :Value, :ContinuePeriod, :NoticeFrequency, :IsPowerNotice, :Filter, :Description, :Unit, :RuleType, :IsAdvanced, :IsOpen, :ProductId, :ValueMax, :ValueMin, :HierarchicalValue
         
-        def initialize(metricname=nil, period=nil, operator=nil, value=nil, continueperiod=nil, noticefrequency=nil, ispowernotice=nil, filter=nil, description=nil, unit=nil, ruletype=nil, isadvanced=nil, isopen=nil, productid=nil, valuemax=nil, valuemin=nil)
+        def initialize(metricname=nil, period=nil, operator=nil, value=nil, continueperiod=nil, noticefrequency=nil, ispowernotice=nil, filter=nil, description=nil, unit=nil, ruletype=nil, isadvanced=nil, isopen=nil, productid=nil, valuemax=nil, valuemin=nil, hierarchicalvalue=nil)
           @MetricName = metricname
           @Period = period
           @Operator = operator
@@ -692,6 +722,7 @@ module TencentCloud
           @ProductId = productid
           @ValueMax = valuemax
           @ValueMin = valuemin
+          @HierarchicalValue = hierarchicalvalue
         end
 
         def deserialize(params)
@@ -714,6 +745,10 @@ module TencentCloud
           @ProductId = params['ProductId']
           @ValueMax = params['ValueMax']
           @ValueMin = params['ValueMin']
+          unless params['HierarchicalValue'].nil?
+            @HierarchicalValue = AlarmHierarchicalValue.new
+            @HierarchicalValue.deserialize(params['HierarchicalValue'])
+          end
         end
       end
 

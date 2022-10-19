@@ -29,6 +29,30 @@ module TencentCloud
         end
 
 
+        # 绑定文档到房间
+
+        # @param request: Request instance for BindDocumentToRoom.
+        # @type request: :class:`Tencentcloud::lcic::V20220817::BindDocumentToRoomRequest`
+        # @rtype: :class:`Tencentcloud::lcic::V20220817::BindDocumentToRoomResponse`
+        def BindDocumentToRoom(request)
+          body = send_request('BindDocumentToRoom', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = BindDocumentToRoomResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 创建房间内可以使用的文档。
 
         # @param request: Request instance for CreateDocument.
@@ -149,6 +173,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 获取房间统计信息，仅可在房间结束后调用。
+
+        # @param request: Request instance for DescribeRoomStatistics.
+        # @type request: :class:`Tencentcloud::lcic::V20220817::DescribeRoomStatisticsRequest`
+        # @rtype: :class:`Tencentcloud::lcic::V20220817::DescribeRoomStatisticsResponse`
+        def DescribeRoomStatistics(request)
+          body = send_request('DescribeRoomStatistics', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeRoomStatisticsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 获取用户信息
 
         # @param request: Request instance for DescribeUser.
@@ -221,6 +269,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 修改应用
+
+        # @param request: Request instance for ModifyApp.
+        # @type request: :class:`Tencentcloud::lcic::V20220817::ModifyAppRequest`
+        # @rtype: :class:`Tencentcloud::lcic::V20220817::ModifyAppResponse`
+        def ModifyApp(request)
+          body = send_request('ModifyApp', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyAppResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 注册用户
 
         # @param request: Request instance for RegisterUser.
@@ -255,6 +327,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = SetAppCustomContentResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 文档从房间解绑
+
+        # @param request: Request instance for UnbindDocumentFromRoom.
+        # @type request: :class:`Tencentcloud::lcic::V20220817::UnbindDocumentFromRoomRequest`
+        # @rtype: :class:`Tencentcloud::lcic::V20220817::UnbindDocumentFromRoomResponse`
+        def UnbindDocumentFromRoom(request)
+          body = send_request('UnbindDocumentFromRoom', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = UnbindDocumentFromRoomResponse.new
             model.deserialize(response['Response'])
             model
           else

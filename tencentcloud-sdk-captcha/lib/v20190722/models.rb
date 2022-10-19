@@ -193,6 +193,82 @@ module TencentCloud
         end
       end
 
+      # 验证码统计图Obj
+      class CaptchaStatisticObj < TencentCloud::Common::AbstractModel
+        # @param ActionTotal: 请求总量
+        # @type ActionTotal: Integer
+        # @param VerifyTotal: 验证总量
+        # @type VerifyTotal: Integer
+        # @param VerifyThroughTotal: 验证通过总量
+        # @type VerifyThroughTotal: Integer
+        # @param VerifyInterceptTotal: 验证拦截总量
+        # @type VerifyInterceptTotal: Integer
+        # @param TicketTotal: 票据校验总量
+        # @type TicketTotal: Integer
+        # @param TicketThroughTotal: 票据通过总量
+        # @type TicketThroughTotal: Integer
+        # @param TicketInterceptTotal: 票据拦截总量
+        # @type TicketInterceptTotal: Integer
+        # @param RequestTrend: 请求趋势图
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RequestTrend: Array
+        # @param InterceptPerTrend: 拦截率趋势图
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InterceptPerTrend: Array
+        # @param TicketCheckTrend: 票据校验趋势图
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TicketCheckTrend: Array
+
+        attr_accessor :ActionTotal, :VerifyTotal, :VerifyThroughTotal, :VerifyInterceptTotal, :TicketTotal, :TicketThroughTotal, :TicketInterceptTotal, :RequestTrend, :InterceptPerTrend, :TicketCheckTrend
+        
+        def initialize(actiontotal=nil, verifytotal=nil, verifythroughtotal=nil, verifyintercepttotal=nil, tickettotal=nil, ticketthroughtotal=nil, ticketintercepttotal=nil, requesttrend=nil, interceptpertrend=nil, ticketchecktrend=nil)
+          @ActionTotal = actiontotal
+          @VerifyTotal = verifytotal
+          @VerifyThroughTotal = verifythroughtotal
+          @VerifyInterceptTotal = verifyintercepttotal
+          @TicketTotal = tickettotal
+          @TicketThroughTotal = ticketthroughtotal
+          @TicketInterceptTotal = ticketintercepttotal
+          @RequestTrend = requesttrend
+          @InterceptPerTrend = interceptpertrend
+          @TicketCheckTrend = ticketchecktrend
+        end
+
+        def deserialize(params)
+          @ActionTotal = params['ActionTotal']
+          @VerifyTotal = params['VerifyTotal']
+          @VerifyThroughTotal = params['VerifyThroughTotal']
+          @VerifyInterceptTotal = params['VerifyInterceptTotal']
+          @TicketTotal = params['TicketTotal']
+          @TicketThroughTotal = params['TicketThroughTotal']
+          @TicketInterceptTotal = params['TicketInterceptTotal']
+          unless params['RequestTrend'].nil?
+            @RequestTrend = []
+            params['RequestTrend'].each do |i|
+              requesttrendobj_tmp = RequestTrendObj.new
+              requesttrendobj_tmp.deserialize(i)
+              @RequestTrend << requesttrendobj_tmp
+            end
+          end
+          unless params['InterceptPerTrend'].nil?
+            @InterceptPerTrend = []
+            params['InterceptPerTrend'].each do |i|
+              interceptpertrendobj_tmp = InterceptPerTrendObj.new
+              interceptpertrendobj_tmp.deserialize(i)
+              @InterceptPerTrend << interceptpertrendobj_tmp
+            end
+          end
+          unless params['TicketCheckTrend'].nil?
+            @TicketCheckTrend = []
+            params['TicketCheckTrend'].each do |i|
+              ticketchecktrendobj_tmp = TicketCheckTrendObj.new
+              ticketchecktrendobj_tmp.deserialize(i)
+              @TicketCheckTrend << ticketchecktrendobj_tmp
+            end
+          end
+        end
+      end
+
       # DescribeCaptchaTicketData 接口 返回数据类型集合
       class CaptchaTicketDataRes < TencentCloud::Common::AbstractModel
         # @param TicketAmountArray: 票据验证总量返回
@@ -1163,28 +1239,88 @@ module TencentCloud
 
       # GetTotalTicketStatistics请求参数结构体
       class GetTotalTicketStatisticsRequest < TencentCloud::Common::AbstractModel
+        # @param StartTimeStr: 开始时间
+        # @type StartTimeStr: String
+        # @param EndTimeStr: 结束时间
+        # @type EndTimeStr: String
+        # @param Dimension: 查询粒度
+        # 分钟：“1”
+        # 小时：“2”
+        # 天：“3”
+        # @type Dimension: String
 
+        attr_accessor :StartTimeStr, :EndTimeStr, :Dimension
         
-        def initialize()
+        def initialize(starttimestr=nil, endtimestr=nil, dimension=nil)
+          @StartTimeStr = starttimestr
+          @EndTimeStr = endtimestr
+          @Dimension = dimension
         end
 
         def deserialize(params)
+          @StartTimeStr = params['StartTimeStr']
+          @EndTimeStr = params['EndTimeStr']
+          @Dimension = params['Dimension']
         end
       end
 
       # GetTotalTicketStatistics返回参数结构体
       class GetTotalTicketStatisticsResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 返回数据
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Data: :class:`Tencentcloud::Captcha.v20190722.models.CaptchaStatisticObj`
+        # @param CaptchaCode: 返回码
+        # @type CaptchaCode: Integer
+        # @param CaptchaMsg: 返回信息
+        # @type CaptchaMsg: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RequestId
+        attr_accessor :Data, :CaptchaCode, :CaptchaMsg, :RequestId
         
-        def initialize(requestid=nil)
+        def initialize(data=nil, captchacode=nil, captchamsg=nil, requestid=nil)
+          @Data = data
+          @CaptchaCode = captchacode
+          @CaptchaMsg = captchamsg
           @RequestId = requestid
         end
 
         def deserialize(params)
+          unless params['Data'].nil?
+            @Data = CaptchaStatisticObj.new
+            @Data.deserialize(params['Data'])
+          end
+          @CaptchaCode = params['CaptchaCode']
+          @CaptchaMsg = params['CaptchaMsg']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 拦截率趋势obj
+      class InterceptPerTrendObj < TencentCloud::Common::AbstractModel
+        # @param Ftime: 时间参数
+        # @type Ftime: String
+        # @param RequestInterceptPer: 拦截率
+        # @type RequestInterceptPer: Float
+        # @param AnswerInterceptPer: 答案拦截率
+        # @type AnswerInterceptPer: Float
+        # @param PolicyInterceptPer: 策略拦截率
+        # @type PolicyInterceptPer: Float
+
+        attr_accessor :Ftime, :RequestInterceptPer, :AnswerInterceptPer, :PolicyInterceptPer
+        
+        def initialize(ftime=nil, requestinterceptper=nil, answerinterceptper=nil, policyinterceptper=nil)
+          @Ftime = ftime
+          @RequestInterceptPer = requestinterceptper
+          @AnswerInterceptPer = answerinterceptper
+          @PolicyInterceptPer = policyinterceptper
+        end
+
+        def deserialize(params)
+          @Ftime = params['Ftime']
+          @RequestInterceptPer = params['RequestInterceptPer']
+          @AnswerInterceptPer = params['AnswerInterceptPer']
+          @PolicyInterceptPer = params['PolicyInterceptPer']
         end
       end
 
@@ -1261,6 +1397,38 @@ module TencentCloud
         end
       end
 
+      # 验证码请求趋势图obj
+      class RequestTrendObj < TencentCloud::Common::AbstractModel
+        # @param Ftime: 时间参数
+        # @type Ftime: String
+        # @param RequestAction: 请求量
+        # @type RequestAction: Integer
+        # @param RequestVerify: 验证量
+        # @type RequestVerify: Integer
+        # @param RequestThroughput: 通过量
+        # @type RequestThroughput: Integer
+        # @param RequestIntercept: 拦截量
+        # @type RequestIntercept: Integer
+
+        attr_accessor :Ftime, :RequestAction, :RequestVerify, :RequestThroughput, :RequestIntercept
+        
+        def initialize(ftime=nil, requestaction=nil, requestverify=nil, requestthroughput=nil, requestintercept=nil)
+          @Ftime = ftime
+          @RequestAction = requestaction
+          @RequestVerify = requestverify
+          @RequestThroughput = requestthroughput
+          @RequestIntercept = requestintercept
+        end
+
+        def deserialize(params)
+          @Ftime = params['Ftime']
+          @RequestAction = params['RequestAction']
+          @RequestVerify = params['RequestVerify']
+          @RequestThroughput = params['RequestThroughput']
+          @RequestIntercept = params['RequestIntercept']
+        end
+      end
+
       # DescribeCaptchaTicketData 返回的数据结构
       class TicketAmountUnit < TencentCloud::Common::AbstractModel
         # @param DateKey: 时间
@@ -1278,6 +1446,34 @@ module TencentCloud
         def deserialize(params)
           @DateKey = params['DateKey']
           @Amount = params['Amount']
+        end
+      end
+
+      # 验证码票据校验趋势obj
+      class TicketCheckTrendObj < TencentCloud::Common::AbstractModel
+        # @param Ftime: 时间参数
+        # @type Ftime: String
+        # @param TicketCount: 票据校验量
+        # @type TicketCount: Integer
+        # @param TicketThroughput: 票据通过量
+        # @type TicketThroughput: Integer
+        # @param TicketIntercept: 票据拦截量
+        # @type TicketIntercept: Integer
+
+        attr_accessor :Ftime, :TicketCount, :TicketThroughput, :TicketIntercept
+        
+        def initialize(ftime=nil, ticketcount=nil, ticketthroughput=nil, ticketintercept=nil)
+          @Ftime = ftime
+          @TicketCount = ticketcount
+          @TicketThroughput = ticketthroughput
+          @TicketIntercept = ticketintercept
+        end
+
+        def deserialize(params)
+          @Ftime = params['Ftime']
+          @TicketCount = params['TicketCount']
+          @TicketThroughput = params['TicketThroughput']
+          @TicketIntercept = params['TicketIntercept']
         end
       end
 

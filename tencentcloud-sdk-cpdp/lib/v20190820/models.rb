@@ -6879,6 +6879,124 @@ module TencentCloud
         end
       end
 
+      # CreateOpenBankGlobalPaymentOrder请求参数结构体
+      class CreateOpenBankGlobalPaymentOrderRequest < TencentCloud::Common::AbstractModel
+        # @param ChannelMerchantId: 渠道商户号
+        # @type ChannelMerchantId: String
+        # @param ChannelName: 渠道名称
+        # @type ChannelName: String
+        # @param PayType: 付款方式
+        # @type PayType: String
+        # @param OutOrderId: 外部商户订单号,只能是数字、大小写字母，且在同一个接入平台下唯一
+        # @type OutOrderId: String
+        # @param TotalAmount: 付款金额，单位分
+        # @type TotalAmount: Integer
+        # @param Currency: 支付币种，参考附录：货币代码
+        # @type Currency: String
+        # @param ChannelSubMerchantId: 渠道子商户号
+        # @type ChannelSubMerchantId: String
+        # @param NotifyUrl: 支付成功回调地址。
+        # @type NotifyUrl: String
+        # @param FrontUrl: 前端跳转地址。通联支付成功后，支付网关跳回商户的地址
+        # @type FrontUrl: String
+        # @param FrontLanguage: 网站语言。收银台显示语言，见附录网站语言
+        # @type FrontLanguage: String
+        # @param Remark: 付款备注
+        # @type Remark: String
+        # @param ExternalPaymentData: 第三方拓展信息信息
+        # @type ExternalPaymentData: String
+        # @param GoodsInfos: 商品信息
+        # @type GoodsInfos: Array
+        # @param ShippingInfo: 邮寄信息
+        # @type ShippingInfo: :class:`Tencentcloud::Cpdp.v20190820.models.OpenBankShippingInfo`
+        # @param BillingInfo: 账单信息
+        # @type BillingInfo: :class:`Tencentcloud::Cpdp.v20190820.models.OpenBankBillingInfo`
+
+        attr_accessor :ChannelMerchantId, :ChannelName, :PayType, :OutOrderId, :TotalAmount, :Currency, :ChannelSubMerchantId, :NotifyUrl, :FrontUrl, :FrontLanguage, :Remark, :ExternalPaymentData, :GoodsInfos, :ShippingInfo, :BillingInfo
+        
+        def initialize(channelmerchantid=nil, channelname=nil, paytype=nil, outorderid=nil, totalamount=nil, currency=nil, channelsubmerchantid=nil, notifyurl=nil, fronturl=nil, frontlanguage=nil, remark=nil, externalpaymentdata=nil, goodsinfos=nil, shippinginfo=nil, billinginfo=nil)
+          @ChannelMerchantId = channelmerchantid
+          @ChannelName = channelname
+          @PayType = paytype
+          @OutOrderId = outorderid
+          @TotalAmount = totalamount
+          @Currency = currency
+          @ChannelSubMerchantId = channelsubmerchantid
+          @NotifyUrl = notifyurl
+          @FrontUrl = fronturl
+          @FrontLanguage = frontlanguage
+          @Remark = remark
+          @ExternalPaymentData = externalpaymentdata
+          @GoodsInfos = goodsinfos
+          @ShippingInfo = shippinginfo
+          @BillingInfo = billinginfo
+        end
+
+        def deserialize(params)
+          @ChannelMerchantId = params['ChannelMerchantId']
+          @ChannelName = params['ChannelName']
+          @PayType = params['PayType']
+          @OutOrderId = params['OutOrderId']
+          @TotalAmount = params['TotalAmount']
+          @Currency = params['Currency']
+          @ChannelSubMerchantId = params['ChannelSubMerchantId']
+          @NotifyUrl = params['NotifyUrl']
+          @FrontUrl = params['FrontUrl']
+          @FrontLanguage = params['FrontLanguage']
+          @Remark = params['Remark']
+          @ExternalPaymentData = params['ExternalPaymentData']
+          unless params['GoodsInfos'].nil?
+            @GoodsInfos = []
+            params['GoodsInfos'].each do |i|
+              openbankgoodsinfo_tmp = OpenBankGoodsInfo.new
+              openbankgoodsinfo_tmp.deserialize(i)
+              @GoodsInfos << openbankgoodsinfo_tmp
+            end
+          end
+          unless params['ShippingInfo'].nil?
+            @ShippingInfo = OpenBankShippingInfo.new
+            @ShippingInfo.deserialize(params['ShippingInfo'])
+          end
+          unless params['BillingInfo'].nil?
+            @BillingInfo = OpenBankBillingInfo.new
+            @BillingInfo.deserialize(params['BillingInfo'])
+          end
+        end
+      end
+
+      # CreateOpenBankGlobalPaymentOrder返回参数结构体
+      class CreateOpenBankGlobalPaymentOrderResponse < TencentCloud::Common::AbstractModel
+        # @param ErrCode: 业务系统返回码，SUCCESS表示成功，其他表示失败。
+        # @type ErrCode: String
+        # @param ErrMessage: 业务系统返回消息。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ErrMessage: String
+        # @param Result: 统一下单响应对象。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Result: :class:`Tencentcloud::Cpdp.v20190820.models.CreateOpenBankUnifiedOrderPaymentResult`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ErrCode, :ErrMessage, :Result, :RequestId
+        
+        def initialize(errcode=nil, errmessage=nil, result=nil, requestid=nil)
+          @ErrCode = errcode
+          @ErrMessage = errmessage
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ErrCode = params['ErrCode']
+          @ErrMessage = params['ErrMessage']
+          unless params['Result'].nil?
+            @Result = CreateOpenBankUnifiedOrderPaymentResult.new
+            @Result.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateOpenBankMerchant请求参数结构体
       class CreateOpenBankMerchantRequest < TencentCloud::Common::AbstractModel
         # @param OutMerchantId: 外部商户ID。
@@ -7503,6 +7621,50 @@ module TencentCloud
           @DealStatus = params['DealStatus']
           @DealMessage = params['DealMessage']
           @ChannelProductFeeNo = params['ChannelProductFeeNo']
+        end
+      end
+
+      # 云企付-支付下单返回响应
+      class CreateOpenBankUnifiedOrderPaymentResult < TencentCloud::Common::AbstractModel
+        # @param ChannelOrderId: 云企付平台订单号。
+        # @type ChannelOrderId: String
+        # @param ThirdPayOrderId: 第三方支付平台返回支付订单号。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ThirdPayOrderId: String
+        # @param RedirectInfo: 跳转参数
+        # 渠道为TENPAY，付款方式为EBANK_PAYMENT时必选。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RedirectInfo: :class:`Tencentcloud::Cpdp.v20190820.models.OpenBankOrderRedirectInfo`
+        # @param OutOrderId: 外部商户订单号，只能是数字、大小写字母，且在同一个接入平台下唯一。
+        # @type OutOrderId: String
+        # @param PayInfo: 渠道扩展支付信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PayInfo: String
+        # @param PayInfoType: 渠道扩展支付信息类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PayInfoType: String
+
+        attr_accessor :ChannelOrderId, :ThirdPayOrderId, :RedirectInfo, :OutOrderId, :PayInfo, :PayInfoType
+        
+        def initialize(channelorderid=nil, thirdpayorderid=nil, redirectinfo=nil, outorderid=nil, payinfo=nil, payinfotype=nil)
+          @ChannelOrderId = channelorderid
+          @ThirdPayOrderId = thirdpayorderid
+          @RedirectInfo = redirectinfo
+          @OutOrderId = outorderid
+          @PayInfo = payinfo
+          @PayInfoType = payinfotype
+        end
+
+        def deserialize(params)
+          @ChannelOrderId = params['ChannelOrderId']
+          @ThirdPayOrderId = params['ThirdPayOrderId']
+          unless params['RedirectInfo'].nil?
+            @RedirectInfo = OpenBankOrderRedirectInfo.new
+            @RedirectInfo.deserialize(params['RedirectInfo'])
+          end
+          @OutOrderId = params['OutOrderId']
+          @PayInfo = params['PayInfo']
+          @PayInfoType = params['PayInfoType']
         end
       end
 
@@ -11736,6 +11898,54 @@ module TencentCloud
         end
       end
 
+      # 云企付-账单信息
+      class OpenBankBillingInfo < TencentCloud::Common::AbstractModel
+        # @param FirstName: 账单人名字
+        # @type FirstName: String
+        # @param LastName: 账单人姓氏
+        # @type LastName: String
+        # @param AddressOne: 账单地址1
+        # @type AddressOne: String
+        # @param AddressTwo: 账单地址1
+        # @type AddressTwo: String
+        # @param City: 账单地址所在城市
+        # @type City: String
+        # @param State: 账单地址所在州/省，当国家是美国或加拿大时，使用ISO-3166-2:US或ISO -3166-2:CA 中该国家地区编 码标准中的两位字母编码。
+        # @type State: String
+        # @param Country: 账单地址所在国家，使用ISO-3166-1标准中的两位字母编码。
+        # @type Country: String
+        # @param ZipCode: 账单地址邮编
+        # @type ZipCode: String
+        # @param Phone: 账单人手机号
+        # @type Phone: String
+
+        attr_accessor :FirstName, :LastName, :AddressOne, :AddressTwo, :City, :State, :Country, :ZipCode, :Phone
+        
+        def initialize(firstname=nil, lastname=nil, addressone=nil, addresstwo=nil, city=nil, state=nil, country=nil, zipcode=nil, phone=nil)
+          @FirstName = firstname
+          @LastName = lastname
+          @AddressOne = addressone
+          @AddressTwo = addresstwo
+          @City = city
+          @State = state
+          @Country = country
+          @ZipCode = zipcode
+          @Phone = phone
+        end
+
+        def deserialize(params)
+          @FirstName = params['FirstName']
+          @LastName = params['LastName']
+          @AddressOne = params['AddressOne']
+          @AddressTwo = params['AddressTwo']
+          @City = params['City']
+          @State = params['State']
+          @Country = params['Country']
+          @ZipCode = params['ZipCode']
+          @Phone = params['Phone']
+        end
+      end
+
       # 网银页面提交html
       class OpenBankFormInfo < TencentCloud::Common::AbstractModel
         # @param FormHtml: 网银页面提交html
@@ -11768,14 +11978,29 @@ module TencentCloud
         # @type GoodsDescription: String
         # @param GoodsBizType: 业务类型。汇付渠道必填，汇付渠道传入固定值100099。
         # @type GoodsBizType: String
+        # @param Sku: 商品编号。
+        # @type Sku: String
+        # @param Price: 商品单价。
+        # @type Price: String
+        # @param Quantity: 商品数量
+        # @type Quantity: String
+        # @param ProductImage: 商品图片url
+        # @type ProductImage: String
+        # @param ProductUrl: 商品链接url
+        # @type ProductUrl: String
 
-        attr_accessor :GoodsName, :GoodsDetail, :GoodsDescription, :GoodsBizType
+        attr_accessor :GoodsName, :GoodsDetail, :GoodsDescription, :GoodsBizType, :Sku, :Price, :Quantity, :ProductImage, :ProductUrl
         
-        def initialize(goodsname=nil, goodsdetail=nil, goodsdescription=nil, goodsbiztype=nil)
+        def initialize(goodsname=nil, goodsdetail=nil, goodsdescription=nil, goodsbiztype=nil, sku=nil, price=nil, quantity=nil, productimage=nil, producturl=nil)
           @GoodsName = goodsname
           @GoodsDetail = goodsdetail
           @GoodsDescription = goodsdescription
           @GoodsBizType = goodsbiztype
+          @Sku = sku
+          @Price = price
+          @Quantity = quantity
+          @ProductImage = productimage
+          @ProductUrl = producturl
         end
 
         def deserialize(params)
@@ -11783,6 +12008,66 @@ module TencentCloud
           @GoodsDetail = params['GoodsDetail']
           @GoodsDescription = params['GoodsDescription']
           @GoodsBizType = params['GoodsBizType']
+          @Sku = params['Sku']
+          @Price = params['Price']
+          @Quantity = params['Quantity']
+          @ProductImage = params['ProductImage']
+          @ProductUrl = params['ProductUrl']
+        end
+      end
+
+      # 云企付-下单跳转参数，用于小程序前端跳转
+      class OpenBankOrderRedirectInfo < TencentCloud::Common::AbstractModel
+        # @param QRCodeUrl: 生成二维码，引导用户扫码
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type QRCodeUrl: String
+        # @param QRCodeKey: 二维码凭证
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type QRCodeKey: String
+        # @param Url: 跳转 URL,用于客户端跳转，订单未支付时返回该参数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Url: String
+        # @param ExpireTime: 跳转凭证过期时间,yyyy-MM-dd HH:mm:ss
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExpireTime: String
+        # @param MpAppId: 小程序 appid
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MpAppId: String
+        # @param MpPath: 小程序路径
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MpPath: String
+        # @param MpUserName: 小程序原始 id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MpUserName: String
+        # @param FormInfo: 网银支付提交页面信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FormInfo: :class:`Tencentcloud::Cpdp.v20190820.models.OpenBankFormInfo`
+
+        attr_accessor :QRCodeUrl, :QRCodeKey, :Url, :ExpireTime, :MpAppId, :MpPath, :MpUserName, :FormInfo
+        
+        def initialize(qrcodeurl=nil, qrcodekey=nil, url=nil, expiretime=nil, mpappid=nil, mppath=nil, mpusername=nil, forminfo=nil)
+          @QRCodeUrl = qrcodeurl
+          @QRCodeKey = qrcodekey
+          @Url = url
+          @ExpireTime = expiretime
+          @MpAppId = mpappid
+          @MpPath = mppath
+          @MpUserName = mpusername
+          @FormInfo = forminfo
+        end
+
+        def deserialize(params)
+          @QRCodeUrl = params['QRCodeUrl']
+          @QRCodeKey = params['QRCodeKey']
+          @Url = params['Url']
+          @ExpireTime = params['ExpireTime']
+          @MpAppId = params['MpAppId']
+          @MpPath = params['MpPath']
+          @MpUserName = params['MpUserName']
+          unless params['FormInfo'].nil?
+            @FormInfo = OpenBankFormInfo.new
+            @FormInfo.deserialize(params['FormInfo'])
+          end
         end
       end
 
@@ -12231,6 +12516,55 @@ module TencentCloud
         def deserialize(params)
           @UnfreezeRule = params['UnfreezeRule']
           @RefundRule = params['RefundRule']
+        end
+      end
+
+      # 云企付-邮寄信息
+      class OpenBankShippingInfo < TencentCloud::Common::AbstractModel
+        # @param FirstName: 收货人名字
+        # @type FirstName: String
+        # @param LastName: 收货人姓氏
+        # @type LastName: String
+        # @param AddressOne: 收货地址1
+        # @type AddressOne: String
+        # @param AddressTwo: 收货地址2
+        # @type AddressTwo: String
+        # @param City: 收货地址所在城市
+        # @type City: String
+        # @param State: 收货地址所在州，当国家是美国或加拿大时，使用ISO-3166-2:US或ISO -3166-2:CA 中该
+        # 国家地区编码标准中的两位字母编码
+        # @type State: String
+        # @param Country: 使用ISO-3166-1标准中的两位字母编码
+        # @type Country: String
+        # @param ZipCode: 收货地址邮编
+        # @type ZipCode: String
+        # @param Phone: 收货联系电话
+        # @type Phone: String
+
+        attr_accessor :FirstName, :LastName, :AddressOne, :AddressTwo, :City, :State, :Country, :ZipCode, :Phone
+        
+        def initialize(firstname=nil, lastname=nil, addressone=nil, addresstwo=nil, city=nil, state=nil, country=nil, zipcode=nil, phone=nil)
+          @FirstName = firstname
+          @LastName = lastname
+          @AddressOne = addressone
+          @AddressTwo = addresstwo
+          @City = city
+          @State = state
+          @Country = country
+          @ZipCode = zipcode
+          @Phone = phone
+        end
+
+        def deserialize(params)
+          @FirstName = params['FirstName']
+          @LastName = params['LastName']
+          @AddressOne = params['AddressOne']
+          @AddressTwo = params['AddressTwo']
+          @City = params['City']
+          @State = params['State']
+          @Country = params['Country']
+          @ZipCode = params['ZipCode']
+          @Phone = params['Phone']
         end
       end
 

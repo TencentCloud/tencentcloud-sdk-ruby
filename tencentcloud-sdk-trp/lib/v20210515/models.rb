@@ -180,10 +180,10 @@ module TencentCloud
         # @param UpdateTime: 更新时间
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UpdateTime: String
-        # @param Status: 状态
+        # @param Status: 制码状态 init: 初始化, pending: 执行中, done: 完成, error: 失败
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: String
-        # @param Log: 记录
+        # @param Log: 执行日志
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Log: String
         # @param CreateUser: 创建人
@@ -201,10 +201,10 @@ module TencentCloud
         # @param Cipher: 是否暗码
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Cipher: Integer
-        # @param TextUrl: 文字码地址
+        # @param TextUrl: [弃用] 文字码地址，通过另一个接口查
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TextUrl: String
-        # @param PackUrl: 二维码地址
+        # @param PackUrl: [弃用] 二维码地址，通过另一个接口查
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PackUrl: String
         # @param MerchantName: 商户名
@@ -2779,11 +2779,11 @@ module TencentCloud
 
       # 溯源码
       class TraceCode < TencentCloud::Common::AbstractModel
-        # @param Code: 码
+        # @param Code: 二维码
         # @type Code: String
         # @param CorpId: 企业ID
         # @type CorpId: Integer
-        # @param PackId: 包ID
+        # @param PackId: 码包ID
         # @type PackId: String
         # @param BatchId: 批次ID
         # @type BatchId: String
@@ -2791,7 +2791,7 @@ module TencentCloud
         # @type MerchantId: String
         # @param ProductId: 产品ID
         # @type ProductId: String
-        # @param Status: 状态
+        # @param Status: 码状态 0: 冻结 1: 激活
         # @type Status: Integer
         # @param CreateTime: 创建时间
         # @type CreateTime: String

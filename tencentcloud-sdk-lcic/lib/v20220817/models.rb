@@ -49,6 +49,46 @@ module TencentCloud
         end
       end
 
+      # BindDocumentToRoom请求参数结构体
+      class BindDocumentToRoomRequest < TencentCloud::Common::AbstractModel
+        # @param RoomId: 房间ID。
+        # @type RoomId: Integer
+        # @param DocumentId: 文档ID。
+        # @type DocumentId: String
+        # @param BindType: 绑定类型。后台可透传到客户端，默认为0。客户端可以根据这个字段实现业务逻辑。
+        # @type BindType: Integer
+
+        attr_accessor :RoomId, :DocumentId, :BindType
+        
+        def initialize(roomid=nil, documentid=nil, bindtype=nil)
+          @RoomId = roomid
+          @DocumentId = documentid
+          @BindType = bindtype
+        end
+
+        def deserialize(params)
+          @RoomId = params['RoomId']
+          @DocumentId = params['DocumentId']
+          @BindType = params['BindType']
+        end
+      end
+
+      # BindDocumentToRoom返回参数结构体
+      class BindDocumentToRoomResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateDocument请求参数结构体
       class CreateDocumentRequest < TencentCloud::Common::AbstractModel
         # @param SdkAppId: 低代码互动课堂的SdkAppId。
@@ -329,12 +369,15 @@ module TencentCloud
         # @param Assistants: 助教Id列表。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Assistants: Array
+        # @param RecordUrl: 录制地址。仅在房间结束后存在。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RecordUrl: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Name, :StartTime, :EndTime, :TeacherId, :SdkAppId, :Resolution, :MaxMicNumber, :AutoMic, :AudioQuality, :SubType, :DisableRecord, :Assistants, :RequestId
+        attr_accessor :Name, :StartTime, :EndTime, :TeacherId, :SdkAppId, :Resolution, :MaxMicNumber, :AutoMic, :AudioQuality, :SubType, :DisableRecord, :Assistants, :RecordUrl, :RequestId
         
-        def initialize(name=nil, starttime=nil, endtime=nil, teacherid=nil, sdkappid=nil, resolution=nil, maxmicnumber=nil, automic=nil, audioquality=nil, subtype=nil, disablerecord=nil, assistants=nil, requestid=nil)
+        def initialize(name=nil, starttime=nil, endtime=nil, teacherid=nil, sdkappid=nil, resolution=nil, maxmicnumber=nil, automic=nil, audioquality=nil, subtype=nil, disablerecord=nil, assistants=nil, recordurl=nil, requestid=nil)
           @Name = name
           @StartTime = starttime
           @EndTime = endtime
@@ -347,6 +390,7 @@ module TencentCloud
           @SubType = subtype
           @DisableRecord = disablerecord
           @Assistants = assistants
+          @RecordUrl = recordurl
           @RequestId = requestid
         end
 
@@ -363,6 +407,70 @@ module TencentCloud
           @SubType = params['SubType']
           @DisableRecord = params['DisableRecord']
           @Assistants = params['Assistants']
+          @RecordUrl = params['RecordUrl']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeRoomStatistics请求参数结构体
+      class DescribeRoomStatisticsRequest < TencentCloud::Common::AbstractModel
+        # @param RoomId: 房间Id。
+        # @type RoomId: Integer
+        # @param Page: 分页查询当前页数，从1开始递增。
+        # @type Page: Integer
+        # @param Limit: 每页数据量，最大1000。
+        # @type Limit: Integer
+
+        attr_accessor :RoomId, :Page, :Limit
+        
+        def initialize(roomid=nil, page=nil, limit=nil)
+          @RoomId = roomid
+          @Page = page
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @RoomId = params['RoomId']
+          @Page = params['Page']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeRoomStatistics返回参数结构体
+      class DescribeRoomStatisticsResponse < TencentCloud::Common::AbstractModel
+        # @param PeakMemberNumber: 峰值在线成员人数。
+        # @type PeakMemberNumber: Integer
+        # @param MemberNumber: 累计在线人数。
+        # @type MemberNumber: Integer
+        # @param Total: 记录总数。包含进入房间或者应到未到的。
+        # @type Total: Integer
+        # @param MemberRecords: 成员记录列表。
+        # @type MemberRecords: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :PeakMemberNumber, :MemberNumber, :Total, :MemberRecords, :RequestId
+        
+        def initialize(peakmembernumber=nil, membernumber=nil, total=nil, memberrecords=nil, requestid=nil)
+          @PeakMemberNumber = peakmembernumber
+          @MemberNumber = membernumber
+          @Total = total
+          @MemberRecords = memberrecords
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @PeakMemberNumber = params['PeakMemberNumber']
+          @MemberNumber = params['MemberNumber']
+          @Total = params['Total']
+          unless params['MemberRecords'].nil?
+            @MemberRecords = []
+            params['MemberRecords'].each do |i|
+              memberrecord_tmp = MemberRecord.new
+              memberrecord_tmp.deserialize(i)
+              @MemberRecords << memberrecord_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -499,6 +607,98 @@ module TencentCloud
         end
       end
 
+      # 成员记录信息。
+      class MemberRecord < TencentCloud::Common::AbstractModel
+        # @param UserId: 用户ID。
+        # @type UserId: String
+        # @param UserName: 用户名称。
+        # @type UserName: String
+        # @param PresentTime: 在线时长，单位秒。
+        # @type PresentTime: Integer
+        # @param Camera: 是否开启摄像头。
+        # @type Camera: Integer
+        # @param Mic: 是否开启麦克风。
+        # @type Mic: Integer
+        # @param Silence: 是否禁言。
+        # @type Silence: Integer
+        # @param AnswerQuestions: 回答问题数量。
+        # @type AnswerQuestions: Integer
+        # @param HandUps: 举手数量。
+        # @type HandUps: Integer
+        # @param FirstJoinTimestamp: 首次进入房间的unix时间戳。
+        # @type FirstJoinTimestamp: Integer
+        # @param LastQuitTimestamp: 最后一次退出房间的unix时间戳。
+        # @type LastQuitTimestamp: Integer
+        # @param Rewords: 奖励次数。
+        # @type Rewords: Integer
+
+        attr_accessor :UserId, :UserName, :PresentTime, :Camera, :Mic, :Silence, :AnswerQuestions, :HandUps, :FirstJoinTimestamp, :LastQuitTimestamp, :Rewords
+        
+        def initialize(userid=nil, username=nil, presenttime=nil, camera=nil, mic=nil, silence=nil, answerquestions=nil, handups=nil, firstjointimestamp=nil, lastquittimestamp=nil, rewords=nil)
+          @UserId = userid
+          @UserName = username
+          @PresentTime = presenttime
+          @Camera = camera
+          @Mic = mic
+          @Silence = silence
+          @AnswerQuestions = answerquestions
+          @HandUps = handups
+          @FirstJoinTimestamp = firstjointimestamp
+          @LastQuitTimestamp = lastquittimestamp
+          @Rewords = rewords
+        end
+
+        def deserialize(params)
+          @UserId = params['UserId']
+          @UserName = params['UserName']
+          @PresentTime = params['PresentTime']
+          @Camera = params['Camera']
+          @Mic = params['Mic']
+          @Silence = params['Silence']
+          @AnswerQuestions = params['AnswerQuestions']
+          @HandUps = params['HandUps']
+          @FirstJoinTimestamp = params['FirstJoinTimestamp']
+          @LastQuitTimestamp = params['LastQuitTimestamp']
+          @Rewords = params['Rewords']
+        end
+      end
+
+      # ModifyApp请求参数结构体
+      class ModifyAppRequest < TencentCloud::Common::AbstractModel
+        # @param SdkAppId: 低代码互动课堂的SdkAppId。
+        # @type SdkAppId: Integer
+        # @param Callback: 回调地址。
+        # @type Callback: String
+
+        attr_accessor :SdkAppId, :Callback
+        
+        def initialize(sdkappid=nil, callback=nil)
+          @SdkAppId = sdkappid
+          @Callback = callback
+        end
+
+        def deserialize(params)
+          @SdkAppId = params['SdkAppId']
+          @Callback = params['Callback']
+        end
+      end
+
+      # ModifyApp返回参数结构体
+      class ModifyAppResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # RegisterUser请求参数结构体
       class RegisterUserRequest < TencentCloud::Common::AbstractModel
         # @param SdkAppId: 低代码互动课堂的SdkAppId。
@@ -580,6 +780,42 @@ module TencentCloud
 
       # SetAppCustomContent返回参数结构体
       class SetAppCustomContentResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # UnbindDocumentFromRoom请求参数结构体
+      class UnbindDocumentFromRoomRequest < TencentCloud::Common::AbstractModel
+        # @param RoomId: 房间ID。
+        # @type RoomId: Integer
+        # @param DocumentId: 文档ID。
+        # @type DocumentId: String
+
+        attr_accessor :RoomId, :DocumentId
+        
+        def initialize(roomid=nil, documentid=nil)
+          @RoomId = roomid
+          @DocumentId = documentid
+        end
+
+        def deserialize(params)
+          @RoomId = params['RoomId']
+          @DocumentId = params['DocumentId']
+        end
+      end
+
+      # UnbindDocumentFromRoom返回参数结构体
+      class UnbindDocumentFromRoomResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
