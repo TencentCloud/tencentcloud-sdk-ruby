@@ -962,6 +962,49 @@ module TencentCloud
         end
       end
 
+      # LinkClusterList请求参数结构体
+      class LinkClusterListRequest < TencentCloud::Common::AbstractModel
+        # @param MeshId: 网格Id
+        # @type MeshId: String
+        # @param ClusterList: 关联集群
+        # @type ClusterList: Array
+
+        attr_accessor :MeshId, :ClusterList
+        
+        def initialize(meshid=nil, clusterlist=nil)
+          @MeshId = meshid
+          @ClusterList = clusterlist
+        end
+
+        def deserialize(params)
+          @MeshId = params['MeshId']
+          unless params['ClusterList'].nil?
+            @ClusterList = []
+            params['ClusterList'].each do |i|
+              cluster_tmp = Cluster.new
+              cluster_tmp.deserialize(i)
+              @ClusterList << cluster_tmp
+            end
+          end
+        end
+      end
+
+      # LinkClusterList返回参数结构体
+      class LinkClusterListResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 负载均衡配置
       class LoadBalancer < TencentCloud::Common::AbstractModel
         # @param LoadBalancerType: 负载均衡实例的网络类型：
@@ -1702,6 +1745,42 @@ module TencentCloud
 
         def deserialize(params)
           @Address = params['Address']
+        end
+      end
+
+      # UnlinkCluster请求参数结构体
+      class UnlinkClusterRequest < TencentCloud::Common::AbstractModel
+        # @param MeshId: 网格Id
+        # @type MeshId: String
+        # @param ClusterId: 取消关联的集群Id
+        # @type ClusterId: String
+
+        attr_accessor :MeshId, :ClusterId
+        
+        def initialize(meshid=nil, clusterid=nil)
+          @MeshId = meshid
+          @ClusterId = clusterid
+        end
+
+        def deserialize(params)
+          @MeshId = params['MeshId']
+          @ClusterId = params['ClusterId']
+        end
+      end
+
+      # UnlinkCluster返回参数结构体
+      class UnlinkClusterResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
         end
       end
 

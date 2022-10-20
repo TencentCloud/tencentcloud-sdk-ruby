@@ -423,13 +423,17 @@ module TencentCloud
         # @param MaxRequestsPerSecond: 最大RPS
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MaxRequestsPerSecond: Integer
+        # @param GracefulStopSeconds: 优雅终止任务的等待时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GracefulStopSeconds: Integer
 
-        attr_accessor :Stages, :IterationCount, :MaxRequestsPerSecond
+        attr_accessor :Stages, :IterationCount, :MaxRequestsPerSecond, :GracefulStopSeconds
         
-        def initialize(stages=nil, iterationcount=nil, maxrequestspersecond=nil)
+        def initialize(stages=nil, iterationcount=nil, maxrequestspersecond=nil, gracefulstopseconds=nil)
           @Stages = stages
           @IterationCount = iterationcount
           @MaxRequestsPerSecond = maxrequestspersecond
+          @GracefulStopSeconds = gracefulstopseconds
         end
 
         def deserialize(params)
@@ -443,6 +447,7 @@ module TencentCloud
           end
           @IterationCount = params['IterationCount']
           @MaxRequestsPerSecond = params['MaxRequestsPerSecond']
+          @GracefulStopSeconds = params['GracefulStopSeconds']
         end
       end
 
@@ -1018,16 +1023,20 @@ module TencentCloud
         # @type Timestamp: Integer
         # @param Unit: 指标对应的单位，当前单位有：s,bytes,bytes/s,reqs,reqs/s,checks,checks/s,iters,iters/s,VUs, %
         # @type Unit: String
+        # @param Name: 指标序列名字
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
 
-        attr_accessor :Metric, :Aggregation, :Labels, :Value, :Timestamp, :Unit
+        attr_accessor :Metric, :Aggregation, :Labels, :Value, :Timestamp, :Unit, :Name
         
-        def initialize(metric=nil, aggregation=nil, labels=nil, value=nil, timestamp=nil, unit=nil)
+        def initialize(metric=nil, aggregation=nil, labels=nil, value=nil, timestamp=nil, unit=nil, name=nil)
           @Metric = metric
           @Aggregation = aggregation
           @Labels = labels
           @Value = value
           @Timestamp = timestamp
           @Unit = unit
+          @Name = name
         end
 
         def deserialize(params)
@@ -1044,6 +1053,7 @@ module TencentCloud
           @Value = params['Value']
           @Timestamp = params['Timestamp']
           @Unit = params['Unit']
+          @Name = params['Name']
         end
       end
 
@@ -2790,10 +2800,19 @@ module TencentCloud
         # @param ProjectId: 项目 ID
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProjectId: String
+        # @param AppID: 用户账号的 App ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AppID: Integer
+        # @param Uin: 用户主账号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Uin: String
+        # @param SubAccountUin: 用户子账号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SubAccountUin: String
 
-        attr_accessor :FileId, :Kind, :Name, :Size, :Type, :UpdatedAt, :LineCount, :HeadLines, :TailLines, :HeaderInFile, :HeaderColumns, :FileInfos, :ScenarioSet, :Status, :CreatedAt, :ProjectId
+        attr_accessor :FileId, :Kind, :Name, :Size, :Type, :UpdatedAt, :LineCount, :HeadLines, :TailLines, :HeaderInFile, :HeaderColumns, :FileInfos, :ScenarioSet, :Status, :CreatedAt, :ProjectId, :AppID, :Uin, :SubAccountUin
         
-        def initialize(fileid=nil, kind=nil, name=nil, size=nil, type=nil, updatedat=nil, linecount=nil, headlines=nil, taillines=nil, headerinfile=nil, headercolumns=nil, fileinfos=nil, scenarioset=nil, status=nil, createdat=nil, projectid=nil)
+        def initialize(fileid=nil, kind=nil, name=nil, size=nil, type=nil, updatedat=nil, linecount=nil, headlines=nil, taillines=nil, headerinfile=nil, headercolumns=nil, fileinfos=nil, scenarioset=nil, status=nil, createdat=nil, projectid=nil, appid=nil, uin=nil, subaccountuin=nil)
           @FileId = fileid
           @Kind = kind
           @Name = name
@@ -2810,6 +2829,9 @@ module TencentCloud
           @Status = status
           @CreatedAt = createdat
           @ProjectId = projectid
+          @AppID = appid
+          @Uin = uin
+          @SubAccountUin = subaccountuin
         end
 
         def deserialize(params)
@@ -2843,6 +2865,9 @@ module TencentCloud
           @Status = params['Status']
           @CreatedAt = params['CreatedAt']
           @ProjectId = params['ProjectId']
+          @AppID = params['AppID']
+          @Uin = params['Uin']
+          @SubAccountUin = params['SubAccountUin']
         end
       end
 
@@ -3841,16 +3866,20 @@ module TencentCloud
         # @param TargetRequestsPerSecond: 目标RPS，入参无效
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TargetRequestsPerSecond: Integer
+        # @param GracefulStopSeconds: 优雅关停的等待时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GracefulStopSeconds: Integer
 
-        attr_accessor :MaxRequestsPerSecond, :DurationSeconds, :TargetVirtualUsers, :Resources, :StartRequestsPerSecond, :TargetRequestsPerSecond
+        attr_accessor :MaxRequestsPerSecond, :DurationSeconds, :TargetVirtualUsers, :Resources, :StartRequestsPerSecond, :TargetRequestsPerSecond, :GracefulStopSeconds
         
-        def initialize(maxrequestspersecond=nil, durationseconds=nil, targetvirtualusers=nil, resources=nil, startrequestspersecond=nil, targetrequestspersecond=nil)
+        def initialize(maxrequestspersecond=nil, durationseconds=nil, targetvirtualusers=nil, resources=nil, startrequestspersecond=nil, targetrequestspersecond=nil, gracefulstopseconds=nil)
           @MaxRequestsPerSecond = maxrequestspersecond
           @DurationSeconds = durationseconds
           @TargetVirtualUsers = targetvirtualusers
           @Resources = resources
           @StartRequestsPerSecond = startrequestspersecond
           @TargetRequestsPerSecond = targetrequestspersecond
+          @GracefulStopSeconds = gracefulstopseconds
         end
 
         def deserialize(params)
@@ -3860,6 +3889,7 @@ module TencentCloud
           @Resources = params['Resources']
           @StartRequestsPerSecond = params['StartRequestsPerSecond']
           @TargetRequestsPerSecond = params['TargetRequestsPerSecond']
+          @GracefulStopSeconds = params['GracefulStopSeconds']
         end
       end
 

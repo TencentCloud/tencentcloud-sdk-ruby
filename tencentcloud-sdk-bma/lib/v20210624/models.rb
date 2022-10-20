@@ -425,6 +425,42 @@ module TencentCloud
         end
       end
 
+      # CreateCRDesktopCode请求参数结构体
+      class CreateCRDesktopCodeRequest < TencentCloud::Common::AbstractModel
+        # @param TortId: xxx
+        # @type TortId: Integer
+        # @param DesktopCode: xxx
+        # @type DesktopCode: String
+
+        attr_accessor :TortId, :DesktopCode
+        
+        def initialize(tortid=nil, desktopcode=nil)
+          @TortId = tortid
+          @DesktopCode = desktopcode
+        end
+
+        def deserialize(params)
+          @TortId = params['TortId']
+          @DesktopCode = params['DesktopCode']
+        end
+      end
+
+      # CreateCRDesktopCode返回参数结构体
+      class CreateCRDesktopCodeResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateCRObtain请求参数结构体
       class CreateCRObtainRequest < TencentCloud::Common::AbstractModel
         # @param WorkId: 已存证的作品ID

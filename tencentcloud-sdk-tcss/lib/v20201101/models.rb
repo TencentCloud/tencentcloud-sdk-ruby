@@ -17,6 +17,26 @@
 module TencentCloud
   module Tcss
     module V20201101
+      # 灰度项目配置
+      class ABTestConfig < TencentCloud::Common::AbstractModel
+        # @param ProjectName: 灰度项目名称
+        # @type ProjectName: String
+        # @param Status: true：正在灰度，false：不在灰度
+        # @type Status: Boolean
+
+        attr_accessor :ProjectName, :Status
+        
+        def initialize(projectname=nil, status=nil)
+          @ProjectName = projectname
+          @Status = status
+        end
+
+        def deserialize(params)
+          @ProjectName = params['ProjectName']
+          @Status = params['Status']
+        end
+      end
+
       # 容器运行时安全，子策略信息
       class AbnormalProcessChildRuleInfo < TencentCloud::Common::AbstractModel
         # @param RuleMode: 策略模式，   RULE_MODE_RELEASE: 放行
@@ -244,6 +264,54 @@ module TencentCloud
           @ContainerNetSubStatus = params['ContainerNetSubStatus']
           @ContainerIsolateOperationSrc = params['ContainerIsolateOperationSrc']
           @ContainerStatus = params['ContainerStatus']
+        end
+      end
+
+      # 待处理异常进程事件趋势
+      class AbnormalProcessEventTendencyInfo < TencentCloud::Common::AbstractModel
+        # @param Date: 日期
+        # @type Date: String
+        # @param ProxyToolEventCount: 待处理代理软件事件数
+        # @type ProxyToolEventCount: Integer
+        # @param TransferControlEventCount: 待处理横向参透事件数
+        # @type TransferControlEventCount: Integer
+        # @param AttackCmdEventCount: 待处理恶意命令事件数
+        # @type AttackCmdEventCount: Integer
+        # @param ReverseShellEventCount: 待处理反弹shell事件数
+        # @type ReverseShellEventCount: Integer
+        # @param FilelessEventCount: 待处理无文件程序执行事件数
+        # @type FilelessEventCount: Integer
+        # @param RiskCmdEventCount: 待处理高危命令事件数
+        # @type RiskCmdEventCount: Integer
+        # @param AbnormalChildProcessEventCount: 待处理敏感服务异常子进程启动事件数
+        # @type AbnormalChildProcessEventCount: Integer
+        # @param UserDefinedRuleEventCount: 待处理自定义规则事件数
+        # @type UserDefinedRuleEventCount: Integer
+
+        attr_accessor :Date, :ProxyToolEventCount, :TransferControlEventCount, :AttackCmdEventCount, :ReverseShellEventCount, :FilelessEventCount, :RiskCmdEventCount, :AbnormalChildProcessEventCount, :UserDefinedRuleEventCount
+        
+        def initialize(date=nil, proxytooleventcount=nil, transfercontroleventcount=nil, attackcmdeventcount=nil, reverseshelleventcount=nil, filelesseventcount=nil, riskcmdeventcount=nil, abnormalchildprocesseventcount=nil, userdefinedruleeventcount=nil)
+          @Date = date
+          @ProxyToolEventCount = proxytooleventcount
+          @TransferControlEventCount = transfercontroleventcount
+          @AttackCmdEventCount = attackcmdeventcount
+          @ReverseShellEventCount = reverseshelleventcount
+          @FilelessEventCount = filelesseventcount
+          @RiskCmdEventCount = riskcmdeventcount
+          @AbnormalChildProcessEventCount = abnormalchildprocesseventcount
+          @UserDefinedRuleEventCount = userdefinedruleeventcount
+        end
+
+        def deserialize(params)
+          @Date = params['Date']
+          @ProxyToolEventCount = params['ProxyToolEventCount']
+          @TransferControlEventCount = params['TransferControlEventCount']
+          @AttackCmdEventCount = params['AttackCmdEventCount']
+          @ReverseShellEventCount = params['ReverseShellEventCount']
+          @FilelessEventCount = params['FilelessEventCount']
+          @RiskCmdEventCount = params['RiskCmdEventCount']
+          @AbnormalChildProcessEventCount = params['AbnormalChildProcessEventCount']
+          @UserDefinedRuleEventCount = params['UserDefinedRuleEventCount']
         end
       end
 
@@ -657,6 +725,145 @@ module TencentCloud
         end
       end
 
+      # AddAndPublishNetworkFirewallPolicyDetail请求参数结构体
+      class AddAndPublishNetworkFirewallPolicyDetailRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群Id
+        # @type ClusterId: String
+        # @param PolicyName: 策略名
+        # @type PolicyName: String
+        # @param FromPolicyRule: 入站规则
+
+        # 全部允许：1
+
+        # 全部拒绝 ：2
+
+        # 自定义：3
+        # @type FromPolicyRule: Integer
+        # @param ToPolicyRule: 出站规则
+
+        # 全部允许：1
+
+        # 全部拒绝 ：2
+
+        # 自定义：3
+        # @type ToPolicyRule: Integer
+        # @param PodSelector: pod选择器
+        # @type PodSelector: String
+        # @param Namespace: 命名空间
+        # @type Namespace: String
+        # @param Description: 策略描述
+        # @type Description: String
+        # @param CustomPolicy: 自定义规则
+        # @type CustomPolicy: Array
+
+        attr_accessor :ClusterId, :PolicyName, :FromPolicyRule, :ToPolicyRule, :PodSelector, :Namespace, :Description, :CustomPolicy
+        
+        def initialize(clusterid=nil, policyname=nil, frompolicyrule=nil, topolicyrule=nil, podselector=nil, namespace=nil, description=nil, custompolicy=nil)
+          @ClusterId = clusterid
+          @PolicyName = policyname
+          @FromPolicyRule = frompolicyrule
+          @ToPolicyRule = topolicyrule
+          @PodSelector = podselector
+          @Namespace = namespace
+          @Description = description
+          @CustomPolicy = custompolicy
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @PolicyName = params['PolicyName']
+          @FromPolicyRule = params['FromPolicyRule']
+          @ToPolicyRule = params['ToPolicyRule']
+          @PodSelector = params['PodSelector']
+          @Namespace = params['Namespace']
+          @Description = params['Description']
+          unless params['CustomPolicy'].nil?
+            @CustomPolicy = []
+            params['CustomPolicy'].each do |i|
+              networkcustompolicy_tmp = NetworkCustomPolicy.new
+              networkcustompolicy_tmp.deserialize(i)
+              @CustomPolicy << networkcustompolicy_tmp
+            end
+          end
+        end
+      end
+
+      # AddAndPublishNetworkFirewallPolicyDetail返回参数结构体
+      class AddAndPublishNetworkFirewallPolicyDetailResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: 返回创建的任务的ID，为0表示创建失败。
+        # @type TaskId: Integer
+        # @param Result: 创建任务的结果，"Succ"为成功，"Failed"为失败
+        # @type Result: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :Result, :RequestId
+        
+        def initialize(taskid=nil, result=nil, requestid=nil)
+          @TaskId = taskid
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @Result = params['Result']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # AddAndPublishNetworkFirewallPolicyYamlDetail请求参数结构体
+      class AddAndPublishNetworkFirewallPolicyYamlDetailRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群Id
+        # @type ClusterId: String
+        # @param PolicyName: 策略名
+        # @type PolicyName: String
+        # @param Yaml: base64编码的networkpolicy yaml字符串
+        # @type Yaml: String
+        # @param Description: 策略描述
+        # @type Description: String
+
+        attr_accessor :ClusterId, :PolicyName, :Yaml, :Description
+        
+        def initialize(clusterid=nil, policyname=nil, yaml=nil, description=nil)
+          @ClusterId = clusterid
+          @PolicyName = policyname
+          @Yaml = yaml
+          @Description = description
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @PolicyName = params['PolicyName']
+          @Yaml = params['Yaml']
+          @Description = params['Description']
+        end
+      end
+
+      # AddAndPublishNetworkFirewallPolicyYamlDetail返回参数结构体
+      class AddAndPublishNetworkFirewallPolicyYamlDetailResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: 返回创建的任务的ID，为0表示创建失败。
+        # @type TaskId: Integer
+        # @param Result: 创建任务的结果，"Succ"为成功，"Failed"为失败
+        # @type Result: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :Result, :RequestId
+        
+        def initialize(taskid=nil, result=nil, requestid=nil)
+          @TaskId = taskid
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @Result = params['Result']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # AddAssetImageRegistryRegistryDetail请求参数结构体
       class AddAssetImageRegistryRegistryDetailRequest < TencentCloud::Common::AbstractModel
         # @param Name: 仓库名
@@ -850,6 +1057,69 @@ module TencentCloud
         end
       end
 
+      # AddEditImageAutoAuthorizedRule请求参数结构体
+      class AddEditImageAutoAuthorizedRuleRequest < TencentCloud::Common::AbstractModel
+        # @param RangeType: 授权范围类别，MANUAL:自选主机节点，ALL:全部镜像
+        # @type RangeType: String
+        # @param MaxDailyCount: 每天最大的镜像授权数限制, 0表示无限制
+        # @type MaxDailyCount: Integer
+        # @param IsEnabled: 规则是否生效，0:不生效，1:已生效
+        # @type IsEnabled: Integer
+        # @param HostIdSet: 自选主机id，当授权范围为MANUAL:自选主机时且HostIdFilters为空时，必填
+        # @type HostIdSet: Array
+        # @param RuleId: 规则id，在编辑时，必填
+        # @type RuleId: Integer
+        # @param HostIdFilters: 根据条件过滤，当授权范围为MANUAL:自选主机时且HostIdSet为空时，必填
+        # @type HostIdFilters: Array
+        # @param ExcludeHostIdSet: 根据条件过滤而且排除指定主机id
+        # @type ExcludeHostIdSet: Array
+
+        attr_accessor :RangeType, :MaxDailyCount, :IsEnabled, :HostIdSet, :RuleId, :HostIdFilters, :ExcludeHostIdSet
+        
+        def initialize(rangetype=nil, maxdailycount=nil, isenabled=nil, hostidset=nil, ruleid=nil, hostidfilters=nil, excludehostidset=nil)
+          @RangeType = rangetype
+          @MaxDailyCount = maxdailycount
+          @IsEnabled = isenabled
+          @HostIdSet = hostidset
+          @RuleId = ruleid
+          @HostIdFilters = hostidfilters
+          @ExcludeHostIdSet = excludehostidset
+        end
+
+        def deserialize(params)
+          @RangeType = params['RangeType']
+          @MaxDailyCount = params['MaxDailyCount']
+          @IsEnabled = params['IsEnabled']
+          @HostIdSet = params['HostIdSet']
+          @RuleId = params['RuleId']
+          unless params['HostIdFilters'].nil?
+            @HostIdFilters = []
+            params['HostIdFilters'].each do |i|
+              assetfilters_tmp = AssetFilters.new
+              assetfilters_tmp.deserialize(i)
+              @HostIdFilters << assetfilters_tmp
+            end
+          end
+          @ExcludeHostIdSet = params['ExcludeHostIdSet']
+        end
+      end
+
+      # AddEditImageAutoAuthorizedRule返回参数结构体
+      class AddEditImageAutoAuthorizedRuleResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # AddEditReverseShellWhiteList请求参数结构体
       class AddEditReverseShellWhiteListRequest < TencentCloud::Common::AbstractModel
         # @param WhiteListInfo: 增加或编辑白名单信息。新增白名单时WhiteListInfo.id为空，编辑白名单WhiteListInfo.id不能为空。
@@ -963,6 +1233,227 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # AddEscapeWhiteList请求参数结构体
+      class AddEscapeWhiteListRequest < TencentCloud::Common::AbstractModel
+        # @param EventType: 加白名单事件类型
+        #    ESCAPE_CGROUPS：利用cgroup机制逃逸
+        #    ESCAPE_TAMPER_SENSITIVE_FILE：篡改敏感文件逃逸
+        #    ESCAPE_DOCKER_API：访问Docker API接口逃逸
+        #    ESCAPE_VUL_OCCURRED：逃逸漏洞利用
+        #    MOUNT_SENSITIVE_PTAH：敏感路径挂载
+        #    PRIVILEGE_CONTAINER_START：特权容器
+        #    PRIVILEGE：程序提权逃逸
+        # @type EventType: Array
+        # @param ImageIDs: 加白名单镜像ID数组
+        # @type ImageIDs: Array
+
+        attr_accessor :EventType, :ImageIDs
+        
+        def initialize(eventtype=nil, imageids=nil)
+          @EventType = eventtype
+          @ImageIDs = imageids
+        end
+
+        def deserialize(params)
+          @EventType = params['EventType']
+          @ImageIDs = params['ImageIDs']
+        end
+      end
+
+      # AddEscapeWhiteList返回参数结构体
+      class AddEscapeWhiteListResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # AddIgnoreVul请求参数结构体
+      class AddIgnoreVulRequest < TencentCloud::Common::AbstractModel
+        # @param List: 漏洞PocID信息列表
+        # @type List: Array
+
+        attr_accessor :List
+        
+        def initialize(list=nil)
+          @List = list
+        end
+
+        def deserialize(params)
+          unless params['List'].nil?
+            @List = []
+            params['List'].each do |i|
+              modifyignorevul_tmp = ModifyIgnoreVul.new
+              modifyignorevul_tmp.deserialize(i)
+              @List << modifyignorevul_tmp
+            end
+          end
+        end
+      end
+
+      # AddIgnoreVul返回参数结构体
+      class AddIgnoreVulResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # AddNetworkFirewallPolicyDetail请求参数结构体
+      class AddNetworkFirewallPolicyDetailRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群Id
+        # @type ClusterId: String
+        # @param PolicyName: 策略名
+        # @type PolicyName: String
+        # @param FromPolicyRule: 入站规则
+
+        # 全部允许：1
+
+        # 全部拒绝 ：2
+
+        # 自定义：3
+        # @type FromPolicyRule: Integer
+        # @param ToPolicyRule: 出站规则
+
+        # 全部允许：1
+
+        # 全部拒绝 ：2
+
+        # 自定义：3
+        # @type ToPolicyRule: Integer
+        # @param PodSelector: pod选择器
+        # @type PodSelector: String
+        # @param Namespace: 命名空间
+        # @type Namespace: String
+        # @param Description: 策略描述
+        # @type Description: String
+        # @param CustomPolicy: 自定义规则
+        # @type CustomPolicy: Array
+
+        attr_accessor :ClusterId, :PolicyName, :FromPolicyRule, :ToPolicyRule, :PodSelector, :Namespace, :Description, :CustomPolicy
+        
+        def initialize(clusterid=nil, policyname=nil, frompolicyrule=nil, topolicyrule=nil, podselector=nil, namespace=nil, description=nil, custompolicy=nil)
+          @ClusterId = clusterid
+          @PolicyName = policyname
+          @FromPolicyRule = frompolicyrule
+          @ToPolicyRule = topolicyrule
+          @PodSelector = podselector
+          @Namespace = namespace
+          @Description = description
+          @CustomPolicy = custompolicy
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @PolicyName = params['PolicyName']
+          @FromPolicyRule = params['FromPolicyRule']
+          @ToPolicyRule = params['ToPolicyRule']
+          @PodSelector = params['PodSelector']
+          @Namespace = params['Namespace']
+          @Description = params['Description']
+          unless params['CustomPolicy'].nil?
+            @CustomPolicy = []
+            params['CustomPolicy'].each do |i|
+              networkcustompolicy_tmp = NetworkCustomPolicy.new
+              networkcustompolicy_tmp.deserialize(i)
+              @CustomPolicy << networkcustompolicy_tmp
+            end
+          end
+        end
+      end
+
+      # AddNetworkFirewallPolicyDetail返回参数结构体
+      class AddNetworkFirewallPolicyDetailResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: 返回创建的任务的ID，为0表示创建失败。
+        # @type TaskId: Integer
+        # @param Result: 创建任务的结果，"Succ"为成功，"Failed"为失败
+        # @type Result: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :Result, :RequestId
+        
+        def initialize(taskid=nil, result=nil, requestid=nil)
+          @TaskId = taskid
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @Result = params['Result']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # AddNetworkFirewallPolicyYamlDetail请求参数结构体
+      class AddNetworkFirewallPolicyYamlDetailRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群Id
+        # @type ClusterId: String
+        # @param PolicyName: 策略名
+        # @type PolicyName: String
+        # @param Yaml: base64编码的networkpolicy yaml字符串
+        # @type Yaml: String
+        # @param Description: 策略描述
+        # @type Description: String
+
+        attr_accessor :ClusterId, :PolicyName, :Yaml, :Description
+        
+        def initialize(clusterid=nil, policyname=nil, yaml=nil, description=nil)
+          @ClusterId = clusterid
+          @PolicyName = policyname
+          @Yaml = yaml
+          @Description = description
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @PolicyName = params['PolicyName']
+          @Yaml = params['Yaml']
+          @Description = params['Description']
+        end
+      end
+
+      # AddNetworkFirewallPolicyYamlDetail返回参数结构体
+      class AddNetworkFirewallPolicyYamlDetailResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: 返回创建的任务的ID，为0表示创建失败。
+        # @type TaskId: Integer
+        # @param Result: 创建任务的结果，"Succ"为成功，"Failed"为失败
+        # @type Result: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :Result, :RequestId
+        
+        def initialize(taskid=nil, result=nil, requestid=nil)
+          @TaskId = taskid
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @Result = params['Result']
           @RequestId = params['RequestId']
         end
       end
@@ -1110,6 +1601,213 @@ module TencentCloud
         end
       end
 
+      # 镜像自动授权结果信息
+      class AutoAuthorizedImageInfo < TencentCloud::Common::AbstractModel
+        # @param ImageId: 镜像id
+        # @type ImageId: String
+        # @param ImageName: 镜像名称
+        # @type ImageName: String
+        # @param AuthorizedTime: 授权时间
+        # @type AuthorizedTime: String
+        # @param Status: 授权结果，SUCCESS:成功，REACH_LIMIT:达到授权上限，LICENSE_INSUFFICIENT:授权数不足'
+        # @type Status: String
+        # @param IsAuthorized: 是否授权，1：是，0：否
+        # @type IsAuthorized: Integer
+
+        attr_accessor :ImageId, :ImageName, :AuthorizedTime, :Status, :IsAuthorized
+        
+        def initialize(imageid=nil, imagename=nil, authorizedtime=nil, status=nil, isauthorized=nil)
+          @ImageId = imageid
+          @ImageName = imagename
+          @AuthorizedTime = authorizedtime
+          @Status = status
+          @IsAuthorized = isauthorized
+        end
+
+        def deserialize(params)
+          @ImageId = params['ImageId']
+          @ImageName = params['ImageName']
+          @AuthorizedTime = params['AuthorizedTime']
+          @Status = params['Status']
+          @IsAuthorized = params['IsAuthorized']
+        end
+      end
+
+      # 自动授权镜像规则授权范围主机列表
+      class AutoAuthorizedRuleHostInfo < TencentCloud::Common::AbstractModel
+        # @param HostID: 主机id
+        # @type HostID: String
+        # @param HostIP: 主机ip即内网ip
+        # @type HostIP: String
+        # @param HostName: 主机名称
+        # @type HostName: String
+        # @param ImageCnt: 镜像个数
+        # @type ImageCnt: Integer
+        # @param ContainerCnt: 容器个数
+        # @type ContainerCnt: Integer
+        # @param PublicIp: 外网ip
+        # @type PublicIp: String
+        # @param InstanceID: 主机实例ID
+        # @type InstanceID: String
+        # @param MachineType: 主机来源：["CVM", "ECM", "LH", "BM"]  中的之一为腾讯云服务器；["Other"]之一非腾讯云服务器；
+        # @type MachineType: String
+        # @param DockerVersion: docker 版本
+        # @type DockerVersion: String
+        # @param Status: agent运行状态
+        # @type Status: String
+
+        attr_accessor :HostID, :HostIP, :HostName, :ImageCnt, :ContainerCnt, :PublicIp, :InstanceID, :MachineType, :DockerVersion, :Status
+        
+        def initialize(hostid=nil, hostip=nil, hostname=nil, imagecnt=nil, containercnt=nil, publicip=nil, instanceid=nil, machinetype=nil, dockerversion=nil, status=nil)
+          @HostID = hostid
+          @HostIP = hostip
+          @HostName = hostname
+          @ImageCnt = imagecnt
+          @ContainerCnt = containercnt
+          @PublicIp = publicip
+          @InstanceID = instanceid
+          @MachineType = machinetype
+          @DockerVersion = dockerversion
+          @Status = status
+        end
+
+        def deserialize(params)
+          @HostID = params['HostID']
+          @HostIP = params['HostIP']
+          @HostName = params['HostName']
+          @ImageCnt = params['ImageCnt']
+          @ContainerCnt = params['ContainerCnt']
+          @PublicIp = params['PublicIp']
+          @InstanceID = params['InstanceID']
+          @MachineType = params['MachineType']
+          @DockerVersion = params['DockerVersion']
+          @Status = params['Status']
+        end
+      end
+
+      # 安全日志kafka可选信息
+      class CKafkaInstanceInfo < TencentCloud::Common::AbstractModel
+        # @param InstanceID: 实例ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceID: String
+        # @param InstanceName: 实例名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceName: String
+        # @param TopicList: 主题列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TopicList: Array
+        # @param RouteList: 路由列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RouteList: Array
+        # @param KafkaVersion: kafka版本号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type KafkaVersion: String
+
+        attr_accessor :InstanceID, :InstanceName, :TopicList, :RouteList, :KafkaVersion
+        
+        def initialize(instanceid=nil, instancename=nil, topiclist=nil, routelist=nil, kafkaversion=nil)
+          @InstanceID = instanceid
+          @InstanceName = instancename
+          @TopicList = topiclist
+          @RouteList = routelist
+          @KafkaVersion = kafkaversion
+        end
+
+        def deserialize(params)
+          @InstanceID = params['InstanceID']
+          @InstanceName = params['InstanceName']
+          unless params['TopicList'].nil?
+            @TopicList = []
+            params['TopicList'].each do |i|
+              ckafkatopicinfo_tmp = CKafkaTopicInfo.new
+              ckafkatopicinfo_tmp.deserialize(i)
+              @TopicList << ckafkatopicinfo_tmp
+            end
+          end
+          unless params['RouteList'].nil?
+            @RouteList = []
+            params['RouteList'].each do |i|
+              ckafkarouteinfo_tmp = CkafkaRouteInfo.new
+              ckafkarouteinfo_tmp.deserialize(i)
+              @RouteList << ckafkarouteinfo_tmp
+            end
+          end
+          @KafkaVersion = params['KafkaVersion']
+        end
+      end
+
+      # Ckafka topic信息
+      class CKafkaTopicInfo < TencentCloud::Common::AbstractModel
+        # @param TopicID: 主题ID
+        # @type TopicID: String
+        # @param TopicName: 主题名称
+        # @type TopicName: String
+
+        attr_accessor :TopicID, :TopicName
+        
+        def initialize(topicid=nil, topicname=nil)
+          @TopicID = topicid
+          @TopicName = topicname
+        end
+
+        def deserialize(params)
+          @TopicID = params['TopicID']
+          @TopicName = params['TopicName']
+        end
+      end
+
+      # CheckNetworkFirewallPolicyYaml请求参数结构体
+      class CheckNetworkFirewallPolicyYamlRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群Id
+        # @type ClusterId: String
+        # @param PolicyName: 策略名
+        # @type PolicyName: String
+        # @param Yaml: base64编码的networkpolicy yaml字符串
+        # @type Yaml: String
+        # @param Description: 策略描述
+        # @type Description: String
+
+        attr_accessor :ClusterId, :PolicyName, :Yaml, :Description
+        
+        def initialize(clusterid=nil, policyname=nil, yaml=nil, description=nil)
+          @ClusterId = clusterid
+          @PolicyName = policyname
+          @Yaml = yaml
+          @Description = description
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @PolicyName = params['PolicyName']
+          @Yaml = params['Yaml']
+          @Description = params['Description']
+        end
+      end
+
+      # CheckNetworkFirewallPolicyYaml返回参数结构体
+      class CheckNetworkFirewallPolicyYamlResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: 返回创建的任务的ID，为0表示创建失败。
+        # @type TaskId: Integer
+        # @param Result: 创建任务的结果，"Succ"为成功，"Failed"为失败
+        # @type Result: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :Result, :RequestId
+        
+        def initialize(taskid=nil, result=nil, requestid=nil)
+          @TaskId = taskid
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @Result = params['Result']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CheckRepeatAssetImageRegistry请求参数结构体
       class CheckRepeatAssetImageRegistryRequest < TencentCloud::Common::AbstractModel
         # @param Name: 仓库名
@@ -1144,6 +1842,105 @@ module TencentCloud
         def deserialize(params)
           @IsRepeat = params['IsRepeat']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # ckafkal路由详情
+      class CkafkaRouteInfo < TencentCloud::Common::AbstractModel
+        # @param RouteID: 路由ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RouteID: Integer
+        # @param Domain: 域名名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Domain: String
+        # @param DomainPort: 域名端口
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DomainPort: Integer
+        # @param Vip: 虚拟ip
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Vip: String
+        # @param VipType: 虚拟ip类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VipType: Integer
+        # @param AccessType: 接入类型
+        # // 0：PLAINTEXT (明文方式，没有带用户信息老版本及社区版本都支持)
+        # 	// 1：SASL_PLAINTEXT（明文方式，不过在数据开始时，会通过SASL方式登录鉴权，仅社区版本支持）
+        # 	// 2：SSL（SSL加密通信，没有带用户信息，老版本及社区版本都支持）
+        # 	// 3：SASL_SSL（SSL加密通信，在数据开始时，会通过SASL方式登录鉴权，仅社区版本支持）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AccessType: Integer
+
+        attr_accessor :RouteID, :Domain, :DomainPort, :Vip, :VipType, :AccessType
+        
+        def initialize(routeid=nil, domain=nil, domainport=nil, vip=nil, viptype=nil, accesstype=nil)
+          @RouteID = routeid
+          @Domain = domain
+          @DomainPort = domainport
+          @Vip = vip
+          @VipType = viptype
+          @AccessType = accesstype
+        end
+
+        def deserialize(params)
+          @RouteID = params['RouteID']
+          @Domain = params['Domain']
+          @DomainPort = params['DomainPort']
+          @Vip = params['Vip']
+          @VipType = params['VipType']
+          @AccessType = params['AccessType']
+        end
+      end
+
+      # cls日志集信息
+      class ClsLogsetInfo < TencentCloud::Common::AbstractModel
+        # @param LogsetID: 日志集ID
+        # @type LogsetID: String
+        # @param LogsetName: 日志集名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LogsetName: String
+        # @param TopicList: cls主题列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TopicList: Array
+
+        attr_accessor :LogsetID, :LogsetName, :TopicList
+        
+        def initialize(logsetid=nil, logsetname=nil, topiclist=nil)
+          @LogsetID = logsetid
+          @LogsetName = logsetname
+          @TopicList = topiclist
+        end
+
+        def deserialize(params)
+          @LogsetID = params['LogsetID']
+          @LogsetName = params['LogsetName']
+          unless params['TopicList'].nil?
+            @TopicList = []
+            params['TopicList'].each do |i|
+              clstopicinfo_tmp = ClsTopicInfo.new
+              clstopicinfo_tmp.deserialize(i)
+              @TopicList << clstopicinfo_tmp
+            end
+          end
+        end
+      end
+
+      # cls主题信息
+      class ClsTopicInfo < TencentCloud::Common::AbstractModel
+        # @param TopicID: 主题ID
+        # @type TopicID: String
+        # @param TopicName: 主题名称
+        # @type TopicName: String
+
+        attr_accessor :TopicID, :TopicName
+        
+        def initialize(topicid=nil, topicname=nil)
+          @TopicID = topicid
+          @TopicName = topicname
+        end
+
+        def deserialize(params)
+          @TopicID = params['TopicID']
+          @TopicName = params['TopicName']
         end
       end
 
@@ -2291,6 +3088,50 @@ module TencentCloud
         end
       end
 
+      # ConfirmNetworkFirewallPolicy请求参数结构体
+      class ConfirmNetworkFirewallPolicyRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群Id
+        # @type ClusterId: String
+        # @param Id: 策略Id数组
+        # @type Id: Array
+
+        attr_accessor :ClusterId, :Id
+        
+        def initialize(clusterid=nil, id=nil)
+          @ClusterId = clusterid
+          @Id = id
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @Id = params['Id']
+        end
+      end
+
+      # ConfirmNetworkFirewallPolicy返回参数结构体
+      class ConfirmNetworkFirewallPolicyResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: 返回创建的任务的ID，为0表示创建失败。
+        # @type TaskId: Integer
+        # @param Result: 创建确认任务的结果，"Succ"为成功，"Failed"为失败
+        # @type Result: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :Result, :RequestId
+        
+        def initialize(taskid=nil, result=nil, requestid=nil)
+          @TaskId = taskid
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @Result = params['Result']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 容器列表集合
       class ContainerInfo < TencentCloud::Common::AbstractModel
         # @param ContainerID: 容器id
@@ -2727,6 +3568,73 @@ module TencentCloud
         end
       end
 
+      # CreateAssetImageVirusExportJob请求参数结构体
+      class CreateAssetImageVirusExportJobRequest < TencentCloud::Common::AbstractModel
+        # @param ExportField: 导出字段
+        # @type ExportField: Array
+        # @param ImageID: 镜像id
+        # @type ImageID: String
+        # @param Filters: 需要返回的数量，默认为10，最大值为10000
+        # @type Filters: Array
+        # @param Limit: 偏移量，默认为0。
+        # @type Limit: Integer
+        # @param Offset: 过滤参数,"Filters":[{"Name":"Status","Values":["2"]}]
+        # @type Offset: Integer
+        # @param By: 排序字段
+        # @type By: String
+        # @param Order: 升序降序,asc desc
+        # @type Order: String
+
+        attr_accessor :ExportField, :ImageID, :Filters, :Limit, :Offset, :By, :Order
+        
+        def initialize(exportfield=nil, imageid=nil, filters=nil, limit=nil, offset=nil, by=nil, order=nil)
+          @ExportField = exportfield
+          @ImageID = imageid
+          @Filters = filters
+          @Limit = limit
+          @Offset = offset
+          @By = by
+          @Order = order
+        end
+
+        def deserialize(params)
+          @ExportField = params['ExportField']
+          @ImageID = params['ImageID']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              assetfilters_tmp = AssetFilters.new
+              assetfilters_tmp.deserialize(i)
+              @Filters << assetfilters_tmp
+            end
+          end
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          @By = params['By']
+          @Order = params['Order']
+        end
+      end
+
+      # CreateAssetImageVirusExportJob返回参数结构体
+      class CreateAssetImageVirusExportJobResponse < TencentCloud::Common::AbstractModel
+        # @param JobId: 导出任务ID，前端拿着任务ID查询任务进度
+        # @type JobId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :JobId, :RequestId
+        
+        def initialize(jobid=nil, requestid=nil)
+          @JobId = jobid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @JobId = params['JobId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateCheckComponent请求参数结构体
       class CreateCheckComponentRequest < TencentCloud::Common::AbstractModel
         # @param ClusterInfoList: 要安装的集群列表信息
@@ -2866,6 +3774,331 @@ module TencentCloud
         end
       end
 
+      # CreateComponentExportJob请求参数结构体
+      class CreateComponentExportJobRequest < TencentCloud::Common::AbstractModel
+        # @param ImageID: 镜像ID
+        # @type ImageID: String
+        # @param ExportField: 导出字段
+        # @type ExportField: Array
+        # @param Limit: 需要返回的数量，默认为10000，最大值为10000
+        # @type Limit: Integer
+        # @param Offset: 偏移量，默认为0。
+        # @type Offset: Integer
+        # @param Filters: 过滤条件。
+        # <li>ComponentName- String - 是否必填：否 - 镜像组件名称</li><li>ComponentVersion- String - 是否必填：否 - 镜像组件版本</li><li>ComponentType- String - 是否必填：否 - 镜像组件类型</li><li>VulLevel- String - 是否必填：否 - 漏洞威胁等级</li><li>HasVul- String - 是否必填：否 -是否有漏洞；true：是，false，否；不传或ALL ：全部</li>
+        # @type Filters: Array
+        # @param By: 排序字段
+        # @type By: String
+        # @param Order: 排序方式desc ，asc
+        # @type Order: String
+
+        attr_accessor :ImageID, :ExportField, :Limit, :Offset, :Filters, :By, :Order
+        
+        def initialize(imageid=nil, exportfield=nil, limit=nil, offset=nil, filters=nil, by=nil, order=nil)
+          @ImageID = imageid
+          @ExportField = exportfield
+          @Limit = limit
+          @Offset = offset
+          @Filters = filters
+          @By = by
+          @Order = order
+        end
+
+        def deserialize(params)
+          @ImageID = params['ImageID']
+          @ExportField = params['ExportField']
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              assetfilters_tmp = AssetFilters.new
+              assetfilters_tmp.deserialize(i)
+              @Filters << assetfilters_tmp
+            end
+          end
+          @By = params['By']
+          @Order = params['Order']
+        end
+      end
+
+      # CreateComponentExportJob返回参数结构体
+      class CreateComponentExportJobResponse < TencentCloud::Common::AbstractModel
+        # @param JobId: 导出任务ID，前端拿着任务ID查询任务进度
+        # @type JobId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :JobId, :RequestId
+        
+        def initialize(jobid=nil, requestid=nil)
+          @JobId = jobid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @JobId = params['JobId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateDefenceVulExportJob请求参数结构体
+      class CreateDefenceVulExportJobRequest < TencentCloud::Common::AbstractModel
+        # @param Limit: 需要返回的数量，默认为10000，最大值为10000
+        # @type Limit: Integer
+        # @param Offset: 偏移量，默认为0。
+        # @type Offset: Integer
+        # @param Filters: 过滤条件。
+        # <li>Level- String - 是否必填：否 - 威胁等级，CRITICAL:严重 HIGH:高/MIDDLE:中/LOW:低</li>
+        # <li>CVEID- string - 是否必填：否 - CVE编号</li>
+        # <li>Name- string -是否必填: 否 - 漏洞名称</li>
+        # @type Filters: Array
+        # @param Order: 排序方式
+        # @type Order: String
+        # @param By: 排序字段
+        # @type By: String
+
+        attr_accessor :Limit, :Offset, :Filters, :Order, :By
+        
+        def initialize(limit=nil, offset=nil, filters=nil, order=nil, by=nil)
+          @Limit = limit
+          @Offset = offset
+          @Filters = filters
+          @Order = order
+          @By = by
+        end
+
+        def deserialize(params)
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              runtimefilters_tmp = RunTimeFilters.new
+              runtimefilters_tmp.deserialize(i)
+              @Filters << runtimefilters_tmp
+            end
+          end
+          @Order = params['Order']
+          @By = params['By']
+        end
+      end
+
+      # CreateDefenceVulExportJob返回参数结构体
+      class CreateDefenceVulExportJobResponse < TencentCloud::Common::AbstractModel
+        # @param JobId: 导出任务ID，前端拿着任务ID查询任务进度
+        # @type JobId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :JobId, :RequestId
+        
+        def initialize(jobid=nil, requestid=nil)
+          @JobId = jobid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @JobId = params['JobId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateEmergencyVulExportJob请求参数结构体
+      class CreateEmergencyVulExportJobRequest < TencentCloud::Common::AbstractModel
+        # @param Limit: 需要返回的数量，默认为50000，最大值为50000
+        # @type Limit: Integer
+        # @param Offset: 偏移量，默认为0。
+        # @type Offset: Integer
+        # @param Filters: 过滤条件。
+        # <li>Level- String - 是否必填：否 - 威胁等级，CRITICAL:严重 HIGH:高/MIDDLE:中/LOW:低</li>
+        # <li>Tags- string - 是否必填：否 - 漏洞标签，POC，EXP。</li>
+        # <li>CanBeFixed- string - 是否必填：否 - 是否可修复true,false。</li>
+        # <li>CVEID- string - 是否必填：否 - CVE编号</li>
+        # <li>ImageID- string - 是否必填：否 - 镜像ID</li>
+        # <li>ImageName- String -是否必填: 否 - 镜像名称</li>
+        # <li>ContainerID- string -是否必填: 否 - 容器ID</li>
+        # <li>ContainerName- string -是否必填: 否 - 容器名称</li>
+        # <li>ComponentName- string -是否必填: 否 - 组件名称</li>
+        # <li>ComponentVersion- string -是否必填: 否 - 组件版本</li>
+        # <li>Name- string -是否必填: 否 - 漏洞名称</li>
+        # @type Filters: Array
+        # @param Order: 排序方式
+        # @type Order: String
+        # @param By: 排序字段
+        # @type By: String
+
+        attr_accessor :Limit, :Offset, :Filters, :Order, :By
+        
+        def initialize(limit=nil, offset=nil, filters=nil, order=nil, by=nil)
+          @Limit = limit
+          @Offset = offset
+          @Filters = filters
+          @Order = order
+          @By = by
+        end
+
+        def deserialize(params)
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              runtimefilters_tmp = RunTimeFilters.new
+              runtimefilters_tmp.deserialize(i)
+              @Filters << runtimefilters_tmp
+            end
+          end
+          @Order = params['Order']
+          @By = params['By']
+        end
+      end
+
+      # CreateEmergencyVulExportJob返回参数结构体
+      class CreateEmergencyVulExportJobResponse < TencentCloud::Common::AbstractModel
+        # @param JobId: 导出任务ID，前端拿着任务ID查询任务进度
+        # @type JobId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :JobId, :RequestId
+        
+        def initialize(jobid=nil, requestid=nil)
+          @JobId = jobid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @JobId = params['JobId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateEscapeEventsExportJob请求参数结构体
+      class CreateEscapeEventsExportJobRequest < TencentCloud::Common::AbstractModel
+        # @param Limit: 需要返回的数量，最大值为10000
+        # @type Limit: Integer
+        # @param Offset: 偏移量，默认为0。
+        # @type Offset: Integer
+        # @param Filters: 过滤参数,Status：EVENT_UNDEAL:未处理，EVENT_DEALED:已处理，EVENT_INGNORE:忽略
+        # @type Filters: Array
+        # @param Order: 升序降序,asc desc
+        # @type Order: String
+        # @param By: 排序字段：latest_found_time
+        # @type By: String
+        # @param ExportField: 导出字段
+        # @type ExportField: Array
+
+        attr_accessor :Limit, :Offset, :Filters, :Order, :By, :ExportField
+        
+        def initialize(limit=nil, offset=nil, filters=nil, order=nil, by=nil, exportfield=nil)
+          @Limit = limit
+          @Offset = offset
+          @Filters = filters
+          @Order = order
+          @By = by
+          @ExportField = exportfield
+        end
+
+        def deserialize(params)
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              runtimefilters_tmp = RunTimeFilters.new
+              runtimefilters_tmp.deserialize(i)
+              @Filters << runtimefilters_tmp
+            end
+          end
+          @Order = params['Order']
+          @By = params['By']
+          @ExportField = params['ExportField']
+        end
+      end
+
+      # CreateEscapeEventsExportJob返回参数结构体
+      class CreateEscapeEventsExportJobResponse < TencentCloud::Common::AbstractModel
+        # @param JobId: 导出任务ID，前端拿着任务ID查询任务进度
+        # @type JobId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :JobId, :RequestId
+        
+        def initialize(jobid=nil, requestid=nil)
+          @JobId = jobid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @JobId = params['JobId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateEscapeWhiteListExportJob请求参数结构体
+      class CreateEscapeWhiteListExportJobRequest < TencentCloud::Common::AbstractModel
+        # @param Filters: 过滤条件。
+        # <li>EventType- String - 是否必填：否 - 加白事件类型，ESCAPE_CGROUPS：利用cgroup机制逃逸，ESCAPE_TAMPER_SENSITIVE_FILE：篡改敏感文件逃逸， ESCAPE_DOCKER_API：访问Docker API接口逃逸，ESCAPE_VUL_OCCURRED：逃逸漏洞利用，MOUNT_SENSITIVE_PTAH：敏感路径挂载，PRIVILEGE_CONTAINER_START：特权容器， PRIVILEGE：程序提权逃逸</li>
+        # <li>ImageName- string - 是否必填：否 - 镜像名称。</li>
+        # <li>ImageID- string - 是否必填：否 - 镜像ID。</li>
+        # @type Filters: Array
+        # @param Limit: 需要返回的数量，默认为10000，最大值为10000
+        # @type Limit: Integer
+        # @param Offset: 偏移量，默认为0。
+        # @type Offset: Integer
+        # @param Order: 排序方式：asc/desc
+        # @type Order: String
+        # @param By: 排序字段：主机数量：HostCount，容器数量：ContainerCount，更新时间：UpdateTime
+        # @type By: String
+
+        attr_accessor :Filters, :Limit, :Offset, :Order, :By
+        
+        def initialize(filters=nil, limit=nil, offset=nil, order=nil, by=nil)
+          @Filters = filters
+          @Limit = limit
+          @Offset = offset
+          @Order = order
+          @By = by
+        end
+
+        def deserialize(params)
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              runtimefilters_tmp = RunTimeFilters.new
+              runtimefilters_tmp.deserialize(i)
+              @Filters << runtimefilters_tmp
+            end
+          end
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          @Order = params['Order']
+          @By = params['By']
+        end
+      end
+
+      # CreateEscapeWhiteListExportJob返回参数结构体
+      class CreateEscapeWhiteListExportJobResponse < TencentCloud::Common::AbstractModel
+        # @param JobId: 导出任务ID，前端拿着任务ID查询任务进度
+        # @type JobId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :JobId, :RequestId
+        
+        def initialize(jobid=nil, requestid=nil)
+          @JobId = jobid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @JobId = params['JobId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateExportComplianceStatusListJob请求参数结构体
       class CreateExportComplianceStatusListJobRequest < TencentCloud::Common::AbstractModel
         # @param AssetType: 要导出信息的资产类型
@@ -2915,6 +4148,303 @@ module TencentCloud
         end
       end
 
+      # CreateHostExportJob请求参数结构体
+      class CreateHostExportJobRequest < TencentCloud::Common::AbstractModel
+        # @param ExportField: 导出字段
+        # @type ExportField: Array
+        # @param Filters: 需要返回的数量，默认为10，最大值为10000
+        # @type Filters: Array
+        # @param Limit: 偏移量，默认为0。
+        # @type Limit: Integer
+        # @param Offset: 过滤参数,"Filters":[{"Name":"Status","Values":["2"]}]
+        # @type Offset: Integer
+        # @param By: 排序字段
+        # @type By: String
+        # @param Order: 升序降序,asc desc
+        # @type Order: String
+
+        attr_accessor :ExportField, :Filters, :Limit, :Offset, :By, :Order
+        
+        def initialize(exportfield=nil, filters=nil, limit=nil, offset=nil, by=nil, order=nil)
+          @ExportField = exportfield
+          @Filters = filters
+          @Limit = limit
+          @Offset = offset
+          @By = by
+          @Order = order
+        end
+
+        def deserialize(params)
+          @ExportField = params['ExportField']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              assetfilters_tmp = AssetFilters.new
+              assetfilters_tmp.deserialize(i)
+              @Filters << assetfilters_tmp
+            end
+          end
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          @By = params['By']
+          @Order = params['Order']
+        end
+      end
+
+      # CreateHostExportJob返回参数结构体
+      class CreateHostExportJobResponse < TencentCloud::Common::AbstractModel
+        # @param JobId: 导出任务ID，前端拿着任务ID查询任务进度
+        # @type JobId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :JobId, :RequestId
+        
+        def initialize(jobid=nil, requestid=nil)
+          @JobId = jobid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @JobId = params['JobId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateImageExportJob请求参数结构体
+      class CreateImageExportJobRequest < TencentCloud::Common::AbstractModel
+        # @param ExportField: 导出字段
+        # @type ExportField: Array
+        # @param Filters: 过滤条件。
+        # <li>ImageName- String - 是否必填：否 - 镜像名称筛选，</li>
+        # <li>ScanStatus - String - 是否必填：否 - 镜像扫描状态notScan，scanning，scanned，scanErr</li>
+        # <li>ImageID- String - 是否必填：否 - 镜像ID筛选，</li>
+        # <li>SecurityRisk- String - 是否必填：否 - 安全风险，VulCnt 、VirusCnt、RiskCnt、IsTrustImage</li>
+        # @type Filters: Array
+        # @param Offset: 偏移量，默认为0。
+        # @type Offset: Integer
+        # @param Limit: 需要返回的数量，默认为10，最大值为100
+        # @type Limit: Integer
+        # @param By: 排序字段
+        # @type By: String
+        # @param Order: 排序方式 asc,desc
+        # @type Order: String
+
+        attr_accessor :ExportField, :Filters, :Offset, :Limit, :By, :Order
+        
+        def initialize(exportfield=nil, filters=nil, offset=nil, limit=nil, by=nil, order=nil)
+          @ExportField = exportfield
+          @Filters = filters
+          @Offset = offset
+          @Limit = limit
+          @By = by
+          @Order = order
+        end
+
+        def deserialize(params)
+          @ExportField = params['ExportField']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              runtimefilters_tmp = RunTimeFilters.new
+              runtimefilters_tmp.deserialize(i)
+              @Filters << runtimefilters_tmp
+            end
+          end
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @By = params['By']
+          @Order = params['Order']
+        end
+      end
+
+      # CreateImageExportJob返回参数结构体
+      class CreateImageExportJobResponse < TencentCloud::Common::AbstractModel
+        # @param JobId: 导出任务ID，前端拿着任务ID查询任务进度
+        # @type JobId: String
+        # @param DownloadUrl: excel文件下载地址
+        # @type DownloadUrl: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :JobId, :DownloadUrl, :RequestId
+        
+        def initialize(jobid=nil, downloadurl=nil, requestid=nil)
+          @JobId = jobid
+          @DownloadUrl = downloadurl
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @JobId = params['JobId']
+          @DownloadUrl = params['DownloadUrl']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateNetworkFirewallClusterRefresh请求参数结构体
+      class CreateNetworkFirewallClusterRefreshRequest < TencentCloud::Common::AbstractModel
+
+        
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # CreateNetworkFirewallClusterRefresh返回参数结构体
+      class CreateNetworkFirewallClusterRefreshResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: 返回创建的集群检查任务的ID，为0表示创建失败。
+        # @type TaskId: Integer
+        # @param Result: 创建检查任务的结果，"Succ"为成功，"Failed"为失败
+        # @type Result: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :Result, :RequestId
+        
+        def initialize(taskid=nil, result=nil, requestid=nil)
+          @TaskId = taskid
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @Result = params['Result']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateNetworkFirewallPolicyDiscover请求参数结构体
+      class CreateNetworkFirewallPolicyDiscoverRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群Id
+        # @type ClusterId: String
+
+        attr_accessor :ClusterId
+        
+        def initialize(clusterid=nil)
+          @ClusterId = clusterid
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+        end
+      end
+
+      # CreateNetworkFirewallPolicyDiscover返回参数结构体
+      class CreateNetworkFirewallPolicyDiscoverResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: 返回创建的集群检查任务的ID，为0表示创建失败。
+        # @type TaskId: Integer
+        # @param Result: 创建检查任务的结果，"Succ"为成功，"Failed"为失败
+        # @type Result: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :Result, :RequestId
+        
+        def initialize(taskid=nil, result=nil, requestid=nil)
+          @TaskId = taskid
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @Result = params['Result']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateNetworkFirewallPublish请求参数结构体
+      class CreateNetworkFirewallPublishRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群Id
+        # @type ClusterId: String
+        # @param Id: 策略Id数组
+        # @type Id: Array
+
+        attr_accessor :ClusterId, :Id
+        
+        def initialize(clusterid=nil, id=nil)
+          @ClusterId = clusterid
+          @Id = id
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @Id = params['Id']
+        end
+      end
+
+      # CreateNetworkFirewallPublish返回参数结构体
+      class CreateNetworkFirewallPublishResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: 返回创建的任务的ID，为0表示创建失败。
+        # @type TaskId: Integer
+        # @param Result: 创建任务的结果，"Succ"为成功，"Failed"为失败
+        # @type Result: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :Result, :RequestId
+        
+        def initialize(taskid=nil, result=nil, requestid=nil)
+          @TaskId = taskid
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @Result = params['Result']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateNetworkFirewallUndoPublish请求参数结构体
+      class CreateNetworkFirewallUndoPublishRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群Id
+        # @type ClusterId: String
+        # @param Id: 策略Id数组
+        # @type Id: Array
+
+        attr_accessor :ClusterId, :Id
+        
+        def initialize(clusterid=nil, id=nil)
+          @ClusterId = clusterid
+          @Id = id
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @Id = params['Id']
+        end
+      end
+
+      # CreateNetworkFirewallUndoPublish返回参数结构体
+      class CreateNetworkFirewallUndoPublishResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: 返回创建的任务的ID，为0表示创建失败。
+        # @type TaskId: Integer
+        # @param Result: 创建任务的结果，"Succ"为成功，"Failed"为失败
+        # @type Result: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :Result, :RequestId
+        
+        def initialize(taskid=nil, result=nil, requestid=nil)
+          @TaskId = taskid
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @Result = params['Result']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateOrModifyPostPayCores请求参数结构体
       class CreateOrModifyPostPayCoresRequest < TencentCloud::Common::AbstractModel
         # @param CoresCnt: 弹性计费上限，最小值500
@@ -2943,6 +4473,69 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateProcessEventsExportJob请求参数结构体
+      class CreateProcessEventsExportJobRequest < TencentCloud::Common::AbstractModel
+        # @param Limit: 需要返回的数量，最大值为10000
+        # @type Limit: Integer
+        # @param Offset: 偏移量，默认为0。
+        # @type Offset: Integer
+        # @param Filters: 过滤参数,Status：EVENT_UNDEAL:未处理，EVENT_DEALED:已处理，EVENT_INGNORE:忽略
+        # @type Filters: Array
+        # @param Order: 升序降序,asc desc
+        # @type Order: String
+        # @param By: 排序字段：latest_found_time
+        # @type By: String
+        # @param ExportField: 导出字段
+        # @type ExportField: Array
+
+        attr_accessor :Limit, :Offset, :Filters, :Order, :By, :ExportField
+        
+        def initialize(limit=nil, offset=nil, filters=nil, order=nil, by=nil, exportfield=nil)
+          @Limit = limit
+          @Offset = offset
+          @Filters = filters
+          @Order = order
+          @By = by
+          @ExportField = exportfield
+        end
+
+        def deserialize(params)
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              assetfilters_tmp = AssetFilters.new
+              assetfilters_tmp.deserialize(i)
+              @Filters << assetfilters_tmp
+            end
+          end
+          @Order = params['Order']
+          @By = params['By']
+          @ExportField = params['ExportField']
+        end
+      end
+
+      # CreateProcessEventsExportJob返回参数结构体
+      class CreateProcessEventsExportJobResponse < TencentCloud::Common::AbstractModel
+        # @param JobId: 导出任务ID，前端拿着任务ID查询任务进度
+        # @type JobId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :JobId, :RequestId
+        
+        def initialize(jobid=nil, requestid=nil)
+          @JobId = jobid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @JobId = params['JobId']
           @RequestId = params['RequestId']
         end
       end
@@ -2978,6 +4571,115 @@ module TencentCloud
         def deserialize(params)
           @TaskId = params['TaskId']
           @CreateResult = params['CreateResult']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateSearchTemplate请求参数结构体
+      class CreateSearchTemplateRequest < TencentCloud::Common::AbstractModel
+        # @param SearchTemplate: 搜索模板
+        # @type SearchTemplate: :class:`Tencentcloud::Tcss.v20201101.models.SearchTemplate`
+
+        attr_accessor :SearchTemplate
+        
+        def initialize(searchtemplate=nil)
+          @SearchTemplate = searchtemplate
+        end
+
+        def deserialize(params)
+          unless params['SearchTemplate'].nil?
+            @SearchTemplate = SearchTemplate.new
+            @SearchTemplate.deserialize(params['SearchTemplate'])
+          end
+        end
+      end
+
+      # CreateSearchTemplate返回参数结构体
+      class CreateSearchTemplateResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateSystemVulExportJob请求参数结构体
+      class CreateSystemVulExportJobRequest < TencentCloud::Common::AbstractModel
+        # @param Limit: 需要返回的数量，默认为50000，最大值为50000
+        # @type Limit: Integer
+        # @param Offset: 偏移量，默认为0。
+        # @type Offset: Integer
+        # @param Filters: 过滤条件。
+        # <li>OnlyAffectedContainer- string - 是否必填：否 - 仅展示影响容器的漏洞true,false</li>
+        # <li>OnlyAffectedNewestImage-string - 是否必填：否 - 仅展示影响最新版本镜像的漏洞true,false</li>
+        # <li>Level- String - 是否必填：否 - 威胁等级，CRITICAL:严重 HIGH:高/MIDDLE:中/LOW:低</li>
+        # <li>Tags- string - 是否必填：否 - 漏洞标签，POC，EXP。</li>
+        # <li>CanBeFixed- string - 是否必填：否 - 是否可修复true,false。</li>
+        # <li>CategoryType- string - 是否必填：否 - 漏洞子类型</li>
+        # <li>CVEID- string - 是否必填：否 - CVE编号</li>
+        # <li>ImageID- string - 是否必填：否 - 镜像ID</li>
+        # <li>ImageName- String -是否必填: 否 - 镜像名称</li>
+        # <li>ContainerID- string -是否必填: 否 - 容器ID</li>
+        # <li>ContainerName- string -是否必填: 否 - 容器名称</li>
+        # <li>ComponentName- string -是否必填: 否 - 组件名称</li>
+        # <li>ComponentVersion- string -是否必填: 否 - 组件版本</li>
+        # <li>Name- string -是否必填: 否 - 漏洞名称</li>
+        # <li>FocusOnType - string - 是否必填：否 -关注紧急度类型 。ALL :全部，SERIOUS_LEVEL： 严重和高危 ，IS_SUGGEST： 重点关注，POC_EXP 有Poc或Exp ，NETWORK_EXP: 远程Exp</li>
+        # @type Filters: Array
+        # @param Order: 排序方式
+        # @type Order: String
+        # @param By: 排序字段
+        # @type By: String
+
+        attr_accessor :Limit, :Offset, :Filters, :Order, :By
+        
+        def initialize(limit=nil, offset=nil, filters=nil, order=nil, by=nil)
+          @Limit = limit
+          @Offset = offset
+          @Filters = filters
+          @Order = order
+          @By = by
+        end
+
+        def deserialize(params)
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              runtimefilters_tmp = RunTimeFilters.new
+              runtimefilters_tmp.deserialize(i)
+              @Filters << runtimefilters_tmp
+            end
+          end
+          @Order = params['Order']
+          @By = params['By']
+        end
+      end
+
+      # CreateSystemVulExportJob返回参数结构体
+      class CreateSystemVulExportJobResponse < TencentCloud::Common::AbstractModel
+        # @param JobId: 导出任务ID，前端拿着任务ID查询任务进度
+        # @type JobId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :JobId, :RequestId
+        
+        def initialize(jobid=nil, requestid=nil)
+          @JobId = jobid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @JobId = params['JobId']
           @RequestId = params['RequestId']
         end
       end
@@ -3086,6 +4788,471 @@ module TencentCloud
         end
       end
 
+      # CreateVulContainerExportJob请求参数结构体
+      class CreateVulContainerExportJobRequest < TencentCloud::Common::AbstractModel
+        # @param PocID: 漏洞PocID
+        # @type PocID: String
+        # @param Limit: 需要返回的数量，默认为50000，最大值为50000
+        # @type Limit: Integer
+        # @param Offset: 偏移量，默认为0。
+        # @type Offset: Integer
+        # @param Filters: 过滤条件。
+        # <li>OnlyAffectedNewestImage- Bool- 是否必填：否 - 仅展示影响最新版本镜像的漏洞</li>
+        # <li>ContainerID- string - 是否必填：否 - 容器ID</li>
+        # <li>ContainerName- String -是否必填: 否 - 容器名称</li>
+        # @type Filters: Array
+
+        attr_accessor :PocID, :Limit, :Offset, :Filters
+        
+        def initialize(pocid=nil, limit=nil, offset=nil, filters=nil)
+          @PocID = pocid
+          @Limit = limit
+          @Offset = offset
+          @Filters = filters
+        end
+
+        def deserialize(params)
+          @PocID = params['PocID']
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              runtimefilters_tmp = RunTimeFilters.new
+              runtimefilters_tmp.deserialize(i)
+              @Filters << runtimefilters_tmp
+            end
+          end
+        end
+      end
+
+      # CreateVulContainerExportJob返回参数结构体
+      class CreateVulContainerExportJobResponse < TencentCloud::Common::AbstractModel
+        # @param JobId: 导出任务ID，前端拿着任务ID查询任务进度
+        # @type JobId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :JobId, :RequestId
+        
+        def initialize(jobid=nil, requestid=nil)
+          @JobId = jobid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @JobId = params['JobId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateVulDefenceEventExportJob请求参数结构体
+      class CreateVulDefenceEventExportJobRequest < TencentCloud::Common::AbstractModel
+        # @param Filters: 过滤条件。
+        # <li>Status- String - 是否必填：否 - 插件状态，待处理：EVENT_UNDEAL，EVENT_DEALED：已处理，已忽略：EVENT_IGNORE， EVENT_DEFENDED：已防御</li>
+        # <li>ContainerStatus- String - 是否必填：否 - 容器运行状态筛选，已创建：CREATED,正常运行：RUNNING, 暂定运行：PAUSED, 停止运行：	STOPPED，重启中：RESTARTING, 迁移中：REMOVING, 销毁：DESTROYED </li>
+        # <li>ContainerNetStatus- String -是否必填: 否 -  容器网络状态筛选 未隔离：NORMAL，已隔离：ISOLATED，隔离失败：ISOLATE_FAILED，解除隔离失败：RESTORE_FAILED，解除隔离中：RESTORING，隔离中：ISOLATING</li>
+        # <li>EventType - String -是否必填: 否 -  入侵状态，防御成功：EVENT_DEFENDED，尝试攻击：EVENT_ATTACK </li>
+        # <li>TimeRange- String -是否必填: 否 -  时间范围，第一个值表示开始时间，第二个值表示结束时间 </li>
+        # <li>VulName- string - 是否必填：否 - 漏洞名称。</li>
+        # <li>CVEID- string - 是否必填：否 - CVE编号。</li>
+        # <li>SourceIP- string - 是否必填：否 - 攻击源IP。</li>
+        # <li>ContainerName- string - 是否必填：否 - 容器名称。</li>
+        # <li>ContainerID- string - 是否必填：否 - 容器ID。</li>
+        # <li>ImageName- string - 是否必填：否 - 镜像名称。</li>
+        # <li>ImageID- string - 是否必填：否 - 镜像ID。</li>
+        # <li>HostName- string - 是否必填：否 - 主机名称。</li>
+        # <li>HostIP- string - 是否必填：否 - 内网IP。</li>
+        # @type Filters: Array
+        # @param Limit: 需要返回的数量，最大值为100000
+        # @type Limit: Integer
+        # @param Offset: 偏移量，默认为0。
+        # @type Offset: Integer
+        # @param Order: 排序方式：asc/desc
+        # @type Order: String
+        # @param By: 排序字段：事件数量：EventCount
+        # @type By: String
+
+        attr_accessor :Filters, :Limit, :Offset, :Order, :By
+        
+        def initialize(filters=nil, limit=nil, offset=nil, order=nil, by=nil)
+          @Filters = filters
+          @Limit = limit
+          @Offset = offset
+          @Order = order
+          @By = by
+        end
+
+        def deserialize(params)
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              runtimefilters_tmp = RunTimeFilters.new
+              runtimefilters_tmp.deserialize(i)
+              @Filters << runtimefilters_tmp
+            end
+          end
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          @Order = params['Order']
+          @By = params['By']
+        end
+      end
+
+      # CreateVulDefenceEventExportJob返回参数结构体
+      class CreateVulDefenceEventExportJobResponse < TencentCloud::Common::AbstractModel
+        # @param JobId: 导出任务ID，前端拿着任务ID查询任务进度
+        # @type JobId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :JobId, :RequestId
+        
+        def initialize(jobid=nil, requestid=nil)
+          @JobId = jobid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @JobId = params['JobId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateVulDefenceHostExportJob请求参数结构体
+      class CreateVulDefenceHostExportJobRequest < TencentCloud::Common::AbstractModel
+        # @param Filters: 过滤条件。
+        # <li>Status- String - 是否必填：否 - 插件状态，正常：SUCCESS，异常：FAIL， NO_DEFENCE:未防御</li>
+        # <li>KeyWords- string - 是否必填：否 - 主机名称/IP。</li>
+        # @type Filters: Array
+        # @param Limit: 需要返回的数量，最大值为100000
+        # @type Limit: Integer
+        # @param Offset: 偏移量，默认为0。
+        # @type Offset: Integer
+        # @param Order: 排序方式：asc/desc
+        # @type Order: String
+        # @param By: 排序字段：更新时间：ModifyTime/首次开启时间：CreateTime
+        # @type By: String
+
+        attr_accessor :Filters, :Limit, :Offset, :Order, :By
+        
+        def initialize(filters=nil, limit=nil, offset=nil, order=nil, by=nil)
+          @Filters = filters
+          @Limit = limit
+          @Offset = offset
+          @Order = order
+          @By = by
+        end
+
+        def deserialize(params)
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              runtimefilters_tmp = RunTimeFilters.new
+              runtimefilters_tmp.deserialize(i)
+              @Filters << runtimefilters_tmp
+            end
+          end
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          @Order = params['Order']
+          @By = params['By']
+        end
+      end
+
+      # CreateVulDefenceHostExportJob返回参数结构体
+      class CreateVulDefenceHostExportJobResponse < TencentCloud::Common::AbstractModel
+        # @param JobId: 导出任务ID，前端拿着任务ID查询任务进度
+        # @type JobId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :JobId, :RequestId
+        
+        def initialize(jobid=nil, requestid=nil)
+          @JobId = jobid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @JobId = params['JobId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateVulExportJob请求参数结构体
+      class CreateVulExportJobRequest < TencentCloud::Common::AbstractModel
+        # @param ImageID: 镜像ID
+        # @type ImageID: String
+        # @param ExportField: 导出字段
+        # @type ExportField: Array
+        # @param Limit: 需要返回的数量，默认为10000，最大值为10000
+        # @type Limit: Integer
+        # @param Offset: 偏移量，默认为0。
+        # @type Offset: Integer
+        # @param Filters: 过滤条件。
+        # <li>ComponentName- String - 是否必填：否 - 镜像组件名称</li><li>ComponentVersion- String - 是否必填：否 - 镜像组件版本</li><li>ComponentType- String - 是否必填：否 - 镜像组件类型</li><li>VulLevel- String - 是否必填：否 - 漏洞威胁等级</li><li>HasVul- String - 是否必填：否 -是否有漏洞；true：是，false，否；不传或ALL ：全部</li>
+        # @type Filters: Array
+        # @param By: 排序字段
+        # @type By: String
+        # @param Order: 排序方式desc ，asc
+        # @type Order: String
+
+        attr_accessor :ImageID, :ExportField, :Limit, :Offset, :Filters, :By, :Order
+        
+        def initialize(imageid=nil, exportfield=nil, limit=nil, offset=nil, filters=nil, by=nil, order=nil)
+          @ImageID = imageid
+          @ExportField = exportfield
+          @Limit = limit
+          @Offset = offset
+          @Filters = filters
+          @By = by
+          @Order = order
+        end
+
+        def deserialize(params)
+          @ImageID = params['ImageID']
+          @ExportField = params['ExportField']
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              assetfilters_tmp = AssetFilters.new
+              assetfilters_tmp.deserialize(i)
+              @Filters << assetfilters_tmp
+            end
+          end
+          @By = params['By']
+          @Order = params['Order']
+        end
+      end
+
+      # CreateVulExportJob返回参数结构体
+      class CreateVulExportJobResponse < TencentCloud::Common::AbstractModel
+        # @param JobId: 导出任务ID，前端拿着任务ID查询任务进度
+        # @type JobId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :JobId, :RequestId
+        
+        def initialize(jobid=nil, requestid=nil)
+          @JobId = jobid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @JobId = params['JobId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateVulImageExportJob请求参数结构体
+      class CreateVulImageExportJobRequest < TencentCloud::Common::AbstractModel
+        # @param PocID: 漏洞PocID
+        # @type PocID: String
+        # @param Limit: 需要返回的数量，默认为50000，最大值为50000
+        # @type Limit: Integer
+        # @param Offset: 偏移量，默认为0。
+        # @type Offset: Integer
+        # @param Filters: 过滤条件。
+        # <li>OnlyAffectedNewestImage- Bool- 是否必填：否 - 仅展示影响最新版本镜像的漏洞</li>
+        # <li>ImageID- string - 是否必填：否 - 镜像ID</li>
+        # <li>ImageName- String -是否必填: 否 - 镜像名称</li>
+        # <li>ClientIP- string -是否必填: 否 - 内网IP</li>
+        # <li>PublicIP- string -是否必填: 否 - 外网IP</li>
+        # <li>ComponentName- string -是否必填: 否 - 组件名称</li>
+        # <li>ComponentVersion- string -是否必填: 否 - 组件版本</li>
+        # <li>HostName- string -是否必填: 否 - 主机名称</li>
+        # @type Filters: Array
+        # @param Order: 排序方式
+        # @type Order: String
+        # @param By: 排序字段
+        # @type By: String
+
+        attr_accessor :PocID, :Limit, :Offset, :Filters, :Order, :By
+        
+        def initialize(pocid=nil, limit=nil, offset=nil, filters=nil, order=nil, by=nil)
+          @PocID = pocid
+          @Limit = limit
+          @Offset = offset
+          @Filters = filters
+          @Order = order
+          @By = by
+        end
+
+        def deserialize(params)
+          @PocID = params['PocID']
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              runtimefilters_tmp = RunTimeFilters.new
+              runtimefilters_tmp.deserialize(i)
+              @Filters << runtimefilters_tmp
+            end
+          end
+          @Order = params['Order']
+          @By = params['By']
+        end
+      end
+
+      # CreateVulImageExportJob返回参数结构体
+      class CreateVulImageExportJobResponse < TencentCloud::Common::AbstractModel
+        # @param JobId: 导出任务ID，前端拿着任务ID查询任务进度
+        # @type JobId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :JobId, :RequestId
+        
+        def initialize(jobid=nil, requestid=nil)
+          @JobId = jobid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @JobId = params['JobId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateVulScanTask请求参数结构体
+      class CreateVulScanTaskRequest < TencentCloud::Common::AbstractModel
+        # @param LocalImageScanType: 本地镜像扫描范围类型。ALL:全部本地镜像，NOT_SCAN：全部已授权未扫描本地镜像，IMAGEIDS:自选本地镜像ID
+        # @type LocalImageScanType: String
+        # @param LocalImageIDs: 根据已授权的本地镜像IDs扫描，优先权高于根据满足条件的已授权的本地镜像。
+        # @type LocalImageIDs: Array
+        # @param RegistryImageScanType: 仓库镜像扫描范围类型。ALL:全部仓库镜像，NOT_SCAN：全部已授权未扫描仓库镜像，IMAGEIDS:自选仓库镜像ID
+        # @type RegistryImageScanType: String
+        # @param RegistryImageIDs: 根据已授权的仓库镜像IDs扫描，优先权高于根据满足条件的已授权的仓库镜像。
+        # @type RegistryImageIDs: Array
+        # @param LocalTaskID: 本地镜像重新漏洞扫描时的任务ID
+        # @type LocalTaskID: Integer
+        # @param RegistryTaskID: 仓库镜像重新漏洞扫描时的任务ID
+        # @type RegistryTaskID: Integer
+
+        attr_accessor :LocalImageScanType, :LocalImageIDs, :RegistryImageScanType, :RegistryImageIDs, :LocalTaskID, :RegistryTaskID
+        
+        def initialize(localimagescantype=nil, localimageids=nil, registryimagescantype=nil, registryimageids=nil, localtaskid=nil, registrytaskid=nil)
+          @LocalImageScanType = localimagescantype
+          @LocalImageIDs = localimageids
+          @RegistryImageScanType = registryimagescantype
+          @RegistryImageIDs = registryimageids
+          @LocalTaskID = localtaskid
+          @RegistryTaskID = registrytaskid
+        end
+
+        def deserialize(params)
+          @LocalImageScanType = params['LocalImageScanType']
+          @LocalImageIDs = params['LocalImageIDs']
+          @RegistryImageScanType = params['RegistryImageScanType']
+          @RegistryImageIDs = params['RegistryImageIDs']
+          @LocalTaskID = params['LocalTaskID']
+          @RegistryTaskID = params['RegistryTaskID']
+        end
+      end
+
+      # CreateVulScanTask返回参数结构体
+      class CreateVulScanTaskResponse < TencentCloud::Common::AbstractModel
+        # @param LocalTaskID: 本地镜像重新漏洞扫描时的任务ID
+        # @type LocalTaskID: Integer
+        # @param RegistryTaskID: 仓库镜像重新漏洞扫描时的任务ID
+        # @type RegistryTaskID: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :LocalTaskID, :RegistryTaskID, :RequestId
+        
+        def initialize(localtaskid=nil, registrytaskid=nil, requestid=nil)
+          @LocalTaskID = localtaskid
+          @RegistryTaskID = registrytaskid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @LocalTaskID = params['LocalTaskID']
+          @RegistryTaskID = params['RegistryTaskID']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateWebVulExportJob请求参数结构体
+      class CreateWebVulExportJobRequest < TencentCloud::Common::AbstractModel
+        # @param Limit: 需要返回的数量，默认为50000，最大值为50000
+        # @type Limit: Integer
+        # @param Offset: 偏移量，默认为0。
+        # @type Offset: Integer
+        # @param Filters: 过滤条件。
+        # <li>OnlyAffectedContainer- string - 是否必填：否 - 仅展示影响容器的漏洞true,false</li>
+        # <li>OnlyAffectedNewestImage-string - 是否必填：否 - 仅展示影响最新版本镜像的漏洞true,false</li>
+        # <li>Level- String - 是否必填：否 - 威胁等级，CRITICAL:严重 HIGH:高/MIDDLE:中/LOW:低</li>
+        # <li>Tags- string - 是否必填：否 - 漏洞标签，POC，EXP。</li>
+        # <li>CanBeFixed- string - 是否必填：否 - 是否可修复true,false。</li>
+        # <li>CategoryType- string - 是否必填：否 - 漏洞子类型</li>
+        # <li>CVEID- string - 是否必填：否 - CVE编号</li>
+        # <li>ImageID- string - 是否必填：否 - 镜像ID</li>
+        # <li>ImageName- String -是否必填: 否 - 镜像名称</li>
+        # <li>ContainerID- string -是否必填: 否 - 容器ID</li>
+        # <li>ContainerName- string -是否必填: 否 - 容器名称</li>
+        # <li>ComponentName- string -是否必填: 否 - 组件名称</li>
+        # <li>ComponentVersion- string -是否必填: 否 - 组件版本</li>
+        # <li>Name- string -是否必填: 否 - 漏洞名称</li>
+        # <li>FocusOnType - string - 是否必填：否 -关注紧急度类型 。ALL :全部，SERIOUS_LEVEL： 严重和高危 ，IS_SUGGEST： 重点关注，POC_EXP 有Poc或Exp ，NETWORK_EXP: 远程Exp</li>
+        # @type Filters: Array
+        # @param Order: 排序方式
+        # @type Order: String
+        # @param By: 排序字段
+        # @type By: String
+
+        attr_accessor :Limit, :Offset, :Filters, :Order, :By
+        
+        def initialize(limit=nil, offset=nil, filters=nil, order=nil, by=nil)
+          @Limit = limit
+          @Offset = offset
+          @Filters = filters
+          @Order = order
+          @By = by
+        end
+
+        def deserialize(params)
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              runtimefilters_tmp = RunTimeFilters.new
+              runtimefilters_tmp.deserialize(i)
+              @Filters << runtimefilters_tmp
+            end
+          end
+          @Order = params['Order']
+          @By = params['By']
+        end
+      end
+
+      # CreateWebVulExportJob返回参数结构体
+      class CreateWebVulExportJobResponse < TencentCloud::Common::AbstractModel
+        # @param JobId: 导出任务ID，前端拿着任务ID查询任务进度
+        # @type JobId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :JobId, :RequestId
+        
+        def initialize(jobid=nil, requestid=nil)
+          @JobId = jobid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @JobId = params['JobId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DeleteAbnormalProcessRules请求参数结构体
       class DeleteAbnormalProcessRulesRequest < TencentCloud::Common::AbstractModel
         # @param RuleIdSet: 策略的ids
@@ -3182,6 +5349,185 @@ module TencentCloud
         end
       end
 
+      # DeleteEscapeWhiteList请求参数结构体
+      class DeleteEscapeWhiteListRequest < TencentCloud::Common::AbstractModel
+        # @param IDSet: 白名单记录ID数组
+        # @type IDSet: Array
+
+        attr_accessor :IDSet
+        
+        def initialize(idset=nil)
+          @IDSet = idset
+        end
+
+        def deserialize(params)
+          @IDSet = params['IDSet']
+        end
+      end
+
+      # DeleteEscapeWhiteList返回参数结构体
+      class DeleteEscapeWhiteListResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteIgnoreVul请求参数结构体
+      class DeleteIgnoreVulRequest < TencentCloud::Common::AbstractModel
+        # @param List: 漏洞PocID 信息列表
+        # @type List: Array
+
+        attr_accessor :List
+        
+        def initialize(list=nil)
+          @List = list
+        end
+
+        def deserialize(params)
+          unless params['List'].nil?
+            @List = []
+            params['List'].each do |i|
+              modifyignorevul_tmp = ModifyIgnoreVul.new
+              modifyignorevul_tmp.deserialize(i)
+              @List << modifyignorevul_tmp
+            end
+          end
+        end
+      end
+
+      # DeleteIgnoreVul返回参数结构体
+      class DeleteIgnoreVulResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteMachine请求参数结构体
+      class DeleteMachineRequest < TencentCloud::Common::AbstractModel
+        # @param Uuid: 客户端Uuid
+        # @type Uuid: String
+
+        attr_accessor :Uuid
+        
+        def initialize(uuid=nil)
+          @Uuid = uuid
+        end
+
+        def deserialize(params)
+          @Uuid = params['Uuid']
+        end
+      end
+
+      # DeleteMachine返回参数结构体
+      class DeleteMachineResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteNetworkFirewallPolicyDetail请求参数结构体
+      class DeleteNetworkFirewallPolicyDetailRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群Id
+        # @type ClusterId: String
+        # @param Id: 策略Id数组
+        # @type Id: Array
+
+        attr_accessor :ClusterId, :Id
+        
+        def initialize(clusterid=nil, id=nil)
+          @ClusterId = clusterid
+          @Id = id
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @Id = params['Id']
+        end
+      end
+
+      # DeleteNetworkFirewallPolicyDetail返回参数结构体
+      class DeleteNetworkFirewallPolicyDetailResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: 返回创建的任务的ID，为0表示创建失败。
+        # @type TaskId: Integer
+        # @param Result: 创建删除任务的结果，"Succ"为成功，"Failed"为失败
+        # @type Result: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :Result, :RequestId
+        
+        def initialize(taskid=nil, result=nil, requestid=nil)
+          @TaskId = taskid
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @Result = params['Result']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteReverseShellEvents请求参数结构体
+      class DeleteReverseShellEventsRequest < TencentCloud::Common::AbstractModel
+        # @param EventIdSet: 事件ids
+        # @type EventIdSet: Array
+
+        attr_accessor :EventIdSet
+        
+        def initialize(eventidset=nil)
+          @EventIdSet = eventidset
+        end
+
+        def deserialize(params)
+          @EventIdSet = params['EventIdSet']
+        end
+      end
+
+      # DeleteReverseShellEvents返回参数结构体
+      class DeleteReverseShellEventsResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DeleteReverseShellWhiteLists请求参数结构体
       class DeleteReverseShellWhiteListsRequest < TencentCloud::Common::AbstractModel
         # @param WhiteListIdSet: 白名单ids
@@ -3200,6 +5546,38 @@ module TencentCloud
 
       # DeleteReverseShellWhiteLists返回参数结构体
       class DeleteReverseShellWhiteListsResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteRiskSyscallEvents请求参数结构体
+      class DeleteRiskSyscallEventsRequest < TencentCloud::Common::AbstractModel
+        # @param EventIdSet: 事件ids
+        # @type EventIdSet: Array
+
+        attr_accessor :EventIdSet
+        
+        def initialize(eventidset=nil)
+          @EventIdSet = eventidset
+        end
+
+        def deserialize(params)
+          @EventIdSet = params['EventIdSet']
+        end
+      end
+
+      # DeleteRiskSyscallEvents返回参数结构体
+      class DeleteRiskSyscallEventsResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -3242,6 +5620,81 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteSearchTemplate请求参数结构体
+      class DeleteSearchTemplateRequest < TencentCloud::Common::AbstractModel
+        # @param Id: 模板ID
+        # @type Id: Integer
+
+        attr_accessor :Id
+        
+        def initialize(id=nil)
+          @Id = id
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+        end
+      end
+
+      # DeleteSearchTemplate返回参数结构体
+      class DeleteSearchTemplateResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeABTestConfig请求参数结构体
+      class DescribeABTestConfigRequest < TencentCloud::Common::AbstractModel
+        # @param ProjectName: 灰度项目名称
+        # @type ProjectName: String
+
+        attr_accessor :ProjectName
+        
+        def initialize(projectname=nil)
+          @ProjectName = projectname
+        end
+
+        def deserialize(params)
+          @ProjectName = params['ProjectName']
+        end
+      end
+
+      # DescribeABTestConfig返回参数结构体
+      class DescribeABTestConfigResponse < TencentCloud::Common::AbstractModel
+        # @param Config: 灰度项目配置
+        # @type Config: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Config, :RequestId
+        
+        def initialize(config=nil, requestid=nil)
+          @Config = config
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Config'].nil?
+            @Config = []
+            params['Config'].each do |i|
+              abtestconfig_tmp = ABTestConfig.new
+              abtestconfig_tmp.deserialize(i)
+              @Config << abtestconfig_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -3309,6 +5762,53 @@ module TencentCloud
           unless params['AncestorProcessInfo'].nil?
             @AncestorProcessInfo = ProcessBaseInfo.new
             @AncestorProcessInfo.deserialize(params['AncestorProcessInfo'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeAbnormalProcessEventTendency请求参数结构体
+      class DescribeAbnormalProcessEventTendencyRequest < TencentCloud::Common::AbstractModel
+        # @param StartTime: 开始时间
+        # @type StartTime: String
+        # @param EndTime: 结束时间
+        # @type EndTime: String
+
+        attr_accessor :StartTime, :EndTime
+        
+        def initialize(starttime=nil, endtime=nil)
+          @StartTime = starttime
+          @EndTime = endtime
+        end
+
+        def deserialize(params)
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+        end
+      end
+
+      # DescribeAbnormalProcessEventTendency返回参数结构体
+      class DescribeAbnormalProcessEventTendencyResponse < TencentCloud::Common::AbstractModel
+        # @param List: 待处理异常进程事件趋势
+        # @type List: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :List, :RequestId
+        
+        def initialize(list=nil, requestid=nil)
+          @List = list
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['List'].nil?
+            @List = []
+            params['List'].each do |i|
+              abnormalprocesseventtendencyinfo_tmp = AbnormalProcessEventTendencyInfo.new
+              abnormalprocesseventtendencyinfo_tmp.deserialize(i)
+              @List << abnormalprocesseventtendencyinfo_tmp
+            end
           end
           @RequestId = params['RequestId']
         end
@@ -3444,6 +5944,45 @@ module TencentCloud
               @EventSet << abnormalprocesseventinfo_tmp
             end
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeAbnormalProcessLevelSummary请求参数结构体
+      class DescribeAbnormalProcessLevelSummaryRequest < TencentCloud::Common::AbstractModel
+
+        
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeAbnormalProcessLevelSummary返回参数结构体
+      class DescribeAbnormalProcessLevelSummaryResponse < TencentCloud::Common::AbstractModel
+        # @param HighLevelEventCount: 异常进程高危待处理事件数
+        # @type HighLevelEventCount: Integer
+        # @param MediumLevelEventCount: 异常进程中危待处理事件数
+        # @type MediumLevelEventCount: Integer
+        # @param LowLevelEventCount: 异常进程低危待处理事件数
+        # @type LowLevelEventCount: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :HighLevelEventCount, :MediumLevelEventCount, :LowLevelEventCount, :RequestId
+        
+        def initialize(highleveleventcount=nil, mediumleveleventcount=nil, lowleveleventcount=nil, requestid=nil)
+          @HighLevelEventCount = highleveleventcount
+          @MediumLevelEventCount = mediumleveleventcount
+          @LowLevelEventCount = lowleveleventcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @HighLevelEventCount = params['HighLevelEventCount']
+          @MediumLevelEventCount = params['MediumLevelEventCount']
+          @LowLevelEventCount = params['LowLevelEventCount']
           @RequestId = params['RequestId']
         end
       end
@@ -4221,6 +6760,130 @@ module TencentCloud
               @AffectedWorkloadList << affectedworkloaditem_tmp
             end
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeAgentDaemonSetCmd请求参数结构体
+      class DescribeAgentDaemonSetCmdRequest < TencentCloud::Common::AbstractModel
+        # @param IsCloud: 是否是腾讯云
+        # @type IsCloud: Boolean
+        # @param NetType: 网络类型：basic-基础网络，private-VPC, public-公网，direct-专线
+        # @type NetType: String
+        # @param RegionCode: 地域标示, NetType=direct时必填
+        # @type RegionCode: String
+        # @param VpcId: VpcId, NetType=direct时必填
+        # @type VpcId: String
+        # @param ExpireDate: 命令有效期，非腾讯云时必填
+        # @type ExpireDate: String
+
+        attr_accessor :IsCloud, :NetType, :RegionCode, :VpcId, :ExpireDate
+        
+        def initialize(iscloud=nil, nettype=nil, regioncode=nil, vpcid=nil, expiredate=nil)
+          @IsCloud = iscloud
+          @NetType = nettype
+          @RegionCode = regioncode
+          @VpcId = vpcid
+          @ExpireDate = expiredate
+        end
+
+        def deserialize(params)
+          @IsCloud = params['IsCloud']
+          @NetType = params['NetType']
+          @RegionCode = params['RegionCode']
+          @VpcId = params['VpcId']
+          @ExpireDate = params['ExpireDate']
+        end
+      end
+
+      # DescribeAgentDaemonSetCmd返回参数结构体
+      class DescribeAgentDaemonSetCmdResponse < TencentCloud::Common::AbstractModel
+        # @param Command: 安装命令
+        # @type Command: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Command, :RequestId
+        
+        def initialize(command=nil, requestid=nil)
+          @Command = command
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Command = params['Command']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeAgentInstallCommand请求参数结构体
+      class DescribeAgentInstallCommandRequest < TencentCloud::Common::AbstractModel
+        # @param IsCloud: 是否是腾讯云
+        # @type IsCloud: Boolean
+        # @param NetType: 网络类型：basic-基础网络，private-VPC, public-公网，direct-专线
+        # @type NetType: String
+        # @param RegionCode: 地域标示, NetType=direct时必填
+        # @type RegionCode: String
+        # @param VpcId: VpcId, NetType=direct时必填
+        # @type VpcId: String
+        # @param ExpireDate: 命令有效期，非腾讯云时必填
+        # @type ExpireDate: String
+        # @param TagIds: 标签ID列表，IsCloud=false时才会生效
+        # @type TagIds: Array
+
+        attr_accessor :IsCloud, :NetType, :RegionCode, :VpcId, :ExpireDate, :TagIds
+        
+        def initialize(iscloud=nil, nettype=nil, regioncode=nil, vpcid=nil, expiredate=nil, tagids=nil)
+          @IsCloud = iscloud
+          @NetType = nettype
+          @RegionCode = regioncode
+          @VpcId = vpcid
+          @ExpireDate = expiredate
+          @TagIds = tagids
+        end
+
+        def deserialize(params)
+          @IsCloud = params['IsCloud']
+          @NetType = params['NetType']
+          @RegionCode = params['RegionCode']
+          @VpcId = params['VpcId']
+          @ExpireDate = params['ExpireDate']
+          @TagIds = params['TagIds']
+        end
+      end
+
+      # DescribeAgentInstallCommand返回参数结构体
+      class DescribeAgentInstallCommandResponse < TencentCloud::Common::AbstractModel
+        # @param LinuxCommand: linux系统安装命令
+        # @type LinuxCommand: String
+        # @param WindowsCommand: windows系统安装命令（windows2008及以上）
+        # @type WindowsCommand: String
+        # @param WindowsStepOne: windows系统安装命令第一步（windows2003）
+        # @type WindowsStepOne: String
+        # @param WindowsStepTwo: windows系统安装命令第二步（windows2003）
+        # @type WindowsStepTwo: String
+        # @param WindowsDownloadUrl: windows版agent下载链接
+        # @type WindowsDownloadUrl: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :LinuxCommand, :WindowsCommand, :WindowsStepOne, :WindowsStepTwo, :WindowsDownloadUrl, :RequestId
+        
+        def initialize(linuxcommand=nil, windowscommand=nil, windowsstepone=nil, windowssteptwo=nil, windowsdownloadurl=nil, requestid=nil)
+          @LinuxCommand = linuxcommand
+          @WindowsCommand = windowscommand
+          @WindowsStepOne = windowsstepone
+          @WindowsStepTwo = windowssteptwo
+          @WindowsDownloadUrl = windowsdownloadurl
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @LinuxCommand = params['LinuxCommand']
+          @WindowsCommand = params['WindowsCommand']
+          @WindowsStepOne = params['WindowsStepOne']
+          @WindowsStepTwo = params['WindowsStepTwo']
+          @WindowsDownloadUrl = params['WindowsDownloadUrl']
           @RequestId = params['RequestId']
         end
       end
@@ -7206,6 +9869,37 @@ module TencentCloud
         end
       end
 
+      # DescribeAssetSyncLastTime请求参数结构体
+      class DescribeAssetSyncLastTimeRequest < TencentCloud::Common::AbstractModel
+
+        
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeAssetSyncLastTime返回参数结构体
+      class DescribeAssetSyncLastTimeResponse < TencentCloud::Common::AbstractModel
+        # @param AssetSyncLastTime: 资产最近同步时间
+        # @type AssetSyncLastTime: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :AssetSyncLastTime, :RequestId
+        
+        def initialize(assetsynclasttime=nil, requestid=nil)
+          @AssetSyncLastTime = assetsynclasttime
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @AssetSyncLastTime = params['AssetSyncLastTime']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeAssetWebServiceList请求参数结构体
       class DescribeAssetWebServiceListRequest < TencentCloud::Common::AbstractModel
         # @param Limit: 需要返回的数量，默认为10，最大值为100
@@ -7267,6 +9961,69 @@ module TencentCloud
               serviceinfo_tmp = ServiceInfo.new
               serviceinfo_tmp.deserialize(i)
               @List << serviceinfo_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeAutoAuthorizedRuleHost请求参数结构体
+      class DescribeAutoAuthorizedRuleHostRequest < TencentCloud::Common::AbstractModel
+        # @param RuleId: 规则id
+        # @type RuleId: Integer
+        # @param Limit: 需要返回的数量，默认为全部；
+        # @type Limit: Integer
+        # @param Offset: 偏移量，默认为0
+        # @type Offset: Integer
+        # @param Order: 排序字段
+        # @type Order: String
+        # @param By: 排序方式，asc，desc
+        # @type By: String
+
+        attr_accessor :RuleId, :Limit, :Offset, :Order, :By
+        
+        def initialize(ruleid=nil, limit=nil, offset=nil, order=nil, by=nil)
+          @RuleId = ruleid
+          @Limit = limit
+          @Offset = offset
+          @Order = order
+          @By = by
+        end
+
+        def deserialize(params)
+          @RuleId = params['RuleId']
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          @Order = params['Order']
+          @By = params['By']
+        end
+      end
+
+      # DescribeAutoAuthorizedRuleHost返回参数结构体
+      class DescribeAutoAuthorizedRuleHostResponse < TencentCloud::Common::AbstractModel
+        # @param List: 镜像自动授权规则授权范围主机列表
+        # @type List: Array
+        # @param TotalCount: 总数量
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :List, :TotalCount, :RequestId
+        
+        def initialize(list=nil, totalcount=nil, requestid=nil)
+          @List = list
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['List'].nil?
+            @List = []
+            params['List'].each do |i|
+              autoauthorizedrulehostinfo_tmp = AutoAuthorizedRuleHostInfo.new
+              autoauthorizedrulehostinfo_tmp.deserialize(i)
+              @List << autoauthorizedrulehostinfo_tmp
             end
           end
           @TotalCount = params['TotalCount']
@@ -8306,6 +11063,167 @@ module TencentCloud
         end
       end
 
+      # DescribeESAggregations请求参数结构体
+      class DescribeESAggregationsRequest < TencentCloud::Common::AbstractModel
+        # @param Query: ES聚合条件JSON
+        # @type Query: String
+
+        attr_accessor :Query
+        
+        def initialize(query=nil)
+          @Query = query
+        end
+
+        def deserialize(params)
+          @Query = params['Query']
+        end
+      end
+
+      # DescribeESAggregations返回参数结构体
+      class DescribeESAggregationsResponse < TencentCloud::Common::AbstractModel
+        # @param Data: ES聚合结果JSON
+        # @type Data: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+        
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Data = params['Data']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeESHits请求参数结构体
+      class DescribeESHitsRequest < TencentCloud::Common::AbstractModel
+        # @param Query: ES查询条件JSON
+        # @type Query: String
+        # @param Offset: 偏移量，默认为0。
+        # @type Offset: Integer
+        # @param Limit: 返回数量，最大值为100。
+        # @type Limit: Integer
+
+        attr_accessor :Query, :Offset, :Limit
+        
+        def initialize(query=nil, offset=nil, limit=nil)
+          @Query = query
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @Query = params['Query']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeESHits返回参数结构体
+      class DescribeESHitsResponse < TencentCloud::Common::AbstractModel
+        # @param Data: ES查询结果JSON
+        # @type Data: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+        
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Data = params['Data']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeEmergencyVulList请求参数结构体
+      class DescribeEmergencyVulListRequest < TencentCloud::Common::AbstractModel
+        # @param Limit: 需要返回的数量，默认为10，最大值为100
+        # @type Limit: Integer
+        # @param Offset: 偏移量，默认为0。
+        # @type Offset: Integer
+        # @param Filters: 过滤条件。
+        # <li>Level- String - 是否必填：否 - 威胁等级，CRITICAL:严重 HIGH:高/MIDDLE:中/LOW:低</li>
+        # <li>Tags- string - 是否必填：否 - 漏洞标签，POC，EXP。</li>
+        # <li>CanBeFixed- string - 是否必填：否 - 是否可修复true,false。</li>
+        # <li>CVEID- string - 是否必填：否 - CVE编号</li>
+        # <li>ImageID- string - 是否必填：否 - 镜像ID</li>
+        # <li>ImageName- String -是否必填: 否 - 镜像名称</li>
+        # <li>ContainerID- string -是否必填: 否 - 容器ID</li>
+        # <li>ContainerName- string -是否必填: 否 - 容器名称</li>
+        # <li>ComponentName- string -是否必填: 否 - 组件名称</li>
+        # <li>ComponentVersion- string -是否必填: 否 - 组件版本</li>
+        # <li>Name- string -是否必填: 否 - 漏洞名称</li>
+        # @type Filters: Array
+        # @param Order: 排序方式
+        # @type Order: String
+        # @param By: 排序字段
+        # @type By: String
+
+        attr_accessor :Limit, :Offset, :Filters, :Order, :By
+        
+        def initialize(limit=nil, offset=nil, filters=nil, order=nil, by=nil)
+          @Limit = limit
+          @Offset = offset
+          @Filters = filters
+          @Order = order
+          @By = by
+        end
+
+        def deserialize(params)
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              runtimefilters_tmp = RunTimeFilters.new
+              runtimefilters_tmp.deserialize(i)
+              @Filters << runtimefilters_tmp
+            end
+          end
+          @Order = params['Order']
+          @By = params['By']
+        end
+      end
+
+      # DescribeEmergencyVulList返回参数结构体
+      class DescribeEmergencyVulListResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 漏洞总数
+        # @type TotalCount: Integer
+        # @param List: 漏洞列表
+        # @type List: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :List, :RequestId
+        
+        def initialize(totalcount=nil, list=nil, requestid=nil)
+          @TotalCount = totalcount
+          @List = list
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['List'].nil?
+            @List = []
+            params['List'].each do |i|
+              emergencyvulinfo_tmp = EmergencyVulInfo.new
+              emergencyvulinfo_tmp.deserialize(i)
+              @List << emergencyvulinfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeEscapeEventDetail请求参数结构体
       class DescribeEscapeEventDetailRequest < TencentCloud::Common::AbstractModel
         # @param EventId: 事件唯一id
@@ -8444,6 +11362,96 @@ module TencentCloud
         end
       end
 
+      # DescribeEscapeEventTendency请求参数结构体
+      class DescribeEscapeEventTendencyRequest < TencentCloud::Common::AbstractModel
+        # @param EndTime: 结束时间
+        # @type EndTime: String
+        # @param StartTime: 开始时间
+        # @type StartTime: String
+
+        attr_accessor :EndTime, :StartTime
+        
+        def initialize(endtime=nil, starttime=nil)
+          @EndTime = endtime
+          @StartTime = starttime
+        end
+
+        def deserialize(params)
+          @EndTime = params['EndTime']
+          @StartTime = params['StartTime']
+        end
+      end
+
+      # DescribeEscapeEventTendency返回参数结构体
+      class DescribeEscapeEventTendencyResponse < TencentCloud::Common::AbstractModel
+        # @param List: 待处理逃逸事件趋势
+        # @type List: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :List, :RequestId
+        
+        def initialize(list=nil, requestid=nil)
+          @List = list
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['List'].nil?
+            @List = []
+            params['List'].each do |i|
+              escapeeventtendencyinfo_tmp = EscapeEventTendencyInfo.new
+              escapeeventtendencyinfo_tmp.deserialize(i)
+              @List << escapeeventtendencyinfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeEscapeEventTypeSummary请求参数结构体
+      class DescribeEscapeEventTypeSummaryRequest < TencentCloud::Common::AbstractModel
+
+        
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeEscapeEventTypeSummary返回参数结构体
+      class DescribeEscapeEventTypeSummaryResponse < TencentCloud::Common::AbstractModel
+        # @param ContainerEscapeEventCount: 容器逃逸事件数
+        # @type ContainerEscapeEventCount: Integer
+        # @param ProcessPrivilegeEventCount: 程序提权事件数
+        # @type ProcessPrivilegeEventCount: Integer
+        # @param RiskContainerEventCount: 风险容器事件数
+        # @type RiskContainerEventCount: Integer
+        # @param PendingEscapeEventCount: 逃逸事件待处理数
+        # @type PendingEscapeEventCount: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ContainerEscapeEventCount, :ProcessPrivilegeEventCount, :RiskContainerEventCount, :PendingEscapeEventCount, :RequestId
+        
+        def initialize(containerescapeeventcount=nil, processprivilegeeventcount=nil, riskcontainereventcount=nil, pendingescapeeventcount=nil, requestid=nil)
+          @ContainerEscapeEventCount = containerescapeeventcount
+          @ProcessPrivilegeEventCount = processprivilegeeventcount
+          @RiskContainerEventCount = riskcontainereventcount
+          @PendingEscapeEventCount = pendingescapeeventcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ContainerEscapeEventCount = params['ContainerEscapeEventCount']
+          @ProcessPrivilegeEventCount = params['ProcessPrivilegeEventCount']
+          @RiskContainerEventCount = params['RiskContainerEventCount']
+          @PendingEscapeEventCount = params['PendingEscapeEventCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeEscapeEventsExport请求参数结构体
       class DescribeEscapeEventsExportRequest < TencentCloud::Common::AbstractModel
         # @param ExportField: 导出字段
@@ -8577,6 +11585,79 @@ module TencentCloud
         end
       end
 
+      # DescribeEscapeWhiteList请求参数结构体
+      class DescribeEscapeWhiteListRequest < TencentCloud::Common::AbstractModel
+        # @param Filters: 过滤条件。
+        # <li>EventType- String - 是否必填：否 - 加白事件类型，ESCAPE_CGROUPS：利用cgroup机制逃逸，ESCAPE_TAMPER_SENSITIVE_FILE：篡改敏感文件逃逸， ESCAPE_DOCKER_API：访问Docker API接口逃逸，ESCAPE_VUL_OCCURRED：逃逸漏洞利用，MOUNT_SENSITIVE_PTAH：敏感路径挂载，PRIVILEGE_CONTAINER_START：特权容器， PRIVILEGE：程序提权逃逸</li>
+        # <li>ImageName- string - 是否必填：否 - 镜像名称。</li>
+        # <li>ImageID- string - 是否必填：否 - 镜像ID。</li>
+        # @type Filters: Array
+        # @param Limit: 需要返回的数量，默认为10，最大值为100
+        # @type Limit: Integer
+        # @param Offset: 偏移量，默认为0。
+        # @type Offset: Integer
+        # @param Order: 排序方式：asc/desc
+        # @type Order: String
+        # @param By: 排序字段：主机数量：HostCount，容器数量：ContainerCount，更新时间：UpdateTime
+        # @type By: String
+
+        attr_accessor :Filters, :Limit, :Offset, :Order, :By
+        
+        def initialize(filters=nil, limit=nil, offset=nil, order=nil, by=nil)
+          @Filters = filters
+          @Limit = limit
+          @Offset = offset
+          @Order = order
+          @By = by
+        end
+
+        def deserialize(params)
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              runtimefilters_tmp = RunTimeFilters.new
+              runtimefilters_tmp.deserialize(i)
+              @Filters << runtimefilters_tmp
+            end
+          end
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          @Order = params['Order']
+          @By = params['By']
+        end
+      end
+
+      # DescribeEscapeWhiteList返回参数结构体
+      class DescribeEscapeWhiteListResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 总数量
+        # @type TotalCount: Integer
+        # @param List: 逃逸白名单列表
+        # @type List: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :List, :RequestId
+        
+        def initialize(totalcount=nil, list=nil, requestid=nil)
+          @TotalCount = totalcount
+          @List = list
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['List'].nil?
+            @List = []
+            params['List'].each do |i|
+              escapewhitelistinfo_tmp = EscapeWhiteListInfo.new
+              escapewhitelistinfo_tmp.deserialize(i)
+              @List << escapewhitelistinfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeExportJobResult请求参数结构体
       class DescribeExportJobResultRequest < TencentCloud::Common::AbstractModel
         # @param JobId: CreateExportComplianceStatusListJob返回的JobId字段的值
@@ -8671,6 +11752,279 @@ module TencentCloud
           @ScannedImageCnt = params['ScannedImageCnt']
           @NotScannedImageCnt = params['NotScannedImageCnt']
           @NotScannedLocalImageCnt = params['NotScannedLocalImageCnt']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeImageAutoAuthorizedLogList请求参数结构体
+      class DescribeImageAutoAuthorizedLogListRequest < TencentCloud::Common::AbstractModel
+        # @param TaskId: 自动授权任务Id
+        # @type TaskId: Integer
+        # @param Filters: Status授权结果，SUCCESS:成功，REACH_LIMIT:达到授权上限，LICENSE_INSUFFICIENT:授权数不足
+        # @type Filters: Array
+        # @param Limit: 需要返回的数量，默认为10，最大值为100
+        # @type Limit: Integer
+        # @param Offset: 偏移量，默认为0
+        # @type Offset: Integer
+        # @param By: 排序字段：AuthorizedTime
+        # @type By: String
+        # @param Order: 排序方式，asc，desc
+        # @type Order: String
+
+        attr_accessor :TaskId, :Filters, :Limit, :Offset, :By, :Order
+        
+        def initialize(taskid=nil, filters=nil, limit=nil, offset=nil, by=nil, order=nil)
+          @TaskId = taskid
+          @Filters = filters
+          @Limit = limit
+          @Offset = offset
+          @By = by
+          @Order = order
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              assetfilters_tmp = AssetFilters.new
+              assetfilters_tmp.deserialize(i)
+              @Filters << assetfilters_tmp
+            end
+          end
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          @By = params['By']
+          @Order = params['Order']
+        end
+      end
+
+      # DescribeImageAutoAuthorizedLogList返回参数结构体
+      class DescribeImageAutoAuthorizedLogListResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 总数量
+        # @type TotalCount: Integer
+        # @param List: 自动授权结果镜像列表
+        # @type List: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :List, :RequestId
+        
+        def initialize(totalcount=nil, list=nil, requestid=nil)
+          @TotalCount = totalcount
+          @List = list
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['List'].nil?
+            @List = []
+            params['List'].each do |i|
+              autoauthorizedimageinfo_tmp = AutoAuthorizedImageInfo.new
+              autoauthorizedimageinfo_tmp.deserialize(i)
+              @List << autoauthorizedimageinfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeImageAutoAuthorizedRule请求参数结构体
+      class DescribeImageAutoAuthorizedRuleRequest < TencentCloud::Common::AbstractModel
+
+        
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeImageAutoAuthorizedRule返回参数结构体
+      class DescribeImageAutoAuthorizedRuleResponse < TencentCloud::Common::AbstractModel
+        # @param IsEnabled: 规则是否生效，0:不生效，1:已生效
+        # @type IsEnabled: Integer
+        # @param RangeType: 授权范围类别，MANUAL:自选主机节点，ALL:全部镜像
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RangeType: String
+        # @param HostCount: 授权范围是自选主机时的主机数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HostCount: Integer
+        # @param MaxDailyCount: 每天最大的镜像授权数限制, 0表示无限制
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MaxDailyCount: Integer
+        # @param RuleId: 规则id，用未设置时为0
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RuleId: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :IsEnabled, :RangeType, :HostCount, :MaxDailyCount, :RuleId, :RequestId
+        
+        def initialize(isenabled=nil, rangetype=nil, hostcount=nil, maxdailycount=nil, ruleid=nil, requestid=nil)
+          @IsEnabled = isenabled
+          @RangeType = rangetype
+          @HostCount = hostcount
+          @MaxDailyCount = maxdailycount
+          @RuleId = ruleid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @IsEnabled = params['IsEnabled']
+          @RangeType = params['RangeType']
+          @HostCount = params['HostCount']
+          @MaxDailyCount = params['MaxDailyCount']
+          @RuleId = params['RuleId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeImageAutoAuthorizedTaskList请求参数结构体
+      class DescribeImageAutoAuthorizedTaskListRequest < TencentCloud::Common::AbstractModel
+        # @param StartTime: 开始时间
+        # @type StartTime: String
+        # @param EndTime: 结束时间
+        # @type EndTime: String
+        # @param Filters: 过滤字段
+        # Status授权结果，全部授权成功：ALLSUCCSESS，部分授权失败：PARTIALFAIL,全部授权失败：ALLFAIL
+        # Type授权方式，AUTO:自动授权，MANUAL:手动授权
+        # Source 镜像来源，LOCAL:本地镜像，REGISTRY:仓库镜像
+        # @type Filters: Array
+        # @param Limit: 需要返回的数量，默认为10，最大值为100
+        # @type Limit: Integer
+        # @param Offset: 偏移量，默认为0
+        # @type Offset: Integer
+
+        attr_accessor :StartTime, :EndTime, :Filters, :Limit, :Offset
+        
+        def initialize(starttime=nil, endtime=nil, filters=nil, limit=nil, offset=nil)
+          @StartTime = starttime
+          @EndTime = endtime
+          @Filters = filters
+          @Limit = limit
+          @Offset = offset
+        end
+
+        def deserialize(params)
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              assetfilters_tmp = AssetFilters.new
+              assetfilters_tmp.deserialize(i)
+              @Filters << assetfilters_tmp
+            end
+          end
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+        end
+      end
+
+      # DescribeImageAutoAuthorizedTaskList返回参数结构体
+      class DescribeImageAutoAuthorizedTaskListResponse < TencentCloud::Common::AbstractModel
+        # @param List: 自动授权任务列表
+        # @type List: Array
+        # @param TotalCount: 总数量
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :List, :TotalCount, :RequestId
+        
+        def initialize(list=nil, totalcount=nil, requestid=nil)
+          @List = list
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['List'].nil?
+            @List = []
+            params['List'].each do |i|
+              imageautoauthorizedtask_tmp = ImageAutoAuthorizedTask.new
+              imageautoauthorizedtask_tmp.deserialize(i)
+              @List << imageautoauthorizedtask_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeImageComponentList请求参数结构体
+      class DescribeImageComponentListRequest < TencentCloud::Common::AbstractModel
+        # @param ImageID: 镜像ID
+        # @type ImageID: String
+        # @param Limit: 需要返回的数量，默认为10，最大值为100
+        # @type Limit: Integer
+        # @param Offset: 偏移量，默认为0。
+        # @type Offset: Integer
+        # @param Filters: 过滤条件。
+        # <li>ComponentName- String - 是否必填：否 - 镜像组件名称</li><li>ComponentVersion- String - 是否必填：否 - 镜像组件版本</li><li>ComponentType- String - 是否必填：否 - 镜像组件类型</li><li>VulLevel- String - 是否必填：否 - 漏洞威胁等级</li><li>HasVul- String - 是否必填：否 -是否有漏洞；true：是，false，否；不传或ALL ：全部</li>
+        # @type Filters: Array
+        # @param By: 排序字段
+        # @type By: String
+        # @param Order: 排序方式desc ，asc
+        # @type Order: String
+
+        attr_accessor :ImageID, :Limit, :Offset, :Filters, :By, :Order
+        
+        def initialize(imageid=nil, limit=nil, offset=nil, filters=nil, by=nil, order=nil)
+          @ImageID = imageid
+          @Limit = limit
+          @Offset = offset
+          @Filters = filters
+          @By = by
+          @Order = order
+        end
+
+        def deserialize(params)
+          @ImageID = params['ImageID']
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              assetfilters_tmp = AssetFilters.new
+              assetfilters_tmp.deserialize(i)
+              @Filters << assetfilters_tmp
+            end
+          end
+          @By = params['By']
+          @Order = params['Order']
+        end
+      end
+
+      # DescribeImageComponentList返回参数结构体
+      class DescribeImageComponentListResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 总数量
+        # @type TotalCount: Integer
+        # @param List: 镜像组件列表
+        # @type List: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :List, :RequestId
+        
+        def initialize(totalcount=nil, list=nil, requestid=nil)
+          @TotalCount = totalcount
+          @List = list
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['List'].nil?
+            @List = []
+            params['List'].each do |i|
+              imagecomponent_tmp = ImageComponent.new
+              imagecomponent_tmp.deserialize(i)
+              @List << imagecomponent_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -8918,6 +12272,878 @@ module TencentCloud
         end
       end
 
+      # DescribeIndexList请求参数结构体
+      class DescribeIndexListRequest < TencentCloud::Common::AbstractModel
+
+        
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeIndexList返回参数结构体
+      class DescribeIndexListResponse < TencentCloud::Common::AbstractModel
+        # @param Data: ES 索引信息
+        # @type Data: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+        
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Data = params['Data']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeInspectionReport请求参数结构体
+      class DescribeInspectionReportRequest < TencentCloud::Common::AbstractModel
+
+        
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeInspectionReport返回参数结构体
+      class DescribeInspectionReportResponse < TencentCloud::Common::AbstractModel
+        # @param ReportName: 报告名称
+        # @type ReportName: String
+        # @param ReportUrl: 下载链接
+        # @type ReportUrl: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ReportName, :ReportUrl, :RequestId
+        
+        def initialize(reportname=nil, reporturl=nil, requestid=nil)
+          @ReportName = reportname
+          @ReportUrl = reporturl
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ReportName = params['ReportName']
+          @ReportUrl = params['ReportUrl']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeLogStorageStatistic请求参数结构体
+      class DescribeLogStorageStatisticRequest < TencentCloud::Common::AbstractModel
+
+        
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeLogStorageStatistic返回参数结构体
+      class DescribeLogStorageStatisticResponse < TencentCloud::Common::AbstractModel
+        # @param TotalSize: 总容量（单位：B）
+        # @type TotalSize: Integer
+        # @param UsedSize: 已使用容量（单位：B）
+        # @type UsedSize: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalSize, :UsedSize, :RequestId
+        
+        def initialize(totalsize=nil, usedsize=nil, requestid=nil)
+          @TotalSize = totalsize
+          @UsedSize = usedsize
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalSize = params['TotalSize']
+          @UsedSize = params['UsedSize']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeNetworkFirewallAuditRecord请求参数结构体
+      class DescribeNetworkFirewallAuditRecordRequest < TencentCloud::Common::AbstractModel
+        # @param Offset: 偏移量
+        # @type Offset: Integer
+        # @param Limit: 每次查询的最大记录数量
+        # @type Limit: Integer
+        # @param Filters: Name - Action
+        # Name 可取值：publish，unpublish，confirm，add，update，delete
+        # @type Filters: Array
+        # @param By: 排序字段
+        # @type By: String
+        # @param Order: 排序方式 asc,desc
+        # @type Order: String
+
+        attr_accessor :Offset, :Limit, :Filters, :By, :Order
+        
+        def initialize(offset=nil, limit=nil, filters=nil, by=nil, order=nil)
+          @Offset = offset
+          @Limit = limit
+          @Filters = filters
+          @By = by
+          @Order = order
+        end
+
+        def deserialize(params)
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              compliancefilters_tmp = ComplianceFilters.new
+              compliancefilters_tmp.deserialize(i)
+              @Filters << compliancefilters_tmp
+            end
+          end
+          @By = params['By']
+          @Order = params['Order']
+        end
+      end
+
+      # DescribeNetworkFirewallAuditRecord返回参数结构体
+      class DescribeNetworkFirewallAuditRecordResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 集群审计总数
+        # @type TotalCount: Integer
+        # @param AuditList: 集群的审计详细信息
+        # @type AuditList: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :AuditList, :RequestId
+        
+        def initialize(totalcount=nil, auditlist=nil, requestid=nil)
+          @TotalCount = totalcount
+          @AuditList = auditlist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['AuditList'].nil?
+            @AuditList = []
+            params['AuditList'].each do |i|
+              networkauditrecord_tmp = NetworkAuditRecord.new
+              networkauditrecord_tmp.deserialize(i)
+              @AuditList << networkauditrecord_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeNetworkFirewallClusterList请求参数结构体
+      class DescribeNetworkFirewallClusterListRequest < TencentCloud::Common::AbstractModel
+        # @param Offset: 偏移量
+        # @type Offset: Integer
+        # @param Limit: 每次查询的最大记录数量
+        # @type Limit: Integer
+        # @param Filters: Name - String
+        # Name 可取值：ClusterName,ClusterId,ClusterType,Region,ClusterCheckMode,ClusterAutoCheck
+        # @type Filters: Array
+        # @param By: 排序字段
+        # @type By: String
+        # @param Order: 排序方式 asc,desc
+        # @type Order: String
+
+        attr_accessor :Offset, :Limit, :Filters, :By, :Order
+        
+        def initialize(offset=nil, limit=nil, filters=nil, by=nil, order=nil)
+          @Offset = offset
+          @Limit = limit
+          @Filters = filters
+          @By = by
+          @Order = order
+        end
+
+        def deserialize(params)
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              compliancefilters_tmp = ComplianceFilters.new
+              compliancefilters_tmp.deserialize(i)
+              @Filters << compliancefilters_tmp
+            end
+          end
+          @By = params['By']
+          @Order = params['Order']
+        end
+      end
+
+      # DescribeNetworkFirewallClusterList返回参数结构体
+      class DescribeNetworkFirewallClusterListResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 集群总数
+        # @type TotalCount: Integer
+        # @param ClusterInfoList: 集群的详细信息
+        # @type ClusterInfoList: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :ClusterInfoList, :RequestId
+        
+        def initialize(totalcount=nil, clusterinfolist=nil, requestid=nil)
+          @TotalCount = totalcount
+          @ClusterInfoList = clusterinfolist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['ClusterInfoList'].nil?
+            @ClusterInfoList = []
+            params['ClusterInfoList'].each do |i|
+              networkclusterinfoitem_tmp = NetworkClusterInfoItem.new
+              networkclusterinfoitem_tmp.deserialize(i)
+              @ClusterInfoList << networkclusterinfoitem_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeNetworkFirewallClusterRefreshStatus请求参数结构体
+      class DescribeNetworkFirewallClusterRefreshStatusRequest < TencentCloud::Common::AbstractModel
+        # @param TaskId: 任务ID
+        # @type TaskId: Integer
+
+        attr_accessor :TaskId
+        
+        def initialize(taskid=nil)
+          @TaskId = taskid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+        end
+      end
+
+      # DescribeNetworkFirewallClusterRefreshStatus返回参数结构体
+      class DescribeNetworkFirewallClusterRefreshStatusResponse < TencentCloud::Common::AbstractModel
+        # @param TaskStatus: 任务状态，可能为：Task_Running,Task_Succ,Task_Error,Task_NoExist
+        # @type TaskStatus: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskStatus, :RequestId
+        
+        def initialize(taskstatus=nil, requestid=nil)
+          @TaskStatus = taskstatus
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskStatus = params['TaskStatus']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeNetworkFirewallNamespaceLabelList请求参数结构体
+      class DescribeNetworkFirewallNamespaceLabelListRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群id
+        # @type ClusterId: String
+        # @param Offset: 偏移量
+        # @type Offset: Integer
+        # @param Limit: 每次查询的最大记录数量
+        # @type Limit: Integer
+        # @param Filters: Name - String
+        # Name 可取值：ClusterName,ClusterId,ClusterType,Region,ClusterCheckMode,ClusterAutoCheck
+        # @type Filters: Array
+        # @param By: 排序字段
+        # @type By: String
+        # @param Order: 排序方式 asc,desc
+        # @type Order: String
+
+        attr_accessor :ClusterId, :Offset, :Limit, :Filters, :By, :Order
+        
+        def initialize(clusterid=nil, offset=nil, limit=nil, filters=nil, by=nil, order=nil)
+          @ClusterId = clusterid
+          @Offset = offset
+          @Limit = limit
+          @Filters = filters
+          @By = by
+          @Order = order
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              compliancefilters_tmp = ComplianceFilters.new
+              compliancefilters_tmp.deserialize(i)
+              @Filters << compliancefilters_tmp
+            end
+          end
+          @By = params['By']
+          @Order = params['Order']
+        end
+      end
+
+      # DescribeNetworkFirewallNamespaceLabelList返回参数结构体
+      class DescribeNetworkFirewallNamespaceLabelListResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 集群总数
+        # @type TotalCount: Integer
+        # @param ClusterNamespaceLabelList: 集群空间标签详细信息
+        # @type ClusterNamespaceLabelList: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :ClusterNamespaceLabelList, :RequestId
+        
+        def initialize(totalcount=nil, clusternamespacelabellist=nil, requestid=nil)
+          @TotalCount = totalcount
+          @ClusterNamespaceLabelList = clusternamespacelabellist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['ClusterNamespaceLabelList'].nil?
+            @ClusterNamespaceLabelList = []
+            params['ClusterNamespaceLabelList'].each do |i|
+              networkclusternamespacelabelinfo_tmp = NetworkClusterNamespaceLabelInfo.new
+              networkclusternamespacelabelinfo_tmp.deserialize(i)
+              @ClusterNamespaceLabelList << networkclusternamespacelabelinfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeNetworkFirewallNamespaceList请求参数结构体
+      class DescribeNetworkFirewallNamespaceListRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群id
+        # @type ClusterId: String
+        # @param Offset: 偏移量
+        # @type Offset: Integer
+        # @param Limit: 每次查询的最大记录数量
+        # @type Limit: Integer
+        # @param Filters: Name - String
+        # Name 可取值：ClusterName,ClusterId,ClusterType,Region,ClusterCheckMode,ClusterAutoCheck
+        # @type Filters: Array
+        # @param By: 排序字段
+        # @type By: String
+        # @param Order: 排序方式 asc,desc
+        # @type Order: String
+
+        attr_accessor :ClusterId, :Offset, :Limit, :Filters, :By, :Order
+        
+        def initialize(clusterid=nil, offset=nil, limit=nil, filters=nil, by=nil, order=nil)
+          @ClusterId = clusterid
+          @Offset = offset
+          @Limit = limit
+          @Filters = filters
+          @By = by
+          @Order = order
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              compliancefilters_tmp = ComplianceFilters.new
+              compliancefilters_tmp.deserialize(i)
+              @Filters << compliancefilters_tmp
+            end
+          end
+          @By = params['By']
+          @Order = params['Order']
+        end
+      end
+
+      # DescribeNetworkFirewallNamespaceList返回参数结构体
+      class DescribeNetworkFirewallNamespaceListResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 集群总数
+        # @type TotalCount: Integer
+        # @param ClusterNamespaceList: 集群的详细信息
+        # @type ClusterNamespaceList: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :ClusterNamespaceList, :RequestId
+        
+        def initialize(totalcount=nil, clusternamespacelist=nil, requestid=nil)
+          @TotalCount = totalcount
+          @ClusterNamespaceList = clusternamespacelist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['ClusterNamespaceList'].nil?
+            @ClusterNamespaceList = []
+            params['ClusterNamespaceList'].each do |i|
+              networkclusternamespaceinfo_tmp = NetworkClusterNamespaceInfo.new
+              networkclusternamespaceinfo_tmp.deserialize(i)
+              @ClusterNamespaceList << networkclusternamespaceinfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeNetworkFirewallPodLabelsList请求参数结构体
+      class DescribeNetworkFirewallPodLabelsListRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群id
+        # @type ClusterId: String
+        # @param Offset: 偏移量
+        # @type Offset: Integer
+        # @param Limit: 每次查询的最大记录数量
+        # @type Limit: Integer
+        # @param Filters: Name - String
+        # Name 可取值：ClusterName,ClusterId,ClusterType,Region,ClusterCheckMode,ClusterAutoCheck
+        # @type Filters: Array
+        # @param By: 排序字段
+        # @type By: String
+        # @param Order: 排序方式 asc,desc
+        # @type Order: String
+
+        attr_accessor :ClusterId, :Offset, :Limit, :Filters, :By, :Order
+        
+        def initialize(clusterid=nil, offset=nil, limit=nil, filters=nil, by=nil, order=nil)
+          @ClusterId = clusterid
+          @Offset = offset
+          @Limit = limit
+          @Filters = filters
+          @By = by
+          @Order = order
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              compliancefilters_tmp = ComplianceFilters.new
+              compliancefilters_tmp.deserialize(i)
+              @Filters << compliancefilters_tmp
+            end
+          end
+          @By = params['By']
+          @Order = params['Order']
+        end
+      end
+
+      # DescribeNetworkFirewallPodLabelsList返回参数结构体
+      class DescribeNetworkFirewallPodLabelsListResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 集群pod总数
+        # @type TotalCount: Integer
+        # @param PodList: 集群pod详细信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PodList: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :PodList, :RequestId
+        
+        def initialize(totalcount=nil, podlist=nil, requestid=nil)
+          @TotalCount = totalcount
+          @PodList = podlist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['PodList'].nil?
+            @PodList = []
+            params['PodList'].each do |i|
+              networkclusterpodinfo_tmp = NetworkClusterPodInfo.new
+              networkclusterpodinfo_tmp.deserialize(i)
+              @PodList << networkclusterpodinfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeNetworkFirewallPolicyDetail请求参数结构体
+      class DescribeNetworkFirewallPolicyDetailRequest < TencentCloud::Common::AbstractModel
+        # @param Id: 策略Id
+        # @type Id: Integer
+
+        attr_accessor :Id
+        
+        def initialize(id=nil)
+          @Id = id
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+        end
+      end
+
+      # DescribeNetworkFirewallPolicyDetail返回参数结构体
+      class DescribeNetworkFirewallPolicyDetailResponse < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群Id
+        # @type ClusterId: String
+        # @param PolicyName: 策略名
+        # @type PolicyName: String
+        # @param Namespace: 命名空间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Namespace: String
+        # @param FromPolicyRule: 入站类型
+        # @type FromPolicyRule: Integer
+        # @param ToPolicyRule: 出站类型
+        # @type ToPolicyRule: Integer
+        # @param CustomPolicy: 自定义规则
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CustomPolicy: Array
+        # @param PodSelector: pod选择器
+        # @type PodSelector: String
+        # @param Description: 策略描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Description: String
+        # @param PolicyCreateTime: 策略创建时间
+        # @type PolicyCreateTime: String
+        # @param PolicySourceType: 策略源类型，分为System和Manual，分别代表手动和系统添加
+        # @type PolicySourceType: String
+        # @param NetworkPolicyPlugin: 网络策略对应的网络插件
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NetworkPolicyPlugin: String
+        # @param PublishStatus: 网络策略状态
+        # @type PublishStatus: String
+        # @param PublishResult: 网络发布结果
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PublishResult: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ClusterId, :PolicyName, :Namespace, :FromPolicyRule, :ToPolicyRule, :CustomPolicy, :PodSelector, :Description, :PolicyCreateTime, :PolicySourceType, :NetworkPolicyPlugin, :PublishStatus, :PublishResult, :RequestId
+        
+        def initialize(clusterid=nil, policyname=nil, namespace=nil, frompolicyrule=nil, topolicyrule=nil, custompolicy=nil, podselector=nil, description=nil, policycreatetime=nil, policysourcetype=nil, networkpolicyplugin=nil, publishstatus=nil, publishresult=nil, requestid=nil)
+          @ClusterId = clusterid
+          @PolicyName = policyname
+          @Namespace = namespace
+          @FromPolicyRule = frompolicyrule
+          @ToPolicyRule = topolicyrule
+          @CustomPolicy = custompolicy
+          @PodSelector = podselector
+          @Description = description
+          @PolicyCreateTime = policycreatetime
+          @PolicySourceType = policysourcetype
+          @NetworkPolicyPlugin = networkpolicyplugin
+          @PublishStatus = publishstatus
+          @PublishResult = publishresult
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @PolicyName = params['PolicyName']
+          @Namespace = params['Namespace']
+          @FromPolicyRule = params['FromPolicyRule']
+          @ToPolicyRule = params['ToPolicyRule']
+          unless params['CustomPolicy'].nil?
+            @CustomPolicy = []
+            params['CustomPolicy'].each do |i|
+              networkcustompolicy_tmp = NetworkCustomPolicy.new
+              networkcustompolicy_tmp.deserialize(i)
+              @CustomPolicy << networkcustompolicy_tmp
+            end
+          end
+          @PodSelector = params['PodSelector']
+          @Description = params['Description']
+          @PolicyCreateTime = params['PolicyCreateTime']
+          @PolicySourceType = params['PolicySourceType']
+          @NetworkPolicyPlugin = params['NetworkPolicyPlugin']
+          @PublishStatus = params['PublishStatus']
+          @PublishResult = params['PublishResult']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeNetworkFirewallPolicyDiscover请求参数结构体
+      class DescribeNetworkFirewallPolicyDiscoverRequest < TencentCloud::Common::AbstractModel
+        # @param TaskId: 任务ID
+        # @type TaskId: Integer
+
+        attr_accessor :TaskId
+        
+        def initialize(taskid=nil)
+          @TaskId = taskid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+        end
+      end
+
+      # DescribeNetworkFirewallPolicyDiscover返回参数结构体
+      class DescribeNetworkFirewallPolicyDiscoverResponse < TencentCloud::Common::AbstractModel
+        # @param TaskStatus: 任务状态，可能为：Task_Running,Task_Succ,Task_Error,Task_NoExist
+        # @type TaskStatus: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskStatus, :RequestId
+        
+        def initialize(taskstatus=nil, requestid=nil)
+          @TaskStatus = taskstatus
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskStatus = params['TaskStatus']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeNetworkFirewallPolicyList请求参数结构体
+      class DescribeNetworkFirewallPolicyListRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群id
+        # @type ClusterId: String
+        # @param Offset: 偏移量
+        # @type Offset: Integer
+        # @param Limit: 每次查询的最大记录数量
+        # @type Limit: Integer
+        # @param Filters: Name - String
+        # Name 可取值：ClusterName,ClusterId,ClusterType,Region,ClusterCheckMode,ClusterAutoCheck
+        # @type Filters: Array
+        # @param By: 排序字段
+        # @type By: String
+        # @param Order: 排序方式 asc,desc
+        # @type Order: String
+
+        attr_accessor :ClusterId, :Offset, :Limit, :Filters, :By, :Order
+        
+        def initialize(clusterid=nil, offset=nil, limit=nil, filters=nil, by=nil, order=nil)
+          @ClusterId = clusterid
+          @Offset = offset
+          @Limit = limit
+          @Filters = filters
+          @By = by
+          @Order = order
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              compliancefilters_tmp = ComplianceFilters.new
+              compliancefilters_tmp.deserialize(i)
+              @Filters << compliancefilters_tmp
+            end
+          end
+          @By = params['By']
+          @Order = params['Order']
+        end
+      end
+
+      # DescribeNetworkFirewallPolicyList返回参数结构体
+      class DescribeNetworkFirewallPolicyListResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 集群总数
+        # @type TotalCount: Integer
+        # @param NetPolicy: 集群的详细信息
+        # @type NetPolicy: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :NetPolicy, :RequestId
+        
+        def initialize(totalcount=nil, netpolicy=nil, requestid=nil)
+          @TotalCount = totalcount
+          @NetPolicy = netpolicy
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['NetPolicy'].nil?
+            @NetPolicy = []
+            params['NetPolicy'].each do |i|
+              networkpolicyinfoitem_tmp = NetworkPolicyInfoItem.new
+              networkpolicyinfoitem_tmp.deserialize(i)
+              @NetPolicy << networkpolicyinfoitem_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeNetworkFirewallPolicyStatus请求参数结构体
+      class DescribeNetworkFirewallPolicyStatusRequest < TencentCloud::Common::AbstractModel
+        # @param TaskId: 任务ID
+        # @type TaskId: Integer
+
+        attr_accessor :TaskId
+        
+        def initialize(taskid=nil)
+          @TaskId = taskid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+        end
+      end
+
+      # DescribeNetworkFirewallPolicyStatus返回参数结构体
+      class DescribeNetworkFirewallPolicyStatusResponse < TencentCloud::Common::AbstractModel
+        # @param TaskStatus: 任务状态，可能为：Task_Running,Task_Succ,Task_Error,Task_NoExist
+        # @type TaskStatus: String
+        # @param TaskResult: NameRepeat,K8sRuleIngressPortError等
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TaskResult: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskStatus, :TaskResult, :RequestId
+        
+        def initialize(taskstatus=nil, taskresult=nil, requestid=nil)
+          @TaskStatus = taskstatus
+          @TaskResult = taskresult
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskStatus = params['TaskStatus']
+          @TaskResult = params['TaskResult']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeNetworkFirewallPolicyYamlDetail请求参数结构体
+      class DescribeNetworkFirewallPolicyYamlDetailRequest < TencentCloud::Common::AbstractModel
+        # @param Id: 策略Id
+        # @type Id: Integer
+
+        attr_accessor :Id
+        
+        def initialize(id=nil)
+          @Id = id
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+        end
+      end
+
+      # DescribeNetworkFirewallPolicyYamlDetail返回参数结构体
+      class DescribeNetworkFirewallPolicyYamlDetailResponse < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群Id
+        # @type ClusterId: String
+        # @param PolicyName: 策略名
+        # @type PolicyName: String
+        # @param Yaml: base64编码的yaml字符串
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Yaml: String
+        # @param Description: 策略描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Description: String
+        # @param PolicyCreateTime: 策略创建时间
+        # @type PolicyCreateTime: String
+        # @param PolicySourceType: 策略源类型，分为System和Manual，分别代表手动和系统添加
+        # @type PolicySourceType: String
+        # @param NetworkPolicyPlugin: 网络策略对应的网络插件
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NetworkPolicyPlugin: String
+        # @param PublishStatus: 网络策略状态
+        # @type PublishStatus: String
+        # @param PublishResult: 网络发布结果
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PublishResult: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ClusterId, :PolicyName, :Yaml, :Description, :PolicyCreateTime, :PolicySourceType, :NetworkPolicyPlugin, :PublishStatus, :PublishResult, :RequestId
+        
+        def initialize(clusterid=nil, policyname=nil, yaml=nil, description=nil, policycreatetime=nil, policysourcetype=nil, networkpolicyplugin=nil, publishstatus=nil, publishresult=nil, requestid=nil)
+          @ClusterId = clusterid
+          @PolicyName = policyname
+          @Yaml = yaml
+          @Description = description
+          @PolicyCreateTime = policycreatetime
+          @PolicySourceType = policysourcetype
+          @NetworkPolicyPlugin = networkpolicyplugin
+          @PublishStatus = publishstatus
+          @PublishResult = publishresult
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @PolicyName = params['PolicyName']
+          @Yaml = params['Yaml']
+          @Description = params['Description']
+          @PolicyCreateTime = params['PolicyCreateTime']
+          @PolicySourceType = params['PolicySourceType']
+          @NetworkPolicyPlugin = params['NetworkPolicyPlugin']
+          @PublishStatus = params['PublishStatus']
+          @PublishResult = params['PublishResult']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeNewestVul请求参数结构体
+      class DescribeNewestVulRequest < TencentCloud::Common::AbstractModel
+
+        
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeNewestVul返回参数结构体
+      class DescribeNewestVulResponse < TencentCloud::Common::AbstractModel
+        # @param PocID: 漏洞PocID
+        # @type PocID: String
+        # @param VulName: 漏洞名称
+        # @type VulName: String
+        # @param SubmitTime: 披露时间
+        # @type SubmitTime: String
+        # @param Status: 应急漏洞风险情况：NOT_SCAN：未扫描，SCANNING：扫描中，SCANNED：已扫描
+        # @type Status: String
+        # @param CVEID: 漏洞CVEID
+        # @type CVEID: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :PocID, :VulName, :SubmitTime, :Status, :CVEID, :RequestId
+        
+        def initialize(pocid=nil, vulname=nil, submittime=nil, status=nil, cveid=nil, requestid=nil)
+          @PocID = pocid
+          @VulName = vulname
+          @SubmitTime = submittime
+          @Status = status
+          @CVEID = cveid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @PocID = params['PocID']
+          @VulName = params['VulName']
+          @SubmitTime = params['SubmitTime']
+          @Status = params['Status']
+          @CVEID = params['CVEID']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribePostPayDetail请求参数结构体
       class DescribePostPayDetailRequest < TencentCloud::Common::AbstractModel
         # @param Limit: 需要返回的数量，默认为10，最大值为100
@@ -9023,6 +13249,80 @@ module TencentCloud
           @ResourceId = params['ResourceId']
           @BuyStatus = params['BuyStatus']
           @IsPurchased = params['IsPurchased']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribePromotionActivity请求参数结构体
+      class DescribePromotionActivityRequest < TencentCloud::Common::AbstractModel
+        # @param ActiveID: 活动ID
+        # @type ActiveID: Integer
+
+        attr_accessor :ActiveID
+        
+        def initialize(activeid=nil)
+          @ActiveID = activeid
+        end
+
+        def deserialize(params)
+          @ActiveID = params['ActiveID']
+        end
+      end
+
+      # DescribePromotionActivity返回参数结构体
+      class DescribePromotionActivityResponse < TencentCloud::Common::AbstractModel
+        # @param List: 促销活动内容
+        # @type List: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :List, :RequestId
+        
+        def initialize(list=nil, requestid=nil)
+          @List = list
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['List'].nil?
+            @List = []
+            params['List'].each do |i|
+              promotionactivitycontent_tmp = PromotionActivityContent.new
+              promotionactivitycontent_tmp.deserialize(i)
+              @List << promotionactivitycontent_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribePublicKey请求参数结构体
+      class DescribePublicKeyRequest < TencentCloud::Common::AbstractModel
+
+        
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribePublicKey返回参数结构体
+      class DescribePublicKeyResponse < TencentCloud::Common::AbstractModel
+        # @param PublicKey: 公钥
+        # @type PublicKey: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :PublicKey, :RequestId
+        
+        def initialize(publickey=nil, requestid=nil)
+          @PublicKey = publickey
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @PublicKey = params['PublicKey']
           @RequestId = params['RequestId']
         end
       end
@@ -9887,6 +14187,196 @@ module TencentCloud
         end
       end
 
+      # DescribeScanIgnoreVulList请求参数结构体
+      class DescribeScanIgnoreVulListRequest < TencentCloud::Common::AbstractModel
+        # @param Limit: 需要返回的数量，默认为10，最大值为100
+        # @type Limit: Integer
+        # @param Offset: 偏移量，默认为0。
+        # @type Offset: Integer
+        # @param Filters: 过滤条件。
+        # <li>CVEID- string - 是否必填：否 - CVE编号</li>
+        # <li>VulName- string - 是否必填：否 - 漏洞名称</li>
+        # @type Filters: Array
+        # @param Order: 排序方式:DESC,ACS
+        # @type Order: String
+        # @param By: 排序字段 UpdateTime
+        # @type By: String
+
+        attr_accessor :Limit, :Offset, :Filters, :Order, :By
+        
+        def initialize(limit=nil, offset=nil, filters=nil, order=nil, by=nil)
+          @Limit = limit
+          @Offset = offset
+          @Filters = filters
+          @Order = order
+          @By = by
+        end
+
+        def deserialize(params)
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              runtimefilters_tmp = RunTimeFilters.new
+              runtimefilters_tmp.deserialize(i)
+              @Filters << runtimefilters_tmp
+            end
+          end
+          @Order = params['Order']
+          @By = params['By']
+        end
+      end
+
+      # DescribeScanIgnoreVulList返回参数结构体
+      class DescribeScanIgnoreVulListResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 总是
+        # @type TotalCount: Integer
+        # @param List: 漏洞列表
+        # @type List: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :List, :RequestId
+        
+        def initialize(totalcount=nil, list=nil, requestid=nil)
+          @TotalCount = totalcount
+          @List = list
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['List'].nil?
+            @List = []
+            params['List'].each do |i|
+              scanignorevul_tmp = ScanIgnoreVul.new
+              scanignorevul_tmp.deserialize(i)
+              @List << scanignorevul_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeSearchExportList请求参数结构体
+      class DescribeSearchExportListRequest < TencentCloud::Common::AbstractModel
+        # @param Query: ES查询条件JSON
+        # @type Query: String
+
+        attr_accessor :Query
+        
+        def initialize(query=nil)
+          @Query = query
+        end
+
+        def deserialize(params)
+          @Query = params['Query']
+        end
+      end
+
+      # DescribeSearchExportList返回参数结构体
+      class DescribeSearchExportListResponse < TencentCloud::Common::AbstractModel
+        # @param JobId: 导出任务ID，前端拿着任务ID查询任务进度
+        # @type JobId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :JobId, :RequestId
+        
+        def initialize(jobid=nil, requestid=nil)
+          @JobId = jobid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @JobId = params['JobId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeSearchLogs请求参数结构体
+      class DescribeSearchLogsRequest < TencentCloud::Common::AbstractModel
+
+        
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeSearchLogs返回参数结构体
+      class DescribeSearchLogsResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 历史搜索记录 保留最新的10条
+        # @type Data: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+        
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Data = params['Data']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeSearchTemplates请求参数结构体
+      class DescribeSearchTemplatesRequest < TencentCloud::Common::AbstractModel
+        # @param Offset: 偏移量，默认为0。
+        # @type Offset: Integer
+        # @param Limit: 返回数量，默认为10，最大值为100。
+        # @type Limit: Integer
+
+        attr_accessor :Offset, :Limit
+        
+        def initialize(offset=nil, limit=nil)
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeSearchTemplates返回参数结构体
+      class DescribeSearchTemplatesResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 总数
+        # @type TotalCount: Integer
+        # @param List: 模板列表
+        # @type List: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :List, :RequestId
+        
+        def initialize(totalcount=nil, list=nil, requestid=nil)
+          @TotalCount = totalcount
+          @List = list
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['List'].nil?
+            @List = []
+            params['List'].each do |i|
+              searchtemplate_tmp = SearchTemplate.new
+              searchtemplate_tmp.deserialize(i)
+              @List << searchtemplate_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeSecEventsTendency请求参数结构体
       class DescribeSecEventsTendencyRequest < TencentCloud::Common::AbstractModel
         # @param StartTime: 开始时间
@@ -9934,6 +14424,657 @@ module TencentCloud
         end
       end
 
+      # DescribeSecLogAlertMsg请求参数结构体
+      class DescribeSecLogAlertMsgRequest < TencentCloud::Common::AbstractModel
+        # @param Type: 告警类型
+        # 日志储量告警: log_reserve_full
+        # 日志存储时间告警: log_save_day_limit
+        # kafka实例/公网域名不可用: kafka_instance_domain_unavailable
+        # kafka 用户名密码错误: kafka_user_passwd_wrong
+        # kafka后台报错字段: kafka_field_wrong
+        # @type Type: Array
+
+        attr_accessor :Type
+        
+        def initialize(type=nil)
+          @Type = type
+        end
+
+        def deserialize(params)
+          @Type = params['Type']
+        end
+      end
+
+      # DescribeSecLogAlertMsg返回参数结构体
+      class DescribeSecLogAlertMsgResponse < TencentCloud::Common::AbstractModel
+        # @param List: 告警消息队列
+        # @type List: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :List, :RequestId
+        
+        def initialize(list=nil, requestid=nil)
+          @List = list
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['List'].nil?
+            @List = []
+            params['List'].each do |i|
+              seclogalertmsginfo_tmp = SecLogAlertMsgInfo.new
+              seclogalertmsginfo_tmp.deserialize(i)
+              @List << seclogalertmsginfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeSecLogCleanSettingInfo请求参数结构体
+      class DescribeSecLogCleanSettingInfoRequest < TencentCloud::Common::AbstractModel
+
+        
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeSecLogCleanSettingInfo返回参数结构体
+      class DescribeSecLogCleanSettingInfoResponse < TencentCloud::Common::AbstractModel
+        # @param ReservesLimit: 触发清理的储量底线
+        # @type ReservesLimit: Integer
+        # @param ReservesDeadline: 清理停止时的储量截至线
+        # @type ReservesDeadline: Integer
+        # @param DayLimit: 触发清理的存储天数
+        # @type DayLimit: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ReservesLimit, :ReservesDeadline, :DayLimit, :RequestId
+        
+        def initialize(reserveslimit=nil, reservesdeadline=nil, daylimit=nil, requestid=nil)
+          @ReservesLimit = reserveslimit
+          @ReservesDeadline = reservesdeadline
+          @DayLimit = daylimit
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ReservesLimit = params['ReservesLimit']
+          @ReservesDeadline = params['ReservesDeadline']
+          @DayLimit = params['DayLimit']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeSecLogDeliveryClsOptions请求参数结构体
+      class DescribeSecLogDeliveryClsOptionsRequest < TencentCloud::Common::AbstractModel
+        # @param ClsRegion: 地域
+        # @type ClsRegion: String
+
+        attr_accessor :ClsRegion
+        
+        def initialize(clsregion=nil)
+          @ClsRegion = clsregion
+        end
+
+        def deserialize(params)
+          @ClsRegion = params['ClsRegion']
+        end
+      end
+
+      # DescribeSecLogDeliveryClsOptions返回参数结构体
+      class DescribeSecLogDeliveryClsOptionsResponse < TencentCloud::Common::AbstractModel
+        # @param LogSetList: cls可选日志集合列表(仅当入参ClsRegion不为空时返回)
+        # @type LogSetList: Array
+        # @param RegionList: 可选地域列表(仅当入参ClsRegion为空时返回)
+        # @type RegionList: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :LogSetList, :RegionList, :RequestId
+        
+        def initialize(logsetlist=nil, regionlist=nil, requestid=nil)
+          @LogSetList = logsetlist
+          @RegionList = regionlist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['LogSetList'].nil?
+            @LogSetList = []
+            params['LogSetList'].each do |i|
+              clslogsetinfo_tmp = ClsLogsetInfo.new
+              clslogsetinfo_tmp.deserialize(i)
+              @LogSetList << clslogsetinfo_tmp
+            end
+          end
+          unless params['RegionList'].nil?
+            @RegionList = []
+            params['RegionList'].each do |i|
+              regioninfo_tmp = RegionInfo.new
+              regioninfo_tmp.deserialize(i)
+              @RegionList << regioninfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeSecLogDeliveryClsSetting请求参数结构体
+      class DescribeSecLogDeliveryClsSettingRequest < TencentCloud::Common::AbstractModel
+
+        
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeSecLogDeliveryClsSetting返回参数结构体
+      class DescribeSecLogDeliveryClsSettingResponse < TencentCloud::Common::AbstractModel
+        # @param LogTypeList: 日志类型列表
+        # @type LogTypeList: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :LogTypeList, :RequestId
+        
+        def initialize(logtypelist=nil, requestid=nil)
+          @LogTypeList = logtypelist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['LogTypeList'].nil?
+            @LogTypeList = []
+            params['LogTypeList'].each do |i|
+              seclogdeliveryclssettinginfo_tmp = SecLogDeliveryClsSettingInfo.new
+              seclogdeliveryclssettinginfo_tmp.deserialize(i)
+              @LogTypeList << seclogdeliveryclssettinginfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeSecLogDeliveryKafkaOptions请求参数结构体
+      class DescribeSecLogDeliveryKafkaOptionsRequest < TencentCloud::Common::AbstractModel
+
+        
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeSecLogDeliveryKafkaOptions返回参数结构体
+      class DescribeSecLogDeliveryKafkaOptionsResponse < TencentCloud::Common::AbstractModel
+        # @param InstanceList: 实例列表
+        # @type InstanceList: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :InstanceList, :RequestId
+        
+        def initialize(instancelist=nil, requestid=nil)
+          @InstanceList = instancelist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['InstanceList'].nil?
+            @InstanceList = []
+            params['InstanceList'].each do |i|
+              ckafkainstanceinfo_tmp = CKafkaInstanceInfo.new
+              ckafkainstanceinfo_tmp.deserialize(i)
+              @InstanceList << ckafkainstanceinfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeSecLogDeliveryKafkaSetting请求参数结构体
+      class DescribeSecLogDeliveryKafkaSettingRequest < TencentCloud::Common::AbstractModel
+
+        
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeSecLogDeliveryKafkaSetting返回参数结构体
+      class DescribeSecLogDeliveryKafkaSettingResponse < TencentCloud::Common::AbstractModel
+        # @param InstanceID: 消息队列实例ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceID: String
+        # @param InstanceName: 消息队列实例名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceName: String
+        # @param Domain: 域名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Domain: String
+        # @param LogTypeList: 日志类型队列
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LogTypeList: Array
+        # @param User: 用户名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type User: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :InstanceID, :InstanceName, :Domain, :LogTypeList, :User, :RequestId
+        
+        def initialize(instanceid=nil, instancename=nil, domain=nil, logtypelist=nil, user=nil, requestid=nil)
+          @InstanceID = instanceid
+          @InstanceName = instancename
+          @Domain = domain
+          @LogTypeList = logtypelist
+          @User = user
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @InstanceID = params['InstanceID']
+          @InstanceName = params['InstanceName']
+          @Domain = params['Domain']
+          unless params['LogTypeList'].nil?
+            @LogTypeList = []
+            params['LogTypeList'].each do |i|
+              seclogdeliverykafkasettinginfo_tmp = SecLogDeliveryKafkaSettingInfo.new
+              seclogdeliverykafkasettinginfo_tmp.deserialize(i)
+              @LogTypeList << seclogdeliverykafkasettinginfo_tmp
+            end
+          end
+          @User = params['User']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeSecLogJoinObjectList请求参数结构体
+      class DescribeSecLogJoinObjectListRequest < TencentCloud::Common::AbstractModel
+        # @param LogType: 日志类型
+        # bash: "container_bash",
+        # 启动: "container_launch",
+        # "k8s": "k8s_api"
+        # @type LogType: String
+        # @param Limit: 需要返回的数量，默认为10，最大值为100
+        # @type Limit: Integer
+        # @param Offset: 偏移量，默认为0。
+        # @type Offset: Integer
+        # @param Filters: 过滤条件。
+        # <li>Status- String - 是否必填：否 - 主机状态 /li>
+        # <li>HostIP- String - 是否必填：否 - 主机内网IP /li>
+        # <li>PublicIP- String - 是否必填：否 - 主机外网IP /li>
+        # <li>HostName- String - 是否必填：否 - 主机名称 /li>
+        # @type Filters: Array
+        # @param By: 排序字段
+        # @type By: String
+        # @param Order: 排序方式
+        # @type Order: String
+
+        attr_accessor :LogType, :Limit, :Offset, :Filters, :By, :Order
+        
+        def initialize(logtype=nil, limit=nil, offset=nil, filters=nil, by=nil, order=nil)
+          @LogType = logtype
+          @Limit = limit
+          @Offset = offset
+          @Filters = filters
+          @By = by
+          @Order = order
+        end
+
+        def deserialize(params)
+          @LogType = params['LogType']
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              runtimefilters_tmp = RunTimeFilters.new
+              runtimefilters_tmp.deserialize(i)
+              @Filters << runtimefilters_tmp
+            end
+          end
+          @By = params['By']
+          @Order = params['Order']
+        end
+      end
+
+      # DescribeSecLogJoinObjectList返回参数结构体
+      class DescribeSecLogJoinObjectListResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 总数
+        # @type TotalCount: Integer
+        # @param List: 接入对象列表
+        # @type List: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :List, :RequestId
+        
+        def initialize(totalcount=nil, list=nil, requestid=nil)
+          @TotalCount = totalcount
+          @List = list
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['List'].nil?
+            @List = []
+            params['List'].each do |i|
+              seclogjoinobjectinfo_tmp = SecLogJoinObjectInfo.new
+              seclogjoinobjectinfo_tmp.deserialize(i)
+              @List << seclogjoinobjectinfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeSecLogJoinTypeList请求参数结构体
+      class DescribeSecLogJoinTypeListRequest < TencentCloud::Common::AbstractModel
+
+        
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeSecLogJoinTypeList返回参数结构体
+      class DescribeSecLogJoinTypeListResponse < TencentCloud::Common::AbstractModel
+        # @param List: 接入日志列表
+        # @type List: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :List, :RequestId
+        
+        def initialize(list=nil, requestid=nil)
+          @List = list
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['List'].nil?
+            @List = []
+            params['List'].each do |i|
+              seclogjoininfo_tmp = SecLogJoinInfo.new
+              seclogjoininfo_tmp.deserialize(i)
+              @List << seclogjoininfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeSecLogKafkaUIN请求参数结构体
+      class DescribeSecLogKafkaUINRequest < TencentCloud::Common::AbstractModel
+
+        
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeSecLogKafkaUIN返回参数结构体
+      class DescribeSecLogKafkaUINResponse < TencentCloud::Common::AbstractModel
+        # @param DstUIN: 目标UIN
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DstUIN: String
+        # @param Status: 授权状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: Boolean
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :DstUIN, :Status, :RequestId
+        
+        def initialize(dstuin=nil, status=nil, requestid=nil)
+          @DstUIN = dstuin
+          @Status = status
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @DstUIN = params['DstUIN']
+          @Status = params['Status']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeSecLogVasInfo请求参数结构体
+      class DescribeSecLogVasInfoRequest < TencentCloud::Common::AbstractModel
+
+        
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeSecLogVasInfo返回参数结构体
+      class DescribeSecLogVasInfoResponse < TencentCloud::Common::AbstractModel
+        # @param BuyStatus: 购买状态
+        # 待购: Pending
+        # 已购: Normal
+        # 隔离: Isolate
+        # @type BuyStatus: String
+        # @param LogSaveMonth: 存储时长(月)
+        # @type LogSaveMonth: Integer
+        # @param StartTime: 起始时间
+        # @type StartTime: String
+        # @param EndTime: 截止时间
+        # @type EndTime: String
+        # @param LogCapacity: 存储容量(GB)
+        # @type LogCapacity: Integer
+        # @param ResourceID: 资源ID
+        # @type ResourceID: String
+        # @param IsPurchased: 是否曾经购买过(false:未曾 true:曾经购买过)
+        # @type IsPurchased: Boolean
+        # @param TrialCapacity: 试用存储容量(GB)
+        # @type TrialCapacity: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :BuyStatus, :LogSaveMonth, :StartTime, :EndTime, :LogCapacity, :ResourceID, :IsPurchased, :TrialCapacity, :RequestId
+        
+        def initialize(buystatus=nil, logsavemonth=nil, starttime=nil, endtime=nil, logcapacity=nil, resourceid=nil, ispurchased=nil, trialcapacity=nil, requestid=nil)
+          @BuyStatus = buystatus
+          @LogSaveMonth = logsavemonth
+          @StartTime = starttime
+          @EndTime = endtime
+          @LogCapacity = logcapacity
+          @ResourceID = resourceid
+          @IsPurchased = ispurchased
+          @TrialCapacity = trialcapacity
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @BuyStatus = params['BuyStatus']
+          @LogSaveMonth = params['LogSaveMonth']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @LogCapacity = params['LogCapacity']
+          @ResourceID = params['ResourceID']
+          @IsPurchased = params['IsPurchased']
+          @TrialCapacity = params['TrialCapacity']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeSupportDefenceVul请求参数结构体
+      class DescribeSupportDefenceVulRequest < TencentCloud::Common::AbstractModel
+        # @param Filters: 过滤条件。
+        # <li>Level- String - 是否必填：否 - 威胁等级，CRITICAL:严重 HIGH:高/MIDDLE:中/LOW:低</li>
+        # <li>CVEID- string - 是否必填：否 - CVE编号</li>
+        # <li>Name- string -是否必填: 否 - 漏洞名称</li>
+        # @type Filters: Array
+        # @param Limit: 需要返回的数量，默认为10，最大值为100
+        # @type Limit: Integer
+        # @param Offset: 偏移量，默认为0。
+        # @type Offset: Integer
+        # @param Order: 排序方式：asc/desc
+        # @type Order: String
+        # @param By: 排序字段：披露时间：SubmitTime
+        # @type By: String
+
+        attr_accessor :Filters, :Limit, :Offset, :Order, :By
+        
+        def initialize(filters=nil, limit=nil, offset=nil, order=nil, by=nil)
+          @Filters = filters
+          @Limit = limit
+          @Offset = offset
+          @Order = order
+          @By = by
+        end
+
+        def deserialize(params)
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              runtimefilters_tmp = RunTimeFilters.new
+              runtimefilters_tmp.deserialize(i)
+              @Filters << runtimefilters_tmp
+            end
+          end
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          @Order = params['Order']
+          @By = params['By']
+        end
+      end
+
+      # DescribeSupportDefenceVul返回参数结构体
+      class DescribeSupportDefenceVulResponse < TencentCloud::Common::AbstractModel
+        # @param List: 支持防御的漏洞列表
+        # @type List: Array
+        # @param TotalCount: 总数量
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :List, :TotalCount, :RequestId
+        
+        def initialize(list=nil, totalcount=nil, requestid=nil)
+          @List = list
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['List'].nil?
+            @List = []
+            params['List'].each do |i|
+              supportdefencevul_tmp = SupportDefenceVul.new
+              supportdefencevul_tmp.deserialize(i)
+              @List << supportdefencevul_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeSystemVulList请求参数结构体
+      class DescribeSystemVulListRequest < TencentCloud::Common::AbstractModel
+        # @param Limit: 需要返回的数量，默认为10，最大值为100
+        # @type Limit: Integer
+        # @param Offset: 偏移量，默认为0。
+        # @type Offset: Integer
+        # @param Filters: 过滤条件。
+        # <li>OnlyAffectedContainer- string - 是否必填：否 - 仅展示影响容器的漏洞true,false</li>
+        # <li>OnlyAffectedNewestImage-string - 是否必填：否 - 仅展示影响最新版本镜像的漏洞true,false</li>
+        # <li>Level- String - 是否必填：否 - 威胁等级，CRITICAL:严重 HIGH:高/MIDDLE:中/LOW:低</li>
+        # <li>Tags- string - 是否必填：否 - 漏洞标签，POC，EXP。</li>
+        # <li>CanBeFixed- string - 是否必填：否 - 是否可修复true,false。</li>
+        # <li>CVEID- string - 是否必填：否 - CVE编号</li>
+        # <li>ImageID- string - 是否必填：否 - 镜像ID</li>
+        # <li>ImageName- String -是否必填: 否 - 镜像名称</li>
+        # <li>ContainerID- string -是否必填: 否 - 容器ID</li>
+        # <li>ContainerName- string -是否必填: 否 - 容器名称</li>
+        # <li>ComponentName- string -是否必填: 否 - 组件名称</li>
+        # <li>ComponentVersion- string -是否必填: 否 - 组件版本</li>
+        # <li>Name- string -是否必填: 否 - 漏洞名称</li>
+        # <li>FocusOnType - string - 是否必填：否 -关注紧急度类型 。ALL :全部，SERIOUS_LEVEL： 严重和高危 ，IS_SUGGEST： 重点关注，POC_EXP 有Poc或Exp ，NETWORK_EXP: 远程Exp</li>
+        # @type Filters: Array
+        # @param Order: 排序方式
+        # @type Order: String
+        # @param By: 排序字段
+        # @type By: String
+
+        attr_accessor :Limit, :Offset, :Filters, :Order, :By
+        
+        def initialize(limit=nil, offset=nil, filters=nil, order=nil, by=nil)
+          @Limit = limit
+          @Offset = offset
+          @Filters = filters
+          @Order = order
+          @By = by
+        end
+
+        def deserialize(params)
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              runtimefilters_tmp = RunTimeFilters.new
+              runtimefilters_tmp.deserialize(i)
+              @Filters << runtimefilters_tmp
+            end
+          end
+          @Order = params['Order']
+          @By = params['By']
+        end
+      end
+
+      # DescribeSystemVulList返回参数结构体
+      class DescribeSystemVulListResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 漏洞总数
+        # @type TotalCount: Integer
+        # @param List: 漏洞列表
+        # @type List: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :List, :RequestId
+        
+        def initialize(totalcount=nil, list=nil, requestid=nil)
+          @TotalCount = totalcount
+          @List = list
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['List'].nil?
+            @List = []
+            params['List'].each do |i|
+              vulinfo_tmp = VulInfo.new
+              vulinfo_tmp.deserialize(i)
+              @List << vulinfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeTaskResultSummary请求参数结构体
       class DescribeTaskResultSummaryRequest < TencentCloud::Common::AbstractModel
 
@@ -9973,6 +15114,159 @@ module TencentCloud
           @HighRiskNodeCount = params['HighRiskNodeCount']
           @MiddleRiskNodeCount = params['MiddleRiskNodeCount']
           @HintRiskNodeCount = params['HintRiskNodeCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeTcssSummary请求参数结构体
+      class DescribeTcssSummaryRequest < TencentCloud::Common::AbstractModel
+
+        
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeTcssSummary返回参数结构体
+      class DescribeTcssSummaryResponse < TencentCloud::Common::AbstractModel
+        # @param ImageCnt: 镜像总数
+        # @type ImageCnt: Integer
+        # @param ScannedImageCnt: 已扫描镜像数
+        # @type ScannedImageCnt: Integer
+        # @param UnScannedImageCnt: 待扫描镜像个数
+        # @type UnScannedImageCnt: Integer
+        # @param LocalImageCnt: 本地镜像个数
+        # @type LocalImageCnt: Integer
+        # @param RepositoryImageCnt: 仓库镜像个数
+        # @type RepositoryImageCnt: Integer
+        # @param RiskLocalImageCnt: 风险本地镜像个数
+        # @type RiskLocalImageCnt: Integer
+        # @param RiskRepositoryImageCnt: 风险仓库镜像个数
+        # @type RiskRepositoryImageCnt: Integer
+        # @param ContainerCnt: 容器个数
+        # @type ContainerCnt: Integer
+        # @param RiskContainerCnt: 风险容器个数
+        # @type RiskContainerCnt: Integer
+        # @param ClusterCnt: 集群个数
+        # @type ClusterCnt: Integer
+        # @param RiskClusterCnt: 风险集群个数
+        # @type RiskClusterCnt: Integer
+        # @param UnScannedVulCnt: 待扫描漏洞个数
+        # @type UnScannedVulCnt: Integer
+        # @param RiskVulCnt: 风险漏洞个数
+        # @type RiskVulCnt: Integer
+        # @param UnScannedBaseLineCnt: 安全基线待扫描项个数
+        # @type UnScannedBaseLineCnt: Integer
+        # @param RiskBaseLineCnt: 安全基线风险个数
+        # @type RiskBaseLineCnt: Integer
+        # @param RuntimeUnhandleEventCnt: 运行时(高危)待处理事件个数
+        # @type RuntimeUnhandleEventCnt: Integer
+        # @param UnScannedClusterCnt: 待扫描集群个数
+        # @type UnScannedClusterCnt: Integer
+        # @param ScanImageStatus: 是否已扫描镜像
+        # @type ScanImageStatus: Boolean
+        # @param ScanClusterStatus: 是否已扫描集群
+        # @type ScanClusterStatus: Boolean
+        # @param ScanBaseLineStatus: 是否已扫描基线
+        # @type ScanBaseLineStatus: Boolean
+        # @param ScanVulStatus: 是否已扫描漏洞
+        # @type ScanVulStatus: Boolean
+        # @param VulRiskImageCnt: 漏洞影响镜像数
+        # @type VulRiskImageCnt: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ImageCnt, :ScannedImageCnt, :UnScannedImageCnt, :LocalImageCnt, :RepositoryImageCnt, :RiskLocalImageCnt, :RiskRepositoryImageCnt, :ContainerCnt, :RiskContainerCnt, :ClusterCnt, :RiskClusterCnt, :UnScannedVulCnt, :RiskVulCnt, :UnScannedBaseLineCnt, :RiskBaseLineCnt, :RuntimeUnhandleEventCnt, :UnScannedClusterCnt, :ScanImageStatus, :ScanClusterStatus, :ScanBaseLineStatus, :ScanVulStatus, :VulRiskImageCnt, :RequestId
+        
+        def initialize(imagecnt=nil, scannedimagecnt=nil, unscannedimagecnt=nil, localimagecnt=nil, repositoryimagecnt=nil, risklocalimagecnt=nil, riskrepositoryimagecnt=nil, containercnt=nil, riskcontainercnt=nil, clustercnt=nil, riskclustercnt=nil, unscannedvulcnt=nil, riskvulcnt=nil, unscannedbaselinecnt=nil, riskbaselinecnt=nil, runtimeunhandleeventcnt=nil, unscannedclustercnt=nil, scanimagestatus=nil, scanclusterstatus=nil, scanbaselinestatus=nil, scanvulstatus=nil, vulriskimagecnt=nil, requestid=nil)
+          @ImageCnt = imagecnt
+          @ScannedImageCnt = scannedimagecnt
+          @UnScannedImageCnt = unscannedimagecnt
+          @LocalImageCnt = localimagecnt
+          @RepositoryImageCnt = repositoryimagecnt
+          @RiskLocalImageCnt = risklocalimagecnt
+          @RiskRepositoryImageCnt = riskrepositoryimagecnt
+          @ContainerCnt = containercnt
+          @RiskContainerCnt = riskcontainercnt
+          @ClusterCnt = clustercnt
+          @RiskClusterCnt = riskclustercnt
+          @UnScannedVulCnt = unscannedvulcnt
+          @RiskVulCnt = riskvulcnt
+          @UnScannedBaseLineCnt = unscannedbaselinecnt
+          @RiskBaseLineCnt = riskbaselinecnt
+          @RuntimeUnhandleEventCnt = runtimeunhandleeventcnt
+          @UnScannedClusterCnt = unscannedclustercnt
+          @ScanImageStatus = scanimagestatus
+          @ScanClusterStatus = scanclusterstatus
+          @ScanBaseLineStatus = scanbaselinestatus
+          @ScanVulStatus = scanvulstatus
+          @VulRiskImageCnt = vulriskimagecnt
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ImageCnt = params['ImageCnt']
+          @ScannedImageCnt = params['ScannedImageCnt']
+          @UnScannedImageCnt = params['UnScannedImageCnt']
+          @LocalImageCnt = params['LocalImageCnt']
+          @RepositoryImageCnt = params['RepositoryImageCnt']
+          @RiskLocalImageCnt = params['RiskLocalImageCnt']
+          @RiskRepositoryImageCnt = params['RiskRepositoryImageCnt']
+          @ContainerCnt = params['ContainerCnt']
+          @RiskContainerCnt = params['RiskContainerCnt']
+          @ClusterCnt = params['ClusterCnt']
+          @RiskClusterCnt = params['RiskClusterCnt']
+          @UnScannedVulCnt = params['UnScannedVulCnt']
+          @RiskVulCnt = params['RiskVulCnt']
+          @UnScannedBaseLineCnt = params['UnScannedBaseLineCnt']
+          @RiskBaseLineCnt = params['RiskBaseLineCnt']
+          @RuntimeUnhandleEventCnt = params['RuntimeUnhandleEventCnt']
+          @UnScannedClusterCnt = params['UnScannedClusterCnt']
+          @ScanImageStatus = params['ScanImageStatus']
+          @ScanClusterStatus = params['ScanClusterStatus']
+          @ScanBaseLineStatus = params['ScanBaseLineStatus']
+          @ScanVulStatus = params['ScanVulStatus']
+          @VulRiskImageCnt = params['VulRiskImageCnt']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeUnauthorizedCoresTendency请求参数结构体
+      class DescribeUnauthorizedCoresTendencyRequest < TencentCloud::Common::AbstractModel
+
+        
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeUnauthorizedCoresTendency返回参数结构体
+      class DescribeUnauthorizedCoresTendencyResponse < TencentCloud::Common::AbstractModel
+        # @param List: 未授权核数趋势
+        # @type List: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :List, :RequestId
+        
+        def initialize(list=nil, requestid=nil)
+          @List = list
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['List'].nil?
+            @List = []
+            params['List'].each do |i|
+              unauthorizedcorestendency_tmp = UnauthorizedCoresTendency.new
+              unauthorizedcorestendency_tmp.deserialize(i)
+              @List << unauthorizedcorestendency_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -10118,6 +15412,226 @@ module TencentCloud
           @RegistryImageCnt = params['RegistryImageCnt']
           @LocalImageCnt = params['LocalImageCnt']
           @UnusedAuthorizedCnt = params['UnusedAuthorizedCnt']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeVirusAutoIsolateSampleDetail请求参数结构体
+      class DescribeVirusAutoIsolateSampleDetailRequest < TencentCloud::Common::AbstractModel
+        # @param MD5: 文件MD5值
+        # @type MD5: String
+
+        attr_accessor :MD5
+        
+        def initialize(md5=nil)
+          @MD5 = md5
+        end
+
+        def deserialize(params)
+          @MD5 = params['MD5']
+        end
+      end
+
+      # DescribeVirusAutoIsolateSampleDetail返回参数结构体
+      class DescribeVirusAutoIsolateSampleDetailResponse < TencentCloud::Common::AbstractModel
+        # @param MD5: 文件Md5值
+        # @type MD5: String
+        # @param Size: 文件大小(B)
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Size: Integer
+        # @param VirusName: 病毒名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VirusName: String
+        # @param RiskLevel: 风险等级 RISK_CRITICAL, RISK_HIGH, RISK_MEDIUM, RISK_LOW, RISK_NOTICE。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RiskLevel: String
+        # @param KillEngine: 查杀引擎
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type KillEngine: Array
+        # @param Tags: 标签
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Tags: Array
+        # @param HarmDescribe: 事件描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HarmDescribe: String
+        # @param SuggestScheme: 建议方案
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SuggestScheme: String
+        # @param ReferenceLink: 参考链接
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ReferenceLink: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :MD5, :Size, :VirusName, :RiskLevel, :KillEngine, :Tags, :HarmDescribe, :SuggestScheme, :ReferenceLink, :RequestId
+        
+        def initialize(md5=nil, size=nil, virusname=nil, risklevel=nil, killengine=nil, tags=nil, harmdescribe=nil, suggestscheme=nil, referencelink=nil, requestid=nil)
+          @MD5 = md5
+          @Size = size
+          @VirusName = virusname
+          @RiskLevel = risklevel
+          @KillEngine = killengine
+          @Tags = tags
+          @HarmDescribe = harmdescribe
+          @SuggestScheme = suggestscheme
+          @ReferenceLink = referencelink
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @MD5 = params['MD5']
+          @Size = params['Size']
+          @VirusName = params['VirusName']
+          @RiskLevel = params['RiskLevel']
+          @KillEngine = params['KillEngine']
+          @Tags = params['Tags']
+          @HarmDescribe = params['HarmDescribe']
+          @SuggestScheme = params['SuggestScheme']
+          @ReferenceLink = params['ReferenceLink']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeVirusAutoIsolateSampleDownloadURL请求参数结构体
+      class DescribeVirusAutoIsolateSampleDownloadURLRequest < TencentCloud::Common::AbstractModel
+        # @param MD5: 样本Md5值
+        # @type MD5: String
+
+        attr_accessor :MD5
+        
+        def initialize(md5=nil)
+          @MD5 = md5
+        end
+
+        def deserialize(params)
+          @MD5 = params['MD5']
+        end
+      end
+
+      # DescribeVirusAutoIsolateSampleDownloadURL返回参数结构体
+      class DescribeVirusAutoIsolateSampleDownloadURLResponse < TencentCloud::Common::AbstractModel
+        # @param FileUrl: 样本下载链接
+        # @type FileUrl: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :FileUrl, :RequestId
+        
+        def initialize(fileurl=nil, requestid=nil)
+          @FileUrl = fileurl
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @FileUrl = params['FileUrl']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeVirusAutoIsolateSampleList请求参数结构体
+      class DescribeVirusAutoIsolateSampleListRequest < TencentCloud::Common::AbstractModel
+        # @param Limit: 需要返回的数量，默认为10，最大值为100
+        # @type Limit: Integer
+        # @param Offset: 偏移量，默认为0。
+        # @type Offset: Integer
+        # @param Filters: 过滤条件。
+        # <li>MD5- String - 是否必填：否 - md5 /li>
+        # <li>AutoIsolateSwitch- String - 是否必填：否 - 自动隔离开关 /li>
+        # <li>VirusName- String - 是否必填：否 - 病毒名 /li>
+        # @type Filters: Array
+        # @param By: 排序字段
+        # @type By: String
+        # @param Order: 排序方式
+        # @type Order: String
+
+        attr_accessor :Limit, :Offset, :Filters, :By, :Order
+        
+        def initialize(limit=nil, offset=nil, filters=nil, by=nil, order=nil)
+          @Limit = limit
+          @Offset = offset
+          @Filters = filters
+          @By = by
+          @Order = order
+        end
+
+        def deserialize(params)
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              runtimefilters_tmp = RunTimeFilters.new
+              runtimefilters_tmp.deserialize(i)
+              @Filters << runtimefilters_tmp
+            end
+          end
+          @By = params['By']
+          @Order = params['Order']
+        end
+      end
+
+      # DescribeVirusAutoIsolateSampleList返回参数结构体
+      class DescribeVirusAutoIsolateSampleListResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 总数
+        # @type TotalCount: Integer
+        # @param List: 木马自动隔离样本列表
+        # @type List: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :List, :RequestId
+        
+        def initialize(totalcount=nil, list=nil, requestid=nil)
+          @TotalCount = totalcount
+          @List = list
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['List'].nil?
+            @List = []
+            params['List'].each do |i|
+              virusautoisolatesampleinfo_tmp = VirusAutoIsolateSampleInfo.new
+              virusautoisolatesampleinfo_tmp.deserialize(i)
+              @List << virusautoisolatesampleinfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeVirusAutoIsolateSetting请求参数结构体
+      class DescribeVirusAutoIsolateSettingRequest < TencentCloud::Common::AbstractModel
+
+        
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeVirusAutoIsolateSetting返回参数结构体
+      class DescribeVirusAutoIsolateSettingResponse < TencentCloud::Common::AbstractModel
+        # @param AutoIsolateSwitch: 自动隔离开关(true:开 false:关)
+        # @type AutoIsolateSwitch: Boolean
+        # @param IsKillProgress: 是否中断隔离文件关联的进程(true:是 false:否)
+        # @type IsKillProgress: Boolean
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :AutoIsolateSwitch, :IsKillProgress, :RequestId
+        
+        def initialize(autoisolateswitch=nil, iskillprogress=nil, requestid=nil)
+          @AutoIsolateSwitch = autoisolateswitch
+          @IsKillProgress = iskillprogress
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @AutoIsolateSwitch = params['AutoIsolateSwitch']
+          @IsKillProgress = params['IsKillProgress']
           @RequestId = params['RequestId']
         end
       end
@@ -10408,6 +15922,49 @@ module TencentCloud
         end
       end
 
+      # DescribeVirusEventTendency请求参数结构体
+      class DescribeVirusEventTendencyRequest < TencentCloud::Common::AbstractModel
+        # @param TendencyPeriod: 趋势周期(默认为7天)
+        # @type TendencyPeriod: Integer
+
+        attr_accessor :TendencyPeriod
+        
+        def initialize(tendencyperiod=nil)
+          @TendencyPeriod = tendencyperiod
+        end
+
+        def deserialize(params)
+          @TendencyPeriod = params['TendencyPeriod']
+        end
+      end
+
+      # DescribeVirusEventTendency返回参数结构体
+      class DescribeVirusEventTendencyResponse < TencentCloud::Common::AbstractModel
+        # @param List: 趋势列表
+        # @type List: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :List, :RequestId
+        
+        def initialize(list=nil, requestid=nil)
+          @List = list
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['List'].nil?
+            @List = []
+            params['List'].each do |i|
+              virustendencyinfo_tmp = VirusTendencyInfo.new
+              virustendencyinfo_tmp.deserialize(i)
+              @List << virustendencyinfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeVirusList请求参数结构体
       class DescribeVirusListRequest < TencentCloud::Common::AbstractModel
         # @param Limit: 需要返回的数量，默认为10，最大值为100
@@ -10492,6 +16049,54 @@ module TencentCloud
         end
       end
 
+      # DescribeVirusManualScanEstimateTimeout请求参数结构体
+      class DescribeVirusManualScanEstimateTimeoutRequest < TencentCloud::Common::AbstractModel
+        # @param ScanRangeType: 扫描范围0容器1主机节点
+        # @type ScanRangeType: Integer
+        # @param ScanRangeAll: true 全选，false 自选
+        # @type ScanRangeAll: Boolean
+        # @param ScanIds: 自选扫描范围的容器id或者主机id 根据ScanRangeType决定
+        # @type ScanIds: Array
+
+        attr_accessor :ScanRangeType, :ScanRangeAll, :ScanIds
+        
+        def initialize(scanrangetype=nil, scanrangeall=nil, scanids=nil)
+          @ScanRangeType = scanrangetype
+          @ScanRangeAll = scanrangeall
+          @ScanIds = scanids
+        end
+
+        def deserialize(params)
+          @ScanRangeType = params['ScanRangeType']
+          @ScanRangeAll = params['ScanRangeAll']
+          @ScanIds = params['ScanIds']
+        end
+      end
+
+      # DescribeVirusManualScanEstimateTimeout返回参数结构体
+      class DescribeVirusManualScanEstimateTimeoutResponse < TencentCloud::Common::AbstractModel
+        # @param Timeout: 预估超时时间(h)
+        # @type Timeout: Float
+        # @param ContainerScanConcurrencyCount: 单台主机并行扫描容器数
+        # @type ContainerScanConcurrencyCount: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Timeout, :ContainerScanConcurrencyCount, :RequestId
+        
+        def initialize(timeout=nil, containerscanconcurrencycount=nil, requestid=nil)
+          @Timeout = timeout
+          @ContainerScanConcurrencyCount = containerscanconcurrencycount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Timeout = params['Timeout']
+          @ContainerScanConcurrencyCount = params['ContainerScanConcurrencyCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeVirusMonitorSetting请求参数结构体
       class DescribeVirusMonitorSettingRequest < TencentCloud::Common::AbstractModel
 
@@ -10534,6 +16139,42 @@ module TencentCloud
           @ScanPathAll = params['ScanPathAll']
           @ScanPathType = params['ScanPathType']
           @ScanPath = params['ScanPath']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeVirusSampleDownloadUrl请求参数结构体
+      class DescribeVirusSampleDownloadUrlRequest < TencentCloud::Common::AbstractModel
+        # @param ID: 木马id
+        # @type ID: String
+
+        attr_accessor :ID
+        
+        def initialize(id=nil)
+          @ID = id
+        end
+
+        def deserialize(params)
+          @ID = params['ID']
+        end
+      end
+
+      # DescribeVirusSampleDownloadUrl返回参数结构体
+      class DescribeVirusSampleDownloadUrlResponse < TencentCloud::Common::AbstractModel
+        # @param FileUrl: 样本下载地址
+        # @type FileUrl: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :FileUrl, :RequestId
+        
+        def initialize(fileurl=nil, requestid=nil)
+          @FileUrl = fileurl
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @FileUrl = params['FileUrl']
           @RequestId = params['RequestId']
         end
       end
@@ -10872,6 +16513,1233 @@ module TencentCloud
         end
       end
 
+      # DescribeVulContainerList请求参数结构体
+      class DescribeVulContainerListRequest < TencentCloud::Common::AbstractModel
+        # @param PocID: 漏洞PocID
+        # @type PocID: String
+        # @param Limit: 需要返回的数量，默认为10，最大值为100
+        # @type Limit: Integer
+        # @param Offset: 偏移量，默认为0。
+        # @type Offset: Integer
+        # @param Filters: 过滤条件。
+        # <li>OnlyAffectedNewestImage- Bool- 是否必填：否 - 仅展示影响最新版本镜像的漏洞</li>
+        # <li>ContainerID- string - 是否必填：否 - 容器ID</li>
+        # <li>ContainerName- String -是否必填: 否 - 容器名称</li>
+        # @type Filters: Array
+
+        attr_accessor :PocID, :Limit, :Offset, :Filters
+        
+        def initialize(pocid=nil, limit=nil, offset=nil, filters=nil)
+          @PocID = pocid
+          @Limit = limit
+          @Offset = offset
+          @Filters = filters
+        end
+
+        def deserialize(params)
+          @PocID = params['PocID']
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              runtimefilters_tmp = RunTimeFilters.new
+              runtimefilters_tmp.deserialize(i)
+              @Filters << runtimefilters_tmp
+            end
+          end
+        end
+      end
+
+      # DescribeVulContainerList返回参数结构体
+      class DescribeVulContainerListResponse < TencentCloud::Common::AbstractModel
+        # @param List: 容器列表
+        # @type List: Array
+        # @param TotalCount: 容器总数
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :List, :TotalCount, :RequestId
+        
+        def initialize(list=nil, totalcount=nil, requestid=nil)
+          @List = list
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['List'].nil?
+            @List = []
+            params['List'].each do |i|
+              vulaffectedcontainerinfo_tmp = VulAffectedContainerInfo.new
+              vulaffectedcontainerinfo_tmp.deserialize(i)
+              @List << vulaffectedcontainerinfo_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeVulDefenceEventDetail请求参数结构体
+      class DescribeVulDefenceEventDetailRequest < TencentCloud::Common::AbstractModel
+        # @param EventID: 事件ID
+        # @type EventID: Integer
+
+        attr_accessor :EventID
+        
+        def initialize(eventid=nil)
+          @EventID = eventid
+        end
+
+        def deserialize(params)
+          @EventID = params['EventID']
+        end
+      end
+
+      # DescribeVulDefenceEventDetail返回参数结构体
+      class DescribeVulDefenceEventDetailResponse < TencentCloud::Common::AbstractModel
+        # @param EventDetail: 漏洞防御事件详细
+        # @type EventDetail: :class:`Tencentcloud::Tcss.v20201101.models.VulDefenceEventDetail`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :EventDetail, :RequestId
+        
+        def initialize(eventdetail=nil, requestid=nil)
+          @EventDetail = eventdetail
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['EventDetail'].nil?
+            @EventDetail = VulDefenceEventDetail.new
+            @EventDetail.deserialize(params['EventDetail'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeVulDefenceEvent请求参数结构体
+      class DescribeVulDefenceEventRequest < TencentCloud::Common::AbstractModel
+        # @param Filters: 过滤条件。
+        # <li>Status- String - 是否必填：否 - 插件状态，待处理：EVENT_UNDEAL，EVENT_DEALED：已处理，已忽略：EVENT_IGNORE， EVENT_DEFENDED：已防御</li>
+        # <li>ContainerStatus- String - 是否必填：否 - 容器运行状态筛选，已创建：CREATED,正常运行：RUNNING, 暂定运行：PAUSED, 停止运行：	STOPPED，重启中：RESTARTING, 迁移中：REMOVING, 销毁：DESTROYED </li>
+        # <li>ContainerNetStatus- String -是否必填: 否 -  容器网络状态筛选 未隔离：NORMAL，已隔离：ISOLATED，隔离失败：ISOLATE_FAILED，解除隔离失败：RESTORE_FAILED，解除隔离中：RESTORING，隔离中：ISOLATING</li>
+        # <li>EventType - String -是否必填: 否 -  入侵状态，防御成功：EVENT_DEFENDED，尝试攻击：EVENT_ATTACK </li>
+        # <li>TimeRange- String -是否必填: 否 -  时间范围，第一个值表示开始时间，第二个值表示结束时间 </li>
+        # <li>VulName- string - 是否必填：否 - 漏洞名称。</li>
+        # <li>CVEID- string - 是否必填：否 - CVE编号。</li>
+        # <li>SourceIP- string - 是否必填：否 - 攻击源IP。</li>
+        # <li>ContainerName- string - 是否必填：否 - 容器名称。</li>
+        # <li>ContainerID- string - 是否必填：否 - 容器ID。</li>
+        # <li>ImageName- string - 是否必填：否 - 镜像名称。</li>
+        # <li>ImageID- string - 是否必填：否 - 镜像ID。</li>
+        # <li>HostName- string - 是否必填：否 - 主机名称。</li>
+        # <li>HostIP- string - 是否必填：否 - 内网IP。</li>
+        # @type Filters: Array
+        # @param Limit: 需要返回的数量，默认为10，最大值为100
+        # @type Limit: Integer
+        # @param Offset: 偏移量，默认为0。
+        # @type Offset: Integer
+        # @param Order: 排序方式：asc/desc
+        # @type Order: String
+        # @param By: 排序字段：事件数量：EventCount
+        # @type By: String
+
+        attr_accessor :Filters, :Limit, :Offset, :Order, :By
+        
+        def initialize(filters=nil, limit=nil, offset=nil, order=nil, by=nil)
+          @Filters = filters
+          @Limit = limit
+          @Offset = offset
+          @Order = order
+          @By = by
+        end
+
+        def deserialize(params)
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              runtimefilters_tmp = RunTimeFilters.new
+              runtimefilters_tmp.deserialize(i)
+              @Filters << runtimefilters_tmp
+            end
+          end
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          @Order = params['Order']
+          @By = params['By']
+        end
+      end
+
+      # DescribeVulDefenceEvent返回参数结构体
+      class DescribeVulDefenceEventResponse < TencentCloud::Common::AbstractModel
+        # @param List: 漏洞防御事件列表
+        # @type List: Array
+        # @param TotalCount: 总数量
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :List, :TotalCount, :RequestId
+        
+        def initialize(list=nil, totalcount=nil, requestid=nil)
+          @List = list
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['List'].nil?
+            @List = []
+            params['List'].each do |i|
+              vuldefenceevent_tmp = VulDefenceEvent.new
+              vuldefenceevent_tmp.deserialize(i)
+              @List << vuldefenceevent_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeVulDefenceEventTendency请求参数结构体
+      class DescribeVulDefenceEventTendencyRequest < TencentCloud::Common::AbstractModel
+        # @param StartTime: 开始时间
+        # @type StartTime: String
+        # @param EndTime: 结束时间
+        # @type EndTime: String
+
+        attr_accessor :StartTime, :EndTime
+        
+        def initialize(starttime=nil, endtime=nil)
+          @StartTime = starttime
+          @EndTime = endtime
+        end
+
+        def deserialize(params)
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+        end
+      end
+
+      # DescribeVulDefenceEventTendency返回参数结构体
+      class DescribeVulDefenceEventTendencyResponse < TencentCloud::Common::AbstractModel
+        # @param DefendedList: 漏洞防御事件趋势
+        # @type DefendedList: Array
+        # @param AttackList: 漏洞攻击事件趋势
+        # @type AttackList: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :DefendedList, :AttackList, :RequestId
+        
+        def initialize(defendedlist=nil, attacklist=nil, requestid=nil)
+          @DefendedList = defendedlist
+          @AttackList = attacklist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['DefendedList'].nil?
+            @DefendedList = []
+            params['DefendedList'].each do |i|
+              vuldefenceeventtendency_tmp = VulDefenceEventTendency.new
+              vuldefenceeventtendency_tmp.deserialize(i)
+              @DefendedList << vuldefenceeventtendency_tmp
+            end
+          end
+          unless params['AttackList'].nil?
+            @AttackList = []
+            params['AttackList'].each do |i|
+              vuldefenceeventtendency_tmp = VulDefenceEventTendency.new
+              vuldefenceeventtendency_tmp.deserialize(i)
+              @AttackList << vuldefenceeventtendency_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeVulDefenceHost请求参数结构体
+      class DescribeVulDefenceHostRequest < TencentCloud::Common::AbstractModel
+        # @param Filters: 过滤条件。
+        # <li>Status- String - 是否必填：否 - 插件状态，正常：SUCCESS，异常：FAIL， NO_DEFENCE:未防御</li>
+        # <li>KeyWords- string - 是否必填：否 - 主机名称/IP。</li>
+        # @type Filters: Array
+        # @param Limit: 需要返回的数量，默认为10，最大值为100
+        # @type Limit: Integer
+        # @param Offset: 偏移量，默认为0。
+        # @type Offset: Integer
+        # @param Order: 排序方式：asc/desc
+        # @type Order: String
+        # @param By: 排序字段：更新时间：ModifyTime/首次开启时间：CreateTime
+        # @type By: String
+
+        attr_accessor :Filters, :Limit, :Offset, :Order, :By
+        
+        def initialize(filters=nil, limit=nil, offset=nil, order=nil, by=nil)
+          @Filters = filters
+          @Limit = limit
+          @Offset = offset
+          @Order = order
+          @By = by
+        end
+
+        def deserialize(params)
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              runtimefilters_tmp = RunTimeFilters.new
+              runtimefilters_tmp.deserialize(i)
+              @Filters << runtimefilters_tmp
+            end
+          end
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          @Order = params['Order']
+          @By = params['By']
+        end
+      end
+
+      # DescribeVulDefenceHost返回参数结构体
+      class DescribeVulDefenceHostResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 总数量
+        # @type TotalCount: Integer
+        # @param List: 漏洞防御的主机列表
+        # @type List: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :List, :RequestId
+        
+        def initialize(totalcount=nil, list=nil, requestid=nil)
+          @TotalCount = totalcount
+          @List = list
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['List'].nil?
+            @List = []
+            params['List'].each do |i|
+              vuldefencehost_tmp = VulDefenceHost.new
+              vuldefencehost_tmp.deserialize(i)
+              @List << vuldefencehost_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeVulDefencePlugin请求参数结构体
+      class DescribeVulDefencePluginRequest < TencentCloud::Common::AbstractModel
+        # @param HostID: 主机HostID即quuid
+        # @type HostID: String
+        # @param Limit: 需要返回的数量，默认为10，最大值为100
+        # @type Limit: Integer
+        # @param Offset: 偏移量，默认为0。
+        # @type Offset: Integer
+        # @param Filters: 过滤条件。
+        # <li>Status- String - 是否必填：否 -插件运行状态：注入中:INJECTING，注入成功：SUCCESS，注入失败：FAIL，插件超时：TIMEOUT，插件退出：QUIT</li>
+        # @type Filters: Array
+
+        attr_accessor :HostID, :Limit, :Offset, :Filters
+        
+        def initialize(hostid=nil, limit=nil, offset=nil, filters=nil)
+          @HostID = hostid
+          @Limit = limit
+          @Offset = offset
+          @Filters = filters
+        end
+
+        def deserialize(params)
+          @HostID = params['HostID']
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              runtimefilters_tmp = RunTimeFilters.new
+              runtimefilters_tmp.deserialize(i)
+              @Filters << runtimefilters_tmp
+            end
+          end
+        end
+      end
+
+      # DescribeVulDefencePlugin返回参数结构体
+      class DescribeVulDefencePluginResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 总数量
+        # @type TotalCount: Integer
+        # @param List: 漏洞防御插件列表
+        # @type List: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :List, :RequestId
+        
+        def initialize(totalcount=nil, list=nil, requestid=nil)
+          @TotalCount = totalcount
+          @List = list
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['List'].nil?
+            @List = []
+            params['List'].each do |i|
+              vuldefenceplugin_tmp = VulDefencePlugin.new
+              vuldefenceplugin_tmp.deserialize(i)
+              @List << vuldefenceplugin_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeVulDefenceSetting请求参数结构体
+      class DescribeVulDefenceSettingRequest < TencentCloud::Common::AbstractModel
+
+        
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeVulDefenceSetting返回参数结构体
+      class DescribeVulDefenceSettingResponse < TencentCloud::Common::AbstractModel
+        # @param IsEnabled: 是否开启:0: 关闭 1:开启
+        # @type IsEnabled: Integer
+        # @param Scope: 漏洞防御主机范围: 0:自选主机节点，1:全部
+        # @type Scope: Integer
+        # @param HostCount: 漏洞防御主机数量
+        # @type HostCount: Integer
+        # @param ExceptionHostCount: 开启漏洞防御异常主机数量
+        # @type ExceptionHostCount: Integer
+        # @param HostIDs: 自选漏洞防御主机
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HostIDs: Array
+        # @param HostTotalCount: 开通容器安全的主机总数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HostTotalCount: Integer
+        # @param SupportDefenseVulCount: 支持防御的漏洞数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SupportDefenseVulCount: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :IsEnabled, :Scope, :HostCount, :ExceptionHostCount, :HostIDs, :HostTotalCount, :SupportDefenseVulCount, :RequestId
+        
+        def initialize(isenabled=nil, scope=nil, hostcount=nil, exceptionhostcount=nil, hostids=nil, hosttotalcount=nil, supportdefensevulcount=nil, requestid=nil)
+          @IsEnabled = isenabled
+          @Scope = scope
+          @HostCount = hostcount
+          @ExceptionHostCount = exceptionhostcount
+          @HostIDs = hostids
+          @HostTotalCount = hosttotalcount
+          @SupportDefenseVulCount = supportdefensevulcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @IsEnabled = params['IsEnabled']
+          @Scope = params['Scope']
+          @HostCount = params['HostCount']
+          @ExceptionHostCount = params['ExceptionHostCount']
+          @HostIDs = params['HostIDs']
+          @HostTotalCount = params['HostTotalCount']
+          @SupportDefenseVulCount = params['SupportDefenseVulCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeVulDetail请求参数结构体
+      class DescribeVulDetailRequest < TencentCloud::Common::AbstractModel
+        # @param PocID: 漏洞PocID
+        # @type PocID: String
+
+        attr_accessor :PocID
+        
+        def initialize(pocid=nil)
+          @PocID = pocid
+        end
+
+        def deserialize(params)
+          @PocID = params['PocID']
+        end
+      end
+
+      # DescribeVulDetail返回参数结构体
+      class DescribeVulDetailResponse < TencentCloud::Common::AbstractModel
+        # @param VulInfo: 漏洞详情信息
+        # @type VulInfo: :class:`Tencentcloud::Tcss.v20201101.models.VulDetailInfo`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :VulInfo, :RequestId
+        
+        def initialize(vulinfo=nil, requestid=nil)
+          @VulInfo = vulinfo
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['VulInfo'].nil?
+            @VulInfo = VulDetailInfo.new
+            @VulInfo.deserialize(params['VulInfo'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeVulIgnoreLocalImageList请求参数结构体
+      class DescribeVulIgnoreLocalImageListRequest < TencentCloud::Common::AbstractModel
+        # @param PocID: 漏洞PocID
+        # @type PocID: String
+        # @param Limit: 需要返回的数量，默认为10，最大值为100
+        # @type Limit: Integer
+        # @param Offset: 偏移量，默认为0。
+        # @type Offset: Integer
+        # @param Order: 排序方式:DESC,ACS
+        # @type Order: String
+        # @param By: 排序字段 ImageSize
+        # @type By: String
+
+        attr_accessor :PocID, :Limit, :Offset, :Order, :By
+        
+        def initialize(pocid=nil, limit=nil, offset=nil, order=nil, by=nil)
+          @PocID = pocid
+          @Limit = limit
+          @Offset = offset
+          @Order = order
+          @By = by
+        end
+
+        def deserialize(params)
+          @PocID = params['PocID']
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          @Order = params['Order']
+          @By = params['By']
+        end
+      end
+
+      # DescribeVulIgnoreLocalImageList返回参数结构体
+      class DescribeVulIgnoreLocalImageListResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 总数量
+        # @type TotalCount: Integer
+        # @param List: 镜像列表
+        # @type List: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :List, :RequestId
+        
+        def initialize(totalcount=nil, list=nil, requestid=nil)
+          @TotalCount = totalcount
+          @List = list
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['List'].nil?
+            @List = []
+            params['List'].each do |i|
+              vulignorelocalimage_tmp = VulIgnoreLocalImage.new
+              vulignorelocalimage_tmp.deserialize(i)
+              @List << vulignorelocalimage_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeVulIgnoreRegistryImageList请求参数结构体
+      class DescribeVulIgnoreRegistryImageListRequest < TencentCloud::Common::AbstractModel
+        # @param PocID: 漏洞PocID
+        # @type PocID: String
+        # @param Limit: 需要返回的数量，默认为10，最大值为100
+        # @type Limit: Integer
+        # @param Offset: 偏移量，默认为0。
+        # @type Offset: Integer
+
+        attr_accessor :PocID, :Limit, :Offset
+        
+        def initialize(pocid=nil, limit=nil, offset=nil)
+          @PocID = pocid
+          @Limit = limit
+          @Offset = offset
+        end
+
+        def deserialize(params)
+          @PocID = params['PocID']
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+        end
+      end
+
+      # DescribeVulIgnoreRegistryImageList返回参数结构体
+      class DescribeVulIgnoreRegistryImageListResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 总数量
+        # @type TotalCount: Integer
+        # @param List: 镜像列表
+        # @type List: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :List, :RequestId
+        
+        def initialize(totalcount=nil, list=nil, requestid=nil)
+          @TotalCount = totalcount
+          @List = list
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['List'].nil?
+            @List = []
+            params['List'].each do |i|
+              vulignoreregistryimage_tmp = VulIgnoreRegistryImage.new
+              vulignoreregistryimage_tmp.deserialize(i)
+              @List << vulignoreregistryimage_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeVulImageList请求参数结构体
+      class DescribeVulImageListRequest < TencentCloud::Common::AbstractModel
+        # @param PocID: 漏洞PocID
+        # @type PocID: String
+        # @param Limit: 需要返回的数量，默认为10，最大值为100
+        # @type Limit: Integer
+        # @param Offset: 偏移量，默认为0。
+        # @type Offset: Integer
+        # @param Filters: 过滤条件。
+        # <li>OnlyAffectedNewestImage- Bool- 是否必填：否 - 仅展示影响最新版本镜像的漏洞</li>
+        # <li>ImageID- string - 是否必填：否 - 镜像ID</li>
+        # <li>ImageName- String -是否必填: 否 - 镜像名称</li>
+        # <li>HostIP- string -是否必填: 否 - 内网IP</li>
+        # <li>PublicIP- string -是否必填: 否 - 外网IP</li>
+        # <li>ComponentName- string -是否必填: 否 - 组件名称</li>
+        # <li>ComponentVersion- string -是否必填: 否 - 组件版本</li>
+        # <li>HostName- string -是否必填: 否 - 主机名称</li>
+        # @type Filters: Array
+        # @param Order: 排序方式
+        # @type Order: String
+        # @param By: 排序字段
+        # @type By: String
+
+        attr_accessor :PocID, :Limit, :Offset, :Filters, :Order, :By
+        
+        def initialize(pocid=nil, limit=nil, offset=nil, filters=nil, order=nil, by=nil)
+          @PocID = pocid
+          @Limit = limit
+          @Offset = offset
+          @Filters = filters
+          @Order = order
+          @By = by
+        end
+
+        def deserialize(params)
+          @PocID = params['PocID']
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              runtimefilters_tmp = RunTimeFilters.new
+              runtimefilters_tmp.deserialize(i)
+              @Filters << runtimefilters_tmp
+            end
+          end
+          @Order = params['Order']
+          @By = params['By']
+        end
+      end
+
+      # DescribeVulImageList返回参数结构体
+      class DescribeVulImageListResponse < TencentCloud::Common::AbstractModel
+        # @param List: 受影响的镜像列表
+        # @type List: Array
+        # @param TotalCount: 镜像总数
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :List, :TotalCount, :RequestId
+        
+        def initialize(list=nil, totalcount=nil, requestid=nil)
+          @List = list
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['List'].nil?
+            @List = []
+            params['List'].each do |i|
+              vulaffectedimageinfo_tmp = VulAffectedImageInfo.new
+              vulaffectedimageinfo_tmp.deserialize(i)
+              @List << vulaffectedimageinfo_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeVulImageSummary请求参数结构体
+      class DescribeVulImageSummaryRequest < TencentCloud::Common::AbstractModel
+
+        
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeVulImageSummary返回参数结构体
+      class DescribeVulImageSummaryResponse < TencentCloud::Common::AbstractModel
+        # @param SeriousVulImageCount: 受严重或高危漏洞影响的镜像数
+        # @type SeriousVulImageCount: Integer
+        # @param ScannedImageCount: 已扫描的镜像数
+        # @type ScannedImageCount: Integer
+        # @param VulTotalCount: 漏洞总数量
+        # @type VulTotalCount: Integer
+        # @param SysTemVulCount: 系统漏洞数
+        # @type SysTemVulCount: Integer
+        # @param WebVulCount: web应用漏洞数
+        # @type WebVulCount: Integer
+        # @param AllAuthorizedImageCount: 已授权镜像数
+        # @type AllAuthorizedImageCount: Integer
+        # @param EmergencyVulCount: 应急漏洞数
+        # @type EmergencyVulCount: Integer
+        # @param SupportVulTotalCount: 支持扫描的漏洞总数量
+        # @type SupportVulTotalCount: Integer
+        # @param VulLibraryUpdateTime: 漏洞库更新时间
+        # @type VulLibraryUpdateTime: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :SeriousVulImageCount, :ScannedImageCount, :VulTotalCount, :SysTemVulCount, :WebVulCount, :AllAuthorizedImageCount, :EmergencyVulCount, :SupportVulTotalCount, :VulLibraryUpdateTime, :RequestId
+        
+        def initialize(seriousvulimagecount=nil, scannedimagecount=nil, vultotalcount=nil, systemvulcount=nil, webvulcount=nil, allauthorizedimagecount=nil, emergencyvulcount=nil, supportvultotalcount=nil, vullibraryupdatetime=nil, requestid=nil)
+          @SeriousVulImageCount = seriousvulimagecount
+          @ScannedImageCount = scannedimagecount
+          @VulTotalCount = vultotalcount
+          @SysTemVulCount = systemvulcount
+          @WebVulCount = webvulcount
+          @AllAuthorizedImageCount = allauthorizedimagecount
+          @EmergencyVulCount = emergencyvulcount
+          @SupportVulTotalCount = supportvultotalcount
+          @VulLibraryUpdateTime = vullibraryupdatetime
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @SeriousVulImageCount = params['SeriousVulImageCount']
+          @ScannedImageCount = params['ScannedImageCount']
+          @VulTotalCount = params['VulTotalCount']
+          @SysTemVulCount = params['SysTemVulCount']
+          @WebVulCount = params['WebVulCount']
+          @AllAuthorizedImageCount = params['AllAuthorizedImageCount']
+          @EmergencyVulCount = params['EmergencyVulCount']
+          @SupportVulTotalCount = params['SupportVulTotalCount']
+          @VulLibraryUpdateTime = params['VulLibraryUpdateTime']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeVulLevelImageSummary请求参数结构体
+      class DescribeVulLevelImageSummaryRequest < TencentCloud::Common::AbstractModel
+
+        
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeVulLevelImageSummary返回参数结构体
+      class DescribeVulLevelImageSummaryResponse < TencentCloud::Common::AbstractModel
+        # @param HighLevelVulLocalImagePercent: 高危漏洞最新本地镜像占比
+        # @type HighLevelVulLocalImagePercent: Float
+        # @param MediumLevelVulLocalImagePercent: 中危漏洞最新本地镜像占比
+        # @type MediumLevelVulLocalImagePercent: Float
+        # @param LowLevelVulLocalImagePercent: 低危漏洞最新本地镜像占比
+        # @type LowLevelVulLocalImagePercent: Float
+        # @param CriticalLevelVulLocalImagePercent: 严重漏洞最新本地镜像占比
+        # @type CriticalLevelVulLocalImagePercent: Float
+        # @param LocalNewestImageCount: 影响的最新版本本地镜像数
+        # @type LocalNewestImageCount: Integer
+        # @param RegistryNewestImageCount: 影响的最新版本仓库镜像数
+        # @type RegistryNewestImageCount: Integer
+        # @param HighLevelVulRegistryImagePercent: 高危漏洞最新仓库镜像占比
+        # @type HighLevelVulRegistryImagePercent: Float
+        # @param MediumLevelVulRegistryImagePercent: 中危漏洞最新仓库镜像占比
+        # @type MediumLevelVulRegistryImagePercent: Float
+        # @param LowLevelVulRegistryImagePercent: 低危漏洞最新仓库镜像占比
+        # @type LowLevelVulRegistryImagePercent: Float
+        # @param CriticalLevelVulRegistryImagePercent: 严重漏洞最新仓库镜像占比
+        # @type CriticalLevelVulRegistryImagePercent: Float
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :HighLevelVulLocalImagePercent, :MediumLevelVulLocalImagePercent, :LowLevelVulLocalImagePercent, :CriticalLevelVulLocalImagePercent, :LocalNewestImageCount, :RegistryNewestImageCount, :HighLevelVulRegistryImagePercent, :MediumLevelVulRegistryImagePercent, :LowLevelVulRegistryImagePercent, :CriticalLevelVulRegistryImagePercent, :RequestId
+        
+        def initialize(highlevelvullocalimagepercent=nil, mediumlevelvullocalimagepercent=nil, lowlevelvullocalimagepercent=nil, criticallevelvullocalimagepercent=nil, localnewestimagecount=nil, registrynewestimagecount=nil, highlevelvulregistryimagepercent=nil, mediumlevelvulregistryimagepercent=nil, lowlevelvulregistryimagepercent=nil, criticallevelvulregistryimagepercent=nil, requestid=nil)
+          @HighLevelVulLocalImagePercent = highlevelvullocalimagepercent
+          @MediumLevelVulLocalImagePercent = mediumlevelvullocalimagepercent
+          @LowLevelVulLocalImagePercent = lowlevelvullocalimagepercent
+          @CriticalLevelVulLocalImagePercent = criticallevelvullocalimagepercent
+          @LocalNewestImageCount = localnewestimagecount
+          @RegistryNewestImageCount = registrynewestimagecount
+          @HighLevelVulRegistryImagePercent = highlevelvulregistryimagepercent
+          @MediumLevelVulRegistryImagePercent = mediumlevelvulregistryimagepercent
+          @LowLevelVulRegistryImagePercent = lowlevelvulregistryimagepercent
+          @CriticalLevelVulRegistryImagePercent = criticallevelvulregistryimagepercent
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @HighLevelVulLocalImagePercent = params['HighLevelVulLocalImagePercent']
+          @MediumLevelVulLocalImagePercent = params['MediumLevelVulLocalImagePercent']
+          @LowLevelVulLocalImagePercent = params['LowLevelVulLocalImagePercent']
+          @CriticalLevelVulLocalImagePercent = params['CriticalLevelVulLocalImagePercent']
+          @LocalNewestImageCount = params['LocalNewestImageCount']
+          @RegistryNewestImageCount = params['RegistryNewestImageCount']
+          @HighLevelVulRegistryImagePercent = params['HighLevelVulRegistryImagePercent']
+          @MediumLevelVulRegistryImagePercent = params['MediumLevelVulRegistryImagePercent']
+          @LowLevelVulRegistryImagePercent = params['LowLevelVulRegistryImagePercent']
+          @CriticalLevelVulRegistryImagePercent = params['CriticalLevelVulRegistryImagePercent']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeVulLevelSummary请求参数结构体
+      class DescribeVulLevelSummaryRequest < TencentCloud::Common::AbstractModel
+        # @param CategoryType: 漏洞分类: SYSTEM:系统漏洞 WEB:web应用漏洞 EMERGENCY:应急漏洞
+        # @type CategoryType: String
+
+        attr_accessor :CategoryType
+        
+        def initialize(categorytype=nil)
+          @CategoryType = categorytype
+        end
+
+        def deserialize(params)
+          @CategoryType = params['CategoryType']
+        end
+      end
+
+      # DescribeVulLevelSummary返回参数结构体
+      class DescribeVulLevelSummaryResponse < TencentCloud::Common::AbstractModel
+        # @param HighLevelVulCount: 高危漏洞数
+        # @type HighLevelVulCount: Integer
+        # @param MediumLevelVulCount: 中危漏洞数
+        # @type MediumLevelVulCount: Integer
+        # @param LowLevelVulCount: 低危漏洞数
+        # @type LowLevelVulCount: Integer
+        # @param CriticalLevelVulCount: 严重漏洞数
+        # @type CriticalLevelVulCount: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :HighLevelVulCount, :MediumLevelVulCount, :LowLevelVulCount, :CriticalLevelVulCount, :RequestId
+        
+        def initialize(highlevelvulcount=nil, mediumlevelvulcount=nil, lowlevelvulcount=nil, criticallevelvulcount=nil, requestid=nil)
+          @HighLevelVulCount = highlevelvulcount
+          @MediumLevelVulCount = mediumlevelvulcount
+          @LowLevelVulCount = lowlevelvulcount
+          @CriticalLevelVulCount = criticallevelvulcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @HighLevelVulCount = params['HighLevelVulCount']
+          @MediumLevelVulCount = params['MediumLevelVulCount']
+          @LowLevelVulCount = params['LowLevelVulCount']
+          @CriticalLevelVulCount = params['CriticalLevelVulCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeVulScanAuthorizedImageSummary请求参数结构体
+      class DescribeVulScanAuthorizedImageSummaryRequest < TencentCloud::Common::AbstractModel
+
+        
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeVulScanAuthorizedImageSummary返回参数结构体
+      class DescribeVulScanAuthorizedImageSummaryResponse < TencentCloud::Common::AbstractModel
+        # @param AllAuthorizedImageCount: 全部已授权的本地镜像数
+        # @type AllAuthorizedImageCount: Integer
+        # @param UnScanAuthorizedImageCount: 已授权未扫描的本地镜像数
+        # @type UnScanAuthorizedImageCount: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :AllAuthorizedImageCount, :UnScanAuthorizedImageCount, :RequestId
+        
+        def initialize(allauthorizedimagecount=nil, unscanauthorizedimagecount=nil, requestid=nil)
+          @AllAuthorizedImageCount = allauthorizedimagecount
+          @UnScanAuthorizedImageCount = unscanauthorizedimagecount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @AllAuthorizedImageCount = params['AllAuthorizedImageCount']
+          @UnScanAuthorizedImageCount = params['UnScanAuthorizedImageCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeVulScanInfo请求参数结构体
+      class DescribeVulScanInfoRequest < TencentCloud::Common::AbstractModel
+        # @param LocalTaskID: 本地镜像漏洞扫描任务ID，无则返回最近一次的漏洞任务扫描
+        # @type LocalTaskID: Integer
+        # @param RegistryTaskID: 仓库镜像漏洞扫描任务ID，无则返回最近一次的漏洞任务扫描
+        # @type RegistryTaskID: Integer
+
+        attr_accessor :LocalTaskID, :RegistryTaskID
+        
+        def initialize(localtaskid=nil, registrytaskid=nil)
+          @LocalTaskID = localtaskid
+          @RegistryTaskID = registrytaskid
+        end
+
+        def deserialize(params)
+          @LocalTaskID = params['LocalTaskID']
+          @RegistryTaskID = params['RegistryTaskID']
+        end
+      end
+
+      # DescribeVulScanInfo返回参数结构体
+      class DescribeVulScanInfoResponse < TencentCloud::Common::AbstractModel
+        # @param LocalImageScanCount: 本次扫描的本地镜像总数
+        # @type LocalImageScanCount: Integer
+        # @param IgnoreVulCount: 忽略的漏洞数量
+        # @type IgnoreVulCount: Integer
+        # @param ScanStartTime: 漏洞扫描的开始时间
+        # @type ScanStartTime: String
+        # @param ScanEndTime: 漏洞扫描的结束时间
+        # @type ScanEndTime: String
+        # @param FoundRiskImageCount: 发现风险镜像数量
+        # @type FoundRiskImageCount: Integer
+        # @param FoundVulCount: 本地发现漏洞数量
+        # @type FoundVulCount: Integer
+        # @param ScanProgress: 扫描进度
+        # @type ScanProgress: Float
+        # @param RegistryImageScanCount: 本次扫描的仓库镜像总数
+        # @type RegistryImageScanCount: Integer
+        # @param LocalTaskID: 本地镜像最近一次的漏洞任务扫描ID
+        # @type LocalTaskID: Integer
+        # @param Status: 扫描状态:NOT_SCAN:未扫描，SCANNING:扫描中,SCANNED:完成，CANCELED：扫描停止
+        # @type Status: String
+        # @param RemainingTime: 剩余时间，秒
+        # @type RemainingTime: Float
+        # @param RegistryTaskID: 仓库镜像最近一次的漏洞任务扫描ID
+        # @type RegistryTaskID: Integer
+        # @param RegistryFoundVulCount: 仓库发现漏洞数量
+        # @type RegistryFoundVulCount: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :LocalImageScanCount, :IgnoreVulCount, :ScanStartTime, :ScanEndTime, :FoundRiskImageCount, :FoundVulCount, :ScanProgress, :RegistryImageScanCount, :LocalTaskID, :Status, :RemainingTime, :RegistryTaskID, :RegistryFoundVulCount, :RequestId
+        
+        def initialize(localimagescancount=nil, ignorevulcount=nil, scanstarttime=nil, scanendtime=nil, foundriskimagecount=nil, foundvulcount=nil, scanprogress=nil, registryimagescancount=nil, localtaskid=nil, status=nil, remainingtime=nil, registrytaskid=nil, registryfoundvulcount=nil, requestid=nil)
+          @LocalImageScanCount = localimagescancount
+          @IgnoreVulCount = ignorevulcount
+          @ScanStartTime = scanstarttime
+          @ScanEndTime = scanendtime
+          @FoundRiskImageCount = foundriskimagecount
+          @FoundVulCount = foundvulcount
+          @ScanProgress = scanprogress
+          @RegistryImageScanCount = registryimagescancount
+          @LocalTaskID = localtaskid
+          @Status = status
+          @RemainingTime = remainingtime
+          @RegistryTaskID = registrytaskid
+          @RegistryFoundVulCount = registryfoundvulcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @LocalImageScanCount = params['LocalImageScanCount']
+          @IgnoreVulCount = params['IgnoreVulCount']
+          @ScanStartTime = params['ScanStartTime']
+          @ScanEndTime = params['ScanEndTime']
+          @FoundRiskImageCount = params['FoundRiskImageCount']
+          @FoundVulCount = params['FoundVulCount']
+          @ScanProgress = params['ScanProgress']
+          @RegistryImageScanCount = params['RegistryImageScanCount']
+          @LocalTaskID = params['LocalTaskID']
+          @Status = params['Status']
+          @RemainingTime = params['RemainingTime']
+          @RegistryTaskID = params['RegistryTaskID']
+          @RegistryFoundVulCount = params['RegistryFoundVulCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeVulScanLocalImageList请求参数结构体
+      class DescribeVulScanLocalImageListRequest < TencentCloud::Common::AbstractModel
+        # @param TaskID: 漏洞扫描任务ID
+        # @type TaskID: Integer
+        # @param Filters: 过滤条件。
+        # <li>OnlyAffectedNewestImage- Bool- 是否必填：否 - 仅展示影响最新版本镜像的漏洞</li>
+        # <li>ImageID- string - 是否必填：否 - 镜像ID</li>
+        # <li>ImageName- String -是否必填: 否 - 镜像名称</li>
+        # <li>ScanStatus- string -是否必填: 否 - 检测状态。WAIT_SCAN：待检测，SCANNING：检查中，SCANNED：检查完成，SCAN_ERR：检查失败，CANCELED：检测停止</li>
+        # @type Filters: Array
+        # @param Limit: 需要返回的数量，默认为10，最大值为100
+        # @type Limit: Integer
+        # @param Offset: 偏移量，默认为0。
+        # @type Offset: Integer
+        # @param Order: 排序方式
+        # @type Order: String
+        # @param By: 排序字段
+        # @type By: String
+
+        attr_accessor :TaskID, :Filters, :Limit, :Offset, :Order, :By
+        
+        def initialize(taskid=nil, filters=nil, limit=nil, offset=nil, order=nil, by=nil)
+          @TaskID = taskid
+          @Filters = filters
+          @Limit = limit
+          @Offset = offset
+          @Order = order
+          @By = by
+        end
+
+        def deserialize(params)
+          @TaskID = params['TaskID']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              runtimefilters_tmp = RunTimeFilters.new
+              runtimefilters_tmp.deserialize(i)
+              @Filters << runtimefilters_tmp
+            end
+          end
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          @Order = params['Order']
+          @By = params['By']
+        end
+      end
+
+      # DescribeVulScanLocalImageList返回参数结构体
+      class DescribeVulScanLocalImageListResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 镜像总数
+        # @type TotalCount: Integer
+        # @param List: 镜像列表
+        # @type List: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :List, :RequestId
+        
+        def initialize(totalcount=nil, list=nil, requestid=nil)
+          @TotalCount = totalcount
+          @List = list
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['List'].nil?
+            @List = []
+            params['List'].each do |i|
+              vulscanimageinfo_tmp = VulScanImageInfo.new
+              vulscanimageinfo_tmp.deserialize(i)
+              @List << vulscanimageinfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeVulSummary请求参数结构体
+      class DescribeVulSummaryRequest < TencentCloud::Common::AbstractModel
+        # @param Filters: 过滤条件。
+        # <li>OnlyAffectedNewestImage- string- 是否必填：否 - 仅展示影响最新版本镜像的漏洞true,false</li>
+        # <li>OnlyAffectedContainer-string- 是否必填：否 - 仅展示影响容器的漏洞,true,false</li>
+        # <li>CategoryType- string - 是否必填：否 - 漏洞分类: SYSTEM:系统漏洞 WEB:web应用漏洞 ALL:全部漏洞</li>
+        # @type Filters: Array
+
+        attr_accessor :Filters
+        
+        def initialize(filters=nil)
+          @Filters = filters
+        end
+
+        def deserialize(params)
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              runtimefilters_tmp = RunTimeFilters.new
+              runtimefilters_tmp.deserialize(i)
+              @Filters << runtimefilters_tmp
+            end
+          end
+        end
+      end
+
+      # DescribeVulSummary返回参数结构体
+      class DescribeVulSummaryResponse < TencentCloud::Common::AbstractModel
+        # @param VulTotalCount: 漏洞总数量
+        # @type VulTotalCount: Integer
+        # @param SeriousVulCount: 严重及高危漏洞数量
+        # @type SeriousVulCount: Integer
+        # @param SuggestVulCount: 重点关注漏洞数量
+        # @type SuggestVulCount: Integer
+        # @param PocExpLevelVulCount: 有Poc或者Exp的漏洞数量
+        # @type PocExpLevelVulCount: Integer
+        # @param RemoteExpLevelVulCount: 有远程Exp的漏洞数量
+        # @type RemoteExpLevelVulCount: Integer
+        # @param SeriousVulNewestImageCount: 受严重或高危漏洞影响的最新版本镜像数
+        # @type SeriousVulNewestImageCount: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :VulTotalCount, :SeriousVulCount, :SuggestVulCount, :PocExpLevelVulCount, :RemoteExpLevelVulCount, :SeriousVulNewestImageCount, :RequestId
+        
+        def initialize(vultotalcount=nil, seriousvulcount=nil, suggestvulcount=nil, pocexplevelvulcount=nil, remoteexplevelvulcount=nil, seriousvulnewestimagecount=nil, requestid=nil)
+          @VulTotalCount = vultotalcount
+          @SeriousVulCount = seriousvulcount
+          @SuggestVulCount = suggestvulcount
+          @PocExpLevelVulCount = pocexplevelvulcount
+          @RemoteExpLevelVulCount = remoteexplevelvulcount
+          @SeriousVulNewestImageCount = seriousvulnewestimagecount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @VulTotalCount = params['VulTotalCount']
+          @SeriousVulCount = params['SeriousVulCount']
+          @SuggestVulCount = params['SuggestVulCount']
+          @PocExpLevelVulCount = params['PocExpLevelVulCount']
+          @RemoteExpLevelVulCount = params['RemoteExpLevelVulCount']
+          @SeriousVulNewestImageCount = params['SeriousVulNewestImageCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeVulTendency请求参数结构体
+      class DescribeVulTendencyRequest < TencentCloud::Common::AbstractModel
+        # @param StartTime: 开始时间
+        # @type StartTime: String
+        # @param EndTime: 结束时间
+        # @type EndTime: String
+        # @param SphereOfInfluence: 枚举类型：
+        # LATEST：最新版本
+        # CONTAINER: 运行容器
+        # @type SphereOfInfluence: String
+
+        attr_accessor :StartTime, :EndTime, :SphereOfInfluence
+        
+        def initialize(starttime=nil, endtime=nil, sphereofinfluence=nil)
+          @StartTime = starttime
+          @EndTime = endtime
+          @SphereOfInfluence = sphereofinfluence
+        end
+
+        def deserialize(params)
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @SphereOfInfluence = params['SphereOfInfluence']
+        end
+      end
+
+      # DescribeVulTendency返回参数结构体
+      class DescribeVulTendencyResponse < TencentCloud::Common::AbstractModel
+        # @param VulTendencySet: 漏洞趋势列表
+        # @type VulTendencySet: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :VulTendencySet, :RequestId
+        
+        def initialize(vultendencyset=nil, requestid=nil)
+          @VulTendencySet = vultendencyset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['VulTendencySet'].nil?
+            @VulTendencySet = []
+            params['VulTendencySet'].each do |i|
+              vultendencyinfo_tmp = VulTendencyInfo.new
+              vultendencyinfo_tmp.deserialize(i)
+              @VulTendencySet << vultendencyinfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeVulTopRanking请求参数结构体
+      class DescribeVulTopRankingRequest < TencentCloud::Common::AbstractModel
+        # @param CategoryType: 漏洞分类: SYSTEM:系统漏洞 WEB:web应用漏洞 EMERGENCY:应急漏洞
+        # @type CategoryType: String
+
+        attr_accessor :CategoryType
+        
+        def initialize(categorytype=nil)
+          @CategoryType = categorytype
+        end
+
+        def deserialize(params)
+          @CategoryType = params['CategoryType']
+        end
+      end
+
+      # DescribeVulTopRanking返回参数结构体
+      class DescribeVulTopRankingResponse < TencentCloud::Common::AbstractModel
+        # @param List: 漏洞Top排名信息列表
+        # @type List: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :List, :RequestId
+        
+        def initialize(list=nil, requestid=nil)
+          @List = list
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['List'].nil?
+            @List = []
+            params['List'].each do |i|
+              vultoprankinginfo_tmp = VulTopRankingInfo.new
+              vultoprankinginfo_tmp.deserialize(i)
+              @List << vultoprankinginfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeWarningRules请求参数结构体
       class DescribeWarningRulesRequest < TencentCloud::Common::AbstractModel
 
@@ -10907,6 +17775,172 @@ module TencentCloud
             end
           end
           @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeWebVulList请求参数结构体
+      class DescribeWebVulListRequest < TencentCloud::Common::AbstractModel
+        # @param Limit: 需要返回的数量，默认为10，最大值为100
+        # @type Limit: Integer
+        # @param Offset: 偏移量，默认为0。
+        # @type Offset: Integer
+        # @param Filters: 过滤条件。
+        # <li>OnlyAffectedContainer- string - 是否必填：否 - 仅展示影响容器的漏洞true,false</li>
+        # <li>OnlyAffectedNewestImage-string - 是否必填：否 - 仅展示影响最新版本镜像的漏洞true,false</li>
+        # <li>Level- String - 是否必填：否 - 威胁等级，CRITICAL:严重 HIGH:高/MIDDLE:中/LOW:低</li>
+        # <li>Tags- string - 是否必填：否 - 漏洞标签，POC，EXP。</li>
+        # <li>CanBeFixed- string - 是否必填：否 - 是否可修复true,false。</li>
+        # <li>CVEID- string - 是否必填：否 - CVE编号</li>
+        # <li>ImageID- string - 是否必填：否 - 镜像ID</li>
+        # <li>ImageName- String -是否必填: 否 - 镜像名称</li>
+        # <li>ContainerID- string -是否必填: 否 - 容器ID</li>
+        # <li>ContainerName- string -是否必填: 否 - 容器名称</li>
+        # <li>ComponentName- string -是否必填: 否 - 组件名称</li>
+        # <li>ComponentVersion- string -是否必填: 否 - 组件版本</li>
+        # <li>Name- string -是否必填: 否 - 漏洞名称</li>
+        # <li>FocusOnType - string - 是否必填：否 -关注紧急度类型 。ALL :全部，SERIOUS_LEVEL： 严重和高危 ，IS_SUGGEST： 重点关注，POC_EXP 有Poc或Exp ，NETWORK_EXP: 远程Exp</li>
+        # @type Filters: Array
+        # @param Order: 排序方式
+        # @type Order: String
+        # @param By: 排序字段
+        # @type By: String
+
+        attr_accessor :Limit, :Offset, :Filters, :Order, :By
+        
+        def initialize(limit=nil, offset=nil, filters=nil, order=nil, by=nil)
+          @Limit = limit
+          @Offset = offset
+          @Filters = filters
+          @Order = order
+          @By = by
+        end
+
+        def deserialize(params)
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              runtimefilters_tmp = RunTimeFilters.new
+              runtimefilters_tmp.deserialize(i)
+              @Filters << runtimefilters_tmp
+            end
+          end
+          @Order = params['Order']
+          @By = params['By']
+        end
+      end
+
+      # DescribeWebVulList返回参数结构体
+      class DescribeWebVulListResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 漏洞总数
+        # @type TotalCount: Integer
+        # @param List: 漏洞列表
+        # @type List: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :List, :RequestId
+        
+        def initialize(totalcount=nil, list=nil, requestid=nil)
+          @TotalCount = totalcount
+          @List = list
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['List'].nil?
+            @List = []
+            params['List'].each do |i|
+              vulinfo_tmp = VulInfo.new
+              vulinfo_tmp.deserialize(i)
+              @List << vulinfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 应急漏洞列表信息
+      class EmergencyVulInfo < TencentCloud::Common::AbstractModel
+        # @param Name: 漏洞名称
+        # @type Name: String
+        # @param Tags: 漏洞标签
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Tags: Array
+        # @param CVSSV3Score: CVSS V3分数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CVSSV3Score: Float
+        # @param Level: 风险等级
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Level: String
+        # @param CVEID: CVE编号
+        # @type CVEID: String
+        # @param Category: 漏洞类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Category: String
+        # @param SubmitTime: 漏洞披露时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SubmitTime: String
+        # @param LatestFoundTime: 最近发现时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LatestFoundTime: String
+        # @param Status: 应急漏洞风险情况：NOT_SCAN：未扫描，SCANNING：扫描中，SCANNED_NOT_RISK：已扫描，暂未风险 ，SCANNED_RISK：已扫描存在风险
+        # @type Status: String
+        # @param ID: 漏洞ID
+        # @type ID: Integer
+        # @param PocID: 漏洞PocID
+        # @type PocID: String
+        # @param DefenceStatus: 防御状态，NO_DEFENDED:未防御，DEFENDED:已防御
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DefenceStatus: String
+        # @param DefenceScope: 漏洞防御主机范围: MANUAL:自选主机节点，ALL:全部
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DefenceScope: String
+        # @param DefenceHostCount: 漏洞防御主机数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DefenceHostCount: Integer
+        # @param DefendedCount: 已防御攻击次数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DefendedCount: Integer
+
+        attr_accessor :Name, :Tags, :CVSSV3Score, :Level, :CVEID, :Category, :SubmitTime, :LatestFoundTime, :Status, :ID, :PocID, :DefenceStatus, :DefenceScope, :DefenceHostCount, :DefendedCount
+        
+        def initialize(name=nil, tags=nil, cvssv3score=nil, level=nil, cveid=nil, category=nil, submittime=nil, latestfoundtime=nil, status=nil, id=nil, pocid=nil, defencestatus=nil, defencescope=nil, defencehostcount=nil, defendedcount=nil)
+          @Name = name
+          @Tags = tags
+          @CVSSV3Score = cvssv3score
+          @Level = level
+          @CVEID = cveid
+          @Category = category
+          @SubmitTime = submittime
+          @LatestFoundTime = latestfoundtime
+          @Status = status
+          @ID = id
+          @PocID = pocid
+          @DefenceStatus = defencestatus
+          @DefenceScope = defencescope
+          @DefenceHostCount = defencehostcount
+          @DefendedCount = defendedcount
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Tags = params['Tags']
+          @CVSSV3Score = params['CVSSV3Score']
+          @Level = params['Level']
+          @CVEID = params['CVEID']
+          @Category = params['Category']
+          @SubmitTime = params['SubmitTime']
+          @LatestFoundTime = params['LatestFoundTime']
+          @Status = params['Status']
+          @ID = params['ID']
+          @PocID = params['PocID']
+          @DefenceStatus = params['DefenceStatus']
+          @DefenceScope = params['DefenceScope']
+          @DefenceHostCount = params['DefenceHostCount']
+          @DefendedCount = params['DefendedCount']
         end
       end
 
@@ -11073,6 +18107,34 @@ module TencentCloud
         end
       end
 
+      # 待处理逃逸事件趋势
+      class EscapeEventTendencyInfo < TencentCloud::Common::AbstractModel
+        # @param RiskContainerEventCount: 待处理风险容器事件总数
+        # @type RiskContainerEventCount: Integer
+        # @param ProcessPrivilegeEventCount: 待处理程序特权事件总数
+        # @type ProcessPrivilegeEventCount: Integer
+        # @param ContainerEscapeEventCount: 待处理容器逃逸事件总数
+        # @type ContainerEscapeEventCount: Integer
+        # @param Date: 日期
+        # @type Date: String
+
+        attr_accessor :RiskContainerEventCount, :ProcessPrivilegeEventCount, :ContainerEscapeEventCount, :Date
+        
+        def initialize(riskcontainereventcount=nil, processprivilegeeventcount=nil, containerescapeeventcount=nil, date=nil)
+          @RiskContainerEventCount = riskcontainereventcount
+          @ProcessPrivilegeEventCount = processprivilegeeventcount
+          @ContainerEscapeEventCount = containerescapeeventcount
+          @Date = date
+        end
+
+        def deserialize(params)
+          @RiskContainerEventCount = params['RiskContainerEventCount']
+          @ProcessPrivilegeEventCount = params['ProcessPrivilegeEventCount']
+          @ContainerEscapeEventCount = params['ContainerEscapeEventCount']
+          @Date = params['Date']
+        end
+      end
+
       # 容器逃逸扫描策略开关信息
       class EscapeRule < TencentCloud::Common::AbstractModel
         # @param Type: 规则类型
@@ -11136,6 +18198,54 @@ module TencentCloud
         def deserialize(params)
           @Type = params['Type']
           @IsEnable = params['IsEnable']
+        end
+      end
+
+      # 逃逸白名单
+      class EscapeWhiteListInfo < TencentCloud::Common::AbstractModel
+        # @param ImageID: 镜像ID
+        # @type ImageID: String
+        # @param ImageName: 镜像名称
+        # @type ImageName: String
+        # @param ID: 白名单记录ID
+        # @type ID: Integer
+        # @param HostCount: 关联主机数量
+        # @type HostCount: Integer
+        # @param ContainerCount: 关联容器数量
+        # @type ContainerCount: Integer
+        # @param EventType: 加白事件类型
+        # @type EventType: Array
+        # @param InsertTime: 创建时间
+        # @type InsertTime: String
+        # @param UpdateTime: 更新时间
+        # @type UpdateTime: String
+        # @param ImageSize: 镜像大小
+        # @type ImageSize: Integer
+
+        attr_accessor :ImageID, :ImageName, :ID, :HostCount, :ContainerCount, :EventType, :InsertTime, :UpdateTime, :ImageSize
+        
+        def initialize(imageid=nil, imagename=nil, id=nil, hostcount=nil, containercount=nil, eventtype=nil, inserttime=nil, updatetime=nil, imagesize=nil)
+          @ImageID = imageid
+          @ImageName = imagename
+          @ID = id
+          @HostCount = hostcount
+          @ContainerCount = containercount
+          @EventType = eventtype
+          @InsertTime = inserttime
+          @UpdateTime = updatetime
+          @ImageSize = imagesize
+        end
+
+        def deserialize(params)
+          @ImageID = params['ImageID']
+          @ImageName = params['ImageName']
+          @ID = params['ID']
+          @HostCount = params['HostCount']
+          @ContainerCount = params['ContainerCount']
+          @EventType = params['EventType']
+          @InsertTime = params['InsertTime']
+          @UpdateTime = params['UpdateTime']
+          @ImageSize = params['ImageSize']
         end
       end
 
@@ -11313,6 +18423,88 @@ module TencentCloud
           @Uuid = params['Uuid']
           @InstanceID = params['InstanceID']
           @RegionID = params['RegionID']
+        end
+      end
+
+      # 镜像自动授权任务信息
+      class ImageAutoAuthorizedTask < TencentCloud::Common::AbstractModel
+        # @param TaskId: 任务id
+        # @type TaskId: Integer
+        # @param Type: 授权方式，AUTO:自动授权，MANUAL:手动授权
+        # @type Type: String
+        # @param AuthorizedDate: 任务日期
+        # @type AuthorizedDate: String
+        # @param Source: 镜像来源，LOCAL:本地镜像，REGISTRY:仓库镜像
+        # @type Source: String
+        # @param LastAuthorizedTime: 最近授权时间
+        # @type LastAuthorizedTime: String
+        # @param SuccessCount: 自动授权成功数
+        # @type SuccessCount: Integer
+        # @param FailCount: 自动授权失败数
+        # @type FailCount: Integer
+        # @param LatestFailCode: 最近任务失败码，REACH_LIMIT:达到授权上限，LICENSE_INSUFFICIENT:授权数不足
+        # @type LatestFailCode: String
+
+        attr_accessor :TaskId, :Type, :AuthorizedDate, :Source, :LastAuthorizedTime, :SuccessCount, :FailCount, :LatestFailCode
+        
+        def initialize(taskid=nil, type=nil, authorizeddate=nil, source=nil, lastauthorizedtime=nil, successcount=nil, failcount=nil, latestfailcode=nil)
+          @TaskId = taskid
+          @Type = type
+          @AuthorizedDate = authorizeddate
+          @Source = source
+          @LastAuthorizedTime = lastauthorizedtime
+          @SuccessCount = successcount
+          @FailCount = failcount
+          @LatestFailCode = latestfailcode
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @Type = params['Type']
+          @AuthorizedDate = params['AuthorizedDate']
+          @Source = params['Source']
+          @LastAuthorizedTime = params['LastAuthorizedTime']
+          @SuccessCount = params['SuccessCount']
+          @FailCount = params['FailCount']
+          @LatestFailCode = params['LatestFailCode']
+        end
+      end
+
+      # 容器安全镜像组件信息
+      class ImageComponent < TencentCloud::Common::AbstractModel
+        # @param Name: 组件名称
+        # @type Name: String
+        # @param Version: 组件版本
+        # @type Version: String
+        # @param Path: 组件路径
+        # @type Path: String
+        # @param Type: 组件类型
+        # @type Type: String
+        # @param VulCount: 组件漏洞数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VulCount: Integer
+        # @param ImageID: 镜像ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ImageID: String
+
+        attr_accessor :Name, :Version, :Path, :Type, :VulCount, :ImageID
+        
+        def initialize(name=nil, version=nil, path=nil, type=nil, vulcount=nil, imageid=nil)
+          @Name = name
+          @Version = version
+          @Path = path
+          @Type = type
+          @VulCount = vulcount
+          @ImageID = imageid
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Version = params['Version']
+          @Path = params['Path']
+          @Type = params['Type']
+          @VulCount = params['VulCount']
+          @ImageID = params['ImageID']
         end
       end
 
@@ -12684,6 +19876,45 @@ module TencentCloud
         end
       end
 
+      # ModifyContainerNetStatus请求参数结构体
+      class ModifyContainerNetStatusRequest < TencentCloud::Common::AbstractModel
+        # @param ContainerID: 容器ID
+        # @type ContainerID: String
+        # @param Status: 状态(
+        # 隔离容器: EVENT_ISOLATE_CONTAINER
+        # 恢复容器: EVENT_RESOTRE_CONTAINER
+        # )
+        # @type Status: String
+
+        attr_accessor :ContainerID, :Status
+        
+        def initialize(containerid=nil, status=nil)
+          @ContainerID = containerid
+          @Status = status
+        end
+
+        def deserialize(params)
+          @ContainerID = params['ContainerID']
+          @Status = params['Status']
+        end
+      end
+
+      # ModifyContainerNetStatus返回参数结构体
+      class ModifyContainerNetStatusResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyEscapeEventStatus请求参数结构体
       class ModifyEscapeEventStatusRequest < TencentCloud::Common::AbstractModel
         # @param EventIdSet: 处理事件ids
@@ -12783,6 +20014,164 @@ module TencentCloud
         end
       end
 
+      # ModifyEscapeWhiteList请求参数结构体
+      class ModifyEscapeWhiteListRequest < TencentCloud::Common::AbstractModel
+        # @param EventType: 加白名单事件类型
+        #    ESCAPE_CGROUPS：利用cgroup机制逃逸
+        #    ESCAPE_TAMPER_SENSITIVE_FILE：篡改敏感文件逃逸
+        #    ESCAPE_DOCKER_API：访问Docker API接口逃逸
+        #    ESCAPE_VUL_OCCURRED：逃逸漏洞利用
+        #    MOUNT_SENSITIVE_PTAH：敏感路径挂载
+        #    PRIVILEGE_CONTAINER_START：特权容器
+        #    PRIVILEGE：程序提权逃逸
+        # @type EventType: Array
+        # @param IDSet: 白名单记录ID
+        # @type IDSet: Array
+
+        attr_accessor :EventType, :IDSet
+        
+        def initialize(eventtype=nil, idset=nil)
+          @EventType = eventtype
+          @IDSet = idset
+        end
+
+        def deserialize(params)
+          @EventType = params['EventType']
+          @IDSet = params['IDSet']
+        end
+      end
+
+      # ModifyEscapeWhiteList返回参数结构体
+      class ModifyEscapeWhiteListResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 漏洞扫描新增和取消忽略漏洞入参
+      class ModifyIgnoreVul < TencentCloud::Common::AbstractModel
+        # @param PocID: 漏洞PocID
+        # @type PocID: String
+        # @param ImageIDs: 忽略的镜像ID，空表示全部
+        # @type ImageIDs: Array
+        # @param ImageType: 当有镜像时
+        # 镜像类型: LOCAL 本地镜像 REGISTRY 仓库镜像
+        # @type ImageType: String
+
+        attr_accessor :PocID, :ImageIDs, :ImageType
+        
+        def initialize(pocid=nil, imageids=nil, imagetype=nil)
+          @PocID = pocid
+          @ImageIDs = imageids
+          @ImageType = imagetype
+        end
+
+        def deserialize(params)
+          @PocID = params['PocID']
+          @ImageIDs = params['ImageIDs']
+          @ImageType = params['ImageType']
+        end
+      end
+
+      # ModifyImageAuthorized请求参数结构体
+      class ModifyImageAuthorizedRequest < TencentCloud::Common::AbstractModel
+        # @param AllLocalImages: 本地镜像是否全部授权的标识，优先权高于根据本地镜像ids授权。等于true时需UpdatedLocalImageCnt大于0。
+        # @type AllLocalImages: Boolean
+        # @param AllRegistryImages: 仓库镜像是否全部授权的标识，优先权高于根据镜像ids授权。等于true时需UpdatedRegistryImageCnt大于0。
+        # @type AllRegistryImages: Boolean
+        # @param UpdatedLocalImageCnt: 指定操作授权的本地镜像数量，判断优先权最高，实际多出的镜像随机忽略，实际不足的部分也忽略。
+        # @type UpdatedLocalImageCnt: Integer
+        # @param UpdatedRegistryImageCnt: 指定操作授权的仓库镜像数量，判断优先权最高，实际多出的镜像随机忽略，实际不足的部分也忽略；
+        # @type UpdatedRegistryImageCnt: Integer
+        # @param ImageSourceType: 根据满足条件的本地镜像授权,本地镜像来源；ASSETIMAGE:本地镜像列表；IMAGEALL:同步本地镜像；AllLocalImages为false且LocalImageIds为空和UpdatedLocalImageCnt大于0时，需要
+        # @type ImageSourceType: String
+        # @param LocalImageFilter: 根据满足条件的本地镜像授权，AllLocalImages为false且LocalImageIds为空和UpdatedLocalImageCnt大于0时，需要。
+        # @type LocalImageFilter: Array
+        # @param RegistryImageFilter: 根据满足条件的仓库镜像授权，AllRegistryImages为false且RegistryImageIds为空和UpdatedRegistryImageCnt大于0时，需要。
+        # @type RegistryImageFilter: Array
+        # @param ExcludeLocalImageIds: 根据满足条件的镜像授权,同时排除的本地镜像。
+        # @type ExcludeLocalImageIds: Array
+        # @param ExcludeRegistryImageIds: 根据满足条件的镜像授权,同时排除的仓库镜像。
+        # @type ExcludeRegistryImageIds: Array
+        # @param LocalImageIds: 根据本地镜像ids授权，优先权高于根据满足条件的镜像授权。AllLocalImages为false且LocalImageFilter为空和UpdatedLocalImageCnt大于0时，需要。
+        # @type LocalImageIds: Array
+        # @param RegistryImageIds: 根据仓库镜像Ids授权，优先权高于根据满足条件的镜像授。AllRegistryImages为false且RegistryImageFilter为空和UpdatedRegistryImageCnt大于0时，需要。
+        # @type RegistryImageIds: Array
+        # @param OnlyShowLatest: 是否仅最新的镜像；RegistryImageFilter不为空且UpdatedRegistryImageCnt大于0时仓库镜像需要。
+        # @type OnlyShowLatest: Boolean
+
+        attr_accessor :AllLocalImages, :AllRegistryImages, :UpdatedLocalImageCnt, :UpdatedRegistryImageCnt, :ImageSourceType, :LocalImageFilter, :RegistryImageFilter, :ExcludeLocalImageIds, :ExcludeRegistryImageIds, :LocalImageIds, :RegistryImageIds, :OnlyShowLatest
+        
+        def initialize(alllocalimages=nil, allregistryimages=nil, updatedlocalimagecnt=nil, updatedregistryimagecnt=nil, imagesourcetype=nil, localimagefilter=nil, registryimagefilter=nil, excludelocalimageids=nil, excluderegistryimageids=nil, localimageids=nil, registryimageids=nil, onlyshowlatest=nil)
+          @AllLocalImages = alllocalimages
+          @AllRegistryImages = allregistryimages
+          @UpdatedLocalImageCnt = updatedlocalimagecnt
+          @UpdatedRegistryImageCnt = updatedregistryimagecnt
+          @ImageSourceType = imagesourcetype
+          @LocalImageFilter = localimagefilter
+          @RegistryImageFilter = registryimagefilter
+          @ExcludeLocalImageIds = excludelocalimageids
+          @ExcludeRegistryImageIds = excluderegistryimageids
+          @LocalImageIds = localimageids
+          @RegistryImageIds = registryimageids
+          @OnlyShowLatest = onlyshowlatest
+        end
+
+        def deserialize(params)
+          @AllLocalImages = params['AllLocalImages']
+          @AllRegistryImages = params['AllRegistryImages']
+          @UpdatedLocalImageCnt = params['UpdatedLocalImageCnt']
+          @UpdatedRegistryImageCnt = params['UpdatedRegistryImageCnt']
+          @ImageSourceType = params['ImageSourceType']
+          unless params['LocalImageFilter'].nil?
+            @LocalImageFilter = []
+            params['LocalImageFilter'].each do |i|
+              assetfilters_tmp = AssetFilters.new
+              assetfilters_tmp.deserialize(i)
+              @LocalImageFilter << assetfilters_tmp
+            end
+          end
+          unless params['RegistryImageFilter'].nil?
+            @RegistryImageFilter = []
+            params['RegistryImageFilter'].each do |i|
+              assetfilters_tmp = AssetFilters.new
+              assetfilters_tmp.deserialize(i)
+              @RegistryImageFilter << assetfilters_tmp
+            end
+          end
+          @ExcludeLocalImageIds = params['ExcludeLocalImageIds']
+          @ExcludeRegistryImageIds = params['ExcludeRegistryImageIds']
+          @LocalImageIds = params['LocalImageIds']
+          @RegistryImageIds = params['RegistryImageIds']
+          @OnlyShowLatest = params['OnlyShowLatest']
+        end
+      end
+
+      # ModifyImageAuthorized返回参数结构体
+      class ModifyImageAuthorizedResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyReverseShellStatus请求参数结构体
       class ModifyReverseShellStatusRequest < TencentCloud::Common::AbstractModel
         # @param EventIdSet: 处理事件ids
@@ -12857,6 +20246,338 @@ module TencentCloud
 
       # ModifyRiskSyscallStatus返回参数结构体
       class ModifyRiskSyscallStatusResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifySecLogCleanSettingInfo请求参数结构体
+      class ModifySecLogCleanSettingInfoRequest < TencentCloud::Common::AbstractModel
+        # @param ReservesLimit: 触发清理的储量底线(50-99)
+        # @type ReservesLimit: Integer
+        # @param ReservesDeadline: 清理停止时的储量截至线(>0,小于ReservesLimit)
+        # @type ReservesDeadline: Integer
+        # @param DayLimit: 触发清理的存储天数(>=1)
+        # @type DayLimit: Integer
+
+        attr_accessor :ReservesLimit, :ReservesDeadline, :DayLimit
+        
+        def initialize(reserveslimit=nil, reservesdeadline=nil, daylimit=nil)
+          @ReservesLimit = reserveslimit
+          @ReservesDeadline = reservesdeadline
+          @DayLimit = daylimit
+        end
+
+        def deserialize(params)
+          @ReservesLimit = params['ReservesLimit']
+          @ReservesDeadline = params['ReservesDeadline']
+          @DayLimit = params['DayLimit']
+        end
+      end
+
+      # ModifySecLogCleanSettingInfo返回参数结构体
+      class ModifySecLogCleanSettingInfoResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifySecLogDeliveryClsSetting请求参数结构体
+      class ModifySecLogDeliveryClsSettingRequest < TencentCloud::Common::AbstractModel
+        # @param List: 日志信息
+        # @type List: Array
+
+        attr_accessor :List
+        
+        def initialize(list=nil)
+          @List = list
+        end
+
+        def deserialize(params)
+          unless params['List'].nil?
+            @List = []
+            params['List'].each do |i|
+              seclogdeliveryclssettinginfo_tmp = SecLogDeliveryClsSettingInfo.new
+              seclogdeliveryclssettinginfo_tmp.deserialize(i)
+              @List << seclogdeliveryclssettinginfo_tmp
+            end
+          end
+        end
+      end
+
+      # ModifySecLogDeliveryClsSetting返回参数结构体
+      class ModifySecLogDeliveryClsSettingResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifySecLogDeliveryKafkaSetting请求参数结构体
+      class ModifySecLogDeliveryKafkaSettingRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceID: 实例ID
+        # @type InstanceID: String
+        # @param InstanceName: 实例名称
+        # @type InstanceName: String
+        # @param Domain: 域名
+        # @type Domain: String
+        # @param User: 用户名
+        # @type User: String
+        # @param Password: 密码
+        # @type Password: String
+        # @param LogTypeList: 日志类型队列
+        # @type LogTypeList: Array
+        # @param AccessType: 接入类型
+        # @type AccessType: Integer
+        # @param KafkaVersion: kafka版本号
+        # @type KafkaVersion: String
+
+        attr_accessor :InstanceID, :InstanceName, :Domain, :User, :Password, :LogTypeList, :AccessType, :KafkaVersion
+        
+        def initialize(instanceid=nil, instancename=nil, domain=nil, user=nil, password=nil, logtypelist=nil, accesstype=nil, kafkaversion=nil)
+          @InstanceID = instanceid
+          @InstanceName = instancename
+          @Domain = domain
+          @User = user
+          @Password = password
+          @LogTypeList = logtypelist
+          @AccessType = accesstype
+          @KafkaVersion = kafkaversion
+        end
+
+        def deserialize(params)
+          @InstanceID = params['InstanceID']
+          @InstanceName = params['InstanceName']
+          @Domain = params['Domain']
+          @User = params['User']
+          @Password = params['Password']
+          unless params['LogTypeList'].nil?
+            @LogTypeList = []
+            params['LogTypeList'].each do |i|
+              seclogdeliverykafkasettinginfo_tmp = SecLogDeliveryKafkaSettingInfo.new
+              seclogdeliverykafkasettinginfo_tmp.deserialize(i)
+              @LogTypeList << seclogdeliverykafkasettinginfo_tmp
+            end
+          end
+          @AccessType = params['AccessType']
+          @KafkaVersion = params['KafkaVersion']
+        end
+      end
+
+      # ModifySecLogDeliveryKafkaSetting返回参数结构体
+      class ModifySecLogDeliveryKafkaSettingResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifySecLogJoinObjects请求参数结构体
+      class ModifySecLogJoinObjectsRequest < TencentCloud::Common::AbstractModel
+        # @param LogType: 日志类型
+        # bash日志: container_bash
+        # 容器启动: container_launch
+        # k8sApi: k8s_api
+        # @type LogType: String
+        # @param BindList: 绑定主机quuid列表
+        # @type BindList: Array
+        # @param UnBindList: 待解绑主机quuid列表
+        # @type UnBindList: Array
+
+        attr_accessor :LogType, :BindList, :UnBindList
+        
+        def initialize(logtype=nil, bindlist=nil, unbindlist=nil)
+          @LogType = logtype
+          @BindList = bindlist
+          @UnBindList = unbindlist
+        end
+
+        def deserialize(params)
+          @LogType = params['LogType']
+          @BindList = params['BindList']
+          @UnBindList = params['UnBindList']
+        end
+      end
+
+      # ModifySecLogJoinObjects返回参数结构体
+      class ModifySecLogJoinObjectsResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifySecLogJoinState请求参数结构体
+      class ModifySecLogJoinStateRequest < TencentCloud::Common::AbstractModel
+        # @param LogType: 日志类型
+        # bash日志: container_bash
+        # 容器启动: container_launch
+        # k8sApi: k8s_api
+        # @type LogType: String
+        # @param State: 状态(true:开 false:关)
+        # @type State: Boolean
+
+        attr_accessor :LogType, :State
+        
+        def initialize(logtype=nil, state=nil)
+          @LogType = logtype
+          @State = state
+        end
+
+        def deserialize(params)
+          @LogType = params['LogType']
+          @State = params['State']
+        end
+      end
+
+      # ModifySecLogJoinState返回参数结构体
+      class ModifySecLogJoinStateResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifySecLogKafkaUIN请求参数结构体
+      class ModifySecLogKafkaUINRequest < TencentCloud::Common::AbstractModel
+        # @param DstUIN: 目标UIN
+        # @type DstUIN: String
+
+        attr_accessor :DstUIN
+        
+        def initialize(dstuin=nil)
+          @DstUIN = dstuin
+        end
+
+        def deserialize(params)
+          @DstUIN = params['DstUIN']
+        end
+      end
+
+      # ModifySecLogKafkaUIN返回参数结构体
+      class ModifySecLogKafkaUINResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyVirusAutoIsolateExampleSwitch请求参数结构体
+      class ModifyVirusAutoIsolateExampleSwitchRequest < TencentCloud::Common::AbstractModel
+        # @param MD5: 文件Md5值
+        # @type MD5: String
+        # @param Status: 开关(开:true 关: false)
+        # @type Status: Boolean
+
+        attr_accessor :MD5, :Status
+        
+        def initialize(md5=nil, status=nil)
+          @MD5 = md5
+          @Status = status
+        end
+
+        def deserialize(params)
+          @MD5 = params['MD5']
+          @Status = params['Status']
+        end
+      end
+
+      # ModifyVirusAutoIsolateExampleSwitch返回参数结构体
+      class ModifyVirusAutoIsolateExampleSwitchResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyVirusAutoIsolateSetting请求参数结构体
+      class ModifyVirusAutoIsolateSettingRequest < TencentCloud::Common::AbstractModel
+        # @param AutoIsolateSwitch: 自动隔离开关(true:开 false:关)
+        # @type AutoIsolateSwitch: Boolean
+        # @param IsKillProgress: 是否中断隔离文件关联的进程(true:是 false:否)
+        # @type IsKillProgress: Boolean
+
+        attr_accessor :AutoIsolateSwitch, :IsKillProgress
+        
+        def initialize(autoisolateswitch=nil, iskillprogress=nil)
+          @AutoIsolateSwitch = autoisolateswitch
+          @IsKillProgress = iskillprogress
+        end
+
+        def deserialize(params)
+          @AutoIsolateSwitch = params['AutoIsolateSwitch']
+          @IsKillProgress = params['IsKillProgress']
+        end
+      end
+
+      # ModifyVirusAutoIsolateSetting返回参数结构体
+      class ModifyVirusAutoIsolateSettingResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -13066,6 +20787,505 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyVulDefenceEventStatus请求参数结构体
+      class ModifyVulDefenceEventStatusRequest < TencentCloud::Common::AbstractModel
+        # @param EventIDs: 事件IDs数组
+        # @type EventIDs: Array
+        # @param Status: 操作状态：
+        # EVENT_DEALED：已处理，EVENT_IGNORE：忽略，EVENT_ISOLATE_CONTAINER：隔离容器，EVENT_DEL：删除
+        # @type Status: String
+        # @param Remark: 备注
+        # @type Remark: String
+
+        attr_accessor :EventIDs, :Status, :Remark
+        
+        def initialize(eventids=nil, status=nil, remark=nil)
+          @EventIDs = eventids
+          @Status = status
+          @Remark = remark
+        end
+
+        def deserialize(params)
+          @EventIDs = params['EventIDs']
+          @Status = params['Status']
+          @Remark = params['Remark']
+        end
+      end
+
+      # ModifyVulDefenceEventStatus返回参数结构体
+      class ModifyVulDefenceEventStatusResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyVulDefenceSetting请求参数结构体
+      class ModifyVulDefenceSettingRequest < TencentCloud::Common::AbstractModel
+        # @param IsEnabled: 是否开启:0: 关闭 1:开启
+        # @type IsEnabled: Integer
+        # @param Scope: 漏洞防御主机范围:0：自选 1: 全部主机。IsEnabled为1时必填
+        # @type Scope: Integer
+        # @param HostIDs: 自选漏洞防御主机,Scope为0时必填
+        # @type HostIDs: Array
+
+        attr_accessor :IsEnabled, :Scope, :HostIDs
+        
+        def initialize(isenabled=nil, scope=nil, hostids=nil)
+          @IsEnabled = isenabled
+          @Scope = scope
+          @HostIDs = hostids
+        end
+
+        def deserialize(params)
+          @IsEnabled = params['IsEnabled']
+          @Scope = params['Scope']
+          @HostIDs = params['HostIDs']
+        end
+      end
+
+      # ModifyVulDefenceSetting返回参数结构体
+      class ModifyVulDefenceSettingResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 网络集群资产审计返回结构体
+      class NetworkAuditRecord < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群id
+        # @type ClusterId: String
+        # @param ClusterName: 集群名字
+        # @type ClusterName: String
+        # @param Region: 集群区域
+        # @type Region: String
+        # @param Action: 动作
+        # @type Action: String
+        # @param Operation: 操作人
+        # @type Operation: String
+        # @param NetworkPolicyName: 策略名
+        # @type NetworkPolicyName: String
+        # @param OperationTime: 操作时间
+        # @type OperationTime: String
+        # @param AppId: 操作人appid
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AppId: Integer
+        # @param Uin: 操作人uin
+        # @type Uin: String
+
+        attr_accessor :ClusterId, :ClusterName, :Region, :Action, :Operation, :NetworkPolicyName, :OperationTime, :AppId, :Uin
+        
+        def initialize(clusterid=nil, clustername=nil, region=nil, action=nil, operation=nil, networkpolicyname=nil, operationtime=nil, appid=nil, uin=nil)
+          @ClusterId = clusterid
+          @ClusterName = clustername
+          @Region = region
+          @Action = action
+          @Operation = operation
+          @NetworkPolicyName = networkpolicyname
+          @OperationTime = operationtime
+          @AppId = appid
+          @Uin = uin
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @ClusterName = params['ClusterName']
+          @Region = params['Region']
+          @Action = params['Action']
+          @Operation = params['Operation']
+          @NetworkPolicyName = params['NetworkPolicyName']
+          @OperationTime = params['OperationTime']
+          @AppId = params['AppId']
+          @Uin = params['Uin']
+        end
+      end
+
+      # 网络集群资产返回的结构体
+      class NetworkClusterInfoItem < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群id
+        # @type ClusterId: String
+        # @param ClusterName: 集群名字
+        # @type ClusterName: String
+        # @param ClusterVersion: 集群版本
+        # @type ClusterVersion: String
+        # @param ClusterOs: 集群操作系统
+        # @type ClusterOs: String
+        # @param ClusterType: 集群类型
+        # @type ClusterType: String
+        # @param Region: 集群区域
+        # @type Region: String
+        # @param NetworkPolicyPlugin: 集群网络插件
+        # @type NetworkPolicyPlugin: String
+        # @param ClusterStatus: 集群状态
+        # @type ClusterStatus: String
+        # @param TotalRuleCount: 总策略数量
+        # @type TotalRuleCount: Integer
+        # @param EnableRuleCount: 已开启策略数量
+        # @type EnableRuleCount: Integer
+        # @param NetworkPolicyPluginStatus: 集群网络插件状态，正常：Running 不正常：Error
+        # @type NetworkPolicyPluginStatus: String
+        # @param NetworkPolicyPluginError: 集群网络插件错误信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NetworkPolicyPluginError: String
+
+        attr_accessor :ClusterId, :ClusterName, :ClusterVersion, :ClusterOs, :ClusterType, :Region, :NetworkPolicyPlugin, :ClusterStatus, :TotalRuleCount, :EnableRuleCount, :NetworkPolicyPluginStatus, :NetworkPolicyPluginError
+        
+        def initialize(clusterid=nil, clustername=nil, clusterversion=nil, clusteros=nil, clustertype=nil, region=nil, networkpolicyplugin=nil, clusterstatus=nil, totalrulecount=nil, enablerulecount=nil, networkpolicypluginstatus=nil, networkpolicypluginerror=nil)
+          @ClusterId = clusterid
+          @ClusterName = clustername
+          @ClusterVersion = clusterversion
+          @ClusterOs = clusteros
+          @ClusterType = clustertype
+          @Region = region
+          @NetworkPolicyPlugin = networkpolicyplugin
+          @ClusterStatus = clusterstatus
+          @TotalRuleCount = totalrulecount
+          @EnableRuleCount = enablerulecount
+          @NetworkPolicyPluginStatus = networkpolicypluginstatus
+          @NetworkPolicyPluginError = networkpolicypluginerror
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @ClusterName = params['ClusterName']
+          @ClusterVersion = params['ClusterVersion']
+          @ClusterOs = params['ClusterOs']
+          @ClusterType = params['ClusterType']
+          @Region = params['Region']
+          @NetworkPolicyPlugin = params['NetworkPolicyPlugin']
+          @ClusterStatus = params['ClusterStatus']
+          @TotalRuleCount = params['TotalRuleCount']
+          @EnableRuleCount = params['EnableRuleCount']
+          @NetworkPolicyPluginStatus = params['NetworkPolicyPluginStatus']
+          @NetworkPolicyPluginError = params['NetworkPolicyPluginError']
+        end
+      end
+
+      # 网络集群网络空间返回的结构体
+      class NetworkClusterNamespaceInfo < TencentCloud::Common::AbstractModel
+        # @param Labels: 网络空间标签
+        # @type Labels: String
+        # @param Name: 网络空间名字
+        # @type Name: String
+
+        attr_accessor :Labels, :Name
+        
+        def initialize(labels=nil, name=nil)
+          @Labels = labels
+          @Name = name
+        end
+
+        def deserialize(params)
+          @Labels = params['Labels']
+          @Name = params['Name']
+        end
+      end
+
+      # 网络集群网络空间标签返回的结构体
+      class NetworkClusterNamespaceLabelInfo < TencentCloud::Common::AbstractModel
+        # @param Labels: 网络空间标签
+        # @type Labels: String
+        # @param Name: 网络空间名字
+        # @type Name: String
+
+        attr_accessor :Labels, :Name
+        
+        def initialize(labels=nil, name=nil)
+          @Labels = labels
+          @Name = name
+        end
+
+        def deserialize(params)
+          @Labels = params['Labels']
+          @Name = params['Name']
+        end
+      end
+
+      # 网络集群pod返回的结构体
+      class NetworkClusterPodInfo < TencentCloud::Common::AbstractModel
+        # @param PodName: pod名字
+        # @type PodName: String
+        # @param Namespace: pod空间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Namespace: String
+        # @param Labels: pod标签
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Labels: String
+        # @param WorkloadKind: pod类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type WorkloadKind: String
+
+        attr_accessor :PodName, :Namespace, :Labels, :WorkloadKind
+        
+        def initialize(podname=nil, namespace=nil, labels=nil, workloadkind=nil)
+          @PodName = podname
+          @Namespace = namespace
+          @Labels = labels
+          @WorkloadKind = workloadkind
+        end
+
+        def deserialize(params)
+          @PodName = params['PodName']
+          @Namespace = params['Namespace']
+          @Labels = params['Labels']
+          @WorkloadKind = params['WorkloadKind']
+        end
+      end
+
+      # 网络集群策略自定义规则
+      class NetworkCustomPolicy < TencentCloud::Common::AbstractModel
+        # @param Direction: 网络策略方向，分为FROM和TO
+        # @type Direction: String
+        # @param Ports: 网络策略策略端口
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Ports: Array
+        # @param Peer: 网络策略策略对象
+
+        # 开启待确认：PublishedNoConfirm
+
+        # 开启已确认：PublishedConfirmed
+
+        # 关闭中：unPublishing
+
+        # 开启中：Publishing
+
+        # 待开启：unPublishEdit
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Peer: Array
+
+        attr_accessor :Direction, :Ports, :Peer
+        
+        def initialize(direction=nil, ports=nil, peer=nil)
+          @Direction = direction
+          @Ports = ports
+          @Peer = peer
+        end
+
+        def deserialize(params)
+          @Direction = params['Direction']
+          unless params['Ports'].nil?
+            @Ports = []
+            params['Ports'].each do |i|
+              networkports_tmp = NetworkPorts.new
+              networkports_tmp.deserialize(i)
+              @Ports << networkports_tmp
+            end
+          end
+          unless params['Peer'].nil?
+            @Peer = []
+            params['Peer'].each do |i|
+              networkpeer_tmp = NetworkPeer.new
+              networkpeer_tmp.deserialize(i)
+              @Peer << networkpeer_tmp
+            end
+          end
+        end
+      end
+
+      # 网络集群策略自定义规则
+      class NetworkPeer < TencentCloud::Common::AbstractModel
+        # @param PeerType: 对象类型：
+
+        # 命名空间：NamespaceSelector，代表NamespaceSelector有值
+
+        # pod类型：PodSelector，代表NamespaceSelector和PodSelector都有值
+
+        # ip类型：IPBlock，代表只有IPBlock有值
+        # @type PeerType: String
+        # @param NamespaceSelector: 空间选择器
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NamespaceSelector: String
+        # @param PodSelector: pod选择器
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PodSelector: String
+        # @param IPBlock: Ip选择器
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IPBlock: String
+
+        attr_accessor :PeerType, :NamespaceSelector, :PodSelector, :IPBlock
+        
+        def initialize(peertype=nil, namespaceselector=nil, podselector=nil, ipblock=nil)
+          @PeerType = peertype
+          @NamespaceSelector = namespaceselector
+          @PodSelector = podselector
+          @IPBlock = ipblock
+        end
+
+        def deserialize(params)
+          @PeerType = params['PeerType']
+          @NamespaceSelector = params['NamespaceSelector']
+          @PodSelector = params['PodSelector']
+          @IPBlock = params['IPBlock']
+        end
+      end
+
+      # 网络集群策略返回的结构体
+      class NetworkPolicyInfoItem < TencentCloud::Common::AbstractModel
+        # @param Name: 网络策略名
+        # @type Name: String
+        # @param Description: 网络策略描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Description: String
+        # @param PublishStatus: 发布状态：
+
+        # 开启待确认：PublishedNoConfirm
+
+        # 开启已确认：PublishedConfirmed
+
+        # 关闭中：unPublishing
+
+        # 开启中：Publishing
+
+        # 待开启：unPublishEdit
+        # @type PublishStatus: String
+        # @param PolicySourceType: 策略类型：
+
+        # 自动发现：System
+
+        # 手动添加：Manual
+        # @type PolicySourceType: String
+        # @param Namespace: 策略空间
+        # @type Namespace: String
+        # @param PolicyCreateTime: 策略创建日期
+        # @type PolicyCreateTime: String
+        # @param NetworkPolicyPlugin: 策略类型
+
+        # kube-router：KubeRouter
+
+        # cilium：Cilium
+        # @type NetworkPolicyPlugin: String
+        # @param PublishResult: 策略发布结果
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PublishResult: String
+        # @param FromPolicyRule: 入站规则
+
+        # 全部允许：1
+
+        # 全部拒绝 ：2
+
+        # 自定义：3
+        # @type FromPolicyRule: Integer
+        # @param ToPolicyRule: 入站规则
+
+        # 全部允许：1
+
+        # 全部拒绝 ：2
+
+        # 自定义：3
+        # @type ToPolicyRule: Integer
+        # @param PodSelector: 作用对象
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PodSelector: String
+        # @param Id: 网络策略Id
+        # @type Id: Integer
+
+        attr_accessor :Name, :Description, :PublishStatus, :PolicySourceType, :Namespace, :PolicyCreateTime, :NetworkPolicyPlugin, :PublishResult, :FromPolicyRule, :ToPolicyRule, :PodSelector, :Id
+        
+        def initialize(name=nil, description=nil, publishstatus=nil, policysourcetype=nil, namespace=nil, policycreatetime=nil, networkpolicyplugin=nil, publishresult=nil, frompolicyrule=nil, topolicyrule=nil, podselector=nil, id=nil)
+          @Name = name
+          @Description = description
+          @PublishStatus = publishstatus
+          @PolicySourceType = policysourcetype
+          @Namespace = namespace
+          @PolicyCreateTime = policycreatetime
+          @NetworkPolicyPlugin = networkpolicyplugin
+          @PublishResult = publishresult
+          @FromPolicyRule = frompolicyrule
+          @ToPolicyRule = topolicyrule
+          @PodSelector = podselector
+          @Id = id
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Description = params['Description']
+          @PublishStatus = params['PublishStatus']
+          @PolicySourceType = params['PolicySourceType']
+          @Namespace = params['Namespace']
+          @PolicyCreateTime = params['PolicyCreateTime']
+          @NetworkPolicyPlugin = params['NetworkPolicyPlugin']
+          @PublishResult = params['PublishResult']
+          @FromPolicyRule = params['FromPolicyRule']
+          @ToPolicyRule = params['ToPolicyRule']
+          @PodSelector = params['PodSelector']
+          @Id = params['Id']
+        end
+      end
+
+      # 网络集群策略自定义规则端口
+      class NetworkPorts < TencentCloud::Common::AbstractModel
+        # @param Protocol: 网络策略协议
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Protocol: String
+        # @param Port: 网络策略策略端口
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Port: String
+
+        attr_accessor :Protocol, :Port
+        
+        def initialize(protocol=nil, port=nil)
+          @Protocol = protocol
+          @Port = port
+        end
+
+        def deserialize(params)
+          @Protocol = params['Protocol']
+          @Port = params['Port']
+        end
+      end
+
+      # OpenTcssTrial请求参数结构体
+      class OpenTcssTrialRequest < TencentCloud::Common::AbstractModel
+
+        
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # OpenTcssTrial返回参数结构体
+      class OpenTcssTrialResponse < TencentCloud::Common::AbstractModel
+        # @param EndTime: 试用开通结束时间
+        # @type EndTime: String
+        # @param StartTime: 试用开通开始时间
+        # @type StartTime: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :EndTime, :StartTime, :RequestId
+        
+        def initialize(endtime=nil, starttime=nil, requestid=nil)
+          @EndTime = endtime
+          @StartTime = starttime
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @EndTime = params['EndTime']
+          @StartTime = params['StartTime']
           @RequestId = params['RequestId']
         end
       end
@@ -13314,6 +21534,54 @@ module TencentCloud
         end
       end
 
+      # 促销活动内容
+      class PromotionActivityContent < TencentCloud::Common::AbstractModel
+        # @param MonthNum: 月数
+        # @type MonthNum: Integer
+        # @param CoresCountLimit: 核数最低限量
+        # @type CoresCountLimit: Integer
+        # @param ProfessionalDiscount: 专业版折扣
+        # @type ProfessionalDiscount: Integer
+        # @param ImageAuthorizationNum: 附赠镜像数
+        # @type ImageAuthorizationNum: Integer
+
+        attr_accessor :MonthNum, :CoresCountLimit, :ProfessionalDiscount, :ImageAuthorizationNum
+        
+        def initialize(monthnum=nil, corescountlimit=nil, professionaldiscount=nil, imageauthorizationnum=nil)
+          @MonthNum = monthnum
+          @CoresCountLimit = corescountlimit
+          @ProfessionalDiscount = professionaldiscount
+          @ImageAuthorizationNum = imageauthorizationnum
+        end
+
+        def deserialize(params)
+          @MonthNum = params['MonthNum']
+          @CoresCountLimit = params['CoresCountLimit']
+          @ProfessionalDiscount = params['ProfessionalDiscount']
+          @ImageAuthorizationNum = params['ImageAuthorizationNum']
+        end
+      end
+
+      # 地域信息
+      class RegionInfo < TencentCloud::Common::AbstractModel
+        # @param Region: 地域标识
+        # @type Region: String
+        # @param RegionName: 地域名称
+        # @type RegionName: String
+
+        attr_accessor :Region, :RegionName
+        
+        def initialize(region=nil, regionname=nil)
+          @Region = region
+          @RegionName = regionname
+        end
+
+        def deserialize(params)
+          @Region = params['Region']
+          @RegionName = params['RegionName']
+        end
+      end
+
       # RemoveAssetImageRegistryRegistryDetail请求参数结构体
       class RemoveAssetImageRegistryRegistryDetailRequest < TencentCloud::Common::AbstractModel
         # @param RegistryId: 仓库唯一id
@@ -13368,6 +21636,42 @@ module TencentCloud
 
       # RenewImageAuthorizeState返回参数结构体
       class RenewImageAuthorizeStateResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ResetSecLogTopicConfig请求参数结构体
+      class ResetSecLogTopicConfigRequest < TencentCloud::Common::AbstractModel
+        # @param ConfigType: 配置类型(ckafka/cls)
+        # @type ConfigType: String
+        # @param LogType: 日志类型
+        # @type LogType: String
+
+        attr_accessor :ConfigType, :LogType
+        
+        def initialize(configtype=nil, logtype=nil)
+          @ConfigType = configtype
+          @LogType = logtype
+        end
+
+        def deserialize(params)
+          @ConfigType = params['ConfigType']
+          @LogType = params['LogType']
+        end
+      end
+
+      # ResetSecLogTopicConfig返回参数结构体
+      class ResetSecLogTopicConfigResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -14218,6 +22522,271 @@ module TencentCloud
         end
       end
 
+      # 扫描忽略的漏洞
+      class ScanIgnoreVul < TencentCloud::Common::AbstractModel
+        # @param VulName: 漏洞名称
+        # @type VulName: String
+        # @param CVEID: 漏洞CVEID
+        # @type CVEID: String
+        # @param PocID: 漏洞PocID
+        # @type PocID: String
+        # @param RegistryImageCount: 忽略的仓库镜像数
+        # @type RegistryImageCount: Integer
+        # @param UpdateTime: 更新时间
+        # @type UpdateTime: String
+        # @param IsIgnoreAll: 是否忽略所有镜像：0：否/1：是
+        # @type IsIgnoreAll: Integer
+        # @param LocalImageCount: 忽略的本地镜像数
+        # @type LocalImageCount: Integer
+
+        attr_accessor :VulName, :CVEID, :PocID, :RegistryImageCount, :UpdateTime, :IsIgnoreAll, :LocalImageCount
+        
+        def initialize(vulname=nil, cveid=nil, pocid=nil, registryimagecount=nil, updatetime=nil, isignoreall=nil, localimagecount=nil)
+          @VulName = vulname
+          @CVEID = cveid
+          @PocID = pocid
+          @RegistryImageCount = registryimagecount
+          @UpdateTime = updatetime
+          @IsIgnoreAll = isignoreall
+          @LocalImageCount = localimagecount
+        end
+
+        def deserialize(params)
+          @VulName = params['VulName']
+          @CVEID = params['CVEID']
+          @PocID = params['PocID']
+          @RegistryImageCount = params['RegistryImageCount']
+          @UpdateTime = params['UpdateTime']
+          @IsIgnoreAll = params['IsIgnoreAll']
+          @LocalImageCount = params['LocalImageCount']
+        end
+      end
+
+      # 快速搜索模板
+      class SearchTemplate < TencentCloud::Common::AbstractModel
+        # @param Name: 检索名称
+        # @type Name: String
+        # @param LogType: 检索索引类型
+        # @type LogType: String
+        # @param Condition: 检索语句
+        # @type Condition: String
+        # @param TimeRange: 时间范围
+        # @type TimeRange: String
+        # @param Query: 转换的检索语句内容
+        # @type Query: String
+        # @param Flag: 检索方式。输入框检索：standard,过滤，检索：simple
+        # @type Flag: String
+        # @param DisplayData: 展示数据
+        # @type DisplayData: String
+        # @param Id: 规则ID
+        # @type Id: Integer
+
+        attr_accessor :Name, :LogType, :Condition, :TimeRange, :Query, :Flag, :DisplayData, :Id
+        
+        def initialize(name=nil, logtype=nil, condition=nil, timerange=nil, query=nil, flag=nil, displaydata=nil, id=nil)
+          @Name = name
+          @LogType = logtype
+          @Condition = condition
+          @TimeRange = timerange
+          @Query = query
+          @Flag = flag
+          @DisplayData = displaydata
+          @Id = id
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @LogType = params['LogType']
+          @Condition = params['Condition']
+          @TimeRange = params['TimeRange']
+          @Query = params['Query']
+          @Flag = params['Flag']
+          @DisplayData = params['DisplayData']
+          @Id = params['Id']
+        end
+      end
+
+      # 安全日志告警信息
+      class SecLogAlertMsgInfo < TencentCloud::Common::AbstractModel
+        # @param MsgType: 告警类型
+        # @type MsgType: String
+        # @param MsgValue: 告警值
+        # @type MsgValue: String
+        # @param State: 状态(0:关闭 1:开启)
+        # @type State: Boolean
+
+        attr_accessor :MsgType, :MsgValue, :State
+        
+        def initialize(msgtype=nil, msgvalue=nil, state=nil)
+          @MsgType = msgtype
+          @MsgValue = msgvalue
+          @State = state
+        end
+
+        def deserialize(params)
+          @MsgType = params['MsgType']
+          @MsgValue = params['MsgValue']
+          @State = params['State']
+        end
+      end
+
+      # 安全日志-日志投递cls设置信息
+      class SecLogDeliveryClsSettingInfo < TencentCloud::Common::AbstractModel
+        # @param LogType: 日志类型
+        # @type LogType: String
+        # @param State: 投递状态(true:开启 false:关闭)
+        # @type State: Boolean
+        # @param Region: 区域
+        # @type Region: String
+        # @param LogSet: 日志集
+        # @type LogSet: String
+        # @param TopicID: 主题ID
+        # @type TopicID: String
+        # @param LogSetName: 日志集名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LogSetName: String
+        # @param TopicName: 主题名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TopicName: String
+
+        attr_accessor :LogType, :State, :Region, :LogSet, :TopicID, :LogSetName, :TopicName
+        
+        def initialize(logtype=nil, state=nil, region=nil, logset=nil, topicid=nil, logsetname=nil, topicname=nil)
+          @LogType = logtype
+          @State = state
+          @Region = region
+          @LogSet = logset
+          @TopicID = topicid
+          @LogSetName = logsetname
+          @TopicName = topicname
+        end
+
+        def deserialize(params)
+          @LogType = params['LogType']
+          @State = params['State']
+          @Region = params['Region']
+          @LogSet = params['LogSet']
+          @TopicID = params['TopicID']
+          @LogSetName = params['LogSetName']
+          @TopicName = params['TopicName']
+        end
+      end
+
+      # 安全日志日志投递kafka设置详情
+      class SecLogDeliveryKafkaSettingInfo < TencentCloud::Common::AbstractModel
+        # @param LogType: 日志类型
+        # @type LogType: String
+        # @param TopicID: 主题ID
+        # @type TopicID: String
+        # @param TopicName: 主题名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TopicName: String
+        # @param State: 投递状态(false:关 true:开)
+        # @type State: Boolean
+
+        attr_accessor :LogType, :TopicID, :TopicName, :State
+        
+        def initialize(logtype=nil, topicid=nil, topicname=nil, state=nil)
+          @LogType = logtype
+          @TopicID = topicid
+          @TopicName = topicname
+          @State = state
+        end
+
+        def deserialize(params)
+          @LogType = params['LogType']
+          @TopicID = params['TopicID']
+          @TopicName = params['TopicName']
+          @State = params['State']
+        end
+      end
+
+      # 安全日志接入详情
+      class SecLogJoinInfo < TencentCloud::Common::AbstractModel
+        # @param Count: 已接入数量
+        # @type Count: Integer
+        # @param IsJoined: 是否已接入(true:已接入 false:未接入)
+        # @type IsJoined: Boolean
+        # @param LogType: 日志类型(
+        # 容器bash:  "container_bash"
+        # 容器启动: "container_launch"
+        # k8sApi: "k8s_api"
+        # )
+        # @type LogType: String
+
+        attr_accessor :Count, :IsJoined, :LogType
+        
+        def initialize(count=nil, isjoined=nil, logtype=nil)
+          @Count = count
+          @IsJoined = isjoined
+          @LogType = logtype
+        end
+
+        def deserialize(params)
+          @Count = params['Count']
+          @IsJoined = params['IsJoined']
+          @LogType = params['LogType']
+        end
+      end
+
+      # 安全日志接入对象详情
+      class SecLogJoinObjectInfo < TencentCloud::Common::AbstractModel
+        # @param HostID: 主机ID
+        # @type HostID: String
+        # @param HostName: 主机名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HostName: String
+        # @param HostIP: 主机IP
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HostIP: String
+        # @param HostStatus: 主机状态
+        # @type HostStatus: String
+        # @param ClusterID: 集群ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClusterID: String
+        # @param ClusterName: 集群名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClusterName: String
+        # @param PublicIP: 外网IP
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PublicIP: String
+        # @param JoinState: 接入状态(true:已接入  false:未接入)
+        # @type JoinState: Boolean
+        # @param ClusterVersion: 集群版本
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClusterVersion: String
+        # @param ClusterMainAddress: 集群主节点地址
+        # @type ClusterMainAddress: String
+
+        attr_accessor :HostID, :HostName, :HostIP, :HostStatus, :ClusterID, :ClusterName, :PublicIP, :JoinState, :ClusterVersion, :ClusterMainAddress
+        
+        def initialize(hostid=nil, hostname=nil, hostip=nil, hoststatus=nil, clusterid=nil, clustername=nil, publicip=nil, joinstate=nil, clusterversion=nil, clustermainaddress=nil)
+          @HostID = hostid
+          @HostName = hostname
+          @HostIP = hostip
+          @HostStatus = hoststatus
+          @ClusterID = clusterid
+          @ClusterName = clustername
+          @PublicIP = publicip
+          @JoinState = joinstate
+          @ClusterVersion = clusterversion
+          @ClusterMainAddress = clustermainaddress
+        end
+
+        def deserialize(params)
+          @HostID = params['HostID']
+          @HostName = params['HostName']
+          @HostIP = params['HostIP']
+          @HostStatus = params['HostStatus']
+          @ClusterID = params['ClusterID']
+          @ClusterName = params['ClusterName']
+          @PublicIP = params['PublicIP']
+          @JoinState = params['JoinState']
+          @ClusterVersion = params['ClusterVersion']
+          @ClusterMainAddress = params['ClusterMainAddress']
+        end
+      end
+
       # 运行时安全事件趋势信息
       class SecTendencyEventInfo < TencentCloud::Common::AbstractModel
         # @param EventSet: 趋势列表
@@ -14446,6 +23015,126 @@ module TencentCloud
         end
       end
 
+      # StopVulScanTask请求参数结构体
+      class StopVulScanTaskRequest < TencentCloud::Common::AbstractModel
+        # @param LocalTaskID: 本地镜像漏洞扫描任务ID
+        # @type LocalTaskID: Integer
+        # @param LocalImageIDs: 本地镜像ID，无则全部
+        # @type LocalImageIDs: Array
+        # @param RegistryImageIDs: 仓库镜像ID，无则全部
+        # @type RegistryImageIDs: Array
+        # @param RegistryTaskID: 仓库镜像漏洞扫描任务ID
+        # @type RegistryTaskID: Integer
+
+        attr_accessor :LocalTaskID, :LocalImageIDs, :RegistryImageIDs, :RegistryTaskID
+        
+        def initialize(localtaskid=nil, localimageids=nil, registryimageids=nil, registrytaskid=nil)
+          @LocalTaskID = localtaskid
+          @LocalImageIDs = localimageids
+          @RegistryImageIDs = registryimageids
+          @RegistryTaskID = registrytaskid
+        end
+
+        def deserialize(params)
+          @LocalTaskID = params['LocalTaskID']
+          @LocalImageIDs = params['LocalImageIDs']
+          @RegistryImageIDs = params['RegistryImageIDs']
+          @RegistryTaskID = params['RegistryTaskID']
+        end
+      end
+
+      # StopVulScanTask返回参数结构体
+      class StopVulScanTaskResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 支持防御的漏洞
+      class SupportDefenceVul < TencentCloud::Common::AbstractModel
+        # @param PocID: 漏洞PocID
+        # @type PocID: String
+        # @param Name: 漏洞名称
+        # @type Name: String
+        # @param Tags: 漏洞标签
+        # @type Tags: Array
+        # @param CVSSV3Score: 漏洞CVSS
+        # @type CVSSV3Score: Float
+        # @param Level: 漏洞威胁等级
+        # @type Level: String
+        # @param CVEID: 漏洞CVEID
+        # @type CVEID: String
+        # @param SubmitTime: 漏洞披露时间
+        # @type SubmitTime: String
+
+        attr_accessor :PocID, :Name, :Tags, :CVSSV3Score, :Level, :CVEID, :SubmitTime
+        
+        def initialize(pocid=nil, name=nil, tags=nil, cvssv3score=nil, level=nil, cveid=nil, submittime=nil)
+          @PocID = pocid
+          @Name = name
+          @Tags = tags
+          @CVSSV3Score = cvssv3score
+          @Level = level
+          @CVEID = cveid
+          @SubmitTime = submittime
+        end
+
+        def deserialize(params)
+          @PocID = params['PocID']
+          @Name = params['Name']
+          @Tags = params['Tags']
+          @CVSSV3Score = params['CVSSV3Score']
+          @Level = params['Level']
+          @CVEID = params['CVEID']
+          @SubmitTime = params['SubmitTime']
+        end
+      end
+
+      # SwitchImageAutoAuthorizedRule请求参数结构体
+      class SwitchImageAutoAuthorizedRuleRequest < TencentCloud::Common::AbstractModel
+        # @param IsEnabled: 规则是否生效，0:不生效，1:已生效
+        # @type IsEnabled: Integer
+        # @param RuleId: 规则id
+        # @type RuleId: Integer
+
+        attr_accessor :IsEnabled, :RuleId
+        
+        def initialize(isenabled=nil, ruleid=nil)
+          @IsEnabled = isenabled
+          @RuleId = ruleid
+        end
+
+        def deserialize(params)
+          @IsEnabled = params['IsEnabled']
+          @RuleId = params['RuleId']
+        end
+      end
+
+      # SwitchImageAutoAuthorizedRule返回参数结构体
+      class SwitchImageAutoAuthorizedRuleResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # SyncAssetImageRegistryAsset请求参数结构体
       class SyncAssetImageRegistryAssetRequest < TencentCloud::Common::AbstractModel
 
@@ -14469,6 +23158,165 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 未授权核数趋势
+      class UnauthorizedCoresTendency < TencentCloud::Common::AbstractModel
+        # @param DateTime: 日期
+        # @type DateTime: String
+        # @param CoresCount: 未授权的核数
+        # @type CoresCount: Integer
+
+        attr_accessor :DateTime, :CoresCount
+        
+        def initialize(datetime=nil, corescount=nil)
+          @DateTime = datetime
+          @CoresCount = corescount
+        end
+
+        def deserialize(params)
+          @DateTime = params['DateTime']
+          @CoresCount = params['CoresCount']
+        end
+      end
+
+      # UpdateAndPublishNetworkFirewallPolicyDetail请求参数结构体
+      class UpdateAndPublishNetworkFirewallPolicyDetailRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群Id
+        # @type ClusterId: String
+        # @param Id: 策略Id
+        # @type Id: Integer
+        # @param FromPolicyRule: 入站规则
+
+        # 全部允许：1
+
+        # 全部拒绝 ：2
+
+        # 自定义：3
+        # @type FromPolicyRule: Integer
+        # @param ToPolicyRule: 出站规则
+
+        # 全部允许：1
+
+        # 全部拒绝 ：2
+
+        # 自定义：3
+        # @type ToPolicyRule: Integer
+        # @param PodSelector: pod选择器
+        # @type PodSelector: String
+        # @param Namespace: 命名空间
+        # @type Namespace: String
+        # @param Description: 策略描述
+        # @type Description: String
+        # @param CustomPolicy: 自定义规则
+        # @type CustomPolicy: Array
+
+        attr_accessor :ClusterId, :Id, :FromPolicyRule, :ToPolicyRule, :PodSelector, :Namespace, :Description, :CustomPolicy
+        
+        def initialize(clusterid=nil, id=nil, frompolicyrule=nil, topolicyrule=nil, podselector=nil, namespace=nil, description=nil, custompolicy=nil)
+          @ClusterId = clusterid
+          @Id = id
+          @FromPolicyRule = frompolicyrule
+          @ToPolicyRule = topolicyrule
+          @PodSelector = podselector
+          @Namespace = namespace
+          @Description = description
+          @CustomPolicy = custompolicy
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @Id = params['Id']
+          @FromPolicyRule = params['FromPolicyRule']
+          @ToPolicyRule = params['ToPolicyRule']
+          @PodSelector = params['PodSelector']
+          @Namespace = params['Namespace']
+          @Description = params['Description']
+          unless params['CustomPolicy'].nil?
+            @CustomPolicy = []
+            params['CustomPolicy'].each do |i|
+              networkcustompolicy_tmp = NetworkCustomPolicy.new
+              networkcustompolicy_tmp.deserialize(i)
+              @CustomPolicy << networkcustompolicy_tmp
+            end
+          end
+        end
+      end
+
+      # UpdateAndPublishNetworkFirewallPolicyDetail返回参数结构体
+      class UpdateAndPublishNetworkFirewallPolicyDetailResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: 返回创建的任务的ID，为0表示创建失败。
+        # @type TaskId: Integer
+        # @param Result: 创建任务的结果，"Succ"为成功，"Failed"为失败
+        # @type Result: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :Result, :RequestId
+        
+        def initialize(taskid=nil, result=nil, requestid=nil)
+          @TaskId = taskid
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @Result = params['Result']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # UpdateAndPublishNetworkFirewallPolicyYamlDetail请求参数结构体
+      class UpdateAndPublishNetworkFirewallPolicyYamlDetailRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群Id
+        # @type ClusterId: String
+        # @param Id: 策略id
+        # @type Id: Integer
+        # @param Yaml: base64编码的networkpolicy yaml字符串
+        # @type Yaml: String
+        # @param Description: 策略描述
+        # @type Description: String
+
+        attr_accessor :ClusterId, :Id, :Yaml, :Description
+        
+        def initialize(clusterid=nil, id=nil, yaml=nil, description=nil)
+          @ClusterId = clusterid
+          @Id = id
+          @Yaml = yaml
+          @Description = description
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @Id = params['Id']
+          @Yaml = params['Yaml']
+          @Description = params['Description']
+        end
+      end
+
+      # UpdateAndPublishNetworkFirewallPolicyYamlDetail返回参数结构体
+      class UpdateAndPublishNetworkFirewallPolicyYamlDetailResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: 返回创建的任务的ID，为0表示创建失败。
+        # @type TaskId: Integer
+        # @param Result: 创建任务的结果，"Succ"为成功，"Failed"为失败
+        # @type Result: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :Result, :RequestId
+        
+        def initialize(taskid=nil, result=nil, requestid=nil)
+          @TaskId = taskid
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @Result = params['Result']
           @RequestId = params['RequestId']
         end
       end
@@ -14616,6 +23464,173 @@ module TencentCloud
 
         def deserialize(params)
           @RequestId = params['RequestId']
+        end
+      end
+
+      # UpdateNetworkFirewallPolicyDetail请求参数结构体
+      class UpdateNetworkFirewallPolicyDetailRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群Id
+        # @type ClusterId: String
+        # @param Id: 策略Id
+        # @type Id: Integer
+        # @param FromPolicyRule: 入站规则
+
+        # 全部允许：1
+
+        # 全部拒绝 ：2
+
+        # 自定义：3
+        # @type FromPolicyRule: Integer
+        # @param ToPolicyRule: 出站规则
+
+        # 全部允许：1
+
+        # 全部拒绝 ：2
+
+        # 自定义：3
+        # @type ToPolicyRule: Integer
+        # @param PodSelector: pod选择器
+        # @type PodSelector: String
+        # @param Namespace: 命名空间
+        # @type Namespace: String
+        # @param Description: 策略描述
+        # @type Description: String
+        # @param CustomPolicy: 自定义规则
+        # @type CustomPolicy: Array
+
+        attr_accessor :ClusterId, :Id, :FromPolicyRule, :ToPolicyRule, :PodSelector, :Namespace, :Description, :CustomPolicy
+        
+        def initialize(clusterid=nil, id=nil, frompolicyrule=nil, topolicyrule=nil, podselector=nil, namespace=nil, description=nil, custompolicy=nil)
+          @ClusterId = clusterid
+          @Id = id
+          @FromPolicyRule = frompolicyrule
+          @ToPolicyRule = topolicyrule
+          @PodSelector = podselector
+          @Namespace = namespace
+          @Description = description
+          @CustomPolicy = custompolicy
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @Id = params['Id']
+          @FromPolicyRule = params['FromPolicyRule']
+          @ToPolicyRule = params['ToPolicyRule']
+          @PodSelector = params['PodSelector']
+          @Namespace = params['Namespace']
+          @Description = params['Description']
+          unless params['CustomPolicy'].nil?
+            @CustomPolicy = []
+            params['CustomPolicy'].each do |i|
+              networkcustompolicy_tmp = NetworkCustomPolicy.new
+              networkcustompolicy_tmp.deserialize(i)
+              @CustomPolicy << networkcustompolicy_tmp
+            end
+          end
+        end
+      end
+
+      # UpdateNetworkFirewallPolicyDetail返回参数结构体
+      class UpdateNetworkFirewallPolicyDetailResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: 返回创建的任务的ID，为0表示创建失败。
+        # @type TaskId: Integer
+        # @param Result: 创建任务的结果，"Succ"为成功，"Failed"为失败
+        # @type Result: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :Result, :RequestId
+        
+        def initialize(taskid=nil, result=nil, requestid=nil)
+          @TaskId = taskid
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @Result = params['Result']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # UpdateNetworkFirewallPolicyYamlDetail请求参数结构体
+      class UpdateNetworkFirewallPolicyYamlDetailRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群Id
+        # @type ClusterId: String
+        # @param Id: 策略id
+        # @type Id: Integer
+        # @param Yaml: base64编码的networkpolicy yaml字符串
+        # @type Yaml: String
+        # @param Description: 策略描述
+        # @type Description: String
+
+        attr_accessor :ClusterId, :Id, :Yaml, :Description
+        
+        def initialize(clusterid=nil, id=nil, yaml=nil, description=nil)
+          @ClusterId = clusterid
+          @Id = id
+          @Yaml = yaml
+          @Description = description
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @Id = params['Id']
+          @Yaml = params['Yaml']
+          @Description = params['Description']
+        end
+      end
+
+      # UpdateNetworkFirewallPolicyYamlDetail返回参数结构体
+      class UpdateNetworkFirewallPolicyYamlDetailResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: 返回创建的任务的ID，为0表示创建失败。
+        # @type TaskId: Integer
+        # @param Result: 创建任务的结果，"Succ"为成功，"Failed"为失败
+        # @type Result: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :Result, :RequestId
+        
+        def initialize(taskid=nil, result=nil, requestid=nil)
+          @TaskId = taskid
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @Result = params['Result']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 木马自动隔离样本信息
+      class VirusAutoIsolateSampleInfo < TencentCloud::Common::AbstractModel
+        # @param MD5: 文件MD5值
+        # @type MD5: String
+        # @param VirusName: 病毒名
+        # @type VirusName: String
+        # @param ModifyTime: 最近编辑时间
+        # @type ModifyTime: String
+        # @param AutoIsolateSwitch: 自动隔离开关(true:开 false:关)
+        # @type AutoIsolateSwitch: Boolean
+
+        attr_accessor :MD5, :VirusName, :ModifyTime, :AutoIsolateSwitch
+        
+        def initialize(md5=nil, virusname=nil, modifytime=nil, autoisolateswitch=nil)
+          @MD5 = md5
+          @VirusName = virusname
+          @ModifyTime = modifytime
+          @AutoIsolateSwitch = autoisolateswitch
+        end
+
+        def deserialize(params)
+          @MD5 = params['MD5']
+          @VirusName = params['VirusName']
+          @ModifyTime = params['ModifyTime']
+          @AutoIsolateSwitch = params['AutoIsolateSwitch']
         end
       end
 
@@ -14839,6 +23854,996 @@ module TencentCloud
           @RiskCnt = params['RiskCnt']
           @Id = params['Id']
           @ErrorMsg = params['ErrorMsg']
+        end
+      end
+
+      # 木马趋势详情
+      class VirusTendencyInfo < TencentCloud::Common::AbstractModel
+        # @param Date: 日期
+        # @type Date: String
+        # @param PendingEventCount: 待处理事件总数
+        # @type PendingEventCount: Integer
+        # @param RiskContainerCount: 风险容器总数
+        # @type RiskContainerCount: Integer
+        # @param EventCount: 事件总数
+        # @type EventCount: Integer
+        # @param IsolateEventCount: 隔离事件总数
+        # @type IsolateEventCount: Integer
+
+        attr_accessor :Date, :PendingEventCount, :RiskContainerCount, :EventCount, :IsolateEventCount
+        
+        def initialize(date=nil, pendingeventcount=nil, riskcontainercount=nil, eventcount=nil, isolateeventcount=nil)
+          @Date = date
+          @PendingEventCount = pendingeventcount
+          @RiskContainerCount = riskcontainercount
+          @EventCount = eventcount
+          @IsolateEventCount = isolateeventcount
+        end
+
+        def deserialize(params)
+          @Date = params['Date']
+          @PendingEventCount = params['PendingEventCount']
+          @RiskContainerCount = params['RiskContainerCount']
+          @EventCount = params['EventCount']
+          @IsolateEventCount = params['IsolateEventCount']
+        end
+      end
+
+      # 受漏洞影响的组件信息
+      class VulAffectedComponentInfo < TencentCloud::Common::AbstractModel
+        # @param Name: 组件名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
+        # @param Version: 组件版本
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Version: Array
+        # @param FixedVersion: 组件修复版本
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FixedVersion: Array
+
+        attr_accessor :Name, :Version, :FixedVersion
+        
+        def initialize(name=nil, version=nil, fixedversion=nil)
+          @Name = name
+          @Version = version
+          @FixedVersion = fixedversion
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Version = params['Version']
+          @FixedVersion = params['FixedVersion']
+        end
+      end
+
+      # 受漏洞影响的容器信息
+      class VulAffectedContainerInfo < TencentCloud::Common::AbstractModel
+        # @param HostIP: 内网IP
+        # @type HostIP: String
+        # @param ContainerID: 容器ID
+        # @type ContainerID: String
+        # @param ContainerName: 容器名称
+        # @type ContainerName: String
+        # @param PodName: Pod名称
+        # @type PodName: String
+        # @param PodIP: PodIP值
+        # @type PodIP: String
+        # @param HostName: 主机名称
+        # @type HostName: String
+        # @param HostID: 主机ID
+        # @type HostID: String
+        # @param PublicIP: 外网IP
+        # @type PublicIP: String
+
+        attr_accessor :HostIP, :ContainerID, :ContainerName, :PodName, :PodIP, :HostName, :HostID, :PublicIP
+        
+        def initialize(hostip=nil, containerid=nil, containername=nil, podname=nil, podip=nil, hostname=nil, hostid=nil, publicip=nil)
+          @HostIP = hostip
+          @ContainerID = containerid
+          @ContainerName = containername
+          @PodName = podname
+          @PodIP = podip
+          @HostName = hostname
+          @HostID = hostid
+          @PublicIP = publicip
+        end
+
+        def deserialize(params)
+          @HostIP = params['HostIP']
+          @ContainerID = params['ContainerID']
+          @ContainerName = params['ContainerName']
+          @PodName = params['PodName']
+          @PodIP = params['PodIP']
+          @HostName = params['HostName']
+          @HostID = params['HostID']
+          @PublicIP = params['PublicIP']
+        end
+      end
+
+      # 受漏洞影响的组件信息
+      class VulAffectedImageComponentInfo < TencentCloud::Common::AbstractModel
+        # @param Name: 组件名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
+        # @param Version: 组件版本
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Version: String
+        # @param FixedVersion: 组件修复版本
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FixedVersion: String
+        # @param Path: 组件路径
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Path: String
+
+        attr_accessor :Name, :Version, :FixedVersion, :Path
+        
+        def initialize(name=nil, version=nil, fixedversion=nil, path=nil)
+          @Name = name
+          @Version = version
+          @FixedVersion = fixedversion
+          @Path = path
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Version = params['Version']
+          @FixedVersion = params['FixedVersion']
+          @Path = params['Path']
+        end
+      end
+
+      # 受漏洞影响的镜像信息
+      class VulAffectedImageInfo < TencentCloud::Common::AbstractModel
+        # @param ImageID: 镜像ID
+        # @type ImageID: String
+        # @param ImageName: 镜像名称
+        # @type ImageName: String
+        # @param HostCount: 关联的主机数
+        # @type HostCount: Integer
+        # @param ContainerCount: 关联的容器数
+        # @type ContainerCount: Integer
+        # @param ComponentList: 组件列表
+        # @type ComponentList: Array
+
+        attr_accessor :ImageID, :ImageName, :HostCount, :ContainerCount, :ComponentList
+        
+        def initialize(imageid=nil, imagename=nil, hostcount=nil, containercount=nil, componentlist=nil)
+          @ImageID = imageid
+          @ImageName = imagename
+          @HostCount = hostcount
+          @ContainerCount = containercount
+          @ComponentList = componentlist
+        end
+
+        def deserialize(params)
+          @ImageID = params['ImageID']
+          @ImageName = params['ImageName']
+          @HostCount = params['HostCount']
+          @ContainerCount = params['ContainerCount']
+          unless params['ComponentList'].nil?
+            @ComponentList = []
+            params['ComponentList'].each do |i|
+              vulaffectedimagecomponentinfo_tmp = VulAffectedImageComponentInfo.new
+              vulaffectedimagecomponentinfo_tmp.deserialize(i)
+              @ComponentList << vulaffectedimagecomponentinfo_tmp
+            end
+          end
+        end
+      end
+
+      # 漏洞防御事件详情
+      class VulDefenceEvent < TencentCloud::Common::AbstractModel
+        # @param CVEID: 漏洞CVEID
+        # @type CVEID: String
+        # @param VulName: 漏洞名称
+        # @type VulName: String
+        # @param PocID: 漏洞PocID
+        # @type PocID: String
+        # @param EventType: 入侵状态
+        # @type EventType: String
+        # @param SourceIP: 攻击源IP
+        # @type SourceIP: String
+        # @param City: 攻击源ip地址所在城市
+        # @type City: String
+        # @param EventCount: 事件数量
+        # @type EventCount: Integer
+        # @param ContainerID: 容器ID
+        # @type ContainerID: String
+        # @param ContainerName: 容器名称
+        # @type ContainerName: String
+        # @param ImageID: 镜像ID
+        # @type ImageID: String
+        # @param ImageName: 镜像名称
+        # @type ImageName: String
+        # @param Status: 处理状态
+        # @type Status: String
+        # @param EventID: 事件ID
+        # @type EventID: Integer
+        # @param CreateTime: 首次发现时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateTime: String
+        # @param ContainerNetStatus: 隔离状态
+        # 未隔离  	NORMAL
+        # 已隔离		ISOLATED
+        # 隔离中		ISOLATING
+        # 隔离失败	ISOLATE_FAILED
+        # 解除隔离中  RESTORING
+        # 解除隔离失败 RESTORE_FAILED
+        # @type ContainerNetStatus: String
+        # @param MergeTime: 最近发现时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MergeTime: String
+        # @param ContainerStatus: 容器状态
+        # 正在运行: RUNNING
+        # 暂停: PAUSED
+        # 停止: STOPPED
+        # 已经创建: CREATED
+        # 已经销毁: DESTROYED
+        # 正在重启中: RESTARTING
+        # 迁移中: REMOVING
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ContainerStatus: String
+        # @param ContainerNetSubStatus: 容器子状态
+        # "AGENT_OFFLINE"       //Agent离线
+        # 	"NODE_DESTROYED"      //节点已销毁
+        # 	"CONTAINER_EXITED"    //容器已退出
+        # 	"CONTAINER_DESTROYED" //容器已销毁
+        # 	"SHARED_HOST"         // 容器与主机共享网络
+        # 	"RESOURCE_LIMIT"      //隔离操作资源超限
+        # 	"UNKNOW"              // 原因未知
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ContainerNetSubStatus: String
+        # @param ContainerIsolateOperationSrc: 容器隔离操作来源
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ContainerIsolateOperationSrc: String
+        # @param QUUID: 主机QUUID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type QUUID: String
+        # @param HostIP: 主机内网IP
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HostIP: String
+        # @param HostName: 主机名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HostName: String
+
+        attr_accessor :CVEID, :VulName, :PocID, :EventType, :SourceIP, :City, :EventCount, :ContainerID, :ContainerName, :ImageID, :ImageName, :Status, :EventID, :CreateTime, :ContainerNetStatus, :MergeTime, :ContainerStatus, :ContainerNetSubStatus, :ContainerIsolateOperationSrc, :QUUID, :HostIP, :HostName
+        
+        def initialize(cveid=nil, vulname=nil, pocid=nil, eventtype=nil, sourceip=nil, city=nil, eventcount=nil, containerid=nil, containername=nil, imageid=nil, imagename=nil, status=nil, eventid=nil, createtime=nil, containernetstatus=nil, mergetime=nil, containerstatus=nil, containernetsubstatus=nil, containerisolateoperationsrc=nil, quuid=nil, hostip=nil, hostname=nil)
+          @CVEID = cveid
+          @VulName = vulname
+          @PocID = pocid
+          @EventType = eventtype
+          @SourceIP = sourceip
+          @City = city
+          @EventCount = eventcount
+          @ContainerID = containerid
+          @ContainerName = containername
+          @ImageID = imageid
+          @ImageName = imagename
+          @Status = status
+          @EventID = eventid
+          @CreateTime = createtime
+          @ContainerNetStatus = containernetstatus
+          @MergeTime = mergetime
+          @ContainerStatus = containerstatus
+          @ContainerNetSubStatus = containernetsubstatus
+          @ContainerIsolateOperationSrc = containerisolateoperationsrc
+          @QUUID = quuid
+          @HostIP = hostip
+          @HostName = hostname
+        end
+
+        def deserialize(params)
+          @CVEID = params['CVEID']
+          @VulName = params['VulName']
+          @PocID = params['PocID']
+          @EventType = params['EventType']
+          @SourceIP = params['SourceIP']
+          @City = params['City']
+          @EventCount = params['EventCount']
+          @ContainerID = params['ContainerID']
+          @ContainerName = params['ContainerName']
+          @ImageID = params['ImageID']
+          @ImageName = params['ImageName']
+          @Status = params['Status']
+          @EventID = params['EventID']
+          @CreateTime = params['CreateTime']
+          @ContainerNetStatus = params['ContainerNetStatus']
+          @MergeTime = params['MergeTime']
+          @ContainerStatus = params['ContainerStatus']
+          @ContainerNetSubStatus = params['ContainerNetSubStatus']
+          @ContainerIsolateOperationSrc = params['ContainerIsolateOperationSrc']
+          @QUUID = params['QUUID']
+          @HostIP = params['HostIP']
+          @HostName = params['HostName']
+        end
+      end
+
+      # 漏洞防御事件详情
+      class VulDefenceEventDetail < TencentCloud::Common::AbstractModel
+        # @param CVEID: 漏洞CVEID
+        # @type CVEID: String
+        # @param VulName: 漏洞名称
+        # @type VulName: String
+        # @param PocID: 漏洞PocID
+        # @type PocID: String
+        # @param EventType: 入侵状态
+        # @type EventType: String
+        # @param SourceIP: 攻击源IP
+        # @type SourceIP: String
+        # @param City: 攻击源ip地址所在城市
+        # @type City: String
+        # @param EventCount: 事件数量
+        # @type EventCount: Integer
+        # @param ContainerID: 容器ID
+        # @type ContainerID: String
+        # @param ContainerName: 容器名称
+        # @type ContainerName: String
+        # @param ImageID: 镜像ID
+        # @type ImageID: String
+        # @param ImageName: 镜像名称
+        # @type ImageName: String
+        # @param Status: 处理状态
+        # @type Status: String
+        # @param SourcePort: 攻击源端口
+        # @type SourcePort: Array
+        # @param EventID: 事件ID
+        # @type EventID: Integer
+        # @param HostName: 主机名称
+        # @type HostName: String
+        # @param HostIP: 主机内网IP
+        # @type HostIP: String
+        # @param PublicIP: 主机外网IP
+        # @type PublicIP: String
+        # @param PodName: Pod名称
+        # @type PodName: String
+        # @param Description: 危害描述
+        # @type Description: String
+        # @param OfficialSolution: 修复建议
+        # @type OfficialSolution: String
+        # @param NetworkPayload: 攻击包
+        # @type NetworkPayload: String
+        # @param PID: 进程PID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PID: Integer
+        # @param MainClass: 进程主类名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MainClass: String
+        # @param StackTrace: 堆栈信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StackTrace: String
+        # @param ServerAccount: 监听账号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ServerAccount: String
+        # @param ServerPort: 监听端口
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ServerPort: String
+        # @param ServerExe: 进程路径
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ServerExe: String
+        # @param ServerArg: 进程命令行参数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ServerArg: String
+        # @param QUUID: 主机QUUID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type QUUID: String
+        # @param ContainerNetStatus: 隔离状态
+        # 未隔离  	NORMAL
+        # 已隔离		ISOLATED
+        # 隔离中		ISOLATING
+        # 隔离失败	ISOLATE_FAILED
+        # 解除隔离中  RESTORING
+        # 解除隔离失败 RESTORE_FAILED
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ContainerNetStatus: String
+        # @param ContainerNetSubStatus: 容器子状态
+        # "AGENT_OFFLINE"       //Agent离线
+        # 	"NODE_DESTROYED"      //节点已销毁
+        # 	"CONTAINER_EXITED"    //容器已退出
+        # 	"CONTAINER_DESTROYED" //容器已销毁
+        # 	"SHARED_HOST"         // 容器与主机共享网络
+        # 	"RESOURCE_LIMIT"      //隔离操作资源超限
+        # 	"UNKNOW"              // 原因未知
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ContainerNetSubStatus: String
+        # @param ContainerIsolateOperationSrc: 容器隔离操作来源
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ContainerIsolateOperationSrc: String
+        # @param ContainerStatus: 容器状态
+        # 正在运行: RUNNING
+        # 暂停: PAUSED
+        # 停止: STOPPED
+        # 已经创建: CREATED
+        # 已经销毁: DESTROYED
+        # 正在重启中: RESTARTING
+        # 迁移中: REMOVING
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ContainerStatus: String
+        # @param JNDIUrl: 接口Url
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type JNDIUrl: String
+
+        attr_accessor :CVEID, :VulName, :PocID, :EventType, :SourceIP, :City, :EventCount, :ContainerID, :ContainerName, :ImageID, :ImageName, :Status, :SourcePort, :EventID, :HostName, :HostIP, :PublicIP, :PodName, :Description, :OfficialSolution, :NetworkPayload, :PID, :MainClass, :StackTrace, :ServerAccount, :ServerPort, :ServerExe, :ServerArg, :QUUID, :ContainerNetStatus, :ContainerNetSubStatus, :ContainerIsolateOperationSrc, :ContainerStatus, :JNDIUrl
+        
+        def initialize(cveid=nil, vulname=nil, pocid=nil, eventtype=nil, sourceip=nil, city=nil, eventcount=nil, containerid=nil, containername=nil, imageid=nil, imagename=nil, status=nil, sourceport=nil, eventid=nil, hostname=nil, hostip=nil, publicip=nil, podname=nil, description=nil, officialsolution=nil, networkpayload=nil, pid=nil, mainclass=nil, stacktrace=nil, serveraccount=nil, serverport=nil, serverexe=nil, serverarg=nil, quuid=nil, containernetstatus=nil, containernetsubstatus=nil, containerisolateoperationsrc=nil, containerstatus=nil, jndiurl=nil)
+          @CVEID = cveid
+          @VulName = vulname
+          @PocID = pocid
+          @EventType = eventtype
+          @SourceIP = sourceip
+          @City = city
+          @EventCount = eventcount
+          @ContainerID = containerid
+          @ContainerName = containername
+          @ImageID = imageid
+          @ImageName = imagename
+          @Status = status
+          @SourcePort = sourceport
+          @EventID = eventid
+          @HostName = hostname
+          @HostIP = hostip
+          @PublicIP = publicip
+          @PodName = podname
+          @Description = description
+          @OfficialSolution = officialsolution
+          @NetworkPayload = networkpayload
+          @PID = pid
+          @MainClass = mainclass
+          @StackTrace = stacktrace
+          @ServerAccount = serveraccount
+          @ServerPort = serverport
+          @ServerExe = serverexe
+          @ServerArg = serverarg
+          @QUUID = quuid
+          @ContainerNetStatus = containernetstatus
+          @ContainerNetSubStatus = containernetsubstatus
+          @ContainerIsolateOperationSrc = containerisolateoperationsrc
+          @ContainerStatus = containerstatus
+          @JNDIUrl = jndiurl
+        end
+
+        def deserialize(params)
+          @CVEID = params['CVEID']
+          @VulName = params['VulName']
+          @PocID = params['PocID']
+          @EventType = params['EventType']
+          @SourceIP = params['SourceIP']
+          @City = params['City']
+          @EventCount = params['EventCount']
+          @ContainerID = params['ContainerID']
+          @ContainerName = params['ContainerName']
+          @ImageID = params['ImageID']
+          @ImageName = params['ImageName']
+          @Status = params['Status']
+          @SourcePort = params['SourcePort']
+          @EventID = params['EventID']
+          @HostName = params['HostName']
+          @HostIP = params['HostIP']
+          @PublicIP = params['PublicIP']
+          @PodName = params['PodName']
+          @Description = params['Description']
+          @OfficialSolution = params['OfficialSolution']
+          @NetworkPayload = params['NetworkPayload']
+          @PID = params['PID']
+          @MainClass = params['MainClass']
+          @StackTrace = params['StackTrace']
+          @ServerAccount = params['ServerAccount']
+          @ServerPort = params['ServerPort']
+          @ServerExe = params['ServerExe']
+          @ServerArg = params['ServerArg']
+          @QUUID = params['QUUID']
+          @ContainerNetStatus = params['ContainerNetStatus']
+          @ContainerNetSubStatus = params['ContainerNetSubStatus']
+          @ContainerIsolateOperationSrc = params['ContainerIsolateOperationSrc']
+          @ContainerStatus = params['ContainerStatus']
+          @JNDIUrl = params['JNDIUrl']
+        end
+      end
+
+      # 漏洞防御攻击事件趋势
+      class VulDefenceEventTendency < TencentCloud::Common::AbstractModel
+        # @param Date: 日期
+        # @type Date: String
+        # @param EventCount: 事件数量
+        # @type EventCount: Integer
+
+        attr_accessor :Date, :EventCount
+        
+        def initialize(date=nil, eventcount=nil)
+          @Date = date
+          @EventCount = eventcount
+        end
+
+        def deserialize(params)
+          @Date = params['Date']
+          @EventCount = params['EventCount']
+        end
+      end
+
+      # 漏洞防御的主机信息
+      class VulDefenceHost < TencentCloud::Common::AbstractModel
+        # @param HostName: 主机名称
+        # @type HostName: String
+        # @param HostIP: 主机ip即内网ip
+        # @type HostIP: String
+        # @param HostID: 主机QUUID
+        # @type HostID: String
+        # @param Status: 插件状态，正常：SUCCESS，异常：FAIL， NO_DEFENDED:未防御
+        # @type Status: String
+        # @param PublicIP: 外网ip
+        # @type PublicIP: String
+        # @param CreateTime: 首次开启时间
+        # @type CreateTime: String
+        # @param ModifyTime: 更新时间
+        # @type ModifyTime: String
+
+        attr_accessor :HostName, :HostIP, :HostID, :Status, :PublicIP, :CreateTime, :ModifyTime
+        
+        def initialize(hostname=nil, hostip=nil, hostid=nil, status=nil, publicip=nil, createtime=nil, modifytime=nil)
+          @HostName = hostname
+          @HostIP = hostip
+          @HostID = hostid
+          @Status = status
+          @PublicIP = publicip
+          @CreateTime = createtime
+          @ModifyTime = modifytime
+        end
+
+        def deserialize(params)
+          @HostName = params['HostName']
+          @HostIP = params['HostIP']
+          @HostID = params['HostID']
+          @Status = params['Status']
+          @PublicIP = params['PublicIP']
+          @CreateTime = params['CreateTime']
+          @ModifyTime = params['ModifyTime']
+        end
+      end
+
+      # 漏洞防护的插件信息
+      class VulDefencePlugin < TencentCloud::Common::AbstractModel
+        # @param PID: java进程pid
+        # @type PID: Integer
+        # @param MainClass: 进程主类名
+        # @type MainClass: String
+        # @param Status: 插件运行状态：注入中:INJECTING，注入成功：SUCCESS，注入失败：FAIL，插件超时：TIMEOUT，插件退出：QUIT
+        # @type Status: String
+        # @param ErrorLog: 错误日志
+        # @type ErrorLog: String
+
+        attr_accessor :PID, :MainClass, :Status, :ErrorLog
+        
+        def initialize(pid=nil, mainclass=nil, status=nil, errorlog=nil)
+          @PID = pid
+          @MainClass = mainclass
+          @Status = status
+          @ErrorLog = errorlog
+        end
+
+        def deserialize(params)
+          @PID = params['PID']
+          @MainClass = params['MainClass']
+          @Status = params['Status']
+          @ErrorLog = params['ErrorLog']
+        end
+      end
+
+      # 漏洞详情信息
+      class VulDetailInfo < TencentCloud::Common::AbstractModel
+        # @param CVEID: CVE编号
+        # @type CVEID: String
+        # @param Name: 漏洞名称
+        # @type Name: String
+        # @param Tags: 漏洞标签
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Tags: Array
+        # @param CategoryType: 漏洞类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CategoryType: String
+        # @param Level: 漏洞威胁等级
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Level: String
+        # @param SubmitTime: 漏洞披露时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SubmitTime: String
+        # @param Description: 漏洞描述
+        # @type Description: String
+        # @param CVSSV3Desc: CVSS V3描述
+        # @type CVSSV3Desc: String
+        # @param OfficialSolution: 漏洞修复建议
+        # @type OfficialSolution: String
+        # @param DefenseSolution: 缓解措施
+        # @type DefenseSolution: String
+        # @param Reference: 参考链接
+        # @type Reference: Array
+        # @param CVSSV3Score: CVSS V3分数
+        # @type CVSSV3Score: Float
+        # @param ComponentList: 受漏洞影响的组件列表
+        # @type ComponentList: Array
+        # @param LocalImageCount: 影响本地镜像数
+        # @type LocalImageCount: Integer
+        # @param ContainerCount: 影响容器数
+        # @type ContainerCount: Integer
+        # @param RegistryImageCount: 影响仓库镜像数
+        # @type RegistryImageCount: Integer
+        # @param Category: 漏洞子类型
+        # @type Category: String
+        # @param LocalNewestImageCount: 影响最新本地镜像数
+        # @type LocalNewestImageCount: Integer
+        # @param RegistryNewestImageCount: 影响最新仓库镜像数
+        # @type RegistryNewestImageCount: Integer
+        # @param PocID: 漏洞PocID
+        # @type PocID: String
+        # @param DefenceStatus: 防御状态，NO_DEFENDED:未防御，DEFENDED:已防御
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DefenceStatus: String
+        # @param DefenceScope: 漏洞防御主机范围: MANUAL:自选主机节点，ALL:全部
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DefenceScope: String
+        # @param DefenceHostCount: 漏洞防御主机数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DefenceHostCount: Integer
+        # @param DefendedCount: 已防御攻击次数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DefendedCount: Integer
+        # @param ScanStatus: 是否已扫描，NOT_SCAN:未扫描,SCANNED:已扫描
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ScanStatus: String
+
+        attr_accessor :CVEID, :Name, :Tags, :CategoryType, :Level, :SubmitTime, :Description, :CVSSV3Desc, :OfficialSolution, :DefenseSolution, :Reference, :CVSSV3Score, :ComponentList, :LocalImageCount, :ContainerCount, :RegistryImageCount, :Category, :LocalNewestImageCount, :RegistryNewestImageCount, :PocID, :DefenceStatus, :DefenceScope, :DefenceHostCount, :DefendedCount, :ScanStatus
+        
+        def initialize(cveid=nil, name=nil, tags=nil, categorytype=nil, level=nil, submittime=nil, description=nil, cvssv3desc=nil, officialsolution=nil, defensesolution=nil, reference=nil, cvssv3score=nil, componentlist=nil, localimagecount=nil, containercount=nil, registryimagecount=nil, category=nil, localnewestimagecount=nil, registrynewestimagecount=nil, pocid=nil, defencestatus=nil, defencescope=nil, defencehostcount=nil, defendedcount=nil, scanstatus=nil)
+          @CVEID = cveid
+          @Name = name
+          @Tags = tags
+          @CategoryType = categorytype
+          @Level = level
+          @SubmitTime = submittime
+          @Description = description
+          @CVSSV3Desc = cvssv3desc
+          @OfficialSolution = officialsolution
+          @DefenseSolution = defensesolution
+          @Reference = reference
+          @CVSSV3Score = cvssv3score
+          @ComponentList = componentlist
+          @LocalImageCount = localimagecount
+          @ContainerCount = containercount
+          @RegistryImageCount = registryimagecount
+          @Category = category
+          @LocalNewestImageCount = localnewestimagecount
+          @RegistryNewestImageCount = registrynewestimagecount
+          @PocID = pocid
+          @DefenceStatus = defencestatus
+          @DefenceScope = defencescope
+          @DefenceHostCount = defencehostcount
+          @DefendedCount = defendedcount
+          @ScanStatus = scanstatus
+        end
+
+        def deserialize(params)
+          @CVEID = params['CVEID']
+          @Name = params['Name']
+          @Tags = params['Tags']
+          @CategoryType = params['CategoryType']
+          @Level = params['Level']
+          @SubmitTime = params['SubmitTime']
+          @Description = params['Description']
+          @CVSSV3Desc = params['CVSSV3Desc']
+          @OfficialSolution = params['OfficialSolution']
+          @DefenseSolution = params['DefenseSolution']
+          @Reference = params['Reference']
+          @CVSSV3Score = params['CVSSV3Score']
+          unless params['ComponentList'].nil?
+            @ComponentList = []
+            params['ComponentList'].each do |i|
+              vulaffectedcomponentinfo_tmp = VulAffectedComponentInfo.new
+              vulaffectedcomponentinfo_tmp.deserialize(i)
+              @ComponentList << vulaffectedcomponentinfo_tmp
+            end
+          end
+          @LocalImageCount = params['LocalImageCount']
+          @ContainerCount = params['ContainerCount']
+          @RegistryImageCount = params['RegistryImageCount']
+          @Category = params['Category']
+          @LocalNewestImageCount = params['LocalNewestImageCount']
+          @RegistryNewestImageCount = params['RegistryNewestImageCount']
+          @PocID = params['PocID']
+          @DefenceStatus = params['DefenceStatus']
+          @DefenceScope = params['DefenceScope']
+          @DefenceHostCount = params['DefenceHostCount']
+          @DefendedCount = params['DefendedCount']
+          @ScanStatus = params['ScanStatus']
+        end
+      end
+
+      # 漏洞扫描忽略的本地镜像
+      class VulIgnoreLocalImage < TencentCloud::Common::AbstractModel
+        # @param ID: 记录ID
+        # @type ID: Integer
+        # @param ImageID: 镜像ID
+        # @type ImageID: String
+        # @param ImageName: 镜像名称
+        # @type ImageName: String
+        # @param ImageSize: 镜像大小
+        # @type ImageSize: Integer
+        # @param PocID: 漏洞PocID
+        # @type PocID: String
+
+        attr_accessor :ID, :ImageID, :ImageName, :ImageSize, :PocID
+        
+        def initialize(id=nil, imageid=nil, imagename=nil, imagesize=nil, pocid=nil)
+          @ID = id
+          @ImageID = imageid
+          @ImageName = imagename
+          @ImageSize = imagesize
+          @PocID = pocid
+        end
+
+        def deserialize(params)
+          @ID = params['ID']
+          @ImageID = params['ImageID']
+          @ImageName = params['ImageName']
+          @ImageSize = params['ImageSize']
+          @PocID = params['PocID']
+        end
+      end
+
+      # 漏洞扫描忽略的仓库镜像
+      class VulIgnoreRegistryImage < TencentCloud::Common::AbstractModel
+        # @param ID: 记录ID
+        # @type ID: Integer
+        # @param RegistryName: 仓库名称
+        # @type RegistryName: String
+        # @param ImageVersion: 镜像版本
+        # @type ImageVersion: String
+        # @param RegistryPath: 仓库地址
+        # @type RegistryPath: String
+        # @param ImageID: 镜像ID
+        # @type ImageID: String
+        # @param PocID: 漏洞PocID
+        # @type PocID: String
+
+        attr_accessor :ID, :RegistryName, :ImageVersion, :RegistryPath, :ImageID, :PocID
+        
+        def initialize(id=nil, registryname=nil, imageversion=nil, registrypath=nil, imageid=nil, pocid=nil)
+          @ID = id
+          @RegistryName = registryname
+          @ImageVersion = imageversion
+          @RegistryPath = registrypath
+          @ImageID = imageid
+          @PocID = pocid
+        end
+
+        def deserialize(params)
+          @ID = params['ID']
+          @RegistryName = params['RegistryName']
+          @ImageVersion = params['ImageVersion']
+          @RegistryPath = params['RegistryPath']
+          @ImageID = params['ImageID']
+          @PocID = params['PocID']
+        end
+      end
+
+      # 漏洞列表信息
+      class VulInfo < TencentCloud::Common::AbstractModel
+        # @param Name: 漏洞名称
+        # @type Name: String
+        # @param Tags: 漏洞标签
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Tags: Array
+        # @param CVSSV3Score: CVSS V3分数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CVSSV3Score: Float
+        # @param Level: 风险等级
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Level: String
+        # @param CVEID: CVE编号
+        # @type CVEID: String
+        # @param Category: 漏洞子类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Category: String
+        # @param FoundTime: 首次发现时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FoundTime: String
+        # @param LatestFoundTime: 最近发现时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LatestFoundTime: String
+        # @param ID: 漏洞ID
+        # @type ID: Integer
+        # @param LocalImageCount: 影响本地镜像数
+        # @type LocalImageCount: Integer
+        # @param ContainerCount: 影响容器数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ContainerCount: Integer
+        # @param RegistryImageCount: 影响仓库镜像数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RegistryImageCount: Integer
+        # @param PocID: 漏洞PocID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PocID: String
+        # @param DefenceStatus: 防御状态，NO_DEFENDED:未防御，DEFENDED:已防御
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DefenceStatus: String
+        # @param DefenceScope: 漏洞防御主机范围: MANUAL:自选主机节点，ALL:全部
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DefenceScope: String
+        # @param DefenceHostCount: 漏洞防御主机数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DefenceHostCount: Integer
+        # @param DefendedCount: 已防御攻击次数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DefendedCount: Integer
+
+        attr_accessor :Name, :Tags, :CVSSV3Score, :Level, :CVEID, :Category, :FoundTime, :LatestFoundTime, :ID, :LocalImageCount, :ContainerCount, :RegistryImageCount, :PocID, :DefenceStatus, :DefenceScope, :DefenceHostCount, :DefendedCount
+        
+        def initialize(name=nil, tags=nil, cvssv3score=nil, level=nil, cveid=nil, category=nil, foundtime=nil, latestfoundtime=nil, id=nil, localimagecount=nil, containercount=nil, registryimagecount=nil, pocid=nil, defencestatus=nil, defencescope=nil, defencehostcount=nil, defendedcount=nil)
+          @Name = name
+          @Tags = tags
+          @CVSSV3Score = cvssv3score
+          @Level = level
+          @CVEID = cveid
+          @Category = category
+          @FoundTime = foundtime
+          @LatestFoundTime = latestfoundtime
+          @ID = id
+          @LocalImageCount = localimagecount
+          @ContainerCount = containercount
+          @RegistryImageCount = registryimagecount
+          @PocID = pocid
+          @DefenceStatus = defencestatus
+          @DefenceScope = defencescope
+          @DefenceHostCount = defencehostcount
+          @DefendedCount = defendedcount
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Tags = params['Tags']
+          @CVSSV3Score = params['CVSSV3Score']
+          @Level = params['Level']
+          @CVEID = params['CVEID']
+          @Category = params['Category']
+          @FoundTime = params['FoundTime']
+          @LatestFoundTime = params['LatestFoundTime']
+          @ID = params['ID']
+          @LocalImageCount = params['LocalImageCount']
+          @ContainerCount = params['ContainerCount']
+          @RegistryImageCount = params['RegistryImageCount']
+          @PocID = params['PocID']
+          @DefenceStatus = params['DefenceStatus']
+          @DefenceScope = params['DefenceScope']
+          @DefenceHostCount = params['DefenceHostCount']
+          @DefendedCount = params['DefendedCount']
+        end
+      end
+
+      # 漏洞扫描的镜像信息
+      class VulScanImageInfo < TencentCloud::Common::AbstractModel
+        # @param ImageID: 镜像ID
+        # @type ImageID: String
+        # @param ImageName: 镜像名称
+        # @type ImageName: String
+        # @param Size: 镜像大小
+        # @type Size: Float
+        # @param ScanStatus: 任务状态:SCANNING:扫描中 FAILED:失败 FINISHED:完成 CANCELED:取消
+        # @type ScanStatus: String
+        # @param ScanDuration: 扫描时长
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ScanDuration: Float
+        # @param HighLevelVulCount: 高危漏洞数
+        # @type HighLevelVulCount: Integer
+        # @param MediumLevelVulCount: 中危漏洞数
+        # @type MediumLevelVulCount: Integer
+        # @param LowLevelVulCount: 低危漏洞数
+        # @type LowLevelVulCount: Integer
+        # @param CriticalLevelVulCount: 严重漏洞数
+        # @type CriticalLevelVulCount: Integer
+        # @param TaskID: 本地镜像漏洞扫描任务ID
+        # @type TaskID: Integer
+        # @param ScanStartTime: 漏洞扫描的开始时间
+        # @type ScanStartTime: String
+        # @param ScanEndTime: 漏洞扫描的结束时间
+        # @type ScanEndTime: String
+        # @param ErrorStatus: 失败原因:TIMEOUT:超时 TOO_MANY:任务过多 OFFLINE:离线
+        # @type ErrorStatus: String
+
+        attr_accessor :ImageID, :ImageName, :Size, :ScanStatus, :ScanDuration, :HighLevelVulCount, :MediumLevelVulCount, :LowLevelVulCount, :CriticalLevelVulCount, :TaskID, :ScanStartTime, :ScanEndTime, :ErrorStatus
+        
+        def initialize(imageid=nil, imagename=nil, size=nil, scanstatus=nil, scanduration=nil, highlevelvulcount=nil, mediumlevelvulcount=nil, lowlevelvulcount=nil, criticallevelvulcount=nil, taskid=nil, scanstarttime=nil, scanendtime=nil, errorstatus=nil)
+          @ImageID = imageid
+          @ImageName = imagename
+          @Size = size
+          @ScanStatus = scanstatus
+          @ScanDuration = scanduration
+          @HighLevelVulCount = highlevelvulcount
+          @MediumLevelVulCount = mediumlevelvulcount
+          @LowLevelVulCount = lowlevelvulcount
+          @CriticalLevelVulCount = criticallevelvulcount
+          @TaskID = taskid
+          @ScanStartTime = scanstarttime
+          @ScanEndTime = scanendtime
+          @ErrorStatus = errorstatus
+        end
+
+        def deserialize(params)
+          @ImageID = params['ImageID']
+          @ImageName = params['ImageName']
+          @Size = params['Size']
+          @ScanStatus = params['ScanStatus']
+          @ScanDuration = params['ScanDuration']
+          @HighLevelVulCount = params['HighLevelVulCount']
+          @MediumLevelVulCount = params['MediumLevelVulCount']
+          @LowLevelVulCount = params['LowLevelVulCount']
+          @CriticalLevelVulCount = params['CriticalLevelVulCount']
+          @TaskID = params['TaskID']
+          @ScanStartTime = params['ScanStartTime']
+          @ScanEndTime = params['ScanEndTime']
+          @ErrorStatus = params['ErrorStatus']
+        end
+      end
+
+      # 漏洞趋势信息
+      class VulTendencyInfo < TencentCloud::Common::AbstractModel
+        # @param VulSet: 漏洞趋势列表
+        # @type VulSet: Array
+        # @param ImageType: 漏洞影响的镜像类型：
+        # LOCAL：本地镜像
+        # REGISTRY: 仓库镜像
+        # @type ImageType: String
+
+        attr_accessor :VulSet, :ImageType
+        
+        def initialize(vulset=nil, imagetype=nil)
+          @VulSet = vulset
+          @ImageType = imagetype
+        end
+
+        def deserialize(params)
+          unless params['VulSet'].nil?
+            @VulSet = []
+            params['VulSet'].each do |i|
+              runtimetendencyinfo_tmp = RunTimeTendencyInfo.new
+              runtimetendencyinfo_tmp.deserialize(i)
+              @VulSet << runtimetendencyinfo_tmp
+            end
+          end
+          @ImageType = params['ImageType']
+        end
+      end
+
+      # 漏洞Top排名信息
+      class VulTopRankingInfo < TencentCloud::Common::AbstractModel
+        # @param VulName: 漏洞名称
+        # @type VulName: String
+        # @param Level: 威胁等级,CRITICAL:严重 HIGH:高/MIDDLE:中/LOW:低
+        # @type Level: String
+        # @param AffectedImageCount: 影响的镜像数
+        # @type AffectedImageCount: Integer
+        # @param AffectedContainerCount: 影响的容器数
+        # @type AffectedContainerCount: Integer
+        # @param ID: 漏洞ID
+        # @type ID: Integer
+        # @param PocID: 漏洞PocID
+        # @type PocID: String
+
+        attr_accessor :VulName, :Level, :AffectedImageCount, :AffectedContainerCount, :ID, :PocID
+        
+        def initialize(vulname=nil, level=nil, affectedimagecount=nil, affectedcontainercount=nil, id=nil, pocid=nil)
+          @VulName = vulname
+          @Level = level
+          @AffectedImageCount = affectedimagecount
+          @AffectedContainerCount = affectedcontainercount
+          @ID = id
+          @PocID = pocid
+        end
+
+        def deserialize(params)
+          @VulName = params['VulName']
+          @Level = params['Level']
+          @AffectedImageCount = params['AffectedImageCount']
+          @AffectedContainerCount = params['AffectedContainerCount']
+          @ID = params['ID']
+          @PocID = params['PocID']
         end
       end
 

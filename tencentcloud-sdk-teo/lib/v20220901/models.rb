@@ -234,8 +234,9 @@ module TencentCloud
         # <li> Hsts；</li>
         # <li> ClientIpHeader；</li>
         # <li> TlsVersion；</li>
-        # <li> OcspStapling。</li>
-        # <li> HTTP/2 访问（Http2）。</li>
+        # <li> OcspStapling；</li>
+        # <li> HTTP/2 访问（Http2）；</li>
+        # <li> 回源跟随重定向(UpstreamFollowRedirect)。</li>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NormalAction: :class:`Tencentcloud::Teo.v20220901.models.NormalAction`
         # @param RewriteAction: 带有请求头/响应头的功能操作，选择该类型的功能项有：
@@ -2246,14 +2247,17 @@ module TencentCloud
         # @type Status: String
         # @param Rules: 规则内容。
         # @type Rules: Array
+        # @param Tags: 规则标签。
+        # @type Tags: Array
 
-        attr_accessor :ZoneId, :RuleName, :Status, :Rules
+        attr_accessor :ZoneId, :RuleName, :Status, :Rules, :Tags
         
-        def initialize(zoneid=nil, rulename=nil, status=nil, rules=nil)
+        def initialize(zoneid=nil, rulename=nil, status=nil, rules=nil, tags=nil)
           @ZoneId = zoneid
           @RuleName = rulename
           @Status = status
           @Rules = rules
+          @Tags = tags
         end
 
         def deserialize(params)
@@ -2268,6 +2272,7 @@ module TencentCloud
               @Rules << rule_tmp
             end
           end
+          @Tags = params['Tags']
         end
       end
 
@@ -8959,15 +8964,25 @@ module TencentCloud
         # <li>on：开启；</li>
         # <li>off：关闭。</li>
         # @type Switch: String
+        # @param DefaultCacheTime: 源站未返回 Cache-Control 头时, 设置默认的缓存时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DefaultCacheTime: Integer
+        # @param DefaultCache: 源站未返回 Cache-Control 头时, 设置缓存/不缓存
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DefaultCache: String
 
-        attr_accessor :Switch
+        attr_accessor :Switch, :DefaultCacheTime, :DefaultCache
         
-        def initialize(switch=nil)
+        def initialize(switch=nil, defaultcachetime=nil, defaultcache=nil)
           @Switch = switch
+          @DefaultCacheTime = defaultcachetime
+          @DefaultCache = defaultcache
         end
 
         def deserialize(params)
           @Switch = params['Switch']
+          @DefaultCacheTime = params['DefaultCacheTime']
+          @DefaultCache = params['DefaultCache']
         end
       end
 
@@ -10686,15 +10701,18 @@ module TencentCloud
         # <li> enable: 启用； </li>
         # <li> disable: 未启用。</li>
         # @type Status: String
+        # @param Tags: 规则标签。
+        # @type Tags: Array
 
-        attr_accessor :ZoneId, :RuleName, :Rules, :RuleId, :Status
+        attr_accessor :ZoneId, :RuleName, :Rules, :RuleId, :Status, :Tags
         
-        def initialize(zoneid=nil, rulename=nil, rules=nil, ruleid=nil, status=nil)
+        def initialize(zoneid=nil, rulename=nil, rules=nil, ruleid=nil, status=nil, tags=nil)
           @ZoneId = zoneid
           @RuleName = rulename
           @Rules = rules
           @RuleId = ruleid
           @Status = status
+          @Tags = tags
         end
 
         def deserialize(params)
@@ -10710,6 +10728,7 @@ module TencentCloud
           end
           @RuleId = params['RuleId']
           @Status = params['Status']
+          @Tags = params['Tags']
         end
       end
 
@@ -12143,20 +12162,31 @@ module TencentCloud
 
       # 规则引擎规则项，Conditions 数组内多个项的关系为 或，内层 Conditions 列表内多个项的关系为 且。
       class Rule < TencentCloud::Common::AbstractModel
+        # @param Actions: 执行的功能。
+        # @type Actions: Array
         # @param Conditions: 执行功能判断条件。
         # 注意：满足该数组内任意一项条件，功能即可执行。
         # @type Conditions: Array
-        # @param Actions: 执行的功能。
-        # @type Actions: Array
+        # @param SubRules: 嵌套规则。
+        # @type SubRules: Array
 
-        attr_accessor :Conditions, :Actions
+        attr_accessor :Actions, :Conditions, :SubRules
         
-        def initialize(conditions=nil, actions=nil)
-          @Conditions = conditions
+        def initialize(actions=nil, conditions=nil, subrules=nil)
           @Actions = actions
+          @Conditions = conditions
+          @SubRules = subrules
         end
 
         def deserialize(params)
+          unless params['Actions'].nil?
+            @Actions = []
+            params['Actions'].each do |i|
+              action_tmp = Action.new
+              action_tmp.deserialize(i)
+              @Actions << action_tmp
+            end
+          end
           unless params['Conditions'].nil?
             @Conditions = []
             params['Conditions'].each do |i|
@@ -12165,12 +12195,12 @@ module TencentCloud
               @Conditions << ruleandconditions_tmp
             end
           end
-          unless params['Actions'].nil?
-            @Actions = []
-            params['Actions'].each do |i|
-              action_tmp = Action.new
-              action_tmp.deserialize(i)
-              @Actions << action_tmp
+          unless params['SubRules'].nil?
+            @SubRules = []
+            params['SubRules'].each do |i|
+              subruleitem_tmp = SubRuleItem.new
+              subruleitem_tmp.deserialize(i)
+              @SubRules << subruleitem_tmp
             end
           end
         end
@@ -12376,15 +12406,18 @@ module TencentCloud
         # @type Rules: Array
         # @param RulePriority: 规则优先级, 值越大优先级越高，最小为 1。
         # @type RulePriority: Integer
+        # @param Tags: 规则标签。
+        # @type Tags: Array
 
-        attr_accessor :RuleId, :RuleName, :Status, :Rules, :RulePriority
+        attr_accessor :RuleId, :RuleName, :Status, :Rules, :RulePriority, :Tags
         
-        def initialize(ruleid=nil, rulename=nil, status=nil, rules=nil, rulepriority=nil)
+        def initialize(ruleid=nil, rulename=nil, status=nil, rules=nil, rulepriority=nil, tags=nil)
           @RuleId = ruleid
           @RuleName = rulename
           @Status = status
           @Rules = rules
           @RulePriority = rulepriority
+          @Tags = tags
         end
 
         def deserialize(params)
@@ -12400,6 +12433,7 @@ module TencentCloud
             end
           end
           @RulePriority = params['RulePriority']
+          @Tags = params['Tags']
         end
       end
 
@@ -13397,6 +13431,68 @@ module TencentCloud
           @Connectivity = params['Connectivity']
           @Reachable = params['Reachable']
           @TimedOut = params['TimedOut']
+        end
+      end
+
+      # 嵌套规则信息。
+      class SubRule < TencentCloud::Common::AbstractModel
+        # @param Conditions: 执行功能判断条件。
+        # 注意：满足该数组内任意一项条件，功能即可执行。
+        # @type Conditions: Array
+        # @param Actions: 执行的功能。
+        # @type Actions: Array
+
+        attr_accessor :Conditions, :Actions
+        
+        def initialize(conditions=nil, actions=nil)
+          @Conditions = conditions
+          @Actions = actions
+        end
+
+        def deserialize(params)
+          unless params['Conditions'].nil?
+            @Conditions = []
+            params['Conditions'].each do |i|
+              ruleandconditions_tmp = RuleAndConditions.new
+              ruleandconditions_tmp.deserialize(i)
+              @Conditions << ruleandconditions_tmp
+            end
+          end
+          unless params['Actions'].nil?
+            @Actions = []
+            params['Actions'].each do |i|
+              action_tmp = Action.new
+              action_tmp.deserialize(i)
+              @Actions << action_tmp
+            end
+          end
+        end
+      end
+
+      # 规则引擎嵌套规则
+      class SubRuleItem < TencentCloud::Common::AbstractModel
+        # @param Rules: 嵌套规则信息。
+        # @type Rules: Array
+        # @param Tags: 规则标签。
+        # @type Tags: Array
+
+        attr_accessor :Rules, :Tags
+        
+        def initialize(rules=nil, tags=nil)
+          @Rules = rules
+          @Tags = tags
+        end
+
+        def deserialize(params)
+          unless params['Rules'].nil?
+            @Rules = []
+            params['Rules'].each do |i|
+              subrule_tmp = SubRule.new
+              subrule_tmp.deserialize(i)
+              @Rules << subrule_tmp
+            end
+          end
+          @Tags = params['Tags']
         end
       end
 

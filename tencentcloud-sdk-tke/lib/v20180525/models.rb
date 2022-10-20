@@ -6925,27 +6925,57 @@ module TencentCloud
 
       # DescribePrometheusInstanceInitStatus请求参数结构体
       class DescribePrometheusInstanceInitStatusRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
 
+        attr_accessor :InstanceId
         
-        def initialize()
+        def initialize(instanceid=nil)
+          @InstanceId = instanceid
         end
 
         def deserialize(params)
+          @InstanceId = params['InstanceId']
         end
       end
 
       # DescribePrometheusInstanceInitStatus返回参数结构体
       class DescribePrometheusInstanceInitStatusResponse < TencentCloud::Common::AbstractModel
+        # @param Status: 实例初始化状态，取值：
+        # uninitialized 未初始化
+        # initializing 初始化中
+        # running 初始化完成，运行中
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: String
+        # @param Steps: 初始化任务步骤
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Steps: Array
+        # @param EksClusterId: 实例eks集群ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EksClusterId: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RequestId
+        attr_accessor :Status, :Steps, :EksClusterId, :RequestId
         
-        def initialize(requestid=nil)
+        def initialize(status=nil, steps=nil, eksclusterid=nil, requestid=nil)
+          @Status = status
+          @Steps = steps
+          @EksClusterId = eksclusterid
           @RequestId = requestid
         end
 
         def deserialize(params)
+          @Status = params['Status']
+          unless params['Steps'].nil?
+            @Steps = []
+            params['Steps'].each do |i|
+              taskstepinfo_tmp = TaskStepInfo.new
+              taskstepinfo_tmp.deserialize(i)
+              @Steps << taskstepinfo_tmp
+            end
+          end
+          @EksClusterId = params['EksClusterId']
           @RequestId = params['RequestId']
         end
       end
@@ -13288,12 +13318,21 @@ module TencentCloud
 
       # RunPrometheusInstance请求参数结构体
       class RunPrometheusInstanceRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+        # @param SubnetId: 子网ID，默认使用实例所用子网初始化，也可通过该参数传递新的子网ID初始化
+        # @type SubnetId: String
 
+        attr_accessor :InstanceId, :SubnetId
         
-        def initialize()
+        def initialize(instanceid=nil, subnetid=nil)
+          @InstanceId = instanceid
+          @SubnetId = subnetid
         end
 
         def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @SubnetId = params['SubnetId']
         end
       end
 

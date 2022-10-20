@@ -6911,10 +6911,15 @@ module TencentCloud
         # @type ShippingInfo: :class:`Tencentcloud::Cpdp.v20190820.models.OpenBankShippingInfo`
         # @param BillingInfo: 账单信息
         # @type BillingInfo: :class:`Tencentcloud::Cpdp.v20190820.models.OpenBankBillingInfo`
+        # @param Environment: 环境类型
+        # __release__:生产环境
+        # __sandbox__:沙箱环境
+        # 缺省默认为生产环境
+        # @type Environment: String
 
-        attr_accessor :ChannelMerchantId, :ChannelName, :PayType, :OutOrderId, :TotalAmount, :Currency, :ChannelSubMerchantId, :NotifyUrl, :FrontUrl, :FrontLanguage, :Remark, :ExternalPaymentData, :GoodsInfos, :ShippingInfo, :BillingInfo
+        attr_accessor :ChannelMerchantId, :ChannelName, :PayType, :OutOrderId, :TotalAmount, :Currency, :ChannelSubMerchantId, :NotifyUrl, :FrontUrl, :FrontLanguage, :Remark, :ExternalPaymentData, :GoodsInfos, :ShippingInfo, :BillingInfo, :Environment
         
-        def initialize(channelmerchantid=nil, channelname=nil, paytype=nil, outorderid=nil, totalamount=nil, currency=nil, channelsubmerchantid=nil, notifyurl=nil, fronturl=nil, frontlanguage=nil, remark=nil, externalpaymentdata=nil, goodsinfos=nil, shippinginfo=nil, billinginfo=nil)
+        def initialize(channelmerchantid=nil, channelname=nil, paytype=nil, outorderid=nil, totalamount=nil, currency=nil, channelsubmerchantid=nil, notifyurl=nil, fronturl=nil, frontlanguage=nil, remark=nil, externalpaymentdata=nil, goodsinfos=nil, shippinginfo=nil, billinginfo=nil, environment=nil)
           @ChannelMerchantId = channelmerchantid
           @ChannelName = channelname
           @PayType = paytype
@@ -6930,6 +6935,7 @@ module TencentCloud
           @GoodsInfos = goodsinfos
           @ShippingInfo = shippinginfo
           @BillingInfo = billinginfo
+          @Environment = environment
         end
 
         def deserialize(params)
@@ -6961,6 +6967,7 @@ module TencentCloud
             @BillingInfo = OpenBankBillingInfo.new
             @BillingInfo.deserialize(params['BillingInfo'])
           end
+          @Environment = params['Environment']
         end
       end
 

@@ -125,6 +125,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 关联集群
+
+        # @param request: Request instance for LinkClusterList.
+        # @type request: :class:`Tencentcloud::tcm::V20210413::LinkClusterListRequest`
+        # @rtype: :class:`Tencentcloud::tcm::V20210413::LinkClusterListResponse`
+        def LinkClusterList(request)
+          body = send_request('LinkClusterList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = LinkClusterListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 修改网格
 
         # @param request: Request instance for ModifyMesh.
@@ -135,6 +159,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyMeshResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 解关联集群
+
+        # @param request: Request instance for UnlinkCluster.
+        # @type request: :class:`Tencentcloud::tcm::V20210413::UnlinkClusterRequest`
+        # @rtype: :class:`Tencentcloud::tcm::V20210413::UnlinkClusterResponse`
+        def UnlinkCluster(request)
+          body = send_request('UnlinkCluster', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = UnlinkClusterResponse.new
             model.deserialize(response['Response'])
             model
           else

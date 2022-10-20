@@ -334,6 +334,7 @@ module TencentCloud
         # FILL_IMAGE、ATTACHMENT - 附件的FileId，需要通过UploadFiles接口上传获取
         # SELECTOR - 选项值
         # DYNAMIC_TABLE - 传入json格式的表格内容，具体见数据结构FlowInfo：https://cloud.tencent.com/document/api/1420/61525#FlowInfo
+        # SIGN_SEAL - 印章Id，于控制台查询获取
         # @type ComponentValue: String
         # @param IsFormType: 是否是表单域类型，默认不存在
         # @type IsFormType: Boolean
@@ -1040,18 +1041,12 @@ module TencentCloud
 
       # CreateMultiFlowSignQRCode请求参数结构体
       class CreateMultiFlowSignQRCodeRequest < TencentCloud::Common::AbstractModel
+        # @param Operator: 用户信息
+        # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
         # @param TemplateId: 模板ID
         # @type TemplateId: String
         # @param FlowName: 签署流程名称，最大长度不超过200字符
         # @type FlowName: String
-        # @param Operator: 用户信息
-        # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
-        # @param Agent: 应用信息
-        # @type Agent: :class:`Tencentcloud::Ess.v20201111.models.Agent`
-        # @param CallbackUrl: 回调地址,最大长度1000字符串
-        # 回调时机：
-        # 用户通过签署二维码发起签署流程时，企业额度不足导致失败
-        # @type CallbackUrl: String
         # @param MaxFlowNum: 最大可发起签署流程份数，默认5份
         # 发起流程数量超过此上限后二维码自动失效
         # @type MaxFlowNum: Integer
@@ -1059,38 +1054,55 @@ module TencentCloud
         # @type FlowEffectiveDay: Integer
         # @param QrEffectiveDay: 二维码有效天数 默认7天 最高设置不超过90天
         # @type QrEffectiveDay: Integer
-        # @param ApproverRestrictions: 限制二维码用户条件
+        # @param Restrictions: 限制二维码用户条件
+        # @type Restrictions: Array
+        # @param CallbackUrl: 回调地址,最大长度1000字符串
+        # 回调时机：
+        # 用户通过签署二维码发起签署流程时，企业额度不足导致失败
+        # @type CallbackUrl: String
+        # @param Agent: 应用信息
+        # @type Agent: :class:`Tencentcloud::Ess.v20201111.models.Agent`
+        # @param ApproverRestrictions: 限制二维码用户条件（已弃用）
         # @type ApproverRestrictions: :class:`Tencentcloud::Ess.v20201111.models.ApproverRestriction`
 
-        attr_accessor :TemplateId, :FlowName, :Operator, :Agent, :CallbackUrl, :MaxFlowNum, :FlowEffectiveDay, :QrEffectiveDay, :ApproverRestrictions
+        attr_accessor :Operator, :TemplateId, :FlowName, :MaxFlowNum, :FlowEffectiveDay, :QrEffectiveDay, :Restrictions, :CallbackUrl, :Agent, :ApproverRestrictions
         
-        def initialize(templateid=nil, flowname=nil, operator=nil, agent=nil, callbackurl=nil, maxflownum=nil, floweffectiveday=nil, qreffectiveday=nil, approverrestrictions=nil)
+        def initialize(operator=nil, templateid=nil, flowname=nil, maxflownum=nil, floweffectiveday=nil, qreffectiveday=nil, restrictions=nil, callbackurl=nil, agent=nil, approverrestrictions=nil)
+          @Operator = operator
           @TemplateId = templateid
           @FlowName = flowname
-          @Operator = operator
-          @Agent = agent
-          @CallbackUrl = callbackurl
           @MaxFlowNum = maxflownum
           @FlowEffectiveDay = floweffectiveday
           @QrEffectiveDay = qreffectiveday
+          @Restrictions = restrictions
+          @CallbackUrl = callbackurl
+          @Agent = agent
           @ApproverRestrictions = approverrestrictions
         end
 
         def deserialize(params)
-          @TemplateId = params['TemplateId']
-          @FlowName = params['FlowName']
           unless params['Operator'].nil?
             @Operator = UserInfo.new
             @Operator.deserialize(params['Operator'])
           end
+          @TemplateId = params['TemplateId']
+          @FlowName = params['FlowName']
+          @MaxFlowNum = params['MaxFlowNum']
+          @FlowEffectiveDay = params['FlowEffectiveDay']
+          @QrEffectiveDay = params['QrEffectiveDay']
+          unless params['Restrictions'].nil?
+            @Restrictions = []
+            params['Restrictions'].each do |i|
+              approverrestriction_tmp = ApproverRestriction.new
+              approverrestriction_tmp.deserialize(i)
+              @Restrictions << approverrestriction_tmp
+            end
+          end
+          @CallbackUrl = params['CallbackUrl']
           unless params['Agent'].nil?
             @Agent = Agent.new
             @Agent.deserialize(params['Agent'])
           end
-          @CallbackUrl = params['CallbackUrl']
-          @MaxFlowNum = params['MaxFlowNum']
-          @FlowEffectiveDay = params['FlowEffectiveDay']
-          @QrEffectiveDay = params['QrEffectiveDay']
           unless params['ApproverRestrictions'].nil?
             @ApproverRestrictions = ApproverRestriction.new
             @ApproverRestrictions.deserialize(params['ApproverRestrictions'])

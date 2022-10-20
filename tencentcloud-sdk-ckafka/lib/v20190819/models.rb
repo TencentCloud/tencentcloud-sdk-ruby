@@ -7672,10 +7672,12 @@ module TencentCloud
         # @type IncludeQuery: Boolean
         # @param RecordWithSchema: 如果该值为 true，则消息中会携带消息结构体对应的schema，如果该值为false则不会携带
         # @type RecordWithSchema: Boolean
+        # @param SignalDatabase: 存放信令表的数据库名称
+        # @type SignalDatabase: String
 
-        attr_accessor :Database, :Table, :Resource, :SnapshotMode, :DdlTopic, :DataSourceMonitorMode, :DataSourceMonitorResource, :DataSourceIncrementMode, :DataSourceIncrementColumn, :DataSourceStartFrom, :DataTargetInsertMode, :DataTargetPrimaryKeyField, :DataTargetRecordMapping, :TopicRegex, :TopicReplacement, :KeyColumns, :DropInvalidMessage, :DropCls, :OutputFormat, :IsTablePrefix, :IncludeContentChanges, :IncludeQuery, :RecordWithSchema
+        attr_accessor :Database, :Table, :Resource, :SnapshotMode, :DdlTopic, :DataSourceMonitorMode, :DataSourceMonitorResource, :DataSourceIncrementMode, :DataSourceIncrementColumn, :DataSourceStartFrom, :DataTargetInsertMode, :DataTargetPrimaryKeyField, :DataTargetRecordMapping, :TopicRegex, :TopicReplacement, :KeyColumns, :DropInvalidMessage, :DropCls, :OutputFormat, :IsTablePrefix, :IncludeContentChanges, :IncludeQuery, :RecordWithSchema, :SignalDatabase
         
-        def initialize(database=nil, table=nil, resource=nil, snapshotmode=nil, ddltopic=nil, datasourcemonitormode=nil, datasourcemonitorresource=nil, datasourceincrementmode=nil, datasourceincrementcolumn=nil, datasourcestartfrom=nil, datatargetinsertmode=nil, datatargetprimarykeyfield=nil, datatargetrecordmapping=nil, topicregex=nil, topicreplacement=nil, keycolumns=nil, dropinvalidmessage=nil, dropcls=nil, outputformat=nil, istableprefix=nil, includecontentchanges=nil, includequery=nil, recordwithschema=nil)
+        def initialize(database=nil, table=nil, resource=nil, snapshotmode=nil, ddltopic=nil, datasourcemonitormode=nil, datasourcemonitorresource=nil, datasourceincrementmode=nil, datasourceincrementcolumn=nil, datasourcestartfrom=nil, datatargetinsertmode=nil, datatargetprimarykeyfield=nil, datatargetrecordmapping=nil, topicregex=nil, topicreplacement=nil, keycolumns=nil, dropinvalidmessage=nil, dropcls=nil, outputformat=nil, istableprefix=nil, includecontentchanges=nil, includequery=nil, recordwithschema=nil, signaldatabase=nil)
           @Database = database
           @Table = table
           @Resource = resource
@@ -7699,6 +7701,7 @@ module TencentCloud
           @IncludeContentChanges = includecontentchanges
           @IncludeQuery = includequery
           @RecordWithSchema = recordwithschema
+          @SignalDatabase = signaldatabase
         end
 
         def deserialize(params)
@@ -7735,6 +7738,7 @@ module TencentCloud
           @IncludeContentChanges = params['IncludeContentChanges']
           @IncludeQuery = params['IncludeQuery']
           @RecordWithSchema = params['RecordWithSchema']
+          @SignalDatabase = params['SignalDatabase']
         end
       end
 

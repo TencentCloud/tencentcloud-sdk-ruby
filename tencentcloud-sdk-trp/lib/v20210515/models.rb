@@ -864,7 +864,7 @@ module TencentCloud
         # @type BatchId: String
         # @param TaskId: 任务ID
         # @type TaskId: String
-        # @param Phase: 溯源阶段 0:商品 1:通用 2:内部溯源 3:外部溯源
+        # @param Phase: 溯源阶段 0:商品 1:通用 2:生产溯源 3:销售溯源
         # @type Phase: Integer
         # @param PhaseName: 溯源阶段名称
         # @type PhaseName: String
@@ -2538,7 +2538,7 @@ module TencentCloud
         # @type Code: String
         # @param Rank: [无效] 排序
         # @type Rank: Integer
-        # @param Phase: [无效] 溯源阶段 0:商品 1:通用 2:物流
+        # @param Phase: [无效] 溯源阶段 0:商品 1:通用 2:生产溯源 3:销售溯源
         # @type Phase: Integer
         # @param TraceTime: [无效] 溯源时间
         # @type TraceTime: String
@@ -2850,13 +2850,13 @@ module TencentCloud
         # @param Rank: 排序，在Phase相同情况下，值越小排名靠前
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Rank: Integer
-        # @param Phase: 溯源阶段 0:商品 1:通用 2:物流
+        # @param Phase: 溯源阶段 0:商品 1:通用 2:生产溯源 3:销售溯源
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Phase: Integer
-        # @param PhaseName: 环节名称
+        # @param PhaseName: 溯源环节名称
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PhaseName: String
-        # @param TraceTime: 时间
+        # @param TraceTime: 溯源时间
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TraceTime: String
         # @param TraceItems: 无

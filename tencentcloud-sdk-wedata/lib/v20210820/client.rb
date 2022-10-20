@@ -178,6 +178,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 资源管理需要先将资源上传到cos中，然后调用该接口，将cos资源绑定到wedata
+
+        # @param request: Request instance for CreateOrUpdateResource.
+        # @type request: :class:`Tencentcloud::wedata::V20210820::CreateOrUpdateResourceRequest`
+        # @rtype: :class:`Tencentcloud::wedata::V20210820::CreateOrUpdateResourceResponse`
+        def CreateOrUpdateResource(request)
+          body = send_request('CreateOrUpdateResource', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateOrUpdateResourceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
         # 创建任务
 
@@ -288,6 +312,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteFolderResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 资源管理删除资源
+
+        # @param request: Request instance for DeleteResource.
+        # @type request: :class:`Tencentcloud::wedata::V20210820::DeleteResourceRequest`
+        # @rtype: :class:`Tencentcloud::wedata::V20210820::DeleteResourceResponse`
+        def DeleteResource(request)
+          body = send_request('DeleteResource', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteResourceResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -608,6 +656,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeRelatedInstancesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取资源管理目录树
+
+        # @param request: Request instance for DescribeResourceManagePathTrees.
+        # @type request: :class:`Tencentcloud::wedata::V20210820::DescribeResourceManagePathTreesRequest`
+        # @rtype: :class:`Tencentcloud::wedata::V20210820::DescribeResourceManagePathTreesResponse`
+        def DescribeResourceManagePathTrees(request)
+          body = send_request('DescribeResourceManagePathTrees', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeResourceManagePathTreesResponse.new
             model.deserialize(response['Response'])
             model
           else
