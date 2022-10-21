@@ -631,13 +631,16 @@ module TencentCloud
         # @type Namespace: String
         # @param Workload: 工作负载配置
         # @type Workload: :class:`Tencentcloud::Tcm.v20210413.models.WorkloadConfig`
+        # @param Status: 工作负载的状态
+        # @type Status: :class:`Tencentcloud::Tcm.v20210413.models.EgressGatewayStatus`
 
-        attr_accessor :Name, :Namespace, :Workload
+        attr_accessor :Name, :Namespace, :Workload, :Status
         
-        def initialize(name=nil, namespace=nil, workload=nil)
+        def initialize(name=nil, namespace=nil, workload=nil, status=nil)
           @Name = name
           @Namespace = namespace
           @Workload = workload
+          @Status = status
         end
 
         def deserialize(params)
@@ -647,6 +650,34 @@ module TencentCloud
             @Workload = WorkloadConfig.new
             @Workload.deserialize(params['Workload'])
           end
+          unless params['Status'].nil?
+            @Status = EgressGatewayStatus.new
+            @Status.deserialize(params['Status'])
+          end
+        end
+      end
+
+      # egress gateway 的状态
+      class EgressGatewayStatus < TencentCloud::Common::AbstractModel
+        # @param CurrentVersion: egress gateway的当前版本
+        # @type CurrentVersion: String
+        # @param DesiredVersion: egress gateway的目标版本
+        # @type DesiredVersion: String
+        # @param State: egress gateway的状态，取值：running，upgrading，rollbacking
+        # @type State: String
+
+        attr_accessor :CurrentVersion, :DesiredVersion, :State
+        
+        def initialize(currentversion=nil, desiredversion=nil, state=nil)
+          @CurrentVersion = currentversion
+          @DesiredVersion = desiredversion
+          @State = state
+        end
+
+        def deserialize(params)
+          @CurrentVersion = params['CurrentVersion']
+          @DesiredVersion = params['DesiredVersion']
+          @State = params['State']
         end
       end
 
@@ -855,11 +886,20 @@ module TencentCloud
       class IngressGatewayStatus < TencentCloud::Common::AbstractModel
         # @param LoadBalancer: 负载均衡实例状态
         # @type LoadBalancer: :class:`Tencentcloud::Tcm.v20210413.models.LoadBalancerStatus`
+        # @param CurrentVersion: ingress gateway 当前的版本
+        # @type CurrentVersion: String
+        # @param DesiredVersion: ingress gateway 目标的版本
+        # @type DesiredVersion: String
+        # @param State: ingress gateway的状态，取值running, upgrading, rollbacking
+        # @type State: String
 
-        attr_accessor :LoadBalancer
+        attr_accessor :LoadBalancer, :CurrentVersion, :DesiredVersion, :State
         
-        def initialize(loadbalancer=nil)
+        def initialize(loadbalancer=nil, currentversion=nil, desiredversion=nil, state=nil)
           @LoadBalancer = loadbalancer
+          @CurrentVersion = currentversion
+          @DesiredVersion = desiredversion
+          @State = state
         end
 
         def deserialize(params)
@@ -867,6 +907,9 @@ module TencentCloud
             @LoadBalancer = LoadBalancerStatus.new
             @LoadBalancer.deserialize(params['LoadBalancer'])
           end
+          @CurrentVersion = params['CurrentVersion']
+          @DesiredVersion = params['DesiredVersion']
+          @State = params['State']
         end
       end
 
@@ -1146,10 +1189,12 @@ module TencentCloud
         # @type Config: :class:`Tencentcloud::Tcm.v20210413.models.MeshConfig`
         # @param Status: Mesh详细状态
         # @type Status: :class:`Tencentcloud::Tcm.v20210413.models.MeshStatus`
+        # @param TagList: 标签列表
+        # @type TagList: Array
 
-        attr_accessor :MeshId, :DisplayName, :Type, :Region, :Version, :State, :CreatedTime, :UpdatedTime, :ClusterList, :Config, :Status
+        attr_accessor :MeshId, :DisplayName, :Type, :Region, :Version, :State, :CreatedTime, :UpdatedTime, :ClusterList, :Config, :Status, :TagList
         
-        def initialize(meshid=nil, displayname=nil, type=nil, region=nil, version=nil, state=nil, createdtime=nil, updatedtime=nil, clusterlist=nil, config=nil, status=nil)
+        def initialize(meshid=nil, displayname=nil, type=nil, region=nil, version=nil, state=nil, createdtime=nil, updatedtime=nil, clusterlist=nil, config=nil, status=nil, taglist=nil)
           @MeshId = meshid
           @DisplayName = displayname
           @Type = type
@@ -1161,6 +1206,7 @@ module TencentCloud
           @ClusterList = clusterlist
           @Config = config
           @Status = status
+          @TagList = taglist
         end
 
         def deserialize(params)
@@ -1187,6 +1233,14 @@ module TencentCloud
           unless params['Status'].nil?
             @Status = MeshStatus.new
             @Status.deserialize(params['Status'])
+          end
+          unless params['TagList'].nil?
+            @TagList = []
+            params['TagList'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @TagList << tag_tmp
+            end
           end
         end
       end

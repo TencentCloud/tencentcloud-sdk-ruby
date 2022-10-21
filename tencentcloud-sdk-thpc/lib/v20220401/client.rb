@@ -173,6 +173,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口(SetAutoScalingConfiguration)用于为集群设置集群弹性伸缩配置信息。
+
+        # @param request: Request instance for SetAutoScalingConfiguration.
+        # @type request: :class:`Tencentcloud::thpc::V20220401::SetAutoScalingConfigurationRequest`
+        # @rtype: :class:`Tencentcloud::thpc::V20220401::SetAutoScalingConfigurationResponse`
+        def SetAutoScalingConfiguration(request)
+          body = send_request('SetAutoScalingConfiguration', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = SetAutoScalingConfigurationResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
 
       end
     end

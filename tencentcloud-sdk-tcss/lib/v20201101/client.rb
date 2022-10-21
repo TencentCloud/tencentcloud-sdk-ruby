@@ -101,6 +101,56 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 新增安全合规忽略(资产+检测项列表)列表，不显示指定的检查项包含的资产内容
+        # 参考的AddCompliancePolicyItemToWhitelist，除输入字段外，其它应该是一致的，如果有不同可能是定义的不对
+
+        # @param request: Request instance for AddComplianceAssetPolicySetToWhitelist.
+        # @type request: :class:`Tencentcloud::tcss::V20201101::AddComplianceAssetPolicySetToWhitelistRequest`
+        # @rtype: :class:`Tencentcloud::tcss::V20201101::AddComplianceAssetPolicySetToWhitelistResponse`
+        def AddComplianceAssetPolicySetToWhitelist(request)
+          body = send_request('AddComplianceAssetPolicySetToWhitelist', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = AddComplianceAssetPolicySetToWhitelistResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 新增安全合规忽略(检测项+资产)列表，不显示指定的检查项包含的资产内容
+        # 参考的AddCompliancePolicyItemToWhitelist，除输入字段外，其它应该是一致的，如果有不同可能是定义的不对
+
+        # @param request: Request instance for AddCompliancePolicyAssetSetToWhitelist.
+        # @type request: :class:`Tencentcloud::tcss::V20201101::AddCompliancePolicyAssetSetToWhitelistRequest`
+        # @rtype: :class:`Tencentcloud::tcss::V20201101::AddCompliancePolicyAssetSetToWhitelistResponse`
+        def AddCompliancePolicyAssetSetToWhitelist(request)
+          body = send_request('AddCompliancePolicyAssetSetToWhitelist', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = AddCompliancePolicyAssetSetToWhitelistResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 将指定的检测项添加到白名单中，不显示未通过结果。
 
         # @param request: Request instance for AddCompliancePolicyItemToWhitelist.
@@ -1287,6 +1337,55 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteAccessControlRulesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 移除安全合规忽略(资产+检测项)列表，不显示指定的检查项包含的资产内容
+        # 参考的AddCompliancePolicyAssetSetToWhitelist，除输入字段外，其它应该是一致的，如果有不同可能是定义的不对
+
+        # @param request: Request instance for DeleteComplianceAssetPolicySetFromWhitelist.
+        # @type request: :class:`Tencentcloud::tcss::V20201101::DeleteComplianceAssetPolicySetFromWhitelistRequest`
+        # @rtype: :class:`Tencentcloud::tcss::V20201101::DeleteComplianceAssetPolicySetFromWhitelistResponse`
+        def DeleteComplianceAssetPolicySetFromWhitelist(request)
+          body = send_request('DeleteComplianceAssetPolicySetFromWhitelist', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteComplianceAssetPolicySetFromWhitelistResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 新增安全合规忽略(检测项+资产)列表，不显示指定的检查项包含的资产内容
+
+        # @param request: Request instance for DeleteCompliancePolicyAssetSetFromWhitelist.
+        # @type request: :class:`Tencentcloud::tcss::V20201101::DeleteCompliancePolicyAssetSetFromWhitelistRequest`
+        # @rtype: :class:`Tencentcloud::tcss::V20201101::DeleteCompliancePolicyAssetSetFromWhitelistResponse`
+        def DeleteCompliancePolicyAssetSetFromWhitelist(request)
+          body = send_request('DeleteCompliancePolicyAssetSetFromWhitelist', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteCompliancePolicyAssetSetFromWhitelistResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -3783,6 +3882,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeImageComponentListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询用户镜像仓库下的项目名称列表
+
+        # @param request: Request instance for DescribeImageRegistryNamespaceList.
+        # @type request: :class:`Tencentcloud::tcss::V20201101::DescribeImageRegistryNamespaceListRequest`
+        # @rtype: :class:`Tencentcloud::tcss::V20201101::DescribeImageRegistryNamespaceListResponse`
+        def DescribeImageRegistryNamespaceList(request)
+          body = send_request('DescribeImageRegistryNamespaceList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeImageRegistryNamespaceListResponse.new
             model.deserialize(response['Response'])
             model
           else

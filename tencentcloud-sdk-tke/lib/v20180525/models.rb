@@ -8454,10 +8454,13 @@ module TencentCloud
         # @param ClusterAdvancedSettings: 集群高级设置
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ClusterAdvancedSettings: :class:`Tencentcloud::Tke.v20180525.models.EdgeClusterAdvancedSettings`
+        # @param Level: 边缘容器集群级别
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Level: String
 
-        attr_accessor :ClusterId, :ClusterName, :VpcId, :PodCIDR, :ServiceCIDR, :K8SVersion, :Status, :ClusterDesc, :CreatedTime, :EdgeClusterVersion, :MaxNodePodNum, :ClusterAdvancedSettings
+        attr_accessor :ClusterId, :ClusterName, :VpcId, :PodCIDR, :ServiceCIDR, :K8SVersion, :Status, :ClusterDesc, :CreatedTime, :EdgeClusterVersion, :MaxNodePodNum, :ClusterAdvancedSettings, :Level
         
-        def initialize(clusterid=nil, clustername=nil, vpcid=nil, podcidr=nil, servicecidr=nil, k8sversion=nil, status=nil, clusterdesc=nil, createdtime=nil, edgeclusterversion=nil, maxnodepodnum=nil, clusteradvancedsettings=nil)
+        def initialize(clusterid=nil, clustername=nil, vpcid=nil, podcidr=nil, servicecidr=nil, k8sversion=nil, status=nil, clusterdesc=nil, createdtime=nil, edgeclusterversion=nil, maxnodepodnum=nil, clusteradvancedsettings=nil, level=nil)
           @ClusterId = clusterid
           @ClusterName = clustername
           @VpcId = vpcid
@@ -8470,6 +8473,7 @@ module TencentCloud
           @EdgeClusterVersion = edgeclusterversion
           @MaxNodePodNum = maxnodepodnum
           @ClusterAdvancedSettings = clusteradvancedsettings
+          @Level = level
         end
 
         def deserialize(params)
@@ -8488,6 +8492,7 @@ module TencentCloud
             @ClusterAdvancedSettings = EdgeClusterAdvancedSettings.new
             @ClusterAdvancedSettings.deserialize(params['ClusterAdvancedSettings'])
           end
+          @Level = params['Level']
         end
       end
 
@@ -11682,15 +11687,27 @@ module TencentCloud
         # 本集群的所有指标都会带上这几个label
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExternalLabels: Array
+        # @param Region: 集群所在地域
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Region: String
+        # @param VpcId: 集群所在VPC ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VpcId: String
+        # @param FailedReason: 记录关联等操作的失败信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FailedReason: String
 
-        attr_accessor :ClusterType, :ClusterId, :Status, :ClusterName, :ExternalLabels
+        attr_accessor :ClusterType, :ClusterId, :Status, :ClusterName, :ExternalLabels, :Region, :VpcId, :FailedReason
         
-        def initialize(clustertype=nil, clusterid=nil, status=nil, clustername=nil, externallabels=nil)
+        def initialize(clustertype=nil, clusterid=nil, status=nil, clustername=nil, externallabels=nil, region=nil, vpcid=nil, failedreason=nil)
           @ClusterType = clustertype
           @ClusterId = clusterid
           @Status = status
           @ClusterName = clustername
           @ExternalLabels = externallabels
+          @Region = region
+          @VpcId = vpcid
+          @FailedReason = failedreason
         end
 
         def deserialize(params)
@@ -11706,6 +11723,9 @@ module TencentCloud
               @ExternalLabels << label_tmp
             end
           end
+          @Region = params['Region']
+          @VpcId = params['VpcId']
+          @FailedReason = params['FailedReason']
         end
       end
 

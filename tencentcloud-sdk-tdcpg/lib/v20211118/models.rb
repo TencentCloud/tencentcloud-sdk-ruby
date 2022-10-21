@@ -148,10 +148,17 @@ module TencentCloud
         # @type Period: Integer
         # @param AutoRenewFlag: 是否自动续费，0-不 1-是。默认为0，只有当PayMode为PREPAID时生效。
         # @type AutoRenewFlag: Integer
+        # @param StoragePayMode: 存储付费模式
+        #  - PREPAID：预付费，即包年包月
+        #  - POSTPAID_BY_HOUR：按小时后付费
+        # 默认为POSTPAID_BY_HOUR，实例付费模式为按小时付费时，存储付费模式不支持包年包月
+        # @type StoragePayMode: String
+        # @param Storage: 存储最大使用量，单位GB。取值参考文档【购买指南】。存储使用预付费模式时必须设置，存储使用按小时后付费时不可设置
+        # @type Storage: Integer
 
-        attr_accessor :Zone, :DBVersion, :CPU, :Memory, :VpcId, :SubnetId, :PayMode, :SourceClusterId, :SourceDataPoint, :ClusterName, :ProjectId, :Port, :InstanceCount, :Period, :AutoRenewFlag
+        attr_accessor :Zone, :DBVersion, :CPU, :Memory, :VpcId, :SubnetId, :PayMode, :SourceClusterId, :SourceDataPoint, :ClusterName, :ProjectId, :Port, :InstanceCount, :Period, :AutoRenewFlag, :StoragePayMode, :Storage
         
-        def initialize(zone=nil, dbversion=nil, cpu=nil, memory=nil, vpcid=nil, subnetid=nil, paymode=nil, sourceclusterid=nil, sourcedatapoint=nil, clustername=nil, projectid=nil, port=nil, instancecount=nil, period=nil, autorenewflag=nil)
+        def initialize(zone=nil, dbversion=nil, cpu=nil, memory=nil, vpcid=nil, subnetid=nil, paymode=nil, sourceclusterid=nil, sourcedatapoint=nil, clustername=nil, projectid=nil, port=nil, instancecount=nil, period=nil, autorenewflag=nil, storagepaymode=nil, storage=nil)
           @Zone = zone
           @DBVersion = dbversion
           @CPU = cpu
@@ -167,6 +174,8 @@ module TencentCloud
           @InstanceCount = instancecount
           @Period = period
           @AutoRenewFlag = autorenewflag
+          @StoragePayMode = storagepaymode
+          @Storage = storage
         end
 
         def deserialize(params)
@@ -185,6 +194,8 @@ module TencentCloud
           @InstanceCount = params['InstanceCount']
           @Period = params['Period']
           @AutoRenewFlag = params['AutoRenewFlag']
+          @StoragePayMode = params['StoragePayMode']
+          @Storage = params['Storage']
         end
       end
 

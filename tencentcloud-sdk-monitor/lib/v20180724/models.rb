@@ -41,6 +41,28 @@ module TencentCloud
         end
       end
 
+      # 通知模版ID及通知等级列表，["Remind","Serious"]表示该通知模板仅接收提醒和严重类别的告警
+      class AlarmHierarchicalNotice < TencentCloud::Common::AbstractModel
+        # @param NoticeId: 通知模板ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NoticeId: String
+        # @param Classification: 通知等级列表，["Remind","Serious"]表示该通知模板仅接收提醒和严重类别的告警
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Classification: Array
+
+        attr_accessor :NoticeId, :Classification
+        
+        def initialize(noticeid=nil, classification=nil)
+          @NoticeId = noticeid
+          @Classification = classification
+        end
+
+        def deserialize(params)
+          @NoticeId = params['NoticeId']
+          @Classification = params['Classification']
+        end
+      end
+
       # 告警分级阈值配置
       class AlarmHierarchicalValue < TencentCloud::Common::AbstractModel
         # @param Remind: 提醒等级阈值
@@ -1327,10 +1349,14 @@ module TencentCloud
         # @type Tags: Array
         # @param LogAlarmReqInfo: 日志告警信息
         # @type LogAlarmReqInfo: :class:`Tencentcloud::Monitor.v20180724.models.LogAlarmReq`
+        # @param HierarchicalNotices: 告警分级通知规则配置
+        # @type HierarchicalNotices: Array
+        # @param MigrateFlag: 迁移策略专用字段，0-走鉴权逻辑，1-跳过鉴权逻辑
+        # @type MigrateFlag: Integer
 
-        attr_accessor :Module, :PolicyName, :MonitorType, :Namespace, :Remark, :Enable, :ProjectId, :ConditionTemplateId, :Condition, :EventCondition, :NoticeIds, :TriggerTasks, :Filter, :GroupBy, :Tags, :LogAlarmReqInfo
+        attr_accessor :Module, :PolicyName, :MonitorType, :Namespace, :Remark, :Enable, :ProjectId, :ConditionTemplateId, :Condition, :EventCondition, :NoticeIds, :TriggerTasks, :Filter, :GroupBy, :Tags, :LogAlarmReqInfo, :HierarchicalNotices, :MigrateFlag
         
-        def initialize(_module=nil, policyname=nil, monitortype=nil, namespace=nil, remark=nil, enable=nil, projectid=nil, conditiontemplateid=nil, condition=nil, eventcondition=nil, noticeids=nil, triggertasks=nil, filter=nil, groupby=nil, tags=nil, logalarmreqinfo=nil)
+        def initialize(_module=nil, policyname=nil, monitortype=nil, namespace=nil, remark=nil, enable=nil, projectid=nil, conditiontemplateid=nil, condition=nil, eventcondition=nil, noticeids=nil, triggertasks=nil, filter=nil, groupby=nil, tags=nil, logalarmreqinfo=nil, hierarchicalnotices=nil, migrateflag=nil)
           @Module = _module
           @PolicyName = policyname
           @MonitorType = monitortype
@@ -1347,6 +1373,8 @@ module TencentCloud
           @GroupBy = groupby
           @Tags = tags
           @LogAlarmReqInfo = logalarmreqinfo
+          @HierarchicalNotices = hierarchicalnotices
+          @MigrateFlag = migrateflag
         end
 
         def deserialize(params)
@@ -1392,6 +1420,15 @@ module TencentCloud
             @LogAlarmReqInfo = LogAlarmReq.new
             @LogAlarmReqInfo.deserialize(params['LogAlarmReqInfo'])
           end
+          unless params['HierarchicalNotices'].nil?
+            @HierarchicalNotices = []
+            params['HierarchicalNotices'].each do |i|
+              alarmhierarchicalnotice_tmp = AlarmHierarchicalNotice.new
+              alarmhierarchicalnotice_tmp.deserialize(i)
+              @HierarchicalNotices << alarmhierarchicalnotice_tmp
+            end
+          end
+          @MigrateFlag = params['MigrateFlag']
         end
       end
 

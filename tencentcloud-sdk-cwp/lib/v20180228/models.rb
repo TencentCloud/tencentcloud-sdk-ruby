@@ -2605,6 +2605,63 @@ module TencentCloud
         end
       end
 
+      # 基线主机检测
+      class BaselineHostDetect < TencentCloud::Common::AbstractModel
+        # @param HostId: 主机Id
+        # @type HostId: String
+        # @param HostIp: 内网Ip
+        # @type HostIp: String
+        # @param HostName: 主机名称
+        # @type HostName: String
+        # @param WanIp: 外网Ip
+        # @type WanIp: String
+        # @param DetectStatus: 0:未通过 1:忽略 3:通过 5:检测中
+        # @type DetectStatus: Integer
+        # @param PassedItemCount: 检测通过数
+        # @type PassedItemCount: Integer
+        # @param ItemCount: 关联检测项数
+        # @type ItemCount: Integer
+        # @param NotPassedItemCount: 检测未通过数
+        # @type NotPassedItemCount: Integer
+        # @param FirstTime: 首次检测时间
+        # @type FirstTime: String
+        # @param LastTime: 最后检测时间
+        # @type LastTime: String
+        # @param Uuid: 主机安全UUID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Uuid: String
+
+        attr_accessor :HostId, :HostIp, :HostName, :WanIp, :DetectStatus, :PassedItemCount, :ItemCount, :NotPassedItemCount, :FirstTime, :LastTime, :Uuid
+        
+        def initialize(hostid=nil, hostip=nil, hostname=nil, wanip=nil, detectstatus=nil, passeditemcount=nil, itemcount=nil, notpasseditemcount=nil, firsttime=nil, lasttime=nil, uuid=nil)
+          @HostId = hostid
+          @HostIp = hostip
+          @HostName = hostname
+          @WanIp = wanip
+          @DetectStatus = detectstatus
+          @PassedItemCount = passeditemcount
+          @ItemCount = itemcount
+          @NotPassedItemCount = notpasseditemcount
+          @FirstTime = firsttime
+          @LastTime = lasttime
+          @Uuid = uuid
+        end
+
+        def deserialize(params)
+          @HostId = params['HostId']
+          @HostIp = params['HostIp']
+          @HostName = params['HostName']
+          @WanIp = params['WanIp']
+          @DetectStatus = params['DetectStatus']
+          @PassedItemCount = params['PassedItemCount']
+          @ItemCount = params['ItemCount']
+          @NotPassedItemCount = params['NotPassedItemCount']
+          @FirstTime = params['FirstTime']
+          @LastTime = params['LastTime']
+          @Uuid = params['Uuid']
+        end
+      end
+
       # 基线影响服务器列表数据
       class BaselineHostTopList < TencentCloud::Common::AbstractModel
         # @param EventLevelList: 事件等级与次数列表
@@ -2871,6 +2928,70 @@ module TencentCloud
           @RuleId = params['RuleId']
           @PassedHostCount = params['PassedHostCount']
           @NotPassedHostCount = params['NotPassedHostCount']
+        end
+      end
+
+      # 基线策略信息
+      class BaselinePolicy < TencentCloud::Common::AbstractModel
+        # @param PolicyName: 策略名称,长度不超过128英文字符
+        # @type PolicyName: String
+        # @param DetectInterval: 检测间隔[1:1天|3:3天|5:5天|7:7天]
+        # @type DetectInterval: Integer
+        # @param DetectTime: 检测时间
+        # @type DetectTime: String
+        # @param IsEnabled: 是否开启[0:未开启|1:开启]
+        # @type IsEnabled: Integer
+        # @param AssetType: 资产类型[0:所有专业版旗舰版|1:id|2:ip]
+        # @type AssetType: Integer
+        # @param PolicyId: 策略Id
+        # @type PolicyId: Integer
+        # @param RuleCount: 关联基线项数目
+        # @type RuleCount: Integer
+        # @param ItemCount: 关联基线项数目
+        # @type ItemCount: Integer
+        # @param HostCount: 关联基线主机数目
+        # @type HostCount: Integer
+        # @param RuleIds: 规则Id
+        # @type RuleIds: Array
+        # @param HostIds: 主机Id
+        # @type HostIds: Array
+        # @param HostIps: 主机Ip
+        # @type HostIps: Array
+        # @param IsDefault: 是否是系统默认
+        # @type IsDefault: Integer
+
+        attr_accessor :PolicyName, :DetectInterval, :DetectTime, :IsEnabled, :AssetType, :PolicyId, :RuleCount, :ItemCount, :HostCount, :RuleIds, :HostIds, :HostIps, :IsDefault
+        
+        def initialize(policyname=nil, detectinterval=nil, detecttime=nil, isenabled=nil, assettype=nil, policyid=nil, rulecount=nil, itemcount=nil, hostcount=nil, ruleids=nil, hostids=nil, hostips=nil, isdefault=nil)
+          @PolicyName = policyname
+          @DetectInterval = detectinterval
+          @DetectTime = detecttime
+          @IsEnabled = isenabled
+          @AssetType = assettype
+          @PolicyId = policyid
+          @RuleCount = rulecount
+          @ItemCount = itemcount
+          @HostCount = hostcount
+          @RuleIds = ruleids
+          @HostIds = hostids
+          @HostIps = hostips
+          @IsDefault = isdefault
+        end
+
+        def deserialize(params)
+          @PolicyName = params['PolicyName']
+          @DetectInterval = params['DetectInterval']
+          @DetectTime = params['DetectTime']
+          @IsEnabled = params['IsEnabled']
+          @AssetType = params['AssetType']
+          @PolicyId = params['PolicyId']
+          @RuleCount = params['RuleCount']
+          @ItemCount = params['ItemCount']
+          @HostCount = params['HostCount']
+          @RuleIds = params['RuleIds']
+          @HostIds = params['HostIds']
+          @HostIps = params['HostIps']
+          @IsDefault = params['IsDefault']
         end
       end
 
@@ -3909,6 +4030,38 @@ module TencentCloud
         end
       end
 
+      # DeleteBaselinePolicy请求参数结构体
+      class DeleteBaselinePolicyRequest < TencentCloud::Common::AbstractModel
+        # @param PolicyIds: 策略Id
+        # @type PolicyIds: Array
+
+        attr_accessor :PolicyIds
+        
+        def initialize(policyids=nil)
+          @PolicyIds = policyids
+        end
+
+        def deserialize(params)
+          @PolicyIds = params['PolicyIds']
+        end
+      end
+
+      # DeleteBaselinePolicy返回参数结构体
+      class DeleteBaselinePolicyResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DeleteBaselineStrategy请求参数结构体
       class DeleteBaselineStrategyRequest < TencentCloud::Common::AbstractModel
         # @param StrategyId: 基线策略id
@@ -4454,6 +4607,46 @@ module TencentCloud
 
       # DeleteReverseShellRules返回参数结构体
       class DeleteReverseShellRulesResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteScanTask请求参数结构体
+      class DeleteScanTaskRequest < TencentCloud::Common::AbstractModel
+        # @param TaskId: 任务Id
+        # @type TaskId: Integer
+        # @param ModuleType: 模块类型 当前提供 Malware 木马 , Vul 漏洞 , Baseline 基线
+        # @type ModuleType: String
+        # @param QuuidList: 自选服务器时生效，主机quuid的string数组
+        # @type QuuidList: Array
+
+        attr_accessor :TaskId, :ModuleType, :QuuidList
+        
+        def initialize(taskid=nil, moduletype=nil, quuidlist=nil)
+          @TaskId = taskid
+          @ModuleType = moduletype
+          @QuuidList = quuidlist
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @ModuleType = params['ModuleType']
+          @QuuidList = params['QuuidList']
+        end
+      end
+
+      # DeleteScanTask返回参数结构体
+      class DeleteScanTaskResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -7443,6 +7636,84 @@ module TencentCloud
         end
       end
 
+      # DescribeBaselineHostDetectList请求参数结构体
+      class DescribeBaselineHostDetectListRequest < TencentCloud::Common::AbstractModel
+        # @param Filters: <li>PolicyId - int64 - 是否必填：否 - 策略Id</li>
+        # <li>HostName - string - 是否必填：否 - 主机名称</i>
+        # <li>HostIp - string - 是否必填：否 - 主机Ip</i>
+        # <li>ItemId - int64 - 是否必填：否 - 项Id</i>
+        # <li>RuleId - int64 - 是否必填：否 - 规则Id</li>
+        # <li>DetectStatus - int - 是否必填：否 - 检测状态</li>
+        # <li>Level - int - 是否必填：否 - 风险等级</li>
+        # <li>StartTime - string - 是否必填：否 - 开时时间</li>
+        # <li>EndTime - string - 是否必填：否 - 结束时间</li>
+        # @type Filters: Array
+        # @param Limit: 限制条数,默认10,最大100
+        # @type Limit: Integer
+        # @param Offset: 偏移量,默认0
+        # @type Offset: Integer
+        # @param Order: 排序方式: [ASC:升序|DESC:降序]
+        # @type Order: String
+        # @param By: 可选排序列: [LastTime|ItemCount|PassedItemCount|NotPassedItemCount|FirstTime]
+        # @type By: String
+
+        attr_accessor :Filters, :Limit, :Offset, :Order, :By
+        
+        def initialize(filters=nil, limit=nil, offset=nil, order=nil, by=nil)
+          @Filters = filters
+          @Limit = limit
+          @Offset = offset
+          @Order = order
+          @By = by
+        end
+
+        def deserialize(params)
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          @Order = params['Order']
+          @By = params['By']
+        end
+      end
+
+      # DescribeBaselineHostDetectList返回参数结构体
+      class DescribeBaselineHostDetectListResponse < TencentCloud::Common::AbstractModel
+        # @param List: 无
+        # @type List: Array
+        # @param Total: 总数
+        # @type Total: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :List, :Total, :RequestId
+        
+        def initialize(list=nil, total=nil, requestid=nil)
+          @List = list
+          @Total = total
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['List'].nil?
+            @List = []
+            params['List'].each do |i|
+              baselinehostdetect_tmp = BaselineHostDetect.new
+              baselinehostdetect_tmp.deserialize(i)
+              @List << baselinehostdetect_tmp
+            end
+          end
+          @Total = params['Total']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeBaselineHostTop请求参数结构体
       class DescribeBaselineHostTopRequest < TencentCloud::Common::AbstractModel
         # @param Top: 动态top值
@@ -9266,6 +9537,69 @@ module TencentCloud
 
         def deserialize(params)
           @Data = params['Data']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeJavaMemShellList请求参数结构体
+      class DescribeJavaMemShellListRequest < TencentCloud::Common::AbstractModel
+        # @param Filters: 过滤条件：Keywords: ip或者主机名模糊查询, Type，Status精确匹配，CreateBeginTime，CreateEndTime时间段
+        # @type Filters: Array
+        # @param Offset: 偏移量，默认为0。
+        # @type Offset: Integer
+        # @param Limit: 需要返回的数量，默认为10，最大值为100
+        # @type Limit: Integer
+
+        attr_accessor :Filters, :Offset, :Limit
+        
+        def initialize(filters=nil, offset=nil, limit=nil)
+          @Filters = filters
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filters_tmp = Filters.new
+              filters_tmp.deserialize(i)
+              @Filters << filters_tmp
+            end
+          end
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeJavaMemShellList返回参数结构体
+      class DescribeJavaMemShellListResponse < TencentCloud::Common::AbstractModel
+        # @param List: 事件列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type List: Array
+        # @param TotalCount: 总数
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :List, :TotalCount, :RequestId
+        
+        def initialize(list=nil, totalcount=nil, requestid=nil)
+          @List = list
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['List'].nil?
+            @List = []
+            params['List'].each do |i|
+              javamemshellinfo_tmp = JavaMemShellInfo.new
+              javamemshellinfo_tmp.deserialize(i)
+              @List << javamemshellinfo_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
           @RequestId = params['RequestId']
         end
       end
@@ -15648,6 +15982,56 @@ module TencentCloud
         end
       end
 
+      # java内存马事件信息
+      class JavaMemShellInfo < TencentCloud::Common::AbstractModel
+        # @param Id: 事件ID
+        # @type Id: Integer
+        # @param Alias: 服务器名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Alias: String
+        # @param HostIp: 服务器IP
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HostIp: String
+        # @param Type: 内存马类型  0:Filter型 1:Listener型 2:Servlet型 3:Interceptors型 4:Agent型 5:其他
+        # @type Type: Integer
+        # @param Description: 说明
+        # @type Description: String
+        # @param CreateTime: 首次发现时间
+        # @type CreateTime: String
+        # @param RecentFoundTime: 最近检测时间
+        # @type RecentFoundTime: String
+        # @param Status: 处理状态  0 -- 待处理 1 -- 已加白 2 -- 已删除 3 - 已忽略  4 - 已手动处理
+        # @type Status: Integer
+        # @param Quuid: 服务器quuid
+        # @type Quuid: String
+
+        attr_accessor :Id, :Alias, :HostIp, :Type, :Description, :CreateTime, :RecentFoundTime, :Status, :Quuid
+        
+        def initialize(id=nil, _alias=nil, hostip=nil, type=nil, description=nil, createtime=nil, recentfoundtime=nil, status=nil, quuid=nil)
+          @Id = id
+          @Alias = _alias
+          @HostIp = hostip
+          @Type = type
+          @Description = description
+          @CreateTime = createtime
+          @RecentFoundTime = recentfoundtime
+          @Status = status
+          @Quuid = quuid
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @Alias = params['Alias']
+          @HostIp = params['HostIp']
+          @Type = params['Type']
+          @Description = params['Description']
+          @CreateTime = params['CreateTime']
+          @RecentFoundTime = params['RecentFoundTime']
+          @Status = params['Status']
+          @Quuid = params['Quuid']
+        end
+      end
+
       # 授权绑定详情信息
       class LicenseBindDetail < TencentCloud::Common::AbstractModel
         # @param MachineName: 机器别名
@@ -16541,6 +16925,58 @@ module TencentCloud
 
       # ModifyBanStatus返回参数结构体
       class ModifyBanStatusResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyBaselinePolicy请求参数结构体
+      class ModifyBaselinePolicyRequest < TencentCloud::Common::AbstractModel
+        # @param Data: 无
+        # @type Data: :class:`Tencentcloud::Cwp.v20180228.models.BaselinePolicy`
+        # @param Filters: <li>RuleName - String - 是否必填：否 - 规则名称</li>
+        # <li>CategoryId - int64 - 是否必填：否 自定义筛选为-1 - 规则分类</li>
+        # <li>RuleType - int - 是否必填：否 0:系统 1:自定义 - 规则类型</li>
+        # @type Filters: Array
+        # @param SelectAll: 是否按照过滤的全选
+        # @type SelectAll: Integer
+
+        attr_accessor :Data, :Filters, :SelectAll
+        
+        def initialize(data=nil, filters=nil, selectall=nil)
+          @Data = data
+          @Filters = filters
+          @SelectAll = selectall
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = BaselinePolicy.new
+            @Data.deserialize(params['Data'])
+          end
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+          @SelectAll = params['SelectAll']
+        end
+      end
+
+      # ModifyBaselinePolicy返回参数结构体
+      class ModifyBaselinePolicyResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -18448,6 +18884,38 @@ module TencentCloud
 
         def deserialize(params)
           @TaskId = params['TaskId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # StopBaselineDetect请求参数结构体
+      class StopBaselineDetectRequest < TencentCloud::Common::AbstractModel
+        # @param TaskIds: 取消任务ID集合
+        # @type TaskIds: Array
+
+        attr_accessor :TaskIds
+        
+        def initialize(taskids=nil)
+          @TaskIds = taskids
+        end
+
+        def deserialize(params)
+          @TaskIds = params['TaskIds']
+        end
+      end
+
+      # StopBaselineDetect返回参数结构体
+      class StopBaselineDetectResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
           @RequestId = params['RequestId']
         end
       end

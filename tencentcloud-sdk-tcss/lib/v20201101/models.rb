@@ -947,6 +947,81 @@ module TencentCloud
         end
       end
 
+      # AddComplianceAssetPolicySetToWhitelist请求参数结构体
+      class AddComplianceAssetPolicySetToWhitelistRequest < TencentCloud::Common::AbstractModel
+        # @param AssetPolicySetList: 资产ID+检查项IDs. 列表
+        # @type AssetPolicySetList: Array
+
+        attr_accessor :AssetPolicySetList
+        
+        def initialize(assetpolicysetlist=nil)
+          @AssetPolicySetList = assetpolicysetlist
+        end
+
+        def deserialize(params)
+          unless params['AssetPolicySetList'].nil?
+            @AssetPolicySetList = []
+            params['AssetPolicySetList'].each do |i|
+              complianceassetpolicysetitem_tmp = ComplianceAssetPolicySetItem.new
+              complianceassetpolicysetitem_tmp.deserialize(i)
+              @AssetPolicySetList << complianceassetpolicysetitem_tmp
+            end
+          end
+        end
+      end
+
+      # AddComplianceAssetPolicySetToWhitelist返回参数结构体
+      class AddComplianceAssetPolicySetToWhitelistResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # AddCompliancePolicyAssetSetToWhitelist请求参数结构体
+      class AddCompliancePolicyAssetSetToWhitelistRequest < TencentCloud::Common::AbstractModel
+        # @param CustomerPolicyItemId: 检查项ID
+        # @type CustomerPolicyItemId: Integer
+        # @param CustomerAssetItemIdSet: 需要忽略指定检查项内的资产ID列表
+        # @type CustomerAssetItemIdSet: Array
+
+        attr_accessor :CustomerPolicyItemId, :CustomerAssetItemIdSet
+        
+        def initialize(customerpolicyitemid=nil, customerassetitemidset=nil)
+          @CustomerPolicyItemId = customerpolicyitemid
+          @CustomerAssetItemIdSet = customerassetitemidset
+        end
+
+        def deserialize(params)
+          @CustomerPolicyItemId = params['CustomerPolicyItemId']
+          @CustomerAssetItemIdSet = params['CustomerAssetItemIdSet']
+        end
+      end
+
+      # AddCompliancePolicyAssetSetToWhitelist返回参数结构体
+      class AddCompliancePolicyAssetSetToWhitelistResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # AddCompliancePolicyItemToWhitelist请求参数结构体
       class AddCompliancePolicyItemToWhitelistRequest < TencentCloud::Common::AbstractModel
         # @param CustomerPolicyItemIdSet: 要忽略的检测项的ID的列表
@@ -2515,6 +2590,26 @@ module TencentCloud
         end
       end
 
+      # 资产+检查项ids 集合单元
+      class ComplianceAssetPolicySetItem < TencentCloud::Common::AbstractModel
+        # @param CustomerAssetItemId: 资产ID
+        # @type CustomerAssetItemId: Integer
+        # @param CustomerPolicyItemIdSet: 需要忽略指定资产内的检查项ID列表，为空表示所有
+        # @type CustomerPolicyItemIdSet: Array
+
+        attr_accessor :CustomerAssetItemId, :CustomerPolicyItemIdSet
+        
+        def initialize(customerassetitemid=nil, customerpolicyitemidset=nil)
+          @CustomerAssetItemId = customerassetitemid
+          @CustomerPolicyItemIdSet = customerpolicyitemidset
+        end
+
+        def deserialize(params)
+          @CustomerAssetItemId = params['CustomerAssetItemId']
+          @CustomerPolicyItemIdSet = params['CustomerPolicyItemIdSet']
+        end
+      end
+
       # 表示一类资产的总览信息。
       class ComplianceAssetSummary < TencentCloud::Common::AbstractModel
         # @param AssetType: 资产类别。
@@ -2868,6 +2963,26 @@ module TencentCloud
           @Frequency = params['Frequency']
           @ExecutionTime = params['ExecutionTime']
           @Enable = params['Enable']
+        end
+      end
+
+      # 检查项+资产ids 的集合单元
+      class CompliancePolicyAssetSetItem < TencentCloud::Common::AbstractModel
+        # @param CustomerPolicyItemId: 检查项ID
+        # @type CustomerPolicyItemId: Integer
+        # @param CustomerAssetItemIdSet: 需要忽略指定检查项内的资产ID列表，为空表示所有
+        # @type CustomerAssetItemIdSet: Array
+
+        attr_accessor :CustomerPolicyItemId, :CustomerAssetItemIdSet
+        
+        def initialize(customerpolicyitemid=nil, customerassetitemidset=nil)
+          @CustomerPolicyItemId = customerpolicyitemid
+          @CustomerAssetItemIdSet = customerassetitemidset
+        end
+
+        def deserialize(params)
+          @CustomerPolicyItemId = params['CustomerPolicyItemId']
+          @CustomerAssetItemIdSet = params['CustomerAssetItemIdSet']
         end
       end
 
@@ -5303,6 +5418,81 @@ module TencentCloud
 
       # DeleteAccessControlRules返回参数结构体
       class DeleteAccessControlRulesResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteComplianceAssetPolicySetFromWhitelist请求参数结构体
+      class DeleteComplianceAssetPolicySetFromWhitelistRequest < TencentCloud::Common::AbstractModel
+        # @param AssetItemId: 资产ID
+        # @type AssetItemId: Integer
+        # @param CustomerPolicyItemIdSet: 需要忽略指定资产内的检查项ID列表
+        # @type CustomerPolicyItemIdSet: Array
+
+        attr_accessor :AssetItemId, :CustomerPolicyItemIdSet
+        
+        def initialize(assetitemid=nil, customerpolicyitemidset=nil)
+          @AssetItemId = assetitemid
+          @CustomerPolicyItemIdSet = customerpolicyitemidset
+        end
+
+        def deserialize(params)
+          @AssetItemId = params['AssetItemId']
+          @CustomerPolicyItemIdSet = params['CustomerPolicyItemIdSet']
+        end
+      end
+
+      # DeleteComplianceAssetPolicySetFromWhitelist返回参数结构体
+      class DeleteComplianceAssetPolicySetFromWhitelistResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteCompliancePolicyAssetSetFromWhitelist请求参数结构体
+      class DeleteCompliancePolicyAssetSetFromWhitelistRequest < TencentCloud::Common::AbstractModel
+        # @param PolicyAssetSetList: （检查项ID+资产ID列表）的列表
+        # @type PolicyAssetSetList: Array
+
+        attr_accessor :PolicyAssetSetList
+        
+        def initialize(policyassetsetlist=nil)
+          @PolicyAssetSetList = policyassetsetlist
+        end
+
+        def deserialize(params)
+          unless params['PolicyAssetSetList'].nil?
+            @PolicyAssetSetList = []
+            params['PolicyAssetSetList'].each do |i|
+              compliancepolicyassetsetitem_tmp = CompliancePolicyAssetSetItem.new
+              compliancepolicyassetsetitem_tmp.deserialize(i)
+              @PolicyAssetSetList << compliancepolicyassetsetitem_tmp
+            end
+          end
+        end
+      end
+
+      # DeleteCompliancePolicyAssetSetFromWhitelist返回参数结构体
+      class DeleteCompliancePolicyAssetSetFromWhitelistResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -12025,6 +12215,61 @@ module TencentCloud
               @List << imagecomponent_tmp
             end
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeImageRegistryNamespaceList请求参数结构体
+      class DescribeImageRegistryNamespaceListRequest < TencentCloud::Common::AbstractModel
+        # @param Offset: 本次查询的起始偏移量，默认为0。
+        # @type Offset: Integer
+        # @param Limit: 本次查询的数据量，默认为10，最大值为100。
+        # @type Limit: Integer
+        # @param Filters: 查询的过滤条件。Name字段可取值"Namespace"。
+        # @type Filters: Array
+
+        attr_accessor :Offset, :Limit, :Filters
+        
+        def initialize(offset=nil, limit=nil, filters=nil)
+          @Offset = offset
+          @Limit = limit
+          @Filters = filters
+        end
+
+        def deserialize(params)
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              assetfilters_tmp = AssetFilters.new
+              assetfilters_tmp.deserialize(i)
+              @Filters << assetfilters_tmp
+            end
+          end
+        end
+      end
+
+      # DescribeImageRegistryNamespaceList返回参数结构体
+      class DescribeImageRegistryNamespaceListResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 可返回的项目空间的总量。
+        # @type TotalCount: Integer
+        # @param NamespaceList: 返回的项目空间列表
+        # @type NamespaceList: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :NamespaceList, :RequestId
+        
+        def initialize(totalcount=nil, namespacelist=nil, requestid=nil)
+          @TotalCount = totalcount
+          @NamespaceList = namespacelist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          @NamespaceList = params['NamespaceList']
           @RequestId = params['RequestId']
         end
       end

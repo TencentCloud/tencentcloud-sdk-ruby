@@ -2405,7 +2405,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 获取2.0实例关联集群列表
+        # 获取TMP实例关联集群列表
 
         # @param request: Request instance for DescribePrometheusClusterAgents.
         # @type request: :class:`Tencentcloud::tke::V20180525::DescribePrometheusClusterAgentsRequest`

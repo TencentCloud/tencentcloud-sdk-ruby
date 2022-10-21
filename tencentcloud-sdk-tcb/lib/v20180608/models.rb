@@ -2201,14 +2201,19 @@ module TencentCloud
         # @type WxAppId: String
         # @param DbVersion: mysql内核版本，支持5.7,8.0
         # @type DbVersion: String
+        # @param LowerCaseTableName: 0: 非大小写敏感
+        # 1: 大小写敏感
+        # 默认 0
+        # @type LowerCaseTableName: String
 
-        attr_accessor :AccountPassword, :EnvId, :WxAppId, :DbVersion
+        attr_accessor :AccountPassword, :EnvId, :WxAppId, :DbVersion, :LowerCaseTableName
         
-        def initialize(accountpassword=nil, envid=nil, wxappid=nil, dbversion=nil)
+        def initialize(accountpassword=nil, envid=nil, wxappid=nil, dbversion=nil, lowercasetablename=nil)
           @AccountPassword = accountpassword
           @EnvId = envid
           @WxAppId = wxappid
           @DbVersion = dbversion
+          @LowerCaseTableName = lowercasetablename
         end
 
         def deserialize(params)
@@ -2216,6 +2221,7 @@ module TencentCloud
           @EnvId = params['EnvId']
           @WxAppId = params['WxAppId']
           @DbVersion = params['DbVersion']
+          @LowerCaseTableName = params['LowerCaseTableName']
         end
       end
 
