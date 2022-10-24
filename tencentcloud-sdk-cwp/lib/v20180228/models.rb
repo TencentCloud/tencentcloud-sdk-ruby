@@ -7989,6 +7989,76 @@ module TencentCloud
         end
       end
 
+      # DescribeBaselinePolicyList请求参数结构体
+      class DescribeBaselinePolicyListRequest < TencentCloud::Common::AbstractModel
+        # @param Filters: <li>PolicyName - String - 是否必填：否 - 策略名称</li>
+        # @type Filters: Array
+        # @param Limit: 限制条数,默认10,最大100
+        # @type Limit: Integer
+        # @param Offset: 偏移量,默认0
+        # @type Offset: Integer
+        # @param Order: 排序方式: [ASC:升序|DESC:降序]
+        # @type Order: String
+        # @param By: 可选排序列: [RuleCount|ItemCount|HostCount]
+        # @type By: String
+
+        attr_accessor :Filters, :Limit, :Offset, :Order, :By
+        
+        def initialize(filters=nil, limit=nil, offset=nil, order=nil, by=nil)
+          @Filters = filters
+          @Limit = limit
+          @Offset = offset
+          @Order = order
+          @By = by
+        end
+
+        def deserialize(params)
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          @Order = params['Order']
+          @By = params['By']
+        end
+      end
+
+      # DescribeBaselinePolicyList返回参数结构体
+      class DescribeBaselinePolicyListResponse < TencentCloud::Common::AbstractModel
+        # @param List: 无
+        # @type List: Array
+        # @param Total: 总数
+        # @type Total: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :List, :Total, :RequestId
+        
+        def initialize(list=nil, total=nil, requestid=nil)
+          @List = list
+          @Total = total
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['List'].nil?
+            @List = []
+            params['List'].each do |i|
+              baselinepolicy_tmp = BaselinePolicy.new
+              baselinepolicy_tmp.deserialize(i)
+              @List << baselinepolicy_tmp
+            end
+          end
+          @Total = params['Total']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeBaselineRule请求参数结构体
       class DescribeBaselineRuleRequest < TencentCloud::Common::AbstractModel
         # @param BaselineId: 基线id

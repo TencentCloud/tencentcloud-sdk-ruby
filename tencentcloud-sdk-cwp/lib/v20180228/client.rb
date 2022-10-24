@@ -1928,6 +1928,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 获取基线策略列表
+
+        # @param request: Request instance for DescribeBaselinePolicyList.
+        # @type request: :class:`Tencentcloud::cwp::V20180228::DescribeBaselinePolicyListRequest`
+        # @rtype: :class:`Tencentcloud::cwp::V20180228::DescribeBaselinePolicyListResponse`
+        def DescribeBaselinePolicyList(request)
+          body = send_request('DescribeBaselinePolicyList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeBaselinePolicyListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 根据基线id查询下属检测项信息
 
         # @param request: Request instance for DescribeBaselineRule.
