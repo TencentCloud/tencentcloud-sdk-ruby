@@ -643,7 +643,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # DescribeImageConfig 用于获取域名图片优化的当前配置，支持Webp、TPG 和 Guetzli。
+        # DescribeImageConfig 用于获取域名图片优化的当前配置，支持Webp、TPG、 Guetzli 和 Avif。
 
         # @param request: Request instance for DescribeImageConfig.
         # @type request: :class:`Tencentcloud::cdn::V20180606::DescribeImageConfigRequest`
@@ -1859,7 +1859,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # UpdateImageConfig 用于更新控制台图片优化的相关配置，支持Webp、TPG 和 Guetzli。
+        # UpdateImageConfig 用于更新控制台图片优化的相关配置，支持Webp、TPG、 Guetzli 和 Avif。
 
         # @param request: Request instance for UpdateImageConfig.
         # @type request: :class:`Tencentcloud::cdn::V20180606::UpdateImageConfigRequest`

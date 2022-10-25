@@ -509,6 +509,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 云企付-绑定分账收款方
+
+        # @param request: Request instance for BindOpenBankProfitSharePayee.
+        # @type request: :class:`Tencentcloud::cpdp::V20190820::BindOpenBankProfitSharePayeeRequest`
+        # @rtype: :class:`Tencentcloud::cpdp::V20190820::BindOpenBankProfitSharePayeeResponse`
+        def BindOpenBankProfitSharePayee(request)
+          body = send_request('BindOpenBankProfitSharePayee', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = BindOpenBankProfitSharePayeeResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 会员绑定提现账户-回填银联鉴权短信码。用于会员填写动态验证码后，发往银行进行验证，验证成功则完成绑定。
 
         # @param request: Request instance for BindRelateAccReUnionPay.
@@ -3722,6 +3746,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = QueryOpenBankPaymentOrderResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 云企付-绑定分账收款方查询
+
+        # @param request: Request instance for QueryOpenBankProfitSharePayee.
+        # @type request: :class:`Tencentcloud::cpdp::V20190820::QueryOpenBankProfitSharePayeeRequest`
+        # @rtype: :class:`Tencentcloud::cpdp::V20190820::QueryOpenBankProfitSharePayeeResponse`
+        def QueryOpenBankProfitSharePayee(request)
+          body = send_request('QueryOpenBankProfitSharePayee', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = QueryOpenBankProfitSharePayeeResponse.new
             model.deserialize(response['Response'])
             model
           else

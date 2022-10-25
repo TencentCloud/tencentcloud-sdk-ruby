@@ -532,7 +532,7 @@ module TencentCloud
         # @type VpcId: String
         # @param SubnetId: 子网ID
         # @type SubnetId: String
-        # @param Workload: 引擎其他组件名称（pushgateway）
+        # @param Workload: 引擎其他组件名称（pushgateway、polaris-limiter）
         # @type Workload: String
         # @param EngineRegion: 部署地域
         # @type EngineRegion: String
@@ -576,12 +576,15 @@ module TencentCloud
         # @param ConsoleInternetBandWidth: 控制台公网带宽
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ConsoleInternetBandWidth: Integer
+        # @param LimiterAddressInfos: 北极星限流server节点接入IP
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LimiterAddressInfos: Array
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :IntranetAddress, :InternetAddress, :EnvAddressInfos, :ConsoleInternetAddress, :ConsoleIntranetAddress, :InternetBandWidth, :ConsoleInternetBandWidth, :RequestId
+        attr_accessor :IntranetAddress, :InternetAddress, :EnvAddressInfos, :ConsoleInternetAddress, :ConsoleIntranetAddress, :InternetBandWidth, :ConsoleInternetBandWidth, :LimiterAddressInfos, :RequestId
         
-        def initialize(intranetaddress=nil, internetaddress=nil, envaddressinfos=nil, consoleinternetaddress=nil, consoleintranetaddress=nil, internetbandwidth=nil, consoleinternetbandwidth=nil, requestid=nil)
+        def initialize(intranetaddress=nil, internetaddress=nil, envaddressinfos=nil, consoleinternetaddress=nil, consoleintranetaddress=nil, internetbandwidth=nil, consoleinternetbandwidth=nil, limiteraddressinfos=nil, requestid=nil)
           @IntranetAddress = intranetaddress
           @InternetAddress = internetaddress
           @EnvAddressInfos = envaddressinfos
@@ -589,6 +592,7 @@ module TencentCloud
           @ConsoleIntranetAddress = consoleintranetaddress
           @InternetBandWidth = internetbandwidth
           @ConsoleInternetBandWidth = consoleinternetbandwidth
+          @LimiterAddressInfos = limiteraddressinfos
           @RequestId = requestid
         end
 
@@ -607,6 +611,14 @@ module TencentCloud
           @ConsoleIntranetAddress = params['ConsoleIntranetAddress']
           @InternetBandWidth = params['InternetBandWidth']
           @ConsoleInternetBandWidth = params['ConsoleInternetBandWidth']
+          unless params['LimiterAddressInfos'].nil?
+            @LimiterAddressInfos = []
+            params['LimiterAddressInfos'].each do |i|
+              polarislimiteraddress_tmp = PolarisLimiterAddress.new
+              polarislimiteraddress_tmp.deserialize(i)
+              @LimiterAddressInfos << polarislimiteraddress_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -1036,6 +1048,23 @@ module TencentCloud
         end
       end
 
+      # 查询Limiter的接入地址
+      class PolarisLimiterAddress < TencentCloud::Common::AbstractModel
+        # @param IntranetAddress: VPC接入IP列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IntranetAddress: String
+
+        attr_accessor :IntranetAddress
+        
+        def initialize(intranetaddress=nil)
+          @IntranetAddress = intranetaddress
+        end
+
+        def deserialize(params)
+          @IntranetAddress = params['IntranetAddress']
+        end
+      end
+
       # 微服务注册引擎实例
       class SREInstance < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例ID
@@ -1241,10 +1270,12 @@ module TencentCloud
         # @type MainPassword: String
         # @param PgwVpcInfos: 服务治理pushgateway引擎绑定的网络信息
         # @type PgwVpcInfos: Array
+        # @param LimiterVpcInfos: 服务治理限流server引擎绑定的网络信息
+        # @type LimiterVpcInfos: Array
 
-        attr_accessor :EngineRegion, :BoundK8SInfos, :VpcInfos, :AuthOpen, :Features, :MainPassword, :PgwVpcInfos
+        attr_accessor :EngineRegion, :BoundK8SInfos, :VpcInfos, :AuthOpen, :Features, :MainPassword, :PgwVpcInfos, :LimiterVpcInfos
         
-        def initialize(engineregion=nil, boundk8sinfos=nil, vpcinfos=nil, authopen=nil, features=nil, mainpassword=nil, pgwvpcinfos=nil)
+        def initialize(engineregion=nil, boundk8sinfos=nil, vpcinfos=nil, authopen=nil, features=nil, mainpassword=nil, pgwvpcinfos=nil, limitervpcinfos=nil)
           @EngineRegion = engineregion
           @BoundK8SInfos = boundk8sinfos
           @VpcInfos = vpcinfos
@@ -1252,6 +1283,7 @@ module TencentCloud
           @Features = features
           @MainPassword = mainpassword
           @PgwVpcInfos = pgwvpcinfos
+          @LimiterVpcInfos = limitervpcinfos
         end
 
         def deserialize(params)
@@ -1281,6 +1313,14 @@ module TencentCloud
               vpcinfo_tmp = VpcInfo.new
               vpcinfo_tmp.deserialize(i)
               @PgwVpcInfos << vpcinfo_tmp
+            end
+          end
+          unless params['LimiterVpcInfos'].nil?
+            @LimiterVpcInfos = []
+            params['LimiterVpcInfos'].each do |i|
+              vpcinfo_tmp = VpcInfo.new
+              vpcinfo_tmp.deserialize(i)
+              @LimiterVpcInfos << vpcinfo_tmp
             end
           end
         end

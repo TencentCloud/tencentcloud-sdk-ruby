@@ -77,7 +77,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 创建规则
+        # 创建访问控制规则
 
         # @param request: Request instance for CreateAcRules.
         # @type request: :class:`Tencentcloud::cfw::V20190904::CreateAcRulesRequest`

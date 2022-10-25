@@ -362,25 +362,33 @@ module TencentCloud
         # @type TargetName: String
         # @param Status: 别称域名状态，取值有：
         # <li> active：已生效； </li>
-        # <li> pending：未生效；</li>
-        # <li> not_filed：未备案；</li>
+        # <li> pending：部署中；</li>
         # <li> conflict：被找回。 </li>
         # <li> stop：已停用；</li>
         # <li> deleted：已删除。 </li>
         # @type Status: String
+        # @param ForbidMode: 封禁模式，取值有：
+        # <li> 0：未封禁； </li>
+        # <li> 11：合规封禁；</li>
+        # <li> 14：未备案封禁。</li>
+        # @type ForbidMode: Integer
+        # @param TargetForbid: 目标域名是否被封禁。
+        # @type TargetForbid: Boolean
         # @param CreatedOn: 别称域名创建时间。
         # @type CreatedOn: String
         # @param ModifiedOn: 别称域名修改时间。
         # @type ModifiedOn: String
 
-        attr_accessor :AliasId, :AliasName, :ZoneId, :TargetName, :Status, :CreatedOn, :ModifiedOn
+        attr_accessor :AliasId, :AliasName, :ZoneId, :TargetName, :Status, :ForbidMode, :TargetForbid, :CreatedOn, :ModifiedOn
         
-        def initialize(aliasid=nil, aliasname=nil, zoneid=nil, targetname=nil, status=nil, createdon=nil, modifiedon=nil)
+        def initialize(aliasid=nil, aliasname=nil, zoneid=nil, targetname=nil, status=nil, forbidmode=nil, targetforbid=nil, createdon=nil, modifiedon=nil)
           @AliasId = aliasid
           @AliasName = aliasname
           @ZoneId = zoneid
           @TargetName = targetname
           @Status = status
+          @ForbidMode = forbidmode
+          @TargetForbid = targetforbid
           @CreatedOn = createdon
           @ModifiedOn = modifiedon
         end
@@ -391,6 +399,8 @@ module TencentCloud
           @ZoneId = params['ZoneId']
           @TargetName = params['TargetName']
           @Status = params['Status']
+          @ForbidMode = params['ForbidMode']
+          @TargetForbid = params['TargetForbid']
           @CreatedOn = params['CreatedOn']
           @ModifiedOn = params['ModifiedOn']
         end
@@ -3628,10 +3638,10 @@ module TencentCloud
         # @type ZoneId: String
         # @param Offset: 分页查询偏移量。默认值：0。
         # @type Offset: Integer
-        # @param Limit: 分页查询限制数目。默认值：20，最大值：100。
+        # @param Limit: 分页查询限制数目。默认值：20，最大值：1000。
         # @type Limit: Integer
         # @param Filters: 过滤条件，Filters.Values的上限为20。详细的过滤条件如下：
-        # <li>target-name<br>   按照【<strong>目标域名名称</strong>】进行过滤。<br>   类型：String<br>   必选：否</li><li>alias-id<br>   按照【<strong>别称域名ID</strong>】进行过滤。<br>   类型：String<br>   必选：否</li><li>alias-name<br>   按照【<strong>别称域名名称</strong>】进行过滤。<br>   类型：String<br>   必选：否</li><li>Fuzzy<br>   按照【<strong>是否模糊查询</strong>】进行过滤。仅支持过滤字段名为alias-name。模糊查询时，Values长度最小为1。<br>   类型：Boolean<br>   必选：否<br>   默认值：false</li>
+        # <li>target-name<br>   按照【<strong>目标域名名称</strong>】进行过滤。<br>   类型：String<br>   必选：否</li><li>alias-id<br>   按照【<strong>别称域名ID</strong>】进行过滤。<br>   类型：String<br>   必选：否</li><li>alias-name<br>   按照【<strong>别称域名名称</strong>】进行过滤。<br>   类型：String<br>   必选：否</li>模糊查询时仅支持过滤字段名为alias-name。
         # @type Filters: Array
 
         attr_accessor :ZoneId, :Offset, :Limit, :Filters
@@ -8107,7 +8117,7 @@ module TencentCloud
         # @param Limit: 分页查询限制数目。默认值：20，最大值：1000。
         # @type Limit: Integer
         # @param Filters: 过滤条件，Filters.Values的上限为20。详细的过滤条件如下：
-        # <li>zone-name<br>   按照【<strong>站点名称</strong>】进行过滤。<br>   类型：String<br>   必选：否</li><li>zone-id<br>   按照【<strong>站点ID</strong>】进行过滤。站点ID形如：zone-xxx。<br>   类型：String<br>   必选：否</li><li>status<br>   按照【<strong>站点状态</strong>】进行过滤。<br>   类型：String<br>   必选：否</li><li>tag-key<br>   按照【<strong>标签键</strong>】进行过滤。<br>   类型：String<br>   必选：否</li><li>tag-value<br>   按照【<strong>标签值</strong>】进行过滤。<br>   类型：String<br>   必选：否</li><li>Fuzzy<br>   按照【<strong>是否模糊查询</strong>】进行过滤。仅支持过滤字段名为zone-name。模糊查询时，Values长度最小为1。<br>   类型：Boolean<br>   必选：否<br>   默认值：false</li>
+        # <li>zone-name<br>   按照【<strong>站点名称</strong>】进行过滤。<br>   类型：String<br>   必选：否</li><li>zone-id<br>   按照【<strong>站点ID</strong>】进行过滤。站点ID形如：zone-xxx。<br>   类型：String<br>   必选：否</li><li>status<br>   按照【<strong>站点状态</strong>】进行过滤。<br>   类型：String<br>   必选：否</li><li>tag-key<br>   按照【<strong>标签键</strong>】进行过滤。<br>   类型：String<br>   必选：否</li><li>tag-value<br>   按照【<strong>标签值</strong>】进行过滤。<br>   类型：String<br>   必选：否</li>模糊查询时仅支持过滤字段名为zone-name。
         # @type Filters: Array
 
         attr_accessor :Offset, :Limit, :Filters
@@ -9121,15 +9131,21 @@ module TencentCloud
         # @param CertInfo: 证书配置。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CertInfo: Array
+        # @param ApplyType: 申请类型，取值有：
+        # <li>apply：托管EdgeOne；</li>
+        # <li>none：不托管EdgeOne。</li>不填，默认取值为none。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ApplyType: String
 
-        attr_accessor :Http2, :OcspStapling, :TlsVersion, :Hsts, :CertInfo
+        attr_accessor :Http2, :OcspStapling, :TlsVersion, :Hsts, :CertInfo, :ApplyType
         
-        def initialize(http2=nil, ocspstapling=nil, tlsversion=nil, hsts=nil, certinfo=nil)
+        def initialize(http2=nil, ocspstapling=nil, tlsversion=nil, hsts=nil, certinfo=nil, applytype=nil)
           @Http2 = http2
           @OcspStapling = ocspstapling
           @TlsVersion = tlsversion
           @Hsts = hsts
           @CertInfo = certinfo
+          @ApplyType = applytype
         end
 
         def deserialize(params)
@@ -9148,6 +9164,7 @@ module TencentCloud
               @CertInfo << servercertinfo_tmp
             end
           end
+          @ApplyType = params['ApplyType']
         end
       end
 
@@ -12932,16 +12949,20 @@ module TencentCloud
         # @param SignAlgo: 签名算法。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SignAlgo: String
+        # @param CommonName: 证书归属域名名称。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CommonName: String
 
-        attr_accessor :CertId, :Alias, :Type, :ExpireTime, :DeployTime, :SignAlgo
+        attr_accessor :CertId, :Alias, :Type, :ExpireTime, :DeployTime, :SignAlgo, :CommonName
         
-        def initialize(certid=nil, _alias=nil, type=nil, expiretime=nil, deploytime=nil, signalgo=nil)
+        def initialize(certid=nil, _alias=nil, type=nil, expiretime=nil, deploytime=nil, signalgo=nil, commonname=nil)
           @CertId = certid
           @Alias = _alias
           @Type = type
           @ExpireTime = expiretime
           @DeployTime = deploytime
           @SignAlgo = signalgo
+          @CommonName = commonname
         end
 
         def deserialize(params)
@@ -12951,6 +12972,7 @@ module TencentCloud
           @ExpireTime = params['ExpireTime']
           @DeployTime = params['DeployTime']
           @SignAlgo = params['SignAlgo']
+          @CommonName = params['CommonName']
         end
       end
 

@@ -122,14 +122,24 @@ module TencentCloud
         # @type Agent: :class:`Tencentcloud::Essbasic.v20210526.models.Agent`
         # @param FlowIds: 签署流程Id数组，最多100个，超过100不处理
         # @type FlowIds: Array
+        # @param CancelMessage: 撤销理由
+        # @type CancelMessage: String
+        # @param CancelMessageFormat: 撤销理由自定义格式；选项：
+        # 0 默认格式
+        # 1 只保留身份信息：展示为【发起方】
+        # 2 保留身份信息+企业名称：展示为【发起方xxx公司】
+        # 3 保留身份信息+企业名称+经办人名称：展示为【发起方xxxx公司-经办人姓名】
+        # @type CancelMessageFormat: Integer
         # @param Operator: 操作人信息
         # @type Operator: :class:`Tencentcloud::Essbasic.v20210526.models.UserInfo`
 
-        attr_accessor :Agent, :FlowIds, :Operator
+        attr_accessor :Agent, :FlowIds, :CancelMessage, :CancelMessageFormat, :Operator
         
-        def initialize(agent=nil, flowids=nil, operator=nil)
+        def initialize(agent=nil, flowids=nil, cancelmessage=nil, cancelmessageformat=nil, operator=nil)
           @Agent = agent
           @FlowIds = flowids
+          @CancelMessage = cancelmessage
+          @CancelMessageFormat = cancelmessageformat
           @Operator = operator
         end
 
@@ -139,6 +149,8 @@ module TencentCloud
             @Agent.deserialize(params['Agent'])
           end
           @FlowIds = params['FlowIds']
+          @CancelMessage = params['CancelMessage']
+          @CancelMessageFormat = params['CancelMessageFormat']
           unless params['Operator'].nil?
             @Operator = UserInfo.new
             @Operator.deserialize(params['Operator'])
@@ -162,6 +174,64 @@ module TencentCloud
 
         def deserialize(params)
           @FailMessages = params['FailMessages']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ChannelCancelFlow请求参数结构体
+      class ChannelCancelFlowRequest < TencentCloud::Common::AbstractModel
+        # @param FlowId: 签署流程编号
+        # @type FlowId: String
+        # @param Agent: 渠道应用相关信息。 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 和 Agent.ProxyAppId 均必填。
+        # @type Agent: :class:`Tencentcloud::Essbasic.v20210526.models.Agent`
+        # @param CancelMessage: 撤回原因，最大不超过200字符
+        # @type CancelMessage: String
+        # @param Operator: 操作者的信息
+        # @type Operator: :class:`Tencentcloud::Essbasic.v20210526.models.UserInfo`
+        # @param CancelMessageFormat: 撤销理由自定义格式；选项：
+        # 0 默认格式
+        # 1 只保留身份信息：展示为【发起方】
+        # 2 保留身份信息+企业名称：展示为【发起方xxx公司】
+        # 3 保留身份信息+企业名称+经办人名称：展示为【发起方xxxx公司-经办人姓名】
+        # @type CancelMessageFormat: Integer
+
+        attr_accessor :FlowId, :Agent, :CancelMessage, :Operator, :CancelMessageFormat
+        
+        def initialize(flowid=nil, agent=nil, cancelmessage=nil, operator=nil, cancelmessageformat=nil)
+          @FlowId = flowid
+          @Agent = agent
+          @CancelMessage = cancelmessage
+          @Operator = operator
+          @CancelMessageFormat = cancelmessageformat
+        end
+
+        def deserialize(params)
+          @FlowId = params['FlowId']
+          unless params['Agent'].nil?
+            @Agent = Agent.new
+            @Agent.deserialize(params['Agent'])
+          end
+          @CancelMessage = params['CancelMessage']
+          unless params['Operator'].nil?
+            @Operator = UserInfo.new
+            @Operator.deserialize(params['Operator'])
+          end
+          @CancelMessageFormat = params['CancelMessageFormat']
+        end
+      end
+
+      # ChannelCancelFlow返回参数结构体
+      class ChannelCancelFlowResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
           @RequestId = params['RequestId']
         end
       end
@@ -1528,7 +1598,7 @@ module TencentCloud
       class DescribeTemplatesRequest < TencentCloud::Common::AbstractModel
         # @param Agent: 渠道应用相关信息。 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 和 Agent.ProxyAppId 均必填。
         # @type Agent: :class:`Tencentcloud::Essbasic.v20210526.models.Agent`
-        # @param TemplateId: 模板唯一标识，查询单个模版时使用
+        # @param TemplateId: 模板唯一标识，查询单个模板时使用
         # @type TemplateId: String
         # @param ContentType: 查询内容：0-模板列表及详情（默认），1-仅模板列表
         # @type ContentType: Integer

@@ -570,14 +570,17 @@ module TencentCloud
         # @type SaveInfo: :class:`Tencentcloud::Ie.v20200304.models.SaveInfo`
         # @param CallbackInfo: 任务结果回调地址信息。
         # @type CallbackInfo: :class:`Tencentcloud::Ie.v20200304.models.CallbackInfo`
+        # @param TopSpeedCodecChannel: 极速高清体验馆渠道标志。
+        # @type TopSpeedCodecChannel: Integer
 
-        attr_accessor :DownInfo, :TransInfo, :SaveInfo, :CallbackInfo
+        attr_accessor :DownInfo, :TransInfo, :SaveInfo, :CallbackInfo, :TopSpeedCodecChannel
         
-        def initialize(downinfo=nil, transinfo=nil, saveinfo=nil, callbackinfo=nil)
+        def initialize(downinfo=nil, transinfo=nil, saveinfo=nil, callbackinfo=nil, topspeedcodecchannel=nil)
           @DownInfo = downinfo
           @TransInfo = transinfo
           @SaveInfo = saveinfo
           @CallbackInfo = callbackinfo
+          @TopSpeedCodecChannel = topspeedcodecchannel
         end
 
         def deserialize(params)
@@ -601,6 +604,7 @@ module TencentCloud
             @CallbackInfo = CallbackInfo.new
             @CallbackInfo.deserialize(params['CallbackInfo'])
           end
+          @TopSpeedCodecChannel = params['TopSpeedCodecChannel']
         end
       end
 

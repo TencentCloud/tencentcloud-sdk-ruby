@@ -6581,10 +6581,16 @@ module TencentCloud
         # @param UseTableMapping: 「分发到多个topic」开关，默认为false
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UseTableMapping: Boolean
+        # @param UseAutoCreateTopic: 使用的Topic是否需要自动创建（目前只支持SOURCE流入任务，如果不使用分发到多个topic，需要在Topic字段填写需要自动创建的topic名）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UseAutoCreateTopic: Boolean
+        # @param CompressionType: 写入Topic时是否进行压缩，不开启填"none"，开启的话，可选择"gzip", "snappy", "lz4"中的一个进行填写。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CompressionType: String
 
-        attr_accessor :SelfBuilt, :Resource, :Topic, :OffsetType, :StartTime, :ResourceName, :ZoneId, :TopicId, :PartitionNum, :EnableToleration, :QpsLimit, :TableMappings, :UseTableMapping
+        attr_accessor :SelfBuilt, :Resource, :Topic, :OffsetType, :StartTime, :ResourceName, :ZoneId, :TopicId, :PartitionNum, :EnableToleration, :QpsLimit, :TableMappings, :UseTableMapping, :UseAutoCreateTopic, :CompressionType
         
-        def initialize(selfbuilt=nil, resource=nil, topic=nil, offsettype=nil, starttime=nil, resourcename=nil, zoneid=nil, topicid=nil, partitionnum=nil, enabletoleration=nil, qpslimit=nil, tablemappings=nil, usetablemapping=nil)
+        def initialize(selfbuilt=nil, resource=nil, topic=nil, offsettype=nil, starttime=nil, resourcename=nil, zoneid=nil, topicid=nil, partitionnum=nil, enabletoleration=nil, qpslimit=nil, tablemappings=nil, usetablemapping=nil, useautocreatetopic=nil, compressiontype=nil)
           @SelfBuilt = selfbuilt
           @Resource = resource
           @Topic = topic
@@ -6598,6 +6604,8 @@ module TencentCloud
           @QpsLimit = qpslimit
           @TableMappings = tablemappings
           @UseTableMapping = usetablemapping
+          @UseAutoCreateTopic = useautocreatetopic
+          @CompressionType = compressiontype
         end
 
         def deserialize(params)
@@ -6621,6 +6629,8 @@ module TencentCloud
             end
           end
           @UseTableMapping = params['UseTableMapping']
+          @UseAutoCreateTopic = params['UseAutoCreateTopic']
+          @CompressionType = params['CompressionType']
         end
       end
 
@@ -7628,7 +7638,7 @@ module TencentCloud
       class MySQLParam < TencentCloud::Common::AbstractModel
         # @param Database: MySQL的数据库名称，"*"为全数据库
         # @type Database: String
-        # @param Table: MySQL的数据表名称，"*"为所监听的所有数据库中的非系统表，可以","间隔，监听多个数据表，但数据表需要以"数据库名.数据表名"的格式进行填写
+        # @param Table: MySQL的数据表名称，"*"为所监听的所有数据库中的非系统表，可以","间隔，监听多个数据表，但数据表需要以"数据库名.数据表名"的格式进行填写，需要填入正则表达式时，格式为"数据库名\\.数据表名"
         # @type Table: String
         # @param Resource: 该MySQL在连接管理内的Id
         # @type Resource: String
@@ -7674,10 +7684,12 @@ module TencentCloud
         # @type RecordWithSchema: Boolean
         # @param SignalDatabase: 存放信令表的数据库名称
         # @type SignalDatabase: String
+        # @param IsTableRegular: 输入的table是否为正则表达式，如果该选项以及IsTablePrefix同时为true，该选项的判断优先级高于IsTablePrefix
+        # @type IsTableRegular: Boolean
 
-        attr_accessor :Database, :Table, :Resource, :SnapshotMode, :DdlTopic, :DataSourceMonitorMode, :DataSourceMonitorResource, :DataSourceIncrementMode, :DataSourceIncrementColumn, :DataSourceStartFrom, :DataTargetInsertMode, :DataTargetPrimaryKeyField, :DataTargetRecordMapping, :TopicRegex, :TopicReplacement, :KeyColumns, :DropInvalidMessage, :DropCls, :OutputFormat, :IsTablePrefix, :IncludeContentChanges, :IncludeQuery, :RecordWithSchema, :SignalDatabase
+        attr_accessor :Database, :Table, :Resource, :SnapshotMode, :DdlTopic, :DataSourceMonitorMode, :DataSourceMonitorResource, :DataSourceIncrementMode, :DataSourceIncrementColumn, :DataSourceStartFrom, :DataTargetInsertMode, :DataTargetPrimaryKeyField, :DataTargetRecordMapping, :TopicRegex, :TopicReplacement, :KeyColumns, :DropInvalidMessage, :DropCls, :OutputFormat, :IsTablePrefix, :IncludeContentChanges, :IncludeQuery, :RecordWithSchema, :SignalDatabase, :IsTableRegular
         
-        def initialize(database=nil, table=nil, resource=nil, snapshotmode=nil, ddltopic=nil, datasourcemonitormode=nil, datasourcemonitorresource=nil, datasourceincrementmode=nil, datasourceincrementcolumn=nil, datasourcestartfrom=nil, datatargetinsertmode=nil, datatargetprimarykeyfield=nil, datatargetrecordmapping=nil, topicregex=nil, topicreplacement=nil, keycolumns=nil, dropinvalidmessage=nil, dropcls=nil, outputformat=nil, istableprefix=nil, includecontentchanges=nil, includequery=nil, recordwithschema=nil, signaldatabase=nil)
+        def initialize(database=nil, table=nil, resource=nil, snapshotmode=nil, ddltopic=nil, datasourcemonitormode=nil, datasourcemonitorresource=nil, datasourceincrementmode=nil, datasourceincrementcolumn=nil, datasourcestartfrom=nil, datatargetinsertmode=nil, datatargetprimarykeyfield=nil, datatargetrecordmapping=nil, topicregex=nil, topicreplacement=nil, keycolumns=nil, dropinvalidmessage=nil, dropcls=nil, outputformat=nil, istableprefix=nil, includecontentchanges=nil, includequery=nil, recordwithschema=nil, signaldatabase=nil, istableregular=nil)
           @Database = database
           @Table = table
           @Resource = resource
@@ -7702,6 +7714,7 @@ module TencentCloud
           @IncludeQuery = includequery
           @RecordWithSchema = recordwithschema
           @SignalDatabase = signaldatabase
+          @IsTableRegular = istableregular
         end
 
         def deserialize(params)
@@ -7739,6 +7752,7 @@ module TencentCloud
           @IncludeQuery = params['IncludeQuery']
           @RecordWithSchema = params['RecordWithSchema']
           @SignalDatabase = params['SignalDatabase']
+          @IsTableRegular = params['IsTableRegular']
         end
       end
 
@@ -7935,7 +7949,7 @@ module TencentCloud
       class PostgreSQLParam < TencentCloud::Common::AbstractModel
         # @param Database: PostgreSQL的数据库名称
         # @type Database: String
-        # @param Table: PostgreSQL的数据表名称，"*"为所监听的所有数据库中的非系统表，可以","间隔，监听多个数据表，但数据表需要以"数据库名.数据表名"的格式进行填写
+        # @param Table: PostgreSQL的数据表名称，"*"为所监听的所有数据库中的非系统表，可以","间隔，监听多个数据表，但数据表需要以"Schema名.数据表名"的格式进行填写，需要填入正则表达式时，格式为"Schema名\\.数据表名"
         # @type Table: String
         # @param Resource: 该PostgreSQL在连接管理内的Id
         # @type Resource: String
@@ -9008,14 +9022,22 @@ module TencentCloud
         # @param TopicId: Topic的TopicId【出参】
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TopicId: String
+        # @param CompressionType: 写入Topic时是否进行压缩，不开启填"none"，开启的话，可选择"gzip", "snappy", "lz4"中的一个进行填写。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CompressionType: String
+        # @param UseAutoCreateTopic: 使用的Topic是否需要自动创建（目前只支持SOURCE流入任务）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UseAutoCreateTopic: Boolean
 
-        attr_accessor :Resource, :OffsetType, :StartTime, :TopicId
+        attr_accessor :Resource, :OffsetType, :StartTime, :TopicId, :CompressionType, :UseAutoCreateTopic
         
-        def initialize(resource=nil, offsettype=nil, starttime=nil, topicid=nil)
+        def initialize(resource=nil, offsettype=nil, starttime=nil, topicid=nil, compressiontype=nil, useautocreatetopic=nil)
           @Resource = resource
           @OffsetType = offsettype
           @StartTime = starttime
           @TopicId = topicid
+          @CompressionType = compressiontype
+          @UseAutoCreateTopic = useautocreatetopic
         end
 
         def deserialize(params)
@@ -9023,6 +9045,8 @@ module TencentCloud
           @OffsetType = params['OffsetType']
           @StartTime = params['StartTime']
           @TopicId = params['TopicId']
+          @CompressionType = params['CompressionType']
+          @UseAutoCreateTopic = params['UseAutoCreateTopic']
         end
       end
 

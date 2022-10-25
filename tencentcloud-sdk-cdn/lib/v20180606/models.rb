@@ -1512,6 +1512,23 @@ module TencentCloud
         end
       end
 
+      # 图片优化-AvifAdapter配置
+      class AvifAdapter < TencentCloud::Common::AbstractModel
+        # @param Switch: 开关，"on/off"
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Switch: String
+
+        attr_accessor :Switch
+        
+        def initialize(switch=nil)
+          @Switch = switch
+        end
+
+        def deserialize(params)
+          @Switch = params['Switch']
+        end
+      end
+
       # s3源站回源鉴权。
       class AwsPrivateAccess < TencentCloud::Common::AbstractModel
         # @param Switch: 开关，on/off。
@@ -3773,8 +3790,8 @@ module TencentCloud
         # global：同时获取境内、境外加速日志包下载链接（分开打包）
         # 不指定时默认为 mainland
         # @type Area: String
-        # @param LogType: 指定下载日志的类型。
-        # access：获取访问日志
+        # @param LogType: 指定下载日志的类型，目前仅支持访问日志（access）。
+        # access：访问日志
         # @type LogType: String
 
         attr_accessor :Domain, :StartTime, :EndTime, :Offset, :Limit, :Area, :LogType
@@ -3802,7 +3819,8 @@ module TencentCloud
 
       # DescribeCdnDomainLogs返回参数结构体
       class DescribeCdnDomainLogsResponse < TencentCloud::Common::AbstractModel
-        # @param DomainLogs: 日志包下载链接
+        # @param DomainLogs: 日志包下载链接。
+        # 下载内容是gz后缀的压缩包，解压后是无扩展名的文本文件。
         # @type DomainLogs: Array
         # @param TotalCount: 查询到的总条数
         # @type TotalCount: Integer
@@ -4465,15 +4483,19 @@ module TencentCloud
         # @param GuetzliAdapter: GuetzliAdapter配置
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type GuetzliAdapter: :class:`Tencentcloud::Cdn.v20180606.models.GuetzliAdapter`
+        # @param AvifAdapter: AvifAdapter配置项
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AvifAdapter: :class:`Tencentcloud::Cdn.v20180606.models.AvifAdapter`
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :WebpAdapter, :TpgAdapter, :GuetzliAdapter, :RequestId
+        attr_accessor :WebpAdapter, :TpgAdapter, :GuetzliAdapter, :AvifAdapter, :RequestId
         
-        def initialize(webpadapter=nil, tpgadapter=nil, guetzliadapter=nil, requestid=nil)
+        def initialize(webpadapter=nil, tpgadapter=nil, guetzliadapter=nil, avifadapter=nil, requestid=nil)
           @WebpAdapter = webpadapter
           @TpgAdapter = tpgadapter
           @GuetzliAdapter = guetzliadapter
+          @AvifAdapter = avifadapter
           @RequestId = requestid
         end
 
@@ -4489,6 +4511,10 @@ module TencentCloud
           unless params['GuetzliAdapter'].nil?
             @GuetzliAdapter = GuetzliAdapter.new
             @GuetzliAdapter.deserialize(params['GuetzliAdapter'])
+          end
+          unless params['AvifAdapter'].nil?
+            @AvifAdapter = AvifAdapter.new
+            @AvifAdapter.deserialize(params['AvifAdapter'])
           end
           @RequestId = params['RequestId']
         end
@@ -7709,13 +7735,17 @@ module TencentCloud
         # @param GuetzliAdapter: GuetzliAdapter配置
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type GuetzliAdapter: :class:`Tencentcloud::Cdn.v20180606.models.GuetzliAdapter`
+        # @param AvifAdapter: AvifAdapter配置
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AvifAdapter: :class:`Tencentcloud::Cdn.v20180606.models.AvifAdapter`
 
-        attr_accessor :WebpAdapter, :TpgAdapter, :GuetzliAdapter
+        attr_accessor :WebpAdapter, :TpgAdapter, :GuetzliAdapter, :AvifAdapter
         
-        def initialize(webpadapter=nil, tpgadapter=nil, guetzliadapter=nil)
+        def initialize(webpadapter=nil, tpgadapter=nil, guetzliadapter=nil, avifadapter=nil)
           @WebpAdapter = webpadapter
           @TpgAdapter = tpgadapter
           @GuetzliAdapter = guetzliadapter
+          @AvifAdapter = avifadapter
         end
 
         def deserialize(params)
@@ -7730,6 +7760,10 @@ module TencentCloud
           unless params['GuetzliAdapter'].nil?
             @GuetzliAdapter = GuetzliAdapter.new
             @GuetzliAdapter.deserialize(params['GuetzliAdapter'])
+          end
+          unless params['AvifAdapter'].nil?
+            @AvifAdapter = AvifAdapter.new
+            @AvifAdapter.deserialize(params['AvifAdapter'])
           end
         end
       end
@@ -9266,12 +9300,16 @@ module TencentCloud
         # @param MaxAgeRules: MaxAge 规则
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MaxAgeRules: Array
+        # @param MaxAgeCodeRule: MaxAge 状态码相关规则
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MaxAgeCodeRule: :class:`Tencentcloud::Cdn.v20180606.models.MaxAgeCodeRule`
 
-        attr_accessor :Switch, :MaxAgeRules
+        attr_accessor :Switch, :MaxAgeRules, :MaxAgeCodeRule
         
-        def initialize(switch=nil, maxagerules=nil)
+        def initialize(switch=nil, maxagerules=nil, maxagecoderule=nil)
           @Switch = switch
           @MaxAgeRules = maxagerules
+          @MaxAgeCodeRule = maxagecoderule
         end
 
         def deserialize(params)
@@ -9284,6 +9322,31 @@ module TencentCloud
               @MaxAgeRules << maxagerule_tmp
             end
           end
+          unless params['MaxAgeCodeRule'].nil?
+            @MaxAgeCodeRule = MaxAgeCodeRule.new
+            @MaxAgeCodeRule.deserialize(params['MaxAgeCodeRule'])
+          end
+        end
+      end
+
+      # MaxAge 状态码相关规则配置
+      class MaxAgeCodeRule < TencentCloud::Common::AbstractModel
+        # @param Action: 处理动作
+        # clear：清除 cache-control 头部
+        # @type Action: String
+        # @param StatusCodes: 指定HTTP状态码生效，当前仅支持填写"400-599"
+        # @type StatusCodes: Array
+
+        attr_accessor :Action, :StatusCodes
+        
+        def initialize(action=nil, statuscodes=nil)
+          @Action = action
+          @StatusCodes = statuscodes
+        end
+
+        def deserialize(params)
+          @Action = params['Action']
+          @StatusCodes = params['StatusCodes']
         end
       end
 
@@ -13144,14 +13207,17 @@ module TencentCloud
         # @type TpgAdapter: :class:`Tencentcloud::Cdn.v20180606.models.TpgAdapter`
         # @param GuetzliAdapter: GuetzliAdapter配置项
         # @type GuetzliAdapter: :class:`Tencentcloud::Cdn.v20180606.models.GuetzliAdapter`
+        # @param AvifAdapter: AvifAdapter配置项
+        # @type AvifAdapter: :class:`Tencentcloud::Cdn.v20180606.models.AvifAdapter`
 
-        attr_accessor :Domain, :WebpAdapter, :TpgAdapter, :GuetzliAdapter
+        attr_accessor :Domain, :WebpAdapter, :TpgAdapter, :GuetzliAdapter, :AvifAdapter
         
-        def initialize(domain=nil, webpadapter=nil, tpgadapter=nil, guetzliadapter=nil)
+        def initialize(domain=nil, webpadapter=nil, tpgadapter=nil, guetzliadapter=nil, avifadapter=nil)
           @Domain = domain
           @WebpAdapter = webpadapter
           @TpgAdapter = tpgadapter
           @GuetzliAdapter = guetzliadapter
+          @AvifAdapter = avifadapter
         end
 
         def deserialize(params)
@@ -13167,6 +13233,10 @@ module TencentCloud
           unless params['GuetzliAdapter'].nil?
             @GuetzliAdapter = GuetzliAdapter.new
             @GuetzliAdapter.deserialize(params['GuetzliAdapter'])
+          end
+          unless params['AvifAdapter'].nil?
+            @AvifAdapter = AvifAdapter.new
+            @AvifAdapter.deserialize(params['AvifAdapter'])
           end
         end
       end

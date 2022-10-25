@@ -3033,10 +3033,13 @@ module TencentCloud
         # @type FixSuggestion: String
         # @param BenchmarkStandardId: 所属的合规标准的ID
         # @type BenchmarkStandardId: Integer
+        # @param ApplicableVersion: 检测项适用的版本
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ApplicableVersion: String
 
-        attr_accessor :CustomerPolicyItemId, :BasePolicyItemId, :Name, :Category, :BenchmarkStandardName, :RiskLevel, :AssetType, :LastCheckTime, :CheckStatus, :CheckResult, :PassedAssetCount, :FailedAssetCount, :WhitelistId, :FixSuggestion, :BenchmarkStandardId
+        attr_accessor :CustomerPolicyItemId, :BasePolicyItemId, :Name, :Category, :BenchmarkStandardName, :RiskLevel, :AssetType, :LastCheckTime, :CheckStatus, :CheckResult, :PassedAssetCount, :FailedAssetCount, :WhitelistId, :FixSuggestion, :BenchmarkStandardId, :ApplicableVersion
         
-        def initialize(customerpolicyitemid=nil, basepolicyitemid=nil, name=nil, category=nil, benchmarkstandardname=nil, risklevel=nil, assettype=nil, lastchecktime=nil, checkstatus=nil, checkresult=nil, passedassetcount=nil, failedassetcount=nil, whitelistid=nil, fixsuggestion=nil, benchmarkstandardid=nil)
+        def initialize(customerpolicyitemid=nil, basepolicyitemid=nil, name=nil, category=nil, benchmarkstandardname=nil, risklevel=nil, assettype=nil, lastchecktime=nil, checkstatus=nil, checkresult=nil, passedassetcount=nil, failedassetcount=nil, whitelistid=nil, fixsuggestion=nil, benchmarkstandardid=nil, applicableversion=nil)
           @CustomerPolicyItemId = customerpolicyitemid
           @BasePolicyItemId = basepolicyitemid
           @Name = name
@@ -3052,6 +3055,7 @@ module TencentCloud
           @WhitelistId = whitelistid
           @FixSuggestion = fixsuggestion
           @BenchmarkStandardId = benchmarkstandardid
+          @ApplicableVersion = applicableversion
         end
 
         def deserialize(params)
@@ -3070,6 +3074,7 @@ module TencentCloud
           @WhitelistId = params['WhitelistId']
           @FixSuggestion = params['FixSuggestion']
           @BenchmarkStandardId = params['BenchmarkStandardId']
+          @ApplicableVersion = params['ApplicableVersion']
         end
       end
 
@@ -4328,8 +4333,6 @@ module TencentCloud
 
       # CreateImageExportJob请求参数结构体
       class CreateImageExportJobRequest < TencentCloud::Common::AbstractModel
-        # @param ExportField: 导出字段
-        # @type ExportField: Array
         # @param Filters: 过滤条件。
         # <li>ImageName- String - 是否必填：否 - 镜像名称筛选，</li>
         # <li>ScanStatus - String - 是否必填：否 - 镜像扫描状态notScan，scanning，scanned，scanErr</li>
@@ -4344,20 +4347,21 @@ module TencentCloud
         # @type By: String
         # @param Order: 排序方式 asc,desc
         # @type Order: String
+        # @param ExportField: 导出字段
+        # @type ExportField: Array
 
-        attr_accessor :ExportField, :Filters, :Offset, :Limit, :By, :Order
+        attr_accessor :Filters, :Offset, :Limit, :By, :Order, :ExportField
         
-        def initialize(exportfield=nil, filters=nil, offset=nil, limit=nil, by=nil, order=nil)
-          @ExportField = exportfield
+        def initialize(filters=nil, offset=nil, limit=nil, by=nil, order=nil, exportfield=nil)
           @Filters = filters
           @Offset = offset
           @Limit = limit
           @By = by
           @Order = order
+          @ExportField = exportfield
         end
 
         def deserialize(params)
-          @ExportField = params['ExportField']
           unless params['Filters'].nil?
             @Filters = []
             params['Filters'].each do |i|
@@ -4370,6 +4374,7 @@ module TencentCloud
           @Limit = params['Limit']
           @By = params['By']
           @Order = params['Order']
+          @ExportField = params['ExportField']
         end
       end
 
@@ -11848,6 +11853,116 @@ module TencentCloud
         end
       end
 
+      # DescribeExportJobDownloadURL请求参数结构体
+      class DescribeExportJobDownloadURLRequest < TencentCloud::Common::AbstractModel
+        # @param JobID: 任务ID
+        # @type JobID: String
+
+        attr_accessor :JobID
+        
+        def initialize(jobid=nil)
+          @JobID = jobid
+        end
+
+        def deserialize(params)
+          @JobID = params['JobID']
+        end
+      end
+
+      # DescribeExportJobDownloadURL返回参数结构体
+      class DescribeExportJobDownloadURLResponse < TencentCloud::Common::AbstractModel
+        # @param DownloadURL: 下载链接
+        # @type DownloadURL: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :DownloadURL, :RequestId
+        
+        def initialize(downloadurl=nil, requestid=nil)
+          @DownloadURL = downloadurl
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @DownloadURL = params['DownloadURL']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeExportJobManageList请求参数结构体
+      class DescribeExportJobManageListRequest < TencentCloud::Common::AbstractModel
+        # @param Filters: 过滤条件。
+        # <li>ExportStatus- string -是否必填: 否 - 导出状态 RUNNING: 导出中 SUCCESS:导出完成 FAILURE:失败
+        # <li>ExportSource- string -是否必填: 否 - 导出来源 LocalImage: 本地镜像
+        # </li>
+        # @type Filters: Array
+        # @param Offset: 偏移量，默认为0。
+        # @type Offset: Integer
+        # @param Limit: 需要返回的数量，默认为10，最大值为100
+        # @type Limit: Integer
+        # @param Order: 排序方式
+        # @type Order: String
+        # @param By: 排序字段
+        # InsertTime: 创建时间
+        # @type By: String
+
+        attr_accessor :Filters, :Offset, :Limit, :Order, :By
+        
+        def initialize(filters=nil, offset=nil, limit=nil, order=nil, by=nil)
+          @Filters = filters
+          @Offset = offset
+          @Limit = limit
+          @Order = order
+          @By = by
+        end
+
+        def deserialize(params)
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              runtimefilters_tmp = RunTimeFilters.new
+              runtimefilters_tmp.deserialize(i)
+              @Filters << runtimefilters_tmp
+            end
+          end
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @Order = params['Order']
+          @By = params['By']
+        end
+      end
+
+      # DescribeExportJobManageList返回参数结构体
+      class DescribeExportJobManageListResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 总数
+        # @type TotalCount: Integer
+        # @param List: 任务列表
+        # @type List: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :List, :RequestId
+        
+        def initialize(totalcount=nil, list=nil, requestid=nil)
+          @TotalCount = totalcount
+          @List = list
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['List'].nil?
+            @List = []
+            params['List'].each do |i|
+              exportjobinfo_tmp = ExportJobInfo.new
+              exportjobinfo_tmp.deserialize(i)
+              @List << exportjobinfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeExportJobResult请求参数结构体
       class DescribeExportJobResultRequest < TencentCloud::Common::AbstractModel
         # @param JobId: CreateExportComplianceStatusListJob返回的JobId字段的值
@@ -14850,12 +14965,17 @@ module TencentCloud
 
       # DescribeSecLogDeliveryKafkaOptions请求参数结构体
       class DescribeSecLogDeliveryKafkaOptionsRequest < TencentCloud::Common::AbstractModel
+        # @param RegionID: 地域，若为空则返回所有可选地域
+        # @type RegionID: String
 
+        attr_accessor :RegionID
         
-        def initialize()
+        def initialize(regionid=nil)
+          @RegionID = regionid
         end
 
         def deserialize(params)
+          @RegionID = params['RegionID']
         end
       end
 
@@ -14863,13 +14983,16 @@ module TencentCloud
       class DescribeSecLogDeliveryKafkaOptionsResponse < TencentCloud::Common::AbstractModel
         # @param InstanceList: 实例列表
         # @type InstanceList: Array
+        # @param RegionList: 地域列表
+        # @type RegionList: Array
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :InstanceList, :RequestId
+        attr_accessor :InstanceList, :RegionList, :RequestId
         
-        def initialize(instancelist=nil, requestid=nil)
+        def initialize(instancelist=nil, regionlist=nil, requestid=nil)
           @InstanceList = instancelist
+          @RegionList = regionlist
           @RequestId = requestid
         end
 
@@ -14880,6 +15003,14 @@ module TencentCloud
               ckafkainstanceinfo_tmp = CKafkaInstanceInfo.new
               ckafkainstanceinfo_tmp.deserialize(i)
               @InstanceList << ckafkainstanceinfo_tmp
+            end
+          end
+          unless params['RegionList'].nil?
+            @RegionList = []
+            params['RegionList'].each do |i|
+              regioninfo_tmp = RegionInfo.new
+              regioninfo_tmp.deserialize(i)
+              @RegionList << regioninfo_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -14914,17 +15045,21 @@ module TencentCloud
         # @param User: 用户名
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type User: String
+        # @param RegionID: 地域ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RegionID: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :InstanceID, :InstanceName, :Domain, :LogTypeList, :User, :RequestId
+        attr_accessor :InstanceID, :InstanceName, :Domain, :LogTypeList, :User, :RegionID, :RequestId
         
-        def initialize(instanceid=nil, instancename=nil, domain=nil, logtypelist=nil, user=nil, requestid=nil)
+        def initialize(instanceid=nil, instancename=nil, domain=nil, logtypelist=nil, user=nil, regionid=nil, requestid=nil)
           @InstanceID = instanceid
           @InstanceName = instancename
           @Domain = domain
           @LogTypeList = logtypelist
           @User = user
+          @RegionID = regionid
           @RequestId = requestid
         end
 
@@ -14941,6 +15076,7 @@ module TencentCloud
             end
           end
           @User = params['User']
+          @RegionID = params['RegionID']
           @RequestId = params['RequestId']
         end
       end
@@ -18494,6 +18630,50 @@ module TencentCloud
         end
       end
 
+      # 导出任务详情
+      class ExportJobInfo < TencentCloud::Common::AbstractModel
+        # @param JobID: 任务ID
+        # @type JobID: String
+        # @param JobName: 任务名称
+        # @type JobName: String
+        # @param Source: 来源
+        # @type Source: String
+        # @param ExportStatus: 导出状态
+        # @type ExportStatus: String
+        # @param ExportProgress: 导出进度
+        # @type ExportProgress: Integer
+        # @param FailureMsg: 失败原因
+        # @type FailureMsg: String
+        # @param Timeout: 超时时间
+        # @type Timeout: String
+        # @param InsertTime: 插入时间
+        # @type InsertTime: String
+
+        attr_accessor :JobID, :JobName, :Source, :ExportStatus, :ExportProgress, :FailureMsg, :Timeout, :InsertTime
+        
+        def initialize(jobid=nil, jobname=nil, source=nil, exportstatus=nil, exportprogress=nil, failuremsg=nil, timeout=nil, inserttime=nil)
+          @JobID = jobid
+          @JobName = jobname
+          @Source = source
+          @ExportStatus = exportstatus
+          @ExportProgress = exportprogress
+          @FailureMsg = failuremsg
+          @Timeout = timeout
+          @InsertTime = inserttime
+        end
+
+        def deserialize(params)
+          @JobID = params['JobID']
+          @JobName = params['JobName']
+          @Source = params['Source']
+          @ExportStatus = params['ExportStatus']
+          @ExportProgress = params['ExportProgress']
+          @FailureMsg = params['FailureMsg']
+          @Timeout = params['Timeout']
+          @InsertTime = params['InsertTime']
+        end
+      end
+
       # ExportVirusList请求参数结构体
       class ExportVirusListRequest < TencentCloud::Common::AbstractModel
         # @param Filters: 过滤条件。
@@ -18577,16 +18757,22 @@ module TencentCloud
         # @type FileCreateTime: String
         # @param LatestTamperedFileMTime: 最近被篡改文件创建时间
         # @type LatestTamperedFileMTime: String
+        # @param NewFile: 新文件内容
+        # @type NewFile: String
+        # @param FileDiff: 新旧文件的差异
+        # @type FileDiff: String
 
-        attr_accessor :FileName, :FileType, :FileSize, :FilePath, :FileCreateTime, :LatestTamperedFileMTime
+        attr_accessor :FileName, :FileType, :FileSize, :FilePath, :FileCreateTime, :LatestTamperedFileMTime, :NewFile, :FileDiff
         
-        def initialize(filename=nil, filetype=nil, filesize=nil, filepath=nil, filecreatetime=nil, latesttamperedfilemtime=nil)
+        def initialize(filename=nil, filetype=nil, filesize=nil, filepath=nil, filecreatetime=nil, latesttamperedfilemtime=nil, newfile=nil, filediff=nil)
           @FileName = filename
           @FileType = filetype
           @FileSize = filesize
           @FilePath = filepath
           @FileCreateTime = filecreatetime
           @LatestTamperedFileMTime = latesttamperedfilemtime
+          @NewFile = newfile
+          @FileDiff = filediff
         end
 
         def deserialize(params)
@@ -18596,6 +18782,8 @@ module TencentCloud
           @FilePath = params['FilePath']
           @FileCreateTime = params['FileCreateTime']
           @LatestTamperedFileMTime = params['LatestTamperedFileMTime']
+          @NewFile = params['NewFile']
+          @FileDiff = params['FileDiff']
         end
       end
 
@@ -20602,10 +20790,12 @@ module TencentCloud
         # @type AccessType: Integer
         # @param KafkaVersion: kafka版本号
         # @type KafkaVersion: String
+        # @param RegionID: 地域ID
+        # @type RegionID: String
 
-        attr_accessor :InstanceID, :InstanceName, :Domain, :User, :Password, :LogTypeList, :AccessType, :KafkaVersion
+        attr_accessor :InstanceID, :InstanceName, :Domain, :User, :Password, :LogTypeList, :AccessType, :KafkaVersion, :RegionID
         
-        def initialize(instanceid=nil, instancename=nil, domain=nil, user=nil, password=nil, logtypelist=nil, accesstype=nil, kafkaversion=nil)
+        def initialize(instanceid=nil, instancename=nil, domain=nil, user=nil, password=nil, logtypelist=nil, accesstype=nil, kafkaversion=nil, regionid=nil)
           @InstanceID = instanceid
           @InstanceName = instancename
           @Domain = domain
@@ -20614,6 +20804,7 @@ module TencentCloud
           @LogTypeList = logtypelist
           @AccessType = accesstype
           @KafkaVersion = kafkaversion
+          @RegionID = regionid
         end
 
         def deserialize(params)
@@ -20632,6 +20823,7 @@ module TencentCloud
           end
           @AccessType = params['AccessType']
           @KafkaVersion = params['KafkaVersion']
+          @RegionID = params['RegionID']
         end
       end
 

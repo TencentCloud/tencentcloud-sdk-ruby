@@ -189,10 +189,13 @@ module TencentCloud
         # @param DevStatus: 状态
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DevStatus: String
+        # @param ProductOwnerName: 产品拥有者名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProductOwnerName: String
 
-        attr_accessor :ProductId, :ProductName, :ProjectId, :DataProtocol, :CategoryId, :ProductType, :NetType, :DevStatus
+        attr_accessor :ProductId, :ProductName, :ProjectId, :DataProtocol, :CategoryId, :ProductType, :NetType, :DevStatus, :ProductOwnerName
         
-        def initialize(productid=nil, productname=nil, projectid=nil, dataprotocol=nil, categoryid=nil, producttype=nil, nettype=nil, devstatus=nil)
+        def initialize(productid=nil, productname=nil, projectid=nil, dataprotocol=nil, categoryid=nil, producttype=nil, nettype=nil, devstatus=nil, productownername=nil)
           @ProductId = productid
           @ProductName = productname
           @ProjectId = projectid
@@ -201,6 +204,7 @@ module TencentCloud
           @ProductType = producttype
           @NetType = nettype
           @DevStatus = devstatus
+          @ProductOwnerName = productownername
         end
 
         def deserialize(params)
@@ -212,6 +216,7 @@ module TencentCloud
           @ProductType = params['ProductType']
           @NetType = params['NetType']
           @DevStatus = params['DevStatus']
+          @ProductOwnerName = params['ProductOwnerName']
         end
       end
 
@@ -1506,19 +1511,23 @@ module TencentCloud
         # @type Offset: Integer
         # @param Limit: 分页大小
         # @type Limit: Integer
+        # @param ProductSource: 是否跨账号绑定产品
+        # @type ProductSource: Integer
 
-        attr_accessor :GatewayProductId, :Offset, :Limit
+        attr_accessor :GatewayProductId, :Offset, :Limit, :ProductSource
         
-        def initialize(gatewayproductid=nil, offset=nil, limit=nil)
+        def initialize(gatewayproductid=nil, offset=nil, limit=nil, productsource=nil)
           @GatewayProductId = gatewayproductid
           @Offset = offset
           @Limit = limit
+          @ProductSource = productsource
         end
 
         def deserialize(params)
           @GatewayProductId = params['GatewayProductId']
           @Offset = params['Offset']
           @Limit = params['Limit']
+          @ProductSource = params['ProductSource']
         end
       end
 
@@ -1584,15 +1593,23 @@ module TencentCloud
         # @param GatewayName: 网关产品名称
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type GatewayName: String
+        # @param GatewayProductOwnerName: 设备对应产品所属的主账号名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GatewayProductOwnerName: String
+        # @param GatewayProductOwnerUin: 设备对应产品所属的主账号 UIN
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GatewayProductOwnerUin: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :GatewayProductId, :GatewayDeviceName, :GatewayName, :RequestId
+        attr_accessor :GatewayProductId, :GatewayDeviceName, :GatewayName, :GatewayProductOwnerName, :GatewayProductOwnerUin, :RequestId
         
-        def initialize(gatewayproductid=nil, gatewaydevicename=nil, gatewayname=nil, requestid=nil)
+        def initialize(gatewayproductid=nil, gatewaydevicename=nil, gatewayname=nil, gatewayproductownername=nil, gatewayproductowneruin=nil, requestid=nil)
           @GatewayProductId = gatewayproductid
           @GatewayDeviceName = gatewaydevicename
           @GatewayName = gatewayname
+          @GatewayProductOwnerName = gatewayproductownername
+          @GatewayProductOwnerUin = gatewayproductowneruin
           @RequestId = requestid
         end
 
@@ -1600,6 +1617,8 @@ module TencentCloud
           @GatewayProductId = params['GatewayProductId']
           @GatewayDeviceName = params['GatewayDeviceName']
           @GatewayName = params['GatewayName']
+          @GatewayProductOwnerName = params['GatewayProductOwnerName']
+          @GatewayProductOwnerUin = params['GatewayProductOwnerUin']
           @RequestId = params['RequestId']
         end
       end
@@ -2181,14 +2200,17 @@ module TencentCloud
         # @type Limit: Integer
         # @param ProjectId: 项目Id
         # @type ProjectId: String
+        # @param ProductSource: 是否跨账号产品
+        # @type ProductSource: Integer
 
-        attr_accessor :GatewayProductId, :Offset, :Limit, :ProjectId
+        attr_accessor :GatewayProductId, :Offset, :Limit, :ProjectId, :ProductSource
         
-        def initialize(gatewayproductid=nil, offset=nil, limit=nil, projectid=nil)
+        def initialize(gatewayproductid=nil, offset=nil, limit=nil, projectid=nil, productsource=nil)
           @GatewayProductId = gatewayproductid
           @Offset = offset
           @Limit = limit
           @ProjectId = projectid
+          @ProductSource = productsource
         end
 
         def deserialize(params)
@@ -2196,6 +2218,7 @@ module TencentCloud
           @Offset = params['Offset']
           @Limit = params['Limit']
           @ProjectId = params['ProjectId']
+          @ProductSource = params['ProductSource']
         end
       end
 

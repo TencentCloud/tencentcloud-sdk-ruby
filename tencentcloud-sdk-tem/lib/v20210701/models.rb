@@ -271,10 +271,12 @@ module TencentCloud
         # @type EnableTracing: Integer
         # @param UseDefaultImageServiceParameters: 使用默认镜像服务额外参数
         # @type UseDefaultImageServiceParameters: :class:`Tencentcloud::Tem.v20210701.models.UseDefaultRepoParameters`
+        # @param Tags: 标签
+        # @type Tags: Array
 
-        attr_accessor :ApplicationName, :Description, :UseDefaultImageService, :RepoType, :InstanceId, :RepoServer, :RepoName, :SourceChannel, :SubnetList, :CodingLanguage, :DeployMode, :EnableTracing, :UseDefaultImageServiceParameters
+        attr_accessor :ApplicationName, :Description, :UseDefaultImageService, :RepoType, :InstanceId, :RepoServer, :RepoName, :SourceChannel, :SubnetList, :CodingLanguage, :DeployMode, :EnableTracing, :UseDefaultImageServiceParameters, :Tags
         
-        def initialize(applicationname=nil, description=nil, usedefaultimageservice=nil, repotype=nil, instanceid=nil, reposerver=nil, reponame=nil, sourcechannel=nil, subnetlist=nil, codinglanguage=nil, deploymode=nil, enabletracing=nil, usedefaultimageserviceparameters=nil)
+        def initialize(applicationname=nil, description=nil, usedefaultimageservice=nil, repotype=nil, instanceid=nil, reposerver=nil, reponame=nil, sourcechannel=nil, subnetlist=nil, codinglanguage=nil, deploymode=nil, enabletracing=nil, usedefaultimageserviceparameters=nil, tags=nil)
           @ApplicationName = applicationname
           @Description = description
           @UseDefaultImageService = usedefaultimageservice
@@ -288,6 +290,7 @@ module TencentCloud
           @DeployMode = deploymode
           @EnableTracing = enabletracing
           @UseDefaultImageServiceParameters = usedefaultimageserviceparameters
+          @Tags = tags
         end
 
         def deserialize(params)
@@ -306,6 +309,14 @@ module TencentCloud
           unless params['UseDefaultImageServiceParameters'].nil?
             @UseDefaultImageServiceParameters = UseDefaultRepoParameters.new
             @UseDefaultImageServiceParameters.deserialize(params['UseDefaultImageServiceParameters'])
+          end
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
+            end
           end
         end
       end
@@ -509,10 +520,12 @@ module TencentCloud
         # @type SourceChannel: Integer
         # @param EnableTswTraceService: 是否开启tsw服务
         # @type EnableTswTraceService: Boolean
+        # @param Tags: 标签
+        # @type Tags: Array
 
-        attr_accessor :EnvironmentName, :Vpc, :SubnetIds, :Description, :K8sVersion, :SourceChannel, :EnableTswTraceService
+        attr_accessor :EnvironmentName, :Vpc, :SubnetIds, :Description, :K8sVersion, :SourceChannel, :EnableTswTraceService, :Tags
         
-        def initialize(environmentname=nil, vpc=nil, subnetids=nil, description=nil, k8sversion=nil, sourcechannel=nil, enabletswtraceservice=nil)
+        def initialize(environmentname=nil, vpc=nil, subnetids=nil, description=nil, k8sversion=nil, sourcechannel=nil, enabletswtraceservice=nil, tags=nil)
           @EnvironmentName = environmentname
           @Vpc = vpc
           @SubnetIds = subnetids
@@ -520,6 +533,7 @@ module TencentCloud
           @K8sVersion = k8sversion
           @SourceChannel = sourcechannel
           @EnableTswTraceService = enabletswtraceservice
+          @Tags = tags
         end
 
         def deserialize(params)
@@ -530,6 +544,14 @@ module TencentCloud
           @K8sVersion = params['K8sVersion']
           @SourceChannel = params['SourceChannel']
           @EnableTswTraceService = params['EnableTswTraceService']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
+            end
+          end
         end
       end
 
@@ -1330,16 +1352,20 @@ module TencentCloud
         # @param Webshell: webshell地址
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Webshell: String
+        # @param Status: 状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: String
 
-        attr_accessor :PodId, :PodStatus, :PodVersion, :CreateTime, :Zone, :Webshell
+        attr_accessor :PodId, :PodStatus, :PodVersion, :CreateTime, :Zone, :Webshell, :Status
         
-        def initialize(podid=nil, podstatus=nil, podversion=nil, createtime=nil, zone=nil, webshell=nil)
+        def initialize(podid=nil, podstatus=nil, podversion=nil, createtime=nil, zone=nil, webshell=nil, status=nil)
           @PodId = podid
           @PodStatus = podstatus
           @PodVersion = podversion
           @CreateTime = createtime
           @Zone = zone
           @Webshell = webshell
+          @Status = status
         end
 
         def deserialize(params)
@@ -1349,6 +1375,7 @@ module TencentCloud
           @CreateTime = params['CreateTime']
           @Zone = params['Zone']
           @Webshell = params['Webshell']
+          @Status = params['Status']
         end
       end
 
@@ -1614,16 +1641,19 @@ module TencentCloud
         # @type ApplicationId: String
         # @param Keyword: 搜索关键字
         # @type Keyword: String
+        # @param Filters: 查询过滤器
+        # @type Filters: Array
 
-        attr_accessor :EnvironmentId, :Limit, :Offset, :SourceChannel, :ApplicationId, :Keyword
+        attr_accessor :EnvironmentId, :Limit, :Offset, :SourceChannel, :ApplicationId, :Keyword, :Filters
         
-        def initialize(environmentid=nil, limit=nil, offset=nil, sourcechannel=nil, applicationid=nil, keyword=nil)
+        def initialize(environmentid=nil, limit=nil, offset=nil, sourcechannel=nil, applicationid=nil, keyword=nil, filters=nil)
           @EnvironmentId = environmentid
           @Limit = limit
           @Offset = offset
           @SourceChannel = sourcechannel
           @ApplicationId = applicationid
           @Keyword = keyword
+          @Filters = filters
         end
 
         def deserialize(params)
@@ -1633,6 +1663,14 @@ module TencentCloud
           @SourceChannel = params['SourceChannel']
           @ApplicationId = params['ApplicationId']
           @Keyword = params['Keyword']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              queryfilter_tmp = QueryFilter.new
+              queryfilter_tmp.deserialize(i)
+              @Filters << queryfilter_tmp
+            end
+          end
         end
       end
 
@@ -1982,19 +2020,30 @@ module TencentCloud
         # @type Offset: Integer
         # @param SourceChannel: 来源source
         # @type SourceChannel: Integer
+        # @param Filters: 查询过滤器
+        # @type Filters: Array
 
-        attr_accessor :Limit, :Offset, :SourceChannel
+        attr_accessor :Limit, :Offset, :SourceChannel, :Filters
         
-        def initialize(limit=nil, offset=nil, sourcechannel=nil)
+        def initialize(limit=nil, offset=nil, sourcechannel=nil, filters=nil)
           @Limit = limit
           @Offset = offset
           @SourceChannel = sourcechannel
+          @Filters = filters
         end
 
         def deserialize(params)
           @Limit = params['Limit']
           @Offset = params['Offset']
           @SourceChannel = params['SourceChannel']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              queryfilter_tmp = QueryFilter.new
+              queryfilter_tmp.deserialize(i)
+              @Filters << queryfilter_tmp
+            end
+          end
         end
       end
 
@@ -3304,16 +3353,21 @@ module TencentCloud
 
       # ModifyApplicationReplicas返回参数结构体
       class ModifyApplicationReplicasResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 是否成功
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Result: Boolean
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RequestId
+        attr_accessor :Result, :RequestId
         
-        def initialize(requestid=nil)
+        def initialize(result=nil, requestid=nil)
+          @Result = result
           @RequestId = requestid
         end
 
         def deserialize(params)
+          @Result = params['Result']
           @RequestId = params['RequestId']
         end
       end
@@ -3644,10 +3698,13 @@ module TencentCloud
         # @param Locked: 环境是否上锁，1为上锁，0则未上锁
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Locked: Integer
+        # @param Tags: 标签
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Tags: Array
 
-        attr_accessor :EnvironmentId, :NamespaceName, :Region, :VpcId, :SubnetIds, :Description, :CreatedDate, :EnvironmentName, :ApmInstanceId, :Locked
+        attr_accessor :EnvironmentId, :NamespaceName, :Region, :VpcId, :SubnetIds, :Description, :CreatedDate, :EnvironmentName, :ApmInstanceId, :Locked, :Tags
         
-        def initialize(environmentid=nil, namespacename=nil, region=nil, vpcid=nil, subnetids=nil, description=nil, createddate=nil, environmentname=nil, apminstanceid=nil, locked=nil)
+        def initialize(environmentid=nil, namespacename=nil, region=nil, vpcid=nil, subnetids=nil, description=nil, createddate=nil, environmentname=nil, apminstanceid=nil, locked=nil, tags=nil)
           @EnvironmentId = environmentid
           @NamespaceName = namespacename
           @Region = region
@@ -3658,6 +3715,7 @@ module TencentCloud
           @EnvironmentName = environmentname
           @ApmInstanceId = apminstanceid
           @Locked = locked
+          @Tags = tags
         end
 
         def deserialize(params)
@@ -3671,6 +3729,14 @@ module TencentCloud
           @EnvironmentName = params['EnvironmentName']
           @ApmInstanceId = params['ApmInstanceId']
           @Locked = params['Locked']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
+            end
+          end
         end
       end
 
@@ -3854,6 +3920,26 @@ module TencentCloud
           @TargetPort = params['TargetPort']
           @Protocol = params['Protocol']
           @ServiceName = params['ServiceName']
+        end
+      end
+
+      # 查询过滤器
+      class QueryFilter < TencentCloud::Common::AbstractModel
+        # @param Name: 查询字段名称
+        # @type Name: String
+        # @param Value: 查询字段值
+        # @type Value: Array
+
+        attr_accessor :Name, :Value
+        
+        def initialize(name=nil, value=nil)
+          @Name = name
+          @Value = value
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Value = params['Value']
         end
       end
 
@@ -4141,10 +4227,28 @@ module TencentCloud
         # @param ContainerState: 容器状态
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ContainerState: String
+        # @param NodeInfo: 实例所在节点信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NodeInfo: :class:`Tencentcloud::Tem.v20210701.models.NodeInfo`
+        # @param StartTime: 启动时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StartTime: String
+        # @param Unhealthy: 是否健康
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Unhealthy: Boolean
+        # @param UnhealthyWarningMsg: 不健康时的提示信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UnhealthyWarningMsg: String
+        # @param VersionId: 版本ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VersionId: String
+        # @param ApplicationName: 应用名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ApplicationName: String
 
-        attr_accessor :Webshell, :PodId, :Status, :CreateTime, :PodIp, :Zone, :DeployVersion, :RestartCount, :Ready, :ContainerState
+        attr_accessor :Webshell, :PodId, :Status, :CreateTime, :PodIp, :Zone, :DeployVersion, :RestartCount, :Ready, :ContainerState, :NodeInfo, :StartTime, :Unhealthy, :UnhealthyWarningMsg, :VersionId, :ApplicationName
         
-        def initialize(webshell=nil, podid=nil, status=nil, createtime=nil, podip=nil, zone=nil, deployversion=nil, restartcount=nil, ready=nil, containerstate=nil)
+        def initialize(webshell=nil, podid=nil, status=nil, createtime=nil, podip=nil, zone=nil, deployversion=nil, restartcount=nil, ready=nil, containerstate=nil, nodeinfo=nil, starttime=nil, unhealthy=nil, unhealthywarningmsg=nil, versionid=nil, applicationname=nil)
           @Webshell = webshell
           @PodId = podid
           @Status = status
@@ -4155,6 +4259,12 @@ module TencentCloud
           @RestartCount = restartcount
           @Ready = ready
           @ContainerState = containerstate
+          @NodeInfo = nodeinfo
+          @StartTime = starttime
+          @Unhealthy = unhealthy
+          @UnhealthyWarningMsg = unhealthywarningmsg
+          @VersionId = versionid
+          @ApplicationName = applicationname
         end
 
         def deserialize(params)
@@ -4168,6 +4278,15 @@ module TencentCloud
           @RestartCount = params['RestartCount']
           @Ready = params['Ready']
           @ContainerState = params['ContainerState']
+          unless params['NodeInfo'].nil?
+            @NodeInfo = NodeInfo.new
+            @NodeInfo.deserialize(params['NodeInfo'])
+          end
+          @StartTime = params['StartTime']
+          @Unhealthy = params['Unhealthy']
+          @UnhealthyWarningMsg = params['UnhealthyWarningMsg']
+          @VersionId = params['VersionId']
+          @ApplicationName = params['ApplicationName']
         end
       end
 
@@ -4181,14 +4300,18 @@ module TencentCloud
         # @type Size: Integer
         # @param Pages: 页数
         # @type Pages: Integer
+        # @param Current: 当前条数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Current: Integer
 
-        attr_accessor :Records, :Total, :Size, :Pages
+        attr_accessor :Records, :Total, :Size, :Pages, :Current
         
-        def initialize(records=nil, total=nil, size=nil, pages=nil)
+        def initialize(records=nil, total=nil, size=nil, pages=nil, current=nil)
           @Records = records
           @Total = total
           @Size = size
           @Pages = pages
+          @Current = current
         end
 
         def deserialize(params)
@@ -4203,6 +4326,7 @@ module TencentCloud
           @Total = params['Total']
           @Size = params['Size']
           @Pages = params['Pages']
+          @Current = params['Current']
         end
       end
 
@@ -4341,10 +4465,28 @@ module TencentCloud
         # @param UnderDeploying: 是否正在发布中
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UnderDeploying: Boolean
+        # @param BatchDeployStatus: 分批次部署状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BatchDeployStatus: String
+        # @param Zones: 可用区
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Zones: Array
+        # @param NodeInfos: 节点信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NodeInfos: Array
+        # @param PodList: 实例信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PodList: :class:`Tencentcloud::Tem.v20210701.models.DescribeRunPodPage`
+        # @param WorkloadInfo: 工作负载信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type WorkloadInfo: :class:`Tencentcloud::Tem.v20210701.models.WorkloadInfo`
+        # @param CreateDate: 创建日期
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateDate: String
 
-        attr_accessor :VersionName, :Status, :EnableEs, :CurrentInstances, :VersionId, :LogOutputConf, :ExpectedInstances, :DeployMode, :BuildTaskId, :EnvironmentId, :EnvironmentName, :ApplicationId, :ApplicationName, :UnderDeploying
+        attr_accessor :VersionName, :Status, :EnableEs, :CurrentInstances, :VersionId, :LogOutputConf, :ExpectedInstances, :DeployMode, :BuildTaskId, :EnvironmentId, :EnvironmentName, :ApplicationId, :ApplicationName, :UnderDeploying, :BatchDeployStatus, :Zones, :NodeInfos, :PodList, :WorkloadInfo, :CreateDate
         
-        def initialize(versionname=nil, status=nil, enablees=nil, currentinstances=nil, versionid=nil, logoutputconf=nil, expectedinstances=nil, deploymode=nil, buildtaskid=nil, environmentid=nil, environmentname=nil, applicationid=nil, applicationname=nil, underdeploying=nil)
+        def initialize(versionname=nil, status=nil, enablees=nil, currentinstances=nil, versionid=nil, logoutputconf=nil, expectedinstances=nil, deploymode=nil, buildtaskid=nil, environmentid=nil, environmentname=nil, applicationid=nil, applicationname=nil, underdeploying=nil, batchdeploystatus=nil, zones=nil, nodeinfos=nil, podlist=nil, workloadinfo=nil, createdate=nil)
           @VersionName = versionname
           @Status = status
           @EnableEs = enablees
@@ -4359,6 +4501,12 @@ module TencentCloud
           @ApplicationId = applicationid
           @ApplicationName = applicationname
           @UnderDeploying = underdeploying
+          @BatchDeployStatus = batchdeploystatus
+          @Zones = zones
+          @NodeInfos = nodeinfos
+          @PodList = podlist
+          @WorkloadInfo = workloadinfo
+          @CreateDate = createdate
         end
 
         def deserialize(params)
@@ -4379,6 +4527,25 @@ module TencentCloud
           @ApplicationId = params['ApplicationId']
           @ApplicationName = params['ApplicationName']
           @UnderDeploying = params['UnderDeploying']
+          @BatchDeployStatus = params['BatchDeployStatus']
+          @Zones = params['Zones']
+          unless params['NodeInfos'].nil?
+            @NodeInfos = []
+            params['NodeInfos'].each do |i|
+              nodeinfo_tmp = NodeInfo.new
+              nodeinfo_tmp.deserialize(i)
+              @NodeInfos << nodeinfo_tmp
+            end
+          end
+          unless params['PodList'].nil?
+            @PodList = DescribeRunPodPage.new
+            @PodList.deserialize(params['PodList'])
+          end
+          unless params['WorkloadInfo'].nil?
+            @WorkloadInfo = WorkloadInfo.new
+            @WorkloadInfo.deserialize(params['WorkloadInfo'])
+          end
+          @CreateDate = params['CreateDate']
         end
       end
 
@@ -4798,10 +4965,13 @@ module TencentCloud
         # @param EnableTracing: 是否启用链路追踪
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EnableTracing: Integer
+        # @param Tags: 标签
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Tags: Array
 
-        attr_accessor :ApplicationId, :ApplicationName, :Description, :EnvironmentId, :CreateDate, :ModifyDate, :Modifier, :Creator, :RepoType, :InstanceId, :RepoName, :CodingLanguage, :DeployMode, :EnvironmentName, :ActiveVersions, :EnableTracing
+        attr_accessor :ApplicationId, :ApplicationName, :Description, :EnvironmentId, :CreateDate, :ModifyDate, :Modifier, :Creator, :RepoType, :InstanceId, :RepoName, :CodingLanguage, :DeployMode, :EnvironmentName, :ActiveVersions, :EnableTracing, :Tags
         
-        def initialize(applicationid=nil, applicationname=nil, description=nil, environmentid=nil, createdate=nil, modifydate=nil, modifier=nil, creator=nil, repotype=nil, instanceid=nil, reponame=nil, codinglanguage=nil, deploymode=nil, environmentname=nil, activeversions=nil, enabletracing=nil)
+        def initialize(applicationid=nil, applicationname=nil, description=nil, environmentid=nil, createdate=nil, modifydate=nil, modifier=nil, creator=nil, repotype=nil, instanceid=nil, reponame=nil, codinglanguage=nil, deploymode=nil, environmentname=nil, activeversions=nil, enabletracing=nil, tags=nil)
           @ApplicationId = applicationid
           @ApplicationName = applicationname
           @Description = description
@@ -4818,6 +4988,7 @@ module TencentCloud
           @EnvironmentName = environmentname
           @ActiveVersions = activeversions
           @EnableTracing = enabletracing
+          @Tags = tags
         end
 
         def deserialize(params)
@@ -4844,6 +5015,14 @@ module TencentCloud
             end
           end
           @EnableTracing = params['EnableTracing']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
+            end
+          end
         end
       end
 
@@ -5050,10 +5229,49 @@ module TencentCloud
         # 0：关闭metrics采集；
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EnableMetrics: Integer
+        # @param AppId: 用户AppId
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AppId: String
+        # @param SubAccountUin: 用户SubAccountUin
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SubAccountUin: String
+        # @param Uin: 用户Uin
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Uin: String
+        # @param Region: 地域
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Region: String
+        # @param GroupId: 应用分组ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GroupId: String
+        # @param EnableRegistry: 是否启用注册中心
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EnableRegistry: Integer
+        # @param AutoscalerList: 弹性伸缩数组
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AutoscalerList: Array
+        # @param Modifier: 修改人
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Modifier: String
+        # @param Creator: 创建人
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Creator: String
+        # @param DeployStrategyConf: 部署策略
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DeployStrategyConf: :class:`Tencentcloud::Tem.v20210701.models.DeployStrategyConf`
+        # @param PodList: 实例列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PodList: :class:`Tencentcloud::Tem.v20210701.models.DescribeRunPodPage`
+        # @param ConfEdited: 发布时配置是否有修改
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ConfEdited: Boolean
+        # @param Tags: 标签
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Tags: Array
 
-        attr_accessor :VersionId, :ApplicationId, :DeployMode, :JdkVersion, :Description, :DeployVersion, :PublishMode, :JvmOpts, :InitPodNum, :CpuSpec, :MemorySpec, :ImgRepo, :ImgName, :ImgVersion, :EsInfo, :EnvConf, :StorageConfs, :Status, :Vpc, :SubnetId, :CreateDate, :ModifyDate, :StorageMountConfs, :VersionName, :LogOutputConf, :ApplicationName, :ApplicationDescription, :EnvironmentName, :EnvironmentId, :PublicDomain, :EnablePublicAccess, :CurrentInstances, :ExpectedInstances, :CodingLanguage, :PkgName, :EsEnable, :EsStrategy, :ImageTag, :LogEnable, :MinAliveInstances, :SecurityGroupIds, :ImageCommand, :ImageArgs, :UseRegistryDefaultConfig, :Service, :SettingConfs, :LogConfs, :PostStart, :PreStop, :Liveness, :Readiness, :HorizontalAutoscaler, :CronHorizontalAutoscaler, :Zones, :LastDeployDate, :LastDeploySuccessDate, :NodeInfos, :ImageType, :EnableTracing, :EnableTracingReport, :RepoType, :BatchDeployStatus, :ApmInstanceId, :WorkloadInfo, :SpeedUp, :StartupProbe, :OsFlavour, :RepoServer, :UnderDeploying, :EnablePrometheusConf, :StoppedManually, :TcrInstanceId, :EnableMetrics
+        attr_accessor :VersionId, :ApplicationId, :DeployMode, :JdkVersion, :Description, :DeployVersion, :PublishMode, :JvmOpts, :InitPodNum, :CpuSpec, :MemorySpec, :ImgRepo, :ImgName, :ImgVersion, :EsInfo, :EnvConf, :StorageConfs, :Status, :Vpc, :SubnetId, :CreateDate, :ModifyDate, :StorageMountConfs, :VersionName, :LogOutputConf, :ApplicationName, :ApplicationDescription, :EnvironmentName, :EnvironmentId, :PublicDomain, :EnablePublicAccess, :CurrentInstances, :ExpectedInstances, :CodingLanguage, :PkgName, :EsEnable, :EsStrategy, :ImageTag, :LogEnable, :MinAliveInstances, :SecurityGroupIds, :ImageCommand, :ImageArgs, :UseRegistryDefaultConfig, :Service, :SettingConfs, :LogConfs, :PostStart, :PreStop, :Liveness, :Readiness, :HorizontalAutoscaler, :CronHorizontalAutoscaler, :Zones, :LastDeployDate, :LastDeploySuccessDate, :NodeInfos, :ImageType, :EnableTracing, :EnableTracingReport, :RepoType, :BatchDeployStatus, :ApmInstanceId, :WorkloadInfo, :SpeedUp, :StartupProbe, :OsFlavour, :RepoServer, :UnderDeploying, :EnablePrometheusConf, :StoppedManually, :TcrInstanceId, :EnableMetrics, :AppId, :SubAccountUin, :Uin, :Region, :GroupId, :EnableRegistry, :AutoscalerList, :Modifier, :Creator, :DeployStrategyConf, :PodList, :ConfEdited, :Tags
         
-        def initialize(versionid=nil, applicationid=nil, deploymode=nil, jdkversion=nil, description=nil, deployversion=nil, publishmode=nil, jvmopts=nil, initpodnum=nil, cpuspec=nil, memoryspec=nil, imgrepo=nil, imgname=nil, imgversion=nil, esinfo=nil, envconf=nil, storageconfs=nil, status=nil, vpc=nil, subnetid=nil, createdate=nil, modifydate=nil, storagemountconfs=nil, versionname=nil, logoutputconf=nil, applicationname=nil, applicationdescription=nil, environmentname=nil, environmentid=nil, publicdomain=nil, enablepublicaccess=nil, currentinstances=nil, expectedinstances=nil, codinglanguage=nil, pkgname=nil, esenable=nil, esstrategy=nil, imagetag=nil, logenable=nil, minaliveinstances=nil, securitygroupids=nil, imagecommand=nil, imageargs=nil, useregistrydefaultconfig=nil, service=nil, settingconfs=nil, logconfs=nil, poststart=nil, prestop=nil, liveness=nil, readiness=nil, horizontalautoscaler=nil, cronhorizontalautoscaler=nil, zones=nil, lastdeploydate=nil, lastdeploysuccessdate=nil, nodeinfos=nil, imagetype=nil, enabletracing=nil, enabletracingreport=nil, repotype=nil, batchdeploystatus=nil, apminstanceid=nil, workloadinfo=nil, speedup=nil, startupprobe=nil, osflavour=nil, reposerver=nil, underdeploying=nil, enableprometheusconf=nil, stoppedmanually=nil, tcrinstanceid=nil, enablemetrics=nil)
+        def initialize(versionid=nil, applicationid=nil, deploymode=nil, jdkversion=nil, description=nil, deployversion=nil, publishmode=nil, jvmopts=nil, initpodnum=nil, cpuspec=nil, memoryspec=nil, imgrepo=nil, imgname=nil, imgversion=nil, esinfo=nil, envconf=nil, storageconfs=nil, status=nil, vpc=nil, subnetid=nil, createdate=nil, modifydate=nil, storagemountconfs=nil, versionname=nil, logoutputconf=nil, applicationname=nil, applicationdescription=nil, environmentname=nil, environmentid=nil, publicdomain=nil, enablepublicaccess=nil, currentinstances=nil, expectedinstances=nil, codinglanguage=nil, pkgname=nil, esenable=nil, esstrategy=nil, imagetag=nil, logenable=nil, minaliveinstances=nil, securitygroupids=nil, imagecommand=nil, imageargs=nil, useregistrydefaultconfig=nil, service=nil, settingconfs=nil, logconfs=nil, poststart=nil, prestop=nil, liveness=nil, readiness=nil, horizontalautoscaler=nil, cronhorizontalautoscaler=nil, zones=nil, lastdeploydate=nil, lastdeploysuccessdate=nil, nodeinfos=nil, imagetype=nil, enabletracing=nil, enabletracingreport=nil, repotype=nil, batchdeploystatus=nil, apminstanceid=nil, workloadinfo=nil, speedup=nil, startupprobe=nil, osflavour=nil, reposerver=nil, underdeploying=nil, enableprometheusconf=nil, stoppedmanually=nil, tcrinstanceid=nil, enablemetrics=nil, appid=nil, subaccountuin=nil, uin=nil, region=nil, groupid=nil, enableregistry=nil, autoscalerlist=nil, modifier=nil, creator=nil, deploystrategyconf=nil, podlist=nil, confedited=nil, tags=nil)
           @VersionId = versionid
           @ApplicationId = applicationid
           @DeployMode = deploymode
@@ -5127,6 +5345,19 @@ module TencentCloud
           @StoppedManually = stoppedmanually
           @TcrInstanceId = tcrinstanceid
           @EnableMetrics = enablemetrics
+          @AppId = appid
+          @SubAccountUin = subaccountuin
+          @Uin = uin
+          @Region = region
+          @GroupId = groupid
+          @EnableRegistry = enableregistry
+          @AutoscalerList = autoscalerlist
+          @Modifier = modifier
+          @Creator = creator
+          @DeployStrategyConf = deploystrategyconf
+          @PodList = podlist
+          @ConfEdited = confedited
+          @Tags = tags
         end
 
         def deserialize(params)
@@ -5276,6 +5507,39 @@ module TencentCloud
           @StoppedManually = params['StoppedManually']
           @TcrInstanceId = params['TcrInstanceId']
           @EnableMetrics = params['EnableMetrics']
+          @AppId = params['AppId']
+          @SubAccountUin = params['SubAccountUin']
+          @Uin = params['Uin']
+          @Region = params['Region']
+          @GroupId = params['GroupId']
+          @EnableRegistry = params['EnableRegistry']
+          unless params['AutoscalerList'].nil?
+            @AutoscalerList = []
+            params['AutoscalerList'].each do |i|
+              autoscaler_tmp = Autoscaler.new
+              autoscaler_tmp.deserialize(i)
+              @AutoscalerList << autoscaler_tmp
+            end
+          end
+          @Modifier = params['Modifier']
+          @Creator = params['Creator']
+          unless params['DeployStrategyConf'].nil?
+            @DeployStrategyConf = DeployStrategyConf.new
+            @DeployStrategyConf.deserialize(params['DeployStrategyConf'])
+          end
+          unless params['PodList'].nil?
+            @PodList = DescribeRunPodPage.new
+            @PodList.deserialize(params['PodList'])
+          end
+          @ConfEdited = params['ConfEdited']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
+            end
+          end
         end
       end
 
@@ -5314,17 +5578,52 @@ module TencentCloud
         # @param ApplicationName: 应用名
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ApplicationName: String
+        # @param VersionName: 版本名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VersionName: String
+        # @param ReadyReplicas: Ready实例数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ReadyReplicas: Integer
+        # @param Replicas: 实例数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Replicas: Integer
+        # @param UpdatedReplicas: Updated实例数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UpdatedReplicas: Integer
+        # @param UpdatedReadyReplicas: UpdatedReady实例数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UpdatedReadyReplicas: Integer
+        # @param UpdateRevision: 更新版本
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UpdateRevision: String
+        # @param CurrentRevision: 当前版本
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CurrentRevision: String
 
-        attr_accessor :ClusterId, :ApplicationName
+        attr_accessor :ClusterId, :ApplicationName, :VersionName, :ReadyReplicas, :Replicas, :UpdatedReplicas, :UpdatedReadyReplicas, :UpdateRevision, :CurrentRevision
         
-        def initialize(clusterid=nil, applicationname=nil)
+        def initialize(clusterid=nil, applicationname=nil, versionname=nil, readyreplicas=nil, replicas=nil, updatedreplicas=nil, updatedreadyreplicas=nil, updaterevision=nil, currentrevision=nil)
           @ClusterId = clusterid
           @ApplicationName = applicationname
+          @VersionName = versionname
+          @ReadyReplicas = readyreplicas
+          @Replicas = replicas
+          @UpdatedReplicas = updatedreplicas
+          @UpdatedReadyReplicas = updatedreadyreplicas
+          @UpdateRevision = updaterevision
+          @CurrentRevision = currentrevision
         end
 
         def deserialize(params)
           @ClusterId = params['ClusterId']
           @ApplicationName = params['ApplicationName']
+          @VersionName = params['VersionName']
+          @ReadyReplicas = params['ReadyReplicas']
+          @Replicas = params['Replicas']
+          @UpdatedReplicas = params['UpdatedReplicas']
+          @UpdatedReadyReplicas = params['UpdatedReadyReplicas']
+          @UpdateRevision = params['UpdateRevision']
+          @CurrentRevision = params['CurrentRevision']
         end
       end
 
