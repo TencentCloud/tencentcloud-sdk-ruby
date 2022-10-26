@@ -52,6 +52,22 @@ module TencentCloud
         end
       end
 
+      # 签署人个性化能力信息
+      class ApproverOption < TencentCloud::Common::AbstractModel
+        # @param HideOneKeySign: 是否隐藏一键签署 false-不隐藏,默认 true-隐藏
+        # @type HideOneKeySign: Boolean
+
+        attr_accessor :HideOneKeySign
+        
+        def initialize(hideonekeysign=nil)
+          @HideOneKeySign = hideonekeysign
+        end
+
+        def deserialize(params)
+          @HideOneKeySign = params['HideOneKeySign']
+        end
+      end
+
       # 指定签署人限制项
       class ApproverRestriction < TencentCloud::Common::AbstractModel
         # @param Name: 指定签署人名字
@@ -1868,14 +1884,14 @@ module TencentCloud
       # 创建签署流程签署人入参。
 
       # 其中签署方FlowApproverInfo需要传递的参数
-      # 非单C、单B、B2C合同，ApproverType、RecipientId（模版发起合同时）必传，建议都传。其他身份标识
+      # 非单C、单B、B2C合同，ApproverType、RecipientId（模板发起合同时）必传，建议都传。其他身份标识
       # 1-个人：Name、Mobile必传
       # 2-渠道子客企业指定经办人：OpenId必传，OrgName必传、OrgOpenId必传；
       # 3-渠道合作企业不指定经办人：（暂不支持）
       # 4-非渠道合作企业：Name、Mobile必传，OrgName必传，且NotChannelOrganization=True。
 
       # RecipientId参数：
-      # 从DescribeTemplates接口中，可以得到模版下的签署方Recipient列表，根据模版自定义的Rolename在此结构体中确定其RecipientId
+      # 从DescribeTemplates接口中，可以得到模板下的签署方Recipient列表，根据模板自定义的Rolename在此结构体中确定其RecipientId
       class FlowApproverInfo < TencentCloud::Common::AbstractModel
         # @param Name: 签署人姓名，最大长度50个字符
         # @type Name: String
@@ -1901,7 +1917,7 @@ module TencentCloud
         # PERSON_AUTO_SIGN-个人自动签；
         # ORGANIZATION-企业；
         # ENTERPRISESERVER-企业静默签;
-        # 注：ENTERPRISESERVER 类型仅用于使用文件创建签署流程（ChannelCreateFlowByFiles）接口；并且仅能指定发起方企业签署方为静默签署；
+        # 注：ENTERPRISESERVER 类型仅用于使用文件创建签署流程（ChannelCreateFlowByFiles）接口；
         # @type ApproverType: String
         # @param RecipientId: 签署流程签署人在模板中对应的签署人Id；在非单方签署、以及非B2C签署的场景下必传，用于指定当前签署方在签署流程中的位置；
         # @type RecipientId: String
@@ -1917,10 +1933,14 @@ module TencentCloud
         # @type PreReadTime: Integer
         # @param JumpUrl: 签署完前端跳转的url，暂未使用
         # @type JumpUrl: String
+        # @param ApproverOption: 签署人个性化能力值
+        # @type ApproverOption: :class:`Tencentcloud::Essbasic.v20210526.models.ApproverOption`
+        # @param ApproverNeedSignReview: 当前签署方进行签署操作是否需要企业内部审批，true 则为需要
+        # @type ApproverNeedSignReview: Boolean
 
-        attr_accessor :Name, :IdCardType, :IdCardNumber, :Mobile, :OrganizationName, :NotChannelOrganization, :OpenId, :OrganizationOpenId, :ApproverType, :RecipientId, :Deadline, :CallbackUrl, :SignComponents, :ComponentLimitType, :PreReadTime, :JumpUrl
+        attr_accessor :Name, :IdCardType, :IdCardNumber, :Mobile, :OrganizationName, :NotChannelOrganization, :OpenId, :OrganizationOpenId, :ApproverType, :RecipientId, :Deadline, :CallbackUrl, :SignComponents, :ComponentLimitType, :PreReadTime, :JumpUrl, :ApproverOption, :ApproverNeedSignReview
         
-        def initialize(name=nil, idcardtype=nil, idcardnumber=nil, mobile=nil, organizationname=nil, notchannelorganization=nil, openid=nil, organizationopenid=nil, approvertype=nil, recipientid=nil, deadline=nil, callbackurl=nil, signcomponents=nil, componentlimittype=nil, prereadtime=nil, jumpurl=nil)
+        def initialize(name=nil, idcardtype=nil, idcardnumber=nil, mobile=nil, organizationname=nil, notchannelorganization=nil, openid=nil, organizationopenid=nil, approvertype=nil, recipientid=nil, deadline=nil, callbackurl=nil, signcomponents=nil, componentlimittype=nil, prereadtime=nil, jumpurl=nil, approveroption=nil, approverneedsignreview=nil)
           @Name = name
           @IdCardType = idcardtype
           @IdCardNumber = idcardnumber
@@ -1937,6 +1957,8 @@ module TencentCloud
           @ComponentLimitType = componentlimittype
           @PreReadTime = prereadtime
           @JumpUrl = jumpurl
+          @ApproverOption = approveroption
+          @ApproverNeedSignReview = approverneedsignreview
         end
 
         def deserialize(params)
@@ -1963,6 +1985,11 @@ module TencentCloud
           @ComponentLimitType = params['ComponentLimitType']
           @PreReadTime = params['PreReadTime']
           @JumpUrl = params['JumpUrl']
+          unless params['ApproverOption'].nil?
+            @ApproverOption = ApproverOption.new
+            @ApproverOption.deserialize(params['ApproverOption'])
+          end
+          @ApproverNeedSignReview = params['ApproverNeedSignReview']
         end
       end
 

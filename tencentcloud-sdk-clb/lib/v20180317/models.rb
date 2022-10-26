@@ -3174,9 +3174,9 @@ module TencentCloud
         # @type Domain: String
         # @param LoadBalancerVips: 负载均衡实例的 VIP 地址，支持多个。
         # @type LoadBalancerVips: Array
-        # @param BackendPublicIps: 负载均衡绑定的后端服务的外网 IP。
+        # @param BackendPublicIps: 负载均衡绑定的后端服务的外网 IP，只支持查询云服务器的公网 IP。
         # @type BackendPublicIps: Array
-        # @param BackendPrivateIps: 负载均衡绑定的后端服务的内网 IP。
+        # @param BackendPrivateIps: 负载均衡绑定的后端服务的内网 IP，只支持查询云服务器的内网 IP。
         # @type BackendPrivateIps: Array
         # @param Offset: 数据偏移量，默认为0。
         # @type Offset: Integer

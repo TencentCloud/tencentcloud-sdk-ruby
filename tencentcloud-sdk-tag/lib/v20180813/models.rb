@@ -17,6 +17,50 @@
 module TencentCloud
   module Tag
     module V20180813
+      # AddProject请求参数结构体
+      class AddProjectRequest < TencentCloud::Common::AbstractModel
+        # @param ProjectName: 项目名称
+        # @type ProjectName: String
+        # @param Info: 项目描述
+        # @type Info: String
+
+        attr_accessor :ProjectName, :Info
+        
+        def initialize(projectname=nil, info=nil)
+          @ProjectName = projectname
+          @Info = info
+        end
+
+        def deserialize(params)
+          @ProjectName = params['ProjectName']
+          @Info = params['Info']
+        end
+      end
+
+      # AddProject返回参数结构体
+      class AddProjectResponse < TencentCloud::Common::AbstractModel
+        # @param ProjectId: 项目Id
+        # @type ProjectId: Integer
+        # @param IsNew: 是否为新项目
+        # @type IsNew: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ProjectId, :IsNew, :RequestId
+        
+        def initialize(projectid=nil, isnew=nil, requestid=nil)
+          @ProjectId = projectid
+          @IsNew = isnew
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ProjectId = params['ProjectId']
+          @IsNew = params['IsNew']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # AddResourceTag请求参数结构体
       class AddResourceTagRequest < TencentCloud::Common::AbstractModel
         # @param TagKey: 标签键
@@ -1975,6 +2019,50 @@ module TencentCloud
               @FailedResources << failedresource_tmp
             end
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # UpdateProject请求参数结构体
+      class UpdateProjectRequest < TencentCloud::Common::AbstractModel
+        # @param ProjectId: 项目ID
+        # @type ProjectId: Integer
+        # @param ProjectName: 项目名称
+        # @type ProjectName: String
+        # @param Disable: 禁用项目，1，禁用，0，启用
+        # @type Disable: Integer
+        # @param Info: 备注
+        # @type Info: String
+
+        attr_accessor :ProjectId, :ProjectName, :Disable, :Info
+        
+        def initialize(projectid=nil, projectname=nil, disable=nil, info=nil)
+          @ProjectId = projectid
+          @ProjectName = projectname
+          @Disable = disable
+          @Info = info
+        end
+
+        def deserialize(params)
+          @ProjectId = params['ProjectId']
+          @ProjectName = params['ProjectName']
+          @Disable = params['Disable']
+          @Info = params['Info']
+        end
+      end
+
+      # UpdateProject返回参数结构体
+      class UpdateProjectResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
           @RequestId = params['RequestId']
         end
       end

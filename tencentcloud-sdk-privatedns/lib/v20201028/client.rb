@@ -485,6 +485,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 修改解析记录状态
+
+        # @param request: Request instance for ModifyRecordsStatus.
+        # @type request: :class:`Tencentcloud::privatedns::V20201028::ModifyRecordsStatusRequest`
+        # @rtype: :class:`Tencentcloud::privatedns::V20201028::ModifyRecordsStatusResponse`
+        def ModifyRecordsStatus(request)
+          body = send_request('ModifyRecordsStatus', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyRecordsStatusResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 开通私有域解析
 
         # @param request: Request instance for SubscribePrivateZoneService.

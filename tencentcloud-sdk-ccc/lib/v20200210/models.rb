@@ -263,10 +263,12 @@ module TencentCloud
         # @type NotAfter: Integer
         # @param Tries: 最大尝试次数
         # @type Tries: Integer
+        # @param Variables: 自定义变量（仅高级版支持）
+        # @type Variables: Array
 
-        attr_accessor :SdkAppId, :NotBefore, :Callees, :Callers, :IvrId, :Name, :Description, :NotAfter, :Tries
+        attr_accessor :SdkAppId, :NotBefore, :Callees, :Callers, :IvrId, :Name, :Description, :NotAfter, :Tries, :Variables
         
-        def initialize(sdkappid=nil, notbefore=nil, callees=nil, callers=nil, ivrid=nil, name=nil, description=nil, notafter=nil, tries=nil)
+        def initialize(sdkappid=nil, notbefore=nil, callees=nil, callers=nil, ivrid=nil, name=nil, description=nil, notafter=nil, tries=nil, variables=nil)
           @SdkAppId = sdkappid
           @NotBefore = notbefore
           @Callees = callees
@@ -276,6 +278,7 @@ module TencentCloud
           @Description = description
           @NotAfter = notafter
           @Tries = tries
+          @Variables = variables
         end
 
         def deserialize(params)
@@ -288,6 +291,14 @@ module TencentCloud
           @Description = params['Description']
           @NotAfter = params['NotAfter']
           @Tries = params['Tries']
+          unless params['Variables'].nil?
+            @Variables = []
+            params['Variables'].each do |i|
+              variable_tmp = Variable.new
+              variable_tmp.deserialize(i)
+              @Variables << variable_tmp
+            end
+          end
         end
       end
 
@@ -2681,6 +2692,26 @@ module TencentCloud
 
         def deserialize(params)
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 变量
+      class Variable < TencentCloud::Common::AbstractModel
+        # @param Key: 变量名
+        # @type Key: String
+        # @param Value: 变量值
+        # @type Value: String
+
+        attr_accessor :Key, :Value
+        
+        def initialize(key=nil, value=nil)
+          @Key = key
+          @Value = value
+        end
+
+        def deserialize(params)
+          @Key = params['Key']
+          @Value = params['Value']
         end
       end
 

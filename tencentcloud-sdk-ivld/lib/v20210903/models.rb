@@ -2003,14 +2003,18 @@ module TencentCloud
         # @type FirstAppear: Integer
         # @param AppearInfo: 人物出现信息
         # @type AppearInfo: :class:`Tencentcloud::Ivld.v20210903.models.AppearInfo`
+        # @param AppearRect: 人脸在图片中的位置，仅在图片标签任务有效
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AppearRect: :class:`Tencentcloud::Ivld.v20210903.models.Rectf`
 
-        attr_accessor :Name, :Job, :FirstAppear, :AppearInfo
+        attr_accessor :Name, :Job, :FirstAppear, :AppearInfo, :AppearRect
         
-        def initialize(name=nil, job=nil, firstappear=nil, appearinfo=nil)
+        def initialize(name=nil, job=nil, firstappear=nil, appearinfo=nil, appearrect=nil)
           @Name = name
           @Job = job
           @FirstAppear = firstappear
           @AppearInfo = appearinfo
+          @AppearRect = appearrect
         end
 
         def deserialize(params)
@@ -2020,6 +2024,10 @@ module TencentCloud
           unless params['AppearInfo'].nil?
             @AppearInfo = AppearInfo.new
             @AppearInfo.deserialize(params['AppearInfo'])
+          end
+          unless params['AppearRect'].nil?
+            @AppearRect = Rectf.new
+            @AppearRect.deserialize(params['AppearRect'])
           end
         end
       end

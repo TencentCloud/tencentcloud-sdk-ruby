@@ -1283,6 +1283,58 @@ module TencentCloud
         end
       end
 
+      # ModifyRecordsStatus请求参数结构体
+      class ModifyRecordsStatusRequest < TencentCloud::Common::AbstractModel
+        # @param ZoneId: 私有域ID
+        # @type ZoneId: String
+        # @param RecordIds: 解析记录ID列表
+        # @type RecordIds: Array
+        # @param Status: enabled：生效，disabled：失效
+        # @type Status: String
+
+        attr_accessor :ZoneId, :RecordIds, :Status
+        
+        def initialize(zoneid=nil, recordids=nil, status=nil)
+          @ZoneId = zoneid
+          @RecordIds = recordids
+          @Status = status
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+          @RecordIds = params['RecordIds']
+          @Status = params['Status']
+        end
+      end
+
+      # ModifyRecordsStatus返回参数结构体
+      class ModifyRecordsStatusResponse < TencentCloud::Common::AbstractModel
+        # @param ZoneId: 私有域ID
+        # @type ZoneId: String
+        # @param RecordIds: 解析记录ID列表
+        # @type RecordIds: Array
+        # @param Status: enabled：生效，disabled：失效
+        # @type Status: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ZoneId, :RecordIds, :Status, :RequestId
+        
+        def initialize(zoneid=nil, recordids=nil, status=nil, requestid=nil)
+          @ZoneId = zoneid
+          @RecordIds = recordids
+          @Status = status
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+          @RecordIds = params['RecordIds']
+          @Status = params['Status']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 私有域解析账号
       class PrivateDNSAccount < TencentCloud::Common::AbstractModel
         # @param Uin: 主账号Uin

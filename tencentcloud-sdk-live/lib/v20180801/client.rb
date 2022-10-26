@@ -882,7 +882,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 删除直播拉流配置。
+        # 删除直播拉流配置。该接口已下线,请使用新接口 DeleteLivePullStreamTask。
 
         # @param request: Request instance for DeletePullStreamConfig.
         # @type request: :class:`Tencentcloud::live::V20180801::DeletePullStreamConfigRequest`
@@ -2181,7 +2181,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 查询直播拉流配置。
+        # 查询直播拉流配置。该接口已下线,请使用新接口 DescribeLivePullStreamTasks。
 
         # @param request: Request instance for DescribePullStreamConfigs.
         # @type request: :class:`Tencentcloud::live::V20180801::DescribePullStreamConfigsRequest`
@@ -2818,7 +2818,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 更新拉流配置。
+        # 更新拉流配置。该接口为已下线接口，请使用新接口 ModifyLivePullStreamTask。
 
         # @param request: Request instance for ModifyPullStreamConfig.
         # @type request: :class:`Tencentcloud::live::V20180801::ModifyPullStreamConfigRequest`
@@ -2842,7 +2842,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 修改直播拉流配置的状态。
+        # 修改直播拉流配置的状态。该接口已下线,请使用新接口 ModifyLivePullStreamTask。
 
         # @param request: Request instance for ModifyPullStreamStatus.
         # @type request: :class:`Tencentcloud::live::V20180801::ModifyPullStreamStatusRequest`

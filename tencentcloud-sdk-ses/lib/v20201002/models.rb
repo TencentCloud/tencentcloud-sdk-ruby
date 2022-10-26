@@ -413,17 +413,21 @@ module TencentCloud
         # @type BeginTime: String
         # @param IntervalTime: 任务周期 小时维度
         # @type IntervalTime: Integer
+        # @param TermCycle: 是否终止周期，用于任务更新 0否1是
+        # @type TermCycle: Integer
 
-        attr_accessor :BeginTime, :IntervalTime
+        attr_accessor :BeginTime, :IntervalTime, :TermCycle
         
-        def initialize(begintime=nil, intervaltime=nil)
+        def initialize(begintime=nil, intervaltime=nil, termcycle=nil)
           @BeginTime = begintime
           @IntervalTime = intervaltime
+          @TermCycle = termcycle
         end
 
         def deserialize(params)
           @BeginTime = params['BeginTime']
           @IntervalTime = params['IntervalTime']
+          @TermCycle = params['TermCycle']
         end
       end
 

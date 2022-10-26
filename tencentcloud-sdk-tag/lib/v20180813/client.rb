@@ -29,6 +29,30 @@ module TencentCloud
         end
 
 
+        # 创建项目
+
+        # @param request: Request instance for AddProject.
+        # @type request: :class:`Tencentcloud::tag::V20180813::AddProjectRequest`
+        # @rtype: :class:`Tencentcloud::tag::V20180813::AddProjectResponse`
+        def AddProject(request)
+          body = send_request('AddProject', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = AddProjectResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口用于给标签关联资源
 
         # @param request: Request instance for AddResourceTag.
@@ -687,6 +711,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = UnTagResourcesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改项目
+
+        # @param request: Request instance for UpdateProject.
+        # @type request: :class:`Tencentcloud::tag::V20180813::UpdateProjectRequest`
+        # @rtype: :class:`Tencentcloud::tag::V20180813::UpdateProjectResponse`
+        def UpdateProject(request)
+          body = send_request('UpdateProject', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = UpdateProjectResponse.new
             model.deserialize(response['Response'])
             model
           else

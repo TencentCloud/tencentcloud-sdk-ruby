@@ -5188,10 +5188,16 @@ module TencentCloud
         # 为false时代表使用老的检索结果返回方式, 输出AnalysisResults和ColNames有效
         # 两种返回方式在编码格式上有少量区别，建议使用true
         # @type UseNewAnalysis: Boolean
+        # @param SamplingRate: 执行统计分析（Query中包含SQL）时，是否对原始日志先进行采样，再进行统计分析。
+        # 0：自动采样;
+        # 0～1：按指定采样率采样，例如0.02;
+        # 1：不采样，即精确分析
+        # 默认值为1
+        # @type SamplingRate: Float
 
-        attr_accessor :TopicId, :From, :To, :Query, :Limit, :Context, :Sort, :UseNewAnalysis
+        attr_accessor :TopicId, :From, :To, :Query, :Limit, :Context, :Sort, :UseNewAnalysis, :SamplingRate
         
-        def initialize(topicid=nil, from=nil, to=nil, query=nil, limit=nil, context=nil, sort=nil, usenewanalysis=nil)
+        def initialize(topicid=nil, from=nil, to=nil, query=nil, limit=nil, context=nil, sort=nil, usenewanalysis=nil, samplingrate=nil)
           @TopicId = topicid
           @From = from
           @To = to
@@ -5200,6 +5206,7 @@ module TencentCloud
           @Context = context
           @Sort = sort
           @UseNewAnalysis = usenewanalysis
+          @SamplingRate = samplingrate
         end
 
         def deserialize(params)
@@ -5211,6 +5218,7 @@ module TencentCloud
           @Context = params['Context']
           @Sort = params['Sort']
           @UseNewAnalysis = params['UseNewAnalysis']
+          @SamplingRate = params['SamplingRate']
         end
       end
 

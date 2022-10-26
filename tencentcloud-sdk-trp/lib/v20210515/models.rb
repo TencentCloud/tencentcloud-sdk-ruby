@@ -332,9 +332,9 @@ module TencentCloud
         # @type BatchId: String
         # @param Remark: 备注
         # @type Remark: String
-        # @param MpTpl: 活动ID
+        # @param MpTpl: 模版ID，或者活动ID
         # @type MpTpl: String
-        # @param CloneId: 克隆批次ID
+        # @param CloneId: 克隆批次ID，同时会复制溯源信息
         # @type CloneId: String
 
         attr_accessor :CorpId, :MerchantId, :ProductId, :BatchType, :BatchId, :Remark, :MpTpl, :CloneId
@@ -2157,7 +2157,7 @@ module TencentCloud
         # @type CorpId: Integer
         # @param Status: 状态 0: 未激活 1: 已激活 -1: 已冻结
         # @type Status: Integer
-        # @param MpTpl: 模板ID
+        # @param MpTpl: 模版ID，或者活动ID
         # @type MpTpl: String
         # @param MerchantId: 商户ID
         # @type MerchantId: String

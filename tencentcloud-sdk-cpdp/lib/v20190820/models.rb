@@ -3829,6 +3829,26 @@ module TencentCloud
         end
       end
 
+      # 渠道透传字段
+      class CloudExternalAttachmentData < TencentCloud::Common::AbstractModel
+        # @param ChannelName: 渠道名
+        # @type ChannelName: String
+        # @param AttachmentData: 渠道透传字段，由各个渠道自行定义
+        # @type AttachmentData: String
+
+        attr_accessor :ChannelName, :AttachmentData
+        
+        def initialize(channelname=nil, attachmentdata=nil)
+          @ChannelName = channelname
+          @AttachmentData = attachmentdata
+        end
+
+        def deserialize(params)
+          @ChannelName = params['ChannelName']
+          @AttachmentData = params['AttachmentData']
+        end
+      end
+
       # 第三方渠道数据信息
       class CloudExternalChannelData < TencentCloud::Common::AbstractModel
         # @param ExternalChannelDataName: 第三方渠道数据名。
@@ -4224,10 +4244,12 @@ module TencentCloud
         # 例如溢价信息、抵扣信息、积分信息、补贴信息
         # 通过该字段可以实现渠道方的优惠抵扣补贴等营销功能。
         # @type AttachmentInfoList: Array
+        # @param ExternalAttachmentDataList: 渠道透传数据列表。
+        # @type ExternalAttachmentDataList: Array
 
-        attr_accessor :SubOutTradeNo, :SubAppId, :ProductName, :ProductDetail, :PlatformIncome, :SubMchIncome, :Metadata, :Amt, :OriginalAmt, :WxSubMchId, :SettleInfo, :AttachmentInfoList
+        attr_accessor :SubOutTradeNo, :SubAppId, :ProductName, :ProductDetail, :PlatformIncome, :SubMchIncome, :Metadata, :Amt, :OriginalAmt, :WxSubMchId, :SettleInfo, :AttachmentInfoList, :ExternalAttachmentDataList
         
-        def initialize(subouttradeno=nil, subappid=nil, productname=nil, productdetail=nil, platformincome=nil, submchincome=nil, metadata=nil, amt=nil, originalamt=nil, wxsubmchid=nil, settleinfo=nil, attachmentinfolist=nil)
+        def initialize(subouttradeno=nil, subappid=nil, productname=nil, productdetail=nil, platformincome=nil, submchincome=nil, metadata=nil, amt=nil, originalamt=nil, wxsubmchid=nil, settleinfo=nil, attachmentinfolist=nil, externalattachmentdatalist=nil)
           @SubOutTradeNo = subouttradeno
           @SubAppId = subappid
           @ProductName = productname
@@ -4240,6 +4262,7 @@ module TencentCloud
           @WxSubMchId = wxsubmchid
           @SettleInfo = settleinfo
           @AttachmentInfoList = attachmentinfolist
+          @ExternalAttachmentDataList = externalattachmentdatalist
         end
 
         def deserialize(params)
@@ -4263,6 +4286,14 @@ module TencentCloud
               cloudattachmentinfo_tmp = CloudAttachmentInfo.new
               cloudattachmentinfo_tmp.deserialize(i)
               @AttachmentInfoList << cloudattachmentinfo_tmp
+            end
+          end
+          unless params['ExternalAttachmentDataList'].nil?
+            @ExternalAttachmentDataList = []
+            params['ExternalAttachmentDataList'].each do |i|
+              cloudexternalattachmentdata_tmp = CloudExternalAttachmentData.new
+              cloudexternalattachmentdata_tmp.deserialize(i)
+              @ExternalAttachmentDataList << cloudexternalattachmentdata_tmp
             end
           end
         end
@@ -26117,10 +26148,12 @@ module TencentCloud
         # @type OrderReceiveMode: String
         # @param ExternalUserInfoList: 渠道方用户信息列表
         # @type ExternalUserInfoList: Array
+        # @param ExternalAttachmentDataList: 渠道透传数据列表
+        # @type ExternalAttachmentDataList: Array
 
-        attr_accessor :MidasAppId, :UserId, :OutTradeNo, :CurrencyType, :ProductId, :ProductName, :ProductDetail, :OriginalAmt, :TotalAmt, :MidasEnvironment, :SubAppId, :RealChannel, :Channel, :Metadata, :Quantity, :CallbackUrl, :CancelUrl, :WxAppId, :WxSubAppId, :WxOpenId, :WxSubOpenId, :TotalPlatformIncome, :TotalMchIncome, :SubOrderList, :SettleInfo, :AttachmentInfoList, :PaymentNotifyUrl, :PayScene, :LocaleCode, :RegionCode, :UserClientIp, :ChannelOrderIdMode, :GlobalPayTimeInfo, :ChannelAppIdPolicy, :StoreInfo, :ClientInfo, :ExternalPromptGroupList, :OrderReceiveMode, :ExternalUserInfoList
+        attr_accessor :MidasAppId, :UserId, :OutTradeNo, :CurrencyType, :ProductId, :ProductName, :ProductDetail, :OriginalAmt, :TotalAmt, :MidasEnvironment, :SubAppId, :RealChannel, :Channel, :Metadata, :Quantity, :CallbackUrl, :CancelUrl, :WxAppId, :WxSubAppId, :WxOpenId, :WxSubOpenId, :TotalPlatformIncome, :TotalMchIncome, :SubOrderList, :SettleInfo, :AttachmentInfoList, :PaymentNotifyUrl, :PayScene, :LocaleCode, :RegionCode, :UserClientIp, :ChannelOrderIdMode, :GlobalPayTimeInfo, :ChannelAppIdPolicy, :StoreInfo, :ClientInfo, :ExternalPromptGroupList, :OrderReceiveMode, :ExternalUserInfoList, :ExternalAttachmentDataList
         
-        def initialize(midasappid=nil, userid=nil, outtradeno=nil, currencytype=nil, productid=nil, productname=nil, productdetail=nil, originalamt=nil, totalamt=nil, midasenvironment=nil, subappid=nil, realchannel=nil, channel=nil, metadata=nil, quantity=nil, callbackurl=nil, cancelurl=nil, wxappid=nil, wxsubappid=nil, wxopenid=nil, wxsubopenid=nil, totalplatformincome=nil, totalmchincome=nil, suborderlist=nil, settleinfo=nil, attachmentinfolist=nil, paymentnotifyurl=nil, payscene=nil, localecode=nil, regioncode=nil, userclientip=nil, channelorderidmode=nil, globalpaytimeinfo=nil, channelappidpolicy=nil, storeinfo=nil, clientinfo=nil, externalpromptgrouplist=nil, orderreceivemode=nil, externaluserinfolist=nil)
+        def initialize(midasappid=nil, userid=nil, outtradeno=nil, currencytype=nil, productid=nil, productname=nil, productdetail=nil, originalamt=nil, totalamt=nil, midasenvironment=nil, subappid=nil, realchannel=nil, channel=nil, metadata=nil, quantity=nil, callbackurl=nil, cancelurl=nil, wxappid=nil, wxsubappid=nil, wxopenid=nil, wxsubopenid=nil, totalplatformincome=nil, totalmchincome=nil, suborderlist=nil, settleinfo=nil, attachmentinfolist=nil, paymentnotifyurl=nil, payscene=nil, localecode=nil, regioncode=nil, userclientip=nil, channelorderidmode=nil, globalpaytimeinfo=nil, channelappidpolicy=nil, storeinfo=nil, clientinfo=nil, externalpromptgrouplist=nil, orderreceivemode=nil, externaluserinfolist=nil, externalattachmentdatalist=nil)
           @MidasAppId = midasappid
           @UserId = userid
           @OutTradeNo = outtradeno
@@ -26160,6 +26193,7 @@ module TencentCloud
           @ExternalPromptGroupList = externalpromptgrouplist
           @OrderReceiveMode = orderreceivemode
           @ExternalUserInfoList = externaluserinfolist
+          @ExternalAttachmentDataList = externalattachmentdatalist
         end
 
         def deserialize(params)
@@ -26240,6 +26274,14 @@ module TencentCloud
               cloudexternaluserinfo_tmp = CloudExternalUserInfo.new
               cloudexternaluserinfo_tmp.deserialize(i)
               @ExternalUserInfoList << cloudexternaluserinfo_tmp
+            end
+          end
+          unless params['ExternalAttachmentDataList'].nil?
+            @ExternalAttachmentDataList = []
+            params['ExternalAttachmentDataList'].each do |i|
+              cloudexternalattachmentdata_tmp = CloudExternalAttachmentData.new
+              cloudexternalattachmentdata_tmp.deserialize(i)
+              @ExternalAttachmentDataList << cloudexternalattachmentdata_tmp
             end
           end
         end

@@ -10886,12 +10886,14 @@ module TencentCloud
         # @type KillProcess: Integer
         # @param EngineType: 1标准模式（只报严重、高危）、2增强模式（报严重、高危、中危）、3严格模式（报严重、高、中、低、提示）
         # @type EngineType: Integer
+        # @param EnableInspiredEngine: 启发引擎 0 关闭 1开启
+        # @type EnableInspiredEngine: Integer
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :CheckPattern, :StartTime, :EndTime, :IsGlobal, :QuuidList, :MonitoringPattern, :Cycle, :EnableScan, :Id, :RealTimeMonitoring, :AutoIsolation, :ClickTimeout, :KillProcess, :EngineType, :RequestId
+        attr_accessor :CheckPattern, :StartTime, :EndTime, :IsGlobal, :QuuidList, :MonitoringPattern, :Cycle, :EnableScan, :Id, :RealTimeMonitoring, :AutoIsolation, :ClickTimeout, :KillProcess, :EngineType, :EnableInspiredEngine, :RequestId
         
-        def initialize(checkpattern=nil, starttime=nil, endtime=nil, isglobal=nil, quuidlist=nil, monitoringpattern=nil, cycle=nil, enablescan=nil, id=nil, realtimemonitoring=nil, autoisolation=nil, clicktimeout=nil, killprocess=nil, enginetype=nil, requestid=nil)
+        def initialize(checkpattern=nil, starttime=nil, endtime=nil, isglobal=nil, quuidlist=nil, monitoringpattern=nil, cycle=nil, enablescan=nil, id=nil, realtimemonitoring=nil, autoisolation=nil, clicktimeout=nil, killprocess=nil, enginetype=nil, enableinspiredengine=nil, requestid=nil)
           @CheckPattern = checkpattern
           @StartTime = starttime
           @EndTime = endtime
@@ -10906,6 +10908,7 @@ module TencentCloud
           @ClickTimeout = clicktimeout
           @KillProcess = killprocess
           @EngineType = enginetype
+          @EnableInspiredEngine = enableinspiredengine
           @RequestId = requestid
         end
 
@@ -10924,6 +10927,7 @@ module TencentCloud
           @ClickTimeout = params['ClickTimeout']
           @KillProcess = params['KillProcess']
           @EngineType = params['EngineType']
+          @EnableInspiredEngine = params['EnableInspiredEngine']
           @RequestId = params['RequestId']
         end
       end
@@ -17238,10 +17242,12 @@ module TencentCloud
         # @type KillProcess: Integer
         # @param EngineType: 1标准模式（只报严重、高危）、2增强模式（报严重、高危、中危）、3严格模式（报严重、高、中、低、提示）
         # @type EngineType: Integer
+        # @param EnableInspiredEngine: 启发引擎开关 0 关闭 1开启
+        # @type EnableInspiredEngine: Integer
 
-        attr_accessor :CheckPattern, :StartTime, :EndTime, :IsGlobal, :EnableScan, :MonitoringPattern, :Cycle, :RealTimeMonitoring, :QuuidList, :AutoIsolation, :KillProcess, :EngineType
+        attr_accessor :CheckPattern, :StartTime, :EndTime, :IsGlobal, :EnableScan, :MonitoringPattern, :Cycle, :RealTimeMonitoring, :QuuidList, :AutoIsolation, :KillProcess, :EngineType, :EnableInspiredEngine
         
-        def initialize(checkpattern=nil, starttime=nil, endtime=nil, isglobal=nil, enablescan=nil, monitoringpattern=nil, cycle=nil, realtimemonitoring=nil, quuidlist=nil, autoisolation=nil, killprocess=nil, enginetype=nil)
+        def initialize(checkpattern=nil, starttime=nil, endtime=nil, isglobal=nil, enablescan=nil, monitoringpattern=nil, cycle=nil, realtimemonitoring=nil, quuidlist=nil, autoisolation=nil, killprocess=nil, enginetype=nil, enableinspiredengine=nil)
           @CheckPattern = checkpattern
           @StartTime = starttime
           @EndTime = endtime
@@ -17254,6 +17260,7 @@ module TencentCloud
           @AutoIsolation = autoisolation
           @KillProcess = killprocess
           @EngineType = enginetype
+          @EnableInspiredEngine = enableinspiredengine
         end
 
         def deserialize(params)
@@ -17269,6 +17276,7 @@ module TencentCloud
           @AutoIsolation = params['AutoIsolation']
           @KillProcess = params['KillProcess']
           @EngineType = params['EngineType']
+          @EnableInspiredEngine = params['EnableInspiredEngine']
         end
       end
 

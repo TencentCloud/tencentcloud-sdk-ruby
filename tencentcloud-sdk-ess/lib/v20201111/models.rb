@@ -110,6 +110,26 @@ module TencentCloud
         end
       end
 
+      # 签署人个性化能力信息
+      class ApproverOption < TencentCloud::Common::AbstractModel
+        # @param NoRefuse: 是否可以拒签 false-可以拒签,默认 true-不可以拒签
+        # @type NoRefuse: Boolean
+        # @param NoTransfer: 是否可以转发 false-可以转发,默认 true-不可以转发
+        # @type NoTransfer: Boolean
+
+        attr_accessor :NoRefuse, :NoTransfer
+        
+        def initialize(norefuse=nil, notransfer=nil)
+          @NoRefuse = norefuse
+          @NoTransfer = notransfer
+        end
+
+        def deserialize(params)
+          @NoRefuse = params['NoRefuse']
+          @NoTransfer = params['NoTransfer']
+        end
+      end
+
       # 指定签署人限制项
       class ApproverRestriction < TencentCloud::Common::AbstractModel
         # @param Name: 指定签署人名字
@@ -2087,10 +2107,12 @@ module TencentCloud
         # @type CustomApproverTag: String
         # @param RegisterInfo: 快速注册相关信息，目前暂未开放！
         # @type RegisterInfo: :class:`Tencentcloud::Ess.v20201111.models.RegisterInfo`
+        # @param ApproverOption: 签署人个性化能力值
+        # @type ApproverOption: :class:`Tencentcloud::Ess.v20201111.models.ApproverOption`
 
-        attr_accessor :ApproverType, :OrganizationName, :ApproverName, :ApproverMobile, :ApproverIdCardType, :ApproverIdCardNumber, :RecipientId, :VerifyChannel, :NotifyType, :IsFullText, :PreReadTime, :UserId, :Required, :ApproverSource, :CustomApproverTag, :RegisterInfo
+        attr_accessor :ApproverType, :OrganizationName, :ApproverName, :ApproverMobile, :ApproverIdCardType, :ApproverIdCardNumber, :RecipientId, :VerifyChannel, :NotifyType, :IsFullText, :PreReadTime, :UserId, :Required, :ApproverSource, :CustomApproverTag, :RegisterInfo, :ApproverOption
         
-        def initialize(approvertype=nil, organizationname=nil, approvername=nil, approvermobile=nil, approveridcardtype=nil, approveridcardnumber=nil, recipientid=nil, verifychannel=nil, notifytype=nil, isfulltext=nil, prereadtime=nil, userid=nil, required=nil, approversource=nil, customapprovertag=nil, registerinfo=nil)
+        def initialize(approvertype=nil, organizationname=nil, approvername=nil, approvermobile=nil, approveridcardtype=nil, approveridcardnumber=nil, recipientid=nil, verifychannel=nil, notifytype=nil, isfulltext=nil, prereadtime=nil, userid=nil, required=nil, approversource=nil, customapprovertag=nil, registerinfo=nil, approveroption=nil)
           @ApproverType = approvertype
           @OrganizationName = organizationname
           @ApproverName = approvername
@@ -2107,6 +2129,7 @@ module TencentCloud
           @ApproverSource = approversource
           @CustomApproverTag = customapprovertag
           @RegisterInfo = registerinfo
+          @ApproverOption = approveroption
         end
 
         def deserialize(params)
@@ -2128,6 +2151,10 @@ module TencentCloud
           unless params['RegisterInfo'].nil?
             @RegisterInfo = RegisterInfo.new
             @RegisterInfo.deserialize(params['RegisterInfo'])
+          end
+          unless params['ApproverOption'].nil?
+            @ApproverOption = ApproverOption.new
+            @ApproverOption.deserialize(params['ApproverOption'])
           end
         end
       end

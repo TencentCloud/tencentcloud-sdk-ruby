@@ -3638,6 +3638,146 @@ module TencentCloud
         end
       end
 
+      # ModifyInstanceNetwork请求参数结构体
+      class ModifyInstanceNetworkRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+        # @param VpcId: 希望转到的VPC网络的VpcId
+        # @type VpcId: String
+        # @param SubnetId: 希望转到的VPC网络的子网ID
+        # @type SubnetId: String
+        # @param Vip: 如果需要指定VIP，填上该字段
+        # @type Vip: String
+        # @param Vipv6: 如果需要指定VIPv6，填上该字段
+        # @type Vipv6: String
+        # @param VipReleaseDelay: VIP保留时长，单位小时，取值范围（0~168），0表示立即释放，有一分钟释放延迟。不传此参数，默认24小时释放VIP。
+        # @type VipReleaseDelay: Integer
+
+        attr_accessor :InstanceId, :VpcId, :SubnetId, :Vip, :Vipv6, :VipReleaseDelay
+        
+        def initialize(instanceid=nil, vpcid=nil, subnetid=nil, vip=nil, vipv6=nil, vipreleasedelay=nil)
+          @InstanceId = instanceid
+          @VpcId = vpcid
+          @SubnetId = subnetid
+          @Vip = vip
+          @Vipv6 = vipv6
+          @VipReleaseDelay = vipreleasedelay
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @VpcId = params['VpcId']
+          @SubnetId = params['SubnetId']
+          @Vip = params['Vip']
+          @Vipv6 = params['Vipv6']
+          @VipReleaseDelay = params['VipReleaseDelay']
+        end
+      end
+
+      # ModifyInstanceNetwork返回参数结构体
+      class ModifyInstanceNetworkResponse < TencentCloud::Common::AbstractModel
+        # @param FlowId: 异步任务ID，根据此FlowId通过DescribeFlow接口查询任务进行状态
+        # @type FlowId: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :FlowId, :RequestId
+        
+        def initialize(flowid=nil, requestid=nil)
+          @FlowId = flowid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @FlowId = params['FlowId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyInstanceVip请求参数结构体
+      class ModifyInstanceVipRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+        # @param Vip: 实例VIP
+        # @type Vip: String
+        # @param Ipv6Flag: IPv6标志
+        # @type Ipv6Flag: Integer
+        # @param VipReleaseDelay: VIP保留时长，单位小时，取值范围（0~168），0表示立即释放，有一分钟释放延迟。不传此参数，默认24小时释放VIP。
+        # @type VipReleaseDelay: Integer
+
+        attr_accessor :InstanceId, :Vip, :Ipv6Flag, :VipReleaseDelay
+        
+        def initialize(instanceid=nil, vip=nil, ipv6flag=nil, vipreleasedelay=nil)
+          @InstanceId = instanceid
+          @Vip = vip
+          @Ipv6Flag = ipv6flag
+          @VipReleaseDelay = vipreleasedelay
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @Vip = params['Vip']
+          @Ipv6Flag = params['Ipv6Flag']
+          @VipReleaseDelay = params['VipReleaseDelay']
+        end
+      end
+
+      # ModifyInstanceVip返回参数结构体
+      class ModifyInstanceVipResponse < TencentCloud::Common::AbstractModel
+        # @param FlowId: 异步任务流程ID
+        # @type FlowId: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :FlowId, :RequestId
+        
+        def initialize(flowid=nil, requestid=nil)
+          @FlowId = flowid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @FlowId = params['FlowId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyInstanceVport请求参数结构体
+      class ModifyInstanceVportRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+        # @param Vport: 实例VPORT
+        # @type Vport: Integer
+
+        attr_accessor :InstanceId, :Vport
+        
+        def initialize(instanceid=nil, vport=nil)
+          @InstanceId = instanceid
+          @Vport = vport
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @Vport = params['Vport']
+        end
+      end
+
+      # ModifyInstanceVport返回参数结构体
+      class ModifyInstanceVportResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyLogFileRetentionPeriod请求参数结构体
       class ModifyLogFileRetentionPeriodRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例 ID，形如：tdsql-ow728lmc。

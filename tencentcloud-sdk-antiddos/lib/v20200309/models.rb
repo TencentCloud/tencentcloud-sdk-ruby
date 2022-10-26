@@ -4153,12 +4153,16 @@ module TencentCloud
         # @type FilterInstanceIdList: Array
         # @param FilterEnterpriseFlag: 企业版搜索
         # @type FilterEnterpriseFlag: Integer
+        # @param FilterLightFlag: 轻量版搜索
+        # @type FilterLightFlag: Integer
+        # @param FilterChannelFlag: 定制版搜索
+        # @type FilterChannelFlag: Integer
         # @param FilterTag: 标签搜索
         # @type FilterTag: :class:`Tencentcloud::Antiddos.v20200309.models.TagFilter`
 
-        attr_accessor :Offset, :Limit, :FilterIp, :FilterInstanceId, :FilterRegion, :FilterName, :FilterLine, :FilterStatus, :FilterBoundStatus, :FilterInstanceIdList, :FilterEnterpriseFlag, :FilterTag
+        attr_accessor :Offset, :Limit, :FilterIp, :FilterInstanceId, :FilterRegion, :FilterName, :FilterLine, :FilterStatus, :FilterBoundStatus, :FilterInstanceIdList, :FilterEnterpriseFlag, :FilterLightFlag, :FilterChannelFlag, :FilterTag
         
-        def initialize(offset=nil, limit=nil, filterip=nil, filterinstanceid=nil, filterregion=nil, filtername=nil, filterline=nil, filterstatus=nil, filterboundstatus=nil, filterinstanceidlist=nil, filterenterpriseflag=nil, filtertag=nil)
+        def initialize(offset=nil, limit=nil, filterip=nil, filterinstanceid=nil, filterregion=nil, filtername=nil, filterline=nil, filterstatus=nil, filterboundstatus=nil, filterinstanceidlist=nil, filterenterpriseflag=nil, filterlightflag=nil, filterchannelflag=nil, filtertag=nil)
           @Offset = offset
           @Limit = limit
           @FilterIp = filterip
@@ -4170,6 +4174,8 @@ module TencentCloud
           @FilterBoundStatus = filterboundstatus
           @FilterInstanceIdList = filterinstanceidlist
           @FilterEnterpriseFlag = filterenterpriseflag
+          @FilterLightFlag = filterlightflag
+          @FilterChannelFlag = filterchannelflag
           @FilterTag = filtertag
         end
 
@@ -4185,6 +4191,8 @@ module TencentCloud
           @FilterBoundStatus = params['FilterBoundStatus']
           @FilterInstanceIdList = params['FilterInstanceIdList']
           @FilterEnterpriseFlag = params['FilterEnterpriseFlag']
+          @FilterLightFlag = params['FilterLightFlag']
+          @FilterChannelFlag = params['FilterChannelFlag']
           unless params['FilterTag'].nil?
             @FilterTag = TagFilter.new
             @FilterTag.deserialize(params['FilterTag'])
