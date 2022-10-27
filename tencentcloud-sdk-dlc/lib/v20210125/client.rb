@@ -389,6 +389,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 创建查询结果下载任务
+
+        # @param request: Request instance for CreateResultDownload.
+        # @type request: :class:`Tencentcloud::dlc::V20210125::CreateResultDownloadRequest`
+        # @rtype: :class:`Tencentcloud::dlc::V20210125::CreateResultDownloadResponse`
+        def CreateResultDownload(request)
+          body = send_request('CreateResultDownload', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateResultDownloadResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 该接口（CreateScript）用于创建sql脚本。
 
         # @param request: Request instance for CreateScript.
@@ -855,6 +879,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeDatabasesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询结果下载任务
+
+        # @param request: Request instance for DescribeResultDownload.
+        # @type request: :class:`Tencentcloud::dlc::V20210125::DescribeResultDownloadRequest`
+        # @rtype: :class:`Tencentcloud::dlc::V20210125::DescribeResultDownloadResponse`
+        def DescribeResultDownload(request)
+          body = send_request('DescribeResultDownload', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeResultDownloadResponse.new
             model.deserialize(response['Response'])
             model
           else

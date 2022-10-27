@@ -1079,6 +1079,50 @@ module TencentCloud
         end
       end
 
+      # CreateResultDownload请求参数结构体
+      class CreateResultDownloadRequest < TencentCloud::Common::AbstractModel
+        # @param TaskId: 查询结果任务Id
+        # @type TaskId: String
+        # @param Format: 下载格式
+        # @type Format: String
+        # @param Force: 是否重新生成下载文件，仅当之前任务为 Timout | Error 时有效
+        # @type Force: Boolean
+
+        attr_accessor :TaskId, :Format, :Force
+        
+        def initialize(taskid=nil, format=nil, force=nil)
+          @TaskId = taskid
+          @Format = format
+          @Force = force
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @Format = params['Format']
+          @Force = params['Force']
+        end
+      end
+
+      # CreateResultDownload返回参数结构体
+      class CreateResultDownloadResponse < TencentCloud::Common::AbstractModel
+        # @param DownloadId: 下载任务Id
+        # @type DownloadId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :DownloadId, :RequestId
+        
+        def initialize(downloadid=nil, requestid=nil)
+          @DownloadId = downloadid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @DownloadId = params['DownloadId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateScript请求参数结构体
       class CreateScriptRequest < TencentCloud::Common::AbstractModel
         # @param ScriptName: 脚本名称，最大不能超过255个字符。
@@ -2862,6 +2906,67 @@ module TencentCloud
             end
           end
           @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeResultDownload请求参数结构体
+      class DescribeResultDownloadRequest < TencentCloud::Common::AbstractModel
+        # @param DownloadId: 查询任务Id
+        # @type DownloadId: String
+
+        attr_accessor :DownloadId
+        
+        def initialize(downloadid=nil)
+          @DownloadId = downloadid
+        end
+
+        def deserialize(params)
+          @DownloadId = params['DownloadId']
+        end
+      end
+
+      # DescribeResultDownload返回参数结构体
+      class DescribeResultDownloadResponse < TencentCloud::Common::AbstractModel
+        # @param Path: 下载文件路径
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Path: String
+        # @param Status: 任务状态 init | queue | format | compress | success|  timeout | error
+        # @type Status: String
+        # @param Reason: 任务异常原因
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Reason: String
+        # @param SecretId: 临时AK
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SecretId: String
+        # @param SecretKey: 临时SK
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SecretKey: String
+        # @param Token: 临时Token
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Token: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Path, :Status, :Reason, :SecretId, :SecretKey, :Token, :RequestId
+        
+        def initialize(path=nil, status=nil, reason=nil, secretid=nil, secretkey=nil, token=nil, requestid=nil)
+          @Path = path
+          @Status = status
+          @Reason = reason
+          @SecretId = secretid
+          @SecretKey = secretkey
+          @Token = token
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Path = params['Path']
+          @Status = params['Status']
+          @Reason = params['Reason']
+          @SecretId = params['SecretId']
+          @SecretKey = params['SecretKey']
+          @Token = params['Token']
           @RequestId = params['RequestId']
         end
       end
