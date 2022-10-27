@@ -277,10 +277,12 @@ module TencentCloud
         # @type LoginNodeSet: Array
         # @param LoginNodeCount: 登录节点数量。
         # @type LoginNodeCount: Integer
+        # @param VpcId: 集群所属私有网络ID。
+        # @type VpcId: String
 
-        attr_accessor :ClusterId, :ClusterStatus, :ClusterName, :Placement, :CreateTime, :SchedulerType, :ComputeNodeCount, :ComputeNodeSet, :ManagerNodeCount, :ManagerNodeSet, :LoginNodeSet, :LoginNodeCount
+        attr_accessor :ClusterId, :ClusterStatus, :ClusterName, :Placement, :CreateTime, :SchedulerType, :ComputeNodeCount, :ComputeNodeSet, :ManagerNodeCount, :ManagerNodeSet, :LoginNodeSet, :LoginNodeCount, :VpcId
         
-        def initialize(clusterid=nil, clusterstatus=nil, clustername=nil, placement=nil, createtime=nil, schedulertype=nil, computenodecount=nil, computenodeset=nil, managernodecount=nil, managernodeset=nil, loginnodeset=nil, loginnodecount=nil)
+        def initialize(clusterid=nil, clusterstatus=nil, clustername=nil, placement=nil, createtime=nil, schedulertype=nil, computenodecount=nil, computenodeset=nil, managernodecount=nil, managernodeset=nil, loginnodeset=nil, loginnodecount=nil, vpcid=nil)
           @ClusterId = clusterid
           @ClusterStatus = clusterstatus
           @ClusterName = clustername
@@ -293,6 +295,7 @@ module TencentCloud
           @ManagerNodeSet = managernodeset
           @LoginNodeSet = loginnodeset
           @LoginNodeCount = loginnodecount
+          @VpcId = vpcid
         end
 
         def deserialize(params)
@@ -332,6 +335,7 @@ module TencentCloud
             end
           end
           @LoginNodeCount = params['LoginNodeCount']
+          @VpcId = params['VpcId']
         end
       end
 

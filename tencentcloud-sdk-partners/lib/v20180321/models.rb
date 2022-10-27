@@ -1064,11 +1064,11 @@ module TencentCloud
       class DescribeAgentDealsByCacheRequest < TencentCloud::Common::AbstractModel
         # @param Offset: 偏移量
         # @type Offset: Integer
-        # @param Limit: 限制数目
+        # @param Limit: 限制数目 最大200
         # @type Limit: Integer
-        # @param CreatTimeRangeStart: 下单时间范围起始点
+        # @param CreatTimeRangeStart: 下单时间范围起始点【请保持时间范围最大90天】
         # @type CreatTimeRangeStart: String
-        # @param CreatTimeRangeEnd: 下单时间范围终止点
+        # @param CreatTimeRangeEnd: 下单时间范围终止点【请保持时间范围最大90天】
         # @type CreatTimeRangeEnd: String
         # @param Order: 0:下单时间降序；其他：下单时间升序
         # @type Order: Integer
@@ -1147,11 +1147,11 @@ module TencentCloud
       class DescribeAgentDealsCacheRequest < TencentCloud::Common::AbstractModel
         # @param Offset: 偏移量
         # @type Offset: Integer
-        # @param Limit: 限制数目
+        # @param Limit: 限制数目 最大200
         # @type Limit: Integer
-        # @param CreatTimeRangeStart: 下单时间范围起始点
+        # @param CreatTimeRangeStart: 下单时间范围起始点【请保持时间范围最大90天】
         # @type CreatTimeRangeStart: String
-        # @param CreatTimeRangeEnd: 下单时间范围终止点
+        # @param CreatTimeRangeEnd: 下单时间范围终止点【请保持时间范围最大90天】
         # @type CreatTimeRangeEnd: String
         # @param Order: 0:下单时间降序；其他：下单时间升序
         # @type Order: Integer
@@ -1226,7 +1226,7 @@ module TencentCloud
       class DescribeAgentPayDealsRequest < TencentCloud::Common::AbstractModel
         # @param Offset: 偏移量
         # @type Offset: Integer
-        # @param Limit: 限制数目
+        # @param Limit: 限制数目 最大100
         # @type Limit: Integer
         # @param CreatTimeRangeStart: 下单时间范围起始点(不传时会默认查15天内订单，传值时需要传15天内的起始时间)
         # @type CreatTimeRangeStart: String
@@ -1301,7 +1301,7 @@ module TencentCloud
       class DescribeAgentPayDealsV2Request < TencentCloud::Common::AbstractModel
         # @param Offset: 偏移量
         # @type Offset: Integer
-        # @param Limit: 限制数目
+        # @param Limit: 限制数目 最大100
         # @type Limit: Integer
         # @param CreatTimeRangeStart: 下单时间范围起始点(不传时会默认查15天内订单，传值时需要传15天内的起始时间)
         # @type CreatTimeRangeStart: String
@@ -1382,7 +1382,7 @@ module TencentCloud
         # @type OwnerUin: String
         # @param Offset: 偏移量
         # @type Offset: Integer
-        # @param Limit: 限制数目
+        # @param Limit: 限制数目 最大100
         # @type Limit: Integer
         # @param CreatTimeRangeStart: 下单时间范围起始点(不传时会默认查15天内订单，传值时需要传15天内的起始时间)
         # @type CreatTimeRangeStart: String
@@ -1457,7 +1457,7 @@ module TencentCloud
         # @type OwnerUin: String
         # @param Offset: 偏移量
         # @type Offset: Integer
-        # @param Limit: 限制数目
+        # @param Limit: 限制数目 最大100
         # @type Limit: Integer
         # @param CreatTimeRangeStart: 下单时间范围起始点(不传时会默认查15天内订单，传值时需要传15天内的起始时间)
         # @type CreatTimeRangeStart: String

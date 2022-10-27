@@ -1763,10 +1763,13 @@ module TencentCloud
         # @param IsMultiZoneCluster: 是否为跨AZ集群
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsMultiZoneCluster: Boolean
+        # @param IsHandsCluster: 是否手戳集群
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsHandsCluster: Boolean
 
-        attr_accessor :ClusterId, :StatusDesc, :ClusterName, :ZoneId, :AppId, :AddTime, :RunTime, :MasterIp, :EmrVersion, :ChargeType, :Id, :ProductId, :ProjectId, :RegionId, :SubnetId, :VpcId, :Zone, :Status, :Tags, :AlarmInfo, :IsWoodpeckerCluster, :VpcName, :SubnetName, :UniqVpcId, :UniqSubnetId, :ClusterClass, :IsMultiZoneCluster
+        attr_accessor :ClusterId, :StatusDesc, :ClusterName, :ZoneId, :AppId, :AddTime, :RunTime, :MasterIp, :EmrVersion, :ChargeType, :Id, :ProductId, :ProjectId, :RegionId, :SubnetId, :VpcId, :Zone, :Status, :Tags, :AlarmInfo, :IsWoodpeckerCluster, :VpcName, :SubnetName, :UniqVpcId, :UniqSubnetId, :ClusterClass, :IsMultiZoneCluster, :IsHandsCluster
         
-        def initialize(clusterid=nil, statusdesc=nil, clustername=nil, zoneid=nil, appid=nil, addtime=nil, runtime=nil, masterip=nil, emrversion=nil, chargetype=nil, id=nil, productid=nil, projectid=nil, regionid=nil, subnetid=nil, vpcid=nil, zone=nil, status=nil, tags=nil, alarminfo=nil, iswoodpeckercluster=nil, vpcname=nil, subnetname=nil, uniqvpcid=nil, uniqsubnetid=nil, clusterclass=nil, ismultizonecluster=nil)
+        def initialize(clusterid=nil, statusdesc=nil, clustername=nil, zoneid=nil, appid=nil, addtime=nil, runtime=nil, masterip=nil, emrversion=nil, chargetype=nil, id=nil, productid=nil, projectid=nil, regionid=nil, subnetid=nil, vpcid=nil, zone=nil, status=nil, tags=nil, alarminfo=nil, iswoodpeckercluster=nil, vpcname=nil, subnetname=nil, uniqvpcid=nil, uniqsubnetid=nil, clusterclass=nil, ismultizonecluster=nil, ishandscluster=nil)
           @ClusterId = clusterid
           @StatusDesc = statusdesc
           @ClusterName = clustername
@@ -1794,6 +1797,7 @@ module TencentCloud
           @UniqSubnetId = uniqsubnetid
           @ClusterClass = clusterclass
           @IsMultiZoneCluster = ismultizonecluster
+          @IsHandsCluster = ishandscluster
         end
 
         def deserialize(params)
@@ -1831,6 +1835,7 @@ module TencentCloud
           @UniqSubnetId = params['UniqSubnetId']
           @ClusterClass = params['ClusterClass']
           @IsMultiZoneCluster = params['IsMultiZoneCluster']
+          @IsHandsCluster = params['IsHandsCluster']
         end
       end
 
@@ -4243,10 +4248,12 @@ module TencentCloud
         # @type SubnetId: String
         # @param ScaleOutServiceConfAssign: 预设配置组
         # @type ScaleOutServiceConfAssign: String
+        # @param AutoRenew: 0表示关闭自动续费，1表示开启自动续费
+        # @type AutoRenew: Integer
 
-        attr_accessor :TimeUnit, :TimeSpan, :InstanceId, :PayMode, :ClientToken, :PreExecutedFileSettings, :TaskCount, :CoreCount, :UnNecessaryNodeList, :RouterCount, :SoftDeployInfo, :ServiceNodeInfo, :DisasterRecoverGroupIds, :Tags, :HardwareResourceType, :PodSpec, :ClickHouseClusterName, :ClickHouseClusterType, :YarnNodeLabel, :PodParameter, :MasterCount, :StartServiceAfterScaleOut, :ZoneId, :SubnetId, :ScaleOutServiceConfAssign
+        attr_accessor :TimeUnit, :TimeSpan, :InstanceId, :PayMode, :ClientToken, :PreExecutedFileSettings, :TaskCount, :CoreCount, :UnNecessaryNodeList, :RouterCount, :SoftDeployInfo, :ServiceNodeInfo, :DisasterRecoverGroupIds, :Tags, :HardwareResourceType, :PodSpec, :ClickHouseClusterName, :ClickHouseClusterType, :YarnNodeLabel, :PodParameter, :MasterCount, :StartServiceAfterScaleOut, :ZoneId, :SubnetId, :ScaleOutServiceConfAssign, :AutoRenew
         
-        def initialize(timeunit=nil, timespan=nil, instanceid=nil, paymode=nil, clienttoken=nil, preexecutedfilesettings=nil, taskcount=nil, corecount=nil, unnecessarynodelist=nil, routercount=nil, softdeployinfo=nil, servicenodeinfo=nil, disasterrecovergroupids=nil, tags=nil, hardwareresourcetype=nil, podspec=nil, clickhouseclustername=nil, clickhouseclustertype=nil, yarnnodelabel=nil, podparameter=nil, mastercount=nil, startserviceafterscaleout=nil, zoneid=nil, subnetid=nil, scaleoutserviceconfassign=nil)
+        def initialize(timeunit=nil, timespan=nil, instanceid=nil, paymode=nil, clienttoken=nil, preexecutedfilesettings=nil, taskcount=nil, corecount=nil, unnecessarynodelist=nil, routercount=nil, softdeployinfo=nil, servicenodeinfo=nil, disasterrecovergroupids=nil, tags=nil, hardwareresourcetype=nil, podspec=nil, clickhouseclustername=nil, clickhouseclustertype=nil, yarnnodelabel=nil, podparameter=nil, mastercount=nil, startserviceafterscaleout=nil, zoneid=nil, subnetid=nil, scaleoutserviceconfassign=nil, autorenew=nil)
           @TimeUnit = timeunit
           @TimeSpan = timespan
           @InstanceId = instanceid
@@ -4272,6 +4279,7 @@ module TencentCloud
           @ZoneId = zoneid
           @SubnetId = subnetid
           @ScaleOutServiceConfAssign = scaleoutserviceconfassign
+          @AutoRenew = autorenew
         end
 
         def deserialize(params)
@@ -4320,6 +4328,7 @@ module TencentCloud
           @ZoneId = params['ZoneId']
           @SubnetId = params['SubnetId']
           @ScaleOutServiceConfAssign = params['ScaleOutServiceConfAssign']
+          @AutoRenew = params['AutoRenew']
         end
       end
 

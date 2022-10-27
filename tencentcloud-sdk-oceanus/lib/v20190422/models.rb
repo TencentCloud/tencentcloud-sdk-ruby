@@ -2558,16 +2558,23 @@ module TencentCloud
         # @type WorkSpaceName: String
         # @param Status: 绑定状态  2 绑定 1  解除绑定
         # @type Status: Integer
+        # @param ProjectId: 项目ID
+        # @type ProjectId: Integer
+        # @param ProjectIdStr: 项目ID string类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProjectIdStr: String
 
-        attr_accessor :ClusterGroupId, :ClusterGroupSerialId, :ClusterName, :WorkSpaceId, :WorkSpaceName, :Status
+        attr_accessor :ClusterGroupId, :ClusterGroupSerialId, :ClusterName, :WorkSpaceId, :WorkSpaceName, :Status, :ProjectId, :ProjectIdStr
         
-        def initialize(clustergroupid=nil, clustergroupserialid=nil, clustername=nil, workspaceid=nil, workspacename=nil, status=nil)
+        def initialize(clustergroupid=nil, clustergroupserialid=nil, clustername=nil, workspaceid=nil, workspacename=nil, status=nil, projectid=nil, projectidstr=nil)
           @ClusterGroupId = clustergroupid
           @ClusterGroupSerialId = clustergroupserialid
           @ClusterName = clustername
           @WorkSpaceId = workspaceid
           @WorkSpaceName = workspacename
           @Status = status
+          @ProjectId = projectid
+          @ProjectIdStr = projectidstr
         end
 
         def deserialize(params)
@@ -2577,6 +2584,8 @@ module TencentCloud
           @WorkSpaceId = params['WorkSpaceId']
           @WorkSpaceName = params['WorkSpaceName']
           @Status = params['Status']
+          @ProjectId = params['ProjectId']
+          @ProjectIdStr = params['ProjectIdStr']
         end
       end
 

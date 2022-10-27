@@ -59,7 +59,7 @@ module TencentCloud
         # @type VerifyChannel: Array
         # @param PreReadTime: 合同的强制预览时间：3~300s，未指定则按合同页数计算
         # @type PreReadTime: Integer
-        # @param UserId: 签署人userId，非企微场景不使用此字段
+        # @param UserId: 签署人userId，传此字段则不用传姓名、手机号
         # @type UserId: String
         # @param ApproverSource: 签署人用户来源,企微侧用户请传入：WEWORKAPP
         # @type ApproverSource: String
@@ -1677,7 +1677,8 @@ module TencentCloud
         # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
         # @param Limit: 返回最大数量，最大为20
         # @type Limit: Integer
-        # @param Filters: 查询过滤实名用户，key为Status，Values为["IsVerified"]
+        # @param Filters: 查询过滤实名用户，Key为Status，Values为["IsVerified"]
+        # 根据第三方系统openId过滤查询员工时,Key为StaffOpenId,Values为["OpenId","OpenId",...]
         # @type Filters: Array
         # @param Offset: 偏移量，默认为0，最大为20000
         # @type Offset: Integer
@@ -2097,7 +2098,7 @@ module TencentCloud
         # @type IsFullText: Boolean
         # @param PreReadTime: 签署前置条件：阅读时长限制，单位秒，默认为不需要
         # @type PreReadTime: Integer
-        # @param UserId: 签署方经办人的用户ID,和签署方经办人姓名+手机号+证件必须有一个。非企微场景不使用此字段
+        # @param UserId: 签署方经办人的用户ID,和签署方经办人姓名+手机号+证件必须有一个。
         # @type UserId: String
         # @param Required: 当前只支持true，默认为true
         # @type Required: Boolean

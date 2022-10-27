@@ -15977,10 +15977,13 @@ module TencentCloud
         # @param AttachType: 弹性网卡类型：0:标准型/1:扩展型。默认值为0。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AttachType: Integer
+        # @param ResourceId: 用于保留网卡主IP的资源ID用于保留网卡主IP的资源ID。用于删除网卡时作为入参数。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResourceId: String
 
-        attr_accessor :NetworkInterfaceId, :NetworkInterfaceName, :NetworkInterfaceDescription, :SubnetId, :VpcId, :GroupSet, :Primary, :MacAddress, :State, :PrivateIpAddressSet, :Attachment, :Zone, :CreatedTime, :Ipv6AddressSet, :TagSet, :EniType, :Business, :CdcId, :AttachType
+        attr_accessor :NetworkInterfaceId, :NetworkInterfaceName, :NetworkInterfaceDescription, :SubnetId, :VpcId, :GroupSet, :Primary, :MacAddress, :State, :PrivateIpAddressSet, :Attachment, :Zone, :CreatedTime, :Ipv6AddressSet, :TagSet, :EniType, :Business, :CdcId, :AttachType, :ResourceId
         
-        def initialize(networkinterfaceid=nil, networkinterfacename=nil, networkinterfacedescription=nil, subnetid=nil, vpcid=nil, groupset=nil, primary=nil, macaddress=nil, state=nil, privateipaddressset=nil, attachment=nil, zone=nil, createdtime=nil, ipv6addressset=nil, tagset=nil, enitype=nil, business=nil, cdcid=nil, attachtype=nil)
+        def initialize(networkinterfaceid=nil, networkinterfacename=nil, networkinterfacedescription=nil, subnetid=nil, vpcid=nil, groupset=nil, primary=nil, macaddress=nil, state=nil, privateipaddressset=nil, attachment=nil, zone=nil, createdtime=nil, ipv6addressset=nil, tagset=nil, enitype=nil, business=nil, cdcid=nil, attachtype=nil, resourceid=nil)
           @NetworkInterfaceId = networkinterfaceid
           @NetworkInterfaceName = networkinterfacename
           @NetworkInterfaceDescription = networkinterfacedescription
@@ -16000,6 +16003,7 @@ module TencentCloud
           @Business = business
           @CdcId = cdcid
           @AttachType = attachtype
+          @ResourceId = resourceid
         end
 
         def deserialize(params)
@@ -16046,6 +16050,7 @@ module TencentCloud
           @Business = params['Business']
           @CdcId = params['CdcId']
           @AttachType = params['AttachType']
+          @ResourceId = params['ResourceId']
         end
       end
 

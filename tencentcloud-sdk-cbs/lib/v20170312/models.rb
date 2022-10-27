@@ -2789,21 +2789,21 @@ module TencentCloud
 
       # ResizeDisk请求参数结构体
       class ResizeDiskRequest < TencentCloud::Common::AbstractModel
-        # @param DiskId: 云硬盘ID， 通过[DescribeDisks](/document/product/362/16315)接口查询。
-        # @type DiskId: String
         # @param DiskSize: 云硬盘扩容后的大小，单位为GB，必须大于当前云硬盘大小。云盘大小取值范围参见云硬盘[产品分类](/document/product/362/2353)的说明。
         # @type DiskSize: Integer
+        # @param DiskId: 云硬盘ID， 通过[DescribeDisks](/document/product/362/16315)接口查询。
+        # @type DiskId: String
 
-        attr_accessor :DiskId, :DiskSize
+        attr_accessor :DiskSize, :DiskId
         
-        def initialize(diskid=nil, disksize=nil)
-          @DiskId = diskid
+        def initialize(disksize=nil, diskid=nil)
           @DiskSize = disksize
+          @DiskId = diskid
         end
 
         def deserialize(params)
-          @DiskId = params['DiskId']
           @DiskSize = params['DiskSize']
+          @DiskId = params['DiskId']
         end
       end
 
