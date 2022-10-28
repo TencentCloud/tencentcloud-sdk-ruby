@@ -78,14 +78,30 @@ module TencentCloud
         # @type VoiceFilterStatisticsItem: :class:`Tencentcloud::Gme.v20180711.models.VoiceFilterStatisticsItem`
         # @param Date: 统计时间
         # @type Date: String
+        # @param AudioTextStatisticsItem: 录音转文本用量统计数据
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AudioTextStatisticsItem: :class:`Tencentcloud::Gme.v20180711.models.AudioTextStatisticsItem`
+        # @param StreamTextStatisticsItem: 流式转文本用量数据
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StreamTextStatisticsItem: :class:`Tencentcloud::Gme.v20180711.models.StreamTextStatisticsItem`
+        # @param OverseaTextStatisticsItem: 海外转文本用量数据
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OverseaTextStatisticsItem: :class:`Tencentcloud::Gme.v20180711.models.OverseaTextStatisticsItem`
+        # @param RealtimeTextStatisticsItem: 实时语音转文本用量数据
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RealtimeTextStatisticsItem: :class:`Tencentcloud::Gme.v20180711.models.RealtimeTextStatisticsItem`
 
-        attr_accessor :RealtimeSpeechStatisticsItem, :VoiceMessageStatisticsItem, :VoiceFilterStatisticsItem, :Date
+        attr_accessor :RealtimeSpeechStatisticsItem, :VoiceMessageStatisticsItem, :VoiceFilterStatisticsItem, :Date, :AudioTextStatisticsItem, :StreamTextStatisticsItem, :OverseaTextStatisticsItem, :RealtimeTextStatisticsItem
         
-        def initialize(realtimespeechstatisticsitem=nil, voicemessagestatisticsitem=nil, voicefilterstatisticsitem=nil, date=nil)
+        def initialize(realtimespeechstatisticsitem=nil, voicemessagestatisticsitem=nil, voicefilterstatisticsitem=nil, date=nil, audiotextstatisticsitem=nil, streamtextstatisticsitem=nil, overseatextstatisticsitem=nil, realtimetextstatisticsitem=nil)
           @RealtimeSpeechStatisticsItem = realtimespeechstatisticsitem
           @VoiceMessageStatisticsItem = voicemessagestatisticsitem
           @VoiceFilterStatisticsItem = voicefilterstatisticsitem
           @Date = date
+          @AudioTextStatisticsItem = audiotextstatisticsitem
+          @StreamTextStatisticsItem = streamtextstatisticsitem
+          @OverseaTextStatisticsItem = overseatextstatisticsitem
+          @RealtimeTextStatisticsItem = realtimetextstatisticsitem
         end
 
         def deserialize(params)
@@ -102,6 +118,22 @@ module TencentCloud
             @VoiceFilterStatisticsItem.deserialize(params['VoiceFilterStatisticsItem'])
           end
           @Date = params['Date']
+          unless params['AudioTextStatisticsItem'].nil?
+            @AudioTextStatisticsItem = AudioTextStatisticsItem.new
+            @AudioTextStatisticsItem.deserialize(params['AudioTextStatisticsItem'])
+          end
+          unless params['StreamTextStatisticsItem'].nil?
+            @StreamTextStatisticsItem = StreamTextStatisticsItem.new
+            @StreamTextStatisticsItem.deserialize(params['StreamTextStatisticsItem'])
+          end
+          unless params['OverseaTextStatisticsItem'].nil?
+            @OverseaTextStatisticsItem = OverseaTextStatisticsItem.new
+            @OverseaTextStatisticsItem.deserialize(params['OverseaTextStatisticsItem'])
+          end
+          unless params['RealtimeTextStatisticsItem'].nil?
+            @RealtimeTextStatisticsItem = RealtimeTextStatisticsItem.new
+            @RealtimeTextStatisticsItem.deserialize(params['RealtimeTextStatisticsItem'])
+          end
         end
       end
 
@@ -229,6 +261,23 @@ module TencentCloud
               @PcuDataSum << statisticsitem_tmp
             end
           end
+        end
+      end
+
+      # 录音转文本用量统计数据
+      class AudioTextStatisticsItem < TencentCloud::Common::AbstractModel
+        # @param Data: 统计值，单位：秒
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Data: Float
+
+        attr_accessor :Data
+        
+        def initialize(data=nil)
+          @Data = data
+        end
+
+        def deserialize(params)
+          @Data = params['Data']
         end
       end
 
@@ -739,7 +788,7 @@ module TencentCloud
         # @type StartDate: String
         # @param EndDate: 数据结束时间，东八区时间，格式: 年-月-日，如: 2018-07-13
         # @type EndDate: String
-        # @param Services: 要查询的服务列表，取值：RealTimeSpeech/VoiceMessage/VoiceFilter
+        # @param Services: 要查询的服务列表，取值：RealTimeSpeech/VoiceMessage/VoiceFilter/SpeechToText
         # @type Services: Array
 
         attr_accessor :BizId, :StartDate, :EndDate, :Services
@@ -1490,6 +1539,23 @@ module TencentCloud
         end
       end
 
+      # 海外转文本用量数据
+      class OverseaTextStatisticsItem < TencentCloud::Common::AbstractModel
+        # @param Data: 统计值，单位：秒
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Data: Float
+
+        attr_accessor :Data
+        
+        def initialize(data=nil)
+          @Data = data
+        end
+
+        def deserialize(params)
+          @Data = params['Data']
+        end
+      end
+
       # 实时语音用量统计数据
       class RealTimeSpeechStatisticsItem < TencentCloud::Common::AbstractModel
         # @param MainLandDau: 大陆地区DAU
@@ -1543,6 +1609,23 @@ module TencentCloud
         def deserialize(params)
           @Status = params['Status']
           @Quality = params['Quality']
+        end
+      end
+
+      # 实时语音转文本用量数据
+      class RealtimeTextStatisticsItem < TencentCloud::Common::AbstractModel
+        # @param Data: 统计值，单位：秒
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Data: Float
+
+        attr_accessor :Data
+        
+        def initialize(data=nil)
+          @Data = data
+        end
+
+        def deserialize(params)
+          @Data = params['Data']
         end
       end
 
@@ -1784,6 +1867,23 @@ module TencentCloud
         end
       end
 
+      # 流式转文本用量数据
+      class StreamTextStatisticsItem < TencentCloud::Common::AbstractModel
+        # @param Data: 统计值，单位：秒
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Data: Float
+
+        attr_accessor :Data
+        
+        def initialize(data=nil)
+          @Data = data
+        end
+
+        def deserialize(params)
+          @Data = params['Data']
+        end
+      end
+
       # 标签列表
       class Tag < TencentCloud::Common::AbstractModel
         # @param TagKey: 标签键
@@ -1961,7 +2061,7 @@ module TencentCloud
 
       # 语音过滤用量统计数据
       class VoiceFilterStatisticsItem < TencentCloud::Common::AbstractModel
-        # @param Duration: 语音过滤总时长
+        # @param Duration: 语音过滤总时长，单位为min
         # @type Duration: Integer
 
         attr_accessor :Duration

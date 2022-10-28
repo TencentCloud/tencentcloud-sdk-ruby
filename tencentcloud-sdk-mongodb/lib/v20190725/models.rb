@@ -1117,6 +1117,94 @@ module TencentCloud
         end
       end
 
+      # DescribeDBInstanceNodeProperty请求参数结构体
+      class DescribeDBInstanceNodePropertyRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID，格式如：cmgo-p8vnipr5。与云数据库控制台页面中显示的实例ID相同。
+        # @type InstanceId: String
+        # @param NodeIds: 节点ID。
+        # @type NodeIds: Array
+        # @param Roles: 节点角色。可选值包括：
+        # <ul><li>PRIMARY：主节点。</li><li>SECONDARY：从节点。</li><li>READONLY：只读节点。</li><li>ARBITER：仲裁节点。</li></ul>
+        # @type Roles: Array
+        # @param OnlyHidden: 该参数指定节点是否为Hidden节点，默认为false。
+        # @type OnlyHidden: Boolean
+        # @param Priority: 该参数指定选举新主节点的优先级。其取值范围为[0,100]，数值越高，优先级越高。
+        # @type Priority: Integer
+        # @param Votes: 该参数指定节点投票权。
+        # <ul><li>1：具有投票权。</li><li>0：无投票权。</li></ul>
+        # @type Votes: Integer
+        # @param Tags: 节点标签。
+        # @type Tags: Array
+
+        attr_accessor :InstanceId, :NodeIds, :Roles, :OnlyHidden, :Priority, :Votes, :Tags
+        
+        def initialize(instanceid=nil, nodeids=nil, roles=nil, onlyhidden=nil, priority=nil, votes=nil, tags=nil)
+          @InstanceId = instanceid
+          @NodeIds = nodeids
+          @Roles = roles
+          @OnlyHidden = onlyhidden
+          @Priority = priority
+          @Votes = votes
+          @Tags = tags
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @NodeIds = params['NodeIds']
+          @Roles = params['Roles']
+          @OnlyHidden = params['OnlyHidden']
+          @Priority = params['Priority']
+          @Votes = params['Votes']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              nodetag_tmp = NodeTag.new
+              nodetag_tmp.deserialize(i)
+              @Tags << nodetag_tmp
+            end
+          end
+        end
+      end
+
+      # DescribeDBInstanceNodeProperty返回参数结构体
+      class DescribeDBInstanceNodePropertyResponse < TencentCloud::Common::AbstractModel
+        # @param Mongos: Mongos节点属性。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Mongos: Array
+        # @param ReplicateSets: 副本集节点信息。
+        # @type ReplicateSets: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Mongos, :ReplicateSets, :RequestId
+        
+        def initialize(mongos=nil, replicatesets=nil, requestid=nil)
+          @Mongos = mongos
+          @ReplicateSets = replicatesets
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Mongos'].nil?
+            @Mongos = []
+            params['Mongos'].each do |i|
+              nodeproperty_tmp = NodeProperty.new
+              nodeproperty_tmp.deserialize(i)
+              @Mongos << nodeproperty_tmp
+            end
+          end
+          unless params['ReplicateSets'].nil?
+            @ReplicateSets = []
+            params['ReplicateSets'].each do |i|
+              replicatesetinfo_tmp = ReplicateSetInfo.new
+              replicatesetinfo_tmp.deserialize(i)
+              @ReplicateSets << replicatesetinfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeDBInstances请求参数结构体
       class DescribeDBInstancesRequest < TencentCloud::Common::AbstractModel
         # @param InstanceIds: 实例ID列表，格式如：cmgo-p8vnipr5。与云数据库控制台页面中显示的实例ID相同
@@ -2420,6 +2508,102 @@ module TencentCloud
         end
       end
 
+      # 节点属性
+      class NodeProperty < TencentCloud::Common::AbstractModel
+        # @param Zone: 节点所在的可用区。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Zone: String
+        # @param NodeName: 节点名称。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NodeName: String
+        # @param Address: 节点访问地址。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Address: String
+        # @param Role: 角色。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Role: String
+        # @param Hidden: 是否为Hidden节点
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Hidden: Boolean
+        # @param Status: 节点状态，包括：ORMAL/STARTUP/RECOVERING/STARTUP2/UNKNOWN/DOWN/ROLLBACK/REMOVED等。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: String
+        # @param SlaveDelay: 主从延迟，单位秒。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SlaveDelay: Integer
+        # @param Priority: 节点优先级。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Priority: Integer
+        # @param Votes: 节点投票权。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Votes: Integer
+        # @param Tags: 节点标签。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Tags: Array
+        # @param ReplicateSetId: 副本集Id。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ReplicateSetId: String
+
+        attr_accessor :Zone, :NodeName, :Address, :Role, :Hidden, :Status, :SlaveDelay, :Priority, :Votes, :Tags, :ReplicateSetId
+        
+        def initialize(zone=nil, nodename=nil, address=nil, role=nil, hidden=nil, status=nil, slavedelay=nil, priority=nil, votes=nil, tags=nil, replicatesetid=nil)
+          @Zone = zone
+          @NodeName = nodename
+          @Address = address
+          @Role = role
+          @Hidden = hidden
+          @Status = status
+          @SlaveDelay = slavedelay
+          @Priority = priority
+          @Votes = votes
+          @Tags = tags
+          @ReplicateSetId = replicatesetid
+        end
+
+        def deserialize(params)
+          @Zone = params['Zone']
+          @NodeName = params['NodeName']
+          @Address = params['Address']
+          @Role = params['Role']
+          @Hidden = params['Hidden']
+          @Status = params['Status']
+          @SlaveDelay = params['SlaveDelay']
+          @Priority = params['Priority']
+          @Votes = params['Votes']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              nodetag_tmp = NodeTag.new
+              nodetag_tmp.deserialize(i)
+              @Tags << nodetag_tmp
+            end
+          end
+          @ReplicateSetId = params['ReplicateSetId']
+        end
+      end
+
+      # 节点Tag
+      class NodeTag < TencentCloud::Common::AbstractModel
+        # @param TagKey: 节点Tag key
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TagKey: String
+        # @param TagValue: 节点Tag Value
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TagValue: String
+
+        attr_accessor :TagKey, :TagValue
+        
+        def initialize(tagkey=nil, tagvalue=nil)
+          @TagKey = tagkey
+          @TagValue = tagvalue
+        end
+
+        def deserialize(params)
+          @TagKey = params['TagKey']
+          @TagValue = params['TagValue']
+        end
+      end
+
       # OfflineIsolatedDBInstance请求参数结构体
       class OfflineIsolatedDBInstanceRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例ID，格式如：cmgo-p8vnipr5。与云数据库控制台页面中显示的实例ID相同
@@ -2568,6 +2752,30 @@ module TencentCloud
 
         def deserialize(params)
           @ReplicaSetId = params['ReplicaSetId']
+        end
+      end
+
+      # 副本集信息
+      class ReplicateSetInfo < TencentCloud::Common::AbstractModel
+        # @param Nodes: 节点属性
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Nodes: Array
+
+        attr_accessor :Nodes
+        
+        def initialize(nodes=nil)
+          @Nodes = nodes
+        end
+
+        def deserialize(params)
+          unless params['Nodes'].nil?
+            @Nodes = []
+            params['Nodes'].each do |i|
+              nodeproperty_tmp = NodeProperty.new
+              nodeproperty_tmp.deserialize(i)
+              @Nodes << nodeproperty_tmp
+            end
+          end
         end
       end
 

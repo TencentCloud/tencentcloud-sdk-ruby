@@ -589,6 +589,9 @@ module TencentCloud
       class ConfigInfo < TencentCloud::Common::AbstractModel
         # @param ConfigId: 采集规则配置ID
         # @type ConfigId: String
+        # @param Name: 采集规则配置名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
         # @param LogFormat: 日志格式化方式
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LogFormat: String
@@ -615,10 +618,11 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UserDefineRule: String
 
-        attr_accessor :ConfigId, :LogFormat, :Path, :LogType, :ExtractRule, :ExcludePaths, :Output, :UpdateTime, :CreateTime, :UserDefineRule
+        attr_accessor :ConfigId, :Name, :LogFormat, :Path, :LogType, :ExtractRule, :ExcludePaths, :Output, :UpdateTime, :CreateTime, :UserDefineRule
         
-        def initialize(configid=nil, logformat=nil, path=nil, logtype=nil, extractrule=nil, excludepaths=nil, output=nil, updatetime=nil, createtime=nil, userdefinerule=nil)
+        def initialize(configid=nil, name=nil, logformat=nil, path=nil, logtype=nil, extractrule=nil, excludepaths=nil, output=nil, updatetime=nil, createtime=nil, userdefinerule=nil)
           @ConfigId = configid
+          @Name = name
           @LogFormat = logformat
           @Path = path
           @LogType = logtype
@@ -632,6 +636,7 @@ module TencentCloud
 
         def deserialize(params)
           @ConfigId = params['ConfigId']
+          @Name = params['Name']
           @LogFormat = params['LogFormat']
           @Path = params['Path']
           @LogType = params['LogType']
@@ -3411,17 +3416,17 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type JsonStandard: Integer
         # @param Protocol: syslog传输协议，取值为tcp或者udp。
-        # 该接口适用于：创建采集规则配置、修改采集规则配置
+        # 该字段适用于：创建采集规则配置、修改采集规则配置
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Protocol: String
         # @param Address: syslog系统日志采集指定采集器监听的地址和端口 ，形式：[ip]:[port]。举例：127.0.0.1:9000
-        # 该接口适用于：创建采集规则配置、修改采集规则配置
+        # 该字段适用于：创建采集规则配置、修改采集规则配置
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Address: String
         # @param ParseProtocol: rfc3164：指定系统日志采集使用RFC3164协议解析日志。
         # rfc5424：指定系统日志采集使用RFC5424协议解析日志。
         # auto：自动匹配rfc3164或者rfc5424其中一种协议
-        # 该接口适用于：创建采集规则配置、修改采集规则配置
+        # 该字段适用于：创建采集规则配置、修改采集规则配置
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ParseProtocol: String
 

@@ -371,20 +371,29 @@ module TencentCloud
         # @param Types: 类型列表，取值有：
         # <li>OfficialRec：官方推荐；</li>
         # <li>Customize：自定义。</li>
+        # 默认值为 OfficialRec。
         # @type Types: Array
+        # @param Offset: 分页返回的起始偏移量，默认值：0。将返回第 Offset 到第 Offset+Limit-1 条。
+        # @type Offset: Integer
+        # @param Limit: 分页返回的记录条数，默认值：20，最大值：50。
+        # @type Limit: Integer
 
-        attr_accessor :AppName, :UserId, :Types
+        attr_accessor :AppName, :UserId, :Types, :Offset, :Limit
         
-        def initialize(appname=nil, userid=nil, types=nil)
+        def initialize(appname=nil, userid=nil, types=nil, offset=nil, limit=nil)
           @AppName = appname
           @UserId = userid
           @Types = types
+          @Offset = offset
+          @Limit = limit
         end
 
         def deserialize(params)
           @AppName = params['AppName']
           @UserId = params['UserId']
           @Types = params['Types']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
         end
       end
 
@@ -392,13 +401,16 @@ module TencentCloud
       class DescribeKTVPlaylistsResponse < TencentCloud::Common::AbstractModel
         # @param PlaylistBaseInfoSet: 歌单基础信息。
         # @type PlaylistBaseInfoSet: Array
+        # @param TotalCount: 歌单总数。
+        # @type TotalCount: Integer
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :PlaylistBaseInfoSet, :RequestId
+        attr_accessor :PlaylistBaseInfoSet, :TotalCount, :RequestId
         
-        def initialize(playlistbaseinfoset=nil, requestid=nil)
+        def initialize(playlistbaseinfoset=nil, totalcount=nil, requestid=nil)
           @PlaylistBaseInfoSet = playlistbaseinfoset
+          @TotalCount = totalcount
           @RequestId = requestid
         end
 
@@ -411,6 +423,7 @@ module TencentCloud
               @PlaylistBaseInfoSet << ktvplaylistbaseinfo_tmp
             end
           end
+          @TotalCount = params['TotalCount']
           @RequestId = params['RequestId']
         end
       end

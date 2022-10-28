@@ -955,17 +955,21 @@ module TencentCloud
         # @type ClusterIdentifier: String
         # @param FunctionId: 函数 ID
         # @type FunctionId: String
+        # @param ProjectId: 项目ID，必须填
+        # @type ProjectId: String
 
-        attr_accessor :ClusterIdentifier, :FunctionId
+        attr_accessor :ClusterIdentifier, :FunctionId, :ProjectId
         
-        def initialize(clusteridentifier=nil, functionid=nil)
+        def initialize(clusteridentifier=nil, functionid=nil, projectid=nil)
           @ClusterIdentifier = clusteridentifier
           @FunctionId = functionid
+          @ProjectId = projectid
         end
 
         def deserialize(params)
           @ClusterIdentifier = params['ClusterIdentifier']
           @FunctionId = params['FunctionId']
+          @ProjectId = params['ProjectId']
         end
       end
 
@@ -4334,19 +4338,23 @@ module TencentCloud
         # @type ClusterIdentifier: String
         # @param Comment: 备注信息
         # @type Comment: String
+        # @param ProjectId: 项目ID
+        # @type ProjectId: String
 
-        attr_accessor :FunctionId, :ClusterIdentifier, :Comment
+        attr_accessor :FunctionId, :ClusterIdentifier, :Comment, :ProjectId
         
-        def initialize(functionid=nil, clusteridentifier=nil, comment=nil)
+        def initialize(functionid=nil, clusteridentifier=nil, comment=nil, projectid=nil)
           @FunctionId = functionid
           @ClusterIdentifier = clusteridentifier
           @Comment = comment
+          @ProjectId = projectid
         end
 
         def deserialize(params)
           @FunctionId = params['FunctionId']
           @ClusterIdentifier = params['ClusterIdentifier']
           @Comment = params['Comment']
+          @ProjectId = params['ProjectId']
         end
       end
 

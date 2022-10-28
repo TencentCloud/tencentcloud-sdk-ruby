@@ -335,10 +335,12 @@ module TencentCloud
         # @type CreateTime: String
         # @param UpdateTime: 模板最后修改时间，使用 [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#I)。
         # @type UpdateTime: String
+        # @param SegmentType: 切片类型，仅当 Format 为 HLS 时有效。
+        # @type SegmentType: String
 
-        attr_accessor :Definition, :Type, :Name, :Comment, :Format, :DrmType, :DrmKeyProvider, :StreamInfos, :DisableHigherVideoBitrate, :DisableHigherVideoResolution, :CreateTime, :UpdateTime
+        attr_accessor :Definition, :Type, :Name, :Comment, :Format, :DrmType, :DrmKeyProvider, :StreamInfos, :DisableHigherVideoBitrate, :DisableHigherVideoResolution, :CreateTime, :UpdateTime, :SegmentType
         
-        def initialize(definition=nil, type=nil, name=nil, comment=nil, format=nil, drmtype=nil, drmkeyprovider=nil, streaminfos=nil, disablehighervideobitrate=nil, disablehighervideoresolution=nil, createtime=nil, updatetime=nil)
+        def initialize(definition=nil, type=nil, name=nil, comment=nil, format=nil, drmtype=nil, drmkeyprovider=nil, streaminfos=nil, disablehighervideobitrate=nil, disablehighervideoresolution=nil, createtime=nil, updatetime=nil, segmenttype=nil)
           @Definition = definition
           @Type = type
           @Name = name
@@ -351,6 +353,7 @@ module TencentCloud
           @DisableHigherVideoResolution = disablehighervideoresolution
           @CreateTime = createtime
           @UpdateTime = updatetime
+          @SegmentType = segmenttype
         end
 
         def deserialize(params)
@@ -373,6 +376,7 @@ module TencentCloud
           @DisableHigherVideoResolution = params['DisableHigherVideoResolution']
           @CreateTime = params['CreateTime']
           @UpdateTime = params['UpdateTime']
+          @SegmentType = params['SegmentType']
         end
       end
 
@@ -5187,10 +5191,15 @@ module TencentCloud
         # @type DisableHigherVideoResolution: Integer
         # @param Comment: 模板描述信息，长度限制：256 个字符。
         # @type Comment: String
+        # @param SegmentType: 切片类型，当 Format 为 HLS 时有效，可选值：
+        # <li>ts：ts 切片；</li>
+        # <li>fmp4：fmp4 切片。</li>
+        # 默认值：ts。
+        # @type SegmentType: String
 
-        attr_accessor :Format, :StreamInfos, :SubAppId, :Name, :DrmType, :DrmKeyProvider, :DisableHigherVideoBitrate, :DisableHigherVideoResolution, :Comment
+        attr_accessor :Format, :StreamInfos, :SubAppId, :Name, :DrmType, :DrmKeyProvider, :DisableHigherVideoBitrate, :DisableHigherVideoResolution, :Comment, :SegmentType
         
-        def initialize(format=nil, streaminfos=nil, subappid=nil, name=nil, drmtype=nil, drmkeyprovider=nil, disablehighervideobitrate=nil, disablehighervideoresolution=nil, comment=nil)
+        def initialize(format=nil, streaminfos=nil, subappid=nil, name=nil, drmtype=nil, drmkeyprovider=nil, disablehighervideobitrate=nil, disablehighervideoresolution=nil, comment=nil, segmenttype=nil)
           @Format = format
           @StreamInfos = streaminfos
           @SubAppId = subappid
@@ -5200,6 +5209,7 @@ module TencentCloud
           @DisableHigherVideoBitrate = disablehighervideobitrate
           @DisableHigherVideoResolution = disablehighervideoresolution
           @Comment = comment
+          @SegmentType = segmenttype
         end
 
         def deserialize(params)
@@ -5219,6 +5229,7 @@ module TencentCloud
           @DisableHigherVideoBitrate = params['DisableHigherVideoBitrate']
           @DisableHigherVideoResolution = params['DisableHigherVideoResolution']
           @Comment = params['Comment']
+          @SegmentType = params['SegmentType']
         end
       end
 
@@ -6248,10 +6259,15 @@ module TencentCloud
         # @type AudioTemplate: :class:`Tencentcloud::Vod.v20180717.models.AudioTemplateInfo`
         # @param TEHDConfig: 极速高清转码参数。
         # @type TEHDConfig: :class:`Tencentcloud::Vod.v20180717.models.TEHDConfig`
+        # @param SegmentType: 切片类型，当 Container 为 hls 时有效，可选值：
+        # <li>ts：ts 切片；</li>
+        # <li>fmp4：fmp4 切片。</li>
+        # 默认值：ts。
+        # @type SegmentType: String
 
-        attr_accessor :Container, :SubAppId, :Name, :Comment, :RemoveVideo, :RemoveAudio, :VideoTemplate, :AudioTemplate, :TEHDConfig
+        attr_accessor :Container, :SubAppId, :Name, :Comment, :RemoveVideo, :RemoveAudio, :VideoTemplate, :AudioTemplate, :TEHDConfig, :SegmentType
         
-        def initialize(container=nil, subappid=nil, name=nil, comment=nil, removevideo=nil, removeaudio=nil, videotemplate=nil, audiotemplate=nil, tehdconfig=nil)
+        def initialize(container=nil, subappid=nil, name=nil, comment=nil, removevideo=nil, removeaudio=nil, videotemplate=nil, audiotemplate=nil, tehdconfig=nil, segmenttype=nil)
           @Container = container
           @SubAppId = subappid
           @Name = name
@@ -6261,6 +6277,7 @@ module TencentCloud
           @VideoTemplate = videotemplate
           @AudioTemplate = audiotemplate
           @TEHDConfig = tehdconfig
+          @SegmentType = segmenttype
         end
 
         def deserialize(params)
@@ -6282,6 +6299,7 @@ module TencentCloud
             @TEHDConfig = TEHDConfig.new
             @TEHDConfig.deserialize(params['TEHDConfig'])
           end
+          @SegmentType = params['SegmentType']
         end
       end
 
@@ -14293,10 +14311,14 @@ module TencentCloud
         # @type StreamInfos: Array
         # @param Comment: 模板描述信息，长度限制：256 个字符。
         # @type Comment: String
+        # @param SegmentType: 切片类型，当 Format 为 HLS 时有效，可选值：
+        # <li>ts：ts 切片；</li>
+        # <li>fmp4：fmp4 切片。</li>
+        # @type SegmentType: String
 
-        attr_accessor :Definition, :SubAppId, :Name, :Format, :DisableHigherVideoBitrate, :DisableHigherVideoResolution, :StreamInfos, :Comment
+        attr_accessor :Definition, :SubAppId, :Name, :Format, :DisableHigherVideoBitrate, :DisableHigherVideoResolution, :StreamInfos, :Comment, :SegmentType
         
-        def initialize(definition=nil, subappid=nil, name=nil, format=nil, disablehighervideobitrate=nil, disablehighervideoresolution=nil, streaminfos=nil, comment=nil)
+        def initialize(definition=nil, subappid=nil, name=nil, format=nil, disablehighervideobitrate=nil, disablehighervideoresolution=nil, streaminfos=nil, comment=nil, segmenttype=nil)
           @Definition = definition
           @SubAppId = subappid
           @Name = name
@@ -14305,6 +14327,7 @@ module TencentCloud
           @DisableHigherVideoResolution = disablehighervideoresolution
           @StreamInfos = streaminfos
           @Comment = comment
+          @SegmentType = segmenttype
         end
 
         def deserialize(params)
@@ -14323,6 +14346,7 @@ module TencentCloud
             end
           end
           @Comment = params['Comment']
+          @SegmentType = params['SegmentType']
         end
       end
 
@@ -15428,10 +15452,14 @@ module TencentCloud
         # @type AudioTemplate: :class:`Tencentcloud::Vod.v20180717.models.AudioTemplateInfoForUpdate`
         # @param TEHDConfig: 极速高清转码参数。
         # @type TEHDConfig: :class:`Tencentcloud::Vod.v20180717.models.TEHDConfigForUpdate`
+        # @param SegmentType: 切片类型，当 Container 为 hls 时有效，可选值：
+        # <li>ts：ts 切片；</li>
+        # <li>fmp4：fmp4 切片。</li>
+        # @type SegmentType: String
 
-        attr_accessor :Definition, :SubAppId, :Container, :Name, :Comment, :RemoveVideo, :RemoveAudio, :VideoTemplate, :AudioTemplate, :TEHDConfig
+        attr_accessor :Definition, :SubAppId, :Container, :Name, :Comment, :RemoveVideo, :RemoveAudio, :VideoTemplate, :AudioTemplate, :TEHDConfig, :SegmentType
         
-        def initialize(definition=nil, subappid=nil, container=nil, name=nil, comment=nil, removevideo=nil, removeaudio=nil, videotemplate=nil, audiotemplate=nil, tehdconfig=nil)
+        def initialize(definition=nil, subappid=nil, container=nil, name=nil, comment=nil, removevideo=nil, removeaudio=nil, videotemplate=nil, audiotemplate=nil, tehdconfig=nil, segmenttype=nil)
           @Definition = definition
           @SubAppId = subappid
           @Container = container
@@ -15442,6 +15470,7 @@ module TencentCloud
           @VideoTemplate = videotemplate
           @AudioTemplate = audiotemplate
           @TEHDConfig = tehdconfig
+          @SegmentType = segmenttype
         end
 
         def deserialize(params)
@@ -15464,6 +15493,7 @@ module TencentCloud
             @TEHDConfig = TEHDConfigForUpdate.new
             @TEHDConfig.deserialize(params['TEHDConfig'])
           end
+          @SegmentType = params['SegmentType']
         end
       end
 
@@ -19677,6 +19707,7 @@ module TencentCloud
         # <li>转码时长的数据，单位是秒。</li>
         # <li>流量数据，单位是字节。</li>
         # <li>带宽数据，单位是比特每秒。</li>
+        # <li>直播剪辑数据，单位是秒。</li>
         # @type Value: Integer
 
         attr_accessor :Time, :Value
@@ -20815,10 +20846,12 @@ module TencentCloud
         # @type CreateTime: String
         # @param UpdateTime: 模板最后修改时间，使用 [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#I)。
         # @type UpdateTime: String
+        # @param SegmentType: 切片类型，仅当 Container 为 hls 时有效。
+        # @type SegmentType: String
 
-        attr_accessor :Definition, :Container, :Name, :Comment, :Type, :RemoveVideo, :RemoveAudio, :VideoTemplate, :AudioTemplate, :TEHDConfig, :ContainerType, :CreateTime, :UpdateTime
+        attr_accessor :Definition, :Container, :Name, :Comment, :Type, :RemoveVideo, :RemoveAudio, :VideoTemplate, :AudioTemplate, :TEHDConfig, :ContainerType, :CreateTime, :UpdateTime, :SegmentType
         
-        def initialize(definition=nil, container=nil, name=nil, comment=nil, type=nil, removevideo=nil, removeaudio=nil, videotemplate=nil, audiotemplate=nil, tehdconfig=nil, containertype=nil, createtime=nil, updatetime=nil)
+        def initialize(definition=nil, container=nil, name=nil, comment=nil, type=nil, removevideo=nil, removeaudio=nil, videotemplate=nil, audiotemplate=nil, tehdconfig=nil, containertype=nil, createtime=nil, updatetime=nil, segmenttype=nil)
           @Definition = definition
           @Container = container
           @Name = name
@@ -20832,6 +20865,7 @@ module TencentCloud
           @ContainerType = containertype
           @CreateTime = createtime
           @UpdateTime = updatetime
+          @SegmentType = segmenttype
         end
 
         def deserialize(params)
@@ -20857,6 +20891,7 @@ module TencentCloud
           @ContainerType = params['ContainerType']
           @CreateTime = params['CreateTime']
           @UpdateTime = params['UpdateTime']
+          @SegmentType = params['SegmentType']
         end
       end
 

@@ -330,17 +330,25 @@ module TencentCloud
         # @param ImageUrl: 图片的 Url 地址。要求图片经Base64编码后不超过 7M，分辨率建议500*800以上，支持PNG、JPG、JPEG、BMP格式。
         # 建议图片存储于腾讯云，可保障更高的下载速度和稳定性。
         # @type ImageUrl: String
+        # @param IsPdf: 是否开启PDF识别，默认值为true，开启后可同时支持图片和PDF的识别。
+        # @type IsPdf: Boolean
+        # @param PdfPageNumber: 需要识别的PDF页面的对应页码，仅支持PDF单页识别，当上传文件为PDF且IsPdf参数值为true时有效，默认值为1。
+        # @type PdfPageNumber: Integer
 
-        attr_accessor :ImageBase64, :ImageUrl
+        attr_accessor :ImageBase64, :ImageUrl, :IsPdf, :PdfPageNumber
         
-        def initialize(imagebase64=nil, imageurl=nil)
+        def initialize(imagebase64=nil, imageurl=nil, ispdf=nil, pdfpagenumber=nil)
           @ImageBase64 = imagebase64
           @ImageUrl = imageurl
+          @IsPdf = ispdf
+          @PdfPageNumber = pdfpagenumber
         end
 
         def deserialize(params)
           @ImageBase64 = params['ImageBase64']
           @ImageUrl = params['ImageUrl']
+          @IsPdf = params['IsPdf']
+          @PdfPageNumber = params['PdfPageNumber']
         end
       end
 
@@ -542,17 +550,25 @@ module TencentCloud
         # 图片存储于腾讯云的 Url 可保障更高的下载速度和稳定性，建议图片存储于腾讯云。
         # 非腾讯云存储的 Url 速度和稳定性可能受一定影响。
         # @type ImageUrl: String
+        # @param IsPdf: 是否开启PDF识别，默认值为true，开启后可同时支持图片和PDF的识别。
+        # @type IsPdf: Boolean
+        # @param PdfPageNumber: 需要识别的PDF页面的对应页码，仅支持PDF单页识别，当上传文件为PDF且IsPdf参数值为true时有效，默认值为1。
+        # @type PdfPageNumber: Integer
 
-        attr_accessor :ImageBase64, :ImageUrl
+        attr_accessor :ImageBase64, :ImageUrl, :IsPdf, :PdfPageNumber
         
-        def initialize(imagebase64=nil, imageurl=nil)
+        def initialize(imagebase64=nil, imageurl=nil, ispdf=nil, pdfpagenumber=nil)
           @ImageBase64 = imagebase64
           @ImageUrl = imageurl
+          @IsPdf = ispdf
+          @PdfPageNumber = pdfpagenumber
         end
 
         def deserialize(params)
           @ImageBase64 = params['ImageBase64']
           @ImageUrl = params['ImageUrl']
+          @IsPdf = params['IsPdf']
+          @PdfPageNumber = params['PdfPageNumber']
         end
       end
 
@@ -762,17 +778,25 @@ module TencentCloud
         # 图片存储于腾讯云的 Url 可保障更高的下载速度和稳定性，建议图片存储于腾讯云。
         # 非腾讯云存储的 Url 速度和稳定性可能受一定影响。
         # @type ImageUrl: String
+        # @param IsPdf: 是否开启PDF识别，默认值为true，开启后可同时支持图片和PDF的识别。
+        # @type IsPdf: Boolean
+        # @param PdfPageNumber: 需要识别的PDF页面的对应页码，仅支持PDF单页识别，当上传文件为PDF且IsPdf参数值为true时有效，默认值为1。
+        # @type PdfPageNumber: Integer
 
-        attr_accessor :ImageBase64, :ImageUrl
+        attr_accessor :ImageBase64, :ImageUrl, :IsPdf, :PdfPageNumber
         
-        def initialize(imagebase64=nil, imageurl=nil)
+        def initialize(imagebase64=nil, imageurl=nil, ispdf=nil, pdfpagenumber=nil)
           @ImageBase64 = imagebase64
           @ImageUrl = imageurl
+          @IsPdf = ispdf
+          @PdfPageNumber = pdfpagenumber
         end
 
         def deserialize(params)
           @ImageBase64 = params['ImageBase64']
           @ImageUrl = params['ImageUrl']
+          @IsPdf = params['IsPdf']
+          @PdfPageNumber = params['PdfPageNumber']
         end
       end
 
@@ -1173,17 +1197,25 @@ module TencentCloud
         # 图片存储于腾讯云的 Url 可保障更高的下载速度和稳定性，建议图片存储于腾讯云。
         # 非腾讯云存储的 Url 速度和稳定性可能受一定影响。
         # @type ImageUrl: String
+        # @param IsPdf: 是否开启PDF识别，默认值为true，开启后可同时支持图片和PDF的识别。
+        # @type IsPdf: Boolean
+        # @param PdfPageNumber: 需要识别的PDF页面的对应页码，仅支持PDF单页识别，当上传文件为PDF且IsPdf参数值为true时有效，默认值为1。
+        # @type PdfPageNumber: Integer
 
-        attr_accessor :ImageBase64, :ImageUrl
+        attr_accessor :ImageBase64, :ImageUrl, :IsPdf, :PdfPageNumber
         
-        def initialize(imagebase64=nil, imageurl=nil)
+        def initialize(imagebase64=nil, imageurl=nil, ispdf=nil, pdfpagenumber=nil)
           @ImageBase64 = imagebase64
           @ImageUrl = imageurl
+          @IsPdf = ispdf
+          @PdfPageNumber = pdfpagenumber
         end
 
         def deserialize(params)
           @ImageBase64 = params['ImageBase64']
           @ImageUrl = params['ImageUrl']
+          @IsPdf = params['IsPdf']
+          @PdfPageNumber = params['PdfPageNumber']
         end
       end
 
@@ -1732,17 +1764,25 @@ module TencentCloud
         # 图片存储于腾讯云的 Url 可保障更高的下载速度和稳定性，建议图片存储于腾讯云。
         # 非腾讯云存储的 Url 速度和稳定性可能受一定影响。
         # @type ImageUrl: String
+        # @param IsPdf: 是否开启PDF识别，默认值为true，开启后可同时支持图片和PDF的识别。
+        # @type IsPdf: Boolean
+        # @param PdfPageNumber: 需要识别的PDF页面的对应页码，仅支持PDF单页识别，当上传文件为PDF且IsPdf参数值为true时有效，默认值为1。
+        # @type PdfPageNumber: Integer
 
-        attr_accessor :ImageBase64, :ImageUrl
+        attr_accessor :ImageBase64, :ImageUrl, :IsPdf, :PdfPageNumber
         
-        def initialize(imagebase64=nil, imageurl=nil)
+        def initialize(imagebase64=nil, imageurl=nil, ispdf=nil, pdfpagenumber=nil)
           @ImageBase64 = imagebase64
           @ImageUrl = imageurl
+          @IsPdf = ispdf
+          @PdfPageNumber = pdfpagenumber
         end
 
         def deserialize(params)
           @ImageBase64 = params['ImageBase64']
           @ImageUrl = params['ImageUrl']
+          @IsPdf = params['IsPdf']
+          @PdfPageNumber = params['PdfPageNumber']
         end
       end
 
@@ -2837,17 +2877,25 @@ module TencentCloud
         # 图片存储于腾讯云的 Url 可保障更高的下载速度和稳定性，建议图片存储于腾讯云。
         # 非腾讯云存储的 Url 速度和稳定性可能受一定影响。
         # @type ImageUrl: String
+        # @param IsPdf: 是否开启PDF识别，默认值为true，开启后可同时支持图片和PDF的识别。
+        # @type IsPdf: Boolean
+        # @param PdfPageNumber: 需要识别的PDF页面的对应页码，仅支持PDF单页识别，当上传文件为PDF且IsPdf参数值为true时有效，默认值为1。
+        # @type PdfPageNumber: Integer
 
-        attr_accessor :ImageBase64, :ImageUrl
+        attr_accessor :ImageBase64, :ImageUrl, :IsPdf, :PdfPageNumber
         
-        def initialize(imagebase64=nil, imageurl=nil)
+        def initialize(imagebase64=nil, imageurl=nil, ispdf=nil, pdfpagenumber=nil)
           @ImageBase64 = imagebase64
           @ImageUrl = imageurl
+          @IsPdf = ispdf
+          @PdfPageNumber = pdfpagenumber
         end
 
         def deserialize(params)
           @ImageBase64 = params['ImageBase64']
           @ImageUrl = params['ImageUrl']
+          @IsPdf = params['IsPdf']
+          @PdfPageNumber = params['PdfPageNumber']
         end
       end
 
@@ -3374,19 +3422,27 @@ module TencentCloud
         # 图片存储于腾讯云的 Url 可保障更高的下载速度和稳定性，建议图片存储于腾讯云。
         # 非腾讯云存储的 Url 速度和稳定性可能受一定影响。
         # @type ImageUrl: String
+        # @param IsPdf: 是否开启PDF识别，默认值为true，开启后可同时支持图片和PDF的识别。
+        # @type IsPdf: Boolean
+        # @param PdfPageNumber: 需要识别的PDF页面的对应页码，仅支持PDF单页识别，当上传文件为PDF且IsPdf参数值为true时有效，默认值为1。
+        # @type PdfPageNumber: Integer
 
-        attr_accessor :ReturnImage, :ImageBase64, :ImageUrl
+        attr_accessor :ReturnImage, :ImageBase64, :ImageUrl, :IsPdf, :PdfPageNumber
         
-        def initialize(returnimage=nil, imagebase64=nil, imageurl=nil)
+        def initialize(returnimage=nil, imagebase64=nil, imageurl=nil, ispdf=nil, pdfpagenumber=nil)
           @ReturnImage = returnimage
           @ImageBase64 = imagebase64
           @ImageUrl = imageurl
+          @IsPdf = ispdf
+          @PdfPageNumber = pdfpagenumber
         end
 
         def deserialize(params)
           @ReturnImage = params['ReturnImage']
           @ImageBase64 = params['ImageBase64']
           @ImageUrl = params['ImageUrl']
+          @IsPdf = params['IsPdf']
+          @PdfPageNumber = params['PdfPageNumber']
         end
       end
 
@@ -3503,19 +3559,27 @@ module TencentCloud
         # 13：过路过桥费发票
         # 15：非税发票
         # 16：全电发票
+        # ----------------------
+        # -1：其他发票,（仅返回，本参数不支持传入-1，请在ReturnOther中控制是否返回）
         # @type Types: Array
         # @param ReturnOther: 是否识别其他类型发票，默认为Yes
         # Yes：识别其他类型发票
         # No：不识别其他类型发票
         # @type ReturnOther: String
+        # @param IsPdf: 是否开启PDF识别，默认值为true，开启后可同时支持图片和PDF的识别。
+        # @type IsPdf: Boolean
+        # @param PdfPageNumber: 需要识别的PDF页面的对应页码，仅支持PDF单页识别，当上传文件为PDF且IsPdf参数值为true时有效，默认值为1。
+        # @type PdfPageNumber: Integer
 
-        attr_accessor :ImageBase64, :ImageUrl, :Types, :ReturnOther
+        attr_accessor :ImageBase64, :ImageUrl, :Types, :ReturnOther, :IsPdf, :PdfPageNumber
         
-        def initialize(imagebase64=nil, imageurl=nil, types=nil, returnother=nil)
+        def initialize(imagebase64=nil, imageurl=nil, types=nil, returnother=nil, ispdf=nil, pdfpagenumber=nil)
           @ImageBase64 = imagebase64
           @ImageUrl = imageurl
           @Types = types
           @ReturnOther = returnother
+          @IsPdf = ispdf
+          @PdfPageNumber = pdfpagenumber
         end
 
         def deserialize(params)
@@ -3523,6 +3587,8 @@ module TencentCloud
           @ImageUrl = params['ImageUrl']
           @Types = params['Types']
           @ReturnOther = params['ReturnOther']
+          @IsPdf = params['IsPdf']
+          @PdfPageNumber = params['PdfPageNumber']
         end
       end
 
@@ -4321,17 +4387,25 @@ module TencentCloud
         # 图片存储于腾讯云的 Url 可保障更高的下载速度和稳定性，建议图片存储于腾讯云。
         # 非腾讯云存储的 Url 速度和稳定性可能受一定影响。
         # @type ImageUrl: String
+        # @param IsPdf: 是否开启PDF识别，默认值为true，开启后可同时支持图片和PDF的识别。
+        # @type IsPdf: Boolean
+        # @param PdfPageNumber: 需要识别的PDF页面的对应页码，仅支持PDF单页识别，当上传文件为PDF且IsPdf参数值为true时有效，默认值为1。
+        # @type PdfPageNumber: Integer
 
-        attr_accessor :ImageBase64, :ImageUrl
+        attr_accessor :ImageBase64, :ImageUrl, :IsPdf, :PdfPageNumber
         
-        def initialize(imagebase64=nil, imageurl=nil)
+        def initialize(imagebase64=nil, imageurl=nil, ispdf=nil, pdfpagenumber=nil)
           @ImageBase64 = imagebase64
           @ImageUrl = imageurl
+          @IsPdf = ispdf
+          @PdfPageNumber = pdfpagenumber
         end
 
         def deserialize(params)
           @ImageBase64 = params['ImageBase64']
           @ImageUrl = params['ImageUrl']
+          @IsPdf = params['IsPdf']
+          @PdfPageNumber = params['PdfPageNumber']
         end
       end
 
@@ -4694,14 +4768,20 @@ module TencentCloud
         # @type ReturnVertex: Boolean
         # @param ReturnCoord: 是否需要返回识别出的文本行在旋转纠正之后的图像中的四点坐标，默认不返回
         # @type ReturnCoord: Boolean
+        # @param IsPdf: 是否开启PDF识别，默认值为true，开启后可同时支持图片和PDF的识别。
+        # @type IsPdf: Boolean
+        # @param PdfPageNumber: 需要识别的PDF页面的对应页码，仅支持PDF单页识别，当上传文件为PDF且IsPdf参数值为true时有效，默认值为1。
+        # @type PdfPageNumber: Integer
 
-        attr_accessor :ImageBase64, :ImageUrl, :ReturnVertex, :ReturnCoord
+        attr_accessor :ImageBase64, :ImageUrl, :ReturnVertex, :ReturnCoord, :IsPdf, :PdfPageNumber
         
-        def initialize(imagebase64=nil, imageurl=nil, returnvertex=nil, returncoord=nil)
+        def initialize(imagebase64=nil, imageurl=nil, returnvertex=nil, returncoord=nil, ispdf=nil, pdfpagenumber=nil)
           @ImageBase64 = imagebase64
           @ImageUrl = imageurl
           @ReturnVertex = returnvertex
           @ReturnCoord = returncoord
+          @IsPdf = ispdf
+          @PdfPageNumber = pdfpagenumber
         end
 
         def deserialize(params)
@@ -4709,6 +4789,8 @@ module TencentCloud
           @ImageUrl = params['ImageUrl']
           @ReturnVertex = params['ReturnVertex']
           @ReturnCoord = params['ReturnCoord']
+          @IsPdf = params['IsPdf']
+          @PdfPageNumber = params['PdfPageNumber']
         end
       end
 
@@ -5689,17 +5771,25 @@ module TencentCloud
         # 图片存储于腾讯云的 Url 可保障更高的下载速度和稳定性，建议图片存储于腾讯云。
         # 非腾讯云存储的 Url 速度和稳定性可能受一定影响。
         # @type ImageUrl: String
+        # @param IsPdf: 是否开启PDF识别，默认值为true，开启后可同时支持图片和PDF的识别。
+        # @type IsPdf: Boolean
+        # @param PdfPageNumber: 需要识别的PDF页面的对应页码，仅支持PDF单页识别，当上传文件为PDF且IsPdf参数值为true时有效，默认值为1。
+        # @type PdfPageNumber: Integer
 
-        attr_accessor :ImageBase64, :ImageUrl
+        attr_accessor :ImageBase64, :ImageUrl, :IsPdf, :PdfPageNumber
         
-        def initialize(imagebase64=nil, imageurl=nil)
+        def initialize(imagebase64=nil, imageurl=nil, ispdf=nil, pdfpagenumber=nil)
           @ImageBase64 = imagebase64
           @ImageUrl = imageurl
+          @IsPdf = ispdf
+          @PdfPageNumber = pdfpagenumber
         end
 
         def deserialize(params)
           @ImageBase64 = params['ImageBase64']
           @ImageUrl = params['ImageUrl']
+          @IsPdf = params['IsPdf']
+          @PdfPageNumber = params['PdfPageNumber']
         end
       end
 
@@ -6078,17 +6168,25 @@ module TencentCloud
         # 图片存储于腾讯云的 Url 可保障更高的下载速度和稳定性，建议图片存储于腾讯云。
         # 非腾讯云存储的 Url 速度和稳定性可能受一定影响。
         # @type ImageUrl: String
+        # @param IsPdf: 是否开启PDF识别，默认值为true，开启后可同时支持图片和PDF的识别。
+        # @type IsPdf: Boolean
+        # @param PdfPageNumber: 需要识别的PDF页面的对应页码，仅支持PDF单页识别，当上传文件为PDF且IsPdf参数值为true时有效，默认值为1。
+        # @type PdfPageNumber: Integer
 
-        attr_accessor :ImageBase64, :ImageUrl
+        attr_accessor :ImageBase64, :ImageUrl, :IsPdf, :PdfPageNumber
         
-        def initialize(imagebase64=nil, imageurl=nil)
+        def initialize(imagebase64=nil, imageurl=nil, ispdf=nil, pdfpagenumber=nil)
           @ImageBase64 = imagebase64
           @ImageUrl = imageurl
+          @IsPdf = ispdf
+          @PdfPageNumber = pdfpagenumber
         end
 
         def deserialize(params)
           @ImageBase64 = params['ImageBase64']
           @ImageUrl = params['ImageUrl']
+          @IsPdf = params['IsPdf']
+          @PdfPageNumber = params['PdfPageNumber']
         end
       end
 
@@ -6841,17 +6939,25 @@ module TencentCloud
         # 图片存储于腾讯云的 Url 可保障更高的下载速度和稳定性，建议图片存储于腾讯云。
         # 非腾讯云存储的 Url 速度和稳定性可能受一定影响。
         # @type ImageUrl: String
+        # @param IsPdf: 是否开启PDF识别，默认值为true，开启后可同时支持图片和PDF的识别。
+        # @type IsPdf: Boolean
+        # @param PdfPageNumber: 需要识别的PDF页面的对应页码，仅支持PDF单页识别，当上传文件为PDF且IsPdf参数值为true时有效，默认值为1。
+        # @type PdfPageNumber: Integer
 
-        attr_accessor :ImageBase64, :ImageUrl
+        attr_accessor :ImageBase64, :ImageUrl, :IsPdf, :PdfPageNumber
         
-        def initialize(imagebase64=nil, imageurl=nil)
+        def initialize(imagebase64=nil, imageurl=nil, ispdf=nil, pdfpagenumber=nil)
           @ImageBase64 = imagebase64
           @ImageUrl = imageurl
+          @IsPdf = ispdf
+          @PdfPageNumber = pdfpagenumber
         end
 
         def deserialize(params)
           @ImageBase64 = params['ImageBase64']
           @ImageUrl = params['ImageUrl']
+          @IsPdf = params['IsPdf']
+          @PdfPageNumber = params['PdfPageNumber']
         end
       end
 
@@ -6899,17 +7005,25 @@ module TencentCloud
         # 图片存储于腾讯云的 Url 可保障更高的下载速度和稳定性，建议图片存储于腾讯云。
         # 非腾讯云存储的 Url 速度和稳定性可能受一定影响。
         # @type ImageUrl: String
+        # @param IsPdf: 是否开启PDF识别，默认值为true，开启后可同时支持图片和PDF的识别。
+        # @type IsPdf: Boolean
+        # @param PdfPageNumber: 需要识别的PDF页面的对应页码，仅支持PDF单页识别，当上传文件为PDF且IsPdf参数值为true时有效，默认值为1。
+        # @type PdfPageNumber: Integer
 
-        attr_accessor :ImageBase64, :ImageUrl
+        attr_accessor :ImageBase64, :ImageUrl, :IsPdf, :PdfPageNumber
         
-        def initialize(imagebase64=nil, imageurl=nil)
+        def initialize(imagebase64=nil, imageurl=nil, ispdf=nil, pdfpagenumber=nil)
           @ImageBase64 = imagebase64
           @ImageUrl = imageurl
+          @IsPdf = ispdf
+          @PdfPageNumber = pdfpagenumber
         end
 
         def deserialize(params)
           @ImageBase64 = params['ImageBase64']
           @ImageUrl = params['ImageUrl']
+          @IsPdf = params['IsPdf']
+          @PdfPageNumber = params['PdfPageNumber']
         end
       end
 
@@ -7657,17 +7771,25 @@ module TencentCloud
         # 图片存储于腾讯云的 Url 可保障更高的下载速度和稳定性，建议图片存储于腾讯云。
         # 非腾讯云存储的 Url 速度和稳定性可能受一定影响。
         # @type ImageUrl: String
+        # @param IsPdf: 是否开启PDF识别，默认值为true，开启后可同时支持图片和PDF的识别。
+        # @type IsPdf: Boolean
+        # @param PdfPageNumber: 需要识别的PDF页面的对应页码，仅支持PDF单页识别，当上传文件为PDF且IsPdf参数值为true时有效，默认值为1。
+        # @type PdfPageNumber: Integer
 
-        attr_accessor :ImageBase64, :ImageUrl
+        attr_accessor :ImageBase64, :ImageUrl, :IsPdf, :PdfPageNumber
         
-        def initialize(imagebase64=nil, imageurl=nil)
+        def initialize(imagebase64=nil, imageurl=nil, ispdf=nil, pdfpagenumber=nil)
           @ImageBase64 = imagebase64
           @ImageUrl = imageurl
+          @IsPdf = ispdf
+          @PdfPageNumber = pdfpagenumber
         end
 
         def deserialize(params)
           @ImageBase64 = params['ImageBase64']
           @ImageUrl = params['ImageUrl']
+          @IsPdf = params['IsPdf']
+          @PdfPageNumber = params['PdfPageNumber']
         end
       end
 
@@ -8537,19 +8659,27 @@ module TencentCloud
         # @type ImageUrl: String
         # @param EnablePreDetect: 预检测开关，当待识别运单占整个输入图像的比例较小时，建议打开预检测开关。默认值为false。
         # @type EnablePreDetect: Boolean
+        # @param IsPdf: 是否开启PDF识别，默认值为true，开启后可同时支持图片和PDF的识别。
+        # @type IsPdf: Boolean
+        # @param PdfPageNumber: 需要识别的PDF页面的对应页码，仅支持PDF单页识别，当上传文件为PDF且IsPdf参数值为true时有效，默认值为1。
+        # @type PdfPageNumber: Integer
 
-        attr_accessor :ImageBase64, :ImageUrl, :EnablePreDetect
+        attr_accessor :ImageBase64, :ImageUrl, :EnablePreDetect, :IsPdf, :PdfPageNumber
         
-        def initialize(imagebase64=nil, imageurl=nil, enablepredetect=nil)
+        def initialize(imagebase64=nil, imageurl=nil, enablepredetect=nil, ispdf=nil, pdfpagenumber=nil)
           @ImageBase64 = imagebase64
           @ImageUrl = imageurl
           @EnablePreDetect = enablepredetect
+          @IsPdf = ispdf
+          @PdfPageNumber = pdfpagenumber
         end
 
         def deserialize(params)
           @ImageBase64 = params['ImageBase64']
           @ImageUrl = params['ImageUrl']
           @EnablePreDetect = params['EnablePreDetect']
+          @IsPdf = params['IsPdf']
+          @PdfPageNumber = params['PdfPageNumber']
         end
       end
 

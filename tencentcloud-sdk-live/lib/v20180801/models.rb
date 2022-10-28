@@ -9822,16 +9822,20 @@ module TencentCloud
         # @type ModuleCodec: String
         # @param Bitrate: 码率。
         # @type Bitrate: Integer
-        # @param Type: 类型，包含：转码（Transcode），混流（MixStream），水印（WaterMark）。
+        # @param Type: 类型，包含：转码（Transcode），混流（MixStream），水印（WaterMark），快直播（Webrtc）。
         # @type Type: String
         # @param PushDomain: 推流域名。
         # @type PushDomain: String
         # @param Resolution: 分辨率。
         # @type Resolution: String
+        # @param MainlandOrOversea: 地域：
+        # Mainland：国内。
+        # Overseas：海外。
+        # @type MainlandOrOversea: String
 
-        attr_accessor :StreamName, :StartTime, :EndTime, :Duration, :ModuleCodec, :Bitrate, :Type, :PushDomain, :Resolution
+        attr_accessor :StreamName, :StartTime, :EndTime, :Duration, :ModuleCodec, :Bitrate, :Type, :PushDomain, :Resolution, :MainlandOrOversea
         
-        def initialize(streamname=nil, starttime=nil, endtime=nil, duration=nil, modulecodec=nil, bitrate=nil, type=nil, pushdomain=nil, resolution=nil)
+        def initialize(streamname=nil, starttime=nil, endtime=nil, duration=nil, modulecodec=nil, bitrate=nil, type=nil, pushdomain=nil, resolution=nil, mainlandoroversea=nil)
           @StreamName = streamname
           @StartTime = starttime
           @EndTime = endtime
@@ -9841,6 +9845,7 @@ module TencentCloud
           @Type = type
           @PushDomain = pushdomain
           @Resolution = resolution
+          @MainlandOrOversea = mainlandoroversea
         end
 
         def deserialize(params)
@@ -9853,6 +9858,7 @@ module TencentCloud
           @Type = params['Type']
           @PushDomain = params['PushDomain']
           @Resolution = params['Resolution']
+          @MainlandOrOversea = params['MainlandOrOversea']
         end
       end
 

@@ -437,6 +437,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 代理商可查询自己名下全部返佣信息
+
+        # @param request: Request instance for DescribeRebateInfosNew.
+        # @type request: :class:`Tencentcloud::partners::V20180321::DescribeRebateInfosNewRequest`
+        # @rtype: :class:`Tencentcloud::partners::V20180321::DescribeRebateInfosNewResponse`
+        def DescribeRebateInfosNew(request)
+          body = send_request('DescribeRebateInfosNew', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeRebateInfosNewResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 代理商查询名下业务员列表信息
 
         # @param request: Request instance for DescribeSalesmans.

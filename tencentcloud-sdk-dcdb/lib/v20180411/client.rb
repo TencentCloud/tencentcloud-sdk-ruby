@@ -1234,6 +1234,78 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口（ModifyInstanceNetwork）用于修改实例所属网络。
+
+        # @param request: Request instance for ModifyInstanceNetwork.
+        # @type request: :class:`Tencentcloud::dcdb::V20180411::ModifyInstanceNetworkRequest`
+        # @rtype: :class:`Tencentcloud::dcdb::V20180411::ModifyInstanceNetworkResponse`
+        def ModifyInstanceNetwork(request)
+          body = send_request('ModifyInstanceNetwork', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyInstanceNetworkResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口（ModifyInstanceVip）用于修改实例Vip
+
+        # @param request: Request instance for ModifyInstanceVip.
+        # @type request: :class:`Tencentcloud::dcdb::V20180411::ModifyInstanceVipRequest`
+        # @rtype: :class:`Tencentcloud::dcdb::V20180411::ModifyInstanceVipResponse`
+        def ModifyInstanceVip(request)
+          body = send_request('ModifyInstanceVip', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyInstanceVipResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口（ModifyInstanceVport）用于修改实例VPORT
+
+        # @param request: Request instance for ModifyInstanceVport.
+        # @type request: :class:`Tencentcloud::dcdb::V20180411::ModifyInstanceVportRequest`
+        # @rtype: :class:`Tencentcloud::dcdb::V20180411::ModifyInstanceVportResponse`
+        def ModifyInstanceVport(request)
+          body = send_request('ModifyInstanceVport', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyInstanceVportResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口(ModifyRealServerAccessStrategy)用于修改云数据库的VPCGW到RS的访问策略。
 
         # **注意**

@@ -1610,6 +1610,61 @@ module TencentCloud
         end
       end
 
+      # DescribeRebateInfosNew请求参数结构体
+      class DescribeRebateInfosNewRequest < TencentCloud::Common::AbstractModel
+        # @param RebateMonth: 返佣月份，如2018-02
+        # @type RebateMonth: String
+        # @param Offset: 偏移量
+        # @type Offset: Integer
+        # @param Limit: 限制数目
+        # @type Limit: Integer
+
+        attr_accessor :RebateMonth, :Offset, :Limit
+        
+        def initialize(rebatemonth=nil, offset=nil, limit=nil)
+          @RebateMonth = rebatemonth
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @RebateMonth = params['RebateMonth']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeRebateInfosNew返回参数结构体
+      class DescribeRebateInfosNewResponse < TencentCloud::Common::AbstractModel
+        # @param RebateInfoSet: 返佣信息列表
+        # @type RebateInfoSet: Array
+        # @param TotalCount: 符合查询条件返佣信息数目
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RebateInfoSet, :TotalCount, :RequestId
+        
+        def initialize(rebateinfoset=nil, totalcount=nil, requestid=nil)
+          @RebateInfoSet = rebateinfoset
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['RebateInfoSet'].nil?
+            @RebateInfoSet = []
+            params['RebateInfoSet'].each do |i|
+              rebateinfoelemnew_tmp = RebateInfoElemNew.new
+              rebateinfoelemnew_tmp.deserialize(i)
+              @RebateInfoSet << rebateinfoelemnew_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeRebateInfos请求参数结构体
       class DescribeRebateInfosRequest < TencentCloud::Common::AbstractModel
         # @param RebateMonth: 返佣月份，如2018-02
@@ -1857,6 +1912,42 @@ module TencentCloud
 
       # 返佣信息定义
       class RebateInfoElem < TencentCloud::Common::AbstractModel
+        # @param Uin: 代理商账号ID
+        # @type Uin: String
+        # @param RebateMonth: 返佣月份，如2018-02
+        # @type RebateMonth: String
+        # @param Amt: 返佣金额，单位分
+        # @type Amt: Integer
+        # @param MonthSales: 月度业绩，单位分
+        # @type MonthSales: Integer
+        # @param QuarterSales: 季度业绩，单位分
+        # @type QuarterSales: Integer
+        # @param ExceptionFlag: NORMAL(正常)/HAS_OVERDUE_BILL(欠费)/NO_CONTRACT(缺合同)
+        # @type ExceptionFlag: String
+
+        attr_accessor :Uin, :RebateMonth, :Amt, :MonthSales, :QuarterSales, :ExceptionFlag
+        
+        def initialize(uin=nil, rebatemonth=nil, amt=nil, monthsales=nil, quartersales=nil, exceptionflag=nil)
+          @Uin = uin
+          @RebateMonth = rebatemonth
+          @Amt = amt
+          @MonthSales = monthsales
+          @QuarterSales = quartersales
+          @ExceptionFlag = exceptionflag
+        end
+
+        def deserialize(params)
+          @Uin = params['Uin']
+          @RebateMonth = params['RebateMonth']
+          @Amt = params['Amt']
+          @MonthSales = params['MonthSales']
+          @QuarterSales = params['QuarterSales']
+          @ExceptionFlag = params['ExceptionFlag']
+        end
+      end
+
+      # 返佣信息定义
+      class RebateInfoElemNew < TencentCloud::Common::AbstractModel
         # @param Uin: 代理商账号ID
         # @type Uin: String
         # @param RebateMonth: 返佣月份，如2018-02
